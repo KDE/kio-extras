@@ -57,8 +57,8 @@ public:
 
 protected:
 
-	ssize_t POP3Protocol::myRead(void *data, ssize_t len);
-	ssize_t POP3Protocol::myReadLine(char *data, ssize_t len);
+	ssize_t myRead(void *data, ssize_t len);
+	ssize_t myReadLine(char *data, ssize_t len);
 
 	/**
 	  * This returns the size of a message as a long integer.

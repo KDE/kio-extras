@@ -276,6 +276,7 @@ bool POP3Protocol::sendCommand(const char *cmd)
 	}
 
 	delete [] cmdrn;
+    return true;
 }
 
 bool POP3Protocol::command (const char *cmd, char *recv_buf, unsigned int len)
