@@ -689,7 +689,7 @@ void SmbProtocol::createUDSEntry(const StatInfo& info, UDSEntry& entry)
 
 StatInfo SmbProtocol::createStatInfo(const QString line)
 {
-   kdDebug(7101)<<"Smb::createStatInfo() -"<<line.utf8()<<"-"<<endl;
+//   kdDebug(7101)<<"Smb::createStatInfo() -"<<line.utf8()<<"-"<<endl;
    QString name;
    QString size;
 
@@ -698,7 +698,8 @@ StatInfo SmbProtocol::createStatInfo(const QString line)
    static QDateTime beginningOfTimes(QDate(1970,1,1),QTime(1,0));
 
 //"      A   213123  Mon Mar 12"
-   int startOfData=line.find(QRegExp("     [ADR ][ADR ][ \\d][ \\d][ \\d][ \\d][ \\d][ \\d][ \\d][ \\d]\\d  [A-Z][a-z][a-z] [A-Z][a-z][a-z] [ \\d]\\d"));
+   //the \\d+ is required for files bigger than 100.000.000 bytes
+   int startOfData=line.find(QRegExp("    [ADR ][ADR ][ADR ] [ \\d][ \\d][ \\d][ \\d][ \\d][ \\d][ \\d]\\d+  [A-Z][a-z][a-z] [A-Z][a-z][a-z] [ \\d]\\d"));
    //kdDebug(7101)<<"createStatInfo: regexp at: "<<startOfData<<endl;
    if (startOfData==-1)
    {
@@ -726,7 +727,11 @@ StatInfo SmbProtocol::createStatInfo(const QString line)
    //kdDebug(7101)<<"createStatInfo: name: -"<<name<<"-"<<endl;
 
    //kdDebug(7101)<<"createStatInfo: line(start+5..7): -"<<line.mid(startOfData+5,3)<<"-"<<endl;
-   if ((line[startOfData+6]=='D') || (line[startOfData+5]=='D'))
+   //this offset is required for files bigger than 100.000.000 bytes
+   int sizeOffset(0);
+   while (line[startOfData+16+sizeOffset]!=' ')
+      sizeOffset++;
+   if ((line[startOfData+6]=='D') || (line[startOfData+5]=='D') || (line[startOfData+4]=='D'))
    {
       info.isDir=true;
       info.size=1024;
@@ -735,7 +740,7 @@ StatInfo SmbProtocol::createStatInfo(const QString line)
    {
       //kdDebug(7101)<<"createStatInfo: line(start+6,11): -"<<line.mid(startOfData+6,11)<<"-"<<endl;
       info.isDir=false;
-      size=line.mid(startOfData+7,9);
+      size=line.mid(startOfData+7,9+sizeOffset);
       info.size=size.toInt();
       //kdDebug(7101)<<"createStatInfo: size: -"<<size<<"-"<<endl;
    };
@@ -744,20 +749,24 @@ StatInfo SmbProtocol::createStatInfo(const QString line)
 
    QString tmp;
    //month
-   tmp=line.mid(startOfData+22,3);
+   tmp=line.mid(startOfData+22+sizeOffset,3);
    int month=m_months[tmp];
-   tmp=line.mid(startOfData+26,2);
+   tmp=line.mid(startOfData+26+sizeOffset,2);
    int day=tmp.toInt();
-   tmp=line.mid(startOfData+29,2);
+   tmp=line.mid(startOfData+29+sizeOffset,2);
    int hour=tmp.toInt();
-   tmp=line.mid(startOfData+32,2);
+   tmp=line.mid(startOfData+32+sizeOffset,2);
    int minute=tmp.toInt();
-   tmp=line.mid(startOfData+35,2);
+   tmp=line.mid(startOfData+35+sizeOffset,2);
    int secs=tmp.toInt();
-   tmp=line.mid(startOfData+38,4);
+   tmp=line.mid(startOfData+38+sizeOffset,4);
    int year=tmp.toInt();
+//   kdDebug(7101)<<"sizeOff: "<<sizeOffset<<" mon: "<<month<<" day: "<<day<<" hour: "<<hour<<" minute: "<<minute<<" sec: "<<secs<<" year: "<<year<<endl;
 
-
+/*
+  blah_fasel_long__Long_big_very_big_file__.avi____RDA 644007936  Tue Jul  4 22:49:00 2000
+  siehe auch MPG4-Codec.lnk     ____ADA     1452  Tue Dec 19 23:22:17 2000
+*/
    QDateTime date(QDate(year,month,day),QTime(hour,minute,secs));
    info.time=beginningOfTimes.secsTo(date);
    //info.time=time(0);
