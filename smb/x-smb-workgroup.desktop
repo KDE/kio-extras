@@ -1,0 +1,8 @@
+[Desktop Entry]
+Encoding=UTF-8
+Comment=Windows Workgroup
+Icon=usb
+Type=MimeType
+MimeType=application/x-smb-workgroup
+X-KDE-Derived=inode/directory
+X-KDE-AutoEmbed=true

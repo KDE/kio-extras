@@ -373,6 +373,10 @@ void SMBSlave::listDir( const KURL& kurl )
                atom.m_long = (S_IRUSR | S_IRGRP | S_IROTH | S_IXUSR | S_IXGRP | S_IXOTH);
                udsentry.append(atom);
 
+               atom.m_uds = KIO::UDS_MIME_TYPE;
+               atom.m_str = QString::fromLatin1("application/x-smb-workgroup");
+               udsentry.append(atom);
+
                // Call base class to list entry
                listEntry(udsentry, false);
            }
