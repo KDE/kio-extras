@@ -139,18 +139,18 @@ QString HelpProtocol::lookupFile(QString fname, QString query, bool &redirect)
     result = langLookup(path);
     if (result.isEmpty())
     {
-        result = langLookup(path+"/index.docbook");
+        result = langLookup(path+"/index.html");
         if (!result.isEmpty())
 	{
-            redirection(KURL(QString("help:%1/index.docbook").arg(path)));
+            redirection(KURL(QString("help:%1/index.html").arg(path)));
             redirect = true;
 	}
         else
 	{
-            result = langLookup("khelpcenter/index.docbook");
+            result = langLookup("khelpcenter/index.html");
             if (!result.isEmpty())
 	    {
-                redirection(KURL("help:/khelpcenter/index.docbook"));
+                redirection(KURL("help:/khelpcenter/index.html"));
                 redirect = true;
                 return QString::null;
 	    }
@@ -188,7 +188,11 @@ void HelpProtocol::get( const KURL& url )
     kdDebug() << "get: path=" << url.path() << " query=" << url.query() << endl;
 
     bool redirect;
-    QString doc = lookupFile(url.path(), url.query(), redirect);
+    QString doc;
+    doc = url.path();
+    if (doc.at(doc.length() - 1) == '/')
+        doc += "index.html";
+    doc = lookupFile(doc, url.query(), redirect);
 
     if (redirect)
     {
@@ -208,13 +212,18 @@ void HelpProtocol::get( const KURL& url )
         target.setHTMLRef(url.htmlRef());
 
     QString file = target.path();
-    if (!KStandardDirs::exists(file) || file.right(4) == "html")
+    if (!KStandardDirs::exists(file) || file.right(4) == "html") {
         file = file.left(file.findRev('/')) + "/index.docbook";
-    else {
-        kdDebug() << "emitFile redirection " << url.url().latin1() << endl;
-        redirection(target);
-        finished();
-        return;
+    } else {
+        QFileInfo fi(file);
+        if (fi.isDir()) {
+            file = file + "/index.docbook";
+        } else {
+            kdDebug() << "emitFile redirection " << url.url().latin1() << endl;
+            redirection(target);
+            finished();
+            return;
+        }
     }
     parsed = transform(file);
     if (parsed.isEmpty()) {
