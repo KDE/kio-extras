@@ -450,7 +450,11 @@ void MANProtocol::checkManPaths()
 
     // add paths from /etc/man.conf
     QRegExp manpath("^MANPATH\\s");
-    QFile mc("/etc/man.conf");
+    QFile mc("/etc/man.conf");             // ???
+    if (!mc.exists())
+    	mc.setName("/etc/manpath.config"); // SuSE, Debian
+    if (!mc.exists())
+   	mc.setName("/etc/man.config");  // Mandrake
     if (mc.open(IO_ReadOnly))
     {
         QTextStream is(&mc);
