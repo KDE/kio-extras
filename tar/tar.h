@@ -5,10 +5,10 @@
 #include <kio_base.h>
 #include <kio_filter.h>
 
-class TARProtocol : public IOProtocol
+class TARProtocol : public KIOProtocol
 {
 public:
-  TARProtocol( Connection *_conn );
+  TARProtocol( KIOConnection *_conn );
   
   virtual void slotGet( const char *_url );
   virtual void slotPut( const char *_url, int _mode, bool _overwrite,
@@ -23,19 +23,19 @@ public:
   void jobDataEnd();
   void filterData( void *_p, int _len );
   
-  Connection* connection() { return ConnectionSignals::m_pConnection; }
+  KIOConnection* connection() { return KIOConnectionSignals::m_pConnection; }
   
  protected:
   
   int m_cmd;
-  Filter* m_pFilter;
-  IOJob* m_pJob;
+  KIOFilter* m_pFilter;
+  KIOJobBase* m_pJob;
 };
 
-class TARIOJob : public IOJob
+class TARIOJob : public KIOJobBase
 {
  public:
-  TARIOJob( Connection *_conn, TARProtocol *_tar );
+  TARIOJob( KIOConnection *_conn, TARProtocol *_tar );
   
   virtual void slotData( void *_p, int _len );
   virtual void slotDataEnd();
@@ -45,7 +45,7 @@ class TARIOJob : public IOJob
   TARProtocol* m_pTAR;
 };
 
-class TARFilter : public Filter
+class TARFilter : public KIOFilter
 {
  public:
   TARFilter( TARProtocol *_tar, const char *_prg, const char **_argv);

@@ -25,7 +25,7 @@ int main(int , char **)
   tar.dispatchLoop();
 }
 
-TARProtocol::TARProtocol(Connection *_conn) : IOProtocol(_conn)
+TARProtocol::TARProtocol(KIOConnection *_conn) : KIOProtocol(_conn)
 {
   m_cmd = CMD_NONE;
   m_pFilter = 0L;
@@ -71,7 +71,7 @@ void TARProtocol::slotGet(const char *_url)
   }
 
   // Start the file protcol
-  Slave slave(exec);
+  KIOSlave slave(exec);
   if (slave.pid() == -1) {
     error(ERR_CANNOT_LAUNCH_PROCESS, exec);
     return;
@@ -247,7 +247,7 @@ void TARIOJob::slotError(int _errid, const char *_txt)
  *************************************/
 
 TARFilter::TARFilter(TARProtocol *_tar, const char *_prg, const char **_argv)
-  : Filter(_prg, _argv)
+  : KIOFilter(_prg, _argv)
 {
   m_pTAR = _tar;
 }

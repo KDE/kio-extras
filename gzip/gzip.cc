@@ -31,7 +31,7 @@ int main( int , char ** )
   return 0;
 }
 
-GZipProtocol::GZipProtocol( Connection *_conn ) : IOProtocol( _conn )
+GZipProtocol::GZipProtocol( Connection *_conn ) : KIOProtocol( _conn )
 {
   m_cmd = CMD_NONE;
   m_pFilter = 0L;
@@ -66,7 +66,7 @@ void GZipProtocol::slotCopy( const char *_source, const char *_dest )
   }
 
   // Start the dest slave
-  Slave dest_slave( dest_exec );
+  KIOSlave dest_slave( dest_exec );
   if ( dest_slave.pid() == -1 ) {
     error( ERR_CANNOT_LAUNCH_PROCESS, dest_exec );
     m_cmd = CMD_NONE;
@@ -153,7 +153,7 @@ void GZipProtocol::slotCopy( const char *_source, const char *_dest )
   }
 
   // Start the source slave
-  Slave source_slave( source_exec );
+  KIOSlave source_slave( source_exec );
   if ( source_slave.pid() == -1 ) {
     error( ERR_CANNOT_LAUNCH_PROCESS, source_exec );
     return;
@@ -256,7 +256,7 @@ void GZipProtocol::slotGet( const char *_url )
   }
 
   // Start the file protcol
-  Slave slave( exec );
+  KIOSlave slave( exec );
   if ( slave.pid() == -1 ) {
     error( ERR_CANNOT_LAUNCH_PROCESS, exec );
     return;
@@ -363,7 +363,7 @@ void GZipProtocol::slotPut( const char *_url, int, bool _overwrite, bool /*_resu
   }
 
   // Start the protocol
-  Slave slave( exec );
+  KIOSlave slave( exec );
   if ( slave.pid() == -1 ) {
     error( ERR_CANNOT_LAUNCH_PROCESS, exec );
     finished();
@@ -512,7 +512,7 @@ void GZipProtocol::filterData( void *_p, int _len )
  *
  *************************************/
 
-GZipIOJob::GZipIOJob( Connection *_conn, GZipProtocol *_gzip ) : IOJob( _conn )
+GZipIOJob::GZipIOJob( Connection *_conn, GZipProtocol *_gzip ) : KIOJobBase( _conn )
 {
   m_pGZip = _gzip;
 }
@@ -534,7 +534,7 @@ void GZipIOJob::slotError( int _errid, const char *_txt )
 
 
 
-GZipFilter::GZipFilter( const char *_prg, GZipProtocol *_gzip ) : Filter( _prg )
+GZipFilter::GZipFilter( const char *_prg, GZipProtocol *_gzip ) : KIOFilter( _prg )
 {
   m_pGZip = _gzip;
 }  

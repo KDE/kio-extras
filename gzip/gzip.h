@@ -5,7 +5,7 @@
 #include <kio_base.h>
 #include <kio_filter.h>
 
-class GZipProtocol : public IOProtocol
+class GZipProtocol : public KIOProtocol
 {
 public:
   GZipProtocol( Connection *_conn );
@@ -28,11 +28,11 @@ public:
 protected:
 
   int m_cmd;
-  Filter* m_pFilter;
+  KIOFilter* m_pFilter;
   IOJob* m_pJob;
 };
 
-class GZipIOJob : public IOJob
+class GZipIOJob : public KIOJobBase
 {
 public:
   GZipIOJob( Connection *_conn, GZipProtocol *_gzip );
@@ -45,7 +45,7 @@ protected:
   GZipProtocol* m_pGZip;
 };
 
-class GZipFilter : public Filter
+class GZipFilter : public KIOFilter
 {
 public:
   GZipFilter( const char *_prg, GZipProtocol *_gzip );
