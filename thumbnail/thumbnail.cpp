@@ -22,7 +22,6 @@
 
 #include <stdlib.h>
 #include <unistd.h>
-#include <iostream.h>
 
 #include <qpixmap.h>
 #include <qpainter.h>
@@ -37,6 +36,7 @@
 #include <kmimetype.h>
 #include <kservice.h>
 #include <klibloader.h>
+#include <kdebug.h>
 
 #include "thumbnail.h"
 #include "thumbcreator.h"
@@ -54,7 +54,7 @@ int kdemain(int argc, char **argv)
 
     if (argc != 4)
     {
-        cerr << "Usage: kio_thumbnail protocol domain-socket1 domain-socket2" << endl;
+        kdError() << "Usage: kio_thumbnail protocol domain-socket1 domain-socket2" << endl;
         exit(-1);
     }
 
