@@ -24,7 +24,9 @@
 #include <klocale.h>
 #include <kmdcodec.h>
 
+#ifdef HAVE_SASL_H
 #include <sasl.h>
+#endif
 #include <kabc/ldif.h>
 
 #include "kio_ldap.h"
