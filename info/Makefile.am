@@ -16,5 +16,5 @@ noinst_HEADERS = info.h
 kdelnk_DATA = info.protocol
 kdelnkdir = $(kde_servicesdir)
 
-data_DATA = kde-info2html kde-info2html.conf
-datadir = $(kde_datadir)/kio_info
+kio_info_data_DATA = kde-info2html kde-info2html.conf
+kio_info_datadir = $(kde_datadir)/kio_info

@@ -17,9 +17,9 @@ noinst_HEADERS = kio_finger.h
 kdelnk_DATA = finger.protocol
 kdelnkdir = $(kde_servicesdir)
 
-data_DATA = kio_finger.pl kio_finger.css
-datadir = $(kde_datadir)/kio_finger
-EXTRA_DIST=$(data_DATA)   
+kio_finger_data_DATA = kio_finger.pl kio_finger.css
+kio_finger_datadir = $(kde_datadir)/kio_finger
+EXTRA_DIST=$(kio_finger_data_DATA)   
 
 METASOURCES = AUTO
 
