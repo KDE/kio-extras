@@ -139,6 +139,15 @@ void SMTPProtocol::HandleSMTPWriteError (const KURL &url)
 }
 
 // Usage: smtp://smtphost:port/send?to=user@host.com&subject=blah
+// If smtphost is the name of a profile, it'll use the information 
+// provided by that profile.  If it's not a profile name, it'll use it as 
+// nature intended.
+// One can also specify in the query:
+// to=emailaddress
+// cc=emailaddress
+// bcc=emailaddress
+// subject=text
+// profile=text (this will override the "host" setting
 void SMTPProtocol::put (const KURL &url, int /*permissions*/, bool /*overwrite*/, bool /*resume*/)
 {
 	QString query = url.query();
@@ -164,10 +173,34 @@ void SMTPProtocol::put (const KURL &url, int /*permissions*/, bool /*overwrite*/
 	}
 
 	KEMailSettings *mset = new KEMailSettings;
+	KURL open_url = url;
 	if (profile == QString::null) {
-		profile = mset->defaultProfileName();
-	} 
-	mset->setProfile(profile);
+	kdDebug() << "kio_smtp: Profile is null" << endl;
+		QStringList profiles = mset->profiles(); bool hasProfile=false;
+		for (QStringList::Iterator it=profiles.begin(); it != profiles.end(); ++it) {
+			if ((*it) == open_url.host())
+				hasProfile=true;
+		}
+		if (hasProfile) {
+			mset->setProfile(open_url.host());
+			open_url.setHost(mset->getSetting(KEMailSettings::OutServer));
+			m_sUser = mset->getSetting(KEMailSettings::OutServerLogin);
+			m_sPass = mset->getSetting(KEMailSettings::OutServerPass);
+
+			if (m_sUser.isEmpty())
+				m_sUser = QString::null;
+			if (m_sPass.isEmpty())
+				m_sPass = QString::null;
+			open_url.setUser(m_sUser);
+			open_url.setPass(m_sPass);
+			m_sServer = open_url.host();
+			m_iPort = open_url.port();
+		} else {
+			mset->setProfile(mset->defaultProfileName());
+		}
+	} else {
+		mset->setProfile(profile);
+	}
 
 	// Check KEMailSettings to see if we've specified an E-Mail address
 	// if that worked, check to see if we've specified a real name
@@ -181,23 +214,23 @@ void SMTPProtocol::put (const KURL &url, int /*permissions*/, bool /*overwrite*/
 	}
 	from.prepend(ASCII("MAIL FROM: "));
 
-	if (!smtp_open(url))
-	        error(ERR_SERVICE_NOT_AVAILABLE, i18n("SMTPProtocol::smtp_open failed (%1)").arg(url.path()));
+	if (!smtp_open(open_url))
+	        error(ERR_SERVICE_NOT_AVAILABLE, i18n("SMTPProtocol::smtp_open failed (%1)").arg(open_url.path()));
 
 	if (!command(from)) {
-		HandleSMTPWriteError(url);
+		HandleSMTPWriteError(open_url);
 		return;
 	}
 
 	// Loop through our To and CC recipients, and send the proper
 	// SMTP commands, for the benefit of the server.
-	PutRecipients(recip, url);	// To
-	PutRecipients(cc, url);		// Carbon Copy (CC)
-	PutRecipients(bcc, url);	// Blind Carbon Copy (BCC)
+	PutRecipients(recip, open_url);	// To
+	PutRecipients(cc, open_url);	// Carbon Copy (CC)
+	PutRecipients(bcc, open_url);	// Blind Carbon Copy (BCC)
 
 	// Begin sending the actual message contents (most headers+body)
 	if (!command(ASCII("DATA"))) {
-		HandleSMTPWriteError(url);
+		HandleSMTPWriteError(open_url);
 	}
 
 	if (mset->getSetting(KEMailSettings::EmailAddress) != QString::null) {
@@ -241,7 +274,7 @@ void SMTPProtocol::put (const KURL &url, int /*permissions*/, bool /*overwrite*/
 		if (result > 0) {
 			Write(buffer.data(), buffer.size());
 		} else if (result < 0) {
-			error(ERR_COULD_NOT_WRITE, url.path());
+			error(ERR_COULD_NOT_WRITE, open_url.path());
 		}
 	} while (result > 0);
 
@@ -354,6 +387,7 @@ bool SMTPProtocol::command (const QString &cmd, char *recv_buf, unsigned int len
 
 bool SMTPProtocol::smtp_open (const KURL &url)
 {
+	kdDebug () << "kio_smtp: IT WANTS " << url.host() << endl;
 	if ( (m_iOldPort == GetPort(m_iPort)) && (m_sOldServer == m_sServer) && (m_sOldUser == m_sUser) ) {
 		return true;
 	} else {
