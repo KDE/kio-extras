@@ -21,7 +21,7 @@ defaultInclude_DATA=mountwatcher.desktop
 defaultIncludedir=$(kde_confdir)
 
 
-SUBDIRS=. kdedmodule mounthelper mimetypes
+SUBDIRS=. kdedmodule kfile-plugin mounthelper mimetypes
 
 messages:
 	$(XGETTEXT) `find . -name "*.cc" -o -name "*.cpp" -o -name "*.h"` -o $(podir)/kio_devices.pot
