@@ -73,10 +73,11 @@ POP3Protocol::POP3Protocol(Connection *_conn) : IOProtocol(_conn)
 {
   m_cmd = CMD_NONE;
   m_pJob = 0L;
-  m_iSock = 0;
+  m_iSock = m_iOldPort = 0;
   m_sServerInfo="";
   m_tTimeout.tv_sec=10;
   m_tTimeout.tv_usec=0;
+  fp = 0;
 }
 
 bool POP3Protocol::getResponse (char *r_buf, unsigned int r_len)
@@ -88,7 +89,7 @@ bool POP3Protocol::getResponse (char *r_buf, unsigned int r_len)
   FD_ZERO(&FDs);
   FD_SET(m_iSock, &FDs);
   while (::select(m_iSock+1, &FDs, 0, 0, &m_tTimeout) ==0);
-  memset(&buf, r_len, 0);
+  memset(&buf, 0, r_len);
   if (fgets(buf, sizeof(buf)-1, fp) == 0)
     return false;
   recv_len=strlen(buf);
@@ -124,10 +125,11 @@ bool POP3Protocol::command (const char *cmd, char *recv_buf, unsigned int len)
 
 void POP3Protocol::pop3_close ()
 {
-  if (m_iSock) {
+  if (fp) {
     (void)command("QUIT");
     fclose(fp);
     m_iSock=0; fp=0;
+    m_sOldUser = ""; m_sOldPass = ""; m_sOldServer = "";
   }
 }
 
@@ -135,63 +137,81 @@ bool POP3Protocol::pop3_open( KURL &_url )
 {
   unsigned int port;
   struct sockaddr_in server_name;
-  memset(&server_name, sizeof(server_name), 0);
+  memset(&server_name, 0, sizeof(server_name));
+  char buf[512];
 
   // We want 110 as the default, but -1 means no port was specified.
   // Why 0 wasn't chosen is beyond me.
   port = (_url.port() != -1) ? _url.port() : 110;
-
-  m_iSock = ::socket(PF_INET, SOCK_STREAM, 0);
-  if (!KSocket::initSockaddr(&server_name, _url.host(), port))
-    return false;
-  if (::connect(m_iSock, (struct sockaddr*)(&server_name), sizeof(server_name))) {
+  if ( (m_iOldPort == port) && (m_sOldServer == _url.host()) && (m_sOldUser == _url.user()) && (m_sOldPass == _url.pass())) {
+    fprintf(stderr,"Reusing old connection\n");fflush(stderr);
+    return true;
+  } else {
+    debug("Calling pop3close()");
+    pop3_close();
+    debug("DOneclose");
+    m_iSock = ::socket(PF_INET, SOCK_STREAM, 0);
+    if (!KSocket::initSockaddr(&server_name, _url.host(), port))
+      return false;
+    if (::connect(m_iSock, (struct sockaddr*)(&server_name), sizeof(server_name))) {
       error( ERR_COULD_NOT_CONNECT, strdup(_url.host()));
       return false;
-  }
-  if ((fp = fdopen(m_iSock, "w+")) == 0) {
-    close(m_iSock);
-    return false;
-  }
+    }
+    if ((fp = fdopen(m_iSock, "w+")) == 0) {
+      close(m_iSock);
+      return false;
+    }
+    
+    if (!getResponse())  // If the server doesn't respond with a greeting
+      return false;
 
-  if (!getResponse())  // If the server doesn't respond with a greeting
-    return false;
+    m_iOldPort = port;
+    m_sOldServer = _url.host();
 
-  char buf[512];
+    QString usr, pass, one_string="USER ";
+    if (_url.user().isEmpty() || _url.pass().isEmpty()) {
+      // Prompt for usernames
+      QString head="Username and password for your POP3 account:";
+      if (!open_PassDlg(head, usr, pass)) {
+	return false;
+	pop3_close();
+      } else {
+	one_string.append(usr);
+	m_sOldUser=usr;
+      }
+    } else {
+      one_string.append(_url.user());
+      m_sOldUser = _url.user();
+    }
+    memset(buf, 0, sizeof(buf));
+    if (!command(one_string, buf, sizeof(buf))) {
+      fprintf(stderr, "Couldn't login. Bad username Sorry\n"); fflush(stderr);
+      pop3_close();
+      return false;
+    }
+    
+    one_string="PASS ";
+    if (_url.pass().isEmpty()) {
+      m_sOldPass = pass;
+      one_string.append(pass);
+    } else {
+      m_sOldPass = _url.pass();
+      one_string.append(_url.pass());
+    }
+    if (!command(one_string, buf, sizeof(buf))) {
+      fprintf(stderr, "Couldn't login. Bad password Sorry\n"); fflush(stderr);
+      pop3_close();
+      return false;
+    }
+    return true;
 
-  QString usr, pass, one_string="USER ";
-  if (_url.user().isEmpty() || _url.pass().isEmpty()) {
-   // Prompt for usernames
-   QString head="Username and password for your POP3 account:";
-   if (!open_PassDlg(head, usr, pass))
-     return false;
-   else
-     one_string.append(usr);
-  } else
-    one_string.append(_url.user());
-  memset(buf, sizeof(buf), 0);
-  if (!command(one_string, buf, sizeof(buf))) {
-    fprintf(stderr, "Couldn't login. Bad username Sorry\n"); fflush(stderr);
-    pop3_close();
-    return false;
   }
-
-  one_string="PASS ";
-  if (_url.pass().isEmpty())
-    one_string.append(pass);
-  else
-    one_string.append(_url.pass());
-  if (!command(one_string, buf, sizeof(buf))) {
-    fprintf(stderr, "Couldn't login. Bad password Sorry\n"); fflush(stderr);
-    pop3_close();
-    return false;
-  }
-  return true;
 }
 
 void POP3Protocol::slotGet(const char *_url)
 {
   fprintf(stderr,"slotGet\n"); fflush(stderr);
-  bool ok;
+  bool ok=true;
   char buf[512];
   QString path, cmd;
   KURL usrc(_url);
@@ -239,9 +259,9 @@ void POP3Protocol::slotGet(const char *_url)
                          // TOP cmd isn't supported
       ready();
       gettingFile(_url);
-      memset(buf, sizeof(buf), 0);
+      memset(buf, 0, sizeof(buf));
       while (!feof(fp)) {
-	memset(buf, sizeof(buf), 0);
+	memset(buf, 0, sizeof(buf));
 	if (!fgets(buf, sizeof(buf)-1, fp))
 	  break;  // Error??
 	// HACK: This assumes fread stops at the first \n and not \r
@@ -250,7 +270,6 @@ void POP3Protocol::slotGet(const char *_url)
 	data(buf, strlen(buf));
       }
       fprintf(stderr,"Finishing up\n");fflush(stderr);
-      pop3_close();
       dataEnd();
       speed(0); finished();
     }
@@ -266,15 +285,14 @@ void POP3Protocol::slotGet(const char *_url)
   else if (cmd == "download") {
     int p_size=0;
     unsigned int msg_len=0;
-    char buf[512];
     (void)path.toInt(&ok);
     QString list_cmd("LIST ");
     if (!ok)
       return; //  We fscking need a number!
     list_cmd+= path;
     path.prepend("RETR ");
-    memset(buf, sizeof(buf), 0);
-    if (command(list_cmd, buf, sizeof(buf))) {
+    memset(buf, 0, sizeof(buf));
+    if (command(list_cmd, buf, sizeof(buf)-1)) {
       list_cmd=buf;
       // We need a space, otherwise we got an invalid reply
       if (!list_cmd.find(" ")) {
@@ -282,10 +300,10 @@ void POP3Protocol::slotGet(const char *_url)
         pop3_close();
         return;
       }
-      list_cmd.remove(0,list_cmd.find(" ")+1);
+      list_cmd.remove(0, list_cmd.find(" ")+1);
       msg_len = list_cmd.toUInt(&ok);
       if (!ok) {
-	debug("List command needs a number? %s", list_cmd.data());
+	debug("LIST command needs to return a number? :%s:", list_cmd.data());
 	pop3_close();return;
       }
     } else {
@@ -296,9 +314,9 @@ void POP3Protocol::slotGet(const char *_url)
       gettingFile(_url);
       mimeType("message/rfc822");
       totalSize(msg_len);
-      memset(buf, sizeof(buf), 0);
+      memset(buf, 0, sizeof(buf));
       while (!feof(fp)) {
-	memset(buf, sizeof(buf), 0);
+	memset(buf, 0, sizeof(buf));
 	if (!fgets(buf, sizeof(buf)-1, fp))
 	  break;  // Error??
 	// HACK: This assumes fread stops at the first \n and not \r
@@ -309,7 +327,6 @@ void POP3Protocol::slotGet(const char *_url)
 	processedSize(p_size);
       }
       fprintf(stderr,"Finishing up\n");fflush(stderr);
-      pop3_close();
       dataEnd();
       speed(0); finished();
     } else {
