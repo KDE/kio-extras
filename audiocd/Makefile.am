@@ -3,7 +3,7 @@ INCLUDES = $(all_includes) $(CDPARANOIA_INCS) $(LAME_INCS) $(VORBIS_INCS)
 
 kde_module_LTLIBRARIES = kio_audiocd.la
 
-kio_audiocd_la_SOURCES = audiocd.cpp cddb.cpp
+kio_audiocd_la_SOURCES = cddb.cpp audiocd.cpp
 
 kio_audiocd_la_LDFLAGS = $(all_libraries) $(KDE_RPATH) $(CDPARANOIA_RPATH) \
  $(LAME_RPATH) $(VORBIS_RPATH) -module $(KDE_PLUGIN)
