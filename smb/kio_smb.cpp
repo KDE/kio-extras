@@ -59,7 +59,6 @@ SMBSlave* G_TheSlave;
 //===========================================================================
 int kdemain( int argc, char **argv )
 {
-    kdDebug(KIO_SMB) << "START: kdemain for kio_smb" << endl;
     
     KInstance instance( "kio_smb" );
     if( argc != 4 )
