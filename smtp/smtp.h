@@ -39,22 +39,22 @@ class KSASLContext;
 class SMTPProtocol
 	: public KIO::TCPSlaveBase {
 public:
-	SMTPProtocol(const QCString &pool, const QCString &app);
-	virtual ~SMTPProtocol();
+	SMTPProtocol (const QCString &pool, const QCString &app);
+	virtual ~SMTPProtocol ();
 
-	virtual void setHost(const QString &host, int port, const QString &user, const QString &pass);
+	virtual void setHost (const QString &host, int port, const QString &user, const QString &pass);
 
-	virtual void put( const KURL& url, int permissions, bool overwrite, bool resume);
-	virtual void stat(const KURL&url);
+	virtual void put (const KURL& url, int permissions, bool overwrite, bool resume);
+	virtual void stat (const KURL&url);
 
 protected:
 
-	bool smtp_open(const KURL &u);
-	void smtp_close();
-	bool command(const char *buf, char *r_buf = NULL, unsigned int r_len = 0);
-	int getResponse(char *r_buf = NULL, unsigned int r_len = 0);
-	bool Authenticate(const KURL &u);
-	void HandleSMTPWriteError(const KURL&url);
+	bool smtp_open (const KURL &u);
+	void smtp_close ();
+	bool command (const char *buf, char *r_buf = NULL, unsigned int r_len = 0);
+	int getResponse (char *real_buf = NULL, unsigned int real_len = 0);
+	bool Authenticate (const KURL &url);
+	void HandleSMTPWriteError (const KURL &url);
 	void ParseFeatures (const char *buf);
 
 	unsigned short m_iOldPort;
@@ -65,7 +65,6 @@ protected:
 	QString m_sPass, m_sOldPass;
 	QString m_sError;
 
-	// Auth stuff.. perhaps for TCPSlaveBase?
 	KSASLContext *m_pSASL;
 	QString m_sAuthConfig;
 };

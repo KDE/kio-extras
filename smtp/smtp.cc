@@ -75,23 +75,20 @@ extern "C" { int kdemain (int argc, char **argv); }
 void	GetAddresses(const QString &str, const QString &delim, QStringList &list);
 int	GetVal(char *buf);
 
-int kdemain( int argc, char **argv )
+int kdemain (int argc, char **argv)
 {
-	KInstance instance( "kio_smtp" );
+	KInstance instance ("kio_smtp");
 
 	if (argc != 4) {
 		fprintf(stderr, "Usage: kio_smtp protocol domain-socket1 domain-socket2\n");
 		exit(-1);
 	}
 
+	// We might as well allocate it on the heap.  Since there's a heap o room there..
 	SMTPProtocol *slave;
-
-	// Are we looking to use SSL?
-	// Well this is now a user-configurable option, since
-	// STARTTLS is the preferred method of encryption
-	// and TLS has obsoleted SSL..
 	slave = new SMTPProtocol(argv[2], argv[3]);
 	slave->dispatchLoop();
+
 	delete slave;
 	return 0;
 }
@@ -108,7 +105,6 @@ SMTPProtocol::SMTPProtocol(const QCString &pool, const QCString &app)
 	m_sOldServer=QString::null;
 	m_tTimeout.tv_sec=10;
 	m_tTimeout.tv_usec=0;
-	//m_pSSL=0;
 
 	// Auth stuff
 	m_pSASL=0;
@@ -359,15 +355,14 @@ bool SMTPProtocol::smtp_open(const KURL &url)
 			ParseFeatures(const_cast<const char *>(ehlo_line));
 	}
 
-#if 0
-	if (haveTLS) {
+	if (haveTLS) { // we should also check kemailsettings as well..
 		if (command("STARTTLS")) {
 			//m_pSSL=new KSSL(true);
 			//m_pSSL->connect(m_iSock);
 		} else
 			haveTLS=false;
 	}
-#endif
+
 	// Now we try and login
 	if (!m_sUser.isNull()) {
 		if (!m_sPass.isNull()) {
