@@ -1,3 +1,5 @@
+// $Id$
+
 #include "emailsettings.h"
 
 #include <kconfig.h>
@@ -157,7 +159,13 @@ KEMailSettings::KEMailSettings()
 	if (p->m_sDefaultProfile != QString::null) {
 		if (!p->m_pConfig->hasGroup(QString("PROFILE_")+p->m_sDefaultProfile))
 			p->m_sDefaultProfile=QString::null;
+	} else if (p->profiles.count()) {
+		p->m_pConfig->setGroup("Defaults");
+		p->m_pConfig->writeEntry("Profile", p->profiles[0]);
+		p->m_pConfig->sync();
+		p->m_sDefaultProfile=p->profiles[0];
 	}
+	setProfile(p->m_sDefaultProfile);
 }
 
 KEMailSettings::~KEMailSettings()
