@@ -108,6 +108,7 @@ bool HALBackend::InitHal()
 	// Main loop integration
 	kdDebug() << "Main loop integration" << endl;
 	DBusError error;
+	dbus_error_init(&error);
 	DBusConnection *dbus_connection = dbus_bus_get(DBUS_BUS_SYSTEM, &error);
 	if (dbus_error_is_set(&error))
 		return false;
