@@ -13,14 +13,18 @@ kio_man_test_LDADD = man2html.lo kio_man.lo $(LIB_KFILE) $(LIB_KDEUI) $(LIB_KDEC
 
 ####### Files
 
-kde_module_LTLIBRARIES = kio_man.la
+kde_module_LTLIBRARIES = kio_man.la  libkmanpart.la
 
 kio_man_la_SOURCES = man2html.cpp kio_man.cpp
 kio_man_la_LIBADD = $(LIB_KSYCOCA)
 kio_man_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN)
 noinst_HEADERS = kio_man.h
 
-kdelnk_DATA = man.protocol
+libkmanpart_la_SOURCES = kmanpart.cpp kmanpart_factory.cpp
+libkmanpart_la_LIBADD = -lkhtml $(LIB_KPARTS)
+libkmanpart_la_LDFLAGS = $(all_libraries) $(KDE_PLUGIN)
+
+kdelnk_DATA = man.protocol kmanpart.desktop
 kdelnkdir = $(kde_servicesdir)
 
 METASOURCES = AUTO
