@@ -88,9 +88,6 @@ So we can't connect.
 #include <kstddirs.h>
 #include <klocale.h>
 #include <kurl.h>
-#include <kdebug.h>
-#include <kstddirs.h>
-#include <kmessagebox.h>
 
 #include "sftp.h"
 #include "kio_sftp.h"
