@@ -43,8 +43,8 @@ using namespace KIO;
 
 int SMBSlave::cache_stat(const SMBUrl &url, struct stat* st )
 {
-    int result = smbc_stat(url.toSmbcUrl(), st);
-    kdDebug(KIO_SMB) << "smbc_stat " << url.toSmbcUrl() << " " << errno << " " << result << endl;
+    int result = smbc_stat( url.toSmbcUrl(), st);
+    kdDebug(KIO_SMB) << "smbc_stat " << url.prettyUrl() << " " << errno << " " << result << endl;
     return result;
 }
 
@@ -56,7 +56,6 @@ bool SMBSlave::browse_stat_path(const SMBUrl& _url, UDSEntry& udsentry, bool ign
 
     SMBUrl url = _url;
 
- again:
    if(cache_stat(url, &st) == 0)
    {
       if(!S_ISDIR(st.st_mode) && !S_ISREG(st.st_mode))
@@ -114,8 +113,10 @@ bool SMBSlave::browse_stat_path(const SMBUrl& _url, UDSEntry& udsentry, bool ign
    {
        if (!ignore_errors) {
            if (errno == EPERM || errno == EACCES)
-               if (checkPassword(url))
-                   goto again;
+               if (checkPassword(url)) {
+                   redirection( url );
+                   return false;
+               }
 
            reportError(url);
        } else if (errno == ENOENT || errno == ENOTDIR) {
@@ -139,7 +140,6 @@ void SMBSlave::stat( const KURL& kurl )
     if (url != kurl)
     {
         redirection(url);
-        finished();
         return;
     }
 
@@ -271,7 +271,7 @@ void SMBSlave::reportError(const SMBUrl &url)
 								"unsure about that - you can send it privately to the developers "
 								"if they ask for it)") );
 	  break;
-    default: 
+    default:
 	  error( ERR_INTERNAL, i18n("Unknown error condition in stat: %1").arg(strerror(errno)));
     }
 }
@@ -279,7 +279,7 @@ void SMBSlave::reportError(const SMBUrl &url)
 //===========================================================================
 void SMBSlave::listDir( const KURL& kurl )
 {
-   kdDebug(KIO_SMB) << "SMBSlave::listDir on " << kurl << endl;
+   kdDebug(KIO_SMB) << "SMBSlave::listDir on " << kurl.url() << endl;
 
    // check (correct) URL
    KURL url = checkURL(kurl);
@@ -298,7 +298,6 @@ void SMBSlave::listDir( const KURL& kurl )
    UDSEntry    udsentry;
    UDSAtom     atom;
 
- again:
    dirfd = smbc_opendir( m_current_url.toSmbcUrl() );
    kdDebug(KIO_SMB) << "SMBSlave::listDir open " << m_current_url.toSmbcUrl() << " " << m_current_url.getType() << " " << dirfd << endl;
    if(dirfd >= 0)
@@ -405,8 +404,11 @@ void SMBSlave::listDir( const KURL& kurl )
    else
    {
        if (errno == EPERM || errno == EACCES)
-           if (checkPassword(m_current_url))
-               goto again;
+           if (checkPassword(m_current_url)) {
+               redirection( m_current_url );
+               finished();
+               return;
+           }
 
        reportError(m_current_url);
        finished();
