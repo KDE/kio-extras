@@ -1057,10 +1057,16 @@ IMAP4Protocol::stat (const KURL & _url)
 
   if (!aSection.isEmpty())
   {
-    if (aBox == getCurrentBox())
+    if (getState() == ISTATE_SELECT && aBox == getCurrentBox())
     {
-      imapCommand *cmd = doCommand(imapCommand::clientClose());
-      completeQueue.removeRef(cmd);
+      imapCommand *cmd = doCommand (imapCommand::clientClose());
+      if (cmd->result() != "OK")
+      {
+        error (ERR_ABORTED, i18n("Unable to close mailbox."));
+        finished();
+        return;
+      }
+      setState(ISTATE_LOGIN);
     }
     imapCommand *cmd = doCommand(imapCommand::clientStatus(aBox, aSection));
     completeQueue.removeRef(cmd);

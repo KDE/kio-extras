@@ -88,6 +88,10 @@ imapParser::sendCommand (imapCommand * aCmd)
     currentBox = parseOneWord(currentBox);
     kdDebug(7116) << "imapParser::sendCommand - setting current box to " << currentBox << endl;
   }
+  else if (aCmd->command () == "CLOSE")
+  {
+    currentBox = QString::null;
+  }
   else if (aCmd->command ().find ("SEARCH") != -1)
   {
     lastResults.clear ();
