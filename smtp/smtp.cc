@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2000, 2001 Alex Zepeda <jazepeda@pacbell.net>
+ * Copyright (c) 2000, 2001 Alex Zepeda <zipzippy@sonic.net>
  * Copyright (c) 2001 Michael Häckel <Michael@Haeckel.Net>
  * Copyright (c) 2002 Aaron J. Seigo <aseigo@olympusproject.org>
  * All rights reserved.
