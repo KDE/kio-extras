@@ -359,7 +359,9 @@ void SMTPProtocol::PutRecipients (QStringList &list, const KURL &url)
 	QString formatted_recip = ASCII("RCPT TO: %1");
 	for ( QStringList::Iterator it = list.begin(); it != list.end(); ++it ) {
 		if (!command(formatted_recip.arg(*it)))
-			HandleSMTPWriteError(url);
+		{
+			error(ERR_NO_CONTENT, i18n("The server didn't accept one of the recipients.\nIt said: ").arg(lastError));
+		}
 	}
 }
 
