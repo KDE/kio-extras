@@ -9,11 +9,11 @@ kde_module_LTLIBRARIES = kio_thumbnail.la imagethumbnail.la \
 	textthumbnail.la htmlthumbnail.la gsthumbnail.la
 
 kio_thumbnail_la_SOURCES = thumbnail.cpp
-kio_thumbnail_la_LIBADD = $(LIB_KSYCOCA)
+kio_thumbnail_la_LIBADD = $(LIB_KIO)
 kio_thumbnail_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN)
 
 imagethumbnail_la_SOURCES = imagecreator.cpp
-imagethumbnail_la_LIBADD = $(LIB_KSYCOCA) # for kimageio
+imagethumbnail_la_LIBADD = $(LIB_KIO) # for kimageio
 imagethumbnail_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN)
 
 textthumbnail_la_SOURCES = textcreator.cpp
