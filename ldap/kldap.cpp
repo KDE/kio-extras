@@ -25,7 +25,7 @@ bool LDAPBase::check(int r)
   res = r;
 
   // output result
-  kdDebug() << ": " << error() << endl;
+  kdDebug(7125) << ": " << error() << endl;
 
   // succeeded?
   return r == LDAP_SUCCESS;
@@ -59,8 +59,8 @@ bool KLDAP::Connection::connect()
   // try to connect to the server
   _handle = ldap_open(const_cast<char*>(_server.ascii()), _port);
 
-  kdDebug() << "open connection to " << _server << ":" << _port;
-  kdDebug() << ((handle() != 0) ? " succeeded" : " failed") << endl;
+  kdDebug(7125) << "open connection to " << _server << ":" << _port;
+  kdDebug(7125) << ((handle() != 0) ? " succeeded" : " failed") << endl;
 
   // test if connect succeeded
   return handle() != 0;
@@ -73,7 +73,7 @@ bool KLDAP::Connection::disconnect()
   if (!handle())
     return TRUE;
 
-  kdDebug() << "close connection to " << _server << ":" << _port;
+  kdDebug(7125) << "close connection to " << _server << ":" << _port;
 
   // close the connection to the server
   check(ldap_unbind(handle()));
@@ -88,7 +88,7 @@ bool KLDAP::Connection::authenticate(const char *dn, const char *cred, int metho
   if (!handle())
     return FALSE;
 
-  kdDebug() << "authentication";
+  kdDebug(7125) << "authentication";
 
   return check(ldap_bind_s(handle(), const_cast<char*>(dn), const_cast<char*>(cred), method));
 }
@@ -131,7 +131,7 @@ bool Request::finish()
   if (!handle())
     return FALSE;
 
-  kdDebug() << "finish request" << endl;
+  kdDebug(7125) << "finish request" << endl;
 
   // if sync, the result is already there
   // if not: get the result
@@ -256,7 +256,7 @@ bool SearchRequest::execute()
   // call the inherited method
   Request::execute();
 
-  kdDebug() << "search request: base=\"" << _base << "\" scope=\"" << _scope 
+  kdDebug(7125) << "search request: base=\"" << _base << "\" scope=\"" << _scope 
 	    << "\" filter=\"" << _filter << "\"" << endl;
 
   // Honour the attributes to return
@@ -330,14 +330,14 @@ bool SearchRequest::execute()
 
 bool SearchRequest::search(QString base, QString filter)
 {
-  kdDebug() << "search: base=" << base << " filter=" << filter;
+  kdDebug(7125) << "search: base=" << base << " filter=" << filter;
 
   setBase(base);
   setFilter(filter);
 
   bool retval = execute();
 
-  kdDebug() << (retval ? ": Success" : "Failed") << endl;
+  kdDebug(7125) << (retval ? ": Success" : "Failed") << endl;
   
   return retval;
 }
@@ -458,7 +458,7 @@ QCString SearchRequest::asLDIF()
       // print the dn
       char* dn = ldap_get_dn(handle(), item);
       result += "dn: "; result += dn; result += '\n';
-      //kdDebug() << "Outputting dn: \"" << dn << "\"" << endl;
+      //kdDebug(7125) << "Outputting dn: \"" << dn << "\"" << endl;
       ldap_memfree( dn );
 
       // iterate over the attributes    
@@ -505,6 +505,6 @@ QCString SearchRequest::asLDIF()
       result += '\n';
       item = ldap_next_entry(handle(), item);
     }
-  //kdDebug() << "result=\"" << result << "\"" << endl;  
+  //kdDebug(7125) << "result=\"" << result << "\"" << endl;  
   return result;
 }
