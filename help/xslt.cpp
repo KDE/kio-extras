@@ -75,7 +75,7 @@ QString transform( const QString &pat, const QString& tss)
                                                           contents.length());
         int directory = pat.findRev('/');
         if (directory != -1)
-            ctxt->directory = strdup(pat.left(directory + 1).latin1());
+            ctxt->directory = xmlStrdup(pat.left(directory + 1).latin1());
         xmlParseDocument(ctxt);
         xmlDocPtr doc;
         if (ctxt->wellFormed)
