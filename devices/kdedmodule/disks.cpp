@@ -222,6 +222,7 @@ QString DiskEntry::niceDescription()
 	else if (discType().contains("cdrom")) return i18n("CDRom");
 	else if (discType().contains("cdwriter")) return i18n("CDRecorder");
 	else if (discType().contains("floppy")) return i18n("Floppy");
+	else return i18n("Unknown");
 }
 
 QString DiskEntry::discType()
@@ -238,22 +239,24 @@ QString DiskEntry::discType()
 	QString tmp=deviceName();
 	tmp=tmp.right(tmp.length()-5);
 	tmp=tmp.left(3);
-	tmp="/proc/ide/"+tmp;
+	tmp="/proc/ide/"+tmp+"/media";
 	QFile infoFile(tmp);
-	infoFile.open(IO_ReadOnly);
-	int len;
-	if (-1==(len=infoFile.readLine(str,20))) typeName="kdedevice/TESTONLY";
-	else
+	if (infoFile.open(IO_ReadOnly))
 	{
-		tmpInfo.fromLatin1(str,len);
-		if (tmpInfo.contains("disk")) typeName="kdedevice/hdd";
+		int len;
+		if (-1==(len=infoFile.readLine(str,20))) typeName="kdedevice/TESTONLY";
 		else
-			if (tmpInfo.contains("cdrom")) typeName="kdedevice/cdrom"; 
+		{
+			tmpInfo.fromLatin1(str,len);
+			if (tmpInfo.contains("disk")) typeName="kdedevice/hdd";
 			else
-				if (tmpInfo.contains("floppy")) typeName="kdedevice/zip"; // eg IDE zip drives 
-				else typeName="kdedevice/hdd";
-	}
-	infoFile.close();
+				if (tmpInfo.contains("cdrom")) typeName="kdedevice/cdrom"; 
+				else
+					if (tmpInfo.contains("floppy")) typeName="kdedevice/zip"; // eg IDE zip drives 
+					else typeName="kdedevice/hdd";
+		}	
+		infoFile.close();
+	} else typeName="kdedevice/hdd"; // this should never be reached
     }
     else
 #endif
