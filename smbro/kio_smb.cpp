@@ -555,10 +555,10 @@ void SmbProtocol::listDir( const KURL& _url)
    if (proc==0)
       return;
 
-   QCString command=QCString("dir \"")+smbPath.latin1()+QCString("/*\"\n");
+   QCString command=QCString("dir \"")+smbPath.latin1()+QCString("\\*\"\n");
    kdDebug(7101)<<"Smb::listDir(): executing command: -"<<command<<"-"<<endl;
 
-   if (::write(proc->fd(),command.data(),command.size())<0)
+   if (::write(proc->fd(),command.data(),command.length())<0)
    {
       error(ERR_CONNECTION_BROKEN,m_currentHost);
       return;
@@ -583,6 +583,7 @@ void SmbProtocol::listDir( const KURL& _url)
       if (stdoutEvent)
       {
          readOutput(proc->fd());
+         kdDebug(7101)<<"Smb::listDir(): read: -"<<m_stdoutBuffer<<"-"<<endl;
          //don't search the whole buffer, only the last 12 bytes
          if (m_stdoutSize>12)
          {
@@ -772,7 +773,7 @@ StatInfo SmbProtocol::_stat(const KURL& url)
    QCString command=QCString("dir \"")+smbPath.latin1()+QCString("\"\n");
    kdDebug(7101)<<"Smb::_stat(): executing command: -"<<command<<"-"<<endl;
 
-   if (::write(proc->fd(),command.data(),command.size())<0)
+   if (::write(proc->fd(),command.data(),command.length())<0)
    {
       error(ERR_CONNECTION_BROKEN,m_currentHost);
       info.isValid=false;
@@ -888,7 +889,7 @@ void SmbProtocol::get( const KURL& url )
    QCString command=QCString("get \"")+smbPath.latin1()+QCString("\" ")+fifoName+"\n";
    kdDebug(7101)<<"Smb::get(): executing command: -"<<command<<"-"<<endl;
 
-   if (::write(proc->fd(),command.data(),command.size())<0)
+   if (::write(proc->fd(),command.data(),command.length())<0)
    {
       error(ERR_CONNECTION_BROKEN,m_currentHost);
       return;
