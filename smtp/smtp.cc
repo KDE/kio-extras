@@ -200,15 +200,14 @@ void SMTPProtocol::put (const KURL &url, int /*permissions*/, bool /*overwrite*/
 		HandleSMTPWriteError(url);
 	}
 
-	from = ASCII("From: %1\r\n");
 	if (mset->getSetting(KEMailSettings::EmailAddress) != QString::null) {
 		if (mset->getSetting(KEMailSettings::RealName) != QString::null) {
-			from.arg(ASCII("%1 <%2>").arg(mset->getSetting(KEMailSettings::RealName)).arg(mset->getSetting(KEMailSettings::EmailAddress)));
+			from = ASCII("From: %1 <%2>\r\n").arg(mset->getSetting(KEMailSettings::RealName)).arg(mset->getSetting(KEMailSettings::EmailAddress));
 		} else {
-			from.arg(mset->getSetting(KEMailSettings::EmailAddress));
+			from = ASCII("From: %1\r\n").arg(mset->getSetting(KEMailSettings::EmailAddress));
 		}
 	} else {
-		from.arg(DEFAULT_EMAIL);
+		from = ASCII("From: %1\r\n").arg(DEFAULT_EMAIL);
 	}
 	WRITE_STRING(from);
 
