@@ -2186,6 +2186,47 @@ static char *scan_request(char *c)
 	    out_html(NEWLINE);
 	    if (fillout) curpos++; else curpos=0;
 	    break;
+   case V('F','d'):                //for "Function definitions", mdoc package
+   case V('F','n'):                //for "Function calls": brackets and commas have to be inserted automatically
+   case V('F','o'):
+   case V('F','c'):
+      {
+         bool inFdMode=(c[1]=='d');
+         char font[2] ;
+         font[0] = 'B';
+         font[1] = 'B';
+         c=c+j;
+         if (*c=='\n') c++;
+         char *eol=strchr(c,'\n');
+         char *semicolon=strchr(c,';');
+         if ((semicolon!=0) && (semicolon<eol)) *semicolon=' ';
+
+         sl=fill_words(c, wordlist, &words);
+         c=sl+1;
+         /* .BR name (section)
+          ** indicates a link. It will be added in the output routine.
+          */
+         for (i=0; i<words; i++) {
+            wordlist[i][-1]=' ';
+            out_html(change_to_font(font[i&1]));
+            scan_troff(wordlist[i],1,NULL);
+            if (inFdMode) continue;
+            if (i==0) {
+               out_html(" (");
+               if (!mandoc_synopsis)
+                  out_html(") ");
+            } else if (i<words-1) out_html(", ");
+         }
+         if (mandoc_synopsis) {
+            if (!inFdMode) out_html(")");
+            out_html(";<br>");
+         };
+         out_html(change_to_font('R'));
+         out_html(NEWLINE);
+         if (!fillout) curpos=0;
+         else curpos++;
+      };
+      break;
 	case V('O','P'):  /* groff manpages use this construction */
             /* .OP a b : [ <B>a</B> <I>b</I> ] */
 	    mode=1;
@@ -2193,33 +2234,49 @@ static char *scan_request(char *c)
 	    out_html(change_to_font('R'));
 	    out_html("[");
 	    curpos++;
-	case V('B','R'):
+   case V('F','t'):       //perhaps "Function return type"
+   case V('F','a'):       //"Function argument"
+   case V('B','R'):
 	case V('B','I'):
 	case V('I','B'):
 	case V('I','R'):
 	case V('R','B'):
 	case V('R','I'):
-	    {
-		char font[2] ;
-		font[0] = c[0]; font[1] = c[1];
-		c=c+j;
-		if (*c=='\n') c++;
-		sl=fill_words(c, wordlist, &words);
-		c=sl+1;
-		/* .BR name (section)
-		** indicates a link. It will be added in the output routine.
-		*/
-		for (i=0; i<words; i++) {
-		    if (mode) { out_html(" "); curpos++; }
-		    wordlist[i][-1]=' ';
-		    out_html(change_to_font(font[i&1]));
-		    scan_troff(wordlist[i],1,NULL);
-		}
-		out_html(change_to_font('R'));
-		if (mode) { out_html(" ]"); curpos++;}
-		out_html(NEWLINE); if (!fillout) curpos=0; else curpos++;
-	    }
-	    break;
+      {
+         bool inFMode=(c[0]=='F');
+         if (inFMode) {
+            c[0]='B';
+            c[1]='I';
+         };
+         char font[2] ;
+         font[0] = c[0];
+         font[1] = c[1];
+         c=c+j;
+         if (*c=='\n') c++;
+         sl=fill_words(c, wordlist, &words);
+         c=sl+1;
+         /* .BR name (section)
+          ** indicates a link. It will be added in the output routine.
+          */
+         for (i=0; i<words; i++) {
+            if ((mode) || (inFMode)) {
+               out_html(" ");
+               curpos++;
+            }
+            wordlist[i][-1]=' ';
+            out_html(change_to_font(font[i&1]));
+            scan_troff(wordlist[i],1,NULL);
+         }
+         out_html(change_to_font('R'));
+         if (mode) {
+            out_html(" ]");
+            curpos++;
+         }
+         out_html(NEWLINE);
+         if (!fillout) curpos=0;
+         else curpos++;
+      }
+      break;
 	case V('D','T'):
 	    for (j=0;j<20; j++) tabstops[j]=(j+1)*8;
 	    maxtstop=20;
