@@ -2,6 +2,9 @@
 #include <kgenericfactory.h>
 #include <dcopclient.h>
 #include <qdatastream.h>
+#include <qpixmap.h>
+#include <qpainter.h>
+#include <qstyle.h>
 #include <kdiskfreesp.h>
 #include <kapplication.h>
 #include <unistd.h>
@@ -35,27 +38,54 @@ bool KFileDevicePlugin::readInfo(KFileMetaInfo &info, uint /*what*/)
 	m_free = 0;
 	connect(df, SIGNAL( done() ), this, SLOT( slotDfDone() ));
 	connect(df, SIGNAL( foundMountPoint(const QString &,
-	                                     unsigned long,
-	                                     unsigned long,
-			                     unsigned long) ),
+	                                    unsigned long,
+	                                    unsigned long,
+			                    unsigned long) ),
 	        this, SLOT( slotFoundMountPoint(const QString &,
 		                                unsigned long,
-						unsigned long,
-						unsigned long)) );
+	                                        unsigned long,
+	                                        unsigned long)) );
 	
 	df->readDF(mount_point);
 	
-	while(!m_done)
+	while (!m_done)
 	{
 		usleep(1000);
 		qApp->processEvents();
 	}
 
+	int percent = 0;
+	int length = 0;
+	
+	if (m_total != 0)
+	{
+		percent = 100 * m_used / m_total;
+		length = 150 * m_used / m_total;	
+	}
+	
 	KFileMetaInfoGroup group = appendGroup(info, "deviceInfo");
-	           
+	
 	appendItem(group, "free", (long long unsigned)m_free);
 	appendItem(group, "used", (long long unsigned)m_used);
 	appendItem(group, "total", (long long unsigned)m_total);
+
+	group = appendGroup(info, "deviceSummary");
+	
+	appendItem(group, "percent", QString("%1\%").arg(percent));
+	
+	QPixmap bar(150, 20);
+	QPainter p(&bar);
+		
+	p.fillRect(0, 0, length, 20, Qt::red);
+	p.fillRect(length, 0, 150-length, 20, Qt::green);
+	
+	QColorGroup cg = QApplication::palette().active();
+	
+	QApplication::style().drawPrimitive(QStyle::PE_Panel, &p,
+	                                    QRect(0, 0, 150, 20), cg,
+	                                    QStyle::Style_Sunken);
+		
+	appendItem( group, "thumbnail", bar );
 	
 	return true;
 }
@@ -114,6 +144,14 @@ void KFileDevicePlugin::addMimeType(const char *mimeType)
 
 	item = addItemInfo(group, "total", i18n("Total"), QVariant::Int);
 	setUnit(item, KFileMimeTypeInfo::KiloBytes);
+
+
+	group = addGroupInfo(info, "deviceSummary", i18n("Device Summary"));
+	
+	item = addItemInfo(group, "percent", i18n("Usage"), QVariant::String);
+	
+	item = addItemInfo( group, "thumbnail", i18n("Bar graph"), QVariant::Image );
+	setHint( item, KFileMimeTypeInfo::Thumbnail );
 }
 
 #include "kfiledeviceplugin.moc"
