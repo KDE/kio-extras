@@ -61,8 +61,6 @@ k_dcop:
     QString type(int id);
     bool    mounted(int id);    
     bool    mounted(QString name);
-    void    mount( bool readonly, const QString& format, const QString& device, const QString& mountpoint,
-              const QString & desktopFile, bool show_filemanager_window);
     QStringList basicList();
     QStringList basicDeviceInfo(QString);
     void addSpecialDevice(const QString& uniqueIdentifier, const QString& description,
