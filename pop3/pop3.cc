@@ -414,22 +414,22 @@ bool POP3Protocol::pop3_open()
       return false;
     }
 
-    QString usr = m_sUser;
-    QString pass;
+    KIO::AuthInfo authInfo;
+    authInfo.username = m_sUser;
     QString one_string = QString::fromLatin1("USER ");
     QString apop_string = QString::fromLatin1("APOP ");
     if (m_sUser.isEmpty() || m_sPass.isEmpty()) {
       // Prompt for usernames
-      QString head = i18n("Username and password for your POP3 account:");
-      if (!openPassDlg(head, usr, pass)) {
+      authInfo.comment = i18n("Username and password for your POP3 account:");
+      if (!openPassDlg(authInfo)) {
         closeConnection();
         return false;
       } else {
-        apop_string.append(usr);
-        one_string.append(usr);
-        m_sOldUser = usr;
-        m_sUser = usr;
-        m_sPass = pass;
+        apop_string.append(authInfo.username);
+        one_string.append(authInfo.username);
+        m_sOldUser = authInfo.username;
+        m_sUser = authInfo.username;
+        m_sPass = authInfo.password;
       }
     } else {
       apop_string.append(m_sUser);
@@ -442,7 +442,7 @@ bool POP3Protocol::pop3_open()
       KMD5 ctx;
 
       if (m_sPass.isEmpty()) {
-        m_sOldPass = pass;
+        m_sOldPass = authInfo.password;
       } else {
         m_sOldPass = m_sPass;
       }
@@ -556,8 +556,8 @@ bool POP3Protocol::pop3_open()
 
     one_string = QString::fromLatin1("PASS ");
     if (m_sPass.isEmpty()) {
-      m_sOldPass = pass;
-      one_string.append(pass);
+      m_sOldPass = authInfo.password;
+      one_string.append(authInfo.password);
     } else {
       m_sOldPass = m_sPass;
       one_string.append(m_sPass);

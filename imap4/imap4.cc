@@ -1353,9 +1353,16 @@ bool IMAP4Protocol::makeLogin ()
 
     kdDebug(7116) << "IMAP4::makeLogin - attempting login" << endl;
 
-    if (myUser.isEmpty () || myPass.isEmpty ())
-      openPassDlg (i18n ("Username and password for your IMAP account:"),
-                        myUser, myPass);
+    KIO::AuthInfo authInfo;
+    authInfo.username = myUser;
+    authInfo.password = myPass;
+    authInfo.caption = i18n ("Username and password for your IMAP account:");
+    if (myUser.isEmpty () || myPass.isEmpty ()) {
+      if(openPassDlg (authInfo)) {
+        myUser = authInfo.username;
+        myPass = authInfo.password;
+      }
+    }
 
     kdDebug(7116) << "IMAP4::makeLogin - open_PassDlg: user=" << myUser << " pass=xx" << endl;
 
