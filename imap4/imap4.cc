@@ -750,12 +750,22 @@ void
 IMAP4Protocol::mkdir (const KURL & _url, int)
 {
   kdDebug(7116) << "IMAP4::mkdir - " << hidePass(_url) << endl;
-//  KIO::TCPSlaveBase::mkdir(_url,permissions);
+  QString path = _url.path();
+  int slash = path.findRev('/', (path.at(path.length() - 1) == '/') ?
+    (int)path.length() - 2 : -1);
+  KURL parentUrl = _url;
+  QString newBox;
+  if (slash != -1)
+  {
+    parentUrl.setPath(path.left(slash) + ";TYPE=LIST");
+    newBox = path.mid(slash + 1);
+  }
   QString aBox, aSequence, aLType, aSection, aValidity, aDelimiter;
-  parseURL (_url, aBox, aSection, aLType, aSequence, aValidity, aDelimiter);
+  parseURL(parentUrl, aBox, aSection, aLType, aSequence, aValidity, aDelimiter);
 /*  if (aBox[aBox.length () - 1] != '/')
     aBox += "/"; */
-  imapCommand *cmd = doCommand (imapCommand::clientCreate (aBox));
+  imapCommand *cmd = doCommand (imapCommand::clientCreate (
+    (newBox.isEmpty()) ? aBox : aBox + aDelimiter + newBox));
 
   if (cmd->result () != "OK")
     error (ERR_COULD_NOT_MKDIR, hidePass(_url));
@@ -907,6 +917,12 @@ IMAP4Protocol::del (const KURL & _url, bool isFile)
     }
     else
     {
+      if (getCurrentBox() == aBox)
+      {
+        imapCommand *cmd = doCommand(imapCommand::clientClose());
+        completeQueue.removeRef(cmd);
+        setState(ISTATE_LOGIN);
+      }
       imapCommand *cmd = doCommand (imapCommand::clientDelete (aBox));
       if (cmd->result () != "OK")
         error (ERR_COULD_NOT_RMDIR, hidePass(_url));
