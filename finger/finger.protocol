@@ -1,0 +1,7 @@
+[Protocol]
+exec=kio_finger
+protocol=finger
+input=none
+output=filesystem
+reading=true
+defaultMimetype=text/html
