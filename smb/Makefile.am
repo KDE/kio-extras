@@ -36,4 +36,7 @@ kdelnk_DATA = smb.protocol
 
 kdelnkdir = $(kde_servicesdir)
 
+dirtree_DATA = smb-network.desktop
+dirtreedir = $(kde_datadir)/konqueror/dirtree/remote
+
 METASOURCES = AUTO

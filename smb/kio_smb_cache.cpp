@@ -85,7 +85,8 @@ void SMBSlave::cache_clear_AuthInfo(const QString& workgroup)
             it = m_auth_cache.next();
     }
 
-    //now clear it in the password caching daemon as well- but how???
+    //now clear it in the password caching daemon as well- but how??
+    //the method was deprecated, but Dawit said he would reimplement it
 }
 
 void SMBSlave::cache_set_AuthInfo(const SMBAuthInfo& _auth,
@@ -118,7 +119,7 @@ void SMBSlave::cache_add_workgroup( const QString& workgroup)
 bool SMBSlave::cache_check_workgroup(const QString& workgroup)
 {
 
-    return (m_workgroup_cache.findIndex(workgroup) != -1);
+    return m_workgroup_cache.contains(workgroup);
 
 }
 

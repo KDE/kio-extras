@@ -38,4 +38,9 @@ void SMBSlave::reparseConfiguration()
     KConfig cfg( "kioslaverc" );
     cfg.setGroup( "Browser Settings/SMBro" );
     m_default_workgroup = cfg.readEntry( "Workgroup", "WORKGROUP" ).local8Bit();
+
+    if( m_default_workgroup.isEmpty() )
+        m_default_workgroup = "WORKGROUP";
+
+    kdDebug(KIO_SMB) << "reparseConfiguration, m_default_workgroup = " << m_default_workgroup << endl;
 }

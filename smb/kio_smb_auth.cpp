@@ -129,29 +129,33 @@ int SMBSlave::auth_initialize_smbc()
         //check for $HOME/.smb/smb.conf, the library dies without it...
         //create it with a sane default if it's not there
         bool mksmbdir = false, mksmbconf = false;
-        QCString homedir = ::getenv( "$HOM$" );
-        QDir dir( homedir );
+        QDir dir = QDir::home();
 
         if( dir.cd( ".smb" ) )
         {
             if( !dir.exists( "smb.conf" ) )
             {
+                kdDebug(KIO_SMB) << "need to create the smb.conf file" << endl;
                 mksmbconf = true;
             }
         }
         else
         {
+            kdDebug(KIO_SMB) << "need to create the .smb dir and the smb.conf file" << endl;
             mksmbdir = true;
             mksmbconf = true;
         }
 
         if( mksmbdir )
+        {
             dir.mkdir( ".smb" );
+            dir.cd( ".smb" );
+        }
 
         if( mksmbconf )
         {
             //copy our default workgroup to the smb.conf file
-            QFile conf( homedir + "/.smb/smb.conf" );
+            QFile conf( dir.absPath() + "/smb.conf" );
             if( conf.open( IO_WriteOnly ) )
             {
                 QTextStream output( &conf );

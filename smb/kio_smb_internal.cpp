@@ -100,7 +100,7 @@ QCString SMBUrl::toSmbcUrl() const
 // Return a URL that is suitable for libsmbclient
 //----------------------------------------------------------------------- 
 {
-    kdDebug(KIO_SMB) << "toSmbcURL, returning: " << m_smbc_url.local8Bit() << endl;
+    kdDebug(KIO_SMB) << "toSmbcURL, returning: " << QString(m_smbc_url.local8Bit()) << endl;
     return m_smbc_url.local8Bit();
 }
 
