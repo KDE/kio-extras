@@ -25,7 +25,7 @@ bool LDAPBase::check(int r)
   res = r;
 
   // output result
-  kdDebug(7125) << ": " << error() << endl;
+  kdDebug(7125) << "LDAPBase::check() : " << error() << endl;
 
   // succeeded?
   return r == LDAP_SUCCESS;
@@ -38,7 +38,9 @@ QString LDAPBase::error()
 }
 
 
-KLDAP::Connection::Connection(const char *s, int p)
+
+
+KLDAP::Connection::Connection(const QString &s, int p)
   : LDAPBase(), _server(s), _port(p)
 {
 }
@@ -57,10 +59,10 @@ bool KLDAP::Connection::connect()
     disconnect();
 
   // try to connect to the server
-  _handle = ldap_open(const_cast<char*>(_server.ascii()), _port);
+  _handle = ldap_open(_server.utf8(), _port);
 
-  kdDebug(7125) << "open connection to " << _server << ":" << _port;
-  kdDebug(7125) << ((handle() != 0) ? " succeeded" : " failed") << endl;
+  kdDebug(7125) << "open connection to " << _server << ":" << _port 
+                << ((handle() != 0) ? " succeeded" : " failed") << endl;
 
   // test if connect succeeded
   return handle() != 0;
@@ -73,7 +75,7 @@ bool KLDAP::Connection::disconnect()
   if (!handle())
     return TRUE;
 
-  kdDebug(7125) << "close connection to " << _server << ":" << _port;
+  kdDebug(7125) << "close connection to " << _server << ":" << _port << endl;
 
   // close the connection to the server
   check(ldap_unbind(handle()));
@@ -83,14 +85,14 @@ bool KLDAP::Connection::disconnect()
 }
 
 
-bool KLDAP::Connection::authenticate(const char *dn, const char *cred, int method)
+bool KLDAP::Connection::authenticate(const QString &dn, const QString &cred, int method)
 {
   if (!handle())
     return FALSE;
 
-  kdDebug(7125) << "authentication";
+  kdDebug(7125) << "authentication" << endl;
 
-  return check(ldap_bind_s(handle(), const_cast<char*>(dn), const_cast<char*>(cred), method));
+  return check(ldap_bind_s(handle(), dn.utf8(), cred.utf8(), method));
 }
 
 
@@ -110,6 +112,7 @@ Request::~Request()
 {
   if (req_result)
     ldap_msgfree(req_result);
+  req_result = 0;
 }
 
 
@@ -146,6 +149,7 @@ bool Request::finish()
       // delete previous result
       if (req_result)
 	ldap_msgfree(req_result);
+      req_result = 0;
 
       // get the result
       if (useTimeout()) {
@@ -203,20 +207,7 @@ bool Request::abandon()
 }
 
 
-SearchRequest::SearchRequest(Connection &c, RunMode m)
-  : Request(c,m), _base(""), _filter("(objectClass=*)"), _scope(LDAP_SCOPE_SUBTREE),
-    _attrsonly(0), entry(0)
-{
-  expected = LDAP_RES_SEARCH_RESULT;
-
-  // try to connect
-  if (!c.isConnected())
-    c.connect();
-  _handle = c.handle();
-}
-
-
-SearchRequest::SearchRequest(Connection &c, QString _url, RunMode m)
+SearchRequest::SearchRequest(Connection &c, const KURL &_url, RunMode m)
   : Request(c,m), _base(""), _filter("(objectClass=*"), _scope(LDAP_SCOPE_SUBTREE),
     _attrsonly(0), entry(0)
 {
@@ -266,7 +257,7 @@ bool SearchRequest::execute()
     {
       attrs = static_cast<char**>(malloc((count+1) * sizeof(char*)));
       for (int i=0; i<count; i++)
-	  attrs[i] = strdup(_attributes.at(i));
+	  attrs[i] = strdup((*_attributes.at(i)).utf8());
       attrs[count] = 0;
     }  
   
@@ -274,8 +265,8 @@ bool SearchRequest::execute()
   if (mode == Asynchronous)
     {
       // start searching
-      id = ldap_search(handle(), const_cast<char*>(_base.ascii()), _scope, 
-		       const_cast<char*>(_filter.ascii()), attrs, _attrsonly);
+      id = ldap_search(handle(), _base.utf8(), _scope, 
+		       _filter.utf8(), attrs, _attrsonly);
 
       // free the attributes list again
       if (count > 0)
@@ -303,14 +294,14 @@ bool SearchRequest::execute()
       struct timeval to;
       to.tv_sec = to_sec;
       to.tv_usec = to_usec;
-      retval = ldap_search_st(handle(), const_cast<char*>(_base.ascii()), _scope, 
-			      const_cast<char*>(_filter.ascii()), attrs, 
+      retval = ldap_search_st(handle(), _base.utf8(), _scope, 
+			      _filter.utf8(), attrs, 
 			      _attrsonly, &to, &req_result);
     }
   else
     {
-      retval = ldap_search_s(handle(), const_cast<char*>(_base.ascii()), _scope, 
-			     const_cast<char*>(_filter.ascii()), attrs,
+      retval = ldap_search_s(handle(), _base.utf8(), _scope, 
+			     _filter.utf8(), attrs,
 			     _attrsonly, &req_result);
     }
 
@@ -328,9 +319,9 @@ bool SearchRequest::execute()
 }
 
 
-bool SearchRequest::search(QString base, QString filter)
+bool SearchRequest::search(const QString &base, const QString &filter)
 {
-  kdDebug(7125) << "search: base=" << base << " filter=" << filter;
+  kdDebug(7125) << "search: base=" << base << " filter=" << filter << endl;
 
   setBase(base);
   setFilter(filter);
@@ -352,7 +343,7 @@ Attribute::Attribute(LDAP *h, LDAPMessage *msg, const char *n)
 }
 
 
-void Attribute::getValues(QStrList &list)
+void Attribute::getValues(QStringList &list)
 {
   char **vals;
   
@@ -361,7 +352,7 @@ void Attribute::getValues(QStrList &list)
   vals = ldap_get_values(handle(), message, _name);
   if (vals) 
     for (int i=0; vals[i] != 0; i++)
-      list.append(vals[i]);
+      list.append(QString::fromUtf8(vals[i]));
   ldap_value_free(vals);
 }
 
@@ -386,11 +377,11 @@ Entry::Entry(LDAP *h, LDAPMessage *msg)
 
 QString Entry::dn()
 {
-  return ldap_get_dn(handle(), message);
+  return QString::fromUtf8(ldap_get_dn(handle(), message));
 }
 
 
-void Entry::getAttributes(QStrList &list)
+void Entry::getAttributes(QStringList &list)
 {
   BerElement *entry;
   char       *name;
@@ -400,7 +391,7 @@ void Entry::getAttributes(QStrList &list)
   name = ldap_first_attribute(handle(), message, &entry);
   while (name != 0)
     {
-      list.append(name);
+      list.append(QString::fromUtf8(name));
       name = ldap_next_attribute(handle(), message, entry);
     }
 }
@@ -432,7 +423,7 @@ bool SearchRequest::end()
 }
 
 
-static QCString breakIntoLines( const QCString& str )
+/*static QCString breakIntoLines( const QCString& str )
 {
   QCString result;
   int i;
@@ -444,10 +435,11 @@ static QCString breakIntoLines( const QCString& str )
   result += '\n';
   return result;
 }
+*/
 
 QCString SearchRequest::asLDIF()
 {
-  QCString         result;
+  QCString        result;
   BerElement     *entry;
   char           *name;
   struct berval **bvals;
@@ -456,8 +448,8 @@ QCString SearchRequest::asLDIF()
   while (item)
     {
       // print the dn
-      char* dn = ldap_get_dn(handle(), item);
-      result += "dn: "; result += dn; result += '\n';
+      char *dn = ldap_get_dn(handle(), item);
+      result += QCString("dn: ") + dn + "\n";
       //kdDebug(7125) << "Outputting dn: \"" << dn << "\"" << endl;
       ldap_memfree( dn );
 
@@ -472,7 +464,7 @@ QCString SearchRequest::asLDIF()
 	      char* val = bvals[i]->bv_val;
 	      unsigned long len = bvals[i]->bv_len;
 	      bool printable = true;
-	      for( int j = 0; j < len; ++j ) {
+	      for( unsigned long j = 0; j < len; ++j ) {
 		if(!val[j]||!QChar( val[j] ).isPrint()) {
 		  printable = false;
 		  break;
@@ -483,17 +475,19 @@ QCString SearchRequest::asLDIF()
 		QByteArray tmp;
 		tmp.setRawData( val, len );
 		//os << name << ": " << QCString(tmp) << endl;
-		result += name; result += ": "; result += tmp; result += '\n';
+		result += QCString(name) + ": " + tmp;
 		tmp.resetRawData( val, len );
 	      } else {		
 		QByteArray tmp;
 		tmp.setRawData( val, len );
-		QCString tmp2 = breakIntoLines( KCodecs::base64Encode( tmp, false ));
+		QCString tmp2 = KCodecs::base64Encode(tmp, false);
 		tmp.resetRawData( val, len );
 		//os << name << ":: " << endl;
 		//os << " " << tmp2 << endl;
-		result += name;	result += ":: \n "; result += tmp2; result += '\n';
+		// HELGE: result += name;	result += ":: \n "; result += tmp2; result += '\n';
+		result += QCString(name) + ":: " + tmp2;
 	      }
+              result += '\n';
 	    }
 	    ldap_value_free_len(bvals);
 	  }

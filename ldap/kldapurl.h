@@ -3,7 +3,7 @@
 
 #include <kurl.h>
 #include <qstring.h>
-#include <qstrlist.h>
+#include <qstringlist.h>
 
 
 namespace KLDAP
@@ -13,14 +13,13 @@ namespace KLDAP
   {
   public:
 
-    Url(QString _url);
+    Url(const KURL &_url);
   
     QString dn() { return _dn; };
     void setDn(QString dn) { _dn = dn; update(); };
 
-    QStrList &attributes();
-    QStrList &attributesEncoded() { return _attributes; };
-    void setAttributes(const QStrList &attributes) { _attributes=attributes; update(); };
+    QStringList &attributes() { return _attributes; };
+    void setAttributes(const QStringList &attributes) { _attributes=attributes; update(); };
 
     int scope() { return _scope; };
     void setScope(int scope) { _scope=scope; update(); };
@@ -30,22 +29,18 @@ namespace KLDAP
 
   protected:
 
-    void splitString(QString q, char c, QStrList &list);
-
     void parseLDAP();
     void update();
 
   private:
 
     QString  _dn;
-    QStrList _attributes, _attr_decoded;
+    QStringList _attributes;
     int      _scope;
     QString  _filter;
     QString  _extensions;
 
   };
-
 };
-
 
 #endif

@@ -3,29 +3,16 @@
 
 #include "kldapurl.h"
 
+#include <kdebug.h>
+#include <qstringlist.h>
 
 using namespace KLDAP;
 
 
-Url::Url(QString _url)
-  : KURL(_url), _dn(""), _filter("objectClass=*"), _extensions("")
+Url::Url(const KURL &_url)
+  : KURL(_url), _extensions("")
 {
   parseLDAP();
-}
-
-
-void Url::splitString(QString q, char c, QStrList &list)
-{
-  int pos;
-  QString item;
-
-  while ( (pos = q.find(c)) >= 0)
-    {
-      item = q.left(pos);
-      list.append(item.local8Bit());
-      q.remove(0,pos+1);
-    }
-  list.append(q.local8Bit());
 }
 
 
@@ -33,63 +20,47 @@ void Url::parseLDAP()
 {
   // extract the dn
   _dn = path();
-  if (_dn.left(1) == "/")
+  if (_dn.startsWith("/"))
     _dn.remove(0,1);  
 
   // parse the query  
   QString q = query();
   // remove first ?
-  if (!q.isEmpty() && q.left(1) == "?")
+  if (q.startsWith("?"))
     q.remove(0,1);
 
   // split into a list
-  QStrList url_items;
-  splitString(q, '?', url_items);
-  
+  QStringList url_items = QStringList::split("?", q, true);
+ 
   // first come the attributes to query
   _attributes.clear();
   if (url_items.count() >= 1)
     {
-      q = url_items.at(0);
-      if (q.left(1) == "(")
+      q = *url_items.at(0);
+      if (q.startsWith("("))
 	q.remove(0,1);
-      if (q.right(1) == ")")
+      if (q.endsWith(")"))
 	q.remove(q.length()-1,1);
       if (!q.isEmpty())
-	splitString(q, ',', _attributes);
+	_attributes = QStringList::split(",", q, false);
     }
 
   // second the scope
   _scope = LDAP_SCOPE_BASE;
   if (url_items.count() >= 2)
     {
-      if (!strcmp(url_items.at(1),"sub"))
+      if ((*url_items.at(1)).lower() == "sub")
 	_scope = LDAP_SCOPE_SUBTREE;
-      if (!strcmp(url_items.at(1),"one"))
+      if ((*url_items.at(1)).lower() == "one")
 	_scope = LDAP_SCOPE_ONELEVEL;
     }
 
   // third is simply the filter
-  _filter = "(objectClass=*)";
-  if (url_items.count() >= 3)
-    _filter = url_items.at(2);
+  if (url_items.count() >= 3 )
+    _filter = *url_items.at(2);
   if (_filter.isEmpty())
     _filter = "(objectClass=*)";
-}
 
-
-QStrList &Url::attributes()
-{
-  _attr_decoded.clear();
-  
-  for (char *it=_attributes.first(); it; it=_attributes.next())
-    {
-      QString item(it);
-      item = decode_string(item);
-      _attr_decoded.append(item.latin1());
-    }
-  
-  return _attr_decoded;
 }
 
 
@@ -99,14 +70,9 @@ void Url::update()
   
   // set the attributes to query
   if (_attributes.count() > 0)
-    {
-      for (unsigned int i=0; i < _attributes.count()-1; ++i)
-	{
-	  q += _attributes.at(i);
-	  q += ",";
-	}
-      q += _attributes.at(_attributes.count()-1);
-    }
+      q += _attributes.join(",");
+   else
+      q += "*";	// all attributes
 
   // set the scope
   q += "?";
@@ -126,7 +92,7 @@ void Url::update()
   q += "?" + _extensions;
 
   // remove trailing ´?´
-  while (q.right(1) == "?")
+  while (q.endsWith("?"))
     q.remove(q.length()-1,1);
 
   setQuery(q);

@@ -4,9 +4,12 @@
 
 #include <qstring.h>
 #include <qstrlist.h>
+#include <qstringlist.h>
 
 #include <lber.h>
 #include <ldap.h>
+
+class KURL;
 
 namespace KLDAP
 {
@@ -116,7 +119,7 @@ namespace KLDAP
      * param p the port on the server, defaults to 389.
      *
      */
-    Connection(const char *s="localhost", int p=LDAP_PORT);
+    Connection(const QString &s="localhost", int p=LDAP_PORT);
 
     /**
      * Destructor. Destroys the connection.
@@ -181,7 +184,7 @@ namespace KLDAP
      * @return TRUE, if authentication was successfull, else FALSE.
      *
      */
-    bool authenticate(const char *dn=0, const char *cred=0, int method=LDAP_AUTH_SIMPLE);
+    bool authenticate(const QString &dn="", const QString &cred="", int method=LDAP_AUTH_SIMPLE);
 
     /// Returns the host to connect to.
     QString host() { return _server; };
@@ -234,7 +237,7 @@ namespace KLDAP
     Attribute(LDAP *h, LDAPMessage *msg, const char *n);
 
     /// Returns the name of the attribute.
-    QString name() { return _name; };
+    const char *name() { return _name; };
 
     /**
      * Returns the attributes values.
@@ -248,7 +251,7 @@ namespace KLDAP
      * @param list The list that will store the values.
      *
      */
-    void getValues(QStrList &list);
+    void getValues(QStringList &list);
 
 
     /**
@@ -277,7 +280,7 @@ namespace KLDAP
   private:
 
     LDAPMessage *message;
-    char        *_name;
+    const char  *_name;
 
   };
 
@@ -328,7 +331,7 @@ namespace KLDAP
      * @param list The list that will store the names.
      *
      */
-    void getAttributes(QStrList &list);
+    void getAttributes(QStringList &list);
 
     /**
      * Returns the attribute with the given name.
@@ -349,6 +352,9 @@ namespace KLDAP
     LDAPMessage *message;
 
   };
+
+
+
 
   /**
    * The base class for LDAP requests.
@@ -493,6 +499,8 @@ namespace KLDAP
 
   };
 
+
+
   /**
    * A class for search requests.
    *
@@ -503,17 +511,6 @@ namespace KLDAP
   class SearchRequest : public Request
   {
   public:
-
-    /**
-     * Constructor. Initializes a search request.
-     *
-     * Creates a new search request object.
-     *
-     * @param c The connection to use.
-     * @param m The mode for the request.
-     *
-     */
-    SearchRequest(Connection &c, RunMode m=Asynchronous);
 
     /**
      * Constructor. Initializes from a LDAP url.
@@ -527,7 +524,7 @@ namespace KLDAP
      * @param m The mode for the request.
      *
      */
-    SearchRequest(Connection &c, QString _url, RunMode m=Asynchronous);
+    SearchRequest(Connection &c, const KURL &_url, RunMode m=Asynchronous);
 
     /// Derived method from Request.
     virtual bool execute();
@@ -545,7 +542,7 @@ namespace KLDAP
      * @return TRUE, if the search was started, else FALSE.
      *
      */
-    bool search(QString base, QString filter="(objectClass=*)");
+    bool search(const QString &base, const QString &filter="(objectClass=*)");
 
     /**
      * Set the base DN for the search.
@@ -555,7 +552,7 @@ namespace KLDAP
      * @param base the base dn for the search.
      *
      */
-    void setBase(QString base) { _base=base; };
+    void setBase(const QString &base) { _base=base; };
 
     /**
      * Returns the base DN for the search.
@@ -577,7 +574,7 @@ namespace KLDAP
      * @param filter The filter to use.
      *
      */
-    void setFilter(QString filter) { _filter=filter; };
+    void setFilter(const QString &filter) { _filter=filter; };
 
     /// Returns the filter for the search.
     QString filter() { return _filter; };
@@ -591,10 +588,10 @@ namespace KLDAP
      * @param list The list of attributes to return.
      *
      */
-    void setAttributes(const QStrList &list) { _attributes=list; };
+    void setAttributes(const QStringList &list) { _attributes=list; };
 
     /// Returns the list of attributes to return for each entry.
-    QStrList &attributes() { return _attributes; };
+    QStringList &attributes() { return _attributes; };
 
     /**
      * Set the scope of the search.
@@ -650,9 +647,9 @@ namespace KLDAP
 
   private:
 
-    QString  _base, _filter;
-    QStrList _attributes;
-    int      _scope, _attrsonly;
+    QString     _base, _filter;
+    QStringList _attributes;
+    int         _scope, _attrsonly;
 
     LDAPMessage *entry;
 

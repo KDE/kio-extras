@@ -81,17 +81,14 @@ void LDAPProtocol::setHost( const QString& _host, int _port,
 /**
  * Get the information contained in the URL.
  */
-void LDAPProtocol::get(const KURL &url)
+void LDAPProtocol::get(const KURL &_url)
 {
-  /*QString _url = urlPrefix + path;
-  if (!query.isEmpty()) { _url += "?" + query; }*/
-  QString _url = url.url();
   kdDebug(7125) << "kio_ldap::get(" << _url << ")" << endl;
   KLDAP::Url usrc(_url);
 
   // check if the URL is a valid LDAP URL
   if (usrc.isMalformed()) {
-    error(ERR_MALFORMED_URL, _url);
+    error(ERR_MALFORMED_URL, _url.prettyURL());
     return;
   }
 
@@ -101,16 +98,16 @@ void LDAPProtocol::get(const KURL &url)
       error(ERR_COULD_NOT_AUTHENTICATE, "bla");
       return;
       }*/
-  KLDAP::SearchRequest search(c, _url.latin1(), KLDAP::Request::Synchronous);
+  KLDAP::SearchRequest search(c, _url, KLDAP::Request::Synchronous);
 
   // Check for connection errors
   if( c.handle() == 0 ) {
     switch( errno ) {
     case ECONNREFUSED:
-      error( ERR_COULD_NOT_CONNECT, _url );
+      error( ERR_COULD_NOT_CONNECT, _url.prettyURL() );
       return;
     default:
-      error( ERR_UNKNOWN_HOST, _url );
+      error( ERR_UNKNOWN_HOST, _url.prettyURL() );
       return;
     }
   }
@@ -121,14 +118,14 @@ void LDAPProtocol::get(const KURL &url)
     switch( res ) {
     case LDAP_OPERATIONS_ERROR:
     case LDAP_PROTOCOL_ERROR:
-      error( ERR_INTERNAL, _url );
+      error( ERR_INTERNAL, _url.prettyURL() );
       return;
     case LDAP_SERVER_DOWN:
-      error( ERR_COULD_NOT_BIND, _url );
+      error( ERR_COULD_NOT_BIND, _url.prettyURL() );
       return;
     case LDAP_INVALID_SYNTAX:
     case LDAP_INVALID_DN_SYNTAX:
-      error( ERR_MALFORMED_URL, _url );
+      error( ERR_MALFORMED_URL, _url.prettyURL() );
       return;
     case LDAP_TIMELIMIT_EXCEEDED:
     case LDAP_SIZELIMIT_EXCEEDED:
@@ -139,7 +136,7 @@ void LDAPProtocol::get(const KURL &url)
   }
   if( !search.finish() ) {
     // Could not finish query
-    error( ERR_COULD_NOT_READ, _url );
+    error( ERR_COULD_NOT_READ, _url.prettyURL() );
     return;
   }
 
@@ -170,17 +167,16 @@ void LDAPProtocol::get(const KURL &url)
 /**
  * Test if the url contains a directory or a file.
  */
-void LDAPProtocol::stat( const KURL &a_url )
+void LDAPProtocol::stat( const KURL &_url )
 {
   /*QString _url = urlPrefix + path;
   if (!query.isEmpty()) { _url += "?" + query; }*/
-  QString _url = a_url.url();
   kdDebug(7125) << "kio_ldap: stat(" << _url << ")" << endl;
   KLDAP::Url usrc(_url);
 
   // check if the URL is a valid LDAP URL
   if (usrc.isMalformed()) {
-    error(ERR_MALFORMED_URL, _url);
+    error(ERR_MALFORMED_URL, _url.prettyURL());
     return;
   }
 
@@ -190,11 +186,11 @@ void LDAPProtocol::stat( const KURL &a_url )
       error(ERR_COULD_NOT_AUTHENTICATE, "bla");
       return;
       }*/
-  KLDAP::SearchRequest search(c, _url.local8Bit(), KLDAP::Request::Synchronous);
-  QStrList att;
+  KLDAP::SearchRequest search(c, usrc, KLDAP::Request::Synchronous);
+  QStringList att;
   att.append("dn");
   search.setAttributes(att);
-  if (a_url.query().isEmpty()) search.setScope(LDAP_SCOPE_ONELEVEL);
+  if (_url.query().isEmpty()) search.setScope(LDAP_SCOPE_ONELEVEL);
   search.execute();
   search.finish();
   int cnt=0;
@@ -202,7 +198,7 @@ void LDAPProtocol::stat( const KURL &a_url )
     cnt++;
   int isDir = 1;
   bool isQuery = 0;
-  if (a_url.query().isEmpty()) {
+  if (_url.query().isEmpty()) {
     /* we searched for a subdir */
     if (cnt == 0) isDir=0;
   } else {
@@ -258,7 +254,7 @@ void LDAPProtocol::stat( const KURL &a_url )
     url.setScope(LDAP_SCOPE_ONELEVEL);
   else
     url.setScope(LDAP_SCOPE_BASE);
-  atom.m_str = url.url();
+  atom.m_str = url.prettyURL();
   kdDebug(7125) << "kio_ldap:stat put url:" << atom.m_str << endl;
   entry.append(atom);
 
@@ -282,7 +278,7 @@ void LDAPProtocol::mimetype(const KURL &url)
 {
   /*QString _url = urlPrefix + path;
   if (!query.isEmpty()) { _url += "?" + query; }*/
-  QString _url = url.url();
+  QString _url = url.prettyURL();
   kdDebug(7125) << "kio_ldap: mimetype(" << _url << ")" << endl;
   KLDAP::Url usrc(_url);
   if (usrc.isMalformed()) {
@@ -306,18 +302,15 @@ void LDAPProtocol::mimetype(const KURL &url)
 /**
  * List the contents of a directory.
  */
-void LDAPProtocol::listDir(const KURL &url)
+void LDAPProtocol::listDir(const KURL &_url)
 {
   unsigned long total=0, actual=0, dirs=0;
-  /*QString _url = urlPrefix + path;
-  if (!query.isEmpty()) { _url += "?" + query; }*/
-  QString _url = url.url();
   kdDebug(7125) << "kio_ldap: listDir(" << _url << ")" << endl;
   KLDAP::Url usrc(_url);
 
   // check if the URL is a valid LDAP URL
   if (usrc.isMalformed()) {
-    error(ERR_MALFORMED_URL, _url);
+    error(ERR_MALFORMED_URL, _url.prettyURL());
     return;
   }
 
@@ -328,10 +321,10 @@ void LDAPProtocol::listDir(const KURL &url)
       return;
       }*/
   KLDAP::SearchRequest search(c, _url, KLDAP::Request::Synchronous);
-  QStrList att;
+  QStringList att;
   att.append("dn");
   search.setAttributes(att);
-  if (url.query().isEmpty() || usrc.scope() == LDAP_SCOPE_BASE)
+  if (_url.query().isEmpty() || usrc.scope() == LDAP_SCOPE_BASE)
     search.setScope(LDAP_SCOPE_ONELEVEL);
   search.execute();
   search.finish();
@@ -348,7 +341,7 @@ void LDAPProtocol::listDir(const KURL &url)
       entry.clear();
 
       // test if it is really a directory (NOTE: This is expensive!)
-      KLDAP::SearchRequest search2(c, usrc.url().local8Bit(), KLDAP::Request::Synchronous);
+      KLDAP::SearchRequest search2(c, usrc, KLDAP::Request::Synchronous);
       search2.setBase(e.dn());
       search2.setScope(LDAP_SCOPE_ONELEVEL);
       search2.setAttributes(att);
@@ -388,17 +381,11 @@ void LDAPProtocol::listDir(const KURL &url)
 	  atom.m_uds = UDS_URL;
 	  atom.m_long = 0;
 	  KLDAP::Url url(urlPrefix);
-	  //kdDebug(7125) << "kio_ldap:listDir(dir) put url1:" << endl;
-	  //url.setProtocol("ldap");
-	  //kdDebug(7125) << "kio_ldap:listDir(dir) put url2:" << endl;
 	  url.setHost(usrc.host());
-	  //kdDebug(7125) << "kio_ldap:listDir(dir) put url3:" << endl;
 	  url.setPort(usrc.port());
-	  //kdDebug(7125) << "kio_ldap:listDir(dir) put url4:" << endl;
 	  url.setPath("/"+e.dn());
-	  //kdDebug(7125) << "kio_ldap:listDir(dir) put url5:" << endl;
 	  url.setScope(LDAP_SCOPE_ONELEVEL);
-	  atom.m_str = url.url();
+	  atom.m_str = url.prettyURL();
 	  kdDebug(7125) << "kio_ldap:listDir(dir) put url:" << atom.m_str << endl;
 	  entry.append(atom);
 
@@ -453,9 +440,8 @@ void LDAPProtocol::listDir(const KURL &url)
       url.setPort(usrc.port());
       url.setPath("/"+e.dn());
       url.setScope(LDAP_SCOPE_BASE);
-      atom.m_str = url.url();
-      QString dbgurl = url.url();
-      kdDebug(7125) << "kio_ldap:listDir(file) put url:" << url.url() << endl;
+      atom.m_str = url.prettyURL();
+      kdDebug(7125) << "kio_ldap:listDir(file) put url:" << atom.m_str << endl;
       entry.append(atom);
 
       listEntry(entry, false);
