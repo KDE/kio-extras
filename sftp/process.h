@@ -109,7 +109,7 @@ protected:
 
 private:
     int init();
-    int SetupTTY(int fd);
+    int SetupTTY(int fd, int stdio);
 
     PTY *m_pPTY;
     QCString m_Inbuf, m_TTY;

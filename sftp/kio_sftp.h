@@ -1,4 +1,4 @@
-/***************************************************************************
+    /***************************************************************************
                           kio_sftpProtocol.h  -  description
                              -------------------
     begin                : Sat Jun 30 20:08:47 CDT 2001
@@ -26,7 +26,7 @@
 #include <kio/slavebase.h>
 #include <kdebug.h>
 
-#include "kprocessblockingrw.h"
+#include "process.h"
 #include "sftpfileattr.h"
 
 #define KIO_SFTP_DB 7116
@@ -86,7 +86,7 @@ private: // Private variables
   int mPort;
 
   /** Ssh process to which we send the sftp packets. */
-  KProcessBlockingRW ssh;
+  MyPtyProcess ssh;
 
   /** Username to use when connecting */
   QString mUsername;
@@ -145,9 +145,6 @@ private: // private methods
   int sftpRead(const QByteArray& handle, Q_UINT32 offset, Q_UINT32 len, QByteArray& data);
   /** No descriptions */
   int sftpWrite(const QByteArray& handle, Q_UINT32 offset, const QByteArray& data);
-private slots: // Private slots
-  void slotSshExited(KProcess *);
-
 };
 
 void mymemcpy(const char* b, QByteArray& a, unsigned int offset, unsigned int len);

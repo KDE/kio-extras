@@ -223,16 +223,16 @@ int MyPtyProcess::exec(QCString command, QCStringList args)
     }
 
     // Child
-    close(inout[0]);
+	
     if( (dup2(inout[1], STDIN_FILENO)  == -1) ||
         (dup2(inout[1], STDOUT_FILENO) == -1) ) {
         kdError(900) << "dup of socket descriptor failed" << endl;
         _exit(1);
     }
     close(inout[1]);
+    close(inout[0]);
 
-
-    if (SetupTTY(slave) < 0)
+    if (SetupTTY(slave, inout[1]) < 0)
 	    _exit(1);
 
     // From now on, terminal output goes through the tty.
@@ -264,7 +264,6 @@ int MyPtyProcess::exec(QCString command, QCStringList args)
     _exit(1);
     return -1; // Shut up compiler. Never reached.
 }
-
 
 /*
  * Wait until the terminal is set into no echo mode. At least one su 
@@ -413,7 +412,7 @@ int MyPtyProcess::waitForChild()
  * so we'll never get EIO when reading from it.
  */
 
-int MyPtyProcess::SetupTTY(int fd)
+int MyPtyProcess::SetupTTY(int fd, int stdio)
 {    
     // Reset signal handlers
     for (int sig = 1; sig < NSIG; sig++)
@@ -421,10 +420,10 @@ int MyPtyProcess::SetupTTY(int fd)
     signal(SIGHUP, SIG_IGN);
 
     // Close all file handles
-    struct rlimit rlp;
-    getrlimit(RLIMIT_NOFILE, &rlp);
-    for (int i = 0; i < (int)rlp.rlim_cur; i++)
-	if (i != fd) close(i); 
+//    struct rlimit rlp;
+//    getrlimit(RLIMIT_NOFILE, &rlp);
+//    for (int i = 0; i < (int)rlp.rlim_cur; i++)
+//    if (i != fd && i != stdio) close(i);
 
     // Create a new session.
     setsid();
@@ -448,20 +447,20 @@ int MyPtyProcess::SetupTTY(int fd)
 #endif
 
     // Connect stdin, stdout and stderr
-    dup2(slave, 0); dup2(slave, 1); dup2(slave, 2);
-    if (slave > 2) 
-	close(slave);
+//    dup2(slave, 0); dup2(slave, 1); dup2(slave, 2);
+//    if (slave > 2)
+//	close(slave);
 
     // Disable OPOST processing. Otherwise, '\n' are (on Linux at least)
     // translated to '\r\n'.
     struct termios tio;
-    if (tcgetattr(0, &tio) < 0) 
+    if (tcgetattr(slave, &tio) < 0)
     {
 	kdError(900) << k_lineinfo << "tcgetattr(): " << perror << "\n";
 	return -1;
     }
     tio.c_oflag &= ~OPOST;
-    if (tcsetattr(0, TCSANOW, &tio) < 0) 
+    if (tcsetattr(slave, TCSANOW, &tio) < 0)
     {
 	kdError(900) << k_lineinfo << "tcsetattr(): " << perror << "\n";
 	return -1;
