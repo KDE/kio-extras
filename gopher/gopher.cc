@@ -57,8 +57,6 @@
 
 #include "gopher.h"
 
-#include <iostream.h>
-
 
 using namespace KIO;
 
