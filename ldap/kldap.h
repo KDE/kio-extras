@@ -7,7 +7,7 @@
 
 #include <lber.h>
 #include <ldap.h>
-#include <sys/time.h>
+#include <time.h>
 
 
 namespace KLDAP
