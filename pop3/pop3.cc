@@ -1,4 +1,5 @@
 // $Id$
+
 #ifdef HAVE_CONFIG_H
 #include <config.h>
 #endif
@@ -17,8 +18,8 @@
 #include <ctype.h>
 #include <errno.h>
 #include <netdb.h>
-#include <stdlib.h>
 #include <signal.h>
+#include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
 
@@ -48,7 +49,6 @@ extern "C" {
 };
 
 using namespace KIO;
-
 
 int kdemain( int argc, char **argv )
 {
@@ -712,6 +712,11 @@ void POP3Protocol::stat( const KURL & url )
   entry.append( atom );
 
   atom.m_uds = UDS_FILE_TYPE;
+  atom.m_str = "";
+  atom.m_long = S_IFREG;
+  entry.append(atom);
+
+  atom.m_uds = UDS_MIME_TYPE;
   atom.m_str = "message/rfc822";
   entry.append( atom );
 
