@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Service
+Name=Postscript Files
+ServiceTypes=ThumbCreator
+MimeTypes=application/postscript
+X-KDE-Library=gsthumbnail
+CacheThumbnail=true
