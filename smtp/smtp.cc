@@ -62,22 +62,25 @@
 #include <stdio.h>
 #include <unistd.h>
 
+#include <iostream.h>
+
 #include <qbuffer.h>
+#include <qcstring.h>
 #include <qstring.h>
 #include <qstringlist.h>
-#include <qcstring.h>
 #include <qglobal.h>
 
-#include <kprotocolmanager.h>
-#include <kemailsettings.h>
-#include <ksock.h>
 #include <kdebug.h>
+#include <kemailsettings.h>
 #include <kinstance.h>
+#include <klocale.h>
+#include <kprotocolmanager.h>
+#include <ksock.h>
+
 #include <kio/connection.h>
 #include <kio/slaveinterface.h>
-#include <kio/ksasl/saslcontext.h>
-#include <klocale.h>
-#include <iostream.h>
+#include <kio/sasl/saslmodule.h>
+#include <kio/sasl/saslcontext.h>
 
 #include "smtp.h"
 
