@@ -34,7 +34,7 @@ class LDAPProtocol : public KIO::SlaveBase
     QString mUser;
     QString mPassword;
     LDAP *mLDAP;
-    int mVer;
+    int mVer, mSizeLimit, mTimeLimit;
     bool mTLS;
     bool mAuthSASL;
     QString mMech,mRealm,mBaseName;

@@ -65,6 +65,7 @@ LDAPProtocol::LDAPProtocol( const QCString &protocol, const QCString &pool,
 {
   mLDAP = 0; mTLS = 0; mVer = 3; mAuthSASL = false;
   mRealm = ""; mBaseName = "";
+  mTimeLimit = mSizeLimit = 0;
   kdDebug(7125) << "LDAPProtocol::LDAPProtocol (" << protocol << ")" << endl;
 }
 
@@ -371,11 +372,18 @@ void LDAPProtocol::changeCheck( const LDAPUrl &url )
   QString basename;
   if ( url.hasExtension( "basename" ) ) 
     basename = url.extension( "basename", critical).upper();
-  
+  int timelimit = 0;
+  if ( url.hasExtension( "x-timelimit" ) )
+    timelimit = url.extension( "x-timelimit", critical).toInt();
+  int sizelimit = 0;
+  if ( url.hasExtension( "x-sizelimit" ) )
+    sizelimit = url.extension( "x-sizelimit", critical).toInt();
+    
   if ( !authSASL && basename.isEmpty() ) basename = mUser;
     
   if ( tls != mTLS || ver != mVer || authSASL != mAuthSASL || mech != mMech ||
-    mRealm != realm || mBaseName != basename ) {
+    mRealm != realm || mBaseName != basename || mTimeLimit != timelimit ||
+    mSizeLimit != sizelimit ) {
     closeConnection();
     mTLS = tls;
     mVer = ver;
@@ -383,6 +391,8 @@ void LDAPProtocol::changeCheck( const LDAPUrl &url )
     mMech = mech;
     mRealm = realm;
     mBaseName = basename;
+    mTimeLimit = timelimit;
+    mSizeLimit = sizelimit;
     kdDebug(7125) << "parameters changed: tls = " << mTLS << 
       " version: " << mVer << "SASLauth: " << mAuthSASL << endl;
     openConnection();
@@ -468,7 +478,6 @@ static int kldap_sasl_interact( LDAP *, unsigned, void *defaults, void *in )
 
 void LDAPProtocol::openConnection()
 {
-  
   if ( mLDAP ) return;
   
   int version,ret;
@@ -530,6 +539,26 @@ void LDAPProtocol::openConnection()
     if ( ( ret = ldap_start_tls_s( mLDAP, NULL, NULL ) ) != LDAP_SUCCESS ) {
       closeConnection();
       LDAPErr( ret, Url.prettyURL() );
+      return;
+    }
+  }
+  
+  if ( mSizeLimit ) {
+    kdDebug(7125) << "sizelimit: " << mSizeLimit << endl;
+    if ( ldap_set_option( mLDAP, LDAP_OPT_SIZELIMIT, &mSizeLimit ) != LDAP_SUCCESS ) {
+      closeConnection();
+      error( ERR_UNSUPPORTED_ACTION, 
+        i18n("Cannot set size limit!").arg(version) );
+      return;
+    }
+  }
+  
+  if ( mTimeLimit ) {
+    kdDebug(7125) << "timelimit: " << mTimeLimit << endl;
+    if ( ldap_set_option( mLDAP, LDAP_OPT_TIMELIMIT, &mTimeLimit ) != LDAP_SUCCESS ) {
+      closeConnection();
+      error( ERR_UNSUPPORTED_ACTION, 
+        i18n("Cannot set time limit!").arg(version) );
       return;
     }
   }
@@ -648,11 +677,12 @@ void LDAPProtocol::get( const KURL &_url )
     while ( entry ) {
       result = LDAPEntryAsLDIF(entry);
       result += '\n';
-      processed_size += result.length();
-      array.setRawData( result.data(), result.length() );
+      uint len = result.length();
+      processed_size += len;
+      array.setRawData( result.data(), len );
       data(array);
       processedSize( processed_size );
-      array.resetRawData( result.data(), result.length() );
+      array.resetRawData( result.data(), len );
     
       entry = ldap_next_entry( mLDAP, entry );
     }
