@@ -203,16 +203,18 @@ void KSshProcess::removeSignalHandlers() {
 	sigaction(SIGCHLD,&act,NULL);
 }
 
-KSshProcess::KSshProcess() : mVersion(UNKNOWN_VER), mConnected(false), 
+KSshProcess::KSshProcess() 
+            : mVersion(UNKNOWN_VER), mConnected(false), 
         mRunning(false), mConnectState(0) {
     mSshPath = KStandardDirs::findExe(QString::fromLatin1("ssh"));
     kdDebug(KSSHPROC) << "KSshProcess::KSshProcess(): ssh path [" << 
 		mSshPath << "]" << endl;
+        
 	installSignalHandlers();
 }
 
-KSshProcess::KSshProcess(QString pathToSsh) :
-    mSshPath(pathToSsh), mVersion(UNKNOWN_VER), mConnected(false),
+KSshProcess::KSshProcess(QString pathToSsh)
+            : mSshPath(pathToSsh), mVersion(UNKNOWN_VER), mConnected(false),
     mRunning(false), mConnectState(0)  {
 	installSignalHandlers();
 }
