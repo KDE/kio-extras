@@ -77,12 +77,6 @@ public:
   QString m_sOldServer, m_sOldPass, m_sOldUser;
   QString m_sServer, m_sPass, m_sUser;
   bool m_try_apop;
-#ifdef SPOP3
-  SSL_CTX *ctx;
-  SSL *ssl;
-  X509 *server_cert;
-  SSL_METHOD *meth;
-#endif
 };
 
 #endif
