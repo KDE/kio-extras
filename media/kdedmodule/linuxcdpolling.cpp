@@ -84,13 +84,15 @@ bool DiscType::isKnownDisc() const
 {
 	return m_type != None
 	    && m_type != Unknown
-	    && m_type != UnknownType;
+	    && m_type != UnknownType
+	    && m_type != Broken;
 }
 
 bool DiscType::isDisc() const
 {
 	return m_type != None
-	    && m_type != Unknown;
+	    && m_type != Unknown
+	    && m_type != Broken;
 }
 
 bool DiscType::isNotDisc() const
@@ -145,7 +147,7 @@ protected:
 	virtual void run()
 	{
 		kdDebug() << "PollingThread(" << m_dev << ") start" << endl;
-		while (!m_stop)
+		while (!m_stop && m_lastPollType!=DiscType::Broken)
 		{
 			m_mutex.lock();
 			DiscType type = m_lastPollType;
@@ -394,7 +396,7 @@ DiscType LinuxCDPolling::identifyDiscType(const QCString &devNode,
 
 	// open the device
 	fd = open(devNode, O_RDONLY | O_NONBLOCK);
-	if (fd < 0) return DiscType::Unknown;
+	if (fd < 0) return DiscType::Broken;
 
 	switch (ioctl(fd, CDROM_DRIVE_STATUS, CDSL_CURRENT))
 	{

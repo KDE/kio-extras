@@ -29,7 +29,7 @@ class DiscType
 {
 public:
 	enum Type { None, Unknown, Audio, Data, DVD, Mixed,
-	            Blank, VCD, SVCD, UnknownType };
+	            Blank, VCD, SVCD, UnknownType, Broken };
 
 	DiscType(Type type = Unknown);
 
