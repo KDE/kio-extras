@@ -31,6 +31,8 @@
 #                     by Hisham Muhammad <hisham@apple2.com>
 #   January 30 2003   Ported Hisham's work to HEAD
 #                     by David Pashley <david@davidpashley.com>
+#   March 6 2003      Substitute use of absolute fixed file URLs to images with help:common URLs
+#                     for the images and style sheet. By Luis Pedro Coelho
 #
 #-------------------------------------------------------
 
@@ -458,7 +460,6 @@ sub PrintHeader {
   my ($LinkList, $BaseInfoFile) = @_;
   my @LinkList = @{$LinkList};
 
-  my $prefix="/usr";
   my $UpcaseInfoFile = $BaseInfoFile;
   $UpcaseInfoFile =~ tr/a-z/A-Z/; 
   #-- TEXT for the header of an info node
@@ -468,7 +469,7 @@ sub PrintHeader {
 <html>
    <head>
       <title>Info: ($BaseInfoFile) $LinkList[1]</title>
-      <link rel="stylesheet" href="file:$prefix/share/doc/kde/HTML/en/common/kde-default.css" type="text/css"/>
+      <link rel="stylesheet" href="help:common/kde-default.css" type="text/css"/>
       <style>
          UL {
             margin: 0em 0em 0em 0em;
@@ -496,17 +497,17 @@ sub PrintHeader {
    </div>
 
    <div id="navbackground" style="position : absolute; width : 100%; height: 124px; 
-        background-image : url('file:/$prefix/share/doc/kde/HTML/en/common/doctop2.png'); 
+        background-image : url('help:common/doctop2.png'); 
         z-index : 5; left: 0px; top : 0px; padding : 0px;"> 
    
         <div id="bulb1" style="padding : 0px; position : absolute; z-index : 15; 
              width : 150px; height : 85px; top : 0px; left : 0px; 
-             background : url('file:/$prefix/share/doc/kde/HTML/en/common/doctop1.png') repeat;">
+             background : url('help:common/doctop1.png') repeat;">
         </div>
 
         <div id="gradient" style="position : absolute; width : 275px; height : 85px; z-index : 19px; 
              top : 0px; padding : 0px; left : 150px; 
-             background-image : url('file:/$prefix/share/doc/kde/HTML/en/common/doctop1a.png'); 
+             background-image : url('help:common/doctop1a.png'); 
              background-repeat : no-repeat; background-color : transparent; visibility : visible;">
         </div>
 
