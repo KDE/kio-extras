@@ -4,3 +4,4 @@ protocol=man
 input=none
 output=filesystem
 reading=true
+defaultMimetype=text/html
