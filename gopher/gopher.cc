@@ -92,7 +92,7 @@ bool GopherProtocol::gopher_open( KURL &_url )
   }
 
   QString path=_url.path();
-  if (path.left(1)=="/") path.remove(0,1);
+  if (path.at(0)=='/') path.remove(0,1);
   if (path.isEmpty()) {
     // We just want the initial listing
     if (::write(m_iSock, "\r\n", 2) != 2) {
@@ -139,7 +139,7 @@ void GopherProtocol::slotListDir( const char *_url )
     return;
   }
   gopher_open(dest);
-  if (path.left(1) == "/") path.remove(0,1);
+  if (path.at(0) == '/') path.remove(0,1);
 
   UDSEntry entry;
   UDSAtom atom;
@@ -182,8 +182,8 @@ void GopherProtocol::slotTestDir( const char *_url )
   KURL usrc(_url);
   // An empty path is essentially a request for an index...
   QString path = usrc.path();
-  if (path.left(1)=="/") path.remove(0,1);
-  if (path.isEmpty() || path.left(1) == "1")
+  if (path.at(0)=='/') path.remove(0,1);
+  if (path.isEmpty() || path.at(0) == '1')
     isDirectory();
   else
     isFile();
@@ -230,7 +230,7 @@ void GopherProtocol::slotGet(const char *_url)
     processedSize(strlen(GopherProtocol::abouttext));
     finished();
   }
-  if (path.left(1)=="/") path.remove(0,1);
+  if (path.at(0)=='/') path.remove(0,1);
   if (path.isEmpty()) {
     debug("We should be a dir!!");
     error(ERR_IS_DIRECTORY, strdup(_url));

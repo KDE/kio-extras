@@ -284,7 +284,7 @@ void POP3Protocol::slotGetSize( const char * _url )
     return;
   }
 
-  if (path.left(1)=="/") path.remove(0,1);
+  if (path.at(0)=='/') path.remove(0,1);
   if (path.isEmpty()) {
     qDebug("We should be a dir!!");
     error(ERR_IS_DIRECTORY, strdup(_url));
@@ -331,7 +331,7 @@ void POP3Protocol::slotGet(const char *_url)
 
   path = usrc.path().copy();
 
-  if (path.left(1)=="/") path.remove(0,1);
+  if (path.at(0)=='/') path.remove(0,1);
   if (path.isEmpty()) {
     debug("We should be a dir!!");
     error(ERR_IS_DIRECTORY, strdup(_url));
@@ -652,7 +652,7 @@ void POP3Protocol::slotDel( QStringList& _list )
 	  return;
 	}
 	path=target.path();
-	if (path.left(1) == "/")
+	if (path.at(0) == '/')
 	  path.remove(0,1);
 	(void)path.toUInt(&isInt);
 	if (!isInt) {

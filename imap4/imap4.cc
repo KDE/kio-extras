@@ -161,7 +161,7 @@ void IMAP4Protocol::slotGet(const char *_url)
 
   path = usrc.path().copy();
 
-  if (path.left(1)=="/") path.remove(0,1);
+  if (path.at(0)=='/') path.remove(0,1);
   if (path.isEmpty() || (path.find("/") == -1)) {
     error( ERR_MALFORMED_URL, strdup(_url) );
     // M_CMD needs to be cmd_none
