@@ -72,6 +72,17 @@ LDAPProtocol::~LDAPProtocol() {
   closeConnection();
 }
 
+void LDAPProtocol::checkErr( const KURL &_url )
+{
+  int ret;
+  
+  if ( ldap_get_option( mLDAP, LDAP_OPT_ERROR_NUMBER, &ret ) == -1 ) {
+    error( KIO::ERR_UNKNOWN, _url.prettyURL() );
+  } else {
+    LDAPErr( ret, _url.prettyURL() );
+  }
+}
+
 void LDAPProtocol::LDAPErr( int err, const QString &msg )
 {
   kdDebug(7125) << "error: " << err << " " << ldap_err2string(err) << endl;
@@ -80,9 +91,10 @@ void LDAPProtocol::LDAPErr( int err, const QString &msg )
   closeConnection();
   
   switch (err) {
-/*    
+/* FIXME: is it worth mapping the following error codes to kio errors?
+
 	LDAP_OPERATIONS_ERROR 
-        LDAP_STRONG_AUTH_REQUIRED
+  LDAP_STRONG_AUTH_REQUIRED
 	LDAP_PROTOCOL_ERROR 
 	LDAP_TIMELIMIT_EXCEEDED 
 	LDAP_SIZELIMIT_EXCEEDED 
@@ -141,7 +153,8 @@ void LDAPProtocol::LDAPErr( int err, const QString &msg )
       break;
     
     default:
-      error(ERR_SLAVE_DEFINED,i18n("LDAP server returned the following error: %1").
+      error( ERR_SLAVE_DEFINED,
+        i18n( "LDAP server returned the following error: %1" ). 
         arg( ldap_err2string(err)) );
   }
 }
@@ -228,7 +241,8 @@ void LDAPProtocol::addModOp( LDAPMod ***pmods, int mod_type, const QString &attr
   const QByteArray &value )
 {
 //  kdDebug(7125) << "type: " << mod_type << " attr: " << attr << 
-//    " value: " << QString::fromUtf8(value,value.size()) << endl;
+//    " value: " << QString::fromUtf8(value,value.size()) << 
+//    " size: " << value.size() << endl;
   LDAPMod **mods;
 
   mods = *pmods;
@@ -372,6 +386,8 @@ void LDAPProtocol::changeCheck( const LDAPUrl &url )
     kdDebug(7125) << "parameters changed: tls = " << mTLS << 
       " version: " << mVer << "SASLauth: " << mAuthSASL << endl;
     openConnection();
+  } else {
+    if ( !mLDAP ) openConnection();
   }
 }
 
@@ -480,7 +496,7 @@ void LDAPProtocol::openConnection()
 
   if( mUser.isEmpty() && mPassword.isEmpty() && 
 //don't need authentication info for kerberos-gssapi
-    !( mAuthSASL && mMech == "GSSAPI") ) {
+    !( mAuthSASL && mMech == "GSSAPI" ) ) {
     if( checkCachedAuthentication( info ) ) {
       if ( mAuthSASL )
         mUser = info.username;
@@ -601,20 +617,13 @@ void LDAPProtocol::get( const KURL &_url )
   LDAPMessage *msg,*entry;
   
   changeCheck( usrc );
-  if ( !mLDAP ) {
-    openConnection();
-    if ( !mLDAP ) { 
-        finished();
-        return;
-    }
+  if ( !mLDAP ) { 
+    finished();
+    return;
   }
   
   if ( (id = asyncSearch( usrc )) == -1 ) {
-    if ( ldap_get_option( mLDAP, LDAP_OPT_ERROR_NUMBER, &ret ) == -1 ) {
-      error( KIO::ERR_UNKNOWN, _url.prettyURL() );
-    } else {
-      LDAPErr( ret, _url.prettyURL() );
-    }
+    checkErr( _url );
     return;
   }
 
@@ -628,7 +637,7 @@ void LDAPProtocol::get( const KURL &_url )
   while( true ) {
     ret = ldap_result( mLDAP, id, 0, NULL, &msg );
     if ( ret == -1 ) {
-      LDAPErr( ldap_result2error( mLDAP, msg, true ), _url.prettyURL() );
+      checkErr( _url );
       return;
     }
     if ( ret == LDAP_RES_SEARCH_RESULT ) break;
@@ -676,32 +685,26 @@ void LDAPProtocol::stat( const KURL &_url )
   
   changeCheck( usrc );
   if ( !mLDAP ) {
-    openConnection();
-    if ( !mLDAP ) { 
-        finished();
-        return;
-    }
+    finished();
+    return;
   }
   
   // look how many entries match
   saveatt = usrc.attributes();
   att.append( "dn" );
   usrc.setAttributes( att );
-  if (_url.query().isEmpty()) usrc.setScope( LDAPUrl::One );
+  if ( _url.query().isEmpty() ) usrc.setScope( LDAPUrl::One );
   
   if ( (id = asyncSearch( usrc )) == -1 ) {
-    if ( ldap_get_option( mLDAP, LDAP_OPT_ERROR_NUMBER, &ret ) == -1 ) {
-      error( KIO::ERR_UNKNOWN, _url.prettyURL() );
-    } else {
-      LDAPErr( ret, _url.prettyURL() );
-    }
+    checkErr( _url );
     return;
   }
-
+  
+  kdDebug(7125) << "stat() getting result" << endl;
   do {
     ret = ldap_result( mLDAP, id, 0, NULL, &msg );
     if ( ret == -1 ) {
-      LDAPErr( ldap_result2error( mLDAP, msg, true ), _url.prettyURL() );
+      checkErr( _url );
       return;
     }
     if ( ret == LDAP_RES_SEARCH_RESULT ) {
@@ -737,11 +740,8 @@ void LDAPProtocol::del( const KURL &_url, bool )
 
   changeCheck( usrc );
   if ( !mLDAP ) {
-    openConnection();
-    if ( !mLDAP ) { 
-        finished();
-        return;
-    }
+    finished();
+    return;
   }
   
   kdDebug(7125) << " del: " << usrc.dn().utf8() << endl ;
@@ -761,11 +761,8 @@ void LDAPProtocol::put( const KURL &_url, int, bool overwrite, bool )
 
   changeCheck( usrc );
   if ( !mLDAP ) {
-    openConnection();
-    if ( !mLDAP ) { 
-        finished();
-        return;
-    }
+    finished();
+    return;
   }
 
   LDAPMod **lmod = 0;
@@ -873,7 +870,7 @@ void LDAPProtocol::put( const KURL &_url, int, bool overwrite, bool )
               break;
             }
             case LDIF::Entry_Add:
-              if ( ldif.val().size() > 1 )
+              if ( ldif.val().size() > 0 )
                 addModOp( &lmod, 0, ldif.attr(), ldif.val() );
               break;
             default:
@@ -915,11 +912,8 @@ void LDAPProtocol::listDir( const KURL &_url )
   
   changeCheck( usrc );
   if ( !mLDAP ) {
-    openConnection();
-    if ( !mLDAP ) { 
-        finished();
-        return;
-    }
+    finished();
+    return;
   }
 
   saveatt = usrc.attributes();
@@ -931,11 +925,7 @@ void LDAPProtocol::listDir( const KURL &_url )
   if ( _url.query().isEmpty() ) usrc.setScope( LDAPUrl::One );
   
   if ( (id = asyncSearch( usrc )) == -1 ) {
-    if ( ldap_get_option( mLDAP, LDAP_OPT_ERROR_NUMBER, &ret ) == -1 ) {
-      error( KIO::ERR_UNKNOWN, _url.prettyURL() );
-    } else {
-      LDAPErr( ret, _url.prettyURL() );
-    }
+    checkErr( _url );
     return;
   }
 
@@ -947,7 +937,7 @@ void LDAPProtocol::listDir( const KURL &_url )
   while( true ) {
     ret = ldap_result( mLDAP, id, 0, NULL, &msg );
     if ( ret == -1 ) {
-      LDAPErr( ldap_result2error( mLDAP, msg, true ), _url.prettyURL() );
+      checkErr( _url );
       return;
     }
     if ( ret == LDAP_RES_SEARCH_RESULT ) break;
