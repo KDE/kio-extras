@@ -243,12 +243,9 @@ void TARProtocol::slotListDir( const char *_url )
     atom.m_str = tarEntry->group();
     entry.append( atom );
 
-    /*
-      TODO
     atom.m_uds = UDS_LINK_DEST;
-    atom.m_str = slink;
+    atom.m_str = tarEntry->symlink();
     entry.append( atom );
-    */
 
     listEntry( entry );
   }
