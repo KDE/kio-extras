@@ -101,7 +101,7 @@ void SMBSlave::get( const KURL& kurl )
                 else if(bytesread < 0)
                 {
                     error( KIO::ERR_COULD_NOT_READ, url.toKioUrl());
-                    break;
+                    return;
                 }
     
 
@@ -129,6 +129,7 @@ void SMBSlave::get( const KURL& kurl )
     else
     {    
           error( KIO::ERR_CANNOT_OPEN_FOR_READING, url.toKioUrl());
+	  return;
     }
 
     finished();
@@ -153,7 +154,7 @@ void SMBSlave::put( const KURL& kurl,
     struct stat st;
     QByteArray  filedata;
 
-    kdDebug(KIO_SMB) << "SMBSlave::put on " << kurl.url() << endl;
+    //    kdDebug(KIO_SMB) << "SMBSlave::put on " << kurl.url() << endl;
 
 
     exists = (cache_stat(m_current_url, &st) != -1 );
@@ -234,7 +235,7 @@ void SMBSlave::put( const KURL& kurl,
         {
 	  kdDebug(KIO_SMB) << "SMBSlave::put error " << kurl.url() <<" could not write !!"<< endl;
             error( KIO::ERR_COULD_NOT_WRITE, m_current_url.toKioUrl());
-            break;
+            return;
         }
     }
     kdDebug(KIO_SMB) << "SMBSlave::put close " << m_current_url.toSmbcUrl()<< endl;
