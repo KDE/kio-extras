@@ -96,7 +96,7 @@ QString HelpProtocol::lookupFile(QString fname, QString query, bool &redirect)
   // if we have a query, look if it contains an anchor
   if (!query.isEmpty())
     if (query.left(8) == "?anchor=")
-      anchor = query.mid(8);
+      anchor = query.mid(8).upper();
 
   path = fname;
 
