@@ -21,6 +21,10 @@
 #include "defines.h"
 #ifndef USE_SAMBA
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 // Network related includes
 // I haven't checked for portability yet
 #include <sys/types.h>   // must be included before in.h on FreeBSD
@@ -33,6 +37,9 @@
 #include <arpa/inet.h>
 #include <unistd.h>
 #include <netdb.h>
+#ifdef HAVE_SYS_SELECT_H
+#include <sys/select.h>		// Needed on some systems.
+#endif
 
 #include <string.h>	// memcpy again...
 

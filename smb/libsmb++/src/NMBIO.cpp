@@ -18,8 +18,16 @@
     to the Free Software Foundation, Inc., 675 Mass Ave, Cambridge,
     MA 02139, USA.
 */
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "defines.h"
 #ifndef USE_SAMBA
+
+#ifdef HAVE_SYS_SELECT_H
+#include <sys/select.h>		// Needed on some systems.
+#endif
 
 #include <errno.h>
 #undef errno
