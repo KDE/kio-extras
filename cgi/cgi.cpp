@@ -34,11 +34,12 @@ void CgiProtocol::get( const KURL& url )
 {
   kdDebug() << "CgiProtocol::get()" << endl;
   kdDebug() << " URL: " << url.url() << endl;
+#if 0
   kdDebug() << " Path: " << url.path() << endl;
   kdDebug() << " Query: " << url.query() << endl;
   kdDebug() << " Protocol: " << url.protocol() << endl;
   kdDebug() << " Filename: " << url.filename() << endl;
-
+#endif
   QCString protocol = "SERVER_PROTOCOL=HTTP";
   putenv( protocol.data() );
 
@@ -127,10 +128,12 @@ void CgiProtocol::get( const KURL& url )
       if ( semicolon < 0 ) end = newline;
       else end = semicolon;
 
+#if 0
       kdDebug() << "  colon: " << colon << endl;
       kdDebug() << "  newline: " << newline << endl;
       kdDebug() << "  semicolon: " << semicolon << endl;
       kdDebug() << "  end: " << end << endl;
+#endif
       
       QCString contentType = output.mid( colon + 1, end - colon - 1 );
 
