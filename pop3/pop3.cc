@@ -43,6 +43,7 @@
 
 #include <qcstring.h>
 #include <qglobal.h>
+#include <qregexp.h>
 
 #include <kdebug.h>
 #include <kinstance.h>
