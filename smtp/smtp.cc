@@ -559,6 +559,7 @@ bool SMTPProtocol::smtp_open(const QString& fakeHostname)
     char hostname[256];
     struct hostent *host;
     
+    hostname[0] = '\0';
     host = gethostbyname(hostname);
 
     if (host && host->h_name)
