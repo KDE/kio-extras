@@ -218,8 +218,6 @@ long my_last_sector(cdrom_drive *drive)
   return cdda_track_lastsector(drive, drive->tracks);
 }
 
-using namespace AudioCD;
-
 int
 kdemain(int argc, char ** argv)
 {
