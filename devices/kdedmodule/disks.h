@@ -47,6 +47,7 @@ public:
   ~DiskEntry();
   QString lastSysError() {return sysStringErrOut; };
   QString deviceName() const { return device; };
+  QString linkedDeviceName() const { return linkedDevice; };
   QString mountPoint() const { return mountedOn; };
   QString mountOptions() const { return options; };
   /**
@@ -131,6 +132,7 @@ private:
   bool              readingSysStdErrOut;
 
   QString     device,
+	      linkedDevice,
               type,
               mountedOn,
               options,

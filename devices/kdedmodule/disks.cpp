@@ -26,6 +26,7 @@
 
 #include <kglobal.h>
 #include <kdebug.h>
+#include <qfileinfo.h>
 
 #include "disks.h"
 #include "disks.moc"
@@ -39,6 +40,7 @@
 **/
 void DiskEntry::init()
 {
+  linkedDevice="";
   device="";
   type="";
   mountedOn="";
@@ -273,6 +275,7 @@ QString DiskEntry::discType()
     else if (-1!=deviceName().find("cdwriter",0,FALSE)) typeName="kdedevice/cdwriter";
     else if (-1!=deviceName().find("cdrw",0,FALSE)) typeName="kdedevice/cdwriter";
     else if (-1!=mountPoint().find("cdrw",0,FALSE)) typeName="kdedevice/cdwriter";
+    else if (-1!=deviceName().find("cdrecorder",0,FALSE)) typeName="kdedevice/cdwriter";
     else if (-1!=deviceName().find("scd",0,FALSE)) typeName="kdedevice/cdrom";
     else if (-1!=deviceName().find("/sr",0,FALSE)) typeName="kdedevice/cdrom";
 
@@ -341,6 +344,15 @@ float DiskEntry::percentFull() const
 void DiskEntry::setDeviceName(const QString & deviceName)
 {
  device=deviceName;
+ if (deviceName.startsWith("/dev/"))
+ {
+	QFileInfo finfo=QFileInfo(deviceName);
+	if (finfo.isSymLink())
+	{
+		linkedDevice=finfo.readLink();
+		kdDebug(7020)<<"Device "<<deviceName<<" is a symlink to "<<linkedDevice<<endl;
+	}
+ }
  emit deviceNameChanged();
 };
 
