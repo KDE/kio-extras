@@ -109,23 +109,18 @@ bool NNTPProtocol::getResponse (char *r_buf, unsigned int r_len)
  *   indicators: positive ("+OK") and negative ("-ERR").  Servers MUST
  *   send the "+OK" and "-ERR" in upper case.
  */
-
-  if (strncmp(buf, "+OK ", 4)==0) {
+	fprintf(stderr,"%s\n",buf);
+/*  if ((strncmp(buf, "200", 3)==0)||(strncmp(buf,"201",3)==0)||(strncmp(buf,"381",3)==0)) { */
+    if (!(strncmp(buf, "501",3)==0)||!(strncmp(buf,"502",3)==0))
+ {
     if (r_buf && r_len) {
-      memcpy(r_buf, buf+4, QMIN(r_len,recv_len-4));
+      memcpy(r_buf, buf+3, QMIN(r_len,recv_len-4));
     }
     if (buf) free(buf);
     return true;
-  } else if (strncmp(buf, "-ERR ", 5)==0) {
-    if (r_buf && r_len) {
-      memcpy(r_buf, buf+5, QMIN(r_len,recv_len-5));
-    }
-    if (buf) free(buf);
-    return false;
   } else {
-    fprintf(stderr, "Invalid NNTP response received!\n");fflush(stderr);
     if (r_buf && r_len) {
-      memcpy(r_buf, buf, QMIN(r_len,recv_len));
+      memcpy(r_buf, buf+3, QMIN(r_len,recv_len-3));
     }
     if (buf) free(buf);
     return false;
@@ -146,6 +141,7 @@ bool NNTPProtocol::command (const char *cmd, char *recv_buf, unsigned int len)
  *   argument may be up to 40 characters long.
  */
 
+  fprintf(stderr, "%s\n",cmd);
   // Write the command
   if (::write(m_iSock, cmd, strlen(cmd)) != (ssize_t)strlen(cmd))
     return false;
@@ -177,16 +173,16 @@ bool NNTPProtocol::nntp_open( KURL &_url )
   // because we first have to check to see if the user specified
   // a port, and if so use it, otherwise we check to see if there
   // is a port specified in /etc/services, and if so use that
-  // otherwise as a last resort use the "official" port of 110.
+  // otherwise as a last resort use the "official" port of 119.
 
   unsigned short int port;
   ksockaddr_in server_name;
   memset(&server_name, 0, sizeof(server_name));
   static char buf[512];
 
-  // We want 110 as the default, but -1 means no port was specified.
+  // We want 119 as the default, but -1 means no port was specified.
   // Why 0 wasn't chosen is beyond me.
-  port = _url.port() ? _url.port() : 110;
+  port = _url.port() ? _url.port() : 119;
   if ( (m_iOldPort == port) && (m_sOldServer == _url.host()) && (m_sOldUser == _url.user()) && (m_sOldPass == _url.pass())) {
     fprintf(stderr,"Reusing old connection\n");fflush(stderr);
     return true;
@@ -215,7 +211,14 @@ bool NNTPProtocol::nntp_open( KURL &_url )
     m_iOldPort = port;
     m_sOldServer = _url.host();
 
-    QString usr, pass, one_string="USER ";
+   memset(buf, 0, sizeof(buf));
+   QString usr, pass, one_string="MODE READER";
+   if (!command(one_string, buf, sizeof(buf))) {
+	fprintf(stderr,"This is an error message\n"); fflush(stderr);
+	}
+    
+
+    one_string="AUTHINFO USER ";
     if (_url.user().isEmpty() || _url.pass().isEmpty()) {
       // Prompt for usernames
       QString head="Username and password for your NNTP account:";
@@ -230,6 +233,7 @@ bool NNTPProtocol::nntp_open( KURL &_url )
       one_string.append(_url.user());
       m_sOldUser = _url.user();
     }
+
     memset(buf, 0, sizeof(buf));
     if (!command(one_string, buf, sizeof(buf))) {
       fprintf(stderr, "Couldn't login. Bad username Sorry\n"); fflush(stderr);
@@ -237,7 +241,7 @@ bool NNTPProtocol::nntp_open( KURL &_url )
       return false;
     }
     
-    one_string="PASS ";
+    one_string="AUTHINFO PASS ";
     if (_url.pass().isEmpty()) {
       m_sOldPass = pass;
       one_string.append(pass);
@@ -580,68 +584,10 @@ void NNTPProtocol::slotListDir (const char *_url)
   // Check how many messages we have. STAT is by law required to
   // at least return +OK num_messages total_size
   memset(buf, 0, 512);
-  if (!command("STAT", buf, 512)) {
+  if (!command("LIST", buf, sizeof(buf))) {
     error(ERR_INTERNAL, "??");
     return;
-  }
-  fprintf(stderr,"The stat buf is :%s:\n", buf);
-  q_buf=buf;
-  if (q_buf.find(" ")==-1) {
-    error(ERR_INTERNAL, "Invalid NNTP response, we should have at least one space!");
-    nntp_close();
-    return;
-  }
-  q_buf.remove(q_buf.find(" "), q_buf.length());
-
-  num_messages=q_buf.toUInt(&isINT);
-  if (!isINT) {
-    error(ERR_INTERNAL, "Invalid NNTP STAT response!");
-    nntp_close();
-    return;
-  }
-  KUDSEntry entry;
-  KUDSAtom atom;
-  QString fname;
-  for (int i=0; i < num_messages; i++) {
-    fname="Message %1";
-
-    atom.m_uds = UDS_NAME;
-    atom.m_long = 0;
-    atom.m_str = fname.arg(i+1);
-    entry.append(atom);
-
-    atom.m_uds = UDS_MIME_TYPE;
-    atom.m_long = 0;
-    atom.m_str = "text/plain";
-    entry.append(atom);
-fprintf(stderr,"Mimetype is %s\n", atom.m_str.ascii());
-
-    atom.m_uds = UDS_URL;
-    QString uds_url;
-    if (usrc.user().isEmpty() || usrc.pass().isEmpty()) {
-      uds_url="news://%1/download/%2";
-      atom.m_str = uds_url.arg(usrc.host()).arg(i+1);
-    } else {
-      uds_url="news://%1:%2@%3/download/%3";
-      atom.m_str = uds_url.arg(usrc.user()).arg(usrc.pass()).arg(usrc.host()).arg(i+1);
-    }
-    atom.m_long = 0;
-    entry.append(atom);
-fprintf(stderr,"URL is %s\n", atom.m_str.ascii());
-
-    atom.m_uds = UDS_FILE_TYPE;
-    atom.m_str = "";
-    atom.m_long = S_IFREG;
-    entry.append(atom);
-
-    atom.m_uds = UDS_SIZE;
-    atom.m_str = "";
-    atom.m_long = realGetSize(i+1);
-    entry.append(atom);
-
-    listEntry(entry);
-    entry.clear();
-  }
+  } 
   finished();
 }
 
