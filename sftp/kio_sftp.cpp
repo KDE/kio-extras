@@ -29,7 +29,6 @@ So we can't connect.
 
 #include <qcstring.h>
 #include <qstring.h>
-#include <qdatastream.h>
 #include <qobject.h>
 #include <qstrlist.h>
 
@@ -1729,20 +1728,6 @@ int kio_sftpProtocol::sftpReadDir(const QByteArray& handle, const KURL& url){
     
     listEntry(attr.entry(), true);
     return SSH2_FX_OK;
-}
-
-kdbgstream& operator<< (kdbgstream& s, const QByteArray& a) {
-    int i, l = a.size();
-    l = 64 < l ? 64 : l;
-    QString str;
-    for(i = 0; i < l-1; i++)
-        s << str.sprintf("%02X ",(unsigned char)a[i]);
-    s << str.sprintf("%02X",(unsigned char)a[i]); // why do this?
-    return s;
-}
-
-kndbgstream& operator<< (kndbgstream& s, const QByteArray &/*a*/) {
-    return s;
 }
 
 void mymemcpy(const char* b, QByteArray& a, unsigned int offset, unsigned int len) {
