@@ -327,6 +327,8 @@ SmbProtocol::SmbReturnCode SmbProtocol::getShareInfo(ClientProcess* shareLister,
       int exitStatus=shareLister->exited();
       if (exitStatus!=-1)
       {
+         if (stdoutEvent) readOutput(shareLister->fd());
+
          kdDebug(7101)<<"Smb::getShareInfo(): smbclient exited with status "<<exitStatus<<endl;
          if (exitStatus!=0)
             kdDebug(7101)<<"Smb::getShareInfo(): received: -"<<m_stdoutBuffer<<"-"<<endl;
@@ -334,12 +336,14 @@ SmbProtocol::SmbReturnCode SmbProtocol::getShareInfo(ClientProcess* shareLister,
          if (exitStatus==0)
          {
             kdDebug(7101)<<"::getShareInfo() exitStaus==0"<<endl;
+            if (m_stdoutBuffer==0) return SMB_OK;
             if (strstr(m_stdoutBuffer,"ERRDOS - ERRnoaccess")==0)
                return SMB_OK; //probably
             else return SMB_WRONGPASSWORD;
          }
          else if (alreadyEnteredPassword)
          {
+            if (m_stdoutBuffer==0) return SMB_ERROR;
             kdDebug(7101)<<"::getShareInfo() in alreadyEnteredPassword"<<endl;
             if (strstr(m_stdoutBuffer,"ERRDOS - ERRnomem")!=0)
             {
