@@ -229,13 +229,17 @@ void SMBSlave::reportError(const SMBUrl &url)
     case EBUSY:
         break;  //hmmm, otherwise the whole dir isn't listed (caused e.g. by pagefile.sys), aleXXX
     case ENOENT:
+        if (url.getType() == SMBURLTYPE_ENTIRE_NETWORK) {
+            error( KIO::ERR_SLAVE_DEFINED, i18n("Couldn't find any workgroups in your local network."));
+            break;
+        }
     case ENOTDIR:
     case EFAULT:
-        error(ERR_DOES_NOT_EXIST, url.url());
+        error(ERR_DOES_NOT_EXIST, url.prettyURL());
         break;
     case EPERM:
     case EACCES:
-        error( ERR_ACCESS_DENIED, url.url() );
+        error( ERR_ACCESS_DENIED, url.prettyURL() );
         break;
     case EIO:
         error( ERR_CONNECTION_BROKEN, url.url());
@@ -251,6 +255,7 @@ void SMBSlave::reportError(const SMBUrl &url)
         break;
     case EBADF:
         error( ERR_INTERNAL, "BAD File descriptor");
+        break;
     default:
         error( ERR_INTERNAL, i18n("Unknown error condition in stat: %1").arg(strerror(errno)));
     }
