@@ -43,16 +43,25 @@ bool PictureCreator::create(const QString &path, int width, int height, QImage &
 
     // render the HTML page on a bigger pixmap and use smoothScale,
     // looks better than directly scaling with the QPainter (malte)
+    
+    QRect rect = pict.boundingRect();
+    double aspect = (double)rect.width() / (double)rect.height();
+    
     QPixmap pix;
-    if (width > 400 || height > 600)
+    if (width > 500 || height > 500 )
     {
-        if (height * 3 > width * 4)
-            pix.resize(width, width * 4 / 3);
+        if (height > width)
+            pix.resize(width, width / aspect);
         else
-            pix.resize(height * 3 / 4, height);
+            pix.resize(height * aspect, height);
     }
     else
-        pix.resize(400, 600);
+    {
+        if (height > width)
+            pix.resize(500, 500 / aspect);
+        else
+            pix.resize(500 * aspect, 500);
+    }
     // light-grey background, in case loadind the page failed
     pix.fill( QColor( 245, 245, 245 ) );
 
