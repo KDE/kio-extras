@@ -166,12 +166,14 @@ QString mimeHeader::getTypeParm(QCString aStr)
 
 void mimeHeader::setDispositionParm(QCString aLabel,QString aValue)
 {
-	return setParameter(aLabel,aValue,&dispositionList);
+	setParameter(aLabel,aValue,&dispositionList);
+	return;
 }
 
 void mimeHeader::setTypeParm(QCString aLabel,QString aValue)
 {
-	return setParameter(aLabel,aValue,&typeList);
+	setParameter(aLabel,aValue,&typeList);
+	return;
 }
 
 QDictIterator<QString> mimeHeader::getDispositionIterator()
