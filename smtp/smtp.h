@@ -28,9 +28,8 @@
  */
 
 #ifndef _SMTP_H
-#define _SMTP_H "$Id$"
+#define _SMTP_H
 
-#include <qstring.h>
 #include <kio/tcpslavebase.h>
 
 class KDESasl;
@@ -52,27 +51,32 @@ public:
 
 protected:
 
-  bool smtp_open();
+  bool smtp_open(const QString& fakeHostname = QString::null);
   void smtp_close();
   bool command(const QString & buf, char *r_buf =
                NULL, unsigned int r_len = 0);
   int getResponse(char *real_buf = NULL, unsigned int real_len = 0);
   bool Authenticate();
   void ParseFeatures(const char *buf);
-  bool PutRecipients(QStringList & list, const KURL & url);
+  bool PutRecipients(QStringList & list);
+  int GetVal(char *buf);
 
   unsigned short m_iOldPort;
-  bool opened, haveTLS;
-  struct timeval m_tTimeout;
+  bool m_opened;
+  bool m_haveTLS;
+  bool m_errorSent;
   QString m_sServer, m_sOldServer;
   QString m_sUser, m_sOldUser;
   QString m_sPass, m_sOldPass;
-  QString m_sError;
+  QString m_hostname;
 
   KDESasl *m_pSASL;
-  QString m_sAuthConfig;
-  QCString lastError;
-  bool errorSent;
+  QString  m_sAuthConfig;
+  QCString m_lastError;
+
+  static const int DEFAULT_RESPONSE_BUFFER = 512;
+  static const int DEFAULT_EHLO_BUFFER = 5120;
+  static const int SMTP_MIN_NEGATIVE_REPLY = 400;
 };
 
 #endif

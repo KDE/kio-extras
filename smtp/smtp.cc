@@ -66,23 +66,14 @@
 #include <kio/slaveinterface.h>
 #include <kio/kdesasl.h>
 #include <klocale.h>
-#include <iostream.h>
 
 #include "smtp.h"
 
-#define ASCII(x) QString::fromLatin1(x)
-#define WRITE_STRING(x) write (x.latin1(), strlen(x.latin1()))
-
-#define DEFAULT_RESPONSE_BUFFER 512
-#define DEFAULT_EHLO_BUFFER 5120
-
-using namespace KIO;
+//using namespace KIO;
 
 extern "C" {
   int kdemain(int argc, char **argv);
-} void GetAddresses(const QString & str, const QString & delim,
-                    QStringList & list);
-int GetVal(char *buf);
+} 
 
 int kdemain(int argc, char **argv)
 {
@@ -106,27 +97,22 @@ int kdemain(int argc, char **argv)
 
 SMTPProtocol::SMTPProtocol(const QCString & pool, const QCString & app,
                            bool useSSL)
-:  TCPSlaveBase(useSSL ? 465 : 25, useSSL ? "smtps" : "smtp", pool, app,
-             useSSL)
+:  TCPSlaveBase(useSSL ? 465 : 25, 
+                useSSL ? "smtps" : "smtp", 
+                pool, app, useSSL),
+   m_iOldPort(0),
+   m_opened(false),
+   m_haveTLS(false),
+   m_errorSent(false),
+   m_pSASL(0)
 {
-  kdDebug() << "SMTPProtocol::SMTPProtocol" << endl;
-  opened = false;
-  haveTLS = false;
-  m_iSock = 0;
-  m_iOldPort = 0;
-  m_sOldServer = QString::null;
-  m_tTimeout.tv_sec = 10;
-  m_tTimeout.tv_usec = 0;
-
-  // Auth stuff
-  m_pSASL = 0;
-  m_sAuthConfig = QString::null;
+  //kdDebug() << "SMTPProtocol::SMTPProtocol" << endl;
 }
 
 
 SMTPProtocol::~SMTPProtocol()
 {
-  kdDebug() << "SMTPProtocol::~SMTPProtocol" << endl;
+  //kdDebug() << "SMTPProtocol::~SMTPProtocol" << endl;
   smtp_close();
 }
 
@@ -134,7 +120,8 @@ void SMTPProtocol::openConnection()
 {
   if (smtp_open()) {
     connected();
-  } else {
+  } 
+  else {
     closeConnection();
   }
 }
@@ -147,7 +134,7 @@ void SMTPProtocol::closeConnection()
 void SMTPProtocol::special(const QByteArray & aData)
 {
   QString result;
-  if (haveTLS)
+  if (m_haveTLS)
     result = " STARTTLS";
   if (!m_sAuthConfig.isEmpty())
     result += " " + m_sAuthConfig;
@@ -166,52 +153,73 @@ void SMTPProtocol::special(const QByteArray & aData)
 // cc=emailaddress
 // bcc=emailaddress
 // subject=text
-// profile=text (this will override the "host" setting
+// profile=text (this will override the "host" setting)
+// hostname=text (used in the HELO)
 void SMTPProtocol::put(const KURL & url, int /*permissions */ ,
                        bool /*overwrite */ , bool /*resume */ )
 {
-  QString query = url.query();
-  QString subject = ASCII("missing subject");
-  QString profile = QString::null;
-  QString from = QString::null;
+  QStringList query = QStringList::split('&', url.query().remove(0, 1));
+  QString subject = QString::fromLatin1("missing subject");
+  QString profile;
+  QString from;
+  QString localHostname;
   QStringList recip, bcc, cc, temp_list;
   bool headers = true;
 
-  GetAddresses(query, ASCII("to="), recip);
-  GetAddresses(query, ASCII("cc="), cc);
-  GetAddresses(query, ASCII("bcc="), bcc);
+  // sort out our query string
+  for (QStringList::Iterator it = query.begin(); it != query.end(); ++it)
+  {
+    int equalsAt = (*it).find('=');
 
-  GetAddresses(query, ASCII("headers="), temp_list);
-  if (temp_list.count() && temp_list.last() == "0") {
-    headers = false;
-  }
-  // find the subject
-  GetAddresses(query, ASCII("subject="), temp_list);
-  if (temp_list.count()) {
-    subject = temp_list.last();
-    temp_list.clear();
-  }
+    if (equalsAt > 0 && 
+        equalsAt < (*it).length()) 
+    {
+      QString key = (*it).left(equalsAt);
+      QString value = KURL::decode_string((*it).right((*it).length() - (equalsAt + 1)));
 
-  GetAddresses(query, ASCII("from="), temp_list);
-  if (temp_list.count()) {
-    from = temp_list.last();
-    temp_list.clear();
-  }
-
-  GetAddresses(query, ASCII("profile="), temp_list);
-  if (temp_list.count()) {
-    profile = temp_list.last();
-    temp_list.clear();
+      if (key == "to")
+      {
+        recip.append(value);
+      }
+      else if (key == "cc")
+      {
+        cc.append(value);
+      }
+      else if (key == "bcc")
+      {
+        bcc.append(value);
+      }
+      else if (key == "headers")
+      {
+        headers = (value == "0");
+        headers = false;
+      }
+      else if (key == "subject")
+      {
+        subject = value;
+      }
+      else if (key == "from")
+      {
+        from = value;
+      }
+      else if (key == "profile")
+      {
+        profile = value;
+      }
+      else if (key == "hostname")
+      {
+        localHostname = value;
+      }
+    }
   }
 
   KEMailSettings *mset = new KEMailSettings;
   KURL open_url = url;
   if (profile == QString::null) {
-    kdDebug() << "kio_smtp: Profile is null" << endl;
+    //kdDebug() << "kio_smtp: Profile is null" << endl;
     QStringList profiles = mset->profiles();
     bool hasProfile = false;
-    for (QStringList::Iterator it = profiles.begin(); it != profiles.end();
-         ++it) {
+    for (QStringList::Iterator it = profiles.begin(); it != profiles.end(); ++it) {
       if ((*it) == open_url.host()) {
         hasProfile = true;
         break;
@@ -231,10 +239,12 @@ void SMTPProtocol::put(const KURL & url, int /*permissions */ ,
       open_url.setPass(m_sPass);
       m_sServer = open_url.host();
       m_iPort = open_url.port();
-    } else {
+    } 
+    else {
       mset->setProfile(mset->defaultProfileName());
     }
-  } else {
+  } 
+  else {
     mset->setProfile(profile);
   }
 
@@ -245,42 +255,47 @@ void SMTPProtocol::put(const KURL & url, int /*permissions */ ,
   if (from.isEmpty()) {
     if (mset->getSetting(KEMailSettings::EmailAddress) != QString::null) {
       from = mset->getSetting(KEMailSettings::EmailAddress);
-    } else {
-      error(ERR_NO_CONTENT, i18n("The sender address is missing."));
+    } 
+    else {
+      error(KIO::ERR_NO_CONTENT, i18n("The sender address is missing."));
       smtp_close();
       return;
     }
   }
-  from.prepend(ASCII("MAIL FROM: <"));
-  from.append(ASCII(">"));
+  from.prepend(QString::fromLatin1("MAIL FROM: <"));
+  from.append(QString::fromLatin1(">"));
 
-  if (!smtp_open())
-    error(ERR_SERVICE_NOT_AVAILABLE,
-          i18n("SMTPProtocol::smtp_open failed (%1)").arg(open_url.
-                                                          path()));
+  if (!smtp_open(localHostname))
+  {
+    error(KIO::ERR_SERVICE_NOT_AVAILABLE,
+          i18n("SMTPProtocol::smtp_open failed (%1)")
+              .arg(open_url.path()));
+    return;
+  }
 
   if (!command(from)) {
-    if (!errorSent)
-      error(ERR_NO_CONTENT, i18n("The server didn't accept the "
-                                 "sender address:\n%1").arg(lastError));
+    if (!m_errorSent)
+      error(KIO::ERR_NO_CONTENT, i18n("The server didn't accept the "
+                                 "sender address:\n%1").arg(m_lastError));
     smtp_close();
     return;
   }
   // Loop through our To and CC recipients, and send the proper
   // SMTP commands, for the benefit of the server.
-  if (!PutRecipients(recip, open_url))
+  if (!PutRecipients(recip))
     return;                     // To
-  if (!PutRecipients(cc, open_url))
+  if (!PutRecipients(cc))
     return;                     // Carbon Copy (CC)
-  if (!PutRecipients(bcc, open_url))
+  if (!PutRecipients(bcc))
     return;                     // Blind Carbon Copy (BCC)
 
   // Begin sending the actual message contents (most headers+body)
-  if (!command(ASCII("DATA"))) {
-    if (!errorSent)
-      error(ERR_NO_CONTENT, i18n("The attempt to start sending the "
-                                 "message content failed.\nThe server said:\n%1")
-            .arg(lastError));
+  if (!command(QString::fromLatin1("DATA"))) {
+    if (!m_errorSent)
+      error(KIO::ERR_NO_CONTENT, 
+            i18n("The attempt to start sending the "
+                 "message content failed.\nThe server said:\n%1")
+                .arg(m_lastError));
     smtp_close();
     return;
   }
@@ -289,38 +304,42 @@ void SMTPProtocol::put(const KURL & url, int /*permissions */ ,
     if (mset->getSetting(KEMailSettings::EmailAddress) != QString::null) {
       if (mset->getSetting(KEMailSettings::RealName) != QString::null) {
         from =
-            ASCII("From: %1 <%2>\r\n").arg(mset->
+            QString::fromLatin1("From: %1 <%2>\r\n").arg(mset->
                                            getSetting(KEMailSettings::
                                                       RealName))
             .arg(mset->getSetting(KEMailSettings::EmailAddress));
-      } else {
+      } 
+      else {
         from =
-            ASCII("From: %1\r\n").arg(mset->
+            QString::fromLatin1("From: %1\r\n").arg(mset->
                                       getSetting(KEMailSettings::
                                                  EmailAddress));
       }
-    } else {
-      error(ERR_NO_CONTENT, i18n("The sender address is missing."));
-      smtp_close();
+    } 
+    else {
+      error(KIO::ERR_NO_CONTENT, i18n("The sender address is missing."));
+      smtp_close(); // TODO: do we _really_ need to close the connection here/
       return;
     }
-    WRITE_STRING(from);
+    write(from.latin1(), strlen(from.latin1()));
 
-    subject = ASCII("Subject: %1\r\n").arg(subject);
-    WRITE_STRING(subject);
+    subject = QString::fromLatin1("Subject: %1\r\n").arg(subject);
+    write(subject.latin1(), strlen(subject.latin1()));
 
     // Write out the To header for the benefit of the mail clients
-    query = ASCII("To: %1\r\n");
+    QString header = QString::fromLatin1("To: %1\r\n");
     for (QStringList::Iterator it = recip.begin(); it != recip.end(); ++it) {
-      query = query.arg(*it);
-      WRITE_STRING(query);
+      header = header.arg(*it);
+      write(header.latin1(), strlen(header.latin1()));
+      header = QString::fromLatin1("To: %1\r\n");
     }
 
     // Write out the CC header for the benefit of the mail clients
-    query = ASCII("CC: %1\r\n");
+    header = QString::fromLatin1("CC: %1\r\n");
     for (QStringList::Iterator it = cc.begin(); it != cc.end(); ++it) {
-      query = query.arg(*it);
-      WRITE_STRING(query);
+      header = header.arg(*it);
+      write(header.latin1(), strlen(header.latin1()));
+      header = QString::fromLatin1("CC: %1\r\n");
     }
   }
 
@@ -336,38 +355,41 @@ void SMTPProtocol::put(const KURL & url, int /*permissions */ ,
     result = readData(buffer);
     if (result > 0) {
       write(buffer.data(), buffer.size());
-    } else if (result < 0) {
-      error(ERR_COULD_NOT_WRITE, open_url.path());
+    } 
+    else if (result < 0) {
+      error(KIO::ERR_COULD_NOT_WRITE, open_url.path());
     }
   } while (result > 0);
 
   write("\r\n.\r\n", 5);
-  if (getResponse() >= 400) {
-    if (!errorSent)
-      error(ERR_NO_CONTENT, i18n("The server didn't accept the "
-                                 "message content:\n%1").arg(lastError));
+  if (getResponse() >= SMTP_MIN_NEGATIVE_REPLY) {
+    if (!m_errorSent)
+      error(KIO::ERR_NO_CONTENT, 
+            i18n("The server didn't accept the message content:\n%1").arg(m_lastError));
     smtp_close();
     return;
   }
-  command(ASCII("RSET"));
+  command(QString::fromLatin1("RSET"));
   finished();
 }
 
-bool SMTPProtocol::PutRecipients(QStringList & list, const KURL & url)
+bool SMTPProtocol::PutRecipients(QStringList & list)
 {
-  QString formatted_recip = ASCII("RCPT TO: <%1>");
+  QString formatted_recip = QString::fromLatin1("RCPT TO: <%1>");
   for (QStringList::Iterator it = list.begin(); it != list.end(); ++it) {
     if (!command(formatted_recip.arg(*it))) {
-      if (!errorSent)
-        error(ERR_NO_CONTENT,
-              i18n
-              ("The server didn't accept one of the recipients.\nIt said: ").
-              arg(lastError));
+      if (!m_errorSent)
+      {
+        error(KIO::ERR_NO_CONTENT,
+              i18n("The server didn't accept one of the recipients.\nIt said: %1")
+                  .arg(m_lastError));
+      }
+
       smtp_close();
-      return FALSE;
+      return false;
     }
   }
-  return TRUE;
+  return true;
 }
 
 void SMTPProtocol::setHost(const QString & host, int port,
@@ -382,88 +404,101 @@ void SMTPProtocol::setHost(const QString & host, int port,
 int SMTPProtocol::getResponse(char *r_buf, unsigned int r_len)
 {
   char *buf = 0;
-  unsigned int recv_len = 0, len;
+  ssize_t recv_len = 0, len;
   int retVal;
-  lastError = QCString();
-  errorSent = false;
+  m_lastError.truncate(0);
+  m_errorSent = false;
 
   // Give the buffer the appropiate size
   // a buffer of less than 5 bytes will *not* work
   if (r_len) {
-    buf = static_cast < char *>(malloc(r_len));
+    buf = static_cast < char *>(calloc(r_len, sizeof(char)));
     len = r_len;
-  } else {
-    buf = static_cast < char *>(malloc(DEFAULT_RESPONSE_BUFFER));
+  } 
+  else {
+    buf = static_cast < char *>(calloc(DEFAULT_RESPONSE_BUFFER, sizeof(char)));
     len = DEFAULT_RESPONSE_BUFFER;
   }
 
   waitForResponse(60);
 
-  // Clear out the buffer
-  memset(buf, 0, len);
   // And grab the data
   recv_len = readLine(buf, len - 1);
 
-  if (recv_len <= 0) {
+  if (recv_len < 1) {
     if (isConnectionValid())
-      error(ERR_SERVER_TIMEOUT, m_sServer);
+      error(KIO::ERR_SERVER_TIMEOUT, m_sServer);
     else
-      error(ERR_CONNECTION_BROKEN, m_sServer);
-    errorSent = true;
+      error(KIO::ERR_CONNECTION_BROKEN, m_sServer);
+    m_errorSent = true;
+    free(buf);
     return 999;
   }
 
   if (recv_len < 4) {
-    error(ERR_NO_CONTENT, i18n("Invalid SMTP response received."));
-    errorSent = true;
+    error(KIO::ERR_NO_CONTENT, i18n("Invalid SMTP response received."));
+    m_errorSent = true;
+    free(buf);
     return 999;
   }
-  char *origbuf = buf;
+
   if (buf[3] == '-') {          // Multiline response
+    char *origbuf = buf;
     while ((buf[3] == '-') && (len - recv_len > 3)) {   // Three is quite arbitrary
       buf += recv_len;
       len -= (recv_len + 1);
       waitForResponse(60);
       recv_len = readLine(buf, len - 1);
-      if (recv_len <= 0) {
+      if (recv_len < 1) {
         if (isConnectionValid())
-          error(ERR_SERVER_TIMEOUT, m_sServer);
+          error(KIO::ERR_SERVER_TIMEOUT, m_sServer);
         else
-          error(ERR_CONNECTION_BROKEN, m_sServer);
-        errorSent = true;
+          error(KIO::ERR_CONNECTION_BROKEN, m_sServer);
+        m_errorSent = true;
+        free(buf);
         return 999;
       }
       if (recv_len < 4) {
-        error(ERR_NO_CONTENT, i18n("Invalid SMTP response received."));
-        errorSent = true;
+        error(KIO::ERR_NO_CONTENT, i18n("Invalid SMTP response received."));
+        m_errorSent = true;
+        free(buf);
         return 999;
       }
     }
+
     buf = origbuf;
-    if (r_len) {
-      memcpy(r_buf, buf, strlen(buf));
-      r_buf[r_len - 1] = 0;
+
+    int bufLen = strlen(buf);
+    if (r_len) 
+    {
+      memcpy(r_buf, buf, bufLen);
+      r_buf[r_len - 1] = '\0';
     }
-    lastError = QCString(buf + 4, recv_len - 4);
-    retVal = GetVal(buf);
-  } else {
-    // Really crude, whee
-    if (r_len) {
-      r_len = recv_len - 4;
-      memcpy(r_buf, buf + 4, r_len);
-    }
-    lastError = QCString(buf + 4, recv_len - 4);
-    retVal = GetVal(buf);
+    m_lastError = QCString(buf, bufLen);
   }
+  else
+  {
+    // single line response
+    if (r_len && recv_len > 4) {
+      memcpy(r_buf, buf + 4, recv_len - 4);
+    }
+    m_lastError = QCString(buf + 4, recv_len - 4);
+  }
+
+  retVal = GetVal(buf);
+  
   if (retVal == -1) {
     if (!isConnectionValid())
-      error(ERR_CONNECTION_BROKEN, m_sServer);
+      error(KIO::ERR_CONNECTION_BROKEN, m_sServer);
     else
-      error(ERR_NO_CONTENT,
-            i18n("Invalid SMTP response received: %1").arg(lastError));
-    errorSent = true;
+      error(KIO::ERR_NO_CONTENT,
+            i18n("Invalid SMTP response received: %1").arg(m_lastError));
+    m_errorSent = true;
+    free(buf);
     return 999;
   }
+
+  free(buf);
   return retVal;
 }
 
@@ -475,75 +510,92 @@ bool SMTPProtocol::command(const QString & cmd, char *recv_buf,
 
   // Write the command
   if (write(static_cast < const char *>(write_buf), write_buf.length()) !=
-      static_cast < ssize_t > (write_buf.length())) {
-    m_sError = i18n("Could not send to server.\n");
+      static_cast < ssize_t > (write_buf.length())) 
+  {
     return false;
   }
 
-  return (getResponse(recv_buf, len) < 400);
+  return (getResponse(recv_buf, len) < SMTP_MIN_NEGATIVE_REPLY);
 }
 
-bool SMTPProtocol::smtp_open()
+bool SMTPProtocol::smtp_open(const QString& fakeHostname)
 {
-  if (opened && (m_iOldPort == port(m_iPort))
-      && (m_sOldServer == m_sServer) && (m_sOldUser == m_sUser)) {
+  if (m_opened && 
+      m_iOldPort == port(m_iPort) &&
+      m_sOldServer == m_sServer && 
+      m_sOldUser == m_sUser &&
+      (fakeHostname == QString::null || m_hostname == fakeHostname)) 
+  {
     return true;
-  } else {
+  } 
+  else 
+  {
     smtp_close();
     if (!connectToHost(m_sServer.latin1(), m_iPort))
       return false;             // connectToHost has already send an error message.
-    opened = true;
+    m_opened = true;
   }
 
-  if (getResponse() >= 400) {
-    if (!errorSent)
-      error(ERR_COULD_NOT_LOGIN, i18n("The server didn't accept "
-        "the connection: %1").arg(lastError));
+  if (getResponse() >= SMTP_MIN_NEGATIVE_REPLY) {
+    if (!m_errorSent)
+      error(KIO::ERR_COULD_NOT_LOGIN, 
+            i18n("The server didn't accept the connection: %1").arg(m_lastError));
+    smtp_close();
     return false;
   }
 
-  QBuffer ehlobuf(QByteArray(DEFAULT_EHLO_BUFFER));
-  memset(ehlobuf.buffer().data(), 0, DEFAULT_EHLO_BUFFER);
+  QByteArray ehloByteArray(DEFAULT_EHLO_BUFFER);
+  ehloByteArray.fill(0);
 
-  char hostname[100];
-  gethostname(hostname, 100);
-
-  if(hostname[0] == '\0')
+  if (fakeHostname != QString::null)
   {
-    strncpy(hostname, "there", strlen("there") + 1);
+    m_hostname = fakeHostname;
   }
-  
-  if (!command
-      (ASCII("EHLO " + QCString(hostname, 100)), ehlobuf.buffer().data(),
-       5119)) {
-    if (errorSent)
+  else
+  {
+    char hostname[256];
+    gethostname(hostname, 255);
+    m_hostname = hostname;
+  }
+
+  if(m_hostname == QString::null)
+  {
+    m_hostname = "localhost.localdomain";
+  }
+
+  if (!command(("EHLO " + m_hostname), ehloByteArray.data(), DEFAULT_EHLO_BUFFER - 1)) {
+    if (m_errorSent)
+    {
+      smtp_close();
       return false;
+    }
+
     // Let's just check to see if it speaks plain ol' SMTP
-    if (!command(ASCII("HELO " + QCString(hostname, 100)))) {
-      if (!errorSent)
-        error(ERR_COULD_NOT_LOGIN,
-              i18n("The server said: %1").arg(lastError));
+    if (!command(("HELO " + m_hostname))) {
+      if (!m_errorSent)
+        error(KIO::ERR_COULD_NOT_LOGIN,
+              i18n("The server said: %1").arg(m_lastError));
       smtp_close();
       return false;
     }
   }
   // We parse the ESMTP extensions here... pipelining would be really cool
   char ehlo_line[DEFAULT_EHLO_BUFFER];
+  QBuffer ehlobuf(ehloByteArray);
   if (ehlobuf.open(IO_ReadWrite)) {
-    while (ehlobuf.readLine(ehlo_line, DEFAULT_EHLO_BUFFER) > 0)
+    while (ehlobuf.readLine(ehlo_line, DEFAULT_EHLO_BUFFER - 1) > 0)
       ParseFeatures(const_cast < const char *>(ehlo_line));
   }
 
-  if ((haveTLS && canUseTLS() && metaData("tls") != "off")
+  if ((m_haveTLS && canUseTLS() && metaData("tls") != "off")
       || metaData("tls") == "on") {
     // For now we're gonna force it on.
-    if (command(ASCII("STARTTLS"))) {
+    if (command(QString::fromLatin1("STARTTLS"))) {
       int tlsrc = startTLS();
-      if (tlsrc == 1) {
-        kdDebug() << "TLS has been enabled!" << endl;
-      } else {
+
+      if (tlsrc != 1) {
         if (tlsrc != -3) {
-          kdDebug() << "TLS negotiation failed!" << endl;
+          //kdDebug() << "TLS negotiation failed!" << endl;
           messageBox(Information,
                      i18n("Your SMTP server claims to "
                           "support TLS, but negotiation "
@@ -552,19 +604,25 @@ bool SMTPProtocol::smtp_open()
                           "crypto settings module."),
                      i18n("Connection Failed"));
         }
-        return false;
-      }
-      if (!command(ASCII("EHLO " + QCString(hostname, 100)))) {
-        error(ERR_COULD_NOT_LOGIN,
-              i18n("The server said: %1").arg(lastError));
         smtp_close();
         return false;
       }
-    } else if (metaData("tls") == "on") {
-      if (!errorSent)
-        error(ERR_COULD_NOT_LOGIN,
+
+      //kdDebug() << "TLS has been enabled!" << endl;
+      
+      if (!command("EHLO " + m_hostname)) {
+        error(KIO::ERR_COULD_NOT_LOGIN,
+              i18n("The server said: %1").arg(m_lastError));
+        smtp_close();
+        return false;
+      }
+    } 
+    else if (metaData("tls") == "on") {
+      if (!m_errorSent)
+        error(KIO::ERR_COULD_NOT_LOGIN,
               i18n("Your SMTP server does not support TLS. Disable "
                    "TLS, if you want to connect without encryption."));
+      smtp_close();
       return false;
     }
   }
@@ -576,14 +634,17 @@ bool SMTPProtocol::smtp_open()
       authInfo.password = m_sPass;
       authInfo.prompt = i18n("Username and password for your SMTP account:");
       if (!openPassDlg(authInfo)) {
-        error(ERR_COULD_NOT_LOGIN, i18n("When prompted, you ran away."));
+        error(KIO::ERR_COULD_NOT_LOGIN, i18n("When prompted, you ran away."));
+        smtp_close();
         return false;
-      } else {
+      } 
+      else {
         m_sUser = authInfo.username;
         m_sPass = authInfo.password;
       }
     }
     if (!Authenticate()) {
+      smtp_close();
       return false;
     }
   }
@@ -601,8 +662,7 @@ bool SMTPProtocol::Authenticate()
   bool ret;
   QString auth_method;
 
-  if (m_pSASL)
-    delete m_pSASL;
+  delete m_pSASL;
   m_pSASL = new KDESasl(m_sUser, m_sPass, (m_bIsSSL) ? "smtps" : "smtp");
 
   // Choose available method from what the server has given us in  its greeting
@@ -623,22 +683,23 @@ bool SMTPProtocol::Authenticate()
   if (auth_method == QString::null) {
     delete m_pSASL;
     m_pSASL = 0;
-    kdDebug() << "kio_smtp: no authentication available" << endl;
-    error(ERR_COULD_NOT_LOGIN,
+    //kdDebug() << "kio_smtp: no authentication available" << endl;
+    error(KIO::ERR_COULD_NOT_LOGIN,
           i18n("No compatible authentication methods found."));
     return false;
-  } else {
+  } 
+  else {
     char *challenge = static_cast < char *>(malloc(2049));
 
-    if (!command(ASCII("AUTH ") + auth_method, challenge, 2049)) {
+    if (!command(QString::fromLatin1("AUTH ") + auth_method, challenge, 2049)) {
       free(challenge);
       delete m_pSASL;
       m_pSASL = 0;
-      if (!errorSent)
-        error(ERR_COULD_NOT_LOGIN,
-              i18n
-              ("Your SMTP server doesn't support %1.\nChoose a different authentication method.").
-              arg(auth_method));
+      if (!m_errorSent)
+        error(KIO::ERR_COULD_NOT_LOGIN,
+              i18n("Your SMTP server doesn't support %1.\n"
+                   "Choose a different authentication method.")
+                   .arg(auth_method));
       return false;
     }
 
@@ -655,46 +716,47 @@ bool SMTPProtocol::Authenticate()
     }
     free(challenge);
 
-    if (!ret && !errorSent)
-      error(ERR_COULD_NOT_LOGIN,
+    if (!ret && !m_errorSent)
+      error(KIO::ERR_COULD_NOT_LOGIN,
             i18n
             ("Authentication failed.\nMost likely the password is wrong.\nThe server said: %1").
-            arg(lastError));
+            arg(m_lastError));
     return ret;
   }
   return false;
 }
 
-void SMTPProtocol::ParseFeatures(const char *_buf)
+void SMTPProtocol::ParseFeatures(const char* buf)
 {
-  QCString buf(_buf);
-
   // We want it to be between 250 and 259 inclusive, and it needs to be "nnn-blah" or "nnn blah"
   // So sez the SMTP spec..
-  if ((buf.left(2) != "25") || (!isdigit(buf[2]))
-      || (!(buf.at(3) == '-') && !(buf.at(3) == ' ')))
+  if ((buf[0] != '2') || (buf[1] != '5') || (!isdigit(buf[2])) ||
+      ((buf[3] != '-') && (buf[3] != ' ')))
     return;                     // We got an invalid line..
-  // Clop off the beginning, no need for it really
-  buf = buf.mid(4, buf.length());
 
-  if (buf.left(4) == "AUTH") {  // Look for auth stuff
+  if (strncmp(&buf[4], "AUTH", strlen("AUTH")) == 0) {  // Look for auth stuff
     if (m_sAuthConfig == QString::null)
-      m_sAuthConfig = buf.mid(5, buf.length() - 7);
-  } else if (buf.left(8) == "STARTTLS") {
-    haveTLS = true;
+      m_sAuthConfig = &buf[5 + strlen("AUTH")];
+  } 
+  else if (strncmp(&buf[4], "STARTTLS", strlen("STARTTLS")) == 0) {
+    m_haveTLS = true;
   }
 }
 
 void SMTPProtocol::smtp_close()
 {
-  if (!opened)                  // We're already closed
+  if (!m_opened)                  // We're already closed
     return;
-  command(ASCII("QUIT"));
+  command(QString::fromLatin1("QUIT"));
   closeDescriptor();
   m_sOldServer = QString::null;
+  m_sOldUser = QString::null;
+  m_sOldPass = QString::null;
+  
+  delete m_pSASL;
   m_pSASL = 0;
   m_sAuthConfig = QString::null;
-  opened = false;
+  m_opened = false;
 }
 
 void SMTPProtocol::stat(const KURL & url)
@@ -703,7 +765,7 @@ void SMTPProtocol::stat(const KURL & url)
   error(KIO::ERR_DOES_NOT_EXIST, url.path());
 }
 
-int GetVal(char *buf)
+int SMTPProtocol::GetVal(char *buf)
 {
   bool ok;
   QCString st(buf, 4);
@@ -711,19 +773,3 @@ int GetVal(char *buf)
   return (ok) ? val : -1;
 }
 
-void GetAddresses(const QString & str, const QString & delim,
-                  QStringList & list)
-{
-  int curpos = 0;
-
-  while ((curpos = str.find(delim, curpos)) != -1) {
-    if ((str.at(curpos - 1) == "?") || (str.at(curpos - 1) == "&")) {
-      curpos += delim.length();
-      if (str.find("&", curpos) != -1)
-        list += KURL::decode_string(str.mid(curpos, str.find("&", curpos) - curpos));
-      else
-        list += KURL::decode_string(str.mid(curpos, str.length()));
-    } else
-      curpos += delim.length();
-  }
-}
