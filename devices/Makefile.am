@@ -16,4 +16,4 @@ kdelnk_DATA = devices.protocol
 kdelnkdir = $(kde_servicesdir)
 
 
-SUBDIRS=. kdedmodule mimetypes
+SUBDIRS=. kdedmodule mounthelper mimetypes

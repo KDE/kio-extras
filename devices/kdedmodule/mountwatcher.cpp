@@ -160,6 +160,7 @@ void MountWatcherModule::readDFDone()
 		}
                	else
 		{
+		//	continue;
                  	mountList<<i18n("%1 (not mounted)").arg(ent->deviceName());
 			mountList<<QString("devices:/")+entryName+QString("?dev=")+ent->deviceName()+
 			"&mp="+ent->mountPoint()+"&mounted=false";

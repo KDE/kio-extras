@@ -8,6 +8,7 @@
    #include <sys/stat.h>
    #include <dcopclient.h>  
    #include <qdatastream.h>
+   #include <time.h>
 
    class HelloProtocol : public KIO::SlaveBase
    {
@@ -351,6 +352,8 @@ static void createFileEntry(KIO::UDSEntry& entry, const QString& name, const QSt
         addAtom(entry, KIO::UDS_MIME_TYPE, 0, mime);
         addAtom(entry, KIO::UDS_SIZE, 0);
         addAtom(entry, KIO::UDS_GUESSED_MIME_TYPE, 0, "inode/directory");
+	addAtom(entry, KIO::UDS_CREATION_TIME,0);
+	addAtom(entry, KIO::UDS_MODIFICATION_TIME,time(0));
 }
 
 
