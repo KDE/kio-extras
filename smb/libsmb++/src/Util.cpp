@@ -314,8 +314,21 @@ char *Util::buildURL(const char* user, const char *password,
 	const char* share, const char* file,
 	const char* ip)
 {
-	newstrcpy(buildURLValue,"smb://");
-	
+	newstrcpy(buildURLValue,"smb:/");
+
+	const char* myhost = host;
+	const char* myshare = share;
+	const char* myfile = file;
+	if ((!myshare || !strlen(myshare)) && myfile) {
+		myshare = myfile;
+		myfile = 0;
+	}
+	if ((!myhost || !strlen(myhost)) && myshare) {
+		myhost = myshare;
+		myshare = myfile = 0;
+		myfile = 0;
+	}
+		
 	char *userpass=0;
 	if (user && password && strlen(user) && strlen(password)) {
 		newstrcpy(userpass,user);
@@ -326,17 +339,18 @@ char *Util::buildURL(const char* user, const char *password,
 		newstrappend(userpass,":",password);
 	}
 	if (userpass && strlen(userpass)) newstrappend(buildURLValue,userpass,"@");
+	if (userpass) delete userpass;
 
-	if (workgroup && host && strlen(workgroup) && strlen(host)) {
+	if (workgroup && myhost && strlen(workgroup) && strlen(myhost)) {
 		newstrappend(buildURLValue,workgroup);
-		newstrappend(buildURLValue,"/",host);
+		newstrappend(buildURLValue,"/",myhost);
 	} else if (workgroup && strlen(workgroup)) newstrappend(buildURLValue,workgroup);
-	else if (host && strlen(host)) newstrappend(buildURLValue,host);
+	else if (myhost && strlen(myhost)) newstrappend(buildURLValue,myhost);
 	
 	if (ip && strlen(ip)) newstrappend(buildURLValue,":",ip);
-	if (share && strlen(share)) newstrappend(buildURLValue,"/",share);
-	if (file && strlen(file)) newstrappend(buildURLValue,"/",file);
-
+	if (myshare && strlen(myshare)) newstrappend(buildURLValue,"/",myshare);
+	if (myfile && strlen(myfile)) newstrappend(buildURLValue,"/",myfile);
+	
 	return buildURLValue;
 }
 
