@@ -156,6 +156,16 @@ void SMTPProtocol::closeConnection()
 	smtp_close();
 }
 
+void SMTPProtocol::special (const QByteArray & aData)
+{
+  QString result;
+  if (haveTLS) result = " STARTTLS";
+  if (!m_sAuthConfig.isEmpty()) result += " " + m_sAuthConfig;
+  infoMessage(result.mid(1));
+  finished();
+}
+
+
 // Usage: smtp://smtphost:port/send?to=user@host.com&subject=blah
 // If smtphost is the name of a profile, it'll use the information 
 // provided by that profile.  If it's not a profile name, it'll use it as
@@ -394,6 +404,7 @@ int SMTPProtocol::getResponse (char *r_buf, unsigned int r_len)
 		while ( (buf[3] == '-') && (len-recv_len > 3) ) { // Three is quite arbitrary
 			buf += recv_len;
 			len -= (recv_len+1);
+			if (!waitForResponse(60)) return 999;
 			recv_len = ReadLine(buf, len-1);
 			if (recv_len == 0)
 				buf[0] = buf[1] = buf[2] = buf[3] = ' ';
@@ -449,8 +460,8 @@ bool SMTPProtocol::smtp_open()
 	// Yes, I *know* that this is not the way it should be done, but
 	// for now there's no real need to complicate things by
 	// determining our hostname.  AFAIK no servers really depend on this..
-	if (!command(ASCII("EHLO there"), ehlobuf.buffer().data(), 5119)) {
-		if (!command(ASCII("HELO there"))) { // Let's just check to see if it speaks plain ol' SMTP
+	if (!command(ASCII("EHLO localhost.localhomain"), ehlobuf.buffer().data(), 5119)) {
+		if (!command(ASCII("HELO localhost.localhomain"))) { // Let's just check to see if it speaks plain ol' SMTP
 			smtp_close();
 			return false;
 		}

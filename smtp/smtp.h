@@ -42,6 +42,7 @@ public:
 
 	virtual void setHost (const QString &host, int port, const QString &user, const QString &pass);
 
+	virtual void special (const QByteArray &aData);
 	virtual void put (const KURL &url, int permissions, bool overwrite, bool resume);
 	virtual void stat (const KURL &url);
 	virtual void openConnection();
