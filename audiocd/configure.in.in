@@ -1,0 +1,39 @@
+AC_MSG_CHECKING(for cdparanoia libraries and headers)
+
+AC_ARG_WITH(cdparanoia,
+  [  --with-cdparanoia[=PATH] Compile in cdparanoia support.],
+  [
+    case "$withval" in
+    yes)
+      with_cdparanoia=/usr/local
+      ;;
+    esac
+  ],
+  [
+    with_cdparanoia=no
+  ]
+)dnl
+
+case "$with_cdparanoia" in
+no)
+  AC_MSG_RESULT(no)
+  ;;
+*)
+  CDPARANOIA_ROOT="$with_cdparanoia"
+  CDPARANOIA_INCS="-I${CDPARANOIA_ROOT}/include"
+  CDPARANOIA_LIBS="-L${CDPARANOIA_ROOT}/lib -lcdda_paranoia -lcdda_interface"
+  CDPARANOIA_RPATH=
+  if test "$WITH_RPATH" = "yes" ; then
+    CDPARANOIA_RPATH="-R ${CDPARANOIA_ROOT}/lib"
+  fi
+  AC_DEFINE_UNQUOTED(HAVE_CDPARANOIA, 1, [Define if you have cdparanoia])
+  AUDIOCD_SUBDIR="audiocd"
+  AC_MSG_RESULT($with_cdparanoia)
+  ;;
+esac
+
+AC_SUBST(CDPARANOIA_INCS)
+AC_SUBST(CDPARANOIA_LIBS)
+AC_SUBST(CDPARANOIA_RPATH)
+AC_SUBST(AUDIOCD_SUBDIR)
+
