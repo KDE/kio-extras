@@ -22,6 +22,7 @@
 #include <kprotocolmanager.h>
 #include <ksock.h>
 #include <kio_interface.h>
+#include <kinstance.h>
 
 #include "pop3.h"
 
@@ -34,6 +35,8 @@ int main(int , char **)
 #ifdef NDEBUG
   signal(SIGSEGV, KIOProtocol::sigsegv_handler);
 #endif
+
+  KInstance instance( "kio_pop3" );
 
   KIOConnection parent( 0, 1 );
 

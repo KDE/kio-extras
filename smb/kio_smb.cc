@@ -23,6 +23,7 @@
 #include <kurl.h>
 #include <kprotocolmanager.h>
 #include <qvaluelist.h>
+#include <kinstance.h>
 
 #include <sys/stat.h>
 
@@ -133,6 +134,8 @@ int main( int argc, char **argv )
 
 	QtApp = new QApplication( argc, argv );
 	qDebug( "kio_smb : main 1");
+
+        KInstance instance( "kio_smb" );
 
 	KIOConnection parent( 0, 1 );
 		

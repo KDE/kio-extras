@@ -9,6 +9,7 @@
 #include <ldap.h>
 #include <kldap.h>
 #include <kldapurl.h>
+#include <kinstance.h>
 
 #include "kio_ldap.h"
 
@@ -23,6 +24,8 @@ int main(int, char **)
   signal(SIGSEGV, KIOProtocol::sigsegv_handler);
 
   qDebug("kio_ldap : Starting");
+
+  KInstance instance( "kio_ldap" );
 
   // create a connection between slave on parent
   KIOConnection parent(0, 1);

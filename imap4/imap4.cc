@@ -43,6 +43,7 @@
 #include <ksock.h>
 #include <klocale.h>
 #include <kio_pass_dlg.h>
+#include <kinstance.h>
 
 #ifndef MAX
 #define MAX(a,b)	(((a) > (b)) ? (a) : (b))
@@ -72,6 +73,8 @@ debug("IMAP4: main");
 */
   signal(SIGCHLD, sigchld_handler);
   signal(SIGSEGV, sigsegv_handler);
+
+  KInstance instance( "kio_imap" );
 
   KIOConnection parent( 0, 1 );
   IMAP4Protocol imap4( &parent );

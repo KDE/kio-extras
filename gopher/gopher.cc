@@ -22,6 +22,7 @@
 #include <kurl.h>
 #include <kprotocolmanager.h>
 #include <ksock.h>
+#include <kinstance.h>
 
 #include "gopher.h"
 
@@ -35,6 +36,8 @@ int main(int , char **)
 #ifdef NDEBUG
   signal(SIGSEGV, KIOProtocol::sigsegv_handler);
 #endif
+
+  KInstance instance( "kio_gopher" );
 
   KIOConnection parent( 0, 1 );
 

@@ -15,12 +15,15 @@
 #include <kurl.h>
 #include <kprotocolmanager.h>
 #include <kio_filter.h>
+#include <kinstance.h>
 
 #include "gzip.h"
 
 int main( int , char ** )
 {
   signal (SIGCHLD, KIOProtocol::sigchld_handler);
+
+  KInstance instance( "kio_gzip" );
 
   KIOConnection parent( 0, 1 );
 

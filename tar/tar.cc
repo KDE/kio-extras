@@ -11,6 +11,7 @@
 
 #include <kurl.h>
 #include <kprotocolmanager.h>
+#include <kinstance.h>
 
 #include "tar.h"
 
@@ -18,6 +19,8 @@ int main(int , char **)
 {
   signal(SIGCHLD, KIOProtocol::sigchld_handler);
   signal(SIGSEGV, KIOProtocol::sigsegv_handler);
+
+  KInstance instance( "kio_tar" );
 
   KIOConnection parent( 0, 1 );
 
