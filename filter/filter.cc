@@ -118,9 +118,7 @@ void FilterProtocol::get( const KURL & )
         if (bNeedMimetype)
         {
             KMimeMagicResult * result = KMimeMagic::self()->findBufferFileType( outputBuffer, subURL.fileName() );
-	// FIXME: what if result == KFilterBase::END ?
             kdDebug(7110) << "Emitting mimetype " << result->mimeType() << endl;
-	// FIXME: see above
             mimeType( result->mimeType() );
             bNeedMimetype = false;
         }
