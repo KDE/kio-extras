@@ -49,7 +49,7 @@ NativeNMB::NativeNMB()
 	returnValue.h_aliases = 0;
 	returnValue.h_addrtype = AF_INET;
 	returnValue.h_length = 4;
-	returnValue.h_addr_list = new (char*)[2];
+	returnValue.h_addr_list = (char **) new char*[2];
 	returnValue.h_addr_list[0] = new char[4];
 	returnValue.h_addr_list[1] = 0;
 }
