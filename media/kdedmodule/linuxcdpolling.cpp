@@ -28,15 +28,42 @@
 #include <stdlib.h>
 #include <unistd.h>
 
+// Never ever include directly a kernel header!
+// #include <linux/cdrom.h>
+// Instead we redefine the necessary (copied from the header)
 
-#include <linux/cdrom.h>
-/**
- *   Note, the Linux include is neccessary for determination of the CD media.
- * If you want to port it to other architectures, you'll need to #ifdef and
- * adapt the function "const KDiscType KMediaDetect::getCurrent()".
- *   There are only to Linux specific calls; these are the ioctls in the
- * aforementioned method body.
- */
+/* This struct is used by the CDROMREADTOCHDR ioctl */
+struct cdrom_tochdr
+{
+	unsigned char cdth_trk0;      /* start track */
+	unsigned char cdth_trk1;      /* end track */
+};
+
+#define CDROMREADTOCHDR         0x5305 /* Read TOC header
+                                           (struct cdrom_tochdr) */
+#define CDROM_DRIVE_STATUS      0x5326  /* Get tray position, etc. */
+#define CDROM_DISC_STATUS       0x5327  /* Get disc type, etc. */
+
+/* drive status possibilities returned by CDROM_DRIVE_STATUS ioctl */
+#define CDS_NO_INFO             0       /* if not implemented */
+#define CDS_NO_DISC             1
+#define CDS_TRAY_OPEN           2
+#define CDS_DRIVE_NOT_READY     3
+#define CDS_DISC_OK             4
+
+/* return values for the CDROM_DISC_STATUS ioctl */
+/* can also return CDS_NO_[INFO|DISC], from above */
+#define CDS_AUDIO               100
+#define CDS_DATA_1              101
+#define CDS_DATA_2              102
+#define CDS_XA_2_1              103
+#define CDS_XA_2_2              104
+#define CDS_MIXED               105
+
+#define CDSL_CURRENT            ((int) (~0U>>1))
+
+// -------
+
 
 
 DiscType::DiscType(Type type)
