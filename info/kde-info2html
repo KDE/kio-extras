@@ -223,6 +223,7 @@ sub MenuItem2HTML{
 	return $Line;
     }
     $MenuLinkTag = &Escape($MenuLinkTag); # -- escape special chars
+    $MenuLinkText =~ s/\n*$/\n/;
     #-- produce a HTML line
     return "* <a href=\"info:/$MenuLinkFile/$MenuLinkTag\">$MenuLinkRef</a>$MenuLinkText";
 }
