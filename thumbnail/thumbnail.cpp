@@ -22,6 +22,7 @@
 
 #include <stdlib.h>
 #include <unistd.h>
+#include <sys/shm.h>
 
 #include <qpixmap.h>
 #include <qpainter.h>
@@ -41,6 +42,26 @@
 #include "thumbnail.h"
 #include "thumbcreator.h"
 
+// Recognized metadata entries:
+// mimeType     - the mime type of the file, used for the overlay icon if any
+// iconSize     - the size of the overlay icon to use if any
+// extent       - the requested "extent" of the thumbnail. The extent
+//                specifies the maximum accepted size of the image, either
+//                horizontally or vertically depending on the thumb's
+//                orientation.
+// transparency - the transparency value used for icon overlays
+// plugin       - the name of the plugin to be used for thumbnail creation.
+//                Provided by the application to save an addition KTrader
+//                query here.
+// shmid        - the shared memory segment id to write the image's data to.
+//                The segment is assumed to provide enough space for a 32-bit
+//                image sized extent x extent pixels.
+//                If this is given, the data returned by the slave will be:
+//                    int width
+//                    int height
+//                    int depth
+//                Otherwise, the data returned is the image in PNG format.
+ 
 using namespace KIO;
 
 extern "C"
@@ -134,11 +155,17 @@ void ThumbnailProtocol::get(const KURL &url)
 
     if (flags & ThumbCreator::DrawFrame)
     {
+        int x2 = pix.width() - 1;
+        int y2 = pix.height() - 1;
         // paint a black rectangle around the "page"
         QPainter p;
         p.begin( &pix );
-        p.setPen( QColor( 88, 88, 88 ));
-        p.drawRect( 0, 0, pix.width(), pix.height() );
+        p.setPen( QColor( 48, 48, 48 ));
+        p.drawLine( x2, 0, x2, y2 );
+        p.drawLine( 0, y2, x2, y2 );
+        p.setPen( QColor( 215, 215, 215 ));
+        p.drawLine( 0, 0, x2, 0 );
+        p.drawLine( 0, 0, 0, y2 );
         p.end();
     }
 
@@ -157,7 +184,27 @@ void ThumbnailProtocol::get(const KURL &url)
 
     QByteArray imgData;
     QDataStream stream( imgData, IO_WriteOnly );
-    stream << img;
+	QString shmid = metaData("shmid");
+	if (shmid.isEmpty())
+		stream << img;
+	else
+	{
+		uchar *shmaddr = static_cast<uchar *>(shmat(shmid.toInt(), 0, 0));
+		if (shmaddr == (uchar *)-1)
+		{
+			error(KIO::ERR_INTERNAL, "Failed to attach to shared memory segment " + shmid);
+			return;
+		}
+		if (img.width() * img.height() > m_extent * m_extent)
+		{
+			error(KIO::ERR_INTERNAL, "Image is too big for the shared memory segment");
+			shmdt(shmaddr);
+			return;
+		}
+		stream << img.width() << img.height() << img.depth();
+		memcpy(shmaddr, img.bits(), img.numBytes());
+		shmdt(shmaddr);
+	}
     data(imgData);
     finished();
 }

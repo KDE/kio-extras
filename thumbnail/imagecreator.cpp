@@ -74,3 +74,7 @@ bool ImageCreator::create(const QString &path, int extent, QPixmap &pix)
     return false;
 }
 
+ThumbCreator::Flags ImageCreator::flags() const
+{
+    return static_cast<Flags>(DrawFrame);
+}
