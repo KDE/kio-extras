@@ -360,6 +360,7 @@ IMAP4Protocol::listDir (const KURL & _url)
               boxOk = true;
               // copy the flags from the LIST-command
               (*it) = (*it2);
+              break;
             }
           }
           if (boxOk)
