@@ -227,7 +227,8 @@ const struct fishProtocol::fish_info fishProtocol::fishInfo[] = {
 };
 
 fishProtocol::fishProtocol(const QCString &pool_socket, const QCString &app_socket)
-  : SlaveBase("fish", pool_socket, app_socket), mimeBuffer(1024)
+  : SlaveBase("fish", pool_socket, app_socket), mimeBuffer(1024),
+    mimeTypeSent(false)
 {
     myDebug( << "fishProtocol::fishProtocol()" << endl);
     if (sshPath == NULL) {
@@ -972,10 +973,10 @@ void fishProtocol::manageConnection(const QString &l) {
                 break;
             }
             recvLen = line.toInt(&isOk);
-            if (recvLen == 0) mimeType("application/x-zerosize");
             if (!isOk) {
                 error(ERR_COULD_NOT_READ,url.prettyURL());
                 shutdownConnection();
+                break;
             }
             break;
         default : break;
@@ -994,6 +995,12 @@ void fishProtocol::manageConnection(const QString &l) {
                 rawRead = recvLen;
                 t_start = t_last = time(NULL);
                 dataRead = 0;
+                mimeTypeSent = false;
+                if (recvLen == 0)
+                {
+                    mimeType("application/x-zerosize");
+                    mimeTypeSent = true;
+                }
             }
             break;
         case FISH_STOR:
@@ -1019,6 +1026,7 @@ void fishProtocol::manageConnection(const QString &l) {
             break;
         case FISH_READ:
             mimeType("inode/directory");
+            mimeTypeSent = true;
             recvLen = 0;
             finished();
             break;
@@ -1112,6 +1120,7 @@ void fishProtocol::manageConnection(const QString &l) {
             rawRead = recvLen;
             t_start = t_last = time(NULL);
             dataRead = 0;
+            mimeTypeSent = false;
         }
     }
 }
@@ -1170,29 +1179,36 @@ int fishProtocol::received(const char *buffer, int buflen)
         if (rawRead > 0) {
             myDebug( << "processedSize " << dataRead << ", len " << buflen << "/" << rawRead << endl);
             int dataSize = (rawRead > buflen?buflen:rawRead);
-            if (dataRead < (int)mimeBuffer.size()) {
-                int mimeSize = (dataSize > (int)mimeBuffer.size()-dataRead?(int)mimeBuffer.size()-dataRead:dataSize);
+            if (!mimeTypeSent)
+            {
+                int mimeSize = QMIN(dataSize, (int)mimeBuffer.size()-dataRead);
                 memcpy(mimeBuffer.data()+dataRead,buffer,mimeSize);
-                if (dataSize >= mimeSize) {
-                    if (rawRead+dataRead < (int)mimeBuffer.size())
-                        mimeBuffer.resize(rawRead+dataRead);
-                    sendmimeType(KMimeMagic::self()->findBufferFileType(mimeBuffer,url.path())->mimeType());
-                    if (fishCommand != FISH_READ) {
-                        data(mimeBuffer);
-                        totalSize(rawRead+dataRead);
-                    }
-                    mimeBuffer.resize(1024);
-                    if (dataSize > mimeSize) {
-                        QByteArray rest(dataSize-mimeSize);
-                        rest.duplicate(buffer+mimeSize,dataSize-mimeSize);
-                        data(rest);
-                     }
+                dataRead += mimeSize;
+                rawRead -= mimeSize;
+                buffer += mimeSize;
+                buflen -= mimeSize;
+                if (rawRead == 0) // End of data
+                    mimeBuffer.resize(dataRead);
+                if (dataRead < (int)mimeBuffer.size())
+                {
+                    myDebug( << "wait for more" << endl);
+                    break;
                 }
-            } else {
-                QByteArray bdata;
-                bdata.duplicate(buffer,dataSize);
-                data(bdata);
+                sendmimeType(KMimeMagic::self()->findBufferFileType(mimeBuffer,url.path())->mimeType());
+                mimeTypeSent = true;
+                if (fishCommand != FISH_READ) {
+                    totalSize(dataRead + rawRead);
+                    data(mimeBuffer);
+                    processedSize(dataRead);
+                }
+                mimeBuffer.resize(1024);
+                continue; // Process rest of buffer/buflen
             }
+
+            QByteArray bdata;
+            bdata.duplicate(buffer,dataSize);
+            data(bdata);
+            
             dataRead += dataSize;
             rawRead -= dataSize;
             time_t t = time(NULL);

@@ -172,6 +172,8 @@ protected: // Protected attributes
   QByteArray rawData;
   /** buffer for storing bytes used for MimeMagic */
   QByteArray mimeBuffer;
+  /** whther the mimetype has been sent already */
+  bool mimeTypeSent;
   /** number of bytes read so far */
   int dataRead;
   time_t t_last, t_start;
