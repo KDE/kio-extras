@@ -870,6 +870,11 @@ sub InfoNode2HTML {
       print "<h3>Menu</h3>\n";
     }
     elsif ($InMenu == 1) {
+	    # This is pretty crappy code. 
+	    # A lot of logic (like the ParsCrossRefs and tranforming Variable: etc) is repeated below.
+	    # There have been a few bugs which were fixed in one branch of the code and left in the other.
+	    # This should be refactored.
+	    # LPC (16 March 2003)
       if (/^\* /) {  #-- a menu entry ?
         if ($Entries == 0) {
           $Entries = 1;
