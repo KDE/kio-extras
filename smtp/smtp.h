@@ -68,6 +68,14 @@ protected:
 	void ParseFeatures (const char *buf);
 	void PutRecipients (QStringList &list, const KURL &url);
 
+	inline ssize_t WRITE_STRING(const QString &x);
+	static inline QString ASCII(const char *x);
+	static inline int GetVal (char *buf);
+	static inline void GetAddresses (const QString &str, const QString &delim, QStringList &list);
+	static const int DEFAULT_RESPONSE_BUFFER;
+	static const int DEFAULT_EHLO_BUFFER;
+	static const char *DEFAULT_EMAIL;
+
 	unsigned short m_iOldPort;
 	bool opened, haveTLS;
 	struct timeval m_tTimeout;

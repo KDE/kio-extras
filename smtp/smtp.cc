@@ -43,24 +43,16 @@
 #endif
 
 #include <sys/types.h>
-#include <sys/socket.h>
 #include <sys/stat.h>
 #include <sys/time.h>
 #ifdef HAVE_SYS_SELECT_H
 #include <sys/select.h>
 #endif
 
-#include <netinet/in.h>
-#include <arpa/inet.h>
-
 #include <ctype.h>
 #include <errno.h>
-#include <netdb.h>
-#include <stdlib.h>
 #include <string.h>
-#include <signal.h>
 #include <stdio.h>
-#include <unistd.h>
 
 #include <iostream.h>
 
@@ -84,12 +76,10 @@
 
 #include "smtp.h"
 
-#define ASCII(x) QString::fromLatin1(x)
-#define WRITE_STRING(x) Write (static_cast<const char *>(x.local8Bit()), x.local8Bit().length())
+const char *SMTPProtocol::DEFAULT_EMAIL="someuser@is.using.a.pre.release.kde.ioslave.compliments.of.kde.org";
+const int SMTPProtocol::DEFAULT_RESPONSE_BUFFER=512;
+const int SMTPProtocol::DEFAULT_EHLO_BUFFER=5120;
 
-#define DEFAULT_EMAIL "someuser@is.using.a.pre.release.kde.ioslave.compliments.of.kde.org"
-#define DEFAULT_RESPONSE_BUFFER 512
-#define DEFAULT_EHLO_BUFFER 5120
 
 using namespace KIO;
 
@@ -97,17 +87,14 @@ extern "C" {
 	int kdemain (int argc, char **argv);
 }
 
-void	GetAddresses (const QString &str, const QString &delim, QStringList &list);
-int	GetVal (char *buf);
-
 int kdemain (int argc, char **argv)
 {
-	KInstance instance("kio_smtp");
-
 	if (argc != 4) {
 		fprintf(stderr, "Usage: kio_smtp protocol domain-socket1 domain-socket2\n");
-		exit(-1);
+		return -1;
 	}
+
+	KInstance instance("kio_smtp");
 
         bool useSSL = (strcmp(argv[1], "smtps") == 0) ? true : false;
 	// We might as well allocate it on the heap.  Since there's a heap o room there..
@@ -116,6 +103,17 @@ int kdemain (int argc, char **argv)
 
 	delete slave;
 	return 0;
+}
+
+
+QString SMTPProtocol::ASCII(const char *x)
+{
+	return QString::fromLatin1(x);
+}
+
+ssize_t SMTPProtocol::WRITE_STRING(const QString &x)
+{
+	return Write (static_cast<const char *>(x.local8Bit()), x.local8Bit().length());
 }
 
 
@@ -147,7 +145,7 @@ void SMTPProtocol::HandleSMTPWriteError (const KURL &url)
 {
 	// Attempt to save face and call RSET, and if that works
 	// try and shut down nicely.
-	if (!command( ASCII("RSET") )) {
+	if (!command(ASCII("RSET"))) {
 		error(ERR_SERVICE_NOT_AVAILABLE, i18n("RSET failed %1").arg(url.path()));
 	} else {
 		smtp_close();
@@ -336,10 +334,10 @@ int SMTPProtocol::getResponse (char *r_buf, unsigned int r_len)
 	// Give the buffer the appropiate size
 	// a buffer of less than 5 bytes will *not* work
 	if (r_len) {
-		buf = static_cast<char *>(malloc(r_len));
+		buf = new char[r_len];
 		len = r_len;
 	} else {
-		buf = static_cast<char *>(malloc(DEFAULT_RESPONSE_BUFFER));
+		buf = new char [DEFAULT_RESPONSE_BUFFER];
 		len = DEFAULT_RESPONSE_BUFFER;
 	}
 
@@ -428,7 +426,8 @@ bool SMTPProtocol::smtp_open (const KURL &url)
 		return false;
 	}
 
-	QBuffer ehlobuf(QByteArray(DEFAULT_EHLO_BUFFER));
+	QBuffer ehlobuf;
+	ehlobuf.setBuffer(QByteArray(DEFAULT_EHLO_BUFFER));
 	memset(ehlobuf.buffer().data(), 0, DEFAULT_EHLO_BUFFER);
 
 	// Yes, I *know* that this is not the way it should be done, but
@@ -442,11 +441,12 @@ bool SMTPProtocol::smtp_open (const KURL &url)
 	}
 
 	// We parse the ESMTP extensions here... pipelining would be really cool
-	char ehlo_line[DEFAULT_EHLO_BUFFER];
+	char *ehlo_line = new char[DEFAULT_EHLO_BUFFER];
 	if (ehlobuf.open(IO_ReadWrite)) {
 		while (ehlobuf.readLine(ehlo_line, DEFAULT_EHLO_BUFFER) > 0)
 			ParseFeatures(const_cast<const char *>(ehlo_line));
 	}
+	delete [] ehlo_line;
 
 	// we should also check kemailsettings as well..
 	if (haveTLS && canUseTLS()) { 
@@ -519,11 +519,11 @@ bool SMTPProtocol::Authenticate (const KURL &url)
 		error(ERR_COULD_NOT_LOGIN, i18n("No compatible authentication methods found."));
 		return false;
 	} else {
-		char *challenge = static_cast<char *>(malloc(2049));
+		char *challenge = new char [2049];
 
  		// I've probably made some troll seek shelter somewhere else.. yay gov'nr and his matrix.. yes that one.. that looked like a  bird.. no not harvey milk
 		if (!command(ASCII("AUTH ")+auth_method, challenge, 2049)) {
-			free(challenge);
+			delete [] challenge;
 			delete m_pSASL;
 			m_pSASL = 0;
 			return false;
@@ -543,7 +543,7 @@ bool SMTPProtocol::Authenticate (const KURL &url)
 			cmd = m_pSASL->generateResponse(challenge, true);
 		}
 		ret = command(cmd);
-		free(challenge);
+		delete [] challenge;
 
 		if (ret)
 			kdDebug() << "kio_smtp: auth worked" << endl;
@@ -591,7 +591,7 @@ void SMTPProtocol::stat (const KURL &url)
         error (KIO::ERR_DOES_NOT_EXIST, url.path());
 }
 
-int GetVal (char *buf)
+int SMTPProtocol::GetVal (char *buf)
 {
 	int val;
 
@@ -602,7 +602,7 @@ int GetVal (char *buf)
 	return val;
 }
 
-void GetAddresses (const QString &str, const QString &delim, QStringList &list)
+void SMTPProtocol::GetAddresses (const QString &str, const QString &delim, QStringList &list)
 {
 	int curpos = 0;
 
