@@ -547,6 +547,8 @@ bool SMTPProtocol::Authenticate()
 
 	// Choose available method from what the server has given us in  its greeting
 	QStringList sl = QStringList::split(' ', m_sAuthConfig);
+        // If the server doesn't support/require authentication, we ignore it
+	if (sl.isEmpty()) return true;
 	QStrIList strList;
 	if (!metaData("sasl").isEmpty())
 		strList.append(metaData("sasl").latin1());
