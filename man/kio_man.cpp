@@ -171,27 +171,41 @@ char *MANProtocol::readManPage(const char *_filename)
 
     QFile raw(filename);
     KFilterBase *f = KFilterBase::findFilterByFileName(filename);
-    if (!f)
-        return 0;
-
-    f->setDevice(&raw);
-
-    KFilterDev *fd = new KFilterDev(f);
-    if (!fd->open(IO_ReadOnly)) {
-        delete fd;
-        return 0;
+    QIODevice *fd(0);
+    if (f==0)
+    {
+       // in this case we don't have to delete fd or f later
+       fd=&raw;
+    }
+    else
+    {
+       f->setDevice(&raw);
+       fd=new KFilterDev(f);
+    };
+    if (!fd->open(IO_ReadOnly))
+    {
+       if (f!=0)
+       {
+          delete f;
+          delete fd;
+       };
+       return 0;
     }
     char buffer[1025];
     int n;
     QCString text;
-    while ( ( n = fd->readBlock(buffer, 1024) ) ) {
+    while ( ( n = fd->readBlock(buffer, 1024) ) )
+    {
         buffer[n] = 0;
         text += buffer;
     }
     kdDebug(7107) << "read " << text.length() << endl;
     fd->close();
-    delete fd;
-    delete f;
+    if (f!=0)
+    {
+       delete fd;
+       delete f;
+    };
 
     int l = text.length();
     char *buf = new char[l + 4];
