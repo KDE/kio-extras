@@ -133,21 +133,21 @@ int SMBSlave::cache_stat(const SMBUrl& url, struct stat* st)
     int result;
     SMBAuthInfo auth;
 DO_STAT:
-    result = smbc_stat(url.toSmbcUrl(), st);
-    if ((result !=0) && (errno == EACCES))  {
+   result = smbc_stat(url.toSmbcUrl(), st);
+   if ((result !=0) && (errno == EACCES)) {
       // if access denied, first open passDlg
       kdDebug(KIO_SMB) << "cache_stat auth ERROR"<<endl;
       m_current_url.getAuthInfo(auth);
       if (!authDlg(auth)) {
-	cache_clear_AuthInfo(auth);
-        error( ERR_ACCESS_DENIED, m_current_url.toKioUrl() );
-	return result;
+         cache_clear_AuthInfo(auth);
+         error( ERR_ACCESS_DENIED, m_current_url.toKioUrl() );
+         return result;
       }
       else {
-	goto DO_STAT;
+         goto DO_STAT;
       }
-    }
-    return result;
+   }
+   return result;
 }
 
 AuthInfo SMBSlave::cache_create_AuthInfo( const SMBAuthInfo& auth )

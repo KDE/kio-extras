@@ -46,29 +46,30 @@ bool SMBSlave::browse_stat_path(const SMBUrl& url, UDSEntry& udsentry)
   // realy needed ?
   // memset(&st,0,sizeof(st));
 OPEN_STAT:
-  if(cache_stat(url, &st) == 0)
-    {
+   if(cache_stat(url, &st) == 0)
+   {
       if(S_ISDIR(st.st_mode))
-        {
-	  kdDebug(KIO_SMB) << "SMBSlave::browse_stat_path is DIR"<< endl;
-	  // Directory
-	  udsatom.m_uds  = KIO::UDS_FILE_TYPE;
-	  udsatom.m_long = S_IFDIR;
-	  udsentry.append(udsatom);
-        }
+      {
+         kdDebug(KIO_SMB) << "SMBSlave::browse_stat_path is DIR"<< endl;
+         // Directory
+         udsatom.m_uds  = KIO::UDS_FILE_TYPE;
+         udsatom.m_long = S_IFDIR;
+         udsentry.append(udsatom);
+      }
       else if(S_ISREG(st.st_mode))
-        {
-	  kdDebug(KIO_SMB) << "SMBSlave::browse_stat_path is FILE"<< endl;
-	  // Regular file
-	  udsatom.m_uds  = KIO::UDS_FILE_TYPE;
-	  udsatom.m_long = S_IFREG;
-	  udsentry.append(udsatom);
-        }
+      {
+         kdDebug(KIO_SMB) << "SMBSlave::browse_stat_path is FILE"<< endl;
+         // Regular file
+         udsatom.m_uds  = KIO::UDS_FILE_TYPE;
+         udsatom.m_long = S_IFREG;
+         udsentry.append(udsatom);
+      }
       else
-        {
-	  error(ERR_INTERNAL, TEXT_UNKNOWN_ERROR);
-	  return false;
-        }
+      {
+         kdDebug(KIO_SMB)<<"SMBSlave::browse_stat_path mode: "<<st.st_mode<<endl;
+         error(ERR_INTERNAL, TEXT_UNKNOWN_ERROR);
+         return false;
+      }
 
       udsatom.m_uds  = KIO::UDS_FILE_TYPE;
       udsatom.m_long = st.st_mode;
@@ -77,70 +78,73 @@ OPEN_STAT:
       udsatom.m_uds  = KIO::UDS_SIZE;
       udsatom.m_long = st.st_size;
       udsentry.append(udsatom);
-    
+
       udsatom.m_uds  = KIO::UDS_USER;
       uid_t uid = st.st_uid;
       struct passwd *user = getpwuid( uid );
       if ( user ) {
-	udsatom.m_str = user->pw_name;
+         udsatom.m_str = user->pw_name;
       }
       else
-	udsatom.m_str = QString::number( uid );
+         udsatom.m_str = QString::number( uid );
       udsentry.append(udsatom);
-    
+
       udsatom.m_uds  = KIO::UDS_GROUP;
       gid_t gid = st.st_gid;
       struct group *grp = getgrgid( gid );
       if ( grp ) {
-	udsatom.m_str = grp->gr_name;
+         udsatom.m_str = grp->gr_name;
       }
       else
-	udsatom.m_str = QString::number( gid );
+         udsatom.m_str = QString::number( gid );
       udsentry.append(udsatom);
-    
+
       udsatom.m_uds  = KIO::UDS_ACCESS;
       udsatom.m_long = st.st_mode;
-      udsentry.append(udsatom); 
-    
+      udsentry.append(udsatom);
+
       udsatom.m_uds  = UDS_MODIFICATION_TIME;
       udsatom.m_long = st.st_mtime;
       udsentry.append(udsatom);
-    
+
       udsatom.m_uds  = UDS_ACCESS_TIME;
       udsatom.m_long = st.st_atime;
       udsentry.append(udsatom);
-    
+
       udsatom.m_uds  = UDS_CREATION_TIME;
       udsatom.m_long = st.st_ctime;
       udsentry.append(udsatom);
 
-    }
-  else
-    {
-    switch(errno)
-        {
-        case ENOENT:
-        case ENOTDIR:
-        case EFAULT:
-	    error(ERR_DOES_NOT_EXIST, url.toKioUrl());
-	  break;
-        case EPERM:
-        case EACCES:
-            error( ERR_ACCESS_DENIED, url.toKioUrl() );
-	  break;
-        case ENOMEM:
-	  error(ERR_OUT_OF_MEMORY, TEXT_OUT_OF_MEMORY);
-        case EBADF:
-	  error(ERR_INTERNAL, "BAD Filediscriptor");
-        default:
-	  error(ERR_INTERNAL, TEXT_UNKNOWN_ERROR);
-        }
+   }
+   else
+   {
+      switch(errno)
+      {
+      case EBUSY:
+               break;  //hmmm, otherwise the whole dir isn't listed (caused e.g. by pagefile.sys), aleXXX
+      case ENOENT:
+      case ENOTDIR:
+      case EFAULT:
+         error(ERR_DOES_NOT_EXIST, url.toKioUrl());
+         break;
+      case EPERM:
+      case EACCES:
+         error( ERR_ACCESS_DENIED, url.toKioUrl() );
+         break;
+      case ENOMEM:
+         error(ERR_OUT_OF_MEMORY, TEXT_OUT_OF_MEMORY);
+      case EBADF:
+         error(ERR_INTERNAL, "BAD Filediscriptor");
+      default:
+         kdDebug(KIO_SMB)<<"SMBSlave::browse_stat_path errno: "<<errno<< endl;
+         error(ERR_INTERNAL, TEXT_UNKNOWN_ERROR);
+      }
 
       kdDebug(KIO_SMB) << "SMBSlave::browse_stat_path ERROR!!"<< endl;
       return false;
     }
 
-  return true;
+   return true;
 }
 
 
@@ -230,173 +234,176 @@ const KURL SMBSlave::checkURL(const KURL& kurl) {
 // TODO: Add dir cache
 void SMBSlave::listDir( const KURL& kurl )
 {
-  kdDebug(KIO_SMB) << "SMBSlave::listDir on " << kurl.url() << endl;
+   kdDebug(KIO_SMB) << "SMBSlave::listDir on " << kurl.url() << endl;
 
-  // check (correct) URL
-  KURL url = checkURL(kurl);
-  // if URL is not valid we have to redirect to correct URL
-  if (url != kurl) {
-    redirection(url);
-    finished();
-    return;
-  }
-
-
-  m_current_url.fromKioUrl( kurl );
+   // check (correct) URL
+   KURL url = checkURL(kurl);
+   // if URL is not valid we have to redirect to correct URL
+   if (url != kurl)
+   {
+      redirection(url);
+      finished();
+      return;
+   }
 
 
-  int                 dirfd;
-  struct smbc_dirent  *dirp = NULL;
-  UDSEntry    udsentry;
-  UDSAtom     atom;
-  bool cancel = false;
- OPEN_DIR:
+   m_current_url.fromKioUrl( kurl );
 
-  kdDebug(KIO_SMB) << "SMBSlave::listDir open " << kurl.url() << endl;
-  dirfd = smbc_opendir( m_current_url.toSmbcUrl());
-  if(dirfd >= 0)
-    {
+
+   int                 dirfd;
+   struct smbc_dirent  *dirp = NULL;
+   UDSEntry    udsentry;
+   UDSAtom     atom;
+   bool cancel = false;
+   OPEN_DIR:
+   ;
+   dirfd = smbc_opendir( m_current_url.toSmbcUrl());
+   kdDebug(KIO_SMB) << "SMBSlave::listDir open " << kurl.url() << endl;
+   if(dirfd >= 0)
+   {
       while(1)
-        {
-	  dirp = smbc_readdir(dirfd);
-	  if(dirp == NULL)
+      {
+         dirp = smbc_readdir(dirfd);
+         if(dirp == NULL)
+         {
+            break;
+         }
+         // Set name
+         atom.m_uds = KIO::UDS_NAME;
+         atom.m_str = dirp->name;
+         udsentry.append( atom );
+         if (((!m_showHiddenShares) && (atom.m_str.right(1)=="$"))
+             || (atom.m_str=="$IPC")
+             || (atom.m_str==".")
+             || (atom.m_str==".."))
+         {
+//            fprintf(stderr,"----------- hide: -%s-\n",dirp->name);
+            // do nothing and hide the hidden shares
+         }
+         else if(dirp->smbc_type == SMBC_FILE)
+         {
+            // Set type
+            atom.m_uds = KIO::UDS_FILE_TYPE;
+            atom.m_long = S_IFREG;
+            udsentry.append( atom );
+
+            // Set stat information
+            m_current_url.append(dirp->name);
+            browse_stat_path(m_current_url, udsentry);
+            m_current_url.truncate();
+
+            // Call base class to list entry
+            listEntry(udsentry, false);
+         }
+         else if(dirp->smbc_type == SMBC_DIR)
+         {
+            // Set type
+            atom.m_uds = KIO::UDS_FILE_TYPE;
+            atom.m_long = S_IFDIR;
+            udsentry.append( atom );
+
+            // Set stat information
+            if(strcmp(dirp->name,".") &&
+               strcmp(dirp->name,".."))
             {
-	      break;
-            }
-	  // Set name
-	  atom.m_uds = KIO::UDS_NAME;
-	  atom.m_str = dirp->name;
-	  udsentry.append( atom );
-	  if ((!m_showHiddenShares) && (atom.m_str.right(1)=="$")) {
-	    // do nothing and hide the hidden shares
-	  }
-	  else if(dirp->smbc_type == SMBC_FILE)
-            {
-
-
-	      // Set type
-	      atom.m_uds = KIO::UDS_FILE_TYPE;
-	      atom.m_long = S_IFREG;
-	      udsentry.append( atom );
-
-	      // Set stat information
-	      m_current_url.append(dirp->name);
-	      browse_stat_path(m_current_url, udsentry);
-	      m_current_url.truncate();
-		
-	      // Call base class to list entry
-	      listEntry(udsentry, false);
-            }
-	  else if(dirp->smbc_type == SMBC_DIR)
-            {
-	      // Set type
-	      atom.m_uds = KIO::UDS_FILE_TYPE;
-	      atom.m_long = S_IFDIR;
-	      udsentry.append( atom );
-                
-	      // Set stat information
-	      if(strcmp(dirp->name,".") &&
-		 strcmp(dirp->name,".."))
-                {
-		  m_current_url.append(dirp->name);
-		  browse_stat_path(m_current_url, udsentry);
-		  m_current_url.truncate();
-                }
-		
-	      // Call base class to list entry
-	      listEntry(udsentry, false);
-            }
-	  else if(dirp->smbc_type == SMBC_SERVER ||
-		  dirp->smbc_type == SMBC_FILE_SHARE)
-            {
-	      // Set type
-	      atom.m_uds = KIO::UDS_FILE_TYPE;
-	      atom.m_long = S_IFDIR;
-	      udsentry.append( atom );
-
-	      // Set permissions
-	      atom.m_uds  = KIO::UDS_ACCESS;
-	      atom.m_long = (S_IRUSR | S_IRGRP | S_IROTH | S_IXUSR | S_IXGRP | S_IXOTH);
-	      udsentry.append(atom); 
-
-	      // Call base class to list entry
-	      listEntry(udsentry, false);
-            }
-	  else if(dirp->smbc_type == SMBC_WORKGROUP)
-            {
-
-	      // Set type
-	      atom.m_uds = KIO::UDS_FILE_TYPE;
-	      atom.m_long = S_IFDIR;
-	      udsentry.append( atom );
-
-	      // Set permissions
-	      atom.m_uds  = KIO::UDS_ACCESS;
-	      atom.m_long = (S_IRUSR | S_IRGRP | S_IROTH | S_IXUSR | S_IXGRP | S_IXOTH);
-	      udsentry.append(atom); 
-
-	      // remember the workgroup
-	      // we don't use it
-	      //	      cache_add_workgroup(dirp->name);
-
-	      // Call base class to list entry
-	      listEntry(udsentry, false);
-            }
-	  else
-            {
-	      kdDebug(KIO_SMB) << "SMBSlave::listDir SMBC_UNKNOWN :" << dirp->name << endl;
-	      // TODO: we don't handle SMBC_IPC_SHARE, SMBC_PRINTER_SHARE
-	      //       SMBC_LINK, SMBC_COMMS_SHARE
-	      //SlaveBase::error(ERR_INTERNAL, TEXT_UNSUPPORTED_FILE_TYPE);
-	      // continue;
+               m_current_url.append(dirp->name);
+               browse_stat_path(m_current_url, udsentry);
+               m_current_url.truncate();
             }
 
+               // Call base class to list entry
+            listEntry(udsentry, false);
+         }
+         else if(dirp->smbc_type == SMBC_SERVER ||
+                 dirp->smbc_type == SMBC_FILE_SHARE)
+            {
+               // Set type
+               atom.m_uds = KIO::UDS_FILE_TYPE;
+               atom.m_long = S_IFDIR;
+               udsentry.append( atom );
 
-	  udsentry.clear();
-        }
+               // Set permissions
+               atom.m_uds  = KIO::UDS_ACCESS;
+               atom.m_long = (S_IRUSR | S_IRGRP | S_IROTH | S_IXUSR | S_IXGRP | S_IXOTH);
+               udsentry.append(atom);
+
+               // Call base class to list entry
+               listEntry(udsentry, false);
+            }
+         else if(dirp->smbc_type == SMBC_WORKGROUP)
+         {
+
+            // Set type
+            atom.m_uds = KIO::UDS_FILE_TYPE;
+            atom.m_long = S_IFDIR;
+            udsentry.append( atom );
+
+            // Set permissions
+            atom.m_uds  = KIO::UDS_ACCESS;
+            atom.m_long = (S_IRUSR | S_IRGRP | S_IROTH | S_IXUSR | S_IXGRP | S_IXOTH);
+            udsentry.append(atom);
+
+            // remember the workgroup
+            // we don't use it
+            //	      cache_add_workgroup(dirp->name);
+            // Call base class to list entry
+            listEntry(udsentry, false);
+         }
+         else
+         {
+            kdDebug(KIO_SMB) << "SMBSlave::listDir SMBC_UNKNOWN :" << dirp->name << endl;
+            // TODO: we don't handle SMBC_IPC_SHARE, SMBC_PRINTER_SHARE
+            //       SMBC_LINK, SMBC_COMMS_SHARE
+            //SlaveBase::error(ERR_INTERNAL, TEXT_UNSUPPORTED_FILE_TYPE);
+            // continue;
+         }
+         udsentry.clear();
+      }
 
       // clean up
       smbc_closedir(dirfd);
-    }
-  else
-    {
+   }
+   else
+   {
       switch(errno)
-        {
-        case ENOENT:
-        case ENOTDIR:
-        case EFAULT:
-	  error(ERR_DOES_NOT_EXIST, m_current_url.toKioUrl());
-	  break;
-        case EPERM:
-        case EACCES:
-	  // if access denied, first open passDlg
- 	  if ((errno == EPERM) || (errno ==  EACCES)) {
-	    SMBAuthInfo auth;
-	    m_current_url.getAuthInfo(auth);
-	    if (!authDlg(auth)) {
-	      cache_clear_AuthInfo(m_current_url.getAuthInfo());
-	      error(ERR_ACCESS_DENIED, m_current_url.toKioUrl());
-	      return;
-	    }
-	    else
-	      goto OPEN_DIR;
-	  }
-	  break;
-        case ENOMEM:
-	  error(ERR_OUT_OF_MEMORY, TEXT_OUT_OF_MEMORY);
-	  break;
-        case EUCLEAN:
-	  error(ERR_INTERNAL, TEXT_SMBC_INIT_FAILED);
-	  break;
-        case ENODEV:
-	  error(ERR_INTERNAL, TEXT_NOSRV_WG);
-	  break;
-        default:
-	  error(ERR_INTERNAL, TEXT_UNKNOWN_ERROR);
-        }
+      {
+      case ENOENT:
+      case ENOTDIR:
+      case EFAULT:
+         error(ERR_DOES_NOT_EXIST, m_current_url.toKioUrl());
+         break;
+      case EPERM:
+      case EACCES:
+         // if access denied, first open passDlg
+         if ((errno == EPERM) || (errno ==  EACCES))
+         {
+            SMBAuthInfo auth;
+            m_current_url.getAuthInfo(auth);
+            if (!authDlg(auth))
+            {
+               cache_clear_AuthInfo(m_current_url.getAuthInfo());
+               error(ERR_ACCESS_DENIED, m_current_url.toKioUrl());
+               return;
+            }
+            else
+               goto OPEN_DIR;
+         }
+         break;
+      case ENOMEM:
+         error(ERR_OUT_OF_MEMORY, TEXT_OUT_OF_MEMORY);
+         break;
+      case EUCLEAN:
+         error(ERR_INTERNAL, TEXT_SMBC_INIT_FAILED);
+         break;
+      case ENODEV:
+         error(ERR_INTERNAL, TEXT_NOSRV_WG);
+         break;
+      default:
+         error(ERR_INTERNAL, TEXT_UNKNOWN_ERROR);
+      }
       return;
-    }
+   }
 
-  listEntry(udsentry, true); 
-  finished();
+   listEntry(udsentry, true);
+   finished();
 }
