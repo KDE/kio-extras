@@ -201,11 +201,12 @@ void DiskList::replaceDeviceEntry(DiskEntry *disk)
 **/
 void DiskList::readFSTAB()
 {
-   QPtrList<KMountPoint> mountPoints = KMountPoint::possibleMountPoints(0);
-   mountPoints.setAutoDelete(true);
+   KMountPoint::List mountPoints = KMountPoint::possibleMountPoints(0);
 
-   for(KMountPoint *mp = mountPoints.first(); mp; mp = mountPoints.next())
+   for(KMountPoint::List::ConstIterator it = mountPoints.begin(); 
+       it != mountPoints.end(); ++it)
    {
+      KMountPoint *mp = *it;
       DiskEntry *disk = new DiskEntry();
       disk->setDeviceName(mp->mountedFrom());
       disk->setMountPoint(mp->mountPoint());
@@ -222,11 +223,12 @@ void DiskList::readFSTAB()
 **/
 void DiskList::readMNTTAB()
 {
-   QPtrList<KMountPoint> mountPoints = KMountPoint::currentMountPoints(0);
-   mountPoints.setAutoDelete(true);
-   
-   for(KMountPoint *mp = mountPoints.first(); mp; mp = mountPoints.next())
+   KMountPoint::List mountPoints = KMountPoint::currentMountPoints(0);
+
+   for(KMountPoint::List::ConstIterator it = mountPoints.begin(); 
+       it != mountPoints.end(); ++it)
    {
+      KMountPoint *mp = *it;
       DiskEntry *disk = new DiskEntry();
       disk->setMounted(true);    // its now mounted
       disk->setDeviceName(mp->mountedFrom());
