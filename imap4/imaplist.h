@@ -72,6 +72,24 @@ public:
     noSelect_ = _val;
   }
 
+  bool hasChildren () const
+  {
+    return hasChildren_;
+  }
+  void setHasChildren (bool _val)
+  {
+    hasChildren_ = _val;
+  }
+
+  bool hasNoChildren () const
+  {
+    return hasNoChildren_;
+  }
+  void setHasNoChildren (bool _val)
+  {
+    hasNoChildren_ = _val;
+  }
+
   bool marked () const
   {
     return marked_;
@@ -98,6 +116,8 @@ private:
   bool noSelect_;
   bool marked_;
   bool unmarked_;
+  bool hasChildren_;
+  bool hasNoChildren_;
 };
 
 #endif

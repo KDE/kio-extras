@@ -517,9 +517,11 @@ void imapParser::parseList (parseString & result)
       this_one.setMarked (true);
     else if (-1 != attribute.find ("\\unmarked"))
       this_one.setUnmarked (true);
-    else if (-1 != attribute.find ("\\hasnochildren")) {
-      // not important
-    } else
+    else if (-1 != attribute.find ("\\haschildren")) 
+      this_one.setHasChildren (true);
+    else if (-1 != attribute.find ("\\hasnochildren")) 
+      this_one.setHasNoChildren (true);
+    else
       kdDebug(7116) << "imapParser::parseList - unknown attribute " << attribute << endl;
   }
 

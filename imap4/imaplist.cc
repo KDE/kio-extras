@@ -46,14 +46,16 @@
 #include <kdebug.h>
 
 imapList::imapList ():noInferiors_ (false),
-noSelect_ (false), marked_ (false), unmarked_ (false)
+noSelect_ (false), marked_ (false), unmarked_ (false), 
+hasChildren_ (false), hasNoChildren_ (false)
 {
 }
 
 imapList::imapList (const imapList & lr):hierarchyDelimiter_ (lr.hierarchyDelimiter_),
 name_ (lr.name_),
 noInferiors_ (lr.noInferiors_),
-noSelect_ (lr.noSelect_), marked_ (lr.marked_), unmarked_ (lr.unmarked_)
+noSelect_ (lr.noSelect_), marked_ (lr.marked_), unmarked_ (lr.unmarked_),
+hasChildren_ (lr.hasChildren_), hasNoChildren_ (lr.hasNoChildren_)
 {
 }
 
@@ -69,13 +71,16 @@ imapList & imapList::operator = (const imapList & lr)
   noSelect_ = lr.noSelect_;
   marked_ = lr.marked_;
   unmarked_ = lr.unmarked_;
+  hasChildren_ = lr.hasChildren_;
+  hasNoChildren_ = lr.hasNoChildren_;
 
   return *this;
 }
 
 imapList::imapList (const QString & inStr):noInferiors_ (false),
 noSelect_ (false),
-marked_ (false), unmarked_ (false)
+marked_ (false), unmarked_ (false), hasChildren_ (false),
+hasNoChildren_ (false)  
 {
   parseString s;
   s.data.duplicate(inStr.latin1(), inStr.length());
@@ -99,6 +104,10 @@ marked_ (false), unmarked_ (false)
       marked_ = true;
     else if (-1 != attribute.find ("\\unmarked"))
       unmarked_ = true;
+    else if (-1 != attribute.find ("\\haschildren"))
+      hasChildren_ = true;
+    else if (-1 != attribute.find ("\\hasnochildren"))
+      hasNoChildren_ = true;
     else
       kdDebug(7116) << "imapList::imapList: bogus attribute " << attribute << endl;
   }
