@@ -172,7 +172,7 @@ bool MediaImpl::setUserLabel(const QString &name, const QString &label)
 		 && returned_name!=name)
 		{
 			m_lastErrorCode = KIO::ERR_DIR_ALREADY_EXIST;
-			m_lastErrorMessage = i18n("This media name already exist.");
+			m_lastErrorMessage = i18n("This media name already exists.");
 			return false;
 		}
 	}
