@@ -8,8 +8,6 @@ AC_CHECK_HEADER(linux/cdrom.h,
 ])
 AM_CONDITIONAL(include_media_linuxcdpolling, test "$LINUXCDPOLLING" = "yes")
 
-AM_CONDITIONAL(include_media_linuxcdpolling, test "$LINUXCDPOLLING" = "yes")
-
 ########### Check for the HAL
 
 AC_MSG_CHECKING(for the HAL)
