@@ -5,7 +5,6 @@ Type=Application
 
 X-KDE-ModuleType=Library
 X-KDE-Library=audiocd
-X-KDE-Init=audiocd
 
 Name=Audiocd IO Slave
 Name[af]=KLANK CD IO SLAAF
