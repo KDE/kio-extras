@@ -259,6 +259,20 @@ imapCommand::clientDelete (const QString & path)
 }
 
 imapCommand *
+imapCommand::clientSubscribe (const QString & path)
+{
+  return new imapCommand ("SUBSCRIBE",
+                          QString ("\"") + rfcDecoder::toIMAP (path) + "\"");
+}
+
+imapCommand *
+imapCommand::clientUnsubscribe (const QString & path)
+{
+  return new imapCommand ("UNSUBSCRIBE",
+                          QString ("\"") + rfcDecoder::toIMAP (path) + "\"");
+}
+
+imapCommand *
 imapCommand::clientExpunge ()
 {
   return new imapCommand ("EXPUNGE", QString (""));

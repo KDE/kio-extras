@@ -775,6 +775,9 @@ IMAP4Protocol::mkdir (const KURL & _url, int)
     }
   }
 
+  cmd = doCommand(imapCommand::clientSubscribe(newBox));
+  completeQueue.removeRef(cmd);
+
   finished ();
 }
 

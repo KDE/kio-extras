@@ -69,6 +69,8 @@ public:
                                     const QString & extras, ulong size);
   static imapCommand *clientCreate (const QString & path);
   static imapCommand *clientDelete (const QString & path);
+  static imapCommand *clientSubscribe (const QString & path);
+  static imapCommand *clientUnsubscribe (const QString & path);
   static imapCommand *clientExpunge ();
   static imapCommand *clientRename (const QString & src,
                                     const QString & dest);
