@@ -1120,39 +1120,40 @@ IMAP4Protocol::stat (const KURL & _url)
         kdDebug(7116) << "IMAP4::stat - url has invalid validity [" << validity << "d] " << hidePass(_url) << endl;
       }
     }
-    atom.m_uds = UDS_MIME_TYPE;
-    atom.m_str = getMimeType (aType);
+  }
+
+  atom.m_uds = UDS_MIME_TYPE;
+  atom.m_str = getMimeType (aType);
+  entry.append (atom);
+
+  kdDebug(7116) << "IMAP4: stat: " << atom.m_str << endl;
+  switch (aType)
+  {
+  case ITYPE_DIR:
+    atom.m_uds = UDS_FILE_TYPE;
+    atom.m_str = "";
+    atom.m_long = S_IFDIR;
     entry.append (atom);
+    break;
 
-    kdDebug(7116) << "IMAP4: stat: " << atom.m_str << endl;
-    switch (aType)
-    {
-    case ITYPE_DIR:
-      atom.m_uds = UDS_FILE_TYPE;
-      atom.m_str = "";
-      atom.m_long = S_IFDIR;
-      entry.append (atom);
-      break;
+  case ITYPE_BOX:
+  case ITYPE_DIR_AND_BOX:
+    atom.m_uds = UDS_FILE_TYPE;
+    atom.m_str = "";
+    atom.m_long = S_IFDIR;
+    entry.append (atom);
+    break;
 
-    case ITYPE_BOX:
-    case ITYPE_DIR_AND_BOX:
-      atom.m_uds = UDS_FILE_TYPE;
-      atom.m_str = "";
-      atom.m_long = S_IFDIR;
-      entry.append (atom);
-      break;
+  case ITYPE_MSG:
+    atom.m_uds = UDS_FILE_TYPE;
+    atom.m_str = "";
+    atom.m_long = S_IFREG;
+    entry.append (atom);
+    break;
 
-    case ITYPE_MSG:
-      atom.m_uds = UDS_FILE_TYPE;
-      atom.m_str = "";
-      atom.m_long = S_IFREG;
-      entry.append (atom);
-      break;
-
-    case ITYPE_UNKNOWN:
-      error (ERR_DOES_NOT_EXIST, hidePass(_url));
-      break;
-    }
+  case ITYPE_UNKNOWN:
+    error (ERR_DOES_NOT_EXIST, hidePass(_url));
+    break;
   }
 
   statEntry (entry);
