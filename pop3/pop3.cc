@@ -81,7 +81,7 @@ POP3Protocol::POP3Protocol(Connection *_conn) : IOProtocol(_conn)
 
 bool POP3Protocol::getResponse (char *r_buf, unsigned int r_len)
 {
-  char buf[r_len ? r_len : 1024];
+  char buf[r_len ? r_len : 512];
   unsigned int recv_len=0;
   fd_set FDs;
   // Wait for input
@@ -115,7 +115,7 @@ bool POP3Protocol::getResponse (char *r_buf, unsigned int r_len)
 bool POP3Protocol::command (const char *cmd, char *recv_buf, unsigned int len)
 {
   // Write the command
-  if (::write(m_iSock, cmd, strlen(cmd)) != strlen(cmd))
+  if (::write(m_iSock, cmd, strlen(cmd)) != (ssize_t)strlen(cmd))
     return false;
   if (::write(m_iSock, "\r\n", 2) != 2)
     return false;
@@ -185,6 +185,7 @@ bool POP3Protocol::pop3_open( KURL &_url )
     pop3_close();
     return false;
   }
+  return true;
 }
 
 void POP3Protocol::slotGet(const char *_url)
@@ -228,7 +229,7 @@ void POP3Protocol::slotGet(const char *_url)
   }
 
   else if (cmd == "headers") {
-    int msg_num = path.toInt(&ok);
+    (void)path.toInt(&ok);
     if (!ok) return; //  We fscking need a number!
     path.prepend("TOP ");
     path.append(" 0");
@@ -238,8 +239,6 @@ void POP3Protocol::slotGet(const char *_url)
                          // TOP cmd isn't supported
       ready();
       gettingFile(_url);
-      time_t t_start = time( 0L );
-      time_t t_last = t_start;
       memset(buf, sizeof(buf), 0);
       while (!feof(fp)) {
 	memset(buf, sizeof(buf), 0);
@@ -258,16 +257,17 @@ void POP3Protocol::slotGet(const char *_url)
   }
 
   else if (cmd == "remove") {
-    int msg_num = path.toInt(&ok);
+    (void)path.toInt(&ok);
     if (!ok) return; //  We fscking need a number!
     path.prepend("DELE ");
     command(path);
   }
   
   else if (cmd == "download") {
-    int p_size=0, msg_num = path.toInt(&ok);
+    int p_size=0;
     unsigned int msg_len=0;
     char buf[512];
+    (void)path.toInt(&ok);
     QString list_cmd("LIST ");
     if (!ok)
       return; //  We fscking need a number!
@@ -296,8 +296,6 @@ void POP3Protocol::slotGet(const char *_url)
       gettingFile(_url);
       mimeType("message/rfc822");
       totalSize(msg_len);
-      time_t t_start = time( 0L );
-      time_t t_last = t_start;
       memset(buf, sizeof(buf), 0);
       while (!feof(fp)) {
 	memset(buf, sizeof(buf), 0);
