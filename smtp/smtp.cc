@@ -34,6 +34,15 @@
 
 #include "smtp.h"
 
+
+//
+//
+// By George Staikos <staikos@kde.org> 5/2000
+// Based partially on the pop3 ioslave.
+//
+// Released under the QPL.
+//
+
 using namespace KIO;
 
 extern "C" { int kdemain (int argc, char **argv); }
@@ -99,7 +108,7 @@ int kdemain( int argc, char **argv )
 //   COMMANDS WE SHOULD SUPPORT:
 //   QUIT,       EXPN,       HELO,       EHLO,       HELP,       NOOP, 
 //   VRFY,       RSET,       DATA,       RCPT TO:,   MESG FROM:, ETRN,
-//   VERB,       DSN
+//   VERB,       DSN,        8BITMIME,   SIZE,       ONEX,       XUSR
 //
 //   COMMANDS THAT DON'T SEEM SUPPORTED ANYMORE:
 //   SAML FROM:, SOML FROM:, SEND FROM:, TURN
@@ -136,7 +145,15 @@ SMTPProtocol::~SMTPProtocol()
 
 
 void SMTPProtocol::put( const QString& path, int permissions, bool overwrite, bool resume) {
-
+//
+// Commands
+//
+// smtp://host:port/done                 QUIT
+// smtp://host:port/mail                 Send a mail
+// Should these two be in ::get()?  ....
+// smtp://host:port/verify               VRFY
+// smtp://host:port/expand               EXPN
+//
 }
 
 
