@@ -343,9 +343,28 @@ IMAP4Protocol::listDir (const KURL & _url)
 
       kdDebug(7116) << "IMAP4Protocol::listDir - got " << listResponses.count () << endl;
 
-      for (QValueListIterator < imapList > it = listResponses.begin ();
-           it != listResponses.end (); ++it)
-        doListEntry (aURL, myBox, (*it));
+      // operate on a copy because the original will be overwritten
+      QValueList<imapList> listResponsesSave = listResponses;
+
+      for (QValueListIterator < imapList > it = listResponsesSave.begin ();
+           it != listResponsesSave.end (); ++it)
+      {
+        QString boxName = (*it).name();
+        bool boxOk = true;
+        if (myLType == "LSUB")
+        {
+          // check if this folder really exists (RFC 2060)
+          doCommand (imapCommand::clientList ("", boxName, false));
+          if (listResponses.count() == 0)
+            boxOk = false;
+        }
+        if (boxOk)
+          doListEntry (aURL, myBox, (*it));
+        else
+          kdDebug(7116) << "IMAP4Protocol::listDir - suppress " << (*it).name() << endl;
+      }
+      // write back the copy to be save
+      listResponses = listResponsesSave;
       entry.clear ();
       listEntry (entry, true);
     }
