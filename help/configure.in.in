@@ -36,7 +36,23 @@ AC_SUBST(HELP_SLAVE)
 WITH_MEM_DEBUG=0
 AC_SUBST(WITH_MEM_DEBUG)
 
-AC_CHECK_HEADERS(ctype.h sys/types.h)
+AC_CHECK_HEADERS(ctype.h sys/types.h ieeefp.h nan.h math.h fp_class.h float.h ansidecl.h)
+AC_CHECK_FUNC(isnan, , AC_CHECK_LIB(m, isnan,
+  [M_LIBS="-lm"; AC_DEFINE(HAVE_ISNAN)]))
+ 
+AC_CHECK_FUNC(isinf, , AC_CHECK_LIB(m, isinf,
+  [M_LIBS="-lm"; AC_DEFINE(HAVE_ISINF)]))
+ 
+AC_CHECK_FUNC(pow, , AC_CHECK_LIB(m, pow,
+  [M_LIBS="-lm"; AC_DEFINE(HAVE_POW)]))
+ 
+AC_CHECK_FUNC(floor, , AC_CHECK_LIB(m, pow,
+  [M_LIBS="-lm"; AC_DEFINE(HAVE_FLOOR)]))
+ 
+AC_CHECK_FUNC(fabs, , AC_CHECK_LIB(m, pow,
+  [M_LIBS="-lm"; AC_DEFINE(HAVE_FABS)]))
+
+AC_SUBST(M_LIBS)
 
 dnl AC_OUTPUT(kioslave/help/libxslt/xsltconfig.h)
 

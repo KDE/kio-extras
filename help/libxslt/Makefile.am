@@ -39,4 +39,4 @@ libxslt_la_SOURCES = 			\
 	preproc.c			\
 	transform.c
 
-libxslt_la_LIBADD = $(LIBXML_LIBS)
+libxslt_la_LIBADD = $(LIBXML_LIBS) $(M_LIBS)

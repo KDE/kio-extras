@@ -31,11 +31,11 @@
 #include <libxml/xpathInternals.h>
 #include <libxml/parserInternals.h>
 #include <libxml/uri.h>
+#include <stdlib.h>
 #include "xslt.h"
 #include "xsltInternals.h"
 #include "xsltutils.h"
 #include "functions.h"
-#include <stdlib.h>
 #include "numbersInternals.h"
 #include "keys.h"
 #include "documents.h"
@@ -95,21 +95,23 @@ xsltDocumentFunction(xmlXPathParserContextPtr ctxt, int nargs){
 	obj = valuePop(ctxt);
 	ret = xmlXPathNewNodeSet(NULL);
 
-	for (i = 0; i < obj->nodesetval->nodeNr; i++) {
-	    valuePush(ctxt,
-		      xmlXPathNewNodeSet(obj->nodesetval->nodeTab[i]));
-	    xmlXPathStringFunction(ctxt, 1);
-	    if (nargs == 2) {
-		valuePush(ctxt, xmlXPathObjectCopy(obj2));
-	    } else {
+	if (obj->nodesetval) {
+	    for (i = 0; i < obj->nodesetval->nodeNr; i++) {
 		valuePush(ctxt,
 			  xmlXPathNewNodeSet(obj->nodesetval->nodeTab[i]));
+		xmlXPathStringFunction(ctxt, 1);
+		if (nargs == 2) {
+		    valuePush(ctxt, xmlXPathObjectCopy(obj2));
+		} else {
+		    valuePush(ctxt,
+			      xmlXPathNewNodeSet(obj->nodesetval->nodeTab[i]));
+		}
+		xsltDocumentFunction(ctxt, 2);
+		newobj = valuePop(ctxt);
+		ret->nodesetval = xmlXPathNodeSetMerge(ret->nodesetval,
+						       newobj->nodesetval);
+		xmlXPathFreeObject(newobj);
 	    }
-	    xsltDocumentFunction(ctxt, 2);
-	    newobj = valuePop(ctxt);
-	    ret->nodesetval = xmlXPathNodeSetMerge(ret->nodesetval,
-						   newobj->nodesetval);
-	    xmlXPathFreeObject(newobj);
 	}
 
 	xmlXPathFreeObject(obj);
@@ -143,12 +145,12 @@ xsltDocumentFunction(xmlXPathParserContextPtr ctxt, int nargs){
 		((xsltTransformContextPtr)ctxt->context->extra)->style->doc,
 				  ctxt->context->node);
 	}
-	if (!strcmp(obj->stringval, "../common/l10n.xml")) {
-		char base2[1000];
-		strcpy(base2, getenv("KDEDIR"));
-		strcat(base2, "/share/apps/ksgmltools2/docbook/xsl/common/l10n.xsl");
-		base = strdup(base2);
-	}
+        if (!strcmp(obj->stringval, "../common/l10n.xml")) {
+               char base2[1000];
+               strcpy(base2, getenv("KDEDIR"));
+               strcat(base2, "/share/apps/ksgmltools2/docbook/xsl/common/l10n.xsl");
+               base = strdup(base2);
+        }
 	URI = xmlBuildURI(obj->stringval, base);
 	if (base != NULL)
 	    xmlFree(base);
@@ -223,15 +225,17 @@ xsltKeyFunction(xmlXPathParserContextPtr ctxt, int nargs){
 
 	ret = xmlXPathNewNodeSet(NULL);
 
-	for (i = 0; i < obj2->nodesetval->nodeNr; i++) {
-	    valuePush(ctxt, xmlXPathObjectCopy(obj1));
-	    valuePush(ctxt,
-		      xmlXPathNewNodeSet(obj2->nodesetval->nodeTab[i]));
-	    xsltKeyFunction(ctxt, 2);
-	    newobj = valuePop(ctxt);
-	    ret->nodesetval = xmlXPathNodeSetMerge(ret->nodesetval,
-						   newobj->nodesetval);
-	    xmlXPathFreeObject(newobj);
+	if (obj2->nodesetval != NULL) {
+	    for (i = 0; i < obj2->nodesetval->nodeNr; i++) {
+		valuePush(ctxt, xmlXPathObjectCopy(obj1));
+		valuePush(ctxt,
+			  xmlXPathNewNodeSet(obj2->nodesetval->nodeTab[i]));
+		xsltKeyFunction(ctxt, 2);
+		newobj = valuePop(ctxt);
+		ret->nodesetval = xmlXPathNodeSetMerge(ret->nodesetval,
+						       newobj->nodesetval);
+		xmlXPathFreeObject(newobj);
+	    }
 	}
 	valuePush(ctxt, ret);
     } else {
