@@ -62,7 +62,8 @@ public:
 signals:
 	void mediumAdded(const QString &id, const QString &name);
 	void mediumRemoved(const QString &id, const QString &name);
-	void mediumStateChanged(const QString &id, const QString &name);
+	void mediumStateChanged(const QString &id, const QString &name,
+	                        bool mounted);
 
 private:
 	QPtrList<Medium> m_media;

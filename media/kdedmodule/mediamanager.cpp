@@ -46,8 +46,8 @@ MediaManager::MediaManager(const QCString &obj)
 	connect( &m_mediaList, SIGNAL(mediumRemoved(const QString&, const QString&)),
 	         SLOT(slotMediumRemoved(const QString&, const QString&)) );
 	connect( &m_mediaList,
-	         SIGNAL(mediumStateChanged(const QString&, const QString&)),
-	         SLOT(slotMediumChanged(const QString&, const QString&)) );
+	         SIGNAL(mediumStateChanged(const QString&, const QString&, bool)),
+	         SLOT(slotMediumChanged(const QString&, const QString&, bool)) );
 
 	m_backends.setAutoDelete(true);
 	QTimer::singleShot( 10, this, SLOT( loadBackends() ) );
@@ -186,11 +186,16 @@ void MediaManager::slotMediumRemoved(const QString &/*id*/, const QString &name)
 	emit mediumRemoved(name);
 }
 
-void MediaManager::slotMediumChanged(const QString &/*id*/, const QString &name)
+void MediaManager::slotMediumChanged(const QString &/*id*/, const QString &name,
+                                     bool mounted)
 {
 	kdDebug() << "MediaManager::slotMediumChanged: " << name << endl;
 
 	KDirNotify_stub notifier("*", "*");
+	if (!mounted)
+	{
+		notifier.FilesRemoved( KURL("media:/"+name) );
+	}
 	notifier.FilesChanged( KURL("media:/"+name) );
 
 	emit mediumChanged(name);

@@ -57,7 +57,8 @@ private slots:
 	
 	void slotMediumAdded(const QString &id, const QString &name);
 	void slotMediumRemoved(const QString &id, const QString &name);
-	void slotMediumChanged(const QString &id, const QString &name);
+	void slotMediumChanged(const QString &id, const QString &name,
+	                       bool mounted);
 
 private:
 	MediaList m_mediaList;

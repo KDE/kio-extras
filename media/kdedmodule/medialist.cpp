@@ -149,7 +149,7 @@ bool MediaList::changeMediumState(const Medium &medium)
 		m->setLabel( medium.label() );
 	}
 
-	emit mediumStateChanged(m->id(), m->name());
+	emit mediumStateChanged(m->id(), m->name(), !m->needMounting());
 	return true;
 }
 
@@ -184,7 +184,7 @@ bool MediaList::changeMediumState(const QString &id,
 		medium->setLabel( label );
 	}
 
-	emit mediumStateChanged(id, medium->name());
+	emit mediumStateChanged(id, medium->name(), !medium->needMounting());
 	return true;
 }
 
@@ -222,7 +222,7 @@ bool MediaList::changeMediumState(const QString &id,
 		medium->setLabel( label );
 	}
 
-	emit mediumStateChanged(id, medium->name());
+	emit mediumStateChanged(id, medium->name(), !medium->needMounting());
 	return true;
 }
 
@@ -256,7 +256,7 @@ bool MediaList::changeMediumState(const QString &id, bool mounted,
 		medium->setLabel( label );
 	}
 
-	emit mediumStateChanged(id, medium->name());
+	emit mediumStateChanged(id, medium->name(), !medium->needMounting());
 	return true;
 }
 
@@ -270,7 +270,7 @@ bool MediaList::setUserLabel(const QString &name, const QString &label)
 	Medium *medium = m_nameMap[name];
 	medium->setUserLabel(label);
 
-	emit mediumStateChanged(medium->id(), name);
+	emit mediumStateChanged(medium->id(), name, !medium->needMounting());
 	return true;
 }
 
