@@ -55,6 +55,9 @@ command can be used to let klauncher run all https io-slaves via valgrind:
 
 The valgrind output will appear as the stderr output of the kdeinit process.
 The $VALGRIND_OPTS environment variable can be used to pass options to valgrind.
+If you want to use a different skin:
+
+	KDE_SLAVE_VALGRIND_SKIN=calltree      ( for example )
 
 
 How to get debug output
