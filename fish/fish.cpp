@@ -93,7 +93,7 @@
 #define totalSize(x) do{myDebug( << "_______ emitting totalSize("<<(int)x<<")" << endl); totalSize(x);}while(0)
 #define processedSize(x) do{myDebug( << "_______ emitting processedSize("<<x<<")" << endl); processedSize(x);}while(0)
 #define speed(x) do{myDebug( << "_______ emitting speed("<<(int)x<<")" << endl); speed(x);}while(0)
-#define redirection(x) do{myDebug( << "_______ emitting redirection("<<x.url()<<")" << endl); redirection(x);}while(0)
+#define redirection(x) do{myDebug( << "_______ emitting redirection("<<x<<")" << endl); redirection(x);}while(0)
 #define errorPage() do{myDebug( << "_______ emitting errorPage()" << endl); errorPage();}while(0)
 #define sendmimeType(x) do{myDebug( << "_______ emitting mimeType("<<x<<")" << endl); mimeType(x);}while(0)
 #define warning(x) do{myDebug( << "_______ emitting warning("<<x<<")" << endl); warning(x);}while(0)
@@ -1268,7 +1268,7 @@ int fishProtocol::received(const char *buffer, int buflen)
 }
 /** get a file */
 void fishProtocol::get(const KURL& u){
-    myDebug( << "@@@@@@@@@ get " << u.url() << endl);
+    myDebug( << "@@@@@@@@@ get " << u << endl);
     setHost(u.host(),u.port(),u.user(),u.pass());
     url = u;
     openConnection();
@@ -1285,7 +1285,7 @@ void fishProtocol::get(const KURL& u){
 
 /** put a file */
 void fishProtocol::put(const KURL& u, int permissions, bool overwrite, bool /*resume*/){
-    myDebug( << "@@@@@@@@@ put " << u.url() << " " << permissions << " " << overwrite << " " /* << resume */ << endl);
+    myDebug( << "@@@@@@@@@ put " << u << " " << permissions << " " << overwrite << " " /* << resume */ << endl);
     setHost(u.host(),u.port(),u.user(),u.pass());
     url = u;
     openConnection();
@@ -1399,7 +1399,7 @@ void fishProtocol::run() {
 }
 /** stat a file */
 void fishProtocol::stat(const KURL& u){
-    myDebug( << "@@@@@@@@@ stat " << u.url() << endl);
+    myDebug( << "@@@@@@@@@ stat " << u << endl);
     setHost(u.host(),u.port(),u.user(),u.pass());
     url = u;
     isStat = true; // FIXME: just a workaround for konq deficiencies
@@ -1416,7 +1416,7 @@ void fishProtocol::stat(const KURL& u){
 }
 /** find mimetype for a file */
 void fishProtocol::mimetype(const KURL& u){
-    myDebug( << "@@@@@@@@@ mimetype " << u.url() << endl);
+    myDebug( << "@@@@@@@@@ mimetype " << u << endl);
     setHost(u.host(),u.port(),u.user(),u.pass());
     url = u;
     openConnection();
@@ -1432,7 +1432,7 @@ void fishProtocol::mimetype(const KURL& u){
 }
 /** list a directory */
 void fishProtocol::listDir(const KURL& u){
-    myDebug( << "@@@@@@@@@ listDir " << u.url() << endl);
+    myDebug( << "@@@@@@@@@ listDir " << u << endl);
     setHost(u.host(),u.port(),u.user(),u.pass());
     url = u;
     openConnection();
@@ -1448,7 +1448,7 @@ void fishProtocol::listDir(const KURL& u){
 }
 /** create a directory */
 void fishProtocol::mkdir(const KURL& u, int permissions) {
-    myDebug( << "@@@@@@@@@ mkdir " << u.url() << " " << permissions << endl);
+    myDebug( << "@@@@@@@@@ mkdir " << u << " " << permissions << endl);
     setHost(u.host(),u.port(),u.user(),u.pass());
     url = u;
     openConnection();
@@ -1464,7 +1464,7 @@ void fishProtocol::mkdir(const KURL& u, int permissions) {
 }
 /** rename a file */
 void fishProtocol::rename(const KURL& s, const KURL& d, bool overwrite) {
-    myDebug( << "@@@@@@@@@ rename " << s.url() << " " << d.url() << " " << overwrite << endl);
+    myDebug( << "@@@@@@@@@ rename " << s << " " << d << " " << overwrite << endl);
     if (s.host() != d.host() || s.port() != d.port() || s.user() != d.user()) {
         error(ERR_UNSUPPORTED_ACTION,s.prettyURL());
         return;
@@ -1490,7 +1490,7 @@ void fishProtocol::rename(const KURL& s, const KURL& d, bool overwrite) {
 }
 /** create a symlink */
 void fishProtocol::symlink(const QString& target, const KURL& u, bool overwrite) {
-    myDebug( << "@@@@@@@@@ symlink " << target << " " << u.url() << " " << overwrite << endl);
+    myDebug( << "@@@@@@@@@ symlink " << target << " " << u << " " << overwrite << endl);
     setHost(u.host(),u.port(),u.user(),u.pass());
     url = u;
     openConnection();
@@ -1510,7 +1510,7 @@ void fishProtocol::symlink(const QString& target, const KURL& u, bool overwrite)
 }
 /** change file permissions */
 void fishProtocol::chmod(const KURL& u, int permissions){
-    myDebug( << "@@@@@@@@@ chmod " << u.url() << " " << permissions << endl);
+    myDebug( << "@@@@@@@@@ chmod " << u << " " << permissions << endl);
     setHost(u.host(),u.port(),u.user(),u.pass());
     url = u;
     openConnection();
@@ -1525,12 +1525,12 @@ void fishProtocol::chmod(const KURL& u, int permissions){
 }
 /** copies a file */
 void fishProtocol::copy(const KURL &s, const KURL &d, int permissions, bool overwrite) {
-    myDebug( << "@@@@@@@@@ copy " << s.url() << " " << d.url() << " " << permissions << " " << overwrite << endl);
+    myDebug( << "@@@@@@@@@ copy " << s << " " << d << " " << permissions << " " << overwrite << endl);
     if (s.host() != d.host() || s.port() != d.port() || s.user() != d.user()) {
         error(ERR_UNSUPPORTED_ACTION,s.prettyURL());
         return;
     }
-    //myDebug( << s.url() << endl << d.url() << endl);
+    //myDebug( << s << endl << d << endl);
     setHost(s.host(),s.port(),s.user(),s.pass());
     url = d;
     openConnection();
@@ -1553,7 +1553,7 @@ void fishProtocol::copy(const KURL &s, const KURL &d, int permissions, bool over
 }
 /** removes a file or directory */
 void fishProtocol::del(const KURL &u, bool isFile){
-    myDebug( << "@@@@@@@@@ del " << u.url() << " " << isFile << endl);
+    myDebug( << "@@@@@@@@@ del " << u << " " << isFile << endl);
     setHost(u.host(),u.port(),u.user(),u.pass());
     url = u;
     openConnection();
@@ -1581,7 +1581,7 @@ void fishProtocol::special( const QByteArray &data ){
             QString tempfile;
             stream >> u;
             stream >> command;
-            myDebug( << "@@@@@@@@@ exec " << u.url() << " " << command << endl);
+            myDebug( << "@@@@@@@@@ exec " << u << " " << command << endl);
             setHost(u.host(),u.port(),u.user(),u.pass());
             url = u;
             openConnection();
