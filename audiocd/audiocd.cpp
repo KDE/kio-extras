@@ -647,21 +647,24 @@ AudioCDProtocol::initRequest(const KURL & url)
         {
           /* Not found in title list.  Try hard to find a number in the
              string.  */
-          unsigned int ui, j;
-          for (ui = 0; ui < n.length(); ui++)
-            if (n[ui].isDigit())
+          unsigned int start = 0;
+          unsigned int end = 0;
+          /// Find where the numbers start
+          while (start < n.length())
+            if (n[start++].isDigit())
               break;
-          for (j = ui; j < n.length(); j++)
-            if (!n[j].isDigit())
+          /// Find where the numbers end
+          for (end = start; end < n.length(); end++)
+            if (!n[end].isDigit())
               break;
-          if (ui < n.length())
-            {
-              bool ok;
-              /* The external representation counts from 1.  */
-              d->req_track = n.mid(ui, j - ui).toInt(&ok) - 1;
-              if (!ok)
-                d->req_track = -1;
-            }
+          if (start < n.length()){
+            bool ok;
+            // The external representation counts from 1 so subtrac 1.  
+            d->req_track = n.mid(start-1, end - start +1).toInt(&ok) - 1;
+            kdDebug(7101) << "audiocd: track=" <<  d->req_track << endl;
+            if (!ok)
+              d->req_track = -1;
+          }
         }
     }
   if (d->req_track >= d->tracks)
