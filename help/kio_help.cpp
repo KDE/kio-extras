@@ -128,6 +128,11 @@ QString HelpProtocol::lookupFile(QString fname, QString query)
       result = langLookup(path+"/index.html");
       if (!result.isEmpty())
 	redirection(KURL(QString("help:%1/index.html").arg(path)));
+      else
+	{
+	  result = langLookup("khelpcenter/main.html");
+	  redirection(KURL("help:/khelpcenter/main.html")); // FIXME! Use the right anchor, or the right page
+	}
     }
 
   return result;
@@ -219,7 +224,7 @@ void HelpProtocol::get( const QString& path, const QString& query, bool /* reloa
 }
 
 
-void HelpProtocol::mimetype( const QString& path, const QString& query )
+void HelpProtocol::mimetype( const QString& , const QString& )
 {
   mimeType("text/html");
   finished();
