@@ -153,9 +153,10 @@ QDataStream& operator>> (QDataStream& s, sftpFileAttr& fa) {
         size = fa.mFilename.size();
         fa.mFilename.resize(size+1);
         fa.mFilename[size] = 0;
-        for( int i = 0; i < fa.mFilename.size(); i++ ) {
-            kdDebug() << (int)fa.mFilename[i] << endl;
-        }
+
+        // for( int i = 0; i < fa.mFilename.size(); i++ ) {
+        //    kdDebug() << (int)fa.mFilename[i] << endl;
+        // }
 
         s >> fa.mLongname;
         size = fa.mLongname.size();
