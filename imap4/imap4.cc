@@ -1169,6 +1169,11 @@ void IMAP4Protocol::openConnection()
 void IMAP4Protocol::closeConnection()
 {
   if (getState() == ISTATE_NO) return;
+  if (getState() == ISTATE_SELECT && metaData("expunge") == "auto")
+  {
+    imapCommand *cmd = doCommand (imapCommand::clientExpunge());
+    completeQueue.removeRef (cmd);
+  }
   if (getState() != ISTATE_CONNECT)
   {
     imapCommand *cmd = doCommand (imapCommand::clientLogout());
