@@ -2417,8 +2417,8 @@ static char *scan_request(char *c)
                 }
                 else
                     scan_troff(buf+1,0,NULL);
-                if (buf) delete [] buf;
-                if (name) delete [] name;
+                delete [] buf;
+                delete [] name;
 
 		*c++='\n';
 		break;
@@ -3885,8 +3885,7 @@ void scan_man_page(const char *man_page)
     STRDEF *cursor = defdef;
     while (cursor) {
         defdef = cursor->next;
-        if (cursor->st)
-            delete [] cursor->st;
+        delete [] cursor->st;
         delete cursor;
         cursor = defdef;
     }
@@ -3895,8 +3894,7 @@ void scan_man_page(const char *man_page)
     cursor = strdef;
     while (cursor) {
         strdef = cursor->next;
-        if (cursor->st)
-            delete [] cursor->st;
+        delete [] cursor->st;
         delete cursor;
         cursor = strdef;
     }

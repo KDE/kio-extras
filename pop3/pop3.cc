@@ -205,9 +205,7 @@ bool POP3Protocol::getResponse(char *r_buf, unsigned int r_len,
              QMIN(r_len, (buf[3] == ' ' ? recv_len - 4 : recv_len - 3)));
     }
 
-    if (buf) {
-      delete[]buf;
-    }
+    delete[]buf;
 
     return true;
   } else if (strncmp(buf, "-ERR", 4) == 0) {
@@ -225,9 +223,7 @@ bool POP3Protocol::getResponse(char *r_buf, unsigned int r_len,
 
     m_sError = i18n("The server said: \"%1\"").arg(serverMsg);
 
-    if (buf) {
-      delete[]buf;
-    }
+    delete[]buf;
 
     return false;
   } else if (strncmp(buf, "+ ", 2) == 0) {
@@ -236,9 +232,7 @@ bool POP3Protocol::getResponse(char *r_buf, unsigned int r_len,
       r_buf[QMIN(r_len - 1, recv_len - 4)] = '\0';
     }
 
-    if (buf) {
-      delete[]buf;
-    }
+    delete[]buf;
 
     return true;
   } else {
@@ -254,9 +248,7 @@ bool POP3Protocol::getResponse(char *r_buf, unsigned int r_len,
       m_sError = i18n("Invalid response from server:\n\"%1\"").arg(buf);
     }
 
-    if (buf) {
-      delete[]buf;
-    }
+    delete[]buf;
 
     return false;
   }

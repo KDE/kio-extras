@@ -94,12 +94,9 @@ FloppyProtocol::FloppyProtocol (const QCString &pool, const QCString &app )
 
 FloppyProtocol::~FloppyProtocol()
 {
-   if (m_stdoutBuffer!=0)
-      delete [] m_stdoutBuffer;
-   if (m_stderrBuffer!=0)
-      delete [] m_stderrBuffer;
-   if (m_mtool!=0)
-      delete m_mtool;
+   delete [] m_stdoutBuffer;
+   delete [] m_stderrBuffer;
+   delete m_mtool;
    m_mtool=0;
    m_stdoutBuffer=0;
    m_stderrBuffer=0;
@@ -125,10 +122,7 @@ int FloppyProtocol::readStdout()
    m_stdoutSize+=length;
    newBuffer[m_stdoutSize]='\0';
 
-   if (m_stdoutBuffer!=0)
-   {
-      delete [] m_stdoutBuffer;
-   }
+   delete [] m_stdoutBuffer;
    m_stdoutBuffer=newBuffer;
    //kdDebug(7101)<<"Floppy::readStdout(): -"<<m_stdoutBuffer<<"-"<<endl;
 
@@ -169,11 +163,9 @@ void FloppyProtocol::clearBuffers()
    kdDebug(7101)<<"Floppy::clearBuffers()"<<endl;
    m_stdoutSize=0;
    m_stderrSize=0;
-   if (m_stdoutBuffer!=0)
-      delete [] m_stdoutBuffer;
+   delete [] m_stdoutBuffer;
    m_stdoutBuffer=0;
-   if (m_stderrBuffer!=0)
-      delete [] m_stderrBuffer;
+   delete [] m_stderrBuffer;
    m_stderrBuffer=0;
    //kdDebug(7101)<<"Floppy::clearBuffers() ends"<<endl;
 }
@@ -995,8 +987,7 @@ void FloppyProtocol::get( const KURL& url )
       result=m_mtool->select(1,0,stdoutEvent, stderrEvent);
       if (stdoutEvent)
       {
-         if (m_stdoutBuffer!=0)
-            delete [] m_stdoutBuffer;
+         delete [] m_stdoutBuffer;
          m_stdoutBuffer=0;
          m_stdoutSize=0;
          if (readStdout()>0)
