@@ -166,7 +166,7 @@ mimeIO ()
 
 IMAP4Protocol::~IMAP4Protocol ()
 {
-  CloseDescriptor ();
+  CloseDescriptor();
   qDebug ("IMAP4: Finishing");
 }
 
@@ -1108,8 +1108,12 @@ IMAP4Protocol::stat (const KURL & _url)
   finished ();
 }
 
-bool
-IMAP4Protocol::makeLogin ()
+void IMAP4Protocol::openConnection()
+{
+  if (makeLogin()) connected();
+}
+
+bool IMAP4Protocol::makeLogin ()
 {
   bool skipFirst = true;
 

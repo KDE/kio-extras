@@ -50,106 +50,76 @@ public:
 
   // reimplement the TCPSlave
   IMAP4Protocol (const QCString & pool, const QCString & app, bool isSSL);
-  virtual ~
-  IMAP4Protocol ();
+  virtual ~IMAP4Protocol ();
 
-  virtual void
-  setHost (const QString & _host, int _port, const QString & _user,
-           const QString & _pass);
-  virtual void
-  get (const KURL & _url);
-  virtual void
-  stat (const KURL & _url);
-  virtual void
-  slave_status ();
-  virtual void
-  mimetype (const KURL & _url);
-  virtual void
-  del (const KURL & _url, bool isFile);
-  virtual void
-  listDir (const KURL & _url);
-  virtual void
-  setSubURL (const KURL & _url);
-  virtual void
-  dispatch (int command, const QByteArray & data);
-  virtual void
-  mkdir (const KURL & url, int permissions);
-  virtual void
-  put (const KURL & url, int permissions, bool overwrite, bool resume);
-  virtual void
-  rename (const KURL & src, const KURL & dest, bool overwrite);
-  virtual void
-  copy (const KURL & src, const KURL & dest, int permissions, bool overwrite);
+  virtual void openConnection();
+
+  virtual void setHost (const QString & _host, int _port, const QString & _user,
+    const QString & _pass);
+  virtual void get (const KURL & _url);
+  virtual void stat (const KURL & _url);
+  virtual void slave_status ();
+  virtual void mimetype (const KURL & _url);
+  virtual void del (const KURL & _url, bool isFile);
+  virtual void listDir (const KURL & _url);
+  virtual void setSubURL (const KURL & _url);
+  virtual void dispatch (int command, const QByteArray & data);
+  virtual void mkdir (const KURL & url, int permissions);
+  virtual void put (const KURL & url, int permissions, bool overwrite,
+    bool resume);
+  virtual void rename (const KURL & src, const KURL & dest, bool overwrite);
+  virtual void copy (const KURL & src, const KURL & dest, int permissions,
+    bool overwrite);
 
   // reimplement the parser
   // relay hook to send the fetched data directly to an upper level
-  virtual void
-  parseRelay (const QByteArray & buffer);
+  virtual void parseRelay (const QByteArray & buffer);
 
   // relay hook to announce the fetched data directly to an upper level
-  virtual void
-  parseRelay (ulong);
+  virtual void parseRelay (ulong);
 
   // read at least len bytes
   //virtual bool parseRead (QByteArray &buffer,ulong len,ulong relay=0);
 
   // read at least a line (up to CRLF)
-  virtual void
-  parseReadLine (QByteArray & buffer, ulong relay = 0);
+  virtual void parseReadLine (QByteArray & buffer, ulong relay = 0);
 
   // write argument to the server
-  virtual void
-  parseWriteLine (const QString &);
+  virtual void parseWriteLine (const QString &);
 
   // reimplement the mimeIO
-  virtual int
-  outputLine (const QCString & _str);
+  virtual int outputLine (const QCString & _str);
 
 protected:
 
   // select or examine the box if needed
-  bool
-  assureBox (const QString & aBox, bool readonly);
+  bool assureBox (const QString & aBox, bool readonly);
 
   // our new ReadLine supports 0x00 within data
-  ssize_t
-  ReadLine (char *data, ssize_t len);
+  ssize_t ReadLine (char *data, ssize_t len);
 
   enum IMAP_TYPE
   parseURL (const KURL & _url, QString & _box, QString & _section,
             QString & _type, QString & _uid, QString & _validity);
-  QString
-  getMimeType (enum IMAP_TYPE);
+  QString getMimeType (enum IMAP_TYPE);
 
-  bool
-  makeLogin ();
+  bool makeLogin ();
 
-  QString
-    myHost,
-    myUser,
-    myPass,
-    myAuth;
-  int
-    myPort;
+  QString myHost, myUser, myPass, myAuth;
+  int myPort;
 
-  bool
-    relayEnabled;
+  bool relayEnabled;
 
-  void
-  outputLineStr (const QString & _str)
+  void outputLineStr (const QString & _str)
   {
     outputLine (_str.latin1 ());
   }
-  void
-  doListEntry (const KURL & _url, mailHeader * what, int stretch);
-  void
-  doListEntry (const KURL & _url, const QString & myBox,
-               const imapList & item);
+  void doListEntry (const KURL & _url, mailHeader * what, int stretch);
+  void doListEntry (const KURL & _url, const QString & myBox,
+                    const imapList & item);
 
-  char
-    readBuffer[IMAP_BUFFER];
-  int
-    readSize;
+  char readBuffer[IMAP_BUFFER];
+  int readSize;
 };
 
 #endif
