@@ -1,6 +1,8 @@
 #ifndef _XSLT_H_
 #define _XSLT_H_
 
+#include <libxml/parser.h>
+
 QString transform(const QString &file);
 xmlParserInputPtr meinExternalEntityLoader(const char *URL, const char *ID,
 					   xmlParserCtxtPtr ctxt);
