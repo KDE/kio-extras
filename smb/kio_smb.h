@@ -104,8 +104,11 @@ private:
     bool     m_initialized_smbc;
     QString  m_current_workgroup;
     QString  m_default_workgroup;
+    QString  m_default_user;
+    QString  m_default_password;
     SMBUrl   m_current_url;
-    
+    bool m_showHiddenShares;
+
     QPtrList<SMBAuthInfo> m_auth_cache;
     QStringList        m_workgroup_cache;
 
@@ -127,6 +130,12 @@ protected:
     bool cache_check_workgroup( const QString& workgroup );
 
     //Authentication methods
+    /* Description : open auth dialog and cache userinfo if OK button pressed
+       Parameter :   SMBAuthInfo auth, workgroup, server, share are shown in dlg
+                                 could be username, domain and passwd are changed
+       Return :      false if authDlg, else true and username, domain  and passwd are changed
+    */
+    bool authDlg(SMBAuthInfo& auth);
     bool cache_get_AuthInfo( SMBAuthInfo& auth );
     void cache_clear_AuthInfo( const QString& workgroup );
     void cache_set_AuthInfo( const SMBAuthInfo& auth, bool store_in_kdesu=false );

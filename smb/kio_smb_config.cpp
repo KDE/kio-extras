@@ -35,12 +35,26 @@
 //===========================================================================
 void SMBSlave::reparseConfiguration()
 {
-    KConfig cfg( "kioslaverc" );
-    cfg.setGroup( "Browser Settings/SMBro" );
-    m_default_workgroup = cfg.readEntry( "Workgroup", "WORKGROUP" ).local8Bit();
+  KConfig *cfg = new KConfig("kioslaverc", true);
+  cfg->setGroup("Browser Settings/SMBro");
+  m_default_user=cfg->readEntry("User","");
+  m_default_workgroup=cfg->readEntry("Workgroup","");
+  m_showHiddenShares=cfg->readBoolEntry("ShowHiddenShares",false);
 
-    if( m_default_workgroup.isEmpty() )
-        m_default_workgroup = "WORKGROUP";
+  // unscramble, taken from Nicola Brodu's smb ioslave
+  //not really secure, but better than storing the plain password
+  QString scrambled = cfg->readEntry( "Password","" );
+  m_default_password = "";
+  for (uint i=0; i<scrambled.length()/3; i++)
+  {
+     QChar qc1 = scrambled[i*3];
+     QChar qc2 = scrambled[i*3+1];
+     QChar qc3 = scrambled[i*3+2];
+     unsigned int a1 = qc1.latin1() - '0';
+     unsigned int a2 = qc2.latin1() - 'A';
+     unsigned int a3 = qc3.latin1() - '0';
+     unsigned int num = ((a1 & 0x3F) << 10) | ((a2& 0x1F) << 5) | (a3 & 0x1F);
+     m_default_password[i] = QChar((uchar)((num - 17) ^ 173)); // restore
+  }
 
-    kdDebug(KIO_SMB) << "reparseConfiguration, m_default_workgroup = " << m_default_workgroup << endl;
 }
