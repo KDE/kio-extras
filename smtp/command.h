@@ -84,6 +84,7 @@ namespace KioSMTP {
     void parseFeatures( const Response & r );
     int startTLS();
     bool usingSSL() const;
+    bool usingTLS() const;
     bool haveCapability( const char * cap ) const;
   };
 
@@ -118,6 +119,8 @@ namespace KioSMTP {
     QCString nextCommandLine();
     bool processResponse( const Response & response );
   private:
+    bool sendInitialResponse() const;
+
     KDESasl mSASL;
     int mNumResponses;
     QCString mLastChallenge;

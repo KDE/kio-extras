@@ -88,6 +88,10 @@ namespace KioSMTP {
     return mSMTP->usingSSL();
   }
 
+  bool Command::usingTLS() const {
+    return mSMTP->usingTLS();
+  }
+
   bool Command::haveCapability( const char * cap ) const {
     return mSMTP->haveCapability( cap );
   }
@@ -188,7 +192,7 @@ namespace KioSMTP {
 
     if ( mFirstTime ) {
       QCString cmd = "AUTH " + mSASL.method();
-      if ( mSASL.clientStarts() ) {
+      if ( sendInitialResponse() ) {
 	QCString resp = mSASL.getResponse();
 	if ( resp.isEmpty() )
 	  resp = '='; // empty initial responses are represented by a
@@ -203,9 +207,17 @@ namespace KioSMTP {
     }
   }
 
+  bool AuthCommand::sendInitialResponse() const {
+    // don't send credentials if we're not under encryption
+    // until we know that the server supports this SASL
+    // mechanism. We can do this since the sending the
+    // initial-response right away is optional:
+    return mSASL.clientStarts() && ( usingSSL() || usingTLS() );
+  }
+
   bool AuthCommand::processResponse( const Response & r ) {
     if ( !r.isOk() ) {
-      if ( mFirstTime && !mSASL.clientStarts() )
+      if ( mFirstTime && !sendInitialResponse() )
 	mSMTP->error( KIO::ERR_COULD_NOT_LOGIN,
 		      i18n("Your SMTP server doesn't support %1.\n"
 			   "Choose a different authentication method.\n"
