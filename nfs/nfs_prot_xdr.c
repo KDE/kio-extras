@@ -5,7 +5,6 @@
 
 #include <rpc/types.h>
 #include <rpc/xdr.h>
-#include <arpa/inet.h>
 
 #include "nfs_prot.h"
 /*
