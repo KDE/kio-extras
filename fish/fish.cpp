@@ -1047,7 +1047,10 @@ void fishProtocol::manageConnection(const QString &l) {
             error(ERR_ACCESS_DENIED,url.prettyURL());
             break;
         case FISH_MKD:
-            error(ERR_COULD_NOT_MKDIR,url.prettyURL());
+            if ( rc == 501 )
+                error(ERR_DIR_ALREADY_EXIST,url.prettyURL());
+            else
+                error(ERR_COULD_NOT_MKDIR,url.prettyURL());
             break;
         case FISH_RMD:
             error(ERR_COULD_NOT_RMDIR,url.prettyURL());

@@ -139,7 +139,12 @@ MAIN: while (<STDIN>) {
     };
     /^MKD\s+((?:\\.|[^\\])*?)\s*$/ && do {
         my $dn = unquote($1);
-        print (mkdir($dn,0777)?"### 200\n":"### 500 $!\n");
+        if (mkdir($dn,0777)) {
+          print "### 200\n";
+        } else {
+          my $err = $!;
+          print (chdir($dn)?"### 501 $err\n":"### 500 $err\n");
+        }
         next;
     };
     /^CWD\s+((?:\\.|[^\\])*?)\s*$/ && do {
