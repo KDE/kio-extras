@@ -45,12 +45,10 @@ if test "x$with_cdparanoia" = "xCHECK" ; then
     done
     if test "$with_cdparanoia" = FOUND; then
       if test "$ext" = la; then
-        grep "^library_names='*[a-z]*'" $para_libdir/libcdda_paranoia.$ext 2>&1 > /dev/null || with_cdparanoia=NOTFOUND
+        grep "^library_names='.*[a-z].*'" $para_libdir/libcdda_paranoia.$ext 2>&1 > /dev/null || with_cdparanoia=NOTFOUND
       fi
-      if test "$ext" = a; then
-        with_cdparanoia=NOTFOUND
-        cdparanoia_only_static=yes
-      fi
+      test "$ext" = a && with_cdparanoia=NOTFOUND
+      test "$with_cdparanoia" = NOTFOUND && cdparanoia_only_static=yes
       # beware, that we don't reset CDPARANOIA_*
     fi
   fi
