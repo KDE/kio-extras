@@ -680,9 +680,11 @@ void FileProtocol::doCopy( QStringList& _source, const char *_dest, bool _rename
   if ( _move ) {
     slotDel( _source );
   }
-
-  finished();
-  m_cmd = CMD_NONE;
+  else
+  {
+    finished();
+    m_cmd = CMD_NONE;
+  }    
 }
 
   
@@ -1040,7 +1042,6 @@ void FileProtocol::slotDel( QStringList& _source )
   m_cmd = CMD_NONE;
 }
 
-
 void FileProtocol::slotListDir( const char *_url )
 {
   KURL usrc( _url );
@@ -1174,7 +1175,6 @@ void FileProtocol::slotListDir( const char *_url )
     atom.m_uds = UDS_CREATION_TIME;
     atom.m_long = buff.st_ctime;
     entry.append( atom );
-
     listEntry( entry );
   }
   
