@@ -11,7 +11,7 @@ kio_imap4_la_LDFLAGS = $(all_libraries) -module -avoid-version
 
 noinst_HEADERS = imap4.h
 
-kdelnk_DATA = imap4.protocol
+kdelnk_DATA = imap4.protocol imaps.protocol
 kdelnkdir = $(kde_servicesdir)
 
 check_PROGRAMS = linktest
