@@ -26,7 +26,7 @@
 #include <sys/time.h>
 #endif
 
-#include <kstddirs.h>
+#include <kstandarddirs.h>
 #include <qregexp.h>
 
 const char * const KSshProcess::versionStrs[] = {

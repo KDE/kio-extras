@@ -33,7 +33,7 @@
 #include <kdebug.h>
 #include <kinstance.h>
 #include <kglobal.h>
-#include <kstddirs.h>
+#include <kstandarddirs.h>
 #include <kprocess.h>
 #include <klocale.h>
 

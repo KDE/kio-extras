@@ -9,7 +9,7 @@
 
 #include <kdebug.h>
 #include <kprocess.h>
-#include <kstddirs.h>
+#include <kstandarddirs.h>
 #include <kinstance.h>
 
 #include "info.h"

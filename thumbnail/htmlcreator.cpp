@@ -25,7 +25,7 @@
 #include <qimage.h>
 #include <qpainter.h>
 
-#include <kapp.h>
+#include <kapplication.h>
 #include <khtml_part.h>
 
 #include "htmlcreator.h"

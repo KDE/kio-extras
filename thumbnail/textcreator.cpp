@@ -24,7 +24,7 @@
 #include <qpixmap.h>
 #include <qimage.h>
 
-#include <kstddirs.h>
+#include <kstandarddirs.h>
 #include <kpixmapsplitter.h>
 
 #include "textcreator.h"

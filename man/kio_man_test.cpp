@@ -5,7 +5,7 @@
 #include "kio_man.h"
 
 
-#include <kapp.h>
+#include <kapplication.h>
 #include <klocale.h>
 
 
