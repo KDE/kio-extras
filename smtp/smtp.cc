@@ -260,8 +260,9 @@ void SMTPProtocol::put(const KURL &url, int /*permissions*/, bool /*overwrite*/,
 	        error(ERR_SERVICE_NOT_AVAILABLE, i18n("SMTPProtocol::smtp_open failed (%1)").arg(open_url.path()));
 
 	if (!command(from)) {
-		error(ERR_NO_CONTENT, i18n("The server didn't accept the "
-                "sender address:\n%1").arg(lastError));
+		if (!errorSent)
+			error(ERR_NO_CONTENT, i18n("The server didn't accept the "
+        	        "sender address:\n%1").arg(lastError));
 		smtp_close();
 		return;
 	}
@@ -274,9 +275,10 @@ void SMTPProtocol::put(const KURL &url, int /*permissions*/, bool /*overwrite*/,
 
 	// Begin sending the actual message contents (most headers+body)
 	if (!command(ASCII("DATA"))) {
-		error(ERR_NO_CONTENT, i18n("The attempt to start sending the "
-                "message content failed.\nThe server said:\n%1")
-		.arg(lastError));
+		if (!errorSent)
+			error(ERR_NO_CONTENT, i18n("The attempt to start sending the "
+        	        "message content failed.\nThe server said:\n%1")
+			.arg(lastError));
 		smtp_close();
 		return;
 	}
@@ -335,8 +337,9 @@ void SMTPProtocol::put(const KURL &url, int /*permissions*/, bool /*overwrite*/,
 	write("\r\n.\r\n", 5);
 	if (getResponse() >= 400)
 	{
-		error(ERR_NO_CONTENT, i18n("The server didn't accept the "
-                "message content:\n%1").arg(lastError));
+		if (!errorSent)
+			error(ERR_NO_CONTENT, i18n("The server didn't accept the "
+        	        "message content:\n%1").arg(lastError));
 		smtp_close();
 		return;
 	}
@@ -350,7 +353,8 @@ bool SMTPProtocol::PutRecipients (QStringList &list, const KURL &url)
 	for ( QStringList::Iterator it = list.begin(); it != list.end(); ++it ) {
 		if (!command(formatted_recip.arg(*it)))
 		{
-			error(ERR_NO_CONTENT, i18n("The server didn't accept one of the recipients.\nIt said: ").arg(lastError));
+			if (!errorSent)
+				error(ERR_NO_CONTENT, i18n("The server didn't accept one of the recipients.\nIt said: ").arg(lastError));
 			smtp_close();
 			return FALSE;
 		}
@@ -370,7 +374,9 @@ int SMTPProtocol::getResponse (char *r_buf, unsigned int r_len)
 {
 	char *buf = 0;
 	unsigned int recv_len = 0, len;
+	int retVal;
 	lastError = QCString();
+	errorSent = false;
 
 	// Give the buffer the appropiate size
 	// a buffer of less than 5 bytes will *not* work
@@ -382,22 +388,27 @@ int SMTPProtocol::getResponse (char *r_buf, unsigned int r_len)
 		len = DEFAULT_RESPONSE_BUFFER;
 	}
 
-	if (!waitForResponse(60))
-	{
-		error(ERR_SERVER_TIMEOUT, m_sServer);
-		return 999;
-	}
+	waitForResponse(60);
 
 	// Clear out the buffer
 	memset(buf, 0, len);
 	// And grab the data
 	recv_len = readLine(buf, len-1);
 
-	if (recv_len <= 0) return 999;
+	if (recv_len <= 0)
+	{
+		if (isConnectionValid())
+			error(ERR_SERVER_TIMEOUT, m_sServer);
+		else
+			error(ERR_CONNECTION_BROKEN, m_sServer);
+		errorSent = true;
+		return 999;
+	}
 
 	if (recv_len < 4)
 	{
-		error(ERR_UNKNOWN, "Line too short");
+		error(ERR_NO_CONTENT, i18n("Invalid SMTP response recieved."));
+		errorSent = true;
 		return 999;
 	}
 	char *origbuf = buf;
@@ -405,19 +416,31 @@ int SMTPProtocol::getResponse (char *r_buf, unsigned int r_len)
 		while ( (buf[3] == '-') && (len-recv_len > 3) ) { // Three is quite arbitrary
 			buf += recv_len;
 			len -= (recv_len+1);
-			if (!waitForResponse(60))
-				return 999;
+			waitForResponse(60);
 			recv_len = readLine(buf, len-1);
 			if (recv_len <= 0)
-				buf[0] = buf[1] = buf[2] = buf[3] = ' ';
+			{
+				if (isConnectionValid())
+					error(ERR_SERVER_TIMEOUT, m_sServer);
+				else
+					error(ERR_CONNECTION_BROKEN, m_sServer);
+				errorSent = true;
+				return 999;
+			}
+			if (recv_len < 4)
+			{
+				error(ERR_NO_CONTENT, i18n("Invalid SMTP response recieved."));
+				errorSent = true;
+				return 999;
+			}
 		}
 		buf = origbuf;
 		if (r_len) {
-		memcpy(r_buf, buf, strlen(buf));
-		r_buf[r_len-1] = 0;
+			memcpy(r_buf, buf, strlen(buf));
+			r_buf[r_len-1] = 0;
 		}
 		lastError = QCString(buf + 4, recv_len - 4);
-		return GetVal(buf);
+		retVal = GetVal(buf);
 	} else {
 		// Really crude, whee
 		if (r_len) {
@@ -425,8 +448,18 @@ int SMTPProtocol::getResponse (char *r_buf, unsigned int r_len)
 			memcpy(r_buf, buf+4, r_len);
 		}
 		lastError = QCString(buf + 4, recv_len - 4);
-		return GetVal(buf);
+		retVal = GetVal(buf);
 	}
+	if (retVal == -1)
+	{
+		if (!isConnectionValid())
+			error(ERR_CONNECTION_BROKEN, m_sServer);
+		else
+			error(ERR_NO_CONTENT, i18n("Invalid SMTP response recieved: %1").arg(lastError));
+		errorSent = true;
+		return 999;
+	}
+	return retVal;
 }
 
 bool SMTPProtocol::command (const QString &cmd, char *recv_buf, unsigned int len)
@@ -455,6 +488,9 @@ bool SMTPProtocol::smtp_open()
 	}
 
 	if (getResponse() >= 400) {
+		if (!errorSent)
+			error(ERR_COULD_NOT_LOGIN, i18n("The server didn't accept "
+			"the connection: %1").arg(lastError));
 		return false;
 	}
 
@@ -464,8 +500,10 @@ bool SMTPProtocol::smtp_open()
 	char hostname[100];
 	gethostname(hostname, 100);
 	if (!command(ASCII("EHLO " + QCString(hostname, 100)), ehlobuf.buffer().data(), 5119)) {
+		if (errorSent) return false;
 		if (!command(ASCII("HELO " + QCString(hostname, 100)))) { // Let's just check to see if it speaks plain ol' SMTP
-			error(ERR_COULD_NOT_LOGIN, i18n("The server said: %1").arg(lastError));
+			if (!errorSent)
+				error(ERR_COULD_NOT_LOGIN, i18n("The server said: %1").arg(lastError));
 			smtp_close();
 			return false;
 		}
@@ -506,9 +544,10 @@ bool SMTPProtocol::smtp_open()
                 }
 		else if (metaData("tls") == "on")
 		{
-			error(ERR_COULD_NOT_LOGIN,
-				i18n("Your SMTP server does not support TLS. Disable\n"
-                                "TLS, if you want to connect without encryption."));
+			if (!errorSent)
+				error(ERR_COULD_NOT_LOGIN,
+					i18n("Your SMTP server does not support TLS. Disable\n"
+                	                "TLS, if you want to connect without encryption."));
 			return false;
 		} 
 	}
@@ -570,7 +609,8 @@ bool SMTPProtocol::Authenticate()
 			free(challenge);
 			delete m_pSASL;
 			m_pSASL = 0;
-			error(ERR_COULD_NOT_LOGIN, i18n("Your SMTP server doesn't support %1.\nChoose a different authentication method.").arg(auth_method));
+			if (!errorSent)
+				error(ERR_COULD_NOT_LOGIN, i18n("Your SMTP server doesn't support %1.\nChoose a different authentication method.").arg(auth_method));
 			return false;
 		}
 
@@ -587,7 +627,7 @@ bool SMTPProtocol::Authenticate()
 		}
 		free(challenge);
 
-		if (!ret) error(ERR_COULD_NOT_LOGIN, i18n("Authentication failed.\nMost likely the password is wrong.\nThe server said: %1").arg(lastError));
+		if (!ret && !errorSent) error(ERR_COULD_NOT_LOGIN, i18n("Authentication failed.\nMost likely the password is wrong.\nThe server said: %1").arg(lastError));
 		return ret;
 	}
 	return false;
@@ -632,13 +672,10 @@ void SMTPProtocol::stat (const KURL &url)
 
 int GetVal (char *buf)
 {
-	int val;
-
-	val = (100*(static_cast<int>(buf[0])-48));
-	val += (10*(static_cast<int>(buf[1])-48));
-	val += static_cast<int>(buf[2])-48;
-
-	return val;
+	bool ok;
+	QCString st(buf, 4);
+	int val = st.toInt(&ok);
+	return (ok) ? val : -1;
 }
 
 void GetAddresses (const QString &str, const QString &delim, QStringList &list)
