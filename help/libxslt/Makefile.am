@@ -1,4 +1,4 @@
-INCLUDES = $(LIBXML_CFLAGS)
+INCLUDES = -I$(srcdir)/.. $(LIBXML_CFLAGS)
 
 noinst_LTLIBRARIES = libxslt.la
 
