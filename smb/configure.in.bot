@@ -1,0 +1,9 @@
+if test "$have_libsmbclient" = no; then
+  echo ""
+  echo "You're missing libsmbclient from samba 3.0"
+  echo "KDE will use a wrapper for smbclient without it, 
+  echo "consider installing it."
+  echo "Look at kioslave/smb/libsmbclient-HOWTO.txt"
+  echo ""
+  all_tests=bad
+fi
