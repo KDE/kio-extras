@@ -18,8 +18,6 @@
 #ifndef KSSHPROCESS_H
 #define KSSHPROCESS_H
 
-#define KSSHPROC 7116
-
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <signal.h>
@@ -31,21 +29,36 @@
 
 #include "process.h"
 
+#define KSSHPROC 7116
 
-/********************
- * Provides easy and version independent access to ssh.
+/**
+ * Provides version independent access to ssh. Currently supported
+ * versions of SSH are:
+ *   OpenSSH 2.9p1
+ *   OpenSSH 2.9p2
+ *   Commercial SSH 3.0.0
+ * Other versions of SSH will probably work also.
+ *
+ * To setup a SSH connection first create a list of options to use and tell
+ * KSshProcess about your options. Then start the ssh connection. Once the
+ * connection is setup use the  stdin, stdout, stderr, and pty file descriptors
+ * to communicate with ssh.
+ *
  * @author Lucas Fisher
  */
 
 class KSshProcess {
 public:
-    /************************
+    /**
      * SSH Option
+     *
+     * Stores SSH options for use with KSshProcess.
      *
      * SSH options are configured much like UDS entries.
      * Each option is assigned a constant and a string, bool,
-     * or number is number is assigned based on the option.
+     * or number is assigned based on the option.
      *
+     * @author Lucas Fisher (ljfisher@iastate.edu)
      */
     class SshOpt {
     public:
@@ -55,22 +68,108 @@ public:
         bool     boolean;
     };
 
+    /**
+     * List of SshOptions and associated iterators
+     */
     typedef QValueList<SshOpt> SshOptList;
     typedef QValueListIterator<SshOpt> SshOptListIterator;
     typedef QValueListConstIterator<SshOpt> SshOptListConstIterator;
 	
+    /**
+     * Initialize a SSH process using the first SSH binary found in the PATH
+     */
     KSshProcess();
+
+    /**
+     * Initialize a SSH process using the specified SSH binary.
+     * @param pathToSsh The fully qualified path name of the ssh binary
+     *                  KSshProcess should use to setup a SSH connection.
+     */
     KSshProcess(QString pathToSsh);
 	~KSshProcess();
+
+    /**
+     * Get the ssh version string.
+     *
+     * @return  The string outputted by 'ssh -V'.
+     */
     QString version();
+
+    /**
+     * Get the last error encountered by KSshProcess.
+     *
+     * @param msg Set to the error message, if any, outputted by ssh when it is run.
+     *
+     * @return The error number. See SshError for descriptions.
+     */
     int error(QString& msg);
+
+    /**
+     * Get the last error encountered by KSshProcess.
+     * @return The error number. See SshError for descriptions.
+     */
     int error() { return mError; }
+
+    /**
+     * Send a signal to the ssh process.
+     *
+     * @param signal The signal to send to the ssh process. See 'kill -l'
+     *               for a list of possible signals.
+     *               The default signal is SIGTERM which kills ssh.
+     *
+     */
     void kill(int signal = SIGTERM);
+
+    /**
+     * Print the command line arguments ssh is run with using kdDebug.
+     */
     void printArgs();
+
+    /**
+     * Set the SSH options.
+     *
+     * @param opts A list of SshOpt objects specifying the ssh options.
+     *
+     * @return True if all options are valid. False if unrecognized options
+     *         or a required option is missing. Call error()
+     *         for details.
+     *
+     * This must be called before connect().  See SshOptType for a list of
+     * supported ssh options.  The required options are SSH_USERNAME, SSH_PASSWD,
+     * and SSH_HOST.
+     */
     bool setArgs(const SshOptList& opts);
+
+    /**
+     * Create a ssh connection based on the options provided by setOptions().
+     *
+     * @param acceptHostKey When true KSshProcess will automatically accept
+     *                      unrecognized or changed host keys.
+     *
+     * @return True if the ssh connection is successful. False if the connection
+     *         fails.  Call error() to get the reason for the failure.
+     */
     bool connect(bool acceptHostKey = false);
+
+    /**
+     * Access to standard in and out of the ssh process.
+     *
+     * @return The file description for stdin and stdout of the ssh process.
+     */
     int stdio() { return ssh.stdio(); }
+
+    /**
+     * Access to standard error of the ssh process.
+     *
+     * @return The file descriptior for stderr of the ssh process.
+     */
     int stderr() { return ssh.stderr(); }
+
+    /**
+     * Access the pty to which the ssh process is attached.
+     *
+     * @return The file descriptor of pty to which ssh is attached.
+     */
     int pty() { return ssh.fd(); }
 private:
     QString mSshPath;
@@ -94,8 +193,12 @@ private:
     static const char * const continuePrompt[];
 
 public:
+    /**
+     * SSH options supported by KSshProcess.  Set SshOpt::opt to one of these
+     * values.
+     */
     // we cannot do this like UDSAtomType (ORing the type with the name) because
-    // we have too many options for ssh
+    // we have too many options for ssh and not enough bits.
     enum SshOptType {
         /* Request server to invoke subsystem. (str) */
         SSH_SUBSYSTEM,
@@ -130,6 +233,9 @@ public:
         SSH_OPT_MAX // always last
     }; // that's all for now
 
+    /**
+     * Ssh versions supported by KSshProcess.
+     */
     enum SshVersion {
         OPENSSH_2_9P1,
         OPENSSH_2_9P2,
@@ -140,6 +246,10 @@ public:
         SSH_VER_MAX    // always last
     };
     
+    /**
+     * Errors that KSshProcess can encounter.  When a member function returns
+     * false, call error() to retrieve one of these error codes.
+     */
     enum SshError {
         /* Cannot lauch ssh client */
         ERR_CANNOT_LAUNCH,
