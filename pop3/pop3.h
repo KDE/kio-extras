@@ -16,46 +16,72 @@
 class POP3Protocol : public IOProtocol
 {
 public:
-  POP3Protocol( Connection *_conn );
+  POP3Protocol (Connection *_conn);
   
-  virtual void slotGet( const char *_url );
-  virtual void slotPut( const char *_url, int _mode, bool _overwrite,
-			bool _resume, unsigned int );
-  virtual void slotCopy( const char *_source, const char *_dest );
+  virtual void slotGet (const char *_url);
+  virtual void slotPut (const char *_url, int _mode, bool _overwrite,
+			bool _resume, unsigned int);
+  virtual void slotCopy (const char *_source, const char *_dest);
 
-  virtual void slotData( void *_p, int _len );
-  virtual void slotDataEnd();
+  virtual void slotData (void *_p, int _len);
+  virtual void slotDataEnd ();
   
-  void jobData( void *_p, int _len );
-  void jobError( int _errid, const char *_text );
-  void jobDataEnd();
+  void jobData (void *_p, int _len);
+  void jobError (int _errid, const char *_text);
+  void jobDataEnd ();
   
-  Connection* connection() { return ConnectionSignals::m_pConnection; }
+  Connection* connection () { return ConnectionSignals::m_pConnection; }
   
  protected:
-  bool command(const char *buf, char *r_buf=0, unsigned int r_len=0);
-  bool getResponse(char *buf=0, unsigned int len=0);
+
+  /**
+    *  Send a command to the server, and wait for the one-line-status
+    *  reply via getResponse.  Similar rules apply.  If no buffer is
+    *  specified, no data is passed back.
+    */
+  bool command (const char *buf, char *r_buf=0, unsigned int r_len=0);
+
+  /**
+    *  All POP3 commands will generate a response.  Each response will
+    *  either be prefixed with a "+OK " or a "-ERR ".  The getResponse 
+    *  fucntion will wait until there's data to be read, and then read in
+    *  the first line (the response), and copy the response sans +OK/-ERR
+    *  into a buffer (up to len bytes) if one was passed to it.  It will
+    *  return true if the response was affirmitave, or false otherwise.
+    */
+  bool getResponse (char *buf=0, unsigned int len=0);
+
+  /**
+    *  Attempt to properly shut down the POP3 connection by sending
+    *  "QUIT\r\n" before closing the socket.
+    */
   void pop3_close ();
-  bool pop3_open( KURL &_url );
+
+  /**
+    * Attempt to initiate a POP3 connection via a TCP socket.  If no port
+    * is passed, port 143 is assumed, if no user &&|| password is
+    * specified, the user is prompted for them.
+    */
+  bool pop3_open (KURL &_url);
 
   int m_cmd, m_iSock;
   struct timeval m_tTimeout;
+  QString m_sServerInfo;
   FILE *fp;
   IOJob* m_pJob;
-  QString m_sServerInfo;
 };
 
 class POP3IOJob : public IOJob
 {
  public:
-  POP3IOJob( Connection *_conn, POP3Protocol *_pop3 );
+  POP3IOJob (Connection *_conn, POP3Protocol *_pop3);
   
-  virtual void slotData( void *_p, int _len );
-  virtual void slotDataEnd();
-  virtual void slotError( int _errid, const char *_txt );
+  virtual void slotData (void *_p, int _len);
+  virtual void slotDataEnd ();
+  virtual void slotError (int _errid, const char *_txt);
   
  protected:
-  POP3Protocol* m_pPOP3;
+  POP3Protocol *m_pPOP3;
 };
 
 #endif
