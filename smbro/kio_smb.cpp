@@ -333,14 +333,19 @@ SmbProtocol::SmbReturnCode SmbProtocol::getShareInfo(ClientProcess* shareLister,
 
          if (exitStatus==0)
          {
+            kdDebug(7101)<<"::getShareInfo() exitStaus==0"<<endl;
             if (strstr(m_stdoutBuffer,"ERRDOS - ERRnoaccess")==0)
                return SMB_OK; //probably
             else return SMB_WRONGPASSWORD;
          }
          else if (alreadyEnteredPassword)
          {
+            kdDebug(7101)<<"::getShareInfo() in alreadyEnteredPassword"<<endl;
             if (strstr(m_stdoutBuffer,"ERRDOS - ERRnomem")!=0)
+            {
+               kdDebug(7101)<<"::getShareInfo() after strstr(ERRnomem)"<<endl;
                return SMB_ERROR;  //:-(
+            }
             else
                return SMB_WRONGPASSWORD;  //:-(
          }
