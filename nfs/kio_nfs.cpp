@@ -1,5 +1,7 @@
 /*  This file is part of the KDE project
 
+    $Id$
+
     Copyright (C) 2000 Alexander Neundorf <neundorf@kde.org>
 
     This library is free software; you can redistribute it and/or
@@ -22,45 +24,44 @@
 #include <config.h>
 #endif
 
-#include <iostream.h>
-
-#include <pwd.h>
-#include <grp.h>
-#include <stdio.h>
+#include <sys/types.h>
 #include <sys/stat.h>
+#include <sys/utsname.h>
+
+#include <arpa/inet.h>
 
 // This is needed on Solaris so that rpc.h defines clnttcp_create etc.
 #ifndef PORTMAP
 #define PORTMAP
 #endif
-#include <rpc/rpc.h> // for clnt_call etc.
+#include <rpc/rpc.h> // for rpc calls
 
-#ifdef HAVE_STRING_H
-#include <string.h>
-#else
-#include <strings.h>
-#endif
-#include <sys/types.h>
-#include <unistd.h>
-#include <memory.h>
-#include <stdlib.h>
-
-#include <netdb.h>
-#include <arpa/inet.h>
 #include <errno.h>
+#include <grp.h>
+#include <memory.h>
+#include <netdb.h>
+#include <pwd.h>
+#include <stdlib.h>
+#include <strings.h>
+#include <stdio.h>
+#include <time.h>
+#include <unistd.h>
+
+#include <iostream.h>
+
+#include <qfile.h>
+#include <qdir.h>
+
+#include <kdebug.h>
+#include <kinstance.h>
+#include <klocale.h>
+
+#include <kio/global.h>
 
 #include "nfs_prot.h"
 #define fhandle _fhandle
 #include "mount.h"
-#include <time.h>
 #include "kio_nfs.h"
-#include <kinstance.h>
-#include <kdebug.h>
-#include <kio/global.h>
-#include <klocale.h>
-
-#include <qfile.h>
-#include <qdir.h>
 
 #define MAXHOSTLEN 256
 
@@ -73,12 +74,6 @@
 
 //this is taken from kdelibs/kdecore/fakes.cpp
 //#if !defined(HAVE_GETDOMAINNAME)
-
-#include <sys/utsname.h>
-#include <netdb.h>
-#include <strings.h>
-#include <errno.h>
-#include <stdio.h>
 
 int x_getdomainname(char *name, size_t len)
 {
@@ -377,35 +372,32 @@ void NFSProtocol::openConnection()
       m_client = clntudp_create(&server_addr,MOUNTPROG, MOUNTVERS, pertry_timeout, &m_sock);
       if (m_client==0)
       {
-         clnt_pcreateerror("mount clntudp_create");
-         error( ERR_COULD_NOT_CONNECT, m_currentHost.latin1());
+         clnt_pcreateerror(const_cast<char *>("mount clntudp_create"));
+         error(ERR_COULD_NOT_CONNECT, m_currentHost.latin1());
          return;
       }
    }
    QCString hostName("localhost");
    char nameBuffer[1024];
-   if (gethostname(nameBuffer,1024)==0)
-   {
+   if (gethostname(nameBuffer, 1024)==0) {
       hostName=nameBuffer;
       // I have the same problem here as Stefan Westerfeld, that's why I use
       // the getdomainname() from fakes.cpp (renamed to x_getdomainname()), this one works
       // taken from kdelibs/arts/mcopy/mcoputils.cc
-      if (x_getdomainname(nameBuffer,1024)==0)
-      {
+      if (x_getdomainname(nameBuffer, 1024)==0) {
          /*
           * I don't know why, but on my linux machine, the domainname
           * always ends up being (none), which is certainly no valid
           * domainname
           */
-         if(strcmp(nameBuffer,"(none)") != 0)
-         {
+         if(strcmp(nameBuffer,"(none)") != 0) {
             hostName += ".";
             hostName += nameBuffer;
          }
       }
    };
-   kdDebug(7101)<<"hostname is -"<<hostName<<"-"<<endl;
-   m_client->cl_auth = authunix_create(hostName.data(),geteuid(),getegid(),0,0);
+   kdDebug(7101) << "hostname is -" << hostName << "-" << endl;
+   m_client->cl_auth = authunix_create(hostName.data(), geteuid(), getegid(), 0, 0);
    total_timeout.tv_sec = 20;
    total_timeout.tv_usec = 0;
 
@@ -415,19 +407,17 @@ void NFSProtocol::openConnection()
 
    int clnt_stat = clnt_call(m_client, MOUNTPROC_EXPORT,(xdrproc_t) xdr_void, NULL,
                          (xdrproc_t) xdr_exports, (char*)&exportlist,total_timeout);
-   if (!checkForError(clnt_stat,0,m_currentHost.latin1())) return;
+   if (!checkForError(clnt_stat, 0, m_currentHost.latin1())) return;
 
    fhstatus fhStatus;
    bool atLeastOnceSucceeded(FALSE);
-   for(; exportlist!=0;exportlist = exportlist->ex_next)
-   {
-      kdDebug(7101)<<"found export: "<<exportlist->ex_dir<<endl;
+   for(; exportlist!=0;exportlist = exportlist->ex_next) {
+      kdDebug(7101) << "found export: " << exportlist->ex_dir << endl;
 
-      memset(&fhStatus,0,sizeof(fhStatus));
+      memset(&fhStatus, 0, sizeof(fhStatus));
       clnt_stat = clnt_call(m_client, MOUNTPROC_MNT,(xdrproc_t) xdr_dirpath, (char*)(&(exportlist->ex_dir)),
                             (xdrproc_t) xdr_fhstatus,(char*) &fhStatus,total_timeout);
-      if (fhStatus.fhs_status==0)
-      {
+      if (fhStatus.fhs_status==0) {
          atLeastOnceSucceeded=TRUE;
          NFSFileHandle fh;
          fh=fhStatus.fhstatus_u.fhs_fhandle;
