@@ -1,0 +1,9 @@
+[Desktop Entry]
+Encoding=UTF-8
+Icon=nfs_mount
+Type=MimeType
+MimeType=kdedevice/smb_mounted
+Comment=Mounted Samba (M$ Network) Share
+Patterns=
+
+X-KDE-AutoEmbed=true
