@@ -87,7 +87,7 @@ public:
   //virtual bool parseRead (QByteArray &buffer,ulong len,ulong relay=0);
 
   // read at least a line (up to CRLF)
-  virtual void parseReadLine (QByteArray & buffer, ulong relay = 0);
+  virtual bool parseReadLine (QByteArray & buffer, ulong relay = 0);
 
   // write argument to the server
   virtual void parseWriteLine (const QString &);

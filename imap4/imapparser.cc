@@ -63,9 +63,10 @@ imapParser::~imapParser ()
 imapCommand *
 imapParser::doCommand (imapCommand * aCmd)
 {
+  int pl = 0;
   sendCommand (aCmd);
-  while (!aCmd->isComplete ())
-    while (!parseLoop ());
+  while (pl != -1 && !aCmd->isComplete ())
+    while ((pl = parseLoop ()) == 0);
 
   return aCmd;
 }
@@ -134,7 +135,7 @@ imapParser::clientAuthenticate (const QString & aUser, const QString & aPass,
   while (!cmd->isComplete ())
   {
     //read the next line
-    while (!parseLoop ());
+    while (parseLoop() == 0);
 
     if (!continuation.isEmpty ())
     {
@@ -1485,17 +1486,16 @@ imapParser::parseRecent (ulong value, QString & result)
   result = QString::null;
 }
 
-bool
-imapParser::parseLoop ()
+int imapParser::parseLoop ()
 {
   QString result;
   QByteArray readBuffer;
 
-  parseReadLine (readBuffer);
+  if (!parseReadLine(readBuffer)) return -1;
   result = QString::fromLatin1 (readBuffer.data (), readBuffer.size ());
 
   if (result.isNull ())
-    return false;
+    return 0;
   if (!sentQueue.count ())
   {
     // maybe greeting or BYE everything else SHOULD not happen, use NOOP or IDLE
@@ -1543,7 +1543,7 @@ imapParser::parseLoop ()
     }
   }
 
-  return true;
+  return 1;
 }
 
 void
@@ -1581,12 +1581,12 @@ imapParser::parseRead (QByteArray & buffer, ulong len, ulong relay)
   return (len <= buffer.size ());
 }
 
-void
-imapParser::parseReadLine (QByteArray & buffer, ulong relay)
+bool imapParser::parseReadLine (QByteArray & buffer, ulong relay)
 {
   qWarning
     ("imapParser::parseReadLine - virtual function not reimplemented - no data read");
   if (&buffer && relay);
+  return FALSE;
 }
 
 void

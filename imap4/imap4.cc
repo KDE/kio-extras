@@ -46,6 +46,7 @@
 
 #include <sys/types.h>
 #include <sys/socket.h>
+#include <sys/select.h>
 #include <sys/time.h>
 #include <sys/wait.h>
 #include <sys/stat.h>
@@ -566,13 +567,12 @@ IMAP4Protocol::parseRelay (ulong len)
 }
 
 
-void
-IMAP4Protocol::parseReadLine (QByteArray & buffer, ulong relay)
+bool IMAP4Protocol::parseReadLine (QByteArray & buffer, ulong relay)
 {
   char buf[1024];
-//  struct timeval m_tTimeout = {1, 0};
   fd_set FDs;
   ulong readLen;
+  struct timeval m_tTimeout;
 
   FD_ZERO (&FDs);
   FD_SET (m_iSock, &FDs);
@@ -583,20 +583,13 @@ IMAP4Protocol::parseReadLine (QByteArray & buffer, ulong relay)
     memset (&buf, sizeof (buf), 0);
     if ((readLen = ReadLine (buf, sizeof (buf) - 1)) == 0)
     {
-//        if (ferror(fp)) {
-      //TODO: act on loss of connection
-      if (buffer.isEmpty () || buffer[buffer.size () - 1] == '\n')
-        break;
-      /*        kdDebug(7116) << "IMAP4: Error while freading something[" << errno << "]: " << strerror(errno) << endl;
-         return;
-         } else {
-         debug("IMAP4: Attempting select");
-         while (::select(m_iSock+1, &FDs, 0, 0, &m_tTimeout) ==0) {
-         debug("IMAP4: Sleeping");
-         sleep(10);
-         }
-         debug("IMAP4: Finished select"); */
-//        }  
+      m_tTimeout.tv_sec = 0;
+      m_tTimeout.tv_usec = 0;
+      if (select(m_iSock+1, &FDs, 0, 0, &m_tTimeout) != 0)
+      {
+        error (ERR_CONNECTION_BROKEN, myHost);
+        return FALSE;
+      }
     }
     else
     {
@@ -628,6 +621,7 @@ IMAP4Protocol::parseReadLine (QByteArray & buffer, ulong relay)
     }
     sleep (1);
   }
+  return TRUE;
 }
 
 

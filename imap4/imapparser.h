@@ -134,6 +134,7 @@ public:
   {
     return currentState;
   };
+  virtual void resetState() { currentState = ISTATE_NO; }
 
   const QString & getCurrentBox ()
   {
@@ -149,7 +150,7 @@ public:
 
   // main loop for the parser
   // reads one line and dispatches it to the appropriate sub parser
-  bool parseLoop ();
+  int parseLoop ();
 
   // parses all untagged responses and passes them on to the following parsers
   void parseUntagged (QString & result);
@@ -203,7 +204,7 @@ public:
   virtual bool parseRead (QByteArray & buffer, ulong len, ulong relay = 0);
 
   // read at least a line (up to CRLF)
-  virtual void parseReadLine (QByteArray & buffer, ulong relay = 0);
+  virtual bool parseReadLine (QByteArray & buffer, ulong relay = 0);
 
   // write argument to server
   virtual void parseWriteLine (const QString &);
