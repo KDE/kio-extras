@@ -655,13 +655,13 @@ void KAudiocdModule::slotUpdateVBRWidgets() {
 
 QString KAudiocdModule::quickHelp() const
 {
-    return i18n("<h1>Audio-CD Slave</h1> The Audio-CD Slave enables you to easily"
-                        " rip wav, MP3 or ogg vorbis files from your CD-ROM or DVD drive."
+    return i18n("<h1>Audio CD</h1> The Audio CD IO-Slave enables you to easily"
+                        " create wav, MP3 or ogg vorbis files from your audio CD-ROMs or DVDs."
                         " The slave is invoked by typing <i>\"audiocd:/\"</i> in Konqueror's location"
-                        " bar. In this module, you can configure all aspects of the slave like"
-                        " encoding, CDDB lookup and device settings. Note that MP3 and ogg"
-                        " vorbis encoding are only available if the KDE was built with a recent"
-                        " version of the lame or ogg libraries.");
+                        " bar. In this module, you can configure"
+                        " encoding, CDDB lookup and device settings. Note that MP3 and Ogg"
+                        " Vorbis encoding are only available if KDE was built with a recent"
+                        " version of the LAME or Ogg Vorbis libraries.");
 }
 
 const KAboutData* KAudiocdModule::aboutData() const
