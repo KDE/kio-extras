@@ -127,7 +127,7 @@ int main( int argc, char **argv )
 	signal(SIGCHLD,sig_handler);
 	signal(SIGSEGV,sig_handler2);
 
-	debug( "kio_smb : Starting");
+	qDebug( "kio_smb : Starting");
 	
 	QtApp = new QApplication( argc, argv );
 
@@ -136,13 +136,13 @@ int main( int argc, char **argv )
 	SmbProtocol smb( &parent );
 	smb.dispatchLoop();
 
-	debug( "kio_smb : Done" );
+	qDebug( "kio_smb : Done" );
 }
 
 
 void sig_handler2( int )
 {
-  debug( "kio_smb : SEGMENTATION FAULT" );
+  qDebug( "kio_smb : SEGMENTATION FAULT" );
   exit(1);
 }
 
@@ -174,27 +174,27 @@ SmbProtocol::SmbProtocol( Connection *_conn ) : IOProtocol( _conn )
 
 SmbProtocol::~SmbProtocol()
 {
-	debug( "kio_destructor : end" );
+	qDebug( "kio_destructor : end" );
 }
 
 
-void SmbProtocol::slotCopy( list<string>& _source, const char *_dest )
+void SmbProtocol::slotCopy( QStringList& _source, const char *_dest )
 {
-	debug( "kio_smb : slotCopy <List> %s", _dest );
+	qDebug( "kio_smb : slotCopy <List> %s", _dest );
 	doCopy( _source, _dest );
 }
 
 
 void SmbProtocol::slotCopy( const char* _source, const char *_dest )
 {
-	debug( "kio_smb : slotCopy %s %s", _source, _dest );
-	list<string> lst;
-	lst.push_back( _source );
+	qDebug( "kio_smb : slotCopy %s %s", _source, _dest );
+	QStringList lst;
+	lst.append( _source );
 
 	doCopy( lst, _dest );
 }
 
-void SmbProtocol::doCopy( list<string>& _source, const char *_dest )
+void SmbProtocol::doCopy( QStringList& _source, const char *_dest )
 {
 
 	// Make a copy of the parameter. if we do IPC calls from here, then we overwrite
@@ -202,7 +202,7 @@ void SmbProtocol::doCopy( list<string>& _source, const char *_dest )
 	QString dest = _dest;
 	KURL udest( dest );
 	
-	debug( "kio_smb : Making copy to %s", dest.ascii() );
+	qDebug( "kio_smb : Making copy to %s", dest.ascii() );
 
 	// Check wellformedness of the destination
 	if ( udest.isMalformed() ) {
@@ -210,7 +210,7 @@ void SmbProtocol::doCopy( list<string>& _source, const char *_dest )
 		return;
 	}
 	
-	debug( "kio_smb : Dest ok %s", dest.ascii() );
+	qDebug( "kio_smb : Dest ok %s", dest.ascii() );
 
 	// Find IO server for destination
 	QString exec = KProtocolManager::self().executable( udest.protocol() );
@@ -225,12 +225,12 @@ void SmbProtocol::doCopy( list<string>& _source, const char *_dest )
 		error( ERR_PROTOCOL_IS_NOT_A_FILESYSTEM, udest.protocol() );
 		return;
 	}
-	debug( "kio_smb : IO server ok %s", dest.ascii() );
+	qDebug( "kio_smb : IO server ok %s", dest.ascii() );
 
 	// Check whether the URLs are wellformed
-	list<string>::iterator soit = _source.begin();
+	QStringList::Iterator soit = _source.begin();
 /*	for( ; soit != _source.end(); ++soit ) {
-		debug( "kio_smb : Checking %s", soit->c_str() );
+		qDebug( "kio_smb : Checking %s", soit->c_str() );
 		char *workgroup=NULL, *host=NULL, *share=NULL, *file=NULL, *user=NULL;
 		int result=smbio.parse(decode(soit->c_str()).ascii(), workgroup, host, share, file, user);
 		if (workgroup) delete workgroup; workgroup=NULL;
@@ -244,20 +244,20 @@ void SmbProtocol::doCopy( list<string>& _source, const char *_dest )
 		}
 	}
 */
-	debug( "kio_smb : All source URLs ok." );
+	qDebug( "kio_smb : All source URLs ok." );
 
 	// Get a list of all source files and directories
 	list<Copy> files;
 	list<CopyDir> dirs;
 	int size = 0;
-	debug( "kio_smb : Iterating" );
+	qDebug( "kio_smb : Iterating" );
 
 	soit = _source.begin();
-	debug( "kio_smb : Looping" );
+	qDebug( "kio_smb : Looping" );
 	for( ; soit != _source.end(); ++soit ) {
-		debug( "kio_smb : Looking up %s", soit->c_str() );
-		KURL usrc( soit->c_str() );
-		debug( "kio_smb : Parsed URL" );
+		qDebug( "kio_smb : Looking up %s", (*soit).ascii() );
+		KURL usrc( *soit );
+		qDebug( "kio_smb : Parsed URL" );
 		// Did an error occur ?
 		int resSize;
 		if ( ( resSize = listRecursive( usrc.url(), "", files, dirs) ) == -1 ) {
@@ -268,7 +268,7 @@ void SmbProtocol::doCopy( list<string>& _source, const char *_dest )
 		size += resSize;
 	}
 
-	debug( "kio_smb : Recursive check done, %d bytes", size);
+	qDebug( "kio_smb : Recursive check done, %d bytes", size);
 
 	// Start a server for the destination protocol
 	Slave slave( exec );
@@ -281,7 +281,7 @@ void SmbProtocol::doCopy( list<string>& _source, const char *_dest )
 	// Put a protocol on top of the job
 	SmbIOJob job( &slave, this );
 
-	debug( "kio_smb : Job started ok");
+	qDebug( "kio_smb : Job started ok");
 
 	// Tell our client what we 'r' gonna do
 	totalSize( size );
@@ -300,7 +300,7 @@ void SmbProtocol::doCopy( list<string>& _source, const char *_dest )
 	list<Copy>::iterator fit = files.begin();
 	for( ; fit != files.end(); fit++ ) fit->relDest = tmp1 + fit->relDest;
 
-	debug( "kio_smb : Destinations ok %s", dest.data() );
+	qDebug( "kio_smb : Destinations ok %s", dest.data() );
 
 	/*****
 	* Make directories
@@ -342,7 +342,7 @@ void SmbProtocol::doCopy( list<string>& _source, const char *_dest )
 			// Tell what we are doing
 			makingDir( d );
 
-			debug( "kio_smb : Making remote dir %s", d.ascii() );
+			qDebug( "kio_smb : Making remote dir %s", d.ascii() );
 			// Create the directory
 			job.mkdir( d, dit->mode );
 			while( !job.hasFinished() )
@@ -450,7 +450,7 @@ void SmbProtocol::doCopy( list<string>& _source, const char *_dest )
 		processedDirs( ++processed_dirs );
 	}
 
-	debug( "kio_smb : Created directories %s", dest.data() );
+	qDebug( "kio_smb : Created directories %s", dest.data() );
   
 	/*****
 	* Copy files
@@ -488,7 +488,7 @@ void SmbProtocol::doCopy( list<string>& _source, const char *_dest )
 			string realpath = fit->absSource.ascii();
 			copyingFile( realpath.c_str(), d.ascii() );
     
-			debug( "kio_smb : Writing to %s", d.ascii() );
+			qDebug( "kio_smb : Writing to %s", d.ascii() );
        
 			// Is this URL on the overwrite list ?
 			QStringList::Iterator oit = overwrite_list.begin();
@@ -505,7 +505,7 @@ void SmbProtocol::doCopy( list<string>& _source, const char *_dest )
 			if ( job.hasError() ) {
 				int currentError = job.errorId();
 
-				debug("################# COULD NOT PUT %d", currentError);
+				qDebug("################# COULD NOT PUT %d", currentError);
 				if ( currentError != ERR_DOES_ALREADY_EXIST &&
 							currentError != ERR_DOES_ALREADY_EXIST_FULL )
 				{
@@ -612,7 +612,7 @@ void SmbProtocol::doCopy( list<string>& _source, const char *_dest )
 
 		if ( skip_copying ) continue;
 
-		debug( "kio_smb : Opening %s", fit->absSource.ascii() );
+		qDebug( "kio_smb : Opening %s", fit->absSource.ascii() );
 
 		int fd = smbio.open( decode(fit->absSource.ascii()).ascii() );
 		if ( fd == -1 ) {
@@ -675,7 +675,7 @@ void SmbProtocol::doCopy( list<string>& _source, const char *_dest )
 		processedFiles( ++processed_files );
 	}
 
-	debug( "kio_smb : Copied files %s", dest.data() );
+	qDebug( "kio_smb : Copied files %s", dest.data() );
 
 	finished();
 }
@@ -683,7 +683,7 @@ void SmbProtocol::doCopy( list<string>& _source, const char *_dest )
   
 void SmbProtocol::slotGet( const char *_url )
 {
-	debug( "kio_smb : slotGet %s", _url );
+	qDebug( "kio_smb : slotGet %s", _url );
 	string url = _url;
 
 	KURL usrc( _url );
@@ -714,7 +714,7 @@ void SmbProtocol::slotGet( const char *_url )
 		error( ERR_IS_DIRECTORY, url.c_str() );
 		return;
 	}
-	debug( "kio_smb : Get, checkpoint 3" );
+	qDebug( "kio_smb : Get, checkpoint 3" );
 
 	int fd = smbio.open( decode(url.c_str()).ascii() , O_RDONLY);
 	if ( fd == -1 ) {
@@ -755,7 +755,7 @@ void SmbProtocol::slotGet( const char *_url )
 		}
 
 	} while (count>0);
-	debug( "kio_smb : Get, checkpoint 4" );
+	qDebug( "kio_smb : Get, checkpoint 4" );
 
 	dataEnd();
   
@@ -774,7 +774,7 @@ void SmbProtocol::slotGetSize( const char *_url )
 {
 	string url = _url;
 
-	debug( "kio_smb : Getting size" );
+	qDebug( "kio_smb : Getting size" );
 	
 	KURL usrc( _url );
 	if ( usrc.isMalformed() ) {
@@ -793,7 +793,7 @@ void SmbProtocol::slotGetSize( const char *_url )
 		return;
 	}*/
 
-	debug( "kio_smb : Getting size, url OK" );
+	qDebug( "kio_smb : Getting size, url OK" );
 	struct stat buff;
 	if ( smbio.stat( decode(url.c_str()).ascii(), &buff ) == -1 ) {
 		error( ERR_DOES_NOT_EXIST, url.c_str() );
@@ -809,13 +809,13 @@ void SmbProtocol::slotGetSize( const char *_url )
 	totalSize( buff.st_size );
 
 	finished();
-	debug( "kio_smb : Getting size, end" );
+	qDebug( "kio_smb : Getting size, end" );
 }
 
 
 void SmbProtocol::slotListDir( const char *_url )
 {
-	debug( "kio_smb : listDir 1 %s", _url);
+	qDebug( "kio_smb : listDir 1 %s", _url);
 	string url = _url;
 	
 	KURL usrc( _url );
@@ -823,7 +823,7 @@ void SmbProtocol::slotListDir( const char *_url )
 		error( ERR_MALFORMED_URL, url.c_str() );
 		return;
 	}
-	debug( "kio_smb : listDir 2 %s", _url);
+	qDebug( "kio_smb : listDir 2 %s", _url);
 /*	char *workgroup=NULL, *host=NULL, *share=NULL, *file=NULL, *user=NULL;
 	int result=smbio.parse(decode(_url).ascii(), workgroup, host, share, file, user);
 	if (workgroup) delete workgroup; workgroup=NULL;
@@ -835,7 +835,7 @@ void SmbProtocol::slotListDir( const char *_url )
 		error( ERR_MALFORMED_URL, url.c_str() );
 		return;
 	}*/
-	debug( "kio_smb : listDir 3 %s", _url);
+	qDebug( "kio_smb : listDir 3 %s", _url);
 
 	struct stat buff;
 	if ( smbio.stat( decode(url.c_str()).ascii(), &buff ) == -1 ) {
@@ -862,7 +862,7 @@ void SmbProtocol::slotListDir( const char *_url )
 		if ( strcmp( ep->d_name, "." ) == 0 || strcmp( ep->d_name, ".." ) == 0 )
 		continue;
 
-		debug( "kio_smb : Listing %s", ep->d_name );
+		qDebug( "kio_smb : Listing %s", ep->d_name );
 
 		UDSEntry entry;
 		UDSAtom atom;
@@ -900,7 +900,7 @@ void SmbProtocol::slotListDir( const char *_url )
 
 void SmbProtocol::slotTestDir( const char *_url )
 {
-	debug( "kio_smb : testing %s", _url );
+	qDebug( "kio_smb : testing %s", _url );
 	string url = _url;
 	
 	KURL usrc( _url );
@@ -908,7 +908,7 @@ void SmbProtocol::slotTestDir( const char *_url )
 		error( ERR_MALFORMED_URL, url.c_str() );
 		return;
 	}
-/*	debug( "kio_smb : testing %s, kurl OK", decode(_url).ascii() );
+/*	qDebug( "kio_smb : testing %s, kurl OK", decode(_url).ascii() );
 	char *workgroup=NULL, *host=NULL, *share=NULL, *file=NULL, *user=NULL;
 	int result=smbio.parse(decode(_url).ascii(), workgroup, host, share, file, user);
 	if (workgroup) delete workgroup; workgroup=NULL;
@@ -920,7 +920,7 @@ void SmbProtocol::slotTestDir( const char *_url )
 		error( ERR_MALFORMED_URL, url.c_str() );
 		return;
 	}*/
-	debug( "kio_smb : testing %s, smburl OK", decode(_url).ascii() );
+	qDebug( "kio_smb : testing %s, smburl OK", decode(_url).ascii() );
 
 	struct stat buff;
 	if ( smbio.stat( decode(url.c_str()).ascii(), &buff ) == -1 ) {
@@ -934,7 +934,7 @@ void SmbProtocol::slotTestDir( const char *_url )
 		isFile();
 
 	finished();
-	debug( "kio_smb : testing %s, end", _url );
+	qDebug( "kio_smb : testing %s, end", _url );
 }
 
 
@@ -949,7 +949,7 @@ long SmbProtocol::listRecursive( const char *smbURL, const char *dest, list<Copy
 			Copy c;
 			c.absSource = smbURL;
 			c.relDest = dest + u.filename();
-			debug( "kio_smb : dest file name : %s", c.relDest.ascii());
+			qDebug( "kio_smb : dest file name : %s", c.relDest.ascii());
 			if ( c.relDest.isEmpty() ) return -1;
 			c.mode = statBuf.st_mode;
 			c.size = statBuf.st_size;
@@ -960,7 +960,7 @@ long SmbProtocol::listRecursive( const char *smbURL, const char *dest, list<Copy
 
 	int dd=smbio.opendir(decode(smbURL).ascii());
 	if (dd==-1) {
-		debug( "kio_smb : %s should have been a valid directory !", smbURL);
+		qDebug( "kio_smb : %s should have been a valid directory!", smbURL);
 		return -1;
 	}
 	
@@ -973,7 +973,7 @@ long SmbProtocol::listRecursive( const char *smbURL, const char *dest, list<Copy
 	SMBdirent *dent;
 	long totalSize=0;
 	// I don't know about QStr(ing)List compatibility
-	list<string> newDirs;  // this will do fine and won't bloat memory
+	QStringList newDirs;  // this will do fine and won't bloat memory
 	
 	// First add all files in this dir. We'll do directories later, so
 	// that the connection to the SMB server isn't broken.
@@ -983,25 +983,25 @@ long SmbProtocol::listRecursive( const char *smbURL, const char *dest, list<Copy
 			Copy c;
 			c.absSource = smbURL + newName;
 			c.relDest = dest + u.filename();
-			debug( "kio_smb : dest file name : %s", c.relDest.ascii());
+			qDebug( "kio_smb : dest file name : %s", c.relDest.ascii());
 			if ( c.relDest.isEmpty() ) return -1;
 			c.mode = dent->st_mode;
 			c.size = dent->st_size;
 			_files.push_back( c );
 			totalSize+=dent->st_size;
-		} else newDirs.push_back(dent->d_name);
+		} else newDirs.append(dent->d_name);
 	}
 	smbio.closedir(dd);
 
 	// Now we can go into each directory found recursively
-	list<string>::iterator ndit = newDirs.begin();
+	QStringList::Iterator ndit = newDirs.begin();
 	for( ; ndit != newDirs.end(); ++ndit ) {
-		QString ndName = (const char*)(ndit->c_str());
+		QString ndName = (*ndit);
 		QString newURL = smbURL + ("/" + ndName);
 		QString newDest = dest + ("/" + ndName);
 		int plus=listRecursive(newURL.ascii(), newDest.ascii(), _files, _dirs, true);
 		if (plus == -1) {
-			debug( "kio_smb : recursive copy error, aborting..." );
+			qDebug( "kio_smb : recursive copy error, aborting..." );
 			return -1;
 		}
 		totalSize+=plus;

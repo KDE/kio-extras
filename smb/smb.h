@@ -24,7 +24,7 @@ public:
 	virtual void slotGetSize( const char *_url );
 
 	virtual void slotCopy( const char *_source, const char *_dest );
-	virtual void slotCopy( list<string>& _source, const char *_dest );
+	virtual void slotCopy( QStringList& _source, const char *_dest );
 
 	virtual void slotListDir( const char *_url );
 	virtual void slotTestDir( const char *_url );
@@ -64,7 +64,7 @@ protected:
 	};
 
 	long listRecursive( const char *smbURL, const char *dest, list<Copy>& _files, list<CopyDir>& _dirs, bool dirChecked=false);
-	void doCopy( list<string>& _source, const char *_dest );
+	void doCopy( QStringList& _source, const char *_dest );
 };
 
 class SmbIOJob : public IOJob
