@@ -62,6 +62,10 @@ Ssh will detect this terminal and ask for a password there, but will just get ga
 So we can't connect.
 */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include <qcstring.h>
 #include <qstring.h>
 #include <qdatastream.h>
