@@ -100,7 +100,7 @@ if test "x$with_lame" = "xCHECK" ; then
           LAME_LIBS="-L$lame_libdir "
 	  test "$USE_RPATH" = yes && LAME_RPATH="-R $lame_libdir"
         fi
-        LAME_LIBS="${LAME_LIBS}-lmp3lame"
+        LAME_LIBS="${LAME_LIBS}-lmp3lame -lm"
 	with_lame=FOUND
         break
       fi
@@ -124,7 +124,7 @@ NOTFOUND) AC_MSG_RESULT(searched but not found) ;;
         LAME_RPATH="-R ${LAME_ROOT}/lib"
       fi
     fi
-    LAME_LIBS="${LAME_LIBS}-lmp3lame"
+    LAME_LIBS="${LAME_LIBS}-lmp3lame -lm"
   fi
   non_compile=no
   if test "x$enable_lametest" = xyes ; then
