@@ -1,3 +1,29 @@
+Wed Apr 25 16:58:11 CEST 2001 Daniel Veillard <Daniel.Veillard@imag.fr>
+
+	* transform.c: fixed text and cdata handling in xsl:copy
+	* xslt.c : avoid crashing on invalid xslt input
+	* test/general/bug-*.* test/docs/bug-*.xml : added a number of
+	  bugs submitted to the regression tests
+
+Wed Apr 25 12:42:48 CEST 2001 Daniel Veillard <Daniel.Veillard@imag.fr>
+
+	* libxslt/xsltproc.c : Renaud Chaillat provided a fix for #53535
+
+Sun Apr 22 22:47:44 CEST 2001 Daniel Veillard <Daniel.Veillard@imag.fr>
+
+	* configure.in: updated to 0.8.0
+
+Sun Apr 22 22:46:03 CEST 2001 Daniel Veillard <Daniel.Veillard@imag.fr>
+
+	* transform.c: fixed a bug introduced on handling #53401
+
+Sun Apr 22 22:27:09 CEST 2001 Daniel Veillard <Daniel.Veillard@imag.fr>
+
+	* transform.c: fixed #53401
+	* configure.in libxslt/*.c: allowed to suppress debug reporting
+	  functionalities but it brings not noticeable improvements
+	* doc/xslt.html doc/html/*: updated and regenerated docs
+
 Wed Apr 18 15:24:50 CEST 2001 Daniel Veillard <Daniel.Veillard@imag.fr>
 
 	* tests/general/bug-5-.out tests/multiple/out/*.orig

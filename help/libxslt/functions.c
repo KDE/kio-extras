@@ -40,7 +40,9 @@
 #include "keys.h"
 #include "documents.h"
 
-#define DEBUG_FUNCTION
+#ifdef WITH_XSLT_DEBUG
+#define WITH_XSLT_DEBUG_FUNCTION
+#endif
 
 
 /************************************************************************
