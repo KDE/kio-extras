@@ -33,6 +33,7 @@ public:
 	virtual void listDir(const KURL &url);
 	virtual void stat(const KURL &url);
 	virtual void del(const KURL &url, bool isFile);
+	virtual void get(const KURL &url);
 
 private:
 	void listRoot();

@@ -172,3 +172,24 @@ void RemoteProtocol::del(const KURL &url, bool /*isFile*/)
 	error(KIO::ERR_CANNOT_DELETE, url.prettyURL());
 }
 
+void RemoteProtocol::get(const KURL &url)
+{
+	kdDebug() << "RemoteProtocol::get: " << url << endl;
+
+	QString file = m_impl.findDesktopFile( url.fileName() );
+	kdDebug() << "desktop file : " << file << endl;
+	
+	if (!file.isEmpty())
+	{
+		KURL desktop;
+		desktop.setPath(file);
+		
+		redirection(desktop);
+		finished();
+		return;
+	}
+
+	error(KIO::ERR_MALFORMED_URL, url.prettyURL());
+}
+
+

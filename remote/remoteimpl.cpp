@@ -120,14 +120,27 @@ bool RemoteImpl::findDirectory(const QString &filename, QString &directory) cons
 	return false;
 }
 
+QString RemoteImpl::findDesktopFile(const QString &filename) const
+{
+	kdDebug() << "RemoteImpl::findDesktopFile" << endl;
+	
+	QString directory;
+	if (findDirectory(filename, directory))
+	{
+		return directory+filename;
+	}
+	
+	return QString::null;
+}
+
 KURL RemoteImpl::findBaseURL(const QString &filename) const
 {
 	kdDebug() << "RemoteImpl::findBaseURL" << endl;
 
-	QString directory;
-	if (findDirectory(filename, directory))
+	QString file = findDesktopFile(filename);
+	if (!file.isEmpty())
 	{
-		KDesktopFile desktop(directory+filename, true);
+		KDesktopFile desktop(file, true);
 		return desktop.readURL();
 	}
 	
@@ -222,6 +235,7 @@ void RemoteImpl::createEntry(KIO::UDSEntry &entry,
 	QString icon = desktop.readIcon();
 
 	addAtom(entry, KIO::UDS_ICON_NAME, 0, icon);
+	addAtom(entry, KIO::UDS_LINK_DEST, 0, directory+file);
 }
 
 bool RemoteImpl::statNetworkFolder(KIO::UDSEntry &entry, const QString &filename) const

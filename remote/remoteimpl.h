@@ -39,6 +39,7 @@ public:
 	void listRoot(QValueList<KIO::UDSEntry> &list) const;
 
 	KURL findBaseURL(const QString &filename) const;
+	QString findDesktopFile(const QString &filename) const;
 	
 	bool deleteNetworkFolder(const QString &filename) const;
 
