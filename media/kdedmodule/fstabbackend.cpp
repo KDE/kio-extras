@@ -42,10 +42,6 @@ FstabBackend::FstabBackend(MediaList &list)
 
 	connect( KDirWatch::self(), SIGNAL( dirty(const QString&) ),
 	         this, SLOT( slotDirty(const QString&) ) );
-	KDirWatch::self()->startScan();
-
-	connect( KDirWatch::self(), SIGNAL( dirty(const QString&) ),
-	         this, SLOT( slotDirty(const QString&) ) );
 
 	handleFstabChange();
 	handleMtabChange();
