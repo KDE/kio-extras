@@ -1322,12 +1322,12 @@ void imapParser::parseFetch (ulong /* value */, parseString & inWords)
 // default parser
 void imapParser::parseSentence (parseString & inWords)
 {
-  QString stack;
   bool first = true;
+  int stack = 0;
 
   //find the first nesting parentheses
 
-  while (!inWords.isEmpty () && (!stack.isEmpty () || first))
+  while (!inWords.isEmpty () && (stack != 0 || first))
   {
     first = false;
     skipWS (inWords);
@@ -1337,19 +1337,19 @@ void imapParser::parseSentence (parseString & inWords)
     {
     case '(':
       inWords.pos++;
-      stack += ')';
+      ++stack;
       break;
     case ')':
       inWords.pos++;
-      stack.truncate(stack.length() - 1);
+      --stack;
       break;
     case '[':
       inWords.pos++;
-      stack += ']';
+      ++stack;
       break;
     case ']':
       inWords.pos++;
-      stack.truncate(stack.length() - 1);
+      --stack;
       break;
     default:
       parseLiteral (inWords);
@@ -1536,9 +1536,9 @@ QByteArray imapParser::parseLiteral (parseString & inWords, bool relay, bool sto
     if (runLen > 0)
     {
       bool proper;
-      QString strLen = inWords.mid(1, runLen - 1);
-      inWords.pos += runLen + 1;
-      runLen = strLen.toULong (&proper);
+      ulong runLenSave = runLen + 1;
+      runLen = inWords.mid(1, runLen - 1).toULong (&proper);
+      inWords.pos += runLenSave;
       if (proper)
       {
         //now get the literal from the server
@@ -1554,7 +1554,7 @@ QByteArray imapParser::parseLiteral (parseString & inWords, bool relay, bool sto
       }
       else
       {
-        kdDebug(7116) << "imapParser::parseLiteral - error parsing {} - " << strLen << endl;
+        kdDebug(7116) << "imapParser::parseLiteral - error parsing {} - " /*<< strLen*/ << endl;
       }
     }
     else
