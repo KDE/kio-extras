@@ -982,12 +982,19 @@ sub GetFileAndOffset {
   my ($Exists, $IsIndirect, $File, $Offset, $FileOffset, %TagList, @FileNames, @Offsets);
   $NodeName =~ tr/A-Z/a-z/;
   &ReadIndirectTable($BaseInfoFile, \@FileNames, \@Offsets);
+
+  
+# This looks wastefull:
+# We build a whole TagList hash and then use it to lookup the tag info.
+# Why not pass $NodeName to ReadTagTable and let it return just the desired info?
+# lpc (16 March 2003)
   &ReadTagTable($BaseInfoFile, \%TagList, \$Exists, \$IsIndirect);
   return "", 0 unless $Exists;                      #-- no tag table available
   return "", 0 unless defined $TagList{$NodeName};  #-- tag is not in the tag table
   ($File, $Offset) = split(/#/, $TagList{$NodeName});
   return $File, &max($Offset - 100, 0) if $File; #-- there is an explicite
                                                #-- not in the tag table
+  
   if ($IsIndirect == 1) {
       foreach my $i (0..$#Offsets) {
           $FileOffset = $Offsets[$i] if $Offsets[$i] <= $Offset;
