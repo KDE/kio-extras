@@ -16,7 +16,7 @@ AC_ARG_WITH(cdparanoia,
 
 if test "x$with_cdparanoia" = "xCHECK" ; then
   with_cdparanoia=NOTFOUND
-  search_incs="$kde_includes /usr/include /usr/local/include"
+  search_incs="$kde_includes /usr/include /usr/local/include /usr/include/cdda /usr/local/include/cdda"
   AC_FIND_FILE(cdda_interface.h, $search_incs, para_incdir)
   if test -r $para_incdir/cdda_interface.h ; then
     test "x$para_incdir" != "x/usr/include" && CDPARANOIA_INCS="-I$para_incdir"
