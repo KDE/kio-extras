@@ -324,8 +324,26 @@ void POP3Protocol::slotGetSize( const char * _url )
 
 }
 
+
 void POP3Protocol::slotGet(const char *_url)
 {
+// List of supported commands
+//
+// URI                                Command   Result
+// pop://user:pass@domain/index       LIST      List message sizes
+// pop://user:pass@domain/uidl        UIDL      List message UIDs
+// pop://user:pass@domain/remove/#1   DELE #1   Mark a message for deletion
+// pop://user:pass@domain/download/#1 RETR #1   Get message header and body
+// pop://user:pass@domain/list/#1     LIST #1   Get size of a message
+// pop://user:pass@domain/uid/#1      UIDL #1   Get UID of a message
+// pop://user:pass@domain/commit      QUIT      Delete marked messages
+// pop://user:pass@domain/headers/#1  TOP #1    Get header of message
+//
+// Notes:
+// Sizes are in bytes.
+// No support for the STAT command has been implemented.
+// commit closes the connection to the server after issuing the QUIT command.
+
   bool ok=true;
   static char buf[512];
   QString path, cmd;
@@ -351,7 +369,8 @@ void POP3Protocol::slotGet(const char *_url)
     m_cmd=CMD_NONE; return;
   }
 
-  if (((path.find("/") == -1) && (path != "index")) ) {
+  if (((path.find("/") == -1) && (path != "index") && 
+       (path != "uidl") && (path != "commit")) ) {
     error( ERR_MALFORMED_URL, strdup(_url) );
     m_cmd = CMD_NONE;
     return; 
@@ -366,9 +385,14 @@ void POP3Protocol::slotGet(const char *_url)
     return;
   }
 
-  if (cmd == "index") {
+  if ((cmd == "index") || (cmd == "uidl")) {
     unsigned long size=0;
-    if (command("LIST")) {
+    bool result;
+    if (cmd == "index")
+      result = command("LIST");
+    else
+      result = command("UIDL");
+    if (result) {
       ready();
       gettingFile(_url);
       while (!feof(fp)) {
@@ -443,6 +467,8 @@ LIST
     if (!ok) return; //  We fscking need a number!
     path.prepend("DELE ");
     command(path);
+    finished();
+    m_cmd = CMD_NONE;
   }
   
   else if (cmd == "download") {
@@ -499,6 +525,40 @@ LIST
       return;
     }
   }
+
+  else if ((cmd == "uid") || (cmd == "list")) {
+    QString qbuf;
+    (void)path.toInt(&ok);
+    if (!ok) return; //  We fscking need a number!
+    if (cmd == "uid")
+      path.prepend("UIDL ");
+    else
+      path.prepend("LIST ");
+    memset(buf, 0, sizeof(buf));
+    if (command(path, buf, sizeof(buf)-1)) {
+      const int len = strlen(buf);
+      ready();
+      gettingFile(_url);
+      mimeType("text/plain");
+      totalSize(len);
+      data(buf, len);
+      processedSize(len);
+      debug( buf );
+      fprintf(stderr,"Finishing up uid\n");fflush(stderr);
+      dataEnd();
+      speed(0); finished();
+    } else {
+      pop3_close(); return;
+    }
+  }
+
+  else if (cmd == "commit") {
+    pop3_close();
+    finished();
+    m_cmd = CMD_NONE;
+    return;
+  }
+
 }
 
 void POP3Protocol::slotListDir (const char *_url)
