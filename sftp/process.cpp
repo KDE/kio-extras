@@ -313,7 +313,7 @@ int MyPtyProcess::WaitSlave()
 	}
 	if (tio.c_lflag & ECHO) 
 	{
-	    kdDebug(900) << k_lineinfo << "Echo mode still on.\n";
+	    kdDebug(900) << k_lineinfo << "Echo mode still on." << endl;
 	    // sleep 1/10 sec
 	    tv.tv_sec = 0; tv.tv_usec = 100000;
 	    select(slave, 0L, 0L, 0L, &tv);

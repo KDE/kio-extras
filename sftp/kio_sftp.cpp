@@ -157,7 +157,7 @@ void kio_sftpProtocol::get(const KURL& url ) {
     if( !resumeOffset.isEmpty() ) {
         startingOffset = offset = resumeOffset.toInt();
         canResume();
-        kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::get(): resume offset is " << offset;
+        kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::get(): resume offset is " << offset << endl;
     }
 
     int code;
@@ -308,19 +308,19 @@ void kio_sftpProtocol::openConnection(){
     bool gotFromCache = false;
     int tries = 0;
     while( tries++ < RETRIES ) {
-        kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::openConnection(): Auth try " << tries;
-        kdDebug(KIO_SFTP_DB) << "usename = " << mUsername;
+        kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::openConnection(): Auth try " << tries << endl;
+        kdDebug(KIO_SFTP_DB) << "usename = " << mUsername << endl;
 
         // If we tried and failed, set info message
         if( tries > 1 )
             infoMessage(i18n("Login failed. Retrying..."));
 
         kdDebug(KIO_SFTP_DB) << "checkAuth = " <<
-         (checkCachedAuthentication(info) ? "true" : "false");
+         (checkCachedAuthentication(info) ? "true" : "false") << endl;
         // Check for cached auth info if this is our first try
         if( tries == 1 && !mUsername.isEmpty() &&
               checkCachedAuthentication(info) ) {
-            kdDebug(KIO_SFTP_DB) << "Got auth info from cache";
+            kdDebug(KIO_SFTP_DB) << "Got auth info from cache" << endl;
             gotFromCache = true;
             mUsername = info.username;
             mPassword = info.password;
@@ -418,20 +418,20 @@ void kio_sftpProtocol::openConnection(){
         tv.tv_sec = 60; tv.tv_usec = 0; // 60 second timeout
 
         int ret = select(stdiofd+1, &rfds, NULL, NULL, &tv);
-        kdDebug(KIO_SFTP_DB) << "Select returned " << ret;
+        kdDebug(KIO_SFTP_DB) << "Select returned " << ret << endl;
         if( ret > 0 ) {
             if( FD_ISSET(stdiofd, &rfds) ) {
-                kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::openConnection(): Authentication successful";
+                kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::openConnection(): Authentication successful" << endl;
                 break;
             }
         }
         else if( ret == 0 ) {
-            kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::openConnection(): timed out waiting for a response";
+            kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::openConnection(): timed out waiting for a response" << endl;
             error(ERR_SERVER_TIMEOUT, i18n("Timed out waiting for a response from the server."));
             return;
         }
         else {
-            kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::openConnection(): select error: " << strerror(errno);
+            kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::openConnection(): select error: " << strerror(errno) << endl;
             error(ERR_INTERNAL, QString::null);
             return;
         }
@@ -484,7 +484,7 @@ void kio_sftpProtocol::closeConnection() {
     kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::closeConnection()" << endl;
     ssh.kill();
     mConnected = false;
-    kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::closeConnection(): END";
+    kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::closeConnection(): END" << endl;
 }
 
 
@@ -493,7 +493,7 @@ void kio_sftpProtocol::put ( const KURL& url, int permissions, bool overwrite, b
     kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::put(): overwrite = " <<
                             (overwrite ? "true" : "false") <<
                             "  resume = " <<
-                            (resume ? "true" : "false" );
+                            (resume ? "true" : "false" ) << endl;
     if( !mConnected ) {
         openConnection();
         if( !mConnected ) {
@@ -505,7 +505,7 @@ void kio_sftpProtocol::put ( const KURL& url, int permissions, bool overwrite, b
 
     bool markPartial = config()->readBoolEntry("MarkPartial", true);
     kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::put(): mark partial = " <<
-                             (markPartial ? "true" : "false");
+                             (markPartial ? "true" : "false") << endl;
 
     // select the default file we will write to
     KURL writeUrl;
@@ -522,7 +522,7 @@ void kio_sftpProtocol::put ( const KURL& url, int permissions, bool overwrite, b
     bool alreadyExists = false;
     Q_UINT32 beginningOffset = 0;
     if( (code = sftpStat(url, attr)) == SSH2_FX_OK ) {
-        kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::put(): file already exists";
+        kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::put(): file already exists" << endl;
         beginningOffset = attr.fileSize() + 1;
         alreadyExists = true;
     }
@@ -537,7 +537,7 @@ void kio_sftpProtocol::put ( const KURL& url, int permissions, bool overwrite, b
         // look for a file with a .part extension
         // We will append to this file if it is found.
         if( (code = sftpStat(url, attr)) == SSH2_FX_OK ) {
-            kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::put(): file.part exists";
+            kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::put(): file.part exists" << endl;
             beginningOffset = attr.fileSize() + 1;
             dotPartExists = true;
         }
@@ -761,7 +761,7 @@ void kio_sftpProtocol::listDir(const KURL& url) {
         code = sftpReadDir(handle, url);
         if( code != SSH2_FX_OK && code != SSH2_FX_EOF )
             processStatus(code, url.prettyURL());
-        kdDebug() << "sftpReadDir return code " << code ;
+        kdDebug() << "sftpReadDir return code " << code << endl;
     }
 
     if( (code = sftpClose(handle)) != SSH2_FX_OK ) {
@@ -861,50 +861,50 @@ void kio_sftpProtocol::rename(const KURL& src, const KURL& dest, bool overwrite)
 
     int code;
     bool failed = false;
-    kdDebug() << "rename 1";
+    kdDebug() << "rename 1" << endl;
     if( (code = sftpRename(src, dest)) != SSH2_FX_OK ) {
-        kdDebug() << "rename 2";
+        kdDebug() << "rename 2" << endl;
         if( overwrite ) { // try to delete the destination
-            kdDebug() << "rename 3";
+            kdDebug() << "rename 3" << endl;
             sftpFileAttr attr;
             if( (code = sftpStat(dest, attr)) != SSH2_FX_OK ) {
-                kdDebug() << "rename 4";
+                kdDebug() << "rename 4" << endl;
                 failed = true;
             }
             else {
-                kdDebug() << "rename 5";
+                kdDebug() << "rename 5" << endl;
                 if( (code = sftpRemove(dest, !S_ISDIR(attr.permissions())) ) != SSH2_FX_OK ) {
-                    kdDebug() << "rename 6";
+                    kdDebug() << "rename 6" << endl;
                     failed = true;
                 }
                 else {
-                    kdDebug() << "renaem 7";
+                    kdDebug() << "renaem 7" << endl;
                     // XXX what if rename fails again? We have lost the file.
                     // Maybe rename dest to a temporary name first? If rename is
                     // successful, then delete?
                     if( (code = sftpRename(src, dest)) != SSH2_FX_OK ) {
-                        kdDebug() << "rename 8";
+                        kdDebug() << "rename 8" << endl;
                         failed = true;
                     }
                 }
             }
         }
         else if( code == SSH2_FX_FAILURE ) {
-            kdDebug() << "rename 9";
+            kdDebug() << "rename 9" << endl;
             error(ERR_FILE_ALREADY_EXIST, dest.prettyURL() );
             return;
         }
         else
             failed = true;
     }
-    kdDebug() << "rename 10";
+    kdDebug() << "rename 10" << endl;
     // What error code do we return? Code for the original symlink command
     // or for the last command or for both? The second one is implemented here.
     if( failed ) {
         processStatus(code);
         return;
     }
-    kdDebug() << "rename 11";
+    kdDebug() << "rename 11" << endl;
     finished();
     kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::rename(): END" << endl;
 }
