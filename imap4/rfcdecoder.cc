@@ -36,7 +36,7 @@
 // This part taken from rfc 2192 IMAP URL Scheme. C. Newman. September 1997.
 // adapted to QT-Toolkit by Sven Carstens <s.carstens@gmx.de> 2000
 
-static char base64chars[] =
+static unsigned char base64chars[] =
   "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+,";
 #define UNDEFINED 64
 #define MAXLINE  76
