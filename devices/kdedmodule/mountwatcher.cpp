@@ -460,16 +460,16 @@ bool MountWatcherModule::createLink(const KURL& deviceURL, const KURL& destinati
 	return false;
 }
 
-bool MountWatcherModule::setDisplayName(const QString& uniqueIdentifier, const QString& displayName)
+bool MountWatcherModule::setDisplayName(const QString& oldName, const QString& newName)
 {
 	DiskEntry *to_rename = 0L;
 	for (DiskEntry *ent=mDiskList.first();ent;ent=mDiskList.next())
 	{
-		if (ent->uniqueIdentifier()==uniqueIdentifier)
+		if (ent->niceDescription()==oldName)
 		{
 			to_rename = ent;
 		}
-		else if (ent->niceDescription()==displayName)
+		else if (ent->niceDescription()==newName)
 		{
 			return false;
 		}
@@ -477,12 +477,12 @@ bool MountWatcherModule::setDisplayName(const QString& uniqueIdentifier, const Q
 	
 	if (to_rename!=0L)
 	{
-		to_rename->setUserDescription(displayName);
+		to_rename->setUserDescription(newName);
 
 		KConfig cfg("mountwatcherrc");
 
 		cfg.setGroup("Labels");
-		cfg.writeEntry(uniqueIdentifier, displayName);
+		cfg.writeEntry(to_rename->uniqueIdentifier(), newName);
 		
 		cfg.sync();
 		

@@ -116,7 +116,7 @@ void DevicesProtocol::rename(KURL const &oldURL, KURL const &newURL, bool) {
 	}
 	else
 	{
-		error(KIO::ERR_CANNOT_RENAME,
+		error(KIO::ERR_DIR_ALREADY_EXIST,
 		      i18n("This device name already exists"));
 	}
 }
