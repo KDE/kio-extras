@@ -204,8 +204,11 @@ void HelpProtocol::get( const KURL& url )
       return;
     }
 
+  KURL target(doc);
+  if (url.hasHTMLRef())
+    target.setHTMLRef(url.htmlRef());
 
-  redirection(KURL(doc));
+  redirection(target);
   finished();
 }
 
