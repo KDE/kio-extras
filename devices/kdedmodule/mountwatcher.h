@@ -67,6 +67,7 @@ k_dcop:
     QStringList basicDeviceInfo(QString);
     void addSpecialDevice(const QString& uniqueIdentifier, const QString& description,
 			 const QString& URL, const QString& mimetype,bool mountState);
+    bool createLink(const KURL& deviceURL, const KURL& destinationURL);
 k_dcop_signals:
     void mountSituationChaged();
 

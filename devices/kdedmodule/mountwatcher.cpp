@@ -33,6 +33,7 @@
 #include <kautomount.h>
 #include <kdirwatch.h>
 #include <qregexp.h>
+#include <kdebug.h>
 
 #include "mountwatcher.moc"
 #include "mountwatcher.h"
@@ -233,6 +234,46 @@ void MountWatcherModule::readDFDone()
         KDirNotify_stub allDirNotify("*", "KDirNotify*");
         allDirNotify.FilesAdded( "devices:/" );
 }
+
+bool MountWatcherModule::createLink(const KURL& deviceURL, const KURL& destinationURL)
+{
+	kdDebug(7020)<<"Should create a desktop file for a device"<<endl;
+	kdDebug(7020)<<"Source:"<<deviceURL.prettyURL()<<" Destination:"<<destinationURL.prettyURL()<<endl;
+	kdDebug(7020)<<"======================"<<endl;
+	QStringList info;
+	info=basicDeviceInfo(deviceURL.fileName());
+	if (!info.isEmpty())
+	{
+		KURL dest(destinationURL);
+		dest.setFileName(KIO::encodeFileName(*(info.at(0)))+".desktop");
+		QString path=dest.path();
+		QFile f(path);
+		if (f.open(IO_ReadWrite))
+		{
+			f.close();
+                        KSimpleConfig config( path );
+                        config.setDesktopGroup();
+                        config.writeEntry( QString::fromLatin1("Dev"), *(info.at(1)) );
+			config.writeEntry( QString::fromLatin1("Encoding"),
+						QString::fromLatin1("UTF-8"));
+			config.writeEntry( QString::fromLatin1("FSType"),
+						QString::fromLatin1("Default") );
+			config.writeEntry( QString::fromLatin1("Icon"), "hdd_mount");
+			config.writeEntry( QString::fromLatin1("UnmountIcon"), "hdd_unmount");
+			config.writeEntry( QString::fromLatin1("MountPoint"), 
+					(*info.at(2)).right((*(info.at(2))).length()-5));
+			config.writeEntry( QString::fromLatin1("Icon"), "hdd_mount");
+			config.writeEntry( QString::fromLatin1("Type"),
+					QString::fromLatin1("FSDevice"));
+                        config.sync();
+			return true;
+
+		}
+		
+	}
+	return false;
+}
+
 
 
 extern "C" {
