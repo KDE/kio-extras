@@ -1,8 +1,24 @@
+TODO:
+- Notify the user when a new host key is received.
+- Warn the user when the host key changes.
+- Support for use of public keys, maybe ssh-agent, a key management app, etc.
 - store passwords per user/host pair, not per connection
   (multiple users per host work now, but when switching views one has to
    re-enter the login info every single time)
+  - Done! This was a problem with caching in the ioslave base class and
+    has been fixed.
+
+- do not move items to trash when deleting (probably a generic kio_slave
+  problem, though, makes no sense to download everything you want to delete)
+  - Done! Fixing in konqueror
+
 - support for different ports (sftp://user@host:port), this can be done by
   adding the argument -oPort=7022 (or whatever port) to sftp, could not get
   it to work properly though
+
 - bug: when changing hostname in locationbar, password dialog pops up at
   every change even without pressing enter
+  - Bug report submitted to konqueror
+
+
+
