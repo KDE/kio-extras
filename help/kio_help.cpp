@@ -250,6 +250,11 @@ void HelpProtocol::emitFile( const KURL& url )
 
     int index = parsed.find(QString("<FILENAME filename=\"%1\"").arg(filename));
     if (index == -1) {
+        if ( filename == "index.html" ) {
+            data( parsed.local8Bit() );
+            return;
+        }
+
         data(QCString(i18n("<html>Couldn't find filename %1 in %2</html>").arg(filename).arg(url.url()).local8Bit()));
         return;
     }

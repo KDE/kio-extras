@@ -33,7 +33,7 @@ extern int xmlLoadExtDtdDefaultValue;
 int
 main(int argc, char **argv) {
 
-//    xsltSetGenericDebugFunc(stderr, NULL);
+    //    xsltSetGenericDebugFunc(stderr, NULL);
 
     if (argc != 2)
     {
@@ -54,27 +54,35 @@ main(int argc, char **argv) {
         return(1);
     }
 
-    int index = 0;
-    while (true) {
-        index = output.find("<FILENAME ", index);
-        if (index == -1)
-            break;
-        int filename_index = index + strlen("<FILENAME filename=\"");
-
-        QString filename = output.mid(filename_index,
-                                      output.find("\"", filename_index) -
-                                      filename_index);
-
-        QString filedata = splitOut(output, index);
-        QFile file(filename);
+    if (output.find( "<FILENAME " ) == -1 )
+    {
+        QFile file("index.html");
         file.open(IO_WriteOnly);
-	QCString data = filedata.local8Bit();
+        QCString data = output.local8Bit();
         file.writeBlock(data.data(), data.length());
         file.close();
+    } else {
+        int index = 0;
+        while (true) {
+            index = output.find("<FILENAME ", index);
+            if (index == -1)
+                break;
+            int filename_index = index + strlen("<FILENAME filename=\"");
 
-        index += 8;
+            QString filename = output.mid(filename_index,
+                                          output.find("\"", filename_index) -
+                                          filename_index);
+
+            QString filedata = splitOut(output, index);
+            QFile file(filename);
+            file.open(IO_WriteOnly);
+            QCString data = filedata.local8Bit();
+            file.writeBlock(data.data(), data.length());
+            file.close();
+
+            index += 8;
+        }
     }
-
     xmlCleanupParser();
     xmlMemoryDump();
     return(0);
