@@ -1,0 +1,71 @@
+BODY {
+	background: #000000;
+	padding: 2em;
+	margin: auto;
+}
+	
+A:link {color: #82A7D0}
+A:visited {color: #999999}
+A:active {color: #999999}
+
+H1 {
+	font-family: Verdana, Arial, Helvetica, sans-serif; 
+	font-style: normal;
+	font-variant: normal; 
+	font-size: 20px; 
+	font-weight: bold;
+	color: #999999;
+	margin: auto;
+	padding: 1em
+}
+	
+.mainTable {
+	background: black;
+	border: 1pt normal #444444;
+	margin: auto;
+	padding: auto;
+}
+	
+.fingerTable {
+	background: black;
+	border: 0pt normal #444444;
+	margin: auto;
+	padding: auto;
+}
+
+.niceText {
+	font-family: Verdana, Arial, Helvetica, sans-serif; 
+	font-style: normal;
+	font-variant: normal; 
+	font-size: 12px; 
+	font-weight: normal;
+	text-align: center;
+	color: #009999;     
+	margin: auto;
+	padding: 0.5em;
+}
+
+.courierText {
+	font-family: Courier, sans-serif;
+	font-style: normal;
+	font-variant: normal; 
+	font-size: 12px; 
+	font-weight: normal;
+	text-align: center;
+	color: #FFFFCC;
+	margin: auto;
+	padding: 0.5em;
+}
+
+.domainName	{ color: #D0A000}
+.ipNumber       { color: #D0A000}
+.OS 		{ color: #82A7D0}
+.username 	{ color: #BB0000}
+.directory	{ color: #D0A000}
+.shell 		{ color: #D0A000}
+.notLoggedIn 	{ color: #00A000}
+.loggedIn 	{ color: #B00000}
+.newMail	{ color: #82A7D0}
+.noNewMail 	{ color: #BB0000}
+.noPlan 	{ color: #BB0000}
+	

@@ -43,14 +43,17 @@ public:
 private slots:
   void       slotGetStdOutput(KProcess*, char*, int);
 
-private:
-  QString	        *myPerlPath; 		
-  QString               *myFingerPath;
-  QString               *myFingerScript;
-  QString		*myStdStream;  
-
+private: 
   KURL                  *myURL;
 
+  QString	        *myPerlPath; 		
+  QString               *myFingerPath;
+  QString               *myFingerPerlScript;  
+  QString               *myFingerCSSFile;
+  
+  QString		*myStdStream;  
+
+ 
   KShellProcess	        *myKProcess;
 
   void       getProgramPath();
