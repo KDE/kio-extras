@@ -62,4 +62,5 @@ void SMBSlave::reparseConfiguration()
      m_default_password[i] = QChar((uchar)((num - 17) ^ 173)); // restore
   }
 
+  delete cfg;
 }

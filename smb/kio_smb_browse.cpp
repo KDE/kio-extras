@@ -417,7 +417,10 @@ QString SMBSlave::toUnicode( char *_str ) const
 {
     QString _string = QString::null;
     QTextCodec *codec = QTextCodec::codecForName( m_default_encoding.latin1() );
-    _string = codec->toUnicode( _str );
+    if ( codec )
+        _string = codec->toUnicode( _str );
+    else
+        _string = QString::fromLocal8Bit( _str );
 
     return _string;
 }

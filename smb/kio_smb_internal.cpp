@@ -330,7 +330,11 @@ QCString SMBUrl::fromUnicode( const QString &_str ) const
     QString default_encoding = cfg->readEntry( "Encoding", m_encoding.lower() );
 
     QTextCodec *codec = QTextCodec::codecForName( default_encoding.latin1() );
-    _string = codec->fromUnicode( _str );
+    if ( codec )
+        _string = codec->fromUnicode( _str );
+    else
+        _string = _str.local8Bit();
 
+    delete cfg;
     return _string;
 }
