@@ -126,7 +126,7 @@ void Medium::setUserLabel(const QString &label)
 
 	QString entry_name = m_properties[ID];
 
-	if ( label == QString::null )
+	if ( label.isNull() )
 	{
 		cfg.deleteEntry(entry_name);
 	}
