@@ -16,3 +16,7 @@ kdelnk_DATA = help.protocol
 kdelnkdir = $(kde_servicesdir)
 
 METASOURCES = AUTO
+
+messages:
+	$(XGETTEXT) *.cpp -o $(podir)/kio_help.pot
+
