@@ -58,6 +58,9 @@ public:
 
     static MANProtocol *self();
 
+private slots:
+  void slotGetStdOutput(KProcess*, char*, int);
+    
 private:
     void checkManPaths();
     QStringList manDirectories();
@@ -76,8 +79,13 @@ private:
     QCString lastdir;
     QString common_dir;
 
+    void findManPagesInSection(const QString &dir, const QString &title, bool full_path, QStringList &list);
     QStringList m_manpath;
     QStringList section_names;
+
+    QString* myStdStream;  
+    QString mySgml2RoffPath;
+    void getProgramPath();
 };
 
 

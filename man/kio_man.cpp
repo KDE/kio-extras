@@ -36,7 +36,7 @@
 #include <kstandarddirs.h>
 #include <kprocess.h>
 #include <klocale.h>
-
+#include <kmimetype.h>
 
 #include "kio_man.h"
 #include "kio_man.moc"
@@ -49,6 +49,8 @@
 using namespace KIO;
 
 MANProtocol *MANProtocol::_self = 0;
+
+#define SGML2ROFF_DIRS "/usr/lib/sgml"
 
 /*
  * Drop trailing ".section[.gz]" from name
@@ -113,12 +115,14 @@ MANProtocol::MANProtocol(const QCString &pool_socket, const QCString &app_socket
     common_dir = KGlobal::dirs()->findResourceDir( "html", "en/common/kde-common.css" );
     section_names << "1" << "2" << "3" << "3n" << "3p" << "4" << "5" << "6" << "7"
     << "8" << "9" << "l" << "n";
+    myStdStream = new QString();
 }
 
 MANProtocol *MANProtocol::self() { return _self; }
 
 MANProtocol::~MANProtocol()
 {
+  delete myStdStream;
     _self = 0;
 }
 
@@ -249,7 +253,7 @@ QStringList MANProtocol::findPages(const QString &section,
         }
         else {
             //
-            // Sections = all sub directories "man*"
+            // Sections = all sub directories "man*" and "sman*"
             //
             DIR *dp = ::opendir( QFile::encodeName( man_dir ) );
 
@@ -259,11 +263,20 @@ QStringList MANProtocol::findPages(const QString &section,
             struct dirent *ep;
 
             QString man = QString("man");
+            QString sman = QString("sman");
 
             while ( (ep = ::readdir( dp )) != 0L ) {
                 QString file = QFile::decodeName( ep->d_name );
+		QString sect = QString::null;
+
                 if ( file.startsWith( man ) )
-                    sect_list += file.mid(3);
+		  sect = file.mid(3);
+		else if (file.startsWith(sman))
+		  sect = file.mid(4);
+		
+		// Only add sect if not already contained, avoid duplicates
+		if (!sect_list.contains(sect))
+		  sect_list += sect;
             }
 
             ::closedir( dp );
@@ -277,13 +290,24 @@ QStringList MANProtocol::findPages(const QString &section,
               it_sect++ )
         {
             QString dir = man_dir + QString("/man") + (*it_sect) + '/';
+            QString sdir = man_dir + QString("/sman") + (*it_sect) + '/';
 
+	    findManPagesInSection(dir, title, full_path, list);
+	    findManPagesInSection(sdir, title, full_path, list);
+        }
+    }
+
+    return list;
+}
+
+void MANProtocol::findManPagesInSection(const QString &dir, const QString &title, bool full_path, QStringList &list)
+{
             bool title_given = !title.isEmpty();
 
             DIR *dp = ::opendir( QFile::encodeName( dir ) );
 
             if ( !dp )
-                continue;
+    return;
 
             struct dirent *ep;
 
@@ -313,10 +337,6 @@ QStringList MANProtocol::findPages(const QString &section,
                 }
             }
             ::closedir( dp );
-        }
-    }
-
-    return list;
 }
 
 void MANProtocol::output(const char *insert)
@@ -382,8 +402,31 @@ void MANProtocol::get(const KURL& url )
     else
     {
        QCString filename=QFile::encodeName(foundPages[0]);
+       const char *buf = NULL;
 
-       char *buf = readManPage(filename);
+       /* Determine mime type of file. If type is text/html, assume that it's
+	* SGML and convert it to roff format (used on Solaris). Other
+	* possibility: filename.contains("sman", false) */
+       QString file_mimetype = KMimeType::findByPath(QString(filename), 0, false)->name();
+       if (file_mimetype == "text/html")
+	 {
+	   *myStdStream="";
+	   KProcess proc;
+
+	   /* Determine path to sgml2roff, if not already done. */
+	   getProgramPath();
+	   proc << mySgml2RoffPath << filename;
+
+	   QApplication::connect(&proc, SIGNAL(receivedStdout (KProcess *, char *, int)), 
+				 this, SLOT(slotGetStdOutput(KProcess *, char *, int)));
+	   proc.start(KProcess::Block, KProcess::All);
+	   
+	   buf = myStdStream->latin1();
+	   // Does not work (return string is empty): buf = QCString(myStdStream->local8Bit());
+	 }
+       else
+	 buf = readManPage(filename);
+
        if (!buf)
        {
           outputError(i18n("Open of %1 failed.").arg(title));
@@ -400,6 +443,11 @@ void MANProtocol::get(const KURL& url )
        data(QByteArray());
     };
     finished();
+}
+
+void MANProtocol::slotGetStdOutput(KProcess* /* p */, char *s, int len) 
+{
+  *myStdStream += QString::fromLocal8Bit(s, len);
 }
 
 char *MANProtocol::readManPage(const char *_filename)
@@ -1278,3 +1326,22 @@ void MANProtocol::listDir(const KURL &url)
     finished();
 }
 
+void MANProtocol::getProgramPath()
+{
+  if (!mySgml2RoffPath.isEmpty())
+    return;
+
+  mySgml2RoffPath = KGlobal::dirs()->findExe("sgml2roff");
+  if (!mySgml2RoffPath.isEmpty())
+    return;
+
+  /* sgml2roff isn't found in PATH. Check some possible locations where it may be found. */
+  mySgml2RoffPath = KGlobal::dirs()->findExe("sgml2roff", QString(SGML2ROFF_DIRS));
+  if (!mySgml2RoffPath.isEmpty())
+    return;
+  
+  /* Cannot find sgml2roff programm: */
+  outputError(i18n("Could not find the sgml2roff program on your system. Please install it, if necessary, and extend the search path by adjusting the environment variable PATH before starting KDE."));
+  finished();
+  exit();
+}
