@@ -60,6 +60,7 @@ QString rfcDecoder::fromIMAP (const QString & inSrc)
   unsigned long srcPtr = 0;
   QCString dst;
   QCString src = inSrc.ascii ();
+  uint srcLen = inSrc.length();
 
   /* initialize modified base64 decoding table */
   memset (base64, UNDEFINED, sizeof (base64));
@@ -69,7 +70,7 @@ QString rfcDecoder::fromIMAP (const QString & inSrc)
   }
 
   /* loop until end of string */
-  while (srcPtr < src.length ())
+  while (srcPtr < srcLen)
   {
     c = src[srcPtr++];
     /* deal with literal characters and &- */
@@ -156,12 +157,16 @@ QString rfcDecoder::fromIMAP (const QString & inSrc)
 /* replace " with \" and \ with \\ " and \ characters */
 QString rfcDecoder::quoteIMAP(const QString &src)
 {
+  uint len = src.length();
   QString result;
-  for (unsigned int i = 0; i < src.length(); i++)
+  result.reserve(2 * len);
+  for (unsigned int i = 0; i < len; i++)
   {
-    if (src[i] == '"' || src[i] == '\\') result += '\\';
+    if (src[i] == '"' || src[i] == '\\')
+      result += '\\';
     result += src[i];
   }
+  result.squeeze();
   return result;
 }
 
