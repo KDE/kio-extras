@@ -121,7 +121,7 @@ void Medium::setLabel(const QString &label)
 
 void Medium::setUserLabel(const QString &label)
 {
-	KConfig cfg("mountmanagerrc");
+	KConfig cfg("mediamanagerrc");
 	cfg.setGroup("UserLabels");
 
 	QString entry_name = m_properties[ID];
@@ -140,7 +140,7 @@ void Medium::setUserLabel(const QString &label)
 
 void Medium::loadUserLabel()
 {
-	KConfig cfg("mountmanagerrc");
+	KConfig cfg("mediamanagerrc");
 	cfg.setGroup("UserLabels");
 
 	QString entry_name = m_properties[ID];
