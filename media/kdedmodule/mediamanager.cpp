@@ -61,17 +61,17 @@ MediaManager::MediaManager(const QCString &obj)
 		delete halBackend;
 		mp_removableBackend = new RemovableBackend(m_mediaList);
 		m_backends.append( mp_removableBackend );
-//#ifdef COMPILE_LINUXCDPOLLING
-//		m_backends.append( new LinuxCDPolling(m_mediaList) );
-//#endif //COMPILE_LINUXCDPOLLING
+#ifdef COMPILE_LINUXCDPOLLING
+		m_backends.append( new LinuxCDPolling(m_mediaList) );
+#endif //COMPILE_LINUXCDPOLLING
 		m_backends.append( new FstabBackend(m_mediaList) );
 	}
 #else //COMPILE_HALBACKEND
 	mp_removableBackend = new RemovableBackend(m_mediaList);
 	m_backends.append( mp_removableBackend );
-//#ifdef COMPILE_LINUXCDPOLLING
-	//m_backends.append( new LinuxCDPolling(m_mediaList) );
-//#endif //COMPILE_LINUXCDPOLLING
+#ifdef COMPILE_LINUXCDPOLLING
+	m_backends.append( new LinuxCDPolling(m_mediaList) );
+#endif //COMPILE_LINUXCDPOLLING
 	m_backends.append( new FstabBackend(m_mediaList) );
 #endif //COMPILE_HALBACKEND
 }

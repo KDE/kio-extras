@@ -23,6 +23,7 @@
 
 #include <qobject.h>
 #include <qcstring.h>
+#include <qmap.h>
 
 class DiscType
 {
@@ -43,6 +44,7 @@ private:
 	Type m_type;
 };
 
+class PollingThread;
 
 class LinuxCDPolling : public QObject, public BackendBase
 {
@@ -51,19 +53,31 @@ Q_OBJECT
 public:
 
 	LinuxCDPolling(MediaList &list);
+	~LinuxCDPolling();
 
 	/**
 	 * Find the disc type of the medium inserted in a drive
 	 * (considered to be a cdrom or dvdrom)
 	 *
 	 * @param devNode the path to the device to test
+	 * @param current the current known state of the drive
 	 * @return the disc type
 	 */
-	static DiscType identifyMimeType(const QCString &devNode);
+	static DiscType identifyDiscType(const QCString &devNode,
+		 const DiscType &current = DiscType::Unknown);
+
+private slots:
+	void slotMediumAdded(const QString &id);
+	void slotMediumRemoved(const QString &id);
+	void slotMediumStateChanged(const QString &id);
+	void slotTimeout();
 
 private:
+	void applyType(DiscType type, const Medium *medium);
+
 	static bool hasDirectory(const QCString &devNode, const QCString &dir);
 
+	QMap<QString, PollingThread*> m_threads;
 };
 
 #endif
