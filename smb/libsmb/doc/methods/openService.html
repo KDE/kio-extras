@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+	<TITLE></TITLE>
+	<META NAME="GENERATOR" CONTENT="StarOffice/5.0 (Unix)">
+	<META NAME="AUTHOR" CONTENT="Brodu Nicolas">
+	<META NAME="CREATED" CONTENT="19990523;22460100">
+	<META NAME="CHANGEDBY" CONTENT="Brodu Nicolas">
+	<META NAME="CHANGED" CONTENT="19990525;23095000">
+	<STYLE>
+	<!--
+		A:link { color: #ee1100 }
+		A:visited { color: #aa0000 }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LINK="#ee1100" VLINK="#aa0000" BGCOLOR="#ffffff">
+<P ALIGN=CENTER><FONT COLOR="#000000"><IMG SRC="../onLineDoc.jpg" NAME="Graphic1" ALIGN=BOTTOM WIDTH=599 HEIGHT=40 BORDER=0></FONT></P>
+<HR>
+<P ALIGN=LEFT><FONT SIZE=5><FONT COLOR="#198a8a">int</FONT>
+<A HREF="openService.html">openService</A>(<FONT COLOR="#198a8a">const
+char</FONT>* service, <FONT COLOR="#198a8a">const char</FONT>*
+password=<FONT COLOR="#0000ff">0</FONT>, <FONT COLOR="#198a8a">uint8</FONT>
+type=SMB_DISK)</FONT></P>
+<HR>
+<H2 ALIGN=LEFT><A NAME="method list"></A><FONT COLOR="#000080"><I><U>Method
+Description</U></I></FONT></H2>
+<P ALIGN=LEFT>Use this function to open a service (=share) on a SMB
+server. This function should only be called when a session has been
+successfully set up.<BR>You don't have to use this function for usual
+operations on files, but only if you wish to manage the sessions by
+yourself.</P>
+<P ALIGN=LEFT><SPAN STYLE="text-decoration: none"><I>service</I></SPAN>
+is the name of the service/share to open, coded in ASCIIZ. It is
+relative to the current SMB server.</P>
+<P ALIGN=LEFT><I>password</I> is the password required to access this
+share, if one is needed. It should be in plain ASCIIZ text, and will
+be encrypted if the server requires so.</P>
+<P ALIGN=LEFT><I>type</I> is the type of the ressource. Valid types
+are :<BR>&nbsp;&nbsp;&nbsp;&nbsp;SMB_DISK : The usual kind of
+share.<BR>&nbsp;&nbsp;&nbsp;&nbsp;SMB_PRINT_QUEUE : A print queue is
+a kind of file that can be opened for writing, and everything written
+in it is sent to a printer. <BR>&nbsp;&nbsp;&nbsp;&nbsp;SMB_DEVICE :
+Not very clear.<BR>&nbsp;&nbsp;&nbsp;&nbsp;SMB_IPC : Communication
+between processes. Used for example for getting the share list.<BR>At
+present, only SMB_DISK and SMB_IPC have been implemented and tested.</P>
+<P ALIGN=LEFT>This function returns 0 on success, -1 on error.</P>
+<H2 ALIGN=LEFT><FONT COLOR="#000080"><I><U>See also :</U></I></FONT></H2>
+<P><FONT COLOR="#333333">Close the current service<BR></FONT><FONT COLOR="#198a8a">void</FONT>
+<A HREF="closeService.html">closeService</A>()</P>
+<P><FONT COLOR="#333333">Specify a callback for retrieving password
+and user name<BR></FONT><FONT COLOR="#198a8a">void</FONT>
+<A HREF="setPasswordCallback.html">setPasswordCallback</A>(<FONT COLOR="#198a8a">char</FONT>*
+(*getFunc)(<FONT COLOR="#198a8a">const char</FONT>*) = <FONT COLOR="#0000ff">0</FONT>)</P>
+<HR>
+<P ALIGN=RIGHT><FONT COLOR="#4c4c4c"><I>Copyright &copy; Nicolas
+Brodu, 1999</I></FONT></P>
+</BODY>
+</HTML>

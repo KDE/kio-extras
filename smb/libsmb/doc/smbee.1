@@ -1,0 +1,71 @@
+.\"
+.TH SMBEE 1 "June 13, 1999" "smbee, libsmb-1.0pre"
+.SH NAME
+
+\fBsmbee\fP \- A fast SMB browser
+
+.SH SYNOPSIS
+
+\fBsmbee\fP [ \fI\-s browseServer\fP ] [ \fI\-u user\fP ] [ \fI\-B broadcast address\fP ] [ \fIurl\fP ]
+
+.SH DESCRITPION
+	
+.br
+\fBsmbee\fP is a small and fast SMB browser. It will start at URL "smb://" by default (see options below), but then you will be able to browse where you want.
+.br
+All the SMB URLs are built according to this scheme :
+.br
+[\fIsmb:\fP][\fI//\fP[\fIuser@\fP][\fIworkgroup/\fP][\fIhost\fP[\fI/share\fP[\fI/dir\fP[\fI/file\fP]]]]]
+
+
+Runtime keys :
+.br
+	\fIUP & DOWN\fP : select new target
+.br
+	\fIRIGHT & LEFT\fP : both mark or unmark a file for download
+.br
+	\fIENTER\fP : open and list a directory, download current and marked files.
+.br
+	\fICTRL\-U\fP : change user (default : none=anonymous)
+.br
+	\fICTRL\-S\fP : change browse server (default : use local samba)
+.br
+	\fICTRL\-B\fP : change the network broadcast address (default : guess from IP)
+.br
+	\fICTRL\-Q, CTRL\-X, CTRL\-C, ESC\fP : Quit program
+.br
+	\fIother\fP : modify URL
+
+.SH OPTIONS
+
+.TP
+\-\fBs\fP \fIbrowseServer\fP
+Specify a SMB browse server. By default smbee will use the local samba, but you can use any SMB server as browser. Only the SMB "masters" will have a list of all workgroups, so this option is useful if your host isn't the workgroup master or if you do not run samba.
+With this option and if you compiled libsmb with \-\-enable\-dnsquery, you can reach workgroups through routers, provided all the machines on the other side have the same NetBIOS and DNS names.
+Note : This option uses the NetBIOS name of the server.
+.TP
+\-\fBu\fP \fIuser\fP
+Specify a user name, used when the servers are in "user mode". This will be overrided by the user field of the URL if any.
+.TP
+\-\fBB\fP \fIbroadcast address\fP
+Specify a broadcast address. Default is to guess it from the IP class, but this doesn't work for sub-divided networks.
+.sp
+
+.SH ENVIRONEMENT
+
+.br
+SMB_USER, SMB_BROWSE_SERVER & SMB_BROADCAST_ADDRESS environement variables are used if set.
+.br
+They have the same effect as the corresponding command\-line options.
+The command line takes precedence though.
+
+
+.SH AUTHOR
+
+.br
+\fBsmbee\fP was written in a hurry by Nicolas Brodu, \fIbrodu@iie.cnam.fr\fP, to test the \fBlibsmb\fP library.
+.br
+You can get the most recent version of \fBsmbee\fP and the lib at my home page, \fIhttp://www\-eleves.iie.cnam.fr/~brodu/\fP
+.br
+This program is released under the GNU Public License.
+.br

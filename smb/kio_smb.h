@@ -6,12 +6,20 @@
 #include <kio_interface.h>
 #include <kio_base.h>
 
-#include <smb.h>
-
 #include <string.h>
 #include <list>
 
 #include <sys/types.h>
+
+#ifdef HAVE_CONFIG_H
+#include "config.h"
+#endif
+
+#ifdef HAVE_LIBSMB
+#include <smb.h>    // use system-wide libsmb
+#else
+#include "libsmb/src/SMBIO.h"  // use private libsmb
+#endif
 
 
 class SmbProtocol : public IOProtocol

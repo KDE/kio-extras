@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+	<TITLE></TITLE>
+	<META NAME="GENERATOR" CONTENT="StarOffice/5.0 (Unix)">
+	<META NAME="AUTHOR" CONTENT="Brodu Nicolas">
+	<META NAME="CREATED" CONTENT="19990523;22460100">
+	<META NAME="CHANGEDBY" CONTENT="Brodu Nicolas">
+	<META NAME="CHANGED" CONTENT="19990525;18390700">
+	<STYLE>
+	<!--
+		A:link { color: #ee1100 }
+		A:visited { color: #aa0000 }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LINK="#ee1100" VLINK="#aa0000" BGCOLOR="#ffffff">
+<P ALIGN=CENTER><FONT COLOR="#000000"><IMG SRC="../onLineDoc.jpg" NAME="Graphic1" ALIGN=BOTTOM WIDTH=599 HEIGHT=40 BORDER=0></FONT></P>
+<HR>
+<H2 ALIGN=LEFT><FONT SIZE=5><FONT COLOR="#198a8a">int</FONT>
+<A HREF="open.html">open</A>(<FONT COLOR="#198a8a">const char</FONT>*
+file=&quot;&quot;, <FONT COLOR="#198a8a">int</FONT> flags=O_RDWR, <FONT COLOR="#198a8a">int</FONT>
+mode=<FONT COLOR="#0000ff">0644</FONT>)</FONT></H2>
+<HR>
+<H2 ALIGN=LEFT><A NAME="method list"></A><FONT COLOR="#000080"><I><U>Method
+Description</U></I></FONT></H2>
+<P>This function basically acts as its standard equivalent.</P>
+<P ALIGN=LEFT><SPAN STYLE="text-decoration: none"><I>file</I></SPAN>
+is the file name to open, relative to the current share or with the
+full URL specified.</P>
+<P ALIGN=LEFT><I>flags</I> is a logical 'or' combination of flags.
+Valid flags are :<BR>&nbsp;&nbsp;&nbsp;&nbsp;O_RDONLY : Opens the
+file read-only.<BR>&nbsp;&nbsp;&nbsp;&nbsp;O_WRONLY : Opens the file
+write-only.<BR>&nbsp;&nbsp;&nbsp;&nbsp;O_RDWR : Opens for reading and
+writing.<BR>&nbsp;&nbsp;&nbsp;&nbsp;O_CREAT : If the file doesn't
+exist, it will be created.<BR>&nbsp;&nbsp;&nbsp;&nbsp;O_TRUNC : If
+the file already exists, it is truncated.<BR>&nbsp;&nbsp;&nbsp;&nbsp;O_EXCL
+: Useful together with O_CREAT only. If the file did already exist,
+an error is returned.<BR>&nbsp;&nbsp;&nbsp;&nbsp;O_APPEND : The file
+position pointer is placed atr the end of the file.<BR>Other flags
+are ignored.</P>
+<P ALIGN=LEFT><I>mode</I> should specify the permissions of the file
+if a new file is created. The flag isn't used at present, and anyway
+since Unix permissions must be mapped to DOS attributes,, this
+parameter isn't very relevant.</P>
+<P ALIGN=LEFT>This method returns a file descriptor, which can be
+used only for this library functions. Do not use standard functions
+with these descriptors.<BR>On error, -1 is returned and SMBIO::errno
+is set accordingly.</P>
+<H2 ALIGN=LEFT><FONT COLOR="#000080"><I><U>See also :</U></I></FONT></H2>
+<P><FONT COLOR="#333333">Create a file. URLs are accepted. Works as
+its standard equivalent.<BR></FONT><FONT COLOR="#198a8a">int</FONT>
+<A HREF="creat.html"><SPAN STYLE="font-style: normal">creat</SPAN></A>(<FONT COLOR="#198a8a">const
+char</FONT>* file=&quot;&quot;, <FONT COLOR="#198a8a">int</FONT>
+mode=<FONT COLOR="#0000ff">0644</FONT>)</P>
+<P><FONT COLOR="#333333">Close the file associated with this file
+descriptor<BR></FONT><FONT COLOR="#198a8a">int</FONT> <A HREF="close.html">close</A>(<FONT COLOR="#198a8a">int</FONT>
+fd)</P>
+<HR>
+<P ALIGN=RIGHT><FONT COLOR="#4c4c4c"><I>Copyright &copy; Nicolas
+Brodu, 1999</I></FONT></P>
+</BODY>
+</HTML>

@@ -1,0 +1,43 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+	<TITLE></TITLE>
+	<META NAME="GENERATOR" CONTENT="StarOffice/5.0 (Unix)">
+	<META NAME="AUTHOR" CONTENT="Brodu Nicolas">
+	<META NAME="CREATED" CONTENT="19990523;22460100">
+	<META NAME="CHANGEDBY" CONTENT="Brodu Nicolas">
+	<META NAME="CHANGED" CONTENT="19990704;9282700">
+	<STYLE>
+	<!--
+		A:link { color: #ee1100 }
+		A:visited { color: #aa0000 }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LINK="#ee1100" VLINK="#aa0000" BGCOLOR="#ffffff">
+<P ALIGN=CENTER><FONT COLOR="#000000"><IMG SRC="../onLineDoc.jpg" NAME="Graphic1" ALIGN=BOTTOM WIDTH=599 HEIGHT=40 BORDER=0></FONT></P>
+<HR>
+<P ALIGN=LEFT><FONT SIZE=5><FONT COLOR="#198a8a">int</FONT><FONT COLOR="#333333">
+<A HREF="setNetworkBroadcastAddress.html">setNetworkBroadcastAddress</A>(<FONT COLOR="#198a8a">uint32</FONT>
+addr)<BR><FONT COLOR="#198a8a">int</FONT>
+<A HREF="setNetworkBroadcastAddress.html">setNetworkBroadcastAddress</A>(<FONT COLOR="#198a8a">const
+char</FONT><FONT COLOR="#333333"> *</FONT>addr)</FONT></FONT></P>
+<HR>
+<H2 ALIGN=LEFT><A NAME="method list"></A><FONT COLOR="#000080"><I><U>Method
+Description</U></I></FONT></H2>
+<P ALIGN=LEFT>At present, the library only guess the network address
+from the IP class of the machine it is running on. Of course this
+won't work for sub-divided network classes. And it's incredibly not
+simple to get the broadcast address and keep the code portable.<BR>Use
+this to set the correct network broadcast address.</P>
+<P ALIGN=LEFT><SPAN STYLE="text-decoration: none"><I>addr</I></SPAN>
+is the network broadcast address of the machine, either in <U>network
+byte-order</U> (big endian) for the integer argument, or in standard
+dot notation for the char* argument.<BR><BR><BR>
+</P>
+<P ALIGN=LEFT>Returns 0 on success, -1 on error.</P>
+<HR>
+<P ALIGN=RIGHT><FONT COLOR="#4c4c4c"><I>Copyright &copy; Nicolas
+Brodu, 1999</I></FONT></P>
+</BODY>
+</HTML>

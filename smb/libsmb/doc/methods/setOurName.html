@@ -1,0 +1,43 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+	<TITLE></TITLE>
+	<META NAME="GENERATOR" CONTENT="StarOffice/5.0 (Unix)">
+	<META NAME="AUTHOR" CONTENT="Brodu Nicolas">
+	<META NAME="CREATED" CONTENT="19990523;22460100">
+	<META NAME="CHANGEDBY" CONTENT="Brodu Nicolas">
+	<META NAME="CHANGED" CONTENT="19990527;11493800">
+	<STYLE>
+	<!--
+		A:link { color: #ee1100 }
+		A:visited { color: #aa0000 }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LINK="#ee1100" VLINK="#aa0000" BGCOLOR="#ffffff">
+<P ALIGN=CENTER><FONT COLOR="#000000"><IMG SRC="../onLineDoc.jpg" NAME="Graphic1" ALIGN=BOTTOM WIDTH=599 HEIGHT=40 BORDER=0></FONT></P>
+<HR>
+<P ALIGN=LEFT><FONT SIZE=5><FONT COLOR="#198a8a">void</FONT>
+<A HREF="setOurName.html">setOurName</A>(<FONT COLOR="#198a8a">const
+char</FONT> *name)</FONT></P>
+<HR>
+<H2 ALIGN=LEFT><A NAME="method list"></A><FONT COLOR="#000080"><I><U>Method
+Description</U></I></FONT></H2>
+<P ALIGN=LEFT>Use this to specify our NetBIOS name.<BR>The library
+will connect to shares using this name if specified, regardless of
+what name Samba could have already set to the machine. This might
+induce problems (didn't happen for me however), but one can find it
+really fun to connect under a dummy name !</P>
+<P ALIGN=LEFT><I>name</I> is our NetBIOS host name, coded in ASCIIZ. 
+</P>
+<H2 ALIGN=LEFT><FONT COLOR="#000080"><I><U>See also :</U></I></FONT></H2>
+<P><FONT COLOR="#333333">Constructor<BR></FONT><A HREF="constructor.html">SMBIO</A>(<FONT COLOR="#198a8a">char</FONT>*
+(*getFunc)(<FONT COLOR="#198a8a">const char</FONT>*) = <FONT COLOR="#0000ff">0</FONT>,
+<FONT COLOR="#198a8a">const char</FONT> *hostname=<FONT COLOR="#0000ff">0</FONT>)</P>
+<P><FONT COLOR="#333333">Returns our NetBIOS name<BR></FONT><FONT COLOR="#198a8a">char</FONT>
+*<A HREF="getOurName.html">getOurName</A>()</P>
+<HR>
+<P ALIGN=RIGHT><FONT COLOR="#4c4c4c"><I>Copyright &copy; Nicolas
+Brodu, 1999</I></FONT></P>
+</BODY>
+</HTML>

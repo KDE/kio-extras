@@ -1,0 +1,244 @@
+* MAIN GOAL :
+
+	Propose a client interface for the SMB protocol in C++.
+	This interface should be easy to use, and robust, even at the
+cost of a few extra microseconds (which are not so dramatic since
+we'll spend most of the time waiting for the network anyway).
+
+
+* SECONDARY OBJECTIVE
+
+	Use this in a complete graphic client program with browsing capability,
+write kio_smb, a "plugin" for Konqueror (KDE 2 File Manager).
+
+
+* CHANGES from libsmb-19990514 :
+
+	Thanks to Artur Frysiak <wiget@t17.ds.pwr.wroc.pl>, libsmb now uses
+automake and libtool, so now it can be compiled as a share library.
+	Installation of the shared lib, + new header for easy use of the lib.
+Just #include <smb.h>, link with -lsmb, and it works !
+	Full read & write support with caching, and more file-management functions
+(unlink, mkdir...)
+	A complete documentation section.
+	Bug fixes and various improvements.
+	Mailing list (libsmb@umy.elsa.iie.cnam.fr) and cvs server (cvs.pld.org).
+Send a message to the list with "subscribe your-email@adress" in the body to
+subscribe.
+
+
+* OLD CHANGES :
+
+libsmb-19990511 => libsmb-19990514
+	DES authentification works !!! It's now possible to use share & user
+security models, and to access NT servers.
+	smbee now has command-line options and can get environnement variables.
+	man page for smbee.
+
+libsmb-19990429 => libsmb-19990511
+	ncurses / curses is autodetected.
+	smbee compiles on FreeBSD.
+	misc modifs from KDE cvs.
+
+
+* WARNING :
+	
+	This is still beta code, and there might be data loss or corruption in
+smb downloads on unreliable servers. You have been warned.
+
+
+* WHAT HAS BEEN DONE
+
+	Password handling & DES encryption for servers that accept it. Passwords
+are retrieved through a callback function, which enable any external interface
+to this library (for example a dialog box).
+
+	Standard localization of files. I use the notation :
+		[smb:[user@][workgroup]][//host[/share[/dir[/file]]]] (deprecated)
+		or
+		[smb:][//[user@][workgroup/][host[/share[/dir[/file]]]]]
+as a standard notation for files, with / or \ accepted as separators. I think
+it's nice for many reasons, mainly because it is URL-like and it provides a
+transparent way to do browsing, share listing and directory listing.
+The first notation extends samba's smbclient //host/share notation and the
+second is URL-compliant (rfc 1738).
+The second notation will browse for workgroups and can be slower than the first
+notation, for which workgroup and hosts cannot be confused.
+Feedback is welcome, I personnaly prefer the second one.
+
+	open, stat, read, and close functions on URLs, with adaptative caching (I
+mean cache size is optimized at run-time).
+
+	Directory functions (opendir, readdir, ...) on those URL work fine, and
+they include caching as well. They include browsing, retrieval of share list
+and directory listing.
+
+	Ability to change browse server. By default, the local samba is used. If
+you don't run samba or you want to access workgroups from within, you can
+change the browse server. It is also useful when you want to access hosts
+behind a router (too far for simple UDP broadcast), with the restriction that
+those hosts must have the same DNS and NetBIOS names.
+
+	Ability to change default user.
+	
+	Various utility fonctions (for URL management especially).
+
+	A very basic example, and a nice browser using ncurses !
+	
+	Caching for host names and and a better algorithm for browsing.
+
+	The library compiles and works on alpha/OSF1/OSF3, x86/Linux-FreeBSD,
+using gcc 2.7.2, egcs 1.1b. g++ 2.8.1 generates a lot of warnings on alpha/OSF3.
+On alpha/OSF1 smbee compiles but doesn't use raw mode (CTRL-C, S... are not
+sent but interpreted).
+
+
+		
+* WHAT NEED TO BE DONE
+
+	Get the _real_ network broadcast adress. At present, it is built from the
+IP class of the host the lib is running on, or specified by user at run-time.
+
+	Intensive testing on many systems, debugging.
+	
+	Some other things, including rewriting smbee cleanly (it has been made in
+a hurry, a few hours, just to test the library, and it's very badly coded).
+
+
+
+* API
+
+	Include <smb.h> in your C++ file
+	Declare a SMBIO object. You can provide a callback.
+	Use open, read, opendir... from this object.
+	Link your program with -lsmb.
+	See the documentation for a detailed explanation on the small differences
+between SMBIO functions and standard ones with the same name.
+
+	It can always be improved, and there could be incompatible modifications
+in the future. However, I will try not to modify the API and to keep binary
+compatibility if possible.
+	Any feedack is welcomed !
+
+
+* CLASSES DIAGRAM :
+
+	Moved to the documentation section
+
+* COMPILATION & USAGE :
+
+	Use configure script to produce the Makefiles.
+	Most useful configure options :
+		 --with-docdir=/path : specify a directory where the documentation
+		    will be installed. Default is [PREFIX/doc/PACKAGE], that's to say
+		    /usr/local/doc/libsmb if you don't specify anything.
+		--enable-debug=level : enable debugging messages, verbose <= level
+			where debug level are :
+			0 : only major errors (ex : host not found)
+			1 : critical internal errors (ex : wrong packet received)
+			2 : mini-log : only calls to SMBIO member functions
+			3 : simple log
+			4 : detailed log
+			5 : print some internal values and checkpoints
+			6 : hex dump of some packets
+		--enable-domain=name : specify a NetBIOS domain name
+		--enable-fast : suppose all servers are perfect and network works fine.
+			I strongly advise to use this ONLY among samba servers in a local
+			network, without too much load on each servers.
+		--enable-dnsquery : with this option, when a server is not found
+			locally, a DNS query is done. Thus it's possible to reach hosts
+			behind a router, but they must have the same DNS and NETBIOS names.
+			If someone knows how to get a NetBIOS name from an IP for any smb
+			server, that doesn't use special ports (eg. 137), please tell me.
+
+		Type configure --help to have the whole option list.
+
+
+* EXAMPLE & SMBEE
+
+	The "example" program in the documentation section shows how to use
+SMBIO in a simple example. I use it personally for debugging purpose, but it
+can also be useful if you want to download a single file via smb (ex in a
+script)
+	Example program syntax : "example URL"
+	The program will browse and list if URL is a directory, or download if it
+is a file.
+
+	smbee is a small and fast browser. It will start at URL "smb://" at
+startup by default (see options below), but then you will be able to browse
+where you want.
+
+	You can now specify options on the command line :
+		smbee [-s browseServer] [-u user] [-B broadcast address] [URL]
+	And SMB_USER, SMB_BROWSE_SERVER & SMB_BROADCAST_ADDRESS environement
+variables are used if set. The command line takes precedence though.
+		
+	Keys :
+		UP & DOWN : select new target
+		RIGHT & LEFT : both mark or unmark a file for download
+		ENTER : open and list a directory, download current and marked files.
+		CTRL-U : change user (default : none=anonymous)
+		CTRL-S : change browse server (default : use local samba)
+		CTRL-B : change broadcast address (default : guess from IP)
+		CTRL-Q, CTRL-X, CTRL-C, ESC : Quit program
+		other : modify URL
+
+
+* NOTES :
+
+	The caller (=> the machine where the program is running on) host name
+is considered to be the same as the NetBIOS name. This could also have
+been set at compile time using configure if I took the time to do it, but
+the real solution would be to ask samba what's our name. If someone has
+any idea how to proceed... (It's easy to get an IP from a NetBIOS name, but I
+didn't find a way to do the opposite).
+	I've tried to write everything in english, but didn't check if there
+wasn't a french word or two in the text !
+	Feel free to modify/add functionalities if you wish.
+	Feel free to contact me. Please send me feedback !
+	You can get the latest version of the library in the KDE CVS. I'll also
+maintain a standalone containing smbee at
+		http://www-eleves.iie.cnam.fr/~brodu/
+	Developement is slower this summer (june-september 99)...
+
+
+* LICENSE :
+
+	I release this code under GPL (read the files COPYING if you don't know
+what this means). Warning : this is really GPL, and not LGPL.
+
+
+* DOCUMENTATION :
+
+	The documentation section in the doc subdirectory contains this library
+API and an example.
+	NetBIOS is documented in RFC 1001 & 1002
+	Documentation an SMB is available at ftp://ftp.microsoft.com/developr/drg/CIFS/
+via anonymous access. It's an outdated doc buc I didn't find anything better
+on the net yet. They say those documents can be redistributed, but I didn't
+include them in this package because of the size, and because they are
+available on their ftp server. Just tell me if you can't find this doc
+for any reason, or if you can't read the .doc files (I use StarOffice).
+	The samba main pages at http://samba.anu.edu.au/samba/ also have a
+documentation section, which covers the basics of SMB.
+	Documentation about DES encryption can be found n the internet, but I used
+mainly the excellent des-how-to.txt by Matthew Fischer (couldn't join him at
+<mfischer@heinous.isca.uiowa.edu>). Here is a URL, I do not think this is the
+"official" one : http://ireland.iol.ie/~annod/docs/des-how-to.txt.
+
+
+
+* THANKS :
+
+	To the KDE team !
+	To Artur Frysiak <wiget@t17.ds.pwr.wroc.pl> for setting up automake and
+libtool, and for providing a cvs server.
+	To Pascal Varet <varet@iie.cnam.fr> for hosting the mailing list.
+	To all those who sent me feedback and helped me to improve the lib.
+
+	
+* AUTHOR :
+
+	Nicolas Brodu, brodu@iie.cnam.fr
+	1999-06-13
+	

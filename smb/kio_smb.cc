@@ -1,10 +1,7 @@
 // smb.cc adapted from file.cc by Nicolas Brodu <brodu@kde.org>
 // $Id$
 
-#ifdef HAVE_CONFIG_H
-#include "config.h"
-#endif
-
+#include "kio_smb.h"
 #include <sys/types.h>
 #ifdef HAVE_SYS_TIME_H
 #include <sys/time.h>
@@ -26,7 +23,6 @@
 #include <kprotocolmanager.h>
 #include <qvaluelist.h>
 
-#include "kio_smb.h"
 #include <sys/stat.h>
 
 #include <iostream.h>

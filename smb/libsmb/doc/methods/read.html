@@ -1,0 +1,49 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+	<TITLE></TITLE>
+	<META NAME="GENERATOR" CONTENT="StarOffice/5.0 (Unix)">
+	<META NAME="AUTHOR" CONTENT="Brodu Nicolas">
+	<META NAME="CREATED" CONTENT="19990523;22460100">
+	<META NAME="CHANGEDBY" CONTENT="Brodu Nicolas">
+	<META NAME="CHANGED" CONTENT="19990525;18483300">
+	<STYLE>
+	<!--
+		A:link { color: #ee1100 }
+		A:visited { color: #aa0000 }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LINK="#ee1100" VLINK="#aa0000" BGCOLOR="#ffffff">
+<P ALIGN=CENTER><FONT COLOR="#000000"><IMG SRC="../onLineDoc.jpg" NAME="Graphic1" ALIGN=BOTTOM WIDTH=599 HEIGHT=40 BORDER=0></FONT></P>
+<HR>
+<P ALIGN=LEFT><FONT SIZE=5><FONT COLOR="#198a8a">int</FONT> <A HREF="read.html">read</A>(<FONT COLOR="#198a8a">int</FONT>
+fd, <FONT COLOR="#198a8a">void</FONT> *buf, <FONT COLOR="#198a8a">uint32</FONT>
+count)</FONT></P>
+<HR>
+<H2 ALIGN=LEFT><A NAME="method list"></A><FONT COLOR="#000080"><I><U>Method
+Description</U></I></FONT></H2>
+<P>This function basically acts as its standard equivalent, except
+that it caches the data so as to improve performances.</P>
+<P ALIGN=LEFT><SPAN STYLE="text-decoration: none"><I>fd</I></SPAN> is
+a file descriptor corresponding to an already opened file. This must
+be a descriptor returned by the library functions, and not by the
+standard ones.</P>
+<P ALIGN=LEFT><I>buf</I> is a buffer provided by the user. It must be
+large enough to contain all the data that will be read.</P>
+<P ALIGN=LEFT><I>count</I> is the maximum number of bytes this
+function should try to read.</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0.00cm">The number of bytes read
+is returned.<BR>On error, -1 is returned and SMBIO::errno is set
+accordingly.</P>
+<H2 ALIGN=LEFT><FONT COLOR="#000080"><I><U>See also :</U></I></FONT></H2>
+<P><FONT COLOR="#333333">Writes to &quot;opened&quot; file
+descriptor. Does caching.<BR></FONT><FONT COLOR="#198a8a">int</FONT>
+<A HREF="write.html">write</A>(<FONT COLOR="#198a8a">int</FONT> fd,
+<FONT COLOR="#198a8a">void</FONT> *buf, <FONT COLOR="#198a8a">uint32</FONT>
+count)</P>
+<HR>
+<P ALIGN=RIGHT><FONT COLOR="#4c4c4c"><I>Copyright &copy; Nicolas
+Brodu, 1999</I></FONT></P>
+</BODY>
+</HTML>

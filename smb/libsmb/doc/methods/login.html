@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+	<TITLE></TITLE>
+	<META NAME="GENERATOR" CONTENT="StarOffice/5.0 (Unix)">
+	<META NAME="AUTHOR" CONTENT="Brodu Nicolas">
+	<META NAME="CREATED" CONTENT="19990523;22460100">
+	<META NAME="CHANGEDBY" CONTENT="Brodu Nicolas">
+	<META NAME="CHANGED" CONTENT="19990526;13551200">
+	<STYLE>
+	<!--
+		A:link { color: #ee1100 }
+		A:visited { color: #aa0000 }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LINK="#ee1100" VLINK="#aa0000" BGCOLOR="#ffffff">
+<P ALIGN=CENTER><FONT COLOR="#000000"><IMG SRC="../onLineDoc.jpg" NAME="Graphic1" ALIGN=BOTTOM WIDTH=599 HEIGHT=40 BORDER=0></FONT></P>
+<HR>
+<P ALIGN=LEFT><FONT SIZE=5><FONT COLOR="#198a8a">int</FONT>
+<A HREF="login.html">login</A>(<FONT COLOR="#198a8a">const char</FONT>*
+user=<FONT COLOR="#0000ff">0</FONT>, <FONT COLOR="#198a8a">const
+char</FONT>* password=<FONT COLOR="#0000ff">0</FONT>)</FONT></P>
+<HR>
+<H2 ALIGN=LEFT><A NAME="method list"></A><FONT COLOR="#000080"><I><U>Method
+Description</U></I></FONT></H2>
+<P ALIGN=LEFT>login is used to specify a user/password for the
+current host. It is called internally by the library.<BR>You don't
+have to use this function for usual operations on files, but only if
+you wish to manage the sessions by yourself.<BR>If you do so
+nonetheless, this function should be called immediately after
+openSession.<BR>If iether user or password isn't specified and
+needed, it will be retrieved through the callback.</P>
+<P ALIGN=LEFT>This function detects if the server require encryption,
+and use it if this is the case.</P>
+<P ALIGN=LEFT><SPAN STYLE="text-decoration: none"><I>user</I></SPAN>
+is the name the user want to send to the server. This should be an
+ASCIIZ string.</P>
+<P ALIGN=LEFT><I>password</I> is the password for the user account.
+This should be an ASCIIZ string.</P>
+<P ALIGN=LEFT>This function returns 0 on success, -1 on error.</P>
+<H2 ALIGN=LEFT><FONT COLOR="#000080"><I><U>See also :</U></I></FONT></H2>
+<P><FONT COLOR="#333333">Open a session with the specified host<BR></FONT><FONT COLOR="#198a8a">int</FONT>
+<A HREF="openSession.html">openSession</A>(<FONT COLOR="#198a8a">const
+char</FONT> *hostname)</P>
+<P><FONT COLOR="#333333">Opens a service (=share) on current host<BR></FONT><FONT COLOR="#198a8a">int</FONT>
+<A HREF="openService.html">openService</A>(<FONT COLOR="#198a8a">const
+char</FONT>* service, <FONT COLOR="#198a8a">const char</FONT>*
+password=<FONT COLOR="#0000ff">0</FONT>, <FONT COLOR="#198a8a">uint8</FONT>
+type=SMB_DISK)</P>
+<P><FONT COLOR="#333333">Get the share list of the specified
+host<BR></FONT>SMBShareList *<A HREF="getShareList.html">getShareList</A>(<FONT COLOR="#198a8a">const
+char</FONT> *hostname, <FONT COLOR="#198a8a">const char</FONT>
+*user=<FONT COLOR="#0000ff">0</FONT>)</P>
+<P><FONT COLOR="#333333">Specify a callback for retrieving password
+and user name<BR></FONT><FONT COLOR="#198a8a">void</FONT>
+<A HREF="setPasswordCallback.html">setPasswordCallback</A>(<FONT COLOR="#198a8a">char</FONT>*
+(*getFunc)(<FONT COLOR="#198a8a">const char</FONT>*) = <FONT COLOR="#0000ff">0</FONT>)</P>
+<HR>
+<P ALIGN=RIGHT><FONT COLOR="#4c4c4c"><I>Copyright &copy; Nicolas
+Brodu, 1999</I></FONT></P>
+</BODY>
+</HTML>

@@ -1,0 +1,198 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+	<TITLE>Libsmb on-line documentation</TITLE>
+	<META NAME="GENERATOR" CONTENT="StarOffice/5.0 (Unix)">
+	<META NAME="AUTHOR" CONTENT="Brodu Nicolas">
+	<META NAME="CREATED" CONTENT="19990523;19412100">
+	<META NAME="CHANGEDBY" CONTENT="Brodu Nicolas">
+	<META NAME="CHANGED" CONTENT="19990704;9243900">
+	<STYLE>
+	<!--
+		A:link { color: #ee1100 }
+		A:visited { color: #aa0000 }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LINK="#ee1100" VLINK="#aa0000" BGCOLOR="#ffffff">
+<P ALIGN=CENTER><FONT COLOR="#000000"><IMG SRC="onLineDoc.jpg" NAME="Graphic1" ALIGN=BOTTOM WIDTH=599 HEIGHT=40 BORDER=0></FONT></P>
+<P ALIGN=LEFT><FONT COLOR="#000080"><U><B>Index :</B></U></FONT></P>
+<P ALIGN=LEFT><A HREF="#method list">Method list</A><BR>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="#file management">File
+management</A><BR>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="#session management">Session
+management</A><BR>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="#utility functions">Utility
+functions</A><BR>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="#name service">Name
+service &amp; network specific</A><A HREF="http://name service/">s</A><BR><A HREF="#data structures">Useful
+data structures</A></P>
+<P ALIGN=LEFT><BR><BR>
+</P>
+<H2><A NAME="method list"></A><FONT COLOR="#000080"><I><U>Method list</U></I></FONT></H2>
+<P><FONT COLOR="#333333">Constructor<BR></FONT><A HREF="methods/constructor.html">SMBIO</A>(<FONT COLOR="#198a8a">char</FONT>*
+(*getFunc)(<FONT COLOR="#198a8a">const char</FONT>*) = <FONT COLOR="#0000ff">0</FONT>,
+<FONT COLOR="#198a8a">const char</FONT> *hostname=<FONT COLOR="#0000ff">0</FONT>)</P>
+<P><FONT COLOR="#333333">Destructor<BR></FONT>~<A HREF="methods/destructor.html">SMBIO</A>()</P>
+<H3><A NAME="file management"></A><FONT COLOR="#000080">File
+management</FONT></H3>
+<P><FONT COLOR="#333333">Opens a file. URLs are accepted. Works as
+its standard equivalent.<BR></FONT><FONT COLOR="#198a8a">int</FONT>
+<A HREF="methods/open.html">open</A>(<FONT COLOR="#198a8a">const
+char</FONT>* file=&quot;&quot;, <FONT COLOR="#198a8a">int</FONT>
+flags=O_RDWR, <FONT COLOR="#198a8a">int</FONT> mode=<FONT COLOR="#0000ff">0644</FONT>)</P>
+<P><FONT COLOR="#333333">Create a file. URLs are accepted. Works as
+its standard equivalent.<BR></FONT><FONT COLOR="#198a8a">int</FONT>
+<A HREF="methods/creat.html"><SPAN STYLE="font-style: normal">creat</SPAN></A>(<FONT COLOR="#198a8a">const
+char</FONT>* file=&quot;&quot;, <FONT COLOR="#198a8a">int</FONT>
+mode=<FONT COLOR="#0000ff">0644</FONT>)</P>
+<P><FONT COLOR="#333333">Reads from an &quot;opened&quot; file
+descriptor. Does caching.<BR></FONT><FONT COLOR="#198a8a">int</FONT>
+<A HREF="methods/read.html">read</A>(<FONT COLOR="#198a8a">int</FONT>
+fd, <FONT COLOR="#198a8a">void</FONT> *buf, <FONT COLOR="#198a8a">uint32</FONT>
+count)</P>
+<P><FONT COLOR="#333333">Writes to &quot;opened&quot; file
+descriptor. Does caching.<BR></FONT><FONT COLOR="#198a8a">int</FONT>
+<A HREF="methods/write.html">write</A>(<FONT COLOR="#198a8a">int</FONT>
+fd, <FONT COLOR="#198a8a">void</FONT> *buf, <FONT COLOR="#198a8a">uint32</FONT>
+count)</P>
+<P><FONT COLOR="#333333">Close the file associated with this file
+descriptor<BR></FONT><FONT COLOR="#198a8a">int</FONT> <A HREF="methods/close.html">close</A>(<FONT COLOR="#198a8a">int</FONT>
+fd)</P>
+<P><FONT COLOR="#333333">Flush forces a write of all buffered data
+for the given fd<BR></FONT><FONT COLOR="#198a8a">int</FONT> <A HREF="methods/flush.html">flush</A>(<FONT COLOR="#198a8a">int</FONT>
+fd)</P>
+<P><FONT COLOR="#333333">Position the file position pointer for this
+file descriptor<BR></FONT><FONT COLOR="#198a8a">int32</FONT>
+<A HREF="methods/lseek.html">lseek</A>(<FONT COLOR="#198a8a">int</FONT>
+fd, <FONT COLOR="#198a8a">int32</FONT> offset, <FONT COLOR="#198a8a">int</FONT>
+from)</P>
+<P><FONT COLOR="#333333">Unlink will delete or unlink the file
+depending on target OS</FONT><BR><FONT COLOR="#198a8a">int</FONT>
+<A HREF="methods/unlink.html">unlink</A>(<FONT COLOR="#198a8a">const
+char</FONT> *file)</P>
+<P><FONT COLOR="#333333">Renames a file, but doesn't move it between
+directories</FONT><BR><FONT COLOR="#198a8a">int</FONT> <A HREF="methods/rename.html">rename</A>(<FONT COLOR="#198a8a">const
+char</FONT> *fileURL, <FONT COLOR="#198a8a">const char</FONT>
+*newname)</P>
+<P><FONT COLOR="#333333">Stats a file/directory. URLs are accepted.
+Works as its standard equivalent.<BR></FONT><FONT COLOR="#198a8a">int</FONT>
+<A HREF="methods/stat.html">stat</A>(<FONT COLOR="#198a8a">const char</FONT>
+*filename, <FONT COLOR="#198a8a">struct</FONT> stat *buf)</P>
+<P><FONT COLOR="#333333">Stats the file/directory corresponding to
+this fd.<BR></FONT><FONT COLOR="#198a8a">int</FONT> <A HREF="methods/fstat.html">fstat</A>(<FONT COLOR="#198a8a">int</FONT>
+fd, <FONT COLOR="#198a8a">struct</FONT> stat *buf)</P>
+<P><FONT COLOR="#333333">Opens a directory. URLs arre accepted.
+Returns a directory descriptor.<BR></FONT><FONT COLOR="#198a8a">int</FONT>
+<A HREF="methods/opendir.html">opendir</A>(<FONT COLOR="#198a8a">const
+char</FONT> *name)</P>
+<P><FONT COLOR="#333333">Reads from an &quot;opened&quot; directory
+descriptor. Does caching.<BR></FONT>SMBdirent *<A HREF="methods/readdir.html">readdir</A>(<FONT COLOR="#198a8a">int</FONT>
+dirdesc)</P>
+<P><FONT COLOR="#333333">Close the directory associated with this
+file descriptor<BR></FONT><FONT COLOR="#198a8a">int</FONT>
+<A HREF="methods/closedir.html">closedir</A>(<FONT COLOR="#198a8a">int</FONT>
+dirdesc)</P>
+<P><FONT COLOR="#333333">Position the position pointer for this
+directory descriptor. Returns -1 on error.<BR></FONT><FONT COLOR="#198a8a">int</FONT>
+<A HREF="methods/rewinddir.html">rewinddir</A>(<FONT COLOR="#198a8a">int</FONT>
+dirdesc)</P>
+<P><FONT COLOR="#333333">Creates a directory with URL pathname</FONT><BR><FONT COLOR="#198a8a">int</FONT>
+<A HREF="methods/mkdir.html">mkdir</A>(<FONT COLOR="#198a8a">const
+char</FONT> *pathname)</P>
+<P><FONT COLOR="#333333">Deletes the directory pointed by the URL
+pathname</FONT><BR><FONT COLOR="#198a8a">int</FONT> <A HREF="methods/rmdir.html">rmdir</A>(<FONT COLOR="#198a8a">const
+char</FONT> *pathname)</P>
+<H3><A NAME="session management"></A><FONT COLOR="#000080">Session
+management</FONT></H3>
+<P><FONT COLOR="#333333">Open a session with the specified host<BR></FONT><FONT COLOR="#198a8a">int</FONT>
+<A HREF="methods/openSession.html">openSession</A>(<FONT COLOR="#198a8a">const
+char</FONT> *hostname)</P>
+<P><FONT COLOR="#333333">Login function, password will be crypted if
+necessary<BR></FONT><FONT COLOR="#198a8a">int</FONT> <A HREF="methods/login.html">login</A>(<FONT COLOR="#198a8a">const
+char</FONT>* user=<FONT COLOR="#0000ff">0</FONT>, <FONT COLOR="#198a8a">const
+char</FONT>* password=<FONT COLOR="#0000ff">0</FONT>)</P>
+<P><FONT COLOR="#333333">Opens a service (=share) on current host<BR></FONT><FONT COLOR="#198a8a">int</FONT>
+<A HREF="methods/openService.html">openService</A>(<FONT COLOR="#198a8a">const
+char</FONT>* service, <FONT COLOR="#198a8a">const char</FONT>*
+password=<FONT COLOR="#0000ff">0</FONT>, <FONT COLOR="#198a8a">uint8</FONT>
+type=SMB_DISK)</P>
+<P><FONT COLOR="#333333">Close the current service<BR></FONT><FONT COLOR="#198a8a">void</FONT>
+<A HREF="methods/closeService.html">closeService</A>()</P>
+<P><FONT COLOR="#333333">Close the current session<BR></FONT><FONT COLOR="#198a8a">void</FONT>
+<A HREF="methods/closeSession.html">closeSession</A>()</P>
+<P><FONT COLOR="#333333">Get the share list of the specified
+host<BR></FONT>SMBShareList *<A HREF="methods/getShareList.html">getShareList</A>(<FONT COLOR="#198a8a">const
+char</FONT> *hostname, <FONT COLOR="#198a8a">const char</FONT>
+*user=<FONT COLOR="#0000ff">0, <FONT COLOR="#198a8a">const char</FONT>
+</FONT>*password=<FONT COLOR="#0000ff">0</FONT>)</P>
+<H3><A NAME="utility functions"></A><FONT COLOR="#000080">Utility
+functions</FONT></H3>
+<P><FONT COLOR="#333333">Specify a callback for retrieving password
+and user name<BR></FONT><FONT COLOR="#198a8a">void</FONT>
+<A HREF="methods/setPasswordCallback.html">setPasswordCallback</A>(<FONT COLOR="#198a8a">char</FONT>*
+(*getFunc)(<FONT COLOR="#198a8a">const char</FONT>*) = <FONT COLOR="#0000ff">0</FONT>)</P>
+<P><FONT COLOR="#333333">Specify a default user, instead of anonymous
+access<BR></FONT><FONT COLOR="#198a8a">void</FONT>
+<A HREF="methods/setDefaultUser.html">setDefaultUser</A>(<FONT COLOR="#198a8a">const
+char</FONT> *userName)</P>
+<P><FONT COLOR="#333333">Makes browsing possible without samba
+installed locally<BR></FONT><FONT COLOR="#198a8a">void</FONT>
+<A HREF="methods/setDefaultBrowseServer.html">setDefaultBrowseServer</A>(<FONT COLOR="#198a8a">const
+char</FONT> *serverName)</P>
+<P><FONT COLOR="#333333">Simple parser for smb URLs<BR></FONT><FONT COLOR="#198a8a">int</FONT>
+<A HREF="methods/parse.html">parse</A>(<FONT COLOR="#198a8a">const
+char</FONT> *name, <FONT COLOR="#198a8a">char</FONT>* &amp;workgroup,
+<FONT COLOR="#198a8a">char</FONT>* &amp;host, <FONT COLOR="#198a8a">char</FONT>*
+&amp;share, <FONT COLOR="#198a8a">char</FONT>* &amp;dir, <FONT COLOR="#198a8a">char</FONT>*
+&amp;user)</P>
+<P><FONT COLOR="#333333">Does the opposite of the parser<BR></FONT><FONT COLOR="#198a8a">char</FONT>
+*<A HREF="methods/buildURL.html">buildURL</A>(<FONT COLOR="#198a8a">const
+char</FONT>* workgroup=<FONT COLOR="#0000ff">0</FONT>, <FONT COLOR="#198a8a">const
+char</FONT>* host=<FONT COLOR="#0000ff">0</FONT>, <FONT COLOR="#198a8a">const
+char</FONT>* share=<FONT COLOR="#0000ff">0</FONT>, <FONT COLOR="#198a8a">const
+char</FONT>* file=<FONT COLOR="#0000ff">0</FONT>, <FONT COLOR="#198a8a">const
+char</FONT>* user=<FONT COLOR="#0000ff">0</FONT>)</P>
+<P><FONT COLOR="#333333">Returns the name of the file associated with
+this file descriptor, stripping URL<BR></FONT><FONT COLOR="#198a8a">char</FONT>
+*<A HREF="methods/getName.html">getName</A>(<FONT COLOR="#198a8a">int</FONT>
+fd)</P>
+<P><FONT COLOR="#333333">Returns the full URL of the file or
+directory associated with the descriptor<BR></FONT><FONT COLOR="#198a8a">char</FONT>
+*<A HREF="methods/getURL.html">getURL</A>(<FONT COLOR="#198a8a">int</FONT>
+desc)</P>
+<P><FONT COLOR="#333333">Appends a string to an URL, making it
+another URL (&quot;.&quot; and &quot;..&quot; are interpreted)<BR></FONT><FONT COLOR="#198a8a">char</FONT>
+*<A HREF="methods/append.html">append</A>(<FONT COLOR="#198a8a">const
+char</FONT>* URL, <FONT COLOR="#198a8a">const char</FONT> *string)</P>
+<P><FONT COLOR="#333333">Opens subdir &quot;name&quot; of dir dd and
+returns a directory descriptor<BR></FONT><FONT COLOR="#198a8a">int</FONT>
+<A HREF="methods/cd.html">cd</A>(<FONT COLOR="#198a8a">int</FONT> dd,
+<FONT COLOR="#198a8a">const char</FONT> *subdir)</P>
+<H3><A NAME="name service"></A><FONT COLOR="#000080">Name service &amp;
+network specifics</FONT></H3>
+<P><FONT COLOR="#333333">Sets our NetBIOS name (ASCIIZ)<BR></FONT><FONT COLOR="#198a8a">void</FONT>
+<A HREF="methods/setOurName.html">setOurName</A>(<FONT COLOR="#198a8a">const
+char</FONT> *name)</P>
+<P><FONT COLOR="#333333">Returns our NetBIOS name<BR></FONT><FONT COLOR="#198a8a">char</FONT>
+*<A HREF="methods/getOurName.html">getOurName</A>()</P>
+<P><FONT COLOR="#333333">Sets our network broadcast address !<BR><FONT COLOR="#198a8a">int</FONT>
+<A HREF="methods/setNetworkBroadcastAddress.html"></A><A HREF="methods/setNetworkBroadcastAddress.html">setNetworkBroadcastAddress</A><A HREF="methods/setNetworkBroadcastAddress.html"></A>(<FONT COLOR="#198a8a">uint32</FONT>
+addr)</FONT><BR><FONT COLOR="#198a8a">int</FONT><FONT COLOR="#333333">
+<A HREF="methods/setNetworkBroadcastAddress.html"></A><A HREF="methods/setNetworkBroadcastAddress.html">setNetworkBroadcastAddress</A><A HREF="methods/setNetworkBroadcastAddress.html"></A>(<FONT COLOR="#198a8a">const
+char</FONT><FONT COLOR="#333333"> *</FONT>addr)</FONT></P>
+<P><FONT COLOR="#333333">NetBIOS name query<BR></FONT><FONT COLOR="#198a8a">struct</FONT>
+NBHostEnt *<A HREF="methods/gethostbyname.html">gethostbyname</A>(<FONT COLOR="#198a8a">const
+char</FONT> *name)</P>
+<P><BR><BR>
+</P>
+<H2><A NAME="data structures"></A><FONT COLOR="#000080"><I><U>Useful
+data structures</U></I></FONT></H2>
+<P><FONT COLOR="#333333">This class replaces the structure dirent,
+and provides more useful fields<BR></FONT><FONT COLOR="#198a8a">class</FONT>
+<A HREF="methods/SMBdirent.html">SMBdirent</A></P>
+<P><FONT COLOR="#333333">Used if you manage sessions by
+yourself.<BR></FONT><FONT COLOR="#198a8a">class</FONT> <A HREF="methods/SMBShareList.html">SMBShareList</A></P>
+<P><FONT COLOR="#333333">NetBIOS hostent equivalent<BR></FONT><FONT COLOR="#198a8a">class</FONT>
+<A HREF="methods/NBHostEnt.html">NBHostEnt</A></P>
+<HR>
+<P ALIGN=RIGHT><FONT COLOR="#4c4c4c"><I>Copyright &copy; Nicolas
+Brodu, 1999</I></FONT></P>
+</BODY>
+</HTML>

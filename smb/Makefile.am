@@ -1,8 +1,16 @@
 ## Makefile.am of kdebase/kioslave/smb
 
-INCLUDES=	$(all_includes)
-LDFLAGS =       $(all_libraries) $(KDE_RPATH)
+## Will install a version of libsmb if necessary
+if COMPILE_LIBSMB
+SUBDIRS = libsmb
+LDADD	=	$(LIB_KIO) libsmb/src/libsmb.la
+else
 LDADD	=	$(LIB_KIO) $(LIBSMB)
+endif
+
+INCLUDES=	$(all_includes)
+LDFLAGS =   $(all_libraries) $(KDE_RPATH)
+
 
 ####### Files
 
@@ -15,4 +23,3 @@ kioconfig_DATA = smb.desktop
 kioconfigdir = $(kde_confdir)/protocols
 
 messages:
-
