@@ -27,7 +27,7 @@
 #include <qmap.h>
 
 
-struct specialEntry 
+struct specialEntry
 {
 	QString id;
 	QString description;
@@ -59,7 +59,7 @@ k_dcop:
     QString mountpoint(QString name);
     QString devicenode(int id);
     QString type(int id);
-    bool    mounted(int id);    
+    bool    mounted(int id);
     bool    mounted(QString name);
     QStringList basicList();
     QStringList basicDeviceInfo(QString);
@@ -70,7 +70,7 @@ k_dcop:
     bool createLink(const KURL& deviceURL, const KURL& destinationURL);
     void reloadExclusionLists();
 k_dcop_signals:
-    void mountSituationChaged();
+    void mountSituationChanged();
 
 
 protected slots:
