@@ -137,21 +137,33 @@ ASYNC MediaManager::setUserLabel(const QString &name, const QString &label)
 	m_mediaList.setUserLabel(name, label);
 }
 
-ASYNC MediaManager::removablePlug(const QString &devNode, const QString &label)
+bool MediaManager::removablePlug(const QString &devNode, const QString &label)
 {
 	if (mp_removableBackend)
 	{
-		mp_removableBackend->plug(devNode, label);
+		return mp_removableBackend->plug(devNode, label);
 	}
+	return false;
 }
 
-ASYNC MediaManager::removableUnplug(const QString &devNode)
+bool MediaManager::removableUnplug(const QString &devNode)
 {
 	if (mp_removableBackend)
 	{
-		mp_removableBackend->unplug(devNode);
+		return mp_removableBackend->unplug(devNode);
 	}
+	return false;
 }
+
+bool MediaManager::removableCamera(const QString &devNode)
+{
+	if (mp_removableBackend)
+	{
+		return mp_removableBackend->camera(devNode);
+	}
+	return false;
+}
+	
 
 void MediaManager::slotMediumAdded(const QString &/*id*/, const QString &name)
 {

@@ -43,8 +43,9 @@ k_dcop:
 	ASYNC setUserLabel(const QString &name, const QString &label);
 
 	// Removable media handling (for people not having HAL)
-	ASYNC removablePlug(const QString &devNode, const QString &label);
-	ASYNC removableUnplug(const QString &devNode);
+	bool removablePlug(const QString &devNode, const QString &label);
+	bool removableUnplug(const QString &devNode);
+	bool removableCamera(const QString &devNode);
 
 k_dcop_signals:
 	void mediumAdded(const QString &name);

@@ -53,7 +53,7 @@ RemovableBackend::~RemovableBackend()
 	}
 }
 
-void RemovableBackend::plug(const QString &devNode, const QString &label)
+bool RemovableBackend::plug(const QString &devNode, const QString &label)
 {
 	QString name = generateName(devNode);
 	QString id = generateId(devNode);
@@ -85,20 +85,32 @@ void RemovableBackend::plug(const QString &devNode, const QString &label)
 		medium->setMimeType("media/removable_unmounted");
 
 		m_removableIds.append(id);
-		m_mediaList.addMedium(medium);
+		return !m_mediaList.addMedium(medium).isNull();
 	}
+	return false;
 }
 
-void RemovableBackend::unplug(const QString &devNode)
+bool RemovableBackend::unplug(const QString &devNode)
 {
 	QString id = generateId(devNode);
 	if (m_removableIds.contains(id))
 	{
 		m_removableIds.remove(id);
-		m_mediaList.removeMedium(id);
+		return m_mediaList.removeMedium(id);
 	}
+	return false;
 }
 
+bool RemovableBackend::camera(const QString &devNode)
+{
+	QString id = generateId(devNode);
+	if (m_removableIds.contains(id))
+	{
+		return m_mediaList.changeMediumState(id,
+			QString("camera:/"), "media/gphoto2camera");
+	}
+	return false;
+}
 
 void RemovableBackend::slotDirty(const QString &path)
 {

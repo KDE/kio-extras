@@ -32,8 +32,9 @@ public:
 	RemovableBackend(MediaList &list);
 	virtual ~RemovableBackend();
 
-	void plug(const QString &devNode, const QString &label);
-	void unplug(const QString &devNode);
+	bool plug(const QString &devNode, const QString &label);
+	bool unplug(const QString &devNode);
+	bool camera(const QString &devNode);
 
 private slots:
 	void slotDirty(const QString &path);
