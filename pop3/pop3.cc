@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 1999-2001 Alex Zepeda
+ * Copyright (c) 2001-2002 Michael Haeckel <haeckel@kde.org>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -444,8 +445,8 @@ bool POP3Protocol::pop3_open ()
 			closeConnection();
 			m_try_apop = false;
 			if (metaData("auth") == "APOP") {
-				error(ERR_COULD_NOT_CONNECT,
-				i18n("Login via APOP failed:\n%1").arg(buf));
+				error(ERR_COULD_NOT_LOGIN,
+				i18n("Login via APOP failed. Most likely your server doesn't support APOP or the password is wrong.\n\n%1").arg(m_sError));
 				return false;
 			} else {
 				return pop3_open();
@@ -499,7 +500,7 @@ bool POP3Protocol::pop3_open ()
 
 				if (metaData("auth") == "SASL") {
 					error(ERR_COULD_NOT_LOGIN,
-						i18n("Login via SASL (%1) failed.").arg(sasl_auth));
+						i18n("Login via SASL (%1) failed. Most likely your server doesn't support %2 or the password is wrong.\n\n%3").arg(sasl_auth).arg(sasl_auth).arg(m_sError));
 					return false;
 				}
 			}
@@ -540,7 +541,7 @@ bool POP3Protocol::pop3_open ()
 
 		if (!command(one_string.local8Bit(), buf, sizeof(buf))) {
 			POP3_DEBUG << "Couldn't login. Bad password Sorry." << endl;
-			m_sError = i18n("Could not login to %1.\n\n").arg(m_sServer) + m_sError;
+			m_sError = i18n("Could not login to %1. Most likely the password is wrong.\n\n%2").arg(m_sServer).arg(m_sError);
 			error(ERR_COULD_NOT_LOGIN, m_sError);
 			closeConnection();
 			return false;
