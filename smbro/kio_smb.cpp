@@ -86,9 +86,8 @@ int kdemain( int argc, char **argv )
 
 int makeDirHier(const QString& path)
 {
-   QString s(path);
-   QStringList sl=QStringList::split("/",s);
-   s="";
+   QStringList sl=QStringList::split("/",path);
+   QString s;
    QDir d;
    for ( QStringList::Iterator it = sl.begin(); it != sl.end(); it++ )
    {
@@ -141,7 +140,7 @@ void SmbProtocol::getShareAndPath(const KURL& url, QString& share, QString& rest
 
 QString my_unscramble(const QString& secret)
 {
-   QString plain="";
+   QString plain;
    for (uint i=0; i<secret.length()/3; i++)
    {
       QChar qc1 = secret[i*3];
@@ -565,9 +564,8 @@ bool SmbProtocol::getAuth(AuthInfo& auth, const QString& server, const QString& 
    auth.keepPassword=true;
    auth.realmValue=realm.lower();
 
-   QString c, cl;
-   cl=i18n("Server");
-   c=server;
+   QString c(server);
+   QString cl(i18n("Server"));
    if (!wg.isEmpty())
    {
       cl+="."+i18n("Workgroup");
