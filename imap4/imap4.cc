@@ -575,7 +575,7 @@ bool IMAP4Protocol::parseReadLine (QByteArray & buffer, ulong relay)
   if (myHost.isEmpty()) return FALSE;
   char buf[1024];
   fd_set FDs;
-  ulong readLen;
+  ssize_t readLen;
   struct timeval m_tTimeout;
 
   errno = 0;
@@ -593,21 +593,21 @@ bool IMAP4Protocol::parseReadLine (QByteArray & buffer, ulong relay)
         wait_time--;
       }
       while (wait_time && select(m_iSock+1, &FDs, 0, 0, &m_tTimeout) == 0);
-
-      if ((readLen = ReadLine (buf, sizeof (buf) - 1)) == 0)
-      {
-        error (ERR_CONNECTION_BROKEN, myHost);
-        setState(ISTATE_CONNECT);
-        closeConnection();
-        return FALSE;
-      }
+      readLen = ReadLine (buf, sizeof (buf) - 1);
+    }
+    if (readLen <= 0)
+    {
+      error (ERR_CONNECTION_BROKEN, myHost);
+      setState(ISTATE_CONNECT);
+      closeConnection();
+      return FALSE;
     }
 
     if (relay > 0)
     {
     QByteArray relayData;
 
-      if (readLen < relay)
+      if ((ulong)readLen < relay)
         relay = readLen;
       relayData.setRawData (buf, relay);
       parseRelay (relayData);
