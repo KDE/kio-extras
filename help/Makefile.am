@@ -1,6 +1,6 @@
 SUBDIRS = libxslt
 
-INCLUDES= $(all_includes)
+INCLUDES= $(all_includes) $(LIBXML_CFLAGS)
 LDFLAGS = $(all_libraries) $(KDE_RPATH)
 
 ####### Files
