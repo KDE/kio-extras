@@ -1,11 +1,10 @@
 // $Id$
 
-#include "tar.h"
-
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <sys/uio.h>
 
+#include <assert.h>
 #include <signal.h>
 #include <stdio.h>
 #include <unistd.h>
@@ -13,45 +12,17 @@
 #include <kurl.h>
 #include <kprotocolmanager.h>
 
-extern "C" {
-  void sigsegv_handler(int);
-  void sigchld_handler(int);
-  void sigalrm_handler(int);
-};
+#include "tar.h"
 
 int main(int , char **)
 {
-  signal(SIGCHLD, sigchld_handler);
-  signal(SIGSEGV, sigsegv_handler);
+  signal(SIGCHLD, IOProtocol::sigchld_handler);
+  signal(SIGSEGV, IOProtocol::sigsegv_handler);
 
   Connection parent( 0, 1 );
 
   TARProtocol tar( &parent );
   tar.dispatchLoop();
-}
-
-void sigsegv_handler(int )
-{
-  // Debug and printf should be avoided because they might
-  // call malloc.. and get in a nice recursive malloc loop
-  write(2, "kio_tar : ###############SEG FAULT#############\n", 50);
-  exit(1);
-}
-
-void sigchld_handler(int )
-{
-  int pid, status;
-
-  while(true) {
-    pid = waitpid(-1, &status, WNOHANG);
-    if ( pid <= 0 ) {
-      // Reinstall signal handler, since Linux resets to default after
-      // the signal occured ( BSD handles it different, but it should do
-      // no harm ).
-      signal(SIGCHLD, sigchld_handler);
-      return;
-    }
-  }
 }
 
 TARProtocol::TARProtocol(Connection *_conn) : IOProtocol(_conn)
