@@ -130,6 +130,7 @@ private slots:
 
 private: 
   void replaceDeviceEntry(DiskEntry *disk);
+  void replaceDeviceEntryMounted(DiskEntry *disk);
 
   Disks            *disks;
   KProcess         *dfProc;

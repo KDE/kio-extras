@@ -47,9 +47,11 @@ public:
   ~DiskEntry();
   QString lastSysError() {return sysStringErrOut; };
   QString deviceName() const { return device; };
-  QString linkedDeviceName() const { return linkedDevice; };
+  QString realDeviceName() const { return realDevice; };
   QString mountPoint() const { return mountedOn; };
   QString mountOptions() const { return options; };
+  ino_t inode() const {return m_inode; };
+  bool inodeType() const {return m_inodeType;};
   /**
    * sets the used mountCommand for the actual DiskEntry.
    * @param mntcmd   is a string containing the executable file and
@@ -132,7 +134,7 @@ private:
   bool              readingSysStdErrOut;
 
   QString     device,
-	      linkedDevice,
+	      realDevice,
               type,
               mountedOn,
               options,
@@ -145,7 +147,10 @@ private:
               avail;       // ATTENTION: used+avail != size (clustersize!)
 
   bool        isMounted,
-              iconSetByUser;
+              iconSetByUser,
+	      m_inodeType;
+	      
+  ino_t	      m_inode;
 };
 
 #endif

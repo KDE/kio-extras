@@ -330,7 +330,7 @@ void DiskList::dfDone()
 	   && (disk->mountPoint().find("/proc") != 0 )
 	   && (disk->deviceName().find("shm") == -1  ) ) {
         disk->setMounted(TRUE);    // its now mounted (df lists only mounted)
-	replaceDeviceEntry(disk);
+	replaceDeviceEntryMounted(disk);
       } else
 	delete disk;
 
@@ -342,6 +342,30 @@ void DiskList::dfDone()
   emit readDFDone();
 }
 
+
+void DiskList::replaceDeviceEntryMounted(DiskEntry *disk)
+{
+	//I'm assuming that df always returns the real device name, not a symlink
+	int pos = -1;
+	for( u_int i=0; i<disks->count(); i++ ) {
+		DiskEntry *item=disks->at(i);
+		if ( ((
+			(item->realDeviceName()==disk->deviceName()) ) ||
+			((item->inodeType()==true) &&
+			(disk->inodeType()==true) &&
+			(disk->inode()==item->inode()))) &&
+			(item->mountPoint()==disk->mountPoint()) ) {
+			item->setMounted(TRUE);
+			pos=i;
+			break;
+		}
+	}
+	if (pos==-1)
+		disks->append(disk);
+	else
+		delete disk;
+	
+}
 
 /***************************************************************************
   * updates or creates a new DiskEntry in the KDFList and TabListBox
@@ -366,12 +390,6 @@ void DiskList::replaceDeviceEntry(DiskEntry *disk)
   {
     DiskEntry *item = disks->at(i);
     int res = disk->deviceName().compare( item->deviceName() );
-    if (res!=0) 
-	{
-		res=item->linkedDeviceName().compare(disk->deviceName());
-		if (res==0) kdDebug(7020)<<"A linked device has been found:"<<item->deviceName()<<endl;
-		kdDebug(7020)<<item->linkedDeviceName()<<"----"<<disk->deviceName()<<endl;
-	}
     if( res == 0 )
     {
       res = disk->mountPoint().compare( item->mountPoint() );
@@ -453,8 +471,6 @@ void DiskList::replaceDeviceEntry(DiskEntry *disk)
 		      << "--" << disk->percentFull() << endl;
             emit criticallyFull(disk);
 	  }
-      if (disks->at(pos)->linkedDeviceName()==disk->deviceName())
-	disk->setDeviceName(disks->at(pos)->deviceName());
       disks->remove(pos); // really deletes old one
       disks->insert(pos,disk);
   } else {

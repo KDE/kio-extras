@@ -28,6 +28,10 @@
 #include <kdebug.h>
 #include <qfileinfo.h>
 
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <unistd.h>
+
 #include "disks.h"
 
 /****************************************************/
@@ -39,8 +43,10 @@
 **/
 void DiskEntry::init()
 {
-  linkedDevice="";
+  realDevice="";
   device="";
+  m_inode=0;
+  m_inodeType=false;
   type="";
   mountedOn="";
   options="";
@@ -352,15 +358,23 @@ float DiskEntry::percentFull() const
 void DiskEntry::setDeviceName(const QString & deviceName)
 {
  device=deviceName;
+ realDevice=deviceName;
+ m_inodeType=false;
  if (deviceName.startsWith("/dev/"))
  {
-	QFileInfo finfo=QFileInfo(deviceName);
-	if (finfo.isSymLink())
-	{
-		linkedDevice=finfo.readLink();
-		kdDebug(7020)<<"Device "<<deviceName<<" is a symlink to "<<linkedDevice<<endl;
-	}
+ 	for (QFileInfo finfo=QFileInfo(realDevice);finfo.isSymLink();finfo=QFileInfo(realDevice))
+		realDevice=finfo.readLink();
+
+	kdDebug(7020)<<"Device "<<deviceName<<" is a actually "<<realDevice<<endl;		
  }
+ 
+ struct stat st;
+ if (stat(deviceName.latin1(),&st)!=-1)
+ {
+   m_inodeType=true;
+   m_inode=st.st_ino;
+ }
+ 
  emit deviceNameChanged();
 };
 
