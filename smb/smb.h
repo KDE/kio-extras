@@ -5,7 +5,7 @@
 #include <kio/global.h>
 #include <kio/slavebase.h>
 
-#include <smb++.h>
+#include "libsmb++/src/smb++.h"
 class MyCallback;
 class SmbProtocol : public KIO::SlaveBase
 {

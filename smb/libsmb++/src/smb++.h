@@ -19,12 +19,13 @@
     MA 02139, USA.
 */
 
+// Change these to local files for kde cvs
 
 #ifndef SMB_CPP_H
 #define SMB_CPP_H
-#include <libsmb++/SelectedSMB.h>
-#include <libsmb++/SelectedNMB.h>
-#include <libsmb++/Resolve.h>
+#include "SelectedSMB.h"
+#include "SelectedNMB.h"
+#include "Resolve.h"
 typedef SelectedSMB SMB;
 typedef Resolve NMB;
 #endif
