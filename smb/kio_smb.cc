@@ -1,13 +1,8 @@
 // smb.cc adapted from file.cc by Nicolas Brodu <brodu@kde.org>
 // $Id$
 
-#include "kio_smb.h"
 #include <sys/types.h>
-#ifdef HAVE_SYS_TIME_H
-#include <sys/time.h>
-#endif
 #include <sys/wait.h>
-
 #include <assert.h>
 #include <dirent.h>
 #include <errno.h>
@@ -16,6 +11,12 @@
 #include <time.h>
 #include <unistd.h>
 #include <string.h>
+
+#include "kio_smb.h"
+#include <sys/types.h>
+#ifdef HAVE_SYS_TIME_H
+#include <sys/time.h>
+#endif
 
 #include <kio_rename_dlg.h>
 #include <kio_skip_dlg.h>
