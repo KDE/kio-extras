@@ -187,9 +187,11 @@ QFile f(FSTAB);
 	    //kdDebug() << "    Mount-Options: [" << disk->mountOptions() << "]" << endl;
          if ( (disk->deviceName() != "none")
 	      && (disk->fsType() != "swap")
+	      && (disk->fsType() != "tmpfs")
+	      && (disk->deviceName() != "tmpfs")
 	      && (disk->mountPoint() != "/dev/swap")
 	      && (disk->mountPoint() != "/dev/pts")
-	      && (disk->mountPoint().find("/proc") == -1 )
+	      && (disk->mountPoint().find("/proc") != 0)
 	      && (disk->deviceName().find("shm") == -1  ))
 	   replaceDeviceEntry(disk);
          else
@@ -321,9 +323,11 @@ void DiskList::dfDone()
       if ( (disk->kBSize() > 0)
 	   && (disk->deviceName() != "none")
 	   && (disk->fsType() != "swap")
+	   && (disk->fsType() != "tmpfs")
+	   && (disk->deviceName() != "tmpfs")
 	   && (disk->mountPoint() != "/dev/swap")
 	   && (disk->mountPoint() != "/dev/pts")
-	   && (disk->mountPoint().find("/proc") == -1 )
+	   && (disk->mountPoint().find("/proc") != 0 )
 	   && (disk->deviceName().find("shm") == -1  ) ) {
         disk->setMounted(TRUE);    // its now mounted (df lists only mounted)
 	replaceDeviceEntry(disk);
