@@ -391,12 +391,9 @@ int SMTPProtocol::getResponse (char *r_buf, unsigned int r_len)
 	// Clear out the buffer
 	memset(buf, 0, len);
 	// And grab the data
-	readLine(buf, len-1);
+	recv_len = readLine(buf, len-1);
 
-	// This is really a funky crash waiting to happen if something isn't
-	// null terminated.
-	recv_len = strlen(buf);
-	if (recv_len == 0) return 999;
+	if (recv_len <= 0) return 999;
 
 	if (recv_len < 4)
 	{
@@ -408,9 +405,10 @@ int SMTPProtocol::getResponse (char *r_buf, unsigned int r_len)
 		while ( (buf[3] == '-') && (len-recv_len > 3) ) { // Three is quite arbitrary
 			buf += recv_len;
 			len -= (recv_len+1);
-//	if (!waitForResponse(60)) return 999;   causes hanging with TLS
+			if (!waitForResponse(60))
+				return 999;
 			recv_len = readLine(buf, len-1);
-			if (recv_len == 0)
+			if (recv_len <= 0)
 				buf[0] = buf[1] = buf[2] = buf[3] = ' ';
 		}
 		buf = origbuf;
