@@ -157,6 +157,7 @@ unsigned int IMAP4Protocol::command (enum IMAP_COMMAND type, const char *_args)
 
   pending.append(cmd_s);
 
+  debug(QString("IMAP4: command put into list"));
   return m_uLastCmd;
 }
 
@@ -380,16 +381,22 @@ void IMAP4Protocol::slotPut(const char *_url, int _mode, bool _overwrite,
 }
 
 void IMAP4Protocol::slotListDir(const char *_url) {
-  debug(QString("IMAP4: slotListDir: %1").arg(_url));
-  KURL ku(_url);
-  if (ku.isMalformed()) {
-    error(ERR_MALFORMED_URL, ku.url());
-    m_cmd = CMD_NONE;
-    return;
+   debug(QString("IMAP4: slotListDir: %1  authState=%2").arg(_url).arg(authState));
+   KURL ku(_url);
+   if (ku.isMalformed()) {
+      error(ERR_MALFORMED_URL, ku.url());
+      m_cmd = CMD_NONE;
+      return;
+   }
+   sleep(20);
+   if (authState != 999) {
+      if (!imap4_open(ku)) {
+         debug("IMAP4: imap4_open failed");
+         imap4_close();
+         return;
+      }
+//      imap4_login();
   }
-//  if (authState != 999) {
-//     imap4_login();
-//  }
 
   bool LIST = true;  // use LIST vs LSUB
   if (urlPath.find(";TYPE=", 0, false) != -1) {
@@ -418,241 +425,6 @@ void IMAP4Protocol::slotTestDir(const char *_url) {
   if (ku.path().right(1) == folderDelimiter) isDirectory();
   else isFile();
   finished();
-}
-
-void IMAP4Protocol::startLoop ()
-{
-  char buf[1024];
-  bool gotGreet = false, isNum=false;
-  struct timeval m_tTimeout = {1, 0};
-  FILE *fp = fdopen(m_iSock, "w+");
-  QString s_buf, s_identifier;
-  fd_set FDs;
-  while (1) {
-//    debug("IMAP4: Top of the loop");
-    FD_ZERO(&FDs);
-    FD_SET(m_iSock, &FDs);
-    QString s_cmd;
-    memset(&buf, sizeof(buf), 0);
-    //
-    if (fgets(buf, sizeof(buf)-1, fp) == 0) {
-      if (ferror(fp)) {
-        debug("IMAP4: Error while freading something");
-	break;
-      } else {
-	while (::select(m_iSock+1, &FDs, 0, 0, &m_tTimeout) ==0) {
-	  debug("IMAP4: Sleeping");
-	  sleep(10);
-        }
-	if (fgets(buf, sizeof(buf)-1, fp) == 0) {
-	  debug("IMAP4: Error while freading something, and yes we already waited on select");
-	  break;
-	}
-      }  
-    }
-    debug(QString("IMAP4: S: %1").arg(buf));
-    s_buf=buf;
-    if (s_buf.find(" ") == -1) {
-      debug(QString("IMAP4: Got an invalid response: %1").arg(buf));
-      break;
-    }
-    s_identifier=s_buf.mid(0, s_buf.find(" "));
-    s_buf.remove(0, s_buf.find(" ")+1);
-    //fprintf(stderr,"First token is :%s:\n", s_identifier.data());fflush(stderr);
-    if (s_identifier == "*") {
-//      debug(QString("IMAP4: Got a star."));
-      if (!gotGreet) {
-	// We just kinda assume it's the greeting
-	gotGreet=true;
-	sendNextCommand();
-	continue;
-      }
-      QString s_token;
-      if (s_buf.find(" ") == -1) {
-        if ( (s_buf != "NO") && (s_buf != "OK") && (s_buf != "BAD")) {
-	  debug(QString("IMAP4: We got a weird response: %1").arg(buf));
-	}  
-      } else {
-	s_token = s_buf.mid(0, s_buf.find(" "));
-	s_buf.remove(0, s_buf.find(" ")+1);
-	//fprintf(stderr,"Token is:%s:\n", s_token.ascii());fflush(stderr);
-	(void)s_token.toInt(&isNum);
-
-	QRegExp r("\r\n");
-	s_buf.replace(r, "");
-
-	if (isNum) {
-	  if (s_buf.find(" ") != -1) {
-	    s_cmd = s_buf.mid(0, s_buf.find(" "));
-	    s_buf.remove(0, s_buf.find(" ")+1);
-	  } else {
-	    s_cmd = s_buf.copy();
-	    s_buf = "";
-	  } // s_buf.find
-	  if (s_cmd == "EXISTS") {
-	    debug(QString("IMAP4: %1 messages exist in the current mbox").arg(s_token));
-	  } else if (s_cmd == "RECENT") {
-	    debug(QString("IMAP4: %1 messages have the recent flag in the current mbox").arg(s_token));
-	  } else if (s_cmd == "FETCH") {
-	    ;
-	  } else {
-	    debug(QString("IMAP4: Got unknown untokened response :%1:").arg(buf));
-	  } // s_cmd == EXISTS
-	} else if (s_token == "FLAGS") {
-	    debug(QString("IMAP4: ?? Flags are :%1:").arg(s_buf));
-        } else if (s_token == "LIST") {
-          // Sample: * LIST (\NoInferiors \Marked) "/" "~/.imap/Item"
-	  // (Attributes) <hierarchy delimiter> <item name>
-	  debug(QString("IMAP4: S:* LIST %1").arg(s_buf));
-	  processList(s_buf);
-        } else if (s_token == "LSUB") {
-	  // Sample: * LSUB (\NoInferiors \Marked) "/" ~/.imap/Item
-	  debug(QString("IMAP4: S:* LSUB %1").arg(s_buf));
-	} else if (s_token == "CAPABILITY")  {
-	  capabilities = QStringList::split(" ", s_buf);
-          debug(QString("IMAP4: Found %1 capabilities").arg(capabilities.count()));
-        } else if (s_token == "BYE") {
-	  debug("IMAP4: Server closing...");
-	  imap4_close();
-	} else {
-/* 	  if (s_buf.find(" ") != -1)
- 	    s_cmd = s_buf.mid(0, s_buf.find(" "));
- 	  else
- 	    s_cmd = s_buf.copy();*/
-          serverResponses.append(s_buf);
-	  debug(QString("IMAP4: appending server response: %1").arg(s_buf));
-	} // isNum
-      }
-    } else if (s_identifier == "+") {  // Server awaits further commands from clients
-      debug(QString("IMAP4: Got a plus - %1").arg(s_buf));
-      // Really need to save this somewhere for authentication...
-      s_buf.remove(0, s_buf.find(" ")+1);  // skip to the key
-      authKey = s_buf;
-      authState++;
-      imap4_login();
-//      sendNextCommand();
-    } else {
-//      debug(QString("IMAP4: Looking for a match - %1").arg(s_identifier));
-      pending.first();
-      while (pending.current()) {
-	if (pending.current()->identifier.copy() == s_identifier){ 
-//	  debug(QString("IMAP4: Got a match!  type = %1").arg(pending.current()->type));
-	  switch (pending.current()->type) {
-	    // Any State
-	    case ICMD_NOOP: {
-//	      debug("IMAP4: NOOP response");
-	      sendNextCommand();
-	      break;
-	    }
-	    case ICMD_CAPABILITY: {
-//              debug(QString("IMAP4: CAPABILITY response"));
-	      bool imap4v1 = false;
-	      for(QStringList::Iterator it=capabilities.begin(); it!=capabilities.end();
-	          it++) {
-                QString cap = *it;
-		if (cap.find("IMAP4rev1", 0, false) != -1)
-		  imap4v1 = true;
-	      }
-	      if (!imap4v1) {
-                debug("IMAP4: Uh oh, server is not IMAP4rev1 compliant!  Bailing out");
-                error(ERR_UNSUPPORTED_PROTOCOL, "IMAP4rev1");
-                return;
-	      }
-//	      debug("IMAP4: Server is IMAP4rev1 compliant.");
-	      imap4_login();
-	      sendNextCommand();
-	      break;
-	    }
-	    case ICMD_LOGOUT: {
-              debug(QString("IMAP4: LOGOUT response"));
-	      imap4_close();
-//	      sendNextCommand();
-//              return;
-	      break;
-	    }
-
-	    // Non-Authenticated State
-	    case ICMD_AUTHENTICATE: {
-	      debug(QString("IMAP4: AUTHENTICATE response - %1").arg(s_buf));
-              if (s_buf.left(3) == "OK ") {
-	        authState = 999;
-		debug("IMAP4: AUTHENTICATE successfull!");
-		imap4_exec();
-	      } else if (s_buf.left(3) == "NO ") {
-	        debug("IMAP4: AUTHENTICATE failed");
-		error(ERR_ACCESS_DENIED, userName);
-                authState = 0;
-		return;
-	      } else {
-	        debug(QString("IMAP4: BAD AUTHENTICATE error - %1").arg(s_buf));;
-		error(ERR_UNSUPPORTED_PROTOCOL, i18n("Error during authentication."));
-                authState = 0;
-		return;
-	      }
-              sendNextCommand();
-	      break;
-	    }
-	    case ICMD_LOGIN: {
-	      debug(QString("IMAP4: LOGIN response - %1").arg(s_buf));
-              if (s_buf.left(3) == "OK ") {
-	        authState = 999;
-		debug("IMAP4: LOGIN successfull!");
-		imap4_exec();
-	      } else if (s_buf.left(3) == "NO ") {
-	        debug("IMAP4: AUTHENTICATE failed");
-		error(ERR_ACCESS_DENIED, userName);
-                authState = 0;
-		return;
-	      } else {
-	        debug(QString("IMAP4: BAD AUTHENTICATE error - %1").arg(s_buf));;
-		error(ERR_UNSUPPORTED_PROTOCOL, "LOGIN");
-                authState = 0;
-		return;
-	      }
-	      sendNextCommand();
-	      break;
-	    }
-	    // Authenticated State
-	    case ICMD_LIST: {
-	      debug(QString("IMAP4: LIST response: %1").arg(s_buf));
-	      if (s_buf.left(3) == "OK ") {
-	        debug("Finishing...");
-	        finished();
-	      } else {
-	        debug(QString("Error during LIST: %1").arg(s_buf));
-		error(ERR_WARNING, s_buf);
-	      }
-	      break;
-	    }
-	    case ICMD_LSUB: {
-	      debug(QString("IMAP4: LSUB response: %1").arg(s_buf));
-	      break;
-	    }
-	    case ICMD_SELECT: {
-	      // <not tested>
-	      debug("IMAP4: SELECT response");
-	      if (s_buf.left(3) == "OK ") {
-	        s_cmd = s_buf.mid(3, s_buf.length());
-	        if (s_cmd.left(11)=="[READ-ONLY]") {
-	          debug("IMAP4: Warning mbox opened readonly");
-		  s_cmd.remove(0, 12);
-	        }
-	        debug("IMAP4: ICMD_SELECT completed fine");
-	        sendNextCommand();
-	      } else {
-	        debug("IMAP4: ICMD_SELECT failed!");
-	      }
-	      break;
-	    }
-	    default: {
-	      break;
-	    }
-	  } // switch
-	}
-	pending.next();
-      }
-    }
-  }
 }
 
 void IMAP4Protocol::processList(QString str) {
