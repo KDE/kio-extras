@@ -394,7 +394,7 @@ bool fishProtocol::connectionStart() {
     }
 
     if (!requestNetwork()) return true;
-    myDebug( << "exec " << sshPath << " -p " << connectionPort << " -l " << connectionUser << " -x -e none -q " << connectionHost << " echo ... " << endl);
+    myDebug( << "Exec: " << (local ? "su" : "ssh") << " Port: " << connectionPort << " User: " << connectionUser << endl);
     childPid = fork();
     if (childPid == -1) {
         myDebug( << "fork failed, error: " << strerror(errno) << endl);
@@ -535,9 +535,13 @@ int fishProtocol::establishConnection(char *buffer, int len) {
     QString buf;
     buf.setLatin1(buffer,len);
     int pos;
+    // Strip trailing whitespace
+    while (buf.length() && (buf[buf.length()-1] == ' '))
+       buf.truncate(buf.length()-1);
+
     myDebug( << "establishing: got " << buf << endl);
     while (childPid && ((pos = buf.find('\n')) >= 0 ||
-            buf.right(2) == ": " || buf.right(2) == "? ")) {
+            buf.endsWith(":") || buf.endsWith("?"))) {
         pos++;
         QString str = buf.left(pos);
         buf = buf.mid(pos);
@@ -554,7 +558,7 @@ int fishProtocol::establishConnection(char *buffer, int len) {
             return 0;
         } else if (!str.isEmpty()) {
             thisFn += str;
-          } else if (buf.right(2) == ": ") {
+        } else if (buf.endsWith(":")) {
             if (!redirectUser.isEmpty() && connectionUser != redirectUser) {
                 KURL dest = url;
                 dest.setUser(redirectUser);
@@ -610,7 +614,7 @@ int fishProtocol::establishConnection(char *buffer, int len) {
             }
             thisFn = QString::null;
             return 0;
-        } else if (buf.right(2) == "? ") {
+        } else if (buf.endsWith("?")) {
             int rc = messageBox(QuestionYesNo,thisFn+buf);
             if (rc == KMessageBox::Yes) {
                 writeChild("yes\n",4);
