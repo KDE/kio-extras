@@ -50,6 +50,7 @@ public:
   ino_t inode() const {return m_inode; };
   bool inodeType() const {return m_inodeType;};
   QString fsType() const { return type; };
+  bool old();
 
   QString discType();
   QString niceDescription();
@@ -59,6 +60,7 @@ public slots:
   void setMountPoint(const QString & mountPoint);
   void setFsType(const QString & fsType);
   void setMounted(bool nowMounted);
+  void setOld(bool);
 
 private:
   void init();
@@ -73,6 +75,8 @@ private:
   bool        m_inodeType;
 
   ino_t	      m_inode;
+  
+  bool        isOld;
 };
 
 #endif

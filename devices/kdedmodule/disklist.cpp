@@ -108,6 +108,7 @@ void DiskList::replaceDeviceEntryMounted(DiskEntry *disk)
 			(disk->inode()==item->inode()))) &&
 			(item->mountPoint()==disk->mountPoint()) ) {
 			item->setMounted(TRUE);
+			item->setOld(false);
 			pos=i;
 			break;
 		}
@@ -136,6 +137,8 @@ void DiskList::replaceDeviceEntry(DiskEntry *disk)
   //
   //int pos=disks->find(disk);
 
+  disk->setOld(false);
+  
   kdDebug()<<"Trying to find an item referencing: "<<disk->deviceName()<<endl;
   int pos = -1;
   for( u_int i=0; i<disks->count(); i++ )
@@ -238,6 +241,27 @@ void DiskList::readMNTTAB()
          delete disk;
    }
 }
+
+void DiskList::setAllOld()
+{
+   for( u_int i=0; i<disks->count(); i++ )
+   {
+      DiskEntry *item = disks->at(i);
+      item->setOld(true);
+   }
+}
+
+void DiskList::removeOldDisks()
+{
+   for( u_int i=0; i<disks->count(); i++ )
+   {
+      DiskEntry *item = disks->at(i);
+      if(item->old())
+	  	 disks->remove(i);
+   }
+}
+
+
 
 #include "disklist.moc"
 

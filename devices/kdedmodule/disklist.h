@@ -64,6 +64,8 @@ public:
  ~DiskList();
    void readFSTAB();
    void readMNTTAB();
+   void setAllOld();
+   void removeOldDisks();
    int find(const DiskEntry* disk) {return disks->find(disk);};
    DiskEntry*  at(uint index) {return disks->at(index);};
    DiskEntry* first() {return disks->first();};

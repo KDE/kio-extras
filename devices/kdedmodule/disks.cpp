@@ -49,6 +49,7 @@ DiskEntry::DiskEntry(QObject *parent, const char *name)
   type="";
   mountedOn="";
   isMounted=FALSE;
+  isOld=false;
 }
 
 QString DiskEntry::niceDescription()
@@ -181,5 +182,17 @@ void DiskEntry::setMounted(bool nowMounted)
 {
   isMounted=nowMounted;
 }
+
+void DiskEntry::setOld(bool old)
+{
+  isOld=old;
+}
+
+bool DiskEntry::old()
+{
+  return isOld;
+}
+
+
 
 #include "disks.moc"

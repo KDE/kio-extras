@@ -65,6 +65,7 @@ MountWatcherModule::MountWatcherModule(const QCString &obj)
 
 	mDiskList.readFSTAB();
 	mDiskList.readMNTTAB();
+	mDiskList.removeOldDisks();
 	reReadSpecialConfig();
 	readDFDone();
 }
@@ -175,8 +176,10 @@ bool   MountWatcherModule::mounted(QString name)
 void MountWatcherModule::reloadExclusionLists()
 {
 	mDiskList.loadExclusionLists();
+	mDiskList.setAllOld();
 	mDiskList.readFSTAB();
 	mDiskList.readMNTTAB();
+	mDiskList.removeOldDisks();
 	readDFDone();
 }
 
@@ -192,8 +195,10 @@ void MountWatcherModule::dirty(const QString& str)
 		if (newsize!=mtabsize) {
 			mtabsize=newsize;
 			kdDebug()<<"MTAB FILESIZE:"<<f.size()<<endl;
+			mDiskList.setAllOld();
 			mDiskList.readFSTAB();
 			mDiskList.readMNTTAB();
+			mDiskList.removeOldDisks();
 			readDFDone();
 			return;
 		}
@@ -202,8 +207,10 @@ void MountWatcherModule::dirty(const QString& str)
 #ifdef FSTAB
 	if (str==FSTAB)
 	{
+		mDiskList.setAllOld(); 
 		mDiskList.readFSTAB();
 		mDiskList.readMNTTAB();
+		mDiskList.removeOldDisks();
 		readDFDone();
 		return;
 	}
