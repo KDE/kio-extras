@@ -159,6 +159,7 @@ int main ()
   if test "$non_compile" = no ; then
     AC_MSG_RESULT($msg)
     AC_DEFINE_UNQUOTED(HAVE_LAME, 1, [Define if you have lame])
+    KCM_AUDIOCD="kcmaudiocd"
   else
     AC_MSG_RESULT(no (but first try gave $msg))
     echo "*** Could not run Lame test program, checking why..."
@@ -198,6 +199,7 @@ esac
 AC_SUBST(LAME_INCS)
 AC_SUBST(LAME_LIBS)
 AC_SUBST(LAME_RPATH)
+AC_SUBST(KCM_AUDIOCD)
 
 AC_MSG_CHECKING(for Vorbis Ogg libraries and headers)
 
@@ -287,6 +289,7 @@ int main ()
      AC_DEFINE_UNQUOTED(HAVE_VORBIS, 1, [Define if you have vorbis])
      VORBISFILE_LIBS="-lvorbisfile"
      VORBISENC_LIBS="-lvorbisenc"
+     KCM_AUDIOCD="kcmaudiocd"	
   else
      AC_MSG_RESULT(no (but first try gave $msg))
      echo "*** Could not run Vorbis test program, checking why..."
@@ -323,3 +326,4 @@ AC_SUBST(VORBIS_LIBS)
 AC_SUBST(VORBIS_RPATH)
 AC_SUBST(VORBISFILE_LIBS)
 AC_SUBST(VORBISENC_LIBS)
+AC_SUBST(KCM_AUDIOCD)

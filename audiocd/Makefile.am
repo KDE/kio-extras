@@ -1,3 +1,4 @@
+SUBDIRS = $(KCM_AUDIOCD)
 INCLUDES = $(all_includes) $(CDPARANOIA_INCS) $(LAME_INCS) $(VORBIS_INCS)
 
 kde_module_LTLIBRARIES = kio_audiocd.la
