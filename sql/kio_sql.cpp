@@ -25,7 +25,7 @@
 #include <unistd.h>
 #include <iostream.h>
 
-#include <qapp.h>
+#include <qapplication.h>
 
 #include <kinstance.h>
 #include <kdebug.h>
