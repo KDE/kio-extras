@@ -548,7 +548,7 @@ void LDAPProtocol::openConnection()
     if ( ldap_set_option( mLDAP, LDAP_OPT_SIZELIMIT, &mSizeLimit ) != LDAP_SUCCESS ) {
       closeConnection();
       error( ERR_UNSUPPORTED_ACTION, 
-        i18n("Cannot set size limit!").arg(version) );
+        i18n("Cannot set size limit.").arg(version) );
       return;
     }
   }
@@ -558,7 +558,7 @@ void LDAPProtocol::openConnection()
     if ( ldap_set_option( mLDAP, LDAP_OPT_TIMELIMIT, &mTimeLimit ) != LDAP_SUCCESS ) {
       closeConnection();
       error( ERR_UNSUPPORTED_ACTION, 
-        i18n("Cannot set time limit!").arg(version) );
+        i18n("Cannot set time limit.").arg(version) );
       return;
     }
   }
@@ -581,7 +581,7 @@ void LDAPProtocol::openConnection()
 #else
       closeConnection();
       error( ERR_SLAVE_DEFINED, 
-        i18n("SASL authentication not compiled into the ldap ioslave!") );
+        i18n("SASL authentication not compiled into the ldap ioslave.") );
       return;
 #endif      
     }
@@ -599,7 +599,7 @@ void LDAPProtocol::openConnection()
       if (firstauth)
         dlgResult = openPassDlg( info );
       else
-        dlgResult = openPassDlg( info, i18n("Invalid authorization information!") );
+        dlgResult = openPassDlg( info, i18n("Invalid authorization information.") );
       
       firstauth = false;
       if ( !dlgResult ) {
@@ -905,7 +905,7 @@ void LDAPProtocol::put( const KURL &_url, int, bool overwrite, bool )
                 addModOp( &lmod, 0, ldif.attr(), ldif.val() );
               break;
             default:
-              error( ERR_INTERNAL, i18n("The LDIF parser failed!") );
+              error( ERR_INTERNAL, i18n("The LDIF parser failed.") );
               ldap_mods_free( lmod, 1 );
               return;  
           }

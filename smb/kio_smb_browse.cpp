@@ -288,13 +288,13 @@ void SMBSlave::reportError(const SMBUrl &url)
         break;
 #endif
     case 0: // success
-	  error( ERR_INTERNAL, i18n("libsmbclient reported an error, but didn't specify "
+	  error( ERR_INTERNAL, i18n("libsmbclient reported an error, but did not specify "
 								"what the problem is. This might indicate a severe problem "
 								"with your network - but also might indicate a problem with "
 								"libsmbclient.\n"
 								"If you want to help us, please provide a tcpdump of the "
 								"network interface while you try to browse (be aware that "
-								"it might contain private data, so don't post it if you're "
+								"it might contain private data, so do not post it if you are "
 								"unsure about that - you can send it privately to the developers "
 								"if they ask for it)") );
 	  break;

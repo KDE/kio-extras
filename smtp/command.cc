@@ -197,15 +197,15 @@ namespace KioSMTP {
 		     i18n("No compatible authentication methods found.") );
       else
 	if ( mechanisms.isEmpty() )
-	  // user forced a particular method, but server doesn't list AUTH cap
+	  // user forced a particular method, but server does not list AUTH cap
 	  smtp->error( KIO::ERR_COULD_NOT_LOGIN,
 		       i18n("You have requested to authenticate to the server, "
-			    "but the server doesn't seem to support authentication.\n"
+			    "but the server does not seem to support authentication.\n"
 			    "Try disabling authentication entirely.") );
 	else
-	  // user forced a particular method, but server doesn't support it
+	  // user forced a particular method, but server does not support it
 	  smtp->error( KIO::ERR_COULD_NOT_LOGIN,
-		       i18n("Your SMTP server doesn't support %1.\n"
+		       i18n("Your SMTP server does not support %1.\n"
 			    "Choose a different authentication method.")
 		       .arg( smtp->metaData("sasl") ) );
     }
@@ -259,12 +259,12 @@ namespace KioSMTP {
       if ( mFirstTime && !sendInitialResponse() )
 	if ( haveCapability( "AUTH" ) )
 	  mSMTP->error( KIO::ERR_COULD_NOT_LOGIN,
-			i18n("Your SMTP server doesn't support %1.\n"
+			i18n("Your SMTP server does not support %1.\n"
 			     "Choose a different authentication method.\n"
 			     "%2").arg( mSASL.method() ).arg( r.errorMessage() ) );
 	else
 	  mSMTP->error( KIO::ERR_COULD_NOT_LOGIN,
-			i18n("Your SMTP server doesn't support authentication.\n"
+			i18n("Your SMTP server does not support authentication.\n"
 			     "%2").arg( r.errorMessage() ) );
       else
 	mSMTP->error( KIO::ERR_COULD_NOT_LOGIN,

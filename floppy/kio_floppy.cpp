@@ -215,7 +215,7 @@ bool FloppyProtocol::stopAfterError(const KURL& url, const QString& drive)
    }
    else if (line.contains("No such device"))
    {
-      error( KIO::ERR_COULD_NOT_STAT, url.prettyURL()+i18n("\nThere is probably no disk in the drive %1 or you don't have enough permissions to access the drive.").arg(drive));
+      error( KIO::ERR_COULD_NOT_STAT, url.prettyURL()+i18n("\nThere is probably no disk in the drive %1 or you do not have enough permissions to access the drive.").arg(drive));
    }
    else if (line.contains("not supported"))
    {

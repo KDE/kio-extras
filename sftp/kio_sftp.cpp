@@ -726,7 +726,7 @@ void kio_sftpProtocol::openConnection() {
             break;
 
         case KSshProcess::ERR_NEW_HOST_KEY:
-            caption = i18n("Warning: Cannot verify host's identity!");
+            caption = i18n("Warning: Cannot verify host's identity.");
             msg = ssh.errorMsg();
             if( KMessageBox::Yes != messageBox(WarningYesNo, msg, caption) ) {
                 closeConnection();
@@ -737,7 +737,7 @@ void kio_sftpProtocol::openConnection() {
             break;
 
         case KSshProcess::ERR_DIFF_HOST_KEY:
-            caption = i18n("Warning: Host's identity changed!");
+            caption = i18n("Warning: Host's identity changed.");
             msg = ssh.errorMsg();
             if( KMessageBox::Yes != messageBox(WarningYesNo, msg, caption) ) {
                 closeConnection();
