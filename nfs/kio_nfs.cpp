@@ -1055,7 +1055,7 @@ bool NFSProtocol::checkForError(int clientStat, int nfsStat, const QString& text
          error(ERR_COULD_NOT_WRITE,i18n("Read only file system"));
          break;
       case NFSERR_NAMETOOLONG:
-         error(ERR_INTERNAL_SERVER,i18n("Filename too long"));
+         error(ERR_INTERNAL_SERVER,i18n("File name too long"));
          break;
       case NFSERR_NOTEMPTY:
          error(ERR_COULD_NOT_RMDIR,text);
