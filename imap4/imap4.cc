@@ -1728,7 +1728,6 @@ IMAP4Protocol::doListEntry (const KURL & _url, int stretch, imapCache * cache,
       if (header)
         atom.m_str += " " + header->getSubject();
     }
-//    atom.m_str.prepend(";UID=");
     entry.append (atom);
 
     atom.m_uds = UDS_URL;
@@ -1776,6 +1775,7 @@ IMAP4Protocol::doListEntry (const KURL & _url, const QString & myBox,
   int hdLen = item.hierarchyDelimiter().length();
 
   {
+    // mailboxName will be appended to the path!
     QString mailboxName = item.name ();
 
     // some beautification
@@ -1790,9 +1790,13 @@ IMAP4Protocol::doListEntry (const KURL & _url, const QString & myBox,
       mailboxName = mailboxName.right(mailboxName.length () - hdLen);
     if (mailboxName.right(hdLen) == item.hierarchyDelimiter())
       mailboxName.truncate(mailboxName.length () - hdLen);
-
+    
     atom.m_uds = UDS_NAME;
-    atom.m_str = mailboxName;
+    if (!item.hierarchyDelimiter().isEmpty() && 
+        mailboxName.find(item.hierarchyDelimiter()) != -1)
+      atom.m_str = mailboxName.section(item.hierarchyDelimiter(), -1);
+    else
+      atom.m_str = mailboxName;
 
     // konqueror will die with an assertion failure otherwise
     if (atom.m_str.isEmpty ())
