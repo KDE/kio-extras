@@ -661,7 +661,7 @@ IMAP4Protocol::put (const KURL & _url, int, bool, bool)
     }
 
     imapCommand *cmd =
-      sendCommand (imapCommand::clientAppend (aBox, "", length));
+      sendCommand (imapCommand::clientAppend (aBox, aSection, length));
     while (!parseLoop ());
 
     // see if server is waiting

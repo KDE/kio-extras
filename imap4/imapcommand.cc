@@ -228,12 +228,13 @@ imapCommand::clientCopy (const QString & box, const QString & sequence,
 }
 
 imapCommand *
-imapCommand::clientAppend (const QString & box, const QString &,
+imapCommand::clientAppend (const QString & box, const QString & flags,
                            ulong size)
 {
   return new imapCommand ("APPEND",
-                          "\"" + rfcDecoder::toIMAP (box) + "\" {" +
-                          QString ().setNum (size) + "}");
+                          "\"" + rfcDecoder::toIMAP (box) + "\" " +
+                          ((flags.isEmpty()) ? "" : ("(" + flags + ") ")) +
+                          "{" + QString ().setNum (size) + "}");
 }
 
 imapCommand *

@@ -66,7 +66,7 @@ public:
                                   const QString & sequence, bool nouid =
                                   false);
   static imapCommand *clientAppend (const QString & box,
-                                    const QString & extras, ulong size);
+                                    const QString & flags, ulong size);
   static imapCommand *clientCreate (const QString & path);
   static imapCommand *clientDelete (const QString & path);
   static imapCommand *clientSubscribe (const QString & path);
