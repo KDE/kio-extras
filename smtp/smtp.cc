@@ -64,6 +64,7 @@ using std::auto_ptr;
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
+#include <assert.h>
 
 #ifdef HAVE_SYSY_TYPES_H
 # include <sys/types.h>
