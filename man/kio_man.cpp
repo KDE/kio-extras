@@ -282,6 +282,7 @@ QStringList MANProtocol::findPages(const QString &_section,
           it_sect != sect_list.end();
           it_sect++ )
     {
+	    QString it_real = (*it_sect).lower();
         //
         // Find pages
         //
@@ -313,6 +314,8 @@ QStringList MANProtocol::findPages(const QString &_section,
                 else if (file.startsWith(sman))
                     sect = file.mid(4);
 
+		if (sect.lower()==it_real) it_real = sect;
+
                 // Only add sect if not already contained, avoid duplicates
                 if (!sect_list.contains(sect) && _section.isEmpty())  {
                     kdDebug() << "another section " << sect << endl;
@@ -323,8 +326,8 @@ QStringList MANProtocol::findPages(const QString &_section,
             ::closedir( dp );
 
             if ( *it_sect != star ) { // in that case we only look around for sections
-                QString dir = man_dir + QString("/man") + (*it_sect) + '/';
-                QString sdir = man_dir + QString("/sman") + (*it_sect) + '/';
+                QString dir = man_dir + QString("/man") + (it_real) + '/';
+                QString sdir = man_dir + QString("/sman") + (it_real) + '/';
 
                 findManPagesInSection(dir, title, full_path, list);
                 findManPagesInSection(sdir, title, full_path, list);
