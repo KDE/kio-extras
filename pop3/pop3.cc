@@ -46,7 +46,7 @@ POP3Protocol::POP3Protocol(Connection *_conn) : IOProtocol(_conn)
 
 bool POP3Protocol::getResponse (char *r_buf, unsigned int r_len)
 {
-  char *buf;
+  char *buf=0;
   unsigned int recv_len=0;
   fd_set FDs;
 
@@ -72,8 +72,10 @@ bool POP3Protocol::getResponse (char *r_buf, unsigned int r_len)
   // Clear out the buffer
   memset(buf, 0, r_len);
   // And grab the data
-  if (fgets(buf, r_len-1, fp) == 0)
+  if (fgets(buf, r_len-1, fp) == 0) {
+    if (buf) free(buf);
     return false;
+  }
   // This is really a funky crash waiting to happen if something isn't
   // null terminated.
   recv_len=strlen(buf);
@@ -93,17 +95,20 @@ bool POP3Protocol::getResponse (char *r_buf, unsigned int r_len)
     if (r_buf && r_len) {
       memcpy(r_buf, buf+4, QMIN(r_len,recv_len-4));
     }
+    if (buf) free(buf);
     return true;
   } else if (strncmp(buf, "-ERR ", 5)==0) {
     if (r_buf && r_len) {
       memcpy(r_buf, buf+5, QMIN(r_len,recv_len-5));
     }
+    if (buf) free(buf);
     return false;
   } else {
     fprintf(stderr, "Invalid POP3 response received!\n");fflush(stderr);
     if (r_buf && r_len) {
       memcpy(r_buf, buf, QMIN(r_len,recv_len));
     }
+    if (buf) free(buf);
     return false;
   }
 }
