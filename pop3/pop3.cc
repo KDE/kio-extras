@@ -42,8 +42,25 @@ extern "C" {
 
 using namespace KIO;
 
-POP3Protocol::POP3Protocol(Connection *_conn)
-  : SlaveBase( "pop3", _conn)
+extern "C" { int kdemain(int argc, char **argv); }
+
+int kdemain( int argc, char **argv )
+{
+  KInstance instance( "kio_pop3" );
+
+  if (argc != 4)
+  {
+     fprintf(stderr, "Usage: kio_pop3 protocol domain-socket1 domain-socket2\n");
+     exit(-1);
+  }
+
+  POP3Protocol slave(argv[2], argv[3]);
+  slave.dispatchLoop();
+  return 0;
+}
+
+POP3Protocol::POP3Protocol(const QCString &pool, const QCString &app)
+  : SlaveBase( "pop3", pool, app)
 {
   debug( "POP3Protocol()" );
   m_cmd = CMD_NONE;
@@ -750,10 +767,4 @@ void POP3Protocol::del( const QString& path, bool /*isfile*/ )
 
   debug( "POP3Protocol::del " + _path );
   finished();
-}
-
-extern "C" {
-    SlaveBase *init_pop3() {
-        return new POP3Protocol();
-    }
 }

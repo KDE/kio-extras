@@ -13,7 +13,7 @@
 class POP3Protocol : public KIO::SlaveBase
 {
 public:
-  POP3Protocol (KIO::Connection *connection = 0 );
+  POP3Protocol (const QCString &pool, const QCString &app );
   virtual ~POP3Protocol();
 
   virtual void setHost( const QString& host, int port, const QString& user, const QString& pass );
