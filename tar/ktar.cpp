@@ -227,7 +227,7 @@ bool KTarBase::open( int mode )
       }
       else
       {
-        qDebug("Terminating. Read %d bytes, first one is %d", n, buffer[0]);
+        //qDebug("Terminating. Read %d bytes, first one is %d", n, buffer[0]);
         ende = true;
       }
     } while( !ende );
