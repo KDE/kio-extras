@@ -466,7 +466,7 @@ bool POP3Protocol::pop3_open()
       if (metaData("auth") == "APOP") {
         error(ERR_COULD_NOT_LOGIN,
               i18n
-              ("Login via APOP failed. Most likely your server doesn't support APOP or the password is wrong.\n\n%1").
+              ("Login via APOP failed. The server may not support support APOP, or the password may be wrong.\n\n%1").
               arg(m_sError));
         return false;
       } else {
@@ -523,7 +523,7 @@ bool POP3Protocol::pop3_open()
         if (metaData("auth") == "SASL") {
           error(ERR_COULD_NOT_LOGIN,
                 i18n
-                ("Login via SASL (%1) failed. Most likely your server doesn't support %2 or the password is wrong.\n\n%3").
+                ("Login via SASL (%1) failed. The server may not support %2, or the password may be wrong.\n\n%3").
                 arg(sasl_auth).arg(sasl_auth).arg(m_sError));
           return false;
         }
@@ -567,7 +567,7 @@ bool POP3Protocol::pop3_open()
       POP3_DEBUG << "Couldn't login. Bad password Sorry." << endl;
       m_sError =
           i18n
-          ("Could not login to %1. Most likely the password is wrong.\n\n%2").
+          ("Could not login to %1. The password may be wrong.\n\n%2").
           arg(m_sServer).arg(m_sError);
       error(ERR_COULD_NOT_LOGIN, m_sError);
       closeConnection();
