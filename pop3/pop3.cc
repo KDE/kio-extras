@@ -31,11 +31,14 @@
 #include <kio/passdlg.h>
 
 #include "pop3.h"
+
+#define APOP
+
+#ifdef APOP
 extern "C" {
 #include "md5.h"
 };
-
-#define APOP
+#endif
 
 using namespace KIO;
 
