@@ -76,7 +76,7 @@ imapParser::doCommand (imapCommand * aCmd)
 imapCommand *
 imapParser::sendCommand (imapCommand * aCmd)
 {
-  aCmd->setId (QString ().setNum (commandCounter++));
+  aCmd->setId (QString::number(commandCounter++));
   sentQueue.append (aCmd);
 
   continuation.resize(0);
@@ -525,7 +525,7 @@ void imapParser::parseSearch (parseString & result)
 
   while (parseOneNumber (result, value))
   {
-    lastResults.append (QString ().setNum (value));
+    lastResults.append (QString::number(value));
   }
 }
 
@@ -646,16 +646,14 @@ mailHeader * imapParser::parseEnvelope (parseString & inWords)
   envelope = new mailHeader;
 
   //date
-  QString date = parseLiteral (inWords);
-  envelope->setDate (date.ascii ());
+  envelope->setDate(parseLiteral(inWords).data());
 
   //subject
-  QString subject = parseLiteral (inWords);
-  envelope->setSubjectEncoded (subject.ascii ());
+  envelope->setSubjectEncoded(parseLiteral(inWords).data());
 
   //from
   list = parseAddressList (inWords);
-  for (QValueListIterator < mailAddress > it = list.begin ();
+  for (QValueListConstIterator < mailAddress > it = list.begin ();
        it != list.end (); ++it)
   {
     envelope->setFrom ((*it));
@@ -663,7 +661,7 @@ mailHeader * imapParser::parseEnvelope (parseString & inWords)
 
   //sender
   list = parseAddressList (inWords);
-  for (QValueListIterator < mailAddress > it = list.begin ();
+  for (QValueListConstIterator < mailAddress > it = list.begin ();
        it != list.end (); ++it)
   {
     envelope->setSender ((*it));
@@ -671,7 +669,7 @@ mailHeader * imapParser::parseEnvelope (parseString & inWords)
 
   //reply-to
   list = parseAddressList (inWords);
-  for (QValueListIterator < mailAddress > it = list.begin ();
+  for (QValueListConstIterator < mailAddress > it = list.begin ();
        it != list.end (); ++it)
   {
     envelope->setReplyTo ((*it));
@@ -679,7 +677,7 @@ mailHeader * imapParser::parseEnvelope (parseString & inWords)
 
   //to
   list = parseAddressList (inWords);
-  for (QValueListIterator < mailAddress > it = list.begin ();
+  for (QValueListConstIterator < mailAddress > it = list.begin ();
        it != list.end (); ++it)
   {
     envelope->addTo ((*it));
@@ -687,7 +685,7 @@ mailHeader * imapParser::parseEnvelope (parseString & inWords)
 
   //cc
   list = parseAddressList (inWords);
-  for (QValueListIterator < mailAddress > it = list.begin ();
+  for (QValueListConstIterator < mailAddress > it = list.begin ();
        it != list.end (); ++it)
   {
     envelope->addCC ((*it));
@@ -695,19 +693,17 @@ mailHeader * imapParser::parseEnvelope (parseString & inWords)
 
   //bcc
   list = parseAddressList (inWords);
-  for (QValueListIterator < mailAddress > it = list.begin ();
+  for (QValueListConstIterator < mailAddress > it = list.begin ();
        it != list.end (); ++it)
   {
     envelope->addBCC ((*it));
   }
 
   //in-reply-to
-  QString reply = parseLiteral (inWords);
-  envelope->setInReplyTo (reply.ascii ());
+  envelope->setInReplyTo(parseLiteral(inWords).data());
 
   //message-id
-  QString message = parseLiteral (inWords);
-  envelope->setMessageId (message.ascii ());
+  envelope->setMessageId(parseLiteral(inWords).data());
 
   // see if we have more to come
   while (!inWords.isEmpty () && inWords[0] != ')')
@@ -977,9 +973,7 @@ mimeHeader * imapParser::parseBodyStructure (parseString & inWords,
     // is multipart (otherwise its a simplepart and handled later)
     while (inWords[0] == '(')
     {
-      outSection = "";
-      section++;
-      outSection.setNum (section);
+      outSection = QString::number(++section);
       if (!init) 
         outSection = inSection + "." + outSection;
       mimeHeader *subpart = parseBodyStructure (inWords, outSection, 0);

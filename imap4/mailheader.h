@@ -110,7 +110,7 @@ public:
    */
   void setSubjectEncoded (const QCString & _str)
   {
-    _subject = _str.stripWhiteSpace().simplifyWhiteSpace();
+    _subject = _str.simplifyWhiteSpace();
   };
 
   /** 
