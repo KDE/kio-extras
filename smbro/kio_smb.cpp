@@ -95,9 +95,9 @@ int makeDirHier(const QString& path)
       s+="/"+(*it);
       if ((!d.exists(s)) && (!d.mkdir(s)))
             return -1;
-   };
+   }
    return 0;
-};
+}
 
 void SmbProtocol::getShareAndPath(const KURL& url, QString& share, QString& rest)
 {
@@ -130,14 +130,14 @@ void SmbProtocol::getShareAndPath(const KURL& url, QString& share, QString& rest
             share=(*it);
          else
             rest=rest+"\\"+(*it);
-      };
+      }
       i++;
-   };
+   }
    if ((rest.isEmpty()) && (!share.isEmpty()) && (path[path.length()-1]=='/'))
       rest="\\";
 
    kdDebug(KIO_SMB)<<"getShareAndPath: path: -"<<path<<"-  share: -"<<share<<"-  rest: -"<<rest<<"-"<<endl;
-};
+}
 
 QString my_unscramble(const QString& secret)
 {
@@ -154,7 +154,7 @@ QString my_unscramble(const QString& secret)
       plain[i] = QChar((uchar)((num - 17) ^ 173)); // restore
    }
    return plain;
-};
+}
 
 QString my_scramble(const QString& plain)
 {
@@ -174,7 +174,7 @@ QString my_scramble(const QString& plain)
       scrambled += (char)(a3+'0');
    }
    return scrambled;
-};
+}
 
 SmbProtocol::SmbProtocol (const QCString &pool, const QCString &app )
 :SlaveBase( "smb", pool, app )
@@ -228,7 +228,7 @@ SmbProtocol::~SmbProtocol()
       delete [] m_stdoutBuffer;
    m_processes.clear();
    m_stdoutBuffer=0;
-};
+}
 
 int SmbProtocol::readOutput(int fd)
 {
@@ -245,17 +245,17 @@ int SmbProtocol::readOutput(int fd)
    if (m_stdoutBuffer!=0)
    {
       memcpy(newBuffer, m_stdoutBuffer, m_stdoutSize);
-   };
+   }
    memcpy(newBuffer+m_stdoutSize, buffer, length);
    m_stdoutSize+=length;
    newBuffer[m_stdoutSize]='\0';
    if (m_stdoutBuffer!=0)
    {
       delete [] m_stdoutBuffer;
-   };
+   }
    m_stdoutBuffer=newBuffer;
    return length;
-};
+}
 
 void SmbProtocol::clearBuffer()
 {
@@ -263,7 +263,7 @@ void SmbProtocol::clearBuffer()
    if (m_stdoutBuffer!=0)
       delete [] m_stdoutBuffer;
    m_stdoutBuffer=0;
-};
+}
 
 bool SmbProtocol::stopAfterError(const KURL& url, bool notSureWhetherErrorOccured, bool onlyCheckForExistance)
 {
@@ -271,14 +271,14 @@ bool SmbProtocol::stopAfterError(const KURL& url, bool notSureWhetherErrorOccure
    {
       finished();
       return true;
-   };
+   }
    if (m_stdoutSize==0)
    {
       //error(KIO::ERR_UNKNOWN,"");
       //error( KIO::ERR_CONNECTION_BROKEN, m_currentHost);
       error( KIO::ERR_CANNOT_LAUNCH_PROCESS, "smbclient"+i18n("\nMake sure that the samba package is installed properly on your system."));
       return true;
-   };
+   }
 
    QString outputString = QString::fromLocal8Bit(m_stdoutBuffer);
 
@@ -330,9 +330,9 @@ bool SmbProtocol::stopAfterError(const KURL& url, bool notSureWhetherErrorOccure
    {
       kdDebug(KIO_SMB)<<"Smb::stopAfterError() -"<<m_stdoutBuffer<<"-"<<endl;
       error( KIO::ERR_UNKNOWN, i18n("Couldn't parse response message."));
-   };
+   }
    return true;
-};
+}
 
 SmbProtocol::SmbReturnCode SmbProtocol::waitUntilStarted(ClientProcess *proc, const QString& password, const char* prompt)
 {
@@ -360,7 +360,7 @@ SmbProtocol::SmbReturnCode SmbProtocol::waitUntilStarted(ClientProcess *proc, co
          if (alreadyEnteredPassword)
             return SMB_WRONGPASSWORD;
          return SMB_ERROR;
-      };
+      }
 
       if (stdoutEvent)
       {
@@ -443,7 +443,7 @@ SmbProtocol::SmbReturnCode SmbProtocol::getShareInfo(ClientProcess* shareLister,
          }
          else
             return SMB_ERROR;  // :-(
-      };
+      }
       if (stdoutEvent)
       {
          int result=readOutput(shareLister->fd());
@@ -467,11 +467,11 @@ SmbProtocol::SmbReturnCode SmbProtocol::getShareInfo(ClientProcess* shareLister,
                char c;
                ::read(shareLister->fd(),&c,1);
                alreadyEnteredPassword=true;
-            };
-         };
-      };
-   };
-};
+            }
+         }
+      }
+   }
+}
 
 bool SmbProtocol::getAuth(AuthInfo& auth, const QString& server, const QString& wg, const QString& share, const QString& realm, const QString& user, bool& firstLoop)
 {
@@ -487,12 +487,12 @@ bool SmbProtocol::getAuth(AuthInfo& auth, const QString& server, const QString& 
    {
       cl+="."+i18n("Workgroup");
       c+="."+wg;
-   };
+   }
    if (!share.isEmpty())
    {
       cl+="/"+i18n("Share");
       c+="/"+share;
-   };
+   }
    auth.comment=c;
    auth.commentLabel=cl;
    if (firstLoop)
@@ -500,11 +500,11 @@ bool SmbProtocol::getAuth(AuthInfo& auth, const QString& server, const QString& 
       firstLoop=false;
       if (checkCachedAuthentication(auth))
          return true;
-   };
+   }
    if (openPassDlg(auth))
       return true;
    return false;
-};
+}
 
 void SmbProtocol::listShares()
 {
@@ -523,7 +523,7 @@ void SmbProtocol::listShares()
       error( KIO::ERR_CANNOT_LAUNCH_PROCESS, "smbclient"+i18n("\nMake sure that the samba package is installed properly on your system."));
       delete proc;
       return;
-   };
+   }
    QString password(m_password);
    QString user(m_user);
 
@@ -558,58 +558,16 @@ void SmbProtocol::listShares()
             error( KIO::ERR_CANNOT_LAUNCH_PROCESS, "smbclient"+i18n("\nMake sure that the samba package is installed properly on your system."));
             delete proc;
             return;
-         };
+         }
       }
       else break;
-/*    authInfo.url=KURL("smb://"+m_nmbName);
-      authInfo.username = user;
-      authInfo.keepPassword=true;
-      authInfo.realmValue=user+"_"+QString(m_nmbName);
-      if (m_currentWorkgroup.isEmpty())
-      {
-         authInfo.commentLabel=i18n("Server:");
-         authInfo.comment=QString(m_nmbName);
-      }
-      else
-      {
-         authInfo.commentLabel=i18n("Server, Workgroup:");
-         authInfo.comment=QString(m_nmbName)+", "+m_currentWorkgroup;
-      };
-      bool hasAuth=false;
-      if (firstLoop)
-      {
-         hasAuth=checkCachedAuthentication(authInfo);
-         firstLoop=false;
-      };
-      if ((hasAuth) || (openPassDlg(authInfo)))
-      {
-         ai=authInfo;
-         user = authInfo.username;
-         password = authInfo.password;
-         proc=new ClientProcess();
-         QCStringList tmpArgs;
-         tmpArgs<<QCString("-L")+m_nmbName;
-         if (!user.isEmpty())
-            tmpArgs<<QCString("-U")+user.local8Bit();
-         if (!m_ip.isEmpty())
-            args<<QCString("-I")+m_ip;
-         if (!m_currentWorkgroup.isEmpty())
-            tmpArgs<<QCString("-W")+m_currentWorkgroup.local8Bit();
-         if (!proc->start("smbclient",tmpArgs))
-         {
-            error( KIO::ERR_CANNOT_LAUNCH_PROCESS, "smbclient"+i18n("\nMake sure that the samba package is installed properly on your system."));
-            delete proc;
-            return;
-         };
-      }
-      else break;*/
-   };
+   }
    //here smbclient has already exited
    if (proc!=0)
    {
       delete proc;
       proc=0;
-   };
+   }
 
    KURL url("smb://"+m_currentHost);
    //no error handling has happened up to now
@@ -623,7 +581,7 @@ void SmbProtocol::listShares()
    {
       error(ERR_USER_CANCELED,"");
       return;
-   };
+   }
 
    if (stopAfterError(url,true))
       return;
@@ -654,7 +612,7 @@ void SmbProtocol::listShares()
             mode=1;
             shareNamePos=line.find("Sharename");
             typePos=line.find("Type");
-         };
+         }
       }
       else if (mode==1)
       {
@@ -704,15 +662,15 @@ void SmbProtocol::listShares()
 
                listEntry( entry, false);
                totalNumber++;
-            };
-         };
-      };
-   };
+            }
+         }
+      }
+   }
    totalSize( totalNumber);
    listEntry( entry, true ); // ready
 
    finished();
-};
+}
 
 void SmbProtocol::listDir( const KURL& _url)
 {
@@ -731,7 +689,7 @@ See the KDE Control Center under Network, LANBrowsing for more information."));
    {
       listWorkgroups();
       return;
-   };
+   }
 
    if (_url.path()[_url.path().length()-1]!='/')
    {
@@ -740,7 +698,7 @@ See the KDE Control Center under Network, LANBrowsing for more information."));
       redirection(url);
       finished();
       return;
-   };
+   }
 
    QString share;
    QString smbPath;
@@ -752,20 +710,20 @@ See the KDE Control Center under Network, LANBrowsing for more information."));
       kdDebug(KIO_SMB)<<"Smb::listDir() listHosts()"<<endl;
       listHosts();
       return;
-   };
+   }
 
    if (share.isEmpty())
    {
       listShares();
       return;
-   };
+   }
 
    ClientProcess *proc=getProcess(m_currentHost, share);
    if (proc==0)
    {
       kdDebug(KIO_SMB)<<"Smb::listDir() proc==0"<<endl;
       return;
-   };
+   }
 
    QCString command=QCString("dir \"")+smbPath.local8Bit()+QCString("\\*\"\n");
    kdDebug(KIO_SMB)<<"Smb::listDir(): executing command: -"<<command<<"-"<<endl;
@@ -775,7 +733,7 @@ See the KDE Control Center under Network, LANBrowsing for more information."));
       kdDebug(KIO_SMB)<<"Smb::listDir() could not ::write()"<<endl;
       error(ERR_CONNECTION_BROKEN,m_currentHost);
       return;
-   };
+   }
 
    clearBuffer();
 
@@ -790,7 +748,7 @@ See the KDE Control Center under Network, LANBrowsing for more information."));
          kdDebug(KIO_SMB)<<"Smb::listDir(): smbclient exited "<<exitStatus<<endl;
          stopAfterError(_url,false);
          return;
-      };
+      }
       bool stdoutEvent;
       result=proc->select(1,0,&stdoutEvent);
       if (stdoutEvent)
@@ -802,8 +760,8 @@ See the KDE Control Center under Network, LANBrowsing for more information."));
          {
             if (strstr(m_stdoutBuffer+m_stdoutSize-12,"\nsmb: \\>")!=0)
                loopFinished=true;
-         };
-      };
+         }
+      }
    } while (!loopFinished);
 //   kdDebug(KIO_SMB)<<"Smb::listDir(): read: -"<<m_stdoutBuffer<<"-"<<endl;
 
@@ -832,13 +790,13 @@ See the KDE Control Center under Network, LANBrowsing for more information."));
          //kdDebug(KIO_SMB)<<"Smb::listDir(): creating UDSEntry"<<endl;
          listEntry( entry, false);
          totalNumber++;
-      };
-   };
+      }
+   }
    totalSize( totalNumber);
    listEntry( entry, true ); // ready
    finished();
    //kdDebug(KIO_SMB)<<"Smb::listDir() ends"<<endl;
-};
+}
 
 void SmbProtocol::mkdir( const KURL& url, int)
 {
@@ -854,7 +812,7 @@ void SmbProtocol::mkdir( const KURL& url, int)
    {
       kdDebug(KIO_SMB)<<"Smb::mkdir() file not found"<<endl;
       return;
-   };
+   }
 
    ClientProcess *proc=getProcess(m_currentHost, share);
 
@@ -865,7 +823,7 @@ void SmbProtocol::mkdir( const KURL& url, int)
    {
       error(ERR_CONNECTION_BROKEN,m_currentHost);
       return;
-   };
+   }
 
    clearBuffer();
    bool loopFinished(false);
@@ -880,8 +838,7 @@ void SmbProtocol::mkdir( const KURL& url, int)
    } while (!loopFinished);
    clearBuffer();
    finished();
-
-};
+}
 
 void SmbProtocol::del( const KURL& url, bool isfile)
 {
@@ -898,7 +855,7 @@ void SmbProtocol::del( const KURL& url, bool isfile)
    {
       kdDebug(KIO_SMB)<<"Smb::del() file not found"<<endl;
       return;
-   };
+   }
    ClientProcess *proc=getProcess(m_currentHost, share);
 
    QCString command;
@@ -914,7 +871,7 @@ void SmbProtocol::del( const KURL& url, bool isfile)
    {
       error(ERR_CONNECTION_BROKEN,m_currentHost);
       return;
-   };
+   }
 
    clearBuffer();
    bool loopFinished(false);
@@ -929,7 +886,7 @@ void SmbProtocol::del( const KURL& url, bool isfile)
    } while (!loopFinished);
    clearBuffer();
    finished();
-};
+}
 
 
 void SmbProtocol::createUDSEntry(const StatInfo& info, UDSEntry& entry)
@@ -954,7 +911,7 @@ void SmbProtocol::createUDSEntry(const StatInfo& info, UDSEntry& entry)
    atom.m_uds = KIO::UDS_FILE_TYPE;
    atom.m_long =(info.isDir?S_IFDIR:S_IFREG);
    entry.append( atom );
-};
+}
 
 StatInfo SmbProtocol::createStatInfo(const QString line)
 {
@@ -976,7 +933,7 @@ StatInfo SmbProtocol::createStatInfo(const QString line)
    {
       info.isValid=false;
       return info;
-   };
+   }
 
    info.isValid=true;
    name=line.mid(2,startOfData-2);
@@ -990,7 +947,7 @@ StatInfo SmbProtocol::createStatInfo(const QString line)
    {
       info.isValid=false;
       return info;
-   };
+   }
 
    //kdDebug(KIO_SMB)<<"createStatInfo: name: -"<<name<<"-"<<endl;
 
@@ -1011,7 +968,7 @@ StatInfo SmbProtocol::createStatInfo(const QString line)
       size=line.mid(startOfData+7,9+sizeOffset);
       info.size=size.toInt();
       //kdDebug(KIO_SMB)<<"createStatInfo: size: -"<<size<<"-"<<endl;
-   };
+   }
 
    info.name=name;
 
@@ -1049,7 +1006,7 @@ StatInfo SmbProtocol::createStatInfo(const QString line)
 
    //kdDebug(KIO_SMB)<<"Smb::createUDSEntry() ends"<<endl;
    return info;
-};
+}
 
 StatInfo SmbProtocol::_stat(const KURL& url, bool onlyCheckForExistance)
 {
@@ -1073,14 +1030,14 @@ StatInfo SmbProtocol::_stat(const KURL& url, bool onlyCheckForExistance)
       info.isDir=true;
       info.isValid=true;
       return info;
-   };
+   }
 
    ClientProcess *proc=getProcess(m_currentHost, share);
    if (proc==0)
    {
       info.isValid=false;
       return info;
-   };
+   }
 
    QCString command=QCString("dir \"")+smbPath.local8Bit()+QCString("\"\n");
    kdDebug(KIO_SMB)<<"Smb::_stat(): executing command: -"<<command<<"-"<<endl;
@@ -1090,7 +1047,7 @@ StatInfo SmbProtocol::_stat(const KURL& url, bool onlyCheckForExistance)
       error(ERR_CONNECTION_BROKEN,m_currentHost);
       info.isValid=false;
       return info;
-   };
+   }
 
 
    clearBuffer();
@@ -1106,7 +1063,7 @@ StatInfo SmbProtocol::_stat(const KURL& url, bool onlyCheckForExistance)
          stopAfterError(url,false);
          info.isValid=false;
          return info;
-      };
+      }
       bool stdoutEvent;
       result=proc->select(1,0,&stdoutEvent);
       if (stdoutEvent)
@@ -1117,8 +1074,8 @@ StatInfo SmbProtocol::_stat(const KURL& url, bool onlyCheckForExistance)
          {
             if (strstr(m_stdoutBuffer+m_stdoutSize-12,"\nsmb: \\>")!=0)
             loopFinished=true;
-         };
-      };
+         }
+      }
    } while (!loopFinished);
    kdDebug(KIO_SMB)<<"Smb::_stat(): read: -"<<m_stdoutBuffer<<"-"<<endl;
 
@@ -1127,7 +1084,7 @@ StatInfo SmbProtocol::_stat(const KURL& url, bool onlyCheckForExistance)
       kdDebug(KIO_SMB)<<"stopAfterError() returned true"<<endl;
       info.isValid=false;
       return info;
-   };
+   }
 
    QString outputString = QString::fromLocal8Bit(m_stdoutBuffer);
    QTextIStream output(&outputString);
@@ -1147,12 +1104,12 @@ StatInfo SmbProtocol::_stat(const KURL& url, bool onlyCheckForExistance)
          else
          {
             return createStatInfo(line);
-         };
-      };
+         }
+      }
       lineNumber++;
-   };
+   }
    return info;
-};
+}
 
 void SmbProtocol::stat( const KURL & url)
 {
@@ -1165,7 +1122,7 @@ void SmbProtocol::stat( const KURL & url)
 To get a list of all hosts use lan:/ or rlan:/ .\n\
 See the KDE Control Center under Network, LANBrowsing for more information."));
       return;
-   };
+   }
    StatInfo info=this->_stat(url);
    if (!info.isValid)
       return;
@@ -1183,7 +1140,7 @@ void SmbProtocol::put( const KURL& url, int, bool _overwrite, bool)
    {
       error(ERR_CANNOT_OPEN_FOR_WRITING,url.url());
       return;
-   };
+   }
    QString share;
    QString smbPath;
    getShareAndPath(url,share,smbPath);
@@ -1201,7 +1158,7 @@ void SmbProtocol::put( const KURL& url, int, bool _overwrite, bool)
       //perror("creating fifo failed: ");
       error(ERR_CANNOT_OPEN_FOR_WRITING,url.path()+i18n("\nCould not create required pipe %1.").arg(fifoName));
       return;
-   };
+   }
    QCString command=QCString("put ")+fifoName+QCString(" \"")+smbPath.local8Bit()+QCString("\"\n");
    kdDebug(KIO_SMB)<<"Smb::put(): executing command: -"<<command<<"-"<<endl;
 
@@ -1210,7 +1167,7 @@ void SmbProtocol::put( const KURL& url, int, bool _overwrite, bool)
       remove(fifoName);
       error(ERR_CONNECTION_BROKEN,m_currentHost);
       return;
-   };
+   }
    clearBuffer();
    bool loopFinished(false);
    //read the terminal echo
@@ -1222,7 +1179,7 @@ void SmbProtocol::put( const KURL& url, int, bool _overwrite, bool)
       {
          if (memchr(m_stdoutBuffer,'\n',m_stdoutSize)!=0)
             loopFinished=true;
-      };
+      }
    } while (!loopFinished);
 
    clearBuffer();
@@ -1240,8 +1197,8 @@ void SmbProtocol::put( const KURL& url, int, bool _overwrite, bool)
                 "Visit http://lisa-home.sourceforge.net/smbclientpatch.html "
                 "and follow the instructions there."));
          return;
-      };
-   };
+      }
+   }
 
    int fifoFD=open(fifoName,O_RDWR|O_NONBLOCK);
    if (fifoFD==-1)
@@ -1251,7 +1208,7 @@ void SmbProtocol::put( const KURL& url, int, bool _overwrite, bool)
       error(ERR_CANNOT_OPEN_FOR_WRITING,url.path()+i18n("\nCould not create required pipe %1.").arg(fifoName));
       remove(fifoName);
       return;
-   };
+   }
 
    //now we have it, now we can make it blocking again
    int flags=fcntl(fifoFD,F_GETFL,0);
@@ -1261,7 +1218,7 @@ void SmbProtocol::put( const KURL& url, int, bool _overwrite, bool)
       error(ERR_CANNOT_OPEN_FOR_WRITING,url.path()+i18n("\nCould not fcntl() pipe %1.").arg(fifoName));
       remove(fifoName);
       return;
-   };
+   }
    flags&=~O_NONBLOCK;
    if (fcntl(fifoFD,F_SETFL,flags)<0)
    {
@@ -1269,7 +1226,7 @@ void SmbProtocol::put( const KURL& url, int, bool _overwrite, bool)
       error(ERR_CANNOT_OPEN_FOR_WRITING,url.path()+i18n("\nCould not fcntl() pipe %1.").arg(fifoName));
       remove(fifoName);
       return;
-   };
+   }
 
    kdDebug(KIO_SMB)<<"Smb::put() opened fifo: -"<<command<<"-"<<endl;
 
@@ -1290,7 +1247,7 @@ void SmbProtocol::put( const KURL& url, int, bool _overwrite, bool)
          /*loopFinished=true;
          kdDebug(KIO_SMB)<<"Smb::get(): smbclient exited with status "<<exitStatus<<endl;
          break;*/
-      };
+      }
 
       dataReq();
       result=readData(array);
@@ -1317,8 +1274,8 @@ void SmbProtocol::put( const KURL& url, int, bool _overwrite, bool)
                kdDebug(KIO_SMB)<<"Smb::put() errno="<<errno<<endl;
                loopFinished=true;
                bytesLeft=0;
-            };
-         };
+            }
+         }
       }
       else loopFinished=true;
    } while(!loopFinished);
@@ -1336,7 +1293,7 @@ void SmbProtocol::put( const KURL& url, int, bool _overwrite, bool)
    if (stopAfterError(url,true))
       return;
    finished();
-};
+}
 
 
 void SmbProtocol::get( const KURL& url )
@@ -1355,7 +1312,7 @@ void SmbProtocol::get( const KURL& url )
       kdDebug(KIO_SMB)<<"Smb::get() file not found"<<endl;
       error(ERR_CANNOT_OPEN_FOR_READING,url.url());
       return;
-   };
+   }
 
    totalSize( info.size);
 
@@ -1363,7 +1320,7 @@ void SmbProtocol::get( const KURL& url )
    if (proc==0)
    {
       return;
-   };
+   }
 
    QCString fifoName;
    fifoName.sprintf("/tmp/kio_smb_%d_%d_%ld",getpid(),getuid(),time(0));
@@ -1374,7 +1331,7 @@ void SmbProtocol::get( const KURL& url )
       //perror("creating fifo failed: ");
       error(ERR_CANNOT_OPEN_FOR_READING,url.path()+i18n("\nCould not create required pipe %1.").arg(fifoName));
       return;
-   };
+   }
 
    QCString command=QCString("get \"")+smbPath.local8Bit()+QCString("\" ")+fifoName+"\n";
    kdDebug(KIO_SMB)<<"Smb::get(): executing command: -"<<command<<"-"<<endl;
@@ -1383,7 +1340,7 @@ void SmbProtocol::get( const KURL& url )
    {
       error(ERR_CONNECTION_BROKEN,m_currentHost);
       return;
-   };
+   }
 
    clearBuffer();
    bool loopFinished(false);
@@ -1407,7 +1364,7 @@ void SmbProtocol::get( const KURL& url )
       remove(fifoName);
       return;
 
-   };
+   }
 
    //now we have it, now we can make it blocking again
    int flags=fcntl(fifoFD,F_GETFL,0);
@@ -1417,7 +1374,7 @@ void SmbProtocol::get( const KURL& url )
       error(ERR_CANNOT_OPEN_FOR_READING,url.path()+i18n("\nCould not fcntl() pipe %1.").arg(fifoName));
       remove(fifoName);
       return;
-   };
+   }
    flags&=~O_NONBLOCK;
    if (fcntl(fifoFD,F_SETFL,flags)<0)
    {
@@ -1425,23 +1382,8 @@ void SmbProtocol::get( const KURL& url )
       error(ERR_CANNOT_OPEN_FOR_READING,url.path()+i18n("\nCould not fcntl() pipe %1.").arg(fifoName));
       remove(fifoName);
       return;
-   };
+   }
 
-   //now read from the fifo
-   //this might evetually block :-(
-   //but actually I don't know why this should happen
-   //we entered "get some_file /tmp/the_fifo" into smbclient
-   //the fifo /tmp/the_fifo exists and the remote some_file exists too,
-   //we checked this with the _stat() call, so why should it not work ?
-/*   FILE * fifo=fopen(fifoName,"r");
-   if (fifo==0)
-   {
-      //hmm, how should we get here ?
-      error(ERR_CANNOT_OPEN_FOR_READING,url.path()+i18n("\nCould not create required pipe %1.").arg(fifoName));
-      return;
-   };
-
-   int fifoFD=fileno(fifo);*/
    char buf[32*1024];
 
    kdDebug(KIO_SMB)<<"Smb::get() opened fifo: -"<<command<<"-"<<endl;
@@ -1461,10 +1403,7 @@ void SmbProtocol::get( const KURL& url )
          close(fifoFD);
          remove(fifoName);
          return;
-         /*loopFinished=true;
-         kdDebug(KIO_SMB)<<"Smb::get(): smbclient exited with status "<<exitStatus<<endl;
-         break;*/
-      };
+      }
 
       struct timeval tv;
       tv.tv_sec=1;
@@ -1597,7 +1536,7 @@ bool SmbProtocol::searchWorkgroups()
       kdDebug(KIO_SMB)<<"Smb::searchWorkgroup() could not start smbclient"<<endl;
       delete proc;
       return false;
-   };
+   }
    QString password(m_password);
    QString user(m_user);
 
@@ -1634,16 +1573,16 @@ bool SmbProtocol::searchWorkgroups()
             error( KIO::ERR_CANNOT_LAUNCH_PROCESS, "smbclient"+i18n("\nMake sure that the samba package is installed properly on your system."));
             delete proc;
             return false;
-         };
+         }
       }
       else break;
-   };
+   }
    //here smbclient has already exited
    if (proc!=0)
    {
       delete proc;
       proc=0;
-   };
+   }
 
    KURL url("smb:/");
    //no error handling has happened up to now
@@ -1657,7 +1596,7 @@ bool SmbProtocol::searchWorkgroups()
    {
       error(ERR_USER_CANCELED,"");
       return false;
-   };
+   }
 
    if (stopAfterError(url,true))
       return false;
@@ -1684,7 +1623,7 @@ bool SmbProtocol::searchWorkgroups()
             mode=1;
             wgPos=line.find("Workgroup");
             masterPos=line.find("Master");
-         };
+         }
       }
       else if (mode==1)
       {
@@ -1695,7 +1634,7 @@ bool SmbProtocol::searchWorkgroups()
          else
          {
             return false;
-         };
+         }
       }
       else if (mode==2)
       {
@@ -1716,11 +1655,11 @@ bool SmbProtocol::searchWorkgroups()
                end--;
             master=master.left(end+1);
             m_workgroups[name.upper()]=master.upper();
-         };
-      };
-   };
+         }
+      }
+   }
    return true;
-};
+}
 
 void SmbProtocol::listWorkgroups()
 {
@@ -1769,7 +1708,7 @@ void SmbProtocol::listWorkgroups()
    listEntry( entry, true ); // ready
 
    finished();
-};
+}
 
 
 void SmbProtocol::listHosts()
@@ -1791,7 +1730,7 @@ void SmbProtocol::listHosts()
       kdDebug(KIO_SMB)<<"Smb::listHosts() could not start smbclient"<<endl;
       delete proc;
       return;
-   };
+   }
    QString password(m_password);
    QString user(m_user);
 
@@ -1824,16 +1763,16 @@ void SmbProtocol::listHosts()
             error( KIO::ERR_CANNOT_LAUNCH_PROCESS, "smbclient"+i18n("\nMake sure that the samba package is installed properly on your system."));
             delete proc;
             return;
-         };
+         }
       }
       else break;
-   };
+   }
    //here smbclient has already exited
    if (proc!=0)
    {
       delete proc;
       proc=0;
-   };
+   }
 
    KURL url("smb:/");
    //no error handling has happened up to now
@@ -1847,7 +1786,7 @@ void SmbProtocol::listHosts()
    {
       error(ERR_USER_CANCELED,"");
       return;
-   };
+   }
 
    if (stopAfterError(url,true))
       return;
@@ -1877,7 +1816,7 @@ void SmbProtocol::listHosts()
             mode=1;
             serverPos=line.find("Server");
             commentPos=line.find("Comment");
-         };
+         }
       }
       else if (mode==1)
       {
@@ -1888,7 +1827,7 @@ void SmbProtocol::listHosts()
          else
          {
             return;
-         };
+         }
       }
       else if (mode==2)
       {
@@ -1928,14 +1867,14 @@ void SmbProtocol::listHosts()
 
             listEntry( entry, false);
             totalNumber++;
-         };
-      };
-   };
+         }
+      }
+   }
    totalSize( totalNumber);
    listEntry( entry, true ); // ready
 
    finished();
-};
+}
 
 QCString SmbProtocol::getNmbName(QCString ipString)
 {
@@ -1964,12 +1903,12 @@ QCString SmbProtocol::getNmbName(QCString ipString)
          if (exitStatus!=-1)
          {
             kdDebug(KIO_SMB)<<"Smb::getNmbName() nmblookup exited with exitcode "<<exitStatus<<endl;
-         };
+         }
          if (stdoutEvent)
          {
             readOutput(proc->fd());
          }
-      };
+      }
       //now parse the output
       QString outputString = QString::fromLocal8Bit(m_stdoutBuffer);
       QTextIStream output(&outputString);
@@ -1986,13 +1925,13 @@ QCString SmbProtocol::getNmbName(QCString ipString)
             line=line.stripWhiteSpace();
             nmbName=line.local8Bit();
             break;
-         };
-      };
+         }
+      }
       clearBuffer();
-   };
+   }
    delete proc;
    return nmbName;
-};
+}
 
 void SmbProtocol::setHost(const QString& host, int /*port*/, const QString& /*user*/, const QString& /*pass*/)
 {
@@ -2025,7 +1964,7 @@ See the KDE Control Center under Network, LANBrowsing for more information."));
       QCString tmp=getNmbName(ipString);
       if (!tmp.isEmpty())
          nmbName=tmp;
-   };
+   }
    kdDebug(KIO_SMB)<<"Smb::setHost() nmbName is -"<<nmbName<<"-"<<endl;
 
    if (host==m_currentHost) return;
@@ -2075,7 +2014,7 @@ ClientProcess* SmbProtocol::getProcess(const QString& host, const QString& share
    {
       error( KIO::ERR_CANNOT_LAUNCH_PROCESS, "smbclient"+i18n("\nMake sure that the samba package is installed properly on your system."));
       return 0;
-   };
+   }
    QString password(m_password);
    QString user(m_user);
 
@@ -2118,8 +2057,8 @@ ClientProcess* SmbProtocol::getProcess(const QString& host, const QString& share
          //we don't want to care in the calling code
          error(ERR_USER_CANCELED,"");
          return 0;
-      };
-   };
+      }
+   }
    if (result==SMB_ERROR)
    {
       KURL url("smb://"+host+"/"+share);
@@ -2133,7 +2072,7 @@ ClientProcess* SmbProtocol::getProcess(const QString& host, const QString& share
    if (!ai.username.isEmpty()) //we used the AuthInfo
       cacheAuthentication(ai);
    return proc;
-};
+}
 
 
 void SmbProtocol::special( const QByteArray & data)
@@ -2174,24 +2113,24 @@ void SmbProtocol::special( const QByteArray & data)
             opts+="username=";
             opts+=user.local8Bit();
             kdDebug(KIO_SMB)<<"Smb::special() user -"<<user.local8Bit()<<"-"<<endl;
-         };
+         }
          if (!password.isEmpty())
          {
             opts+=",password=";
             opts+=password.local8Bit();
-         };
+         }
          if (opts!="-o")
          {
             args<<opts;
             kdDebug(KIO_SMB)<<"Smb::special() adding opts"<<endl;
-         };
+         }
          kdDebug(KIO_SMB)<<"Smb::special() opts-"<<opts<<"-"<<endl;
          if (!proc->start("smbmount",args))
          {
             error( KIO::ERR_CANNOT_LAUNCH_PROCESS, "smbmount"+i18n("\nMake sure that the samba package is installed properly on your system."));
             delete proc;
             return;
-         };
+         }
 
          bool firstLoop=true;
          AuthInfo ai;
@@ -2226,36 +2165,36 @@ void SmbProtocol::special( const QByteArray & data)
                   opts+="username=";
                   opts+=user.local8Bit();
                   kdDebug(KIO_SMB)<<"Smb::special() user -"<<user.local8Bit()<<"-"<<endl;
-               };
+               }
                if (!password.isEmpty())
                {
                   opts+=",password=";
                   opts+=password.local8Bit();
-               };
+               }
                if (opts!="-o")
                {
                   tmpArgs<<opts;
                   kdDebug(KIO_SMB)<<"Smb::special() adding opts"<<endl;
-               };
+               }
                if (!proc->start("smbmount",tmpArgs))
                {
                   error( KIO::ERR_CANNOT_LAUNCH_PROCESS, "smbmount"+i18n("\nMake sure that the samba package is installed properly on your system."));
                   delete proc;
                   return;
-               };
+               }
             }
             else
             {
                //we don't want to care in the calling code
                error(ERR_USER_CANCELED,"");
                return;
-            };
-         };
+            }
+         }
          if (result==SMB_ERROR)
          {
             error( KIO::ERR_CANNOT_LAUNCH_PROCESS, "wrlg sudgäajäl jtlw4jrt");
             return;
-         };
+         }
          delete proc;
          //if we get here, we had success
          if (!ai.username.isEmpty())
@@ -2274,7 +2213,7 @@ void SmbProtocol::special( const QByteArray & data)
          {
             error( KIO::ERR_CANNOT_LAUNCH_PROCESS, "smbumount"+i18n("\nMake sure that the samba package is installed properly on your system."));
             return;
-         };
+         }
          clearBuffer();
          while (1)  //until smbumount exits
          {
@@ -2292,7 +2231,7 @@ void SmbProtocol::special( const QByteArray & data)
                   QString p=dir.path();
                   dir.cdUp();
                   dir.rmdir(p);
-               };
+               }
                if (exitStatus!=0)
                {
                   if (m_stdoutSize>0)
@@ -2302,15 +2241,15 @@ void SmbProtocol::special( const QByteArray & data)
                else
                   finished();
                return;
-            };
+            }
             if (stdoutEvent)
                readOutput(proc.fd());
-         };
+         }
       }
       break;
    default:
       break;
    }
    finished();
-};
+}
 
