@@ -32,19 +32,19 @@ QString LDAPBase::error()
 }
 
 
-Connection::Connection(const char *s, int p)
+KLDAP::Connection::Connection(const char *s, int p)
   : LDAPBase(), _server(s), _port(p)
 {
 }
 
 
-Connection::~Connection()
+KLDAP::Connection::~Connection()
 {
   disconnect();
 }
 
 
-bool Connection::connect()
+bool KLDAP::Connection::connect()
 {
   // if we are already connected, it is better to disconnect now
   if (handle())
@@ -61,7 +61,7 @@ bool Connection::connect()
 }
 
 
-bool Connection::disconnect()
+bool KLDAP::Connection::disconnect()
 {
   // test if we are really connected
   if (!handle())
@@ -77,7 +77,7 @@ bool Connection::disconnect()
 }
 
 
-bool Connection::authenticate(const char *dn, const char *cred, int method)
+bool KLDAP::Connection::authenticate(const char *dn, const char *cred, int method)
 {
   if (!handle())
     return FALSE;
