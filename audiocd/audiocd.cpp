@@ -371,10 +371,9 @@ AudioCDProtocol::get(const KURL & url)
   long firstSector    = cdda_track_firstsector(drive, trackNumber);
   long lastSector     = cdda_track_lastsector(drive, trackNumber);
   long totalByteCount = CD_FRAMESIZE_RAW * (lastSector - firstSector);
+  long time_secs      = (8 * totalByteCount) / (44100 * 2 * 16);
 
 #ifdef HAVE_LAME
-  long time_secs = (8 * totalByteCount) / (44100 * 2 * 16);
-
   if (filetype == "mp3")
     totalSize((time_secs * d->bitrate * 1000)/8);
 #endif
