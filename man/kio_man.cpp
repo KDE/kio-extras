@@ -396,9 +396,9 @@ char *MANProtocol::readManPage(const char *_filename)
 
 void MANProtocol::outputError(const QString& errmsg)
 {
-    QCString output;
+    QString output;
 
-    QTextStream os(output, IO_WriteOnly);
+    QTextStream os(&output, IO_WriteOnly);
     // QTextSream on a QCString needs to be told explicitely to use local8Bit conversion !
     os.setEncoding(QTextStream::Locale);
 
@@ -407,14 +407,14 @@ void MANProtocol::outputError(const QString& errmsg)
     os << i18n("<body bgcolor=#ffffff><h1>KDE Man Viewer Error</h1>") << errmsg << "</body>" << endl;
     os << "</html>" << endl;
 
-    data(output);
+    data(output.local8Bit());
 }
 
 void MANProtocol::outputMatchingPages(const QStringList &matchingPages)
 {
-    QCString output;
+    QString output;
 
-    QTextStream os(output, IO_WriteOnly);
+    QTextStream os(&output, IO_WriteOnly);
     os.setEncoding(QTextStream::Locale);
 
     os << "<html>\n<head><title>\n";
@@ -426,7 +426,7 @@ void MANProtocol::outputMatchingPages(const QStringList &matchingPages)
        os<<"<li><a href=man:"<<QFile::encodeName(*it)<<">"<< *it <<"</a><br>\n<br>\n";
     os<< "</ul>\n</body>\n</html>"<<endl;
 
-    data(output);
+    data(output.local8Bit());
     finished();
 }
 
@@ -537,10 +537,9 @@ QString sectionName(const QString& section)
 
 void MANProtocol::showMainIndex()
 {
-    QCString output;
+    QString output;
 
-    QTextStream os(output, IO_WriteOnly);
-    // QTextSream on a QCString needs to be told explicitely to use local8Bit conversion !
+    QTextStream os(&output, IO_WriteOnly);
     os.setEncoding(QTextStream::Locale);
 
     // print header
@@ -564,7 +563,7 @@ void MANProtocol::showMainIndex()
     // print footer
     os << "</body></html>" << endl;
 
-    data(output);
+    data(output.local8Bit());
     finished();
 }
 
@@ -629,6 +628,7 @@ void MANProtocol::checkManPaths()
         if (mc.open(IO_ReadOnly))
         {
             QTextStream is(&mc);
+	    is.setEncoding(QTextStream::Locale);
 
             while (!is.eof())
             {
@@ -917,10 +917,9 @@ private:
 
 void MANProtocol::showIndex(const QString& section)
 {
-    QCString output;
+    QString output;
 
-    QTextStream os(output, IO_WriteOnly);
-    // QTextSream on a QCString needs to be told explicitely to use local8Bit conversion !
+    QTextStream os(&output, IO_WriteOnly);
     os.setEncoding(QTextStream::Locale);
 
     // print header
@@ -996,7 +995,7 @@ void MANProtocol::showIndex(const QString& section)
 
         char *manpage_end;
         struct man_index_t *manindex = new man_index_t;
-	manindex->manpath = (*page).latin1();
+	manindex->manpath = (*page).local8Bit();
 
 	manindex->manpage_begin = strrchr(manindex->manpath, '/');
 	if (manindex->manpage_begin)
@@ -1172,7 +1171,7 @@ void MANProtocol::showIndex(const QString& section)
     os << "</body></html>" << endl;
 
     infoMessage(QString::null);
-    data(output);
+    data(output.local8Bit());
     finished();
 }
 
