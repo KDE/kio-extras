@@ -1,6 +1,8 @@
 /*  This file is part of the KDE libraries
     Copyright (C) 2001 Malte Starostik <malte@kde.org>
 
+    Handling of EPS previews Copyright (C) 2003 Philipp Hullmann <phull@gmx.de>
+
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Library General Public
     License as published by the Free Software Foundation; either
@@ -53,7 +55,9 @@
 
 
 #include <assert.h>
+#include <ctype.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include <unistd.h>
 #include <signal.h>
 #ifdef HAVE_SYS_SELECT_H
@@ -64,13 +68,15 @@
 #include <fcntl.h>
 #include <errno.h>
 
+#include <qcolor.h>
 #include <qfile.h>
 #include <qimage.h>
+#include <qregexp.h>
 
 
 #include "gscreator.h"
-
-
+#include "dscparse_adapter.h"
+#include "dscparse.h"
 
 extern "C"
 {
@@ -82,7 +88,7 @@ extern "C"
 
 // This PS snippet will be prepended to the actual file so that only
 // the first page is output.
-static const char *prolog =
+static const char *psprolog =
     "%!PS-Adobe-3.0\n"
     "/.showpage.orig /showpage load def\n"
     "/.showpage.firstonly {\n"
@@ -91,7 +97,15 @@ static const char *prolog =
     "} def\n"
     "/showpage { .showpage.firstonly } def\n";
 
-static const char * gsargs[] = {
+// This is the code recommended by Adobe tech note 5002 for including
+// EPS files.
+static const char *epsprolog =
+    "%!PS-Adobe-3.0\n"
+    "userdict begin /pagelevel save def /showpage { } def\n"
+    "0 setgray 0 setlinecap 1 setlinewidth 0 setlinejoin 10 setmiterlimit\n"
+    "[ ] 0 setdash newpath false setoverprint false setstrokeadjust\n";
+
+static const char * gsargs_ps[] = {
     "gs",
     "-sDEVICE=png16m",
     "-sOutputFile=-",
@@ -103,10 +117,35 @@ static const char * gsargs[] = {
     "-q",
     "-",
     0, // file name
-	"-c",
-	"showpage",
-	"-c",
-	"quit",
+    "-c",
+    "showpage",
+    "-c",
+    "quit",
+    0
+};
+
+static const char * gsargs_eps[] = {
+    "gs",
+    "-sDEVICE=png16m",
+    "-sOutputFile=-",
+    "-dSAFER",
+    "-dPARANOIDSAFER",
+    "-dNOPAUSE",
+    0, // page size
+    0, // resolution
+    "-q",
+    "-",
+    0, // file name
+    "-c",
+    "pagelevel",
+    "-c",
+    "restore",
+    "-c",
+    "end",
+    "-c",
+    "showpage",
+    "-c",
+    "quit",
     0
 };
 
@@ -132,7 +171,7 @@ namespace {
 }
 
 
-bool GSCreator::create(const QString &path, int, int, QImage &img)
+bool GSCreator::create(const QString &path, int width, int height, QImage &img)
 {
 // The code in the loop (when testing whether got_sig_term got set)
 // should read some variation of:
@@ -160,7 +199,6 @@ bool GSCreator::create(const QString &path, int, int, QImage &img)
 
   // Test if file is DVI
   bool no_dvi =!correctDVI(path);
- 
 
   if (pipe(input) == -1) {
     return false;
@@ -169,6 +207,88 @@ bool GSCreator::create(const QString &path, int, int, QImage &img)
     close(input[0]);
     close(input[1]);
     return false;
+  }
+
+  KDSC dsc;
+  endComments = false;
+  dsc.setCommentHandler(this);
+
+  if (no_dvi)
+  {
+    FILE* fp = fopen(QFile::encodeName(path), "r");
+    if (fp == 0) return false;
+
+    char buf[4096];
+    int count;
+    while ((count = fread(buf, sizeof(char), 4096, fp)) != 0
+           && !endComments) {
+      dsc.scanData(buf, count);
+    }
+    fclose(fp);
+
+    if (dsc.pjl() || dsc.ctrld()) {
+      // this file is a mess.
+      return false;
+    }
+  }
+
+  const bool is_encapsulated = no_dvi &&
+    (path.find(QRegExp("\\.epsi?$", false, false)) > 0) &&
+    (dsc.bbox()->width() > 0) && (dsc.bbox()->height() > 0) && 
+    (dsc.page_count() <= 1);
+
+  char translation[64] = "";
+  char pagesize[32] = "";
+  char resopt[32] = "";
+  std::auto_ptr<KDSCBBOX> bbox = dsc.bbox();
+  if (is_encapsulated) {
+    // GhostScript's rendering at the extremely low resolutions
+    // required for thumbnails leaves something to be desired. To
+    // get nicer images, we render to four times the required
+    // resolution and let QImage scale the result.
+    const int hres = (width * 72) / bbox->width();
+    const int vres = (height * 72) / bbox->height();
+    const int resolution = (hres > vres ? vres : hres) * 4;
+    const int gswidth = ((bbox->urx() - bbox->llx()) * resolution) / 72;
+    const int gsheight = ((bbox->ury() - bbox->lly()) * resolution) / 72;
+
+    snprintf(pagesize, 31, "-g%ix%i", gswidth, gsheight);
+    snprintf(resopt, 31, "-r%i", resolution);
+    snprintf(translation, 63,
+       " 0 %i sub 0 %i sub translate\n", bbox->llx(),
+       bbox->lly());
+  }
+
+  const CDSC_PREVIEW_TYPE previewType = 
+    static_cast<CDSC_PREVIEW_TYPE>(dsc.preview());
+
+  switch (previewType) {
+  case CDSC_TIFF:
+  case CDSC_WMF:
+  case CDSC_PICT:
+    // FIXME: these should take precedence, since they can hold
+    // color previews, which EPSI can't (or can it?).
+     break;
+  case CDSC_EPSI:
+    {
+      const int xscale = bbox->width() / width;
+      const int yscale = bbox->height() / height;
+      const int scale = xscale < yscale ? xscale : yscale;
+      if (getEPSIPreview(path,
+                         dsc.beginpreview(),
+                         dsc.endpreview(),
+                         img,
+                         bbox->width() / scale,
+                         bbox->height() / scale))
+        return true;
+      // If the preview extraction routine fails, gs is used to
+      // create a thumbnail.
+    }
+    break;
+  case CDSC_NOPREVIEW:
+  default:
+    // need to run ghostscript in these cases
+    break;
   }
   
   pid_t pid = fork(); 
@@ -179,13 +299,29 @@ bool GSCreator::create(const QString &path, int, int, QImage &img)
 
     // find first zero entry in gsargs and put the filename 
     // or - (stdin) there, if DVI 
+    const char **gsargs = gsargs_ps;
     const char **arg = gsargs;
+
+    if (no_dvi && is_encapsulated) {
+      gsargs = gsargs_eps;
+      arg = gsargs;
+
+      // find first zero entry and put page size there
+      while (*arg) ++arg;
+      *arg = pagesize;
+
+      // find second zero entry and put resolution there
+      while (*arg) ++arg;
+      *arg = resopt;
+    }
+
+    // find next zero entry and put the filename there    
     QCString fname = QFile::encodeName( path );
     while (*arg)
       ++arg;
     if( no_dvi )
       *arg = fname.data();
-    else if( !no_dvi ) 
+    else
       *arg = "-";
 
     // find first zero entry in dvipsargs and put the filename there    
@@ -246,7 +382,15 @@ bool GSCreator::create(const QString &path, int, int, QImage &img)
     // used if DVI) and read the png output
     close(input[0]);
     close(output[1]);
+    const char *prolog;
+    if (is_encapsulated)
+      prolog = epsprolog;
+    else
+      prolog = psprolog;
     int count = write(input[1], prolog, strlen(prolog));
+    if (is_encapsulated)
+      write(input[1], translation, strlen(translation));
+
     close(input[1]);
     if (count == static_cast<int>(strlen(prolog))) {
       int offset = 0;
@@ -316,6 +460,19 @@ ThumbCreator::Flags GSCreator::flags() const
     return static_cast<Flags>(DrawFrame);
 }
 
+void GSCreator::comment(Name name)
+{
+    switch (name) {
+    case EndPreview:
+    case BeginProlog:
+    case Page:
+      endComments = true;
+      break;
+
+    default:
+      break;
+    }
+}
 
 // Quick function to check if the filename corresponds to a valid DVI
 // file. Returns true if <filename> is a DVI file, false otherwise.
@@ -341,4 +498,121 @@ static bool correctDVI(const QString& filename)
     return FALSE;
   // We suppose now that the dvi file is complete and OK
   return TRUE;
+}
+
+bool GSCreator::getEPSIPreview(const QString &path, long start, long
+			       end, QImage &outimg, int imgwidth, int imgheight)
+{
+  FILE *fp;
+  fp = fopen(QFile::encodeName(path), "r");
+  if (fp == 0) return false;
+
+  const long previewsize = end - start + 1;
+
+  char *buf = (char *) malloc(previewsize);
+  fseek(fp, start, SEEK_SET);
+  int count = fread(buf, sizeof(char), previewsize - 1, fp);
+  fclose(fp);
+  buf[previewsize - 1] = 0;
+  if (count != previewsize - 1)
+  {
+    free(buf);
+    return false;
+  }
+
+  QString previewstr = QString::fromLatin1(buf);
+  free(buf);
+
+  int offset = 0;
+  while ((offset < previewsize) && !(previewstr[offset].isDigit())) offset++;
+  int digits = 0;
+  while ((offset + digits < previewsize) && previewstr[offset + digits].isDigit()) digits++;
+  int width = previewstr.mid(offset, digits).toInt();
+  offset += digits + 1;
+  while ((offset < previewsize) && !(previewstr[offset].isDigit())) offset++;
+  digits = 0;
+  while ((offset + digits < previewsize) && previewstr[offset + digits].isDigit()) digits++;
+  int height = previewstr.mid(offset, digits).toInt();
+  offset += digits + 1;
+  while ((offset < previewsize) && !(previewstr[offset].isDigit())) offset++;
+  digits = 0;
+  while ((offset + digits < previewsize) && previewstr[offset + digits].isDigit()) digits++;
+  int depth = previewstr.mid(offset, digits).toInt();
+
+  // skip over the rest of the BeginPreview comment
+  while ((offset < previewsize) &&
+         previewstr[offset] != '\n' &&
+	 previewstr[offset] != '\r') offset++;
+  while ((offset < previewsize) && previewstr[offset] != '%') offset++;
+
+  unsigned int imagedepth;
+  switch (depth) {
+  case 1:
+  case 2:
+  case 4:
+  case 8:
+    imagedepth = 8;
+    break;
+  case 12: // valid, but not (yet) supported
+  default: // illegal value
+    return false;
+  }
+
+  unsigned int colors = (1U << depth);
+  QImage img(width, height, imagedepth, colors);
+  img.setAlphaBuffer(false);
+
+  if (imagedepth <= 8) {
+    for (unsigned int gray = 0; gray < colors; gray++) {
+      unsigned int grayvalue = (255U * (colors - 1 - gray)) / 
+	(colors - 1);
+      img.setColor(gray, qRgb(grayvalue, grayvalue, grayvalue));
+    }
+  }
+
+  const unsigned int bits_per_scan_line = width * depth;
+  unsigned int bytes_per_scan_line = bits_per_scan_line / 8;
+  if (bits_per_scan_line % 8) bytes_per_scan_line++;
+  const unsigned int bindatabytes = height * bytes_per_scan_line;
+  unsigned char bindata[bindatabytes];
+
+  for (unsigned int i = 0; i < bindatabytes; i++) {
+    if (offset >= previewsize)
+      return false;
+
+    while (!isxdigit(previewstr[offset].latin1()) && 
+	   offset < previewsize) 
+      offset++;
+
+    bool ok = false;
+    bindata[i] = static_cast<unsigned char>(previewstr.mid(offset, 2).toUInt(&ok, 16));
+    if (!ok)
+      return false;
+
+    offset += 2;
+  }
+
+  for (int scanline = 0; scanline < height; scanline++) {
+    unsigned char *scanlineptr = img.scanLine(scanline);
+
+    for (int pixelindex = 0; pixelindex < width; pixelindex++) {
+      unsigned char pixelvalue = 0;
+      const unsigned int bitoffset = 
+        scanline * bytes_per_scan_line * 8U + pixelindex * depth;
+      for (int depthindex = 0; depthindex < depth;
+           depthindex++) {
+        const unsigned int byteindex = (bitoffset + depthindex) / 8U;
+        const unsigned int bitindex = 
+          7 - ((bitoffset + depthindex) % 8U);
+        const unsigned char bitvalue = 
+          (bindata[byteindex] & static_cast<unsigned char>(1U << bitindex)) >> bitindex;
+        pixelvalue |= (bitvalue << depthindex);
+      }
+      scanlineptr[pixelindex] = pixelvalue;
+    }
+  }
+
+  outimg = img.convertDepth(32).smoothScale(imgwidth, imgheight);
+  
+  return true;
 }

@@ -21,14 +21,22 @@
 #define _GSCREATOR_H_
 
 #include <kio/thumbcreator.h>
+#include "dscparse_adapter.h"
 
-class GSCreator : public ThumbCreator
+class GSCreator : public ThumbCreator, public KDSCCommentHandler
 {
 public:
     GSCreator() {};
     virtual bool create(const QString &path, int, int, QImage &img);
-	virtual Flags flags() const;
+    virtual Flags flags() const;
+    void comment(Name name);
 
+private:
+    static bool getEPSIPreview(const QString &path,
+                               long start, long end,
+                               QImage &outimg,
+                               int imgwidth, int imgheight);
+    bool endComments;
 };
 
 #endif
