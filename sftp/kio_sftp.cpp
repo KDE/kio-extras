@@ -1470,7 +1470,7 @@ void sftpProtocol::slave_status() {
 bool sftpProtocol::getPacket(QByteArray& msg) {
 //    kdDebug(KIO_SFTP_DB) << "getPacket()" << endl;
     int len;
-    unsigned int msgLen;
+    size_t msgLen;
     char buf[4096];
 
     // Get the message length and type
