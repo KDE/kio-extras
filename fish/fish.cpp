@@ -223,7 +223,7 @@ const struct fishProtocol::fish_info fishProtocol::fishInfo[] = {
       (">> %2; echo '### 001'; ( [ %1 -gt 0 ] && dd ibs=1 obs=%1 count=%1 2> /dev/null; ) | ( cat >> %2 || echo Error $?; cat >/dev/null; )"),
       0 },
     { ("EXEC"), 2,
-      ("eval %1 < /dev/null > %2 2>&1; echo \"#RESULT# $?\" >> %2;"),
+      ("touch %2; chmod 600 %2; eval %1 < /dev/null > %2 2>&1; echo \"#RESULT# $?\" >> %2"),
       0 }
 };
 

@@ -195,7 +195,7 @@ MAIN: while (<STDIN>) {
         next;
     };
     /^EXEC\s+((?:\\.|[^\\])*?)\s+((?:\\.|[^\\])*?)\s*$/ && do {
-        system("eval $1 < /dev/null > $2 2>&1; echo \"#RESULT# $?\" >> $1;");
+        system("touch $2; chmod 600 $2; eval $1 < /dev/null > $2 2>&1; echo \"#RESULT# $?\" >> $2;");
         print "### 200\n";
         next;
     };
