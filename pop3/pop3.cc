@@ -125,7 +125,7 @@ bool POP3Protocol::command (const char *cmd, char *recv_buf, unsigned int len)
 void POP3Protocol::pop3_close ()
 {
   if (m_iSock) {
-    write(m_iSock, "QUIT\r\n", 6);
+    (void)command("QUIT");
     fclose(fp);
     m_iSock=0; fp=0;
   }
@@ -141,7 +141,7 @@ bool POP3Protocol::pop3_open( KURL &_url )
   // Why 0 wasn't chosen is beyond me.
   port = (_url.port() != -1) ? _url.port() : 110;
 
-  m_iSock = ::socket(PF_INET,SOCK_STREAM,0);
+  m_iSock = ::socket(PF_INET, SOCK_STREAM, 0);
   if (!KSocket::initSockaddr(&server_name, _url.host(), port))
     return false;
   if (::connect(m_iSock, (struct sockaddr*)(&server_name), sizeof(server_name))) {
@@ -156,7 +156,7 @@ bool POP3Protocol::pop3_open( KURL &_url )
   if (!getResponse())  // If the server doesn't respond with a greeting
     return false;
 
-  char buf[1024];
+  char buf[512];
 
   QString usr, pass, one_string="USER ";
   if (_url.user().isEmpty() || _url.pass().isEmpty()) {
@@ -168,7 +168,8 @@ bool POP3Protocol::pop3_open( KURL &_url )
      one_string.append(usr);
   } else
     one_string.append(_url.user());
-  if (!command(one_string, buf, 1024)) {
+  bzero(buf, sizeof(buf));
+  if (!command(one_string, buf, sizeof(buf))) {
     fprintf(stderr, "Couldn't login. Bad username Sorry\n"); fflush(stderr);
     pop3_close();
     return false;
@@ -179,7 +180,7 @@ bool POP3Protocol::pop3_open( KURL &_url )
     one_string.append(pass);
   else
     one_string.append(_url.pass());
-  if (!command(one_string, buf, 1024)) {
+  if (!command(one_string, buf, sizeof(buf))) {
     fprintf(stderr, "Couldn't login. Bad password Sorry\n"); fflush(stderr);
     pop3_close();
     return false;
