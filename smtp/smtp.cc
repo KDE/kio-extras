@@ -452,17 +452,20 @@ bool SMTPProtocol::smtp_open (const KURL &url)
 	if (haveTLS && canUseTLS()) { 
                 // For now we're gonna force it on.
                 if (command(ASCII("STARTTLS"))) {
-                   if (startTLS()) {
+                   int tlsrc = startTLS();
+                   if (tlsrc == 1) {
                       kdDebug() << "TLS has been enabled!" << endl;
                    } else {
-                      kdDebug() << "TLS negotiation failed!" << endl;
-                      messageBox(Information,
-                                 i18n("Your SMTP server claims to "
-                                      "support TLS but negotiation "
-                                      "was unsuccessful.  You can "
-                                      "disable TLS in KDE using the "
-                                      "crypto settings module."),
-                                 i18n("Connection Failed"));
+                      if (tlsrc != -3) {
+                        kdDebug() << "TLS negotiation failed!" << endl;
+                        messageBox(Information,
+                                   i18n("Your SMTP server claims to "
+                                        "support TLS but negotiation "
+                                        "was unsuccessful.  You can "
+                                        "disable TLS in KDE using the "
+                                        "crypto settings module."),
+                                   i18n("Connection Failed"));
+                      }
                       return false;
                    }
                 } 
