@@ -21,20 +21,20 @@
 #define KIO_NFS_H
 
 #include <kio/slavebase.h>
+#include <kio/global.h>
 
 #include <qmap.h>
 #include <qstring.h>
 #include <qstringlist.h>
 #include <qintdict.h>
+#include <qtimer.h>
 
-
-#define PORTMAP  //this seems to be required to compile on Solaris 8
+#define PORTMAP  //this seems to be required to compile on Solaris
 #include <rpc/rpc.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <sys/time.h>
 
-#include <kio/global.h>
 #include <iostream.h>
 
 class NFSFileHandle
@@ -57,6 +57,8 @@ class NFSFileHandle
 
 ostream& operator<<(ostream&, const NFSFileHandle&);
 
+typedef QMap<QString,NFSFileHandle> NFSFileHandleMap;
+
 
 class NFSProtocol : public KIO::SlaveBase
 {
@@ -65,11 +67,14 @@ class NFSProtocol : public KIO::SlaveBase
       virtual ~NFSProtocol();
 
       virtual void openConnection();
+      virtual void closeConnection();
+
       virtual void setHost( const QString& host, int port, const QString& user, const QString& pass );
 
       virtual void put( const KURL& url, int _mode,bool _overwrite, bool _resume );
       virtual void get( const KURL& url );
       virtual void listDir( const KURL& url);
+      virtual void symlink( const QString &target, const KURL &dest, bool );
       virtual void stat( const KURL & url);
       virtual void mkdir( const KURL& url, int permissions );
       virtual void del( const KURL& url, bool isfile);
@@ -79,9 +84,17 @@ class NFSProtocol : public KIO::SlaveBase
    protected:
       void createVirtualDirEntry(KIO::UDSEntry & entry);
       bool checkForError(int clientStat, int nfsStat, const QString& text);
+      bool isExportedDir(const QString& path);
+      bool isRoot(const QString& path);
+      void completeUDSEntry(KIO::UDSEntry& entry, fattr& attributes);
+      void completeBadLinkUDSEntry(KIO::UDSEntry& entry, fattr& attributes);
+      void completeAbsoluteLinkUDSEntry(KIO::UDSEntry& entry, const QCString& path);
+      bool isValidLink(const QString& parentDir, const QString& linkDest);
+      bool isAbsoluteLink(const QString& path);
+      
       NFSFileHandle getFileHandle(QString path);
 
-      QMap<QString,NFSFileHandle> m_handleCache;
+      NFSFileHandleMap m_handleCache;
       QIntDict<QString> usercache;      // maps long ==> QString *
       QIntDict<QString> groupcache;
 
@@ -91,6 +104,9 @@ class NFSProtocol : public KIO::SlaveBase
       CLIENT *m_nfsClient;
       timeval total_timeout;
       timeval pertry_timeout;
+      int m_sock;
+      time_t m_lastCheck;
+      void checkForOldFHs();
 };
 
 #endif
