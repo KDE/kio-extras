@@ -905,13 +905,13 @@ void fishProtocol::manageConnection(const QString &l) {
 
         case FISH_RETR:
             if (line.length() == 0) {
-                error(ERR_IS_DIRECTORY,url.url());
+                error(ERR_IS_DIRECTORY,url.prettyURL());
                 recvLen = 0;
                 break;
             }
             recvLen = line.toInt(&isOk);
             if (!isOk) {
-                error(ERR_COULD_NOT_READ,url.url());
+                error(ERR_COULD_NOT_READ,url.prettyURL());
                 closeConnection();
             }
             break;
@@ -925,7 +925,7 @@ void fishProtocol::manageConnection(const QString &l) {
             break;
         case FISH_RETR:
             if (recvLen == -1) {
-                error(ERR_COULD_NOT_READ,url.url());
+                error(ERR_COULD_NOT_READ,url.prettyURL());
                 closeConnection();
             } else {
                 rawRead = recvLen;
@@ -945,11 +945,11 @@ void fishProtocol::manageConnection(const QString &l) {
         switch (fishCommand) {
         case FISH_STOR:
         case FISH_WRITE:
-            error(ERR_COULD_NOT_WRITE,url.url());
+            error(ERR_COULD_NOT_WRITE,url.prettyURL());
             closeConnection();
             break;
         case FISH_RETR:
-            error(ERR_COULD_NOT_READ,url.url());
+            error(ERR_COULD_NOT_READ,url.prettyURL());
             closeConnection();
             break;
         case FISH_READ:
@@ -964,17 +964,17 @@ void fishProtocol::manageConnection(const QString &l) {
             break;
         case FISH_PWD:
         case FISH_CWD:
-            error(ERR_CANNOT_ENTER_DIRECTORY,url.url());
+            error(ERR_CANNOT_ENTER_DIRECTORY,url.prettyURL());
             break;
         case FISH_LIST:
             //myDebug( << "list error. reason: " << listReason << endl);
-            if (listReason == LIST || listReason == SIZE) error(ERR_CANNOT_ENTER_DIRECTORY,url.path());
+            if (listReason == LIST || listReason == SIZE) error(ERR_CANNOT_ENTER_DIRECTORY,url.prettyURL());
             else if (listReason == STAT) {
                 listReason = STATCHECK;
                 sendCommand(FISH_LIST,url.path().latin1());
                 udsStatEntry.clear();
             } else if (listReason == STATCHECK) {
-                error(ERR_DOES_NOT_EXIST,url.path());
+                error(ERR_DOES_NOT_EXIST,url.prettyURL());
                 udsStatEntry.clear();
             } else if (listReason == CHECK) {
                 checkExist = false;
@@ -982,24 +982,24 @@ void fishProtocol::manageConnection(const QString &l) {
             }
             break;
         case FISH_CHMOD:
-            error(ERR_CANNOT_CHMOD,url.url());
+            error(ERR_CANNOT_CHMOD,url.prettyURL());
             break;
         case FISH_CHOWN:
         case FISH_CHGRP:
-            error(ERR_ACCESS_DENIED,url.url());
+            error(ERR_ACCESS_DENIED,url.prettyURL());
             break;
         case FISH_MKD:
-            error(ERR_COULD_NOT_MKDIR,url.url());
+            error(ERR_COULD_NOT_MKDIR,url.prettyURL());
             break;
         case FISH_RMD:
-            error(ERR_COULD_NOT_RMDIR,url.url());
+            error(ERR_COULD_NOT_RMDIR,url.prettyURL());
             break;
         case FISH_DELE:
         case FISH_RENAME:
         case FISH_COPY:
         case FISH_LINK:
         case FISH_SYMLINK:
-            error(ERR_COULD_NOT_WRITE,url.url());
+            error(ERR_COULD_NOT_WRITE,url.prettyURL());
             break;
 	default : break;
         }
@@ -1019,7 +1019,7 @@ void fishProtocol::manageConnection(const QString &l) {
                 } else statEntry(udsStatEntry);
                 udsStatEntry.clear();
             } else if (listReason == CHECK) {
-                if (!checkOverwrite && checkExist) error(ERR_FILE_ALREADY_EXIST,url.url());
+                if (!checkOverwrite && checkExist) error(ERR_FILE_ALREADY_EXIST,url.prettyURL());
             } else if (listReason == SIZE) {
                 wasSize = true;
             } else if (listReason == STATCHECK) {
@@ -1355,7 +1355,7 @@ void fishProtocol::mkdir(const KURL& u, int permissions) {
 void fishProtocol::rename(const KURL& s, const KURL& d, bool overwrite) {
     myDebug( << "@@@@@@@@@ rename " << s.url() << " " << d.url() << " " << overwrite << endl);
     if (s.host() != d.host() || s.port() != d.port() || s.user() != d.user()) {
-        error(ERR_UNSUPPORTED_ACTION,s.path().latin1());
+        error(ERR_UNSUPPORTED_ACTION,s.prettyURL());
         return;
     }
     setHost(s.host(),s.port(),s.user(),s.pass());
@@ -1416,7 +1416,7 @@ void fishProtocol::chmod(const KURL& u, int permissions){
 void fishProtocol::copy(const KURL &s, const KURL &d, int permissions, bool overwrite) {
     myDebug( << "@@@@@@@@@ copy " << s.url() << " " << d.url() << " " << permissions << " " << overwrite << endl);
     if (s.host() != d.host() || s.port() != d.port() || s.user() != d.user() || !hasCopy) {
-        error(ERR_UNSUPPORTED_ACTION,s.path().latin1());
+        error(ERR_UNSUPPORTED_ACTION,s.prettyURL());
         return;
     }
     //myDebug( << s.url() << endl << d.url() << endl);
