@@ -12,15 +12,15 @@
      text                                                          -->
 
 <!-- Licence links; see ksgmltools/TODO -->
-<!ENTITY underGPL           PUBLIC "-//KDE//DOCUMENT GPL Licence Declaration (English)//EN"
+<!ENTITY underGPL           PUBLIC "-//KDE//DOCUMENT GPL Licence Declaration//EN"
   "entities/underGPL.docbook"                       ><!-- level: para -->
-<!ENTITY underFDL           PUBLIC "-//KDE//DOCUMENT FDL Licence Declaration (English)//EN"
+<!ENTITY underFDL           PUBLIC "-//KDE//DOCUMENT FDL Licence Declaration//EN"
   "entities/underFDL.docbook"                       ><!-- level: para -->
-<!ENTITY underBSDLicense    PUBLIC "-//KDE//DOCUMENT BSD Licence Declaration (English)//EN"
+<!ENTITY underBSDLicense    PUBLIC "-//KDE//DOCUMENT BSD Licence Declaration//EN"
   "entities/underBSDLicense.docbook"                ><!-- level: para -->
-<!ENTITY underArtisticLicense PUBLIC "-//KDE//DOCUMENT Artistic Licence Declaration (English)//EN"
+<!ENTITY underArtisticLicense PUBLIC "-//KDE//DOCUMENT Artistic Licence Declaration//EN"
   "entities/underArtisticLicense.docbook"           ><!-- level: para -->
-<!ENTITY underX11License    PUBLIC "-//KDE//DOCUMENT X11 Licence Declaration (English)//EN"
+<!ENTITY underX11License    PUBLIC "-//KDE//DOCUMENT X11 Licence Declaration//EN"
   "entities/underX11License.docbook"                ><!-- level: para -->
 
 <!ENTITY reporting.bugs     SYSTEM
