@@ -118,12 +118,6 @@ QString HelpProtocol::lookupFile(const QString &fname,
                 return QString::null;
 	    }
 
-            // Note: This page should explain how to install
-            // docbook!
-            result = langLookup("khelpcenter/no-html.html");
-            if (!result.isEmpty())
-                return result;
-
             notFound();
             return QString::null;
 	}
