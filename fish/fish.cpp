@@ -244,6 +244,7 @@ fishProtocol::fishProtocol(const QCString &pool_socket, const QCString &app_sock
     isLoggedIn = false;
     writeReady = true;
     isRunning = false;
+    firstLogin = true;
     errorCount = 0;
     rawRead = 0;
     rawWrite = -1;
@@ -558,11 +559,12 @@ int fishProtocol::establishConnection(char *buffer, int len) {
                     connectionAuth.caption = i18n("Local login");
                 else
                     connectionAuth.caption = i18n("SSH Authorization");
-                if (!checkCachedAuthentication(connectionAuth) && !openPassDlg(connectionAuth)) {
+                if ((!firstLogin || !checkCachedAuthentication(connectionAuth)) && !openPassDlg(connectionAuth)) {
                     error(ERR_USER_CANCELED,connectionHost);
                     shutdownConnection();
                     return -1;
                 }
+                firstLogin = false;
                 connectionAuth.password += "\n";
                 if (connectionAuth.username != connectionUser) {
                     KURL dest = url;
@@ -625,6 +627,7 @@ void fishProtocol::setHost(const QString & host, int port, const QString & u, co
 
     connectionPort = port;
     connectionPassword = pass;
+    firstLogin = true;
 }
 
 /**

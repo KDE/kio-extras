@@ -166,6 +166,8 @@ protected: // Protected attributes
   int putPos;
   /** true if file already existed */
   bool checkExist;
+  /** true if this is the first login attempt (== use cached password) */
+  bool firstLogin;
   /** write buffer */
   QByteArray rawData;
   /** buffer for storing bytes used for MimeMagic */
