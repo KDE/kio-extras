@@ -96,21 +96,25 @@ void HelloProtocol::stat(const KURL& url)
                         QString device=*it; ++it;
                         if (it!=info.end())
                         {
-                                QString mp=*it; ++it;
-                                if (it!=info.end())
-                                {
-                                        bool mounted=((*it)=="true");
-                                        if (mounted)
-                                        {
-                                                if (mp=="/") mp="";
-                                                redirection("file:/"+mp);
-                                                finished();
-                                        }
-                                        else
-                                        {
-                                                error(KIO::ERR_SLAVE_DEFINED,i18n("Device not mounted"));
-                                        }
-                                        return;
+				++it;
+				if (it!=info.end())
+				{
+	                                QString mp=*it; ++it;
+	                                if (it!=info.end())
+	                                {
+	                                        bool mounted=((*it)=="true");
+	                                        if (mounted)
+	                                        {
+	                                                if (mp=="/") mp="";
+	                                                redirection("file:/"+mp);
+	                                                finished();
+	                                        }
+	                                        else
+	                                        {
+	                                                error(KIO::ERR_SLAVE_DEFINED,i18n("Device not mounted"));
+	                                        }
+	                                        return;
+					}
                                 }
                         }
                 }
@@ -119,34 +123,7 @@ void HelloProtocol::stat(const KURL& url)
 		break;
         }
 
-
-#if 0
-               	        QString mp=url.queryItem("mp");
-
-	                if (url.queryItem("mounted")=="true")
-        	        {
-                        	if (mp=="/") mp="";
-	                        redirection("file:/"+mp);
-        	                finished();
-                	}
-			else
-			{
-				 KProcess *proc = new KProcess;
-				 *proc << "kio_devices_mounthelper";
-				 *proc << "-m" << url.url();
-				 proc->start(KProcess::Block);
-				 delete proc;
-				
-                                if (mp=="/") mp="";
-                                redirection("file:/"+mp);
-                                finished();
-//				error(KIO::ERR_SLAVE_DEFINED,i18n("Device not mounted"));
-				return;
-			}
-
-#endif
-
-	};
+};
 	
 
 
@@ -172,31 +149,35 @@ void HelloProtocol::listDir(const KURL& url)
 			QString device=*it; ++it;
 			if (it!=info.end())
 			{
-				QString mp=*it; ++it;
+				++it;
 				if (it!=info.end())
 				{
-					bool mounted=((*it)=="true");
-					if (mounted)
+					QString mp=*it; ++it;
+					if (it!=info.end())
 					{
-						if (mp=="/") mp="";
-						redirection("file:/"+mp);
-						finished();
+						bool mounted=((*it)=="true");
+						if (mounted)
+						{
+							if (mp=="/") mp="";
+							redirection("file:/"+mp);
+							finished();
+						}
+						else
+						{
+
+	                                 KProcess *proc = new KProcess;
+        	                         *proc << "kio_devices_mounthelper";
+                	                 *proc << "-m" << url.url();
+                        	         proc->start(KProcess::Block);
+                                	 delete proc;
+
+	                                if (mp=="/") mp="";
+        	                        redirection("file:/"+mp);
+                	                finished();
+	//						error(KIO::ERR_SLAVE_DEFINED,i18n("Device not mounted"));
+						}					
+						return;
 					}
-					else
-					{
-
-                                 KProcess *proc = new KProcess;
-                                 *proc << "kio_devices_mounthelper";
-                                 *proc << "-m" << url.url();
-                                 proc->start(KProcess::Block);
-                                 delete proc;
-
-                                if (mp=="/") mp="";
-                                redirection("file:/"+mp);
-                                finished();
-//						error(KIO::ERR_SLAVE_DEFINED,i18n("Device not mounted"));
-					}					
-					return;
 				}
 			}
 		}
@@ -264,7 +245,7 @@ QStringList HelloProtocol::deviceInfo(QString name)
         QDataStream streamout(param,IO_WriteOnly);
         streamout<<name;
         if ( m_dcopClient->call( "kded",
-                 "mountwatcher", "deviceInfo(QString)", param,retType,data,false ) )
+                 "mountwatcher", "basicDeviceInfo(QString)", param,retType,data,false ) )
         {
           QDataStream streamin(data,IO_ReadOnly);
           streamin>>retVal;
@@ -298,9 +279,8 @@ QStringList HelloProtocol::deviceList()
         QCString retType;
         QStringList retVal;
         QDataStream streamout(param,IO_WriteOnly);
-//        streamout<<dev;
         if ( m_dcopClient->call( "kded",
-                 "mountwatcher", "list()", param,retType,data,false ) )
+                 "mountwatcher", "basicList()", param,retType,data,false ) )
       {
         QDataStream streamin(data,IO_ReadOnly);
         streamin>>retVal;
@@ -386,10 +366,11 @@ void HelloProtocol::listRoot()
 	count=0;
         for ( QStringList::Iterator it = list.begin(); it != list.end(); ++it ) 
 	{
+// FIXME: look for the real ending
+		QString url="devices:/"+(*it); ++it;
 		QString name=*it; ++it;
-		QString url=*it; ++it;
 		++it; ++it;
-		QString type=*it; ++it;
+		QString type=*it; ++it; ++it;
 		createFileEntry(entry,name,url,type);
 		listEntry(entry,false);
 		count++;

@@ -48,8 +48,8 @@ k_dcop:
     bool    mounted(QString name);
     void    mount( bool readonly, const QString& format, const QString& device, const QString& mountpoint,
               const QString & desktopFile, bool show_filemanager_window);
-    QStringList list();
-    QStringList deviceInfo(QString);
+    QStringList basicList();
+    QStringList basicDeviceInfo(QString);
 
 k_dcop_signals:
     void mountSituationChaged();
