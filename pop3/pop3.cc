@@ -355,19 +355,19 @@ bool POP3Protocol::pop3_open()
     // do the SSL negotiation
     ssl = SSL_new(ctx);
     if (!ssl) {
-      error( -31337, m_sServer );
+      error( ERR_COULD_NOT_CONNECT, m_sServer );
       return false;
     }
 
     SSL_set_fd(ssl, m_iSock);
     if (-1 == SSL_connect(ssl)) {
-      error( -31338, m_sServer );
+      error( ERR_COULD_NOT_CONNECT, m_sServer );
       return false;
     }
 
     server_cert = SSL_get_peer_certificate(ssl);
     if (!server_cert) {
-      error( -31339, m_sServer );
+      error( ERR_COULD_NOT_CONNECT, m_sServer );
       return false;
     }
 
