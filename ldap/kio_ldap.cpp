@@ -113,7 +113,7 @@ void LDAPProtocol::get(const QString &path, const QString& query,
   QString result = search.asLDIF();
 
   // tell the mimetype
-  //  mimeType("text/ldif");
+  mimeType("text/plain");
 
   // tell the length
   int processed_size = result.length();
