@@ -267,6 +267,9 @@ void HALBackend::setVolumeProperties(Medium* medium)
 
 	/* Get device information from libhal-storage */
 	HalVolume* halVolume = hal_volume_from_udi(m_halContext, udi);
+	if (!halVolume)
+		return;
+
 	QString driveUdi = hal_volume_get_storage_device_udi(halVolume);
 	HalDrive*  halDrive  = hal_drive_from_udi(m_halContext, driveUdi.ascii());
 
