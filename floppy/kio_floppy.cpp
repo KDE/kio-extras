@@ -404,6 +404,7 @@ StatInfo FloppyProtocol::createStatInfo(const QString line, bool makeStat, const
    if (line.length()==41)
    {
       int nameLength=line.find(' ');
+      kdDebug(7101)<<"Floppy::createStatInfo: line find: "<<nameLength <<"= -"<<line<<"-"<<endl;
       if (nameLength>0)
       {
          name=line.mid(0,nameLength);
@@ -412,12 +413,12 @@ StatInfo FloppyProtocol::createStatInfo(const QString line, bool makeStat, const
          if (!ext.isEmpty())
             name+="."+ext;
       };
-      kdDebug(7101)<<"Floppy::createUDSEntry() name 8.3= -"<<name<<"-"<<endl;
+      kdDebug(7101)<<"Floppy::createStatInfo() name 8.3= -"<<name<<"-"<<endl;
    }
    else if (line.length()>41)
    {
       name=line.mid(42);
-      kdDebug(7101)<<"Floppy::createUDSEntry() name vfat: -"<<name<<"-"<<endl;
+      kdDebug(7101)<<"Floppy::createStatInfo() name vfat: -"<<name<<"-"<<endl;
    };
    if ((name==".") || (name==".."))
    {
@@ -568,7 +569,7 @@ StatInfo FloppyProtocol::_stat(const KURL& url)
    while (!output.atEnd())
    {
       line=output.readLine();
-      if (lineNumber==4)
+      if (lineNumber==3)
       {
          StatInfo info=createStatInfo(line,true,url.fileName());
          if (info.isValid==false)
