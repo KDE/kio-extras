@@ -975,15 +975,20 @@ IMAP4Protocol::del (const KURL & _url, bool isFile)
 }
 
 void
-IMAP4Protocol::special (const QByteArray & data)
+IMAP4Protocol::special (const QByteArray & aData)
 {
-  KURL _url(data.data() + 1);
-  if (data.at(0) == 'C')
+  KURL _url(aData.data() + 1);
+  if (aData.at(0) == 'C')
   {
-    copy(_url, KURL(data.data() + data.find('\0') + 1), 0, FALSE);
+    copy(_url, KURL(aData.data() + aData.find('\0') + 1), 0, FALSE);
     return;
   }
-  if (data.at(0) == 'N')
+  if (aData.at(0) == 'c')
+  {
+    infoMessage(imapCapabilities.join(" "));
+    finished();
+  }
+  if (aData.at(0) == 'N')
   {
     imapCommand *cmd = doCommand(imapCommand::clientNoop());
     completeQueue.removeRef (cmd);
@@ -1002,7 +1007,7 @@ IMAP4Protocol::special (const QByteArray & data)
         error (ERR_NO_CONTENT, hidePass(_url));
       completeQueue.removeRef (cmd);
       cmd = doCommand (imapCommand::
-        clientStore (aSequence, "+FLAGS", data.data() + data.find('\0') + 1));
+        clientStore (aSequence, "+FLAGS", aData.data() + aData.find('\0') + 1));
       if (cmd->result () != "OK")
         error (ERR_NO_CONTENT, hidePass(_url));
       completeQueue.removeRef (cmd);
@@ -1205,6 +1210,7 @@ bool IMAP4Protocol::makeLogin ()
 //      fcntl (m_iSock, F_SETFL, (fcntl (m_iSock, F_GETFL) | O_NDELAY));
 
     setState(ISTATE_CONNECT);
+
     myAuth = metaData("auth");
     myTLS  = metaData("tls");
 
@@ -1220,8 +1226,10 @@ bool IMAP4Protocol::makeLogin ()
     {
       kdDebug(7116) << "'" << (*it) << "'" << endl;
     }
-
     completeQueue.removeRef (cmd);
+
+    if (metaData("nologin") == "on") return TRUE;
+
     if (myTLS == "on" && !hasCapability(QString("STARTTLS")))
     {
       error(ERR_ABORTED, i18n("The server does not support TLS."));
@@ -1254,51 +1262,51 @@ bool IMAP4Protocol::makeLogin ()
         }
       } else completeQueue.removeRef(cmd);
     }
-  }
 
-  if (!myAuth.isEmpty () && myAuth != "*"
-      && !hasCapability (QString ("AUTH=") + myAuth))
-  {
-    error (ERR_UNSUPPORTED_PROTOCOL, i18n("Authentication method %1 not "
-      "supported.").arg(myAuth));
-    closeConnection();
-    return false;
-  }
-
-  kdDebug(7116) << "IMAP4::makeLogin - attempting login" << endl;
-
-  if (myUser.isEmpty () || myPass.isEmpty ())
-    skipFirst = false;
-
-  while (skipFirst
-         ||
-         openPassDlg (i18n ("Username and password for your IMAP account:"),
-                      myUser, myPass))
-  {
-
-    kdDebug(7116) << "IMAP4::makeLogin - open_PassDlg: user=" << myUser << " pass=xx" << endl;
-    skipFirst = false;
-
-    if (myAuth.isEmpty () || myAuth == "*")
+    if (!myAuth.isEmpty () && myAuth != "*"
+        && !hasCapability (QString ("AUTH=") + myAuth))
     {
-      if (clientLogin (myUser, myPass))
+      error (ERR_UNSUPPORTED_PROTOCOL, i18n("Authentication method %1 not "
+        "supported.").arg(myAuth));
+      closeConnection();
+      return false;
+    }
+
+    kdDebug(7116) << "IMAP4::makeLogin - attempting login" << endl;
+
+    if (myUser.isEmpty () || myPass.isEmpty ())
+      skipFirst = false;
+
+    while (skipFirst
+           ||
+           openPassDlg (i18n ("Username and password for your IMAP account:"),
+                        myUser, myPass))
+    {
+
+      kdDebug(7116) << "IMAP4::makeLogin - open_PassDlg: user=" << myUser << " pass=xx" << endl;
+      skipFirst = false;
+
+      if (myAuth.isEmpty () || myAuth == "*")
       {
-        kdDebug(7116) << "IMAP4::makeLogin - login succeded" << endl;
+        if (clientLogin (myUser, myPass))
+        {
+          kdDebug(7116) << "IMAP4::makeLogin - login succeded" << endl;
+        }
+        else
+          kdDebug(7116) << "IMAP4::makeLogin - login failed" << endl;
       }
       else
-        kdDebug(7116) << "IMAP4::makeLogin - login failed" << endl;
-    }
-    else
-    {
-      if (clientAuthenticate (myUser, myPass, myAuth))
       {
-        kdDebug(7116) << "IMAP4::makeLogin: " << myAuth << " succeded" << endl;
+        if (clientAuthenticate (myUser, myPass, myAuth))
+        {
+          kdDebug(7116) << "IMAP4::makeLogin: " << myAuth << " succeded" << endl;
+        }
+        else
+          kdDebug(7116) << "IMAP4::makeLogin: " << myAuth << " failed" << endl;
       }
-      else
-        kdDebug(7116) << "IMAP4::makeLogin: " << myAuth << " failed" << endl;
+      if (getState () == ISTATE_LOGIN)
+        break;
     }
-    if (getState () == ISTATE_LOGIN)
-      break;
   }
 
   return getState() == ISTATE_LOGIN;
