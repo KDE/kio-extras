@@ -118,6 +118,8 @@ KAudiocdModule::KAudiocdModule(QWidget *parent, const char *name)
 
     cddbserver_add_push->setEnabled(!cddb_server->text().isEmpty());
 
+    connect(cddb_server_listbox,SIGNAL(selectionChanged()),this,SLOT(slotServerSelectionChanged()));
+
     connect(cddb_server, SIGNAL(textChanged ( const QString & )),this,SLOT(slotServerTextChanged(const QString & )));
 
     //CDDA Options
@@ -174,8 +176,13 @@ KAudiocdModule::KAudiocdModule(QWidget *parent, const char *name)
     connect(vorbis_min_br,SIGNAL(activated(int)),SLOT(slotConfigChanged()));
     connect(vorbis_max_br,SIGNAL(activated(int)),SLOT(slotConfigChanged()));
     connect(vorbis_nominal_br,SIGNAL(activated(int)),SLOT(slotConfigChanged()));
-
+    slotServerSelectionChanged();
 };
+
+void KAudiocdModule::slotServerSelectionChanged()
+{
+    cddbserver_del_push->setEnabled(cddb_server_listbox->currentItem()!=-1);
+}
 
 void KAudiocdModule::slotServerTextChanged(const QString &_text )
 {
@@ -484,7 +491,7 @@ void KAudiocdModule::slotDelCDDBServer() {
     cddb_server_listbox->insertStringList(cddbserverlist);
 
     slotConfigChanged();
-
+    slotServerSelectionChanged();
 }
 
 
@@ -611,14 +618,14 @@ QString KAudiocdModule::quickHelp() const
 
 const KAboutData* KAudiocdModule::aboutData() const
 {
- 
+
     KAboutData *about =
     new KAboutData(I18N_NOOP("kcmaudiocd"), I18N_NOOP("KDE Audio-CD Slave Control Module"),
                   0, 0, KAboutData::License_GPL,
                   I18N_NOOP("(c) 2000 - 2001 Carsten Duvenhorst"));
- 
+
     about->addAuthor("Carsten Duvenhorst", 0, "duvenhorst@duvnet.de");
- 
+
     return about;
 }
 
