@@ -41,6 +41,15 @@ using namespace KIO;
 
 extern "C" { int kdemain (int argc, char **argv); }
 
+int GetVal(char *buf)
+{
+		int val;
+		val=100*(((int)buf[0])-48);
+		val+=(10*((((int)buf[1])-48)));
+		val+=((((int)buf[2])-48));
+		return val;
+}
+
 int kdemain( int argc, char **argv )
 {
 	KInstance instance( "kio_smtp" );
@@ -175,6 +184,7 @@ void SMTPProtocol::setHost( const QString& host, int port, const QString& /*user
 
 int SMTPProtocol::getResponse(char *r_buf, unsigned int r_len)
 {
+kdDebug() << "kio_smtp: GETRSP CALLED" << endl;
 	char *buf=0;
 	unsigned int recv_len=0;
 	fd_set FDs;
@@ -215,17 +225,19 @@ int SMTPProtocol::getResponse(char *r_buf, unsigned int r_len)
 	// null terminated.
 	recv_len=strlen(buf);
 
+	char *origbuf=buf;
 	if (buf[3] == '-') { // Multiline response
-		//getResponse(buf
-		return 500;
+		while ( (buf[3] == '-') && (r_len-recv_len > 3) ) { // Three is quite arbitrary
+			buf+=recv_len;
+			r_len-=(recv_len+1);
+			recv_len=ReadLine(buf, r_len-1);
+		}
+		buf=origbuf;
+		fprintf(stderr,"kio_smtp: data diz: '%s'\n", buf);
+		return GetVal(buf);
 	} else {
 		// Really crude, whee
-		int val;
-		val=100*(((int)buf[0])-48);
-		val+=(10*((((int)buf[1])-48)));
-		val+=((((int)buf[2])-48));
-		buf+=4;
-		return val;
+		return GetVal(buf);
 		if (r_len != 512) {
 			r_len=recv_len-4;
 			memcpy(r_buf, buf, r_len);
@@ -263,14 +275,21 @@ bool SMTPProtocol::smtp_open()
 		return false;
 	}
 
-	if (!command("HELO kio_smtp")) { // Yes, I *know* that this is not
-					 // the way it should be done, but
-					 // for now there's no real need
-					 // to complicate things by
-					 // determining our hostname
-		smtp_close();
-		return false;
+	char *ehlobuf=(char *)malloc(2048);
+	memset(ehlobuf, 0, 2048);
+	if (!command("EHLO kio_smtp", ehlobuf, 2048)) { // Yes, I *know* that this is not
+							// the way it should be done, but
+							// for now there's no real need
+							// to complicate things by
+							// determining our hostname
+		free(ehlobuf);
+		if (!command("HELO kio_smtp")) { // Let's just check to see if it speaks plain ol' SMTP
+			smtp_close();
+			return false;
+		}
 	}
+	free(ehlobuf);
+	
 
 	m_iOldPort = m_iPort;
 	m_sOldServer = m_sServer;
