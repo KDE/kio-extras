@@ -1214,6 +1214,7 @@ int fishProtocol::received(const char *buffer, int buflen)
                     processedSize(dataRead);
                 }
                 mimeBuffer.resize(1024);
+                pos = 0;
                 continue; // Process rest of buffer/buflen
             }
 
@@ -1387,6 +1388,8 @@ void fishProtocol::run() {
                     return;
                 }
             }
+            if (wasKilled())
+                return;
         }
     }
 }
