@@ -571,10 +571,16 @@ bool SMTPProtocol::smtp_open()
   // Now we try and login
   if (!m_sUser.isNull()) {
     if (m_sPass.isNull()) {
-      QString head = i18n("Username and password for your SMTP account:");
-      if (!openPassDlg(head, m_sUser, m_sPass)) {
+      KIO::AuthInfo authInfo;
+      authInfo.username = m_sUser;
+      authInfo.password = m_sPass;
+      authInfo.prompt = i18n("Username and password for your SMTP account:");
+      if (!openPassDlg(authInfo)) {
         error(ERR_COULD_NOT_LOGIN, i18n("When prompted, you ran away."));
         return false;
+      } else {
+        m_sUser = authInfo.username;
+        m_sPass = authInfo.password;
       }
     }
     if (!Authenticate()) {
