@@ -46,7 +46,7 @@ protected:
     QValueList<KIO::UDSAtom> doStat(const KURL& url);
 
     long processedBytes;
-    QString* StandardOutputStream;
+    QString* standardOutputStream;
     KShellProcess* myKProcess;
 
     //for debugging

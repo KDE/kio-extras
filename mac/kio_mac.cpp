@@ -1,10 +1,10 @@
 /***************************************************************************
-                          mac.cpp
+                          kio_mac.cpp
                              -------------------
     copyright            : (C) 2002 Jonathan Riddell
     email                : jr@jriddell.org
-    version              : 1.0
-    release date         : 10 Feburary 2002
+    version              : 1.0.1
+    release date         : 19 July 2002
  ***************************************************************************/
 
 /***************************************************************************
@@ -19,7 +19,6 @@
 #define PARTITION "/dev/hda11"
 
 #include <kinstance.h>
-#include <kdebug.h>
 #include <kdebug.h>
 #include <klocale.h>
 #include <kregexp.h>
@@ -48,8 +47,8 @@ extern "C" {
 
 MacProtocol::MacProtocol(const QCString &pool, const QCString &app)
                                              : QObject(), SlaveBase("mac", pool, app) {
-    StandardOutputStream = new QString();
-/*    logFile = new QFile("/home/jr/logfile");
+    standardOutputStream = new QString();
+/*  logFile = new QFile("/home/jr/logfile");
     logFile->open(IO_ReadWrite | IO_Append);
     logStream = new QTextStream(logFile);
     *logStream << "Start Macprotocol()" << endl;
@@ -57,8 +56,8 @@ MacProtocol::MacProtocol(const QCString &pool, const QCString &app)
 }
 
 MacProtocol::~MacProtocol() {
-    delete StandardOutputStream; StandardOutputStream = 0;
-/*  *logStream << "destructor ~MacProtocol()" << endl;
+    delete standardOutputStream; standardOutputStream = 0;
+/*    *logStream << "destructor ~MacProtocol()" << endl;
     logFile->close();
     delete logFile;
     logFile = 0;
@@ -121,6 +120,8 @@ void MacProtocol::get(const KURL& url) {
 
     //clean up
     delete myKProcess; myKProcess = 0;
+    disconnect(myKProcess, SIGNAL(receivedStdout(KProcess *, char *, int)),
+            this, SLOT(slotSetDataStdOutput(KProcess *, char *, int)));
 
     //finish
     data(QByteArray());
@@ -131,13 +132,13 @@ void MacProtocol::get(const KURL& url) {
 void MacProtocol::listDir(const KURL& url) {
     QString filename = prepareHP(url);
 
-    if (filename == NULL) {
+    if (filename.isNull()) {
         error(ERR_CANNOT_LAUNCH_PROCESS, i18n("No filename was found"));
     } else {
         myKProcess = new KShellProcess();
         *myKProcess << "hpls -la" << filename;
 
-        *StandardOutputStream = "";
+        *standardOutputStream = "";
         connect(myKProcess, SIGNAL(receivedStdout(KProcess *, char *, int)),
                 this, SLOT(slotGetStdOutput(KProcess *, char *, int)));
 
@@ -150,19 +151,24 @@ void MacProtocol::listDir(const KURL& url) {
 
         //clean up
         delete myKProcess; myKProcess = 0;
+        disconnect(myKProcess, SIGNAL(receivedStdout(KProcess *, char *, int)),
+                this, SLOT(slotGetStdOutput(KProcess *, char *, int)));
 
         UDSEntry entry;
-        if (*StandardOutputStream != "") {
-            QTextStream in(StandardOutputStream, IO_ReadOnly);
+        if (*standardOutputStream != "") {
+            QTextStream in(standardOutputStream, IO_ReadOnly);
             QString line = in.readLine(); //throw away top file which shows current directory
             line = in.readLine();
 
             while (line != NULL) {
-                entry = makeUDS(line);
-                listEntry(entry, false);
+                //1.0.4 puts this funny line in sometimes, we don't want it
+                if (line.contains("Thread               ") == 0) {
+                    entry = makeUDS(line);
+                    listEntry(entry, false);
+                }
                 line = in.readLine();
             }
-        }//if StandardOutputStream != null
+        }//if standardOutputStream != null
 
         listEntry(entry, true);
         finished();
@@ -189,7 +195,7 @@ QValueList<KIO::UDSAtom> MacProtocol::doStat(const KURL& url) {
 
         *myKProcess << "hpls -ld" << filename;
 
-        *StandardOutputStream = "";
+        *standardOutputStream = "";
         connect(myKProcess, SIGNAL(receivedStdout(KProcess *, char *, int)),
                 this, SLOT(slotGetStdOutput(KProcess *, char *, int)));
 
@@ -202,8 +208,10 @@ QValueList<KIO::UDSAtom> MacProtocol::doStat(const KURL& url) {
 
         //clean up
         delete myKProcess; myKProcess = 0;
+        disconnect(myKProcess, SIGNAL(receivedStdout(KProcess *, char *, int)),
+                this, SLOT(slotGetStdOutput(KProcess *, char *, int)));
 
-        if (*StandardOutputStream == "") {
+        if (*standardOutputStream == "") {
             filename.replace(QRegExp("\\\\ "), " "); //get rid of escapes
             filename.replace(QRegExp("\\\\&"), "&"); //mm, slashes...
             filename.replace(QRegExp("\\\\!"), "!");
@@ -212,7 +220,7 @@ QValueList<KIO::UDSAtom> MacProtocol::doStat(const KURL& url) {
             error(ERR_DOES_NOT_EXIST, filename);
         } else {
             //remove trailing \n
-            QString line = StandardOutputStream->left(StandardOutputStream->length()-1);
+            QString line = standardOutputStream->left(standardOutputStream->length()-1);
             UDSEntry entry = makeUDS(line);
             return entry;
         }
@@ -254,9 +262,32 @@ QString MacProtocol::prepareHP(const KURL& url) {
     }
     delete config; config = 0;
 
-    //first mount the drive
+    //first we run just hpmount and check the output to see if it's version 1.0.2 or 1.0.4
     myKProcess = new KShellProcess();
-    *myKProcess << "hpmount" << device;
+    *myKProcess << "hpmount";
+    *standardOutputStream = "";
+    connect(myKProcess, SIGNAL(receivedStderr(KProcess *, char *, int)),
+            this, SLOT(slotGetStdOutput(KProcess *, char *, int)));
+
+    myKProcess->start(KProcess::Block, KProcess::All);
+
+    bool version102 = true;
+
+    if (standardOutputStream->contains("options") != 0) {
+        version102 = false;
+    }
+
+    delete myKProcess; myKProcess = 0;
+    disconnect(myKProcess, SIGNAL(receivedStderr(KProcess *, char *, int)),
+            this, SLOT(slotGetStdOutput(KProcess *, char *, int)));
+
+    //now mount the drive
+    myKProcess = new KShellProcess();
+    if (version102) {
+        *myKProcess << "hpmount" << device;
+    } else {
+        *myKProcess << "hpmount -r" << device;
+    }
 
     myKProcess->start(KProcess::Block, KProcess::All);
 
@@ -391,7 +422,7 @@ QValueList<KIO::UDSAtom> MacProtocol::makeUDS(const QString& _line) {
 //slotGetStdOutput() grabs output from the hp commands
 // and adds it to the buffer
 void MacProtocol::slotGetStdOutput(KProcess*, char *s, int len) {
-  *StandardOutputStream += QString::fromLocal8Bit(s, len);
+  *standardOutputStream += QString::fromLocal8Bit(s, len);
 }
 
 //slotSetDataStdOutput() is used during hpcopy to give
