@@ -363,6 +363,8 @@ bool SMTPProtocol::executeQueuedCommands( TransactionState * ts ) {
       smtp_close( false ); // _hard_ shutdown
       return false;
     }
+    if ( ts->failed() )
+      break;
     if ( cmdline.isEmpty() )
       continue;
     if ( !sendCommandLine( cmdline ) ||
