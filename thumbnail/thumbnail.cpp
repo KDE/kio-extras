@@ -124,7 +124,7 @@ void ThumbnailProtocol::get(const KURL &url)
         }
         m_creators.insert(key, creator);
     }
-        
+
     QPixmap pix;
     if (!creator->create(url.path(), m_extent, pix))
     {
@@ -160,11 +160,8 @@ void ThumbnailProtocol::get(const KURL &url)
         setMetaData("save", QString("true"));
 
     QByteArray imgData;
-    QBuffer buf(imgData);
-    buf.open(IO_WriteOnly);
-    QImageIO io(&buf, "PNG");
-    io.setImage(img);
-    io.write();
+    QDataStream stream( imgData, IO_WriteOnly );
+    stream << img;
     data(imgData);
     finished();
 }
@@ -176,7 +173,7 @@ const QImage& ThumbnailProtocol::getIcon()
     {
         icon = new QImage( KMimeType::mimeType(m_mimeType)->pixmap( KIcon::Desktop, m_iconSize ).convertToImage() );
         icon->setAlphaBuffer( true );
-        
+
         int w = icon->width();
         int h = icon->height();
         for ( int y = 0; y < h; y++ )
@@ -185,10 +182,10 @@ const QImage& ThumbnailProtocol::getIcon()
             for ( int x = 0; x < w; x++ )
             line[x] &= m_transparency; // transparency
         }
-        
+
         m_iconDict.insert( m_mimeType, icon );
     }
-                                                        
+
     return *icon;
 }
 
