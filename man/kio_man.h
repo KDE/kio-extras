@@ -1,0 +1,45 @@
+#ifndef __kio_man_h__
+#define __kio_man_h__
+
+
+#include <qstring.h>
+#include <qcstring.h>
+
+
+#include <kio/global.h>
+#include <kio/slavebase.h>
+
+
+class KProcess;
+
+
+class MANProtocol : public QObject, public KIO::SlaveBase
+{
+  Q_OBJECT
+
+public:
+
+  MANProtocol(const QCString &pool_socket, const QCString &app_socket);
+  virtual ~MANProtocol();
+
+  virtual void get(const QString& path, const QString& query, bool reload);
+  virtual void stat(const QString& path);
+
+  virtual void mimetype(const QString &path);
+
+  void outputError(QString errmsg);
+
+
+private slots:
+
+  void shellStdout(KProcess *, char *buffer, int buflen);
+
+
+private:
+
+  QCString _shellStdout;
+
+};
+
+
+#endif
