@@ -356,7 +356,8 @@ IMAP4Protocol::listDir (const KURL & _url)
       listStr += myDelimiter;
     listStr += "%";
     cmd =
-      doCommand (imapCommand::clientList ("", listStr, myLType == "LSUB"));
+      doCommand (imapCommand::clientList ("", listStr, 
+            (myLType == "LSUB" || myLType == "LSUBNOCHECK")));
     if (cmd->result () == "OK")
     {
       QString mailboxName;
@@ -395,7 +396,7 @@ IMAP4Protocol::listDir (const KURL & _url)
         }
         listResponses = listResponsesSave;
       }
-      else
+      else // LIST or LSUBNOCHECK
       {
         for (QValueListIterator < imapList > it = listResponses.begin ();
             it != listResponses.end (); ++it)
@@ -413,7 +414,7 @@ IMAP4Protocol::listDir (const KURL & _url)
     completeQueue.removeRef (cmd);
   }
   if ((myType == ITYPE_BOX || myType == ITYPE_DIR_AND_BOX)
-      && myLType != "LIST" && myLType != "LSUB")
+      && myLType != "LIST" && myLType != "LSUB" && myLType != "LSUBNOCHECK")
   {
     if (!_url.query ().isEmpty ())
     {
@@ -1889,7 +1890,8 @@ IMAP4Protocol::parseURL (const KURL & _url, QString & _box,
 
     if (makeLogin ())
     {
-      if (getCurrentBox () != _box || _type == "LIST" || _type == "LSUB")
+      if (getCurrentBox () != _box || 
+          _type == "LIST" || _type == "LSUB" || _type == "LSUBNOCHECK")
       {
         QString myNamespace = QString::null; // until namespace is supported
         if (cache && mHierarchyDelim.contains(myNamespace))
@@ -1963,7 +1965,7 @@ IMAP4Protocol::parseURL (const KURL & _url, QString & _box,
     }
   }
   if ( _hierarchyDelimiter.isEmpty() &&
-       (_type == "LIST" || _type == "LSUB") )
+       (_type == "LIST" || _type == "LSUB" || _type == "LSUBNOCHECK") )
   {
     // try to reconstruct the delimiter from the URL
     if (!_box.isEmpty())
