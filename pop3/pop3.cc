@@ -140,7 +140,7 @@ ssize_t POP3Protocol::myRead(void *data, ssize_t len)
     return copyLen;
   }
   waitForResponse(600);
-  return Read(data, len);
+  return read(data, len);
 }
 
 ssize_t POP3Protocol::myReadLine(char *data, ssize_t len)
