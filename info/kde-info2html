@@ -655,7 +655,7 @@ sub FindFile {
 
 my $PROGRAM = $0;			# determine our basename and version
 $PROGRAM =~ s!.*/!!;
-my ($BaseInfoFile, $NodeName) = ($ARGV[1], $ARGV[2]);
+my ($BaseInfoFile, $NodeName) = ($ARGV[2], $ARGV[3]);
 #&DirnameCheck($BaseInfoFile) || &DieFileNotFound($BaseInfoFile);
 
 $BaseInfoFile = "dir" if $BaseInfoFile =~ /^dir$/i;
