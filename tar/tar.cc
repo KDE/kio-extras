@@ -167,6 +167,13 @@ void TARProtocol::slotListDir( const char *_url )
   // Remove tar portion of URL
   lst.remove( lst.begin() );
 
+  // HACK ktar supports tar.gz, so strip gzip
+  if ( (*lst.begin()).protocol() == "gzip" )
+  {
+    debug("HACK");
+    lst.remove( lst.begin() );
+  }
+
   // HACK : only supports local files for now
   if ( (*lst.begin()).protocol() != "file" || lst.count() != 1 )
   {
@@ -285,6 +292,13 @@ void TARProtocol::slotTestDir( const char *_url )
   QString path = (*lst.begin()).path();
   // Remove tar portion of URL
   lst.remove( lst.begin() );
+
+  // HACK ktar supports tar.gz, so strip gzip
+  if ( (*lst.begin()).protocol() == "gzip" )
+  {
+    debug("HACK");
+    lst.remove( lst.begin() );
+  }
 
   // HACK : only supports local files for now
   if ( (*lst.begin()).protocol() != "file" || lst.count() != 1 )
