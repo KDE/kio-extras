@@ -1324,8 +1324,9 @@ void SmbProtocol::slotListDir( const char *_url )
 	}
 
 	while ( ( ep = smbio->readdir( dp ) ) != 0L ) {
-		if ( strcmp( ep->d_name, "." ) == 0 || strcmp( ep->d_name, ".." ) == 0 )
-			continue;
+                //Now return those as well
+                //if ( strcmp( ep->d_name, "." ) == 0 || strcmp( ep->d_name, ".." ) == 0 )
+                //	continue;
 
 		qDebug( "kio_smb : Listing %s", ep->d_name );
 
