@@ -29,6 +29,7 @@
 #include <qimage.h>
 #include <qbuffer.h>
 
+#include <kdatastream.h> // Do not remove, needed for correct bool serialization
 #include <kurl.h>
 #include <kapp.h>
 #include <kglobal.h>
@@ -201,7 +202,8 @@ void ThumbnailProtocol::get(const KURL &url)
 			shmdt(shmaddr);
 			return;
 		}
-		stream << img.width() << img.height() << img.depth();
+		stream << img.width() << img.height() << img.depth()
+               << img.hasAlphaBuffer();
 		memcpy(shmaddr, img.bits(), img.numBytes());
 		shmdt(shmaddr);
 	}
