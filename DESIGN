@@ -66,7 +66,7 @@ Any time you'd like to use non blocking IO over a high level protocol
 That's nice, but how do I use it?
 
 Basically, you create "jobs" by constructing a KIOJob object (the correct
-prototypes, etc, etc, are in kio_job.h).  Once this is done, you connect
+prototypes, etc, etc, are in kio/job.h).  Once this is done, you connect
 the appropriate signals and slots (you can look in the appropriate headers
 for more available signals), and then call the appropriate function.
 
