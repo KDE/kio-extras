@@ -1791,7 +1791,7 @@ static void trans_char(char *c, char s, char t)
 // .TH FIND 1L \" -*- nroff -*-
 // Where \" indicates the start of comment.
 // 
-// The problem is the \" handling in fill_words() in man2html.cpp, the return value
+// The problem is the \" handling in fill_words(), the return value
 // indicates the end of the word as well as the end of the line, which makes it
 // basically impossible to express that the end of the last word is not the end of
 // the line.
