@@ -382,7 +382,7 @@ imapParser::parseResult (QString & result, QString & rest,
   if (rest[0] == '[')
   {
     rest = rest.right (rest.length () - 1); //tie off [
-    QString option = parseOneWord (rest);
+    QString option = parseOneWord (rest, TRUE);
 
     switch (option[0].latin1 ())
     {
@@ -1156,7 +1156,7 @@ imapParser::parseBody (QString & inWords)
     QString specifier;
     inWords = inWords.right (inWords.length () - 1);  // eat it
 
-    specifier = parseOneWord (inWords);
+    specifier = parseOneWord (inWords, TRUE);
     kdDebug(7116) << "imapParser::parseBody : specifier [" << specifier << "]" << endl;
 
     if (inWords[0] == '(')
@@ -1709,7 +1709,7 @@ imapParser::parseLiteral (QString & inWords, bool relay)
 // does not know about literals ( {7} literal )
 
 QString
-imapParser::parseOneWord (QString & inWords)
+imapParser::parseOneWord (QString & inWords, bool stopAtBracket)
 {
   QString retVal;
 
@@ -1750,12 +1750,6 @@ imapParser::parseOneWord (QString & inWords)
     j = inWords.find (')');
     if (j < i && j != -1)
       i = j;
-    j = inWords.find ('[');
-    if (j < i && j != -1)
-      i = j;
-    j = inWords.find (']');
-    if (j < i && j != -1)
-      i = j;
     j = inWords.find ('\r');
     if (j < i && j != -1)
       i = j;
@@ -1765,6 +1759,15 @@ imapParser::parseOneWord (QString & inWords)
     j = inWords.find ('\t');
     if (j < i && j != -1)
       i = j;
+    if (stopAtBracket)
+    {
+      j = inWords.find ('[');
+      if (j < i && j != -1)
+        i = j;
+      j = inWords.find (']');
+      if (j < i && j != -1)
+        i = j;
+    }
     if (i != -1)
     {
       retVal = inWords.left (i);
@@ -1786,7 +1789,7 @@ bool
 imapParser::parseOneNumber (QString & inWords, ulong & num)
 {
   bool valid;
-  num = parseOneWord (inWords).toULong (&valid);
+  num = parseOneWord (inWords, TRUE).toULong (&valid);
   return valid;
 }
 

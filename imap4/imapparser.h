@@ -222,7 +222,7 @@ public:
   static void skipWS (QString & inWords);
 
   // parse one word (maybe quoted) upto next space " ) ] }
-  static QString parseOneWord (QString & inWords);
+  static QString parseOneWord (QString & inWords, bool stopAtBracket = FALSE);
 
   // parse one number using parseOneWord
   static bool parseOneNumber (QString & inWords, ulong & num);
