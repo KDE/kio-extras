@@ -349,17 +349,13 @@ xsltCopyNode(xsltTransformContextPtr ctxt, xmlNodePtr node,
 static xmlNodePtr
 xsltCopyTreeList(xsltTransformContextPtr ctxt, xmlNodePtr list,
 	     xmlNodePtr insert) {
-    xmlNodePtr copy, ret = NULL, last = NULL;
+    xmlNodePtr copy, ret = NULL;
 
     while (list != NULL) {
 	copy = xsltCopyTree(ctxt, list, insert);
 	if (copy != NULL) {
 	    if (ret == NULL) {
 		ret = copy;
-		last = ret;
-	    } else {
-		last->next = copy;
-		last = copy;
 	    }
 	}
 	list = list->next;
@@ -387,6 +383,7 @@ xsltCopyTree(xsltTransformContextPtr ctxt, xmlNodePtr node,
     copy->doc = ctxt->output;
     if (copy != NULL) {
 	xmlAddChild(insert, copy);
+	copy->next = NULL;
 	/*
 	 * Add namespaces as they are needed
 	 */
@@ -875,6 +872,9 @@ xsltApplyOneTemplate(xsltTransformContextPtr ctxt, xmlNodePtr node,
 	}
 
 	if (IS_XSLT_ELEM(cur)) {
+	    /*
+	     * This is an XSLT node
+	     */
 	    xsltStylePreCompPtr info = (xsltStylePreCompPtr) cur->_private;
 	    if (info == NULL) {
 		if (IS_XSLT_NAME(cur, "message")) {
@@ -929,7 +929,8 @@ xsltApplyOneTemplate(xsltTransformContextPtr ctxt, xmlNodePtr node,
 #endif
 	    copy = xmlNewText(cur->content);
 	    if (copy != NULL) {
-		if (cur->name == xmlStringTextNoenc)
+		if ((cur->name == xmlStringTextNoenc) ||
+		    (cur->type == XML_CDATA_SECTION_NODE))
 		    copy->name = xmlStringTextNoenc;
 		xmlAddChild(insert, copy);
 	    } else {
@@ -1229,7 +1230,8 @@ xsltCopy(xsltTransformContextPtr ctxt, xmlNodePtr node,
 #endif
 		copy = xmlNewText(node->content);
 		if (copy != NULL) {
-		    if (node->name == xmlStringTextNoenc)
+		    if ((node->name == xmlStringTextNoenc) ||
+			(node->type == XML_CDATA_SECTION_NODE))
 			copy->name = xmlStringTextNoenc;
 		    xmlAddChild(ctxt->insert, copy);
 		} else {
@@ -1325,7 +1327,7 @@ xsltText(xsltTransformContextPtr ctxt, xmlNodePtr node ATTRIBUTE_UNUSED,
 		break;
 	    }
 	    copy = xmlNewDocText(ctxt->output, text->content);
-	    if (comp->noescape) {
+	    if ((comp->noescape) || (text->type != XML_CDATA_SECTION_NODE)) {
 #ifdef WITH_XSLT_DEBUG_PARSING
 		xsltGenericDebug(xsltGenericDebugContext,
 		     "Disable escaping: %s\n", text->content);
@@ -1705,6 +1707,10 @@ xsltCopyOf(xsltTransformContextPtr ctxt, xmlNodePtr node,
     ctxt->xpathCtxt->contextSize = oldContextSize;
     if (res != NULL) {
 	if (res->type == XPATH_NODESET) {
+#ifdef WITH_XSLT_DEBUG_PROCESS
+	    xsltGenericDebug(xsltGenericDebugContext,
+		 "xslcopyOf: result is a node set\n");
+#endif
 	    list = res->nodesetval;
 	    if (list != NULL) {
 		/* sort the list in document order */
@@ -1726,6 +1732,10 @@ xsltCopyOf(xsltTransformContextPtr ctxt, xmlNodePtr node,
 		}
 	    }
 	} else if (res->type == XPATH_XSLT_TREE) {
+#ifdef WITH_XSLT_DEBUG_PROCESS
+	    xsltGenericDebug(xsltGenericDebugContext,
+		 "xslcopyOf: result is a result tree fragment\n");
+#endif
 	    list = res->nodesetval;
 	    if ((list != NULL) && (list->nodeTab != NULL) &&
 		(list->nodeTab[0] != NULL)) {
@@ -2486,6 +2496,8 @@ xsltApplyStylesheet(xsltStylesheetPtr style, xmlDocPtr doc,
     xmlDocPtr res = NULL;
     xsltTransformContextPtr ctxt = NULL;
     xmlNodePtr root;
+    const xmlChar *method;
+    const xmlChar *encoding;
 
     if ((style == NULL) || (doc == NULL))
 	return(NULL);
@@ -2493,19 +2505,25 @@ xsltApplyStylesheet(xsltStylesheetPtr style, xmlDocPtr doc,
     xsltRegisterExtras(ctxt);
     if (ctxt == NULL)
 	return(NULL);
-    if ((style->method != NULL) &&
-	(!xmlStrEqual(style->method, (const xmlChar *) "xml"))) {
-	if (xmlStrEqual(style->method, (const xmlChar *) "html")) {
+    XSLT_GET_IMPORT_PTR(method, style, method)
+    if ((method != NULL) &&
+	(!xmlStrEqual(method, (const xmlChar *) "xml"))) {
+	const xmlChar *doctypePublic;
+	const xmlChar *doctypeSystem;
+
+	XSLT_GET_IMPORT_PTR(doctypePublic, style, doctypePublic)
+	XSLT_GET_IMPORT_PTR(doctypeSystem, style, doctypeSystem)
+	if (xmlStrEqual(method, (const xmlChar *) "html")) {
 	    ctxt->type = XSLT_OUTPUT_HTML;
-	    res = htmlNewDoc(style->doctypePublic, style->doctypeSystem);
+	    res = htmlNewDoc(doctypeSystem, doctypePublic);
 	    if (res == NULL)
 		goto error;
-	} else if (xmlStrEqual(style->method, (const xmlChar *) "xhtml")) {
+	} else if (xmlStrEqual(method, (const xmlChar *) "xhtml")) {
 	    xsltGenericError(xsltGenericErrorContext,
 	     "xsltApplyStylesheet: insupported method xhtml, using html\n",
 		             style->method);
 	    ctxt->type = XSLT_OUTPUT_HTML;
-	    res = htmlNewDoc(style->doctypePublic, style->doctypeSystem);
+	    res = htmlNewDoc(doctypeSystem, doctypePublic);
 	    if (res == NULL)
 		goto error;
 	} else if (xmlStrEqual(style->method, (const xmlChar *) "text")) {
@@ -2544,13 +2562,17 @@ xsltApplyStylesheet(xsltStylesheetPtr style, xmlDocPtr doc,
     xsltCleanupTemplates(style);
 
 
-    if ((ctxt->type == XSLT_OUTPUT_XML) &&
-	((style->doctypePublic != NULL) ||
-	 (style->doctypeSystem != NULL))) {
+    if (ctxt->type == XSLT_OUTPUT_XML) {
+	const xmlChar *doctypePublic;
+	const xmlChar *doctypeSystem;
+
+	XSLT_GET_IMPORT_PTR(doctypePublic, style, doctypePublic)
+	XSLT_GET_IMPORT_PTR(doctypeSystem, style, doctypeSystem)
 	root = xmlDocGetRootElement(res);
-	if (root != NULL)
+	if ((root != NULL) &&
+	    ((doctypePublic != NULL) || (doctypeSystem != NULL)))
 	    res->intSubset = xmlCreateIntSubset(res, root->name,
-		         style->doctypePublic, style->doctypeSystem);
+		         doctypePublic, doctypeSystem);
     }
     xmlXPathFreeNodeSet(ctxt->nodeList);
     xsltFreeTransformContext(ctxt);

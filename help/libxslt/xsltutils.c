@@ -294,6 +294,8 @@ xsltComputeSortResult(xsltTransformContextPtr ctxt, xmlNodePtr sort) {
 		    results[i] = NULL;
 		}
 	    }
+	} else {
+	    results[i] = NULL;
 	}
     }
     ctxt->node = oldNode;
@@ -341,6 +343,8 @@ xsltDoSortFunction(xsltTransformContextPtr ctxt, xmlNodePtr *sorts,
     len = list->nodeNr;
 
     resultsTab[0] = xsltComputeSortResult(ctxt, sorts[0]);
+    for (i = 1;i < XSLT_MAX_SORT;i++)
+	resultsTab[i] = NULL;
 
     results = resultsTab[0];
 
@@ -371,8 +375,6 @@ xsltDoSortFunction(xsltTransformContextPtr ctxt, xmlNodePtr *sorts,
 			tst = xmlStrcmp(results[j]->stringval,
 				     results[j + incr]->stringval); 
 		    }
-		    if (tst == 0)
-			tst = results[j]->index > results[j + incr]->index;
 		    if (descending)
 			tst = -tst;
 		}
@@ -414,8 +416,6 @@ xsltDoSortFunction(xsltTransformContextPtr ctxt, xmlNodePtr *sorts,
 				tst = xmlStrcmp(res[j]->stringval,
 					     res[j + incr]->stringval); 
 			    }
-			    if (tst == 0)
-				tst = res[j]->index > res[j + incr]->index;
 			    if (desc)
 				tst = -tst;
 			}
@@ -429,6 +429,9 @@ xsltDoSortFunction(xsltTransformContextPtr ctxt, xmlNodePtr *sorts,
 			depth++;
 		    }
 		}
+		if (tst == 0) {
+		    tst = results[j]->index > results[j + incr]->index;
+		}
 		if (tst > 0) {
 		    tmp = results[j];
 		    results[j] = results[j + incr];
@@ -436,6 +439,18 @@ xsltDoSortFunction(xsltTransformContextPtr ctxt, xmlNodePtr *sorts,
 		    node = list->nodeTab[j];
 		    list->nodeTab[j] = list->nodeTab[j + incr];
 		    list->nodeTab[j + incr] = node;
+		    depth = 1;
+		    while (depth < nbsorts) {
+			if (sorts[depth] == NULL)
+			    break;
+			if (resultsTab[depth] == NULL)
+			    break;
+			res = resultsTab[depth];
+			tmp = res[j];
+			res[j] = res[j + incr];
+			res[j + incr] = tmp;
+			depth++;
+		    }
 		    j -= incr;
 		} else
 		    break;
@@ -488,7 +503,6 @@ xsltSaveResultTo(xmlOutputBufferPtr buf, xmlDocPtr result,
         return(-1);
     }
 
-    /* TODO: when outputing and having imported stylesheets, apply cascade */
     base = buf->written;
 
     XSLT_GET_IMPORT_PTR(method, style, method)
@@ -530,15 +544,11 @@ xsltSaveResultTo(xmlOutputBufferPtr buf, xmlDocPtr result,
 	int standalone;
 	int indent;
 	const xmlChar *version;
-	const xmlChar *doctypePublic;
-	const xmlChar *doctypeSystem;
 
 	XSLT_GET_IMPORT_INT(omitXmlDecl, style, omitXmlDeclaration);
 	XSLT_GET_IMPORT_INT(standalone, style, standalone);
 	XSLT_GET_IMPORT_INT(indent, style, indent);
 	XSLT_GET_IMPORT_PTR(version, style, version)
-	XSLT_GET_IMPORT_PTR(doctypePublic, style, doctypePublic)
-	XSLT_GET_IMPORT_PTR(doctypeSystem, style, doctypeSystem)
 
 	if (omitXmlDecl != 1) {
 	    xmlOutputBufferWriteString(buf, "<?xml version=");
@@ -569,39 +579,6 @@ xsltSaveResultTo(xmlOutputBufferPtr buf, xmlDocPtr result,
 		    break;
 	    }
 	    xmlOutputBufferWriteString(buf, "?>\n");
-	}
-	if ((doctypePublic != NULL) || (doctypeSystem != NULL)) {
-	    xmlNodePtr cur = result->children;
-
-	    while (cur != NULL) {
-		if (cur->type == XML_ELEMENT_NODE)
-		    break;
-		cur = cur->next;
-	    }
-	    if ((cur != NULL) && (cur->name != NULL)) {
-		xmlOutputBufferWriteString(buf, "<!DOCTYPE ");
-		xmlOutputBufferWriteString(buf, (const char *) cur->name);
-		if (doctypePublic != NULL) {
-		    if (doctypeSystem != NULL) {
-			xmlOutputBufferWriteString(buf, " PUBLIC ");
-			xmlBufferWriteQuotedString(buf->buffer,
-				         doctypePublic);
-			xmlOutputBufferWriteString(buf, " ");
-			xmlBufferWriteQuotedString(buf->buffer,
-				         doctypeSystem);
-		    } else {
-			xmlOutputBufferWriteString(buf, " PUBLIC \"-\" ");
-			xmlBufferWriteQuotedString(buf->buffer,
-				         doctypeSystem);
-		    }
-
-		} else {
-		    xmlOutputBufferWriteString(buf, " SYSTEM ");
-		    xmlBufferWriteQuotedString(buf->buffer,
-				     doctypeSystem);
-		}
-		xmlOutputBufferWriteString(buf, ">\n");
-	    }
 	}
 	if (result->children != NULL) {
 	    xmlNodePtr child = result->children;

@@ -13,6 +13,9 @@
 #include <libxml/xmlmemory.h>
 #include <libxml/debugXML.h>
 #include <libxml/HTMLtree.h>
+#ifdef LIBXML_DOCB_ENABLED
+#include <libxml/DOCBparser.h>
+#endif
 #ifdef LIBXML_XINCLUDE_ENABLED
 #include <libxml/xinclude.h>
 #endif
@@ -28,6 +31,9 @@ static int repeat = 0;
 static int timing = 0;
 static int novalid = 0;
 static int noout = 0;
+#ifdef LIBXML_DOCB_ENABLED
+static int docbook = 0;
+#endif
 #ifdef LIBXML_HTML_ENABLED
 static int html = 0;
 #endif
@@ -57,10 +63,14 @@ main(int argc, char **argv) {
 #ifdef LIBXML_HTML_ENABLED
 	printf("      --html: the input document is(are) an HTML file(s)\n");
 #endif
+#ifdef LIBXML_DOCB_ENABLED
+	printf("      --docbook: the input document is SGML docbook\n");
+#endif
 	printf("      --param name value\n");
+	printf("      --debug-mem use libxml memory debugging\n");
 	return(0);
     }
-    /* --repeat : repeat 20 times, for timing or profiling */
+    xmlInitMemory();
     LIBXML_TEST_VERSION
     for (i = 1; i < argc ; i++) {
 #ifdef LIBXML_DEBUG_ENABLED
@@ -84,6 +94,11 @@ main(int argc, char **argv) {
 	} else if ((!strcmp(argv[i], "-noout")) ||
 		   (!strcmp(argv[i], "--noout"))) {
 	    noout++;
+#ifdef LIBXML_DOCB_ENABLED
+	} else if ((!strcmp(argv[i], "-docbook")) ||
+		   (!strcmp(argv[i], "--docbook"))) {
+	    docbook++;
+#endif
 #ifdef LIBXML_HTML_ENABLED
 	} else if ((!strcmp(argv[i], "-html")) ||
 		   (!strcmp(argv[i], "--html"))) {
@@ -166,6 +181,11 @@ main(int argc, char **argv) {
 		doc = htmlParseFile(argv[i], NULL);
 	    else
 #endif
+#ifdef LIBXML_HTML_ENABLED
+	    if (docbook)
+		doc = docbParseFile(argv[i], NULL);
+	    else
+#endif
 		doc = xmlParseFile(argv[i]);
 	    if (doc == NULL) {
 		fprintf(stderr, "unable to parse %s\n", argv[i]);
@@ -200,11 +220,21 @@ main(int argc, char **argv) {
 		gettimeofday(&begin, NULL);
 	    if (repeat) {
 		int j;
-		for (j = 0;j < repeat; j++) {
+		for (j = 1;j < repeat; j++) {
 		    res = xsltApplyStylesheet(cur, doc, params);
 		    xmlFreeDoc(res);
 		    xmlFreeDoc(doc);
-		    doc = xmlParseFile(argv[i]);
+#ifdef LIBXML_HTML_ENABLED
+		    if (html)
+			doc = htmlParseFile(argv[i], NULL);
+		    else
+#endif
+#ifdef LIBXML_HTML_ENABLED
+		    if (docbook)
+			doc = docbParseFile(argv[i], NULL);
+		    else
+#endif
+			doc = xmlParseFile(argv[i]);
 		}
 	    }
 	    res = xsltApplyStylesheet(cur, doc, params);
