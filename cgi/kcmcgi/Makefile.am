@@ -15,7 +15,7 @@ noinst_HEADERS = kcmcgi.h
 KDE_ICON = cgi
 
 data_DATA = kcmcgi.desktop
-datadir = $(kde_appsdir)/Settings/Personalization
+datadir = $(kde_appsdir)/Settings/Components
 
 messages: rc.cpp
 	$(XGETTEXT) *.cpp -o $(podir)/kcmcgi.pot
