@@ -306,7 +306,7 @@ protected:
 
   // the last uid seen while a fetch
   QString seenUid;
-  imapCache *lastHandled;
+  imapCache *lastHandled, *preCache;
 
   ulong commandCounter;
 
