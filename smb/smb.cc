@@ -39,6 +39,8 @@
 
 #include <klocale.h>
 
+#define BUF_SIZE 2048
+
 // used to create a dialog
 QApplication *QtApp;
 
@@ -119,16 +121,16 @@ char *getPasswordCallBack(const char * c)
 QString decode( const char *url );
 
 int check( Connection *_con );
-void sig_handler( int );
-void sig_handler2( int );
+void sigchld_handler( int );
+void sigsegv_handler( int );
 
 int main( int argc, char **argv )
 {
-	signal(SIGCHLD,sig_handler);
-	signal(SIGSEGV,sig_handler2);
+	signal(SIGCHLD, sigchld_handler);
+	signal(SIGSEGV, sigsegv_handler);
 
 	qDebug( "kio_smb : Starting");
-	
+
 	QtApp = new QApplication( argc, argv );
 
 	Connection parent( 0, 1 );
@@ -140,27 +142,24 @@ int main( int argc, char **argv )
 }
 
 
-void sig_handler2( int )
+void sigsegv_handler( int )
 {
-  qDebug( "kio_smb : SEGMENTATION FAULT" );
+  write(2, "kio_smb : SEGMENTATION FAULT\n", 29);
   exit(1);
 }
 
 
-void sig_handler( int )
+void sigchld_handler( int )
 {
-  int pid;
-  int status;
+  int pid, status;
     
-  while( 1 )
-  {
+  while( 1 ) {
     pid = waitpid( -1, &status, WNOHANG );
-    if ( pid <= 0 )
-    {
+    if ( pid <= 0 ) {
       // Reinstall signal handler, since Linux resets to default after
       // the signal occured ( BSD handles it different, but it should do
       // no harm ).
-      signal( SIGCHLD, sig_handler );
+      signal( SIGCHLD, sigchld_handler );
       return;
     }
   }
@@ -174,7 +173,7 @@ SmbProtocol::SmbProtocol( Connection *_conn ) : IOProtocol( _conn )
 
 SmbProtocol::~SmbProtocol()
 {
-	qDebug( "kio_destructor : end" );
+	//qDebug( "kio_destructor : end" );
 }
 
 
@@ -197,20 +196,17 @@ void SmbProtocol::slotCopy( const char* _source, const char *_dest )
 void SmbProtocol::doCopy( QStringList& _source, const char *_dest )
 {
 
-	// Make a copy of the parameter. if we do IPC calls from here, then we overwrite
-	// our argument. This is tricky! ( but saves memory and speeds things up )
-	QString dest = _dest;
-	KURL udest( dest );
-	
-	qDebug( "kio_smb : Making copy to %s", dest.ascii() );
+	KURL udest( _dest );
+
+	qDebug( "kio_smb : Making copy to %s", _dest );
 
 	// Check wellformedness of the destination
 	if ( udest.isMalformed() ) {
-		error( ERR_MALFORMED_URL, dest.ascii() );
+		error( ERR_MALFORMED_URL, _dest );
 		return;
 	}
-	
-	qDebug( "kio_smb : Dest ok %s", dest.ascii() );
+
+	qDebug( "kio_smb : Dest ok %s", _dest );
 
 	// Find IO server for destination
 	QString exec = KProtocolManager::self().executable( udest.protocol() );
@@ -220,12 +216,11 @@ void SmbProtocol::doCopy( QStringList& _source, const char *_dest )
 	}
 
 	// Is the left most protocol a filesystem protocol ?
-	if ( KProtocolManager::self().outputType( udest.protocol() ) != KProtocolManager::T_FILESYSTEM )
-	{
+	if ( KProtocolManager::self().outputType( udest.protocol() ) != KProtocolManager::T_FILESYSTEM ) {
 		error( ERR_PROTOCOL_IS_NOT_A_FILESYSTEM, udest.protocol() );
 		return;
 	}
-	qDebug( "kio_smb : IO server ok %s", dest.ascii() );
+	qDebug( "kio_smb : IO server ok %s", _dest );
 
 	// Check whether the URLs are wellformed
 	QStringList::Iterator soit = _source.begin();
@@ -272,8 +267,7 @@ void SmbProtocol::doCopy( QStringList& _source, const char *_dest )
 
 	// Start a server for the destination protocol
 	Slave slave( exec );
-	if ( slave.pid() == -1 )
-	{
+	if ( slave.pid() == -1 ) {
 		error( ERR_CANNOT_LAUNCH_PROCESS, exec );
 		return;
 	}
@@ -300,26 +294,24 @@ void SmbProtocol::doCopy( QStringList& _source, const char *_dest )
 	list<Copy>::iterator fit = files.begin();
 	for( ; fit != files.end(); fit++ ) fit->relDest = tmp1 + fit->relDest;
 
-	qDebug( "kio_smb : Destinations ok %s", dest.data() );
+	qDebug( "kio_smb : Destinations ok %s", _dest );
 
 	/*****
 	* Make directories
 	*****/
-  
+
 	bool overwrite_all = false;
 	bool auto_skip = false;
 	QStringList skip_list;
 	QStringList overwrite_list;
 	// Create all directories
 	dit = dirs.begin();
-	for( ; dit != dirs.end(); dit++ )
-	{
+	for( ; dit != dirs.end(); dit++ ) {
 		// Repeat until we got no error
-		do
-		{
+		do {
 			job.clearError();
 
-			KURL ud( dest );
+			KURL ud( _dest );
 			ud.setPath( dit->relDest );
 			QString d = ud.url();
 
@@ -349,23 +341,18 @@ void SmbProtocol::doCopy( QStringList& _source, const char *_dest )
 			job.dispatch();
 
 			// Did we have an error ?
-			if ( job.hasError() )
-			{
+			if ( job.hasError() ) {
 				// Can we prompt the user and ask for a solution ?
-				if ( job.errorId() == ERR_DOES_ALREADY_EXIST )
-				{
+				if ( job.errorId() == ERR_DOES_ALREADY_EXIST ) {
 					QString old_path = ud.path( 1 );
 					QString old_url = ud.url( 1 );
 					// Should we skip automatically ?
-					if ( auto_skip )
-					{
+					if ( auto_skip ) {
 						job.clearError();
 						// We dont want to copy files in this directory, so we put it on the skip list.
 						skip_list.append( old_url );
 						continue;
-					}
-					else if ( overwrite_all )
-					{
+					} else if ( overwrite_all ) {
 						job.clearError();
 						continue;
 					}
@@ -374,13 +361,10 @@ void SmbProtocol::doCopy( QStringList& _source, const char *_dest )
 					QString tmp2 = ud.url();
 					QString n;
 					RenameDlg_Result r = open_RenameDlg( dit->absSource, tmp2, m, n );
-					if ( r == R_CANCEL )
-					{
+					if ( r == R_CANCEL ) {
 						error( ERR_USER_CANCELED, "" );
 						return;
-					}
-					else if ( r == R_RENAME )
-					{
+					} else if ( r == R_RENAME ) {
 						KURL u( n );
 						// The Dialog should have checked this.
 						if ( u.isMalformed() )
@@ -405,41 +389,31 @@ void SmbProtocol::doCopy( QStringList& _source, const char *_dest )
 							if ( strncmp( fit2->relDest, old_path, old_path.length() ) == 0 )
 								fit2->relDest.replace( 0, old_path.length(), tmp3 );
 						// Don't clear error => we will repeat the current command
-					}
-					else if ( r == R_SKIP )
-					{
+					} else if ( r == R_SKIP ) {
 						// Skip all files and directories that start with 'old_url'
 						skip_list.append( old_url );
 						// Clear the error => The current command is not repeated => skipped
 						job.clearError();
-					}
-					else if ( r == R_AUTO_SKIP )
-					{
+					} else if ( r == R_AUTO_SKIP ) {
 						// Skip all files and directories that start with 'old_url'
 						skip_list.append( old_url );
 						// Clear the error => The current command is not repeated => skipped
 						job.clearError();
 						auto_skip = true;
-					}
-					else if ( r == R_OVERWRITE )
-					{
+					} else if ( r == R_OVERWRITE ) {
 						// Dont bother for subdirectories
 						overwrite_list.append( old_url );
 						// Clear the error => The current command is not repeated => we will
 						// overwrite every file in this directory or any of its subdirectories
 						job.clearError();
-					}
-					else if ( r == R_OVERWRITE_ALL )
-					{
+					} else if ( r == R_OVERWRITE_ALL ) {
 						job.clearError();
 						overwrite_all = true;
-					}
-					else
+					} else
 						assert( 0 );
 				}
 				// No need to ask the user, so raise an error
-				else
-				{
+				else {
 					error( job.errorId(), job.errorText() );
 					return;
 				}
@@ -450,8 +424,8 @@ void SmbProtocol::doCopy( QStringList& _source, const char *_dest )
 		processedDirs( ++processed_dirs );
 	}
 
-	qDebug( "kio_smb : Created directories %s", dest.data() );
-  
+	qDebug( "kio_smb : Created directories %s", _dest );
+
 	/*****
 	* Copy files
 	*****/
@@ -466,11 +440,10 @@ void SmbProtocol::doCopy( QStringList& _source, const char *_dest )
 		bool skip_copying = false;
 
 		// Repeat until we got no error
-		do
-		{
+		do {
 			job.clearError();
 
-			KURL ud( dest );
+			KURL ud( _dest );
 			ud.setPath( fit->relDest );
 			QString d = ud.url();
 
@@ -485,11 +458,11 @@ void SmbProtocol::doCopy( QStringList& _source, const char *_dest )
 			if ( skip ) continue;
     
 			// What we are doing
-			string realpath = fit->absSource.ascii();
-			copyingFile( realpath.c_str(), d.ascii() );
+			QString realpath = fit->absSource;
+			copyingFile( realpath, d );
     
 			qDebug( "kio_smb : Writing to %s", d.ascii() );
-       
+
 			// Is this URL on the overwrite list ?
 			QStringList::Iterator oit = overwrite_list.begin();
 			for( ; oit != overwrite_list.end() && !overwrite; oit++ )
@@ -510,8 +483,7 @@ void SmbProtocol::doCopy( QStringList& _source, const char *_dest )
 							currentError != ERR_DOES_ALREADY_EXIST_FULL )
 				{
 					// Should we skip automatically ?
-					if ( auto_skip )
-					{
+					if ( auto_skip ) {
 						job.clearError();
 						skip_copying = true;
 						continue;
@@ -519,26 +491,20 @@ void SmbProtocol::doCopy( QStringList& _source, const char *_dest )
 					QString tmp2 = ud.url();
 					SkipDlg_Result r;
 					r = open_SkipDlg( tmp2, ( files.size() > 1 ) );
-					if ( r == S_CANCEL )
-					{
+					if ( r == S_CANCEL ) {
 						error( ERR_USER_CANCELED, "" );
 						return;
-					}
-					else if ( r == S_SKIP )
-					{
+					} else if ( r == S_SKIP ) {
 						// Clear the error => The current command is not repeated => skipped
 						job.clearError();
 						skip_copying = true;
 						continue;
-					}
-					else if ( r == S_AUTO_SKIP )
-					{
+					} else if ( r == S_AUTO_SKIP ) {
 						// Clear the error => The current command is not repeated => skipped
 						job.clearError();
 						skip_copying = true;
 						continue;
-					}
-					else
+					} else
 						assert( 0 );
 				}
 				// Can we prompt the user and ask for a solution ?
@@ -546,8 +512,7 @@ void SmbProtocol::doCopy( QStringList& _source, const char *_dest )
 							currentError == ERR_DOES_ALREADY_EXIST_FULL )
 				{
 					// Should we skip automatically ?
-					if ( auto_skip )
-					{
+					if ( auto_skip ) {
 						job.clearError();
 						continue;
 					}
@@ -560,13 +525,10 @@ void SmbProtocol::doCopy( QStringList& _source, const char *_dest )
 					QString n;
 					RenameDlg_Result r = open_RenameDlg( fit->absSource, tmp2, m, n );
 
-					if ( r == R_CANCEL )
-					{
+					if ( r == R_CANCEL ) {
 						error( ERR_USER_CANCELED, "" );
 						return;
-					}
-					else if ( r == R_RENAME )
-					{
+					} else if ( r == R_RENAME ) {
 						KURL u( n );
 						// The Dialog should have checked this.
 						if ( u.isMalformed() )
@@ -575,34 +537,24 @@ void SmbProtocol::doCopy( QStringList& _source, const char *_dest )
 						// Change the destination name of the current file
 						fit->relDest = u.path( -1 );
 						// Dont clear error => we will repeat the current command
-					}
-					else if ( r == R_SKIP )
-					{
+					} else if ( r == R_SKIP ) {
 						// Clear the error => The current command is not repeated => skipped
 						job.clearError();
-					}
-					else if ( r == R_AUTO_SKIP )
-					{
+					} else if ( r == R_AUTO_SKIP ) {
 						// Clear the error => The current command is not repeated => skipped
 						job.clearError();
 						auto_skip = true;
-					}
-					else if ( r == R_OVERWRITE )
-					{
+					} else if ( r == R_OVERWRITE ) {
 						overwrite = true;
 						// Dont clear error => we will repeat the current command
-					}
-					else if ( r == R_OVERWRITE_ALL )
-					{
+					} else if ( r == R_OVERWRITE_ALL )  {
 						overwrite_all = true;
 						// Dont clear error => we will repeat the current command
-					}
-					else
+					} else
 						assert( 0 );
 				}
 				// No need to ask the user, so raise an error
-				else
-				{
+				else {
 					error( currentError, job.errorText() );
 					return;
 				}
@@ -621,11 +573,10 @@ void SmbProtocol::doCopy( QStringList& _source, const char *_dest )
 		}
 
 		// You can use any buffer size
-		const int bufSize=4096;
-		char buffer[ bufSize ];
+		char buffer[ BUF_SIZE*2 ];
 		int count;
 		do {
-			count=smbio.read(fd, buffer, bufSize);
+			count=smbio.read(fd, buffer, sizeof(buffer));
 			if (count==-1) {
 				error( ERR_COULD_NOT_READ, fit->absSource );
 				return;
@@ -675,7 +626,7 @@ void SmbProtocol::doCopy( QStringList& _source, const char *_dest )
 		processedFiles( ++processed_files );
 	}
 
-	qDebug( "kio_smb : Copied files %s", dest.data() );
+	qDebug( "kio_smb : Copied files %s", _dest );
 
 	finished();
 }
@@ -684,11 +635,10 @@ void SmbProtocol::doCopy( QStringList& _source, const char *_dest )
 void SmbProtocol::slotGet( const char *_url )
 {
 	qDebug( "kio_smb : slotGet %s", _url );
-	string url = _url;
 
 	KURL usrc( _url );
 	if ( usrc.isMalformed() ) {
-		error( ERR_MALFORMED_URL, url.c_str() );
+		error( ERR_MALFORMED_URL, strdup(_url) );
 		return;
 	}
 /*	char *workgroup=NULL, *host=NULL, *share=NULL, *file=NULL, *user=NULL;
@@ -704,28 +654,27 @@ void SmbProtocol::slotGet( const char *_url )
 	}*/
 
 	struct stat buff;
-	if ( smbio.stat( decode(url.c_str()).ascii(), &buff ) == -1 ) {
-		error( ERR_DOES_NOT_EXIST, url.c_str() );
+	if ( smbio.stat( decode(strdup(_url)).ascii(), &buff ) == -1 ) {
+		error( ERR_DOES_NOT_EXIST, strdup(_url) );
 		return;
 	}
 
-	if ( S_ISDIR( buff.st_mode ) )
-	{
-		error( ERR_IS_DIRECTORY, url.c_str() );
+	if ( S_ISDIR( buff.st_mode ) ) {
+		error( ERR_IS_DIRECTORY, strdup(_url) );
 		return;
 	}
 	qDebug( "kio_smb : Get, checkpoint 3" );
 
-	int fd = smbio.open( decode(url.c_str()).ascii() , O_RDONLY);
+	int fd = smbio.open( decode(strdup(_url)).ascii() , O_RDONLY);
 	if ( fd == -1 ) {
-		error( ERR_CANNOT_OPEN_FOR_READING, url.c_str() );
+		error( ERR_CANNOT_OPEN_FOR_READING, strdup(_url) );
 		return;
 	}
 
 	ready();
 
 	gettingFile( _url );
-  
+
 	totalSize( buff.st_size );
 	int processed_size = 0;
 	time_t t_start = time( 0L );
@@ -734,13 +683,12 @@ void SmbProtocol::slotGet( const char *_url )
 	// smblib accepts any buffer size, but there was a comment in
 	// a kioslave saying that >2048 introduced problems for ioslaves
 	// I should really investigate...
-	const int bufSize=2048;
-	char buffer[ bufSize ];
+	char buffer[BUF_SIZE];
 	int count;
 	do {
-		count=smbio.read(fd, buffer, bufSize);
+		count=smbio.read(fd, buffer, sizeof(buffer));
 		if (count==-1) {
-			error( ERR_COULD_NOT_READ, url.c_str() );
+			error( ERR_COULD_NOT_READ, strdup(_url) );
 			return;
 		}
 		if (count==0) break;
@@ -772,13 +720,11 @@ void SmbProtocol::slotGet( const char *_url )
 
 void SmbProtocol::slotGetSize( const char *_url )
 {
-	string url = _url;
-
 	qDebug( "kio_smb : Getting size" );
 	
 	KURL usrc( _url );
 	if ( usrc.isMalformed() ) {
-		error( ERR_MALFORMED_URL, url.c_str() );
+		error( ERR_MALFORMED_URL, strdup(_url) );
 		return;
 	}
 /*	char *workgroup=NULL, *host=NULL, *share=NULL, *file=NULL, *user=NULL;
@@ -789,20 +735,19 @@ void SmbProtocol::slotGetSize( const char *_url )
 	if (file) delete file; file=NULL;
 	if (user) delete user; user=NULL;
 	if (result==-1) {
-		error( ERR_MALFORMED_URL, url.c_str() );
+		error( ERR_MALFORMED_URL, strdup(_url) );
 		return;
 	}*/
 
 	qDebug( "kio_smb : Getting size, url OK" );
 	struct stat buff;
-	if ( smbio.stat( decode(url.c_str()).ascii(), &buff ) == -1 ) {
-		error( ERR_DOES_NOT_EXIST, url.c_str() );
+	if ( smbio.stat( decode(strdup(_url)).ascii(), &buff ) == -1 ) {
+		error( ERR_DOES_NOT_EXIST, strdup(_url) );
 		return;
 	}
 
-	if ( S_ISDIR( buff.st_mode ) )  // !!! needed ?
-	{
-		error( ERR_IS_DIRECTORY, url.c_str() );
+	if ( S_ISDIR( buff.st_mode ) )  { // !!! needed ?
+		error( ERR_IS_DIRECTORY, strdup(_url) );
 		return;
 	}
 
@@ -816,11 +761,10 @@ void SmbProtocol::slotGetSize( const char *_url )
 void SmbProtocol::slotListDir( const char *_url )
 {
 	qDebug( "kio_smb : listDir 1 %s", _url);
-	string url = _url;
 	
 	KURL usrc( _url );
 	if ( usrc.isMalformed() ) {
-		error( ERR_MALFORMED_URL, url.c_str() );
+		error( ERR_MALFORMED_URL, strdup(_url) );
 		return;
 	}
 	qDebug( "kio_smb : listDir 2 %s", _url);
@@ -832,33 +776,30 @@ void SmbProtocol::slotListDir( const char *_url )
 	if (file) delete file; file=NULL;
 	if (user) delete user; user=NULL;
 	if (result==-1) {
-		error( ERR_MALFORMED_URL, url.c_str() );
+		error( ERR_MALFORMED_URL, strdup(_url) );
 		return;
 	}*/
 	qDebug( "kio_smb : listDir 3 %s", _url);
 
 	struct stat buff;
-	if ( smbio.stat( decode(url.c_str()).ascii(), &buff ) == -1 ) {
-		error( ERR_DOES_NOT_EXIST, url.c_str() );
+	if ( smbio.stat( decode(_url).ascii(), &buff ) == -1 ) {
+		error( ERR_DOES_NOT_EXIST, strdup(_url) );
 		return;
 	}
 
-	if ( !S_ISDIR( buff.st_mode ) )
-	{
-		error( ERR_IS_FILE, url.c_str() );
+	if ( !S_ISDIR( buff.st_mode ) ) {
+		error( ERR_IS_FILE, strdup(_url) );
 		return;
 	}
 
 	struct SMBdirent *ep;
-	int dp = smbio.opendir( decode(url.c_str()).ascii() );
-	if ( dp == -1 )
-	{
-		error( ERR_CANNOT_ENTER_DIRECTORY, url.c_str() );
+	int dp = smbio.opendir( decode(strdup(_url)).ascii() );
+	if ( dp == -1 ) {
+		error( ERR_CANNOT_ENTER_DIRECTORY, strdup(_url) );
 		return;
 	}
 
-	while ( ( ep = smbio.readdir( dp ) ) != 0L )
-	{
+	while ( ( ep = smbio.readdir( dp ) ) != 0L ) {
 		if ( strcmp( ep->d_name, "." ) == 0 || strcmp( ep->d_name, ".." ) == 0 )
 		continue;
 
@@ -901,11 +842,10 @@ void SmbProtocol::slotListDir( const char *_url )
 void SmbProtocol::slotTestDir( const char *_url )
 {
 	qDebug( "kio_smb : testing %s", _url );
-	string url = _url;
 	
 	KURL usrc( _url );
 	if ( usrc.isMalformed() ) {
-		error( ERR_MALFORMED_URL, url.c_str() );
+		error( ERR_MALFORMED_URL, strdup(_url) );
 		return;
 	}
 /*	qDebug( "kio_smb : testing %s, kurl OK", decode(_url).ascii() );
@@ -923,8 +863,8 @@ void SmbProtocol::slotTestDir( const char *_url )
 	qDebug( "kio_smb : testing %s, smburl OK", decode(_url).ascii() );
 
 	struct stat buff;
-	if ( smbio.stat( decode(url.c_str()).ascii(), &buff ) == -1 ) {
-		error( ERR_DOES_NOT_EXIST, url.c_str() );
+	if ( smbio.stat( decode(strdup(_url)).ascii(), &buff ) == -1 ) {
+		error( ERR_DOES_NOT_EXIST, strdup(_url) );
 		return;
 	}
 
