@@ -51,8 +51,8 @@
   extern "C" {
       int kdemain( int, char **argv )
       {
-          kdDebug()<<"kdemain for devices"<<endl;
-          KInstance instance( "kio_devices" );
+          kdDebug()<<"kdemain for settings kioslave"<<endl;
+          KInstance instance( "kio_settings" );
           SettingsProtocol slave(argv[1], argv[2], argv[3]);
           slave.dispatchLoop();
           return 0;
@@ -103,7 +103,7 @@ void SettingsProtocol::stat(const KURL& url)
 			break;
 	}
 
-	kdDebug()<<"SettingsProtocol: stat for:"<<relPath<<endl;
+	kdDebug()<<"SettingsProtocol: stat for: "<<relPath<<endl;
 	KServiceGroup::Ptr grp = KServiceGroup::group(relPath);	
 
 	switch( m_runMode )
@@ -205,12 +205,23 @@ void SettingsProtocol::listDir(const KURL& url)
 	        
 	KIO::UDSEntry   entry;
 	uint count=0;
-
 	
 	QString relPath=url.path();
-	if (!relPath.startsWith("/Settings")) relPath="Settings"+relPath;
-	else relPath=relPath.right(relPath.length()-1);
+
+	switch( m_runMode )
+	{
+		case( SettingsMode ):
+			if (!relPath.startsWith("/Settings")) relPath="Settings"+relPath;
+			else relPath=relPath.right(relPath.length()-1);
+			break;
+
+		case( ProgramsMode ):
+			relPath=relPath.right(relPath.length()-1);
+			break;
+	};
+
 	if (relPath.at(relPath.length()-1)!='/') relPath+="/";
+
 	kdDebug()<<"SettingsProtocol: "<<relPath<<"***********************"<<endl;
 	KServiceGroup::Ptr root = KServiceGroup::group(relPath);
     
@@ -233,28 +244,27 @@ void SettingsProtocol::listDir(const KURL& url)
         	    KServiceGroup::Ptr g(static_cast<KServiceGroup *>(e));
 	            QString groupCaption = g->caption();
 
-		    kdDebug()<<"Settings Protocol: before emptiness check"<<endl;
         	    // Avoid adding empty groups.
 	            KServiceGroup::Ptr subMenuRoot = KServiceGroup::group(g->relPath());
         	    if (subMenuRoot->childCount() == 0)
                 	continue;
 
-		    kdDebug()<<"Settings Protocol: before dotfile check"<<endl;
 	            // Ignore dotfiles.
         	    if ((g->name().at(0) == '.'))
 	                continue;
 
 		    count++;
-		    kdDebug()<<"Settings Protocol: adding group entry"<<endl;
                     QString relPath=g->relPath();
 
 		    switch( m_runMode )
 		    {
 			case( SettingsMode ):
 			    relPath=relPath.right(relPath.length()-9); //Settings/ ==9
+			    kdDebug() << "SettingsProtocol: adding entry settings:/" << relPath << endl;
 			    createDirEntry(entry, groupCaption, "settings:/"+relPath, "inode/directory",g->icon());
 			    break;
 			case( ProgramsMode ):
+			    kdDebug() << "SettingsProtocol: adding entry programs:/" << relPath << endl;
 			    createDirEntry(entry, groupCaption, "programs:/"+relPath, "inode/directory",g->icon());
 			    break;
 		    }
