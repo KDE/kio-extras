@@ -351,12 +351,20 @@ bool POP3Protocol::pop3_open(const KURL &url)
 #endif
 		// Let's try SASL stuff first.. it might be more secure
 		QString sasl_auth, sasl_buffer="AUTH";
-		memset(buf, 0, sizeof(buf));
 
 		// We need to check what methods the server supports...
 		// This is based on RFC 1734's wisdom
-		#warning Fix this next line. the 0 added to make kmail work.
-		if (0 && command(sasl_buffer.local8Bit(), buf, sizeof(buf))) {
+		if (command(sasl_buffer.local8Bit())) {
+			while (!AtEOF()) {
+				memset(buf, 0, sizeof(buf));
+				ReadLine(buf, sizeof(buf)-1);
+
+				// HACK: This assumes fread stops at the first \n and not \r
+				if (strcmp(buf, ".\r\n")==0) break; // End of data
+				// sanders, changed -2 to -1 below
+				buf[strlen(buf)-2]='\0';
+			}
+
 			sasl_auth=buf;
 			sasl_auth.replace(QRegExp("."), "");
 			sasl_auth.replace(QRegExp("\\r\\n"), " ");
