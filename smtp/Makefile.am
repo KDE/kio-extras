@@ -10,5 +10,5 @@ kio_smtp_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN)
 
 noinst_HEADERS = smtp.h
 
-kdelnk_DATA = smtp.protocol
+kdelnk_DATA = smtp.protocol smtps.protocol
 kdelnkdir = $(kde_servicesdir)

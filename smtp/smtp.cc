@@ -45,6 +45,7 @@
 #include <errno.h>
 #include <netdb.h>
 #include <stdlib.h>
+#include <string.h>
 #include <signal.h>
 #include <stdio.h>
 #include <unistd.h>
@@ -93,8 +94,9 @@ int kdemain (int argc, char **argv)
 		exit(-1);
 	}
 
+        bool useSSL = (strcmp(argv[1], "smtps") == 0) ? true : false;
 	// We might as well allocate it on the heap.  Since there's a heap o room there..
-	SMTPProtocol *slave = new SMTPProtocol(argv[2], argv[3]);
+	SMTPProtocol *slave = new SMTPProtocol(argv[2], argv[3], useSSL);
 	slave->dispatchLoop();
 
 	delete slave;
@@ -102,8 +104,8 @@ int kdemain (int argc, char **argv)
 }
 
 
-SMTPProtocol::SMTPProtocol (const QCString &pool, const QCString &app)
-	: TCPSlaveBase (25, "smtp", pool, app)
+SMTPProtocol::SMTPProtocol (const QCString &pool, const QCString &app, bool useSSL)
+	: TCPSlaveBase (useSSL ? 465 : 25, useSSL ? "smtps" : "smtp", pool, app, useSSL)
 {
 	kdDebug() << "SMTPProtocol::SMTPProtocol" << endl;
 	opened = false;

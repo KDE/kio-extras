@@ -37,7 +37,7 @@ class KSASLContext;
 class SMTPProtocol
 	: public KIO::TCPSlaveBase {
 public:
-	SMTPProtocol (const QCString &pool, const QCString &app);
+	SMTPProtocol (const QCString &pool, const QCString &app, bool useSSL);
 	virtual ~SMTPProtocol ();
 
 	virtual void setHost (const QString &host, int port, const QString &user, const QString &pass);
