@@ -35,8 +35,6 @@ void
 mailHeader::addHdrLine (mimeHdrLine * inLine)
 {
   mimeHdrLine *addLine = new mimeHdrLine (inLine);
-  if (!addLine)
-	  return;
 
   const QCString label(addLine->getLabel());
   const QCString value(addLine->getValue());

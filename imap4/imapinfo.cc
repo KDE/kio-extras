@@ -127,9 +127,8 @@ permanentFlagsAvailable_ (false), readWriteAvailable_ (false)
   {
     QString line (*it);
 
-    line = line.left (line.length () - 2);
-    QStringList
-    tokens (QStringList::split (' ', line));
+    line.truncate(line.length() - 2);
+    QStringList tokens(QStringList::split (' ', line));
 
     kdDebug(7116) << "Processing: " << line << endl;
     if (tokens[0] != "*")
@@ -148,14 +147,8 @@ permanentFlagsAvailable_ (false), readWriteAvailable_ (false)
 
       else if (tokens[2] == "[PERMANENTFLAGS")
       {
-        int
-          flagsStart =
-          line.
-          find ('(');
-        int
-          flagsEnd =
-          line.
-          find (')');
+        int flagsStart = line.find('(');
+        int flagsEnd = line.find(')');
 
         kdDebug(7116) << "Checking permFlags from " << flagsStart << " to " << flagsEnd << endl;
         if ((-1 != flagsStart) && (-1 != flagsEnd) && flagsStart < flagsEnd)
@@ -206,11 +199,7 @@ permanentFlagsAvailable_ (false), readWriteAvailable_ (false)
 
 ulong imapInfo::_flags (const QCString & inFlags)
 {
-  ulong
-    flags =
-    0;
-  QString
-    entry;
+  ulong flags = 0;
   parseString flagsString;
   flagsString.data.duplicate(inFlags.data(), inFlags.length());
 
@@ -219,24 +208,24 @@ ulong imapInfo::_flags (const QCString & inFlags)
 
   while (!flagsString.isEmpty () && flagsString[0] != ')')
   {
-    entry = imapParser::b2c(imapParser::parseOneWord (flagsString));
+    QCString entry = imapParser::b2c(imapParser::parseOneWord (flagsString)).upper();
 
-    if (0 != entry.contains ("\\Seen", false))
-      flags ^= Seen;
-    else if (0 != entry.contains ("\\Answered", false))
-      flags ^= Answered;
-    else if (0 != entry.contains ("\\Flagged", false))
-      flags ^= Flagged;
-    else if (0 != entry.contains ("\\Deleted", false))
-      flags ^= Deleted;
-    else if (0 != entry.contains ("\\Draft", false))
-      flags ^= Draft;
-    else if (0 != entry.contains ("\\Recent", false))
-      flags ^= Recent;
-    else if (0 != entry.contains ("\\*", false))
-      flags ^= User;
-    else if (entry.isEmpty ())
+    if (entry.isEmpty ())
       flagsString.clear();
+    else if (0 != entry.contains ("\\SEEN"))
+      flags ^= Seen;
+    else if (0 != entry.contains ("\\ANSWERED"))
+      flags ^= Answered;
+    else if (0 != entry.contains ("\\FLAGGED"))
+      flags ^= Flagged;
+    else if (0 != entry.contains ("\\DELETED"))
+      flags ^= Deleted;
+    else if (0 != entry.contains ("\\DRAFT"))
+      flags ^= Draft;
+    else if (0 != entry.contains ("\\RECENT"))
+      flags ^= Recent;
+    else if (0 != entry.contains ("\\*"))
+      flags ^= User;
   }
 
   return flags;

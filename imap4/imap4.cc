@@ -178,11 +178,12 @@ IMAP4Protocol::get (const KURL & _url)
   else
 #endif
   {
-    if (aSection.find ("STRUCTURE", 0, false) != -1)
+    QString aUpper = aSection.upper();
+    if (aUpper.find ("STRUCTURE") != -1)
     {
       aSection = "BODYSTRUCTURE";
     }
-    else if (aSection.find ("ENVELOPE", 0, false) != -1)
+    else if (aUpper.find ("ENVELOPE") != -1)
     {
       aSection = "UID ENVELOPE";
       if (hasCapability("IMAP4rev1")) {
@@ -192,13 +193,13 @@ IMAP4Protocol::get (const KURL & _url)
         aSection += " RFC822.HEADER.LINES (REFERENCES)";
       }
     }
-    else if (aSection == "HEADER")
+    else if (aUpper == "HEADER")
     {
       aSection = "UID RFC822.HEADER";
     }
-    else if (aSection.find ("BODY.PEEK[", 0, false) != -1)
+    else if (aUpper.find ("BODY.PEEK[") != -1)
     {
-      if (aSection.find ("BODY.PEEK[]", 0, false) != -1 &&
+      if (aUpper.find ("BODY.PEEK[]") != -1 &&
           !hasCapability("IMAP4rev1")) {
         // imap4 does not know BODY.PEEK[]
         aSection.replace("BODY.PEEK[]", "RFC822.PEEK");
@@ -220,35 +221,37 @@ IMAP4Protocol::get (const KURL & _url)
 
       // write the digest header
       outputLine
-        ("Content-Type: multipart/digest; boundary=\"IMAPDIGEST\"\r\n");
+        ("Content-Type: multipart/digest; boundary=\"IMAPDIGEST\"\r\n", 55);
       if (selectInfo.recentAvailable ())
         outputLineStr ("X-Recent: " +
-                       QString ().setNum (selectInfo.recent ()) + "\r\n");
+                       QString::number(selectInfo.recent ()) + "\r\n");
       if (selectInfo.countAvailable ())
-        outputLineStr ("X-Count: " + QString ().setNum (selectInfo.count ()) +
+        outputLineStr ("X-Count: " + QString::number(selectInfo.count ()) +
                        "\r\n");
       if (selectInfo.unseenAvailable ())
         outputLineStr ("X-Unseen: " +
-                       QString ().setNum (selectInfo.unseen ()) + "\r\n");
+                       QString::number(selectInfo.unseen ()) + "\r\n");
       if (selectInfo.uidValidityAvailable ())
         outputLineStr ("X-uidValidity: " +
-                       QString ().setNum (selectInfo.uidValidity ()) +
+                       QString::number(selectInfo.uidValidity ()) +
                        "\r\n");
       if (selectInfo.uidNextAvailable ())
         outputLineStr ("X-UidNext: " +
-                       QString ().setNum (selectInfo.uidNext ()) + "\r\n");
+                       QString::number(selectInfo.uidNext ()) + "\r\n");
       if (selectInfo.flagsAvailable ())
-        outputLineStr ("X-Flags: " + QString ().setNum (selectInfo.flags ()) +
+        outputLineStr ("X-Flags: " + QString::number(selectInfo.flags ()) +
                        "\r\n");
       if (selectInfo.permanentFlagsAvailable ())
         outputLineStr ("X-PermanentFlags: " +
-                       QString ().setNum (selectInfo.permanentFlags ()) +
-                       "\r\n");
-      if (selectInfo.readWriteAvailable ())
-        outputLineStr (QString ("X-Access: ") +
-                       (selectInfo.readWrite ()? "Read/Write" : "Read only") +
-                       "\r\n");
-      outputLine ("\r\n");
+                       QString::number(selectInfo.permanentFlags ()) + "\r\n");
+      if (selectInfo.readWriteAvailable ()) {
+        if (selectInfo.readWrite()) {
+          outputLine ("X-Access: Read/Write\r\n", 22);
+        } else {
+          outputLine ("X-Access: Read only\r\n", 21);
+        }
+      }
+      outputLine ("\r\n", 2);
     }
 
     if (aEnum == ITYPE_MSG)
@@ -260,42 +263,42 @@ IMAP4Protocol::get (const KURL & _url)
         getLastHandled()->clear();
       cmd = sendCommand (imapCommand::clientFetch (aSequence, aSection));
       int res;
+      aUpper = aSection.upper();
       do
       {
         while (!(res = parseLoop()));
         if (res == -1) break;
 
         mailHeader *lastone = NULL;
-        imapCache *cache;
-        cache = getLastHandled ();
+        imapCache *cache = getLastHandled ();
         if (cache)
           lastone = cache->getHeader ();
 
         if (!cmd->isComplete ())
         {
-          if ((aSection.find ("BODYSTRUCTURE", 0, false) != -1)
-                    || (aSection.find ("FLAGS", 0, false) != -1)
-                    || (aSection.find ("UID", 0, false) != -1)
-                    || (aSection.find ("ENVELOPE", 0, false) != -1)
-                    || (aSection.find ("BODY.PEEK[0]", 0, false) != -1
+          if ((aUpper.find ("BODYSTRUCTURE") != -1)
+                    || (aUpper.find ("FLAGS") != -1)
+                    || (aUpper.find ("UID") != -1)
+                    || (aUpper.find ("ENVELOPE") != -1)
+                    || (aUpper.find ("BODY.PEEK[0]") != -1
                         && (aEnum == ITYPE_BOX || aEnum == ITYPE_DIR_AND_BOX)))
           {
             if (aEnum == ITYPE_BOX || aEnum == ITYPE_DIR_AND_BOX)
             {
               // write the mime header (default is here message/rfc822)
-              outputLine ("--IMAPDIGEST\r\n");
+              outputLine ("--IMAPDIGEST\r\n", 14);
               cacheOutput = true;
               if (cache->getUid () != 0)
                 outputLineStr ("X-UID: " +
-                               QString ().setNum (cache->getUid ()) + "\r\n");
+                               QString::number(cache->getUid ()) + "\r\n");
               if (cache->getSize () != 0)
                 outputLineStr ("X-Length: " +
-                               QString ().setNum (cache->getSize ()) + "\r\n");
+                               QString::number(cache->getSize ()) + "\r\n");
               if (!cache->getDate ().isEmpty())
                 outputLineStr ("X-Date: " + cache->getDate () + "\r\n");
               if (cache->getFlags () != 0)
                 outputLineStr ("X-Flags: " +
-                               QString ().setNum (cache->getFlags ()) + "\r\n");
+                               QString::number(cache->getFlags ()) + "\r\n");
             } else cacheOutput = true;
             if( lastone ) lastone->outputPart (*this);
             cacheOutput = false;
@@ -307,7 +310,7 @@ IMAP4Protocol::get (const KURL & _url)
       if (aEnum == ITYPE_BOX || aEnum == ITYPE_DIR_AND_BOX)
       {
         // write the end boundary
-        outputLine ("--IMAPDIGEST--\r\n");
+        outputLine ("--IMAPDIGEST--\r\n", 16);
       }
 
       completeQueue.removeRef (cmd);
@@ -359,8 +362,8 @@ IMAP4Protocol::listDir (const KURL & _url)
       UDSEntry entry;
       UDSAtom atom;
       KURL aURL = _url;
-      if (aURL.path().find(";") != -1)
-        aURL.setPath(aURL.path().left(aURL.path().find(";")));
+      if (aURL.path().find(';') != -1)
+        aURL.setPath(aURL.path().left(aURL.path().find(';')));
 
       kdDebug(7116) << "IMAP4Protocol::listDir - got " << listResponses.count () << endl;
 
@@ -436,11 +439,11 @@ IMAP4Protocol::listDir (const KURL & _url)
           int stretch = 0;
 
           if (selectInfo.uidNextAvailable ())
-            stretch = QString ().setNum (selectInfo.uidNext ()).length ();
+            stretch = QString::number(selectInfo.uidNext ()).length ();
           UDSEntry entry;
           imapCache fake;
 
-          for (QStringList::Iterator it = list.begin (); it != list.end ();
+          for (QStringList::ConstIterator it = list.begin(); it != list.end();
                ++it)
           {
             fake.setUid((*it).toULong());
@@ -479,7 +482,7 @@ IMAP4Protocol::listDir (const KURL & _url)
         KURL newUrl = _url;
 
         newUrl.setPath ("/" + myBox + ";UIDVALIDITY=" +
-                        QString ().setNum (selectInfo.uidValidity ()));
+                        QString::number(selectInfo.uidValidity ()));
         kdDebug(7116) << "IMAP4::listDir - redirecting to " << newUrl.prettyURL() << endl;
         redirection (newUrl);
 
@@ -492,7 +495,7 @@ IMAP4Protocol::listDir (const KURL & _url)
         int stretch = 0;
 
         if (selectInfo.uidNextAvailable ())
-          stretch = QString ().setNum (selectInfo.uidNext ()).length ();
+          stretch = QString::number(selectInfo.uidNext ()).length ();
         //        kdDebug(7116) << selectInfo.uidNext() << "d used to stretch " << stretch << endl;
         UDSEntry entry;
 
@@ -505,7 +508,7 @@ IMAP4Protocol::listDir (const KURL & _url)
         imapCommand *fetch =
           sendCommand (imapCommand::
                        clientFetch (mySequence, mySection));
-      imapCache *cache;
+        imapCache *cache;
         do
         {
           while (!parseLoop ());
@@ -531,7 +534,7 @@ IMAP4Protocol::setHost (const QString & _host, int _port,
                         const QString & _user, const QString & _pass)
 {
   if (myHost != _host || myPort != _port || myUser != _user)
-  {
+  { // what's the point of doing 4 string compares to avoid 4 string copies?
     if (!myHost.isEmpty ())
       closeConnection ();
     myHost = _host;
@@ -862,7 +865,7 @@ IMAP4Protocol::copy (const KURL & src, const KURL & dest, int, bool overwrite)
     {
       KURL testDir = dest;
 
-      QString subDir = dBox.right (dBox.length () - dBox.findRev ("/"));
+      QString subDir = dBox.right (dBox.length () - dBox.findRev ('/'));
       QString topDir = dBox.left (sub);
       testDir.setPath ("/" + topDir);
       dType =
@@ -1303,7 +1306,7 @@ IMAP4Protocol::stat (const KURL & _url)
         KURL newUrl = _url;
 
         newUrl.setPath ("/" + aBox + ";UIDVALIDITY=" +
-                        QString ().setNum (validity));
+                        QString::number(validity));
         kdDebug(7116) << "IMAP4::stat - redirecting to " << newUrl.prettyURL() << endl;
         redirection (newUrl);
       }
@@ -1332,7 +1335,7 @@ IMAP4Protocol::stat (const KURL & _url)
   {
   case ITYPE_DIR:
     atom.m_uds = UDS_FILE_TYPE;
-    atom.m_str = "";
+    atom.m_str = QString::null;
     atom.m_long = S_IFDIR;
     entry.append (atom);
     break;
@@ -1340,14 +1343,14 @@ IMAP4Protocol::stat (const KURL & _url)
   case ITYPE_BOX:
   case ITYPE_DIR_AND_BOX:
     atom.m_uds = UDS_FILE_TYPE;
-    atom.m_str = "";
+    atom.m_str = QString::null;
     atom.m_long = S_IFDIR;
     entry.append (atom);
     break;
 
   case ITYPE_MSG:
     atom.m_uds = UDS_FILE_TYPE;
-    atom.m_str = "";
+    atom.m_str = QString::null;
     atom.m_long = S_IFREG;
     entry.append (atom);
     break;
@@ -1522,45 +1525,44 @@ bool IMAP4Protocol::makeLogin ()
 void
 IMAP4Protocol::parseWriteLine (const QString & aStr)
 {
-  QCString writer = aStr.utf8 ();
+  QCString writer = aStr.utf8();
+  int len = writer.length();
 
   // append CRLF if necessary
-  if (!writer.length() || (writer[writer.length () - 1] != '\n'))
+  if (len == 0 || (writer[len - 1] != '\n')) {
+    len += 2;
     writer += "\r\n";
+  }
 
   // write it
-  write (writer.data (), writer.length ());
+  write(writer.data(), len);
 }
 
 QString
 IMAP4Protocol::getMimeType (enum IMAP_TYPE aType)
 {
-  QString retVal = "unknown/unknown";
-
   switch (aType)
   {
-  case ITYPE_UNKNOWN:
-    retVal = "unknown/unknown";
-    break;
-
   case ITYPE_DIR:
-    retVal = "inode/directory";
+    return "inode/directory";
     break;
 
   case ITYPE_BOX:
-    retVal = "message/digest";
+    return "message/digest";
     break;
 
   case ITYPE_DIR_AND_BOX:
-    retVal = "message/directory";
+    return "message/directory";
     break;
 
   case ITYPE_MSG:
-    retVal = "message/rfc822-imap";
+    return "message/rfc822-imap";
     break;
-  }
 
-  return retVal;
+  case ITYPE_UNKNOWN:
+  default:
+    return "unknown/unknown";
+  }
 }
 
 
@@ -1598,13 +1600,13 @@ IMAP4Protocol::doListEntry (const KURL & _url, int stretch, imapCache * cache,
     atom.m_uds = UDS_URL;
     atom.m_str = aURL.url(0, 106); // utf-8
     if (atom.m_str[atom.m_str.length () - 1] != '/')
-      atom.m_str += "/";
+      atom.m_str += '/';
     atom.m_str += ";UID=" + QString::number(cache->getUid());
     atom.m_long = 0;
     entry.append (atom);
 
     atom.m_uds = UDS_FILE_TYPE;
-    atom.m_str = "";
+    atom.m_str = QString::null;
     atom.m_long = S_IFREG;
     entry.append (atom);
 
@@ -1653,7 +1655,7 @@ IMAP4Protocol::doListEntry (const KURL & _url, const QString & myBox,
     if (mailboxName.left(hdLen) == item.hierarchyDelimiter())
       mailboxName = mailboxName.right(mailboxName.length () - hdLen);
     if (mailboxName.right(hdLen) == item.hierarchyDelimiter())
-      mailboxName = mailboxName.left(mailboxName.length () - hdLen);
+      mailboxName.truncate(mailboxName.length () - hdLen);
 
     atom.m_uds = UDS_NAME;
     atom.m_str = mailboxName;
@@ -1678,11 +1680,11 @@ IMAP4Protocol::doListEntry (const KURL & _url, const QString & myBox,
         }
         atom.m_long = 0;
         entry.append (atom);
-        mailboxName += "/";
+        mailboxName += '/';
 
         // explicitly set this as a directory for KFileDialog
         atom.m_uds = UDS_FILE_TYPE;
-        atom.m_str = "";
+        atom.m_str = QString::null;
         atom.m_long = S_IFDIR;
         entry.append (atom);
       }
@@ -1692,11 +1694,11 @@ IMAP4Protocol::doListEntry (const KURL & _url, const QString & myBox,
         atom.m_str = "inode/directory";
         atom.m_long = 0;
         entry.append (atom);
-        mailboxName += "/";
+        mailboxName += '/';
 
         // explicitly set this as a directory for KFileDialog
         atom.m_uds = UDS_FILE_TYPE;
-        atom.m_str = "";
+        atom.m_str = QString::null;
         atom.m_long = S_IFDIR;
         entry.append (atom);
       }
@@ -1711,8 +1713,8 @@ IMAP4Protocol::doListEntry (const KURL & _url, const QString & myBox,
       atom.m_uds = UDS_URL;
       QString path = aURL.path();
       atom.m_str = aURL.url (0, 106); // utf-8
-      if (path.right(1) == "/" && !path.isEmpty() && path != "/")
-        path = path.left(path.length() - 1);
+      if (path[path.length() - 1] == '/' && !path.isEmpty() && path != "/")
+        path.truncate(path.length() - 1);
       if (!path.isEmpty() && path != "/"
         && path.right(hdLen) != item.hierarchyDelimiter())
         path += item.hierarchyDelimiter();
@@ -1817,8 +1819,8 @@ IMAP4Protocol::parseURL (const KURL & _url, QString & _box,
   {
     if (!_uid.isEmpty ())
     {
-      if (_uid.find (":") == -1 && _uid.find (",") == -1
-          && _uid.find ("*") == -1)
+      if (_uid.find (':') == -1 && _uid.find (',') == -1
+          && _uid.find ('*') == -1)
         retVal = ITYPE_MSG;
     }
   }
@@ -1842,14 +1844,18 @@ IMAP4Protocol::parseURL (const KURL & _url, QString & _box,
 }
 
 int
-IMAP4Protocol::outputLine (const QCString & _str)
+IMAP4Protocol::outputLine (const QCString & _str, int len)
 {
+  if (len == -1) {
+    len = _str.length();
+  }
+
   if (cacheOutput)
   {
     QBuffer stream(outputCache);
     stream.open(IO_WriteOnly);
     stream.at(outputCache.size());
-    stream.writeBlock(_str.data(), _str.length());
+    stream.writeBlock(_str.data(), len);
     stream.close();
     return 0;
   }
@@ -1858,9 +1864,9 @@ IMAP4Protocol::outputLine (const QCString & _str)
   bool relay = relayEnabled;
 
   relayEnabled = true;
-  temp.setRawData (_str.data (), _str.length ());
+  temp.setRawData (_str.data (), len);
   parseRelay (temp);
-  temp.resetRawData (_str.data (), _str.length ());
+  temp.resetRawData (_str.data (), len);
 
   relayEnabled = relay;
   return 0;

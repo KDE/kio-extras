@@ -27,7 +27,7 @@
 #include <qstringlist.h>
 #include <qvaluelist.h>
 #include <qptrlist.h>
-#include <qdict.h>
+#include <qasciidict.h>
 
 #include "imaplist.h"
 #include "imapcommand.h"
@@ -185,9 +185,9 @@ public:
     virtual ~ imapParser ();
 
   /** @brief Get the current state */
-  virtual enum IMAP_STATE getState () { return currentState; }
+  enum IMAP_STATE getState () { return currentState; }
   /** @brief Set the current state */
-  virtual void setState(enum IMAP_STATE state) { currentState = state; }
+  void setState(enum IMAP_STATE state) { currentState = state; }
 
   /* @brief return the currently selected mailbox */
   const QString getCurrentBox ()
@@ -273,8 +273,8 @@ public:
   mailHeader *parseEnvelope (parseString & inWords);
   /** @brief parse an address list and return a list of addresses */
   QValueList < mailAddress > parseAddressList (parseString & inWords);
-  /** @brief parse an address and return it */
-  mailAddress parseAddress (parseString & inWords);
+  /** @brief parse an address and return the ref again */
+  const mailAddress& parseAddress (parseString & inWords, mailAddress& buffer);
 
   /** parse the result of the body command */
   void parseBody (parseString & inWords);
@@ -288,13 +288,13 @@ public:
       mimeHeader * localPart = 0);
 
   /** parse a parameter list (name value pairs) */
-  QDict < QString > parseParameters (parseString & inWords);
+  QAsciiDict < QString > parseParameters (parseString & inWords);
 
   /**
    * parse the disposition list (disposition (name value pairs))
    * the disposition has the key 'content-disposition'
    */
-  QDict < QString > parseDisposition (parseString & inWords);
+  QAsciiDict < QString > parseDisposition (parseString & inWords);
 
   // reimplement these
 

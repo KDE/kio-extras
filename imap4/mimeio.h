@@ -31,7 +31,7 @@ public:
   mimeIO ();
   virtual ~ mimeIO ();
 
-  virtual int outputLine (const QCString &);
+  virtual int outputLine (const QCString &, int len = -1);
   virtual int outputMimeLine (const QCString &);
   virtual int inputLine (QCString &);
   virtual int outputChar (char);
@@ -48,7 +48,7 @@ class mimeIOQFile:public mimeIO
 public:
   mimeIOQFile (const QString &);
     virtual ~ mimeIOQFile ();
-  virtual int outputLine (const QCString &);
+  virtual int outputLine (const QCString &, int len = -1);
   virtual int inputLine (QCString &);
 
 protected:
@@ -60,7 +60,7 @@ class mimeIOQString:public mimeIO
 public:
   mimeIOQString ();
   virtual ~ mimeIOQString ();
-  virtual int outputLine (const QCString &);
+  virtual int outputLine (const QCString &, int len = -1);
   virtual int inputLine (QCString &);
   QString getString ()
   {

@@ -46,11 +46,14 @@ mimeIO::inputLine (QCString & aLine)
 }
 
 int
-mimeIO::outputLine (const QCString & aLine)
+mimeIO::outputLine (const QCString & aLine, int len)
 {
   int i;
 
-  int start = aLine.length ();
+  if (len == -1) {
+    len = aLine.length();
+  }
+  int start = len;
   for (i = 0; i < start; i++)
     if (!outputChar (aLine[i]))
       break;
@@ -62,15 +65,18 @@ mimeIO::outputMimeLine (const QCString & inLine)
 {
   int retVal = 0;
   QCString aLine = inLine;
+  int crlfLen = theCRLF.length();
+  int len = inLine.length();
 
   int theLF = aLine.findRev ('\n');
-  if (theLF == (int)aLine.length() - 1 && theLF != -1)
+  if (theLF == len - 1 && theLF != -1)
   {
     //we have a trailing LF, now check for CR
     if (aLine[theLF - 1] == '\r')
       theLF--;
     //truncate the line
     aLine = aLine.left (theLF);
+    len = theLF;
     theLF = -1;
   }
   //now truncate the line
@@ -86,11 +92,11 @@ mimeIO::outputMimeLine (const QCString & inLine)
         offset++;
         end--;
       }
-      outputLine (aLine.mid (start, end - start) + theCRLF);
+      outputLine (aLine.mid (start, end - start) + theCRLF, end - start + crlfLen);
       start = end + offset;
       end = aLine.find ('\n', start);
     }
-    outputLine (aLine.mid (start, aLine.length () - start) + theCRLF);
+    outputLine (aLine.mid (start, len - start) + theCRLF, len - start + crlfLen);
   }
   return retVal;
 }
@@ -133,7 +139,7 @@ mimeIOQFile::~mimeIOQFile ()
 }
 
 int
-mimeIOQFile::outputLine (const QCString &)
+mimeIOQFile::outputLine (const QCString &, int)
 {
   return 0;
 }
@@ -156,10 +162,13 @@ mimeIOQString::~mimeIOQString ()
 }
 
 int
-mimeIOQString::outputLine (const QCString & _str)
+mimeIOQString::outputLine (const QCString & _str, int len)
 {
+  if (len == -1) {
+    len = _str.length();
+  }
   theString += _str;
-  return _str.length ();
+  return len;
 }
 
 int

@@ -102,7 +102,7 @@ public:
   virtual void parseWriteLine (const QString &);
 
   /** @brief reimplement the mimeIO */
-  virtual int outputLine (const QCString & _str);
+  virtual int outputLine (const QCString & _str, int len = -1);
 
   /** @brief send out cached data to the application */
   virtual void flushOutput();
@@ -124,7 +124,7 @@ protected:
 
   void outputLineStr (const QString & _str)
   {
-    outputLine (_str.latin1 ());
+    outputLine (_str.latin1 (), _str.length());
   }
   void doListEntry (const KURL & _url, int stretch, imapCache * cache = NULL,
     bool withFlags = FALSE, bool withSubject = FALSE);

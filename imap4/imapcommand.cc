@@ -170,16 +170,15 @@ imapCommand *
 imapCommand::clientFetch (ulong fromUid, ulong toUid, const QString & fields,
                           bool nouid)
 {
-  QString uid;
+  QString uid = QString::number(fromUid);
 
-  uid.setNum (fromUid);
   if (fromUid != toUid)
   {
     uid += ":";
     if (toUid < fromUid)
       uid += "*";
     else
-      uid += QString ().setNum (toUid);
+      uid += QString::number(toUid);
   }
   return clientFetch (uid, fields, nouid);
 }
@@ -233,7 +232,7 @@ imapCommand::clientAppend (const QString & box, const QString & flags,
   return new imapCommand ("APPEND",
                           "\"" + rfcDecoder::toIMAP (box) + "\" " +
                           ((flags.isEmpty()) ? "" : ("(" + flags + ") ")) +
-                          "{" + QString ().setNum (size) + "}");
+                          "{" + QString::number(size) + "}");
 }
 
 imapCommand *

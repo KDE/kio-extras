@@ -34,6 +34,7 @@
 mimeHeader::mimeHeader ():
 typeList (17, false), dispositionList (17, false)
 {
+  // Case insensitive hashes are killing us.  Also are they too small?
   originalHdrLines.setAutoDelete (true);
   additionalHdrLines.setAutoDelete (false); // is also in original lines
   nestedParts.setAutoDelete (true);
@@ -300,7 +301,7 @@ mimeHeader::getParameter (QCString aStr, QDict < QString > *aDict)
           part++;
         }
         while (found);
-        if (encoded.find ("'") >= 0)
+        if (encoded.find ('\'') >= 0)
         {
           retVal = rfcDecoder::decodeRFC2231String (encoded.local8Bit ());
         }
@@ -330,6 +331,7 @@ mimeHeader::setParameter (QCString aLabel, QString aValue,
                           QDict < QString > *aDict)
 {
   bool encoded = true;
+  uint vlen, llen;
 
   if (aDict)
   {
@@ -340,9 +342,11 @@ mimeHeader::setParameter (QCString aLabel, QString aValue,
       aValue = rfcDecoder::encodeRFC2231String (aValue);
     }
     //see if it needs to be truncated
-    if (aValue.length () + aLabel.length () + 4 > 80)
+    vlen = aValue.length();
+    llen = aLabel.length();
+    if (vlen + llen + 4 > 80)
     {
-      int limit = 80 - 8 - aLabel.length ();
+      int limit = 80 - 8 - llen;
       int i = 0;
       QString shortValue;
       QCString shortLabel;
@@ -351,8 +355,8 @@ mimeHeader::setParameter (QCString aLabel, QString aValue,
       {
         //don't truncate the encoded chars
         int offset = 0;
-        if (limit > (int)aValue.length())
-          limit = aValue.length ();
+        if (limit > vlen)
+          limit = vlen;
         offset = aValue.findRev ('%', limit);
         if (offset == limit - 1 || offset == limit - 2)
         {
@@ -364,7 +368,8 @@ mimeHeader::setParameter (QCString aLabel, QString aValue,
         shortValue = aValue.left (limit - offset);
         shortLabel.setNum (i);
         shortLabel = aLabel + "*" + shortLabel;
-        aValue = aValue.right (aValue.length () - limit + offset);
+        aValue = aValue.right (vlen - limit + offset);
+        vlen = vlen - limit + offset;
         if (encoded)
         {
           if (i == 0)
@@ -567,23 +572,22 @@ mimeHeader *
 mimeHeader::bodyPart (const QString & _str)
 {
   // see if it is nested a little deeper
-  if (_str.find (".") != -1)
+  int pt = _str.find('.');
+  if (pt != -1)
   {
     QString tempStr = _str;
     mimeHeader *tempPart;
 
-    tempStr = _str.right (_str.length () - _str.find (".") - 1);
+    tempStr = _str.right (_str.length () - pt - 1);
     if (nestedMessage)
     {
       kdDebug(7116) << "mimeHeader::bodyPart - recursing message" << endl;
-      tempPart =
-        nestedMessage->nestedParts.at (_str.left (_str.find (".")).
-                                       toULong () - 1);
+      tempPart = nestedMessage->nestedParts.at (_str.left(pt).toULong() - 1);
     }
     else
     {
       kdDebug(7116) << "mimeHeader::bodyPart - recursing mixed" << endl;
-      tempPart = nestedParts.at (_str.left (_str.find (".")).toULong () - 1);
+      tempPart = nestedParts.at (_str.left(pt).toULong() - 1);
     }
     if (tempPart)
       tempPart = tempPart->bodyPart (tempStr);

@@ -26,10 +26,7 @@
 #include "rfcdecoder.h"
 #include "mimehdrline.h"
 
-mailAddress::mailAddress ():
-user ((const char *) NULL),
-host ((const char *) NULL),
-rawFullName ((const char *) NULL), rawComment ((const char *) NULL)
+mailAddress::mailAddress ()
 {
 }
 
@@ -65,10 +62,7 @@ mailAddress::~mailAddress ()
 {
 }
 
-mailAddress::mailAddress (char *aCStr):
-user ((const char *) NULL),
-host ((const char *) NULL),
-rawFullName ((const char *) NULL), rawComment ((const char *) NULL)
+mailAddress::mailAddress (char *aCStr)
 {
   parseAddress (aCStr);
 }
@@ -78,6 +72,8 @@ mailAddress::parseAddress (char *aCStr)
 {
   int retVal = 0;
   int skip;
+  uint len;
+  int pt;
 
   if (aCStr)
   {
@@ -105,9 +101,12 @@ mailAddress::parseAddress (char *aCStr)
       case '<':
         advance = mimeHdrLine::parseQuoted ('<', '>', aCStr);
         user = QCString (aCStr, advance + 1); // copy it
-        user = user.mid (1, user.length () - 2);  // strip <>
-        host = user.right (user.length () - user.find ("@") - 1); // split it into host
-        user = user.left (user.find ("@")); // and user
+        len = user.length();
+        user = user.mid (1, len - 2);  // strip <>
+        len -= 2;
+        pt = user.find('@');
+        host = user.right (len - pt - 1); // split it into host
+        user = user.left (pt); // and user
         break;
       default:
         advance = mimeHdrLine::parseWord ((const char *) aCStr);
@@ -161,15 +160,18 @@ mailAddress::parseAddress (char *aCStr)
     }
     else if (user.isEmpty ())
     {
-      if (rawFullName.find ('@') >= 0)
+      pt = rawFullName.find ('@');
+      if (pt >= 0)
       {
         user = rawFullName;
-        host = user.right (user.length () - user.find ("@") - 1);
-        user = user.left (user.find ("@"));
+        host = user.right (user.length () - pt - 1);
+        user = user.left (pt);
         rawFullName = "";
       }
     }
 
+#if 0
+// dead
     if (!rawFullName.isEmpty ())
     {
 //      if(fullName[0] == '"')
@@ -177,11 +179,12 @@ mailAddress::parseAddress (char *aCStr)
 //      fullName = fullName.simplifyWhiteSpace().stripWhiteSpace();
 //      fullName = rfcDecoder::decodeRFC2047String(fullName.ascii());
     }
+#endif
     if (!rawComment.isEmpty ())
     {
       if (rawComment[0] == '(')
         rawComment = rawComment.mid (1, rawComment.length () - 2);
-      rawComment = rawComment.simplifyWhiteSpace ().stripWhiteSpace ();
+      rawComment = rawComment.stripWhiteSpace ();
 //      comment = rfcDecoder::decodeRFC2047String(comment.ascii());
     }
   }
@@ -219,7 +222,7 @@ mailAddress::getStr ()
 bool
 mailAddress::isEmpty () const
 {
-  return (user.isEmpty ());
+  return user.isEmpty ();
 }
 
 void
@@ -316,3 +319,12 @@ mailAddress::emailAddrAsAnchor (const QPtrList < mailAddress > &list, bool value
 
   return retVal;
 }
+
+
+void mailAddress::clear() {
+  user.truncate(0);
+  host.truncate(0);
+  rawFullName.truncate(0);
+  rawComment.truncate(0);
+}
+

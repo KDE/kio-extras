@@ -71,6 +71,8 @@ public:
   static QString emailAddrAsAnchor (const mailAddress &, bool);
   static QString emailAddrAsAnchor (const QPtrList < mailAddress > &, bool);
 
+  void clear();
+
 private:
   QCString user;
   QCString host;
