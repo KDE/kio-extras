@@ -344,7 +344,7 @@ void kio_sftpProtocol::openConnection(){
         // Now we wait to see whether we get a response on the stdinout file descriptor
         // or on the pty file desciptor. If the former, we are successfully connected.
         // If the latter, authentication failed.
-        int ptyfd = ssh.fd(), stdiofd = ssh.stdinout();
+        int ptyfd = ssh.fd(), stdiofd = ssh.stdio();
         fd_set rfds;
         struct timeval tv;
         FD_ZERO(&rfds);
@@ -426,6 +426,7 @@ void kio_sftpProtocol::closeConnection() {
     kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::closeConnection()" << endl;
     ::kill(ssh.pid(), SIGTERM);
     ::waitpid(ssh.pid(), NULL, 0);
+    mConnected = false;
     kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::closeConnection(): END";
 }
 
@@ -975,7 +976,7 @@ bool kio_sftpProtocol::getPacket(QByteArray& msg) {
     char buf[4096];
 
     // Get the message length and type
-    len = atomicio(ssh.stdinout(), buf, 4, true /*read*/);
+    len = atomicio(ssh.stdio(), buf, 4, true /*read*/);
     if( len == 0 ) {
         error( ERR_CONNECTION_BROKEN, mHost);
         return false;
@@ -996,7 +997,7 @@ bool kio_sftpProtocol::getPacket(QByteArray& msg) {
 
     unsigned int offset = 0;
     while( msgLen ) {
-        len = atomicio(ssh.stdinout(), buf, MIN(msgLen, sizeof(buf)), true /*read*/);
+        len = atomicio(ssh.stdio(), buf, MIN(msgLen, sizeof(buf)), true /*read*/);
         if( len == 0 ) {
             error(ERR_CONNECTION_BROKEN, "Connection closed");
             return false;
@@ -1017,7 +1018,7 @@ bool kio_sftpProtocol::getPacket(QByteArray& msg) {
 bool kio_sftpProtocol::putPacket(QByteArray& p){
     kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::putPacket(): size == " << p.size() << endl;
     int ret;
-    ret = atomicio(ssh.stdinout(), p.data(), p.size(), false /*write*/);
+    ret = atomicio(ssh.stdio(), p.data(), p.size(), false /*write*/);
     if( ret <= 0 )
         return false;
 
