@@ -47,55 +47,24 @@ using namespace KIO;
 
 extern "C" { int kdemain (int argc, char **argv); }
 
-#ifdef SSMTP
-
-int SSL_readline(SSL *ssl, char *buf, int num) {
-int c = 0;
-  if (num <= 0) return -2;
-
-  buf[num-1] = 0;
-
-  for(c = 0; c < num-1; c++) {
-    char x;
-    int rc = SSL_read(ssl, &x, 1);
-    if (rc <= 0)
-      return rc;
-
-    buf[c] = x;
-
-    if (x == '\n') {
-      buf[c+1] = 0;
-      break;
-    }
-  }
-
-  if (c == num-1)
-    return c;
-return c+1;
-}
-
-#endif
-
 int kdemain( int argc, char **argv )
 {
-#ifdef SSMTP
-  KInstance instance( "kio_ssmtp" );
-#else
-  KInstance instance( "kio_smtp" );
-#endif
+KInstance instance( "kio_smtp" );
 
   if (argc != 4)
   {
-#ifdef SSMTP
-    fprintf(stderr, "Usage: kio_ssmtp protocol domain-socket1 domain-socket2\n");
-#else
     fprintf(stderr, "Usage: kio_smtp protocol domain-socket1 domain-socket2\n");
-#endif
     exit(-1);
   }
 
-  SMTPProtocol slave(argv[2], argv[3]);
-  slave.dispatchLoop();
+  SMTPProtocol *slave;
+  // Are we looking to use SSL?
+  if (strcasecmp(argv[1], "pop3s") == 0)
+        slave = new SMTPProtocol(argv[2], argv[3], true);
+  else
+        slave = new SMTPProtocol(argv[2], argv[3], false);
+  slave->dispatchLoop();
+  delete slave;
   return 0;
 }
 
@@ -117,23 +86,10 @@ int kdemain( int argc, char **argv )
 //   SAML FROM:, SOML FROM:, SEND FROM:, TURN
 //
 
-SMTPProtocol::SMTPProtocol(const QCString &pool, const QCString &app)
-#ifdef SSMTP
-  : SlaveBase( "ssmtp", pool, app)
-#else
-  : SlaveBase( "smtp", pool, app)
-#endif
+SMTPProtocol::SMTPProtocol(const QCString &pool, const QCString &app, bool SSL) : TCPSlaveBase((SSL ? 995 : 110), (SSL ? "smtps" : "smtp"), pool, app)
 {
   kdDebug() << "SMTPProtocol::SMTPProtocol" << endl;
-
-
-#ifdef SSMTP
-  ssl = NULL;
-  SSLeay_add_ssl_algorithms();
-  meth = SSLv2_client_method();
-  SSL_load_error_strings();
-  ctx = SSL_CTX_new(meth);
-#endif
+  m_bIsSSL=SSL;
 }
 
 
@@ -141,9 +97,6 @@ SMTPProtocol::~SMTPProtocol()
 {
   kdDebug() << "SMTPProtocol::~SMTPProtocol" << endl;
   smtp_close();
-#ifdef SSMTP
-  SSL_CTX_free(ctx);
-#endif
 }
 
 
@@ -219,7 +172,7 @@ void SMTPProtocol::setHost( const QString& host, int port, const QString& /*user
 // XUSR:       ???
 //
 
-bool SMTPProtocol::getResponse(char *r_buf, unsigned int r_len) {
+bool SMTPProtocol::getResponse(char *r_buf, unsigned int r_len, const char *cmd) {
   char *buf=0;
   unsigned int recv_len=0;
   fd_set FDs;
@@ -255,19 +208,8 @@ bool SMTPProtocol::getResponse(char *r_buf, unsigned int r_len) {
   // Clear out the buffer
   memset(buf, 0, r_len);
   // And grab the data
-#ifdef SPOP3
-  int rc = SSL_readline(ssl, buf, r_len-1);
-  if (rc <= 0) {
-    if (buf) free(buf);
-    return false;
-  }
-  buf[rc] = 0;
-#else
-  if (fgets(buf, r_len-1, fp) == 0) {
-    if (buf) free(buf);
-    return false;
-  }
-#endif
+  ReadLine(buf, r_len-1);
+
   // This is really a funky crash waiting to happen if something isn't
   // null terminated.
   recv_len=strlen(buf);
@@ -331,140 +273,50 @@ bool SMTPProtocol::getResponse(char *r_buf, unsigned int r_len) {
 }
 
 
-bool SMTPProtocol::command(const char *buf, char *r_buf, unsigned int r_len) {
-#ifdef SPOP3
+bool SMTPProtocol::command(const char *cmd, char *recv_buf, unsigned int len) {
   // Write the command
-  int rc = SSL_write(ssl, buf, strlen(buf));
-  if (rc <= 0) return false;
-
-  rc = SSL_write(ssl, "\r\n", 2);
-  if (rc <= 0) return false;
-#else
-  // Write the command
-  unsigned int x = strlen(buf);
-  if (::write(m_iSock, buf, x) != (ssize_t)x)
+  if (Write(cmd, strlen(cmd)) != static_cast<ssize_t>(strlen(cmd)))
+  {
+    m_sError = i18n("Could not send to server.\n");
     return false;
-  if (::write(m_iSock, "\r\n", 2) != 2)
+  }
+  if (Write("\r\n", 2) != 2)
+  {
+    m_sError = i18n("Could not send to server.\n");
     return false;
-#endif
-  return getResponse(r_buf, r_len);
+  }
+  return getResponse(recv_buf, len, cmd);
 }
 
 
 bool SMTPProtocol::smtp_open(KURL& url) {
-unsigned short int port;
-ksockaddr_in server_name;
-memset(&server_name, 0, sizeof(server_name));
-
-// get the port to use
-// -1 means no port specified
-#ifdef SSMTP
-  if (url.port()) {
-    port = url.port();
-  } else {
-    struct servent *sent = getservbyname("ssmtp", "tcp");
-    if (sent) {
-      port = ntohs(sent->s_port);
-    } else {
-      port = 465;
-    }
-  }
-#else
-  if (url.port()) {
-    port = url.port();
-  } else {
-    struct servent *sent = getservbyname("smtp", "tcp");
-    if (sent) {
-      port = ntohs(sent->s_port);
-    } else {
-      port = 25;
-    }
-  }
-#endif
-
-  if ( (m_iOldPort == port) && (m_sOldServer == m_sServer) ) {
-    fprintf(stderr,"Reusing old connection\n");
+  if ( (m_iOldPort == GetPort(m_iPort)) && (m_sOldServer == m_sServer) ) {
+    kdDebug() << "Reusing old connection." << endl;
     return true;
   } else {
     smtp_close();
-    m_iSock = ::socket(PF_INET, SOCK_STREAM, 0);
-    if (!KSocket::initSockaddr(&server_name, m_sServer.local8Bit(), port))
-      return false;
-    if (::connect(m_iSock, (struct sockaddr*)(&server_name), sizeof(server_name))) {
-      error( ERR_COULD_NOT_CONNECT, m_sServer);
-      return false;
-    }
-
-
-// Either setup SSL or setup the stdin/stdout descriptor
-
-#ifdef SSMTP
-  // do the SSL negotiation
-  ssl = SSL_new(ctx);
-  if (!ssl) {
-    error( ERR_COULD_NOT_CONNECT, m_sServer );
-    close(m_iSock);
-    return false;
+    if( !ConnectToHost(m_sServer.ascii(), m_iPort))
+       return false; // ConnectToHost has already send an error message.
   }
-
-  SSL_set_fd(ssl, m_iSock);
-  if (-1 == SSL_connect(ssl)) {
-    error( ERR_COULD_NOT_CONNECT, m_sServer );
-    close(m_iSock);
-    return false;
-  }
-
-  server_cert = SSL_get_peer_certificate(ssl);
-  if (!server_cert) {
-    error( ERR_COULD_NOT_CONNECT, m_sServer );
-    close(m_iSock);
-    return false;
-  }
-
-  // we should verify the certificate here
-
-  X509_free(server_cert);
-#else
-  if ((fp = fdopen(m_iSock, "w+")) == NULL) {
-    close(m_iSock);
-    return false;
-  }
-#endif
 
   QCString greeting(1024);
-  if (!getResponse(greeting.data(), greeting.size()))
+  if (!getResponse(greeting.data(), greeting.size(), ""))
     return false;
 
-  m_iOldPort = port;
+  m_iOldPort = m_iPort;
   m_sOldServer = m_sServer;
 
-  }
 return true;
 }
 
 
 void SMTPProtocol::smtp_close() {
-#ifdef SSMTP
-  if (ssl) {
-    command("QUIT");
-    close(m_iSock);
-    SSL_shutdown(ssl);
-    SSL_free(ssl);
-    ssl = NULL;
-    m_iSock = 0;
-    m_sOldServer = "";
-    m_iOldPort = 0;
-  }
-#else
-  if (fp) {
-    command("QUIT");
-    fclose(fp);
-    m_iSock = 0;
-    fp = NULL;
-    m_sOldServer = "";
-    m_iOldPort = 0;
-  }
-#endif
+  if (!opened)
+      return;
+  command("QUIT");
+  CloseDescriptor();
+  m_sOldServer = "";
+  opened = false;
 }
 
 
