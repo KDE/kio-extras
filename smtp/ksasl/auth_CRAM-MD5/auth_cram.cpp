@@ -12,23 +12,7 @@
 
 #include "../saslmodule.h"
 
-class CramAuth
-	: public KSASLAuthModule
-{
-public:
-	CramAuth();
-	virtual ~CramAuth();
-	virtual QString auth_method();
-	virtual QString auth_response(const QString &challenge, const KURL &auth_url);
-};
-
-extern "C" {
-	KSASLAuthModule *auth_init()
-	{
-		return new CramAuth;
-	}
-	int module_version() {return KSASL_MODULE_REV;}
-}
+DECLARE_SASL_MODULE("CRAM-MD5", CramAuth);
 
 CramAuth::CramAuth()
 	: KSASLAuthModule()
@@ -37,11 +21,6 @@ CramAuth::CramAuth()
 
 CramAuth::~CramAuth()
 {
-}
-
-QString CramAuth::auth_method()
-{
-	return QString("CRAM-MD5");
 }
 
 #include "local_md5.h"

@@ -6,23 +6,7 @@
 
 #include "../saslmodule.h"
 
-class PlainAuth
-	: public KSASLAuthModule
-{
-public:
-	PlainAuth();
-	virtual ~PlainAuth();
-	virtual QString auth_method();
-	virtual QString auth_response(const QString &challenge, const KURL &auth_url);
-};
-
-extern "C" {
-	KSASLAuthModule *auth_init()
-	{
-		return new PlainAuth;
-	}
-	int module_version() {return KSASL_MODULE_REV;}
-}
+DECLARE_SASL_MODULE("PLAIN", PlainAuth);
 
 QString base64_encode_string(const QString &string);
 QString base64_encode_auth_line(const QString &username, const QString &pass);
@@ -34,11 +18,6 @@ PlainAuth::PlainAuth()
 
 PlainAuth::~PlainAuth()
 {
-}
-
-QString PlainAuth::auth_method()
-{
-	return QString("PLAIN");
 }
 
 QString PlainAuth::auth_response(const QString &, const KURL &auth_url)
