@@ -407,7 +407,7 @@ bool fishProtocol::connectionStart() {
 
 #define common_args "-l", connectionUser.latin1(), "-x", "-e", "none", \
     "-q", connectionHost.latin1(), \
-    "echo FISH:;env TZ=UTC LANG=C LC_ALL=C LOCALE=C /bin/sh", NULL
+    "echo FISH:;env TZ=UTC LANG=C LC_ALL=C LOCALE=C /bin/sh", (void *)0
     // disabled: leave compression up to the client.
     // (isOpenSSH?"-C":"+C"),
 
