@@ -1,0 +1,1096 @@
+/*  This file is part of the KDE project
+
+    Copyright (C) 2000 Alexander Neundorf <neundorf@kde.org>
+
+    This library is free software; you can redistribute it and/or
+    modify it under the terms of the GNU Library General Public
+    License as published by the Free Software Foundation; either
+    version 2 of the License, or (at your option) any later version.
+
+    This library is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+    Library General Public License for more details.
+
+    You should have received a copy of the GNU Library General Public License
+    along with this library; see the file COPYING.LIB.  If not, write to
+    the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+    Boston, MA 02111-1307, USA.
+*/
+
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
+#include <iostream.h>
+
+#ifdef HAVE_STRING_H
+#include <string.h>
+#else
+#include <strings.h>
+#endif
+
+#include <errno.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/stat.h>
+#include <sys/time.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <time.h>
+#include <stdio.h>
+#include <errno.h>
+
+#include <qtextstream.h>
+#include <qcstring.h>
+#include <qfile.h>
+
+#include "kio_smb.h"
+
+#include <kinstance.h>
+#include <kdebug.h>
+#include <kio/global.h>
+#include <klocale.h>
+#include <kconfig.h>
+
+using namespace KIO;
+
+extern "C" { int kdemain(int argc, char **argv); }
+
+int kdemain( int argc, char **argv )
+{
+  KInstance instance( "kio_smb" );
+
+  if (argc != 4)
+  {
+     fprintf(stderr, "Usage: kio_smb protocol domain-socket1 domain-socket2\n");
+     exit(-1);
+  }
+  kdDebug(7101) << "Smb: kdemain: starting" << endl;
+
+  SmbProtocol slave(argv[2], argv[3]);
+  slave.dispatchLoop();
+  return 0;
+}
+
+void getShareAndPath(const QString& path, QString& share, QString& rest)
+{
+   share="";
+   rest="";
+   QStringList list=QStringList::split("/",path);
+   for (QStringList::Iterator it=list.begin(); it!=list.end(); it++)
+   {
+      if (it==list.begin())
+         share=(*it);
+      else
+         rest=rest+"\\"+(*it);
+         //rest=rest+"/"+(*it);
+   };
+   kdDebug(7101)<<"getShareAndPath: path: -"<<path<<"-  share: -"<<share<<"-  rest: -"<<rest<<"-"<<endl;
+};
+
+SmbProtocol::SmbProtocol (const QCString &pool, const QCString &app )
+:SlaveBase( "smb", pool, app )
+,m_stdoutBuffer(0)
+,m_stdoutSize(0)
+,m_processes(17,false)
+,m_showHiddenShares(true)
+,m_password("")
+,m_user("")
+/*,m_shareListingPassword("")
+,m_shareListingUser("")
+,m_shareAccessingPassword("")
+,m_shareAccessingUser("")*/
+,m_workgroup("")
+{
+   kdDebug(7101)<<"Smb::Smb: -"<<pool<<"-"<<endl;
+   m_processes.setAutoDelete(true);
+   m_months.insert("Jan",1);
+   m_months.insert("Feb",2);
+   m_months.insert("Mar",3);
+   m_months.insert("Apr",4);
+   m_months.insert("May",5);
+   m_months.insert("Jun",6);
+   m_months.insert("Jul",7);
+   m_months.insert("Aug",8);
+   m_months.insert("Sep",9);
+   m_months.insert("Oct",10);
+   m_months.insert("Nov",11);
+   m_months.insert("Dec",12);
+
+  KConfig *cfg = new KConfig("kioslaverc", true);
+  cfg->setGroup("Browser Settings/SMBro");
+  m_user=cfg->readEntry("User","");
+  m_workgroup=cfg->readEntry("Workgroup","");
+  m_showHiddenShares=cfg->readBoolEntry("ShowHiddenShares",false);
+
+  // unscramble, taken from Nicola Brodu's smb ioslave
+  //not really secure, but better than storing the plain password
+  QString scrambled = cfg->readEntry( "Password","" );
+  m_password = "";
+  for (uint i=0; i<scrambled.length()/3; i++)
+  {
+     QChar qc1 = scrambled[i*3];
+     QChar qc2 = scrambled[i*3+1];
+     QChar qc3 = scrambled[i*3+2];
+     unsigned int a1 = qc1.latin1() - '0';
+     unsigned int a2 = qc2.latin1() - 'A';
+     unsigned int a3 = qc3.latin1() - '0';
+     unsigned int num = ((a1 & 0x3F) << 10) | ((a2& 0x1F) << 5) | (a3 & 0x1F);
+     m_password[i] = QChar((uchar)((num - 17) ^ 173)); // restore
+  }
+};
+
+SmbProtocol::~SmbProtocol()
+{
+   if (m_stdoutBuffer!=0)
+      delete [] m_stdoutBuffer;
+   m_processes.clear();
+   m_stdoutBuffer=0;
+};
+
+int SmbProtocol::readOutput(int fd)
+{
+   //kdDebug(7101)<<"Smb::readStdout"<<endl;
+   //if (m_mtool==0) return 0;
+
+   char buffer[16*1024];
+   int length=::read(fd,buffer,16*1024);
+   if (length<=0) return length;
+
+   //+1 gives us room for a terminating 0
+   char *newBuffer=new char[length+m_stdoutSize+1];
+   kdDebug(7101)<<"Smb::readStdout(): length: "<<length<<", m_stdoutSize: "<<m_stdoutSize<<" + 1 = "<<length+m_stdoutSize+1<<endl;
+   if (m_stdoutBuffer!=0)
+   {
+      memcpy(newBuffer, m_stdoutBuffer, m_stdoutSize);
+   };
+   memcpy(newBuffer+m_stdoutSize, buffer, length);
+   m_stdoutSize+=length;
+   newBuffer[m_stdoutSize]='\0';
+   if (m_stdoutBuffer!=0)
+   {
+      delete [] m_stdoutBuffer;
+   };
+   m_stdoutBuffer=newBuffer;
+   return length;
+};
+
+void SmbProtocol::clearBuffer()
+{
+   m_stdoutSize=0;
+   if (m_stdoutBuffer!=0)
+      delete [] m_stdoutBuffer;
+   m_stdoutBuffer=0;
+};
+
+bool SmbProtocol::stopAfterError(const KURL& url, bool notSureWhetherErrorOccured)
+{
+   if (m_stdoutSize==0)
+   {
+      //error(KIO::ERR_UNKNOWN,"");
+      error( KIO::ERR_CONNECTION_BROKEN, m_currentHost);
+      return true;
+   };
+
+   QString outputString(m_stdoutBuffer);
+
+   //no samba service on this host
+   if ((outputString.contains("Connection to")) && (outputString.contains("failed"))
+       && (outputString.contains("error connecting")) && (outputString.contains("(Connection refused")))
+   {
+      error( KIO::ERR_COULD_NOT_CONNECT, m_currentHost+i18n("\nThere is probably no SMB service running on this host."));
+   }
+   //host not found
+   else if ((outputString.contains("Connection to")) && (outputString.contains("failed")))
+   {
+      error( KIO::ERR_COULD_NOT_CONNECT, m_currentHost);
+   }
+   else if (outputString.contains("ERRDOS - ERRnomem"))
+   {
+      error( KIO::ERR_INTERNAL_SERVER, m_currentHost);
+   }
+   //wrong password
+   else if (outputString.contains("ERRSRV - ERRbadpw"))
+   {
+      //we should never get here
+      error( KIO::ERR_INTERNAL, i18n("Invalid user/password combination."));
+   }
+   else if ((outputString.contains("ERRDOS")) && (outputString.contains("ERRnoaccess")))
+   {
+      //we should never get here
+      error( KIO::ERR_INTERNAL, i18n("Invalid user/password combination."));
+   }
+   //file not found
+   else if ((outputString.contains("ERRDOS")) && (outputString.contains("ERRbadfile")))
+   {
+      kdDebug(7101)<<"Smb::stopAfterError() contains both, reporting error"<<endl;
+      error( KIO::ERR_DOES_NOT_EXIST, url.prettyURL());
+   }
+   else if (outputString.contains("Broken pipe"))
+   {
+      error( KIO::ERR_CONNECTION_BROKEN, m_currentHost);
+   }
+   else if (notSureWhetherErrorOccured)
+   {
+      return false;
+   }
+   else
+   {
+      kdDebug(7101)<<"Smb::stopAfterError() -"<<m_stdoutBuffer<<"-"<<endl;
+      error( KIO::ERR_UNKNOWN, i18n("Hmm..."));
+   };
+   return true;
+};
+
+SmbProtocol::SmbReturnCode SmbProtocol::waitUntilStarted(ClientProcess *proc, const QString& password)
+{
+   //not ok
+   if (proc==0) return SMB_ERROR;
+   //ok if already running (shouldn't happen, actually)
+   if (proc->startingFinished) return SMB_OK;
+
+   //wait until we get a "smb: \>" and password and stuff
+   clearBuffer();
+   bool alreadyEnteredPassword(false);
+
+   //we leave this loop if smbclient exits or if smbclient prints the prompt
+   while(1)
+   {
+      bool stdoutEvent;
+      proc->select(1,0,&stdoutEvent);
+      //if smbclient exits, something went wrong
+      int exitStatus=proc->exited();
+      if (exitStatus!=-1)
+      {
+         kdDebug(7101)<<"Smb::waitUntilStarted() smbclient exited with exitcode "<<exitStatus<<endl;
+         if (alreadyEnteredPassword)
+            return SMB_WRONGPASSWORD;
+         return SMB_ERROR;
+      };
+
+      if (stdoutEvent)
+      {
+         readOutput(proc->fd());
+         //don't search the whole buffer, only the last 12 bytes
+         if (m_stdoutSize>12)
+         {
+            //check whether it asks for the password
+            if (strstr(m_stdoutBuffer+m_stdoutSize-12,"\nPassword:")!=0)
+            {
+               kdDebug(7101)<<"Smb::waitUntilStarted(): received: -"<<m_stdoutBuffer<<"-"<<endl;
+               if (password.isEmpty())
+               {
+                  kdDebug(7101)<<"Smb::waitUntilStarted(): feeding empty password"<<endl;
+                  ::write(proc->fd(),"\n",1);
+               }
+               else
+                  ::write(proc->fd(),(password+"\n").latin1(),password.length()+1);
+               //read the echoed \n
+               char c;
+               ::read(proc->fd(),&c,1);
+               alreadyEnteredPassword=true;
+            }
+            //or whether it prints the prompt :-)
+            else if (strstr(m_stdoutBuffer+m_stdoutSize-12,"smb: \\>")!=0)
+            {
+               proc->startingFinished=true;
+               return SMB_OK;
+            };
+         };
+      };
+   };
+};
+
+SmbProtocol::SmbReturnCode SmbProtocol::getShareInfo(ClientProcess* shareLister,const QString& password)
+{
+   if (shareLister==0) return SMB_ERROR;
+
+   clearBuffer();
+   bool alreadyEnteredPassword(false);
+   //we leave the loop when smbclient exits
+   while (1)
+   {
+      bool stdoutEvent;
+      shareLister->select(1,0,&stdoutEvent);
+      int exitStatus=shareLister->exited();
+      if (exitStatus!=-1)
+      {
+         kdDebug(7101)<<"Smb::getShareInfo(): smbclient exited with status "<<exitStatus<<endl;
+         if (exitStatus==0)
+         {
+            if (strstr(m_stdoutBuffer,"ERRDOS - ERRnoaccess")==0)
+               return SMB_OK; //probably
+            else return SMB_WRONGPASSWORD;
+         }
+         else if (alreadyEnteredPassword)
+         {
+            if (strstr(m_stdoutBuffer,"ERRDOS - ERRnomem")!=0)
+               return SMB_ERROR;  //:-(
+            else
+               return SMB_WRONGPASSWORD;  //:-(
+         }
+         else
+            return SMB_ERROR;  // :-(
+      };
+      if (stdoutEvent)
+      {
+         int result=readOutput(shareLister->fd());
+         //don't search the whole buffer, only the last 12 bytes
+         if ((result>0) && (m_stdoutSize>12))
+         {
+            if (strstr(m_stdoutBuffer+m_stdoutSize-12,"\nPassword:")!=0)
+            {
+               kdDebug(7101)<<"Smb::getShareInfo() received: -"<<m_stdoutBuffer<<"-"<<endl;
+               //everything went fine until now, so we can safely delete
+               //what we have so far
+               clearBuffer();
+               if (password.isEmpty())
+               {
+                  kdDebug(7101)<<"Smb::getShareInfo() feeding empty password"<<endl;
+                  ::write(shareLister->fd(),"\n",1);
+               }
+               else
+                  ::write(shareLister->fd(),(password+"\n").latin1(),password.length()+1);
+               //read the echoed \n
+               char c;
+               ::read(shareLister->fd(),&c,1);
+               alreadyEnteredPassword=true;
+            };
+         };
+      };
+   };
+};
+
+void SmbProtocol::listShares()
+{
+   kdDebug(7101)<<"Smb::listShares() "<<endl;
+   ClientProcess *proc=new ClientProcess();
+   QCStringList args;
+   args<<QCString("-L")+m_currentHost.latin1();
+   if (!m_user.isEmpty())
+      args<<QCString("-U")+m_user.latin1();
+   if (!m_workgroup.isEmpty())
+      args<<QCString("-W")+m_workgroup.latin1();
+   if (!proc->start("smbclient",args))
+   {
+      error( KIO::ERR_COULD_NOT_STAT, m_currentHost+i18n("\nMake sure that smbclient is installed properly on your system."));
+      //delete proc;
+      return;
+   };
+   QString password(m_password);
+   QString user(m_user);
+
+   SmbReturnCode result(SMB_NOTHING);
+   //repeat until user/password is ok or the user cancels
+   //while (!getShareInfo(proc,password))
+   while (result=getShareInfo(proc,password), result==SMB_WRONGPASSWORD)
+   {
+      kdDebug(7101)<<"Smb::listShares() failed with password"<<endl;
+      //it failed with the default password
+      delete proc;
+      proc=0;
+      password="";
+      if (openPassDlg(i18n("Username and password required:"), user, password))
+      {
+         proc=new ClientProcess();
+         QCStringList tmpArgs;
+         tmpArgs<<QCString("-L")+m_currentHost.latin1();
+         if (!user.isEmpty())
+            tmpArgs<<QCString("-U")+user.latin1();
+         if (!m_workgroup.isEmpty())
+            tmpArgs<<QCString("-W")+m_workgroup.latin1();
+         if (!proc->start("smbclient",tmpArgs))
+         {
+            error( KIO::ERR_COULD_NOT_STAT, m_currentHost+i18n("\nMake sure that smbclient is installed properly on your system."));
+            delete proc;
+            return;
+         };
+      }
+      else break;
+   };
+   //here smbclient has already exited
+   if (proc!=0)
+   {
+      delete proc;
+      proc=0;
+   };
+
+   KURL url("smb://"+m_currentHost);
+   //no error handling has happened up to now
+   if (result==SMB_ERROR)
+   {
+      stopAfterError(url,false);
+      return;
+   }
+   //this happens only if the user pressed cancel
+   else if (result==SMB_WRONGPASSWORD)
+   {
+      error(ERR_USER_CANCELED,"");
+      return;
+   };
+
+   if (stopAfterError(url,true))
+      return;
+
+
+   QString outputString(m_stdoutBuffer);
+   QTextIStream output(&outputString);
+   QString line;
+
+   int totalNumber(0);
+   int lineNumber(0);
+   int mode(0);
+   UDSEntry entry;
+
+   int shareNamePos(0);
+   int typePos(0);
+   bool ipcsFound(false);
+
+   while (!output.atEnd())
+   {
+      line=output.readLine();
+      if (mode==0)
+      {
+         if (line.contains("Sharename"))
+         {
+            mode=1;
+            shareNamePos=line.find("Sharename");
+            typePos=line.find("Type");
+         };
+      }
+      else if (mode==1)
+      {
+         if (line.contains("-----"))
+            mode=2;
+         else
+            return;
+      }
+      else if (mode==2)
+      {
+         kdDebug(7101)<<"Smb::listShares(): line: -"<<line.latin1()<<"-"<<endl;
+         if (line.isEmpty())
+            break;
+         else if (line.mid(typePos,3)=="IPC")
+            ipcsFound=true;
+         else if (line.mid(typePos,4)=="Disk")
+         {
+            QString name=line.mid(shareNamePos,typePos-shareNamePos);
+            int end(name.length()-1);
+            while (name[end]==' ')
+               end--;
+            name=name.left(end+1);
+            if ((m_showHiddenShares) || (name[name.length()-1]!='$'))
+            {
+               entry.clear();
+               UDSAtom atom;
+
+               atom.m_uds = KIO::UDS_NAME;
+               atom.m_str =name;
+               entry.append( atom );
+
+               atom.m_uds = KIO::UDS_SIZE;
+               atom.m_long = 1024;
+               entry.append(atom);
+
+               atom.m_uds = KIO::UDS_MODIFICATION_TIME;
+               atom.m_long = time(0);
+               entry.append( atom );
+
+               atom.m_uds = KIO::UDS_ACCESS;
+               atom.m_long=S_IRUSR | S_IXUSR | S_IRGRP | S_IXGRP | S_IROTH | S_IXOTH;
+               entry.append( atom );
+
+               atom.m_uds = KIO::UDS_FILE_TYPE;
+               atom.m_long =S_IFDIR;
+               entry.append( atom );
+
+               listEntry( entry, false);
+               totalNumber++;
+            };
+         };
+      };
+
+      lineNumber++;
+   };
+   totalSize( totalNumber);
+   listEntry( entry, true ); // ready
+
+   finished();
+};
+
+void SmbProtocol::listDir( const KURL& _url)
+{
+   kdDebug(7101)<<"Smb::listDir() "<<_url.path()<<endl;
+   QString path( QFile::encodeName(_url.path()));
+
+   if (path.isEmpty())
+   {
+      KURL url(_url);
+      url.setPath("/");
+      redirection(url);
+      finished();
+      return;
+   };
+
+   QString share;
+   QString smbPath;
+   getShareAndPath(path,share,smbPath);
+
+   if (share.isEmpty())
+   {
+      listShares();
+      return;
+   };
+
+   ClientProcess *proc=getProcess(m_currentHost, share);
+   if (proc==0)
+      return;
+
+   QCString command=QCString("dir \"")+smbPath.latin1()+QCString("/*\"\n");
+   kdDebug(7101)<<"Smb::listDir(): executing command: -"<<command<<"-"<<endl;
+
+   if (::write(proc->fd(),command.data(),command.size())<0)
+   {
+      error(ERR_CONNECTION_BROKEN,m_currentHost);
+      return;
+   };
+
+   clearBuffer();
+
+   int result;
+   bool loopFinished(false);
+   do
+   {
+      int exitStatus=proc->exited();
+      if (exitStatus!=-1)
+      {
+         //this should not happen !
+         kdDebug(7101)<<"Smb::listDir(): smbclient exited"<<endl;
+         stopAfterError(_url,false);
+         return;
+      };
+      bool stdoutEvent;
+      result=proc->select(1,0,&stdoutEvent);
+      if (stdoutEvent)
+      {
+         readOutput(proc->fd());
+         //don't search the whole buffer, only the last 12 bytes
+         if (m_stdoutSize>12)
+         {
+            if (strstr(m_stdoutBuffer+m_stdoutSize-12,"\nsmb: \\>")!=0)
+               loopFinished=true;
+         };
+      };
+   } while (!loopFinished);
+   kdDebug(7101)<<"Smb::listDir(): read: -"<<m_stdoutBuffer<<"-"<<endl;
+
+   //check the output from smbclient whether an error occured
+   if (stopAfterError(_url,true))
+      return;
+
+   QString outputString(m_stdoutBuffer);
+   QTextIStream output(&outputString);
+   QString line;
+
+   int totalNumber(0);
+   int lineNumber(0);
+   UDSEntry entry;
+
+   while (!output.atEnd())
+   {
+      line=output.readLine();
+      kdDebug(7101)<<"Smb::listDir(): line: -"<<line<<"-"<<endl;
+      if (line.isEmpty())
+         break;
+//      if (lineNumber>2)
+//      {
+         StatInfo info=createStatInfo(line);
+         if (info.isValid)
+         {
+            entry.clear();
+            createUDSEntry(info,entry);
+            //kdDebug(7101)<<"Smb::listDir(): creating UDSEntry"<<endl;
+            listEntry( entry, false);
+            totalNumber++;
+         };
+//      };
+      lineNumber++;
+   };
+   totalSize( totalNumber);
+   listEntry( entry, true ); // ready
+   finished();
+   kdDebug(7101)<<"Smb::listDir() ends"<<endl;
+};
+
+void SmbProtocol::createUDSEntry(const StatInfo& info, UDSEntry& entry)
+{
+   UDSAtom atom;
+   atom.m_uds = KIO::UDS_NAME;
+   atom.m_str = info.name;
+   entry.append( atom );
+
+   atom.m_uds = KIO::UDS_SIZE;
+   atom.m_long = info.size;
+   entry.append(atom);
+
+   atom.m_uds = KIO::UDS_MODIFICATION_TIME;
+   atom.m_long = info.time;
+   entry.append( atom );
+
+   atom.m_uds = KIO::UDS_ACCESS;
+   atom.m_long=info.mode;
+   entry.append( atom );
+
+   atom.m_uds = KIO::UDS_FILE_TYPE;
+   atom.m_long =(info.isDir?S_IFDIR:S_IFREG);
+   entry.append( atom );
+};
+
+StatInfo SmbProtocol::createStatInfo(const QString line)
+{
+   kdDebug(7101)<<"Smb::createStatInfo() -"<<line.latin1()<<"-"<<endl;
+   QString name;
+   QString size;
+
+   StatInfo info;
+
+   static QDateTime beginningOfTimes(QDate(1970,1,1),QTime(1,0));
+
+//"      A   213123  Mon Mar 12"
+   int startOfData=line.find(QRegExp("     [ADR ][ADR ][ \\d][ \\d][ \\d][ \\d][ \\d][ \\d][ \\d][ \\d]\\d  [A-Z][a-z][a-z] [A-Z][a-z][a-z] [ \\d]\\d"));
+   //kdDebug(7101)<<"createStatInfo: regexp at: "<<startOfData<<endl;
+   if (startOfData==-1)
+   {
+      info.isValid=false;
+      return info;
+   };
+
+   info.isValid=true;
+   name=line.mid(2,startOfData-2);
+   if (startOfData==32)
+   {
+      //in this case there are spaces inserted between the file name and the following rest, strip them
+      //if the file name ends with spaces, we have a problem...
+      int end(name.length()-1);
+      while (name[end]==' ')
+         end--;
+      name=name.left(end+1);
+   };
+   if ((name==".") || (name==".."))
+   {
+      info.isValid=false;
+      return info;
+   };
+
+   //kdDebug(7101)<<"createStatInfo: name: -"<<name<<"-"<<endl;
+
+   //kdDebug(7101)<<"createStatInfo: line(start+5..7): -"<<line.mid(startOfData+5,3)<<"-"<<endl;
+   if ((line[startOfData+6]=='D') || (line[startOfData+5]=='D'))
+   {
+      info.isDir=true;
+      info.size=1024;
+   }
+   else
+   {
+      //kdDebug(7101)<<"createStatInfo: line(start+6,11): -"<<line.mid(startOfData+6,11)<<"-"<<endl;
+      info.isDir=false;
+      size=line.mid(startOfData+7,9);
+      info.size=size.toInt();
+      //kdDebug(7101)<<"createStatInfo: size: -"<<size<<"-"<<endl;
+   };
+
+   info.name=name;
+
+   QString tmp;
+   //month
+   tmp=line.mid(startOfData+22,3);
+   int month=m_months[tmp];
+   tmp=line.mid(startOfData+26,2);
+   int day=tmp.toInt();
+   tmp=line.mid(startOfData+29,2);
+   int hour=tmp.toInt();
+   tmp=line.mid(startOfData+32,2);
+   int minute=tmp.toInt();
+   tmp=line.mid(startOfData+35,2);
+   int secs=tmp.toInt();
+   tmp=line.mid(startOfData+38,4);
+   int year=tmp.toInt();
+
+
+   QDateTime date(QDate(year,month,day),QTime(hour,minute,secs));
+   info.time=beginningOfTimes.secsTo(date);
+   //info.time=time(0);
+
+   if (info.isDir)
+      info.mode = S_IRUSR | S_IXUSR | S_IRGRP | S_IXGRP | S_IROTH | S_IXOTH;
+   else
+      info.mode = S_IRUSR | S_IRGRP | S_IROTH;
+
+   //kdDebug(7101)<<"Smb::createUDSEntry() ends"<<endl;
+   return info;
+};
+
+StatInfo SmbProtocol::_stat(const KURL& url)
+{
+   kdDebug(7101)<<"Smb::_stat(): -"<<url.path().latin1()<<"-"<<endl;
+   StatInfo info;
+
+   QString path( QFile::encodeName(url.path()));
+   QString share;
+   QString smbPath;
+   getShareAndPath(path,share,smbPath);
+
+   //if share is empty, then smbPath is also empty
+   if (smbPath.isEmpty())
+   {
+      kdDebug(7101)<<"Smb::_stat(): smbPath.isEmpty()"<<endl;
+      info.name=path;
+      info.size=1024;
+      info.time=time(0);
+      info.mode=S_IRUSR | S_IXUSR | S_IRGRP | S_IXGRP | S_IROTH | S_IXOTH| S_IWOTH|S_IWGRP|S_IWUSR;
+      info.isDir=true;
+      info.isValid=true;
+      return info;
+   };
+
+   ClientProcess *proc=getProcess(m_currentHost, share);
+   if (proc==0)
+   {
+      info.isValid=false;
+      return info;
+   };
+
+   QCString command=QCString("dir \"")+smbPath.latin1()+QCString("\"\n");
+   kdDebug(7101)<<"Smb::_stat(): executing command: -"<<command<<"-"<<endl;
+
+   if (::write(proc->fd(),command.data(),command.size())<0)
+   {
+      error(ERR_CONNECTION_BROKEN,m_currentHost);
+      info.isValid=false;
+      return info;
+   };
+
+
+   clearBuffer();
+
+   int result;
+   bool loopFinished(false);
+   do
+   {
+      int exitStatus=proc->exited();
+      if (exitStatus!=-1)
+      {
+         //this should not happen
+         stopAfterError(url,false);
+         info.isValid=false;
+         return info;
+      };
+      bool stdoutEvent;
+      result=proc->select(1,0,&stdoutEvent);
+      if (stdoutEvent)
+      {
+         readOutput(proc->fd());
+         //don't search the whole buffer, only the last 12 bytes
+         if (m_stdoutSize>12)
+         {
+            if (strstr(m_stdoutBuffer+m_stdoutSize-12,"\nsmb: \\>")!=0)
+            loopFinished=true;
+         };
+      };
+   } while (!loopFinished);
+   kdDebug(7101)<<"Smb::_stat(): read: -"<<m_stdoutBuffer<<"-"<<endl;
+
+   if (stopAfterError(url,true))
+   {
+      info.isValid=false;
+      return info;
+   };
+
+   QString outputString(m_stdoutBuffer);
+   QTextIStream output(&outputString);
+   QString line;
+   int lineNumber(0);
+   while (!output.atEnd())
+   {
+      line=output.readLine();
+      if (lineNumber==1)
+      {
+         if (line.contains("ERRbadfile") || (line.contains("File not found")))
+         {
+            info.isValid=false;
+            break;
+         }
+         else
+         {
+            return createStatInfo(line);
+         };
+      };
+      lineNumber++;
+   };
+   return info;
+};
+
+void SmbProtocol::stat( const KURL & url)
+{
+   kdDebug(7101)<<"Smb::stat(): -"<<url.path().latin1()<<"-"<<endl;
+   StatInfo info=this->_stat(url);
+   if (!info.isValid)
+      return;
+
+   UDSEntry entry;
+   createUDSEntry(info,entry);
+   statEntry( entry );
+   finished();
+}
+
+void SmbProtocol::get( const KURL& url )
+{
+   kdDebug(7101)<<"Smb::get() "<<url.path().latin1()<<endl;
+   QString path( QFile::encodeName(url.path()));
+
+   QString share;
+   QString smbPath;
+   getShareAndPath(path,share,smbPath);
+
+   StatInfo info=this->_stat(url);
+   //the error was already reported in _stat()
+   if (info.isValid==false)
+   {
+      kdDebug(7101)<<"Smb::get() file not found"<<endl;
+      return;
+   };
+
+   totalSize( info.size);
+
+   ClientProcess *proc=getProcess(m_currentHost, share);
+   if (proc==0)
+      return;
+
+   QCString fifoName;
+   fifoName.sprintf("/tmp/kio_smb_%d_%d_%d",getpid(),getuid(),time(0));
+   kdDebug(7101)<<"Smb::get() fifoname: -"<<fifoName<<"-"<<endl;
+   if (mkfifo(fifoName,0600)!=0)
+   {
+      //perror("creating fifo failed: ");
+      error(ERR_CANNOT_OPEN_FOR_READING,url.path()+i18n("\nCould not create required pipe %1 .").arg(fifoName));
+      return;
+   };
+
+   QCString command=QCString("get \"")+smbPath.latin1()+QCString("\" ")+fifoName+"\n";
+   kdDebug(7101)<<"Smb::get(): executing command: -"<<command<<"-"<<endl;
+
+   if (::write(proc->fd(),command.data(),command.size())<0)
+   {
+      error(ERR_CONNECTION_BROKEN,m_currentHost);
+      return;
+   };
+
+   clearBuffer();
+   bool loopFinished(false);
+   //read the terminal echo
+   do
+   {
+      readOutput(proc->fd());
+      kdDebug(7101)<<"Smb::get() read: -"<<m_stdoutBuffer<<"-"<<endl;
+      if (m_stdoutSize>0)
+         if (memchr(m_stdoutBuffer,'\n',m_stdoutSize)!=0)
+            loopFinished=true;
+   } while (!loopFinished);
+
+   //now read from the fifo
+   //this might evetually block :-(
+   //but actually I don't know why this should happen
+   //we entered "get some_file /tmp/the_fifo" into smbclient
+   //the fifo /tmp/the_fifo exists and the remote some_file exists too,
+   //we checked this with the _stat() call, so why should it not work ?
+   FILE * fifo=fopen(fifoName,"r");
+   if (fifo==0)
+   {
+      //hmm, how should we get here ?
+      error(ERR_CANNOT_OPEN_FOR_READING,url.path()+i18n("\nCould not create required pipe %1 .").arg(fifoName));
+      return;
+   };
+
+   int fifoFD=fileno(fifo);
+   char buf[32*1024];
+   time_t t_start = time( 0L );
+   time_t t_last = t_start;
+
+   kdDebug(7101)<<"Smb::get() opened fifo: -"<<command<<"-"<<endl;
+
+   int result;
+   int bytesRead(0);
+   loopFinished=false;
+   QByteArray array;
+
+   do
+   {
+      int exitStatus=proc->exited();
+      if (exitStatus!=-1)
+      {
+         //this should not happen !
+         stopAfterError(url,false);
+         fclose(fifo);
+         remove(fifoName);
+         return;
+         /*loopFinished=true;
+         kdDebug(7101)<<"Smb::get(): smbclient exited with status "<<exitStatus<<endl;
+         break;*/
+      };
+
+      struct timeval tv;
+      tv.tv_sec=10;
+      tv.tv_usec=0;
+      fd_set readFDs;
+      FD_ZERO(&readFDs);
+      FD_SET(fifoFD,&readFDs);
+      result=select(fifoFD+1,&readFDs,0,0,&tv);
+      if (result==1)
+      {
+         int i=::read(fifoFD,buf,32*1024);
+         if (i==0)
+            loopFinished=true;
+         else
+         {
+            //kdDebug(7101)<<"Smb::get(): read "<<i<<" bytes now, gives "<<bytesRead<<" overall"<<endl;
+            bytesRead+=i;
+            array.setRawData(buf, i);
+            data( array );
+            array.resetRawData(buf,i);
+
+            time_t t = time( 0L );
+            if ( t - t_last >= 1 )
+            {
+               processedSize(bytesRead);
+               speed(bytesRead/(t-t_start));
+               t_last = t;
+            }
+
+         };
+      }
+      else
+         loopFinished=true;
+   } while(!loopFinished);
+
+   fclose(fifo);
+
+   clearBuffer();
+   bool stdoutEvent;
+   result=proc->select(1,0,&stdoutEvent);
+   if (stdoutEvent)
+      readOutput(proc->fd());
+
+   remove(fifoName);
+
+   kdDebug(7101)<<"Smb::get(): received -"<<m_stdoutBuffer<<"-"<<endl;
+   if (stopAfterError(url,true))
+      return;
+
+   data( QByteArray() );
+   finished();
+};
+
+void SmbProtocol::setHost(const QString& host, int /*port*/, const QString& /*user*/, const QString& /*pass*/)
+{
+   kdDebug(7101)<<"setHost: -"<<host<<"-"<<endl;
+   if (host.isEmpty())
+   {
+      error(ERR_UNKNOWN_HOST,"");
+      return;
+   };
+   if (host==m_currentHost) return;
+   m_currentHost=host;
+   m_processes.clear();
+}
+
+ClientProcess* SmbProtocol::getProcess(const QString& host, const QString& share)
+{
+   QString key=host+share;
+   ClientProcess* proc=m_processes[key];
+   kdDebug(7101)<<"Smb::getProcess(): key: -"<<key<<"-"<<endl;
+   if (proc!=0)
+   {
+      //oops, we still have it in the dict, but it already exited !
+      //if the process exits anywhere else, we will detect this with
+      //process->exited(), but not delete and remove the process.
+      //this will be done the next time we come here, and we always come here :-)
+      if (proc->exited()!=-1)
+      {
+         kdDebug(7101)<<"Smb::getProcess(): process exited !"<<endl;
+         //we have autoDelete==true, so we don't need to delete proc explicitly
+         m_processes.remove(key);
+         proc=0;
+         kdDebug(7101)<<"Smb::getProcess(): process exited !"<<endl;
+      };
+   };
+   if (proc!=0)
+   {
+      kdDebug(7101)<<"Smb::getProcess(): found"<<endl;
+      return proc;
+   };
+   //otherwise create the process
+   proc=new ClientProcess();
+
+   QCStringList args;
+   args<<QString("//"+host+"/"+share).latin1();
+   if (!m_workgroup.isEmpty())
+      args<<QCString("-W")+m_workgroup.latin1();
+   if (!m_user.isEmpty())
+      args<<QCString("-U")+m_user.latin1();
+
+   //kdDebug(7101)<<"Smb::getProcess: started process: "<<proc->start("smbclient",args)<<endl;
+   if (!proc->start("smbclient",args))
+   {
+      error( KIO::ERR_COULD_NOT_STAT, m_currentHost+i18n("\nMake sure that smbclient is installed properly on your system."));
+      return 0;
+   };
+   QString password(m_password);
+   QString user(m_user);
+   
+   SmbReturnCode result(SMB_NOTHING);
+   //repeat until user/password is ok or the user cancels
+   //while (!waitUntilStarted(proc,password))
+   //although I hate stuff like the comma-operator
+   //IMHO it is still better than while((result=waitUntilStarted())==SMB:WRONGPASSWORD)
+   while (result=waitUntilStarted(proc,password), result==SMB_WRONGPASSWORD)
+   {
+      kdDebug(7101)<<"Smb::getProcess: failed with password"<<endl;
+      //it failed with the default password
+      delete proc;
+      proc=0;
+      password="";
+      if (openPassDlg(i18n("Username and password required:"), user, password))
+      {
+         proc=new ClientProcess();
+         QCStringList tmpArgs;
+         tmpArgs<<QString("//"+host+"/"+share).latin1();
+         if (!m_workgroup.isEmpty())
+            tmpArgs<<QCString("-W")+m_workgroup.latin1();
+         if (!user.isEmpty())
+            tmpArgs<<QCString("-U")+user.latin1();
+         if (!proc->start("smbclient",tmpArgs))
+         {
+            error( KIO::ERR_COULD_NOT_STAT, m_currentHost+i18n("\nMake sure that smbclient is installed properly on your system."));
+            delete proc;
+            return 0;
+         };
+      }
+      else
+      {
+         //we don't want to care in the calling code
+         error(ERR_USER_CANCELED,"");
+         return 0;
+      };
+   };
+   if (result==SMB_ERROR)
+   {
+      KURL url("smb://"+host+"/"+share);
+      stopAfterError(url,false);
+      return 0;
+   };
+   //finally we got it :-)
+   kdDebug(7101)<<"Smb::getProcess: succeeded"<<endl;
+   m_processes.insert(key,proc);
+   return proc;
+};
