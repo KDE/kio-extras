@@ -101,7 +101,7 @@ void SMBSlave::cache_clear_AuthInfo(const QString& workgroup)
 void SMBSlave::cache_set_AuthInfo(const SMBAuthInfo& _auth,
                                   bool store_in_kdesu)
 {
-    kdDebug(KIO_SMB) << "cache_set_AuthInfo user="<<_auth.m_username<<", PW="<<_auth.m_passwd<<", SERVER="<<_auth.m_server << endl;
+    kdDebug(KIO_SMB) << "cache_set_AuthInfo"<< endl;
     SMBAuthInfo* auth = new SMBAuthInfo;
     auth->m_passwd    = _auth.m_passwd;
     auth->m_server    = _auth.m_server;
@@ -160,7 +160,6 @@ AuthInfo SMBSlave::cache_create_AuthInfo( const SMBAuthInfo& auth )
       rval.username.prepend(auth.m_domain + ";");
     rval.password = auth.m_passwd;
 
-    //    kdDebug(KIO_SMB) << "cache_create_AuthInfo, url = " << rval.url.url() << endl;
     return rval;
 }
 
