@@ -11,4 +11,5 @@ source=true
 #deleting=true
 #linking=true
 #moving=true
-
+mimetype=text/plain
+determineMimetypeFromExtension=false

@@ -186,6 +186,7 @@ void LDAPProtocol::stat( const KURL &a_url )
   for (KLDAP::Entry e=search.first(); !search.end(); e=search.next())
     cnt++;
   int isDir = 1;
+  bool isQuery = 0;
   if (a_url.query().isEmpty()) {
     /* we searched for a subdir */
     if (cnt == 0) isDir=0;
@@ -194,7 +195,8 @@ void LDAPProtocol::stat( const KURL &a_url )
     if (usrc.scope() == LDAP_SCOPE_BASE) isDir = 0;    /* he only wanted base */
     else {
       /* he wanted more */
-      if (cnt == 0) isDir = 0;   /* but there isn't */
+      if (cnt <= 1) isDir = 0;   /* but there isn't */
+      else isQuery = 1;          /* e.g. /cn=bla??sub?(uid=23) */
     }
   }
   UDSEntry entry;
@@ -213,12 +215,21 @@ void LDAPProtocol::stat( const KURL &a_url )
 
   atom.m_uds = UDS_FILE_TYPE;
   atom.m_str = "";
-  if (isDir)
+  if (isQuery) {
+    if (cnt > 1)
+      atom.m_long = S_IFDIR;
+    else 
+      atom.m_long = S_IFREG;
+  } else if (isDir)
     atom.m_long = S_IFDIR;
   else 
     atom.m_long = S_IFREG;
   entry.append(atom);
   
+  atom.m_uds = KIO::UDS_ACCESS;
+  atom.m_long = isDir ? 0500 : 0400;
+  entry.append(atom);
+
   atom.m_uds = UDS_URL;
   atom.m_long = 0;
   KLDAP::Url url(urlPrefix);
@@ -226,7 +237,9 @@ void LDAPProtocol::stat( const KURL &a_url )
   url.setHost(usrc.host());
   url.setPort(usrc.port());
   url.setPath("/"+usrc.dn());
-  if (isDir)
+  if (isQuery)
+    url.setScope(usrc.scope());
+  else if (isDir)
     url.setScope(LDAP_SCOPE_ONELEVEL);
   else
     url.setScope(LDAP_SCOPE_BASE);
@@ -234,7 +247,7 @@ void LDAPProtocol::stat( const KURL &a_url )
   kdDebug(7110) << "kio_ldap:stat put url:" << atom.m_str << endl;
   entry.append(atom);
 
-  if (!isDir) {
+  if (!isDir || (isQuery && cnt==1)) {
     atom.m_uds = UDS_MIME_TYPE;
     atom.m_long = 0;
     atom.m_str = "text/plain";
@@ -246,6 +259,7 @@ void LDAPProtocol::stat( const KURL &a_url )
   finished();
 }
 
+#if 0
 /**
  * Get the mimetype. For now its text/plain for each non-subentry
  */
@@ -261,14 +275,18 @@ void LDAPProtocol::mimetype(const KURL &url)
     return;
   }
   kdDebug(7110) << "kio_ldap: query()==" << url.query() << endl;
-  if (!url.query().isEmpty() && usrc.scope() == LDAP_SCOPE_BASE) {
-    mimeType("text/plain");
+  if (!url.query().isEmpty()) {
+    if (usrc.scope() == LDAP_SCOPE_BASE)
+      mimeType("text/plain");
+    else if (usrc.scope() == LDAP_SCOPE_SUBTREE)
+      mimeType("text/plain");
   } else {
     /* empty scope, or ONELEVEL/SUB */
     mimeType("inode/directory");
   }
   finished();
 }
+#endif
 
 /**
  * List the contents of a directory.
@@ -298,7 +316,8 @@ void LDAPProtocol::listDir(const KURL &url)
   QStrList att;
   att.append("dn");
   search.setAttributes(att);
-  search.setScope(LDAP_SCOPE_ONELEVEL);
+  if (url.query().isEmpty() || usrc.scope() == LDAP_SCOPE_BASE)
+    search.setScope(LDAP_SCOPE_ONELEVEL);
   search.execute();
   search.finish();
 
@@ -306,7 +325,7 @@ void LDAPProtocol::listDir(const KURL &url)
   UDSEntry entry;
   UDSAtom atom;
 
-  // publish the directories
+  // publish the sub-directories
   for (KLDAP::Entry e=search.first(); !search.end(); e=search.next())
     {
       total++;
@@ -346,6 +365,10 @@ void LDAPProtocol::listDir(const KURL &url)
 	  atom.m_long = S_IFDIR;
 	  entry.append(atom);
 	  
+          atom.m_uds = KIO::UDS_ACCESS;
+          atom.m_long = 0500;
+          entry.append(atom);
+
 	  // the url
 	  atom.m_uds = UDS_URL;
 	  atom.m_long = 0;
@@ -394,6 +417,10 @@ void LDAPProtocol::listDir(const KURL &url)
       atom.m_uds = UDS_FILE_TYPE;
       atom.m_str = "";
       atom.m_long = S_IFREG;
+      entry.append(atom);
+
+      atom.m_uds = KIO::UDS_ACCESS;
+      atom.m_long = 0400;
       entry.append(atom);
 
       // the mimetype
