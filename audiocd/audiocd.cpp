@@ -38,6 +38,11 @@ extern "C"
 #include <cdda_interface.h>
 #include <cdda_paranoia.h>
 
+/* This is in support for the Mega Hack, if cdparanoia ever is fixed, or we
+   use another ripping library we can remove this.  */
+#include <linux/cdrom.h>
+#include <sys/ioctl.h>
+
 #ifdef HAVE_LAME
 #include <lame/lame.h>
 #ifdef MPG_MD_STEREO
@@ -78,6 +83,78 @@ using namespace KIO;
 extern "C"
 {
   int kdemain(int argc, char ** argv);
+  int FixupTOC(cdrom_drive *d, int tracks);
+}
+
+int start_of_first_data_as_in_toc;
+int hack_track;
+/* Mega hack.  This function comes from libcdda_interface, and is called by
+   it.  We need to override it, so we implement it ourself in the hope, that
+   shared lib semantics make the calls in libcdda_interface to FixupTOC end
+   up here, instead of it's own copy.  This usually works.
+   You don't want to know the reason for this.  */
+int FixupTOC(cdrom_drive *d, int tracks)
+{
+  int j;
+  for (j = 0; j < tracks; j++) {
+    if (d->disc_toc[j].dwStartSector < 0)
+      d->disc_toc[j].dwStartSector = 0;
+    if (j < tracks-1
+        && d->disc_toc[j].dwStartSector > d->disc_toc[j+1].dwStartSector)
+      d->disc_toc[j].dwStartSector = 0;
+  }
+  long last = d->disc_toc[0].dwStartSector;
+  for (j = 1; j < tracks; j++) {
+    if (d->disc_toc[j].dwStartSector < last)
+      d->disc_toc[j].dwStartSector = last;
+  }
+  start_of_first_data_as_in_toc = -1;
+  hack_track = -1;
+  if (d->ioctl_fd != -1) {
+    struct cdrom_multisession ms_str;
+    ms_str.addr_format = CDROM_LBA;
+    if (ioctl(d->ioctl_fd, CDROMMULTISESSION, &ms_str) == -1)
+      return -1;
+    if (ms_str.addr.lba > 100) {
+      for (j = tracks-1; j >= 0; j--)
+        if (j > 0 && !IS_AUDIO(d,j) && IS_AUDIO(d,j-1)) {
+          if (d->disc_toc[j].dwStartSector > ms_str.addr.lba - 11400) {
+            /* The next two code lines are the purpose of duplicating this
+             * function, all others are an exact copy of paranoias FixupTOC().
+             * The gory details: CD-Extra consist of N audio-tracks in the
+             * first session and one data-track in the next session.  This
+             * means, the first sector of the data track is not right behind
+             * the last sector of the last audio track, so all length
+             * calculation for that last audio track would be wrong.  For this
+             * the start sector of the data track is adjusted (we don't need
+             * the real start sector, as we don't rip that track anyway), so
+             * that the last audio track end in the first session.  All well
+             * and good so far.  BUT: The CDDB disc-id is based on the real
+             * TOC entries so this adjustment would result in a wrong Disc-ID.
+             * We can only solve this conflict, when we save the old
+             * (toc-based) start sector of the data track.  Of course the
+             * correct solution would be, to only adjust the _length_ of the
+             * last audio track, not the start of the next track, but the
+             * internal structures of cdparanoia are as they are, so the
+             * length is only implicitely given.  Bloody sh*.  */
+            start_of_first_data_as_in_toc = d->disc_toc[j].dwStartSector;
+            hack_track = j + 1;
+            d->disc_toc[j].dwStartSector = ms_str.addr.lba - 11400;
+          }
+          break;
+        }
+      return 1;
+    }
+  }
+  return 0;
+}
+
+/* libcdda returns for cdda_disc_lastsector() the last sector of the last
+   _audio_ track.  How broken.  For CDDB Disc-ID we need the real last sector
+   to calculate the disc length.  */
+long my_last_sector(cdrom_drive *drive)
+{
+  return cdda_track_lastsector(drive, drive->tracks);
 }
 
 int
@@ -493,6 +570,8 @@ AudioCDProtocol::get_discid(struct cdrom_drive * drive)
   for (int i = 1; i <= drive->tracks; i++)
     {
       unsigned int n = cdda_track_firstsector (drive, i) + 150;
+      if (i == hack_track)
+        n = start_of_first_data_as_in_toc + 150;
       n /= 75;
       while (n > 0)
         {
@@ -500,7 +579,7 @@ AudioCDProtocol::get_discid(struct cdrom_drive * drive)
           n /= 10;
         }
     }
-  unsigned int l = (cdda_disc_lastsector(drive));
+  unsigned int l = (my_last_sector(drive));
   l -= cdda_disc_firstsector(drive);
   l /= 75;
   id = ((id % 255) << 24) | (l << 8) | drive->tracks;
@@ -521,11 +600,14 @@ AudioCDProtocol::updateCD(struct cdrom_drive * drive)
 
   for (int i = 0; i < d->tracks; i++)
     {
-      d->is_audio[i] = IS_AUDIO (drive, i + 1);
-      qvl.append(cdda_track_firstsector(drive, i + 1) + 150);
+      d->is_audio[i] = cdda_track_audiop(drive, i + 1);
+      if (i+1 != hack_track)
+        qvl.append(cdda_track_firstsector(drive, i + 1) + 150);
+      else
+        qvl.append(start_of_first_data_as_in_toc + 150);
     }
   qvl.append(cdda_disc_firstsector(drive));
-  qvl.append(cdda_disc_lastsector(drive));
+  qvl.append(my_last_sector(drive));
 
   if (d->useCDDB)
     {
@@ -553,7 +635,7 @@ AudioCDProtocol::updateCD(struct cdrom_drive * drive)
       int ti = i + 1;
       QString s;
       num.sprintf("%02d", ti);
-      if (IS_AUDIO(drive, ti))
+      if (cdda_track_audiop(drive, ti))
         s = d->s_track.arg(num);
       else
         s.sprintf("data%02d", ti);
