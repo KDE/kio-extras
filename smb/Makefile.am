@@ -30,8 +30,8 @@ else
 install-exec-hook:
 endif
 
-kioconfig_DATA = smb.desktop
-kioconfigdir = $(kde_confdir)/protocols
+kdelnk_DATA = smb.protocol
+kdelnkdir = $(kde_servicesdir)
 
 check_PROGRAMS = linktest
 linktest_SOURCES = $(kio_smb_la_SOURCES) linktest.cpp

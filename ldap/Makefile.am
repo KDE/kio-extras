@@ -14,8 +14,8 @@ kio_ldap_la_LDFLAGS = $(all_libraries) $(KDE_RPATH) $(LDAP_RPATH) $(KRB_RPATH) -
 
 noinst_HEADERS = kio_ldap.h kldap.h kldapurl.h
 
-kioconfig_DATA = ldap.desktop
-kioconfigdir = $(kde_confdir)/protocols
+kdelnk_DATA = ldap.protocol
+kdelnkdir = $(kde_servicesdir)
 
 check_PROGRAMS = linktest
 linktest_SOURCES = $(kio_ldap_la_SOURCES) linktest.cpp

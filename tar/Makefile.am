@@ -13,8 +13,8 @@ kio_tar_la_LDFLAGS = -module -avoid-version
 
 noinst_HEADERS = tar.h
 
-kioconfig_DATA = tar.desktop
-kioconfigdir = $(kde_confdir)/protocols
+kdelnk_DATA = tar.protocol
+kdelnkdir = $(kde_servicesdir)
 
 check_PROGRAMS = linktest
 linktest_SOURCES = $(kio_tar_la_SOURCES) linktest.cpp

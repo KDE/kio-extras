@@ -12,7 +12,7 @@ kio_help_la_LIBADD = -lkio
 kio_help_la_LDFLAGS = -module -avoid-version -no-undefined
 noinst_HEADERS = kio_help.h
 
-kioconfig_DATA = help.desktop
-kioconfigdir = $(kde_confdir)/protocols
+kdelnk_DATA = help.protocol
+kdelnkdir = $(kde_servicesdir)
 
 METASOURCES = AUTO

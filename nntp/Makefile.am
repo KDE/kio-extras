@@ -11,8 +11,8 @@ kio_nntp_la_LDFLAGS = $(all_libraries) -module -avoid-version
 
 noinst_HEADERS = nntp.h
 
-kioconfig_DATA = nntp.desktop
-kioconfigdir = $(kde_confdir)/protocols
+kdelnk_DATA = nntp.protocol
+kdelnkdir = $(kde_servicesdir)
 
 check_PROGRAMS = linktest
 linktest_SOURCES = $(kio_nntp_la_SOURCES) linktest.cpp

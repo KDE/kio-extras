@@ -5,10 +5,10 @@ INCLUDES= -I$(srcdir)/../.. -I$(srcdir)/.. $(SSL_INCLUDES) $(all_includes)
 
 if SSMTP
 DO_SSMTP = kio_ssmtp.la
-DO_SSMTP_DESKTOP = ssmtp.desktop
+DO_SSMTP_PROTOCOL = ssmtp.protocol
 else
 DO_SSMTP = 
-DO_SSMTP_DESKTOP = 
+DO_SSMTP_PROTOCOL = 
 endif
 
 lib_LTLIBRARIES = kio_smtp.la $(DO_SSMTP)
@@ -23,8 +23,8 @@ kio_ssmtp_la_LDFLAGS = $(all_libraries) $(SSL_LDFLAGS) -module -avoid-version
 
 noinst_HEADERS = smtp.h
 
-kioconfig_DATA = smtp.desktop $(DO_SSMTP_DESKTOP)
-kioconfigdir = $(kde_confdir)/protocols
+kdelnk_DATA = smtp.protocol $(DO_SSMTP_PROTOCOL)
+kdelnkdir = $(kde_servicesdir)
 
 check_PROGRAMS = linktest
 linktest_SOURCES = $(kio_smtp_la_SOURCES) linktest.cpp

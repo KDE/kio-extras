@@ -12,6 +12,5 @@ bin_PROGRAMS = kio_gopher
 kio_gopher_SOURCES = gopher.cc
 noinst_HEADERS = gopher.h
 
-kioconfig_DATA = gopher.desktop
-kioconfigdir = $(kde_confdir)/protocols
-
+kdelnk_DATA = gopher.protocol
+kdelnkdir = $(kde_servicesdir)

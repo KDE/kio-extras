@@ -12,8 +12,8 @@ kio_man_la_LIBADD = -lkio
 kio_man_la_LDFLAGS = -module -avoid-version -no-undefined
 noinst_HEADERS = kio_man.h
 
-kioconfig_DATA = man.desktop
-kioconfigdir = $(kde_confdir)/protocols
+kdelnk_DATA = man.protocol
+kdelnkdir = $(kde_servicesdir)
 
 METASOURCES = AUTO
 

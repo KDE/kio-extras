@@ -11,6 +11,5 @@ bin_PROGRAMS = kio_gzip
 kio_gzip_SOURCES = gzip.cc
 noinst_HEADERS = gzip.h
 
-kioconfig_DATA = gzip.desktop bzip.desktop bzip2.desktop
-kioconfigdir = $(kde_confdir)/protocols
-
+kdelnk_DATA = gzip.protocol bzip.protocol bzip2.protocol
+kdelnkdir = $(kde_servicesdir)

@@ -5,10 +5,10 @@ INCLUDES= -I$(srcdir)/../.. -I$(srcdir)/.. $(SSL_INCLUDES) $(all_includes)
 
 if SPOP3
 DO_SPOP3 = kio_spop3.la
-DO_SPOP3_DESKTOP = spop3.desktop
+DO_SPOP3_PROTOCOL = spop3.protocol
 else
 DO_SPOP3 = 
-DO_SPOP3_DESKTOP = 
+DO_SPOP3_PROTOCOL = 
 endif
 
 lib_LTLIBRARIES = kio_pop3.la $(DO_SPOP3)
@@ -23,8 +23,8 @@ kio_spop3_la_LDFLAGS = $(all_libraries) $(SSL_LDFLAGS) -module -avoid-version
 
 noinst_HEADERS = pop3.h
 
-kioconfig_DATA = pop3.desktop $(DO_SPOP3_DESKTOP)
-kioconfigdir = $(kde_confdir)/protocols
+kdelnk_DATA = pop3.protocol $(DO_SPOP3_PROTOCOL)
+kdelnkdir = $(kde_servicesdir)
 
 check_PROGRAMS = linktest
 linktest_SOURCES = $(kio_pop3_la_SOURCES) linktest.cpp

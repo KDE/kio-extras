@@ -12,8 +12,8 @@ kio_nfs_la_LIBADD = -lkio
 kio_nfs_la_LDFLAGS = -module -avoid-version -no-undefined
 noinst_HEADERS = nfs_prot.h mount.h
 
-kioconfig_DATA = nfs.desktop
-kioconfigdir = $(kde_confdir)/protocols
+kdelnk_DATA = nfs.protocol
+kdelnkdir = $(kde_servicesdir)
 
 METASOURCES = AUTO
 
