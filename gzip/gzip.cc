@@ -17,7 +17,7 @@
 
 void sig_handler( int signum );
 
-int main( int argc, char **argv )
+int main( int , char ** )
 {
   signal (SIGCHLD, sig_handler);
 
@@ -160,11 +160,11 @@ void GZipProtocol::slotCopy( const char *_source, const char *_dest )
   
   // Find the new left most URL and a slave that can handle
   // this protocol
-  QString source_exec = KProtocolManager::self().executable( source_lst.begin()->protocol() );
+  QString source_exec = KProtocolManager::self().executable( (*source_lst.begin()).protocol() );
 
   // Did we find someone for this protocol ?
   if ( source_exec.isEmpty() ) {
-    error( ERR_UNSUPPORTED_PROTOCOL, source_lst.begin()->protocol() );
+    error( ERR_UNSUPPORTED_PROTOCOL, (*source_lst.begin()).protocol() );
     m_cmd = CMD_NONE;
     return;
   }
@@ -223,7 +223,7 @@ void GZipProtocol::slotGet( const char *_url )
     return;
   }
 
-  if (lst.begin()->protocol() != "gzip") {
+  if ((*lst.begin()).protocol() != "gzip") {
     error( ERR_INTERNAL, "kio_gzip got a URL which does not contain the gzip protocol");
     m_cmd = CMD_NONE;
     return;
@@ -237,7 +237,7 @@ void GZipProtocol::slotGet( const char *_url )
   }
   
   QString zip_cmd;
-  QString path = lst.begin()->path();
+  QString path = (*lst.begin()).path();
   if ( path == "/compress" )
     zip_cmd = "/usr/bin/gzip";
   else if ( path == "/decompress" )
@@ -264,7 +264,7 @@ void GZipProtocol::slotGet( const char *_url )
   // Remove gzip protocol
   lst.remove( lst.begin() );
 
-  QString exec = KProtocolManager::self().executable( lst.begin()->protocol() );
+  QString exec = KProtocolManager::self().executable( (*lst.begin()).protocol() );
 
   if ( exec.isEmpty() ) {
     error( ERR_UNSUPPORTED_PROTOCOL, lst.begin()->protocol() );
@@ -313,7 +313,7 @@ void GZipProtocol::slotGet( const char *_url )
 }
 
 
-void GZipProtocol::slotPut( const char *_url, int, bool _overwrite, bool _resume, unsigned int )
+void GZipProtocol::slotPut( const char *_url, int, bool _overwrite, bool /*_resume*/, unsigned int )
 {
   assert( m_cmd == CMD_NONE );
   
@@ -337,7 +337,7 @@ void GZipProtocol::slotPut( const char *_url, int, bool _overwrite, bool _resume
   }
 
   // Is the left most URL really the gzip protocol ?
-  if (lst.begin()->protocol() != "gzip") {
+  if ((*lst.begin()).protocol() != "gzip") {
     error( ERR_INTERNAL, "kio_gzip got a URL which does not contain the gzip protocol");
     finished();
     m_cmd = CMD_NONE;
@@ -346,7 +346,7 @@ void GZipProtocol::slotPut( const char *_url, int, bool _overwrite, bool _resume
     
   // Find out what to do ( compres, decompress )
   QString zip_cmd;
-  QString path = lst.begin()->path();
+  QString path = (*lst.begin()).path();
   if ( path == "/compress" )
     zip_cmd = "/usr/bin/gzip";
   else if ( path == "/decompress" )
@@ -373,7 +373,7 @@ void GZipProtocol::slotPut( const char *_url, int, bool _overwrite, bool _resume
 
   // Did we find someone to handle this protocol ?
   if ( exec.isEmpty() ) {
-    error( ERR_UNSUPPORTED_PROTOCOL, lst.begin()->protocol() );
+    error( ERR_UNSUPPORTED_PROTOCOL, (*lst.begin()).protocol() );
     finished();
     m_cmd = CMD_NONE;
     return;

@@ -34,7 +34,7 @@ extern "C" {
   void sigalrm_handler(int);
 };
 
-int main(int argc, char **argv)
+int main(int , char **)
 {
   signal(SIGCHLD, sigchld_handler);
   signal(SIGSEGV, sigsegv_handler);
@@ -45,7 +45,7 @@ int main(int argc, char **argv)
   pop3.dispatchLoop();
 }
 
-void sigsegv_handler(int signo)
+void sigsegv_handler(int )
 {
   // Debug and printf should be avoided because they might
   // call malloc.. and get in a nice recursive malloc loop
@@ -404,12 +404,12 @@ LIST
   }
 }
 
-void POP3Protocol::slotPut(const char *_url, int _mode, bool _overwrite,
-			  bool _resume, unsigned int)
+void POP3Protocol::slotPut(const char *, int, bool ,
+			  bool, unsigned int)
 {
 }
 
-void POP3Protocol::slotCopy(const char *_source, const char *_dest)
+void POP3Protocol::slotCopy(const char *, const char *)
 {
   fprintf(stderr, "POP3Protocol::slotCopy\n");
   fflush(stderr);
@@ -439,7 +439,7 @@ void POP3Protocol::slotDataEnd()
     }
 }
 
-void POP3Protocol::jobData(void *_p, int _len)
+void POP3Protocol::jobData(void *, int )
 {
   switch (m_cmd) {
   case CMD_GET:

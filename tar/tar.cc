@@ -19,7 +19,7 @@ extern "C" {
   void sigalrm_handler(int);
 };
 
-int main(int argc, char **argv)
+int main(int , char **)
 {
   signal(SIGCHLD, sigchld_handler);
   signal(SIGSEGV, sigsegv_handler);
@@ -30,7 +30,7 @@ int main(int argc, char **argv)
   tar.dispatchLoop();
 }
 
-void sigsegv_handler(int signo)
+void sigsegv_handler(int )
 {
   // Debug and printf should be avoided because they might
   // call malloc.. and get in a nice recursive malloc loop
@@ -74,7 +74,7 @@ void TARProtocol::slotGet(const char *_url)
     return;
   }
 
-  if (lst.begin()->protocol() != "tar")  {
+  if ((*lst.begin()).protocol() != "tar")  {
     error( ERR_INTERNAL, "kio_tar got a URL which does not contain the tar protocol");
     m_cmd = CMD_NONE;
     return;
@@ -86,7 +86,7 @@ void TARProtocol::slotGet(const char *_url)
     return;
   }
 
-  QString path=lst.begin()->path();
+  QString path=(*lst.begin()).path();
 
   // Remove tar protocol
   lst.remove(lst.begin());
@@ -94,7 +94,7 @@ void TARProtocol::slotGet(const char *_url)
   QString exec = KProtocolManager::self().executable(lst.begin()->protocol());
 
   if (exec.isEmpty()) {
-    error(ERR_UNSUPPORTED_PROTOCOL, lst.begin()->protocol());
+    error(ERR_UNSUPPORTED_PROTOCOL, (*lst.begin()).protocol());
     m_cmd = CMD_NONE;
     return;
   }
@@ -148,7 +148,7 @@ void TARProtocol::slotPut(const char *_url, int _mode, bool _overwrite,
 {
 }
 
-void TARProtocol::slotCopy(const char *_source, const char *_dest)
+void TARProtocol::slotCopy(const char *, const char *)
 {
   fprintf(stderr, "TARProtocol::slotCopy\n");
   fflush(stderr);

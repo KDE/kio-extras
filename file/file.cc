@@ -391,7 +391,7 @@ void FileProtocol::doCopy( list<string>& _source, const char *_dest, bool _renam
       QStringList::Iterator sit = skip_list.begin();
       for( ; sit != skip_list.end() && !skip; sit++ )
 	// Is d a subdirectory of *sit ?
-	if ( strncmp( *sit, d, sit->length() ) == 0 )
+	if ( strncmp( *sit, d, (*sit).length() ) == 0 )
 	  skip = true;
       
       if ( skip )
@@ -401,7 +401,7 @@ void FileProtocol::doCopy( list<string>& _source, const char *_dest, bool _renam
       bool overwrite = false;
       QStringList::Iterator oit = overwrite_list.begin();
       for( ; oit != overwrite_list.end() && !overwrite; oit++ )
-	if ( strncmp( *oit, d, oit->length() ) == 0 )
+	if ( strncmp( *oit, d, (*oit).length() ) == 0 )
 	  overwrite = true;
       
       if ( overwrite )
@@ -552,7 +552,7 @@ void FileProtocol::doCopy( list<string>& _source, const char *_dest, bool _renam
       QStringList::Iterator sit = skip_list.begin();
       for( ; sit != skip_list.end() && !skip; sit++ )
 	// Is 'd' a file in directory '*sit' or one of its subdirectories ?
-	if ( strncmp( *sit, d, sit->length() ) == 0 )
+	if ( strncmp( *sit, d, (*sit).length() ) == 0 )
 	  skip = true;
     
       if ( skip )
@@ -566,7 +566,7 @@ void FileProtocol::doCopy( list<string>& _source, const char *_dest, bool _renam
       // Is this URL on the overwrite list ?
       QStringList::Iterator oit = overwrite_list.begin();
       for( ; oit != overwrite_list.end() && !overwrite; oit++ )
-	if ( strncmp( *oit, d, oit->length() ) == 0 )
+	if ( strncmp( *oit, d, (*oit).length() ) == 0 )
 	  overwrite = true;
       
       job.put( d, fit->m_mode, overwrite_all || overwrite,
