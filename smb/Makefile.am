@@ -8,8 +8,8 @@ LDADD	=	$(LIB_KIO) $(LIB_SMB)
 
 bin_PROGRAMS = kio_smb
 
-kio_smb_SOURCES = smb.cc
-noinst_HEADERS = smb.h
+kio_smb_SOURCES = kio_smb.cc
+noinst_HEADERS = kio_smb.h
 
 kioconfig_DATA = smb.kdelnk
 kioconfigdir = $(kde_confdir)/protocols

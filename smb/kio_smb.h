@@ -6,7 +6,7 @@
 #include <kio_interface.h>
 #include <kio_base.h>
 
-#include <SMBIO.h>
+#include <smb.h>
 
 #include <string.h>
 #include <list>

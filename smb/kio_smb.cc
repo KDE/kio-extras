@@ -25,7 +25,7 @@
 #include <kprotocolmanager.h>
 #include <qvaluelist.h>
 
-#include "smb.h"
+#include "kio_smb.h"
 #include <sys/stat.h>
 
 #include <iostream.h>
