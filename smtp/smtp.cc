@@ -53,6 +53,7 @@
 #include <qstring.h>
 #include <qstringlist.h>
 #include <qcstring.h>
+#include <qglobal.h>
 
 #include <kprotocolmanager.h>
 #include <ksock.h>
@@ -65,13 +66,15 @@
 
 #include "emailsettings.h"
 #include "base64.h"
+#include "digest_auth.h"
 #include "smtp.h"
 
 using namespace KIO;
 
 extern "C" { int kdemain (int argc, char **argv); }
-void GetAddresses(const QString &str, const QString &delim, QStringList &list);
-int GetVal(char *buf);
+
+void	GetAddresses(const QString &str, const QString &delim, QStringList &list);
+int	GetVal(char *buf);
 
 int kdemain( int argc, char **argv )
 {
@@ -108,6 +111,7 @@ SMTPProtocol::SMTPProtocol(const QCString &pool, const QCString &app)
 	m_tTimeout.tv_usec=0;
 	//m_pSSL=0;
 	m_eAuthSupport=AUTH_None;
+	auth_digestmd5 = new DigestAuth;
 }
 
 
@@ -147,7 +151,7 @@ void SMTPProtocol::put( const KURL& url, int /*permissions*/, bool /*overwrite*/
                         subject=query.mid(curpos, query.length());
 	}
 
-	if (!smtp_open())
+	if (!smtp_open(url))
 	        error(ERR_SERVICE_NOT_AVAILABLE, url.path());
 
 	KEMailSettings *mset = new KEMailSettings;
@@ -237,16 +241,17 @@ void SMTPProtocol::setHost( const QString& host, int port, const QString &user, 
 int SMTPProtocol::getResponse(char *r_buf, unsigned int r_len)
 {
 	char *buf=0;
-	unsigned int recv_len=0;
+	unsigned int recv_len=0, len;
 	fd_set FDs;
 
 	// Give the buffer the appropiate size
 	// a buffer of less than 5 bytes will *not* work
-	if (r_len)
+	if (r_len) {
 		buf=static_cast<char *>(malloc(r_len));
-	else {
+		len=r_len;
+	} else {
 		buf=static_cast<char *>(malloc(512));
-		r_len=512;
+		len=512;
 	}
 
 	// And keep waiting if it timed out
@@ -268,9 +273,9 @@ int SMTPProtocol::getResponse(char *r_buf, unsigned int r_len)
 	}
 
 	// Clear out the buffer
-	memset(buf, 0, r_len);
+	memset(buf, 0, len);
 	// And grab the data
-	ReadLine(buf, r_len-1);
+	ReadLine(buf, len-1);
 
 	// This is really a funky crash waiting to happen if something isn't
 	// null terminated.
@@ -280,22 +285,25 @@ int SMTPProtocol::getResponse(char *r_buf, unsigned int r_len)
 		error(ERR_UNKNOWN, "-");
 	char *origbuf=buf;
 	if (buf[3] == '-') { // Multiline response
-		while ( (buf[3] == '-') && (r_len-recv_len > 3) ) { // Three is quite arbitrary
+		while ( (buf[3] == '-') && (len-recv_len > 3) ) { // Three is quite arbitrary
 			buf+=recv_len;
-			r_len-=(recv_len+1);
-			recv_len=ReadLine(buf, r_len-1);
+			len-=(recv_len+1);
+			recv_len=ReadLine(buf, len-1);
 			if (recv_len == 0)
 				buf[0]=buf[1]=buf[2]=buf[3]=' ';
 		}
 		buf=origbuf;
+		memcpy(r_buf, buf, strlen(buf));
+		r_buf[r_len-1]=0;
 		return GetVal(buf);
 	} else {
 		// Really crude, whee
-		return GetVal(buf);
-		if (r_len != 512) {
+		//return GetVal(buf);
+		if (r_len) {
 			r_len=recv_len-4;
-			memcpy(r_buf, buf, r_len);
+			memcpy(r_buf, buf+4, r_len);
 		}
+		return GetVal(buf);
 	}
 
 }
@@ -316,7 +324,7 @@ bool SMTPProtocol::command(const char *cmd, char *recv_buf, unsigned int len) {
 }
 
 
-bool SMTPProtocol::smtp_open()
+bool SMTPProtocol::smtp_open(const KURL &url)
 {
 	if ( (m_iOldPort == GetPort(m_iPort)) && (m_sOldServer == m_sServer) ) {
 		return true;
@@ -331,10 +339,9 @@ bool SMTPProtocol::smtp_open()
 		return false;
 	}
 
-	QBuffer ehlobuf;
-	ehlobuf.setBuffer(QByteArray(2048));
-	memset(ehlobuf.buffer().data(), 0, 2048);
-	if (!command("EHLO kio_smtp", ehlobuf.buffer().data(), 2048)) { // Yes, I *know* that this is not
+	QBuffer ehlobuf(QByteArray(5120));
+	memset(ehlobuf.buffer().data(), 0, 5120);
+	if (!command("EHLO kio_smtp", ehlobuf.buffer().data(), 5119)) { // Yes, I *know* that this is not
 							// the way it should be done, but
 							// for now there's no real need
 							// to complicate things by
@@ -346,8 +353,10 @@ bool SMTPProtocol::smtp_open()
 	}
 	// We should parse the ESMTP extensions here... pipelining would be really cool
 	char ehlo_line[2048];
-	while ( ehlobuf.readLine(ehlo_line, 2048) > -1)
-		ParseFeatures(const_cast<const char *>(ehlo_line));
+	if (ehlobuf.open(IO_ReadWrite)) {
+		while ( ehlobuf.readLine(ehlo_line, 2048) > 0)
+			ParseFeatures(const_cast<const char *>(ehlo_line));
+	}
 
 	if (haveTLS) {
 		if (command("STARTTLS")) {
@@ -360,17 +369,7 @@ bool SMTPProtocol::smtp_open()
 	// Now we try and login
 	if (!m_sUser.isNull()) {
 		if (!m_sPass.isNull()) {
-			// I don't *think* that the authentication method I'm using here works without a pasword.. so we'll trap it like this for now
-			// Try and find the desired bit here.. using a little of the kcmemail hackery would work.. but not yet
-			// For now assume "plain" authentication
-			char *writestr=base64_encode_auth_line(m_sUser.latin1(), m_sPass.latin1());
-			char *final=static_cast<char *>(malloc(strlen(writestr)+11));
-			sprintf(final, "AUTH PLAIN %s", writestr);
-			if (!command(final)) {
-				// Mention that the authentication failed.
-			}
-			free(final);
-			free(writestr);
+			Authenticate(url);
 		}
 	}
 
@@ -382,20 +381,47 @@ bool SMTPProtocol::smtp_open()
 	return true;
 }
 
+bool SMTPProtocol::Authenticate(const KURL &url)
+{
+	// true == success
+	if (m_eAuthSupport & AUTH_DIGEST) {
+		char *challenge=static_cast<char *>(malloc(2049));
+		QString resp;
+		if (command("AUTH DIGEST-MD5", challenge, 2049)) {
+			auth_digestmd5->UseChallenge(url, challenge, true);
+			free(challenge);
+			auth_digestmd5->GenerateResponse(resp);
+			if (command(resp.latin1())) {
+				if (command(""))
+					return true;
+			}
+		} else
+			free(challenge);
+	}
+
+	if (m_eAuthSupport & AUTH_Plain) {
+		QString aline = "AUTH PLAIN %1\r\n";
+		aline.arg(create_auth_plain(m_sUser.latin1(), m_sPass.latin1()));
+		return command(aline.latin1());
+	}
+	return false;
+}
+
 
 void SMTPProtocol::ParseFeatures(const char *_buf)
 {
 	QString buf(_buf);
 
+
 	// We want it to be between 250 and 259 inclusive, and it needs to be "nnn-blah" or "nnn blah"
 	// So sez the SMTP spec..
-	if ( (buf.left(3) != "25") || (!isdigit((buf.latin1())[2])) || (!(buf.at(3) == '-') || !(buf.at(3) == ' ')) )
+	if ( (buf.left(2) != "25") || (!isdigit((buf.latin1())[2])) || (!(buf.at(3) == '-') && !(buf.at(3) == ' ')) )
 		return; // We got an invalid line..
 	buf=buf.mid(4, buf.length()); // Clop off the beginning, no need for it really
 
 	if (buf.left(4) == "AUTH") { // Look for auth stuff
 		if (buf.find("DIGEST-MD5") != -1)
-			m_eAuthSupport = (SMTPProtocol::AUTH)(m_eAuthSupport | AUTH_DIGEST);
+ 			m_eAuthSupport = (SMTPProtocol::AUTH)(m_eAuthSupport | AUTH_DIGEST);
 		if (buf.find("CRAM-MD5") != -1)
 			m_eAuthSupport = (SMTPProtocol::AUTH)(m_eAuthSupport | AUTH_CRAM);
 		if (buf.find("PLAIN") != -1)

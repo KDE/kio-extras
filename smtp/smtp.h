@@ -34,6 +34,8 @@
 
 #include <kconfig.h>
 
+class DigestAuth;
+
 class SMTPProtocol
 	: public KIO::TCPSlaveBase {
 public:
@@ -53,10 +55,11 @@ protected:
 		AUTH_CRAM	=0x006
 	};
 
-	bool smtp_open();
+	bool smtp_open(const KURL &u);
 	void smtp_close();
 	bool command(const char *buf, char *r_buf = NULL, unsigned int r_len = 0);
 	int getResponse(char *r_buf = NULL, unsigned int r_len = 0);
+	bool Authenticate(const KURL &u);
 	void HandleSMTPWriteError(const KURL&url);
 	void ParseFeatures (const char *buf);
 
@@ -68,6 +71,7 @@ protected:
 	QString m_sUser, m_sOldUser;
 	QString m_sPass, m_sOldPass;
 	QString m_sError;
+	DigestAuth *auth_digestmd5;
 };
 
 #endif
