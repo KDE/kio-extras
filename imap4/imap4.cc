@@ -358,11 +358,12 @@ IMAP4Protocol::listDir (const KURL & _url)
       {
         QString query = KURL::decode_string (_url.query ());
         query = query.right (query.length () - 1);
-        if (!query.isEmpty ())
+        if (!query.isEmpty())
         {
           imapCommand *cmd = NULL;
 
-          if (assureBox (myBox, true))
+          if (assureBox (myBox, true) &&
+            (!selectInfo.countAvailable() || selectInfo.count()))
           {
             cmd = doCommand (imapCommand::clientSearch (query));
             completeQueue.removeRef (cmd);
