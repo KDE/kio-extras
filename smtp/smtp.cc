@@ -23,6 +23,7 @@
 #include <stdio.h>
 #include <unistd.h>
 
+#include <qbuffer.h>
 #include <qstring.h>
 #include <qstringlist.h>
 #include <qcstring.h>
@@ -36,6 +37,8 @@
 #include <klocale.h>
 #include <iostream.h>
 
+#include "emailsettings.h"
+#include "base64.h"
 #include "smtp.h"
 
 using namespace KIO;
@@ -56,26 +59,29 @@ int kdemain( int argc, char **argv )
 	SMTPProtocol *slave;
 
 	// Are we looking to use SSL?
-	if (strcasecmp(argv[1], "smtps") == 0)
-		slave = new SMTPProtocol(argv[2], argv[3], true);
-	else
-		slave = new SMTPProtocol(argv[2], argv[3], false);
+	// Well this is now a user-configurable option, since
+	// STARTTLS is the preferred method of encryption
+	// and TLS has obsoleted SSL..
+	slave = new SMTPProtocol(argv[2], argv[3]);
 	slave->dispatchLoop();
 	delete slave;
 	return 0;
 }
 
 
-SMTPProtocol::SMTPProtocol(const QCString &pool, const QCString &app, bool SSL) : TCPSlaveBase((SSL ? 465 : 25), (SSL ? "smtps" : "smtp"), pool, app)
+SMTPProtocol::SMTPProtocol(const QCString &pool, const QCString &app)
+	: TCPSlaveBase(25, "smtp", pool, app)
 {
 	kdDebug() << "SMTPProtocol::SMTPProtocol" << endl;
-	m_bIsSSL=SSL;
 	opened=false;
+	haveTLS=false;
 	m_iSock=0;
 	m_iOldPort = 0;
 	m_sOldServer="";
 	m_tTimeout.tv_sec=10;
 	m_tTimeout.tv_usec=0;
+	//m_pSSL=0;
+	m_eAuthSupport=AUTH_None;
 }
 
 
@@ -118,7 +124,17 @@ void SMTPProtocol::put( const KURL& url, int /*permissions*/, bool /*overwrite*/
 	if (!smtp_open())
 	        error(ERR_SERVICE_NOT_AVAILABLE, url.path());
 
-	if (! command("MAIL FROM: someuser@is.using.a.pre.release.kde.ioslave.compliments.of.kde.org")) {
+	KEMailSettings *mset = new KEMailSettings;
+	if (mset->defaultProfileName() != QString::null) {
+		mset->setProfile(mset->defaultProfileName());
+	}
+	QString from("MAIL FROM: ");
+	if (mset->getSetting(KEMailSettings::EmailAddress) != QString::null)
+		from+=mset->getSetting(KEMailSettings::EmailAddress);
+	else
+		from+="someuser@is.using.a.pre.release.kde.ioslave.compliments.of.kde.org";
+
+	if (! command(from.latin1())) {
 		HandleSMTPWriteError(url);
 		return;
 	}
@@ -145,13 +161,25 @@ void SMTPProtocol::put( const KURL& url, int /*permissions*/, bool /*overwrite*/
 	for ( QStringList::Iterator it = recip.begin(); it != recip.end(); ++it ) {
 		subject=formatted_recip.arg(*it);
 		Write(subject.latin1(), subject.length());
+		Write("\r\n", 2);
 	}
 
 	formatted_recip="CC: %1";
 	for ( QStringList::Iterator it = cc.begin(); it != cc.end(); ++it ) {
 		subject=formatted_recip.arg(*it);
 		Write(subject.latin1(), subject.length());
+		Write("\r\n", 2);
 	}
+
+	if (mset->getSetting(KEMailSettings::RealName) != QString::null) {
+		from="From: ";
+		from+=mset->getSetting(KEMailSettings::RealName);
+		from+=" <";
+		from+=mset->getSetting(KEMailSettings::EmailAddress);
+		from+=">\r\n";
+		Write(from.latin1(), from.length());
+	}
+	delete mset;
 
 	int result;
 	// Loop until we got 0 (end of data)
@@ -172,10 +200,12 @@ void SMTPProtocol::put( const KURL& url, int /*permissions*/, bool /*overwrite*/
 	finished();
 }
 
-void SMTPProtocol::setHost( const QString& host, int port, const QString& /*user*/, const QString& /*pass*/)
+void SMTPProtocol::setHost( const QString& host, int port, const QString &user, const QString &pass)
 {
 	m_sServer = host;
 	m_iPort = port;
+	m_sUser = user;
+	m_sPass = pass;
 }
 
 int SMTPProtocol::getResponse(char *r_buf, unsigned int r_len)
@@ -187,9 +217,9 @@ int SMTPProtocol::getResponse(char *r_buf, unsigned int r_len)
 	// Give the buffer the appropiate size
 	// a buffer of less than 5 bytes will *not* work
 	if (r_len)
-		buf=(char *)malloc(r_len);
+		buf=static_cast<char *>(malloc(r_len));
 	else {
-		buf=(char *)malloc(512);
+		buf=static_cast<char *>(malloc(512));
 		r_len=512;
 	}
 
@@ -275,28 +305,80 @@ bool SMTPProtocol::smtp_open()
 		return false;
 	}
 
-	char *ehlobuf=(char *)malloc(2048);
-	memset(ehlobuf, 0, 2048);
-	if (!command("EHLO kio_smtp", ehlobuf, 2048)) { // Yes, I *know* that this is not
+	QBuffer ehlobuf;
+	ehlobuf.setBuffer(QByteArray(2048));
+	memset(ehlobuf.buffer().data(), 0, 2048);
+	if (!command("EHLO kio_smtp", ehlobuf.buffer().data(), 2048)) { // Yes, I *know* that this is not
 							// the way it should be done, but
 							// for now there's no real need
 							// to complicate things by
 							// determining our hostname
-		free(ehlobuf);	// We should parse the ESMTP extensions here... pipelining would be really cool
 		if (!command("HELO kio_smtp")) { // Let's just check to see if it speaks plain ol' SMTP
 			smtp_close();
 			return false;
 		}
 	}
-	free(ehlobuf);
+	// We should parse the ESMTP extensions here... pipelining would be really cool
+	char ehlo_line[2048];
+	while ( ehlobuf.readLine(ehlo_line, 2048) > -1)
+		ParseFeatures(const_cast<const char *>(ehlo_line));
 
+	if (haveTLS) {
+		if (command("STARTTLS")) {
+			//m_pSSL=new KSSL(true);
+			//m_pSSL->connect(m_iSock);
+		} else
+			haveTLS=false;
+	}
+
+	// Now we try and login
+	if (!m_sUser.isNull()) {
+		if (!m_sPass.isNull()) {
+			// I don't *think* that the authentication method I'm using here works without a pasword.. so we'll trap it like this for now
+			// Try and find the desired bit here.. using a little of the kcmemail hackery would work.. but not yet
+			// For now assume "plain" authentication
+			char *writestr=base64_encode_auth_line(m_sUser.latin1(), m_sPass.latin1());
+			char *final=static_cast<char *>(malloc(strlen(writestr)+11));
+			sprintf(final, "AUTH PLAIN %s", writestr);
+			if (!command(final)) {
+				// Mention that the authentication failed.
+			}
+			free(final);
+			free(writestr);
+		}
+	}
 
 	m_iOldPort = m_iPort;
 	m_sOldServer = m_sServer;
+	m_sOldUser = m_sUser;
+	m_sOldPass = m_sPass;
 
 	return true;
 }
 
+
+void SMTPProtocol::ParseFeatures(const char *_buf)
+{
+	QString buf(_buf);
+
+	// We want it to be between 250 and 259 inclusive, and it needs to be "nnn-blah" or "nnn blah"
+	// So sez the SMTP spec..
+	if ( (buf.left(3) != "25") || (!isdigit((buf.latin1())[2])) || (!(buf.at(3) == '-') || !(buf.at(3) == ' ')) )
+		return; // We got an invalid line..
+	buf=buf.mid(4, buf.length()); // Clop off the beginning, no need for it really
+
+	if (buf.left(4) == "AUTH") { // Look for auth stuff
+		if (buf.find("DIGEST-MD5") != -1)
+			m_eAuthSupport |= AUTH_DIGEST;
+		if (buf.find("CRAM-MD5") != -1)
+			m_eAuthSupport |= AUTH_CRAM;
+		if (buf.find("PLAIN") != -1)
+			m_eAuthSupport |= AUTH_Plain;
+	} else if (buf.left(8) == "STARTTLS") {
+		haveTLS=true;
+	}
+
+}
 
 void SMTPProtocol::smtp_close()
 {
@@ -317,9 +399,9 @@ void SMTPProtocol::stat( const KURL & url )
 int GetVal(char *buf)
 {
 		int val;
-		val=100*(((int)buf[0])-48);
-		val+=(10*((((int)buf[1])-48)));
-		val+=((((int)buf[2])-48));
+		val=(100*(static_cast<int>(buf[0])-48));
+		val+=(10*(static_cast<int>(buf[1])-48));
+		val+=static_cast<int>(buf[2])-48;
 		return val;
 }
 
