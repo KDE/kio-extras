@@ -17,6 +17,7 @@
 */
 
 #include "halbackend.h"
+#include "linuxcdpolling.h"
 
 #include <klocale.h>
 #include <kurl.h>
@@ -310,7 +311,20 @@ void HALBackend::setVolumeProperties(Medium* medium)
 
 		medium->setIconName(QString::null);
 		
-		/** @todo check if the disc id a vcd or a video dvd (only for mounted volumes) */
+		/* check if the disc id a vcd or a video dvd */
+		DiscType type = LinuxCDPolling::identifyDiscType(hal_volume_get_device_file(halVolume));
+		switch (type)
+		{
+		  case DiscType::VCD:
+		    mimeType = "media/vcd";
+		    break;
+		  case DiscType::SVCD:
+		    mimeType = "media/svcd";
+		    break;
+		  case DiscType::DVD:
+		    mimeType = "media/dvdvideo";
+		    break;
+		}
 	}
 	else
 	{
