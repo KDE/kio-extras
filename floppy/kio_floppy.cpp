@@ -201,7 +201,7 @@ bool FloppyProtocol::stopAfterError(const KURL& url, const QString& drive)
    }
    else if ((line.contains("Disk full")) || (line.contains("No free cluster")))
    {
-      error( KIO::ERR_COULD_NOT_WRITE, url.prettyURL()+i18n("\nThe disk in drive %1 is probably full.").arg(drive));
+      error( KIO::ERR_COULD_NOT_WRITE, i18n("%1\nThe disk in drive %2 is probably full.").arg(url.prettyURL(),drive));
    }
    //file not found
    else if (line.contains("not found"))
@@ -211,28 +211,28 @@ bool FloppyProtocol::stopAfterError(const KURL& url, const QString& drive)
    //no disk
    else if (line.contains("not configured"))
    {
-      error( KIO::ERR_COULD_NOT_STAT, url.prettyURL()+i18n("\nThere is probably no disk in the drive %1").arg(drive));
+      error( KIO::ERR_COULD_NOT_STAT, i18n("%1\nThere is probably no disk in the drive %2").arg(url.prettyURL(),drive));
    }
    else if (line.contains("No such device"))
    {
-      error( KIO::ERR_COULD_NOT_STAT, url.prettyURL()+i18n("\nThere is probably no disk in the drive %1 or you do not have enough permissions to access the drive.").arg(drive));
+      error( KIO::ERR_COULD_NOT_STAT, i18n("%1\nThere is probably no disk in the drive %2 or you do not have enough permissions to access the drive.").arg(url.prettyURL(),drive));
    }
    else if (line.contains("not supported"))
    {
-      error( KIO::ERR_COULD_NOT_STAT, url.prettyURL()+i18n("\nThe drive %1 is not supported.").arg(drive));
+      error( KIO::ERR_COULD_NOT_STAT, i18n("%1\nThe drive %2 is not supported.").arg(url.prettyURL(),drive));
    }
    //not supported or no such drive
    else if (line.contains("Permission denied"))
    {
-      error( KIO::ERR_COULD_NOT_STAT, url.prettyURL()+i18n("\nMake sure the floppy in drive %1 is a DOS formatted floppy disk \nand that the permissions of the device file (e.g. /dev/fd0) are set correctly (e.g. rwxrwxrwx).").arg(drive));
+      error( KIO::ERR_COULD_NOT_STAT, i18n("%1\nMake sure the floppy in drive %2 is a DOS formatted floppy disk \nand that the permissions of the device file (e.g. /dev/fd0) are set correctly (e.g. rwxrwxrwx).").arg(url.prettyURL(),drive));
    }
    else if (line.contains("non DOS media"))
    {
-      error( KIO::ERR_COULD_NOT_STAT, url.prettyURL()+i18n("\nThe disk in drive %1 is probably not a DOS formatted floppy disk.").arg(drive));
+      error( KIO::ERR_COULD_NOT_STAT, i18n("%1\nThe disk in drive %2 is probably not a DOS formatted floppy disk.").arg(url.prettyURL(),drive));
    }
    else if (line.contains("Read-only"))
    {
-      error( KIO::ERR_WRITE_ACCESS_DENIED, url.prettyURL()+i18n("\nThe disk in drive %1 is probably write-protected.").arg(drive));
+      error( KIO::ERR_WRITE_ACCESS_DENIED, i18n("%1\nThe disk in drive %2 is probably write-protected.").arg(url.prettyURL(),drive));
    }
    else if ((outputString.contains("already exists")) || (outputString.contains("Skipping ")))
    {
@@ -250,7 +250,7 @@ void FloppyProtocol::listDir( const KURL& _url)
 {
    kdDebug(7101)<<"Floppy::listDir() "<<_url.path()<<endl;
    KURL url(_url);
-   QString path( QFile::encodeName(url.path()));
+   QString path(url.path());
 
    if ((path.isEmpty()) || (path=="/"))
    {
@@ -276,7 +276,7 @@ void FloppyProtocol::listDir( const KURL& _url)
    {
       delete m_mtool;
       m_mtool=0;
-      error(ERR_CANNOT_LAUNCH_PROCESS,"mdir"+i18n("\nEnsure that the mtools package is installed correctly on your system."));
+      error(ERR_CANNOT_LAUNCH_PROCESS,i18n("mdir\nEnsure that the mtools package is installed correctly on your system."));
       return;
    }
 
@@ -481,7 +481,7 @@ StatInfo FloppyProtocol::_stat(const KURL& url)
 {
    StatInfo info;
 
-   QString path( QFile::encodeName(url.path()));
+   QString path(url.path());
    QString drive;
    QString floppyPath;
    getDriveAndPath(path,drive,floppyPath);
@@ -513,7 +513,7 @@ StatInfo FloppyProtocol::_stat(const KURL& url)
    {
       delete m_mtool;
       m_mtool=0;
-      error(ERR_CANNOT_LAUNCH_PROCESS,"mdir"+i18n("\nEnsure that the mtools package is installed correctly on your system."));
+      error(ERR_CANNOT_LAUNCH_PROCESS,i18n("%1\nEnsure that the mtools package is installed correctly on your system.").arg(i18n("mdir")));
       return info;
    }
 
@@ -560,7 +560,7 @@ StatInfo FloppyProtocol::_stat(const KURL& url)
    if (m_stdoutSize==0)
    {
       info.isValid=false;
-      error( KIO::ERR_COULD_NOT_STAT, url.prettyURL()+i18n("Reason unknown."));
+      error( KIO::ERR_COULD_NOT_STAT, i18n("%1\nReason unknown.").arg(url.prettyURL()));
       return info;
    }
 
@@ -575,17 +575,17 @@ StatInfo FloppyProtocol::_stat(const KURL& url)
          continue;
       StatInfo info=createStatInfo(line,true,url.fileName());
       if (info.isValid==false)
-         error( KIO::ERR_COULD_NOT_STAT, url.prettyURL()+i18n("Reason unknown."));
+         error( KIO::ERR_COULD_NOT_STAT, i18n("%1\nReason unknown.").arg(url.prettyURL()));
       return info;
    }
    if (info.isValid==false)
-      error( KIO::ERR_COULD_NOT_STAT, url.prettyURL()+i18n("Reason unknown."));
+      error( KIO::ERR_COULD_NOT_STAT, i18n("%1\nReason unknown.").arg(url.prettyURL()));
    return info;
 }
 
 int FloppyProtocol::freeSpace(const KURL& url)
 {
-   QString path( QFile::encodeName(url.path()));
+   QString path(url.path());
    QString drive;
    QString floppyPath;
    getDriveAndPath(path,drive,floppyPath);
@@ -604,7 +604,7 @@ int FloppyProtocol::freeSpace(const KURL& url)
    {
       delete m_mtool;
       m_mtool=0;
-      error(ERR_CANNOT_LAUNCH_PROCESS,"mdir"+i18n("\nEnsure that the mtools package is installed correctly on your system."));
+      error(ERR_CANNOT_LAUNCH_PROCESS,i18n("%1\nEnsure that the mtools package is installed correctly on your system.").arg(i18n("mdir")));
       return -1;
    }
 
@@ -649,7 +649,7 @@ int FloppyProtocol::freeSpace(const KURL& url)
 
    if (m_stdoutSize==0)
    {
-      error( KIO::ERR_COULD_NOT_STAT, url.prettyURL()+i18n("Reason unknown."));
+      error( KIO::ERR_COULD_NOT_STAT, i18n("%1\nReason unknown.").arg(url.prettyURL()));
       return -1;
    }
 
@@ -681,7 +681,7 @@ void FloppyProtocol::stat( const KURL & _url)
 {
    kdDebug(7101)<<"Floppy::stat() "<<_url.path()<<endl;
    KURL url(_url);
-   QString path( QFile::encodeName(url.path()));
+   QString path(url.path());
 
    if ((path.isEmpty()) || (path=="/"))
    {
@@ -706,7 +706,7 @@ void FloppyProtocol::stat( const KURL & _url)
 void FloppyProtocol::mkdir( const KURL& url, int)
 {
    kdDebug(7101)<<"FloppyProtocol::mkdir()"<<endl;
-   QString path( QFile::encodeName(url.path()));
+   QString path(url.path());
 
    if ((path.isEmpty()) || (path=="/"))
    {
@@ -737,7 +737,7 @@ void FloppyProtocol::mkdir( const KURL& url, int)
    {
       delete m_mtool;
       m_mtool=0;
-      error(ERR_CANNOT_LAUNCH_PROCESS,"mmd"+i18n("\nEnsure that the mtools package is installed correctly on your system."));
+      error(ERR_CANNOT_LAUNCH_PROCESS,i18n("%1\nEnsure that the mtools package is installed correctly on your system.").arg(i18n("mmd")));
       return;
    }
 
@@ -778,7 +778,7 @@ void FloppyProtocol::mkdir( const KURL& url, int)
 void FloppyProtocol::del( const KURL& url, bool isfile)
 {
    kdDebug(7101)<<"FloppyProtocol::del()"<<endl;
-   QString path( QFile::encodeName(url.path()));
+   QString path(url.path());
 
    if ((path.isEmpty()) || (path=="/"))
    {
@@ -814,7 +814,7 @@ void FloppyProtocol::del( const KURL& url, bool isfile)
    {
       delete m_mtool;
       m_mtool=0;
-      error(ERR_CANNOT_LAUNCH_PROCESS,"mrd"+i18n("\nEnsure that the mtools package is installed correctly on your system."));
+      error(ERR_CANNOT_LAUNCH_PROCESS,i18n("%1\nEnsure that the mtools package is installed correctly on your system.").arg(i18n("mrd or mdel")));
       return;
    }
 
@@ -854,8 +854,8 @@ void FloppyProtocol::del( const KURL& url, bool isfile)
 
 void FloppyProtocol::rename( const KURL &src, const KURL &dest, bool _overwrite )
 {
-   QString srcPath( QFile::encodeName(src.path()));
-   QString destPath( QFile::encodeName(dest.path()));
+   QString srcPath(src.path());
+   QString destPath(dest.path());
 
    kdDebug(7101)<<"Floppy::rename() -"<<srcPath<<"- to -"<<destPath<<"-"<<endl;
 
@@ -900,7 +900,7 @@ void FloppyProtocol::rename( const KURL &src, const KURL &dest, bool _overwrite 
    {
       delete m_mtool;
       m_mtool=0;
-      error(ERR_CANNOT_LAUNCH_PROCESS,"mren"+i18n("\nEnsure that the mtools package is installed correctly on your system."));
+      error(ERR_CANNOT_LAUNCH_PROCESS,i18n("%1\nEnsure that the mtools package is installed correctly on your system.").arg(i18n("mrd or mdel")));
       return;
    }
 
@@ -940,7 +940,7 @@ void FloppyProtocol::rename( const KURL &src, const KURL &dest, bool _overwrite 
 
 void FloppyProtocol::get( const KURL& url )
 {
-   QString path( QFile::encodeName(url.path()));
+   QString path(url.path());
    kdDebug(7101)<<"Floppy::get() -"<<path<<"-"<<endl;
 
    if ((path.isEmpty()) || (path=="/"))
@@ -980,7 +980,7 @@ void FloppyProtocol::get( const KURL& url )
    {
       delete m_mtool;
       m_mtool=0;
-      error(ERR_CANNOT_LAUNCH_PROCESS,"mcopy"+i18n("\nEnsure that the mtools package is installed correctly on your system."));
+      error(ERR_CANNOT_LAUNCH_PROCESS,i18n("%1\nEnsure that the mtools package is installed correctly on your system.").arg(i18n("mcopy")));
       return;
    }
 
@@ -1040,7 +1040,7 @@ void FloppyProtocol::get( const KURL& url )
 
 void FloppyProtocol::put( const KURL& url, int , bool overwrite, bool )
 {
-   QString path( QFile::encodeName(url.path()));
+   QString path(url.path());
    kdDebug(7101)<<"Floppy::put() -"<<path<<"-"<<endl;
 
    if ((path.isEmpty()) || (path=="/"))
@@ -1079,7 +1079,7 @@ void FloppyProtocol::put( const KURL& url, int , bool overwrite, bool )
    {
       delete m_mtool;
       m_mtool=0;
-      error(ERR_CANNOT_LAUNCH_PROCESS,"mcopy"+i18n("\nEnsure that the mtools package is installed correctly on your system."));
+      error(ERR_CANNOT_LAUNCH_PROCESS,i18n("%1\nEnsure that the mtools package is installed correctly on your system.").arg(i18n("mcopy")));
       return;
    }
 
@@ -1125,7 +1125,7 @@ void FloppyProtocol::put( const KURL& url, int , bool overwrite, bool )
             if (bytesRead>freeSpaceLeft)
             {
                result=0;
-               error( KIO::ERR_COULD_NOT_WRITE, url.prettyURL()+i18n("\nThe disk in drive %1 is probably full.").arg(drive));
+               error( KIO::ERR_COULD_NOT_WRITE, i18n("%1\nThe disk in drive %2 is probably full.").arg(url.prettyURL(),drive));
             }
             else
             {
