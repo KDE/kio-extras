@@ -1,3 +1,5 @@
+// $Id$
+
 #include "file.h"
 #include <config.h>
 
@@ -34,8 +36,8 @@ void sig_handler2( int );
 
 int main( int argc, char **argv )
 {
-  signal(SIGCHLD,sig_handler);
-  signal(SIGSEGV,sig_handler2);
+  signal(SIGCHLD, sigchld_handler);
+  signal(SIGSEGV, sigsegv_handler);
 
   debug( "kio_file : Starting");
 
@@ -48,14 +50,14 @@ int main( int argc, char **argv )
 }
 
 
-void sig_handler2( int )
+void sigsegv_handler( int )
 {
-  debug( "kio_file : ###############SEG FILE#############" );
+  write(2, "kio_file : ###############SEG FAULT#############\n", 50 );
   exit(1);
 }
 
 
-void sig_handler( int )
+void sigchld_handler( int )
 {
   int pid;
   int status;
