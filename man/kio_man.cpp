@@ -359,14 +359,10 @@ char *MANProtocol::readManPage(const char *_filename)
     }
     lastdir = filename.left(filename.findRev('/'));
 
-    QFile raw(filename);
-    KFilterBase *f = KFilterBase::findFilterByFileName(filename);
-
-    QIODevice *fd= KFilterDev::createFilterDevice(f,&raw);
+    QIODevice *fd= KFilterDev::deviceForFile(filename);
 
     if (!fd->open(IO_ReadOnly))
     {
-       delete f;
        delete fd;
        return 0;
     }
@@ -382,7 +378,6 @@ char *MANProtocol::readManPage(const char *_filename)
     fd->close();
 
     delete fd;
-    delete f;
 
     int l = text.length();
     char *buf = new char[l + 4];
