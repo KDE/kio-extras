@@ -715,6 +715,9 @@ IMAP4Protocol::put (const KURL & _url, int, bool, bool)
         if (!sendOk)
         {
           error (ERR_CONNECTION_BROKEN, myHost);
+          completeQueue.removeRef (cmd);
+          finished ();
+          return;
         }
       }
       parseWriteLine ("");
