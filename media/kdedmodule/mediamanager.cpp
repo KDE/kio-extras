@@ -74,7 +74,7 @@ QStringList MediaManager::properties(const QString &name)
 	}
 }
 
-const QString &MediaManager::nameForLabel(const QString &label)
+QString MediaManager::nameForLabel(const QString &label)
 {
 	const QPtrList<Medium> media = m_mediaList.list();
 

@@ -37,7 +37,7 @@ public:
 k_dcop:
 	QStringList fullList();
 	QStringList properties(const QString &name);
-	const QString &nameForLabel(const QString &label);
+	QString nameForLabel(const QString &label);
 	ASYNC setUserLabel(const QString &name, const QString &label);
 
 k_dcop_signals:
