@@ -457,12 +457,12 @@ void MANProtocol::outputError(const QString& errmsg)
     // QTextSream on a QCString needs to be told explicitely to use local8Bit conversion !
     os.setEncoding(QTextStream::Locale);
 
-    os << "<html>" << endl;
+    os << "<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"></head>" << endl;
     os << i18n("<head><title>Man output</title></head>") << endl;
     os << i18n("<body bgcolor=#ffffff><h1>KDE Man Viewer Error</h1>") << errmsg << "</body>" << endl;
     os << "</html>" << endl;
 
-    data(output.local8Bit());
+    data(output.utf8());
 }
 
 void MANProtocol::outputMatchingPages(const QStringList &matchingPages)
@@ -472,8 +472,8 @@ void MANProtocol::outputMatchingPages(const QStringList &matchingPages)
     QTextStream os(&output, IO_WriteOnly);
     os.setEncoding(QTextStream::Locale);
 
-    os << "<html>\n<head><title>\n";
-    os << i18n("Man output");
+    os << "<html>\n<head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">";
+    os << "<title>" << i18n("Man output");
     os <<"</title></head>\n<body bgcolor=#ffffff><h1>";
     os << i18n("There is more than one matching man page.");
     os << "</h1>\n<ul>";
@@ -481,7 +481,7 @@ void MANProtocol::outputMatchingPages(const QStringList &matchingPages)
        os<<"<li><a href=man:"<<QFile::encodeName(*it)<<">"<< *it <<"</a><br>\n<br>\n";
     os<< "</ul>\n</body>\n</html>"<<endl;
 
-    data(output.local8Bit());
+    data(output.utf8());
     finished();
 }
 
