@@ -272,7 +272,7 @@ NOTFOUND) AC_MSG_RESULT(searched but not found) ;;
     VORBIS_ROOT="$with_vorbis"
     if test "x$VORBIS_ROOT" != "x/usr" ; then
       VORBIS_INCS="-I${VORBIS_ROOT}/include"
-      VORBIS_LIBS="-L${VORBIS_ROOT}/lib"
+      VORBIS_LIBS="-L${VORBIS_ROOT}/lib "
       test "$USE_RPATH" = yes && VORBIS_RPATH="-R ${VORBIS_ROOT}/lib"
     fi
     VORBIS_LIBS="${VORBIS_LIBS}-lvorbis -lm"
