@@ -33,6 +33,8 @@ protected:
 	char *userName;
 	char *browseServer;
 	char *charSet;
+	char *broadcast;
+	char *wins;
 public:
 	Options();
 	virtual ~Options();
@@ -42,9 +44,14 @@ public:
 	virtual void setDefaultUser(const char *aUserName);
 	// Make browsing work without samba installed locally
 	virtual void setDefaultBrowseServer(const char *serverName);
+	
+	// The following has an effect only for native code.
 	// Set the charset to use. If not set, no conversion.
-	// This has an effect only for native code.
 	virtual void setCharSet(const char *aCharSet);
+	// Set the network broadcast address
+	virtual void setBroadcastAddress(const char *addr);
+	// Set the WINS address
+	virtual void setWINSAddress(const char *addr);
 };
 
 #endif // OPTIONS_H

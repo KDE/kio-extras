@@ -25,6 +25,10 @@
 #include <kurl.h>
 #include <kprotocolmanager.h>
 #include <kinstance.h>
+
+#include <kconfig.h>
+#include <qlist.h>
+
 #include "smb.h"
 
 using namespace KIO;
@@ -50,10 +54,27 @@ public:
 	}
 	
 	char *getAnswer(int type, const char *optmessage) {
+		proto->callbackUsed = true;
 		bool res = true;
 		QString myUser, myPass;
 		switch (type) {
 			case ANSWER_USER_NAME:
+				// look if we have it already
+				proto->loadBindings(); // reload each time, to keep in sync
+				for (SmbProtocol::Binding* it = proto->bindings.first(); (it); it = proto->bindings.next()) {
+					if (it->server.local8Bit().upper()==QCString(optmessage).upper()
+					&& !it->login.isEmpty()) {
+						if (user) delete user;
+						user = new char[it->login.local8Bit().length()+1];
+						strcpy(user,it->login.local8Bit().data());
+						if (pass) delete pass;
+						pass = new char[it->password.local8Bit().length()+1];
+						strcpy(pass,it->password.local8Bit().data());
+						kDebugInfo( 7106, "CallBack: use binding: user=%s, pass=%s", debugString(user), debugString(pass));
+						havePass=true;
+						return user;
+					}
+				}
 				message = "Login for host ";
 				message += optmessage;
 				myUser = user?user:"";
@@ -73,6 +94,11 @@ public:
 					strcpy(pass,myPass.local8Bit().data());
 					kDebugInfo( 7106, "CallBack: user=%s, pass=%s", debugString(user), debugString(pass));
 					havePass=true;
+					// Store the new binding info in case of success
+					proto->bserver = optmessage;
+					proto->bshare = "";
+					proto->blogin = user;
+					proto->bpassword = pass;
 				}
 				return user;
 			
@@ -97,12 +123,33 @@ public:
 					strcpy(pass,myPass.local8Bit().data());
 					kDebugInfo( 7106, "CallBack: user=%s, pass=%s", debugString(user), debugString(pass));
 					havePass=true;
+					// Store the new binding info in case of success
+					proto->bserver = proto->currentHost;
+					proto->bshare = "";
+					proto->blogin = user;
+					proto->bpassword = pass;
 				}
 				return pass;
 			
 			case ANSWER_SERVICE_PASSWORD:
-				if (haveServicePass && !strcmp(service, optmessage))
-					return pass; // we have it already
+/*				if (haveServicePass && !strcmp(service, optmessage))
+					return pass; // we have it already*/
+				// look if we have it in the bindings
+				proto->loadBindings(); // reload each time, to keep in sync
+				for (SmbProtocol::Binding* it = proto->bindings.first(); (it); it = proto->bindings.next()) {
+					if (it->server.local8Bit().upper()==proto->currentHost.local8Bit().upper()
+						&& it->share.local8Bit().upper()==QCString(optmessage).upper()) {
+						if (service) delete service;
+						service = new char[strlen(optmessage)+1];
+						strcpy(service,optmessage);
+						if (pass) delete pass;
+						pass = new char[it->password.local8Bit().length()+1];
+						strcpy(pass,it->password.local8Bit().data());
+						kDebugInfo( 7106, "CallBack: use binding: service=%s, pass=%s", debugString(service), debugString(pass));
+						haveServicePass=true;
+						return pass;
+					}
+				}
 				message = "Password for service ";
 				message += optmessage;
 				message += " (user ignored)";
@@ -124,6 +171,11 @@ public:
 					strcpy(pass,myPass.local8Bit().data());
 					kDebugInfo( 7106, "CallBack: service=%s, pass=%s", debugString(service), debugString(pass));
 					haveServicePass=true;
+					// Store the new binding info in case of success
+					proto->bserver = proto->currentHost;
+					proto->bshare = optmessage;
+					proto->blogin = "";
+					proto->bpassword = pass;
 				}
 				return pass;
 		}
@@ -162,12 +214,101 @@ SmbProtocol::SmbProtocol( const QCString &pool, const QCString &app) : SlaveBase
 	currentPass=QString::null;
 	cb = new MyCallback(this);
 	smb.setPasswordCallback(cb);
+
+	// Load config info
+	KConfig *g_pConfig = new KConfig("kioslaverc");
+
+	QString tmp;
+	g_pConfig->setGroup( "Browser Settings/SMB" );
+	tmp = g_pConfig->readEntry( "Browse server" );
+	if (!tmp.isEmpty()) smb.setDefaultBrowseServer(tmp.latin1());
+#if USE_SAMBA != 1
+	tmp = g_pConfig->readEntry( "Broadcast address" );
+	if (!tmp.isEmpty()) smb.setBroadcastAddress(tmp.latin1());
+	tmp = g_pConfig->readEntry( "WINS address" );
+	if (!tmp.isEmpty()) smb.setWINSAddress(tmp.latin1());
+#endif
+	delete g_pConfig;
+	
+	bindings.setAutoDelete(true);
+	loadBindings(true); // load the bindings at least once
+}
+
+void SmbProtocol::loadBindings(bool force)
+{
+	KConfig *g_pConfig = new KConfig("kioslaverc");
+	g_pConfig->setGroup( "Browser Settings/SMB" );
+	QString tmp = g_pConfig->readEntry( "Password policy" );
+	if ( tmp == "Don't store" ) storeBindings = false;
+	else storeBindings = true;
+	if (!storeBindings && !force) return; // don't destroy our copy in memory in that case
+	bindings.clear();
+	int count = g_pConfig->readNumEntry( "Bindings count");
+	QString key, server, share, login, password;
+	for (int index=0; index<count; index++) {
+		key.sprintf("server%d",index);
+		server = g_pConfig->readEntry( key );
+		key.sprintf("share%d",index);
+		share = g_pConfig->readEntry( key );
+		key.sprintf("login%d",index);
+		login = g_pConfig->readEntry( key );
+		key.sprintf("password%d",index);
+		// unscramble
+		QString scrambled = g_pConfig->readEntry( key );
+		password = "";
+		for (int i=0; i<scrambled.length()/3; i++) {
+			QChar qc1 = scrambled[i*3];
+			QChar qc2 = scrambled[i*3+1];
+			QChar qc3 = scrambled[i*3+2];
+			unsigned int a1 = qc1.latin1() - '0';
+			unsigned int a2 = qc2.latin1() - 'A';
+			unsigned int a3 = qc3.latin1() - '0';
+			unsigned int num = ((a1 & 0x3F) << 10) | ((a2& 0x1F) << 5) | (a3 & 0x1F);
+			password[i] = QChar((uchar)((num - 17) ^ 173)); // restore
+		}
+		bindings.append(new Binding(server,share,login,password));
+	}
+	delete g_pConfig;
+}
+
+void SmbProtocol::saveBindings() // Will store on the disk if required
+{
+	if (!storeBindings) return;
+	KConfig *g_pConfig = new KConfig("kioslaverc");
+	g_pConfig->setGroup( "Browser Settings/SMB" );
+	g_pConfig->writeEntry( "Bindings count", bindings.count());
+	QString key; int index=0;
+	for (Binding* it = bindings.first(); (it); it = bindings.next(), index++) {
+		key.sprintf("server%d",index);
+		g_pConfig->writeEntry( key, it->server);
+		key.sprintf("share%d",index);
+		g_pConfig->writeEntry( key, it->share);
+		key.sprintf("login%d",index);
+		g_pConfig->writeEntry( key, it->login);
+		key.sprintf("password%d",index);
+		// Weak code, but least it makes the string unreadable
+		QString scrambled;
+		for (int i=0; i<it->password.length(); i++) {
+			QChar c = it->password[i];
+			unsigned int num = (c.unicode() ^ 173) + 17;
+			unsigned int a1 = (num & 0xFC00) >> 10;
+			unsigned int a2 = (num & 0x3E0) >> 5;
+			unsigned int a3 = (num & 0x1F);
+			scrambled += (char)(a1+'0');
+			scrambled += (char)(a2+'A');
+			scrambled += (char)(a3+'0');
+		}
+		g_pConfig->writeEntry( key, scrambled);
+	}
+	delete g_pConfig;
 }
 
 SmbProtocol::~SmbProtocol()
 {
 	if (cb) delete cb;
 	cb = 0; // NB: paranoia can help living longer :-)
+	if (!bindings.isEmpty()) saveBindings();
+	bindings.clear();
 }
 
 // Uses this function to get information in the url
@@ -189,7 +330,8 @@ QString SmbProtocol::buildFullLibURL(const QString &pathArg)
 	kDebugInfo( 7106, "currentIP: %s", debugString(currentIP));
 	QString path = pathArg;
 	if (path[0]=='/') path.remove(0,1);
-	QString ret = util.buildURL(
+	// NB20000423: Hmmm, with smb:// => smb:/ conversion, now there is no host
+/*	QString ret = util.buildURL(
 		currentUser.isEmpty()?(const char*)0:(const char*)currentUser.local8Bit(),
 		currentPass.isEmpty()?(const char*)0:(const char*)currentPass.local8Bit(),
 		currentHost.isEmpty()?(const char*)0:(const char*)currentHost.local8Bit(),
@@ -197,7 +339,19 @@ QString SmbProtocol::buildFullLibURL(const QString &pathArg)
 		0,
 		path.isEmpty()?(const char*)0:(const char*)path.local8Bit(),
 		currentIP.isEmpty()?(const char*)0:(const char*)currentIP.local8Bit()
+		);*/
+	// NB20000423: but the path is correct => can retrieve the host for bindings
+	QString ret = util.buildURL(
+		currentUser.isEmpty()?(const char*)0:(const char*)currentUser.local8Bit(),
+		currentPass.isEmpty()?(const char*)0:(const char*)currentPass.local8Bit(),
+		0,
+		0,
+		0,
+		path.isEmpty()?(const char*)0:(const char*)path.local8Bit(),
+		currentIP.isEmpty()?(const char*)0:(const char*)currentIP.local8Bit()
 		);
+	util.parse(ret);
+	currentHost = util.host(); // Make sure we have the host, not the workgroup
 	kDebugInfo( 7106, "converting argument %s to %s", debugString(pathArg), debugString(ret));
 	return ret;
 }
@@ -631,10 +785,17 @@ void SmbProtocol::listDir( const QString& pathArg, const QString& /*query*/ )
 	}
 
 	struct SMBdirent *ep;
+	callbackUsed = false;
 	int dp = smb.opendir( path );
 	if ( dp == -1 ) {
-		error( KIO::ERR_CANNOT_ENTER_DIRECTORY, path );
+		if (callbackUsed) error( KIO::ERR_ACCESS_DENIED, path);
+		else error( KIO::ERR_CANNOT_ENTER_DIRECTORY, path );
 		return;
+	}
+	// used callback successfully => new binding!
+	if (callbackUsed) {
+		bindings.append(new Binding(bserver, bshare, blogin, bpassword));
+		saveBindings(); // Will store on the disk if required
 	}
 
 	UDSEntry entry;

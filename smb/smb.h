@@ -41,6 +41,26 @@ protected:
 	int m_fPut;
 	QString currentHost, currentIP, currentUser, currentPass;
 	QString buildFullLibURL(const QString &pathArg);
+
+	// For the bindings
+	class Binding {
+	public:
+		QString server;
+		QString share;
+		QString login;
+		QString password;
+		Binding(const QString &e, const QString& h, const QString& l, const QString& p)
+		: server(e), share(h), login(l), password(p) {}
+	};
+	QList<Binding> bindings;
+	bool storeBindings; // policy for new bindings
+	void loadBindings(bool force = false);
+	void saveBindings(); // Will store on the disk if required
+
+	// The callback set those values, and on success the new bnding is created
+	bool callbackUsed;
+	QString bserver, bshare, blogin, bpassword;
+
 };
 
 #endif

@@ -3534,6 +3534,19 @@ void SMBIO::setDefaultBrowseServer(const char *serverName)
 	workgroupList=0;
 }
 
+// Added here for Option <=> NMBIO link
+// Set the network broadcast address
+void SMBIO::setBroadcastAddress(const char *addr)
+{
+	NMBIO::setNetworkBroadcastAddress(addr);
+}
+
+// Set the WINS address
+void SMBIO::setWINSAddress(const char *addr)
+{
+	NMBIO::setNBNSAddress(addr);
+}
+
 // getName returns the name of the file for this fd, stripping URL
 char *SMBIO::getName(int fd)
 {

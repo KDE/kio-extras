@@ -137,6 +137,11 @@ public:
 	void setDefaultUser(const char *userName);
 	// Make browsing work without samba installed locally
 	void setDefaultBrowseServer(const char *serverName);
+	// Added here for Option <=> NMBIO link
+	// Set the network broadcast address
+	void setBroadcastAddress(const char *addr);
+	// Set the WINS address
+	void setWINSAddress(const char *addr);
 	// Simple parser for smb URLs
 	// Parameters are passed by value and will be modified (=>also returned values)
 	// On return, those not null must be deallocated with delete after use.
