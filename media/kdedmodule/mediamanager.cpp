@@ -27,7 +27,7 @@
 #include "fstabbackend.h"
 
 MediaManager::MediaManager(const QCString &obj)
-    : KDEDModule(obj)
+    : KDEDModule(obj), m_dirNotify(m_mediaList)
 {
 	connect( &m_mediaList, SIGNAL(mediumAdded(const QString&, const QString&)),
 	         SLOT(slotMediumAdded(const QString&, const QString&)) );

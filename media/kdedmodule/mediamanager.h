@@ -25,6 +25,7 @@
 
 #include "medialist.h"
 #include "backendbase.h"
+#include "mediadirnotify.h"
 
 
 class MediaManager : public KDEDModule
@@ -53,6 +54,7 @@ private slots:
 private:
 	MediaList m_mediaList;
 	QPtrList<BackendBase> m_backends;
+	MediaDirNotify m_dirNotify;
 };
 
 #endif

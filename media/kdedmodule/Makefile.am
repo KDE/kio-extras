@@ -1,7 +1,7 @@
 kde_module_LTLIBRARIES = kded_mediamanager.la
 
 INCLUDES = $(all_includes) -I$(srcdir)/../libmediacommon
-kded_mediamanager_la_SOURCES = mediamanager.cpp mediamanager.skel medialist.cpp backendbase.cpp fstabbackend.cpp
+kded_mediamanager_la_SOURCES = mediamanager.cpp mediamanager.skel medialist.cpp backendbase.cpp fstabbackend.cpp mediadirnotify.cpp mediadirnotify.skel
 kded_mediamanager_la_LDFLAGS = $(all_libraries) -module -avoid-version
 kded_mediamanager_la_LIBADD = $(LIB_KSYCOCA) ../libmediacommon/libmediacommon.la
 
