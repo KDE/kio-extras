@@ -14,8 +14,7 @@ noinst_HEADERS = kcmcgi.h
 
 KDE_ICON = cgi
 
-kcmcgi_data_DATA = kcmcgi.desktop
-kcmcgi_datadir = $(kde_appsdir)/Settings/Network/WebBrowsing
+xdg_apps_DATA = kcmcgi.desktop
 
 messages: rc.cpp
 	$(XGETTEXT) *.cpp -o $(podir)/kcmcgi.pot
