@@ -698,7 +698,7 @@
                                             </property>
                                             <property>
                                                 <name>whatsThis</name>
-                                                <string>Add a description of the Song to the Fileheader. This makes it easy for the user to get advanced song information shown by his media player. You can get these information automatically via the Internet. Look at the &lt;i&gt;"CDDB Settings"&lt;/i&gt; tab for details.</string>
+                                                <string>Add a description of the Song to the Fileheader. This makes it easy for the user to get advanced song information shown by his media player. You can get this information automatically via the Internet. Look at the &lt;i&gt;"CDDB Settings"&lt;/i&gt; tab for details.</string>
                                             </property>
                                         </widget>
                                     </widget>
