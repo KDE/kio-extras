@@ -245,16 +245,10 @@ void SMTPProtocol::put(const KURL & url, int /*permissions */ ,
 
   TransactionState ts;
   if ( !executeQueuedCommands( &ts ) ) {
-    kdDebug() << "executeCommandLine returned false!" << endl;
-    if ( ts.errorCode() ) {
-      kdDebug() << "transaction has error (" << ts.errorCode() << ") \""
-		<< ts.errorMessage() << "\"" << endl;
+    if ( ts.errorCode() )
       error( ts.errorCode(), ts.errorMessage() );
-    }
-  } else {
-    kdDebug() << "emitting finished" << endl;
+  } else
     finished();
-  }
 }
 
 
@@ -280,7 +274,7 @@ bool SMTPProtocol::sendCommandLine( const QCString & cmdline ) {
 }
 
 Response SMTPProtocol::getResponse( bool * ok ) {
-  kdDebug() << "getResponse()" << endl;
+
   if ( ok )
     *ok = false;
 
@@ -368,44 +362,32 @@ QCString SMTPProtocol::collectPipelineCommands( TransactionState * ts ) {
 	continue;
     }
 
-    if ( cmdLine_len && cmd->mustBeFirstInPipeline() ) {
-      kdDebug() << "end of pipeline since next command mustBeFirstInPipeline()" << endl;
+    if ( cmdLine_len && cmd->mustBeFirstInPipeline() )
       break;
-    }
 
-    if ( cmdLine_len && !canPipelineCommands() ) {
-      kdDebug() << "end of pipeline since can't pipeline at all" << endl;
+    if ( cmdLine_len && !canPipelineCommands() )
       break;
-    }
 
     while ( !cmd->isComplete() && !cmd->needsResponse() ) {
       const QCString currentCmdLine = cmd->nextCommandLine( ts );
-      if ( ts->failedFatally() ) {
-	kdDebug() << "left while loop since transaction failed fatally" << endl;
+      if ( ts->failedFatally() )
 	return cmdLine;
-      }
       const unsigned int currentCmdLine_len = currentCmdLine.length();
 
       if ( cmdLine_len && cmdLine_len + currentCmdLine_len > sendBufferSize() ) {
 	// must all fit into the send buffer, else connection deadlocks,
 	// but we need to have at least _one_ command to send
 	cmd->ungetCommandLine( currentCmdLine, ts );
-	kdDebug() << "end of pipeline since " << cmdLine_len
-		  << " + " << currentCmdLine_len << " > " << sendBufferSize() << endl;
 	return cmdLine;
       }
       cmdLine_len += currentCmdLine_len;
       cmdLine += currentCmdLine;
     }
-    kdDebug( cmd->isComplete() ) << "left while loop since command is complete" << endl;
-    kdDebug( cmd->needsResponse() ) << "left while loop since command needs response" << endl;
 
     mSentCommandQueue.enqueue( mPendingCommandQueue.dequeue() );
 
-    if ( cmd->mustBeLastInPipeline() ) {
-      kdDebug() << "end of pipeline since current command mustBeLastInPipeLine()" << endl;
+    if ( cmd->mustBeLastInPipeline() )
       break;
-    }
   }
 
   return cmdLine;
@@ -438,7 +420,6 @@ void SMTPProtocol::queueCommand( int type ) {
 }
 
 bool SMTPProtocol::execute( int type, TransactionState * ts ) {
-  kdDebug( 7112 ) << "exeute( " << type << ", " << ts << " )" << endl;
   auto_ptr<Command> cmd( Command::createSimpleCommand( type, this ) );
   kdFatal( !cmd.get(), 7112 ) << "Command::createSimpleCommand( " << type << " ) returned null!" << endl;
   return execute( cmd.get(), ts );
@@ -447,7 +428,7 @@ bool SMTPProtocol::execute( int type, TransactionState * ts ) {
 // ### fold into pipelining engine? How? (execute() is often called
 // ### when command queues are _not_ empty!)
 bool SMTPProtocol::execute( Command * cmd, TransactionState * ts ) {
-  kdDebug( 7112 ) << "execute( " << cmd << ", " << ts << " )" << endl;
+
   kdFatal( !cmd, 7112 ) << "SMTPProtocol::execute() called with no command to run!" << endl;
 
   if ( cmd->doNotExecute( ts ) )
@@ -618,6 +599,7 @@ void SMTPProtocol::smtp_close( bool nice ) {
 
   if ( nice )
     execute( Command::QUIT );
+  kdDebug( 7112 ) << "closing connection" << endl;
   closeDescriptor();
   m_sOldServer = QString::null;
   m_sOldUser = QString::null;
