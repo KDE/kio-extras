@@ -1316,7 +1316,6 @@ IMAP4Protocol::doListEntry (const KURL & _url, const QString & myBox,
       atom.m_long = 0;
       entry.append (atom);
 
-
       if (!item.noSelect ())
       {
         atom.m_uds = UDS_MIME_TYPE;
@@ -1343,8 +1342,9 @@ IMAP4Protocol::doListEntry (const KURL & _url, const QString & myBox,
 
       atom.m_uds = UDS_URL;
       atom.m_str = aURL.url ();
-      if (atom.m_str[atom.m_str.length () - 1] != '/')
-        atom.m_str += "/";
+      if (atom.m_str.right(item.hierarchyDelimiter().length())
+        != item.hierarchyDelimiter())
+        atom.m_str += item.hierarchyDelimiter();
       atom.m_str += mailboxName;
       atom.m_long = 0;
       entry.append (atom);
