@@ -50,13 +50,13 @@
 #include <kmdcodec.h>
 #include <kprotocolmanager.h>
 #include <ksock.h>
+#include <kio/kdesasl.h>
 
 #include <kio/connection.h>
 #include <kio/slaveinterface.h>
 #include <kio/passdlg.h>
 
 #include "pop3.h"
-#include "md5.h"
 
 #define GREETING_BUF_LEN 1024
 #define MAX_RESPONSE_LEN 512
@@ -433,8 +433,9 @@ bool POP3Protocol::pop3_open ()
 		// We need to check what methods the server supports...
 		// This is based on RFC 1734's wisdom
 		if (m_try_sasl && (hasMetaData("sasl") || command(sasl_buffer.local8Bit()))) {
+			QStrIList sasl_list;
 			if (hasMetaData("sasl")) {
-				sasl_auth = metaData("sasl");
+				sasl_list.append(metaData("sasl").latin1());
 			} else while (!AtEOF()) {
 				memset(buf, 0, sizeof(buf));
 				ReadLine(buf, sizeof(buf)-1);
@@ -447,44 +448,22 @@ bool POP3Protocol::pop3_open ()
 				// sanders, changed -2 to -1 below
 				buf[strlen(buf)-2] = '\0';
 
-				if (!sasl_auth.isEmpty()) {
-					sasl_auth += " ";
-				}
-
-				sasl_auth += buf;
+				sasl_list.append(buf);
 			}
 
-                        if (sasl_auth.contains("CRAM-MD5"))
-				sasl_buffer = "CRAM-MD5";
-			else if (sasl_auth.contains("PLAIN"))
-				sasl_buffer = "PLAIN";
-			else sasl_buffer = QString::null;
-
+			KDESasl sasl(m_sUser, m_sPass);
+			sasl_buffer = sasl.chooseMethod(sasl_list);
 			sasl_auth = sasl_buffer;
+
 			if (sasl_buffer == QString::null) {
 			} else {
 				// Yich character arrays..
-				char *challenge = new char[2049];
+				QByteArray challenge(2049);
 				sasl_buffer.prepend("AUTH ");
-				if (!command(sasl_buffer.latin1(), challenge, 2049)) {
-					delete [] challenge;
-				} else {
-					bool ret = false;
-
-					// See the SMTP ioslave
-					if (sasl_auth == "PLAIN") {
-						ret = command(KCodecs::base64Encode(m_sUser + '\0' + m_sUser + '\0' + m_sPass).latin1());
-					}
-					else if (sasl_auth == "CRAM-MD5") {
-					        QString st(challenge);
-					        QCString password = m_sPass.latin1 ();
-					        QCString cchallenge = KCodecs::base64Decode(st).latin1();
-					        st = encodeRFC2104 (cchallenge, password);
-					        st = m_sUser + " " + st;
-					        ret = command(KCodecs::base64Encode(st.utf8()));
-					}
-
-					delete [] challenge;
+				if (command(sasl_buffer.latin1(), challenge.data(), 2049)) {
+					challenge.resize(challenge.find(0));
+					bool ret = command(sasl.getResponse(challenge));
+					if (sasl_auth.upper() == "LOGIN") ret = command(sasl.getResponse(challenge));
 					if (ret) {
 						m_sOldUser = m_sUser;
 						m_sOldPass = m_sPass;
@@ -988,79 +967,4 @@ void POP3Protocol::del (const KURL& url, bool /*isfile*/)
 
 	POP3_DEBUG << "POP3Protocol::del " << _path << endl;
 	finished();
-}
-
-//-----------------------------------------------------------------------------
-// take from the c-client imap toolkit
- 
-/* Author:     Mark Crispin
- *             Networks and Distributed Computing
- *             Computing & Communications
- *             University of Washington
- *             Administration Building, AG-44
- *             Seattle, WA  98195
- *             Internet: MRC@CAC.Washington.EDU
- *
- * Date:       22 November 1989
- * Last Edited:        24 October 2000
- *
- * The IMAP toolkit provided in this Distribution is
- * Copyright 2000 University of Washington.
- * The full text of our legal notices is contained in the file called
- * CPYRIGHT, included with this Distribution.
- */
-
-/*
- * RFC 2104 HMAC hashing
- * Accepts: text to hash
- *         text length
- *         key
- *         key length
- * Returns: hash as text, always
- */
- 
-const QCString POP3Protocol::encodeRFC2104 (const QCString & text, const QCString & key)
-{
-  int i, j;
-  static char hshbuf[2 * MD5DIGLEN + 1];
-  char *s;
-  MD5CONTEXT ctx;
-  char *hex = (char *) "0123456789abcdef";
-  ulong keyLen = key.length ();
-  unsigned char *keyPtr = (unsigned char *) key.data ();
-  unsigned char digest[MD5DIGLEN], k_ipad[MD5BLKLEN + 1],
-    k_opad[MD5BLKLEN + 1];
-  if (key.length () > MD5BLKLEN)
-  {                             /* key longer than pad length? */
-    md5_init (&ctx);            /* yes, set key as MD5(key) */
-    md5_update (&ctx, keyPtr, keyLen);
-    md5_final (digest, &ctx);
-    keyPtr = (unsigned char *) digest;
-    keyLen = MD5DIGLEN;
-  }
-  memcpy (k_ipad, keyPtr, keyLen);  /* store key in pads */
-  memset (k_ipad + keyLen, 0, (MD5BLKLEN + 1) - keyLen);
-  memcpy (k_opad, k_ipad, MD5BLKLEN + 1);
-  /* XOR key with ipad and opad values */
-  for (i = 0; i < MD5BLKLEN; i++)
-  {                             /* for each byte of pad */
-    k_ipad[i] ^= 0x36;          /* XOR key with ipad */
-    k_opad[i] ^= 0x5c;          /*  and opad values */
-  }
-  md5_init (&ctx);              /* inner MD5: hash ipad and text */
-  md5_update (&ctx, k_ipad, MD5BLKLEN);
-  md5_update (&ctx, (unsigned char *) text.data (), text.length ());
-  md5_final (digest, &ctx);
-  md5_init (&ctx);              /* outer MD5: hash opad and inner results */
-  md5_update (&ctx, k_opad, MD5BLKLEN);
-  md5_update (&ctx, digest, MD5DIGLEN);
-  md5_final (digest, &ctx);
-  /* convert to printable hex */
-  for (i = 0, s = hshbuf; i < MD5DIGLEN; i++)
-  {
-    *s++ = hex[(j = digest[i]) >> 4];
-    *s++ = hex[j & 0xf];
-  }
-  *s = '\0';                    /* tie off hash text */
-  return QCString (hshbuf);
 }
