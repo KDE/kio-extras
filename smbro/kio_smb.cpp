@@ -939,7 +939,7 @@ void SmbProtocol::get( const KURL& url )
    if (mkfifo(fifoName,0600)!=0)
    {
       //perror("creating fifo failed: ");
-      error(ERR_CANNOT_OPEN_FOR_READING,url.path()+i18n("\nCould not create required pipe %1 .").arg(fifoName));
+      error(ERR_CANNOT_OPEN_FOR_READING,url.path()+i18n("\nCould not create required pipe %1.").arg(fifoName));
       return;
    };
 
@@ -970,7 +970,7 @@ void SmbProtocol::get( const KURL& url )
    {
       //we failed (we might have no read access to the remote file)
       perror("SmbProtocol::get() open() failed");
-      error(ERR_CANNOT_OPEN_FOR_READING,url.path()+i18n("\nCould not create required pipe %1 .").arg(fifoName));
+      error(ERR_CANNOT_OPEN_FOR_READING,url.path()+i18n("\nCould not create required pipe %1.").arg(fifoName));
       remove(fifoName);
       return;
 
@@ -981,7 +981,7 @@ void SmbProtocol::get( const KURL& url )
    if (flags<0)
    {
       //hmm, shouldn't happen
-      error(ERR_CANNOT_OPEN_FOR_READING,url.path()+i18n("\nCould not fcntl() pipe %1 .").arg(fifoName));
+      error(ERR_CANNOT_OPEN_FOR_READING,url.path()+i18n("\nCould not fcntl() pipe %1.").arg(fifoName));
       remove(fifoName);
       return;
    };
@@ -989,7 +989,7 @@ void SmbProtocol::get( const KURL& url )
    if (fcntl(fifoFD,F_SETFL,flags)<0)
    {
       //hmm, shouldn't happen
-      error(ERR_CANNOT_OPEN_FOR_READING,url.path()+i18n("\nCould not fcntl() pipe %1 .").arg(fifoName));
+      error(ERR_CANNOT_OPEN_FOR_READING,url.path()+i18n("\nCould not fcntl() pipe %1.").arg(fifoName));
       remove(fifoName);
       return;
    };
@@ -1004,7 +1004,7 @@ void SmbProtocol::get( const KURL& url )
    if (fifo==0)
    {
       //hmm, how should we get here ?
-      error(ERR_CANNOT_OPEN_FOR_READING,url.path()+i18n("\nCould not create required pipe %1 .").arg(fifoName));
+      error(ERR_CANNOT_OPEN_FOR_READING,url.path()+i18n("\nCould not create required pipe %1.").arg(fifoName));
       return;
    };
 

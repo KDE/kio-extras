@@ -1734,7 +1734,7 @@
                                 </property>
                                 <property stdset="1">
                                     <name>text</name>
-                                    <string>&amp;Enable CDDB Lookups</string>
+                                    <string>&amp;Enable CDDB lookups</string>
                                 </property>
                                 <property stdset="1">
                                     <name>checked</name>
