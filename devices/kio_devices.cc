@@ -99,7 +99,7 @@ void HelloProtocol::stat(const KURL& url)
 				++it;
 				if (it!=info.end())
 				{
-	                                QString mp=*it; ++it;
+	                                QString mp=*it; ++it;++it;
 	                                if (it!=info.end())
 	                                {
 	                                        bool mounted=((*it)=="true");
@@ -152,7 +152,7 @@ void HelloProtocol::listDir(const KURL& url)
 				++it;
 				if (it!=info.end())
 				{
-					QString mp=*it; ++it;
+					QString mp=*it; ++it;++it;
 					if (it!=info.end())
 					{
 						bool mounted=((*it)=="true");

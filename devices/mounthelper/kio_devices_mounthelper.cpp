@@ -20,7 +20,7 @@ QStringList KIODevicesMountHelperApp::deviceInfo(QString name)
         streamout<<name;
 	dcopClient()->attach();
         if ( dcopClient()->call( "kded",
-                 "mountwatcher", "deviceInfo(QString)", param,retType,data,false ) )
+                 "mountwatcher", "basicDeviceInfo(QString)", param,retType,data,false ) )
         {
           QDataStream streamin(data,IO_ReadOnly);
           streamin>>retVal;
@@ -37,28 +37,31 @@ KIODevicesMountHelperApp::KIODevicesMountHelperApp():KApplication() {
 //		KMessageBox::information(0,url.url());
                 if (it!=info.end())
                 {
-                        QString device=*it; ++it;
-//			KMessageBox::information(0,device);
+                	++it;
+			if (it!=info.end())
+			{
+			        QString device=*it;
 
-                        if (it!=info.end())
-                        {
-                                QString mp=*it; 
-                                {
-
-					if (args->isSet("u"))
-					{
-						KAutoUnmount *um=new KAutoUnmount(mp,QString::null);
-						connect(um,SIGNAL(finished()),this,SLOT(finished()));		
-						connect(um,SIGNAL(error()),this,SLOT(error()));		
-					}
-					else
-					{
-						KAutoMount *m=new KAutoMount(false,QString::null,device,QString::null,QString::null,false);
-						connect(m,SIGNAL(finished()),this,SLOT(finished()));		
-						connect(m,SIGNAL(error()),this,SLOT(error()));		
-					}
-                                        return;
-                                }
+	                        if (it!=info.end())
+        	                {
+                	                QString mp=*it; 
+                        	        {
+	
+						if (args->isSet("u"))
+						{
+							KAutoUnmount *um=new KAutoUnmount(mp,QString::null);
+							connect(um,SIGNAL(finished()),this,SLOT(finished()));		
+							connect(um,SIGNAL(error()),this,SLOT(error()));		
+						}
+						else
+						{
+							KAutoMount *m=new KAutoMount(false,QString::null,device,QString::null,QString::null,false);
+							connect(m,SIGNAL(finished()),this,SLOT(finished()));		
+							connect(m,SIGNAL(error()),this,SLOT(error()));		
+						}
+        	                                return;
+                	                }
+				}
                         }
                 }
 //		KMessageBox::information(0,"Wrong data");
