@@ -218,6 +218,7 @@ sub list {
         closedir(DIR);
     } else {
         ($dn, @entries) = $dn =~ m{(.*)/(.*)};
+        $dn = '/' if (!length($dn));
     }
     print scalar(@entries),"\n### 100\n";
     my $cwd = getcwd();
