@@ -152,6 +152,11 @@ void SMTPProtocol::openConnection()
 	}
 }
 
+void SMTPProtocol::closeConnection()
+{
+	smtp_close();
+}
+
 // Usage: smtp://smtphost:port/send?to=user@host.com&subject=blah
 // If smtphost is the name of a profile, it'll use the information 
 // provided by that profile.  If it's not a profile name, it'll use it as

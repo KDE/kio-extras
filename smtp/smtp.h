@@ -45,6 +45,7 @@ public:
 	virtual void put (const KURL &url, int permissions, bool overwrite, bool resume);
 	virtual void stat (const KURL &url);
 	virtual void openConnection();
+	virtual void closeConnection();
 
 protected:
 
