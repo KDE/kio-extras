@@ -52,15 +52,17 @@ H1 {
 	padding: 0.5em;
 }
 
+.finger		{ color: #82A7D0}
 .domainName	{ color: #D0A000}
 .ipNumber       { color: #D0A000}
-.OS 		{ color: #82A7D0}
+.os 		{ color: #82A7D0}
 .username 	{ color: #82A7D0}
 .directory	{ color: #D0A000}
 .shell 		{ color: #D0A000}
 .notLoggedIn 	{ color: #00A000}
 .loggedIn 	{ color: #B00000}
 .newMail	{ color: #82A7D0}
+.plan		{ color: #D0A000}
 .noNewMail 	{ color: #BB0000}
 .noPlan 	{ color: #BB0000}
 
