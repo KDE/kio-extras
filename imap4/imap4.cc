@@ -45,26 +45,14 @@
 
 #include "rfcdecoder.h"
 
-#include <sys/types.h>
-#include <sys/socket.h>
-#include <sys/select.h>
-#include <sys/time.h>
-#include <sys/wait.h>
 #include <sys/stat.h>
 
-#include <fcntl.h>
-
-#include <errno.h>
-#include <signal.h>
 #include <stdio.h>
-#include <unistd.h>
 #include <stdlib.h>
 
 #include <qbuffer.h>
 #include <kprotocolmanager.h>
-#include <ksock.h>
 #include <kdebug.h>
-#include <kinstance.h>
 #include <kio/connection.h>
 #include <kio/slaveinterface.h>
 #include <kio/passdlg.h>
@@ -72,27 +60,11 @@
 
 using namespace KIO;
 
-FILE *myDebug;
-
 extern "C"
 {
   void sigalrm_handler (int);
   int kdemain (int argc, char **argv);
 };
-
-void
-debugOut (FILE * myFile, const char *msg)
-{
-  fprintf (myFile, "%s\n", msg);
-  fflush (myFile);
-}
-
-void
-myHandler (QtMsgType type, const char *msg)
-{
-  if (&type);
-  debugOut (myDebug, msg);
-}
 
 int
 kdemain (int argc, char **argv)
@@ -107,12 +79,6 @@ kdemain (int argc, char **argv)
   }
 
   //set debug handler
-#ifdef EBUGGING
-  myDebug = fopen ("/tmp/imap_slave", "a");
-  fprintf (myDebug, "Debugging\n");
-  fflush (myDebug);
-  qInstallMsgHandler (myHandler);
-#endif
 
   IMAP4Protocol *slave;
   if (strcasecmp (argv[1], "imaps") == 0)
@@ -123,10 +89,6 @@ kdemain (int argc, char **argv)
     abort ();
   slave->dispatchLoop ();
   delete slave;
-
-#ifdef EBUGGING
-  fclose (myDebug);
-#endif
 
   return 0;
 }
@@ -549,8 +511,15 @@ IMAP4Protocol::parseRelay (ulong len)
 bool IMAP4Protocol::parseRead(QByteArray & buffer, ulong len, ulong relay)
 {
   char buf[4096];
-  while (buffer.size() < len && !AtEOF())
+  while (buffer.size() < len)
   {
+    if (!waitForResponse(120))
+    {
+      error(ERR_SERVER_TIMEOUT, myHost);
+      setState(ISTATE_CONNECT);
+      closeConnection();
+      return FALSE;
+    }
     ulong readLen = Read(buf, QMIN(len - buffer.size(), sizeof(buf) - 1));
     if (readLen == 0)
     {
@@ -583,27 +552,19 @@ bool IMAP4Protocol::parseReadLine (QByteArray & buffer, ulong relay)
 {
   if (myHost.isEmpty()) return FALSE;
   char buf[1024];
-  fd_set FDs;
   ssize_t readLen;
-  struct timeval m_tTimeout;
 
-  errno = 0;
   while (1)
   {
     memset (&buf, sizeof (buf), 0);
-    if (!AtEOF()) readLen = ReadLine(buf, sizeof(buf) - 1);
-    else {
-      int wait_time = 120;
-      do {
-        FD_ZERO (&FDs);
-        FD_SET (m_iSock, &FDs);
-        m_tTimeout.tv_sec = 1;
-        m_tTimeout.tv_usec = 0;
-        wait_time--;
-      }
-      while (wait_time && select(m_iSock+1, &FDs, 0, 0, &m_tTimeout) == 0);
-      readLen = ReadLine (buf, sizeof (buf) - 1);
+    if (!waitForResponse(120))
+    {
+      error(ERR_SERVER_TIMEOUT, myHost);
+      setState(ISTATE_CONNECT);
+      closeConnection();
+      return FALSE;
     }
+    readLen = ReadLine(buf, sizeof(buf) - 1);
     if (readLen <= 0)
     {
       error (ERR_CONNECTION_BROKEN, myHost);

@@ -1556,23 +1556,11 @@ imapParser::parseRelay (ulong len)
   if (len);
 }
 
-bool
-imapParser::parseRead (QByteArray & buffer, ulong len, ulong relay)
+bool imapParser::parseRead (QByteArray & buffer, ulong len, ulong relay)
 {
-  ulong localRelay = relay;
-  while (buffer.size () < len)
-  {
-    // beware of wrap around
-    if (buffer.size () < relay)
-      localRelay = relay - buffer.size ();
-    else
-      localRelay = 0;
-
-//    kdDebug(7116) << "imapParser::parseRead - remaining " << relay-buffer.length() << "d" << endl;
-    kdDebug(7116) << "got now : " << buffer.size () << " needing still : " << localRelay << "d" << endl;
-    parseReadLine (buffer, localRelay);
-  }
-  return (len <= buffer.size ());
+  qWarning
+    ("imapParser::parseRead - virtual function not reimplemented - no data read");
+  return FALSE;
 }
 
 bool imapParser::parseReadLine (QByteArray & buffer, ulong relay)
