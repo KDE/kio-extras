@@ -119,7 +119,6 @@
 #include <qstring.h>
 #include <qlist.h>
 #include "man2html.h"
-using namespace std;
 
 #define NULL_TERMINATED(n) ((n) + 1)
 
