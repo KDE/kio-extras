@@ -229,12 +229,6 @@ mailAddress::isEmpty () const
 }
 
 void
-mailAddress::setFullNameRaw (const QCString & _str)
-{
-  rawFullName = _str;
-}
-
-void
 mailAddress::setFullName (const QString & _str)
 {
   rawFullName = rfcDecoder::encodeRFC2047String (_str).latin1 ();
@@ -243,12 +237,6 @@ const QString
 mailAddress::getFullName () const
 {
   return rfcDecoder::decodeRFC2047String (rawFullName);
-}
-
-const QCString &
-mailAddress::getFullNameRaw () const
-{
-  return rawFullName;
 }
 
 void

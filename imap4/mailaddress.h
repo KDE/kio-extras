@@ -40,24 +40,22 @@ public:
   void setUser (const QCString & aUser)
   {
     user = aUser;
-  };
+  }
   const QCString & getUser () const
   {
     return user;
-  };
+  }
   void setHost (const QCString & aHost)
   {
     host = aHost;
-  };
+  }
   const QCString & getHost () const
   {
     return host;
-  };
+  }
 
   void setFullName (const QString & aFull);
-  void setFullNameRaw (const QCString & aFull);
   const QString getFullName () const;
-  const QCString & getFullNameRaw () const;
 
   void setComment (const QString & aComment);
   void setCommentRaw (const QCString &);
