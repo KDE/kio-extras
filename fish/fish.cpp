@@ -918,6 +918,7 @@ void fishProtocol::manageConnection(const QString &l) {
                 closeConnection();
             }
             break;
+	default : break;
         }
 
     } else if (rc == 100) {
@@ -941,6 +942,7 @@ void fishProtocol::manageConnection(const QString &l) {
             rawWrite = sendLen;
             //myDebug( << "sending " << sendLen << endl);
             writeChild(NULL,0);
+	default : break;
         }
     } else if (rc/100 != 2) {
         switch (fishCommand) {
@@ -1002,6 +1004,7 @@ void fishProtocol::manageConnection(const QString &l) {
         case FISH_SYMLINK:
             error(ERR_COULD_NOT_WRITE,url.url());
             break;
+	default : break;
         }
     } else {
         bool wasSize = false;
