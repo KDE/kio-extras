@@ -77,7 +77,7 @@ public:
 						return user;
 					}
 				}
-				message = i18n("Login for host %1").arg(optmessage);
+				message = i18n("host %1").arg(optmessage);
 				myUser = user?user:"";
 				myPass = "";
 				res = proto->openPassDlg(message, myUser, myPass, optmessage);
@@ -105,7 +105,7 @@ public:
 
 			case ANSWER_USER_PASSWORD:
 				if (havePass) return pass;
-				message = i18n("Password for user %1").arg(optmessage);
+				message = i18n("user %1").arg(optmessage);
 				myUser = optmessage;
 				myPass = "";
 				res = proto->openPassDlg(message, myUser, myPass, proto->currentHost);
@@ -150,7 +150,7 @@ public:
 						return pass;
 					}
 				}
-				message = i18n("Password for service %1 (user ignored)").arg(optmessage);
+				message = i18n("share %1 (user ignored)").arg(optmessage);
 				myUser = user?user:"";
 				myPass = "";
 				res = proto->openPassDlg(message, myUser, myPass, "smbSHARE/" + proto->currentHost + QString("/") + optmessage);
