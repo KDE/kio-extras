@@ -155,8 +155,8 @@ const QString hidePass(KURL aUrl)
   return KURL::decode_string(aUrl.url());
 }
 
-IMAP4Protocol::IMAP4Protocol (const QCString & pool, const QCString & app, bool isSSL):TCPSlaveBase ((isSSL ? 993 : 143), (isSSL ? "imap4-ssl" : "imap4"), pool,
-              app), imapParser (),
+IMAP4Protocol::IMAP4Protocol (const QCString & pool, const QCString & app, bool isSSL):TCPSlaveBase ((isSSL ? 993 : 143), (isSSL ? "imaps" : "imap4"), pool,
+              app, true), imapParser (),
 mimeIO ()
 {
   readBuffer[0] = 0x00;
