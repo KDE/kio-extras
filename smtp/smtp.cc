@@ -545,6 +545,7 @@ bool SMTPProtocol::command(const QString & cmd,
 
 bool SMTPProtocol::smtp_open(const QString& fakeHostname)
 {
+  m_haveTLS = false;
   if (m_opened && 
       m_iOldPort == port(m_iPort) &&
       m_sOldServer == m_sServer && 
