@@ -537,7 +537,6 @@ IMAP4Protocol::setHost (const QString & _host, int _port,
         kdDebug(7116) << "'" << (*it) << "'" << endl;
       }
 
-// This code doesn't seem to work and I can't figure out why.
       completeQueue.removeRef (cmd);
       if (canUseTLS() && hasCapability(QString("STARTTLS"))) {
           imapCommand *cmd = doCommand (imapCommand::clientStartTLS());
