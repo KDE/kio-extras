@@ -92,7 +92,7 @@ static const char *prolog =
     "/showpage { .showpage.firstonly } def\n";
 
 static const char *gsargs[] = {
-    "/usr/bin/gs",
+    "gs",
     "-sDEVICE=png16m",
     "-sOutputFile=-",
     "-dSAFER",
@@ -111,7 +111,7 @@ static const char *gsargs[] = {
 };
 
 static const char *dvipsargs[] = {
-    "/usr/bin/dvips",
+    "dvips",
     "-n", 
     "1",
     "-q",
