@@ -20,6 +20,7 @@
 */
 
 #include "defines.h"
+#include <string.h>
 #ifndef USE_SAMBA
 
 #include "CharCnv.h"

@@ -112,4 +112,5 @@ static void newstrappend(char* &a, const char* b, const char* c)
 	} else newstrappend(a,c);
 }
 
-#endif STRTOOL_H
+#endif
+
