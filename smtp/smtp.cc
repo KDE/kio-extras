@@ -61,12 +61,12 @@
 #include <kinstance.h>
 #include <kio/connection.h>
 #include <kio/slaveinterface.h>
+#include <kio/sasl/saslcontext.h>
 #include <klocale.h>
 #include <iostream.h>
 
 #include "emailsettings.h"
 #include "smtp.h"
-#include "ksasl/saslcontext.h"
 
 using namespace KIO;
 
@@ -282,8 +282,8 @@ int SMTPProtocol::getResponse(char *r_buf, unsigned int r_len)
 	// null terminated.
 	recv_len=strlen(buf);
 
-	if (recv_len < 7)
-		error(ERR_UNKNOWN, "-");
+	if (recv_len < 4)
+		error(ERR_UNKNOWN, "Line too short");
 	char *origbuf=buf;
 	if (buf[3] == '-') { // Multiline response
 		while ( (buf[3] == '-') && (len-recv_len > 3) ) { // Three is quite arbitrary
@@ -359,6 +359,7 @@ bool SMTPProtocol::smtp_open(const KURL &url)
 			ParseFeatures(const_cast<const char *>(ehlo_line));
 	}
 
+#if 0
 	if (haveTLS) {
 		if (command("STARTTLS")) {
 			//m_pSSL=new KSSL(true);
@@ -366,7 +367,7 @@ bool SMTPProtocol::smtp_open(const KURL &url)
 		} else
 			haveTLS=false;
 	}
-
+#endif
 	// Now we try and login
 	if (!m_sUser.isNull()) {
 		if (!m_sPass.isNull()) {
@@ -401,7 +402,7 @@ bool SMTPProtocol::Authenticate(const KURL &url)
 		return false;
 	} else {
 		char *challenge=static_cast<char *>(malloc(2049));
-		// I've probably made some troll seek shelter somewhere else.. yay gov'nr and his matrix.. yes that one.. that looked like a  bird.. no not harvey milk
+ 		// I've probably made some troll seek shelter somewhere else.. yay gov'nr and his matrix.. yes that one.. that looked like a  bird.. no not harvey milk
 		if (!command(QString(QString("AUTH ")+auth_method).latin1(), challenge, 2049)) {
 			free(challenge);
 			delete m_pSASL; m_pSASL=0;
