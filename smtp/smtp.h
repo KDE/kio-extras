@@ -53,9 +53,13 @@ protected:
 
   bool smtp_open(const QString& fakeHostname = QString::null);
   void smtp_close();
-  bool command(const QString & buf, char *r_buf =
-               NULL, unsigned int r_len = 0);
-  int getResponse(char *real_buf = NULL, unsigned int real_len = 0);
+  bool command(const QString & buf, 
+               bool handleErrors = true,
+               char *r_buf = NULL, 
+               unsigned int r_len = 0);
+  int getResponse(bool handleErrors = true,
+                  char *real_buf = NULL, 
+                  unsigned int real_len = 0);
   bool Authenticate();
   void ParseFeatures(const char *buf);
   bool PutRecipients(QStringList & list);
