@@ -3,7 +3,9 @@ Encoding=UTF-8
 Icon=5floppy_mount
 Type=MimeType
 MimeType=kdedevice/floppy5_mounted
-Name=Mounted 5¼" Floppy
+Comment=Mounted 5¼" Floppy
+Comment[da]=Monteret 5¼" floppy
+Comment[he]=תקליטון "¼5 מחובר
 Patterns=
 
 X-KDE-AutoEmbed=true

@@ -3,7 +3,9 @@ Encoding=UTF-8
 Icon=floppy5_unmount
 Type=MimeType
 MimeType=kdedevice/floppy5_unmounted
-Name=Unmounted 5¼" Floppy
+Comment=Unmounted 5¼" Floppy
+Comment[da]=Afmonteret 5¼" floppy
+Comment[he]=תקליטון "¼5 מנותק
 Patterns=
 
 X-KDE-AutoEmbed=true

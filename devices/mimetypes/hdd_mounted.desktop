@@ -3,7 +3,9 @@ Encoding=UTF-8
 Icon=hdd_mount
 Type=MimeType
 MimeType=kdedevice/hdd_mounted
-Name=Mounted Hard Disc Partition
+Comment=Mounted Hard Disc Partition
+Comment[da]=Monteret harddisk-partition
+Comment[he]=מחיצת כונן קשיח מחוברת
 Patterns=
 
 X-KDE-AutoEmbed=true

@@ -3,7 +3,9 @@ Encoding=UTF-8
 Icon=hdd_unmount
 Type=MimeType
 MimeType=kdedevice/hdd_unmounted
-Name=Unmounted Hard Disc Partition
+Comment=Unmounted Hard Disc Partition
+Comment[da]=Afmonteret harddisk-partition
+Comment[he]=מחיצת כונן קשיח מנותקת
 Patterns=
 
 X-KDE-AutoEmbed=true
