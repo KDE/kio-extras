@@ -372,6 +372,7 @@ void ArchiveProtocol::get( const KURL & url )
     data( completeData );
 
     processedSize( archiveFileEntry->size() );
+    data( QByteArray() );
 
     finished();
 }
