@@ -243,6 +243,30 @@ void MountWatcherModule::readDFDone()
 	QStringList oldmountList(mountList);
 	mountList.clear();
 	KURL::List fileList;
+	QMap <QString,QString> descriptionToDeviceMap;
+	QMap <QString,QString> descriptionToMountMap;
+	for (DiskEntry *ent=mDiskList.first();ent;ent=mDiskList.next())
+	{
+	   if (descriptionToDeviceMap.contains(ent->niceDescription()))
+	   {
+	      if (descriptionToDeviceMap[ent->niceDescription()] != ent->deviceName())
+	         descriptionToDeviceMap[ent->niceDescription()] = QString::null;
+	   }
+	   else
+	   {
+	      descriptionToDeviceMap[ent->niceDescription()] = ent->deviceName();
+	   }
+
+	   if (descriptionToMountMap.contains(ent->niceDescription()))
+	   {
+	      if (descriptionToMountMap[ent->niceDescription()] != ent->mountPoint())
+	         descriptionToMountMap[ent->niceDescription()] = QString::null;
+	   }
+	   else
+	   {
+	      descriptionToMountMap[ent->niceDescription()] = ent->mountPoint();
+	   }
+	}
 	for (DiskEntry *ent=mDiskList.first();ent;ent=mDiskList.next())
 	{
 		QString entryName="";
@@ -256,9 +280,13 @@ void MountWatcherModule::readDFDone()
 		if (ent->mounted())
 		{
 			mountList<<(entryName);
-			mountList<<i18n("%1%2 mounted at %3").arg(ent->niceDescription()).arg(filename).arg(ent->mountPoint());
+			QString name = ent->niceDescription();
+			if (descriptionToDeviceMap[ent->niceDescription()] != ent->deviceName())
+				name += filename;
+			if (descriptionToMountMap[ent->niceDescription()] != ent->mountPoint())
+				name = i18n("%1 [%2]").arg(name).arg(ent->mountPoint());
+			mountList<<name;
 			mountList<<ent->deviceName();
-//			mountList<<ent->mountPoint();
 			mountList<<"file:/"+(ent->mountPoint().startsWith("/")?ent->mountPoint().right(ent->mountPoint().length()-1):ent->mountPoint());
 			mountList<< ent->discType()+"_mounted";
 			mountList<<"true";
@@ -268,7 +296,12 @@ void MountWatcherModule::readDFDone()
 		else
 		{
 			mountList<<entryName;
-			mountList<<i18n("%1%2 (not mounted)").arg(ent->niceDescription()).arg(filename);
+			QString name = ent->niceDescription();
+			if (descriptionToDeviceMap[ent->niceDescription()] != ent->deviceName())
+				name += filename;
+			if (descriptionToMountMap[ent->niceDescription()] != ent->mountPoint())
+				name = i18n("%1 [%2]").arg(name).arg(ent->mountPoint());
+			mountList<<name;
 			mountList<<ent->deviceName();
 			mountList<<"file:/"+(ent->mountPoint().startsWith("/")?ent->mountPoint().right(ent->mountPoint().length()-1):ent->mountPoint());
 			mountList<< ent->discType()+"_unmounted";
