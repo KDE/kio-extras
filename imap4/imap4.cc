@@ -41,6 +41,13 @@
     imap://server/folder/ - List messages in folder
  */
 
+/*
+  API notes:
+    Not recieving the required write access for a folder means
+        ERR_CANNOT_OPEN_FOR_WRITING.
+    ERR_DOES_NOT_EXIST is reserved for folders. 
+*/
+
 #ifdef HAVE_CONFIG_H
 #include <config.h>
 #endif
@@ -164,11 +171,7 @@ IMAP4Protocol::get (const KURL & _url)
   }
 
   imapCommand *cmd = NULL;
-  if (!assureBox (aBox, true))
-  {
-    error (ERR_COULD_NOT_READ, hidePass(_url));
-    return;
-  }
+  if (!assureBox (aBox, true)) return;
 
 #ifdef USE_VALIDITY
   if (selectInfo.uidValidityAvailable () && !aValidity.isEmpty ()
@@ -316,167 +319,154 @@ IMAP4Protocol::listDir (const KURL & _url)
     parseURL (_url, myBox, mySection, myLType, mySequence, myValidity,
       myDelimiter);
 
-  if (makeLogin())
+  if (!makeLogin()) return;
+
+  if (myType == ITYPE_DIR || myType == ITYPE_DIR_AND_BOX)
   {
-    if (myType == ITYPE_DIR || myType == ITYPE_DIR_AND_BOX)
-    {
-      QString listStr = myBox;
-      imapCommand *cmd;
+    QString listStr = myBox;
+    imapCommand *cmd;
 
-      if (!listStr.isEmpty ())
-        listStr += myDelimiter;
-      listStr += "%";
+    if (!listStr.isEmpty ())
+      listStr += myDelimiter;
+    listStr += "%";
 //      listResponses.clear();
-      cmd =
-        doCommand (imapCommand::clientList ("", listStr, myLType == "LSUB"));
-      if (cmd->result () == "OK")
+    cmd =
+      doCommand (imapCommand::clientList ("", listStr, myLType == "LSUB"));
+    if (cmd->result () == "OK")
+    {
+      QString mailboxName;
+      UDSEntry entry;
+      UDSAtom atom;
+      KURL aURL = _url;
+      if (aURL.path().find(";") != -1) 
+        aURL.setPath(aURL.path().left(aURL.path().find(";")));
+
+      kdDebug(7116) << "IMAP4Protocol::listDir - got " << listResponses.count () << endl;
+
+      for (QValueListIterator < imapList > it = listResponses.begin ();
+           it != listResponses.end (); ++it)
+        doListEntry (aURL, myBox, (*it));
+      entry.clear ();
+      listEntry (entry, true);
+    }
+    else
+    {
+      error (ERR_CANNOT_ENTER_DIRECTORY, hidePass(_url));
+    }
+    completeQueue.removeRef (cmd);
+  }
+  if ((myType == ITYPE_BOX || myType == ITYPE_DIR_AND_BOX)
+      && myLType != "LIST" && myLType != "LSUB")
+  {
+    if (!_url.query ().isEmpty ())
+    {
+      QString query = KURL::decode_string (_url.query ());
+      query = query.right (query.length () - 1);
+      if (!query.isEmpty())
       {
-        QString mailboxName;
+        imapCommand *cmd = NULL;
+
+        if (!assureBox (myBox, true)) return;
+
+        if (!selectInfo.countAvailable() || selectInfo.count())
+        {
+          cmd = doCommand (imapCommand::clientSearch (query));
+          if (cmd->result() != "OK")
+          {
+            error(ERR_UNSUPPORTED_ACTION, hidePass(_url));
+            completeQueue.removeRef (cmd);
+            return;
+          }
+          completeQueue.removeRef (cmd);
+
+          QStringList list = getResults ();
+          int stretch = 0;
+
+          if (selectInfo.uidNextAvailable ())
+            stretch = QString ().setNum (selectInfo.uidNext ()).length ();
+          UDSEntry entry;
+          imapCache fake;
+
+          for (QStringList::Iterator it = list.begin (); it != list.end ();
+               ++it)
+          {
+            fake.setUid((*it).toULong());
+            doListEntry (_url, stretch, &fake);
+          }
+          entry.clear ();
+          listEntry (entry, true);
+        }
+      }
+    }
+    else
+    {
+      if (!assureBox (myBox, true)) return;
+
+      kdDebug(7116) << "IMAP4: select returned:" << endl;
+      if (selectInfo.recentAvailable ())
+        kdDebug(7116) << "Recent: " << selectInfo.recent () << "d" << endl;
+      if (selectInfo.countAvailable ())
+        kdDebug(7116) << "Count: " << selectInfo.count () << "d" << endl;
+      if (selectInfo.unseenAvailable ())
+        kdDebug(7116) << "Unseen: " << selectInfo.unseen () << "d" << endl;
+      if (selectInfo.uidValidityAvailable ())
+        kdDebug(7116) << "uidValidity: " << selectInfo.uidValidity () << "d" << endl;
+      if (selectInfo.flagsAvailable ())
+        kdDebug(7116) << "Flags: " << selectInfo.flags () << "d" << endl;
+      if (selectInfo.permanentFlagsAvailable ())
+        kdDebug(7116) << "PermanentFlags: " << selectInfo.permanentFlags () << "d" << endl;
+      if (selectInfo.readWriteAvailable ())
+        kdDebug(7116) << "Access: " << (selectInfo.readWrite ()? "Read/Write" : "Read only") << endl;
+
+#ifdef USE_VALIDITY
+      if (selectInfo.uidValidityAvailable ()
+          && selectInfo.uidValidity () != myValidity.toULong ())
+      {
+        //redirect
+        KURL newUrl = _url;
+
+        newUrl.setPath ("/" + myBox + ";UIDVALIDITY=" +
+                        QString ().setNum (selectInfo.uidValidity ()));
+        kdDebug(7116) << "IMAP4::listDir - redirecting to " << hidePass(newUrl) << endl;
+        redirection (newUrl);
+
+
+      }
+      else
+#endif
+      if (selectInfo.count () > 0)
+      {
+        int stretch = 0;
+
+        if (selectInfo.uidNextAvailable ())
+          stretch = QString ().setNum (selectInfo.uidNext ()).length ();
+        //        kdDebug(7116) << selectInfo.uidNext() << "d used to stretch " << stretch << endl;
         UDSEntry entry;
-        UDSAtom atom;
-        KURL aURL = _url;
-        if (aURL.path().find(";") != -1) 
-          aURL.setPath(aURL.path().left(aURL.path().find(";")));
 
-        kdDebug(7116) << "IMAP4Protocol::listDir - got " << listResponses.count () << endl;
+        if (mySequence.isEmpty()) mySequence = "1:*";
 
-        for (QValueListIterator < imapList > it = listResponses.begin ();
-             it != listResponses.end (); ++it)
-          doListEntry (aURL, myBox, (*it));
+        bool withSubject = mySection.isEmpty();
+        if (mySection.isEmpty()) mySection = "UID RFC822.SIZE ENVELOPE";
+        
+        bool withFlags = mySection.upper().find("FLAGS") != -1;
+        imapCommand *fetch =
+          sendCommand (imapCommand::
+                       clientFetch (mySequence, mySection));
+      imapCache *cache;
+        do
+        {
+          while (!parseLoop ());
+
+          cache = getLastHandled ();
+
+          if (cache && !fetch->isComplete())
+            doListEntry (_url, stretch, cache, withFlags, withSubject);
+        }
+        while (!fetch->isComplete ());
         entry.clear ();
         listEntry (entry, true);
       }
-      else
-      {
-        error (ERR_CANNOT_ENTER_DIRECTORY, hidePass(_url));
-      }
-      completeQueue.removeRef (cmd);
     }
-    if ((myType == ITYPE_BOX || myType == ITYPE_DIR_AND_BOX)
-        && myLType != "LIST" && myLType != "LSUB")
-    {
-      if (!_url.query ().isEmpty ())
-      {
-        QString query = KURL::decode_string (_url.query ());
-        query = query.right (query.length () - 1);
-        if (!query.isEmpty())
-        {
-          imapCommand *cmd = NULL;
-
-          if (!assureBox (myBox, true))
-            error(ERR_CANNOT_ENTER_DIRECTORY, hidePass(_url));
-          else if (!selectInfo.countAvailable() || selectInfo.count())
-          {
-            cmd = doCommand (imapCommand::clientSearch (query));
-            if (cmd->result() != "OK")
-            {
-              error(ERR_UNSUPPORTED_ACTION, hidePass(_url));
-              completeQueue.removeRef (cmd);
-              return;
-            }
-            completeQueue.removeRef (cmd);
-
-            QStringList list = getResults ();
-            int stretch = 0;
-
-            if (selectInfo.uidNextAvailable ())
-              stretch = QString ().setNum (selectInfo.uidNext ()).length ();
-            UDSEntry entry;
-            imapCache fake;
-
-            for (QStringList::Iterator it = list.begin (); it != list.end ();
-                 ++it)
-            {
-              fake.setUid((*it).toULong());
-              doListEntry (_url, stretch, &fake);
-            }
-            entry.clear ();
-            listEntry (entry, true);
-          }
-        }
-      }
-      else
-      {
-
-//        imapCommand *cmd = NULL;
-        if (assureBox (myBox, true))
-        {
-          kdDebug(7116) << "IMAP4: select returned:" << endl;
-          if (selectInfo.recentAvailable ())
-            kdDebug(7116) << "Recent: " << selectInfo.recent () << "d" << endl;
-          if (selectInfo.countAvailable ())
-            kdDebug(7116) << "Count: " << selectInfo.count () << "d" << endl;
-          if (selectInfo.unseenAvailable ())
-            kdDebug(7116) << "Unseen: " << selectInfo.unseen () << "d" << endl;
-          if (selectInfo.uidValidityAvailable ())
-            kdDebug(7116) << "uidValidity: " << selectInfo.uidValidity () << "d" << endl;
-          if (selectInfo.flagsAvailable ())
-            kdDebug(7116) << "Flags: " << selectInfo.flags () << "d" << endl;
-          if (selectInfo.permanentFlagsAvailable ())
-            kdDebug(7116) << "PermanentFlags: " << selectInfo.permanentFlags () << "d" << endl;
-          if (selectInfo.readWriteAvailable ())
-            kdDebug(7116) << "Access: " << (selectInfo.readWrite ()? "Read/Write" : "Read only") << endl;
-
-#ifdef USE_VALIDITY
-          if (selectInfo.uidValidityAvailable ()
-              && selectInfo.uidValidity () != myValidity.toULong ())
-          {
-            //redirect
-            KURL newUrl = _url;
-
-            newUrl.setPath ("/" + myBox + ";UIDVALIDITY=" +
-                            QString ().setNum (selectInfo.uidValidity ()));
-            kdDebug(7116) << "IMAP4::listDir - redirecting to " << hidePass(newUrl) << endl;
-            redirection (newUrl);
-
-
-          }
-          else
-#endif
-          if (selectInfo.count () > 0)
-          {
-            int stretch = 0;
-
-            if (selectInfo.uidNextAvailable ())
-              stretch = QString ().setNum (selectInfo.uidNext ()).length ();
-            //        kdDebug(7116) << selectInfo.uidNext() << "d used to stretch " << stretch << endl;
-            UDSEntry entry;
-
-            if (mySequence.isEmpty()) mySequence = "1:*";
-
-            bool withSubject = mySection.isEmpty();
-            if (mySection.isEmpty()) mySection = "UID RFC822.SIZE ENVELOPE";
-            
-            bool withFlags = mySection.upper().find("FLAGS") != -1;
-            imapCommand *fetch =
-              sendCommand (imapCommand::
-                           clientFetch (mySequence, mySection));
-            imapCache *cache;
-            do
-            {
-              while (!parseLoop ());
-
-              cache = getLastHandled ();
-
-              if (cache && !fetch->isComplete())
-                doListEntry (_url, stretch, cache, withFlags, withSubject);
-            }
-            while (!fetch->isComplete ());
-            entry.clear ();
-            listEntry (entry, true);
-          }
-        }
-        else
-        {
-          error (ERR_CANNOT_ENTER_DIRECTORY, hidePass(_url));
-        }
-//        completeQueue.removeRef(cmd);
-      }
-    }
-  }
-  else
-  {
-    error (ERR_CANNOT_ENTER_DIRECTORY, hidePass(_url));
   }
 
   kdDebug(7116) << "IMAP4Protcol::listDir - Finishing listDir" << endl;
@@ -856,22 +846,15 @@ IMAP4Protocol::copy (const KURL & src, const KURL & dest, int, bool overwrite)
   if (sType == ITYPE_MSG || sType == ITYPE_BOX)
   {
     //select the source box
-    if (assureBox (sBox, true))
-    {
-      kdDebug(7116) << "IMAP4::copy - " << sBox << " -> " << dBox << endl;
+    if (!assureBox(sBox, true)) return;
+    kdDebug(7116) << "IMAP4::copy - " << sBox << " -> " << dBox << endl;
 
-      //issue copy command
-      imapCommand *cmd =
-        doCommand (imapCommand::clientCopy (dBox, sSequence));
-      if (cmd->result () != "OK")
-        error (ERR_COULD_NOT_WRITE, hidePass(dest));
-      completeQueue.removeRef (cmd);
-
-    }
-    else
-    {
-      error (ERR_ACCESS_DENIED, hidePass(src));
-    }
+    //issue copy command
+    imapCommand *cmd =
+      doCommand (imapCommand::clientCopy (dBox, sSequence));
+    if (cmd->result () != "OK")
+      error (ERR_COULD_NOT_WRITE, hidePass(dest));
+    completeQueue.removeRef (cmd);
   }
   else
   {
@@ -896,29 +879,22 @@ IMAP4Protocol::del (const KURL & _url, bool isFile)
     {
       if (aSequence == "*")
       {
-        if (assureBox (aBox, false))
-        {
-          imapCommand *cmd = doCommand (imapCommand::clientExpunge ());
-          if (cmd->result () != "OK")
-            error (ERR_CANNOT_DELETE, hidePass(_url));
-          completeQueue.removeRef (cmd);
-        }
-        else error (ERR_CANNOT_DELETE, hidePass(_url));
+        if (!assureBox (aBox, false)) return;
+        imapCommand *cmd = doCommand (imapCommand::clientExpunge ());
+        if (cmd->result () != "OK")
+          error (ERR_CANNOT_DELETE, hidePass(_url));
+        completeQueue.removeRef (cmd);
       }
       else
       {
         // if open for read/write 
-        if (assureBox (aBox, false))
-        {
-          imapCommand *cmd =
-            doCommand (imapCommand::
-                       clientStore (aSequence, "+FLAGS.SILENT", "\\DELETED"));
-          if (cmd->result () != "OK")
-            error (ERR_CANNOT_DELETE, hidePass(_url));
-          completeQueue.removeRef (cmd);
-        }
-        else
+        if (!assureBox (aBox, false)) return;
+        imapCommand *cmd =
+          doCommand (imapCommand::
+                     clientStore (aSequence, "+FLAGS.SILENT", "\\DELETED"));
+        if (cmd->result () != "OK")
           error (ERR_CANNOT_DELETE, hidePass(_url));
+        completeQueue.removeRef (cmd);
       }
     }
     else
@@ -937,8 +913,8 @@ IMAP4Protocol::del (const KURL & _url, bool isFile)
       if (cmd->result () != "OK")
       {
         completeQueue.removeRef(cmd);
+        if (!assureBox(aBox, false)) return;
         bool stillOk = true;
-        if (!assureBox(aBox, false)) stillOk = false;
         if (stillOk)
         {
           imapCommand *cmd = doCommand(
@@ -982,17 +958,13 @@ IMAP4Protocol::del (const KURL & _url, bool isFile)
   case ITYPE_MSG:
     {
       // if open for read/write 
-      if (assureBox (aBox, false))
-      {
-        imapCommand *cmd =
-          doCommand (imapCommand::
-                     clientStore (aSequence, "+FLAGS.SILENT", "\\DELETED"));
-        if (cmd->result () != "OK")
-          error (ERR_CANNOT_DELETE, hidePass(_url));
-        completeQueue.removeRef (cmd);
-      }
-      else
+      if (!assureBox (aBox, false)) return;
+      imapCommand *cmd =
+        doCommand (imapCommand::
+                   clientStore (aSequence, "+FLAGS.SILENT", "\\DELETED"));
+      if (cmd->result () != "OK")
         error (ERR_CANNOT_DELETE, hidePass(_url));
+      completeQueue.removeRef (cmd);
     }
     break;
 
@@ -1040,11 +1012,21 @@ kdDebug(7116) << "IMAP4Protocol::special" << endl;
     
     QString aBox, aSequence, aLType, aSection, aValidity, aDelimiter;
     parseURL (_url, aBox, aSection, aLType, aSequence, aValidity, aDelimiter);
-    if (assureBox (aBox, false))
+    if (!assureBox(aBox, false)) return;
+    imapCommand *cmd = doCommand (imapCommand::
+      clientStore (aSequence, "-FLAGS.SILENT",
+      "\\SEEN \\ANSWERED \\FLAGGED \\DRAFT"));
+    if (cmd->result () != "OK")
     {
-      imapCommand *cmd = doCommand (imapCommand::
-        clientStore (aSequence, "-FLAGS.SILENT",
-        "\\SEEN \\ANSWERED \\FLAGGED \\DRAFT"));
+      error(ERR_NO_CONTENT, i18n("Changing the flags of message %1 "
+        "failed.").arg(hidePass(_url)));
+      return;
+    }
+    completeQueue.removeRef (cmd);
+    if (!newFlags.isEmpty())
+    {
+      cmd = doCommand (imapCommand::
+        clientStore (aSequence, "+FLAGS.SILENT", newFlags));
       if (cmd->result () != "OK")
       {
         error(ERR_NO_CONTENT, i18n("Changing the flags of message %1 "
@@ -1052,21 +1034,8 @@ kdDebug(7116) << "IMAP4Protocol::special" << endl;
         return;
       }
       completeQueue.removeRef (cmd);
-      if (!newFlags.isEmpty())
-      {
-        cmd = doCommand (imapCommand::
-          clientStore (aSequence, "+FLAGS.SILENT", newFlags));
-        if (cmd->result () != "OK")
-        {
-          error(ERR_NO_CONTENT, i18n("Changing the flags of message %1 "
-            "failed.").arg(hidePass(_url)));
-          return;
-        }
-        completeQueue.removeRef (cmd);
-      }
-      finished();
     }
-    else error (ERR_CANNOT_OPEN_FOR_WRITING, hidePass(_url));
+    finished();
   }
 }
 
@@ -1145,16 +1114,38 @@ IMAP4Protocol::stat (const KURL & _url)
     if (getState() == ISTATE_SELECT && aBox == getCurrentBox())
     {
       imapCommand *cmd = doCommand (imapCommand::clientClose());
-      if (cmd->result() != "OK")
+      bool ok = cmd->result() == "OK";
+      completeQueue.removeRef(cmd);
+      if (!ok)
       {
-        error (ERR_ABORTED, i18n("Unable to close mailbox."));
-        finished();
+        error(ERR_NO_CONTENT, i18n("Unable to close mailbox."));
         return;
       }
       setState(ISTATE_LOGIN);
     }
     imapCommand *cmd = doCommand(imapCommand::clientStatus(aBox, aSection));
+    bool ok = cmd->result() == "OK";
+    QString cmdInfo = cmd->resultInfo();
     completeQueue.removeRef(cmd);
+    if (!ok)
+    {
+      bool found = false;
+      cmd = doCommand (imapCommand::clientList ("", aBox));
+      if (cmd->result () == "OK")
+      {
+        for (QValueListIterator < imapList > it = listResponses.begin ();
+             it != listResponses.end (); ++it)
+        {
+          if (aBox == (*it).name ()) found = true;
+        }
+      }
+      completeQueue.removeRef (cmd);
+      if (found)
+        error(ERR_NO_CONTENT, i18n("Cannot get information about folder %1. The server said: %2").arg(aBox).arg(cmdInfo));
+      else
+        error(KIO::ERR_DOES_NOT_EXIST, aBox);
+      return;
+    }
     if ((aSection == "UIDNEXT" && getStatus().uidNextAvailable())
       || (aSection == "UNSEEN" && getStatus().unseenAvailable()))
     {
@@ -1780,42 +1771,50 @@ IMAP4Protocol::assureBox (const QString & aBox, bool readonly)
 {
   imapCommand *cmd = NULL;
 
-  if (aBox != getCurrentBox ())
+  if (aBox != getCurrentBox () || (!getSelected().readWrite() && !readonly))
   {
     // open the box with the appropriate mode
     kdDebug(7116) << "IMAP4Protocol::assureBox - opening box" << endl;
     selectInfo = imapInfo();
     cmd = doCommand (imapCommand::clientSelect (aBox, readonly));
+    bool ok = cmd->result() == "OK";
+    QString cmdInfo = cmd->resultInfo();
     completeQueue.removeRef (cmd);
+
+    if (!ok)
+    {
+      bool found = false;
+      cmd = doCommand (imapCommand::clientList ("", aBox));
+      if (cmd->result () == "OK")
+      {
+        for (QValueListIterator < imapList > it = listResponses.begin ();
+             it != listResponses.end (); ++it)
+        {
+          if (aBox == (*it).name ()) found = true;
+        }
+      }
+      completeQueue.removeRef (cmd);
+      if (found)
+        error(ERR_NO_CONTENT, i18n("Cannot open folder %1. The server said: %2").arg(aBox).arg(cmdInfo));
+      else
+        error(KIO::ERR_DOES_NOT_EXIST, aBox);
+      return false;
+    }
   }
   else
   {
-    // check if it is the mode we want
-    if (getSelected ().readWrite () || readonly)
-    {
-      // give the server a chance to deliver updates
-      kdDebug(7116) << "IMAP4Protocol::assureBox - reusing box" << endl;
-      cmd = doCommand (imapCommand::clientNoop ());
-      completeQueue.removeRef (cmd);
-    }
-    else
-    {
-      // reopen the box with the appropriate mode
-      kdDebug(7116) << "IMAP4Protocol::assureBox - reopening box" << endl;
-      selectInfo = imapInfo();
-      cmd = doCommand (imapCommand::clientSelect (aBox, readonly));
-      completeQueue.removeRef (cmd);
-    }
+    // give the server a chance to deliver updates
+    kdDebug(7116) << "IMAP4Protocol::assureBox - reusing box" << endl;
+    cmd = doCommand (imapCommand::clientNoop ());
+    completeQueue.removeRef (cmd);
   }
 
-  // if it isn't opened
-  if (aBox != getCurrentBox ())
-    return false;
-
   // if it is the mode we want
-  if (getSelected ().readWrite () || readonly)
-    return true;
+  if (!getSelected().readWrite() && !readonly)
+  {
+    error(KIO::ERR_CANNOT_OPEN_FOR_WRITING, aBox);
+    return false;
+  }
 
-  // we goofed somewhere
-  return false;
+  return true;
 }
