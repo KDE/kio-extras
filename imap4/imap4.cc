@@ -589,15 +589,42 @@ void IMAP4Protocol::setHost(const QString &_host, int _port, const QString &_use
 
 void IMAP4Protocol::stat(const KURL &_url)
 {
-#if 0
-   if (ku.isMalformed()) {
-      error(ERR_MALFORMED_URL, ku.url());
+   if (_url.isMalformed()) {
+      error(ERR_MALFORMED_URL, _url.url());
       m_cmd = CMD_NONE;
       return;
    }
+
+   UDSEntry entry;
+   UDSAtom atom;
+
+   atom.m_uds = UDS_NAME;
+   atom.m_str = _url.path();
+   if (atom.m_str.at(0) == '/')
+       atom.m_str.remove(0,1);
+   entry.append( atom );
+
    // TODO: Do an actual check if this is a folder or file
-   if (ku.path().right(1) == folderDelimiter) isDirectory();
-   else isFile();
+   if (_url.path().right(1) == folderDelimiter) {
+       atom.m_uds = UDS_MIME_TYPE;
+       atom.m_str = "inode/directory";
+       entry.append( atom );
+
+       atom.m_uds = UDS_FILE_TYPE;
+       atom.m_str = "";
+       atom.m_long = S_IFDIR;
+       entry.append( atom );
+   } else {
+       atom.m_uds = UDS_MIME_TYPE;
+       atom.m_str = "message/rfc822"; // Yes, a bit naive, but oh well
+       entry.append( atom );
+
+       atom.m_uds = UDS_FILE_TYPE;
+       atom.m_str = "";
+       atom.m_long = S_IFREG;
+	//isFile();
+   }
+
+   statEntry( entry );
    finished();
-#endif
 }
