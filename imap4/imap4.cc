@@ -1335,7 +1335,17 @@ bool IMAP4Protocol::makeLogin ()
     QString resultInfo;
     if (myAuth.isEmpty () || myAuth == "*")
     {
-      if (!clientLogin (myUser, myPass, resultInfo))
+      if (QString(myUser.utf8()) != myUser)
+        error(KIO::ERR_COULD_NOT_LOGIN, i18n("Sorry, in IMAP clear text login "
+          "only us-ascii characters are possible. Please use a different "
+          "authentication method your server supports or try to get a "
+          "different username."));
+      else if (QString(myPass.utf8()) != myPass)
+        error(KIO::ERR_COULD_NOT_LOGIN, i18n("Sorry, in IMAP clear text login "
+          "only us-ascii characters are possible. Please use a different "
+          "authentication method your server supports or change your "
+          "password."));
+      else if (!clientLogin (myUser, myPass, resultInfo))
         error(KIO::ERR_COULD_NOT_LOGIN, i18n("Could not login. Probably the "
         "password is wrong.\nThe server replied:\n%1").arg(resultInfo));
     }
