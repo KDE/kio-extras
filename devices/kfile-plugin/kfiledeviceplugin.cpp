@@ -5,6 +5,7 @@
 #include <qpixmap.h>
 #include <qpainter.h>
 #include <qstyle.h>
+#include <qeventloop.h>
 #include <kdiskfreesp.h>
 #include <kapplication.h>
 #include <unistd.h>
@@ -33,7 +34,6 @@ bool KFileDevicePlugin::readInfo(KFileMetaInfo &info, uint /*what*/)
 	
 	KDiskFreeSp *df = new KDiskFreeSp();
 	
-	m_done = false;
 	m_total = 0;
 	m_used = 0;
 	m_free = 0;
@@ -49,11 +49,7 @@ bool KFileDevicePlugin::readInfo(KFileMetaInfo &info, uint /*what*/)
 	
 	df->readDF(mount_point);
 	
-	while (!m_done)
-	{
-		usleep(1000);
-		qApp->processEvents();
-	}
+	qApp->eventLoop()->enterLoop();
 
 	int percent = 0;
 	int length = 0;
@@ -102,7 +98,7 @@ void KFileDevicePlugin::slotFoundMountPoint(const QString &/*mountPoint*/,
 
 void KFileDevicePlugin::slotDfDone()
 {
-	m_done = true;
+	qApp->eventLoop()->exitLoop();
 }
 
 QString KFileDevicePlugin::askMountPoint(KFileMetaInfo &info)

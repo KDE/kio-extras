@@ -42,6 +42,7 @@
 DiskEntry::DiskEntry(QObject *parent, const char *name)
  : QObject (parent, name)
 {
+  m_identifier="";
   realDevice="";
   device="";
   m_inode=0;
@@ -50,10 +51,13 @@ DiskEntry::DiskEntry(QObject *parent, const char *name)
   mountedOn="";
   isMounted=FALSE;
   isOld=false;
+  m_userDescription="";
 }
 
 QString DiskEntry::niceDescription()
 {
+	if (m_userDescription!="") return m_userDescription;
+	
 	const QString dType(discType());
 	if (dType.contains("hdd"))	return i18n("Hard Disc");
 	else if (dType.contains("smb")) return i18n("Remote Share");
@@ -176,6 +180,17 @@ QString DiskEntry::discType()
 
 
 }
+
+void DiskEntry::setUniqueIdentifier(const QString & uniqueIdentifier)
+{
+	m_identifier = uniqueIdentifier;
+}
+
+void DiskEntry::setUserDescription(const QString & userDescription)
+{
+	m_userDescription = userDescription;
+}
+
 
 void DiskEntry::setDeviceName(const QString & deviceName)
 {

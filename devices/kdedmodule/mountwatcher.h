@@ -71,6 +71,7 @@ k_dcop:
 			 const QString& URL, const QString& mimetype,bool mountState);
     void removeSpecialDevice(const QString& uniqueIdentifier);
     bool createLink(const KURL& deviceURL, const KURL& destinationURL);
+    bool setDisplayName(const QString& uniqueIdentifier, const QString& displayName);
     void reloadExclusionLists();
     void reReadSpecialConfig();
 k_dcop_signals:

@@ -20,7 +20,6 @@ private:
 	unsigned long m_total;
 	unsigned long m_used;
 	unsigned long m_free;
-	bool m_done;
 
 private slots:
 	void slotFoundMountPoint(const QString &mountPoint,

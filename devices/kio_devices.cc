@@ -19,12 +19,13 @@
 */
 
    #include <kio/slavebase.h>
-   #include <kinstance.h>
+   #include <kapplication.h>
    #include <kdebug.h>
    #include <stdlib.h>
    #include <qtextstream.h>
    #include <klocale.h>
    #include <sys/stat.h>
+   #include <dcopref.h>
    #include <dcopclient.h>
    #include <qdatastream.h>
    #include <time.h>
@@ -64,10 +65,14 @@
   };
 
   extern "C" {
-	int kdemain( int, char **argv )
+	int kdemain( int argc, char **argv )
 	{
 		kdDebug(7126)<<"kdemain for devices"<<endl;
-		KInstance instance( "kio_devices" );
+		// KApplication is used as we need to use the file:// ioslave
+		// which need a valid kapp pointer
+		KApplication::disableAutoDcopRegistration();
+		KApplication app(argc, argv, "kio_devices", false, true);
+		
 		DevicesProtocol slave(argv[1],argv[2], argv[3]);
 		slave.dispatchLoop();
 		return 0;
@@ -92,23 +97,27 @@ DevicesProtocol::~DevicesProtocol()
 
 void DevicesProtocol::rename(KURL const &oldURL, KURL const &newURL, bool) {
 	kdDebug(7126)<<"DevicesProtocol::rename(): old="<<oldURL<<" new="<<newURL<<endl;
+	
+	DCOPRef mountwatcher("kded", "mountwatcher");
+	DCOPReply reply = mountwatcher.call( "setDisplayName",
+	                                     oldURL.path().remove(0,1),
+	                                     newURL.path().remove(0,1) );
 
-        QByteArray data;
-        QByteArray param;
-        QCString retType;
-        QString retVal;
-        QDataStream streamout(param,IO_WriteOnly);
-
-        streamout<<oldURL; 
-	streamout<<newURL;
-
-	if ( dcopClient()->call( "kded",
-		 "mountwatcher", "setDisplayName(QString,QString)", param,retType,data,false ) ) {
+	bool ok = false;
+	
+	if ( reply.isValid() )
+	{
+		ok = reply;
+	}
+	
+	if(ok)
+	{
 		finished();
-		return;
-	} else {
-		error(KIO::ERR_SLAVE_DEFINED,i18n("Mountwatcher could not be reached for renaming operation"));
-		return;
+	}
+	else
+	{
+		error(KIO::ERR_CANNOT_RENAME,
+		      i18n("This device name already exists"));
 	}
 }
 
@@ -142,7 +151,7 @@ void DevicesProtocol::mountAndRedirect(const KURL& url)
 		QString device=*it; ++it;
 		if (it!=info.end())
 		{
-			++it;
+			++it; ++it;
 			if (it!=info.end())
 			{
 				QString mp=*it; ++it;++it;
@@ -153,7 +162,8 @@ void DevicesProtocol::mountAndRedirect(const KURL& url)
 					{
 						if (!mp.startsWith("file:/"))
 						{
-							error(KIO::ERR_SLAVE_DEFINED,i18n("Device not accessible"));
+							error(KIO::ERR_SLAVE_DEFINED,i18n("Device not accessible")
+									+mp);
 							return;
 						}
 						KProcess *proc = new KProcess;
@@ -312,6 +322,7 @@ QStringList DevicesProtocol::kmobile_list(const QString deviceName)
 
 QStringList DevicesProtocol::deviceInfo(QString name)
 {
+	kdDebug() << "DevicesProtocol::deviceInfo(" << name << ")" << endl;
 	QByteArray data;
 	QByteArray param;
 	QCString retType;
@@ -446,7 +457,8 @@ void DevicesProtocol::listRoot()
 			return;
 		}
 // FIXME: look for the real ending
-		QString url="devices:/"+(*it); ++it;
+		++it;
+		QString url="devices:/"+(*it); //++it;
 		QString name=*it; ++it;
 		++it; ++it;
 		QString type=*it; ++it; ++it;

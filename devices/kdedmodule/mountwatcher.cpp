@@ -222,9 +222,10 @@ QStringList MountWatcherModule::basicDeviceInfo(QString name)
 	QStringList tmp;
 	for (QStringList::Iterator it=completeList.begin();it!=completeList.end();)
 	{
+		++it;
 		if ((*it)==name)
 		{
-			++it;
+			--it;
 			do
 			{
 				tmp<<(*it);
@@ -328,11 +329,23 @@ void MountWatcherModule::readDFDone()
 	      descriptionToMountMap[ent->niceDescription()] = ent->mountPoint();
 	   }
 	}
+
+	KConfig cfg("mountwatcherrc");
+	cfg.setGroup("Labels");
+			
+	
 	for (DiskEntry *ent=mDiskList.first();ent;ent=mDiskList.next())
 	{
 		QString entryName="";
 		entryName+=ent->deviceName().replace("/", "");
 		entryName+=ent->mountPoint().replace("/","");
+
+		ent->setUniqueIdentifier(entryName);
+		if(cfg.hasKey(entryName))
+		{
+			ent->setUserDescription(cfg.readEntry(entryName));
+		}
+		
 		QString filename = KURL(ent->deviceName()).fileName();
 		if(!filename.isEmpty())
 			filename = QString::fromLatin1(" (") + filename + ")";
@@ -447,7 +460,38 @@ bool MountWatcherModule::createLink(const KURL& deviceURL, const KURL& destinati
 	return false;
 }
 
+bool MountWatcherModule::setDisplayName(const QString& uniqueIdentifier, const QString& displayName)
+{
+	DiskEntry *to_rename = 0L;
+	for (DiskEntry *ent=mDiskList.first();ent;ent=mDiskList.next())
+	{
+		if (ent->uniqueIdentifier()==uniqueIdentifier)
+		{
+			to_rename = ent;
+		}
+		else if (ent->niceDescription()==displayName)
+		{
+			return false;
+		}
+	}
+	
+	if (to_rename!=0L)
+	{
+		to_rename->setUserDescription(displayName);
 
+		KConfig cfg("mountwatcherrc");
+
+		cfg.setGroup("Labels");
+		cfg.writeEntry(uniqueIdentifier, displayName);
+		
+		cfg.sync();
+		
+		readDFDone();
+		return true;
+	}
+	
+	return false;
+}
 
 extern "C" {
     KDEDModule *create_mountwatcher(const QCString &obj)

@@ -43,6 +43,7 @@ class DiskEntry : public QObject
   Q_OBJECT
 public:
   DiskEntry(QObject *parent=0, const char *name=0);
+  QString uniqueIdentifier() const { return m_identifier; };
   QString deviceName() const { return device; };
   QString realDeviceName() const { return realDevice; };
   QString mountPoint() const { return mountedOn; };
@@ -51,21 +52,25 @@ public:
   bool inodeType() const {return m_inodeType;};
   QString fsType() const { return type; };
   bool old();
-
+  
   QString discType();
   QString niceDescription();
+  QString userDescription() {return m_userDescription;};
 
 public slots:
+  void setUniqueIdentifier(const QString & uniqueIdentifier);
   void setDeviceName(const QString & deviceName);
   void setMountPoint(const QString & mountPoint);
   void setFsType(const QString & fsType);
   void setMounted(bool nowMounted);
   void setOld(bool);
+  void setUserDescription(const QString & userDescription);
 
 private:
   void init();
   QString prettyPrint(int kBValue) const;
 
+  QString     m_identifier;
   QString     device;
   QString     realDevice;
   QString     type;
@@ -77,6 +82,8 @@ private:
   ino_t	      m_inode;
   
   bool        isOld;
+
+  QString     m_userDescription;
 };
 
 #endif
