@@ -56,13 +56,8 @@ void InfoProtocol::get( const QString& path, const QString& /*query*/, bool /*re
     if ( m_page.isEmpty() )
       m_page = "dir";
 
-    QCString cmd = m_perl.local8Bit();
-    cmd.append( " " );
-    cmd.append( m_infoScript.local8Bit() );
-    cmd.append( " " );
-    cmd.append( m_page.local8Bit() );
-    cmd.append( " " );
-    cmd.append( m_node.local8Bit() );    
+    QString cmds("%1 %2 %3 %4 \"%5\" \"%6\"");
+    QCString cmd = cmds.arg(m_perl).arg(m_infoScript).arg(locate("data", "kio_info/kde-info2html.conf")).arg(KGlobal::dirs()->findResourceDir("icon", "hicolor/22x22/actions/up.png")).arg(m_page).arg(m_node).latin1();
     
     FILE *fd = popen( cmd.data(), "r" );
     
@@ -123,7 +118,7 @@ void InfoProtocol::decodePath( QString path )
     }
 
     m_page = path.left( slashPos );
-    m_node = path.right( path.length() - slashPos - 1 );
+    m_node = path.right( path.length() - slashPos - 1);
 
     kDebugInfo( 7108, "InfoProtocol::decodePath - done" );
 }

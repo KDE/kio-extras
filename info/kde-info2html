@@ -32,15 +32,13 @@
 
 # set here the full path of the info2html.conf
 $0 =~ m!(.*/)[^/]+$!;
-$INFO2HTMLCONF = "$1kde-info2html.conf";
-$IMAGEDIR = $ENV{KDEDIR};
-$IMAGEDIR = "$IMAGEDIR/share/apps/kinfobrowser/pics";
-require($INFO2HTMLCONF);  #-- configuration settings
+$IMAGEDIR = "file:$ARGV[1]/hicolor/22x22/actions/";
+require($ARGV[0]);  #-- configuration settings
 
-$CR_URL = "<img src=\"$IMAGEDIR/r_hand.png\" align=top border=0 alt=\"See\">";
-$UP_URL = "<img src=\"$IMAGEDIR/u_arrow.png\" align=top border=0 alt=\"Up\">";
-$NEXT_URL = "<img src=\"$IMAGEDIR/r_arrow.png\" align=top border=0 alt=\"Next\">";
-$PREV_URL = "<img src=\"$IMAGEDIR/l_arrow.png\" align=top border=0 alt=\"Prev\">";
+$CR_URL = "<img src=\"$IMAGEDIR/forward.png\" align=top border=0 alt=\"See\">";
+$UP_URL = "<img src=\"$IMAGEDIR/up.png\" align=top border=0 alt=\"Up\">";
+$NEXT_URL = "<img src=\"$IMAGEDIR/forward.png\" align=top border=0 alt=\"Next\">";
+$PREV_URL = "<img src=\"$IMAGEDIR/back.png\" align=top border=0 alt=\"Prev\">";
 
 
 #-- patterns
@@ -85,7 +83,7 @@ sub Escape{
   local($Tag) = @_;
   #-- escaping is not needed anymore  KG/28.6.94
   $Tag =~ s/ /%20/g;		#  space
-  $Tag =~ s/\+/%AB/g;		#  +
+#  $Tag =~ s/\+/%AB/g;		#  +
   $Tag;
 }
 
@@ -647,8 +645,8 @@ $PROGRAM =~ s!.*/!!;
 
 print $1;
 
-$BaseInfoFile = $ARGV[0];
-$NodeName     = $ARGV[1];
+$BaseInfoFile = $ARGV[2];
+$NodeName     = $ARGV[3];
 &DirnameCheck($BaseInfoFile) || &DieFileNotFound($BaseInfoFile);
 
 
