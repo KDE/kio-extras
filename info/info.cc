@@ -130,6 +130,20 @@ void InfoProtocol::decodeURL( const KURL &url )
 {
     kdDebug( 7108 ) << "InfoProtocol::decodeURL" << endl;
 
+    /* Notes:
+     * 
+     * I cleaned up the URL decoding and chose not to support URLs in the
+     * form "info:/usr/local/share/info/libc.info.gz" or similar which the
+     * older code attempted (and failed, maybe it had worked once) to do.
+     *
+     * The reason is that an obvious use such as viewing a info file off your
+     * infopath would work for the first page, but then all the links would be
+     * wrong. Of course, one could change kde-info2html to make it work, but I don't
+     * think it worthy, others are free to disagree and write the necessary code ;)
+     *
+     * luis pedro
+     */
+
     decodePath( url.path() );
 
     kdDebug( 7108 ) << "InfoProtocol::decodeURL - done" << endl;
