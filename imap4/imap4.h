@@ -114,6 +114,7 @@ protected:
 
   QString myHost, myUser, myPass, myAuth, myTLS;
   int myPort;
+  bool mySSL;
 
   bool relayEnabled;
 

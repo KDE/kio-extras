@@ -269,7 +269,7 @@ bool POP3Protocol::sendCommand(const char *cmd)
 	 */
 
 	char *cmdrn = new char[strlen(cmd) + 3];
-	sprintf(cmdrn, "%s\r\n", cmd);
+	sprintf(cmdrn, "%s\r\n", (cmd) ? cmd : "");
 
 	if (Write(cmdrn, strlen(cmdrn)) != static_cast<ssize_t>(strlen(cmdrn))) {
 		m_sError = i18n("Could not send to server.\n");
@@ -479,7 +479,7 @@ bool POP3Protocol::pop3_open ()
 				sasl_list.append(buf);
 			}
 
-			KDESasl sasl(m_sUser, m_sPass);
+			KDESasl sasl(m_sUser, m_sPass, (m_bIsSSL) ? "pop3s" : "pop3");
 			sasl_buffer = sasl.chooseMethod(sasl_list);
 			sasl_auth = sasl_buffer;
 
@@ -491,7 +491,8 @@ bool POP3Protocol::pop3_open ()
 				if (command(sasl_buffer.latin1(), challenge.data(), 2049)) {
 					challenge.resize(challenge.find(0));
 					bool ret = command(sasl.getResponse(challenge));
-					if (sasl_auth.upper() == "LOGIN") ret = command(sasl.getResponse(challenge));
+					if (sasl_auth.upper() == "LOGIN" || sasl_auth.upper() == "DIGEST-MD5")
+						ret = command(sasl.getResponse(challenge));
 					if (ret) {
 						m_sOldUser = m_sUser;
 						m_sOldPass = m_sPass;
@@ -500,7 +501,7 @@ bool POP3Protocol::pop3_open ()
 				}
 
 				if (metaData("auth") == "SASL") {
-					error(ERR_COULD_NOT_CONNECT,
+					error(ERR_COULD_NOT_LOGIN,
 						i18n("Login via SASL (%1) failed.").arg(sasl_auth));
 					return false;
 				}
@@ -514,7 +515,7 @@ bool POP3Protocol::pop3_open ()
 		}
 
 		if (metaData("auth") == "SASL") {
-			error(ERR_COULD_NOT_CONNECT,
+			error(ERR_COULD_NOT_LOGIN,
 				i18n("Your POP3 server does not support SASL.\n"
 				     "Choose a different authentication method."));
 			return false;

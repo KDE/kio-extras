@@ -127,7 +127,7 @@ imapParser::clientLogin (const QString & aUser, const QString & aPass)
 
 bool
 imapParser::clientAuthenticate (const QString & aUser, const QString & aPass,
-                                const QString & aAuth)
+                                const QString & aAuth, bool isSSL)
 {
   imapCommand *cmd;
   bool retVal = false;
@@ -138,7 +138,7 @@ imapParser::clientAuthenticate (const QString & aUser, const QString & aPass,
 
   // then lets try it
   cmd = sendCommand (new imapCommand ("AUTHENTICATE", aAuth));
-  KDESasl sasl(aUser, aPass);
+  KDESasl sasl(aUser, aPass, isSSL ? "imaps" : "imap");
   sasl.setMethod(aAuth.latin1());
   while (!cmd->isComplete ())
   {

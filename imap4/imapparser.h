@@ -144,7 +144,7 @@ public:
 
 
   bool clientLogin (const QString &, const QString &);
-  bool clientAuthenticate (const QString &, const QString &, const QString &);
+  bool clientAuthenticate (const QString &, const QString &, const QString &, bool);
 
   // main loop for the parser
   // reads one line and dispatches it to the appropriate sub parser

@@ -160,6 +160,7 @@ IMAP4Protocol::IMAP4Protocol (const QCString & pool, const QCString & app, bool 
               app, isSSL), imapParser (),
 mimeIO ()
 {
+  mySSL = isSSL;
   readBuffer[0] = 0x00;
   readSize = 0;
   relayEnabled = false;
@@ -1297,7 +1298,7 @@ bool IMAP4Protocol::makeLogin ()
       }
       else
       {
-        if (clientAuthenticate (myUser, myPass, myAuth))
+        if (clientAuthenticate (myUser, myPass, myAuth, mySSL))
         {
           kdDebug(7116) << "IMAP4::makeLogin: " << myAuth << " succeded" << endl;
         }
