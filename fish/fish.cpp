@@ -120,7 +120,7 @@ static void ripper(int)
     }
 }
 
-int kdemain( int argc, char **argv )
+int KDE_EXPORT kdemain( int argc, char **argv )
 {
     KLocale::setMainCatalogue("kio_fish");
     KInstance instance("fish");

@@ -21,7 +21,6 @@
 #include <kinstance.h>
 #include <kdebug.h>
 #include <klocale.h>
-#include <kregexp.h>
 #include <kconfig.h>
 #include <qstring.h>
 #include <qregexp.h>
@@ -37,7 +36,7 @@
 using namespace KIO;
 
 extern "C" {
-    int kdemain(int, char **argv) {
+    int KDE_EXPORT kdemain(int, char **argv) {
         KInstance instance("kio_mac");
         MacProtocol slave(argv[2], argv[3]);
         slave.dispatchLoop();
@@ -344,16 +343,16 @@ QValueList<KIO::UDSAtom> MacProtocol::makeUDS(const QString& _line) {
     UDSEntry entry;
 
     //is it a file or a directory
-    KRegExp dirRE("^d. +([^ ]+) +([^ ]+) +([^ ]+) +([^ ]+) +([^ ]+) +(.*)");
-    KRegExp fileRE("^([f|F]). +(....)/(....) +([^ ]+) +([^ ]+) +([^ ]+) +([^ ]+) +([^ ]+) +(.*)");
-    if (dirRE.match(line.latin1())) {
+    QRegExp dirRE("^d. +([^ ]+) +([^ ]+) +([^ ]+) +([^ ]+) +([^ ]+) +(.*)");
+    QRegExp fileRE("^([f|F]). +(....)/(....) +([^ ]+) +([^ ]+) +([^ ]+) +([^ ]+) +([^ ]+) +(.*)");
+    if (dirRE.exactMatch(line)) {
         UDSAtom atom;
         atom.m_uds = KIO::UDS_NAME;
-        atom.m_str = dirRE.group(6);
+        atom.m_str = dirRE.cap(6);
         entry.append(atom);
 
         atom.m_uds = KIO::UDS_MODIFICATION_TIME;
-        atom.m_long = makeTime(dirRE.group(4), dirRE.group(3), dirRE.group(5));
+        atom.m_long = makeTime(dirRE.cap(4), dirRE.cap(3), dirRE.cap(5));
         entry.append(atom);
 
         atom.m_uds = KIO::UDS_FILE_TYPE;
@@ -364,23 +363,23 @@ QValueList<KIO::UDSAtom> MacProtocol::makeUDS(const QString& _line) {
         atom.m_long = 0755;
         entry.append(atom);
 
-    } else if (fileRE.match(line.latin1())) {
+    } else if (fileRE.exactMatch(line)) {
         UDSAtom atom;
         atom.m_uds = KIO::UDS_NAME;
-        atom.m_str = fileRE.group(9);
+        atom.m_str = fileRE.cap(9);
         entry.append(atom);
 
         atom.m_uds = KIO::UDS_SIZE;
-        QString theSize(fileRE.group(4)); //TODO: this is data size, what about  resource size?
+        QString theSize(fileRE.cap(4)); //TODO: this is data size, what about  resource size?
         atom.m_long = theSize.toLong();
         entry.append(atom);
 
         atom.m_uds = KIO::UDS_MODIFICATION_TIME;
-        atom.m_long = makeTime(fileRE.group(7), fileRE.group(6), fileRE.group(8));
+        atom.m_long = makeTime(fileRE.cap(7), fileRE.cap(6), fileRE.cap(8));
         entry.append(atom);
 
         atom.m_uds = KIO::UDS_ACCESS;
-        if (QString(fileRE.group(1)) == QString("F")) { //if locked then read only
+        if (QString(fileRE.cap(1)) == QString("F")) { //if locked then read only
             atom.m_long = 0444;
         } else {
             atom.m_long = 0644;
@@ -388,19 +387,19 @@ QValueList<KIO::UDSAtom> MacProtocol::makeUDS(const QString& _line) {
         entry.append(atom);
 
         atom.m_uds = KIO::UDS_MIME_TYPE;
-        QString mimetype = getMimetype(fileRE.group(2),fileRE.group(3));
+        QString mimetype = getMimetype(fileRE.cap(2),fileRE.cap(3));
         atom.m_str = mimetype.local8Bit();
         entry.append(atom);
 
         // Is it a file or a link/alias, just make aliases link to themselves
-        if (QString(fileRE.group(2)) == QString("adrp") ||
-            QString(fileRE.group(2)) == QString("fdrp")) {
+        if (QString(fileRE.cap(2)) == QString("adrp") ||
+            QString(fileRE.cap(2)) == QString("fdrp")) {
             atom.m_uds = KIO::UDS_FILE_TYPE;
             atom.m_long = S_IFREG;
             entry.append(atom);
 
             atom.m_uds = KIO::UDS_LINK_DEST;
-            atom.m_str = fileRE.group(9); //I have a file called "Mozilla alias" the name
+            atom.m_str = fileRE.cap(9); //I have a file called "Mozilla alias" the name
                                           // of which displays funny because of this.
                                           // No idea why.  Same for other kioslaves. A font thing?
             entry.append(atom);
@@ -460,8 +459,8 @@ int MacProtocol::makeTime(QString mday, QString mon, QString third) {
 
     //if the file is recent (last 12 months) hpls gives us the time,
     // otherwise it only prints the year
-    KRegExp hourMin("(..):(..)");
-    if (hourMin.match(third.latin1())) {
+    QRegExp hourMin("(..):(..)");
+    if (hourMin.exactMatch(third)) {
         QDate currentDate(QDate::currentDate());
 
         if (month > currentDate.month()) {
@@ -469,8 +468,8 @@ int MacProtocol::makeTime(QString mday, QString mon, QString third) {
         } else {
             year = currentDate.year();
         }
-        QString h(hourMin.group(1));
-        QString m(hourMin.group(2));
+        QString h(hourMin.cap(1));
+        QString m(hourMin.cap(2));
         hour = h.toInt();
         minute = m.toInt();
     } else {

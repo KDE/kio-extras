@@ -56,7 +56,7 @@ SMBSlave::~SMBSlave()
 SMBSlave* G_TheSlave;
 
 //===========================================================================
-int kdemain( int argc, char **argv )
+int KDE_EXPORT kdemain( int argc, char **argv )
 {
 
     KInstance instance( "kio_smb" );

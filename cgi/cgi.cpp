@@ -192,7 +192,7 @@ void CgiProtocol::get( const KURL& url )
   kdDebug(7124) << "CgiProtocol::get - done" << endl;
 }
 
-extern "C" { int kdemain( int argc, char **argv ); }
+extern "C" { int KDE_EXPORT kdemain( int argc, char **argv ); }
 
 /*! The kdemain function generates an instance of the ioslave and starts its
  * dispatch loop. */

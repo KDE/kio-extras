@@ -104,7 +104,7 @@ static sasl_callback_t callbacks[] = {
 #endif
 
 extern "C" {
-  int kdemain(int argc, char **argv);
+  KDE_EXPORT int kdemain(int argc, char **argv);
 } 
 
 int kdemain(int argc, char **argv)

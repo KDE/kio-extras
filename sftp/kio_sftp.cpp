@@ -76,7 +76,7 @@ So we can't connect.
 using namespace KIO;
 extern "C"
 {
-  int kdemain( int argc, char **argv )
+  int KDE_EXPORT kdemain( int argc, char **argv )
   {
     KInstance instance( "kio_sftp" );
 
