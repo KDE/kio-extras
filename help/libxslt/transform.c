@@ -191,6 +191,7 @@ xsltNewTransformContext(xsltStylesheetPtr style, xmlDocPtr doc) {
     }
     docu->main = 1;
     cur->document = docu;
+    cur->inst = NULL;
     return(cur);
 }
 
@@ -214,6 +215,7 @@ xsltFreeTransformContext(xsltTransformContextPtr ctxt) {
 	xmlFree(ctxt->varsTab);
     xsltFreeDocuments(ctxt);
     xsltFreeCtxtExts(ctxt);
+    xsltFreeGlobalVariables(ctxt);
     memset(ctxt, -1, sizeof(xsltTransformContext));
     xmlFree(ctxt);
 }
@@ -544,11 +546,30 @@ xsltDefaultProcessOneNode(xsltTransformContextPtr ctxt, xmlNodePtr node) {
 
 		    current = ctxt->insert->properties;
 		    if (current != NULL) {
-			while (current->next != NULL)
+			if ((xmlStrEqual(current->name, ret->name)) &&
+			    (current->ns == ret->ns)) {
+			    xmlNodePtr tmp;
+			    tmp = current->children;
+			    current->children = ret->children;
+			    ret->children = tmp;
+			    xmlFreeProp(ret);
+			    return;
+			}
+			while (current->next != NULL) {
 			    current = current->next;
+			    if ((xmlStrEqual(current->name, ret->name)) &&
+				(current->ns == ret->ns)) {
+				xmlNodePtr tmp;
+				tmp = current->children;
+				current->children = ret->children;
+				ret->children = tmp;
+				xmlFreeProp(ret);
+				return;
+			    }
+			}
 			current->next = ret;
 			ret->prev = current;
-		    }else
+		    } else
 			ctxt->insert->properties = ret;
 		}
 	    }
@@ -829,6 +850,7 @@ xsltApplyOneTemplate(xsltTransformContextPtr ctxt, xmlNodePtr node,
     xmlNodePtr cur = NULL, insert, copy = NULL;
     xmlNodePtr oldInsert;
     xmlNodePtr oldCurrent = NULL;
+    xmlNodePtr oldInst = NULL;
     xmlAttrPtr attrs;
 
     if (list == NULL)
@@ -848,6 +870,7 @@ xsltApplyOneTemplate(xsltTransformContextPtr ctxt, xmlNodePtr node,
      * stack and saves
      */
     oldInsert = insert = ctxt->insert;
+    oldInst = ctxt->inst;
     if (real) {
 	oldCurrent = ctxt->node;
 	ctxt->node = node;
@@ -858,6 +881,7 @@ xsltApplyOneTemplate(xsltTransformContextPtr ctxt, xmlNodePtr node,
      */
     cur = list;
     while (cur != NULL) {
+	ctxt->inst = cur;
 	/*
 	 * test, we must have a valid insertion point
 	 */
@@ -868,6 +892,7 @@ xsltApplyOneTemplate(xsltTransformContextPtr ctxt, xmlNodePtr node,
 #endif
 	    if (real)
 		ctxt->node = oldCurrent;
+	    ctxt->inst = oldInst;
 	    return;
 	}
 
@@ -972,13 +997,6 @@ xsltApplyOneTemplate(xsltTransformContextPtr ctxt, xmlNodePtr node,
 	    if (cur->properties != NULL) {
 		attrs = xsltAttrListTemplateProcess(ctxt, copy,
 			                            cur->properties);
-		if (copy->properties != NULL) {
-		    xmlAttrPtr current = copy->properties;
-		    while (current->next != NULL)
-			current = current->next;
-		    current->next = attrs;
-		} else
-		    copy->properties = attrs;
 	    }
 	}
 
@@ -1016,6 +1034,7 @@ skip_children:
     }
     if (real)
 	ctxt->node = oldCurrent;
+    ctxt->inst = oldInst;
 }
 
 
@@ -1684,14 +1703,12 @@ xsltCopyOf(xsltTransformContextPtr ctxt, xmlNodePtr node,
 
     if ((ctxt == NULL) || (node == NULL) || (inst == NULL))
 	return;
-
-    if (comp->select == NULL)
+    if ((comp == NULL) || (comp->select == NULL) || (comp->comp == NULL)) {
+	xsltGenericError(xsltGenericErrorContext,
+	     "xsl:copy-of : compilation have failed\n");
 	return;
-    if (comp->comp == NULL) {
-	comp->comp = xmlXPathCompile(comp->select);
-	if (comp->comp == NULL)
-	    return;
     }
+
 #ifdef WITH_XSLT_DEBUG_PROCESS
     xsltGenericDebug(xsltGenericDebugContext,
 	 "xsltCopyOf: select %s\n", comp->select);
@@ -1784,15 +1801,12 @@ xsltValueOf(xsltTransformContextPtr ctxt, xmlNodePtr node,
     xmlNodePtr copy = NULL;
     int oldProximityPosition, oldContextSize;
 
-    if ((ctxt == NULL) || (node == NULL) || (inst == NULL) || (comp == NULL))
+    if ((ctxt == NULL) || (node == NULL) || (inst == NULL))
 	return;
-
-    if (comp->select == NULL)
+    if ((comp == NULL) || (comp->select == NULL) || (comp->comp == NULL)) {
+	xsltGenericError(xsltGenericErrorContext,
+	     "xsl:value-of : compilation have failed\n");
 	return;
-    if (comp->comp == NULL) {
-	comp->comp = xmlXPathCompile(comp->select);
-	if (comp->comp == NULL)
-	    return;
     }
 
 #ifdef WITH_XSLT_DEBUG_PROCESS
@@ -1986,8 +2000,9 @@ xsltApplyTemplates(xsltTransformContextPtr ctxt, xmlNodePtr node,
 	return;
 
 #ifdef WITH_XSLT_DEBUG_PROCESS
-    xsltGenericDebug(xsltGenericDebugContext,
-	 "xsltApplyTemplates: node: %s\n", node->name);
+    if ((node != NULL) && (node->name != NULL))
+	xsltGenericDebug(xsltGenericDebugContext,
+	     "xsltApplyTemplates: node: %s\n", node->name);
 #endif
 
     /*
@@ -2001,9 +2016,9 @@ xsltApplyTemplates(xsltTransformContextPtr ctxt, xmlNodePtr node,
 
     if (comp->select != NULL) {
 	if (comp->comp == NULL) {
-	    comp->comp = xmlXPathCompile(comp->select);
-	    if (comp->comp == NULL)
-		goto error;
+	    xsltGenericError(xsltGenericErrorContext,
+		 "xslt:apply-templates : compilation had failed\n");
+	    goto error;
 	}
 #ifdef WITH_XSLT_DEBUG_PROCESS
 	xsltGenericDebug(xsltGenericDebugContext,
@@ -2208,30 +2223,25 @@ xsltChoose(xsltTransformContextPtr ctxt, xmlNodePtr node,
 	goto error;
     }
     while (IS_XSLT_ELEM(replacement) && (IS_XSLT_NAME(replacement, "when"))) {
-	xmlXPathCompExprPtr xpathComp;
-        /* TODO: build a prexpathCompiled block for when too ! */
-	when = replacement;
-	prop = xmlGetNsProp(when, (const xmlChar *)"test", XSLT_NAMESPACE);
-	if (prop == NULL) {
+	xsltStylePreCompPtr wcomp = replacement->_private;
+
+	if ((wcomp == NULL) || (wcomp->test == NULL) || (wcomp->comp == NULL)) {
 	    xsltGenericError(xsltGenericErrorContext,
-		 "xsl:when: test is not defined\n");
-	    return;
+		 "xsl:when: compilation failed !\n");
+	    goto error;
 	}
+	when = replacement;
 #ifdef WITH_XSLT_DEBUG_PROCESS
 	xsltGenericDebug(xsltGenericDebugContext,
-	     "xsl:when: test %s\n", prop);
+	     "xsl:when: test %s\n", wcomp->test);
 #endif
 
-	xpathComp = xmlXPathCompile(prop);
-	if (xpathComp == NULL)
-	    goto error;
 	oldProximityPosition = ctxt->xpathCtxt->proximityPosition;
 	oldContextSize = ctxt->xpathCtxt->contextSize;
   	ctxt->xpathCtxt->node = node;
 	ctxt->xpathCtxt->namespaces = comp->nsList;
 	ctxt->xpathCtxt->nsNr = comp->nsNr;
-  	res = xmlXPathCompiledEval(xpathComp, ctxt->xpathCtxt);
-	xmlXPathFreeCompExpr(xpathComp);
+  	res = xmlXPathCompiledEval(wcomp->comp, ctxt->xpathCtxt);
 	ctxt->xpathCtxt->proximityPosition = oldProximityPosition;
 	ctxt->xpathCtxt->contextSize = oldContextSize;
 	if (res != NULL) {
@@ -2306,20 +2316,12 @@ xsltIf(xsltTransformContextPtr ctxt, xmlNodePtr node,
     int doit = 1;
     int oldContextSize, oldProximityPosition;
 
-    if (comp == NULL) {
+    if ((ctxt == NULL) || (node == NULL) || (inst == NULL))
+	return;
+    if ((comp == NULL) || (comp->test == NULL) || (comp->comp == NULL)) {
 	xsltGenericError(xsltGenericErrorContext,
-	     "xslt:if : compilation had failed\n");
+	     "xsl:if : compilation have failed\n");
 	return;
-    }
-    if ((ctxt == NULL) || (node == NULL) || (inst == NULL) || (comp == NULL))
-	return;
-
-    if (comp->test == NULL)
-	return;
-    if (comp->comp == NULL) {
-	comp->comp = xmlXPathCompile(comp->test);
-	if (comp->comp == NULL)
-	    return;
     }
 
 #ifdef WITH_XSLT_DEBUG_PROCESS
@@ -2384,20 +2386,12 @@ xsltForEach(xsltTransformContextPtr ctxt, xmlNodePtr node,
     int nbsorts = 0;
     xmlNodePtr sorts[XSLT_MAX_SORT];
 
-    if (comp == NULL) {
+    if ((ctxt == NULL) || (node == NULL) || (inst == NULL))
+	return;
+    if ((comp == NULL) || (comp->select == NULL) || (comp->comp == NULL)) {
 	xsltGenericError(xsltGenericErrorContext,
 	     "xslt:for-each : compilation had failed\n");
 	return;
-    }
-    if ((ctxt == NULL) || (node == NULL) || (inst == NULL) || (comp == NULL))
-	return;
-
-    if (comp->select == NULL)
-	return;
-    if (comp->comp == NULL) {
-	comp->comp = xmlXPathCompile(comp->select);
-	if (comp->comp == NULL)
-	    return;
     }
 
 #ifdef WITH_XSLT_DEBUG_PROCESS
@@ -2479,6 +2473,63 @@ error:
  *									*
  ************************************************************************/
 
+#ifdef XSLT_GENERATE_HTML_DOCTYPE
+typedef struct xsltHTMLVersion {
+    const char *version;
+    const char *public;
+    const char *system;
+} xsltHTMLVersion;
+
+static xsltHTMLVersion xsltHTMLVersions[] = {
+    { "4.01frame", "-//W3C//DTD HTML 4.01 Frameset//EN",
+      "http://www.w3.org/TR/1999/REC-html401-19991224/frameset.dtd"},
+    { "4.01strict", "-//W3C//DTD HTML 4.01//EN",
+      "http://www.w3.org/TR/1999/REC-html401-19991224/strict.dtd"},
+    { "4.01trans", "-//W3C//DTD HTML 4.01 Transitional//EN",
+      "http://www.w3.org/TR/1999/REC-html401-19991224/loose.dtd"},
+    { "4.01", "-//W3C//DTD HTML 4.01 Transitional//EN",
+      "http://www.w3.org/TR/1999/REC-html401-19991224/loose.dtd"},
+    { "4.0strict", "-//W3C//DTD HTML 4.01//EN",
+      "http://www.w3.org/TR/html4/strict.dtd"},
+    { "4.0trans", "-//W3C//DTD HTML 4.01 Transitional//EN",
+      "http://www.w3.org/TR/html4/loose.dtd"},
+    { "4.0frame", "-//W3C//DTD HTML 4.01 Frameset//EN",
+      "http://www.w3.org/TR/html4/frameset.dtd"},
+    { "4.0", "-//W3C//DTD HTML 4.01 Transitional//EN",
+      "http://www.w3.org/TR/html4/loose.dtd"},
+    { "3.2", "-//W3C//DTD HTML 3.2//EN", NULL }
+};
+
+/**
+ * xsltGetHTMLIDs:
+ * @version:  the version string
+ * @public:  used to return the public ID
+ * @system:  used to return the system ID
+ *
+ * Returns -1 if not found, 0 otherwise and the system and public
+ *         Identifier for this given verion of HTML
+ */
+static int
+xsltGetHTMLIDs(const xmlChar *version, const xmlChar **public,
+	            const xmlChar **system) {
+    unsigned int i;
+    if (version == NULL)
+	return(-1);
+    for (i = 0;i < (sizeof(xsltHTMLVersions)/sizeof(xsltHTMLVersions[1]));
+	 i++) {
+	if (!xmlStrcasecmp(version,
+		           (const xmlChar *) xsltHTMLVersions[i].version)) {
+	    if (public != NULL)
+		*public = (const xmlChar *) xsltHTMLVersions[i].public;
+	    if (system != NULL)
+		*system = (const xmlChar *) xsltHTMLVersions[i].system;
+	    return(0);
+	}
+    }
+    return(-1);
+}
+#endif
+
 /**
  * xsltApplyStylesheet:
  * @style:  a parsed XSLT stylesheet
@@ -2497,7 +2548,12 @@ xsltApplyStylesheet(xsltStylesheetPtr style, xmlDocPtr doc,
     xsltTransformContextPtr ctxt = NULL;
     xmlNodePtr root;
     const xmlChar *method;
-    const xmlChar *encoding;
+    const xmlChar *doctypePublic;
+    const xmlChar *doctypeSystem;
+    const xmlChar *version;
+    xsltStackElemPtr variables;
+    xsltStackElemPtr vptr;
+
 
     if ((style == NULL) || (doc == NULL))
 	return(NULL);
@@ -2505,17 +2561,26 @@ xsltApplyStylesheet(xsltStylesheetPtr style, xmlDocPtr doc,
     xsltRegisterExtras(ctxt);
     if (ctxt == NULL)
 	return(NULL);
+
     XSLT_GET_IMPORT_PTR(method, style, method)
+    XSLT_GET_IMPORT_PTR(doctypePublic, style, doctypePublic)
+    XSLT_GET_IMPORT_PTR(doctypeSystem, style, doctypeSystem)
+    XSLT_GET_IMPORT_PTR(version, style, version)
+
     if ((method != NULL) &&
 	(!xmlStrEqual(method, (const xmlChar *) "xml"))) {
-	const xmlChar *doctypePublic;
-	const xmlChar *doctypeSystem;
-
-	XSLT_GET_IMPORT_PTR(doctypePublic, style, doctypePublic)
-	XSLT_GET_IMPORT_PTR(doctypeSystem, style, doctypeSystem)
 	if (xmlStrEqual(method, (const xmlChar *) "html")) {
 	    ctxt->type = XSLT_OUTPUT_HTML;
-	    res = htmlNewDoc(doctypeSystem, doctypePublic);
+	    if (((doctypePublic != NULL) || (doctypeSystem != NULL)))
+		res = htmlNewDoc(doctypeSystem, doctypePublic);
+	    else {
+		if (version == NULL)
+		    version = (const xmlChar *) "4.0";
+#ifdef XSLT_GENERATE_HTML_DOCTYPE
+		xsltGetHTMLIDs(version, &doctypePublic, &doctypeSystem);
+#endif
+		res = htmlNewDoc(doctypeSystem, doctypePublic);
+	    }
 	    if (res == NULL)
 		goto error;
 	} else if (xmlStrEqual(method, (const xmlChar *) "xhtml")) {
@@ -2546,12 +2611,15 @@ xsltApplyStylesheet(xsltStylesheetPtr style, xmlDocPtr doc,
     res->charset = XML_CHAR_ENCODING_UTF8;
     if (style->encoding != NULL)
 	res->encoding = xmlStrdup(style->encoding);
+    variables = style->variables;
 
     /*
-     * Start.
+     * Start the evaluation, evaluate the params, the stylesheets globals
+     * and start by processing the top node.
      */
     ctxt->output = res;
     ctxt->insert = (xmlNodePtr) res;
+    ctxt->globalVars = xmlHashCreate(20);
     if (params != NULL)
 	xsltEvalUserParams(ctxt, params);
     xsltEvalGlobalVariables(ctxt);
@@ -2559,20 +2627,81 @@ xsltApplyStylesheet(xsltStylesheetPtr style, xmlDocPtr doc,
     varsPush(ctxt, NULL);
     xsltProcessOneNode(ctxt, ctxt->node);
     xsltFreeStackElemList(varsPop(ctxt));
-    xsltCleanupTemplates(style);
+
+    xsltCleanupTemplates(style); /* TODO: <- style should be read only */
+
+    /*
+     * Now cleanup our variables so stylesheet can be re-used
+     *
+     * TODO: this is not needed anymore global variables are copied
+     *       and not evaluated directly anymore, keep this as a check
+     */
+    if (style->variables != variables) {
+	vptr = style->variables;
+	while (vptr->next!=variables)
+	    vptr = vptr->next;
+	vptr->next = NULL;
+	xsltFreeStackElemList(style->variables);
+	style->variables = variables;
+    }
+    vptr = style->variables;
+    while(vptr!=NULL) {
+	if (vptr->computed) {
+	    if (vptr->value != NULL) {
+		xmlXPathFreeObject(vptr->value);
+		vptr->value = NULL;
+		vptr->computed = 0;
+	    }
+	}
+	vptr = vptr->next;
+    }
 
 
-    if (ctxt->type == XSLT_OUTPUT_XML) {
-	const xmlChar *doctypePublic;
-	const xmlChar *doctypeSystem;
+    /*
+     * Do some post processing work depending on the generated output
+     */
+    root = xmlDocGetRootElement(res);
+    if (root != NULL) {
+	/*
+	 * Apply the default selection of the method
+	 */
+	if ((method == NULL) &&
+	    (root->ns == NULL) &&
+	    (!xmlStrcasecmp(root->name, (const xmlChar *) "html"))) {
+	    xmlNodePtr tmp;
+	    tmp = res->children;
+	    while ((tmp != NULL) && (tmp != root)) {
+		if (tmp->type == XML_ELEMENT_NODE)
+		    break;
+		if ((tmp->type == XML_TEXT_NODE) && (!xmlIsBlankNode(tmp)))
+		    break;
+	    }
+	    if (tmp == root) {
+		ctxt->type = XSLT_OUTPUT_HTML;
+		res->type = XML_HTML_DOCUMENT_NODE;
+		if (((doctypePublic != NULL) || (doctypeSystem != NULL)))
+		    res->intSubset = xmlCreateIntSubset(res, root->name,
+				 doctypePublic, doctypeSystem);
+#ifdef XSLT_GENERATE_HTML_DOCTYPE
+		else {
+		    if (version == NULL)
+			version = (const xmlChar *) "4.0";
+		    xsltGetHTMLIDs(version, &doctypePublic, &doctypeSystem);
+		    if (((doctypePublic != NULL) || (doctypeSystem != NULL)))
+			res->intSubset = xmlCreateIntSubset(res, root->name,
+				     doctypePublic, doctypeSystem);
+		}
+#endif
+	    }
 
-	XSLT_GET_IMPORT_PTR(doctypePublic, style, doctypePublic)
-	XSLT_GET_IMPORT_PTR(doctypeSystem, style, doctypeSystem)
-	root = xmlDocGetRootElement(res);
-	if ((root != NULL) &&
-	    ((doctypePublic != NULL) || (doctypeSystem != NULL)))
-	    res->intSubset = xmlCreateIntSubset(res, root->name,
-		         doctypePublic, doctypeSystem);
+	}
+	if (ctxt->type == XSLT_OUTPUT_XML) {
+	    XSLT_GET_IMPORT_PTR(doctypePublic, style, doctypePublic)
+	    XSLT_GET_IMPORT_PTR(doctypeSystem, style, doctypeSystem)
+	    if (((doctypePublic != NULL) || (doctypeSystem != NULL)))
+		res->intSubset = xmlCreateIntSubset(res, root->name,
+			     doctypePublic, doctypeSystem);
+	}
     }
     xmlXPathFreeNodeSet(ctxt->nodeList);
     xsltFreeTransformContext(ctxt);

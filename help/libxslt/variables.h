@@ -19,8 +19,10 @@ extern "C" {
 #endif
 
 
-/*
- * registering macro, not general purpose at all
+/**
+ * XSLT_REGISTER_VARIABLE_LOOKUP:
+ *
+ * registering macro, not general purpose at all but used in different modules
  */
 
 #define XSLT_REGISTER_VARIABLE_LOOKUP(ctxt)			\
@@ -36,8 +38,6 @@ extern "C" {
 int		xsltEvalGlobalVariables		(xsltTransformContextPtr ctxt);
 int		xsltEvalUserParams		(xsltTransformContextPtr ctxt,
 						 const char **params);
-void		xsltPushStack			(xsltTransformContextPtr ctxt);
-void		xsltPopStack			(xsltTransformContextPtr ctxt);
 void		xsltParseGlobalVariable		(xsltStylesheetPtr style,
 						 xmlNodePtr cur);
 void		xsltParseGlobalParam		(xsltStylesheetPtr style,
@@ -48,9 +48,9 @@ void		xsltParseStylesheetParam	(xsltTransformContextPtr ctxt,
 						 xmlNodePtr cur);
 xsltStackElemPtr xsltParseStylesheetCallerParam	(xsltTransformContextPtr ctxt,
 						 xmlNodePtr cur);
-int		 xsltAddStackElemList		(xsltTransformContextPtr ctxt,
+int		xsltAddStackElemList		(xsltTransformContextPtr ctxt,
 						 xsltStackElemPtr elems);
-void			xsltFreeVariableHashes	(xsltTransformContextPtr ctxt);
+void		xsltFreeGlobalVariables		(xsltTransformContextPtr ctxt);
 xmlXPathObjectPtr	xsltVariableLookup	(xsltTransformContextPtr ctxt,
 						 const xmlChar *name,
 						 const xmlChar *ns_uri);

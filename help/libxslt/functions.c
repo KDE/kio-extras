@@ -31,7 +31,6 @@
 #include <libxml/xpathInternals.h>
 #include <libxml/parserInternals.h>
 #include <libxml/uri.h>
-#include <stdlib.h>
 #include "xslt.h"
 #include "xsltInternals.h"
 #include "xsltutils.h"
@@ -62,8 +61,8 @@
 void
 xsltDocumentFunction(xmlXPathParserContextPtr ctxt, int nargs){
     xsltDocumentPtr doc;
-    xmlXPathObjectPtr obj, obj2=NULL;
-    xmlChar *base, *URI;
+    xmlXPathObjectPtr obj, obj2 = NULL;
+    xmlChar *base = NULL, *URI;
 
 
     if ((nargs < 1) || (nargs > 2)) {
@@ -143,16 +142,15 @@ xsltDocumentFunction(xmlXPathParserContextPtr ctxt, int nargs){
 	    base = xmlNodeGetBase(obj2->nodesetval->nodeTab[0]->doc,
 				  obj->nodesetval->nodeTab[0]);
 	} else {
-	    base = xmlNodeGetBase(
-		((xsltTransformContextPtr)ctxt->context->extra)->style->doc,
-				  ctxt->context->node);
+	    xsltTransformContextPtr tctxt = ctxt->context->extra;
+	    if ((tctxt != NULL) && (tctxt->inst != NULL)) {
+		base = xmlNodeGetBase(tctxt->inst->doc, tctxt->inst);
+	    } else if ((tctxt != NULL) && (tctxt->style != NULL) &&
+		       (tctxt->style->doc != NULL)) {
+		base = xmlNodeGetBase(tctxt->style->doc, 
+			              (xmlNodePtr) tctxt->style->doc);
+	    }
 	}
-        if (!strcmp(obj->stringval, "../common/l10n.xml")) {
-               char base2[1000];
-               strcpy(base2, getenv("KDEDIR"));
-               strcat(base2, "/share/apps/ksgmltools2/docbook/xsl/common/l10n.xsl");
-               base = strdup(base2);
-        }
 	URI = xmlBuildURI(obj->stringval, base);
 	if (base != NULL)
 	    xmlFree(base);

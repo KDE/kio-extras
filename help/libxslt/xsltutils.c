@@ -222,8 +222,10 @@ xsltComputeSortResult(xsltTransformContextPtr ctxt, xmlNodePtr sort) {
     xmlXPathObjectPtr res;
     int len = 0;
     int i;
-    xmlNodePtr oldNode;
     xsltStylePreCompPtr comp;
+    xmlNodePtr oldNode;
+    xmlNodePtr oldInst;
+    int	oldPos, oldSize ;
 
     comp = sort->_private;
     if (comp == NULL) {
@@ -232,14 +234,8 @@ xsltComputeSortResult(xsltTransformContextPtr ctxt, xmlNodePtr sort) {
 	return(NULL);
     }
 
-    if (comp->select == NULL)
+    if ((comp->select == NULL) || (comp->comp == NULL))
 	return(NULL);
-    if (comp->comp == NULL) {
-	comp->comp = xmlXPathCompile(comp->select);
-	if (comp->comp == NULL)
-	    return(NULL);
-    }
-
 
     list = ctxt->nodeList;
     if ((list == NULL) || (list->nodeNr <= 1))
@@ -259,7 +255,11 @@ xsltComputeSortResult(xsltTransformContextPtr ctxt, xmlNodePtr sort) {
     }
 
     oldNode = ctxt->node;
+    oldInst = ctxt->inst;
+    oldPos = ctxt->xpathCtxt->proximityPosition;
+    oldSize = ctxt->xpathCtxt->contextSize;
     for (i = 0;i < len;i++) {
+	ctxt->inst = sort;
 	ctxt->xpathCtxt->contextSize = len;
 	ctxt->xpathCtxt->proximityPosition = i + 1;
 	ctxt->node = list->nodeTab[i];
@@ -299,6 +299,9 @@ xsltComputeSortResult(xsltTransformContextPtr ctxt, xmlNodePtr sort) {
 	}
     }
     ctxt->node = oldNode;
+    ctxt->inst = oldInst;
+    ctxt->xpathCtxt->contextSize = oldSize;
+    ctxt->xpathCtxt->proximityPosition = oldPos;
 
     return(results);
 }
@@ -507,6 +510,9 @@ xsltSaveResultTo(xmlOutputBufferPtr buf, xmlDocPtr result,
 
     XSLT_GET_IMPORT_PTR(method, style, method)
     XSLT_GET_IMPORT_PTR(encoding, style, encoding)
+
+    if ((method == NULL) && (result->type == XML_HTML_DOCUMENT_NODE))
+	method = (const xmlChar *) "html";
 
     if (method == NULL)
 	root = xmlDocGetRootElement(result);

@@ -33,6 +33,7 @@ struct _xsltExtDef {
     struct _xsltExtDef *next;
     xmlChar *prefix;
     xmlChar *URI;
+    void    *data;
 };
 
 /************************************************************************
@@ -112,7 +113,7 @@ xsltFreeExtDefList(xsltExtDefPtr extensiond) {
 
 
 /**
- * xsltFreeExtPrefix:
+ * xsltFreeExts:
  * @style: an XSLT stylesheet
  *
  * Free up the memory used by XSLT extensions in a stylesheet
@@ -123,7 +124,7 @@ xsltFreeExts(xsltStylesheetPtr style) {
 	xsltFreeExtDefList((xsltExtDefPtr) style->nsDefs);
 }
 
-/*
+/**
  * xsltRegisterExtPrefix:
  * @style: an XSLT stylesheet
  * @prefix: the prefix used
@@ -155,7 +156,7 @@ xsltRegisterExtPrefix(xsltStylesheetPtr style,
     return(0);
 }
 
-/*
+/**
  * xsltRegisterExtFunction:
  * @ctxt: an XSLT transformation context
  * @name: the name of the element
@@ -177,7 +178,7 @@ xsltRegisterExtFunction(xsltTransformContextPtr ctxt, const xmlChar *name,
     return(xmlHashAddEntry2(ctxt->extFunctions, name, URI, (void *) function));
 }
 
-/*
+/**
  * xsltRegisterExtElement:
  * @ctxt: an XSLT transformation context
  * @name: the name of the element
@@ -199,7 +200,7 @@ xsltRegisterExtElement(xsltTransformContextPtr ctxt, const xmlChar *name,
     return(xmlHashAddEntry2(ctxt->extElements, name, URI, (void *) function));
 }
 
-/*
+/**
  * xsltFreeCtxtExts:
  * @ctxt: an XSLT transformation context
  *
@@ -213,7 +214,7 @@ xsltFreeCtxtExts(xsltTransformContextPtr ctxt) {
 	xmlHashFree(ctxt->extFunctions, NULL);
 }
 
-/*
+/**
  * xsltCheckExtPrefix:
  * @style: the stylesheet
  * @prefix: the namespace prefix (possibly NULL)

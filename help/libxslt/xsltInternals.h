@@ -20,39 +20,25 @@
 extern "C" {
 #endif
 
-/*
+/**
+ * XSLT_MAX_SORT:
+ *
  * Max number of specified xsl:sort on an element
  */
 #define XSLT_MAX_SORT 5
 
-/*
- * The in-memory structure corresponding to an XSLT Variable
- * or Param
- */
-
-typedef enum {
-    XSLT_ELEM_VARIABLE=1,
-    XSLT_ELEM_PARAM
-} xsltElem;
-
-typedef struct _xsltStackElem xsltStackElem;
-typedef xsltStackElem *xsltStackElemPtr;
-struct _xsltStackElem {
-    struct _xsltStackElem *next;/* chained list */
-    xsltElem type;	/* type of the element */
-    int computed;	/* was the evaluation done */
-    xmlChar *name;	/* the local part of the name QName */
-    xmlChar *nameURI;	/* the URI part of the name QName */
-    xmlChar *select;	/* the eval string */
-    xmlNodePtr tree;	/* the tree if no eval string or the location */
-    xmlXPathObjectPtr value; /* The value if computed */
-};
-
-/*
- * The in-memory structure corresponding to an XSLT Template
+/**
+ * XSLT_PAT_NO_PRIORITY:
+ *
+ * specific value for pattern without priority expressed
  */
 #define XSLT_PAT_NO_PRIORITY -12345789
 
+/**
+ * xsltTemplate:
+ *
+ * The in-memory structure corresponding to an XSLT Template
+ */
 typedef struct _xsltTemplate xsltTemplate;
 typedef xsltTemplate *xsltTemplatePtr;
 struct _xsltTemplate {
@@ -68,10 +54,14 @@ struct _xsltTemplate {
     xmlNodePtr elem;	/* the source element */
 };
 
-/*
+/**
+ * xsltDecimalFormat:
+ *
  * Data structure of decimal-format
  */
-typedef struct _xsltDecimalFormat {
+typedef struct _xsltDecimalFormat xsltDecimalFormat;
+typedef xsltDecimalFormat *xsltDecimalFormatPtr;
+struct _xsltDecimalFormat {
     struct _xsltDecimalFormat *next; /* chained list */
     xmlChar *name;
     /* Used for interpretation of pattern */
@@ -87,10 +77,12 @@ typedef struct _xsltDecimalFormat {
     xmlChar *percent;
     xmlChar *permille;
     xmlChar *zeroDigit;
-} xsltDecimalFormat, *xsltDecimalFormatPtr;
+};
 
-/*
- * Data structure associated to a document
+/**
+ * xsltDocument:
+ *
+ * Data structure associated to a parsed document
  */
 
 typedef struct _xsltDocument xsltDocument;
@@ -102,17 +94,29 @@ struct _xsltDocument {
     void *keys;			/* key tables storage */
 };
 
-/*
+typedef struct _xsltTransformContext xsltTransformContext;
+typedef xsltTransformContext *xsltTransformContextPtr;
+
+/**
+ * xsltStylePreComp:
+ *
  * The in-memory structure corresponding to XSLT stylesheet constructs
  * precomputed data.
  */
 
-typedef struct _xsltTransformContext xsltTransformContext;
-typedef xsltTransformContext *xsltTransformContextPtr;
-
 typedef struct _xsltStylePreComp xsltStylePreComp;
 typedef xsltStylePreComp *xsltStylePreCompPtr;
 
+/**
+ * xsltTransformFunction:
+ * @ctxt: the XSLT transformation context
+ * @node: the input node
+ * @inst: the stylesheet node
+ * @comp: the compiled information from the stylesheet
+ *
+ * signature of the function associated to elements part of the
+ * stylesheet language like xsl:if or xsl:apply-templates.
+ */
 typedef void (*xsltTransformFunction) (xsltTransformContextPtr ctxt,
 	                               xmlNodePtr node, xmlNodePtr inst,
 			               xsltStylePreCompPtr comp);
@@ -141,6 +145,12 @@ typedef enum {
     XSLT_FUNC_WHEN
 } xsltStyleType;
 
+/**
+ * xsltStylePreComp:
+ *
+ * The in-memory structure corresponding to XSLT stylesheet constructs
+ * precomputed data.
+ */
 struct _xsltStylePreComp {
     struct _xsltStylePreComp *next;/* chained list */
     xsltStyleType type;		/* type of the element */
@@ -186,6 +196,24 @@ struct _xsltStylePreComp {
     xmlXPathCompExprPtr comp;	/* a precompiled XPath expression */
     xmlNsPtr *nsList;		/* the namespaces in scope */
     int nsNr;			/* the number of namespaces in scope */
+};
+
+/*
+ * The in-memory structure corresponding to an XSLT Variable
+ * or Param
+ */
+
+typedef struct _xsltStackElem xsltStackElem;
+typedef xsltStackElem *xsltStackElemPtr;
+struct _xsltStackElem {
+    struct _xsltStackElem *next;/* chained list */
+    xsltStylePreCompPtr comp;   /* the compiled form */
+    int computed;	/* was the evaluation done */
+    xmlChar *name;	/* the local part of the name QName */
+    xmlChar *nameURI;	/* the URI part of the name QName */
+    xmlChar *select;	/* the eval string */
+    xmlNodePtr tree;	/* the tree if no eval string or the location */
+    xmlXPathObjectPtr value; /* The value if computed */
 };
 
 /*
@@ -329,10 +357,37 @@ struct _xsltTransformContext {
 
     xmlXPathContextPtr xpathCtxt;	/* the XPath context */
     xsltTransformState state;		/* the current state */
+
+    /*
+     * Global variables
+     */
+    xmlHashTablePtr   globalVars;	/* the global variables and params */
+
+    xmlNodePtr inst;			/* the instruction in the stylesheet */
 };
 
+/**
+ * CHECK_STOPPED:
+ *
+ * Macro to check if the XSLT processing should be stopped
+ * will return from the function
+ */
 #define CHECK_STOPPED if (ctxt->state == XSLT_STATE_STOPPED) return;
+
+/**
+ * CHECK_STOPPEDE:
+ *
+ * Macro to check if the XSLT processing should be stopped
+ * will goto the error: label
+ */
 #define CHECK_STOPPEDE if (ctxt->state == XSLT_STATE_STOPPED) goto error;
+
+/**
+ * CHECK_STOPPED0:
+ *
+ * Macro to check if the XSLT processing should be stopped
+ * will return from the function with a 0 value
+ */
 #define CHECK_STOPPED0 if (ctxt->state == XSLT_STATE_STOPPED) return(0);
 
 /*
