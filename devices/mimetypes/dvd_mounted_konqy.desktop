@@ -1,6 +1,6 @@
 [Desktop Entry]
 ServiceTypes=kdedevice/dvd_mounted
-Actions=dvd_unmount;dvd_eject;
+Actions=dvd_unmount;dvd_eject;used_by;
 X-KDE-Priority=TopLevel
 
 [Desktop Action dvd_unmount]
@@ -142,3 +142,7 @@ Name[zh_CN]=弹出
 Name[zh_TW]=跳出
 Name[zu]=Khipha
 Exec=kio_devices_mounthelper -e %u
+
+[Desktop Action used_by]
+Name=Mountpoint used by ...
+Exec=kio_devices_list_mountpointusage.sh %u

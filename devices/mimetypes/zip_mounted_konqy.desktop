@@ -1,6 +1,6 @@
 [Desktop Entry]
 ServiceTypes=kdedevice/zip_mounted
-Actions=zip_unmount
+Actions=zip_unmount;used_by
 X-KDE-Priority=TopLevel
 
 [Desktop Action zip_unmount]
@@ -70,3 +70,6 @@ Name[zh_TW]=未掛載
 Name[zu]=Yehlisa
 Exec=kio_devices_mounthelper -u %u
 
+[Desktop Action used_by]
+Name=Mountpoint used by ...
+Exec=kio_devices_list_mountpointusage.sh %u

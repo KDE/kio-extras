@@ -1,6 +1,6 @@
 [Desktop Entry]
 ServiceTypes=kdedevice/cdrom_mounted
-Actions=cdrom_unmount;cdrom_eject;
+Actions=cdrom_unmount;cdrom_eject;used_by;
 X-KDE-Priority=TopLevel
 
 [Desktop Action cdrom_unmount]
@@ -142,3 +142,6 @@ Name[zh_TW]=跳出
 Name[zu]=Khipha
 Exec=kio_devices_mounthelper -e %u
 
+[Desktop Action used_by]
+Name=Mountpoint used by ...
+Exec=kio_devices_list_mountpointusage.sh %u

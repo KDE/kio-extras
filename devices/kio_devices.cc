@@ -42,6 +42,7 @@
 	virtual void listDir(const KURL& url);
 	virtual void put( const KURL& url, int , bool overwrite, bool );
 	virtual void mkdir( const KURL& url, int permissions );
+	virtual void rename(KURL const &, KURL const &, bool);
 	void listRoot();
 
    protected:
@@ -88,6 +89,29 @@ DevicesProtocol::DevicesProtocol( const QCString& protocol, const QCString &pool
 DevicesProtocol::~DevicesProtocol()
 {
 }
+
+void DevicesProtocol::rename(KURL const &oldURL, KURL const &newURL, bool) {
+	kdDebug(7126)<<"DevicesProtocol::rename(): old="<<oldURL<<" new="<<newURL<<endl;
+
+        QByteArray data;
+        QByteArray param;
+        QCString retType;
+        QString retVal;
+        QDataStream streamout(param,IO_WriteOnly);
+#warning FIXME
+        streamout<<oldURL; 
+	streamout<<newURL;
+
+	if ( dcopClient()->call( "kded",
+		 "mountwatcher", "setDisplayName(QString,QString)", param,retType,data,false ) ) {
+		finished();
+		return;
+	} else {
+		error(KIO::ERR_SLAVE_DEFINED,i18n("Mountwatcher could not be reached for renaming operation"));
+		return;
+	}
+}
+
 
 void DevicesProtocol::mountAndRedirect(const KURL& url)
 {
