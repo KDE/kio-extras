@@ -148,11 +148,7 @@ mimeHeader::addHdrLine (mimeHdrLine * aHdrLine)
         {
           if (skip > 0)
           {
-            QCString aParm;
-
-            aParm = QCString (aCStr, skip);
-            aParm = aParm.simplifyWhiteSpace ().stripWhiteSpace ();
-            addParameter (aParm, aList);
+            addParameter (QCString (aCStr, skip).simplifyWhiteSpace(), aList);
 //            cout << "-- '" << aParm.data() << "'" << endl;
             mimeValue = QCString (addLine->getValue ().data (), skip);
             aCStr += skip;
@@ -166,7 +162,7 @@ mimeHeader::addHdrLine (mimeHdrLine * aHdrLine)
 }
 
 void
-mimeHeader::addParameter (QCString aParameter, QDict < QString > *aList)
+mimeHeader::addParameter (const QCString& aParameter, QDict < QString > *aList)
 {
   QString *aValue;
   QCString aLabel;
@@ -183,29 +179,28 @@ mimeHeader::addParameter (QCString aParameter, QDict < QString > *aList)
 }
 
 QString
-mimeHeader::getDispositionParm (QCString aStr)
+mimeHeader::getDispositionParm (const QCString& aStr)
 {
   return getParameter (aStr, &dispositionList);
 }
 
 QString
-mimeHeader::getTypeParm (QCString aStr)
+mimeHeader::getTypeParm (const QCString& aStr)
 {
   return getParameter (aStr, &typeList);
 }
 
 void
-mimeHeader::setDispositionParm (QCString aLabel, QString aValue)
+mimeHeader::setDispositionParm (const QCString& aLabel, const QString& aValue)
 {
   setParameter (aLabel, aValue, &dispositionList);
   return;
 }
 
 void
-mimeHeader::setTypeParm (QCString aLabel, QString aValue)
+mimeHeader::setTypeParm (const QCString& aLabel, const QString& aValue)
 {
   setParameter (aLabel, aValue, &typeList);
-  return;
 }
 
 QDictIterator < QString > mimeHeader::getDispositionIterator ()
@@ -265,7 +260,7 @@ mimeHeader::outputHeader (mimeIO & useIO)
 }
 
 QString
-mimeHeader::getParameter (QCString aStr, QDict < QString > *aDict)
+mimeHeader::getParameter (const QCString& aStr, QDict < QString > *aDict)
 {
   QString retVal, *found;
   if (aDict)
@@ -327,11 +322,12 @@ mimeHeader::getParameter (QCString aStr, QDict < QString > *aDict)
 }
 
 void
-mimeHeader::setParameter (QCString aLabel, QString aValue,
+mimeHeader::setParameter (const QCString& aLabel, const QString& aValue,
                           QDict < QString > *aDict)
 {
   bool encoded = true;
   uint vlen, llen;
+  QString val = aValue;
 
   if (aDict)
   {
@@ -339,10 +335,10 @@ mimeHeader::setParameter (QCString aLabel, QString aValue,
     //see if it needs to get encoded
     if (encoded && aLabel.find ('*') == -1)
     {
-      aValue = rfcDecoder::encodeRFC2231String (aValue);
+      val = rfcDecoder::encodeRFC2231String (aValue);
     }
     //see if it needs to be truncated
-    vlen = aValue.length();
+    vlen = val.length();
     llen = aLabel.length();
     if (vlen + llen + 4 > 80)
     {
@@ -351,13 +347,13 @@ mimeHeader::setParameter (QCString aLabel, QString aValue,
       QString shortValue;
       QCString shortLabel;
 
-      while (!aValue.isEmpty ())
+      while (!val.isEmpty ())
       {
         //don't truncate the encoded chars
         int offset = 0;
-        if (limit > vlen)
+        if (limit > int(vlen))
           limit = vlen;
-        offset = aValue.findRev ('%', limit);
+        offset = val.findRev ('%', limit);
         if (offset == limit - 1 || offset == limit - 2)
         {
 //          cout << "offset " << offset << "-" << limit << "=" << limit-offset << endl;
@@ -365,10 +361,10 @@ mimeHeader::setParameter (QCString aLabel, QString aValue,
         }
         else
           offset = 0;
-        shortValue = aValue.left (limit - offset);
+        shortValue = val.left (limit - offset);
         shortLabel.setNum (i);
         shortLabel = aLabel + "*" + shortLabel;
-        aValue = aValue.right (vlen - limit + offset);
+        val = val.right (vlen - limit + offset);
         vlen = vlen - limit + offset;
         if (encoded)
         {
@@ -385,7 +381,7 @@ mimeHeader::setParameter (QCString aLabel, QString aValue,
     }
     else
     {
-      aDict->insert (aLabel, new QString (aValue));
+      aDict->insert (aLabel, new QString (val));
     }
   }
 }
@@ -443,7 +439,7 @@ mimeHeader::outputPart (mimeIO & useIO)
 }
 
 int
-mimeHeader::parsePart (mimeIO & useIO, QString boundary)
+mimeHeader::parsePart (mimeIO & useIO, const QString& boundary)
 {
   int retVal = 0;
   bool mbox = false;
@@ -485,7 +481,7 @@ mimeHeader::parsePart (mimeIO & useIO, QString boundary)
 
 int
 mimeHeader::parseBody (mimeIO & useIO, QCString & messageBody,
-                       QString boundary, bool mbox)
+                       const QString& boundary, bool mbox)
 {
   QCString inputStr;
   QCString buffer;

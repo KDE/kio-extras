@@ -33,70 +33,65 @@ public:
   mailHeader ();
   ~mailHeader ();
 
-  virtual QString internalType ()
-  {
-    return QString ("mailHeader");
-  };
-
   virtual void addHdrLine (mimeHdrLine *);
   virtual void outputHeader (mimeIO &);
 
   void addTo (const mailAddress & _adr)
   {
     toAdr.append (new mailAddress (_adr));
-  };
+  }
   void addCC (const mailAddress & _adr)
   {
     ccAdr.append (new mailAddress (_adr));
-  };
+  }
   void addBCC (const mailAddress & _adr)
   {
     bccAdr.append (new mailAddress (_adr));
-  };
+  }
 
   void setFrom (const mailAddress & _adr)
   {
     fromAdr = _adr;
-  };
+  }
   void setSender (const mailAddress & _adr)
   {
     senderAdr = _adr;
-  };
+  }
   void setReturnPath (const mailAddress & _adr)
   {
     returnpathAdr = _adr;
-  };
+  }
   void setReplyTo (const mailAddress & _adr)
   {
     replytoAdr = _adr;
-  };
+  }
 
-  QCString getMessageId ()
+  const QCString& getMessageId ()
   {
     return messageID;
-  };
+  }
   void setMessageId (const QCString & _str)
   {
     messageID = _str;
-  };
+  }
 
-  QCString getInReplyTo ()
+  const QCString& getInReplyTo ()
   {
     return inReplyTo;
-  };
+  }
   void setInReplyTo (const QCString & _str)
   {
     inReplyTo = _str;
-  };
+  }
 
-  QCString getReferences ()
+  const QCString& getReferences ()
   {
     return references;
-  };
+  }
   void setReferences (const QCString & _str)
   {
     references = _str;
-  };
+  }
 
   /**
    * set a unicode subject
@@ -104,14 +99,14 @@ public:
   void setSubject (const QString & _str)
   {
     _subject = rfcDecoder::encodeRFC2047String(_str).latin1();
-  };
+  }
   /** 
    * set a encoded subject
    */
   void setSubjectEncoded (const QCString & _str)
   {
     _subject = _str.simplifyWhiteSpace();
-  };
+  }
 
   /** 
    * get the unicode subject
@@ -119,14 +114,14 @@ public:
   const QString getSubject ()
   {
     return rfcDecoder::decodeRFC2047String(_subject);
-  };
+  }
   /**
    * get the encoded subject
    */
-  QCString getSubjectEncoded ()
+  const QCString& getSubjectEncoded ()
   {
     return _subject;
-  };
+  }
 
   /**
    * set the date
@@ -139,7 +134,7 @@ public:
   /**
    * get the date
    */
-  QCString date ()
+  const QCString& date ()
   {
     return mDate;
   }

@@ -35,11 +35,6 @@ public:
   mimeHeader ();
   virtual ~ mimeHeader ();
 
-  virtual QString internalType ()
-  {
-    return QString ("mimeHeader");
-  };
-
   virtual void addHdrLine (mimeHdrLine *);
   virtual void outputHeader (mimeIO &);
   virtual void outputPart (mimeIO &);
@@ -47,36 +42,36 @@ public:
 
   QCString outputParameter (QDict < QString > *);
 
-  int parsePart (mimeIO &, QString);
-  int parseBody (mimeIO &, QCString &, QString, bool mbox = false);
+  int parsePart (mimeIO &, const QString&);
+  int parseBody (mimeIO &, QCString &, const QString&, bool mbox = false);
 
   // parse a header. returns true if it had a leading 'From ' line
   bool parseHeader (mimeIO &);
 
-  QString getDispositionParm (QCString);
-  void setDispositionParm (QCString, QString);
+  QString getDispositionParm (const QCString&);
+  void setDispositionParm (const QCString&, const QString&);
   QDictIterator < QString > getDispositionIterator ();
 
-  QString getTypeParm (QCString);
-  void setTypeParm (QCString, QString);
+  QString getTypeParm (const QCString&);
+  void setTypeParm (const QCString&, const QString&);
   QDictIterator < QString > getTypeIterator ();
 
   // recursively serialize all important contents to the QDataStream
   void serialize(QDataStream& stream);
 
-  QCString getType ()
+  const QCString& getType ()
   {
     return contentType;
-  };
+  }
   void setType (const QCString & _str)
   {
     contentType = _str;
   }
 
-  QCString getDescription ()
+  const QCString& getDescription ()
   {
     return _contentDescription;
-  };
+  }
   void setDescription (const QCString & _str)
   {
     _contentDescription = _str;
@@ -85,7 +80,7 @@ public:
   QCString getDisposition ()
   {
     return _contentDisposition;
-  };
+  }
   void setDisposition (const QCString & _str)
   {
     _contentDisposition = _str;
@@ -94,120 +89,120 @@ public:
   QCString getEncoding ()
   {
     return contentEncoding;
-  };
+  }
   void setEncoding (const QCString & _str)
   {
     contentEncoding = _str;
-  };
+  }
 
   QCString getMD5 ()
   {
     return contentMD5;
-  };
+  }
   void setMD5 (const QCString & _str)
   {
     contentMD5 = _str;
-  };
+  }
 
   QCString getID ()
   {
     return contentID;
-  };
+  }
   void setID (const QCString & _str)
   {
     contentID = _str;
-  };
+  }
 
   unsigned long getLength ()
   {
     return contentLength;
-  };
+  }
   void setLength (unsigned long _len)
   {
     contentLength = _len;
-  };
+  }
 
   const QString & getPartSpecifier ()
   {
     return partSpecifier;
-  };
+  }
   void setPartSpecifier (const QString & _str)
   {
     partSpecifier = _str;
-  };
+  }
 
   QPtrListIterator < mimeHdrLine > getOriginalIterator ();
   QPtrListIterator < mimeHdrLine > getAdditionalIterator ();
   void setContent (QCString aContent)
   {
     mimeContent = aContent;
-  };
+  }
   QCString getContent ()
   {
     return mimeContent;
-  };
+  }
 
   QCString getBody ()
   {
     return preMultipartBody + postMultipartBody;
-  };
+  }
   QCString getPreBody ()
   {
     return preMultipartBody;
-  };
+  }
   void setPreBody (QCString & inBody)
   {
     preMultipartBody = inBody;
-  };
+  }
 
   QCString getPostBody ()
   {
     return postMultipartBody;
-  };
+  }
   void setPostBody (QCString & inBody)
   {
     postMultipartBody = inBody;
     contentLength = inBody.length ();
-  };
+  }
 
   mimeHeader *getNestedMessage ()
   {
     return nestedMessage;
-  };
+  }
   void setNestedMessage (mimeHeader * inPart, bool destroy = true)
   {
     if (nestedMessage && destroy)
       delete nestedMessage;
     nestedMessage = inPart;
-  };
+  }
 
 //  mimeHeader *getNestedPart() { return nestedPart; };
   void addNestedPart (mimeHeader * inPart)
   {
     nestedParts.append (inPart);
-  };
+  }
   QPtrListIterator < mimeHeader > getNestedIterator ()
   {
     return QPtrListIterator < mimeHeader > (nestedParts);
-  };
+  }
 
   // clears all parts and deletes them from memory
   void clearNestedParts ()
   {
     nestedParts.clear ();
-  };
+  }
 
   // clear all parameters to content-type
   void clearTypeParameters ()
   {
     typeList.clear ();
-  };
+  }
 
   // clear all parameters to content-disposition
   void clearDispositionParameters ()
   {
     dispositionList.clear ();
-  };
+  }
 
   // return the specified body part or NULL
   mimeHeader *bodyPart (const QString &);
@@ -228,8 +223,8 @@ public:
     return nestedParts.at (which);
   }
   void write (const QString &)
-  {;
-  };
+  {
+  }
   QString typeStr ()
   {
     return QString (contentType.left (contentType.find ('/')));
@@ -313,9 +308,9 @@ public:
 #endif
 
 protected:
-  static void addParameter (QCString, QDict < QString > *);
-  static QString getParameter (QCString, QDict < QString > *);
-  static void setParameter (QCString, QString, QDict < QString > *);
+  static void addParameter (const QCString&, QDict < QString > *);
+  static QString getParameter (const QCString&, QDict < QString > *);
+  static void setParameter (const QCString&, const QString&, QDict < QString > *);
 
   QPtrList < mimeHdrLine > originalHdrLines;
 
