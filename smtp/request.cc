@@ -29,6 +29,8 @@
     your version.
 */
 
+#include <config.h>
+
 #include "request.h"
 
 #include <kurl.h>
