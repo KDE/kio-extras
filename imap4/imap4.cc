@@ -851,7 +851,7 @@ IMAP4Protocol::copy (const KURL & src, const KURL & dest, int, bool overwrite)
 
     }
   }
-  if (sType == ITYPE_MSG)
+  if (sType == ITYPE_MSG || sType == ITYPE_BOX)
   {
     //select the source box
     if (assureBox (sBox, true))
