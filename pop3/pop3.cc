@@ -88,7 +88,7 @@ bool POP3Protocol::getResponse (char *r_buf, unsigned int r_len)
   FD_ZERO(&FDs);
   FD_SET(m_iSock, &FDs);
   while (::select(m_iSock+1, &FDs, 0, 0, &m_tTimeout) ==0);
-  bzero(&buf, r_len);
+  memset(&buf, r_len, 0);
   if (fgets(buf, sizeof(buf)-1, fp) == 0)
     return false;
   recv_len=strlen(buf);
@@ -135,7 +135,7 @@ bool POP3Protocol::pop3_open( KURL &_url )
 {
   unsigned int port;
   struct sockaddr_in server_name;
-  bzero(&server_name, sizeof(server_name));
+  memset(&server_name, sizeof(server_name), 0);
 
   // We want 110 as the default, but -1 means no port was specified.
   // Why 0 wasn't chosen is beyond me.
@@ -168,7 +168,7 @@ bool POP3Protocol::pop3_open( KURL &_url )
      one_string.append(usr);
   } else
     one_string.append(_url.user());
-  bzero(buf, sizeof(buf));
+  memset(buf, sizeof(buf), 0);
   if (!command(one_string, buf, sizeof(buf))) {
     fprintf(stderr, "Couldn't login. Bad username Sorry\n"); fflush(stderr);
     pop3_close();
@@ -240,9 +240,9 @@ void POP3Protocol::slotGet(const char *_url)
       gettingFile(_url);
       time_t t_start = time( 0L );
       time_t t_last = t_start;
-      bzero(buf, sizeof(buf));
+      memset(buf, sizeof(buf), 0);
       while (!feof(fp)) {
-	bzero(buf, sizeof(buf));
+	memset(buf, sizeof(buf), 0);
 	if (!fgets(buf, sizeof(buf)-1, fp))
 	  break;  // Error??
 	// HACK: This assumes fread stops at the first \n and not \r
@@ -273,7 +273,7 @@ void POP3Protocol::slotGet(const char *_url)
       return; //  We fscking need a number!
     list_cmd+= path;
     path.prepend("RETR ");
-    bzero(buf, sizeof(buf));
+    memset(buf, sizeof(buf), 0);
     if (command(list_cmd, buf, sizeof(buf))) {
       list_cmd=buf;
       // We need a space, otherwise we got an invalid reply
@@ -298,9 +298,9 @@ void POP3Protocol::slotGet(const char *_url)
       totalSize(msg_len);
       time_t t_start = time( 0L );
       time_t t_last = t_start;
-      bzero(buf, sizeof(buf));
+      memset(buf, sizeof(buf), 0);
       while (!feof(fp)) {
-	bzero(buf, sizeof(buf));
+	memset(buf, sizeof(buf), 0);
 	if (!fgets(buf, sizeof(buf)-1, fp))
 	  break;  // Error??
 	// HACK: This assumes fread stops at the first \n and not \r
