@@ -60,7 +60,6 @@
 #include <util.h>
 #endif
 
-#include <kapplication.h>
 #include <kdebug.h>
 #include <kmessagebox.h>
 #include <kinstance.h>
