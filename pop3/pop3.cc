@@ -104,7 +104,6 @@ POP3Protocol::POP3Protocol(const QCString &pool, const QCString &app, bool isSSL
 {
 	kdDebug() << "POP3Protocol()" << endl;
 	m_bIsSSL=isSSL;
-        mUseTLS = false;
 	m_cmd = CMD_NONE;
 	m_iOldPort = 0;
 	m_tTimeout.tv_sec=10;
@@ -302,7 +301,6 @@ bool POP3Protocol::pop3_open(const KURL &url)
                 if (!m_bIsSSL && canUseTLS() && command("STLS")) {
                    if (startTLS()) {
                       kdDebug() << "TLS mode has been enabled." << endl;
-                      mUseTLS = true;
                    } else {
                       kdDebug() << "TLS mode setup has failed.  Aborting." << endl;
                       return false;
