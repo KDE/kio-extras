@@ -7,4 +7,5 @@ listing=Name,Type,Size,Date,Access
 reading=true
 deleting=true
 makedir=true
-writing = true
+writing=true
+Icon=samba

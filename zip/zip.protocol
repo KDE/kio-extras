@@ -8,4 +8,4 @@ listing=Name,Type,Size,Date,Access,Owner,Group,Link
 reading=true
 source=true
 DocPath=kioslave/zip.html
-Icon=zip
+Icon=ark

@@ -9,4 +9,4 @@ writing=true
 makedir=true
 deleting=true
 DocPath=kioslave/smb.html
-Icon=remote
+Icon=samba
