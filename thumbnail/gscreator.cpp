@@ -24,6 +24,7 @@
 #include <unistd.h>
 #include <signal.h>
 #include <sys/select.h>
+#include <sys/time.h>
 #include <sys/wait.h>
 
 #include <qfile.h>
@@ -51,36 +52,21 @@ static const char *prolog =
     "} def\n"
     "/showpage { .showpage.firstonly } def\n";
 
-static const char *gsargs[6] = {
+static const char *gsargs[] = {
     "gs",
-    "-q",
     "-sDEVICE=png16m",
     "-sOutputFile=-",
+    "-dNOPAUSE",
+    "-dFirstPage=1",
+    "-dLastPage=1",
+    "-q",
     "-",
+    0, // file name
     0
 };
 
-static pid_t pid;
-static int status;
-bool done;
-
-void sighandler(int sig)
-{
-    if (sig == SIGCHLD)
-    {
-        assert(waitpid(pid, &status, 0) == pid);
-        done = true;
-    }
-    else
-        kill(pid, SIGTERM);
-}
-
 bool GSCreator::create(const QString &path, int extent, QPixmap &pix)
 {
-    QFile psFile(path);
-    if (!psFile.open(IO_ReadOnly))
-        return false;
-    
     int input[2];
     int output[2];
     QByteArray data(1024);
@@ -88,99 +74,88 @@ bool GSCreator::create(const QString &path, int extent, QPixmap &pix)
 
     if (pipe(input) == -1)
         return false;
-    if (pipe(output) != -1)
+    if (pipe(output) == -1)
     {
-        done = false;
-        pid = fork();
-        if (pid == 0)
-        {
-            // Child process, reopen stdin/stdout on the pipes and exec gs
-            close(input[1]);
-            close(output[0]);
-            dup2(input[0], STDIN_FILENO);
-            dup2(output[1], STDOUT_FILENO);
-            close(STDERR_FILENO);
-            
-            execvp("gs", const_cast<char *const *>(gsargs));
-            exit(1);
-        }
-        else if (pid != -1)
-        {
-            // Parent process, write prolog and actual ps file to gs
-            // and read the png output
-            struct sigaction act;
-            act.sa_handler = sighandler;
-            sigemptyset(&act.sa_mask);
-            act.sa_flags = 0;
-            sigaction(SIGCHLD, &act, 0);
-            sigaction(SIGPIPE, &act, 0);
-            sigaction(SIGALRM, &act, 0);
-            alarm(5);
+        close(input[0]);
+        close(input[1]);
+        return false;
+    }
 
-            close(input[0]);
-            close(output[1]);
+    pid_t pid = fork();
+    if (pid == 0)
+    {
+        // Child process, reopen stdin/stdout on the pipes and exec gs
+        close(input[1]);
+        close(output[0]);
+        dup2(input[0], STDIN_FILENO);
+        dup2(output[1], STDOUT_FILENO);
+        close(STDERR_FILENO);
 
-            int count = write(input[1], prolog, strlen(prolog));
-            if (count  == static_cast<int>(strlen(prolog)))
+        // find first zero entry and put the filename there
+        const char **arg = gsargs;
+        while (*arg)
+            ++arg;
+        *arg = path.latin1();
+
+        execvp(gsargs[0], const_cast<char *const *>(gsargs));
+        exit(1);
+    }
+    else if (pid != -1)
+    {
+        // Parent process, write first-page-only-hack
+        // and read the png output
+        close(input[0]);
+        close(output[1]);
+
+        int count = write(input[1], prolog, strlen(prolog));
+        close(input[1]);
+        if (count == static_cast<int>(strlen(prolog)))
+        {
+            int offset = 0;
+            while (!ok)
             {
-                int offset = 0;
-                for (;;)
-                {
-                    fd_set rfds, wfds;
-                    FD_ZERO(&rfds);
-                    FD_ZERO(&wfds);
-                    FD_SET(output[0], &rfds);
-                    int maxfd = output[0] + 1;
-                    if (!psFile.atEnd())
-                    {
-                        FD_SET(input[1], &wfds);
-                        maxfd = QMAX(maxfd, input[1] + 1);
-                    }
-                    if (select(maxfd, &rfds, &wfds, 0, 0) == -1)
-                        break;
+                fd_set fds;
+                FD_ZERO(&fds);
+                FD_SET(output[0], &fds);
+                struct timeval tv;
+                tv.tv_sec = 5;
+                tv.tv_usec = 0;
+                if (select(output[0] + 1, &fds, 0, 0, &tv) <= 0)
+                    break; // error or timeout
 
-                    if (FD_ISSET(output[0], &rfds))
+                if (FD_ISSET(output[0], &fds))
+                {
+                    count = read(output[0], data.data() + offset, 1024);
+                    if (count == -1)
+                        break;
+                    else if (count) // prepare for next block
                     {
-                        if ((count = read(output[0], data.data() + offset, 1024)) == -1)
-                            break;
-                        if (count == 0)
-                        {
-                            ok = true;
-                            break;
-                        }
                         offset += count;
                         data.resize(offset + 1024);
                     }
-                    if (FD_ISSET(input[1], &wfds))
+                    else // got all data
                     {
-                        char buf[1024];
-                        if ((count = psFile.readBlock(buf, sizeof(buf))) == -1)
-                            break;
-                        if (write(input[1], buf, count) == -1)
-                            break;
-                        if (count == 0)
-                            maxfd = output[0] + 1;
+                        data.resize(offset);
+                        ok = true;
                     }
                 }
-                data.resize(offset);
             }
-            while (!done);
-            alarm(0);
+        }
+        if (!ok) // error or timeout, gs probably didn't exit yet
+            kill(pid, SIGTERM);
 
-            if (status != 0)
-                ok = false;
-        }
-        else
-        {
-            // fork() failed, child didn't close these
-            close(input[0]);
-            close(output[1]);
-        }
+        int status;
+        if (waitpid(pid, &status, 0) != pid || status != 0)
+            ok = false;
+    }
+    else
+    {
+        // fork() failed, close these
+        close(input[0]);
+        close(input[1]);
         close(output[0]);
     }
-    else // second pipe() failed
-        close(input[0]);
-    close(input[1]);
+    close(output[1]);
 
     if ( ok && pix.loadFromData( data ) )
     {
