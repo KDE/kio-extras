@@ -149,15 +149,6 @@ IMAP4Protocol::get (const KURL & _url)
   {
     imapCommand *cmd = doCommand (imapCommand::clientNoop());
     completeQueue.removeRef(cmd);
-    
-    cmd = doCommand (imapCommand::clientClose());
-    if (cmd->result() != "OK")
-    {
-      error (ERR_ABORTED, i18n("Unable to close mailbox."));
-      finished();
-      return;
-    }
-    completeQueue.removeRef(cmd);
     setState(ISTATE_LOGIN);
   }
 
@@ -355,7 +346,8 @@ IMAP4Protocol::listDir (const KURL & _url)
       }
       completeQueue.removeRef (cmd);
     }
-    if (myType == ITYPE_BOX || myType == ITYPE_DIR_AND_BOX)
+    if ((myType == ITYPE_BOX || myType == ITYPE_DIR_AND_BOX)
+        && myLType != "LIST" && myLType != "LSUB")
     {
       if (!_url.query ().isEmpty ())
       {
@@ -674,19 +666,6 @@ IMAP4Protocol::put (const KURL & _url, int, bool, bool)
       error (ERR_ABORTED, hidePass(_url));
       finished ();
       return;
-    }
-
-    // Some servers can't append mails to the selected mailbox
-    if (getState() == ISTATE_SELECT)
-    {
-      imapCommand *cmd = doCommand (imapCommand::clientClose());
-      if (cmd->result() != "OK")
-      {
-        error (ERR_ABORTED, i18n("Unable to close mailbox."));
-        finished();
-        return;
-      }
-      setState(ISTATE_LOGIN);
     }
 
     imapCommand *cmd =
@@ -1586,7 +1565,7 @@ IMAP4Protocol::parseURL (const KURL & _url, QString & _box,
 
     if (makeLogin ())
     {
-      if (getCurrentBox () != _box || _type == "LIST")
+      if (getCurrentBox () != _box || _type == "LIST" || _type == "LSUB")
       {
         imapCommand *cmd;
 
@@ -1719,15 +1698,11 @@ IMAP4Protocol::assureBox (const QString & aBox, bool readonly)
 
   if (aBox != getCurrentBox ())
   {
-    cmd = doCommand(imapCommand::clientStatus(aBox, "UIDNEXT"));
-    completeQueue.removeRef (cmd);
     // open the box with the appropriate mode
     kdDebug(7116) << "IMAP4Protocol::assureBox - opening box" << endl;
     selectInfo = imapInfo();
     cmd = doCommand (imapCommand::clientSelect (aBox, readonly));
     completeQueue.removeRef (cmd);
-    if (!selectInfo.uidNextAvailable())
-      selectInfo.setUidNext(getStatus().uidNext());
   }
   else
   {

@@ -206,7 +206,10 @@ imapCommand::clientList (const QString & reference, const QString & path,
 imapCommand *
 imapCommand::clientSelect (const QString & path, bool examine)
 {
-  return new imapCommand ((examine && path != "INBOX") ? "EXAMINE" : "SELECT",
+  /* We use always SELECT, because UW-IMAP doesn't check for new mail, when
+     used with the "mbox driver" and the folder is opened with EXAMINE
+     and Courier can't append to a mailbox that is in EXAMINE state */
+  return new imapCommand ("SELECT",
                           QString ("\"") + rfcDecoder::toIMAP (path) + "\"");
 }
 
