@@ -392,7 +392,7 @@ bool fishProtocol::connectionStart() {
 #undef common_args
 
 		myDebug( << "could not exec " << ex << endl);
-		exit(-1);
+		::exit(-1);
 	}
 	close(fd[1]);
 	rc = fcntl(fd[0],F_GETFL,&flags);
