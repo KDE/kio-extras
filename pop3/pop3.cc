@@ -52,26 +52,27 @@
 #include <qcstring.h>
 #include <qglobal.h>
 
-#include <kprotocolmanager.h>
-#include <ksock.h>
 #include <kdebug.h>
 #include <kinstance.h>
+#include <klocale.h>
+#include <kmdcodec.h>
+#include <kprotocolmanager.h>
+#include <ksock.h>
+
 #include <kio/connection.h>
 #include <kio/slaveinterface.h>
-#include <kio/ksasl/saslcontext.h>
+#include <kio/sasl/saslmodule.h>
+#include <kio/sasl/saslcontext.h>
 #include <kio/passdlg.h>
-#include <klocale.h>
 
 #include "pop3.h"
 
 #define GREETING_BUF_LEN 1024
 #define MAX_RESPONSE_LEN 512
 
-#ifndef NAPOP
-	#include <kmdcodec.h>
-#endif
 
-extern "C" {
+extern "C"
+{
 	int kdemain(int argc, char **argv);
 };
 
@@ -102,7 +103,7 @@ int kdemain( int argc, char **argv )
 POP3Protocol::POP3Protocol(const QCString &pool, const QCString &app, bool isSSL)
    : TCPSlaveBase((isSSL ? 995 : 110), (isSSL ? "pop3s" : "pop3"), pool, app, isSSL)
 {
-	kdDebug() << "POP3Protocol()" << endl;
+	kdDebug() << "POP3Protocol::POP3Protocol()" << endl;
 	m_bIsSSL=isSSL;
 	m_cmd = CMD_NONE;
 	m_iOldPort = 0;
@@ -115,7 +116,7 @@ POP3Protocol::POP3Protocol(const QCString &pool, const QCString &app, bool isSSL
 
 POP3Protocol::~POP3Protocol()
 {
-	kdDebug() << "~POP3Protocol()" << endl;
+	kdDebug() << "POP3Protocol::~POP3Protocol()" << endl;
 	closeConnection();
 }
 
@@ -293,7 +294,6 @@ bool POP3Protocol::pop3_open()
 		QCString greeting(greeting_buf);
 		free(greeting_buf);
 
-#ifndef NAPOP
 		//
 		// Does the server support APOP?
 		//
@@ -303,7 +303,6 @@ bool POP3Protocol::pop3_open()
 			greeting.truncate(greeting.length() - 2);
 		int apop_pos = greeting.find(re);
 		bool apop = (bool)(apop_pos != -1);
-#endif
 
 		m_iOldPort = m_iPort;
 		m_sOldServer = m_sServer;
@@ -334,9 +333,7 @@ bool POP3Protocol::pop3_open()
                 }
 
 		QString usr, pass, one_string="USER ";
-#ifndef NAPOP
 		QString apop_string = "APOP ";
-#endif
 		if (m_sUser.isEmpty() || m_sPass.isEmpty()) {
 			// Prompt for usernames
 			QString head=i18n("Username and password for your POP3 account:");
@@ -344,22 +341,17 @@ bool POP3Protocol::pop3_open()
 				closeConnection();
 				return false;
 			} else {
-#ifndef NAPOP
 				apop_string.append(usr);
-#endif
 				one_string.append(usr);
 				m_sOldUser=usr;
 				m_sUser=usr; m_sPass=pass;
 			}
 		} else {
-#ifndef NAPOP
 	      		apop_string.append(m_sUser);
-#endif
 			one_string.append(m_sUser);
 			m_sOldUser = m_sUser;
 		}
 		memset(buf, 0, sizeof(buf));
-#ifndef NAPOP
 		if(apop && m_try_apop) {
 			char *c = greeting.data() + apop_pos;
 			KMD5 ctx;
@@ -386,7 +378,7 @@ bool POP3Protocol::pop3_open()
 			m_try_apop = false;
 			return pop3_open();
 		}
-#endif
+
 		// Let's try SASL stuff first.. it might be more secure
 		QString sasl_auth, sasl_buffer="AUTH";
 

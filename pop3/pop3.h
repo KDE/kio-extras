@@ -43,7 +43,7 @@ class POP3Protocol
 {
 public:
 	POP3Protocol (const QCString &pool, const QCString &app, bool SSL);
-	virtual ~POP3Protocol();
+	virtual ~POP3Protocol ();
 
 	virtual void setHost (const QString& host, int port, const QString& user, const QString& pass);
 
@@ -60,7 +60,7 @@ protected:
 	  * getSize command will emit a signal, which would be harder
 	  * to trap when doing something like listing a directory.
 	  */
-	size_t realGetSize(unsigned int msg_num);
+	size_t realGetSize (unsigned int msg_num);
 
 	/**
 	  *  Send a command to the server, and wait for the  one-line-status
@@ -80,13 +80,13 @@ protected:
 	bool getResponse (char *buf, unsigned int len, const char *command);
 
 	/** Call int pop3_open() and report an error, if if fails */
-        void openConnection();
+        void openConnection ();
 
 	/**
 	  *  Attempt to properly shut down the POP3 connection by sending
 	  *  "QUIT\r\n" before closing the socket.
 	  */
-	void closeConnection();
+	void closeConnection ();
 
 	/**
 	  * Attempt to initiate a POP3 connection via a TCP socket.  If no port
