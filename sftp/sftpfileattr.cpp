@@ -245,6 +245,10 @@ kdbgstream& operator<< (kdbgstream& s, sftpFileAttr& a) {
     s << ", extended cnt: " << a.mExtendedCount;
     return s;
 }
+/** Make sure it builds with NDEBUG */
+kndbgstream& operator<< (kndbgstream& s, sftpFileAttr& a) {
+    return s;
+}
 /** Clear all attributes and flags. */
 void sftpFileAttr::clear(){
     clearAtime();
@@ -295,3 +299,4 @@ mode_t sftpFileAttr::fileType() const{
     else if( S_ISSOCK(mPermissions) ) { return S_IFSOCK;}
     else return 0;
 }
+// vim:ts=4:sw=4

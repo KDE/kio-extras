@@ -1439,6 +1439,10 @@ kdbgstream& operator<< (kdbgstream& s, QByteArray& a) {
     return s;
 }
 
+kndbgstream& operator<< (kndbgstream& s, QByteArray &a) {
+    return s;
+}
+
 void mymemcpy(const char* b, QByteArray& a, unsigned int offset, unsigned int len) {
     for(unsigned int i = 0; i < len; i++) {
         a[offset+i] = b[i];

@@ -234,6 +234,7 @@ public:
     bool getDirAttrsFlag() const { return mDirAttrs; }
 
     friend kdbgstream& operator<< (kdbgstream& s, sftpFileAttr& a);
+    friend kndbgstream& operator<< (kndbgstream& s, sftpFileAttr& a);
 
     /** Returns the file type as determined from the file permissions */
     mode_t fileType() const;
