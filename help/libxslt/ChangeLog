@@ -1,3 +1,58 @@
+Mon Apr  2 17:00:39 CEST 2001 Daniel Veillard <Daniel.Veillard@imag.fr>
+
+	* configure.in tests/Makefile.am tests/XSLTMark/* tests/multiple:
+	  added the XSLTMark in the regression tests as well as multiple
+	  output test from Ankh
+	* libxslt/functions.c libxslt/keys.c libxslt/transform.c
+	  libxslt/variables.c libxslt/xsltutils.c: applied William M. Brack
+	  patches and fixed a memory leak
+	* tests/docbook/result/html/*.html : updated the results after
+	  William's patch
+	* tests/xmlspec/REC-xml-20001006-review.html 
+	  tests/xmlspec/REC-xml-20001006.html: libxml now don't invent
+	  an HTML doctype when serializing HTML result, but adds the
+	  encoding in ALT
+
+Thu Mar 29 10:24:42 CEST 2001 Daniel Veillard <Daniel.Veillard@imag.fr>
+
+	* libxslt/transform.c: applied fix to xsltApplyTemplates from
+	  William M. Brack
+	* test/docbook/result/html/*.html: this change the output
+	* tests/xmlspec/REC-xml-20001006-review.html 
+	  tests/xmlspec/REC-xml-20001006.html: this also fixed some of
+	  the reference anchors generated for the XML spec
+
+Mon Mar 26 18:57:58 CEST 2001 Daniel Veillard <Daniel.Veillard@imag.fr>
+
+	* libxslt/attributes.c libxslt/extra.c libxslt/keys.c libxslt/numbers.c
+	  libxslt/templates.c libxslt/transform.c libxslt/xsltconfig.h.in
+	  libxslt/xsltutils.c: of course the way I defined
+	  UNUSED breaks on old gcc version. Try to be smart and
+	  also define it directly in xsltconfig.h
+	* tests/xmlspec/Makefile.am: fixed the timing arg test
+
+Sun Mar 25 22:07:34 CEST 2001 Daniel Veillard <Daniel.Veillard@imag.fr>
+
+	* libxslt/transform.[ch] libxslt/variables.[ch] libxslt/xsltproc.c:
+	  implemented command line parameter passing
+	* tests/xmlspec/Makefile.am tests/xmlspec/REC-xml-20001006-review.html:
+	  tested it by passing show.diff.markup=1 to build the review version too
+
+Sat Mar 24 19:35:42 CET 2001 Daniel Veillard <Daniel.Veillard@imag.fr>
+
+        Huge cleanup, I switched to compile with
+	-Wall -g -O -ansi -pedantic -W -Wunused -Wimplicit
+	-Wreturn-type -Wswitch -Wcomment -Wtrigraphs -Wformat
+	-Wchar-subscripts -Wuninitialized -Wparentheses -Wshadow
+	-Wpointer-arith -Wcast-align -Wwrite-strings -Waggregate-return
+	-Wstrict-prototypes -Wmissing-prototypes -Wnested-externs -Winline
+	* libxslt/attributes.c libxslt/extensions.c libxslt/extra.c
+          libxslt/functions.c libxslt/keys.c libxslt/numbers.c
+          libxslt/pattern.c libxslt/preproc.c libxslt/templates.c
+          libxslt/transform.c libxslt/variables.c libxslt/xslt.c
+          libxslt/xsltutils.c: basically made static unexported functions
+	  avoided name clashes and flagged unused parameters.
+
 Thu Mar 22 22:52:48 CET 2001 Daniel Veillard <Daniel.Veillard@imag.fr>
 
 	* configure.in: 0.6.0 yet another release
