@@ -102,7 +102,13 @@ int kdemain(int argc, char **argv)
     kdDebug() << " Usage: kio_imap4 protocol domain-socket1 domain-socket2" << endl;
     ::exit(-1);
   }
-  IMAP4Protocol *slave = new IMAP4Protocol(argv[2], argv[3]);
+  IMAP4Protocol *slave;
+  if (strcasecmp(argv[1], "imap4-ssl") == 0)
+    slave = new IMAP4Protocol(argv[2], argv[3], true);
+  else if (strcasecmp(argv[1], "imap4") == 0)
+    slave = new IMAP4Protocol(argv[2], argv[3], false);
+  else
+    abort();
   slave->dispatchLoop();
   delete slave;
   return 0;
@@ -124,8 +130,8 @@ void sigchld_handler(int signo)
    }
 }
 
-IMAP4Protocol::IMAP4Protocol(const QCString &pool, const QCString &app)
-  : SlaveBase( "imap4", pool, app)
+IMAP4Protocol::IMAP4Protocol(const QCString &pool, const QCString &app, bool isSSL)
+  : TCPSlaveBase( (isSSL ? 585 : 143), (isSSL ? "imap4-ssl" : "imap4"), pool, app)
 {
    kdDebug() << "IMAP4::IMAP4Protocol" << endl;
    m_iSock = m_uLastCmd = 0;
@@ -165,31 +171,11 @@ void IMAP4Protocol::imap4_close ()
 
 bool IMAP4Protocol::imap4_open()
 {
-   kdDebug() << "IMAP4: imap4_open" << endl;
-   unsigned short int port;
-   ksockaddr_in server_name;
-   struct servent *sent;
-   memset(&server_name, sizeof(server_name), 0);
+  kdDebug() << "IMAP4: imap4_open" << endl;
 
-   // We want 143 as the default, but -1 means no port was specified.
-   // Why 0 wasn't chosen is beyond me.
-   sent = getservbyname("imap4", "tcp");
-   port = (m_iPort != 0) ? m_iPort : (sent ? ntohs(sent->s_port) : 143);
+  ConnectToHost(m_sServer.ascii(), m_iPort);
 
-   m_iSock = ::socket(PF_INET, SOCK_STREAM, 0);
-   if (!KSocket::initSockaddr(&server_name, m_sServer.ascii(), m_iPort))
-      return false;
-   if (::connect(m_iSock, (struct sockaddr*)(&server_name), sizeof(server_name))) {
-      error( ERR_COULD_NOT_CONNECT, m_sServer);
-      m_cmd = CMD_NONE;
-      return false;
-   }
-   if ((fp = fdopen(m_iSock, "w+")) == 0) {
-      close(m_iSock);
-      return false;
-   }
-
-   authType = "*";
+  authType = "*";
   if (m_sUser.isEmpty() || m_sPass.isEmpty()) {
       if (!openPassDlg(i18n("Username and password for your IMAP account:"),
          m_sUser, m_sPass)) {
@@ -492,79 +478,79 @@ void IMAP4Protocol::sendNextCommand ()
         // Any State
          case ICMD_NOOP: {
 //          debug(QString("IMAP4: C: %1 NOOP").arg(cmd->identifier));
-            write(m_iSock, cmd->identifier.ascii(), cmd->identifier.length());
-            write(m_iSock, " NOOP", 5);
-            write(m_iSock, "\r\n", 2);
+            Write(cmd->identifier.ascii(), cmd->identifier.length());
+            Write(" NOOP", 5);
+            Write("\r\n", 2);
             cmd->sent = true;
             break;
          }
          case ICMD_CAPABILITY: {
             kdDebug() << "IMAP4: C: " << cmd->identifier << " CAPABILITY" << endl;
-            write(m_iSock, cmd->identifier.ascii(), cmd->identifier.length());
-            write(m_iSock, " CAPABILITY", 11);
-            write(m_iSock, "\r\n", 2);
+            Write(cmd->identifier.ascii(), cmd->identifier.length());
+            Write(" CAPABILITY", 11);
+            Write("\r\n", 2);
             cmd->sent = true;
             break;
          }
          case ICMD_LOGOUT: {
             kdDebug() << "IMAP4: C: " << cmd->identifier << " LOGOUT" << endl;
-            write(m_iSock, cmd->identifier.ascii(), cmd->identifier.length());
-            write(m_iSock, " LOGOUT", 7);
-            write(m_iSock, "\r\n", 2);
+            Write(cmd->identifier.ascii(), cmd->identifier.length());
+            Write(" LOGOUT", 7);
+            Write("\r\n", 2);
             cmd->sent = true;
             break;
          }
          // Non-Authenticated State
          case ICMD_AUTHENTICATE: {
             kdDebug() << "IMAP4: C: " << cmd->identifier << " AUTHENTICATE " << cmd->args << endl;
-            write(m_iSock, cmd->identifier.ascii(), cmd->identifier.length());
-            write(m_iSock, " AUTHENTICATE ", 14);
-            write(m_iSock, cmd->args.ascii(), cmd->args.length());
-            write(m_iSock, "\r\n", 2);
+            Write(cmd->identifier.ascii(), cmd->identifier.length());
+            Write(" AUTHENTICATE ", 14);
+            Write(cmd->args.ascii(), cmd->args.length());
+            Write("\r\n", 2);
             cmd->sent = true;
             break;
          }
          case ICMD_SEND_AUTH: {  // must already have trailing \r\n
             kdDebug() << "IMAP4: (SEND_AUTH) C: " << cmd->args << endl;
-            write(m_iSock, cmd->args.ascii(), cmd->args.length());
+            Write(cmd->args.ascii(), cmd->args.length());
             cmd->sent = true;
             break;
          }
          case ICMD_LOGIN: {
             kdDebug() << "IMAP4: C: " << cmd->identifier << " LOGIN " << cmd->args << endl;
-            write(m_iSock, cmd->identifier.ascii(), cmd->identifier.length());
-            write(m_iSock, " LOGIN ", 7);
-            write(m_iSock, cmd->args.ascii(), cmd->args.length());
-            write(m_iSock, "\r\n", 2);
+            Write(cmd->identifier.ascii(), cmd->identifier.length());
+            Write(" LOGIN ", 7);
+            Write(cmd->args.ascii(), cmd->args.length());
+            Write("\r\n", 2);
             cmd->sent = true;
             break;
          }
          // Authenticated state
          case ICMD_LIST: {
             kdDebug() << "IMAP4: C: " << cmd->identifier << " LIST " << cmd->args << endl;
-            write(m_iSock, cmd->identifier.ascii(), cmd->identifier.length());
-            write(m_iSock, " LIST ", 6);
-            write(m_iSock, cmd->args.ascii(), cmd->args.length());
-            write(m_iSock, "\r\n", 2);
+            Write(cmd->identifier.ascii(), cmd->identifier.length());
+            Write(" LIST ", 6);
+            Write(cmd->args.ascii(), cmd->args.length());
+            Write("\r\n", 2);
             cmd->sent = true;
             break;
          }
          case ICMD_LSUB: {
             kdDebug() << "IMAP4: C: " << cmd->identifier << " LSUB " << cmd->args << endl;
-            write(m_iSock, cmd->identifier.ascii(), cmd->identifier.length());
-            write(m_iSock, " LSUB ", 6);
-            write(m_iSock, cmd->args.ascii(), cmd->args.length());
-            write(m_iSock, "\r\n", 2);
+            Write(cmd->identifier.ascii(), cmd->identifier.length());
+            Write(" LSUB ", 6);
+            Write(cmd->args.ascii(), cmd->args.length());
+            Write("\r\n", 2);
             cmd->sent = true;
             break;
          }
          case ICMD_SELECT: {
             // <not tested>
             kdDebug() << "IMAP4: C: " << cmd->identifier << " SELECT " << cmd->args << endl;
-            write(m_iSock, cmd->identifier.ascii(), cmd->identifier.length());
-            write(m_iSock, " SELECT ", 8);
-            write(m_iSock, cmd->args.ascii(), cmd->args.length());
-            write(m_iSock, "\r\n", 2);
+            Write(cmd->identifier.ascii(), cmd->identifier.length());
+            Write(" SELECT ", 8);
+            Write(cmd->args.ascii(), cmd->args.length());
+            Write("\r\n", 2);
             cmd->sent = true;
             break;
          }

@@ -68,7 +68,7 @@ void IMAP4Protocol::startLoop ()
     QString s_cmd;
     memset(&buf, sizeof(buf), 0);
 
-    if (fgets(buf, sizeof(buf)-1, fp) == 0) {
+    if (ReadLine(buf, sizeof(buf)-1) == 0) {
       if (ferror(fp)) {
         kdDebug() << "IMAP4: Error while freading something" << endl;
 	break;
@@ -77,7 +77,7 @@ void IMAP4Protocol::startLoop ()
 	  //kdDebug() << "IMAP4: Sleeping" << endl;
 	  sleep(10);
         }
-	if (fgets(buf, sizeof(buf)-1, fp) == 0) {
+	if (ReadLine(buf, sizeof(buf)-1) == 0) {
 	  kdDebug() << "IMAP4: Error while freading something, and yes we already waited on select" << endl;
 	  break;
 	}

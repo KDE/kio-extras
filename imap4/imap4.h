@@ -32,7 +32,7 @@
 #include <qstring.h>
 #include <qlist.h>
 
-#include <kio/slavebase.h>
+#include <kio/tcpslavebase.h>
 
 enum IMAP_COMMAND {
 // Any State
@@ -55,10 +55,10 @@ class CMD_Struct {
   bool sent;
 };
 
-class IMAP4Protocol : public KIO::SlaveBase
+class IMAP4Protocol : public KIO::TCPSlaveBase
 {
 public:
-  IMAP4Protocol (const QCString &pool, const QCString &app);
+  IMAP4Protocol (const QCString &pool, const QCString &app, bool isSSL);
 
   virtual void setHost( const QString &_host, int _port, const QString &_user, const QString &_pass );
 
@@ -86,10 +86,9 @@ protected:
   void imap4_exec();  // executes the IMAP action
   void processList(QString str);  // processes LIST/LSUB responses
 
-  int m_iSock, m_cmd;
+  int m_cmd;
   unsigned int m_uLastCmd;
   struct timeval m_tTimeout;
-  FILE *fp;
   QString m_sCurrentMBX;
 
   QString authType;
