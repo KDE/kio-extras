@@ -151,7 +151,7 @@ void SMTPProtocol::special(const QByteArray & /* aData */)
 // provided by that profile.  If it's not a profile name, it'll use it as
 // nature intended.
 // One can also specify in the query:
-// headers=0 (turns of header generation)
+// headers=0 (turns off header generation)
 // to=emailaddress
 // cc=emailaddress
 // bcc=emailaddress
@@ -176,7 +176,7 @@ void SMTPProtocol::put(const KURL & url, int /*permissions */ ,
 
     if (equalsAt > 0)
     {
-      QString key = (*it).left(equalsAt);
+      QString key = (*it).left(equalsAt).lower();
       QString value = KURL::decode_string((*it).right((*it).length() - (equalsAt + 1)));
 
       if (key == "to")
@@ -348,11 +348,10 @@ void SMTPProtocol::put(const KURL & url, int /*permissions */ ,
 
   // Loop until we got 0 (end of data)
   int result;
-  QByteArray buffer;
 
   do {
     dataReq();                  // Request for data
-    buffer.resize(0);
+    QByteArray buffer;
     result = readData(buffer);
     if (result > 0) {
       write(buffer.data(), buffer.size());
