@@ -1,6 +1,8 @@
 #include <kio/global.h>
 #include <kdebug.h>
 
+#include <qstring.h>
+#include <qcstring.h>
 #include <qstringlist.h>
 
 //#include <iostream>
@@ -72,6 +74,7 @@ public:
 
 #define KIOSMTP_COMPARATORS // for TransactionState::operator==
 #include "command.h"
+#include "response.h"
 #include "transactionstate.h"
 
 #include <assert.h>
@@ -230,6 +233,48 @@ int main( int, char** ) {
   // AUTH
   //
 
+  smtp.clear();
+  QStrIList mechs;
+  mechs.append( "PLAIN" );
+  smtp.metadata["sasl"] = "PLAIN";
+  AuthCommand auth( &smtp, mechs, "user", "pass" );
+  // flags
+  assert( auth.closeConnectionOnError() );
+  assert( auth.mustBeLastInPipeline() );
+  assert( !auth.mustBeFirstInPipeline() );
+
+  // initial state
+  assert( !auth.isComplete() );
+  assert( !auth.doNotExecute( 0 ) );
+  assert( !auth.needsResponse() );
+
+  // dynamics 1: TLS, so AUTH should include initial-response:
+  smtp.usesTLS = true;
+  ts.clear();
+  ts2 = ts;
+  assert( auth.nextCommandLine( &ts ) == "AUTH PLAIN dXNlcgB1c2VyAHBhc3M=\r\n" );
+  assert( auth.isComplete() );
+  assert( auth.needsResponse() );
+  assert( ts == ts2 );
+  r.clear();
+  r.parseLine( "250 OK" );
+
+  // dynamics 2: No TLS, so AUTH should not include initial-response:
+  smtp.clear();
+  smtp.metadata["sasl"] = "PLAIN";
+  smtp.usesTLS = false;
+  AuthCommand auth2( &smtp, mechs, "user", "pass" );
+  ts.clear();
+  assert( auth2.nextCommandLine( &ts ) == "AUTH PLAIN\r\n" );
+  assert( !auth2.isComplete() );
+  assert( auth2.needsResponse() );
+  r.clear();
+  r.parseLine( "334 Go on" );
+  assert( auth2.processResponse( r, &ts ) == true );
+  assert( auth2.nextCommandLine( &ts ) == "dXNlcgB1c2VyAHBhc3M=\r\n" );
+  assert( auth2.isComplete() );
+  assert( auth2.needsResponse() );
+  
   //
   // MAIL FROM:
   //
