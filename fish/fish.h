@@ -150,16 +150,8 @@ protected: // Protected attributes
   bool isRunning;
   /** reason of LIST command */
   enum { CHECK, LIST } listReason;
-  /** true if FISH server understands COPY command */
-  bool hasCopy;
-  /** true if FISH server understands RSYNC command */
-  bool hasRsync;
   /** true if FISH server understands APPEND command */
   bool hasAppend;
-  /** true if FISH server understands EXEC command */
-  bool hasExec;
-  /** true if FISH server understands STAT command */
-  bool hasStat;
   /** permission of created file */
   int putPerm;
   /** true if file may be overwritten */

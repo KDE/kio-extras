@@ -271,6 +271,8 @@ fishProtocol::fishProtocol(const QCString &pool_socket, const QCString &app_sock
     mimeAtom.m_long = 0;
     mimeAtom.m_str = QString::null;
     
+    hasAppend = false;
+    
     isStat = false; // FIXME: just a workaround for konq deficiencies
     redirectUser = ""; // FIXME: just a workaround for konq deficiencies
     redirectPass = ""; // FIXME: just a workaround for konq deficiencies
@@ -790,11 +792,7 @@ void fishProtocol::manageConnection(const QString &l) {
         case FISH_VER:
             if (line.startsWith("VER 0.0.3")) {
                 line.append(" ");
-                hasCopy = line.contains(" copy ");
-                hasRsync = line.contains(" rsync ");
                 hasAppend = line.contains(" append ");
-                hasExec = line.contains(" exec ");
-                hasStat = line.contains(" stat ");
             } else {
                 error(ERR_UNSUPPORTED_PROTOCOL,line);
                 shutdownConnection();
@@ -1391,10 +1389,6 @@ void fishProtocol::run() {
 /** stat a file */
 void fishProtocol::stat(const KURL& u){
     myDebug( << "@@@@@@@@@ stat " << u.url() << endl);
-    if ( !hasStat ) {
-        error(ERR_UNSUPPORTED_ACTION,u.prettyURL());
-        return;
-    }
     setHost(u.host(),u.port(),u.user(),u.pass());
     url = u;
     isStat = true; // FIXME: just a workaround for konq deficiencies
@@ -1521,7 +1515,7 @@ void fishProtocol::chmod(const KURL& u, int permissions){
 /** copies a file */
 void fishProtocol::copy(const KURL &s, const KURL &d, int permissions, bool overwrite) {
     myDebug( << "@@@@@@@@@ copy " << s.url() << " " << d.url() << " " << permissions << " " << overwrite << endl);
-    if (s.host() != d.host() || s.port() != d.port() || s.user() != d.user() || !hasCopy) {
+    if (s.host() != d.host() || s.port() != d.port() || s.user() != d.user()) {
         error(ERR_UNSUPPORTED_ACTION,s.prettyURL());
         return;
     }
@@ -1565,35 +1559,30 @@ void fishProtocol::del(const KURL &u, bool isFile){
 void fishProtocol::special( const QByteArray &data ){
     int tmp;
 
-    if (hasExec) {
-        QDataStream stream(data, IO_ReadOnly);
+    QDataStream stream(data, IO_ReadOnly);
 
-        stream >> tmp;
-        switch (tmp) {
-            case FISH_EXEC_CMD: // SSH EXEC
-            {
-                KURL u;
-                QString command;
-                QString tempfile;
-                stream >> u;
-                stream >> command;
-                myDebug( << "@@@@@@@@@ exec " << u.url() << " " << command << endl);
-                setHost(u.host(),u.port(),u.user(),u.pass());
-                url = u;
-                openConnection();
-                if (!isLoggedIn) return;
-                sendCommand(FISH_EXEC,E(command),E(url.path()));
-                run();
-                break;
-            }
-            default:
-                // Some command we don't understand.
-                error(ERR_UNSUPPORTED_ACTION,QString().setNum(tmp));
-                break;
+    stream >> tmp;
+    switch (tmp) {
+        case FISH_EXEC_CMD: // SSH EXEC
+        {
+            KURL u;
+            QString command;
+            QString tempfile;
+            stream >> u;
+            stream >> command;
+            myDebug( << "@@@@@@@@@ exec " << u.url() << " " << command << endl);
+            setHost(u.host(),u.port(),u.user(),u.pass());
+            url = u;
+            openConnection();
+            if (!isLoggedIn) return;
+            sendCommand(FISH_EXEC,E(command),E(url.path()));
+            run();
+            break;
         }
-    } else {
-        error(ERR_UNSUPPORTED_PROTOCOL,"EXEC");
-        shutdownConnection();
+        default:
+            // Some command we don't understand.
+            error(ERR_UNSUPPORTED_ACTION,QString().setNum(tmp));
+            break;
     }
 }
 /** report status */
