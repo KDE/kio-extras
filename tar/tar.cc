@@ -120,8 +120,8 @@ bool TARProtocol::checkNewFile( QString fullPath, QString & path )
     }
 
     // Open new file
-    kdDebug(7109) << "Opening KTarGz on " << tarFile << endl;
-    m_tarFile = new KTarGz( tarFile );
+    kdDebug(7109) << "Opening KTar on " << tarFile << endl;
+    m_tarFile = new KTar( tarFile );
     if ( !m_tarFile->open( IO_ReadOnly ) )
     {
         kdDebug(7109) << "Opening " << tarFile << "failed." << endl;
@@ -182,7 +182,7 @@ void TARProtocol::listDir( const KURL & url )
         kdDebug( 7109 ) << "Checking (stat) on " << _path << endl;
         struct stat buff;
         if ( ::stat( _path.data(), &buff ) == -1 || !S_ISDIR( buff.st_mode ) ) {
-            error( KIO::ERR_DOES_NOT_EXIST, url.path() );
+            error( KIO::ERR_DOES_NOT_EXIST, url.prettyURL() );
             return;
         }
         // It's a real dir -> redirect
@@ -217,12 +217,12 @@ void TARProtocol::listDir( const KURL & url )
         const KTarEntry* e = root->entry( path );
         if ( !e )
         {
-            error( KIO::ERR_DOES_NOT_EXIST, path );
+            error( KIO::ERR_DOES_NOT_EXIST, url.prettyURL() );
             return;
         }
         if ( ! e->isDirectory() )
         {
-            error( KIO::ERR_IS_FILE, path );
+            error( KIO::ERR_IS_FILE, url.prettyURL() );
             return;
         }
         dir = (KTarDirectory*)e;
@@ -300,7 +300,7 @@ void TARProtocol::stat( const KURL & url )
     }
     if ( !tarEntry )
     {
-        error( KIO::ERR_DOES_NOT_EXIST, path );
+        error( KIO::ERR_DOES_NOT_EXIST, url.prettyURL() );
         return;
     }
 
@@ -317,7 +317,7 @@ void TARProtocol::get( const KURL & url )
     QString path;
     if ( !checkNewFile( url.path(), path ) )
     {
-        error( KIO::ERR_DOES_NOT_EXIST, url.path() );
+        error( KIO::ERR_DOES_NOT_EXIST, url.prettyURL() );
         return;
     }
 
@@ -326,12 +326,12 @@ void TARProtocol::get( const KURL & url )
 
     if ( !tarEntry )
     {
-        error( KIO::ERR_DOES_NOT_EXIST, path );
+        error( KIO::ERR_DOES_NOT_EXIST, url.prettyURL() );
         return;
     }
     if ( tarEntry->isDirectory() )
     {
-        error( KIO::ERR_IS_DIRECTORY, path );
+        error( KIO::ERR_IS_DIRECTORY, url.prettyURL() );
         return;
     }
     const KTarFile* tarFileEntry = static_cast<const KTarFile *>(tarEntry);

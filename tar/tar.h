@@ -39,7 +39,7 @@ protected:
     void createUDSEntry( const KTarEntry * tarEntry, KIO::UDSEntry & entry );
     bool checkNewFile( QString fullPath, QString & path );
 
-    KTarGz * m_tarFile;
+    KTar * m_tarFile;
     time_t m_mtime;
 };
 
