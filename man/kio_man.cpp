@@ -372,7 +372,7 @@ void MANProtocol::get(const KURL& url )
     QStringList foundPages=findPages(section, title);
     if (foundPages.count()==0)
     {
-       outputError(i18n("No man page matching to %1 found.").arg(title));
+       outputError(i18n("No man page matching to %1 found. You can extend the search path by setting the environment variable MANPATH before starting KDE.").arg(title));
     }
     else if (foundPages.count()>1)
     {
@@ -487,7 +487,7 @@ void MANProtocol::outputMatchingPages(const QStringList &matchingPages)
 
 void MANProtocol::stat( const KURL& url)
 {
-    kdDebug(7107) << "ENTERING STAT " << url.url();
+    kdDebug(7107) << "ENTERING STAT " << url.url() << endl;
 
     QString title, section;
 
