@@ -6,8 +6,9 @@
 class KProcess;
 
 class InfoProtocol : public KIO::SlaveBase
+                   , public QObject
 {
- public:
+public:
 
     InfoProtocol( KIO::Connection *connection = 0 );
     virtual ~InfoProtocol();
@@ -15,11 +16,17 @@ class InfoProtocol : public KIO::SlaveBase
     virtual void get( const QString& path, const QString& query, bool reload );
     virtual void mimetype( const QString& path );
 
- protected:
+protected:
 
     void decodePath( QString path );
+    QCString errorMessage();
 
- private:
+protected slots:
+
+    void slotProcessExited( KProcess* );
+    void slotReceivedStdout( KProcess*, char*, int );
+
+private:
 
     QString   m_page;
     QString   m_node;

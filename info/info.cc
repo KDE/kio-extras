@@ -14,9 +14,14 @@ InfoProtocol::InfoProtocol( Connection *connection )
     kDebugInfo( 7106, "Michael's info-pages kioslave" );
 
     m_pProc = new KProcess();
+
+    connect( m_pProc, SIGNAL( processExited( KProcess* ) ), 
+	     this, SLOT( slotProcessExited( KProcess* ) ) );
+    connect( m_pProc, SIGNAL( receivedStdout( KProcess*, char*, int ) ),
+	     this, SLOT( slotReceivedStdout( KProcess*, char*, int ) ) );
     
     m_infoScript = locate( "data", "kinfobrowser/kde-info2html" );
-    
+
     if( m_infoScript.isEmpty() )
 	kDebugFatal( 7106, "Cannot locate 'kde-info2html' for HTML-conversion" );
 }
@@ -31,34 +36,26 @@ void InfoProtocol::get( const QString& path, const QString& /*query*/, bool /*re
     kDebugInfo( 7106, "Michael's info-pages kioslave" );
     kDebugInfo( 7106, path.data() );
 
-    QByteArray array;
-    
     decodePath( path );
-    
+
     if( m_page.isEmpty() )
     {
 	//error( 1, "Syntax error in URL" );
 	
-	array = QCString( "<html><body bgcolor=\"#FFFFFF\">An error occured</body></html>" );
+	QByteArray array = errorMessage();
+	
 	data( array );
 	finished();
 
 	return;
     }
-    
-/*
-    m_pProc << "perl" << m_infoScript << "dir" << "Top" ;
-    
-    m_pProc->start();
+
     m_pProc->kill();
-*/
-    
-    // test data
-    array = QCString( "<html><body bgcolor=\"#FFFFFF\">Test by Michael<p>" + path + "<p>" + m_page + " " + m_node + "</body></html>" );
-    data( array );
-    
-    // finish action
-    finished();
+    m_pProc->clearArguments();
+
+    *m_pProc << "perl" << m_infoScript.latin1() << m_page.latin1() << m_node.latin1();
+
+    m_pProc->start( KProcess::NotifyOnExit, KProcess::Stdout );
 }
 
 void InfoProtocol::mimetype( const QString& /*path*/ )
@@ -70,33 +67,56 @@ void InfoProtocol::mimetype( const QString& /*path*/ )
     finished();
 }
 
+void InfoProtocol::slotProcessExited( KProcess* )
+{
+    // I dont know if this is needed
+    m_pProc->kill();
+    
+    // finish kioslave
+    finished();
+}
+
+void InfoProtocol::slotReceivedStdout( KProcess*, char* htmldata, int len )
+{
+    QByteArray array;
+
+    array = QCString( htmldata, len );
+    
+    data( array );
+}
+
 void InfoProtocol::decodePath( QString path )
 {
     m_page = "";
     m_node = "";
-    
+
 /*
     TODO: why is this wrong ?
-      
+
     // test leading slash
     if( path.left( 1 ) == "/" )
 	return; // error
 */
-    
+
     // remove leading slash
     path = path.right( path.length() - 1 );
-    
+
     int slashPos = path.find( "/" );
-    
+
     if( slashPos < 0 )
     {
 	m_page = path;
 	m_node = "Top";
 	return;
     }
-    
+
     m_page = path.left( slashPos );
     m_node = path.right( path.length() - slashPos - 1 );
+}
+
+QCString InfoProtocol::errorMessage()
+{
+    return QCString( "<html><body bgcolor=\"#FFFFFF\">An error occured during converting an info-page to HTML</body></html>" ); 
 }
 
 extern "C"
