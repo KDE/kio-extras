@@ -171,7 +171,6 @@ void GopherProtocol::slotListDir( const char *_url )
     atom.m_uds = UDS_NAME;
     atom.m_long = 0;
     atom.m_str = line.mid(0,line.find("\t"));
-    line.remove(0, line.find("\t")+1);
     entry.append(atom);
 
     atom.m_uds = UDS_FILE_TYPE;
@@ -187,10 +186,34 @@ void GopherProtocol::slotListDir( const char *_url )
     }
     entry.append(atom);
 
+    atom.m_uds = UDS_MIME_TYPE;
+    atom.m_long = 0;
+    switch ((GopherType)buf[0]) {
+    case GOPHER_MENU:{
+      atom.m_str="inode/directory";
+      break;
+    }
+    case GOPHER_GIF:{
+      atom.m_str="image/gif";
+      break;
+    }
+    case GOPHER_TEXT:{
+      atom.m_str="text/plain";
+      break;
+    }
+    default: {
+      atom.m_str="application/ocet-stream";
+      break;
+    }
+    }
+    entry.append(atom);
+
     atom.m_uds = UDS_URL;
     KURL uds;
-    QString path("/");
     uds.setProtocol("gopher");
+    QString path("/");
+    path.append(buf[0]);
+    line.remove(0, line.find("\t")+1);
     path.append(line.mid(0,line.find("\t")));
     if (path == "//") path="/";
     uds.setPath(path);
