@@ -2,7 +2,7 @@
 # The executable, of course
 exec=kio_imap4
 # protocol that will appear in URLs
-protocol=imap4-ssl
+protocol=imaps
 
 # input/output can be one of: filesystem, stream, none
 input=stream

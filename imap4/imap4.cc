@@ -103,9 +103,9 @@ int kdemain(int argc, char **argv)
     ::exit(-1);
   }
   IMAP4Protocol *slave;
-  if (strcasecmp(argv[1], "imap4-ssl") == 0)
+  if (strcasecmp(argv[1], "imaps") == 0)
     slave = new IMAP4Protocol(argv[2], argv[3], true);
-  else if (strcasecmp(argv[1], "imap4") == 0)
+  else if (strcasecmp(argv[1], "imap") == 0)
     slave = new IMAP4Protocol(argv[2], argv[3], false);
   else
     abort();
@@ -131,7 +131,7 @@ void sigchld_handler(int signo)
 }
 
 IMAP4Protocol::IMAP4Protocol(const QCString &pool, const QCString &app, bool isSSL)
-  : TCPSlaveBase( (isSSL ? 585 : 143), (isSSL ? "imap4-ssl" : "imap4"), pool, app)
+  : TCPSlaveBase( (isSSL ? 993 : 143), (isSSL ? "imap4-ssl" : "imap4"), pool, app)
 {
    kdDebug() << "IMAP4::IMAP4Protocol" << endl;
    m_iSock = m_uLastCmd = 0;
