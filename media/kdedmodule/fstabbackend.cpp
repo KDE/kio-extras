@@ -310,7 +310,12 @@ void FstabBackend::guess(const QString &devNode, const QString &mountPoint,
 	}
 	else
 	{
-		label+= " (" + generateName(devNode) + ")";
+		QString tmp = devNode;
+		if ( tmp.startsWith("/dev/") )
+		{
+			tmp = tmp.mid(5);
+		}
+		label+= " (" + tmp + ")";
 	}
 	mimeType+= (mounted ? "_mounted" : "_unmounted");
 	iconName = QString::null;
