@@ -34,6 +34,7 @@
 
 #include "smtp.h"
 #include "request.h"
+#include "response.h"
 #include "transactionstate.h"
 #include "command.h"
 using KioSMTP::Capabilities;
@@ -49,10 +50,16 @@ using KioSMTP::Response;
 using KioSMTP::TransactionState;
 
 #include <kemailsettings.h>
+#include <ksock.h>
 #include <kdebug.h>
 #include <kinstance.h>
+#include <kio/connection.h>
+#include <kio/slaveinterface.h>
 #include <klocale.h>
 
+#include <qstring.h>
+#include <qstringlist.h>
+#include <qcstring.h>
 
 #include <memory>
 using std::auto_ptr;

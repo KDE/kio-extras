@@ -36,6 +36,7 @@
 #include <qstring.h>
 #include <qptrqueue.h>
 
+class KURL;
 class QCString;
 template <typename T> class QMemArray;
 typedef QMemArray<char> QByteArray;
@@ -142,4 +143,4 @@ protected:
   CommandQueue mSentCommandQueue;
 };
 
-#endif
+#endif // _SMTP_H

@@ -29,10 +29,15 @@
     your version.
 */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "capabilities.h"
 
 #include "response.h"
 
+#include <qstrlist.h>
 
 namespace KioSMTP {
 

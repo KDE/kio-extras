@@ -29,11 +29,16 @@
     your version.
 */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "response.h"
 
 #include <klocale.h>
 #include <kio/global.h>
 
+#include <qstring.h>
 
 namespace KioSMTP {
 
@@ -82,7 +87,7 @@ namespace KioSMTP {
       return;
     }
 
-    mLines.append( len > 4 ? QCString( line+4, len-4+1 ).stripWhiteSpace() : QCString() );
+    mLines.push_back( len > 4 ? QCString( line+4, len-4+1 ).stripWhiteSpace() : QCString() );
   }
 
 

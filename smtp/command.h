@@ -36,9 +36,10 @@
 #include <kio/kdesasl.h>
 
 #include <qstring.h>
+#include <qcstring.h>
 
 class SMTPProtocol;
-class QCString;
+class QStrIList;
 
 namespace KioSMTP {
 

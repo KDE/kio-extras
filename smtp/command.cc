@@ -29,15 +29,20 @@
     your version.
 */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "command.h"
 
 #include "smtp.h"
+#include "response.h"
 #include "transactionstate.h"
 
 #include <kidna.h>
 #include <klocale.h>
 #include <kdebug.h>
-
+#include <kio/slavebase.h> // for test_commands, where SMTPProtocol is not derived from TCPSlaveBase
 
 #include <assert.h>
 
