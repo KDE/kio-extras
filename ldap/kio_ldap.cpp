@@ -90,7 +90,7 @@ void LDAPProtocol::get(const KURL &_url)
   usrc.setPwdBindDN( mPassword );
 
   // check if the URL is a valid LDAP URL
-  if (usrc.isMalformed()) {
+  if (!usrc.isValid()) {
     error(ERR_MALFORMED_URL, _url.prettyURL());
     return;
   }
@@ -176,7 +176,7 @@ void LDAPProtocol::stat( const KURL &_url )
   usrc.setPwdBindDN( mPassword );
 
   // check if the URL is a valid LDAP URL
-  if (usrc.isMalformed()) {
+  if (!usrc.isValid()) {
     error(ERR_MALFORMED_URL, _url.prettyURL());
     return;
   }
@@ -278,7 +278,7 @@ void LDAPProtocol::mimetype(const KURL &url)
   QString _url = url.prettyURL();
   kdDebug(7125) << "kio_ldap: mimetype(" << _url << ")" << endl;
   KLDAP::Url usrc(_url);
-  if (usrc.isMalformed()) {
+  if (!usrc.isValid()) {
     error(ERR_MALFORMED_URL, _url);
     return;
   }
@@ -308,7 +308,7 @@ void LDAPProtocol::listDir(const KURL &_url)
   usrc.setPwdBindDN( mPassword );
 
   // check if the URL is a valid LDAP URL
-  if (usrc.isMalformed()) {
+  if (!usrc.isValid()) {
     error(ERR_MALFORMED_URL, _url.prettyURL());
     return;
   }
