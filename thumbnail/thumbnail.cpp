@@ -29,6 +29,7 @@
 #include <sys/ipc.h>
 #include <sys/shm.h>
 
+#include <qfile.h>
 #include <qpixmap.h>
 #include <qpainter.h>
 #include <qimage.h>
@@ -138,7 +139,7 @@ void ThumbnailProtocol::get(const KURL &url)
     {
         // Don't use KLibFactory here, this is not a QObject and
         // neither is ThumbCreator
-        KLibrary *library = KLibLoader::self()->library(plugin.latin1());
+        KLibrary *library = KLibLoader::self()->library(QFile::encodeName(plugin));
         if (library)
         {
             newCreator create = (newCreator)library->symbol("new_creator");
