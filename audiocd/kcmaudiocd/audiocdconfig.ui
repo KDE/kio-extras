@@ -1761,7 +1761,7 @@
                                 </property>
                                 <property>
                                     <name>whatsThis</name>
-                                    <string>To speed up further searches, or to support disconnected operation CDDB entries can be saved into local files.  The directory where these are saved into, is the first in the list below.  It should be writable to you, so $HOME/.cddb/ is recommended.</string>
+                                    <string>To speed up further searches, or to support disconnected operation CDDB entries can be saved into local files. The directory where these are saved into is the first in the list below. It should be writable to you, so $HOME/.cddb/ is recommended.</string>
                                 </property>
                             </widget>
                         </vbox>
