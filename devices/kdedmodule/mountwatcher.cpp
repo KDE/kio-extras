@@ -355,10 +355,18 @@ void MountWatcherModule::readDFDone()
 		{
 			mountList<<(entryName);
 			QString name = ent->niceDescription();
-			if (descriptionToDeviceMap[ent->niceDescription()] != ent->deviceName())
-				name += filename;
-			if (descriptionToMountMap[ent->niceDescription()] != ent->mountPoint())
-				name = i18n("%1 [%2]").arg(name).arg(ent->mountPoint());
+
+			if(ent->userDescription()!="")
+			{
+				name = ent->userDescription();
+			}
+			else
+			{
+				if (descriptionToDeviceMap[ent->niceDescription()] != ent->deviceName())
+					name += filename;
+				if (descriptionToMountMap[ent->niceDescription()] != ent->mountPoint())
+					name = i18n("%1 [%2]").arg(name).arg(ent->mountPoint());
+			}
 			mountList<<name;
 			mountList<<ent->deviceName();
 			mountList<<"file:/"+(ent->mountPoint().startsWith("/")?ent->mountPoint().right(ent->mountPoint().length()-1):ent->mountPoint());
@@ -371,10 +379,18 @@ void MountWatcherModule::readDFDone()
 		{
 			mountList<<entryName;
 			QString name = ent->niceDescription();
-			if (descriptionToDeviceMap[ent->niceDescription()] != ent->deviceName())
-				name += filename;
-			if (descriptionToMountMap[ent->niceDescription()] != ent->mountPoint())
-				name = i18n("%1 [%2]").arg(name).arg(ent->mountPoint());
+
+			if(ent->userDescription()!="")
+			{
+				name = ent->userDescription();
+			}
+			else
+			{
+				if (descriptionToDeviceMap[ent->niceDescription()] != ent->deviceName())
+					name += filename;
+				if (descriptionToMountMap[ent->niceDescription()] != ent->mountPoint())
+					name = i18n("%1 [%2]").arg(name).arg(ent->mountPoint());
+			}
 			mountList<<name;
 			mountList<<ent->deviceName();
 			mountList<<"file:/"+(ent->mountPoint().startsWith("/")?ent->mountPoint().right(ent->mountPoint().length()-1):ent->mountPoint());
