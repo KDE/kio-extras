@@ -375,6 +375,7 @@ int SMTPProtocol::getResponse (char *r_buf, unsigned int r_len)
 {
 	char *buf = 0;
 	unsigned int recv_len = 0, len;
+	lastError = QCString();
 
 	// Give the buffer the appropiate size
 	// a buffer of less than 5 bytes will *not* work
@@ -386,7 +387,11 @@ int SMTPProtocol::getResponse (char *r_buf, unsigned int r_len)
 		len = DEFAULT_RESPONSE_BUFFER;
 	}
 
-	if (!waitForResponse(60)) return 999;
+	if (!waitForResponse(60))
+	{
+		error(ERR_SERVER_TIMEOUT, m_sServer);
+		return 999;
+	}
 
 	// Clear out the buffer
 	memset(buf, 0, len);
@@ -396,9 +401,13 @@ int SMTPProtocol::getResponse (char *r_buf, unsigned int r_len)
 	// This is really a funky crash waiting to happen if something isn't
 	// null terminated.
 	recv_len = strlen(buf);
+	if (recv_len == 0) return 999;
 
 	if (recv_len < 4)
+	{
 		error(ERR_UNKNOWN, "Line too short");
+		return 999;
+	}
 	char *origbuf = buf;
 	if (buf[3] == '-') { // Multiline response
 		while ( (buf[3] == '-') && (len-recv_len > 3) ) { // Three is quite arbitrary
@@ -473,8 +482,8 @@ bool SMTPProtocol::smtp_open()
 			ParseFeatures(const_cast<const char *>(ehlo_line));
 	}
 
-	// we should also check kemailsettings as well..
-	if (haveTLS && canUseTLS()) { 
+	if ((haveTLS && canUseTLS() && metaData("tls") != "off")
+	    || metaData("tls") == "on") { 
                 // For now we're gonna force it on.
                 if (command(ASCII("STARTTLS"))) {
                    int tlsrc = startTLS();
@@ -493,7 +502,14 @@ bool SMTPProtocol::smtp_open()
                       }
                       return false;
                    }
-                } 
+                }
+		else if (metaData("tls") == "on")
+		{
+			error(ERR_COULD_NOT_LOGIN,
+				i18n("Your SMTP server does not support TLS. Disable\n"
+                                "TLS, if you want to connect without encryption."));
+			return false;
+		} 
 	}
 
 	// Now we try and login
@@ -524,15 +540,17 @@ bool SMTPProtocol::Authenticate()
 	bool ret;
 	QString auth_method;
 
-	// Generate a new context.. now this isn't the most efficient way of doing things, but for now this suffices
 	if (m_pSASL)
 		delete m_pSASL;
-	m_pSASL = new KDESasl(m_sUser, m_sPass);
+	m_pSASL = new KDESasl(m_sUser, m_sPass, (m_bIsSSL) ? "smtps" : "smtp");
 
 	// Choose available method from what the server has given us in  its greeting
 	QStringList sl = QStringList::split(' ', m_sAuthConfig);
 	QStrIList strList;
-	for (int i = 0; i < sl.count(); i++) strList.append(sl[i].latin1());
+	if (!metaData("sasl").isEmpty())
+		strList.append(metaData("sasl").latin1());
+	else
+		for (int i = 0; i < sl.count(); i++) strList.append(sl[i].latin1());
 
 	auth_method = m_pSASL->chooseMethod(strList);
 
@@ -546,7 +564,6 @@ bool SMTPProtocol::Authenticate()
 	} else {
 		char *challenge = static_cast<char *>(malloc(2049));
 
- 		// I've probably made some troll seek shelter somewhere else.. yay gov'nr and his matrix.. yes that one.. that looked like a  bird.. no not harvey milk
 		if (!command(ASCII("AUTH ")+auth_method, challenge, 2049)) {
 			free(challenge);
 			delete m_pSASL;
@@ -554,17 +571,17 @@ bool SMTPProtocol::Authenticate()
 			return false;
 		}
 
-		// Now for the stupid part
-		// PLAIN auth has embedded null characters.  Ew.
-		// so it's encoded in HEX as part of its spec IIRC.
-		// so.. let that auth module do the b64 encoding itself..
-		// it's easier than generating a byte array simply to pass
-		// around null characters.  Stupid stupid stupid.
 		QString cmd;
 		QByteArray ba;
 		ba.duplicate(challenge, strlen(challenge));
 		cmd = m_pSASL->getResponse(ba);
-		ret = command(cmd);
+		ret = command(cmd, challenge, 2049);
+		if (auth_method.upper() == "DIGEST-MD5" || auth_method.upper() == "LOGIN")
+		{
+			ba.duplicate(challenge, strlen(challenge));
+        	        cmd = m_pSASL->getResponse(ba);
+	                ret = command(cmd);
+		}
 		free(challenge);
 
 		if (ret)
@@ -589,7 +606,7 @@ void SMTPProtocol::ParseFeatures (const char *_buf)
 
 	if (buf.left(4) == "AUTH") { // Look for auth stuff
 		if (m_sAuthConfig == QString::null) 
-			m_sAuthConfig = buf.mid(5, buf.length());
+			m_sAuthConfig = buf.mid(5, buf.length() - 7);
 	} else if (buf.left(8) == "STARTTLS") {
 		haveTLS=true;
 	}
