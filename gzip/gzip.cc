@@ -1,7 +1,6 @@
 #include "gzip.h"
 
 #include <kio_filter.h>
-#include <kio_manager.h>
 
 #include <qapplication.h>
 
@@ -14,6 +13,7 @@
 #include <iostream>
 
 #include <kurl.h>
+#include <kprotocolmanager.h>
 
 void sig_handler( int signum );
 void sig_handler2( int signum );
@@ -22,8 +22,6 @@ int main( int argc, char **argv )
 {
   signal(SIGCHLD,sig_handler);
 
-  ProtocolManager manager;
-  
   Connection parent( 0, 1 );
 
   GZipProtocol prot( &parent );
@@ -67,29 +65,28 @@ void GZipProtocol::slotCopy( const char *_source, const char *_dest )
    * Destination
    *****/
 
-  // Split up the destination URL
-  KURLList dest_lst;
-  if ( !KURL::split( _dest, dest_lst )  )
+  KURL udest( _dest );
+  if ( udest.isMalformed() )
   {
     error( ERR_MALFORMED_URL, dest.c_str() );
     m_cmd = CMD_NONE;
     return;
   }
+  
+  QString dest_exec = KProtocolManager::self().executable( udest.protocol() );
 
-  string dest_exec = ProtocolManager::self()->find( dest_lst.getLast()->protocol() );
-
-  if ( dest_exec.empty() )
+  if ( dest_exec.isEmpty() )
   {
-    error( ERR_UNSUPPORTED_PROTOCOL, dest_lst.getLast()->protocol() );
+    error( ERR_UNSUPPORTED_PROTOCOL, udest.protocol() );
     m_cmd = CMD_NONE;
     return;
   }
 
   // Start the dest slave
-  Slave dest_slave( dest_exec.c_str() );
+  Slave dest_slave( dest_exec );
   if ( dest_slave.pid() == -1 )
   {
-    error( ERR_CANNOT_LAUNCH_PROCESS, dest_exec.c_str() );
+    error( ERR_CANNOT_LAUNCH_PROCESS, dest_exec );
     m_cmd = CMD_NONE;
     return;
   }
@@ -114,16 +111,24 @@ void GZipProtocol::slotCopy( const char *_source, const char *_dest )
    * Source
    *****/
 
-  // Split the source URL
-  KURLList source_lst;
-  if ( !KURL::split( _source, source_lst )  )
+  KURL usrc( _source );
+  if ( usrc.isMalformed() )
   {
     error( ERR_MALFORMED_URL, source.c_str() );
     m_cmd = CMD_NONE;
     return;
   }
 
-  if ( strcmp( source_lst.getLast()->protocol(), "gzip" ) != 0L )
+  // Split the source URL
+  KURL::List source_lst = KURL::split( _source );
+  if ( source_lst.isEmpty() )
+  {
+    error( ERR_MALFORMED_URL, source.c_str() );
+    m_cmd = CMD_NONE;
+    return;
+  }
+
+  if ( strcmp( usrc.protocol(), "gzip" ) != 0L )
   {
     error( ERR_INTERNAL, "kio_gzip got a URL which has not the gzip protocol" );
     m_cmd = CMD_NONE;
@@ -137,45 +142,45 @@ void GZipProtocol::slotCopy( const char *_source, const char *_dest )
     return;
   }
   
-  string zip_cmd;
-  const char * path = source_lst.getLast()->path();
-  if ( strcmp( path, "/compress" ) == 0 )
+  QString zip_cmd;
+  QString path = usrc.path();
+  if ( path == "/compress" )
     zip_cmd = "/usr/bin/gzip";
-  else if ( strcmp( path, "/decompress" ) == 0 )
+  else if ( path == "/decompress" )
     zip_cmd = "/usr/bin/gunzip";
-  else if ( strcmp( path, "/bzip/compress" ) == 0 )
+  else if ( path == "/bzip/compress" )
     zip_cmd = "/usr/local/bin/bzip";
-  else if ( strcmp( path, "/bzip/decompress" ) == 0 )
+  else if ( path == "/bzip/decompress" )
     zip_cmd = "/usr/local/bin/bunzip";
   else
   {
-    string e = "gzip:";
+    QString e = "gzip:";
     e += path;
-    error( ERR_UNSUPPORTED_ACTION, e.c_str() );
+    error( ERR_UNSUPPORTED_ACTION, e );
     m_cmd = CMD_NONE;
     return;
   }
      
   // Strip the gzip URL part
-  source_lst.removeLast();
+  source_lst.remove( source_lst.begin() );
   
-  // Find the new right most URL and a slave that can handle
+  // Find the new left most URL and a slave that can handle
   // this protocol
-  string source_exec = ProtocolManager::self()->find( source_lst.getLast()->protocol() );
+  QString source_exec = KProtocolManager::self().executable( source_lst.begin()->protocol() );
 
   // Did we find someone for this protocol ?
-  if ( source_exec.empty() )
+  if ( source_exec.isEmpty() )
   {
-    error( ERR_UNSUPPORTED_PROTOCOL, source_lst.getLast()->protocol() );
+    error( ERR_UNSUPPORTED_PROTOCOL, source_lst.begin()->protocol() );
     m_cmd = CMD_NONE;
     return;
   }
 
   // Start the source slave
-  Slave source_slave( source_exec.c_str() );
+  Slave source_slave( source_exec );
   if ( source_slave.pid() == -1 )
   {
-    error( ERR_CANNOT_LAUNCH_PROCESS, source_exec.c_str() );
+    error( ERR_CANNOT_LAUNCH_PROCESS, source_exec );
     return;
   }
 
@@ -184,22 +189,17 @@ void GZipProtocol::slotCopy( const char *_source, const char *_dest )
    *****/
 
   // Start GZIP
-  GZipFilter filter( zip_cmd.c_str(), this );
+  GZipFilter filter( zip_cmd, this );
   m_pFilter = &filter;
   if ( filter.pid() == -1 )
   {
-    error( ERR_CANNOT_LAUNCH_PROCESS, zip_cmd.c_str() );
+    error( ERR_CANNOT_LAUNCH_PROCESS, zip_cmd );
     return;
   }
 
   GZipIOJob source_job( &source_slave, this );
 
-  QString src;
-  KURL * it = source_lst.first();
-  for( ; it ; it = source_lst.next() )
-  {
-    src += it->url();
-  }
+  QString src = KURL::join( source_lst );
   
   source_job.get( src );
   while( !source_job.isReady() && !source_job.hasFinished() )
@@ -228,15 +228,15 @@ void GZipProtocol::slotGet( const char *_url )
   
   m_cmd = CMD_GET;
 
-  KURLList lst;
-  if ( !KURL::split( _url, lst )  )
+  KURL::List lst = KURL::split( _url );
+  if ( lst.isEmpty()  )
   {
     error( ERR_MALFORMED_URL, url.c_str() );
     m_cmd = CMD_NONE;
     return;
   }
 
-  if ( strcmp( lst.getLast()->protocol(), "gzip" ) != 0L )
+  if ( strcmp( lst.begin()->protocol(), "gzip" ) != 0L )
   {
     error( ERR_INTERNAL, "kio_gzip got a URL which has not the gzip protocol" );
     m_cmd = CMD_NONE;
@@ -250,15 +250,15 @@ void GZipProtocol::slotGet( const char *_url )
     return;
   }
   
-  string zip_cmd;
-  const char * path = lst.getLast()->path();
-  if ( strcmp( path, "/compress" ) == 0 )
+  QString zip_cmd;
+  QString path = lst.begin()->path();
+  if ( path == "/compress" )
     zip_cmd = "/usr/bin/gzip";
-  else if ( strcmp( path, "/decompress" ) == 0 )
+  else if ( path == "/decompress" )
     zip_cmd = "/usr/bin/gunzip";
-  else if ( strcmp( path, "/bzip/compress" ) == 0 )
+  else if ( path == "/bzip/compress" )
     zip_cmd = "/usr/local/bin/bzip";
-  else if ( strcmp( path, "/bzip/decompress" ) == 0 )
+  else if ( path == "/bzip/decompress" )
     zip_cmd = "/usr/local/bin/bunzip";
   else
   {
@@ -269,51 +269,47 @@ void GZipProtocol::slotGet( const char *_url )
   
   if ( lst.count() < 2 )
   {
-    string e = "gzip:";
+    QString e = "gzip:";
     e += path;
-    error( ERR_NO_SOURCE_PROTOCOL, e.c_str() );
+    error( ERR_NO_SOURCE_PROTOCOL, e );
     m_cmd = CMD_NONE;
     return;
   }
    
-  lst.removeLast();
-  
-  string exec = ProtocolManager::self()->find( lst.getLast()->protocol() );
+  // Remove gzip protocol
+  lst.remove( lst.begin() );
 
-  if ( exec.empty() )
+  QString exec = KProtocolManager::self().executable( lst.begin()->protocol() );
+
+  if ( exec.isEmpty() )
   {
-    error( ERR_UNSUPPORTED_PROTOCOL, lst.getLast()->protocol() );
+    error( ERR_UNSUPPORTED_PROTOCOL, lst.begin()->protocol() );
     m_cmd = CMD_NONE;
     return;
   }
 
   // Start the file protcol
-  Slave slave( exec.c_str() );
+  Slave slave( exec );
   if ( slave.pid() == -1 )
   {
-    error( ERR_CANNOT_LAUNCH_PROCESS, exec.c_str() );
+    error( ERR_CANNOT_LAUNCH_PROCESS, exec );
     return;
   }
 
   // Start GZIP
-  GZipFilter filter( zip_cmd.c_str(), this );
+  GZipFilter filter( zip_cmd, this );
   m_pFilter = &filter;
   if ( filter.pid() == -1 )
   {
-    error( ERR_CANNOT_LAUNCH_PROCESS, zip_cmd.c_str() );
+    error( ERR_CANNOT_LAUNCH_PROCESS, zip_cmd );
     return;
   }
 
   GZipIOJob job( &slave, this );
 
-  QString src;
-  KURL * it = lst.first();
-  for( ; it ; it = lst.next() )
-  {
-    src += it->url();
-  }
+  QString src = KURL::join( lst );
   
-  debug( "kio_gzip : Nested fetching %s", src.data() );
+  debug( "kio_gzip : Nested fetching %s", src.ascii() );
   
   job.get( src );
   while( !job.isReady() && !job.hasFinished() )
@@ -345,8 +341,8 @@ void GZipProtocol::slotPut( const char *_url, int, bool _overwrite, bool _resume
   m_cmd = CMD_PUT;
 
   // Split up the URL
-  KURLList lst;
-  if ( !KURL::split( _url, lst )  )
+  KURL::List lst = KURL::split( _url );
+  if ( lst.isEmpty() )
   {
     error( ERR_MALFORMED_URL, url.c_str() );
     finished();
@@ -363,8 +359,8 @@ void GZipProtocol::slotPut( const char *_url, int, bool _overwrite, bool _resume
     return;
   }
 
-  // Has the right most URL really the gzip protocol ?
-  if ( strcmp( lst.getLast()->protocol(), "gzip" ) != 0L )
+  // Has the left most URL really the gzip protocol ?
+  if ( strcmp( lst.begin()->protocol(), "gzip" ) != 0L )
   {
     error( ERR_INTERNAL, "kio_gzip got a URL which has not the gzip protocol" );
     finished();
@@ -373,56 +369,56 @@ void GZipProtocol::slotPut( const char *_url, int, bool _overwrite, bool _resume
   }
     
   // Find out what to do ( compres, decompress )
-  string zip_cmd;
-  const char * path = lst.getLast()->path();
-  if ( strcmp( path, "/compress" ) == 0 )
+  QString zip_cmd;
+  QString path = lst.begin()->path();
+  if ( path == "/compress" )
     zip_cmd = "/usr/bin/gzip";
-  else if ( strcmp( path, "/decompress" ) == 0 )
+  else if ( path == "/decompress" )
     zip_cmd = "/usr/bin/gunzip";
-  else if ( strcmp( path, "/bzip/compress" ) == 0 )
+  else if ( path == "/bzip/compress" )
     zip_cmd = "/usr/local/bin/bzip";
-  else if ( strcmp( path, "/bzip/decompress" ) == 0 )
+  else if ( path == "/bzip/decompress" )
     zip_cmd = "/usr/local/bin/bunzip";
   else
   {
-    string e = "gzip:";
+    QString e = "gzip:";
     e += path;
-    error( ERR_UNSUPPORTED_ACTION, e.c_str() );
+    error( ERR_UNSUPPORTED_ACTION, e );
     finished();
     m_cmd = CMD_NONE;
     return;
   }
   
   // Strip the gzip url
-  lst.removeLast();
+  lst.remove( lst.begin() );
   
-  // Find someone who can handle the new right most protocol
-  string exec = ProtocolManager::self()->find( lst.getLast()->protocol() );
+  // Find someone who can handle the new left most protocol
+  QString exec = KProtocolManager::self().executable( lst.begin()->protocol() );
 
   // Did we find someone to handle this protocol ?
-  if ( exec.empty() )
+  if ( exec.isEmpty() )
   {
-    error( ERR_UNSUPPORTED_PROTOCOL, lst.getLast()->protocol() );
+    error( ERR_UNSUPPORTED_PROTOCOL, lst.begin()->protocol() );
     finished();
     m_cmd = CMD_NONE;
     return;
   }
 
   // Start the protocol
-  Slave slave( exec.c_str() );
+  Slave slave( exec );
   if ( slave.pid() == -1 )
   {
-    error( ERR_CANNOT_LAUNCH_PROCESS, exec.c_str() );
+    error( ERR_CANNOT_LAUNCH_PROCESS, exec );
     finished();
     return;
   }
 
   // Start the ZIP process
-  GZipFilter filter( zip_cmd.c_str(), this );
+  GZipFilter filter( zip_cmd, this );
   m_pFilter = &filter;
   if ( filter.pid() == -1 )
   {
-    error( ERR_CANNOT_LAUNCH_PROCESS, zip_cmd.c_str() );
+    error( ERR_CANNOT_LAUNCH_PROCESS, zip_cmd );
     finished();
     return;
   }
@@ -433,12 +429,7 @@ void GZipProtocol::slotPut( const char *_url, int, bool _overwrite, bool _resume
   
   // Create what is left from the URL after stripping the
   // gzip part.
-  QString src;
-  KURL * it = lst.first();
-  for( ; it ; it = lst.next() )
-  {
-    src += it->url();
-  }
+  QString src = KURL::join( lst );
 
   // Tell the other job that we want to write something
   job.put( src, -1, _overwrite, false, 0 );

@@ -1,0 +1,10 @@
+# KDE Config File
+[Protocol]
+exec=kio_gzip
+protocol=gzip
+input=stream
+output=stream
+reading=true
+source=false
+
+

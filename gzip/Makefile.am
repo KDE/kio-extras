@@ -11,5 +11,8 @@ bin_PROGRAMS = kio_gzip
 kio_gzip_SOURCES = gzip.cc
 noinst_HEADERS = gzip.h
 
+kioconfig_DATA = gzip.kdelnk
+kioconfigdir = $(kde_confdir)/protocols
+
 messages:
 

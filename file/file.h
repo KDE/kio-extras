@@ -1,6 +1,8 @@
 #ifndef __file_h__
 #define __file_h__
 
+#include <qstring.h>
+
 #include <kio_interface.h>
 #include <kio_base.h>
 
@@ -51,24 +53,24 @@ public:
 protected:
   struct Copy
   {
-    string m_strAbsSource;
-    string m_strRelDest;
+    QString m_strAbsSource;
+    QString m_strRelDest;
     mode_t m_mode;
     off_t m_size;
   };
   
   struct CopyDir
   {
-    string m_strAbsSource;
-    string m_strRelDest;
+    QString m_strAbsSource;
+    QString m_strRelDest;
     mode_t m_mode;
     ino_t m_ino;
   };
   
   struct Del
   {
-    string m_strAbsSource;
-    string m_strRelDest;
+    QString m_strAbsSource;
+    QString m_strRelDest;
     mode_t m_mode;
     off_t m_size;
   };
