@@ -127,7 +127,7 @@ private: // private methods
 
 void mymemcpy(const char* b, QByteArray& a, unsigned int offset, unsigned int len);
 
-kdbgstream& operator<< (kdbgstream& s, QByteArray& a);
-kndbgstream& operator<< (kndbgstream& s, QByteArray& a);
+kdbgstream& operator<< (kdbgstream& s, const QByteArray& a);
+kndbgstream& operator<< (kndbgstream& s, const QByteArray& a);
 
 #endif

@@ -130,14 +130,11 @@ public:
     typedef QValueListConstIterator<SshOpt> SshOptListConstIterator;
 
     /**
-     * Ssh versions supported by KSshProcess.
+     * Ssh versions supported by KSshProcess. Subject to change
+     * at any time.
      */
     enum SshVersion {
-        OPENSSH_2_9P1,
-        OPENSSH_2_9P2,
-        OPENSSH_2_9,   // if we don't find the previous 2.9 verisons use this
-        OPENSSH,       // if we don't match any of the above, use the latest version
-        SSH_3_0_0,
+        OPENSSH,
         SSH,
         SSH_VER_MAX,
         UNKNOWN_VER
@@ -604,13 +601,14 @@ private:
     static const char * const passphrasePrompt[];
     static const char * const authSuccessMsg[];
     static const char * const authFailedMsg[];
-    static const char * const hostKeyMissingMsg[];
+    static QRegExp hostKeyMissingMsg[];
     static const char * const hostKeyChangedMsg[];
     static const char * const continuePrompt[];
     static const char * const hostKeyAcceptedMsg[];
     static const char * const tryAgainMsg[];
-    static const char * const hostKeyVerifyFailedMsg[];
+    static QRegExp hostKeyVerifyFailedMsg[];
     static const char * const connectionClosedMsg[];
+    static const char * const changeHostKeyOnDiskPrompt[];
     static QRegExp keyFingerprintMsg[];
     static QRegExp knownHostsFileMsg[];
 };

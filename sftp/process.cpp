@@ -107,14 +107,6 @@ QCString MyPtyProcess::readLineFrom(int fd, QCString& inbuf, bool block)
     {
 
         pos = inbuf.find('\n');
-/*
-        if (pos != -1)
-        {
-            ret = inbuf.left(pos);
-            inbuf = inbuf.mid(pos+1);
-            return ret;
-        }
-*/
         
         if (pos == -1) 
 	{
@@ -163,14 +155,6 @@ QCString MyPtyProcess::readLineFrom(int fd, QCString& inbuf, bool block)
 	inbuf += buf;
 
 	pos = inbuf.find('\n');
-/*
-        if (pos != -1)
-        {
-            ret = inbuf.left(pos);
-            inbuf = inbuf.mid(pos+1);
-            break;
-        }
-*/
         if (pos == -1) 
 	{
 	    ret = inbuf;

@@ -83,105 +83,66 @@
  * so we can do a best effor to  support unknown ssh versions.
  */
 const char * const KSshProcess::versionStrs[] = {
-    "OpenSSH_2.9p1",
-    "OpenSSH_2.9p2",
-    "OpenSSH_2.9",
     "OpenSSH",
-    "SSH Secure Shell 3.0.0",
     "SSH Secure Shell"
 };
 
 const char * const KSshProcess::passwordPrompt[] = {
-    "password:", // OpenSSH_2.9p1
-    "password:", // OpenSSH_2.9p2
-    "password:", // OpenSSH_2.9
     "password:", // OpenSSH
-    "password:", // SSH 3.0.0
     "password:"  // SSH
 };
 
 const char * const KSshProcess::passphrasePrompt[] = {
     "Enter passphrase for key",
-    "Enter passphrase for key",
-    "Enter passphrase for key",
-    "Enter passphrase for key",
-    "xxxxxxxxxxxxxxx",
-    "xxxxxxxxxxxxxx"
+    "Passphrase for key"
 };
 
 const char * const KSshProcess::authSuccessMsg[] = {
     "ssh-userauth2 successful",
-    "ssh-userauth2 successful",
-    "ssh-userauth2 successful",
-    "ssh-userauth2 successful",
-    "Received SSH_CROSS_AUTHENTICATED packet",
     "Received SSH_CROSS_AUTHENTICATED packet"
 };
 
 const char* const KSshProcess::authFailedMsg[] = {
     "Permission denied (",
-    "Permission denied (",
-    "Permission denied (",
-    "Permission denied (",
-    "Authentication failed.",
     "Authentication failed."
 };
 
 const char* const KSshProcess::tryAgainMsg[] = {
     "please try again",
-    "please try again",
-    "please try again",
-    "please try again",
-    "please try again",
-    "adjfhjsdhfdsjfsjdfhuefeufeuefe", // we will never see this
     "adjfhjsdhfdsjfsjdfhuefeufeuefe"
 };
 
-const char* const KSshProcess::hostKeyMissingMsg[] = {
-    "The authenticity of host",
-    "The authenticity of host",
-    "The authenticity of host",
-    "The authenticity of host",
-    "Host key not found from database",
-    "Host key not found from database"
+QRegExp KSshProcess::hostKeyMissingMsg[] = {
+    QRegExp("The authenticity of host|No (DSA|RSA) host key is known for"),
+    QRegExp("Host key not found from database")
 };
 
 const char* const KSshProcess::continuePrompt[] = {
-    "Are you sure you want to continue connecting (yes/no)?",
-    "Are you sure you want to continue connecting (yes/no)?",
-    "Are you sure you want to continue connecting (yes/no)?",
-    "Are you sure you want to continue connecting (yes/no)?",
     "Are you sure you want to continue connecting (yes/no)?",
     "Are you sure you want to continue connecting (yes/no)?"
 };
 
 const char* const KSshProcess::hostKeyChangedMsg[] = {
     "WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!",
-    "WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!",
-    "WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!",
-    "WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!",
-    "WARNING: HOST IDENTIFICATION HAS CHANGED!",
     "WARNING: HOST IDENTIFICATION HAS CHANGED!"
 };
 
 QRegExp KSshProcess::keyFingerprintMsg[] = {
     QRegExp("..(:..){15}"),
-    QRegExp("..(:..){15}"),
-    QRegExp("..(:..){15}"),
-    QRegExp("..(:..){15}"),
-    QRegExp("..(:..){15}"),
-    QRegExp("..(:..){15}")
+    QRegExp(".....(-.....){10}")
 };
 
 QRegExp KSshProcess::knownHostsFileMsg[] = {
     QRegExp("Add correct host key in (.*) to get rid of this message."),
-    QRegExp("Add correct host key in (.*) to get rid of this message."),
-    QRegExp("Add correct host key in (.*) to get rid of this message."),
-    QRegExp("Add correct host key in (.*) to get rid of this message."),
-    QRegExp("Add correct host key in (.*) to get rid of this message."),
-    QRegExp("Add correct host key in (.*) to get rid of this message.")
+    QRegExp("Add correct host key to \"(.*)\"")
 };
 
+
+// This prompt only applies to commerical ssh.
+const char* const KSshProcess::changeHostKeyOnDiskPrompt[] = {
+    "as;jf;sajkfdslkfjas;dfjdsa;fj;dsajfdsajf",
+    "Do you want to change the host key on disk (yes/no)?"
+};
 
 // We need this in addition the authFailedMsg because when
 // OpenSSH gets a changed host key it will fail to connect
@@ -191,20 +152,12 @@ QRegExp KSshProcess::knownHostsFileMsg[] = {
 // quit.  The later if StrictHostKeyChecking is "no".
 // The former if StrictHostKeyChecking is
 // "yes" or explicitly set to "ask".
-const char * const KSshProcess::hostKeyVerifyFailedMsg[] = {
-    "Host key verification failed.",
-    "Host key verification failed.",
-    "Host key verification failed.",
-    "Host key verification failed.",
-    "Host key verification failed.",
-    "Host key verification failed."
+QRegExp KSshProcess::hostKeyVerifyFailedMsg[] = {
+    QRegExp("Host key verification failed\\."),
+    QRegExp("Disconnected; key exchange or algorithm? negotiation failed \\(Key exchange failed\\.\\)\\.")
 };
 
 const char * const KSshProcess::connectionClosedMsg[] = {
-    "Connection closed by remote host",
-    "Connection closed by remote host",
-    "Connection closed by remote host",
-    "Connection closed by remote host",
     "Connection closed by remote host",
     "Connection closed by remote host"
 };
@@ -264,7 +217,7 @@ KSshProcess::SshVersion KSshProcess::version() {
 
     mVersion = UNKNOWN_VER;
     for(int i = 0; i < SSH_VER_MAX; i++) {
-        if( ver.contains(versionStrs[i]) ) {
+        if( ver.find(versionStrs[i]) != -1 ) {
              mVersion = (SshVersion)i;
              break;
         }
@@ -406,8 +359,8 @@ bool KSshProcess::setOptions(const SshOptList& opts) {
 
     // These options govern the behavior of ssh and 
     // cannot be defined by the user
-    mArgs.append("-o");
-    mArgs.append("StrictHostKeyChecking ask");
+    //mArgs.append("-o");
+    //mArgs.append("StrictHostKeyChecking ask");
     mArgs.append("-v"); // So we get a message that the 
                         // connection was successful
     if( mVersion <= OPENSSH ) {
@@ -455,7 +408,7 @@ int KSshProcess::error(QString& msg) {
 }
 
 void KSshProcess::kill(int signal) {
-    kdDebug(KSSHPROC) << "KSshProcess::kill(): "
+    kdDebug(KSSHPROC) << "KSshProcess::kill(signal:" << signal << "): "
         "ssh pid is " << ssh.pid() << endl;
     kdDebug(KSSHPROC) << "KSshPRocess::kill(): "
         "we are " << (mConnected ? "" : "not ") << "connected" << endl;
@@ -465,9 +418,28 @@ void KSshProcess::kill(int signal) {
     if( mRunning && ssh.pid() > 1 ) {  // make sure there is a 
                                        // running ssh process
         if( ::kill(ssh.pid(), signal) == 0 ) {
-            ::waitpid(ssh.pid(), NULL, 0);
-            mConnected = false;
-            mRunning = false;
+            // clean up if we tried to kill the process
+            if( signal == SIGTERM || signal == SIGKILL ) {
+                struct timeval timeout;
+                timeout.tv_sec = 0;
+                timeout.tv_usec = 500;
+                select(0, NULL, NULL, NULL, &timeout);
+                // FIXME: I don't really think we want WNOHANG here, but sometimes
+                // we kill ssh above and it doesn't die so we hang on waitpid().
+                if( ::waitpid(ssh.pid(), NULL, WNOHANG) == 0 ) {
+                    kdDebug(KSSHPROC) << "KSshProcess::kill(): kill didn't work, trying SIGKILL" << endl;
+                    // Ssh processes didn't die. Try harder.
+                    // Give up if we don't succeed. 
+                    if( ::kill(ssh.pid(), SIGKILL) == 0 ) {
+                        ::waitpid(ssh.pid(), NULL, 0);
+                    }
+                    else {
+                        kdDebug(KSSHPROC) << "KSshProcess::kill(): kill failed" << endl;
+                    }
+                }
+                mConnected = false;
+                mRunning = false;
+            }
         }
         else
             kdDebug(KSSHPROC) << "KSshProcess::kill(): kill failed" << endl;
@@ -560,8 +532,8 @@ QString KSshProcess::getLine() {
         // not be anything on the pty or stderr. Setup a select()
         // to wait for some data from SSH.
         if( buffer.empty() ) {
-            kdDebug(KSSHPROC) << "KSshProcess::getLine(): " <<
-                "Line buffer empty, calling select() to wait for data." << endl;
+            //kdDebug(KSSHPROC) << "KSshProcess::getLine(): " <<
+            //    "Line buffer empty, calling select() to wait for data." << endl;
             int errfd = ssh.stderrFd();
             int ptyfd = ssh.fd();
             fd_set rfds;
@@ -602,8 +574,6 @@ QString KSshProcess::getLine() {
             // lines were received. Who knows whether pty or stderr
             // had data on it first.
             if( FD_ISSET(ptyfd, &rfds) ) {
-                kdDebug(KSSHPROC) << "KSshProcess::getLine(): "
-                    "Got line from pty." << endl;
                 ptyLine = ssh.readLineFromPty(false);
                 buffer.prepend(QString(ptyLine));
                 //kdDebug(KSSHPROC) << "KSshProcess::getLine(): "
@@ -611,8 +581,6 @@ QString KSshProcess::getLine() {
             }
             
             if( FD_ISSET(errfd, &rfds) ) {
-                kdDebug(KSSHPROC) << "KSshProcess::getLine(): "
-                    "Got line from stderr." << endl;
                 errLine = ssh.readLineFromStderr(false);
                 buffer.prepend(QString(errLine));
                 //kdDebug(KSSHPROC) << "KSshProcess::getLine(): "
@@ -651,6 +619,7 @@ QString KSshProcess::getLine() {
     kdDebug(KSSHPROC) << "KSshProcess::getLine(): "
         "ssh: " << line << endl;
     
+
     return line;
 }
 
@@ -705,7 +674,7 @@ bool KSshProcess::connect() {
     // We'll put a limit on the number of state transitions
     // to ensure we don't go out of control.
     int transitionLimit = 500;
-    
+
     while(--transitionLimit) {
         kdDebug(KSSHPROC) << "KSshProcess::connect(): "
             << "Connect state " << stateStr(mConnectState) << endl;
@@ -721,6 +690,11 @@ bool KSshProcess::connect() {
         // state 1 if execution is successful, otherwise set error and 
         // return false.
         case STATE_START:
+            // reset some key values to safe values
+            mAcceptHostKey = false;
+            mKeyFingerprint = QString::null;
+            mKnownHostsFile = QString::null;
+            
             if( mArgs.isEmpty() ) {
                 kdDebug(KSSHPROC) << "KSshProcess::connect(): ssh options "
                     "need to be set first using setArgs()" << endl;
@@ -791,6 +765,13 @@ bool KSshProcess::connect() {
                 mConnectState = STATE_FATAL;
                 mError = ERR_CLOSED_BY_REMOTE_HOST;
                 mErrorMsg = i18n("Connection closed by remote host.");
+            }
+            else if( line.find(changeHostKeyOnDiskPrompt[mVersion]) != -1 ) {
+                // always say yes to this.  It always comes after commerical ssh
+                // prints a "continue to connect prompt". We assume that if the
+                // user choose to continue, then they also want to save the
+                // host key to disk.
+                ssh.writeLine("yes");
             }
             else {
                 // ignore line
@@ -906,10 +887,22 @@ bool KSshProcess::connect() {
                 mError = ERR_AUTH_FAILED_NEW_KEY;
                 mErrorMsg = i18n(
                     "The identity of the remote host '%1' could not be verified "
-                    "because the host's key is not in the \"known hosts\" "
-                    "file. Manually, add the host's key to the \"known hosts\" "
-                    "file or contact your administrator."
+                    "because the host's key is not in the \"known hosts\" file."
                 ).arg(mHost);
+                
+                if( mKnownHostsFile.isEmpty() ) {
+                    mErrorMsg += i18n(
+                        " Manually, add the host's key to the \"known hosts\" "
+                        "file or contact your administrator."
+                    );
+                }
+                else {
+                    mErrorMsg += i18n(
+                        " Manually, add the host's key to %1 "
+                        "or contact your administrator."
+                    ).arg(mKnownHostsFile);
+                }
+
                 mConnectState = STATE_FATAL;
             }
             else if( line.find(continuePrompt[mVersion]) != -1 ) {
@@ -963,7 +956,7 @@ bool KSshProcess::connect() {
             else if( (line.find(authFailedMsg[mVersion]) != -1
                            && line.find(tryAgainMsg[mVersion]) == -1)
                     || line.find(hostKeyVerifyFailedMsg[mVersion]) != -1 ) {
-                mError = ERR_AUTH_FAILED_NEW_KEY;
+                mError = ERR_AUTH_FAILED_DIFF_KEY;
                 mErrorMsg = i18n(
                     "WARNING: The identity of the remote host '%1' has changed!\n\n"
                     "Someone could be eavesdropping on your connection, or the "
