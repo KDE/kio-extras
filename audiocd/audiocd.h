@@ -39,27 +39,49 @@ class AudioCDProtocol : public KIO::SlaveBase
     virtual void listDir(const KURL &);
 
   protected:
-   
-    void writeHeader(long);
-    struct cdrom_drive * pickDrive();
-    void parseArgs(const KURL &);
+
+    enum FileType
+    {
+      FileTypeUnknown,
+      FileTypeOggVorbis,
+      FileTypeMP3,
+      FileTypeWAV
+    };
+
+    enum DirType
+    {
+      DirTypeUnknown,
+      DirTypeDevice,
+      DirTypeByName,
+      DirTypeByTrack,
+      DirTypeTitle,
+      DirTypeInfo,
+      DirTypeRoot,
+      DirTypeMP3,
+      DirTypeVorbis
+    };
+
+    void                  writeHeader(long);
+    struct cdrom_drive *  findDrive(bool &noPermission);
+    void                  parseArgs(const KURL &);
 
     void getParameters();
 
     void paranoiaRead(
-        struct cdrom_drive * drive,
-        long firstSector,
-        long lastSector,
-        QString filetype
+        struct cdrom_drive  * drive,
+        long                  firstSector,
+        long                  lastSector,
+        int                   fileType
     );
 
-    struct cdrom_drive * initRequest(const KURL &);
-    unsigned int get_discid(struct cdrom_drive *);
-    void updateCD(struct cdrom_drive *);
+    struct cdrom_drive *  initRequest(const KURL &);
+    uint                  discid(struct cdrom_drive *);
+    void                  updateCD(struct cdrom_drive *);
+
+    FileType fileType(const QString & filename);
 
     class Private;
     Private * d;
-    
 };
 
 #endif
