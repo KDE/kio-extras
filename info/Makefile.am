@@ -2,6 +2,8 @@
 
 INCLUDES = $(all_includes)
 
+METASOURCES = AUTO
+
 ####### Files
 
 lib_LTLIBRARIES = kio_info.la
@@ -12,9 +14,9 @@ kio_info_la_LDFLAGS = $(all_libraries) -module -avoid-version
 noinst_HEADERS = info.h
 
 check_PROGRAMS = test
-test_SOURCES = $(kio_info_la_SOURCES) test.cpp
-test.cpp:
-	echo "int main() {};" > test.cpp
+test_SOURCES = $(kio_info_la_SOURCES) test.cc
+test.cc:
+	echo "int main() {};" > test.cc
 test_LDFLAGS  = $(all_libraries) -module -avoid-version
 test_LDADD = $(kio_info_la_LIBADD)
 

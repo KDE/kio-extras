@@ -1,13 +1,17 @@
 #ifndef __info_h__
 #define __info_h__
 
+#include <qobject.h>
+
 #include <kio/slavebase.h>
 
 class KProcess;
 
-class InfoProtocol : public KIO::SlaveBase
-                   , public QObject
+class InfoProtocol : public QObject
+                   , public KIO::SlaveBase
 {
+    Q_OBJECT
+
 public:
 
     InfoProtocol( KIO::Connection *connection = 0 );
