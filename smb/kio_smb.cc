@@ -1,4 +1,4 @@
-// smb.cc adapted from file.cc !!!
+// smb.cc adapted from file.cc by Nicolas Brodu <brodu@kde.org>
 // $Id$
 
 #ifdef HAVE_CONFIG_H
@@ -38,6 +38,7 @@
 #include <qdialog.h>
 #include <qaccel.h>
 
+// translation & config
 #include <klocale.h>
 #include <kconfig.h>
 
@@ -47,6 +48,10 @@
 QApplication *QtApp;
 
 // class adapted from passworddialog
+// passworddialog isn't adapted because passwords might be associated with
+// shares and not users, and the libsmb does ask for the appropriate entry
+// We also need echo for user names, no echo for passwords.
+// Note : removing this from here would make this kio_slave no Qt app anymore
 class CallbackDialog : public QDialog
 {
 protected:
@@ -96,6 +101,8 @@ const char *CallbackDialog::answer() // the user answer
 
 // used by the lib to get info
 // should display its argument and return an answer allocated with new.
+// A callback class with virtual function should be used in the lib in the
+// future
 char *getPasswordCallBack(const char * c)
 {
 	if (!c) return 0;
@@ -115,9 +122,6 @@ char *getPasswordCallBack(const char * c)
 	return qstrdup(d.answer());
 }
 
-
-// simple wrapper for KURL::decode
-QString decode( const char *url );
 
 int check( Connection *_con );
 void sigchld_handler( int );
@@ -212,8 +216,8 @@ void SmbProtocol::slotMkdir( const char *_url, int _mode )
 	}
 
 	struct stat buff;
-	if ( smbio->stat( decode(strdup(_url)).ascii(), &buff ) == -1 ) {
-		if ( smbio->mkdir( decode(strdup(_url)).ascii() ) == -1 ) {
+	if ( smbio->stat( usrc.decodedURL().ascii(), &buff ) == -1 ) {
+		if ( smbio->mkdir( usrc.decodedURL().ascii() ) == -1 ) {
 			if ( smbio->getError() == EACCES ) {
 				error( ERR_ACCESS_DENIED, strdup(_url) );
 				m_cmd = CMD_NONE;
@@ -366,7 +370,7 @@ void SmbProtocol::doCopy( QStringList& _source, const char *_dest, bool _rename,
 		int s;
 // rename not used, dirChecked is argument
 //		if ( ( s = listRecursive( usrc.url(), "", files, dirs, _rename ) ) == -1 ) {
-		if ( ( s = listRecursive( usrc.url(), "", files, dirs, false ) ) == -1 ) {
+		if ( ( s = listRecursive( usrc.url(), udest.url(), "", files, dirs, false ) ) == -1 ) {
 			// Error message is already sent
 			m_cmd = CMD_NONE;
 			return;
@@ -380,7 +384,7 @@ void SmbProtocol::doCopy( QStringList& _source, const char *_dest, bool _rename,
 
 	// Check whether we do not copy a directory in itself or one of its subdirectories
 	struct stat buff2;
-	if ( (!strcmp(udest.protocol(),"smb") && (smbio->stat( decode(udest.url()).ascii(), &buff2 ))) != -1 ) {
+	if ( (!strcmp(udest.protocol(),"smb") && (smbio->stat( udest.decodedURL().ascii(), &buff2 ))) != -1 ) {
 		bool b_error = false, b_error_access = false;
 		for ( source_files_it = _source.begin(); source_files_it != _source.end(); ++source_files_it ) {
 			KURL usrc( (*source_files_it).ascii() );
@@ -394,12 +398,12 @@ void SmbProtocol::doCopy( QStringList& _source, const char *_dest, bool _rename,
 			char *share1=0, *share2=0;
 			char *path1=0, *path2=0;
 			char *user1=0, *user2=0;
-			if (smbio->parse(decode(usrc.url()).ascii(),
+			if (smbio->parse(usrc.decodedURL().ascii(),
 					workgroup1, host1, share1, path1, user1)==-1) {
 				b_error_access = true;
 				break; // exit 'for' loop
 			}
-			if (smbio->parse(decode(udest.url()).ascii(),
+			if (smbio->parse(udest.decodedURL().ascii(),
 					workgroup2, host2, share2, path2, user2)==-1) {
 				b_error_access = true;
 				break; // exit 'for' loop
@@ -805,8 +809,10 @@ void SmbProtocol::doCopy( QStringList& _source, const char *_dest, bool _rename,
 		if ( skip_copying ) continue;
 
 		qDebug( "kio_smb : Opening %s", (*fit).m_strAbsSource.ascii() );
-
-		int fd = smbio->open( decode((*fit).m_strAbsSource).ascii() );
+	
+		QString sCode=(*fit).m_strAbsSource;
+		KURL::decode(sCode);
+		int fd = smbio->open( sCode.ascii() );
 		if ( fd == -1 ) {
 			error( ERR_CANNOT_OPEN_FOR_READING, (*fit).m_strAbsSource );
 			m_cmd = CMD_NONE;
@@ -907,7 +913,7 @@ void SmbProtocol::slotGet( const char *_url )
 	}
 
 	struct stat buff;
-	if ( smbio->stat( decode(strdup(_url)).ascii(), &buff ) == -1 ) {
+	if ( smbio->stat( usrc.decodedURL().ascii(), &buff ) == -1 ) {
 		error( ERR_DOES_NOT_EXIST, strdup(_url) );
 		m_cmd = CMD_NONE;
 		return;
@@ -923,7 +929,7 @@ void SmbProtocol::slotGet( const char *_url )
 	
 	qDebug( "kio_smb : Get, checkpoint 3" );
 
-	int fd = smbio->open( decode(strdup(_url)).ascii() , O_RDONLY);
+	int fd = smbio->open( usrc.decodedURL().ascii() , O_RDONLY);
 	if ( fd == -1 ) {
 		error( ERR_CANNOT_OPEN_FOR_READING, strdup(_url) );
 		m_cmd = CMD_NONE;
@@ -1006,7 +1012,7 @@ void SmbProtocol::slotGetSize( const char *_url )
 
 	qDebug( "kio_smb : Getting size, url OK" );
 	struct stat buff;
-	if ( smbio->stat( decode(strdup(_url)).ascii(), &buff ) == -1 ) {
+	if ( smbio->stat( usrc.decodedURL().ascii(), &buff ) == -1 ) {
 		error( ERR_DOES_NOT_EXIST, strdup(_url) );
 		m_cmd = CMD_NONE;
 		return;
@@ -1053,22 +1059,22 @@ void SmbProtocol::slotPut( const char *_url, int _mode, bool _overwrite, bool _r
 	m_cmd = CMD_PUT;
 
 	struct stat buff;
-	if ( smbio->stat( decode(udest_orig.url()).ascii(), &buff ) != -1 ) {
+	if ( smbio->stat( udest_orig.decodedURL().ascii(), &buff ) != -1 ) {
 		// if original file exists but we are using mark partial -> rename it to XXX.part
 		if ( m_bMarkPartial )
 			rename ( udest_orig.url(), udest_part.url() );
 
 		if ( !_overwrite && !_resume ) {
 			if ( buff.st_size == _size )
-				error( ERR_DOES_ALREADY_EXIST_FULL, decode(udest_orig.url()) );
+				error( ERR_DOES_ALREADY_EXIST_FULL, udest_orig.decodedURL() );
 			else
-				error( ERR_DOES_ALREADY_EXIST, decode(udest_orig.url()) );
+				error( ERR_DOES_ALREADY_EXIST, udest_orig.decodedURL() );
 
 			finished();
 			m_cmd = CMD_NONE;
 			return;
 		}
-	} else if ( smbio->stat( decode(udest_part.url()).ascii(), &buff ) != -1 ) {
+	} else if ( smbio->stat( udest_part.decodedURL().ascii(), &buff ) != -1 ) {
 		// if file with extension .part exists but we are not using mark partial
 		// -> rename XXX.part to original name
 		if ( ! m_bMarkPartial )
@@ -1076,9 +1082,9 @@ void SmbProtocol::slotPut( const char *_url, int _mode, bool _overwrite, bool _r
 
 		if ( !_overwrite && !_resume ) {
 			if ( buff.st_size == _size )
-				error( ERR_DOES_ALREADY_EXIST_FULL, decode(udest_orig.url()) );
+				error( ERR_DOES_ALREADY_EXIST_FULL, udest_part.decodedURL() );
 			else
-				error( ERR_DOES_ALREADY_EXIST, decode(udest_orig.url()) );
+				error( ERR_DOES_ALREADY_EXIST, udest_part.decodedURL() );
 
 			finished();
 			m_cmd = CMD_NONE;
@@ -1090,23 +1096,23 @@ void SmbProtocol::slotPut( const char *_url, int _mode, bool _overwrite, bool _r
 
 	// if we are using marking of partial downloads -> add .part extension
 	if ( m_bMarkPartial ) {
-		qDebug( "kio_smb : Adding .part extension to %s", decode(udest_orig.url()).ascii() );
+		qDebug( "kio_smb : Adding .part extension to %s", udest_orig.decodedURL().ascii() );
 		udest = udest_part;
 	} else
 		udest = udest_orig;
 
 	if ( _resume )
 		// append if resuming
-		m_fPut = smbio->open( decode(udest.url()).ascii(), O_WRONLY | O_APPEND );
+		m_fPut = smbio->open( udest.decodedURL().ascii(), O_WRONLY | O_APPEND );
 	else
-		m_fPut = smbio->open( decode(udest.url()).ascii(), O_WRONLY );
+		m_fPut = smbio->open( udest.decodedURL().ascii(), O_WRONLY );
 
 	if ( m_fPut == -1 ) {
-		qDebug( "kio_smb : ####################### COULD NOT WRITE %s", decode(udest.url()).ascii() );
+		qDebug( "kio_smb : ####################### COULD NOT WRITE %s", udest.decodedURL().ascii() );
 		if ( smbio->getError() == EACCES )
-			error( ERR_WRITE_ACCESS_DENIED, decode(udest.url()) );
+			error( ERR_WRITE_ACCESS_DENIED, udest.decodedURL() );
 		else
-			error( ERR_CANNOT_OPEN_FOR_WRITING, decode(udest.url()) );
+			error( ERR_CANNOT_OPEN_FOR_WRITING, udest.decodedURL() );
 		m_cmd = CMD_NONE;
 		finished();
 		return;
@@ -1120,13 +1126,13 @@ void SmbProtocol::slotPut( const char *_url, int _mode, bool _overwrite, bool _r
 
 	smbio->close( m_fPut );
 
-	if ( smbio->stat( decode(udest.url()).ascii(), &buff ) != -1 ) {
+	if ( smbio->stat( udest.decodedURL().ascii(), &buff ) != -1 ) {
 		
 		if ( buff.st_size == _size ) {
 			// after full download rename the file back to original name
 			if ( m_bMarkPartial ) {
 				if ( rename( udest.url(), udest_orig.url() ) ) {
-					error( ERR_CANNOT_RENAME, decode(udest_orig.url()) );
+					error( ERR_CANNOT_RENAME, udest_orig.decodedURL() );
 					m_cmd = CMD_NONE;
 					finished();
 					return;
@@ -1182,7 +1188,7 @@ void SmbProtocol::slotDel( QStringList& _source )
 		KURL victim( (*source_it) );
 		int s;
 		// rename not used, dirChecked is argument
-		if ( ( s = listRecursive( victim.url(), "", fs, ds, false ) ) == -1 ) {
+		if ( ( s = listRecursive( victim.url(), "", "", fs, ds, false ) ) == -1 ) {
 			// Error message is already sent
 			m_cmd = CMD_NONE;
 			return;
@@ -1278,7 +1284,7 @@ void SmbProtocol::slotListDir( const char *_url )
 	qDebug( "kio_smb : listDir 3 %s", _url);
 
 	struct stat buff;
-	if ( smbio->stat( decode(strdup(_url)).ascii(), &buff ) == -1 ) {
+	if ( smbio->stat( usrc.decodedURL().ascii(), &buff ) == -1 ) {
 		error( ERR_DOES_NOT_EXIST, strdup(_url) );
 		m_cmd = CMD_NONE;
 		return;
@@ -1293,7 +1299,7 @@ void SmbProtocol::slotListDir( const char *_url )
 	m_cmd = CMD_LIST;
 
 	struct SMBdirent *ep;
-	int dp = smbio->opendir( decode(strdup(_url)).ascii() );
+	int dp = smbio->opendir( usrc.decodedURL().ascii() );
 	if ( dp == -1 ) {
 		error( ERR_CANNOT_ENTER_DIRECTORY, strdup(_url) );
 		m_cmd = CMD_NONE;
@@ -1368,10 +1374,10 @@ void SmbProtocol::slotTestDir( const char *_url )
 		m_cmd = CMD_NONE;
 		return;
 	}
-	qDebug( "kio_smb : testing %s, smburl OK", decode(_url).ascii() );
+	qDebug( "kio_smb : testing %s, smburl OK", usrc.decodedURL().ascii() );
 
 	struct stat buff;
-	if ( smbio->stat( decode(strdup(_url)).ascii(), &buff ) == -1 ) {
+	if ( smbio->stat( usrc.decodedURL().ascii(), &buff ) == -1 ) {
 		error( ERR_DOES_NOT_EXIST, strdup(_url) );
 		m_cmd = CMD_NONE;
 		return;
@@ -1404,14 +1410,16 @@ void SmbProtocol::slotDataEnd()
 	}
 }
 
-long SmbProtocol::listRecursive( const char *smbURL, const char *dest,
+// both src and dest arguments should be full encoded urls
+long SmbProtocol::listRecursive( const char *smbURL, const char *dest, const char *relDestAdd,
 	QValueList<Copy>& _files, QValueList<CopyDir>& _dirs, bool dirChecked )
 {
-	KURL u(dest);
-	qDebug( "kio_smb : dest file : %s", dest);
+	KURL udest(dest);
+	KURL usrc(smbURL);
+	qDebug( "kio_smb : dest argument : %s", dest);
 	if (!dirChecked) {
 		struct stat statBuf;
-		if (smbio->stat(decode(smbURL).ascii(),&statBuf)==-1) {
+		if (smbio->stat(usrc.decodedURL().ascii(),&statBuf)==-1) {
 			error( ERR_DOES_NOT_EXIST, strdup(smbURL) );
 			return -1;
 		}
@@ -1419,7 +1427,7 @@ long SmbProtocol::listRecursive( const char *smbURL, const char *dest,
 		if ( !S_ISDIR(statBuf.st_mode) ) {
 			Copy c;
 			c.m_strAbsSource = smbURL;
-			c.m_strRelDest = dest + u.filename();
+			c.m_strRelDest = relDestAdd + usrc.filename();
 			qDebug( "kio_smb : dest file name : %s", c.m_strRelDest.ascii());
 			c.m_mode = statBuf.st_mode;
 			c.m_size = statBuf.st_size;
@@ -1428,7 +1436,7 @@ long SmbProtocol::listRecursive( const char *smbURL, const char *dest,
 		}
 	}
 
-	int dd=smbio->opendir(decode(smbURL).ascii());
+	int dd=smbio->opendir(usrc.decodedURL().ascii());
 	if (dd==-1) {
 		qDebug( "kio_smb : %s should have been a valid directory!", smbURL);
 		return -1;
@@ -1436,7 +1444,7 @@ long SmbProtocol::listRecursive( const char *smbURL, const char *dest,
 	
 	CopyDir c;
 	c.m_strAbsSource = smbURL;
-	c.m_strRelDest = dest;
+	c.m_strRelDest = relDestAdd + usrc.filename(); // directory() ? I don't think so
 	c.m_mode = 04755; //statBuf.st_mode;
 	_dirs.append( c );
 
@@ -1444,21 +1452,27 @@ long SmbProtocol::listRecursive( const char *smbURL, const char *dest,
 	long totalSize=0;
 	QStringList newDirs;
 	
-	// First add all files in this dir. We'll do directories later, so
-	// that the connection to the SMB server isn't broken.
+	// First add all files in this dir. We'll do directories later, so as to
+	// minimise SMB 'cd' commands and benefit from libsmb internal cache
 	while ((dent=smbio->readdir(dd))) {
-		QString newName = dent->d_name;
-		if ( !S_ISDIR(dent->st_mode) ) {
-			Copy c;
-			c.m_strAbsSource = smbURL + newName;
-			c.m_strRelDest = dest + u.filename();
-			qDebug( "kio_smb : dest file name : %s", c.m_strRelDest.ascii());
-			if ( c.m_strRelDest.isEmpty() ) return -1;
-			c.m_mode = dent->st_mode;
-			c.m_size = dent->st_size;
-			_files.append( c );
-			totalSize+=dent->st_size;
-		} else newDirs.append(dent->d_name);
+		// Guess what happened the first time I tried to download a directory ?
+		if ((dent->d_name) && strcmp(dent->d_name,".") && strcmp(dent->d_name,"..")) {
+			QString newName(dent->d_name);
+			if ( !S_ISDIR(dent->st_mode) ) {
+				Copy c;
+				KURL newSrc = usrc;
+				newSrc.addPath(newName); // add decoded name
+				c.m_strAbsSource = newSrc.url();
+				// trick : get the encoded filename and discards the src...
+				c.m_strRelDest = relDestAdd + newSrc.filename();
+				qDebug( "kio_smb : dest file name : %s", c.m_strRelDest.ascii());
+				if ( c.m_strRelDest.isEmpty() ) return -1;
+				c.m_mode = dent->st_mode;
+				c.m_size = dent->st_size;
+				_files.append( c );
+				totalSize+=dent->st_size;
+			} else newDirs.append(dent->d_name);
+		}
 	}
 	smbio->closedir(dd);
 
@@ -1466,9 +1480,13 @@ long SmbProtocol::listRecursive( const char *smbURL, const char *dest,
 	QStringList::Iterator ndit = newDirs.begin();
 	for( ; ndit != newDirs.end(); ++ndit ) {
 		QString ndName = (*ndit);
-		QString newURL = smbURL + ("/" + ndName);
-		QString newDest = dest + ("/" + ndName);
-		int plus=listRecursive(newURL.ascii(), newDest.ascii(), _files, _dirs, true);
+		KURL newSrcURL = usrc;
+		KURL newDestURL = udest;
+		newSrcURL.addPath(ndName);
+		newDestURL.addPath(ndName);
+		QString newSrc = newSrcURL.url();
+		QString newDest = newDestURL.url();
+		int plus=listRecursive(newSrc, newDest, relDestAdd + (ndName+"/"), _files, _dirs, true);
 		if (plus == -1) {
 			qDebug( "kio_smb : recursive copy error, aborting..." );
 			return -1;
@@ -1526,9 +1544,3 @@ again:
   return 0;
 }
 
-QString decode( const char *url )
-{
-	QString s=url;
-	KURL::decode(s);
-	return s;
-}

@@ -6,9 +6,9 @@ input=none
 output=filesystem
 listing=Name,Type,Size,Date,Access
 reading=true
-writing=false
-makedir=false
-deleting=false
+writing=true
+makedir=true
+deleting=true
 linking=false
-moving=false
+moving=true
 

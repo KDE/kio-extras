@@ -77,7 +77,7 @@ protected:
 	int m_cmd;
 	bool m_bIgnoreJobErrors;
 
-	long listRecursive( const char *smbURL, const char *dest,
+	long listRecursive( const char *smbURL, const char *dest, const char *relDestAdd,
 		QValueList<Copy>& _files, QValueList<CopyDir>& _dirs, bool dirChecked=false);
 	void doCopy( QStringList& _source, const char *_dest, bool _rename, bool _move = false );
 	int m_fPut;
