@@ -1,11 +1,24 @@
 kde_module_LTLIBRARIES = kded_mediamanager.la
 
-INCLUDES = $(all_includes) -I$(srcdir)/../libmediacommon
-kded_mediamanager_la_SOURCES = mediamanager.cpp mediamanager.skel medialist.cpp backendbase.cpp fstabbackend.cpp mediadirnotify.cpp mediadirnotify.skel
-kded_mediamanager_la_LDFLAGS = $(all_libraries) -module -avoid-version
-kded_mediamanager_la_LIBADD = $(LIB_KSYCOCA) ../libmediacommon/libmediacommon.la
+if include_media_halbackend
+HALBACKEND_INCS = $(HAL_INCS) $(DBUS_INCS) $(DBUSQT_INCS)
+endif
 
 METASOURCES = AUTO
+INCLUDES = $(all_includes) -I$(srcdir)/../libmediacommon $(HALBACKEND_INCS)
+
+if include_media_halbackend
+HALBACKEND_LIB = halbackend.la
+noinst_LTLIBRARIES = halbackend.la
+halbackend_la_SOURCES = halbackend.cpp
+halbackend_la_LIBADD = $(LIB_KDEUI) $(HAL_LIBS) $(DBUS_LIBS) $(DBUSQT_LIBS)
+halbackend_la_LDFLAGS = -module -avoid-version $(all_libraries) -no-undefined
+endif
+
+kded_mediamanager_la_SOURCES = mediamanager.cpp mediamanager.skel medialist.cpp backendbase.cpp fstabbackend.cpp mediadirnotify.cpp mediadirnotify.skel
+kded_mediamanager_la_LDFLAGS = $(all_libraries) -module -avoid-version
+kded_mediamanager_la_LIBADD = $(LIB_KSYCOCA) ../libmediacommon/libmediacommon.la $(HALBACKEND_LIB)
+
 
 servicesdir = $(kde_servicesdir)/kded
 services_DATA = mediamanager.desktop

@@ -18,6 +18,8 @@
 
 #include "mediamanager.h"
 
+#include <config.h>
+
 #include <kdebug.h>
 #include <kglobal.h>
 #include <klocale.h>
@@ -25,6 +27,11 @@
 #include <kdirnotify_stub.h>
 
 #include "fstabbackend.h"
+
+#ifdef COMPILE_HALBACKEND
+#include "halbackend.h"
+#endif //COMPILE_HALBACKEND
+
 
 MediaManager::MediaManager(const QCString &obj)
     : KDEDModule(obj), m_dirNotify(m_mediaList)
@@ -39,7 +46,18 @@ MediaManager::MediaManager(const QCString &obj)
 
 	m_backends.setAutoDelete(true);
 
+#ifdef COMPILE_HALBACKEND
+	HALBackend* halBackend = new HALBackend(m_mediaList, this);
+	if (halBackend->InitHal())
+		m_backends.append( halBackend );
+	else
+	{
+		delete halBackend;
+		m_backends.append( new FstabBackend(m_mediaList) );
+	}
+#else //COMPILE_HALBACKEND
 	m_backends.append( new FstabBackend(m_mediaList) );
+#endif //COMPILE_HALBACKEND
 }
 
 
