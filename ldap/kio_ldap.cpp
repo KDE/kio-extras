@@ -701,7 +701,9 @@ void LDAPProtocol::openConnection()
         ldap_simple_bind_s( mLDAP, mBindName.utf8(), mPassword.utf8() );
     
     mFirstAuth = false;
-    if ( ret != LDAP_INVALID_CREDENTIALS && ret != LDAP_INSUFFICIENT_ACCESS ) {
+    if ( ret != LDAP_INVALID_CREDENTIALS && 
+         ret != LDAP_INSUFFICIENT_ACCESS &&
+         ret != LDAP_INAPPROPRIATE_AUTH ) {
       kdDebug(7125) << "ldap_bind retval: " << ret << endl;
       auth = true;
       if ( ret != LDAP_SUCCESS ) {
