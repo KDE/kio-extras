@@ -1602,7 +1602,7 @@ QCString SmbProtocol::getMasterBrowser()
    QCString masterBrowser;
    ClientProcess *proc=new ClientProcess();
    QCStringList args;
-   args<<QCString("-M")<<QCString("-");
+   args<<QCString("-M")<<QCString("--")<<QCString("-");
 
    if (!proc->start("nmblookup",args))
    {
