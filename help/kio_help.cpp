@@ -38,6 +38,7 @@
 #include <kinstance.h>
 #include <qfile.h>
 #include <limits.h>
+#include <qtextcodec.h>
 
 #include "kio_help.h"
 #include <libxslt/xsltInternals.h>
@@ -216,7 +217,10 @@ void HelpProtocol::get( const KURL& url )
     } else infoMessage( i18n( "Using cached version" ) );
 
     if (parsed.isEmpty()) {
-        data(QCString(i18n("<html>The requested help file could not be parsed:<br>%1</html>").arg(file).latin1()));
+        data(QString(
+            "<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=%1\">\n"
+            "%2<br>%3</html>" ).arg( QTextCodec::codecForLocale()->name() ).
+             arg( i18n( "The requested help file could not be parsed:" ) ).arg( file ).local8Bit() );
     } else
         emitFile( target );
 
@@ -241,6 +245,10 @@ void HelpProtocol::emitFile( const KURL& url )
     }
 
     QString filedata = splitOut(parsed, index);
+
+    filedata.replace( QRegExp( "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">" ),
+                      QString( "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=%1\">" ).arg(  QTextCodec::codecForLocale()->name() ) );
+
     data(filedata.local8Bit());
 }
 

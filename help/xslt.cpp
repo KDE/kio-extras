@@ -13,6 +13,7 @@
 #include <assert.h>
 #include <kfilterbase.h>
 #include <kfilterdev.h>
+#include <qtextcodec.h>
 
 #if !defined( SIMPLE_XSLT )
 extern HelpProtocol *slave;
@@ -60,7 +61,8 @@ QString transform( const QString &pat, const QString& tss)
     }
 
     INFO(i18n("Parsing document"));
-    xmlParserCtxtPtr ctxt = xmlCreateMemoryParserCtxt(contents.data(),
+    xmlParserCtxtPtr ctxt = xmlCreateMemoryParserCtxt
+                            (contents.data(),
                                                       contents.length());
     int directory = pat.findRev('/');
     if (directory != -1)
@@ -88,7 +90,7 @@ QString transform(xmlParserCtxtPtr ctxt, const QString &tss)
     else
         xmlIndentTreeOutput = 0;
 
-
+    kdDebug() << "myDoc " << ctxt->myDoc << endl;
     xmlParseDocument(ctxt);
     xmlDocPtr doc;
     if (ctxt->wellFormed)
@@ -98,7 +100,8 @@ QString transform(xmlParserCtxtPtr ctxt, const QString &tss)
         xmlFreeParserCtxt(ctxt);
         return parsed;
     }
-    xmlFreeParserCtxt(ctxt);
+
+    ctxt->myDoc->URL = (char *)xmlStrcat(ctxt->directory, "index.docbook" );
 
     // the params can be used to customize it more flexible
     const char *params[16 + 1];
@@ -115,6 +118,8 @@ QString transform(xmlParserCtxtPtr ctxt, const QString &tss)
         xmlFreeDoc(res);
     }
     xsltFreeStylesheet(style_sheet);
+
+    xmlFreeParserCtxt(ctxt);
 
     return parsed;
 }

@@ -22,6 +22,7 @@
 #include <kaboutdata.h>
 #include <stdlib.h>
 #include <kdebug.h>
+#include <qtextcodec.h>
 
 using namespace std;
 
@@ -30,8 +31,7 @@ extern int xmlLoadExtDtdDefaultValue;
 class MyPair {
 public:
     QString word;
-    int base;
-};
+    int base;};
 
 typedef QValueList<MyPair> PairList;
 
@@ -91,6 +91,9 @@ int main(int argc, char **argv) {
 
     KGlobal::locale()->setMainCatalogue("kio_help");
     KInstance ins("meinproc");
+    kdDebug() << KGlobal::locale()->charset() << endl;
+    kdDebug() << QTextCodec::codecForLocale()->name() << endl;
+
     fillInstance(ins);
 
     KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
@@ -174,6 +177,9 @@ int main(int argc, char **argv) {
                 file.setName( "index.html" );
                 file.open(IO_WriteOnly);
             }
+            output.replace( QRegExp( "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">" ),
+                            QString( "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=%1\">" ).arg(  QTextCodec::codecForLocale()->name() ) );
+
             QCString data = output.local8Bit();
             file.writeBlock(data.data(), data.length());
             file.close();
@@ -192,6 +198,8 @@ int main(int argc, char **argv) {
                 QString filedata = splitOut(output, index);
                 QFile file(filename);
                 file.open(IO_WriteOnly);
+                filedata.replace( QRegExp( "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">" ),
+                                  QString( "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=%1\">" ).arg(  QTextCodec::codecForLocale()->name() ) );
                 QCString data = filedata.local8Bit();
                 file.writeBlock(data.data(), data.length());
                 file.close();
