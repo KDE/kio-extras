@@ -98,7 +98,7 @@ void DevicesProtocol::rename(KURL const &oldURL, KURL const &newURL, bool) {
         QCString retType;
         QString retVal;
         QDataStream streamout(param,IO_WriteOnly);
-#warning FIXME
+
         streamout<<oldURL; 
 	streamout<<newURL;
 
