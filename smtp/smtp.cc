@@ -74,12 +74,8 @@ int kdemain(int argc, char **argv)
     exit(-1);
   }
 
-  // We might as well allocate it on the heap.  Since there's a heap o room there..
-  SMTPProtocol *slave = new SMTPProtocol( argv[2], argv[3],
-					  qstricmp( argv[1], "smtps" ) == 0 );
-  slave->dispatchLoop();
-
-  delete slave;
+  SMTPProtocol slave( argv[2], argv[3], qstricmp( argv[1], "smtps" ) == 0 );
+  slave.dispatchLoop();
   return 0;
 }
 
