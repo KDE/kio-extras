@@ -126,7 +126,7 @@ static KCmdLineOptions options[] =
 	{ "u", I18N_NOOP("Unmount given URL"), 0 },
 	{ "m", I18N_NOOP("Mount given URL (default)"), 0 },
 	{ "e", I18N_NOOP("Eject given URL via kdeeject"), 0},
-	{"!+[URL]",   I18N_NOOP("media:/ URL to mount/unmount/eject"), 0 },
+	{"!+URL",   I18N_NOOP("media:/ URL to mount/unmount/eject"), 0 },
 	KCmdLineLastOption
 };
 
@@ -140,6 +140,7 @@ int main(int argc, char **argv)
 	KCmdLineArgs::addCmdLineOptions( options );
 	KApplication::addCmdLineOptions();
 
+	if (KCmdLineArgs::parsedArgs()->count()==0) KCmdLineArgs::usage();
 	KApplication *app = new  MountHelper();
 	KGlobal::locale()->insertCatalogue("kio_media");
 
