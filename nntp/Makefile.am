@@ -1,17 +1,22 @@
-## $Id$
-## Makefile.am of kdebase/kioslave/pop3
-
-INCLUDES=	$(all_includes)
-LDFLAGS =       $(all_libraries) $(KDE_RPATH)
-LDADD	=	$(LIB_KIO)
+INCLUDES= -I$(srcdir)/../.. -I$(srcdir)/.. $(all_includes)
 
 ####### Files
 
-bin_PROGRAMS = kio_nntp
+lib_LTLIBRARIES = kio_nntp.la
 
-kio_nntp_SOURCES = nntp.cc
+kio_nntp_la_SOURCES = nntp.cc
+kio_nntp_la_LIBADD  = $(LIB_KIO)
+kio_nntp_la_LDFLAGS = $(all_libraries) -module -avoid-version
+
 noinst_HEADERS = nntp.h
 
 kioconfig_DATA = nntp.desktop
 kioconfigdir = $(kde_confdir)/protocols
+
+check_PROGRAMS = linktest
+linktest_SOURCES = $(kio_nntp_la_SOURCES) linktest.cpp
+linktest.cpp:
+	echo "int main() {};" > linktest.cpp
+linktest_LDFLAGS  = $(all_libraries) -module -avoid-version
+linktest_LDADD = $(kio_nntp_la_LIBADD)
 
