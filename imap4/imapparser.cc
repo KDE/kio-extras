@@ -1149,7 +1149,7 @@ void imapParser::parseBody (parseString & inWords)
   }
 }
 
-void imapParser::parseFetch (ulong value, parseString & inWords)
+void imapParser::parseFetch (ulong /* value */, parseString & inWords)
 {
   if (inWords[0] != '(')
     return;
