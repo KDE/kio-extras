@@ -143,7 +143,7 @@ int main ()
 {
   lame_version_t v;
   get_lame_version_numerical (&v);
-  if (v.major>3 || (v.major==3 && v.minor>87)) {
+  if (v.major>3 || (v.major==3 && v.minor>88)) {
     system("touch conf.lametest");
     return 0;
   } else
