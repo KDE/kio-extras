@@ -25,6 +25,7 @@
 #include <klocale.h>
 #include <kurl.h>
 #include <kprotocolmanager.h>
+#include <kmimemagic.h>
 #include <kinstance.h>
 
 #include <kconfig.h>
@@ -45,7 +46,7 @@ protected:
 	bool havePass;
 	bool haveServicePass;
 public:
-	MyCallback(SmbProtocol *p) : proto(p), 
+	MyCallback(SmbProtocol *p) : proto(p),
 		user(0), pass(0), service(0),
         	havePass(false), haveServicePass(false) {}
 	~MyCallback() {
@@ -413,21 +414,28 @@ void SmbProtocol::get( const KURL& url, bool /* reload */)
 
 	char buffer[ 4090 ];
 	QByteArray array;
+        bool mimetypeEmitted = false;
 
 	int n;
 	while( (n = smb.read(fd, buffer, 2048)) > 0 )
 	{
 		array.setRawData(buffer, n);
+                if ( !mimetypeEmitted )
+                {
+                  KMimeMagicResult * result = KMimeMagic::self()->findBufferFileType( array, url.fileName() );
+                  mimeType( result->mimeType() );
+                  mimetypeEmitted = true;
+                }
 		data( array );
-			array.resetRawData(buffer, n);
+                array.resetRawData(buffer, n);
 
 		processed_size += n;
 		time_t t = time( 0L );
 		if ( t - t_last >= 1 )
 		{
-			processedSize( processed_size );
-			speed( processed_size / ( t - t_start ) );
-			t_last = t;
+                  processedSize( processed_size );
+                  speed( processed_size / ( t - t_start ) );
+                  t_last = t;
 		}
 	}
 	if (n == -1)
