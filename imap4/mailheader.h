@@ -146,6 +146,18 @@ public:
 
   static int parseAddressList (const char *, QPtrList < mailAddress > *);
   static QCString getAddressStr (QPtrList < mailAddress > *);
+  QPtrList < mailAddress > &to ()
+  {
+    return toAdr;
+  }
+  QPtrList < mailAddress > &cc ()
+  {
+    return ccAdr;
+  }
+  QPtrList < mailAddress > &bcc ()
+  {
+    return bccAdr;
+  }
 #ifdef KMAIL_COMPATIBLE
   QString subject ()
   {
@@ -158,18 +170,6 @@ public:
   const mailAddress & replyTo ()
   {
     return replytoAdr;
-  }
-  const QPtrList < mailAddress > &to ()
-  {
-    return toAdr;
-  }
-  const QPtrList < mailAddress > &cc ()
-  {
-    return ccAdr;
-  }
-  const QPtrList < mailAddress > &bcc ()
-  {
-    return bccAdr;
   }
   void readConfig (void)
   {;

@@ -582,10 +582,8 @@ void imapParser::parseExpunge (ulong value, parseString & result)
   Q_UNUSED(result);
 }
 
-QValueList < mailAddress > imapParser::parseAddressList (parseString & inWords)
+void imapParser::parseAddressList (parseString & inWords, QPtrList<mailAddress>& list)
 {
-  QValueList < mailAddress > retVal;
-
   if (inWords[0] != '(')
   {
     parseOneWord (inWords);     // parse NIL
@@ -595,12 +593,12 @@ QValueList < mailAddress > imapParser::parseAddressList (parseString & inWords)
     inWords.pos++;
     skipWS (inWords);
 
-    mailAddress addr;
     while (!inWords.isEmpty () && inWords[0] != ')')
     {
       if (inWords[0] == '(') {
-        addr.clear();
-        retVal.append (parseAddress (inWords, addr));
+        mailAddress *addr = new mailAddress;
+        parseAddress(inWords, *addr);
+        list.append(addr);
       } else {
         break;
       }
@@ -610,8 +608,6 @@ QValueList < mailAddress > imapParser::parseAddressList (parseString & inWords)
       inWords.pos++;
     skipWS (inWords);
   }
-
-  return retVal;
 }
 
 const mailAddress& imapParser::parseAddress (parseString & inWords, mailAddress& retVal)
@@ -637,7 +633,6 @@ const mailAddress& imapParser::parseAddress (parseString & inWords, mailAddress&
 mailHeader * imapParser::parseEnvelope (parseString & inWords)
 {
   mailHeader *envelope = NULL;
-  QValueList < mailAddress > list;
 
   if (inWords[0] != '(')
     return envelope;
@@ -652,53 +647,38 @@ mailHeader * imapParser::parseEnvelope (parseString & inWords)
   //subject
   envelope->setSubjectEncoded(parseLiteralC(inWords));
 
+  QPtrList<mailAddress> list;
+  list.setAutoDelete(true);
+
   //from
-  list = parseAddressList (inWords);
-  for (QValueListConstIterator < mailAddress > it = list.begin ();
-       it != list.end (); ++it)
-  {
-    envelope->setFrom ((*it));
+  parseAddressList(inWords, list);
+  if (!list.isEmpty()) {
+	  envelope->setFrom(*list.last());
+	  list.clear();
   }
 
   //sender
-  list = parseAddressList (inWords);
-  for (QValueListConstIterator < mailAddress > it = list.begin ();
-       it != list.end (); ++it)
-  {
-    envelope->setSender ((*it));
+  parseAddressList(inWords, list);
+  if (!list.isEmpty()) {
+	  envelope->setSender(*list.last());
+	  list.clear();
   }
 
   //reply-to
-  list = parseAddressList (inWords);
-  for (QValueListConstIterator < mailAddress > it = list.begin ();
-       it != list.end (); ++it)
-  {
-    envelope->setReplyTo ((*it));
+  parseAddressList(inWords, list);
+  if (!list.isEmpty()) {
+	  envelope->setReplyTo(*list.last());
+	  list.clear();
   }
 
   //to
-  list = parseAddressList (inWords);
-  for (QValueListConstIterator < mailAddress > it = list.begin ();
-       it != list.end (); ++it)
-  {
-    envelope->addTo ((*it));
-  }
+  parseAddressList (inWords, envelope->to());
 
   //cc
-  list = parseAddressList (inWords);
-  for (QValueListConstIterator < mailAddress > it = list.begin ();
-       it != list.end (); ++it)
-  {
-    envelope->addCC ((*it));
-  }
+  parseAddressList (inWords, envelope->cc());
 
   //bcc
-  list = parseAddressList (inWords);
-  for (QValueListConstIterator < mailAddress > it = list.begin ();
-       it != list.end (); ++it)
-  {
-    envelope->addBCC ((*it));
-  }
+  parseAddressList (inWords, envelope->bcc());
 
   //in-reply-to
   envelope->setInReplyTo(parseLiteralC(inWords));

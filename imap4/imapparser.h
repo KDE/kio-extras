@@ -273,7 +273,7 @@ public:
   /** read a envelope from imap and parse the addresses */
   mailHeader *parseEnvelope (parseString & inWords);
   /** @brief parse an address list and return a list of addresses */
-  QValueList < mailAddress > parseAddressList (parseString & inWords);
+  void parseAddressList (parseString & inWords, QPtrList<mailAddress>& list);
   /** @brief parse an address and return the ref again */
   const mailAddress& parseAddress (parseString & inWords, mailAddress& buffer);
 
