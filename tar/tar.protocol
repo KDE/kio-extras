@@ -9,3 +9,4 @@ reading=true
 source=true
 DocPath=kioslave/tar.html
 Icon=tar
+Class=:local

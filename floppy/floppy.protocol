@@ -11,3 +11,4 @@ deleting=true
 moving=true
 Icon=3floppy_mount
 DocPath=kioslave/floppy.html
+Class=:local
