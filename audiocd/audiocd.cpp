@@ -23,13 +23,19 @@
 #include <unistd.h>
 #include <stdlib.h>
 
+#include <qfile.h>
+#include <qstrlist.h>
+#include <qdatetime.h>
+
+typedef Q_INT16 size16;
+typedef Q_INT32 size32;
+
 extern "C"
 {
 #include <cdda_interface.h>
 #include <cdda_paranoia.h>
 
 void paranoiaCallback(long, int);
-
 }
 
 #include <kdebug.h>
@@ -37,9 +43,6 @@ void paranoiaCallback(long, int);
 #include <kprotocolmanager.h>
 #include <kinstance.h>
 #include <klocale.h>
-#include <qfile.h>
-#include <qstrlist.h>
-#include <qdatetime.h>
 
 #include "audiocd.h"
 
