@@ -56,6 +56,7 @@
 #include <qglobal.h>
 
 #include <kprotocolmanager.h>
+#include <kemailsettings.h>
 #include <ksock.h>
 #include <kdebug.h>
 #include <kinstance.h>
@@ -65,7 +66,6 @@
 #include <klocale.h>
 #include <iostream.h>
 
-#include <kio/emailsettings.h>
 #include "smtp.h"
 
 using namespace KIO;
