@@ -10,6 +10,8 @@
 #include <kdebug.h>
 #include <kinstance.h>
 #include <ktar.h>
+#include <kzip.h>
+#include <kar.h>
 #include <kmimemagic.h>
 
 #include <errno.h> // to be removed
@@ -42,29 +44,30 @@ int kdemain( int argc, char **argv )
 TARProtocol::TARProtocol( const QCString &pool, const QCString &app ) : SlaveBase( "tar", pool, app )
 {
   kdDebug( 7109 ) << "TarProtocol::TarProtocol" << endl;
-  m_tarFile = 0L;
+  m_archiveFile = 0L;
 }
 
 TARProtocol::~TARProtocol()
 {
-    delete m_tarFile;
+    delete m_archiveFile;
 }
 
-bool TARProtocol::checkNewFile( QString fullPath, QString & path )
+bool TARProtocol::checkNewFile( const KURL & url, QString & path )
 {
+    QString fullPath = url.path();
     kdDebug(7109) << "TARProtocol::checkNewFile " << fullPath << endl;
 
 
     // Are we already looking at that file ?
-    if ( m_tarFile && m_tarFile->fileName() == fullPath.left(m_tarFile->fileName().length()) )
+    if ( m_archiveFile && m_archiveName == fullPath.left(m_archiveName.length()) )
     {
         // Has it changed ?
         struct stat statbuf;
-        if ( ::stat( QFile::encodeName( m_tarFile->fileName() ), &statbuf ) == 0 )
+        if ( ::stat( QFile::encodeName( m_archiveName ), &statbuf ) == 0 )
         {
             if ( m_mtime == statbuf.st_mtime )
             {
-                path = fullPath.mid( m_tarFile->fileName().length() );
+                path = fullPath.mid( m_archiveName.length() );
                 kdDebug(7109) << "TARProtocol::checkNewFile returning " << path << endl;
                 return true;
             }
@@ -73,16 +76,16 @@ bool TARProtocol::checkNewFile( QString fullPath, QString & path )
     kdDebug(7109) << "Need to open a new file" << endl;
 
     // Close previous file
-    if ( m_tarFile )
+    if ( m_archiveFile )
     {
-        m_tarFile->close();
-        delete m_tarFile;
-        m_tarFile = 0L;
+        m_archiveFile->close();
+        delete m_archiveFile;
+        m_archiveFile = 0L;
     }
 
     // Find where the tar file is in the full path
     int pos = 0;
-    QString tarFile;
+    QString archiveFile;
     path = QString::null;
 
     int len = fullPath.length();
@@ -97,7 +100,7 @@ bool TARProtocol::checkNewFile( QString fullPath, QString & path )
         struct stat statbuf;
         if ( ::stat( QFile::encodeName(tryPath), &statbuf ) == 0 && !S_ISDIR(statbuf.st_mode) )
         {
-            tarFile = tryPath;
+            archiveFile = tryPath;
             m_mtime = statbuf.st_mtime;
             path = fullPath.mid( pos + 1 );
             kdDebug(7109) << "fullPath=" << fullPath << " path=" << path << endl;
@@ -109,65 +112,78 @@ bool TARProtocol::checkNewFile( QString fullPath, QString & path )
             }
             else
                 path = QString::fromLatin1("/");
-            kdDebug(7109) << "Found. tarFile=" << tarFile << " path=" << path << endl;
+            kdDebug(7109) << "Found. archiveFile=" << archiveFile << " path=" << path << endl;
             break;
         }
     }
-    if ( tarFile.isEmpty() )
+    if ( archiveFile.isEmpty() )
     {
         kdDebug(7109) << "TARProtocol::checkNewFile: not found" << endl;
         return false;
     }
 
     // Open new file
-    kdDebug(7109) << "Opening KTar on " << tarFile << endl;
-    m_tarFile = new KTar( tarFile );
-    if ( !m_tarFile->open( IO_ReadOnly ) )
-    {
-        kdDebug(7109) << "Opening " << tarFile << "failed." << endl;
-        delete m_tarFile;
-        m_tarFile = 0L;
+    if ( url.protocol() == "tar" ) {
+        kdDebug(7109) << "Opening KTar on " << archiveFile << endl;
+        m_archiveFile = new KTar( archiveFile );
+    } else if ( url.protocol() == "ar" ) {
+        kdDebug(7109) << "Opening KAr on " << archiveFile << endl;
+        m_archiveFile = new KAr( archiveFile );
+    } else if ( url.protocol() == "zip" ) {
+        kdDebug(7109) << "Opening KZip on " << archiveFile << endl;
+        m_archiveFile = new KZip( archiveFile );
+    } else {
+        kdWarning(7109) << "Protocol " << url.protocol() << " not supported by this IOSlave" << endl;
         return false;
     }
 
+    if ( !m_archiveFile->open( IO_ReadOnly ) )
+    {
+        kdDebug(7109) << "Opening " << archiveFile << "failed." << endl;
+        delete m_archiveFile;
+        m_archiveFile = 0L;
+        return false;
+    }
+
+    m_archiveName = archiveFile;
     return true;
 }
 
 
-void TARProtocol::createUDSEntry( const KTarEntry * tarEntry, UDSEntry & entry )
+void TARProtocol::createUDSEntry( const KArchiveEntry * archiveEntry, UDSEntry & entry )
 {
     UDSAtom atom;
     entry.clear();
     atom.m_uds = UDS_NAME;
-    atom.m_str = tarEntry->name();
+    atom.m_str = archiveEntry->name();
     entry.append(atom);
 
     atom.m_uds = UDS_FILE_TYPE;
-    atom.m_long = tarEntry->permissions() & S_IFMT; // keep file type only
+    atom.m_long = archiveEntry->permissions() & S_IFMT; // keep file type only
     entry.append( atom );
 
     atom.m_uds = UDS_SIZE;
-    atom.m_long = tarEntry->isFile() ? ((KTarFile *)tarEntry)->size() : 0L ;
+    atom.m_long = archiveEntry->isFile() ? ((KArchiveFile *)archiveEntry)->size() : 0L ;
     entry.append( atom );
 
     atom.m_uds = UDS_MODIFICATION_TIME;
-    atom.m_long = tarEntry->date();
+    atom.m_long = archiveEntry->date();
     entry.append( atom );
 
     atom.m_uds = UDS_ACCESS;
-    atom.m_long = tarEntry->permissions() & 07777; // keep permissions only
+    atom.m_long = archiveEntry->permissions() & 07777; // keep permissions only
     entry.append( atom );
 
     atom.m_uds = UDS_USER;
-    atom.m_str = tarEntry->user();
+    atom.m_str = archiveEntry->user();
     entry.append( atom );
 
     atom.m_uds = UDS_GROUP;
-    atom.m_str = tarEntry->group();
+    atom.m_str = archiveEntry->group();
     entry.append( atom );
 
     atom.m_uds = UDS_LINK_DEST;
-    atom.m_str = tarEntry->symlink();
+    atom.m_str = archiveEntry->symlink();
     entry.append( atom );
 }
 
@@ -176,7 +192,7 @@ void TARProtocol::listDir( const KURL & url )
     kdDebug( 7109 ) << "TarProtocol::listDir " << url.url() << endl;
 
     QString path;
-    if ( !checkNewFile( url.path(), path ) )
+    if ( !checkNewFile( url, path ) )
     {
         QCString _path( QFile::encodeName(url.path()));
         kdDebug( 7109 ) << "Checking (stat) on " << _path << endl;
@@ -192,14 +208,14 @@ void TARProtocol::listDir( const KURL & url )
         redirection( redir );
         finished();
         // And let go of the tar file - for people who want to unmount a cdrom after that
-        delete m_tarFile;
-        m_tarFile = 0L;
+        delete m_archiveFile;
+        m_archiveFile = 0L;
         return;
     }
 
     if ( path.isEmpty() )
     {
-        KURL redir( QString::fromLatin1( "tar:/") );
+        KURL redir( url.protocol() + QString::fromLatin1( ":/") );
         kdDebug() << "url.path()==" << url.path() << endl;
         redir.setPath( url.path() + QString::fromLatin1("/") );
         kdDebug() << "TARProtocol::listDir: redirection " << redir.url() << endl;
@@ -209,12 +225,12 @@ void TARProtocol::listDir( const KURL & url )
     }
 
     kdDebug( 7109 ) << "checkNewFile done" << endl;
-    const KTarDirectory* root = m_tarFile->directory();
-    const KTarDirectory* dir;
+    const KArchiveDirectory* root = m_archiveFile->directory();
+    const KArchiveDirectory* dir;
     if (!path.isEmpty() && path != "/")
     {
         kdDebug(7109) << QString("Looking for entry %1").arg(path) << endl;
-        const KTarEntry* e = root->entry( path );
+        const KArchiveEntry* e = root->entry( path );
         if ( !e )
         {
             error( KIO::ERR_DOES_NOT_EXIST, url.prettyURL() );
@@ -225,7 +241,7 @@ void TARProtocol::listDir( const KURL & url )
             error( KIO::ERR_IS_FILE, url.prettyURL() );
             return;
         }
-        dir = (KTarDirectory*)e;
+        dir = (KArchiveDirectory*)e;
     } else {
         dir = root;
     }
@@ -238,9 +254,9 @@ void TARProtocol::listDir( const KURL & url )
     for( ; it != l.end(); ++it )
     {
         kdDebug(7109) << (*it) << endl;
-        const KTarEntry* tarEntry = dir->entry( (*it) );
+        const KArchiveEntry* archiveEntry = dir->entry( (*it) );
 
-        createUDSEntry( tarEntry, entry );
+        createUDSEntry( archiveEntry, entry );
 
         listEntry( entry, false );
     }
@@ -256,7 +272,7 @@ void TARProtocol::stat( const KURL & url )
 {
     QString path;
     UDSEntry entry;
-    if ( !checkNewFile( url.path(), path ) )
+    if ( !checkNewFile( url, path ) )
     {
         // We may be looking at a real directory - this happens
         // when pressing up after being in the root of an archive
@@ -284,27 +300,27 @@ void TARProtocol::stat( const KURL & url )
         finished();
 
         // And let go of the tar file - for people who want to unmount a cdrom after that
-        delete m_tarFile;
-        m_tarFile = 0L;
+        delete m_archiveFile;
+        m_archiveFile = 0L;
         return;
     }
 
-    const KTarDirectory* root = m_tarFile->directory();
-    const KTarEntry* tarEntry;
+    const KArchiveDirectory* root = m_archiveFile->directory();
+    const KArchiveEntry* archiveEntry;
     if ( path.isEmpty() )
     {
         path = QString::fromLatin1( "/" );
-        tarEntry = root;
+        archiveEntry = root;
     } else {
-        tarEntry = root->entry( path );
+        archiveEntry = root->entry( path );
     }
-    if ( !tarEntry )
+    if ( !archiveEntry )
     {
         error( KIO::ERR_DOES_NOT_EXIST, url.prettyURL() );
         return;
     }
 
-    createUDSEntry( tarEntry, entry );
+    createUDSEntry( archiveEntry, entry );
     statEntry( entry );
 
     finished();
@@ -315,39 +331,39 @@ void TARProtocol::get( const KURL & url )
     kdDebug( 7109 ) << "TarProtocol::get" << url.url() << endl;
 
     QString path;
-    if ( !checkNewFile( url.path(), path ) )
+    if ( !checkNewFile( url, path ) )
     {
         error( KIO::ERR_DOES_NOT_EXIST, url.prettyURL() );
         return;
     }
 
-    const KTarDirectory* root = m_tarFile->directory();
-    const KTarEntry* tarEntry = root->entry( path );
+    const KArchiveDirectory* root = m_archiveFile->directory();
+    const KArchiveEntry* archiveEntry = root->entry( path );
 
-    if ( !tarEntry )
+    if ( !archiveEntry )
     {
         error( KIO::ERR_DOES_NOT_EXIST, url.prettyURL() );
         return;
     }
-    if ( tarEntry->isDirectory() )
+    if ( archiveEntry->isDirectory() )
     {
         error( KIO::ERR_IS_DIRECTORY, url.prettyURL() );
         return;
     }
-    const KTarFile* tarFileEntry = static_cast<const KTarFile *>(tarEntry);
-    if ( !tarEntry->symlink().isEmpty() )
+    const KArchiveFile* archiveFileEntry = static_cast<const KArchiveFile *>(archiveEntry);
+    if ( !archiveEntry->symlink().isEmpty() )
     {
-      kdDebug(7102) << "Redirection to " << tarEntry->symlink() << endl;
-      KURL realURL( url, tarEntry->symlink() );
+      kdDebug(7102) << "Redirection to " << archiveEntry->symlink() << endl;
+      KURL realURL( url, archiveEntry->symlink() );
       kdDebug(7102) << "realURL= " << realURL.url() << endl;
       redirection( realURL.url() );
       finished();
       return;
     }
 
-    totalSize( tarFileEntry->size() );
+    totalSize( archiveFileEntry->size() );
 
-    QByteArray completeData = tarFileEntry->data();
+    QByteArray completeData = archiveFileEntry->data();
 
     KMimeMagicResult * result = KMimeMagic::self()->findBufferFileType( completeData, path );
     kdDebug(7102) << "Emitting mimetype " << result->mimeType() << endl;
@@ -355,7 +371,7 @@ void TARProtocol::get( const KURL & url )
 
     data( completeData );
 
-    processedSize( tarFileEntry->size() );
+    processedSize( archiveFileEntry->size() );
 
     finished();
 }

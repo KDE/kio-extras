@@ -23,8 +23,6 @@
 #include <kio/slavebase.h>
 #include <sys/types.h>
 
-class KTarEntry;
-
 class TARProtocol : public KIO::SlaveBase
 {
 public:
@@ -36,10 +34,11 @@ public:
     virtual void get( const KURL & url );
 
 protected:
-    void createUDSEntry( const KTarEntry * tarEntry, KIO::UDSEntry & entry );
-    bool checkNewFile( QString fullPath, QString & path );
+    void createUDSEntry( const KArchiveEntry * tarEntry, KIO::UDSEntry & entry );
+    bool checkNewFile( const KURL & url, QString & path );
 
-    KTar * m_tarFile;
+    KArchive * m_archiveFile;
+    QString m_archiveName;
     time_t m_mtime;
 };
 
