@@ -32,6 +32,7 @@
 #include <qstring.h>
 #include <qdict.h>
 #include <qmap.h>
+#include <qcstring.h>
 
 struct StatInfo
 {
@@ -76,6 +77,7 @@ class SmbProtocol : public KIO::SlaveBase
       char *m_stdoutBuffer;
       int m_stdoutSize;
       QString m_currentHost;
+      QCString m_nmbName;
       QDict<ClientProcess> m_processes;
       QMap<QString,int> m_months;
 

@@ -41,6 +41,11 @@
 #include <stdio.h>
 #include <errno.h>
 
+#include <netdb.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+
 #include <qtextstream.h>
 #include <qcstring.h>
 #include <qfile.h>
@@ -317,6 +322,9 @@ SmbProtocol::SmbReturnCode SmbProtocol::getShareInfo(ClientProcess* shareLister,
       if (exitStatus!=-1)
       {
          kdDebug(7101)<<"Smb::getShareInfo(): smbclient exited with status "<<exitStatus<<endl;
+         if (exitStatus!=0)
+            kdDebug(7101)<<"Smb::getShareInfo(): received: "<<m_stdoutBuffer<<"-"<<endl;
+
          if (exitStatus==0)
          {
             if (strstr(m_stdoutBuffer,"ERRDOS - ERRnoaccess")==0)
@@ -367,7 +375,7 @@ void SmbProtocol::listShares()
    kdDebug(7101)<<"Smb::listShares() "<<endl;
    ClientProcess *proc=new ClientProcess();
    QCStringList args;
-   args<<QCString("-L")+m_currentHost.latin1();
+   args<<QCString("-L")+m_nmbName;
    if (!m_user.isEmpty())
       args<<QCString("-U")+m_user.latin1();
    if (!m_workgroup.isEmpty())
@@ -395,7 +403,7 @@ void SmbProtocol::listShares()
       {
          proc=new ClientProcess();
          QCStringList tmpArgs;
-         tmpArgs<<QCString("-L")+m_currentHost.latin1();
+         tmpArgs<<QCString("-L")+m_nmbName;
          if (!user.isEmpty())
             tmpArgs<<QCString("-U")+user.latin1();
          if (!m_workgroup.isEmpty())
@@ -993,14 +1001,86 @@ void SmbProtocol::get( const KURL& url )
 
 void SmbProtocol::setHost(const QString& host, int /*port*/, const QString& /*user*/, const QString& /*pass*/)
 {
-   kdDebug(7101)<<"setHost: -"<<host<<"-"<<endl;
+   kdDebug(7101)<<"Smb::setHost: -"<<host<<"-"<<endl;
    if (host.isEmpty())
    {
       error(ERR_UNKNOWN_HOST,"");
       return;
    };
+   QCString nmbName=host.latin1();
+   //try to find the netbios name of this host
+   //first try to get the ip address of the host
+   struct hostent *hp=gethostbyname(host.latin1());
+   if (hp==0)
+   {
+      //if this fails, we should assume that the given host name
+      //is already the netbios name
+      kdDebug(7101)<<"Smb::setHost: gethostbyname returned 0"<<endl;
+   }
+   else
+   {
+      in_addr ip;
+      memcpy(&ip, hp->h_addr, hp->h_length);
+      QCString ipString=inet_ntoa(ip);
+      kdDebug(7101)<<"Smb::setHost: ip is -"<<ipString<<"-"<<endl;
+      //if we have the ip address, do a nmblookup -A address
+      //and use the name <00>
+      ClientProcess *proc=new ClientProcess();
+      QCStringList args;
+      args<<QCString("-A")<<ipString;
+
+      if (!proc->start("nmblookup",args))
+      {
+         kdDebug(7101)<<"Smb::setHost: starting nmblookup failed"<<endl;
+      }
+      else
+      {
+         clearBuffer();
+         int exitStatus(-1);
+         //we leave this loop if nmblookup
+         while(exitStatus==-1)
+         {
+            bool stdoutEvent;
+            proc->select(1,0,&stdoutEvent);
+            //if smbclient exits, something went wrong
+            exitStatus=proc->exited();
+            if (exitStatus!=-1)
+            {
+               kdDebug(7101)<<"Smb::setHost() nmblookup exited with exitcode "<<exitStatus<<endl;
+            };
+            if (stdoutEvent)
+            {
+               readOutput(proc->fd());
+               //don't search the whole buffer, only the last 12 bytes
+            }
+         };
+         //now parse the output
+         //kdDebug(7101)<<"Smb::setHost() received -"<<m_stdoutBuffer<<"-"<<endl;
+         QString outputString(m_stdoutBuffer);
+         QTextIStream output(&outputString);
+         QString line;
+
+         while (!output.atEnd())
+         {
+            line=output.readLine();
+            if ((line.contains("<ACTIVE>")) && (!line.contains("<GROUP>")))
+            {
+               //this should be the line with the netbios name of the host
+               kdDebug(7101)<<"Smb::setHost() using name from line -"<<line<<"-"<<endl;
+               line=line.left(line.find('<'));
+               line=line.stripWhiteSpace();
+               nmbName=line.latin1();
+               break;
+            };
+         };
+         clearBuffer();
+      };
+   };
+   kdDebug(7101)<<"Smb::setHost() nmbName is -"<<nmbName<<"-"<<endl;
+
    if (host==m_currentHost) return;
    m_currentHost=host;
+   m_nmbName=nmbName;
    m_processes.clear();
 }
 
@@ -1033,7 +1113,7 @@ ClientProcess* SmbProtocol::getProcess(const QString& host, const QString& share
    proc=new ClientProcess();
 
    QCStringList args;
-   args<<QString("//"+host+"/"+share).latin1();
+   args<<QCString("//")+m_nmbName+QCString("/")+share.latin1();
    if (!m_workgroup.isEmpty())
       args<<QCString("-W")+m_workgroup.latin1();
    if (!m_user.isEmpty())
