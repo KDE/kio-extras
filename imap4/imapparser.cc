@@ -44,7 +44,7 @@
 
 #include <kurl.h>
 #include <kmdcodec.h>
-#include <kio/sasl/saslcontext.h>
+#include <kio/ksasl/saslcontext.h>
 #include <kdebug.h>
 
 imapParser::imapParser ():
