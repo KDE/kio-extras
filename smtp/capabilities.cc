@@ -36,6 +36,8 @@
 #include <qstrlist.h>
 #include <qstringlist.h>
 
+#include <algorithm> // for std::unique()
+
 namespace KioSMTP {
 
   Capabilities Capabilities::fromResponse( const Response & ehlo ) {
@@ -120,11 +122,17 @@ namespace KioSMTP {
   }
 
   QStringList Capabilities::saslMethodsQSL() const {
-    QMap<QString,QStringList>::const_iterator pos = mCapabilities.find( "AUTH" );
-    if ( pos == mCapabilities.end() )
-      return QStringList();
-    else
-      return pos.data();
+    QStringList result;
+    for ( QMap<QString,QStringList>::const_iterator it = mCapabilities.begin() ; it != mCapabilities.end() ; ++it ) {
+      if ( it.key() == "AUTH" )
+	result += it.data();
+      else if ( it.key().startsWith( "AUTH=" ) ) {
+	result.push_back( it.key().mid( qstrlen("AUTH=") ) );
+	result += it.data();
+      }
+    }
+    result.erase( std::unique( result.begin(), result.end() ), result.end() );
+    return result;
   }
 
 
