@@ -185,7 +185,11 @@ namespace KioSMTP {
     if ( mFirstTime ) {
       QCString cmd = "AUTH " + mSASL.method();
       if ( mSASL.clientStarts() ) {
-	cmd += ' ' + mSASL.getResponse();
+	QCString resp = mSASL.getResponse();
+	if ( resp.isEmpty() )
+	  resp = '='; // empty initial responses are represented by a
+		      // single '=' in the SMTP SASL profile
+	cmd += ' ' + resp;
 	++mNumResponses;
       }
       return cmd + "\r\n";
