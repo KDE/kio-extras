@@ -598,13 +598,3 @@ void GZipFilter::emitData( void *_p, int _len )
   m_pGZip->filterData( _p, _len );
 }
 
-/*************************************
- *
- * Utilities
- *
- *************************************/
-
-void openFileManagerWindow( const char * )
-{
-  assert( 0 );
-}
