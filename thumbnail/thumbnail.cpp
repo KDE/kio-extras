@@ -30,6 +30,7 @@
 #include <sys/shm.h>
 
 #include <qfile.h>
+#include <qbitmap.h>
 #include <qpixmap.h>
 #include <qpainter.h>
 #include <qimage.h>
@@ -231,6 +232,22 @@ void ThumbnailProtocol::get(const KURL &url)
         p.drawLine( 0, 0, x2, 0 );
         p.drawLine( 0, 0, 0, y2 );
         p.end();
+
+        const QBitmap *mask = pix.mask();
+        if ( mask ) // need to update it so we can see the frame
+        {
+            QBitmap bitmap( *mask );
+            QPainter painter;
+            painter.begin( &bitmap );
+            painter.drawLine( x2, 0, x2, y2 );
+            painter.drawLine( 0, y2, x2, y2 );
+            painter.drawLine( 0, 0, x2, 0 );
+            painter.drawLine( 0, 0, 0, y2 );
+            painter.end();
+
+            pix.setMask( bitmap );
+        }
+
         img = pix.convertToImage();
     }
 
