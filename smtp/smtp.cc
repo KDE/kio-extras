@@ -522,7 +522,6 @@ bool SMTPProtocol::smtp_open()
 			}
 		}
 		if (!Authenticate()) {
-			error(ERR_COULD_NOT_LOGIN, i18n("Authentication failed"));
 			return false;
 		}
 	}
@@ -568,6 +567,7 @@ bool SMTPProtocol::Authenticate()
 			free(challenge);
 			delete m_pSASL;
 			m_pSASL = 0;
+			error(ERR_COULD_NOT_LOGIN, i18n("Your SMTP server doesn't support %1.\nChoose a different authentication method.").arg(auth_method));
 			return false;
 		}
 
@@ -584,10 +584,7 @@ bool SMTPProtocol::Authenticate()
 		}
 		free(challenge);
 
-		if (ret)
-			kdDebug() << "kio_smtp: auth worked" << endl;
-		else
-			kdDebug() << "kio_smtp: auth didn't work" << endl;
+		if (!ret) error(ERR_COULD_NOT_LOGIN, i18n("Authentication failed.\nMost likely the password is wrong.\nThe server said: %1").arg(lastError));
 		return ret;
 	}
 	return false;
