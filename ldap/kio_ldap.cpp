@@ -6,9 +6,13 @@
 #include <signal.h>
 #include <sys/types.h>
 #include <sys/stat.h>
+#ifdef TIME_WITH_SYS_TIME
+#include <sys/time.h>
+#endif
 
 #include <stdio.h>
 #include <unistd.h>
+#include <time.h>
 
 #include <lber.h>
 #include <ldap.h>

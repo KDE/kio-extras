@@ -1,6 +1,11 @@
+#include <config.h>
 #include <stdlib.h>
 #include <qtextstream.h>
 
+#ifdef TIME_WITH_SYS_TIME
+#include <sys/time.h>
+#endif
+#include <time.h>
 #include "kldap.h"
 #include "kldapurl.h"
 #include <kdebug.h>
@@ -92,8 +97,8 @@ Request::Request(Connection &c, RunMode m)
   : LDAPBase(), mode(m), running(FALSE), id(0), all(1), 
     req_result(0), use_timeout(FALSE)
 {
-  _timeout.tv_sec = 0;
-  _timeout.tv_usec = 0;
+  to_sec = 0;
+  to_usec = 0;
   
   _handle = c.handle();
   expected = -2;
@@ -142,9 +147,12 @@ bool Request::finish()
 	ldap_msgfree(req_result);
 
       // get the result
-      if (use_timeout)
-	retval = ldap_result(handle(), id, all, &_timeout, &req_result);
-      else
+      if (useTimeout()) {
+        struct timeval to;
+	to.tv_sec = to_sec;
+	to.tv_usec = to_usec;
+	retval = ldap_result(handle(), id, all, &to, &req_result);
+      } else
 	retval = ldap_result(handle(), id, all, 0, &req_result);
       
       // check if there was an error
@@ -290,9 +298,12 @@ bool SearchRequest::execute()
   // call the right version
   if (useTimeout())
     {
+      struct timeval to;
+      to.tv_sec = to_sec;
+      to.tv_usec = to_usec;
       retval = ldap_search_st(handle(), const_cast<char*>(_base.ascii()), _scope, 
 			      const_cast<char*>(_filter.ascii()), attrs, 
-			      _attrsonly, &_timeout, &req_result);
+			      _attrsonly, &to, &req_result);
     }
   else
     {

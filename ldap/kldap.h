@@ -7,13 +7,6 @@
 
 #include <lber.h>
 #include <ldap.h>
-#include <config.h>
-#ifdef TIME_WITH_SYS_TIME
-#include <sys/time.h>
-#include <time.h>
-#else
-#include <time.h>
-#endif
 
 namespace KLDAP
 {
@@ -471,7 +464,7 @@ namespace KLDAP
      * @param usec microseconds to wait
      *
      */
-    void setTimeout(int sec, int usec=0) { _timeout.tv_sec=sec; _timeout.tv_usec=usec; };
+    void setTimeout(int sec, int usec=0) { to_sec=sec; to_usec=usec; };
 
     /**
      * Returns the timeout.
@@ -482,7 +475,7 @@ namespace KLDAP
      * @param usec Variable to store the microseconds.
      *
      */
-    void timeout(int &sec, int &usec) { sec=_timeout.tv_sec; usec=_timeout.tv_usec; };
+    void timeout(int &sec, int &usec) { sec=to_sec; usec=to_usec; };
 
   protected:
 
@@ -494,7 +487,8 @@ namespace KLDAP
     int all;
 
     LDAPMessage    *req_result;
-    struct timeval _timeout;
+    int to_sec;
+    int to_usec;
     bool           use_timeout;
 
   };
