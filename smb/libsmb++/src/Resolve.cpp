@@ -102,7 +102,7 @@ Resolve::Resolve()
 	rethostent.h_aliases = 0;
 	rethostent.h_addrtype = AF_INET;
 	rethostent.h_length = 4;
-	rethostent.h_addr_list = new (char*)[2];
+	rethostent.h_addr_list = (char **) new char*[2];
 	rethostent.h_addr_list[0] = new char[4];
 	rethostent.h_addr_list[1] = 0;
 	
