@@ -374,7 +374,6 @@ namespace KioSMTP {
 
   bool TransferCommand::doNotExecute( const TransactionState * ts ) const {
     assert( ts );
-    assert( !ts->failed() );
     return ts->failed();
   }
 
