@@ -298,7 +298,7 @@ bool POP3Protocol::pop3_open(const KURL &url)
 		m_sOldServer = m_sServer;
 
                 // Try to go into TLS mode
-                if (!m_bIsSSL && canUseTLS() && command("STLS")) {
+                if (canUseTLS() && command("STLS")) {
                    if (startTLS()) {
                       kdDebug() << "TLS mode has been enabled." << endl;
                    } else {
