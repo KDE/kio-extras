@@ -1,6 +1,6 @@
 [Desktop Entry]
 ServiceTypes=media/cdrom_mounted,media/cdwriter_mounted,media/dvd_mounted,media/floppy5_mounted,media/floppy_mounted,media/hdd_mounted,media/nfs_mounted,media/removable_mounted,media/smb_mounted,media/zip_mounted,media/vcd,media/svcd,media/dvdvideo
-Actions=MediaUnmount
+Actions=MediaUnmount;
 X-KDE-Priority=TopLevel
 
 [Desktop Action MediaUnmount]
@@ -35,6 +35,7 @@ Name[it]=Smonta
 Name[ja]=マウント解除
 Name[lo]=ຫັງກາລີ
 Name[lt]=Išmontuoti
+Name[mk]=Демонтирај
 Name[mn]=Салгах
 Name[mt]=Żmonta
 Name[nb]=Avmonter
