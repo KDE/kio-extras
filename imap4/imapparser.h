@@ -259,7 +259,8 @@ public:
   void parseSentence (parseString & inWords);
 
   // parse a literal or word, may require more data
-  QByteArray parseLiteral (parseString & inWords, bool relay = false);
+  QByteArray parseLiteral (parseString & inWords, bool relay = false, 
+                           bool stopAtBracket = false);
 
   // static parser routines, can be used elsewhere
 

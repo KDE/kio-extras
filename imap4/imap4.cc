@@ -191,6 +191,7 @@ IMAP4Protocol::get (const KURL & _url)
     else if (aSection.find ("ENVELOPE", 0, false) != -1)
     {
       aSection = "UID ENVELOPE";
+      aSection += " BODY.PEEK[HEADER.FIELDS (REFERENCES)]";
     }
     else
     {

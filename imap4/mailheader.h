@@ -89,6 +89,15 @@ public:
     inReplyTo = _str;
   };
 
+  QCString getReferences ()
+  {
+    return references;
+  };
+  void setReferences (const QCString & _str)
+  {
+    references = _str;
+  };
+
   // set a unicode subject
   void setSubject (const QString & _str)
   {
@@ -166,6 +175,7 @@ private:
   int gmt_offset;
   QCString messageID;
   QCString inReplyTo;
+  QCString references;
 };
 
 #endif

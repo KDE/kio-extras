@@ -1036,13 +1036,13 @@ void imapParser::parseBody (parseString & inWords)
   if (inWords[0] == '[')
   {
     QByteArray specifier;
+    QByteArray label;
     inWords.pos++;
 
     specifier = parseOneWord (inWords, TRUE);
-
+    
     if (inWords[0] == '(')
     {
-      QByteArray label;
       inWords.pos++;
 
       while (!inWords.isEmpty () && inWords[0] != ')')
@@ -1080,6 +1080,41 @@ void imapParser::parseBody (parseString & inWords)
         myIO.setString (theHeader);
         envelope->parseHeader (myIO);
 
+      }
+    }
+    else if (qstrncmp(specifier, "HEADER.FIELDS", specifier.size()) == 0)
+    {
+      // BODY[HEADER.FIELDS (References)] {n} 
+      kdDebug(7116) << "imapParser::parseBody - HEADER.FIELDS: " 
+       << QCString(label.data(), label.size()+1) << endl;
+      if (qstrncmp(label, "REFERENCES", label.size()) == 0)
+      {
+       mailHeader *envelope = NULL;
+       if (lastHandled)
+         envelope = lastHandled->getHeader ();
+
+       if (!envelope || seenUid.isEmpty ())
+       {
+         kdDebug(7116) << "imapParser::parseBody - discarding " << envelope << " " << seenUid.ascii () << endl;
+         // don't know where to put it, throw it away
+         parseLiteral (inWords, true);
+       }
+       else
+       {
+         QByteArray res = parseLiteral (inWords, true);
+         QCString references = QCString(res.data(), res.size()+1);
+         int start = references.find ('<');
+         int end = references.findRev ('>');
+         if (start < end)
+                 references = references.mid (start, end - start + 1);
+
+         references = references.stripWhiteSpace();
+         envelope->setReferences(references);
+       }
+      }
+      else
+      { // not a header we care about throw it away
+        parseLiteral (inWords, true);
       }
     }
     else
@@ -1130,7 +1165,8 @@ void imapParser::parseFetch (ulong value, parseString & inWords)
       parseSentence (inWords);
     else
     {
-      QString word = parseLiteral (inWords);
+      QString word = parseLiteral (inWords, false, true);
+
       switch (word[0].latin1 ())
       {
       case 'E':
@@ -1334,7 +1370,6 @@ int imapParser::parseLoop ()
   else
   {
     imapCommand *current = sentQueue.at (0);
-
     switch (result[0])
     {
     case '*':
@@ -1477,7 +1512,7 @@ void imapParser::skipWS (parseString & inWords)
   }
 }
 
-QByteArray imapParser::parseLiteral (parseString & inWords, bool relay)
+QByteArray imapParser::parseLiteral (parseString & inWords, bool relay, bool stopAtBracket)
 {
   QByteArray retVal;
 
@@ -1523,7 +1558,7 @@ QByteArray imapParser::parseLiteral (parseString & inWords, bool relay)
   }
   else
   {
-    retVal = parseOneWord(inWords);
+    retVal = parseOneWord(inWords, stopAtBracket);
   }
   skipWS (inWords);
   return retVal;

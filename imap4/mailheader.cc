@@ -148,6 +148,11 @@ mailHeader::outputHeader (mimeIO & useIO)
     useIO.
       outputMimeLine (mimeHdrLine::
                       truncateLine (QCString ("In-Reply-To: ") + inReplyTo));
+  if (!references.isEmpty ())
+    useIO.
+      outputMimeLine (mimeHdrLine::
+                      truncateLine (QCString ("References: ") + references));
+
   if (!mDate.isEmpty())
     useIO.outputMimeLine (QCString ("Date: ") + mDate);
   mimeHeader::outputHeader (useIO);
