@@ -314,6 +314,7 @@ void POP3Protocol::slotGetSize( const char * _url )
 
   if (!pop3_open(usrc)) {
     fprintf(stderr,"pop3_open failed\n");fflush(stderr);
+    error( ERR_COULD_NOT_CONNECT, strdup(usrc.host()));
     pop3_close();
     return;
   }
@@ -381,6 +382,7 @@ void POP3Protocol::slotGet(const char *_url)
 
   if (!pop3_open(usrc)) {
     fprintf(stderr,"pop3_open failed\n");fflush(stderr);
+    error( ERR_COULD_NOT_CONNECT, strdup(usrc.host()));
     pop3_close();
     return;
   }
@@ -574,6 +576,7 @@ void POP3Protocol::slotListDir (const char *_url)
   // Try and open a connection
   if (!pop3_open(usrc)) {
     fprintf(stderr,"pop3_open failed\n");fflush(stderr);
+    error( ERR_COULD_NOT_CONNECT, strdup(usrc.host()));
     pop3_close();
     return;
   }
@@ -730,6 +733,7 @@ void POP3Protocol::slotDel( QStringList& _list )
     KURL blah=(*_list.begin());
     if ( !pop3_open(blah) ) {
       fprintf(stderr,"pop3_open failed\n");fflush(stderr);
+      error( ERR_COULD_NOT_CONNECT, strdup(blah.host()));
       pop3_close();
       return;
     }
