@@ -5,6 +5,9 @@
  * These parts are free software; you can redistribute and/or modify
  * them under the terms of the GNU General Public License as published by
  * the Free Software Foundation; version 2.
+ *
+ * $Id$
+ *
  */
 
 #include <kcmdlineargs.h>
@@ -31,7 +34,7 @@ QStringList KIODevicesMountHelperApp::deviceInfo(QString name)
         QStringList retVal;
         QDataStream streamout(param,IO_WriteOnly);
         streamout<<name;
-	dcopClient()->attach();
+		dcopClient()->attach();
         if ( dcopClient()->call( "kded",
                  "mountwatcher", "basicDeviceInfo(QString)", param,retType,data,false ) )
         {
@@ -53,7 +56,7 @@ KIODevicesMountHelperApp::KIODevicesMountHelperApp():KApplication() {
 		QTimer::singleShot(0,this,SLOT(finished()));
 		return;
 	}
-        QString device=info[1];
+	QString device=info[1];
 	KURL mp=info[2];
 	if (args->isSet("u"))
 	{
@@ -65,7 +68,7 @@ KIODevicesMountHelperApp::KIODevicesMountHelperApp():KApplication() {
 	{
 		KProcess *proc = new KProcess();
 		*proc << "kdeeject";
-		*proc << mp.path();
+		*proc << device;
 		proc->start();
 		connect( proc, SIGNAL(processExited(KProcess *)), this, SLOT( finished() ) );
 	}
