@@ -33,10 +33,6 @@
 
 #include "response.h"
 
-#include <qstrlist.h>
-#include <qstringlist.h>
-
-#include <algorithm> // for std::unique()
 
 namespace KioSMTP {
 

@@ -1,8 +1,6 @@
 #include <kio/global.h>
 #include <kdebug.h>
 
-#include <qstring.h>
-#include <qcstring.h>
 #include <qstringlist.h>
 
 //#include <iostream>
@@ -74,7 +72,6 @@ public:
 
 #define KIOSMTP_COMPARATORS // for TransactionState::operator==
 #include "command.h"
-#include "response.h"
 #include "transactionstate.h"
 
 #include <assert.h>

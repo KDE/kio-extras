@@ -32,16 +32,12 @@
 #include "command.h"
 
 #include "smtp.h"
-#include "response.h"
 #include "transactionstate.h"
 
 #include <kidna.h>
 #include <klocale.h>
-#include <kio/kdesasl.h>
 #include <kdebug.h>
-#include <kio/slavebase.h>
 
-#include <qcstring.h>
 
 #include <assert.h>
 
