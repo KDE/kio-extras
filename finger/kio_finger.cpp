@@ -80,6 +80,11 @@ FingerProtocol::FingerProtocol(const QCString &pool_socket, const QCString &app_
 FingerProtocol::~FingerProtocol()
 {
   kdDebug() << "FingerProtocol::~FingerProtocol()" << endl;
+  delete myURL;
+  delete myPerlPath;
+  delete myFingerPath;
+  delete myHTMLHeader;
+  delete myHTMLTail;
   delete myStdStream;
 }
 
@@ -118,22 +123,8 @@ void FingerProtocol::get(const KURL& url )
   finished();  
 
   //clean up
-  /*
-  delete myPerlPath;
-  delete myFingerPath;
-  delete myHTMLHeader;
-  delete myHTMLTail;
+  
   delete myKProcess;
-  delete myURL;
-  */
-}
-
-
-/* ---------------------------------------------------------------------------------- */
-
-
-void FingerProtocol::redirection(const KURL& url){
-  kdDebug() << "Redirection to: "  << url.url() << endl;
 }
 
 
@@ -149,23 +140,14 @@ void FingerProtocol::slotGetStdOutput(KProcess* /* p */, char *stdout, int len) 
 /* ---------------------------------------------------------------------------------- */
 
 
-void FingerProtocol::listDir(const KURL& url)
-{
-  error(KIO::ERR_CANNOT_ENTER_DIRECTORY,url.url());
-}
-
-
-/* ---------------------------------------------------------------------------------- */
-
-
 void FingerProtocol::mimetype(const KURL & /*url*/)
 {
   mimeType("text/html");
   finished();
 }
+     
 
-
-/* ------------------------------------------------------------------------------------- */
+/* ---------------------------------------------------------------------------------- */
 
 
 void FingerProtocol::getProgramPath()

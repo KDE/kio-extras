@@ -37,10 +37,8 @@ public:
   FingerProtocol(const QCString &pool_socket, const QCString &app_socket);
   virtual ~FingerProtocol();
 
+  virtual void mimetype(const KURL& url);
   virtual void get(const KURL& url);
-  virtual void mimetype(const KURL &url);
-  virtual void listDir(const KURL &url);
-  virtual void redirection(const KURL &url);
 
 private slots:
   void       slotGetStdOutput(KProcess*, char*, int);
