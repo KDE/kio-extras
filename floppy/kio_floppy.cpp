@@ -565,18 +565,15 @@ StatInfo FloppyProtocol::_stat(const KURL& url)
    QString outputString(m_stdoutBuffer);
    QTextIStream output(&outputString);
    QString line;
-   int lineNumber(0);
-   while (!output.atEnd())
+   for (int lineNumber=0; !output.atEnd(); lineNumber++)
    {
       line=output.readLine();
-      if (lineNumber==3)
-      {
-         StatInfo info=createStatInfo(line,true,url.fileName());
-         if (info.isValid==false)
-            error( KIO::ERR_COULD_NOT_STAT, url.prettyURL()+i18n("Reason unknown."));
-         return info;
-      };
-      lineNumber++;
+      if ( (lineNumber<3) || (line.isEmpty()) )
+         continue;
+      StatInfo info=createStatInfo(line,true,url.fileName());
+      if (info.isValid==false)
+         error( KIO::ERR_COULD_NOT_STAT, url.prettyURL()+i18n("Reason unknown."));
+      return info;
    };
    if (info.isValid==false)
       error( KIO::ERR_COULD_NOT_STAT, url.prettyURL()+i18n("Reason unknown."));
