@@ -273,7 +273,16 @@ void NNTPProtocol::listDir( const KURL& url ) {
 
   QString path = QDir::cleanDirPath(url.path());
 
-  if (path.isEmpty() || path == "/") {
+  if (path.isEmpty())
+    {
+      KURL newURL(url);
+      newURL.setPath("/");
+      DBG << "listDir redirecting to " << newURL.prettyURL() << endl;
+      redirection(newURL.url());
+      finished();
+      return;
+    }
+ else if(path == "/") {
     fetchGroups();
     finished();
   } else {
