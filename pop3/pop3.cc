@@ -161,7 +161,7 @@ ssize_t POP3Protocol::myReadLine(char *data, ssize_t len)
     waitForResponse(600);
     readLen = read(&readBuffer[readBufferLen], len - readBufferLen);
     readBufferLen += readLen;
-    if (readLen == 0) {
+    if (readLen <= 0) {
       data[0] = '\0';
       return 0;
     }
