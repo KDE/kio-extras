@@ -16,4 +16,4 @@ endif
 
 
 SUBDIRS = about cgi floppy filter fish info mac man nfs nntp pop3 imap4 smtp \
-  sftp tar zip finger thumbnail $(LDAP_SUBDIR) $(SMB_SUBDIR) $(DEVICES_SUBDIR)
+  sftp tar finger thumbnail $(LDAP_SUBDIR) $(SMB_SUBDIR) $(DEVICES_SUBDIR)
