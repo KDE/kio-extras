@@ -237,7 +237,7 @@ void FingerProtocol::parseCommandLine(const KURL& url)
    * Generate a valid finger url
    */
 
-  if(myURL->isEmpty() || myURL->isMalformed() ||
+  if(myURL->isEmpty() || !myURL->isValid() ||
      (myURL->user().isEmpty() && myURL->host().isEmpty()))
     {
       myURL->setProtocol("finger");
