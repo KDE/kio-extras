@@ -1040,15 +1040,6 @@ void FileProtocol::slotPut( const char *_url, int _mode, bool _overwrite, bool _
 }
 
 
-void FileProtocol::slotDel( const char *_url )
-{
-  list<string> lst;
-  lst.push_back( _url );
-  
-  slotDel( lst );
-}
-
-
 void FileProtocol::slotDel( list<string>& _source )
 {
   // Check whether the URLs are wellformed
