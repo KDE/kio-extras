@@ -23,7 +23,7 @@ if test -n "$XML_CONFIG"; then
      LIBXML_RPATH=`echo $LIBXML_RPATH | sed -e "s/-L/-R/"`
      LIBXML_CFLAGS="`$XML_CONFIG --cflags`"
   else
-     AC_MSG_WARN([You need at least libxml 2.3.5])
+     AC_MSG_WARN([You need at least libxml 2.3.7])
      HELP_SLAVE=
   fi
 fi
