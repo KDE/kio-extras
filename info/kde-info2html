@@ -67,7 +67,7 @@ sub DieFileNotFound{
 </head>
 <body>
   No info page for topic <code>"$FileName"</code> found.<br>
-  Maybe you find what you are looking for with <code>"man:$FileName"</code>.
+  You may find what you are looking for at the <a href="man:$FileName">$FileName manpage</a>.
 </body>
 EOF
   die "\n";
