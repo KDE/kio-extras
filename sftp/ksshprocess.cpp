@@ -251,7 +251,7 @@ bool KSshProcess::setOptions(const SshOptList& opts) {
 
         case SSH_OPTION:
             // don't allow NumberOfPasswordPrompts or StrictHostKeyChecking
-            tmp = (*it).str;
+            tmp = (*it).str.latin1();
             if( tmp.contains("NumberOfPasswordPrompts") ||
                 tmp.contains("StrictHostKeyChecking") ) {
                 mError = ERR_INVALID_OPT;
