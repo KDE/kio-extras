@@ -383,13 +383,15 @@ bool POP3Protocol::pop3_open(const KURL &url)
 					delete m_pSASL; m_pSASL=0;
 				} else {
 					bool ret, b64=true;
+
 					// See the SMTP ioslave
 					if (sasl_auth == "PLAIN")
 						b64=false;
 					ret = command(m_pSASL->generateResponse(challenge, false).latin1());
 					free(challenge);
 					delete m_pSASL;
-					if (ret) return true;
+					if (ret)
+						return true;
 				}
 			}
 		}
