@@ -191,6 +191,7 @@ namespace KioSMTP {
 #endif    
     const char *mOut, *mMechusing;
     uint mOutlen;
+    bool mOneStep;
 
     KIO::AuthInfo *mAi;
     QCString mLastChallenge;

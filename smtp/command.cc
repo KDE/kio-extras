@@ -201,6 +201,7 @@ namespace KioSMTP {
     conn = 0;
     client_interact = 0;
     mOut = 0; mOutlen = 0;
+    mOneStep = false;
     
     result = sasl_client_new( "smtp", aFQDN.latin1(),
       0, 0, NULL, 0, &conn );
@@ -221,6 +222,8 @@ namespace KioSMTP {
       SASLERROR
       return;
     }
+    if ( result == SASL_OK ) mOneStep = true;
+    kdDebug(7112) << "Mechanism: " << mMechusing << " one step: " << mOneStep << endl;
 #else
   mSMTP->error(KIO::ERR_COULD_NOT_AUTHENTICATE,
       i18n("Authentication support is not compiled into kio_smtp."));
@@ -315,10 +318,8 @@ namespace KioSMTP {
         firstCommand += QString::fromLatin1( challenge.data(), challenge.size() );
       }
       cmd = firstCommand.latin1();
-      kdDebug(7112) << "mechusing: " << mMechusing << endl;
-
-      /* FIXME: ugly hack */
-      if ( QString::fromLatin1( mMechusing ) == "PLAIN" ) mComplete = true;
+      
+      if ( mOneStep ) mComplete = true;
     } else {
 //      kdDebug(7112) << "SS: '" << mLastChallenge << "'" << endl;
       tmp.setRawData( mLastChallenge.data(), mLastChallenge.length() );
