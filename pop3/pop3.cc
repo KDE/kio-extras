@@ -471,6 +471,7 @@ bool POP3Protocol::pop3_open()
     // Fall back to conventional USER/PASS scheme
     if (!command(one_string, buf, sizeof(buf))) {
       fprintf(stderr, "Couldn't login. Bad username Sorry\n");
+      error( ERR_COULD_NOT_CONNECT, "Couldn't login. Bad username Sorry\n" );
       pop3_close();
       return false;
     }
@@ -485,6 +486,7 @@ bool POP3Protocol::pop3_open()
     }
     if (!command(one_string, buf, sizeof(buf))) {
       fprintf(stderr, "Couldn't login. Bad password Sorry\n");
+      error( ERR_COULD_NOT_CONNECT, "Couldn't login. Bad password Sorry\n" );
       pop3_close();
       return false;
     }
