@@ -1272,8 +1272,8 @@ bool IMAP4Protocol::makeLogin ()
 
     if (!hasCapability("IMAP4") && !hasCapability("IMAP4rev1"))
     {
-      error(ERR_COULD_NOT_LOGIN, i18n("Sorry, the server %1 does neither "
-        "support IMAP4 nor IMAP4rev1.\nIt identified itself with: %2")
+      error(ERR_COULD_NOT_LOGIN, i18n("Sorry, the server %1 supports neither "
+        "IMAP4 nor IMAP4rev1.\nIt identified itself with: %2")
         .arg(myHost).arg(greeting));
       closeConnection();
       return false;
