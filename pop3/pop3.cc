@@ -68,7 +68,7 @@
 #define MAX_RESPONSE_LEN 512
 
 #ifndef NAPOP
-	#include <kio/kmdcodec.h>
+	#include <kmdcodec.h>
 #endif
 
 extern "C" {
