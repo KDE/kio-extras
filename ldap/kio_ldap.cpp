@@ -159,9 +159,38 @@ void LDAPProtocol::LDAPErr( int err, const QString &msg )
   }
 }
 
+void LDAPProtocol::controlsFromMetaData( LDAPControl ***serverctrls, 
+  LDAPControl ***clientctrls )
+{
+  QString oid; bool critical; QByteArray value;
+  int i = 0;
+  while ( hasMetaData( QString::fromLatin1("SERVER_CTRL%1").arg(i) ) ) {
+    QCString val = metaData( QString::fromLatin1("SERVER_CTRL%1").arg(i) ).utf8();
+    LDIF::splitControl( val, oid, critical, value );
+    kdDebug(7125) << "server ctrl #" << i << " value: " << val << 
+      " oid: " << oid << " critical: " << critical << " value: " << 
+      QString::fromUtf8( value, value.size() ) << endl;
+    addControlOp( serverctrls, oid, value, critical );
+    i++;
+  }
+  i = 0;
+  while ( hasMetaData( QString::fromLatin1("CLIENT_CTRL%1").arg(i) ) ) {
+    QCString val = metaData( QString::fromLatin1("CLIENT_CTRL%1").arg(i) ).utf8();
+    LDIF::splitControl( val, oid, critical, value );
+    kdDebug(7125) << "client ctrl #" << i << " value: " << val << 
+      " oid: " << oid << " critical: " << critical << " value: " << 
+      QString::fromUtf8( value, value.size() ) << endl;
+    addControlOp( clientctrls, oid, value, critical );
+    i++;
+  }
+}
+
 int LDAPProtocol::asyncSearch( LDAPUrl &usrc ) 
 {
   char **attrs = 0;
+  int msgid;
+  LDAPControl **serverctrls = 0, **clientctrls = 0;
+  
   int count = usrc.attributes().count();
   if ( count > 0 ) {
     attrs = static_cast<char**>( malloc((count+1) * sizeof(char*)) );
@@ -183,11 +212,18 @@ int LDAPProtocol::asyncSearch( LDAPUrl &usrc )
       break;
   }
 
+  controlsFromMetaData( &serverctrls, &clientctrls );
+
   kdDebug(7125) << "asyncSearch() dn=" << usrc.dn() << " scope=" << 
     usrc.scope() << " filter=" << usrc.filter() << "attrs=" << usrc.attributes() << 
     endl;
-  retval = ldap_search( mLDAP, usrc.dn().utf8(), scope, 
-    usrc.filter().isEmpty() ? 0 : usrc.filter().utf8(), attrs, 0 );
+  retval = ldap_search_ext( mLDAP, usrc.dn().utf8(), scope, 
+    usrc.filter().isEmpty() ? 0 : usrc.filter().utf8(), attrs, 0, 
+    serverctrls, clientctrls,
+    0, 0, &msgid );
+
+  ldap_controls_free( serverctrls );
+  ldap_controls_free( clientctrls );
 
   // free the attributes list again
   if ( count > 0 ) {
@@ -195,6 +231,7 @@ int LDAPProtocol::asyncSearch( LDAPUrl &usrc )
     free(attrs);
   }
   
+  if ( retval == 0 ) retval = msgid;
   return retval;
 }
 
@@ -818,6 +855,13 @@ void LDAPProtocol::del( const KURL &_url, bool )
   finished();
 }
 
+#define FREELDAPMEM { \
+                ldap_mods_free( lmod, 1 ); \
+                ldap_controls_free( serverctrls ); \
+                ldap_controls_free( clientctrls ); \
+                lmod = 0; serverctrls = 0; clientctrls = 0; \
+                }
+
 void LDAPProtocol::put( const KURL &_url, int, bool overwrite, bool )
 {
   kdDebug(7125) << "put(" << _url << ")" << endl;
@@ -846,7 +890,8 @@ void LDAPProtocol::put( const KURL &_url, int, bool overwrite, bool )
       result = readData( buffer );
     }
     if ( result < 0 ) {
-//      error
+      //error
+      FREELDAPMEM;
       return;
     }
     if ( result == 0 ) {
@@ -872,42 +917,40 @@ void LDAPProtocol::put( const KURL &_url, int, bool overwrite, bool )
           switch ( ldif.entryType() ) {
             case LDIF::Entry_None:
               error( ERR_INTERNAL, i18n("The LDIF parser failed.") );
+              FREELDAPMEM;
               return;
             case LDIF::Entry_Del:
               kdDebug(7125) << "kio_ldap_del" << endl;
+              controlsFromMetaData( &serverctrls, &clientctrls );
               ldaperr = ldap_delete_ext_s( mLDAP, ldif.dn().utf8(), 
                 serverctrls, clientctrls );
-              ldap_controls_free( serverctrls );
-              ldap_controls_free( clientctrls );
-              serverctrls = 0; clientctrls = 0;
+              FREELDAPMEM;
               break;
             case LDIF::Entry_Modrdn:
               kdDebug(7125) << "kio_ldap_modrdn olddn:" << ldif.dn() << 
                 " newRdn: " <<  ldif.newRdn() << 
                 " newSuperior: " << ldif.newSuperior() << 
                 " deloldrdn: " << ldif.delOldRdn() << endl;
+              controlsFromMetaData( &serverctrls, &clientctrls );
               ldaperr = ldap_rename_s( mLDAP, ldif.dn().utf8(), ldif.newRdn().utf8(), 
                 ldif.newSuperior().isEmpty() ? 0 : ldif.newSuperior().utf8(), 
                 ldif.delOldRdn(), serverctrls, clientctrls );
 
-              ldap_controls_free( serverctrls );
-              ldap_controls_free( clientctrls );
-              serverctrls = 0; clientctrls = 0;
+              FREELDAPMEM;
               break;
             case LDIF::Entry_Mod:
               kdDebug(7125) << "kio_ldap_mod"  << endl;
               if ( lmod ) {
+                controlsFromMetaData( &serverctrls, &clientctrls );
                 ldaperr = ldap_modify_ext_s( mLDAP, ldif.dn().utf8(), lmod,
                   serverctrls, clientctrls );
-                ldap_mods_free( lmod, 1 );
-                ldap_controls_free( serverctrls );
-                ldap_controls_free( clientctrls );
-                lmod = 0; serverctrls = 0; clientctrls = 0;
+                FREELDAPMEM;
               }
               break;
             case LDIF::Entry_Add:
               kdDebug(7125) << "kio_ldap_add " << ldif.dn() << endl;
               if ( lmod ) {
+                controlsFromMetaData( &serverctrls, &clientctrls );
                 ldaperr = ldap_add_ext_s( mLDAP, ldif.dn().utf8(), lmod,
                   serverctrls, clientctrls );
                 if ( ldaperr == LDAP_ALREADY_EXISTS && overwrite ) {
@@ -917,16 +960,14 @@ void LDAPProtocol::put( const KURL &_url, int, bool overwrite, bool )
                     ldaperr = ldap_add_ext_s( mLDAP, ldif.dn().utf8(), lmod,
                       serverctrls, clientctrls );
                 }
-                ldap_mods_free( lmod, 1 );
-                ldap_controls_free( serverctrls );
-                ldap_controls_free( clientctrls );
-                lmod = 0; serverctrls = 0; clientctrls = 0;
+                FREELDAPMEM;
               }
               break;
           }
           if ( ldaperr != LDAP_SUCCESS ) {
             kdDebug(7125) << "put ldap error: " << ldap_err2string(ldaperr) << endl;
             LDAPErr( ldaperr, _url.prettyURL() );
+            FREELDAPMEM;
             return;
           }
           break;
@@ -957,10 +998,7 @@ void LDAPProtocol::put( const KURL &_url, int, bool overwrite, bool )
               break;
             default:
               error( ERR_INTERNAL, i18n("The LDIF parser failed.") );
-              ldap_mods_free( lmod, 1 );
-              ldap_controls_free( serverctrls );
-              ldap_controls_free( clientctrls );
-              lmod = 0; serverctrls = 0; clientctrls = 0;
+              FREELDAPMEM;
               return;  
           }
           break;
@@ -970,15 +1008,13 @@ void LDAPProtocol::put( const KURL &_url, int, bool overwrite, bool )
         case LDIF::Err:
           error( ERR_SLAVE_DEFINED, 
             i18n( "Invalid LDIF file in line %1." ).arg( ldif.lineNo() ) );
-          ldap_mods_free( lmod, 1 );
-          ldap_controls_free( serverctrls );
-          ldap_controls_free( clientctrls );
-          lmod = 0; serverctrls = 0; clientctrls = 0;
+          FREELDAPMEM;
           return;
       }
     } while ( ret != LDIF::MoreData );
   } while ( result > 0 );
               
+  FREELDAPMEM;
   finished();
 }
 

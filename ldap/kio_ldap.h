@@ -39,6 +39,8 @@ class LDAPProtocol : public KIO::SlaveBase
     bool mAuthSASL;
     QString mMech,mRealm,mBindName;
 
+    void controlsFromMetaData( LDAPControl ***serverctrls, 
+      LDAPControl ***clientctrls );
     void addControlOp( LDAPControl ***pctrls, const QString &oid,
       const QByteArray &value, bool critical );
     void addModOp( LDAPMod ***pmods, int mod_type, 
