@@ -4,34 +4,67 @@
 #include <kautomount.h>
 #include <kurl.h>
 #include <kmessagebox.h>
+#include <dcopclient.h>
+#include <qtimer.h>
 
 #include "kio_devices_mounthelper.h"
 #include "kio_devices_mounthelper.moc"
+
+QStringList KIODevicesMountHelperApp::deviceInfo(QString name)
+{
+        QByteArray data;
+        QByteArray param;
+        QCString retType;
+        QStringList retVal;
+        QDataStream streamout(param,IO_WriteOnly);
+        streamout<<name;
+	dcopClient()->attach();
+        if ( dcopClient()->call( "kded",
+                 "mountwatcher", "deviceInfo(QString)", param,retType,data,false ) )
+        {
+          QDataStream streamin(data,IO_ReadOnly);
+          streamin>>retVal;
+        }
+      return retVal;
+}
 
 KIODevicesMountHelperApp::KIODevicesMountHelperApp():KApplication() {
 	KCmdLineArgs *args = KCmdLineArgs::parsedArgs();;
 
 	KURL url(args->url(0));
+		QStringList info=deviceInfo(url.fileName());
+                QStringList::Iterator it=info.begin();
+//		KMessageBox::information(0,url.url());
+                if (it!=info.end())
+                {
+                        QString device=*it; ++it;
+//			KMessageBox::information(0,device);
 
-	if (args->isSet("u"))
-	{
-		KAutoUnmount *um=new KAutoUnmount(url.queryItem("mp"),QString::null);
-		connect(um,SIGNAL(finished()),this,SLOT(finished()));		
-		connect(um,SIGNAL(error()),this,SLOT(error()));		
-/*		KMessageBox::information(0,
-                         url.prettyURL(),
-                         "unmount"); */
-	}
-	else
-	{
-		KAutoMount *m=new KAutoMount(false,QString::null,url.queryItem("dev"),QString::null,QString::null,false);
-		connect(m,SIGNAL(finished()),this,SLOT(finished()));		
-		connect(m,SIGNAL(error()),this,SLOT(error()));		
+                        if (it!=info.end())
+                        {
+                                QString mp=*it; 
+                                {
 
-/*		KMessageBox::information(0,
-                         url.prettyURL(),
-                         "unmount");*/
-	}
+					if (args->isSet("u"))
+					{
+						KAutoUnmount *um=new KAutoUnmount(mp,QString::null);
+						connect(um,SIGNAL(finished()),this,SLOT(finished()));		
+						connect(um,SIGNAL(error()),this,SLOT(error()));		
+					}
+					else
+					{
+						KAutoMount *m=new KAutoMount(false,QString::null,device,QString::null,QString::null,false);
+						connect(m,SIGNAL(finished()),this,SLOT(finished()));		
+						connect(m,SIGNAL(error()),this,SLOT(error()));		
+					}
+                                        return;
+                                }
+                        }
+                }
+//		KMessageBox::information(0,"Wrong data");
+		QTimer::singleShot(0,this,SLOT(error()));
+                return;
+
 }
 
       

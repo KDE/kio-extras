@@ -9,6 +9,7 @@
    #include <dcopclient.h>  
    #include <qdatastream.h>
    #include <time.h>
+   #include <kprocess.h>
 
    class HelloProtocol : public KIO::SlaveBase
    {
@@ -31,6 +32,7 @@
 	QString mountPoint(int);
 	QString deviceType(int);
 	QStringList deviceList();
+	QStringList deviceInfo(const QString name);
   };
   
   extern "C" {
@@ -68,57 +70,138 @@ void HelloProtocol::stat(const KURL& url)
         QStringList     path = QStringList::split('/', url.encodedPathAndQuery(-1), false);
         KIO::UDSEntry   entry;
         QString mime;
+	QString mp;
 
 	switch (path.count())
 	{
 		case 0:
 		        createDirEntry(entry, i18n("My Computer"), "devices:/", "inode/directory");
 		        statEntry(entry);
+		        finished();
 			break;
 		default:
+
+                QStringList info=deviceInfo(url.fileName());
+
+                if (info.empty())
+                {
+                        error(KIO::ERR_SLAVE_DEFINED,i18n("Unknown device"));
+                        return;
+                }
+
+
+                QStringList::Iterator it=info.begin();
+                if (it!=info.end())
+                {
+                        QString device=*it; ++it;
+                        if (it!=info.end())
+                        {
+                                QString mp=*it; ++it;
+                                if (it!=info.end())
+                                {
+                                        bool mounted=((*it)=="true");
+                                        if (mounted)
+                                        {
+                                                if (mp=="/") mp="";
+                                                redirection("file:/"+mp);
+                                                finished();
+                                        }
+                                        else
+                                        {
+                                                error(KIO::ERR_SLAVE_DEFINED,i18n("Device not mounted"));
+                                        }
+                                        return;
+                                }
+                        }
+                }
+                error(KIO::ERR_SLAVE_DEFINED,i18n("illegal data received"));
+		return;
+		break;
+        }
+
+
+#if 0
+               	        QString mp=url.queryItem("mp");
+
 	                if (url.queryItem("mounted")=="true")
         	        {
-                	        QString mp=url.queryItem("mp");
                         	if (mp=="/") mp="";
 	                        redirection("file:/"+mp);
         	                finished();
                 	}
 			else
 			{
-				error(KIO::ERR_SLAVE_DEFINED,i18n("Device not mounted"));
-//					redirection("file:/");
+				 KProcess *proc = new KProcess;
+				 *proc << "kio_devices_mounthelper";
+				 *proc << "-m" << url.url();
+				 proc->start(KProcess::Block);
+				 delete proc;
+				
+                                if (mp=="/") mp="";
+                                redirection("file:/"+mp);
+                                finished();
+//				error(KIO::ERR_SLAVE_DEFINED,i18n("Device not mounted"));
+				return;
 			}
-//			createFileEntry(entry,i18n("blah"),url,"application/x-desktop");
-			break;
+
+#endif
+
 	};
 	
 
-        finished();
-}
 
 void HelloProtocol::listDir(const KURL& url)
 {
 	kdDebug()<<"HELLO PROTOCOLL::listdir: "<<url.url()<<endl;
-
 	if (url==KURL("devices:/"))
 		listRoot();
 	else
 	{
-		QString device=url.queryItem("dev");
-		if (url.queryItem("mounted")=="true")
+		QStringList info=deviceInfo(url.fileName());
+		
+		if (info.empty())
 		{
-			QString mp=url.queryItem("mp");
-			if (mp=="/") mp="";
-			redirection("file:/"+mp);
-			finished();
+			error(KIO::ERR_SLAVE_DEFINED,i18n("Unknown device"));
+			return;
 		}
-		else
+		
+		
+		QStringList::Iterator it=info.begin();
+		if (it!=info.end())
 		{
-			error(KIO::ERR_SLAVE_DEFINED,i18n("Device not mounted"));
-//			redirection("devices:/");
+			QString device=*it; ++it;
+			if (it!=info.end())
+			{
+				QString mp=*it; ++it;
+				if (it!=info.end())
+				{
+					bool mounted=((*it)=="true");
+					if (mounted)
+					{
+						if (mp=="/") mp="";
+						redirection("file:/"+mp);
+						finished();
+					}
+					else
+					{
+
+                                 KProcess *proc = new KProcess;
+                                 *proc << "kio_devices_mounthelper";
+                                 *proc << "-m" << url.url();
+                                 proc->start(KProcess::Block);
+                                 delete proc;
+
+                                if (mp=="/") mp="";
+                                redirection("file:/"+mp);
+                                finished();
+//						error(KIO::ERR_SLAVE_DEFINED,i18n("Device not mounted"));
+					}					
+					return;
+				}
+			}
 		}
+		error(KIO::ERR_SLAVE_DEFINED,i18n("illegal data received"));
 	}
-	
 }
 
 uint HelloProtocol::mountpointMappingCount()
@@ -170,6 +253,25 @@ bool HelloProtocol::deviceMounted(const QString dev)
       }
       return retVal;
 }
+
+
+QStringList HelloProtocol::deviceInfo(QString name)
+{
+        QByteArray data;
+        QByteArray param;
+        QCString retType;
+        QStringList retVal;
+        QDataStream streamout(param,IO_WriteOnly);
+        streamout<<name;
+        if ( m_dcopClient->call( "kded",
+                 "mountwatcher", "deviceInfo(QString)", param,retType,data,false ) )
+        {
+          QDataStream streamin(data,IO_ReadOnly);
+          streamin>>retVal;
+        }
+      return retVal;
+}
+
 
 bool HelloProtocol::deviceMounted(int id)
 {
@@ -286,6 +388,7 @@ void HelloProtocol::listRoot()
 	{
 		QString name=*it; ++it;
 		QString url=*it; ++it;
+		++it; ++it;
 		QString type=*it; ++it;
 		createFileEntry(entry,name,url,type);
 		listEntry(entry,false);
@@ -352,7 +455,7 @@ static void createFileEntry(KIO::UDSEntry& entry, const QString& name, const QSt
         addAtom(entry, KIO::UDS_MIME_TYPE, 0, mime);
         addAtom(entry, KIO::UDS_SIZE, 0);
         addAtom(entry, KIO::UDS_GUESSED_MIME_TYPE, 0, "inode/directory");
-	addAtom(entry, KIO::UDS_CREATION_TIME,0);
+	addAtom(entry, KIO::UDS_CREATION_TIME,1);
 	addAtom(entry, KIO::UDS_MODIFICATION_TIME,time(0));
 }
 

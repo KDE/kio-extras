@@ -36,6 +36,7 @@ public:
 private:
     DiskList mDiskList;
     QStringList mountList;
+    bool firstTime;
 
 k_dcop:
     uint    mountpointMappingCount();
@@ -48,6 +49,7 @@ k_dcop:
     void    mount( bool readonly, const QString& format, const QString& device, const QString& mountpoint,
               const QString & desktopFile, bool show_filemanager_window);
     QStringList list();
+    QStringList deviceInfo(QString);
 
 k_dcop_signals:
     void mountSituationChaged();

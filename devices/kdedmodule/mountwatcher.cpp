@@ -41,6 +41,7 @@
 MountWatcherModule::MountWatcherModule(const QCString &obj)
     : KDEDModule(obj),mDiskList(this)
 {
+	firstTime=true;
 	mDiskList.readFSTAB();
 	mDiskList.readDF();
 
@@ -141,10 +142,35 @@ void MountWatcherModule::dirty(const QString& str)
 #endif
 }
 
+QStringList MountWatcherModule::deviceInfo(QString name)
+{
+	QString tmpURL="devices:/"+name;
+	QStringList tmp;
+	for (QStringList::Iterator it=mountList.begin();it!=mountList.end();)
+	{
+		++it;
+		if ((*it)==tmpURL)
+		{
+			++it;
+			tmp<<(*it);
+			++it;
+			tmp<<(*it);
+			++it;
+			++it;
+			tmp<<(*it);
+			break;
+		}
+		else
+		{++it; ++it;++it;++it;++it;}
+	}
+	return tmp;
+}
+
 
 void MountWatcherModule::readDFDone()
 {
 	mountList.clear();
+	KURL::List fileList;
 	for (DiskEntry *ent=mDiskList.first();ent;ent=mDiskList.next())
 	{
 		QString entryName="entries_";
@@ -152,23 +178,31 @@ void MountWatcherModule::readDFDone()
 		entryName+=ent->mountPoint().replace(QRegExp("/"),"");
        	        if (ent->mounted())
 		{
-			if (!(ent->discType().contains("floppy") || ent->discType().contains("cdrom"))) continue;
+//			if (!(ent->discType().contains("floppy") || ent->discType().contains("cdrom"))) continue;
                  	mountList<<i18n("%1 mounted at %2").arg(ent->deviceName()).arg(ent->mountPoint());
-			mountList<<(QString("devices:/")+entryName+QString("?dev=")+ent->deviceName()+
-			"&mp="+ent->mountPoint()+"&mounted=true");
+			mountList<<(QString("devices:/")+entryName);
+			mountList<<ent->deviceName();
+			mountList<<ent->mountPoint();
+			/*+QString("?dev=")+ent->deviceName()+
+			"&mp="+ent->mountPoint()+"&mounted=true")*/
 			mountList<< ent->discType()+"_mounted";
 			mountList<<"true";
+			fileList<<KURL(QString("devices:/")+entryName);
 		}
                	else
 		{
-			if (!(ent->discType().contains("floppy") || ent->discType().contains("cdrom"))) continue;
+//			if (!(ent->discType().contains("floppy") || ent->discType().contains("cdrom"))) continue;
 
 		//	continue;
                  	mountList<<i18n("%1 (not mounted)").arg(ent->deviceName());
-			mountList<<QString("devices:/")+entryName+QString("?dev=")+ent->deviceName()+
-			"&mp="+ent->mountPoint()+"&mounted=false";
+			mountList<<QString("devices:/")+entryName;
+			/*+QString("?dev=")+ent->deviceName()+
+			"&mp="+ent->mountPoint()+"&mounted=false")*/
+			mountList<<ent->deviceName();
+			mountList<<ent->mountPoint();
 			mountList<< ent->discType()+"_unmounted";
 			mountList<<"false";
+			fileList<<KURL(QString("devices:/")+entryName);
 		}
 	}
 

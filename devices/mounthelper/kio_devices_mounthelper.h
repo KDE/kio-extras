@@ -8,6 +8,8 @@ class KIODevicesMountHelperApp:public KApplication
         Q_OBJECT
 public:
         KIODevicesMountHelperApp();
+private:
+	QStringList deviceInfo(QString name);
 protected slots:
 	void finished();
 	void error();
