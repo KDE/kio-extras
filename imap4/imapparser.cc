@@ -1338,8 +1338,8 @@ imapParser::parseFetch (ulong value, QString & inWords)
           ulong size;
           parseOneNumber (inWords, size);
 
-          if (lastHandled)
-            lastHandled->setSize (size);
+          if (!lastHandled) lastHandled = new imapCache();
+          lastHandled->setSize (size);
         }
         else if (word.find ("RFC822") == 0)
         {
@@ -1353,18 +1353,16 @@ imapParser::parseFetch (ulong value, QString & inWords)
         {
           QString date;
           date = parseOneWord (inWords);
-          if (lastHandled)
-            lastHandled->setDateStr (date);
+          if (!lastHandled) lastHandled = new imapCache();
+          lastHandled->setDateStr (date);
         }
         break;
 
       case 'F':
         if (word == "FLAGS")
         {
-          if (lastHandled)
-            lastHandled->setFlags (imapInfo::_flags (inWords));
-          else
-            parseSentence (inWords);
+          if (!lastHandled) lastHandled = new imapCache();
+          lastHandled->setFlags (imapInfo::_flags (inWords));
         }
         break;
 
