@@ -305,7 +305,7 @@ namespace KioSMTP {
       cmd = mUngetSASLResponse;
       mUngetSASLResponse = 0;
     } else if ( mFirstTime ) {
-      QString firstCommand = "AUTH " + QCString( mMechusing );
+      QString firstCommand = "AUTH " + QString::fromLatin1( mMechusing );
       
       tmp.setRawData( mOut, mOutlen );
       KCodecs::base64Encode( tmp, challenge );
