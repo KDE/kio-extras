@@ -31,7 +31,7 @@ extern "C"
     {
         return new CursorCreator;
     }
-};
+}
 
 bool CursorCreator::create( const QString &path, int width, int height, QImage &img )
 {
