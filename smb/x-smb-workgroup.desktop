@@ -1,8 +1,25 @@
 [Desktop Entry]
 Encoding=UTF-8
 Comment=Windows Workgroup
+Comment[be]=Працоўная група Windows
+Comment[ca]=Grup de treball de Windows
+Comment[cy]=Gr?p Gwaith Windows
+Comment[el]=Ομάδα εργασίας Windows
+Comment[es]=Grupo de trabajo de Windows
+Comment[et]=Windowsi töögrupp
+Comment[fa]=گروه کار ویندوز
+Comment[hr]=Windows radna grupa
+Comment[hu]=Windows munkacsoport
+Comment[nl]=Windows-werkgroep
+Comment[pt_BR]=Grupo de trabalho do Windows
+Comment[sv]=Windows arbetsgrupp
+Comment[tr]=Windows Çalışma Grubu
+Comment[uz]=Windows ишчи гуруҳи
+Comment[wa]=Groupe d' ovraedje Windows
+Comment[xx]=xxWindows Workgroupxx
 Icon=usb
 Type=MimeType
 MimeType=application/x-smb-workgroup
 X-KDE-Derived=inode/directory
 X-KDE-AutoEmbed=true
+X-KDE-IsAlso=inode/directory
