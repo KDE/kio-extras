@@ -155,10 +155,11 @@ bool GSCreator::create(const QString &path, int, int, QImage &img)
     // find first zero entry in gsargs and put the filename 
     // or - (stdin) there, if DVI 
     const char **arg = gsargs;
+    QCString fname = QFile::encodeName( path );
     while (*arg)
       ++arg;
     if( no_dvi )
-      *arg = QFile::encodeName( path ).data();
+      *arg = fname.data();
     else if( !no_dvi ) 
       *arg = "-";
 
@@ -166,7 +167,7 @@ bool GSCreator::create(const QString &path, int, int, QImage &img)
     arg = dvipsargs;
     while (*arg)
       ++arg;
-    *arg = QFile::encodeName( path ).data();
+    *arg = fname.data();
     
     if( !no_dvi ){
       pipe(dvipipe);
@@ -253,9 +254,7 @@ bool GSCreator::create(const QString &path, int, int, QImage &img)
     }
     if (!ok) // error or timeout, gs probably didn't exit yet
       kill(pid, SIGTERM);
-    
     int status;
-    
     if (waitpid(pid, &status, 0) != pid || (status != 0  && status != 256) )
       ok = false;
   } 
@@ -263,9 +262,9 @@ bool GSCreator::create(const QString &path, int, int, QImage &img)
     // fork() (1) failed, close these
     close(input[0]);
     close(input[1]);
-    close(output[0]);
+    close(output[1]);
   }
-  close(output[1]);
+  close(output[0]);
   
   int l = img.loadFromData( data );
   
