@@ -68,13 +68,13 @@ void GopherProtocol::gopher_close ()
 {
   if (fp) {
     fclose(fp);
-    fd=-1; fp=0;
+    fp=0;
   }
 }
 
 bool GopherProtocol::gopher_open( const KURL &_url )
 {
-  ConnectToHost(m_sServer, static_cast<int>(_url.port()));
+  ConnectToHost(m_sServer.ascii() /*check if ok*/, static_cast<int>(_url.port()));
   QString path=_url.path();
   if (path.at(0)=='/') path.remove(0,1);
   if (path.isEmpty()) {

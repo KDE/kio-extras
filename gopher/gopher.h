@@ -8,7 +8,7 @@
 
 #include <qstring.h>
 
-#include <kio/slavebase.h>
+#include <kio/tcpslavebase.h>
 
 enum GopherType
 {
@@ -29,7 +29,7 @@ enum GopherType
   GOPHER_NONE       = '*'
 };
 
-class GopherProtocol : public KIO::SlaveBase
+class GopherProtocol : public KIO::TCPSlaveBase
 {
 public:
 public:
