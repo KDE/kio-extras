@@ -76,7 +76,7 @@ rfcDecoder::fromIMAP (const QString & inSrc)
   {
     c = src[srcPtr++];
     /* deal with literal characters and &- */
-    if (c != '&' || *src == '-')
+    if (c != '&' || src[srcPtr] == '-')
     {
       /* encode literally */
       dst += c;
