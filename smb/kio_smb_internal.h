@@ -43,6 +43,18 @@ typedef enum _SMBUrlType
     SMBURLTYPE_SHARE_OR_PATH       = 3
 }SMBUrlType;
 
+//===========================================================================
+struct SMBAuthInfo
+//===========================================================================
+{
+    QCString m_workgroup;
+    QCString m_server;
+    QCString m_share;
+    QCString m_username;
+    QCString m_passwd;
+    QCString m_domain;
+};
+
 
 
 //===========================================================================
@@ -137,18 +149,10 @@ public:
     //-----------------------------------------------------------------------
     QString SMBUrl::getUserDomain() const;
     //-----------------------------------------------------------------------
-};
 
-//===========================================================================
-struct SMBAuthInfo
-//===========================================================================
-{
-    QCString m_workgroup;
-    QCString m_server;
-    QCString m_share;
-    QCString m_username;
-    QCString m_passwd;
-    QCString m_domain;
+    //-----------------------------------------------------------------------
+    void getAuthInfo(SMBAuthInfo& auth);
+    //-----------------------------------------------------------------------
 };
 
 
