@@ -6,6 +6,11 @@ METASOURCES = AUTO
 
 ####### Files
 
+check_PROGRAMS = ksshprocesstest
+
+ksshprocesstest_SOURCES = ksshprocesstest.cpp
+ksshprocesstest_LDADD = $(LIB_KSYCOCA) ksshprocess.lo process.lo atomicio.lo
+
 kde_module_LTLIBRARIES = kio_sftp.la
 
 kio_sftp_la_SOURCES = process.cpp atomicio.cpp kio_sftp.cpp sftpfileattr.cpp ksshprocess.cpp
