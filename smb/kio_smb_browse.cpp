@@ -36,8 +36,6 @@
 
 using namespace KIO;
 
-// libsmbclient need global variables to store in, else it crashes
-struct stat st;
 
 //---------------------------------------------------------------------------
 bool SMBSlave::browse_stat_path(const SMBUrl& url, UDSEntry& udsentry)
@@ -45,7 +43,8 @@ bool SMBSlave::browse_stat_path(const SMBUrl& url, UDSEntry& udsentry)
 {
     UDSAtom     udsatom;
 
-    memset(&st,0,sizeof(st));
+    // realy needed ?
+    // memset(&st,0,sizeof(st));
     if(cache_stat(url, &st) == 0)
     {
         if(S_ISDIR(st.st_mode))
@@ -64,7 +63,6 @@ bool SMBSlave::browse_stat_path(const SMBUrl& url, UDSEntry& udsentry)
         }
         else
         {
-	    kdDebug(KIO_SMB) << "SMBSlave::browse_stat_path unknown text"<<endl;
             error(ERR_INTERNAL, TEXT_UNKNOWN_ERROR);
             return false;
         }
@@ -125,24 +123,19 @@ bool SMBSlave::browse_stat_path(const SMBUrl& url, UDSEntry& udsentry)
         case ENOENT:
         case ENOTDIR:
         case EFAULT:
-            kdDebug(KIO_SMB) << "SMBSlave::browse_stat_path EFAULT/ENOTDIR/ENOENT "  << endl;
-            SlaveBase::error(ERR_DOES_NOT_EXIST, url.toKioUrl());
+            error(ERR_DOES_NOT_EXIST, url.toKioUrl());
             break;
         case EPERM:
         case EACCES:
-            kdDebug(KIO_SMB) << "SMBSlave::browse_stat_path EPERM/EACCES "  << endl;
-            SlaveBase::error(ERR_ACCESS_DENIED, url.toKioUrl());
+            error(ERR_ACCESS_DENIED, url.toKioUrl());
             cache_clear_AuthInfo(m_current_workgroup);
             break;
         case ENOMEM:
-            kdDebug(KIO_SMB) << "SMBSlave::browse_stat_path ENOMEM "  << endl;
-            SlaveBase::error(ERR_OUT_OF_MEMORY, TEXT_OUT_OF_MEMORY);
+            error(ERR_OUT_OF_MEMORY, TEXT_OUT_OF_MEMORY);
         case EBADF:
-            kdDebug(KIO_SMB) << "SMBSlave::browse_stat_path EBADF "  << endl;
-            SlaveBase::error(ERR_INTERNAL, "BAD Filediscriptor");
+            error(ERR_INTERNAL, "BAD Filediscriptor");
         default:
-            kdDebug(KIO_SMB) << "SMBSlave::browse_stat_path UNKNOWN "  <<errno<< endl;
-            SlaveBase::error(ERR_INTERNAL, TEXT_UNKNOWN_ERROR);
+            error(ERR_INTERNAL, TEXT_UNKNOWN_ERROR);
         }
         return false;
     }
@@ -204,34 +197,28 @@ void SMBSlave::stat( const KURL& kurl )
     switch(m_current_url.getType())
     {
     case SMBURLTYPE_UNKNOWN:
-        kdDebug(KIO_SMB) << "SMBSlave::stat ERR_MALFORMED_URL " << url.url() << endl;
         error(ERR_MALFORMED_URL,m_current_url.toKioUrl());
-        break;
+        return;
 
     case SMBURLTYPE_ENTIRE_NETWORK:
     case SMBURLTYPE_WORKGROUP_OR_SERVER:
-        kdDebug(KIO_SMB) << "SMBSlave::stat SMBURLTYPE_WORKGROUP_OR_SERVER " << url.url() << endl;
         udsatom.m_uds = KIO::UDS_FILE_TYPE;
         udsatom.m_long = S_IFDIR;
         udsentry.append(udsatom);
         break;
 
     case SMBURLTYPE_SHARE_OR_PATH:
-        kdDebug(KIO_SMB) << "SMBSlave::stat SMBURLTYPE_SHARE_OR_PATH " << url.url() << endl;
         browse_stat_path(m_current_url, udsentry);
         break;
 
     default:
         kdDebug(KIO_SMB) << "SMBSlave::stat UNKNOWN " << url.url() << endl;
-        kdDebug(KIO_SMB) << "weird value in stat" << endl;
-        break;
+        return;
     }
 
     statEntry(udsentry);
     finished();
 
-    kdDebug(KIO_SMB) << "SMBSlave::stat on " << url.url()
-                     << " is returning" << endl;
 }
 
 
@@ -332,7 +319,7 @@ void SMBSlave::listDir( const KURL& kurl )
                 // TODO: we don't handle SMBC_IPC_SHARE, SMBC_PRINTER_SHARE
                 //       SMBC_LINK, SMBC_COMMS_SHARE
                 //SlaveBase::error(ERR_INTERNAL, TEXT_UNSUPPORTED_FILE_TYPE);
-                continue;
+                // continue;
             }
 
             // Set name
@@ -350,9 +337,6 @@ void SMBSlave::listDir( const KURL& kurl )
     }
     else
     {
-        kdDebug(KIO_SMB) << "there was error, error = " << strerror( errno )
-                         << endl;
-
         switch(errno)
         {
         case ENOENT:
@@ -377,8 +361,9 @@ void SMBSlave::listDir( const KURL& kurl )
         default:
             error(ERR_INTERNAL, TEXT_UNKNOWN_ERROR);
         }
+	return;
     }
 
-    SlaveBase::listEntry(udsentry, true); 
-    SlaveBase::finished();
+    listEntry(udsentry, true); 
+    finished();
 }
