@@ -134,6 +134,7 @@ QString splitOut(const QString &parsed, int index)
         filedata = filedata.left(index) + filedata.mid(endindex);
     }
 
+    filedata.replace(QRegExp(">"), ">\n");
     return filedata;
 }
 
