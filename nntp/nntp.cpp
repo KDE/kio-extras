@@ -365,6 +365,9 @@ bool NNTPProtocol::fetchGroup(QString& group) {
     return false;
   }
 
+  if (first.toLong() == 0L)
+    return false;
+
   UDSEntry entry;
   UDSEntryList entryList;
 
@@ -504,6 +507,13 @@ void NNTPProtocol::nntp_open() {
         */
         if ( !(res_code == 200 || res_code == 201) ) {
           unexpected_response(res_code,"CONNECT");
+          return;
+        }
+
+        res_code = send_cmd("MODE READER");
+
+        if ( !(res_code == 200 || res_code == 201) ) {
+          unexpected_response(res_code, "MODE READER");
           return;
         }
 
