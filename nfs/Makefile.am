@@ -8,7 +8,7 @@ AM_LDFLAGS = $(all_libraries) $(KDE_RPATH)
 kde_module_LTLIBRARIES = kio_nfs.la
 
 kio_nfs_la_SOURCES = kio_nfs.cpp mount_xdr.c nfs_prot_xdr.c
-kio_nfs_la_LIBADD = -lkio
+kio_nfs_la_LIBADD = -lkio $(LIBRPC)
 kio_nfs_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN)
 noinst_HEADERS = nfs_prot.h mount.h
 
