@@ -48,10 +48,6 @@ DiskEntry::DiskEntry(QObject *parent, const char *name)
   m_inodeType=false;
   type="";
   mountedOn="";
-  options="";
-  size=0;
-  used=0;
-  avail=0;
   isMounted=FALSE;
 }
 
@@ -151,15 +147,6 @@ QString DiskEntry::discType()
 
 }
 
-float DiskEntry::percentFull() const
-{
-   if (size != 0) {
-      return 100 - ( ((float)avail / (float)size) * 100 );
-   } else {
-      return -1;
-   }
-}
-
 void DiskEntry::setDeviceName(const QString & deviceName)
 {
  device=deviceName;
@@ -178,59 +165,21 @@ void DiskEntry::setDeviceName(const QString & deviceName)
    m_inodeType=true;
    m_inode=st.st_ino;
  }
-
- emit deviceNameChanged();
 };
 
 void DiskEntry::setMountPoint(const QString & mountPoint)
 {
   mountedOn=mountPoint;
- emit mountPointChanged();
-};
-
-void DiskEntry::setMountOptions(const QString & mountOptions)
-{
- options=mountOptions;
- emit mountOptionsChanged();
 };
 
 void DiskEntry::setFsType(const QString & fsType)
 {
   type=fsType;
-  emit fsTypeChanged();
 };
 
 void DiskEntry::setMounted(bool nowMounted)
 {
   isMounted=nowMounted;
-  emit mountedChanged();
 };
-
-void DiskEntry::setKBSize(int kb_size)
-{
-  size=kb_size;
-  emit kBSizeChanged();
-};
-
-void DiskEntry::setKBUsed(int kb_used)
-{
-  used=kb_used;
-  if ( size < (used+avail) ) {  //adjust kBAvail
-     kdWarning() << "device " << device << ": kBAvail(" << avail << ")+*kBUsed(" << used << ") exceeds kBSize(" << size << ")" << endl;
-     setKBAvail(size-used);
-  }
-  emit kBUsedChanged();
-};
-
-void DiskEntry::setKBAvail(int kb_avail)
-{
-  avail=kb_avail;
-  if ( size < (used+avail) ) {  //adjust kBUsed
-     kdWarning() << "device " << device << ": *kBAvail(" << avail << ")+kBUsed(" << used << ") exceeds kBSize(" << size << ")" << endl;
-     setKBUsed(size-avail);
-  }
-  emit kBAvailChanged();
-};
-
 
 #include "disks.moc"

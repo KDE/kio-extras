@@ -21,7 +21,6 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-
 #ifndef __DISKLIST_H__
 #define __DISKLIST_H__
 
@@ -29,41 +28,8 @@
 #include <kconfig.h>
 #include <klocale.h>
 #include <qregexp.h>
-//#include <kcontrol.h>
-
-// defines the os-type
-#include <qglobal.h>
 
 #include "disks.h"
-
-#define DF_COMMAND    "df"
-// be pessimistic: df -T only works under linux !??
-#if defined(_OS_LINUX_)
-#define DF_ARGS       "-kT"
-#define NO_FS_TYPE    false
-#else
-#define DF_ARGS       "-k"
-#define NO_FS_TYPE    true
-#endif
-
-#ifdef _OS_SOLARIS_
-
-#define CACHEFSTAB "/etc/cachefstab"
-#define FSTAB "/etc/vfstab"
-#define MTAB "/etc/mnttab"
-
-#else
-
-#define FSTAB "/etc/fstab"
-//#if defined(_OS_LINUX_)
-#define MTAB "/etc/mtab"
-//#else
-//#define MTABPOLLMOUNTCMD ":("
-
-//#endif
-#endif
-
-#define SEPARATOR "|"
 
 /***************************************************************************/
 typedef QPtrList<DiskEntry>		DisksBase;
@@ -96,23 +62,16 @@ class DiskList : public QObject
 public:
    DiskList( QObject *parent=0, const char *name=0 );
  ~DiskList();
-   int readFSTAB();
-   int readDF();
+   void readFSTAB();
+   void readMNTTAB();
    int find(const DiskEntry* disk) {return disks->find(disk);};
    DiskEntry*  at(uint index) {return disks->at(index);};
    DiskEntry* first() {return disks->first();};
    DiskEntry* next() {return disks->next();};
    uint count() { return disks->count(); };
 
-signals:
-   void readDFDone();
-
 public slots:
   void loadExclusionLists();
-
-private slots:
-   void receivedDFStdErrOut(KProcess *, char *data, int len);
-   void dfDone();
 
 private:
   void replaceDeviceEntry(DiskEntry *disk);
@@ -120,9 +79,6 @@ private:
   bool ignoreDisk(DiskEntry *disk);
 
   Disks            *disks;
-  KProcess         *dfProc;
-  QString           dfStringErrOut;
-  bool              readingDFStdErrOut;
   QPtrList<QRegExp> mountPointExclusionList;
 };
 /***************************************************************************/

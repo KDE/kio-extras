@@ -46,60 +46,31 @@ public:
   QString deviceName() const { return device; };
   QString realDeviceName() const { return realDevice; };
   QString mountPoint() const { return mountedOn; };
-  QString mountOptions() const { return options; };
   bool mounted() const { return isMounted; }
   ino_t inode() const {return m_inode; };
   bool inodeType() const {return m_inodeType;};
   QString fsType() const { return type; };
-  int kBSize() const { return size; };
 
   QString discType();
   QString niceDescription();
 
-  QString prettyKBSize() const { return KIO::convertSizeFromKB(size); };
-  int kBUsed() const { return used; };
-  QString prettyKBUsed() const { return KIO::convertSizeFromKB(used); };
-  int kBAvail() const  { return avail; };
-  QString prettyKBAvail() const { return KIO::convertSizeFromKB(avail); };
-  float percentFull() const;
-
-signals:
-  void deviceNameChanged();
-  void mountPointChanged();
-  void mountOptionsChanged();
-  void fsTypeChanged();
-  void mountedChanged();
-  void kBSizeChanged();
-  void kBUsedChanged();
-  void kBAvailChanged();
-
 public slots:
   void setDeviceName(const QString & deviceName);
   void setMountPoint(const QString & mountPoint);
-  void setMountOptions(const QString & mountOptions);
   void setFsType(const QString & fsType);
   void setMounted(bool nowMounted);
-  void setKBSize(int kb_size);
-  void setKBUsed(int kb_used);
-  void setKBAvail(int kb_avail);
 
 private:
   void init();
   QString prettyPrint(int kBValue) const;
 
-  QString     device,
-	      realDevice,
-              type,
-              mountedOn,
-      options;
+  QString     device;
+  QString     realDevice;
+  QString     type;
+  QString     mountedOn;
 
-
-  int         size,
-              used,
-              avail;       // ATTENTION: used+avail != size (clustersize!)
-
-  bool        isMounted,
-	      m_inodeType;
+  bool        isMounted;
+  bool        m_inodeType;
 
   ino_t	      m_inode;
 };

@@ -20,6 +20,7 @@
 #include <string.h>
 #include <time.h>
 
+#include <qglobal.h>
 #include <qbuffer.h>
 #include <qfile.h>
 #include <qimage.h>
@@ -40,12 +41,18 @@
 #include "mountwatcher.h"
 #include "kdirnotify_stub.h"
 
+#ifdef _OS_SOLARIS_
+#define FSTAB "/etc/vfstab"
+#define MTAB "/etc/mnttab"
+#else
+#define FSTAB "/etc/fstab"
+#define MTAB "/etc/mtab"
+#endif
+
 MountWatcherModule::MountWatcherModule(const QCString &obj)
     : KDEDModule(obj),mDiskList(this),mtabsize(0)
 {
 	firstTime=true;
-	mDiskList.readFSTAB();
-	mDiskList.readDF();
 
 #ifdef MTAB
 	KDirWatch::self()->addFile(MTAB);
@@ -63,7 +70,9 @@ MountWatcherModule::MountWatcherModule(const QCString &obj)
 #endif
 #endif
 
-connect(&mDiskList,SIGNAL(readDFDone()),this,SLOT(readDFDone()));
+	mDiskList.readFSTAB();
+	mDiskList.readMNTTAB();
+       	readDFDone();
 }
 
 MountWatcherModule::~MountWatcherModule()
@@ -116,8 +125,8 @@ void MountWatcherModule::reloadExclusionLists()
 {
 	mDiskList.loadExclusionLists();
 	mDiskList.readFSTAB();
-	mDiskList.readDF();
-
+	mDiskList.readMNTTAB();
+       	readDFDone();
 }
 
 void MountWatcherModule::dirty(const QString& str)
@@ -133,7 +142,8 @@ void MountWatcherModule::dirty(const QString& str)
 			mtabsize=newsize;
 			kdDebug()<<"MTAB FILESIZE:"<<f.size()<<endl;
 		        mDiskList.readFSTAB();
-	        	mDiskList.readDF();
+	        	mDiskList.readMNTTAB();
+	        	readDFDone();
 			return;
 		}
 	}
@@ -142,7 +152,8 @@ void MountWatcherModule::dirty(const QString& str)
 	if (str==FSTAB)
 	{
 	        mDiskList.readFSTAB();
-	        mDiskList.readDF();
+	        mDiskList.readMNTTAB();
+        	readDFDone();
 		return;
 	}
 #endif
