@@ -40,6 +40,9 @@ void Url::parseLDAP()
 
   // parse the query  
   QString q = query();
+  // remove first ?
+  if (!q.isEmpty() && q.left(1) == "?")
+    q.remove(0,1);
 
   // split into a list
   QStrList url_items;

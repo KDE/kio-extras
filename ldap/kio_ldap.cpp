@@ -260,11 +260,17 @@ void LDAPProtocol::mimetype(const KURL &url)
   QString _url = url.url();
   kdDebug(7110) << "kio_ldap: mimetype(" << _url << ")" << endl;
   KLDAP::Url usrc(_url);
-  if (usrc.isMalformed() || usrc.scope() != LDAP_SCOPE_BASE) {
+  if (usrc.isMalformed()) {
     error(ERR_MALFORMED_URL, strdup(_url));
     return;
   }
-  mimeType("text/plain");
+  kdDebug(7110) << "kio_ldap: query()==" << url.query() << endl;
+  if (!url.query().isEmpty() && usrc.scope() == LDAP_SCOPE_BASE) {
+    mimeType("text/plain");
+  } else {
+    /* empty scope, or ONELEVEL/SUB */
+    mimeType("inode/directory");
+  }
   finished();
 }
 
