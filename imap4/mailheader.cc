@@ -25,7 +25,6 @@ mailHeader::mailHeader ()
   toAdr.setAutoDelete (true);
   ccAdr.setAutoDelete (true);
   bccAdr.setAutoDelete (true);
-  date.tm_year = 0;
   setType ("text/plain");
   gmt_offset = 0;
 }
@@ -74,7 +73,7 @@ mailHeader::addHdrLine (mimeHdrLine * inLine)
     }
     else if (!qstricmp (addLine->getLabel ().data (), "Date"))
     {
-      mimeHdrLine::parseDate (addLine->getValue (), &date, &gmt_offset);
+      mDate = addLine->getValue ();
     }
     else if (!qstricmp (addLine->getLabel ().data (), "Message-ID"))
     {
@@ -154,9 +153,8 @@ mailHeader::outputHeader (mimeIO & useIO)
     useIO.
       outputMimeLine (mimeHdrLine::
                       truncateLine (QCString ("In-Reply-To: ") + inReplyTo));
-  if (date.tm_year != 0)
-    useIO.outputMimeLine (QCString ("Date: ") +
-                          mimeHdrLine::getDateStr (&date, gmt_offset));
+  if (!mDate.isEmpty())
+    useIO.outputMimeLine (QCString ("Date: ") + mDate);
   mimeHeader::outputHeader (useIO);
 }
 

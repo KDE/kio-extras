@@ -86,7 +86,6 @@ public:
     myHeader = NULL;
     mySize = 0;
     myFlags = 0;
-    myDate.tm_year = 0;
     myUid = 0;
   }
 
@@ -131,17 +130,13 @@ public:
     myFlags = inFlags;
   }
 
-  const struct tm *getDate ()
+  QCString getDate ()
   {
-    return &myDate;
+    return myDate;
   }
-  QString getDateStr ()
+  void setDate (const QCString & _str)
   {
-    return mimeHdrLine::getDateStr (&myDate);
-  }
-  void setDateStr (const QString & _str)
-  {
-    mimeHdrLine::parseDate (_str.latin1 (), &myDate);
+    myDate = _str;
   }
   void clear()
   {
@@ -149,7 +144,7 @@ public:
     myHeader = NULL;
     mySize = 0;
     myFlags = 0;
-    myDate.tm_year = 0;
+    myDate = QCString();
     myUid = 0;
   }
 
@@ -158,7 +153,7 @@ protected:
   ulong mySize;
   ulong myFlags;
   ulong myUid;
-  struct tm myDate;
+  QCString myDate;
 };
 
 

@@ -1231,7 +1231,7 @@ void imapParser::parseFetch (ulong value, parseString & inWords)
           QCString date;
           date = b2c(parseOneWord (inWords));
           if (!lastHandled) lastHandled = new imapCache();
-          lastHandled->setDateStr(date);
+          lastHandled->setDate(date);
         }
         break;
 

@@ -44,8 +44,6 @@ and report characters slurped */
   static QCString truncateLine (QCString, unsigned int truncate = 80);
   static int parseSeparator (char, const char *);
   static int parseQuoted (char, char, const char *);
-  static int parseDate (const char *, struct tm *, int *gmt_off = NULL);
-  static QCString getDateStr (struct tm *, int = 0);
   /** skip all white space characters */
   static int skipWS (const char *);
   /** slurp one word respecting backticks */

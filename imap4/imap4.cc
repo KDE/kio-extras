@@ -269,8 +269,8 @@ IMAP4Protocol::get (const KURL & _url)
               if (cache->getSize () != 0)
                 outputLineStr ("X-Length: " +
                                QString ().setNum (cache->getSize ()) + "\r\n");
-              if (cache->getDate ()->tm_year != 0)
-                outputLineStr ("X-Date: " + cache->getDateStr () + "\r\n");
+              if (!cache->getDate ().isEmpty())
+                outputLineStr ("X-Date: " + cache->getDate () + "\r\n");
               if (cache->getFlags () != 0)
                 outputLineStr ("X-Flags: " +
                                QString ().setNum (cache->getFlags ()) + "\r\n");

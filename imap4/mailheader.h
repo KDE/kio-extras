@@ -113,26 +113,14 @@ public:
     return _subject;
   };
 
-  const struct tm *getDate ()
-  {
-    return &date;
-  };
   void setDate (const QCString & _str)
   {
-    mimeHdrLine::parseDate (_str, &date, &gmt_offset);
+    mDate = _str;
   }
 
-  QCString dateStr ()
+  QCString date ()
   {
-    if (date.tm_year != 0)
-      return mimeHdrLine::getDateStr (&date, gmt_offset);
-    return QCString ();
-  }
-  QCString dateShortStr ()
-  {
-    if (date.tm_year != 0)
-      return mimeHdrLine::getDateStr (&date, gmt_offset);
-    return QCString ();
+    return mDate;
   }
 
   static int parseAddressList (const char *, QPtrList < mailAddress > *);
@@ -176,7 +164,7 @@ private:
   mailAddress returnpathAdr;
   mailAddress replytoAdr;
   QCString _subject;
-  struct tm date;
+  QCString mDate;
   int gmt_offset;
   QCString messageID;
   QCString inReplyTo;
