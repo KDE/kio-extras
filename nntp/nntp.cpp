@@ -19,6 +19,7 @@
 #include <errno.h>
 
 #include <qdir.h>
+#include <qregexp.h>
 
 #include <ksock.h>
 #include <kapp.h>
