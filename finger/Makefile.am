@@ -23,7 +23,7 @@ noinst_HEADERS = kio_finger.h KDEfinger.h fingerSocket.h
 kdelnk_DATA = finger.protocol
 kdelnkdir = $(kde_servicesdir)
 
-data_DATA = finger.pl fingerHead.template fingerTail konqi.png
+data_DATA = finger.pl 
 datadir = $(kde_datadir)/kfinger/kio_finger
 EXTRA_DIST=$(data_DATA)   
 
@@ -40,6 +40,6 @@ install-data-local:
 	@echo
 	@echo "Problem: The paths to pictures in the templates are static." 
 	@echo "We must adjust them to reflect the directory where they are installed."
-	@(perl setupTemplates.pl $(kde_datadir)/kfinger/kio_finger)
+	#@(perl setupTemplates.pl $(kde_datadir)/kfinger/kio_finger)
 	@echo
 	@echo "done"

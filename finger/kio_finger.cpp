@@ -83,8 +83,6 @@ FingerProtocol::~FingerProtocol()
   delete myURL;
   delete myPerlPath;
   delete myFingerPath;
-  delete myHTMLHeader;
-  delete myHTMLTail;
   delete myStdStream;
 }
 
@@ -102,9 +100,6 @@ void FingerProtocol::get(const KURL& url )
 
   // Reset the stream
   *myStdStream="";
-
-  // Emit the header
-  data(QCString(*myHTMLHeader));
   
   myKProcess = new KShellProcess();  
   *myKProcess << *myPerlPath << *myFingerScript << *myFingerPath << myURL->host() << myURL->user();
@@ -117,7 +112,6 @@ void FingerProtocol::get(const KURL& url )
   myKProcess->start(KProcess::Block, KProcess::All);
 
   data(QCString(*myStdStream));
-  data(QCString(*myHTMLTail));
  
   data(QByteArray());
   finished();  
@@ -201,42 +195,6 @@ void FingerProtocol::getProgramPath()
       exit(-1);
     } else {
       kdDebug() << "Default finger script found: " << *myFingerScript << endl;  
-    }
-  
-  QFile headFile(locate("data","kfinger/kio_finger/fingerHead"));
-  myHTMLHeader = new QString();
-  if( !headFile.open( IO_ReadOnly ) ) 
-    {
-      this->warning(i18n("Couldn't read file: ") + headFile.name());
-      kdDebug() << "Couldn't read file: " << headFile.name() << endl;
-      *myHTMLHeader="<HTML><BODY><PRE>";
-    }
-  else 
-    {
-      QTextStream headStream(&headFile);
-      while( !headStream.eof() ) {
-	myHTMLHeader->append(headStream.readLine());
-      }
-      headFile.close();
-      kdDebug() << "Read file:" << headFile.name() << endl;
-    }
-  
-  QFile tailFile(locate("data","kfinger/kio_finger/fingerTail"));
-  myHTMLTail = new QString() ;
-  if( !tailFile.open( IO_ReadOnly ) ) 
-    {
-      this->warning(i18n("Couldn't read file: ") + tailFile.name());   
-      kdDebug() << "Couldn't read file: " << tailFile.name() <<  endl;
-      *myHTMLTail = "</PRE></BODY></HTML>";
-    }
-  else
-    {
-      QTextStream tailStream(&tailFile);
-      while( !tailStream.eof() ) {
-	myHTMLTail->append(tailStream.readLine());
-      }
-      tailFile.close();
-      kdDebug() << "Read file:" << tailFile.name() << endl;
     }
 }
 

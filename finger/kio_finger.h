@@ -46,9 +46,7 @@ private slots:
 private:
   QString	        *myPerlPath; 		
   QString               *myFingerPath;
-  QString               *myFingerScript; 
-  QString		*myHTMLHeader;
-  QString		*myHTMLTail;
+  QString               *myFingerScript;
   QString		*myStdStream;  
 
   KURL                  *myURL;
