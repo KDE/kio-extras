@@ -20,6 +20,7 @@
 
 #include <kurl.h>
 #include <kprotocolmanager.h>
+#include <kdebug.h>
 #include <ksock.h>
 #include <kio_interface.h>
 #include <kinstance.h>
@@ -216,7 +217,7 @@ bool NNTPProtocol::nntp_open( KURL &_url )
    if (!command(one_string, buf, sizeof(buf))) {
 	fprintf(stderr,"This is an error message\n"); fflush(stderr);
 	}
-    
+
 
     one_string="AUTHINFO USER ";
     if (_url.user().isEmpty() || _url.pass().isEmpty()) {
@@ -240,7 +241,7 @@ bool NNTPProtocol::nntp_open( KURL &_url )
       nntp_close();
       return false;
     }
-    
+
     one_string="AUTHINFO PASS ";
     if (_url.pass().isEmpty()) {
       m_sOldPass = pass;
@@ -373,11 +374,11 @@ void NNTPProtocol::slotGet(const char *_url)
     m_cmd=CMD_NONE; return;
   }
 
-  if (((path.find("/") == -1) && (path != "index") && 
+  if (((path.find("/") == -1) && (path != "index") &&
        (path != "uidl") && (path != "commit")) ) {
     error( ERR_MALFORMED_URL, strdup(_url) );
     m_cmd = CMD_NONE;
-    return; 
+    return;
   }
 
   cmd = path.left(path.find("/"));
@@ -469,7 +470,7 @@ else if (cmd == "get") {
 	// HACK: This assumes fread stops at the first \n and not \r
 	buf[strlen(buf)-2]='\0';
 	if (strcmp(buf, ".")==0)  break; // End of data.
-	else 
+	else
 	if (strcmp(buf, "..")==0)
 		data (".", 1);
 	else	
@@ -525,7 +526,7 @@ else if (cmd == "group") {
     finished();
     m_cmd = CMD_NONE;
   }
-  
+
   else if (cmd == "download") {
     int p_size=0;
     unsigned int msg_len=0;
@@ -540,14 +541,14 @@ else if (cmd == "group") {
       list_cmd=buf;
       // We need a space, otherwise we got an invalid reply
       if (!list_cmd.find(" ")) {
-	debug("List command needs a space? %s", list_cmd.data());
+	kDebugInfo(7106, "List command needs a space? %s", debugString(list_cmd));
         nntp_close();
         return;
       }
       list_cmd.remove(0, list_cmd.find(" ")+1);
       msg_len = list_cmd.toUInt(&ok);
       if (!ok) {
-	debug("LIST command needs to return a number? :%s:", list_cmd.data());
+	kDebugInfo(7106, "LIST command needs to return a number? :%s:", debugString(list_cmd));
 	nntp_close();return;
       }
     } else {
@@ -615,8 +616,8 @@ else if (cmd == "group") {
   }
 // New message get command starts here
 else {
-  cmd.prepend("GROUP ");   
-  command(cmd);  
+  cmd.prepend("GROUP ");
+  command(cmd);
    path.prepend("ARTICLE ");
     if (command(path)) { // This should be checked, and a more hackish way of
                          // getting at the headers by d/l the whole message
@@ -670,7 +671,7 @@ void NNTPProtocol::slotListDir (const char *_url)
   if (!command("LIST", buf, sizeof(buf))) {
     error(ERR_INTERNAL, "??");
     return;
-  } 
+  }
   finished();
 }
 
@@ -804,7 +805,7 @@ NNTPIOJob::NNTPIOJob(KIOConnection *_conn, NNTPProtocol *_nntp) :
 {
   m_pNNTP = _nntp;
 }
-  
+
 void NNTPIOJob::slotData(void *_p, int _len)
 {
   m_pNNTP->jobData( _p, _len );

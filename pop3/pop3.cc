@@ -22,6 +22,7 @@
 #include <kprotocolmanager.h>
 #include <ksock.h>
 #include <kio_interface.h>
+#include <kdebug.h>
 #include <kinstance.h>
 
 #include "pop3.h"
@@ -236,7 +237,7 @@ bool POP3Protocol::pop3_open( KURL &_url )
       pop3_close();
       return false;
     }
-    
+
     one_string="PASS ";
     if (_url.pass().isEmpty()) {
       m_sOldPass = pass;
@@ -370,11 +371,11 @@ void POP3Protocol::slotGet(const char *_url)
     m_cmd=CMD_NONE; return;
   }
 
-  if (((path.find("/") == -1) && (path != "index") && 
+  if (((path.find("/") == -1) && (path != "index") &&
        (path != "uidl") && (path != "commit")) ) {
     error( ERR_MALFORMED_URL, strdup(_url) );
     m_cmd = CMD_NONE;
-    return; 
+    return;
   }
 
   cmd = path.left(path.find("/"));
@@ -472,7 +473,7 @@ LIST
     finished();
     m_cmd = CMD_NONE;
   }
-  
+
   else if (cmd == "download") {
     int p_size=0;
     unsigned int msg_len=0;
@@ -487,14 +488,14 @@ LIST
       list_cmd=buf;
       // We need a space, otherwise we got an invalid reply
       if (!list_cmd.find(" ")) {
-	debug("List command needs a space? %s", list_cmd.data());
+	kDebugInfo(7105, "List command needs a space? %s", debugString(list_cmd));
         pop3_close();
         return;
       }
       list_cmd.remove(0, list_cmd.find(" ")+1);
       msg_len = list_cmd.toUInt(&ok);
       if (!ok) {
-	debug("LIST command needs to return a number? :%s:", list_cmd.data());
+	  kDebugInfo(7105, "LIST command needs to return a number? :%s:", debugString(list_cmd));
 	pop3_close();return;
       }
     } else {
@@ -779,7 +780,7 @@ POP3IOJob::POP3IOJob(KIOConnection *_conn, POP3Protocol *_pop3) :
 {
   m_pPOP3 = _pop3;
 }
-  
+
 void POP3IOJob::slotData(void *_p, int _len)
 {
   m_pPOP3->jobData( _p, _len );
