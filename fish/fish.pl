@@ -165,7 +165,7 @@ MAIN: while (<STDIN>) {
         chdir($dn) || do { print "### 500 $!\n"; next; };
         foreach (@entries) {
             my $link = readlink;
-            my ($mode,$uid,$gid,$size,$mtime) = (stat)[2,4,5,7,9];
+            my ($mode,$uid,$gid,$size,$mtime) = (lstat)[2,4,5,7,9];
             print filetype($mode,$link,$uid,$gid);
             print "S$size\n";
             print strftime("D%Y %m %d %H %M %S\n",localtime($mtime));
