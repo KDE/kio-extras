@@ -70,11 +70,9 @@ void SMBSlave::auth_smbc_get_data(const char *server,const char *share,
     QString  user_prompt;
     QString  passwd_prompt;
 
-
     auth.m_workgroup = workgroup;
     auth.m_server    = server;
     auth.m_share     = share;
-
 
     setAuthInfo(auth);
 
@@ -137,19 +135,20 @@ bool SMBSlave::setAuthInfo(SMBAuthInfo &auth) {
 }
 
 // TODO: if username changed we have to change the kurl (redirect)
-bool SMBSlave::authDlg(SMBAuthInfo& auth) {
-  if ( auth.m_username.isEmpty()) {
-    auth.m_username = m_default_user.local8Bit();
-    auth.m_passwd   = m_default_password.local8Bit();
-  }
-        QString msg = i18n(
-            "Please enter authentication information for:\n"
-            "Workgroup = %1\n"
-            "Server = %2\n"
-            "Share = %3" )
-            .arg( auth.m_workgroup )
-            .arg( auth.m_server )
-            .arg( auth.m_share );
+bool SMBSlave::authDlg(SMBAuthInfo& auth)
+{
+    if ( auth.m_username.isEmpty()) {
+        auth.m_username = m_default_user.local8Bit();
+        auth.m_passwd   = m_default_password.local8Bit();
+    }
+    QString msg = i18n(
+        "Please enter authentication information for:\n"
+        "Workgroup = %1\n"
+        "Server = %2\n"
+        "Share = %3" )
+                  .arg( auth.m_workgroup )
+                  .arg( auth.m_server )
+                  .arg( auth.m_share );
 
         KIO::AuthInfo authInfo;
         authInfo.username = auth.m_username;
