@@ -3013,35 +3013,41 @@ static char *scan_request(char *c)
 	    static char mandoc_name[NULL_TERMINATED(SMALL_STR_MAX)] = "";
 	    trans_char(c,'"','\a');
 	    c=c+j;
-	    if (mandoc_synopsis) {    /* Break lines only in the Synopsis.
-				       * The Synopsis section seems to be treated
-				       * as a special case - Bummer!
-				       */
-	        static int count = 0; /* Don't break on the first Nm */
-	        if (count) {
-		    out_html("<BR>");
-		}
-		else {
-		    char *end = strchr(c, '\n');
-		    if (end) {	/* Remember the name for later. */
-		        strlimitcpy(mandoc_name, c, end - c, SMALL_STR_MAX);
-		    }
-		}
-		count++;
-	    }
+            static int count = 0; /* Don't break on the first Nm */
+
+	    if (mandoc_synopsis && count) {    /* Break lines only in the Synopsis.
+                                                * The Synopsis section seems to be treated
+                                                * as a special case - Bummer!
+                                                */
+                out_html("<BR>");
+            } else if (!count) {
+                const char *nextbreak = strchr(c, '\n');
+                const char *nextspace = strchr(c, ' ');
+                if (nextspace < nextbreak)
+                    nextbreak = nextspace;
+
+                if (nextbreak) {	/* Remember the name for later. */
+                    strlimitcpy(mandoc_name, c, nextbreak - c, SMALL_STR_MAX);
+                }
+            }
+            count++;
+
 	    out_html(change_to_font('B'));
 	    while (*c == ' '|| *c == '\t') c++;
-	    if (*c == '\n') {	/* If Nm has no argument, use one from an earlier
-				 * Nm command that did have one.  Hope there aren't
-				 * too many commands that do this.
-				 */
+            if ((tolower(*c) >= 'a' && tolower(*c) <= 'z' ) || (*c >= '0' && *c <= '9')) {
+                // alphanumeric argument
+                c=scan_troff_mandoc(c, 1, NULL);
+                out_html(change_to_font('R'));
+                out_html(NEWLINE);
+            } else {
+                /* If Nm has no argument, use one from an earlier
+                 * Nm command that did have one.  Hope there aren't
+                 * too many commands that do this.
+                 */
 	        out_html(mandoc_name);
+                out_html(change_to_font('R'));
 	    }
-	    else {
-	        c=scan_troff_mandoc(c, 1, NULL);
-	    }
-	    out_html(change_to_font('R'));
-	    out_html(NEWLINE);
+
 	    if (fillout) curpos++; else curpos=0;
 	    break;
 	  }
