@@ -116,6 +116,7 @@ bool SMBSlave::checkPassword(SMBUrl &url)
     KIO::AuthInfo info;
     info.url = KURL("smb:///");
     info.url.setHost(url.host());
+
     QString share = url.path();
     int index = share.find('/', 1);
     if (index > 1)
@@ -123,6 +124,7 @@ bool SMBSlave::checkPassword(SMBUrl &url)
     if (share.at(0) == '/')
         share = share.mid(1);
     info.url.setPath("/" + share);
+    info.verifyPath = true;
 
     if ( share.isEmpty() )
         info.prompt = i18n(
