@@ -187,7 +187,7 @@ void MountWatcherModule::readDFDone()
 	KURL::List fileList;
 	for (DiskEntry *ent=mDiskList.first();ent;ent=mDiskList.next())
 	{
-		QString entryName="entries_";
+		QString entryName="";
 		entryName+=ent->deviceName().replace( QRegExp("/"), "" );
 		entryName+=ent->mountPoint().replace(QRegExp("/"),"");
                 QString filename = KURL(ent->deviceName()).fileName();
