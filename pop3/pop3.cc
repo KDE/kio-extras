@@ -110,6 +110,7 @@ POP3Protocol::POP3Protocol(const QCString &pool, const QCString &app, bool isSSL
   m_tTimeout.tv_sec=10;
   m_tTimeout.tv_usec=0;
   m_try_apop = true;
+  opened = false;
 }
 
 POP3Protocol::~POP3Protocol()
@@ -155,7 +156,7 @@ bool POP3Protocol::getResponse (char *r_buf, unsigned int r_len, const char *cmd
     kdDebug() << "No response from POP3 server in 60 secs." << endl;
     m_sError = i18n("No response from POP3 server in 60 secs.");
     if (r_buf)
-       r_buf[0] = 0; 
+       r_buf[0] = 0;
     return false;
   }
 
@@ -228,12 +229,12 @@ bool POP3Protocol::command (const char *cmd, char *recv_buf, unsigned int len)
   // Write the command
   if (Write(cmd, strlen(cmd)) != static_cast<ssize_t>(strlen(cmd)))
   {
-    m_sError = i18n("Could not send to server.\n");    
+    m_sError = i18n("Could not send to server.\n");
     return false;
   }
   if (Write("\r\n", 2) != 2)
   {
-    m_sError = i18n("Could not send to server.\n");    
+    m_sError = i18n("Could not send to server.\n");
     return false;
   }
   return getResponse(recv_buf, len, cmd);
@@ -247,9 +248,12 @@ void POP3Protocol::pop3_close ()
   // response.  We don't care if it's positive or negative.  Also
   // flush out any semblance of a persistant connection, i.e.: the
   // old username and password are now invalid.
+  if (!opened)
+      return;
   command("QUIT");
   CloseDescriptor();
   m_sOldUser = ""; m_sOldPass = ""; m_sOldServer = "";
+  opened = false;
 }
 
 bool POP3Protocol::pop3_open()
@@ -349,7 +353,10 @@ bool POP3Protocol::pop3_open()
       apop_string.append(ascii_digest);
 
       if(command(apop_string.local8Bit(), buf, sizeof(buf)))
+      {
+	opened = true;
         return true;
+      }
 
       kdDebug() << "Couldn't login via APOP. Falling back to USER/PASS" << endl;
       pop3_close();
@@ -382,6 +389,7 @@ bool POP3Protocol::pop3_open()
       pop3_close();
       return false;
     }
+    opened = true;
     return true;
   }
 }
@@ -450,10 +458,10 @@ void POP3Protocol::get( const KURL& url )
   cmd = path.left(path.find('/'));
   path.remove(0,path.find('/')+1);
 
-  if (!pop3_open()) {
+  if (!pop3_open()) { 
     kdDebug() << "pop3_open failed" << endl;
-    error( ERR_COULD_NOT_CONNECT, m_sServer);
     pop3_close();
+    error( ERR_COULD_NOT_CONNECT, m_sServer);
     return;
   }
 

@@ -45,7 +45,7 @@ public:
   virtual ~POP3Protocol();
 
   virtual void setHost( const QString& host, int port, const QString& user, const QString& pass );
- 
+
 //  virtual void openConnection();
 //  virtual void closeConnection();
 
@@ -53,7 +53,7 @@ public:
   virtual void stat( const KURL& url );
   virtual void del( const KURL &url, bool isfile);
   virtual void listDir( const KURL &url );
-  
+
  protected:
 
   /**
@@ -73,7 +73,7 @@ public:
 
   /**
     *  All POP3 commands will generate a response.  Each response will
-    *  either be prefixed with a "+OK " or a "-ERR ".  The getResponse 
+    *  either be prefixed with a "+OK " or a "-ERR ".  The getResponse
     *  fucntion will wait until there's data to be read, and then read in
     *  the first line (the response), and copy the response sans +OK/-ERR
     *  into a buffer (up to len bytes) if one was passed to it.  It will
@@ -99,7 +99,7 @@ public:
   struct timeval m_tTimeout;
   QString m_sOldServer, m_sOldPass, m_sOldUser;
   QString m_sServer, m_sPass, m_sUser;
-  bool m_try_apop;
+  bool m_try_apop, opened;
   QString m_sError;
 };
 
