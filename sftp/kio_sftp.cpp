@@ -793,8 +793,9 @@ void kio_sftpProtocol::put ( const KURL& url, int permissions, bool overwrite, b
             // notify the job that we can resume this file. If the io-slave
             // doing the GET replies that it can resume continue, else send
             // "a file already exists" error message.
+            kdDebug(KIO_SFTP_DB) << "Size = " << partAttr.fileSize();
             resume = canResume(partAttr.fileSize());
-            kdDebug(KIO_SFTP_DB) << "can resume = " << resume;
+            kdDebug(KIO_SFTP_DB) << "Can resume = " << resume;
             if (!resume)
             {
               error(ERR_FILE_ALREADY_EXIST, origUrl.prettyURL());
@@ -824,8 +825,9 @@ void kio_sftpProtocol::put ( const KURL& url, int permissions, bool overwrite, b
             // notify the job that we can resume this file. If the io-slave
             // doing the GET replies that it can resume continue, else send
             // "a file already exists" error message.
+            kdDebug(KIO_SFTP_DB) << "Size = " << partAttr.fileSize();
             resume = canResume(partAttr.fileSize());
-            kdDebug(KIO_SFTP_DB) << "can resume = " << resume;
+            kdDebug(KIO_SFTP_DB) << "Can resume = " << resume;
             if (!resume)
             {
               error(ERR_FILE_ALREADY_EXIST, partUrl.prettyURL());
@@ -849,10 +851,10 @@ void kio_sftpProtocol::put ( const KURL& url, int permissions, bool overwrite, b
     // determine beginning offset
     Q_UINT32 beginningOffset;
     if( markPartial ) {
-        beginningOffset = partExists ? partAttr.fileSize() + 1 : 0;
+        beginningOffset = partExists ? partAttr.fileSize() : 0;
     }
     else {
-        beginningOffset = origExists ? origAttr.fileSize() + 1 : 0;
+        beginningOffset = origExists ? origAttr.fileSize() : 0;
     }
 
 
@@ -891,35 +893,35 @@ void kio_sftpProtocol::put ( const KURL& url, int permissions, bool overwrite, b
     int nbytes;
     QByteArray mydata;
 
-    processedSize(offset);
-    dataReq();
-    nbytes = readData(mydata);
-    while( nbytes > 0 ) {
-        if( (code = sftpWrite(handle, offset, mydata)) != SSH2_FX_OK ) {
-            error(ERR_COULD_NOT_WRITE, url.prettyURL());
-            return;
-        }
-
-        offset += mydata.size();
-        processedSize(offset);
-
-        kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::put(): offset = " << offset << endl;
-
+    do {
         dataReq();
         nbytes = readData(mydata);
 
-        /* Check if slave was killed.  According to slavebase.h we
-         * need to leave the slave methods as soon as possible if
-         * the slave is killed. This allows the slave to be cleaned
-         * up properly.
-         */
-        if( wasKilled() ) {
-            sftpClose(handle);
-            closeConnection();
-            error(ERR_UNKNOWN, i18n("SFTP slave unexpectedly killed"));
-            return;
+        if (nbytes > 0)
+        {
+            if( (code = sftpWrite(handle, offset, mydata)) != SSH2_FX_OK ) {
+                error(ERR_COULD_NOT_WRITE, url.prettyURL());
+                return;
+            }
+
+            offset += mydata.size();
+            processedSize(offset);
+
+            // kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::put(): offset = " << offset << endl;
+
+            /* Check if slave was killed.  According to slavebase.h we
+              * need to leave the slave methods as soon as possible if
+              * the slave is killed. This allows the slave to be cleaned
+              * up properly.
+              */
+            if( wasKilled() ) {
+                sftpClose(handle);
+                closeConnection();
+                error(ERR_UNKNOWN, i18n("SFTP slave unexpectedly killed"));
+                return;
+            }
         }
-    }
+    } while( nbytes > 0 );
 
     if( nbytes != 0 ) {
         sftpClose(handle);
