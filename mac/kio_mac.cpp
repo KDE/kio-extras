@@ -47,7 +47,6 @@ extern "C" {
 
 MacProtocol::MacProtocol(const QCString &pool, const QCString &app)
                                              : QObject(), SlaveBase("mac", pool, app) {
-    standardOutputStream = new QString();
 /*  logFile = new QFile("/home/jr/logfile");
     logFile->open(IO_ReadWrite | IO_Append);
     logStream = new QTextStream(logFile);
@@ -56,7 +55,6 @@ MacProtocol::MacProtocol(const QCString &pool, const QCString &app)
 }
 
 MacProtocol::~MacProtocol() {
-    delete standardOutputStream; standardOutputStream = 0;
 /*    *logStream << "destructor ~MacProtocol()" << endl;
     logFile->close();
     delete logFile;
@@ -138,7 +136,7 @@ void MacProtocol::listDir(const KURL& url) {
         myKProcess = new KProcess();
         *myKProcess << "hpls" << "-la" << filename;
 
-        *standardOutputStream = "";
+        standardOutputStream = QString::null;
         connect(myKProcess, SIGNAL(receivedStdout(KProcess *, char *, int)),
                 this, SLOT(slotGetStdOutput(KProcess *, char *, int)));
 
@@ -155,8 +153,8 @@ void MacProtocol::listDir(const KURL& url) {
                 this, SLOT(slotGetStdOutput(KProcess *, char *, int)));
 
         UDSEntry entry;
-        if (*standardOutputStream != "") {
-            QTextStream in(standardOutputStream, IO_ReadOnly);
+        if (!standardOutputStream.isEmpty()) {
+            QTextStream in(&standardOutputStream, IO_ReadOnly);
             QString line = in.readLine(); //throw away top file which shows current directory
             line = in.readLine();
 
@@ -195,7 +193,7 @@ QValueList<KIO::UDSAtom> MacProtocol::doStat(const KURL& url) {
 
         *myKProcess << "hpls" << "-ld" << filename;
 
-        *standardOutputStream = "";
+        standardOutputStream = QString::null;
         connect(myKProcess, SIGNAL(receivedStdout(KProcess *, char *, int)),
                 this, SLOT(slotGetStdOutput(KProcess *, char *, int)));
 
@@ -211,16 +209,16 @@ QValueList<KIO::UDSAtom> MacProtocol::doStat(const KURL& url) {
         disconnect(myKProcess, SIGNAL(receivedStdout(KProcess *, char *, int)),
                 this, SLOT(slotGetStdOutput(KProcess *, char *, int)));
 
-        if (*standardOutputStream == "") {
-            filename.replace(QRegExp("\\\\ "), " "); //get rid of escapes
-            filename.replace(QRegExp("\\\\&"), "&"); //mm, slashes...
-            filename.replace(QRegExp("\\\\!"), "!");
-            filename.replace(QRegExp("\\\\("), "(");
-            filename.replace(QRegExp("\\\\)"), ")");
+        if (standardOutputStream.isEmpty()) {
+            filename.replace("\\ ", " "); //get rid of escapes
+            filename.replace("\\&", "&"); //mm, slashes...
+            filename.replace("\\!", "!");
+            filename.replace("\\(", "(");
+            filename.replace("\\)", ")");
             error(ERR_DOES_NOT_EXIST, filename);
         } else {
             //remove trailing \n
-            QString line = standardOutputStream->left(standardOutputStream->length()-1);
+            QString line = standardOutputStream.left(standardOutputStream.length()-1);
             UDSEntry entry = makeUDS(line);
             return entry;
         }
@@ -265,7 +263,7 @@ QString MacProtocol::prepareHP(const KURL& url) {
     //first we run just hpmount and check the output to see if it's version 1.0.2 or 1.0.4
     myKProcess = new KProcess();
     *myKProcess << "hpmount";
-    *standardOutputStream = "";
+    standardOutputStream = QString::null;
     connect(myKProcess, SIGNAL(receivedStderr(KProcess *, char *, int)),
             this, SLOT(slotGetStdOutput(KProcess *, char *, int)));
 
@@ -273,7 +271,7 @@ QString MacProtocol::prepareHP(const KURL& url) {
 
     bool version102 = true;
 
-    if (standardOutputStream->contains("options") != 0) {
+    if (standardOutputStream.contains("options") != 0) {
         version102 = false;
     }
 
@@ -422,7 +420,7 @@ QValueList<KIO::UDSAtom> MacProtocol::makeUDS(const QString& _line) {
 //slotGetStdOutput() grabs output from the hp commands
 // and adds it to the buffer
 void MacProtocol::slotGetStdOutput(KProcess*, char *s, int len) {
-  *standardOutputStream += QString::fromLocal8Bit(s, len);
+  standardOutputStream += QString::fromLocal8Bit(s, len);
 }
 
 //slotSetDataStdOutput() is used during hpcopy to give
