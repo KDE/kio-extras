@@ -185,12 +185,15 @@ void TARProtocol::listDir( const KURL & url )
             error( KIO::ERR_DOES_NOT_EXIST, url.path() );
             return;
         }
-        // It's a real dir
+        // It's a real dir -> redirect
         KURL redir;
         redir.setPath( url.path() );
         kdDebug( 7109 ) << "Ok, redirection to " << redir.url() << endl;
         redirection( redir );
         finished();
+        // And let go of the tar file - for people who want to unmount a cdrom after that
+        delete m_tarFile;
+        m_tarFile = 0L;
         return;
     }
 
@@ -279,6 +282,10 @@ void TARProtocol::stat( const KURL & url )
         statEntry( entry );
 
         finished();
+
+        // And let go of the tar file - for people who want to unmount a cdrom after that
+        delete m_tarFile;
+        m_tarFile = 0L;
         return;
     }
 
