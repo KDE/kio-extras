@@ -72,7 +72,7 @@ bool GopherProtocol::gopher_open( KURL &_url )
   unsigned short int port;
   struct sockaddr_in server_name;
   memset(&server_name, 0, sizeof(server_name));
-  static char buf[512];
+  // static char buf[512];
 
   // We want 70 as the default
   if (_url.port())
@@ -263,8 +263,8 @@ void GopherProtocol::slotGetSize( const char *_url )
 
 void GopherProtocol::slotGet(const char *_url)
 {
-  bool ok=true;
-  static char buf[512];
+  // bool ok=true;
+  // static char buf[512];
   QString path, cmd;
   KURL usrc(_url);
   if ( usrc.isMalformed() ) {
@@ -337,6 +337,8 @@ void GopherProtocol::slotGet(const char *_url)
     }
     break;
   }
+  default:
+    break;
   }
 }
 
@@ -450,9 +452,9 @@ void GopherIOJob::slotError(int _errid, const char *_txt)
 }
 
 const char *GopherProtocol::abouttext=
-"gopher  n.  1. Any of various short tailed, burrowing mammals of the
-family Geomyidae, of North America.  2. (Amer. colloq.) Native or
-inhabitant of Minnesota: the Gopher State.  3. (Amer. colloq.) One
-who runs errands, does odd-jobs, fetches or delivers documents for
-office staff.  4. (computer tech.) software following a simple
-protocol for burrowing through a TCP/IP internet.";
+"gopher  n.  1. Any of various short tailed, burrowing mammals of the\n"
+"family Geomyidae, of North America.  2. (Amer. colloq.) Native or\n"
+"inhabitant of Minnesota: the Gopher State.  3. (Amer. colloq.) One\n"
+"who runs errands, does odd-jobs, fetches or delivers documents for\n"
+"office staff.  4. (computer tech.) software following a simple\n"
+"protocol for burrowing through a TCP/IP internet.";

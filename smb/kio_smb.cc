@@ -197,7 +197,7 @@ SmbProtocol::SmbProtocol( Connection *_conn ) : IOProtocol( _conn )
 	qDebug( "kio_destructor : end" );
 }
 */
-void SmbProtocol::slotMkdir( const char *_url, int _mode )
+void SmbProtocol::slotMkdir( const char *_url, int /*_mode*/ )
 {
 	KURL usrc( _url );
 	if ( usrc.isMalformed() ) {
@@ -1029,7 +1029,8 @@ void SmbProtocol::slotGetSize( const char *_url )
 }
 
 
-void SmbProtocol::slotPut( const char *_url, int _mode, bool _overwrite, bool _resume, int _size )
+void SmbProtocol::slotPut( const char *_url, int /*_mode*/, 
+			   bool _overwrite, bool _resume, int _size )
 {
 	QString url_orig = _url;
 //	QString url_part = url_orig + ".part";
@@ -1181,7 +1182,7 @@ void SmbProtocol::slotDel( QStringList& _source )
 	source_it = _source.begin();
 	qDebug( "kio_smb : Looping" );
 	for( ; source_it != _source.end(); ++source_it ) {
-		struct stat stat_buf;
+      	        // struct stat stat_buf;
 		qDebug( "kio_smb : Checking %s", (*source_it).ascii() );
 		KURL victim( (*source_it) );
 		int s;
