@@ -25,6 +25,7 @@
 
 #include "NBHostCache.h"
 #include <sys/time.h>
+#include <time.h>
 #include <string.h>
 #if DEBUG >=6
 #include <stdio.h>
