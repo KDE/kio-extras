@@ -63,7 +63,9 @@
 
 #include "pop3.h"
 
+#ifdef __GNUC__
 #warning "Should APOP even be conditionalized?"
+#endif
 #define APOP
 #define GREETING_BUF_LEN 1024
 #define MAX_RESPONSE_LEN 512
