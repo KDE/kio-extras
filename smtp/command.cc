@@ -40,6 +40,7 @@
 #include <kidna.h>
 #include <klocale.h>
 #include <kdebug.h>
+#include <kmdcodec.h>
 #include <kio/slavebase.h> // for test_commands, where SMTPProtocol is not derived from TCPSlaveBase
 
 #include <assert.h>
@@ -178,41 +179,115 @@ namespace KioSMTP {
     return false;
   }
 
+
+#define SASLERROR mSMTP->error(KIO::ERR_COULD_NOT_AUTHENTICATE, \
+  i18n("An error occured during authentication: %1").arg \
+  ( QString::fromUtf8( sasl_errdetail( conn ) )));
+
   //
   // AUTH - rfc 2554
   //
   AuthCommand::AuthCommand( SMTPProtocol * smtp,
-			    const QStrIList & mechanisms,
-			    const QString & user,
-			    const QString & pass )
+			    const char *mechanisms,
+          const QString &aFQDN,
+			    KIO::AuthInfo &ai )
     : Command( smtp, CloseConnectionOnError|OnlyLastInPipeline ),
-      mSASL( user, pass, usingSSL() ? "smtps" : "smtp" ),
-      mNumResponses( 0 ),
+      mAi( &ai ),
       mFirstTime( true )
   {
-    if ( !mSASL.chooseMethod( mechanisms ) ) {
-      if ( smtp->metaData("sasl").isEmpty() )
-	// user didn't force a particular method:
-	smtp->error( KIO::ERR_COULD_NOT_LOGIN,
-		     i18n("No compatible authentication methods found.") );
-      else
-	if ( mechanisms.isEmpty() )
-	  // user forced a particular method, but server does not list AUTH cap
-	  smtp->error( KIO::ERR_COULD_NOT_LOGIN,
-		       i18n("You have requested to authenticate to the server, "
-			    "but the server does not seem to support authentication.\n"
-			    "Try disabling authentication entirely.") );
-	else
-	  // user forced a particular method, but server does not support it
-	  smtp->error( KIO::ERR_COULD_NOT_LOGIN,
-		       i18n("Your SMTP server does not support %1.\n"
-			    "Choose a different authentication method.")
-		       .arg( smtp->metaData("sasl") ) );
+#ifdef HAVE_LIBSASL2  
+    int result;
+    mMechusing = 0;
+    conn = 0;
+    client_interact = 0;
+    mOut = 0; mOutlen = 0;
+    
+    result = sasl_client_new( "smtp", aFQDN.latin1(),
+      0, 0, NULL, 0, &conn );
+    if ( result != SASL_OK ) {
+      SASLERROR
+      return;
     }
+    do {
+      result = sasl_client_start(conn, mechanisms,
+        &client_interact, 0, &mOutlen, &mMechusing);
+
+      if (result == SASL_INTERACT)
+        if ( !saslInteract( client_interact ) ) {
+          return;
+        };
+    } while ( result == SASL_INTERACT );
+    if ( result != SASL_CONTINUE && result != SASL_OK ) {
+      SASLERROR
+      return;
+    }
+#else
+  mSMTP->error(KIO::ERR_COULD_NOT_AUTHENTICATE,
+      i18n("Authentication support is not compiled into kio_smtp.");
+#endif
+  }
+
+  AuthCommand::~AuthCommand()
+  {
+#ifdef HAVE_LIBSASL2  
+    if ( conn ) {
+      kdDebug(7112) << "dispose sasl connection" << endl;
+      sasl_dispose( &conn );
+      conn = 0;
+    }
+#endif    
+  }
+
+  bool AuthCommand::saslInteract( void *in )
+  {
+#ifdef HAVE_LIBSASL2
+    kdDebug(7112) << "saslInteract: " << endl;
+    sasl_interact_t *interact = ( sasl_interact_t * ) in;
+
+    //some mechanisms do not require username && pass, so don't need a popup
+    //window for getting this info
+    for ( ; interact->id != SASL_CB_LIST_END; interact++ ) {
+      if ( interact->id == SASL_CB_AUTHNAME ||
+           interact->id == SASL_CB_PASS ) {
+
+        if ( mAi->username.isEmpty() || mAi->password.isEmpty()) {
+          if (!mSMTP->openPassDlg(*mAi)) {
+            mSMTP->error(KIO::ERR_ABORTED, i18n("No authentication details supplied."));
+            return false;
+          }
+        }
+        break;
+      }
+    }
+
+    interact = ( sasl_interact_t * ) in;
+    while( interact->id != SASL_CB_LIST_END ) {
+      switch( interact->id ) {
+        case SASL_CB_USER:
+        case SASL_CB_AUTHNAME:
+          kdDebug(7112) << "SASL_CB_[USER|AUTHNAME]: " << mAi->username << endl;
+          interact->result = strdup( mAi->username.utf8() );
+          interact->len = strlen( (const char *) interact->result );
+          break;
+        case SASL_CB_PASS:
+          kdDebug(7112) << "SASL_CB_PASS: [HIDDEN]" << endl;
+          interact->result = strdup( mAi->password.utf8() );
+          interact->len = strlen( (const char *) interact->result );
+          break;
+        default:
+          interact->result = NULL; interact->len = 0;
+          break;
+      }
+      interact++;
+    }
+    return true;
+#else
+    return false;
+#endif
   }
 
   bool AuthCommand::doNotExecute( const TransactionState * ) const {
-    return !mSASL.method();
+    return !mMechusing;
   }
 
   void AuthCommand::ungetCommandLine( const QCString & s, TransactionState * ) {
@@ -228,46 +303,54 @@ namespace KioSMTP {
       cmd = mUngetSASLResponse;
       mUngetSASLResponse = 0;
     } else if ( mFirstTime ) {
-      cmd = "AUTH " + mSASL.method();
-      if ( sendInitialResponse() ) {
-	QCString resp = mSASL.getResponse();
-	if ( resp.isEmpty() )
-	  resp = '='; // empty initial responses are represented by a
-		      // single '=' in the SMTP SASL profile
-	cmd += ' ' + resp;
-	++mNumResponses;
-      }
-      cmd += "\r\n";
+      cmd = "AUTH " + QCString( mMechusing );
+      kdDebug(7112) << "mechusing: " << mMechusing << endl;
     } else {
-      ++mNumResponses;
-      cmd = mSASL.getResponse( mLastChallenge ) + "\r\n";
+      QByteArray tmp, challenge;
+//      kdDebug(7112) << "SS: '" << mLastChallenge << "'" << endl;
+      tmp.setRawData( mLastChallenge.data(), mLastChallenge.length() );
+      KCodecs::base64Decode( tmp, challenge );
+      tmp.resetRawData( mLastChallenge.data(), mLastChallenge.length() );
+      int result;
+      do {
+        result = sasl_client_step(conn, challenge.isEmpty() ? 0 : challenge.data(),
+                                  challenge.size(),
+                                  &client_interact,
+                                  &mOut, &mOutlen);
+        if (result == SASL_INTERACT)
+          if ( !saslInteract( client_interact ) ) {
+            return "";
+          };
+      } while ( result == SASL_INTERACT );
+      if ( result != SASL_CONTINUE && result != SASL_OK ) {
+        kdDebug(7112) << "sasl_client_step failed with: " << result << endl;
+        SASLERROR
+        return "";
+      }
+      tmp.setRawData( mOut, mOutlen );
+      cmd = KCodecs::base64Encode( tmp );
+      tmp.resetRawData( mOut, mOutlen );
+      
+//      kdDebug(7112) << "CC: '" << cmd << "'" << endl;
+      mComplete = ( result == SASL_OK );
     }
-    mComplete = mSASL.dialogComplete( mNumResponses );
+    cmd += "\r\n";
     return cmd;
-  }
-
-  bool AuthCommand::sendInitialResponse() const {
-    // don't send credentials if we're not under encryption
-    // until we know that the server supports this SASL
-    // mechanism. We can do this since the sending the
-    // initial-response right away is optional:
-    return mSASL.clientStarts() && ( usingSSL() || usingTLS() );
   }
 
   bool AuthCommand::processResponse( const Response & r, TransactionState * ) {
     if ( !r.isOk() ) {
-      if ( mFirstTime && !sendInitialResponse() )
-	if ( haveCapability( "AUTH" ) )
-	  mSMTP->error( KIO::ERR_COULD_NOT_LOGIN,
-			i18n("Your SMTP server does not support %1.\n"
-			     "Choose a different authentication method.\n"
-			     "%2").arg( mSASL.method() ).arg( r.errorMessage() ) );
-	else
-	  mSMTP->error( KIO::ERR_COULD_NOT_LOGIN,
-			i18n("Your SMTP server does not support authentication.\n"
-			     "%2").arg( r.errorMessage() ) );
+      if ( mFirstTime )
+	      if ( haveCapability( "AUTH" ) )
+          mSMTP->error( KIO::ERR_COULD_NOT_LOGIN,
+            i18n("Your SMTP server does not support %1.\nChoose a different authentication method.\n%2")
+              .arg( mMechusing ).arg( r.errorMessage() ) );
+	      else
+	        mSMTP->error( KIO::ERR_COULD_NOT_LOGIN,
+			      i18n("Your SMTP server does not support authentication.\n"
+			     "  %2").arg( r.errorMessage() ) );
       else
-	mSMTP->error( KIO::ERR_COULD_NOT_LOGIN,
+	      mSMTP->error( KIO::ERR_COULD_NOT_LOGIN,
 		      i18n("Authentication failed.\n"
 			   "Most likely the password is wrong.\n"
 			   "%1").arg( r.errorMessage() ) );

@@ -30,6 +30,12 @@
 
 #include <config.h>
 
+#ifdef HAVE_LIBSASL2
+extern "C" {
+#include <sasl/sasl.h>
+}
+#endif
+
 #include "smtp.h"
 #include "request.h"
 #include "response.h"
@@ -82,6 +88,21 @@ using std::auto_ptr;
 # define NI_NAMEREQD	0
 #endif
 
+
+#ifdef HAVE_LIBSASL2
+static sasl_callback_t callbacks[] = {
+    { SASL_CB_ECHOPROMPT, NULL, NULL },
+    { SASL_CB_NOECHOPROMPT, NULL, NULL },
+    { SASL_CB_GETREALM, NULL, NULL },
+    { SASL_CB_USER, NULL, NULL },
+    { SASL_CB_AUTHNAME, NULL, NULL },
+    { SASL_CB_PASS, NULL, NULL },
+    { SASL_CB_GETOPT, NULL, NULL },
+    { SASL_CB_CANON_USER, NULL, NULL },
+    { SASL_CB_LIST_END, NULL, NULL }
+};
+#endif
+
 extern "C" {
   int kdemain(int argc, char **argv);
 } 
@@ -96,8 +117,17 @@ int kdemain(int argc, char **argv)
     exit(-1);
   }
 
+#ifdef HAVE_LIBSASL2
+  if ( sasl_client_init( callbacks ) != SASL_OK ) {
+    fprintf(stderr, "SASL library initialization failed!\n");
+    exit(-1);
+  }
+#endif
   SMTPProtocol slave( argv[2], argv[3], qstricmp( argv[1], "smtps" ) == 0 );
   slave.dispatchLoop();
+#ifdef HAVE_LIBSASL2
+  sasl_done();
+#endif
   return 0;
 }
 
@@ -546,26 +576,9 @@ bool SMTPProtocol::smtp_open(const QString& fakeHostname)
     }
   }
   // Now we try and login
-  if (!m_sUser.isNull()) {
-    if (m_sPass.isNull()) {
-      KIO::AuthInfo authInfo;
-      authInfo.username = m_sUser;
-      authInfo.password = m_sPass;
-      authInfo.prompt = i18n("Username and password for your SMTP account:");
-      if (!openPassDlg(authInfo)) {
-        error(KIO::ERR_COULD_NOT_LOGIN, i18n("When prompted, you ran away."));
-        smtp_close();
-        return false;
-      } 
-      else {
-        m_sUser = authInfo.username;
-        m_sPass = authInfo.password;
-      }
-    }
-    if (!authenticate()) {
-      smtp_close();
-      return false;
-    }
+  if (!authenticate()) {
+    smtp_close();
+    return false;
   }
 
   m_iOldPort = m_iPort;
@@ -578,19 +591,28 @@ bool SMTPProtocol::smtp_open(const QString& fakeHostname)
 
 bool SMTPProtocol::authenticate()
 {
-  // return with success if the server doesn't support SMTP-AUTH and
-  // metadata doesn't tell us to force it.
-  if ( !haveCapability( "AUTH" ) && metaData( "sasl" ).isEmpty() )
-    return true;
+  // return with success if the server doesn't support SMTP-AUTH or an user 
+  // name is not specified and metadata doesn't tell us to force it.
+  if ( (m_sUser.isEmpty() || !haveCapability( "AUTH" )) && 
+    metaData( "sasl" ).isEmpty() ) return true;
 
-  QStrIList strList( true ); // deep copies
+  KIO::AuthInfo authInfo;
+  authInfo.username = m_sUser;
+  authInfo.password = m_sPass;
+  authInfo.prompt = i18n("Username and password for your SMTP account:");
+  
+  QStringList strList;
+
   if (!metaData("sasl").isEmpty())
     strList.append(metaData("sasl").latin1());
   else
-    strList = mCapabilities.saslMethods();
+    strList = mCapabilities.saslMethodsQSL();
 
-  AuthCommand authCmd( this, strList, m_sUser, m_sPass );
-  return execute( &authCmd );
+  AuthCommand authCmd( this, strList.join(" ").latin1(), m_sServer, authInfo );
+  bool ret = execute( &authCmd );
+  m_sUser = authInfo.username;
+  m_sPass = authInfo.password;
+  return ret;
 }
 
 void SMTPProtocol::parseFeatures( const Response & ehloResponse ) {

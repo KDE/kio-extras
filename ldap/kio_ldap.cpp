@@ -430,7 +430,7 @@ void LDAPProtocol::LDAPEntry2UDSEntry( const QString &dn, UDSEntry &entry,
   entry.append( atom );
 }
 
-void LDAPProtocol::changeCheck( const LDAPUrl &url )
+void LDAPProtocol::changeCheck( LDAPUrl &url )
 {
   bool critical;
   bool tls = ( url.hasExtension( "x-tls" ) );
@@ -471,6 +471,11 @@ void LDAPProtocol::changeCheck( const LDAPUrl &url )
     kdDebug(7125) << "parameters changed: tls = " << mTLS << 
       " version: " << mVer << "SASLauth: " << mAuthSASL << endl;
     openConnection();
+    if ( mAuthSASL ) {
+      url.setUser( mUser );
+    } else {
+      url.setUser( mBindName );
+    }
   } else {
     if ( !mLDAP ) openConnection();
   }
@@ -503,38 +508,78 @@ void LDAPProtocol::setHost( const QString& host, int port,
     mUser << " pass: [protected]" << endl;
 }
     
-typedef struct kldap_sasl_defaults_t {
-  QString realm;
-  QString authcid;
-  QString passwd;
-  QString authzid;
-} kldap_sasl_defaults;
-
-#if defined HAVE_SASL_H || defined HAVE_SASL_SASL_H
-static int kldap_sasl_interact( LDAP *, unsigned, void *defaults, void *in )
+static int kldap_sasl_interact( LDAP *, unsigned, void *slave, void *in )
 {
+  return ((LDAPProtocol*) slave)->saslInteract( in );
+}
+
+void LDAPProtocol::fillAuthInfo( AuthInfo &info )
+{
+  info.url.setProtocol( mProtocol );
+  info.url.setHost( mHost );
+  info.url.setPort( mPort );
+  info.url.setUser( mUser );
+  info.caption = i18n("LDAP Login");
+  info.comment = QString::fromLatin1( mProtocol ) + "://" + mHost + ":" + 
+    QString::number( mPort );
+  info.commentLabel = i18n("site:");
+  info.username = mAuthSASL ? mUser : mBindName;
+  info.password = mPassword;
+  info.keepPassword = true;
+}
+
+int LDAPProtocol::saslInteract( void *in )
+{
+#if defined HAVE_SASL_H || defined HAVE_SASL_SASL_H
+  AuthInfo info;
+  fillAuthInfo( info );
+
   sasl_interact_t *interact = ( sasl_interact_t * ) in;
-  kldap_sasl_defaults *def = ( kldap_sasl_defaults * ) defaults;  
+
+  //some mechanisms do not require username && pass, so it doesn't need a popup
+  //window for getting this info
+  for ( ; interact->id != SASL_CB_LIST_END; interact++ ) {
+    if ( interact->id == SASL_CB_AUTHNAME ||
+         interact->id == SASL_CB_PASS ) {
+
+      if ( info.username.isEmpty() || info.password.isEmpty() ) {
+        if ( ! (mFirstAuth ?
+          openPassDlg( info ) :
+          openPassDlg( info, i18n("Invalid authorization information.") )) ) {
+
+          kdDebug(7125) << "Dialog cancelled!" << endl;
+          mCancel = true;
+          return LDAP_USER_CANCELLED;
+        }
+        mFirstAuth = false;
+        mUser = info.username;
+        mPassword = info.password;
+      }
+      break;
+    }
+  }
+
+  interact = ( sasl_interact_t * ) in;
   QString value;
-  
+
   while( interact->id != SASL_CB_LIST_END ) {
     value = "";
     switch( interact->id ) {
       case SASL_CB_GETREALM:
-        value = def->realm;
-        kdDebug(7125) << "SASL_REALM=" << value << endl;
+        value = mRealm;
+        kdDebug(7125) << "SASL_REALM=" << mRealm << endl;
         break;
       case SASL_CB_AUTHNAME:
-        value = def->authcid;
-        kdDebug(7125) << "SASL_AUTHNAME=" << value << endl;
+        value = mUser;
+        kdDebug(7125) << "SASL_AUTHNAME=" << mUser << endl;
         break;
       case SASL_CB_PASS:
-        value = def->passwd;
+        value = mPassword;
         kdDebug(7125) << "SASL_PASSWD=[hidden]" << endl;
         break;
       case SASL_CB_USER:
-        value = def->authzid;
-        kdDebug(7125) << "SASL_AUTHZID=" << value << endl;
+        value = mBindName;
+        kdDebug(7125) << "SASL_AUTHZID=" << mBindName << endl;
         break;
     }
     if ( value.isEmpty() ) {
@@ -547,50 +592,26 @@ static int kldap_sasl_interact( LDAP *, unsigned, void *defaults, void *in )
     interact++;
   }
 
+#endif
   return LDAP_SUCCESS;
 }
-#endif
 
 void LDAPProtocol::openConnection()
 {
   if ( mLDAP ) return;
-  
+
   int version,ret;
-  
+
   version = ( mVer == 2 ) ? LDAP_VERSION2 : LDAP_VERSION3;
-  
+
   KURL Url;
   Url.setProtocol( mProtocol );
   Url.setHost( mHost );
   Url.setPort( mPort );
-   
+
   AuthInfo info;
-  info.url.setProtocol( mProtocol );
-  info.url.setHost( mHost );
-  info.url.setPort( mPort );
-  info.url.setUser( mUser );
-  info.caption = i18n("LDAP Login");
-  info.comment = QString::fromLatin1( mProtocol ) + "://" + mHost + ":" + 
-    QString::number( mPort );
-  info.commentLabel = i18n("site:");
-  info.username = mAuthSASL ? mUser : mBindName;
-  info.keepPassword = true;
-
-  ///////////////////////////////////////////////////////////////////////////
-
-  if( mUser.isEmpty() && mPassword.isEmpty() && 
-//don't need authentication info for kerberos-gssapi
-    !( mAuthSASL && mMech == "GSSAPI" ) ) {
-    if( checkCachedAuthentication( info ) ) {
-      if ( mAuthSASL )
-        mUser = info.username;
-      else
-        mBindName = info.username;
-      mPassword = info.password;
-      kdDebug(7125) << "auth info from cache: " << mUser <<  endl;
-    }
-  }
-
+  fillAuthInfo( info );
+///////////////////////////////////////////////////////////////////////////
   kdDebug(7125) << "OpenConnection to " << mHost << ":" << mPort << endl;
 
   ret = ldap_initialize( &mLDAP, Url.htmlURL().utf8() );
@@ -599,16 +620,16 @@ void LDAPProtocol::openConnection()
     closeConnection();
     return;
   }
-  
-  if ( (ldap_set_option( mLDAP, LDAP_OPT_PROTOCOL_VERSION, &version )) != 
+
+  if ( (ldap_set_option( mLDAP, LDAP_OPT_PROTOCOL_VERSION, &version )) !=
     LDAP_OPT_SUCCESS ) {
-    
+
     closeConnection();
-    error( ERR_UNSUPPORTED_ACTION, 
+    error( ERR_UNSUPPORTED_ACTION,
       i18n("Cannot set LDAP protocol version %1").arg(version) );
     return;
   }
-  
+
   if ( mTLS ) {
     kdDebug(7125) << "start TLS" << endl;
     if ( ( ret = ldap_start_tls_s( mLDAP, NULL, NULL ) ) != LDAP_SUCCESS ) {
@@ -617,7 +638,7 @@ void LDAPProtocol::openConnection()
       return;
     }
   }
-  
+
   if ( mSizeLimit ) {
     kdDebug(7125) << "sizelimit: " << mSizeLimit << endl;
     if ( ldap_set_option( mLDAP, LDAP_OPT_SIZELIMIT, &mSizeLimit ) != LDAP_SUCCESS ) {
@@ -627,7 +648,7 @@ void LDAPProtocol::openConnection()
       return;
     }
   }
-  
+
   if ( mTimeLimit ) {
     kdDebug(7125) << "timelimit: " << mTimeLimit << endl;
     if ( ldap_set_option( mLDAP, LDAP_OPT_TIMELIMIT, &mTimeLimit ) != LDAP_SUCCESS ) {
@@ -637,67 +658,64 @@ void LDAPProtocol::openConnection()
       return;
     }
   }
-  
+
+#if !defined HAVE_SASL_H && !defined HAVE_SASL_SASL_H
+  if ( mAuthSASL ) {
+    closeConnection();
+    error( ERR_SLAVE_DEFINED, 
+      i18n("SASL authentication not compiled into the ldap ioslave.") );
+    return;
+  }
+#endif
+
   bool auth = false;
-  bool firstauth = true;
-  bool dlgResult;
-  kldap_sasl_defaults defaults;
   QString mechanism = mMech.isEmpty() ? "DIGEST-MD5" : mMech;
-  
+  mFirstAuth = true; mCancel = false;
+
   ret = LDAP_SUCCESS;
   while (!auth) {
-    if ( mAuthSASL ) {
-      kdDebug(7125) << "sasl_authentication mechanism:" << mechanism << endl;
-#if defined HAVE_SASL_H || defined HAVE_SASL_SASL_H
-      defaults.realm = mRealm;
-      defaults.authcid = mUser;
-      defaults.passwd = mPassword;
-      defaults.authzid = mBindName;
-#else
-      closeConnection();
-      error( ERR_SLAVE_DEFINED, 
-        i18n("SASL authentication not compiled into the ldap ioslave.") );
-      return;
-#endif      
-    }
-    kdDebug(7125) << "user: " << mUser << " bindname: " << mBindName << endl;
-    if ( ( !mAuthSASL && mPassword.isEmpty() && !mBindName.isEmpty() ) || ( ret = ( 
-#if defined HAVE_SASL_H || defined HAVE_SASL_SASL_H
-      mAuthSASL ? 
-        ldap_sasl_interactive_bind_s( mLDAP, NULL, mechanism.utf8(), 
-          NULL, NULL, LDAP_SASL_QUIET, &kldap_sasl_interact, &defaults ) :
-#endif          
-        ldap_simple_bind_s( mLDAP, mBindName.utf8(), mPassword.utf8() )
-          == LDAP_INVALID_CREDENTIALS ) )) {
-      
-      kdDebug(7125) << "Auth error, open pass dlg! " << endl;
-      if (firstauth)
-        dlgResult = openPassDlg( info );
-      else
-        dlgResult = openPassDlg( info, i18n("Invalid authorization information.") );
-      
-      firstauth = false;
-      if ( !dlgResult ) {
-        // user canceled or dialog failed to open
+    if ( !mAuthSASL && (
+      ( mFirstAuth && 
+      !( mBindName.isEmpty() && mPassword.isEmpty() ) && //For anonymous bind
+       ( mBindName.isEmpty() || mPassword.isEmpty() ) ) || !mFirstAuth ) )
+    {
+      if ( mFirstAuth ?
+        openPassDlg( info ) :
+        openPassDlg( info, i18n("Invalid authorization information.") ) ) {
+
+        mBindName = info.username;
+        mPassword = info.password;
+        mFirstAuth = false;
+      } else {
+        kdDebug(7125) << "Dialog cancelled!" << endl;
         error( ERR_USER_CANCELED, QString::null );
         closeConnection();
         return;
       }
-      if ( mAuthSASL )
-        mUser = info.username;
-      else
-        mBindName = info.username;
-      mPassword = info.password;
-    } else {
+    }
+    kdDebug(7125) << "user: " << mUser << " bindname: " << mBindName << endl;
+    ret = 
+#if defined HAVE_SASL_H || defined HAVE_SASL_SASL_H
+      mAuthSASL ? 
+        ldap_sasl_interactive_bind_s( mLDAP, NULL, mechanism.utf8(), 
+          NULL, NULL, LDAP_SASL_INTERACTIVE, &kldap_sasl_interact, this ) :
+#endif          
+        ldap_simple_bind_s( mLDAP, mBindName.utf8(), mPassword.utf8() );
+    
+    if ( ret != LDAP_INVALID_CREDENTIALS && ret != LDAP_INSUFFICIENT_ACCESS ) {
+      kdDebug(7125) << "ldap_bind retval: " << ret << endl;
       auth = true;
       if ( ret != LDAP_SUCCESS ) {
-        LDAPErr( ret, Url.prettyURL() );
+        if ( mCancel )
+          error( ERR_USER_CANCELED, QString::null );
+        else
+          LDAPErr( ret, Url.prettyURL() );
         closeConnection();
         return;
       }
     }
   }
-  
+
   kdDebug(7125) << "connected!" << endl;
   connected();
 }
@@ -1029,7 +1047,7 @@ void LDAPProtocol::listDir( const KURL &_url )
   char *dn;
   QStringList att,saveatt;
   LDAPMessage *entry,*msg,*entry2,*msg2;
-  LDAPUrl usrc(_url),usrc2(_url);
+  LDAPUrl usrc(_url),usrc2;
   bool critical;
   bool isSub = ( usrc.extension( "x-dir", critical ) == "sub" );
   
@@ -1040,6 +1058,7 @@ void LDAPProtocol::listDir( const KURL &_url )
     finished();
     return;
   }
+  usrc2 = usrc;
 
   saveatt = usrc.attributes();
   // look up the entries

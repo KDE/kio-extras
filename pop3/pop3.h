@@ -72,22 +72,22 @@ protected:
    */
   bool sendCommand(const char *cmd);
 
+  enum Resp{Err, Ok, Cont, Invalid};
   /**
    *  Send a command to the server, and wait for the  one-line-status
    *  reply via getResponse.  Similar rules apply.  If no buffer is
    *  specified, no data is passed back.
    */
-  bool command(const char *buf, char *r_buf = 0, unsigned int r_len = 0);
+  Resp command(const char *buf, char *r_buf = 0, unsigned int r_len = 0);
 
   /**
    *  All POP3 commands will generate a response.  Each response will
    *  either be prefixed with a "+OK " or a "-ERR ".  The getResponse
    *  function will wait until there's data to be read, and then read in
    *  the first line (the response), and copy the response sans +OK/-ERR
-   *  into a buffer (up to len bytes) if one was passed to it.  It will
-   *  return true if the response was affirmitave, or false otherwise.
+   *  into a buffer (up to len bytes) if one was passed to it.
    */
-  bool getResponse(char *buf, unsigned int len, const char *command);
+  Resp getResponse(char *buf, unsigned int len, const char *command);
 
   /** Call int pop3_open() and report an error, if if fails */
   void openConnection();
@@ -104,6 +104,20 @@ protected:
    * specified, the user is prompted for them.
    */
   bool pop3_open();
+  /**
+   * Authenticate via APOP
+   */  
+  int loginAPOP( char *challenge, KIO::AuthInfo &ai );
+
+  bool saslInteract( void *in, KIO::AuthInfo &ai );
+  /**
+   * Authenticate via SASL
+   */  
+  int loginSASL( KIO::AuthInfo &ai );
+  /**
+   * Authenticate via traditional USER/PASS
+   */  
+  bool loginPASS( KIO::AuthInfo &ai );
 
   int m_cmd;
   unsigned short int m_iOldPort;

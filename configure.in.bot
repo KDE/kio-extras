@@ -1,0 +1,6 @@
+if test -z "$SASL2_LIBS"; then
+  echo ""
+  echo "cyrus-sasl 2 library is missing. The pop3 and smtp ioslave will lack of a lot of authentication opportunities."
+  echo ""
+  all_tests=bad
+fi

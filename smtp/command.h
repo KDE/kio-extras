@@ -33,10 +33,16 @@
 #define __KIOSMTP_COMMAND_H__
 
 
-#include <kio/kdesasl.h>
-
 #include <qstring.h>
 #include <qcstring.h>
+
+#ifdef HAVE_LIBSASL2
+extern "C" {
+#include <sasl/sasl.h>
+}
+#endif
+
+#include <kio/authinfo.h>
 
 class SMTPProtocol;
 class QStrIList;
@@ -169,18 +175,24 @@ namespace KioSMTP {
 
   class AuthCommand : public Command {
   public:
-    AuthCommand( SMTPProtocol * smtp, const QStrIList & mechanisms,
-		 const QString & user, const QString & pass );
-
+    AuthCommand( SMTPProtocol * smtp, const char *mechanisms,
+      const QString &aFQDN, KIO::AuthInfo &ai );
+    ~AuthCommand();
     bool doNotExecute( const TransactionState * ts ) const;
     QCString nextCommandLine( TransactionState * );
     void ungetCommandLine( const QCString & cmdLine, TransactionState * );
     bool processResponse( const Response & response, TransactionState * );
   private:
-    bool sendInitialResponse() const;
+    bool saslInteract( void *in );
 
-    KDESasl mSASL;
-    int mNumResponses;
+#ifdef HAVE_LIBSASL2
+    sasl_conn_t *conn;
+    sasl_interact_t *client_interact;
+#endif    
+    const char *mOut, *mMechusing;
+    uint mOutlen;
+
+    KIO::AuthInfo *mAi;
     QCString mLastChallenge;
     QCString mUngetSASLResponse;
     bool mFirstTime;

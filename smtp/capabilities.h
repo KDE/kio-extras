@@ -66,8 +66,8 @@ namespace KioSMTP {
 
     QString createSpecialResponse( bool tls ) const;
 
-  private:
     QStringList saslMethodsQSL() const;
+  private:
 
     QMap<QString,QStringList> mCapabilities;
   };

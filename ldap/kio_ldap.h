@@ -5,6 +5,7 @@
 #include <qvaluelist.h>
 
 #include <kio/slavebase.h>
+#include <kio/authinfo.h>
 
 #include <lber.h>
 #include <ldap.h>
@@ -27,6 +28,9 @@ class LDAPProtocol : public KIO::SlaveBase
     virtual void listDir( const KURL& url );
     virtual void del( const KURL& url, bool isfile );
     virtual void put( const KURL& url, int permissions, bool overwrite, bool resume );
+
+    int saslInteract( void *in );
+
   private:
 
     QString mHost;
@@ -38,7 +42,8 @@ class LDAPProtocol : public KIO::SlaveBase
     bool mTLS;
     bool mAuthSASL;
     QString mMech,mRealm,mBindName;
-
+    bool mCancel, mFirstAuth;
+    
     void controlsFromMetaData( LDAPControl ***serverctrls, 
       LDAPControl ***clientctrls );
     void addControlOp( LDAPControl ***pctrls, const QString &oid,
@@ -52,7 +57,9 @@ class LDAPProtocol : public KIO::SlaveBase
     QCString LDAPEntryAsLDIF( LDAPMessage *msg );
     void checkErr( const KURL &_url );
     void LDAPErr( int error, const QString &msg );
-    void changeCheck( const KABC::LDAPUrl &url );
+    void changeCheck( KABC::LDAPUrl &url );
+
+    void fillAuthInfo( KIO::AuthInfo &info );
 };
 
 #endif
