@@ -33,12 +33,13 @@
 #include <kstddirs.h>
 #include <klocale.h>
 #include <kurl.h>
-
+#include <kregexp.h>
 
 #include "kio_finger.h"
 
 using namespace KIO;
 
+static const QString defaultRefreshRate = "60";
 
 extern "C"
 {
@@ -101,8 +102,27 @@ void FingerProtocol::get(const KURL& url )
   // Reset the stream
   *myStdStream="";
   
+  QString query = myURL->query();
+  QString refreshRate = defaultRefreshRate;
+
+  kdDebug() << "query: " << query << endl;
+  
+  // Check the valifity of the query 
+
+  QRegExp regExp("?refreshRate=[0-9][0-9]*", true, true);
+  if (query.contains(regExp)) {
+    kdDebug() << "looks like a valid query" << endl;
+    KRegExp regExp( "([0-9]+)" );
+    regExp.match(query);
+    refreshRate = regExp.group(0);
+  }
+  
+  kdDebug() << "Refresh rate: " << refreshRate << endl;
+ 
+
   myKProcess = new KShellProcess();  
-  *myKProcess << *myPerlPath << *myFingerScript << *myFingerPath << myURL->host() << myURL->user();
+  *myKProcess << *myPerlPath << *myFingerScript << *myFingerPath
+	      << refreshRate << myURL->host() << myURL->user() ;
   	
   connect(myKProcess, SIGNAL(receivedStdout(KProcess *, char *, int)), 
 	  this, SLOT(slotGetStdOutput(KProcess *, char *, int)));
@@ -222,6 +242,14 @@ void FingerProtocol::parseCommandLine(const KURL& url) {
 
   if(myURL->port() == 0) {
     myURL->setPort(79);
+  } 
+
+  /*
+   * If no refresh rate is given, set it to defaultRefreshRate
+   */
+
+ if (myURL->query().isEmpty()) {
+   myURL->setQuery("?refreshRate="+defaultRefreshRate);
   }
 }
 
