@@ -95,16 +95,15 @@ UDSEntry sftpFileAttr::entry() {
         entry.append(atom);
 
         mode_t type = fileType();
-
+        
         // Set the type if we know what it is
         if( type != 0 ) {
             atom.m_uds = UDS_FILE_TYPE;
             atom.m_long = (mLinkType ? mLinkType:type);
             entry.append(atom);
         }
-
-        // If file is a link, set the link destination
-        if( type == S_IFLNK ) {
+        
+        if( S_ISLNK(type) ) {
             atom.m_uds = UDS_LINK_DEST;
             atom.m_str = mLinkDestination;
             entry.append(atom);
@@ -258,8 +257,8 @@ void sftpFileAttr::clear(){
     mFilename = QString::null;
     mGroupName =  QString::null;
     mUserName = QString::null;
+    mLinkDestination = QString::null;    
     mFlags = 0;
-//    mLinkDestination = NULL;
     mLongname = "\0";
     mLinkType = 0;
 }
@@ -288,13 +287,24 @@ Q_UINT32 sftpFileAttr::size() const{
 
 /** Returns the file type as determined from the file permissions */
 mode_t sftpFileAttr::fileType() const{
-    if( S_ISREG(mPermissions)       ) { return S_IFREG; }
-    else if( S_ISDIR(mPermissions)  ) { return S_IFDIR; }
-    else if( S_ISLNK(mPermissions)  ) { return S_IFLNK; }
-    else if( S_ISCHR(mPermissions)  ) { return S_IFCHR; }
-    else if( S_ISBLK(mPermissions)  ) { return S_IFBLK; }
-    else if( S_ISFIFO(mPermissions) ) { return S_IFIFO; }
-    else if( S_ISSOCK(mPermissions) ) { return S_IFSOCK;}
-    else return 0;
+    mode_t type = 0;
+    
+    if( S_ISLNK(mPermissions) )
+      type |= S_IFLNK;
+      
+    if( S_ISREG(mPermissions) )
+      type |= S_IFREG;
+    else if( S_ISDIR(mPermissions) )
+      type |= S_IFDIR;
+    else if( S_ISCHR(mPermissions) )
+      type |= S_IFCHR;
+    else if( S_ISBLK(mPermissions) )
+      type |= S_IFBLK;
+    else if( S_ISFIFO(mPermissions) )
+      type |= S_IFIFO;
+    else if( S_ISSOCK(mPermissions) )
+      type |= S_IFSOCK;
+    
+    return type;
 }
 // vim:ts=4:sw=4

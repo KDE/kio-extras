@@ -321,7 +321,7 @@ public:
      *                  KSshProcess should use to setup a SSH connection.
      */
     KSshProcess(QString pathToSsh);
-	~KSshProcess();
+    ~KSshProcess();
 
     /**
      * Set the ssh binary KSshProcess should use. This will only affect the
@@ -333,7 +333,7 @@ public:
      *         recognizes the version.
      *
      */
-	bool setSshPath(QString pathToSsh);
+     bool setSshPath(QString pathToSsh);
 
     /**
      * Get the ssh version.
@@ -595,12 +595,12 @@ private:
     QCStringList mArgs;
     void init();
 
-	/**
-	 * Handler to clean up when ssh process terminates.
-	 */
-	static void SIGCHLD_handler(int signo);
-	void installSignalHandlers();
-	void removeSignalHandlers();
+    /**
+      * Handler to clean up when ssh process terminates.
+      */
+    static void SIGCHLD_handler(int signo);
+    void installSignalHandlers();
+    void removeSignalHandlers();
 
     QString getLine();
     
