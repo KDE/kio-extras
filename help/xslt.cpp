@@ -26,10 +26,8 @@ void closeQString(void * context) {
     *t += QString::fromLatin1("\n");
 }
 
-QString transform( const QString &pat )
+QString transform( const QString &pat, const QString& tss)
 {
-    if (slave) slave->infoMessage(i18n("Looking up stylesheet"));
-    QString tss = locate("dtd", "customization/kde-chunk.xsl");
     if (slave) slave->infoMessage(i18n("Parsing stylesheet"));
     xsltStylesheetPtr style_sheet =
         xsltParseStylesheetFile((const xmlChar *)tss.latin1());
@@ -93,7 +91,7 @@ QString transform( const QString &pat )
             xmlOutputBufferPtr outp = xmlOutputBufferCreateIO(writeToQString, closeQString, &parsed, 0);
             outp->written = 0;
             if (slave) slave->infoMessage(i18n("Writing document"));
-            htmlDocContentDumpOutput(outp, res, 0);
+            xsltSaveResultTo ( outp, res, style_sheet );
             xmlOutputBufferFlush(outp);
             xmlFreeDoc(res);
         }

@@ -233,7 +233,7 @@ void HelpProtocol::get( const KURL& url )
 
     infoMessage(i18n("Preparing document"));
 
-    parsed = transform(file);
+    parsed = transform(file, locate("dtd", "customization/kde-chunk.xsl"));
     if (parsed.isEmpty()) {
         data(QCString(i18n("<html>The requested help file could not be parsed:<br>%1</html>").arg(file).latin1()));
     } else
