@@ -71,7 +71,7 @@
 #include "smtp.h"
 
 #define ASCII(x) QString::fromLatin1(x)
-#define WRITE_STRING(x) Write (x.latin1(), strlen(x.latin1()))
+#define WRITE_STRING(x) write (x.latin1(), strlen(x.latin1()))
 
 #define DEFAULT_RESPONSE_BUFFER 512
 #define DEFAULT_EHLO_BUFFER 5120
@@ -325,13 +325,13 @@ void SMTPProtocol::put(const KURL &url, int /*permissions*/, bool /*overwrite*/,
 		buffer.resize(0);
 		result = readData(buffer);
 		if (result > 0) {
-			Write(buffer.data(), buffer.size());
+			write(buffer.data(), buffer.size());
 		} else if (result < 0) {
 			error(ERR_COULD_NOT_WRITE, open_url.path());
 		}
 	} while (result > 0);
 
-	Write("\r\n.\r\n", 5);
+	write("\r\n.\r\n", 5);
 	if (getResponse() >= 400)
 	{
 		error(ERR_NO_CONTENT, i18n("The server didn't accept the "
@@ -390,7 +390,7 @@ int SMTPProtocol::getResponse (char *r_buf, unsigned int r_len)
 	// Clear out the buffer
 	memset(buf, 0, len);
 	// And grab the data
-	ReadLine(buf, len-1);
+	readLine(buf, len-1);
 
 	// This is really a funky crash waiting to happen if something isn't
 	// null terminated.
@@ -408,7 +408,7 @@ int SMTPProtocol::getResponse (char *r_buf, unsigned int r_len)
 			buf += recv_len;
 			len -= (recv_len+1);
 			if (!waitForResponse(60)) return 999;
-			recv_len = ReadLine(buf, len-1);
+			recv_len = readLine(buf, len-1);
 			if (recv_len == 0)
 				buf[0] = buf[1] = buf[2] = buf[3] = ' ';
 		}
@@ -434,7 +434,7 @@ bool SMTPProtocol::command (const QString &cmd, char *recv_buf, unsigned int len
         write_buf += "\r\n";
 
 	// Write the command
-	if ( Write(static_cast<const char *>(write_buf), write_buf.length() ) != static_cast<ssize_t>(write_buf.length()) ) {
+	if ( write(static_cast<const char *>(write_buf), write_buf.length() ) != static_cast<ssize_t>(write_buf.length()) ) {
 		m_sError = i18n("Could not send to server.\n");
 		return false;
 	}
@@ -444,12 +444,12 @@ bool SMTPProtocol::command (const QString &cmd, char *recv_buf, unsigned int len
 
 bool SMTPProtocol::smtp_open()
 {
-	if (opened && (m_iOldPort == GetPort(m_iPort)) && (m_sOldServer == m_sServer) && (m_sOldUser == m_sUser)) {
+	if (opened && (m_iOldPort == port(m_iPort)) && (m_sOldServer == m_sServer) && (m_sOldUser == m_sUser)) {
 		return true;
 	} else {
 		smtp_close();
-		if( !ConnectToHost(m_sServer.latin1(), m_iPort))
-			return false; // ConnectToHost has already send an error message.
+		if( !connectToHost(m_sServer.latin1(), m_iPort))
+			return false; // connectToHost has already send an error message.
 		opened = true;
 	}
 
@@ -613,7 +613,7 @@ void SMTPProtocol::smtp_close ()
 	if (!opened) // We're already closed
 		return;
 	command(ASCII("QUIT"));
-	CloseDescriptor();
+	closeDescriptor();
 	m_sOldServer = QString::null;
 	m_pSASL = 0;
 	m_sAuthConfig = QString::null;

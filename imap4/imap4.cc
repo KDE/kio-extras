@@ -540,7 +540,7 @@ bool IMAP4Protocol::parseRead(QByteArray & buffer, ulong len, ulong relay)
       closeConnection();
       return FALSE;
     }
-    ssize_t readLen = Read(buf, QMIN(len - buffer.size(), sizeof(buf) - 1));
+    ssize_t readLen = read(buf, QMIN(len - buffer.size(), sizeof(buf) - 1));
     if (readLen == 0)
     {
       error (ERR_CONNECTION_BROKEN, myHost);
@@ -584,7 +584,7 @@ bool IMAP4Protocol::parseReadLine (QByteArray & buffer, ulong relay)
       closeConnection();
       return FALSE;
     }
-    readLen = ReadLine(buf, sizeof(buf) - 1);
+    readLen = readLine(buf, sizeof(buf) - 1);
     if (readLen == 0)
     {
       error (ERR_CONNECTION_BROKEN, myHost);
@@ -717,7 +717,7 @@ IMAP4Protocol::put (const KURL & _url, int, bool, bool)
         buffer = bufferList.take (0);
 
         sendOk =
-          (Write (buffer->data (), buffer->size ()) ==
+          (write (buffer->data (), buffer->size ()) ==
            (ssize_t) buffer->size ());
         wrote += buffer->size ();
         delete buffer;
@@ -1211,7 +1211,7 @@ bool IMAP4Protocol::makeLogin ()
   if (getState () == ISTATE_LOGIN || getState () == ISTATE_SELECT)
     return true;
 
-  if (getState() == ISTATE_CONNECT || ConnectToHost (myHost.latin1(), myPort))
+  if (getState() == ISTATE_CONNECT || connectToHost (myHost.latin1(), myPort))
   {
 //      fcntl (m_iSock, F_SETFL, (fcntl (m_iSock, F_GETFL) | O_NDELAY));
 
@@ -1314,7 +1314,7 @@ IMAP4Protocol::parseWriteLine (const QString & aStr)
     writer += "\r\n";
 
   // write it
-  Write (writer.data (), writer.length ());
+  write (writer.data (), writer.length ());
 }
 
 QString
@@ -1613,7 +1613,7 @@ mymemccpy (void *dest, const void *src, int c, size_t n)
 }
 
 /* ssize_t
-IMAP4Protocol::ReadLine (char *buf, ssize_t len)
+IMAP4Protocol::readLine (char *buf, ssize_t len)
 {
   ssize_t result;
   char *copied;
@@ -1623,7 +1623,7 @@ IMAP4Protocol::ReadLine (char *buf, ssize_t len)
   {
 //    kdDebug(7116) << "Reading" << endl;
     // append to our internal buffer
-    result = Read (readBuffer + readSize, IMAP_BUFFER - readSize);
+    result = read (readBuffer + readSize, IMAP_BUFFER - readSize);
     if (result > 0)
       readSize += result;
 //    kdDebug(7116) << "Result is " << result << endl;

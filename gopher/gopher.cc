@@ -108,12 +108,12 @@ void GopherProtocol::gopher_close ()
 
 bool GopherProtocol::gopher_open( const KURL &_url )
 {
-  ConnectToHost(m_sServer.ascii() /*check if ok*/, static_cast<int>(_url.port()));
+  connectToHost(m_sServer, _url.port(), true);
   QString path=_url.path();
   if (path.at(0)=='/') path.remove(0,1);
   if (path.isEmpty()) {
     // We just want the initial listing
-    if (Write("\r\n", 2) != 2) {
+    if (write("\r\n", 2) != 2) {
       error(ERR_COULD_NOT_CONNECT, _url.host());
       return false;
     }
@@ -126,12 +126,12 @@ bool GopherProtocol::gopher_open( const KURL &_url )
       return false;
     }
     // Otherwise we should send our request
-    if (Write(path.ascii(), strlen(path.ascii())) != static_cast<ssize_t>(strlen(path.ascii()))) {
+    if (write(path.ascii(), strlen(path.ascii())) != static_cast<ssize_t>(strlen(path.ascii()))) {
       error(ERR_COULD_NOT_CONNECT, _url.host());
       gopher_close();
       return false;
     }
-    if (Write("\r\n", 2) != 2) {
+    if (write("\r\n", 2) != 2) {
       error(ERR_COULD_NOT_CONNECT, _url.host());
       gopher_close();
       return false;
@@ -211,7 +211,7 @@ void GopherProtocol::listDir( const KURL &dest )
   UDSAtom atom;
   QString line;
   char buf[128];
-  while (ReadLine(buf, 127)) {
+  while (readLine(buf, 127)) {
     line = buf+1;
     if (strcmp(buf, ".\r\n")==0) {
       finished();
@@ -372,7 +372,7 @@ bool GopherProtocol::readRawData(const QString &/*_url*/, const char *mimetype)
   mimeType(mimetype);
   ssize_t read_ret=0;
   size_t total_size=0;
-  while ((read_ret=Read(buf, 1024))>0) {
+  while ((read_ret=read(buf, 1024))>0) {
       total_size+=read_ret;
       array.setRawData(buf, read_ret);
       data( array );

@@ -155,7 +155,7 @@ POP3_DEBUG << "readBufferLen = " << readBufferLen << ", copyLen = " << copyLen <
       return copyLen;
     }
     waitForResponse(600);
-    readLen = Read(&readBuffer[readBufferLen], len - readBufferLen);
+    readLen = read(&readBuffer[readBufferLen], len - readBufferLen);
     readBufferLen += readLen;
     if (readLen == 0) { data[0] = '\0'; return 0; }
   }
@@ -272,7 +272,7 @@ bool POP3Protocol::sendCommand(const char *cmd)
 	char *cmdrn = new char[strlen(cmd) + 3];
 	sprintf(cmdrn, "%s\r\n", (cmd) ? cmd : "");
 
-	if (Write(cmdrn, strlen(cmdrn)) != static_cast<ssize_t>(strlen(cmdrn))) {
+	if (write(cmdrn, strlen(cmdrn)) != static_cast<ssize_t>(strlen(cmdrn))) {
 		m_sError = i18n("Could not send to server.\n");
 		delete [] cmdrn;
 		return false;
@@ -314,7 +314,7 @@ void POP3Protocol::closeConnection ()
 	}
 
 	command("QUIT");
-	CloseDescriptor();
+	closeDescriptor();
 	readBufferLen = 0;
 	m_sOldUser = m_sOldPass = m_sOldServer = "";
 	opened = false;
@@ -323,14 +323,14 @@ void POP3Protocol::closeConnection ()
 bool POP3Protocol::pop3_open ()
 {
 	char buf[512], *greeting_buf;
-	if ( (m_iOldPort == GetPort(m_iPort)) && (m_sOldServer == m_sServer) &&
+	if ( (m_iOldPort == port(m_iPort)) && (m_sOldServer == m_sServer) &&
 		(m_sOldUser == m_sUser) && (m_sOldPass == m_sPass)) {
 		POP3_DEBUG << "Reusing old connection" << endl;
 		return true;
 	} else {
 		closeConnection();
 
-		if(!ConnectToHost(m_sServer.ascii(), m_iPort)) {
+		if(!connectToHost(m_sServer.ascii(), m_iPort)) {
 			// error(ERR_COULD_NOT_CONNECT, m_sServer);
 			// ConnectToHost has already send an error message.
 			return false; 
