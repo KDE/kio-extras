@@ -961,6 +961,7 @@ void fishProtocol::manageConnection(const QString &l) {
                 break;
             }
             recvLen = line.toInt(&isOk);
+            if (recvLen == 0) mimeType("application/x-zerosize");
             if (!isOk) {
                 error(ERR_COULD_NOT_READ,url.prettyURL());
                 shutdownConnection();
@@ -1089,6 +1090,8 @@ void fishProtocol::manageConnection(const QString &l) {
             else if (!checkExist && putPerm > -1) sendCommand(FISH_CHMOD,(const char *)QString::number(putPerm,8).local8Bit(),(const char *)url.path().local8Bit());
             putPos += rawData.size();
             sendLen = rawData.size();
+        } else if (fishCommand == FISH_RETR) {
+            data(QByteArray());
         }
         finished();
         if (wasSize) {
