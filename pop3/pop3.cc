@@ -681,14 +681,14 @@ LIST
       list_cmd=buf;
       // We need a space, otherwise we got an invalid reply
       if (!list_cmd.find(" ")) {
-	kDebugInfo(7105, "List command needs a space? %s", debugString(list_cmd));
+	kdDebug(7105) << "List command needs a space? " << list_cmd << endl;
         pop3_close();
         return;
       }
       list_cmd.remove(0, list_cmd.find(" ")+1);
       msg_len = list_cmd.toUInt(&ok);
       if (!ok) {
-	  kDebugInfo(7105, "LIST command needs to return a number? :%s:", debugString(list_cmd));
+	kdDebug(7105) << "LIST command needs to return a number? :" << list_cmd << ":" << endl;
 	pop3_close();return;
       }
     } else {

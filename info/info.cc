@@ -15,7 +15,7 @@ InfoProtocol::InfoProtocol( const QCString &pool, const QCString &app )
     , m_page( "" )
     , m_node( "" )
 {
-    kDebugInfo( 7108, "InfoProtocol::InfoProtocol" );
+    kdDebug( 7108 ) << "InfoProtocol::InfoProtocol" << endl;
 
     m_infoScript = locate( "data", "kio_info/kde-info2html" );
 
@@ -24,20 +24,20 @@ InfoProtocol::InfoProtocol( const QCString &pool, const QCString &app )
     if( m_infoScript.isEmpty() )
 	kDebugFatal( 7108, "Critical error: Cannot locate 'kde-info2html' for HTML-conversion" );
     
-    kDebugInfo( 7108, "InfoProtocol::InfoProtocol - done" );
+    kdDebug( 7108 ) << "InfoProtocol::InfoProtocol - done" << endl;
 }
 
 InfoProtocol::~InfoProtocol()
 {
-    kDebugInfo( 7108, "InfoProtocol::~InfoProtocol" );
+    kdDebug( 7108 ) << "InfoProtocol::~InfoProtocol" << endl;
 
-    kDebugInfo( 7108, "InfoProtocol::~InfoProtocol - done" );
+    kdDebug( 7108 ) << "InfoProtocol::~InfoProtocol - done" << endl;
 }
 
 void InfoProtocol::get( const KURL& url, bool /*reload*/ )
 {
-    kDebugInfo( 7108, "InfoProtocol::get" );
-    kDebugInfo( 7108, url.path().ascii() );
+    kdDebug( 7108 ) << "InfoProtocol::get" << endl;
+    kdDebug( 7108 ) << url.path() << endl;
 
     decodePath( url.path() );
     /*
@@ -82,12 +82,12 @@ void InfoProtocol::get( const KURL& url, bool /*reload*/ )
 
     finished();
     
-    kDebugInfo( 7108, "InfoProtocol::get - done" );
+    kdDebug( 7108 ) << "InfoProtocol::get - done" << endl;
 }
 
 void InfoProtocol::mimetype( const KURL& /* url */ )
 {
-    kDebugInfo( 7108, "InfoProtocol::mimetype" );
+    kdDebug( 7108 ) << "InfoProtocol::mimetype" << endl;
 
     // to get rid of those "Open with" dialogs...
     mimeType( "text/html" );
@@ -95,12 +95,12 @@ void InfoProtocol::mimetype( const KURL& /* url */ )
     // finish action
     finished();
 
-    kDebugInfo( 7108, "InfoProtocol::mimetype - done" );
+    kdDebug( 7108 ) << "InfoProtocol::mimetype - done" << endl;
 }
 
 void InfoProtocol::decodePath( QString path )
 {
-    kDebugInfo( 7108, "InfoProtocol::decodePath" );
+    kdDebug( 7108 ) << "InfoProtocol::decodePath" << endl;
 
     m_page = "";
     m_node = "";
@@ -120,12 +120,12 @@ void InfoProtocol::decodePath( QString path )
     m_page = path.left( slashPos );
     m_node = path.right( path.length() - slashPos - 1);
 
-    kDebugInfo( 7108, "InfoProtocol::decodePath - done" );
+    kdDebug( 7108 ) << "InfoProtocol::decodePath - done" << endl;
 }
 
 QCString InfoProtocol::errorMessage()
 {
-    kDebugInfo( 7108, "InfoProtocol::errorMessage" );
+    kdDebug( 7108 ) << "InfoProtocol::errorMessage" << endl;
 
     // i18n !!!!!!!!!!!!!!!!!!
     return QCString( "<html><body bgcolor=\"#FFFFFF\">An error occured during converting an info-page to HTML</body></html>" );
