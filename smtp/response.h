@@ -86,8 +86,9 @@ namespace KioSMTP {
     bool isOk() const { return isValid() && isComplete() && isPositive() ; }
     /** Indicates whether the response was well-formed, meaning it
 	obeyed the syntax of smtp responses. That the response
-	nevertheless is not valid may be caused by e.g. an unknown
-	response code. A non-well-formed response is never valid. */
+	nevertheless is not valid may be caused by e.g. different
+	response codes in a multilie response. A non-well-formed
+	response is never valid. */
     bool isWellFormed() const { return mWellFormed; }
 
     void clear() { *this = Response(); }
