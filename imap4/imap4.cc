@@ -144,7 +144,7 @@ mimeIO ()
 
 IMAP4Protocol::~IMAP4Protocol ()
 {
-  CloseDescriptor();
+  closeDescriptor();
   kdDebug(7116) << "IMAP4: Finishing" << endl;
 }
 
@@ -1366,7 +1366,7 @@ void IMAP4Protocol::closeConnection()
     imapCommand *cmd = doCommand (imapCommand::clientLogout());
     completeQueue.removeRef (cmd);
   }
-  CloseDescriptor();
+  closeDescriptor();
   setState(ISTATE_NO);
   completeQueue.clear();
   sentQueue.clear();
