@@ -169,8 +169,9 @@ void SettingsProtocol::get( const KURL & url )
 {
 	KService::Ptr service = KService::serviceByName(url.fileName());
 	if (service && service->isValid()) {
-		QString desktopEntryPath = "file:" + locate("apps", service->desktopEntryPath());
-		redirection(KURL(desktopEntryPath));
+		KURL redirUrl;
+		redirUrl.setPath(locate("apps", service->desktopEntryPath()));
+		redirection(redirUrl);
 		finished();
 	} else {
 		error( KIO::ERR_IS_DIRECTORY, url.prettyURL() );
@@ -196,8 +197,9 @@ void SettingsProtocol::stat(const KURL& url)
 	} else {
 		KService::Ptr service = KService::serviceByName( url.fileName() );
 		if (service && service->isValid()) {
-//			QString desktopEntryPath = "file:" + locate("apps", service->desktopEntryPath());
-//			createFileEntry(entry, service->name(), desktopEntryPath, "application/x-desktop", service->icon());
+//			KURL newUrl;
+//			newUrl.setPath(locate("apps", service->desktopEntryPath()));
+//			createFileEntry(entry, service->name(), newUrl, "application/x-desktop", service->icon());
 
 			createFileEntry(entry, service->name(), url.url(), "application/x-desktop", service->icon());
 		} else {
