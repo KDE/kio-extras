@@ -22,7 +22,6 @@
 #include <signal.h>
 #include <time.h>
 #include <unistd.h>
-#include <iostream.h>
 
 #include <qvaluelist.h>
 #include <qfileinfo.h>
