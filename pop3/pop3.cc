@@ -490,67 +490,67 @@ LIST
 
 void POP3Protocol::slotListDir (const char *_url)
 {
-	bool isINT; int num_messages=0;
-	char buf[512];
-	QCString q_buf;
-	KURL usrc( _url );
-	if ( usrc.isMalformed() ) {
-		error( ERR_MALFORMED_URL, _url );
-		return;
-	}
-	// Try and open a connection
-	if (!pop3_open(usrc)) {
-	  fprintf(stderr,"pop3_open failed\n");fflush(stderr);
-	  pop3_close();
-	  return;
-	}
-	// Check how many messages we have. STAT is by law required to
-	// at least return +OK num_messages total_size
-	memset(buf, 0, 512);
-	if (!command("STAT", buf, 512)) {
-	  error(ERR_INTERNAL, "??");
-	  return;
-	}
-	fprintf(stderr,"The stat buf is :%s:\n", buf);
-	q_buf=buf;
-	if (q_buf.find(" ")==-1) {
-	  error(ERR_INTERNAL, "Invalid POP3 response, we should have at least one space!");
-	  pop3_close();
-	  return;
-	}
-	q_buf.remove(q_buf.find(" "), q_buf.length());
+  bool isINT; int num_messages=0;
+  char buf[512];
+  QCString q_buf;
+  KURL usrc( _url );
+  if ( usrc.isMalformed() ) {
+    error( ERR_MALFORMED_URL, _url );
+    return;
+  }
+  // Try and open a connection
+  if (!pop3_open(usrc)) {
+    fprintf(stderr,"pop3_open failed\n");fflush(stderr);
+    pop3_close();
+    return;
+  }
+  // Check how many messages we have. STAT is by law required to
+  // at least return +OK num_messages total_size
+  memset(buf, 0, 512);
+  if (!command("STAT", buf, 512)) {
+    error(ERR_INTERNAL, "??");
+    return;
+  }
+  fprintf(stderr,"The stat buf is :%s:\n", buf);
+  q_buf=buf;
+  if (q_buf.find(" ")==-1) {
+    error(ERR_INTERNAL, "Invalid POP3 response, we should have at least one space!");
+    pop3_close();
+    return;
+  }
+  q_buf.remove(q_buf.find(" "), q_buf.length());
 
-	num_messages=q_buf.toUInt(&isINT);
-	if (!isINT) {
-	  error(ERR_INTERNAL, "Invalid POP3 STAT response!");
-	  pop3_close();
-	  return;
-	}
-	UDSEntry entry;
-	UDSAtom atom;
-	QString fname;
-	for (int i=0; i < num_messages; i++) {
-	  fname="Message %1";
+  num_messages=q_buf.toUInt(&isINT);
+  if (!isINT) {
+    error(ERR_INTERNAL, "Invalid POP3 STAT response!");
+    pop3_close();
+    return;
+  }
+  UDSEntry entry;
+  UDSAtom atom;
+  QString fname;
+  for (int i=0; i < num_messages; i++) {
+    fname="Message %1";
 
-	  atom.m_uds = UDS_NAME;
-	  atom.m_long = 0;
-	  atom.m_str = fname.arg(i+1);
-	  entry.append(atom);
+    atom.m_uds = UDS_NAME;
+    atom.m_long = 0;
+    atom.m_str = fname.arg(i+1);
+    entry.append(atom);
 
-	  atom.m_uds = UDS_FILE_TYPE;
-	  atom.m_str = "";
-	  atom.m_long = S_IFREG;
-	  entry.append(atom);
+    atom.m_uds = UDS_FILE_TYPE;
+    atom.m_str = "";
+    atom.m_long = S_IFREG;
+    entry.append(atom);
 
-	  atom.m_uds = UDS_SIZE;
-	  atom.m_str = "";
-	  atom.m_long = realGetSize(i+1);
-	  entry.append(atom);
+    atom.m_uds = UDS_SIZE;
+    atom.m_str = "";
+    atom.m_long = realGetSize(i+1);
+    entry.append(atom);
 
-	  listEntry(entry);
-	  entry.clear();
-	}
-	finished();
+    listEntry(entry);
+    entry.clear();
+  }
+  finished();
 }
 
 void POP3Protocol::slotTestDir (const char *_url)
