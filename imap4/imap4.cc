@@ -149,7 +149,6 @@ IMAP4Protocol::get (const KURL & _url)
   {
     imapCommand *cmd = doCommand (imapCommand::clientNoop());
     completeQueue.removeRef(cmd);
-    setState(ISTATE_LOGIN);
   }
 
   if (aSequence.isEmpty ())
