@@ -1141,7 +1141,7 @@ IMAP4Protocol::stat (const KURL & _url)
       }
       completeQueue.removeRef (cmd);
       if (found)
-        error(ERR_NO_CONTENT, i18n("Cannot get information about folder %1. The server said: %2").arg(aBox).arg(cmdInfo));
+        error(ERR_NO_CONTENT, i18n("Unable to get information about folder %1. The server replied: %2").arg(aBox).arg(cmdInfo));
       else
         error(KIO::ERR_DOES_NOT_EXIST, aBox);
       return;
@@ -1795,7 +1795,7 @@ IMAP4Protocol::assureBox (const QString & aBox, bool readonly)
       }
       completeQueue.removeRef (cmd);
       if (found)
-        error(ERR_NO_CONTENT, i18n("Cannot open folder %1. The server said: %2").arg(aBox).arg(cmdInfo));
+        error(ERR_NO_CONTENT, i18n("Unable to open folder %1. The server replied: %2").arg(aBox).arg(cmdInfo));
       else
         error(KIO::ERR_DOES_NOT_EXIST, aBox);
       return false;
