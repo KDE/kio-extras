@@ -1,6 +1,6 @@
 [Protocol]
 exec=kio_pop3
-protocol=pop
+protocol=pop3
 input=none
 output=filesystem
 listing=Name,Type,Size
