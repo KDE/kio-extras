@@ -98,33 +98,47 @@ public:
     references = _str;
   };
 
-  // set a unicode subject
+  /**
+   * set a unicode subject
+   */
   void setSubject (const QString & _str)
   {
     _subject = rfcDecoder::encodeRFC2047String(_str).latin1();
   };
-  // set a encoded subject
+  /** 
+   * set a encoded subject
+   */
   void setSubjectEncoded (const QCString & _str)
   {
     _subject = _str.stripWhiteSpace().simplifyWhiteSpace();
   };
 
-  // get the unicode subject
+  /** 
+   * get the unicode subject
+   */
   const QString getSubject ()
   {
     return rfcDecoder::decodeRFC2047String(_subject);
   };
-  // get the encoded subject
+  /**
+   * get the encoded subject
+   */
   QCString getSubjectEncoded ()
   {
     return _subject;
   };
 
+  /**
+   * set the date
+   */
   void setDate (const QCString & _str)
   {
     mDate = _str;
   }
 
+  /**
+   * get the date
+   */
   QCString date ()
   {
     return mDate;

@@ -153,7 +153,7 @@ QString rfcDecoder::fromIMAP (const QString & inSrc)
   return QString::fromUtf8 (dst.data ());
 }
 
-/* Quote " and \ characters */
+/* replace " with \" and \ with \\ " and \ characters */
 QString rfcDecoder::quoteIMAP(const QString &src)
 {
   QString result;

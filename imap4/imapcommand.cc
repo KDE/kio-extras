@@ -206,7 +206,7 @@ imapCommand *
 imapCommand::clientSelect (const QString & path, bool examine)
 {
   Q_UNUSED(examine);
-  /* We use always SELECT, because UW-IMAP doesn't check for new mail, when
+  /** @note We use always SELECT, because UW-IMAP doesn't check for new mail, when
      used with the "mbox driver" and the folder is opened with EXAMINE
      and Courier can't append to a mailbox that is in EXAMINE state */
   return new imapCommand ("SELECT",
