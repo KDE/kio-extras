@@ -33,7 +33,6 @@ see the online documentation for more.
 If you are interested in working on an ioslave,
 the following slaves are severely lacking in functionality:
 
-	IMAP4 (Perhaps imap2 support should be added)
 	SMTP
         SMB
 
