@@ -113,37 +113,37 @@ sub Escape {
 #
 #     Thus the commented out call...
 #----------------------------------------------------------
-sub DirnameCheck {
-  my ($Base) = @_;
-  my $Dir = $Base;
-
-  $Base =~ s!.*/!!g;
-  $Dir  =~ s!\Q$Base\E!!;
- 
-  foreach (@info2html::config::INFODIR) {
-      return 1 if $Dir =~ /^$_/;
-  }
-  
-  foreach my $i (split(/:/, $ENV{INFOPATH})) {
-     return 1 if $Dir =~ /^$i/;
-  }
-  
-  return 0;
-}
+#sub DirnameCheck {
+#  my ($Base) = @_;
+#  my $Dir = $Base;
+#
+#  $Base =~ s!.*/!!g;
+#  $Dir  =~ s!\Q$Base\E!!;
+# 
+#  foreach (@info2html::config::INFODIR) {
+#      return 1 if $Dir =~ /^$_/;
+#  }
+#  
+#  foreach my $i (split(/:/, $ENV{INFOPATH})) {
+#     return 1 if $Dir =~ /^$i/;
+#  }
+#  
+#  return 0;
+#}
 
 #----------------------------------------------------------
 #                    DeEscape
 #----------------------------------------------------------
-sub DeEscape {
-  my ($Tag) = @_;
-  #-- deescaping is not needed anymore. KG/28.6.94
-  $Tag =~ s/%AB/+/g;
-  $Tag =~ s/%20/ /g;
-  $Tag =~ s/\.\.\///g;
-  $Tag =~ s/\.\.//g;
-  $Tag =~ s/\.\///g;
-  $Tag;
-}
+#sub DeEscape {
+#  my ($Tag) = @_;
+#  #-- deescaping is not needed anymore. KG/28.6.94
+#  $Tag =~ s/%AB/+/g;
+#  $Tag =~ s/%20/ /g;
+#  $Tag =~ s/\.\.\///g;
+#  $Tag =~ s/\.\.//g;
+#  $Tag =~ s/\.\///g;
+#  $Tag;
+#}
 
 #----------------------------------------------------------
 #                   ParsHeaderToken
@@ -833,6 +833,10 @@ sub FindFile {
 #-------------------------------------------------------
 #
 #-------------------  MAIN -----------------------------
+#
+# called as
+# perl /path/kde-info2html config_file image_base_path page node
+#
 
 my $PROGRAM = $0;			# determine our basename and version
 $PROGRAM =~ s!.*/!!;
