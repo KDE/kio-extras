@@ -35,7 +35,6 @@
 #include <kstandarddirs.h>
 #include <klocale.h>
 #include <kurl.h>
-#include <kregexp.h>
 
 #include "kio_finger.h"
 
@@ -117,9 +116,9 @@ void FingerProtocol::get(const KURL& url )
   QRegExp regExp("?refreshRate=[0-9][0-9]*", true, true);
   if (query.contains(regExp)) {
     //kdDebug() << "looks like a valid query" << endl;
-    KRegExp regExp( "([0-9]+)" );
-    regExp.match(query.local8Bit());
-    refreshRate = regExp.group(0);
+    QRegExp regExp( "([0-9]+)" );
+    regExp.search(query);
+    refreshRate = regExp.cap(0);
   }
   
   //kdDebug() << "Refresh rate: " << refreshRate << endl;
