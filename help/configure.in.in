@@ -36,5 +36,7 @@ AC_SUBST(HELP_SLAVE)
 WITH_MEM_DEBUG=0
 AC_SUBST(WITH_MEM_DEBUG)
 
+AC_CHECK_HEADERS(ctype.h sys/types.h)
+
 dnl AC_OUTPUT(kioslave/help/libxslt/xsltconfig.h)
 
