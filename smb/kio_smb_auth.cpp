@@ -86,16 +86,24 @@ void SMBSlave::auth_smbc_get_data(const char *server,const char *share,
 
     if ( !checkCachedAuthentication( info ) )
     {
-        // ok, we do not know the password. Let's try anonymous before we try for real
-        info.username = "anonymous";
-        info.password = QString::null;
-        strncpy(username, info.username.utf8(),unmaxlen - 1);
-        strncpy(password, info.password.utf8(),pwmaxlen - 1);
-    } else {
-        strncpy(username, info.username.utf8(),unmaxlen - 1);
-        strncpy(password, info.password.utf8(),pwmaxlen - 1);
+        if ( m_default_user.isEmpty() )
+        {
+            // ok, we do not know the password. Let's try anonymous before we try for real
+            info.username = "anonymous";
+            info.password = QString::null;
+        }
+        else
+        {
+            // user defined a default username/password in kcontrol; try this
+            info.username = m_default_user;
+            info.password = m_default_password;
+        }
+
+    } else
         kdDebug(KIO_SMB) << "got password through cache" << endl;
-    }
+
+    strncpy(username, info.username.utf8(), unmaxlen - 1);
+    strncpy(password, info.password.utf8(), pwmaxlen - 1);
 }
 
 bool SMBSlave::checkPassword(SMBUrl &url)
