@@ -33,6 +33,8 @@
 #include <kio/slaveinterface.h>
 #include <kio/passdlg.h>
 
+#include <klocale.h>
+
 #include "nntp.h"
 
 using namespace KIO;
@@ -234,7 +236,7 @@ bool NNTPProtocol::nntp_open( const KURL &_url )
     QString usr, pass, one_string="USER ";
     if (_url.user().isEmpty() || _url.pass().isEmpty()) {
       // Prompt for usernames
-      QString head="Username and password for your NNTP account:";
+      QString head=i18n("Username and password for your NNTP account:");
       if (!openPassDlg(head, usr, pass)) {
 	return false;
 	nntp_close();

@@ -48,7 +48,7 @@ protected:
 public:
 	MyCallback(SmbProtocol *p) : proto(p),
 		user(0), pass(0), service(0),
-        	havePass(false), haveServicePass(false) {}
+			havePass(false), haveServicePass(false) {}
 	~MyCallback() {
 		if (user) {delete user; user = 0;}
 		if (pass) {delete pass; pass = 0;}
@@ -77,7 +77,7 @@ public:
 						return user;
 					}
 				}
-				message = i18n("host %1").arg(optmessage);
+				message = i18n("Authorization is required to access host %1").arg(optmessage);
 				myUser = user?user:"";
 				myPass = "";
 				res = proto->openPassDlg(message, myUser, myPass, optmessage);
@@ -105,7 +105,7 @@ public:
 
 			case ANSWER_USER_PASSWORD:
 				if (havePass) return pass;
-				message = i18n("user %1").arg(optmessage);
+				message = i18n("Please enter password for user %1").arg(optmessage);
 				myUser = optmessage;
 				myPass = "";
 				res = proto->openPassDlg(message, myUser, myPass, proto->currentHost);
@@ -150,8 +150,8 @@ public:
 						return pass;
 					}
 				}
-				message = i18n("share %1 (user ignored)").arg(optmessage);
-				myUser = user?user:"";
+				message = i18n("Please enter password for share %1 (user ignored)").arg(optmessage);
+				myUser = "";
 				myPass = "";
 				res = proto->openPassDlg(message, myUser, myPass, "smbSHARE/" + proto->currentHost + QString("/") + optmessage);
 				kdDebug(7106) << "CallBack: res=" << (res?"true":"false") << endl;
