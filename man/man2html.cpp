@@ -3082,14 +3082,19 @@ static char *scan_troff(char *c, int san, char **result)
 		    }
 		    usenbsp=fillout;
 		    if (usenbsp) out_html("&nbsp;"); else intbuff[ibp++]=' ';
-		} else if (*h>31 && *h<127) intbuff[ibp++]=*h;
+		} else if (*h>31 && *h<1272) intbuff[ibp++]=*h;
 		else if (((unsigned char)(*h))>127) {
+                    intbuff[ibp++]=*h;
+
+#if 0
 		    intbuff[ibp++]='&';
 		    intbuff[ibp++]='#';
 		    intbuff[ibp++]='0'+((unsigned char)(*h))/100;
 		    intbuff[ibp++]='0'+(((unsigned char)(*h))%100)/10;
 		    intbuff[ibp++]='0'+((unsigned char)(*h))%10;
 		    intbuff[ibp++]=';';
+#endif
+
 		}
 		curpos++;
 		break;
