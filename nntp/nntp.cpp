@@ -450,7 +450,7 @@ void NNTPProtocol::fillUDSEntry(UDSEntry& entry, const QString& name, int size,
   entry.append(atom);
 
   atom.m_uds = UDS_USER;
-  atom.m_str = user.isEmpty() ? user : "root";
+  atom.m_str = user.isEmpty() ? QString("root") : user;
   atom.m_long= 0;
   entry.append(atom);
 
@@ -582,7 +582,7 @@ void NNTPProtocol::slave_status() {
 
 void NNTPProtocol::setHost(const QString& _host, int _port,
         const QString& _user, const QString& _pass) {
-  DBG << "setHost: " << (_user.isEmpty()? (_user+"@") : " ")
+  DBG << "setHost: " << (_user.isEmpty()? (_user+"@") : QString(" "))
       << _host << ":" << _port << endl;
 
   unsigned short int prt =  _port? _port : NNTP_PORT;
