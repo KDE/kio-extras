@@ -69,6 +69,7 @@
 #include <kio/slaveinterface.h>
 #include <kio/kdesasl.h>
 #include <klocale.h>
+#include <kidna.h>
 
 #include "smtp.h"
 
@@ -590,7 +591,8 @@ bool SMTPProtocol::smtp_open(const QString& fakeHostname)
     }
   }
 
-  if (!command(("EHLO " + m_hostname), false, ehloByteArray.data(), DEFAULT_EHLO_BUFFER - 1)) 
+  if (!command( "EHLO " + KIDNA::toAsciiCString(m_hostname),
+		false, ehloByteArray.data(), DEFAULT_EHLO_BUFFER - 1)) 
   {
     if (m_errorSent)
     {
@@ -599,7 +601,7 @@ bool SMTPProtocol::smtp_open(const QString& fakeHostname)
     }
 
     // Let's just check to see if it speaks plain ol' SMTP
-    if (!command(("HELO " + m_hostname))) {
+    if (!command( "HELO " + KIDNA::toAsciiCString(m_hostname) )) {
       if (!m_errorSent)
         error(KIO::ERR_COULD_NOT_LOGIN,
               i18n("The server responded: \"%1\"").arg(m_lastError));
@@ -645,7 +647,8 @@ bool SMTPProtocol::smtp_open(const QString& fakeHostname)
       //kdDebug() << "TLS has been enabled!" << endl;
       ehloByteArray.fill(0);
 
-      if (!command("EHLO " + m_hostname, false, ehloByteArray.data(), DEFAULT_EHLO_BUFFER - 1))
+      if (!command( "EHLO " + KIDNA::toAsciiCString(m_hostname),
+		    false, ehloByteArray.data(), DEFAULT_EHLO_BUFFER - 1))
       {
         if (!m_errorSent)
         {
