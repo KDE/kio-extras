@@ -40,6 +40,17 @@ extern "C"
 
 #ifdef HAVE_LAME
 #include <lame/lame.h>
+#ifdef MPG_MD_STEREO
+typedef enum MPEG_mode_e {
+    STEREO=0,
+    JOINT_STEREO,
+    DUAL_CHANNEL,   /* LAME doesn't supports this! */
+    MONO,
+    NOT_SET,
+    MAX_INDICATOR   /* Don't use this! It's used for sanity checks. */
+} MPEG_mode;
+#define lame_set_mode(gf,m) (((gf)->mode)=(m))
+#endif
 #endif
 
 #ifdef HAVE_VORBIS
