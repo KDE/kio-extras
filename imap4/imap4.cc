@@ -1861,6 +1861,8 @@ ssize_t IMAP4Protocol::myRead(void *data, ssize_t len)
 bool
 IMAP4Protocol::assureBox (const QString & aBox, bool readonly)
 {
+  if (aBox.isEmpty()) return false;
+
   imapCommand *cmd = NULL;
 
   if (aBox != getCurrentBox () || (!getSelected().readWrite() && !readonly))
