@@ -43,10 +43,9 @@ bool SMBSlave::cache_get_AuthInfo(SMBAuthInfo& auth)
          it; it = m_auth_cache.next() )
     {
         if( (it->m_server    == auth.m_server) &&
-            (it->m_share     == auth.m_share)  &&
-            (it->m_workgroup == auth.m_workgroup) )
+            (it->m_share     == auth.m_share))
         {
-            kdDebug(KIO_SMB) << "found in top level cache" << endl;
+	  kdDebug(KIO_SMB) << "found in top level cache :\nusername="<<it->m_username<<", \npassword="<<it->m_passwd<<",\ndomain="<<it->m_domain<<endl;
             auth.m_username = it->m_username;
             auth.m_passwd   = it->m_passwd;
             auth.m_domain   = it->m_domain;
@@ -59,7 +58,7 @@ bool SMBSlave::cache_get_AuthInfo(SMBAuthInfo& auth)
     AuthInfo kauth = cache_create_AuthInfo( auth );
     if( checkCachedAuthentication( kauth ) )
     {
-        kdDebug(KIO_SMB) << "found in password caching daemon" << endl;
+      kdDebug(KIO_SMB) << "found in password caching daemon\nusername="<<kauth.username<<", \npassword="<<kauth.password<<endl;
         // extract domain
         if (kauth.username.contains(';')) {
           auth.m_domain = kauth.username.left(kauth.username.find(';')).local8Bit();
@@ -75,27 +74,37 @@ bool SMBSlave::cache_get_AuthInfo(SMBAuthInfo& auth)
         return true;
     }
 
-    //    kdDebug(KIO_SMB) << "auth not cached at all..." << endl;
+    kdDebug(KIO_SMB) << "auth not cached at all..." << endl;
     return false;
 }
 
-void SMBSlave::cache_clear_AuthInfo(const QString& workgroup)
+
+void SMBSlave::cache_clear_AuthInfo(const SMBAuthInfo& auth) 
 {
-    kdDebug(KIO_SMB) << "cache_clear_AuthInfo on" << endl;
+
     SMBAuthInfo* it = m_auth_cache.first();
     while( it )
     {
-        if( it->m_workgroup == workgroup.local8Bit() )
-        {
+      if ( it->m_server == auth.m_server)
             m_auth_cache.remove();
-            //now clear it in the password caching daemon as well- but how??
-            //the method was deprecated, but Dawit said he would reimplement it
-            //delCachedAuthentication( cache_create_AuthInfo(*it) );
+      else if((auth.m_server.isEmpty()) && (it->m_workgroup == auth.m_workgroup))
+        {
             it = m_auth_cache.current();
         }
-        else
-            it = m_auth_cache.next();
+      else 
+	it = m_auth_cache.next();
     }
+
+  KURL kurl;
+  kurl.setProtocol( "smb" );
+  kurl.setPath( auth.m_server + "/" + auth.m_share );
+  kdDebug(KIO_SMB) << "cache_clear_AuthInfo get CacheKey" << endl;
+  QString s =  createAuthCacheKey(kurl);
+  kdDebug(KIO_SMB) << "cache_clear_AuthInfo Key is " <<s<< endl;
+  // does not work !!
+  //  if (!s.isEmpty())
+  //  delCachedAuthentication(s );
+
 }
 
 void SMBSlave::cache_set_AuthInfo(const SMBAuthInfo& _auth,
@@ -119,37 +128,24 @@ void SMBSlave::cache_set_AuthInfo(const SMBAuthInfo& _auth,
 }
 
 
-void SMBSlave::cache_add_workgroup( const QString& workgroup)
-{
-    if( !m_workgroup_cache.contains(workgroup) )
-    {
-        m_workgroup_cache.prepend(workgroup);
-    }
-}
-
-bool SMBSlave::cache_check_workgroup(const QString& workgroup)
-{
-
-    return m_workgroup_cache.contains(workgroup);
-
-}
-
 int SMBSlave::cache_stat(const SMBUrl& url, struct stat* st)
 {
     int result;
+    SMBAuthInfo auth;
 DO_STAT:
     result = smbc_stat(url.toSmbcUrl(), st);
-    // if access denied, first open passDlg
-    if ((result !=0 && (errno == EPERM) || (errno ==  EACCES))) {
-      cache_clear_AuthInfo(m_current_workgroup);
-      SMBAuthInfo auth;
+    if ((result !=0) && (errno == EACCES))  {
+      // if access denied, first open passDlg
+      kdDebug(KIO_SMB) << "cache_stat auth ERROR"<<endl;
       m_current_url.getAuthInfo(auth);
       if (!authDlg(auth)) {
-	error(ERR_ACCESS_DENIED, m_current_url.toKioUrl());
+	cache_clear_AuthInfo(auth);
+        error( ERR_ACCESS_DENIED, m_current_url.toKioUrl() );
 	return result;
       }
-      else
+      else {
 	goto DO_STAT;
+      }
     }
     return result;
 }
@@ -161,18 +157,18 @@ AuthInfo SMBSlave::cache_create_AuthInfo( const SMBAuthInfo& auth )
 
     if( auth.m_server.isEmpty() )
     {
-        rval.url.setPath( "/" + auth.m_workgroup );
+        rval.url.setPath(auth.m_workgroup);
     }
     else
     {
-        rval.url.setPath( "/" + auth.m_server + "/" + auth.m_share );
+        rval.url.setPath( auth.m_server + "/" + auth.m_share );
     }
 
     rval.username = auth.m_username;
     if (!auth.m_domain.isEmpty())
       rval.username.prepend(auth.m_domain + ";");
     rval.password = auth.m_passwd;
-
+    rval.keepPassword = true;
     return rval;
 }
 
