@@ -93,14 +93,23 @@ EOF
 #---------------------------------------------------------
 # Since we can't do a kioslave redirection from here, we resort to an HTML
 # redirection.
+#
+# It could be simpler to just output the correct page, but that would leave the
+# the browser URL indication a bit wrong and more importantly we might mess up relative links.
+# Therefore, I implemented it like this which is simpler if not as nice on the end user
+# who sees a flicker.
 #---------------------------------------------------------
 
 sub Redirect {
 	my ($File,$Tag) = @_;
-	print STDERR "info: Redirecting to $File/$Tag\n";
-	# I will fix this tomorrow. Today it is too late (0h32 in Vienna).
 	print <<EOF;
-	<html><body><p><a href="info:$File/$Tag">Click here</a></body></html>
+	<html><head><title>Doing redirection</title>
+	<meta http-equiv="refresh" content="0; url=info:$File/$Tag">
+	<body>
+	<h1>Redirecting .... </h1>
+	<p>If you are not automatically taken to a new page, <a href="info:$File/$Tag">click here</a> to continue.
+	</body>
+	</html>
 EOF
 	
 	exit 0;
@@ -115,13 +124,10 @@ EOF
 #---------------------------------------------------------
 sub FileNotFound {
 	my ($FileName,$NodeName) = @_;
-	print STDERR "info: Not found $FileName, $NodeName\n";
 	if ($NodeName ne 'Top' or $FileName eq 'dir') { &DieFileNotFound($FileName) }
 	# Try to find it in dir
 
-
 	my $DirFileName = &FindFile('dir');
-	print STDERR "info: Going on, reading $DirFileName";
 	if ($DirFileName =~ m/.info.bz2$/ ) {
 		open DIR, "bzcat $DirFileName|";
 	}
@@ -136,7 +142,7 @@ sub FileNotFound {
 		if ($looking and not /\* Menu/) { next }
 		$looking = 0;
 		my @item = &ParseMenuItem($_,'dir');
-		if (!defined(@item)) { print STDERR "\ninfo: -> undefined!"; next }
+		if (!defined(@item)) { next }
     		my ($MenuLinkTag, $MenuLinkFile, $MenuLinkRef, $MenuLinkText) = @item;
 		if ($MenuLinkRef eq $FileName) {
 			&Redirect($MenuLinkFile, $MenuLinkTag);
@@ -997,7 +1003,6 @@ sub GetFileAndOffset {
 sub FindFile {
     my ($File) = @_;
     my $Alt = $File =~ /^(.+)\.info$/ ? $1 : $File . '.info';
-    
     foreach my $Name ($File, $Alt) {
         my $gzName  = $Name . '.gz';
         my $bz2Name = $Name . '.bz2';
