@@ -61,7 +61,7 @@ AC_CACHE_VAL(ac_cv_libexr,
  	   echo "*** if you want EXR image format support"
         else
            kde_save_LIBS="$LIBS"
-           LIBS="$LIBS $all_libraries $USER_LDFLAGS $LIBZ `pkg-config --libs OpenEXR`"
+           LIBS="$LIBS $all_libraries $USER_LDFLAGS $LIBZ `$PKG_CONFIG --libs OpenEXR`"
            AC_LANG_SAVE
            AC_LANG_CPLUSPLUS
            kde_save_CXXFLAGS="$CXXFLAGS"
@@ -77,7 +77,7 @@ AC_CACHE_VAL(ac_cv_libexr,
                RgbaInputFile file ("dummy");
                return 0;
                ],
-               eval "ac_cv_libexr='$LIBZ `pkg-config --libs OpenEXR`'",
+               eval "ac_cv_libexr='$LIBZ `$PKG_CONFIG --libs OpenEXR`'",
                eval "ac_cv_libexr=no"
            )
            LIBS="$kde_save_LIBS"
