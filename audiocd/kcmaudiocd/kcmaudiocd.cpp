@@ -681,8 +681,7 @@ extern "C"
 {
     KCModule *create_audiocd(QWidget *parent, const char *name)
     {
-        KGlobal::locale()->insertCatalogue("kcmaudiocd");
-        return new KAudiocdModule(parent, name);
+        return new KAudiocdModule(parent, "kcmaudiocd");
     }
 
 }
