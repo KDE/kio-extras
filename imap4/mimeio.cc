@@ -141,9 +141,8 @@ mimeIOQFile::outputLine (const QCString &)
 int
 mimeIOQFile::inputLine (QCString & data)
 {
-  QString aData;
-  myFile.readLine (aData, 1024);
-  data = aData.latin1 ();
+  data.resize( 1024 );
+  myFile.readLine (data.data(), 1024);
 
   return data.length ();
 }
