@@ -17,65 +17,98 @@
    Boston, MA 02111-1307, USA.
 */
 
-   #include <kio/slavebase.h>
-   #include <kinstance.h>
-   #include <kdebug.h>
-   #include <stdlib.h>
-   #include <qtextstream.h>
-   #include <klocale.h>
-   #include <sys/stat.h>
-   #include <dcopclient.h>
-   #include <qdatastream.h>
-   #include <time.h>
-   #include <kprocess.h>
-   #include <kservice.h>
-   #include <kservicegroup.h>
-   #include <kstandarddirs.h>
-   class SettingsProtocol : public KIO::SlaveBase
-   {
-   public:
-      enum RunMode { SettingsMode, ProgramsMode };
-      SettingsProtocol(const QCString &protocol, const QCString &pool, const QCString &app);
-      virtual ~SettingsProtocol();
-#if 0
-      virtual void get( const KURL& url );
-#endif
-      virtual void stat(const KURL& url);
-      virtual void listDir(const KURL& url);
-      void listRoot();
-      KServiceGroup::Ptr findGroup(const QString &relPath);
+#include <kio/slavebase.h>
+#include <kinstance.h>
+#include <kdebug.h>
+#include <qtextstream.h>
+#include <klocale.h>
+#include <sys/stat.h>
+#include <dcopclient.h>
+#include <qdatastream.h>
+#include <time.h>
+#include <kprocess.h>
+#include <kservice.h>
+#include <kservicegroup.h>
+#include <kstandarddirs.h>
+   
+class SettingsProtocol : public KIO::SlaveBase
+{
+public:
+	enum RunMode { SettingsMode, ProgramsMode };
+	SettingsProtocol(const QCString &protocol, const QCString &pool, const QCString &app);
+	virtual ~SettingsProtocol();
+	virtual void get( const KURL& url );
+	virtual void stat(const KURL& url);
+	virtual void listDir(const KURL& url);
+	void listRoot();
+	KServiceGroup::Ptr findGroup(const QString &relPath);
 
-   private:
+private:
 	DCOPClient *m_dcopClient;
 	RunMode m_runMode;
-  };
+};
 
-  extern "C" {
-      int kdemain( int, char **argv )
-      {
-          kdDebug()<<"kdemain for settings kioslave"<<endl;
-          KInstance instance( "kio_settings" );
-          SettingsProtocol slave(argv[1], argv[2], argv[3]);
-          slave.dispatchLoop();
-          return 0;
-      }
-  }
+extern "C" {
+	int kdemain( int, char **argv )
+	{
+	  kdDebug() << "kdemain for settings kioslave" << endl;
+	  KInstance instance( "kio_settings" );
+	  SettingsProtocol slave(argv[1], argv[2], argv[3]);
+	  slave.dispatchLoop();
+	  return 0;
+	}
+}
 
 
+static void addAtom(KIO::UDSEntry& entry, unsigned int ID, long l, const QString& s = QString::null)
+{
+	KIO::UDSAtom atom;
+	atom.m_uds = ID;
+	atom.m_long = l;
+	atom.m_str = s;
+	entry.append(atom);
+}
 
-static void createFileEntry(KIO::UDSEntry& entry, const QString& name, const QString& url, const QString& mime,const QString& iconName);
-static void createDirEntry(KIO::UDSEntry& entry, const QString& name, const QString& url, const QString& mime,const QString& iconName);
+static void createFileEntry(KIO::UDSEntry& entry, const QString& name, const QString& url, const QString& mime,const QString& iconName)
+{
+	entry.clear();
+	addAtom(entry, KIO::UDS_NAME, 0, name);
+	addAtom(entry, KIO::UDS_FILE_TYPE, S_IFREG);
+	addAtom(entry, KIO::UDS_URL, 0, url);
+	addAtom(entry, KIO::UDS_ACCESS, 0500);
+	addAtom(entry, KIO::UDS_MIME_TYPE, 0, mime);
+	addAtom(entry, KIO::UDS_SIZE, 0);
+	addAtom(entry, KIO::UDS_GUESSED_MIME_TYPE, 0, "application/x-desktop");
+	addAtom(entry, KIO::UDS_CREATION_TIME, 1);
+	addAtom(entry, KIO::UDS_MODIFICATION_TIME, time(0));
+	addAtom(entry, KIO::UDS_ICON_NAME, 0, iconName);
+}
+
+static void createDirEntry(KIO::UDSEntry& entry, const QString& name, const QString& url, const QString& mime,const QString& iconName)
+{
+	entry.clear();
+	addAtom(entry, KIO::UDS_NAME, 0, name);
+	addAtom(entry, KIO::UDS_FILE_TYPE, S_IFDIR);
+	addAtom(entry, KIO::UDS_ACCESS, 0500);
+	addAtom(entry, KIO::UDS_MIME_TYPE, 0, mime);
+	addAtom(entry, KIO::UDS_URL, 0, url);
+	addAtom(entry, KIO::UDS_SIZE, 0);
+	addAtom(entry, KIO::UDS_GUESSED_MIME_TYPE, 0, "inode/directory");
+	addAtom(entry, KIO::UDS_ICON_NAME, 0, iconName);
+}
 
 SettingsProtocol::SettingsProtocol( const QCString &protocol, const QCString &pool, const QCString &app): SlaveBase( protocol, pool, app )
 {
 	// Adjusts which part of the K Menu to virtualize.
-	if( protocol == "programs" ) m_runMode = ProgramsMode;
-	else m_runMode = SettingsMode;
+	if ( protocol == "programs" )
+		m_runMode = ProgramsMode;
+	else
+		m_runMode = SettingsMode;
 
-	m_dcopClient=new DCOPClient();
+	m_dcopClient = new DCOPClient();
 	if (!m_dcopClient->attach())
 	{
-		kdDebug()<<"ERROR WHILE CONNECTING TO DCOPSERVER"<<endl;
+		kdDebug() << "ERROR WHILE CONNECTING TO DCOPSERVER" << endl;
 	}
 }
 
@@ -84,246 +117,170 @@ SettingsProtocol::~SettingsProtocol()
 	delete m_dcopClient;
 }
 
-KServiceGroup::Ptr SettingsProtocol::findGroup(const QString &relPath) {
-	QString alreadyFound;
-	QString nextPart="";;
-	QStringList rest;
-	kdDebug()<<"Trying harder to find group "<<relPath<<endl;
-	if (relPath.startsWith("Settings/")) {
-		alreadyFound="Settings/";
-		rest=QStringList::split("/",relPath.right(relPath.length()-9));
-		kdDebug()<<"Supported root Settings detected"<<endl;
-		for (int i=0;i<rest.count();i++)
-			kdDebug()<<"Item ("<<*rest.at(i)<<")"<<endl;
-	} else {
+KServiceGroup::Ptr SettingsProtocol::findGroup(const QString &relPath)
+{
+	QString nextPart;
+	QString alreadyFound("Settings/");
+	QStringList rest = QStringList::split('/', relPath);
 
-		return 0;
-	}
+	kdDebug() << "Trying harder to find group " << relPath << endl;
+	for (unsigned int i=0; i<rest.count(); i++)
+		kdDebug() << "Item (" << *rest.at(i) << ")" << endl;
+
 	while (!rest.isEmpty()) {
-		KServiceGroup::Ptr tmp=KServiceGroup::group(alreadyFound);
-		if (!tmp || !tmp->isValid()) return 0;
+		KServiceGroup::Ptr tmp = KServiceGroup::group(alreadyFound);
+		if (!tmp || !tmp->isValid())
+			return 0;
 
-       		KServiceGroup::List list = tmp->entries(true, true);
+		KServiceGroup::List list = tmp->entries(true, true);
+		KServiceGroup::List::ConstIterator it = list.begin();
 
-       		KServiceGroup::List::ConstIterator it = list.begin();
-
-		bool found=false;
-       		for (; it != list.end(); ++it) {
-
-            		KSycocaEntry * e = *it;
-
-	               	if (e->isType(KST_KServiceGroup)) {
-
-        	            KServiceGroup::Ptr g(static_cast<KServiceGroup *>(e));
-                	    if ((g->caption()==rest.front()) || (g->name()==alreadyFound+rest.front())) {
-				kdDebug()<<"Found group with caption "<<g->caption()<<" with real name: "<<g->name()<<endl;
-				found=true;
+		bool found = false;
+		for (; it != list.end(); ++it) {
+			KSycocaEntry *e = *it;
+			if (e->isType(KST_KServiceGroup)) {
+			    KServiceGroup::Ptr g(static_cast<KServiceGroup *>(e));
+			    if ((g->caption()==rest.front()) || (g->name()==alreadyFound+rest.front())) {
+				kdDebug() << "Found group with caption " << g->caption()
+					  << " with real name: " << g->name() << endl;
+				found = true;
 				rest.remove(rest.begin());
-				alreadyFound=g->name();
-				kdDebug()<<"ALREADY FOUND: "<<alreadyFound<<endl;
+				alreadyFound = g->name();
+				kdDebug() << "ALREADY FOUND: " << alreadyFound << endl;
 				break;
 			    }
 			}
 		}
+
 		if (!found) {
-			kdDebug()<<"Group with caption "<<rest.front()<<" not found within "<<alreadyFound<<endl;
+			kdDebug() << "Group with caption " << rest.front() << " not found within " 
+				  << alreadyFound << endl;
 			return 0;
 		}
-
 
 	}
 	return KServiceGroup::group(alreadyFound);
 }
 
+void SettingsProtocol::get( const KURL & url )
+{
+	KService::Ptr service = KService::serviceByName(url.fileName());
+	if (service && service->isValid()) {
+		QString desktopEntryPath = "file:" + locate("apps", service->desktopEntryPath());
+		redirection(KURL(desktopEntryPath));
+		finished();
+	} else {
+		error( KIO::ERR_IS_DIRECTORY, url.prettyURL() );
+	}        
+}
+
 
 void SettingsProtocol::stat(const KURL& url)
 {
-        QStringList     path = QStringList::split('/', url.encodedPathAndQuery(-1), false);
-        KIO::UDSEntry   entry;
-        QString mime;
-	QString mp;
+	KIO::UDSEntry entry;
 
-	QString relPath=url.path();
+	QString servicePath( url.path(1) );
+	servicePath.remove(0, 1); // remove starting '/'
 
-	switch( m_runMode )
-	{
-		case( SettingsMode ):
-			if (!relPath.startsWith("/Settings")) relPath="Settings"+relPath;
-			else relPath=relPath.right(relPath.length()-1);
-			break;
+	if ( m_runMode == SettingsMode)
+		servicePath = "Settings/" + servicePath;
 
-		case( ProgramsMode ):
-			relPath=relPath.right(relPath.length()-1);
-			break;
-	}
+	KServiceGroup::Ptr grp = KServiceGroup::group(servicePath);
 
-	kdDebug()<<"SettingsProtocol: stat for: "<<relPath<<endl;
-	KServiceGroup::Ptr grp = KServiceGroup::group(relPath);
-
-	if (!grp || !grp->isValid()) {
-
-		grp=findGroup(relPath);
-		if (!grp || !grp->isValid()) {
-	                error(KIO::ERR_SLAVE_DEFINED,i18n("Unknown settings folder"));
-	                return;
+	if (grp && grp->isValid()) {
+		createDirEntry(entry, (m_runMode == SettingsMode) ? i18n("Settings") : i18n("Programs"),
+			url.url(), "inode/directory",grp->icon() );
+	} else {
+		KService::Ptr service = KService::serviceByName( url.fileName() );
+		if (service && service->isValid()) {
+			createFileEntry(entry, service->name(), url.url(), "application/x-desktop", service->icon());
+		} else {
+			error(KIO::ERR_SLAVE_DEFINED,i18n("Unknown settings folder"));
+			return;
 		}
-	}
-
-	switch( m_runMode )
-	{
-		case( SettingsMode ):
-			createDirEntry(entry, i18n("Settings"), url.url(), "inode/directory",grp->icon());
-			break;
-
-		case( ProgramsMode ):
-			createDirEntry(entry, i18n("Programs"), url.url(), "inode/directory",grp->icon());
-			break;
-	}
+	}     
 
 	statEntry(entry);
 	finished();
 	return;
-
 }
-
 
 
 void SettingsProtocol::listDir(const KURL& url)
 {
+	QString groupPath = url.path(1);
+	groupPath.remove(0, 1); // remove starting '/'
 
-	KIO::UDSEntry   entry;
-	uint count=0;
+	if ( m_runMode == SettingsMode)
+		groupPath.prepend("Settings/");
 
-	QString relPath=url.path();
+	KServiceGroup::Ptr grp = KServiceGroup::group(groupPath);
 
-	switch( m_runMode )
-	{
-		case( SettingsMode ):
-			if (!relPath.startsWith("/Settings")) relPath="Settings"+relPath;
-			else relPath=relPath.right(relPath.length()-1);
-			break;
-
-		case( ProgramsMode ):
-			relPath=relPath.right(relPath.length()-1);
-			break;
-	};
-
-	if (relPath.at(relPath.length()-1)!='/') relPath+="/";
-
-	kdDebug()<<"SettingsProtocol: "<<relPath<<"***********************"<<endl;
-	KServiceGroup::Ptr root = KServiceGroup::group(relPath);
-
-
-	if (!root || !root->isValid()) {
-
-		root=findGroup(relPath);
-		if (!root || !root->isValid()) {
-	                error(KIO::ERR_SLAVE_DEFINED,i18n("Unknown settings folder"));
-	                return;
+	if (!grp || !grp->isValid()) {
+		grp = findGroup(groupPath);
+		if (!grp || !grp->isValid()) {
+		    error(KIO::ERR_SLAVE_DEFINED,i18n("Unknown settings folder"));
+		    return;
 		}
 	}
 
-       KServiceGroup::List list = root->entries(true, true);
+	unsigned int count = 0;
+	KIO::UDSEntry entry;
 
-       KServiceGroup::List::ConstIterator it = list.begin();
+	KServiceGroup::List list = grp->entries(true, true);
+	KServiceGroup::List::ConstIterator it;
 
+	for (it = list.begin(); it != list.end(); ++it) {
+		KSycocaEntry * e = *it;
 
-       for (; it != list.end(); ++it) {
+		if (e->isType(KST_KServiceGroup)) {
+			KServiceGroup::Ptr g(static_cast<KServiceGroup *>(e));
+			QString groupCaption = g->caption();
 
-            KSycocaEntry * e = *it;
+			// Avoid adding empty groups.
+			KServiceGroup::Ptr subMenuRoot = KServiceGroup::group(g->relPath());
+			if (subMenuRoot->childCount() == 0)
+			    continue;
 
- 	       if (e->isType(KST_KServiceGroup)) {
+			// Ignore dotfiles.
+			if ((g->name().at(0) == '.'))
+			    continue;
 
-        	    KServiceGroup::Ptr g(static_cast<KServiceGroup *>(e));
-	            QString groupCaption = g->caption();
+			QString relPath = g->relPath();
 
-        	    // Avoid adding empty groups.
-	            KServiceGroup::Ptr subMenuRoot = KServiceGroup::group(g->relPath());
-        	    if (subMenuRoot->childCount() == 0)
-                	continue;
+			// Do not display the "Settings" menu group in Programs Mode.
+			if( (m_runMode == ProgramsMode) && relPath.startsWith( "Settings" ) )
+			{
+				kdDebug() << "SettingsProtocol: SKIPPING entry programs:/" << relPath << endl;
+				continue;
+			}
 
-	            // Ignore dotfiles.
-        	    if ((g->name().at(0) == '.'))
-	                continue;
+			switch( m_runMode )
+			{
+			  case( SettingsMode ):
+				relPath.remove(0, 9); // length("Settings/") ==9
+				kdDebug() << "SettingsProtocol: adding entry settings:/" << relPath << endl;
+				createDirEntry(entry, groupCaption, "settings:/"+relPath, "inode/directory",g->icon());
+				break;
+			  case( ProgramsMode ):
+				kdDebug() << "SettingsProtocol: adding entry programs:/" << relPath << endl;
+				createDirEntry(entry, groupCaption, "programs:/"+relPath, "inode/directory",g->icon());
+				break;
+		}
 
-		    count++;
-                    QString relPath=g->relPath();
+		} else {
+			KService::Ptr s(static_cast<KService *>(e));
+			kdDebug() << "SettingsProtocol: adding file entry " << url.url(1)+s->name() << endl;
+			createFileEntry(entry,s->name(),url.url(1)+s->name(), "application/x-desktop",s->icon());
+		}
 
-		    // Do not display the "Settings" menu group in Programs Mode.
-		    if( (m_runMode == ProgramsMode) && relPath.startsWith( "Settings" ) )
-		    {
-			kdDebug() << "SettingsProtocol: SKIPPING entry programs:/" << relPath << endl;
-			continue;
-		    }
-
-		    switch( m_runMode )
-		    {
-			case( SettingsMode ):
-			    relPath=relPath.right(relPath.length()-9); //Settings/ ==9
-			    kdDebug() << "SettingsProtocol: adding entry settings:/" << relPath << endl;
-			    createDirEntry(entry, groupCaption, "settings:/"+relPath, "inode/directory",g->icon());
-			    break;
-
-			case( ProgramsMode ):
-			    kdDebug() << "SettingsProtocol: adding entry programs:/" << relPath << endl;
-			    createDirEntry(entry, groupCaption, "programs:/"+relPath, "inode/directory",g->icon());
-			    break;
-		    }
-	            listEntry(entry, false);
-	        }
-        	else {
-	            KService::Ptr s(static_cast<KService *>(e));
-        	    //insertMenuItem(s, id++, -1, &suppressGenericNames);
-		    QString desktopEntryPath=s->desktopEntryPath();
-		    desktopEntryPath="file:"+locate("apps",desktopEntryPath);
-		    createFileEntry(entry,s->name(),desktopEntryPath, "application/x-desktop",s->icon());
-	            listEntry(entry, false);
-	        }
+		listEntry(entry, false);
+		count++;
 	}
 
-        totalSize(count);
+	totalSize(count);
 	listEntry(entry, true);
 	finished();
 }
 
-
-
-void addAtom(KIO::UDSEntry& entry, unsigned int ID, long l, const QString& s = QString::null)
-{
-        KIO::UDSAtom    atom;
-        atom.m_uds = ID;
-        atom.m_long = l;
-        atom.m_str = s;
-        entry.append(atom);
-}
-
-static void createFileEntry(KIO::UDSEntry& entry, const QString& name, const QString& url, const QString& mime,const QString& iconName)
-{
-        entry.clear();
-        addAtom(entry, KIO::UDS_NAME, 0, name);
-//        addAtom(entry, KIO::UDS_FILE_TYPE, S_IFDIR);//REG);
-        addAtom(entry, KIO::UDS_URL, 0, url);
-        addAtom(entry, KIO::UDS_ACCESS, 0500);
-        addAtom(entry, KIO::UDS_MIME_TYPE, 0, mime);
-        addAtom(entry, KIO::UDS_SIZE, 0);
-        addAtom(entry, KIO::UDS_GUESSED_MIME_TYPE, 0, "application/x-desktop");
-	addAtom(entry, KIO::UDS_CREATION_TIME,1);
-	addAtom(entry, KIO::UDS_MODIFICATION_TIME,time(0));
-//	addAtom(entry, KIO::UDS_ICON_NAME,0,iconName);
-
-}
-
-
-static void createDirEntry(KIO::UDSEntry& entry, const QString& name, const QString& url, const QString& mime,const QString& iconName)
-{
-        entry.clear();
-        addAtom(entry, KIO::UDS_NAME, 0, name);
-        addAtom(entry, KIO::UDS_FILE_TYPE, S_IFDIR);
-        addAtom(entry, KIO::UDS_ACCESS, 0500);
-        addAtom(entry, KIO::UDS_MIME_TYPE, 0, mime);
-        addAtom(entry, KIO::UDS_URL, 0, url);
-        addAtom(entry, KIO::UDS_SIZE, 0);
-        addAtom(entry, KIO::UDS_GUESSED_MIME_TYPE, 0, "inode/directory");
-	addAtom(entry, KIO::UDS_ICON_NAME,0,iconName);
-//        addAtom(entry, KIO::UDS_GUESSED_MIME_TYPE, 0, "application/x-desktop");
-}
+// vim: ts=4 sw=4 et
