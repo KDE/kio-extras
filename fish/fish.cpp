@@ -112,7 +112,7 @@ extern "C" {
 
 static void ripper(int)
 {
-    while (waitpid(-1,0,WNOHANG,NULL) > 0) {
+    while (waitpid(-1,0,WNOHANG) > 0) {
       // do nothing, go on
     }
 }
