@@ -135,24 +135,28 @@ void ThumbnailProtocol::get(const KURL &url)
 
     QImage img;
 
+    KConfigGroup group( KGlobal::config(), "PreviewSettings" );
+
+    
     // ### KFMI
     bool kfmiThumb = false;
-    KService::Ptr service =
-        KServiceTypeProfile::preferredService( m_mimeType, "KFilePlugin");
-    
-    if ( service && service->isValid() && /*url.isLocalFile() && */
-         service->property("SupportsThumbnail").toBool())
-    {
-        KFileMetaInfo info(url.path(), m_mimeType, KFileMetaInfo::Thumbnail);
-        KFileMetaInfoItem item = info.item(KFileMimeTypeInfo::Thumbnail);
-        if (item.isValid() && item.value().type() == QVariant::Image)
+    if (group.readBoolEntry( "UseFileThumbnails", true )) {
+        KService::Ptr service =
+            KServiceTypeProfile::preferredService( m_mimeType, "KFilePlugin");
+
+        if ( service && service->isValid() && /*url.isLocalFile() && */
+            service->property("SupportsThumbnail").toBool())
         {
-            img = item.value().toImage();
-            kdDebug() << "using KFMI for the thumbnail\n";
-            kfmiThumb = true;
+            KFileMetaInfo info(url.path(), m_mimeType, KFileMetaInfo::Thumbnail);
+            KFileMetaInfoItem item = info.item(KFileMimeTypeInfo::Thumbnail);
+            if (item.isValid() && item.value().type() == QVariant::Image)
+            {
+                img = item.value().toImage();
+                kdDebug() << "using KFMI for the thumbnail\n";
+                kfmiThumb = true;
+            }
         }
     }
-    
    ThumbCreator::Flags flags = ThumbCreator::None;
      
     if (!kfmiThumb)
