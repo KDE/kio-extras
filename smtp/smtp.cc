@@ -141,28 +141,33 @@ void SMTPProtocol::put (const KURL &url, int /*permissions*/, bool /*overwrite*/
 {
 	QString query = url.query();
 	QString subject = ASCII("missing subject");
-	QStringList recip, cc;
+	QString profile = QString::null;
+	QStringList recip, cc, subject_list, profile_list;
 
 	GetAddresses(query, "to=", recip);
 	GetAddresses(query, "cc=", cc);
 
 	// find the subject
-	int curpos = 0;
-	if ( (curpos = query.find("subject=")) != -1) {
-		curpos += 8;
-                if (query.find("&", curpos) != -1)
-			subject = query.mid(curpos, query.find("&", curpos)-curpos);
-                else
-			subject = query.mid(curpos, query.length());
+	GetAddresses(query, "subject=", subject_list);
+	if (subject_list.count()) {
+		subject = subject_list.last();
+		subject_list.clear();
+	}
+
+	GetAddresses(query, "profile=", profile_list);
+	if (profile_list.count()) {
+		profile = profile_list.last();
+		profile_list.clear();
 	}
 
 	if (!smtp_open(url))
 	        error(ERR_SERVICE_NOT_AVAILABLE, i18n("SMTPProtocol::smtp_open failed (%1)").arg(url.path()));
 
 	KEMailSettings *mset = new KEMailSettings;
-	if (mset->defaultProfileName() != QString::null) {
-		mset->setProfile(mset->defaultProfileName());
-	}
+	if (profile == QString::null) {
+		profile = mset->defaultProfileName();
+	} 
+	mset->setProfile(profile);
 
 	// Check KEMailSettings to see if we've specified an E-Mail address
 	// if that worked, check to see if we've specified a real name
