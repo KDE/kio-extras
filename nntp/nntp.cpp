@@ -21,7 +21,8 @@
 #include <qdir.h>
 #include <qregexp.h>
 
-#include <ksock.h>
+#include <kextsock.h>
+#include <ksocks.h>
 #include <kapplication.h>
 #include <kdebug.h>
 #include <klocale.h>
@@ -675,6 +676,19 @@ QString& NNTPProtocol::errorStr(int resp_code) {
 
 /***************** class TCPWrapper ******************/
 
+// FIXME!
+// There is a whole lot of duplicated code from here and
+// KExtendedSocket. Someone should clean this up one day.
+//
+// The TCPWrapper class in here could be almost entirely replaced
+// by KExtendedSocket without buffering (we cannot use buffering in
+// ioslaves because there is no Qt event loop). The read timeout 
+// behaviour can be obtained with waitForMore, but the write timeout
+// requires more coding. 
+// As of now, we're using KExtendedSocket to connect and
+// KSocks for the I/O.
+// -thiago
+
 TCPWrapper::TCPWrapper()
 {
   timeOut = DEFAULT_TIME_OUT;
@@ -696,6 +710,7 @@ bool TCPWrapper::connect(const QString &host, short unsigned int port) {
 
   DBG << "socket connecting to " << host << ":" << port << endl;
 
+#if 0
   ksockaddr_in server_name;
 
   // init socket
@@ -719,6 +734,24 @@ bool TCPWrapper::connect(const QString &host, short unsigned int port) {
     error(ERR_COULD_NOT_CONNECT, host);
     return false;
   }
+#endif
+
+  KExtendedSocket ks(host, port);
+  if (ks.lookup() < 0)
+    {
+      emit error(ERR_UNKNOWN_HOST, host); // untrue
+      return false;
+    }
+
+  if (ks.connect() < 0)
+    {
+      // code above doesn't use emit, but this is a signal
+      emit error(ERR_COULD_NOT_CONNECT, host);
+      return false;
+    }
+
+  tcpSocket = ks.fd();
+  ks.release();			// we're free of KExtendedSocket
 
   return true;
 
@@ -728,7 +761,7 @@ bool TCPWrapper::disconnect() {
 
   // close socket
   if (tcpSocket != -1) {
-    close(tcpSocket);
+    ::close(tcpSocket);
     tcpSocket = -1;
   }
 
@@ -783,7 +816,7 @@ bool TCPWrapper::readData() {
 
     // read bytes from socket
     do {
-      bytes = ::read(tcpSocket, data_end, (buffer+SOCKET_BUFFER_SIZE)-data_end);
+      bytes = KSocks::self()->read(tcpSocket, data_end, (buffer+SOCKET_BUFFER_SIZE)-data_end);
     } while (bytes<0 && errno==EINTR); // ignore signals
 
     if (bytes <= 0) { // there was an error
@@ -823,7 +856,7 @@ bool TCPWrapper::readyForReading(){
     FD_SET(tcpSocket, &fdsE);
     tv.tv_sec = timeOut;
     tv.tv_usec = 0;
-    ret = select(FD_SETSIZE, &fdsR, NULL, &fdsE, &tv);
+    ret = KSocks::self()->select(FD_SETSIZE, &fdsR, NULL, &fdsE, &tv);
     // DBG << "select (r): " << ret << " errno: " << errno << endl;
   } while ((ret<0) && (errno == EINTR)); // ignore signals
 
@@ -864,7 +897,7 @@ bool TCPWrapper::writeData(const QByteArray &data) {
 
      while (byteCount < chars) {
 
-       bytes = ::write(tcpSocket, &data.data()[byteCount], chars-byteCount);
+       bytes = KSocks::self()->write(tcpSocket, &data.data()[byteCount], chars-byteCount);
        if (bytes <= 0) {
          ERR << "error writing to socket" << endl;
          emit error(ERR_COULD_NOT_WRITE,strerror(errno));
@@ -896,7 +929,7 @@ bool TCPWrapper::readyForWriting() {
     FD_SET(tcpSocket, &fdsE);
     tv.tv_sec = timeOut;
     tv.tv_usec = 0;
-    ret = select(FD_SETSIZE, NULL, &fdsW, &fdsE, &tv);
+    ret = KSocks::self()->select(FD_SETSIZE, NULL, &fdsW, &fdsE, &tv);
     // DBG << "select (w): " << ret << " errno: " << errno << endl;
   } while ((ret<0) && (errno == EINTR)); // ignore signals
 
