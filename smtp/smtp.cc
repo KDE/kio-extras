@@ -1,6 +1,7 @@
 /*
  * Copyright (c) 2000, 2001 Alex Zepeda <jazepeda@pacbell.net>
  * Copyright (c) 2001 Michael Häckel <Michael@Haeckel.Net>
+ * Copyright (c) 2002 Aaron J. Seigo <aseigo@olympusproject.org>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -556,26 +557,15 @@ bool SMTPProtocol::smtp_open(const QString& fakeHostname)
   }
   else
   { 
-    char hostname[256];
-    struct hostent *host;
-    
-    hostname[0] = '\0';
-    host = gethostbyname(hostname);
+    QString tmpPort;
+    KSocketAddress* addr = KExtendedSocket::localAddress(m_iSock);
+    KExtendedSocket::resolve(addr, m_hostname, tmpPort);
+    delete addr;
 
-    if (host && host->h_name)
+    if(m_hostname == QString::null)
     {
-      m_hostname = host->h_name;
+      m_hostname = "localhost.invalid";
     }
-    else if (gethostname(hostname, 255) == 0)
-    {
-      hostname[255] = '\0';
-      m_hostname = hostname;
-    }
-  }
-
-  if(m_hostname == QString::null)
-  {
-    m_hostname = "localhost.invalid";
   }
 
   if (!command(("EHLO " + m_hostname), ehloByteArray.data(), DEFAULT_EHLO_BUFFER - 1)) 
