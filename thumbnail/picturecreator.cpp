@@ -19,6 +19,7 @@
 */
 
 
+#include <config.h>
 
 #include <qpicture.h>
 #include <qpixmap.h>
@@ -26,6 +27,7 @@
 #include <qimage.h>
 
 #include "picturecreator.h"
+#include <ksvgiconengine.h>
 
 extern "C"
 {
@@ -37,7 +39,19 @@ extern "C"
 
 bool PictureCreator::create(const QString &path, int width, int height, QImage &img)
 {
-    QPicture pict;
+#ifdef HAVE_LIBART
+	QImage *result = 0;
+	KSVGIconEngine engine;
+	if(engine.load(width, height, path))
+	{
+		result = engine.image();
+		img = result->copy();
+	}
+
+	delete result;
+	return result != 0;
+#else
+	QPicture pict;
     if ( !pict.load(path,"svg") )
         return false;
 
@@ -76,6 +90,7 @@ bool PictureCreator::create(const QString &path, int width, int height, QImage &
     p.end();
     img = pix.convertToImage();
     return true;
+#endif
 }
 
 ThumbCreator::Flags PictureCreator::flags() const
