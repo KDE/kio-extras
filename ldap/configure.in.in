@@ -95,7 +95,7 @@ NOTFOUND) AC_MSG_RESULT(searched but not found) ;;
   ;;
 esac
 
-AC_CHECK_HEADERS(sasl.h)
+AC_CHECK_HEADERS(sasl/sasl.h sasl.h)
 
 AC_SUBST(LDAP_INCS)
 AC_SUBST(LDAP_LIBS)

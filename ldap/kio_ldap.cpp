@@ -21,8 +21,12 @@
 #include <kinstance.h>
 #include <klocale.h>
 
+#ifdef HAVE_SASL_SASL_H //prefer libsasl2
+#include <sasl/sasl.h>
+#else
 #ifdef HAVE_SASL_H
 #include <sasl.h>
+#endif
 #endif
 #include <kabc/ldif.h>
 
@@ -506,7 +510,7 @@ typedef struct kldap_sasl_defaults_t {
   QString authzid;
 } kldap_sasl_defaults;
 
-#ifdef HAVE_SASL_H
+#if defined HAVE_SASL_H || defined HAVE_SASL_SASL_H
 static int kldap_sasl_interact( LDAP *, unsigned, void *defaults, void *in )
 {
   sasl_interact_t *interact = ( sasl_interact_t * ) in;
@@ -644,7 +648,7 @@ void LDAPProtocol::openConnection()
   while (!auth) {
     if ( mAuthSASL ) {
       kdDebug(7125) << "sasl_authentication mechanism:" << mechanism << endl;
-#ifdef HAVE_SASL_H      
+#if defined HAVE_SASL_H || defined HAVE_SASL_SASL_H
       defaults.realm = mRealm;
       defaults.authcid = mUser;
       defaults.passwd = mPassword;
@@ -658,7 +662,7 @@ void LDAPProtocol::openConnection()
     }
     kdDebug(7125) << "user: " << mUser << " bindname: " << mBindName << endl;
     if ( ( !mAuthSASL && mPassword.isEmpty() && !mBindName.isEmpty() ) || ( ret = ( 
-#ifdef HAVE_SASL_H      
+#if defined HAVE_SASL_H || defined HAVE_SASL_SASL_H
       mAuthSASL ? 
         ldap_sasl_interactive_bind_s( mLDAP, NULL, mechanism.utf8(), 
           NULL, NULL, LDAP_SASL_QUIET, &kldap_sasl_interact, &defaults ) :
