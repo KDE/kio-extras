@@ -1237,9 +1237,7 @@ void SmbProtocol::slotDel( QStringList& _source )
 
 	/*****
 	* Delete empty directories
-	*****/                       		dit--;
-		dit--;
-
+	*****/                       		
 
 	QValueList<CopyDir>::Iterator dit = ds.end();
 	qDebug( "kio_smb : Deleting dir 1" );
