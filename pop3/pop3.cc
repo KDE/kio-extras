@@ -141,7 +141,7 @@ bool POP3Protocol::getResponse (char *r_buf, unsigned int r_len, const char *cmd
   buf=static_cast<char *>(malloc(r_len));
 
   // And keep waiting if it timed out
-  unsigned int wait_time=60; // Wait 60sec. max.
+  unsigned int wait_time=600; // Wait 600sec. max.
   do {
     // Wait for something to come from the server
     FD_ZERO(&FDs);
@@ -155,8 +155,8 @@ bool POP3Protocol::getResponse (char *r_buf, unsigned int r_len, const char *cmd
   while (wait_time && (::select(m_iSock+1, &FDs, 0, 0, &m_tTimeout) ==0));
 
   if (wait_time == 0) {
-    kdDebug() << "No response from POP3 server in 60 secs." << endl;
-    m_sError = i18n("No response from POP3 server in 60 secs.");
+    kdDebug() << "No response from POP3 server in 600 secs." << endl;
+    m_sError = i18n("No response from POP3 server in 600 secs.");
     if (r_buf)
        r_buf[0] = 0;
     return false;
