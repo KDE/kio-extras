@@ -205,7 +205,7 @@
                                                 </property>
                                                 <property>
                                                     <name>whatsThis</name>
-                                                    <string>Uncheck this if you want to specify a CD device different from the on autoprobed</string>
+                                                    <string>Uncheck this if you want to specify a CD device different from the one autoprobed</string>
                                                 </property>
                                             </widget>
                                             <widget>
@@ -698,7 +698,7 @@
                                             </property>
                                             <property>
                                                 <name>whatsThis</name>
-                                                <string>Add a description of the Song to the Fileheader. This makes it easy for the user to get advanced song informations shown by his media player. You can get these informations automatically via Internet. Look at the &lt;i&gt;"CDDB Settings"&lt;/i&gt; tab for details.</string>
+                                                <string>Add a description of the Song to the Fileheader. This makes it easy for the user to get advanced song information shown by his media player. You can get these information automatically via the Internet. Look at the &lt;i&gt;"CDDB Settings"&lt;/i&gt; tab for details.</string>
                                             </property>
                                         </widget>
                                     </widget>
@@ -821,7 +821,7 @@
                                                 </property>
                                                 <property>
                                                     <name>whatsThis</name>
-                                                    <string>Choosing &lt;i&gt;Constant Bitrate&lt;/i&gt; is safe, while &lt;i&gt;Variable Bitrate&lt;/i&gt; encoding can cause troubles with some media players. However, choosing variable bitrates normally results a better quality / size relation of the file created.</string>
+                                                    <string>Choosing &lt;i&gt;Constant Bitrate&lt;/i&gt; is safe, while &lt;i&gt;Variable Bitrate&lt;/i&gt; encoding can cause trouble with some media players. However, choosing variable bitrates usually results in a better quality / size ratio for the file created.</string>
                                                 </property>
                                             </widget>
                                             <widget row="1"  column="0" >
@@ -856,7 +856,7 @@
                                                 </property>
                                                 <property>
                                                     <name>whatsThis</name>
-                                                    <string>This option controlles wether mp3 files are recorded with one or two channels. Note that choosing &lt;i&gt;"Mono"&lt;/i&gt; reduces filesize but also kills the stereo signal.</string>
+                                                    <string>This option controls whether MP3 files are recorded with one or two channels. Note that choosing &lt;i&gt;"Mono"&lt;/i&gt; reduces file size, but also kills the stereo signal.</string>
                                                 </property>
                                             </widget>
                                             <widget row="2"  column="0" >
@@ -1018,11 +1018,11 @@
                                                 </property>
                                                 <property>
                                                     <name>toolTip</name>
-                                                    <string>Mark mp3 file as copyrighted</string>
+                                                    <string>Mark MP3 file as copyrighted</string>
                                                 </property>
                                                 <property>
                                                     <name>whatsThis</name>
-                                                    <string>Mark mp3 file as copyrighted.</string>
+                                                    <string>Mark MP3 file as copyrighted.</string>
                                                 </property>
                                             </widget>
                                             <widget>
@@ -1041,11 +1041,11 @@
                                                 </property>
                                                 <property>
                                                     <name>toolTip</name>
-                                                    <string>Mark mp3 file as an original</string>
+                                                    <string>Mark MP3 file as an original</string>
                                                 </property>
                                                 <property>
                                                     <name>whatsThis</name>
-                                                    <string>Mark mp3 file as an original.</string>
+                                                    <string>Mark MP3 file as an original.</string>
                                                 </property>
                                             </widget>
                                             <widget>
@@ -1064,7 +1064,7 @@
                                                 </property>
                                                 <property>
                                                     <name>whatsThis</name>
-                                                    <string>This selects the maximal biterate used for encoding.</string>
+                                                    <string>This selects the maximal bitrate used for encoding.</string>
                                                 </property>
                                             </widget>
                                             <widget>
@@ -1403,7 +1403,7 @@
                                                 </property>
                                                 <property>
                                                     <name>whatsThis</name>
-                                                    <string>This selects the maximal biterate used for encoding.</string>
+                                                    <string>This selects the maximal bitrate used for encoding.</string>
                                                 </property>
                                             </widget>
                                             <widget row="1"  column="1" >
@@ -1551,7 +1551,7 @@
                                                                 </property>
                                                                 <property>
                                                                     <name>whatsThis</name>
-                                                                    <string>This selects the minimal biterate used for encoding.</string>
+                                                                    <string>This selects the minimal bitrate used for encoding.</string>
                                                                 </property>
                                                             </widget>
                                                             <widget>
@@ -1688,7 +1688,7 @@
                                                 </property>
                                                 <property>
                                                     <name>whatsThis</name>
-                                                    <string>This selects the maximal biterate used for encoding.</string>
+                                                    <string>This selects the maximal bitrate used for encoding.</string>
                                                 </property>
                                             </widget>
                                             <widget row="3"  column="0"  rowspan="1"  colspan="2" >
@@ -1707,7 +1707,7 @@
                                                 </property>
                                                 <property>
                                                     <name>whatsThis</name>
-                                                    <string>This writes additional informations related to VBR as introduced by Xing.</string>
+                                                    <string>This writes additional information related to VBR as introduced by Xing.</string>
                                                 </property>
                                             </widget>
                                             <widget row="2"  column="1" >
@@ -2054,7 +2054,7 @@
                                 </property>
                                 <property>
                                     <name>whatsThis</name>
-                                    <string>CDDB enables you to lookup the song index of your CD by using a database in the internet. Thus, information like artist, songname and release year can be automatically inserted into your mp3 or ogg vorbis file.</string>
+                                    <string>CDDB enables you to lookup the song index of your CD by using a database on the Internet. Thus, information like artist, songname and release year can be automatically inserted into your MP3 or ogg vorbis file.</string>
                                 </property>
                             </widget>
                         </vbox>
