@@ -1,0 +1,14 @@
+[Protocol]
+exec=kio_sql
+protocol=sql
+input=none
+output=filesystem
+listing=Name,Type,MimeType
+reading=true
+writing=false
+deleting=false
+source=true
+makedir=false
+linking=false
+moving=false
+
