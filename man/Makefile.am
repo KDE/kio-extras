@@ -7,7 +7,7 @@ LDFLAGS = $(all_libraries) $(KDE_RPATH)
 
 kde_module_LTLIBRARIES = kio_man.la
 
-kio_man_la_SOURCES = kio_man.cpp man2html.cpp
+kio_man_la_SOURCES = man2html.cpp kio_man.cpp
 kio_man_la_LIBADD = -lksycoca
 kio_man_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN)
 noinst_HEADERS = kio_man.h

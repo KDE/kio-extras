@@ -115,12 +115,11 @@
 #include <time.h>
 #include <sys/time.h>
 #include <errno.h>
+#include <iostream>
+
 #include <qstring.h>
 #include <qlist.h>
-#include <assert.h>
-
-#include <man2html.h>
-#include <iostream>
+#include "man2html.h"
 using namespace std;
 
 #define NULL_TERMINATED(n) ((n) + 1)
@@ -856,7 +855,6 @@ public:
         return (index >= 0) && (index < (int)items.count());
     }
     TABLEITEM &at(int index) {
-        assert(has(index));
         return *items.at(index);
     }
 
