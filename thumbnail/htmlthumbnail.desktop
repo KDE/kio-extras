@@ -4,3 +4,4 @@ Name=HTML Files
 ServiceTypes=ThumbCreator
 MimeTypes=text/html
 X-KDE-Library=htmlthumbnail
+CacheThumbnail=true

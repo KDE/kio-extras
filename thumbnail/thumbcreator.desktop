@@ -5,3 +5,6 @@ Comment=Thumbnail Handler
 
 [PropertyDef::MimeTypes]
 Type=QStringList
+
+[PropertyDef::CacheThumbnail]
+Type=bool

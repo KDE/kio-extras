@@ -35,9 +35,8 @@
 #include <kiconloader.h>
 #include <kimageeffect.h>
 #include <kmimetype.h>
-#include <ktrader.h>
+#include <kservice.h>
 #include <klibloader.h>
-#include <kdebug.h>
 
 #include "thumbnail.h"
 #include "thumbcreator.h"
@@ -93,44 +92,19 @@ void ThumbnailProtocol::get(const KURL &url)
     m_transparency = metaData("transparency").toInt();
     if (!m_transparency)
         m_transparency = 0;
-
-    bool all = metaData("enabled").isNull();
-    QStringList enabled = QStringList::split(",", metaData("enabled"));
-    KTrader::OfferList plugins = KTrader::self()->query("ThumbCreator");
-    // Cannot use 'mimeType' in MimeTypes as MimeTypes may contain wildcards,
-    // get all plugins and find the closest match instead
-    KService::Ptr plugin;
-    QString key;
-    for (KTrader::OfferList::ConstIterator it = plugins.begin(); it != plugins.end(); ++it)
+    QString plugin = metaData("plugin");
+    if (plugin.isEmpty())
     {
-        if (!(all || enabled.contains((*it)->desktopEntryName())))
-            continue;
-            
-        QStringList mimeTypes = (*it)->property("MimeTypes").toStringList();
-        if (mimeTypes.contains(m_mimeType))
-        {
-            plugin = *it;
-            key = m_mimeType;
-            break;
-        }
-        for (QStringList::ConstIterator mt = mimeTypes.begin(); mt != mimeTypes.end(); ++mt)
-            if (m_mimeType.find(QRegExp(*mt, false, true)) == 0)
-            {
-                plugin = *it;
-                key = *mt;
-            }
-    }
-    if (!plugin)
-    {
-        error(KIO::ERR_INTERNAL, "Unsupported MIME Type: " + m_mimeType);
+        error(KIO::ERR_INTERNAL, "No plugin specified.");
         return;
     }
-    ThumbCreator *creator = m_creators[key];
+    ThumbCreator *creator = m_creators[plugin];
     if (!creator)
     {
         // Don't use KLibFactory here, this is not a QObject and
         // neither is ThumbCreator
-        KLibrary *library = KLibLoader::self()->library(plugin->library().latin1());
+        KService::Ptr service = KService::serviceByDesktopName(plugin);
+        KLibrary *library = KLibLoader::self()->library(service->library().latin1());
         if (library)
         {
             newCreator create = (newCreator)library->symbol("new_creator");
@@ -139,10 +113,10 @@ void ThumbnailProtocol::get(const KURL &url)
         }
         if (!creator)
         {
-            error(KIO::ERR_INTERNAL, "Cannot load ThumbCreator for " + key);
+            error(KIO::ERR_INTERNAL, "Cannot load ThumbCreator " + plugin);
             return;
         }
-        m_creators.insert(key, creator);
+        m_creators.insert(plugin, creator);
     }
 
     QPixmap pix;

@@ -4,3 +4,4 @@ Name=Text Files
 ServiceTypes=ThumbCreator
 MimeTypes=text/*
 X-KDE-Library=textthumbnail
+CacheThumbnail=false
