@@ -28,6 +28,7 @@ int main( int argc, char **argv )
   prot.dispatchLoop();
   
   while(1);
+  return 0;
 }
 
 void sig_handler( int )
@@ -128,9 +129,8 @@ void GZipProtocol::slotCopy( const char *_source, const char *_dest )
     return;
   }
 
-  if ( strcmp( usrc.protocol(), "gzip" ) != 0L )
-  {
-    error( ERR_INTERNAL, "kio_gzip got a URL which has not the gzip protocol" );
+  if ( usrc.protocol() != "gzip" ) {
+    error( ERR_INTERNAL, "kio_gzip got a URL which does not contain the gzip protocol");
     m_cmd = CMD_NONE;
     return;
   }
@@ -236,9 +236,9 @@ void GZipProtocol::slotGet( const char *_url )
     return;
   }
 
-  if ( strcmp( lst.begin()->protocol(), "gzip" ) != 0L )
+  if (lst.begin()->protocol() != "gzip")
   {
-    error( ERR_INTERNAL, "kio_gzip got a URL which has not the gzip protocol" );
+    error( ERR_INTERNAL, "kio_gzip got a URL which does not contain the gzip protocol");
     m_cmd = CMD_NONE;
     return;
   }
@@ -359,10 +359,9 @@ void GZipProtocol::slotPut( const char *_url, int, bool _overwrite, bool _resume
     return;
   }
 
-  // Has the left most URL really the gzip protocol ?
-  if ( strcmp( lst.begin()->protocol(), "gzip" ) != 0L )
-  {
-    error( ERR_INTERNAL, "kio_gzip got a URL which has not the gzip protocol" );
+  // Is the left most URL really the gzip protocol ?
+  if (lst.begin()->protocol() != "gzip") {
+    error( ERR_INTERNAL, "kio_gzip got a URL which does not contain the gzip protocol");
     finished();
     m_cmd = CMD_NONE;
     return;
@@ -588,4 +587,3 @@ void GZipFilter::emitData( void *_p, int _len )
 {
   m_pGZip->filterData( _p, _len );
 }
-
