@@ -24,4 +24,5 @@ mount_xdr.c: mount.x
 nfs_prot_xdr.c: nfs_prot.x
 	rpcgen $(srcdir)/nfs_prot.x
 
-bin_SCRIPTS = 
+messages:
+	$(XGETTEXT) *.cpp -o $(podir)/kio_nfs.pot

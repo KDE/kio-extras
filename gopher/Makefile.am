@@ -16,3 +16,5 @@ noinst_HEADERS = gopher.h
 kdelnk_DATA = gopher.protocol
 kdelnkdir = $(kde_servicesdir)
 
+messages:
+	$(XGETTEXT) *.cc -o $(podir)/kio_gopher.pot
