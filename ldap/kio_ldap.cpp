@@ -4,57 +4,83 @@
 #include <config.h>
 #endif
 #include <signal.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+
+#include <stdio.h>
+#include <unistd.h>
 
 #include <lber.h>
 #include <ldap.h>
+#include <kdebug.h>
 #include <kldap.h>
 #include <kldapurl.h>
 #include <kinstance.h>
 
 #include "kio_ldap.h"
 
+using namespace KIO;
+
+extern "C" { int kdemain(int argc, char **argv); }
 
 /**
  * The main program.
  */
-int main(int, char **)
+int kdemain(int argc, char **argv)
 {
-  // redirect the signals
-  signal(SIGCHLD, KIOProtocol::sigchld_handler);
-  signal(SIGSEGV, KIOProtocol::sigsegv_handler);
+    KInstance instance( "kio_ldap" );
+    // redirect the signals
+    //signal(SIGCHLD, KIOProtocol::sigchld_handler);
+    //signal(SIGSEGV, KIOProtocol::sigsegv_handler);
 
-  qDebug("kio_ldap : Starting");
+    kdDebug() << "kio_ldap : Starting " << getpid() << endl;
 
-  KInstance instance( "kio_ldap" );
+    if (argc != 4) {
+	fprintf(stderr, "Usage kio_ldap protocol pool app\n");
+	return -1;
+    }
+    // let the protocol class do its work
+    LDAPProtocol slave(argv[2], argv[3]);
+    slave.dispatchLoop();
 
-  // create a connection between slave on parent
-  KIOConnection parent(0, 1);
-  
-  // let the protocol class do its work
-  LDAPProtocol file(&parent);
-  file.dispatchLoop();
-
-  qDebug("kio_ldap : Done");
+    kdDebug() << "kio_ldap : Done" << endl;
+    return 0;
 }
 
 
 /**
- * Initialize the protocol with a Connection.
+ * Initialize the ldap slave
  */
-LDAPProtocol::LDAPProtocol(KIOConnection *_conn) 
-  : KIOProtocol(_conn )
+LDAPProtocol::LDAPProtocol(const QCString &pool, const QCString &app)
+  : SlaveBase( "ldap", pool, app) 
 {
-  m_bIgnoreJobErrors = FALSE;
+    kDebugInfo(7110, "LDAPProtocol::LDAPProtocol");
 }
 
+void LDAPProtocol::setHost( const QString& _host, int _port,
+			    const QString& _user, const QString& _pass )
+{
+  urlPrefix = "ldap://";
+  if (!_user.isEmpty()) {
+    urlPrefix += _user;
+    if (!_pass.isEmpty())
+      urlPrefix += ":" + _pass;
+    urlPrefix += "@";
+  }
+  urlPrefix += _host;
+  if (_port)
+    urlPrefix += QString( ":%1" ).arg( _port );
+  debug( "urlPrefix " + urlPrefix );
+}
 
 /**
  * Get the information contained in the URL.
  */
-void LDAPProtocol::slotGet(const char *_url)
+void LDAPProtocol::get(const QString &__url, const QString& query,
+		       bool reload )
 {
-  qDebug("kio_ldap: slotGet(%s)\n", _url);
-  
+  QString _url = urlPrefix + __url + query;
+  kDebugInfo(7110, "kio_ldap::get(" + _url + ")");
   KLDAP::Url usrc(_url);
 
   // check if the URL is a valid LDAP URL
@@ -67,11 +93,15 @@ void LDAPProtocol::slotGet(const char *_url)
   time_t t_start = time( 0L );
 
   // initiate the search
-  KLDAP::Connection c;
-  KLDAP::SearchRequest search(c, _url, KLDAP::Request::Synchronous);
+  KLDAP::Connection c; //FIX:(host,port)
+  /*if (0 && !c.authenticate()) {    //FIX:user...
+      error(ERR_COULD_NOT_AUTHENTICATE, "bla");
+      return;
+      }*/
+  KLDAP::SearchRequest search(c, _url.latin1(), KLDAP::Request::Synchronous);
 
   // tell that we are ready and getting the data
-  ready();
+  //ready();
   gettingFile(_url);
 
   // wait for the request
@@ -89,17 +119,23 @@ void LDAPProtocol::slotGet(const char *_url)
   totalSize(processed_size);  
 
   // tell the contents of the URL
+  QByteArray array;
   int cnt=0;
   while (cnt < processed_size)
     {
       if (result.length()-cnt > 1024)
 	{
-	  data(result.mid(cnt,1024).ascii(), 1024);
+	  
+	  array.setRawData(result.mid(cnt,1024).latin1(), 1024);
+	  data(array);
+	  array.resetRawData(result.mid(cnt,1024).latin1(), 1024);
 	  cnt += 1024;
 	}
       else
 	{
-	  data(result.ascii(), result.length()-cnt);
+	  array.setRawData(result.latin1(), result.length()-cnt);
+	  data(array);
+	  array.resetRawData(result.latin1(), result.length()-cnt);
 	  cnt = processed_size;
 	}
       // tell how much we got
@@ -107,7 +143,7 @@ void LDAPProtocol::slotGet(const char *_url)
     }
 
   // tell we are finished
-  dataEnd();
+  data(QByteArray());
   
   // tell how long it took
   time_t t = time( 0L );
@@ -122,10 +158,10 @@ void LDAPProtocol::slotGet(const char *_url)
 /**
  * Test if the url contains a directory or a file.
  */
-void LDAPProtocol::slotTestDir( const char *_url )
+void LDAPProtocol::stat( const QString &__url )
 {
-  qDebug("kio_ldap: slotTestDir(%s)\n", _url);
-
+  QString _url = urlPrefix + __url;
+  kDebugInfo(7110, "kio_ldap: stat(" + _url + ")");
   KLDAP::Url usrc(_url);
 
   // check if the URL is a valid LDAP URL
@@ -136,33 +172,76 @@ void LDAPProtocol::slotTestDir( const char *_url )
 
   // look how many entries match
   KLDAP::Connection c;
+/*  if (0 && !c.authenticate()) {    //FIX:user...
+      error(ERR_COULD_NOT_AUTHENTICATE, "bla");
+      return;
+      }*/
   KLDAP::SearchRequest search(c, _url, KLDAP::Request::Synchronous);
   QStrList att;
   att.append("dn");
   search.setAttributes(att);
+  search.setScope(LDAP_SCOPE_ONELEVEL);
   search.execute();
   search.finish();
   int cnt=0;
   for (KLDAP::Entry e=search.first(); !search.end(); e=search.next())
     cnt++;
-  
-  if (cnt == 1)
-    isFile();
-  else 
-    isDirectory();
+  UDSEntry entry;
+  UDSAtom atom;
 
+  int pos;
+  atom.m_uds = UDS_NAME;
+  atom.m_long = 0;
+  QString name = usrc.dn();
+  if ((pos = name.find(",")) > 0)
+    name = name.left(pos);
+  if ((pos = name.find("=")) > 0)
+    name.remove(0,pos+1);
+  atom.m_str = name;
+  entry.append(atom);
+
+  atom.m_uds = UDS_FILE_TYPE;
+  atom.m_str = "";
+  if (cnt == 0)
+    atom.m_long = S_IFREG;
+  else 
+    atom.m_long = S_IFDIR;
+  entry.append(atom);
+  
+  atom.m_uds = UDS_URL;
+  atom.m_long = 0;
+  KLDAP::Url url("ldap://");
+  //url.setProtocol("ldap");
+  url.setHost(usrc.host());
+  url.setPort(usrc.port());
+  url.setPath("/"+usrc.dn());
+  if (cnt >= 1)
+    url.setScope(LDAP_SCOPE_ONELEVEL);
+  else
+    url.setScope(LDAP_SCOPE_BASE);
+  atom.m_str = url.url();
+  //kDebugInfo(7110, "kio_ldap:stat put url:" + atom.m_str);
+  entry.append(atom);
+
+  if (cnt == 0) {
+    atom.m_uds = UDS_MIME_TYPE;
+    atom.m_long = 0;
+    atom.m_str = "text/ldif";
+    entry.append(atom);
+  }
+
+  statEntry(entry);
   // we are done
   finished();
 }
 
-
 /**
  * List the contents of a directory.
  */
-void LDAPProtocol::slotListDir(const char *_url)
+void LDAPProtocol::listDir(const QString &__url)
 {
-  qDebug("kio_ldap: slotListDir(%s)\n", _url);
-
+  QString _url = urlPrefix + __url;
+  debug("kio_ldap: listDir(" + _url + ")");
   KLDAP::Url usrc(_url);
 
   // check if the URL is a valid LDAP URL
@@ -173,16 +252,21 @@ void LDAPProtocol::slotListDir(const char *_url)
 
   // look up the entries
   KLDAP::Connection c;
+  /*if (0 && !c.authenticate()) {    //FIX:user...
+      error(ERR_COULD_NOT_AUTHENTICATE, "bla");
+      return;
+      }*/
   KLDAP::SearchRequest search(c, _url, KLDAP::Request::Synchronous);
   QStrList att;
   att.append("dn");
   search.setAttributes(att);
+  search.setScope(LDAP_SCOPE_ONELEVEL);
   search.execute();
   search.finish();
 
   // publish the results
-  KUDSEntry entry;
-  KUDSAtom atom;
+  UDSEntry entry;
+  UDSAtom atom;
 
   // publish the directories
   for (KLDAP::Entry e=search.first(); !search.end(); e=search.next())
@@ -223,16 +307,22 @@ void LDAPProtocol::slotListDir(const char *_url)
 	  // the url
 	  atom.m_uds = UDS_URL;
 	  atom.m_long = 0;
-	  KLDAP::Url url("");
-	  url.setProtocol("ldap");
+	  KLDAP::Url url("ldap://");
+	  //kDebugInfo(7110, "kio_ldap:listDir(dir) put url1:" + url.url());
+	  //url.setProtocol("ldap");
+	  //kDebugInfo(7110, "kio_ldap:listDir(dir) put url2:" + url.url());
 	  url.setHost(usrc.host());
+	  //kDebugInfo(7110, "kio_ldap:listDir(dir) put url3:" + url.url());
 	  url.setPort(usrc.port());
-	  url.setPath(e.dn());
+	  //kDebugInfo(7110, "kio_ldap:listDir(dir) put url4:" + url.url());
+	  url.setPath("/"+e.dn());
+	  //kDebugInfo(7110, "kio_ldap:listDir(dir) put url5:" + url.url());
 	  url.setScope(LDAP_SCOPE_ONELEVEL);
 	  atom.m_str = url.url();
+	  //kDebugInfo(7110, "kio_ldap:listDir(dir) put url6:" + atom.m_str);
 	  entry.append(atom);
 
-	  listEntry(entry);
+	  listEntry(entry, false);
 	}
     }
 
@@ -268,47 +358,20 @@ void LDAPProtocol::slotListDir(const char *_url)
       // the url
       atom.m_uds = UDS_URL;
       atom.m_long = 0;
-      KLDAP::Url url("");
-      url.setProtocol("ldap");
+      KLDAP::Url url("ldap://");
+      //url.setProtocol("ldap");
       url.setHost(usrc.host());
       url.setPort(usrc.port());
-      url.setPath(e.dn());
+      url.setPath("/"+e.dn());
       url.setScope(LDAP_SCOPE_BASE);
       atom.m_str = url.url();
+      //kDebugInfo("kio_ldap:listDir(file) put url:" + atom.m_str);
       entry.append(atom);
 
-      listEntry(entry);
+      listEntry(entry, false);
     }
-  
+  entry.clear();
+  listEntry(entry, true);
   // we are done
   finished();  
 }
-
-
-/**
- * Report errors.
- */
-void LDAPProtocol::jobError(int _errid, const char *_txt)
-{
-  if ( !m_bIgnoreJobErrors )
-    error( _errid, _txt );
-}
-
-
-/*************************************
- *
- * FileIOJob
- *
- *************************************/
-
-LDAPIOJob::LDAPIOJob( KIOConnection *_conn, LDAPProtocol *_File ) : KIOJobBase( _conn )
-{
-  m_pFile = _File;
-}
-  
-void LDAPIOJob::slotError( int _errid, const char *_txt )
-{
-  KIOJobBase::slotError( _errid, _txt );
-  m_pFile->jobError( _errid, _txt );
-}
-

@@ -1,0 +1,61 @@
+AC_MSG_CHECKING(wether to compile LDAP support)
+AC_ARG_WITH(ldap,
+[  --with-ldap[=PATH]      Compile in LDAP support.],
+[ case "$withval" in
+  yes)
+    with_ldap=/usr/local
+    ;;
+  esac ],
+[ with_ldap=no ]
+)dnl
+
+case "$with_ldap" in
+no)
+  AC_MSG_RESULT(no)
+  ;;
+*)
+  LDAP_ROOT="$with_ldap"
+  LDAP_INCS="-I${LDAP_ROOT}/include"
+  LDAP_LIBS="-L${LDAP_ROOT}/lib -lldap -llber"
+  kde_safe_LIBS="$LIBS"
+  kde_safe_CFLAGS="$CFLAGS"
+  LIBS="$LIBS $all_libraries $LDAP_LIBS"
+  CFLAGS="$CFLAGS $all_includes $LDAP_INCS"
+  AC_LANG_SAVE
+  AC_LANG_C
+  AC_TRY_LINK(dnl
+  [
+  #include <lber.h>
+  #include <ldap.h>
+  ],
+  [
+  LDAP *ldap;
+  ],
+  , with_ldap=no
+  )
+  AC_LANG_RESTORE
+  CFLAGS=$kde_safe_CFLAGS
+  LIBS=$kde_safe_LIBS
+  if test "$with_ldap" = "no" ; then
+    LDAP_ROOT=
+    LDAP_INCS=
+    LDAP_LIBS=
+    LDAP_SUBDIR=
+    AC_MSG_RESULT(no)
+  else
+    LDAP_RPATH=
+    if test "$USE_RPATH" = "yes" ; then
+      LDAP_RPATH="-rpath ${LDAP_ROOT}/lib"
+    fi
+    AC_DEFINE_UNQUOTED(HAVE_LIBLDAP, 1, [Define if you have LDAP libraries])
+    LDAP_SUBDIR="ldap"
+    AC_MSG_RESULT($with_ldap)
+  fi
+  ;;
+esac
+
+AC_SUBST(LDAP_INCS)
+AC_SUBST(LDAP_LIBS)
+AC_SUBST(LDAP_RPATH)
+AC_SUBST(LDAP_SUBDIR)
+

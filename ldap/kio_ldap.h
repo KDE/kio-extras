@@ -1,48 +1,33 @@
 #ifndef __LDAP_H__
 #define __LDAP_H__ "$Id$"
 
-#include <sys/types.h>
-#include <sys/stat.h>
+//#include <sys/types.h>
+//#include <sys/stat.h>
 
-#include <stdio.h>
-#include <unistd.h>
+//#include <stdio.h>
+//#include <unistd.h>
 
 #include <qstring.h>
 #include <qvaluelist.h>
 
-#include <kio_interface.h>
-#include <kio_base.h>
+#include <kio/slavebase.h>
 
-class LDAPProtocol : public KIOProtocol
+class LDAPProtocol : public KIO::SlaveBase
 {
 public:
-  LDAPProtocol( KIOConnection *_conn );
-  
-  virtual void slotGet( const char *_url );
+  LDAPProtocol( const QCString &pool, const QCString &app );
+//  virtual ~LDAPProtocol();
 
-  virtual void slotTestDir( const char *_url );
-  virtual void slotListDir( const char *_url );
+  virtual void setHost(const QString& host, int port,
+		       const QString& user, const QString& pass);
 
-  KIOConnection* connection() { return KIOConnectionSignals::m_pConnection; }
-
-  void jobError( int _errid, const char *_txt );
+  virtual void get( const QString& __url, const QString& query, bool reload );
+  virtual void stat( const QString & );
+  virtual void listDir( const QString& path );
 
 private:
-  
-  bool m_bIgnoreJobErrors;
-
+  QString urlPrefix;
 };
 
-
-class LDAPIOJob : public KIOJobBase
-{
-public:
-  LDAPIOJob( KIOConnection *_conn, LDAPProtocol *_File );
-  
-  virtual void slotError( int _errid, const char *_txt );
-
-protected:
-  LDAPProtocol* m_pFile;
-};
 
 #endif

@@ -6,6 +6,7 @@ input=none
 output=filesystem
 listing=Name,
 reading=true
+source=true
 #writing=true
 #makedir=true
 #deleting=true
