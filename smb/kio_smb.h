@@ -267,11 +267,6 @@ protected:
      */
     KURL checkURL(const KURL& kurl) const;
 
-    /**
-     * Change from char* (MS Windows's character encoding) to QString
-     */
-    QString toUnicode( char *_str ) const;
-
     void reportError(const SMBUrl &kurl);
 
 public:

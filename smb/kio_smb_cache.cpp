@@ -134,7 +134,7 @@ int SMBSlave::cache_stat(const SMBUrl& url, struct stat* st)
     SMBAuthInfo auth;
 DO_STAT:
    result = smbc_stat(url.toSmbcUrl(), st);
-   kdDebug(KIO_SMB) << "smbc_stat " << url << " " << errno << " " << result << endl;
+   kdDebug(KIO_SMB) << "smbc_stat " << url.toSmbcUrl() << " " << errno << " " << result << endl;
    if ((result !=0) && (errno == EACCES)) {
       // if access denied, first open passDlg
       kdDebug(KIO_SMB) << "cache_stat auth ERROR"<<endl;

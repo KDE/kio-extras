@@ -78,11 +78,24 @@ bool SMBUrl::cd(const QString &filedir)
 void SMBUrl::updateCache()
   //-----------------------------------------------------------------------
 {
-    // we have to use pretty here as smbc is unable to handle e.g. %20
-    m_surl = fromUnicode(KURL::url());
-    if (m_surl == "smb:/")
+    // SMB URLs are UTF-8 encoded
+    kdDebug(KIO_SMB) << "updateCache " << KURL::path() << endl;
+    KURL::setPath(KURL::decode_string(KURL::path(), 106));
+    if (KURL::url() == "smb:/")
         m_surl = "smb://";
-
+    else {
+        QString surl = "smb://";
+        if (KURL::hasUser()) {
+            surl += KURL::encode_string(KURL::user(), 106);
+            if (KURL::hasPass()) {
+                surl += ":" + KURL::encode_string(KURL::pass(), 106);
+            }
+            surl += "@";
+        }
+        surl += KURL::encode_string(KURL::host(), 106);
+        surl += KURL::encode_string(KURL::path(), 106);
+        m_surl = surl.utf8();
+    }
     m_type = SMBURLTYPE_UNKNOWN;
     // update m_type
     (void)getType();
@@ -151,24 +164,4 @@ SMBAuthInfo SMBUrl::getAuthInfo() {
   SMBAuthInfo sa;
   getAuthInfo(sa);
   return sa;
-}
-
-QCString SMBUrl::fromUnicode( const QString &_str ) const
-{
-    QCString _string;
-
-    KConfig *cfg = new KConfig( "kioslaverc", true );
-    cfg->setGroup( "Browser Settings/SMBro" );
-
-    QString m_encoding = QTextCodec::codecForLocale()->name();
-    QString default_encoding = cfg->readEntry( "Encoding", m_encoding.lower() );
-
-    QTextCodec *codec = QTextCodec::codecForName( default_encoding.latin1() );
-    if ( codec )
-        _string = codec->fromUnicode( _str );
-    else
-        _string = _str.local8Bit();
-
-    delete cfg;
-    return _string;
 }

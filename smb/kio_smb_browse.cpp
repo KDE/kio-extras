@@ -117,12 +117,19 @@ bool SMBSlave::browse_stat_path(const SMBUrl& url, UDSEntry& udsentry, bool igno
 }
 
 //===========================================================================
-// TODO: Add stat cache
 void SMBSlave::stat( const KURL& kurl )
 {
   kdDebug(KIO_SMB) << "SMBSlave::stat on"<< endl;
   // make a valid URL
   KURL url = checkURL(kurl);
+
+  // if URL is not valid we have to redirect to correct URL
+  if (url != kurl)
+  {
+      redirection(url);
+      finished();
+      return;
+  }
 
   m_current_url = url;
 
@@ -177,7 +184,7 @@ KURL SMBSlave::checkURL(const KURL& kurl) const {
 
         if (surl.at(5) != '/') {
             surl = "smb://" + surl.mid(5);
-            kdDebug(KIO_SMB) << "checkURL return1 " << surl << " " << KURL(surl).url() << endl;
+            kdDebug(KIO_SMB) << "checkURL return1 " << surl << " " << KURL(surl) << endl;
             return KURL(surl);
         }
     }
@@ -194,7 +201,7 @@ KURL SMBSlave::checkURL(const KURL& kurl) const {
         } else {
             url.setUser(userinfo);
         }
-        kdDebug() << "checkURL return2 " << url.url() << endl;
+        kdDebug() << "checkURL return2 " << url << endl;
         return url;
     }
     // no emtpy path
@@ -203,11 +210,11 @@ KURL SMBSlave::checkURL(const KURL& kurl) const {
     {
         KURL url(kurl);
         url.setPath("/");
-        kdDebug() << "checkURL return3 " << url.url() << endl;
+        kdDebug() << "checkURL return3 " << url << endl;
         return url;
     }
 
-    kdDebug() << "checkURL return3 " << kurl.url() << endl;
+    kdDebug() << "checkURL return3 " << kurl << endl;
     return kurl;
 }
 
@@ -270,8 +277,8 @@ void SMBSlave::listDir( const KURL& kurl )
    // bool cancel = false;
  OPEN_DIR:
    ;
-   dirfd = smbc_opendir( m_current_url.toSmbcUrl());
-   kdDebug(KIO_SMB) << "SMBSlave::listDir open " << kurl << " " << m_current_url.getType() << " " << dirfd << endl;
+   dirfd = smbc_opendir( m_current_url.toSmbcUrl() );
+   kdDebug(KIO_SMB) << "SMBSlave::listDir open " << m_current_url.toSmbcUrl() << " " << m_current_url.getType() << " " << dirfd << endl;
    if(dirfd >= 0)
    {
        do {
@@ -282,7 +289,8 @@ void SMBSlave::listDir( const KURL& kurl )
 
            // Set name
            atom.m_uds = KIO::UDS_NAME;
-           QString dirpName = toUnicode( dirp->name );
+           QString dirpName = QString::fromUtf8( dirp->name );
+           kdDebug(KIO_SMB) << "dirp->name " <<  dirp->name  << endl;
            atom.m_str = dirpName;
            udsentry.append( atom );
            if (atom.m_str=="$IPC" || atom.m_str=="." || atom.m_str == ".." ||
@@ -328,7 +336,7 @@ void SMBSlave::listDir( const KURL& kurl )
                    QString workgroup = m_current_url.host().upper();
                    // when libsmbclient knows
                    // atom.m_str = QString("smb://%1?WORKGROUP=%2").arg(dirpName).arg(workgroup.upper());
-                   atom.m_str = QString("smb://%1").arg(KURL::encode_string(dirpName));
+                   atom.m_str = QString("smb://%1").arg(KURL::encode_string(dirpName, 106));
                    udsentry.append(atom);
                }
 
@@ -392,14 +400,3 @@ void SMBSlave::listDir( const KURL& kurl )
    finished();
 }
 
-QString SMBSlave::toUnicode( char *_str ) const
-{
-    QString _string = QString::null;
-    QTextCodec *codec = QTextCodec::codecForName( m_default_encoding.latin1() );
-    if ( codec )
-        _string = codec->toUnicode( _str );
-    else
-        _string = QString::fromLocal8Bit( _str );
-
-    return _string;
-}
