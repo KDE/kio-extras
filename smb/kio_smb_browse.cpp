@@ -34,11 +34,13 @@
 
 using namespace KIO;
 
+// libsmbclient need global variables to store in, else it crashes
+struct stat st;
+
 //---------------------------------------------------------------------------
 bool SMBSlave::browse_stat_path(const SMBUrl& url, UDSEntry& udsentry)
-// Returns: true on success, false on failure 
+// Returns: true on success, false on failure
 {
-    struct stat st;
     UDSAtom     udsatom;
 
     memset(&st,0,sizeof(st));
@@ -100,16 +102,23 @@ bool SMBSlave::browse_stat_path(const SMBUrl& url, UDSEntry& udsentry)
         case ENOENT:
         case ENOTDIR:
         case EFAULT:
+            kdDebug(KIO_SMB) << "SMBSlave::browse_stat_path EFAULT/ENOTDIR/ENOENT "  << endl;
             SlaveBase::error(ERR_DOES_NOT_EXIST, url.toKioUrl());
             break;
         case EPERM:
         case EACCES:
+            kdDebug(KIO_SMB) << "SMBSlave::browse_stat_path EPERM/EACCES "  << endl;
             SlaveBase::error(ERR_ACCESS_DENIED, url.toKioUrl());
             cache_clear_AuthInfo(m_current_workgroup);
             break;
         case ENOMEM:
+            kdDebug(KIO_SMB) << "SMBSlave::browse_stat_path ENOMEM "  << endl;
             SlaveBase::error(ERR_OUT_OF_MEMORY, TEXT_OUT_OF_MEMORY);
+        case EBADF:
+            kdDebug(KIO_SMB) << "SMBSlave::browse_stat_path EBADF "  << endl;
+            SlaveBase::error(ERR_INTERNAL, "BAD Filediscriptor");
         default:
+            kdDebug(KIO_SMB) << "SMBSlave::browse_stat_path UNKNOWN "  <<errno<< endl;
             SlaveBase::error(ERR_INTERNAL, TEXT_UNKNOWN_ERROR);
         }
         return false;
@@ -120,33 +129,70 @@ bool SMBSlave::browse_stat_path(const SMBUrl& url, UDSEntry& udsentry)
 
 
 //===========================================================================
+// TODO: complete checking
+const KURL SMBSlave::checkURL(const KURL& kurl) {
+    // smb:/ normaly have no userinfo
+    // we must redirect ourself to remove the username and password
+    if (kurl.url().contains('@') && !kurl.url().contains("smb://")) {
+      KURL url(kurl);
+      url.setPath("/"+kurl.url().right( kurl.url().length()-kurl.url().find('@') -1));
+      QString userinfo = kurl.url().mid(5, kurl.url().find('@')-5);
+      if(userinfo.contains(':'))  {
+          url.setUser(userinfo.left(userinfo.find(':')));
+          url.setPass(userinfo.right(userinfo.length()-userinfo.find(':')-1));
+      }
+      else {
+        url.setUser(userinfo);
+      }
+      return url;
+    }
+
+    // no emtpy path
+    QString path = kurl.path();
+    if (path.isEmpty())
+    {
+      KURL url(kurl);
+      url.setPath("/");
+      return url;
+    }
+
+    return kurl;
+}
+
+//===========================================================================
 // TODO: Add stat cache
 void SMBSlave::stat( const KURL& kurl )
 {
-    kdDebug(KIO_SMB) << "SMBSlave::stat on " << kurl.url() << endl;
-    m_current_url.fromKioUrl( kurl );
+    // make a valid URL
+    KURL url = checkURL(kurl);
+
+    m_current_url.fromKioUrl( url );
+
 
     UDSAtom     udsatom;
-    UDSEntry    udsentry; 
-
+    UDSEntry    udsentry;
     switch(m_current_url.getType())
     {
     case SMBURLTYPE_UNKNOWN:
+        kdDebug(KIO_SMB) << "SMBSlave::stat ERR_MALFORMED_URL " << url.url() << endl;
         SlaveBase::error(ERR_MALFORMED_URL,m_current_url.toKioUrl());
         break;
 
     case SMBURLTYPE_ENTIRE_NETWORK:
     case SMBURLTYPE_WORKGROUP_OR_SERVER:
+        kdDebug(KIO_SMB) << "SMBSlave::stat SMBURLTYPE_WORKGROUP_OR_SERVER " << url.url() << endl;
         udsatom.m_uds = KIO::UDS_FILE_TYPE;
         udsatom.m_long = S_IFDIR;
         udsentry.append(udsatom);
         break;
 
     case SMBURLTYPE_SHARE_OR_PATH:
+        kdDebug(KIO_SMB) << "SMBSlave::stat SMBURLTYPE_SHARE_OR_PATH " << url.url() << endl;
         browse_stat_path(m_current_url, udsentry);
         break;
 
     default:
+        kdDebug(KIO_SMB) << "SMBSlave::stat UNKNOWN " << url.url() << endl;
         kdDebug(KIO_SMB) << "weird value in stat" << endl;
         break;
     }
@@ -154,41 +200,36 @@ void SMBSlave::stat( const KURL& kurl )
     SlaveBase::statEntry(udsentry);
     SlaveBase::finished();
 
-    kdDebug(KIO_SMB) << "SMBSlave::stat on " << kurl.url()
+    kdDebug(KIO_SMB) << "SMBSlave::stat on " << url.url()
                      << " is returning" << endl;
 }
+
+
+
 
 //===========================================================================
 // TODO: Add dir cache
 void SMBSlave::listDir( const KURL& kurl )
 {
     kdDebug(KIO_SMB) << "SMBSlave::listDir on " << kurl.url() << endl;
-    m_current_url.fromKioUrl( kurl );
-    int                 dirfd;
-    struct smbc_dirent  *dirp = NULL;
 
-    UDSEntry    udsentry;
-    UDSAtom     atom;
-
-    // Special case if url contains a workgroup
-    if(m_current_url.getType() == SMBURLTYPE_SHARE_OR_PATH)
-    {
-        QString workgroup = m_current_url.getWorkgroup();
-        if(cache_check_workgroup(workgroup))
-        {
-            m_current_workgroup = workgroup;
-
-            KURL redirurl;
-            redirurl.setProtocol("smb");
-            redirurl.setPath(m_current_url.getServerShareDir());
-
-            //This causes problems in the treeview in konqueror...
-            redirection(redirurl);
-            SlaveBase::finished();
-            return;
-        }
+    // check (correct) URL
+    KURL url = checkURL(kurl);
+    // if URL is not valid we have to redirect to correct URL
+    if (url != kurl) {
+      redirection(url);
+      finished();
+      return;
     }
 
+
+    m_current_url.fromKioUrl( kurl );
+
+
+    int                 dirfd;
+    struct smbc_dirent  *dirp = NULL;
+    UDSEntry    udsentry;
+    UDSAtom     atom;
     dirfd = smbc_opendir( m_current_url.toSmbcUrl() );
     if(dirfd >= 0)
     {
