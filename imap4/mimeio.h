@@ -19,6 +19,7 @@
 #define MIMEIO_H
 
 #include <qcstring.h>
+#include <qfile.h>
 
 /**
   *@author Sven Carstens
@@ -39,6 +40,18 @@ public:
 	
 protected:
 	QCString theCRLF;
+};
+
+class mimeIOQFile : public mimeIO
+{
+  public:
+	mimeIOQFile(const QString &);
+	virtual ~mimeIOQFile();
+	virtual int outputLine(const QCString &);
+	virtual int inputLine(QCString &);
+
+  protected:
+  	QFile myFile;
 };
 
 #endif

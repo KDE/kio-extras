@@ -25,6 +25,8 @@
 
 #include <qstring.h>
 
+class QTextCodec;
+
 // namespace for our rfc en/decoders
 class rfcDecoder {
 
@@ -32,6 +34,8 @@ class rfcDecoder {
 	
 	static const QString fromIMAP(const QString &src);
 	static const QString toIMAP(const QString &inSrc);
+
+	static QTextCodec* codecForName(const QString&);
 
 	// decoder for RFC2047 and RFC1522
 	static const QString decodeRFC2047String(const QString& _str,QString &charset,QString &language);

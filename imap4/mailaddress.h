@@ -23,6 +23,7 @@
  *
  *********************************************************************/
 
+#include <qlist.h>
 #include <qstring.h>
 #include <qcstring.h>
 #include "rfcdecoder.h"
@@ -36,22 +37,25 @@ public:
     mailAddress & operator = (const mailAddress &);
 	
 	void setUser(const QCString &aUser) { user = aUser;};
-	const QCString &getUser() { return user;};
+	const QCString &getUser() const { return user;};
 	void setHost(const QCString &aHost) { host = aHost;};
-	const QCString &getHost() { return host;};
+	const QCString &getHost() const { return host;};
 
 	void setFullName(const QString &aFull) { fullName = aFull;};
 	void setFullNameRaw(const QCString &aFull);
-	const QString &getFullName() { return fullName;};
+	const QString &getFullName() const { return fullName;};
 
 	void setComment(const QString &aComment) { comment = aComment;};
 	void setCommentRaw(const QCString &);
-	const QString &getComment() { return comment;};
+	const QString &getComment() const { return comment;};
 
 	int parseAddress(char *);
 	const QCString getStr();
-	bool isEmpty();
+	bool isEmpty() const;
 
+	static QString emailAddrAsAnchor(const mailAddress &,bool);
+	static QString emailAddrAsAnchor(const QList<mailAddress> &,bool);
+	
 private:
 	QCString user;
 	QCString host;

@@ -2,7 +2,7 @@
 /**********************************************************************
  *
  *   mailaddress.cc  - mail address parser
- *   Copyright (C) 2000 s.carstens@gmx.de
+ *   Copyright (C) 2000
  *
  *   This program is free software; you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -18,13 +18,14 @@
  *   along with this program; if not, write to the Free Software
  *   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  *
- *   Send comments and bug fixes to s.carstens@gmx.de
+ *   Send comments and bug fixes to
  *
  *********************************************************************/
 
 
 #include "mailaddress.h"
 #include "rfcdecoder.h"
+#include "mimehdrline.h"
 
 mailAddress::mailAddress() :
 	user((const char *)NULL),
@@ -73,11 +74,11 @@ mailAddress::mailAddress(char * aCStr) :
 
 int mailAddress::parseAddress(char *aCStr){
 	int retVal=0;
-/*	int skip;
+	int skip;
 			
 	if(aCStr) {
 		//skip leading white space
-		skip = rfcDecoder::skipWS((const char *)aCStr);
+		skip = mimeHdrLine::skipWS((const char *)aCStr);
 		if(skip > 0) { aCStr += skip;retVal+=skip;}
 		while(*aCStr) {
 			int advance;
@@ -85,30 +86,33 @@ int mailAddress::parseAddress(char *aCStr){
   		switch( *aCStr )
   		{
   			case '"' :
-  				advance = rfcDecoder::parseQuoted('"','"',aCStr);
+  				advance = mimeHdrLine::parseQuoted('"','"',aCStr);
   				fullName += QCString(aCStr,advance+1);
   				break;
   			case '(' :
-  				advance = rfcDecoder::parseQuoted('(',')',aCStr);
+  				advance = mimeHdrLine::parseQuoted('(',')',aCStr);
   				comment += QCString(aCStr,advance+1);
   				break;
   			case '<' :
-  				advance = rfcDecoder::parseQuoted('<','>',aCStr);
-  				mailName = QCString(aCStr,advance+1);
+  				advance = mimeHdrLine::parseQuoted('<','>',aCStr);
+  				user = QCString(aCStr,advance+1);   // copy it
+				user = user.mid(1,user.length()-2); // strip <>
+				host = user.right(user.length()-user.find("@")-1); // split it into host
+				user = user.left(user.find("@"));                // and user
   				break;
   			default:
-  				advance = rfcDecoder::parseWord((const char *)aCStr);
+  				advance = mimeHdrLine::parseWord((const char *)aCStr);
   				//if we've seen a FQ mailname the rest must be quoted or is just junk
-  				if(mailName.isEmpty())
+  				if(user.isEmpty())
   				{
     				if(*aCStr != ',')
     				{
-      				fullName += QCString(aCStr,advance+1);
-          		if(rfcDecoder::skipWS((const char *)&aCStr[advance]) > 0)
-          		{
-  	    				fullName += ' ';
-          		}
-        		}
+      					fullName += QCString(aCStr,advance+1);
+          				if(mimeHdrLine::skipWS((const char *)&aCStr[advance]) > 0)
+          				{
+  	    						fullName += ' ';
+          				}
+        			}
   				}
   				break;
   		}
@@ -117,7 +121,7 @@ int mailAddress::parseAddress(char *aCStr){
   			retVal += advance;
   			aCStr += advance;
   		} else break;
-  		advance = rfcDecoder::skipWS((const char *)aCStr);
+  		advance = mimeHdrLine::skipWS((const char *)aCStr);
   		if(advance > 0)
   		{
   			retVal += advance;
@@ -133,18 +137,20 @@ int mailAddress::parseAddress(char *aCStr){
 		//let's see what we've got
 		if(fullName.isEmpty())
 		{
-			if(mailName.isEmpty()) retVal = 0;
+			if(user.isEmpty()) retVal = 0;
 			else {
-  			if(mailName.find('@') < 0)
-  			{
-  				fullName = mailName;
-  				mailName = "";
-  			}
+  				if(host.isEmpty())
+  				{
+  					fullName = user;
+  					user = "";
+  				}
 			}
-		} else if(mailName.isEmpty()) {
+		} else if(user.isEmpty()) {
 			if(fullName.find('@') >= 0)
 			{
-				mailName = fullName;
+				user = fullName.latin1();
+				host = user.right(user.length()-user.find("@")-1);
+				user = user.left(user.find("@"));
 				fullName = "";
 			}
 		}
@@ -154,20 +160,18 @@ int mailAddress::parseAddress(char *aCStr){
 			if(fullName[0] == '"')
 				fullName = fullName.mid(1,fullName.length()-2);
 			fullName = fullName.simplifyWhiteSpace().stripWhiteSpace();
-			fullName = rfcDecoder::decodeRFC1522String(fullName.ascii());
+			fullName = rfcDecoder::decodeRFC2047String(fullName.ascii());
 		}
-		if(!mailName.isEmpty() && mailName[0] == '<')
-			mailName = mailName.mid(1,mailName.length()-2);
 		if(!comment.isEmpty())
 		{
 			if(comment[0] == '(')
 				comment = comment.mid(1,comment.length()-2);
 			comment = comment.simplifyWhiteSpace().stripWhiteSpace();
-			comment = rfcDecoder::decodeRFC1522String(comment.ascii());
+			comment = rfcDecoder::decodeRFC2047String(comment.ascii());
 		}
 	} else {
 		//debug();
-	} */
+	}
 	return retVal;
 }
 
@@ -175,9 +179,6 @@ const QCString mailAddress::getStr()
 {
 	QCString retVal;
 	
-//	qDebug("mailAddress::getStr - \"%s\" <%s@%s> (%s)",fullName.ascii(),user.data(),host.data(),comment.ascii());
-//	qDebug("mailAddress::getStr - fullname '%s'",rfcDecoder::encodeRFC2047String(fullName).ascii());
-//	qDebug("mailAddress::getStr - comment '%s'",rfcDecoder::encodeRFC2047String(comment).ascii());
 	if(!fullName.isEmpty())
 	{
 		retVal = QCString("\"") + rfcDecoder::encodeRFC2047String(fullName).ascii() + "\" ";
@@ -196,7 +197,7 @@ const QCString mailAddress::getStr()
 	return retVal;
 }
 
-bool mailAddress::isEmpty()
+bool mailAddress::isEmpty() const
 {
 	return (user.isEmpty());
 }
@@ -210,3 +211,48 @@ void mailAddress::setCommentRaw(const QCString &_str)
 {
 	comment = rfcDecoder::decodeRFC2047String(_str);
 };
+
+QString mailAddress::emailAddrAsAnchor(const mailAddress &adr,bool shortAdr)
+{
+	QString retVal;
+	if(!adr.getFullName().isEmpty())
+	{
+		// should do some umlaut escaping
+		retVal += adr.getFullName() + " ";
+	}
+	if(!adr.getUser().isEmpty() && !shortAdr)
+	{
+		retVal += "&lt;" + adr.getUser();
+		if(!adr.getHost().isEmpty()) retVal += "@" + adr.getHost();
+		retVal += "&gt; ";
+	}	
+	if(!adr.getComment().isEmpty())
+	{
+		// should do some umlaut escaping
+		retVal = '(' + adr.getComment() + ')';
+	}
+	
+	if(!adr.getUser().isEmpty())
+	{
+		QString mail;
+		mail = adr.getUser();
+		if(!mail.isEmpty() && !adr.getHost().isEmpty()) mail += "@" + adr.getHost();
+		if(!mail.isEmpty())
+			retVal = "<A HREF=\"mailto:" + mail + "\">" + retVal + "</A>";
+	}
+	return retVal;
+}
+
+QString mailAddress::emailAddrAsAnchor(const QList<mailAddress> &list,bool value)
+{
+	QString retVal;
+	QListIterator<mailAddress> it(list);
+	
+	while(it.current())
+	{
+		retVal += emailAddrAsAnchor((*it.current()),value) + "<BR></BR>\n";
+		++it;
+	}
+
+	return retVal;
+}

@@ -58,6 +58,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 
+#include <qbuffer.h>
 #include <kprotocolmanager.h>
 #include <ksock.h>
 #include <kdebug.h>
@@ -99,8 +100,11 @@ int kdemain(int argc, char **argv)
   }
 
 	//set debug handler
+#ifdef EBUGGING
 	myDebug = fopen("/tmp/imap_slave","a");
+	fprintf(myDebug,"Debugging\n");fflush(myDebug);
 	qInstallMsgHandler(myHandler);
+#endif
 
   IMAP4Protocol *slave;
   if (strcasecmp(argv[1], "imaps") == 0)
@@ -112,7 +116,9 @@ int kdemain(int argc, char **argv)
   slave->dispatchLoop();
   delete slave;
 
+#ifdef EBUGGING
 	fclose(myDebug);
+#endif
 
   return 0;
 }
@@ -138,7 +144,8 @@ IMAP4Protocol::IMAP4Protocol(const QCString &pool, const QCString &app, bool isS
     imapParser(),
 	mimeIO()
 {
-	fprintf(myDebug,"Debugging\n");fflush(myDebug);
+	readBuffer[0] = 0x00;
+	readSize = 0;
 }
 
 IMAP4Protocol::~IMAP4Protocol() {
@@ -162,11 +169,13 @@ void IMAP4Protocol::get(const KURL &_url) {
 		qDebug("IMAP4Protocol::get - reusing selected box");
 	}
 
-/*	if(selectInfo.uidValidityAvailable() && !aValidity.isEmpty() && selectInfo.uidValidity() != aValidity.toULong())
+#ifdef USE_VALIDITY
+	if(selectInfo.uidValidityAvailable() && !aValidity.isEmpty() && selectInfo.uidValidity() != aValidity.toULong())
 	{
 		// this url is stale
 		error(ERR_COULD_NOT_READ,_url.url());
-	} else */
+	} else
+#endif	
 	{
 		if(aSection.find("STRUCTURE",0,false) != -1)
 		{
@@ -182,7 +191,8 @@ void IMAP4Protocol::get(const KURL &_url) {
 		//
 		mailHeader *received = getUid(aSequence);
 
-		if(received && aSection == "STRUCTURE") received->outputPart(*this);
+		qDebug("IMAP4::get - got %p from cache",received);
+		if(received && (aSection == "BODYSTRUCTURE" || aSection == "ENVELOPE")) received->outputPart(*this);
 	}
 
 	// just to keep everybody happy when no data arrived
@@ -298,7 +308,8 @@ void IMAP4Protocol::listDir(const KURL &_url) {
 				if(selectInfo.permanentFlagsAvailable()) qDebug("PermanentFlags: %ld",selectInfo.permanentFlags());
 				if(selectInfo.readWriteAvailable()) qDebug("Access: %s",selectInfo.readWrite() ? "Read/Write" : "Read only");
 
-/*				if(selectInfo.uidValidityAvailable() && selectInfo.uidValidity() != myValidity.toULong())
+#ifdef USE_VALIDITY
+				if(selectInfo.uidValidityAvailable() && selectInfo.uidValidity() != myValidity.toULong())
 				{
 					//redirect
 					KURL newUrl = _url;
@@ -308,7 +319,8 @@ void IMAP4Protocol::listDir(const KURL &_url) {
 					redirection(newUrl);
 					
 					
-				} else */
+				} else
+#endif
 				if(selectInfo.count()>0) {
 					int stretch = 0;
 
@@ -390,19 +402,12 @@ void IMAP4Protocol::setHost(const QString &_host, int _port, const QString &_use
 	} else {
 		qDebug("IMAP4: setHost: reusing connection");
 	}
-	parseLoop();
+//	parseLoop();
 }
 
-void IMAP4Protocol::parseRelay(const QString &buffer)
+void IMAP4Protocol::parseRelay(const QByteArray &buffer)
 {
-	QCString transfer;
-	QByteArray relayData;
-
-	transfer = buffer.ascii();
-	
-	relayData.setRawData(transfer.data(),transfer.length());
-	data(relayData);
-	relayData.resetRawData(transfer.data(),transfer.length());
+	data(buffer);
 }
 
 void IMAP4Protocol::parseRelay(ulong len)
@@ -411,7 +416,7 @@ void IMAP4Protocol::parseRelay(ulong len)
 }
 
 
-void IMAP4Protocol::parseReadLine (QString &buffer,ulong relay)
+void IMAP4Protocol::parseReadLine (QByteArray &buffer,ulong relay)
 {
   char buf[1024];
 //  struct timeval m_tTimeout = {1, 0};
@@ -420,15 +425,15 @@ void IMAP4Protocol::parseReadLine (QString &buffer,ulong relay)
 
     FD_ZERO(&FDs);
     FD_SET(m_iSock, &FDs);
-    memset(&buf, sizeof(buf), 0);
 
 	errno = 0;
 	while(1)
 	{
+	    memset(&buf, sizeof(buf), 0);
     	if ((readLen = ReadLine(buf, sizeof(buf)-1)) == 0) {
-    	  if (ferror(fp)) {
+//    	  if (ferror(fp)) {
 	  		//TODO: act on loss of connection
-			if(buffer.isEmpty() || buffer[buffer.length()-1] == '\n') break;
+			if(buffer.isEmpty() || buffer[buffer.size()-1] == '\n') break;
 	/*        qDebug("IMAP4: Error while freading something[%d]: %s",errno,strerror(errno));
 			return;
     	  } else {
@@ -438,22 +443,30 @@ void IMAP4Protocol::parseReadLine (QString &buffer,ulong relay)
 			  sleep(10);
         	}
 	    	debug("IMAP4: Finished select"); */
-    	  }  
+//    	  }  
     	} else {
 			if(relay > 0)
 			{
 				QByteArray relayData;
 				
-				if(readLen > relay) readLen = relay;
-				relayData.setRawData(buf,readLen);
+				if(readLen < relay) relay = readLen;
+				relayData.setRawData(buf,relay);
 				data(relayData);
-				relayData.resetRawData(buf,readLen);
+				relayData.resetRawData(buf,relay);
+				qDebug("relayed : %ld",relay);
 			}
-	//    debug((QString("IMAP4: S: ") + buf).latin1());
-	    	buffer +=buf;
-			if(buffer[buffer.length()-1] != '\n') qDebug("************************** Partial filled buffer");
+			// append to buffer
+			{
+				QBuffer stream(buffer);
+				
+				stream.open(IO_WriteOnly);
+				stream.at( buffer.size() );
+		    	stream.writeBlock(buf,readLen);
+				stream.close();
+//				qDebug("appended %ld got now %d",readLen,buffer.size());
+			}
+			if(buffer[buffer.size()-1] != '\n') qDebug("************************** Partial filled buffer");
 			else break;
-	//		qDebug("==>%s",buf);
 		}
 		sleep(1);
 	}
@@ -960,6 +973,7 @@ void IMAP4Protocol::doListEntry(const KURL &_url,mailHeader *what,int stretch)
 			atom.m_str = "0000000000000000" + atom.m_str;
 			atom.m_str = atom.m_str.right(stretch);
 		}
+//		atom.m_str.prepend(";UID=");
 		entry.append(atom);
 
 		atom.m_uds = UDS_URL;
@@ -968,6 +982,11 @@ void IMAP4Protocol::doListEntry(const KURL &_url,mailHeader *what,int stretch)
 		atom.m_str += ";UID=" + what->getPartSpecifier();
 		atom.m_long = 0;
 		entry.append(atom);
+
+       atom.m_uds = UDS_FILE_TYPE;
+       atom.m_str = "";
+       atom.m_long = S_IFREG;
+       entry.append( atom );
 
 		atom.m_uds = UDS_SIZE;
 		atom.m_long = what->getLength();
@@ -1136,4 +1155,70 @@ enum IMAP_TYPE IMAP4Protocol::parseURL(const KURL &_url,QString &_box,QString &_
 	qDebug("URL: box= %s, section= %s, type= %s, uid= %s, validity= %s",_box.latin1(),_section.latin1(),_type.latin1(),_uid.latin1(),_validity.latin1());
 
 	return retVal;
+}
+
+int IMAP4Protocol::outputLine(const QCString &_str)
+{
+	QByteArray temp;
+	
+	temp.setRawData(_str.data(),_str.length());
+	parseRelay(temp);
+	temp.resetRawData(_str.data(),_str.length());
+
+	return 0;
+}
+
+/* memccpy appeared first in BSD4.4 */
+void *mymemccpy(void *dest, const void *src, int c, size_t n)
+{
+    char *d = (char*)dest;
+    const char *s = (const char*)src;
+
+    while (n-- > 0)
+    if ((*d++ = *s++) == c)
+      return d;
+
+  return NULL;
+}
+
+ssize_t IMAP4Protocol::ReadLine(char *buf,ssize_t len)
+{
+	ssize_t result;
+	char *copied;
+//	qDebug("Request for %d",len);
+	// see what is still in the buffer
+	if(len > readSize)
+	{
+//		qDebug("Reading");
+		// append to our internal buffer
+		result = Read(readBuffer+readSize,IMAP_BUFFER-readSize);
+		if(result > 0) readSize += result;
+//		qDebug("Result is %d",result);
+//		qDebug("Now got %d",readSize);
+	}
+	
+	// give what is there to the caller
+	if(readSize < len) len = readSize;
+	
+	if(len > 0)
+	{
+		// copy it to the destination
+//		qDebug("Giving to caller at most %d",len);
+		copied = (char *)mymemccpy(buf,readBuffer,'\n',len);
+		if(copied)
+			len = copied - buf;
+//		qDebug("Copied %d",len);
+		buf[len] = 0x00;
+//		qDebug("Giving to caller %d",len);
+//		qDebug("That is '%s'",buf);
+
+		// now we need to readjust our buffer
+		memcpy(readBuffer,readBuffer+len,readSize-len);
+		readSize -= len;
+		readBuffer[readSize] = 0x00;
+//		qDebug("Keeping %d [%s]",readSize,readBuffer);
+	}
+	
+	if(len <= 0) len = 0;	
+	return len;
 }

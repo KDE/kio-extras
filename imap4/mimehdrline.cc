@@ -22,8 +22,18 @@
 #include <ctype.h>
 #include <stdlib.h>
 #include <time.h>
+#include <stdio.h>
 
 #include <qtextcodec.h>
+
+const char* wdays[] = {
+    "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"
+};
+
+const char* months[] = {
+    "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+    "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+};
 
 mimeHdrLine::mimeHdrLine() :
 	mimeValue( (const char *)NULL ),
@@ -324,15 +334,44 @@ int mimeHdrLine::parseSeparator(char separator,const char *inCStr)
 	return retVal;
 }
 
-QCString mimeHdrLine::getDateStr(struct tm *timeStruct)
+QCString mimeHdrLine::getDateStr(struct tm *timeStruct,int gmt_off)
 {
-	char retVal[76];	
-
-	strftime(retVal,75,"%a, %e %b %Y %T %z",timeStruct);
+	char retVal[256];	
+	int off_sec=0;
+	int off_min=0;
+	int off_hour=0;
+	char sign = '+';
+	
+	if(gmt_off)
+	{
+		if(gmt_off < 0) sign = '-';
+		off_sec = gmt_off % 60;
+		gmt_off = gmt_off / 60;
+		off_min = gmt_off % 60;
+		gmt_off = gmt_off / 60;
+		off_hour = abs(gmt_off);
+	} else
+		sign = 0x00;
+		
+	if(timeStruct)
+	{
+        snprintf(retVal,255, "%s, %2d %s %d %d%d:%d%d:%d%d %c%2.2d%2.2d",
+            wdays[timeStruct->tm_wday%7], timeStruct->tm_mday, months[timeStruct->tm_mon%12],
+            timeStruct->tm_year+1900,
+            timeStruct->tm_hour/10, timeStruct->tm_hour%10,
+            timeStruct->tm_min/10, timeStruct->tm_min%10,
+            timeStruct->tm_sec/10, timeStruct->tm_sec%10,sign,off_hour,off_min);
+//		snprintf(retVal,255,"%04d",timeStruct->tm_year);
+	}
+//		strftime(retVal,255,"%Y",timeStruct);
+//		strftime(retVal,255,"%a, %e %b %Y %T zone",timeStruct);
+	else
+		retVal[0] = 0x00;
+		
 	return QCString(retVal);
 }
 
-int mimeHdrLine::parseDate(const char *inCStr,struct tm *fillTime){
+int mimeHdrLine::parseDate(const char *inCStr,struct tm *fillTime,int *gmt_off){
 	char *aCStr = (char *)inCStr;
 	int retVal = 0;
 	int state=0;
@@ -350,6 +389,7 @@ int mimeHdrLine::parseDate(const char *inCStr,struct tm *fillTime){
 #ifdef HAVE_TM_ZONE
 	//not all systems have this field
 	fillTime->tm_zone = 0;
+	fillTime->tm_gmtoff = 0;
 #endif
 	
   /*          29 Aug 1996 14 : 04 : 52 CDT   */
@@ -467,7 +507,8 @@ int mimeHdrLine::parseDate(const char *inCStr,struct tm *fillTime){
 #ifdef HAVE_TM_ZONE
 	fillTime->tm_gmtoff = ct_offset * 60;
 #endif
-	
+
+	if(gmt_off) *gmt_off = ct_offset * 60;	
 	//sanitize the day of week and day of year values
 	{
   		time_t myTime;

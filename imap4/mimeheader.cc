@@ -23,6 +23,10 @@
 #include <qregexp.h>
 
 #include <ostream.h>
+#include <kglobal.h>
+#include <kinstance.h>
+#include <kiconloader.h>
+#include <kmimetype.h>
 
 mimeHeader::mimeHeader() :
 	typeList(17,false),
@@ -35,6 +39,7 @@ mimeHeader::mimeHeader() :
 	dispositionList.setAutoDelete( true );
 	nestedMessage = NULL;
 	contentLength = 0;
+	contentType = "application/octet-stream";
 }
 
 mimeHeader::~mimeHeader(){}
@@ -78,12 +83,21 @@ void mimeHeader::addHdrLine(mimeHdrLine *aHdrLine)
   		skip = mimeHdrLine::parseSeparator(';',aCStr);
   		if(skip > 0)
   		{
-	  		QCString mimeValue = QCString(aCStr,skip);
+			int cut = 0;
+			if(skip >= 2)
+			{
+				if(aCStr[skip-1] == '\r') cut++;
+				if(aCStr[skip-1] == '\n') cut++;
+				if(aCStr[skip-2] == '\r') cut++;
+				if(aCStr[skip-1] == ';') cut++;
+			}
+	  		QCString mimeValue = QCString(aCStr,skip-cut+1); // cutting of one because of 0x00
+			
   	  	
   	  	if(!qstricmp(addLine->getLabel(),"Content-Disposition"))
   	  	{
   	  		aList = &dispositionList;
-  	  		contentDisposition = mimeValue;
+  	  		_contentDisposition = mimeValue;
   	  	} else if(!qstricmp(addLine->getLabel(),"Content-Type")) {
   	  		aList = &typeList;
   	  		contentType = mimeValue;
@@ -91,6 +105,10 @@ void mimeHeader::addHdrLine(mimeHdrLine *aHdrLine)
   	  		contentEncoding = mimeValue;
   	  	} else if(!qstricmp(addLine->getLabel(),"Content-ID")) {
   	  		contentID = mimeValue;
+  	  	} else if(!qstricmp(addLine->getLabel(),"Content-Description")) {
+  	  		_contentDescription = mimeValue;
+  	  	} else if(!qstricmp(addLine->getLabel(),"Content-MD5")) {
+  	  		contentMD5 = mimeValue;
   	  	} else if(!qstricmp(addLine->getLabel(),"Content-Length")) {
   	  		contentLength = mimeValue.toULong();
   	  	} else {
@@ -189,8 +207,12 @@ void mimeHeader::outputHeader(mimeIO &useIO)
   		+ getType()
   		+ outputParameter(&typeList));
 	}
+	if(!getDescription().isEmpty())
+  	useIO.outputMimeLine(QCString("Content-Description: ") + getDescription());
 	if(!getID().isEmpty())
   	useIO.outputMimeLine(QCString("Content-ID: ") + getID());
+	if(!getMD5().isEmpty())
+  	useIO.outputMimeLine(QCString("Content-MD5: ") + getMD5());
 	if(!getEncoding().isEmpty())
   	useIO.outputMimeLine(QCString("Content-Transfer-Encoding: ") + getEncoding());
 	
@@ -348,9 +370,11 @@ void mimeHeader::outputPart(mimeIO &useIO)
 int mimeHeader::parsePart(mimeIO &useIO,QString boundary)
 {  	
 		int retVal = 0;		
+		bool mbox = false;
 		QCString preNested,postNested;
-		parseHeader(useIO);
+		mbox = parseHeader(useIO);
 		
+		qDebug("mimeHeader::parsePart - parsing part '%s'",getType().data());
 		if(!qstrnicmp(getType(),"Multipart",9))
 		{
 			retVal = parseBody(useIO,preNested,getTypeParm("boundary")); //this is a message in mime format stuff
@@ -362,20 +386,22 @@ int mimeHeader::parsePart(mimeIO &useIO,QString boundary)
 				addNestedPart(aHeader);
 			} while(localRetVal);   //get nested stuff
 		}
-		if(retVal && !qstrnicmp(getType(),"Message/RFC822",14))
+		if(!qstrnicmp(getType(),"Message/RFC822",14))
 		{
 			mailHeader *msgHeader = new mailHeader;
 			retVal = msgHeader->parsePart(useIO,boundary);
 			setNestedMessage(msgHeader);			
-		} else
-		retVal = parseBody(useIO,postNested,boundary); //just a simple part remaining
-		setPostBody(postNested);
+		} else {
+			retVal = parseBody(useIO,postNested,boundary,mbox); //just a simple part remaining
+			setPostBody(postNested);
+		}
 	return retVal;
 }
 
-int mimeHeader::parseBody(mimeIO &useIO,QCString &messageBody,QString boundary)
+int mimeHeader::parseBody(mimeIO &useIO,QCString &messageBody,QString boundary,bool mbox)
 {		
 		QCString inputStr;
+		QCString buffer;
 		QString partBoundary;
 		QString partEnd;
   	int retVal = 0; //default is last part
@@ -388,36 +414,142 @@ int mimeHeader::parseBody(mimeIO &useIO,QCString &messageBody,QString boundary)
   	
   	while(useIO.inputLine(inputStr))
   	{
-			//check for the end of all parts
-			if(!partEnd.isEmpty() && !qstrnicmp(inputStr,partEnd.latin1(),partEnd.length()-1))
-			{
-				retVal = 0; //end of these parts
-				break;
-			} else if(!partBoundary.isEmpty() && !qstrnicmp(inputStr,partBoundary.latin1(),partBoundary.length()-1))
-			{
-				retVal = 1; //continue with next part
-				break;
-			}
-			messageBody += inputStr;
+		//check for the end of all parts
+		if(!partEnd.isEmpty() && !qstrnicmp(inputStr,partEnd.latin1(),partEnd.length()-1))
+		{
+			retVal = 0; //end of these parts
+			break;
+		} else if(!partBoundary.isEmpty() && !qstrnicmp(inputStr,partBoundary.latin1(),partBoundary.length()-1))
+		{
+			retVal = 1; //continue with next part
+			break;
+		} else if(mbox && inputStr.find("From ") == 0)
+		{
+			retVal = 0; // end of mbox
+			break;
 		}
+		buffer += inputStr;
+		if(buffer.length() > 16384)
+		{
+			messageBody += buffer;
+			buffer = "";
+		}				
+	}
 
+	messageBody += buffer;
 	return retVal;
 }
 
-void mimeHeader::parseHeader(mimeIO &useIO)
+bool mimeHeader::parseHeader(mimeIO &useIO)
 {  	
+	bool mbox = false;
+	bool first = true;
 	mimeHdrLine my_line;
 	QCString inputStr;
 
+	qDebug("mimeHeader::parseHeader - starting parsing");
   	while(useIO.inputLine(inputStr))
   	{
-  			int appended = my_line.appendStr(inputStr);
-  			if(!appended)
-  			{
-					addHdrLine(&my_line);
-  				appended = my_line.setStr(inputStr);
-  			}
-  			if(appended <= 0) break;
+  			int appended;
+			if(inputStr.find("From ") != 0 || !first)
+			{
+				first = false;
+				appended = my_line.appendStr(inputStr);
+  				if(!appended)
+  				{
+						addHdrLine(&my_line);
+  					appended = my_line.setStr(inputStr);
+  				}
+  				if(appended <= 0) break;
+			} else {
+				mbox = true;
+				first = false;
+			}
   			inputStr = (const char *)NULL;
   	}
+
+	qDebug("mimeHeader::parseHeader - finished parsing");
+	return mbox;
 }
+
+mimeHeader *mimeHeader::bodyPart(const QString &_str)
+{
+	// see if it is nested a little deeper
+	if(_str.find(".") != -1)
+	{
+		QString tempStr = _str;
+		int which;
+		mimeHeader *tempPart;
+		
+		tempStr = _str.right(_str.length() - _str.find(".") - 1);
+		if(nestedMessage)
+		{
+			qDebug("mimeHeader::bodyPart - recursing message");
+			tempPart = nestedMessage->nestedParts.at(_str.left(_str.find(".")).toULong()-1);
+		} else {
+			qDebug("mimeHeader::bodyPart - recursing mixed");
+			tempPart = nestedParts.at(_str.left(_str.find(".")).toULong()-1);
+		}
+		if(tempPart) tempPart = tempPart->bodyPart(tempStr);
+		return tempPart;
+	}
+
+	qDebug("mimeHeader::bodyPart - returning part %s",_str.latin1());
+	// or pick just the plain part
+	if(nestedMessage)
+	{
+		qDebug("mimeHeader::bodyPart - message");
+		return nestedMessage->nestedParts.at(_str.toULong()-1);
+	}
+	qDebug("mimeHeader::bodyPart - mixed");
+	return nestedParts.at(_str.toULong()-1);
+}
+
+#ifdef KMAIL_COMPATIBLE
+// compatibility subroutines
+QString mimeHeader::bodyDecoded()
+{
+	QByteArray temp;
+	
+	temp = bodyDecodedBinary();
+	return QString::fromLatin1(temp.data(),temp.count());
+}
+
+QByteArray mimeHeader::bodyDecodedBinary()
+{
+	QByteArray retVal;
+
+	retVal.duplicate(postMultipartBody.data(),postMultipartBody.length());
+	if(contentEncoding.find("quoted-printable",0,false) == 0) retVal = rfcDecoder::decodeQuotedPrintable(retVal);
+	else if(contentEncoding.find("base64",0,false) == 0) retVal = rfcDecoder::decodeBase64(retVal);
+	return retVal;
+}
+
+void mimeHeader::setBodyEncoded(const QByteArray &_arr)
+{
+	QByteArray setVal;
+	
+	if(contentEncoding.find("quoted-printable",0,false) == 0) setVal = rfcDecoder::encodeQuotedPrintable(_arr);
+	else if(contentEncoding.find("base64",0,false) == 0) setVal = rfcDecoder::encodeBase64(_arr);
+	else setVal.duplicate(_arr);
+	
+	postMultipartBody.duplicate(setVal);
+}
+
+QString mimeHeader::iconName()
+{
+	QString fileName;
+
+	fileName = KMimeType::mimeType(contentType.lower())->icon(QString::null,false);
+	fileName = KGlobal::instance()->iconLoader()->iconPath( fileName, KIcon::Desktop );
+//	if (fileName.isEmpty())
+//		fileName = KGlobal::instance()->iconLoader()->iconPath( "unknown", KIcon::Desktop );
+	return fileName;
+}
+
+void mimeHeader::setNestedMessage(mailHeader *inPart,bool destroy)
+{
+//	if(nestedMessage && destroy) delete nestedMessage;
+	nestedMessage = inPart;
+}
+#endif	

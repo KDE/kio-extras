@@ -107,3 +107,28 @@ void mimeIO::setCRLF(const char *aCRLF)
 {
 	theCRLF = aCRLF;
 }
+
+mimeIOQFile::mimeIOQFile(const QString &aName)
+	: mimeIO(),myFile(aName)
+{
+	myFile.open(IO_ReadOnly);
+}
+
+mimeIOQFile::~mimeIOQFile()
+{
+	myFile.close();
+}
+
+int mimeIOQFile::outputLine(const QCString &)
+{
+	return 0;
+}
+
+int mimeIOQFile::inputLine(QCString &data)
+{
+	QString aData;
+	myFile.readLine(aData,1024);
+	data = aData.latin1();
+
+	return data.length();
+}

@@ -32,6 +32,7 @@
 
 #include <qtextcodec.h>
 #include <qbuffer.h>
+#include <qregexp.h>
 
 // This part taken from rfc 2192 IMAP URL Scheme. C. Newman. September 1997.
 // adapted to QT-Toolkit by Sven Carstens <s.carstens@gmx.de> 2000
@@ -233,6 +234,14 @@ const QString rfcDecoder::toIMAP(const QString &inSrc)
 }
 
 //-----------------------------------------------------------------------------
+QTextCodec* rfcDecoder::codecForName(const QString& _str)
+{
+  if (_str.isEmpty()) return NULL;
+  return QTextCodec::codecForName(_str.lower().replace(
+    QRegExp("windows"), "cp").latin1() );
+}
+
+//-----------------------------------------------------------------------------
 const QString rfcDecoder::decodeRFC2047String(const QString& _str)
 {
 	QString throw_away;
@@ -348,7 +357,7 @@ const QString rfcDecoder::decodeRFC2047String(const QString& _str,QString &chars
   }
 	if(!charset.isEmpty())
   {
-		QTextCodec * aCodec = QTextCodec::codecForName(charset.ascii());
+		QTextCodec * aCodec = codecForName(charset.ascii());
 		if(aCodec)
 		{
 //		qDebug("Codec is %s",aCodec->name());

@@ -632,6 +632,7 @@ mailHeader *imapParser::parseEnvelope(QString &inWords)
 
 
 	envelope = new mailHeader;
+	qDebug("imapParser::parseEnvelope - creating %p",envelope);
 
 	//date
 	QString date = parseLiteral(inWords);
@@ -995,10 +996,26 @@ void imapParser::parseBody(QString &inWords)
 	// see if we got a part specifier
 	if(inWords[0] == '[')
 	{
+		QString specifier;
 		inWords = inWords.right(inWords.length() - 1);	// eat it
 
-		qDebug("imapParser::parseBody : specifier [%s]",parseOneWord(inWords).latin1());
-		
+		specifier = parseOneWord(inWords);
+		qDebug("imapParser::parseBody : specifier [%s]",specifier.latin1());
+
+		if(inWords[0] == '(')
+		{
+			QString label;
+			inWords = inWords.right(inWords.length() - 1);	// eat it
+
+			while(!inWords.isEmpty() && inWords[0] != ')')
+			{
+				label = parseOneWord(inWords);
+				qDebug("imapParser::parseBody - mimeLabel : %s",label.latin1());
+			}
+
+			if(inWords[0] == ')')
+			inWords = inWords.right(inWords.length() - 1);	// eat it
+		}
 		if(inWords[0] == ']')
 		inWords = inWords.right(inWords.length() - 1);	// eat it
 		skipWS(inWords);
@@ -1047,7 +1064,7 @@ void imapParser::parseFetch(ulong value,QString &inWords)
 					{
 						mailHeader *envelope = uidCache[seenUid];
 
-
+						qDebug("imapParser::parseFetch - got %p from Cache for %s",envelope,seenUid.latin1());
 						if((envelope  && !envelope->getMessageId().isEmpty())|| seenUid.isEmpty())
 						{
 							// we have seen this one already
@@ -1061,6 +1078,7 @@ void imapParser::parseFetch(ulong value,QString &inWords)
 							{
 								envelope->setPartSpecifier(seenUid+".0");
 								uidCache.replace(seenUid,envelope);
+								qDebug("imapParser::parseFetch - giving %p to Cache for %s",envelope,seenUid.latin1());
 							}
 						}
 						lastHandled = envelope;
@@ -1106,6 +1124,7 @@ void imapParser::parseFetch(ulong value,QString &inWords)
 							// fill up the cache
 							envelope = new mailHeader();
 							if(envelope) uidCache.replace(seenUid,envelope);
+							qDebug("imapParser::parseFetch - creating new cache entry %p for %s",envelope,seenUid.latin1());
 						}
 						if(envelope) envelope->setPartSpecifier(seenUid);
 						lastHandled = envelope;
@@ -1218,8 +1237,11 @@ void imapParser::parseRecent(ulong value,QString &result)
 bool imapParser::parseLoop()
 {
 	QString result;
+	QByteArray readBuffer;
 	
-	parseReadLine(result);
+	parseReadLine(readBuffer);
+	result = QString::fromLatin1(readBuffer.data(),readBuffer.size());
+	
 	if(result.isNull()) return false;
 	if(!sentQueue.count())
 	{
@@ -1266,7 +1288,7 @@ bool imapParser::parseLoop()
 	return true;
 }
 
-void imapParser::parseRelay(const QString &buffer)
+void imapParser::parseRelay(const QByteArray &buffer)
 {
 	qWarning("imapParser::parseRelay - virtual function not reimplemented - data lost");
 	if(&buffer);
@@ -1278,22 +1300,23 @@ void imapParser::parseRelay(ulong len)
 	if(len);
 }
 
-bool imapParser::parseRead (QString &buffer,ulong len,ulong relay)
+bool imapParser::parseRead (QByteArray &buffer,ulong len,ulong relay)
 {
 	ulong localRelay = relay;
-	while(buffer.length() < len)
+	while(buffer.size() < len)
 	{
 		// beware of wrap around
-		if(buffer.length() < relay) localRelay = relay - buffer.length();
+		if(buffer.size() < relay) localRelay = relay - buffer.size();
 		else localRelay = 0;
 		
 //		qDebug("imapParser::parseRead - remaining %ld",relay-buffer.length());
+		qDebug("got now : %d needing still : %ld",buffer.size(),localRelay);
 		parseReadLine(buffer,localRelay);
 	}
-	return (len <= buffer.length());
+	return (len <= buffer.size());
 }
 
-void imapParser::parseReadLine (QString &buffer,ulong relay)
+void imapParser::parseReadLine (QByteArray &buffer,ulong relay)
 {
 	qWarning("imapParser::parseReadLine - virtual function not reimplemented - no data read");
 	if(&buffer && relay);
@@ -1373,14 +1396,21 @@ QString imapParser::parseLiteral(QString &inWords,bool relay)
 			if(proper)
 			{
 				//now get the literal from the server
-				QString fill;
+				QByteArray fill;
 				
 				if(relay) parseRelay(runLen);
 				parseRead(fill,runLen,relay ? runLen : 0);
-				qDebug("requested %ld and got %d",runLen,fill.length());
-				retVal = fill.left(runLen);  // our data
-				inWords = fill.right(fill.length()-runLen); // what remains
-				if(inWords.isEmpty()) parseReadLine(inWords);  // must get more
+				qDebug("requested %ld and got %d",runLen,fill.size());
+				qDebug("last bytes %x %x %x %x",fill[runLen-4],fill[runLen-3],fill[runLen-2],fill[runLen-1]);
+				retVal = QString::fromLatin1( fill.data(),runLen);  // our data
+				inWords = QString::fromLatin1( fill.data()+runLen); // what remains
+				if(inWords.isEmpty())
+				{
+					QByteArray prefetch;
+					parseReadLine(prefetch);  // must get more
+					inWords = QString::fromLatin1(prefetch.data(),prefetch.size());
+					qDebug("prefetched [%d] - '%s'",inWords.length(),inWords.latin1());
+				}
 //				qDebug("requested %ld and got %d",runLen,fill.length());
 //				inWords = inWords.left(inWords.length()-2); // tie off CRLF
 //				qDebug("|\n|\nV");

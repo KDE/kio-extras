@@ -28,6 +28,8 @@
 
 #include <kio/tcpslavebase.h>
 
+#define IMAP_BUFFER 2048
+
 enum IMAP_TYPE {
 	ITYPE_UNKNOWN,
 	ITYPE_DIR,
@@ -63,24 +65,27 @@ public:
 	
   // reimplement the parser
 	// relay hook to send the fetched data directly to an upper level
-	virtual void parseRelay(const QString &buffer);
+	virtual void parseRelay(const QByteArray &buffer);
 
 	// relay hook to announce the fetched data directly to an upper level
 	virtual void parseRelay(ulong);
 
 	// read at least len bytes
-	//virtual bool parseRead (QString &buffer,ulong len,ulong relay=0);
+	//virtual bool parseRead (QByteArray &buffer,ulong len,ulong relay=0);
 
 	// read at least a line (up to CRLF)
-	virtual void parseReadLine (QString &buffer,ulong relay=0);
+	virtual void parseReadLine (QByteArray &buffer,ulong relay=0);
 
 	// write argument to the server
 	virtual void parseWriteLine(const QString &);
 	
   // reimplement the mimeIO
-	virtual int outputLine(const QCString &_str) { parseRelay(QString(_str));return 0;};
+	virtual int outputLine(const QCString &_str);
   
 protected:
+
+	// our new ReadLine supports 0x00 within data
+	ssize_t ReadLine(char *data,ssize_t len);
 
 	enum IMAP_TYPE parseURL(const KURL &_url,QString &_box,QString &_section,QString &_type,QString &_uid,QString &_validity);
 	QString getMimeType(enum IMAP_TYPE);
@@ -92,6 +97,9 @@ protected:
 
 	void doListEntry(const KURL &_url,mailHeader *what,int stretch);
 	void doListEntry(const KURL &_url,const QString &myBox,const imapList &item);
+
+	char readBuffer[IMAP_BUFFER];
+	int readSize;
 };
 
 #endif

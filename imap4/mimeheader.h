@@ -23,10 +23,13 @@
 
 #include "mimehdrline.h"
 #include "mimeio.h"
+#include "rfcdecoder.h"
 
 /**
   *@author Sven Carstens
   */
+
+class mailHeader;
 
 class mimeHeader {
 public: 
@@ -43,8 +46,10 @@ public:
 	QCString outputParameter(QDict<QString> *);
 	
 	int parsePart(mimeIO &,QString);
-	int parseBody(mimeIO &,QCString &,QString);
-	void parseHeader(mimeIO &);
+	int parseBody(mimeIO &,QCString &,QString,bool mbox=false);
+
+	// parse a header. returns true if it had a leading 'From ' line
+	bool parseHeader(mimeIO &);
 	
 	QString getDispositionParm(QCString);
 	void setDispositionParm(QCString,QString);
@@ -57,11 +62,17 @@ public:
 	QCString getType() { return contentType; };
 	void setType(const QCString &_str) { contentType = _str; }
 
-	QCString getDisposition() { return contentDisposition; };
-	void setDisposition(const QCString &_str) { contentDisposition = _str; }
+	QCString getDescription() { return _contentDescription; };
+	void setDescription(const QCString &_str) { _contentDescription = _str; }
+
+	QCString getDisposition() { return _contentDisposition; };
+	void setDisposition(const QCString &_str) { _contentDisposition = _str; }
 	
 	QCString getEncoding() { return contentEncoding; };
 	void setEncoding(const QCString &_str) { contentEncoding = _str; };
+
+	QCString getMD5() { return contentMD5; };
+	void setMD5(const QCString &_str) { contentMD5 = _str; };
 
 	QCString getID() { return contentID; };
 	void setID(const QCString &_str) { contentID = _str; };
@@ -82,10 +93,10 @@ public:
 	void setPreBody(QCString &inBody) { preMultipartBody = inBody; };
 
 	QCString getPostBody() { return postMultipartBody; };
-	void setPostBody(QCString &inBody) { postMultipartBody = inBody; };
+	void setPostBody(QCString &inBody) { postMultipartBody = inBody; contentLength = inBody.length();};
 
-	mimeHeader *getNestedMessage() { return nestedMessage; };
-	void setNestedMessage(mimeHeader *inPart,bool destroy=true) { if(nestedMessage && destroy) delete nestedMessage; nestedMessage = inPart; };
+	mailHeader *getNestedMessage() { return nestedMessage; };
+	void setNestedMessage(mailHeader *inPart,bool destroy=true);
 
 //	mimeHeader *getNestedPart() { return nestedPart; };
 	void addNestedPart(mimeHeader *inPart) { nestedParts.append(inPart); };
@@ -99,6 +110,41 @@ public:
 	
 	// clear all parameters to content-disposition
 	void clearDispositionParameters() { dispositionList.clear(); };
+
+	// return the specified body part or NULL
+	mimeHeader *bodyPart(const QString &);
+
+#ifdef KMAIL_COMPATIBLE
+	ulong msgSize() { return contentLength; }
+	uint numBodyParts() { return nestedParts.count(); }
+	mimeHeader *bodyPart(int which,mimeHeader **ret=NULL) { if(ret) (*ret) = nestedParts.at(which); return nestedParts.at(which); }
+	void write(const QString &) {;};
+	QString typeStr() { return QString(contentType.left(contentType.find('/'))); }
+	void setTypeStr(const QString &_str) { contentType = QCString(_str.latin1()) + "/" + subtypeStr().latin1(); }
+	QString subtypeStr() { return QString(contentType.right(contentType.length()-contentType.find('/')-1)); }
+	void setSubtypeStr(const QString &_str) { contentType = QCString(typeStr().latin1()) + "/" + _str.latin1(); }
+	QString cteStr() { return QString(getEncoding()); }
+	void setCteStr(const QString &_str) { setEncoding(_str.latin1()); }
+	QString contentDisposition() { return QString(_contentDisposition); }
+	QString body() { return QString(postMultipartBody); }
+	QString charset() { return getTypeParm("charset"); }
+	QString bodyDecoded();
+	void setBodyEncoded(const QByteArray &);
+	void setBodyEncodedBinary(const QByteArray &_arr) { setBodyEncoded(_arr);}
+	QByteArray bodyDecodedBinary();
+	QString name() { return QString(getTypeParm("name")); }
+	void setName(const QString &_str) { setTypeParm("name",_str); }
+	QString fileName() { return QString(getDispositionParm("filename")); }
+	QString contentDescription() { return QString(rfcDecoder::decodeRFC2047String(_contentDescription)); }
+	void setContentDescription(const QString &_str) { _contentDescription = rfcDecoder::encodeRFC2047String(_str).latin1();}
+	QString msgIdMD5() { return QString(contentMD5); }
+	QString iconName();
+	QString magicSetType() { return QString("Whatcha want?"); }
+	QString headerAsString() { return QString("Whatcha want?"); }
+	ulong size() { return 0; }
+	void fromString(const QByteArray &) {;}
+	void setContentDisposition(const QString &_str){ setDisposition(_str.latin1()); }
+#endif	
 	
 protected:
 	static void addParameter(QCString,QDict<QString> *);
@@ -112,14 +158,16 @@ private:
 	QDict<QString>	typeList;
 	QDict<QString>	dispositionList;
 	QCString contentType;
-	QCString contentDisposition;
+	QCString _contentDisposition;
 	QCString contentEncoding;
+	QCString _contentDescription;
 	QCString contentID;
+	QCString contentMD5;
 	unsigned long contentLength;
 	QCString mimeContent;
 	QCString preMultipartBody;
 	QCString postMultipartBody;
-	mimeHeader *nestedMessage;
+	mailHeader *nestedMessage;
 	QList<mimeHeader> nestedParts;
 	QString partSpecifier;
 	

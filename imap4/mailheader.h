@@ -54,25 +54,37 @@ public:
 	void setInReplyTo(const QCString &_str) { inReplyTo = _str; };
 
 	// set a unicode subject
-	void setSubject(const QString &_str) { subject = _str; };
+	void setSubject(const QString &_str) { _subject = _str; };
 	// set a encoded subject
 	void setSubjectEncoded(const  QCString &_str) {
-  		subject = rfcDecoder::decodeRFC2047String(_str).stripWhiteSpace().simplifyWhiteSpace();
+  		_subject = rfcDecoder::decodeRFC2047String(_str).stripWhiteSpace().simplifyWhiteSpace();
 	};
 
 	// get the unicode subject
-	const QString &getSubject() { return subject; };
+	const QString &getSubject() { return _subject; };
 	// get the encoded subject
-	QCString getSubjectEncoded() { return rfcDecoder::encodeRFC2047String(subject).latin1(); };
+	QCString getSubjectEncoded() { return rfcDecoder::encodeRFC2047String(_subject).latin1(); };
 
 	const struct tm *getDate() { return &date; };
 	void setDate(const QCString &_str) {
-  		mimeHdrLine::parseDate(_str,&date);
+  		mimeHdrLine::parseDate(_str,&date,&gmt_offset);
 	}
+	
+	QCString dateStr() { if(date.tm_year != 0) return mimeHdrLine::getDateStr(&date,gmt_offset); return QCString();}
+	QCString dateShortStr() { if(date.tm_year != 0) return mimeHdrLine::getDateStr(&date,gmt_offset); return QCString();}
 	
 	static int parseAddressList(const char *,QList<mailAddress> *);
 	static QCString getAddressStr(QList<mailAddress> *);
-	
+#ifndef NO_KMAIL
+	QString subject() { return getSubject();}
+	const mailAddress &from() { return fromAdr; }
+	const mailAddress &replyTo() { return replytoAdr; }
+	const QList<mailAddress> &to() { return toAdr; }
+	const QList<mailAddress> &cc() { return ccAdr; }
+	const QList<mailAddress> &bcc() { return bccAdr; }
+	void readConfig(void) { ; }
+#endif
+
 private:
 	QList<mailAddress> toAdr;	
 	QList<mailAddress> ccAdr;	
@@ -81,8 +93,9 @@ private:
 	mailAddress senderAdr;
 	mailAddress returnpathAdr;
 	mailAddress replytoAdr;
-	QString subject;
+	QString _subject;
 	struct tm date;
+	int gmt_offset;
 	QCString messageID;
 	QCString inReplyTo;
 };

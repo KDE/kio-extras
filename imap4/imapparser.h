@@ -112,16 +112,16 @@ class imapParser {
   // reimplement these
 
 	// relay hook to send the fetched data directly to an upper level
-	virtual void parseRelay(const QString &buffer);
+	virtual void parseRelay(const QByteArray &buffer);
 
 	// relay hook to announce the fetched data directly to an upper level
 	virtual void parseRelay(ulong);
 
 	// read at least len bytes
-	virtual bool parseRead (QString &buffer,ulong len,ulong relay=0);
+	virtual bool parseRead (QByteArray &buffer,ulong len,ulong relay=0);
 
 	// read at least a line (up to CRLF)
-	virtual void parseReadLine (QString &buffer,ulong relay=0);
+	virtual void parseReadLine (QByteArray &buffer,ulong relay=0);
 	
 	// write argument to server
 	virtual void parseWriteLine(const QString &);

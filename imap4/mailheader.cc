@@ -26,6 +26,8 @@ mailHeader::mailHeader()
 	ccAdr.setAutoDelete( true );
 	bccAdr.setAutoDelete( true );
 	date.tm_year = 0;
+	setType("text/plain");
+	gmt_offset = 0;
 }
 
 mailHeader::~mailHeader(){
@@ -51,9 +53,9 @@ void mailHeader::addHdrLine(mimeHdrLine *inLine)
   	} else if(!qstricmp(addLine->getLabel(),"BCC")) {
   		mailHeader::parseAddressList(addLine->getValue(),&bccAdr);
   	} else if(!qstricmp(addLine->getLabel(),"Subject")) {
-  		subject = rfcDecoder::decodeRFC2047String(addLine->getValue()).stripWhiteSpace().simplifyWhiteSpace();
+  		_subject = rfcDecoder::decodeRFC2047String(addLine->getValue()).stripWhiteSpace().simplifyWhiteSpace();
   	} else if(!qstricmp(addLine->getLabel().data(),"Date")) {
-  		mimeHdrLine::parseDate(addLine->getValue(),&date);
+  		mimeHdrLine::parseDate(addLine->getValue(),&date,&gmt_offset);
   	} else if(!qstricmp(addLine->getLabel().data(),"Message-ID")) {
   		int start;
   		int end;
@@ -103,15 +105,15 @@ void mailHeader::outputHeader(mimeIO &useIO)
 	if(ccAdr.count())
 		useIO.outputMimeLine(mimeHdrLine::truncateLine(QCString("CC: ") + mailHeader::getAddressStr(&ccAdr)));	
 	if(bccAdr.count())
-		useIO.outputMimeLine(mimeHdrLine::truncateLine(QCString("BCC: ") + mailHeader::getAddressStr(&bccAdr)));
-	if(!subject.isEmpty())
-		useIO.outputMimeLine(mimeHdrLine::truncateLine(QCString("Subject: ") + rfcDecoder::encodeRFC2047String(subject).latin1()));
+	  	useIO.outputMimeLine(mimeHdrLine::truncateLine(QCString("BCC: ") + mailHeader::getAddressStr(&bccAdr)));
+	if(!_subject.isEmpty())
+		useIO.outputMimeLine(mimeHdrLine::truncateLine(QCString("Subject: ") + rfcDecoder::encodeRFC2047String(_subject).latin1()));
 	if(!messageID.isEmpty())
 	  	useIO.outputMimeLine(mimeHdrLine::truncateLine(QCString("Message-ID: ") + messageID));
 	if(!inReplyTo.isEmpty())
 	  	useIO.outputMimeLine(mimeHdrLine::truncateLine(QCString("In-Reply-To: ") + inReplyTo));
 	if(date.tm_year != 0)
-  		useIO.outputMimeLine(QCString("Date: ") + mimeHdrLine::getDateStr(&date));
+	  	useIO.outputMimeLine(QCString("Date: ") + mimeHdrLine::getDateStr(&date,gmt_offset));
 	mimeHeader::outputHeader(useIO);
 }
 
