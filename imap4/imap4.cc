@@ -998,13 +998,25 @@ IMAP4Protocol::special (const QByteArray & aData)
         clientStore (aSequence, "-FLAGS",
         "\\SEEN \\ANSWERED \\FLAGGED \\DRAFT \\DELETED"));
       if (cmd->result () != "OK")
-        error (ERR_NO_CONTENT, hidePass(_url));
+      {
+        error(ERR_NO_CONTENT, i18n("Changing the flags of message %1 "
+          "failed.").arg(hidePass(_url)));
+        return;
+      }
       completeQueue.removeRef (cmd);
-      cmd = doCommand (imapCommand::
-        clientStore (aSequence, "+FLAGS", aData.data() + aData.find('\0') + 1));
-      if (cmd->result () != "OK")
-        error (ERR_NO_CONTENT, hidePass(_url));
-      completeQueue.removeRef (cmd);
+      QCString newFlags = aData.data() + aData.find('\0') + 1;
+      if (!newFlags.isEmpty())
+      {
+        cmd = doCommand (imapCommand::
+          clientStore (aSequence, "+FLAGS", newFlags));
+        if (cmd->result () != "OK")
+        {
+          error(ERR_NO_CONTENT, i18n("Changing the flags of message %1 "
+            "failed.").arg(hidePass(_url)));
+          return;
+        }
+        completeQueue.removeRef (cmd);
+      }
       finished();
     }
     else error (ERR_CANNOT_OPEN_FOR_WRITING, hidePass(_url));
