@@ -1557,7 +1557,7 @@ bool imapParser::hasCapability(const QString &cap)
 	for ( QStringList::Iterator it = imapCapabilities.begin(); it != imapCapabilities.end(); ++it )
 	{
 //		qDebug("imapParser::hasCapability - Examining '%s'",(*it).latin1());
-		if(!stricmp(cap.latin1(),(*it).latin1())) {return true;}
+		if(cap.lower() == (*it).lower()) {return true;}
 	}
 	return false;
 }
