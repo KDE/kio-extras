@@ -50,14 +50,23 @@ private slots:
  void slotUpdateVBRWidgets();
  void slotConfigChanged();
  void slotChangeFilter();
- void slotShowAdvanced();
-
+ void slotEcDisable();
+ void slotAddCDDBServer();
+ void slotDelCDDBServer();
 private:
 
   AudiocdConfig *audiocdConfig;
   KConfig *config;
   bool configChanged;
-  
+
+  QCheckBox *ec_disable_check,*ec_neverskip_check,*cd_autosearch_check;
+  QLineEdit *cd_device_string;
+
+  QCheckBox *cddb_enable;
+  QLineEdit *cddb_server;
+  QListBox *cddb_server_listbox;
+  QStringList cddbserverlist;
+  QPushButton *cddbserver_add_push,*cddbserver_del_push;
 
   QCheckBox *vbr_min_br, *vbr_min_hard, *vbr_max_br, *vbr_average_br, *vbr_xing_tag;
 
