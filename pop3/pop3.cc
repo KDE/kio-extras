@@ -537,7 +537,7 @@ void POP3Protocol::slotListDir (const char *_url)
 
 	  atom.m_uds = UDS_SIZE;
 	  atom.m_long = realGetSize(i+1);
-	  fprintf(stderr,"Real size is %d\n", atom.m_long);
+	  fprintf(stderr,"Real size is %ld\n", atom.m_long);
 	  entry.push_back(atom);
 	  
 	  listEntry(entry);
