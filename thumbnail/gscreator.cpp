@@ -124,8 +124,33 @@ static const char *dvipsargs[] = {
 
 static bool correctDVI(const QString& filename);
 
+
+namespace {
+	bool got_sig_term = false;
+	void handle_sigterm( int ) {
+		got_sig_term = true;
+	}
+}
+
+
 bool GSCreator::create(const QString &path, int, int, QImage &img)
 {
+// The code in the loop (when testing whether got_sig_term got set)
+// should read some variation of:
+// 		parentJob()->wasKilled()
+//
+// Unfortunatelly, that's currently impossible without breaking BIC.
+// So we need to catch the signal ourselves.
+// Otherwise, on certain funny PS files (for example
+// http://www.tjhsst.edu/~Eedanaher/pslife/life.ps )
+// gs would run forever after we were dead.
+// #### Reconsider for KDE 4 ###
+// (24/12/03 - luis_pedro)
+//
+  typedef void ( *sighandler_t )( int );
+  // according to linux's "man signal" the above typedef is a gnu extension
+  sighandler_t oldhandler = signal( SIGTERM, handle_sigterm );
+  
   int input[2];
   int output[2];
   int dvipipe[2]; 
@@ -233,9 +258,11 @@ bool GSCreator::create(const QString &path, int, int, QImage &img)
 	  struct timeval tv;
 	  tv.tv_sec = 20;
 	  tv.tv_usec = 0;
+
+	  got_sig_term = false;
 	  if (select(output[0] + 1, &fds, 0, 0, &tv) <= 0) {
-            if ( errno == EINTR || errno == EAGAIN ) continue;
-	    break; // error or timeout
+            if ( ( errno == EINTR || errno == EAGAIN ) && !got_sig_term ) continue;
+	    break; // error, timeout or master wants us to quit (SIGTERM)
           }
 	  if (FD_ISSET(output[0], &fds)) {
 	    count = read(output[0], data.data() + offset, 1024);
@@ -256,7 +283,10 @@ bool GSCreator::create(const QString &path, int, int, QImage &img)
 	}
     }
     if (!ok) // error or timeout, gs probably didn't exit yet
+    {
       kill(pid, SIGTERM);
+    }
+
     int status = 0;
     if (waitpid(pid, &status, 0) != pid || (status != 0  && status != 256) )
       ok = false;
@@ -270,6 +300,14 @@ bool GSCreator::create(const QString &path, int, int, QImage &img)
   close(output[0]);
   
   int l = img.loadFromData( data );
+
+  if ( got_sig_term && 
+	oldhandler != SIG_ERR &&
+	oldhandler != SIG_DFL &&
+	oldhandler != SIG_IGN ) {
+	  oldhandler( SIGTERM ); // propagate the signal. Other things might rely on it
+  }
+  if ( oldhandler != SIG_ERR ) signal( SIGTERM, oldhandler );
   
   return ok && l;
 }
