@@ -5,6 +5,7 @@
 #include <qdir.h>
 #include <qfile.h>
 #include <qtextstream.h>
+#include <qregexp.h>
 
 #include <kdebug.h>
 #include <kprocess.h>
