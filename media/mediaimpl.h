@@ -23,16 +23,19 @@
 #include <kio/global.h>
 #include <kio/job.h>
 #include <kurl.h>
+#include <dcopobject.h>
 
 #include <qobject.h>
 #include <qstring.h>
 
 #include "medium.h"
 
-class MediaImpl : public QObject
+class MediaImpl : public QObject, public DCOPObject
 {
 Q_OBJECT
+K_DCOP
 public:
+	MediaImpl();
 	bool parseURL(const KURL &url, QString &name, QString &path) const;
 	bool realURL(const QString &name, const QString &path, KURL &url);
 
@@ -46,13 +49,16 @@ public:
 	int lastErrorCode() const { return m_lastErrorCode; }
 	QString lastErrorMessage() const { return m_lastErrorMessage; }
 
+k_dcop:
+	void slotMediumChanged(const QString &name);
+	
 private slots:
 	void slotMountResult(KIO::Job *job);
 	void slotStatResult(KIO::Job *job);
 
 private:
 	const Medium findMediumByName(const QString &name, bool &ok);
-	bool ensureMediumMounted(const Medium &medium);
+	bool ensureMediumMounted(Medium &medium);
 
 	KIO::UDSEntry extractUrlInfos(const KURL &url);
 	KIO::UDSEntry m_entryBuffer;
@@ -60,6 +66,8 @@ private:
 	void createMediumEntry(KIO::UDSEntry& entry,
 	                       const Medium &medium);
 
+	Medium *mp_mounting;
+	
 	/// Last error code stored in class to simplify API.
 	/// Note that this means almost no method can be const.
 	int m_lastErrorCode;

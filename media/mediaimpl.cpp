@@ -21,15 +21,21 @@
 
 #include <klocale.h>
 #include <kdebug.h>
+#include <dcopclient.h>
 #include <dcopref.h>
 #include <kio/netaccess.h>
 
-#include <qapplication.h>
+#include <kapplication.h>
 #include <qeventloop.h>
 
 #include <sys/stat.h>
 
 #include "medium.h"
+
+MediaImpl::MediaImpl() : QObject(), DCOPObject("mediaimpl"), mp_mounting(0L)
+{
+
+}
 
 bool MediaImpl::parseURL(const KURL &url, QString &name, QString &path) const
 {
@@ -210,20 +216,36 @@ const Medium MediaImpl::findMediumByName(const QString &name, bool &ok)
 	return Medium::create(reply);
 }
 
-bool MediaImpl::ensureMediumMounted(const Medium &medium)
+bool MediaImpl::ensureMediumMounted(Medium &medium)
 {
 	if ( medium.needMounting() )
 	{
 		m_lastErrorCode = 0;
 
+		mp_mounting = &medium;
+		
 		KIO::Job* job = KIO::mount(false, 0,
 		                           medium.deviceNode(),
 		                           medium.mountPoint());
 		connect( job, SIGNAL( result( KIO::Job * ) ),
 		         this, SLOT( slotMountResult( KIO::Job * ) ) );
+		kapp->dcopClient()
+		->connectDCOPSignal("kded", "mediamanager",
+		                    "mediumChanged(QString)",
+		                    "mediaimpl",
+		                    "slotMediumChanged(QString)",
+		                    false);
 
 		qApp->eventLoop()->enterLoop();
 
+		mp_mounting = 0L;
+		
+		kapp->dcopClient()
+		->disconnectDCOPSignal("kded", "mediamanager",
+		                       "mediumChanged(QString)",
+		                       "mediaimpl",
+		                       "slotMediumChanged(QString)");
+		
 		return m_lastErrorCode==0;
 	}
 
@@ -232,13 +254,27 @@ bool MediaImpl::ensureMediumMounted(const Medium &medium)
 
 void MediaImpl::slotMountResult(KIO::Job *job)
 {
+	kdDebug() << "MediaImpl::slotMountResult" << endl;
+	
 	if ( job->error() != 0)
 	{
 		m_lastErrorCode = job->error();
 		m_lastErrorMessage = job->errorString();
+		qApp->eventLoop()->exitLoop();
 	}
+}
 
-	qApp->eventLoop()->exitLoop();
+void MediaImpl::slotMediumChanged(const QString &name)
+{
+	kdDebug() << "MediaImpl::slotMediumChanged:" << name << endl;
+
+	if (mp_mounting->name()==name)
+	{
+		kdDebug() << "MediaImpl::slotMediumChanged: updating mp_mounting" << endl;
+		bool ok;
+		*mp_mounting = findMediumByName(name, ok);
+		qApp->eventLoop()->exitLoop();
+	}
 }
 
 static void addAtom(KIO::UDSEntry &entry, unsigned int ID, long l,
