@@ -898,7 +898,7 @@ void FileProtocol::slotPut( const char *_url, int _mode, bool _overwrite, bool _
   KURL udest_orig( url_orig.c_str() );
   KURL udest_part( url_part.c_str() );
 
-  bool m_bMarkPartial = KProtocolManager::self().getMarkPartial();
+  bool m_bMarkPartial = KProtocolManager::self().markPartial();
 
   if ( udest_orig.isMalformed() )
   {
@@ -1026,7 +1026,7 @@ void FileProtocol::slotPut( const char *_url, int _mode, bool _overwrite, bool _
 	  }
       }
     } // if the size is less then minimum -> delete the file
-    else if ( buff.st_size < KProtocolManager::self().getMinimumKeepSize() ) {
+    else if ( buff.st_size < KProtocolManager::self().minimumKeepSize() ) {
 	remove( udest.path() );
     }
   }
