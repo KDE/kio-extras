@@ -90,7 +90,6 @@ QString transform(xmlParserCtxtPtr ctxt, const QString &tss)
     else
         xmlIndentTreeOutput = 0;
 
-    kdDebug() << "myDoc " << ctxt->myDoc << endl;
     xmlParseDocument(ctxt);
     xmlDocPtr doc;
     if (ctxt->wellFormed)

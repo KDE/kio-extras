@@ -91,8 +91,6 @@ int main(int argc, char **argv) {
 
     KGlobal::locale()->setMainCatalogue("kio_help");
     KInstance ins("meinproc");
-    kdDebug() << KGlobal::locale()->charset() << endl;
-    kdDebug() << QTextCodec::codecForLocale()->name() << endl;
 
     fillInstance(ins);
 
