@@ -27,6 +27,15 @@ Overview of kio_fish
   The goal of this client is to make a remote directory look and feel exactly
   like a local directory, with all comfort, only slower.
 
+  NOTE: From version 1.1.3 on, compression is no longer turned on auto-
+  matically. You have to specify it via ~/.ssh/config or wherever
+  your local ssh client reads its settings. The same goes for all other
+  connection parameters. OpenSSH for example has a powerful configuration
+  file syntax which lets you configure access differently for each host,
+  something I do not intend to duplicate. Read the ssh_config(5) man page
+  for details. If someone knows the docs to read for commercial ssh please
+  tell me so I can include that here as well.
+
   Included below is the original posting from the mc mailing list archives.
   
   If perl is installed on the remote machine and in the default PATH, it will

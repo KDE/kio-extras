@@ -1,5 +1,7 @@
 L resume (could be very slow in shell mode due to WRITE being slow)
 L other remote shells (rlogin, telnet) - difficult, would need a shell prompt detector which is impossible to get 100% accurate. Contributions welcome.
+L show host list when called as fish://
+L plug into sidebar, show directory tree there
 M more meaningful error messages (need perl server first)
 H use rsync or a similar technique (if possible at all)
 M proxying via intermediate ssh account

@@ -1,3 +1,14 @@
+1.1.3
+	removed compression option, which fixes 2 bugs: #45448 and an
+	untracked user report about ssh version misdetect; also, is
+	more consistent with overall design policy: leave connection
+	details to the ssh client
+
+	fixed a bug which made lots of ssh zombie processes hang around
+
+1.1.2
+	fixed a bug which made inserting shell args via fish:-URL possible
+
 1.1.1
 	fixed shell mode symlink display
 

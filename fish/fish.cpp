@@ -41,6 +41,8 @@
 #endif
 #include <math.h>
 #include <unistd.h>
+#include <signal.h>
+#include <sys/wait.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <netdb.h>
@@ -101,10 +103,18 @@
 #endif
 
 static char *sshPath = NULL;
-static int isOpenSSH = 0;
+// disabled: currently not needed. Didn't work reliably.
+// static int isOpenSSH = 0;
 
 using namespace KIO;
 extern "C" {
+
+static void ripper(int signo)
+{
+    while (wait3(NULL,WNOHANG,NULL) > 0) {
+      // do nothing, go on
+    }
+}
 
 int kdemain( int argc, char **argv )
 {
@@ -116,6 +126,19 @@ int kdemain( int argc, char **argv )
         exit(-1);
     }
 
+    struct sigaction act;
+    memset(&act,0,sizeof(act));
+    act.sa_handler = ripper;
+    act.sa_flags = 0
+#ifdef SA_NOCLDSTOP
+    | SA_NOCLDSTOP
+#endif
+#ifdef SA_RESTART
+    | SA_RESTART
+#endif
+    ;
+    sigaction(SIGCLD,&act,NULL);
+    
     fishProtocol slave(argv[2], argv[3]);
     slave.dispatchLoop();
 
@@ -204,7 +227,8 @@ fishProtocol::fishProtocol(const QCString &pool_socket, const QCString &app_sock
 {
     myDebug( << "fishProtocol::fishProtocol()" << endl);
     if (sshPath == NULL) {
-        isOpenSSH = !system("ssh -V 2>&1 | grep OpenSSH > /dev/null");
+        // disabled: currently not needed. Didn't work reliably.
+        // isOpenSSH = !system("ssh -V 2>&1 | grep OpenSSH > /dev/null");
         sshPath = strdup(KStandardDirs::findExe("ssh").latin1());
     }
     childPid = 0;
@@ -381,8 +405,10 @@ bool fishProtocol::connectionStart() {
         setpgid(0,0);
 
 #define common_args "-l", connectionUser.latin1(), "-x", "-e", "none", \
-    (isOpenSSH?"-C":"+C"), "-q", connectionHost.latin1(), \
+    "-q", connectionHost.latin1(), \
     "echo FISH:;env TZ=UTC LANG=C LC_ALL=C LOCALE=C /bin/sh", NULL
+    // disabled: leave compression up to the client.
+    // (isOpenSSH?"-C":"+C"),
 
         if (connectionPort) {
             execl(sshPath, "ssh", "-p", QString::number(connectionPort).latin1(), common_args);
