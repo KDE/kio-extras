@@ -301,7 +301,7 @@ void FstabBackend::guess(const QString &devNode, const QString &mountPoint,
 	else
 	{
 		mimeType = "media/hdd";
-		label = i18n("Hard Disc");
+		label = i18n("Hard Disk");
 	}
 
 	if ( mimeType=="media/nfs" || mimeType=="media/smb" )
