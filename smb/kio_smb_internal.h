@@ -52,6 +52,9 @@ class SMBUrl
     SMBUrlType m_type;
     QString    m_kio_url;
     QString    m_smbc_url;
+    QString    m_user;
+    QString    m_password;
+    QString    m_userdomain;
 
     int m_workgroup_index;
     int m_workgroup_len;
@@ -92,6 +95,12 @@ public:
     QString getServerShareDir() const;
     //-----------------------------------------------------------------------
 
+    //-----------------------------------------------------------------------
+    //  Method : setUser
+    //  Parameter :   userinfo = [domain;]<user>
+    //  Description :   extract the domain and the username from userinfo
+    void setUser(const QString &userinfo);
+    //-----------------------------------------------------------------------
 
     //-----------------------------------------------------------------------
     void fromKioUrl(const KURL& kurl);
@@ -113,6 +122,17 @@ public:
     // "smb://server/share/filedir" --> "smb://server/share"
     //-----------------------------------------------------------------------
 
+    //-----------------------------------------------------------------------
+    QString SMBUrl::getUser() const;
+    //-----------------------------------------------------------------------
+
+    //-----------------------------------------------------------------------
+    QString SMBUrl::getPassword() const;
+    //-----------------------------------------------------------------------
+
+    //-----------------------------------------------------------------------
+    QString SMBUrl::getUserDomain() const;
+    //-----------------------------------------------------------------------
 };
 
 //===========================================================================
@@ -124,6 +144,7 @@ struct SMBAuthInfo
     QCString m_share;
     QCString m_username;
     QCString m_passwd;
+    QCString m_domain;
 };
 
 
