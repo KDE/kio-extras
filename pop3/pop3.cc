@@ -764,7 +764,11 @@ void POP3Protocol::get (const KURL& url)
 				// "." means end of data
 				for (ssize_t i = 0; i < readlen; i++)
 				{
-				  if (*buf1 == '\r' && eat) { endOfMail = true; break; }
+				  if (*buf1 == '\r' && eat) {
+				    endOfMail = true;
+				    if (i == readlen - 1 && !AtEOF()) Read(buf, 1);
+				    break;
+				  }
 				  else if (*buf1 == '\n') { newline = true; eat = false; }
 				  else if (*buf1 == '.' && newline) { newline = false; eat = true; }
 				  else { newline = false; eat = false; }
