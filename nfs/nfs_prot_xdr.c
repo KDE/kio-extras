@@ -105,7 +105,7 @@ xdr_fattr(XDR *xdrs, fattr *objp)
 	 if (!xdr_ftype(xdrs, &objp->type)) {
 		 return (FALSE);
 	 }
-	 buf = (long int *)XDR_INLINE(xdrs,10 * BYTES_PER_XDR_UNIT);
+	 buf = XDR_INLINE(xdrs,10 * BYTES_PER_XDR_UNIT);
 	   if (buf == NULL) {
 		 if (!xdr_u_int(xdrs, &objp->mode)) {
 			 return (FALSE);
@@ -166,7 +166,7 @@ xdr_fattr(XDR *xdrs, fattr *objp)
 	 if (!xdr_ftype(xdrs, &objp->type)) {
 		 return (FALSE);
 	 }
-	 buf = (long int *)XDR_INLINE(xdrs,10 * BYTES_PER_XDR_UNIT);
+	 buf = XDR_INLINE(xdrs,10 * BYTES_PER_XDR_UNIT);
 	   if (buf == NULL) {
 		 if (!xdr_u_int(xdrs, &objp->mode)) {
 			 return (FALSE);
@@ -269,86 +269,71 @@ xdr_fattr(XDR *xdrs, fattr *objp)
 	return (TRUE);
 }
 
-bool_t xdr_sattr(XDR *xdrs, sattr *objp)
+bool_t
+xdr_sattr(XDR *xdrs, sattr *objp)
 {
+
 	 register long *buf=buf;
 
-    if (xdrs->x_op == XDR_ENCODE)
-    {
-	 buf = (long int *)XDR_INLINE(xdrs,4 * BYTES_PER_XDR_UNIT);
-    if (buf == NULL)
-    {
-       if (!xdr_u_int(xdrs, &objp->mode))
-       {
+
+	 if (xdrs->x_op == XDR_ENCODE) {
+	 buf = XDR_INLINE(xdrs,4 * BYTES_PER_XDR_UNIT);
+	   if (buf == NULL) {
+		 if (!xdr_u_int(xdrs, &objp->mode)) {
 			 return (FALSE);
 		 }
-       if (!xdr_u_int(xdrs, &objp->uid))
-       {
+		 if (!xdr_u_int(xdrs, &objp->uid)) {
 			 return (FALSE);
 		 }
-       if (!xdr_u_int(xdrs, &objp->gid))
-       {
+		 if (!xdr_u_int(xdrs, &objp->gid)) {
 			 return (FALSE);
 		 }
-       if (!xdr_u_int(xdrs, &objp->size))
-       {
+		 if (!xdr_u_int(xdrs, &objp->size)) {
 			 return (FALSE);
 		 }
 
 	  }
-    else
-    {
+	  else {
 		 IXDR_PUT_U_LONG(buf,objp->mode);
 		 IXDR_PUT_U_LONG(buf,objp->uid);
 		 IXDR_PUT_U_LONG(buf,objp->gid);
 		 IXDR_PUT_U_LONG(buf,objp->size);
-    }
-    if (!xdr_nfstime(xdrs, &objp->atime))
-    {
+	  }
+	 if (!xdr_nfstime(xdrs, &objp->atime)) {
 		 return (FALSE);
 	 }
-    if (!xdr_nfstime(xdrs, &objp->mtime))
-    {
+	 if (!xdr_nfstime(xdrs, &objp->mtime)) {
 		 return (FALSE);
 	 }
 
  	 return (TRUE);
-    }
-    else if (xdrs->x_op == XDR_DECODE)
-    {
-	 buf = (long int *)XDR_INLINE(xdrs,4 * BYTES_PER_XDR_UNIT);
+	} else if (xdrs->x_op == XDR_DECODE) {
+	 buf = XDR_INLINE(xdrs,4 * BYTES_PER_XDR_UNIT);
 	   if (buf == NULL) {
-         if (!xdr_u_int(xdrs, &objp->mode))
-         {
+		 if (!xdr_u_int(xdrs, &objp->mode)) {
 			 return (FALSE);
 		 }
-         if (!xdr_u_int(xdrs, &objp->uid))
-         {
+		 if (!xdr_u_int(xdrs, &objp->uid)) {
 			 return (FALSE);
 		 }
-         if (!xdr_u_int(xdrs, &objp->gid))
-         {
+		 if (!xdr_u_int(xdrs, &objp->gid)) {
 			 return (FALSE);
 		 }
-         if (!xdr_u_int(xdrs, &objp->size))
-         {
+		 if (!xdr_u_int(xdrs, &objp->size)) {
 			 return (FALSE);
 		 }
 
 	  }
-      else
-      {
+	  else {
 		 objp->mode = IXDR_GET_U_LONG(buf);
 		 objp->uid = IXDR_GET_U_LONG(buf);
 		 objp->gid = IXDR_GET_U_LONG(buf);
 		 objp->size = IXDR_GET_U_LONG(buf);
 	  }
-      if (!xdr_nfstime(xdrs, &objp->atime))
-      {
+	 if (!xdr_nfstime(xdrs, &objp->atime)) {
 		 return (FALSE);
 	 }
-      if (!xdr_nfstime(xdrs, &objp->mtime))
-      {
+	 if (!xdr_nfstime(xdrs, &objp->mtime)) {
 		 return (FALSE);
 	 }
 	 return(TRUE);
@@ -568,73 +553,79 @@ bool_t
 xdr_writeargs(XDR *xdrs, writeargs *objp)
 {
 
-	register long  *buf = buf;
+	 register long *buf=buf;
 
 
-	if (xdrs->x_op == XDR_ENCODE) {
-		if (!xdr_nfs_fh(xdrs, &objp->file)) {
-			return (FALSE);
-		}
-		buf = (long int *)XDR_INLINE(xdrs, 3 * BYTES_PER_XDR_UNIT);
-		if (buf == NULL) {
-			if (!xdr_u_int(xdrs, &objp->beginoffset)) {
-				return (FALSE);
-			}
-			if (!xdr_u_int(xdrs, &objp->offset)) {
-				return (FALSE);
-			}
-			if (!xdr_u_int(xdrs, &objp->totalcount)) {
-				return (FALSE);
-			}
-		} else {
-			IXDR_PUT_U_LONG(buf, objp->beginoffset);
-			IXDR_PUT_U_LONG(buf, objp->offset);
-			IXDR_PUT_U_LONG(buf, objp->totalcount);
-		}
-		if (!xdr_bytes(xdrs, (char **) &objp->data.data_val, (u_int *) & objp->data.data_len, NFS_MAXDATA)) {
-			return (FALSE);
-		}
-		return (TRUE);
+	 if (xdrs->x_op == XDR_ENCODE) {
+	 if (!xdr_nfs_fh(xdrs, &objp->file)) {
+		 return (FALSE);
+	 }
+	 buf = XDR_INLINE(xdrs,3 * BYTES_PER_XDR_UNIT);
+	   if (buf == NULL) {
+		 if (!xdr_u_int(xdrs, &objp->beginoffset)) {
+			 return (FALSE);
+		 }
+		 if (!xdr_u_int(xdrs, &objp->offset)) {
+			 return (FALSE);
+		 }
+		 if (!xdr_u_int(xdrs, &objp->totalcount)) {
+			 return (FALSE);
+		 }
+
+	  }
+	  else {
+		 IXDR_PUT_U_LONG(buf,objp->beginoffset);
+		 IXDR_PUT_U_LONG(buf,objp->offset);
+		 IXDR_PUT_U_LONG(buf,objp->totalcount);
+	  }
+	 if (!xdr_bytes(xdrs, (char **)&objp->data.data_val, (u_int *)&objp->data.data_len, NFS_MAXDATA)) {
+		 return (FALSE);
+	 }
+
+ 	 return (TRUE);
 	} else if (xdrs->x_op == XDR_DECODE) {
-		if (!xdr_nfs_fh(xdrs, &objp->file)) {
-			return (FALSE);
-		}
-		buf = (long int *)XDR_INLINE(xdrs, 3 * BYTES_PER_XDR_UNIT);
-		if (buf == NULL) {
-			if (!xdr_u_int(xdrs, &objp->beginoffset)) {
-				return (FALSE);
-			}
-			if (!xdr_u_int(xdrs, &objp->offset)) {
-				return (FALSE);
-			}
-			if (!xdr_u_int(xdrs, &objp->totalcount)) {
-				return (FALSE);
-			}
-		} else {
-			objp->beginoffset = IXDR_GET_U_LONG(buf);
-			objp->offset = IXDR_GET_U_LONG(buf);
-			objp->totalcount = IXDR_GET_U_LONG(buf);
-		}
-		if (!xdr_bytes(xdrs, (char **) &objp->data.data_val, (u_int *) & objp->data.data_len, NFS_MAXDATA)) {
-			return (FALSE);
-		}
-		return (TRUE);
+	 if (!xdr_nfs_fh(xdrs, &objp->file)) {
+		 return (FALSE);
+	 }
+	 buf = XDR_INLINE(xdrs,3 * BYTES_PER_XDR_UNIT);
+	   if (buf == NULL) {
+		 if (!xdr_u_int(xdrs, &objp->beginoffset)) {
+			 return (FALSE);
+		 }
+		 if (!xdr_u_int(xdrs, &objp->offset)) {
+			 return (FALSE);
+		 }
+		 if (!xdr_u_int(xdrs, &objp->totalcount)) {
+			 return (FALSE);
+		 }
+
+	  }
+	  else {
+		 objp->beginoffset = IXDR_GET_U_LONG(buf);
+		 objp->offset = IXDR_GET_U_LONG(buf);
+		 objp->totalcount = IXDR_GET_U_LONG(buf);
+	  }
+	 if (!xdr_bytes(xdrs, (char **)&objp->data.data_val, (u_int *)&objp->data.data_len, NFS_MAXDATA)) {
+		 return (FALSE);
+	 }
+	 return(TRUE);
 	}
-	if (!xdr_nfs_fh(xdrs, &objp->file)) {
-		return (FALSE);
-	}
-	if (!xdr_u_int(xdrs, &objp->beginoffset)) {
-		return (FALSE);
-	}
-	if (!xdr_u_int(xdrs, &objp->offset)) {
-		return (FALSE);
-	}
-	if (!xdr_u_int(xdrs, &objp->totalcount)) {
-		return (FALSE);
-	}
-	if (!xdr_bytes(xdrs, (char **) &objp->data.data_val, (u_int *) & objp->data.data_len, NFS_MAXDATA)) {
-		return (FALSE);
-	}
+
+	 if (!xdr_nfs_fh(xdrs, &objp->file)) {
+		 return (FALSE);
+	 }
+	 if (!xdr_u_int(xdrs, &objp->beginoffset)) {
+		 return (FALSE);
+	 }
+	 if (!xdr_u_int(xdrs, &objp->offset)) {
+		 return (FALSE);
+	 }
+	 if (!xdr_u_int(xdrs, &objp->totalcount)) {
+		 return (FALSE);
+	 }
+	 if (!xdr_bytes(xdrs, (char **)&objp->data.data_val, (u_int *)&objp->data.data_len, NFS_MAXDATA)) {
+		 return (FALSE);
+	 }
 	return (TRUE);
 }
 
@@ -796,7 +787,7 @@ xdr_statfsokres(XDR *xdrs, statfsokres *objp)
 
 
 	 if (xdrs->x_op == XDR_ENCODE) {
-		buf = (long int *)XDR_INLINE(xdrs,5 * BYTES_PER_XDR_UNIT);
+		buf = XDR_INLINE(xdrs,5 * BYTES_PER_XDR_UNIT);
 		if (buf == NULL) {
 		 if (!xdr_u_int(xdrs, &objp->tsize)) {
 			 return (FALSE);
@@ -825,7 +816,7 @@ xdr_statfsokres(XDR *xdrs, statfsokres *objp)
 
  	 return (TRUE);
 	} else if (xdrs->x_op == XDR_DECODE) {
-		buf = (long int *)XDR_INLINE(xdrs,5 * BYTES_PER_XDR_UNIT);
+		buf = XDR_INLINE(xdrs,5 * BYTES_PER_XDR_UNIT);
 		if (buf == NULL) {
 		 if (!xdr_u_int(xdrs, &objp->tsize)) {
 			 return (FALSE);

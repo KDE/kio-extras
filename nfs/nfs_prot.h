@@ -79,9 +79,8 @@ enum nfsstat {
 	NFSERR_NOTEMPTY = 66,
 	NFSERR_DQUOT = 69,
 	NFSERR_STALE = 70,
-	NFSERR_WFLUSH = 99
+	NFSERR_WFLUSH = 99,
 };
-
 typedef enum nfsstat nfsstat;
 #ifdef __cplusplus 
 extern "C" bool_t xdr_nfsstat(XDR *, nfsstat*);
@@ -101,7 +100,7 @@ enum ftype {
 	NFLNK = 5,
 	NFSOCK = 6,
 	NFBAD = 7,
-	NFFIFO = 8
+	NFFIFO = 8,
 };
 typedef enum ftype ftype;
 #ifdef __cplusplus 

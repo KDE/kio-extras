@@ -3,8 +3,8 @@
  * It was generated using rpcgen.
  */
 
-#ifndef MOUNT_H_RPCGEN
-#define MOUNT_H_RPCGEN
+#ifndef _MOUNT_H_RPCGEN
+#define _MOUNT_H_RPCGEN
 
 #include <rpc/rpc.h>
 
@@ -44,36 +44,64 @@
 /* from @(#)mount.x	1.3 91/03/11 TIRPC 1.0 */
 #ifndef _rpcsvc_mount_h
 #define _rpcsvc_mount_h
-
 #define MNTPATHLEN 1024
 #define MNTNAMLEN 255
 #define FHSIZE 32
 
 typedef char fhandle[FHSIZE];
+#ifdef __cplusplus 
+extern "C" bool_t xdr_fhandle(XDR *, fhandle);
+#elif __STDC__ 
+extern  bool_t xdr_fhandle(XDR *, fhandle);
+#else /* Old Style C */ 
+bool_t xdr_fhandle();
+#endif /* Old Style C */ 
 
-bool_t xdr_fhandle(XDR *, fhandle);
 
-struct fhstatus
-{
-   u_int fhs_status;
-   union
-   {
-      fhandle fhs_fhandle;
-   } fhstatus_u;
+struct fhstatus {
+	u_int fhs_status;
+	union {
+		fhandle fhs_fhandle;
+	} fhstatus_u;
 };
+typedef struct fhstatus fhstatus;
+#ifdef __cplusplus 
+extern "C" bool_t xdr_fhstatus(XDR *, fhstatus*);
+#elif __STDC__ 
+extern  bool_t xdr_fhstatus(XDR *, fhstatus*);
+#else /* Old Style C */ 
+bool_t xdr_fhstatus();
+#endif /* Old Style C */ 
 
-bool_t xdr_fhstatus(XDR *, fhstatus*);
 
 typedef char *dirpath;
+#ifdef __cplusplus 
+extern "C" bool_t xdr_dirpath(XDR *, dirpath*);
+#elif __STDC__ 
+extern  bool_t xdr_dirpath(XDR *, dirpath*);
+#else /* Old Style C */ 
+bool_t xdr_dirpath();
+#endif /* Old Style C */ 
 
-bool_t xdr_dirpath(XDR *, dirpath*);
 
 typedef char *name;
+#ifdef __cplusplus 
+extern "C" bool_t xdr_name(XDR *, name*);
+#elif __STDC__ 
+extern  bool_t xdr_name(XDR *, name*);
+#else /* Old Style C */ 
+bool_t xdr_name();
+#endif /* Old Style C */ 
 
-bool_t xdr_name(XDR *, name*);
 
 typedef struct mountbody *mountlist;
-bool_t xdr_mountlist(XDR *, mountlist*);
+#ifdef __cplusplus 
+extern "C" bool_t xdr_mountlist(XDR *, mountlist*);
+#elif __STDC__ 
+extern  bool_t xdr_mountlist(XDR *, mountlist*);
+#else /* Old Style C */ 
+bool_t xdr_mountlist();
+#endif /* Old Style C */ 
 
 
 struct mountbody {
@@ -81,34 +109,66 @@ struct mountbody {
 	dirpath ml_directory;
 	mountlist ml_next;
 };
+typedef struct mountbody mountbody;
+#ifdef __cplusplus 
+extern "C" bool_t xdr_mountbody(XDR *, mountbody*);
+#elif __STDC__ 
+extern  bool_t xdr_mountbody(XDR *, mountbody*);
+#else /* Old Style C */ 
+bool_t xdr_mountbody();
+#endif /* Old Style C */ 
 
-bool_t xdr_mountbody(XDR *, mountbody*);
 
 typedef struct groupnode *groups;
-bool_t xdr_groups(XDR *, groups*);
+#ifdef __cplusplus 
+extern "C" bool_t xdr_groups(XDR *, groups*);
+#elif __STDC__ 
+extern  bool_t xdr_groups(XDR *, groups*);
+#else /* Old Style C */ 
+bool_t xdr_groups();
+#endif /* Old Style C */ 
 
-struct groupnode
-{
+
+struct groupnode {
 	name gr_name;
 	groups gr_next;
 };
+typedef struct groupnode groupnode;
+#ifdef __cplusplus 
+extern "C" bool_t xdr_groupnode(XDR *, groupnode*);
+#elif __STDC__ 
+extern  bool_t xdr_groupnode(XDR *, groupnode*);
+#else /* Old Style C */ 
+bool_t xdr_groupnode();
+#endif /* Old Style C */ 
 
-bool_t xdr_groupnode(XDR *, groupnode*);
 
 typedef struct exportnode *exports;
-//bool_t xdr_exports(XDR *, exports*);
-bool_t xdr_exports(XDR *, exportnode**);
+#ifdef __cplusplus 
+extern "C" bool_t xdr_exports(XDR *, exports*);
+#elif __STDC__ 
+extern  bool_t xdr_exports(XDR *, exports*);
+#else /* Old Style C */ 
+bool_t xdr_exports();
+#endif /* Old Style C */ 
 
-struct exportnode
-{
+
+struct exportnode {
 	dirpath ex_dir;
 	groups ex_groups;
 	exports ex_next;
 };
-bool_t xdr_exportnode(XDR *, exportnode*);
+typedef struct exportnode exportnode;
+#ifdef __cplusplus 
+extern "C" bool_t xdr_exportnode(XDR *, exportnode*);
+#elif __STDC__ 
+extern  bool_t xdr_exportnode(XDR *, exportnode*);
+#else /* Old Style C */ 
+bool_t xdr_exportnode();
+#endif /* Old Style C */ 
 
-struct ppathcnf
-{
+
+struct ppathcnf {
 	int pc_link_max;
 	short pc_max_canon;
 	short pc_max_input;
@@ -119,57 +179,147 @@ struct ppathcnf
 	char pc_xxx;
 	short pc_mask[2];
 };
-
-bool_t xdr_ppathcnf(XDR *, ppathcnf*);
+typedef struct ppathcnf ppathcnf;
+#ifdef __cplusplus 
+extern "C" bool_t xdr_ppathcnf(XDR *, ppathcnf*);
+#elif __STDC__ 
+extern  bool_t xdr_ppathcnf(XDR *, ppathcnf*);
+#else /* Old Style C */ 
+bool_t xdr_ppathcnf();
+#endif /* Old Style C */ 
 
 #endif /*!_rpcsvc_mount_h*/
 
-#define NFSPROG ((u_long)100003)
-#define NFSVERS ((u_long)2)
 #define MOUNTPROG ((u_long)100005)
 #define MOUNTVERS ((u_long)1)
 
+#ifdef __cplusplus
 #define MOUNTPROC_NULL ((u_long)0)
-void * mountproc_null_1(void *, CLIENT *);
-void * mountproc_null_1_svc(void *, struct svc_req *);
+extern "C" void * mountproc_null_1(void *, CLIENT *);
+extern "C" void * mountproc_null_1_svc(void *, struct svc_req *);
 #define MOUNTPROC_MNT ((u_long)1)
-fhstatus * mountproc_mnt_1(dirpath *, CLIENT *);
-fhstatus * mountproc_mnt_1_svc(dirpath *, struct svc_req *);
+extern "C" fhstatus * mountproc_mnt_1(dirpath *, CLIENT *);
+extern "C" fhstatus * mountproc_mnt_1_svc(dirpath *, struct svc_req *);
 #define MOUNTPROC_DUMP ((u_long)2)
-mountlist * mountproc_dump_1(void *, CLIENT *);
-mountlist * mountproc_dump_1_svc(void *, struct svc_req *);
+extern "C" mountlist * mountproc_dump_1(void *, CLIENT *);
+extern "C" mountlist * mountproc_dump_1_svc(void *, struct svc_req *);
 #define MOUNTPROC_UMNT ((u_long)3)
-void * mountproc_umnt_1(dirpath *, CLIENT *);
-void * mountproc_umnt_1_svc(dirpath *, struct svc_req *);
+extern "C" void * mountproc_umnt_1(dirpath *, CLIENT *);
+extern "C" void * mountproc_umnt_1_svc(dirpath *, struct svc_req *);
 #define MOUNTPROC_UMNTALL ((u_long)4)
-void * mountproc_umntall_1(void *, CLIENT *);
-void * mountproc_umntall_1_svc(void *, struct svc_req *);
+extern "C" void * mountproc_umntall_1(void *, CLIENT *);
+extern "C" void * mountproc_umntall_1_svc(void *, struct svc_req *);
 #define MOUNTPROC_EXPORT ((u_long)5)
-exports * mountproc_export_1(void *, CLIENT *);
-exports * mountproc_export_1_svc(void *, struct svc_req *);
+extern "C" exports * mountproc_export_1(void *, CLIENT *);
+extern "C" exports * mountproc_export_1_svc(void *, struct svc_req *);
 #define MOUNTPROC_EXPORTALL ((u_long)6)
-exports * mountproc_exportall_1(void *, CLIENT *);
-exports * mountproc_exportall_1_svc(void *, struct svc_req *);
+extern "C" exports * mountproc_exportall_1(void *, CLIENT *);
+extern "C" exports * mountproc_exportall_1_svc(void *, struct svc_req *);
 
+#elif __STDC__
+#define MOUNTPROC_NULL ((u_long)0)
+extern  void * mountproc_null_1(void *, CLIENT *);
+extern  void * mountproc_null_1_svc(void *, struct svc_req *);
+#define MOUNTPROC_MNT ((u_long)1)
+extern  fhstatus * mountproc_mnt_1(dirpath *, CLIENT *);
+extern  fhstatus * mountproc_mnt_1_svc(dirpath *, struct svc_req *);
+#define MOUNTPROC_DUMP ((u_long)2)
+extern  mountlist * mountproc_dump_1(void *, CLIENT *);
+extern  mountlist * mountproc_dump_1_svc(void *, struct svc_req *);
+#define MOUNTPROC_UMNT ((u_long)3)
+extern  void * mountproc_umnt_1(dirpath *, CLIENT *);
+extern  void * mountproc_umnt_1_svc(dirpath *, struct svc_req *);
+#define MOUNTPROC_UMNTALL ((u_long)4)
+extern  void * mountproc_umntall_1(void *, CLIENT *);
+extern  void * mountproc_umntall_1_svc(void *, struct svc_req *);
+#define MOUNTPROC_EXPORT ((u_long)5)
+extern  exports * mountproc_export_1(void *, CLIENT *);
+extern  exports * mountproc_export_1_svc(void *, struct svc_req *);
+#define MOUNTPROC_EXPORTALL ((u_long)6)
+extern  exports * mountproc_exportall_1(void *, CLIENT *);
+extern  exports * mountproc_exportall_1_svc(void *, struct svc_req *);
+
+#else /* Old Style C */ 
+#define MOUNTPROC_NULL ((u_long)0)
+extern  void * mountproc_null_1();
+extern  void * mountproc_null_1_svc();
+#define MOUNTPROC_MNT ((u_long)1)
+extern  fhstatus * mountproc_mnt_1();
+extern  fhstatus * mountproc_mnt_1_svc();
+#define MOUNTPROC_DUMP ((u_long)2)
+extern  mountlist * mountproc_dump_1();
+extern  mountlist * mountproc_dump_1_svc();
+#define MOUNTPROC_UMNT ((u_long)3)
+extern  void * mountproc_umnt_1();
+extern  void * mountproc_umnt_1_svc();
+#define MOUNTPROC_UMNTALL ((u_long)4)
+extern  void * mountproc_umntall_1();
+extern  void * mountproc_umntall_1_svc();
+#define MOUNTPROC_EXPORT ((u_long)5)
+extern  exports * mountproc_export_1();
+extern  exports * mountproc_export_1_svc();
+#define MOUNTPROC_EXPORTALL ((u_long)6)
+extern  exports * mountproc_exportall_1();
+extern  exports * mountproc_exportall_1_svc();
+#endif /* Old Style C */ 
 #define MOUNTVERS_POSIX ((u_long)2)
 
-void * mountproc_null_2(void *, CLIENT *);
-void * mountproc_null_2_svc(void *, struct svc_req *);
-fhstatus * mountproc_mnt_2(dirpath *, CLIENT *);
-fhstatus * mountproc_mnt_2_svc(dirpath *, struct svc_req *);
-mountlist * mountproc_dump_2(void *, CLIENT *);
-mountlist * mountproc_dump_2_svc(void *, struct svc_req *);
-void * mountproc_umnt_2(dirpath *, CLIENT *);
-void * mountproc_umnt_2_svc(dirpath *, struct svc_req *);
-void * mountproc_umntall_2(void *, CLIENT *);
-void * mountproc_umntall_2_svc(void *, struct svc_req *);
-exports * mountproc_export_2(void *, CLIENT *);
-exports * mountproc_export_2_svc(void *, struct svc_req *);
-exports * mountproc_exportall_2(void *, CLIENT *);
-exports * mountproc_exportall_2_svc(void *, struct svc_req *);
+#ifdef __cplusplus
+extern "C" void * mountproc_null_2(void *, CLIENT *);
+extern "C" void * mountproc_null_2_svc(void *, struct svc_req *);
+extern "C" fhstatus * mountproc_mnt_2(dirpath *, CLIENT *);
+extern "C" fhstatus * mountproc_mnt_2_svc(dirpath *, struct svc_req *);
+extern "C" mountlist * mountproc_dump_2(void *, CLIENT *);
+extern "C" mountlist * mountproc_dump_2_svc(void *, struct svc_req *);
+extern "C" void * mountproc_umnt_2(dirpath *, CLIENT *);
+extern "C" void * mountproc_umnt_2_svc(dirpath *, struct svc_req *);
+extern "C" void * mountproc_umntall_2(void *, CLIENT *);
+extern "C" void * mountproc_umntall_2_svc(void *, struct svc_req *);
+extern "C" exports * mountproc_export_2(void *, CLIENT *);
+extern "C" exports * mountproc_export_2_svc(void *, struct svc_req *);
+extern "C" exports * mountproc_exportall_2(void *, CLIENT *);
+extern "C" exports * mountproc_exportall_2_svc(void *, struct svc_req *);
 #define MOUNTPROC_PATHCONF ((u_long)7)
-ppathcnf * mountproc_pathconf_2(dirpath *, CLIENT *);
-ppathcnf * mountproc_pathconf_2_svc(dirpath *, struct svc_req *);
+extern "C" ppathcnf * mountproc_pathconf_2(dirpath *, CLIENT *);
+extern "C" ppathcnf * mountproc_pathconf_2_svc(dirpath *, struct svc_req *);
 
+#elif __STDC__
+extern  void * mountproc_null_2(void *, CLIENT *);
+extern  void * mountproc_null_2_svc(void *, struct svc_req *);
+extern  fhstatus * mountproc_mnt_2(dirpath *, CLIENT *);
+extern  fhstatus * mountproc_mnt_2_svc(dirpath *, struct svc_req *);
+extern  mountlist * mountproc_dump_2(void *, CLIENT *);
+extern  mountlist * mountproc_dump_2_svc(void *, struct svc_req *);
+extern  void * mountproc_umnt_2(dirpath *, CLIENT *);
+extern  void * mountproc_umnt_2_svc(dirpath *, struct svc_req *);
+extern  void * mountproc_umntall_2(void *, CLIENT *);
+extern  void * mountproc_umntall_2_svc(void *, struct svc_req *);
+extern  exports * mountproc_export_2(void *, CLIENT *);
+extern  exports * mountproc_export_2_svc(void *, struct svc_req *);
+extern  exports * mountproc_exportall_2(void *, CLIENT *);
+extern  exports * mountproc_exportall_2_svc(void *, struct svc_req *);
+#define MOUNTPROC_PATHCONF ((u_long)7)
+extern  ppathcnf * mountproc_pathconf_2(dirpath *, CLIENT *);
+extern  ppathcnf * mountproc_pathconf_2_svc(dirpath *, struct svc_req *);
+
+#else /* Old Style C */ 
+extern  void * mountproc_null_2();
+extern  void * mountproc_null_2_svc();
+extern  fhstatus * mountproc_mnt_2();
+extern  fhstatus * mountproc_mnt_2_svc();
+extern  mountlist * mountproc_dump_2();
+extern  mountlist * mountproc_dump_2_svc();
+extern  void * mountproc_umnt_2();
+extern  void * mountproc_umnt_2_svc();
+extern  void * mountproc_umntall_2();
+extern  void * mountproc_umntall_2_svc();
+extern  exports * mountproc_export_2();
+extern  exports * mountproc_export_2_svc();
+extern  exports * mountproc_exportall_2();
+extern  exports * mountproc_exportall_2_svc();
+#define MOUNTPROC_PATHCONF ((u_long)7)
+extern  ppathcnf * mountproc_pathconf_2();
+extern  ppathcnf * mountproc_pathconf_2_svc();
+#endif /* Old Style C */ 
 
 #endif /* !_MOUNT_H_RPCGEN */
