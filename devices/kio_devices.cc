@@ -33,6 +33,8 @@
 	QString deviceType(int);
 	QStringList deviceList();
 	QStringList deviceInfo(const QString name);
+
+	QStringList kmobile_list( QString deviceName );
   };
 
   extern "C" {
@@ -263,6 +265,24 @@ bool HelloProtocol::deviceMounted(const QString dev)
 }
 
 
+QStringList HelloProtocol::kmobile_list(const QString deviceName)
+{
+        QByteArray data;
+        QByteArray param;
+        QCString retType;
+        QStringList retVal;
+        QDataStream streamout(param,IO_WriteOnly);
+        streamout<<deviceName;
+        if ( m_dcopClient->call( "kmobile",
+                 "kmobileIface", "kio_devices_deviceInfo(QString)", param,retType,data,false ) )
+      {
+        QDataStream streamin(data,IO_ReadOnly);
+        streamin>>retVal;
+      }
+      return retVal;
+}
+
+
 QStringList HelloProtocol::deviceInfo(QString name)
 {
         QByteArray data;
@@ -277,7 +297,11 @@ QStringList HelloProtocol::deviceInfo(QString name)
           QDataStream streamin(data,IO_ReadOnly);
           streamin>>retVal;
         }
-      return retVal;
+	// kmobile support
+	if (retVal.isEmpty())
+		retVal = kmobile_list(name);
+
+	return retVal;
 }
 
 
@@ -316,6 +340,8 @@ QStringList HelloProtocol::deviceList()
 	{
 		retVal.append(QString::fromLatin1("!!!ERROR!!!"));
 	}
+	// add mobile devices info (kmobile)
+	retVal += kmobile_list(QString::null);
 
       return retVal;
 }
