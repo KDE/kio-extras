@@ -141,15 +141,18 @@ void kio_sftpProtocol::get(const KURL& url ) {
             return;
         }
     }
+
     // Get resume offset
-#if 0
     Q_UINT32 offset = 0;
+    Q_UINT32 startingOffset = 0;
+    Q_UINT32 size;
     QString resumeOffset =  metaData(QString::fromLatin1("resume"));
     if( !resumeOffset.isEmpty() ) {
-        offset = resumeOffset.toInt();
+        startingOffset = offset = resumeOffset.toInt();
+        canResume();
         kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::get(): resume offset is " << offset;
     }
-#endif
+
     int code;
     sftpFileAttr attr;
     // stat the file first to get its size
@@ -157,7 +160,6 @@ void kio_sftpProtocol::get(const KURL& url ) {
         processStatus(code, url.prettyURL());
         return;
     }
-    totalSize(attr.fileSize());
 
     // We cannot get file if it is a directory
 	if( attr.fileType() == S_IFDIR ) {
@@ -165,6 +167,11 @@ void kio_sftpProtocol::get(const KURL& url ) {
 	    return;
 	}	
 
+	// Send total size and processed size so far
+    size = attr.fileSize();
+    totalSize(size);
+    processedSize(offset);	
+	
     Q_UINT32 pflags = SSH2_FXF_READ;
     QByteArray handle, mydata;
     attr.clear();
@@ -176,7 +183,6 @@ void kio_sftpProtocol::get(const KURL& url ) {
     // How big should each data packet be? Large gives better tranfer rate
     // over high speed connections, low probably better for modems.
     Q_UINT32 len = 8*1024;
-    Q_UINT32 offset = 0;
     time_t now, start = time(NULL), last = start;
     code = SSH2_FX_OK;
     while( code == SSH2_FX_OK ) {
@@ -186,7 +192,7 @@ void kio_sftpProtocol::get(const KURL& url ) {
             processedSize(offset);
             now = time(NULL);
             if( now - last > 1 ) {
-                speed(offset / (now - start));
+                speed((offset - startingOffset) / (now - start));
                 last = now;
             }
             kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::get(): offset = " << offset << endl;
