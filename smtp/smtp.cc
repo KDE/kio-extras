@@ -10,13 +10,6 @@
  * 2. Redistributions in binary form must reproduce the above copyright
  *    notice, this list of conditions and the following disclaimer in the
  *    documentation and/or other materials provided with the distribution.
- * 3. The `container project' is defined as the group of libraries and/or
- *    programs that this software has originally been distributed with.
- *    For all intents and purposes the `container project' for this 
- *    software is `kdebase'.
- * 4. Redistributions of source code or in binary form must not be 
- *    separated from and must adhere to the licensing terms set forth 
- *    by the individual components of the container project.
  *
  * THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS ``AS IS'' AND
  * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
@@ -30,7 +23,7 @@
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  *
- * $Id$
+ *	$Id$
  */
 
 #ifdef HAVE_CONFIG_H
@@ -38,42 +31,50 @@
 #endif
 
 #include <sys/types.h>
+#include <sys/socket.h>
 #include <sys/stat.h>
 #include <sys/time.h>
 #ifdef HAVE_SYS_SELECT_H
 #include <sys/select.h>
 #endif
 
+#include <netinet/in.h>
+#include <arpa/inet.h>
+
 #include <ctype.h>
 #include <errno.h>
+#include <netdb.h>
+#include <stdlib.h>
 #include <string.h>
+#include <signal.h>
 #include <stdio.h>
-
-#include <iostream.h>
+#include <unistd.h>
 
 #include <qbuffer.h>
-#include <qcstring.h>
 #include <qstring.h>
 #include <qstringlist.h>
+#include <qcstring.h>
 #include <qglobal.h>
 
-#include <kdebug.h>
-#include <kemailsettings.h>
-#include <kinstance.h>
-#include <klocale.h>
 #include <kprotocolmanager.h>
+#include <kemailsettings.h>
 #include <ksock.h>
-
+#include <kdebug.h>
+#include <kinstance.h>
 #include <kio/connection.h>
 #include <kio/slaveinterface.h>
-#include <kio/sasl/saslmodule.h>
-#include <kio/sasl/saslcontext.h>
+#include <kio/ksasl/saslcontext.h>
+#include <klocale.h>
+#include <iostream.h>
 
 #include "smtp.h"
 
-const char *SMTPProtocol::DEFAULT_EMAIL = "someuser@is.using.a.pre.release.kde.ioslave.compliments.of.kde.org";
-const int SMTPProtocol::DEFAULT_RESPONSE_BUFFER = 512;
-const int SMTPProtocol::DEFAULT_EHLO_BUFFER = 5120;
+#define ASCII(x) QString::fromLatin1(x)
+#define WRITE_STRING(x) Write (static_cast<const char *>(x.local8Bit()), x.local8Bit().length())
+
+#define DEFAULT_EMAIL "someuser@is.using.a.pre.release.kde.ioslave.compliments.of.kde.org"
+#define DEFAULT_RESPONSE_BUFFER 512
+#define DEFAULT_EHLO_BUFFER 5120
 
 using namespace KIO;
 
@@ -81,14 +82,17 @@ extern "C" {
 	int kdemain (int argc, char **argv);
 }
 
+void	GetAddresses (const QString &str, const QString &delim, QStringList &list);
+int	GetVal (char *buf);
+
 int kdemain (int argc, char **argv)
 {
+	KInstance instance("kio_smtp");
+
 	if (argc != 4) {
 		fprintf(stderr, "Usage: kio_smtp protocol domain-socket1 domain-socket2\n");
-		return -1;
+		exit(-1);
 	}
-
-	KInstance instance("kio_smtp");
 
         bool useSSL = (strcmp(argv[1], "smtps") == 0) ? true : false;
 	// We might as well allocate it on the heap.  Since there's a heap o room there..
@@ -97,17 +101,6 @@ int kdemain (int argc, char **argv)
 
 	delete slave;
 	return 0;
-}
-
-
-QString SMTPProtocol::ASCII(const char *x)
-{
-	return QString::fromLatin1(x);
-}
-
-ssize_t SMTPProtocol::WRITE_STRING(const QString &x)
-{
-	return Write (static_cast<const char *>(x.local8Bit()), x.local8Bit().length());
 }
 
 
@@ -139,7 +132,7 @@ void SMTPProtocol::HandleSMTPWriteError (const KURL &url)
 {
 	// Attempt to save face and call RSET, and if that works
 	// try and shut down nicely.
-	if (!command(ASCII("RSET"))) {
+	if (!command( ASCII("RSET") )) {
 		error(ERR_SERVICE_NOT_AVAILABLE, i18n("RSET failed %1").arg(url.path()));
 	} else {
 		smtp_close();
@@ -149,7 +142,7 @@ void SMTPProtocol::HandleSMTPWriteError (const KURL &url)
 
 // Usage: smtp://smtphost:port/send?to=user@host.com&subject=blah
 // If smtphost is the name of a profile, it'll use the information 
-// provided by that profile.  If it's not a profile name, it'll use it as 
+// provided by that profile.  If it's not a profile name, it'll use it as
 // nature intended.
 // One can also specify in the query:
 // to=emailaddress
@@ -220,7 +213,7 @@ void SMTPProtocol::put (const KURL &url, int /*permissions*/, bool /*overwrite*/
 
 	// Check KEMailSettings to see if we've specified an E-Mail address
 	// if that worked, check to see if we've specified a real name
-	// and then format accordingly (either: emailaddress@host.com or 
+	// and then format accordingly (either: emailaddress@host.com or
 	// Real Name <emailaddress@host.com>)
 	if (from.isEmpty())
 	{
@@ -268,14 +261,14 @@ void SMTPProtocol::put (const KURL &url, int /*permissions*/, bool /*overwrite*/
 
 	// Write out the To header for the benefit of the mail clients
 	query = ASCII("To: %1\r\n");
-	for (QStringList::Iterator it = recip.begin(); it != recip.end(); ++it) {
+	for ( QStringList::Iterator it = recip.begin(); it != recip.end(); ++it ) {
 		query = query.arg(*it);
 		WRITE_STRING(query);
 	}
 
 	// Write out the CC header for the benefit of the mail clients
 	query = ASCII("CC: %1\r\n");
-	for (QStringList::Iterator it = cc.begin(); it != cc.end(); ++it) {
+	for ( QStringList::Iterator it = cc.begin(); it != cc.end(); ++it ) {
 		query = query.arg(*it);
 		WRITE_STRING(query);
 	}
@@ -305,7 +298,7 @@ void SMTPProtocol::put (const KURL &url, int /*permissions*/, bool /*overwrite*/
 void SMTPProtocol::PutRecipients (QStringList &list, const KURL &url)
 {
 	QString formatted_recip = ASCII("RCPT TO: %1");
-	for (QStringList::Iterator it = list.begin(); it != list.end(); ++it) {
+	for ( QStringList::Iterator it = list.begin(); it != list.end(); ++it ) {
 		if (!command(formatted_recip.arg(*it)))
 			HandleSMTPWriteError(url);
 	}
@@ -328,10 +321,10 @@ int SMTPProtocol::getResponse (char *r_buf, unsigned int r_len)
 	// Give the buffer the appropiate size
 	// a buffer of less than 5 bytes will *not* work
 	if (r_len) {
-		buf = new char[r_len];
+		buf = static_cast<char *>(malloc(r_len));
 		len = r_len;
 	} else {
-		buf = new char [DEFAULT_RESPONSE_BUFFER];
+		buf = static_cast<char *>(malloc(DEFAULT_RESPONSE_BUFFER));
 		len = DEFAULT_RESPONSE_BUFFER;
 	}
 
@@ -366,8 +359,7 @@ int SMTPProtocol::getResponse (char *r_buf, unsigned int r_len)
 		error(ERR_UNKNOWN, "Line too short");
 	char *origbuf = buf;
 	if (buf[3] == '-') { // Multiline response
-		// Three is quite arbitrary
-		while ((buf[3] == '-') && (len-recv_len > 3)) {
+		while ( (buf[3] == '-') && (len-recv_len > 3) ) { // Three is quite arbitrary
 			buf += recv_len;
 			len -= (recv_len+1);
 			recv_len = ReadLine(buf, len-1);
@@ -393,7 +385,7 @@ bool SMTPProtocol::command (const QString &cmd, char *recv_buf, unsigned int len
 	QCString write_buf = cmd.local8Bit();
 
 	// Write the command
-	if (Write(static_cast<const char *>(write_buf), write_buf.length() ) != static_cast<ssize_t>(write_buf.length())) {
+	if ( Write(static_cast<const char *>(write_buf), write_buf.length() ) != static_cast<ssize_t>(write_buf.length()) ) {
 		m_sError = i18n("Could not send to server.\n");
 		return false;
 	}
@@ -408,11 +400,11 @@ bool SMTPProtocol::command (const QString &cmd, char *recv_buf, unsigned int len
 bool SMTPProtocol::smtp_open (const KURL &url)
 {
 	kdDebug () << "kio_smtp: IT WANTS " << url.host() << endl;
-	if ((m_iOldPort == GetPort(m_iPort)) && (m_sOldServer == m_sServer) && (m_sOldUser == m_sUser)) {
+	if ( (m_iOldPort == GetPort(m_iPort)) && (m_sOldServer == m_sServer) && (m_sOldUser == m_sUser) ) {
 		return true;
 	} else {
 		smtp_close();
-		if (!ConnectToHost(m_sServer.latin1(), m_iPort))
+		if( !ConnectToHost(m_sServer.latin1(), m_iPort))
 			return false; // ConnectToHost has already send an error message.
 		opened = true;
 	}
@@ -421,8 +413,7 @@ bool SMTPProtocol::smtp_open (const KURL &url)
 		return false;
 	}
 
-	QBuffer ehlobuf;
-	ehlobuf.setBuffer(QByteArray(DEFAULT_EHLO_BUFFER));
+	QBuffer ehlobuf(QByteArray(DEFAULT_EHLO_BUFFER));
 	memset(ehlobuf.buffer().data(), 0, DEFAULT_EHLO_BUFFER);
 
 	// Yes, I *know* that this is not the way it should be done, but
@@ -436,12 +427,11 @@ bool SMTPProtocol::smtp_open (const KURL &url)
 	}
 
 	// We parse the ESMTP extensions here... pipelining would be really cool
-	char *ehlo_line = new char[DEFAULT_EHLO_BUFFER];
+	char ehlo_line[DEFAULT_EHLO_BUFFER];
 	if (ehlobuf.open(IO_ReadWrite)) {
 		while (ehlobuf.readLine(ehlo_line, DEFAULT_EHLO_BUFFER) > 0)
 			ParseFeatures(const_cast<const char *>(ehlo_line));
 	}
-	delete [] ehlo_line;
 
 	// we should also check kemailsettings as well..
 	if (haveTLS && canUseTLS()) { 
@@ -514,11 +504,11 @@ bool SMTPProtocol::Authenticate (const KURL &url)
 		error(ERR_COULD_NOT_LOGIN, i18n("No compatible authentication methods found."));
 		return false;
 	} else {
-		char *challenge = new char [2049];
+		char *challenge = static_cast<char *>(malloc(2049));
 
  		// I've probably made some troll seek shelter somewhere else.. yay gov'nr and his matrix.. yes that one.. that looked like a  bird.. no not harvey milk
 		if (!command(ASCII("AUTH ")+auth_method, challenge, 2049)) {
-			delete [] challenge;
+			free(challenge);
 			delete m_pSASL;
 			m_pSASL = 0;
 			return false;
@@ -528,7 +518,7 @@ bool SMTPProtocol::Authenticate (const KURL &url)
 		// PLAIN auth has embedded null characters.  Ew.
 		// so it's encoded in HEX as part of its spec IIRC.
 		// so.. let that auth module do the b64 encoding itself..
-		// it's easier than generating a byte array simply to pass 
+		// it's easier than generating a byte array simply to pass
 		// around null characters.  Stupid stupid stupid.
 		QString cmd;
 		if (auth_method == "PLAIN") {
@@ -538,7 +528,7 @@ bool SMTPProtocol::Authenticate (const KURL &url)
 			cmd = m_pSASL->generateResponse(challenge, true);
 		}
 		ret = command(cmd);
-		delete [] challenge;
+		free(challenge);
 
 		if (ret)
 			kdDebug() << "kio_smtp: auth worked" << endl;
@@ -555,10 +545,10 @@ void SMTPProtocol::ParseFeatures (const char *_buf)
 
 	// We want it to be between 250 and 259 inclusive, and it needs to be "nnn-blah" or "nnn blah"
 	// So sez the SMTP spec..
-	if ((buf.left(2) != "25") || (!isdigit(buf[2])) || (!(buf.at(3) == '-') && !(buf.at(3) == ' ')))
+	if ( (buf.left(2) != "25") || (!isdigit(buf[2])) || (!(buf.at(3) == '-') && !(buf.at(3) == ' ')) )
 		return; // We got an invalid line..
 	// Clop off the beginning, no need for it really
-	buf = buf.mid(4, buf.length()); 
+	buf = buf.mid(4, buf.length());
 
 	if (buf.left(4) == "AUTH") { // Look for auth stuff
 		if (m_sAuthConfig == QString::null) 
@@ -586,7 +576,7 @@ void SMTPProtocol::stat (const KURL &url)
         error (KIO::ERR_DOES_NOT_EXIST, url.path());
 }
 
-int SMTPProtocol::GetVal (char *buf)
+int GetVal (char *buf)
 {
 	int val;
 
@@ -597,12 +587,12 @@ int SMTPProtocol::GetVal (char *buf)
 	return val;
 }
 
-void SMTPProtocol::GetAddresses (const QString &str, const QString &delim, QStringList &list)
+void GetAddresses (const QString &str, const QString &delim, QStringList &list)
 {
 	int curpos = 0;
 
-	while ((curpos = str.find(delim, curpos) ) != -1) {
-		if ((str.at(curpos-1) == "?") || (str.at(curpos-1) == "&")) {
+	while ( (curpos = str.find(delim, curpos) ) != -1 ) {
+		if ( (str.at(curpos-1) == "?") || (str.at(curpos-1) == "&") ) {
 			curpos += delim.length();
 			if (str.find("&", curpos) != -1)
 				list += str.mid(curpos, str.find("&", curpos)-curpos);
