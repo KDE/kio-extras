@@ -2,8 +2,8 @@
                           fish.cpp  -  a FISH kioslave
                              -------------------
     begin                : Thu Oct  4 17:09:14 CEST 2001
-    copyright            : (C) 2001 by Jörg Walter
-    email                : trouble@garni.ch
+    copyright            : (C) 2001-2003 by Jörg Walter
+    email                : jwalt-kde@garni.ch
  ***************************************************************************/
 
 /***************************************************************************
@@ -111,7 +111,7 @@ static char *suPath = NULL;
 using namespace KIO;
 extern "C" {
 
-static void ripper(int signo)
+static void ripper(int)
 {
     while (wait3(NULL,WNOHANG,NULL) > 0) {
       // do nothing, go on
@@ -369,7 +369,7 @@ bool fishProtocol::connectionStart() {
     int fd[2];
     int rc, flags;
     thisFn = QString::null;
-    
+
     rc = open_pty_pair(fd);
     if (rc == -1) {
         myDebug( << "socketpair failed, error: " << strerror(errno) << endl);
@@ -909,7 +909,11 @@ void fishProtocol::manageConnection(const QString &l) {
                     break;
 
                 case 'M':
-                    if (line.right(8) != "/unknown") {
+                    // This is getting ugly. file(1) makes some uneducated
+                    // guesses, so we must try to ignore them (#51274)
+                    if (line.right(8) != "/unknown" &&
+                            (thisFn.find('.') < 0 || (line.left(8) != "Mtext/x-"
+                                                  && line != "Mtext/plain"))) {
                         atom.m_uds = UDS_MIME_TYPE;
                         atom.m_long = 0;
                         atom.m_str = line.mid(1);
@@ -959,7 +963,7 @@ void fishProtocol::manageConnection(const QString &l) {
                 shutdownConnection();
             }
             break;
-	default : break;
+        default : break;
         }
 
     } else if (rc == 100) {

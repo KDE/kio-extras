@@ -42,7 +42,7 @@ It is set to false if the connection becomes closed.
 
  */
   void openConnection();
-  
+
   /**
    Clean up connection
   */
