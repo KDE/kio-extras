@@ -370,14 +370,14 @@ rfcDecoder::decodeRFC2047String (const QString & _str, QString & charset,
     else
     {
       charset = QCString (beg, i - 1);  // -2 + 1 for the zero
-      if (charset.findRev ('*') != -1)
+      int pt = charset.findRev('*');
+      if (pt != -1)
       {
         // save language for later usage
-        language =
-          charset.right (charset.length () - charset.findRev ('*') - 1);
+        language = charset.right (charset.length () - pt - 1);
 
         // tie off language as defined in rfc2047
-        charset = charset.left (charset.findRev ('*'));
+        charset.truncate(pt);
       }
       // get encoding and check delimiting question marks
       encoding = toupper (pos[1]);
@@ -424,7 +424,8 @@ rfcDecoder::decodeRFC2047String (const QString & _str, QString & charset,
         str = KCodecs::base64Decode(str);
       }
       *pos = ch;
-      for (i = 0; i < (int) str.length (); i++)
+      int len = str.length();
+      for (i = 0; i < len; i++)
         result += (char) (QChar) str[i];
 
       pos = end - 1;
