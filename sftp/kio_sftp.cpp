@@ -793,8 +793,8 @@ void kio_sftpProtocol::put ( const KURL& url, int permissions, bool overwrite, b
             // notify the job that we can resume this file. If the io-slave
             // doing the GET replies that it can resume continue, else send
             // "a file already exists" error message.
-            kdDebug(KIO_SFTP_DB) << "Size = " << partAttr.fileSize();
-            resume = canResume(partAttr.fileSize());
+            kdDebug(KIO_SFTP_DB) << "Size = " << origAttr.fileSize();
+            resume = canResume(origAttr.fileSize());
             kdDebug(KIO_SFTP_DB) << "Can resume = " << resume;
             if (!resume)
             {
