@@ -152,7 +152,7 @@ int kdemain( int argc, char **argv )
 
 const struct fishProtocol::fish_info fishProtocol::fishInfo[] = {
     { ("FISH"), 0,
-      ("echo; /bin/sh start_fish_server > /dev/null 2>/dev/null; perl .fishsrv.pl " CHECKSUM " 2>/dev/null; perl -e '$|=1; print \"### 100 transfer fish server\\n\"; while(<STDIN>) { last if /^__END__/; $code.=$_; } exit(eval($code));' 2>/dev/null"),
+      ("echo; /bin/sh start_fish_server > /dev/null 2>/dev/null; perl .fishsrv.pl " CHECKSUM " 2>/dev/null; perl -e '$|=1; print \"### 100 transfer fish server\\n\"; while(<STDIN>) { last if /^__END__/; $code.=$_; } exit(eval($code));' 2>/dev/null;"),
       1 },
     { ("VER 0.0.2 copy append lscount lslinks lsmime exec"), 0,
       ("echo 'VER 0.0.2 copy append lscount lslinks lsmime exec'"),
@@ -223,7 +223,7 @@ const struct fishProtocol::fish_info fishProtocol::fishInfo[] = {
       (">> %2; echo '### 001'; ( [ %1 -gt 0 ] && dd ibs=1 obs=%1 count=%1 2> /dev/null; ) | ( cat >> %2 || echo Error $?; cat >/dev/null; )"),
       0 },
     { ("EXEC"), 2,
-      ("touch %2; chmod 600 %2; eval %1 < /dev/null > %2 2>&1; echo \"#RESULT# $?\" >> %2"),
+      ("UMASK=`umask`; umask 077; touch %2; umask $UMASK; eval %1 < /dev/null > %2 2>&1; echo \"###RESULT: $?\" >> %2"),
       0 }
 };
 
@@ -422,7 +422,7 @@ bool fishProtocol::connectionStart() {
         setpgid(0,0);
 
         if (local) {
-            execl(suPath, "su", "-l", connectionUser.latin1(), "-c", "cd ~;echo FISH:;env TZ=UTC LANG=C LC_ALL=C LOCALE=C /bin/sh", (void *)0);
+            execl(suPath, "su", "-l", connectionUser.latin1(), "-c", "cd ~;echo FISH:;env PS1= PS2= TZ=UTC LANG=C LC_ALL=C LOCALE=C /bin/sh", (void *)0);
         } else {
             #define common_args "-l", connectionUser.latin1(), "-x", "-e", "none", \
                 "-q", connectionHost.latin1(), \

@@ -195,7 +195,24 @@ MAIN: while (<STDIN>) {
         next;
     };
     /^EXEC\s+((?:\\.|[^\\])*?)\s+((?:\\.|[^\\])*?)\s*$/ && do {
-        system("touch $2; chmod 600 $2; eval $1 < /dev/null > $2 2>&1; echo \"#RESULT# $?\" >> $2;");
+        my $tempfile = unquote($2);
+        my $command = unquote($1);
+        print("### 500 $!\n"), next
+            if (!sysopen(FH,$tempfile,O_CREAT|O_EXCL|O_WRONLY,0600));
+        my $pid = fork();
+        print("### 500 $!\n"), next
+            if (!defined $pid); 
+        if ($pid == 0) {
+            open(STDOUT,'>>&FH');
+            open(STDERR,'>>&FH');
+            open(STDIN,'</dev/null'); # not sure here, ms windows anyone?
+            exec('/bin/sh','-c',$command);
+            print STDERR "Couldn't exec /bin/sh: $!\n";
+            exit(255);
+        }
+        waitpid($pid,0);
+        print FH "###RESULT: $?\n";
+        close(FH);
         print "### 200\n";
         next;
     };

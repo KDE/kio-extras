@@ -1,3 +1,36 @@
+1.2.3 by Willy De la Court <willy.delacourt@pandora.be>
+	Changes in the EXEC code as Jörg Walter proposed.
+	fixed 2 bugs when executing in Shell mode
+
+1.2.2 by Willy De la Court <willy.delacourt@pandora.be>
+	Security fix tempfile should not be world readable
+	bugfix write to the file not the command
+
+1.2.1 by Willy De la Court <willy.delacourt@pandora.be>
+	implemented su for fish://localhost/
+	fish://root@localhost/ will su to root
+	fish://someuser@localhost/ will su to someuser
+	fish://localhost:22/ will still use ssh
+	strange problem with su when sending password need to wait a while (1 sec)
+	after reception of the password prompt.
+	some indentations fixed
+	i18n all messages
+
+1.2 by Willy De la Court <willy.delacourt@pandora.be>
+	implementation of the EXEC function
+	made sure all the VER lines where the same
+	used eval and system() for executing the command
+	Send the VER command directly after the FISH command.
+	After using kill to close the child process used wait to really make sure the child
+	has died. If the child took some time to die the select()
+	returns "Interrupted system call" error. This should solve some hanging problems.
+	added hasExec so it can be tested.
+	backport to BRANCH sendCommand(FISH_VER); and wait(NULL) to fix potential bugs.
+
+1.1.4 by Willy De la Court <willy.delacourt@pandora.be>
+	fixes Bug 49881: file time differs by 1 hour
+	and backported to BRANCH
+
 1.1.3
 	removed compression option, which fixes 2 bugs: #45448 and an
 	untracked user report about ssh version misdetect; also, is
