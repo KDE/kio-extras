@@ -1,0 +1,17 @@
+DEBUGGING
+
+Debugging this kio_slave is a little bit more difficult than normal.
+When ssh runs it checks to see if a tty is available. If one is, it 
+asks for the password on the tty, otherwise it uses askpass.
+One can get debug messages by restarting kdeinit in a shell. This
+will cause problems for ssh, since it will find a tty and will ask
+for the password on the tty. This will result in ssh getting a bunch
+of bogus data for your password.
+Instead you must send debug info to a file using 'kdebugDialog --fullmode'.
+Then you can 'tail -f' the file to see debug messages in real-time.
+
+I also suggest getting the openssh and recompiling sftp-server to send messages
+to the auth log.  This can be done in sftp-server.c be defining DEBUG_SFTP_SERVER.
+
+You can do the same with ssh by finding the two calls to log_init() in ssh.c
+and changing the last argument from 1 to 0 and recompiling.

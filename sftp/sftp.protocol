@@ -1,0 +1,9 @@
+[Protocol]
+exec=kio_sftp
+protocol=sftp
+input=none
+output=stream
+reading=true
+defaultMimetype=text/plain
+Icon=remote
+Description=A kioslave for sftp
