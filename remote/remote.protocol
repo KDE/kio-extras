@@ -1,0 +1,16 @@
+[Protocol]
+exec=kio_remote
+protocol=remote
+input=none
+output=filesystem
+listing=Name,Type,Size,Date,AccessDate,Access,Owner,Group,Link
+reading=true
+writing=true
+makedir=true
+deleting=true
+linking=true
+moving=true
+Icon=blockdevice
+maxInstances=4
+#TODO DocPath=kioslave/file.html
+Class=:local
