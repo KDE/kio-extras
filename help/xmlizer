@@ -18,11 +18,11 @@ def xmlizeTag(text, tag):
 docbookfile = open(sys.argv[1])
 text = docbookfile.read()
 
-text = re.sub("<!DOCTYPE\s*book\s*PUBLIC\s*\"-//KDE//DTD DocBook V4.1-Based Variant V1.0//EN\"",
-			  "<?xml version=\"1.0\" ?><!DOCTYPE book PUBLIC \"-//KDE//DTD DocBook XML V4.1-Based Variant V1.0//EN\" \"dtd/kdex.dtd\"",
+text = re.sub("<!DOCTYPE\s*(\S+)\s*PUBLIC\s*\"-//KDE//DTD DocBook V4.1-Based Variant V1.0//EN\"",
+			  "<?xml version=\"1.0\" ?><!DOCTYPE \\1 PUBLIC \"-//KDE//DTD DocBook XML V4.1-Based Variant V1.0//EN\" \"dtd/kdex.dtd\"",
 			  text)
-text = re.sub("<!DOCTYPE\s*book\s*PUBLIC\s*\"-//KDE//DTD DocBook V3.1-Based Variant V1.0//EN\"",
-			  "<?xml version=\"1.0\" ?><!DOCTYPE book PUBLIC \"-//KDE//DTD DocBook XML V4.1-Based Variant V1.0//EN\" \"dtd/kdex.dtd\"",
+text = re.sub("<!DOCTYPE\s*(\S+)\s*PUBLIC\s*\"-//KDE//DTD DocBook V3.1-Based Variant V1.0//EN\"",
+			  "<?xml version=\"1.0\" ?><!DOCTYPE \\1 PUBLIC \"-//KDE//DTD DocBook XML V4.1-Based Variant V1.0//EN\" \"dtd/kdex.dtd\"",
 			  text)
 text = re.sub("<!ENTITY([^>-]*)--", r"<!ENTITY\1> <!--", text)
 
