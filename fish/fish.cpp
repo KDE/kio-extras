@@ -558,7 +558,7 @@ int fishProtocol::establishConnection(char *buffer, int len) {
                 myDebug( << "sending mpass" << endl);
                 connectionAuth.prompt = thisFn+buf;
                 if (local)
-                    connectionAuth.caption = i18n("Local login");
+                    connectionAuth.caption = i18n("Local Login");
                 else
                     connectionAuth.caption = i18n("SSH Authorization");
                 if ((!firstLogin || !checkCachedAuthentication(connectionAuth)) && !openPassDlg(connectionAuth)) {
