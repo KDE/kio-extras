@@ -143,6 +143,22 @@ IMAP4Protocol::get (const KURL & _url)
   enum IMAP_TYPE aEnum =
     parseURL (_url, aBox, aSection, aType, aSequence, aValidity, aDelimiter);
 
+  if (aSequence == "0:0" && getState() == ISTATE_SELECT)
+  {
+    imapCommand *cmd = doCommand (imapCommand::clientNoop());
+    completeQueue.removeRef(cmd);
+    
+    cmd = doCommand (imapCommand::clientClose());
+    if (cmd->result() != "OK")
+    {
+      error (ERR_ABORTED, i18n("Unable to close mailbox."));
+      finished();
+      return;
+    }
+    completeQueue.removeRef(cmd);
+    setState(ISTATE_LOGIN);
+  }
+
   if (aSequence.isEmpty ())
   {
     aSequence = "1:*";
@@ -218,56 +234,59 @@ IMAP4Protocol::get (const KURL & _url)
     if (aEnum == ITYPE_MSG)
       relayEnabled = true;
 
-    cmd = sendCommand (imapCommand::clientFetch (aSequence, aSection));
-    int res;
-    do
+    if (aSequence != "0:0")
     {
-      while (!(res = parseLoop()));
-      if (res == -1) break;
-
-      mailHeader *lastone = NULL;
-      imapCache *cache;
-      cache = getLastHandled ();
-      if (cache)
-        lastone = cache->getHeader ();
-
-      if (!cmd->isComplete ())
+      cmd = sendCommand (imapCommand::clientFetch (aSequence, aSection));
+      int res;
+      do
       {
-        kdDebug(7116) << "IMAP4::get - got " << lastone << " from client" << endl;
-        if (lastone && ((aSection.find ("BODYSTRUCTURE", 0, false) != -1)
-                  || (aSection.find ("ENVELOPE", 0, false) != -1)
-                  || (aSection.find ("BODY.PEEK[0]", 0, false) != -1
-                      && (aEnum == ITYPE_BOX || aEnum == ITYPE_DIR_AND_BOX))))
+        while (!(res = parseLoop()));
+        if (res == -1) break;
+
+        mailHeader *lastone = NULL;
+        imapCache *cache;
+        cache = getLastHandled ();
+        if (cache)
+          lastone = cache->getHeader ();
+
+        if (!cmd->isComplete ())
         {
-          if (aEnum == ITYPE_BOX || aEnum == ITYPE_DIR_AND_BOX)
+          kdDebug(7116) << "IMAP4::get - got " << lastone << " from client" << endl;
+          if (lastone && ((aSection.find ("BODYSTRUCTURE", 0, false) != -1)
+                    || (aSection.find ("ENVELOPE", 0, false) != -1)
+                    || (aSection.find ("BODY.PEEK[0]", 0, false) != -1
+                        && (aEnum == ITYPE_BOX || aEnum == ITYPE_DIR_AND_BOX))))
           {
-            // write the mime header (default is here message/rfc822)
-            outputLine ("--IMAPDIGEST\r\n");
-            if (cache->getUid () != 0)
-              outputLineStr ("X-UID: " +
-                             QString ().setNum (cache->getUid ()) + "\r\n");
-            if (cache->getSize () != 0)
-              outputLineStr ("X-Length: " +
-                             QString ().setNum (cache->getSize ()) + "\r\n");
-            if (cache->getDate ()->tm_year != 0)
-              outputLineStr ("X-Date: " + cache->getDateStr () + "\r\n");
-            if (cache->getFlags () != 0)
-              outputLineStr ("X-Flags: " +
-                             QString ().setNum (cache->getFlags ()) + "\r\n");
-            outputLine ("\r\n");
+            if (aEnum == ITYPE_BOX || aEnum == ITYPE_DIR_AND_BOX)
+            {
+              // write the mime header (default is here message/rfc822)
+              outputLine ("--IMAPDIGEST\r\n");
+              if (cache->getUid () != 0)
+                outputLineStr ("X-UID: " +
+                               QString ().setNum (cache->getUid ()) + "\r\n");
+              if (cache->getSize () != 0)
+                outputLineStr ("X-Length: " +
+                               QString ().setNum (cache->getSize ()) + "\r\n");
+              if (cache->getDate ()->tm_year != 0)
+                outputLineStr ("X-Date: " + cache->getDateStr () + "\r\n");
+              if (cache->getFlags () != 0)
+                outputLineStr ("X-Flags: " +
+                               QString ().setNum (cache->getFlags ()) + "\r\n");
+              outputLine ("\r\n");
+            }
+            lastone->outputPart (*this);
           }
-          lastone->outputPart (*this);
         }
       }
-    }
-    while (!cmd->isComplete ());
-    if (aEnum == ITYPE_BOX || aEnum == ITYPE_DIR_AND_BOX)
-    {
-      // write the end boundary
-      outputLine ("--IMAPDIGEST--\r\n");
-    }
+      while (!cmd->isComplete ());
+      if (aEnum == ITYPE_BOX || aEnum == ITYPE_DIR_AND_BOX)
+      {
+        // write the end boundary
+        outputLine ("--IMAPDIGEST--\r\n");
+      }
 
-    completeQueue.removeRef (cmd);
+      completeQueue.removeRef (cmd);
+    }
   }
 
   // just to keep everybody happy when no data arrived
@@ -1646,10 +1665,15 @@ IMAP4Protocol::assureBox (const QString & aBox, bool readonly)
 
   if (aBox != getCurrentBox ())
   {
+    cmd = doCommand(imapCommand::clientStatus(aBox, "UIDNEXT"));
+    completeQueue.removeRef (cmd);
     // open the box with the appropriate mode
     kdDebug(7116) << "IMAP4Protocol::assureBox - opening box" << endl;
+    selectInfo = imapInfo();
     cmd = doCommand (imapCommand::clientSelect (aBox, readonly));
     completeQueue.removeRef (cmd);
+    if (!selectInfo.uidNextAvailable())
+      selectInfo.setUidNext(getStatus().uidNext());
   }
   else
   {
@@ -1665,6 +1689,7 @@ IMAP4Protocol::assureBox (const QString & aBox, bool readonly)
     {
       // reopen the box with the appropriate mode
       kdDebug(7116) << "IMAP4Protocol::assureBox - reopening box" << endl;
+      selectInfo = imapInfo();
       cmd = doCommand (imapCommand::clientSelect (aBox, readonly));
       completeQueue.removeRef (cmd);
     }
