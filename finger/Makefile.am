@@ -6,11 +6,11 @@ LDFLAGS = $(all_libraries) $(KDE_RPATH)
 
 ####### Files
 
-bin_PROGRAMS = YAfinger
+bin_PROGRAMS = KDEfinger
 
-YAfinger_SOURCES = YAfinger.cpp KDEfinger.cpp fingerSocket.cpp
-YAfinger_LDFLAGS = $(all_libraries) $(KDE_RPATH)
-YAfinger_LDADD = $(LIB_KFILE)   
+KDEfinger_SOURCES = KDEfingerMain.cpp KDEfinger.cpp fingerSocket.cpp
+KDEfinger_LDFLAGS = $(all_libraries) $(KDE_RPATH)
+KDEfinger_LDADD = $(LIB_KFILE)   
 
 lib_LTLIBRARIES = kio_finger.la
 
@@ -23,8 +23,23 @@ noinst_HEADERS = kio_finger.h KDEfinger.h fingerSocket.h
 kdelnk_DATA = finger.protocol
 kdelnkdir = $(kde_servicesdir)
 
-data_DATA = finger.pl fingerHead fingerTail
+data_DATA = finger.pl fingerHead.template fingerTail konqi.png
 datadir = $(kde_datadir)/kfinger/kio_finger
 EXTRA_DIST=$(data_DATA)   
 
 METASOURCES = AUTO
+
+messages:
+	$(XGETTEXT) $(kfinger_SOURCES) -o $(podir)/kio_finger.pot
+
+#Problem: The paths to pictures in the templates are static. We must adjust 
+#them to reflect the directory where they are installed.
+install-data-local:
+	@echo
+	@echo "Setting up the templates"
+	@echo
+	@echo "Problem: The paths to pictures in the templates are static." 
+	@echo "We must adjust them to reflect the directory where they are installed."
+	@(perl setupTemplates.pl $(kde_datadir)/kfinger/kio_finger)
+	@echo
+	@echo "done"
