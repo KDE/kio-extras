@@ -75,7 +75,7 @@
 #include "fish.h"
 #include "fishcode.h"
 
-#if 1
+#if 0
 #define myDebug(x) kdDebug() << __LINE__ << ": " x
 #define connected() do{myDebug( << "_______ emitting connected()" << endl); connected();}while(0)
 #define dataReq() do{myDebug( << "_______ emitting dataReq()" << endl); dataReq();}while(0)
