@@ -1952,7 +1952,6 @@ static char *scan_request(char *c)
 	    {
 		/* FILE *f; */
 		struct stat stbuf;
-		int l = 0;
 		char *buf;
 		char *name=NULL;
 		curpos=0;
@@ -1969,27 +1968,23 @@ static char *scan_request(char *c)
 		*c='\0';
 		scan_troff(h,1, &name);
 		if (name[3]=='/') h=name+3; else h=name;
-		if (stat(h, &stbuf)!=-1) l=stbuf.st_size;
-                {
-		    /* this works alright, except for section 3 */
-		    buf=read_man_page(h);
-		    if (!buf) {
+                /* this works alright, except for section 3 */
+                buf=read_man_page(h);
+                if (!buf) {
 
-			fprintf(stderr, "man2html: unable to open or read file %s.\n",
-				h);
-			out_html("<BLOCKQUOTE>"
-				 "man2html: unable to open or read file.\n");
-			out_html(h);
-			out_html("</BLOCKQUOTE>\n");
-		    }
-		    else {
-			buf[0]=buf[l]='\n';
-			buf[l+1]=buf[l+2]='\0';
-			scan_troff(buf+1,0,NULL);
-		    }
-		    if (buf) delete [] buf;
-		    if (name) delete [] name;
-		}
+                    fprintf(stderr, "man2html: unable to open or read file %s.\n",
+                            h);
+                    out_html("<BLOCKQUOTE>"
+                             "man2html: unable to open or read file.\n");
+                    out_html(h);
+                    out_html("</BLOCKQUOTE>\n");
+                }
+                else {
+                    scan_troff(buf+1,0,NULL);
+                }
+                if (buf) delete [] buf;
+                if (name) delete [] name;
+
 		*c++='\n';
 		break;
 	    }

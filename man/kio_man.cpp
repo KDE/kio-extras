@@ -188,7 +188,14 @@ char *MANProtocol::readManPage(const char *_filename)
     fd->close();
     delete fd;
     delete f;
-    return qstrdup(text.data());
+
+    int l = text.length();
+    char *buf = new char[l + 4];
+    memcpy(buf + 1, text.data(), l);
+    buf[0]=buf[l]='\n';
+    buf[l+1]=buf[l+2]='\0';
+
+    return buf;
 }
 
 void MANProtocol::outputError(const QString& errmsg)
