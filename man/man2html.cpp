@@ -151,6 +151,7 @@ using namespace std;
 #define BD_INDENT   2
 
 //static char *sections = "123456789nl";
+static int mandoc_name_count = 0; /* Don't break on the first Nm */
 
 static char *stralloc(int len)
 {
@@ -3021,14 +3022,13 @@ static char *scan_request(char *c)
 	    static char mandoc_name[NULL_TERMINATED(SMALL_STR_MAX)] = "";
 	    trans_char(c,'"','\a');
 	    c=c+j;
-            static int count = 0; /* Don't break on the first Nm */
 
-	    if (mandoc_synopsis && count) {    /* Break lines only in the Synopsis.
+	    if (mandoc_synopsis && mandoc_name_count) {    /* Break lines only in the Synopsis.
                                                 * The Synopsis section seems to be treated
                                                 * as a special case - Bummer!
                                                 */
                 out_html("<BR>");
-            } else if (!count) {
+            } else if (!mandoc_name_count) {
                 const char *nextbreak = strchr(c, '\n');
                 const char *nextspace = strchr(c, ' ');
                 if (nextspace < nextbreak)
@@ -3038,7 +3038,7 @@ static char *scan_request(char *c)
                     strlimitcpy(mandoc_name, c, nextbreak - c, SMALL_STR_MAX);
                 }
             }
-            count++;
+            mandoc_name_count++;
 
 	    out_html(change_to_font('B'));
 	    while (*c == ' '|| *c == '\t') c++;
@@ -3522,7 +3522,7 @@ void scan_man_page(const char *man_page)
     curpos=0;
 
     argument = 0;
-
+    mandoc_name_count = 0;
 }
 
 #ifdef SIMPLE_MAN2HTML
