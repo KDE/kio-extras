@@ -159,7 +159,7 @@ permanentFlagsAvailable_ (false), readWriteAvailable_ (false)
 
         kdDebug(7116) << "Checking permFlags from " << flagsStart << " to " << flagsEnd << endl;
         if ((-1 != flagsStart) && (-1 != flagsEnd) && flagsStart < flagsEnd)
-          setPermanentFlags (_flags (line.mid (flagsStart, flagsEnd)));
+          setPermanentFlags (_flags (line.mid (flagsStart, flagsEnd).latin1()));
 
       }
       else if (tokens[2] == "[READ-WRITE")
@@ -187,7 +187,7 @@ permanentFlagsAvailable_ (false), readWriteAvailable_ (false)
         find (')');
 
       if ((-1 != flagsStart) && (-1 != flagsEnd) && flagsStart < flagsEnd)
-        setFlags (_flags (line.mid (flagsStart, flagsEnd)));
+        setFlags (_flags (line.mid (flagsStart, flagsEnd).latin1() ));
     }
     else
     {
@@ -204,15 +204,7 @@ permanentFlagsAvailable_ (false), readWriteAvailable_ (false)
 
 }
 
-ulong imapInfo::_flags (const QString & flagsString)
-{
-  QString
-    ignore;
-
-  return _flags (flagsString, ignore);
-}
-
-ulong imapInfo::_flags (const QString & inFlags, QString & userflags)
+ulong imapInfo::_flags (const QCString & inFlags)
 {
   ulong
     flags =
@@ -220,8 +212,7 @@ ulong imapInfo::_flags (const QString & inFlags, QString & userflags)
   QString
     entry;
   parseString flagsString;
-  flagsString.data.duplicate(inFlags.latin1(), inFlags.length());
-  userflags = "";
+  flagsString.data.duplicate(inFlags.data(), inFlags.length());
 
   if (flagsString[0] == '(')
     flagsString.pos++;
@@ -246,8 +237,6 @@ ulong imapInfo::_flags (const QString & inFlags, QString & userflags)
       flags ^= User;
     else if (entry.isEmpty ())
       flagsString.clear();
-    else
-      userflags += entry + " ";
   }
 
   return flags;

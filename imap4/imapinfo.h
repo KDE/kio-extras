@@ -49,8 +49,7 @@ public:
     imapInfo (const imapInfo &);
     imapInfo & operator = (const imapInfo &);
 
-  static ulong _flags (const QString &, QString &);
-  static ulong _flags (const QString &);
+  static ulong _flags (const QCString &);
 
   void setCount (ulong l)
   {
@@ -88,7 +87,7 @@ public:
     flags_ = l;
   }
 
-  void setFlags (const QString & inFlag)
+  void setFlags (const QCString & inFlag)
   {
     flagsAvailable_ = true;
     flags_ = _flags (inFlag);
@@ -100,7 +99,7 @@ public:
     permanentFlags_ = l;
   }
 
-  void setPermanentFlags (const QString & inFlag)
+  void setPermanentFlags (const QCString & inFlag)
   {
     permanentFlagsAvailable_ = true;
     permanentFlags_ = _flags (inFlag);
