@@ -103,23 +103,13 @@ SmbProtocol::~SmbProtocol()
 }
 
 // Uses this function to get information in the url
-void SmbProtocol::openConnection(const QString& host, int ip, const QString& user, const QString& pass)
+void SmbProtocol::setHost(const QString& host, int ip, const QString& user, const QString& pass)
 {
-	kDebugInfo( 7106, "in open connection method");
+	kDebugInfo( 7106, "in set host method");
 	currentHost=host;
 	currentIP=ip;
 	currentUser=user;
 	currentPass=pass;
-	connected();
-}
-
-void SmbProtocol::closeConnection()
-{
-	kDebugInfo( 7106, "in close connection method");
-	currentHost=QString::null;
-	currentIP=QString::null;
-	currentUser=QString::null;
-	currentPass=QString::null;
 }
 
 QString SmbProtocol::buildFullLibURL(const QString &pathArg)

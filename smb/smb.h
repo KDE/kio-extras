@@ -15,8 +15,7 @@ public:
 	virtual ~SmbProtocol();
 
 	// Uses this function to get information in the url
-	virtual void openConnection(const QString& host, int ip, const QString& user, const QString& pass);
-	virtual void closeConnection();
+	virtual void setHost(const QString& host, int ip, const QString& user, const QString& pass);
 
 	virtual void get( const QString& path, const QString& query, bool reload );
 	virtual void put( const QString& path, int _mode,
