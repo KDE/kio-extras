@@ -16,6 +16,7 @@ class FileProtocol : public IOProtocol
 {
 public:
   FileProtocol( Connection *_conn );
+//   virtual ~FileProtocol() { }
   
   virtual void slotGet( const char *_url );
   virtual void slotGetSize( const char *_url );
@@ -25,8 +26,8 @@ public:
 
   virtual void slotMkdir( const char *_url, int _mode );
 
-  virtual void slotCopy( const char*, const char *_dest );
-  virtual void slotCopy( list<string>&, const char *_dest );
+  virtual void slotCopy( const char *_source, const char *_dest );
+  virtual void slotCopy( list<string>& _source, const char *_dest );
 
   virtual void slotMove( const char *_source, const char *_dest );
   virtual void slotMove( list<string>& _source, const char *_dest );
@@ -64,10 +65,12 @@ protected:
     ino_t m_ino;
   };
   
-  void doCopy( list<string>&, const char *_dest, bool _rename, bool _move = false );
+  void doCopy( list<string>& _source, const char *_dest, bool _rename, bool _move = false );
 
-  long listRecursive( const char *_path, list<Copy>& _files, list<CopyDir>& _dirs, bool _rename );
-  long listRecursive2( const char *_abs_path, const char *_rel_path, list<Copy>& _files, list<CopyDir>& _dirs );
+  long listRecursive( const char *_path, list<Copy>& _files,
+		      list<CopyDir>& _dirs, bool _rename );
+  long listRecursive2( const char *_abs_path, const char *_rel_path,
+		       list<Copy>& _files, list<CopyDir>& _dirs );
 
   int m_cmd;
   bool m_bIgnoreJobErrors;

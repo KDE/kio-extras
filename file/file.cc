@@ -7,8 +7,8 @@
 
 #include <stdio.h>
 #include <signal.h>
-#include <sys/types.h>
 #include <errno.h>
+#include <sys/types.h>
 #include <sys/wait.h>
 #include <sys/stat.h>
 #ifdef HAVE_SYS_TIME_H
@@ -29,7 +29,6 @@
 string testLogFile( const char *_filename );
 int check( Connection *_con );
 
-int doit();
 void sig_handler( int );
 void sig_handler2( int );
 
@@ -42,20 +41,21 @@ int main( int argc, char **argv )
   
   debug( "kio_file : Starting");
 
-  if ( !doit() )
-  {
-    debug( "kio_file : Could not do it :-(");
-    exit(1);
-  }
+  Connection parent( 0, 1 );
+  
+  FileProtocol file( &parent );
+  file.dispatchLoop();
 
   debug( "kio_file : Done" );
 }
+
 
 void sig_handler2( int )
 {
   debug( "kio_file : ###############SEG FILE#############" );
   exit(1);
 }
+
 
 void sig_handler( int )
 {
@@ -74,15 +74,6 @@ void sig_handler( int )
       return;
     }
   }
-}
-
-int doit()
-{
-  Connection parent( 0, 1 );
-  
-  FileProtocol file( &parent );
-  file.dispatchLoop();
-  return 1;
 }
 
 
@@ -363,14 +354,17 @@ void FileProtocol::doCopy( list<string>& _source, const char *_dest, bool _renam
   for( ; dit != dirs.end(); dit++ )
   {
     string tmp2 = dit->m_strRelDest;
-    dit->m_strRelDest = tmp1;
+    if ( _rename )
+      dit->m_strRelDest = tmp1_stripped;
+    else
+      dit->m_strRelDest = tmp1;
     dit->m_strRelDest += tmp2;
   }
   list<Copy>::iterator fit = files.begin();
   for( ; fit != files.end(); fit++ )
   {
     string tmp2 = fit->m_strRelDest;
-    if ( _rename && fit->m_strRelDest == "" )
+    if ( _rename ) // !!! && fit->m_strRelDest == "" )
       fit->m_strRelDest = tmp1_stripped;
     else
       fit->m_strRelDest = tmp1;
@@ -731,7 +725,7 @@ void FileProtocol::doCopy( list<string>& _source, const char *_dest, bool _renam
       int n = fread( buffer, 1, 2048, f );
 
       // !!! slow down loop for local testing
-      for ( int tmpi = 0; tmpi < 800000; tmpi++ ) ;
+//       for ( int tmpi = 0; tmpi < 800000; tmpi++ ) ;
 
       job.data( buffer, n );
       processed_size += n;
@@ -785,7 +779,6 @@ void FileProtocol::doCopy( list<string>& _source, const char *_dest, bool _renam
   }
 
   finished();
-
   m_cmd = CMD_NONE;
 }
 
@@ -869,7 +862,6 @@ void FileProtocol::slotGet( const char *_url )
     speed( processed_size / ( t - t_start ) );
 
   finished();
-
   m_cmd = CMD_NONE;
 }
 
@@ -915,7 +907,6 @@ void FileProtocol::slotGetSize( const char *_url )
   totalSize( buff.st_size );  
   
   finished();
-
   m_cmd = CMD_NONE;
 }
 
@@ -1495,7 +1486,7 @@ long FileProtocol::listRecursive( const char *_path, list<Copy>& _files, list<Co
   // The source is a directory. So we have to go into recursion here.
   string tmp1;
   if ( _rename )
-    tmp1 = u.path( 1 );
+    tmp1 = u.path( 0 );
   else
   {    
     tmp1 = u.directory( true );
@@ -1522,6 +1513,7 @@ long FileProtocol::listRecursive2( const char *_abs_path, const char *_rel_path,
 {
   long size = 0;
   
+  cerr << "listRecursive2 " << _abs_path << "  " << _rel_path << endl;
   string p = _abs_path;
   p += _rel_path;
 
@@ -1555,7 +1547,8 @@ long FileProtocol::listRecursive2( const char *_abs_path, const char *_rel_path,
     }
 
     string tmp = _rel_path;
-    tmp += "/";
+//     if ( tmp != "" )
+      tmp += "/";
     tmp += ep->d_name;
   
     if ( !S_ISDIR( buff.st_mode ) )
@@ -1668,10 +1661,6 @@ string testLogFile( const char *_filename )
   return result;
 }
 
-void openFileManagerWindow( const char * )
-{
-  assert( 0 );
-}
 
 int check( Connection *_con )
 {
@@ -1692,4 +1681,10 @@ again:
     return 1;
   
   return 0;
+}
+
+
+void openFileManagerWindow( const char * )
+{
+  assert( 0 );
 }
