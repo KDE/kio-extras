@@ -120,7 +120,7 @@ static bool createWizardEntry(KIO::UDSEntry &entry)
 		return false;
 	}
 
-	addAtom(entry, KIO::UDS_NAME, 0, i18n("New Remote Folder"));
+	addAtom(entry, KIO::UDS_NAME, 0, i18n("Add a Network Folder"));
 	addAtom(entry, KIO::UDS_FILE_TYPE, S_IFREG);
 	addAtom(entry, KIO::UDS_URL, 0, url.url());
 	addAtom(entry, KIO::UDS_ACCESS, 0500);
