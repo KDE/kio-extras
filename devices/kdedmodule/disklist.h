@@ -28,6 +28,7 @@
 #include <kdebug.h>
 #include <kconfig.h>
 #include <klocale.h>
+#include <qregexp.h>
 //#include <kcontrol.h>
 
 // defines the os-type
@@ -123,6 +124,7 @@ signals:
 public slots:
   void loadSettings();
   void applySettings();
+  void loadExclusionLists();
    
 private slots:
    void receivedDFStdErrOut(KProcess *, char *data, int len);
@@ -131,13 +133,14 @@ private slots:
 private: 
   void replaceDeviceEntry(DiskEntry *disk);
   void replaceDeviceEntryMounted(DiskEntry *disk);
+  bool ignoreDisk(DiskEntry *disk);
 
   Disks            *disks;
   KProcess         *dfProc;
   QString           dfStringErrOut;
   bool              readingDFStdErrOut;
   KConfig           *config;
- 
+  QPtrList<QRegExp> mountPointExclusionList; 
 };
 /***************************************************************************/
 

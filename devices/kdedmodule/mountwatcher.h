@@ -63,9 +63,12 @@ k_dcop:
     bool    mounted(QString name);
     QStringList basicList();
     QStringList basicDeviceInfo(QString);
+    QStringList basicDeviceInfoForMountPoint(QString);
     void addSpecialDevice(const QString& uniqueIdentifier, const QString& description,
 			 const QString& URL, const QString& mimetype,bool mountState);
+    void removeSpecialDevice(const QString& uniqueIdentifier);
     bool createLink(const KURL& deviceURL, const KURL& destinationURL);
+    void reloadExclusionLists();
 k_dcop_signals:
     void mountSituationChaged();
 

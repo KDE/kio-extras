@@ -42,6 +42,9 @@
 DiskList::DiskList(QObject *parent, const char *name)
     : QObject(parent,name)
 {
+  mountPointExclusionList.setAutoDelete(true);
+  loadExclusionLists();
+
   /*
 #ifdef _OS_LINUX_
   kdDebug() << "_OS_LINUX_" << endl;
@@ -120,6 +123,16 @@ void DiskList::applySettings()
  config->setGroup(oldgroup);
 }
 
+void DiskList::loadExclusionLists()
+{
+  QString val;
+  KConfig cfg("mountwatcher");
+  cfg.setGroup("mountpoints");
+  for (int i=0;(!(val=cfg.readEntry(QString("exclude%1").arg(i),"")).isEmpty());i++)
+	  mountPointExclusionList.append(new QRegExp(val));
+}
+
+
 
 /***************************************************************************
   * reads the KConfig for special mount/umount scripts
@@ -185,14 +198,7 @@ QFile f(FSTAB);
          disk->setMountOptions(s.left(s.find(BLANK)) );
             s=s.remove(0,s.find(BLANK)+1 );
 	    //kdDebug() << "    Mount-Options: [" << disk->mountOptions() << "]" << endl;
-         if ( (disk->deviceName() != "none")
-	      && (disk->fsType() != "swap")
-	      && (disk->fsType() != "tmpfs")
-	      && (disk->deviceName() != "tmpfs")
-	      && (disk->mountPoint() != "/dev/swap")
-	      && (disk->mountPoint() != "/dev/pts")
-	      && (disk->mountPoint().find("/proc") != 0)
-	      && (disk->deviceName().find("shm") == -1  ))
+	 if (!ignoreDisk(disk))
 	   replaceDeviceEntry(disk);
          else
            delete disk;
@@ -207,6 +213,37 @@ QFile f(FSTAB);
   //  kdDebug() << "DiskList::readFSTAB DONE" << endl;
   return 1;
 }
+
+bool DiskList::ignoreDisk(DiskEntry *disk)
+{
+	bool ignore;
+	if ( (disk->deviceName() != "none")
+	      && (disk->fsType() != "swap")
+	      && (disk->fsType() != "tmpfs")
+	      && (disk->deviceName() != "tmpfs")
+	      && (disk->mountPoint() != "/dev/swap")
+	      && (disk->mountPoint() != "/dev/pts")
+	      && (disk->mountPoint().find("/proc") != 0)
+	      && (disk->deviceName().find("shm") == -1  ))
+		ignore=false;
+	else
+		ignore=true;
+
+	if (!ignore) {
+		for (QRegExp *exp=mountPointExclusionList.getFirst();exp;exp=mountPointExclusionList.next())
+		{
+			kdDebug()<<"TRYING TO DO A REGEXP SEARCH"<<endl;
+			if (exp->search(disk->mountPoint())!=-1) 
+			{
+				kdDebug()<<"IGNORING BECAUSE OF REGEXP SEARCH"<<endl;
+				return true;
+			}
+		}
+	}
+
+	return ignore;
+}		
+
 
 
 /***************************************************************************
@@ -320,15 +357,9 @@ void DiskList::dfDone()
       s=s.remove(0,s.find(BLANK)+1 );
       //kdDebug() << "    MountPoint:       [" << disk->mountPoint() << "]" << endl;
 
-      if ( (disk->kBSize() > 0)
-	   && (disk->deviceName() != "none")
-	   && (disk->fsType() != "swap")
-	   && (disk->fsType() != "tmpfs")
-	   && (disk->deviceName() != "tmpfs")
-	   && (disk->mountPoint() != "/dev/swap")
-	   && (disk->mountPoint() != "/dev/pts")
-	   && (disk->mountPoint().find("/proc") != 0 )
-	   && (disk->deviceName().find("shm") == -1  ) ) {
+      if ( (disk->kBSize() > 0) &&
+		(!ignoreDisk(disk)))
+	   {
         disk->setMounted(TRUE);    // its now mounted (df lists only mounted)
 	replaceDeviceEntryMounted(disk);
       } else

@@ -103,12 +103,21 @@ QString  MountWatcherModule::type(int id)
 
 bool   MountWatcherModule::mounted(int id)
 {
+	if (!mDiskList.at(id)) return false;
 	return mDiskList.at(id)->mounted();
 }
 
 bool   MountWatcherModule::mounted(QString name)
 {
 	return (name=="//ide1/MP3")?true:false;
+}
+
+void MountWatcherModule::reloadExclusionLists()
+{
+	mDiskList.loadExclusionLists();
+	mDiskList.readFSTAB();
+	mDiskList.readDF();
+
 }
 
 void MountWatcherModule::dirty(const QString& str)
@@ -157,6 +166,35 @@ QStringList MountWatcherModule::basicDeviceInfo(QString name)
 	return tmp;
 }
 
+QStringList MountWatcherModule::basicDeviceInfoForMountPoint(QString mountpoint)
+{
+	QStringList tmp;
+	for (QStringList::Iterator it=mountList.begin();it!=mountList.end();)
+	{	
+		QString name=(*it);++it;
+		QString description=(*it); ++it;
+		QString device=(*it); ++it;
+		if ((*it)==mountpoint)
+		{
+			tmp<<description<<device;
+			do
+			{
+				tmp<<(*it);
+				++it;
+			}
+			while ((it!=mountList.end()) && ((*it)!="---"));
+			++it;
+		}
+		else
+		{
+			kdDebug()<<(*it)<<"!="<<mountpoint<<endl;
+			while ((it!=mountList.end()) && ((*it)!="---"))	++it;
+			++it;
+		}
+	}
+	return tmp;
+}
+
 
 void MountWatcherModule::addSpecialDevice(const QString& uniqueIdentifier, const QString& description,
  const QString& URL, const QString& mimetype,bool mountState)
@@ -171,8 +209,15 @@ void MountWatcherModule::addSpecialDevice(const QString& uniqueIdentifier, const
 	readDFDone();
 }
 
+void MountWatcherModule::removeSpecialDevice(const QString& uniqueIdentifier)
+{
+	mEntryMap.remove(uniqueIdentifier);
+	readDFDone();
+}
+
 void MountWatcherModule::readDFDone()
 {
+	QStringList oldmountList(mountList);
 	mountList.clear();
 	KURL::List fileList;
 	for (DiskEntry *ent=mDiskList.first();ent;ent=mDiskList.next())
@@ -220,9 +265,28 @@ void MountWatcherModule::readDFDone()
 		mountList<<"---";
 
 	}
+	bool triggerUpdate=false;
+	if (mountList.count()!=oldmountList.count()) triggerUpdate=true;
+	else
+	{
+		QStringList::iterator it1=mountList.begin();
+		QStringList::iterator it2=oldmountList.begin();
+		while (it1!=mountList.end())
+		{
+			if ((*it1)!=(*it2)) {
+				triggerUpdate=true;
+				break;
+			}
+			++it1;
+			++it2;
+		}
+	}
 
-        KDirNotify_stub allDirNotify("*", "KDirNotify*");
-        allDirNotify.FilesAdded( "devices:/" );
+	if (triggerUpdate)
+	{
+	        KDirNotify_stub allDirNotify("*", "KDirNotify*");
+	        allDirNotify.FilesAdded( "devices:/" );
+	}
 }
 
 bool MountWatcherModule::createLink(const KURL& deviceURL, const KURL& destinationURL)
