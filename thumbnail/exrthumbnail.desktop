@@ -1,0 +1,8 @@
+[Desktop Entry]
+Encoding=UTF-8
+Type=Service
+Name=EXR Images
+ServiceTypes=ThumbCreator
+MimeTypes=image/x-exr
+X-KDE-Library=exrthumbnail
+CacheThumbnail=true
