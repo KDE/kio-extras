@@ -49,7 +49,7 @@ private:
 };
 
 extern "C" {
-	int kdemain( int, char **argv )
+	KDE_EXPORT int kdemain( int, char **argv )
 	{
 	  kdDebug() << "kdemain for settings kioslave" << endl;
 	  KInstance instance( "kio_settings" );

@@ -28,7 +28,7 @@
 
 extern "C"
 {
-    ThumbCreator *new_creator()
+    KDE_EXPORT ThumbCreator *new_creator()
     {
         KImageIO::registerFormats();
         return new ImageCreator;

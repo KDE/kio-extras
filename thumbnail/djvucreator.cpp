@@ -39,6 +39,7 @@
 #include <qfile.h>
 #include <qimage.h>
 
+#include <kdemacros.h>
 
 #include "djvucreator.h"
 
@@ -46,7 +47,7 @@
 
 extern "C"
 {
-    ThumbCreator *new_creator()
+    KDE_EXPORT ThumbCreator *new_creator()
     {
         return new DjVuCreator;
     }

@@ -43,7 +43,7 @@ static const QString defaultRefreshRate = "60";
 
 extern "C"
 {
-  int kdemain( int argc, char **argv )
+  KDE_EXPORT int kdemain( int argc, char **argv )
   {
     KInstance instance( "kio_finger" );
 

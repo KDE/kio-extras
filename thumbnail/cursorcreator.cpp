@@ -20,6 +20,8 @@
 #include <qimage.h>
 #include <qfile.h>
 
+#include <kdemacros.h>
+
 #include "cursorcreator.h"
 
 #include <X11/Xlib.h>
@@ -27,7 +29,7 @@
 
 extern "C"
 {
-    ThumbCreator *new_creator()
+    KDE_EXPORT ThumbCreator *new_creator()
     {
         return new CursorCreator;
     }
