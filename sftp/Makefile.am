@@ -1,7 +1,7 @@
 ## Makefile.am of kdebase/kioslave/sftp
 
 INCLUDES = $(all_includes)
-LDFLAGS = $(all_libraries) $(KDE_RPATH)
+AM_LDFLAGS = $(all_libraries) $(KDE_RPATH)
 METASOURCES = AUTO
 
 ####### Files

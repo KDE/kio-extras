@@ -1,7 +1,7 @@
 ## Makefile.am of kdebase/kioslave/floppy
 
 INCLUDES= $(all_includes)
-LDFLAGS = $(all_libraries) $(KDE_RPATH)
+AM_LDFLAGS = $(all_libraries) $(KDE_RPATH)
 
 ####### Files
 
