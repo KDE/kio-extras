@@ -23,6 +23,7 @@
 #include <klocale.h>
 #include <kapplication.h>
 #include <kcmdlineargs.h>
+#include <dcopclient.h>
 
 #include <qeventloop.h>
 
@@ -46,7 +47,7 @@ extern "C" {
 		KCmdLineArgs::addCmdLineOptions( options );
 		KApplication app( false, false );
 		// We want to be anonymous even if we use DCOP
-		//app.dcopClient()->attach();
+		app.dcopClient()->attach();
 
 		KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
 		SystemProtocol slave( args->arg(0), args->arg(1), args->arg(2) );
