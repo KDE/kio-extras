@@ -294,7 +294,6 @@ void sftpFileAttr::clear(){
     mFlags = 0;
     mLongname = "\0";
     mLinkType = 0;
-    mEncoding = "\0";
 }
 
 /** Return the size of the sftp attribute. */
