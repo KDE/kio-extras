@@ -41,7 +41,7 @@
 #include "kio_man.h"
 #include "kio_man.moc"
 #include <zlib.h>
-#include <man2html.h>
+#include "man2html.h"
 #include <assert.h>
 #include <kfilterbase.h>
 #include <kfilterdev.h>

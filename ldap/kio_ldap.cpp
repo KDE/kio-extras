@@ -18,8 +18,8 @@
 #include <lber.h>
 #include <ldap.h>
 #include <kdebug.h>
-#include <kldap.h>
-#include <kldapurl.h>
+#include "kldap.h"
+#include "kldapurl.h"
 #include <kinstance.h>
 
 #include "kio_ldap.h"
@@ -57,7 +57,7 @@ int kdemain(int argc, char **argv)
  * Initialize the ldap slave
  */
 LDAPProtocol::LDAPProtocol(const QCString &pool, const QCString &app)
-  : SlaveBase( "ldap", pool, app) 
+  : SlaveBase( "ldap", pool, app)
 {
     kdDebug(7125) << "LDAPProtocol::LDAPProtocol" << endl;
 }
@@ -105,11 +105,11 @@ void LDAPProtocol::get(const KURL &url)
 
   // Check for connection errors
   if( c.handle() == 0 ) {
-    switch( errno ) {      
+    switch( errno ) {
     case ECONNREFUSED:
       error( ERR_COULD_NOT_CONNECT, _url );
       return;
-    default: 
+    default:
       error( ERR_UNKNOWN_HOST, _url );
       return;
     }
@@ -133,7 +133,7 @@ void LDAPProtocol::get(const KURL &url)
     case LDAP_TIMELIMIT_EXCEEDED:
     case LDAP_SIZELIMIT_EXCEEDED:
       /* ... */
-      /* we try to ignore those */ 
+      /* we try to ignore those */
       break;
     }
   }
@@ -151,17 +151,17 @@ void LDAPProtocol::get(const KURL &url)
 
   // tell the length
   int processed_size = result.length();
-  totalSize(processed_size);  
+  totalSize(processed_size);
 
   // tell the contents of the URL
   QByteArray array;
   array.setRawData( result.data(), result.length() );
   data(array);
-  array.resetRawData( result.data(), result.length() );  
+  array.resetRawData( result.data(), result.length() );
   processedSize( processed_size );
   // tell we are finished
   data(QByteArray());
-  
+
   // tell we are finished
   finished();
 }
@@ -233,14 +233,14 @@ void LDAPProtocol::stat( const KURL &a_url )
   if (isQuery) {
     if (cnt > 1)
       atom.m_long = S_IFDIR;
-    else 
+    else
       atom.m_long = S_IFREG;
   } else if (isDir)
     atom.m_long = S_IFDIR;
-  else 
+  else
     atom.m_long = S_IFREG;
   entry.append(atom);
-  
+
   atom.m_uds = KIO::UDS_ACCESS;
   atom.m_long = isDir ? 0500 : 0400;
   entry.append(atom);
@@ -373,13 +373,13 @@ void LDAPProtocol::listDir(const KURL &url)
 	    name.remove(0,pos+1);
 	  atom.m_str = name;
 	  entry.append(atom);
-	  
+
 	  // the file type
 	  atom.m_uds = UDS_FILE_TYPE;
 	  atom.m_str = "";
 	  atom.m_long = S_IFDIR;
 	  entry.append(atom);
-	  
+
           atom.m_uds = KIO::UDS_ACCESS;
           atom.m_long = 0500;
           entry.append(atom);
@@ -415,7 +415,7 @@ void LDAPProtocol::listDir(const KURL &url)
   for (KLDAP::Entry e=search.first(); !search.end(); e=search.next())
     {
       entry.clear();
-      
+
       // the name
       int pos;
       atom.m_uds = UDS_NAME;
@@ -466,5 +466,5 @@ void LDAPProtocol::listDir(const KURL &url)
   listEntry(entry, true);
   processedSize(total+dirs);
   // we are done
-  finished();  
+  finished();
 }
