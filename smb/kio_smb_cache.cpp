@@ -59,7 +59,7 @@ bool SMBSlave::cache_get_AuthInfo(SMBAuthInfo& auth)
     AuthInfo kauth = cache_create_AuthInfo( auth );
     if( checkCachedAuthentication( kauth ) )
     {
-      //        kdDebug(KIO_SMB) << "found in password caching daemon" << endl;
+        kdDebug(KIO_SMB) << "found in password caching daemon" << endl;
         // extract domain
         if (kauth.username.contains(';')) {
           auth.m_domain = kauth.username.left(kauth.username.find(';')).local8Bit();
@@ -71,7 +71,7 @@ bool SMBSlave::cache_get_AuthInfo(SMBAuthInfo& auth)
         }
         auth.m_passwd = kauth.password.local8Bit();
         //store the info for later lookups
-        cache_set_AuthInfo( auth );
+	//  cache_set_AuthInfo( auth );
         return true;
     }
 
@@ -137,7 +137,20 @@ bool SMBSlave::cache_check_workgroup(const QString& workgroup)
 int SMBSlave::cache_stat(const SMBUrl& url, struct stat* st)
 {
     int result;
+DO_STAT:
     result = smbc_stat(url.toSmbcUrl(), st);
+    // if access denied, first open passDlg
+    if ((result !=0 && (errno == EPERM) || (errno ==  EACCES))) {
+      cache_clear_AuthInfo(m_current_workgroup);
+      SMBAuthInfo auth;
+      m_current_url.getAuthInfo(auth);
+      if (!authDlg(auth)) {
+	error(ERR_ACCESS_DENIED, m_current_url.toKioUrl());
+	return result;
+      }
+      else
+	goto DO_STAT;
+    }
     return result;
 }
 

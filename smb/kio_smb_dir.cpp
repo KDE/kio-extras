@@ -217,6 +217,7 @@ void SMBSlave::del( const KURL &kurl, bool isfile)
 
     if(isfile)
     {
+SMBC_DEL:
         // Delete file
         if(smbc_unlink(m_current_url.toSmbcUrl()) == -1)
         {
@@ -224,10 +225,19 @@ void SMBSlave::del( const KURL &kurl, bool isfile)
             {
             case EACCES:
             case EPERM:
-                error( KIO::ERR_ACCESS_DENIED, m_current_url.toKioUrl());
-                cache_clear_AuthInfo( m_current_workgroup );
-                break;
-
+	      cache_clear_AuthInfo(m_current_workgroup);
+	      // if access denied, first open passDlg
+	      if ((errno == EPERM) || (errno ==  EACCES)) {
+		SMBAuthInfo auth;
+		m_current_url.getAuthInfo(auth);
+		if (!authDlg(auth)) {
+		  error(ERR_ACCESS_DENIED, m_current_url.toKioUrl());
+		  return;
+		}
+		else
+		  goto SMBC_DEL;
+	      }
+	      break;
             case EISDIR:
                 error( KIO::ERR_IS_DIRECTORY, m_current_url.toKioUrl());
                 break;
@@ -267,16 +277,26 @@ void SMBSlave::mkdir( const KURL &kurl, int permissions )
     kdDebug(KIO_SMB) << "SMBSlave::mkdir on " << kurl.url() << endl;
     m_current_url.fromKioUrl( kurl );
 
+SMBC_MKDIR:
     if(smbc_mkdir(m_current_url.toSmbcUrl(), 0777) != 0)
     {
         switch(errno)
         {
         case EACCES:
         case EPERM:
-            error( KIO::ERR_ACCESS_DENIED, m_current_url.toKioUrl());
-            cache_clear_AuthInfo( m_current_workgroup );
-            break;
-
+	  cache_clear_AuthInfo(m_current_workgroup);
+	  // if access denied, first open passDlg
+ 	  if ((errno == EPERM) || (errno ==  EACCES)) {
+	    SMBAuthInfo auth;
+	    m_current_url.getAuthInfo(auth);
+	    if (!authDlg(auth)) {
+	      error(ERR_ACCESS_DENIED, m_current_url.toKioUrl());
+	      return;
+	    }
+	    else
+	      goto SMBC_MKDIR;
+	  }
+	  break;
         case EEXIST:
             if(cache_stat(m_current_url, &st ) == 0)
             {
