@@ -67,6 +67,9 @@ class SmbProtocol : public KIO::SlaveBase
       virtual void special( const QByteArray & );
 
    protected:
+      void readCommandEcho(ClientProcess *proc);
+      bool receivedTerminatingPrompt(bool shortVersion=false);
+      void waitForTerminatingPrompt(ClientProcess* proc, bool shortVersion=false);
       bool getAuth(KIO::AuthInfo& auth, const QString& server, const QString& wg, const QString& share, const QString& realm, const QString& user, bool& firstLoop);
 
       SmbReturnCode waitUntilStarted(ClientProcess *proc,const QString& password, const char* prompt);

@@ -248,7 +248,9 @@ int SmbProtocol::readOutput(int fd)
       memcpy(newBuffer, m_stdoutBuffer, m_stdoutSize);
    }
 
-   char *src=buffer;
+   memcpy(newBuffer+m_stdoutSize, buffer, length);
+
+/*   char *src=buffer;
    char *dest=newBuffer+m_stdoutSize;
    char currentC;
    for (int i=0; i<length; i++)
@@ -257,15 +259,13 @@ int SmbProtocol::readOutput(int fd)
       //something like *dest++=(*src=='\r'?'\n':*src++);
       currentC=*src;
       if (currentC=='\r')
-//         currentC='~';
          currentC='\n';
 
       *dest=currentC;
 
       dest++;
       src++;
-   }
-//   memcpy(newBuffer+m_stdoutSize, buffer, length);
+   }*/
 
    m_stdoutSize+=length;
    newBuffer[m_stdoutSize]='\0';
@@ -276,7 +276,7 @@ int SmbProtocol::readOutput(int fd)
    m_stdoutBuffer=newBuffer;
 
    //m_stdoutBuffer is definitely 0-terminated
-   if (m_usefulLineFound==false)
+/*   if (m_usefulLineFound==false)
    {
       char *tmpBuffer=m_stdoutBuffer;
       while (1)
@@ -310,7 +310,7 @@ int SmbProtocol::readOutput(int fd)
          if (*tmpBuffer=='\0')
             break;
       }
-   }
+   }*/
    return length;
 }
 
@@ -321,6 +321,47 @@ void SmbProtocol::clearBuffer()
       delete [] m_stdoutBuffer;
    m_stdoutBuffer=0;
    m_usefulLineFound=false;
+}
+
+void SmbProtocol::readCommandEcho(ClientProcess *proc)
+{
+   bool loopFinished(false);
+   //read the terminal echo
+   do
+   {
+      readOutput(proc->fd());
+      kdDebug(KIO_SMB)<<"Smb::readCommandEcho() read: -"<<m_stdoutBuffer<<"-"<<endl;
+      if (m_stdoutSize>0)
+         if (memchr(m_stdoutBuffer,'\n',m_stdoutSize)!=0)
+            loopFinished=true;
+   } while (!loopFinished);
+}
+
+bool SmbProtocol::receivedTerminatingPrompt(bool shortVersion)
+{
+   if (wasKilled())
+   {
+      finished();
+      return true;
+   }
+   if (m_stdoutSize<9)
+      return false;
+
+   if (shortVersion)
+   {
+      if (strstr(m_stdoutBuffer,"\nsmb: \\")!=0)
+         return true;
+      if (strstr(m_stdoutBuffer,"\rsmb: \\")!=0)
+         return true;
+   }
+   else
+   {
+      if (strstr(m_stdoutBuffer+m_stdoutSize-9,"\nsmb: \\> ")!=0)
+         return true;
+      if (strstr(m_stdoutBuffer+m_stdoutSize-9,"\rsmb: \\> ")!=0)
+         return true;
+   }
+   return false;
 }
 
 bool SmbProtocol::stopAfterError(const KURL& url, bool notSureWhetherErrorOccured, bool onlyCheckForExistance)
@@ -384,6 +425,11 @@ bool SmbProtocol::stopAfterError(const KURL& url, bool notSureWhetherErrorOccure
    {
       kdDebug(KIO_SMB)<<"stopAfterError() 9"<<endl;
       kdDebug(KIO_SMB)<<"Smb::stopAfterError() contains both, reporting error"<<endl;
+      error( KIO::ERR_DOES_NOT_EXIST, url.prettyURL());
+   }
+   else if ((outputString.contains("NT_STATUS_NO_SUCH_FILE"))  && (onlyCheckForExistance==false))
+   {
+      kdDebug(KIO_SMB)<<"stopAfterError() 9b"<<endl;
       error( KIO::ERR_DOES_NOT_EXIST, url.prettyURL());
    }
    else if (outputString.contains("Broken pipe"))
@@ -459,7 +505,7 @@ SmbProtocol::SmbReturnCode SmbProtocol::waitUntilStarted(ClientProcess *proc, co
                alreadyEnteredPassword=true;
             }
             //or whether it prints the prompt :-)
-            else if ((prompt!=0) && (strstr(m_stdoutBuffer+m_stdoutSize-12,"smb: \\>")!=0))
+            else if ((prompt!=0) && (strstr(m_stdoutBuffer+m_stdoutSize-10,"smb: \\>")!=0))
             {
                proc->startingFinished=true;
                return SMB_OK;
@@ -755,7 +801,8 @@ void SmbProtocol::listDir( const KURL& _url)
 To get a list of all hosts use lan:/ or rlan:/ .\n\
 See the KDE Control Center under Network, LANBrowsing for more information."));
       return;
-   };
+   }
+   clearBuffer();
 
    if (_url.url()=="smb:/")
    {
@@ -828,7 +875,9 @@ See the KDE Control Center under Network, LANBrowsing for more information."));
          readOutput(proc->fd());
 //         kdDebug(KIO_SMB)<<"Smb::listDir(): read: -"<<m_stdoutBuffer<<"-"<<endl;
          //don't search the whole buffer, only the last 12 bytes
-         if (m_stdoutSize>12)
+         if (receivedTerminatingPrompt())
+            loopFinished=true;
+/*         if (m_stdoutSize>12)
          {
             if ((strstr(m_stdoutBuffer+m_stdoutSize-12,"\nsmb: \\>")!=0) && (m_usefulLineFound==true))
 //            if (strstr(m_stdoutBuffer+m_stdoutSize-12,"\nsmb: \\>")!=0)
@@ -839,7 +888,7 @@ See the KDE Control Center under Network, LANBrowsing for more information."));
 //               loopFinished=true;
 //            if (strstr(m_stdoutBuffer+m_stdoutSize-12,"\rsmb: \\>")!=0)
 //               loopFinished=true;
-         }
+         }*/
       }
    } while (!loopFinished);
    kdDebug(KIO_SMB)<<"Smb::listDir(): reading done: -"<<m_stdoutBuffer<<"-"<<endl;
@@ -857,42 +906,22 @@ See the KDE Control Center under Network, LANBrowsing for more information."));
    int totalNumber(0);
    UDSEntry entry;
 
-//   int endOfLine=0;
    while (!output.atEnd())
-//   while (1)
    {
-/*      int eol=outputString.find('\n',endOfLine);
-      if (eol==-1)
-         eol=outputString.find('\r',endOfLine);
-      if (eol==-1)
-         break;
-
-      kdDebug(KIO_SMB)<<" eol: "<<eol<<" endOfLIne: "<<endOfLine<<endl;
-
-      line=outputString.mid(endOfLine,eol-endOfLine);
-      endOfLine=eol+1;*/
-
       line=output.readLine();
 
-//      kdDebug(KIO_SMB)<<"Smb::listDir(): line: -"<<line<<"-"<<endl;
-//      if (line.isEmpty())
-//         break;
       StatInfo info=createStatInfo(line);
-//      kdDebug(KIO_SMB)<<"Smb::listDir(): after createStatInfo()"<<endl;
       if (info.isValid)
       {
          entry.clear();
          createUDSEntry(info,entry);
-//         kdDebug(KIO_SMB)<<"Smb::listDir(): creating UDSEntry"<<endl;
          listEntry( entry, false);
          totalNumber++;
       }
-//      kdDebug(KIO_SMB)<<"Smb::listDir(): loop done"<<endl;
    }
    totalSize( totalNumber);
    listEntry( entry, true ); // ready
    finished();
-//   kdDebug(KIO_SMB)<<"Smb::listDir() ends"<<endl;
 }
 
 void SmbProtocol::mkdir( const KURL& url, int)
@@ -923,7 +952,8 @@ void SmbProtocol::mkdir( const KURL& url, int)
    }
 
    clearBuffer();
-   bool loopFinished(false);
+   readCommandEcho(proc);
+/*   bool loopFinished(false);
    //read the terminal echo
    do
    {
@@ -932,12 +962,18 @@ void SmbProtocol::mkdir( const KURL& url, int)
       if (m_stdoutSize>0)
          if (memchr(m_stdoutBuffer,'\n',m_stdoutSize)!=0)
             loopFinished=true;
-   } while (!loopFinished);
+   } while (!loopFinished);*/
+   waitForTerminatingPrompt(proc);
+   if (stopAfterError(url,true))
+   {
+      clearBuffer();
+      return;
+   }
    clearBuffer();
    finished();
 }
 
-void SmbProtocol::del( const KURL& url, bool isfile)
+void SmbProtocol::del( const KURL& url, bool isFile)
 {
    kdDebug(KIO_SMB)<<"Smb::del() "<<url.path().local8Bit()<<endl;
    QString path( url.path());
@@ -956,12 +992,40 @@ void SmbProtocol::del( const KURL& url, bool isfile)
    ClientProcess *proc=getProcess(m_currentHost, share);
 
    QCString command;
-   if (isfile)
-      command="del \"";
-   else
-      command="rmdir \"";
+   if (isFile)
+   {
+      int lastBackslash=smbPath.findRev('\\');
+      QCString dir=smbPath.left(lastBackslash).local8Bit();
+      command="cd \"";
+      command+=dir;
+      command+="\" \n";
+      if (::write(proc->fd(),command.data(),command.length())<0)
+      {
+         error(ERR_CONNECTION_BROKEN,m_currentHost);
+         return;
+      }
+      clearBuffer();
+      readCommandEcho(proc);
+      waitForTerminatingPrompt(proc, true);
+      if (wasKilled())
+      {
+         finished();
+         return;
+      }
+      if (stopAfterError(url,true))
+      {
+         clearBuffer();
+         return;
+      }
 
-   command=command+smbPath.local8Bit()+QCString("\" \n");
+      command="del \"";
+      command=command+smbPath.mid(lastBackslash).local8Bit()+QCString("\" \n");
+   }
+   else
+   {
+      command="rmdir \"";
+      command=command+smbPath.local8Bit()+QCString("\" \n");
+   }
    kdDebug(KIO_SMB)<<"Smb::del(): executing command: -"<<command<<"-"<<endl;
 
    if (::write(proc->fd(),command.data(),command.length())<0)
@@ -971,20 +1035,49 @@ void SmbProtocol::del( const KURL& url, bool isfile)
    }
 
    clearBuffer();
-   bool loopFinished(false);
-   //read the terminal echo
-   do
+   readCommandEcho(proc);
+   waitForTerminatingPrompt(proc, true);
+   if (stopAfterError(url,true))
    {
-      readOutput(proc->fd());
-      kdDebug(KIO_SMB)<<"Smb::del() read: -"<<m_stdoutBuffer<<"-"<<endl;
-      if (m_stdoutSize>0)
-         if (memchr(m_stdoutBuffer,'\n',m_stdoutSize)!=0)
-            loopFinished=true;
-   } while (!loopFinished);
+      clearBuffer();
+      return;
+   }
    clearBuffer();
+
+   if (isFile)
+   {
+      command="cd \\ \n";
+      if (::write(proc->fd(),command.data(),command.length())<0)
+      {
+         error(ERR_CONNECTION_BROKEN,m_currentHost);
+         return;
+      }
+      clearBuffer();
+      readCommandEcho(proc);
+      waitForTerminatingPrompt(proc);
+      if (stopAfterError(url,true))
+         return;
+   }
    finished();
 }
 
+void SmbProtocol::waitForTerminatingPrompt(ClientProcess* proc, bool shortVersion)
+{
+   while (!receivedTerminatingPrompt(shortVersion))
+   {
+      bool stdoutEvent;
+      proc->select(1,0,&stdoutEvent);
+      //if smbclient exits, something went wrong
+      int exitStatus=proc->exited();
+      if (exitStatus!=-1)
+         return;
+      if (stdoutEvent)
+      {
+         readOutput(proc->fd());
+         kdDebug(KIO_SMB)<<"waitForTerminatingPrompt() -"<<m_stdoutBuffer<<"-"<<endl;
+      }
+   }
+}
 
 void SmbProtocol::createUDSEntry(const StatInfo& info, UDSEntry& entry)
 {
@@ -1167,7 +1260,9 @@ StatInfo SmbProtocol::_stat(const KURL& url, bool onlyCheckForExistance)
       {
          readOutput(proc->fd());
          //don't search the whole buffer, only the last 12 bytes
-         if (m_stdoutSize>12)
+         if (receivedTerminatingPrompt())
+            loopFinished=true;
+/*         if (m_stdoutSize>12)
          {
             if ((strstr(m_stdoutBuffer+m_stdoutSize-12,"\nsmb: \\>")!=0) && (m_usefulLineFound==true))
 //            if (strstr(m_stdoutBuffer+m_stdoutSize-12,"\nsmb: \\>")!=0)
@@ -1175,7 +1270,7 @@ StatInfo SmbProtocol::_stat(const KURL& url, bool onlyCheckForExistance)
                loopFinished=true;
                kdDebug()<<"offset: "<<int(strstr(m_stdoutBuffer+m_stdoutSize-12,"\nsmb: \\>")-m_stdoutBuffer)<<endl;
             }
-         }
+         }*/
       }
    } while (!loopFinished);
    kdDebug(KIO_SMB)<<"Smb::_stat(): read: -"<<m_stdoutBuffer<<"-"<<endl;
@@ -1200,19 +1295,6 @@ StatInfo SmbProtocol::_stat(const KURL& url, bool onlyCheckForExistance)
       {
          return createStatInfo(line);
       }
-/*      if ((line.find("smb: \\>")==-1) && (line.find("dir \"")!=0))
-      {
-         if (line.contains("ERRbadfile") || (line.contains("File not found")))
-         {
-            kdDebug(KIO_SMB)<<"Smb::_stat() file not found"<<endl;
-            info.isValid=false;
-            break;
-         }
-         else
-         {
-            return createStatInfo(line);
-         }
-      }*/
       lineNumber++;
    }
    info.isValid=false;
@@ -1277,7 +1359,8 @@ void SmbProtocol::put( const KURL& url, int, bool _overwrite, bool)
       return;
    }
    clearBuffer();
-   bool loopFinished(false);
+   readCommandEcho(proc);
+/*   bool loopFinished(false);
    //read the terminal echo
    do
    {
@@ -1288,7 +1371,7 @@ void SmbProtocol::put( const KURL& url, int, bool _overwrite, bool)
          if (memchr(m_stdoutBuffer,'\n',m_stdoutSize)!=0)
             loopFinished=true;
       }
-   } while (!loopFinished);
+   } while (!loopFinished);*/
 
    clearBuffer();
    bool stdoutEvent;
@@ -1339,7 +1422,7 @@ void SmbProtocol::put( const KURL& url, int, bool _overwrite, bool)
    kdDebug(KIO_SMB)<<"Smb::put() opened fifo: -"<<command<<"-"<<endl;
 
    result=0;
-   loopFinished=false;
+   bool loopFinished=false;
    do
    {
       QByteArray array;
@@ -1352,9 +1435,6 @@ void SmbProtocol::put( const KURL& url, int, bool _overwrite, bool)
          close(fifoFD);
          remove(fifoName);
          return;
-         /*loopFinished=true;
-         kdDebug(KIO_SMB)<<"Smb::get(): smbclient exited with status "<<exitStatus<<endl;
-         break;*/
       }
 
       dataReq();
@@ -1451,7 +1531,8 @@ void SmbProtocol::get( const KURL& url )
    }
 
    clearBuffer();
-   bool loopFinished(false);
+   readCommandEcho(proc);
+/*   bool loopFinished(false);
    //read the terminal echo
    do
    {
@@ -1460,7 +1541,7 @@ void SmbProtocol::get( const KURL& url )
       if (m_stdoutSize>0)
          if (memchr(m_stdoutBuffer,'\n',m_stdoutSize)!=0)
             loopFinished=true;
-   } while (!loopFinished);
+   } while (!loopFinished);*/
    clearBuffer();
 
    int fifoFD=open(fifoName,O_RDONLY|O_NONBLOCK);
@@ -1498,7 +1579,7 @@ void SmbProtocol::get( const KURL& url )
 
    result=0;
    int bytesRead(0);
-   loopFinished=false;
+   bool loopFinished=false;
    QByteArray array;
 
    do
@@ -1546,11 +1627,12 @@ void SmbProtocol::get( const KURL& url )
 
    close(fifoFD);
 
-//   clearBuffer();
-   bool stdoutEvent;
-   result=proc->select(1,0,&stdoutEvent);
-   if (stdoutEvent)
-      readOutput(proc->fd());
+   waitForTerminatingPrompt(proc);
+   //   clearBuffer();
+//   bool stdoutEvent;
+//   result=proc->select(1,0,&stdoutEvent);
+//   if (stdoutEvent)
+//      readOutput(proc->fd());
 
    remove(fifoName);
 

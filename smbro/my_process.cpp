@@ -94,9 +94,9 @@ int ClientProcess::select(int secs, int usecs, bool* readEvent, bool* writeEvent
          *readEvent=FD_ISSET(fd(),&readFD);
       if (writeEvent!=0)
          *writeEvent=FD_ISSET(fd(),&writeFD);
-   };
+   }
    return result;
-};
+}
 
 bool ClientProcess::start(const QCString& binary, QCStringList& args)
 {
