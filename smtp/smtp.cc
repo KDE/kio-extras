@@ -194,7 +194,7 @@ void SMTPProtocol::put(const KURL & url, int /*permissions */ ,
     const QString from = mset.getSetting( KEMailSettings::EmailAddress );
     if ( !from.isNull() )
       request.setFromAddress( from );
-    else {
+    else if ( request.emitHeaders() ) {
       error(KIO::ERR_NO_CONTENT, i18n("The sender address is missing."));
       smtp_close(); // ### try resetting the dialogue instead
       return;
