@@ -69,6 +69,7 @@
 #define GREETING_BUF_LEN 1024
 #define MAX_RESPONSE_LEN 512
 
+#define POP3_DEBUG kdDebug(7105)
 
 extern "C"
 {
@@ -77,22 +78,23 @@ extern "C"
 
 using namespace KIO;
 
-int kdemain( int argc, char **argv )
+int kdemain (int argc, char **argv)
 {
 
 	if (argc != 4) {
-		kdDebug() << "Usage: kio_pop3 protocol domain-socket1 domain-socket2" << endl;
+		POP3_DEBUG << "Usage: kio_pop3 protocol domain-socket1 domain-socket2" << endl;
 		return -1;
 	}
 
-	KInstance instance( "kio_pop3" );
+	KInstance instance("kio_pop3");
 	POP3Protocol *slave;
 
 	// Are we looking to use SSL?
-	if (strcasecmp(argv[1], "pop3s") == 0)
+	if (strcasecmp(argv[1], "pop3s") == 0) {
 		slave = new POP3Protocol(argv[2], argv[3], true);
-	else
+	} else {
 		slave = new POP3Protocol(argv[2], argv[3], false);
+	}
 
 	slave->dispatchLoop();
 	delete slave;
@@ -102,12 +104,12 @@ int kdemain( int argc, char **argv )
 POP3Protocol::POP3Protocol(const QCString &pool, const QCString &app, bool isSSL)
    : TCPSlaveBase((isSSL ? 995 : 110), (isSSL ? "pop3s" : "pop3"), pool, app, isSSL)
 {
-	kdDebug() << "POP3Protocol::POP3Protocol()" << endl;
-	m_bIsSSL=isSSL;
+	POP3_DEBUG << "POP3Protocol::POP3Protocol()" << endl;
+	m_bIsSSL = isSSL;
 	m_cmd = CMD_NONE;
 	m_iOldPort = 0;
-	m_tTimeout.tv_sec=10;
-	m_tTimeout.tv_usec=0;
+	m_tTimeout.tv_sec = 10;
+	m_tTimeout.tv_usec = 0;
 	m_try_apop = true;
 	m_try_sasl = true;
 	opened = false;
@@ -115,11 +117,11 @@ POP3Protocol::POP3Protocol(const QCString &pool, const QCString &app, bool isSSL
 
 POP3Protocol::~POP3Protocol()
 {
-	kdDebug() << "POP3Protocol::~POP3Protocol()" << endl;
+	POP3_DEBUG << "POP3Protocol::~POP3Protocol()" << endl;
 	closeConnection();
 }
 
-void POP3Protocol::setHost( const QString& _host, int _port, const QString& _user, const QString& _pass )
+void POP3Protocol::setHost (const QString& _host, int _port, const QString& _user, const QString& _pass)
 {
 	m_sServer = _host;
 	m_iPort = _port;
@@ -129,8 +131,8 @@ void POP3Protocol::setHost( const QString& _host, int _port, const QString& _use
 
 bool POP3Protocol::getResponse (char *r_buf, unsigned int r_len, const char *cmd)
 {
-	char *buf=0;
-	unsigned int recv_len=0;
+	char *buf = 0;
+	unsigned int recv_len = 0;
 	fd_set FDs;
 
 	// Give the buffer the appropiate size
@@ -139,7 +141,7 @@ bool POP3Protocol::getResponse (char *r_buf, unsigned int r_len, const char *cmd
 	buf = new char[r_len];
 
 	// And keep waiting if it timed out
-	unsigned int wait_time=600; // Wait 600sec. max.
+	unsigned int wait_time = 600; // Wait 600sec. max.
 	do {
 		// Wait for something to come from the server
 		FD_ZERO(&FDs);
@@ -147,13 +149,13 @@ bool POP3Protocol::getResponse (char *r_buf, unsigned int r_len, const char *cmd
 		// Yes, it's true, Linux sucks.
 		// Erp, make that Linux has to be different because it's Linux.. stupid. stupid stupid.
 		wait_time--;
-		m_tTimeout.tv_sec=1;
-		m_tTimeout.tv_usec=0;
+		m_tTimeout.tv_sec = 1;
+		m_tTimeout.tv_usec = 0;
 	}
-	while (wait_time && (::select(m_iSock+1, &FDs, 0, 0, &m_tTimeout) ==0));
+	while (wait_time && (::select(m_iSock+1, &FDs, 0, 0, &m_tTimeout) == 0));
 
 	if (wait_time == 0) {
-		kdDebug() << "No response from POP3 server in 600 secs." << endl;
+		POP3_DEBUG << "No response from POP3 server in 600 secs." << endl;
 		m_sError = i18n("No response from POP3 server in 600 secs.");
 		if (r_buf)
 			r_buf[0] = 0;
@@ -166,7 +168,7 @@ bool POP3Protocol::getResponse (char *r_buf, unsigned int r_len, const char *cmd
 
 	// This is really a funky crash waiting to happen if something isn't
 	// null terminated.
-	recv_len=strlen(buf);
+	recv_len = strlen(buf);
 
 	/*
 	 *   From rfc1939:
@@ -179,7 +181,7 @@ bool POP3Protocol::getResponse (char *r_buf, unsigned int r_len, const char *cmd
 	 *   send the "+OK" and "-ERR" in upper case.
 	 */
 
-	if (strncmp(buf, "+OK", 3)==0) {
+	if (strncmp(buf, "+OK", 3) == 0) {
 		if (r_buf && r_len) {
 			memcpy(r_buf, (buf[3] == ' ' ? buf+4 : buf+3),
 				QMIN(r_len, (buf[3] == ' ' ? recv_len-4 : recv_len-3)));
@@ -187,38 +189,52 @@ bool POP3Protocol::getResponse (char *r_buf, unsigned int r_len, const char *cmd
 		if (buf)
 			delete [] buf;
 		return true;
-	} else if (strncmp(buf, "-ERR", 4)==0) {
+	} else if (strncmp(buf, "-ERR", 4) == 0) {
 		if (r_buf && r_len) {
 			memcpy(r_buf, (buf[4] == ' ' ? buf+5 : buf+4),
 				QMIN(r_len, (buf[4] == ' ' ? recv_len-5 : recv_len-4)));
 		}
 		QString command = QString::fromLatin1(cmd);
 		QString serverMsg = QString::fromLatin1(buf).stripWhiteSpace();
+
 		if (command.left(4) == "PASS") {
 			command = i18n("PASS <your password>");
 		}
+
 		m_sError = i18n("I said:\n   \"%1\"\n\nAnd then the server said:\n   \"%2\"").arg(command).arg(serverMsg);
-		if (buf)
+
+		if (buf) {
 			delete [] buf;
+		}
+
 		return false;
-	} else if (strncmp(buf, "+ ", 2)==0) {
-		if (r_buf && r_len)
-		{
+	} else if (strncmp(buf, "+ ", 2) == 0) {
+		if (r_buf && r_len) {
 			memcpy(r_buf, buf+2, QMIN(r_len, recv_len-4));
 			r_buf[QMIN(r_len-1, recv_len-4)] = '\0';
 		}
-		if (buf)
+
+		if (buf) {
 			delete [] buf;
+		}
 		return true;
 	} else {
-		kdDebug() << "Invalid POP3 response received!" << endl;
+		POP3_DEBUG << "Invalid POP3 response received!" << endl;
+
 		if (r_buf && r_len) {
 			memcpy(r_buf, buf, QMIN(r_len,recv_len));
 		}
-		if (!buf || !*buf) m_sError = i18n("The server terminated the connection.");
-		else m_sError = i18n("Invalid response from server:\n   \"%1\"").arg(buf);
-		if (buf)
+
+		if (!buf || !*buf) {
+			m_sError = i18n("The server terminated the connection.");
+		} else  {
+			m_sError = i18n("Invalid response from server:\n\"%1\"").arg(buf);
+		}
+
+		if (buf) {
 			delete [] buf;
+		}
+
 		return false;
 	}
 }
@@ -245,6 +261,7 @@ bool POP3Protocol::command (const char *cmd, char *recv_buf, unsigned int len)
 		delete [] cmdrn;
 		return false;
 	}
+
 	delete [] cmdrn;
 	return getResponse(recv_buf, len, cmd);
 }
@@ -253,13 +270,16 @@ void POP3Protocol::openConnection()
 {
 	m_try_apop = !hasMetaData("auth") || metaData("auth") == "APOP";
 	m_try_sasl = !hasMetaData("auth") || metaData("auth") == "SASL";
+
 	if (!pop3_open()) {
-		kdDebug() << "pop3_open failed" << endl;
+		POP3_DEBUG << "pop3_open failed" << endl;
 		closeConnection();
-	} else connected();
+	} else {
+		connected();
+	}
 }
 
-void POP3Protocol::closeConnection()
+void POP3Protocol::closeConnection ()
 {
 	// If the file pointer exists, we can assume the socket is valid,
 	// and to make sure that the server doesn't magically undo any of
@@ -267,38 +287,40 @@ void POP3Protocol::closeConnection()
 	// response.  We don't care if it's positive or negative.  Also
 	// flush out any semblance of a persistant connection, i.e.: the
 	// old username and password are now invalid.
-	if (!opened)
+	if (!opened) {
 		return;
+	}
+
 	command("QUIT");
 	CloseDescriptor();
-	m_sOldUser = ""; m_sOldPass = ""; m_sOldServer = "";
+	m_sOldUser = m_sOldPass = m_sOldServer = "";
 	opened = false;
 }
 
-bool POP3Protocol::pop3_open()
+bool POP3Protocol::pop3_open ()
 {
 	char buf[512], *greeting_buf;
 	if ( (m_iOldPort == GetPort(m_iPort)) && (m_sOldServer == m_sServer) &&
 		(m_sOldUser == m_sUser) && (m_sOldPass == m_sPass)) {
-		kdDebug() << "Reusing old connection" << endl;
+		POP3_DEBUG << "Reusing old connection" << endl;
 		return true;
 	} else {
 		closeConnection();
-		if( !ConnectToHost(m_sServer.ascii(), m_iPort))
-		{
-			error( ERR_COULD_NOT_CONNECT, m_sServer);
-			return false; // ConnectToHost has already send an error message.
+
+		if(!ConnectToHost(m_sServer.ascii(), m_iPort)) {
+			error(ERR_COULD_NOT_CONNECT, m_sServer);
+			// ConnectToHost has already send an error message.
+			return false; 
 		}
 		opened = true;
 
-		greeting_buf=new char[GREETING_BUF_LEN];
+		greeting_buf = new char[GREETING_BUF_LEN];
 		memset(greeting_buf, 0, GREETING_BUF_LEN);
 
 		// If the server doesn't respond with a greeting
 		if (!getResponse(greeting_buf, GREETING_BUF_LEN, "")) {
-			m_sError = i18n("Could not login to %1.\n\n").arg(m_sServer) +
-		((!greeting_buf || !*greeting_buf) ? i18n("The server terminated the connection immediately.") : i18n("Server does not respond properly:\n%1\n").arg(greeting_buf));
-			error( ERR_COULD_NOT_LOGIN, m_sError );
+			m_sError = i18n("Could not login to %1.\n\n").arg(m_sServer) + ((!greeting_buf || !*greeting_buf) ? i18n("The server terminated the connection immediately.") : i18n("Server does not respond properly:\n%1\n").arg(greeting_buf));
+			error(ERR_COULD_NOT_LOGIN, m_sError);
 			delete [] greeting_buf;
 			return false;	// we've got major problems, and possibly the
 					// wrong port
@@ -306,20 +328,20 @@ bool POP3Protocol::pop3_open()
 		QCString greeting(greeting_buf);
 		delete [] greeting_buf;
 
-		//
 		// Does the server support APOP?
-		//
 		QString apop_cmd;
 		QRegExp re("<[A-Za-z0-9\\.\\-_]+@[A-Za-z0-9\\.\\-_]+>$", false);
-		if(greeting.length() > 0)
+
+		if(greeting.length() > 0) {
 			greeting.truncate(greeting.length() - 2);
+		}
+
 		int apop_pos = greeting.find(re);
 		bool apop = (bool)(apop_pos != -1);
-		if (metaData("auth") == "APOP" && !apop)
-		{
-			error( ERR_COULD_NOT_CONNECT,
+		if (metaData("auth") == "APOP" && !apop) {
+			error(ERR_COULD_NOT_CONNECT,
 			i18n("Your POP3 server does not support APOP.\n"
-			     "Choose a different authentication method.") );
+			     "Choose a different authentication method."));
 			return false;
 		}
 
@@ -327,46 +349,44 @@ bool POP3Protocol::pop3_open()
 		m_sOldServer = m_sServer;
 
                 // Try to go into TLS mode
-                if ((metaData("tls") == "on" || (canUseTLS() &&
-                  metaData("tls") != "off")) && command("STLS"))
-                {
-                   int tlsrc = startTLS();
-                   if (tlsrc == 1) {
-                      kdDebug() << "TLS mode has been enabled." << endl;
-                   } else {
-                      if (tlsrc != -3) {
-                         kdDebug() << "TLS mode setup has failed.  Aborting." << endl;
-                         error( ERR_COULD_NOT_CONNECT,
-                                 i18n("Your POP3 server claims to "
-                                      "support TLS but negotiation "
-                                      "was unsuccessful.  You can "
-                                      "disable TLS in KDE using the "
-                                      "crypto settings module."));
-                      }
-                      return false;
-                   }
-                }
-                else if (metaData("tls") == "on")
-                {
-                  error( ERR_COULD_NOT_CONNECT,
-                    i18n("Your POP3 server does not support TLS. Disable\n"
-                         "TLS, if you want to connect without encryption."));
-                  return false;
-                }
+		if ((metaData("tls") == "on" || (canUseTLS() &&
+			metaData("tls") != "off")) && command("STLS"))
+		{
+			int tlsrc = startTLS();
+			if (tlsrc == 1) {
+				POP3_DEBUG << "TLS mode has been enabled." << endl;
+			} else {
+				if (tlsrc != -3) {
+					POP3_DEBUG << "TLS mode setup has failed.  Aborting." << endl;
+					error(ERR_COULD_NOT_CONNECT,
+						i18n("Your POP3 server claims to "
+							"support TLS but negotiation "
+							"was unsuccessful.  You can "
+							"disable TLS in KDE using the "
+							"crypto settings module."));
+				}
+				return false;
+			}
+                } else if (metaData("tls") == "on") {
+			error(ERR_COULD_NOT_CONNECT,
+				i18n("Your POP3 server does not support TLS. Disable\n"
+				"TLS, if you want to connect without encryption."));
+			return false;
+		}
 
-		QString usr, pass, one_string="USER ";
-		QString apop_string = "APOP ";
+		QString usr, pass, one_string = QString::fromLatin1("USER ");
+		QString apop_string = QString::fromLatin1("APOP ");
 		if (m_sUser.isEmpty() || m_sPass.isEmpty()) {
 			// Prompt for usernames
-			QString head=i18n("Username and password for your POP3 account:");
+			QString head = i18n("Username and password for your POP3 account:");
 			if (!openPassDlg(head, usr, pass)) {
 				closeConnection();
 				return false;
 			} else {
 				apop_string.append(usr);
 				one_string.append(usr);
-				m_sOldUser=usr;
-				m_sUser=usr; m_sPass=pass;
+				m_sOldUser = usr;
+				m_sUser = usr; m_sPass = pass;
 			}
 		} else {
 	      		apop_string.append(m_sUser);
@@ -374,56 +394,65 @@ bool POP3Protocol::pop3_open()
 			m_sOldUser = m_sUser;
 		}
 		memset(buf, 0, sizeof(buf));
-		if(apop && m_try_apop) {
+		if (apop && m_try_apop) {
 			char *c = greeting.data() + apop_pos;
 			KMD5 ctx;
 
-			if ( m_sPass.isEmpty())
+			if (m_sPass.isEmpty()) {
 				m_sOldPass = pass;
-			else
+			} else {
 				m_sOldPass = m_sPass;
+			}
 
 			// Generate digest
 			ctx.update((unsigned char *)c, (unsigned)strlen(c));
-			ctx.update((unsigned char *)m_sOldPass.local8Bit().data(), (unsigned)m_sOldPass.local8Bit().length());
+			ctx.update(m_sOldPass);
 			ctx.finalize();
 
 			// Genenerate APOP command
 			apop_string.append(" ");
 			apop_string.append(ctx.hexDigest());
 
-			if(command(apop_string.local8Bit(), buf, sizeof(buf)))
+			if (command(apop_string.local8Bit(), buf, sizeof(buf))) {
 				return true;
+			}
 
-			kdDebug() << "Couldn't login via APOP. Falling back to USER/PASS" << endl;
+			POP3_DEBUG << "Couldn't login via APOP. Falling back to USER/PASS" << endl;
 			closeConnection();
 			m_try_apop = false;
-			if (metaData("auth") == "APOP")
-			{
-				error( ERR_COULD_NOT_CONNECT,
-				i18n("Login via APOP failed:\n%1").arg(buf) );
+			if (metaData("auth") == "APOP") {
+				error(ERR_COULD_NOT_CONNECT,
+				i18n("Login via APOP failed:\n%1").arg(buf));
 				return false;
-			} else return pop3_open();
+			} else {
+				return pop3_open();
+			}
 		}
 
 		// Let's try SASL stuff first.. it might be more secure
-		QString sasl_auth, sasl_buffer="AUTH";
+		QString sasl_auth, sasl_buffer = QString::fromLatin1("AUTH");
 
 		// We need to check what methods the server supports...
 		// This is based on RFC 1734's wisdom
-		if (m_try_sasl && (hasMetaData("sasl") ||
-              		command(sasl_buffer.local8Bit())))
-		{
-			if (hasMetaData("sasl")) sasl_auth = metaData("sasl");
-			else while (!AtEOF()) {
+		if (m_try_sasl && (hasMetaData("sasl") || command(sasl_buffer.local8Bit()))) {
+			if (hasMetaData("sasl")) {
+				sasl_auth = metaData("sasl");
+			} else while (!AtEOF()) {
 				memset(buf, 0, sizeof(buf));
 				ReadLine(buf, sizeof(buf)-1);
 
 				// HACK: This assumes fread stops at the first \n and not \r
-				if (strcmp(buf, ".\r\n")==0) break; // End of data
+				if (strcmp(buf, ".\r\n") == 0) {
+					break; // End of data
+				}
+
 				// sanders, changed -2 to -1 below
-				buf[strlen(buf)-2]='\0';
-				if (!sasl_auth.isEmpty()) sasl_auth += " ";
+				buf[strlen(buf)-2] = '\0';
+
+				if (!sasl_auth.isEmpty()) {
+					sasl_auth += " ";
+				}
+
 				sasl_auth += buf;
 			}
 
@@ -433,66 +462,67 @@ bool POP3Protocol::pop3_open()
 			KSASLContext *m_pSASL = new KSASLContext;
 			m_pSASL->setURL(url);
 			sasl_buffer = m_pSASL->chooseMethod(sasl_auth);
-			sasl_auth=sasl_buffer;
+			sasl_auth = sasl_buffer;
 			if (sasl_buffer == QString::null) {
 				delete m_pSASL;
 			} else {
 				// Yich character arrays..
-				char *challenge=new char[2049];
+				char *challenge = new char[2049];
 				sasl_buffer.prepend("AUTH ");
 				if (!command(sasl_buffer.latin1(), challenge, 2049)) {
 					delete [] challenge;
-					delete m_pSASL; m_pSASL=0;
+					delete m_pSASL; m_pSASL = 0;
 				} else {
-					bool ret, b64=true;
+					bool ret, b64 = true;
 
 					// See the SMTP ioslave
-					if (sasl_auth == "PLAIN")
+					if (sasl_auth == "PLAIN") {
 						b64=false;
+					}
+
 					ret = command(m_pSASL->generateResponse(challenge, b64).latin1());
 					delete [] challenge;
 					delete m_pSASL;
-					if (ret)
-					{
+					if (ret) {
 						m_sOldUser = m_sUser;
 						m_sOldPass = m_sPass;
 						return true;
 					}
 				}
-				if (metaData("auth") == "SASL")
-				{
-					error( ERR_COULD_NOT_CONNECT,
-					i18n("Login via SASL (%1) failed.")
-					.arg(sasl_auth) );
+
+				if (metaData("auth") == "SASL") {
+					error(ERR_COULD_NOT_CONNECT,
+						i18n("Login via SASL (%1) failed.").arg(sasl_auth));
 					return false;
 				}
 			}
-		}
-		else if (m_try_sasl)
-		{
+		} else if (m_try_sasl) {
 			closeConnection();
 			m_try_sasl = false;
-			if (metaData("auth") != "SASL") return pop3_open();
+			if (metaData("auth") != "SASL") {
+				return pop3_open();
+			}
 		}
 
-		if (metaData("auth") == "SASL")
-		{
-			error( ERR_COULD_NOT_CONNECT,
-			i18n("Your POP3 server does not support SASL.\n"
-			     "Choose a different authentication method.") );
+		if (metaData("auth") == "SASL") {
+			error(ERR_COULD_NOT_CONNECT,
+				i18n("Your POP3 server does not support SASL.\n"
+				     "Choose a different authentication method."));
 			return false;
 		}
 
 		// Fall back to conventional USER/PASS scheme
 		if (!command(one_string.local8Bit(), buf, sizeof(buf))) {
-			kdDebug() << "Couldn't login. Bad username Sorry" << endl;
+			POP3_DEBUG << "Couldn't login. Bad username Sorry" << endl;
+
 			m_sError = i18n("Could not login to %1.\n\n").arg(m_sServer) + m_sError;
-			error( ERR_COULD_NOT_LOGIN, m_sError );
+			error(ERR_COULD_NOT_LOGIN, m_sError);
 			closeConnection();
+
 			return false;
 		}
 
-		one_string="PASS ";
+		one_string = QString::fromLatin1("PASS ");
 		if (m_sPass.isEmpty()) {
 			m_sOldPass = pass;
 			one_string.append(pass);
@@ -500,10 +530,11 @@ bool POP3Protocol::pop3_open()
 			m_sOldPass = m_sPass;
 			one_string.append(m_sPass);
 		}
+
 		if (!command(one_string.local8Bit(), buf, sizeof(buf))) {
-			kdDebug() << "Couldn't login. Bad password Sorry." << endl;
+			POP3_DEBUG << "Couldn't login. Bad password Sorry." << endl;
 			m_sError = i18n("Could not login to %1.\n\n").arg(m_sServer) + m_sError;
-			error( ERR_COULD_NOT_LOGIN, m_sError );
+			error(ERR_COULD_NOT_LOGIN, m_sError);
 			closeConnection();
 			return false;
 		}
@@ -515,24 +546,24 @@ size_t POP3Protocol::realGetSize(unsigned int msg_num)
 {
 	char *buf;
 	QCString cmd;
-	size_t ret=0;
+	size_t ret = 0;
 
-	buf=new char[MAX_RESPONSE_LEN];
+	buf = new char[MAX_RESPONSE_LEN];
 	memset(buf, 0, MAX_RESPONSE_LEN);
 	cmd.sprintf("LIST %u", msg_num);
 	if (!command(cmd.data(), buf, MAX_RESPONSE_LEN)) {
 		delete [] buf;
 		return 0;
 	} else {
-		cmd=buf;
+		cmd = buf;
 		cmd.remove(0, cmd.find(" "));
-		ret=cmd.toLong();
+		ret = cmd.toLong();
 	}
 	delete [] buf;
 	return ret;
 }
 
-void POP3Protocol::get( const KURL& url )
+void POP3Protocol::get (const KURL& url)
 {
 // List of supported commands
 //
@@ -551,21 +582,22 @@ void POP3Protocol::get( const KURL& url )
 // No support for the STAT command has been implemented.
 // commit closes the connection to the server after issuing the QUIT command.
 
-	bool ok=true;
+	bool ok = true;
 	char buf[MAX_RESPONSE_LEN];
 	QByteArray array;
 
 	QString cmd, path = url.path();
 
-	if (path.at(0)=='/') path.remove(0,1);
+	if (path.at(0) == '/') path.remove(0,1);
 	if (path.isEmpty()) {
-		kdDebug() << "We should be a dir!!" << endl;
+		POP3_DEBUG << "We should be a dir!!" << endl;
 		error(ERR_IS_DIRECTORY, url.url());
-		m_cmd=CMD_NONE; return;
+		m_cmd = CMD_NONE;
+		return;
 	}
 
-	if (((path.find('/') == -1) && (path != "index") && (path != "uidl") && (path != "commit")) ) {
-		error( ERR_MALFORMED_URL, url.url() );
+	if (((path.find('/') == -1) && (path != "index") && (path != "uidl") && (path != "commit"))) {
+		error(ERR_MALFORMED_URL, url.url());
 		m_cmd = CMD_NONE;
 		return;
 	}
@@ -574,60 +606,57 @@ void POP3Protocol::get( const KURL& url )
 	path.remove(0,path.find('/')+1);
 
 	if (!pop3_open()) {
-		kdDebug() << "pop3_open failed" << endl;
+		POP3_DEBUG << "pop3_open failed" << endl;
 		closeConnection();
-		error( ERR_COULD_NOT_CONNECT, m_sServer);
+		error(ERR_COULD_NOT_CONNECT, m_sServer);
 		return;
 	}
 
 	if ((cmd == "index") || (cmd == "uidl")) {
-		unsigned long size=0;
+		unsigned long size = 0;
 		bool result;
-		if (cmd == "index")
+
+		if (cmd == "index") {
 			result = command("LIST");
-		else
+		} else {
 			result = command("UIDL");
+		}
+
+		/*
+		LIST
+		+OK Mailbox scan listing follows
+		1 2979
+		2 1348
+		.
+		*/
 		if (result) {
-/*
-LIST
-+OK Mailbox scan listing follows
-1 2979
-2 1348
-3 1213
-4 1286
-5 2363
-6 1410
-7 2048
-8 958
-9 91684
-10 3770
-11 1547
-12 649
-.
-*/
 			while (!AtEOF()) {
 				memset(buf, 0, sizeof(buf));
 				ReadLine(buf, sizeof(buf)-1);
 
 				// HACK: This assumes fread stops at the first \n and not \r
-				if (strcmp(buf, ".\r\n")==0) break; // End of data
+				if (strcmp(buf, ".\r\n") == 0) {
+					break; // End of data
+				}
+
 				// sanders, changed -2 to -1 below
 				int bufStrLen = strlen(buf);
-				buf[bufStrLen-2]='\0';
-				size+=bufStrLen;
+				buf[bufStrLen-2] = '\0';
+				size += bufStrLen;
 				array.setRawData(buf, bufStrLen);
-				data( array );
+				data(array);
 				array.resetRawData(buf, bufStrLen);
 				totalSize(size);
 			}
 		}
-		kdDebug() << "Finishing up list" << endl;
-		data( QByteArray() );
-		speed(0); finished();
+		POP3_DEBUG << "Finishing up list" << endl;
+		data(QByteArray());
+		speed(0);
+		finished();
 	} else if (cmd == "headers") {
 		(void)path.toInt(&ok);
 		if (!ok) {
-			error( ERR_INTERNAL, i18n("Unexpected response from POP3 server."));
+			error(ERR_INTERNAL, i18n("Unexpected response from POP3 server."));
 			return; //  We fscking need a number!
 		}
 		path.prepend("TOP ");
@@ -643,28 +672,31 @@ LIST
 				ReadLine(buf, sizeof(buf)-1);
 
 				// HACK: This assumes fread stops at the first \n and not \r
-				if (strcmp(buf, ".\r\n")==0) break; // End of data
+				if (strcmp(buf, ".\r\n") == 0) {
+					break; // End of data
+				}
 				// sanders, changed -2 to -1 below
-				buf[strlen(buf)-1]='\0';
-				if (strcmp(buf, "..")==0) {
+				buf[strlen(buf)-1] = '\0';
+				if (strcmp(buf, "..") == 0) {
 					buf[0] = '.';
 					array.setRawData(buf, 1);
-					data( array );
+					data(array);
 					array.resetRawData(buf, 1);
 				} else {
 					array.setRawData(buf, strlen(buf));
-					data( array );
+					data(array);
 					array.resetRawData(buf, strlen(buf));
 				}
 			}
-			kdDebug() << "Finishing up" << endl;
-			data( QByteArray() );
-			speed(0);finished();
+			POP3_DEBUG << "Finishing up" << endl;
+			data(QByteArray());
+			speed(0);
+			finished();
 		}
 	} else if (cmd == "remove") {
 		(void)path.toInt(&ok);
 		if (!ok) {
-			error( ERR_INTERNAL, i18n("Unexpected response from POP3 server."));
+			error(ERR_INTERNAL, i18n("Unexpected response from POP3 server."));
 			return; //  We fscking need a number!
 		}
 		path.prepend("DELE ");
@@ -672,39 +704,40 @@ LIST
 		finished();
 		m_cmd = CMD_NONE;
 	} else if (cmd == "download") {
-		int p_size=0;
-		unsigned int msg_len=0;
+		int p_size = 0;
+		unsigned int msg_len = 0;
 		(void)path.toInt(&ok);
 		QString list_cmd("LIST ");
 		if (!ok) {
-			error( ERR_INTERNAL, i18n("Unexpected response from POP3 server."));
+			error(ERR_INTERNAL, i18n("Unexpected response from POP3 server."));
 			return; //  We fscking need a number!
 		}
-		list_cmd+= path;
+		list_cmd += path;
 		path.prepend("RETR ");
 		memset(buf, 0, sizeof(buf));
 		if (command(list_cmd.ascii(), buf, sizeof(buf)-1)) {
-			list_cmd=buf;
+			list_cmd = buf;
 			// We need a space, otherwise we got an invalid reply
 			if (!list_cmd.find(" ")) {
-				kdDebug(7105) << "List command needs a space? " << list_cmd << endl;
+				POP3_DEBUG << "List command needs a space? " << list_cmd << endl;
 				closeConnection();
-				error( ERR_INTERNAL, i18n("Unexpected response from POP3 server."));
+				error(ERR_INTERNAL, i18n("Unexpected response from POP3 server."));
 				return;
 			}
 			list_cmd.remove(0, list_cmd.find(" ")+1);
 			msg_len = list_cmd.toUInt(&ok);
 			if (!ok) {
-				kdDebug(7105) << "LIST command needs to return a number? :" << list_cmd << ":" << endl;
+				POP3_DEBUG << "LIST command needs to return a number? :" << list_cmd << ":" << endl;
 				closeConnection();
-				error( ERR_INTERNAL, i18n("Unexpected response from POP3 server."));
+				error(ERR_INTERNAL, i18n("Unexpected response from POP3 server."));
 				return;
 			}
 		} else {
 			closeConnection();
-			error( ERR_INTERNAL, i18n("Unexpected response from POP3 server."));
+			error(ERR_INTERNAL, i18n("Unexpected response from POP3 server."));
 			return;
 		}
+
 		if (command(path.ascii())) {
 			mimeType("message/rfc822");
 			totalSize(msg_len);
@@ -713,58 +746,68 @@ LIST
 				ReadLine(buf, sizeof(buf)-1);
 
 				// HACK: This assumes fread stops at the first \n and not \r
-				if (strcmp(buf, ".\r\n")==0) break; // End of data
+				if (strcmp(buf, ".\r\n") == 0) {
+					break; // End of data
+				}
 				// sanders, changed -2 to -1 below
-				buf[strlen(buf)-1]='\0';
+				buf[strlen(buf)-1] = '\0';
 				if (buf[0] == 46 && buf[1] == 46) { // .. at the start of a line means only .
 					array.setRawData(&buf[1], strlen(buf) - 1);
-					data( array );
+					data(array);
 					array.resetRawData(&buf[1], strlen(buf) - 1);
 				} else {
 					array.setRawData(buf, strlen(buf));
-					data( array );
+					data(array);
 					array.resetRawData(buf, strlen(buf));
 				}
-				p_size+=strlen(buf);
+				p_size += strlen(buf);
 				processedSize(p_size);
 			}
-			kdDebug() << "Finishing up" << endl;
+			POP3_DEBUG << "Finishing up" << endl;
 			data(QByteArray());
-			speed(0); finished();
+			speed(0);
+			finished();
 		} else {
-			kdDebug() << "Couldn't login. Bad RETR Sorry" << endl;
+			POP3_DEBUG << "Couldn't login. Bad RETR Sorry" << endl;
 			closeConnection();
-			error( ERR_INTERNAL, i18n("Couldn't login."));
+			error(ERR_INTERNAL, i18n("Couldn't login."));
 			return;
 		}
 	} else if ((cmd == "uid") || (cmd == "list")) {
 		QString qbuf;
 		(void)path.toInt(&ok);
-		if (!ok) return; //  We fscking need a number!
-		if (cmd == "uid")
+
+		if (!ok) {
+			return; //  We fscking need a number!
+		}
+
+		if (cmd == "uid") {
 			path.prepend("UIDL ");
-		else
+		} else {
 			path.prepend("LIST ");
+		}
+
 		memset(buf, 0, sizeof(buf));
 		if (command(path.ascii(), buf, sizeof(buf)-1)) {
 			const int len = strlen(buf);
 			mimeType("text/plain");
 			totalSize(len);
 			array.setRawData(buf, len);
-			data( array );
+			data(array);
 			array.resetRawData(buf, len);
 			processedSize(len);
-			kdDebug() << buf << endl;
-			kdDebug() << "Finishing up uid" << endl;
+			POP3_DEBUG << buf << endl;
+			POP3_DEBUG << "Finishing up uid" << endl;
 			data(QByteArray());
-			speed(0); finished();
+			speed(0);
+			finished();
 		} else {
 			closeConnection();
-			error( ERR_INTERNAL, i18n("Unexpected response from POP3 server."));
+			error(ERR_INTERNAL, i18n("Unexpected response from POP3 server."));
 			return;
 		}
 	} else if (cmd == "commit") {
-		kdDebug() << "Issued QUIT" << endl;
+		POP3_DEBUG << "Issued QUIT" << endl;
 		closeConnection();
 		finished();
 		m_cmd = CMD_NONE;
@@ -774,14 +817,15 @@ LIST
 
 void POP3Protocol::listDir (const KURL &)
 {
-	bool isINT; int num_messages=0;
+	bool isINT;
+	int num_messages = 0;
 	char buf[MAX_RESPONSE_LEN];
 	QCString q_buf;
 
 	// Try and open a connection
 	if (!pop3_open()) {
-		kdDebug() << "pop3_open failed" << endl;
-		error( ERR_COULD_NOT_CONNECT, m_sServer);
+		POP3_DEBUG << "pop3_open failed" << endl;
+		error(ERR_COULD_NOT_CONNECT, m_sServer);
 		closeConnection();
 		return;
 	}
@@ -792,16 +836,16 @@ void POP3Protocol::listDir (const KURL &)
 		error(ERR_INTERNAL, "??");
 		return;
 	}
-	kdDebug() << "The stat buf is :" << buf << ":" << endl;
-	q_buf=buf;
-	if (q_buf.find(" ")==-1) {
+	POP3_DEBUG << "The stat buf is :" << buf << ":" << endl;
+	q_buf = buf;
+	if (q_buf.find(" ") == -1) {
 		error(ERR_INTERNAL, "Invalid POP3 response, we should have at least one space!");
 		closeConnection();
 		return;
 	}
 	q_buf.remove(q_buf.find(" "), q_buf.length());
 
-	num_messages=q_buf.toUInt(&isINT);
+	num_messages = q_buf.toUInt(&isINT);
 	if (!isINT) {
 		error(ERR_INTERNAL, "Invalid POP3 STAT response!");
 		closeConnection();
@@ -810,8 +854,8 @@ void POP3Protocol::listDir (const KURL &)
 	UDSEntry entry;
 	UDSAtom atom;
 	QString fname;
-	for (int i=0; i < num_messages; i++) {
-		fname="Message %1";
+	for (int i = 0; i < num_messages; i++) {
+		fname = "Message %1";
 
 		atom.m_uds = UDS_NAME;
 		atom.m_long = 0;
@@ -822,14 +866,16 @@ void POP3Protocol::listDir (const KURL &)
 		atom.m_long = 0;
 		atom.m_str = "text/plain";
 		entry.append(atom);
-		kdDebug() << "Mimetype is " << atom.m_str.ascii() << endl;
+		POP3_DEBUG << "Mimetype is " << atom.m_str.ascii() << endl;
 
 		atom.m_uds = UDS_URL;
 		KURL uds_url;
-		if (m_bIsSSL)
+		if (m_bIsSSL) {
 			uds_url.setProtocol("pop3s");
-		else
+		} else {
 			uds_url.setProtocol("pop3");
+		}
+
 		uds_url.setUser(m_sUser);
 		uds_url.setPass(m_sPass);
 		uds_url.setHost(m_sServer);
@@ -851,12 +897,12 @@ void POP3Protocol::listDir (const KURL &)
 		listEntry(entry, false);
 		entry.clear();
 	}
-	listEntry( entry, true ); // ready
+	listEntry(entry, true); // ready
 
 	finished();
 }
 
-void POP3Protocol::stat( const KURL & url )
+void POP3Protocol::stat (const KURL & url)
 {
 	QString _path = url.path();
 
@@ -868,7 +914,7 @@ void POP3Protocol::stat( const KURL & url )
 
 	atom.m_uds = UDS_NAME;
 	atom.m_str = _path;
-	entry.append( atom );
+	entry.append(atom);
 
 	atom.m_uds = UDS_FILE_TYPE;
 	atom.m_str = "";
@@ -877,39 +923,41 @@ void POP3Protocol::stat( const KURL & url )
 
 	atom.m_uds = UDS_MIME_TYPE;
 	atom.m_str = "message/rfc822";
-	entry.append( atom );
+	entry.append(atom);
 
 	// TODO: maybe get the size of the message?
-	statEntry( entry );
+	statEntry(entry);
 
 	finished();
 }
 
-void POP3Protocol::del( const KURL& url, bool /*isfile*/ )
+void POP3Protocol::del (const KURL& url, bool /*isfile*/)
 {
-	QString invalidURI=QString::null;
+	QString invalidURI = QString::null;
 	bool isInt;
 
-	if ( !pop3_open() ) {
-		kdDebug() << "pop3_open failed" << endl;
-		error( ERR_COULD_NOT_CONNECT, m_sServer );
+	if (!pop3_open()) {
+		POP3_DEBUG << "pop3_open failed" << endl;
+		error(ERR_COULD_NOT_CONNECT, m_sServer);
 		closeConnection();
 		return;
 	}
 
 	QString _path = url.path();
-	if (_path.at(0) == '/')
+	if (_path.at(0) == '/') {
 		_path.remove(0,1);
+	}
+
 	_path.toUInt(&isInt);
 	if (!isInt) {
-		invalidURI=_path;
+		invalidURI = _path;
 	} else {
 		_path.prepend("DELE ");
 		if (!command(_path.ascii())) {
-			invalidURI=_path;
+			invalidURI = _path;
 		}
 	}
 
-	kdDebug() << "POP3Protocol::del " << _path << endl;
+	POP3_DEBUG << "POP3Protocol::del " << _path << endl;
 	finished();
 }
