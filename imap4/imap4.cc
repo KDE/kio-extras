@@ -60,28 +60,30 @@
 
 #include <qregexp.h>
 
-#include <kurl.h>
 #include <kprotocolmanager.h>
 #include <ksock.h>
-#include <klocale.h>
-#include <kio_pass_dlg.h>
+#include <kdebug.h>
 #include <kinstance.h>
+#include <kio/connection.h>
+#include <kio/slaveinterface.h>
+#include <kio/passdlg.h>
+#include <klocale.h>
 
 #ifndef MAX
 #define MAX(a,b)        (((a) > (b)) ? (a) : (b))
 #define MIN(a,b)        (((a) < (b)) ? (a) : (b))
 #endif
 
+using namespace KIO;
 
 extern "C" {
-   void sigsegv_handler(int);
-   void sigchld_handler(int);
-   void sigalrm_handler(int);
+	void sigalrm_handler(int);
+	int kdemain(int argc, char **argv);
 };
 
-int main(int argc, char **argv)
+int kdemain(int argc, char **argv)
 {
-   debug("IMAP4: main");
+   kdDebug() << "IMAP4::kdemain" << endl;
 /*
   int i;
   QString e64(encodeBase64("jcorey", &i));
@@ -93,22 +95,16 @@ int main(int argc, char **argv)
   debug(QString("md5 encode %1 = %2").arg(m).arg(n));
   exit(1);
 */
-   signal(SIGCHLD, sigchld_handler);
-   signal(SIGSEGV, sigsegv_handler);
 
-   KInstance instance( "kio_imap" );
-
-   KIOConnection parent( 0, 1 );
-   IMAP4Protocol imap4( &parent );
-   imap4.dispatchLoop();
-}
-
-void sigsegv_handler(int signo)
-{
-   // Debug and printf should be avoided because they might
-   // call malloc.. and get in a nice recursive malloc loop
-   write(2, "kio_imap4 : ###############SEG FAULT#############\n", 50);
-   exit(1);
+  KInstance instance( "kio_imap4" );
+  if (argc != 4) {
+    kdDebug() << " Usage: kio_imap4 protocol domain-socket1 domain-socket2" << endl;
+    exit(-1);
+  }
+  IMAP4Protocol *slave = new IMAP4Protocol(argv[2], argv[3]);
+  slave->dispatchLoop();
+  delete slave;
+  return 0;
 }
 
 void sigchld_handler(int signo)
@@ -127,12 +123,11 @@ void sigchld_handler(int signo)
    }
 }
 
-IMAP4Protocol::IMAP4Protocol(KIOConnection *_conn) : KIOProtocol(_conn)
+IMAP4Protocol::IMAP4Protocol(const QCString &pool, const QCString &app)
+  : SlaveBase( "imap4", pool, app)
 {
-   debug("IMAP4: IMAP4Protocol");
-   m_pJob = 0L;
+   kdDebug() << "IMAP4::IMAP4Protocol" << endl;
    m_iSock = m_uLastCmd = 0;
-   m_cmd = CMD_NONE;
    m_tTimeout.tv_sec=10;
    m_tTimeout.tv_usec=0;
    authState = 0;
@@ -141,13 +136,13 @@ IMAP4Protocol::IMAP4Protocol(KIOConnection *_conn) : KIOProtocol(_conn)
 }
 
 
-unsigned int IMAP4Protocol::command (enum IMAP_COMMAND type, const char *_args)
+unsigned int IMAP4Protocol::command (enum IMAP_COMMAND type, const QString &_args)
 {
    QString cmd_str;
    if (m_uLastCmd > 20) exit(-1);
    m_uLastCmd++;
    cmd_str.sprintf("KONQ%u", m_uLastCmd);
-   debug(QString("--> cmd_str=%1  type=%2").arg(cmd_str).arg(type));
+   kdDebug() << QString("--> cmd_str=%1 type=%2").arg(cmd_str).arg(type) << endl;
    CMD_Struct *cmd_s = new CMD_Struct;
 
    cmd_s->identifier = cmd_str.copy();
@@ -157,7 +152,7 @@ unsigned int IMAP4Protocol::command (enum IMAP_COMMAND type, const char *_args)
 
    pending.append(cmd_s);
 
-   debug(QString("IMAP4: command put into list"));
+   kdDebug() << "IMAP4: command put into list" << endl;
    return m_uLastCmd;
 }
 
@@ -167,24 +162,24 @@ void IMAP4Protocol::imap4_close ()
    exit(0);
 }
 
-bool IMAP4Protocol::imap4_open( KURL &_url )
+bool IMAP4Protocol::imap4_open()
 {
-   debug(QString("IMAP4: imap4_open"));
+   kdDebug() << "IMAP4: imap4_open" << endl;
    unsigned short int port;
-   struct sockaddr_in server_name;
+   ksockaddr_in server_name;
    struct servent *sent;
    memset(&server_name, sizeof(server_name), 0);
 
    // We want 143 as the default, but -1 means no port was specified.
    // Why 0 wasn't chosen is beyond me.
    sent = getservbyname("imap4", "tcp");
-   port = (_url.port() != 0) ? _url.port() : (sent ? ntohs(sent->s_port) : 143);
+   port = (m_iPort != 0) ? m_iPort : (sent ? ntohs(sent->s_port) : 143);
 
    m_iSock = ::socket(PF_INET, SOCK_STREAM, 0);
-   if (!KSocket::initSockaddr(&server_name, _url.host(), port))
+   if (!KSocket::initSockaddr(&server_name, m_sServer.ascii(), m_iPort))
       return false;
    if (::connect(m_iSock, (struct sockaddr*)(&server_name), sizeof(server_name))) {
-      error( ERR_COULD_NOT_CONNECT, strdup(_url.host()));
+      error( ERR_COULD_NOT_CONNECT, m_sServer);
       m_cmd = CMD_NONE;
       return false;
    }
@@ -194,87 +189,79 @@ bool IMAP4Protocol::imap4_open( KURL &_url )
    }
 
    authType = "*";
-//  userName = _url.user().isEmpty() ? QString("anonymous") : _url.user();
-   userName = _url.user();
-   passWord = _url.pass();
-   if (userName.isEmpty() || passWord.isEmpty()) {
-      if (!open_PassDlg(i18n("Username and password for your IMAP account:"),
-         userName, passWord)) {
+  if (m_sUser.isEmpty() || m_sPass.isEmpty()) {
+      if (!openPassDlg(i18n("Username and password for your IMAP account:"),
+         m_sUser, m_sPass)) {
          return false;
       } else {
-         debug(QString("IMAP4: open_PassDlg: user=%1 pass=xx").arg(userName));
+         kdDebug() << "IMAP4: open_PassDlg: user=" << m_sUser << " pass=xx" << endl;
       }
    }
-   int i = userName.find(";AUTH=");
+
+   int i = m_sUser.find(";AUTH=");
    if (i != -1) {
-      debug(QString("AUTH %1").arg(i));
-      authType = userName.mid(i+6);
-      userName = userName.left(i);
+      kdDebug() << "AUTH " << i << endl;
+      authType = m_sUser.mid(i+6);
+      m_sUser = m_sUser.left(i);
    }
-   debug(QString("IMAP4: connect %1:%2  user=%3 pass=xx authType=%4").
-      arg(_url.host()).arg(port).arg(userName).arg(authType));
+   kdDebug() << "IMAP4: connect " << m_sServer << ":" <<  m_iPort << "  user=" <<  m_sUser << " pass=xx authType=" << authType << endl;
 
    command(ICMD_CAPABILITY, "");
    return true;
 }
 
-void IMAP4Protocol::slotGetSize(const char *_url) {
-   debug(QString("IMAP4: slotGetSize: %1").arg(_url));
-   KURL ku(_url);
-   if (ku.isMalformed()) {
-      error(ERR_MALFORMED_URL, ku.url());
-      m_cmd = CMD_NONE;
-      return;
+ssize_t IMAP4Protocol::getSize(const KURL &_url) {
+   kdDebug() << "IMAP4:: slotGetSize: " << _url.url() << endl;
+   if (_url.isMalformed()) {
+      error(ERR_MALFORMED_URL, _url.url());
+      return 0;
    }
 
-   if (urlPath.right(1) == folderDelimiter) {
-      debug("IMAP4: sending ERR_IS_DIRECTORY 1");
-      error(ERR_IS_DIRECTORY, ku.url());
-      m_cmd = CMD_NONE;
-      return;
+   if (_url.path().right(1) == folderDelimiter) {
+      kdDebug() << "IMAP4: sending ERR_IS_DIRECTORY 1" << endl;
+      error(ERR_IS_DIRECTORY, _url.url());
+      return 0;
    }
 
    // TODO: Issue commands to get the size of the message...
+   return -1;
 }
 
-void IMAP4Protocol::slotGet(const char *_url) {
-   debug(QString("IMAP4: slotGet: %1").arg(_url));
+void IMAP4Protocol::get(const KURL &_url) {
+   kdDebug() << "IMAP4::get: " << _url.url() << endl;
    QString path, cmd;
-   KURL usrc(_url);
-   if ( usrc.isMalformed() ) {
-      debug("IMAP4: URL is malformed");
-      error( ERR_MALFORMED_URL, strdup(_url) );
-      // M_CMD needs to be cmd_none
+   if ( _url.isMalformed() ) {
+      kdDebug() << "IMAP4: URL is malformed" << endl;
+      error( ERR_MALFORMED_URL, _url.path() );
       return;
    }
 
-   if (usrc.protocol() != "imap") {
-      debug("IMAP4: URL protocol != imap");
+   if (_url.protocol() != "imap") {
+      kdDebug() << "IMAP4: URL protocol != imap" << endl;
       error( ERR_INTERNAL, i18n("kio_imap4 got non imap4 url") );
-      // M_CMD needs to be cmd_none
       return;
    }
 
-   path = usrc.path().copy();
+   path = _url.path();
    if (path.at(0)=='/') path.remove(0,1);  // remove the first /, duh
 
    urlPath = path.copy();
-   debug(QString("IMAP4: urlPath=%1  folderDelimiter=%2").arg(urlPath).arg(folderDelimiter));
+   kdDebug() << "IMAP4: urlPath=" << urlPath << "folderDelimiter=" << folderDelimiter << endl;
    if ( (urlPath.right(1) == folderDelimiter) || (urlPath.isEmpty()) ) {
-      debug("IMAP4: sending ERR_IS_DIRECTORY 2");
-      error(ERR_IS_DIRECTORY, usrc.url());
+      kdDebug() << "IMAP4: sending ERR_IS_DIRECTORY 2" << endl;
+      error(ERR_IS_DIRECTORY, _url.url());
       m_cmd = CMD_NONE;
       return;
    }
 
-   if (!imap4_open(usrc)) {
-      debug("IMAP4: imap4_open failed");
+   if (!imap4_open()) {
+      kdDebug() << "IMAP4: imap4_open failed" << endl;
       imap4_close();
       return;
    }
 /*
   if (cmd == "index") {
-    debug("IMAP4: index");
+    kdDebug("IMAP4: index");
   } else if (cmd == "download") {
     debug("IMAP4: We wanna download damnit :%s:", path.ascii());
     (void)path.toUInt(&ok);
@@ -288,7 +275,7 @@ void IMAP4Protocol::slotGet(const char *_url) {
 }
 
 void IMAP4Protocol::imap4_login() {
-   debug("IMAP4: imap4_login begins");
+   kdDebug() << "IMAP4: imap4_login begins" << endl;
    bool success = false;
 
    if (authState == 999) return;
@@ -302,13 +289,12 @@ void IMAP4Protocol::imap4_login() {
       }
    }
 
-   debug(QString("IMAP4: hasAuth=%1 authType=%2  authState=%3").
-      arg(hasAuth ? "true":"false").arg(authType).arg(authState));
+   kdDebug() << "IMAP4: hasAuth=" << (hasAuth ? "true":"false") << " authType=" << authType << " authState= " << authState << "." << endl;
 
    if (authType == "*") {
       // We're supposed to choose the best method from those available in capabilities
       // For simplicity, I am just using the LOGIN command.
-      command(ICMD_LOGIN, "\"" + userName + "\" \"" + passWord + "\"");
+      command(ICMD_LOGIN, "\"" + m_sUser + "\" \"" + m_sPass + "\"");
       sendNextCommand();
       return;
    }
@@ -318,23 +304,23 @@ void IMAP4Protocol::imap4_login() {
          switch(authState) {
             case 0: {  // initial state - send AUTHENTICATE request
                command(ICMD_AUTHENTICATE, "LOGIN");
-               debug(QString("IMAP4: authState = %1").arg(authState));
+               kdDebug() << "IMAP4: authState = " << authState << endl;
                sendNextCommand();
                break;
             }
             case 1: {  // send username
                int i;
                QString key(decodeBase64(authKey, &i));
-               debug(QString("IMAP4: login(%1) key = %2").arg(authState).arg(key));
-               command(ICMD_SEND_AUTH, encodeBase64(userName, &i));
+               kdDebug() << "IMAP4: login(" << authState << ") key=" << key << endl;
+               command(ICMD_SEND_AUTH, encodeBase64(m_sUser, &i));
                sendNextCommand();
                break;
             }
             case 2: {  // send password
                int i;
                QString key(decodeBase64(authKey, &i));
-               debug(QString("IMAP4: login(%1) key = %2").arg(authState).arg(key));
-               command(ICMD_SEND_AUTH, encodeBase64(passWord, &i));
+               kdDebug() << "IMAP4: login(" << authState << ") key =" << key << endl;
+               command(ICMD_SEND_AUTH, encodeBase64(m_sPass, &i));
                sendNextCommand();
                break;
             }
@@ -356,7 +342,7 @@ void IMAP4Protocol::imap4_login() {
           */
          error(ERR_UNSUPPORTED_PROTOCOL, "CRAM-MD5");
       } else {
-         debug(QString("IMAP4: Unsupported Authentication method - %1").arg(authType));
+         kdDebug() << "IMAP4: Unsupported Authentication method - " << authType << endl;
          error(ERR_UNSUPPORTED_PROTOCOL, authType);
       }
    }
@@ -364,32 +350,21 @@ void IMAP4Protocol::imap4_login() {
 
 void IMAP4Protocol::imap4_exec() {
    // urlPath
-   debug(QString("IMAP4: exec %1").arg(urlPath));
+   kdDebug() << "IMAP4: exec " << urlPath << endl;
    // ??
 }
 
-void IMAP4Protocol::slotPut(const char *_url, int _mode, bool _overwrite,
-                            bool _resume, unsigned int)
-{
-   debug(QString("IMAP4: slotPut: %1").arg(_url));
-   KURL ku(_url);
-   if (ku.isMalformed()) {
-      error(ERR_MALFORMED_URL, ku.url());
-      m_cmd = CMD_NONE;
-      return;
-   }
-}
+void IMAP4Protocol::listDir(const KURL &_url) {
+   kdDebug() << "IMAP4: slotListDir: " << _url.url() << " authState=" << authState << endl;
 
-void IMAP4Protocol::slotListDir(const char *_url) {
-   debug(QString("IMAP4: slotListDir: %1  authState=%2").arg(_url).arg(authState));
-   KURL ku(_url);
-   if (ku.isMalformed()) {
-      error(ERR_MALFORMED_URL, ku.url());
+   if (_url.isMalformed()) {
+      error(ERR_MALFORMED_URL, _url.url());
       m_cmd = CMD_NONE;
       return;
    }
+   // Is this necesary?
    sleep(20);
-   if (!imap4_open(ku)) {
+   if (!imap4_open()) {
       debug("IMAP4: imap4_open failed");
       imap4_close();
       return;
@@ -412,20 +387,6 @@ void IMAP4Protocol::slotListDir(const char *_url) {
    else command(ICMD_LSUB, "\"" + mailRef + "\" \"%\"");
 
    startLoop();
-}
-
-void IMAP4Protocol::slotTestDir(const char *_url) {
-   debug(QString("IMAP4: slotTestDir: %1").arg(_url));
-   KURL ku(_url);
-   if (ku.isMalformed()) {
-      error(ERR_MALFORMED_URL, ku.url());
-      m_cmd = CMD_NONE;
-      return;
-   }
-   // TODO: Do an actual check if this is a folder or file
-   if (ku.path().right(1) == folderDelimiter) isDirectory();
-   else isFile();
-   finished();
 }
 
 void IMAP4Protocol::processList(QString str) {
@@ -463,25 +424,24 @@ if (tmp_str[0] == QChar('"')) {
       return;
    }
    itemNum++;
-   debug(QString("==> itemNum %1 Attributes: %1 Delimiter: %2  Name: %3").arg(itemNum).
-      arg(Attributes).arg(folderDelimiter).arg(Name));
+   kdDebug() << "==> itemNum " << itemNum << " Attributes: " << Attributes << " Delimiter: " << folderDelimiter << " Name: " << Name << endl;
 
-   KUDSEntry entry;
-   KUDSAtom atom;
+   UDSEntry entry;
+   UDSAtom atom;
    QString filename;
   
    atom.m_uds = UDS_NAME;
-//  atom.m_str = QString("Item_%1").arg(itemNum);
+   //atom.m_str = QString("Item_%1").arg(itemNum);
    atom.m_str = Name;
    atom.m_long = 0;
    entry.append(atom);
-   debug(QString("=> Adding atom str=%1 long=%2").arg(atom.m_str).arg(atom.m_long));
+   kdDebug() << "=> Adding atom str=" << atom.m_str << " long=" << atom.m_long << endl;
 
    atom.m_uds = UDS_MIME_TYPE;
    atom.m_str = "inode/directory";
    atom.m_long = 0;
    entry.append(atom);
-   debug(QString("=> Adding atom str=%1 long=%2").arg(atom.m_str).arg(atom.m_long));
+   kdDebug() << "=> Adding atom str=" << atom.m_str << " long=" << atom.m_long << endl;
 
    // \Noselect = directory
    if (Attributes.find("\\Noselect", 0, false) != -1) {
@@ -495,7 +455,7 @@ if (tmp_str[0] == QChar('"')) {
    atom.m_str += "/messageXX";
    atom.m_long = 0;
    entry.append(atom);
-   debug(QString("=> Adding atom str=%1 long=%2").arg(atom.m_str).arg(atom.m_long));
+   kdDebug() << "=> Adding atom str=" << atom.m_str << " long=" << atom.m_long << endl;   
 
    atom.m_uds = UDS_FILE_TYPE;
    atom.m_str = "";
@@ -505,25 +465,26 @@ if (tmp_str[0] == QChar('"')) {
    } else if (Attributes.find("\\Noinferiors", 0, false) != -1) {
       atom.m_long = S_IFDIR;
    } else
-//   atom.m_long = S_IFREG;
+      atom.m_long = S_IFREG;
    entry.append(atom);
-   debug(QString("=> Adding atom str=%1 long=%2").arg(atom.m_str).arg(atom.m_long));
+   kdDebug() << "=> Adding atom str=" << atom.m_str << " long=" << atom.m_long << endl;   
 
    atom.m_uds = UDS_SIZE;
    atom.m_str = "";
    atom.m_long = 5555;
    entry.append(atom);
-   debug(QString("=> Adding atom str=%1 long=%2").arg(atom.m_str).arg(atom.m_long));
+   kdDebug() << "=> Adding atom str=" << atom.m_str << " long=" << atom.m_long << endl;   
 
-   listEntry(entry);
+   listEntry(entry, false);
    entry.clear();
+   listEntry(entry, true);
 }
 
 void IMAP4Protocol::sendNextCommand ()
 {
    pending.first();
    while (pending.current()) {
-   debug(QString("IMAP4: sendNextCommand: type=%1").arg(pending.current()->type));
+   kdDebug() << "IMAP4: sendNextCommand: type=" << pending.current()->type << endl;
    CMD_Struct *cmd = pending.current();
    if (!pending.current()->sent) {
       switch (pending.current()->type) {
@@ -537,7 +498,7 @@ void IMAP4Protocol::sendNextCommand ()
             break;
          }
          case ICMD_CAPABILITY: {
-            debug(QString("IMAP4: C: %1 CAPABILITY").arg(cmd->identifier));
+            kdDebug() << "IMAP4: C: " << cmd->identifier << " CAPABILITY" << endl;
             write(m_iSock, cmd->identifier.ascii(), cmd->identifier.length());
             write(m_iSock, " CAPABILITY", 11);
             write(m_iSock, "\r\n", 2);
@@ -545,7 +506,7 @@ void IMAP4Protocol::sendNextCommand ()
             break;
          }
          case ICMD_LOGOUT: {
-            debug(QString("IMAP4: C: %1 LOGOUT").arg(cmd->identifier));
+            kdDebug() << "IMAP4: C: " << cmd->identifier << " LOGOUT" << endl;
             write(m_iSock, cmd->identifier.ascii(), cmd->identifier.length());
             write(m_iSock, " LOGOUT", 7);
             write(m_iSock, "\r\n", 2);
@@ -554,8 +515,7 @@ void IMAP4Protocol::sendNextCommand ()
          }
          // Non-Authenticated State
          case ICMD_AUTHENTICATE: {
-            debug(QString("IMAP4: C: %1 AUTHENTICATE %2").arg(cmd->identifier).
-               arg(cmd->args));
+            kdDebug() << "IMAP4: C: " << cmd->identifier << " AUTHENTICATE " << cmd->args << endl;
             write(m_iSock, cmd->identifier.ascii(), cmd->identifier.length());
             write(m_iSock, " AUTHENTICATE ", 14);
             write(m_iSock, cmd->args.ascii(), cmd->args.length());
@@ -564,13 +524,13 @@ void IMAP4Protocol::sendNextCommand ()
             break;
          }
          case ICMD_SEND_AUTH: {  // must already have trailing \r\n
-            debug(QString("IMAP4: (SEND_AUTH) C: %1").arg(cmd->args));
+            kdDebug() << "IMAP4: (SEND_AUTH) C: " << cmd->args << endl;
             write(m_iSock, cmd->args.ascii(), cmd->args.length());
             cmd->sent = true;
             break;
          }
          case ICMD_LOGIN: {
-            debug(QString("IMAP4: C: %1 LOGIN %2").arg(cmd->identifier).arg(cmd->args));
+            kdDebug() << "IMAP4: C: " << cmd->identifier << " LOGIN " << cmd->args << endl;
             write(m_iSock, cmd->identifier.ascii(), cmd->identifier.length());
             write(m_iSock, " LOGIN ", 7);
             write(m_iSock, cmd->args.ascii(), cmd->args.length());
@@ -580,8 +540,7 @@ void IMAP4Protocol::sendNextCommand ()
          }
          // Authenticated state
          case ICMD_LIST: {
-            debug(QString("IMAP4: C: %1 LIST %2").arg(cmd->identifier).
-               arg(cmd->args.ascii()));
+            kdDebug() << "IMAP4: C: " << cmd->identifier << " LIST " << cmd->args << endl;
             write(m_iSock, cmd->identifier.ascii(), cmd->identifier.length());
             write(m_iSock, " LIST ", 6);
             write(m_iSock, cmd->args.ascii(), cmd->args.length());
@@ -590,8 +549,7 @@ void IMAP4Protocol::sendNextCommand ()
             break;
          }
          case ICMD_LSUB: {
-            debug(QString("IMAP4: C: %1 LSUB %2").arg(cmd->identifier).
-               arg(cmd->args.ascii()));
+            kdDebug() << "IMAP4: C: " << cmd->identifier << " LSUB " << cmd->args << endl;
             write(m_iSock, cmd->identifier.ascii(), cmd->identifier.length());
             write(m_iSock, " LSUB ", 6);
             write(m_iSock, cmd->args.ascii(), cmd->args.length());
@@ -601,7 +559,7 @@ void IMAP4Protocol::sendNextCommand ()
          }
          case ICMD_SELECT: {
             // <not tested>
-            debug(QString("IMAP4: C: %1 SELECT %2").arg(cmd->identifier).arg(cmd->args.ascii()));
+            kdDebug() << "IMAP4: C: " << cmd->identifier << " SELECT " << cmd->args << endl;
             write(m_iSock, cmd->identifier.ascii(), cmd->identifier.length());
             write(m_iSock, " SELECT ", 8);
             write(m_iSock, cmd->args.ascii(), cmd->args.length());
@@ -615,105 +573,30 @@ void IMAP4Protocol::sendNextCommand ()
    } // while
 }
 
-void IMAP4Protocol::jobError(int _errid, const char *_text)
+void IMAP4Protocol::del( const KURL &_url, bool isFile) {
+   // TODO
+   kdDebug() << "IMAP4::del" << endl;
+}
+
+void IMAP4Protocol::setHost(const QString &_host, int _port, const QString &_user, const QString &_pass)
 {
-   debug(QString("IMAP4: jobError"));
-   error(_errid, _text);
+	m_sServer = _host;
+	m_iPort = _port;
+	m_sUser = _user;
+	m_sPass = _pass;
 }
 
-void IMAP4Protocol::slotCopy(const char *_source, const char *_dest) {
-   // TODO
-   debug(QString("IMAP4: slotCopy"));
-}
-
-void IMAP4Protocol::slotData(void *_p, int _len) {
-   // TODO
-   debug(QString("IMAP4: slotData"));
-   switch(m_cmd) {
-      case CMD_PUT:
-         // Send data here
-         break;
-      default:
-         abort();
-         break;
-   }
-}
-
-void IMAP4Protocol::slotDataEnd() {
-   // TODO
-   debug(QString("IMAP4: slotDataEnd"));
-   switch(m_cmd) {
-      case CMD_GET:
-         m_cmd = CMD_NONE;
-         break;
-      default:
-         abort();
-         break;
-   }
-}
-
-void IMAP4Protocol::slotDel(QStringList& _source) {
-   // TODO
-   debug(QString("IMAP4: slotDel"));
-}
-
-void IMAP4Protocol::jobData(void *_p, int _len) {
-   // TODO
-   debug(QString("IMAP4: jobData"));
-   switch(m_cmd) {
-      case CMD_GET:
-         break;
-      case CMD_COPY:
-         break;
-      default:
-         abort();
-   }
-}
-
-void IMAP4Protocol::jobDataEnd() {
-   // TODO
-   m_cmd = CMD_NONE;
-   debug(QString("IMAP4: jobDataEnd"));
-   switch(m_cmd) {
-      case CMD_GET:
-         dataEnd();
-         break;
-      case CMD_COPY:
-         m_pJob->dataEnd();
-         break;
-      default:
-         abort();
-         break;
-   }
-}
-
-/*************************************
- *
- * IMAP4IOJob
- *
- *************************************/
-
-IMAP4IOJob::IMAP4IOJob(KIOConnection *_conn, IMAP4Protocol *_imap4) :
-        KIOJobBase(_conn)
+void IMAP4Protocol::stat(const KURL &_url)
 {
-   m_pIMAP4 = _imap4;
-}
-
-void IMAP4IOJob::slotError(int _errid, const char *_txt)
-{
-   debug(QString("IMAP4: IOJob::slotError"));
-   KIOJobBase::slotError(_errid, _txt);
-   m_pIMAP4->jobError(_errid, _txt );
-}
-
-void IMAP4IOJob::slotData(void *_p, int _len) {
-   // TODO
-   debug(QString("IMAP4: IOJob::slotData"));
-   m_pIMAP4->jobData(_p, _len);
-}
-
-void IMAP4IOJob::slotDataEnd() {
-   // TODO
-   debug(QString("IMAP4: IOJob::slotDataEnd"));
-   m_pIMAP4->jobDataEnd();
+#if 0
+   if (ku.isMalformed()) {
+      error(ERR_MALFORMED_URL, ku.url());
+      m_cmd = CMD_NONE;
+      return;
+   }
+   // TODO: Do an actual check if this is a folder or file
+   if (ku.path().right(1) == folderDelimiter) isDirectory();
+   else isFile();
+   finished();
+#endif
 }

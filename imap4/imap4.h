@@ -28,13 +28,11 @@
 
 #include <stdio.h>
 
+#include <qstringlist.h>
 #include <qstring.h>
 #include <qlist.h>
 
-#include <kio_interface.h>
-#include <kio_base.h>
-#include <kio_filter.h>
-#include <kurl.h>
+#include <kio/slavebase.h>
 
 enum IMAP_COMMAND {
 // Any State
@@ -57,37 +55,33 @@ class CMD_Struct {
   bool sent;
 };
 
-class IMAP4Protocol : public KIOProtocol
+class IMAP4Protocol : public KIO::SlaveBase
 {
 public:
-  IMAP4Protocol( KIOConnection *_conn );
-  
-  virtual void slotGetSize( const char *_url );
-  virtual void slotGet( const char *_url );
-  virtual void slotPut( const char *_url, int _mode, bool _overwrite,
-			bool _resume, unsigned int );
-  virtual void slotCopy( const char *_source, const char *_dest );
-  virtual void slotData( void *_p, int _len );
-  virtual void slotDataEnd();
-  virtual void slotDel( QStringList& _source );
+  IMAP4Protocol (const QCString &pool, const QCString &app);
 
-  virtual void slotListDir( const char *_url );
+  virtual void setHost( const QString &_host, int _port, const QString &_user, const QString &_pass );
+
+  virtual void get( const KURL &_url );
+  virtual void stat( const KURL &_url );
+  virtual void del( const KURL &_url, bool isFile );
+  virtual void listDir( const KURL &_url );
+
+protected:
+
+  ssize_t getSize( const KURL &_url );
+
   virtual void slotTestDir( const char *_url );
-
-  void jobData(void *_p, int _len);
-  void jobDataEnd();
-  void jobError( int _errid, const char *_txt );
 
   void startLoop();
   
-  KIOConnection* connection() { return KIOConnectionSignals::m_pConnection; }
   
- protected:
+protected:
   QList<CMD_Struct> pending;
-  unsigned int command (enum IMAP_COMMAND cmd, const char *args);
+  unsigned int command (enum IMAP_COMMAND cmd, const QString &args);
   void sendNextCommand();
   void imap4_close ();
-  bool imap4_open (KURL &_url);
+  bool imap4_open ();
   void imap4_login(); // handle loggin in
   void imap4_exec();  // executes the IMAP action
   void processList(QString str);  // processes LIST/LSUB responses
@@ -96,26 +90,16 @@ public:
   unsigned int m_uLastCmd;
   struct timeval m_tTimeout;
   FILE *fp;
-  KIOJobBase* m_pJob;
   QString m_sCurrentMBX;
 
-  QString authType, userName, passWord;
+  QString authType;
   QStringList capabilities, serverResponses;
   int authState;
   QString authKey, urlPath, folderDelimiter;
   QString action;
-};
 
-class IMAP4IOJob : public KIOJobBase
-{
- public:
-  IMAP4IOJob( KIOConnection *_conn, IMAP4Protocol *_imap4 );
-  virtual void slotError( int _errid, const char *_txt );
-  virtual void slotData(void *_p, int _len);
-  virtual void slotDataEnd();
-  
- protected:
-  IMAP4Protocol* m_pIMAP4;
+  QString m_sServer, m_sPass, m_sUser;
+  int m_iPort;
 };
 
 #endif

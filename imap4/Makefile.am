@@ -1,17 +1,22 @@
-## $Id$
-## Makefile.am of kdebase/kioslave/imap4
-
-INCLUDES=	$(all_includes)
-LDFLAGS =       $(all_libraries) $(KDE_RPATH)
-LDADD	=	$(LIB_KIO)
+AM_CPPFLAGS = -UQT_NO_ASCII_CAST
+INCLUDES= -I$(srcdir)/../.. -I$(srcdir)/.. $(SSL_INCLUDES) $(all_includes)
 
 ####### Files
 
-bin_PROGRAMS = kio_imap4
+lib_LTLIBRARIES = kio_imap4.la
 
-kio_imap4_SOURCES = response.cc imap4.cc md5.cc base64md5.cc
-noinst_HEADERS = imap4.h md5.h base64md5.h
+kio_imap4_la_SOURCES = imap4.cc base64md5.cc response.cc md5.cc
+kio_imap4_la_LIBADD  = $(LIB_KIO)
+kio_imap4_la_LDFLAGS = $(all_libraries) -module -avoid-version
+
+noinst_HEADERS = imap4.h
 
 kdelnk_DATA = imap4.protocol
 kdelnkdir = $(kde_servicesdir)
 
+check_PROGRAMS = linktest
+linktest_SOURCES = $(kio_imap4_la_SOURCES) linktest.cpp
+linktest.cpp:
+	echo "int main() {};" > linktest.cpp
+linktest_LDFLAGS  = $(all_libraries) -module -avoid-version
+linktest_LDADD = $(kio_imap4_la_LIBADD)

@@ -11,7 +11,7 @@ static int encode_base64(const char* aIn, size_t aInLen, char* aOut,
 static int decode_base64(const char* aIn, size_t aInLen, char* aOut,
 			 size_t aOutSize, size_t* aOutLen);
 
-const QString encodeBase64(const QString aStr, int* aLenPtr)
+const QString encodeBase64 (const QString &aStr, int* aLenPtr)
 {
   size_t srcLen, destLen, destSize;
   const char* srcBuf;
@@ -59,7 +59,7 @@ const QString decodeBase64(const QString aStr, int* aLenPtr)
   destSize = destSize * 10;
 
   // Encode source to destination
-  rc = decode_base64(aStr, srcLen, destStr, destSize, &destLen);
+  rc = decode_base64(aStr.ascii(), srcLen, destStr, destSize, &destLen);
   if (rc) destLen = 0;
 
 //  result.resize(destLen+1);

@@ -76,7 +76,7 @@ typedef struct {
 
 void MD5Init PROTO_LIST ((MD5_CTX *));
 void MD5Update PROTO_LIST
-  ((MD5_CTX *, unsigned char *, unsigned long int));
+  ((MD5_CTX *, const unsigned char *, unsigned long int));
 void MD5Final PROTO_LIST ((unsigned char [16], MD5_CTX *));
 #endif
 // vim:ts=4:sw=4:tw=78

@@ -9,7 +9,7 @@ QString encodeMD5(const QString & src) {
   QString result;
 
   MD5Init(&context);
-  MD5Update(&context, (char *)src.ascii(), src.length());
+  MD5Update(&context, reinterpret_cast<const unsigned char *>(src.ascii()), src.length());
   MD5Final(md5text, &context);
   QString h = "0123456789abcdef";
   for(int i=0; i<16; i++) {
