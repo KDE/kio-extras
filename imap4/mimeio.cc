@@ -159,4 +159,5 @@ int mimeIOQString::inputLine(QCString &_str)
 		return 0;
 	_str = theString.left(i+1).latin1();
 	theString = theString.right(theString.length()-i-1);
+	return _str.length();
 }
