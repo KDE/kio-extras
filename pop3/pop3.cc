@@ -429,9 +429,8 @@ bool POP3Protocol::pop3_open ()
 			}
 
 			// Generate digest
-			ctx.update((unsigned char *)c, (unsigned)strlen(c));
-			ctx.update(m_sOldPass);
-			ctx.finalize();
+			ctx.update(c, strlen(c));
+			ctx.update(m_sOldPass.latin1());
 
 			// Genenerate APOP command
 			apop_string.append(" ");
