@@ -1,3 +1,4 @@
+// $Id$
 /**********************************************************************
  *
  *   imap4.cc  - IMAP4rev1 KIOSlave
@@ -190,13 +191,24 @@ IMAP4Protocol::get (const KURL & _url)
     else if (aSection.find ("ENVELOPE", 0, false) != -1)
     {
       aSection = "UID ENVELOPE";
-      aSection += " BODY.PEEK[HEADER.FIELDS (REFERENCES)]";
+      if (hasCapability("IMAP4rev1")) {
+        aSection += " BODY.PEEK[HEADER.FIELDS (REFERENCES)]";
+      } else {
+        // imap4 does not know HEADER.FIELDS
+        aSection += " RFC822.HEADER.LINES (REFERENCES)";
+      }
     }
     else if (aSection == "HEADER")
     {
       aSection = "UID RFC822.HEADER";
     }
-    else if (aSection.find ("BODY.PEEK[", 0, false) != -1) {
+    else if (aSection.find ("BODY.PEEK[", 0, false) != -1) 
+    {
+      if (aSection.find ("BODY.PEEK[]", 0, false) != -1 &&
+          !hasCapability("IMAP4rev1")) {
+        // imap4 does not know BODY.PEEK[]
+        aSection.replace("BODY.PEEK[]", "RFC822.PEEK");
+      }
       aSection.prepend("UID RFC822.SIZE INTERNALDATE FLAGS ");
     }
 	else
@@ -250,6 +262,8 @@ IMAP4Protocol::get (const KURL & _url)
 
     if (aSequence != "0:0")
     {
+      if (getLastHandled())
+        getLastHandled()->clear();
       cmd = sendCommand (imapCommand::clientFetch (aSequence, aSection));
       int res;
       do
@@ -343,7 +357,6 @@ IMAP4Protocol::listDir (const KURL & _url)
     if (!listStr.isEmpty ())
       listStr += myDelimiter;
     listStr += "%";
-//      listResponses.clear();
     cmd =
       doCommand (imapCommand::clientList ("", listStr, myLType == "LSUB"));
     if (cmd->result () == "OK")
@@ -1811,9 +1824,16 @@ IMAP4Protocol::parseURL (const KURL & _url, QString & _box,
         retVal = ITYPE_MSG;
     }
   }
-  if (_type == "LIST")
+  if ( _hierarchyDelimiter.isEmpty() && 
+       (_type == "LIST" || _type == "LSUB") )
   {
-    if (_hierarchyDelimiter.isEmpty()) _hierarchyDelimiter ="/";
+    // try to reconstruct the delimiter from the URL
+    int start = _url.path().findRev(_box);
+    if (start != -1)
+      _hierarchyDelimiter = _url.path().mid(start-1, start);
+    kdDebug(7116) << "IMAP4::parseURL - reconstructed delimiter:" << _hierarchyDelimiter << endl;
+    if (_hierarchyDelimiter.isEmpty())
+      _hierarchyDelimiter = "/";
   }
 
   return retVal;
