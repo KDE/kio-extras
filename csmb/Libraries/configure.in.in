@@ -3,7 +3,7 @@
 AC_ARG_ENABLE(encrypt-pass,[ --disable-encrypt-pass Disable Encrypted Passwords],,enableval="yes")
 
 if test "$enableval" != "no"; then
-	AC_DEFINE(PAM_SMB_ENC_PASS)
+	AC_DEFINE(PAM_SMB_ENC_PASS, 1, [Encrypted password support])
 	AC_MSG_RESULT(Will compile with encrypted password support)
 else
 	AC_MSG_RESULT(Will compile without encrypted password support)
@@ -19,7 +19,7 @@ AC_EGREP_CPP(yes,
 ], has_logauthpriv=yes, has_logauthpriv=no)
 AC_MSG_RESULT($has_logauthpriv)
 if test "$has_logauthpriv" != "yes"; then
-	AC_DEFINE(USE_LOGAUTH)
+	AC_DEFINE(USE_LOGAUTH, 1, [Has LOG_AUTHPRIV or LOG_AUTH])
 fi
 
 AC_CHECK_HEADERS(shadow.h security/pam_appl.h security/pam_modules.h)
