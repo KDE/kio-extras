@@ -179,17 +179,17 @@ SmbProtocol::SmbProtocol( Connection *_conn ) : IOProtocol( _conn )
 	smbio->setPasswordCallback(getPasswordCallBack);
 	
 	QString tmp;
-	KConfig *konqConfig = new KConfig( "konquerorrc" );
-	konqConfig->setGroup( "Browser Settings/SMB" );
-	tmp = konqConfig->readEntry( "Browse server" );
+	KConfig *config = new KConfig( "kioslaverc" );
+	config->setGroup( "Browser Settings/SMB" );
+	tmp = config->readEntry( "Browse server" );
 	if (!(tmp.isEmpty())) smbio->setDefaultBrowseServer(tmp);
-	tmp = konqConfig->readEntry( "Broadcast address" );
+	tmp = config->readEntry( "Broadcast address" );
 	if (!(tmp.isEmpty())) smbio->setNetworkBroadcastAddress(tmp);
-	tmp = konqConfig->readEntry( "Default user" );
+	tmp = config->readEntry( "Default user" );
 	if (!(tmp.isEmpty())) smbio->setDefaultUser(tmp);
 	qDebug( "kio_smb : config read" );
 //	tmp = konqConfig->readEntry( "Remember password" );
-	delete konqConfig;
+	delete config;
 
 }
 
