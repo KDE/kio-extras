@@ -103,7 +103,6 @@ int main(int argc, char **argv) {
     xmlSetExternalEntityLoader(meinExternalEntityLoader);
 
     bool index = args->isSet( "htdig" );
-    kdDebug() << "index " << index << endl;
     QString tss = args->getOption( "stylesheet" );
     if ( tss.isEmpty() )
         tss =  "customization/kde-chunk.xsl";
