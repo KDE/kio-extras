@@ -1773,6 +1773,12 @@ IMAP4Protocol::parseURL (const KURL & _url, QString & _box,
               }
             }
           }
+          // if we got no list response for the box it's probably some kind of prefix
+          // e.g. #mh
+          if (retVal == ITYPE_UNKNOWN)
+            retVal = ITYPE_DIR;
+        } else {
+          kdDebug(7116) << "IMAP4::parseURL - got error for " << _box << endl;
         }
         completeQueue.removeRef (cmd);
       }
@@ -1803,8 +1809,6 @@ IMAP4Protocol::parseURL (const KURL & _url, QString & _box,
   }
   if (_type == "LIST")
   {
-    /* what the heck is that part for ?? (carsten) */
-//    retVal = ITYPE_DIR; 
     if (_hierarchyDelimiter.isEmpty()) _hierarchyDelimiter ="/";
   }
 
