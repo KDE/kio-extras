@@ -228,6 +228,8 @@ QString DiskEntry::discType()
     else if (-1!=mountPoint().find("floppy",0,FALSE)) typeName="kdedevice/floppy";
     else if (-1!=mountPoint().find("zip",0,FALSE)) typeName+="kdedevice/zip";
     else if (-1!=fsType().find("nfs",0,FALSE)) typeName="kdedevice/nfs";
+    else if (-1!=fsType().find("smb",0,FALSE)) typeName="kdedevice/smb";
+    else if (-1!=deviceName().find("//",0,FALSE)) typeName="kdedevice/smb";
     else typeName="kdedevice/hdd";
 //    if ( -1==mountOptions().find("user",0,FALSE) )
 //      iconName.prepend("root_"); // special root icon, normal user can´t mount
