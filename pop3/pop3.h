@@ -38,6 +38,8 @@
 
 #include <kio/tcpslavebase.h>
 
+#define MAX_PACKET_LEN 4096
+
 class POP3Protocol 
 	: public KIO::TCPSlaveBase
 {
@@ -54,6 +56,9 @@ public:
 
 protected:
 
+	ssize_t POP3Protocol::myRead(void *data, ssize_t len);
+	ssize_t POP3Protocol::myReadLine(char *data, ssize_t len);
+
 	/**
 	  * This returns the size of a message as a long integer.
 	  * This is useful as an internal member, because the "other"
@@ -61,6 +66,12 @@ protected:
 	  * to trap when doing something like listing a directory.
 	  */
 	size_t realGetSize (unsigned int msg_num);
+
+	/**
+	  *  Send a command to the server. Using this function, getResponse
+	  *  has to be called separately.
+	  */
+	bool sendCommand (const char *cmd);
 
 	/**
 	  *  Send a command to the server, and wait for the  one-line-status
@@ -95,8 +106,6 @@ protected:
 	  */
 	bool pop3_open ();
 
-	const QCString encodeRFC2104 (const QCString & text, const QCString & key);
-
 	int m_cmd;
 	unsigned short int m_iOldPort;
 	struct timeval m_tTimeout;
@@ -104,6 +113,8 @@ protected:
 	QString m_sServer, m_sPass, m_sUser;
 	bool m_try_apop, m_try_sasl, opened;
 	QString m_sError;
+	char readBuffer[MAX_PACKET_LEN];
+	ssize_t readBufferLen;
 };
 
 #endif

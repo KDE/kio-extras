@@ -60,7 +60,7 @@
 
 #define GREETING_BUF_LEN 1024
 #define MAX_RESPONSE_LEN 512
-#define MAX_PACKET_LEN 4096
+#define MAX_COMMANDS 10
 
 #define POP3_DEBUG kdDebug(7105)
 
@@ -106,6 +106,7 @@ POP3Protocol::POP3Protocol(const QCString &pool, const QCString &app, bool isSSL
 	m_try_apop = true;
 	m_try_sasl = true;
 	opened = false;
+	readBufferLen = 0;
 }
 
 POP3Protocol::~POP3Protocol()
@@ -122,8 +123,43 @@ void POP3Protocol::setHost (const QString& _host, int _port, const QString& _use
 	m_sPass = _pass;
 }
 
+ssize_t POP3Protocol::myRead(void *data, ssize_t len)
+{
+  if (readBufferLen)
+  {
+    ssize_t copyLen = (len < readBufferLen) ? len : readBufferLen;
+    memcpy(data, readBuffer, copyLen);
+    readBufferLen -= copyLen;
+    if (readBufferLen) memcpy(readBuffer, &readBuffer[copyLen], readBufferLen);
+    return copyLen;
+  }
+  if (AtEOF()) waitForResponse(600);
+  return Read(data, len);
+}
+
+ssize_t POP3Protocol::myReadLine(char *data, ssize_t len)
+{
+  ssize_t copyLen = 0;
+  while (true) {
+    while (copyLen < readBufferLen && readBuffer[copyLen] != '\n') copyLen++;
+POP3_DEBUG << "readBufferLen = " << readBufferLen << ", copyLen = " << copyLen << endl;
+    if (copyLen < readBufferLen || copyLen == len)
+    {
+      copyLen++;
+      memcpy(data, readBuffer, copyLen);
+      data[copyLen] = '\0';
+      readBufferLen -= copyLen;
+      if (readBufferLen) memcpy(readBuffer, &readBuffer[copyLen], readBufferLen);
+      return copyLen;
+    }
+    if (AtEOF()) waitForResponse(600);
+    readBufferLen += Read(&readBuffer[readBufferLen], len - readBufferLen);
+  }
+}
+
 bool POP3Protocol::getResponse (char *r_buf, unsigned int r_len, const char *cmd)
 {
+POP3_DEBUG << "POP3Protocol::getResponse" << endl;
 	char *buf = 0;
 	unsigned int recv_len = 0;
 	fd_set FDs;
@@ -133,31 +169,10 @@ bool POP3Protocol::getResponse (char *r_buf, unsigned int r_len, const char *cmd
 
 	buf = new char[r_len];
 
-	// And keep waiting if it timed out
-	unsigned int wait_time = 600; // Wait 600sec. max.
-	do {
-		// Wait for something to come from the server
-		FD_ZERO(&FDs);
-		FD_SET(m_iSock, &FDs);
-		// Yes, it's true, Linux sucks.
-		// Erp, make that Linux has to be different because it's Linux.. stupid. stupid stupid.
-		wait_time--;
-		m_tTimeout.tv_sec = 1;
-		m_tTimeout.tv_usec = 0;
-	}
-	while (wait_time && (::select(m_iSock+1, &FDs, 0, 0, &m_tTimeout) == 0));
-
-	if (wait_time == 0) {
-		POP3_DEBUG << "No response from POP3 server in 600 secs." << endl;
-		m_sError = i18n("No response from POP3 server in 600 secs.");
-		if (r_buf)
-			r_buf[0] = 0;
-		return false;
-	}
-
 	// Clear out the buffer
 	memset(buf, 0, r_len);
-	ReadLine(buf, r_len-1);
+	myReadLine(buf, r_len-1);
+POP3_DEBUG << "response = " << buf << endl;
 
 	// This is really a funky crash waiting to happen if something isn't
 	// null terminated.
@@ -237,7 +252,7 @@ bool POP3Protocol::getResponse (char *r_buf, unsigned int r_len, const char *cmd
 	}
 }
 
-bool POP3Protocol::command (const char *cmd, char *recv_buf, unsigned int len)
+bool POP3Protocol::sendCommand(const char *cmd)
 {
 	/*
 	 *   From rfc1939:
@@ -250,7 +265,6 @@ bool POP3Protocol::command (const char *cmd, char *recv_buf, unsigned int len)
 	 *   argument may be up to 40 characters long.
 	 */
 
-	// Write the command
 	char *cmdrn = new char[strlen(cmd) + 3];
 	sprintf(cmdrn, "%s\r\n", cmd);
 
@@ -261,6 +275,11 @@ bool POP3Protocol::command (const char *cmd, char *recv_buf, unsigned int len)
 	}
 
 	delete [] cmdrn;
+}
+
+bool POP3Protocol::command (const char *cmd, char *recv_buf, unsigned int len)
+{
+	sendCommand(cmd);
 	return getResponse(recv_buf, len, cmd);
 }
 
@@ -291,6 +310,7 @@ void POP3Protocol::closeConnection ()
 
 	command("QUIT");
 	CloseDescriptor();
+	readBufferLen = 0;
 	m_sOldUser = m_sOldPass = m_sOldServer = "";
 	opened = false;
 }
@@ -436,9 +456,9 @@ bool POP3Protocol::pop3_open ()
 			QStrIList sasl_list;
 			if (hasMetaData("sasl")) {
 				sasl_list.append(metaData("sasl").latin1());
-			} else while (!AtEOF()) {
+			} else while (true /* !AtEOF() */ ) {
 				memset(buf, 0, sizeof(buf));
-				ReadLine(buf, sizeof(buf)-1);
+				myReadLine(buf, sizeof(buf)-1);
 
 				// HACK: This assumes fread stops at the first \n and not \r
 				if (strcmp(buf, ".\r\n") == 0) {
@@ -567,8 +587,8 @@ void POP3Protocol::get (const KURL& url)
 	char buf[MAX_PACKET_LEN];
 	char destbuf[MAX_PACKET_LEN];
 	QByteArray array;
-
 	QString cmd, path = url.path();
+	int maxCommands = (metaData("pipelining") == "on") ? MAX_COMMANDS : 1;
 
 	if (path.at(0) == '/') path.remove(0,1);
 	if (path.isEmpty()) {
@@ -612,9 +632,9 @@ void POP3Protocol::get (const KURL& url)
 		.
 		*/
 		if (result) {
-			while (!AtEOF()) {
+			while (true /* !AtEOF() */ ) {
 				memset(buf, 0, sizeof(buf));
-				ReadLine(buf, sizeof(buf)-1);
+				myReadLine(buf, sizeof(buf)-1);
 
 				// HACK: This assumes fread stops at the first \n and not \r
 				if (strcmp(buf, ".\r\n") == 0) {
@@ -649,9 +669,9 @@ void POP3Protocol::get (const KURL& url)
 						// TOP cmd isn't supported
 			mimeType("text/plain");
 			memset(buf, 0, sizeof(buf));
-			while (!AtEOF()) {
+			while (true /* !AtEOF() */ ) {
 				memset(buf, 0, sizeof(buf));
-				ReadLine(buf, sizeof(buf)-1);
+				myReadLine(buf, sizeof(buf)-1);
 
 				// HACK: This assumes fread stops at the first \n and not \r
 				if (strcmp(buf, ".\r\n") == 0) {
@@ -676,27 +696,28 @@ void POP3Protocol::get (const KURL& url)
 			finished();
 		}
 	} else if (cmd == "remove") {
-		(void)path.toInt(&ok);
-		if (!ok) {
-			error(ERR_INTERNAL, i18n("Unexpected response from POP3 server."));
-			return; //  We fscking need a number!
+		QStringList waitingCommands = QStringList::split(',', path);
+		int activeCommands = 0;
+		QStringList::Iterator it = waitingCommands.begin();
+		while (it != waitingCommands.end() || activeCommands > 0)
+		{
+			while (activeCommands < maxCommands && it != waitingCommands.end())
+			{
+				sendCommand(("DELE " + *it).latin1());
+				activeCommands++; it++;
+			}
+			getResponse(buf, sizeof(buf)-1, "");
+			activeCommands--;
 		}
-		path.prepend("DELE ");
-		command(path.ascii());
 		finished();
 		m_cmd = CMD_NONE;
 	} else if (cmd == "download") {
-		bool noProgress = (metaData("progress") == "off");
+		QStringList waitingCommands = QStringList::split(',', path);
+		bool noProgress = (metaData("progress") == "off" || waitingCommands.count() > 1);
 		int p_size = 0;
 		unsigned int msg_len = 0;
-		(void)path.toInt(&ok);
 		QString list_cmd("LIST ");
-		if (!ok) {
-			error(ERR_INTERNAL, i18n("Unexpected response from POP3 server."));
-			return; //  We fscking need a number!
-		}
 		list_cmd += path;
-		path.prepend("RETR ");
 		memset(buf, 0, sizeof(buf));
 		if (noProgress);
 		else if (command(list_cmd.ascii(), buf, sizeof(buf)-1)) {
@@ -722,64 +743,86 @@ void POP3Protocol::get (const KURL& url)
 			return;
 		}
 
-		if (command(path.ascii())) {
-			mimeType("message/rfc822");
-			totalSize(msg_len);
-			memset(buf, 0, sizeof(buf));
-			char ending = '\n';
-			bool endOfMail = false;
-			bool eat = false;
-			while (!AtEOF()) {
-				ssize_t readlen = Read(buf, sizeof(buf)-1);
-				if (ending == '.' && readlen > 1 && buf[0] == '\r' && buf[1] == '\n') break;
-				bool newline = (ending == '\n');
-
-				if (buf[readlen-1] == '\n') ending = '\n';
-				else if (buf[readlen-1] == '.' && ((readlen > 1) ? buf[readlen-2] == '\n' : ending == '\n')) ending = '.';
-				else ending = ' ';
-
-				char *buf1 = buf, *buf2 = destbuf;
-				// ".." at start of a line means only "."
-				// "." means end of data
-				for (ssize_t i = 0; i < readlen; i++)
-				{
-				  if (*buf1 == '\r' && eat) {
-				    endOfMail = true;
-				    if (i == readlen - 1 && !AtEOF()) Read(buf, 1);
+		int activeCommands = 0;
+		QStringList::Iterator it = waitingCommands.begin();
+		while (it != waitingCommands.end() || activeCommands > 0)
+		{
+			while (activeCommands < maxCommands && it != waitingCommands.end())
+			{
+				sendCommand(("RETR " + *it).latin1());
+				activeCommands++; it++;
+			}
+			if (getResponse(buf, sizeof(buf)-1, "")) {
+				activeCommands--;
+				mimeType("message/rfc822");
+				totalSize(msg_len);
+				memset(buf, 0, sizeof(buf));
+				char ending = '\n';
+				bool endOfMail = false;
+				bool eat = false;
+				while (true /* !AtEOF() */) {
+				  ssize_t readlen = myRead(buf, sizeof(buf)-1);
+				  if (ending == '.' && readlen > 1 && buf[0] == '\r' && buf[1] == '\n')
+				  {
+				    readBufferLen = readlen - 2;
+				    memcpy(readBuffer, &buf[2], readBufferLen);
 				    break;
 				  }
-				  else if (*buf1 == '\n') { newline = true; eat = false; }
-				  else if (*buf1 == '.' && newline) { newline = false; eat = true; }
-				  else { newline = false; eat = false; }
-				  if (!eat) { *buf2 = *buf1; buf2++; }
-				  buf1++;
-				}
+				  bool newline = (ending == '\n');
 
-				if (buf2 > destbuf)
-				{
-				  array.setRawData(destbuf, buf2 - destbuf);
-				  data( array );
-				  array.resetRawData(destbuf, buf2 - destbuf);
-				}
+				  if (buf[readlen-1] == '\n') ending = '\n';
+				  else if (buf[readlen-1] == '.' && ((readlen > 1) ? buf[readlen-2] == '\n' : ending == '\n')) ending = '.';
+				  else ending = ' ';
 
-				if (endOfMail) break;
+				  char *buf1 = buf, *buf2 = destbuf;
+				  // ".." at start of a line means only "."
+				  // "." means end of data
+				  for (ssize_t i = 0; i < readlen; i++)
+				  {
+				    if (*buf1 == '\r' && eat) {
+				      endOfMail = true;
+				      if (i == readlen - 1 /* && !AtEOF() */) myRead(buf, 1);
+				      else if (i < readlen - 2)
+				      {
+				        readBufferLen = readlen - i - 2;
+				        memcpy(readBuffer, &buf[i+2], readBufferLen);
+				      }
+				      break;
+				    }
+				    else if (*buf1 == '\n') { newline = true; eat = false; }
+				    else if (*buf1 == '.' && newline) { newline = false; eat = true; }
+				    else { newline = false; eat = false; }
+				    if (!eat) { *buf2 = *buf1; buf2++; }
+				    buf1++;
+				  }
 
-				if (!noProgress)
-				{
-				  p_size += readlen;
-				  processedSize(p_size);
+				  if (buf2 > destbuf)
+				  {
+				    array.setRawData(destbuf, buf2 - destbuf);
+				    data( array );
+				    array.resetRawData(destbuf, buf2 - destbuf);
+				  }
+
+				  if (endOfMail) break;
+
+				  if (!noProgress)
+				  {
+				    p_size += readlen;
+				    processedSize(p_size);
+				  }
 				}
+				infoMessage("message complete");
+			} else {
+				POP3_DEBUG << "Couldn't login. Bad RETR Sorry" << endl;
+				closeConnection();
+				error(ERR_INTERNAL, i18n("Couldn't login."));
+				return;
 			}
-			POP3_DEBUG << "Finishing up" << endl;
-			data(QByteArray());
-			speed(0);
-			finished();
-		} else {
-			POP3_DEBUG << "Couldn't login. Bad RETR Sorry" << endl;
-			closeConnection();
-			error(ERR_INTERNAL, i18n("Couldn't login."));
-			return;
 		}
+		POP3_DEBUG << "Finishing up" << endl;
+		data(QByteArray());
+		speed(0);
+		finished();
 	} else if ((cmd == "uid") || (cmd == "list")) {
 		QString qbuf;
 		(void)path.toInt(&ok);
