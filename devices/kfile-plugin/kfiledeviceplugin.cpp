@@ -119,7 +119,7 @@ QString KFileDevicePlugin::askMountPoint(KFileMetaInfo &info)
 		QDataStream streamin(data,IO_ReadOnly);
 		streamin>>retVal;
 
-		return KURL(retVal[2]).path();
+		return KURL(retVal[3]).path();
 	}
 
 	return QString::null;
