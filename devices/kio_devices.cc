@@ -364,21 +364,7 @@ void HelloProtocol::listRoot()
 {
 	KIO::UDSEntry   entry;
 	uint count;
-   {
 
-#if 0
-      uint count=mountpointMappingCount();
-	for (uint i=0;i<count;i++)
-	{
-		QString device=deviceNode(i);
-		if (deviceMounted(i))
-		        createFileEntry(entry, i18n("%1 mounted at %2").arg(deviceNode(i)).arg(mountPoint(i)), QString("devices:/entries?dev=")+deviceNode(i)+"&mp="+mountPoint(i)+"&mounted=true", deviceType(i)+"_mounted");
-		else
-		        createFileEntry(entry, i18n("%1 (not mounted)").arg(deviceNode(i)), QString("devices:/entries?dev=")+deviceNode(i)+"&mp="+mountPoint(i)+"&mounted=false", deviceType(i)+"_unmounted");
-        	listEntry(entry, false);
-		
-	}
-#endif
 	QStringList list=deviceList();
 	count=0;
         for ( QStringList::Iterator it = list.begin(); it != list.end(); ++it ) 
@@ -394,12 +380,7 @@ void HelloProtocol::listRoot()
 	}
         totalSize(count);
         listEntry(entry, true);
-   }
 
-
-
-//        createFileEntry(entry, i18n("floppy"), "devices:/blah", "kdedevice/floppy_unmounted");
-  //      listEntry(entry, false);
 
         // Jobs entry
 

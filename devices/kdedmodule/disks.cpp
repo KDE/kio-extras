@@ -274,6 +274,7 @@ QString DiskEntry::discType()
     else if (-1!=deviceName().find("cdrw",0,FALSE)) typeName="kdedevice/cdwriter";
     else if (-1!=mountPoint().find("cdrw",0,FALSE)) typeName="kdedevice/cdwriter";
     else if (-1!=deviceName().find("scd",0,FALSE)) typeName="kdedevice/cdrom";
+    else if (-1!=deviceName().find("/sr",0,FALSE)) typeName="kdedevice/cdrom";
 
 
     /* Guessing of floppy types */
