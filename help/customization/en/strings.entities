@@ -31,4 +31,9 @@
      Usage: in <bookinfo>
      Only strictly needed when olinks are used
  -->
-<!ENTITY kde-modespec '<modespec id="kdems-default" xreflabel="&percnt;t"></modespec>'>
+<!--ENTITY kde-modespec '<modespec id="kdems-default" xreflabel="&percnt;t"></modespec>'-->
+<!ENTITY kde.modespec '
+ <modespec id="kdems-help">help:</modespec>
+ <modespec id="kdems-man">man:</modespec>'>
+
+<!ENTITY olinktype "kde-installation">
