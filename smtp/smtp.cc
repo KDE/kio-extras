@@ -554,7 +554,7 @@ bool SMTPProtocol::smtp_open(const QString& fakeHostname)
   else 
   {
     smtp_close();
-    if (!connectToHost(m_sServer.latin1(), m_iPort))
+    if (!connectToHost(m_sServer, m_iPort))
       return false;             // connectToHost has already send an error message.
     m_opened = true;
   }
