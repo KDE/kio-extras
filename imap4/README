@@ -1,0 +1,44 @@
+This is the first release of my KDE 2.0 kioslave
+for the IMAP protocol.
+
+It supports LOGIN, AUTHENTICATE LOGIN and
+AUTHENTICATE CRAM-MD5.
+It supports the rfc2192 URL naming convention.
+
+- UIDVALIDITY is not checked
+- realtive URL's are not supported because
+  konqueror will not handle them
+- search is not yet included
+- there are 2 additional section keywords
+  ENVELOPE will do a FETCH ENVELOPE
+  STRUCTURE will do a FETCH BODYSTRUCTURE
+  normal behaviour is FETCH BODY.PEEK[section]
+  
+- the mime types delivered are not really consistent
+  with the returned data
+  - it will return inode/directory on list entries
+    which contain inferiors
+  - it will return message/digest on selectable mailboxes
+    with file type S_IFDIR
+  - type message/rfc822-imap on selected messages
+	and type S_IFREG
+	
+- as I couldn't get into debugging any other way
+  the qDebug output is redirected into a hardcoded
+  file /tmp/imap_slave
+  
+To compile you need the kde-common package out of the
+cvs repository. Link kde-common/admin into the directory
+where you unpacked the kioslave. Do a make -f Makefile.cvs
+and then the usual configure, make, make install.
+
+In Konqueror set the mimetype message/rfc822-imap to use
+the inline viewer.
+
+Try it:  imap://user@host/
+         imap://user;AUTH=*@host/
+		 imap://user;AUTH=LOGIN@host/
+		 imap://user;AUTH=CRAM-MD5@host/
+		
+comments to s.carstens@gmx.de
+

@@ -23,79 +23,75 @@
  *
  *********************************************************************/
 
-#include <sys/types.h>
-#include <sys/time.h>
-
-#include <stdio.h>
-
-#include <qstringlist.h>
-#include <qstring.h>
-#include <qlist.h>
+#include "imapparser.h"
+#include "mimeio.h"
 
 #include <kio/tcpslavebase.h>
 
-enum IMAP_COMMAND {
-// Any State
-    ICMD_CAPABILITY, ICMD_NOOP, ICMD_LOGOUT,
-// Non-Authenticated State
-    ICMD_AUTHENTICATE, ICMD_LOGIN,
-    ICMD_SEND_AUTH,
-//  Authenticated State
-    ICMD_SELECT, ICMD_EXAMINE, ICMD_CREATE, ICMD_DELETE, ICMD_RENAME,
-    ICMD_SUBSCRIBE, ICMD_UNSUB, ICMD_LIST, ICMD_LSUB, ICMD_STATUS, ICMD_APPEND,
-// Selected State
-    ICMD_CHECK, ICMD_CLOSE, ICMD_EXPUNGE, ICMD_SEARCH, ICMD_FETCH, ICMD_STORE,
-    ICMD_COPY, ICMD_UID
+enum IMAP_TYPE {
+	ITYPE_UNKNOWN,
+	ITYPE_DIR,
+	ITYPE_BOX,
+	ITYPE_MSG
 };
 
-class CMD_Struct {
- public:
-  QString identifier, args;
-  enum IMAP_COMMAND type;
-  bool sent;
-};
-
-class IMAP4Protocol : public KIO::TCPSlaveBase
+class IMAP4Protocol
+	: public KIO::TCPSlaveBase,
+	  public imapParser,
+	  public mimeIO
 {
+
 public:
-  IMAP4Protocol (const QCString &pool, const QCString &app, bool isSSL);
 
-  virtual void setHost( const QString &_host, int _port, const QString &_user, const QString &_pass );
+  // reimplement the TCPSlave
+	IMAP4Protocol (const QCString &pool, const QCString &app, bool isSSL);
+	virtual ~IMAP4Protocol();
+	
+	virtual void setHost( const QString &_host, int _port, const QString &_user, const QString &_pass );
+	virtual void get( const KURL &_url );
+	virtual void stat( const KURL &_url );
+	virtual void slave_status();
+	virtual void mimetype( const KURL &_url );
+	virtual void del( const KURL &_url, bool isFile );
+	virtual void listDir( const KURL &_url );
+	virtual void setSubURL( const KURL &_url );
+	virtual void  dispatch ( int command, const QByteArray &data );
+	virtual void  mkdir ( const KURL&url, int permissions );
+	virtual void  put ( const KURL& url, int permissions, bool overwrite, bool resume );
+	virtual void  rename ( const KURL& src, const KURL& dest, bool overwrite );
+	virtual void  copy ( const KURL &src, const KURL &dest, int permissions, bool overwrite );
+	
+  // reimplement the parser
+	// relay hook to send the fetched data directly to an upper level
+	virtual void parseRelay(const QString &buffer);
 
-  virtual void get( const KURL &_url );
-  virtual void stat( const KURL &_url );
-  virtual void del( const KURL &_url, bool isFile );
-  virtual void listDir( const KURL &_url );
+	// relay hook to announce the fetched data directly to an upper level
+	virtual void parseRelay(ulong);
 
-protected:
-  ssize_t getSize( const KURL &_url );
-//  virtual void slotTestDir( const char *_url );
-  void startLoop();
+	// read at least len bytes
+	//virtual bool parseRead (QString &buffer,ulong len,ulong relay=0);
+
+	// read at least a line (up to CRLF)
+	virtual void parseReadLine (QString &buffer,ulong relay=0);
+
+	// write argument to the server
+	virtual void parseWriteLine(const QString &);
+	
+  // reimplement the mimeIO
+	virtual int outputLine(const QCString &_str) { parseRelay(QString(_str));return 0;};
   
-  
 protected:
-  QList<CMD_Struct> pending;
-  unsigned int command (enum IMAP_COMMAND cmd, const QString &args);
-  void sendNextCommand();
-  void imap4_close ();
-  bool imap4_open ();
-  void imap4_login(); // handle loggin in
-  void imap4_exec();  // executes the IMAP action
-  void processList(QString str);  // processes LIST/LSUB responses
 
-  int m_cmd;
-  unsigned int m_uLastCmd;
-  struct timeval m_tTimeout;
-  QString m_sCurrentMBX;
+	enum IMAP_TYPE parseURL(const KURL &_url,QString &_box,QString &_section,QString &_type,QString &_uid,QString &_validity);
+	QString getMimeType(enum IMAP_TYPE);
+	
+	bool makeLogin();
 
-  QString authType;
-  QStringList capabilities, serverResponses;
-  int authState;
-  QString authKey, urlPath, folderDelimiter;
-  QString action;
+	QString myHost,myUser,myPass,myAuth;
+	int myPort;
 
-  QString m_sServer, m_sPass, m_sUser;
-  int m_iPort;
+	void doListEntry(const KURL &_url,mailHeader *what,int stretch);
+	void doListEntry(const KURL &_url,const QString &myBox,const imapList &item);
 };
 
 #endif
