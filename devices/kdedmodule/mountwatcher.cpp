@@ -356,7 +356,7 @@ void MountWatcherModule::readDFDone()
 			mountList<<(entryName);
 			QString name = ent->niceDescription();
 
-			if(ent->userDescription()!="")
+			if(!ent->userDescription().isEmpty())
 			{
 				name = ent->userDescription();
 			}
@@ -380,7 +380,7 @@ void MountWatcherModule::readDFDone()
 			mountList<<entryName;
 			QString name = ent->niceDescription();
 
-			if(ent->userDescription()!="")
+			if(!ent->userDescription().isEmpty())
 			{
 				name = ent->userDescription();
 			}

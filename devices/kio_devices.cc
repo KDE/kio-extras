@@ -125,7 +125,7 @@ void DevicesProtocol::rename(KURL const &oldURL, KURL const &newURL, bool) {
 void DevicesProtocol::mountAndRedirect(const KURL& url)
 {
 	QString device;
-	QString path = url.path();
+	QString path = url.encodedPathAndQuery();
 	int i = path.find('/', 1);
 	if (i > 0)
 	{
@@ -137,7 +137,7 @@ void DevicesProtocol::mountAndRedirect(const KURL& url)
 		device = path.mid(1);
 		path = QString::null;
 	}
-	QStringList info = deviceInfo(device);
+	QStringList info = deviceInfo(KURL::decode_string(device));
 
 	if (info.empty())
 	{
@@ -458,7 +458,7 @@ void DevicesProtocol::listRoot()
 		}
 // FIXME: look for the real ending
 		++it;
-		QString url="devices:/"+(*it); //++it;
+		QString url="devices:/"+KURL::encode_string_no_slash(*it); //++it;
 		QString name=*it; ++it;
 		++it; ++it;
 		QString type=*it; ++it; ++it;
