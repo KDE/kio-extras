@@ -833,6 +833,10 @@ bool TCPWrapper::readyForReading(){
       return true;
     }
   }
+  // We should never get here.
+  emit error(ERR_INTERNAL, QString::null);
+  disconnect();
+  return false;
 }
 
 bool TCPWrapper::writeData(const QByteArray &data) {
@@ -902,6 +906,10 @@ bool TCPWrapper::readyForWriting() {
       return true;
     }
   }
+  // We should never get here.
+  emit error(ERR_INTERNAL, QString::null);
+  disconnect();
+  return false;
 }
 
 void TCPWrapper::setTimeOut(int tm_out) {
