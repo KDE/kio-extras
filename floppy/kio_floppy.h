@@ -65,6 +65,7 @@ class FloppyProtocol : public KIO::SlaveBase
       int freeSpace(const KURL& url);
 
       bool stopAfterError(const KURL& url, const QString& drive);
+      void errorMissingMToolsProgram(const QString& name);
 
       void clearBuffers();
       void terminateBuffers();

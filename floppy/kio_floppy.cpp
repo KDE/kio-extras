@@ -276,7 +276,7 @@ void FloppyProtocol::listDir( const KURL& _url)
    {
       delete m_mtool;
       m_mtool=0;
-      error(ERR_CANNOT_LAUNCH_PROCESS,i18n("mdir\nEnsure that the mtools package is installed correctly on your system."));
+      errorMissingMToolsProgram("mdir");
       return;
    }
 
@@ -357,6 +357,11 @@ void FloppyProtocol::listDir( const KURL& _url)
    finished();
    //kdDebug(7101)<<"Floppy::listDir() ends"<<endl;
 }
+
+void FloppyProtocol::errorMissingMToolsProgram(const QString& name)
+{
+     error(KIO::ERR_SLAVE_DEFINED,i18n("Could not start program \"%1\".\nEnsure that the mtools package is installed correctly on your system.").arg(name));
+ }
 
 void FloppyProtocol::createUDSEntry(const StatInfo& info, UDSEntry& entry)
 {
@@ -513,7 +518,7 @@ StatInfo FloppyProtocol::_stat(const KURL& url)
    {
       delete m_mtool;
       m_mtool=0;
-      error(ERR_CANNOT_LAUNCH_PROCESS,i18n("%1\nEnsure that the mtools package is installed correctly on your system.").arg(i18n("mdir")));
+      errorMissingMToolsProgram("mdir");
       return info;
    }
 
@@ -604,7 +609,7 @@ int FloppyProtocol::freeSpace(const KURL& url)
    {
       delete m_mtool;
       m_mtool=0;
-      error(ERR_CANNOT_LAUNCH_PROCESS,i18n("%1\nEnsure that the mtools package is installed correctly on your system.").arg(i18n("mdir")));
+      errorMissingMToolsProgram("mdir");
       return -1;
    }
 
@@ -737,7 +742,7 @@ void FloppyProtocol::mkdir( const KURL& url, int)
    {
       delete m_mtool;
       m_mtool=0;
-      error(ERR_CANNOT_LAUNCH_PROCESS,i18n("%1\nEnsure that the mtools package is installed correctly on your system.").arg(i18n("mmd")));
+      errorMissingMToolsProgram("mmd");
       return;
    }
 
@@ -801,20 +806,28 @@ void FloppyProtocol::del( const KURL& url, bool isfile)
       delete m_mtool;
    //kdDebug(7101)<<"Floppy::stat(): create args"<<endl;
    QStringList args;
+   
+   bool usingmdel;
 
    if (isfile)
+   {
       args<<"mdel"<<(drive+floppyPath);
+      usingmdel=true;
+   }
    else
+   {
       args<<"mrd"<<(drive+floppyPath);
+      usingmdel=false;
+   }
 
-   kdDebug(7101)<<"Floppy::del(): executing: mrd -"<<(drive+floppyPath)<<"-"<<endl;
+   kdDebug(7101)<<"Floppy::del(): executing: " << (usingmdel ? QString("mdel") : QString("mrd") ) << "-"<<(drive+floppyPath)<<"-"<<endl;
 
    m_mtool=new Program(args);
    if (!m_mtool->start())
    {
       delete m_mtool;
       m_mtool=0;
-      error(ERR_CANNOT_LAUNCH_PROCESS,i18n("%1\nEnsure that the mtools package is installed correctly on your system.").arg(i18n("mrd or mdel")));
+      errorMissingMToolsProgram(usingmdel ? QString("mdel") : QString("mrd"));
       return;
    }
 
@@ -900,7 +913,7 @@ void FloppyProtocol::rename( const KURL &src, const KURL &dest, bool _overwrite 
    {
       delete m_mtool;
       m_mtool=0;
-      error(ERR_CANNOT_LAUNCH_PROCESS,i18n("%1\nEnsure that the mtools package is installed correctly on your system.").arg(i18n("mrd or mdel")));
+      errorMissingMToolsProgram("mren");
       return;
    }
 
@@ -980,7 +993,7 @@ void FloppyProtocol::get( const KURL& url )
    {
       delete m_mtool;
       m_mtool=0;
-      error(ERR_CANNOT_LAUNCH_PROCESS,i18n("%1\nEnsure that the mtools package is installed correctly on your system.").arg(i18n("mcopy")));
+      errorMissingMToolsProgram("mcopy");
       return;
    }
 
@@ -1079,7 +1092,7 @@ void FloppyProtocol::put( const KURL& url, int , bool overwrite, bool )
    {
       delete m_mtool;
       m_mtool=0;
-      error(ERR_CANNOT_LAUNCH_PROCESS,i18n("%1\nEnsure that the mtools package is installed correctly on your system.").arg(i18n("mcopy")));
+      errorMissingMToolsProgram("mcopy");
       return;
    }
 
