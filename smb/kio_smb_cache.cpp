@@ -59,7 +59,7 @@ bool SMBSlave::cache_get_AuthInfo(SMBAuthInfo& auth)
     AuthInfo kauth = cache_create_AuthInfo( auth );
     if( checkCachedAuthentication( kauth ) )
     {
-        kdDebug(KIO_SMB) << "found in password caching daemon" << endl;
+      //        kdDebug(KIO_SMB) << "found in password caching daemon" << endl;
         // extract domain
         if (kauth.username.contains(';')) {
           auth.m_domain = kauth.username.left(kauth.username.find(';')).local8Bit();
@@ -70,18 +70,18 @@ bool SMBSlave::cache_get_AuthInfo(SMBAuthInfo& auth)
           auth.m_username = kauth.username.local8Bit();
         }
         auth.m_passwd = kauth.password.local8Bit();
-
         //store the info for later lookups
         cache_set_AuthInfo( auth );
         return true;
     }
 
-    kdDebug(KIO_SMB) << "auth not cached at all..." << endl;
+    //    kdDebug(KIO_SMB) << "auth not cached at all..." << endl;
     return false;
 }
 
 void SMBSlave::cache_clear_AuthInfo(const QString& workgroup)
 {
+    kdDebug(KIO_SMB) << "cache_clear_AuthInfo on" << endl;
     SMBAuthInfo* it = m_auth_cache.first();
     while( it )
     {
@@ -160,7 +160,7 @@ AuthInfo SMBSlave::cache_create_AuthInfo( const SMBAuthInfo& auth )
       rval.username.prepend(auth.m_domain + ";");
     rval.password = auth.m_passwd;
 
-    kdDebug(KIO_SMB) << "cache_create_AuthInfo, url = " << rval.url.url() << endl;
+    //    kdDebug(KIO_SMB) << "cache_create_AuthInfo, url = " << rval.url.url() << endl;
     return rval;
 }
 
