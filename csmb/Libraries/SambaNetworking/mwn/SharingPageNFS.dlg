@@ -1,0 +1,208 @@
+DlgEdit:v1.2:Dialog:
+Dialog {
+	ClassHeader {SharingPageNFS.h}
+	ClassSource {SharingPageNFS.cpp}
+	ClassName {CSharingPageNFS}
+	DataHeader {SharingPageNFSData.h}
+	DataSource {SharingPageNFSData.cpp}
+	DataName {CSharingPageNFSData}
+	WindowBaseClass {QDialog}
+	IsModal {TRUE}
+	WindowFlags {0}
+}
+WidgetLayout {
+InitialPos {-1 -1}
+Size {489 371}
+MinSize {489 371}
+MaxSize {489 371}
+Grid {10}
+
+Label {
+		Text {---}
+		Alignment {289}
+		AutoResize {FALSE}
+		Margin {-1}
+		Style {0}
+		LineWidth {1}
+		MidLineWidth {0}
+		FrameMargin {0}
+		Rect {10 10 60 40}
+		Name {Label_7}
+		Variable {m_IconLabel}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {NoFocus}
+		BackgroundMode {PaletteBackground}
+		FontPropagation {NoChildren}
+		PalettePropagation {NoChildren}
+}
+Label {
+		Text {---}
+		Alignment {289}
+		AutoResize {FALSE}
+		Margin {-1}
+		Style {0}
+		LineWidth {1}
+		MidLineWidth {0}
+		FrameMargin {0}
+		Rect {80 10 395 52}
+		Name {Label_8}
+		Variable {m_PathLabel}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {NoFocus}
+		BackgroundMode {PaletteBackground}
+		FontPropagation {NoChildren}
+		PalettePropagation {NoChildren}
+}
+Frame {
+		Style {52}
+		LineWidth {1}
+		MidLineWidth {0}
+		FrameMargin {0}
+		Rect {12 66 466 10}
+		Name {Frame_4}
+		Variable {m_pSeparator1}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {NoFocus}
+		BackgroundMode {PaletteBackground}
+		FontPropagation {NoChildren}
+		PalettePropagation {NoChildren}
+}
+CheckBox {
+		Checked {FALSE}
+		Text {---}
+		AutoRepeat {FALSE}
+		AutoResize {FALSE}
+		Rect {12 80 449 20}
+		Name {CheckBox_3}
+		Variable {m_pIsSharedCheckbox}
+		Signal {[Protected]  clicked --> OnIsShared  ()}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {TabFocus}
+		BackgroundMode {PaletteBackground}
+		FontPropagation {NoChildren}
+		PalettePropagation {NoChildren}
+}
+User {
+		UserClassHeader {listview.h}
+		UserClassName {CListView}
+		Rect {10 110 380 250}
+		Name {User_1}
+		Variable {m_pListView}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {NoFocus}
+		BackgroundMode {PaletteBackground}
+		FontPropagation {NoChildren}
+		PalettePropagation {AllChildren}
+}
+PushButton {
+		ToggleButton {FALSE}
+		Default {FALSE}
+		AutoDefault {FALSE}
+		IsMenuButton {FALSE}
+		Text {---}
+		AutoRepeat {FALSE}
+		AutoResize {FALSE}
+		Rect {400 110 80 26}
+		Name {PushButton_4}
+		Variable {m_pAddButton}
+		Signal {[Protected]  clicked --> OnAdd  ()}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {TabFocus}
+		BackgroundMode {PaletteBackground}
+		FontPropagation {NoChildren}
+		PalettePropagation {NoChildren}
+}
+PushButton {
+		ToggleButton {FALSE}
+		Default {FALSE}
+		AutoDefault {FALSE}
+		IsMenuButton {FALSE}
+		Text {---}
+		AutoRepeat {FALSE}
+		AutoResize {FALSE}
+		Rect {400 150 80 26}
+		Name {PushButton_5}
+		Variable {m_pEditButton}
+		Signal {[Protected]  clicked --> OnEdit  ()}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {TabFocus}
+		BackgroundMode {PaletteBackground}
+		FontPropagation {NoChildren}
+		PalettePropagation {NoChildren}
+}
+PushButton {
+		ToggleButton {FALSE}
+		Default {FALSE}
+		AutoDefault {FALSE}
+		IsMenuButton {FALSE}
+		Text {---}
+		AutoRepeat {FALSE}
+		AutoResize {FALSE}
+		Rect {400 190 80 26}
+		Name {PushButton_6}
+		Variable {m_pDeleteButton}
+		Signal {[Protected]  clicked --> OnRemove  ()}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {TabFocus}
+		BackgroundMode {PaletteBackground}
+		FontPropagation {NoChildren}
+		PalettePropagation {NoChildren}
+}
+
+}

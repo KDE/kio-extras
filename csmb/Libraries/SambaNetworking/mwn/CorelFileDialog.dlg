@@ -1,0 +1,324 @@
+DlgEdit:v1.2:Dialog:
+Dialog {
+	ClassHeader {CorelFileDialog.h}
+	ClassSource {CorelFileDialog.cpp}
+	ClassName {CCorelFileDialog}
+	DataHeader {CorelFileDialogData.h}
+	DataSource {CorelFileDialogData.cpp}
+	DataName {CCorelFileDialogData}
+	WindowBaseClass {QDialog}
+	IsModal {TRUE}
+	WindowFlags {0}
+}
+WidgetLayout {
+InitialPos {-1 -1}
+Size {565 295}
+MinSize {565 318}
+MaxSize {565 318}
+Grid {1}
+
+Label {
+		Text {---}
+		Alignment {289}
+		AutoResize {FALSE}
+		Margin {-1}
+		Style {0}
+		LineWidth {1}
+		MidLineWidth {0}
+		FrameMargin {0}
+		Rect {10 10 85 25}
+		Name {Label_1}
+		Variable {m_pLookInLabel}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {NoFocus}
+		BackgroundMode {PaletteBackground}
+		FontPropagation {NoChildren}
+		PalettePropagation {NoChildren}
+}
+User {
+		UserClassHeader {pixmapcombo.h}
+		UserClassName {CPixmapCombo}
+		Rect {103 10 275 25}
+		Name {User_1}
+		Variable {m_pLookInCombo}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {StrongFocus}
+		BackgroundMode {PaletteBackground}
+		FontPropagation {NoChildren}
+		PalettePropagation {NoChildren}
+}
+PushButton {
+		ToggleButton {FALSE}
+		Default {FALSE}
+		AutoDefault {FALSE}
+		IsMenuButton {FALSE}
+		Text {}
+		AutoRepeat {FALSE}
+		AutoResize {FALSE}
+		Rect {389 11 23 22}
+		Name {PushButton_2}
+		Variable {m_pTopButton1}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {TabFocus}
+		BackgroundMode {PaletteBackground}
+		FontPropagation {NoChildren}
+		PalettePropagation {NoChildren}
+}
+PushButton {
+		ToggleButton {FALSE}
+		Default {FALSE}
+		AutoDefault {FALSE}
+		IsMenuButton {FALSE}
+		Text {}
+		AutoRepeat {FALSE}
+		AutoResize {FALSE}
+		Rect {420 11 23 22}
+		Name {PushButton_3}
+		Variable {m_pTopButton2}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {TabFocus}
+		BackgroundMode {PaletteBackground}
+		FontPropagation {NoChildren}
+		PalettePropagation {NoChildren}
+}
+PushButton {
+		ToggleButton {FALSE}
+		Default {FALSE}
+		AutoDefault {FALSE}
+		IsMenuButton {FALSE}
+		Text {}
+		AutoRepeat {FALSE}
+		AutoResize {FALSE}
+		Rect {451 11 23 22}
+		Name {PushButton_1}
+		Variable {m_pTopButton3}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {TabFocus}
+		BackgroundMode {PaletteBackground}
+		FontPropagation {NoChildren}
+		PalettePropagation {NoChildren}
+}
+PushButton {
+		ToggleButton {FALSE}
+		Default {FALSE}
+		AutoDefault {FALSE}
+		IsMenuButton {FALSE}
+		Text {}
+		AutoRepeat {FALSE}
+		AutoResize {FALSE}
+		Rect {476 11 23 22}
+		Name {PushButton_4}
+		Variable {m_pTopButton4}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {TabFocus}
+		BackgroundMode {PaletteBackground}
+		FontPropagation {NoChildren}
+		PalettePropagation {NoChildren}
+}
+User {
+		UserClassHeader {listview.h}
+		UserClassName {CListView}
+		Rect {10 46 544 168}
+		Name {User_2}
+		Variable {m_pListView}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {StrongFocus}
+		BackgroundMode {PaletteBackground}
+		FontPropagation {NoChildren}
+		PalettePropagation {NoChildren}
+}
+Label {
+		Text {File name:}
+		Alignment {289}
+		AutoResize {FALSE}
+		Margin {-1}
+		Style {0}
+		LineWidth {1}
+		MidLineWidth {0}
+		FrameMargin {0}
+		Rect {11 223 95 25}
+		Name {Label_3}
+		Variable {m_pFileNameLabel}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {NoFocus}
+		BackgroundMode {PaletteBackground}
+		FontPropagation {NoChildren}
+		PalettePropagation {NoChildren}
+}
+LineEdit {
+		Text {}
+		EchoMode {Normal}
+		MaxLength {32767}
+		FrameShown {TRUE}
+		Rect {112 223 331 25}
+		Name {LineEdit_1}
+		Variable {m_pFileNameEdit}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {StrongFocus}
+		BackgroundMode {PaletteBase}
+		FontPropagation {NoChildren}
+		PalettePropagation {NoChildren}
+}
+Label {
+		Text {Files of type:}
+		Alignment {289}
+		AutoResize {FALSE}
+		Margin {-1}
+		Style {0}
+		LineWidth {1}
+		MidLineWidth {0}
+		FrameMargin {0}
+		Rect {11 256 89 25}
+		Name {Label_4}
+		Variable {m_pFileTypeLabel}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {NoFocus}
+		BackgroundMode {PaletteBackground}
+		FontPropagation {NoChildren}
+		PalettePropagation {NoChildren}
+}
+ComboBox {
+		Style {ReadOnly}
+		SizeLimit {10}
+		Policy {AtBottom}
+		AutoResize {FALSE}
+		MaxCount {2147483647}
+		AutoCompletion {FALSE}
+		Rect {112 256 332 25}
+		Name {ComboBox_2}
+		Variable {m_pFileTypeCombo}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {StrongFocus}
+		BackgroundMode {PaletteBackground}
+		FontPropagation {AllChildren}
+		PalettePropagation {AllChildren}
+}
+PushButton {
+		ToggleButton {FALSE}
+		Default {FALSE}
+		AutoDefault {FALSE}
+		IsMenuButton {FALSE}
+		Text {---}
+		AutoRepeat {FALSE}
+		AutoResize {FALSE}
+		Rect {454 223 100 28}
+		Name {PushButton_5}
+		Variable {m_pAcceptButton}
+		Signal {[Protected]  clicked --> OnAcceptClicked  ()}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {TabFocus}
+		BackgroundMode {PaletteBackground}
+		FontPropagation {NoChildren}
+		PalettePropagation {NoChildren}
+}
+PushButton {
+		ToggleButton {FALSE}
+		Default {FALSE}
+		AutoDefault {FALSE}
+		IsMenuButton {FALSE}
+		Text {---}
+		AutoRepeat {FALSE}
+		AutoResize {FALSE}
+		Rect {455 257 100 28}
+		Name {PushButton_6}
+		Variable {m_pCancelButton}
+		Signal {[Protected]  clicked --> reject  ()}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {TabFocus}
+		BackgroundMode {PaletteBackground}
+		FontPropagation {NoChildren}
+		PalettePropagation {NoChildren}
+}
+
+}
