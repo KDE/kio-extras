@@ -146,6 +146,7 @@
 <!ENTITY kasteroids	"<application>KAsteroids</application>">
 <!ENTITY katomic	"<application>KAtomic</application>">
 <!ENTITY kbackgammon 	"<application>KBackgammon</application>">
+<!ENTITY kbattleship 	"<application>KBattleship</application>">
 <!ENTITY kbiff	"<application>KBiff</application>">
 <!ENTITY kblackbox	"<application>KBlackbox</application>">
 <!ENTITY kcalc  "<application>KCalc</application>">
