@@ -35,80 +35,77 @@ void
 mailHeader::addHdrLine (mimeHdrLine * inLine)
 {
   mimeHdrLine *addLine = new mimeHdrLine (inLine);
-  if (addLine)
-  {
-    if (!qstricmp (addLine->getLabel (), "Return-Path"))
-    {
-      returnpathAdr.parseAddress (addLine->getValue ().data ());
-    }
-    else if (!qstricmp (addLine->getLabel (), "Sender"))
-    {
-      senderAdr.parseAddress (addLine->getValue ().data ());
-    }
-    else if (!qstricmp (addLine->getLabel (), "From"))
-    {
-      fromAdr.parseAddress (addLine->getValue ().data ());
-    }
-    else if (!qstricmp (addLine->getLabel (), "Reply-To"))
-    {
-      replytoAdr.parseAddress (addLine->getValue ().data ());
-    }
-    else if (!qstricmp (addLine->getLabel (), "To"))
-    {
-      mailHeader::parseAddressList (addLine->getValue (), &toAdr);
-    }
-    else if (!qstricmp (addLine->getLabel (), "CC"))
-    {
-      mailHeader::parseAddressList (addLine->getValue (), &ccAdr);
-    }
-    else if (!qstricmp (addLine->getLabel (), "BCC"))
-    {
-      mailHeader::parseAddressList (addLine->getValue (), &bccAdr);
-    }
-    else if (!qstricmp (addLine->getLabel (), "Subject"))
-    {
-      _subject = addLine->getValue().stripWhiteSpace().simplifyWhiteSpace();
-    }
-    else if (!qstricmp (addLine->getLabel ().data (), "Date"))
-    {
-      mDate = addLine->getValue ();
-    }
-    else if (!qstricmp (addLine->getLabel ().data (), "Message-ID"))
-    {
-      int start;
-      int end;
+  if (!addLine)
+	  return;
 
-      start = addLine->getValue ().findRev ('<');
-      end = addLine->getValue ().findRev ('>');
-      if (start < end)
-      {
-        messageID = addLine->getValue ().mid (start, end - start + 1);
-      }
-    }
-    else if (!qstricmp (addLine->getLabel ().data (), "In-Reply-To"))
-    {
-      int start;
-      int end;
-
-      start = addLine->getValue ().findRev ('<');
-      end = addLine->getValue ().findRev ('>');
-      if (start < end)
-      {
-        inReplyTo = addLine->getValue ().mid (start, end - start + 1);
-      }
-    }
-    else
-    {
-      //everything else is handled by mimeHeader
-      mimeHeader::addHdrLine (inLine);
-      delete addLine;
-      return;
-    }
-//        cout << addLine->getLabel().data() << ": '" << mimeValue.data() << "'" << endl;
-
-    //need only to add this line if not handled by mimeHeader       
-    originalHdrLines.append (addLine);
+  const QCString label(addLine->getLabel());
+  const QCString value(addLine->getValue());
+  
+  if (!qstricmp (label, "Return-Path")) {
+	returnpathAdr.parseAddress (value.data ());
+	goto out;
   }
+  if (!qstricmp (label, "Sender")) {
+	senderAdr.parseAddress (value.data ());
+	goto out;
+  }
+  if (!qstricmp (label, "From")) {
+	fromAdr.parseAddress (value.data ());
+	goto out;
+  }
+  if (!qstricmp (label, "Reply-To")) {
+	replytoAdr.parseAddress (value.data ());
+	goto out;
+  }
+  if (!qstricmp (label, "To")) {
+	mailHeader::parseAddressList (value, &toAdr);
+	goto out;
+  }
+  if (!qstricmp (label, "CC")) {
+	mailHeader::parseAddressList (value, &ccAdr);
+	goto out;
+  }
+  if (!qstricmp (label, "BCC")) {
+	mailHeader::parseAddressList (value, &bccAdr);
+	goto out;
+  }
+  if (!qstricmp (label, "Subject")) {
+	_subject = value.stripWhiteSpace().simplifyWhiteSpace();
+	goto out;
+  }
+  if (!qstricmp (label.data (), "Date")) {
+	mDate = value;
+	goto out;
+  }
+  if (!qstricmp (label.data (), "Message-ID")) {
+      int start = value.findRev ('<');
+      int end = value.findRev ('>');
+      if (start < end)
+          messageID = value.mid (start, end - start + 1);
+      else {
+	  qWarning("bad Message-ID");
+          /* messageID = value; */
+      }
+      goto out;
+  }
+  if (!qstricmp (label.data (), "In-Reply-To")) {
+      int start = value.findRev ('<');
+      int end = value.findRev ('>');
+      if (start < end)
+        inReplyTo = value.mid (start, end - start + 1);
+      goto out;
+  }
+
+  // everything else is handled by mimeHeader
+  mimeHeader::addHdrLine (inLine);
+  delete addLine;
+  return;
+  
+ out:
+//  cout << label.data() << ": '" << value.data() << "'" << endl;
+
+  //need only to add this line if not handled by mimeHeader       
+  originalHdrLines.append (addLine);
 }
 
 void

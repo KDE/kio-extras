@@ -570,6 +570,8 @@ void imapParser::parseExists (ulong value, parseString & result)
 
 void imapParser::parseExpunge (ulong value, parseString & result)
 {
+  Q_UNUSED(value);
+  Q_UNUSED(result);
 }
 
 QValueList < mailAddress > imapParser::parseAdressList (parseString & inWords)
@@ -1379,21 +1381,24 @@ int imapParser::parseLoop ()
 void
 imapParser::parseRelay (const QByteArray & buffer)
 {
+  Q_UNUSED(buffer);
   qWarning
     ("imapParser::parseRelay - virtual function not reimplemented - data lost");
-  if (&buffer);
 }
 
 void
 imapParser::parseRelay (ulong len)
 {
+  Q_UNUSED(len);
   qWarning
     ("imapParser::parseRelay - virtual function not reimplemented - announcement lost");
-  if (len);
 }
 
 bool imapParser::parseRead (QByteArray & buffer, ulong len, ulong relay)
 {
+  Q_UNUSED(buffer);
+  Q_UNUSED(len);
+  Q_UNUSED(relay);
   qWarning
     ("imapParser::parseRead - virtual function not reimplemented - no data read");
   return FALSE;
@@ -1401,18 +1406,19 @@ bool imapParser::parseRead (QByteArray & buffer, ulong len, ulong relay)
 
 bool imapParser::parseReadLine (QByteArray & buffer, ulong relay)
 {
+  Q_UNUSED(buffer);
+  Q_UNUSED(relay);
   qWarning
     ("imapParser::parseReadLine - virtual function not reimplemented - no data read");
-  if (&buffer && relay);
   return FALSE;
 }
 
 void
 imapParser::parseWriteLine (const QString & str)
 {
+  Q_UNUSED(str);
   qWarning
     ("imapParser::parseWriteLine - virtual function not reimplemented - no data written");
-  if (&str);
 }
 
 void
@@ -1531,7 +1537,7 @@ QByteArray imapParser::parseOneWord (parseString & inWords, bool stopAtBracket)
 
   if (inWords.length() && inWords[0] == '"')
   {
-    int i = 1;
+    unsigned int i = 1;
     bool quote = FALSE;
     while (i < inWords.length() && (inWords[i] != '"' || quote))
     {
@@ -1543,7 +1549,7 @@ QByteArray imapParser::parseOneWord (parseString & inWords, bool stopAtBracket)
     {
       inWords.pos++;
       retVal = inWords.left(i - 1);
-      for (int j = 0; j < retVal.length(); j++)
+      for (unsigned int j = 0; j < retVal.length(); j++)
         if (retVal[j] == '\\') retVal.remove(j, 1);
       inWords.pos += i;
     }
@@ -1556,7 +1562,7 @@ QByteArray imapParser::parseOneWord (parseString & inWords, bool stopAtBracket)
   }
   else
   {
-      int i;
+      unsigned int i;
       for (i = 0; i < inWords.length(); ++i) {
           char ch = inWords[i];
           if (ch <= ' ' || ch == '(' || ch == ')' ||

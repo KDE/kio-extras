@@ -65,7 +65,7 @@ QString rfcDecoder::fromIMAP (const QString & inSrc)
   memset (base64, UNDEFINED, sizeof (base64));
   for (i = 0; i < sizeof (base64chars); ++i)
   {
-    base64[base64chars[i]] = i;
+    base64[(int)base64chars[i]] = i;
   }
 
   /* loop until end of string */
@@ -157,7 +157,7 @@ QString rfcDecoder::fromIMAP (const QString & inSrc)
 QString rfcDecoder::quoteIMAP(const QString &src)
 {
   QString result;
-  for (int i = 0; i < src.length(); i++)
+  for (unsigned int i = 0; i < src.length(); i++)
   {
     if (src[i] == '"' || src[i] == '\\') result += '\\';
     result += src[i];
@@ -290,7 +290,7 @@ QString rfcDecoder::toIMAP (const QString & inSrc)
 QString rfcDecoder::decodeQuoting(const QString &aStr)
 {
   QString result;
-  for (int i = 0; i < aStr.length(); i++)
+  for (unsigned int i = 0; i < aStr.length(); i++)
   {
     if (aStr[i] == "\\") i++;
     result += aStr[i];
@@ -334,9 +334,9 @@ rfcDecoder::decodeRFC2047String (const QString & _str, QString & charset,
 {
   QCString aStr = _str.ascii ();  // QString.length() means Unicode chars
   QCString result;
-  char *pos, *beg, *end, *mid;
+  char *pos, *beg, *end, *mid = NULL;
   QCString str;
-  char encoding, ch;
+  char encoding = 0, ch;
   bool valid;
   const int maxLen = 200;
   int i;

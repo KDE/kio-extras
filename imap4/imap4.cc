@@ -127,7 +127,7 @@ sigchld_handler (int signo)
   }
 }
 
-const QString hidePass(KURL aUrl)
+static const QString hidePass(KURL aUrl)
 {
   aUrl.setPass(QString::null);
   return KURL::decode_string(aUrl.prettyURL());
@@ -555,7 +555,8 @@ bool IMAP4Protocol::parseRead(QByteArray & buffer, ulong len, ulong relay)
     if (relay > buffer.size())
     {
       QByteArray relayData;
-      int currentRelay = QMIN(relay - buffer.size(), readLen);
+      ssize_t relbuf = relay - buffer.size();
+      int currentRelay = QMIN(relbuf, readLen);
       relayData.setRawData(buf, currentRelay);
       parseRelay(relayData);
       relayData.resetRawData(buf, currentRelay);
@@ -586,7 +587,7 @@ bool IMAP4Protocol::parseReadLine (QByteArray & buffer, ulong relay)
       {
         QByteArray relayData;
 
-        if (copyLen < relay)
+        if (copyLen < (ssize_t) relay)
           relay = copyLen;
         relayData.setRawData (readBuffer, relay);
         parseRelay (relayData);
@@ -1840,20 +1841,6 @@ void IMAP4Protocol::flushOutput()
   mProcessedSize += outputCache.size();
   processedSize( mProcessedSize );
   outputCache.resize(0);
-}
-
-/* memccpy appeared first in BSD4.4 */
-void *
-mymemccpy (void *dest, const void *src, int c, size_t n)
-{
-  char *d = (char *) dest;
-  const char *s = (const char *) src;
-
-  while (n-- > 0)
-    if ((*d++ = *s++) == c)
-      return d;
-
-  return NULL;
 }
 
 ssize_t IMAP4Protocol::myRead(void *data, ssize_t len)
