@@ -353,9 +353,9 @@ QString SmbProtocol::buildFullLibURL(const QString &pathArg)
 	return ret;
 }
 
-void SmbProtocol::mkdir( const QString& pathArg, int /*permissions*/ )
+void SmbProtocol::mkdir( const KURL& url, int /*permissions*/ )
 {
-	QString path = buildFullLibURL(pathArg);
+	QString path = buildFullLibURL(url.path());
 	kDebugInfo( 7106, "entering mkdir %s", debugString(path));
 	struct stat buff;
 	if ( smb.stat( path, &buff ) == -1 ) {
@@ -381,9 +381,9 @@ void SmbProtocol::mkdir( const QString& pathArg, int /*permissions*/ )
 	return;
 }
 
-void SmbProtocol::get( const QString& pathArg, const QString& /*query*/, bool /* reload */)
+void SmbProtocol::get( const KURL& url, bool /* reload */)
 {
-	QString path = buildFullLibURL(pathArg);
+	QString path = buildFullLibURL(url.path());
 	kDebugInfo( 7106, "entering get %s", debugString(path));
 
 	struct stat buff;
@@ -450,9 +450,9 @@ void SmbProtocol::get( const QString& pathArg, const QString& /*query*/, bool /*
 }
 
 
-void SmbProtocol::put( const QString& dest_orig_arg, int /*_mode*/, bool _overwrite, bool _resume )
+void SmbProtocol::put( const KURL& url, int /*_mode*/, bool _overwrite, bool _resume )
 {
-    QString dest_orig = buildFullLibURL(dest_orig_arg);
+    QString dest_orig = buildFullLibURL(url.path());
     kDebugInfo( 7106, "entering put %s", debugString(dest_orig));
 
     struct stat buff_orig;
@@ -524,12 +524,12 @@ void SmbProtocol::put( const QString& dest_orig_arg, int /*_mode*/, bool _overwr
 	finished();
 }
 
-void SmbProtocol::rename( const QString &srcArg, const QString &destArg,
+void SmbProtocol::rename( const KURL &srcArg, const KURL &destArg,
                            bool _overwrite )
 {
-	QString src = buildFullLibURL(srcArg);
-	QString dest = buildFullLibURL(destArg);
-	kDebugInfo( 7106, "entering rename %s -> %s", debugString(src), debugString(dest));
+    QString src = buildFullLibURL(srcArg.path());
+    QString dest = buildFullLibURL(destArg.path());
+    kDebugInfo( 7106, "entering rename %s -> %s", debugString(src), debugString(dest));
 
     struct stat buff_src;
     if ( smb.stat( src, &buff_src ) == -1 ) {
@@ -572,8 +572,9 @@ void SmbProtocol::rename( const QString &srcArg, const QString &destArg,
 }
 
 
-void SmbProtocol::del( const QString& path, bool isfile)
+void SmbProtocol::del( const KURL& url, bool isfile)
 {
+    QString path = url.path(); // Not URL??
 	kDebugInfo( 7106, "entering del %s", debugString(path));
 	/*****
 	* Delete files
@@ -710,9 +711,9 @@ void SmbProtocol::createUDSEntry( const SMBdirent *dent, const QString & /*path*
 	entry.append( atom );
 }
 
-void SmbProtocol::stat( const QString & pathArg, const QString& /*query*/ )
+void SmbProtocol::stat( const KURL &url)
 {
-	QString path = buildFullLibURL(pathArg);
+	QString path = buildFullLibURL(url.path());
 	kDebugInfo( 7106, "entering stat %s", debugString(path));
 	struct stat buff;
 	if ( smb.stat( path, &buff ) == -1 ) {
@@ -720,11 +721,8 @@ void SmbProtocol::stat( const QString & pathArg, const QString& /*query*/ )
 		return;
 	}
 
-	// Extract filename out of path
-	QString filename = KURL( path ).fileName();
-
 	UDSEntry entry;
-	createUDSEntry( filename, path, entry );
+	createUDSEntry( url.filename(), path, entry );
 ///////// debug code
 
 	KIO::UDSEntry::ConstIterator it = entry.begin();
@@ -764,9 +762,9 @@ void SmbProtocol::stat( const QString & pathArg, const QString& /*query*/ )
 	finished();
 }
 
-void SmbProtocol::listDir( const QString& pathArg, const QString& /*query*/ )
+void SmbProtocol::listDir( const KURL& url )
 {
-	QString path = buildFullLibURL(pathArg);
+	QString path = buildFullLibURL(url.path());
 	kDebugInfo( 7106, "=============== LIST %s ===============", debugString(path) );
 
 	struct stat buff;

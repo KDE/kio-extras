@@ -26,9 +26,9 @@ public:
   HelpProtocol( const QCString &pool, const QCString &app);
   virtual ~HelpProtocol() { }
 
-  virtual void get( const QString& path, const QString& query, bool reload );
+  virtual void get( const KURL& url, bool reload );
 
-  virtual void mimetype( const QString& path, const QString& query );
+  virtual void mimetype( const KURL& url );
 
 
 private:

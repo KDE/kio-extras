@@ -60,26 +60,26 @@ MANProtocol::~MANProtocol()
 }
 
 
-void MANProtocol::get(const QString& path, const QString& query, bool /*reload*/)
+void MANProtocol::get(const KURL& url, bool /*reload*/)
 {
-  kdDebug(7107) << "GET " << path << endl;
+  kdDebug(7107) << "GET " << url.url() << endl;
 
   QString title, section;
 
-  if (!parseUrl(path, title, section))
+  if (!parseUrl(url.path(), title, section))
     {
-      error(KIO::ERR_MALFORMED_URL, path);
+      error(KIO::ERR_MALFORMED_URL, url.url());
       return;
     }
 
 
   // tell we are getting the file
-  gettingFile(path);
+  gettingFile(url.url());
   mimeType("text/html");
 
 
   // see if an index was requested
-  if (query.isEmpty() && (title.isEmpty() || title == "/"))
+  if (url.query().isEmpty() && (title.isEmpty() || title == "/"))
     {
       if (section == "index")
 	showMainIndex();
@@ -98,14 +98,14 @@ void MANProtocol::get(const QString& path, const QString& query, bool /*reload*/
     }
   cmd = QString("LANG=%1 %2").arg(KGlobal::locale()->language()).arg(exec);
 
-  if (query.isEmpty())
+  if (url.query().isEmpty())
     {
       cmd += " " + title;
       if (section > 0)
 	cmd += QString(" %1").arg(section);
     }
   else
-    cmd += " -k " + query;
+    cmd += " -k " + url.query();
 
   cmd += " | ";
   exec = KGlobal::dirs()->findExe("perl");
@@ -122,7 +122,7 @@ void MANProtocol::get(const QString& path, const QString& query, bool /*reload*/
       return;
     }
   cmd += " " + exec + " -cgiurl 'man:/${title}(${section})' -compress -bare ";
-  if (!query.isEmpty())
+  if (!url.query().isEmpty())
     cmd += " -k";
   
   // create shell process
@@ -188,19 +188,19 @@ void MANProtocol::outputError(QString errmsg)
 }
 
 
-void MANProtocol::stat( const QString & path, const QString& /*query*/ )
+void MANProtocol::stat( const KURL& url)
 {  
-  kdDebug(7107) << "ENTERING STAT " << path;
+  kdDebug(7107) << "ENTERING STAT " << url.url();
 
   QString title, section;
 
-  if (!parseUrl(path, title, section))
+  if (!parseUrl(url.path(), title, section))
     {
-      error(KIO::ERR_MALFORMED_URL, path);
+      error(KIO::ERR_MALFORMED_URL, url.url());
       return;
     }
 
-  kdDebug(7107) << "URL " << path << " parsed to title='" << title << "' section=" << section << endl;
+  kdDebug(7107) << "URL " << url.url() << " parsed to title='" << title << "' section=" << section << endl;
 
 
   UDSEntry entry;
@@ -218,10 +218,10 @@ void MANProtocol::stat( const QString & path, const QString& /*query*/ )
     
   atom.m_uds = UDS_URL;
   atom.m_long = 0;
-  QString url = "man:"+title;
+  QString newUrl = "man:"+title;
   if (section != 0)
-    url += QString("(%1)").arg(section);
-  atom.m_str = url;
+    newUrl += QString("(%1)").arg(section);
+  atom.m_str = newUrl;
   entry.append(atom);
 
   atom.m_uds = UDS_MIME_TYPE;
@@ -261,7 +261,7 @@ extern "C"
 }
 
 
-void MANProtocol::mimetype(const QString & /*path*/, const QString& /*query*/)
+void MANProtocol::mimetype(const KURL & /*url*/)
 {
   mimeType("text/html");
   finished();

@@ -69,22 +69,6 @@ NNTPProtocol::~NNTPProtocol()
   nntp_close();
 }
 
-void NNTPProtocol::setHost( const QString& _host, int _port, const QString& _user, const QString& _pass )
-{
-  urlPrefix = "news://";
-  if (!_user.isEmpty()) {
-    urlPrefix += _user;
-    if (!_pass.isEmpty())
-      urlPrefix += ":" + _pass;
-    urlPrefix += "@";
-  }
-  urlPrefix += _host;
-  if (_port)
-    urlPrefix += QString( ":%1" ).arg( _port );
-  debug( "urlPrefix " + urlPrefix );
-
-}
-
 bool NNTPProtocol::getResponse (char *r_buf, unsigned int r_len)
 {
   char *buf=0;
@@ -201,7 +185,7 @@ void NNTPProtocol::nntp_close ()
   }
 }
 
-bool NNTPProtocol::nntp_open( KURL &_url )
+bool NNTPProtocol::nntp_open( const KURL &_url )
 {
   // This function is simply a wrapper to establish the connection
   // to the server.  It's a bit more complicated than ::connect
@@ -308,7 +292,7 @@ size_t NNTPProtocol::realGetSize(unsigned int msg_num)
   return ret;
 }
 
-void NNTPProtocol::get( const QString& __url, const QString&, bool )
+void NNTPProtocol::get( const KURL& url, bool )
 {
 // List of supported commands
 //
@@ -331,32 +315,19 @@ void NNTPProtocol::get( const QString& __url, const QString&, bool )
   static char buf[512];
   QByteArray array;
   QString path, cmd;
-  QString _url = urlPrefix + __url;
-  KURL usrc(_url);
-  if ( usrc.isMalformed() ) {
-    error( ERR_MALFORMED_URL, _url );
-    m_cmd = CMD_NONE;
-    return;
-  }
 
-  if (usrc.protocol() != "nntp") {
-    error( ERR_INTERNAL, "kio_nntp got non nntp url" );
-    m_cmd = CMD_NONE;
-    return;
-  }
-
-  path = usrc.path().copy();
+  path = url.path();
 
   if (path.at(0)=='/') path.remove(0,1);
   if (path.isEmpty()) {
     debug("We should be a dir!!");
-    error(ERR_IS_DIRECTORY, _url);
+    error(ERR_IS_DIRECTORY, url.url());
     m_cmd=CMD_NONE; return;
   }
 
   if (((path.find("/") == -1) && (path != "index") &&
        (path != "uidl") && (path != "commit")) ) {
-    error( ERR_MALFORMED_URL, _url );
+    error( ERR_MALFORMED_URL, url.url() );
     m_cmd = CMD_NONE;
     return;
   }
@@ -364,9 +335,9 @@ void NNTPProtocol::get( const QString& __url, const QString&, bool )
   cmd = path.left(path.find("/"));
   path.remove(0,path.find("/")+1);
 
-  if (!nntp_open(usrc)) {
+  if (!nntp_open(url)) {
     fprintf(stderr,"nntp_open failed\n");
-    error( ERR_COULD_NOT_CONNECT, strdup(usrc.host()));
+    error( ERR_COULD_NOT_CONNECT, url.host());
     nntp_close();
     return;
   }
@@ -380,7 +351,7 @@ void NNTPProtocol::get( const QString& __url, const QString&, bool )
       result = command("UIDL");
     if (result) {
       //ready();
-      gettingFile(_url);
+      gettingFile(url.url());
       while (!feof(fp)) {
 	memset(buf, 0, sizeof(buf));
 	if (!fgets(buf, sizeof(buf)-1, fp))
@@ -428,7 +399,7 @@ LIST
                          // and stopping at the first blank line used if the
                          // TOP cmd isn't supported
       //ready();
-      gettingFile(_url);
+      gettingFile(url.url());
       mimeType("text/plain");
       memset(buf, 0, sizeof(buf));
       while (!feof(fp)) {
@@ -497,7 +468,7 @@ LIST
     }
     if (command(path)) {
       //ready();
-      gettingFile(_url);
+      gettingFile(url.url());
       mimeType("message/rfc822");
       totalSize(msg_len);
       memset(buf, 0, sizeof(buf));
@@ -537,7 +508,7 @@ LIST
     if (command(path, buf, sizeof(buf)-1)) {
       const int len = strlen(buf);
       //ready();
-      gettingFile(_url);
+      gettingFile(url.url());
       mimeType("text/plain");
       totalSize(len);
       array.setRawData(buf, len);
@@ -563,21 +534,16 @@ LIST
 
 }
 
-void NNTPProtocol::listDir( const QString & _path, const QString& /*query*/ )
+void NNTPProtocol::listDir( const KURL& url)
 {
   bool isINT; int num_messages=0;
   char buf[512];
   QCString q_buf;
-  QString _url = urlPrefix + _path;
-  KURL usrc( _url );
-  if ( usrc.isMalformed() ) {
-    error( ERR_MALFORMED_URL, _url );
-    return;
-  }
+  KURL usrc( url );
   // Try and open a connection
   if (!nntp_open(usrc)) {
     fprintf(stderr,"nntp_open failed\n");
-    error( ERR_COULD_NOT_CONNECT, strdup(usrc.host()));
+    error( ERR_COULD_NOT_CONNECT, usrc.host());
     nntp_close();
     return;
   }
@@ -651,9 +617,9 @@ void NNTPProtocol::listDir( const QString & _path, const QString& /*query*/ )
   finished();
 }
 
-void NNTPProtocol::stat( const QString & path, const QString& /*query*/ )
+void NNTPProtocol::stat( const KURL& url )
 {
-  QString _path = path;
+  QString _path = url.path();
   if (_path.at(0) == '/')
     _path.remove(0,1);
 
@@ -669,27 +635,19 @@ void NNTPProtocol::stat( const QString & path, const QString& /*query*/ )
   finished();
 }
 
-void NNTPProtocol::del( const QString& path, bool /*isfile*/ )
+void NNTPProtocol::del( const KURL& url, bool /*isfile*/ )
 {
-  QString _url = urlPrefix + path;
-  KURL usrc(_url);
   QString invalidURI=QString::null;
   bool isInt;
 
-  if ( usrc.isMalformed() ) {
-    error( ERR_MALFORMED_URL, _url );
-    m_cmd = CMD_NONE;
-    return;
-  }
-
-  if ( !nntp_open(usrc) ) {
+  if ( !nntp_open(url) ) {
     fprintf(stderr,"nntp_open failed\n");
-    error( ERR_COULD_NOT_CONNECT, strdup(usrc.host()));
+    error( ERR_COULD_NOT_CONNECT, url.host());
     nntp_close();
     return;
   }
   
-  QString _path = path;
+  QString _path = url.path();
   if (_path.at(0) == '/')
     _path.remove(0,1);
   (void)_path.toUInt(&isInt);

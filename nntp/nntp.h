@@ -17,12 +17,10 @@ public:
   NNTPProtocol (const QCString &pool, const QCString &app );
   virtual ~NNTPProtocol();
 
-  virtual void setHost (const QString& host, int port, const QString& user, const QString& pass );
- 
-  virtual void get( const QString& __url, const QString& query, bool reload );
-  virtual void stat( const QString& path, const QString& query );
-  virtual void del( const QString &path, bool isfile);
-  virtual void listDir( const QString& path, const QString& query );
+  virtual void get( const KURL&, bool reload );
+  virtual void stat( const KURL& url );
+  virtual void del( const KURL& url, bool isfile);
+  virtual void listDir( const KURL& url );
   
  protected:
 
@@ -62,14 +60,13 @@ public:
     * is passed, port 110 is assumed, if no user || password is
     * specified, the user is prompted for them.
     */
-  bool nntp_open( KURL &_url );
+  bool nntp_open( const KURL &_url );
 
   int m_cmd, m_iSock;
   unsigned short int m_iOldPort;
   struct timeval m_tTimeout;
   QString m_sOldServer, m_sOldPass, m_sOldUser;
   FILE *fp;
-  QString urlPrefix;
 };
 
 #endif

@@ -161,14 +161,14 @@ HelpProtocol::HelpProtocol( const QCString &pool, const QCString &app )
 }
 
 
-void HelpProtocol::get( const QString& path, const QString& query, bool /* reload */)
+void HelpProtocol::get( const KURL& url, bool /* reload */)
 {
-  kdDebug() << "get: path=" << path << " query=" << query << endl;
+  kdDebug() << "get: path=" << url.path() << " query=" << url.query() << endl;
 
-  QString doc = lookupFile(path, query);
+  QString doc = lookupFile(url.path(), url.query());
   if (doc.isEmpty())
     {
-      error( KIO::ERR_DOES_NOT_EXIST, path );
+      error( KIO::ERR_DOES_NOT_EXIST, url.url() );
       return;
     }
 
@@ -239,7 +239,7 @@ void HelpProtocol::get( const QString& path, const QString& query, bool /* reloa
 }
 
 
-void HelpProtocol::mimetype( const QString& , const QString& )
+void HelpProtocol::mimetype( const KURL &)
 {
   mimeType("text/html");
   finished();

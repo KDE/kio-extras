@@ -133,17 +133,6 @@ POP3Protocol::~POP3Protocol()
 #endif
 }
 
-QString POP3Protocol::buildUrl(const QString &path)
-{
-  KURL url;
-  url.setHost( m_sServer );
-  url.setPort( m_iPort );
-  url.setUser( m_sUser );
-  // We don't put the password in.. we don't want to show passwords on the screen.
-  url.setPath( path );
-  return url.url();
-}
-
 void POP3Protocol::setHost( const QString& _host, int _port, const QString& _user, const QString& _pass )
 {
   m_sServer = _host;
@@ -517,7 +506,7 @@ size_t POP3Protocol::realGetSize(unsigned int msg_num)
   return ret;
 }
 
-void POP3Protocol::get( const QString& _path, const QString&, bool )
+void POP3Protocol::get( const KURL& url, bool )
 {
 // List of supported commands
 //
@@ -541,20 +530,18 @@ void POP3Protocol::get( const QString& _path, const QString&, bool )
   QByteArray array;
 
   QString cmd;
-  QString path = _path;
+  QString path = url.path();
   
-  buildUrl(path);
-
   if (path.at(0)=='/') path.remove(0,1);
   if (path.isEmpty()) {
     debug("We should be a dir!!");
-    error(ERR_IS_DIRECTORY, buildUrl(_path));
+    error(ERR_IS_DIRECTORY, url.url());
     m_cmd=CMD_NONE; return;
   }
 
   if (((path.find("/") == -1) && (path != "index") &&
        (path != "uidl") && (path != "commit")) ) {
-    error( ERR_MALFORMED_URL, buildUrl(_path) );
+    error( ERR_MALFORMED_URL, url.url() );
     m_cmd = CMD_NONE;
     return;
   }
@@ -582,7 +569,7 @@ void POP3Protocol::get( const QString& _path, const QString&, bool )
       result = command("UIDL");
     if (result) {
       //ready();
-      gettingFile(buildUrl(_path));
+      gettingFile(url.url());
 #ifdef SPOP3
       while (SSL_pending(ssl)) {
         memset(buf, 0, sizeof(buf));
@@ -636,7 +623,7 @@ LIST
                          // and stopping at the first blank line used if the
                          // TOP cmd isn't supported
       //ready();
-      gettingFile(buildUrl(_path));
+      gettingFile(url.url());
       mimeType("text/plain");
       memset(buf, 0, sizeof(buf));
 #ifdef SPOP3
@@ -709,7 +696,7 @@ LIST
     }
     if (command(path)) {
       //ready();
-      gettingFile(buildUrl(_path));
+      gettingFile(url.url());
       mimeType("message/rfc822");
       totalSize(msg_len);
       memset(buf, 0, sizeof(buf));
@@ -755,7 +742,7 @@ LIST
     if (command(path, buf, sizeof(buf)-1)) {
       const int len = strlen(buf);
       //ready();
-      gettingFile(buildUrl(_path));
+      gettingFile(url.url());
       mimeType("text/plain");
       totalSize(len);
       array.setRawData(buf, len);
@@ -781,7 +768,7 @@ LIST
 
 }
 
-void POP3Protocol::listDir( const QString & /*path*/, const QString& /*query*/ )
+void POP3Protocol::listDir( const KURL & /* url*/ )
 {
   bool isINT; int num_messages=0;
   char buf[512];
@@ -871,9 +858,9 @@ fprintf(stderr,"URL is %s\n", atom.m_str.ascii());
   finished();
 }
 
-void POP3Protocol::stat( const QString & path, const QString& /*query*/ )
+void POP3Protocol::stat( const KURL & url )
 {
-  QString _path = path;
+  QString _path = url.path();
   if (_path.at(0) == '/')
     _path.remove(0,1);
 
@@ -889,7 +876,7 @@ void POP3Protocol::stat( const QString & path, const QString& /*query*/ )
   finished();
 }
 
-void POP3Protocol::del( const QString& path, bool /*isfile*/ )
+void POP3Protocol::del( const KURL& url, bool /*isfile*/ )
 {
   QString invalidURI=QString::null;
   bool isInt;
@@ -905,7 +892,7 @@ void POP3Protocol::del( const QString& path, bool /*isfile*/ )
     return;
   }
   
-  QString _path = path;
+  QString _path = url.path();
   if (_path.at(0) == '/')
     _path.remove(0,1);
   (void)_path.toUInt(&isInt);

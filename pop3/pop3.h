@@ -37,10 +37,10 @@ public:
 //  virtual void openConnection();
 //  virtual void closeConnection();
 
-  virtual void get( const QString& path, const QString& query, bool reload );
-  virtual void stat( const QString& path, const QString& query );
-  virtual void del( const QString &path, bool isfile);
-  virtual void listDir( const QString& path, const QString& query );
+  virtual void get( const KURL& url, bool reload );
+  virtual void stat( const KURL& url );
+  virtual void del( const KURL &url, bool isfile);
+  virtual void listDir( const KURL &url );
   
  protected:
 

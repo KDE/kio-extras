@@ -147,7 +147,7 @@ SMTPProtocol::~SMTPProtocol()
 }
 
 
-void SMTPProtocol::put( const QString& path, int permissions, bool overwrite, bool resume) {
+void SMTPProtocol::put( const KURL& url, int permissions, bool overwrite, bool resume) {
 //
 // Commands
 //
@@ -159,23 +159,10 @@ void SMTPProtocol::put( const QString& path, int permissions, bool overwrite, bo
 //
 }
 
-
-QString SMTPProtocol::buildUrl(const QString& path)
-{
-  KURL url;
-  url.setHost( m_sServer);
-  url.setPort( m_iPort);
-  url.setPath( path );
-  return url.url();
-}
-
-
 void SMTPProtocol::setHost( const QString& host, int port, const QString& /*user*/, const QString& /*pass*/) {
   m_sServer = host;
   m_iPort = port;
 }
-
-
 
 //
 // REPLY CODES

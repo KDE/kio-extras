@@ -24,10 +24,10 @@ public:
   MANProtocol(const QCString &pool_socket, const QCString &app_socket);
   virtual ~MANProtocol();
 
-  virtual void get(const QString& path, const QString& query, bool reload);
-  virtual void stat(const QString& path, const QString& query);
+  virtual void get(const KURL& url, bool reload);
+  virtual void stat(const KURL& url);
 
-  virtual void mimetype(const QString &path, const QString& query);
+  virtual void mimetype(const KURL &url);
 
   void outputError(QString errmsg);
 

@@ -14,8 +14,8 @@ public:
     InfoProtocol( const QCString &pool, const QCString &app );
     virtual ~InfoProtocol();
 
-    virtual void get( const QString& path, const QString& query, bool reload );
-    virtual void mimetype( const QString& path, const QString& query );
+    virtual void get( const KURL& url, bool reload );
+    virtual void mimetype( const KURL& url );
 
 protected:
 

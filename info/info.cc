@@ -34,12 +34,12 @@ InfoProtocol::~InfoProtocol()
     kDebugInfo( 7108, "InfoProtocol::~InfoProtocol - done" );
 }
 
-void InfoProtocol::get( const QString& path, const QString& /*query*/, bool /*reload*/ )
+void InfoProtocol::get( const KURL& url, bool /*reload*/ )
 {
     kDebugInfo( 7108, "InfoProtocol::get" );
-    kDebugInfo( 7108, path.data() );
+    kDebugInfo( 7108, url.path().ascii() );
 
-    decodePath( path );
+    decodePath( url.path() );
     /*
     if( m_page.isEmpty() )
     {
@@ -85,7 +85,7 @@ void InfoProtocol::get( const QString& path, const QString& /*query*/, bool /*re
     kDebugInfo( 7108, "InfoProtocol::get - done" );
 }
 
-void InfoProtocol::mimetype( const QString& /*path*/, const QString& /*query*/ )
+void InfoProtocol::mimetype( const KURL& /* url */ )
 {
     kDebugInfo( 7108, "InfoProtocol::mimetype" );
 

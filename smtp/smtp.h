@@ -28,7 +28,7 @@ class SMTPProtocol : public KIO::SlaveBase {
 
   virtual void setHost(const QString& host, int port, const QString& user, const QString& pass);
 
-  virtual void put( const QString& path, int permissions, bool overwrite, bool resume);
+  virtual void put( const KURL& url, int permissions, bool overwrite, bool resume);
 
  private:
 
@@ -36,12 +36,10 @@ class SMTPProtocol : public KIO::SlaveBase {
   void smtp_close();
   bool command(const char *buf, char *r_buf = NULL, unsigned int r_len = 0);
   bool getResponse(char *r_buf = NULL, unsigned int r_len = 0);
-  QString buildUrl(const QString &path);
 
   int m_iSock;
   struct timeval m_tTimeout;
   FILE *fp;
-  QString urlPrefix;
   QString m_sServer, m_sOldServer;
   unsigned short int m_iPort, m_iOldPort;
 #ifdef SSMTP
