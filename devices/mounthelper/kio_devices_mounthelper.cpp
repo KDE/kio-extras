@@ -42,7 +42,7 @@ QStringList KIODevicesMountHelperApp::deviceInfo(QString name)
 }
 
 KIODevicesMountHelperApp::KIODevicesMountHelperApp():KApplication() {
-	KCmdLineArgs *args = KCmdLineArgs::parsedArgs();;
+	KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
 
 	KURL url(args->url(0));
 	QStringList info=deviceInfo(url.fileName());
