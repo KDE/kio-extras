@@ -97,7 +97,7 @@ protected:
 	struct timeval m_tTimeout;
 	QString m_sOldServer, m_sOldPass, m_sOldUser;
 	QString m_sServer, m_sPass, m_sUser;
-	bool m_try_apop, opened;
+	bool m_try_apop, m_try_sasl, opened;
 	QString m_sError;
 };
 

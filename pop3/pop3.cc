@@ -109,6 +109,7 @@ POP3Protocol::POP3Protocol(const QCString &pool, const QCString &app, bool isSSL
 	m_tTimeout.tv_sec=10;
 	m_tTimeout.tv_usec=0;
 	m_try_apop = true;
+	m_try_sasl = true;
 	opened = false;
 }
 
@@ -355,7 +356,7 @@ bool POP3Protocol::pop3_open(const KURL &url)
 
 		// We need to check what methods the server supports...
 		// This is based on RFC 1734's wisdom
-		if (command(sasl_buffer.local8Bit())) {
+		if (m_try_sasl && command(sasl_buffer.local8Bit())) {
 			while (!AtEOF()) {
 				memset(buf, 0, sizeof(buf));
 				ReadLine(buf, sizeof(buf)-1);
@@ -395,6 +396,12 @@ bool POP3Protocol::pop3_open(const KURL &url)
 						return true;
 				}
 			}
+		}
+		else if (m_try_sasl)
+		{
+			pop3_close();
+			m_try_sasl = false;
+			return pop3_open(url);
 		}
 
 		// Fall back to conventional USER/PASS scheme
