@@ -323,7 +323,9 @@ void MediaImpl::createMediumEntry(KIO::UDSEntry& entry,
 	entry.clear();
 
 	addAtom(entry, KIO::UDS_URL, 0, url);
-	addAtom(entry, KIO::UDS_NAME, 0, medium.prettyLabel());
+
+	QString label = KIO::encodeFileName( medium.prettyLabel() );
+	addAtom(entry, KIO::UDS_NAME, 0, label);
 
 	addAtom(entry, KIO::UDS_FILE_TYPE, S_IFDIR);
 
