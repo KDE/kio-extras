@@ -142,22 +142,23 @@ void SMTPProtocol::put (const KURL &url, int /*permissions*/, bool /*overwrite*/
 	QString query = url.query();
 	QString subject = ASCII("missing subject");
 	QString profile = QString::null;
-	QStringList recip, cc, subject_list, profile_list;
+	QStringList recip, bcc, cc, temp_list;
 
 	GetAddresses(query, "to=", recip);
 	GetAddresses(query, "cc=", cc);
+	GetAddresses(query, "bcc=", bcc);
 
 	// find the subject
-	GetAddresses(query, "subject=", subject_list);
-	if (subject_list.count()) {
-		subject = subject_list.last();
-		subject_list.clear();
+	GetAddresses(query, "subject=", temp_list);
+	if (temp_list.count()) {
+		subject = temp_list.last();
+		temp_list.clear();
 	}
 
-	GetAddresses(query, "profile=", profile_list);
-	if (profile_list.count()) {
-		profile = profile_list.last();
-		profile_list.clear();
+	GetAddresses(query, "profile=", temp_list);
+	if (temp_list.count()) {
+		profile = temp_list.last();
+		temp_list.clear();
 	}
 
 	if (!smtp_open(url))
@@ -193,6 +194,10 @@ void SMTPProtocol::put (const KURL &url, int /*permissions*/, bool /*overwrite*/
 			HandleSMTPWriteError(url);
 	}
 	for ( QStringList::Iterator it = cc.begin(); it != cc.end(); ++it ) {
+		if (!command(formatted_recip.arg(*it)))
+			HandleSMTPWriteError(url);
+	}
+	for ( QStringList::Iterator it = bcc.begin(); it != bcc.end(); ++it ) {
 		if (!command(formatted_recip.arg(*it)))
 			HandleSMTPWriteError(url);
 	}
