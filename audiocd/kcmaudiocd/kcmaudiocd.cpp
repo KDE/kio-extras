@@ -30,7 +30,7 @@
 #include <qlistbox.h>
 #include <qpushbutton.h>
 
-#include "kcmaudiocd.h"
+#include "kcmaudiocd.moc"
 
 #define CDDB_DEFAULT_SERVER "freedb.freedb.org:8880"
 
