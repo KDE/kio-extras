@@ -25,10 +25,6 @@
 #include "defines.h"
 #ifndef USE_SAMBA
 
-#ifdef HAVE_SYS_SELECT_H
-#include <sys/select.h>		// Needed on some systems.
-#endif
-
 #include <errno.h>
 #undef errno
 #include <sys/types.h>
@@ -45,6 +41,11 @@
 #include <stdio.h>
 #include <iostream.h>
 #endif
+
+#ifdef HAVE_SYS_SELECT_H
+#include <sys/select.h>		// Needed on some systems.
+#endif
+
 #include "NMBIO.h"
 #include "NameServicePacket.h"
 
