@@ -699,7 +699,8 @@ StatInfo SmbProtocol::createStatInfo(const QString line)
 
 //"      A   213123  Mon Mar 12"
    //the \\d+ is required for files bigger than 100.000.000 bytes
-   int startOfData=line.find(QRegExp("    [ADR ][ADR ][ADR ] [ \\d][ \\d][ \\d][ \\d][ \\d][ \\d][ \\d]\\d+  [A-Z][a-z][a-z] [A-Z][a-z][a-z] [ \\d]\\d"));
+   //int startOfData=line.find(QRegExp("    [ADR ][ADR ][ADR ] [ \\d][ \\d][ \\d][ \\d][ \\d][ \\d][ \\d]\\d+  [A-Z][a-z][a-z] [A-Z][a-z][a-z] [ \\d]\\d"));
+   int startOfData=line.find(QRegExp("    [ADR ][ADR ][ADR] [ \\d][ \\d][ \\d][ \\d][ \\d][ \\d][ \\d]\\d+  [A-Z][a-z][a-z] [A-Z][a-z][a-z] [ \\d]\\d"));
    //kdDebug(7101)<<"createStatInfo: regexp at: "<<startOfData<<endl;
    if (startOfData==-1)
    {
@@ -709,15 +710,12 @@ StatInfo SmbProtocol::createStatInfo(const QString line)
 
    info.isValid=true;
    name=line.mid(2,startOfData-2);
-   if (startOfData==32)
-   {
-      //in this case there are spaces inserted between the file name and the following rest, strip them
-      //if the file name ends with spaces, we have a problem...
-      int end(name.length()-1);
-      while (name[end]==' ')
-         end--;
-      name=name.left(end+1);
-   };
+   //if the file name ends with spaces, we have a problem...
+   int end(name.length()-1);
+   while (name[end]==' ')
+      end--;
+   name=name.left(end+1);
+
    if ((name==".") || (name==".."))
    {
       info.isValid=false;
