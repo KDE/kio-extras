@@ -112,6 +112,7 @@ class SmbProtocol : public KIO::SlaveBase
 
       QString m_defaultWorkgroup;
       QString m_currentWorkgroup;
+      bool m_usefulLineFound;
 };
 
 #endif

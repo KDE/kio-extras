@@ -74,7 +74,7 @@ int kdemain( int argc, char **argv )
      fprintf(stderr, "Usage: kio_smb protocol domain-socket1 domain-socket2\n");
      exit(-1);
   }
-  //kdDebug(KIO_SMB) << "Smb: kdemain: starting" << endl;
+  kdDebug(KIO_SMB) << "Smb: kdemain: starting" << endl;
 
   SmbProtocol slave(argv[2], argv[3]);
   slave.dispatchLoop();
@@ -190,6 +190,7 @@ SmbProtocol::SmbProtocol (const QCString &pool, const QCString &app )
 ,m_user("")
 ,m_defaultWorkgroup("")
 ,m_currentWorkgroup("")
+,m_usefulLineFound(false)
 {
    kdDebug(KIO_SMB)<<"Smb::Smb: -"<<pool<<"-"<<endl;
    m_processes.setAutoDelete(true);
@@ -232,7 +233,7 @@ SmbProtocol::~SmbProtocol()
 
 int SmbProtocol::readOutput(int fd)
 {
-   //kdDebug(KIO_SMB)<<"Smb::readStdout"<<endl;
+//   kdDebug(KIO_SMB)<<"Smb::readStdout"<<endl;
    //if (m_mtool==0) return 0;
 
    static char buffer[16*1024];
@@ -241,12 +242,31 @@ int SmbProtocol::readOutput(int fd)
 
    //+1 gives us room for a terminating 0
    char *newBuffer=new char[length+m_stdoutSize+1];
-   //kdDebug(KIO_SMB)<<"Smb::readStdout(): length: "<<length<<", m_stdoutSize: "<<m_stdoutSize<<" + 1 = "<<length+m_stdoutSize+1<<endl;
+   kdDebug(KIO_SMB)<<"Smb::readStdout(): length: "<<length<<", m_stdoutSize: "<<m_stdoutSize<<" + 1 = "<<length+m_stdoutSize+1<<endl;
    if (m_stdoutBuffer!=0)
    {
       memcpy(newBuffer, m_stdoutBuffer, m_stdoutSize);
    }
-   memcpy(newBuffer+m_stdoutSize, buffer, length);
+
+   char *src=buffer;
+   char *dest=newBuffer+m_stdoutSize;
+   char currentC;
+   for (int i=0; i<length; i++)
+   {
+      //I'm sure I could write this all together in one line...
+      //something like *dest++=(*src=='\r'?'\n':*src++);
+      currentC=*src;
+      if (currentC=='\r')
+//         currentC='~';
+         currentC='\n';
+
+      *dest=currentC;
+
+      dest++;
+      src++;
+   }
+//   memcpy(newBuffer+m_stdoutSize, buffer, length);
+
    m_stdoutSize+=length;
    newBuffer[m_stdoutSize]='\0';
    if (m_stdoutBuffer!=0)
@@ -254,6 +274,43 @@ int SmbProtocol::readOutput(int fd)
       delete [] m_stdoutBuffer;
    }
    m_stdoutBuffer=newBuffer;
+
+   //m_stdoutBuffer is definitely 0-terminated
+   if (m_usefulLineFound==false)
+   {
+      char *tmpBuffer=m_stdoutBuffer;
+      while (1)
+      {
+         char *eol=strchr(tmpBuffer,'\n');
+         if (eol==0)
+            break;
+         if (eol==tmpBuffer)
+         {
+            tmpBuffer=eol+1;
+            continue;
+         }
+         //the line contains something
+         *eol='\0';   //easier searching
+
+         int lineLength=strlen(tmpBuffer);
+         char searchString[16];
+         strcpy(searchString,"smb: \\>");
+         if (lineLength<16)
+            searchString[lineLength]='\0';
+
+         char* prompt=strstr(tmpBuffer,searchString);
+
+         *eol='\n';   //restore it
+         if (prompt!=tmpBuffer)
+         {
+            m_usefulLineFound=true;
+            break;
+         }
+         tmpBuffer=eol+1;   // the next line
+         if (*tmpBuffer=='\0')
+            break;
+      }
+   }
    return length;
 }
 
@@ -263,17 +320,21 @@ void SmbProtocol::clearBuffer()
    if (m_stdoutBuffer!=0)
       delete [] m_stdoutBuffer;
    m_stdoutBuffer=0;
+   m_usefulLineFound=false;
 }
 
 bool SmbProtocol::stopAfterError(const KURL& url, bool notSureWhetherErrorOccured, bool onlyCheckForExistance)
 {
+   kdDebug(KIO_SMB)<<"stopAfterError()"<<endl;
    if (wasKilled())
    {
+      kdDebug(KIO_SMB)<<"stopAfterError() 1"<<endl;
       finished();
       return true;
    }
    if (m_stdoutSize==0)
    {
+      kdDebug(KIO_SMB)<<"stopAfterError() 2"<<endl;
       //error(KIO::ERR_UNKNOWN,"");
       //error( KIO::ERR_CONNECTION_BROKEN, m_currentHost);
       error( KIO::ERR_CANNOT_LAUNCH_PROCESS, "smbclient"+i18n("\nMake sure that the samba package is installed properly on your system."));
@@ -286,51 +347,62 @@ bool SmbProtocol::stopAfterError(const KURL& url, bool notSureWhetherErrorOccure
    if ((outputString.contains("Connection to")) && (outputString.contains("failed"))
        && (outputString.contains("error connecting")) && (outputString.contains("(Connection refused")))
    {
+      kdDebug(KIO_SMB)<<"stopAfterError() 3"<<endl;
       error( KIO::ERR_COULD_NOT_CONNECT, m_currentHost+i18n("\nThere is probably no SMB service running on this host."));
    }
    else if (outputString.contains("smbclient not found"))
    {
+      kdDebug(KIO_SMB)<<"stopAfterError() 4"<<endl;
       error( KIO::ERR_CANNOT_LAUNCH_PROCESS, "smbclient"+i18n("\nMake sure that the samba package is installed properly on your system."));
    }
    //host not found
    else if ((outputString.contains("Connection to")) && (outputString.contains("failed")))
    {
+      kdDebug(KIO_SMB)<<"stopAfterError() 5"<<endl;
       error( KIO::ERR_COULD_NOT_CONNECT, m_currentHost);
    }
    else if (outputString.contains("ERRDOS - ERRnomem"))
    {
+      kdDebug(KIO_SMB)<<"stopAfterError() 6"<<endl;
       error( KIO::ERR_INTERNAL_SERVER, m_currentHost);
    }
    //wrong password
    else if (outputString.contains("ERRSRV - ERRbadpw"))
    {
       //we should never get here
+      kdDebug(KIO_SMB)<<"stopAfterError() 7"<<endl;
       error( KIO::ERR_COULD_NOT_STAT, m_currentHost+i18n("\nInvalid user/password combination."));
    }
    else if ((outputString.contains("ERRDOS")) && (outputString.contains("ERRnoaccess")))
    {
       //we should never get here
+      kdDebug(KIO_SMB)<<"stopAfterError() 8"<<endl;
       error( KIO::ERR_COULD_NOT_STAT, m_currentHost+i18n("\nInvalid user/password combination."));
    }
    //file not found
    else if ((outputString.contains("ERRDOS")) && (outputString.contains("ERRbadfile")) && (onlyCheckForExistance==false))
    {
-      //kdDebug(KIO_SMB)<<"Smb::stopAfterError() contains both, reporting error"<<endl;
+      kdDebug(KIO_SMB)<<"stopAfterError() 9"<<endl;
+      kdDebug(KIO_SMB)<<"Smb::stopAfterError() contains both, reporting error"<<endl;
       error( KIO::ERR_DOES_NOT_EXIST, url.prettyURL());
    }
    else if (outputString.contains("Broken pipe"))
    {
+      kdDebug(KIO_SMB)<<"stopAfterError() 10"<<endl;
       error( KIO::ERR_CONNECTION_BROKEN, m_currentHost);
    }
    else if (notSureWhetherErrorOccured)
    {
+      kdDebug(KIO_SMB)<<"stopAfterError() 11"<<endl;
       return false;
    }
    else
    {
+      kdDebug(KIO_SMB)<<"stopAfterError() 12"<<endl;
       kdDebug(KIO_SMB)<<"Smb::stopAfterError() -"<<m_stdoutBuffer<<"-"<<endl;
       error( KIO::ERR_UNKNOWN, i18n("Couldn't parse response message."));
    }
+   kdDebug(KIO_SMB)<<"stopAfterError() 13"<<endl;
    return true;
 }
 
@@ -754,48 +826,73 @@ See the KDE Control Center under Network, LANBrowsing for more information."));
       if (stdoutEvent)
       {
          readOutput(proc->fd());
-         //kdDebug(KIO_SMB)<<"Smb::listDir(): read: -"<<m_stdoutBuffer<<"-"<<endl;
+//         kdDebug(KIO_SMB)<<"Smb::listDir(): read: -"<<m_stdoutBuffer<<"-"<<endl;
          //don't search the whole buffer, only the last 12 bytes
          if (m_stdoutSize>12)
          {
-            if (strstr(m_stdoutBuffer+m_stdoutSize-12,"\nsmb: \\>")!=0)
+            if ((strstr(m_stdoutBuffer+m_stdoutSize-12,"\nsmb: \\>")!=0) && (m_usefulLineFound==true))
+//            if (strstr(m_stdoutBuffer+m_stdoutSize-12,"\nsmb: \\>")!=0)
+            {
                loopFinished=true;
+               kdDebug()<<"offset: "<<int(strstr(m_stdoutBuffer+m_stdoutSize-12,"\nsmb: \\>")-m_stdoutBuffer)<<endl;
+            }
+//               loopFinished=true;
+//            if (strstr(m_stdoutBuffer+m_stdoutSize-12,"\rsmb: \\>")!=0)
+//               loopFinished=true;
          }
       }
    } while (!loopFinished);
-//   kdDebug(KIO_SMB)<<"Smb::listDir(): read: -"<<m_stdoutBuffer<<"-"<<endl;
+   kdDebug(KIO_SMB)<<"Smb::listDir(): reading done: -"<<m_stdoutBuffer<<"-"<<endl;
 
    //check the output from smbclient whether an error occured
    if (stopAfterError(_url,true))
       return;
+   kdDebug(KIO_SMB)<<"Smb::listDir(): no error detected"<<endl;
 
    QString outputString = QString::fromLocal8Bit(m_stdoutBuffer);
+
    QTextIStream output(&outputString);
    QString line;
 
    int totalNumber(0);
    UDSEntry entry;
 
+//   int endOfLine=0;
    while (!output.atEnd())
+//   while (1)
    {
-      line=output.readLine();
-//      kdDebug(KIO_SMB)<<"Smb::listDir(): line: -"<<line<<"-"<<endl;
-      if (line.isEmpty())
+/*      int eol=outputString.find('\n',endOfLine);
+      if (eol==-1)
+         eol=outputString.find('\r',endOfLine);
+      if (eol==-1)
          break;
+
+      kdDebug(KIO_SMB)<<" eol: "<<eol<<" endOfLIne: "<<endOfLine<<endl;
+
+      line=outputString.mid(endOfLine,eol-endOfLine);
+      endOfLine=eol+1;*/
+
+      line=output.readLine();
+
+//      kdDebug(KIO_SMB)<<"Smb::listDir(): line: -"<<line<<"-"<<endl;
+//      if (line.isEmpty())
+//         break;
       StatInfo info=createStatInfo(line);
+//      kdDebug(KIO_SMB)<<"Smb::listDir(): after createStatInfo()"<<endl;
       if (info.isValid)
       {
          entry.clear();
          createUDSEntry(info,entry);
-         //kdDebug(KIO_SMB)<<"Smb::listDir(): creating UDSEntry"<<endl;
+//         kdDebug(KIO_SMB)<<"Smb::listDir(): creating UDSEntry"<<endl;
          listEntry( entry, false);
          totalNumber++;
       }
+//      kdDebug(KIO_SMB)<<"Smb::listDir(): loop done"<<endl;
    }
    totalSize( totalNumber);
    listEntry( entry, true ); // ready
    finished();
-   //kdDebug(KIO_SMB)<<"Smb::listDir() ends"<<endl;
+//   kdDebug(KIO_SMB)<<"Smb::listDir() ends"<<endl;
 }
 
 void SmbProtocol::mkdir( const KURL& url, int)
@@ -928,7 +1025,7 @@ StatInfo SmbProtocol::createStatInfo(const QString line)
    //version 2.0.5 to at least 2.2.0 has at least 8 characters
    //version 2.2.2 has at least 7 characters
    int startOfData=line.find(QRegExp("    [SADR ][SADR ][SADR ] [ \\d][ \\d][ \\d][ \\d][ \\d][ \\d]\\d+  [A-Z][a-z][a-z] [A-Z][a-z][a-z] [ \\d]\\d"));
-   //kdDebug(KIO_SMB)<<"createStatInfo: regexp at: "<<startOfData<<endl;
+//   kdDebug(KIO_SMB)<<"createStatInfo: regexp at: "<<startOfData<<endl;
    if (startOfData==-1)
    {
       info.isValid=false;
@@ -1004,13 +1101,13 @@ StatInfo SmbProtocol::createStatInfo(const QString line)
    else
       info.mode = S_IRUSR | S_IRGRP | S_IROTH;
 
-   //kdDebug(KIO_SMB)<<"Smb::createUDSEntry() ends"<<endl;
+//   kdDebug(KIO_SMB)<<"Smb::createUDSEntry() ends"<<endl;
    return info;
 }
 
 StatInfo SmbProtocol::_stat(const KURL& url, bool onlyCheckForExistance)
 {
-   //kdDebug(KIO_SMB)<<"Smb::_stat() prettyURL(): -"<<url.prettyURL()<<"-"<<endl;
+   kdDebug(KIO_SMB)<<"Smb::_stat() prettyURL(): -"<<url.prettyURL()<<"-"<<endl;
    kdDebug(KIO_SMB)<<"Smb::_stat() local8() : -"<<url.path().local8Bit()<<"-"<<endl;
    StatInfo info;
 
@@ -1072,8 +1169,12 @@ StatInfo SmbProtocol::_stat(const KURL& url, bool onlyCheckForExistance)
          //don't search the whole buffer, only the last 12 bytes
          if (m_stdoutSize>12)
          {
-            if (strstr(m_stdoutBuffer+m_stdoutSize-12,"\nsmb: \\>")!=0)
-            loopFinished=true;
+            if ((strstr(m_stdoutBuffer+m_stdoutSize-12,"\nsmb: \\>")!=0) && (m_usefulLineFound==true))
+//            if (strstr(m_stdoutBuffer+m_stdoutSize-12,"\nsmb: \\>")!=0)
+            {
+               loopFinished=true;
+               kdDebug()<<"offset: "<<int(strstr(m_stdoutBuffer+m_stdoutSize-12,"\nsmb: \\>")-m_stdoutBuffer)<<endl;
+            }
          }
       }
    } while (!loopFinished);
@@ -1093,7 +1194,13 @@ StatInfo SmbProtocol::_stat(const KURL& url, bool onlyCheckForExistance)
    while (!output.atEnd())
    {
       line=output.readLine();
-      if (lineNumber==1)
+      kdDebug(KIO_SMB)<<"line -"<<line<<"-"<<endl;
+      int startOfData=line.find(QRegExp("    [SADR ][SADR ][SADR ] [ \\d][ \\d][ \\d][ \\d][ \\d][ \\d]\\d+  [A-Z][a-z][a-z] [A-Z][a-z][a-z] [ \\d]\\d"));
+      if (startOfData!=-1)
+      {
+         return createStatInfo(line);
+      }
+/*      if ((line.find("smb: \\>")==-1) && (line.find("dir \"")!=0))
       {
          if (line.contains("ERRbadfile") || (line.contains("File not found")))
          {
@@ -1105,9 +1212,10 @@ StatInfo SmbProtocol::_stat(const KURL& url, bool onlyCheckForExistance)
          {
             return createStatInfo(line);
          }
-      }
+      }*/
       lineNumber++;
    }
+   info.isValid=false;
    return info;
 }
 
@@ -1117,7 +1225,7 @@ void SmbProtocol::stat( const KURL & url)
 
    if (url.url()=="smb://")
    {
-      //kdDebug(KIO_SMB)<<"Smb::stat(): host.isEmpty()"<<endl;
+      kdDebug(KIO_SMB)<<"Smb::stat(): host.isEmpty()"<<endl;
       error(ERR_UNKNOWN_HOST,i18n("\nTo access the shares of a host, use smb://hostname\n\
 To get a list of all hosts use lan:/ or rlan:/ .\n\
 See the KDE Control Center under Network, LANBrowsing for more information."));
@@ -1411,8 +1519,11 @@ void SmbProtocol::get( const KURL& url )
       fd_set readFDs;
       FD_ZERO(&readFDs);
       FD_SET(fifoFD,&readFDs);
-      result=select(fifoFD+1,&readFDs,0,0,&tv);
-      if (wasKilled())
+      FD_SET(proc->fd(), &readFDs);
+      result=select(proc->fd()>fifoFD?proc->fd()+1:fifoFD+1,&readFDs,0,0,&tv);
+      if (FD_ISSET(proc->fd(), &readFDs))
+         readOutput(proc->fd());
+      else if (wasKilled())
          loopFinished=true;
       else if (result==1)
       {
@@ -1421,12 +1532,12 @@ void SmbProtocol::get( const KURL& url )
             loopFinished=true;
          else
          {
-            //kdDebug(KIO_SMB)<<"Smb::get(): read "<<i<<" bytes now, gives "<<bytesRead<<" overall"<<endl;
+            kdDebug(KIO_SMB)<<"Smb::get(): read "<<i<<" bytes now, gives "<<bytesRead<<" overall"<<endl;
             bytesRead+=i;
             array.setRawData(buf, i);
             data( array );
             array.resetRawData(buf,i);
-	    processedSize(bytesRead);
+            processedSize(bytesRead);
          }
       }
       else if (result<0)
@@ -1435,7 +1546,7 @@ void SmbProtocol::get( const KURL& url )
 
    close(fifoFD);
 
-   clearBuffer();
+//   clearBuffer();
    bool stdoutEvent;
    result=proc->select(1,0,&stdoutEvent);
    if (stdoutEvent)
