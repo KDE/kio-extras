@@ -73,7 +73,11 @@ void KBzip2Filter::init()
       zStream.avail_out = outputBuffer.size();
       zStream.next_out = outputBuffer.data();*/
 
+#ifdef NEED_BZ2_PREFIX
+    int result = BZ2_bzDecompressInit(&d->zStream, 0, 0);
+#else
     int result = bzDecompressInit(&d->zStream, 0, 0);
+#endif
     kdDebug() << "bzDecompressInit returned " << result << endl;
     // Not idea what to do with result :)
 }
@@ -81,7 +85,11 @@ void KBzip2Filter::init()
 void KBzip2Filter::terminate()
 {
     // readonly specific !
+#ifdef NEED_BZ2_PREFIX
+    int result = BZ2_bzDecompressEnd(&d->zStream);
+#else
     int result = bzDecompressEnd(&d->zStream);
+#endif
     kdDebug() << "bzDecompressEnd returned " << result << endl;
 }
 
@@ -120,7 +128,11 @@ int KBzip2Filter::outBufferAvailable() const
 KBzip2Filter::Result KBzip2Filter::uncompress()
 {
     //kdDebug() << "Calling bzDecompress with avail_in=" << inBufferAvailable() << " avail_out=" << outBufferAvailable() << endl;
+#ifdef NEED_BZ2_PREFIX
+    int result = BZ2_bzDecompress(&d->zStream);
+#else
     int result = bzDecompress(&d->zStream);
+#endif
     if ( result != BZ_OK )
     {
         kdDebug() << "bzDecompress returned " << result << endl;
