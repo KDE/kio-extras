@@ -16,7 +16,7 @@
    the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
    Boston, MA 02111-1307, USA.
 */
-  
+
    #include <kio/slavebase.h>
    #include <kinstance.h>
    #include <kdebug.h>
@@ -43,7 +43,7 @@
       virtual void stat(const KURL& url);
       virtual void listDir(const KURL& url);
       void listRoot();
-      KServiceGroup::Ptr findGroup(QString relPath);
+      KServiceGroup::Ptr findGroup(const QString &relPath);
 
    private:
 	DCOPClient *m_dcopClient;
@@ -84,7 +84,7 @@ SettingsProtocol::~SettingsProtocol()
 	delete m_dcopClient;
 }
 
-KServiceGroup::Ptr SettingsProtocol::findGroup(QString relPath) {
+KServiceGroup::Ptr SettingsProtocol::findGroup(const QString &relPath) {
 	QString alreadyFound;
 	QString nextPart="";;
 	QStringList rest;
@@ -102,7 +102,7 @@ KServiceGroup::Ptr SettingsProtocol::findGroup(QString relPath) {
 	while (!rest.isEmpty()) {
 		KServiceGroup::Ptr tmp=KServiceGroup::group(alreadyFound);
 		if (!tmp || !tmp->isValid()) return 0;
-		
+
        		KServiceGroup::List list = tmp->entries(true, true);
 
        		KServiceGroup::List::ConstIterator it = list.begin();
@@ -115,7 +115,7 @@ KServiceGroup::Ptr SettingsProtocol::findGroup(QString relPath) {
 	               	if (e->isType(KST_KServiceGroup)) {
 
         	            KServiceGroup::Ptr g(static_cast<KServiceGroup *>(e));
-                	    if ((g->caption()==rest.front()) || (g->name()==alreadyFound+rest.front())) { 
+                	    if ((g->caption()==rest.front()) || (g->name()==alreadyFound+rest.front())) {
 				kdDebug()<<"Found group with caption "<<g->caption()<<" with real name: "<<g->name()<<endl;
 				found=true;
 				rest.remove(rest.begin());
@@ -130,7 +130,7 @@ KServiceGroup::Ptr SettingsProtocol::findGroup(QString relPath) {
 			return 0;
 		}
 
-		
+
 	}
 	return KServiceGroup::group(alreadyFound);
 }
@@ -158,7 +158,7 @@ void SettingsProtocol::stat(const KURL& url)
 	}
 
 	kdDebug()<<"SettingsProtocol: stat for: "<<relPath<<endl;
-	KServiceGroup::Ptr grp = KServiceGroup::group(relPath);	
+	KServiceGroup::Ptr grp = KServiceGroup::group(relPath);
 
 	if (!grp || !grp->isValid()) {
 
@@ -190,10 +190,10 @@ void SettingsProtocol::stat(const KURL& url)
 
 void SettingsProtocol::listDir(const KURL& url)
 {
-	        
+
 	KIO::UDSEntry   entry;
 	uint count=0;
-	
+
 	QString relPath=url.path();
 
 	switch( m_runMode )
@@ -212,7 +212,7 @@ void SettingsProtocol::listDir(const KURL& url)
 
 	kdDebug()<<"SettingsProtocol: "<<relPath<<"***********************"<<endl;
 	KServiceGroup::Ptr root = KServiceGroup::group(relPath);
-    
+
 
 	if (!root || !root->isValid()) {
 
@@ -224,7 +224,7 @@ void SettingsProtocol::listDir(const KURL& url)
 	}
 
        KServiceGroup::List list = root->entries(true, true);
-	
+
        KServiceGroup::List::ConstIterator it = list.begin();
 
 
