@@ -6,6 +6,7 @@ X-KDE-Priority=TopLevel
 [Desktop Action MediaMount]
 Name=Mount
 Name[ar]=حمّل
+Name[az]=Bağla
 Name[bg]=Монтиране
 Name[bn]=মাউন্ট
 Name[br]=Marc'hañ
@@ -23,6 +24,7 @@ Name[eu]=Montatu
 Name[fa]=سوارکردن
 Name[fi]=Liitä
 Name[fr]=Monter
+Name[ga]=Feistigh
 Name[gl]=Montar
 Name[he]=חבר
 Name[hi]=माउन्ट
