@@ -110,7 +110,7 @@ void LDAPProtocol::get(const KURL &url)
   search.finish();
 
   // collect the result
-  QString result = search.asLDIF();
+  QCString result = search.asLDIF().utf8();
 
   // tell the mimetype
   mimeType("text/plain");
@@ -121,28 +121,10 @@ void LDAPProtocol::get(const KURL &url)
 
   // tell the contents of the URL
   QByteArray array;
-  int cnt=0;
-  while (cnt < processed_size)
-    {
-      if (result.length()-cnt > 1024)
-	{
-	  
-	  array.setRawData(result.mid(cnt,1024).latin1(), 1024);
-	  data(array);
-	  array.resetRawData(result.mid(cnt,1024).latin1(), 1024);
-	  cnt += 1024;
-	}
-      else
-	{
-	  array.setRawData(result.latin1(), result.length()-cnt);
-	  data(array);
-	  array.resetRawData(result.latin1(), result.length()-cnt);
-	  cnt = processed_size;
-	}
-      // tell how much we got
-      processedSize(cnt);
-    }
-
+  array.setRawData( result.data(), result.length() );
+  data(array);
+  array.resetRawData( result.data(), result.length() );  
+  processedSize( processed_size );
   // tell we are finished
   data(QByteArray());
   
@@ -150,7 +132,6 @@ void LDAPProtocol::get(const KURL &url)
   time_t t = time( 0L );
   if ( t - t_start >= 1 )
     speed( processed_size / ( t - t_start ) );  
-
   // tell we are finished
   finished();
 }

@@ -9,6 +9,7 @@
 #include "kldap.h"
 #include "kldapurl.h"
 #include <kdebug.h>
+#include <kmdcodec.h>
 
 using namespace KLDAP;
 
@@ -430,31 +431,70 @@ bool SearchRequest::end()
 }
 
 
+static QCString breakIntoLines( const QCString& str )
+{
+  QCString result;
+  int i;
+  for( i = 0; i < str.length()-72; i += 72 ) {
+    result += str.mid( i, 72 );
+    result += "\n ";
+  }
+  result += str.mid( i );
+  result += '\n';
+  return result;
+}
+
 QString SearchRequest::asLDIF()
 {
-  QString result;
-  QTextOStream os(&result);
-  BerElement *entry;
-  char       *name;
-  char       **vals;
+  QString         result;
+  QTextOStream    os(&result);
+  BerElement     *entry;
+  char           *name;
+  struct berval **bvals;
 
   LDAPMessage *item = ldap_first_entry(handle(), req_result);
   while (item)
     {
       // print the dn
-      os << "dn: " <<  ldap_get_dn(handle(), item) << endl;
+      char* dn = ldap_get_dn(handle(), item);
+      os << "dn: " <<  dn << endl;
+      //kdDebug() << "Outputting dn: \"" << dn << "\"" << endl;
+      ldap_memfree( dn );
 
       // iterate over the attributes    
       name = ldap_first_attribute(handle(), item, &entry);
       while (name != 0)
 	{
 	  // print the values
-	  vals = ldap_get_values(handle(), item, name);
-	  if (vals) 
-	    for (int i=0; vals[i] != 0; i++)
-		os << name << ": " << vals[i] << endl;
-	  ldap_value_free(vals);
-	  
+	  bvals = ldap_get_values_len(handle(), item, name);
+	  if (bvals) {
+	    for (int i=0; bvals[i] != 0; ++i) {
+	      char* val = bvals[i]->bv_val;
+	      unsigned long len = bvals[i]->bv_len;
+	      bool printable = true;
+	      for( int j = 0; j < len; ++j ) {
+		if(!val[j]||!QChar( val[j] ).isPrint()) {
+		  printable = false;
+		  break;
+		}
+	      }
+	      if( printable ) {
+		// There should be no NULLs in here
+		QByteArray tmp;
+		tmp.setRawData( val, len );
+		os << name << ": " << QCString(tmp) << endl;
+		tmp.resetRawData( val, len );
+	      } else {		
+		QByteArray tmp;
+		tmp.setRawData( val, len );
+		QCString tmp2 = breakIntoLines( KCodecs::base64Encode( tmp, false ));
+		tmp.resetRawData( val, len );
+		os << name << ":: " << endl;
+		os << " " << tmp2 << endl;
+	      }
+	    }
+	    ldap_value_free_len(bvals);
+	  }
 	  // next attribute
 	  name = ldap_next_attribute(handle(), item, entry);
 	}
@@ -463,6 +503,6 @@ QString SearchRequest::asLDIF()
       os << endl;
       item = ldap_next_entry(handle(), item);
     }
-
+  //kdDebug() << "result=\"" << result << "\"" << endl;  
   return result;
 }
