@@ -28,6 +28,8 @@
 //     a copy from http://www.gnu.org/copyleft/gpl.html   
 //                                                                         
 /////////////////////////////////////////////////////////////////////////////
+#include <pwd.h>
+#include <grp.h>
 
 #include "kio_smb.h"
 #include "kio_smb_internal.h"
@@ -70,12 +72,27 @@ bool SMBSlave::browse_stat_path(const SMBUrl& url, UDSEntry& udsentry)
         udsatom.m_long = st.st_size;
         udsentry.append(udsatom);
     
-        udsatom.m_uds  = KIO::UDS_USER;
-        udsatom.m_str = st.st_uid;
+	uid_t uid = st.st_uid;
+	struct passwd *user = getpwuid( uid );
+	if ( user ) {
+            udsatom.m_str = user->pw_name;
+	  }
+	  else
+            udsatom.m_str = QString::number( uid );
+
+	udsatom.m_uds  = KIO::UDS_USER;
+        kdDebug(KIO_SMB) << "SMBSlave::browse_stat_path uid="<<st.st_uid<< endl;
         udsentry.append(udsatom);
     
         udsatom.m_uds  = KIO::UDS_GROUP;
-        udsatom.m_str = st.st_gid;
+	gid_t gid = st.st_gid;
+        struct group *grp = getgrgid( gid );
+        if ( grp ) {
+            udsatom.m_str = grp->gr_name;
+        }
+        else
+            udsatom.m_str = QString::number( gid );
+        kdDebug(KIO_SMB) << "SMBSlave::browse_stat_path gid="<<st.st_gid<< endl;
         udsentry.append(udsatom);
     
         udsatom.m_uds  = KIO::UDS_ACCESS;
@@ -163,6 +180,7 @@ const KURL SMBSlave::checkURL(const KURL& kurl) {
 // TODO: Add stat cache
 void SMBSlave::stat( const KURL& kurl )
 {
+    kdDebug(KIO_SMB) << "SMBSlave::stat on"<< endl;
     // make a valid URL
     KURL url = checkURL(kurl);
 
