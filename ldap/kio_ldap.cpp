@@ -543,10 +543,13 @@ int LDAPProtocol::saslInteract( void *in )
          interact->id == SASL_CB_PASS ) {
 
       if ( info.username.isEmpty() || info.password.isEmpty() ) {
-        if ( ! (mFirstAuth ?
-          openPassDlg( info ) :
-          openPassDlg( info, i18n("Invalid authorization information.") )) ) {
 
+        const bool cached = checkCachedAuthentication( info );
+
+        if ( ! ( ( mFirstAuth && cached ) ||
+                 ( mFirstAuth ?
+                   openPassDlg( info ) :
+                   openPassDlg( info, i18n("Invalid authorization information.") ) ) ) ) {
           kdDebug(7125) << "Dialog cancelled!" << endl;
           mCancel = true;
           return LDAP_USER_CANCELLED;
