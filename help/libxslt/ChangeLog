@@ -1,3 +1,228 @@
+Sat Jun 16 23:58:57 CEST 2001 Daniel Veillard <Daniel.Veillard@imag.fr>
+
+	* libxslt.spec.in: updated the descriptions
+
+Sat Jun 16 23:26:46 CEST 2001 Daniel Veillard <Daniel.Veillard@imag.fr>
+
+	* libxslt/namespaces.[ch]: added a single namespace def copy
+	  operation xsltCopyNamespace(). cleaned up xsltCopyNamespaceList()
+	* libxslt/transform.c: cleaned up xsltCopyNode to cope with
+	  any kind of input nodes.
+	* libxslt/variables.c: checked and closed the last TODO about
+	  namespace propagation
+	* tests/docs/Makefile.am tests/general/Makefile.am
+	  tests/general/bug-38-* tests/docs/bug-38-*: added a specific
+	  regression test for #56115 
+
+Sat Jun 16 09:27:27 MDT 2001 John Fleck <jfleck@inkstain.net>
+
+	* updating tutorial: adding discussion of freeing memory, image
+	files for callouts, link to xsltproc.c code
+
+Sat Jun 16 15:23:43 CEST 2001 Daniel Veillard <Daniel.Veillard@imag.fr>
+
+	* libxslt/variables.c: bug #56267 was still not fixed, forgot
+	  to remove the old code
+	* tests/general/bug-37-.xsl: wrong reference to 36 fixed, this does
+	  the test for good
+
+Sat Jun 16 00:32:39 CEST 2001 Daniel Veillard <Daniel.Veillard@imag.fr>
+
+	* libxslt/variables.c: fixed bug #56267, namespaces must
+	  be propagated when evaluating local variables.
+	* tests/docs/Makefile.am tests/general/Makefile.am
+	  tests/general/bug-37-* tests/docs/bug-37-*: added a specific
+	  regression test for #56267 
+
+Fri Jun 15 18:29:29 CEST 2001 Daniel Veillard <Daniel.Veillard@imag.fr>
+
+	* libxslt/keys.c: avoid a possibility of an uninitialized variable
+	* libxslt/documents.c libxslt/transform.[ch] libxslt/transform.h
+	  libxslt/xsltInternals.h libxslt/xsltproc.c: Implement Raphael Hertzog
+	  request to have xinclude processing done on document() if requested
+
+Thu Jun 14 20:52:13 CEST 2001 Daniel Veillard <Daniel.Veillard@imag.fr>
+
+	* libxslt/Makefile.am: applied patch from Sander Vesik for -j2 
+
+Thu Jun 14 10:07:59 CEST 2001 Daniel Veillard <Daniel.Veillard@imag.fr>
+
+	* libxslt/preproc.c: removed a warning on xsl:transform
+	* tests/docs/Makefile.am tests/docs/array.xml tests/general/Makefile.am
+	  tests/general/array.out tests/general/array.xsl: added a new
+	  test fround in xsl-dev
+
+Wed Jun 13 23:12:57 CEST 2001 Daniel Veillard <Daniel.Veillard@imag.fr>
+
+	* tests/docbook/result/html/*.html tests/XSLTMark/xslbench[12].out
+	  tests/xmlspec/REC-xml-20001006*.html: the changes to the HTML
+	  serializer of libxml impacted the result of some tests. Checked
+	  that the XML REC renders identically.
+
+Mon Jun 11 07:19:06 MDT 2001 John Fleck <jfleck@inkstain.net>
+
+	* fixing embarassing typos in doc/tutorial/libxslttutorial.xml and 
+	generated html
+
+Tue Jun 12 07:42:35 CEST 2001 Daniel Veillard <Daniel.Veillard@imag.fr>
+
+	* libxslt/variables.c: fixed bug #55670, namespaces must
+	  be propagated when evaluating global variables.
+	* tests/docs/Makefile.am tests/general/Makefile.am
+	  tests/general/bug-36-* tests/docs/bug-36-*: added a specific
+	  regression test for #55670 
+
+Mon Jun 11 09:35:53 CEST 2001 Daniel Veillard <Daniel.Veillard@imag.fr>
+
+	* doc/xslt.html: linked to the tutorial
+
+Sun Jun 10 19:36:31 MDT 2001 John Fleck <jfleck@inkstain.net>
+
+	* doc/tutorial/libxslt_tutorial.c,  libxslttutorial.html,
+	libxslttutorial.xml 
+	adding tutorial
+
+Sun Jun 10 21:52:35 CEST 2001 Daniel Veillard <Daniel.Veillard@imag.fr>
+
+	* libxslt/transform.c: closed bug #55723, problem was due to
+	  a limitation of xsltGetNamespace() when the insertion point
+	  is the document.
+	* tests/docs/Makefile.am tests/general/Makefile.am
+	  tests/general/bug-35-* tests/docs/bug-35-*: added a specific
+	  regression test for #55723 
+
+Sun Jun 10 13:37:33 HKT 2001 William Brack <wbrack@mmm.com.hk>
+
+	* libxslt/transform.c: fixed problems with document() in
+	  xsltApplyTemplates and xsltForEach.  Cleaned up several
+	  error messages.
+	* libxslt/keys.c: saved and restored ctxt->document within
+	  xsltInitKey to fix problem with keys when doc changed
+	* libxslt/documents.[ch]: added new procedure xsltFindDocument
+	  needed when document() causes a change of doc within
+	  xsltApplyTemplates and xsltForEach
+
+Thu Jun  7 21:31:46 CEST 2001 Daniel Veillard <Daniel.Veillard@imag.fr>
+
+	* libxslt/xsltutils.[ch]: closing bug #55683 required to add
+	  xsltGetNsProp()
+	* libxslt/attributes.c libxslt/imports.c libxslt/namespaces.c
+	  libxslt/preproc.c libxslt/templates.c libxslt/xslt.c:
+	  Updated to use the new function
+	* tests/XSLTMark/prettyprint.out tests/docbook/result/html/*.html:
+	  the fixes in the serialization of <pre> in HTML in libxml
+	  led to a number of changes in the output
+
+Thu Jun  7 04:23:38 CEST 2001 Daniel Veillard <Daniel.Veillard@imag.fr>
+
+	* tests/docs/Makefile.am tests/general/Makefile.am
+	  tests/general/bug-32-* tests/docs/bug-32-*: added a specific
+	  regression test for #55722 
+
+Wed Jun  6 09:48:53 CEST 2001 Daniel Veillard <Daniel.Veillard@imag.fr>
+
+	* doc/xslt.html: updated to ask to not send mail directly
+	* tests/docs/Makefile.am tests/general/Makefile.am
+	  tests/general/bug-33-* tests/docs/bug-33-*: added a specific
+	  regression test for #55722 
+
+Wed Jun  6 11:07:50 CEST 2001 Daniel Veillard <Daniel.Veillard@imag.fr>
+
+	* libxslt/pattern.c : trying to fix #55670
+	* tests/XSLTMark/reverser.out : result of test changed when
+	  William fixed XPath
+
+Sat Jun  2 06:52:12 CEST 2001 Daniel Veillard <Daniel.Veillard@imag.fr>
+
+	* doc/xslt.html: updated with 0.11.0
+
+Fri Jun  1 11:30:49 CEST 2001 Daniel Veillard <Daniel.Veillard@imag.fr>
+
+	* configure.in libxslt.spec.in: released 0.11.0
+
+Mon May 28 12:54:45 CEST 2001 Daniel Veillard <Daniel.Veillard@imag.fr>
+
+	* libxslt/transform.c: William M. Brack found a small bug
+	  when call-template didn't find the template.
+
+Sat May 26 17:08:19 CEST 2001 Daniel Veillard <Daniel.Veillard@imag.fr>
+
+	* libxslt/transform.c: fixed handling of PI and comments
+	  (bug raised by Brent M Hendricks).
+	* tests/docs/Makefile.am tests/general/Makefile.am
+	  tests/general/bug-31-* tests/docs/bug-31-*: added a specific
+	  regression test
+
+Wed May 23 13:25:37 CEST 2001 Daniel Veillard <Daniel.Veillard@imag.fr>
+
+	* libxslt/xsltproc.c: added --xinclude in the option list,
+	  patch from Raphael Hertzog
+	* test/docbook/Makefile.am: force at least the gdp-handbook.xml
+	  test in the normal testsuite
+
+Wed May 23 00:05:19 CEST 2001 Daniel Veillard <Daniel.Veillard@imag.fr>
+
+	* libxslt/variables.c: Mark Vakoc found a bug in variable eval
+	  at the top template level 
+	* tests/docs/Makefile.am tests/general/Makefile.am
+	  tests/general/bug-30-* tests/docs/bug-30-*: added a specific
+	  regression test
+
+Tue May 22 18:52:30 CEST 2001 Daniel Veillard <Daniel.Veillard@imag.fr>
+
+	* libxslt/functions.c: fixed the document() bug reported by
+	  Stephane GUIBOUD-RIBAUD
+	* tests/docs/Makefile.am tests/general/Makefile.am
+	  tests/general/bug-29-* tests/docs/bug-29-*: added a specific
+	  regression test
+
+Tue May 22 15:09:02 CEST 2001 Daniel Veillard <Daniel.Veillard@imag.fr>
+
+	* configure.in libxslt/Makefile.am: fixed bug #54953
+	* libxslt/attributes.c: cleanup pointed by Joe Orton
+	* libxslt/xsltproc.c: added --catalogs to load catalogs from
+	  $SGML_CATALOG_FILES
+	* libxslt/functions.c: cleanup unreached code
+	* configure.in config.h.in libxslt/xsltproc.c: guarded the
+	  include with preprocessor definitions
+
+Sun May 20 20:55:00 CEST 2001 Daniel Veillard <Daniel.Veillard@imag.fr>
+
+	* tests/documents/Makefile.am tests/general/Makefile.am
+	  tests/multiple/Makefile.am tests/namespaces/Makefile.am
+	  tests/numbers/Makefile.am tests/xmlspec/Makefile.am
+	  tests/REC/Makefile.am tests/REC1/Makefile.am tests/REC2/Makefile.am
+	  tests/XSLTMark/Makefile.am tests/docbook/Makefile.am
+	  configure.in: Makefiles cleanup from Joe Orton
+
+Sun May 20 15:20:49 CEST 2001 Daniel Veillard <Daniel.Veillard@imag.fr>
+
+	* tests/docbook/result/html/external.html 
+	  tests/docbook/result/html/graphics.html
+	  tests/docbook/result/html/gtest.html
+	  tests/docbook/test/external.xml tests/docbook/test/subdoc.ent:
+	  Added a test from coolo for IDs in external parsed entities
+	  and fixed 2 outputs
+
+Sat May 19 22:28:05 CEST 2001 Daniel Veillard <Daniel.Veillard@imag.fr>
+
+	* libxslt/xslt.[ch] libxslt/xsltconfig.h.in libxslt/xsltproc.c:
+	  added --version info to xsltproc closing #54952
+
+Sat May 19 17:41:23 CEST 2001 Daniel Veillard <Daniel.Veillard@imag.fr>
+
+	* tests/documents/Makefile.am tests/general/Makefile.am 
+	  tests/multiple/Makefile.am tests/namespaces/Makefile.am 
+	  tests/numbers/Makefile.am tests/xmlspec/Makefile.am:
+	  Seems some of the changes I made for 0.9.0 Makefiles were
+	  not commited ...
+
+Sat May 19 17:23:54 CEST 2001 Daniel Veillard <Daniel.Veillard@imag.fr>
+
+	* configure.in: preparing 0.10.0 release
+	* doc/xslt.html: updated
+	* doc/html/* : rebuilt the docs
+
 Fri May 18 16:48:13 CEST 2001 Daniel Veillard <Daniel.Veillard@imag.fr>
 
 	* libxslt/xslt.c libxslt/variables.c libxslt/templates.c

@@ -10,6 +10,7 @@
 
 #include <string.h>
 
+#include <libxml/xmlversion.h>
 #include <libxml/xmlmemory.h>
 #include <libxml/tree.h>
 #include <libxml/hash.h>
@@ -19,10 +20,13 @@
 #include "documents.h"
 #include "keys.h"
 
+#ifdef LIBXML_XINCLUDE_ENABLED
+#include <libxml/xinclude.h>
+#endif
+
 #ifdef WITH_XSLT_DEBUG
 #define WITH_XSLT_DEBUG_DOCUMENTS
 #endif
-
 
 /************************************************************************
  *									*
@@ -158,6 +162,15 @@ xsltLoadDocument(xsltTransformContextPtr ctxt, const xmlChar *URI) {
     if (doc == NULL)
 	return(NULL);
 
+    if (ctxt->xinclude != 0) {
+#ifdef LIBXML_XINCLUDE_ENABLED
+	xmlXIncludeProcess(doc);
+#else
+        xsltGenericError(xsltGenericErrorContext,
+	    "xsltLoadDocument(%s) : XInclude processing not compiled in\n",
+	                 URI);
+#endif
+    }
     ret = xsltNewDocument(ctxt, doc);
     return(ret);
 }
@@ -196,5 +209,33 @@ xsltLoadStyleDocument(xsltStylesheetPtr style, const xmlChar *URI) {
 
     ret = xsltNewStyleDocument(style, doc);
     return(ret);
+}
+
+/**
+ * xsltFindDocument:
+ * @ctxt: an XSLT transformation context
+ * @@doc: a parsed XML document
+ *
+ * Try to find a document within the XSLT transformation context
+ *
+ * Returns the desired xsltDocumentPtr or NULL in case of error
+ */
+xsltDocumentPtr
+xsltFindDocument (xsltTransformContextPtr ctxt, xmlDocPtr doc) {
+    xsltDocumentPtr ret;
+
+    if ((ctxt == NULL) || (doc == NULL))
+	return(NULL);
+
+    /*
+     * Walk the context list to find the document
+     */
+    ret = ctxt->docList;
+    while (ret != NULL) {
+	if (ret->doc == doc)
+	    return(ret);
+	ret = ret->next;
+    }
+    return(NULL);
 }
 

@@ -240,7 +240,7 @@ xsltStackLookup(xsltTransformContextPtr ctxt, const xmlChar *name,
      */
     i = ctxt->varsNr - 1;
 
-    for (;i > 0;i--) {
+    for (;i >= 0;i--) {
 	cur = ctxt->varsTab[i];
 	while (cur != NULL) {
 	    if (xmlStrEqual(cur->name, name)) {
@@ -302,9 +302,15 @@ xsltEvalVariable(xsltTransformContextPtr ctxt, xsltStackElemPtr elem,
 	oldProximityPosition = ctxt->xpathCtxt->proximityPosition;
 	oldContextSize = ctxt->xpathCtxt->contextSize;
 	ctxt->xpathCtxt->node = (xmlNodePtr) ctxt->node;
-	/* TODO: do we need to propagate the namespaces here ? */
-	ctxt->xpathCtxt->namespaces = NULL;
-	ctxt->xpathCtxt->nsNr = 0;
+	if (precomp != NULL) {
+	    ctxt->inst = precomp->inst;
+	    ctxt->xpathCtxt->namespaces = precomp->nsList;
+	    ctxt->xpathCtxt->nsNr = precomp->nsNr;
+	} else {
+	    ctxt->inst = NULL;
+	    ctxt->xpathCtxt->namespaces = NULL;
+	    ctxt->xpathCtxt->nsNr = 0;
+	}
 	result = xmlXPathCompiledEval(comp, ctxt->xpathCtxt);
 	ctxt->xpathCtxt->contextSize = oldContextSize;
 	ctxt->xpathCtxt->proximityPosition = oldProximityPosition;
@@ -403,14 +409,16 @@ xsltEvalGlobalVariable(xsltStackElemPtr elem, xsltTransformContextPtr ctxt) {
 	oldProximityPosition = ctxt->xpathCtxt->proximityPosition;
 	oldContextSize = ctxt->xpathCtxt->contextSize;
 	oldInst = ctxt->inst;
-	if (precomp != NULL)
+	if (precomp != NULL) {
 	    ctxt->inst = precomp->inst;
-	else
+	    ctxt->xpathCtxt->namespaces = precomp->nsList;
+	    ctxt->xpathCtxt->nsNr = precomp->nsNr;
+	} else {
 	    ctxt->inst = NULL;
+	    ctxt->xpathCtxt->namespaces = NULL;
+	    ctxt->xpathCtxt->nsNr = 0;
+	}
 	ctxt->xpathCtxt->node = (xmlNodePtr) ctxt->node;
-	/* TODO: do we need to propagate the namespaces here ? */
-	ctxt->xpathCtxt->namespaces = NULL;
-	ctxt->xpathCtxt->nsNr = 0;
 	result = xmlXPathCompiledEval(comp, ctxt->xpathCtxt);
 	ctxt->xpathCtxt->contextSize = oldContextSize;
 	ctxt->xpathCtxt->proximityPosition = oldProximityPosition;
@@ -688,7 +696,11 @@ xsltEvalUserParams(xsltTransformContextPtr ctxt, const char **params) {
 	    oldProximityPosition = ctxt->xpathCtxt->proximityPosition;
 	    oldContextSize = ctxt->xpathCtxt->contextSize;
 	    ctxt->xpathCtxt->node = (xmlNodePtr) ctxt->node;
-	    /* TODO: do we need to propagate the namespaces here ? */
+
+	    /* 
+	     * There is really no in scope namespace for parameters on the
+	     * command line.
+	     */
 	    ctxt->xpathCtxt->namespaces = NULL;
 	    ctxt->xpathCtxt->nsNr = 0;
 	    result = xmlXPathCompiledEval(comp, ctxt->xpathCtxt);

@@ -246,13 +246,13 @@ xsltParseStylesheetAttributeSet(xsltStylesheetPtr style, xmlNodePtr cur) {
     xmlChar *prefix = NULL;
     xmlChar *attributes;
     xmlChar *attribute, *end;
-    xmlNodePtr list, delete;
+    xmlNodePtr list;
     xsltAttrElemPtr values;
 
     if ((cur == NULL) || (style == NULL))
 	return;
 
-    prop = xmlGetNsProp(cur, (const xmlChar *)"name", XSLT_NAMESPACE);
+    prop = xsltGetNsProp(cur, (const xmlChar *)"name", XSLT_NAMESPACE);
     if (prop == NULL) {
 	xsltGenericError(xsltGenericErrorContext,
 	     "xslt:attribute-set : name is missing\n");
@@ -282,14 +282,12 @@ xsltParseStylesheetAttributeSet(xsltStylesheetPtr style, xmlNodePtr cur) {
      * check the children list
      */
     list = cur->children;
-    delete = NULL;
     while (list != NULL) {
 	if (IS_XSLT_ELEM(list)) {
 	    if (!IS_XSLT_NAME(list, "attribute")) {
 		xsltGenericError(xsltGenericErrorContext,
 		    "xslt:attribute-set : unexpected child xsl:%s\n",
 		                 list->name);
-		delete = list;
 	    } else {
 #ifdef WITH_XSLT_DEBUG_ATTRIBUTES
 		xsltGenericDebug(xsltGenericDebugContext,
@@ -300,7 +298,6 @@ xsltParseStylesheetAttributeSet(xsltStylesheetPtr style, xmlNodePtr cur) {
 	} else {
 	    xsltGenericError(xsltGenericErrorContext,
 		"xslt:attribute-set : unexpected child %s\n", list->name);
-	    delete = list;
 	}
 	list = list->next;
     }
@@ -310,7 +307,7 @@ xsltParseStylesheetAttributeSet(xsltStylesheetPtr style, xmlNodePtr cur) {
      */
     /* TODO check recursion */
 
-    attributes = xmlGetNsProp(cur, (const xmlChar *)"use-attribute-sets",
+    attributes = xsltGetNsProp(cur, (const xmlChar *)"use-attribute-sets",
 	                      XSLT_NAMESPACE);
     if (attributes == NULL) {
 	goto done;
