@@ -366,7 +366,6 @@ namespace KioSMTP {
     if ( cmd.isEmpty() )
       return; // don't change state when we can't detect the unget in
 	      // the next nextCommandLine !!
-    kdDebug() << "uncomplete transfer again since ungetCommandLine was called" << endl;
     mWasComplete = mComplete;
     mComplete = false;
     mNeedResponse = false;
@@ -388,7 +387,6 @@ namespace KioSMTP {
     static const QCString CRLFdotCRLF = "\r\n.\r\n";
 
     if ( !mUngetBuffer.isEmpty() ) {
-      kdDebug() << "returning already requested data" << endl;
       const QCString ret = mUngetBuffer;
       mUngetBuffer = 0;
       if ( mWasComplete ) {
@@ -414,11 +412,8 @@ namespace KioSMTP {
       mNeedResponse = true;
       return 0;
     }
-    kdDebug() << "transfer complete since result of readData() <= 0" << endl;
     mComplete = true;
     mNeedResponse = true;
-    kdDebug() << "since mLastChar == " << mLastChar << " (" << '\n' << ") returning "
-	      << ( mLastChar == '\n' ? ".\\r\\n" : "\\r\\n.\\r\\n" ) << endl;
     return mLastChar == '\n' ? dotCRLF : CRLFdotCRLF ;
   }
 
