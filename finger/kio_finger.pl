@@ -65,8 +65,9 @@ HTMLHeader
 
 # Run finger command and save it into a buffer
 
-$buffer = `$FINGERCMD $USER\@$HOST`;
-@lines = split /^/m, $buffer;
+open(F, "-|") || exec $FINGERCMD, "$USER\@$HOST";
+@lines = <F>;
+close(F);
 
 # Do highlighting using perl regular expressions on every line received.
 # Order is important here.
