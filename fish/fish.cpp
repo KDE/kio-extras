@@ -901,7 +901,7 @@ void fishProtocol::manageConnection(const QString &l) {
 
                 case 'S':
                     atom.m_uds = UDS_SIZE;
-                    atom.m_long = line.mid(1).toInt(&isOk);
+                    atom.m_long = line.mid(1).toLongLong(&isOk);
                     if (listReason == SIZE && atom.m_long < recvLen) recvLen = atom.m_long; //FIXME: untested
                     if (!isOk) break;
                     errorCount--;
