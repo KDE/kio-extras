@@ -131,6 +131,7 @@ namespace KioSMTP {
 	result += it.data();
       }
     }
+    result.sort();
     result.erase( std::unique( result.begin(), result.end() ), result.end() );
     return result;
   }
