@@ -102,9 +102,9 @@ class AudioCDProtocol::Private
     {
       path = QString::null;
       paranoiaLevel = 2;
-      useCDDB = false;
-      cddbServer = QString::null;
-      cddbPort = -1;
+      useCDDB = true;
+      cddbServer = "freedb.freedb.org";
+      cddbPort = 888;
       which_dir = Unknown;
       req_track = -1;
     }
@@ -376,9 +376,9 @@ AudioCDProtocol::updateCD(struct cdrom_drive * drive)
     }
   qvl.append(cdda_track_lastsector(drive, d->tracks) + 150 + 1);
 
-  d->cddb->set_server("freedb.freedb.org", 888);
+  d->cddb->set_server(d->cddbServer.latin1(), d->cddbPort);
 
-  if (d->cddb->queryCD(qvl))
+  if (d->useCDDB && d->cddb->queryCD(qvl))
     {
       d->based_on_cddb = true;
       d->cd_title = d->cddb->title();
