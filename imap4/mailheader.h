@@ -43,9 +43,9 @@ public:
 	void addBCC(const mailAddress &_adr) { bccAdr.append(new mailAddress(_adr));};
 
 	void setFrom(const mailAddress &_adr) { fromAdr = _adr;};
-	void setSender(const mailAddress &_adr) { fromAdr = _adr;};
-	void setReturnPath(const mailAddress &_adr) { fromAdr = _adr;};
-	void setReplyTo(const mailAddress &_adr) { fromAdr = _adr;};
+	void setSender(const mailAddress &_adr) { senderAdr = _adr;};
+	void setReturnPath(const mailAddress &_adr) { returnpathAdr = _adr;};
+	void setReplyTo(const mailAddress &_adr) { replytoAdr = _adr;};
 
 	QCString getMessageId() { return messageID; };
 	void setMessageId(const QCString &_str) { messageID = _str; };
