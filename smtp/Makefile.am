@@ -1,9 +1,5 @@
 INCLUDES= -I$(srcdir)/../.. -I$(srcdir)/.. $(SSL_INCLUDES) $(all_includes)
 
-####### Files
-
-SUBDIRS = ksasl
-
 kde_module_LTLIBRARIES = kio_smtp.la
 
 kio_smtp_la_SOURCES = smtp.cc emailsettings.cpp
