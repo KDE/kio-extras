@@ -103,6 +103,7 @@ protected: // Protected attributes
   QString thisFn;
   /** for STAT */
   QString wantedFn;
+  QString statPath;
   /** url of current request */
   KURL url;
   /** true if connection is logged in successfully */
@@ -138,7 +139,7 @@ protected: // Protected attributes
   /** true if a command stack is currently executing */
   bool isRunning;
   /** reason of LIST command */
-  enum { CHECK, LIST, STAT, SIZE } listReason;
+  enum { CHECK, LIST, STAT, SIZE, STATCHECK } listReason;
   /** true if FISH server understands COPY command */
   bool hasCopy;
   /** true if FISH server understands RSYNC command */
@@ -164,17 +165,17 @@ protected: // Protected attributes
   QDateTime epoch;
   /** details about each fishCommand */
   static const struct fish_info {
-  	const char *command;
-  	int params;
-  	const char *alt;
-  	int lines;
+      const char *command;
+      int params;
+      const char *alt;
+      int lines;
   } fishInfo[];
   /** last FISH command sent to server */
   enum fish_command_type { FISH_FISH, FISH_VER, FISH_PWD, FISH_LIST, FISH_RETR, FISH_STOR,
-	FISH_CWD, FISH_CHMOD, FISH_DELE, FISH_MKD, FISH_RMD,
-	FISH_RENAME, FISH_LINK, FISH_SYMLINK, FISH_CHOWN,
-	FISH_CHGRP, FISH_READ, FISH_WRITE, FISH_COPY, FISH_APPEND } fishCommand;
-  int fishCodeLen;	
+    FISH_CWD, FISH_CHMOD, FISH_DELE, FISH_MKD, FISH_RMD,
+    FISH_RENAME, FISH_LINK, FISH_SYMLINK, FISH_CHOWN,
+    FISH_CHGRP, FISH_READ, FISH_WRITE, FISH_COPY, FISH_APPEND } fishCommand;
+  int fishCodeLen;
 protected: // Protected methods
   /** manages initial communication setup including password queries */
   int establishConnection(char *buffer, int buflen);

@@ -3,3 +3,5 @@ L other remote shells (rlogin, telnet) - difficult, would need a shell prompt de
 M more meaningful error messages (need perl server first)
 H use rsync or a similar technique (if possible at all)
 M proxying via intermediate ssh account
+H make it work with charsets other than latin1
+
