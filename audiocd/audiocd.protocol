@@ -10,4 +10,4 @@ makedir=false
 deleting=false
 linking=false
 moving=false
-Icon=mime_empty
+Icon=cdaudio_unmount
