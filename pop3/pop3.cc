@@ -100,7 +100,7 @@ int kdemain( int argc, char **argv )
 }
 
 POP3Protocol::POP3Protocol(const QCString &pool, const QCString &app, bool isSSL)
-   : TCPSlaveBase((isSSL ? 995 : 110), (isSSL ? "pop3s" : "pop3"), pool, app)
+   : TCPSlaveBase((isSSL ? 995 : 110), (isSSL ? "pop3s" : "pop3"), pool, app, isSSL)
 {
 	kdDebug() << "POP3Protocol()" << endl;
 	m_bIsSSL=isSSL;
