@@ -32,6 +32,7 @@
 #include "kio_smb.h"
 #include "kio_smb_internal.h"
 
+#include <ksimpleconfig.h>
 #include <qdir.h>
 #include <stdlib.h>
 
@@ -119,20 +120,27 @@ bool SMBSlave::checkPassword(SMBUrl &url)
         share = share.mid(1);
     info.url.setPath(share);
 
-    info.prompt = i18n(
-        "Please enter authentication information for:\n"
-        "Server = %1\n"
-        "Share = %2" )
-                  .arg( url.host() )
-                  .arg( share );
+    if ( share.isEmpty() )
+        info.prompt = i18n(
+            "<qt>Please enter authentication information for <b>%1</b></qt>" )
+                      .arg( url.host() );
+    else
+        info.prompt = i18n(
+            "Please enter authentication information for:\n"
+            "Server = %1\n"
+            "Share = %2" )
+                      .arg( url.host() )
+                      .arg( share );
     info.username = url.user();
     info.password = url.pass();
 
     if ( openPassDlg(info) ) {
+        kdDebug() << "openPassDlg returned " << info.username << endl;
         url.setUser(info.username);
         url.setPass(info.password);
         return true;
     }
+    kdDebug() << "no value from openPassDlg\n";
     return false;
 }
 
@@ -146,10 +154,10 @@ bool SMBSlave::auth_initialize_smbc()
     if(m_initialized_smbc == false)
     {
         kdDebug() << "smbc_init call" << endl;
-        int debug_level = 0;
-#ifndef NDEBUG
-//        debug_level = 100;
-#endif
+        KSimpleConfig cfg( "kioslaverc", true );
+
+        cfg.setGroup( "SMB" );
+        int debug_level = cfg.readNumEntry( "DebugLevel", 0 );
 
         if(smbc_init(::auth_smbc_get_data,debug_level) == -1)
         {
