@@ -77,6 +77,13 @@ $KDEDIR/share/config/kdebugrc.
 This redirects all debug info for areas 7103 and 7113 (as used by kio_http) 
 to the file /tmp/http.
 
+To get debug information from the SMB slave you can add the following to
+kioslaverc:
+
+[SMB]
+DebugLevel=100
+
+This will print additional debug info to the stderr of your kdeinit process,
+which typically ends up in ~/.X.err or ~/.xsession-errors
 
 Happy debugging.
-
