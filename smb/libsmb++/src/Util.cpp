@@ -97,7 +97,7 @@ void Util::parse(const char *name, bool interpretDirs)
 			memcpy(token[count], lastpos, len);
 			token[count][len] = 0;
 			if (lastpos==name) separator[count] = 0;
-			else separator[count] = *(lastpos-1);
+			else separator[count] = (lastpos>name)?*(lastpos-1):0;
 			count++;
 		}
 		lastpos=p+1;
@@ -120,8 +120,11 @@ void Util::parse(const char *name, bool interpretDirs)
 	for (int i=0; i<ntoken; i++) {
 
 		// skip protocol part		
-		if ((i==0) && ((!strcmp(token[0],"smb") || (!strcmp(token[0],"SMB")))))
+		if ((i==0) && ((!strcmp(token[0],"smb") || (!strcmp(token[0],"SMB"))))) {
+			// hack to make smb: work as well as smb:/ smb:// smb:///, ...
+			if ((ntoken>1) && separator[1]==':') separator[1]='/';
 			continue;
+		}
 	
 		// Can handle samba's syntax \\host\share
 		if ((i==0) && (separator[0]=='\\')) {
@@ -314,25 +317,25 @@ char *Util::buildURL(const char* user, const char *password,
 	newstrcpy(buildURLValue,"smb://");
 	
 	char *userpass=0;
-	if (user && password) {
+	if (user && password && strlen(user) && strlen(password)) {
 		newstrcpy(userpass,user);
 		newstrappend(userpass,":",password);
-	} else if (user) {
+	} else if (user && strlen(user)) {
 		newstrcpy(userpass,user);
-	} else if (password) {
+	} else if (password && strlen(password)) {
 		newstrappend(userpass,":",password);
 	}
-	if (userpass) newstrappend(buildURLValue,userpass,"@");
+	if (userpass && strlen(userpass)) newstrappend(buildURLValue,userpass,"@");
 
-	if (workgroup && host) {
+	if (workgroup && host && strlen(workgroup) && strlen(host)) {
 		newstrappend(buildURLValue,workgroup);
 		newstrappend(buildURLValue,"/",host);
-	} else if (workgroup) newstrappend(buildURLValue,workgroup);
-	else if (host) newstrappend(buildURLValue,host);
+	} else if (workgroup && strlen(workgroup)) newstrappend(buildURLValue,workgroup);
+	else if (host && strlen(host)) newstrappend(buildURLValue,host);
 	
-	if (ip) newstrappend(buildURLValue,":",ip);
-	if (share) newstrappend(buildURLValue,"/",share);
-	if (file) newstrappend(buildURLValue,"/",file);
+	if (ip && strlen(ip)) newstrappend(buildURLValue,":",ip);
+	if (share && strlen(share)) newstrappend(buildURLValue,"/",share);
+	if (file && strlen(file)) newstrappend(buildURLValue,"/",file);
 
 	return buildURLValue;
 }

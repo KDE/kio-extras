@@ -16,9 +16,14 @@ noinst_HEADERS = smb.h
 
 if LINKHOOK
 install-exec-hook:
+	rm -f @kde_libraries@/libsmb.so*
+	rm -f @kde_libraries@/libnmb.so*
+	rm -f @kde_libraries@/libsamba.so*
+	rm -f @kde_libraries@/libmsrpc.so*
 	ln -s @SAMBA_LIBS@/libsmb.so* @kde_libraries@
 	ln -s @SAMBA_LIBS@/libnmb.so* @kde_libraries@
 	ln -s @SAMBA_LIBS@/libsamba.so* @kde_libraries@
+	ln -s @SAMBA_LIBS@/libmsrpc.so* @kde_libraries@
 else
 install-exec-hook:
 endif

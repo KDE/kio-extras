@@ -33,53 +33,99 @@ class MyCallback : public SmbAnswerCallback
 {
 protected:
 	SmbProtocol *proto;
-	QString user, pass, message, service;
+	// we keep this info so that no password
+	// is asked to user when accessing subdirs
+	char *user, *pass, *service;
+	QString message;
 	bool havePass;
 	bool haveServicePass;
 public:
-	MyCallback(SmbProtocol *p) {
-		proto = p;
-		havePass = false;
-		haveServicePass = false; // we keep the service so that no password
-		service = "";            // is asked to user when accessing subdirs
-	};
+	MyCallback(SmbProtocol *p) : proto(p), havePass(false),
+		haveServicePass(false), user(0), pass(0), message(0), service(0) {}
+	
+	~MyCallback() {
+		if (user) {delete user; user = 0;}
+		if (pass) {delete pass; pass = 0;}
+		if (service) {delete service; service = 0;}
+	}
 	
 	char *getAnswer(int type, const char *optmessage) {
 		bool res = true;
+		QString myUser, myPass;
 		switch (type) {
 			case ANSWER_USER_NAME:
 				message = "Login for host ";
 				message += optmessage;
-				res = proto->openPassDlg(message, user, pass);
+				myUser = user?user:"";
+				myPass = "";
+				res = proto->openPassDlg(message, myUser, myPass);
 				kDebugInfo( 7106, "CallBack: res=%s", res?debugString("true"):debugString("false"));
-				kDebugInfo( 7106, "CallBack: user=%s, pass=%s", debugString(user), debugString(pass));
-				if (!res) {pass=""; user=""; havePass=false;}
-				else havePass=true;
-				return user.local8Bit().data();
+				if (!res) {
+					if (user) {delete user; user = 0;}
+					if (pass) {delete pass; pass = 0;}
+					havePass=false;
+				} else {
+					if (user) delete user;
+					user=new char[myUser.local8Bit().length()+1];
+					strcpy(user,myUser.local8Bit().data());
+					if (pass) delete pass;
+					pass=new char[myPass.local8Bit().length()+1];
+					strcpy(pass,myPass.local8Bit().data());
+					kDebugInfo( 7106, "CallBack: user=%s, pass=%s", debugString(user), debugString(pass));
+					havePass=true;
+				}
+				return user;
 			
 			case ANSWER_USER_PASSWORD:
-				if (havePass) return pass.local8Bit().data();
+				if (havePass) return pass;
 				message = "Password for user ";
 				message += optmessage;
-				res = proto->openPassDlg(message, user, pass);
+				myUser = optmessage;
+				myPass = "";
+				res = proto->openPassDlg(message, myUser, myPass);
 				kDebugInfo( 7106, "CallBack: res=%s", res?debugString("true"):debugString("false"));
-				kDebugInfo( 7106, "CallBack: user=%s, pass=%s", debugString(user), debugString(pass));
-				if (!res) {pass=""; user=""; havePass=false;}
-				else havePass=true;
-				return pass.local8Bit().data();
+				if (!res) {
+					if (user) {delete user; user = 0;}
+					if (pass) {delete pass; pass = 0;}
+					havePass=false;
+				} else {
+					if (user) delete user;
+					user=new char[myUser.local8Bit().length()+1];
+					strcpy(user,myUser.local8Bit().data());
+					if (pass) delete pass;
+					pass=new char[myPass.local8Bit().length()+1];
+					strcpy(pass,myPass.local8Bit().data());
+					kDebugInfo( 7106, "CallBack: user=%s, pass=%s", debugString(user), debugString(pass));
+					havePass=true;
+				}
+				return pass;
 			
 			case ANSWER_SERVICE_PASSWORD:
 				if (haveServicePass && !strcmp(service, optmessage))
-					return pass.local8Bit().data(); // we have it already
+					return pass; // we have it already
 				message = "Password for service ";
 				message += optmessage;
 				message += " (user ignored)";
-				res = proto->openPassDlg(message, user, pass);
+				myUser = user?user:"";
+				myPass = "";
+				res = proto->openPassDlg(message, myUser, myPass);
 				kDebugInfo( 7106, "CallBack: res=%s", res?debugString("true"):debugString("false"));
 				kDebugInfo( 7106, "CallBack: user=%s, pass=%s", debugString(user), debugString(pass));
-				if (!res) {pass=""; user=""; haveServicePass=false;}
-				else {haveServicePass=true; service=optmessage;}
-				return pass.local8Bit().data();
+				if (!res) {
+					if (service) {delete service; service = 0;}
+					if (pass) {delete pass; pass = 0;}
+					haveServicePass=false;
+				} else {
+					if (service) delete service;
+					service=new char[strlen(optmessage)+1];
+					strcpy(service,optmessage);
+					if (pass) delete pass;
+					pass=new char[myPass.local8Bit().length()+1];
+					strcpy(pass,myPass.local8Bit().data());
+					kDebugInfo( 7106, "CallBack: service=%s, pass=%s", debugString(service), debugString(pass));
+					haveServicePass=true;
+				}
+				return pass;
 		}
 		return 0; //???
 	}

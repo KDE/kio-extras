@@ -38,7 +38,7 @@
 #include "SambaExterns.h"
 
 #include <iostream.h>
-	
+
 static bool sambaIsLoaded = false;
 int SambaLink::instances=0;
 
@@ -1171,4 +1171,17 @@ int SambaLink::error()
 // in a crazy week!
 // Enjoy :-)
 //   Nicolas Brodu
+
+// 20000329: Added these to make samba link work again
+// from samba/source/lib/stub_uid.c
+/* we need these because we link to locking*.o */
+extern "C" {
+void become_root(BOOL save_dir)
+{
+}
+
+void unbecome_root(BOOL restore_dir)
+{
+}
+}
 #endif

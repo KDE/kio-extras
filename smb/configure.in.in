@@ -95,8 +95,8 @@ dnl		exit
 	fi
 	config_file="$ac_cv_smb_conf"
 	AC_DEFINE_UNQUOTED(SMB_CONF_FILE, "$config_file", [The location of smb.conf file])
-	EXTRA_LIBSMB_FLAGS="-L$ac_cv_lib_samba -Wl,-rpath,$ac_cv_lib_samba -lsmb -lsamba -lnmb"
-	EXTRA_LIBSMB_ADD="-lsmb -lsamba -lnmb"
+	EXTRA_LIBSMB_FLAGS="-L$ac_cv_lib_samba -Wl,-rpath,$ac_cv_lib_samba -lsmb -lsamba -lnmb -lmsrpc"
+	EXTRA_LIBSMB_ADD="-lsmb -lsamba -lnmb -lmsrpc"
 	AC_DEFINE_UNQUOTED(USE_SAMBA,1, [Define if Samba-tng should be used in libsmb++])
 else
 	EXTRA_LIBSMB_FLAGS=""
