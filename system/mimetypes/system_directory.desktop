@@ -4,6 +4,15 @@ Icon=kfm
 Type=MimeType
 MimeType=inode/system_directory
 Comment=System folder
+Comment[bg]=Системна директория
+Comment[da]=Systemmappe
+Comment[ga]=Comhadlann chórais
+Comment[hu]=Rendszermappa
+Comment[pt]=Pasta de sistema
+Comment[pt_BR]=Pasta do sistema
+Comment[sv]=Systemkatalog
+Comment[ta]=அமைப்பு அடைவு
+Comment[uk]=Системна тека
 Patterns=
 
 X-KDE-AutoEmbed=true

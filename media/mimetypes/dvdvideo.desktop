@@ -3,5 +3,16 @@ Encoding=UTF-8
 Type=MimeType
 MimeType=media/dvdvideo
 Comment=DVD Video Disk
+Comment[bg]=Видео диск DVD
+Comment[da]=Dvd video-disk
+Comment[et]=DVD videoplaat
+Comment[fr]=DVD vidéo
+Comment[hu]=DVD-videolemez
+Comment[nl]=DVD Videodisk
+Comment[pt]=Disco DVD Vídeo
+Comment[pt_BR]=DVD de vídeo
+Comment[sv]=Dvd-videoskiva
+Comment[tr]=DVD Vidyo Diski
+Comment[uk]=Виідео диск DVD
 Icon=dvd_unmount
 

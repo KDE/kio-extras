@@ -2,6 +2,14 @@
 Encoding=UTF-8
 Type=Service
 Name=KDED System Base URL Notifier
+Name[da]=KDED Systembais-url påmindelser
+Name[fr]=Notificateur d'URL système KDED
+Name[hu]=KDED-értesítő rendszer-alap-URL-hez
+Name[nl]=KDED systeem basis URL-adres notificatie
+Name[pt]=Notificador KDED de URL Base de Sistema
+Name[pt_BR]=Serviço de Notificação da URL da Base do Sistema
+Name[sv]=KDED-meddelande om systembaswebbadresser
+Name[ta]=KDED அமைப்பு சார்ந்த வலைமனை குறிப்பான்
 ServiceTypes=KDEDModule
 X-KDE-ModuleType=Library
 X-KDE-Library=systemdirnotify
