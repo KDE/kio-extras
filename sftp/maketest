@@ -1,0 +1,13 @@
+CFLAGS := -I/usr/include/qt2 -I/opt/kde/include -I. -I..
+LFLAGS := -L/opt/kde/lib -L/opt/kde/lib/kde2 -lqt -lkdecore -lkdesu
+
+OBJS = ksshprocess.o process.o ksshprocesstest.o
+
+ksshprocesstest: $(OBJS)
+	g++ $(CFLAGS) $(LFLAGS) -o $@ $(OBJS)
+
+ksshprocess.o: ksshprocess.h
+
+$(OBJS): %.o: %.cpp
+	g++ -c $(CFLAGS) $<
+
