@@ -29,9 +29,6 @@ EXTRA_DIST=$(data_DATA)
 
 METASOURCES = AUTO
 
-messages:
-	$(XGETTEXT) $(kfinger_SOURCES) -o $(podir)/kio_finger.pot
-
 #Problem: The paths to pictures in the templates are static. We must adjust 
 #them to reflect the directory where they are installed.
 install-data-local:
