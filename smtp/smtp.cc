@@ -61,6 +61,7 @@
 #include <kemailsettings.h>
 #include <ksock.h>
 #include <kdebug.h>
+#include <kmdcodec.h>
 #include <kinstance.h>
 #include <kio/connection.h>
 #include <kio/slaveinterface.h>
@@ -103,8 +104,7 @@ SMTPProtocol::SMTPProtocol(const QCString & pool, const QCString & app,
    m_iOldPort(0),
    m_opened(false),
    m_haveTLS(false),
-   m_errorSent(false),
-   m_pSASL(0)
+   m_errorSent(false)
 {
   //kdDebug() << "SMTPProtocol::SMTPProtocol" << endl;
 }
@@ -536,10 +536,13 @@ bool SMTPProtocol::smtp_open(const QString& fakeHostname)
     m_opened = true;
   }
 
-  if (getResponse() >= SMTP_MIN_NEGATIVE_REPLY) {
+  if (getResponse() >= SMTP_MIN_NEGATIVE_REPLY) 
+  {
     if (!m_errorSent)
+    {
       error(KIO::ERR_COULD_NOT_LOGIN, 
             i18n("The server didn't accept the connection: %1").arg(m_lastError));
+    }
     smtp_close();
     return false;
   }
@@ -554,16 +557,20 @@ bool SMTPProtocol::smtp_open(const QString& fakeHostname)
   else
   {
     char hostname[256];
-    gethostname(hostname, 255);
-    m_hostname = hostname;
+    if (gethostname(hostname, 255) == 0)
+    {
+        hostname[255] = '\0';
+        m_hostname = hostname;
+    }
   }
 
   if(m_hostname == QString::null)
   {
-    m_hostname = "localhost.localdomain";
+    m_hostname = "localhost.invalid";
   }
 
-  if (!command(("EHLO " + m_hostname), ehloByteArray.data(), DEFAULT_EHLO_BUFFER - 1)) {
+  if (!command(("EHLO " + m_hostname), ehloByteArray.data(), DEFAULT_EHLO_BUFFER - 1)) 
+  {
     if (m_errorSent)
     {
       smtp_close();
@@ -659,11 +666,8 @@ bool SMTPProtocol::smtp_open(const QString& fakeHostname)
 
 bool SMTPProtocol::Authenticate()
 {
-  bool ret;
+  KDESasl SASL(m_sUser, m_sPass, (m_bIsSSL) ? "smtps" : "smtp");
   QString auth_method;
-
-  delete m_pSASL;
-  m_pSASL = new KDESasl(m_sUser, m_sPass, (m_bIsSSL) ? "smtps" : "smtp");
 
   // Choose available method from what the server has given us in  its greeting
   QStringList sl = QStringList::split(' ', m_sAuthConfig);
@@ -677,50 +681,67 @@ bool SMTPProtocol::Authenticate()
     for (int i = 0; i < sl.count(); i++)
       strList.append(sl[i].latin1());
 
-  auth_method = m_pSASL->chooseMethod(strList);
+  auth_method = SASL.chooseMethod(strList);
 
   // If none are available, set it up so we can start over again
-  if (auth_method == QString::null) {
-    delete m_pSASL;
-    m_pSASL = 0;
+  if (auth_method == QString::null) 
+  {
     //kdDebug() << "kio_smtp: no authentication available" << endl;
     error(KIO::ERR_COULD_NOT_LOGIN,
           i18n("No compatible authentication methods found."));
     return false;
-  } 
-  else {
-    char *challenge = static_cast < char *>(malloc(2049));
+  }
+  else 
+  {
+    char challenge[2049];
+    bool ret = false;
+    QByteArray ba;
+    QString cmd = QString::fromLatin1("AUTH ") + auth_method;
 
-    if (!command(QString::fromLatin1("AUTH ") + auth_method, challenge, 2049)) {
-      free(challenge);
-      delete m_pSASL;
-      m_pSASL = 0;
+    if (auth_method == "PLAIN")
+    {
+      KCodecs::base64Encode(SASL.getBinaryResponse(ba, false), ba);
+      cmd += ' ' + ba;
+    }
+
+    if (!command(cmd, challenge, 2049)) 
+    {
       if (!m_errorSent)
+      {
         error(KIO::ERR_COULD_NOT_LOGIN,
               i18n("Your SMTP server doesn't support %1.\n"
                    "Choose a different authentication method.")
                    .arg(auth_method));
+      }
       return false;
     }
 
-    QString cmd;
-    QByteArray ba;
-    ba.duplicate(challenge, strlen(challenge));
-    cmd = m_pSASL->getResponse(ba);
-    ret = command(cmd, challenge, 2049);
-    if (auth_method.upper() == "DIGEST-MD5"
-        || auth_method.upper() == "LOGIN") {
-      ba.duplicate(challenge, strlen(challenge));
-      cmd = m_pSASL->getResponse(ba);
-      ret = command(cmd);
+    if (auth_method == "PLAIN")
+    {
+      ret = true;
     }
-    free(challenge);
+    else
+    {
+      ba.duplicate(challenge, strlen(challenge));
+      cmd = SASL.getResponse(ba);
+      ret = command(cmd, challenge, 2049);
+      if (auth_method == "DIGEST-MD5" ||
+          auth_method == "LOGIN") 
+      {
+        ba.duplicate(challenge, strlen(challenge));
+        cmd = SASL.getResponse(ba);
+        ret = command(cmd);
+      }
+    }
 
     if (!ret && !m_errorSent)
+    {
       error(KIO::ERR_COULD_NOT_LOGIN,
             i18n
             ("Authentication failed.\nMost likely the password is wrong.\nThe server said: %1").
             arg(m_lastError));
+    }
+
     return ret;
   }
   return false;
@@ -753,8 +774,6 @@ void SMTPProtocol::smtp_close()
   m_sOldUser = QString::null;
   m_sOldPass = QString::null;
   
-  delete m_pSASL;
-  m_pSASL = 0;
   m_sAuthConfig = QString::null;
   m_opened = false;
 }

@@ -70,7 +70,6 @@ protected:
   QString m_sPass, m_sOldPass;
   QString m_hostname;
 
-  KDESasl *m_pSASL;
   QString  m_sAuthConfig;
   QCString m_lastError;
 
