@@ -24,13 +24,14 @@
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  *
- *	$Id$
  */
 
 #ifndef _SMTP_H
 #define _SMTP_H
 
 #include <kio/tcpslavebase.h>
+
+#include "capabilities.h"
 
 #include <qstring.h>
 #include <qcstring.h>
@@ -70,16 +71,34 @@ protected:
       convenience. It behaves essentially like the above function. */
   bool command( const char * cmd, KioSMTP::Response * resp=0 );
 
+  /** Parse a single response from the server. Single- vs. multiline
+      responses are correctly detected.
+
+      @param ok if not 0, returns whether response parsing was
+                successful. Don't confuse this with negative responses
+                (e.g. 5xx), which you can check for using
+                @ref Response::isNegative()
+      @return the @ref Response object representing the server response.
+  **/
   KioSMTP::Response getResponse( bool * ok );
 
   bool authenticate();
-  void parseFeatures( const KioSMTP::Response & ehloResponse, bool afterTLS=false );
-  void clearCapabilities();
+  void parseFeatures( const KioSMTP::Response & ehloResponse );
   bool putRecipients( const QStringList & list );
+
+  /** This is a pure convenience wrapper around
+      @ref KioSMTP::Capabilities::have() */
+  bool haveCapability( const char * cap ) const {
+    return mCapabilities.have( cap );
+  }
+  /** This is a pure convenience wrapper around
+      @ref KioSMTP::Capabilities::createSpecialResponse */
+  QString createSpecialResponse() const {
+    return mCapabilities.createSpecialResponse( usingTLS() || haveCapability( "STARTTLS" ) );
+  }
 
   unsigned short m_iOldPort;
   bool m_opened;
-  bool m_haveTLS;
   bool m_errorSent;
   QString m_sServer, m_sOldServer;
   QString m_sUser, m_sOldUser;
@@ -88,12 +107,7 @@ protected:
 
   QCString m_lastError;
 
-  static const int DEFAULT_RESPONSE_BUFFER = 512;
-  static const int DEFAULT_EHLO_BUFFER = 5120;
-  static const int SMTP_MIN_NEGATIVE_REPLY = 400;
-
-  QStringList mCapabilities;
-  QStrIList mAuthMethods;
+  KioSMTP::Capabilities mCapabilities;
 };
 
 #endif

@@ -25,7 +25,6 @@
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  *
- *	$Id$
  */
 
 #ifdef HAVE_CONFIG_H
@@ -33,10 +32,10 @@
 #endif
 
 #include "smtp.h"
-
 #include "request.h"
-using KioSMTP::Request;
 #include "response.h"
+using KioSMTP::Capabilities;
+using KioSMTP::Request;
 using KioSMTP::Response;
 
 #include <kemailsettings.h>
@@ -62,6 +61,16 @@ using KioSMTP::Response;
 #include <stdio.h>
 #include <assert.h>
 
+
+// hackishly fixing QCStringList flaws...
+static QCString join( char sep, const QCStringList & list ) {
+  if ( list.empty() )
+    return QCString();
+  QCString result = list.front();
+  for ( QCStringList::const_iterator it = ++list.begin() ; it != list.end() ; ++it )
+    result += sep + *it;
+  return result;
+}
 
 //using namespace KIO;
 
@@ -91,9 +100,7 @@ SMTPProtocol::SMTPProtocol(const QCString & pool, const QCString & app,
                 pool, app, useSSL),
    m_iOldPort(0),
    m_opened(false),
-   m_haveTLS(false),
-   m_errorSent(false),
-   mAuthMethods( true ) // deep copies
+   m_errorSent(false)
 {
   //kdDebug(7112) << "SMTPProtocol::SMTPProtocol" << endl;
 }
@@ -122,13 +129,10 @@ void SMTPProtocol::closeConnection()
 
 void SMTPProtocol::special(const QByteArray & /* aData */)
 {
-  QStringList result;
-  if ( m_haveTLS )
-    result.push_back( "STARTTLS" );
-  for ( QStrListIterator it( mAuthMethods) ; it.current() ; ++it )
-    result.push_back( it.current() );
-  infoMessage( result.join( " " ) );
-  kdDebug(7112) << "special() returns \"" << result.join( " " ) << "\"" << endl;
+  infoMessage( createSpecialResponse() );
+#ifndef NDEBUG
+  kdDebug(7112) << "special() returns \"" << createSpecialResponse() << "\"" << endl;
+#endif
   finished();
 }
 
@@ -257,7 +261,8 @@ void SMTPProtocol::put(const KURL & url, int /*permissions */ ,
   if ( !ok || !response.isOk() ) {
     if (!m_errorSent)
       error(KIO::ERR_NO_CONTENT, 
-            i18n("The message content was not accepted.\nThe server responded: \"%1\"").arg(m_lastError));
+            i18n("The message content was not accepted.\n"
+		 "The server responded: \"%1\"").arg( join('\n',response.lines())) );
     smtp_close(); // ### try resetting the dialogue instead
     return;
   }
@@ -317,6 +322,7 @@ Response SMTPProtocol::getResponse( bool * ok ) {
       return response;
     }
 
+    //kdDebug(7112) << "S: " << QCString( buf, recv_len + 1 ).data() << endl;
     // ...and parse lines...
     response.parseLine( buf, recv_len );
 
@@ -346,6 +352,8 @@ bool SMTPProtocol::command( const char *cmd, Response * response ) {
 }
 
 bool SMTPProtocol::command( QCString cmd, Response * response ) {
+  //kdDebug(7112) << "C: " << cmd.data() << endl;
+
   cmd += "\r\n";
   ssize_t cmd_len = cmd.length();
 
@@ -356,16 +364,20 @@ bool SMTPProtocol::command( QCString cmd, Response * response ) {
   bool ok = false;
   if ( response ) {
     *response = getResponse( &ok );
-    return ok && response->isOk();
+    ok = ok && response->isOk();
+    if ( !ok )
+      m_lastError = join( '\n', response->lines() );
   } else {
     Response r = getResponse( &ok );
-    return ok && r.isOk();
+    ok = ok && r.isOk();
+    if ( !ok )
+      m_lastError = join( '\n', r.lines() );
   }
+  return ok;
 }
 
 bool SMTPProtocol::smtp_open(const QString& fakeHostname)
 {
-  m_haveTLS = false;
   if (m_opened && 
       m_iOldPort == port(m_iPort) &&
       m_sOldServer == m_sServer && 
@@ -389,7 +401,7 @@ bool SMTPProtocol::smtp_open(const QString& fakeHostname)
     if (!m_errorSent)
     {
       error(KIO::ERR_COULD_NOT_LOGIN, 
-            i18n("The server did not accept the connection: \"%1\"").arg(m_lastError));
+            i18n("The server did not accept the connection: \"%1\"").arg( join('\n', greeting.lines())));
     }
     smtp_close();
     return false;
@@ -433,8 +445,8 @@ bool SMTPProtocol::smtp_open(const QString& fakeHostname)
 
   parseFeatures( ehloResponse );
 
-  if ((m_haveTLS && canUseTLS() && metaData("tls") != "off")
-      || metaData("tls") == "on") {
+  if ( ( haveCapability("STARTTLS") && canUseTLS() && metaData("tls") != "off" )
+       || metaData("tls") == "on" ) {
     // For now we're gonna force it on.
 
     if (command("STARTTLS")) {
@@ -474,7 +486,7 @@ bool SMTPProtocol::smtp_open(const QString& fakeHostname)
         return false;
       }
 
-      parseFeatures( ehloResponse, true ); // reparse capabilities after starttls
+      parseFeatures( ehloResponse ); // reparse capabilities after starttls
 
     }
     else if (metaData("tls") == "on") {
@@ -519,18 +531,18 @@ bool SMTPProtocol::smtp_open(const QString& fakeHostname)
 
 bool SMTPProtocol::authenticate()
 {
-  KDESasl SASL(m_sUser, m_sPass, (m_bIsSSL) ? "smtps" : "smtp");
+  KDESasl SASL(m_sUser, m_sPass, usingSSL() ? "smtps" : "smtp");
 
   // return with success if the server doesn't support SMTP-AUTH and
   // metadata doesn't tell us to force it.
-  if ( mAuthMethods.isEmpty() && metaData("sasl").isEmpty() )
+  if ( !haveCapability( "AUTH" ) && metaData( "sasl" ).isEmpty() )
     return true;
 
   QStrIList strList( true ); // deep copies
   if (!metaData("sasl").isEmpty())
     strList.append(metaData("sasl").latin1());
   else
-    strList = mAuthMethods;
+    strList = mCapabilities.saslMethods();
 
   // If none are available, set it up so we can start over again
   if ( !SASL.chooseMethod( strList ) )
@@ -611,42 +623,18 @@ bool SMTPProtocol::authenticate()
   return false;
 }
 
-void SMTPProtocol::parseFeatures( const Response & ehloResponse, bool afterTLS ) {
+void SMTPProtocol::parseFeatures( const Response & ehloResponse ) {
+  mCapabilities = Capabilities::fromResponse( ehloResponse );
 
-  // We want it to be between 250 and 259 inclusive.
-  // So sez the SMTP spec..
-  if ( !ehloResponse.isOk()
-       || ehloResponse.code() / 10 != 25
-       || ehloResponse.lines().empty() )
-    return;                     // We got an invalid response..
-
-  QCStringList l = ehloResponse.lines();
-
-  clearCapabilities();
-
-  // loop over the capability list and perform special processing for
-  // STARTTLS and AUTH (### should be factored out and the
-  // resp. member variables replaced with query):
-  for ( QCStringList::const_iterator it = ++l.begin() ; it != l.end() ; ++it ) {
-    QCString extension = (*it).upper();
-    if ( extension.left( 4 ) == "AUTH" ) {
-      QStringList am = QStringList::split( ' ', extension.mid( 4 ) );
-      for ( QStringList::iterator it = am.begin() ; it != am.end() ; ++it ) {
-	mAuthMethods.append( (*it).latin1() );
-	(*it).prepend( "SASL/" );
-      }
-      kdDebug(7112) << "parseFeatures() AUTH METHODS = \"" << am.join( "\n" ) << "\"" << endl;
-      setMetaData( "AUTH METHODS", am.join( "\n" ) );
-    } else if ( extension == "STARTTLS" )
-      m_haveTLS = true;
-    mCapabilities.push_back( extension );
-  }
-  if ( afterTLS && !mCapabilities.contains( "STARTTLS" ) ) // isn't announced when TLS already started
-    mCapabilities.push_back( "STARTTLS" );
-
-  kdDebug(7112) << "parseFeatures() CAPABILITIES = \"" << mCapabilities.join( "\"\n\"" )
-		<< "\"" << endl;
-  setMetaData( "CAPABILITIES", mCapabilities.join( "\n" ) );
+  QString category = usingTLS() ? "TLS" : usingSSL() ? "SSL" : "PLAIN" ;
+  setMetaData( category + " AUTH METHODS", mCapabilities.authMethodMetaData() );
+  setMetaData( category + " CAPABILITIES", mCapabilities.asMetaDataString() );
+#ifndef NDEBUG
+  kdDebug(7112) << "parseFeatures() " << category << " AUTH METHODS:"
+		<< '\n' + mCapabilities.authMethodMetaData() << endl
+		<< "parseFeatures() " << category << " CAPABILITIES:"
+		<< '\n' + mCapabilities.asMetaDataString() << endl;
+#endif
 }
 
 void SMTPProtocol::smtp_close()
@@ -660,8 +648,7 @@ void SMTPProtocol::smtp_close()
   m_sOldUser = QString::null;
   m_sOldPass = QString::null;
   
-  clearCapabilities();
-  m_haveTLS = false;
+  mCapabilities.clear();
 
   m_opened = false;
 }
@@ -672,7 +659,3 @@ void SMTPProtocol::stat(const KURL & url)
   error(KIO::ERR_DOES_NOT_EXIST, url.path());
 }
 
-void SMTPProtocol::clearCapabilities() {
-  mCapabilities.clear();
-  mAuthMethods.clear();
-}
