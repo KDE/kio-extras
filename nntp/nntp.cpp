@@ -29,9 +29,9 @@
 #define NNTP_PORT 119
 // set to 60 sec later, only for testing such a short time out
 #define DEFAULT_TIME_OUT 10
-#define SOCKET_BUFFER_SIZE 1024*10 // buffer size in TCPWrapper
-#define READ_CHUNK = 1024*2 // used to read article data or group list
 
+#define SOCKET_BUFFER_SIZE 1024*10 // buffer size in TCPWrapper
+//#define READ_CHUNK = 1024*2 // used to read article data or group list
 #define UDS_ENTRY_CHUNK 50 // so much entries are sent at once in listDir
 
 #define DBG_AREA 7114
@@ -62,7 +62,6 @@ NNTPProtocol::NNTPProtocol (const QCString &pool, const QCString &app)
   : QObject(), SlaveBase("nntp", pool, app)
 {
   DBG << "=============> NNTPProtocol::NNTPProtocol" << endl;
-//  socket = new TCPWrapper();
   if (!QObject::connect(&socket, SIGNAL(error(KIO::Error,const QString&)),
         this, SLOT(socketError(KIO::Error,const QString&)))) {
         DBG << "ERROR connecting socket.error() with socketError()" << endl;
@@ -308,12 +307,14 @@ void NNTPProtocol::fetchGroups() {
   UDSEntry entry;
   UDSEntryList entryList;
 
+  int n=1; // debug
+
   while (socket.readLine(line) && line != ".\r\n") {
     // group name
     if ((pos = line.find(' ')) > 0) {
 
       group = line.left(pos);
-      DBG << "group: " << group << endl;
+      DBG << n++ << " group: " << group << endl;
 
       // number of messages
       line.remove(0,pos+1);
@@ -321,10 +322,6 @@ void NNTPProtocol::fetchGroups() {
           ((pos2 = line.find(' ',pos+1)) > 0 || (pos2 = line.find('\t',pos+1)) > 0)) {
         int last = line.left(pos).toInt();
         int first = line.mid(pos+1,pos2-pos-1).toInt();
-        DBG << "line: " << line  << endl;
-        DBG << "pos: " << pos << " pos2: " << pos2 << endl;
-        DBG << "first: " << first << " last: " << last << endl;
-        DBG << "number: " << abs(last-first+1) << endl;
         msg_cnt = abs(last-first+1);
         // moderated group?
         moderated = (line[pos2+1] == 'n');
@@ -403,7 +400,7 @@ bool NNTPProtocol::fetchGroup(QString& group) {
     res_code = send_cmd("NEXT");
     if (res_code == 421) {
       // last article reached
-      listEntries(entryList);
+      if (entryList.count()) listEntries(entryList);
       return true;
     } else if (res_code != 223) {
       error(ERR_INTERNAL,"Unexpected response from server: "+resp_line);
@@ -734,17 +731,20 @@ bool TCPWrapper::readData() {
   }
 
   if (readyForReading()) {
-    // DBG << "reading up to " << data.size()-1 << " bytes from socket" << endl;
-
     // delete unneeded bytes from buffer
+    //DBG << "buffer move before: thisLine: " << (thisLine-buffer) << " data_end: "
+    //    << (data_end - buffer) << endl;
     memmove(buffer,thisLine,data_end-thisLine);
     data_end -= (thisLine - buffer);
-    *data_end = 0;
+    //*data_end = 0;
     thisLine = buffer;
+
+    //DBG << "buffer move after: thisLine: " << (thisLine-buffer) << " data_end: "
+    //    << (data_end - buffer) << endl;
 
     // read bytes from socket
     do {
-      bytes = ::read(tcpSocket, thisLine, (buffer+SOCKET_BUFFER_SIZE)-thisLine-1);
+      bytes = ::read(tcpSocket, data_end, (buffer+SOCKET_BUFFER_SIZE)-data_end);
     } while (bytes<0 && errno==EINTR); // ignore signals
 
     if (bytes <= 0) { // there was an error
@@ -757,6 +757,10 @@ bool TCPWrapper::readData() {
     DBG << bytes << " bytes read" << endl;
     data_end += bytes;
     *data_end = 0;
+
+    //DBG << "buffer filled after: thisLine: " << (thisLine-buffer) << " data_end: "
+    //    << (data_end - buffer) << endl;
+
     return true;
 
   // was not ready for reading
@@ -882,13 +886,15 @@ bool TCPWrapper::readLine(QCString &line) {
 
   // if there is a complete line in buffer, return it
   if ((nextLine=strstr(thisLine,"\r\n"))) {
-    DBG << "there is a line in buffer at " << (thisLine-buffer) << "..." << (nextLine-buffer) << endl;
+    //DBG << "there is a line in buffer at " << (thisLine-buffer) << "..." << (nextLine-buffer) << endl;
     line = QCString(thisLine,nextLine-thisLine+2+1);
     thisLine=nextLine+2;
     return true;
   }
 
-  DBG << "need to read more data from buffer" << endl;
+  //DBG << "need to read more data from buffer" << endl;
+  //DBG << "thisLine: [" << thisLine << "]" << endl;
+
   do {
     if (!readData()) {
       return false;
@@ -896,7 +902,8 @@ bool TCPWrapper::readLine(QCString &line) {
   } while (! ((nextLine=strstr(thisLine,"\r\n"))) );
 
   // now there is a complete line in the buffer, return it
-  DBG << "read line from socket, in buffer now at " << (thisLine-buffer) << "..." << (nextLine-buffer) << endl;
+  //DBG << "read line from socket, in buffer now at " << (thisLine-buffer) << "..." << (nextLine-buffer) << endl;
+  //DBG << "buffer: [" << buffer << "]" << endl;
   line = QCString(thisLine,nextLine-thisLine+2+1);
   thisLine=nextLine+2;
   return true;
