@@ -1,16 +1,20 @@
 dnl only compile devices on linux
 
 
-AC_MSG_CHECKING([Checking if devices should be compiled])
+AC_MSG_CHECKING([if devices kioslave should be compiled])
 
 if test "x`uname`" = "xLinux"; then
   DEVICESDIR=devices
   AC_SUBST(DEVICESDIR)
   AC_MSG_RESULT([Linux -> yes])
+elif test "x`uname`" = "xFreeBSD"; then
+  DEVICESDIR=devices
+  AC_SUBST(DEVICESDIR)
+  AC_MSG_RESULT([FreeBSD -> yes])
 else
   DEVICESDIR=
   AC_SUBST(DEVICESDIR)
-  AC_MSG_RESULT([NON Linux -> no])
+  AC_MSG_RESULT([NON Linux/FreeBSD -> no])
 fi
 
 AM_CONDITIONAL(include_devicesdir, test -n "$DEVICESDIR")
