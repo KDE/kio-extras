@@ -64,14 +64,20 @@ bool SMBSlave::browse_stat_path(const SMBUrl& url, UDSEntry& udsentry)
         }
         else
         {
-            SlaveBase::error(ERR_INTERNAL, TEXT_UNKNOWN_ERROR);
+	    kdDebug(KIO_SMB) << "SMBSlave::browse_stat_path unknown text"<<endl;
+            error(ERR_INTERNAL, TEXT_UNKNOWN_ERROR);
             return false;
         }
+
+        udsatom.m_uds  = KIO::UDS_FILE_TYPE;
+        udsatom.m_long = st.st_mode;
+        udsentry.append(udsatom);
 
         udsatom.m_uds  = KIO::UDS_SIZE;
         udsatom.m_long = st.st_size;
         udsentry.append(udsatom);
     
+	udsatom.m_uds  = KIO::UDS_USER;
 	uid_t uid = st.st_uid;
 	struct passwd *user = getpwuid( uid );
 	if ( user ) {
@@ -79,9 +85,6 @@ bool SMBSlave::browse_stat_path(const SMBUrl& url, UDSEntry& udsentry)
 	  }
 	  else
             udsatom.m_str = QString::number( uid );
-
-	udsatom.m_uds  = KIO::UDS_USER;
-        kdDebug(KIO_SMB) << "SMBSlave::browse_stat_path uid="<<st.st_uid<< endl;
         udsentry.append(udsatom);
     
         udsatom.m_uds  = KIO::UDS_GROUP;
@@ -92,7 +95,6 @@ bool SMBSlave::browse_stat_path(const SMBUrl& url, UDSEntry& udsentry)
         }
         else
             udsatom.m_str = QString::number( gid );
-        kdDebug(KIO_SMB) << "SMBSlave::browse_stat_path gid="<<st.st_gid<< endl;
         udsentry.append(udsatom);
     
         udsatom.m_uds  = KIO::UDS_ACCESS;
@@ -110,6 +112,10 @@ bool SMBSlave::browse_stat_path(const SMBUrl& url, UDSEntry& udsentry)
         udsatom.m_uds  = UDS_CREATION_TIME;
         udsatom.m_long = st.st_ctime;
         udsentry.append(udsatom);
+
+
+
+
     }
     else
     {
@@ -189,11 +195,17 @@ void SMBSlave::stat( const KURL& kurl )
 
     UDSAtom     udsatom;
     UDSEntry    udsentry;
+    // Set name
+    udsatom.m_uds = KIO::UDS_NAME;
+    udsatom.m_str = kurl.fileName();
+    udsentry.append( udsatom );
+    
+
     switch(m_current_url.getType())
     {
     case SMBURLTYPE_UNKNOWN:
         kdDebug(KIO_SMB) << "SMBSlave::stat ERR_MALFORMED_URL " << url.url() << endl;
-        SlaveBase::error(ERR_MALFORMED_URL,m_current_url.toKioUrl());
+        error(ERR_MALFORMED_URL,m_current_url.toKioUrl());
         break;
 
     case SMBURLTYPE_ENTIRE_NETWORK:
@@ -215,8 +227,8 @@ void SMBSlave::stat( const KURL& kurl )
         break;
     }
 
-    SlaveBase::statEntry(udsentry);
-    SlaveBase::finished();
+    statEntry(udsentry);
+    finished();
 
     kdDebug(KIO_SMB) << "SMBSlave::stat on " << url.url()
                      << " is returning" << endl;
@@ -346,24 +358,24 @@ void SMBSlave::listDir( const KURL& kurl )
         case ENOENT:
         case ENOTDIR:
         case EFAULT:
-            SlaveBase::error(ERR_DOES_NOT_EXIST, m_current_url.toKioUrl());
+            error(ERR_DOES_NOT_EXIST, m_current_url.toKioUrl());
             break;
         case EPERM:
         case EACCES:
-            SlaveBase::error(ERR_ACCESS_DENIED, m_current_url.toKioUrl());
+            error(ERR_ACCESS_DENIED, m_current_url.toKioUrl());
             cache_clear_AuthInfo(m_current_workgroup);
             break;
         case ENOMEM:
-            SlaveBase::error(ERR_OUT_OF_MEMORY, TEXT_OUT_OF_MEMORY);
+            error(ERR_OUT_OF_MEMORY, TEXT_OUT_OF_MEMORY);
             break;
         case EUCLEAN:
-            SlaveBase::error(ERR_INTERNAL, TEXT_SMBC_INIT_FAILED);
+            error(ERR_INTERNAL, TEXT_SMBC_INIT_FAILED);
             break;
         case ENODEV:
-            SlaveBase::error(ERR_INTERNAL, TEXT_NOSRV_WG);
+            error(ERR_INTERNAL, TEXT_NOSRV_WG);
             break;
         default:
-            SlaveBase::error(ERR_INTERNAL, TEXT_UNKNOWN_ERROR);
+            error(ERR_INTERNAL, TEXT_UNKNOWN_ERROR);
         }
     }
 
