@@ -43,6 +43,8 @@
 #include "imap4.h"
 #include "base64md5.h"
 
+#include <stdlib.h>
+
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <sys/time.h>
