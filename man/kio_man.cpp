@@ -25,6 +25,7 @@
 #include <assert.h>
 #include <kfilterbase.h>
 #include <kfilterdev.h>
+#include <qmap.h>
 
 using namespace KIO;
 
@@ -119,7 +120,15 @@ void MANProtocol::get(const KURL& url )
         return;
     }
 
-
+    // see if an index was requested
+    if (url.query().isEmpty() && (title.isEmpty() || title == "/" || title == "."))
+    {
+        if (section == "index" || section.isEmpty())
+            showMainIndex();
+        else
+            showIndex(section);
+        return;
+    }
 
     // tell we are getting the file
     gettingFile(url.url());
@@ -441,6 +450,8 @@ void MANProtocol::showIndex(const QString& section)
     os << "<table>" << endl;
     pages.sort();
 
+    QMap<QString, QString> pagemap;
+
     QStringList::ConstIterator page;
     for (page = pages.begin(); page != pages.end(); ++page)
     {
@@ -469,12 +480,19 @@ void MANProtocol::showIndex(const QString& section)
         if (pos > 0)
             fileName = fileName.mid(pos+1);
 
-        if (!fileName.isEmpty()) {
-            os << "<tr><td><a href=\"man:" << *page << "\">\n"
-               << fileName << "</a></td><td>&nbsp;</td><td> "
-               << "no idea yet" << "</td></tr>"  << endl;
-        }
+        if (!fileName.isEmpty())
+            pagemap[fileName] = *page;
+
     }
+
+    for (QMap<QString,QString>::ConstIterator it = pagemap.begin();
+         it != pagemap.end(); ++it)
+    {
+        os << "<tr><td><a href=\"man:" << it.data() << "\">\n"
+           << it.key() << "</a></td><td>&nbsp;</td><td> "
+           << "no idea yet" << "</td></tr>"  << endl;
+    }
+
 
     os << "</table>" << endl;
 
