@@ -22,23 +22,23 @@
 
 #include <kio/slavebase.h>
 
+class KTarEntry;
+
 class TARProtocol : public KIO::SlaveBase
 {
 public:
-  TARProtocol( KIO::Connection *connection = 0 );
-  virtual ~TARProtocol();
+    TARProtocol( const QCString &pool, const QCString &app );
+    virtual ~TARProtocol();
 
-  virtual void listDir( const KURL & url );
-  virtual void stat( const KURL & url );
-  virtual void get( const KURL & url );
+    virtual void listDir( const KURL & url );
+    virtual void stat( const KURL & url );
+    virtual void get( const KURL & url );
 
-  /*
-  void jobData( void *_p, int _len );
-  void jobDataEnd();
-  void filterData( void *_p, int _len );
-  */
+protected:
+    void createUDSEntry( const KTarEntry * tarEntry, KIO::UDSEntry & entry );
+    bool checkNewFile( const QString & fullPath, QString & path );
 
- protected:
+    KTarGz * m_tarFile;
 
 };
 

@@ -2,197 +2,110 @@
 
 #include <sys/types.h>
 #include <sys/stat.h>
-#include <sys/wait.h>
-#include <sys/uio.h>
-
-#include <assert.h>
-#include <signal.h>
 #include <stdlib.h>
-#include <stdio.h>
 #include <unistd.h>
 
+#include <qfile.h>
 #include <kurl.h>
 #include <kdebug.h>
-#include <kprotocolmanager.h>
 #include <kinstance.h>
 #include <ktar.h>
+#include <kmimemagic.h>
 
 #include "tar.h"
 
 using namespace KIO;
 
-TARProtocol::TARProtocol(Connection *connection)
-    : SlaveBase( "tar", connection)
+extern "C" { int kdemain(int argc, char **argv); }
+
+int kdemain( int argc, char **argv )
+{
+  KInstance instance( "kio_tar" );
+
+  kdDebug(7109) << "Starting " << getpid() << endl;
+
+  if (argc != 4)
+  {
+     fprintf(stderr, "Usage: kio_tar protocol domain-socket1 domain-socket2\n");
+     exit(-1);
+  }
+
+  TARProtocol slave(argv[2], argv[3]);
+  slave.dispatchLoop();
+
+  kdDebug(7109) << "Done" << endl;
+  return 0;
+}
+
+TARProtocol::TARProtocol( const QCString &pool, const QCString &app ) : SlaveBase( "tar", pool, app )
 {
   kdDebug( 7109 ) << "TarProtocol::TarProtocol" << endl;
+  m_tarFile = 0L;
 }
 
 TARProtocol::~TARProtocol()
 {
+    delete m_tarFile;
 }
 
-void TARProtocol::get( const QString & path, const QString & /*query*/, bool /*reload*/ )
+bool TARProtocol::checkNewFile( const QString & fullPath, QString & path )
 {
-  kdDebug( 7109 ) << "TarProtocol::get" << endl;
-  SlaveBase::get( path, QString::null, true ); // NOT IMPLEMENTED
+    kdDebug(7109) << "TARProtocol::checkNewFile " << fullPath << endl;
+    // Are we already looking at that file ?
+    if ( m_tarFile && m_tarFile->fileName() == fullPath.left(m_tarFile->fileName().length()) )
+    {
+        path = fullPath.mid( m_tarFile->fileName().length() + 1 );
+        return true;
+    }
+    kdDebug(7109) << "Need to open a new file" << endl;
 
-  /*
-  KURL::List lst = KURL::split(_url);
-  if (lst.isEmpty())  {
-    error(ERR_MALFORMED_URL, _url);
-    m_cmd = CMD_NONE;
-    return;
-  }
+    // Close previous file
+    if ( m_tarFile )
+    {
+        m_tarFile->close();
+        delete m_tarFile;
+        m_tarFile = 0L;
+    }
 
-  if ((*lst.begin()).protocol() != "tar")  {
-    error( ERR_INTERNAL, "kio_tar got a URL which does not contain the tar protocol");
-    m_cmd = CMD_NONE;
-    return;
-  }
+    // Find where the tar file is in the full path
+    int pos = 0;
+    QString tarFile;
+    path = QString::null;
 
-  if (lst.count() < 2) {
-    error(ERR_NO_SOURCE_PROTOCOL, "tar");
-    m_cmd = CMD_NONE;
-    return;
-  }
+    while ( (pos=fullPath.find( '/', pos+1 )) != -1 )
+    {
+        QString tryPath = fullPath.left( pos );
+        kdDebug() << tryPath << endl;
+        struct stat statbuf;
+        if ( ::stat( QFile::encodeName(tryPath), &statbuf ) == 0 && !S_ISDIR(statbuf.st_mode) )
+        {
+            tarFile = tryPath;
+            path = fullPath.mid( pos );
+            kdDebug(7109) << "Found. tarFile=" << tarFile << " path=" << path << endl;
+            break;
+        }
+    }
+    if ( tarFile.isEmpty() )
+        return false;
 
-  QString path=(*lst.begin()).path();
+    // Open new file
+    kdDebug(7109) << "Opening KTarGz on " << tarFile << endl;
+    m_tarFile = new KTarGz( tarFile );
+    if ( !m_tarFile->open( IO_ReadOnly ) )
+    {
+        kdDebug(7109) << "Opening " << tarFile << "failed." << endl;
+        delete m_tarFile;
+        m_tarFile = 0L;
+        return false;
+    }
 
-  // Remove tar protocol
-  lst.remove(lst.begin());
-
-  QString exec = KProtocolManager::self().executable((*lst.begin()).protocol());
-
-  if (exec.isEmpty()) {
-    error(ERR_UNSUPPORTED_PROTOCOL, (*lst.begin()).protocol());
-    m_cmd = CMD_NONE;
-    return;
-  }
-
-  // Start the file protcol
-  KIOSlave slave(exec);
-  if (!slave.isRunning()) {
-    error(ERR_CANNOT_LAUNCH_PROCESS, exec);
-    return;
-  }
-
-  QString tar_cmd = "tar";
-  // x eXtract
-  // O standard Output
-  // f from a file
-  // - standard input
-  const char *argv[4] = {"-xOf","-", path.ascii()+1, 0};
-  debug("argv : -x0f - %s",  path.ascii()+1);
-
-  // Start the TAR process
-  TARFilter filter(this, tar_cmd, argv);
-  m_pFilter = &filter;
-  if ( filter.pid() == -1 ) {
-    error(ERR_CANNOT_LAUNCH_PROCESS, tar_cmd);
-    finished();
-    return;
-  }
-
-  TARIOJob job(&slave, this);
-  QString src = KURL::join( lst );
-  debug("kio_tar : Nested fetching %s", src.ascii());
-
-  job.get(src);
-  while(!job.isReady() && !job.hasFinished())
-    job.dispatch();
-
-  if( job.hasFinished()) {
-    finished();
-    return;
-  }
-
-  while(!job.hasFinished())
-    job.dispatch();
-
-  m_cmd = CMD_NONE;
-  */
-  finished();
+    return true;
 }
 
-void TARProtocol::listDir( const QString & path, const QString& /*query*/ )
+
+void TARProtocol::createUDSEntry( const KTarEntry * tarEntry, UDSEntry & entry )
 {
-  kdDebug( 7109 ) << "TarProtocol::listDir " << path << endl;
-  SlaveBase::listDir( path ); // NOT IMPLEMENTED
-  /*
-  // Split url
-  KURL::List lst = KURL::split( _url );
-  if ( lst.isEmpty() ) {
-    error( ERR_MALFORMED_URL, strdup(_url) );
-    m_cmd = CMD_NONE;
-    return;
-  }
-
-  QString protocol = (*lst.begin()).protocol();
-
-  if ( lst.count() < 2 )
-  {
-    error( ERR_NO_SOURCE_PROTOCOL, protocol );
-    m_cmd = CMD_NONE;
-    return;
-  }
-
-  if ( strcmp( protocol, "tar" ) != 0L ) {
-    error( ERR_INTERNAL, "kio_tar got non tar file in list command" );
-    m_cmd = CMD_NONE;
-    return;
-  }
-
-  // Save path required
-  QString path = (*lst.begin()).path();
-  // Remove tar portion of URL
-  lst.remove( lst.begin() );
-
-  // HACK ktar supports tar.gz, so strip gzip
-  if ( (*lst.begin()).protocol() == "gzip" )
-  {
-    debug("HACK");
-    lst.remove( lst.begin() );
-  }
-
-  // HACK : only supports local files for now
-  if ( (*lst.begin()).protocol() != "file" || lst.count() != 1 )
-  {
-    error( ERR_UNSUPPORTED_PROTOCOL, (*lst.begin()).protocol() );
-    m_cmd = CMD_NONE;
-    return;
-  }
-
-  kdDebug(0) << QString("Opening KTarGz on %1").arg((*lst.begin()).path()) << endl;
-  KTarGz ktar( (*lst.begin()).path() );
-  if ( !ktar.open( IO_ReadOnly ) ) {
-    error( ERR_CANNOT_ENTER_DIRECTORY, strdup(_url) );
-    m_cmd = CMD_NONE;
-    return;
-  }
-
-  const KTarDirectory* root = ktar.directory();
-  const KTarDirectory* dir;
-  if (!path.isEmpty() && path != "/")
-  {
-    kdDebug(0) << QString("Looking for entry %1").arg(path) << endl;
-    const KTarEntry* e = root->entry( path );
-    ASSERT( e && e->isDirectory() );
-    dir = (KTarDirectory*)e;
-  } else {
-    dir = root;
-  }
-
-  QStringList l = dir->entries();
-  totalFiles( l.count() );
-
-  KUDSEntry entry;
-  KUDSAtom atom;
-  QStringList::Iterator it = l.begin();
-  for( ; it != l.end(); ++it )
-  {
-    printf("%s\n", (*it).ascii());
-    const KTarEntry* tarEntry = dir->entry( (*it) );
-
+    UDSAtom atom;
     entry.clear();
     atom.m_uds = UDS_NAME;
     atom.m_str = tarEntry->name();
@@ -225,22 +138,140 @@ void TARProtocol::listDir( const QString & path, const QString& /*query*/ )
     atom.m_uds = UDS_LINK_DEST;
     atom.m_str = tarEntry->symlink();
     entry.append( atom );
-
-    listEntry( entry );
-  }
-  */
-
-  finished();
-
-  kdDebug( 7109 ) << "TarProtocol::listDir done" << endl;
 }
 
-void TARProtocol::stat( const QString & path, const QString& /*query*/ )
+void TARProtocol::listDir( const KURL & url )
 {
-    SlaveBase::stat( path ); // NOT IMPLEMENTED
+    kdDebug( 7109 ) << "TarProtocol::listDir " << url.url() << endl;
+
+    QString path;
+    if ( !checkNewFile( url.path(), path ) )
+    {
+        error( KIO::ERR_DOES_NOT_EXIST, url.path() );
+        return;
+    }
+    if ( path.isEmpty() )
+    {
+        KURL redir;
+        ASSERT( m_tarFile );
+        redir.setPath( m_tarFile->fileName() );
+        redirection( redir );
+        // TODO
+        finished();
+        return;
+    }
+
+    kdDebug( 7109 ) << "checkNewFile done" << endl;
+    const KTarDirectory* root = m_tarFile->directory();
+    const KTarDirectory* dir;
+    if (!path.isEmpty() && path != "/")
+    {
+        kdDebug(7109) << QString("Looking for entry %1").arg(path) << endl;
+        const KTarEntry* e = root->entry( path );
+        if ( !e )
+        {
+            error( KIO::ERR_DOES_NOT_EXIST, path );
+            return;
+        }
+        if ( ! e->isDirectory() )
+        {
+            error( KIO::ERR_IS_FILE, path );
+            return;
+        }
+        dir = (KTarDirectory*)e;
+    } else {
+        dir = root;
+    }
+
+    QStringList l = dir->entries();
+    totalSize( l.count() );
+
+    UDSEntry entry;
+    QStringList::Iterator it = l.begin();
+    for( ; it != l.end(); ++it )
+    {
+        kdDebug(7109) << (*it) << endl;
+        const KTarEntry* tarEntry = dir->entry( (*it) );
+
+        createUDSEntry( tarEntry, entry );
+
+        listEntry( entry, false );
+    }
+
+    listEntry( entry, true ); // ready
+
+    finished();
+
+    kdDebug( 7109 ) << "TarProtocol::listDir done" << endl;
+}
+
+void TARProtocol::stat( const KURL & url )
+{
+    QString path;
+    if ( !checkNewFile( url.path(), path ) )
+    {
+        error( KIO::ERR_DOES_NOT_EXIST, url.path() );
+        return;
+    }
+    UDSEntry entry;
+
+    const KTarDirectory* root = m_tarFile->directory();
+    const KTarEntry* tarEntry = root->entry( path );
+    if ( !tarEntry )
+    {
+        error( KIO::ERR_DOES_NOT_EXIST, path );
+        return;
+    }
+
+    createUDSEntry( tarEntry, entry );
+    statEntry( entry );
+
+    finished();
+}
+
+void TARProtocol::get( const KURL & url )
+{
+    kdDebug( 7109 ) << "TarProtocol::get" << url.url() << endl;
+
+    QString path;
+    if ( !checkNewFile( url.path(), path ) )
+    {
+        error( KIO::ERR_DOES_NOT_EXIST, url.path() );
+        return;
+    }
+
+    const KTarDirectory* root = m_tarFile->directory();
+    const KTarEntry* tarEntry = root->entry( path );
+
+    if ( !tarEntry )
+    {
+        error( KIO::ERR_DOES_NOT_EXIST, path );
+        return;
+    }
+    if ( tarEntry->isDirectory() )
+    {
+        error( KIO::ERR_IS_DIRECTORY, path );
+        return;
+    }
+    const KTarFile* tarFileEntry = static_cast<const KTarFile *>(tarEntry);
+
+    totalSize( tarFileEntry->size() );
+
+    QByteArray completeData = tarFileEntry->data();
+
+    KMimeMagicResult * result = KMimeMagic::self()->findBufferFileType( completeData, path );
+    kdDebug(7102) << "Emitting mimetype " << result->mimeType() << endl;
+    mimeType( result->mimeType() );
+
+    data( completeData );
+
+    processedSize( tarFileEntry->size() );
+
+    finished();
 }
 
 /*
+  In case someone wonders how the old filter stuff looked like :    :)
 void TARProtocol::slotData(void *_p, int _len)
 {
   switch (m_cmd) {
@@ -324,8 +355,3 @@ debug("void TARProtocol::filterData");
 }
 */
 
-extern "C" {
-    SlaveBase *init_tar() {
-        return new TARProtocol();
-    }
-}
