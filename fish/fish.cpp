@@ -261,7 +261,7 @@ fishProtocol::fishProtocol(const QCString &pool_socket, const QCString &app_sock
 fishProtocol::~fishProtocol()
 {
   myDebug( << "fishProtocol::~fishProtocol()" << endl);
-  closeConnection();
+  shutdownConnection(true);
 }
 
 /* --------------------------------------------------------------------------- */
@@ -271,13 +271,20 @@ Connects to a server and logs us in via SSH. Then starts FISH protocol.
 */
 void fishProtocol::openConnection() {
     if (childPid) return;
+
+    if (connectionHost.isEmpty())
+    {
+       error( KIO::ERR_UNKNOWN_HOST, QString::null );
+       return;
+    }
+
     infoMessage("Connecting...");
 
     myDebug( << "connecting to: " << connectionUser << "@" << connectionHost << ":" << connectionPort << endl);
     sendCommand(FISH_FISH);
     if (connectionStart()) {
         error(ERR_COULD_NOT_CONNECT,thisFn);
-        closeConnection();
+        shutdownConnection();
         return;
     };
     myDebug( << "subprocess is running" << endl);
@@ -353,7 +360,7 @@ bool fishProtocol::connectionStart() {
     int fd[2];
     int rc, flags;
     thisFn = QString::null;
-
+    
     rc = open_pty_pair(fd);
     if (rc == -1) {
         myDebug( << "socketpair failed, error: " << strerror(errno) << endl);
@@ -534,8 +541,8 @@ int fishProtocol::establishConnection(char *buffer, int len) {
                 connectionAuth.caption = "SSH Authorization";
                 if (!checkCachedAuthentication(connectionAuth) && !openPassDlg(connectionAuth)) {
                     error(ERR_USER_CANCELED,connectionHost);
-                    closeConnection();
-                    return 0;
+                    shutdownConnection();
+                    return -1;
                 }
                 connectionAuth.password += "\n";
                 if (connectionAuth.username != connectionUser) {
@@ -576,10 +583,7 @@ sets connection information for subsequent commands
 */
 void fishProtocol::setHost(const QString & host, int port, const QString & u, const QString & pass){
     QString user(u);
-    if (host.isEmpty()) {
-        error(ERR_UNKNOWN_HOST,QString::null);
-        return;
-    }
+
     if (port <= 0) port = 0;
     if (user.isEmpty()) user = getenv("LOGNAME");
 
@@ -587,7 +591,7 @@ void fishProtocol::setHost(const QString & host, int port, const QString & u, co
         return;
     myDebug( << "setHost " << u << "@" << host << endl);
 
-    if (childPid) closeConnection();
+    if (childPid) shutdownConnection();
 
     connectionHost = host;
     connectionAuth.url.setHost(host);
@@ -599,17 +603,31 @@ void fishProtocol::setHost(const QString & host, int port, const QString & u, co
     connectionPort = port;
     connectionPassword = pass;
 }
+
+/**
+Forced close of the connection
+
+This function gets called from the application side of the universe,
+it shouldn't send any response.
+ */
+void fishProtocol::closeConnection(){
+    shutdownConnection(true);
+}
+
 /**
 Closes the connection
  */
-void fishProtocol::closeConnection(){
+void fishProtocol::shutdownConnection(bool forced){
     if (childPid) {
         kill(childPid,SIGTERM);
         childPid = 0;
         close(childFd);
         childFd = -1;
-        dropNetwork();
-        infoMessage("Disconnected.");
+        if (!forced)
+        {
+           dropNetwork();
+           infoMessage("Disconnected.");
+        }
     }
     outBufPos = -1;
     outBuf = NULL;
@@ -727,7 +745,7 @@ void fishProtocol::manageConnection(const QString &l) {
                 hasAppend = line.contains(" append ");
             } else {
                 error(ERR_UNSUPPORTED_PROTOCOL,line);
-                closeConnection();
+                shutdownConnection();
             }
             break;
         case FISH_PWD:
@@ -912,7 +930,7 @@ void fishProtocol::manageConnection(const QString &l) {
             recvLen = line.toInt(&isOk);
             if (!isOk) {
                 error(ERR_COULD_NOT_READ,url.prettyURL());
-                closeConnection();
+                shutdownConnection();
             }
             break;
 	default : break;
@@ -926,7 +944,7 @@ void fishProtocol::manageConnection(const QString &l) {
         case FISH_RETR:
             if (recvLen == -1) {
                 error(ERR_COULD_NOT_READ,url.prettyURL());
-                closeConnection();
+                shutdownConnection();
             } else {
                 rawRead = recvLen;
                 t_start = t_last = time(NULL);
@@ -946,11 +964,11 @@ void fishProtocol::manageConnection(const QString &l) {
         case FISH_STOR:
         case FISH_WRITE:
             error(ERR_COULD_NOT_WRITE,url.prettyURL());
-            closeConnection();
+            shutdownConnection();
             break;
         case FISH_RETR:
             error(ERR_COULD_NOT_READ,url.prettyURL());
-            closeConnection();
+            shutdownConnection();
             break;
         case FISH_READ:
             mimeType("inode/directory");
@@ -960,7 +978,7 @@ void fishProtocol::manageConnection(const QString &l) {
         case FISH_FISH:
         case FISH_VER:
             error(ERR_SLAVE_DEFINED,line);
-            closeConnection();
+            shutdownConnection();
             break;
         case FISH_PWD:
         case FISH_CWD:
@@ -1069,7 +1087,7 @@ void fishProtocol::sent()
         if (rawWrite > 0) {
             dataReq();
             if (readData(rawData) <= 0) {
-                closeConnection();
+                shutdownConnection();
             }
         }
         return;
@@ -1237,7 +1255,7 @@ void fishProtocol::run() {
             if (rc < 0) {
                 myDebug( << "select failed, rc: " << rc << ", error: " << strerror(errno) << endl);
                 error(ERR_CONNECTION_BROKEN,connectionHost);
-                closeConnection();
+                shutdownConnection();
                 return;
             }
             if (FD_ISSET(childFd,&wfds) && outBufPos >= 0) {
@@ -1250,7 +1268,7 @@ void fishProtocol::run() {
                 else {
                     myDebug( << "write failed, rc: " << rc << ", error: " << strerror(errno) << endl);
                     error(ERR_CONNECTION_BROKEN,connectionHost);
-                    closeConnection();
+                    shutdownConnection();
                     return;
                 }
                 if (outBufPos >= outBufLen) {
@@ -1270,7 +1288,7 @@ void fishProtocol::run() {
                 } else {
                     myDebug( << "read failed, rc: " << rc << ", error: " << strerror(errno) << endl);
                     error(ERR_CONNECTION_BROKEN,connectionHost);
-                    closeConnection();
+                    shutdownConnection();
                     return;
                 }
             }

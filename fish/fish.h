@@ -41,9 +41,14 @@ It is set to false if the connection becomes closed.
 
  */
   void openConnection();
+  
+  /**
+   Clean up connection
+  */
+  void shutdownConnection(bool forced=false);
   /** sets connection information for subsequent commands */
   void setHost(const QString & host, int port, const QString & user, const QString & pass);
-  /** Closes the connection */
+  /** Forced close of the connection */
   void closeConnection();
   /** get a file */
   void get(const KURL& url);
