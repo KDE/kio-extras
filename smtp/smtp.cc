@@ -95,6 +95,7 @@ SMTPProtocol::SMTPProtocol(const QCString & pool, const QCString & app,
 {
   //kdDebug(7112) << "SMTPProtocol::SMTPProtocol" << endl;
   mPendingCommandQueue.setAutoDelete( true );
+  mSentCommandQueue.setAutoDelete( true );
 }
 
 
@@ -216,7 +217,7 @@ void SMTPProtocol::put(const KURL & url, int /*permissions */ ,
   for ( QStringList::const_iterator it = recipients.begin() ; it != recipients.end() ; ++it )
     queueCommand( new RcptToCommand( this, (*it).latin1() ) );
 
-  queueCommand( new DataCommand( this ) );
+  queueCommand( Command::DATA );
 
   if ( !executeQueuedCommands() )
     return;
@@ -307,6 +308,23 @@ Response SMTPProtocol::getResponse( bool * ok ) {
 }
 
 bool SMTPProtocol::executeQueuedCommands() {
+  if ( canPipelineCommands() )
+    return executeQueuedCommandsPipelined();
+
+  for ( Command * cmd = mPendingCommandQueue.dequeue() ; cmd ; cmd = mPendingCommandQueue.dequeue() )
+    if ( !execute( cmd ) ) {
+      if ( cmd->isErrorFatal() || !execute( Command::RSET ) )
+	smtp_close();
+      mPendingCommandQueue.clear();
+      return false;
+    }
+
+  return true;
+}
+
+bool SMTPProtocol::executeQueuedCommandsPipelined() {
+  kdDebug(7112) << "using pipelining" << endl;
+
   for ( Command * cmd = mPendingCommandQueue.dequeue() ; cmd ; cmd = mPendingCommandQueue.dequeue() )
     if ( !execute( cmd ) ) {
       if ( cmd->isErrorFatal() || !execute( Command::RSET ) )

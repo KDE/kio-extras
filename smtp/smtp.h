@@ -72,6 +72,11 @@ protected:
   /** Execute the queued commands. Tears down the connection if a
       command which is marked as failing fatally fails. */
   bool executeQueuedCommands();
+  /** Execute the queued commands taking advantage of
+      pipelining. Automatically called from @ref
+      #executeQueuedCommand() if pipelining is available */
+  bool executeQueuedCommandsPipelined();
+
   /** Parse a single response from the server. Single- vs. multiline
       responses are correctly detected.
 
@@ -91,6 +96,12 @@ protected:
   bool haveCapability( const char * cap ) const {
     return mCapabilities.have( cap );
   }
+
+  /** @return true is pipelining is available and allowed by metadata */
+  bool canPipelineCommands() const {
+    return haveCapability("PIPELINING") && metaData("pipelining") != "off" ;
+  }
+
   /** This is a pure convenience wrapper around
       @ref KioSMTP::Capabilities::createSpecialResponse */
   QString createSpecialResponse() const {
@@ -99,6 +110,10 @@ protected:
 
   void queueCommand( KioSMTP::Command * command ) {
     mPendingCommandQueue.enqueue( command );
+  }
+
+  void queueCommand( KioSMTP::Command::Type type ) {
+    queueCommand( KioSMTP::Command::createSimpleCommand( type, this ) );
   }
 
   unsigned short m_iOldPort;
@@ -112,6 +127,7 @@ protected:
 
   typedef QPtrQueue<KioSMTP::Command> CommandQueue;
   CommandQueue mPendingCommandQueue;
+  CommandQueue mSentCommandQueue;
 };
 
 #endif

@@ -10,7 +10,7 @@ The SMTP kioslave currently conforms to the following SMTP-related RFCs:
 
 2554 SMTP Service Extension for Authentication. J. Myers. March 1999.
      (Format: TXT=20534 bytes) (Status: PROPOSED STANDARD)
-(with PLAIN, DIGEST-MD5 and CRAM-MD5 SASL mechanisms)
+(with all SASL mechanisms supported by KDESasl)
 
 Known shortcomings:
 - Uses just-send-8bit instead of checking (and using) 8BITMIME.
