@@ -338,7 +338,7 @@ void SMBSlave::listDir( const KURL& kurl )
            // Set name
            atom.m_uds = KIO::UDS_NAME;
            QString dirpName = QString::fromUtf8( dirp->name );
-           QString comment = QString::fromUtf8( dirp->comment, dirp->commentlen );
+           QString comment = QString::fromUtf8( dirp->comment, dirp->commentlen - 1);
            if ( dirp->smbc_type == SMBC_SERVER || dirp->smbc_type == SMBC_WORKGROUP ) {
                atom.m_str = dirpName.lower();
                atom.m_str.at( 0 ) = dirpName.at( 0 ).upper();
