@@ -1,6 +1,6 @@
 /*
   Copyright (C) 2000 Rik Hemsley (rikkus) <rik@kde.org>
-  Copyright (C) 2000, 2001 Michael Matz <matz@kde.org>
+  Copyright (C) 2000, 2001, 2002 Michael Matz <matz@kde.org>
   Copyright (C) 2001 Carsten Duvenhorst <duvenhorst@m2.uni-hannover.de>
   Copyright (C) 2001 Adrian Schroeter <adrian@suse.de>
 
@@ -227,6 +227,19 @@ int FixupTOC(cdrom_drive *d, int tracks)
 long my_last_sector(cdrom_drive *drive)
 {
   return cdda_track_lastsector(drive, drive->tracks);
+}
+
+/* Stupid CDparanoia returns the first sector of the first _audio_ track
+   as first disc sector.  Equally broken to the last sector.  But what is
+   even more shitty is, that if it happens that the first audio track is
+   the first track at all, it returns a hardcoded _zero_, whatever else
+   the TOC told it.  This of course happens quite often, as usually the first
+   track is audio, if there's audio at all.  And usually it even works,
+   because most of the time the real TOC offset is 150 frames, which we
+   accounted for in our code.  This is so unbelievable ugly.  */
+long my_first_sector(cdrom_drive *drive)
+{
+  return cdda_track_firstsector(drive, 1);
 }
 
 using namespace AudioCD;
@@ -929,8 +942,8 @@ AudioCDProtocol::get_discid(struct cdrom_drive * drive)
           n /= 10;
         }
     }
-  unsigned int l = (my_last_sector(drive));
-  l -= cdda_disc_firstsector(drive);
+  unsigned int l = my_last_sector(drive);
+  l -= my_first_sector(drive);
   l /= 75;
   id = ((id % 255) << 24) | (l << 8) | drive->tracks;
   return id;
@@ -956,8 +969,10 @@ AudioCDProtocol::updateCD(struct cdrom_drive * drive)
       else
         qvl.append(start_of_first_data_as_in_toc + 150);
     }
-  qvl.append(cdda_disc_firstsector(drive));
-  qvl.append(my_last_sector(drive));
+  /* Here the + 150 isn't strictly needed, as internally both are subtracted
+     so it cancels out, but for consistency we add it here too.  */
+  qvl.append(my_first_sector(drive) + 150);
+  qvl.append(my_last_sector(drive) + 150);
 
   if (d->useCDDB)
     {
