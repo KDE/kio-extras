@@ -268,13 +268,17 @@ void SMTPProtocol::smtp_close() {
     SSL_free(ssl);
     ssl = NULL;
     m_iSock = 0;
+    m_sOldServer = ""; 
+    m_iOldPort = 0;
   }
 #else
   if (fp) {
     command("QUIT");
     fclose(fp);
     m_iSock = 0;
-    fp = 0;
+    fp = NULL;
+    m_sOldServer = "";
+    m_iOldPort = 0;
   }
 #endif
 }
