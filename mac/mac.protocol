@@ -12,6 +12,7 @@ Description[ca]=Un kioslave per a particions MacOS HFS+
 Description[cs]=Pomocný protokol pro diskové oddíly MacOS HFS+
 Description[da]=En kioslave for MacOS HFS+ partitioner
 Description[es]=Un kioslave para particiones  MacOS HFS+
+Description[et]=MacOS-i HFS+-partitsioonide IO-moodul
 Description[fr]=Un kioslave pour les partitions MacOS HFS+
 Description[fy]=In kioslave foar MacOS HFS+-partities
 Description[hu]=KDE-protokoll MacOS HFS+ partíciók kezeléséhez
