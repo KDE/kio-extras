@@ -2,7 +2,7 @@
 
 INCLUDES=	$(all_includes)
 LDFLAGS =       $(all_libraries) $(KDE_RPATH)
-LDADD	=	$(LIB_KIO) $(LIB_SMB)
+LDADD	=	$(LIB_KIO) $(LIBSMB)
 
 ####### Files
 
