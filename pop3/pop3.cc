@@ -173,7 +173,7 @@ bool POP3Protocol::getResponse(char *r_buf, unsigned int r_len,
 {
   char *buf = 0;
   unsigned int recv_len = 0;
-  fd_set FDs;
+  // fd_set FDs;
 
   // Give the buffer the appropiate size
   r_len = r_len ? r_len : MAX_RESPONSE_LEN;
@@ -713,7 +713,6 @@ void POP3Protocol::get(const KURL & url)
     }
     POP3_DEBUG << "Finishing up list" << endl;
     data(QByteArray());
-    speed(0);
     finished();
   } else if (cmd == "remove") {
     QStringList waitingCommands = QStringList::split(',', path);
@@ -863,7 +862,6 @@ void POP3Protocol::get(const KURL & url)
     }
     POP3_DEBUG << "Finishing up" << endl;
     data(QByteArray());
-    speed(0);
     finished();
   } else if ((cmd == "uid") || (cmd == "list")) {
     QString qbuf;
@@ -891,7 +889,6 @@ void POP3Protocol::get(const KURL & url)
       POP3_DEBUG << buf << endl;
       POP3_DEBUG << "Finishing up uid" << endl;
       data(QByteArray());
-      speed(0);
       finished();
     } else {
       closeConnection();

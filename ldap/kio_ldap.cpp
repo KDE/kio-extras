@@ -94,9 +94,6 @@ void LDAPProtocol::get(const KURL &url)
     return;
   }
 
-  // take the time
-  time_t t_start = time( 0L );
-
   // initiate the search
   KLDAP::Connection c;
   /*if (0 && !c.authenticate()) {    //FIX:user...
@@ -128,10 +125,6 @@ void LDAPProtocol::get(const KURL &url)
   // tell we are finished
   data(QByteArray());
   
-  // tell how long it took
-  time_t t = time( 0L );
-  if ( t - t_start >= 1 )
-    speed( processed_size / ( t - t_start ) );  
   // tell we are finished
   finished();
 }

@@ -1333,8 +1333,6 @@ static char mp3buffer[mp3buffer_size];
   QTime timer;
   timer.start();
 
-  int lastElapsed = 0;
-
   while (currentSector < lastSector)
   {
     int16_t * buf = paranoia_read(paranoia, paranoiaCallback);
@@ -1429,18 +1427,7 @@ static char mp3buffer[mp3buffer_size];
         processed += CD_FRAMESIZE_RAW;
       }
 
-
-      int elapsed = timer.elapsed() / 1000;
-
-      if (elapsed != lastElapsed)
-      {
-        processedSize(processed);
-
-        if (0 != elapsed)
-          speed(processed / elapsed);
-      }
-
-      lastElapsed = elapsed;
+      processedSize(processed);
     }
   }
 #ifdef HAVE_LAME

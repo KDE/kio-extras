@@ -983,10 +983,6 @@ void FloppyProtocol::get( const KURL& url )
       return;
    };
 
-
-   time_t t_start = time( 0L );
-   time_t t_last = t_start;
-
    clearBuffers();
    int result;
    int bytesRead(0);
@@ -1012,13 +1008,6 @@ void FloppyProtocol::get( const KURL& url )
             data( array );
             array.resetRawData(m_stdoutBuffer, m_stdoutSize);
 
-            time_t t = time( 0L );
-            if ( t - t_last >= 1 )
-            {
-               processedSize(bytesRead);
-               speed(bytesRead/(t-t_start));
-               t_last = t;
-            }
          }
          else
          {

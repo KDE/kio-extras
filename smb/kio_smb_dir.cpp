@@ -44,9 +44,6 @@ void SMBSlave::copy( const KURL& ksrc,
     SMBUrl          src;
     SMBUrl          dst;
     mode_t          initialmode;
-    time_t          starttime;
-    time_t          lasttime;
-    time_t          curtime;
     int             n;
     int             dstflags;
     int             srcfd = -1;
@@ -55,10 +52,6 @@ void SMBSlave::copy( const KURL& ksrc,
     unsigned char   buf[MAX_XFER_BUF_SIZE];
     
     kdDebug(KIO_SMB) << "SMBSlave::copy with src = " << ksrc.url() << "and dest = " << kdst.url() << endl;
-
-    // setup times
-    starttime = time(NULL);
-    lasttime = starttime;
 
     // setup urls
     src.fromKioUrl(ksrc);
@@ -165,13 +158,7 @@ void SMBSlave::copy( const KURL& ksrc,
             }
             
             processed_size += n;
-            curtime = time(NULL);
-            if(curtime - lasttime > 0)
-            {
-                processedSize(processed_size);
-                speed(processed_size / (curtime - starttime));
-                lasttime = curtime;
-            }
+	    processedSize(processed_size);
 	}
         else if(n == 0)
 	{
@@ -185,7 +172,7 @@ void SMBSlave::copy( const KURL& ksrc,
     }
         
     
-    FINISHED:
+    //    FINISHED:
     
     if(srcfd >= 0 )
     {

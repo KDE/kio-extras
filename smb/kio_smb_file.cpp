@@ -111,14 +111,7 @@ void SMBSlave::get( const KURL& kurl )
                 // increment total bytes read
                 totalbytesread += bytesread; 
     
-                // display progress at least every second
-                curtime = time(NULL);
-                if ( curtime - lasttime > 0 )
-                {
-                    processedSize(totalbytesread);
-                    speed(totalbytesread/(curtime-starttime));
-                    lasttime = curtime;
-                }
+		processedSize(totalbytesread);
             }
     
         }

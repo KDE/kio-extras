@@ -1174,9 +1174,6 @@ void NFSProtocol::get( const KURL& url )
    char buf[NFS_MAXDATA];
    readRes.readres_u.reply.data.data_val=buf;
 
-   time_t t_start = time( 0L );
-   time_t t_last = t_start;
-
    QByteArray array;
    do
    {
@@ -1196,13 +1193,7 @@ void NFSProtocol::get( const KURL& url )
          data( array );
          array.resetRawData(readRes.readres_u.reply.data.data_val, offset);
 
-         time_t t = time( 0L );
-         if ( t - t_last >= 1 )
-         {
-            processedSize(readArgs.offset);
-            speed(readArgs.offset/(t-t_start));
-            t_last = t;
-         }
+	 processedSize(readArgs.offset);
       };
 
    } while (offset>0);

@@ -214,17 +214,12 @@ void kio_sftpProtocol::get(const KURL& url ) {
     // How big should each data packet be? Definitely not bigger than 64kb or
     // you will overflow the 2 byte size variable in a sftp packet.
     Q_UINT32 len = 60*1024;
-    time_t now, start = time(NULL), last = start;
     code = SSH2_FX_OK;
     while( code == SSH2_FX_OK ) {
         if( (code = sftpRead(handle, offset, len, mydata)) == SSH2_FX_OK ) {
             offset += mydata.size();
             processedSize(offset);
-            now = time(NULL);
-            if( now - last > 1 ) {
-                speed((offset - startingOffset) / (now - start));
-                last = now;
-            }
+
             kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::get(): offset = " << offset << endl;
             
             // save data for mimetype.  pretty much follows what is in the ftp ioslave
@@ -695,7 +690,6 @@ void kio_sftpProtocol::put ( const KURL& url, int permissions, bool overwrite, b
 
     Q_UINT32 offset = beginningOffset;
     int nbytes;
-    time_t now, start = time(NULL), last = start;
     QByteArray mydata;
 
     processedSize(offset);
@@ -710,11 +704,6 @@ void kio_sftpProtocol::put ( const KURL& url, int permissions, bool overwrite, b
         offset += mydata.size();
         processedSize(offset);
 
-        now = time(NULL);
-        if( now - last > 1 ) {
-            speed((offset - beginningOffset) / (now - start));
-            last = now;
-        }
         kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::put(): offset = " << offset << endl;
 
         dataReq();
@@ -856,7 +845,6 @@ void kio_sftpProtocol::put ( const KURL& url, int permissions, bool overwrite, b
 
     Q_UINT32 offset = beginningOffset;
     int nbytes;
-    time_t now, start = time(NULL), last = start;
     QByteArray mydata;
 
     processedSize(offset);
@@ -871,11 +859,6 @@ void kio_sftpProtocol::put ( const KURL& url, int permissions, bool overwrite, b
         offset += mydata.size();
         processedSize(offset);
 
-        now = time(NULL);
-        if( now - last > 1 ) {
-            speed((offset - beginningOffset) / (now - start));
-            last = now;
-        }
         kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::put(): offset = " << offset << endl;
 
         dataReq();
@@ -962,18 +945,13 @@ void kio_sftpProtocol::mimetype ( const KURL& url ){
 
     Q_UINT32 len = 1024; // Get first 1k for determining mimetype
     Q_UINT32 offset = 0;
-    time_t now, start = time(NULL), last = start;
     code = SSH2_FX_OK;
     while( offset < len && code == SSH2_FX_OK ) {
         if( (code = sftpRead(handle, offset, len, mydata)) == SSH2_FX_OK ) {
             data(mydata);
             offset += mydata.size();
             processedSize(offset);
-            now = time(NULL);
-            if( now - last > 1 ) {
-                speed(offset / (now - start));
-                last = now;
-            }
+
             kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::mimetype(): offset = " << offset << endl;
         }
     }

@@ -173,7 +173,7 @@ protected:
      * Parameter :    SMBAuthInfo.m_server and SMBAuthInfo.m_share are
      *                searchparameter
      */
-    void SMBSlave::cache_clear_AuthInfo(const SMBAuthInfo& auth);
+    void cache_clear_AuthInfo(const SMBAuthInfo& auth);
 
     /**
      * Description :  cache an authinfo

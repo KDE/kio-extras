@@ -928,7 +928,7 @@ void SmbProtocol::get( const KURL& url )
       return;
 
    QCString fifoName;
-   fifoName.sprintf("/tmp/kio_smb_%d_%d_%d",getpid(),getuid(),time(0));
+   fifoName.sprintf("/tmp/kio_smb_%d_%d_%ld",getpid(),getuid(),time(0));
    kdDebug(7101)<<"Smb::get() fifoname: -"<<fifoName<<"-"<<endl;
    if (mkfifo(fifoName,0600)!=0)
    {
@@ -1004,8 +1004,6 @@ void SmbProtocol::get( const KURL& url )
 
    int fifoFD=fileno(fifo);*/
    char buf[32*1024];
-   time_t t_start = time( 0L );
-   time_t t_last = t_start;
 
    kdDebug(7101)<<"Smb::get() opened fifo: -"<<command<<"-"<<endl;
 
@@ -1049,15 +1047,7 @@ void SmbProtocol::get( const KURL& url )
             data( array );
             array.resetRawData(buf,i);
 
-            time_t t = time( 0L );
-            if ( t - t_last >= 1 )
-            {
-               processedSize(bytesRead);
-               speed(bytesRead/(t-t_start));
-               t_last = t;
-            }
-
-         };
+         }
       }
       else
          loopFinished=true;
