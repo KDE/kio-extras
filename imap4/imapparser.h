@@ -328,7 +328,8 @@ public:
     int len = 0; // string size
     // Choice: we can create an extra QCString, or we can get the buffer in
     // the wrong size to start.  Let's try option b.
-    return QByteArray().duplicate(parseLiteralC(inWords, relay, stopAtBracket, &len).data(), len);
+    QCString tmp = parseLiteralC(inWords, relay, stopAtBracket, &len);
+    return QByteArray().duplicate(tmp.data(), len);
   }
 
   // static parser routines, can be used elsewhere
@@ -344,7 +345,8 @@ public:
     int len = 0; // string size
     // Choice: we can create an extra QCString, or we can get the buffer in
     // the wrong size to start.  Let's try option b.
-    return QByteArray().duplicate(parseOneWordC(inWords, stopAtBracket, &len).data(), len);
+    QCString tmp = parseOneWordC(inWords, stopAtBracket, &len);
+    return QByteArray().duplicate(tmp.data(), len);
   }
 
 
