@@ -192,7 +192,7 @@ int SmbProtocol::readOutput(int fd)
    //kdDebug(KIO_SMB)<<"Smb::readStdout"<<endl;
    //if (m_mtool==0) return 0;
 
-   char buffer[16*1024];
+   static char buffer[16*1024];
    int length=::read(fd,buffer,16*1024);
    if (length<=0) return length;
 
@@ -581,15 +581,9 @@ void SmbProtocol::listShares()
 void SmbProtocol::listDir( const KURL& _url)
 {
    kdDebug(KIO_SMB)<<"Smb::listDir() "<<_url.path()<<endl;
-   QString path( _url.path());
+//   QString path( _url.path());
 
-   if (_url.url()=="smb:/")
-   {
-      listWorkgroups();
-      return;
-   };
    if (_url.url()=="smb://")
-//   if (m_currentHost.isEmpty())
    {
       error(ERR_UNKNOWN_HOST,i18n("To access the shares of a host, use smb://hostname\n\
 To get a list of all hosts use lan:/ or rlan:/ .\n\
@@ -597,11 +591,13 @@ See the KDE Control Center under Network, LANBrowsing for more information."));
       return;
    };
 
-   QString share;
-   QString smbPath;
-   QString wg;
-   getShareAndPath(_url,share,smbPath);
-   if ((smbPath.isEmpty()) && (!m_currentHost.isEmpty()) && (!share.isEmpty()))
+   if (_url.url()=="smb:/")
+   {
+      listWorkgroups();
+      return;
+   };
+
+   if (_url.path()[_url.path().length()-1]!='/')
    {
       KURL url(_url);
       url.setPath(_url.path()+"/");
@@ -609,6 +605,19 @@ See the KDE Control Center under Network, LANBrowsing for more information."));
       finished();
       return;
    };
+
+   QString share;
+   QString smbPath;
+   QString wg;
+   getShareAndPath(_url,share,smbPath);
+/*   if ((smbPath.isEmpty()) && (!m_currentHost.isEmpty()) && (!share.isEmpty()))
+   {
+      KURL url(_url);
+      url.setPath(_url.path()+"/");
+      redirection(url);
+      finished();
+      return;
+   };*/
 
    if (m_currentHost.isEmpty())
    {
@@ -1042,11 +1051,11 @@ See the KDE Control Center under Network, LANBrowsing for more information."));
 void SmbProtocol::put( const KURL& url, int, bool _overwrite, bool)
 {
    StatInfo info=this->_stat(url,true);
-/*   if (_overwrite==false && (info.isValid))
+   if (_overwrite==false && (info.isValid))
    {
       error(ERR_CANNOT_OPEN_FOR_WRITING,url.url());
       return;
-   };*/
+   };
    QString share;
    QString smbPath;
    getShareAndPath(url,share,smbPath);
@@ -1070,6 +1079,7 @@ void SmbProtocol::put( const KURL& url, int, bool _overwrite, bool)
 
    if (::write(proc->fd(),command.data(),command.length())<0)
    {
+      remove(fifoName);
       error(ERR_CONNECTION_BROKEN,m_currentHost);
       return;
    };
@@ -1081,10 +1091,26 @@ void SmbProtocol::put( const KURL& url, int, bool _overwrite, bool)
       readOutput(proc->fd());
       kdDebug(KIO_SMB)<<"Smb::put() read: -"<<m_stdoutBuffer<<"-"<<endl;
       if (m_stdoutSize>0)
+      {
          if (memchr(m_stdoutBuffer,'\n',m_stdoutSize)!=0)
             loopFinished=true;
+      };
    } while (!loopFinished);
+
    clearBuffer();
+   bool stdoutEvent;
+   result=proc->select(0,10*1000,&stdoutEvent);
+   if (stdoutEvent)
+   {
+      readOutput(proc->fd());
+      if (strstr(m_stdoutBuffer,fifoName.data())!=0)
+      {
+         remove(fifoName);
+         error(ERR_SLAVE_DEFINED,i18n("Sorry, to be able to write to a remote samba share you have to patch and recompile smbclient.\n\\
+Visit http://lisa-home.sourceforge.net/smbclientpatch.html and follow the instructions there."));
+         return;
+      };
+   };
 
    int fifoFD=open(fifoName,O_RDWR|O_NONBLOCK);
    if (fifoFD==-1)
@@ -1167,7 +1193,6 @@ void SmbProtocol::put( const KURL& url, int, bool _overwrite, bool)
    close(fifoFD);
 
    clearBuffer();
-   bool stdoutEvent;
    result=proc->select(1,0,&stdoutEvent);
    if (stdoutEvent)
       readOutput(proc->fd());
