@@ -46,11 +46,11 @@ User Interface=*.kdevdlg,*.ui,*.rc
 groups=Headers,Sources,User Interface,Others
 [Makefile.am]
 dist=true
-files=kio_sftp.kdevprj,atomicio.cpp,atomicio.h,kio_sftp.cpp,kio_sftp.h,process.cpp,process.h,sftp.h,sftpfileattr.cpp,sftpfileattr.h,AUTHORS,ChangeLog,DEBUGGING,Makefile.am,README,sftp.protocol
+files=kio_sftp.kdevprj,atomicio.cpp,atomicio.h,kio_sftp.cpp,kio_sftp.h,process.cpp,process.h,sftp.h,sftpfileattr.cpp,sftpfileattr.h,AUTHORS,ChangeLog,DEBUGGING,Makefile.am,README,sftp.protocol,klibssh.cpp,ksshprocess.cpp,ksshprocess.h
 install=false
 install_location=
 sub_dirs=templates
-type=DATA
+type=static_library
 [README]
 dist=true
 install=false
@@ -81,6 +81,21 @@ dist=true
 install=false
 install_location=
 type=DATA
+[klibssh.cpp]
+dist=true
+install=false
+install_location=
+type=SOURCE
+[ksshprocess.cpp]
+dist=true
+install=false
+install_location=
+type=SOURCE
+[ksshprocess.h]
+dist=true
+install=false
+install_location=
+type=HEADER
 [process.cpp]
 dist=true
 install=false
