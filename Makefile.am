@@ -1,3 +1,3 @@
 ## $Id$
 
-SUBDIRS = gopher gzip help imap4 info man nfs nntp pop3 smb smtp tar $(LDAP_SUBDIR)
+SUBDIRS = gopher gzip help info man nfs nntp pop3 smb smtp tar $(LDAP_SUBDIR)
