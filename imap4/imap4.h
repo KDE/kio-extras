@@ -113,6 +113,12 @@ protected:
 
   ssize_t myRead(void *data, ssize_t len);
 
+  /**
+   * @brief Parses the given URL
+   * The return value is the type of the box
+   * If you set caching to true the server is not queried but the delimiter
+   * is fetched from the cache. The return type is always ITYPE_DIR in this case 
+   */
   enum IMAP_TYPE
   parseURL (const KURL & _url, QString & _box, QString & _section,
             QString & _type, QString & _uid, QString & _validity,

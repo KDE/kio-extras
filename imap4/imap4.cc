@@ -352,9 +352,14 @@ IMAP4Protocol::listDir (const KURL & _url)
     QString listStr = myBox;
     imapCommand *cmd;
 
-    if (!listStr.isEmpty ())
+    if (!listStr.isEmpty () && !listStr.endsWith(myDelimiter))
       listStr += myDelimiter;
-    listStr += "%";
+    if (mySection.isEmpty())
+    {
+      listStr += "%";
+    } else if (mySection == "COMPLETE") {
+      listStr += "*";
+    }
     cmd =
       doCommand (imapCommand::clientList ("", listStr, 
             (myLType == "LSUB" || myLType == "LSUBNOCHECK")));
@@ -391,7 +396,7 @@ IMAP4Protocol::listDir (const KURL & _url)
           }
           if (boxOk)
             doListEntry (aURL, myBox, (*it));
-          else
+          else // this folder is dead
             kdDebug(7116) << "IMAP4Protocol::listDir - suppress " << (*it).name() << endl;
         }
         listResponses = listResponsesSave;
