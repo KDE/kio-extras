@@ -238,7 +238,7 @@ void POP3Protocol::pop3_close ()
 
 bool POP3Protocol::pop3_open()
 {
-  static char buf[512];
+  char buf[512];
   if ( (m_iOldPort == GetPort(m_iPort)) && (m_sOldServer == m_sServer) &&
        (m_sOldUser == m_sUser) && (m_sOldPass == m_sPass)) {
     fprintf(stderr,"Reusing old connection\n");
@@ -398,7 +398,7 @@ void POP3Protocol::get( const KURL& url )
 // commit closes the connection to the server after issuing the QUIT command.
 
   bool ok=true;
-  static char buf[512];
+  char buf[512];
   QByteArray array;
 
   QString cmd;
