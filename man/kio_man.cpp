@@ -131,17 +131,17 @@ bool MANProtocol::addWhatIs(QMap<QString, QString> &i, const QString &name, cons
     QFile f(name);
     if (!f.open(IO_ReadOnly))
 	    return false;
-    int marklen = mark.length();
+    QRegExp re( mark );
     QTextStream t(&f);
     QString l;
     while (!t.eof())
     {
 	    l = t.readLine();	
-	    int pos = l.find(mark);
+	    int pos = re.search( l );
 	    if (pos != -1)
 	    {
 	    	QString names = l.left(pos);
-		QString descr = l.mid(pos+marklen);
+		QString descr = l.mid(pos + re.matchedLength());
 		while ((pos = names.find(",")) != -1)
 		{
 		    i[names.left(pos++)] = descr;
@@ -163,7 +163,7 @@ QMap<QString, QString> MANProtocol::buildIndexMap(const QString &section)
     man_dirs << "/var/cache/man";
     QStringList names;
     names << "whatis.db" << "whatis";
-    QString mark = " (" + section + ") - ";
+    QString mark = "\\s+\\(" + section + "\\)\\s+-\\s+";
 
     for ( QStringList::ConstIterator it_dir = man_dirs.begin();
           it_dir != man_dirs.end();
