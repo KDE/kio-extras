@@ -621,7 +621,7 @@ mailAddress imapParser::parseAddress (parseString & inWords)
   user = parseLiteral (inWords);
   host = parseLiteral (inWords);
 
-  retVal.setFullNameRaw (QCString(full, full.size() + 1));
+  retVal.setFullName (rfcDecoder::quoteIMAP(QCString(full, full.size() + 1)));
   retVal.setCommentRaw (QCString(comment, comment.size() + 1));
   retVal.setUser (QCString(user, user.size() + 1));
   retVal.setHost (QCString(host, host.size() + 1));
