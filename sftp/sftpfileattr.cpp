@@ -231,6 +231,7 @@ void sftpFileAttr::getUserGroupNames(){
         mUserName = user;
         mGroupName = group;
 }
+
 /** No descriptions */
 kdbgstream& operator<< (kdbgstream& s, sftpFileAttr& a) {
     s << "Filename: " << a.mFilename << ", Uid: " << a.mUid << ", Gid: " << a.mGid;
@@ -238,12 +239,18 @@ kdbgstream& operator<< (kdbgstream& s, sftpFileAttr& a) {
     s << ", Permissions: " << a.mPermissions << ", size: " << a.mSize;
     s << ", atime: " << a.mAtime << ", mtime: " << a.mMtime;
     s << ", extended cnt: " << a.mExtendedCount;
+    
+    if (S_ISLNK(a.mLinkType))
+      s << ", Destination: " << a.mLinkDestination;
+      
     return s;
 }
+
 /** Make sure it builds with NDEBUG */
 kndbgstream& operator<< (kndbgstream& s, sftpFileAttr& ) {
     return s;
 }
+
 /** Clear all attributes and flags. */
 void sftpFileAttr::clear(){
     clearAtime();
