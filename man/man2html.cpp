@@ -117,7 +117,7 @@
 #include <errno.h>
 
 #include <qstring.h>
-#include <qlist.h>
+#include <qptrlist.h>
 #include "man2html.h"
 
 #define NULL_TERMINATED(n) ((n) + 1)
@@ -864,7 +864,7 @@ public:
     TABLEROW *prev, *next;
 
 private:
-    QList<TABLEITEM> items;
+    QPtrList<TABLEITEM> items;
 };
 
 TABLEITEM::TABLEITEM(TABLEROW *row) : contents(0), _parent(row) {
@@ -875,7 +875,7 @@ TABLEITEM::TABLEITEM(TABLEROW *row) : contents(0), _parent(row) {
 TABLEROW *TABLEROW::copyLayout() const {
     TABLEROW *newrow = new TABLEROW();
 
-    QListIterator<TABLEITEM> it(items);
+    QPtrListIterator<TABLEITEM> it(items);
     for ( ; it.current(); ++it) {
         TABLEITEM *newitem = new TABLEITEM(newrow);
         newitem->copyLayout(it.current());

@@ -26,7 +26,7 @@
 #include <qfile.h>
 #include <qtextstream.h>
 #include <qcstring.h>
-#include <qlist.h>
+#include <qptrlist.h>
 #include <qmap.h>
 #include <qregexp.h>
 
@@ -51,7 +51,7 @@ using namespace KIO;
 MANProtocol *MANProtocol::_self = 0;
 
 /*
- * Drop trailing ".section[.gz]" from name 
+ * Drop trailing ".section[.gz]" from name
  */
 static
 void stripExtension( QString *name )
@@ -120,8 +120,8 @@ MANProtocol::~MANProtocol()
     _self = 0;
 }
 
-QStringList MANProtocol::findPages(const QString &section, 
-                                   const QString &title, 
+QStringList MANProtocol::findPages(const QString &section,
+                                   const QString &title,
                                    bool full_path)
 {
     checkManPaths();
@@ -132,7 +132,7 @@ QStringList MANProtocol::findPages(const QString &section,
        list.append(title);
        return list;
     }
-    
+
     //
     // Build a list of man direcotries including translations
     //
@@ -146,8 +146,8 @@ QStringList MANProtocol::findPages(const QString &section,
         // exists
         QStringList languages = KGlobal::locale()->languageList();
 
-        for (QStringList::ConstIterator it_lang = languages.begin(); 
-             it_lang != languages.end(); 
+        for (QStringList::ConstIterator it_lang = languages.begin();
+             it_lang != languages.end();
              it_lang++ )
         {
             if ( !(*it_lang).isEmpty() && (*it_lang) != QString("C") ) {
@@ -155,8 +155,8 @@ QStringList MANProtocol::findPages(const QString &section,
 
                 struct stat sbuf;
 
-                if ( ::stat( QFile::encodeName( dir ), &sbuf ) == 0 
-                    && S_ISDIR( sbuf.st_mode ) ) 
+                if ( ::stat( QFile::encodeName( dir ), &sbuf ) == 0
+                    && S_ISDIR( sbuf.st_mode ) )
                 {
                     man_dirs += dir;
                 }
@@ -164,7 +164,7 @@ QStringList MANProtocol::findPages(const QString &section,
         }
 
         // Untranslated pages in "<mandir>"
-        man_dirs += (*it_dir); 
+        man_dirs += (*it_dir);
     }
 
     //
@@ -185,7 +185,7 @@ QStringList MANProtocol::findPages(const QString &section,
             //
             // Section given as argument
             //
-            sect_list += section; 
+            sect_list += section;
         }
         else {
             //
@@ -229,7 +229,7 @@ QStringList MANProtocol::findPages(const QString &section,
 
             while ( (ep = ::readdir( dp )) != 0L ) {
                 if ( ep->d_name[0] != '.' ) {
-                
+
                     QString name = QFile::decodeName( ep->d_name );
 
                     // check title if we're looking for a specific page
@@ -246,9 +246,9 @@ QStringList MANProtocol::findPages(const QString &section,
                         }
                     }
 
-                    if ( full_path ) 
+                    if ( full_path )
                         name.prepend( dir );
-                    
+
                     list += name ;
                 }
             }
@@ -578,18 +578,18 @@ void MANProtocol::checkManPaths()
 
     inited = true;
 
-    QString manpath_env = QString::fromLocal8Bit( ::getenv("MANPATH") ); 
+    QString manpath_env = QString::fromLocal8Bit( ::getenv("MANPATH") );
     //QString mansect_env = QString::fromLocal8Bit( ::getenv("MANSECT") );
-            
+
     // Decide if $MANPATH is enough on its own or if it should be merged
     // with the constructed path.
-    // A $MANPATH starting or ending with ":", or containing "::", 
+    // A $MANPATH starting or ending with ":", or containing "::",
     // should be merged with the constructed path.
-    
+
     bool construct_path = false;
 
-    if ( manpath_env.isEmpty() 
-        || manpath_env[0] == ':' 
+    if ( manpath_env.isEmpty()
+        || manpath_env[0] == ':'
         || manpath_env[manpath_env.length()-1] == ':'
         || manpath_env.contains( QString("::") ) )
     {
@@ -614,8 +614,8 @@ void MANProtocol::checkManPaths()
         // Mappings from $PATH to manpath are given by lines starting with
         // "MANPATH_MAP"
 
-        QRegExp manpath_regex( "^MANPATH\\s" ); 
-        QRegExp mandatory_regex( "^MANDATORY_MANPATH\\s" ); 
+        QRegExp manpath_regex( "^MANPATH\\s" );
+        QRegExp mandatory_regex( "^MANDATORY_MANPATH\\s" );
         QRegExp manpath_map_regex( "^MANPATH_MAP\\s" );
         //QRegExp section_regex( "^SECTION\\s" );
         QRegExp space_regex( "\\s+" ); // for parsing manpath map
@@ -648,7 +648,7 @@ void MANProtocol::checkManPaths()
                     // The entry is "MANPATH_MAP  <path>  <manpath>"
                     QStringList mapping =
                         QStringList::split(space_regex, line);
-                    
+
                     if ( mapping.count() == 3 ) {
                         QString dir = QDir::cleanDirPath( mapping[1] );
                         QString mandir = QDir::cleanDirPath( mapping[2] );
@@ -668,7 +668,7 @@ void MANProtocol::checkManPaths()
             mc.close();
         }
 
-        // Default paths 
+        // Default paths
         static const char *manpaths[] = {
                         "/usr/X11/man",
                         "/usr/X11R6/man",
@@ -691,7 +691,7 @@ void MANProtocol::checkManPaths()
                         "/usr/newsprint/man",
                         NULL };
 
-        
+
         int i = 0;
         while (manpaths[i]) {
             if ( constr_path.findIndex( QString( manpaths[i] ) ) == -1 )
@@ -702,13 +702,13 @@ void MANProtocol::checkManPaths()
         // Directories in $PATH
         // - if a manpath mapping exists, use that mapping
         // - if a directory "<path>/man" or "<path>/../man" exists, add it
-        //   to the man path (the actual existence check is done further down) 
+        //   to the man path (the actual existence check is done further down)
 
         if ( ::getenv("PATH") ) {
             QStringList path =
                 QStringList::split( ":",
                     QString::fromLocal8Bit( ::getenv("PATH") ) );
- 
+
             for ( QStringList::Iterator it = path.begin();
                   it != path.end();
                   it++ )
@@ -716,22 +716,22 @@ void MANProtocol::checkManPaths()
                 QString dir = QDir::cleanDirPath( *it );
                 QString mandir = manpath_map[ dir ];
 
-                if ( !mandir.isEmpty() ) { 
+                if ( !mandir.isEmpty() ) {
 					// a path mapping exists
-                    if ( constr_path.findIndex( mandir ) == -1 ) 
+                    if ( constr_path.findIndex( mandir ) == -1 )
                         constr_path += mandir;
                 }
                 else {
-					// no manpath mapping, use "<path>/man" and "<path>/../man" 
-					
+					// no manpath mapping, use "<path>/man" and "<path>/../man"
+
                     mandir = dir + QString( "/man" );
-                    if ( constr_path.findIndex( mandir ) == -1 ) 
+                    if ( constr_path.findIndex( mandir ) == -1 )
                         constr_path += mandir;
 
                     int pos = dir.findRev( '/' );
                     if ( pos > 0 ) {
                         mandir = dir.left( pos ) + QString("/man");
-                        if ( constr_path.findIndex( mandir ) == -1 ) 
+                        if ( constr_path.findIndex( mandir ) == -1 )
                             constr_path += mandir;
                     }
                 }
@@ -743,7 +743,7 @@ void MANProtocol::checkManPaths()
     // actual manpath.
     //
     // The merging syntax with ":" and "::" in $MANPATH will be
-    // satisfied if any empty string in path_list_env (there 
+    // satisfied if any empty string in path_list_env (there
     // should be 1 or 0) is replaced by the constructed path.
 
     QStringList path_list_env = QStringList::split( ':', manpath_env , true );
@@ -759,7 +759,7 @@ void MANProtocol::checkManPaths()
         if ( !dir.isEmpty() ) {
             // Add dir to the man path if it exists
             if ( m_manpath.findIndex( dir ) == -1 ) {
-                if ( ::stat( QFile::encodeName( dir ), &sbuf ) == 0 
+                if ( ::stat( QFile::encodeName( dir ), &sbuf ) == 0
                     && S_ISDIR( sbuf.st_mode ) )
                 {
                     m_manpath += dir;
@@ -778,7 +778,7 @@ void MANProtocol::checkManPaths()
 
                 if ( !dir.isEmpty() ) {
                     if ( m_manpath.findIndex( dir ) == -1 ) {
-                        if ( ::stat( QFile::encodeName( dir ), &sbuf ) == 0 
+                        if ( ::stat( QFile::encodeName( dir ), &sbuf ) == 0
                             && S_ISDIR( sbuf.st_mode ) )
                         {
                             m_manpath += dir;
@@ -792,15 +792,15 @@ void MANProtocol::checkManPaths()
 /* sections are not used
     // Sections
     QStringList m_mansect = QStringList::split( ':', mansect_env, true );
-    
+
     const char* default_sect[] =
         { "1", "2", "3", "4", "5", "6", "7", "8", "9", "n", 0L };
- 
+
     for ( int i = 0; default_sect[i] != 0L; i++ )
         if ( m_mansect.findIndex( QString( default_sect[i] ) ) == -1 )
             m_mansect += QString( default_sect[i] );
 */
- 
+
 }
 
 
@@ -868,8 +868,8 @@ int compare_man_index(const void *s1, const void *s2)
 #warning using heapsort
 // Set up my own man page list,
 // with a special compare function to sort itself
-typedef QList<struct man_index_t> QManIndexListBase;
-typedef QListIterator<struct man_index_t> QManIndexListIterator;
+typedef QPtrList<struct man_index_t> QManIndexListBase;
+typedef QPtrListIterator<struct man_index_t> QManIndexListIterator;
 
 class QManIndexList : public QManIndexListBase
 {
@@ -949,7 +949,7 @@ void MANProtocol::showIndex(const QString& section)
     for (page = pages.begin(); page != pages.end(); ++page)
     {
         QString fileName = *page;
-        
+
         stripExtension( &fileName );
 
         pos = fileName.findRev('/');
@@ -1015,7 +1015,7 @@ void MANProtocol::showIndex(const QString& section)
 	char *begin = (char*)(manindex->manpage_begin);
 	int len = strlen( begin );
 	char *end = begin+(len-1);
-	
+
 	if ( len >= 3 && strcmp( end-2, ".gz" ) == 0 )
 	    end -= 3;
 	else if ( len >= 2 && strcmp( end-1, ".Z" ) == 0 )
@@ -1024,15 +1024,15 @@ void MANProtocol::showIndex(const QString& section)
 	    end -= 2;
 	else if ( len >= 4 && strcmp( end-3, ".bz2" ) == 0 )
 	    end -= 4;
-	
+
 	while ( end >= begin && *end != '.' )
 	    end--;
-	
-	if ( end < begin ) 
+
+	if ( end < begin )
 	    manpage_end = 0;
 	else
 	    manpage_end = end;
-	
+
 	if (NULL == manpage_end)
 	{
 	    // no '.' ending ???
@@ -1179,17 +1179,17 @@ void MANProtocol::showIndex(const QString& section)
 void MANProtocol::listDir(const KURL &url)
 {
     kdDebug( 7107 ) << "ENTER listDir: " << url.prettyURL() << endl;
- 
+
     QString title;
     QString section;
-    
+
     if ( !parseUrl(url.path(), title, section) ) {
         error( KIO::ERR_MALFORMED_URL, url.url() );
         return;
     }
 
     QStringList list = findPages( section, QString::null, false );
-    
+
     UDSEntryList uds_entry_list;
     UDSEntry     uds_entry;
     UDSAtom      uds_atom;
@@ -1205,7 +1205,7 @@ void MANProtocol::listDir(const KURL &url)
 
         uds_entry[0].m_str = *it;
         uds_entry_list.append( uds_entry );
-    } 
+    }
 
     listEntries( uds_entry_list );
     finished();

@@ -40,7 +40,7 @@
 // QT includes
 //-------------
 #include <qstring.h>
-#include <qlist.h>
+#include <qptrlist.h>
 #include <qstringlist.h>
 #include <qtextstream.h>
 #include <qstrlist.h> 
@@ -106,7 +106,7 @@ private:
     QString  m_default_workgroup;
     SMBUrl   m_current_url;
 
-    QList<SMBAuthInfo> m_auth_cache;
+    QPtrList<SMBAuthInfo> m_auth_cache;
     QStringList        m_workgroup_cache;
 
 
