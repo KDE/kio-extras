@@ -95,6 +95,8 @@ extern "C"
 using namespace KIO; 
 
 //===========================================================================
+
+
 class SMBSlave : public KIO::SlaveBase
 {
 private:
@@ -102,58 +104,131 @@ private:
     // please make sure your private data does not duplicate existing data
     //---------------------------------------------------------------------
     bool     m_initialized_smbc;
-    QString  m_current_workgroup;
-    QString  m_default_workgroup;
+
+    /**
+     * From Controlcenter 
+     */
     QString  m_default_user;
+    QString  m_default_workgroup;
     QString  m_default_password;
+
+    /**
+     * we store the current url, it's needed for 
+     * callback authorisation method 
+     */
     SMBUrl   m_current_url;
+
+    /**
+     * From Controlcenter, show SHARE$ or not 
+     */
     bool m_showHiddenShares;
 
     QPtrList<SMBAuthInfo> m_auth_cache;
-    QStringList        m_workgroup_cache;
 
-    // libsmbclient need global variables to store in, else it crashes, looks like gcc (C/C++) failure
+    /**
+     * libsmbclient need global variables to store in,
+     * else it crashes on exit next method after use cache_stat,
+     * looks like gcc (C/C++) failure 
+     */
     struct stat st;
-
 protected:
     //---------------------------------------------
     // Authentication functions (kio_smb_auth.cpp) 
     //---------------------------------------------
     // (please prefix functions with auth)
+
+
+    /**
+     * Description :   Initilizes the libsmbclient
+     * Return :        0 on success -1 with errno set on error
+     */
     int auth_initialize_smbc();
 
     //---------------------------------------------
     // Cache functions (kio_smb_auth.cpp)
     //---------------------------------------------
-    // (please prefix functions with cache)
-    void cache_add_workgroup( const QString& workgroup );
-    bool cache_check_workgroup( const QString& workgroup );
 
     //Authentication methods
-    /* Description : open auth dialog and cache userinfo if OK button pressed
-       Parameter :   SMBAuthInfo auth, workgroup, server, share are shown in dlg
+    /** Description : open auth dialog and cache userinfo if OK button pressed
+        Parameter :   SMBAuthInfo auth, workgroup, server, share are shown in dlg
                                  could be username, domain and passwd are changed
-       Return :      false if authDlg, else true and username, domain  and passwd are changed
+        Return :      false if authDlg cancled, else true and username, domain
+                      and passwd are changed in SMBAuth
     */
     bool authDlg(SMBAuthInfo& auth);
+
+    /**
+     * Description :  search for a cached userinfo
+     * Parameter :    SMBAuth.m_server and SMBAuth.m_share are searchparameter
+     * Return :       true if found, else false
+     *                if true : SMBAuth.m_username
+     *                          SMBAuth.m_domain
+     *                          SMBAuth.m_password
+     *                are changed
+     */
     bool cache_get_AuthInfo( SMBAuthInfo& auth );
-    void cache_clear_AuthInfo( const QString& workgroup );
+
+    /**
+     * Description :  Remove an authinfo
+     * Parameter :    SMBAuthInfo.m_server and SMBAuthInfo.m_share are
+     *                searchparameter
+     */
+    void SMBSlave::cache_clear_AuthInfo(const SMBAuthInfo& auth);
+
+    /**
+     * Description :  cache an authinfo
+     * Parameter :    SMBAuthInfo the info to cache
+     *                store_in_kdesu if true other kioslaves 
+     *                can use the info 
+     */
     void cache_set_AuthInfo( const SMBAuthInfo& auth, bool store_in_kdesu=false );
 
     //Stat methods
+
+
+    /**
+     * Description :  call smbc_stat and return stats of the url
+     * Parameter :    SMBUrl the url to stat
+     * Return :       stat* of the url
+     * Note :         it has some problems with stat in method, looks like
+     *                something leave(or removed) on the stack. If your
+     *                method segfault on returning try to change the stat*
+     *                variable
+     */
     int cache_stat( const SMBUrl& url, struct stat* st );
 
-    //create a KIO::AuthInfo structure from the SMBAuthInfo struct
+    /**
+     * Description :  create a KIO::AuthInfo structure from the SMBAuthInfo struct
+     */
     AuthInfo cache_create_AuthInfo( const SMBAuthInfo& auth );
 
-    // set userinfo from kurl and ask for password (if not given)
-    // ask too if not cached
+
+    /**
+     * Description :  open a passworddialog and set the new information 
+     *                in SMBAuthInfo. Update m_current_url and cache it.
+     *                (Not Implemented : we should redirect if new username or
+     *                 domain is given)
+     * Parameter :    SMBAuthInfo.m_username will be shown in passworddialog
+     * Return :       true if user pressed ok, else false
+     *                if true   
+     *                   SMBAuthInfo.m_username
+     *                   SMBAuthInfo.m_domain
+     *                   SMBAuthInfo.m_password 
+     *                are changed. 
+     */
     bool setAuthInfo(SMBAuthInfo &auth);
     
     //-----------------------------------------
     // Browsing functions (kio_smb_browse.cpp) 
     //-----------------------------------------
     // (please prefix functions with browse)
+
+    /**
+     * Description :  Return a stat of given SMBUrl. Calls cache_stat and 
+     *                pack it in UDSEntry. UDSEntry will not be cleared
+     * Parameter :    SMBUrl the url to stat
+     * Return :       false if any error occoured (errno), else true 
+     */
     bool browse_stat_path(const SMBUrl& url, UDSEntry& udsentry);
     
     //---------------------------------------------
@@ -176,17 +251,24 @@ protected:
     //----------------------------
     // Misc functions (this file)
     //----------------------------
-    // correct a given URL
-    // valid URL's are
-    // smb://[[domain;]user[:password]@]server[:port][/share[/path[/file]]]
-    // smb:/[[domain;]user[:password]@][group/[server[/share[/path[/file]]]]]
-    // domain   = workgroup(domain) of the user
-    // user     = username
-    // password = password of useraccount
-    // group    = workgroup(domain) of server
-    // server   = host to connect
-    // share    = a share of the server (host)
-    // path     = a path of the share
+
+
+    /**
+     * Description :  correct a given URL
+     *                valid URL's are
+     * 
+     *                smb://[[domain;]user[:password]@]server[:port][/share[/path[/file]]]
+     *                smb:/[[domain;]user[:password]@][group/[server[/share[/path[/file]]]]]
+     *                domain   = workgroup(domain) of the user
+     *                user     = username
+     *                password = password of useraccount
+     *                group    = workgroup(domain) of server
+     *                server   = host to connect
+     *                share    = a share of the server (host)
+     *                path     = a path of the share
+     * Parameter :    KURL the url to check
+     * Return :       new KURL if its corrected. else the same KURL 
+     */
     const KURL checkURL(const KURL& kurl);
 
 public:
