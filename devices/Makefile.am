@@ -14,7 +14,13 @@ kdelnk_DATA = devices.protocol
 kdelnkdir = $(kde_servicesdir)
 
 
+dataEntry_DATA = devices.desktop
+dataEntrydir = $(kde_datadir)/konqsidebartng/entries
+
+
+
 SUBDIRS=. kdedmodule mounthelper mimetypes
 
 messages:
 	$(XGETTEXT) `find . -name "*.cc" -o -name "*.cpp" -o -name "*.h"` -o $(podir)/kio_devices.pot
+

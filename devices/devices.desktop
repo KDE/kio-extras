@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Type=Link
+URL=devices:/
+Icon=blockdevice
+Name=Devices
+Comment=This folder shows you accessible blockdevices
+Open=false
+X-KDE-TreeModule=Directory
+X-KDE-KonqSidebarModule=konqsidebar_tree    
