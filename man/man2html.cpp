@@ -3474,6 +3474,7 @@ static char *scan_troff(char *c, int san, char **result)
     h=c;
     /* start scanning */
 
+    while (*h == ' ') *h++ = '\n';
     while (h && *h && (!san || newline_for_fun || *h!='\n')) {
 
 	if (*h==escapesym) {
