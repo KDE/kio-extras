@@ -124,8 +124,8 @@ mimeIO ()
 {
   mySSL = isSSL;
   readBuffer[0] = 0x00;
-  readSize = 0;
   relayEnabled = false;
+  readBufferLen = 0;
 }
 
 IMAP4Protocol::~IMAP4Protocol ()
@@ -533,18 +533,11 @@ bool IMAP4Protocol::parseRead(QByteArray & buffer, ulong len, ulong relay)
   char buf[4096];
   while (buffer.size() < len)
   {
-    if (!waitForResponse(120))
-    {
-      error(ERR_SERVER_TIMEOUT, myHost);
-      setState(ISTATE_NO);
-      closeConnection();
-      return FALSE;
-    }
-    ssize_t readLen = read(buf, QMIN(len - buffer.size(), sizeof(buf) - 1));
+    ssize_t readLen = myRead(buf, QMIN(len - buffer.size(), sizeof(buf) - 1));
     if (readLen == 0)
     {
       error (ERR_CONNECTION_BROKEN, myHost);
-      setState(ISTATE_NO);
+      setState(ISTATE_CONNECT);
       closeConnection();
       return FALSE;
     }
@@ -577,18 +570,11 @@ bool IMAP4Protocol::parseReadLine (QByteArray & buffer, ulong relay)
   while (1)
   {
     memset (&buf, sizeof (buf), 0);
-    if (!waitForResponse(120))
-    {
-      error(ERR_SERVER_TIMEOUT, myHost);
-      setState(ISTATE_NO);
-      closeConnection();
-      return FALSE;
-    }
-    readLen = readLine(buf, sizeof(buf) - 1);
+    readLen = myReadLine(buf, sizeof(buf) - 1);
     if (readLen == 0)
     {
       error (ERR_CONNECTION_BROKEN, myHost);
-      setState(ISTATE_NO);
+      setState(ISTATE_CONNECT);
       closeConnection();
       return FALSE;
     }
@@ -725,9 +711,8 @@ IMAP4Protocol::put (const KURL & _url, int, bool, bool)
         {
           error (ERR_CONNECTION_BROKEN, myHost);
           completeQueue.removeRef (cmd);
-          setState(ISTATE_NO);
+          setState(ISTATE_CONNECT);
           closeConnection();
-          finished();
           return;
         }
       }
@@ -1202,7 +1187,13 @@ void IMAP4Protocol::closeConnection()
   }
   CloseDescriptor();
   setState(ISTATE_NO);
+  completeQueue.clear();
+  sentQueue.clear();
+  uidCache.clear();
+  lastHandled = NULL;
+  preCache = NULL;
   currentBox = QString::null;
+  readBufferLen = 0;
 }
 
 bool IMAP4Protocol::makeLogin ()
@@ -1612,51 +1603,42 @@ mymemccpy (void *dest, const void *src, int c, size_t n)
   return NULL;
 }
 
-/* ssize_t
-IMAP4Protocol::readLine (char *buf, ssize_t len)
+ssize_t IMAP4Protocol::myRead(void *data, ssize_t len)
 {
-  ssize_t result;
-  char *copied;
-//  kdDebug(7116) << "Request for " << len << endl;
-  // see what is still in the buffer
-  if (len > readSize)
+  if (readBufferLen)
   {
-//    kdDebug(7116) << "Reading" << endl;
-    // append to our internal buffer
-    result = read (readBuffer + readSize, IMAP_BUFFER - readSize);
-    if (result > 0)
-      readSize += result;
-//    kdDebug(7116) << "Result is " << result << endl;
-//    kdDebug(7116) << "Now got " << readSize << endl;
+    ssize_t copyLen = (len < readBufferLen) ? len : readBufferLen;
+    memcpy(data, readBuffer, copyLen);
+    readBufferLen -= copyLen;
+    if (readBufferLen) memcpy(readBuffer, &readBuffer[copyLen], readBufferLen);
+    return copyLen;
   }
+  if (!isConnectionValid()) return 0;
+  waitForResponse(600);
+  return read(data, len);
+}
 
-  // give what is there to the caller
-  if (readSize < len)
-    len = readSize;
-
-  if (len > 0)
-  {
-    // copy it to the destination
-//    kdDebug(7116) << "Giving to caller at most " << len << endl;
-    copied = (char *) mymemccpy (buf, readBuffer, '\n', len);
-    if (copied)
-      len = copied - buf;
-//    kdDebug(7116) << "Copied " << len << endl;
-    buf[len] = 0x00;
-//    kdDebug(7116) << "Giving to caller " << len << endl;
-//    kdDebug(7116) << "That is '" << buf << "'" << endl;
-
-    // now we need to readjust our buffer
-    memcpy (readBuffer, readBuffer + len, readSize - len);
-    readSize -= len;
-    readBuffer[readSize] = 0x00;
-//    kdDebug(7116) << "Keeping " << readSize << " [" << readBuffer << "]" << endl;
+ssize_t IMAP4Protocol::myReadLine(char *data, ssize_t len)
+{
+  ssize_t copyLen = 0, readLen = 0;
+  while (true) {
+    while (copyLen < readBufferLen && readBuffer[copyLen] != '\n') copyLen++;
+    if (copyLen < readBufferLen || copyLen == len)
+    {
+      copyLen++;
+      memcpy(data, readBuffer, copyLen);
+      data[copyLen] = '\0';
+      readBufferLen -= copyLen;
+      if (readBufferLen) memcpy(readBuffer, &readBuffer[copyLen], readBufferLen);
+      return copyLen;
+    }
+    if (!isConnectionValid()) { data[0] = '\0'; return 0; }
+    waitForResponse(600);
+    readLen = read(&readBuffer[readBufferLen], len - readBufferLen);
+    readBufferLen += readLen;
+    if (readLen == 0) { data[0] = '\0'; return 0; }
   }
-
-  if (len <= 0)
-    len = 0;
-  return len;
-} */
+}
 
 bool
 IMAP4Protocol::assureBox (const QString & aBox, bool readonly)

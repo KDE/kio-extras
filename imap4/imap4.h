@@ -29,7 +29,7 @@
 
 #include <kio/tcpslavebase.h>
 
-#define IMAP_BUFFER 2048
+#define IMAP_BUFFER 8192
 
 enum IMAP_TYPE
 {
@@ -101,8 +101,8 @@ protected:
   // select or examine the box if needed
   bool assureBox (const QString & aBox, bool readonly);
 
-  // our new ReadLine supports 0x00 within data
-//  ssize_t ReadLine (char *data, ssize_t len);
+  ssize_t myRead(void *data, ssize_t len);
+  ssize_t myReadLine(char *data, ssize_t len);
 
   enum IMAP_TYPE
   parseURL (const KURL & _url, QString & _box, QString & _section,
@@ -128,6 +128,7 @@ protected:
                     const imapList & item);
 
   char readBuffer[IMAP_BUFFER];
+  ssize_t readBufferLen;
   int readSize;
 };
 
