@@ -24,6 +24,8 @@
 
 class QFile;
 class QTextStream;
+class KExtendedSocket;
+
 class CDDB {
 public:
   CDDB();
@@ -43,7 +45,7 @@ private:
   bool deinit();
   bool parse_read_resp(QTextStream*, QTextStream*);
   bool searchLocal(unsigned int id, QFile *ret_file);
-  int fd;
+  KExtendedSocket *ks;
   QCString h_name;
   unsigned short int port;
   bool remote;

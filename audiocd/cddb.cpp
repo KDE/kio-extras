@@ -34,12 +34,13 @@
 #include <qregexp.h>
 #include <kdebug.h>
 #include <ksock.h>
+#include <kextsock.h>
 #include <klocale.h>
 
 #include "cddb.h"
 
 CDDB::CDDB()
-  : fd(0), port(0), remote(false), save_local(false)
+  : ks(0), port(0), remote(false), save_local(false)
 {
   cddb_dirs += ".cddb";
 }
@@ -52,7 +53,7 @@ CDDB::~CDDB()
 bool
 CDDB::set_server(const char *hostname, unsigned short int _port)
 {
-  if (fd)
+  if (ks)
     {
       if (h_name == hostname && port == _port)
         return true;
@@ -62,20 +63,12 @@ CDDB::set_server(const char *hostname, unsigned short int _port)
   kdDebug(7101) << "CDDB: set_server, host=" << hostname << "port=" << _port << endl;
   if (remote)
     {
-      ksockaddr_in addr;
-      memset(&addr, 0, sizeof(addr));
-      if (!KSocket::initSockaddr(&addr, hostname, _port))
-        return false;
-      if ((fd = ::socket(PF_INET, SOCK_STREAM, 0)) < 0)
-        {
-	  fd = 0;
-          return false;
-	}
-      if (::connect(fd, (struct sockaddr*)&addr, sizeof(addr)))
+      ks = new KExtendedSocket(hostname, _port);
+      if (ks->connect() < 0)
 	{
 	  kdDebug(7101) << "CDDB: Can't connect!" << endl;
-	  ::close(fd);
-	  fd = 0;
+	  delete ks;
+	  ks = 0;
           return false;
 	}
       
@@ -92,17 +85,17 @@ CDDB::set_server(const char *hostname, unsigned short int _port)
 bool
 CDDB::deinit()
 {
-  if (fd)
+  if (ks)
     {
       writeLine("quit");
       QCString r;
       readLine(r);
-      close (fd);
+      ks->close();
     }
   h_name.resize(0);
   port = 0;
   remote = false;
-  fd = 0;
+  ks = 0;
   return true;
 }
 
@@ -111,7 +104,7 @@ CDDB::readLine(QCString& ret)
 {
   int read_length = 0;
   char small_b[128];
-  fd_set set;
+  //fd_set set;
 
   ret.resize(0);
   while (read_length < 40000)
@@ -129,15 +122,10 @@ CDDB::readLine(QCString& ret)
 	  kdDebug(7101) << "CDDB: got  `" << ret << "'" << endl;
 	  return true;
 	}
+
       // Try to refill the buffer
-      FD_ZERO(&set);
-      FD_SET(fd, &set);
-      struct timeval tv;
-      tv.tv_sec = 60;
-      tv.tv_usec = 0;
-      if (::select(fd+1, &set, 0, 0, &tv) < 0)
-        return false;
-      ssize_t l = ::read(fd, &small_b, sizeof(small_b)-1);
+      ks->waitForMore(60 * 1000);
+      ssize_t l = ks->readBlock(small_b, sizeof(small_b)-1);
       if (l <= 0)
         {
 	  // l==0 normally means fd got closed, but we really need a lineend
@@ -158,7 +146,7 @@ CDDB::writeLine(const QCString& line)
   kdDebug(7101) << "CDDB: send `" << line << "'" << endl;
   while (l)
     {
-      ssize_t wl = ::write(fd, b, l);
+      ssize_t wl = ks->writeBlock(b, l);
       if (wl < 0 && errno != EINTR)
         return false;
       if (wl < 0)
@@ -172,7 +160,7 @@ CDDB::writeLine(const QCString& line)
       char c = '\n';
       ssize_t wl;
       do {
-        wl = ::write(fd, &c, 1);
+	wl = ks->writeBlock(&c, 1);
       } while (wl <= 0 && errno == EINTR);
       if (wl<=0 && errno != EINTR)
         return false;
@@ -402,7 +390,7 @@ CDDB::queryCD(QValueList<int>& track_ofs)
   /* First look for a local file.  */
   local = searchLocal (id, &file);
   /* If we have no local file, and no remote connection, barf.  */
-  if (!local && (!remote || fd == 0))
+  if (!local && (!remote || ks == 0))
     return false;
 
   m_tracks = num_tracks;
