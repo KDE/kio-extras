@@ -70,9 +70,7 @@ mailHeader::addHdrLine (mimeHdrLine * inLine)
     }
     else if (!qstricmp (addLine->getLabel (), "Subject"))
     {
-      _subject =
-        rfcDecoder::decodeRFC2047String (addLine->getValue ()).
-        stripWhiteSpace ().simplifyWhiteSpace ();
+      _subject = addLine->getValue().stripWhiteSpace().simplifyWhiteSpace();
     }
     else if (!qstricmp (addLine->getLabel ().data (), "Date"))
     {
@@ -147,10 +145,7 @@ mailHeader::outputHeader (mimeIO & useIO)
   if (!_subject.isEmpty ())
     useIO.
       outputMimeLine (mimeHdrLine::
-                      truncateLine (QCString ("Subject: ") +
-                                    rfcDecoder::
-                                    encodeRFC2047String (_subject).
-                                    latin1 ()));
+                      truncateLine (QCString ("Subject: ") + _subject));
   if (!messageID.isEmpty ())
     useIO.
       outputMimeLine (mimeHdrLine::

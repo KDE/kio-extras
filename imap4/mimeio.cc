@@ -63,7 +63,7 @@ mimeIO::outputMimeLine (const QCString & inLine)
   QCString aLine = inLine;
 
   int theLF = aLine.findRev ('\n');
-  if (theLF == aLine.length () - 1 && theLF != -1)
+  if (theLF == (int)aLine.length() - 1 && theLF != -1)
   {
     //we have a trailing LF, now check for CR
     if (aLine[theLF - 1] == '\r')

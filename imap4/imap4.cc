@@ -652,8 +652,7 @@ IMAP4Protocol::setSubURL (const KURL & _url)
 }
 
 void
-IMAP4Protocol::put (const KURL & _url, int permissions, bool overwrite,
-                    bool resume)
+IMAP4Protocol::put (const KURL & _url, int, bool, bool)
 {
   qDebug ("IMAP4::put - %s", _url.url ().latin1 ());
 //  KIO::TCPSlaveBase::put(_url,permissions,overwrite,resume);
@@ -753,7 +752,7 @@ IMAP4Protocol::put (const KURL & _url, int permissions, bool overwrite,
 }
 
 void
-IMAP4Protocol::mkdir (const KURL & _url, int permissions)
+IMAP4Protocol::mkdir (const KURL & _url, int)
 {
   qDebug ("IMAP4::mkdir - %s", _url.url ().latin1 ());
 //  KIO::TCPSlaveBase::mkdir(_url,permissions);
@@ -771,8 +770,7 @@ IMAP4Protocol::mkdir (const KURL & _url, int permissions)
 }
 
 void
-IMAP4Protocol::copy (const KURL & src, const KURL & dest, int permissions,
-                     bool overwrite)
+IMAP4Protocol::copy (const KURL & src, const KURL & dest, int, bool overwrite)
 {
   qDebug ("IMAP4::copy - [%s] %s -> %s",
           overwrite ? "Overwrite" : "NoOverwrite", src.url ().latin1 (),

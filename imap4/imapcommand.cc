@@ -205,7 +205,7 @@ imapCommand::clientCopy (const QString & box, const QString & sequence,
 }
 
 imapCommand *
-imapCommand::clientAppend (const QString & box, const QString & extras,
+imapCommand::clientAppend (const QString & box, const QString &,
                            ulong size)
 {
   return new imapCommand ("APPEND",

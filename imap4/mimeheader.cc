@@ -341,7 +341,7 @@ mimeHeader::setParameter (QCString aLabel, QString aValue,
     //see if it needs to be truncated
     if (aValue.length () + aLabel.length () + 4 > 80)
     {
-      unsigned int limit = 80 - 8 - aLabel.length ();
+      int limit = 80 - 8 - aLabel.length ();
       int i = 0;
       QString shortValue;
       QCString shortLabel;
@@ -350,7 +350,7 @@ mimeHeader::setParameter (QCString aLabel, QString aValue,
       {
         //don't truncate the encoded chars
         int offset = 0;
-        if (limit > aValue.length ())
+        if (limit > (int)aValue.length())
           limit = aValue.length ();
         offset = aValue.findRev ('%', limit);
         if (offset == limit - 1 || offset == limit - 2)
@@ -569,7 +569,6 @@ mimeHeader::bodyPart (const QString & _str)
   if (_str.find (".") != -1)
   {
     QString tempStr = _str;
-    int which;
     mimeHeader *tempPart;
 
     tempStr = _str.right (_str.length () - _str.find (".") - 1);

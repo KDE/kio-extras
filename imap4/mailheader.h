@@ -94,25 +94,23 @@ public:
   // set a unicode subject
   void setSubject (const QString & _str)
   {
-    _subject = _str;
+    _subject = rfcDecoder::encodeRFC2047String(_str).latin1();
   };
   // set a encoded subject
   void setSubjectEncoded (const QCString & _str)
   {
-    _subject =
-      rfcDecoder::decodeRFC2047String (_str).stripWhiteSpace ().
-      simplifyWhiteSpace ();
+    _subject = _str.stripWhiteSpace().simplifyWhiteSpace();
   };
 
   // get the unicode subject
-  const QString & getSubject ()
+  const QString getSubject ()
   {
-    return _subject;
+    return rfcDecoder::decodeRFC2047String(_subject);
   };
   // get the encoded subject
   QCString getSubjectEncoded ()
   {
-    return rfcDecoder::encodeRFC2047String (_subject).latin1 ();
+    return _subject;
   };
 
   const struct tm *getDate ()
@@ -177,7 +175,7 @@ private:
   mailAddress senderAdr;
   mailAddress returnpathAdr;
   mailAddress replytoAdr;
-  QString _subject;
+  QCString _subject;
   struct tm date;
   int gmt_offset;
   QCString messageID;
