@@ -436,7 +436,7 @@ static QCString breakIntoLines( const QCString& str )
 {
   QCString result;
   int i;
-  for( i = 0; i < str.length()-72; i += 72 ) {
+  for( i = 0; i < (int)str.length()-72; i += 72 ) {
     result += str.mid( i, 72 );
     result += "\n ";
   }
