@@ -388,7 +388,8 @@ imapParser::parseUntagged (QString & result)
 
 
 void
-imapParser::parseResult (QString & result, QString & rest)
+imapParser::parseResult (QString & result, QString & rest,
+  const QString & command)
 {
   if (rest[0] == '[')
   {
@@ -497,9 +498,13 @@ imapParser::parseResult (QString & result, QString & rest)
       rest = rest.right (rest.length () - 1); //tie off ]
     skipWS (rest);
   }
-  QString action = parseOneWord (rest);
-  if (action == "UID")
-    action = parseOneWord (rest);
+  QString action = command;
+  if (command.isEmpty())
+  {
+    QString action = parseOneWord (rest);
+    if (action == "UID")
+      action = parseOneWord (rest);
+  }
 
   switch (action[0].latin1 ())
   {
@@ -1538,7 +1543,7 @@ int imapParser::parseLoop ()
           sentQueue.removeRef (current);
           completeQueue.append (current);
           kdDebug(7116) << "imapParser::parseLoop -  completed " << resultCode << ": " << result << endl;
-          parseResult (resultCode, result);
+          parseResult (resultCode, result, current->command());
         }
         else
         {

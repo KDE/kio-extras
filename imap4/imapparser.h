@@ -153,7 +153,8 @@ public:
   void parseUntagged (QString & result);
 
   void parseRecent (ulong value, QString & result);
-  void parseResult (QString & result, QString & rest);
+  void parseResult (QString & result, QString & rest,
+    const QString & command = QString::null);
   void parseCapability (QString & result);
   void parseFlags (QString & result);
   void parseList (QString & result);

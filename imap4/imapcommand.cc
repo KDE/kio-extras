@@ -199,6 +199,12 @@ imapCommand::clientSelect (const QString & path, bool examine)
 }
 
 imapCommand *
+imapCommand::clientClose()
+{
+  return new imapCommand("CLOSE", "");
+}
+
+imapCommand *
 imapCommand::clientCopy (const QString & box, const QString & sequence,
                          bool nouid)
 {

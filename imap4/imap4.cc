@@ -366,8 +366,9 @@ IMAP4Protocol::listDir (const KURL & _url)
         {
           imapCommand *cmd = NULL;
 
-          if (assureBox (myBox, true) &&
-            (!selectInfo.countAvailable() || selectInfo.count()))
+          if (!assureBox (myBox, true))
+            error(ERR_CANNOT_ENTER_DIRECTORY, hidePass(_url));
+          else if (!selectInfo.countAvailable() || selectInfo.count())
           {
             cmd = doCommand (imapCommand::clientSearch (query));
             completeQueue.removeRef (cmd);
@@ -406,8 +407,6 @@ IMAP4Protocol::listDir (const KURL & _url)
             }
             entry.clear ();
             listEntry (entry, true);
-          } else {
-            error(ERR_CANNOT_ENTER_DIRECTORY, hidePass(_url));
           }
         }
       }
@@ -623,7 +622,7 @@ IMAP4Protocol::put (const KURL & _url, int, bool, bool)
     parseURL (_url, aBox, aSection, aLType, aSequence, aValidity, aDelimiter);
 
   // see if it is a box
-  if (aType != ITYPE_BOX || aType == ITYPE_DIR_AND_BOX)
+  if (aType != ITYPE_BOX && aType != ITYPE_DIR_AND_BOX)
   {
     if (aBox[aBox.length () - 1] == '/')
       aBox = aBox.right (aBox.length () - 1);
@@ -658,6 +657,19 @@ IMAP4Protocol::put (const KURL & _url, int, bool, bool)
       error (ERR_ABORTED, hidePass(_url));
       finished ();
       return;
+    }
+
+    // Some servers can't append mails to the selected mailbox
+    if (getState() == ISTATE_SELECT)
+    {
+      imapCommand *cmd = doCommand (imapCommand::clientClose());
+      if (cmd->result() != "OK")
+      {
+        error (ERR_ABORTED, i18n("Unable to close mailbox."));
+        finished();
+        return;
+      }
+      setState(ISTATE_LOGIN);
     }
 
     imapCommand *cmd =

@@ -57,6 +57,7 @@ public:
                                   const QString & path, bool lsub = false);
   static imapCommand *clientSelect (const QString & path, bool examine =
                                     false);
+  static imapCommand *clientClose();
   static imapCommand *clientStatus (const QString & path,
                                     const QString & parameters);
   static imapCommand *clientCopy (const QString & box,
