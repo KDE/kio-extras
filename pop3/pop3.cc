@@ -684,46 +684,6 @@ void POP3Protocol::get (const KURL& url)
 		data(QByteArray());
 		speed(0);
 		finished();
-	} else if (cmd == "headers") {
-		(void)path.toInt(&ok);
-		if (!ok) {
-			error(ERR_INTERNAL, i18n("Unexpected response from POP3 server."));
-			return;
-		}
-		path.prepend("TOP ");
-		path.append(" 0");
-		if (command(path.ascii())) {	// This should be checked, and a more hackish way of
-						// getting at the headers by d/l the whole message
-						// and stopping at the first blank line used if the
-						// TOP cmd isn't supported
-			mimeType("text/plain");
-			memset(buf, 0, sizeof(buf));
-			while (true /* !AtEOF() */ ) {
-				memset(buf, 0, sizeof(buf));
-				myReadLine(buf, sizeof(buf)-1);
-
-				// HACK: This assumes fread stops at the first \n and not \r
-				if (strcmp(buf, ".\r\n") == 0) {
-					break; // End of data
-				}
-				// sanders, changed -2 to -1 below
-				buf[strlen(buf)-1] = '\0';
-				if (strcmp(buf, "..") == 0) {
-					buf[0] = '.';
-					array.setRawData(buf, 1);
-					data(array);
-					array.resetRawData(buf, 1);
-				} else {
-					array.setRawData(buf, strlen(buf));
-					data(array);
-					array.resetRawData(buf, strlen(buf));
-				}
-			}
-			POP3_DEBUG << "Finishing up" << endl;
-			data(QByteArray());
-			speed(0);
-			finished();
-		}
 	} else if (cmd == "remove") {
 		QStringList waitingCommands = QStringList::split(',', path);
 		int activeCommands = 0;
@@ -740,7 +700,7 @@ void POP3Protocol::get (const KURL& url)
 		}
 		finished();
 		m_cmd = CMD_NONE;
-	} else if (cmd == "download") {
+	} else if (cmd == "download" || cmd == "headers") {
 		QStringList waitingCommands = QStringList::split(',', path);
 		bool noProgress = (metaData("progress") == "off" || waitingCommands.count() > 1);
 		int p_size = 0;
@@ -778,7 +738,7 @@ void POP3Protocol::get (const KURL& url)
 		{
 			while (activeCommands < maxCommands && it != waitingCommands.end())
 			{
-				sendCommand(("RETR " + *it).latin1());
+				sendCommand(((cmd == "headers") ? "TOP " + *it + " 0" : "RETR " + *it).latin1());
 				activeCommands++; it++;
 			}
 			if (getResponse(buf, sizeof(buf)-1, "")) {
