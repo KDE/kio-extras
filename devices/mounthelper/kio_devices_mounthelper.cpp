@@ -78,7 +78,7 @@ KIODevicesMountHelperApp::KIODevicesMountHelperApp():KApplication() {
 						}
 						else
 						{
-							 KIO::Job* job = KIO::mount( false, QString::null.ascii(), device, QString::null);
+							 KIO::Job* job = KIO::mount( false, 0, device, mp);
 							 connect( job, SIGNAL( result( KIO::Job * ) ), this, SLOT( slotResult( KIO::Job * ) ) );
 						}
         	                                return;
