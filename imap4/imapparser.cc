@@ -1370,7 +1370,7 @@ int imapParser::parseLoop ()
 
   if (!parseReadLine(result.data)) return -1;
 
-  if (result.data.isNull ())
+  if (result.data.isEmpty())
     return 0;
   if (!sentQueue.count ())
   {
