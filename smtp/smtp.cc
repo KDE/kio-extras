@@ -155,6 +155,7 @@ void SMTPProtocol::put (const KURL &url, int /*permissions*/, bool /*overwrite*/
 	QString query = url.query();
 	QString subject = ASCII("missing subject");
 	QString profile = QString::null;
+        QString from = QString::null;
 	QStringList recip, bcc, cc, temp_list;
 
 	GetAddresses(query, ASCII("to="), recip);
@@ -165,6 +166,12 @@ void SMTPProtocol::put (const KURL &url, int /*permissions*/, bool /*overwrite*/
 	GetAddresses(query, ASCII("subject="), temp_list);
 	if (temp_list.count()) {
 		subject = temp_list.last();
+		temp_list.clear();
+	}
+
+	GetAddresses(query, ASCII("from="), temp_list);
+	if (temp_list.count()) {
+		from = temp_list.last();
 		temp_list.clear();
 	}
 
@@ -208,11 +215,14 @@ void SMTPProtocol::put (const KURL &url, int /*permissions*/, bool /*overwrite*/
 	// if that worked, check to see if we've specified a real name
 	// and then format accordingly (either: emailaddress@host.com or 
 	// Real Name <emailaddress@host.com>)
-	QString from;
-	if (mset->getSetting(KEMailSettings::EmailAddress) != QString::null) {
-		from = mset->getSetting(KEMailSettings::EmailAddress);
-	} else {
-		from = ASCII(DEFAULT_EMAIL);
+	if (from.isEmpty())
+	{
+		if (mset->getSetting(KEMailSettings::EmailAddress) !=
+		  QString::null) {
+			from = mset->getSetting(KEMailSettings::EmailAddress);
+		} else {
+			from = ASCII(DEFAULT_EMAIL);
+		}
 	}
 	from.prepend(ASCII("MAIL FROM: "));
 
