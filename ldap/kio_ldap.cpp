@@ -76,7 +76,7 @@ void LDAPProtocol::setHost( const QString& _host, int _port,
 /**
  * Get the information contained in the URL.
  */
-void LDAPProtocol::get(const KURL &url, bool reload )
+void LDAPProtocol::get(const KURL &url)
 {
   /*QString _url = urlPrefix + path;
   if (!query.isEmpty()) { _url += "?" + query; }*/
@@ -86,7 +86,7 @@ void LDAPProtocol::get(const KURL &url, bool reload )
 
   // check if the URL is a valid LDAP URL
   if (usrc.isMalformed()) {
-    error(ERR_MALFORMED_URL, strdup(_url));
+    error(ERR_MALFORMED_URL, _url);
     return;
   }
 
@@ -169,7 +169,7 @@ void LDAPProtocol::stat( const KURL &a_url )
 
   // check if the URL is a valid LDAP URL
   if (usrc.isMalformed()) {
-    error(ERR_MALFORMED_URL, strdup(_url));
+    error(ERR_MALFORMED_URL, _url);
     return;
   }
 
@@ -179,7 +179,7 @@ void LDAPProtocol::stat( const KURL &a_url )
       error(ERR_COULD_NOT_AUTHENTICATE, "bla");
       return;
       }*/
-  KLDAP::SearchRequest search(c, _url, KLDAP::Request::Synchronous);
+  KLDAP::SearchRequest search(c, _url.local8Bit(), KLDAP::Request::Synchronous);
   QStrList att;
   att.append("dn");
   search.setAttributes(att);
@@ -261,7 +261,7 @@ void LDAPProtocol::mimetype(const KURL &url)
   kdDebug(7110) << "kio_ldap: mimetype(" << _url << ")" << endl;
   KLDAP::Url usrc(_url);
   if (usrc.isMalformed()) {
-    error(ERR_MALFORMED_URL, strdup(_url));
+    error(ERR_MALFORMED_URL, _url);
     return;
   }
   kdDebug(7110) << "kio_ldap: query()==" << url.query() << endl;
@@ -288,7 +288,7 @@ void LDAPProtocol::listDir(const KURL &url)
 
   // check if the URL is a valid LDAP URL
   if (usrc.isMalformed()) {
-    error(ERR_MALFORMED_URL, strdup(_url));
+    error(ERR_MALFORMED_URL, _url);
     return;
   }
 
@@ -318,7 +318,7 @@ void LDAPProtocol::listDir(const KURL &url)
       entry.clear();
 
       // test if it is really a directory (NOTE: This is expensive!)
-      KLDAP::SearchRequest search2(c, usrc.url(), KLDAP::Request::Synchronous);
+      KLDAP::SearchRequest search2(c, usrc.url().local8Bit(), KLDAP::Request::Synchronous);
       search2.setBase(e.dn());
       search2.setScope(LDAP_SCOPE_ONELEVEL);
       search2.setAttributes(att);

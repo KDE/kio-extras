@@ -24,10 +24,10 @@ void Url::splitString(QString q, char c, QStrList &list)
   while ( (pos = q.find(c)) >= 0)
     {
       item = q.left(pos);
-      list.append(item);
+      list.append(item.local8Bit());
       q.remove(0,pos+1);
     }
-  list.append(q);
+  list.append(q.local8Bit());
 }
 
 
