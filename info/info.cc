@@ -60,11 +60,9 @@ void InfoProtocol::get( const KURL& url )
 
     QString cmds("%1 %2 %3 \"%4\" \"%5\" \"%6\"");
     QString path = KGlobal::iconLoader()->iconPath("up", KIcon::Toolbar, true);
+    int revindex = path.findRev('/');
+    path = path.left(revindex);
 
-    for (int i = 0; i < 4; ++i) {
-        int revindex = path.findRev('/');
-        path = path.left(revindex);
-    }
     QCString cmd = cmds.arg(m_perl).arg(m_infoScript).arg(locate("data", "kio_info/kde-info2html.conf")).arg(path).arg(m_page).arg(m_node).latin1();
     kdDebug( 7108 ) << "cmd: " << (const char *)cmd << endl;
 

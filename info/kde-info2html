@@ -32,7 +32,7 @@
 
 # set here the full path of the info2html.conf
 $0 =~ m!(.*/)[^/]+$!;
-$IMAGEDIR = "file:$ARGV[1]/hicolor/22x22/actions/";
+$IMAGEDIR = "file:$ARGV[1]/";
 require($ARGV[0]);  #-- configuration settings
 
 $CR_URL = "<img src=\"$IMAGEDIR/forward.png\" align=top border=0 alt=\"See\">";
