@@ -11,6 +11,8 @@
 #include "kio_help.h"
 #include <klocale.h>
 #include <assert.h>
+#include <kfilterbase.h>
+#include <kfilterdev.h>
 
 #if !defined( SIMPLE_XSLT )
 extern HelpProtocol *slave;
@@ -206,4 +208,88 @@ QString splitOut(const QString &parsed, int index)
 
 void fillInstance(KInstance &ins) {
     ins.dirs()->addResourceType("dtd", KStandardDirs::kde_default("data") + "ksgmltools2/");
+}
+
+bool saveToCache( const QString &contents, const QString &filename )
+{
+    QFile raw(filename);
+    KFilterBase *f = KFilterBase::findFilterByFileName(filename);
+    QIODevice *fd= KFilterDev::createFilterDevice(f, &raw);
+
+    if (!fd->open(IO_WriteOnly))
+    {
+       delete f;
+       delete fd;
+       return false;
+    }
+
+    fd->writeBlock( contents.utf8() );
+    fd->close();
+    delete fd;
+    delete f;
+    return true;
+}
+
+static bool readCache( const QString &filename,
+                       const QString &cache, QString &output)
+{
+    kdDebug() << "verifyCache " << filename << " " << cache << endl;
+    if ( !KStandardDirs::exists( cache ) )
+        return false;
+    // TODO check time stamps
+
+    QFile raw(cache);
+    KFilterBase *f = KFilterBase::findFilterByFileName(cache);
+    QIODevice *fd= KFilterDev::createFilterDevice(f, &raw);
+
+    if (!fd->open(IO_ReadOnly))
+    {
+       delete f;
+       delete fd;
+       ::unlink( cache.local8Bit() );
+       return false;
+    }
+
+    char buffer[1025];
+    int n;
+    QCString text;
+    while ( ( n = fd->readBlock(buffer, 1024) ) )
+    {
+        buffer[n] = 0;
+        text += buffer;
+    }
+    kdDebug(7107) << "read " << text.length() << endl;
+    fd->close();
+
+    output = QString::fromUtf8( text );
+    delete fd;
+    delete f;
+
+    return true;
+}
+
+QString lookForCache( const QString &filename )
+{
+    kdDebug() << "lookForCache " << filename << endl;
+    assert( filename.right( 8 ) == ".docbook" );
+    assert( filename.at( 0 ) == '/' );
+
+    QString cache = filename.left( filename.length() - 7 );
+    QString output;
+    if ( readCache( filename, cache + "cache.bz2", output) )
+        return output;
+    if ( readCache( filename, cache + "cache.gz", output ) )
+        return output;
+    if ( readCache( filename,
+                    locateLocal( "data",
+                                 "kio_help/cache" + cache +
+                                 "cache.bz2" ), output ) )
+        return output;
+    if ( readCache( filename,
+                    locateLocal( "data",
+                                 "kio_help/cache" + cache +
+                                 "cache.gz" ), output ) )
+        return output;
+
+    return QString::null;
 }

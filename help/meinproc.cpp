@@ -72,6 +72,7 @@ static KCmdLineOptions options[] =
     { "stylesheet <xsl>",  I18N_NOOP( "Stylesheet to use" ), 0 },
     { "stdout", I18N_NOOP( "output whole document to stdout" ), 0 },
     { "htdig", I18N_NOOP( "create a ht://dig compatible index" ), 0 },
+    { "cache <file>", I18N_NOOP( "create a cache file for the document" ), 0},
     { "+xml", I18N_NOOP("The file to transform"), 0},
     { 0, 0, 0 } // End of options.
 };
@@ -156,6 +157,14 @@ int main(int argc, char **argv) {
             return(1);
         }
 
+        QString cache = args->getOption( "cache" );
+        if ( !cache.isEmpty() ) {
+            if ( !saveToCache( output, cache ) ) {
+                kdError() << i18n( "Couldn't write to cache file %1." ).arg( cache ) << endl;
+            }
+            goto end;
+        }
+
         if (output.find( "<FILENAME " ) == -1 )
         {
             QFile file;
@@ -191,6 +200,7 @@ int main(int argc, char **argv) {
             }
         }
     }
+ end:
     xmlCleanupParser();
     xmlMemoryDump();
     return(0);

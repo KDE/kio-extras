@@ -58,7 +58,6 @@ QString HelpProtocol::langLookup(QString fname)
     for (int id=localDoc.count()-1; id >= 0; --id)
     {
         QStringList langs = KGlobal::locale()->languageList();
-        langs.append("default");
         langs.append("en");
         QStringList::ConstIterator lang;
         for (lang = langs.begin(); lang != langs.end(); ++lang)
@@ -101,47 +100,13 @@ QString HelpProtocol::lookupFile(QString fname, QString query, bool &redirect)
 
     kdDebug() << "lookupFile: path=" << path << " anchor=" << anchor << endl;
 
-    if (!anchor.isEmpty())
-    {
-        // try to locate .anchors file
-        result = langLookup(path + "/.anchors");
-        if (!result.isEmpty())
-	{
-            // parse anchors file to get our real page
-            QFile anch(result);
-            if (anch.open(IO_ReadOnly))
-	    {
-                QTextStream ts(&anch);
-
-                QString line;
-                QStringList items;
-                while (!ts.atEnd())
-		{
-                    line = ts.readLine();
-
-                    if (line.left(6) == "anchor")
-		    {
-                        items = QStringList::split(' ', line);
-                        if (items[1] == anchor)
-			{
-                            redirection(KURL(QString("help:%1/%2").arg(path).arg(items[2])));
-                            redirect = true;
-                            return QString::null;
-			}
-		    }
-		}
-
-                anch.close();
-	    }
-	}
-    }
-
     result = langLookup(path);
     if (result.isEmpty())
     {
         result = langLookup(path+"/index.html");
         if (!result.isEmpty())
 	{
+            kdDebug() << "redirect to " << QString("help:%1/index.html").arg(path) << endl;
             redirection(KURL(QString("help:%1/index.html").arg(path)));
             redirect = true;
 	}
@@ -164,7 +129,8 @@ QString HelpProtocol::lookupFile(QString fname, QString query, bool &redirect)
             notFound();
             return QString::null;
 	}
-    }
+    } else
+        kdDebug() << "result " << result << endl;
 
     return result;
 }
@@ -187,7 +153,8 @@ HelpProtocol::HelpProtocol( const QCString &pool, const QCString &app )
 
 void HelpProtocol::get( const KURL& url )
 {
-    kdDebug() << "get: path=" << url.path() << " query=" << url.query() << endl;
+    kdDebug() << "get: path=" << url.path()
+              << " query=" << url.query() << endl;
 
     bool redirect;
     QString doc;
@@ -233,7 +200,21 @@ void HelpProtocol::get( const KURL& url )
 
     infoMessage(i18n("Preparing document"));
 
-    parsed = transform(file, locate("dtd", "customization/kde-chunk.xsl"));
+    parsed = lookForCache( file );
+    if ( parsed.isEmpty() ) {
+        parsed = transform(file, locate("dtd", "customization/kde-chunk.xsl"));
+        if ( !parsed.isEmpty() ) {
+            infoMessage( i18n( "Saving to cache" ) );
+            QString cache = file.left( file.length() - 7 );
+            if ( !saveToCache( parsed, locateLocal( "data",
+                                                    "kio_help/cache" + cache +
+                                                    "cache.bz2" ) ) )
+                saveToCache( parsed, locateLocal( "data",
+                                                  "kio_help/cache" + cache +
+                                                  "cache.gz" ) );
+        }
+    } else infoMessage( i18n( "Using cached version" ) );
+
     if (parsed.isEmpty()) {
         data(QCString(i18n("<html>The requested help file could not be parsed:<br>%1</html>").arg(file).latin1()));
     } else
