@@ -14,7 +14,7 @@ METASOURCES = AUTO
 protocoldir = $(kde_servicesdir)
 
 if include_BZIP2
-BZIP2FILES="bzip.protocol bzip2.protocol"
+BZIP2FILES=bzip.protocol bzip2.protocol
 endif
 
 protocol_DATA = gzip.protocol $(BZIP2FILES)
