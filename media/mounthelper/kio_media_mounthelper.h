@@ -36,7 +36,7 @@ public:
 
 private:
 	const Medium findMedium(const QString &name);
-	void invokeEject(const QString &device);
+	void invokeEject(const QString &device, bool quiet=false);
 	QString m_errorStr;
 	QString m_device;
 

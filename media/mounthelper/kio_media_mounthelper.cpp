@@ -91,7 +91,7 @@ MountHelper::MountHelper() : KApplication()
 		}
 		else
 		{
-			invokeEject(device);
+			invokeEject(device, true);
 		}
 	}
 	else if (args->isSet("e"))
@@ -106,10 +106,14 @@ MountHelper::MountHelper() : KApplication()
 	}
 }
 
-void MountHelper::invokeEject(const QString &device)
+void MountHelper::invokeEject(const QString &device, bool quiet)
 {
 	KProcess *proc = new KProcess(this);
 	*proc << "kdeeject";
+	if (quiet)
+	{
+		*proc << "-q";
+	}
 	*proc << device;
 	proc->start();
 	connect( proc, SIGNAL(processExited(KProcess *)),
@@ -126,7 +130,7 @@ void MountHelper::slotResultSafe(KIO::Job* job)
 	}
 	else
 	{
-		invokeEject(m_device);
+		invokeEject(m_device, true);
 	}
 }
 
