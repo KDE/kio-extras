@@ -1,6 +1,6 @@
 [Desktop Entry]
 Encoding=UTF-8
-Icon=cdrom_unmount
+Icon=cdwriter_unmount
 Type=MimeType
 MimeType=kdedevice/cdwriter_unmounted
 Comment=Unmounted  CDWriter
