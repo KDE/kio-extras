@@ -531,12 +531,12 @@ bool SMTPProtocol::smtp_open(const QString& fakeHostname)
 
 bool SMTPProtocol::authenticate()
 {
-  KDESasl SASL(m_sUser, m_sPass, usingSSL() ? "smtps" : "smtp");
-
   // return with success if the server doesn't support SMTP-AUTH and
   // metadata doesn't tell us to force it.
   if ( !haveCapability( "AUTH" ) && metaData( "sasl" ).isEmpty() )
     return true;
+
+  KDESasl SASL(m_sUser, m_sPass, usingSSL() ? "smtps" : "smtp");
 
   QStrIList strList( true ); // deep copies
   if (!metaData("sasl").isEmpty())
@@ -559,7 +559,6 @@ bool SMTPProtocol::authenticate()
     return false;
   }
 
-  bool ret = false;
   int numResponses = 0;
   QCString cmd = "AUTH " + SASL.method();
 
@@ -592,8 +591,8 @@ bool SMTPProtocol::authenticate()
   cmd = SASL.getResponse(ba);
 
   saslResponse.clear();
-  ret = command( cmd, &saslResponse );
-  if ( !SASL.dialogComplete( numResponses ) )
+  bool ret = command( cmd, &saslResponse );
+  if ( ret && !SASL.dialogComplete( numResponses ) )
   {
     if ( !saslResponse.lines().empty() )
       ba.duplicate( saslResponse.lines().front().data(),
