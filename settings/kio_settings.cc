@@ -226,7 +226,7 @@ void SettingsProtocol::listDir(const KURL& url)
 	KServiceGroup::Ptr root = KServiceGroup::group(relPath);
     
     	if (!root || !root->isValid()) {
-		error(KIO::ERR_SLAVE_DEFINED,i18n("Unknown settings direcory"));
+		error(KIO::ERR_SLAVE_DEFINED,i18n("Unknown settings directory"));
         	return;
 	}
         
