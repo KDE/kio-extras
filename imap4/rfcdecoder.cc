@@ -374,9 +374,10 @@ const char especials[17] = "()<>@,;:\"/[]?.= ";
 const QString rfcDecoder::encodeRFC2047String(const QString& _str)
 {
   if (_str.isEmpty()) return _str;
-  char *latin = (char *)calloc(1, _str.length() + 1);
-  strcpy(latin, _str.latin1());
-  char *latinStart = latin, *l, *start, *stop;
+  signed char *latin = (signed char *)calloc(1, _str.length() + 1);
+  char *latin_un = (char *) latin;
+  strcpy(latin_un, _str.latin1());
+  signed char *latinStart = latin, *l, *start, *stop;
   char hexcode;
   int numQuotes, i;
   QCString result;
@@ -443,9 +444,10 @@ const QString rfcDecoder::encodeRFC2047String(const QString& _str)
 const QString rfcDecoder::encodeRFC2231String(const QString& _str)
 {
   if (_str.isEmpty()) return _str;
-  char *latin = (char *)calloc(1, _str.length() + 1);
-  strcpy(latin, _str.latin1());
-  char *l = latin;
+  signed char *latin = (signed char *)calloc(1, _str.length() + 1);
+  char *latin_us = (char *) latin;
+  strcpy(latin_us, _str.latin1());
+  signed char *l = latin;
   char hexcode;
   int i;
   bool quote;
