@@ -34,6 +34,8 @@ public:
 
 private:
     KPixmapSplitter *m_splitter;
+    char *m_data;
+    int m_dataSize;
 };
 
 #endif

@@ -38,13 +38,16 @@ extern "C"
 };
 
 TextCreator::TextCreator()
-    : m_splitter(0)
+    : m_splitter(0),
+      m_data(0),
+      m_dataSize(0)
 {
 }
 
 TextCreator::~TextCreator()
 {
     delete m_splitter;
+    delete [] m_data;
 }
 
 bool TextCreator::create(const QString &path, int width, int height, QImage &img)
@@ -91,13 +94,19 @@ bool TextCreator::create(const QString &path, int width, int height, QImage &img
     QFile file( path );
     if ( file.open( IO_ReadOnly ))
     {
-        char data[bytesToRead+1];
-        int read = file.readBlock( data, bytesToRead );
+        if ( !m_data || m_dataSize < bytesToRead + 1 )
+        {
+            delete [] m_data;
+            m_data = new char[bytesToRead+1];
+            m_dataSize = bytesToRead + 1;
+        }
+            
+        int read = file.readBlock( m_data, bytesToRead );
         if ( read > 0 )
         {
             ok = true;
-            data[read] = '\0';
-            QString text = QString::fromLocal8Bit( data );
+            m_data[read] = '\0';
+            QString text = QString::fromLocal8Bit( m_data );
             // FIXME: maybe strip whitespace and read more?
 
             QPixmap pix( pixmapSize );
@@ -165,6 +174,7 @@ bool TextCreator::create(const QString &path, int width, int height, QImage &img
             if (ok)
                 img = pix.convertToImage();
         }
+        
         file.close();
     }
     return ok;
