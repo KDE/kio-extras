@@ -1,5 +1,5 @@
 [Desktop Entry]
-ServiceTypes=media/cdrom_mounted,media/cdwriter_mounted,media/dvd_mounted,media/floppy5_mounted,media/floppy_mounted,media/hdd_mounted,media/nfs_mounted,media/removable_mounted,media/smb_mounted,media/zip_mounted,media/vcd,media/svcd,media/dvdvideo
+ServiceTypes=media/cdrom_mounted,media/cdwriter_mounted,media/dvd_mounted,media/floppy5_mounted,media/floppy_mounted,media/hdd_mounted,media/nfs_mounted,media/smb_mounted,media/zip_mounted,media/vcd,media/svcd,media/dvdvideo
 Actions=MediaUnmount;
 X-KDE-Priority=TopLevel
 
@@ -25,6 +25,7 @@ Name[eu]=Desmontatu
 Name[fa]=پیاده کردن
 Name[fi]=Irroita
 Name[fr]=Démonter (enlever de l'arborescence Linux)
+Name[fy]=Ofkeppelje (unmount)
 Name[ga]=Dífheistigh
 Name[gl]=Desmontar
 Name[he]=נתק
@@ -68,6 +69,7 @@ Name[vi]=Gỡ
 Name[wa]=Dismonter
 Name[xh]=Sukuyilayisha
 Name[xx]=xxUnmountxx
+Name[zh_CN]=卸载
 Name[zh_TW]=未掛載
 Name[zu]=Yehlisa
 Exec=kio_media_mounthelper -u %u

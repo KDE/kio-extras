@@ -36,10 +36,13 @@ public:
 
 private:
 	const Medium findMedium(const QString &name);
+	void invokeEject(const QString &device);
 	QString m_errorStr;
+	QString m_device;
 
 private slots:
 	void slotResult(KIO::Job* job);
+	void slotResultSafe(KIO::Job* job);
 	void finished();
 	void error();
 };

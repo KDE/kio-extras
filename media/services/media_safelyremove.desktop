@@ -1,0 +1,9 @@
+[Desktop Entry]
+ServiceTypes=media/removable_mounted,media/removable_unmounted
+Actions=MediaSafelyRemove;
+X-KDE-Priority=TopLevel
+
+[Desktop Action MediaSafelyRemove]
+Name=Safely Remove
+Exec=kio_media_mounthelper -s %u
+

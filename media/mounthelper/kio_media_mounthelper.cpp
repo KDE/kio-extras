@@ -62,7 +62,7 @@ MountHelper::MountHelper() : KApplication()
 		return;
 	}
 
-	if ( !medium.isMountable() && !args->isSet("e") )
+	if ( !medium.isMountable() && !args->isSet("e") && !args->isSet("s"))
 	{
 		m_errorStr = i18n("%1 is not a mountable media.").arg(url.prettyURL());
 		QTimer::singleShot(0, this, SLOT(error()) );
@@ -79,20 +79,54 @@ MountHelper::MountHelper() : KApplication()
 		connect( job, SIGNAL( result( KIO::Job * ) ),
 		         this, SLOT( slotResult( KIO::Job * ) ) );
 	}
+	else if (args->isSet("s"))
+	{
+		if (medium.isMounted())
+		{
+			KIO::Job * job = KIO::unmount( mount_point );
+
+			m_device = device;
+			connect( job, SIGNAL( result( KIO::Job * ) ),
+			         this, SLOT( slotResultSafe( KIO::Job * ) ) );
+		}
+		else
+		{
+			invokeEject(device);
+		}
+	}
 	else if (args->isSet("e"))
 	{
-		KProcess *proc = new KProcess();
-		*proc << "kdeeject";
-		*proc << device;
-		proc->start();
-		connect( proc, SIGNAL(processExited(KProcess *)),
-		         this, SLOT( finished() ) );
+		invokeEject(device);
 	}
 	else
 	{
 		 KIO::Job* job = KIO::mount( false, 0, device, mount_point);
 		 connect( job, SIGNAL( result( KIO::Job * ) ),
 		          this, SLOT( slotResult( KIO::Job * ) ) );
+	}
+}
+
+void MountHelper::invokeEject(const QString &device)
+{
+	KProcess *proc = new KProcess();
+	*proc << "kdeeject";
+	*proc << device;
+	proc->start();
+	connect( proc, SIGNAL(processExited(KProcess *)),
+	         this, SLOT( finished() ) );
+}
+
+void MountHelper::slotResultSafe(KIO::Job* job)
+{
+	if (job->error())
+	{
+		m_errorStr = job->errorText();
+		m_errorStr+= i18n("\nPlease check that the disk is entered correctly.");
+		QTimer::singleShot(0, this, SLOT(error()) );
+	}
+	else
+	{
+		invokeEject(m_device);
 	}
 }
 
@@ -126,7 +160,8 @@ static KCmdLineOptions options[] =
 	{ "u", I18N_NOOP("Unmount given URL"), 0 },
 	{ "m", I18N_NOOP("Mount given URL (default)"), 0 },
 	{ "e", I18N_NOOP("Eject given URL via kdeeject"), 0},
-	{"!+URL",   I18N_NOOP("media:/ URL to mount/unmount/eject"), 0 },
+	{ "s", I18N_NOOP("Unmount and Eject given URL (necessary for some USB devices)"), 0},
+	{"!+URL",   I18N_NOOP("media:/ URL to mount/unmount/eject/remove"), 0 },
 	KCmdLineLastOption
 };
 
