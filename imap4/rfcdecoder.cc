@@ -60,7 +60,6 @@ QString rfcDecoder::fromIMAP (const QString & inSrc)
   unsigned long srcPtr = 0;
   QCString dst;
   QCString src = inSrc.ascii ();
-  int srcLen = inSrc.length();
 
   /* initialize modified base64 decoding table */
   memset (base64, UNDEFINED, sizeof (base64));
@@ -70,7 +69,7 @@ QString rfcDecoder::fromIMAP (const QString & inSrc)
   }
 
   /* loop until end of string */
-  while (srcPtr < srcLen)
+  while (srcPtr < src.length ())
   {
     c = src[srcPtr++];
     /* deal with literal characters and &- */
@@ -157,16 +156,12 @@ QString rfcDecoder::fromIMAP (const QString & inSrc)
 /* replace " with \" and \ with \\ " and \ characters */
 QString rfcDecoder::quoteIMAP(const QString &src)
 {
-  int len = src.length();
   QString result;
-  result.reserve(2 * len);
-  for (unsigned int i = 0; i < len; i++)
+  for (unsigned int i = 0; i < src.length(); i++)
   {
-    if (src[i] == '"' || src[i] == '\\')
-      result += '\\';
+    if (src[i] == '"' || src[i] == '\\') result += '\\';
     result += src[i];
   }
-  result.squeeze();
   return result;
 }
 
@@ -370,14 +365,14 @@ rfcDecoder::decodeRFC2047String (const QString & _str, QString & charset,
     else
     {
       charset = QCString (beg, i - 1);  // -2 + 1 for the zero
-      int pt = charset.findRev('*');
-      if (pt != -1)
+      if (charset.findRev ('*') != -1)
       {
         // save language for later usage
-        language = charset.right (charset.length () - pt - 1);
+        language =
+          charset.right (charset.length () - charset.findRev ('*') - 1);
 
         // tie off language as defined in rfc2047
-        charset.truncate(pt);
+        charset = charset.left (charset.findRev ('*'));
       }
       // get encoding and check delimiting question marks
       encoding = toupper (pos[1]);
@@ -424,8 +419,7 @@ rfcDecoder::decodeRFC2047String (const QString & _str, QString & charset,
         str = KCodecs::base64Decode(str);
       }
       *pos = ch;
-      int len = str.length();
-      for (i = 0; i < len; i++)
+      for (i = 0; i < (int) str.length (); i++)
         result += (char) (QChar) str[i];
 
       pos = end - 1;
@@ -462,14 +456,12 @@ rfcDecoder::encodeRFC2047String (const QString & _str)
   if (_str.isEmpty ())
     return _str;
   signed char *latin = (signed char *) calloc (1, _str.length () + 1);
-  strcpy ((char *)latin, _str.latin1 ());
+  char *latin_un = (char *) latin;
+  strcpy (latin_un, _str.latin1 ());
   signed char *latinStart = latin, *l, *start, *stop;
   char hexcode;
   int numQuotes, i;
-  int rptr = 0;
-  int resultLen = 3 * _str.length() / 2;
-  QCString result(resultLen);
-  
+  QCString result;
   while (*latin)
   {
     l = latin;
@@ -508,21 +500,13 @@ rfcDecoder::encodeRFC2047String (const QString & _str)
       }
       else
         stop = l;
-      if (resultLen - rptr - 1 <= start -  latin + 1) {
-        resultLen += (start - latin + 1) * 2 + 20; // more space
-	result.resize(resultLen);
-      }
       while (latin < start)
       {
-        result[rptr++] = *latin;
+        result += *latin;
         latin++;
       }
-      strcpy(&result[rptr], "=?iso-8859-1?q?"); rptr += 15;
-      if (resultLen - rptr - 1 <= 3*(stop - latin + 1)) {
-        resultLen += (stop - latin + 1) * 4 + 20; // more space
-	result.resize(resultLen);
-      }
-      while (latin < stop) // can add up to 3 chars/iteration
+      result += QCString ("=?iso-8859-1?q?");
+      while (latin < stop)
       {
         numQuotes = 0;
         for (i = 0; i < 16; i++)
@@ -532,34 +516,29 @@ rfcDecoder::encodeRFC2047String (const QString & _str)
           numQuotes = 1;
         if (numQuotes)
         {
-          result[rptr++] = '=';
+          result += "=";
           hexcode = ((*latin & 0xF0) >> 4) + 48;
           if (hexcode >= 58)
             hexcode += 7;
-          result[rptr++] = hexcode;
+          result += hexcode;
           hexcode = (*latin & 0x0F) + 48;
           if (hexcode >= 58)
             hexcode += 7;
-          result[rptr++] = hexcode;
+          result += hexcode;
         }
         else
         {
-          result[rptr++] = *latin;
+          result += *latin;
         }
         latin++;
       }
-      result[rptr++] = '?';
-      result[rptr++] = '=';
+      result += "?=";
     }
     else
     {
       while (*latin)
       {
-        if (rptr == resultLen - 1) {
-          resultLen += 30;
-          result.resize(resultLen);
-        }
-        result[rptr++] = *latin;
+        result += *latin;
         latin++;
       }
     }
@@ -628,8 +607,8 @@ rfcDecoder::decodeRFC2231String (const QString & _str)
   QString charset;
   QString language;
 
-  int p = _str.find ('\'');
-  int l = _str.findRev ('\'');
+  int p = _str.find ("'");
+  int l = _str.findRev ("'");
 
   //see if it is an rfc string
   if (p < 0)
