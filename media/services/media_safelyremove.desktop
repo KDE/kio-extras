@@ -5,5 +5,21 @@ X-KDE-Priority=TopLevel
 
 [Desktop Action MediaSafelyRemove]
 Name=Safely Remove
+Name[bg]=Безопасно изваждане
+Name[ca]=Extreu amb seguretat
+Name[cs]=Bezpečně odstranit
+Name[da]=Fjern sikkert
+Name[es]=Borrado seguro
+Name[et]=Eemalda turvaliselt
+Name[he]=שליפה בבטחה
+Name[hu]=Biztonságos leválasztás
+Name[is]=Fjarlægja öruggt
+Name[nl]=Veilig verwijderen
+Name[pt]=Retirar com Segurança
+Name[pt_BR]=Remover de Modo Seguro
+Name[ru]=Безопасно извлечь
+Name[sv]=Säker urkoppling
+Name[uk]=Безпечно вилучити
+Name[xx]=xxSafely Removexx
 Exec=kio_media_mounthelper -s %u
 
