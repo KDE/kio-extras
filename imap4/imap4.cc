@@ -149,6 +149,12 @@ sigchld_handler (int signo)
   }
 }
 
+const QString hidePass(KURL aUrl)
+{
+  aUrl.setPass(QString::null);
+  return KURL::decode_string(aUrl.url());
+}
+
 IMAP4Protocol::IMAP4Protocol (const QCString & pool, const QCString & app, bool isSSL):TCPSlaveBase ((isSSL ? 993 : 143), (isSSL ? "imap4-ssl" : "imap4"), pool,
               app), imapParser (),
 mimeIO ()
@@ -180,7 +186,7 @@ IMAP4Protocol::get (const KURL & _url)
   imapCommand *cmd = NULL;
   if (!assureBox (aBox, true))
   {
-    error (ERR_COULD_NOT_READ, _url.url ());
+    error (ERR_COULD_NOT_READ, hidePass(_url));
     return;
   }
 
@@ -189,7 +195,7 @@ IMAP4Protocol::get (const KURL & _url)
       && selectInfo.uidValidity () != aValidity.toULong ())
   {
     // this url is stale
-    error (ERR_COULD_NOT_READ, _url.url ());
+    error (ERR_COULD_NOT_READ, hidePass(_url));
   }
   else
 #endif
@@ -338,7 +344,7 @@ IMAP4Protocol::listDir (const KURL & _url)
     }
     else
     {
-      error (ERR_CANNOT_ENTER_DIRECTORY, _url.url ());
+      error (ERR_CANNOT_ENTER_DIRECTORY, hidePass(_url));
     }
     completeQueue.removeRef (cmd);
 
@@ -473,14 +479,14 @@ IMAP4Protocol::listDir (const KURL & _url)
       }
       else
       {
-        error (ERR_CANNOT_ENTER_DIRECTORY, _url.url ());
+        error (ERR_CANNOT_ENTER_DIRECTORY, hidePass(_url));
       }
 //      completeQueue.removeRef(cmd);
     }
   }
   else
   {
-    error (ERR_CANNOT_ENTER_DIRECTORY, _url.url ());
+    error (ERR_CANNOT_ENTER_DIRECTORY, hidePass(_url));
   }
 
   qDebug ("IMAP4Protcol::listDir - Finishing listDir");
@@ -663,7 +669,7 @@ IMAP4Protocol::put (const KURL & _url, int permissions, bool overwrite,
     imapCommand *cmd = doCommand (imapCommand::clientCreate (aBox));
 
     if (cmd->result () != "OK")
-      error (ERR_COULD_NOT_WRITE, _url.url ());
+      error (ERR_COULD_NOT_WRITE, hidePass(_url));
     completeQueue.removeRef (cmd);
   }
   else
@@ -688,7 +694,7 @@ IMAP4Protocol::put (const KURL & _url, int permissions, bool overwrite,
 
     if (result != 0)
     {
-      error (ERR_ABORTED, _url.url ());
+      error (ERR_ABORTED, hidePass(_url));
       finished ();
       return;
     }
@@ -758,7 +764,7 @@ IMAP4Protocol::mkdir (const KURL & _url, int permissions)
   imapCommand *cmd = doCommand (imapCommand::clientCreate (aBox));
 
   if (cmd->result () != "OK")
-    error (ERR_COULD_NOT_MKDIR, _url.url ());
+    error (ERR_COULD_NOT_MKDIR, hidePass(_url));
 
   completeQueue.removeRef (cmd);
   finished ();
@@ -833,7 +839,7 @@ IMAP4Protocol::copy (const KURL & src, const KURL & dest, int permissions,
             if (cmd->result () == "OK")
               dType = ITYPE_BOX;
             else
-              error (ERR_COULD_NOT_WRITE, dest.url ());
+              error (ERR_COULD_NOT_WRITE, hidePass(dest));
           }
           completeQueue.removeRef (cmd);
         }
@@ -852,18 +858,18 @@ IMAP4Protocol::copy (const KURL & src, const KURL & dest, int permissions,
       imapCommand *cmd =
         doCommand (imapCommand::clientCopy (dBox, sSequence));
       if (cmd->result () != "OK")
-        error (ERR_COULD_NOT_WRITE, dest.url ());
+        error (ERR_COULD_NOT_WRITE, hidePass(dest));
       completeQueue.removeRef (cmd);
 
     }
     else
     {
-      error (ERR_ACCESS_DENIED, src.url ());
+      error (ERR_ACCESS_DENIED, hidePass(src));
     }
   }
   else
   {
-    error (ERR_ACCESS_DENIED, src.url ());
+    error (ERR_ACCESS_DENIED, hidePass(src));
   }
   finished ();
 }
@@ -886,7 +892,7 @@ IMAP4Protocol::del (const KURL & _url, bool isFile)
       {
         imapCommand *cmd = doCommand (imapCommand::clientExpunge ());
         if (cmd->result () != "OK")
-          error (ERR_CANNOT_DELETE, _url.url ());
+          error (ERR_CANNOT_DELETE, hidePass(_url));
         completeQueue.removeRef (cmd);
       }
       else
@@ -898,11 +904,11 @@ IMAP4Protocol::del (const KURL & _url, bool isFile)
             doCommand (imapCommand::
                        clientStore (aSequence, "+FLAGS", "\\DELETED"));
           if (cmd->result () != "OK")
-            error (ERR_CANNOT_DELETE, _url.url ());
+            error (ERR_CANNOT_DELETE, hidePass(_url));
           completeQueue.removeRef (cmd);
         }
         else
-          error (ERR_CANNOT_DELETE, _url.url ());
+          error (ERR_CANNOT_DELETE, hidePass(_url));
       }
     }
     else
@@ -915,7 +921,7 @@ IMAP4Protocol::del (const KURL & _url, bool isFile)
     {
       imapCommand *cmd = doCommand (imapCommand::clientDelete (aBox));
       if (cmd->result () != "OK")
-        error (ERR_COULD_NOT_RMDIR, _url.url ());
+        error (ERR_COULD_NOT_RMDIR, hidePass(_url));
       completeQueue.removeRef (cmd);
     }
     break;
@@ -929,16 +935,16 @@ IMAP4Protocol::del (const KURL & _url, bool isFile)
           doCommand (imapCommand::
                      clientStore (aSequence, "+FLAGS", "\\DELETED"));
         if (cmd->result () != "OK")
-          error (ERR_CANNOT_DELETE, _url.url ());
+          error (ERR_CANNOT_DELETE, hidePass(_url));
         completeQueue.removeRef (cmd);
       }
       else
-        error (ERR_CANNOT_DELETE, _url.url ());
+        error (ERR_CANNOT_DELETE, hidePass(_url));
     }
     break;
 
   case ITYPE_UNKNOWN:
-    error (ERR_CANNOT_DELETE, _url.url ());
+    error (ERR_CANNOT_DELETE, hidePass(_url));
     break;
   }
   finished ();
@@ -973,13 +979,13 @@ IMAP4Protocol::rename (const KURL & src, const KURL & dest, bool overwrite)
 
     case ITYPE_MSG:
     case ITYPE_UNKNOWN:
-      error (ERR_CANNOT_RENAME, src.url ());
+      error (ERR_CANNOT_RENAME, hidePass(src));
       break;
     }
   }
   else
   {
-    error (ERR_CANNOT_RENAME, src.url ());
+    error (ERR_CANNOT_RENAME, hidePass(src));
   }
   finished ();
 }
@@ -1093,7 +1099,7 @@ IMAP4Protocol::stat (const KURL & _url)
     break;
 
   case ITYPE_UNKNOWN:
-    error (ERR_DOES_NOT_EXIST, _url.url ());
+    error (ERR_DOES_NOT_EXIST, hidePass(_url));
     break;
   }
 
