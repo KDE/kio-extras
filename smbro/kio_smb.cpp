@@ -163,7 +163,7 @@ int SmbProtocol::readOutput(int fd)
 
    //+1 gives us room for a terminating 0
    char *newBuffer=new char[length+m_stdoutSize+1];
-   kdDebug(7101)<<"Smb::readStdout(): length: "<<length<<", m_stdoutSize: "<<m_stdoutSize<<" + 1 = "<<length+m_stdoutSize+1<<endl;
+   //kdDebug(7101)<<"Smb::readStdout(): length: "<<length<<", m_stdoutSize: "<<m_stdoutSize<<" + 1 = "<<length+m_stdoutSize+1<<endl;
    if (m_stdoutBuffer!=0)
    {
       memcpy(newBuffer, m_stdoutBuffer, m_stdoutSize);
@@ -222,12 +222,12 @@ bool SmbProtocol::stopAfterError(const KURL& url, bool notSureWhetherErrorOccure
    else if (outputString.contains("ERRSRV - ERRbadpw"))
    {
       //we should never get here
-      error( KIO::ERR_INTERNAL, i18n("Invalid user/password combination."));
+      error( KIO::ERR_COULD_NOT_STAT, m_currentHost+i18n("\nInvalid user/password combination."));
    }
    else if ((outputString.contains("ERRDOS")) && (outputString.contains("ERRnoaccess")))
    {
       //we should never get here
-      error( KIO::ERR_INTERNAL, i18n("Invalid user/password combination."));
+      error( KIO::ERR_COULD_NOT_STAT, m_currentHost+i18n("\nInvalid user/password combination."));
    }
    //file not found
    else if ((outputString.contains("ERRDOS")) && (outputString.contains("ERRbadfile")))
