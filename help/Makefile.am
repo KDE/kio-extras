@@ -45,17 +45,19 @@ install-data-local:
 	$(mkinstalldirs) $(DESTDIR)$(kde_datadir)/ksgmltools2
 	@echo "****************************************************"
 	@echo "** WARNING: I INSTALL LINKS HERE FOR EASIER DEVEL **"
-	@echo "** REMEMBER ME TO INSTALL THE FILES WHEN WE COME  **"
-	@echo "** NEAR A RELEASE.                  THANKS, COOLO **"
+	@echo "** DON'T REMEMBER ME TO INSTALL THE FILES WHEN WE **"
+	@echo "** COME NEAR A RELEASE.             THANKS, COOLO **"
 	@echo "****************************************************"
 	@pwd=`cd $(srcdir) && pwd` ;\
+	if false; then ;\
 	rm -rf $(DESTDIR)$(kde_datadir)/ksgmltools2/docbook ;\
 	$(LN_S) $$pwd/docbook $(DESTDIR)$(kde_datadir)/ksgmltools2/docbook ;\
 	rm -rf $(DESTDIR)$(kde_datadir)/ksgmltools2/customization ;\
 	$(LN_S) $$pwd/customization $(DESTDIR)$(kde_datadir)/ksgmltools2/customization
-
-	#-rm -rf $(DESTDIR)$(kde_datadir)/ksgmltools2/docbook
-	#cp -r $(srcdir)/docbook $(DESTDIR)$(kde_datadir)/ksgmltools2
-	#-rm -rf $(DESTDIR)$(kde_datadir)/ksgmltools2/customization
-	#cp -r $(srcdir)/customization $(DESTDIR)$(kde_datadir)/ksgmltools2
+	else \
+	-rm -rf $(DESTDIR)$(kde_datadir)/ksgmltools2/docbook ;\
+	cp -r $(srcdir)/docbook $(DESTDIR)$(kde_datadir)/ksgmltools2 ;\
+	-rm -rf $(DESTDIR)$(kde_datadir)/ksgmltools2/customization ;\
+	cp -r $(srcdir)/customization $(DESTDIR)$(kde_datadir)/ksgmltools2 ;\
+	fi
 
