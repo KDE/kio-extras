@@ -261,31 +261,25 @@ bool SMTPProtocol::getResponse(char *r_buf, unsigned int r_len) {
   // null terminated.
   recv_len=strlen(buf);
  
-/*
- *   From std010:
- *
-
- *
- */
- 
   // HERE WE CHECK THE SUCCESSFUL RESPONSES FIRST 1xy,2xy,3xy
   // AND THE ERROR RESPONSES SECOND               4xy,5xy
-  if (strncmp(buf, "250 ", 4)==0) {           // standard "OK"
+  switch(buf[0]) {
+  case '1':
+  case '2':
+  case '3':
     if (r_buf && r_len) {
       memcpy(r_buf, buf+4, QMIN(r_len,recv_len-4));
     }
     if (buf) free(buf);
     return true;
-  } else if (strncmp(buf, "354 ", 4)==0) {    // after DATA, says to continue
-  } else if (strncmp(buf, "220 ", 4)==0) {    // opening connection
-  } else if (strncmp(buf, "221 ", 4)==0) {    // closing connection
-  } else if (strncmp(buf, "-ERR ", 5)==0) {
+  case '4':
+  case '5':
     if (r_buf && r_len) {
-      memcpy(r_buf, buf+5, QMIN(r_len,recv_len-5));
+      memcpy(r_buf, buf+4, QMIN(r_len,recv_len-4));
     }
     if (buf) free(buf);
     return false;
-  } else {
+  default:
     fprintf(stderr, "Invalid SMTP response received!\n");
     if (r_buf && r_len) {
       memcpy(r_buf, buf, QMIN(r_len,recv_len));
