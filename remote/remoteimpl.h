@@ -17,27 +17,35 @@
    Boston, MA 02111-1307, USA.
 */
 
-#ifndef KIO_REMOTE_H
-#define KIO_REMOTE_H
+#ifndef REMOTEIMPL_H
+#define REMOTEIMPL_H
 
-#include <kio/slavebase.h>
-#include "remoteimpl.h"
+#include <kio/global.h>
+#include <kio/job.h>
+#include <kurl.h>
 
-class RemoteProtocol : public KIO::SlaveBase
+#include <qstring.h>
+
+class RemoteImpl
 {
 public:
-	RemoteProtocol(const QCString &protocol, const QCString &pool,
-	               const QCString &app);
-	virtual ~RemoteProtocol();
+	RemoteImpl();
 
-	virtual void listDir(const KURL &url);
-	virtual void stat(const KURL &url);
-	virtual void del(const KURL &url, bool isFile);
+	void createTopLevelEntry(KIO::UDSEntry &entry) const;
+	bool createWizardEntry(KIO::UDSEntry &entry) const;
+	bool isWizardURL(const KURL &url) const;
+	bool statNetworkFolder(KIO::UDSEntry &entry, const QString &filename) const;
+
+	void listRoot(QValueList<KIO::UDSEntry> &list) const;
+
+	KURL findBaseURL(const QString &filename) const;
+	
+	bool deleteNetworkFolder(const QString &filename) const;
 
 private:
-	void listRoot();
-	
-	RemoteImpl m_impl;
+	bool findDirectory(const QString &filename, QString &directory) const;
+	void createEntry(KIO::UDSEntry& entry, const QString &directory,
+	                 const QString &file) const;
 };
 
 #endif

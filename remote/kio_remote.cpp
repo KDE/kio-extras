@@ -25,17 +25,9 @@
 #include <dcopclient.h>
 #include <kcmdlineargs.h>
 #include <kglobal.h>
-#include <kstandarddirs.h>
-#include <kservice.h>
-#include <kmimetype.h>
-#include <kdesktopfile.h>
 
-#include <qdir.h>
 
 #include "kio_remote.h"
-
-#define WIZARD_URL "remote:/x-wizard_service.desktop"
-#define WIZARD_SERVICE "knetattach"
 
 static const KCmdLineOptions options[] =
 {
@@ -66,129 +58,13 @@ extern "C" {
 
 RemoteProtocol::RemoteProtocol(const QCString &protocol,
                                const QCString &pool, const QCString &app)
-	: ForwardingSlaveBase(protocol, pool, app)
+	: SlaveBase(protocol, pool, app)
 {
-	KGlobal::dirs()->addResourceType("remote_entries",
-		KStandardDirs::kde_default("data") + "remoteview");
-
-	QString path = KGlobal::dirs()->saveLocation("remote_entries");
-
-	QDir dir = path;
-	if (!dir.exists())
-	{
-		dir.cdUp();
-		dir.mkdir("remoteview");
-	}
-
-	m_baseURL.setPath(path);
 }
 
 RemoteProtocol::~RemoteProtocol()
 {
 }
-
-static void addAtom(KIO::UDSEntry& entry, unsigned int ID,
-                    long l, const QString& s = QString::null)
-{
-	KIO::UDSAtom atom;
-	atom.m_uds = ID;
-	atom.m_long = l;
-	atom.m_str = s;
-	entry.append(atom);
-}
-
-static KURL findWizardRealURL()
-{
-	KURL url;
-	KService::Ptr service = KService::serviceByDesktopName(WIZARD_SERVICE);
-
-	if (service && service->isValid())
-	{
-		url.setPath( locate("apps",
-				    service->desktopEntryPath())
-				);
-	}
-
-	return url;
-}
-
-static bool createWizardEntry(KIO::UDSEntry &entry)
-{
-	entry.clear();
-
-	KURL url = findWizardRealURL();
-
-	if (!url.isValid())
-	{
-		return false;
-	}
-
-	addAtom(entry, KIO::UDS_NAME, 0, i18n("Add a Network Folder"));
-	addAtom(entry, KIO::UDS_FILE_TYPE, S_IFREG);
-	addAtom(entry, KIO::UDS_URL, 0, WIZARD_URL);
-	addAtom(entry, KIO::UDS_LOCAL_PATH, 0, url.path());
-	addAtom(entry, KIO::UDS_ACCESS, 0500);
-	addAtom(entry, KIO::UDS_MIME_TYPE, 0, "application/x-desktop");
-	addAtom(entry, KIO::UDS_ICON_NAME, 0, "wizard");
-
-	return true;
-}
-
-
-bool RemoteProtocol::rewriteURL(const KURL &url, KURL &newUrl)
-{
-	newUrl = m_baseURL;
-	newUrl.addPath(url.path());
-
-	return true;
-}
-
-void RemoteProtocol::prepareUDSEntry(KIO::UDSEntry &entry, bool listing) const
-{
-	KIO::UDSEntry::iterator it = entry.begin();
-	KIO::UDSEntry::iterator end = entry.end();
-
-	QString name;
-
-	for(; it!=end; ++it)
-	{
-		if ( (*it).m_uds == KIO::UDS_NAME )
-		{
-			name = (*it).m_str;
-			break;
-		}
-	}
-
-	KURL remote = requestedURL();
-	KURL real = processedURL();
-
-	if (listing)
-	{
-		remote.addPath(name);
-		real.addPath(name);
-	}
-
-	QString mime = KMimeType::findByPath(real.path())->name();
-
-	if (mime == "application/x-desktop")
-	{
-		KDesktopFile desktop(real.path());
-
-		entry.clear();
-
-		addAtom(entry, KIO::UDS_NAME, 0, desktop.readName());
-		addAtom(entry, KIO::UDS_FILE_TYPE, S_IFDIR);
-		addAtom(entry, KIO::UDS_URL, 0, remote.url());
-		addAtom(entry, KIO::UDS_ACCESS, 0500);
-		addAtom(entry, KIO::UDS_MIME_TYPE, 0, "inode/directory");
-		addAtom(entry, KIO::UDS_ICON_NAME, 0, desktop.readIcon());
-
-		return;
-	}
-
-	ForwardingSlaveBase::prepareUDSEntry(entry, listing);
-}
-
 
 void RemoteProtocol::listDir(const KURL &url)
 {
@@ -196,39 +72,70 @@ void RemoteProtocol::listDir(const KURL &url)
 
 	if ( url.path().length() <= 1 )
 	{
-		KIO::UDSEntry entry;
-		if ( createWizardEntry(entry) )
-		{
-			listEntry(entry, false);
-			listEntry(entry, true);
-		}
+		listRoot();
+		return;
 	}
-	else
+
+	KURL target = m_impl.findBaseURL( url.fileName() );
+	kdDebug() << "possible redirection target : " << target << endl;
+	if( target.isValid() )
 	{
-		KURL new_url;
-		rewriteURL(url, new_url);
-		QString mime = KMimeType::findByPath(new_url.path())->name();
-		if (mime =="application/x-desktop")
-		{
-			KDesktopFile desktop(new_url.path(), true);
-
-			redirection(desktop.readURL());
-			finished();
-			return;
-		}
+		redirection(target);
+		finished();
+		return;
 	}
 
-	ForwardingSlaveBase::listDir(url);
+	error(KIO::ERR_MALFORMED_URL, url.prettyURL());
+}
+
+void RemoteProtocol::listRoot()
+{
+	KIO::UDSEntry entry;
+
+	KIO::UDSEntryList remote_entries;
+        m_impl.listRoot(remote_entries);
+
+	totalSize(remote_entries.count()+2);
+
+	m_impl.createTopLevelEntry(entry);
+	listEntry(entry, false);
+	
+	m_impl.createWizardEntry(entry);
+	listEntry(entry, false);
+
+	KIO::UDSEntryListIterator it = remote_entries.begin();
+	KIO::UDSEntryListIterator end = remote_entries.end();
+
+	for(; it!=end; ++it)
+	{
+		listEntry(*it, false);
+	}
+
+	entry.clear();
+	listEntry(entry, true);
+
+	finished();
 }
 
 void RemoteProtocol::stat(const KURL &url)
 {
 	kdDebug() << "RemoteProtocol::stat: " << url << endl;
+ 
+	QString path = url.path();
+	if ( path.isEmpty() || path == "/" )
+	{
+		// The root is "virtual" - it's not a single physical directory
+		KIO::UDSEntry entry;
+		m_impl.createTopLevelEntry( entry );
+		statEntry( entry );
+		finished();
+		return;
+	}
 
-	if (url == KURL(WIZARD_URL))
+	if (m_impl.isWizardURL(url))
 	{
 		KIO::UDSEntry entry;
-		if (createWizardEntry(entry))
+		if (m_impl.createWizardEntry(entry))
 		{
 			statEntry(entry);
 			finished();
@@ -240,7 +147,28 @@ void RemoteProtocol::stat(const KURL &url)
 		return;
 	}
 
-	ForwardingSlaveBase::stat(url);
+	KIO::UDSEntry entry;
+	if (m_impl.statNetworkFolder(entry, url.fileName()))
+	{
+		statEntry(entry);
+		finished();
+		return;
+	}
+
+	error(KIO::ERR_MALFORMED_URL, url.prettyURL());
 }
 
-#include "kio_remote.moc"
+void RemoteProtocol::del(const KURL &url, bool /*isFile*/)
+{
+	kdDebug() << "RemoteProtocol::del: " << url << endl;
+
+	if (!m_impl.isWizardURL(url)
+	 && m_impl.deleteNetworkFolder(url.fileName()))
+	{
+		finished();
+		return;
+	}
+
+	error(KIO::ERR_CANNOT_DELETE, url.prettyURL());
+}
+

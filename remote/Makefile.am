@@ -16,7 +16,7 @@ dummy.cpp:
 kde_services_DATA = remote.protocol
 
 noinst_LTLIBRARIES = libkioremote.la
-libkioremote_la_SOURCES = kio_remote.cpp
+libkioremote_la_SOURCES = kio_remote.cpp remoteimpl.cpp
 
 check_PROGRAMS = testremote
 testremote_SOURCES = testremote.cpp
