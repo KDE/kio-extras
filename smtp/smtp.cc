@@ -557,7 +557,7 @@ bool SMTPProtocol::smtp_open()
     } else if (metaData("tls") == "on") {
       if (!errorSent)
         error(ERR_COULD_NOT_LOGIN,
-              i18n("Your SMTP server does not support TLS. Disable\n"
+              i18n("Your SMTP server does not support TLS. Disable "
                    "TLS, if you want to connect without encryption."));
       return false;
     }

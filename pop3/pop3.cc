@@ -409,7 +409,7 @@ bool POP3Protocol::pop3_open()
       }
     } else if (metaData("tls") == "on") {
       error(ERR_COULD_NOT_CONNECT,
-            i18n("Your POP3 server does not support TLS. Disable\n"
+            i18n("Your POP3 server does not support TLS. Disable "
                  "TLS, if you want to connect without encryption."));
       return false;
     }
