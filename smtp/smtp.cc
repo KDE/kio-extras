@@ -495,12 +495,17 @@ bool SMTPProtocol::smtp_open()
                         messageBox(Information,
                                    i18n("Your SMTP server claims to "
                                         "support TLS but negotiation "
-                                        "was unsuccessful.  You can "
+                                        "was unsuccessful.\nYou can "
                                         "disable TLS in KDE using the "
                                         "crypto settings module."),
                                    i18n("Connection Failed"));
                       }
                       return false;
+                   }
+                   if (!command(ASCII("HELO " + QCString(hostname, 100)))) {
+                     error(ERR_COULD_NOT_LOGIN, i18n("The server said: %1").arg(lastError));
+                     smtp_close();
+                     return false;
                    }
                 }
 		else if (metaData("tls") == "on")
