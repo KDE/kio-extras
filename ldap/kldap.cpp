@@ -207,7 +207,7 @@ SearchRequest::SearchRequest(Connection &c, RunMode m)
 }
 
 
-SearchRequest::SearchRequest(Connection &c, const char *_url, RunMode m)
+SearchRequest::SearchRequest(Connection &c, QString _url, RunMode m)
   : Request(c,m), _base(""), _filter("(objectClass=*"), _scope(LDAP_SCOPE_SUBTREE),
     _attrsonly(0), entry(0)
 {

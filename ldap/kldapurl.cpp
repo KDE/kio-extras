@@ -88,7 +88,7 @@ QStrList &Url::attributes()
     {
       QString item(it);
       item = decode_string(item);
-      _attr_decoded.append(item);
+      _attr_decoded.append(item.latin1());
     }
   
   return _attr_decoded;

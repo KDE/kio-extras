@@ -25,7 +25,7 @@ namespace KLDAP
    *
    * @short Base class of all LDAP objects.
    * @author Matthias Hoelzer-Kluepfel <hoelzer@kde.org>
-   * @version $Id:$
+   * @version $Id$
    */
   class LDAPBase
   {
@@ -98,7 +98,7 @@ namespace KLDAP
    *
    * @short A LDAP connection.
    * @author Matthias Hoelzer-Kluepfel <hoelzer@kde.org>
-   * @version $Id:$
+   * @version $Id$
    */
   class Connection : public LDAPBase
   {
@@ -215,7 +215,7 @@ namespace KLDAP
    *
    * @short A LDAP attribute.
    * @author Matthias Hoelzer-Kluepfel <hoelzer@kde.org>
-   * @version $Id:$
+   * @version $Id$
    *
    */
   class Attribute : public LDAPBase
@@ -291,7 +291,7 @@ namespace KLDAP
    *
    * @short A LDAP entry.
    * @author Matthias Hoelzer-Kluepfel <hoelzer@kde.org>
-   * @version $Id:$
+   * @version $Id$
    *
    */
   class Entry : public LDAPBase
@@ -361,7 +361,7 @@ namespace KLDAP
    *
    * @short Base class for LDAP requests.
    * @author Matthias Hoelzer-Kluepfel <hoelzer@kde.org>
-   * @version $Id:$
+   * @version $Id$
    *
    */
   class Request : public LDAPBase
@@ -528,7 +528,7 @@ namespace KLDAP
      * @param m The mode for the request.
      *
      */
-    SearchRequest(Connection &c, const char *_url, RunMode m=Asynchronous);
+    SearchRequest(Connection &c, QString _url, RunMode m=Asynchronous);
 
     /// Derived method from Request.
     virtual bool execute();
