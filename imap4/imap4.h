@@ -31,15 +31,17 @@
 
 #define IMAP_BUFFER 8192
 
+/** @brief type of object the url refers too */
 enum IMAP_TYPE
 {
-  ITYPE_UNKNOWN,
-  ITYPE_DIR,
-  ITYPE_BOX,
-  ITYPE_DIR_AND_BOX,
-  ITYPE_MSG
+  ITYPE_UNKNOWN, /*< unknown type */
+  ITYPE_DIR,     /*< Object is a directory. i.e. does not contain message, just mailboxes */
+  ITYPE_BOX,     /*< Object is a mailbox. i.e. contains mails */
+  ITYPE_DIR_AND_BOX, /*< Object contains both mails and mailboxes */
+  ITYPE_MSG   /*< Object is a mail */
 };
 
+/** @brief IOSlave derived class */
 class IMAP4Protocol:public
   KIO::TCPSlaveBase,
   public
@@ -77,26 +79,32 @@ public:
   virtual void copy (const KURL & src, const KURL & dest, int permissions,
     bool overwrite);
 
-  // reimplement the parser
-  // relay hook to send the fetched data directly to an upper level
+  /** @brief reimplement the parser
+   * relay hook to send the fetched data directly to an upper level 
+   */
   virtual void parseRelay (const QByteArray & buffer);
 
-  // relay hook to announce the fetched data directly to an upper level
+  /** @brief reimplement the parser
+   * relay hook to announce the fetched data directly to an upper level
+   */
   virtual void parseRelay (ulong);
 
-  // read at least len bytes
+  /** @brief reimplement the parser
+   * read at least len bytes */
   virtual bool parseRead (QByteArray &buffer,ulong len,ulong relay=0);
 
-  // read at least a line (up to CRLF)
+  /** @brief reimplement the parser
+   * @brief read at least a line (up to CRLF) */
   virtual bool parseReadLine (QByteArray & buffer, ulong relay = 0);
 
-  // write argument to the server
+  /** @brief reimplement the parser
+   * @brief write argument to the server */
   virtual void parseWriteLine (const QString &);
 
-  // reimplement the mimeIO
+  /** @brief reimplement the mimeIO */
   virtual int outputLine (const QCString & _str);
 
-  // send out cached data to the application
+  /** @brief send out cached data to the application */
   virtual void flushOutput();
 
 protected:

@@ -26,7 +26,8 @@
 #include <qstringlist.h>
 #include <qstring.h>
 
-/** @class imapCommand
+/** 
+ *  @brief encapulate a IMAP command
  *  @author Svenn Carstens
  *  @date 2000
  *  @todo fix the documentation

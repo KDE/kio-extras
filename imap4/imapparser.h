@@ -40,6 +40,11 @@ class QString;
 class mailAddress;
 class mimeHeader;
 
+/** @brief a string used during parsing 
+ * the string allows you to move the effective start of the string using
+ * str.pos++ and str.pos--. 
+ * @bug it is possible to move past the beginning and end of the string
+ */
 class parseString
 {
 public:
@@ -175,9 +180,12 @@ public:
     imapParser ();
     virtual ~ imapParser ();
 
+  /** @brief Get the current state */
   virtual enum IMAP_STATE getState () { return currentState; }
+  /** @brief Set the current state */
   virtual void setState(enum IMAP_STATE state) { currentState = state; }
 
+  /* @brief return the currently selected mailbox */
   const QString getCurrentBox ()
   {
     return rfcDecoder::fromIMAP(currentBox);
@@ -229,16 +237,26 @@ public:
    */
   void parseUntagged (parseString & result);
 
+  /** @brief parse a RECENT line */
   void parseRecent (ulong value, parseString & result);
+  /** @brief parse a RESULT line */
   void parseResult (QByteArray & result, parseString & rest,
                     const QString & command = QString::null);
+  /** @brief parse a CAPABILITY line */
   void parseCapability (parseString & result);
+  /** @brief parse a FLAGS line */
   void parseFlags (parseString & result);
+  /** @brief parse a LIST line */
   void parseList (parseString & result);
+  /** @brief parse a LSUB line */
   void parseLsub (parseString & result);
+  /** @brief parse a SEARCH line */
   void parseSearch (parseString & result);
+  /** @brief parse a STATUS line */
   void parseStatus (parseString & result);
+  /** @brief parse a EXISTS line */
   void parseExists (ulong value, parseString & result);
+  /** @brief parse a EXPUNGE line */
   void parseExpunge (ulong value, parseString & result);
 
   /**
@@ -249,7 +267,9 @@ public:
 
   /** read a envelope from imap and parse the adresses */
   mailHeader *parseEnvelope (parseString & inWords);
+  /** @brief parse an address list and return a list of addresses */
   QValueList < mailAddress > parseAdressList (parseString & inWords);
+  /** @brief parse an address and return it */
   mailAddress parseAdress (parseString & inWords);
 
   /** parse the result of the body command */
@@ -318,20 +338,26 @@ public:
                         QString & _type, QString & _uid, QString & _validity);
 
 
+ /** @brief return the last handled foo 
+  * @todo work out what a foo is
+  */
   imapCache *getLastHandled ()
   {
     return lastHandled;
   };
 
+/** @brief return the last results */
   const QStringList & getResults ()
   {
     return lastResults;
   };
 
+  /** @brief return the last status code */
   const imapInfo & getStatus ()
   {
     return lastStatus;
   };
+  /** return the select info */
   const imapInfo & getSelected ()
   {
     return selectInfo;
@@ -342,6 +368,7 @@ public:
     return continuation;
   };
 
+  /** @brief see if server has a capability */
   bool hasCapability (const QString &);
 
 protected:
@@ -352,19 +379,19 @@ protected:
   /** the box selected */
   QString currentBox;
 
-  /** here we store the result from select/examine and unsolicited updates */
+  /** @brief here we store the result from select/examine and unsolicited updates */
   imapInfo selectInfo;
 
-  /** the results from the last status command */
+  /** @brief the results from the last status command */
   imapInfo lastStatus;
 
-  /** the results from the capabilities, split at ' ' */
+  /** @brief the results from the capabilities, split at ' ' */
   QStringList imapCapabilities;
 
-  /** the results from list/lsub commands */
+  /** @brief the results from list/lsub commands */
   QValueList < imapList > listResponses;
 
-  /** queues handling the running commands */
+  /** @brief queues handling the running commands */
   QPtrList < imapCommand > sentQueue;  // no autodelete
   QPtrList < imapCommand > completeQueue;  // autodelete !!
 
@@ -385,6 +412,8 @@ protected:
   QStringList lastResults;
 
 private:
+
+  /** we don't want to be able to copy this object */
   imapParser & operator = (const imapParser &); // hide the copy ctor
 
 };

@@ -23,30 +23,28 @@
  *
  *********************************************************************/
 
-/*
-  References:
-    RFC 2060 - Internet Message Access Protocol - Version 4rev1 - December 1996
-    RFC 2192 - IMAP URL Scheme - September 1997
-    RFC 1731 - IMAP Authentication Mechanisms - December 1994
-               (Discusses KERBEROSv4, GSSAPI, and S/Key)
-    RFC 2195 - IMAP/POP AUTHorize Extension for Simple Challenge/Response
-             - September 1997 (CRAM-MD5 authentication method)
-    RFC 2104 - HMAC: Keyed-Hashing for Message Authentication - February 1997
-
-  Supported URLs:
-    imap://server/ - Prompt for user/pass, list all folders in home directory
-    imap://user:pass@server/ - Uses LOGIN to log in
-    imap://user;AUTH=method:pass@server/ - Uses AUTHENTICATE to log in
-
-    imap://server/folder/ - List messages in folder
+/**
+ * @class IMAP4Protocol
+ * @note References:
+ *   - RFC 2060 - Internet Message Access Protocol - Version 4rev1 - December 1996
+ *   - RFC 2192 - IMAP URL Scheme - September 1997
+ *   - RFC 1731 - IMAP Authentication Mechanisms - December 1994
+ *              (Discusses KERBEROSv4, GSSAPI, and S/Key)
+ *   - RFC 2195 - IMAP/POP AUTHorize Extension for Simple Challenge/Response
+ *            - September 1997 (CRAM-MD5 authentication method)
+ *   - RFC 2104 - HMAC: Keyed-Hashing for Message Authentication - February 1997
+ *   .
+ * Supported URLs:
+ *   - imap://server/ - Prompt for user/pass, list all folders in home directory
+ *   - imap://user:pass@server/ - Uses LOGIN to log in
+ *   - imap://user;AUTH=method:pass@server/ - Uses AUTHENTICATE to log in
+ *   - imap://server/folder/ - List messages in folder
+ *
+ * @note API notes:
+ *   Not recieving the required write access for a folder means
+ *       ERR_CANNOT_OPEN_FOR_WRITING.
+ *  ERR_DOES_NOT_EXIST is reserved for folders.
  */
-
-/*
-  API notes:
-    Not recieving the required write access for a folder means
-        ERR_CANNOT_OPEN_FOR_WRITING.
-    ERR_DOES_NOT_EXIST is reserved for folders.
-*/
 
 #ifdef HAVE_CONFIG_H
 #include <config.h>
