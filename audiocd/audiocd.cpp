@@ -132,7 +132,7 @@ class AudioCDProtocol::Private
     QString fname;
 };
 
-AudioCDProtocol::AudioCDProtocol(const QCString & pool, const QCString & app)
+AudioCDProtocol::AudioCDProtocol (const QCString & pool, const QCString & app)
   : SlaveBase("audiocd", pool, app)
 {
   d = new Private;
@@ -376,20 +376,23 @@ AudioCDProtocol::updateCD(struct cdrom_drive * drive)
     }
   qvl.append(cdda_track_lastsector(drive, d->tracks) + 150 + 1);
 
-  d->cddb->set_server(d->cddbServer.latin1(), d->cddbPort);
-
-  if (d->useCDDB && d->cddb->queryCD(qvl))
+  if (d->useCDDB)
     {
-      d->based_on_cddb = true;
-      d->cd_title = d->cddb->title();
-      d->cd_artist = d->cddb->artist();
-      for (int i = 0; i < d->tracks; i++)
+      d->cddb->set_server(d->cddbServer.latin1(), d->cddbPort);
+
+      if (d->cddb->queryCD(qvl))
         {
-          QString n;
-          n.sprintf("%02d ", i + 1);
-          d->titles.append (n + d->cddb->track(i));
+          d->based_on_cddb = true;
+          d->cd_title = d->cddb->title();
+          d->cd_artist = d->cddb->artist();
+          for (int i = 0; i < d->tracks; i++)
+            {
+              QString n;
+              n.sprintf("%02d ", i + 1);
+              d->titles.append (n + d->cddb->track(i));
+            }
+          return;
         }
-      return;
     }
 
   d->based_on_cddb = false;
@@ -607,6 +610,10 @@ AudioCDProtocol::pickDrive()
   void
 AudioCDProtocol::parseArgs(const KURL & url)
 {
+  QString old_cddb_server = d->cddbServer;
+  int old_cddb_port = d->cddbPort;
+  bool old_use_cddb = d->useCDDB;
+
   d->clear();
 
   QString query(KURL::decode_string(url.query()));
@@ -656,6 +663,16 @@ AudioCDProtocol::parseArgs(const KURL & url)
       }
     }
   }
+
+  /* We need to recheck the CD, if the user either enabled CDDB now, or
+     changed the server (port).  We simply reset the saved discid, which
+     forces a reread of CDDB information.  */
+  if ((old_use_cddb != d->useCDDB && d->useCDDB == true)
+      || old_cddb_server != d->cddbServer
+      || old_cddb_port != d->cddbPort)
+    d->discid = 0;
+
+  kdDebug(7101) << "CDDB: use_cddb = " << d->useCDDB << endl;
 }
 
   void
