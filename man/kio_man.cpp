@@ -116,15 +116,37 @@ MANProtocol::MANProtocol(const QCString &pool_socket, const QCString &app_socket
     common_dir = KGlobal::dirs()->findResourceDir( "html", "en/common/kde-common.css" );
     section_names << "1" << "2" << "3" << "3n" << "3p" << "4" << "5" << "6" << "7"
     << "8" << "9" << "l" << "n";
-    myStdStream = new QString();
 }
 
 MANProtocol *MANProtocol::self() { return _self; }
 
 MANProtocol::~MANProtocol()
 {
-  delete myStdStream;
     _self = 0;
+}
+
+void MANProtocol::parseWhatIs( QMap<QString, QString> &i, QTextStream &t, const QString &mark )
+{
+    QRegExp re( mark );
+    QString l;
+    while ( !t.atEnd() )
+    {
+	l = t.readLine();
+	int pos = re.search( l );
+	if (pos != -1)
+	{
+	    QString names = l.left(pos);
+	    QString descr = l.mid(pos + re.matchedLength());
+	    while ((pos = names.find(",")) != -1)
+	    {
+		i[names.left(pos++)] = descr;
+		while (names[pos] == ' ')
+		    pos++;
+		names = names.mid(pos);
+	    }
+	    i[names] = descr;
+	}
+    }
 }
 
 bool MANProtocol::addWhatIs(QMap<QString, QString> &i, const QString &name, const QString &mark)
@@ -132,27 +154,8 @@ bool MANProtocol::addWhatIs(QMap<QString, QString> &i, const QString &name, cons
     QFile f(name);
     if (!f.open(IO_ReadOnly))
         return false;
-    QRegExp re( mark );
     QTextStream t(&f);
-    QString l;
-    while (!t.eof())
-    {
-	    l = t.readLine();
-	    int pos = re.search( l );
-	    if (pos != -1)
-	    {
-	    	QString names = l.left(pos);
-		QString descr = l.mid(pos + re.matchedLength());
-		while ((pos = names.find(",")) != -1)
-		{
-		    i[names.left(pos++)] = descr;
-		    while (names[pos] == ' ')
-		    	pos++;
-		    names = names.mid(pos);
-		}
-		i[names] = descr;
-	    }
-    }
+    parseWhatIs( i, t, mark );
     return true;
 }
 
@@ -170,13 +173,26 @@ QMap<QString, QString> MANProtocol::buildIndexMap(const QString &section)
           it_dir != man_dirs.end();
           it_dir++ )
     {
-    	for ( QStringList::ConstIterator it_name = names.begin();
-	      it_name != names.end();
-	      it_name++ )
-        {
-	    if (addWhatIs(i, (*it_dir) + "/" + (*it_name), mark))
-		break;
-	}
+        if ( QFile::exists( *it_dir ) ) {
+    	    QStringList::ConstIterator it_name;
+            for ( it_name = names.begin();
+	          it_name != names.end();
+	          it_name++ )
+            {
+	        if (addWhatIs(i, (*it_dir) + "/" + (*it_name), mark))
+		    break;
+	    }
+            if ( it_name == names.end() ) {
+                KProcess proc;
+                proc << "whatis" << "-M" << (*it_dir) << "-w" << "*";
+                myStdStream = QString::null;
+                connect( &proc, SIGNAL( receivedStdout(KProcess *, char *, int ) ),
+                         SLOT( slotGetStdOutput( KProcess *, char *, int ) ) );
+                proc.start( KProcess::Block, KProcess::Stdout );
+                QTextStream t( &myStdStream, IO_ReadOnly );
+                parseWhatIs( i, t, mark );
+            }
+        }
     }
     return i;
 }
@@ -425,7 +441,7 @@ void MANProtocol::get(const KURL& url )
 
 void MANProtocol::slotGetStdOutput(KProcess* /* p */, char *s, int len)
 {
-  *myStdStream += QString::fromLocal8Bit(s, len);
+  myStdStream += QString::fromLocal8Bit(s, len);
 }
 
 char *MANProtocol::readManPage(const char *_filename)
@@ -442,7 +458,7 @@ char *MANProtocol::readManPage(const char *_filename)
     //QString file_mimetype = KMimeType::findByPath(QString(filename), 0, false)->name();
     if (filename.contains("sman", false)) //file_mimetype == "text/html" || )
       {
-	*myStdStream="";
+	myStdStream = "";
 	KProcess proc;
 
 	/* Determine path to sgml2roff, if not already done. */
@@ -453,7 +469,7 @@ char *MANProtocol::readManPage(const char *_filename)
 			      this, SLOT(slotGetStdOutput(KProcess *, char *, int)));
 	proc.start(KProcess::Block, KProcess::All);
 
-	buf = (char*)myStdStream->latin1();
+	buf = (char*)myStdStream.latin1();
 	// Does not work (return string is empty): buf = QCString(myStdStream->local8Bit());
       }
     else
@@ -1097,7 +1113,7 @@ void MANProtocol::showIndex(const QString& section)
     {
 	os << "<tr><td><a href=\"man:" << it.data() << "\">\n"
 	   << it.key() << "</a></td><td>&nbsp;</td><td> "
-	   << (indexmap.contains(it.key()) ? indexmap[it.key()] : i18n("no idea"))
+	   << (indexmap.contains(it.key()) ? indexmap[it.key()] : "" )
 	   << "</td></tr>"  << endl;
     }
 
@@ -1232,7 +1248,7 @@ void MANProtocol::showIndex(const QString& section)
 	((char *)manindex->manpage_begin)[manindex->manpage_len] = '\0';
 	os << manindex->manpage_begin
 	   << "</a></td><td>&nbsp;</td><td> "
-	   << (indexmap.contains(manindex->manpage_begin) ? indexmap[manindex->manpage_begin] : i18n("no idea"))
+	   << (indexmap.contains(manindex->manpage_begin) ? indexmap[manindex->manpage_begin] : "" )
 	   << "</td></tr>"  << endl;
 	last_index = manindex;
     }
@@ -1273,7 +1289,7 @@ void MANProtocol::showIndex(const QString& section)
 	manindex->manpage_begin[manindex->manpage_len] = '\0';
 	os << manindex->manpage_begin
 	   << "</a></td><td>&nbsp;</td><td> "
-	   << (indexmap.contains(manindex->manpage_begin) ? indexmap[manindex->manpage_begin] : i18n("no idea"))
+	   << (indexmap.contains(manindex->manpage_begin) ? indexmap[manindex->manpage_begin] : "" )
 	   << "</td></tr>"  << endl;
 	last_index = manindex;
     }
