@@ -71,7 +71,7 @@ public:
 
   /**
     * Attempt to initiate a POP3 connection via a TCP socket.  If no port
-    * is passed, port 143 is assumed, if no user &&|| password is
+    * is passed, port 110 is assumed, if no user || password is
     * specified, the user is prompted for them.
     */
   bool pop3_open (KURL &_url);
