@@ -144,9 +144,9 @@ void FingerProtocol::get(const KURL& url )
 /* ---------------------------------------------------------------------------------- */
 
 
-void FingerProtocol::slotGetStdOutput(KProcess* /* p */, char *stdout, int len) {
+void FingerProtocol::slotGetStdOutput(KProcess* /* p */, char *s, int len) {
   //kdDebug() <<  "void FingerProtocol::slotGetStdoutOutput()" << endl;		
-  *myStdStream += QString::fromLocal8Bit(stdout, len);
+  *myStdStream += QString::fromLocal8Bit(s, len);
 }
 
 
