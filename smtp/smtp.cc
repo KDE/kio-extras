@@ -414,7 +414,7 @@ int SMTPProtocol::getResponse(char *r_buf, unsigned int r_len)
   }
 
   if (recv_len < 4) {
-    error(ERR_NO_CONTENT, i18n("Invalid SMTP response recieved."));
+    error(ERR_NO_CONTENT, i18n("Invalid SMTP response received."));
     errorSent = true;
     return 999;
   }
@@ -434,7 +434,7 @@ int SMTPProtocol::getResponse(char *r_buf, unsigned int r_len)
         return 999;
       }
       if (recv_len < 4) {
-        error(ERR_NO_CONTENT, i18n("Invalid SMTP response recieved."));
+        error(ERR_NO_CONTENT, i18n("Invalid SMTP response received."));
         errorSent = true;
         return 999;
       }
@@ -460,7 +460,7 @@ int SMTPProtocol::getResponse(char *r_buf, unsigned int r_len)
       error(ERR_CONNECTION_BROKEN, m_sServer);
     else
       error(ERR_NO_CONTENT,
-            i18n("Invalid SMTP response recieved: %1").arg(lastError));
+            i18n("Invalid SMTP response received: %1").arg(lastError));
     errorSent = true;
     return 999;
   }
@@ -546,7 +546,7 @@ bool SMTPProtocol::smtp_open()
           kdDebug() << "TLS negotiation failed!" << endl;
           messageBox(Information,
                      i18n("Your SMTP server claims to "
-                          "support TLS but negotiation "
+                          "support TLS, but negotiation "
                           "was unsuccessful.\nYou can "
                           "disable TLS in KDE using the "
                           "crypto settings module."),
