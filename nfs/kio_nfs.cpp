@@ -68,6 +68,50 @@
 #define NFSVERS ((u_long)2)
 
 
+//this is taken from kdelibs/kdecore/fakes.cpp
+//#if !defined(HAVE_GETDOMAINNAME)
+
+#include <sys/utsname.h> 
+#include <netdb.h>
+#include <strings.h>
+#include <errno.h>
+#include <stdio.h>
+
+int x_getdomainname(char *name, size_t len)
+{
+   struct utsname uts;
+   struct hostent *hent;
+   int rv = -1;
+
+   if (name == 0L)
+      errno = EINVAL;
+   else
+   {
+      name[0] = '\0';
+      if (uname(&uts) >= 0)
+      {
+         if ((hent = gethostbyname(uts.nodename)) != 0L)
+         {
+            char *p = strchr(hent->h_name, '.');
+            if (p != 0L)
+            {
+               ++p;
+               if (strlen(p) > len-1)
+                  errno = EINVAL;
+               else
+               {
+                  strcpy(name, p);
+                  rv = 0;
+               }
+            }
+         }
+      }
+   }
+   return rv;
+}
+//#endif
+
+
 using namespace KIO;
 
 extern "C" { int kdemain(int argc, char **argv); }
@@ -274,7 +318,7 @@ NFSFileHandle NFSProtocol::getFileHandle(QString path)
    QCString tmpStr=QFile::encodeName(lastPart);
    dirargs.name=tmpStr.data();
 
-   cerr<<"calling rpc: FH: -"<<parentFH<<"- with name -"<<dirargs.name<<"-"<<endl;
+   //cerr<<"calling rpc: FH: -"<<parentFH<<"- with name -"<<dirargs.name<<"-"<<endl;
 
    int clnt_stat = clnt_call(m_client, NFSPROC_LOOKUP,
                          (xdrproc_t) xdr_diropargs, (char*)&dirargs,
@@ -299,7 +343,6 @@ void NFSProtocol::openConnection()
 {
    kdDebug(7101)<<"NFS::openConnection"<<endl;
    struct sockaddr_in server_addr;
-   kdDebug(7101)<<1<<endl;
    if (m_currentHost[0] >= '0' && m_currentHost[0] <= '9')
    {
       server_addr.sin_family = AF_INET;
@@ -336,8 +379,30 @@ void NFSProtocol::openConnection()
          return;
       }
    }
-   //TODO I think localhost isn't the right thing, is it ?
-   m_client->cl_auth = authunix_create("localhost",geteuid(),getegid(),0,0);
+   QCString hostName("localhost");
+   char nameBuffer[1024];
+   if (gethostname(nameBuffer,1024)==0)
+   {
+      hostName=nameBuffer;
+      // I have the same problem here as Stefan Westerfeld, that's why I use
+      // the getdomainname() from fakes.cpp (renamed to x_getdomainname()), this one works
+      // taken from kdelibs/arts/mcopy/mcoputils.cc
+      if (x_getdomainname(nameBuffer,1024)==0)
+      {
+         /*
+          * I don't know why, but on my linux machine, the domainname
+          * always ends up being (none), which is certainly no valid
+          * domainname
+          */
+         if(strcmp(nameBuffer,"(none)") != 0)
+         {
+            hostName += ".";
+            hostName += nameBuffer;
+         }
+      }
+   };
+   kdDebug(7101)<<"hostname is -"<<hostName<<"-"<<endl;
+   m_client->cl_auth = authunix_create(hostName.data(),geteuid(),getegid(),0,0);
    total_timeout.tv_sec = 20;
    total_timeout.tv_usec = 0;
 
@@ -348,7 +413,6 @@ void NFSProtocol::openConnection()
    int clnt_stat = clnt_call(m_client, MOUNTPROC_EXPORT,(xdrproc_t) xdr_void, NULL,
                          (xdrproc_t) xdr_exports, (char*)&exportlist,total_timeout);
    if (!checkForError(clnt_stat,0,m_currentHost.latin1())) return;
-   kdDebug(7101)<<"NFS::openConnection parsing exportList"<<endl;
 
    fhstatus fhStatus;
    for(; exportlist!=0;exportlist = exportlist->ex_next)
@@ -364,7 +428,7 @@ void NFSProtocol::openConnection()
          fh=fhStatus.fhstatus_u.fhs_fhandle;
          m_handleCache.insert(QString("/")+KIO::encodeFileName(exportlist->ex_dir),fh);
          m_exportedDirs.append(KIO::encodeFileName(exportlist->ex_dir));
-         cerr<<"appending file -"<<KIO::encodeFileName(exportlist->ex_dir).latin1()<<"- with FH: -"<<fhStatus.fhstatus_u.fhs_fhandle<<"-"<<endl;
+         //cerr<<"appending file -"<<KIO::encodeFileName(exportlist->ex_dir).latin1()<<"- with FH: -"<<fhStatus.fhstatus_u.fhs_fhandle<<"-"<<endl;
       }
       else
       {
@@ -385,9 +449,9 @@ void NFSProtocol::openConnection()
       error( ERR_COULD_NOT_CONNECT, m_currentHost.latin1());
       return;
    };
-   m_client->cl_auth = authunix_create("localhost",geteuid(),getegid(),0,0);
-   kdDebug(7101)<<"openConnection succeeded"<<endl;
+   m_client->cl_auth = authunix_create(hostName.data(),geteuid(),getegid(),0,0);
    connected();
+   kdDebug(7101)<<"openConnection succeeded"<<endl;
 }
 
 void NFSProtocol::listDir( const KURL& _url)
@@ -432,7 +496,7 @@ void NFSProtocol::listDir( const KURL& _url)
    kdDebug(7101)<<"getting subdir -"<<path<<"-"<<endl;
    stripTrailingSlash(path);
    NFSFileHandle fh=getFileHandle(path);
-   cerr<<"this is the fh: -"<<fh<<"-"<<endl;
+   //cerr<<"this is the fh: -"<<fh<<"-"<<endl;
    if (fh.isInvalid())
    {
       error( ERR_DOES_NOT_EXIST, path);
@@ -489,7 +553,7 @@ void NFSProtocol::listDir( const KURL& _url)
       if (S_ISLNK(dirres.diropres_u.diropres.attributes.mode))
       {
          kdDebug(7101)<<"it's a symlink !"<<endl;
-         cerr<<"fh: "<<tmpFH<<endl;
+         //cerr<<"fh: "<<tmpFH<<endl;
          nfs_fh nfsFH;
          memcpy(nfsFH.data,dirres.diropres_u.diropres.file.data,NFS_FHSIZE);
          //get the link dest
@@ -834,33 +898,33 @@ void NFSProtocol::completeUDSEntry(UDSEntry& entry, fattr& attributes)
       atom.m_str = *temp;
    entry.append( atom );
 
-/*   KIO::UDSEntry::ConstIterator iter = entry.begin();
-   for( ; iter != entry.end(); iter++ ) {
-      switch ((*iter).m_uds) {
+/*   KIO::UDSEntry::ConstIterator it = entry.begin();
+   for( ; it != entry.end(); it++ ) {
+      switch ((*it).m_uds) {
       case KIO::UDS_FILE_TYPE:
-         kdDebug(7101) << "File Type : " << (mode_t)((*iter).m_long) << endl;
+         kdDebug(7101) << "File Type : " << (mode_t)((*it).m_long) << endl;
          break;
       case KIO::UDS_ACCESS:
-         kdDebug(7101) << "Access permissions : " << (mode_t)((*iter).m_long) << endl;
+         kdDebug(7101) << "Access permissions : " << (mode_t)((*it).m_long) << endl;
          break;
       case KIO::UDS_USER:
-         kdDebug(7101) << "User : " << ((*iter).m_str.ascii() ) << endl;
+         kdDebug(7101) << "User : " << ((*it).m_str.ascii() ) << endl;
          break;
       case KIO::UDS_GROUP:
-         kdDebug(7101) << "Group : " << ((*iter).m_str.ascii() ) << endl;
+         kdDebug(7101) << "Group : " << ((*it).m_str.ascii() ) << endl;
          break;
       case KIO::UDS_NAME:
-         kdDebug(7101) << "Name : " << ((*iter).m_str.ascii() ) << endl;
-         //m_strText = decodeFileName( (*iter).m_str );
+         kdDebug(7101) << "Name : " << ((*it).m_str.ascii() ) << endl;
+         //m_strText = decodeFileName( (*it).m_str );
          break;
       case KIO::UDS_URL:
-         kdDebug(7101) << "URL : " << ((*iter).m_str.ascii() ) << endl;
+         kdDebug(7101) << "URL : " << ((*it).m_str.ascii() ) << endl;
          break;
       case KIO::UDS_MIME_TYPE:
-         kdDebug(7101) << "MimeType : " << ((*iter).m_str.ascii() ) << endl;
+         kdDebug(7101) << "MimeType : " << ((*it).m_str.ascii() ) << endl;
          break;
       case KIO::UDS_LINK_DEST:
-         kdDebug(7101) << "LinkDest : " << ((*iter).m_str.ascii() ) << endl;
+         kdDebug(7101) << "LinkDest : " << ((*it).m_str.ascii() ) << endl;
          break;
       }
    }*/
@@ -1187,7 +1251,7 @@ void NFSProtocol::put( const KURL& url, int _mode, bool _overwrite, bool /*_resu
     kdDebug(7101)<<"creating the file -"<<fileName<<"-"<<endl;
     NFSFileHandle parentFH;
     parentFH=getFileHandle(parentDir);
-    cerr<<"fh for parent dir: "<<parentFH<<endl;
+    //cerr<<"fh for parent dir: "<<parentFH<<endl;
     //the directory doesn't exist
     if (parentFH.isInvalid())
     {
@@ -1222,7 +1286,7 @@ void NFSProtocol::put( const KURL& url, int _mode, bool _overwrite, bool /*_resu
     //destFH=getFileHandle(destPath);
     destFH=dirOpRes.diropres_u.diropres.file.data;
     kdDebug(7101)<<"file -"<<fileName<<"- in dir -"<<parentDir<<"- created successfully"<<endl;
-    cerr<<"with fh "<<destFH<<endl;
+    //cerr<<"with fh "<<destFH<<endl;
 
     //now we can put
     int result;
@@ -1488,7 +1552,6 @@ void NFSProtocol::symlink( const QString &target, const KURL &dest, bool )
    symLinkArgs.from.name=tmpStr2.data();
 
    nfsstat nfsStat;
-   kdDebug(7101)<<"Lernregel 47: f***en oi !"<<endl;
    int clnt_stat = clnt_call(m_client, NFSPROC_SYMLINK,
                              (xdrproc_t) xdr_symlinkargs, (char*)&symLinkArgs,
                              (xdrproc_t) xdr_nfsstat, (char*)&nfsStat,total_timeout);
