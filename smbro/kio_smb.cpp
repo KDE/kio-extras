@@ -412,7 +412,7 @@ bool SmbProtocol::stopAfterError(const KURL& url, bool notSureWhetherErrorOccure
    {
       kdDebug(KIO_SMB)<<"stopAfterError() 12"<<endl;
       kdDebug(KIO_SMB)<<"Smb::stopAfterError() -"<<m_stdoutBuffer<<"-"<<endl;
-      error( KIO::ERR_UNKNOWN, i18n("Couldn't parse response message."));
+      error( KIO::ERR_UNKNOWN, i18n("Unable to parse response message."));
    }
    kdDebug(KIO_SMB)<<"stopAfterError() 13"<<endl;
    return true;

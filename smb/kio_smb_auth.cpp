@@ -177,7 +177,7 @@ bool SMBSlave::auth_initialize_smbc()
             else
             {
                 SlaveBase::error(ERR_INTERNAL,
-                    i18n("You are missing your $HOME/.smb/smb.conf file, and we could not create it.\n"
+                    i18n("You are missing your $HOME/.smb/smb.conf file, and it could not be created.\n"
                          "Please manually create it to enable the smb ioslave to operate correctly.\n"
                          "The smb.conf file could look like:\n"
                          "[global]\n"

@@ -63,7 +63,7 @@ bool SMBSlave::browse_stat_path(const SMBUrl& _url, UDSEntry& udsentry, bool ign
       {
          kdDebug(KIO_SMB)<<"SMBSlave::browse_stat_path mode: "<<st.st_mode<<endl;
          warning(i18n("%1:\n"
-                      "Unknown file type, neither dir or file.").arg(url.prettyURL()));
+                      "Unknown file type, neither directory or file.").arg(url.prettyURL()));
          return false;
       }
 
@@ -237,7 +237,7 @@ void SMBSlave::reportError(const SMBUrl &url)
         break;  //hmmm, otherwise the whole dir isn't listed (caused e.g. by pagefile.sys), aleXXX
     case ENOENT:
         if (url.getType() == SMBURLTYPE_ENTIRE_NETWORK) {
-            error( ERR_SLAVE_DEFINED, i18n("Couldn't find any workgroups in your local network."));
+            error( ERR_SLAVE_DEFINED, i18n("Unable to find any workgroups in your local network."));
             break;
         }
     case ENOTDIR:

@@ -226,7 +226,7 @@ void SMTPProtocol::put(const KURL & url, int /*permissions */ ,
   if ( request.is8BitBody()
        && !haveCapability("8BITMIME") && metaData("8bitmime") != "on" ) {
     error( KIO::ERR_SERVICE_NOT_AVAILABLE,
-	   i18n("Your server does not support sending of 8bit messages.\n"
+	   i18n("Your server does not support sending of 8-bit messages.\n"
 		"Please use base64 or quoted-printable encoding.") );
     return;
   }
@@ -305,7 +305,7 @@ Response SMTPProtocol::getResponse( bool * ok ) {
   } while ( !response.isComplete() && response.isWellFormed() );
 
   if ( !response.isValid() ) {
-    error( KIO::ERR_NO_CONTENT, i18n("Invalid SMTP response (%1) recveived.").arg(response.code()) );
+    error( KIO::ERR_NO_CONTENT, i18n("Invalid SMTP response (%1) received.").arg(response.code()) );
     return response;
   }
 
