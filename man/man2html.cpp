@@ -517,9 +517,10 @@ static void out_html(const char *c)
   if (scaninbuff) {
       while (*c2) {
 	  if (buffpos>=buffmax) {
-	      char *h;
-	      h=(char*)realloc(buffer, buffmax*2);
+	      char *h = new char[buffmax*2];
 	      if (!h) exit(1);
+              memcpy(h, buffer, buffmax);
+              delete [] buffer;
 	      buffer=h;
 	      buffmax=buffmax*2;
 	  }
@@ -631,7 +632,7 @@ static char *scan_escape(char *c)
 	if (argument) {
 	    c++;
 	    i=(*c -'1');
-	    if (!(h=argument[i])) h="";
+	    if (i < 0 || i > strlen(*argument) || !(h=argument[i])) h="";
 	}
 	break;
     case 'z':
@@ -652,7 +653,15 @@ static char *scan_escape(char *c)
     case 'r':
     case 'u':
     case '\n':
-    case '&': h=""; break;
+        h="";
+        break;
+    case '&':
+        b[0] = c[1];
+        b[1] = 0;
+        out_html(b);
+        c++;
+        h="";
+        break;
     case '(':
 	c++;
 	i= c[0]*256+c[1];
@@ -1815,6 +1824,7 @@ static char *scan_request(char *c)
 		    if (line && strncmp(line, "<BR>", 4)) {
 			out_html(line);
 			out_html("<BR>\n");
+                        delete [] line;
 			i--;
 		    }
 		}
@@ -2209,6 +2219,16 @@ static char *scan_request(char *c)
             section=1;
 	    curpos=0;
 	    break;
+        case V('S','x'): // reference to a section header
+	    out_html(change_to_font('B'));
+	    trans_char(c,'"','\a');
+	    c=c+j;
+	    if (*c=='\n') c++;
+	    c=scan_troff(c, 1, NULL);
+	    out_html(change_to_font('R'));
+	    out_html(NEWLINE);
+	    if (fillout) curpos++; else curpos=0;
+            break;
 	case V('T','S'):
 	    c=scan_table(c);
 	    break;
@@ -2581,6 +2601,7 @@ static char *scan_request(char *c)
 		c++;
 	      }
 	      *bufptr = '\n';
+              bufptr[1] = 0;
 	      scan_troff_mandoc(buff, 1, NULL);
 
 	      out_html(NEWLINE);
