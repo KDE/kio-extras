@@ -1,0 +1,9 @@
+# KDE Config File
+[Protocol]
+exec=kio_pop3
+protocol=pop
+input=stream
+output=stream
+reading=true
+writing=true
+source=true

@@ -1,0 +1,325 @@
+// $Id$
+
+#include "pop3.h"
+
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <sys/time.h>
+#include <sys/wait.h>
+
+#include <netinet/in.h>
+#include <arpa/inet.h>
+
+#include <errno.h>
+#include <signal.h>
+#include <stdio.h>
+#include <netdb.h>
+#include <unistd.h>
+
+#include <kurl.h>
+#include <kprotocolmanager.h>
+#include <ksock.h>
+
+bool open_PassDlg( const QString& _head, QString& _user, QString& _pass );
+
+extern "C" {
+  void sigsegv_handler(int);
+  void sigchld_handler(int);
+  void sigalrm_handler(int);
+};
+
+int main(int argc, char **argv)
+{
+  signal(SIGCHLD, sigchld_handler);
+  signal(SIGSEGV, sigsegv_handler);
+
+  Connection parent( 0, 1 );
+
+  POP3Protocol pop3( &parent );
+  pop3.dispatchLoop();
+}
+
+void sigsegv_handler(int signo)
+{
+  // Debug and printf should be avoided because they might
+  // call malloc.. and get in a nice recursive malloc loop
+  write(2, "kio_pop3 : ###############SEG FAULT#############\n", 49);
+  exit(1);
+}
+
+void sigchld_handler(int signo)
+{
+  int pid, status;
+
+  while(true) {
+    pid = waitpid(-1, &status, WNOHANG);
+    if ( pid <= 0 ) {
+      // Reinstall signal handler, since Linux resets to default after
+      // the signal occured ( BSD handles it different, but it should do
+      // no harm ).
+      signal(SIGCHLD, sigchld_handler);
+      return;
+    }
+  }
+}
+
+POP3Protocol::POP3Protocol(Connection *_conn) : IOProtocol(_conn)
+{
+  m_cmd = CMD_NONE;
+  m_pJob = 0L;
+  m_iSock = 0;
+  m_sServerInfo="";
+  m_tTimeout.tv_sec=10;
+  m_tTimeout.tv_usec=0;
+}
+
+bool POP3Protocol::command (const char *cmd, char *recv_buf, unsigned int len)
+{
+  char buf[len ? len : 1024];
+  unsigned int recv_len=0;
+  fd_set FDs;
+
+fprintf(stderr,"CMD is:%s\n", cmd);
+
+  // Write the command
+  if (::write(m_iSock, cmd, strlen(cmd)) != strlen(cmd))
+    return false;
+  if (::write(m_iSock, "\r\n", 2) != 2)
+    return false;
+
+  // Wait for input
+  FD_ZERO(&FDs);
+  FD_SET(m_iSock, &FDs);
+  while (::select(m_iSock+1, &FDs, 0, 0, &m_tTimeout) ==0);
+  bzero(&buf, len);
+  if (fgets(buf, sizeof(buf)-1, fp) == 0)
+    return false;
+  recv_len=strlen(buf);
+  if (strncmp(buf, "+OK ", 4)==0) {
+    if (recv_buf && len) {
+      memcpy(recv_buf, buf+4, recv_len-4);
+    }
+    return true;
+  } else if (strncmp(buf, "-ERR ", 5)==0) {
+    if (recv_buf && len) {
+      memcpy(recv_buf, buf+5, recv_len-5);
+    }
+    return false;
+  } else {
+    fprintf(stderr, "Invalid POP3 response received!\n");fflush(stderr);
+    if (recv_buf && len) {
+      memcpy(recv_buf, buf, recv_len);
+    }
+    return false;
+  }
+}
+
+void POP3Protocol::pop3_close ()
+{
+  if (m_iSock) {
+    write(m_iSock, "QUIT\r\n", 6);
+    fclose(fp);
+    m_iSock=0; fp=0;
+  }
+}
+
+bool POP3Protocol::pop3_open( KURL &_url )
+{
+  unsigned int port;
+  struct sockaddr_in server_name;
+  bzero(&server_name, sizeof(server_name));
+
+  // We want 110 as the default, but -1 means no port was specified.
+  // Why 0 wasn't chosen is beyond me.
+  port = (_url.port() != -1) ? _url.port() : 110;
+
+  m_iSock = ::socket(PF_INET,SOCK_STREAM,0);
+  if (!KSocket::initSockaddr(&server_name, _url.host(), port))
+    return false;
+  if (::connect(m_iSock, (struct sockaddr*)(&server_name), sizeof(server_name))) {
+      error( ERR_COULD_NOT_CONNECT, _url.host());
+      return false;
+  }
+  if ((fp = fdopen(m_iSock, "w+")) == 0) {
+    close(m_iSock);
+    return false;
+  }
+
+  char buf[1024];
+
+  QString usr, pass, one_string="USER ";
+  if (_url.user().isEmpty() || _url.pass().isEmpty()) {
+   // Prompt for usernames
+   QString head="Username and password for your POP3 account:";
+   if (!open_PassDlg(head, usr, pass))
+     return false;
+   else
+     one_string.append(usr);
+  } else
+    one_string.append(_url.user());
+  if (!command(one_string, buf, 1024)) {
+    fprintf(stderr, "Couldn't login. Bad username Sorry\n"); fflush(stderr);
+    pop3_close();
+    return false;
+  }
+
+  one_string="PASS ";
+  if (_url.pass().isEmpty())
+    one_string.append(pass);
+  else
+    one_string.append(_url.pass());
+  if (!command(one_string, buf, 1024)) {
+    fprintf(stderr, "Couldn't login. Bad password Sorry\n"); fflush(stderr);
+    pop3_close();
+    return false;
+  }
+}
+
+void POP3Protocol::slotGet(const char *_url)
+{
+  fprintf(stderr,"slotGet\n"); fflush(stderr);
+  KURL usrc( _url );
+  if ( usrc.isMalformed() ) {
+    error( ERR_MALFORMED_URL, _url );
+    m_cmd = CMD_NONE;
+    return;
+  }
+
+  if (usrc.protocol() != "pop") {
+    error( ERR_INTERNAL, "kio_pop3 got non pop3 url" );
+    m_cmd = CMD_NONE;
+    return;
+  }
+
+  if (!pop3_open(usrc)) {
+    fprintf(stderr,"pop3_open failed\n");fflush(stderr);
+    pop3_close();
+    return;
+  }
+
+
+  char buf[1024];
+  if (command("RETR 1", 0, 0)) {
+    ready();
+    gettingFile(_url);
+    time_t t_start = time( 0L );
+    time_t t_last = t_start;
+    bzero(&buf, 1024);
+    while (!feof(fp)) {
+      bzero(&buf, 1024);
+      if (!fgets(buf, 1023, fp))
+        break;  // Error??
+      int b_len=strlen(buf)-1;
+      while (buf[b_len]=='\r' || buf[b_len]=='\n') {
+        if (buf[b_len] == '\r') buf[b_len]='\0';
+        if (buf[b_len] == '\n') buf[b_len]='\0';
+        b_len=strlen(buf)-1;
+      }
+      fprintf(stderr,"Datais:%s:\n",buf);fflush(stderr);
+      if (strcmp(buf, ".")==0)  break; // End of data.
+      data(buf, strlen(buf));
+    }
+    fprintf(stderr,"Finishing up\n");fflush(stderr);
+    pop3_close();
+    dataEnd();
+    speed(0); finished();
+  } else {
+    fprintf(stderr, "Couldn't login. Bad RETR Sorry\n");
+    fflush(stderr);
+    pop3_close();
+    return;
+  }
+}
+
+void POP3Protocol::slotPut(const char *_url, int _mode, bool _overwrite,
+			  bool _resume, unsigned int)
+{
+}
+
+void POP3Protocol::slotCopy(const char *_source, const char *_dest)
+{
+  fprintf(stderr, "POP3Protocol::slotCopy\n");
+  fflush(stderr);
+}
+
+void POP3Protocol::slotData(void *_p, int _len)
+{
+  switch (m_cmd) {
+    case CMD_PUT:
+	// Send data here
+      break;
+    default:
+      abort();
+      break;
+    }
+}
+
+void POP3Protocol::slotDataEnd()
+{
+  switch (m_cmd) {
+    case CMD_PUT:
+      m_cmd = CMD_NONE;
+      break;
+    default:
+      abort();
+      break;
+    }
+}
+
+void POP3Protocol::jobData(void *_p, int _len)
+{
+  switch (m_cmd) {
+  case CMD_GET:
+    break;
+  case CMD_COPY:
+    break;
+  default:
+    abort();
+  }
+}
+
+void POP3Protocol::jobError(int _errid, const char *_text)
+{
+  error(_errid, _text);
+}
+
+void POP3Protocol::jobDataEnd()
+{
+  switch (m_cmd) {
+  case CMD_GET:
+    dataEnd();
+    break;
+  case CMD_COPY:
+    m_pJob->dataEnd();
+    break;
+  default:
+    abort();
+  }
+}
+
+/*************************************
+ *
+ * POP3IOJob
+ *
+ *************************************/
+
+POP3IOJob::POP3IOJob(Connection *_conn, POP3Protocol *_pop3) :
+	IOJob(_conn)
+{
+  m_pPOP3 = _pop3;
+}
+  
+void POP3IOJob::slotData(void *_p, int _len)
+{
+  m_pPOP3->jobData( _p, _len );
+}
+
+void POP3IOJob::slotDataEnd()
+{
+  m_pPOP3->jobDataEnd();
+}
+
+void POP3IOJob::slotError(int _errid, const char *_txt)
+{
+  m_pPOP3->jobError(_errid, _txt );
+}
