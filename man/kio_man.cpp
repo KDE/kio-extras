@@ -225,13 +225,15 @@ QStringList MANProtocol::manDirectories()
                 if ( ::stat( QFile::encodeName( dir ), &sbuf ) == 0
                     && S_ISDIR( sbuf.st_mode ) )
                 {
-                    man_dirs += dir;
+                    const QString p = QDir(dir).canonicalPath();
+                    if (!man_dirs.contains(p)) man_dirs += p;	
                 }
             }
         }
 
         // Untranslated pages in "<mandir>"
-        man_dirs += (*it_dir);
+        const QString p = QDir(*it_dir).canonicalPath();
+        if (!man_dirs.contains(p)) man_dirs += p;
     }
     return man_dirs;
 }
