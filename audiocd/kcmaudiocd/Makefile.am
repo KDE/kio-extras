@@ -18,3 +18,5 @@ DISTCLEANFILES = $(lib_audiocd_METASOURCES)
 
 data_DATA = audiocd.desktop
 datadir = $(kde_appsdir)/Settings/Personalization
+
+audiocdconfig.cpp: audiocdconfig.h
