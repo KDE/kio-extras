@@ -23,7 +23,6 @@ using namespace std;
 mimeIO::mimeIO ()
 {
   theCRLF = "\r\n";
-  crlfLen = 2;
 }
 
 mimeIO::~mimeIO ()
@@ -66,7 +65,7 @@ mimeIO::outputMimeLine (const QCString & inLine)
 {
   int retVal = 0;
   QCString aLine = inLine;
-  int crlfLen = 2;
+  int crlfLen = theCRLF.length();
   int len = inLine.length();
 
   int theLF = aLine.findRev ('\n');
@@ -76,7 +75,7 @@ mimeIO::outputMimeLine (const QCString & inLine)
     if (aLine[theLF - 1] == '\r')
       theLF--;
     //truncate the line
-    aLine.truncate(theLF);
+    aLine = aLine.left (theLF);
     len = theLF;
     theLF = -1;
   }
@@ -125,7 +124,6 @@ void
 mimeIO::setCRLF (const char *aCRLF)
 {
   theCRLF = aCRLF;
-  crlfLen = strlen(aCRLF);
 }
 
 mimeIOQFile::mimeIOQFile (const QString & aName):

@@ -28,7 +28,6 @@
 #include "mimeio.h"
 
 #include <kio/tcpslavebase.h>
-#include <qbuffer.h>
 
 #define IMAP_BUFFER 8192
 
@@ -140,8 +139,6 @@ private:
 
   bool relayEnabled, cacheOutput;
   QByteArray outputCache;
-  QBuffer outputBuffer;
-  Q_ULONG outputBufferIndex;
   KIO::filesize_t mProcessedSize;
 
   char readBuffer[IMAP_BUFFER];

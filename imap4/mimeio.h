@@ -41,7 +41,6 @@ public:
 
 protected:
     QCString theCRLF;
-    int crlfLen;
 };
 
 class mimeIOQFile:public mimeIO
@@ -63,14 +62,14 @@ public:
   virtual ~ mimeIOQString ();
   virtual int outputLine (const QCString &, int len = -1);
   virtual int inputLine (QCString &);
-  const QString& getString () const
+  QString getString ()
   {
     return theString;
-  }
+  };
   void setString (const QString & _str)
   {
     theString = _str;
-  }
+  };
 
 protected:
   QString theString;

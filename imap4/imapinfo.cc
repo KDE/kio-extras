@@ -170,8 +170,14 @@ permanentFlagsAvailable_ (false), readWriteAvailable_ (false)
     }
     else if (tokens[1] == "FLAGS")
     {
-      int flagsStart = line.find ('(');
-      int flagsEnd = line.find (')');
+      int
+        flagsStart =
+        line.
+        find ('(');
+      int
+        flagsEnd =
+        line.
+        find (')');
 
       if ((-1 != flagsStart) && (-1 != flagsEnd) && flagsStart < flagsEnd)
         setFlags (_flags (line.mid (flagsStart, flagsEnd).latin1() ));

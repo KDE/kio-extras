@@ -1456,7 +1456,7 @@ imapParser::parseURL (const KURL & _url, QString & _box, QString & _section,
   parameters = QStringList::split (';', _box);  //split parameters
   if (parameters.count () > 0)  //assertion failure otherwise
     parameters.remove (parameters.begin ());  //strip path
-  _box.truncate(_box.find (';')); // strip parameters
+  _box = _box.left (_box.find (';')); // strip parameters
   for (QStringList::ConstIterator it (parameters.begin ());
        it != parameters.end (); ++it)
   {
@@ -1465,7 +1465,7 @@ imapParser::parseURL (const KURL & _url, QString & _box, QString & _section,
     // if we have a '/' separator we'll just nuke it
     int pt = temp.find ('/');
     if (pt > 0)
-      temp.truncate(pt);
+      temp = temp.left(pt);
 //    if(temp[temp.length()-1] == '/')
 //      temp = temp.left(temp.length()-1);
     if (temp.find ("section=", 0, false) == 0)
@@ -1503,9 +1503,7 @@ QCString imapParser::parseLiteralC(parseString & inWords, bool relay, bool stopA
     {
       bool proper;
       ulong runLenSave = runLen + 1;
-      QCString tmpstr;
-      inWords.takeMid(tmpstr, 1, runLen - 1);
-      runLen = tmpstr.toULong (&proper);
+      runLen = inWords.mid(1, runLen - 1).toULong (&proper);
       inWords.pos += runLenSave;
       if (proper)
       {
@@ -1562,7 +1560,7 @@ QCString imapParser::parseOneWordC (parseString & inWords, bool stopAtBracket, i
     if (i < len)
     {
       inWords.pos++;
-      inWords.takeLeft(retVal, i - 1);
+      retVal = inWords.left(i - 1);
       len = i - 1;
 #if 0
       static char *buf = 0L;
@@ -1602,7 +1600,7 @@ QCString imapParser::parseOneWordC (parseString & inWords, bool stopAtBracket, i
     else
     {
       kdDebug(7116) << "imapParser::parseOneWord - error parsing unmatched \"" << endl;
-      inWords.takeAll(retVal);
+      retVal = inWords.cstr();
       retValSize = len;
       inWords.clear();
     }
@@ -1619,18 +1617,18 @@ QCString imapParser::parseOneWordC (parseString & inWords, bool stopAtBracket, i
 
     if (i < len)
     {
-      inWords.takeLeft(retVal, i);
+      retVal = inWords.left (i);
       retValSize = i;
       inWords.pos += i;
     }
     else
     {
-      inWords.takeAll(retVal);
+      retVal = inWords.cstr();
       retValSize = len;
       inWords.clear();
     }
     if (retVal == "NIL") {
-      retVal.truncate(0);
+      retVal = "";
       retValSize = 0;
     }
   }
