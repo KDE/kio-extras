@@ -1,0 +1,716 @@
+DlgEdit:v1.2:Dialog:
+Dialog {
+	ClassHeader {FilePermissions.h}
+	ClassSource {FilePermissions.cpp}
+	ClassName {CFilePermissions}
+	DataHeader {FilePermissionsData.h}
+	DataSource {FilePermissionsData.cpp}
+	DataName {CFilePermissionsData}
+	WindowBaseClass {QDialog}
+	IsModal {TRUE}
+	WindowCaption {&Permissions}
+	WindowFlags {0}
+}
+WidgetLayout {
+InitialPos {-1 -1}
+Size {489 350}
+MinSize {0 0}
+MaxSize {32767 32767}
+Grid {1}
+
+GroupBox {
+		Title {---}
+		Alignment {Left}
+		Style {49}
+		LineWidth {1}
+		MidLineWidth {0}
+		FrameMargin {0}
+		Rect {15 221 461 121}
+		Name {GroupBox_2}
+		Variable {m_pOwnershipGroupBox}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {NoFocus}
+		BackgroundMode {PaletteBackground}
+		FontPropagation {NoChildren}
+		PalettePropagation {NoChildren}
+}
+GroupBox {
+		Title {---}
+		Alignment {Left}
+		Style {49}
+		LineWidth {1}
+		MidLineWidth {0}
+		FrameMargin {0}
+		Rect {15 63 461 144}
+		Name {GroupBox_1}
+		Variable {m_pAccessPermissionsGroupBox}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {NoFocus}
+		BackgroundMode {PaletteBackground}
+		FontPropagation {NoChildren}
+		PalettePropagation {NoChildren}
+}
+Label {
+		Text {---}
+		Alignment {292}
+		AutoResize {FALSE}
+		Margin {-1}
+		Style {0}
+		LineWidth {1}
+		MidLineWidth {0}
+		FrameMargin {0}
+		Rect {77 87 65 26}
+		Name {Label_31}
+		Variable {m_pReadLabel}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {NoFocus}
+		BackgroundMode {PaletteBackground}
+		FontPropagation {NoChildren}
+		PalettePropagation {NoChildren}
+}
+Label {
+		Text {---}
+		Alignment {292}
+		AutoResize {FALSE}
+		Margin {-1}
+		Style {0}
+		LineWidth {1}
+		MidLineWidth {0}
+		FrameMargin {0}
+		Rect {142 87 65 26}
+		Name {Label_32}
+		Variable {m_pWriteLabel}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {NoFocus}
+		BackgroundMode {PaletteBackground}
+		FontPropagation {NoChildren}
+		PalettePropagation {NoChildren}
+}
+Label {
+		Text {---}
+		Alignment {292}
+		AutoResize {FALSE}
+		Margin {-1}
+		Style {0}
+		LineWidth {1}
+		MidLineWidth {0}
+		FrameMargin {0}
+		Rect {207 87 65 26}
+		Name {Label_33}
+		Variable {m_pExecLabel}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {NoFocus}
+		BackgroundMode {PaletteBackground}
+		FontPropagation {NoChildren}
+		PalettePropagation {NoChildren}
+}
+Label {
+		Text {---}
+		Alignment {292}
+		AutoResize {FALSE}
+		Margin {-1}
+		Style {0}
+		LineWidth {1}
+		MidLineWidth {0}
+		FrameMargin {0}
+		Rect {272 87 74 26}
+		Name {Label_34}
+		Variable {m_pSpecialLabel}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {NoFocus}
+		BackgroundMode {PaletteBackground}
+		FontPropagation {NoChildren}
+		PalettePropagation {NoChildren}
+}
+Label {
+		Text {---}
+		Alignment {289}
+		AutoResize {FALSE}
+		Margin {-1}
+		Style {0}
+		LineWidth {1}
+		MidLineWidth {0}
+		FrameMargin {0}
+		Rect {30 122 65 16}
+		Name {Label_35}
+		Variable {m_pUserLabel}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {NoFocus}
+		BackgroundMode {PaletteBackground}
+		FontPropagation {NoChildren}
+		PalettePropagation {NoChildren}
+}
+Label {
+		Text {---}
+		Alignment {289}
+		AutoResize {FALSE}
+		Margin {-1}
+		Style {0}
+		LineWidth {1}
+		MidLineWidth {0}
+		FrameMargin {0}
+		Rect {29 148 65 16}
+		Name {Label_36}
+		Variable {m_pGroupLabel}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {NoFocus}
+		BackgroundMode {PaletteBackground}
+		FontPropagation {NoChildren}
+		PalettePropagation {NoChildren}
+}
+Label {
+		Text {---}
+		Alignment {289}
+		AutoResize {FALSE}
+		Margin {-1}
+		Style {0}
+		LineWidth {1}
+		MidLineWidth {0}
+		FrameMargin {0}
+		Rect {30 177 65 16}
+		Name {Label_37}
+		Variable {m_pOthersLabel}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {NoFocus}
+		BackgroundMode {PaletteBackground}
+		FontPropagation {NoChildren}
+		PalettePropagation {NoChildren}
+}
+Label {
+		Text {---}
+		Alignment {289}
+		AutoResize {FALSE}
+		Margin {-1}
+		Style {0}
+		LineWidth {1}
+		MidLineWidth {0}
+		FrameMargin {0}
+		Rect {325 122 140 16}
+		Name {Label_38}
+		Variable {m_pSetUIDLabel}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {NoFocus}
+		BackgroundMode {PaletteBackground}
+		FontPropagation {NoChildren}
+		PalettePropagation {NoChildren}
+}
+Label {
+		Text {---}
+		Alignment {289}
+		AutoResize {FALSE}
+		Margin {-1}
+		Style {0}
+		LineWidth {1}
+		MidLineWidth {0}
+		FrameMargin {0}
+		Rect {325 148 140 16}
+		Name {Label_39}
+		Variable {m_pSetGIDLabel}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {NoFocus}
+		BackgroundMode {PaletteBackground}
+		FontPropagation {NoChildren}
+		PalettePropagation {NoChildren}
+}
+Label {
+		Text {---}
+		Alignment {289}
+		AutoResize {FALSE}
+		Margin {-1}
+		Style {0}
+		LineWidth {1}
+		MidLineWidth {0}
+		FrameMargin {0}
+		Rect {325 177 140 16}
+		Name {Label_40}
+		Variable {m_pStickyLabel}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {NoFocus}
+		BackgroundMode {PaletteBackground}
+		FontPropagation {NoChildren}
+		PalettePropagation {NoChildren}
+}
+CheckBox {
+		Checked {FALSE}
+		Text {}
+		AutoRepeat {FALSE}
+		AutoResize {FALSE}
+		Rect {104 124 12 12}
+		Name {CheckBox_1}
+		Variable {m_IRUSR}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {TabFocus}
+		BackgroundMode {PaletteBackground}
+		FontPropagation {NoChildren}
+		PalettePropagation {NoChildren}
+}
+CheckBox {
+		Checked {FALSE}
+		Text {}
+		AutoRepeat {FALSE}
+		AutoResize {FALSE}
+		Rect {169 124 12 12}
+		Name {CheckBox_2}
+		Variable {m_IWUSR}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {TabFocus}
+		BackgroundMode {PaletteBackground}
+		FontPropagation {NoChildren}
+		PalettePropagation {NoChildren}
+}
+CheckBox {
+		Checked {FALSE}
+		Text {}
+		AutoRepeat {FALSE}
+		AutoResize {FALSE}
+		Rect {234 124 12 12}
+		Name {CheckBox_3}
+		Variable {m_IXUSR}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {TabFocus}
+		BackgroundMode {PaletteBackground}
+		FontPropagation {NoChildren}
+		PalettePropagation {NoChildren}
+}
+CheckBox {
+		Checked {FALSE}
+		Text {}
+		AutoRepeat {FALSE}
+		AutoResize {FALSE}
+		Rect {299 124 12 12}
+		Name {CheckBox_4}
+		Variable {m_ISUID}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {TabFocus}
+		BackgroundMode {PaletteBackground}
+		FontPropagation {NoChildren}
+		PalettePropagation {NoChildren}
+}
+CheckBox {
+		Checked {FALSE}
+		Text {}
+		AutoRepeat {FALSE}
+		AutoResize {FALSE}
+		Rect {104 150 12 12}
+		Name {CheckBox_5}
+		Variable {m_IRGRP}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {TabFocus}
+		BackgroundMode {PaletteBackground}
+		FontPropagation {NoChildren}
+		PalettePropagation {NoChildren}
+}
+CheckBox {
+		Checked {FALSE}
+		Text {}
+		AutoRepeat {FALSE}
+		AutoResize {FALSE}
+		Rect {104 179 12 12}
+		Name {CheckBox_6}
+		Variable {m_IROTH}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {TabFocus}
+		BackgroundMode {PaletteBackground}
+		FontPropagation {NoChildren}
+		PalettePropagation {NoChildren}
+}
+CheckBox {
+		Checked {FALSE}
+		Text {}
+		AutoRepeat {FALSE}
+		AutoResize {FALSE}
+		Rect {169 150 12 12}
+		Name {CheckBox_7}
+		Variable {m_IWGRP}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {TabFocus}
+		BackgroundMode {PaletteBackground}
+		FontPropagation {NoChildren}
+		PalettePropagation {NoChildren}
+}
+CheckBox {
+		Checked {FALSE}
+		Text {}
+		AutoRepeat {FALSE}
+		AutoResize {FALSE}
+		Rect {234 150 12 12}
+		Name {CheckBox_8}
+		Variable {m_IXGRP}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {TabFocus}
+		BackgroundMode {PaletteBackground}
+		FontPropagation {NoChildren}
+		PalettePropagation {NoChildren}
+}
+CheckBox {
+		Checked {FALSE}
+		Text {}
+		AutoRepeat {FALSE}
+		AutoResize {FALSE}
+		Rect {169 179 12 12}
+		Name {CheckBox_9}
+		Variable {m_IWOTH}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {TabFocus}
+		BackgroundMode {PaletteBackground}
+		FontPropagation {NoChildren}
+		PalettePropagation {NoChildren}
+}
+CheckBox {
+		Checked {FALSE}
+		Text {}
+		AutoRepeat {FALSE}
+		AutoResize {FALSE}
+		Rect {234 179 12 12}
+		Name {CheckBox_10}
+		Variable {m_IXOTH}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {TabFocus}
+		BackgroundMode {PaletteBackground}
+		FontPropagation {NoChildren}
+		PalettePropagation {NoChildren}
+}
+CheckBox {
+		Checked {FALSE}
+		Text {}
+		AutoRepeat {FALSE}
+		AutoResize {FALSE}
+		Rect {299 150 12 12}
+		Name {CheckBox_11}
+		Variable {m_ISGID}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {TabFocus}
+		BackgroundMode {PaletteBackground}
+		FontPropagation {NoChildren}
+		PalettePropagation {NoChildren}
+}
+CheckBox {
+		Checked {FALSE}
+		Text {}
+		AutoRepeat {FALSE}
+		AutoResize {FALSE}
+		Rect {299 179 12 12}
+		Name {CheckBox_12}
+		Variable {m_ISVTX}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {TabFocus}
+		BackgroundMode {PaletteBackground}
+		FontPropagation {NoChildren}
+		PalettePropagation {NoChildren}
+}
+Label {
+		Text {---}
+		Alignment {289}
+		AutoResize {FALSE}
+		Margin {-1}
+		Style {0}
+		LineWidth {1}
+		MidLineWidth {0}
+		FrameMargin {0}
+		Rect {30 248 76 26}
+		Name {Label_41}
+		Variable {m_pOwnerLabel}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {NoFocus}
+		BackgroundMode {PaletteBackground}
+		FontPropagation {NoChildren}
+		PalettePropagation {NoChildren}
+}
+Label {
+		Text {---}
+		Alignment {289}
+		AutoResize {FALSE}
+		Margin {-1}
+		Style {0}
+		LineWidth {1}
+		MidLineWidth {0}
+		FrameMargin {0}
+		Rect {30 296 73 26}
+		Name {Label_42}
+		Variable {m_pGroupLabel2}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {NoFocus}
+		BackgroundMode {PaletteBackground}
+		FontPropagation {NoChildren}
+		PalettePropagation {NoChildren}
+}
+ComboBox {
+		Style {ReadOnly}
+		SizeLimit {10}
+		Policy {AtBottom}
+		AutoResize {FALSE}
+		MaxCount {2147483647}
+		AutoCompletion {FALSE}
+		Rect {113 296 230 26}
+		Name {ComboBox_1}
+		Variable {m_Group}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {StrongFocus}
+		BackgroundMode {PaletteBackground}
+		FontPropagation {AllChildren}
+		PalettePropagation {AllChildren}
+}
+ComboBox {
+		Style {ReadOnly}
+		SizeLimit {10}
+		Policy {AtBottom}
+		AutoResize {FALSE}
+		MaxCount {2147483647}
+		AutoCompletion {FALSE}
+		Rect {113 248 230 26}
+		Name {ComboBox_2}
+		Variable {m_Owner}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {StrongFocus}
+		BackgroundMode {PaletteBackground}
+		FontPropagation {AllChildren}
+		PalettePropagation {AllChildren}
+}
+Label {
+		Text {---}
+		Alignment {289}
+		AutoResize {FALSE}
+		Margin {-1}
+		Style {0}
+		LineWidth {1}
+		MidLineWidth {0}
+		FrameMargin {0}
+		Rect {10 10 60 40}
+		Name {Label_43}
+		Variable {m_pIconLabel}
+		MinimumSize {60 40}
+		MaximumSize {60 40}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {NoFocus}
+		BackgroundMode {PaletteBackground}
+		FontPropagation {NoChildren}
+		PalettePropagation {NoChildren}
+}
+Label {
+		Text {---}
+		Alignment {289}
+		AutoResize {FALSE}
+		Margin {-1}
+		Style {0}
+		LineWidth {1}
+		MidLineWidth {0}
+		FrameMargin {0}
+		Rect {80 20 395 32}
+		Name {Label_52}
+		Variable {m_Name}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {NoFocus}
+		BackgroundMode {PaletteBackground}
+		FontPropagation {NoChildren}
+		PalettePropagation {NoChildren}
+}
+
+}
