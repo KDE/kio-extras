@@ -25,6 +25,8 @@
 #include <dcopref.h>
 #include <kio/netaccess.h>
 
+#include <kmimetype.h>
+
 #include <kapplication.h>
 #include <qeventloop.h>
 
@@ -371,6 +373,12 @@ void MediaImpl::createMediumEntry(KIO::UDSEntry& entry,
 	if (!medium.iconName().isEmpty())
 	{
 		addAtom(entry, KIO::UDS_ICON_NAME, 0, medium.iconName());
+	}
+	else
+	{
+		QString mime = medium.mimeType();
+		QString icon = KMimeType::mimeType(mime)->icon(mime, false);
+		addAtom(entry, KIO::UDS_ICON_NAME, 0, icon);
 	}
 
 	if (medium.needMounting())
