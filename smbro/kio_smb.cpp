@@ -631,7 +631,7 @@ See the KDE Control Center under Network, LANBrowsing for more information."));
          };
       };
    } while (!loopFinished);
-   kdDebug(7101)<<"Smb::listDir(): read: -"<<m_stdoutBuffer<<"-"<<endl;
+//   kdDebug(7101)<<"Smb::listDir(): read: -"<<m_stdoutBuffer<<"-"<<endl;
 
    //check the output from smbclient whether an error occured
    if (stopAfterError(_url,true))
@@ -648,7 +648,7 @@ See the KDE Control Center under Network, LANBrowsing for more information."));
    while (!output.atEnd())
    {
       line=output.readLine();
-      kdDebug(7101)<<"Smb::listDir(): line: -"<<line<<"-"<<endl;
+//      kdDebug(7101)<<"Smb::listDir(): line: -"<<line<<"-"<<endl;
       if (line.isEmpty())
          break;
 //      if (lineNumber>2)
