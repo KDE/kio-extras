@@ -31,6 +31,8 @@
 
 #include "response.h"
 
+#include <klocale.h>
+
 namespace KioSMTP {
 
   void Response::parseLine( const char * line, int len ) {
@@ -76,6 +78,25 @@ namespace KioSMTP {
     mLines.push_back( QCString( line+4, len-4+1 ).stripWhiteSpace() );
   }
 
-    
+
+  // hackishly fixing QCStringList flaws...
+  static QCString join( char sep, const QCStringList & list ) {
+    if ( list.empty() )
+      return QCString();
+    QCString result = list.front();
+    for ( QCStringList::const_iterator it = ++list.begin() ; it != list.end() ; ++it )
+      result += sep + *it;
+    return result;
+  }
+
+  QString Response::errorMessage() const {
+    if ( lines().count() > 1 )
+      return i18n("The server responded:\n%1")
+	.arg( join( '\n', lines() ) );
+    else
+      return i18n("The server responded: \"%1\"")
+	.arg( lines().front() );
+  }
+
 
 }; // namespace KioSMTP

@@ -46,6 +46,10 @@ namespace KioSMTP {
 
     void parseLine( const char * line, int len );
 
+    /** Return an internationalized error message according to the
+	response's code. */
+    QString errorMessage() const;
+
     enum Reply {
       UnknownReply = -1,
       PositivePreliminary = 1,
