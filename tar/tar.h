@@ -36,7 +36,7 @@ public:
 
 protected:
     void createUDSEntry( const KTarEntry * tarEntry, KIO::UDSEntry & entry );
-    bool checkNewFile( const QString & fullPath, QString & path );
+    bool checkNewFile( QString fullPath, QString & path );
 
     KTarGz * m_tarFile;
 

@@ -48,13 +48,14 @@ TARProtocol::~TARProtocol()
     delete m_tarFile;
 }
 
-bool TARProtocol::checkNewFile( const QString & fullPath, QString & path )
+bool TARProtocol::checkNewFile( QString fullPath, QString & path )
 {
     kdDebug(7109) << "TARProtocol::checkNewFile " << fullPath << endl;
     // Are we already looking at that file ?
     if ( m_tarFile && m_tarFile->fileName() == fullPath.left(m_tarFile->fileName().length()) )
     {
-        path = fullPath.mid( m_tarFile->fileName().length() + 1 );
+        path = fullPath.mid( m_tarFile->fileName().length() );
+        kdDebug(7109) << "TARProtocol::checkNewFile returning " << path << endl;
         return true;
     }
     kdDebug(7109) << "Need to open a new file" << endl;
@@ -72,6 +73,10 @@ bool TARProtocol::checkNewFile( const QString & fullPath, QString & path )
     QString tarFile;
     path = QString::null;
 
+    int len = fullPath.length();
+    if ( len != 0 && fullPath[ len - 1 ] != '/' )
+        fullPath += '/';
+
     while ( (pos=fullPath.find( '/', pos+1 )) != -1 )
     {
         QString tryPath = fullPath.left( pos );
@@ -80,13 +85,20 @@ bool TARProtocol::checkNewFile( const QString & fullPath, QString & path )
         if ( ::stat( QFile::encodeName(tryPath), &statbuf ) == 0 && !S_ISDIR(statbuf.st_mode) )
         {
             tarFile = tryPath;
-            path = fullPath.mid( pos );
+            path = fullPath.mid( pos + 1 );
+            kdDebug(7109) << "fullPath=" << fullPath << " path=" << path << endl;
+            len = path.length();
+            if ( len != 0 && path[ len - 1 ] == '/' )
+                path.truncate( len - 1 );
             kdDebug(7109) << "Found. tarFile=" << tarFile << " path=" << path << endl;
             break;
         }
     }
     if ( tarFile.isEmpty() )
+    {
+        kdDebug(7109) << "TARProtocol::checkNewFile: not found" << endl;
         return false;
+    }
 
     // Open new file
     kdDebug(7109) << "Opening KTarGz on " << tarFile << endl;
@@ -147,16 +159,26 @@ void TARProtocol::listDir( const KURL & url )
     QString path;
     if ( !checkNewFile( url.path(), path ) )
     {
-        error( KIO::ERR_DOES_NOT_EXIST, url.path() );
+        QCString _path( QFile::encodeName(url.path()));
+        struct stat buff;
+        if ( ::lstat( _path.data(), &buff ) == -1 || !S_ISDIR( buff.st_mode ) ) {
+            error( KIO::ERR_DOES_NOT_EXIST, url.path() );
+            return;
+        }
+        // It's a real dir
+        KURL redir;
+        redir.setPath( url.path() );
+        redirection( redir );
+        finished();
         return;
     }
+
     if ( path.isEmpty() )
     {
-        KURL redir;
-        ASSERT( m_tarFile );
-        redir.setPath( m_tarFile->fileName() );
+        KURL redir( QString::fromLatin1( "tar:/") );
+        redir.setPath( url.path() + QString::fromLatin1("/") );
+        kdDebug() << "TARProtocol::listDir: redirection " << redir.url() << endl;
         redirection( redir );
-        // TODO
         finished();
         return;
     }
@@ -208,15 +230,42 @@ void TARProtocol::listDir( const KURL & url )
 void TARProtocol::stat( const KURL & url )
 {
     QString path;
+    UDSEntry entry;
     if ( !checkNewFile( url.path(), path ) )
     {
-        error( KIO::ERR_DOES_NOT_EXIST, url.path() );
+        // We may be looking at a real directory - this happens
+        // when pressing up after being in the root of an archive
+        QCString _path( QFile::encodeName(url.path()));
+        struct stat buff;
+        if ( ::lstat( _path.data(), &buff ) == -1 || !S_ISDIR( buff.st_mode ) ) {
+            error( KIO::ERR_DOES_NOT_EXIST, url.path() );
+            return;
+        }
+        // Real directory. Return just enough information for KRun to work
+        UDSAtom atom;
+        atom.m_uds = KIO::UDS_NAME;
+        atom.m_str = url.fileName();
+        entry.append( atom );
+
+        atom.m_uds = KIO::UDS_FILE_TYPE;
+        atom.m_long = buff.st_mode & S_IFMT;
+        entry.append( atom );
+
+        statEntry( entry );
+
+        finished();
         return;
     }
-    UDSEntry entry;
 
     const KTarDirectory* root = m_tarFile->directory();
-    const KTarEntry* tarEntry = root->entry( path );
+    const KTarEntry* tarEntry;
+    if ( path.isEmpty() )
+    {
+        path = QString::fromLatin1( "/" );
+        tarEntry = root;
+    } else {
+        tarEntry = root->entry( path );
+    }
     if ( !tarEntry )
     {
         error( KIO::ERR_DOES_NOT_EXIST, path );
