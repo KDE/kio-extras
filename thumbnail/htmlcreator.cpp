@@ -54,9 +54,9 @@ bool HTMLCreator::create(const QString &path, int width, int height, QImage &img
     {
         m_html = new KHTMLPart;
         connect(m_html, SIGNAL(completed()), SLOT(slotCompleted()));
-        m_html->enableJScript(false);
-        m_html->enableJava(false);
-        m_html->enablePlugins(false);
+        m_html->setJScriptEnabled(false);
+        m_html->setJavaEnabled(false);
+        m_html->setPluginsEnabled(false);
     }
     m_html->openURL(path);
     m_completed = false;
