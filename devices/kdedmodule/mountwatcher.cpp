@@ -180,7 +180,7 @@ void MountWatcherModule::readDFDone()
        	        if (ent->mounted())
 		{
 			mountList<<(entryName);
-                 	mountList<<i18n("%1 mounted at %2").arg(ent->deviceName()).arg(ent->mountPoint());
+                 	mountList<<i18n("%1 (%2) mounted at %3").arg(ent->niceDescription()).arg(KURL(ent->deviceName()).fileName()).arg(ent->mountPoint());
 			mountList<<ent->deviceName();
 //			mountList<<ent->mountPoint();
 			mountList<<"file:/"+(ent->mountPoint().startsWith("/")?ent->mountPoint().right(ent->mountPoint().length()-1):ent->mountPoint());
@@ -192,7 +192,7 @@ void MountWatcherModule::readDFDone()
                	else
 		{
 			mountList<<entryName;
-                 	mountList<<i18n("%1 (not mounted)").arg(ent->deviceName());
+                 	mountList<<i18n("%1 (%2) (not mounted)").arg(ent->niceDescription()).arg(KURL(ent->deviceName()).fileName());
 			mountList<<ent->deviceName();
 			mountList<<"file:/"+(ent->mountPoint().startsWith("/")?ent->mountPoint().right(ent->mountPoint().length()-1):ent->mountPoint());
 			mountList<< ent->discType()+"_unmounted";

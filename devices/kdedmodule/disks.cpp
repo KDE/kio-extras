@@ -213,6 +213,17 @@ QString DiskEntry::guessIconName()
   return iconName;
 };
 
+
+QString DiskEntry::niceDescription()
+{
+	if (discType().contains("hdd"))	return i18n("Harddisc");
+	else if (discType().contains("smb")) return i18n("Remote Share");
+	else if (discType().contains("nfs")) return i18n("Remote Share");
+	else if (discType().contains("cdrom")) return i18n("CDRom");
+	else if (discType().contains("cdwriter")) return i18n("CDRecorder");
+	else if (discType().contains("floppy")) return i18n("Floppy");
+}
+
 QString DiskEntry::discType()
 {
   kdDebug(7020)<<"disc/device type guessing"<<endl;
@@ -237,15 +248,17 @@ QString DiskEntry::discType()
 		tmpInfo.fromLatin1(str,len);
 		if (tmpInfo.contains("disk")) typeName="kdedevice/hdd";
 		else
-			if (tmpInfo.contains("cdrom")) typeName="kdedevice/cdrom";
+			if (tmpInfo.contains("cdrom")) typeName="kdedevice/cdrom"; 
 			else
-				if (tmpInfo.contains("floppy")) typeName="kdedevice/zip";
+				if (tmpInfo.contains("floppy")) typeName="kdedevice/zip"; // eg IDE zip drives 
 				else typeName="kdedevice/hdd";
 	}
 	infoFile.close();
     }
     else
 #endif
+
+    /* Guessing of cdrom and cd recorder devices */
     if (-1!=mountPoint().find("cdrom",0,FALSE)) typeName="kdedevice/cdrom";
     else if (-1!=deviceName().find("cdrom",0,FALSE)) typeName="kdedevice/cdrom";
     else if (-1!=mountPoint().find("cdwriter",0,FALSE)) typeName="kdedevice/cdwriter";
@@ -254,25 +267,22 @@ QString DiskEntry::discType()
     else if (-1!=mountPoint().find("cdrw",0,FALSE)) typeName="kdedevice/cdwriter";
     else if (-1!=deviceName().find("scd",0,FALSE)) typeName="kdedevice/cdrom";
 
-//    else if (-1!=mountPoint().find("mo",0,FALSE)) typeName="kdedevice/mo";
-//    else if (-1!=deviceName().find("mo",0,FALSE)) typeName="kdedevice/mo";
+
+    /* Guessing of floppy types */
     else if (-1!=deviceName().find("fd",0,FALSE)) {
             if (-1!=deviceName().find("360",0,FALSE)) typeName="kdedevice/floppy5";
             if (-1!=deviceName().find("1200",0,FALSE)) typeName="kdedevice/floppy5";
             else typeName+="kdedevice/floppy";
          }
     else if (-1!=mountPoint().find("floppy",0,FALSE)) typeName="kdedevice/floppy";
+
+
     else if (-1!=mountPoint().find("zip",0,FALSE)) typeName+="kdedevice/zip";
     else if (-1!=fsType().find("nfs",0,FALSE)) typeName="kdedevice/nfs";
     else if (-1!=fsType().find("smb",0,FALSE)) typeName="kdedevice/smb";
     else if (-1!=deviceName().find("//",0,FALSE)) typeName="kdedevice/smb";
     else typeName="kdedevice/hdd";
-//    if ( -1==mountOptions().find("user",0,FALSE) )
-//      iconName.prepend("root_"); // special root icon, normal user can´t mount
 
-    //debug("device %s is %s",deviceName().latin1(),iconName.latin1());
-
-    //emit iconNameChanged();
   return typeName;
 
 

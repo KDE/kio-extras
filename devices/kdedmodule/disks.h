@@ -1,6 +1,7 @@
 /*
  * disks.h
  *
+ * Copyright (c) 2002 Joseph Wenninger <jowenn@kde.org>
  * Copyright (c) 1998 Michael Kropfberger <michael.kropfberger@gmx.net>
  *
  * Requires the Qt widget libraries, available at no cost at
@@ -75,6 +76,7 @@ public:
   int kBSize() const { return size; };
 
   QString discType();  
+  QString niceDescription();
 
   QString iconName();
   QString realIconName() { return icoName; };

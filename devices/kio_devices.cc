@@ -111,7 +111,22 @@ void HelloProtocol::stat(const KURL& url)
 	                                        }
 	                                        else
 	                                        {
-	                                                error(KIO::ERR_SLAVE_DEFINED,i18n("Device not mounted"));
+							if (mp.startsWith("file:/"))
+							{
+			        	        	        KProcess *proc = new KProcess;
+        		        	                 	*proc << "kio_devices_mounthelper";
+                		                 		*proc << "-m" << url.url();
+	                        		         	proc->start(KProcess::Block);
+        	                        		 	delete proc;
+	
+	        		                        	redirection(mp);
+        		        	                	finished();
+							}
+							else
+								error(KIO::ERR_SLAVE_DEFINED,i18n("Device not accessible"));
+
+
+//	                                                error(KIO::ERR_SLAVE_DEFINED,i18n("Device not mounted"));
 	                                        }
 	                                        return;
 					}
@@ -172,7 +187,6 @@ void HelloProtocol::listDir(const KURL& url)
 	                        		         	proc->start(KProcess::Block);
         	                        		 	delete proc;
 	
-				//	                                if (mp=="/") mp="";
 	        		                        	redirection(mp);
         		        	                	finished();
 							}
