@@ -36,6 +36,11 @@
 #define DELIMITER '#'
 #define FULL_PERCENT 95.0
 
+#ifdef HAVE_MNTENT_H
+#include <mntent.h>
+#endif
+
+
 /***************************************************************************
   * constructor
 **/
@@ -89,7 +94,45 @@ int DiskList::readFSTAB()
 {
   if (readingDFStdErrOut || dfProc->isRunning()) return -1;
 
-QFile f(FSTAB);
+#ifdef HAVE_SETMNTENT
+
+#define SETMNTENT setmntent
+#define ENDMNTENT endmntent
+#define STRUCT_MNTENT struct mntent *
+#define STRUCT_SETMNTENT FILE *
+#define GETMNTENT(file, var) ((var = getmntent(file)) != 0)
+#define MOUNTPOINT(var) var->mnt_dir
+#define MOUNTTYPE(var) var->mnt_type
+#define MOUNTOPTIONS(var) var->mnt_opts
+#define HASMNTOPT(var, opt) hasmntopt(var, opt)
+#define FSNAME(var) var->mnt_fsname
+
+  STRUCT_SETMNTENT fstab;
+  if ((fstab = SETMNTENT(FSTAB, "r")) == 0)
+     return -1;
+
+  STRUCT_MNTENT fe;
+  while (GETMNTENT(fstab, fe))
+  {
+      DiskEntry *disk = new DiskEntry();
+      disk->setMounted(FALSE);
+      disk->setDeviceName(QFile::decodeName(FSNAME(fe)));
+      //kdDebug() << "    deviceName:    [" << disk->deviceName() << "]" << endl;
+      disk->setMountPoint(QFile::decodeName(MOUNTPOINT(fe)));
+      //kdDebug() << "    MountPoint:    [" << disk->mountPoint() << "]" << endl;
+      disk->setFsType(QFile::decodeName(MOUNTTYPE(fe)));
+      //kdDebug() << "    FS-Type:       [" << disk->fsType() << "]" << endl;
+      disk->setMountOptions(QFile::decodeName(MOUNTOPTIONS(fe)));
+      //kdDebug() << "    Mount-Options: [" << disk->mountOptions() << "]" << endl;
+      if (!ignoreDisk(disk))
+         replaceDeviceEntry(disk);
+      else
+         delete disk;
+  }
+  ENDMNTENT(fstab);
+
+#else
+  QFile f(FSTAB);
   if ( f.open(IO_ReadOnly) ) {
     QTextStream t (&f);
     QString s;
@@ -131,6 +174,7 @@ QFile f(FSTAB);
     } //while
     f.close();
   } //if f.open
+#endif
 
   //  kdDebug() << "DiskList::readFSTAB DONE" << endl;
   return 1;
@@ -275,8 +319,8 @@ void DiskList::dfDone()
 
 
       s=s.remove(0,s.find(BLANK)+1 );  // delete the capacity 94%
-      disk->setMountPoint(s.left(s.find(BLANK)) );
-      s=s.remove(0,s.find(BLANK)+1 );
+      s=s.stripWhiteSpace();
+      disk->setMountPoint(s );
       //kdDebug() << "    MountPoint:       [" << disk->mountPoint() << "]" << endl;
 
       if ( (disk->kBSize() > 0) &&

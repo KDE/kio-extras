@@ -20,3 +20,5 @@ else
 fi
 
 AM_CONDITIONAL(include_devicesdir, test -n "$DEVICESDIR")
+
+AC_CHECK_FUNCS(setmntent)
