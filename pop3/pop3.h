@@ -10,6 +10,22 @@
 
 #include <kio/slavebase.h>
 
+#ifdef SPOP3
+#ifndef HAVE_SSL
+#undef SPOP3
+#endif
+#endif
+
+#ifdef SPOP3
+extern "C" {
+#include <openssl/crypto.h>
+#include <openssl/x509.h>
+#include <openssl/pem.h>
+#include <openssl/ssl.h>
+#include <openssl/err.h>                                                        
+};
+#endif
+
 class POP3Protocol : public KIO::SlaveBase
 {
 public:
@@ -72,6 +88,12 @@ public:
   QString m_sOldServer, m_sOldPass, m_sOldUser;
   FILE *fp;
   QString urlPrefix;
+#ifdef SPOP3
+  SSL_CTX *ctx;
+  SSL *ssl;
+  X509 *server_cert;
+  SSL_METHOD *meth;
+#endif
 };
 
 #endif
