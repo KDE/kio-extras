@@ -396,6 +396,8 @@ void
 imapParser::parseResult (QString & result, QString & rest,
   const QString & command)
 {
+  if (command == "SELECT") selectInfo.setReadWrite(true);
+
   if (rest[0] == '[')
   {
     rest = rest.right (rest.length () - 1); //tie off [
