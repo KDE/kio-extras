@@ -46,8 +46,15 @@ namespace KioSMTP {
     mErrorMessage = msg;
   }
 
-  void TransactionState::setMailFromFailed( const QString &, const Response & ) {
+  void TransactionState::setMailFromFailed( const QString & addr, const Response & r ) {
     setFailed();
+    mErrorCode = KIO::ERR_NO_CONTENT;
+    if ( addr.isEmpty() )
+      mErrorMessage = i18n("The server did not accept a blank sender address.\n"
+			   "%1").arg( r.errorMessage() );
+    else
+      mErrorMessage = i18n("The server did not accept the sender address \"%1\".\n"
+			   "%2").arg( addr ).arg( r.errorMessage() );
   }
 
   void TransactionState::addRejectedRecipient( const RecipientRejection & r ) {

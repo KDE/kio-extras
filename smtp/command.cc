@@ -295,19 +295,13 @@ namespace KioSMTP {
   }
 
   bool MailFromCommand::processResponse( const Response & r, TransactionState * ts ) {
+    assert( ts );
     mNeedResponse = false;
+
     if ( r.code() == 250 )
       return true;
-    // ### better error messages...
-    if ( ts ) ts->setMailFromFailed( mAddr, r );
-    else if ( mAddr.isEmpty() )
-      mSMTP->error( KIO::ERR_NO_CONTENT,
-		    i18n("The server did not accept the blank sender address.\n"
-			 "%1").arg( r.errorMessage() ) );
-    else
-      mSMTP->error( KIO::ERR_NO_CONTENT,
-		    i18n("The server did not accept the sender address \"%1\".\n"
-			 "%2").arg( mAddr ).arg( r.errorMessage() ) );
+
+    ts->setMailFromFailed( mAddr, r );
     return false;
   }
 
@@ -322,20 +316,15 @@ namespace KioSMTP {
   }
 
   bool RcptToCommand::processResponse( const Response & r, TransactionState * ts ) {
+    assert( ts );
     mNeedResponse = false;
+
     if ( r.code() == 250 ) {
-      if ( ts ) ts->setRecipientAccepted();
+      ts->setRecipientAccepted();
       return true;
     }
-    if ( ts )
-      // if we have transaction state, we return success, since
-      // multiple RCPT TO: may fail without affecting the transaction
-      // as such:
-      ts->addRejectedRecipient( mAddr, r.errorMessage() );
-    else
-      mSMTP->error( KIO::ERR_NO_CONTENT,
-		    i18n("The server did not accept the recipient \"%1\".\n"
-			 "%2").arg( mAddr ).arg( r.errorMessage() ) );
+
+    ts->addRejectedRecipient( mAddr, r.errorMessage() );
     return false;
   }		  
 
@@ -344,31 +333,29 @@ namespace KioSMTP {
   //
 
   QCString DataCommand::nextCommandLine( TransactionState * ts ) {
+    assert( ts );
     mComplete = true;
     mNeedResponse = true;
-    if ( ts ) ts->setDataCommandIssued( true );
+    ts->setDataCommandIssued( true );
     return "DATA\r\n";
   }
 
   void DataCommand::ungetCommandLine( const QCString &, TransactionState * ts ) {
+    assert( ts );
     mComplete = false;
-    if ( ts ) ts->setDataCommandIssued( false );
+    ts->setDataCommandIssued( false );
   }
 
   bool DataCommand::processResponse( const Response & r, TransactionState * ts ) {
+    assert( ts );
     mNeedResponse = false;
+
     if ( r.code() == 354 ) {
-      if ( ts )
-	ts->setDataCommandSucceeded( true, r );
+      ts->setDataCommandSucceeded( true, r );
       return true;
     }
 
-    if ( ts )
-      ts->setDataCommandSucceeded( false, r );
-    else
-      mSMTP->error( KIO::ERR_NO_CONTENT,
-		    i18n("The attempt to start sending the message content failed.\n"
-			 "%1").arg( r.errorMessage() ) );
+    ts->setDataCommandSucceeded( false, r );
     return false;
   }
 
