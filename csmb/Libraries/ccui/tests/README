@@ -1,0 +1,5 @@
+Following test are included:
+
+-ipedittest: input an IP address into specialized edit field
+-wizardtest : test using wizard class
+-datetest : app that creates a date combo box and a date widget

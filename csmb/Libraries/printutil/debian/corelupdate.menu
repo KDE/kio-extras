@@ -1,0 +1,6 @@
+?package(corelupdate):\
+	needs=x11\
+        section=Apps/System\
+        title="Corel® Update"\
+        command=get_it\
+        icon="/usr/share/icons/get_it.xpm"

@@ -1,0 +1,160 @@
+Source: kde-corel
+Build-Depends: automake, libtool, debhelper, libqt2.2-dev, xlib6g-dev | xlibs-dev, kdelibs3-dev, zlib1g-dev, libpng2-dev, libjpeg62-dev, libgl-dev, libtiff3g-dev
+Section: Corel
+Priority: optional
+Maintainer: Corel Corp  
+Standards-Version: 3.1.1
+
+Package: task-corel
+Architecture: all
+Section: Corel
+Depends: corel-explorer, corel-libccui, corel-videosettings, corel-regionalsettings, corel-eventviewer, corel-update, corel-hardwarepanel , corel-netconfig, corel-usbviewer, corel-libusermgr, corel-libprintutil, corel-libmwn, corel-libpropdlg
+Suggests: kdebase
+Description: Corel KDE applicatios
+ This is an empty package that depends on all the Debian packages that make
+ up the Corel KDE applicatios.
+ .
+ This includes: corelnetworking, corel-commonui, videosettings, regionalsettings,
+ eventview, corelupdate, hwcontrolpanel, knetconfig, kusbview,
+ libusermang, printutil, mwn, libpropdlg
+
+Package: corel-explorer
+Architecture: i386
+Section: Corel
+Replaces: corel-explorer
+Depends: kdebase, corel-libccui, corel-libmwn
+Suggests: corel-explorer
+Conflicts: corel-explorer
+Description: corel-explorer
+ corel-explorer package
+
+Package: corel-libccui
+Architecture: i386
+Section: Corel
+Replaces: corel-libccui
+Depends: kdebase
+Suggests: corel-libccui
+Conflicts: corel-libccui
+Description: Common UI library
+ Common User Interface QT widget library
+
+Package: corel-videosettings
+Architecture: i386
+Section: Corel
+Replaces: corel-videosettings
+Depends: kdebase
+Suggests: corel-videosettings
+Conflicts: corel-videosettings
+Description: corel-videosettings
+ corel-videosettings package
+
+Package: corel-regionalsettings
+Architecture: i386
+Section: Corel
+Replaces: corel-regionalsettings
+Depends: kdebase, corel-liblocale
+Suggests: corel-regionalsettings
+Conflicts: corel-regionalsettings
+Description: corel-regionalsettings
+ corel-regionalsettings package
+
+Package: corel-eventviewer
+Architecture: i386
+Section: Corel
+Replaces: corel-eventviewer
+Depends: kdebase, corel-libccui
+Suggests: corel-eventviewer
+Conflicts: corel-eventviewer
+Description: corel-eventviewer
+ corel-eventviewer package
+
+Package: corel-update
+Architecture: i386
+Section: Corel
+Replaces: corel-update
+Depends: kdebase, corel-libccui
+Suggests: corel-update
+Conflicts: corel-update
+Description: corel-update
+ corel-Update package
+
+Package: corel-hardwarepanel
+Architecture: i386
+Section: Corel
+Replaces: corel-hardwarepanel
+Depends: kdebase
+Suggests: corel-hardwarepanel
+Conflicts: corel-hardwarepanel
+Description: corel-hardwarepanel
+ corel-hardwarepanel package
+
+Package: corel-netconfig
+Architecture: i386
+Section: Corel
+Replaces: corel-netconfig
+Depends: kdebase
+Suggests: corel-netconfig
+Conflicts: corel-netconfig
+Description: corel-netconfig
+ corel-netconfig package
+
+Package: corel-usbviewer
+Architecture: i386
+Section: Corel
+Replaces: corel-usbviewer
+Depends: kdebase
+Suggests: corel-usbviewer
+Conflicts: corel-usbviewer
+Description: corel-usbviewer
+ corel-usbviewer package
+
+Package: corel-libusermgr
+Architecture: i386
+Section: Corel
+Replaces: corel-libusermgr
+Depends: kdebase
+Suggests: corel-libusermgr
+Conflicts: corel-libuserugr
+Description: corel-libusermgr
+ corel-libusermgr package
+
+Package: corel-libprintutil
+Architecture: i386
+Section: Corel
+Replaces: corel-libprintutil
+Depends: kdebase
+Suggests: corel-libprintutil
+Conflicts: corel-libprintutil
+Description: corel-libprintutil
+ corel-libprintutil package
+
+Package: corel-libmwn
+Architecture: i386
+Section: Corel
+Replaces: corel-libmwn
+Depends: kdebase
+Suggests: corel-libmwn
+Conflicts: corel-libmwn
+Description: corel-libmwn
+ corel-libmwn package
+
+Package: corel-libpropdlg
+Architecture: i386
+Section: Corel
+Replaces: corel-libpropdlg
+Depends: kdebase
+Suggests: corel-libpropdlg
+Conflicts: corel-libpropdlg
+Description: corel-libpropdlg
+ corel-libpropdlg package
+
+Package: corel-kdm
+Architecture: i386
+Section: Corel
+Replaces: corel-kdm, kdm, kdm-cvs
+Depends: corel-libusrmgr, libpam-modules, xutils
+Suggests: kdebase
+Provides: kdm
+Conflicts: corel-kdm, kdm
+Description: corel-kdm
+ corel-kdm package
