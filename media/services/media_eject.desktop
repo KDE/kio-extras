@@ -1,0 +1,9 @@
+[Desktop Entry]
+ServiceTypes=media/cdrom_mounted,media/cdrom_unmounted,media/cdwriter_mounted,media/cdwriter_unmounted,media/dvd_mounted,media/dvd_unmounted
+Actions=MediaEject
+X-KDE-Priority=TopLevel
+
+[Desktop Action MediaEject]
+Name=Eject
+Exec=kio_media_mounthelper -e %u
+

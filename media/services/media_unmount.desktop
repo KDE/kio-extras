@@ -1,0 +1,9 @@
+[Desktop Entry]
+ServiceTypes=media/cdrom_mounted,media/cdwriter_mounted,media/dvd_mounted,media/floppy5_mounted,media/floppy_mounted,media/hdd_mounted,media/nfs_mounted,media/removable_mounted,media/smb_mounted,media/zip_mounted
+Actions=MediaUnmount
+X-KDE-Priority=TopLevel
+
+[Desktop Action MediaUnmount]
+Name=Unmount
+Exec=kio_media_mounthelper -u %u
+

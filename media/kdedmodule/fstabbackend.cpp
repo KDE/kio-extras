@@ -220,7 +220,7 @@ QString FstabBackend::generateId(const QString &devNode,
 	QString d = devNode;
 	QString m = mountPoint;
 
-	return "org/kde/mediamanager/fstab/"
+	return "/org/kde/mediamanager/fstab/"
 	      +d.replace("/", "")
 	      +m.replace("/", "");
 }
