@@ -70,9 +70,8 @@
 #include "smtp.h"
 
 #define ASCII(x) QString::fromLatin1(x)
-#define WRITE_STRING(x) Write (static_cast<const char *>(x.local8Bit()), x.local8Bit().length())
+#define WRITE_STRING(x) Write (x.latin1(), strlen(x.latin1()))
 
-#define DEFAULT_EMAIL "someuser@is.using.a.pre.release.kde.ioslave.compliments.of.kde.org"
 #define DEFAULT_RESPONSE_BUFFER 512
 #define DEFAULT_EHLO_BUFFER 5120
 
@@ -250,7 +249,9 @@ void SMTPProtocol::put(const KURL &url, int /*permissions*/, bool /*overwrite*/,
 		  QString::null) {
 			from = mset->getSetting(KEMailSettings::EmailAddress);
 		} else {
-			from = ASCII(DEFAULT_EMAIL);
+			error(ERR_NO_CONTENT, i18n("The sender address is missing."));
+			smtp_close();
+			return;
 		}
 	}
 	from.prepend(ASCII("MAIL FROM: "));
@@ -259,7 +260,9 @@ void SMTPProtocol::put(const KURL &url, int /*permissions*/, bool /*overwrite*/,
 	        error(ERR_SERVICE_NOT_AVAILABLE, i18n("SMTPProtocol::smtp_open failed (%1)").arg(open_url.path()));
 
 	if (!command(from)) {
-		HandleSMTPWriteError(open_url);
+		error(ERR_NO_CONTENT, i18n("The server didn't accept the "
+                "sender address:\n%1").arg(lastError));
+		smtp_close();
 		return;
 	}
 
@@ -271,7 +274,11 @@ void SMTPProtocol::put(const KURL &url, int /*permissions*/, bool /*overwrite*/,
 
 	// Begin sending the actual message contents (most headers+body)
 	if (!command(ASCII("DATA"))) {
-		HandleSMTPWriteError(open_url);
+		error(ERR_NO_CONTENT, i18n("The attempt to start sending the "
+                "message content failed.\nThe server said:\n%1")
+		.arg(lastError));
+		smtp_close();
+		return;
 	}
 
 	if (headers)
@@ -284,7 +291,9 @@ void SMTPProtocol::put(const KURL &url, int /*permissions*/, bool /*overwrite*/,
 				from = ASCII("From: %1\r\n").arg(mset->getSetting(KEMailSettings::EmailAddress));
 			}
 		} else {
-			from = ASCII("From: %1\r\n").arg(DEFAULT_EMAIL);
+			error(ERR_NO_CONTENT, i18n("The sender address is missing."));
+			smtp_close();
+			return;
 		}
 		WRITE_STRING(from);
 
@@ -324,6 +333,13 @@ void SMTPProtocol::put(const KURL &url, int /*permissions*/, bool /*overwrite*/,
 	} while (result > 0);
 
 	Write("\r\n.\r\n", 5);
+	if (getResponse() >= 400)
+	{
+		error(ERR_NO_CONTENT, i18n("The server didn't accept the "
+                "message content:\n%1").arg(lastError));
+		smtp_close();
+		return;
+	}
 	command(ASCII("RSET"));
 	finished();
 }
@@ -349,7 +365,6 @@ int SMTPProtocol::getResponse (char *r_buf, unsigned int r_len)
 {
 	char *buf = 0;
 	unsigned int recv_len = 0, len;
-	fd_set FDs;
 
 	// Give the buffer the appropiate size
 	// a buffer of less than 5 bytes will *not* work
@@ -361,23 +376,7 @@ int SMTPProtocol::getResponse (char *r_buf, unsigned int r_len)
 		len = DEFAULT_RESPONSE_BUFFER;
 	}
 
-	// And keep waiting if it timed out
-	unsigned int wait_time = 60; // Wait 60sec. max.
-	do {
-		// Wait for something to come from the server
-		FD_ZERO(&FDs);
-		FD_SET(m_iSock, &FDs);
-		// Yes, it's true, Linux sucks.
-		wait_time--;
-		m_tTimeout.tv_sec = 1;
-		m_tTimeout.tv_usec = 0;
-	}
-	while (wait_time && (::select(m_iSock+1, &FDs, 0, 0, &m_tTimeout) ==0));
-
-	if (wait_time == 0) {
-		kdDebug () << "kio_smtp: No response from SMTP server in 60 secs." << endl;
-		return false;
-	}
+	if (!waitForResponse(60)) return 999;
 
 	// Clear out the buffer
 	memset(buf, 0, len);
@@ -402,6 +401,7 @@ int SMTPProtocol::getResponse (char *r_buf, unsigned int r_len)
 		buf = origbuf;
 		memcpy(r_buf, buf, strlen(buf));
 		r_buf[r_len-1] = 0;
+		lastError = QCString(buf + 4, recv_len - 4);
 		return GetVal(buf);
 	} else {
 		// Really crude, whee
@@ -409,13 +409,15 @@ int SMTPProtocol::getResponse (char *r_buf, unsigned int r_len)
 			r_len = recv_len-4;
 			memcpy(r_buf, buf+4, r_len);
 		}
+		lastError = QCString(buf + 4, recv_len - 4);
 		return GetVal(buf);
 	}
 }
 
 bool SMTPProtocol::command (const QString &cmd, char *recv_buf, unsigned int len)
 {
-	QCString write_buf = cmd.local8Bit();
+	QCString write_buf = cmd.latin1();
+        write_buf += "\r\n";
 
 	// Write the command
 	if ( Write(static_cast<const char *>(write_buf), write_buf.length() ) != static_cast<ssize_t>(write_buf.length()) ) {
@@ -423,10 +425,6 @@ bool SMTPProtocol::command (const QString &cmd, char *recv_buf, unsigned int len
 		return false;
 	}
 
-	if (Write("\r\n", 2) != 2) {
-		m_sError = i18n("Could not send to server.\n");
-		return false;
-	}
 	return (getResponse(recv_buf, len) < 400);
 }
 
@@ -451,8 +449,8 @@ bool SMTPProtocol::smtp_open()
 	// Yes, I *know* that this is not the way it should be done, but
 	// for now there's no real need to complicate things by
 	// determining our hostname.  AFAIK no servers really depend on this..
-	if (!command(ASCII("EHLO kio_smtp"), ehlobuf.buffer().data(), 5119)) {
-		if (!command(ASCII("HELO kio_smtp"))) { // Let's just check to see if it speaks plain ol' SMTP
+	if (!command(ASCII("EHLO there"), ehlobuf.buffer().data(), 5119)) {
+		if (!command(ASCII("HELO there"))) { // Let's just check to see if it speaks plain ol' SMTP
 			smtp_close();
 			return false;
 		}

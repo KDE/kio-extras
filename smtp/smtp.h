@@ -68,6 +68,7 @@ protected:
 
 	KDESasl *m_pSASL;
 	QString m_sAuthConfig;
+	QCString lastError;
 };
 
 #endif
