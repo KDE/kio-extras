@@ -258,10 +258,21 @@ void SMBSlave::reportError(const SMBUrl &url)
         error( ERR_SLAVE_DEFINED, i18n("Share could not be found on given server"));
         break;
     case EBADF:
-        error( ERR_INTERNAL, "BAD File descriptor");
+        error( ERR_INTERNAL, i18n("BAD File descriptor"));
         break;
-    default:
-        error( ERR_INTERNAL, i18n("Unknown error condition in stat: %1").arg(strerror(errno)));
+    case 0: // success
+	  error( ERR_INTERNAL, i18n("libsmbclient reported an error, but didn't specify "
+								"what the problem is. This might indicate a severe problem "
+								"with your network - but also might indicate a problem with "
+								"libsmbclient.\n"
+								"If you want to help us, please provide a tcpdump of the "
+								"network interface while you try to browse (be aware that "
+								"it might contain private data, so don't post it if you're "
+								"unsure about that - you can send it privately to the developers "
+								"if they ask for it)") );
+	  break;
+    default: 
+	  error( ERR_INTERNAL, i18n("Unknown error condition in stat: %1").arg(strerror(errno)));
     }
 }
 
