@@ -9,3 +9,4 @@ reading=true
 source=true
 DocPath=kioslave/zip.html
 Icon=zip
+Class=:local
