@@ -713,25 +713,25 @@
                                         <item>
                                             <property>
                                                 <name>text</name>
-                                                <string>stereo</string>
+                                                <string>Stereo</string>
                                             </property>
                                         </item>
                                         <item>
                                             <property>
                                                 <name>text</name>
-                                                <string>joint stereo</string>
+                                                <string>Joint Stereo</string>
                                             </property>
                                         </item>
                                         <item>
                                             <property>
                                                 <name>text</name>
-                                                <string>dual channel</string>
+                                                <string>Dual Channel</string>
                                             </property>
                                         </item>
                                         <item>
                                             <property>
                                                 <name>text</name>
-                                                <string>mono</string>
+                                                <string>Mono</string>
                                             </property>
                                         </item>
                                         <property stdset="1">
@@ -1536,7 +1536,7 @@
                                 </property>
                                 <property stdset="1">
                                     <name>text</name>
-                                    <string>&amp;Lowpass Filter Cutoff Above</string>
+                                    <string>&amp;Lowpass filter cutoff above</string>
                                 </property>
                             </widget>
                             <widget row="1"  column="0" >
@@ -1566,7 +1566,7 @@
                                 </property>
                                 <property stdset="1">
                                     <name>text</name>
-                                    <string>&amp;Highpass Filter Cutoff Below</string>
+                                    <string>&amp;Highpass filter cutoff below</string>
                                 </property>
                             </widget>
                             <widget row="3"  column="0" >
@@ -1600,7 +1600,7 @@
                                 </property>
                                 <property stdset="1">
                                     <name>text</name>
-                                    <string>Low&amp;pass Filter Width</string>
+                                    <string>Low&amp;pass filter width</string>
                                 </property>
                             </widget>
                             <widget row="1"  column="1" >
@@ -1634,7 +1634,7 @@
                                 </property>
                                 <property stdset="1">
                                     <name>text</name>
-                                    <string>Highpa&amp;ss Filter Width</string>
+                                    <string>Highpa&amp;ss filter width</string>
                                 </property>
                             </widget>
                             <widget row="3"  column="1" >
