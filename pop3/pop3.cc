@@ -986,6 +986,10 @@ void POP3Protocol::listDir(const KURL &)
     atom.m_long = realGetSize(i + 1);
     entry.append(atom);
 
+    atom.m_uds = KIO::UDS_ACCESS;
+    atom.m_long = S_IRUSR | S_IXUSR | S_IWUSR;
+    entry.append (atom);
+
     listEntry(entry, false);
     entry.clear();
   }
