@@ -9,8 +9,8 @@ LDADD	=	$(LIB_KIO)
 
 bin_PROGRAMS = kio_imap4
 
-kio_imap4_SOURCES = imap4.cc
-noinst_HEADERS = imap4.h
+kio_imap4_SOURCES = imap4.cc md5.cc base64md5.cc
+noinst_HEADERS = imap4.h md5.h base64md5.h
 
 kioconfig_DATA = imap4.desktop
 kioconfigdir = $(kde_confdir)/protocols

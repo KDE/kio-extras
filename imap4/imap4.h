@@ -1,6 +1,8 @@
 #ifndef _IMAP4_H
 #define _IMAP4_H "$Id$"
 
+#define NO_KIO_COMPATABILITY
+
 #include <sys/types.h>
 #include <sys/time.h>
 
@@ -19,6 +21,7 @@ enum IMAP_COMMAND {
     ICMD_CAPABILITY, ICMD_NOOP, ICMD_LOGOUT,
 // Non-Authenticated State
     ICMD_AUTHENTICATE, ICMD_LOGIN,
+    ICMD_SEND_AUTH,
 //  Authenticated State
     ICMD_SELECT, ICMD_EXAMINE, ICMD_CREATE, ICMD_DELETE, ICMD_RENAME,
     ICMD_SUBSCRIBE, ICMD_UNSUB, ICMD_LIST, ICMD_LSUB, ICMD_STATUS, ICMD_APPEND,
@@ -34,10 +37,10 @@ class CMD_Struct {
   bool sent;
 };
 
-class IMAP4Protocol : public IOProtocol
+class IMAP4Protocol : public KIOProtocol
 {
 public:
-  IMAP4Protocol( Connection *_conn );
+  IMAP4Protocol( KIOConnection *_conn );
   
   virtual void slotGet( const char *_url );
   virtual void slotPut( const char *_url, int _mode, bool _overwrite,
@@ -46,7 +49,7 @@ public:
   void jobError( int _errid, const char *_txt );
   void startLoop();
   
-  Connection* connection() { return ConnectionSignals::m_pConnection; }
+  KIOConnection* connection() { return KIOConnectionSignals::m_pConnection; }
   
  protected:
   QList<CMD_Struct> pending;
@@ -54,19 +57,26 @@ public:
   void sendNextCommand();
   void imap4_close ();
   bool imap4_open (KURL &_url);
+  void imap4_login(); // handle loggin in
+  void imap4_exec();  // executes the IMAP action
 
   int m_iSock;
   unsigned int m_uLastCmd;
   struct timeval m_tTimeout;
   FILE *fp;
-  IOJob* m_pJob;
+  KIOJobBase* m_pJob;
   QString m_sCurrentMBX;
+
+  QString authType, userName, passWord;
+  QStringList capabilities, serverResponses;
+  int authState;
+  QString authKey, urlPath;
 };
 
-class IMAP4IOJob : public IOJob
+class IMAP4IOJob : public KIOJobBase
 {
  public:
-  IMAP4IOJob( Connection *_conn, IMAP4Protocol *_imap4 );
+  IMAP4IOJob( KIOConnection *_conn, IMAP4Protocol *_imap4 );
   virtual void slotError( int _errid, const char *_txt );
   
  protected:
