@@ -270,8 +270,9 @@ void SMTPProtocol::setHost(const QString & host, int port,
 }
 
 bool SMTPProtocol::sendCommandLine( const QCString & cmdline ) {
-  kdDebug( cmdline.length() < 4096, 7112) << "C: " << cmdline.data();
-  kdDebug( cmdline.length() >= 4096, 7112) << "C: <" << cmdline.length() << " bytes>" << endl;
+  //kdDebug( cmdline.length() < 4096, 7112) << "C: " << cmdline.data();
+  //kdDebug( cmdline.length() >= 4096, 7112) << "C: <" << cmdline.length() << " bytes>" << endl;
+  kdDebug( 7112) << "C: <" << cmdline.length() << " bytes>" << endl;
   ssize_t cmdline_len = cmdline.length();
   if ( write( cmdline.data(), cmdline_len ) != cmdline_len ) {
     error( KIO::ERR_COULD_NOT_WRITE, m_sServer );
