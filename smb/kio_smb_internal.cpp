@@ -41,8 +41,6 @@
 // SMBUrl Function Implementation
 //===========================================================================
 
-void updateCache() {}
-
 //-----------------------------------------------------------------------
 SMBUrl::SMBUrl()
 {
@@ -78,6 +76,8 @@ bool SMBUrl::cd(const QString &filedir)
 void SMBUrl::updateCache()
   //-----------------------------------------------------------------------
 {
+    cleanPath();
+
     // SMB URLs are UTF-8 encoded
     kdDebug(KIO_SMB) << "updateCache " << KURL::path() << endl;
     if (KURL::url() == "smb:/")

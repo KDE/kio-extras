@@ -44,7 +44,7 @@ using namespace KIO;
 int SMBSlave::cache_stat(const SMBUrl &url, struct stat* st )
 {
     int result = smbc_stat( url.toSmbcUrl(), st);
-    kdDebug(KIO_SMB) << "smbc_stat " << url.prettyUrl() << " " << errno << " " << result << endl;
+    kdDebug(KIO_SMB) << "smbc_stat " << url.url() << " " << errno << " " << result << endl;
     return result;
 }
 
@@ -139,6 +139,7 @@ void SMBSlave::stat( const KURL& kurl )
     // if URL is not valid we have to redirect to correct URL
     if (url != kurl)
     {
+        kdDebug() << "redirection " << url << endl;
         redirection(url);
         return;
     }
@@ -185,8 +186,8 @@ void SMBSlave::stat( const KURL& kurl )
 
 //===========================================================================
 // TODO: complete checking
-KURL SMBSlave::checkURL(const KURL& kurl) const {
-
+KURL SMBSlave::checkURL(const KURL& kurl) const
+{
     kdDebug(KIO_SMB) << "checkURL " << kurl << endl;
     QString surl = kurl.url();
     if (surl.startsWith("smb:/")) {
@@ -215,18 +216,15 @@ KURL SMBSlave::checkURL(const KURL& kurl) const {
         kdDebug() << "checkURL return2 " << url << endl;
         return url;
     }
-    // no emtpy path
-    QString path = kurl.path();
-    if (path.isEmpty())
-    {
-        KURL url(kurl);
-        url.setPath("/");
-        kdDebug() << "checkURL return3 " << url << endl;
-        return url;
-    }
 
-    kdDebug() << "checkURL return3 " << kurl << endl;
-    return kurl;
+    // no emtpy path
+    KURL url(kurl);
+
+    if (url.path().isEmpty())
+        url.setPath("/");
+
+    kdDebug() << "checkURL return3 " << url << endl;
+    return url;
 }
 
 void SMBSlave::reportError(const SMBUrl &url)
