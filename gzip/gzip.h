@@ -28,6 +28,7 @@ public:
 protected:
 
   int m_cmd;
+  const char* m_strProtocol;
   KIOFilter* m_pFilter;
   KIOJobBase* m_pJob;
 };

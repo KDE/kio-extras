@@ -110,35 +110,44 @@ void GZipProtocol::slotCopy( const char *_source, const char *_dest )
     return;
   }
 
-  if ( usrc.protocol() != "gzip" ) {
-    error( ERR_INTERNAL, "kio_gzip got a URL which does not contain the gzip protocol");
+  m_strProtocol = usrc.protocol().ascii();
+
+  if (strcmp("gzip", m_strProtocol) != 0 &&
+      strcmp("bzip", m_strProtocol) != 0 &&
+      strcmp("bzip2", m_strProtocol) != 0) {
+    error( ERR_INTERNAL, "kio_gzip got a URL which does not contain the gzip/bzip/bzip2 protocol" );
     m_cmd = CMD_NONE;
     return;
   }
 
   if ( source_lst.count() < 2 ) {
-    error( ERR_NO_SOURCE_PROTOCOL, "gzip" );
+    error( ERR_NO_SOURCE_PROTOCOL,  m_strProtocol );
     m_cmd = CMD_NONE;
     return;
   }
   
   QString zip_cmd;
   QString path = usrc.path();
-  if ( path == "/compress" )
-    zip_cmd = "gzip";
-  else if ( path == "/decompress" )
-    zip_cmd = "gunzip";
-  else if ( path == "/bzip/compress" )
-    zip_cmd = "bzip";
-  else if ( path == "/bzip/decompress" )
-    zip_cmd = "bunzip";
-  else if ( path == "/bzip2/compress" )
-    zip_cmd = "bzip2";
-  else if ( path == "/bzip2/decompress" )
-    zip_cmd = "bunzip2";
+  if ( path == "/compress" ){
+    if ( strcmp("gzip", m_strProtocol) == 0 )
+      zip_cmd = "gzip";
+    else if ( strcmp("bzip", m_strProtocol) == 0 )
+      zip_cmd = "bzip";
+    else if ( strcmp("bzip2", m_strProtocol) == 0 )
+      zip_cmd = "bzip2";
+  }
+  else if ( path == "/decompress" ){
+    if ( strcmp("gzip", m_strProtocol) == 0 )
+      zip_cmd = "gunzip";
+    else if ( strcmp("bzip", m_strProtocol) == 0 )
+      zip_cmd = "bunzip";
+    else if ( strcmp("bzip2", m_strProtocol) == 0 )
+      zip_cmd = "bunzip2";
+  }
   else
   {
-    QString e = "gzip:";
+    QString e = m_strProtocol;
+    e += ":";
     e += path;
     error( ERR_UNSUPPORTED_ACTION, e );
     m_cmd = CMD_NONE;
@@ -213,33 +222,41 @@ void GZipProtocol::slotGet( const char *_url )
     return;
   }
 
-  if ((*lst.begin()).protocol() != "gzip") {
-    error( ERR_INTERNAL, "kio_gzip got a URL which does not contain the gzip protocol");
+  m_strProtocol = (*lst.begin()).protocol();
+
+  if (strcmp("gzip", m_strProtocol) != 0 &&
+      strcmp("bzip", m_strProtocol) != 0 &&
+      strcmp("bzip2", m_strProtocol) != 0) {
+    error( ERR_INTERNAL, "kio_gzip got a URL which does not contain the gzip/bzip/bzip2 protocol" );
     m_cmd = CMD_NONE;
     return;
   }
   
   if ( lst.count() < 2 )
   {
-    error( ERR_NO_SOURCE_PROTOCOL, "gzip" );
+    error( ERR_NO_SOURCE_PROTOCOL, m_strProtocol );
     m_cmd = CMD_NONE;
     return;
   }
   
   QString zip_cmd;
   QString path = (*lst.begin()).path();
-  if ( path == "/compress" )
-    zip_cmd = "gzip";
-  else if ( path == "/decompress" )
-    zip_cmd = "gunzip";
-  else if ( path == "/bzip/compress" )
-    zip_cmd = "bzip";
-  else if ( path == "/bzip/decompress" )
-    zip_cmd = "bunzip";
-  else if ( path == "/bzip2/compress" )
-    zip_cmd = "bzip2";
-  else if ( path == "/bzip2/decompress" )
-    zip_cmd = "bunzip2";
+  if ( path == "/compress" ){
+    if ( strcmp("gzip", m_strProtocol) == 0 )
+      zip_cmd = "gzip";
+    else if ( strcmp("bzip", m_strProtocol) == 0 )
+      zip_cmd = "bzip";
+    else if ( strcmp("bzip2", m_strProtocol) == 0 )
+      zip_cmd = "bzip2";
+  }
+  else if ( path == "/decompress" ){
+    if ( strcmp("gzip", m_strProtocol) == 0 )
+      zip_cmd = "gunzip";
+    else if ( strcmp("bzip", m_strProtocol) == 0 )
+      zip_cmd = "bunzip";
+    else if ( strcmp("bzip2", m_strProtocol) == 0 )
+      zip_cmd = "bunzip2";
+  }
   else
   {
     error( ERR_UNSUPPORTED_ACTION, path );
@@ -248,14 +265,15 @@ void GZipProtocol::slotGet( const char *_url )
   }
   
   if ( lst.count() < 2 ) {
-    QString e = "gzip:";
+    QString e = m_strProtocol;
+    e += ":";
     e += path;
     error( ERR_NO_SOURCE_PROTOCOL, e );
     m_cmd = CMD_NONE;
     return;
   }
    
-  // Remove gzip protocol
+  // Remove gzip portion of URL
   lst.remove( lst.begin() );
 
   QString exec = KProtocolManager::self().executable( (*lst.begin()).protocol() );
@@ -322,17 +340,21 @@ void GZipProtocol::slotPut( const char *_url, int, bool _overwrite, bool /*_resu
     return;
   }
 
-  // Since this is a filter there must be at least an additional source protocol
-  if ( lst.count() < 2 ) {
-    error( ERR_NO_SOURCE_PROTOCOL, "gzip" );
+  m_strProtocol = (*lst.begin()).protocol().ascii();	
+
+  // Is the left most URL really the gzip protocol ?
+    if (strcmp("gzip", m_strProtocol) != 0 &&
+        strcmp("bzip", m_strProtocol) != 0 &&
+        strcmp("bzip2", m_strProtocol) != 0) {
+    error( ERR_INTERNAL, "kio_gzip got a URL which does not contain the gzip/bzip/bzip2 protocol" );
     finished();
     m_cmd = CMD_NONE;
     return;
   }
 
-  // Is the left most URL really the gzip protocol ?
-  if ((*lst.begin()).protocol() != "gzip") {
-    error( ERR_INTERNAL, "kio_gzip got a URL which does not contain the gzip protocol");
+  // Since this is a filter there must be at least an additional source protocol
+  if ( lst.count() < 2 ) {
+    error( ERR_NO_SOURCE_PROTOCOL, m_strProtocol );
     finished();
     m_cmd = CMD_NONE;
     return;
@@ -341,21 +363,26 @@ void GZipProtocol::slotPut( const char *_url, int, bool _overwrite, bool /*_resu
   // Find out what to do ( compres, decompress )
   QString zip_cmd;
   QString path = (*lst.begin()).path();
-  if ( path == "/compress" )
-    zip_cmd = "gzip";
-  else if ( path == "/decompress" )
-    zip_cmd = "gunzip";
-  else if ( path == "/bzip/compress" )
-    zip_cmd = "bzip";
-  else if ( path == "/bzip/decompress" )
-    zip_cmd = "bunzip";
-  else if ( path == "/bzip2/compress" )
-    zip_cmd = "bzip2";
-  else if ( path == "/bzip2/decompress" )
-    zip_cmd = "bunzip2";  
+  if ( path == "/compress" ){
+    if ( strcmp("gzip", m_strProtocol) == 0 )
+      zip_cmd = "gzip";
+    else if ( strcmp("bzip", m_strProtocol) == 0 )
+      zip_cmd = "bzip";
+    else if ( strcmp("bzip2", m_strProtocol) == 0 )
+      zip_cmd = "bzip2";
+  }
+  else if ( path == "/decompress" ){
+    if ( strcmp("gzip", m_strProtocol) == 0 )
+      zip_cmd = "gunzip";
+    else if ( strcmp("bzip", m_strProtocol) == 0 )
+      zip_cmd = "bunzip";
+    else if ( strcmp("bzip2", m_strProtocol) == 0 )
+      zip_cmd = "bunzip2";
+  }
   else
   {
-    QString e = "gzip:";
+    QString e = m_strProtocol;
+    e += ":";
     e += path;
     error( ERR_UNSUPPORTED_ACTION, e );
     finished();
