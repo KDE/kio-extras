@@ -26,7 +26,7 @@
 #ifndef KAUDIOCDCONFIG_H
 #define KAUDIOCDCONFIG_H
 
-#include <kapp.h>
+#include <kapplication.h>
 #include <kcmodule.h>
 
 #include "audiocdconfig.h"

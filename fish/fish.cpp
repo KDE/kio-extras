@@ -54,7 +54,7 @@
 #include <libutil.h>
 #endif
 
-#include <kapp.h>
+#include <kapplication.h>
 #include <kdebug.h>
 #include <kmessagebox.h>
 #include <kinstance.h>
