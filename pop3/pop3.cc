@@ -30,7 +30,10 @@ bool open_PassDlg( const QString& _head, QString& _user, QString& _pass );
 int main(int , char **)
 {
   signal(SIGCHLD, IOProtocol::sigchld_handler);
+// Prevents coredumps (from SIGSEGV) if -DNDEBUG is used
+#ifdef NDEBUG
   signal(SIGSEGV, IOProtocol::sigsegv_handler);
+#endif
 
   Connection parent( 0, 1 );
 
@@ -536,6 +539,25 @@ void POP3Protocol::slotListDir (const char *_url)
     atom.m_long = 0;
     atom.m_str = fname.arg(i+1);
     entry.append(atom);
+
+    atom.m_uds = UDS_MIME_TYPE;
+    atom.m_long = 0;
+    atom.m_str = "text/plain";
+    entry.append(atom);
+fprintf(stderr,"Mimetype is %s\n", atom.m_str.ascii());
+
+    atom.m_uds = UDS_URL;
+    QString uds_url;
+    if (usrc.user().isEmpty() || usrc.pass().isEmpty()) {
+      uds_url="pop://%1/download/%2";
+      atom.m_str = uds_url.arg(usrc.host()).arg(i+1);
+    } else {
+      uds_url="pop://%1:%2@%3/download/%3";
+      atom.m_str = uds_url.arg(usrc.user()).arg(usrc.pass()).arg(usrc.host()).arg(i+1);
+    }
+    atom.m_long = 0;
+    entry.append(atom);
+fprintf(stderr,"URL is %s\n", atom.m_str.ascii());
 
     atom.m_uds = UDS_FILE_TYPE;
     atom.m_str = "";
