@@ -219,7 +219,7 @@ SmbProtocol::SmbProtocol (const QCString &pool, const QCString &app )
    QString scrambled = cfg->readEntry( "Password","" );
    m_password=my_unscramble(scrambled);
    delete cfg;
-};
+}
 
 SmbProtocol::~SmbProtocol()
 {
@@ -391,11 +391,11 @@ SmbProtocol::SmbReturnCode SmbProtocol::waitUntilStarted(ClientProcess *proc, co
             {
                proc->startingFinished=true;
                return SMB_OK;
-            };
-         };
-      };
-   };
-};
+            }
+         }
+      }
+   }
+}
 
 SmbProtocol::SmbReturnCode SmbProtocol::getShareInfo(ClientProcess* shareLister,const QString& password, bool listWgs)
 {
@@ -1510,7 +1510,7 @@ void SmbProtocol::get( const KURL& url )
 
    data( QByteArray() );
    finished();
-};
+}
 
 QCString SmbProtocol::getMasterBrowser()
 {
@@ -1538,12 +1538,12 @@ QCString SmbProtocol::getMasterBrowser()
          if (exitStatus!=-1)
          {
             kdDebug(KIO_SMB)<<"Smb::getMasterBrowser() nmblookup exited with exitcode "<<exitStatus<<endl;
-         };
+         }
          if (stdoutEvent)
          {
             readOutput(proc->fd());
-         };
-      };
+         }
+      }
       //now parse the output
       QString outputString = QString::fromLocal8Bit(m_stdoutBuffer);
       QTextIStream output(&outputString);
@@ -1563,19 +1563,23 @@ QCString SmbProtocol::getMasterBrowser()
                if ((line[i].isDigit()) || (line[i]=='.'))
                   masterBrowser+=line[i].latin1();
             break;
-         };
+         }
          clearBuffer();
-      };
-   };
+      }
+   }
    kdDebug(KIO_SMB)<<"Smb::getMasterBrowser() ms is  -"<<masterBrowser<<"-"<<endl;
 
    return masterBrowser;
-};
+}
 
 bool SmbProtocol::searchWorkgroups()
 {
    QCString masterBrowser=getMasterBrowser();
-   QCString nmbName=getNmbName(masterBrowser);
+   QCString nmbName;
+   if (masterBrowser.isEmpty())
+      nmbName="localhost";
+   else
+      nmbName=getNmbName(masterBrowser);
    m_workgroups.clear();
 
    kdDebug(KIO_SMB)<<"Smb::searchWorkgroups() nmbName: -"<<nmbName<<"- ip: -"<<masterBrowser<<"-"<<endl;
@@ -1584,7 +1588,8 @@ bool SmbProtocol::searchWorkgroups()
    args<<QCString("-L")+nmbName;
    if (!m_user.isEmpty())
       args<<QCString("-U")+m_user.local8Bit();
-   args<<QCString("-I")+masterBrowser;
+   if (!masterBrowser.isEmpty())
+      args<<QCString("-I")+masterBrowser;
 //   if (!m_defaultWorkgroup.isEmpty())
 //      args<<QCString("-W")+m_defaultWorkgroup.local8Bit();
    if (!proc->start("smbclient",args))
@@ -1943,7 +1948,7 @@ QCString SmbProtocol::getNmbName(QCString ipString)
    QCString nmbName="";
    if (!proc->start("nmblookup",args))
    {
-      kdDebug(KIO_SMB)<<"Smb::getMasterBrowser: starting nmblookup failed"<<endl;
+      kdDebug(KIO_SMB)<<"Smb::getNmbName: starting nmblookup failed"<<endl;
    }
    else
    {
