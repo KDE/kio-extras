@@ -154,10 +154,13 @@ QDataStream& operator>> (QDataStream& s, sftpFileAttr& fa) {
     fa.clear();
     Q_UINT32 size;
     if( fa.mDirAttrs ) {
-        s >> fa.mFilename;
-        size = fa.mFilename.size();
-        fa.mFilename.resize(size+1);
-        fa.mFilename[size] = '\0';
+        QByteArray y;
+        s >> y;
+        QString z(y);
+        fa.mFilename = z;
+//        size = fa.mFilename.size();
+//        fa.mFilename.resize(size+1);
+//        fa.mFilename[size] = '\0';
         s >> fa.mLongname;
         size = fa.mLongname.size();
         fa.mLongname.resize(size+1);
