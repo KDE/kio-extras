@@ -166,7 +166,7 @@ QString rfcDecoder::quoteIMAP(const QString &src)
       result += '\\';
     result += src[i];
   }
-  result.squeeze();
+  //result.squeeze(); - unnecessary and slow
   return result;
 }
 
@@ -336,6 +336,10 @@ const QString
 rfcDecoder::decodeRFC2047String (const QString & _str, QString & charset,
                                  QString & language)
 {
+  //do we have a rfc string
+  if (_str.find("=?") < 0)
+    return _str;
+
   QCString aStr = _str.ascii ();  // QString.length() means Unicode chars
   QCString result;
   char *pos, *beg, *end, *mid = NULL;
@@ -344,10 +348,6 @@ rfcDecoder::decodeRFC2047String (const QString & _str, QString & charset,
   bool valid;
   const int maxLen = 200;
   int i;
-
-  //do we have a rfc string
-  if (aStr.find ("=?") < 0)
-    return aStr;
 
 //  result.truncate(aStr.length());
   for (pos = aStr.data (); *pos; pos++)
@@ -461,12 +461,11 @@ rfcDecoder::encodeRFC2047String (const QString & _str)
 {
   if (_str.isEmpty ())
     return _str;
-  signed char *latin = (signed char *) calloc (1, _str.length () + 1);
-  strcpy ((char *)latin, _str.latin1 ());
-  signed char *latinStart = latin, *l, *start, *stop;
+  const signed char *latin = reinterpret_cast<const signed char *>(_str.latin1()), *l, *start, *stop;
   char hexcode;
   int numQuotes, i;
   int rptr = 0;
+  // My stats show this number results in 12 resize() out of 73,000
   int resultLen = 3 * _str.length() / 2;
   QCString result(resultLen);
   
@@ -565,7 +564,7 @@ rfcDecoder::encodeRFC2047String (const QString & _str)
     }
   }
   result[rptr] = 0;
-  free (latinStart);
+  //free (latinStart);
   return result;
 }
 
@@ -626,24 +625,22 @@ rfcDecoder::encodeRFC2231String (const QString & _str)
 const QString
 rfcDecoder::decodeRFC2231String (const QString & _str)
 {
-  QString charset;
-  QString language;
-
   int p = _str.find ('\'');
-  int l = _str.findRev ('\'');
 
   //see if it is an rfc string
   if (p < 0)
     return _str;
 
-  //first is charset or empty
-  charset = _str.left (p);
-  QString st = _str.mid (l + 1);
+  int l = _str.findRev ('\'');
 
   //second is language
   if (p >= l)
     return _str;
-  language = _str.mid (p + 1, l - p - 1);
+
+  //first is charset or empty
+  QString charset = _str.left (p);
+  QString st = _str.mid (l + 1);
+  QString language = _str.mid (p + 1, l - p - 1);
 
   //kdDebug(7116) << "Charset: " << charset << " Language: " << language << endl;
 
