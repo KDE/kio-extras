@@ -532,7 +532,7 @@ static void add_links(char *c)
 		    *e='\0';
                     QCString str;
 		    if (subsec)
-                        str.sprintf("<A HREF=\"man:/%s(%c,%c)\">%s</A>", h, sec, tolower(subsec), h);
+                        str.sprintf("<A HREF=\"man:/%s(%c%c)\">%s</A>", h, sec, tolower(subsec), h);
 		    else
                         str.sprintf("<A HREF=\"man:/%s(%c)\">%s</A>", h, sec, h);
                     output_real(str.data());
