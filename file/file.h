@@ -1,18 +1,17 @@
 #ifndef __file_h__
 #define __file_h__ "$Id$"
 
+#include <sys/types.h>
+#include <sys/stat.h>
+
+#include <stdio.h>
+#include <unistd.h>
+
 #include <qstring.h>
+#include <qvaluelist.h>
 
 #include <kio_interface.h>
 #include <kio_base.h>
-
-#include <string.h>
-#include <list>
-
-#include <stdio.h>
-#include <sys/stat.h>
-#include <unistd.h>
-#include <sys/types.h>
 
 class FileProtocol : public IOProtocol
 {
@@ -76,10 +75,10 @@ protected:
 
   void doCopy( QStringList& _source, const char *_dest, bool _rename, bool _move = false );
 
-  long listRecursive( const char *_path, list<Copy>& _files,
-		      list<CopyDir>& _dirs, bool _rename );
+  long listRecursive( const char *_path, QValueList<Copy>& _files,
+		      QValueList<CopyDir>& _dirs, bool _rename );
   long listRecursive2( const char *_abs_path, const char *_rel_path,
-		       list<Copy>& _files, list<CopyDir>& _dirs );
+		      QValueList<Copy>& _files, QValueList<CopyDir>& _dirs );
 
   int m_cmd;
   bool m_bIgnoreJobErrors;
