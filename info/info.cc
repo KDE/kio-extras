@@ -130,15 +130,6 @@ void InfoProtocol::decodeURL( const KURL &url )
 {
     kdDebug( 7108 ) << "InfoProtocol::decodeURL" << endl;
 
-    /* test for valid directory in url.path().
-     * else test for valid dir in url.host()+url.path() because
-     *  of "info://usr/local/info/infopage/Top" made from the
-     *  "info2html" program.
-     * If there is no possibility to get a valid dir, assume the url to
-     *  be a valid page description.
-     */
-
-
     QString dirstr = url.path(); // there HAS to be a url.path() at least
     //kdDebug( 7108 ) << "dirstring: " << dirstr << endl;
 
