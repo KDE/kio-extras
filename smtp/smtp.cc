@@ -142,8 +142,89 @@ void SMTPProtocol::setHost( const QString& host, int port, const QString& /*user
 }
 
 
-bool SMTPProtocol::getResponse(char *buf, unsigned int len) {
+bool SMTPProtocol::getResponse(char *r_buf, unsigned int r_len) {
+  char *buf=0;
+  unsigned int recv_len=0;
+  fd_set FDs;
+ 
+  // Give the buffer the appropiate size
+  if (r_len)
+    buf=(char *)malloc(r_len);
+  else {
+    buf=(char *)malloc(512);
+    r_len=512;
+  }
+ 
+  // And keep waiting if it timed out
+  unsigned int wait_time=60; // Wait 60sec. max.
+  do
+  {
+      // Wait for something to come from the server
+    FD_ZERO(&FDs);
+    FD_SET(m_iSock, &FDs);
+    // Yes, it's true, Linux sucks. (And you can't program --Waba)
+    wait_time--;
+    m_tTimeout.tv_sec=1;
+    m_tTimeout.tv_usec=0;
+  }
+  while (wait_time && (::select(m_iSock+1, &FDs, 0, 0, &m_tTimeout) ==0));
+ 
+  if (wait_time == 0)
+  {
+    fprintf(stderr, "No response from SMTP server in 60 secs.\n");
+    return false;
+  }
+ 
+  // Clear out the buffer
+  memset(buf, 0, r_len);
+  // And grab the data
+#ifdef SPOP3
+  int rc = SSL_readline(ssl, buf, r_len-1);
+  if (rc <= 0) {
+    if (buf) free(buf);
+    return false;
+  }
+  buf[rc] = 0;
+#else
+  if (fgets(buf, r_len-1, fp) == 0) {
+    if (buf) free(buf);
+    return false;
+  }
+#endif
+  // This is really a funky crash waiting to happen if something isn't
+  // null terminated.
+  recv_len=strlen(buf);
+ 
+/*
+ *   From std010:
+ *
 
+ *
+ */
+ 
+  if (strncmp(buf, "250 ", 4)==0) {           // standard "OK"
+    if (r_buf && r_len) {
+      memcpy(r_buf, buf+4, QMIN(r_len,recv_len-4));
+    }
+    if (buf) free(buf);
+    return true;
+  } else if (strncmp(buf, "354 ", 4)==0) {    // after DATA, says to continue
+  } else if (strncmp(buf, "220 ", 4)==0) {    // opening connection
+  } else if (strncmp(buf, "221 ", 4)==0) {    // closing connection
+  } else if (strncmp(buf, "-ERR ", 5)==0) {
+    if (r_buf && r_len) {
+      memcpy(r_buf, buf+5, QMIN(r_len,recv_len-5));
+    }
+    if (buf) free(buf);
+    return false;
+  } else {
+    fprintf(stderr, "Invalid SMTP response received!\n");
+    if (r_buf && r_len) {
+      memcpy(r_buf, buf, QMIN(r_len,recv_len));
+    }
+    if (buf) free(buf);
+    return false;
+  }
 }
 
 

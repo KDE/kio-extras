@@ -35,10 +35,11 @@ class SMTPProtocol : public KIO::SlaveBase {
   bool smtp_open(KURL &url);
   void smtp_close();
   bool command(const char *buf, char *r_buf = NULL, unsigned int r_len = 0);
-  bool getResponse(char *buf = NULL, unsigned int len = 0);
+  bool getResponse(char *r_buf = NULL, unsigned int r_len = 0);
   QString buildUrl(const QString &path);
 
   int m_iSock;
+  struct timeval m_tTimeout;
   FILE *fp;
   QString urlPrefix;
   QString m_sServer, m_sOldServer;
