@@ -1,11 +1,16 @@
 This document describes how you can debug an io-slave with gdb.
 
 How does an io-slave get started?
+=================================
 
 Your application request 'klauncher' via DCOP for a slave. If 'klauncher' does 
 not have an idle slave ready, it will ask kdeinit to start a new one.
 kdeinit forks and dlopens the library that contains the io-slave.
 Then it calls kdemain() or, if that is not present, main() in the library.
+
+
+Attaching gdb to a io-slave
+===========================
 
 Due to the above sequence it is rather hard to get an io-slave in your
 debugger. But wait there is hope. You can start klauncher in such a way
@@ -38,6 +43,25 @@ Once you have started gdb, you can set e.g. breakpoints and then resume the
 slave by typing 'continue'. The debugger will return immediate with a message 
 that a SIGSTOP has been received so you will have to type 'continue' a second 
 time.
+
+
+How to get debug output
+=======================
+
+It is usefull to redirect the debug output of your particular slave to a file 
+instead of stderr. E.g. I myself use the following lines in
+$KDEDIR/share/config/kdebugrc.
+
+       [7113]
+       InfoOutput=0
+       InfoFilename=/tmp/http
+       [7103]
+       InfoOutput=0
+       InfoFilename=/tmp/http 
+
+This redirects all debug info for areas 7103 and 7113 (as used by kio_http) 
+to the file /tmp/http.
+
 
 Happy debugging.
 
