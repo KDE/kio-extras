@@ -432,7 +432,7 @@ void kio_sftpProtocol::openConnection(){
                     i18n("Please enter your username and password.");
             }
            
-            info.caption = i18n("Sftp Login");
+            info.caption = i18n("SFTP Login");
             info.commentLabel = i18n("site:");
             info.comment = "sftp://"+mHost;
             info.keepPassword = true;
@@ -441,7 +441,7 @@ void kio_sftpProtocol::openConnection(){
                 dlgResult = openPassDlg(info);
             }
             else {
-                dlgResult = openPassDlg(info, i18n("Incorrect username or password."));
+                dlgResult = openPassDlg(info, i18n("Incorrect username or password"));
             }
             
             if( dlgResult ) {
