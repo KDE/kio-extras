@@ -2,6 +2,7 @@
 ## Makefile.am of kdebase/kioslave/tar
 
 INCLUDES = $(all_includes)
+LDFLAGS = $(all_libraries) $(KDE_RPATH)
 
 ####### Files
 
