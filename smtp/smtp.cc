@@ -70,17 +70,21 @@
 
 #define DEFAULT_EMAIL "someuser@is.using.a.pre.release.kde.ioslave.compliments.of.kde.org"
 #define ASCII(x) QString::fromLatin1(x)
+#define DEFAULT_RESPONSE_BUFFER 512
+#define DEFAULT_EHLO_BUFFER 5120
 
 using namespace KIO;
 
-extern "C" { int kdemain (int argc, char **argv); }
+extern "C" {
+	int kdemain (int argc, char **argv);
+}
 
 void	GetAddresses(const QString &str, const QString &delim, QStringList &list);
 int	GetVal(char *buf);
 
 int kdemain (int argc, char **argv)
 {
-	KInstance instance ("kio_smtp");
+	KInstance instance("kio_smtp");
 
 	if (argc != 4) {
 		fprintf(stderr, "Usage: kio_smtp protocol domain-socket1 domain-socket2\n");
@@ -88,8 +92,7 @@ int kdemain (int argc, char **argv)
 	}
 
 	// We might as well allocate it on the heap.  Since there's a heap o room there..
-	SMTPProtocol *slave;
-	slave = new SMTPProtocol(argv[2], argv[3]);
+	SMTPProtocol *slave = new SMTPProtocol(argv[2], argv[3]);
 	slave->dispatchLoop();
 
 	delete slave;
@@ -123,17 +126,19 @@ SMTPProtocol::~SMTPProtocol ()
 
 void SMTPProtocol::HandleSMTPWriteError (const KURL &url)
 {
-	if (!command( ASCII("RSET") )) // Attempt to save face
+	// Attempt to save face and call RSET, and if that works
+	// try and shut down nicely.
+	if (!command( ASCII("RSET") )) {
 		error(ERR_SERVICE_NOT_AVAILABLE, i18n("RSET failed %1").arg(url.path()));
-	else {
+	} else {
 		smtp_close();
 		error(ERR_COULD_NOT_WRITE, i18n("RSET succeeded %1").arg(url.path()));
 	}
 }
 
+// Usage: smtp://smtphost:port/send?to=user@host.com&subject=blah
 void SMTPProtocol::put (const KURL &url, int /*permissions*/, bool /*overwrite*/, bool /*resume*/)
 {
-// smtp://smtphost:port/send?to=user@host.com&subject=blah
 	QString query = url.query();
 	QString subject = ASCII("missing subject");
 	QStringList recip, cc;
@@ -166,12 +171,13 @@ void SMTPProtocol::put (const KURL &url, int /*permissions*/, bool /*overwrite*/
 		from = ASCII(DEFAULT_EMAIL);
 	}
 	from.prepend(ASCII("MAIL FROM: "));
-
 	if (!command(from)) {
 		HandleSMTPWriteError(url);
 		return;
 	}
 
+	// Loop through our To and CC recipients, and send the proper
+	// SMTP commands
 	QString formatted_recip = ASCII("RCPT TO: %1");
 	for ( QStringList::Iterator it = recip.begin(); it != recip.end(); ++it ) {
 		if (!command(formatted_recip.arg(*it)))
@@ -182,6 +188,7 @@ void SMTPProtocol::put (const KURL &url, int /*permissions*/, bool /*overwrite*/
 			HandleSMTPWriteError(url);
 	}
 
+	// Begin sending the actual message contents (most headers+body)
 	if (!command(ASCII("DATA"))) {
 		HandleSMTPWriteError(url);
 	}
@@ -224,10 +231,10 @@ void SMTPProtocol::put (const KURL &url, int /*permissions*/, bool /*overwrite*/
 	do {
 		dataReq(); // Request for data
 		buffer.resize(0);
-		result = readData( buffer );
+		result = readData(buffer);
 		if (result > 0) {
-			Write( buffer.data(), buffer.size());
-		} else if (result < 0) {
+			Write(buffer.data(), buffer.size());
+		} else if (result <= 0) {
 			error(ERR_COULD_NOT_WRITE, url.path());
 		}
 	}
@@ -257,12 +264,12 @@ int SMTPProtocol::getResponse (char *r_buf, unsigned int r_len)
 		buf = static_cast<char *>(malloc(r_len));
 		len = r_len;
 	} else {
-		buf = static_cast<char *>(malloc(512));
-		len = 512;
+		buf = static_cast<char *>(malloc(DEFAULT_RESPONSE_BUFFER));
+		len = DEFAULT_RESPONSE_BUFFER;
 	}
 
 	// And keep waiting if it timed out
-	unsigned int wait_time=60; // Wait 60sec. max.
+	unsigned int wait_time = 60; // Wait 60sec. max.
 	do {
 		// Wait for something to come from the server
 		FD_ZERO(&FDs);
@@ -305,20 +312,19 @@ int SMTPProtocol::getResponse (char *r_buf, unsigned int r_len)
 		return GetVal(buf);
 	} else {
 		// Really crude, whee
-		//return GetVal(buf);
 		if (r_len) {
 			r_len = recv_len-4;
 			memcpy(r_buf, buf+4, r_len);
 		}
 		return GetVal(buf);
 	}
-
 }
 
-
-bool SMTPProtocol::command (const QString &cmd, char *recv_buf, unsigned int len) {
-	// Write the command
+bool SMTPProtocol::command (const QString &cmd, char *recv_buf, unsigned int len)
+{
 	QCString write_buf = cmd.local8Bit();
+
+	// Write the command
 	if ( Write(static_cast<const char *>(write_buf), write_buf.length() ) != static_cast<ssize_t>(write_buf.length()) ) {
 		m_sError = i18n("Could not send to server.\n");
 		return false;
@@ -330,7 +336,6 @@ bool SMTPProtocol::command (const QString &cmd, char *recv_buf, unsigned int len
 	}
 	return (getResponse(recv_buf, len) < 400);
 }
-
 
 bool SMTPProtocol::smtp_open (const KURL &url)
 {
@@ -347,8 +352,8 @@ bool SMTPProtocol::smtp_open (const KURL &url)
 		return false;
 	}
 
-	QBuffer ehlobuf(QByteArray(5120));
-	memset(ehlobuf.buffer().data(), 0, 5120);
+	QBuffer ehlobuf(QByteArray(DEFAULT_EHLO_BUFFER));
+	memset(ehlobuf.buffer().data(), 0, DEFAULT_EHLO_BUFFER);
 
 	// Yes, I *know* that this is not the way it should be done, but
 	// for now there's no real need to complicate things by
@@ -362,9 +367,9 @@ bool SMTPProtocol::smtp_open (const KURL &url)
 	}
 
 	// We parse the ESMTP extensions here... pipelining would be really cool
-	char ehlo_line[2048];
+	char ehlo_line[DEFAULT_EHLO_BUFFER];
 	if (ehlobuf.open(IO_ReadWrite)) {
-		while (ehlobuf.readLine(ehlo_line, 2048) > 0)
+		while (ehlobuf.readLine(ehlo_line, DEFAULT_EHLO_BUFFER) > 0)
 			ParseFeatures(const_cast<const char *>(ehlo_line));
 	}
 
@@ -415,7 +420,8 @@ bool SMTPProtocol::Authenticate (const KURL &url)
 
 	// If none are available, set it up so we can start over again
 	if (auth_method == QString::null) {
-		delete m_pSASL; m_pSASL=0;
+		delete m_pSASL;
+		m_pSASL = 0;
 		kdDebug() << "kio_smtp: no authentication available" << endl;
 		error(ERR_COULD_NOT_LOGIN, i18n("No compatible authentication methods found."));
 		return false;
@@ -426,7 +432,7 @@ bool SMTPProtocol::Authenticate (const KURL &url)
 		if (!command(ASCII("AUTH ")+auth_method, challenge, 2049)) {
 			free(challenge);
 			delete m_pSASL;
-			m_pSASL=0;
+			m_pSASL = 0;
 			return false;
 		}
 
@@ -455,7 +461,6 @@ bool SMTPProtocol::Authenticate (const KURL &url)
 	return false;
 }
 
-
 void SMTPProtocol::ParseFeatures (const char *_buf)
 {
 	QCString buf(_buf);
@@ -469,11 +474,10 @@ void SMTPProtocol::ParseFeatures (const char *_buf)
 
 	if (buf.left(4) == "AUTH") { // Look for auth stuff
 		if (m_sAuthConfig == QString::null) 
-			m_sAuthConfig=buf.mid(5, buf.length());
+			m_sAuthConfig = buf.mid(5, buf.length());
 	} else if (buf.left(8) == "STARTTLS") {
 		haveTLS=true;
 	}
-
 }
 
 void SMTPProtocol::smtp_close ()
@@ -508,6 +512,7 @@ int GetVal (char *buf)
 void GetAddresses (const QString &str, const QString &delim, QStringList &list)
 {
 	int curpos = 0;
+
 	while ( (curpos = str.find(delim, curpos) ) != -1 ) {
 		if ( (str.at(curpos-1) == "?") || (str.at(curpos-1) == "&") ) {
 			curpos += delim.length();
