@@ -242,7 +242,7 @@ void GopherProtocol::listDir( const KURL &dest )
       break;
     }
     default: {
-      atom.m_str="application/ocet-stream";
+      atom.m_str="application/octet-stream";
       break;
     }
     }
