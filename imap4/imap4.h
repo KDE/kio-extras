@@ -102,7 +102,6 @@ protected:
   bool assureBox (const QString & aBox, bool readonly);
 
   ssize_t myRead(void *data, ssize_t len);
-  ssize_t myReadLine(char *data, ssize_t len);
 
   enum IMAP_TYPE
   parseURL (const KURL & _url, QString & _box, QString & _section,

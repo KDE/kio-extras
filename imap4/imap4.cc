@@ -564,48 +564,56 @@ bool IMAP4Protocol::parseRead(QByteArray & buffer, ulong len, ulong relay)
 bool IMAP4Protocol::parseReadLine (QByteArray & buffer, ulong relay)
 {
   if (myHost.isEmpty()) return FALSE;
-  char buf[1024];
-  ssize_t readLen;
 
-  while (1)
-  {
-    memset (&buf, sizeof (buf), 0);
-    readLen = myReadLine(buf, sizeof(buf) - 1);
-    if (readLen == 0)
+  while (true) {
+    ssize_t copyLen = 0;
+    if (readBufferLen > 0)
+    {
+      while (copyLen < readBufferLen && readBuffer[copyLen] != '\n') copyLen++;
+      if (copyLen < readBufferLen) copyLen++;
+      if (relay > 0)
+      {
+        QByteArray relayData;
+
+        if (copyLen < relay)
+          relay = copyLen;
+        relayData.setRawData (readBuffer, relay);
+        parseRelay (relayData);
+        relayData.resetRawData (readBuffer, relay);
+        kdDebug(7116) << "relayed : " << relay << "d" << endl;
+      }
+      // append to buffer
+      {
+        QBuffer stream (buffer);
+
+        stream.open (IO_WriteOnly);
+        stream.at (buffer.size ());
+        stream.writeBlock (readBuffer, copyLen);
+        stream.close ();
+//        kdDebug(7116) << "appended " << copyLen << "d got now " << buffer.size() << endl;
+      }
+
+      readBufferLen -= copyLen;
+      if (readBufferLen) memcpy(readBuffer, &readBuffer[copyLen], readBufferLen);
+      if (buffer[buffer.size() - 1] == '\n') return TRUE;
+    }
+    if (!isConnectionValid())
     {
       error (ERR_CONNECTION_BROKEN, myHost);
       setState(ISTATE_CONNECT);
       closeConnection();
       return FALSE;
     }
-
-    if (relay > 0)
+    waitForResponse(600);
+    readBufferLen = read(readBuffer, IMAP_BUFFER - 1);
+    if (readBufferLen == 0)
     {
-    QByteArray relayData;
-
-      if ((ulong)readLen < relay)
-        relay = readLen;
-      relayData.setRawData (buf, relay);
-      parseRelay (relayData);
-      relayData.resetRawData (buf, relay);
-      kdDebug(7116) << "relayed : " << relay << "d" << endl;
+      error (ERR_CONNECTION_BROKEN, myHost);
+      setState(ISTATE_CONNECT);
+      closeConnection();
+      return FALSE;
     }
-    // append to buffer
-    {
-      QBuffer stream (buffer);
-
-      stream.open (IO_WriteOnly);
-      stream.at (buffer.size ());
-      stream.writeBlock (buf, readLen);
-      stream.close ();
-//        kdDebug(7116) << "appended " << readLen << "d got now " << buffer.size() << endl;
-    }
-    if (buffer[buffer.size () - 1] != '\n')
-      kdDebug(7116) << "************************** Partial filled buffer" << endl;
-    else
-      break;
   }
-  return TRUE;
 }
 
 
@@ -1616,28 +1624,6 @@ ssize_t IMAP4Protocol::myRead(void *data, ssize_t len)
   if (!isConnectionValid()) return 0;
   waitForResponse(600);
   return read(data, len);
-}
-
-ssize_t IMAP4Protocol::myReadLine(char *data, ssize_t len)
-{
-  ssize_t copyLen = 0, readLen = 0;
-  while (true) {
-    while (copyLen < readBufferLen && readBuffer[copyLen] != '\n') copyLen++;
-    if (copyLen < readBufferLen || copyLen == len)
-    {
-      copyLen++;
-      memcpy(data, readBuffer, copyLen);
-      data[copyLen] = '\0';
-      readBufferLen -= copyLen;
-      if (readBufferLen) memcpy(readBuffer, &readBuffer[copyLen], readBufferLen);
-      return copyLen;
-    }
-    if (!isConnectionValid()) { data[0] = '\0'; return 0; }
-    waitForResponse(600);
-    readLen = read(&readBuffer[readBufferLen], len - readBufferLen);
-    readBufferLen += readLen;
-    if (readLen == 0) { data[0] = '\0'; return 0; }
-  }
 }
 
 bool
