@@ -40,7 +40,11 @@ extern "C"
 bool ImageCreator::create(const QString &path, int, int, QImage &img)
 {
     // create image preview
-    return img.load( path );
+    if (!img.load( path ))
+	return false;
+    if (img.depth() != 32)
+	img = img.convertDepth( 32 );
+    return true;
 }
 
 ThumbCreator::Flags ImageCreator::flags() const
