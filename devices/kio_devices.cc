@@ -70,6 +70,7 @@
 		kdDebug(7126)<<"kdemain for devices"<<endl;
 		// KApplication is used as we need to use the file:// ioslave
 		// which need a valid kapp pointer
+		putenv(strdup("SESSION_MANAGER="));
 		KApplication::disableAutoDcopRegistration();
 		KApplication app(argc, argv, "kio_devices", false, true);
 		

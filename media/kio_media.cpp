@@ -17,6 +17,8 @@
    Boston, MA 02111-1307, USA.
 */
 
+#include <stdlib.h>
+
 #include <kdebug.h>
 #include <klocale.h>
 #include <kapplication.h>
@@ -40,12 +42,12 @@ extern "C" {
 	int kdemain( int argc, char **argv )
 	{
 		// KApplication is necessary to use other ioslaves
+		putenv(strdup("SESSION_MANAGER="));
 		KCmdLineArgs::init(argc, argv, "kio_media", 0, 0, 0, 0);
 		KCmdLineArgs::addCmdLineOptions( options );
 		KApplication app( false, false );
 		// We want to be anonymous even if we use DCOP
 		app.dcopClient()->attach();
-		app.disableSessionManagement();
 
 		KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
 		MediaProtocol slave( args->arg(0), args->arg(1), args->arg(2) );
