@@ -51,10 +51,9 @@ int kdemain(int argc, char **argv)
 }
 
 GopherProtocol::GopherProtocol(const QCString &pool, const QCString &app)
-  : SlaveBase( "gopher", pool, app)
+  : TCPSlaveBase( 70, "gopher", pool, app)
 {
   m_cmd = CMD_NONE;
-  m_iSock = 0;
   m_tTimeout.tv_sec=10;
   m_tTimeout.tv_usec=0;
   fp = 0;
@@ -69,58 +68,18 @@ void GopherProtocol::gopher_close ()
 {
   if (fp) {
     fclose(fp);
-    m_iSock=0; fp=0;
+    fd=-1; fp=0;
   }
 }
 
 bool GopherProtocol::gopher_open( const KURL &_url )
 {
-  // This function is simply a wrapper to establish the connection
-  // to the server.  It's a bit more complicated than ::connect
-  // because we first have to check to see if the user specified
-  // a port, and if so use it, otherwise we check to see if there
-  // is a port specified in /etc/services, and if so use that
-  // otherwise as a last resort use the "official" port of 70.
-
-  unsigned short int port;
-  ksockaddr_in server_name;
-  memset(&server_name, 0, sizeof(server_name));
-  // static char buf[512];
-
-  // We want 70 as the default
-  if (_url.port())
-    port=_url.port();
-  else {
-    struct servent *srv=getservbyname("gopher", "tcp");
-    if (srv) {
-      port=ntohs(srv->s_port);
-    } else
-      port=70;
-  }
-
-  gopher_close();
-  m_iSock = ::socket(PF_INET, SOCK_STREAM, 0);
-  if (!KSocket::initSockaddr(&server_name, m_sServer.ascii(), port))
-    return false;
-  if (::connect(m_iSock, (struct sockaddr*)(&server_name), sizeof(server_name))) {
-    error( ERR_COULD_NOT_CONNECT, _url.host());
-    return false;
-  }
-
-  // Since we want to use stdio on the socket,
-  // we must fdopen it to get a file pointer,
-  // if it fails, close everything up
-  if ((fp = fdopen(m_iSock, "w+")) == 0) {
-    close(m_iSock);
-    m_iSock=0;
-    return false;
-  }
-
+  ConnectToHost(m_sServer, static_cast<int>(_url.port()));
   QString path=_url.path();
   if (path.at(0)=='/') path.remove(0,1);
   if (path.isEmpty()) {
     // We just want the initial listing
-    if (::write(m_iSock, "\r\n", 2) != 2) {
+    if (Write("\r\n", 2) != 2) {
       error(ERR_COULD_NOT_CONNECT, _url.host());
       return false;
     }
@@ -133,12 +92,12 @@ bool GopherProtocol::gopher_open( const KURL &_url )
       return false;
     }
     // Otherwise we should send our request
-    if (::write(m_iSock, path.ascii(), strlen(path.ascii())) != strlen(path.ascii())) {
+    if (Write(path.ascii(), strlen(path.ascii())) != strlen(path.ascii())) {
       error(ERR_COULD_NOT_CONNECT, _url.host());
       gopher_close();
       return false;
     }
-    if (::write(m_iSock, "\r\n", 2) != 2) {
+    if (Write("\r\n", 2) != 2) {
       error(ERR_COULD_NOT_CONNECT, _url.host());
       gopher_close();
       return false;
@@ -385,7 +344,7 @@ bool GopherProtocol::readRawData(const QString &_url, const char *mimetype)
   mimeType(mimetype);
   ssize_t read_ret=0;
   size_t total_size=0;
-  while ((read_ret=::read(m_iSock, buf, 1024))>0) {
+  while ((read_ret=Read(buf, 1024))>0) {
       total_size+=read_ret;
       array.setRawData(buf, read_ret);
       data( array );
