@@ -66,7 +66,7 @@ void InfoProtocol::get( const KURL& url )
 
     QString cmds("%1 %2 %3 %4 \"%5\" \"%6\"");
     QCString cmd = cmds.arg(m_perl).arg(m_infoScript).arg(locate("data", "kio_info/kde-info2html.conf")).arg(KGlobal::dirs()->findResourceDir("icon", "hicolor/22x22/actions/up.png")).arg(m_page).arg(m_node).latin1();
-    //kdDebug( 7108 ) << "cmd: " << (const char *)cmd << endl;
+    kdDebug( 7108 ) << "cmd: " << (const char *)cmd << endl;
     
     FILE *fd = popen( cmd.data(), "r" );
     
@@ -121,6 +121,7 @@ void InfoProtocol::decodeURL( const KURL &url )
 
 
     QString dirstr;
+    //huh, what is this good for ? aleXXX
     if (url.hasHost()) {
       dirstr = '/';
       dirstr += url.host();
@@ -131,8 +132,17 @@ void InfoProtocol::decodeURL( const KURL &url )
     /* now we got a description where a directory is in.
      * Lets test it */
 
+/*    if (dirstr.isEmpty())
+       dirstr="dir";
+
+    if (dirstr[0]!='/')
+    {
+       decodePath(dirstr);
+       return;
+    };*/
+
     int slashPos = dirstr.find( "/", 1 );
-    int oldPos = 1;
+    int oldPos = 0;
     QDir dir(dirstr.left(slashPos));
     //kdDebug( 7108 ) << "dirpath: " << dir.path() << endl;
     while (dir.exists()) {
@@ -150,21 +160,21 @@ void InfoProtocol::decodeURL( const KURL &url )
     // oldPos now has the last dir '/'
     //kdDebug( 7108 ) << "dirstr_ length = " <<dirstr.length() << ", pos = " << oldPos << endl;
     //kdDebug( 7108 ) << "info_ request: " << dirstr.right(dirstr.length() - oldPos) << endl;
-    decodePath(dirstr.right(dirstr.length() - oldPos));
+    decodePath(dirstr.right(1+dirstr.length() - oldPos));
 
     kdDebug( 7108 ) << "InfoProtocol::decodeURL - done" << endl;
 }
 
 void InfoProtocol::decodePath( QString path )
 {
-    kdDebug( 7108 ) << "InfoProtocol::decodePath" << endl;
+    kdDebug( 7108 ) << "InfoProtocol::decodePath(-" <<path<<"-)"<< endl;
 
-    m_page = "";
+    m_page = "dir";  //default
     m_node = "";
 
     // remove leading slash
     if ('/' == path[0]) {
-      path = path.right( path.length() - 1 );
+      path = path.mid( 1 );
     }
     //kdDebug( 7108 ) << "Path: " << path << endl;
 
@@ -211,7 +221,7 @@ void InfoProtocol::stat( const KURL &url )
 	finished();
 }
 
-void InfoProtocol::listDir( const KURL &url )
+/*void InfoProtocol::listDir( const KURL &url )
 {
     kdDebug( 7108 ) << "InfoProtocol::listDir" << endl;
  
@@ -270,7 +280,7 @@ void InfoProtocol::listDir( const KURL &url )
         kdError(7108) << "cannot open file '/usr/info/dir'" << endl;
     }
     kdDebug( 7108 ) << "InfoProtocol::listDir - done" << endl;
-}
+}*/
 
 extern "C" { int kdemain( int argc, char **argv ); }
 

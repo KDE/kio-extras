@@ -62,11 +62,12 @@ sub DieFileNotFound{
   #-- TEXT : error message if a file could not be opened
   print <<EOF;
 <head>
-<title>Info Files  - Error Message</title>
-<h1>File IO Error</h1>
+<title>Info: (no page found)</title>
+<h1>KDE Info Pages Viewer Error</h1>
 </head>
 <body>
- <em>$FileName</em> could not be opened for reading.
+  No info page for topic <code>"$FileName"</code> found.<br>
+  Maybe you find what you are looking for with <code>"man:$FileName"</code>.
 </body>
 EOF
   die "\n";
@@ -95,12 +96,17 @@ sub DirnameCheck{
   local($Dir)  = @_;
 
   $Base =~ s@.*/@@g;
-  $Dir  =~ s@$Base@@;
-
+  $Dir  =~ s@\Q$Base\E@@;
+  
   for (@INFODIR) {
         return(1)  if ( $Dir =~ /^$_/ );
   }
-
+  
+  @infopath = split(/:/,$ENV{'INFOPATH'} );
+  foreach $i (@infopath) {
+     return(1)  if ( $Dir =~ /^$i/ );
+  }
+  
   return(0);
 }
 
@@ -626,11 +632,19 @@ sub FindFile {
     for $Name ($File, $Alt) {
 	$gzName = $Name . '.gz';
 	$bz2Name = $Name . '.bz2';
+
 	for (@INFODIR) {
-	    return "$_/$Name"   if (-e "$_/$Name");
+           return "$_/$Name"   if (-e "$_/$Name");
 	    return "$_/$gzName" if (-e "$_/$gzName");
 	    return "$_/$bz2Name"   if (-e "$_/$bz2Name");
 	}
+        @infopath = split(/:/,$ENV{'INFOPATH'} );
+        foreach $i (@infopath) {
+	    return "$i/$Name"   if (-e "$i/$Name");
+	    return "$i/$gzName" if (-e "$i/$gzName");
+	    return "$i/$bz2Name"   if (-e "$i/$bz2Name");
+        }
+        
     }
     return "";
 }
@@ -650,7 +664,7 @@ $NodeName     = $ARGV[3];
 
 
 $BaseInfoFile = "dir" if $BaseInfoFile =~ /^dir$/i;
-$FileNameFull = &FindFile($BaseInfoFile);
+$FileNameFull = &FindFile($BaseInfoFile) || &DieFileNotFound($BaseInfoFile);
 ($File,$Offset) = &GetFileAndOffset($FileNameFull,$NodeName);
 $File = $BaseInfoFile if $File eq "";
 $FileNameFull = &FindFile($File);

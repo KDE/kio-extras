@@ -4,5 +4,6 @@ protocol=info
 input=none
 output=filesystem
 reading=true
-listing=Name
+defaultMimetype=text/html
 determineMimetypeFromExtension=false
+
