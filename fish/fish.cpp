@@ -139,7 +139,7 @@ int kdemain( int argc, char **argv )
 #endif
     ;
     sigaction(SIGCHLD,&act,NULL);
-    
+
     fishProtocol slave(argv[2], argv[3]);
     slave.dispatchLoop();
 
@@ -641,7 +641,7 @@ bool fishProtocol::sendCommand(fish_command_type cmd, ...) {
         QString arg(va_arg(list, const char *));
         int pos = -2;
         while ((pos = rx.search(arg,pos+2)) >= 0) {
-            arg.replace(pos,0,"\\");
+            arg.replace(pos,0,QString("\\"));
         }
         //myDebug( << "arg " << i << ": " << arg << endl);
         realCmd.append(" ").append(arg);
@@ -1097,7 +1097,7 @@ int fishProtocol::received(const char *buffer, int buflen)
     QString buf;
     do {
         if (buflen <= 0) break;
-        
+
         if (rawRead > 0) {
             myDebug( << "processedSize " << dataRead << ", len " << buflen << "/" << rawRead << endl);
             int dataSize = (rawRead > buflen?buflen:rawRead);
