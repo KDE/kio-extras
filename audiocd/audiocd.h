@@ -71,7 +71,7 @@ class AudioCDProtocol : public KIO::SlaveBase
         struct cdrom_drive  * drive,
         long                  firstSector,
         long                  lastSector,
-        int                   fileType
+        QString               fileType
     );
 
     struct cdrom_drive *  initRequest(const KURL &);
@@ -82,6 +82,10 @@ class AudioCDProtocol : public KIO::SlaveBase
 
     class Private;
     Private * d;
+    
+  private:
+    cdrom_drive * pickDrive();
+    unsigned int get_discid(cdrom_drive *);
 };
 
 #endif
