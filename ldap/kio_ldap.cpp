@@ -13,7 +13,7 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <time.h>
-#include <malloc.h>
+#include <stdlib.h>
 #include <netdb.h>
 #include <netinet/in.h>
 
