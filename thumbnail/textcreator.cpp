@@ -112,7 +112,7 @@ bool TextCreator::create(const QString &path, int width, int height, QImage &img
             int posNewLine  = pix.width() - (chSize.width() + xborder);
             int posLastLine = pix.height() - (chSize.height() + yborder);
             bool newLine = false;
-            ASSERT( posNewLine > 0 );
+            Q_ASSERT( posNewLine > 0 );
             const QPixmap *fontPixmap = &(m_splitter->pixmap());
 
             for ( uint i = 0; i < text.length(); i++ )
