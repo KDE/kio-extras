@@ -2715,6 +2715,38 @@ static char *scan_request(char *c)
 	    out_html(" is currently in beta test.");
 	    if (fillout) curpos++; else curpos=0;
 	    break;
+	case V('A','t'):	/* BSD mandoc */
+	    trans_char(c,'"','\a');
+	    c=c+j;
+	    if (*c=='\n') c++;
+	    out_html("AT&amp;T Unix ");
+	    c=scan_troff_mandoc(c, 1, NULL);
+	    if (fillout) curpos++; else curpos=0;
+	    break;
+	case V('F','x'):	/* BSD mandoc */
+	    trans_char(c,'"','\a');
+	    c=c+j;
+	    if (*c=='\n') c++;
+	    out_html("FreeBSD ");
+	    c=scan_troff_mandoc(c, 1, NULL);
+	    if (fillout) curpos++; else curpos=0;
+	    break;
+	case V('N','x'):	/* BSD mandoc */
+	    trans_char(c,'"','\a');
+	    c=c+j;
+	    if (*c=='\n') c++;
+	    out_html("NetBSD ");
+	    c=scan_troff_mandoc(c, 1, NULL);
+	    if (fillout) curpos++; else curpos=0;
+	    break;
+	case V('O','x'):	/* BSD mandoc */
+	    trans_char(c,'"','\a');
+	    c=c+j;
+	    if (*c=='\n') c++;
+	    out_html("OpenBSD ");
+	    c=scan_troff_mandoc(c, 1, NULL);
+	    if (fillout) curpos++; else curpos=0;
+	    break;
 	case V('B','x'):	/* BSD mandoc */
 	    trans_char(c,'"','\a');
 	    c=c+j;
