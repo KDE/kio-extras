@@ -1,0 +1,7 @@
+If you are patching this code, please be very sensitive to performance issues.
+The parser is already very slow and resource intensive.  Be careful not to add
+any extra string iterations (copies, QCString.length(), etc), mallocs, or
+implicit object creation/copies.  Use calltree before and after your patch to
+verify that it is not too expensive, along with cpu usage timing and even
+wall clock time.
+
