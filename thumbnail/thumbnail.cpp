@@ -54,7 +54,7 @@ int kdemain(int argc, char **argv)
 
     if (argc != 4)
     {
-        cerr << "Usage: kio_tar protocol domain-socket1 domain-socket2" << endl;
+        cerr << "Usage: kio_thumbnail protocol domain-socket1 domain-socket2" << endl;
         exit(-1);
     }
 
