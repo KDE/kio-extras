@@ -1,4 +1,3 @@
-## kdebase/kioslave
 ## $Id$
 
 # old slaves commented out
@@ -7,7 +6,5 @@
 # smb and pop3 working again (add nntp on 3/17/2000)
 
 #added nfs subdir
-#removed nfs subdir, it does not compile
-#added gopher, isn't it time for a proper changelog yet?
 
-SUBDIRS = smb smtp pop3 nntp info $(LDAP_SUBDIR) man help
+SUBDIRS = nfs smb smtp pop3 gopher nntp info $(LDAP_SUBDIR) man help

@@ -306,7 +306,7 @@ void NFSProtocol::openConnection()
          m_handleCache.insert(QString("/")+KIO::encodeFileName(exportlist->ex_dir),fh);
          //m_handleCache.insert(KIO::encodeFileName(exportlist->ex_dir),fh);
          m_exportedDirs.append(KIO::encodeFileName(exportlist->ex_dir));
-         cerr<<"appending file -"<<KIO::encodeFileName(exportlist->ex_dir)<<"- with FH: -"<<fhStatus.fhstatus_u.fhs_fhandle<<"-"<<endl;
+         cerr<<"appending file -"<<KIO::encodeFileName(exportlist->ex_dir).data()<<"- with FH: -"<<fhStatus.fhstatus_u.fhs_fhandle<<"-"<<endl;
       }
       else
       {
@@ -330,7 +330,6 @@ void NFSProtocol::listDir( const KURL& _url)
 {
    KURL url(_url);
    QString path( QFile::encodeName(url.path()));
-   cerr<<"NFS::listDir: path: -"<<path<<"-"<<endl;
 
    if (path.isEmpty())
    {
@@ -370,7 +369,7 @@ void NFSProtocol::listDir( const KURL& _url)
    cerr<<"this is the fh: -"<<fh<<"-"<<endl;
    if (fh.isInvalid())
    {
-      error( ERR_DOES_NOT_EXIST, strdup(path));
+      error( ERR_DOES_NOT_EXIST, path);
       return;
    };
    readdirargs listargs;
@@ -400,14 +399,15 @@ void NFSProtocol::listDir( const KURL& _url)
       diropargs dirargs;
       diropres dirres;
       memcpy(dirargs.dir.data,fh,NFS_FHSIZE);
-      dirargs.name=(const char*)(*it);
+      strcpy(dirargs.name, QFile::encodeName(*it).data());
 
       kdDebug(7101)<<"calling rpc: FH: -"<<fh<<"- with name -"<<dirargs.name<<"-"<<endl;
 
       int clnt_stat=clnt_call(m_client, NFSPROC_LOOKUP,
                          (xdrproc_t) xdr_diropargs, (char*)&dirargs,
                          (xdrproc_t) xdr_diropres, (char*)&dirres,total_timeout);
-      //if (!checkForError(clnt_stat,dirres.status)) return;
+
+      free(dirargs.name);
 
       NFSFileHandle tmpFH;
       tmpFH=dirres.diropres_u.diropres.file.data;
@@ -753,7 +753,7 @@ void NFSProtocol::stat( const KURL & url)
    finished();
 }
 
-void NFSProtocol::setHost(const QString& host, int /*port*/, const QString& /*user*/, const QString& /*pass*/)
+void NFSProtocol::setHost(const QCString& host, int /*port*/, const QString& /*user*/, const QString& /*pass*/)
 {
    kdDebug(7101)<<"NFS::setHost: -"<<host<<"-"<<endl;
    if (host.isEmpty())

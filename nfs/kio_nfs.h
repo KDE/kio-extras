@@ -61,9 +61,9 @@ class NFSProtocol : public KIO::SlaveBase
    public:
       NFSProtocol (const QCString &pool, const QCString &app );
       virtual ~NFSProtocol();
-      
+
       virtual void openConnection();
-      virtual void setHost(const QString& host, int port, const QString& user, const QString& pass);
+      virtual void setHost(const QCString& host, int port, const QString& user, const QString& pass);
 
       virtual void put( const KURL& url, int _mode,bool _overwrite, bool _resume );
       //virtual void put( const QString& path, int _mode,bool _overwrite, bool _resume );
@@ -80,13 +80,13 @@ class NFSProtocol : public KIO::SlaveBase
       void createVirtualDirEntry(KIO::UDSEntry & entry);
       bool checkForError(int clientStat, int nfsStat, const QString& text);
       NFSFileHandle getFileHandle(QString path);
-      
+
       QMap<QString,NFSFileHandle> m_handleCache;
       QIntDict<QString> usercache;      // maps long ==> QString *
       QIntDict<QString> groupcache;
-      
+
       QStringList m_exportedDirs;
-      QString m_currentHost;
+      QCString m_currentHost;
       CLIENT *m_client;
       CLIENT *m_nfsClient;
       timeval total_timeout;
