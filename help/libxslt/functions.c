@@ -230,6 +230,7 @@ xsltKeyFunction(xmlXPathParserContextPtr ctxt, int nargs){
 		valuePush(ctxt, xmlXPathObjectCopy(obj1));
 		valuePush(ctxt,
 			  xmlXPathNewNodeSet(obj2->nodesetval->nodeTab[i]));
+		xmlXPathStringFunction(ctxt, 1);
 		xsltKeyFunction(ctxt, 2);
 		newobj = valuePop(ctxt);
 		ret->nodesetval = xmlXPathNodeSetMerge(ret->nodesetval,
@@ -315,8 +316,6 @@ xsltUnparsedEntityURIFunction(xmlXPathParserContextPtr ctxt, int nargs){
     }
     obj = valuePop(ctxt);
     if (obj->type != XPATH_STRING) {
-	xsltGenericError(xsltGenericErrorContext,
-	    "unparsed-entity-uri() : invalid arg expecting a string\n");
 	obj = xmlXPathConvertString(obj);
     }
 
@@ -420,10 +419,8 @@ xsltGenerateIdFunction(xmlXPathParserContextPtr ctxt, int nargs){
 	obj = valuePop(ctxt);
 	nodelist = obj->nodesetval;
 	if ((nodelist == NULL) || (nodelist->nodeNr <= 0)) {
-	    ctxt->error = XPATH_INVALID_TYPE;
-	    xsltGenericError(xsltGenericErrorContext,
-		"generate-id() : got an empty node-set\n");
 	    xmlXPathFreeObject(obj);
+	    valuePush(ctxt, xmlXPathNewCString(""));
 	    return;
 	}
 	cur = nodelist->nodeTab[0];
@@ -617,7 +614,7 @@ xsltCurrentFunction(xmlXPathParserContextPtr ctxt, int nargs){
 		"current() : internal error tctxt == NULL\n");
 	valuePush(ctxt, xmlXPathNewNodeSet(NULL));
     } else {
-	valuePush(ctxt, xmlXPathNewNodeSet(tctxt->current));
+	valuePush(ctxt, xmlXPathNewNodeSet(tctxt->node)); /* current */
     }
 }
 

@@ -1,3 +1,66 @@
+Wed Apr 18 15:24:50 CEST 2001 Daniel Veillard <Daniel.Veillard@imag.fr>
+
+	* tests/general/bug-5-.out tests/multiple/out/*.orig
+	  tests/xmlspec/REC-xml-20001006*.html: fixed the test output
+	  following the libxml changes
+
+Wed Apr 18 12:05:04 CEST 2001 Daniel Veillard <Daniel.Veillard@imag.fr>
+
+	* libxslt/functions.c: applied TOM's patch to key()
+	* tests/XSLTMark/chart.out tests/XSLTMark/dbonerow.out
+	  tests/XSLTMark/prettyprint.out tests/multiple/out/*.html:
+	  small HTML output change 
+
+Mon Apr 16 16:14:02 CEST 2001 Daniel Veillard <Daniel.Veillard@imag.fr>
+
+	* libxslt/functions.c libxslt/transform.c libxslt/xsltInternals.h:
+	  fixed current()
+
+Tue Apr 17 10:10:56 CEST 2001 Daniel Veillard <Daniel.Veillard@imag.fr>
+
+	* libxslt/keys.c libxslt/preproc.c libxslt/templates.c
+	  libxslt/transform.c libxslt/variables.c libxslt/xsltInternals.h:
+	  fixed for the most part the namespace handling problem in XPath
+	  expression computations.
+	* test/doc/ tests/general: added bug 5 and 6
+
+Thu Apr 12 14:40:22 CEST 2001 Daniel Veillard <Daniel.Veillard@imag.fr>
+
+	* libxslt/xslt.c: applied William M. Brack patch fixing the
+	  template lack of support for priority
+	* test/XSLTMark/*.out : this fixed anumber of problems in the
+	  XSLTMark output
+
+Thu Apr 12 14:29:48 CEST 2001 Daniel Veillard <Daniel.Veillard@imag.fr>
+
+	* libxslt/functions.c: removed warning in unparsed-entity-uri()
+	  fixed a bug in generate-id()
+	* libxslt/transform.c: fixed null list result errors
+	* libxslt/transform.c libxslt/xsltutils.c: applied William M. Brack
+	  fixes for sorting semantic
+
+Wed Apr 11 14:25:23 CEST 2001 Daniel Veillard <Daniel.Veillard@imag.fr>
+
+	* config.h.in configure.in libxslt/xsltconfig.h.in: added
+	  ansidecl.h test
+	* libxslt/xsltproc.c : added --xinclude option
+	* tests/XSLTMark/union.out : fixed the output
+
+Tue Apr 10 20:05:00 CEST 2001 Fatih Demir <kabalak@gtranslator.org>
+
+	* .cvsignore & doc/.cvsignore: Added CVS ignore files.
+
+Tue Apr 10 12:10:25 CEST 2001 Daniel Veillard <Daniel.Veillard@imag.fr>
+
+	* configure.in: released 0.7.0
+	* tests/XSLTMark/Makefile.am: trying to solve some make distcheck
+	  problems
+
+Sun Apr  8 11:42:03 CEST 2001 Daniel Veillard <Daniel.Veillard@imag.fr>
+
+	* libxslt/functions.c libxslt/keys.c libxslt/transform.c:
+	  some checking against NULL pointers
+
 Mon Apr  2 17:00:39 CEST 2001 Daniel Veillard <Daniel.Veillard@imag.fr>
 
 	* configure.in tests/Makefile.am tests/XSLTMark/* tests/multiple:

@@ -260,6 +260,8 @@ struct _xsltStylePreComp {
     xsltNumberData numdata;	/* number */
 
     xmlXPathCompExprPtr comp;	/* a precompiled XPath expression */
+    xmlNsPtr *nsList;		/* the namespaces in scope */
+    int nsNr;			/* the number of namespaces in scope */
 };
 
 /*
@@ -308,9 +310,9 @@ struct _xsltTransformContext {
     xsltDocumentPtr docList;		/* the document list */
 
     xsltDocumentPtr document;		/* the current document */
-    xmlNodePtr node;			/* the node being processed */
+    xmlNodePtr node;			/* the current node being processed */
     xmlNodeSetPtr nodeList;		/* the current node list */
-    xmlNodePtr current;			/* the current node */
+    /* xmlNodePtr current;			the node */
 
     xmlDocPtr output;			/* the resulting document */
     xmlNodePtr insert;			/* the insertion node */
