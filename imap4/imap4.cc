@@ -1102,7 +1102,8 @@ IMAP4Protocol::special (const QByteArray & aData)
     if (cmd->result () != "OK")
     {
       error(ERR_NO_CONTENT, i18n("Unsubscribe of folder %1 "
-            "failed.").arg(hidePass(_url)));
+            "failed. The server returned: %2").arg(hidePass(_url))
+                                              .arg(cmd->resultInfo()));
       return;
     }
     completeQueue.removeRef (cmd);
@@ -1119,7 +1120,8 @@ IMAP4Protocol::special (const QByteArray & aData)
     if (cmd->result () != "OK")
     {
       error(ERR_NO_CONTENT, i18n("Subscribe of folder %1 "
-            "failed.").arg(hidePass(_url)));
+            "failed. The server returned: %2").arg(hidePass(_url))
+                                              .arg(cmd->resultInfo()));
       return;
     }
     completeQueue.removeRef (cmd);
@@ -1828,10 +1830,14 @@ IMAP4Protocol::parseURL (const KURL & _url, QString & _box,
        (_type == "LIST" || _type == "LSUB") )
   {
     // try to reconstruct the delimiter from the URL
-    int start = _url.path().findRev(_box);
-    if (start != -1)
-      _hierarchyDelimiter = _url.path().mid(start-1, start);
-    kdDebug(7116) << "IMAP4::parseURL - reconstructed delimiter:" << _hierarchyDelimiter << endl;
+    if (!_box.isEmpty())
+    {
+      int start = _url.path().findRev(_box);
+      if (start != -1)
+        _hierarchyDelimiter = _url.path().mid(start-1, start);
+      kdDebug(7116) << "IMAP4::parseURL - reconstructed delimiter:" << _hierarchyDelimiter 
+        << " from URL " << _url.path() << endl;
+    }
     if (_hierarchyDelimiter.isEmpty())
       _hierarchyDelimiter = "/";
   }
