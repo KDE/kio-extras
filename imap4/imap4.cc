@@ -354,7 +354,7 @@ void IMAP4Protocol::listDir(const KURL &_url) {
    // Is this necesary?
    sleep(20);
    if (!imap4_open()) {
-      debug("IMAP4: imap4_open failed");
+      kdDebug() << "IMAP4: imap4_open failed" << endl;
       imap4_close();
       return;
    } else {

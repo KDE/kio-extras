@@ -187,7 +187,7 @@ void IMAP4Protocol::startLoop ()
 		  imap4v1 = true;
 	      }
 	      if (!imap4v1) {
-                debug("IMAP4: Uh oh, server is not IMAP4rev1 compliant!  Bailing out");
+                kdDebug() << "IMAP4: Uh oh, server is not IMAP4rev1 compliant!  Bailing out" << endl;
                 error(ERR_UNSUPPORTED_PROTOCOL, "IMAP4rev1");
                 return;
 	      }
@@ -229,10 +229,10 @@ void IMAP4Protocol::startLoop ()
 	      //debug(QString("IMAP4: LOGIN response - %1").arg(s_buf));
               if (s_buf.left(3) == "OK ") {
 	        authState = 999;
-		debug("IMAP4: LOGIN successfull!");
+		kdDebug() << "IMAP4: LOGIN successfull!" << endl;
 		imap4_exec();
 	      } else if (s_buf.left(3) == "NO ") {
-	        debug("IMAP4: AUTHENTICATE failed");
+	        kdDebug() << "IMAP4: AUTHENTICATE failed" << endl;
 		error(ERR_ACCESS_DENIED, m_sUser);
                 authState = 0;
 		return;
@@ -249,7 +249,7 @@ void IMAP4Protocol::startLoop ()
 	    case ICMD_LIST: {
 	      //debug(QString("IMAP4: LIST response: %1").arg(s_buf));
 	      if (s_buf.left(3) == "OK ") {
-	        debug("Finishing...");
+	        kdDebug() << "Finishing..." << endl;
 	        finished();
 	      } else {
 	        //debug(QString("Error during LIST: %1").arg(s_buf));
