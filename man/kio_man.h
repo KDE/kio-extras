@@ -67,6 +67,7 @@ private:
 
     static MANProtocol *_self;
     QCString lastdir;
+    QString common_dir;
 
 };
 

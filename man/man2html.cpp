@@ -540,10 +540,10 @@ static void out_html(const char *c)
 
 #define FO0 ""
 #define FC0 ""
-#define FO1 "<I><FONT COLOR=\"#008040\">"
-#define FC1 "</FONT></I>"
-#define FO2 "<B><FONT COLOR=\"#0060A0\">"
-#define FC2 "</FONT></B>"
+#define FO1 "<span class=\"parameter\">"
+#define FC1 "</span>"
+#define FO2 "<span class=\"option\">"
+#define FC2 "</span>"
 #define FO3 "<TT>"
 #define FC3 "</TT>"
 
@@ -2201,16 +2201,16 @@ static char *scan_request(char *c)
 	    trans_char(c,'"', '\a');
 	    /* &nbsp; for mosaic users */
             if (section) {
-                out_html("</DIV>\n");
+                out_html("</div>\n");
                 section=0;
             }
-	    if (mode) out_html("\n<H3><FONT COLOR=\"#B00040\">");
-	    else out_html("\n<H2><FONT COLOR=\"#B00040\">");
+	    if (mode) out_html("\n<H3>");
+	    else out_html("\n<H2>");
 	    mandoc_synopsis = strncmp(c, "SYNOPSIS", 8) == 0;
 	    c = mandoc_command ? scan_troff_mandoc(c,1,NULL) : scan_troff(c,1,NULL);
-	    if (mode) out_html("</FONT></H3>\n");
-	    else out_html("</FONT></H2>\n");
-            out_html("<div style=\"margin-left: 2cm\">\n");
+	    if (mode) out_html("</H3>\n");
+	    else out_html("</H2>\n");
+            out_html("<div>\n");
 
             section=1;
 	    curpos=0;
@@ -2237,16 +2237,41 @@ static char *scan_request(char *c)
 		    for (i=1; i<words; i++) wordlist[i][-1]='\0';
 		    *sl='\0';
 		    output_possible=1;
-		    out_html(DOCTYPE"<HTML><HEAD><TITLE>Manpage of ");
-		    out_html(wordlist[0]);
-		    out_html("</TITLE>\n");
-		    out_html("<STYLE TYPES=\"text/css\">\n");
-		    out_html("DIV.section {margin-left:2cm}\n");
-		    out_html("</STYLE>\n");
-		    out_html("</HEAD><BODY BGCOLOR=\"#FFFFFF\">\n<H1>");
-		    out_html(wordlist[0]);
-		    out_html("</H1>\nSection: ");
-		    if (words>4) out_html(wordlist[4]);
+		    out_html( DOCTYPE"<HTML><HEAD><TITLE>Manpage of ");
+		    out_html( wordlist[0]);
+		    out_html( "</TITLE>\n");
+                    out_html( "<link rel=\"stylesheet\" href=\"KDE_COMMON_DIR/kde-default.css\" type=\"text/css\">\n" );
+                    out_html( "</HEAD>\n\n" );
+                    out_html("<BODY BGCOLOR=\"#FFFFFF\">\n\n" );
+                    out_html("<div id=\"headline\" style=\"position : absolute; height : 85px; z-index :\n" );
+                    out_html("100; background : transparent; text-align : center; text-transform:\n" );
+                    out_html("smallcaps; width : 100%; top : 0px; left : 0px; width : 100%; color :\n" );
+                    out_html("#000000;\">\n" );
+                    out_html("\n" );
+                    out_html("<H1>" );
+                    out_html( wordlist[0] );
+                    out_html("</H1>\n" );
+                    out_html("</div>\n" );
+                    out_html("<div id=\"navbackground\" style=\"position : absolute; width : 100%; height\n" );
+                    out_html(": 124px; background-image : url('KDE_COMMON_DIR/doctop2.png'); z-index : 5; left\n" );
+                    out_html(": 0px; top : 0px; padding : 0px;\"> <div id=\"bulb1\" style=\"padding : 0px;\n" );
+                    out_html("position : absolute; z-index : 15; width : 150px; height : 85px; top :\n" );
+                    out_html("0px; left : 0px; background : url('KDE_COMMON_DIR/doctop1.png') repeat;\"></div>\n" );
+                    out_html("<div id=\"gradient\" style=\"position : absolute; width : 275px; height :\n" );
+                    out_html("85px; z-index : 19px; top : 0px; padding : 0px; left : 150px;\n" );
+                    out_html("background-image : url('KDE_COMMON_DIR/doctop1a.png'); background-repeat :\n" );
+                    out_html("no-repeat; background-color : transparent; visibility : visible;\"></div>\n" );
+                    out_html("\n" );
+                    out_html("<div id=\"bulb-bit\" style=\"position : absolute; width : 100%; height :\n" );
+                    out_html("25px; top : 85px; left : 0px; background-image :\n" );
+                    out_html("url('KDE_COMMON_DIR/doctop1b.png'); background-repeat : no-repeat;\n" );
+                    out_html("background-color : transparent; z-index : 5;\"></div></div>\n" );
+                    out_html("<h1>" );
+                    out_html( wordlist[0] );
+                    out_html( "</h1>\n" );
+                    out_html("\n" );
+                    out_html("Section: " );
+                    if (words>4) out_html(wordlist[4]);
 		    else
 			out_html(section_name(wordlist[1]));
 		    out_html(" (");
@@ -3173,6 +3198,15 @@ void scan_man_page(const char *man_page)
         section = 0;
     }
     if (output_possible) {
+        output_real( "<div id=\"bottom-nav\" style=\"position : relative; width : 100%;\n");
+        output_real( "height : 185px; left : 0px; right : 0px; top : 0px; margin-top: 100px;\n");
+        output_real( "background-image : url('KDE_COMMON_DIR/bottom1.png'); background-repeat :\n");
+        output_real( "repeat-x; background-color : transparent; margin-left: 0px;\n");
+        output_real( "margin-right: 0px; z-index : 25;\">\n");
+        output_real( "<img src=\"KDE_COMMON_DIR/bottom2.png\" align=\"right\" height=\"59\" width=\"227\" alt=\"KDE Logo\">\n");
+        output_real( "<div id=\"navtable2\" style=\"width : 100%; margin-left: 0px; margin-right:\n");
+        output_real( "0px; z-index : 15; background-color : transparent;\"></div>\n");
+        output_real( "</div>  \n");
 	output_real("</BODY>\n</HTML>\n");
     }
     delete [] buf;
@@ -3243,7 +3277,7 @@ void scan_man_page(const char *man_page)
 #ifdef SIMPLE_MAN2HTML
 void output_real(const char *insert)
 {
-//    printf("%s", insert);
+    printf("%s", insert);
 }
 
 char *read_man_page(const char *filename)

@@ -86,6 +86,7 @@ MANProtocol::MANProtocol(const QCString &pool_socket, const QCString &app_socket
 {
     assert(!_self);
     _self = this;
+    common_dir = KGlobal::dirs()->findResourceDir( "html", "en/common/kde-common.css" );
 }
 
 MANProtocol *MANProtocol::self() { return _self; }
@@ -131,6 +132,8 @@ void MANProtocol::output(const char *insert)
     if (insert)
         output_string += insert;
     if (!insert || output_string.length() > 2000) {
+        // TODO find out the language of the man page and put the right common dir in
+        output_string.replace( QRegExp( "KDE_COMMON_DIR" ), QString( "file:%1/en/common" ).arg( common_dir ).local8Bit());
         //kdDebug(7107) << "output " << output_string << endl;
         data(output_string);
         output_string.truncate(0);
@@ -538,7 +541,7 @@ int compare_man_index(const void *s1, const void *s2)
     int i;
     // Compare the names of the pages
     // with the shorter length.
-    // Man page names are not '\0' terminated, so 
+    // Man page names are not '\0' terminated, so
     // this is a bit tricky
     if ( m1->manpage_len > m2->manpage_len)
     {
@@ -559,7 +562,7 @@ int compare_man_index(const void *s1, const void *s2)
 	    return -1;
 	return i;
     }
-    
+
     return strncmp( m1->manpage_begin,
 		    m2->manpage_begin,
 		    m1->manpage_len);
@@ -576,8 +579,8 @@ class QManIndexList : public QManIndexListBase
 {
 public:
 private:
-    int compareItems( QCollection::Item s1, QCollection::Item s2 ) 
-	{ 
+    int compareItems( QCollection::Item s1, QCollection::Item s2 )
+	{
 	    struct man_index_t *m1 = (struct man_index_t *)s1;
 	    struct man_index_t *m2 = (struct man_index_t *)s2;
 	    int i;
@@ -595,7 +598,7 @@ private:
 
 	    if (m1->manpage_len > m2->manpage_len)
 	    {
-	    
+
 		i = qstrncmp(m1->manpage_begin,
 			     m2->manpage_begin,
 			     m1->manpage_len);
@@ -731,9 +734,9 @@ void MANProtocol::showIndex(const QString& section)
 	    manindex->manpage_begin = manindex->manpath;
 	    assert(manindex->manpage_begin >= manindex->manpath);
 	}
-	
+
 	manpage_end = strchr(manindex->manpage_begin, '.');
-	if (NULL == manpage_end) 
+	if (NULL == manpage_end)
 	{
 	    // no '.' ending ???
 	    // set the pointer past the end of the filename
@@ -764,7 +767,7 @@ void MANProtocol::showIndex(const QString& section)
 	}
     }
 
-    // 
+    //
     // Now do the sorting on the page names
     // and the printout afterwards
     // While printing avoid duplicate man page names
@@ -783,21 +786,21 @@ void MANProtocol::showIndex(const QString& section)
 	struct man_index_t *manindex = indexlist[i];
 
 	// qstrncmp():
-	// "last_man" has already a \0 string ending, but 
+	// "last_man" has already a \0 string ending, but
 	// "manindex->manpage_begin" has not,
 	// so do compare at most "manindex->manpage_len" of the strings.
 	if (last_index->manpage_len == manindex->manpage_len &&
-	    !qstrncmp(last_index->manpage_begin, 
-		      manindex->manpage_begin, 
+	    !qstrncmp(last_index->manpage_begin,
+		      manindex->manpage_begin,
 		      manindex->manpage_len)
 	    )
 	{
 	    continue;
 	}
-	os << "<tr><td><a href=\"man:" 
+	os << "<tr><td><a href=\"man:"
 	   << manindex->manpath << "\">\n";
 	// !!!!!!!!!!!!!!!!!!!!!!
-	// 
+	//
 	// WARNING
 	//
 	// here I do modify the const QString from "pages".
@@ -817,7 +820,7 @@ void MANProtocol::showIndex(const QString& section)
 
     for (int i=0; i<listlen; i++)
 	delete indexlist[i];
- 
+
     delete [] indexlist;
 
 #else /* !_USE_QSORT */
@@ -831,22 +834,22 @@ void MANProtocol::showIndex(const QString& section)
 	struct man_index_t *manindex = mit.current();
 
 	// qstrncmp():
-	// "last_man" has already a \0 string ending, but 
+	// "last_man" has already a \0 string ending, but
 	// "manindex->manpage_begin" has not,
 	// so do compare at most "manindex->manpage_len" of the strings.
 	if (last_index->manpage_len == manindex->manpage_len &&
-	    !qstrncmp(last_index->manpage_begin, 
-		      manindex->manpage_begin, 
+	    !qstrncmp(last_index->manpage_begin,
+		      manindex->manpage_begin,
 		      manindex->manpage_len)
 	    )
 	{
 	    continue;
 	}
-	
-	os << "<tr><td><a href=\"man:" 
+
+	os << "<tr><td><a href=\"man:"
 	   << manindex->manpath << "\">\n";
 	// !!!!!!!!!!!!!!!!!!!!!!
-	// 
+	//
 	// WARNING
 	//
 	// here I do modify the const QString from "pages".
@@ -864,7 +867,7 @@ void MANProtocol::showIndex(const QString& section)
 	last_index = manindex;
     }
 #endif /* _USE_QSORT */
-#endif /* _USE_OLD_CODE */    
+#endif /* _USE_OLD_CODE */
 
     os << "</table>" << endl;
 
