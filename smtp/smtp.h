@@ -51,7 +51,7 @@ protected:
 
 	bool smtp_open (const KURL &u);
 	void smtp_close ();
-	bool command (const char *buf, char *r_buf = NULL, unsigned int r_len = 0);
+	bool command (const QString &buf, char *r_buf = NULL, unsigned int r_len = 0);
 	int getResponse (char *real_buf = NULL, unsigned int real_len = 0);
 	bool Authenticate (const KURL &url);
 	void HandleSMTPWriteError (const KURL &url);

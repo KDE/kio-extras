@@ -120,7 +120,7 @@ SMTPProtocol::~SMTPProtocol()
 
 void SMTPProtocol::HandleSMTPWriteError(const KURL&url)
 {
-	if (!command("RSET")) // Attempt to save face
+	if (!command(QString::fromLatin1("RSET"))) // Attempt to save face
 		error(ERR_SERVICE_NOT_AVAILABLE, url.path());
 	else
 		error(ERR_COULD_NOT_WRITE, url.path());
@@ -166,39 +166,39 @@ void SMTPProtocol::put( const KURL& url, int /*permissions*/, bool /*overwrite*/
 	} else
 		from+="someuser@is.using.a.pre.release.kde.ioslave.compliments.of.kde.org";
 
-	if (! command(from.latin1())) {
+	if (!command(from)) {
 		HandleSMTPWriteError(url);
 		return;
 	}
 
 	QString formatted_recip="RCPT TO: %1";
 	for ( QStringList::Iterator it = recip.begin(); it != recip.end(); ++it ) {
-		if (!command(formatted_recip.arg(*it).latin1()))
+		if (!command(formatted_recip.arg(*it)))
 			HandleSMTPWriteError(url);
 	}
 	for ( QStringList::Iterator it = cc.begin(); it != cc.end(); ++it ) {
-		if (!command(formatted_recip.arg(*it).latin1()))
+		if (!command(formatted_recip.arg(*it)))
 			HandleSMTPWriteError(url);
 	}
 
-	if (!command("DATA")) {
+	if (!command(QString::fromLatin1("DATA"))) {
 		HandleSMTPWriteError(url);
 	}
 
 	formatted_recip="Subject: %1\r\n";
 	subject=formatted_recip.arg(subject);
-	Write(subject.latin1(), subject.length());
+	Write((const char *)subject.local8Bit(), subject.local8Bit().length());
 
 	formatted_recip="To: %1\r\n";
 	for ( QStringList::Iterator it = recip.begin(); it != recip.end(); ++it ) {
 		subject=formatted_recip.arg(*it);
-		Write(subject.latin1(), subject.length());
+		Write((const char *)subject.local8Bit(), subject.local8Bit().length());
 	}
 
 	formatted_recip="CC: %1\r\n";
 	for ( QStringList::Iterator it = cc.begin(); it != cc.end(); ++it ) {
 		subject=formatted_recip.arg(*it);
-		Write(subject.latin1(), subject.length());
+		Write((const char *)subject.local8Bit(), subject.local8Bit().length());
 	}
 
 	if (mset->getSetting(KEMailSettings::RealName) != QString::null) {
@@ -208,7 +208,7 @@ void SMTPProtocol::put( const KURL& url, int /*permissions*/, bool /*overwrite*/
 			from+=" <";
 			from+=mset->getSetting(KEMailSettings::EmailAddress);
 			from+=">\r\n";
-			Write(from.latin1(), from.length());
+			Write((const char *)from.local8Bit(), from.local8Bit().length());
 		}
 	}
 	delete mset;
@@ -228,7 +228,7 @@ void SMTPProtocol::put( const KURL& url, int /*permissions*/, bool /*overwrite*/
 	}
 	while ( result > 0 );
 	Write("\r\n.\r\n", 5);
-	command("RSET");
+	command(QString::fromLatin1("RSET"));
 	finished();
 }
 
@@ -311,9 +311,10 @@ int SMTPProtocol::getResponse(char *r_buf, unsigned int r_len)
 }
 
 
-bool SMTPProtocol::command(const char *cmd, char *recv_buf, unsigned int len) {
+bool SMTPProtocol::command(const QString &cmd, char *recv_buf, unsigned int len) {
 	// Write the command
-	if (Write(cmd, strlen(cmd)) != static_cast<ssize_t>(strlen(cmd))) {
+	QCString write_buf=cmd.local8Bit();
+	if (Write((const char *)write_buf, write_buf.length() ) != static_cast<ssize_t>(write_buf.length())) {
 		m_sError = i18n("Could not send to server.\n");
 		return false;
 	}
@@ -343,12 +344,12 @@ bool SMTPProtocol::smtp_open(const KURL &url)
 
 	QBuffer ehlobuf(QByteArray(5120));
 	memset(ehlobuf.buffer().data(), 0, 5120);
-	if (!command("EHLO kio_smtp", ehlobuf.buffer().data(), 5119)) { // Yes, I *know* that this is not
+	if (!command(QString::fromLatin1("EHLO kio_smtp"), ehlobuf.buffer().data(), 5119)) { // Yes, I *know* that this is not
 							// the way it should be done, but
 							// for now there's no real need
 							// to complicate things by
 							// determining our hostname
-		if (!command("HELO kio_smtp")) { // Let's just check to see if it speaks plain ol' SMTP
+		if (!command(QString::fromLatin1("HELO kio_smtp"))) { // Let's just check to see if it speaks plain ol' SMTP
 			smtp_close();
 			return false;
 		}
@@ -399,7 +400,7 @@ bool SMTPProtocol::Authenticate(const KURL &url)
 	} else {
 		char *challenge=static_cast<char *>(malloc(2049));
  		// I've probably made some troll seek shelter somewhere else.. yay gov'nr and his matrix.. yes that one.. that looked like a  bird.. no not harvey milk
-		if (!command(QString(QString("AUTH ")+auth_method).latin1(), challenge, 2049)) {
+		if (!command(QString("AUTH ")+auth_method, challenge, 2049)) {
 			free(challenge);
 			delete m_pSASL; m_pSASL=0;
 			return false;
@@ -412,10 +413,10 @@ bool SMTPProtocol::Authenticate(const KURL &url)
 		// it's easier than generating a byte array simply to pass 
 		// around null characters.  Stupid stupid stupid.
 		if (auth_method == "PLAIN") {
-			ret = command(m_pSASL->generateResponse(challenge, false).latin1());
+			ret = command(m_pSASL->generateResponse(challenge, false));
 		} else {
 			// Since SMTP does indeed needs its auth responses base64 encoded... for some reason
-			ret = command(m_pSASL->generateResponse(challenge, true).latin1());
+			ret = command(m_pSASL->generateResponse(challenge, true));
 		}
 		free(challenge);
 		return ret;
@@ -426,17 +427,15 @@ bool SMTPProtocol::Authenticate(const KURL &url)
 
 void SMTPProtocol::ParseFeatures(const char *_buf)
 {
-	QString buf(_buf);
-
+	QCString buf(_buf);
 
 	// We want it to be between 250 and 259 inclusive, and it needs to be "nnn-blah" or "nnn blah"
 	// So sez the SMTP spec..
-	if ( (buf.left(2) != "25") || (!isdigit((buf.latin1())[2])) || (!(buf.at(3) == '-') && !(buf.at(3) == ' ')) )
+	if ( (buf.left(2) != "25") || (!isdigit(buf[2])) || (!(buf.at(3) == '-') && !(buf.at(3) == ' ')) )
 		return; // We got an invalid line..
 	buf=buf.mid(4, buf.length()); // Clop off the beginning, no need for it really
 
 	if (buf.left(4) == "AUTH") { // Look for auth stuff
-		// keep this for later use ^^^^
 		m_sAuthConfig=buf.mid(5, buf.length());
 	} else if (buf.left(8) == "STARTTLS") {
 		haveTLS=true;
@@ -448,7 +447,7 @@ void SMTPProtocol::smtp_close()
 {
 	if (!opened) // We're already closed
 		return;
-	command("QUIT");
+	command(QString::fromLatin1("QUIT"));
 	CloseDescriptor();
 	m_sOldServer = "";
 	opened = false;
