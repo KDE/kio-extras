@@ -132,7 +132,9 @@ namespace KioSMTP {
       }
     }
     result.sort();
-    result.erase( std::unique( result.begin(), result.end() ), result.end() );
+    QStringList::iterator it = result.begin();
+    for (QStringList::iterator ot = it++; it != result.end(); ot = it++)
+        if (*ot == *it) result.remove(ot);
     return result;
   }
 
