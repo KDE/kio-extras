@@ -39,6 +39,14 @@ public:
  protected:
 
   /**
+    * This returns the size of a message as a long integer.
+    * This is useful as an internal member, because the "other"
+    * getSize command will emit a signal, which would be harder
+    * to trap when doing something like listing a directory.
+    */
+  long realGetSize(unsigned int msg_num);
+
+  /**
     *  Send a command to the server, and wait for the one-line-status
     *  reply via getResponse.  Similar rules apply.  If no buffer is
     *  specified, no data is passed back.

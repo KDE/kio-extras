@@ -13,6 +13,7 @@
 #include <netdb.h>
 #include <unistd.h>
 
+#include <qcstring.h>
 #include <qglobal.h>
 
 #include <kurl.h>
@@ -127,6 +128,8 @@ bool POP3Protocol::command (const char *cmd, char *recv_buf, unsigned int len)
  *   argument may be up to 40 characters long.
  */
 
+  fprintf(stderr,"Cmd called with:%s:\n", cmd);
+
   // Write the command
   if (::write(m_iSock, cmd, strlen(cmd)) != (ssize_t)strlen(cmd))
     return false;
@@ -236,6 +239,26 @@ bool POP3Protocol::pop3_open( KURL &_url )
   }
 }
 
+long POP3Protocol::realGetSize(unsigned int msg_num)
+{
+  char buf[512];
+  QCString cmd;
+  long ret=0;
+  memset(buf, 0, 512);
+  cmd.sprintf("LIST %d", msg_num);
+  fprintf(stderr,"LIST cmd is:%s:\n", cmd.data());
+  if (!command(cmd.data(), buf, 512))
+    return 0;
+  else {
+    fprintf(stderr,"LIST buf is :%s:\n", buf);
+    cmd=buf;
+    cmd.remove(0, cmd.find(" "));
+    ret=cmd.toLong();
+  }
+  fprintf(stderr,"Attempting to return for %d\n", msg_num);
+  return ret;
+}
+
 void POP3Protocol::slotGetSize( const char * _url )
 {
   // This should I deally call the totalSize function for the URL,
@@ -260,26 +283,28 @@ void POP3Protocol::slotGetSize( const char * _url )
 
   if (path.left(1)=="/") path.remove(0,1);
   if (path.isEmpty()) {
-    debug("We should be a dir!!");
+    qDebug("We should be a dir!!");
     error(ERR_IS_DIRECTORY, strdup(_url));
     m_cmd=CMD_NONE; return;
   }
+  if (path.left(8)=="Message ") path.remove(0,8);
 
-  if (((path.find("/") == -1) && (path != "index")) ) {
-    error( ERR_MALFORMED_URL, strdup(_url) );
-    m_cmd = CMD_NONE;
-    return; 
+  bool isINT;
+  int msg_num=path.toUInt(&isINT);
+  if (!isINT) {
+    error(ERR_MALFORMED_URL, strdup(_url));
+    return;
   }
 
-  cmd = path.left(path.find("/"));
-  path.remove(0,path.find("/")+1);
   if (!pop3_open(usrc)) {
     fprintf(stderr,"pop3_open failed\n");fflush(stderr);
     pop3_close();
     return;
   }
 
-//  if (cmd == "index") {
+  totalSize(realGetSize(msg_num));
+  finished();
+  m_cmd = CMD_NONE;
 
 }
 
@@ -377,6 +402,7 @@ LIST
                          // TOP cmd isn't supported
       ready();
       gettingFile(_url);
+      mimeType("message/rfc822");
       memset(buf, 0, sizeof(buf));
       while (!feof(fp)) {
 	memset(buf, 0, sizeof(buf));
@@ -461,27 +487,73 @@ LIST
 
 void POP3Protocol::slotListDir (const char *_url)
 {
-	debug( "kio_pop3 : listDir 1 %s", _url);
+	bool isINT; int num_messages=0;
+	char buf[512];
+	QCString q_buf;
 	KURL usrc( _url );
 	if ( usrc.isMalformed() ) {
 		error( ERR_MALFORMED_URL, _url );
 		return;
 	}
+	// Try and open a connection
+	if (!pop3_open(usrc)) {
+	  fprintf(stderr,"pop3_open failed\n");fflush(stderr);
+	  pop3_close();
+	  return;
+	}
+	// Check how many messages we have. STAT is by law required to
+	// at least return +OK num_messages total_size
+	memset(buf, 0, 512);
+	if (!command("STAT", buf, 512)) {
+	  fprintf(stderr,"The stat command failed\n");
+	  error(ERR_INTERNAL, "??");
+	  return;
+	}
+	fprintf(stderr,"The stat buf is :%s:\n", buf);
+	q_buf=buf;
+	if (q_buf.find(" ")==-1) {
+	  fprintf(stderr,"The stat command is wonky\n");
+	  error(ERR_INTERNAL, "Invalid POP3 response!");
+	  pop3_close();
+	  return;
+	}
+	q_buf.remove(q_buf.find(" "), q_buf.length());
 
+	num_messages=q_buf.toUInt(&isINT);
+	if (!isINT) {
+	  fprintf(stderr,"Something's not a number\n");
+	  error(ERR_INTERNAL, "Invalid POP3 STAT response!");
+	  pop3_close();
+	  return;
+	}
+	UDSEntry entry;
+	UDSAtom atom;
+	for (int i=0; i < num_messages; i++) {
+	  QString fname="Message %1";
+
+	  atom.m_uds = UDS_NAME;
+	  atom.m_str = fname.arg(i+1);
+	  entry.push_back( atom );
+
+	  atom.m_uds = UDS_SIZE;
+	  atom.m_long = realGetSize(i+1);
+	  fprintf(stderr,"Real size is %d\n", atom.m_long);
+	  entry.push_back(atom);
+	  
+	  listEntry(entry);
+	}
+	finished();
 }
 
 void POP3Protocol::slotTestDir (const char *_url)
 {
-        debug( "kio_pop3 : testing");
 	KURL usrc(_url);
-        debug( "kio_pop3 : testing");
-	if (usrc.path() == "/")
+	// An empty path is essentially a request for an index...
+	if (usrc.path() == "/" || usrc.path() == "")
 		isDirectory();
 	else
 		isFile();
-        debug( "kio_pop3 : testing");
 	finished();
-        debug( "kio_pop3 : testing");
 }
 
 void POP3Protocol::slotCopy(const char *, const char *)
@@ -547,6 +619,11 @@ void POP3Protocol::jobDataEnd()
 
 void POP3Protocol::slotDel( QStringList& _list )
 {
+    // FIXME: this should iterate through the possible URIs, and
+    // put them into some sort of dict based on the server they correspond
+    // to, and count them and validate them.  *then* and only then
+    // should it actually try and delete them.
+
     QStringList::Iterator files = _list.begin();
     QString path, invalidURI=QString::null;
     bool isInt;
