@@ -11,8 +11,6 @@ kcm_cgi_la_METASOURCES = AUTO
 
 noinst_HEADERS = kcmcgi.h
 
-KDE_ICON = cgi
-
 xdg_apps_DATA = kcmcgi.desktop
 
 messages: rc.cpp
