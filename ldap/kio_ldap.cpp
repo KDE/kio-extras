@@ -86,6 +86,8 @@ void LDAPProtocol::get(const KURL &_url)
 {
   kdDebug(7125) << "kio_ldap::get(" << _url << ")" << endl;
   KLDAP::Url usrc(_url);
+  usrc.setBindDN( mUser );
+  usrc.setPwdBindDN( mPassword );
 
   // check if the URL is a valid LDAP URL
   if (usrc.isMalformed()) {
@@ -93,14 +95,7 @@ void LDAPProtocol::get(const KURL &_url)
     return;
   }
 
-  // initiate the search
   KLDAP::Connection c;
-  if ( !mUser.isEmpty() ) {
-    if ( !c.authenticate( mUser, mPassword ) ) {
-      error( ERR_COULD_NOT_AUTHENTICATE, _url.prettyURL() );
-      return;
-    }
-  }
 
   KLDAP::SearchRequest search(c, usrc, KLDAP::Request::Synchronous);
 
@@ -177,6 +172,8 @@ void LDAPProtocol::stat( const KURL &_url )
   if (!query.isEmpty()) { _url += "?" + query; }*/
   kdDebug(7125) << "kio_ldap: stat(" << _url << ")" << endl;
   KLDAP::Url usrc(_url);
+  usrc.setBindDN( mUser );
+  usrc.setPwdBindDN( mPassword );
 
   // check if the URL is a valid LDAP URL
   if (usrc.isMalformed()) {
@@ -186,10 +183,7 @@ void LDAPProtocol::stat( const KURL &_url )
 
   // look how many entries match
   KLDAP::Connection c;
-/*  if (0 && !c.authenticate()) {    //FIX:user...
-      error(ERR_COULD_NOT_AUTHENTICATE, "bla");
-      return;
-      }*/
+
   KLDAP::SearchRequest search(c, usrc, KLDAP::Request::Synchronous);
   QStringList att;
   att.append("dn");
@@ -310,6 +304,8 @@ void LDAPProtocol::listDir(const KURL &_url)
   unsigned long total=0, actual=0, dirs=0;
   kdDebug(7125) << "kio_ldap: listDir(" << _url << ")" << endl;
   KLDAP::Url usrc(_url);
+  usrc.setBindDN( mUser );
+  usrc.setPwdBindDN( mPassword );
 
   // check if the URL is a valid LDAP URL
   if (usrc.isMalformed()) {
@@ -319,10 +315,7 @@ void LDAPProtocol::listDir(const KURL &_url)
 
   // look up the entries
   KLDAP::Connection c;
-  /*if (0 && !c.authenticate()) {    //FIX:user...
-      error(ERR_COULD_NOT_AUTHENTICATE, "bla");
-      return;
-      }*/
+
   KLDAP::SearchRequest search(c, usrc, KLDAP::Request::Synchronous);
   QStringList att;
   att.append("dn");

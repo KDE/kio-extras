@@ -229,8 +229,13 @@ SearchRequest::SearchRequest(Connection &c, KLDAP::Url &url, RunMode m)
   if (!c.isConnected())
     c.connect();
   _handle = c.handle();
+
   
-  // TODO: authenticate via the basename extension!!!!!
+  // authentication
+  if ( !url.bindDN().isEmpty() ) {
+    if ( !c.authenticate( url.bindDN(), url.pwdBindDN() ) )
+      kdError() << "Can't authenticate on server" << endl;
+  }
 
   // set the search criteria
   setBase(url.dn());

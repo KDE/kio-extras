@@ -27,6 +27,12 @@ namespace KLDAP
     QString filter() const { QString item=decode_string(_filter); return item; };
     void setFilter(QString filter) { _filter=filter; update(); } ;
 
+    QString bindDN() const { return _bindDN; }
+    void setBindDN( const QString &bindDN ) { _bindDN = bindDN; }
+
+    QString pwdBindDN() const { return _pwdBindDN; }
+    void setPwdBindDN( const QString &pwdBindDN ) { _pwdBindDN = pwdBindDN; }
+
   protected:
 
     void parseLDAP();
@@ -39,7 +45,8 @@ namespace KLDAP
     int      _scope;
     QString  _filter;
     QString  _extensions;
-
+    QString  _bindDN;
+    QString  _pwdBindDN;
   };
 };
 
