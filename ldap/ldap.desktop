@@ -1,0 +1,14 @@
+# KDE Config File
+[Protocol]
+exec=kio_ldap
+protocol=ldap
+input=none
+output=filesystem
+listing=Name,
+reading=true
+#writing=true
+#makedir=true
+#deleting=true
+#linking=true
+#moving=true
+
