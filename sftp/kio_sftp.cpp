@@ -16,76 +16,11 @@
  ***************************************************************************/
 
 /*
-- add dialog to ask for username
-- rename() causes SSH to die
-- How to handle overwrite?
-- After the user cancels with the stop button, we get ERR_CANNOT_LAUNCH_PROCESS
-  errors, until we kill the ioslave. Same thing after trying the wrong passwd
-  too many times.
-  This is happening because KProcess thinks that the ssh process is still running
-  even though it exited.
-- How to handle password and caching?
-  - Write our own askpass program using kde
-  - set env SSH_ASKPASS_PROGRAM before launching
-    -how to do this? KProcess doesn't give us access to env variables.
-  - Our askpass program can probably talk to the kdesu daemon to implement caching.
-- chmod() succeeds, but konqueror always puts permissions to 0 afterwards. The properties
-  dialog is right though.
-  Nevermind - ftp ioslave does this too! Maybe a bug with konqueror.
-- stat does not give us group and owner names, only numbers.  We could cache the uid/name and
-  gid/name so we can give names when doing a stat also.
-7-13-2001 - ReadLink stopped working. sftp server always retuns a file not found error
-          - Need to implement 64 bit file lengths-->write DataStream << for u_int64
-            Still need to offer 32 bit size since this is what kde wants. ljf
-          - rename() isn't exactly causing ioslave to die.  The stat of the file we are
-            going to rename is killing the slave.  The slave dies in the statEntry() call.
-            I don't know what I am putting in the UDS entry that is causing this. ljf
-7-14-2001 - got put, mimetype working ljf
-          - fixed readlink problem - I was sending the wrong path. doh! ljf
-7-17-2001 - If the user changes the host, the slave doesn't change host! setHost() is not
-            called, nor is another ioslave spawned. I have not investigated the problem
-            yet. ljf
-7-21-2001 - got slave working with kde 2.2 cvs
-7-22-2001 - probable solution to getting password prompt -- open with controlling
-            but don't connect stdin/out to terminal. duh!
-8-9-2001  - Doh! I haven't kept very good logs. Look at the cvs logs for better info.
-          - At this point kio_sftp is using KSshProcess which I wrote in order to make
-            a standard interface to the various version of ssh out there. So far it is
-            working fairly well.  We also now report host key changes to the user and
-            allow them to choose whether or not to continue. This is a big improvement.
-          - Todo: support use of keys and ssh agent
-                  put()'s resume functionality needs some work
-1-26-2002 - Rewrote put() following the ftp::put() so it should behave the same way
-          - increase the size of the data packet we ask for in ::get up to 60k.
-            Through-put increases nicely.
-          - Call closeConnection() from construction. Keeps from having unused ssh
-            processes laying around after failed operations.
-2-19-2002 - get() now emits mimetype, fixes problem with konqi not downloading file for
-            viewing in kpart.
-          - get port number using getservbyname instead of hard coding it.
-2-27-2002 - testing before committing back to cvs, test with openssh 3, ssh 3
-6-?-2002 - rewrote openConnection() to using new KSshProcess connect proceedures
-7-20-2002 - Don't put up a message box when auth fails because of now or changed key,
-            the call to error() will put up the dialog.
-          - Connect fails and no more password are prompted for when we get
-            ERR_AUTH_FAILED from KSshProcess.
-9-15-2002 - stuff
-9-29-2002 - the last i18n string updates, fixed problem with uploading files to
-            openssh server.
-5-8-2003  - check whether operation types are supported by the negotiated sftp
-            protocol version
-
 DEBUGGING
 We are pretty much left with kdDebug messages for debugging. We can't use a gdb
 as described in the ioslave DEBUG.howto because kdeinit has to run in a terminal.
 Ssh will detect this terminal and ask for a password there, but will just get garbage.
 So we can't connect.
-
-TODO
-- Password caching doesn't work. We get a new dialog box every time a new
-kio_sftp process starts. Very annoying.
-- Orphaned ssh processes are bad. Shame on me.
-
 */
 
 #ifdef HAVE_CONFIG_H
