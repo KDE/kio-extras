@@ -1,3 +1,4 @@
+#include <config.h>
 #include "program.h"
 #include <unistd.h>
 #include <fcntl.h>
