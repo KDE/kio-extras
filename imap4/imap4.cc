@@ -1483,6 +1483,8 @@ IMAP4Protocol::doListEntry (const KURL & _url, const QString & myBox,
         mailboxName = mailboxName.right (mailboxName.length () - 1);
     if (mailboxName.left(hdLen) == item.hierarchyDelimiter())
       mailboxName = mailboxName.right(mailboxName.length () - hdLen);
+    if (mailboxName.right(hdLen) == item.hierarchyDelimiter())
+      mailboxName = mailboxName.left(mailboxName.length () - hdLen);
 
     atom.m_uds = UDS_NAME;
     atom.m_str = mailboxName;
@@ -1647,7 +1649,7 @@ IMAP4Protocol::parseURL (const KURL & _url, QString & _box,
   }
   if (_type == "LIST")
   {
-//    retVal = ITYPE_DIR;    ???
+    retVal = ITYPE_DIR;
     if (_hierarchyDelimiter.isEmpty()) _hierarchyDelimiter ="/";
   }
 
