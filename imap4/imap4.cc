@@ -754,7 +754,7 @@ IMAP4Protocol::mkdir (const KURL & _url, int)
   if (type == ITYPE_BOX)
   {
     if (messageBox(QuestionYesNo,
-      i18n("What do you want to store in this folder?"), i18n("Create folder"),
+      i18n("What do you want to store in this folder?"), i18n("Create Folder"),
       i18n("&Messages"), i18n("&Subfolders")) == KMessageBox::No)
     {
       cmd = doCommand(imapCommand::clientDelete(newBox));
