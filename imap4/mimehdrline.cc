@@ -15,16 +15,17 @@
  *                                                                         *
  ***************************************************************************/
 
-#include "mimehdrline.h"
-#include "rfcdecoder.h"
-
+#include <time.h>
 #include <iostream.h>
 #include <ctype.h>
 #include <stdlib.h>
-#include <time.h>
 #include <stdio.h>
 
 #include <qtextcodec.h>
+
+#include "mimehdrline.h"
+#include "rfcdecoder.h"
+
 
 const char* wdays[] = {
     "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"

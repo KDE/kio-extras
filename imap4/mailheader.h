@@ -18,11 +18,12 @@
 #ifndef MAILHEADER_H
 #define MAILHEADER_H
 
+#include <time.h>
+
 #include "mimeheader.h"
 #include "mailaddress.h"
 #include "mimeio.h"
 #include "rfcdecoder.h"
-#include <time.h>
 
 /**
   *@author Sven Carstens
