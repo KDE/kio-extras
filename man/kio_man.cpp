@@ -81,7 +81,7 @@ void MANProtocol::get(const KURL& url, bool /*reload*/)
   // see if an index was requested
   if (url.query().isEmpty() && (title.isEmpty() || title == "/"))
     {
-      if (section == "index")
+      if (section == "index" || section.isEmpty()) 
 	showMainIndex();
       else
 	showIndex(section);
