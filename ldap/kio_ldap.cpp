@@ -76,11 +76,11 @@ void LDAPProtocol::setHost( const QString& _host, int _port,
 /**
  * Get the information contained in the URL.
  */
-void LDAPProtocol::get(const QString &__url, const QString& query,
+void LDAPProtocol::get(const QString &path, const QString& query,
 		       bool reload )
 {
-  QString _url = urlPrefix + __url + query;
-  kDebugInfo(7110, "kio_ldap::get(" + _url + ")");
+  QString _url = urlPrefix + path + query;
+  kDebugInfo(7110, "kio_ldap::get(%s)", debugString(_url));
   KLDAP::Url usrc(_url);
 
   // check if the URL is a valid LDAP URL
@@ -93,7 +93,7 @@ void LDAPProtocol::get(const QString &__url, const QString& query,
   time_t t_start = time( 0L );
 
   // initiate the search
-  KLDAP::Connection c; //FIX:(host,port)
+  KLDAP::Connection c;
   /*if (0 && !c.authenticate()) {    //FIX:user...
       error(ERR_COULD_NOT_AUTHENTICATE, "bla");
       return;
@@ -158,10 +158,10 @@ void LDAPProtocol::get(const QString &__url, const QString& query,
 /**
  * Test if the url contains a directory or a file.
  */
-void LDAPProtocol::stat( const QString &__url )
+void LDAPProtocol::stat( const QString &path )
 {
-  QString _url = urlPrefix + __url;
-  kDebugInfo(7110, "kio_ldap: stat(" + _url + ")");
+  QString _url = urlPrefix + path;
+  kDebugInfo(7110, "kio_ldap: stat(%s)", debugString(_url));
   KLDAP::Url usrc(_url);
 
   // check if the URL is a valid LDAP URL
@@ -210,7 +210,7 @@ void LDAPProtocol::stat( const QString &__url )
   
   atom.m_uds = UDS_URL;
   atom.m_long = 0;
-  KLDAP::Url url("ldap://");
+  KLDAP::Url url(urlPrefix);
   //url.setProtocol("ldap");
   url.setHost(usrc.host());
   url.setPort(usrc.port());
@@ -220,7 +220,7 @@ void LDAPProtocol::stat( const QString &__url )
   else
     url.setScope(LDAP_SCOPE_BASE);
   atom.m_str = url.url();
-  //kDebugInfo(7110, "kio_ldap:stat put url:" + atom.m_str);
+  kDebugInfo(7110, "kio_ldap:stat put url:%s", debugString(atom.m_str));
   entry.append(atom);
 
   if (cnt == 0) {
@@ -238,10 +238,10 @@ void LDAPProtocol::stat( const QString &__url )
 /**
  * List the contents of a directory.
  */
-void LDAPProtocol::listDir(const QString &__url)
+void LDAPProtocol::listDir(const QString &path)
 {
-  QString _url = urlPrefix + __url;
-  debug("kio_ldap: listDir(" + _url + ")");
+  QString _url = urlPrefix + path;
+  kDebugInfo(7110, "kio_ldap: listDir(%s)", debugString(_url));
   KLDAP::Url usrc(_url);
 
   // check if the URL is a valid LDAP URL
@@ -307,7 +307,7 @@ void LDAPProtocol::listDir(const QString &__url)
 	  // the url
 	  atom.m_uds = UDS_URL;
 	  atom.m_long = 0;
-	  KLDAP::Url url("ldap://");
+	  KLDAP::Url url(urlPrefix);
 	  //kDebugInfo(7110, "kio_ldap:listDir(dir) put url1:" + url.url());
 	  //url.setProtocol("ldap");
 	  //kDebugInfo(7110, "kio_ldap:listDir(dir) put url2:" + url.url());
@@ -319,7 +319,7 @@ void LDAPProtocol::listDir(const QString &__url)
 	  //kDebugInfo(7110, "kio_ldap:listDir(dir) put url5:" + url.url());
 	  url.setScope(LDAP_SCOPE_ONELEVEL);
 	  atom.m_str = url.url();
-	  //kDebugInfo(7110, "kio_ldap:listDir(dir) put url6:" + atom.m_str);
+	  kDebugInfo(7110, "kio_ldap:listDir(dir) put url:%s", debugString(atom.m_str));
 	  entry.append(atom);
 
 	  listEntry(entry, false);
@@ -358,14 +358,15 @@ void LDAPProtocol::listDir(const QString &__url)
       // the url
       atom.m_uds = UDS_URL;
       atom.m_long = 0;
-      KLDAP::Url url("ldap://");
+      KLDAP::Url url(urlPrefix);
       //url.setProtocol("ldap");
       url.setHost(usrc.host());
       url.setPort(usrc.port());
       url.setPath("/"+e.dn());
       url.setScope(LDAP_SCOPE_BASE);
       atom.m_str = url.url();
-      //kDebugInfo("kio_ldap:listDir(file) put url:" + atom.m_str);
+      QString dbgurl = url.url();
+      kDebugInfo(7110, "kio_ldap:listDir(file) put url:%s", debugString(url.url()));
       entry.append(atom);
 
       listEntry(entry, false);

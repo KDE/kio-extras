@@ -45,7 +45,7 @@ no)
   else
     LDAP_RPATH=
     if test "$USE_RPATH" = "yes" ; then
-      LDAP_RPATH="-rpath ${LDAP_ROOT}/lib"
+      LDAP_RPATH="-R ${LDAP_ROOT}/lib"
     fi
     AC_DEFINE_UNQUOTED(HAVE_LIBLDAP, 1, [Define if you have LDAP libraries])
     LDAP_SUBDIR="ldap"

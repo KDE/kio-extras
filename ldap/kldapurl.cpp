@@ -96,17 +96,16 @@ void Url::update()
 {
   QString q = "";
   
+  // the first '?' is implicit (by setQuery)
   // set the attributes to query
   if (_attributes.count() > 0)
     {
-      q += "(";
       for (unsigned int i=0; i < _attributes.count()-1; ++i)
 	{
 	  q += _attributes.at(i);
 	  q += ",";
 	}
       q += _attributes.at(_attributes.count()-1);
-      q += ")";
     }
 
   // set the scope
@@ -116,11 +115,10 @@ void Url::update()
   if (_scope == LDAP_SCOPE_ONELEVEL)
     q += "one";
 
+  q += "?";
   // set the filter
   if (_filter != "(objectClass=*)") 
-     q += "?" + _filter;	
-  else
-     q += "?";
+     q += _filter;	
   
   // set the extensions
   q += "?" + _extensions;
