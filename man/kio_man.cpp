@@ -291,7 +291,7 @@ void MANProtocol::outputMatchingPages(const QStringList &matchingPages)
     os << i18n("There is more than one matching man page.");
     os << "</h1>\n<ul>";
     for (QStringList::ConstIterator it = matchingPages.begin(); it != matchingPages.end(); ++it)
-       os<<"<li><a href=man:"<<QFile::encodeName(*it)<<">"<< *it <<"</href><br>\n<br>\n";
+       os<<"<li><a href=man:"<<QFile::encodeName(*it)<<">"<< *it <<"</a><br>\n<br>\n";
     os<< "</ul>\n</body>\n</html>"<<endl;
 
     data(output);
