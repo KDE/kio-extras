@@ -154,8 +154,8 @@ const struct fishProtocol::fish_info fishProtocol::fishInfo[] = {
     { ("FISH"), 0,
       ("echo; /bin/sh -c start_fish_server > /dev/null 2>/dev/null; perl .fishsrv.pl " CHECKSUM " 2>/dev/null; perl -e '$|=1; print \"### 100 transfer fish server\\n\"; while(<STDIN>) { last if /^__END__/; $code.=$_; } exit(eval($code));' 2>/dev/null;"),
       1 },
-    { ("VER 0.0.2 copy append lscount lslinks lsmime exec"), 0,
-      ("echo 'VER 0.0.2 copy append lscount lslinks lsmime exec'"),
+    { ("VER 0.0.3 copy append lscount lslinks lsmime exec stat"), 0,
+      ("echo 'VER 0.0.3 copy append lscount lslinks lsmime exec stat'"),
       1 },
     { ("PWD"), 0,
       ("pwd"),
@@ -163,6 +163,10 @@ const struct fishProtocol::fish_info fishProtocol::fishInfo[] = {
     { ("LIST"), 1,
       ("echo `ls -Lla %1 2> /dev/null | grep '^[-dsplcb]' | wc -l`; ls -Lla %1 2>/dev/null | grep '^[-dspl]' | ( while read -r p x u g s m d y n; do file -b -i $n 2>/dev/null | sed -e '\\,^[^/]*$,d;s/^/M/;s,/.*[ \t],/,'; FILE=%1; if [ -e %1\"/$n\" ]; then FILE=%1\"/$n\"; fi; if [ -L \"$FILE\" ]; then echo \":$n\"; ls -lad \"$FILE\" | sed -e 's/.* -> /L/'; else echo \":$n\" | sed -e 's/ -> /\\\nL/'; fi; echo \"P$p $u.$g\nS$s\nd$m $d $y\n\"; done; );"
                 "ls -Lla %1 2>/dev/null | grep '^[cb]' | ( while read -r p x u g a i m d y n; do echo \"P$p $u.$g\nE$a$i\nd$m $d $y\n:$n\n\"; done; )"),
+      0 },
+    { ("STAT"), 1,
+      ("echo `ls -dLla %1 2> /dev/null | grep '^[-dsplcb]' | wc -l`; ls -dLla %1 2>/dev/null | grep '^[-dspl]' | ( while read -r p x u g s m d y n; do file -b -i $n 2>/dev/null | sed -e '\\,^[^/]*$,d;s/^/M/;s,/.*[ \t],/,'; FILE=%1; if [ -e %1\"/$n\" ]; then FILE=%1\"/$n\"; fi; if [ -L \"$FILE\" ]; then echo \":$n\"; ls -lad \"$FILE\" | sed -e 's/.* -> /L/'; else echo \":$n\" | sed -e 's/ -> /\\\nL/'; fi; echo \"P$p $u.$g\nS$s\nd$m $d $y\n\"; done; );"
+                "ls -dLla %1 2>/dev/null | grep '^[cb]' | ( while read -r p x u g a i m d y n; do echo \"P$p $u.$g\nE$a$i\nd$m $d $y\n:$n\n\"; done; )"),
       0 },
     { ("RETR"), 1,
       ("ls -l %1 2>&1 | ( read -r a b c d x e; echo $x ) 2>&1; echo '### 001'; cat %1"),
@@ -260,6 +264,10 @@ fishProtocol::fishProtocol(const QCString &pool_socket, const QCString &app_sock
     outBufLen = 0;
     typeAtom.m_uds = UDS_FILE_TYPE;
     typeAtom.m_long = 0;
+    mimeAtom.m_uds = UDS_MIME_TYPE;
+    mimeAtom.m_long = 0;
+    mimeAtom.m_str = QString::null;
+    
     isStat = false; // FIXME: just a workaround for konq deficiencies
     redirectUser = ""; // FIXME: just a workaround for konq deficiencies
     redirectPass = ""; // FIXME: just a workaround for konq deficiencies
@@ -777,12 +785,13 @@ void fishProtocol::manageConnection(const QString &l) {
     if (!rc) {
         switch (fishCommand) {
         case FISH_VER:
-            if (line.startsWith("VER 0.0.2")) {
+            if (line.startsWith("VER 0.0.3")) {
                 line.append(" ");
                 hasCopy = line.contains(" copy ");
                 hasRsync = line.contains(" rsync ");
                 hasAppend = line.contains(" append ");
                 hasExec = line.contains(" exec ");
+                hasStat = line.contains(" stat ");
             } else {
                 error(ERR_UNSUPPORTED_PROTOCOL,line);
                 shutdownConnection();
@@ -794,6 +803,8 @@ void fishProtocol::manageConnection(const QString &l) {
             break;
         case FISH_LIST:
             myDebug( << "listReason: " << listReason << endl);
+            /* Fall through */
+        case FISH_STAT:
             if (line.length() > 0) {
                 switch (line[0].cell()) {
                 case '0':
@@ -808,16 +819,14 @@ void fishProtocol::manageConnection(const QString &l) {
                 case '9':
                     pos = line.toInt(&isOk);
                     if (pos > 0 && isOk) errorCount--;
-                    if (listReason == LIST) totalSize(pos);
+                    if ((fishCommand == FISH_LIST) && (listReason == LIST))
+                        totalSize(pos);
                     break;
 
                 case 'P':
                     errorCount--;
                     if (line[1] == 'd') {
-                        atom.m_uds = UDS_MIME_TYPE;
-                        atom.m_long = 0;
-                        atom.m_str = "inode/directory";
-                        udsEntry.append(atom);
+                        mimeAtom.m_str = "inode/directory";
                         typeAtom.m_long = S_IFDIR;
                     } else {
                         if (line[1] == '-') {
@@ -917,7 +926,7 @@ void fishProtocol::manageConnection(const QString &l) {
                     atom.m_long = 0;
                     pos = line.findRev('/');
                     atom.m_str = thisFn = line.mid(pos < 0?1:pos+1);
-                    if ((listReason != STAT) && (listReason != STATCHECK))
+                    if (fishCommand == FISH_LIST)
                         udsEntry.append(atom);
                     errorCount--;
                     break;
@@ -928,11 +937,8 @@ void fishProtocol::manageConnection(const QString &l) {
                     if (line.right(8) != "/unknown" &&
                             (thisFn.find('.') < 0 || (line.left(8) != "Mtext/x-"
                                                   && line != "Mtext/plain"))) {
-                        atom.m_uds = UDS_MIME_TYPE;
-                        atom.m_long = 0;
-                        atom.m_str = line.mid(1);
-                        udsEntry.append(atom);
-                        if ( line.mid(1) == "inode/directory" ) // a symlink to a dir is a dir
+                        mimeAtom.m_str = line.mid(1);
+                        if ( mimeAtom.m_str == "inode/directory" ) // a symlink to a dir is a dir
                           typeAtom.m_long = S_IFDIR;
                     }
                     errorCount--;
@@ -948,13 +954,16 @@ void fishProtocol::manageConnection(const QString &l) {
                     break;
                 }
             } else {
+                if (!mimeAtom.m_str.isNull())
+                    udsEntry.append(mimeAtom);
+                mimeAtom.m_str = QString::null;
+
                 udsEntry.append(typeAtom);
                 typeAtom.m_long = 0;
-                if (listReason == STAT) {
-                    if (thisFn == wantedFn) udsStatEntry = udsEntry; //2
-                } else if (listReason == STATCHECK) {
-                    if (thisFn == ".") udsStatEntry = udsEntry; //2
-                } else if (listReason == LIST) {
+
+                if (fishCommand == FISH_STAT)
+                    udsStatEntry = udsEntry;
+                else if (listReason == LIST) {
                     listEntry(udsEntry, false); //1
                 } else if (listReason == CHECK) checkExist = true; //0
                 errorCount--;
@@ -1050,18 +1059,14 @@ void fishProtocol::manageConnection(const QString &l) {
         case FISH_LIST:
             myDebug( << "list error. reason: " << listReason << endl);
             if (listReason == LIST) error(ERR_CANNOT_ENTER_DIRECTORY,url.prettyURL());
-            else if (listReason == STAT) {
-                listReason = STATCHECK;
-                sendCommand(FISH_LIST,(const char *)url.path().local8Bit());
-                udsStatEntry.clear();
-                finished(); // continue with STATCHECK
-            } else if (listReason == STATCHECK) {
-                error(ERR_DOES_NOT_EXIST,url.prettyURL());
-                udsStatEntry.clear();
-            } else if (listReason == CHECK) {
+            else if (listReason == CHECK) {
                 checkExist = false;
                 finished();
             }
+            break;
+        case FISH_STAT:
+            error(ERR_DOES_NOT_EXIST,url.prettyURL());
+            udsStatEntry.clear();
             break;
         case FISH_CHMOD:
             error(ERR_CANNOT_CHMOD,url.prettyURL());
@@ -1095,37 +1100,16 @@ void fishProtocol::manageConnection(const QString &l) {
         } else if (fishCommand == FISH_LIST) {
             if (listReason == LIST) {
                 listEntry(UDSEntry(),true);
-            } else if (listReason == STAT) {
-                if (udsStatEntry.size() == 0) {
-                    listReason = STATCHECK;
-                    sendCommand(FISH_LIST,(const char *)url.path().local8Bit());
-                } else {
-                    UDSAtom atom;
-
-                    atom.m_uds = KIO::UDS_NAME;
-                    atom.m_str = url.fileName();
-                    udsStatEntry.append( atom );
-                    statEntry(udsStatEntry);
-                }
-                udsStatEntry.clear();
             } else if (listReason == CHECK) {
                 if (!checkOverwrite && checkExist) error(ERR_FILE_ALREADY_EXIST,url.prettyURL());
-            } else if (listReason == STATCHECK) {
-                UDSAtom atom;
-
-                if (udsStatEntry.size() == 0)
-                {
-                    // Fake it because it seems to exist
-                    atom.m_uds = KIO::UDS_FILE_TYPE;
-                    atom.m_long = S_IFDIR;
-                    udsStatEntry.append( atom );
-                }
-
-                atom.m_uds = KIO::UDS_NAME;
-                atom.m_str = url.fileName();
-                udsStatEntry.append( atom );
-                statEntry(udsStatEntry);
             }
+        } else if (fishCommand == FISH_STAT) {
+            UDSAtom atom;
+
+            atom.m_uds = KIO::UDS_NAME;
+            atom.m_str = url.fileName();
+            udsStatEntry.append( atom );
+            statEntry(udsStatEntry);
         } else if (fishCommand == FISH_APPEND) {
             dataReq();
             if (readData(rawData) > 0) sendCommand(FISH_APPEND,(const char *)QString::number(rawData.size()).local8Bit(),(const char *)url.path().local8Bit());
@@ -1389,6 +1373,10 @@ void fishProtocol::run() {
 /** stat a file */
 void fishProtocol::stat(const KURL& u){
     myDebug( << "@@@@@@@@@ stat " << u.url() << endl);
+    if ( !hasStat ) {
+        error(ERR_UNSUPPORTED_ACTION,u.prettyURL());
+        return;
+    }
     setHost(u.host(),u.port(),u.user(),u.pass());
     url = u;
     isStat = true; // FIXME: just a workaround for konq deficiencies
@@ -1399,14 +1387,7 @@ void fishProtocol::stat(const KURL& u){
     if (!url.hasPath()) {
         sendCommand(FISH_PWD);
     } else {
-        listReason = STAT;
-        statPath = url.path();
-        while (statPath.endsWith("/") && statPath.length() > 1) statPath.truncate(statPath.length()-1);
-        wantedFn = statPath.mid(statPath.findRev('/')+1);
-        if (wantedFn.length() == 0) wantedFn = ".";
-        statPath.truncate(statPath.findRev('/'));
-        if (statPath.length() == 0) statPath = "/";
-        sendCommand(FISH_LIST,(const char *)statPath.local8Bit());
+        sendCommand(FISH_STAT,(const char *)url.path().local8Bit());
     }
     run();
 }

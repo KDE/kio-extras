@@ -108,6 +108,8 @@ protected: // Protected attributes
   /** for LIST/STAT */
   KIO::UDSAtom typeAtom;
   /** for LIST/STAT */
+  KIO::UDSAtom mimeAtom;
+  /** for LIST/STAT */
   QString thisFn;
   /** for STAT */
   QString wantedFn;
@@ -147,7 +149,7 @@ protected: // Protected attributes
   /** true if a command stack is currently executing */
   bool isRunning;
   /** reason of LIST command */
-  enum { CHECK, LIST, STAT, STATCHECK } listReason;
+  enum { CHECK, LIST } listReason;
   /** true if FISH server understands COPY command */
   bool hasCopy;
   /** true if FISH server understands RSYNC command */
@@ -156,6 +158,8 @@ protected: // Protected attributes
   bool hasAppend;
   /** true if FISH server understands EXEC command */
   bool hasExec;
+  /** true if FISH server understands STAT command */
+  bool hasStat;
   /** permission of created file */
   int putPerm;
   /** true if file may be overwritten */
@@ -185,7 +189,8 @@ protected: // Protected attributes
       int lines;
   } fishInfo[];
   /** last FISH command sent to server */
-  enum fish_command_type { FISH_FISH, FISH_VER, FISH_PWD, FISH_LIST, FISH_RETR, FISH_STOR,
+  enum fish_command_type { FISH_FISH, FISH_VER, FISH_PWD, FISH_LIST, FISH_STAT,
+    FISH_RETR, FISH_STOR,
     FISH_CWD, FISH_CHMOD, FISH_DELE, FISH_MKD, FISH_RMD,
     FISH_RENAME, FISH_LINK, FISH_SYMLINK, FISH_CHOWN,
     FISH_CHGRP, FISH_READ, FISH_WRITE, FISH_COPY, FISH_APPEND, FISH_EXEC } fishCommand;

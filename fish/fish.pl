@@ -47,7 +47,7 @@ MAIN: while (<STDIN>) {
     /^VER / && do {
         # We do not advertise "append" capability anymore, as "write" is
         # as fast in perl mode and more reliable (overlapping writes)
-        print "VER 0.0.2 copy lscount lslinks lsmime exec\n### 200\n";
+        print "VER 0.0.3 copy lscount lslinks lsmime exec stat\n### 200\n";
         next;
     };
     /^PWD$/ && do {
@@ -154,34 +154,11 @@ MAIN: while (<STDIN>) {
         next;
     };
     /^LIST\s+((?:\\.|[^\\])*?)\s*$/ && do {
-        my $dn = unquote($1);
-        my @entries;
-        if (!-e $dn) {
-            print "### 404 File does not exist\n";
-            next;
-        } elsif (-d _) {
-            opendir(DIR,$dn) || do { print "### 500 $!\n"; next; };
-            @entries = readdir(DIR);
-            closedir(DIR);
-        } else {
-            ($dn, @entries) = $dn =~ m{(.*)/(.*)};
-        }
-        print scalar(@entries),"\n### 100\n";
-        my $cwd = getcwd();
-        chdir($dn) || do { print "### 500 $!\n"; next; };
-        foreach (@entries) {
-            my $link = readlink;
-            my ($mode,$uid,$gid,$size,$mtime) = (lstat)[2,4,5,7,9];
-            print filetype($mode,$link,$uid,$gid);
-            print "S$size\n";
-            print strftime("D%Y %m %d %H %M %S\n",localtime($mtime));
-            print ":$_\n";
-            print "L$link\n" if defined $link;
-            print mimetype($_);
-            print "\n";
-        }
-        chdir($cwd);
-        print "### 200\n";
+        list($1, 1);
+        next;
+    };
+    /^STAT\s+((?:\\.|[^\\])*?)\s*$/ && do {
+        list($1, 0);
         next;
     };
     /^WRITE\s+(\d+)\s+(\d+)\s+((?:\\.|[^\\])*?)\s*$/ && do {
@@ -228,6 +205,37 @@ MAIN: while (<STDIN>) {
     };
 }
 exit(0);
+
+sub list {
+    my $dn = unquote($_[0]);
+    my @entries;
+    if (!-e $dn) {
+        print "### 404 File does not exist\n";
+        return;
+    } elsif ($_[1] && -d _) {
+        opendir(DIR,$dn) || do { print "### 500 $!\n"; return; };
+        @entries = readdir(DIR);
+        closedir(DIR);
+    } else {
+        ($dn, @entries) = $dn =~ m{(.*)/(.*)};
+    }
+    print scalar(@entries),"\n### 100\n";
+    my $cwd = getcwd();
+    chdir($dn) || do { print "### 500 $!\n"; return; };
+    foreach (@entries) {
+        my $link = readlink;
+        my ($mode,$uid,$gid,$size,$mtime) = (lstat)[2,4,5,7,9];
+        print filetype($mode,$link,$uid,$gid);
+        print "S$size\n";
+        print strftime("D%Y %m %d %H %M %S\n",localtime($mtime));
+        print ":$_\n";
+        print "L$link\n" if defined $link;
+        print mimetype($_);
+        print "\n";
+    }
+    chdir($cwd);
+    print "### 200\n";
+}
 
 sub read_loop {
     my $fn = unquote($_[0]);
