@@ -43,7 +43,7 @@ int kdemain( int argc, char **argv )
 {
   KInstance instance( "kio_ldap" );
 
-  kdDebug(7125) << "kio_ldap : Starting " << getpid() << endl;
+  kdDebug(7125) << "Starting " << getpid() << endl;
 
   if ( argc != 4 ) {
     kdError() << "Usage kio_ldap protocol pool app" << endl;
@@ -54,7 +54,7 @@ int kdemain( int argc, char **argv )
   LDAPProtocol slave( argv[1], argv[ 2 ], argv[ 3 ] );
   slave.dispatchLoop();
 
-  kdDebug( 7125 ) << "kio_ldap : Done" << endl;
+  kdDebug( 7125 ) << "Done" << endl;
   return 0;
 }
 
@@ -65,7 +65,7 @@ LDAPProtocol::LDAPProtocol( const QCString &protocol, const QCString &pool,
   const QCString &app ) : SlaveBase( protocol, pool, app )
 {
   mLDAP = 0; mTLS = 0; mVer = 3; mAuthSASL = false;
-  mRealm = ""; mAuthzid = "";
+  mRealm = ""; mBaseName = "";
   kdDebug(7125) << "LDAPProtocol::LDAPProtocol (" << protocol << ")" << endl;
 }
 
@@ -75,7 +75,7 @@ LDAPProtocol::~LDAPProtocol() {
 
 void LDAPProtocol::LDAPErr( int err, const QString &msg )
 {
-  kdDebug(7125) << "kio_ldap error: " << err << " " << ldap_err2string(err) << endl;
+  kdDebug(7125) << "error: " << err << " " << ldap_err2string(err) << endl;
   
   /* FIXME: No need to close on all errors */
   closeConnection();
@@ -171,7 +171,7 @@ int LDAPProtocol::asyncSearch( LDAPUrl &usrc )
       break;
   }
 
-  kdDebug(7125) << "kio_ldap: asyncSearch() dn=" << usrc.dn() << " scope=" << 
+  kdDebug(7125) << "asyncSearch() dn=" << usrc.dn() << " scope=" << 
     usrc.scope() << " filter=" << usrc.filter() << "attrs=" << usrc.attributes() << 
     endl;
   retval = ldap_search( mLDAP, usrc.dn().utf8(), scope, 
@@ -214,7 +214,7 @@ QCString LDAPProtocol::LDAPEntryAsLDIF( LDAPMessage *message )
         char* val = bvals[i]->bv_val;
         unsigned long len = bvals[i]->bv_len;
         tmp.setRawData( val, len );
-        result += LDIF::assembleLine( QString::fromUtf8( name ), tmp ) + '\n';
+        result += LDIF::assembleLine( QString::fromUtf8( name ), tmp, 76 ) + '\n';
         tmp.resetRawData( val, len );
       }
       ldap_value_free_len(bvals);
@@ -228,8 +228,8 @@ QCString LDAPProtocol::LDAPEntryAsLDIF( LDAPMessage *message )
 void LDAPProtocol::addModOp( LDAPMod ***pmods, int mod_type, const QString &attr, 
   const QByteArray &value )
 {
-  kdDebug(7125) << "type: " << mod_type << " attr: " << attr << 
-    " value: " << QString::fromUtf8(value,value.size()) << endl;
+//  kdDebug(7125) << "type: " << mod_type << " attr: " << attr << 
+//    " value: " << QString::fromUtf8(value,value.size()) << endl;
   LDAPMod **mods;
 
   mods = *pmods;
@@ -249,7 +249,7 @@ void LDAPProtocol::addModOp( LDAPMod ***pmods, int mod_type, const QString &attr
     if ( mods[ i ] == 0 ) {
       mods = ( LDAPMod ** )realloc( mods, (i + 2) * sizeof( LDAPMod * ) );
       if ( mods == 0 ) {
-        kdError() << "ResourceLDAP: realloc" << endl;
+        kdError() << "addModOp: realloc" << endl;
         return;
       }
       mods[ i + 1 ] = 0;
@@ -275,14 +275,14 @@ void LDAPProtocol::addModOp( LDAPMod ***pmods, int mod_type, const QString &attr
     mods[ i ]->mod_vals.modv_bvals = ( BerValue** ) malloc( sizeof( BerValue* ) * 2 );
     mods[ i ]->mod_vals.modv_bvals[ 0 ] = berval;
     mods[ i ]->mod_vals.modv_bvals[ 1 ] = 0;
-    kdDebug(7125) << " new bervalue struct " << endl;
+    kdDebug(7125) << "addModOp: new bervalue struct " << endl;
   } else {
     uint j = 0;
     while ( mods[ i ]->mod_vals.modv_bvals[ j ] != 0 ) j++;
     mods[ i ]->mod_vals.modv_bvals = ( BerValue ** ) 
       realloc( mods[ i ]->mod_vals.modv_bvals, (j + 2) * sizeof( BerValue* ) );
     if ( mods[ i ]->mod_vals.modv_bvals == 0 ) {
-      kdError() << "ResourceLDAP: realloc" << endl;
+      kdError() << "addModOp: realloc" << endl;
       return;
     }
     mods[ i ]->mod_vals.modv_bvals[ j ] = berval;     
@@ -339,7 +339,6 @@ void LDAPProtocol::LDAPEntry2UDSEntry( const QString &dn, UDSEntry &entry,
   url.setScope( dir ? LDAPUrl::One : LDAPUrl::Base );
   atom.m_str = url.prettyURL();
   entry.append( atom );
-
 }
 
 void LDAPProtocol::changeCheck( const LDAPUrl &url )
@@ -347,18 +346,31 @@ void LDAPProtocol::changeCheck( const LDAPUrl &url )
   bool critical;
   bool tls = ( url.hasExtension( "x-tls" ) );
   int ver = 3;
-  if ( url.hasExtension( "x-ver" ) ) ver = url.extension( "x-ver", critical).toInt();
+  if ( url.hasExtension( "x-ver" ) ) 
+    ver = url.extension( "x-ver", critical).toInt();
   bool authSASL = url.hasExtension( "x-sasl" );
   QString mech;
-  if ( url.hasExtension( "x-mech" ) ) mech = url.extension( "x-mech", critical);
+  if ( url.hasExtension( "x-mech" ) ) 
+    mech = url.extension( "x-mech", critical).upper();
+  QString realm;
+  if ( url.hasExtension( "x-realm" ) ) 
+    mech = url.extension( "x-realm", critical).upper();
+  QString basename;
+  if ( url.hasExtension( "basename" ) ) 
+    basename = url.extension( "basename", critical).upper();
   
-  if ( tls != mTLS || ver != mVer || authSASL != mAuthSASL || mech != mMech ) {
+  if ( !authSASL && basename.isEmpty() ) basename = mUser;
+    
+  if ( tls != mTLS || ver != mVer || authSASL != mAuthSASL || mech != mMech ||
+    mRealm != realm || mBaseName != basename ) {
     closeConnection();
     mTLS = tls;
     mVer = ver;
     mAuthSASL = authSASL;
     mMech = mech;
-    kdDebug(7125) << "kio_ldap: parameters changed: tls = " << mTLS << 
+    mRealm = realm;
+    mBaseName = basename;
+    kdDebug(7125) << "parameters changed: tls = " << mTLS << 
       " version: " << mVer << "SASLauth: " << mAuthSASL << endl;
     openConnection();
   }
@@ -410,19 +422,19 @@ static int kldap_sasl_interact( LDAP *, unsigned, void *defaults, void *in )
     switch( interact->id ) {
       case SASL_CB_GETREALM:
         value = def->realm;
-        kdDebug(7125) << "kio_ldap: SASL_REALM=" << value << endl;
+        kdDebug(7125) << "SASL_REALM=" << value << endl;
         break;
       case SASL_CB_AUTHNAME:
         value = def->authcid;
-        kdDebug(7125) << "kio_ldap: SASL_AUTHNAME=" << value << endl;
+        kdDebug(7125) << "SASL_AUTHNAME=" << value << endl;
         break;
       case SASL_CB_PASS:
         value = def->passwd;
-        kdDebug(7125) << "kio_ldap: SASL_PASSWD=[hidden]" << endl;
+        kdDebug(7125) << "SASL_PASSWD=[hidden]" << endl;
         break;
       case SASL_CB_USER:
         value = def->authzid;
-        kdDebug(7125) << "kio_ldap: SASL_AUTHZID=" << value << endl;
+        kdDebug(7125) << "SASL_AUTHZID=" << value << endl;
         break;
     }
     if ( value.isEmpty() ) {
@@ -466,10 +478,17 @@ void LDAPProtocol::openConnection()
   info.keepPassword = true;
 
   ///////////////////////////////////////////////////////////////////////////
-  if( mUser.isEmpty() && mPassword.isEmpty() ) {
+
+  if( mUser.isEmpty() && mPassword.isEmpty() && 
+//don't need authentication info for kerberos-gssapi
+    !( mAuthSASL && mMech == "GSSAPI") ) {
     if( checkCachedAuthentication( info ) ) {
-      mUser = info.username;
+      if ( mAuthSASL )
+        mUser = info.username;
+      else
+        mBaseName = info.username;
       mPassword = info.password;
+      kdDebug(7125) << "auth info from cache: " << mUser <<  endl;
     }
   }
 
@@ -492,7 +511,7 @@ void LDAPProtocol::openConnection()
   }
   
   if ( mTLS ) {
-    kdDebug(7125) << "kio_ldap: start TLS" << endl;
+    kdDebug(7125) << "start TLS" << endl;
     if ( ( ret = ldap_start_tls_s( mLDAP, NULL, NULL ) ) != LDAP_SUCCESS ) {
       closeConnection();
       LDAPErr( ret, Url.prettyURL() );
@@ -509,12 +528,12 @@ void LDAPProtocol::openConnection()
   ret = LDAP_SUCCESS;
   while (!auth) {
     if ( mAuthSASL ) {
-      kdDebug(7125) << "kio_ldap: sasl_authentication mechanism:" << mechanism << endl;
+      kdDebug(7125) << "sasl_authentication mechanism:" << mechanism << endl;
 #ifdef HAVE_SASL_H      
       defaults.realm = mRealm;
       defaults.authcid = mUser;
       defaults.passwd = mPassword;
-      defaults.authzid = mAuthzid;
+      defaults.authzid = mBaseName;
 #else
       closeConnection();
       error( ERR_SLAVE_DEFINED, 
@@ -526,17 +545,17 @@ void LDAPProtocol::openConnection()
     if ( ( mPassword.isEmpty() && !mUser.isEmpty() ) || ( ret = ( 
 #ifdef HAVE_SASL_H      
       mAuthSASL ? 
-        ldap_sasl_interactive_bind_s( mLDAP, NULL, mechanism.utf8().upper(), 
+        ldap_sasl_interactive_bind_s( mLDAP, NULL, mechanism.utf8(), 
           NULL, NULL, LDAP_SASL_QUIET, &kldap_sasl_interact, &defaults ) :
 #endif          
-        ldap_simple_bind_s( mLDAP, mUser.utf8(), mPassword.utf8() )
+        ldap_simple_bind_s( mLDAP, mBaseName.utf8(), mPassword.utf8() )
           == LDAP_INVALID_CREDENTIALS ) )) {
       
       kdDebug(7125) << "Auth error, open pass dlg! " << endl;
       if (firstauth)
         dlgResult = openPassDlg( info );
       else
-        dlgResult = openPassDlg( info, i18n("Invalid authorization password!") );
+        dlgResult = openPassDlg( info, i18n("Invalid authorization information!") );
       
       firstauth = false;
       if ( !dlgResult ) {
@@ -545,7 +564,10 @@ void LDAPProtocol::openConnection()
         closeConnection();
         return;
       }
-      mUser = info.username;
+      if ( mAuthSASL )
+        mUser = info.username;
+      else
+        mBaseName = info.username;
       mPassword = info.password;
     } else {
       auth = true;
@@ -559,7 +581,6 @@ void LDAPProtocol::openConnection()
   
   kdDebug(7125) << "connected!" << endl;
   connected();  
-
 }
 
 void LDAPProtocol::closeConnection()
@@ -574,7 +595,7 @@ void LDAPProtocol::closeConnection()
  */
 void LDAPProtocol::get( const KURL &_url )
 {
-  kdDebug(7125) << "kio_ldap::get(" << _url << ")" << endl;
+  kdDebug(7125) << "get(" << _url << ")" << endl;
 
   LDAPUrl usrc(_url);
   int ret, id;
@@ -647,7 +668,7 @@ void LDAPProtocol::get( const KURL &_url )
  */
 void LDAPProtocol::stat( const KURL &_url )
 {
-  kdDebug(7125) << "kio_ldap: stat(" << _url << ")" << endl;
+  kdDebug(7125) << "stat(" << _url << ")" << endl;
 
   QStringList att,saveatt;
   LDAPUrl usrc(_url);
@@ -710,7 +731,7 @@ void LDAPProtocol::stat( const KURL &_url )
  */
 void LDAPProtocol::del( const KURL &_url, bool )
 {
-  kdDebug(7125) << "kio_ldap: del(" << _url << ")" << endl;
+  kdDebug(7125) << "del(" << _url << ")" << endl;
 
   LDAPUrl usrc(_url);
   int ret;
@@ -735,7 +756,7 @@ void LDAPProtocol::del( const KURL &_url, bool )
 
 void LDAPProtocol::put( const KURL &_url, int, bool overwrite, bool )
 {
-  kdDebug(7125) << "kio_ldap: put(" << _url << ")" << endl;
+  kdDebug(7125) << "put(" << _url << ")" << endl;
 
   LDAPUrl usrc(_url);
 
@@ -794,7 +815,10 @@ void LDAPProtocol::put( const KURL &_url, int, bool overwrite, bool )
               ldaperr = ldap_delete_s( mLDAP, ldif.Dn().utf8() );
               break;
             case LDIF::Entry_Modrdn:
-              kdDebug(7125) << "kio_ldap_modrdn" << endl;
+              kdDebug(7125) << "kio_ldap_modrdn olddn:" << ldif.Dn() << 
+                " newRdn: " <<  ldif.newRdn() << 
+                " newSuperior: " << ldif.newSuperior() << 
+                " deloldrdn: " << ldif.delOldRdn() << endl;
               ldaperr = ldap_rename_s( mLDAP, ldif.Dn().utf8(), ldif.newRdn().utf8(), 
                 ldif.newSuperior().isEmpty() ? 0 : ldif.newSuperior().utf8(), 
                 ldif.delOldRdn(), 0, 0 );
@@ -888,7 +912,7 @@ void LDAPProtocol::listDir( const KURL &_url )
   bool critical;
   bool isSub = ( usrc.extension( "x-dir", critical ) == "sub" );
   
-  kdDebug(7125) << "kio_ldap: listDir(" << _url << ")" << endl;
+  kdDebug(7125) << "listDir(" << _url << ")" << endl;
   
   changeCheck( usrc );
   if ( !mLDAP ) {

@@ -37,7 +37,7 @@ class LDAPProtocol : public KIO::SlaveBase
     int mVer;
     bool mTLS;
     bool mAuthSASL;
-    QString mMech,mRealm,mAuthzid;
+    QString mMech,mRealm,mBaseName;
 
     void LDAPProtocol::addModOp( LDAPMod ***pmods, int mod_type, 
       const QString &attr, const QByteArray &value );
