@@ -207,47 +207,47 @@ bool FloppyProtocol::stopAfterError(const KURL& url, const QString& drive)
    kdDebug(7101)<<"line: -"<<line<<"-"<<endl;
    if (line.contains("resource busy"))
    {
-      error( KIO::ERR_INTERNAL, i18n("The drive is still busy.\nWait until it has stopped working and the try again."));
+      error( KIO::ERR_COULD_NOT_STAT, i18n("drive %1.\nThe drive is still busy.\nWait until it has stopped working and the try again.").arg(drive));
    }
    else if ((line.contains("Disk full")) || (line.contains("No free cluster")))
    {
-      error( KIO::ERR_COULD_NOT_WRITE, url.path()+i18n("\nThe disk in drive %1 is full.").arg(drive));
+      error( KIO::ERR_COULD_NOT_WRITE, url.prettyURL()+i18n("\nThe disk in drive %1 is probably full.").arg(drive));
    }
    //file not found
    else if (line.contains("not found"))
    {
-      error( KIO::ERR_DOES_NOT_EXIST, url.fileName());
+      error( KIO::ERR_DOES_NOT_EXIST, url.prettyURL());
    }
    //no disk
    else if (line.contains("not configured"))
    {
-      error( KIO::ERR_COULD_NOT_STAT, url.path()+i18n("\nThere is probably no disk in the drive %1").arg(drive));
+      error( KIO::ERR_COULD_NOT_STAT, url.prettyURL()+i18n("\nThere is probably no disk in the drive %1").arg(drive));
    }
    else if (line.contains("not supported"))
    {
-      error( KIO::ERR_INTERNAL, i18n("The drive is not supported."));
+      error( KIO::ERR_COULD_NOT_STAT, url.prettyURL()+i18n("\nThe drive %1 is not supported.").arg(drive));
    }
    //not supported or no such drive
    else if (line.contains("Permission denied"))
    {
-      error( KIO::ERR_INTERNAL, i18n("The drive is not supported."));
+      error( KIO::ERR_COULD_NOT_STAT, url.prettyURL()+i18n("\nMake sure the floppy in drive %1 is a DOS floppy disk \nand that the permissions of the device file (e.g. /dev/fd0) are set correctly (e.g. rwxrwxrwx).").arg(drive));
    }
    else if (line.contains("non DOS media"))
    {
-      error( KIO::ERR_INTERNAL, i18n("The disk is no DOS floppy disk."));
+      error( KIO::ERR_COULD_NOT_STAT, url.prettyURL()+i18n("\nThe disk in drive %1 is probably no DOS formatted floppy disk.").arg(drive));
    }
    else if (line.contains("Read-only"))
    {
-      error( KIO::ERR_WRITE_ACCESS_DENIED, i18n("The disk is read-only."));
+      error( KIO::ERR_WRITE_ACCESS_DENIED, url.prettyURL()+i18n("\nThe disk in drive %1 is probably write-protected.").arg(drive));
    }
    else if ((outputString.contains("already exists")) || (outputString.contains("Skipping ")))
    {
-      error( KIO::ERR_FILE_ALREADY_EXIST,i18n("The file already exists."));
+      error( KIO::ERR_FILE_ALREADY_EXIST,url.prettyURL());
       //return false;
    }
    else
    {
-      error( KIO::ERR_UNKNOWN, i18n("Unexpected error:")+outputString);
+      error( KIO::ERR_UNKNOWN, outputString);
    };
    return true;
 };
@@ -278,7 +278,13 @@ void FloppyProtocol::listDir( const KURL& _url)
 
    clearBuffers();
 
-   m_mtool->start();
+   if (!m_mtool->start())
+   {
+      delete m_mtool;
+      m_mtool=0;
+      error(ERR_CANNOT_LAUNCH_PROCESS,"mdir"+i18n("\nEnsure that the mtools package is installed correctly on your system."));
+      return;
+   };
 
    int result;
    bool loopFinished(false);
@@ -498,7 +504,14 @@ StatInfo FloppyProtocol::_stat(const KURL& url)
    //kdDebug(7101)<<"Floppy::_stat(): create m_mtool"<<endl;
    m_mtool=new Program(args);
 
-   m_mtool->start();
+   if (!m_mtool->start())
+   {
+      delete m_mtool;
+      m_mtool=0;
+      error(ERR_CANNOT_LAUNCH_PROCESS,"mdir"+i18n("\nEnsure that the mtools package is installed correctly on your system."));
+      return;
+   };
+
 
    clearBuffers();
 
@@ -542,7 +555,7 @@ StatInfo FloppyProtocol::_stat(const KURL& url)
    if (m_stdoutSize==0)
    {
       info.isValid=false;
-      error( KIO::ERR_WRITE_ACCESS_DENIED, i18n("The disk is read-only."));
+      error( KIO::ERR_COULD_NOT_STAT, url.prettyURL()+i18n("Don't know why, sorry."));
       return info;
    }
 
@@ -558,13 +571,13 @@ StatInfo FloppyProtocol::_stat(const KURL& url)
       {
          StatInfo info=createStatInfo(line,true,url.fileName());
          if (info.isValid==false)
-            error( KIO::ERR_WRITE_ACCESS_DENIED, i18n("The disk is read-only."));
+            error( KIO::ERR_COULD_NOT_STAT, url.prettyURL()+i18n("Don't know why, sorry."));
          return info;
       };
       lineNumber++;
    };
    if (info.isValid==false)
-      error( KIO::ERR_WRITE_ACCESS_DENIED, i18n("The disk is read-only."));
+      error( KIO::ERR_COULD_NOT_STAT, url.prettyURL()+i18n("Don't know why, sorry."));
    return info;
 };
 
@@ -585,7 +598,14 @@ int FloppyProtocol::freeSpace(const KURL& url)
    //kdDebug(7101)<<"Floppy::freeSpace(): create m_mtool"<<endl;
    m_mtool=new Program(args);
 
-   m_mtool->start();
+   if (!m_mtool->start())
+   {
+      delete m_mtool;
+      m_mtool=0;
+      error(ERR_CANNOT_LAUNCH_PROCESS,"mdir"+i18n("\nEnsure that the mtools package is installed correctly on your system."));
+      return;
+   };
+
 
    clearBuffers();
 
@@ -627,7 +647,7 @@ int FloppyProtocol::freeSpace(const KURL& url)
 
    if (m_stdoutSize==0)
    {
-      error( KIO::ERR_WRITE_ACCESS_DENIED, i18n("The disk is read-only."));
+      error( KIO::ERR_COULD_NOT_STAT, url.prettyURL()+i18n("Don't know why, sorry."));
       return -1;
    }
 
@@ -711,7 +731,14 @@ void FloppyProtocol::mkdir( const KURL& url, int)
    kdDebug(7101)<<"Floppy::mkdir(): executing: mmd -"<<(drive+floppyPath)<<"-"<<endl;
 
    m_mtool=new Program(args);
-   m_mtool->start();
+   if (!m_mtool->start())
+   {
+      delete m_mtool;
+      m_mtool=0;
+      error(ERR_CANNOT_LAUNCH_PROCESS,"mmd"+i18n("\nEnsure that the mtools package is installed correctly on your system."));
+      return;
+   };
+
 
    clearBuffers();
    int result;
@@ -781,7 +808,14 @@ void FloppyProtocol::del( const KURL& url, bool isfile)
    kdDebug(7101)<<"Floppy::del(): executing: mrd -"<<(drive+floppyPath)<<"-"<<endl;
 
    m_mtool=new Program(args);
-   m_mtool->start();
+   if (!m_mtool->start())
+   {
+      delete m_mtool;
+      m_mtool=0;
+      error(ERR_CANNOT_LAUNCH_PROCESS,"mrd"+i18n("\nEnsure that the mtools package is installed correctly on your system."));
+      return;
+   };
+
 
    clearBuffers();
    int result;
@@ -860,7 +894,14 @@ void FloppyProtocol::rename( const KURL &src, const KURL &dest, bool _overwrite 
    kdDebug(7101)<<"Floppy::move(): executing: mren -"<<(srcDrive+srcFloppyPath)<<"  "<<(destDrive+destFloppyPath)<<endl;
 
    m_mtool=new Program(args);
-   m_mtool->start();
+   if (!m_mtool->start())
+   {
+      delete m_mtool;
+      m_mtool=0;
+      error(ERR_CANNOT_LAUNCH_PROCESS,"mren"+i18n("\nEnsure that the mtools package is installed correctly on your system."));
+      return;
+   };
+
 
    clearBuffers();
    int result;
@@ -933,7 +974,14 @@ void FloppyProtocol::get( const KURL& url )
    kdDebug(7101)<<"Floppy::get(): executing: mcopy -"<<(drive+floppyPath)<<"-"<<endl;
 
    m_mtool=new Program(args);
-   m_mtool->start();
+   if (!m_mtool->start())
+   {
+      delete m_mtool;
+      m_mtool=0;
+      error(ERR_CANNOT_LAUNCH_PROCESS,"mcopy"+i18n("\nEnsure that the mtools package is installed correctly on your system."));
+      return;
+   };
+
 
    time_t t_start = time( 0L );
    time_t t_last = t_start;
@@ -1037,7 +1085,14 @@ void FloppyProtocol::put( const KURL& url, int , bool overwrite, bool )
    kdDebug(7101)<<"Floppy::put(): executing: mcopy -"<<(drive+floppyPath)<<"-"<<endl;
 
    m_mtool=new Program(args);
-   m_mtool->start();
+   if (!m_mtool->start())
+   {
+      delete m_mtool;
+      m_mtool=0;
+      error(ERR_CANNOT_LAUNCH_PROCESS,"mcopy"+i18n("\nEnsure that the mtools package is installed correctly on your system."));
+      return;
+   };
+
 
    clearBuffers();
    int result(0);
@@ -1080,7 +1135,7 @@ void FloppyProtocol::put( const KURL& url, int , bool overwrite, bool )
             if (bytesRead>freeSpaceLeft)
             {
                result=0;
-               error( KIO::ERR_COULD_NOT_WRITE, url.path()+i18n("\nNo space left on drive %1").arg(drive));
+               error( KIO::ERR_COULD_NOT_WRITE, url.prettyURL()+i18n("\nThe disk in drive %1 is probably full.").arg(drive));
             }
             else
             {
@@ -1096,137 +1151,13 @@ void FloppyProtocol::put( const KURL& url, int , bool overwrite, bool )
    if (result<0)
    {
       perror("writing to stdin");
-      error( KIO::ERR_CANNOT_OPEN_FOR_WRITING, "f*ck");
+      error( KIO::ERR_CANNOT_OPEN_FOR_WRITING, url.prettyURL());
       return;
    };
 
-   //kdDebug(7101)<<"Floppy::put(): deleting m_mtool"<<endl;
    delete m_mtool;
    m_mtool=0;
 
    finished();
 };
-
-
-/*void FloppyProtocol::copy( const KURL &src, const KURL &dest, int _mode, bool _overwrite )
-{
-   //prepare the source
-   QString thePath( QFile::encodeName(src.path()));
-   stripTrailingSlash(thePath);
-   kdDebug( 7101 ) << "Copy to -" << thePath <<"-"<<endl;
-   FloppyFileHandle fh=getFileHandle(thePath);
-   if (fh.isInvalid())
-   {
-      error(ERR_DOES_NOT_EXIST,thePath);
-      return;
-   };
-
-   //create the destination
-   QString destPath( QFile::encodeName(dest.path()));
-   stripTrailingSlash(destPath);
-   QString parentDir, fileName;
-   getLastPart(destPath,fileName, parentDir);
-   if (isRoot(parentDir))
-   {
-      error(ERR_ACCESS_DENIED,destPath);
-      return;
-   };
-   FloppyFileHandle destFH;
-   destFH=getFileHandle(destPath);
-   kdDebug(7101)<<"file handle for -"<<destPath<<"- is "<<destFH<<endl;
-
-   //the file exists and we don't want to overwrite
-   if ((!_overwrite) && (!destFH.isInvalid()))
-   {
-      error(ERR_FILE_ALREADY_EXIST,destPath);
-      return;
-   };
-   //TODO: is this correct ?
-   //we have to "create" the file anyway, no matter if it already
-   //exists or not
-   //if we don't create it new, written text will be, hmm, "inserted"
-   //in the existing file, i.e. a file could not become smaller, since
-   //write only overwrites or extends, but doesn't remove stuff from a file
-
-   kdDebug(7101)<<"creating the file -"<<fileName<<"-"<<endl;
-   FloppyFileHandle parentFH;
-   parentFH=getFileHandle(parentDir);
-   //the directory doesn't exist
-   if (parentFH.isInvalid())
-   {
-      kdDebug(7101)<<"parent directory -"<<parentDir<<"- does not exist"<<endl;
-      error(ERR_DOES_NOT_EXIST,parentDir);
-      return;
-   };
-   createargs createArgs;
-   memcpy(createArgs.where.dir.data,(const char*)parentFH,Floppy_FHSIZE);
-   QCString tmpName=QFile::encodeName(fileName);
-   createArgs.where.name=tmpName.data();
-   if (_mode==-1) createArgs.attributes.mode=0644;
-   else createArgs.attributes.mode=_mode;
-   createArgs.attributes.uid=geteuid();
-   createArgs.attributes.gid=getegid();
-   createArgs.attributes.size=0;
-   createArgs.attributes.atime.seconds=(unsigned int)-1;
-   createArgs.attributes.atime.useconds=(unsigned int)-1;
-   createArgs.attributes.mtime.seconds=(unsigned int)-1;
-   createArgs.attributes.mtime.useconds=(unsigned int)-1;
-
-   diropres dirOpRes;
-   int clnt_stat = clnt_call(m_client, FloppyPROC_CREATE,
-                             (xdrproc_t) xdr_createargs, (char*)&createArgs,
-                             (xdrproc_t) xdr_diropres, (char*)&dirOpRes,total_timeout);
-   if (!checkForError(clnt_stat,dirOpRes.status,destPath)) return;
-   //we created the file successfully
-   destFH=dirOpRes.diropres_u.diropres.file.data;
-   kdDebug(7101)<<"file -"<<fileName<<"- in dir -"<<parentDir<<"- created successfully"<<endl;
-
-   char buf[Floppy_MAXDATA];
-   writeargs writeArgs;
-   memcpy(writeArgs.file.data,(const char*)destFH,Floppy_FHSIZE);
-   writeArgs.beginoffset=0;
-   writeArgs.totalcount=0;
-   writeArgs.offset=0;
-   writeArgs.data.data_val=buf;
-   attrstat attrStat;
-
-   readargs readArgs;
-   memcpy(readArgs.file.data,fh,Floppy_FHSIZE);
-   readArgs.offset=0;
-   readArgs.count=Floppy_MAXDATA;
-   readArgs.totalcount=Floppy_MAXDATA;
-   readres readRes;
-   readRes.readres_u.reply.data.data_val=buf;
-
-   int bytesRead(0);
-   do
-   {
-      //first read
-      int clnt_stat = clnt_call(m_client, FloppyPROC_READ,
-                                (xdrproc_t) xdr_readargs, (char*)&readArgs,
-                                (xdrproc_t) xdr_readres, (char*)&readRes,total_timeout);
-      if (!checkForError(clnt_stat,readRes.status,thePath)) return;
-      if (readArgs.offset==0)
-         totalSize(readRes.readres_u.reply.attributes.size);
-
-      bytesRead=readRes.readres_u.reply.data.data_len;
-      //kdDebug(7101)<<"read "<<bytesRead<<" bytes"<<endl;
-      //then write
-      if (bytesRead>0)
-      {
-         readArgs.offset+=bytesRead;
-
-         writeArgs.data.data_len=bytesRead;
-
-         clnt_stat = clnt_call(m_client, FloppyPROC_WRITE,
-                               (xdrproc_t) xdr_writeargs, (char*)&writeArgs,
-                               (xdrproc_t) xdr_attrstat, (char*)&attrStat,total_timeout);
-         //kdDebug(7101)<<"written"<<endl;
-         if (!checkForError(clnt_stat,attrStat.status,destPath)) return;
-         writeArgs.offset+=bytesRead;
-      };
-   } while (bytesRead>0);
-
-   finished();
-}*/
 

@@ -69,12 +69,13 @@ bool Program::start()
       tv.tv_sec=0;
       tv.tv_usec=1000*200;
       int result=::select(notificationPipe[0]+1,&notifSet,0,0,&tv);
-      if (result<1)
+/*      if (result<1)
       {
          kdDebug(7101)<<"**** waiting for notification: failed "<<result<<endl;
          return false;
       }
-      else if(result==1)
+      else*/
+      if(result==1)
       {
          char buf[256];
          result=::read(notificationPipe[0],buf,256);
@@ -108,7 +109,6 @@ bool Program::start()
       ::close(mStderr[0]);
 
       fcntl(mStdin[0], F_SETFD, FD_CLOEXEC);
-      //fcntl(mStdin[1], F_SETFD, FD_CLOEXEC);
       fcntl(mStdout[1], F_SETFD, FD_CLOEXEC);
       fcntl(mStderr[1], F_SETFD, FD_CLOEXEC);
 
@@ -124,8 +124,6 @@ bool Program::start()
       arglist[mArgs.count()]=0;
       //make parsing easier
       putenv("LANG=C");
-      //now close the file descriptor, which the parent process is waiting for
-      //::close(notificationPipe[1]);
       execvp(arglist[0], arglist);
       //we only get here if execvp() failed
       ::write(notificationPipe[1],"failed",strlen("failed"));
