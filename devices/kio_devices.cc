@@ -308,10 +308,15 @@ QStringList HelloProtocol::deviceList()
         QDataStream streamout(param,IO_WriteOnly);
         if ( m_dcopClient->call( "kded",
                  "mountwatcher", "basicList()", param,retType,data,false ) )
-      {
-        QDataStream streamin(data,IO_ReadOnly);
-        streamin>>retVal;
-      }
+        {
+          QDataStream streamin(data,IO_ReadOnly);
+          streamin>>retVal;
+        }
+	else
+	{
+		retVal.append(QString::fromLatin1("!!!ERROR!!!"));
+	}
+
       return retVal;
 }
 
@@ -379,6 +384,11 @@ void HelloProtocol::listRoot()
 	count=0;
         for ( QStringList::Iterator it = list.begin(); it != list.end(); ++it )
 	{
+		if ((*it)=="!!!ERROR!!!")
+		{
+                        error(KIO::ERR_SLAVE_DEFINED,i18n("The KDE mountwatcher is not running. Please activate it in Control Center->KDE Components->Service Manager, if you want to use the devices:/ protocol"));
+                        return;
+		}
 // FIXME: look for the real ending
 		QString url="devices:/"+(*it); ++it;
 		QString name=*it; ++it;
