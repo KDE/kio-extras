@@ -583,6 +583,8 @@ AudioCDProtocol::initRequest(const KURL & url)
   if (dname.isEmpty() &&
       (d->fname == d->cd_title || d->fname == d->s_byname ||
        d->fname == d->s_bytrack || d->fname == d->s_info ||
+       d->fname == "By Name" || d->fname == "By Track" ||
+       d->fname == "Information" ||
        d->fname == d->s_mp3 || d->fname == d->s_vorbis || d->fname == "dev"))
     {
       dname = d->fname;
@@ -593,11 +595,11 @@ AudioCDProtocol::initRequest(const KURL & url)
     d->which_dir = Root;
   else if (dname == d->cd_title)
     d->which_dir = Title;
-  else if (dname == d->s_byname)
+  else if (dname == d->s_byname || dname == "By Name")
     d->which_dir = ByName;
-  else if (dname == d->s_bytrack)
+  else if (dname == d->s_bytrack || dname == "By Track")
     d->which_dir = ByTrack;
-  else if (dname == d->s_info)
+  else if (dname == d->s_info || dname == "Information")
     d->which_dir = Info;
   else if (dname == d->s_mp3)
     d->which_dir = MP3;
