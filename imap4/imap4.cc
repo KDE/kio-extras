@@ -745,8 +745,8 @@ IMAP4Protocol::mkdir (const KURL & _url, int)
 //  KIO::TCPSlaveBase::mkdir(_url,permissions);
   QString aBox, aSequence, aLType, aSection, aValidity, aDelimiter;
   parseURL (_url, aBox, aSection, aLType, aSequence, aValidity, aDelimiter);
-  if (aBox[aBox.length () - 1] != '/')
-    aBox += "/";
+/*  if (aBox[aBox.length () - 1] != '/')
+    aBox += "/"; */
   imapCommand *cmd = doCommand (imapCommand::clientCreate (aBox));
 
   if (cmd->result () != "OK")
