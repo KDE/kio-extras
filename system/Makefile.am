@@ -1,4 +1,4 @@
-SUBDIRS= . kdedmodule entries
+SUBDIRS= . kdedmodule entries mimetypes
 
 INCLUDES = $(all_includes)
 METASOURCES = AUTO
