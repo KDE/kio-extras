@@ -25,6 +25,7 @@
 #include <qregexp.h>
 
 #include <kglobal.h>
+#include <kstandarddirs.h>
 #include <kdebug.h>
 #include <qfileinfo.h>
 
@@ -166,8 +167,7 @@ void DiskEntry::setDeviceName(const QString & deviceName)
  m_inodeType=false;
  if (deviceName.startsWith("/dev/"))
  {
- 	for (QFileInfo finfo=QFileInfo(realDevice);finfo.isSymLink();finfo=QFileInfo(realDevice))
-		realDevice=finfo.readLink();
+	realDevice=KStandardDirs::realPath(deviceName);
 
 	kdDebug(7020)<<"Device "<<deviceName<<" is a actually "<<realDevice<<endl;
  }
