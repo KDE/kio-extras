@@ -9,6 +9,7 @@ int main()
     dev.open( IO_ReadOnly );
 
     // This is what KGzipDev::readAll could do, if QIODevice::readAll was virtual....
+    /*
     QByteArray array(1024);
     int n;
     while ( ( n = dev.readBlock( array.data(), array.size() ) ) )
@@ -20,6 +21,10 @@ int main()
         kdDebug() << "dev.at = " << dev.at() << endl;
         kdDebug() << "f.at = " << f.at() << endl;
     }
+    */
+    int ch;
+    while ( ( ch = dev.getch() ) != -1 )
+      printf("%c",ch);
     dev.close();
     return 1;
 }

@@ -19,6 +19,7 @@
 #include "kgzipdev.h"
 #include <kdebug.h>
 #include <zlib.h>
+#include <stdio.h> // for EOF
 #include <assert.h>
 
 /* gzip flag byte */
@@ -45,6 +46,7 @@ public:
     {
         zStream.next_in = Z_NULL;
         zStream.avail_in = 0;
+        ungetchBuffer.resize(0);
         /*outputBuffer.resize( 8*1024 );// Start with a modest buffer
           zStream.avail_out = outputBuffer.size();
           zStream.next_out = (Bytef *) outputBuffer.data();*/
@@ -55,6 +57,13 @@ public:
 
         bNeedHeader = true;
         bCompressed = true;
+    }
+
+    void terminate()
+    {
+        // readonly specific !
+        int result = inflateEnd(&zStream);
+        kdDebug() << "inflateEnd returned " << result << endl;
     }
 
     // hide away the dirty stuff :)
@@ -115,6 +124,7 @@ public:
     bool bNeedHeader;
     bool bCompressed;
     QByteArray inputBuffer;
+    QCString ungetchBuffer;
     //QByteArray outputBuffer;
 };
 
@@ -148,11 +158,8 @@ void KGzipDev::close()
 {
     kdDebug() << "KGzipDev::close" << endl;
 
-    // readonly specific !
-    int result = inflateEnd(&d->zStream);
-    kdDebug() << "inflateEnd returned " << result << endl;
-
     d->dev->close();
+    d->terminate();
 }
 
 void KGzipDev::flush()
@@ -218,7 +225,6 @@ bool KGzipDev::atEnd() const
 
 int KGzipDev::readBlock( char *data, uint maxlen )
 {
-    // Let's hope maxlen is big enough................
     d->zStream.avail_out = maxlen;
     d->zStream.next_out = (Bytef *) data;
 
@@ -229,7 +235,9 @@ int KGzipDev::readBlock( char *data, uint maxlen )
     {
         if (d->zStream.avail_in == 0)
         {
-            d->inputBuffer.resize( 8*1024 /*no idea what to set here*/ );
+            // Not sure about the best size to set there.
+            // For sure, it should be bigger than the header size (see comment in readHeader)
+            d->inputBuffer.resize( 8*1024 );
             // Request data from underlying device
             d->zStream.avail_in = d->dev->readBlock( d->inputBuffer.data(),
                                                      d->inputBuffer.size() );
@@ -305,7 +313,14 @@ int KGzipDev::writeBlock( const char *data, uint len )
 int KGzipDev::getch()
 {
     kdDebug() << "KGzipDev::getch" << endl;
-    return -1;
+    if ( !d->ungetchBuffer.isEmpty() ) {
+        int len = d->ungetchBuffer.length();
+        int ch = d->ungetchBuffer[ len-1 ];
+        d->ungetchBuffer.truncate( len - 1 );
+        return ch;
+    }
+    char buf[1];
+    return readBlock( buf, 1 ) == 1 ? buf[0] : EOF;
 }
 
 int KGzipDev::putch( int )
@@ -314,9 +329,14 @@ int KGzipDev::putch( int )
     return -1;
 }
 
-int KGzipDev::ungetch( int )
+int KGzipDev::ungetch( int ch )
 {
     kdDebug() << "KGzipDev::ungetch" << endl;
-    return -1;
+    if ( ch == EOF )                            // cannot unget EOF
+        return ch;
+
+    // pipe or similar => we cannot ungetch, so do it manually
+    d->ungetchBuffer +=ch;
+    return ch;
 }
 
