@@ -216,16 +216,6 @@ void SMTPProtocol::put (const KURL &url, int /*permissions*/, bool /*overwrite*/
 		Write(static_cast<const char *>(subject.local8Bit()), subject.local8Bit().length());
 	}
 
-	if (mset->getSetting(KEMailSettings::RealName) != QString::null) {
-		if (mset->getSetting(KEMailSettings::EmailAddress) != QString::null) {
-			from = "From: ";
-			from += mset->getSetting(KEMailSettings::RealName);
-			from += " <";
-			from += mset->getSetting(KEMailSettings::EmailAddress);
-			from += ">\r\n";
-			Write(static_cast<const char *>(from.local8Bit()), from.local8Bit().length());
-		}
-	}
 	delete mset;
 
 	int result;
