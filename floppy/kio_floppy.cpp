@@ -239,6 +239,11 @@ bool FloppyProtocol::stopAfterError(const KURL& url, const QString& drive)
       error( KIO::ERR_FILE_ALREADY_EXIST,url.prettyURL());
       //return false;
    }
+   else if (outputString.find("could not read boot sector") > -1)
+   {
+      error( KIO::ERR_SLAVE_DEFINED, i18n("Could not read boot sector for %1\nThere is probably not any disk in drive %2.").arg(url.prettyURL(),drive));
+      //return false;
+   }
    else
    {
       error( KIO::ERR_UNKNOWN, outputString);
