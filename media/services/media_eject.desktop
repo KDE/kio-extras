@@ -1,5 +1,5 @@
 [Desktop Entry]
-ServiceTypes=media/cdrom_mounted,media/cdrom_unmounted,media/cdwriter_mounted,media/cdwriter_unmounted,media/dvd_mounted,media/dvd_unmounted
+ServiceTypes=media/cdrom_mounted,media/cdrom_unmounted,media/cdwriter_mounted,media/cdwriter_unmounted,media/dvd_mounted,media/dvd_unmounted,media/audiocd,media/blankcd,media/blankdvd,media/dvdvideo,media/svcd,media/vcd
 Actions=MediaEject;
 X-KDE-Priority=TopLevel
 
@@ -26,6 +26,7 @@ Name[eu]=Kanporatu
 Name[fa]=اخراج
 Name[fi]=Poista
 Name[fr]=Éjecter
+Name[ga]=Díchuir
 Name[gl]=Expulsar
 Name[he]=הוצא
 Name[hi]=बाहर
