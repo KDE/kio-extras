@@ -98,11 +98,10 @@ extern "C"
     
     kdDebug(KIO_SFTP_DB) << "*** Starting kio_sftp " << endl;
 
-    if (argc != 4)
-      {
-	kdDebug(KIO_SFTP_DB) << "Usage: kio_sftp  protocol domain-socket1 domain-socket2" << endl;
-	exit(-1);
-      }
+    if (argc != 4) {
+    	kdDebug(KIO_SFTP_DB) << "Usage: kio_sftp  protocol domain-socket1 domain-socket2" << endl;
+	    exit(-1);
+    }
 
     kio_sftpProtocol slave(argv[2], argv[3]);
     slave.dispatchLoop();
@@ -113,14 +112,11 @@ extern "C"
 }
 
 kio_sftpProtocol::kio_sftpProtocol(const QCString &pool_socket, const QCString &app_socket)
-  : QObject(), SlaveBase("kio_sftp", pool_socket, app_socket)
-{
- kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::kio_sftpProtocol()" << endl;
-// okWriteStdin = true;
- mConnected = false;
- mMsgId = 0;
+  : QObject(), SlaveBase("kio_sftp", pool_socket, app_socket) {
+    kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::kio_sftpProtocol()" << endl;
+    mConnected = false;
+    mMsgId = 0;
 }
-/* ---------------------------------------------------------------------------------- */
 
 
 kio_sftpProtocol::~kio_sftpProtocol()
@@ -382,21 +378,15 @@ void kio_sftpProtocol::stat ( const KURL& url ){
 
     int code;
     sftpFileAttr attr;
-    if( (code = sftpStat(url, attr)) != SSH2_FX_OK )
+    if( (code = sftpStat(url, attr)) != SSH2_FX_OK ) {
         processStatus(code, url.prettyURL());
+        return;
+    }
     else {
         kdDebug() << "We sent and received stat packet ok" << endl;
         attr.setFilename(url.filename());
         // dies here when stating file for rename
-        UDSEntry e;
-        UDSAtom a;
-        a.m_uds = UDS_NAME;
-        a.m_str = attr.filename();
-        e.append(a);
-        a.m_uds = UDS_SIZE;
-        a.m_long = attr.fileSize();
-        e.append(a);
-        statEntry(e);
+        statEntry(attr.entry());
     }
     finished();
     kdDebug() << "End of kio_sftpProtocol::stat()" << endl;
@@ -812,7 +802,7 @@ bool kio_sftpProtocol::startSsh() {
         error(ERR_CANNOT_LAUNCH_PROCESS, sshPath);
         return false;
     }
-
+    
     ssh.clearArguments();
 //    ssh << sshPath;
     ssh << "/usr/local/bin/ssh";
