@@ -53,7 +53,7 @@ QApplication *QtApp;
 // We also need echo for user names, no echo for passwords.
 // Next version of the lib will have a better mechanism
 // Note : removing this from here would make this kio_slave no Qt app anymore
-class CallbackDialog : public QDialog, public SmbAnswerCallback
+class CallbackDialog : public QDialog
 {
 protected:
     QLineEdit *theLineEdit;
