@@ -42,6 +42,8 @@
  * xsltEvalXPathPredicate:
  * @ctxt:  the XSLT transformation context
  * @comp:  the XPath compiled expression
+ * @nsList:  the namespaces in scope
+ * @int nsNr:  the number of namespaces in scope
  *
  * Process the expression using XPath and evaluate the result as
  * an XPath predicate
@@ -49,16 +51,15 @@
  * Returns 1 is the predicate was true, 0 otherwise
  */
 int
-xsltEvalXPathPredicate(xsltTransformContextPtr ctxt,
-	               xmlXPathCompExprPtr comp) {
+xsltEvalXPathPredicate(xsltTransformContextPtr ctxt, xmlXPathCompExprPtr comp,
+		       xmlNsPtr *nsList, int nsNr) {
     int ret, position;
     xmlXPathObjectPtr res;
 
     position = ctxt->xpathCtxt->proximityPosition;
     ctxt->xpathCtxt->node = ctxt->node;
-    /* TODO: do we need to propagate the namespaces here ? */
-    ctxt->xpathCtxt->namespaces = NULL;
-    ctxt->xpathCtxt->nsNr = 0;
+    ctxt->xpathCtxt->namespaces = nsList;
+    ctxt->xpathCtxt->nsNr = nsNr;
     res = xmlXPathCompiledEval(comp, ctxt->xpathCtxt);
     ctxt->xpathCtxt->proximityPosition = position;
     if (res != NULL) {
@@ -262,7 +263,7 @@ xsltEvalAttrValueTemplate(xsltTransformContextPtr ctxt, xmlNodePtr node,
 
 /**
  * xsltEvalStaticAttrValueTemplate:
- * @ctxt:  the XSLT transformation context
+ * @style:  the XSLT stylesheet
  * @node:  the stylesheet node
  * @name:  the attribute Name
  * @name:  the attribute namespace URI
@@ -275,12 +276,12 @@ xsltEvalAttrValueTemplate(xsltTransformContextPtr ctxt, xmlNodePtr node,
  *    caller.
  */
 xmlChar *
-xsltEvalStaticAttrValueTemplate(xsltTransformContextPtr ctxt, xmlNodePtr node,
+xsltEvalStaticAttrValueTemplate(xsltStylesheetPtr style, xmlNodePtr node,
 			const xmlChar *name, const xmlChar *ns, int *found) {
     const xmlChar *ret;
     xmlChar *expr;
 
-    if ((ctxt == NULL) || (node == NULL) || (name == NULL))
+    if ((style == NULL) || (node == NULL) || (name == NULL))
 	return(NULL);
 
     expr = xmlGetNsProp(node, name, ns);

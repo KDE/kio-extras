@@ -28,6 +28,9 @@ static int repeat = 0;
 static int timing = 0;
 static int novalid = 0;
 static int noout = 0;
+#ifdef LIBXML_HTML_ENABLED
+static int html = 0;
+#endif
 #ifdef LIBXML_XINCLUDE_ENABLED
 static int xinclude = 0;
 #endif
@@ -51,6 +54,9 @@ main(int argc, char **argv) {
 	printf("      --novalid: skip the Dtd loading phase\n");
 	printf("      --noout: do not dump the result\n");
 	printf("      --maxdepth val : increase the maximum depth\n");
+#ifdef LIBXML_HTML_ENABLED
+	printf("      --html: the input document is(are) an HTML file(s)\n");
+#endif
 	printf("      --param name value\n");
 	return(0);
     }
@@ -68,13 +74,21 @@ main(int argc, char **argv) {
 	    xsltSetGenericDebugFunc(stderr, NULL);
 	} else if ((!strcmp(argv[i], "-repeat")) ||
 		   (!strcmp(argv[i], "--repeat"))) {
-	    repeat++;
+	    if (repeat == 0)
+		repeat = 20;
+	    else
+		repeat = 100;
 	} else if ((!strcmp(argv[i], "-novalid")) ||
 		   (!strcmp(argv[i], "--novalid"))) {
 	    novalid++;
 	} else if ((!strcmp(argv[i], "-noout")) ||
 		   (!strcmp(argv[i], "--noout"))) {
 	    noout++;
+#ifdef LIBXML_HTML_ENABLED
+	} else if ((!strcmp(argv[i], "-html")) ||
+		   (!strcmp(argv[i], "--html"))) {
+	    html++;
+#endif
 	} else if ((!strcmp(argv[i], "-timing")) ||
 		   (!strcmp(argv[i], "--timing"))) {
 	    timing++;
@@ -143,11 +157,16 @@ main(int argc, char **argv) {
 		
 	}
     }
-    if (cur != NULL) {
+    if ((cur != NULL) && (cur->errors == 0)) {
 	for (;i < argc ; i++) {
 	    if (timing)
 		gettimeofday(&begin, NULL);
-	    doc = xmlParseFile(argv[i]);
+#ifdef LIBXML_HTML_ENABLED
+	    if (html)
+		doc = htmlParseFile(argv[i], NULL);
+	    else
+#endif
+		doc = xmlParseFile(argv[i]);
 	    if (doc == NULL) {
 		fprintf(stderr, "unable to parse %s\n", argv[i]);
 		continue;
@@ -181,7 +200,7 @@ main(int argc, char **argv) {
 		gettimeofday(&begin, NULL);
 	    if (repeat) {
 		int j;
-		for (j = 0;j < 19; j++) {
+		for (j = 0;j < repeat; j++) {
 		    res = xsltApplyStylesheet(cur, doc, params);
 		    xmlFreeDoc(res);
 		    xmlFreeDoc(doc);
@@ -197,8 +216,8 @@ main(int argc, char **argv) {
 		msec += (end.tv_usec - begin.tv_usec) / 1000;
 		if (repeat)
 		    fprintf(stderr,
-			    "Applying stylesheet 20 times took %ld ms\n",
-			    msec);
+			    "Applying stylesheet %d times took %ld ms\n",
+			    repeat, msec);
 		else
 		    fprintf(stderr, "Applying stylesheet took %ld ms\n",
 			    msec);

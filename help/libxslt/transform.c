@@ -214,7 +214,6 @@ xsltFreeTransformContext(xsltTransformContextPtr ctxt) {
 	xmlFree(ctxt->varsTab);
     xsltFreeDocuments(ctxt);
     xsltFreeCtxtExts(ctxt);
-    xsltFreeStylePreComps(ctxt);
     memset(ctxt, -1, sizeof(xsltTransformContext));
     xmlFree(ctxt);
 }
@@ -876,20 +875,22 @@ xsltApplyOneTemplate(xsltTransformContextPtr ctxt, xmlNodePtr node,
 	}
 
 	if (IS_XSLT_ELEM(cur)) {
-	    if (cur->_private == NULL)
-		xsltStylePreCompute(ctxt, cur);
-	    
-	    if (cur->_private != NULL) {
-		xsltStylePreCompPtr info = (xsltStylePreCompPtr) cur->_private;
-		if (info->func != NULL) {
-		    ctxt->insert = insert;
-		    info->func(ctxt, node, cur, info);
-		    ctxt->insert = oldInsert;
+	    xsltStylePreCompPtr info = (xsltStylePreCompPtr) cur->_private;
+	    if (info == NULL) {
+		if (IS_XSLT_NAME(cur, "message")) {
+		    xsltMessage(ctxt, node, cur);
 		} else {
 		    xsltGenericError(xsltGenericDebugContext,
-		     "xsltApplyOneTemplate: %s has _private without function\n",
+		     "xsltApplyOneTemplate: %s was not compiled\n",
 				     cur->name);
 		}
+		goto skip_children;
+	    }
+	    
+	    if (info->func != NULL) {
+		ctxt->insert = insert;
+		info->func(ctxt, node, cur, info);
+		ctxt->insert = oldInsert;
 		goto skip_children;
 	    }
 
@@ -953,10 +954,6 @@ xsltApplyOneTemplate(xsltTransformContextPtr ctxt, xmlNodePtr node,
 		 "xsltApplyOneTemplate: extension construct %s\n", cur->name);
 #endif
 
-		if (cur->_private == (void *) xsltExtMarker) {
-		    cur->_private = NULL;
-		    xsltStylePreCompute(ctxt, cur);
-		}
 		ctxt->insert = insert;
 		function(ctxt, node, cur, cur->_private);
 		ctxt->insert = oldInsert;
@@ -1182,99 +1179,20 @@ void xsltProcessOneNode(xsltTransformContextPtr ctxt, xmlNodePtr node);
  * @inst:  the xslt sort node
  * @comp:  precomputed informations
  *
- * Process the xslt sort node on the source node
+ * function attached to xslt:sort nodes, but this should not be
+ * called directly
  */
 void
-xsltSort(xsltTransformContextPtr ctxt, xmlNodePtr node,
-	           xmlNodePtr inst, xsltStylePreCompPtr comp) {
-    xmlXPathObjectPtr *results = NULL;
-    xmlNodeSetPtr list = NULL;
-    xmlXPathObjectPtr res;
-    int len = 0;
-    int i;
-    xmlNodePtr oldNode;
-
+xsltSort(xsltTransformContextPtr ctxt ATTRIBUTE_UNUSED,
+	xmlNodePtr node ATTRIBUTE_UNUSED, xmlNodePtr inst ATTRIBUTE_UNUSED,
+	xsltStylePreCompPtr comp) {
     if (comp == NULL) {
-	xsltStylePreCompute(ctxt, inst);
-	comp = inst->_private;
-    }
-
-    if ((ctxt == NULL) || (node == NULL) || (inst == NULL) || (comp == NULL))
-	return;
-    if (comp->select == NULL)
-	return;
-    if (comp->comp == NULL) {
-	comp->comp = xmlXPathCompile(comp->select);
-	if (comp->comp == NULL)
-	    return;
-    }
-
-
-    list = ctxt->nodeList;
-    if ((list == NULL) || (list->nodeNr <= 1))
-	goto error; /* nothing to do */
-
-    len = list->nodeNr;
-
-    /* TODO: xsl:sort lang attribute */
-    /* TODO: xsl:sort case-order attribute */
-
-
-    results = xmlMalloc(len * sizeof(xmlXPathObjectPtr));
-    if (results == NULL) {
 	xsltGenericError(xsltGenericErrorContext,
-	     "xsltSort: memory allocation failure\n");
-	goto error;
+	     "xslt:sort : compilation had failed\n");
+	return;
     }
-
-    oldNode = ctxt->node;
-    for (i = 0;i < len;i++) {
-	ctxt->xpathCtxt->contextSize = len;
-	ctxt->xpathCtxt->proximityPosition = i + 1;
-	ctxt->node = list->nodeTab[i];
-	ctxt->xpathCtxt->node = ctxt->node;
-	ctxt->xpathCtxt->namespaces = comp->nsList;
-	ctxt->xpathCtxt->nsNr = comp->nsNr;
-	res = xmlXPathCompiledEval(comp->comp, ctxt->xpathCtxt);
-	if (res != NULL) {
-	    if (res->type != XPATH_STRING)
-		res = xmlXPathConvertString(res);
-	    if (comp->number)
-		res = xmlXPathConvertNumber(res);
-	    res->index = i;	/* Save original pos for dupl resolv */
-	    if (comp->number) {
-		if (res->type == XPATH_NUMBER) {
-		    results[i] = res;
-		} else {
-#ifdef WITH_XSLT_DEBUG_PROCESS
-		    xsltGenericDebug(xsltGenericDebugContext,
-			"xsltSort: select didn't evaluate to a number\n");
-#endif
-		    results[i] = NULL;
-		}
-	    } else {
-		if (res->type == XPATH_STRING) {
-		    results[i] = res;
-		} else {
-#ifdef WITH_XSLT_DEBUG_PROCESS
-		    xsltGenericDebug(xsltGenericDebugContext,
-			"xsltSort: select didn't evaluate to a string\n");
-#endif
-		    results[i] = NULL;
-		}
-	    }
-	}
-    }
-    ctxt->node = oldNode;
-
-    xsltSortFunction(list, &results[0], comp->descending, comp->number);
-
-error:
-    if (results != NULL) {
-	for (i = 0;i < len;i++)
-	    xmlXPathFreeObject(results[i]);
-	xmlFree(results);
-    }
+    xsltGenericError(xsltGenericErrorContext,
+	 "xslt:sort : improper use this should not be reached\n");
 }
 
 /**
@@ -1394,17 +1312,18 @@ xsltCopy(xsltTransformContextPtr ctxt, xmlNodePtr node,
 void
 xsltText(xsltTransformContextPtr ctxt, xmlNodePtr node ATTRIBUTE_UNUSED,
 	    xmlNodePtr inst, xsltStylePreCompPtr comp) {
-    xmlNodePtr copy;
+    if ((inst->children != NULL) && (comp != NULL)) {
+	xmlNodePtr text = inst->children;
+	xmlNodePtr copy;
 
-    if (inst->children != NULL) {
-	if (((inst->children->type != XML_TEXT_NODE) &&
-	     (inst->children->type != XML_CDATA_SECTION_NODE)) ||
-	    (inst->children->next != NULL)) {
-	    xsltGenericError(xsltGenericErrorContext,
-		 "xslt:text has content problem !\n");
-	} else {
-	    xmlNodePtr text = inst->children;
-	    
+	while (text != NULL) {
+	    if (((text->type != XML_TEXT_NODE) &&
+		 (text->type != XML_CDATA_SECTION_NODE)) ||
+		(text->next != NULL)) {
+		xsltGenericError(xsltGenericErrorContext,
+				 "xslt:text content problem\n");
+		break;
+	    }
 	    copy = xmlNewDocText(ctxt->output, text->content);
 	    if (comp->noescape) {
 #ifdef WITH_XSLT_DEBUG_PARSING
@@ -1414,6 +1333,7 @@ xsltText(xsltTransformContextPtr ctxt, xmlNodePtr node ATTRIBUTE_UNUSED,
 		copy->name = xmlStringTextNoenc;
 	    }
 	    xmlAddChild(ctxt->insert, copy);
+	    text = text->next;
 	}
     }
 }
@@ -1560,8 +1480,9 @@ xsltAttribute(xsltTransformContextPtr ctxt, xmlNodePtr node,
     if (ctxt->insert == NULL)
 	return;
     if (comp == NULL) {
-	xsltStylePreCompute(ctxt, inst);
-	comp = inst->_private;
+	xsltGenericError(xsltGenericErrorContext,
+	     "xslt:attribute : compilation had failed\n");
+	return;
     }
 
     if ((ctxt == NULL) || (node == NULL) || (inst == NULL) || (comp == NULL))
@@ -1916,8 +1837,9 @@ xsltNumber(xsltTransformContextPtr ctxt, xmlNodePtr node,
 	   xmlNodePtr inst, xsltStylePreCompPtr comp)
 {
     if (comp == NULL) {
-	xsltStylePreCompute(ctxt, inst);
-	comp = inst->_private;
+	xsltGenericError(xsltGenericErrorContext,
+	     "xslt:number : compilation had failed\n");
+	return;
     }
 
     if ((ctxt == NULL) || (node == NULL) || (inst == NULL) || (comp == NULL))
@@ -1974,18 +1896,24 @@ xsltCallTemplate(xsltTransformContextPtr ctxt, xmlNodePtr node,
     xsltStackElemPtr params = NULL, param;
 
 
-    if (comp == NULL) {
-	xsltStylePreCompute(ctxt, inst);
-	comp = inst->_private;
-    }
     if (ctxt->insert == NULL)
 	return;
+    if (comp == NULL) {
+	xsltGenericError(xsltGenericErrorContext,
+	     "xslt:call-template : compilation had failed\n");
+	return;
+    }
 
     /*
      * The template must have been precomputed
      */
-    if (comp->templ == NULL)
-	return;
+    if (comp->templ == NULL) {
+	comp->templ = xsltFindTemplate(ctxt, comp->name, comp->ns);
+	if (comp->templ == NULL) {
+	    xsltGenericError(xsltGenericErrorContext,
+		 "xslt:call-template : template %s not found\n", comp->name);
+	}
+    }
 
     /*
      * Create a new frame but block access to variables
@@ -2034,13 +1962,15 @@ xsltApplyTemplates(xsltTransformContextPtr ctxt, xmlNodePtr node,
     xmlNodeSetPtr list = NULL, oldlist;
     int i, oldProximityPosition, oldContextSize;
     const xmlChar *oldmode, *oldmodeURI;
-    int have_sort=0;
     xsltStackElemPtr params = NULL, param, tmp, p;
+    int nbsorts = 0;
+    xmlNodePtr sorts[XSLT_MAX_SORT];
 
 
     if (comp == NULL) {
-	xsltStylePreCompute(ctxt, inst);
-	comp = inst->_private;
+	xsltGenericError(xsltGenericErrorContext,
+	     "xslt:apply-templates : compilation had failed\n");
+	return;
     }
     if ((ctxt == NULL) || (node == NULL) || (inst == NULL) || (comp == NULL))
 	return;
@@ -2170,11 +2100,11 @@ xsltApplyTemplates(xsltTransformContextPtr ctxt, xmlNodePtr node,
 		    params = param;
 		}
 	    } else if (IS_XSLT_NAME(cur, "sort")) {
-		if (!have_sort) {
-		    have_sort = 1;
-		    xsltSort(ctxt, node, cur, cur->_private);
+		if (nbsorts >= XSLT_MAX_SORT) {
+		    xsltGenericError(xsltGenericDebugContext,
+			"xslt:call-template: %s too many sort\n", node->name);
 		} else {
-		    TODO /* imbricated sorts */
+		    sorts[nbsorts++] = cur;
 		}
 	    } else {
 		xsltGenericError(xsltGenericDebugContext,
@@ -2185,6 +2115,10 @@ xsltApplyTemplates(xsltTransformContextPtr ctxt, xmlNodePtr node,
                  "xslt:call-template: misplaced %s element\n", cur->name);
         }
         cur = cur->next;
+    }
+
+    if (nbsorts > 0) {
+	xsltDoSortFunction(ctxt, sorts, nbsorts);
     }
 
     for (i = 0;i < list->nodeNr;i++) {
@@ -2363,8 +2297,9 @@ xsltIf(xsltTransformContextPtr ctxt, xmlNodePtr node,
     int oldContextSize, oldProximityPosition;
 
     if (comp == NULL) {
-	xsltStylePreCompute(ctxt, inst);
-	comp = inst->_private;
+	xsltGenericError(xsltGenericErrorContext,
+	     "xslt:if : compilation had failed\n");
+	return;
     }
     if ((ctxt == NULL) || (node == NULL) || (inst == NULL) || (comp == NULL))
 	return;
@@ -2435,12 +2370,14 @@ xsltForEach(xsltTransformContextPtr ctxt, xmlNodePtr node,
     xmlNodePtr replacement;
     xmlNodeSetPtr list = NULL, oldlist;
     int i, oldProximityPosition, oldContextSize;
-    /* xmlNodePtr oldInsert = ctxt->insert; */
     xmlNodePtr oldNode = ctxt->node;
+    int nbsorts = 0;
+    xmlNodePtr sorts[XSLT_MAX_SORT];
 
     if (comp == NULL) {
-	xsltStylePreCompute(ctxt, inst);
-	comp = inst->_private;
+	xsltGenericError(xsltGenericErrorContext,
+	     "xslt:for-each : compilation had failed\n");
+	return;
     }
     if ((ctxt == NULL) || (node == NULL) || (inst == NULL) || (comp == NULL))
 	return;
@@ -2494,9 +2431,19 @@ xsltForEach(xsltTransformContextPtr ctxt, xmlNodePtr node,
      */
     replacement = inst->children;
     while (IS_XSLT_ELEM(replacement) && (IS_XSLT_NAME(replacement, "sort"))) {
-	xsltSort(ctxt, node, replacement, replacement->_private);
+	if (nbsorts >= XSLT_MAX_SORT) {
+	    xsltGenericError(xsltGenericDebugContext,
+		"xslt:for-each: too many sort\n");
+	} else {
+	    sorts[nbsorts++] = replacement;
+	}
 	replacement = replacement->next;
     }
+
+    if (nbsorts > 0) {
+	xsltDoSortFunction(ctxt, sorts, nbsorts);
+    }
+
 
     for (i = 0;i < list->nodeNr;i++) {
 	ctxt->node = list->nodeTab[i];
@@ -2597,7 +2544,7 @@ xsltApplyStylesheet(xsltStylesheetPtr style, xmlDocPtr doc,
     xsltCleanupTemplates(style);
 
 
-    if ((ctxt->type = XSLT_OUTPUT_XML) &&
+    if ((ctxt->type == XSLT_OUTPUT_XML) &&
 	((style->doctypePublic != NULL) ||
 	 (style->doctypeSystem != NULL))) {
 	root = xmlDocGetRootElement(res);

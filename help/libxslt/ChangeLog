@@ -1,3 +1,90 @@
+Thu May  3 19:02:21 CEST 2001 Daniel Veillard <Daniel.Veillard@imag.fr>
+
+	* TODO configure.in libxslt.spec.in: getting ready for 0.9.0
+	  release
+	* doc/html/* doc/xslt.html: updated and regenerated the docs
+
+Thu May  3 17:56:55 CEST 2001 Daniel Veillard <Daniel.Veillard@imag.fr>
+
+	* xsltutils.[ch] transform.c: implemented multiple levels of
+	  sorting
+	* test/REC/test-10-2.*: added a really small test for it
+
+Wed May  2 14:04:34 CEST 2001 Daniel Veillard <Daniel.Veillard@imag.fr>
+
+	* libxslt/transform.c libxslt/xslt.c: fixed xsl:text processing
+	  there can be multiple text and CDATA child
+
+Wed May  2 10:55:56 CEST 2001 Daniel Veillard <Daniel.Veillard@imag.fr>
+
+	* tests/multiple/makefile.am: fixing #54015
+	* tests/XSLTMark/makefile.am tests/docbook/makefile.am: fixing #54014
+	  and a similar problem for the docbook tests
+
+Mon Apr 30 22:31:59 CEST 2001 Daniel Veillard <Daniel.Veillard@imag.fr>
+
+	* tests/general/bug-8-.out: fixed in libxml xpath
+	* libxslt/templates.[ch] libxslt/pattern.c: fixed an namespace
+	  problem in predicates within a pattern. Spotted another
+	  potential namespace problem
+
+Mon Apr 30 19:29:34 CEST 2001 Daniel Veillard <Daniel.Veillard@imag.fr>
+
+	* libxslt/preproc.c libxslt/xslt.c libxslt/xsltInternals.h
+	  libxslt/xsltproc.c: counting errors and warnings at compilation
+	  time. Stop processing in case of error.
+	* tests/docs/bug-1[89]* tests/general/-1[89]* tests/general/inner.xsl:
+	  added more namespace related bug checks
+
+Mon Apr 30 13:47:11 CEST 2001 Daniel Veillard <Daniel.Veillard@imag.fr>
+
+	* libxslt/preproc.c libxslt/variables.c: found the source of a
+	  memory leak with DocBook introduced this w.e.. bit of cleanup.
+	* tests/docbook/result/html/*.html : regenerated the DocBook tests
+	  results.
+
+Sun Apr 29 18:54:03 CEST 2001 Daniel Veillard <Daniel.Veillard@imag.fr>
+
+	* libxslt/variables.c: fixing bug #53769
+	* tests/general tests/docs: added new examples from the
+	  bug reports to the regression tests, updated the Makefiles
+
+Sun Apr 29 11:47:58 CEST 2001 Daniel Veillard <Daniel.Veillard@imag.fr>
+
+	* preproc.[ch] templates.[ch] variables.[ch] xslt.c xsltInternals.h
+	  attributes.c extensions.[ch]: moved all stylesheet precomputation
+	  at stylesheet loading time (stylesheet transform should be thread
+	  safe now), improved params and variables evaluations (but optim
+	  is not complete yet).
+	* TODO: updated
+
+Sat Apr 28 16:28:45 CEST 2001 Daniel Veillard <Daniel.Veillard@imag.fr>
+
+	* libxslt/xsltproc.c : changed the way --repeat works when
+	  used twice
+
+Sat Apr 28 16:19:06 CEST 2001 Bjorn Reese <breese@users.sourceforge.net>
+
+	* libxslt/numbers.c libxslt/preproc.c tests/REC/test-7.7-3.out:
+	  fixed default formatting
+
+Sat Apr 28 14:20:29 CEST 2001 Daniel Veillard <Daniel.Veillard@imag.fr>
+
+	* libxslt/preproc.c : fixed <xsl:sort/> bug reported by Ankh
+	* libxslt/xsltproc.c : added an option to process HTML input
+
+Thu Apr 26 21:13:59 CEST 2001 Daniel Veillard <Daniel.Veillard@imag.fr>
+
+	* libxslt/transform.c: Tony Gorski found a bug pointed by
+	  a compiler on Tandem
+	* tests/documents/result.xhtml: this results in a small
+	  change in the output of this test
+
+Thu Apr 26 16:33:36 CEST 2001 Daniel Veillard <Daniel.Veillard@imag.fr>
+
+	* test/general/bug-14*.* test/docs/bug-14*.xml: added testcase from
+	  bug #53689
+
 Wed Apr 25 16:58:11 CEST 2001 Daniel Veillard <Daniel.Veillard@imag.fr>
 
 	* transform.c: fixed text and cdata handling in xsl:copy
