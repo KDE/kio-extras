@@ -33,8 +33,7 @@ extern int xmlLoadExtDtdDefaultValue;
 int
 main(int argc, char **argv) {
 
-    xsltStylesheetPtr cur = NULL;
-//    xmlDocPtr doc, res;
+//    xsltSetGenericDebugFunc(stderr, NULL);
 
     if (argc != 2)
     {
@@ -69,7 +68,7 @@ main(int argc, char **argv) {
         QString filedata = splitOut(output, index);
         QFile file(filename);
         file.open(IO_WriteOnly);
-        file.writeBlock(filedata.utf8().data(), filedata.utf8().size() - 1);
+        file.writeBlock(filedata.latin1(), filedata.length());
         file.close();
 
         index += 8;

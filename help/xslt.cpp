@@ -66,7 +66,7 @@ xmlParserInputPtr meinExternalEntityLoader(const char *URL, const char *ID,
         return(NULL);
     }
     if (!strcmp(ID, "-//OASIS//DTD DocBook XML V4.1.2//EN"))
-        URL = "docbook/xml-dtd-4.1.2/docbookx.dtd";
+        URL = "xml-dtd-4.1.2/docbookx.dtd";
     if (!strcmp(ID, "-//KDE//DTD DocBook XML V4.1-Based Variant V1.0//EN"))
         URL = "customization/dtd/kdex.dtd";
     if (!strcmp(ID, "-//KDE//DTD DocBook XML V4.1.2-Based Variant V1.0//EN"))
