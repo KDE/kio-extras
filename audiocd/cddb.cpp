@@ -29,6 +29,7 @@
 #endif
 #include <errno.h>
 #include <unistd.h>
+#include <qregexp.h>
 #include <kdebug.h>
 #include <ksock.h>
 #include <klocale.h>

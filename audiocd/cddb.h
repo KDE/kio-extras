@@ -19,7 +19,7 @@
 #define _CDDB_H_
 
 #include <qcstring.h>
-#include <qvaluelist.h>
+#include <qstringlist.h>
 
 class CDDB {
 public:
