@@ -507,11 +507,9 @@ void MANProtocol::outputError(const QString& errmsg)
     QString output;
 
     QTextStream os(&output, IO_WriteOnly);
-    // QTextSream on a QCString needs to be told explicitely to use local8Bit conversion !
-    os.setEncoding(QTextStream::Locale);
 
-    os << "<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"></head>" << endl;
-    os << i18n("<head><title>Man output</title></head>") << endl;
+    os << "<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">" << endl;
+    os << "<title>" << i18n("Man output") << "</title></head>" << endl;
     os << i18n("<body bgcolor=#ffffff><h1>KDE Man Viewer Error</h1>") << errmsg << "</body>" << endl;
     os << "</html>" << endl;
 
@@ -523,7 +521,6 @@ void MANProtocol::outputMatchingPages(const QStringList &matchingPages)
     QString output;
 
     QTextStream os(&output, IO_WriteOnly);
-    os.setEncoding(QTextStream::Locale);
 
     os << "<html>\n<head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">";
     os << "<title>" << i18n("Man output");
@@ -674,11 +671,10 @@ void MANProtocol::showMainIndex()
     QString output;
 
     QTextStream os(&output, IO_WriteOnly);
-    os.setEncoding(QTextStream::Locale);
 
     // print header
-    os << "<html>" << endl;
-    os << i18n("<head><title>UNIX Manual Index</title></head>") << endl;
+    os << "<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">" << endl;
+    os << "<head><title>" << i18n("UNIX Manual Index") << "</title></head>" << endl;
     os << i18n("<body bgcolor=#ffffff><h1>UNIX Manual Index</h1>") << endl;
 
     QString sectList = getenv("MANSECT");
@@ -699,7 +695,7 @@ void MANProtocol::showMainIndex()
     // print footer
     os << "</body></html>" << endl;
 
-    data(output.local8Bit());
+    data(output.utf8());
     finished();
 }
 
@@ -1056,11 +1052,10 @@ void MANProtocol::showIndex(const QString& section)
     QString output;
 
     QTextStream os(&output, IO_WriteOnly);
-    os.setEncoding(QTextStream::Locale);
 
     // print header
-    os << "<html>" << endl;
-    os << i18n("<head><title>UNIX Manual Index</title></head>") << endl;
+    os << "<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">" << endl;
+    os << "<head><title>" << i18n("UNIX Manual Index") << "</title></head>" << endl;
     os << i18n("<body bgcolor=#ffffff><h1>Index for Section %1: %2</h1>").arg(section).arg(sectionName(section)) << endl;
 
     // compose list of search paths -------------------------------------------------------------
@@ -1133,7 +1128,7 @@ void MANProtocol::showIndex(const QString& section)
 
         char *manpage_end;
         struct man_index_t *manindex = new man_index_t;
-	manindex->manpath = strdup((*page).local8Bit());
+	manindex->manpath = strdup((*page).utf8());
 
 	manindex->manpage_begin = strrchr(manindex->manpath, '/');
 	if (manindex->manpage_begin)
@@ -1292,7 +1287,7 @@ void MANProtocol::showIndex(const QString& section)
 
     infoMessage(QString::null);
     mimeType("text/html");
-    data(output.local8Bit());
+    data(output.utf8());
     finished();
 }
 
