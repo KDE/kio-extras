@@ -38,7 +38,7 @@ static const KCmdLineOptions options[] =
 };
 
 extern "C" {
-	int kdemain( int argc, char **argv )
+	KDE_EXPORT int kdemain( int argc, char **argv )
 	{
 		// KApplication is necessary to use other ioslaves
 		putenv(strdup("SESSION_MANAGER="));
