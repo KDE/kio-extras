@@ -193,7 +193,7 @@ QCString InfoProtocol::errorMessage()
     kdDebug( 7108 ) << "InfoProtocol::errorMessage" << endl;
 
     // i18n !!!!!!!!!!!!!!!!!!
-    return QCString( "<html><body bgcolor=\"#FFFFFF\">An error occured during converting an info-page to HTML</body></html>" );
+    return QCString( "<html><body>An error occured during converting an info-page to HTML</body></html>" );
 }
 
 // A minimalistic stat with only the file type
