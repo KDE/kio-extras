@@ -38,44 +38,15 @@
 
 #define APOP
 
-#ifdef APOP
 extern "C" {
-#include "md5.h"
-};
+	int kdemain(int argc, char **argv);
+#ifdef APOP
+	#include "md5.h"
 #endif
+};
 
 using namespace KIO;
 
-extern "C" { int kdemain(int argc, char **argv); }
-
-#ifdef SPOP3
-
-int SSL_readline(SSL *ssl, char *buf, int num) {
-int c = 0;
-  if (num <= 0) return -2;
-
-  buf[num-1] = 0;
-
-  for (c = 0; c < num-1; c++) {
-    char x;
-    int rc = SSL_read(ssl, &x, 1);
-    if (rc <= 0)
-      return rc;
-
-    buf[c] = x;
-
-    if (x == '\n') {
-      buf[c+1] = 0;
-      break;
-    }
-  }
-
-  if (c == num-1)
-    return c;
-return c+1;
-}
-
-#endif
 
 int kdemain( int argc, char **argv )
 {
@@ -88,10 +59,13 @@ int kdemain( int argc, char **argv )
   }
 
   POP3Protocol *slave;
+
+  // Are we looking to use SSL?
   if (strcasecmp(argv[1], "pop3s") == 0)
 	slave = new POP3Protocol(argv[2], argv[3], true);
   else
 	slave = new POP3Protocol(argv[2], argv[3], false);
+
   slave->dispatchLoop();
   delete slave;
   return 0;
@@ -438,16 +412,10 @@ void POP3Protocol::get( const KURL& url )
     if (result) {
       //ready();
       gettingFile(url.url());
-#ifdef SPOP3
-      while (SSL_pending(ssl)) {
+      while (!AtEOF()) {
         memset(buf, 0, sizeof(buf));
-        SSL_readline(ssl, buf, sizeof(buf)-1);
-#else
-      while (!feof(fp)) {
-	memset(buf, 0, sizeof(buf));
-	if (!fgets(buf, sizeof(buf)-1, fp))
-	  break;  // Error??
-#endif
+	ReadLine(buf, sizeof(buf)-1);
+
 	// HACK: This assumes fread stops at the first \n and not \r
 	if (strcmp(buf, ".\r\n")==0) break; // End of data
 	// sanders, changed -2 to -1 below
@@ -498,7 +466,7 @@ LIST
       gettingFile(url.url());
       mimeType("text/plain");
       memset(buf, 0, sizeof(buf));
-      while (AtEOF()) {
+      while (!AtEOF()) {
         memset(buf, 0, sizeof(buf));
 	ReadLine(buf, sizeof(buf)-1);
 
@@ -578,16 +546,9 @@ LIST
       mimeType("message/rfc822");
       totalSize(msg_len);
       memset(buf, 0, sizeof(buf));
-#ifdef SPOP3
-      while (SSL_pending(ssl)) {
-        memset(buf, 0, sizeof(buf));
-        SSL_readline(ssl, buf, sizeof(buf)-1);
-#else
-      while (!feof(fp)) {
-	memset(buf, 0, sizeof(buf));
-	if (!fgets(buf, sizeof(buf)-1, fp))
-	  break;  // Error??
-#endif
+      while (!AtEOF()) {
+        ReadLine(buf, sizeof(buf)-1);
+
 	// HACK: This assumes fread stops at the first \n and not \r
 	if (strcmp(buf, ".\r\n")==0) break; // End of data
 	// sanders, changed -2 to -1 below
@@ -657,11 +618,7 @@ void POP3Protocol::listDir( const KURL & /* url*/ )
 
   // Try and open a connection
   if (!pop3_open()) {
-#ifdef SPOP3
-    fprintf(stderr,"spop3_open failed\n");
-#else
     fprintf(stderr,"pop3_open failed\n");
-#endif
     error( ERR_COULD_NOT_CONNECT, m_sServer);
     pop3_close();
     return;
@@ -707,11 +664,10 @@ void POP3Protocol::listDir( const KURL & /* url*/ )
 
     atom.m_uds = UDS_URL;
     KURL uds_url;
-#ifdef SPOP3
-    uds_url.setProtocol("spop3");
-#else
-    uds_url.setProtocol("pop3");
-#endif
+    if (m_bIsSSL)
+	uds_url.setProtocol("pop3s");
+    else
+	uds_url.setProtocol("pop3");
     uds_url.setUser(m_sUser);
     uds_url.setPass(m_sPass);
     uds_url.setHost(m_sServer);
@@ -763,11 +719,7 @@ void POP3Protocol::del( const KURL& url, bool /*isfile*/ )
   bool isInt;
 
   if ( !pop3_open() ) {
-#ifdef SPOP3
-    fprintf(stderr,"spop3_open failed\n");
-#else
     fprintf(stderr,"pop3_open failed\n");
-#endif
     error( ERR_COULD_NOT_CONNECT, m_sServer );
     pop3_close();
     return;
