@@ -53,7 +53,7 @@ Util::~Util()
 }
 
 // parse the name(url), and possibly interpret the "." and ".."
-void Util::parse(const char *name, bool interpretDirs = true)
+void Util::parse(const char *name, bool interpretDirs)
 {
 	// first destroy all previous values
 	if (workgroupValue) delete workgroupValue;
@@ -306,10 +306,10 @@ char* Util::ip(const char* newValue)
 }
 
 // Does the opposite of the parser
-char *Util::buildURL(const char* user=0, const char *password=0,
-	const char* workgroup=0, const char* host=0,
-	const char* share=0, const char* file=0,
-	const char* ip=0)
+char *Util::buildURL(const char* user, const char *password,
+	const char* workgroup, const char* host,
+	const char* share, const char* file,
+	const char* ip)
 {
 	newstrcpy(buildURLValue,"smb://");
 	
@@ -341,7 +341,7 @@ char *Util::buildURL(const char* user=0, const char *password=0,
 // subdirs '.' and ".." can be recognized and interpreted
 // This function parses the URL at the same time
 // returns 0 on error, or the new URL
-char *Util::append(const char* URL, const char *string, bool interpretDirs = true)
+char *Util::append(const char* URL, const char *string, bool interpretDirs)
 {
 	// first have a correct URL
 	parse(URL, interpretDirs);

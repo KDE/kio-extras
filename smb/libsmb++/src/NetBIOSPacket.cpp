@@ -23,8 +23,8 @@
 #ifndef USE_SAMBA
 
 #include "NetBIOSPacket.h"
-#ifdef DEBUG
 #include <string.h>
+#ifdef DEBUG
 #include <iostream.h>
 #endif
 
