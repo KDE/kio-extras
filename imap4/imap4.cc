@@ -233,6 +233,9 @@ IMAP4Protocol::get (const KURL & _url)
         outputLineStr ("X-uidValidity: " +
                        QString ().setNum (selectInfo.uidValidity ()) +
                        "\r\n");
+      if (selectInfo.uidNextAvailable ())
+        outputLineStr ("X-UidNext: " +
+                       QString ().setNum (selectInfo.uidNext ()) + "\r\n");
       if (selectInfo.flagsAvailable ())
         outputLineStr ("X-Flags: " + QString ().setNum (selectInfo.flags ()) +
                        "\r\n");
@@ -463,11 +466,12 @@ IMAP4Protocol::listDir (const KURL & _url)
             //        kdDebug(7116) << selectInfo.uidNext() << "d used to stretch " << stretch << endl;
             UDSEntry entry;
 
-            if (mySequence.isEmpty ())
-              mySequence = "1:*";
+            if (mySequence.isEmpty()) mySequence = "1:*";
+            if (mySection.isEmpty()) mySection = "UID RFC822.SIZE";
+            bool withFlags = mySection.upper().find("FLAGS") != -1;
             imapCommand *fetch =
               sendCommand (imapCommand::
-                           clientFetch (mySequence, "UID RFC822.SIZE"));
+                           clientFetch (mySequence, mySection));
             do
             {
               while (!parseLoop ());
@@ -485,7 +489,7 @@ IMAP4Protocol::listDir (const KURL & _url)
                 mailHeader fake;
                 fake.setPartSpecifier(QString::number(cache->getUid()));
                 fake.setLength(cache->getSize());
-                doListEntry (_url, &fake, stretch);
+                doListEntry (_url, &fake, stretch, cache, withFlags);
               }
             }
             while (!fetch->isComplete ());
@@ -1346,7 +1350,8 @@ IMAP4Protocol::getMimeType (enum IMAP_TYPE aType)
 
 
 void
-IMAP4Protocol::doListEntry (const KURL & _url, mailHeader * what, int stretch)
+IMAP4Protocol::doListEntry (const KURL & _url, mailHeader * what, int stretch,
+  imapCache * cache, bool withFlags)
 {
   if (what)
   {
@@ -1384,6 +1389,7 @@ IMAP4Protocol::doListEntry (const KURL & _url, mailHeader * what, int stretch)
     atom.m_uds = UDS_SIZE;
     atom.m_long = what->getLength ();
     entry.append (atom);
+
     atom.m_uds = UDS_MIME_TYPE;
     atom.m_str = "message/rfc822-imap";
     atom.m_long = 0;
@@ -1394,7 +1400,7 @@ IMAP4Protocol::doListEntry (const KURL & _url, mailHeader * what, int stretch)
     entry.append (atom);
 
     atom.m_uds = KIO::UDS_ACCESS;
-    atom.m_long = S_IRUSR | S_IXUSR | S_IWUSR;
+    atom.m_long = (withFlags) ? cache->getFlags() : S_IRUSR | S_IXUSR | S_IWUSR;
     entry.append (atom);
 
     listEntry (entry, false);
