@@ -28,6 +28,7 @@ Description[is]=kioslave fyrir sftp
 Description[it]=Un kioslave per sftp
 Description[nb]=En kioslave for sftp
 Description[nl]=Een kioslave voor sftp
+Description[pl]=Wtyczka protokołu sftp
 Description[pt]=Um 'kioslave' para sftp
 Description[pt_BR]=Uma implementação para o sftp
 Description[ru]=Модуль ввода-вывода для sftp
