@@ -25,11 +25,9 @@ linktest_LDFLAGS  = $(all_libraries) -module -avoid-version
 linktest_LDADD = $(kio_pop3_la_LIBADD)
 linktest_LDADD = $(kio_spop3_la_LIBADD)
 
-# Please do something about this if it's ugliness offends you.
-# I'm stumped (and also a newbie at automake/autoconf)
-spop3.cc: pop3.cc
+spop3.cc: $(srcdir)/pop3.cc
 	echo "#define SPOP3" >spop3.cc
-	cat pop3.cc >>spop3.cc
+	cat $(srcdir)/pop3.cc >>spop3.cc
 
 CLEANFILES = spop3.cc
 
