@@ -49,6 +49,7 @@
 #include <qtextstream.h>
 #include <qcstring.h>
 #include <qfile.h>
+#include <qregexp.h>
 
 #include "kio_smb.h"
 
