@@ -554,7 +554,7 @@ void kio_sftpProtocol::put ( const KURL& url, int permissions, bool overwrite, b
         writeUrl = partUrl;
     }
 
-    Q_UINT32 pflags;
+    Q_UINT32 pflags = 0;
     if( overwrite && !resume ) {
         beginningOffset = 0;
         pflags = SSH2_FXF_WRITE | SSH2_FXF_CREAT | SSH2_FXF_TRUNC;
@@ -585,7 +585,7 @@ void kio_sftpProtocol::put ( const KURL& url, int permissions, bool overwrite, b
 
     // How big should each data packet be? Large gives better tranfer rate
     // over high speed connections, low probably better for modems.
-    Q_UINT32 len = 8*1024;
+    // unused Q_UINT32 len = 8*1024;
     Q_UINT32 offset = beginningOffset;
     int nbytes;
     time_t now, start = time(NULL), last = start;
@@ -1436,7 +1436,7 @@ kdbgstream& operator<< (kdbgstream& s, QByteArray& a) {
     return s;
 }
 
-kndbgstream& operator<< (kndbgstream& s, QByteArray &a) {
+kndbgstream& operator<< (kndbgstream& s, QByteArray &/*a*/) {
     return s;
 }
 
