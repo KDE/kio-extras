@@ -126,6 +126,7 @@ mimeIO ()
   readBuffer[0] = 0x00;
   relayEnabled = false;
   readBufferLen = 0;
+  cacheOutput = false;
 }
 
 IMAP4Protocol::~IMAP4Protocol ()
@@ -260,6 +261,7 @@ IMAP4Protocol::get (const KURL & _url)
             {
               // write the mime header (default is here message/rfc822)
               outputLine ("--IMAPDIGEST\r\n");
+              cacheOutput = true;
               if (cache->getUid () != 0)
                 outputLineStr ("X-UID: " +
                                QString ().setNum (cache->getUid ()) + "\r\n");
@@ -272,8 +274,10 @@ IMAP4Protocol::get (const KURL & _url)
                 outputLineStr ("X-Flags: " +
                                QString ().setNum (cache->getFlags ()) + "\r\n");
               outputLine ("\r\n");
-            }
+            } else cacheOutput = true;
             lastone->outputPart (*this);
+            cacheOutput = false;
+            flushOutput();
           }
         }
       }
@@ -1564,6 +1568,16 @@ IMAP4Protocol::parseURL (const KURL & _url, QString & _box,
 int
 IMAP4Protocol::outputLine (const QCString & _str)
 {
+  if (cacheOutput)
+  {
+    QBuffer stream(outputCache);
+    stream.open(IO_WriteOnly);
+    stream.at(outputCache.size());
+    stream.writeBlock(_str.data(), _str.length());
+    stream.close();
+    return 0;
+  }
+
   QByteArray temp;
   bool relay = relayEnabled;
 
@@ -1574,6 +1588,13 @@ IMAP4Protocol::outputLine (const QCString & _str)
 
   relayEnabled = relay;
   return 0;
+}
+
+void IMAP4Protocol::flushOutput()
+{
+  if (outputCache.isEmpty()) return;
+  data(outputCache);
+  outputCache.resize(0);
 }
 
 /* memccpy appeared first in BSD4.4 */

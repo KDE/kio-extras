@@ -96,6 +96,9 @@ public:
   // reimplement the mimeIO
   virtual int outputLine (const QCString & _str);
 
+  // send out cached data to the application
+  virtual void flushOutput();
+
 protected:
 
   // select or examine the box if needed
@@ -115,7 +118,8 @@ protected:
   int myPort;
   bool mySSL;
 
-  bool relayEnabled;
+  bool relayEnabled, cacheOutput;
+  QByteArray outputCache;
 
   void outputLineStr (const QString & _str)
   {
