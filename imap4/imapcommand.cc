@@ -2,7 +2,7 @@
 /**********************************************************************
  *
  *   imapcommand.cc  - IMAP4rev1 command handler
- *   Copyright (C) 2000
+ *   Copyright (C) 2000 s.carstens@gmx.de
  *
  *   This program is free software; you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -18,7 +18,7 @@
  *   along with this program; if not, write to the Free Software
  *   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  *
- *   Send comments and bug fixes to
+ *   Send comments and bug fixes to s.carstens@gmx.de
  *
  *********************************************************************/
 
@@ -194,6 +194,11 @@ imapCommand *imapCommand::clientDelete(const QString &path)
 	return new imapCommand("DELETE",QString("\"")+rfcDecoder::toIMAP(path)+"\"");
 }
 
+imapCommand *imapCommand::clientExpunge()
+{
+	return new imapCommand("EXPUNGE",QString(""));
+}
+
 imapCommand *imapCommand::clientRename(const QString &src,const QString &dest)
 {
 	return new imapCommand("RENAME",QString("\"")+rfcDecoder::toIMAP(src)+"\" \"" +rfcDecoder::toIMAP(dest)+"\"");
@@ -202,4 +207,9 @@ imapCommand *imapCommand::clientRename(const QString &src,const QString &dest)
 imapCommand *imapCommand::clientSearch(const QString &search,bool nouid)
 {
 	return new imapCommand(nouid ? "SEARCH" : "UID SEARCH",search);
+}
+
+imapCommand *imapCommand::clientStore(const QString &set,const QString &item,const QString &data,bool nouid)
+{
+	return new imapCommand(nouid ? "STORE" : "UID STORE",set + " "+item+" ("+data+")");
 }

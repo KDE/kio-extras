@@ -1,5 +1,5 @@
 /***************************************************************************
-                          mimeheader.cpp  -  description
+                          mimeheader.cc  -  description
                              -------------------
     begin                : Fri Oct 20 2000
     copyright            : (C) 2000 by Sven Carstens

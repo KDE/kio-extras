@@ -49,6 +49,7 @@ class imapInfo
     imapInfo(const imapInfo &);
     imapInfo & operator = (const imapInfo &);
 
+    ulong _flags(const QString &,QString &) const;
     ulong _flags(const QString &) const;
 
     void setCount(ulong l)

@@ -1,3 +1,26 @@
+/**********************************************************************
+ *
+ *   imapparser.cc  - IMAP4rev1 Parser
+ *   Copyright (C) 2000 s.carstens@gmx.de
+ *
+ *   This program is free software; you can redistribute it and/or modify
+ *   it under the terms of the GNU General Public License as published by
+ *   the Free Software Foundation; either version 2 of the License, or
+ *   (at your option) any later version.
+ *
+ *   This program is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *   GNU General Public License for more details.
+ *
+ *   You should have received a copy of the GNU General Public License
+ *   along with this program; if not, write to the Free Software
+ *   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ *
+ *   Send comments and bug fixes to s.carstens@gmx.de
+ *
+ *********************************************************************/
+
 #include "rfcdecoder.h"
 
 #include "imapparser.h"
@@ -1072,7 +1095,7 @@ void imapParser::parseFetch(ulong value,QString &inWords)
 					if(word == "UID")
 					{
 						seenUid = parseOneWord(inWords);
-						qDebug("imapParser::parseFetch - processing uid %s",seenUid.ascii());
+//						qDebug("imapParser::parseFetch - processing uid %s",seenUid.ascii());
 						mailHeader *envelope = uidCache[seenUid];
 
 						if(envelope || seenUid.isEmpty())
@@ -1297,8 +1320,9 @@ void imapParser::parseURL(const KURL &_url,QString &_box,QString &_section,QStri
 		QString temp = (*it);
 		
 		// if we have a '/' separator we'll just nuke it
-		if(temp[temp.length()-1] == '/')
-			temp = temp.left(temp.length()-1);
+		if(temp.find("/") > 0) temp = temp.left(temp.find("/"));
+//		if(temp[temp.length()-1] == '/')
+//			temp = temp.left(temp.length()-1);
 		if( temp.find("section=",0,false) == 0) _section = temp.right(temp.length()-8);
 		else if( temp.find("type=",0,false) == 0) _type = temp.right(temp.length()-5);
 		else if( temp.find("uid=",0,false) == 0) _uid = temp.right(temp.length()-4);

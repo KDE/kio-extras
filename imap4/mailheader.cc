@@ -1,5 +1,5 @@
 /***************************************************************************
-                          mailheader.cpp  -  description
+                          mailheader.cc  -  description
                              -------------------
     begin                : Tue Oct 24 2000
     copyright            : (C) 2000 by Sven Carstens
@@ -25,6 +25,7 @@ mailHeader::mailHeader()
 	toAdr.setAutoDelete( true );
 	ccAdr.setAutoDelete( true );
 	bccAdr.setAutoDelete( true );
+	date.tm_year = 0;
 }
 
 mailHeader::~mailHeader(){
@@ -97,20 +98,20 @@ void mailHeader::outputHeader(mimeIO &useIO)
 	if(!replytoAdr.isEmpty())
   	useIO.outputMimeLine(QCString("Reply-To: ") + replytoAdr.getStr());
 
-  if(toAdr.count())
-  	useIO.outputMimeLine(mimeHdrLine::truncateLine(QCString("To: ") + mailHeader::getAddressStr(&toAdr)));
-  if(ccAdr.count())
-  	useIO.outputMimeLine(mimeHdrLine::truncateLine(QCString("CC: ") + mailHeader::getAddressStr(&ccAdr)));	
-  if(bccAdr.count())
-  	useIO.outputMimeLine(mimeHdrLine::truncateLine(QCString("BCC: ") + mailHeader::getAddressStr(&bccAdr)));
+	if(toAdr.count())
+		useIO.outputMimeLine(mimeHdrLine::truncateLine(QCString("To: ") + mailHeader::getAddressStr(&toAdr)));
+	if(ccAdr.count())
+		useIO.outputMimeLine(mimeHdrLine::truncateLine(QCString("CC: ") + mailHeader::getAddressStr(&ccAdr)));	
+	if(bccAdr.count())
+		useIO.outputMimeLine(mimeHdrLine::truncateLine(QCString("BCC: ") + mailHeader::getAddressStr(&bccAdr)));
 	if(!subject.isEmpty())
 		useIO.outputMimeLine(mimeHdrLine::truncateLine(QCString("Subject: ") + rfcDecoder::encodeRFC2047String(subject).latin1()));
 	if(!messageID.isEmpty())
-  	useIO.outputMimeLine(mimeHdrLine::truncateLine(QCString("Message-ID: ") + messageID));
+	  	useIO.outputMimeLine(mimeHdrLine::truncateLine(QCString("Message-ID: ") + messageID));
 	if(!inReplyTo.isEmpty())
-  	useIO.outputMimeLine(mimeHdrLine::truncateLine(QCString("In-Reply-To: ") + inReplyTo));
-	if(date.tm_zone == NULL)
-  	useIO.outputMimeLine(QCString("Date: ") + mimeHdrLine::getDateStr(&date));
+	  	useIO.outputMimeLine(mimeHdrLine::truncateLine(QCString("In-Reply-To: ") + inReplyTo));
+	if(date.tm_year != 0)
+  		useIO.outputMimeLine(QCString("Date: ") + mimeHdrLine::getDateStr(&date));
 	mimeHeader::outputHeader(useIO);
 }
 

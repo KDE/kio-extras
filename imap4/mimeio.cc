@@ -1,5 +1,5 @@
 /***************************************************************************
-                          mimeio.cpp  -  description
+                          mimeio.cc  -  description
                              -------------------
     begin                : Wed Oct 25 2000
     copyright            : (C) 2000 by Sven Carstens

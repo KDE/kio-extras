@@ -1,5 +1,5 @@
 #ifndef _IMAPCOMMAND_H
-#define _IMAPCOMMAND_H "$Id: imapcommand.h,v 1.0 2000/12/04$"
+#define _IMAPCOMMAND_H "$Id$"
 /**********************************************************************
  *
  *   imapcommand.h  - IMAP4rev1 command handler
@@ -54,9 +54,10 @@ class imapCommand {
 		static imapCommand *clientAppend(const QString &box,const QString &extras,ulong size);
 		static imapCommand *clientCreate(const QString &path);
 		static imapCommand *clientDelete(const QString &path);
+		static imapCommand *clientExpunge();
 		static imapCommand *clientRename(const QString &src,const QString &dest);
 		static imapCommand *clientSearch(const QString &search,bool nouid=false);
-		
+		static imapCommand *clientStore(const QString &set,const QString &item,const QString &data,bool nouid=false);		
 	protected:
 		QString aCommand;
 		QString mId;

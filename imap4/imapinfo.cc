@@ -41,6 +41,7 @@
  */
 
 #include "imapinfo.h"
+#include "imapparser.h"
 
 imapInfo::imapInfo()
   : count_(0),
@@ -187,22 +188,45 @@ imapInfo::imapInfo(const QStringList & list)
   ulong
 imapInfo::_flags(const QString & flagsString) const
 {
-  ulong flags = 0;
+  QString ignore;
 
-  if (0 != flagsString.contains("\\Seen"))
-    flags ^= Seen;
-  if (0 != flagsString.contains("\\Answered"))
-    flags ^= Answered;
-  if (0 != flagsString.contains("\\Flagged"))
-    flags ^= Flagged;
-  if (0 != flagsString.contains("\\Deleted"))
-    flags ^= Deleted;
-  if (0 != flagsString.contains("\\Draft"))
-    flags ^= Draft;
-  if (0 != flagsString.contains("\\Recent"))
-    flags ^= Recent;
-  if (0 != flagsString.contains("\\*"))
-    flags ^= User;
+  return _flags(flagsString,ignore);
+}
+
+  ulong
+imapInfo::_flags(const QString & inFlags,QString &userflags) const
+{
+	ulong flags = 0;
+	QString entry;
+	QString flagsString = inFlags;
+	userflags = "";
+
+	if(flagsString[0] == '(') flagsString = flagsString.right(flagsString.length() - 1);
+
+	while(!flagsString.isEmpty() && flagsString[0] != ')')
+	{
+		entry = imapParser::parseOneWord(flagsString);
+
+		if (0 != entry.contains("\\Seen",false))
+			flags ^= Seen;
+		else if (0 != entry.contains("\\Answered",false))
+			flags ^= Answered;
+		else if (0 != entry.contains("\\Flagged",false))
+			flags ^= Flagged;
+		else if (0 != entry.contains("\\Deleted",false))
+			flags ^= Deleted;
+		else if (0 != entry.contains("\\Draft",false))
+			flags ^= Draft;
+		else if (0 != entry.contains("\\Recent",false))
+			flags ^= Recent;
+		else if (0 != entry.contains("\\*",false))
+			flags ^= User;
+		else if (entry.isEmpty())
+			flagsString = "";
+		else userflags += entry + " ";
+	}
+
+	qDebug("imapInfo::_flags - %s -> %ld, %s",inFlags.latin1(),flags,userflags.latin1());
 
   return flags;
 }

@@ -2,7 +2,7 @@
 /**********************************************************************
  *
  *   mailaddress.cc  - mail address parser
- *   Copyright (C) 2000
+ *   Copyright (C) 2000 s.carstens@gmx.de
  *
  *   This program is free software; you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -18,7 +18,7 @@
  *   along with this program; if not, write to the Free Software
  *   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  *
- *   Send comments and bug fixes to
+ *   Send comments and bug fixes to s.carstens@gmx.de
  *
  *********************************************************************/
 

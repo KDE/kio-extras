@@ -3,7 +3,7 @@
 /**********************************************************************
  *
  *   imapparser.h  - IMAP4rev1 Parser
- *   Copyright (C) 2000
+ *   Copyright (C) 2000 s.carstens@gmx.de
  *
  *   This program is free software; you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -19,24 +19,9 @@
  *   along with this program; if not, write to the Free Software
  *   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  *
- *   Send comments and bug fixes to
+ *   Send comments and bug fixes to s.carstens@gmx.de
  *
  *********************************************************************/
-
-/*#include <stdlib.h>
-
-#include <sys/types.h>
-#include <sys/time.h>
-#include <sys/wait.h>
-
-#include <stdio.h>
-#include <unistd.h>
-#include <stdlib.h>
-
-#include <qregexp.h>
-#include <qbuffer.h>
-
-#endif */
 
 #include <qstringlist.h>
 #include <qvaluelist.h>

@@ -1,5 +1,5 @@
 /***************************************************************************
-                          mimehdrline.cpp  -  description
+                          mimehdrline.cc  -  description
                              -------------------
     begin                : Wed Oct 11 2000
     copyright            : (C) 2000 by Sven Carstens
@@ -346,7 +346,11 @@ int mimeHdrLine::parseDate(const char *inCStr,struct tm *fillTime){
 	fillTime->tm_wday = 1; //if we set this to 0 one year will be gone
 	fillTime->tm_yday = 0;
 	fillTime->tm_isdst = 0;
+	fillTime->tm_year = 0;
+#ifdef HAVE_TM_ZONE
+	//not all systems have this field
 	fillTime->tm_zone = 0;
+#endif
 	
   /*          29 Aug 1996 14 : 04 : 52 CDT   */
   /* states: 1  2   3    4  5 6  7 8  9   10 */
@@ -459,20 +463,22 @@ int mimeHdrLine::parseDate(const char *inCStr,struct tm *fillTime){
   	retVal += skip;
   	aCStr += skip;
   }
-	fillTime->tm_gmtoff = ct_offset * 60;
-	
-//	cout << fillTime->tm_hour << ':' << fillTime->tm_min << ':' << fillTime->tm_sec << " +" << ct_offset << " ";
-//	cout << fillTime->tm_year << '-' << fillTime->tm_mon << '-' << fillTime->tm_mday;
-	{
-  	time_t myTime;
-  	struct tm tempStruct,*staticStruct;
 
-  	memcpy((void *)&tempStruct,(void *)fillTime,sizeof(struct tm));	
-  	myTime = mktime(&tempStruct);
-  	
-  	staticStruct = localtime(&myTime);
-  	fillTime->tm_wday = staticStruct->tm_wday;
-  	fillTime->tm_yday = staticStruct->tm_yday;
+#ifdef HAVE_TM_ZONE
+	fillTime->tm_gmtoff = ct_offset * 60;
+#endif
+	
+	//sanitize the day of week and day of year values
+	{
+  		time_t myTime;
+  		struct tm tempStruct,*staticStruct;
+
+  		memcpy((void *)&tempStruct,(void *)fillTime,sizeof(struct tm));	
+  		myTime = mktime(&tempStruct);
+
+  		staticStruct = localtime(&myTime);
+  		fillTime->tm_wday = staticStruct->tm_wday;
+  		fillTime->tm_yday = staticStruct->tm_yday;
 	}	
 
 	return retVal;
