@@ -1150,7 +1150,7 @@ StatInfo SmbProtocol::createStatInfo(const QString line)
    else
       info.mode = S_IRUSR | S_IRGRP | S_IROTH;
 
-   kdDebug(KIO_SMB)<<"Smb::createUDSEntry() ends"<<endl;
+//   kdDebug(KIO_SMB)<<"Smb::createUDSEntry() ends"<<endl;
    return info;
 }
 
@@ -1172,7 +1172,7 @@ StatInfo SmbProtocol::_stat(const KURL& url, bool onlyCheckForExistance)
       info.name=path;
       info.size=1024;
       info.time=time(0);
-      info.mode=S_IRUSR | S_IXUSR | S_IRGRP | S_IXGRP | S_IROTH | S_IXOTH| S_IWOTH|S_IWGRP|S_IWUSR;
+      info.mode=S_IRUSR | S_IXUSR | S_IRGRP | S_IXGRP | S_IROTH | S_IXOTH| S_IWGRP|S_IWUSR | S_IWOTH;
       info.isDir=true;
       info.isValid=true;
       return info;
@@ -1270,12 +1270,16 @@ See the KDE Control Center under Network, LANBrowsing for more information."));
    finished();
 }
 
-void SmbProtocol::put( const KURL& url, int, bool _overwrite, bool)
+void SmbProtocol::put( const KURL& url, int perm, bool _overwrite, bool resume)
 {
+   kdDebug(KIO_SMB)<<"Smb::put() url -"<<url.prettyURL()<<"- perm: "<<perm<<" ov: "<<(_overwrite?1:0)<<" res: "<<(resume?1:0)<<endl;
    StatInfo info=this->_stat(url,true);
    if (_overwrite==false && (info.isValid))
    {
-      error(ERR_CANNOT_OPEN_FOR_WRITING,url.url());
+      if (info.isDir)
+         error(KIO::ERR_DIR_ALREADY_EXIST,url.url());
+      else
+         error(KIO::ERR_FILE_ALREADY_EXIST,url.url());
       return;
    }
    QString share;
