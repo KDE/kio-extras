@@ -1,0 +1,15 @@
+The CGI IO slave provides a way to execute CGI programs without the need to
+have a running web server. This can for example be used for local testing of
+CGI programs or for using search engines that only provide a CGI frontend like
+the one from Doxygen.
+
+The IO slave implements the cgi: protocol. It uses the filename from the given
+URL and searches a configurable list of directories. If it finds an executable
+with the given name it executes it, passes the arguments of the URL and sets the
+environment variables needed by CGI programs.
+
+The kcontrol module System/kcmcgi is used to configure the search paths for CGI
+programs.
+
+If you have questions or comments please contact Cornelius Schumacher
+<schumacher@kde.org>.

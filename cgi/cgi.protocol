@@ -1,0 +1,6 @@
+[Protocol]
+exec=kio_cgi
+protocol=cgi
+input=none
+output=filesystem
+reading=true

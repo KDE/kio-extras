@@ -1,0 +1,12 @@
+[Desktop Entry]
+Icon=run
+Type=Application
+Exec=kcmshell kcmcgi
+DocPath=
+X-KDE-ModuleType=Library
+X-KDE-Library=cgi
+
+Name=CGI KIO Slave
+Comment=Configuring the CGI KIO slave
+
+Keywords=CGI,KIO,Slave,Paths
