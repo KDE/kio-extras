@@ -61,8 +61,8 @@ NOTFOUND) AC_MSG_RESULT(searched but not found) ;;
   fi
   kde_safe_LIBS="$LIBS"
   kde_safe_CFLAGS="$CFLAGS"
-  LIBS="$LIBS $all_libraries $LDAP_LIBS $KERBEROS_LIBS $X_EXTRA_LIBS"
-  CFLAGS="$CFLAGS $all_includes $LDAP_INCS $KERBEROS_INCS"
+  LIBS="$LIBS $all_libraries $LDAP_LIBS $KRB4_LIBS $X_EXTRA_LIBS"
+  CFLAGS="$CFLAGS $all_includes $LDAP_INCS $KRB4_INCS"
   AC_LANG_SAVE
   AC_LANG_C
   AC_TRY_LINK(dnl
