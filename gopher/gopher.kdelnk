@@ -1,0 +1,14 @@
+# KDE Config File
+[Protocol]
+exec=kio_gopher
+protocol=gopher
+input=none
+output=filesystem
+listing=Name,Type,Size
+reading=true
+writing=false
+deleting=false
+source=true
+makedir=false
+linking=false
+moving=false
