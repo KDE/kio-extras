@@ -179,7 +179,7 @@ void SMTPProtocol::special (const QByteArray & aData)
 // profile=text (this will override the "host" setting
 void SMTPProtocol::put(const KURL &url, int /*permissions*/, bool /*overwrite*/, bool /*resume*/)
 {
-	QString query = url.query();
+	QString query = KURL::decode_string(url.query());
 	QString subject = ASCII("missing subject");
 	QString profile = QString::null;
         QString from = QString::null;
