@@ -3,6 +3,7 @@
 /**********************************************************************
  *
  *   imap4.h  - IMAP4rev1 KIOSlave
+ *   Copyright (C) 2001  Michael Haeckel <Michael@Haeckel.Net>
  *   Copyright (C) 1999  John Corey
  *
  *   This program is free software; you can redistribute it and/or modify

@@ -2,7 +2,7 @@
 /**********************************************************************
  *
  *   imapinfo.cc  - IMAP4rev1 SELECT / EXAMINE handler
- *   Copyright (C) 2000
+ *   Copyright (C) 2000 Sven Carstens
  *
  *   This program is free software; you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by

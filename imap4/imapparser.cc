@@ -1,6 +1,7 @@
 /**********************************************************************
  *
  *   imapparser.cc  - IMAP4rev1 Parser
+ *   Copyright (C) 2001 Michael Haeckel <Michael@Haeckel.Net>
  *   Copyright (C) 2000 s.carstens@gmx.de
  *
  *   This program is free software; you can redistribute it and/or modify
