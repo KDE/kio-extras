@@ -242,7 +242,7 @@ QString DiskEntry::discType()
 	tmp=tmp.right(tmp.length()-5);
 	tmp=tmp.left(3);
 	tmp="/proc/ide/"+tmp+"/media";
-	kdDebug(7020)<<"Trying to read file"<<tmp<<endl;
+	kdDebug(7020)<<"Trying to read file "<<tmp<<endl;
 	QFile infoFile(tmp);
 	if (infoFile.open(IO_ReadOnly))
 	{
@@ -250,6 +250,7 @@ QString DiskEntry::discType()
 		if (-1==(len=infoFile.readLine(tmpInfo,20))) typeName="kdedevice/TESTONLY";
 		else
 		{
+			kdDebug(7020)<<"Type according to proc file system:"<<tmpInfo<<endl;
 //			tmpInfo.fromLatin1(str,len);
 			if (tmpInfo.contains("disk")) typeName="kdedevice/hdd";
 			else
