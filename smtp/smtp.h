@@ -94,8 +94,8 @@ protected:
   static const int DEFAULT_EHLO_BUFFER = 5120;
   static const int SMTP_MIN_NEGATIVE_REPLY = 400;
 
-  class Request;
   class Response;
+  class Capabilities;
 };
 
 #endif

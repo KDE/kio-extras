@@ -33,6 +33,8 @@
 #endif
 
 #include "smtp.h"
+#include "request.h"
+using KioSMTP::Request;
 
 #include <kemailsettings.h>
 #include <ksock.h>
@@ -77,112 +79,6 @@ int kdemain(int argc, char **argv)
   SMTPProtocol slave( argv[2], argv[3], qstricmp( argv[1], "smtps" ) == 0 );
   slave.dispatchLoop();
   return 0;
-}
-
-static bool isUsAscii( const QString & s ) {
-  for ( uint i = 0 ; i < s.length() ; ++i )
-    if ( s[i].unicode() > 127 ) return false;
-  return true;
-}
-
-class SMTPProtocol::Request {
-public:
-  Request() : mSubject( "missing subject" ), mEmitHeaders( true ) {}
-  
-  static Request fromURL( const KURL & url );
-
-  QString profileName() const { return mProfileName; }
-  void setProfileName( const QString & profileName ) { mProfileName = profileName; }
-  bool hasProfile() const { return !profileName().isNull(); }
-
-  QString subject() const { return mSubject; }
-  void setSubject( const QString & subject ) { mSubject = subject; }
-  bool hasValidSubject() const { return isUsAscii( mSubject ); }
-
-  QString fromAddress() const { return mFromAddress; }
-  void setFromAddress( const QString & fromAddress ) { mFromAddress = fromAddress; }
-  bool hasFromAddress() const { return !mFromAddress.isEmpty(); }
-
-  QStringList recipients() const { return to() + cc() + bcc() ; }
-  bool hasRecipients() const { return !to().empty() || !cc().empty() || !bcc().empty() ; }
-
-  QStringList to() const { return mTo; }
-  QStringList cc() const { return mCc; }
-  QStringList bcc() const { return mBcc; }
-  void addTo( const QString & to ) { mTo.push_back( to ); }
-  void addCc( const QString & cc ) { mCc.push_back( cc ); }
-  void addBcc( const QString & bcc ) { mBcc.push_back( bcc ); }
-
-  QString heloHostname() const { return mHeloHostname; }
-  QCString heloHostnameCString() const { return KIDNA::toAsciiCString( heloHostname() ); }
-  void setHeloHostname( const QString & hostname ) { mHeloHostname = hostname; }
-
-  bool emitHeaders() const { return mEmitHeaders; }
-  void setEmitHeaders( bool emitHeaders ) { mEmitHeaders = emitHeaders; }
-
-  /** If @ref #emitHeaders() is true, returns the rfc2822
-      serialization of the header fields "To", "Cc", "Subject" and
-      "From", as determined by the respective settings. If @ref
-      #emitHeaders() is false, returns a null string. */
-  const char * headerFields() const;
-
-private:
-  QStringList mTo, mCc, mBcc;
-  QString mProfileName, mSubject, mFromAddress, mHeloHostname;
-  bool mEmitHeaders;
-};
-
-SMTPProtocol::Request SMTPProtocol::Request::fromURL( const KURL & url ) {
-  Request request;
-
-  const QStringList query = QStringList::split( '&', url.query().mid(1) );
-  for ( QStringList::const_iterator it = query.begin() ; it != query.end() ; ++it ) {
-    int equalsPos = (*it).find( '=' );
-    if ( equalsPos <= 0 )
-      continue;
-
-    const QString key = (*it).left( equalsPos ).lower();
-    const QString value = KURL::decode_string( (*it).mid( equalsPos + 1 ) );
-
-    if ( key == "to" )
-      request.addTo( value );
-    else if ( key == "cc" )
-      request.addCc( value );
-    else if ( key == "bcc" )
-      request.addBcc( value );
-    else if ( key == "headers" ) {
-      request.setEmitHeaders( value == "0" );
-      request.setEmitHeaders( false ); // ### ???
-    }
-    else if ( key == "subject" )
-      request.setSubject( value );
-    else if ( key == "from" )
-      request.setFromAddress( value );
-    else if ( key == "profile" )
-      request.setProfileName( value );
-    else if ( key == "hostname" )
-      request.setHeloHostname( value );
-  }
-
-  return request;
-}
-
-const char * SMTPProtocol::Request::headerFields() const {
-  if ( !emitHeaders() )
-    return 0;
-
-  assert( hasFromAddress() ); // should have been checked for by
-			      // caller (MAIL FROM comes before DATA)
-
-  // (we use QString for speed and convenience (QStringList::join()) reasons)
-  QString result = "From: " + fromAddress() + "\r\n";
-  if ( hasValidSubject() )
-    result += "Subject: " + subject() + "\r\n";
-  if ( !to().empty() )
-    result += "To: " + to().join( ",\r\n\t" /* line folding */ ) + "\r\n";
-  if ( !cc().empty() )
-    result += "Cc: " + cc().join( ",\r\n\t" /* line folding */ ) + "\r\n";
-  return result.latin1();
 }
 
 SMTPProtocol::SMTPProtocol(const QCString & pool, const QCString & app,
