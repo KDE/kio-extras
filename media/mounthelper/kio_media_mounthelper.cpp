@@ -62,7 +62,7 @@ MountHelper::MountHelper() : KApplication()
 		return;
 	}
 
-	if ( !medium.isMountable() )
+	if ( !medium.isMountable() && !args->isSet("e") )
 	{
 		m_errorStr = i18n("%1 is not a mountable media.").arg(url.prettyURL());
 		QTimer::singleShot(0, this, SLOT(error()) );
