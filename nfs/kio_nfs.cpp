@@ -27,21 +27,21 @@
 #include <grp.h>
 #include <stdio.h>
 #include <sys/stat.h>
-/*#include <rpc/rpc.h>
-#include <sys/socket.h>
+#include <rpc/rpc.h> // for clnt_call
+
+/* #include <sys/socket.h>
 #include <netinet/in.h>
 #include <sys/time.h>*/
+
 #ifdef HAVE_STRING_H
 #include <string.h>
 #else
 #include <strings.h>
 #endif
 #include <sys/types.h>
-/*#ifdef STDC_HEADERS*/
 #include <unistd.h>
 #include <memory.h>
 #include <stdlib.h>
-/*#endif*/
 
 #include <netdb.h>
 #include <arpa/inet.h>
@@ -413,7 +413,7 @@ void NFSProtocol::listDir( const KURL& _url)
 
       kdDebug(7101)<<"calling rpc: FH: -"<<fh<<"- with name -"<<dirargs.name<<"-"<<endl;
 
-      int clnt_stat=clnt_call(m_client, NFSPROC_LOOKUP,
+      /*int clnt_stat=*/ clnt_call(m_client, NFSPROC_LOOKUP,
                          (xdrproc_t) xdr_diropargs, (char*)&dirargs,
                          (xdrproc_t) xdr_diropres, (char*)&dirres,total_timeout);
 
