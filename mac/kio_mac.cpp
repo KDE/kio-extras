@@ -114,7 +114,7 @@ void MacProtocol::get(const KURL& url) {
 
     if (!myKProcess->normalExit() || !(myKProcess->exitStatus() == 0)) {
         error(ERR_CANNOT_LAUNCH_PROCESS,
-              i18n("there was an error with hpcopy - please ensure it is installed "));
+              i18n("There was an error with hpcopy - please ensure it is installed"));
         return;
     }
 
@@ -146,7 +146,7 @@ void MacProtocol::listDir(const KURL& url) {
 
         if ((!myKProcess->normalExit()) || (!myKProcess->exitStatus() == 0)) {
             error(ERR_CANNOT_LAUNCH_PROCESS,
-                  i18n("there was an error with hpls - please ensure it is installed"));
+                  i18n("There was an error with hpls - please ensure it is installed"));
         }
 
         //clean up
