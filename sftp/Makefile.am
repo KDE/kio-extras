@@ -9,14 +9,14 @@ LDFLAGS =
 
 kio_sftp_la_METASOURCES=AUTO
 
-kio_sftp_la_SOURCES = process.cpp atomicio.cpp kio_sftp.cpp sftpfileattr.cpp
+kio_sftp_la_SOURCES = process.cpp atomicio.cpp kio_sftp.cpp sftpfileattr.cpp ksshprocess.cpp
 kio_sftp_la_LIBADD = -lkio -lqt -lkio -lkdeui -lkdecore -lXext -lX11
 
 kio_sftp_la_LDFLAGS = -module $(KDE_PLUGIN)  
 
 
 
-EXTRA_DIST = sftp.h sftp.protocol sftpfileattr.cpp sftpfileattr.h kio_sftp.h kio_sftp.cpp atomicio.h atomicio.cpp process.cpp process.h kprocessblockingrw.cpp kprocessblockingrw.h 
+EXTRA_DIST = sftp.h sftp.protocol sftpfileattr.cpp sftpfileattr.h kio_sftp.h kio_sftp.cpp atomicio.h atomicio.cpp process.cpp process.h ksshprocess.cpp ksshprocess.h
 
 install-data-local:
 	$(mkinstalldirs) 
