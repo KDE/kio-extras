@@ -78,7 +78,9 @@ int MyPtyProcess::init()
 	return -1;
     }
     m_TTY = m_pPTY->ptsname();
-    m_Inbuf.resize(0);
+    m_stdoutBuf.resize(0);
+    m_stderrBuf.resize(0);
+    m_ptyBuf.resize(0);
     return 0;
 }
 
@@ -95,27 +97,28 @@ MyPtyProcess::~MyPtyProcess()
  * one time.
  */
 
-QCString MyPtyProcess::readLine(bool block)
+
+QCString MyPtyProcess::readLineFrom(int fd, QCString& inbuf, bool block)
 {
     int pos;
     QCString ret;
 
-    if (!m_Inbuf.isEmpty()) 
+    if (!inbuf.isEmpty())
     {
-	pos = m_Inbuf.find('\n');
+	pos = inbuf.find('\n');
 	if (pos == -1) 
 	{
-	    ret = m_Inbuf;
-	    m_Inbuf.resize(0);
+	    ret = inbuf;
+	    inbuf.resize(0);
 	} else
 	{
-	    ret = m_Inbuf.left(pos);
-	    m_Inbuf = m_Inbuf.mid(pos+1);
+	    ret = inbuf.left(pos);
+	    inbuf = inbuf.mid(pos+1);
 	}
 	return ret;
     }
 
-    int flags = fcntl(m_Fd, F_GETFL);
+    int flags = fcntl(fd, F_GETFL);
     if (flags < 0) 
     {
 	kdError(900) << k_lineinfo << "fcntl(F_GETFL): " << perror << "\n";
@@ -125,7 +128,7 @@ QCString MyPtyProcess::readLine(bool block)
 	flags &= ~O_NONBLOCK;
     else
 	flags |= O_NONBLOCK;
-    if (fcntl(m_Fd, F_SETFL, flags) < 0) 
+    if (fcntl(fd, F_SETFL, flags) < 0)
     {
 	kdError(900) << k_lineinfo << "fcntl(F_SETFL): " << perror << "\n";
 	return ret;
@@ -135,7 +138,7 @@ QCString MyPtyProcess::readLine(bool block)
     char buf[256];
     while (1) 
     {
-	nbytes = read(m_Fd, buf, 255);
+	nbytes = read(fd, buf, 255);
 	if (nbytes == -1) 
 	{
 	    if (errno == EINTR)
@@ -146,24 +149,23 @@ QCString MyPtyProcess::readLine(bool block)
 	    break;	// eof
 
 	buf[nbytes] = '\000';
-	m_Inbuf += buf;
+	inbuf += buf;
 
-	pos = m_Inbuf.find('\n');
+	pos = inbuf.find('\n');
 	if (pos == -1) 
 	{
-	    ret = m_Inbuf;
-	    m_Inbuf.resize(0);
+	    ret = inbuf;
+	    inbuf.resize(0);
 	} else 
 	{
-	    ret = m_Inbuf.left(pos);
-	    m_Inbuf = m_Inbuf.mid(pos+1);
+	    ret = inbuf.left(pos);
+	    inbuf = inbuf.mid(pos+1);
 	}
 	break;
     }
 
     return ret;
 }
-
 
 void MyPtyProcess::writeLine(QCString line, bool addnl)
 {
@@ -173,14 +175,14 @@ void MyPtyProcess::writeLine(QCString line, bool addnl)
 	write(m_Fd, "\n", 1);
 }
 
-
-void MyPtyProcess::unreadLine(QCString line, bool addnl)
+void MyPtyProcess::unreadLineFrom(QCString inbuf, QCString line, bool addnl)
 {
     if (addnl)
 	line += '\n';
     if (!line.isEmpty())
-	m_Inbuf.prepend(line);
+	inbuf.prepend(line);
 }
+
 
 /*
  * Fork and execute the command. This returns in the parent.

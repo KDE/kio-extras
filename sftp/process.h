@@ -50,7 +50,17 @@ public:
      * @param block Block until a full line is read?
      * @return The output string.
      */
-    QCString readLine(bool block=true);
+    QCString readLine(bool block = true)
+        { return readLineFrom(m_Fd, m_ptyBuf, block); }
+
+    QCString readLineFromPty(bool block = true)
+        { return readLineFrom(m_Fd, m_ptyBuf, block); }
+
+    QCString readLineFromStdout(bool block = true)
+        { return readLineFrom(m_stdinout, m_stdoutBuf, block); }
+
+    QCString readLineFromStderr(bool block = true)
+        { return readLineFrom(m_err, m_stderrBuf, block); }
 
     /**
      * Write a line of text to the program's standard in.
@@ -64,7 +74,18 @@ public:
      * @param line The line to put back.
      * @param addNewline Adds a '\n' to the line.
      */
-    void unreadLine(QCString line, bool addNewline=true);
+
+    void unreadLine(QCString line, bool addNewline = true)
+        { unreadLineFrom(m_ptyBuf, line, addNewline); }
+
+    void unreadLineFromPty(QCString line, bool addNewline = true)
+        { unreadLineFrom(m_ptyBuf, line, addNewline); }
+
+    void unreadLineFromStderr(QCString line, bool addNewline = true)
+        { unreadLineFrom(m_stderrBuf, line, addNewline); }
+
+    void unreadLineFromStdout(QCString line, bool addNewline = true)
+        { unreadLineFrom(m_stdoutBuf, line, addNewline); }
 
     /**
      * Set exit string. If a line of program output matches this,
@@ -114,8 +135,11 @@ private:
     int SetupTTY(int fd);
 
     PTY *m_pPTY;
-    QCString m_Inbuf, m_TTY;
+    QCString m_TTY;
+    QCString m_ptyBuf, m_stderrBuf, m_stdoutBuf;
 
+    QCString readLineFrom(int fd, QCString& inbuf, bool block);
+    void unreadLineFrom(QCString inbuf, QCString line, bool addnl);
     class PtyProcessPrivate;
     PtyProcessPrivate *d;
 };
