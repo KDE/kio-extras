@@ -35,6 +35,7 @@
 #include <kiconloader.h>
 #include <kimageeffect.h>
 #include <kmimetype.h>
+#include <kimageio.h>
 
 #include "thumbnail.h"
 #include "imagecreator.h"
@@ -67,6 +68,7 @@ int kdemain(int argc, char **argv)
 ThumbnailProtocol::ThumbnailProtocol(const QCString &pool, const QCString &app)
     : SlaveBase("thumbnail", pool, app)
 {
+    KImageIO::registerFormats();
     m_creators.setAutoDelete(true);
     m_iconDict.setAutoDelete(true);
 }
