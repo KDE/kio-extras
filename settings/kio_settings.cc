@@ -43,6 +43,8 @@
       virtual void stat(const KURL& url);
       virtual void listDir(const KURL& url);
       void listRoot();
+      KServiceGroup::Ptr findGroup(QString relPath);
+
    private:
 	DCOPClient *m_dcopClient;
 	RunMode m_runMode;
@@ -82,6 +84,58 @@ SettingsProtocol::~SettingsProtocol()
 	delete m_dcopClient;
 }
 
+KServiceGroup::Ptr SettingsProtocol::findGroup(QString relPath) {
+	QString alreadyFound;
+	QString nextPart="";;
+	QStringList rest;
+	kdDebug()<<"Trying harder to find group "<<relPath<<endl;
+	if (relPath.startsWith("Settings/")) {
+		alreadyFound="Settings/";
+		rest=QStringList::split("/",relPath.right(relPath.length()-9));
+		kdDebug()<<"Supported root Settings detected"<<endl;
+		for (int i=0;i<rest.count();i++)
+			kdDebug()<<"Item ("<<*rest.at(i)<<")"<<endl;
+	} else {
+
+		return 0;
+	}
+	while (!rest.isEmpty()) {
+		KServiceGroup::Ptr tmp=KServiceGroup::group(alreadyFound);
+		if (!tmp || !tmp->isValid()) return 0;
+		
+       		KServiceGroup::List list = tmp->entries(true, true);
+
+       		KServiceGroup::List::ConstIterator it = list.begin();
+
+		bool found=false;
+       		for (; it != list.end(); ++it) {
+
+            		KSycocaEntry * e = *it;
+
+	               	if (e->isType(KST_KServiceGroup)) {
+
+        	            KServiceGroup::Ptr g(static_cast<KServiceGroup *>(e));
+                	    if ((g->caption()==rest.front()) || (g->name()==alreadyFound+rest.front())) { 
+				kdDebug()<<"Found group with caption "<<g->caption()<<" with real name: "<<g->name()<<endl;
+				found=true;
+				rest.remove(rest.begin());
+				alreadyFound=g->name();
+				kdDebug()<<"ALREADY FOUND: "<<alreadyFound<<endl;
+				break;
+			    }
+			}
+		}
+		if (!found) {
+			kdDebug()<<"Group with caption "<<rest.front()<<" not found within "<<alreadyFound<<endl;
+			return 0;
+		}
+
+		
+	}
+	return KServiceGroup::group(alreadyFound);
+}
+
+
 void SettingsProtocol::stat(const KURL& url)
 {
         QStringList     path = QStringList::split('/', url.encodedPathAndQuery(-1), false);
@@ -106,6 +160,15 @@ void SettingsProtocol::stat(const KURL& url)
 	kdDebug()<<"SettingsProtocol: stat for: "<<relPath<<endl;
 	KServiceGroup::Ptr grp = KServiceGroup::group(relPath);	
 
+	if (!grp || !grp->isValid()) {
+
+		grp=findGroup(relPath);
+		if (!grp || !grp->isValid()) {
+	                error(KIO::ERR_SLAVE_DEFINED,i18n("Unknown settings folder"));
+	                return;
+		}
+	}
+
 	switch( m_runMode )
 	{
 		case( SettingsMode ):
@@ -121,81 +184,6 @@ void SettingsProtocol::stat(const KURL& url)
 	finished();
 	return;
 
-#if 0
-	switch (path.count())
-	{
-		case( 0 ):
-			switch( m_runMode )
-			{
-				case( SettingsMode ):
-			        	createDirEntry(entry, i18n("Settings"), "settings:/", "inode/directory");
-					break;
-
-				case( ProgramsMode ):
-			        	createDirEntry(entry, i18n("Programs"), "programs:/", "inode/directory");
-					break;
-			}
-
-		        statEntry(entry);
-		        finished();
-			break;
-
-		default:
-
-                QStringList info=deviceInfo(url.fileName());
-
-                if (info.empty())
-                {
-                        error(KIO::ERR_SLAVE_DEFINED,i18n("Unknown application"));
-                        return;
-                }
-
-
-                QStringList::Iterator it=info.begin();
-                if (it!=info.end())
-                {
-                        QString device=*it; ++it;
-                        if (it!=info.end())
-                        {
-				++it;
-				if (it!=info.end())
-				{
-	                                QString mp=*it; ++it;++it;
-	                                if (it!=info.end())
-	                                {
-	                                        bool mounted=((*it)=="true");
-	                                        if (mounted)
-	                                        {
-//	                                                if (mp=="/") mp="";
-	                                                redirection(mp);
-	                                                finished();
-	                                        }
-	                                        else
-	                                        {
-							if (mp.startsWith("file:/"))
-							{
-			        	        	        KProcess *proc = new KProcess;
-        		        	                 	*proc << "kio_devices_mounthelper";
-                		                 		*proc << "-m" << url.url();
-	                        		         	proc->start(KProcess::Block);
-        	                        		 	delete proc;
-
-	        		                        	redirection(mp);
-        		        	                	finished();
-							}
-							else
-								error(KIO::ERR_SLAVE_DEFINED,i18n("Program not accessible"));
-	                                        }
-	                                        return;
-					}
-                                }
-                        }
-                }
-                error(KIO::ERR_SLAVE_DEFINED,i18n("Illegal data received"));
-		return;
-		break;
-        }
-#endif
 }
 
 
@@ -225,11 +213,16 @@ void SettingsProtocol::listDir(const KURL& url)
 	kdDebug()<<"SettingsProtocol: "<<relPath<<"***********************"<<endl;
 	KServiceGroup::Ptr root = KServiceGroup::group(relPath);
     
-    	if (!root || !root->isValid()) {
-		error(KIO::ERR_SLAVE_DEFINED,i18n("Unknown settings folder"));
-        	return;
+
+	if (!root || !root->isValid()) {
+
+		root=findGroup(relPath);
+		if (!root || !root->isValid()) {
+	                error(KIO::ERR_SLAVE_DEFINED,i18n("Unknown settings folder"));
+	                return;
+		}
 	}
-        
+
        KServiceGroup::List list = root->entries(true, true);
 	
        KServiceGroup::List::ConstIterator it = list.begin();
@@ -294,32 +287,6 @@ void SettingsProtocol::listDir(const KURL& url)
 }
 
 
-
-#if 0
- void HelloProtocol::get( const KURL& url )
- {
-/*	mimeType("application/x-desktop");
-	QCString output;
-	output.sprintf("[Desktop Action Format]\n"
-			"Exec=kfloppy\n"
-			"Name=Format\n"
-			"[Desktop Entry]\n"
-			"Actions=Format\n"
-			"Dev=/dev/fd0\n"
-			"Encoding=UTF-8\n"
-			"Icon=3floppy_mount\n"
-			"MountPoint=/media/floppy\n"
-			"ReadOnly=false\n"
-			"Type=FSDevice\n"
-			"UnmountIcon=3floppy_unmount\n"
-			);
-     data(output);
-     finished();
- */
-  redirection("file:/");
-  //finished();
-}
-#endif
 
 void addAtom(KIO::UDSEntry& entry, unsigned int ID, long l, const QString& s = QString::null)
 {
