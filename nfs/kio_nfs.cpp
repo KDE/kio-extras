@@ -49,7 +49,9 @@
 #include <errno.h>
 
 #include "nfs_prot.h"
+#define _fhandle fhandle
 #include "mount.h"
+#include <time.h>
 #include "kio_nfs.h"
 #include <kinstance.h>
 #include <kdebug.h>
