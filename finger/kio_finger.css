@@ -1,5 +1,5 @@
 BODY {
-	color: #999999;
+	color: #FFFFCC;
 	background: #000000;
 	padding: 2em;
 	margin: auto;
@@ -18,20 +18,18 @@ H1 {
 	color: #999999;
 	background: #000000;	
 	margin: auto;
-	padding: 1em
+	padding: 1em;
 }
 	
 .mainTable {
-	color: #999999;	
 	background: #000000;
-	border: 1 solid #444444;
+	border: thin solid #444444;
 	margin: auto;
 }
 	
 .fingerTable {
-	color: #999999;	
 	background: #000000;
-	border: 0 solid #444444;
+	border: 0;
 	margin: auto;
 }
 
