@@ -421,9 +421,12 @@ void SmbProtocol::listShares()
       //it failed with the default password
       delete proc;
       proc=0;
-      password="";
-      if (openPassDlg(i18n("Username and password required:"), user, password))
+      KIO::AuthInfo authInfo;
+      authInfo.username = user;
+      if (openPassDlg(authInfo))
       {
+         user = authInfo.username;
+         password = authInfo.password;
          proc=new ClientProcess();
          QCStringList tmpArgs;
          tmpArgs<<QCString("-L")+m_nmbName;
@@ -1215,9 +1218,12 @@ ClientProcess* SmbProtocol::getProcess(const QString& host, const QString& share
       //it failed with the default password
       delete proc;
       proc=0;
-      password="";
-      if (openPassDlg(i18n("Username and password required:"), user, password))
+      KIO::AuthInfo authInfo;
+      authInfo.username = user;
+      if (openPassDlg(authInfo))
       {
+         user = authInfo.username;
+         password = authInfo.password;
          proc=new ClientProcess();
          QCStringList tmpArgs;
          tmpArgs<<QString("//"+host+"/"+share).local8Bit();
