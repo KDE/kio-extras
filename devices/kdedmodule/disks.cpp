@@ -108,10 +108,10 @@ int DiskEntry::mount()
 	else  // root mounts with all params/options
       cmdS="mount -t%t %d %m -o %o";
 
-  cmdS.replace(QRegExp("%d"),this->deviceName());
-  cmdS.replace(QRegExp("%m"),this->mountPoint());
-  cmdS.replace(QRegExp("%t"),this->fsType());
-  cmdS.replace(QRegExp("%o"),this->mountOptions());
+  cmdS.replace(QRegExp("%d"),KShellProcess::quote(deviceName()));
+  cmdS.replace(QRegExp("%t"),KShellProcess::quote(fsType()));
+  cmdS.replace(QRegExp("%o"),KShellProcess::quote(mountOptions()));
+  cmdS.replace(QRegExp("%m"),KShellProcess::quote(mountPoint()));
 
   kdDebug() << "mount-cmd: [" << cmdS << "]" << endl;
   int e=sysCall(cmdS);
@@ -127,8 +127,8 @@ int DiskEntry::umount()
   if (cmdS.isEmpty()) // generate default umount cmd
       cmdS="umount %d";
 
-  cmdS.replace(QRegExp("%d"),this->deviceName());
-  cmdS.replace(QRegExp("%m"),this->mountPoint());
+  cmdS.replace(QRegExp("%d"),KShellProcess::quote(deviceName()));
+  cmdS.replace(QRegExp("%m"),KShellProcess::quote(mountPoint()));
 
   kdDebug() << "umount-cmd: [" << cmdS << "]" << endl;
   int e=sysCall(cmdS);
@@ -147,12 +147,12 @@ int DiskEntry::remount()
        options="remount";
     else
        options+=",remount";
-    int e=this->mount();
+    int e=mount();
     options=oldOpt;
     return e;
    } else {
-    if (int e=this->umount())
-      return this->mount();
+    if (int e=umount())
+      return mount();
    else return e;
   }
 };
