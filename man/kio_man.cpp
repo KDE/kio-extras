@@ -3,7 +3,6 @@
 #include <sys/stat.h>
 #include <string.h>
 
-
 #include <qdir.h>
 #include <qfile.h>
 #include <qtextstream.h>
@@ -21,15 +20,19 @@
 
 #include "kio_man.h"
 #include "kio_man.moc"
-
+#include <zlib.h>
+#include <man2html.h>
+#include <assert.h>
 
 using namespace KIO;
 
+MANProtocol *MANProtocol::_self = 0;
 
-bool parseUrl(QString url, QString &title, QString &section)
+bool parseUrl(const QString& _url, QString &title, QString &section)
 {
   section = "";
 
+  QString url = _url;
   while (url.left(1) == "/")
     url.remove(0,1);
 
@@ -38,7 +41,7 @@ bool parseUrl(QString url, QString &title, QString &section)
   int pos = url.find('(');
   if (pos < 0)
     return true;
-    
+
   title = title.left(pos);
 
   section = url.mid(pos+1);
@@ -49,146 +52,125 @@ bool parseUrl(QString url, QString &title, QString &section)
 
 
 MANProtocol::MANProtocol(const QCString &pool_socket, const QCString &app_socket)
-  : QObject(), SlaveBase("man", pool_socket, app_socket), _cache(0)
+    : QObject(), SlaveBase("man", pool_socket, app_socket), _cache(0), m_unzippedData(0)
 {
+    assert(!_self);
+    _self = this;
 }
 
+MANProtocol *MANProtocol::self() { return _self; }
 
 MANProtocol::~MANProtocol()
 {
-  delete _cache;
+    _self = 0;
+    delete _cache;
 }
 
+QCString MANProtocol::findPage(const QString &section, const QString &title) const
+{
+    return "/usr/share/man/man1/gcc.1.gz";
+}
+
+void output_real(const char *insert)
+{
+    QByteArray b;
+    int strLength = strlen(insert);
+    b.setRawData(insert, strLength);
+    MANProtocol::self()->data(b);
+    b.resetRawData(insert, strLength);
+}
 
 void MANProtocol::get(const KURL& url )
 {
-  kdDebug(7107) << "GET " << url.url() << endl;
+    kdDebug(7107) << "GET " << url.url() << endl;
 
-  QString title, section;
+    QString title, section;
 
-  if (!parseUrl(url.path(), title, section))
+    if (!parseUrl(url.path(), title, section))
     {
-      error(KIO::ERR_MALFORMED_URL, url.url());
-      return;
+        error(KIO::ERR_MALFORMED_URL, url.url());
+        return;
     }
 
-
-  // tell we are getting the file
-  gettingFile(url.url());
-  mimeType("text/html");
-
-
-  // see if an index was requested
-  if (url.query().isEmpty() && (title.isEmpty() || title == "/"))
+    // see if an index was requested
+    if (url.query().isEmpty() && (title.isEmpty() || title == "/"))
     {
-      if (section == "index" || section.isEmpty()) 
-	showMainIndex();
-      else
-	showIndex(section);
-      return;
+        if (section == "index" || section.isEmpty())
+            showMainIndex();
+        else
+            showIndex(section);
+        return;
     }
 
-  // assemble shell command
-  QString cmd, exec;
-  exec = KGlobal::dirs()->findExe("man");
-  if (exec.isEmpty())
-    {
-      outputError(i18n("man command not found!"));
-      return;
-    }
-  cmd = QString("LANG=%1 %2").arg(KGlobal::locale()->language()).arg(exec);
+    // tell we are getting the file
+    gettingFile(url.url());
+    mimeType("text/html");
 
-  if (url.query().isEmpty())
-    {
-      if ( !section.isEmpty() ) cmd += " " + section;
-      cmd += " " + title;
-    }
-  else
-    cmd += " -k " + url.query();
+    QCString filename=findPage(section, title);
 
-  cmd += " | ";
-  exec = KGlobal::dirs()->findExe("perl");
-  if (exec.isEmpty())
-    {
-      outputError(i18n("perl command not found!"));
-      return;
-    }
-  cmd += " " + exec;
-  exec = locate("exe", "kman2html");
-  if (exec.isEmpty())
-    {
-      outputError(i18n("kman2html command not found!"));
-      return;
-    }
-  cmd += " " + exec + " -cgiurl 'man:/${title}(${section})' -compress -bare ";
-  if (!url.query().isEmpty())
-    cmd += " -k";
-  
-  // create shell process
-  KProcess *shell = new KProcess;
-
-  exec = KGlobal::dirs()->findExe("sh");
-  if (exec.isEmpty())
-    {
-      outputError(i18n("sh command not found!"));
-      return;
+    gzFile file = gzopen(filename, "rb");
+    if (!file) {
+        outputError(i18n("open failed"));
+        return;
     }
 
-  kdDebug() << "Command to execute: " << cmd << endl;
+    delete [] m_unzippedData;
+    m_unzippedBufferSize=10;
+    m_unzippedData=new char[m_unzippedBufferSize];
+    m_unzippedLength = 0;
 
-  *shell << exec << "-c" << cmd;
+    char buffer[1024];
+    while (!gzeof(file)) {
+        int read = gzread(file, buffer, 1024);
+        addToBuffer(buffer, read);
+    }
 
-  connect(shell, SIGNAL(receivedStdout(KProcess *,char *,int)), this, SLOT(shellStdout(KProcess *,char *,int)));
+    // will call output_real
+    scan_man_page(m_unzippedData);
 
+    // tell we are done
+    data(QByteArray());
+    finished();
 
-  // run shell command
-  _shellStdout.truncate(0);
-  shell->start(KProcess::Block, KProcess::Stdout);
-
-
-  // publish the output
-  QCString header, footer;
-  header = "<html><body bgcolor=#ffffff>";
-  footer = "</body></html>";
-
-  data(header);
-  data(_shellStdout);
-  data(footer);
-
-  // tell we are done
-  data(QByteArray());
-  finished();
-
-  // clean up
-  delete shell;
-  _shellStdout.truncate(0);
+    delete [] m_unzippedData;
+    m_unzippedData = 0;
 }
 
-
-void MANProtocol::shellStdout(KProcess * /*proc*/, char *buffer, int buflen)
+void MANProtocol::addToBuffer(const char *buffer, int buflen)
 {
-  _shellStdout += QCString(buffer).left(buflen);
+    //check if the buffer is large enough for the new data
+    while (m_unzippedLength+buflen+3>m_unzippedBufferSize)
+    {
+        //hmm, lets make it bigger
+        char *newBuf=new char[m_unzippedBufferSize*3/2+1];
+        memcpy(newBuf,m_unzippedData,m_unzippedLength);
+        m_unzippedBufferSize=m_unzippedBufferSize*3/2;
+        delete [] m_unzippedData;
+        m_unzippedData=newBuf;
+        m_unzippedData[m_unzippedBufferSize]='\0';
+    }
+    memcpy(m_unzippedData+m_unzippedLength, buffer, buflen);
+    m_unzippedLength+=buflen;
 }
 
-
-void MANProtocol::outputError(QString errmsg)
+void MANProtocol::outputError(const QString& errmsg)
 {
   QCString output;
-  
+
   QTextStream os(output, IO_WriteOnly);
-  
+
   os << "<html>" << endl;
   os << i18n("<head><title>Man output</title></head>") << endl;
   os << i18n("<body bgcolor=#ffffff><h1>KDE Man Viewer Error</h1>") << errmsg << "</body>" << endl;
   os << "</html>" << endl;
-  
+
   data(output);
   finished();
 }
 
 
 void MANProtocol::stat( const KURL& url)
-{  
+{
   kdDebug(7107) << "ENTERING STAT " << url.url();
 
   QString title, section;
@@ -214,7 +196,7 @@ void MANProtocol::stat( const KURL& url)
   atom.m_str = "";
   atom.m_long = S_IFREG;
   entry.append(atom);
-    
+
   atom.m_uds = UDS_URL;
   atom.m_long = 0;
   QString newUrl = "man:"+title;
@@ -234,25 +216,25 @@ void MANProtocol::stat( const KURL& url)
 }
 
 
-extern "C" 
+extern "C"
 {
 
   int kdemain( int argc, char **argv )
   {
     KLocale::setMainCatalogue("kdelibs");
     KInstance instance("kio_man");
-    
+
     kdDebug(7107) <<  "STARTING " << getpid() << endl;
-  
+
     if (argc != 4)
       {
 	fprintf(stderr, "Usage: kio_man protocol domain-socket1 domain-socket2\n");
 	exit(-1);
       }
- 
+
     MANProtocol slave(argv[2], argv[3]);
     slave.dispatchLoop();
- 
+
     kdDebug(7107) << "Done" << endl;
 
     return 0;
@@ -260,13 +242,11 @@ extern "C"
 
 }
 
-
 void MANProtocol::mimetype(const KURL & /*url*/)
 {
   mimeType("text/html");
   finished();
 }
-
 
 QString sectionName(QString section)
 {
@@ -298,7 +278,7 @@ QString sectionName(QString section)
 void MANProtocol::showMainIndex()
 {
   QCString output;
-  
+
   QTextStream os(output, IO_WriteOnly);
 
   // print header
@@ -316,12 +296,12 @@ void MANProtocol::showMainIndex()
   QStringList::ConstIterator it;
   for (it = sections.begin(); it != sections.end(); ++it)
     os << "<tr><td><a href=\"man:(" << *it << ")\">Section " << *it << "</a></td><td>&nbsp;</td><td> " << sectionName(*it) << "</td></tr>" << endl;
-  
+
   os << "</table>" << endl;
 
   // print footer
   os << "</body></html>" << endl;
-  
+
   data(output);
   finished();
 }
@@ -334,11 +314,11 @@ QStringList getManPaths()
   // TODO: GNU man understands "man -w" to give the real man path used
   // by the program. We should use this instead of all this guessing!
 
-  // add MANPATH paths 
+  // add MANPATH paths
   QString envPath = getenv("MANPATH");
   if (!envPath.isEmpty())
     manPaths = QStringList::split(':', envPath);
-  
+
   // add paths from /etc/man.conf
   QRegExp manpath("^MANPATH\\s");
   QFile mc("/etc/man.conf");
@@ -374,12 +354,12 @@ QStringList getManPaths()
 }
 
 
-void MANProtocol::initCache(QString section)
+void MANProtocol::initCache(const QString& section)
 {
   delete _cache;
   _cache = new QDict<char>(231, false);
   _cache->setAutoDelete(true);
-  
+
   // locate whatis databases
   QStringList manPaths = getManPaths();
   QStringList::ConstIterator it;
@@ -397,7 +377,7 @@ void MANProtocol::initCache(QString section)
 	      int pos1 = line.find(QString("(%1").arg(section));
 	      if (pos1 <= 0)
 		continue;
-	      
+
 	      int pos = line.find("-");
 	      if (pos <= 0)
 		continue;
@@ -417,7 +397,7 @@ void MANProtocol::initCache(QString section)
 }
 
 
-QString MANProtocol::pageName(QString page)
+QString MANProtocol::pageName(const QString& page) const
 {
   const char *pagename = (*_cache)[page.latin1()];
   if (pagename)
@@ -426,10 +406,10 @@ QString MANProtocol::pageName(QString page)
 }
 
 
-void MANProtocol::showIndex(QString section)
+void MANProtocol::showIndex(const QString& section)
 {
   QCString output;
-  
+
   QTextStream os(output, IO_WriteOnly);
 
   // print header
@@ -448,7 +428,7 @@ void MANProtocol::showIndex(QString section)
     {
       QDir dir(*it, QString("man%1*").arg(section), 0, QDir::Dirs);
 
-      if (!dir.exists()) 
+      if (!dir.exists())
 	continue;
 
       QStringList dirList = dir.entryList();
@@ -461,7 +441,7 @@ void MANProtocol::showIndex(QString section)
 	  QString dirName = QString("%1/%2").arg(*it).arg(*itDir);
 	  QDir fileDir(dirName, QString("*.%1*").arg(section), 0, QDir::Files | QDir::Hidden | QDir::Readable);
 
-	  if (!fileDir.exists()) 
+	  if (!fileDir.exists())
 	    return;
 
 	  // does dir contain files
@@ -475,7 +455,7 @@ void MANProtocol::showIndex(QString section)
 		  QString file = dirName;
 		  file += '/';
 		  file += *itFile;
-	
+
 		  // skip compress extension
 		  if (fileName.right(4) == ".bz2")
 		    {
@@ -517,7 +497,9 @@ void MANProtocol::showIndex(QString section)
 
   // print footer
   os << "</body></html>" << endl;
-  
+
   data(output);
   finished();
 }
+
+

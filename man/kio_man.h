@@ -12,44 +12,41 @@
 #include <kio/slavebase.h>
 
 
-class KProcess;
-
-
 class MANProtocol : public QObject, public KIO::SlaveBase
 {
-  Q_OBJECT
+    Q_OBJECT
 
 public:
 
-  MANProtocol(const QCString &pool_socket, const QCString &app_socket);
-  virtual ~MANProtocol();
+    MANProtocol(const QCString &pool_socket, const QCString &app_socket);
+    virtual ~MANProtocol();
 
-  virtual void get(const KURL& url);
-  virtual void stat(const KURL& url);
+    virtual void get(const KURL& url);
+    virtual void stat(const KURL& url);
 
-  virtual void mimetype(const KURL &url);
+    virtual void mimetype(const KURL &url);
 
-  void outputError(QString errmsg);
+    void outputError(const QString& errmsg);
 
+    void showMainIndex();
+    void showIndex(const QString& section);
 
-  void showMainIndex();
-  void showIndex(QString section);
+    static MANProtocol *self();
 
-
-private slots:
-
-  void shellStdout(KProcess *, char *buffer, int buflen);
-
+    QCString findPage(const QString& section, const QString &title) const;
 
 private:
+    void addToBuffer(const char *buffer, int buflen);
+    void initCache(const QString& section);
+    QString pageName(const QString& page) const;
 
-  void initCache(QString section);
-  QString pageName(QString page);
+    QDict<char> *_cache;
 
-  QDict<char> *_cache;
+    ssize_t m_unzippedLength;
+    ssize_t m_unzippedBufferSize;
+    char *m_unzippedData;
 
-
-  QCString _shellStdout;
+    static MANProtocol *_self;
 
 };
 
