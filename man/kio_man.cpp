@@ -210,7 +210,7 @@ void MANProtocol::stat( const KURL& url)
   atom.m_uds = UDS_URL;
   atom.m_long = 0;
   QString newUrl = "man:"+title;
-  if (section != 0)
+  if (!section.isEmpty())
     newUrl += QString("(%1)").arg(section);
   atom.m_str = newUrl;
   entry.append(atom);
