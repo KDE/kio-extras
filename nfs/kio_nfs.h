@@ -65,7 +65,7 @@ class NFSProtocol : public KIO::SlaveBase
       virtual ~NFSProtocol();
 
       virtual void openConnection();
-      virtual void setHost(const QCString& host, int port, const QString& user, const QString& pass);
+      virtual void setHost( const QString& host, int port, const QString& user, const QString& pass );
 
       virtual void put( const KURL& url, int _mode,bool _overwrite, bool _resume );
       virtual void get( const KURL& url );
@@ -86,7 +86,7 @@ class NFSProtocol : public KIO::SlaveBase
       QIntDict<QString> groupcache;
 
       QStringList m_exportedDirs;
-      QCString m_currentHost;
+      QString m_currentHost;
       CLIENT *m_client;
       CLIENT *m_nfsClient;
       timeval total_timeout;

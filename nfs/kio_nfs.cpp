@@ -78,6 +78,8 @@ int kdemain( int argc, char **argv )
      fprintf(stderr, "Usage: kio_nfs protocol domain-socket1 domain-socket2\n");
      exit(-1);
   }
+  kdDebug(7101) << "NFS: kdemain: starting" << endl;
+  
   NFSProtocol slave(argv[2], argv[3]);
   slave.dispatchLoop();
   kdDebug(7101) << "NFS: kdemain: Done" << endl;
@@ -166,6 +168,7 @@ NFSProtocol::~NFSProtocol()
 {
 };
 
+//this one works recursive
 NFSFileHandle NFSProtocol::getFileHandle(QString path)
 {
    if (m_client==0) openConnection();
@@ -208,13 +211,14 @@ NFSFileHandle NFSProtocol::getFileHandle(QString path)
       return parentFH;
    };
    // do the rpc call
-
    diropargs dirargs;
    diropres dirres;
    memcpy(dirargs.dir.data,(const char*)parentFH,NFS_FHSIZE);
-   strcpy(dirargs.name, QFile::encodeName(lastPart).data());
+   //strcpy(dirargs.name, QFile::encodeName(lastPart).data());
+   QCString tmpStr=QFile::encodeName(lastPart);
+   dirargs.name=tmpStr.data();
 
-   kdDebug(7101)<<"calling rpc: FH: -"<<parentFH<<"- with name -"<<dirargs.name<<"-"<<endl;
+   cerr<<"calling rpc: FH: -"<<parentFH<<"- with name -"<<dirargs.name<<"-"<<endl;
 
    int clnt_stat = clnt_call(m_client, NFSPROC_LOOKUP,
                          (xdrproc_t) xdr_diropargs, (char*)&dirargs,
@@ -240,15 +244,16 @@ void NFSProtocol::openConnection()
    kdDebug(7101)<<"NFS::openConnection"<<endl;
    int m_sock(0);
    struct sockaddr_in server_addr;
+   kdDebug(7101)<<1<<endl;
    if (m_currentHost[0] >= '0' && m_currentHost[0] <= '9')
    {
       kdDebug(7101)<<"getting host from ip"<<endl;
       server_addr.sin_family = AF_INET;
-      server_addr.sin_addr.s_addr = inet_addr(m_currentHost);
+      server_addr.sin_addr.s_addr = inet_addr(m_currentHost.latin1());
    }
    else
    {
-      struct hostent *hp=gethostbyname(m_currentHost);
+      struct hostent *hp=gethostbyname(m_currentHost.latin1());
       if (hp==0)
       {
          kdDebug(7101)<<"getting host from name failed"<<endl;
@@ -257,11 +262,13 @@ void NFSProtocol::openConnection()
       server_addr.sin_family = AF_INET;
       memcpy(&server_addr.sin_addr, hp->h_addr, hp->h_length);
    }
+   kdDebug(7101)<<2<<endl;
 
    // create mount deamon client
    m_sock = RPC_ANYSOCK;
    server_addr.sin_port = 0;
    m_client=clnttcp_create(&server_addr,MOUNTPROG, MOUNTVERS, &m_sock, 0, 0);
+   kdDebug(7101)<<3<<endl;
    if (m_client==0)
    {
       server_addr.sin_port = 0;
@@ -275,15 +282,16 @@ void NFSProtocol::openConnection()
          exit(1);
       }
    }
+   kdDebug(7101)<<4<<endl;
    //m_client->cl_auth = authunix_create_default();
-   //TODO how do I detect the gid ?
-   m_client->cl_auth = authunix_create("localhost",geteuid(),0,0,0);
+   m_client->cl_auth = authunix_create("localhost",geteuid(),getegid(),0,0);
    total_timeout.tv_sec = 20;
    total_timeout.tv_usec = 0;
 
 	exports exportlist;
    //now do the stuff
    memset(&exportlist, '\0', sizeof(exportlist));
+   kdDebug(7101)<<5<<endl;
 
    int clnt_stat = clnt_call(m_client, MOUNTPROC_EXPORT,(xdrproc_t) xdr_void, NULL,
                          (xdrproc_t) xdr_exports, (char*)&exportlist,total_timeout);
@@ -304,7 +312,6 @@ void NFSProtocol::openConnection()
          fh=fhStatus.fhstatus_u.fhs_fhandle;
          //TODO remove this ugly hack
          m_handleCache.insert(QString("/")+KIO::encodeFileName(exportlist->ex_dir),fh);
-         //m_handleCache.insert(KIO::encodeFileName(exportlist->ex_dir),fh);
          m_exportedDirs.append(KIO::encodeFileName(exportlist->ex_dir));
          cerr<<"appending file -"<<KIO::encodeFileName(exportlist->ex_dir).data()<<"- with FH: -"<<fhStatus.fhstatus_u.fhs_fhandle<<"-"<<endl;
       }
@@ -385,7 +392,7 @@ void NFSProtocol::listDir( const KURL& _url)
       if (!checkForError(clnt_stat,listres.status,"listDir")) return;
       for (entry *dirEntry=listres.readdirres_u.reply.entries;dirEntry!=0;dirEntry=dirEntry->nextentry)
       {
-         kdDebug(7101)<<"adding to list: -"<<dirEntry->name<<"-"<<endl;
+         //kdDebug(7101)<<"adding to list: -"<<dirEntry->name<<"-"<<endl;
          filesToList.append(dirEntry->name);
       };
    } while (!listres.readdirres_u.reply.eof);
@@ -399,7 +406,10 @@ void NFSProtocol::listDir( const KURL& _url)
       diropargs dirargs;
       diropres dirres;
       memcpy(dirargs.dir.data,fh,NFS_FHSIZE);
-      strcpy(dirargs.name, QFile::encodeName(*it).data());
+      kdDebug(7101)<<"before strcpy"<<endl;
+      //strcpy(dirargs.name, QFile::encodeName(*it).data());
+      QCString tmpStr=QFile::encodeName(*it);
+      dirargs.name=tmpStr.data();
 
       kdDebug(7101)<<"calling rpc: FH: -"<<fh<<"- with name -"<<dirargs.name<<"-"<<endl;
 
@@ -407,7 +417,6 @@ void NFSProtocol::listDir( const KURL& _url)
                          (xdrproc_t) xdr_diropargs, (char*)&dirargs,
                          (xdrproc_t) xdr_diropres, (char*)&dirres,total_timeout);
 
-      free(dirargs.name);
 
       NFSFileHandle tmpFH;
       tmpFH=dirres.diropres_u.diropres.file.data;
@@ -598,7 +607,8 @@ void NFSProtocol::stat( const KURL & url)
    QString path( QFile::encodeName(url.path()));
    stripTrailingSlash(path);
    kdDebug(7101)<<"NFS::stat for -"<<path<<"-"<<endl;
-
+   QString tmpPath=path;
+   if ((tmpPath.length()>1) && (tmpPath[0]=='/')) tmpPath=tmpPath.mid(1);
    // We can't stat root, but we know it's a dir.
    if ( path.isEmpty() || path == "/" || m_exportedDirs.find(path)!=m_exportedDirs.end())
    {
@@ -625,7 +635,9 @@ void NFSProtocol::stat( const KURL & url)
    diropargs dirargs;
    attrstat attrAndStat;
    memcpy(dirargs.dir.data,fh,NFS_FHSIZE);
-   strcpy(dirargs.name, QFile::encodeName(path).data());
+//   strcpy(dirargs.name, QFile::encodeName(path).data());
+   QCString tmpStr=path.latin1();
+   dirargs.name=tmpStr.data();
 
    kdDebug(7101)<<"calling rpc: FH: -"<<fh<<"- with name -"<<dirargs.name<<"-"<<endl;
 
@@ -753,7 +765,7 @@ void NFSProtocol::stat( const KURL & url)
    finished();
 }
 
-void NFSProtocol::setHost(const QCString& host, int /*port*/, const QString& /*user*/, const QString& /*pass*/)
+void NFSProtocol::setHost(const QString& host, int /*port*/, const QString& /*user*/, const QString& /*pass*/)
 {
    kdDebug(7101)<<"NFS::setHost: -"<<host<<"-"<<endl;
    if (host.isEmpty())
