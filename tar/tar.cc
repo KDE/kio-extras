@@ -19,34 +19,24 @@
 
 #include "tar.h"
 
-int main(int , char **)
+using namespace KIO;
+
+TARProtocol::TARProtocol(Connection *connection)
+    : SlaveBase( "tar", connection)
 {
-  signal(SIGCHLD, KIOProtocol::sigchld_handler);
-  signal(SIGSEGV, KIOProtocol::sigsegv_handler);
-
-  KInstance instance( "kio_tar" );
-
-  KIOConnection parent( 0, 1 );
-
-  TARProtocol tar( &parent );
-  tar.dispatchLoop();
+  kdDebug( 7109 ) << "TarProtocol::TarProtocol" << endl;
 }
 
-TARProtocol::TARProtocol(KIOConnection *_conn) : KIOProtocol(_conn)
+TARProtocol::~TARProtocol()
 {
-debug("TARProtocol::TARProtocol");
-  m_cmd = CMD_NONE;
-  m_pFilter = 0L;
-  m_pJob = 0L;
 }
 
-void TARProtocol::slotGet(const char *_url)
+void TARProtocol::get( const QString & path, const QString & /*query*/, bool /*reload*/ )
 {
-debug("void TARProtocol::slotGet(%s) ",_url);
-  assert(m_cmd == CMD_NONE);
+  kdDebug( 7109 ) << "TarProtocol::get" << endl;
+  SlaveBase::get( path, QString::null, true ); // NOT IMPLEMENTED
 
-  m_cmd = CMD_GET;
-
+  /*
   KURL::List lst = KURL::split(_url);
   if (lst.isEmpty())  {
     error(ERR_MALFORMED_URL, _url);
@@ -119,25 +109,16 @@ debug("void TARProtocol::slotGet(%s) ",_url);
   while(!job.hasFinished())
     job.dispatch();
 
-  finished();
-
   m_cmd = CMD_NONE;
+  */
+  finished();
 }
 
-void TARProtocol::slotPut(const char *, int , bool ,
-			  bool , unsigned int)
+void TARProtocol::listDir( const QString & path )
 {
-}
-
-void TARProtocol::slotCopy(const char *, const char *)
-{
-  fprintf(stderr, "TARProtocol::slotCopy\n");
-  fflush(stderr);
-}
-
-void TARProtocol::slotListDir( const char *_url )
-{
-  kdebug( KDEBUG_INFO, 0, "=============== LIST %s ===============", _url  );
+  kdDebug( 7109 ) << "TarProtocol::listDir " << path << endl;
+  SlaveBase::listDir( path ); // NOT IMPLEMENTED
+  /*
   // Split url
   KURL::List lst = KURL::split( _url );
   if ( lst.isEmpty() ) {
@@ -160,8 +141,6 @@ void TARProtocol::slotListDir( const char *_url )
     m_cmd = CMD_NONE;
     return;
   }
-
-  m_cmd = CMD_LIST;
 
   // Save path required
   QString path = (*lst.begin()).path();
@@ -249,87 +228,19 @@ void TARProtocol::slotListDir( const char *_url )
 
     listEntry( entry );
   }
-
-  m_cmd = CMD_NONE;
+  */
 
   finished();
 
-  kdebug( KDEBUG_INFO, 0, "=============== BYE ===========" );
+  kdDebug( 7109 ) << "TarProtocol::listDir done" << endl;
 }
 
-void TARProtocol::slotTestDir( const char *_url )
+void TARProtocol::stat( const QString & path )
 {
-  // OUCH, this is major duplicated code from slotListDir
-  // Perhaps the KTar instance should be a member variable
-  // but then we need to detect when we switch to another tar file...
-
-  // Split url
-  KURL::List lst = KURL::split( _url );
-  if ( lst.isEmpty() ) {
-    error( ERR_MALFORMED_URL, strdup(_url) );
-    m_cmd = CMD_NONE;
-    return;
-  }
-
-  QString protocol = (*lst.begin()).protocol();
-
-  if ( lst.count() < 2 )
-  {
-    error( ERR_NO_SOURCE_PROTOCOL, protocol );
-    m_cmd = CMD_NONE;
-    return;
-  }
-
-  if ( strcmp( protocol, "tar" ) != 0L ) {
-    error( ERR_INTERNAL, "kio_tar got non tar file in list command" );
-    m_cmd = CMD_NONE;
-    return;
-  }
-
-  // Save path required
-  QString path = (*lst.begin()).path();
-  // Remove tar portion of URL
-  lst.remove( lst.begin() );
-
-  // HACK ktar supports tar.gz, so strip gzip
-  if ( (*lst.begin()).protocol() == "gzip" )
-  {
-    debug("HACK");
-    lst.remove( lst.begin() );
-  }
-
-  // HACK : only supports local files for now
-  if ( (*lst.begin()).protocol() != "file" || lst.count() != 1 )
-  {
-    error( ERR_UNSUPPORTED_PROTOCOL, (*lst.begin()).protocol() );
-    m_cmd = CMD_NONE;
-    return;
-  }
-
-  kdebug( KDEBUG_INFO, 0, QString("Opening KTarGz on %1").arg((*lst.begin()).path()));
-  KTarGz ktar( (*lst.begin()).path() );
-  if ( !ktar.open( IO_ReadOnly ) ) {
-    error( ERR_CANNOT_ENTER_DIRECTORY, strdup(_url) );
-    m_cmd = CMD_NONE;
-    return;
-  }
-
-  const KTarDirectory* root = ktar.directory();
-  if (!path.isEmpty() && path != "/")
-  {
-    kdebug( KDEBUG_INFO, 0, QString("Looking for entry %1").arg(path) );
-    const KTarEntry* e = root->entry( path );
-    if (e->isDirectory())
-      isDirectory();
-    else
-      isFile();
-  } else {
-    isDirectory();
-  }
-
-  finished();
+    SlaveBase::stat( path ); // NOT IMPLEMENTED
 }
 
+/*
 void TARProtocol::slotData(void *_p, int _len)
 {
   switch (m_cmd) {
@@ -374,11 +285,6 @@ void TARProtocol::jobData(void *_p, int _len)
   }
 }
 
-void TARProtocol::jobError(int _errid, const char *_text)
-{
-  error(_errid, _text);
-}
-
 void TARProtocol::jobDataEnd()
 {
   switch (m_cmd) {
@@ -416,51 +322,10 @@ debug("void TARProtocol::filterData");
     abort();
   }
 }
+*/
 
-
-/*************************************
- *
- * TARIOJob
- *
- *************************************/
-
-TARIOJob::TARIOJob(KIOConnection *_conn, TARProtocol *_tar) :
-	KIOJobBase(_conn)
-{
-debug("TARIOJob::TARIOJob");
-  m_pTAR = _tar;
-}
-
-void TARIOJob::slotData(void *_p, int _len)
-{
-  m_pTAR->jobData( _p, _len );
-}
-
-void TARIOJob::slotDataEnd()
-{
-  m_pTAR->jobDataEnd();
-}
-
-void TARIOJob::slotError(int _errid, const char *_txt)
-{
-  m_pTAR->jobError(_errid, _txt );
-}
-
-
-/*************************************
- *
- * TARFilter
- *
- *************************************/
-
-TARFilter::TARFilter(TARProtocol *_tar, const char *_prg, const char **_argv)
-  : KIOFilter(_prg, _argv)
-{
-debug("TARFilter::TARFilter()");
-  m_pTAR = _tar;
-}
-
-void TARFilter::emitData(void *_p, int _len)
-{
-  m_pTAR->filterData(_p, _len);
+extern "C" {
+    SlaveBase *init_tar() {
+        return new TARProtocol();
+    }
 }

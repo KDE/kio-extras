@@ -1,62 +1,46 @@
+/*  This file is part of the KDE libraries
+    Copyright (C) 2000 David Faure <faure@kde.org>
+
+    This library is free software; you can redistribute it and/or
+    modify it under the terms of the GNU Library General Public
+    License as published by the Free Software Foundation; either
+    version 2 of the License, or (at your option) any later version.
+
+    This library is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+    Library General Public License for more details.
+
+    You should have received a copy of the GNU Library General Public License
+    along with this library; see the file COPYING.LIB.  If not, write to
+    the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+    Boston, MA 02111-1307, USA.
+*/
+
 #ifndef _TAR_H
 #define _TAR_H "$Id$"
 
-#include <kio_interface.h>
-#include <kio_base.h>
-#include <kio_filter.h>
+#include <kio/slavebase.h>
 
-class TARProtocol : public KIOProtocol
+class TARProtocol : public KIO::SlaveBase
 {
 public:
-  TARProtocol( KIOConnection *_conn );
-  
-  virtual void slotGet( const char *_url );
-  virtual void slotPut( const char *_url, int _mode, bool _overwrite,
-			bool _resume, unsigned int );
-  virtual void slotCopy( const char *_source, const char *_dest );
+  TARProtocol( KIO::Connection *connection = 0 );
+  virtual ~TARProtocol();
 
-  virtual void slotListDir( const char *_url );
-  virtual void slotTestDir( const char *_url );
+  virtual void listDir( const QString & path );
+  virtual void stat( const QString & path );
 
-  virtual void slotData( void *_p, int _len );
-  virtual void slotDataEnd();
-  
+  virtual void get( const QString& path, const QString& query, bool reload );
+
+  /*
   void jobData( void *_p, int _len );
-  void jobError( int _errid, const char *_text );
   void jobDataEnd();
   void filterData( void *_p, int _len );
-  
-  KIOConnection* connection() { return KIOConnectionSignals::m_pConnection; }
-  
- protected:
-  
-  int m_cmd;
-  KIOFilter* m_pFilter;
-  KIOJobBase* m_pJob;
-};
+  */
 
-class TARIOJob : public KIOJobBase
-{
- public:
-  TARIOJob( KIOConnection *_conn, TARProtocol *_tar );
-  
-  virtual void slotData( void *_p, int _len );
-  virtual void slotDataEnd();
-  virtual void slotError( int _errid, const char *_txt );
-  
  protected:
-  TARProtocol* m_pTAR;
-};
 
-class TARFilter : public KIOFilter
-{
- public:
-  TARFilter( TARProtocol *_tar, const char *_prg, const char **_argv);
-  
-  virtual void emitData( void *_p, int _len );
-  
- protected:
-  TARProtocol* m_pTAR;
 };
 
 #endif
