@@ -112,7 +112,7 @@ int SessionIO::connect(uint32 IP, uint16 p)
 	}
 	
 	int toggle=1;
-	setsockopt(sock, IPPROTO_TCP, TCP_NODELAY, &toggle, sizeof(int));
+	setsockopt(sock, IPPROTO_TCP, TCP_NODELAY, (char*)&toggle, sizeof(int));
 /*	discardsock = socket (AF_INET, SOCK_STREAM, 0);
     ::connect(discardsock, (sockaddr*)&local, sizeof(local));
 	fcntl(discardsock,F_SETFL,O_NONBLOCK|fcntl(discardsock,F_GETFL,0));
