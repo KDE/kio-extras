@@ -20,13 +20,12 @@ extern "C" {
 #define DEBUG_MEMORY_LOCATION
 #endif
 
-#ifdef __GNUC__
-#include <ansidecl.h>
 #ifndef ATTRIBUTE_UNUSED
-#define ATTRIBUTE_UNUSED
-#endif
+#ifdef __GNUC__
+#define ATTRIBUTE_UNUSED __attribute__((unused))
 #else
 #define ATTRIBUTE_UNUSED
+#endif
 #endif
 
 #ifdef __cplusplus
