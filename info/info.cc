@@ -28,7 +28,7 @@ InfoProtocol::InfoProtocol( const QCString &pool, const QCString &app )
     m_perl = KGlobal::dirs()->findExe( "perl" );
     
     if( m_infoScript.isEmpty() )
-	kDebugFatal( 7108, "Critical error: Cannot locate 'kde-info2html' for HTML-conversion" );
+	kdError( 7108 ) << "Critical error: Cannot locate 'kde-info2html' for HTML-conversion" << endl;
     
     kdDebug( 7108 ) << "InfoProtocol::InfoProtocol - done" << endl;
 }
