@@ -110,6 +110,9 @@ int kdemain( int argc, char **argv )
 //   VRFY,       RSET,       DATA,       RCPT TO:,   MESG FROM:, ETRN,
 //   VERB,       DSN,        8BITMIME,   SIZE,       ONEX,       XUSR
 //
+//   We should separate ESMTP from SMTP and do the test by the banner and/or
+//   EHLO vs HELO support.
+//
 //   COMMANDS THAT DON'T SEEM SUPPORTED ANYMORE:
 //   SAML FROM:, SOML FROM:, SEND FROM:, TURN
 //   
@@ -223,6 +226,10 @@ void SMTPProtocol::setHost( const QString& host, int port, const QString& /*user
 // VERB:       ???
 // ETRN:       ???
 // DSN:        ???
+// 8BITMIME:   ???
+// SIZE:       ???
+// ONEX:       ???
+// XUSR:       ???
 // 
 
 bool SMTPProtocol::getResponse(char *r_buf, unsigned int r_len) {
@@ -278,12 +285,35 @@ bool SMTPProtocol::getResponse(char *r_buf, unsigned int r_len) {
   // null terminated.
   recv_len=strlen(buf);
  
+  // [E]SMTP returns responses as follows:
+  //
+  // xxx-text
+  // xxx-text
+  // xxx final text line.
+  //
+  // The subtle identifier of EOT is that the last line has a space instead
+  // of a dash after the number.  See appendix E in STD010
+  // FIXME:
+  // This has to be tested after every read....  The code does not do this
+  // yet and hence will most certainly not work.
+  //
+
+  // Can we assume that all return messages will be in the same primary class?
+  // (ie all 1xx, but no 1xx and 4xx together?)
+
   // HERE WE CHECK THE SUCCESSFUL RESPONSES FIRST 1xy,2xy,3xy
   // AND THE ERROR RESPONSES SECOND               4xy,5xy
   switch(buf[0]) {
   case '1':
   case '2':
   case '3':
+    if (buf[3] == ' ') {         // final line
+
+    } else if (buf[3] == '-') {  // another line follows
+
+    } else {                     // error of some sort?
+
+    }
     if (r_buf && r_len) {
       memcpy(r_buf, buf+4, QMIN(r_len,recv_len-4));
     }
@@ -291,13 +321,20 @@ bool SMTPProtocol::getResponse(char *r_buf, unsigned int r_len) {
     return true;
   case '4':
   case '5':
+    if (buf[3] == ' ') {         // final line
+
+    } else if (buf[3] == '-') {  // another line follows
+
+    } else {                     // error of some sort?
+
+    }
     if (r_buf && r_len) {
       memcpy(r_buf, buf+4, QMIN(r_len,recv_len-4));
     }
     if (buf) free(buf);
     return false;
   default:
-    fprintf(stderr, "Invalid SMTP response received!\n");
+    fprintf(stderr, "Invalid or unknown SMTP response received!\n");
     if (r_buf && r_len) {
       memcpy(r_buf, buf, QMIN(r_len,recv_len));
     }
