@@ -105,8 +105,18 @@ QCString MyPtyProcess::readLineFrom(int fd, QCString& inbuf, bool block)
 
     if (!inbuf.isEmpty())
     {
-	pos = inbuf.find('\n');
-	if (pos == -1) 
+
+        pos = inbuf.find('\n');
+/*
+        if (pos != -1)
+        {
+            ret = inbuf.left(pos);
+            inbuf = inbuf.mid(pos+1);
+            return ret;
+        }
+*/
+        
+        if (pos == -1) 
 	{
 	    ret = inbuf;
 	    inbuf.resize(0);
@@ -116,6 +126,7 @@ QCString MyPtyProcess::readLineFrom(int fd, QCString& inbuf, bool block)
 	    inbuf = inbuf.mid(pos+1);
 	}
 	return ret;
+
     }
 
     int flags = fcntl(fd, F_GETFL);
@@ -152,7 +163,15 @@ QCString MyPtyProcess::readLineFrom(int fd, QCString& inbuf, bool block)
 	inbuf += buf;
 
 	pos = inbuf.find('\n');
-	if (pos == -1) 
+/*
+        if (pos != -1)
+        {
+            ret = inbuf.left(pos);
+            inbuf = inbuf.mid(pos+1);
+            break;
+        }
+*/
+        if (pos == -1) 
 	{
 	    ret = inbuf;
 	    inbuf.resize(0);
@@ -162,6 +181,7 @@ QCString MyPtyProcess::readLineFrom(int fd, QCString& inbuf, bool block)
 	    inbuf = inbuf.mid(pos+1);
 	}
 	break;
+
     }
 
     return ret;
