@@ -29,6 +29,8 @@
 //     a copy from http://www.gnu.org/copyleft/gpl.html
 //
 /////////////////////////////////////////////////////////////////////////////
+
+#include <config.h>
 #include <pwd.h>
 #include <grp.h>
 
@@ -45,6 +47,7 @@ int SMBSlave::cache_stat(const SMBUrl &url, struct stat* st )
 {
     int result = smbc_stat( url.toSmbcUrl(), st);
     kdDebug(KIO_SMB) << "smbc_stat " << url.url() << " " << errno << " " << result << endl;
+    kdDebug(KIO_SMB) << "size " << st->st_size << endl;
     return result;
 }
 

@@ -1,3 +1,6 @@
+AC_DEFUN([SMB_CHECK],
+[
+AC_REQUIRE([KDE_CHECK_LARGEFILE])
 have_libsmbclient=yes
 KDE_CHECK_HEADER(libsmbclient.h, ,[have_libsmbclient=no] )
 KDE_CHECK_LIB(smbclient, smbc_new_context, [] ,[have_libsmbclient=no])
@@ -12,4 +15,6 @@ AC_CHECK_FUNC(yp_get_default_domain, [],
   ])
 
 AC_SUBST(SMBCLIENT_EXTRA_LIBS)
+])
 
+SMB_CHECK
