@@ -143,8 +143,9 @@ bool TextCreator::create(const QString &path, int width, int height, QImage &img
                     if ( !newLine )
                     {
                         int pos = text.find( '\n', i );
-                        if ( pos > (int) i )
-                        i = pos +1;
+                        if ( pos == -1 )
+			    break;
+                        i = pos + 1;
                     }
 
                     newLine = false;
