@@ -1,0 +1,11 @@
+[Desktop Entry]
+Exec=kcmshell audiocd
+Icon=cdaudio_unmount
+Type=Application
+
+X-KDE-ModuleType=Library
+X-KDE-Library=audiocd
+X-KDE-Init=audiocd
+
+Name=Audiocd IO Slave
+Comment=Audiocd IO Slave Configuration
