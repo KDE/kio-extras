@@ -46,29 +46,39 @@ POP3Protocol::POP3Protocol(Connection *_conn) : IOProtocol(_conn)
 
 bool POP3Protocol::getResponse (char *r_buf, unsigned int r_len)
 {
-  char buf[r_len ? r_len : 512];
+  char *buf;
   unsigned int recv_len=0;
   fd_set FDs;
+
+  // Give the buffer the appropiate size
+  if (r_len)
+    buf=(char *)malloc(r_len);
+  else {
+    buf=(char *)malloc(512);
+    r_len=512;
+  }
 
   // Wait for something to come from the server
   FD_ZERO(&FDs);
   FD_SET(m_iSock, &FDs);
 
   // And keep waiting if it timed out
-  while (::select(m_iSock+1, &FDs, 0, 0, &m_tTimeout) ==0) {
+  do {
 	// Yes, it's true, Linux sucks.
 	m_tTimeout.tv_sec=10;
 	m_tTimeout.tv_usec=0;
-  }
+  }  while (::select(m_iSock+1, &FDs, 0, 0, &m_tTimeout) ==0);
+
 
   // Clear out the buffer
-  memset(&buf, 0, r_len);
+  memset(buf, 0, r_len);
   // And grab the data
-  if (fgets(buf, sizeof(buf)-1, fp) == 0)
+  if (fgets(buf, r_len-1, fp) == 0)
     return false;
   // This is really a funky crash waiting to happen if something isn't
   // null terminated.
   recv_len=strlen(buf);
+  fprintf(stderr,"buf is:%s\n", buf);
 
 /*
  *   From rfc1939:
@@ -113,6 +123,8 @@ bool POP3Protocol::command (const char *cmd, char *recv_buf, unsigned int len)
  *   SPACE character.  Keywords are three or four characters long. Each
  *   argument may be up to 40 characters long.
  */
+
+  fprintf(stderr,"Buffer is: %s\n", cmd);
 
   // Write the command
   if (::write(m_iSock, cmd, strlen(cmd)) != (ssize_t)strlen(cmd))
@@ -313,6 +325,7 @@ void POP3Protocol::slotGet(const char *_url)
   }
 
   if (cmd == "index") {
+    unsigned long size=0;
     if (command("LIST")) {
       ready();
       gettingFile(_url);
@@ -341,7 +354,9 @@ LIST
 12 649
 .
 */
+		size+=strlen(buf);
 		data(buf, strlen(buf));
+		totalSize(size);
 	}
       }
       fprintf(stderr,"Finishing up list\n");fflush(stderr);
@@ -529,8 +544,46 @@ void POP3Protocol::jobDataEnd()
   }
 }
 
-void POP3Protocol::slotDel( QStringList&  )
+void POP3Protocol::slotDel( QStringList& _list )
 {
+    QStringList::Iterator files = _list.begin();
+    QString path, invalidURI=QString::null;
+    bool isInt;
+    KURL blah=(*_list.begin());
+    if ( !pop3_open(blah) ) {
+      fprintf(stderr,"pop3_open failed\n");fflush(stderr);
+      pop3_close();
+      return;
+    }
+    totalSize(_list.count());
+    totalFiles(_list.count());
+    totalDirs(0);
+    for (; files != _list.end(); ++files) {
+	KURL target(*files);
+	if ( target.isMalformed() ) {
+	  error( ERR_MALFORMED_URL, *files );
+	  m_cmd = CMD_NONE;
+	  return;
+	}
+	path=target.path();
+	if (path.left(1) == "/")
+	  path.remove(0,1);
+	(void)path.toUInt(&isInt);
+	if (!isInt) {
+	  invalidURI=path;
+	} else {
+	  path.prepend("DELE ");
+	  if (!command(path)) {
+	    invalidURI=path;
+	  }
+	}
+    }
+    if (!invalidURI.isEmpty()) {
+	error(ERR_MALFORMED_URL, invalidURI);
+    }
+    pop3_close();
+    finished();
+    m_cmd=CMD_NONE;
 }
 
 /*************************************
