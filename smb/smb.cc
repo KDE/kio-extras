@@ -81,7 +81,7 @@ public:
                                 message = i18n("Authorization is required to access host %1").arg(optmessage);
                                 myUser = user?user:"";
                                 myPass = "";
-                                res = proto->openPassDlg(message, myUser, myPass, optmessage);
+                                res = proto->openPassDlg(message, myUser, myPass); // TODO: cache result in 'optmessage'
                                 kdDebug(7106) << "CallBack: res=" << (res?"true":"false") << endl;
                                 if (!res) {
                                         if (user) {delete user; user = 0;}
@@ -109,7 +109,7 @@ public:
                                 message = i18n("Please enter password for user %1").arg(optmessage);
                                 myUser = optmessage;
                                 myPass = "";
-                                res = proto->openPassDlg(message, myUser, myPass, proto->currentHost);
+                                res = proto->openPassDlg(message, myUser, myPass); // TODO: cache result in proto->currentHost
                                 kdDebug(7106) << "CallBack: res=" << (res?"true":"false") << endl;
                                 if (!res) {
                                         if (user) {delete user; user = 0;}
@@ -154,7 +154,7 @@ public:
                                 message = i18n("Please enter password for share %1 (user ignored)").arg(optmessage);
                                 myUser = "";
                                 myPass = "";
-                                res = proto->openPassDlg(message, myUser, myPass, "smbSHARE/" + proto->currentHost + QString("/") + optmessage);
+                                res = proto->openPassDlg(message, myUser, myPass); // TODO: cache result in "smbSHARE/" + proto->currentHost + QString("/") + optmessage
                                 kdDebug(7106) << "CallBack: res=" << (res?"true":"false") << endl;
                                 kdDebug(7106) << "CallBack: user=" << user << ", pass=" << pass << endl;
                                 if (!res) {
