@@ -755,24 +755,30 @@ AudioCDProtocol::get(const KURL & url)
 
 #ifdef HAVE_LAME
   if ( initLameLib() == true ){
-    if (filetype == "mp3")
+    if (filetype == "mp3") {
       totalSize((time_secs * d->bitrate * 1000)/8);
+      mimeType("audio/x-mp3");
+    }
   };
 #endif
 
 #ifdef HAVE_VORBIS
   if (filetype == "ogg") {
     totalSize((time_secs * d->vorbis_bitrate)/8);
+    mimeType("audio/x-ogg");
   }
 #endif
 
   if (filetype == "wav") {
     totalSize(44 + totalByteCount); // Include RIFF header length.
     writeHeader(totalByteCount);    // Write RIFF header.
+    mimeType("audio/x-wav");
   }
 
-  if (filetype == "cda")
+  if (filetype == "cda") {
     totalSize(totalByteCount);      // CDA is raw interleaved PCM Data with SampleRate 44100 and 16 Bit res. 
+    mimeType("audio/x-cda");
+  }
 
   paranoiaRead(drive, firstSector, lastSector, filetype);
 
