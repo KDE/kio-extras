@@ -502,8 +502,8 @@ bool SMTPProtocol::smtp_open(const QString& fakeHostname)
        */
       //kdDebug(7112) << "TLS has been enabled!" << endl;
 
-      cmd = auto_ptr<Command>( new EHLOCommand( this, m_hostname ) );
-      if ( !execute( cmd.get() ) ) {
+      auto_ptr<Command> cmd2( new EHLOCommand( this, m_hostname ) );
+      if ( !execute( cmd2.get() ) ) {
         smtp_close();
         return false;
       }
