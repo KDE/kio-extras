@@ -68,7 +68,8 @@ public:
     */
   bool pop3_open (KURL &_url);
 
-  int m_cmd, m_iSock, m_iOldPort;
+  int m_cmd, m_iSock;
+  uint m_iOldPort;
   struct timeval m_tTimeout;
   QString m_sOldServer, m_sOldPass, m_sOldUser;
   FILE *fp;

@@ -19,6 +19,7 @@
 #include <kurl.h>
 #include <kprotocolmanager.h>
 #include <ksock.h>
+#include <kautoarray.h>
 
 #ifndef MAX
 #define MAX(a,b)	(((a) > (b)) ? (a) : (b))
@@ -81,7 +82,7 @@ POP3Protocol::POP3Protocol(Connection *_conn) : IOProtocol(_conn)
 
 bool POP3Protocol::getResponse (char *r_buf, unsigned int r_len)
 {
-  char buf[r_len ? r_len : 512];
+  kauto_array<char> buf(r_len ? r_len : 512);
   unsigned int recv_len=0;
   fd_set FDs;
 
