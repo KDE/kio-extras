@@ -112,7 +112,10 @@ imapParser::clientLogin (const QString & aUser, const QString & aPass)
                imapCommand ("LOGIN", "\"" + aUser + "\" \"" + aPass + "\""));
 
   if (cmd->result () == "OK")
+  {
+    currentState = ISTATE_LOGIN;
     retVal = true;
+  }
   completeQueue.removeRef (cmd);
 
   return retVal;
@@ -184,7 +187,10 @@ imapParser::clientAuthenticate (const QString & aUser, const QString & aPass,
   }
 
   if (cmd->result () == "OK")
+  {
+    currentState = ISTATE_LOGIN;
     retVal = true;
+  }
   completeQueue.removeRef (cmd);
 
   return retVal;

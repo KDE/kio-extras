@@ -619,7 +619,6 @@ bool IMAP4Protocol::parseReadLine (QByteArray & buffer, ulong relay)
       else
         break;
     }
-    sleep (1);
   }
   return TRUE;
 }
