@@ -45,5 +45,5 @@ bool ImageCreator::create(const QString &path, int, int, QImage &img)
 
 ThumbCreator::Flags ImageCreator::flags() const
 {
-    return static_cast<Flags>(DrawFrame);
+    return None;
 }
