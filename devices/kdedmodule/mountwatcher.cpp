@@ -152,6 +152,7 @@ void MountWatcherModule::readDFDone()
 		entryName+=ent->mountPoint().replace(QRegExp("/"),"");
        	        if (ent->mounted())
 		{
+			if (!(ent->discType().contains("floppy") || ent->discType().contains("cdrom"))) continue;
                  	mountList<<i18n("%1 mounted at %2").arg(ent->deviceName()).arg(ent->mountPoint());
 			mountList<<(QString("devices:/")+entryName+QString("?dev=")+ent->deviceName()+
 			"&mp="+ent->mountPoint()+"&mounted=true");
@@ -160,6 +161,8 @@ void MountWatcherModule::readDFDone()
 		}
                	else
 		{
+			if (!(ent->discType().contains("floppy") || ent->discType().contains("cdrom"))) continue;
+
 		//	continue;
                  	mountList<<i18n("%1 (not mounted)").arg(ent->deviceName());
 			mountList<<QString("devices:/")+entryName+QString("?dev=")+ent->deviceName()+
