@@ -1,5 +1,5 @@
 /***************************************************************************
-                          kio_sftpProtocol.h  -  description
+                          sftpProtocol.h  -  description
                              -------------------
     begin                : Sat Jun 30 20:08:47 CDT 2001
     copyright            : (C) 2001 by Lucas Fisher
@@ -32,14 +32,13 @@
 
 #define KIO_SFTP_DB 7120
 
-class QCString;
 
-class kio_sftpProtocol : public QObject, public KIO::SlaveBase
+class sftpProtocol : public KIO::SlaveBase
 {
 
 public:
-  kio_sftpProtocol(const QCString &pool_socket, const QCString &app_socket);
-  virtual ~kio_sftpProtocol();
+  sftpProtocol(const QCString &pool_socket, const QCString &app_socket);
+  virtual ~sftpProtocol();
   virtual void setHost(const QString& h, int port, const QString& user, const QString& pass);
   virtual void get(const KURL& url);
   virtual void listDir(const KURL& url) ;
@@ -72,20 +71,14 @@ private: // Private variables
   /** Username to use when connecting */
   QString mUsername;
 
+  /** User's password */
+  QString mPassword;
+
   /** Message id of the last sftp packet we sent. */
   unsigned int mMsgId;
 
   /** Type of packet we are expecting to receive next. */
   unsigned char mExpected;
-
-  /** Current url */
-  KURL mUrl;
-
-  /** User's password */
-  QString mPassword;
-
-  /** default port for ssh */
-  int defaultPort;
 
   /** Version of the sftp protocol we are using. */
   int sftpVersion;
@@ -98,6 +91,7 @@ private: // Private variables
   };
 
 private: // private methods
+  bool getPacket(QByteArray& msg);
   /** 
    * Type is a sftp packet type found in .sftp.h'.
    * Example: SSH2_FXP_READLINK, SSH2_FXP_RENAME, etc.
@@ -106,17 +100,6 @@ private: // private methods
    * version negotiated by the client and server (sftpVersion).
    */
   bool isSupportedOperation(int type);
-  
-  /**
-   * Get the name of the user running this slave.  This should be
-   * the same username that SSH uses by default.  This is used to
-   * determine if the user entered a username different from their
-   * name on this host.
-   */
-  QString getCurrentUsername();
-  
-  bool getPacket(QByteArray& msg);
-
   /** Used to have the server canonicalize any given path name to an absolute path.
       This is useful for converting path names containing ".." components or relative
       pathnames without a leading slash into absolute paths.

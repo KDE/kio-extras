@@ -43,7 +43,7 @@ So we can't connect.
 #include <time.h>
 #include <netdb.h>
 #include <string.h>
-#include <pwd.h>
+
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <sys/time.h>
@@ -52,6 +52,7 @@ So we can't connect.
 #include <sys/wait.h>
 
 #include <kapplication.h>
+#include <kuser.h>
 #include <kdebug.h>
 #include <kmessagebox.h>
 #include <kinstance.h>
@@ -63,15 +64,13 @@ So we can't connect.
 #include <kmimetype.h>
 #include <kmimemagic.h>
 #include <klargefile.h>
+#include <kremoteencoding.h>
 
 #include "sftp.h"
 #include "kio_sftp.h"
 #include "atomicio.h"
 #include "sftpfileattr.h"
 #include "ksshprocess.h"
-
-#define MIN(a,b) (((a)<(b))?(a):(b))
-#define RETRIES 3
 
 
 using namespace KIO;
@@ -88,7 +87,7 @@ extern "C"
       exit(-1);
     }
 
-    kio_sftpProtocol slave(argv[2], argv[3]);
+    sftpProtocol slave(argv[2], argv[3]);
     slave.dispatchLoop();
 
     kdDebug(KIO_SFTP_DB) << "*** kio_sftp Done" << endl;
@@ -136,32 +135,26 @@ static int writeToFile (int fd, const char *buf, size_t len)
   return 0;
 }
 
-kio_sftpProtocol::kio_sftpProtocol(const QCString &pool_socket, const QCString &app_socket)
-                 :QObject(), SlaveBase("kio_sftp", pool_socket, app_socket),
+sftpProtocol::sftpProtocol(const QCString &pool_socket, const QCString &app_socket)
+             : SlaveBase("kio_sftp", pool_socket, app_socket),
                   mConnected(false), mPort(-1), mMsgId(0) {
-  kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol(): pid = " << getpid() << endl;
+  kdDebug(KIO_SFTP_DB) << "sftpProtocol(): pid = " << getpid() << endl;
 }
 
 
-kio_sftpProtocol::~kio_sftpProtocol() {
-    kdDebug(KIO_SFTP_DB) << "~kio_sftpProtocol(): pid = " << getpid() << endl;
+sftpProtocol::~sftpProtocol() {
+    kdDebug(KIO_SFTP_DB) << "~sftpProtocol(): pid = " << getpid() << endl;
     closeConnection();
 }
 
-QString kio_sftpProtocol::getCurrentUsername() {
-  struct passwd *pw;
-  
-  pw = getpwuid(getuid());
-  if (pw == NULL) {
-    return QString::null;
-  }
-  
-  kdDebug(KIO_SFTP_DB) << "getCurrentUsername(): pw_name = "
-    << pw->pw_name << endl;
-  return QString(pw->pw_name);
-}
-
-bool kio_sftpProtocol::isSupportedOperation(int type) {
+/** 
+  * Type is a sftp packet type found in .sftp.h'.
+  * Example: SSH2_FXP_READLINK, SSH2_FXP_RENAME, etc.
+  *
+  * Returns true if the type is supported by the sftp protocol
+  * version negotiated by the client and server (sftpVersion).
+  */
+bool sftpProtocol::isSupportedOperation(int type) {
   switch (type) {
     case SSH2_FXP_VERSION:
     case SSH2_FXP_STATUS:
@@ -202,7 +195,9 @@ bool kio_sftpProtocol::isSupportedOperation(int type) {
   return false;
 }
 
-void kio_sftpProtocol::copy(const KURL &src, const KURL &dest, int permissions, bool overwrite) {
+void sftpProtocol::copy(const KURL &src, const KURL &dest, int permissions, bool overwrite) 
+{
+    kdDebug(KIO_SFTP_DB) << "copy(): " << src << " -> " << dest << endl;
     
     bool srcLocal = src.isLocalFile();
     bool destLocal = dest.isLocalFile();
@@ -215,17 +210,14 @@ void kio_sftpProtocol::copy(const KURL &src, const KURL &dest, int permissions, 
       error(ERR_UNSUPPORTED_ACTION, QString::null);    
 }
 
-void kio_sftpProtocol::sftpCopyGet(const KURL& dest, const KURL& src, int mode, bool overwrite)
+void sftpProtocol::sftpCopyGet(const KURL& dest, const KURL& src, int mode, bool overwrite)
 {
-    kdDebug(KIO_SFTP_DB) << "sftpCopyGet: " << src << " -> " << dest << endl;
+    kdDebug(KIO_SFTP_DB) << "sftpCopyGet(): " << src << " -> " << dest << endl;
     
     // Attempt to establish a connection...
     openConnection();
-    if( !mConnected ) {
-        error(ERR_COULD_NOT_CONNECT, mHost);
-        finished();
+    if( !mConnected )
         return;
-    }
     
     KDE_struct_stat buff_orig;
     QCString dest_orig ( QFile::encodeName(dest.path()) );
@@ -336,7 +328,7 @@ void kio_sftpProtocol::sftpCopyGet(const KURL& dest, const KURL& src, int mode, 
     finished();         
 }
 
-kio_sftpProtocol::Status kio_sftpProtocol::sftpGet( const KURL& src, KIO::filesize_t offset, int fd )
+sftpProtocol::Status sftpProtocol::sftpGet( const KURL& src, KIO::filesize_t offset, int fd )
 {
     int code;
     sftpFileAttr attr;
@@ -344,6 +336,8 @@ kio_sftpProtocol::Status kio_sftpProtocol::sftpGet( const KURL& src, KIO::filesi
     Status res;
     res.code = 0;
     res.size = 0;    
+    
+    kdDebug(KIO_SFTP_DB) << "sftpGet(): " << src << endl;
     
     // stat the file first to get its size
     if( (code = sftpStat(src, attr)) != SSH2_FX_OK ) {            
@@ -451,15 +445,12 @@ kio_sftpProtocol::Status kio_sftpProtocol::sftpGet( const KURL& src, KIO::filesi
     return res;
 }
 
-void kio_sftpProtocol::get(const KURL& url) {
-    kdDebug(KIO_SFTP_DB) << "get(" << url << ")" << endl ;
+void sftpProtocol::get(const KURL& url) {
+    kdDebug(KIO_SFTP_DB) << "get(): " << url << endl ;
     
     openConnection();
-    if( !mConnected ) {
-        error(ERR_COULD_NOT_CONNECT, mHost);
-        finished();
+    if( !mConnected )
         return;
-    }
 
     // Get resume offset
     Q_UINT64 offset = config()->readUnsignedLongNumEntry("resume");   
@@ -482,9 +473,9 @@ void kio_sftpProtocol::get(const KURL& url) {
 }
 
 
-void kio_sftpProtocol::setHost (const QString& h, int port, const QString& user, const QString& pass){
-    kdDebug(KIO_SFTP_DB) << "setHost(): " << user << "@" 
-                         << h << ":" << port << endl;
+void sftpProtocol::setHost (const QString& h, int port, const QString& user, const QString& pass)
+{
+    kdDebug(KIO_SFTP_DB) << "setHost(): " << user << "@" << h << ":" << port << endl;
 
     if( mHost != h || mPort != port || user != mUsername || mPassword != pass )
         closeConnection();
@@ -500,30 +491,30 @@ void kio_sftpProtocol::setHost (const QString& h, int port, const QString& user,
         else
             mPort = ntohs(pse->s_port);
     }
-
-    if (user.isEmpty()) {
-	    mUsername = getCurrentUsername();
-    }
-    else {
-    	mUsername = user;
-    }
-
+    
+    mUsername = user;
     mPassword = pass;
+    
+    if (user.isEmpty())
+    {
+      KUser u;
+      mUsername = u.loginName();    
+    }    
 }
 
 
-void kio_sftpProtocol::openConnection() {
+void sftpProtocol::openConnection() {
+    
     if(mConnected)
       return;
     
-    kdDebug(KIO_SFTP_DB) << "openConnection() to " <<
-        mUsername << "@" << mHost << ":" << mPort << endl;
+    kdDebug(KIO_SFTP_DB) << "openConnection(): " << mUsername << "@" 
+                         << mHost << ":" << mPort << endl;
 
     infoMessage( i18n("Opening SFTP connection to host <b>%1:%2</b>").arg(mHost).arg(mPort));
 
     if( mHost.isEmpty() ) {
-        kdDebug(KIO_SFTP_DB) << "openConnection(): "
-            "Need hostname" << endl;
+        kdDebug(KIO_SFTP_DB) << "openConnection(): Need hostname..." << endl;
         error(ERR_UNKNOWN_HOST, i18n("No hostname specified"));
         return;
     }
@@ -546,7 +537,7 @@ void kio_sftpProtocol::openConnection() {
     // Check for cached authentication info if a username AND password were
     // not specified in setHost().
     if( mUsername.isEmpty() && mPassword.isEmpty() ) {
-        kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol(): checking cache " 
+        kdDebug(KIO_SFTP_DB) << "openConnection(): checking cache " 
                              << "info.username = " << info.username 
                              << ", info.url = " << info.url.prettyURL() << endl;
 
@@ -778,12 +769,12 @@ void kio_sftpProtocol::openConnection() {
         case KSshProcess::ERR_CANNOT_LAUNCH:
         case KSshProcess::ERR_HOST_KEY_REJECTED:
         default:
-          /*
             infoMessage(i18n("Connection failed."));
             caption = i18n("Unexpected SFTP error: %1").arg(err);
             msg = ssh.errorMsg();
             messageBox(Information, msg, caption);
-           */            
+            closeConnection();
+            error(ERR_UNKNOWN, msg);
             return;
         }
     }
@@ -795,8 +786,7 @@ void kio_sftpProtocol::openConnection() {
     }
 
     // Now send init packet.
-    kdDebug(KIO_SFTP_DB) << "openConnection(): "
-        "Sending SSH2_FXP_INIT packet." << endl;
+    kdDebug(KIO_SFTP_DB) << "openConnection(): Sending SSH2_FXP_INIT packet." << endl;
     QByteArray p;
     QDataStream packet(p, IO_WriteOnly);
     packet << (Q_UINT32)5;                     // packet length
@@ -810,13 +800,11 @@ void kio_sftpProtocol::openConnection() {
     Q_UINT32 version;
     Q_UINT8  type;
     s >> type;
-    kdDebug(KIO_SFTP_DB) << "openConnection(): "
-        "Got type " << type << endl;
+    kdDebug(KIO_SFTP_DB) << "openConnection(): Got type " << type << endl;
 
     if( type == SSH2_FXP_VERSION ) {
         s >> version;
-        kdDebug(KIO_SFTP_DB) << "openConnection(): "
-            "Got server version " << version << endl;
+        kdDebug(KIO_SFTP_DB) << "openConnection(): Got server version " << version << endl;
 
         // XXX Get extensions here      
         sftpVersion = version;
@@ -845,7 +833,7 @@ void kio_sftpProtocol::openConnection() {
     info.url.setUser(mUsername);
     info.username = mUsername;
     info.password = mPassword;
-    kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol(): caching info.username = " << info.username <<
+    kdDebug(KIO_SFTP_DB) << "sftpProtocol(): caching info.username = " << info.username <<
         ", info.url = " << info.url.prettyURL() << endl;
     cacheAuthentication(info);
     mConnected = true;
@@ -857,13 +845,13 @@ void kio_sftpProtocol::openConnection() {
     return;
 }
 
-void kio_sftpProtocol::closeConnection() {
+void sftpProtocol::closeConnection() {
     kdDebug(KIO_SFTP_DB) << "closeConnection()" << endl;
     ssh.disconnect();
     mConnected = false;
 }
 
-void kio_sftpProtocol::sftpCopyPut(const KURL& src, const KURL& dest, int permissions, bool overwrite) {    
+void sftpProtocol::sftpCopyPut(const KURL& src, const KURL& dest, int permissions, bool overwrite) {    
       
     KDE_struct_stat buff;
     QCString file (QFile::encodeName(src.path()));
@@ -892,14 +880,11 @@ void kio_sftpProtocol::sftpCopyPut(const KURL& src, const KURL& dest, int permis
     ::close( fd );
 }
 
-void kio_sftpProtocol::sftpPut( const KURL& dest, int permissions, bool resume, bool overwrite, int fd ) {
+void sftpProtocol::sftpPut( const KURL& dest, int permissions, bool resume, bool overwrite, int fd ) {
 
     openConnection();
-    if( !mConnected ) {
-        error(ERR_COULD_NOT_CONNECT, mHost);
-        finished();
+    if( !mConnected )
         return;
-    }    
    
     kdDebug(KIO_SFTP_DB) << "sftpPut(): " << dest
                          << ", resume=" << resume
@@ -952,7 +937,7 @@ void kio_sftpProtocol::sftpPut( const KURL& dest, int permissions, bool resume, 
         code = sftpStat(partUrl, partAttr);
         
         if( code == SSH2_FX_OK ) {
-            kdDebug(KIO_SFTP_DB) << "sftpPut(): <file.part> already exists" << endl;
+            kdDebug(KIO_SFTP_DB) << "sftpPut(): .part file already exists" << endl;
             partExists = true;
             offset = partAttr.fileSize();
                         
@@ -979,8 +964,8 @@ void kio_sftpProtocol::sftpPut( const KURL& dest, int permissions, bool resume, 
                     else
                         resume = canResume( offset );
                     
-                    kdDebug(KIO_SFTP_DB) << "sftpPut: Can resume = " << resume
-                                        << ", Resume offset = " << offset;
+                    kdDebug(KIO_SFTP_DB) << "sftpPut(): can resume = " << resume
+                                         << ", offset = " << offset;
                     
                     if( !resume ) {
                       error(ERR_FILE_ALREADY_EXIST, partUrl.prettyURL());
@@ -1047,6 +1032,7 @@ void kio_sftpProtocol::sftpPut( const KURL& dest, int permissions, bool resume, 
     QByteArray buff;
        
     do {        
+        
         if( fd != -1 ) {
             buff.resize( 16*1024 );
             if ( (nbytes = ::read(fd, buff.data(), buff.size())) > -1 )
@@ -1057,7 +1043,7 @@ void kio_sftpProtocol::sftpPut( const KURL& dest, int permissions, bool resume, 
             nbytes = readData( buff );
         }
         
-        if( nbytes > 0 ) {
+        if( nbytes >= 0 ) {            
             if( (code = sftpWrite(handle, offset, buff)) != SSH2_FX_OK ) {
                 error(ERR_COULD_NOT_WRITE, dest.prettyURL());
                 return;
@@ -1078,9 +1064,10 @@ void kio_sftpProtocol::sftpPut( const KURL& dest, int permissions, bool resume, 
                 return;
             }
         }
+    
     } while( nbytes > 0 );
 
-    if( nbytes != 0 ) {
+    if( nbytes < 0 ) {
         sftpClose(handle);
 
         if( markPartial ) {
@@ -1115,23 +1102,19 @@ void kio_sftpProtocol::sftpPut( const KURL& dest, int permissions, bool resume, 
     finished();
 }
 
-void kio_sftpProtocol::put ( const KURL& url, int permissions, bool overwrite, bool resume ){
-    kdDebug(KIO_SFTP_DB) << "put(" << url << ")" << endl
-                         << "put(): overwrite = " << overwrite
+void sftpProtocol::put ( const KURL& url, int permissions, bool overwrite, bool resume ){
+    kdDebug(KIO_SFTP_DB) << "put(): " << url << ", overwrite = " << overwrite
                          << ", resume = " << resume << endl;
                             
     sftpPut( url, permissions, resume, overwrite );
 }
 
-void kio_sftpProtocol::stat ( const KURL& url ){
-    kdDebug(KIO_SFTP_DB) << "stat( " << url << " )" << endl;
+void sftpProtocol::stat ( const KURL& url ){
+    kdDebug(KIO_SFTP_DB) << "stat(): " << url << endl;
 
     openConnection();
-    if( !mConnected ) {
-        error(ERR_COULD_NOT_CONNECT, mHost);
-        finished();
+    if( !mConnected )
         return;
-    }
 
     // If the stat URL has no path, do not attempt to determine the real
     // path and do a redirect. KRun will simply ignore such requests. 
@@ -1183,15 +1166,12 @@ void kio_sftpProtocol::stat ( const KURL& url ){
 }
 
 
-void kio_sftpProtocol::mimetype ( const KURL& url ){
-    kdDebug(KIO_SFTP_DB) << "mimetype( " << url << " )" << endl;
+void sftpProtocol::mimetype ( const KURL& url ){
+    kdDebug(KIO_SFTP_DB) << "mimetype(): " << url << endl;
 
     openConnection();
-    if( !mConnected ) {
-        error(ERR_COULD_NOT_CONNECT, mHost);
-        finished();
+    if( !mConnected )
         return;
-    }
 
     Q_UINT32 pflags = SSH2_FXF_READ;
     QByteArray handle, mydata;
@@ -1224,15 +1204,12 @@ void kio_sftpProtocol::mimetype ( const KURL& url ){
 }
 
 
-void kio_sftpProtocol::listDir(const KURL& url) {
-    kdDebug(KIO_SFTP_DB) << "listDir(" << url << ")" << endl;
+void sftpProtocol::listDir(const KURL& url) {
+    kdDebug(KIO_SFTP_DB) << "listDir(): " << url << endl;
 
     openConnection();
-    if( !mConnected ) {
-        error(ERR_COULD_NOT_CONNECT, mHost);
-        finished();
+    if( !mConnected )
         return;
-    }
 
     if( !url.hasPath() ) {
         KURL newUrl ( url );
@@ -1246,7 +1223,6 @@ void kio_sftpProtocol::listDir(const KURL& url) {
     
     int code;
     QByteArray handle;
-    QString path = url.path();
     
     if( (code = sftpOpenDirectory(url, handle)) != SSH2_FX_OK ) {
         kdError(KIO_SFTP_DB) << "listDir(): open directory failed" << endl;
@@ -1280,15 +1256,13 @@ void kio_sftpProtocol::listDir(const KURL& url) {
         string path
         ATTR   attr
  */
-void kio_sftpProtocol::mkdir(const KURL&url, int permissions){
-    kdDebug(KIO_SFTP_DB) << "mkdir()" << endl;
+void sftpProtocol::mkdir(const KURL&url, int permissions){
+    
+    kdDebug(KIO_SFTP_DB) << "mkdir() creating dir: " << url.path() << endl;
 
     openConnection();
-    if( !mConnected ) {
-        error(ERR_COULD_NOT_CONNECT, mHost);
-        finished();
+    if( !mConnected )
         return;
-    }
 
     QString path = url.path();
     Q_UINT32 id, expectedId;
@@ -1299,12 +1273,13 @@ void kio_sftpProtocol::mkdir(const KURL&url, int permissions){
     attr.setPermissions(permissions);
 
     id = expectedId = mMsgId++;
-    kdDebug(KIO_SFTP_DB) << "creating dir " << path << endl;
+    
     s << Q_UINT32(1 /*type*/ + 4 /*id*/ + 4 /*str length*/ + path.length() + attr.size());
     s << (Q_UINT8)SSH2_FXP_MKDIR;
     s << id;
-    s.writeBytes(path.latin1(), path.length());
+    s.writeBytes(remoteEncoding()->encode(path).data(), path.length());
     s << attr;
+    
     kdDebug(KIO_SFTP_DB) << "mkdir(): packet size is " << p.size() << endl;
 
     putPacket(p);
@@ -1348,7 +1323,7 @@ void kio_sftpProtocol::mkdir(const KURL&url, int permissions){
     finished();
 }
 
-void kio_sftpProtocol::rename(const KURL& src, const KURL& dest, bool overwrite){
+void sftpProtocol::rename(const KURL& src, const KURL& dest, bool overwrite){
     kdDebug(KIO_SFTP_DB) << "rename(" << src << " -> " << dest << ")" << endl;
 
     if (!isSupportedOperation(SSH2_FXP_RENAME)) {
@@ -1358,11 +1333,8 @@ void kio_sftpProtocol::rename(const KURL& src, const KURL& dest, bool overwrite)
     }
 
     openConnection();
-    if( !mConnected ) {
-        error(ERR_COULD_NOT_CONNECT, mHost);
-        finished();
+    if( !mConnected )
         return;
-    }
 
     // Always stat the destination before attempting to rename 
     // a file or a directory...
@@ -1400,7 +1372,7 @@ void kio_sftpProtocol::rename(const KURL& src, const KURL& dest, bool overwrite)
     kdDebug(KIO_SFTP_DB) << "rename(): END" << endl;
 }
 
-void kio_sftpProtocol::symlink(const QString& target, const KURL& dest, bool overwrite){
+void sftpProtocol::symlink(const QString& target, const KURL& dest, bool overwrite){
     kdDebug(KIO_SFTP_DB) << "symlink()" << endl;
 
     if (!isSupportedOperation(SSH2_FXP_SYMLINK)) {
@@ -1410,11 +1382,8 @@ void kio_sftpProtocol::symlink(const QString& target, const KURL& dest, bool ove
     }
 
     openConnection();
-    if( !mConnected ) {
-        error(ERR_COULD_NOT_CONNECT, mHost);
-        finished();
+    if( !mConnected )
         return;
-    }
 
     int code;
     bool failed = false;
@@ -1453,17 +1422,14 @@ void kio_sftpProtocol::symlink(const QString& target, const KURL& dest, bool ove
     finished();
 }
 
-void kio_sftpProtocol::chmod(const KURL& url, int permissions){
+void sftpProtocol::chmod(const KURL& url, int permissions){
     QString perms;
     perms.setNum(permissions, 8);
     kdDebug(KIO_SFTP_DB) << "chmod(" << url << ", " << perms << ")" << endl;
 
     openConnection();
-    if( !mConnected ) {
-        error(ERR_COULD_NOT_CONNECT, mHost);
-        finished();
+    if( !mConnected )
         return;
-    }
 
     sftpFileAttr attr;
     attr.setPermissions(permissions);
@@ -1479,14 +1445,12 @@ void kio_sftpProtocol::chmod(const KURL& url, int permissions){
 }
 
 
-void kio_sftpProtocol::del(const KURL &url, bool isfile){
+void sftpProtocol::del(const KURL &url, bool isfile){
     kdDebug(KIO_SFTP_DB) << "del(" << url << ", " << (isfile?"file":"dir") << ")" << endl;
 
     openConnection();
-    if( !mConnected ) {
-        error(ERR_COULD_NOT_CONNECT, mHost);
+    if( !mConnected )
         return;
-    }
 
     int code;
     if( (code = sftpRemove(url, isfile)) != SSH2_FX_OK ) {
@@ -1496,14 +1460,14 @@ void kio_sftpProtocol::del(const KURL &url, bool isfile){
     finished();
 }
 
-void kio_sftpProtocol::slave_status() {
+void sftpProtocol::slave_status() {
     kdDebug(KIO_SFTP_DB) << "slave_status(): connected to " 
                          <<  mHost << "? " << mConnected << endl;
     
     slaveStatus ((mConnected ? mHost : QString::null), mConnected);
 }
 
-bool kio_sftpProtocol::getPacket(QByteArray& msg) {
+bool sftpProtocol::getPacket(QByteArray& msg) {
 //    kdDebug(KIO_SFTP_DB) << "getPacket()" << endl;
     int len;
     unsigned int msgLen;
@@ -1531,7 +1495,7 @@ bool kio_sftpProtocol::getPacket(QByteArray& msg) {
 
     unsigned int offset = 0;
     while( msgLen ) {
-        len = atomicio(ssh.stdioFd(), buf, MIN(msgLen, sizeof(buf)), true /*read*/);
+        len = atomicio(ssh.stdioFd(), buf, kMin(msgLen, sizeof(buf)), true /*read*/);
         if( len == 0 ) {
             kdDebug(KIO_SFTP_DB) << "getPacket(): nothing to read, ret = " <<
                 len << ", error =" << strerror(errno) << endl;
@@ -1555,7 +1519,7 @@ bool kio_sftpProtocol::getPacket(QByteArray& msg) {
 }
 
 /** Send an sftp packet to stdin of the ssh process. */
-bool kio_sftpProtocol::putPacket(QByteArray& p){
+bool sftpProtocol::putPacket(QByteArray& p){
 //    kdDebug(KIO_SFTP_DB) << "putPacket(): size == " << p.size() << endl;
     int ret;
     ret = atomicio(ssh.stdioFd(), p.data(), p.size(), false /*write*/);
@@ -1572,8 +1536,10 @@ bool kio_sftpProtocol::putPacket(QByteArray& p){
 This is useful for converting path names containing ".." components or relative
 pathnames without a leading slash into absolute paths.
 Returns the canonicalized url. */
-int kio_sftpProtocol::sftpRealPath(const KURL& url, KURL& newUrl){
+int sftpProtocol::sftpRealPath(const KURL& url, KURL& newUrl){
+    
     kdDebug(KIO_SFTP_DB) << "sftpRealPath(" << url << ", newUrl)" << endl;
+    
     QString path = url.path();
     Q_UINT32 id, expectedId;
     id = expectedId = mMsgId++;
@@ -1583,7 +1549,7 @@ int kio_sftpProtocol::sftpRealPath(const KURL& url, KURL& newUrl){
     s << Q_UINT32(1 /*type*/ + 4 /*id*/ + 4 /*str length*/ + path.length());
     s << (Q_UINT8)SSH2_FXP_REALPATH;
     s << id;
-    s.writeBytes(path.latin1(), path.length());
+    s.writeBytes(remoteEncoding()->encode(path).data(), path.length());
 
     putPacket(p);
     getPacket(p);
@@ -1628,7 +1594,7 @@ int kio_sftpProtocol::sftpRealPath(const KURL& url, KURL& newUrl){
     return SSH2_FX_OK;
 }
 
-kio_sftpProtocol::Status kio_sftpProtocol::doProcessStatus(Q_UINT8 code, const QString& message)
+sftpProtocol::Status sftpProtocol::doProcessStatus(Q_UINT8 code, const QString& message)
 {
     Status res;
     res.code = 0;
@@ -1667,15 +1633,17 @@ kio_sftpProtocol::Status kio_sftpProtocol::doProcessStatus(Q_UINT8 code, const Q
 }
 
 /** Process SSH_FXP_STATUS packets. */
-void kio_sftpProtocol::processStatus(Q_UINT8 code, const QString& message){
+void sftpProtocol::processStatus(Q_UINT8 code, const QString& message){
     Status st = doProcessStatus( code, message );
     if( st.code != 0 )
         error( st.code, st.text );
 }
 
 /** Opens a directory handle for url.path. Returns true if succeeds. */
-int kio_sftpProtocol::sftpOpenDirectory(const KURL& url, QByteArray& handle){
+int sftpProtocol::sftpOpenDirectory(const KURL& url, QByteArray& handle){
+    
     kdDebug(KIO_SFTP_DB) << "sftpOpenDirectory(" << url << ", handle)" << endl;
+    
     QByteArray p;
     QDataStream s(p, IO_WriteOnly);
     QString path = url.path();
@@ -1685,7 +1653,7 @@ int kio_sftpProtocol::sftpOpenDirectory(const KURL& url, QByteArray& handle){
     s << (Q_UINT32)(1 /*type*/ + 4 /*id*/ + 4 /*str length*/ + path.length());
     s << (Q_UINT8)SSH2_FXP_OPENDIR;
     s << (Q_UINT32)id;
-    s.writeBytes(path.latin1(), path.length());
+    s.writeBytes(remoteEncoding()->encode(path).data(), path.length());
 
     putPacket(p);
     getPacket(p);
@@ -1722,13 +1690,15 @@ int kio_sftpProtocol::sftpOpenDirectory(const KURL& url, QByteArray& handle){
 }
 
 /** Closes a directory or file handle. */
-int kio_sftpProtocol::sftpClose(const QByteArray& handle){
+int sftpProtocol::sftpClose(const QByteArray& handle){
+    
     kdDebug(KIO_SFTP_DB) << "sftpClose()" << endl;
-    QByteArray p;
-    QDataStream s(p, IO_WriteOnly);
-
+    
     Q_UINT32 id, expectedId;
     id = expectedId = mMsgId++;
+    
+    QByteArray p;
+    QDataStream s(p, IO_WriteOnly);    
     s << (Q_UINT32)(1 /*type*/ + 4 /*id*/ + 4 /*str length*/ + handle.size());
     s << (Q_UINT8)SSH2_FXP_CLOSE;
     s << (Q_UINT32)id;
@@ -1761,18 +1731,21 @@ int kio_sftpProtocol::sftpClose(const QByteArray& handle){
 }
 
 /** Set a files attributes. */
-int kio_sftpProtocol::sftpSetStat(const KURL& url, const sftpFileAttr& attr){
+int sftpProtocol::sftpSetStat(const KURL& url, const sftpFileAttr& attr){
+    
     kdDebug(KIO_SFTP_DB) << "sftpSetStat(" << url << ", attr)" << endl;
+    
     QString path = url.path();
-    QByteArray p;
-    QDataStream s(p, IO_WriteOnly);
-
+    
     Q_UINT32 id, expectedId;
     id = expectedId = mMsgId++;
+    
+    QByteArray p;
+    QDataStream s(p, IO_WriteOnly);
     s << (Q_UINT32)(1 /*type*/ + 4 /*id*/ + 4 /*str length*/ + path.length() + attr.size());
     s << (Q_UINT8)SSH2_FXP_SETSTAT;
     s << (Q_UINT32)id;
-    s.writeBytes(path.latin1(), path.length());
+    s.writeBytes(remoteEncoding()->encode(path).data(), path.length());
     s << attr;
 
     putPacket(p);
@@ -1803,17 +1776,21 @@ int kio_sftpProtocol::sftpSetStat(const KURL& url, const sftpFileAttr& attr){
 }
 
 /** Sends a sftp command to remove a file or directory. */
-int kio_sftpProtocol::sftpRemove(const KURL& url, bool isfile){
-    QString path = url.path();
-    QByteArray p;
-    QDataStream s(p, IO_WriteOnly);
+int sftpProtocol::sftpRemove(const KURL& url, bool isfile){
+    
+    kdDebug(KIO_SFTP_DB) << "sftpRemove(): " << url << ", isFile ? " << isfile << endl;
+    
+    QString path = url.path();    
 
-    Q_UINT32 id, expectedId;
+    Q_UINT32 id, expectedId;    
     id = expectedId = mMsgId++;
+    
+    QByteArray p;    
+    QDataStream s(p, IO_WriteOnly);    
     s << (Q_UINT32)(1 /*type*/ + 4 /*id*/ + 4 /*str length*/ + path.length());
     s << (Q_UINT8)(isfile ? SSH2_FXP_REMOVE : SSH2_FXP_RMDIR);
     s << (Q_UINT32)id;
-    s.writeBytes(path.latin1(), path.length());
+    s.writeBytes(remoteEncoding()->encode(path).data(), path.length());
 
     putPacket(p);
     getPacket(p);
@@ -1840,12 +1817,15 @@ int kio_sftpProtocol::sftpRemove(const KURL& url, bool isfile){
 
     return code;
 }
+
 /** Send a sftp command to rename a file or directoy. */
-int kio_sftpProtocol::sftpRename(const KURL& src, const KURL& dest){
+int sftpProtocol::sftpRename(const KURL& src, const KURL& dest){
+    
     kdDebug(KIO_SFTP_DB) << "sftpRename(" << src << " -> " << dest << ")" << endl;
 
     QString srcPath = src.path();
     QString destPath = dest.path();
+    
     QByteArray p;
     QDataStream s(p, IO_WriteOnly);
 
@@ -1856,8 +1836,8 @@ int kio_sftpProtocol::sftpRename(const KURL& src, const KURL& dest){
                     4 /*str length*/ + destPath.length());
     s << (Q_UINT8)SSH2_FXP_RENAME;
     s << (Q_UINT32)id;
-    s.writeBytes(srcPath.latin1(), srcPath.length());
-    s.writeBytes(destPath.latin1(), destPath.length());
+    s.writeBytes(remoteEncoding()->encode(srcPath).data(), srcPath.length());
+    s.writeBytes(remoteEncoding()->encode(destPath).data(), destPath.length());
 
     putPacket(p);
     getPacket(p);
@@ -1885,16 +1865,18 @@ int kio_sftpProtocol::sftpRename(const KURL& src, const KURL& dest){
     return code;
 }
 /** Get directory listings. */
-int kio_sftpProtocol::sftpReadDir(const QByteArray& handle, const KURL& url){
+int sftpProtocol::sftpReadDir(const QByteArray& handle, const KURL& url){
     // url is needed so we can lookup the link destination
-    kdDebug(KIO_SFTP_DB) << "sftpReadDir()" << endl;
-
-    sftpFileAttr attr; 
-    QByteArray p;
+    kdDebug(KIO_SFTP_DB) << "sftpReadDir(): " << url << endl;
+    
     Q_UINT32 id, expectedId, count;
     Q_UINT8 type;
     
+    sftpFileAttr attr (remoteEncoding()->encoding());
     attr.setDirAttrsFlag(true);
+    
+    
+    QByteArray p;    
     QDataStream s(p, IO_WriteOnly);
     id = expectedId = mMsgId++;
     s << (Q_UINT32)(1 /*type*/ + 4 /*id*/ + 4 /*str length*/ + handle.size());
@@ -1947,21 +1929,25 @@ int kio_sftpProtocol::sftpReadDir(const QByteArray& handle, const KURL& url){
     }
     
     listEntry(attr.entry(), true);
+    
     return SSH2_FX_OK;
 }
 
-int kio_sftpProtocol::sftpReadLink(const KURL& url, QString& target){
-    kdDebug(KIO_SFTP_DB) << "sftpReadLink(" << url << ")" << endl;
+int sftpProtocol::sftpReadLink(const KURL& url, QString& target){
+    
+    kdDebug(KIO_SFTP_DB) << "sftpReadLink(): " << url << endl;
+    
     QString path = url.path();
+    
     Q_UINT32 id, expectedId;
     id = expectedId = mMsgId++;
+    
     QByteArray p;
     QDataStream s(p, IO_WriteOnly);
-
     s << (Q_UINT32)(1 /*type*/ + 4 /*id*/ + 4 /*str length*/ + path.length());
     s << (Q_UINT8)SSH2_FXP_READLINK;
     s << id;
-    s.writeBytes(path.latin1(), path.length());
+    s.writeBytes(remoteEncoding()->encode(path).data(), path.length());
 
     putPacket(p);
     getPacket(p);
@@ -1996,12 +1982,13 @@ int kio_sftpProtocol::sftpReadLink(const KURL& url, QString& target){
 
     QByteArray x;
     r >> x;
-    target = QString(x);
+    target = remoteEncoding()->decode(x.data());
     return SSH2_FX_OK;
 }
 
-int kio_sftpProtocol::sftpSymLink(const QString& target, const KURL& dest){
+int sftpProtocol::sftpSymLink(const QString& target, const KURL& dest){
     kdDebug(KIO_SFTP_DB) << "sftpSymLink(" << target << " -> " << dest << ")" << endl;
+    
     QString destPath = dest.path();
     QByteArray p;
     QDataStream s(p, IO_WriteOnly);
@@ -2013,8 +2000,8 @@ int kio_sftpProtocol::sftpSymLink(const QString& target, const KURL& dest){
                     4 /*str length*/ + destPath.length());
     s << (Q_UINT8)SSH2_FXP_SYMLINK;
     s << (Q_UINT32)id;
-    s.writeBytes(target.latin1(), target.length());
-    s.writeBytes(destPath.latin1(), destPath.length());
+    s.writeBytes(remoteEncoding()->encode(target).data(), target.length());
+    s.writeBytes(remoteEncoding()->encode(destPath).data(), destPath.length());
 
     putPacket(p);
     getPacket(p);
@@ -2041,9 +2028,12 @@ int kio_sftpProtocol::sftpSymLink(const QString& target, const KURL& dest){
 
     return code;
 }
+
 /** Stats a file. */
-int kio_sftpProtocol::sftpStat(const KURL& url, sftpFileAttr& attr){
+int sftpProtocol::sftpStat(const KURL& url, sftpFileAttr& attr) {
+    
     kdDebug(KIO_SFTP_DB) << "sftpStat(): " << url << endl;
+    
     QByteArray p;
     QDataStream s(p, IO_WriteOnly);
     QString path = url.path();
@@ -2053,7 +2043,7 @@ int kio_sftpProtocol::sftpStat(const KURL& url, sftpFileAttr& attr){
     s << (Q_UINT32)(1 /*type*/ + 4 /*id*/ + 4 /*str length*/ + path.length());
     s << (Q_UINT8)SSH2_FXP_LSTAT;
     s << (Q_UINT32)id;
-    s.writeBytes(path.latin1(), path.length());
+    s.writeBytes(remoteEncoding()->encode(path).data(), path.length());
 
     putPacket(p);
     getPacket(p);
@@ -2122,8 +2112,9 @@ int kio_sftpProtocol::sftpStat(const KURL& url, sftpFileAttr& attr){
 }
 
 
-int kio_sftpProtocol::sftpOpen(const KURL& url, const Q_UINT32 pflags, const sftpFileAttr& attr, QByteArray& handle){
-    kdDebug(KIO_SFTP_DB) << "sftpOpen(" << url << ", handle)" << endl;
+int sftpProtocol::sftpOpen(const KURL& url, const Q_UINT32 pflags,
+                           const sftpFileAttr& attr, QByteArray& handle) {
+    kdDebug(KIO_SFTP_DB) << "sftpOpen(" << url << ", handle" << endl;
 
     QByteArray p;
     QDataStream s(p, IO_WriteOnly);
@@ -2136,7 +2127,7 @@ int kio_sftpProtocol::sftpOpen(const KURL& url, const Q_UINT32 pflags, const sft
                     4 /*pflags*/ + attr.size());
     s << (Q_UINT8)SSH2_FXP_OPEN;
     s << (Q_UINT32)id;
-    s.writeBytes(path.latin1(), path.length());
+    s.writeBytes(remoteEncoding()->encode(path).data(), path.length());
     s << pflags;
     s << attr;
 
@@ -2174,7 +2165,8 @@ int kio_sftpProtocol::sftpOpen(const KURL& url, const Q_UINT32 pflags, const sft
 }
 
 
-int kio_sftpProtocol::sftpRead(const QByteArray& handle, Q_UINT64 offset, Q_UINT32 len, QByteArray& data){
+int sftpProtocol::sftpRead(const QByteArray& handle, Q_UINT64 offset, Q_UINT32 len, QByteArray& data)
+{
  //   kdDebug(KIO_SFTP_DB) << "sftpRead( offset = " << offset << ", len = " << len << ")" << endl;
     QByteArray p;
     QDataStream s(p, IO_WriteOnly);
@@ -2220,7 +2212,7 @@ int kio_sftpProtocol::sftpRead(const QByteArray& handle, Q_UINT64 offset, Q_UINT
 }
 
 
-int kio_sftpProtocol::sftpWrite(const QByteArray& handle, Q_UINT64 offset, const QByteArray& data){
+int sftpProtocol::sftpWrite(const QByteArray& handle, Q_UINT64 offset, const QByteArray& data){
 //    kdDebug(KIO_SFTP_DB) << "sftpWrite( offset = " << offset <<
 //        ", data sz = " << data.size() << ")" << endl;
     QByteArray p;
