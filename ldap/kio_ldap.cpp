@@ -551,7 +551,6 @@ int LDAPProtocol::saslInteract( void *in )
           mCancel = true;
           return LDAP_USER_CANCELLED;
         }
-        mFirstAuth = false;
         mUser = info.username;
         mPassword = info.password;
       }
@@ -685,7 +684,6 @@ void LDAPProtocol::openConnection()
 
         mBindName = info.username;
         mPassword = info.password;
-        mFirstAuth = false;
       } else {
         kdDebug(7125) << "Dialog cancelled!" << endl;
         error( ERR_USER_CANCELED, QString::null );
@@ -702,6 +700,7 @@ void LDAPProtocol::openConnection()
 #endif          
         ldap_simple_bind_s( mLDAP, mBindName.utf8(), mPassword.utf8() );
     
+    mFirstAuth = false;
     if ( ret != LDAP_INVALID_CREDENTIALS && ret != LDAP_INSUFFICIENT_ACCESS ) {
       kdDebug(7125) << "ldap_bind retval: " << ret << endl;
       auth = true;
