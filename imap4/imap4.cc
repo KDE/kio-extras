@@ -387,7 +387,7 @@ IMAP4Protocol::listDir (const KURL & _url)
               lastone = NULL;
 
             // if the uid is not in the cache we fake an entry
-            if (!lastone)
+/*            if (!lastone)  Does not really work with the cache, Michael */
             {
 //              kdDebug(7116) << "SEARCH faking - " << (*it) << endl;
               fake.setPartSpecifier ((*it));
