@@ -1,35 +1,40 @@
 /////////////////////////////////////////////////////////////////////////////
-//                                                                         
+//
 // Project:     SMB kioslave for KDE2
 //
-// File:        kio_smb_internal.cpp  
-//                                                                         
+// File:        kio_smb_internal.cpp
+//
 // Abstract:    Utility class implementation used by SMBSlave
 //
 // Author(s):   Matthew Peterson <mpeterson@caldera.com>
 //
 //---------------------------------------------------------------------------
-//                                                                  
-// Copyright (c) 2000  Caldera Systems, Inc.                        
-//                                                                         
-// This program is free software; you can redistribute it and/or modify it 
+//
+// Copyright (c) 2000  Caldera Systems, Inc.
+//
+// This program is free software; you can redistribute it and/or modify it
 // under the terms of the GNU General Public License as published by the
-// Free Software Foundation; either version 2.1 of the License, or  
-// (at your option) any later version.                                     
-//                                                                         
-//     This program is distributed in the hope that it will be useful,     
-//     but WITHOUT ANY WARRANTY; without even the implied warranty of      
-//     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the       
-//     GNU Lesser General Public License for more details.                 
-//                                                                         
-//     You should have received a copy of the GNU General Public License 
+// Free Software Foundation; either version 2.1 of the License, or
+// (at your option) any later version.
+//
+//     This program is distributed in the hope that it will be useful,
+//     but WITHOUT ANY WARRANTY; without even the implied warranty of
+//     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//     GNU Lesser General Public License for more details.
+//
+//     You should have received a copy of the GNU General Public License
 //     along with this program; see the file COPYING.  If not, please obtain
-//     a copy from http://www.gnu.org/copyleft/gpl.html   
-//                                                                         
+//     a copy from http://www.gnu.org/copyleft/gpl.html
+//
 /////////////////////////////////////////////////////////////////////////////
 
 #include "kio_smb.h"
 #include "kio_smb_internal.h"
+
+#include <qtextcodec.h>
+
+#include <kconfig.h>
+#include <kglobal.h>
 
 
 //===========================================================================
@@ -53,7 +58,7 @@ SMBUrl::SMBUrl(const KURL& kurl)
 
 
 //-----------------------------------------------------------------------
-SMBUrl& SMBUrl::append(const char* filedir)
+SMBUrl& SMBUrl::append(const QString &filedir)
   // Appends the specified file and dir to this SMBUrl
   // "smb://server/share" --> "smb://server/share/filedir"
   //-----------------------------------------------------------------------
@@ -157,20 +162,20 @@ void SMBUrl::fromKioUrl(const KURL& kurl)
 
 }
 
-//-----------------------------------------------------------------------   
+//-----------------------------------------------------------------------
 QCString SMBUrl::toSmbcUrl() const
   // Return a URL that is suitable for libsmbclient
-  //----------------------------------------------------------------------- 
+  //-----------------------------------------------------------------------
 {
-  kdDebug(KIO_SMB) << "toSmbcURL, returning: " << QString(m_smbc_url.local8Bit()) << endl;
-  return m_smbc_url.local8Bit();
+  kdDebug(KIO_SMB) << "toSmbcURL, returning: " << m_smbc_url << endl;
+  return fromUnicode( m_smbc_url );
 
 }
 
-//----------------------------------------------------------------------- 
+//-----------------------------------------------------------------------
 const QString& SMBUrl::toKioUrl() const
   // Return a URL that is suitable for kio framework
-  //----------------------------------------------------------------------- 
+  //-----------------------------------------------------------------------
 {
   return m_kio_url;
 }
@@ -247,7 +252,7 @@ void SMBUrl::truncate()
 QString SMBUrl::getWorkgroup() const
   //-----------------------------------------------------------------------
 {
-  return m_kio_url.mid(m_workgroup_index, m_workgroup_len).local8Bit();
+  return m_kio_url.mid(m_workgroup_index, m_workgroup_len);
 }
 
 
@@ -255,7 +260,7 @@ QString SMBUrl::getWorkgroup() const
 QString SMBUrl::getServerShareDir() const
   //-----------------------------------------------------------------------
 {
-  return m_kio_url.right(m_kio_url.length() - (m_workgroup_index + m_workgroup_len)).local8Bit();
+  return m_kio_url.right(m_kio_url.length() - (m_workgroup_index + m_workgroup_len));
 }
 
 //-----------------------------------------------------------------------
@@ -312,4 +317,20 @@ SMBAuthInfo SMBUrl::getAuthInfo() {
   SMBAuthInfo sa;
   getAuthInfo(sa);
   return sa;
+}
+
+QCString SMBUrl::fromUnicode( const QString &_str ) const
+{
+    QCString _string;
+
+    KConfig *cfg = new KConfig( "kioslaverc", true );
+    cfg->setGroup( "Browser Settings/SMBro" );
+
+    QString m_encoding = QTextCodec::codecForLocale()->name();
+    QString default_encoding = cfg->readEntry( "Encoding", m_encoding.lower() );
+
+    QTextCodec *codec = QTextCodec::codecForName( default_encoding.latin1() );
+    _string = codec->fromUnicode( _str );
+
+    return _string;
 }

@@ -1,35 +1,39 @@
 /////////////////////////////////////////////////////////////////////////////
-//                                                                         
+//
 // Project:     SMB kioslave for KDE2
 //
 // File:        kio_smb_browse.cpp
-//                                                                         
-// Abstract:    member function implementations for SMBSlave that deal with 
+//
+// Abstract:    member function implementations for SMBSlave that deal with
 //              SMB browsing
 //
 // Author(s):   Matthew Peterson <mpeterson@caldera.com>
 //
 //---------------------------------------------------------------------------
-//                                                                  
-// Copyright (c) 2000  Caldera Systems, Inc.                        
-//                                                                         
-// This program is free software; you can redistribute it and/or modify it 
+//
+// Copyright (c) 2000  Caldera Systems, Inc.
+//
+// This program is free software; you can redistribute it and/or modify it
 // under the terms of the GNU General Public License as published by the
-// Free Software Foundation; either version 2.1 of the License, or  
-// (at your option) any later version.                                     
-//                                                                         
-//     This program is distributed in the hope that it will be useful,     
-//     but WITHOUT ANY WARRANTY; without even the implied warranty of      
-//     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the       
-//     GNU Lesser General Public License for more details.                 
-//                                                                         
-//     You should have received a copy of the GNU General Public License 
+// Free Software Foundation; either version 2.1 of the License, or
+// (at your option) any later version.
+//
+//     This program is distributed in the hope that it will be useful,
+//     but WITHOUT ANY WARRANTY; without even the implied warranty of
+//     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//     GNU Lesser General Public License for more details.
+//
+//     You should have received a copy of the GNU General Public License
 //     along with this program; see the file COPYING.  If not, please obtain
-//     a copy from http://www.gnu.org/copyleft/gpl.html   
-//                                                                         
+//     a copy from http://www.gnu.org/copyleft/gpl.html
+//
 /////////////////////////////////////////////////////////////////////////////
 #include <pwd.h>
 #include <grp.h>
+
+#include <qtextcodec.h>
+
+#include <kglobal.h>
 
 #include "kio_smb.h"
 #include "kio_smb_internal.h"
@@ -166,7 +170,7 @@ void SMBSlave::stat( const KURL& kurl )
   udsatom.m_uds = KIO::UDS_NAME;
   udsatom.m_str = kurl.fileName();
   udsentry.append( udsatom );
-    
+
 
   switch(m_current_url.getType())
     {
@@ -270,7 +274,8 @@ void SMBSlave::listDir( const KURL& kurl )
          }
          // Set name
          atom.m_uds = KIO::UDS_NAME;
-         atom.m_str = dirp->name;
+         QString dirpName = toUnicode( dirp->name );
+         atom.m_str = dirpName;
          udsentry.append( atom );
          if (((!m_showHiddenShares) && (atom.m_str.right(1)=="$"))
              || (atom.m_str=="$IPC")
@@ -288,7 +293,7 @@ void SMBSlave::listDir( const KURL& kurl )
             udsentry.append( atom );
 
             // Set stat information
-            m_current_url.append(dirp->name);
+            m_current_url.append(dirpName);
             browse_stat_path(m_current_url, udsentry);
             m_current_url.truncate();
 
@@ -306,7 +311,7 @@ void SMBSlave::listDir( const KURL& kurl )
             if(strcmp(dirp->name,".") &&
                strcmp(dirp->name,".."))
             {
-               m_current_url.append(dirp->name);
+               m_current_url.append(dirpName);
                browse_stat_path(m_current_url, udsentry);
                m_current_url.truncate();
             }
@@ -351,7 +356,7 @@ void SMBSlave::listDir( const KURL& kurl )
          }
          else
          {
-            kdDebug(KIO_SMB) << "SMBSlave::listDir SMBC_UNKNOWN :" << dirp->name << endl;
+             kdDebug(KIO_SMB) << "SMBSlave::listDir SMBC_UNKNOWN :" << dirpName << endl;
             // TODO: we don't handle SMBC_IPC_SHARE, SMBC_PRINTER_SHARE
             //       SMBC_LINK, SMBC_COMMS_SHARE
             //SlaveBase::error(ERR_INTERNAL, TEXT_UNSUPPORTED_FILE_TYPE);
@@ -406,4 +411,13 @@ void SMBSlave::listDir( const KURL& kurl )
 
    listEntry(udsentry, true);
    finished();
+}
+
+QString SMBSlave::toUnicode( char *_str ) const
+{
+    QString _string = QString::null;
+    QTextCodec *codec = QTextCodec::codecForName( m_default_encoding.latin1() );
+    _string = codec->toUnicode( _str );
+
+    return _string;
 }

@@ -106,20 +106,21 @@ private:
     bool     m_initialized_smbc;
 
     /**
-     * From Controlcenter 
+     * From Controlcenter
      */
     QString  m_default_user;
     QString  m_default_workgroup;
     QString  m_default_password;
+    QString  m_default_encoding;
 
     /**
-     * we store the current url, it's needed for 
-     * callback authorisation method 
+     * we store the current url, it's needed for
+     * callback authorisation method
      */
     SMBUrl   m_current_url;
 
     /**
-     * From Controlcenter, show SHARE$ or not 
+     * From Controlcenter, show SHARE$ or not
      */
     bool m_showHiddenShares;
 
@@ -267,12 +268,17 @@ protected:
      *                share    = a share of the server (host)
      *                path     = a path of the share
      * Parameter :    KURL the url to check
-     * Return :       new KURL if its corrected. else the same KURL 
+     * Return :       new KURL if its corrected. else the same KURL
      */
     const KURL checkURL(const KURL& kurl);
 
+    /**
+     * Change from char* (MS Windows's character encoding) to QString
+     */
+    QString toUnicode( char *_str ) const;
+
 public:
-    
+
     //-----------------------------------------------------------------------
     // smbclient authentication callback (note that this is called by  the
     // global ::auth_smbc_get_data() call.

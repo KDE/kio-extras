@@ -107,7 +107,7 @@ public:
      * Appends the specified file and dir to this SMBUrl
      * "smb://server/share" --> "smb://server/share/filedir"
      */
-    SMBUrl & append(const char * filedir);
+    SMBUrl & append(const QString &filedir);
 
 
     /**
@@ -182,6 +182,12 @@ public:
      * Return a SMBAuthInfo of url
      */
     SMBAuthInfo getAuthInfo();
+
+private:
+    /**
+     * Change from QString to QCString (MS Windows's character encoding)
+     */
+    QCString fromUnicode( const QString &_str ) const;
 
 };
 
