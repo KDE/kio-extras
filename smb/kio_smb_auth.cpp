@@ -186,7 +186,7 @@ int SMBSlave::auth_initialize_smbc()
         kdDebug() << "smbc_init call" << endl;
         int debug_level = 0;
 #ifndef NDEBUG
-        debug_level = 10;
+        debug_level = 100;
 #endif
 
         if(smbc_init(::auth_smbc_get_data,debug_level) == -1)
