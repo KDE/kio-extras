@@ -137,6 +137,7 @@ IMAP4Protocol::~IMAP4Protocol ()
 void
 IMAP4Protocol::get (const KURL & _url)
 {
+  if (!makeLogin()) return;
   kdDebug(7116) << "IMAP4::get -  " << hidePass(_url) << endl;
   QString aBox, aSequence, aType, aSection, aValidity, aDelimiter;
   enum IMAP_TYPE aEnum =
@@ -516,15 +517,15 @@ bool IMAP4Protocol::parseRead(QByteArray & buffer, ulong len, ulong relay)
     if (!waitForResponse(120))
     {
       error(ERR_SERVER_TIMEOUT, myHost);
-      setState(ISTATE_CONNECT);
+      setState(ISTATE_NO);
       closeConnection();
       return FALSE;
     }
-    ulong readLen = Read(buf, QMIN(len - buffer.size(), sizeof(buf) - 1));
+    ssize_t readLen = Read(buf, QMIN(len - buffer.size(), sizeof(buf) - 1));
     if (readLen == 0)
     {
       error (ERR_CONNECTION_BROKEN, myHost);
-      setState(ISTATE_CONNECT);
+      setState(ISTATE_NO);
       closeConnection();
       return FALSE;
     }
@@ -560,15 +561,15 @@ bool IMAP4Protocol::parseReadLine (QByteArray & buffer, ulong relay)
     if (!waitForResponse(120))
     {
       error(ERR_SERVER_TIMEOUT, myHost);
-      setState(ISTATE_CONNECT);
+      setState(ISTATE_NO);
       closeConnection();
       return FALSE;
     }
     readLen = ReadLine(buf, sizeof(buf) - 1);
-    if (readLen <= 0)
+    if (readLen == 0)
     {
       error (ERR_CONNECTION_BROKEN, myHost);
-      setState(ISTATE_CONNECT);
+      setState(ISTATE_NO);
       closeConnection();
       return FALSE;
     }
@@ -705,6 +706,7 @@ IMAP4Protocol::put (const KURL & _url, int, bool, bool)
         {
           error (ERR_CONNECTION_BROKEN, myHost);
           completeQueue.removeRef (cmd);
+          setState(ISTATE_NO);
           closeConnection();
           finished();
           return;
@@ -942,6 +944,7 @@ IMAP4Protocol::del (const KURL & _url, bool isFile)
 void
 IMAP4Protocol::special (const QByteArray & aData)
 {
+  if (!makeLogin()) return;
   KURL _url(aData.data() + 1);
   if (aData.at(0) == 'C')
   {
@@ -1045,6 +1048,30 @@ IMAP4Protocol::stat (const KURL & _url)
   enum IMAP_TYPE aType =
     parseURL (_url, aBox, aSection, aLType, aSequence, aValidity, aDelimiter);
 
+  UDSEntry entry;
+  UDSAtom atom;
+
+  atom.m_uds = UDS_NAME;
+  atom.m_str = aBox;
+  entry.append (atom);
+
+  if (!aSection.isEmpty())
+  {
+    if (aBox == getCurrentBox())
+    {
+      imapCommand *cmd = doCommand(imapCommand::clientClose());
+      completeQueue.removeRef(cmd);
+    }
+    imapCommand *cmd = doCommand(imapCommand::clientStatus(aBox, aSection));
+    completeQueue.removeRef(cmd);
+    if (getStatus().unseenAvailable())
+    {
+      atom.m_uds = UDS_SIZE;
+      atom.m_str = QString::null;
+      atom.m_long = getStatus().unseen();
+      entry.append(atom);
+    }
+  } else
   if (aType == ITYPE_BOX || aType == ITYPE_DIR_AND_BOX || aType == ITYPE_MSG)
   {
     ulong validity = 0;
@@ -1090,48 +1117,39 @@ IMAP4Protocol::stat (const KURL & _url)
         kdDebug(7116) << "IMAP4::stat - url has invalid validity [" << validity << "d] " << hidePass(_url) << endl;
       }
     }
-  }
-
-
-  UDSEntry entry;
-  UDSAtom atom;
-
-  atom.m_uds = UDS_NAME;
-  atom.m_str = aBox;
-  entry.append (atom);
-
-  atom.m_uds = UDS_MIME_TYPE;
-  atom.m_str = getMimeType (aType);
-  entry.append (atom);
-
-  kdDebug(7116) << "IMAP4: stat: " << atom.m_str << endl;
-  switch (aType)
-  {
-  case ITYPE_DIR:
-    atom.m_uds = UDS_FILE_TYPE;
-    atom.m_str = "";
-    atom.m_long = S_IFDIR;
+    atom.m_uds = UDS_MIME_TYPE;
+    atom.m_str = getMimeType (aType);
     entry.append (atom);
-    break;
 
-  case ITYPE_BOX:
-  case ITYPE_DIR_AND_BOX:
-    atom.m_uds = UDS_FILE_TYPE;
-    atom.m_str = "";
-    atom.m_long = S_IFDIR;
-    entry.append (atom);
-    break;
+    kdDebug(7116) << "IMAP4: stat: " << atom.m_str << endl;
+    switch (aType)
+    {
+    case ITYPE_DIR:
+      atom.m_uds = UDS_FILE_TYPE;
+      atom.m_str = "";
+      atom.m_long = S_IFDIR;
+      entry.append (atom);
+      break;
 
-  case ITYPE_MSG:
-    atom.m_uds = UDS_FILE_TYPE;
-    atom.m_str = "";
-    atom.m_long = S_IFREG;
-    entry.append (atom);
-    break;
+    case ITYPE_BOX:
+    case ITYPE_DIR_AND_BOX:
+      atom.m_uds = UDS_FILE_TYPE;
+      atom.m_str = "";
+      atom.m_long = S_IFDIR;
+      entry.append (atom);
+      break;
 
-  case ITYPE_UNKNOWN:
-    error (ERR_DOES_NOT_EXIST, hidePass(_url));
-    break;
+    case ITYPE_MSG:
+      atom.m_uds = UDS_FILE_TYPE;
+      atom.m_str = "";
+      atom.m_long = S_IFREG;
+      entry.append (atom);
+      break;
+
+    case ITYPE_UNKNOWN:
+      error (ERR_DOES_NOT_EXIST, hidePass(_url));
+      break;
+    }
   }
 
   statEntry (entry);
