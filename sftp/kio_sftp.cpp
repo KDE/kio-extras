@@ -130,7 +130,7 @@ kio_sftpProtocol::kio_sftpProtocol(const QCString &pool_socket, const QCString &
     setMultipleAuthCaching(true);
     mMsgId = 0;
     mPort = -1;
-//    ssh.setSshPath("/usr/local/bin/ssh");
+    ssh.setSshPath("/usr/local/ssh/bin/ssh");
 }
 
 
