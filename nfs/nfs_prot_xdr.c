@@ -46,7 +46,7 @@ bool_t
 xdr_nfsstat(XDR *xdrs, nfsstat *objp)
 {
 
-	 register long *buf=buf;
+	 register int32_t *buf=buf;
 
 	 if (!xdr_enum(xdrs, (enum_t *)objp)) {
 		 return (FALSE);
@@ -58,7 +58,7 @@ bool_t
 xdr_ftype(XDR *xdrs, ftype *objp)
 {
 
-	 register long *buf=buf;
+	 register int32_t *buf=buf;
 
 	 if (!xdr_enum(xdrs, (enum_t *)objp)) {
 		 return (FALSE);
@@ -70,7 +70,7 @@ bool_t
 xdr_nfs_fh(XDR *xdrs, nfs_fh *objp)
 {
 
-	 register long *buf=buf;
+	 register int32_t *buf=buf;
 
 	 int i=i;
 	 if (!xdr_opaque(xdrs, objp->data, NFS_FHSIZE)) {
@@ -83,7 +83,7 @@ bool_t
 xdr_nfstime(XDR *xdrs, nfstime *objp)
 {
 
-	 register long *buf=buf;
+	 register int32_t *buf=buf;
 
 	 if (!xdr_u_int(xdrs, &objp->seconds)) {
 		 return (FALSE);
@@ -98,7 +98,7 @@ bool_t
 xdr_fattr(XDR *xdrs, fattr *objp)
 {
 
-	 register long *buf=buf;
+	 register int32_t *buf=buf;
 
 
 	 if (xdrs->x_op == XDR_ENCODE) {
@@ -273,7 +273,7 @@ bool_t
 xdr_sattr(XDR *xdrs, sattr *objp)
 {
 
-	 register long *buf=buf;
+	 register int32_t *buf=buf;
 
 
 	 if (xdrs->x_op == XDR_ENCODE) {
@@ -364,7 +364,7 @@ bool_t
 xdr_filename(XDR *xdrs, filename *objp)
 {
 
-	 register long *buf=buf;
+	 register int32_t *buf=buf;
 
 	 if (!xdr_string(xdrs, objp, NFS_MAXNAMLEN)) {
 		 return (FALSE);
@@ -376,7 +376,7 @@ bool_t
 xdr_nfspath(XDR *xdrs, nfspath *objp)
 {
 
-	 register long *buf=buf;
+	 register int32_t *buf=buf;
 
 	 if (!xdr_string(xdrs, objp, NFS_MAXPATHLEN)) {
 		 return (FALSE);
@@ -388,7 +388,7 @@ bool_t
 xdr_attrstat(XDR *xdrs, attrstat *objp)
 {
 
-	 register long *buf=buf;
+	 register int32_t *buf=buf;
 
 	 if (!xdr_nfsstat(xdrs, &objp->status)) {
 		 return (FALSE);
@@ -409,7 +409,7 @@ bool_t
 xdr_sattrargs(XDR *xdrs, sattrargs *objp)
 {
 
-	 register long *buf=buf;
+	 register int32_t *buf=buf;
 
 	 if (!xdr_nfs_fh(xdrs, &objp->file)) {
 		 return (FALSE);
@@ -424,7 +424,7 @@ bool_t
 xdr_diropargs(XDR *xdrs, diropargs *objp)
 {
 
-	 register long *buf=buf;
+	 register int32_t *buf=buf;
 
 	 if (!xdr_nfs_fh(xdrs, &objp->dir)) {
 		 return (FALSE);
@@ -439,7 +439,7 @@ bool_t
 xdr_diropokres(XDR *xdrs, diropokres *objp)
 {
 
-	 register long *buf=buf;
+	 register int32_t *buf=buf;
 
 	 if (!xdr_nfs_fh(xdrs, &objp->file)) {
 		 return (FALSE);
@@ -454,7 +454,7 @@ bool_t
 xdr_diropres(XDR *xdrs, diropres *objp)
 {
 
-	 register long *buf=buf;
+	 register int32_t *buf=buf;
 
 	 if (!xdr_nfsstat(xdrs, &objp->status)) {
 		 return (FALSE);
@@ -475,7 +475,7 @@ bool_t
 xdr_readlinkres(XDR *xdrs, readlinkres *objp)
 {
 
-	 register long *buf=buf;
+	 register int32_t *buf=buf;
 
 	 if (!xdr_nfsstat(xdrs, &objp->status)) {
 		 return (FALSE);
@@ -496,7 +496,7 @@ bool_t
 xdr_readargs(XDR *xdrs, readargs *objp)
 {
 
-	 register long *buf=buf;
+	 register int32_t *buf=buf;
 
 	 if (!xdr_nfs_fh(xdrs, &objp->file)) {
 		 return (FALSE);
@@ -517,7 +517,7 @@ bool_t
 xdr_readokres(XDR *xdrs, readokres *objp)
 {
 
-	 register long *buf=buf;
+	 register int32_t *buf=buf;
 
 	 if (!xdr_fattr(xdrs, &objp->attributes)) {
 		 return (FALSE);
@@ -532,7 +532,7 @@ bool_t
 xdr_readres(XDR *xdrs, readres *objp)
 {
 
-	 register long *buf=buf;
+	 register int32_t *buf=buf;
 
 	 if (!xdr_nfsstat(xdrs, &objp->status)) {
 		 return (FALSE);
@@ -553,7 +553,7 @@ bool_t
 xdr_writeargs(XDR *xdrs, writeargs *objp)
 {
 
-	 register long *buf=buf;
+	 register int32_t *buf=buf;
 
 
 	 if (xdrs->x_op == XDR_ENCODE) {
@@ -633,7 +633,7 @@ bool_t
 xdr_createargs(XDR *xdrs, createargs *objp)
 {
 
-	 register long *buf=buf;
+	 register int32_t *buf=buf;
 
 	 if (!xdr_diropargs(xdrs, &objp->where)) {
 		 return (FALSE);
@@ -648,7 +648,7 @@ bool_t
 xdr_renameargs(XDR *xdrs, renameargs *objp)
 {
 
-	 register long *buf=buf;
+	 register int32_t *buf=buf;
 
 	 if (!xdr_diropargs(xdrs, &objp->from)) {
 		 return (FALSE);
@@ -663,7 +663,7 @@ bool_t
 xdr_linkargs(XDR *xdrs, linkargs *objp)
 {
 
-	 register long *buf=buf;
+	 register int32_t *buf=buf;
 
 	 if (!xdr_nfs_fh(xdrs, &objp->from)) {
 		 return (FALSE);
@@ -678,7 +678,7 @@ bool_t
 xdr_symlinkargs(XDR *xdrs, symlinkargs *objp)
 {
 
-	 register long *buf=buf;
+	 register int32_t *buf=buf;
 
 	 if (!xdr_diropargs(xdrs, &objp->from)) {
 		 return (FALSE);
@@ -696,7 +696,7 @@ bool_t
 xdr_nfscookie(XDR *xdrs, nfscookie objp)
 {
 
-	 register long *buf=buf;
+	 register int32_t *buf=buf;
 
 	 if (!xdr_opaque(xdrs, objp, NFS_COOKIESIZE)) {
 		 return (FALSE);
@@ -708,7 +708,7 @@ bool_t
 xdr_readdirargs(XDR *xdrs, readdirargs *objp)
 {
 
-	 register long *buf=buf;
+	 register int32_t *buf=buf;
 
 	 if (!xdr_nfs_fh(xdrs, &objp->dir)) {
 		 return (FALSE);
@@ -726,7 +726,7 @@ bool_t
 xdr_entry(XDR *xdrs, entry *objp)
 {
 
-	 register long *buf=buf;
+	 register int32_t *buf=buf;
 
 	 if (!xdr_u_int(xdrs, &objp->fileid)) {
 		 return (FALSE);
@@ -747,7 +747,7 @@ bool_t
 xdr_dirlist(XDR *xdrs, dirlist *objp)
 {
 
-	 register long *buf=buf;
+	 register int32_t *buf=buf;
 
 	 if (!xdr_pointer(xdrs, (char **)&objp->entries, sizeof(entry), (xdrproc_t)xdr_entry)) {
 		 return (FALSE);
@@ -762,7 +762,7 @@ bool_t
 xdr_readdirres(XDR *xdrs, readdirres *objp)
 {
 
-	 register long *buf=buf;
+	 register int32_t *buf=buf;
 
 	 if (!xdr_nfsstat(xdrs, &objp->status)) {
 		 return (FALSE);
@@ -783,7 +783,7 @@ bool_t
 xdr_statfsokres(XDR *xdrs, statfsokres *objp)
 {
 
-	 register long *buf=buf;
+	 register int32_t *buf=buf;
 
 
 	 if (xdrs->x_op == XDR_ENCODE) {
@@ -867,7 +867,7 @@ bool_t
 xdr_statfsres(XDR *xdrs, statfsres *objp)
 {
 
-	 register long *buf=buf;
+	 register int32_t *buf=buf;
 
 	 if (!xdr_nfsstat(xdrs, &objp->status)) {
 		 return (FALSE);
