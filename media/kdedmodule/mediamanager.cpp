@@ -19,6 +19,7 @@
 #include "mediamanager.h"
 
 #include <config.h>
+#include <qtimer.h>
 
 #include <kdebug.h>
 #include <kglobal.h>
@@ -49,7 +50,7 @@ MediaManager::MediaManager(const QCString &obj)
 	         SLOT(slotMediumChanged(const QString&, const QString&)) );
 
 	m_backends.setAutoDelete(true);
-	loadBackends();
+	QTimer::singleShot( 10, this, SLOT( loadBackends() ) );
 }
 
 void MediaManager::loadBackends()
