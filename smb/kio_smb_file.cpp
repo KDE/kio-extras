@@ -43,7 +43,6 @@ void SMBSlave::get( const KURL& kurl )
     time_t      lasttime        = 0;
     time_t      starttime       = 0;
     ssize_t     totalbytesread  = 0;
-    struct stat st;
     QByteArray  filedata;
     SMBUrl      url;
 
@@ -151,7 +150,6 @@ void SMBSlave::put( const KURL& kurl,
     int         filefd;
     bool        exists;
     mode_t      mode;
-    struct stat st;
     QByteArray  filedata;
 
     //    kdDebug(KIO_SMB) << "SMBSlave::put on " << kurl.url() << endl;
