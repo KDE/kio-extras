@@ -82,6 +82,8 @@ int kdemain( int argc, char **argv )
   return 0;
 }
 
+//bool wasKilled() { return false; }
+
 int makeDirHier(const QString& path)
 {
    QString s(path);
@@ -96,7 +98,6 @@ int makeDirHier(const QString& path)
    };
    return 0;
 };
-
 
 void SmbProtocol::getShareAndPath(const KURL& url, QString& share, QString& rest)
 {
@@ -742,14 +743,6 @@ See the KDE Control Center under Network, LANBrowsing for more information."));
    QString smbPath;
    QString wg;
    getShareAndPath(_url,share,smbPath);
-/*   if ((smbPath.isEmpty()) && (!m_currentHost.isEmpty()) && (!share.isEmpty()))
-   {
-      KURL url(_url);
-      url.setPath(_url.path()+"/");
-      redirection(url);
-      finished();
-      return;
-   };*/
 
    if (m_currentHost.isEmpty())
    {
@@ -1354,7 +1347,7 @@ void SmbProtocol::get( const KURL& url )
 
    StatInfo info=this->_stat(url);
    //the error was already reported in _stat()
-   if (info.isValid==false)
+   if ((info.isValid==false) || (info.isDir))
    {
       kdDebug(KIO_SMB)<<"Smb::get() file not found"<<endl;
       error(ERR_CANNOT_OPEN_FOR_READING,url.url());
@@ -1806,9 +1799,6 @@ void SmbProtocol::listHosts()
       proc=0;
       KIO::AuthInfo authInfo;
       if (getAuth(authInfo,QString(m_nmbName),m_currentWorkgroup,"",user+QString(m_nmbName)+"_ListHosts",user,firstLoop))
-/*      KIO::AuthInfo authInfo;
-      authInfo.username = user;
-      if (openPassDlg(authInfo))*/
       {
          ai=authInfo;
          user = authInfo.username;
@@ -2054,13 +2044,13 @@ ClientProcess* SmbProtocol::getProcess(const QString& host, const QString& share
          m_processes.remove(key);
          proc=0;
          kdDebug(KIO_SMB)<<"Smb::getProcess(): process exited !"<<endl;
-      };
-   };
+      }
+   }
    if (proc!=0)
    {
       kdDebug(KIO_SMB)<<"Smb::getProcess(): found"<<endl;
       return proc;
-   };
+   }
    //otherwise create the process
    proc=new ClientProcess();
 
@@ -2095,9 +2085,6 @@ ClientProcess* SmbProtocol::getProcess(const QString& host, const QString& share
       proc=0;
       KIO::AuthInfo authInfo;
       if (getAuth(authInfo,QString(m_nmbName),m_currentWorkgroup,share,user+"_"+share+QString(m_nmbName),user,firstLoop))
-/*      KIO::AuthInfo authInfo;
-      authInfo.username = user;
-      if (openPassDlg(authInfo))*/
       {
          ai=authInfo;
          user = authInfo.username;
@@ -2116,7 +2103,7 @@ ClientProcess* SmbProtocol::getProcess(const QString& host, const QString& share
             error( KIO::ERR_CANNOT_LAUNCH_PROCESS, "smbclient"+i18n("\nMake sure that the samba package is installed properly on your system."));
             delete proc;
             return 0;
-         };
+         }
       }
       else
       {
