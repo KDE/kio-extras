@@ -62,6 +62,9 @@ class SmbProtocol : public KIO::SlaveBase
       virtual void stat( const KURL & url);
       virtual void get( const KURL& url );
       virtual void setHost(const QString& host, int port, const QString& user, const QString& pass );
+
+      virtual void mkdir( const KURL& url, int permissions );
+      virtual void del( const KURL& url, bool isfile);
    protected:
       SmbReturnCode waitUntilStarted(ClientProcess *proc,const QString& password);
       SmbReturnCode getShareInfo(ClientProcess* shareLister,const QString& password);

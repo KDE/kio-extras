@@ -703,6 +703,98 @@ See the KDE Control Center under Network, LANBrowsing for more information."));
    //kdDebug(7101)<<"Smb::listDir() ends"<<endl;
 };
 
+void SmbProtocol::mkdir( const KURL& url, int)
+{
+   kdDebug(7101)<<"Smb::mkdir() "<<url.path().local8Bit()<<endl;
+   QString path( url.path());
+
+   QString share;
+   QString smbPath;
+   getShareAndPath(url,share,smbPath);
+
+   //the error was already reported in _stat()
+   if (smbPath.isEmpty())
+   {
+      kdDebug(7101)<<"Smb::mkdir() file not found"<<endl;
+      return;
+   };
+
+   ClientProcess *proc=getProcess(m_currentHost, share);
+
+   QCString command=QCString("mkdir \"")+smbPath.local8Bit()+QCString("\" \n");
+   kdDebug(7101)<<"Smb::mkdir(): executing command: -"<<command<<"-"<<endl;
+
+   if (::write(proc->fd(),command.data(),command.length())<0)
+   {
+      error(ERR_CONNECTION_BROKEN,m_currentHost);
+      return;
+   };
+
+   clearBuffer();
+   bool loopFinished(false);
+   //read the terminal echo
+   do
+   {
+      readOutput(proc->fd());
+      kdDebug(7101)<<"Smb::mkdir() read: -"<<m_stdoutBuffer<<"-"<<endl;
+      if (m_stdoutSize>0)
+         if (memchr(m_stdoutBuffer,'\n',m_stdoutSize)!=0)
+            loopFinished=true;
+   } while (!loopFinished);
+   clearBuffer();
+   finished();
+
+};
+
+void SmbProtocol::del( const KURL& url, bool isfile)
+{
+   kdDebug(7101)<<"Smb::del() "<<url.path().local8Bit()<<endl;
+   QString path( url.path());
+
+   QString share;
+   QString smbPath;
+   getShareAndPath(url,share,smbPath);
+
+   StatInfo info=this->_stat(url);
+   //the error was already reported in _stat()
+   if ((info.isValid==false) || (smbPath.isEmpty()))
+   {
+      kdDebug(7101)<<"Smb::del() file not found"<<endl;
+      return;
+   };
+   ClientProcess *proc=getProcess(m_currentHost, share);
+
+   QCString command;
+   if (isfile)
+      command="del \"";
+   else
+      command="rmdir \"";
+
+   command=command+smbPath.local8Bit()+QCString("\" \n");
+   kdDebug(7101)<<"Smb::del(): executing command: -"<<command<<"-"<<endl;
+
+   if (::write(proc->fd(),command.data(),command.length())<0)
+   {
+      error(ERR_CONNECTION_BROKEN,m_currentHost);
+      return;
+   };
+
+   clearBuffer();
+   bool loopFinished(false);
+   //read the terminal echo
+   do
+   {
+      readOutput(proc->fd());
+      kdDebug(7101)<<"Smb::del() read: -"<<m_stdoutBuffer<<"-"<<endl;
+      if (m_stdoutSize>0)
+         if (memchr(m_stdoutBuffer,'\n',m_stdoutSize)!=0)
+            loopFinished=true;
+   } while (!loopFinished);
+   clearBuffer();
+   finished();
+};
+
+
 void SmbProtocol::createUDSEntry(const StatInfo& info, UDSEntry& entry)
 {
    UDSAtom atom;
@@ -831,7 +923,7 @@ StatInfo SmbProtocol::_stat(const KURL& url)
    getShareAndPath(url,share,smbPath);
 
    //if share is empty, then smbPath is also empty
-   if (smbPath.isEmpty())
+   if ((smbPath.isEmpty()) || (smbPath=="\\"))
    {
       kdDebug(7101)<<"Smb::_stat(): smbPath.isEmpty()"<<endl;
       info.name=path;
