@@ -167,7 +167,7 @@ KServiceGroup::Ptr SettingsProtocol::findGroup(const QString &relPath)
 
 void SettingsProtocol::get( const KURL & url )
 {
-	KService::Ptr service = KService::serviceByName(url.fileName());
+	KService::Ptr service = KService::serviceByDesktopName(url.fileName());
 	if (service && service->isValid()) {
 		KURL redirUrl;
 		redirUrl.setPath(locate("apps", service->desktopEntryPath()));
@@ -195,13 +195,14 @@ void SettingsProtocol::stat(const KURL& url)
 		createDirEntry(entry, (m_runMode == SettingsMode) ? i18n("Settings") : ( (m_runMode==ApplicationsMode) ? i18n("Applications") : i18n("Programs")),
 			url.url(), "inode/directory",grp->icon() );
 	} else {
-		KService::Ptr service = KService::serviceByName( url.fileName() );
+		KService::Ptr service = KService::serviceByDesktopName( url.fileName() );
 		if (service && service->isValid()) {
 //			KURL newUrl;
 //			newUrl.setPath(locate("apps", service->desktopEntryPath()));
 //			createFileEntry(entry, service->name(), newUrl, "application/x-desktop", service->icon());
 
-			createFileEntry(entry, service->name(), url.url(), "application/x-desktop", service->icon());
+			createFileEntry(entry, service->name(), url.url(1)+service->desktopEntryName(),
+                            "application/x-desktop", service->icon());
 		} else {
 			error(KIO::ERR_SLAVE_DEFINED,i18n("Unknown settings folder"));
 			return;
@@ -278,12 +279,12 @@ void SettingsProtocol::listDir(const KURL& url)
 				kdDebug() << "SettingsProtocol: adding entry applications:/" << relPath << endl;
 				createDirEntry(entry, groupCaption, "applications:/"+relPath, "inode/directory",g->icon());
 				break;
-		}
+		    }
 
 		} else {
 			KService::Ptr s(static_cast<KService *>(e));
 			kdDebug() << "SettingsProtocol: adding file entry " << url.url(1)+s->name() << endl;
-			createFileEntry(entry,s->name(),url.url(1)+s->name(), "application/x-desktop",s->icon());
+			createFileEntry(entry,s->name(),url.url(1)+s->desktopEntryName(), "application/x-desktop",s->icon());
 		}
 
 		listEntry(entry, false);
