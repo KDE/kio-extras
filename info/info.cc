@@ -98,8 +98,8 @@ void InfoProtocol::get( const KURL& url )
 
     kdDebug( 7108 ) << "cmd: " << cmd << endl;
 
-    FILE *fd = popen( QFile::encodeName(cmd), "r" );
-    if ( !fd ) {
+    FILE *file = popen( QFile::encodeName(cmd), "r" );
+    if ( !file ) {
         kdDebug( 7108 ) << "InfoProtocol::get popen failed" << endl;
         error( ERR_CANNOT_LAUNCH_PROCESS, cmd );
         return;
@@ -109,10 +109,10 @@ void InfoProtocol::get( const KURL& url )
     QByteArray array;
 
     bool empty = true;
-    while ( !feof( fd ) )
+    while ( !feof( file ) )
     {
-      int n = fread( buffer, 1, sizeof( buffer ), fd );
-      if ( !n && feof( fd ) && empty ) {
+      int n = fread( buffer, 1, sizeof( buffer ), file );
+      if ( !n && feof( file ) && empty ) {
 	      error( ERR_CANNOT_LAUNCH_PROCESS, cmd );
 	      return;
       }
@@ -120,7 +120,7 @@ void InfoProtocol::get( const KURL& url )
       {
         // ERROR
 	kdDebug( 7108 ) << "InfoProtocol::get ERROR!" << endl;
-        pclose( fd );
+        pclose( file );
 	return;
       }
 
@@ -130,7 +130,7 @@ void InfoProtocol::get( const KURL& url )
       array.resetRawData( buffer, n );
     }
 
-    pclose( fd );
+    pclose( file );
 
     finished();
 
