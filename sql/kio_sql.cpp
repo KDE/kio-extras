@@ -232,7 +232,7 @@ KDBProtocol::get( const KURL& url )
         }
         
         str += QString("/>\n");
-        content.duplicate(str.utf8(), str.length());
+        content.duplicate(str.utf8(), str.utf8().length());
         data(content);
         pos++;
         kdDebug(7111) << "position: " << pos << endl; 
