@@ -32,6 +32,7 @@ public:
 	virtual ~RemoteProtocol();
 
 	virtual void listDir(const KURL &url);
+	virtual void stat(const KURL &url);
 
 protected:
 	virtual bool rewriteURL(const KURL &url, KURL &newUrl);

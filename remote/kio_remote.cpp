@@ -34,6 +34,7 @@
 
 #include "kio_remote.h"
 
+#define WIZARD_URL "remote:/x-wizard_service.desktop"
 #define WIZARD_SERVICE "knetattach"
 
 static const KCmdLineOptions options[] =
@@ -124,7 +125,8 @@ static bool createWizardEntry(KIO::UDSEntry &entry)
 
 	addAtom(entry, KIO::UDS_NAME, 0, i18n("Add a Network Folder"));
 	addAtom(entry, KIO::UDS_FILE_TYPE, S_IFREG);
-	addAtom(entry, KIO::UDS_URL, 0, url.url());
+	addAtom(entry, KIO::UDS_URL, 0, WIZARD_URL);
+	addAtom(entry, KIO::UDS_LOCAL_PATH, 0, url.path());
 	addAtom(entry, KIO::UDS_ACCESS, 0500);
 	addAtom(entry, KIO::UDS_MIME_TYPE, 0, "application/x-desktop");
 	addAtom(entry, KIO::UDS_ICON_NAME, 0, "wizard");
@@ -219,5 +221,26 @@ void RemoteProtocol::listDir(const KURL &url)
 	ForwardingSlaveBase::listDir(url);
 }
 
+void RemoteProtocol::stat(const KURL &url)
+{
+	kdDebug() << "RemoteProtocol::stat: " << url << endl;
+
+	if (url == KURL(WIZARD_URL))
+	{
+		KIO::UDSEntry entry;
+		if (createWizardEntry(entry))
+		{
+			statEntry(entry);
+			finished();
+		}
+		else
+		{
+			error(KIO::ERR_DOES_NOT_EXIST, url.prettyURL());
+		}
+		return;
+	}
+
+	ForwardingSlaveBase::stat(url);
+}
 
 #include "kio_remote.moc"
