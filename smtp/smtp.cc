@@ -121,9 +121,11 @@ SMTPProtocol::~SMTPProtocol()
 void SMTPProtocol::HandleSMTPWriteError(const KURL&url)
 {
 	if (!command(QString::fromLatin1("RSET"))) // Attempt to save face
-		error(ERR_SERVICE_NOT_AVAILABLE, url.path());
-	else
-		error(ERR_COULD_NOT_WRITE, url.path());
+		error(ERR_SERVICE_NOT_AVAILABLE, i18n("RSET failed %1").arg(url.path()));
+	else {
+		smtp_close();
+		error(ERR_COULD_NOT_WRITE, i18n("RSET succeeded %1").arg(url.path()));
+	}
 }
 
 void SMTPProtocol::put( const KURL& url, int /*permissions*/, bool /*overwrite*/, bool /*resume*/)
@@ -149,7 +151,7 @@ void SMTPProtocol::put( const KURL& url, int /*permissions*/, bool /*overwrite*/
 	}
 
 	if (!smtp_open(url))
-	        error(ERR_SERVICE_NOT_AVAILABLE, url.path());
+	        error(ERR_SERVICE_NOT_AVAILABLE, i18n("SMTPProtocol::smtp_open failed (%1)").arg(url.path()));
 
 	KEMailSettings *mset = new KEMailSettings;
 	if (mset->defaultProfileName() != QString::null) {
@@ -368,7 +370,10 @@ bool SMTPProtocol::smtp_open(const KURL &url)
 	// Now we try and login
 	if (!m_sUser.isNull()) {
 		if (!m_sPass.isNull()) {
-			Authenticate(url);
+			if (!Authenticate(url)) {
+				error(ERR_COULD_NOT_WRITE, i18n("Authentication failed"));
+				return false;
+			}
 		}
 	}
 
@@ -396,6 +401,8 @@ bool SMTPProtocol::Authenticate(const KURL &url)
 	// If none are available, set it up so we can start over again
 	if (auth_method == QString::null) {
 		delete m_pSASL; m_pSASL=0;
+		kdDebug() << "kio_smtp: no authentication available" << endl;
+		error(ERR_SERVICE_NOT_AVAILABLE, i18n("No compatible authentication methods found.");
 		return false;
 	} else {
 		char *challenge=static_cast<char *>(malloc(2049));
@@ -412,12 +419,15 @@ bool SMTPProtocol::Authenticate(const KURL &url)
 		// so.. let that auth module do the b64 encoding itself..
 		// it's easier than generating a byte array simply to pass 
 		// around null characters.  Stupid stupid stupid.
+		QString cmd;
 		if (auth_method == "PLAIN") {
-			ret = command(m_pSASL->generateResponse(challenge, false));
+			cmd = m_pSASL->generateResponse(challenge, false);
 		} else {
 			// Since SMTP does indeed needs its auth responses base64 encoded... for some reason
-			ret = command(m_pSASL->generateResponse(challenge, true));
+			cmd = m_pSASL->generateResponse(challenge, true);
 		}
+		kdDebug() << "kio_smtp: IT wants me to send: " << cmd << endl;
+		ret = command(cmd);
 		free(challenge);
 		return ret;
 	}
@@ -436,7 +446,7 @@ void SMTPProtocol::ParseFeatures(const char *_buf)
 	buf=buf.mid(4, buf.length()); // Clop off the beginning, no need for it really
 
 	if (buf.left(4) == "AUTH") { // Look for auth stuff
-		if (m_sAuthConfig.isEmpty()) 
+		if (m_sAuthConfig == QString::null) 
 			m_sAuthConfig=buf.mid(5, buf.length());
 	} else if (buf.left(8) == "STARTTLS") {
 		haveTLS=true;
@@ -459,7 +469,7 @@ void SMTPProtocol::smtp_close()
 void SMTPProtocol::stat(const KURL & url)
 {
 	QString path = url.path();
-        error( KIO::ERR_DOES_NOT_EXIST, url.path() );
+        error (KIO::ERR_DOES_NOT_EXIST, url.path());
 }
 
 int GetVal(char *buf)
