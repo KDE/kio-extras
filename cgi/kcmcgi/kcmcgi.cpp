@@ -35,6 +35,7 @@ extern "C"
 {
   KCModule *create_cgi( QWidget *parent, const char * )
   {
+    KGlobal::locale()->insertCatalogue("kcmcgi");
     return new KCMCgi( parent, "kcmcgi" );
   }
 }
