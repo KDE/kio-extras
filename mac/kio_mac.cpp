@@ -119,10 +119,9 @@ void MacProtocol::get(const KURL& url) {
     }
 
     //clean up
-    delete myKProcess; myKProcess = 0;
     disconnect(myKProcess, SIGNAL(receivedStdout(KProcess *, char *, int)),
             this, SLOT(slotSetDataStdOutput(KProcess *, char *, int)));
-
+    delete myKProcess; myKProcess = 0;
     //finish
     data(QByteArray());
     finished();
