@@ -218,6 +218,7 @@ SmbProtocol::SmbProtocol (const QCString &pool, const QCString &app )
    //not really secure, but better than storing the plain password
    QString scrambled = cfg->readEntry( "Password","" );
    m_password=my_unscramble(scrambled);
+   delete cfg;
 };
 
 SmbProtocol::~SmbProtocol()
