@@ -320,7 +320,7 @@ void SmbProtocol::doCopy( QStringList& _source, const char *_dest )
 			QStringList::Iterator sit = skip_list.begin();
 			for( ; sit != skip_list.end() && !skip; sit++ )
 			// Is d a subdirectory of *sit ?
-			if ( strncmp( *sit, d, sit->length() ) == 0 )
+			if ( strncmp( *sit, d, (*sit).length() ) == 0 )
 				skip = true;
 			if ( skip ) continue;
 
@@ -328,7 +328,7 @@ void SmbProtocol::doCopy( QStringList& _source, const char *_dest )
 			bool overwrite = false;
 			QStringList::Iterator oit = overwrite_list.begin();
 			for( ; oit != overwrite_list.end() && !overwrite; oit++ )
-			if ( strncmp( *oit, d, oit->length() ) == 0 ) overwrite = true;
+			if ( strncmp( *oit, d, (*oit).length() ) == 0 ) overwrite = true;
 			if ( overwrite ) continue;
 
 			// Tell what we are doing
@@ -452,7 +452,7 @@ void SmbProtocol::doCopy( QStringList& _source, const char *_dest )
 			QStringList::Iterator sit = skip_list.begin();
 			for( ; sit != skip_list.end() && !skip; sit++ )
 			// Is 'd' a file in directory '*sit' or one of its subdirectories ?
-			if ( strncmp( *sit, d, sit->length() ) == 0 )
+			if ( strncmp( *sit, d, (*sit).length() ) == 0 )
 				skip = true;
 
 			if ( skip ) continue;
@@ -466,7 +466,7 @@ void SmbProtocol::doCopy( QStringList& _source, const char *_dest )
 			// Is this URL on the overwrite list ?
 			QStringList::Iterator oit = overwrite_list.begin();
 			for( ; oit != overwrite_list.end() && !overwrite; oit++ )
-				if ( strncmp( *oit, d, oit->length() ) == 0 )
+				if ( strncmp( *oit, d, (*oit).length() ) == 0 )
 					overwrite = true;
 
 			job.put( d, fit->mode, overwrite_all || overwrite, false, fit->size );
