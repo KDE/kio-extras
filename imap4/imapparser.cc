@@ -748,8 +748,6 @@ imapParser::parseEnvelope (QString & inWords)
   mailHeader *envelope = NULL;
   QValueList < mailAddress > list;
 
-//  kdDebug(7116) << "imapParser::parseEnvelope - " << inWords << endl;
-
   if (inWords[0] != '(')
     return envelope;
   inWords = inWords.right (inWords.length () - 1);
@@ -757,7 +755,6 @@ imapParser::parseEnvelope (QString & inWords)
 
 
   envelope = new mailHeader;
-  kdDebug(7116) << "imapParser::parseEnvelope - creating " << envelope << endl;
 
   //date
   QString date = parseLiteral (inWords);
@@ -838,7 +835,6 @@ imapParser::parseEnvelope (QString & inWords)
   skipWS (inWords);
 
   return envelope;
-//  kdDebug(7116) << "imapParser::parseEnvelope - " << inWords << endl;
 }
 
 // parse parameter pairs into a dictionary
@@ -1247,8 +1243,6 @@ imapParser::parseBody (QString & inWords)
 void
 imapParser::parseFetch (ulong value, QString & inWords)
 {
-//  kdDebug(7116) << "imapParser::parseFetch - [" << value << "d] " << inWords << endl;
-
   // just the id
   if (value);
 
@@ -1277,17 +1271,14 @@ imapParser::parseFetch (ulong value, QString & inWords)
           if (cache)
             envelope = cache->getHeader ();
 
-          kdDebug(7116) << "imapParser::parseFetch - got " << envelope << " from Cache for " << seenUid << endl;
           if (envelope && !envelope->getMessageId ().isEmpty ())
           {
             // we have seen this one already
             // or don't know where to put it
-            kdDebug(7116) << "imapParser::parseFetch - discarding " << envelope << " " << seenUid << endl;
             parseSentence (inWords);
           }
           else
           {
-            kdDebug(7116) << "imapParser::parseFetch - reading " << envelope << " " << seenUid  << endl;
             envelope = parseEnvelope (inWords);
             if (envelope)
             {
@@ -1315,13 +1306,11 @@ imapParser::parseFetch (ulong value, QString & inWords)
 
           if (!envelope)
           {
-            kdDebug(7116) << "imapParser::parseFetch - discarding " << envelope << " " << seenUid.ascii () << endl;
             // don't know where to put it, throw it away
             parseSentence (inWords);
           }
           else
           {
-            kdDebug(7116) << "imapParser::parseFetch - reading " << envelope << " " << seenUid.ascii () << endl;
             // fill it up with data
             mimeHeader *body =
               parseBodyStructure (inWords, seenUid, envelope);
@@ -1408,7 +1397,6 @@ imapParser::parseFetch (ulong value, QString & inWords)
         break;
 
       default:
-        kdDebug(7116) << "imapParser::parseFetch - ignoring " << inWords << endl;
         parseLiteral (inWords);
         break;
       }
@@ -1439,7 +1427,6 @@ imapParser::parseSentence (QString & inWords)
   QString stack;
   bool first = true;
 
-//  kdDebug(7116) << "imapParser::parseSentence - " << inWords << endl;
   //find the first nesting parentheses
 
   while (!inWords.isEmpty () && (!stack.isEmpty () || first))
@@ -1478,7 +1465,6 @@ imapParser::parseSentence (QString & inWords)
 void
 imapParser::parseRecent (ulong value, QString & result)
 {
-//  kdDebug(7116) << "imapParser::parseRecent - [" << value << "d] " << result << endl;
   selectInfo.setRecent (value);
   result = QString::null;
 }

@@ -252,7 +252,5 @@ ulong imapInfo::_flags (const QString & inFlags, QString & userflags)
       userflags += entry + " ";
   }
 
-  kdDebug(7116) << "imapInfo::_flags - " << inFlags << " -> " << flags << "d, " << userflags << endl;
-
   return flags;
 }

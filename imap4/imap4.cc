@@ -251,7 +251,6 @@ IMAP4Protocol::get (const KURL & _url)
 
         if (!cmd->isComplete ())
         {
-          kdDebug(7116) << "IMAP4::get - got " << lastone << " from client" << endl;
           if (lastone && ((aSection.find ("BODYSTRUCTURE", 0, false) != -1)
                     || (aSection.find ("ENVELOPE", 0, false) != -1)
                     || (aSection.find ("BODY.PEEK[0]", 0, false) != -1
