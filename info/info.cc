@@ -139,26 +139,8 @@ void InfoProtocol::decodeURL( const KURL &url )
      */
 
 
-    QString dirstr;
-    //huh, what is this good for ? aleXXX
-    if (url.hasHost()) {
-      dirstr = '/';
-      dirstr += url.host();
-    }
-    dirstr += url.path(); // there HAS to be a url.path() at least
+    QString dirstr = url.path(); // there HAS to be a url.path() at least
     //kdDebug( 7108 ) << "dirstring: " << dirstr << endl;
-
-    /* now we got a description where a directory is in.
-     * Lets test it */
-
-/*    if (dirstr.isEmpty())
-       dirstr="dir";
-
-    if (dirstr[0]!='/')
-    {
-       decodePath(dirstr);
-       return;
-    };*/
 
     int slashPos = dirstr.find( "/", 1 );
     int oldPos = 0;
