@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2000 Alex Zepeda <jazepeda@pacbell.net>
+ * Copyright (c) 2000, 2001 Alex Zepeda <jazepeda@pacbell.net>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -32,8 +32,6 @@
 #include <qstring.h>
 #include <kio/tcpslavebase.h>
 
-#include <kconfig.h>
-
 class KSASLContext;
 
 class SMTPProtocol
@@ -44,8 +42,8 @@ public:
 
 	virtual void setHost (const QString &host, int port, const QString &user, const QString &pass);
 
-	virtual void put (const KURL& url, int permissions, bool overwrite, bool resume);
-	virtual void stat (const KURL&url);
+	virtual void put (const KURL &url, int permissions, bool overwrite, bool resume);
+	virtual void stat (const KURL &url);
 
 protected:
 

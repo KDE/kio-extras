@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2000 Alex Zepeda <jazepeda@pacbell.net>
+ * Copyright (c) 2000, 2001 Alex Zepeda <jazepeda@pacbell.net>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
