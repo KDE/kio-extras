@@ -26,10 +26,12 @@ class QPixmap;
 class ThumbCreator
 {
 public:
-    enum Flags { DrawFrame = 1, BlendIcon = 2, SaveThumb = 4 };
+    enum Flags { None = 0, DrawFrame = 1, BlendIcon = 2 };
     virtual bool create(const QString &path, int extent, QPixmap &pix) = 0;
-    virtual Flags flags() const { return SaveThumb; }
+    virtual Flags flags() const { return None; }
 
 };
+
+typedef ThumbCreator *(*newCreator)();
 
 #endif

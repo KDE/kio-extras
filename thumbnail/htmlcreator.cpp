@@ -30,6 +30,14 @@
 
 #include "htmlcreator.h"
 
+extern "C"
+{
+    ThumbCreator *new_creator()
+    {
+        return new HTMLCreator;
+    }
+};
+
 HTMLCreator::HTMLCreator()
     : m_html(0)
 {
@@ -91,7 +99,7 @@ void HTMLCreator::slotCompleted()
 
 ThumbCreator::Flags HTMLCreator::flags() const
 {
-    return (Flags)(DrawFrame | SaveThumb);
+    return DrawFrame;
 }
 
 #include "htmlcreator.moc"

@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Service
+Name=Images
+ServiceTypes=ThumbCreator
+MimeTypes=image/*
+X-KDE-Library=imagethumbnail

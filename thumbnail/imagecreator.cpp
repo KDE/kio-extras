@@ -25,9 +25,18 @@
 #include <qpixmap.h>
 #include <qimage.h>
 
-#include <kdebug.h>
+#include <kimageio.h>
 
 #include "imagecreator.h"
+
+extern "C"
+{
+    ThumbCreator *new_creator()
+    {
+        KImageIO::registerFormats();
+        return new ImageCreator;
+    }
+};
 
 bool ImageCreator::create(const QString &path, int extent, QPixmap &pix)
 {
@@ -56,7 +65,6 @@ bool ImageCreator::create(const QString &path, int extent, QPixmap &pix)
             if ( img.width() != w || img.height() != h )
             {
                 // Resizing failed. Aborting.
-                kdWarning() << "Resizing of " << path << " failed. Aborting. " << endl;
                 return false;
             }
             pix.convertFromImage( img );

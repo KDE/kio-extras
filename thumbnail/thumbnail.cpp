@@ -35,12 +35,12 @@
 #include <kiconloader.h>
 #include <kimageeffect.h>
 #include <kmimetype.h>
-#include <kimageio.h>
+#include <ktrader.h>
+#include <klibloader.h>
+#include <kdebug.h>
 
 #include "thumbnail.h"
-#include "imagecreator.h"
-#include "textcreator.h"
-#include "htmlcreator.h"
+#include "thumbcreator.h"
 
 using namespace KIO;
 
@@ -68,7 +68,6 @@ int kdemain(int argc, char **argv)
 ThumbnailProtocol::ThumbnailProtocol(const QCString &pool, const QCString &app)
     : SlaveBase("thumbnail", pool, app)
 {
-    KImageIO::registerFormats();
     m_creators.setAutoDelete(true);
     m_iconDict.setAutoDelete(true);
 }
@@ -95,17 +94,33 @@ void ThumbnailProtocol::get(const KURL &url)
     if (!m_transparency)
         m_transparency = 0;
 
-    // Kludge for now, as long as no pluginification is done, this is enough
-    bool renderHTML = metaData("renderHTML") == "true";
-    // FIXME: After 2.1 this should be handled by KTrader (malte)
+    bool all = metaData("enabled").isNull();
+    QStringList enabled = QStringList::split(",", metaData("enabled"));
+    KTrader::OfferList plugins = KTrader::self()->query("ThumbCreator");
+    // Cannot use 'mimeType' in MimeTypes as MimeTypes may contain wildcards,
+    // get all plugins and find the closest match instead
+    KService::Ptr plugin;
     QString key;
-    if (renderHTML && m_mimeType == "text/html")
-        key = "text/html";
-    else if (m_mimeType.startsWith("text/"))
-        key = "text/*";
-    else if (m_mimeType.startsWith("image/"))
-        key = "image/*";
-    else
+    for (KTrader::OfferList::ConstIterator it = plugins.begin(); it != plugins.end(); ++it)
+    {
+        if (!(all || enabled.contains((*it)->desktopEntryName())))
+            continue;
+            
+        QStringList mimeTypes = (*it)->property("MimeTypes").toStringList();
+        if (mimeTypes.contains(m_mimeType))
+        {
+            plugin = *it;
+            key = m_mimeType;
+            break;
+        }
+        for (QStringList::ConstIterator mt = mimeTypes.begin(); mt != mimeTypes.end(); ++mt)
+            if (m_mimeType.find(QRegExp(*mt, false, true)) == 0)
+            {
+                plugin = *it;
+                key = *mt;
+            }
+    }
+    if (!plugin)
     {
         error(KIO::ERR_INTERNAL, "Unsupported MIME Type: " + m_mimeType);
         return;
@@ -113,15 +128,18 @@ void ThumbnailProtocol::get(const KURL &url)
     ThumbCreator *creator = m_creators[key];
     if (!creator)
     {
-        if (key == "text/html")
-            creator = new HTMLCreator;
-        else if (key == "text/*")
-            creator = new TextCreator;
-        else if (key == "image/*")
-            creator = new ImageCreator;
-        else // Huh?
+        // Don't use KLibFactory here, this is not a QObject and
+        // neither is ThumbCreator
+        KLibrary *library = KLibLoader::self()->library(plugin->library().latin1());
+        if (library)
         {
-            error(KIO::ERR_INTERNAL, "Cannot determine ThumbCreator for " + key);
+            newCreator create = (newCreator)library->symbol("new_creator");
+            if (create)
+                creator = create();
+        }
+        if (!creator)
+        {
+            error(KIO::ERR_INTERNAL, "Cannot load ThumbCreator for " + key);
             return;
         }
         m_creators.insert(key, creator);
@@ -157,9 +175,6 @@ void ThumbnailProtocol::get(const KURL &url)
         y = QMAX( y, 0 );
         KImageEffect::blendOnLower( x, y, icon, img );
     }
-
-    if (flags & ThumbCreator::SaveThumb)
-        setMetaData("save", QString("true"));
 
     QByteArray imgData;
     QDataStream stream( imgData, IO_WriteOnly );

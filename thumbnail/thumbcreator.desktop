@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=ServiceType
+X-KDE-ServiceType=ThumbCreator
+Comment=Thumbnail Handler
+
+[PropertyDef::MimeTypes]
+Type=QStringList

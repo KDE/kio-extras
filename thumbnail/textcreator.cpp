@@ -25,9 +25,16 @@
 
 #include <kstddirs.h>
 #include <kpixmapsplitter.h>
-#include <kdebug.h>
 
 #include "textcreator.h"
+
+extern "C"
+{
+    ThumbCreator *new_creator()
+    {
+        return new TextCreator;
+    }
+};
 
 TextCreator::TextCreator()
     : m_splitter(0)
@@ -45,7 +52,6 @@ bool TextCreator::create(const QString &path, int extent, QPixmap &pix)
     {
         m_splitter = new KPixmapSplitter;
         QString pixmap = locate( "data", "konqueror/pics/thumbnailfont_7x4.png" );
-        kdDebug() << "********************** " << pixmap << endl;
         if ( !pixmap.isEmpty() )
         {
             // FIXME: make configurable...
@@ -69,7 +75,6 @@ bool TextCreator::create(const QString &path, int extent, QPixmap &pix)
             ok = true;
             data[read] = '\0';
             QString text = QString::fromLocal8Bit( data );
-            // kdDebug(1203) << "Textpreview-data: " << text << endl;
             // FIXME: maybe strip whitespace and read more?
 
             QRect rect;
