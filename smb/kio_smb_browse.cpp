@@ -262,7 +262,6 @@ void SMBSlave::reportError(const SMBUrl &url)
 }
 
 //===========================================================================
-// TODO: Add dir cache
 void SMBSlave::listDir( const KURL& kurl )
 {
    kdDebug(KIO_SMB) << "SMBSlave::listDir on " << kurl.url() << endl;
@@ -284,6 +283,7 @@ void SMBSlave::listDir( const KURL& kurl )
    UDSEntry    udsentry;
    UDSAtom     atom;
 
+ again:
    dirfd = smbc_opendir( m_current_url.toSmbcUrl() );
    kdDebug(KIO_SMB) << "SMBSlave::listDir open " << m_current_url.toSmbcUrl() << " " << m_current_url.getType() << " " << dirfd << endl;
    if(dirfd >= 0)
@@ -385,6 +385,31 @@ void SMBSlave::listDir( const KURL& kurl )
    }
    else
    {
+       if (errno == EPERM || errno == EACCES) {
+           KIO::AuthInfo info;
+           info.url = KURL("smb:///");
+           info.url.setHost(url.prettyHost());
+           QString share = url.path();
+           int index = share.find('/', 1);
+           if (index > 1)
+               share = share.left(index);
+           info.url.setPath(share);
+
+           info.prompt = i18n(
+               "Please enter authentication information for:\n"
+               "Server = %1\n"
+               "Share = %2" )
+                         .arg( url.prettyHost() )
+                         .arg( share );
+           info.username = m_current_url.user();
+           info.password = m_current_url.pass();
+
+           if ( openPassDlg(info) ) {
+                m_current_url.setUser(info.username);
+                m_current_url.setPass(info.password);
+                goto again;
+           }
+       }
        reportError(m_current_url);
        finished();
        return;

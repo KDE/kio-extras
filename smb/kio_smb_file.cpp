@@ -59,10 +59,9 @@ void SMBSlave::get( const KURL& kurl )
         return;
     }
 
-    if(auth_initialize_smbc() == -1)
-    {
+    if(!auth_initialize_smbc())
         return;
-    }
+
 
     // Stat
     url = kurl;

@@ -133,9 +133,9 @@ protected:
 
     /**
      * Description :   Initilizes the libsmbclient
-     * Return :        0 on success -1 with errno set on error
+     * Return :        true on success false with errno set on error
      */
-    int auth_initialize_smbc();
+    bool auth_initialize_smbc();
 
     //---------------------------------------------
     // Cache functions (kio_smb_auth.cpp)
