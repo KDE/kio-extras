@@ -275,6 +275,7 @@ namespace KioSMTP {
     }
     mFirstTime = false;
     mLastChallenge = r.lines().front(); // ### better join all lines with \n?
+    mNeedResponse = false;
     return true;
   }
 

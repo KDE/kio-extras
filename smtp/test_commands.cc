@@ -275,6 +275,38 @@ int main( int, char** ) {
   assert( auth2.isComplete() );
   assert( auth2.needsResponse() );
   
+  // dynamics 3: LOGIN
+  smtp.clear();
+  smtp.metadata["sasl"] = "LOGIN";
+  mechs.clear();
+  mechs.append( "LOGIN" );
+  AuthCommand auth3( &smtp, mechs, "user", "pass" );
+  ts.clear();
+  ts2 = ts;
+  assert( auth3.nextCommandLine( &ts ) == "AUTH LOGIN\r\n" );
+  assert( !auth3.isComplete() );
+  assert( auth3.needsResponse() );
+  r.clear();
+  r.parseLine( "334 VXNlcm5hbWU6" );
+  assert( auth3.processResponse( r, &ts ) == true );
+  assert( !auth3.needsResponse() );
+  assert( auth3.nextCommandLine( &ts ) == "dXNlcg==\r\n" );
+  assert( !auth3.isComplete() );
+  assert( auth3.needsResponse() );
+  r.clear();
+  r.parseLine( "334 go on" );
+  assert( auth3.processResponse( r, &ts ) == true );
+  assert( !auth3.needsResponse() );
+  assert( auth3.nextCommandLine( &ts ) == "cGFzcw==\r\n" );
+  assert( auth3.isComplete() );
+  assert( auth3.needsResponse() );
+  r.clear();
+  r.parseLine( "250 OK" );
+  assert( auth3.processResponse( r, &ts ) == true );
+  assert( !auth3.needsResponse() );
+  assert( !smtp.lastErrorCode );
+  assert( ts == ts2 );
+
   //
   // MAIL FROM:
   //
