@@ -636,9 +636,8 @@ AudioCDProtocol::initRequest(const KURL & url)
           /* Not found in title list.  Try hard to find a number in the
              string.  */
           unsigned int ui, j;
-          ui = 0;
-          while (ui < n.length())
-            if (n[ui++].isDigit())
+          for (ui = 0; ui < n.length(); ui++)
+            if (n[ui].isDigit())
               break;
           for (j = ui; j < n.length(); j++)
             if (!n[j].isDigit())
@@ -647,7 +646,7 @@ AudioCDProtocol::initRequest(const KURL & url)
             {
               bool ok;
               /* The external representation counts from 1.  */
-              d->req_track = n.mid(ui, j - i).toInt(&ok) - 1;
+              d->req_track = n.mid(ui, j - ui).toInt(&ok) - 1;
               if (!ok)
                 d->req_track = -1;
             }
