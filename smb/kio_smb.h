@@ -68,7 +68,7 @@
 #include <stdio.h>
 #include <errno.h>
 #include <time.h>
-
+#include <qobject.h>
 
 //-------------------------------
 // Samba client library includes
@@ -87,12 +87,15 @@ extern "C"
 #define KIO_SMB                     7106
 
 using namespace KIO;
+class KProcess;
 
 //===========================================================================
 
 
-class SMBSlave : public KIO::SlaveBase
+class SMBSlave : public QObject, public KIO::SlaveBase
 {
+    Q_OBJECT
+
 private:
     //---------------------------------------------------------------------
     // please make sure your private data does not duplicate existing data
@@ -257,6 +260,14 @@ public:
     //virtual void closeConnection();
     //virtual void slave_status();
     //virtual void special( const QByteArray & );
+    virtual void special( const QByteArray & );
+
+private slots:
+    void readOutput(KProcess *proc, char *buffer, int buflen);
+
+private:
+    QString mybuf;
+
 };
 
 //===========================================================================

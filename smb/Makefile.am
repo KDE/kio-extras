@@ -11,7 +11,8 @@ kio_smb_la_SOURCES = kio_smb.cpp \
              kio_smb_config.cpp \
              kio_smb_dir.cpp \
              kio_smb_file.cpp \
-             kio_smb_internal.cpp
+             kio_smb_internal.cpp \
+	     kio_smb_mount.cpp
 
 kio_smb_la_LIBADD = -lkio -lsmbclient $(SMBCLIENT_EXTRA_LIBS)
 
