@@ -46,7 +46,8 @@ class AudioCDProtocol : public KIO::SlaveBase
     void paranoiaRead(
         struct cdrom_drive * drive,
         long firstSector,
-        long lastSector
+        long lastSector,
+        QString filetype
     );
 
     struct cdrom_drive * initRequest(const KURL &);

@@ -1,6 +1,7 @@
 /*
   Copyright (C) 2000 Rik Hemsley (rikkus) <rik@kde.org>
-  Copyright (C) 2000 Michael Matz <matz@kde.org>
+  Copyright (C) 2000, 2001 Michael Matz <matz@kde.org>
+  Copyright (C) 2001 Carsten Duvenhorst <duvenhorst@m2.uni-hannover.de>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -16,6 +17,7 @@
   along with this program; if not, write to the Free Software
   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 */
+
 
 #include <config.h>
 
@@ -35,6 +37,16 @@ extern "C"
 {
 #include <cdda_interface.h>
 #include <cdda_paranoia.h>
+
+#ifdef HAVE_LAME
+#include <lame/lame.h>
+#endif
+
+#ifdef HAVE_VORBIS
+#include <time.h>
+#include <vorbis/vorbisenc.h>
+#define KDE_VORBIS_TAG "Track encoded by KDE 2.x"
+#endif
 
 void paranoiaCallback(long, int);
 }
@@ -57,7 +69,7 @@ extern "C"
   int kdemain(int argc, char ** argv);
 }
 
-  int
+int
 kdemain(int argc, char ** argv)
 {
   KInstance instance("kio_audiocd");
@@ -80,7 +92,8 @@ kdemain(int argc, char ** argv)
   return 0;
 }
 
-enum Which_dir { Unknown = 0, Device, ByName, ByTrack, Title, Info, Root };
+enum Which_dir { Unknown = 0, Device, ByName, ByTrack, Title, Info, Root,
+                 MP3, Vorbis };
 
 class AudioCDProtocol::Private
 {
@@ -96,6 +109,8 @@ class AudioCDProtocol::Private
       s_bytrack = i18n("By Track");
       s_track = i18n("Track %1");
       s_info = i18n("Information");
+      s_mp3  = "MP3";
+      s_vorbis = "Ogg Vorbis";
     }
 
     void clear()
@@ -126,6 +141,24 @@ class AudioCDProtocol::Private
     QString s_bytrack;
     QString s_track;
     QString s_info;
+    QString s_mp3;
+    QString s_vorbis;
+
+#ifdef HAVE_LAME
+    lame_global_flags *gf;
+#endif
+
+#ifdef HAVE_VORBIS
+    ogg_stream_state os; /* take physical pages, weld into a logical stream of packets */
+    ogg_page         og; /* one Ogg bitstream page.  Vorbis packets are inside */
+    ogg_packet       op; /* one raw packet of data for decode */
+    
+    vorbis_info      vi; /* struct that stores all the static vorbis bitstream settings */
+    vorbis_comment   vc; /* struct that stores all the user comments */
+
+    vorbis_dsp_state vd; /* central working state for the packet->PCM decoder */
+    vorbis_block     vb; /* local working space for packet->PCM decode */
+#endif
 
     Which_dir which_dir;
     int req_track;
@@ -145,9 +178,38 @@ AudioCDProtocol::~AudioCDProtocol()
   delete d;
 }
 
+static QString determineFiletype(QString filename)
+{
+    int len = filename.length();
+    int pos = filename.findRev(".",-1);
+    return filename.right(len - pos - 1);
+}
+
 struct cdrom_drive *
 AudioCDProtocol::initRequest(const KURL & url)
 {
+
+#ifdef HAVE_LAME
+  if (NULL == (d->gf = lame_init())) { // init the lame_global_flags structure with defaults
+    error(KIO::ERR_DOES_NOT_EXIST, url.path());
+    return 0;
+  }
+
+  d->gf->brate = 128;
+  id3tag_init (d->gf);
+#endif
+
+#ifdef HAVE_VORBIS
+  /* choose an encoding mode */
+  /* (mode 0: 44kHz stereo uncoupled, roughly 128kbps VBR) */
+  vorbis_info_init(&d->vi);
+  vorbis_encode_init(&d->vi, 2, 44100, -1, 128000, -1);
+
+  vorbis_comment_init(&d->vc);
+  char *kde_vorbis_comment = KDE_VORBIS_TAG;
+  vorbis_comment_add(&d->vc, kde_vorbis_comment);
+#endif
+
   parseArgs(url);
 
   struct cdrom_drive * drive = pickDrive();
@@ -177,7 +239,7 @@ AudioCDProtocol::initRequest(const KURL & url)
   if (dname.isEmpty() &&
       (d->fname == d->cd_title || d->fname == d->s_byname ||
        d->fname == d->s_bytrack || d->fname == d->s_info ||
-       d->fname == "dev"))
+       d->fname == d->s_mp3 || d->fname == d->s_vorbis || d->fname == "dev"))
     {
       dname = d->fname;
       d->fname = "";
@@ -193,6 +255,10 @@ AudioCDProtocol::initRequest(const KURL & url)
     d->which_dir = ByTrack;
   else if (dname == d->s_info)
     d->which_dir = Info;
+  else if (dname == d->s_mp3)
+    d->which_dir = MP3;
+  else if (dname == d->s_vorbis)
+    d->which_dir = Vorbis;
   else if (dname.left(4) == "dev/")
     {
       d->which_dir = Device;
@@ -202,7 +268,7 @@ AudioCDProtocol::initRequest(const KURL & url)
     {
       d->which_dir = Device;
       dname = "";
-    }  
+    }
   else
     d->which_dir = Unknown;
 
@@ -264,19 +330,63 @@ AudioCDProtocol::get(const KURL & url)
     return;
   }
 
+ QString filetype = determineFiletype(d->fname);
+
+#ifdef HAVE_LAME
+  if (filetype == "mp3" && d->based_on_cddb) {
+    /* If CDDB is used to determine the filenames, tell lame to append ID3v1 TAG to MP3 Files */
+    const char *tname =   d->titles[trackNumber-1].latin1();    // set trackname
+    id3tag_set_album(d->gf, d->cd_title.latin1());
+    id3tag_set_artist(d->gf, d->cd_artist.latin1());
+    id3tag_set_title(d->gf, tname+3); // since titles has preleading tracknumbers, start at position 3
+  }
+
+
+  if (lame_init_params(d->gf) < 0) { // tell lame the new parameters
+    kdDebug(7101) << "lame init params failed" << endl;
+    return;
+  }
+#endif
+
+#ifdef HAVE_VORBIS
+  if (filetype == "ogg" && d->based_on_cddb ) {
+    const char *tname =   d->titles[trackNumber-1].latin1(); 
+    vorbis_comment_add_tag(&d->vc,"title",tname+3);
+    vorbis_comment_add_tag(&d->vc,"artist",d->cd_artist.latin1());
+    vorbis_comment_add_tag(&d->vc,"album",d->cd_title.latin1());
+  }
+#endif
+
+ 
   long firstSector    = cdda_track_firstsector(drive, trackNumber);
   long lastSector     = cdda_track_lastsector(drive, trackNumber);
   long totalByteCount = CD_FRAMESIZE_RAW * (lastSector - firstSector);
 
-  totalSize(44 + totalByteCount); // Include RIFF header length.
+#ifdef HAVE_LAME
+  long time_secs = (8 * totalByteCount) / (44100 * 2 * 16);
 
-  writeHeader(totalByteCount);
+  if (filetype == "mp3")
+    totalSize((time_secs * d->gf->brate * 1000)/8);
+#endif
 
-  paranoiaRead(drive, firstSector, lastSector);
+#ifdef HAVE_VORBIS
+  if (filetype == "ogg") {
+    // TODO: Is there a way to forecast the filelength at VBR????
+    totalSize(totalByteCount);
+  }
+#endif
 
-  data(QByteArray());
+  if (filetype == "wav") {
+    totalSize(44 + totalByteCount); // Include RIFF header length.
+    writeHeader(totalByteCount);    // Write RIFF header.
+  }
 
-  totalSize(44 + totalByteCount); // Include RIFF header length.
+  if (filetype == "cda")
+    totalSize(totalByteCount);      // CDA is raw interleaved PCM Data with SampleRate 44100 and 16 Bit res. 
+
+  paranoiaRead(drive, firstSector, lastSector, filetype);
+
+  data(QByteArray());   // send an empty QByteArray to signal end of data.
 
   cdda_close(drive);
 
@@ -322,10 +432,27 @@ AudioCDProtocol::stat(const KURL & url)
   }
   else
   {
-    atom.m_long = CD_FRAMESIZE_RAW * (
-      cdda_track_lastsector(drive, trackNumber) -
-      cdda_track_firstsector(drive, trackNumber)
-    );
+      QString filetype = determineFiletype(d->fname);
+
+      long filesize = CD_FRAMESIZE_RAW * (
+            cdda_track_lastsector(drive, trackNumber) -
+            cdda_track_firstsector(drive, trackNumber)
+      );
+
+      long length_seconds = (filesize) / 176400;
+#ifdef HAVE_LAME
+      if (filetype == "mp3")
+        atom.m_long = (length_seconds * d->gf->brate*1000) / 8;
+#endif
+
+#ifdef HAVE_VORBIS
+      if (filetype == "ogg")
+        atom.m_long = (length_seconds * d->vi.bitrate_nominal) / 8;
+#endif
+
+      if (filetype == "cda") atom.m_long = filesize;
+
+      if (filetype == "wav") atom.m_long = filesize + 44;
   }
 
   entry.append(atom);
@@ -489,6 +616,17 @@ AudioCDProtocol::listDir(const KURL & url)
       listEntry(entry, false);
       app_dir(entry, QString("dev"), 1);
       listEntry(entry, false);
+
+#ifdef HAVE_LAME
+      app_dir(entry, d->s_mp3, d->tracks);
+      listEntry(entry, false);
+#endif
+
+#ifdef HAVE_VORBIS
+      app_dir(entry, d->s_vorbis, d->tracks);
+      listEntry(entry, false);
+#endif
+
     }
   else if (d->which_dir == Device && url.path().length() <= 5) // "/dev{/}"
     {
@@ -508,27 +646,46 @@ AudioCDProtocol::listDir(const KURL & url)
     {
       if (d->is_audio[i-1])
       {
-        QString s;
+        QString s,s2,s3;
         QString num2;
+
         long size = CD_FRAMESIZE_RAW *
           ( cdda_track_lastsector(drive, i) - cdda_track_firstsector(drive, i));
+        long length_seconds = size / 176400;
 
         /*if (i==1)
           s.sprintf("_%08x.wav", d->discid);
         else*/
           s.sprintf(".wav");
-
+        s2.sprintf(".mp3");
+        s3.sprintf(".ogg");
         num2.sprintf("%02d", i);
+
         QString name;
         switch (d->which_dir)
           {
             case Device:
             case Root: name.sprintf("track%02d.cda", i); break;
             case ByTrack: name = d->s_track.arg(num2) + s; break;
+#ifdef HAVE_LAME
+            case MP3:
+              name = d->titles[i - 1] + s2;
+              size = (length_seconds * d->gf->brate*1000) / 8; // length * bitrate / 8;
+              break;
+#endif
+
+#ifdef HAVE_VORBIS
+            case Vorbis:
+              name = d->titles[i - 1] + s3;
+              size = (length_seconds * d->vi.bitrate_nominal) / 8; // length * bitrate / 8; 
+              break;
+#endif
+
             case ByName:
             case Title: name = d->titles[i - 1] + s; break;
             case Info:
             case Unknown:
+            default:
               error(KIO::ERR_INTERNAL, url.path());
               return;
           }
@@ -641,6 +798,12 @@ AudioCDProtocol::parseArgs(const KURL & url)
     {
       d->path = value;
     }
+#ifdef HAVE_LAME
+    else if (attribute == "br")
+    {
+        d->gf->brate = value.toLong();
+    }
+#endif
     else if (attribute == "paranoia_level")
     {
       d->paranoiaLevel = value.toInt();
@@ -667,6 +830,7 @@ AudioCDProtocol::parseArgs(const KURL & url)
   /* We need to recheck the CD, if the user either enabled CDDB now, or
      changed the server (port).  We simply reset the saved discid, which
      forces a reread of CDDB information.  */
+
   if ((old_use_cddb != d->useCDDB && d->useCDDB == true)
       || old_cddb_server != d->cddbServer
       || old_cddb_port != d->cddbPort)
@@ -679,7 +843,8 @@ AudioCDProtocol::parseArgs(const KURL & url)
 AudioCDProtocol::paranoiaRead(
     struct cdrom_drive * drive,
     long firstSector,
-    long lastSector
+    long lastSector,
+    QString filetype
 )
 {
   cdrom_paranoia * paranoia = paranoia_init(drive);
@@ -715,8 +880,52 @@ AudioCDProtocol::paranoiaRead(
 
   paranoia_seek(paranoia, firstSector, SEEK_SET);
 
+#ifdef HAVE_LAME
+#define mp3buffer_size  8000
+static char mp3buffer[mp3buffer_size];
+#endif
+
   long processed(0);
   long currentSector(firstSector);
+
+#ifdef HAVE_VORBIS
+  if (filetype == "ogg") {
+    ogg_packet header;
+    ogg_packet header_comm;
+    ogg_packet header_code;
+
+    vorbis_analysis_init(&d->vd,&d->vi);
+    vorbis_block_init(&d->vd,&d->vb);
+
+    srand(time(NULL));
+    ogg_stream_init(&d->os,rand());
+
+    vorbis_analysis_headerout(&d->vd,&d->vc,&header,&header_comm,&header_code);
+
+    ogg_stream_packetin(&d->os,&header); 
+    ogg_stream_packetin(&d->os,&header_comm);
+    ogg_stream_packetin(&d->os,&header_code);
+
+    while (int result = ogg_stream_flush(&d->os,&d->og)) {
+
+      if (!result) break;
+
+      QByteArray output;
+
+      char * oggheader = reinterpret_cast<char *>(d->og.header);
+      char * oggbody = reinterpret_cast<char *>(d->og.body);
+
+      output.setRawData(oggheader, d->og.header_len);
+      data(output);
+      output.resetRawData(oggheader, d->og.header_len);
+
+      output.setRawData(oggbody, d->og.body_len);
+      data(output);
+      output.resetRawData(oggbody, d->og.body_len);
+
+    }
+  }
+#endif
 
   QTime timer;
   timer.start();
@@ -736,13 +945,74 @@ AudioCDProtocol::paranoiaRead(
     {
       ++currentSector;
 
-      QByteArray output;
-      char * cbuf = reinterpret_cast<char *>(buf);
-      output.setRawData(cbuf, CD_FRAMESIZE_RAW);
-      data(output);
-      output.resetRawData(cbuf, CD_FRAMESIZE_RAW);
+#ifdef HAVE_LAME
+      if ( filetype == "mp3" ) {
+         int mp3bytes = lame_encode_buffer_interleaved(d->gf,buf,CD_FRAMESAMPLES,mp3buffer,(int)mp3buffer_size);
 
-      processed += CD_FRAMESIZE_RAW;
+         if (mp3bytes < 0 ) {
+            kdDebug(7101) << "lame encoding failed" << endl;
+            break;
+         }
+
+         if (mp3bytes > 0) {
+           QByteArray output;
+
+           output.setRawData(mp3buffer, mp3bytes);
+           data(output);
+           output.resetRawData(mp3buffer, mp3bytes);
+           processed += mp3bytes;
+         }
+      }
+#endif
+
+#ifdef HAVE_VORBIS
+      if (filetype == "ogg") {
+        int i;
+        float **buffer=vorbis_analysis_buffer(&d->vd,CD_FRAMESAMPLES);
+
+        /* uninterleave samples */
+        for(i=0;i<CD_FRAMESAMPLES;i++){
+          buffer[0][i]=buf[2*i]/32768.0;
+          buffer[1][i]=buf[2*i+1]/32768.0;
+        }
+
+        vorbis_analysis_wrote(&d->vd,i);
+
+        while(vorbis_analysis_blockout(&d->vd,&d->vb)==1) {
+          vorbis_analysis(&d->vb,&d->op);
+          ogg_stream_packetin(&d->os,&d->op);
+
+          while(int result=ogg_stream_pageout(&d->os,&d->og)) {
+
+            if (!result) break;
+
+            QByteArray output;
+
+            char * oggheader = reinterpret_cast<char *>(d->og.header);
+            char * oggbody = reinterpret_cast<char *>(d->og.body);
+
+            output.setRawData(oggheader, d->og.header_len);
+            data(output);
+            output.resetRawData(oggheader, d->og.header_len);
+
+            output.setRawData(oggbody, d->og.body_len);
+            data(output);
+            output.resetRawData(oggbody, d->og.body_len);
+          }
+        }
+        processed += CD_FRAMESIZE_RAW;
+      }
+#endif
+
+      if (filetype == "wav" || filetype == "cda") {
+        QByteArray output;
+        char * cbuf = reinterpret_cast<char *>(buf);
+        output.setRawData(cbuf, CD_FRAMESIZE_RAW);
+        data(output);
+        output.resetRawData(cbuf, CD_FRAMESIZE_RAW);
+        processed += CD_FRAMESIZE_RAW;
+      }
+
 
       int elapsed = timer.elapsed() / 1000;
 
@@ -757,6 +1027,31 @@ AudioCDProtocol::paranoiaRead(
       lastElapsed = elapsed;
     }
   }
+#ifdef HAVE_LAME
+  if (filetype == "mp3") {
+     int mp3bytes = lame_encode_finish(d->gf,mp3buffer,(int)mp3buffer_size);
+
+     if (mp3bytes < 0 ) {
+       kdDebug(7101) << "lame encoding failed" << endl;
+     }
+
+     if (mp3bytes > 0) {
+       QByteArray output;
+       output.setRawData(mp3buffer, mp3bytes);
+       data(output);
+       output.resetRawData(mp3buffer, mp3bytes);
+     }
+  }
+#endif
+
+#ifdef HAVE_VORBIS
+  if (filetype == "ogg") {
+    ogg_stream_clear(&d->os);
+    vorbis_block_clear(&d->vb);
+    vorbis_dsp_clear(&d->vd);
+    vorbis_info_clear(&d->vi);
+  }
+#endif
 
   paranoia_free(paranoia);
   paranoia = 0;
