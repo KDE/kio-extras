@@ -15,6 +15,7 @@ public:
 	~DigestAuth();
 
 	void Reset();
+	void decNonceCount() {nonce_count--;}
 	void UseChallenge(const KURL &request, const char *initial_challenge, bool isBASE64=false);
 	bool GenerateResponse(QString &s);
 protected:

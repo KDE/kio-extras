@@ -66,6 +66,7 @@
 
 #include "emailsettings.h"
 #include "base64.h"
+#include "cram_auth.h"
 #include "digest_auth.h"
 #include "smtp.h"
 
@@ -394,7 +395,20 @@ bool SMTPProtocol::Authenticate(const KURL &url)
 			if (command(resp.latin1())) {
 				if (command(""))
 					return true;
+				auth_digestmd5->decNonceCount();
 			}
+		} else
+			free(challenge);
+	}
+
+	if (m_eAuthSupport & AUTH_CRAM) {
+		char *challenge=static_cast<char *>(malloc(2049));
+		QString resp;
+		if (command("AUTH CRAM-MD5", challenge, 2049)) {
+			resp=generate_cram_auth(m_sUser.latin1(), m_sPass.latin1(), challenge);
+			free(challenge);
+			if (command(resp.latin1()))
+				return true;
 		} else
 			free(challenge);
 	}
