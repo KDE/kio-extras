@@ -41,6 +41,10 @@
     imap://server/folder/ - List messages in folder
  */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "imap4.h"
 
 #include "rfcdecoder.h"
