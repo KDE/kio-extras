@@ -395,11 +395,11 @@ void SMTPProtocol::ParseFeatures(const char *_buf)
 
 	if (buf.left(4) == "AUTH") { // Look for auth stuff
 		if (buf.find("DIGEST-MD5") != -1)
-			m_eAuthSupport |= AUTH_DIGEST;
+			m_eAuthSupport = (SMTPProtocol::AUTH)(m_eAuthSupport | AUTH_DIGEST);
 		if (buf.find("CRAM-MD5") != -1)
-			m_eAuthSupport |= AUTH_CRAM;
+			m_eAuthSupport = (SMTPProtocol::AUTH)(m_eAuthSupport | AUTH_CRAM);
 		if (buf.find("PLAIN") != -1)
-			m_eAuthSupport |= AUTH_Plain;
+			m_eAuthSupport = (SMTPProtocol::AUTH)(m_eAuthSupport | AUTH_Plain);
 	} else if (buf.left(8) == "STARTTLS") {
 		haveTLS=true;
 	}
