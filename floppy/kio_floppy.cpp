@@ -78,8 +78,8 @@ void getDriveAndPath(const QString& path, QString& drive, QString& rest)
          drive=(*it)+":";
       else
          rest=rest+"/"+(*it);
-   };
-};
+   }
+}
 
 FloppyProtocol::FloppyProtocol (const QCString &pool, const QCString &app )
 :SlaveBase( "floppy", pool, app )
@@ -90,7 +90,7 @@ FloppyProtocol::FloppyProtocol (const QCString &pool, const QCString &app )
 ,m_stderrSize(0)
 {
    kdDebug(7101)<<"Floppy::Floppy: -"<<pool<<"-"<<endl;
-};
+}
 
 FloppyProtocol::~FloppyProtocol()
 {
@@ -103,7 +103,7 @@ FloppyProtocol::~FloppyProtocol()
    m_mtool=0;
    m_stdoutBuffer=0;
    m_stderrBuffer=0;
-};
+}
 
 int FloppyProtocol::readStdout()
 {
@@ -120,7 +120,7 @@ int FloppyProtocol::readStdout()
    if (m_stdoutBuffer!=0)
    {
       memcpy(newBuffer, m_stdoutBuffer, m_stdoutSize);
-   };
+   }
    memcpy(newBuffer+m_stdoutSize, buffer, length);
    m_stdoutSize+=length;
    newBuffer[m_stdoutSize]='\0';
@@ -128,13 +128,13 @@ int FloppyProtocol::readStdout()
    if (m_stdoutBuffer!=0)
    {
       delete [] m_stdoutBuffer;
-   };
+   }
    m_stdoutBuffer=newBuffer;
    //kdDebug(7101)<<"Floppy::readStdout(): -"<<m_stdoutBuffer<<"-"<<endl;
 
    //kdDebug(7101)<<"Floppy::readStdout ends"<<endl;
    return length;
-};
+}
 
 int FloppyProtocol::readStderr()
 {
@@ -161,9 +161,8 @@ int FloppyProtocol::readStderr()
    m_stderrBuffer=newBuffer;
    kdDebug(7101)<<"Floppy::readStderr(): -"<<m_stderrBuffer<<"-"<<endl;
 
-   //kdDebug(7101)<<"Floppy::readStdout ends"<<endl;
    return length;
-};
+}
 
 void FloppyProtocol::clearBuffers()
 {
@@ -177,7 +176,7 @@ void FloppyProtocol::clearBuffers()
       delete [] m_stderrBuffer;
    m_stderrBuffer=0;
    //kdDebug(7101)<<"Floppy::clearBuffers() ends"<<endl;
-};
+}
 
 void FloppyProtocol::terminateBuffers()
 {
@@ -186,13 +185,13 @@ void FloppyProtocol::terminateBuffers()
    if (m_stdoutBuffer!=0)
    {
       m_stdoutBuffer[m_stdoutSize]='\0';
-   };
+   }
    if (m_stderrBuffer!=0)
    {
       m_stderrBuffer[m_stderrSize]='\0';
-   };
+   }
    //kdDebug(7101)<<"Floppy::terminateBuffers() ends"<<endl;
-};
+}
 
 bool FloppyProtocol::stopAfterError(const KURL& url, const QString& drive)
 {
@@ -222,6 +221,10 @@ bool FloppyProtocol::stopAfterError(const KURL& url, const QString& drive)
    {
       error( KIO::ERR_COULD_NOT_STAT, url.prettyURL()+i18n("\nThere is probably no disk in the drive %1").arg(drive));
    }
+   else if (line.contains("No such device"))
+   {
+      error( KIO::ERR_COULD_NOT_STAT, url.prettyURL()+i18n("\nThere is probably no disk in the drive %1 or you don't have enough permissions to access the drive.").arg(drive));
+   }
    else if (line.contains("not supported"))
    {
       error( KIO::ERR_COULD_NOT_STAT, url.prettyURL()+i18n("\nThe drive %1 is not supported.").arg(drive));
@@ -247,9 +250,9 @@ bool FloppyProtocol::stopAfterError(const KURL& url, const QString& drive)
    else
    {
       error( KIO::ERR_UNKNOWN, outputString);
-   };
+   }
    return true;
-};
+}
 
 void FloppyProtocol::listDir( const KURL& _url)
 {
@@ -263,7 +266,7 @@ void FloppyProtocol::listDir( const KURL& _url)
       redirection(url);
       finished();
       return;
-   };
+   }
    QString drive;
    QString floppyPath;
    getDriveAndPath(path,drive,floppyPath);
@@ -283,7 +286,7 @@ void FloppyProtocol::listDir( const KURL& _url)
       m_mtool=0;
       error(ERR_CANNOT_LAUNCH_PROCESS,"mdir"+i18n("\nEnsure that the mtools package is installed correctly on your system."));
       return;
-   };
+   }
 
    int result;
    bool loopFinished(false);
@@ -305,8 +308,8 @@ void FloppyProtocol::listDir( const KURL& _url)
             {
                loopFinished=true;
                errorOccured=true;
-            };
-      };
+            }
+      }
    } while (!loopFinished);
 
    delete m_mtool;
@@ -337,7 +340,7 @@ void FloppyProtocol::listDir( const KURL& _url)
          {
             kdDebug(7101)<<"Floppy::listDir(): switching to mode 1"<<endl;
             mode=1;
-         };
+         }
       }
       else if (mode==1)
       {
@@ -346,7 +349,7 @@ void FloppyProtocol::listDir( const KURL& _url)
             kdDebug(7101)<<"Floppy::listDir(): ende"<<endl;
             totalSize(totalNumber);
             break;
-         };
+         }
          entry.clear();
          StatInfo info=createStatInfo(line);
          if (info.isValid)
@@ -355,13 +358,13 @@ void FloppyProtocol::listDir( const KURL& _url)
             //kdDebug(7101)<<"Floppy::listDir(): creating UDSEntry"<<endl;
             listEntry( entry, false);
             totalNumber++;
-         };
-      };
-   };
+         }
+      }
+   }
    listEntry( entry, true ); // ready
    finished();
    //kdDebug(7101)<<"Floppy::listDir() ends"<<endl;
-};
+}
 
 void FloppyProtocol::createUDSEntry(const StatInfo& info, UDSEntry& entry)
 {
@@ -385,7 +388,7 @@ void FloppyProtocol::createUDSEntry(const StatInfo& info, UDSEntry& entry)
    atom.m_uds = KIO::UDS_FILE_TYPE;
    atom.m_long =(info.isDir?S_IFDIR:S_IFREG);
    entry.append( atom );
-};
+}
 
 StatInfo FloppyProtocol::createStatInfo(const QString line, bool makeStat, const QString& dirName)
 {
@@ -410,14 +413,14 @@ StatInfo FloppyProtocol::createStatInfo(const QString line, bool makeStat, const
          ext=ext.stripWhiteSpace();
          if (!ext.isEmpty())
             name+="."+ext;
-      };
+      }
       kdDebug(7101)<<"Floppy::createStatInfo() name 8.3= -"<<name<<"-"<<endl;
    }
    else if (line.length()>41)
    {
       name=line.mid(42);
       kdDebug(7101)<<"Floppy::createStatInfo() name vfat: -"<<name<<"-"<<endl;
-   };
+   }
    if ((name==".") || (name==".."))
    {
       if (makeStat)
@@ -426,8 +429,8 @@ StatInfo FloppyProtocol::createStatInfo(const QString line, bool makeStat, const
       {
          info.isValid=false;
          return info;
-      };
-   };
+      }
+   }
 
    if (line.mid(13,5)=="<DIR>")
    {
@@ -439,7 +442,7 @@ StatInfo FloppyProtocol::createStatInfo(const QString line, bool makeStat, const
    {
       size=line.mid(13,9);
       //kdDebug(7101)<<"Floppy::createUDSEntry() size: -"<<size<<"-"<<endl;
-   };
+   }
 
    day=line.mid(26,2);
    month=line.mid(23,2);
@@ -452,7 +455,7 @@ StatInfo FloppyProtocol::createStatInfo(const QString line, bool makeStat, const
    {
       info.isValid=false;
       return info;
-   };
+   }
 
    info.name=name;
    info.size=size.toInt();
@@ -470,7 +473,7 @@ StatInfo FloppyProtocol::createStatInfo(const QString line, bool makeStat, const
    info.isValid=true;
    //kdDebug(7101)<<"Floppy::createUDSEntry() ends"<<endl;
    return info;
-};
+}
 
 StatInfo FloppyProtocol::_stat(const KURL& url)
 {
@@ -492,7 +495,7 @@ StatInfo FloppyProtocol::_stat(const KURL& url)
       info.isValid=true;
 
       return info;
-   };
+   }
 
    //kdDebug(7101)<<"Floppy::_stat(): delete m_mtool"<<endl;
    if (m_mtool!=0)
@@ -510,7 +513,7 @@ StatInfo FloppyProtocol::_stat(const KURL& url)
       m_mtool=0;
       error(ERR_CANNOT_LAUNCH_PROCESS,"mdir"+i18n("\nEnsure that the mtools package is installed correctly on your system."));
       return info;
-   };
+   }
 
 
    clearBuffers();
@@ -535,8 +538,8 @@ StatInfo FloppyProtocol::_stat(const KURL& url)
             {
                loopFinished=true;
                errorOccured=true;
-            };
-      };
+            }
+      }
    } while (!loopFinished);
 
    //kdDebug(7101)<<"Floppy::_stat(): delete m_mtool"<<endl;
@@ -550,7 +553,7 @@ StatInfo FloppyProtocol::_stat(const KURL& url)
    {
       info.isValid=false;
       return info;
-   };
+   }
 
    if (m_stdoutSize==0)
    {
@@ -572,11 +575,11 @@ StatInfo FloppyProtocol::_stat(const KURL& url)
       if (info.isValid==false)
          error( KIO::ERR_COULD_NOT_STAT, url.prettyURL()+i18n("Reason unknown."));
       return info;
-   };
+   }
    if (info.isValid==false)
       error( KIO::ERR_COULD_NOT_STAT, url.prettyURL()+i18n("Reason unknown."));
    return info;
-};
+}
 
 int FloppyProtocol::freeSpace(const KURL& url)
 {
@@ -601,7 +604,7 @@ int FloppyProtocol::freeSpace(const KURL& url)
       m_mtool=0;
       error(ERR_CANNOT_LAUNCH_PROCESS,"mdir"+i18n("\nEnsure that the mtools package is installed correctly on your system."));
       return -1;
-   };
+   }
 
 
    clearBuffers();
@@ -626,8 +629,8 @@ int FloppyProtocol::freeSpace(const KURL& url)
             {
                loopFinished=true;
                errorOccured=true;
-            };
-      };
+            }
+      }
    } while (!loopFinished);
 
    //kdDebug(7101)<<"Floppy::freeSpace(): delete m_mtool"<<endl;
@@ -640,7 +643,7 @@ int FloppyProtocol::freeSpace(const KURL& url)
    if (errorOccured)
    {
       return -1;
-   };
+   }
 
    if (m_stdoutSize==0)
    {
@@ -666,11 +669,11 @@ int FloppyProtocol::freeSpace(const KURL& url)
          tmp=tmp.stripWhiteSpace();
 
          return tmp.toInt();
-      };
+      }
       lineNumber++;
-   };
+   }
    return -1;
-};
+}
 
 void FloppyProtocol::stat( const KURL & _url)
 {
@@ -684,7 +687,7 @@ void FloppyProtocol::stat( const KURL & _url)
       redirection(url);
       finished();
       return;
-   };
+   }
    StatInfo info=this->_stat(url);
    if (info.isValid)
    {
@@ -694,7 +697,7 @@ void FloppyProtocol::stat( const KURL & _url)
       finished();
       //kdDebug(7101)<<"Floppy::stat(): ends"<<endl;
       return;
-   };
+   }
    //otherwise the error() was already reported in _stat()
 }
 
@@ -710,7 +713,7 @@ void FloppyProtocol::mkdir( const KURL& url, int)
       redirection(newUrl);
       finished();
       return;
-   };
+   }
    QString drive;
    QString floppyPath;
    getDriveAndPath(path,drive,floppyPath);
@@ -718,7 +721,7 @@ void FloppyProtocol::mkdir( const KURL& url, int)
    {
       finished();
       return;
-   };
+   }
    if (m_mtool!=0)
       delete m_mtool;
    //kdDebug(7101)<<"Floppy::stat(): create args"<<endl;
@@ -734,7 +737,7 @@ void FloppyProtocol::mkdir( const KURL& url, int)
       m_mtool=0;
       error(ERR_CANNOT_LAUNCH_PROCESS,"mmd"+i18n("\nEnsure that the mtools package is installed correctly on your system."));
       return;
-   };
+   }
 
 
    clearBuffers();
@@ -758,8 +761,8 @@ void FloppyProtocol::mkdir( const KURL& url, int)
             {
                loopFinished=true;
                errorOccured=true;
-            };
-      };
+            }
+      }
    } while (!loopFinished);
 
    delete m_mtool;
@@ -782,7 +785,7 @@ void FloppyProtocol::del( const KURL& url, bool isfile)
       redirection(newUrl);
       finished();
       return;
-   };
+   }
    QString drive;
    QString floppyPath;
    getDriveAndPath(path,drive,floppyPath);
@@ -790,7 +793,7 @@ void FloppyProtocol::del( const KURL& url, bool isfile)
    {
       finished();
       return;
-   };
+   }
 
    if (m_mtool!=0)
       delete m_mtool;
@@ -811,7 +814,7 @@ void FloppyProtocol::del( const KURL& url, bool isfile)
       m_mtool=0;
       error(ERR_CANNOT_LAUNCH_PROCESS,"mrd"+i18n("\nEnsure that the mtools package is installed correctly on your system."));
       return;
-   };
+   }
 
 
    clearBuffers();
@@ -835,8 +838,8 @@ void FloppyProtocol::del( const KURL& url, bool isfile)
             {
                loopFinished=true;
                errorOccured=true;
-            };
-      };
+            }
+      }
    } while (!loopFinished);
 
    delete m_mtool;
@@ -845,7 +848,7 @@ void FloppyProtocol::del( const KURL& url, bool isfile)
    if (errorOccured)
       return;
    finished();
-};
+}
 
 void FloppyProtocol::rename( const KURL &src, const KURL &dest, bool _overwrite )
 {
@@ -867,7 +870,7 @@ void FloppyProtocol::rename( const KURL &src, const KURL &dest, bool _overwrite 
    {
       finished();
       return;
-   };
+   }
 
    QString destDrive;
    QString destFloppyPath;
@@ -876,7 +879,7 @@ void FloppyProtocol::rename( const KURL &src, const KURL &dest, bool _overwrite 
    {
       finished();
       return;
-   };
+   }
 
    if (m_mtool!=0)
       delete m_mtool;
@@ -897,7 +900,7 @@ void FloppyProtocol::rename( const KURL &src, const KURL &dest, bool _overwrite 
       m_mtool=0;
       error(ERR_CANNOT_LAUNCH_PROCESS,"mren"+i18n("\nEnsure that the mtools package is installed correctly on your system."));
       return;
-   };
+   }
 
 
    clearBuffers();
@@ -921,8 +924,8 @@ void FloppyProtocol::rename( const KURL &src, const KURL &dest, bool _overwrite 
             {
                loopFinished=true;
                errorOccured=true;
-            };
-      };
+            }
+      }
    } while (!loopFinished);
 
    delete m_mtool;
@@ -931,7 +934,7 @@ void FloppyProtocol::rename( const KURL &src, const KURL &dest, bool _overwrite 
    if (errorOccured)
       return;
    finished();
-};
+}
 
 void FloppyProtocol::get( const KURL& url )
 {
@@ -945,7 +948,7 @@ void FloppyProtocol::get( const KURL& url )
       redirection(newUrl);
       finished();
       return;
-   };
+   }
    StatInfo info=this->_stat(url);
    //the error was already reported in _stat()
    if (info.isValid==false)
@@ -960,7 +963,7 @@ void FloppyProtocol::get( const KURL& url )
    {
       finished();
       return;
-   };
+   }
 
    if (m_mtool!=0)
       delete m_mtool;
@@ -977,7 +980,7 @@ void FloppyProtocol::get( const KURL& url )
       m_mtool=0;
       error(ERR_CANNOT_LAUNCH_PROCESS,"mcopy"+i18n("\nEnsure that the mtools package is installed correctly on your system."));
       return;
-   };
+   }
 
    clearBuffers();
    int result;
@@ -1009,7 +1012,7 @@ void FloppyProtocol::get( const KURL& url )
          {
             loopFinished=true;
          }
-      };
+      }
       if (stderrEvent)
       {
          if (readStderr()==0)
@@ -1019,8 +1022,8 @@ void FloppyProtocol::get( const KURL& url )
             {
                errorOccured=true;
                loopFinished=true;
-            };
-      };
+            }
+      }
    } while (!loopFinished);
 
    //kdDebug(7101)<<"Floppy::get(): deleting m_mtool"<<endl;
@@ -1032,7 +1035,7 @@ void FloppyProtocol::get( const KURL& url )
    //kdDebug(7101)<<"Floppy::get(): finishing"<<endl;
    data( QByteArray() );
    finished();
-};
+}
 
 void FloppyProtocol::put( const KURL& url, int , bool overwrite, bool )
 {
@@ -1046,7 +1049,7 @@ void FloppyProtocol::put( const KURL& url, int , bool overwrite, bool )
       redirection(newUrl);
       finished();
       return;
-   };
+   }
    QString drive;
    QString floppyPath;
    getDriveAndPath(path,drive,floppyPath);
@@ -1054,7 +1057,7 @@ void FloppyProtocol::put( const KURL& url, int , bool overwrite, bool )
    {
       finished();
       return;
-   };
+   }
    int freeSpaceLeft=freeSpace(url);
    if (freeSpaceLeft==-1)
       return;
@@ -1077,7 +1080,7 @@ void FloppyProtocol::put( const KURL& url, int , bool overwrite, bool )
       m_mtool=0;
       error(ERR_CANNOT_LAUNCH_PROCESS,"mcopy"+i18n("\nEnsure that the mtools package is installed correctly on your system."));
       return;
-   };
+   }
 
 
    clearBuffers();
@@ -1097,7 +1100,7 @@ void FloppyProtocol::put( const KURL& url, int , bool overwrite, bool )
       {
          if (readStdout()==0)
             result=0;
-      };
+      }
       if (stderrEvent)
       {
          if (readStderr()==0)
@@ -1128,9 +1131,9 @@ void FloppyProtocol::put( const KURL& url, int , bool overwrite, bool )
                //kdDebug(7101)<<"Floppy::put(): writing..."<<endl;
                result=::write(m_mtool->stdinFD(),buffer.data(), buffer.size());
                kdDebug(7101)<<"Floppy::put(): after write(), wrote "<<result<<" bytes"<<endl;
-            };
+            }
          }
-      };
+      }
    }
    while ( result > 0 );
 
@@ -1139,11 +1142,11 @@ void FloppyProtocol::put( const KURL& url, int , bool overwrite, bool )
       perror("writing to stdin");
       error( KIO::ERR_CANNOT_OPEN_FOR_WRITING, url.prettyURL());
       return;
-   };
+   }
 
    delete m_mtool;
    m_mtool=0;
 
    finished();
-};
+}
 
