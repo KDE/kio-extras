@@ -919,7 +919,7 @@ sub InfoNode2HTML {
             print "</pre>";
          }
          @ParLines = ();
-         my $ParLine = 1;
+         $ParLine = 1;
          $MayBeText = 1;
          $MayBeTitle = 1;
          $Par = "";
