@@ -87,6 +87,12 @@ imapCommand::result ()
 }
 
 const QString &
+imapCommand::resultInfo ()
+{
+  return mResultInfo;
+}
+
+const QString &
 imapCommand::id ()
 {
   return mId;
@@ -121,6 +127,12 @@ void
 imapCommand::setResult (const QString & result)
 {
   mResult = result;
+}
+
+void
+imapCommand::setResultInfo (const QString & result)
+{
+  mResultInfo = result;
 }
 
 void

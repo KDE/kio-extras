@@ -105,20 +105,23 @@ imapParser::sendCommand (imapCommand * aCmd)
 }
 
 bool
-imapParser::clientLogin (const QString & aUser, const QString & aPass)
+imapParser::clientLogin (const QString & aUser, const QString & aPass,
+  QString & resultInfo)
 {
   imapCommand *cmd;
   bool retVal = false;
 
   cmd =
     doCommand (new
-               imapCommand ("LOGIN", "\"" + aUser + "\" \"" + aPass + "\""));
+               imapCommand ("LOGIN", "\"" + rfcDecoder::toIMAP(aUser)
+               + "\" \"" + rfcDecoder::toIMAP(aPass) + "\""));
 
   if (cmd->result () == "OK")
   {
     currentState = ISTATE_LOGIN;
     retVal = true;
   }
+  resultInfo = cmd->resultInfo();
   completeQueue.removeRef (cmd);
 
   return retVal;
@@ -127,7 +130,7 @@ imapParser::clientLogin (const QString & aUser, const QString & aPass)
 
 bool
 imapParser::clientAuthenticate (const QString & aUser, const QString & aPass,
-                                const QString & aAuth, bool isSSL)
+  const QString & aAuth, bool isSSL, QString & resultInfo)
 {
   imapCommand *cmd;
   bool retVal = false;
@@ -176,6 +179,7 @@ imapParser::clientAuthenticate (const QString & aUser, const QString & aPass,
     currentState = ISTATE_LOGIN;
     retVal = true;
   }
+  resultInfo = cmd->resultInfo();
   completeQueue.removeRef (cmd);
 
   return retVal;
@@ -1515,6 +1519,7 @@ int imapParser::parseLoop ()
           result = result.left (result.length () - 2);  // tie off CRLF
           resultCode = parseLiteral (result); //the result
           current->setResult (resultCode);
+          current->setResultInfo(result);
           current->setComplete ();
 
           sentQueue.removeRef (current);

@@ -143,8 +143,9 @@ public:
   imapCommand *doCommand (imapCommand *);
 
 
-  bool clientLogin (const QString &, const QString &);
-  bool clientAuthenticate (const QString &, const QString &, const QString &, bool);
+  bool clientLogin (const QString &, const QString &, QString &);
+  bool clientAuthenticate (const QString &, const QString &, const QString &,
+    bool, QString &);
 
   // main loop for the parser
   // reads one line and dispatches it to the appropriate sub parser

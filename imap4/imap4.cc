@@ -1200,8 +1200,6 @@ void IMAP4Protocol::closeConnection()
 
 bool IMAP4Protocol::makeLogin ()
 {
-  bool skipFirst = true;
-
   kdDebug(7116) << "IMAP4::makeLogin - checking login" << endl;
   if (getState () == ISTATE_LOGIN || getState () == ISTATE_SELECT)
     return true;
@@ -1267,8 +1265,8 @@ bool IMAP4Protocol::makeLogin ()
     if (!myAuth.isEmpty () && myAuth != "*"
         && !hasCapability (QString ("AUTH=") + myAuth))
     {
-      error (ERR_UNSUPPORTED_PROTOCOL, i18n("Authentication method %1 not "
-        "supported.").arg(myAuth));
+      error (ERR_COULD_NOT_LOGIN, i18n("The authentication method %1 is not "
+        "supported by the server.").arg(myAuth));
       closeConnection();
       return false;
     }
@@ -1276,37 +1274,23 @@ bool IMAP4Protocol::makeLogin ()
     kdDebug(7116) << "IMAP4::makeLogin - attempting login" << endl;
 
     if (myUser.isEmpty () || myPass.isEmpty ())
-      skipFirst = false;
+      openPassDlg (i18n ("Username and password for your IMAP account:"),
+                        myUser, myPass);
 
-    while (skipFirst
-           ||
-           openPassDlg (i18n ("Username and password for your IMAP account:"),
-                        myUser, myPass))
+    kdDebug(7116) << "IMAP4::makeLogin - open_PassDlg: user=" << myUser << " pass=xx" << endl;
+
+    QString resultInfo;
+    if (myAuth.isEmpty () || myAuth == "*")
     {
-
-      kdDebug(7116) << "IMAP4::makeLogin - open_PassDlg: user=" << myUser << " pass=xx" << endl;
-      skipFirst = false;
-
-      if (myAuth.isEmpty () || myAuth == "*")
-      {
-        if (clientLogin (myUser, myPass))
-        {
-          kdDebug(7116) << "IMAP4::makeLogin - login succeded" << endl;
-        }
-        else
-          kdDebug(7116) << "IMAP4::makeLogin - login failed" << endl;
-      }
-      else
-      {
-        if (clientAuthenticate (myUser, myPass, myAuth, mySSL))
-        {
-          kdDebug(7116) << "IMAP4::makeLogin: " << myAuth << " succeded" << endl;
-        }
-        else
-          kdDebug(7116) << "IMAP4::makeLogin: " << myAuth << " failed" << endl;
-      }
-      if (getState () == ISTATE_LOGIN)
-        break;
+      if (!clientLogin (myUser, myPass, resultInfo))
+        error(KIO::ERR_COULD_NOT_LOGIN, i18n("Could not login. Probably the "
+        "password is wrong.\nThe server replied:\n%1").arg(resultInfo));
+    }
+    else
+    {
+      if (!clientAuthenticate (myUser, myPass, myAuth, mySSL, resultInfo))
+        error(KIO::ERR_COULD_NOT_LOGIN, i18n("Could not authenticate via %1.\n"
+        "The server replied:\n%2").arg(myAuth).arg(resultInfo));
     }
   }
 

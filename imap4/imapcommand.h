@@ -33,6 +33,7 @@ public:
   imapCommand (const QString & command, const QString & parameter);
   bool isComplete ();
   const QString & result ();
+  const QString & resultInfo ();
   const QString & parameter ();
   const QString & command ();
   const QString & id ();
@@ -40,6 +41,7 @@ public:
   void setId (const QString &);
   void setComplete ();
   void setResult (const QString &);
+  void setResultInfo (const QString &);
   void setCommand (const QString &);
   void setParameter (const QString &);
   const QString getStr ();
@@ -82,6 +84,7 @@ protected:
   bool mComplete;
   QString aParameter;
   QString mResult;
+  QString mResultInfo;
 
 private:
     imapCommand & operator = (const imapCommand &);
