@@ -24,6 +24,7 @@ if test "x$with_cdparanoia" = "xCHECK" ; then
   fi
   if test $with_cdparanoia = FOUND ; then
     with_cdparanoia=NOTFOUND
+    # because of the horrible hack we need shared cdparanoia
     for ext in la so sl a ; do
       AC_FIND_FILE(libcdda_paranoia.$ext, $kde_libraries /usr/lib /usr/local/lib,
         para_libdir)
@@ -37,6 +38,16 @@ if test "x$with_cdparanoia" = "xCHECK" ; then
         break
       fi
     done
+    if test "$with_cdparanoia" = FOUND; then
+      if test "$ext" = la; then
+        grep "^library_names='*[a-z]*'" $para_libdir/libcdda_paranoia.$ext 2>&1 > /dev/null || with_cdparanoia=NOTFOUND
+      fi
+      if test "$ext" = a; then
+        with_cdparanoia=NOTFOUND
+        cdparanoia_only_static=yes
+      fi
+      # beware, that we don't reset CDPARANOIA_*
+    fi
   fi
 fi
 
