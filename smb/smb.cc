@@ -22,6 +22,7 @@
 
 #include <kshred.h>
 #include <kdebug.h>
+#include <klocale.h>
 #include <kurl.h>
 #include <kprotocolmanager.h>
 #include <kinstance.h>
@@ -75,11 +76,10 @@ public:
 						return user;
 					}
 				}
-				message = "Login for host ";
-				message += optmessage;
+				message = i18n("Login for host %1").arg(optmessage);
 				myUser = user?user:"";
 				myPass = "";
-				res = proto->openPassDlg(message, myUser, myPass);
+				res = proto->openPassDlg(message, myUser, myPass, optmessage);
 				kDebugInfo( 7106, "CallBack: res=%s", res?debugString("true"):debugString("false"));
 				if (!res) {
 					if (user) {delete user; user = 0;}
@@ -104,11 +104,10 @@ public:
 			
 			case ANSWER_USER_PASSWORD:
 				if (havePass) return pass;
-				message = "Password for user ";
-				message += optmessage;
+				message = i18n("Password for user %1").arg(optmessage);
 				myUser = optmessage;
 				myPass = "";
-				res = proto->openPassDlg(message, myUser, myPass);
+				res = proto->openPassDlg(message, myUser, myPass, proto->currentHost);
 				kDebugInfo( 7106, "CallBack: res=%s", res?debugString("true"):debugString("false"));
 				if (!res) {
 					if (user) {delete user; user = 0;}
@@ -150,12 +149,10 @@ public:
 						return pass;
 					}
 				}
-				message = "Password for service ";
-				message += optmessage;
-				message += " (user ignored)";
+				message = i18n("Password for service %1 (user ignored)").arg(optmessage);
 				myUser = user?user:"";
 				myPass = "";
-				res = proto->openPassDlg(message, myUser, myPass);
+				res = proto->openPassDlg(message, myUser, myPass, proto->currentHost);
 				kDebugInfo( 7106, "CallBack: res=%s", res?debugString("true"):debugString("false"));
 				kDebugInfo( 7106, "CallBack: user=%s, pass=%s", debugString(user), debugString(pass));
 				if (!res) {
@@ -256,7 +253,7 @@ void SmbProtocol::loadBindings(bool force)
 		// unscramble
 		QString scrambled = g_pConfig->readEntry( key );
 		password = "";
-		for (int i=0; i<scrambled.length()/3; i++) {
+		for (unsigned int i=0; i<scrambled.length()/3; i++) {
 			QChar qc1 = scrambled[i*3];
 			QChar qc2 = scrambled[i*3+1];
 			QChar qc3 = scrambled[i*3+2];
@@ -288,7 +285,7 @@ void SmbProtocol::saveBindings() // Will store on the disk if required
 		key.sprintf("password%d",index);
 		// Weak code, but least it makes the string unreadable
 		QString scrambled;
-		for (int i=0; i<it->password.length(); i++) {
+		for (unsigned int i=0; i<it->password.length(); i++) {
 			QChar c = it->password[i];
 			unsigned int num = (c.unicode() ^ 173) + 17;
 			unsigned int a1 = (num & 0xFC00) >> 10;
@@ -453,11 +450,10 @@ void SmbProtocol::get( const QString& pathArg, const QString& /*query*/, bool /*
 }
 
 
-void SmbProtocol::put( const QString& dest_orig_arg, int _mode, bool _overwrite, bool _resume )
+void SmbProtocol::put( const QString& dest_orig_arg, int /*_mode*/, bool _overwrite, bool _resume )
 {
-	QString dest_orig = buildFullLibURL(dest_orig_arg);
-	kDebugInfo( 7106, "entering put %s", debugString(dest_orig));
-    bool bMarkPartial = false;
+    QString dest_orig = buildFullLibURL(dest_orig_arg);
+    kDebugInfo( 7106, "entering put %s", debugString(dest_orig));
 
     struct stat buff_orig;
     bool orig_exists = ( smb.stat( dest_orig, &buff_orig ) != -1 );
