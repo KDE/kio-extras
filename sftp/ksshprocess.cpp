@@ -458,25 +458,27 @@ int KSshProcess::error(QString& msg) {
 }
 
 void KSshProcess::kill(int signal) {
+    int pid = ssh.pid();
+    
     kdDebug(KSSHPROC) << "KSshProcess::kill(signal:" << signal << "): "
-        "ssh pid is " << ssh.pid() << endl;
+        "ssh pid is " << pid << endl;
     kdDebug(KSSHPROC) << "KSshPRocess::kill(): "
         "we are " << (mConnected ? "" : "not ") << "connected" << endl;
     kdDebug(KSSHPROC) << "KSshProcess::kill(): "
         "we are " << (mRunning ? "" : "not ") <<"running a ssh process" << endl;
 
-    if( mRunning && ssh.pid() > 1 ) {  // make sure there is a 
-                                       // running ssh process
-        if( ::kill(ssh.pid(), signal) == 0 ) {
-            // clean up if we tried to kill the process
-            if( signal == SIGTERM || signal == SIGKILL ) {
-		while(waitpid(-1, NULL, WNOHANG) > 0);
-                mConnected = false;
-                mRunning = false;
+    if( mRunning && pid > 1 ) {
+            // Kill the child process...
+            if ( ::kill(pid, signal) == 0 ) {
+                // clean up if we tried to kill the process
+                if( signal == SIGTERM || signal == SIGKILL ) {
+                    while(waitpid(-1, NULL, WNOHANG) > 0);
+                    mConnected = false;
+                    mRunning = false;
+                }
             }
-        }
-        else
-            kdDebug(KSSHPROC) << "KSshProcess::kill(): kill failed" << endl;
+            else
+                kdDebug(KSSHPROC) << "KSshProcess::kill(): kill failed" << endl;
     }
     else
         kdDebug(KSSHPROC) << "KSshProcess::kill(): "

@@ -376,10 +376,10 @@ public:
      *
      * @param signal The signal to send to the ssh process. See 'kill -l'
      *               for a list of possible signals.
-     *               The default signal is SIGTERM which kills ssh.
+     *               The default signal is SIGKILL which kills ssh.
      *
      */
-    void kill(int signal = SIGTERM);
+    void kill(int signal = SIGKILL);
 
     /**
      * The pid of the ssh process started by this instance of KSshProcess.
