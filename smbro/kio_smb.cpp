@@ -77,6 +77,7 @@ int kdemain( int argc, char **argv )
 
   SmbProtocol slave(argv[2], argv[3]);
   slave.dispatchLoop();
+  kdDebug(7101)<<"exiting normally"<<endl;
   return 0;
 }
 
@@ -205,7 +206,7 @@ bool SmbProtocol::stopAfterError(const KURL& url, bool notSureWhetherErrorOccure
       return true;
    };
 
-   QString outputString(m_stdoutBuffer);
+   QString outputString = QString::fromLocal8Bit(m_stdoutBuffer);
 
    //no samba service on this host
    if ((outputString.contains("Connection to")) && (outputString.contains("failed"))
@@ -466,7 +467,7 @@ void SmbProtocol::listShares()
       return;
 
 
-   QString outputString(m_stdoutBuffer);
+   QString outputString = QString::fromLocal8Bit(m_stdoutBuffer);
    QTextIStream output(&outputString);
    QString line;
 
@@ -554,7 +555,7 @@ void SmbProtocol::listShares()
 void SmbProtocol::listDir( const KURL& _url)
 {
    kdDebug(7101)<<"Smb::listDir() "<<_url.path()<<endl;
-   QString path( QFile::encodeName(_url.path()));
+   QString path( _url.path());
 
    if (m_currentHost.isEmpty())
    {
@@ -589,7 +590,7 @@ See the KDE Control Center under Network, LANBrowsing for more information."));
       return;
    };
 
-   QCString command=QCString("dir \"")+smbPath.utf8()+QCString("\\*\"\n");
+   QCString command=QCString("dir \"")+smbPath.local8Bit()+QCString("\\*\"\n");
    kdDebug(7101)<<"Smb::listDir(): executing command: -"<<command<<"-"<<endl;
 
    if (::write(proc->fd(),command.data(),command.length())<0)
@@ -633,7 +634,7 @@ See the KDE Control Center under Network, LANBrowsing for more information."));
    if (stopAfterError(_url,true))
       return;
 
-   QString outputString(m_stdoutBuffer);
+   QString outputString = QString::fromLocal8Bit(m_stdoutBuffer);
    QTextIStream output(&outputString);
    QString line;
 
@@ -789,7 +790,7 @@ StatInfo SmbProtocol::_stat(const KURL& url)
    kdDebug(7101)<<"Smb::_stat() utf8() : -"<<url.path().utf8()<<"-"<<endl;
    StatInfo info;
 
-   QString path( QFile::encodeName(url.path()));
+   QString path( url.path());
    QString share;
    QString smbPath;
    getShareAndPath(path,share,smbPath);
@@ -815,7 +816,7 @@ StatInfo SmbProtocol::_stat(const KURL& url)
    };
 
    //QCString command=QCString("dir \"")+smbPath.latin1()+QCString("\"\n");
-   QCString command=QCString("dir \"")+smbPath.utf8()+QCString("\"\n");
+   QCString command=QCString("dir \"")+smbPath.local8Bit()+QCString("\"\n");
    kdDebug(7101)<<"Smb::_stat(): executing command: -"<<command<<"-"<<endl;
 
    if (::write(proc->fd(),command.data(),command.length())<0)
@@ -861,7 +862,7 @@ StatInfo SmbProtocol::_stat(const KURL& url)
       return info;
    };
 
-   QString outputString(m_stdoutBuffer);
+   QString outputString = QString::fromLocal8Bit(m_stdoutBuffer);
    QTextIStream output(&outputString);
    QString line;
    int lineNumber(0);
@@ -910,7 +911,7 @@ See the KDE Control Center under Network, LANBrowsing for more information."));
 void SmbProtocol::get( const KURL& url )
 {
    kdDebug(7101)<<"Smb::get() "<<url.path().utf8()<<endl;
-   QString path( QFile::encodeName(url.path()));
+   QString path( url.path());
 
    QString share;
    QString smbPath;
@@ -940,7 +941,7 @@ void SmbProtocol::get( const KURL& url )
       return;
    };
 
-   QCString command=QCString("get \"")+smbPath.utf8()+QCString("\" ")+fifoName+"\n";
+   QCString command=QCString("get \"")+smbPath.local8Bit()+QCString("\" ")+fifoName+"\n";
    kdDebug(7101)<<"Smb::get(): executing command: -"<<command<<"-"<<endl;
 
    if (::write(proc->fd(),command.data(),command.length())<0)
@@ -1144,7 +1145,7 @@ See the KDE Control Center under Network, LANBrowsing for more information."));
          };
          //now parse the output
          //kdDebug(7101)<<"Smb::setHost() received -"<<m_stdoutBuffer<<"-"<<endl;
-         QString outputString(m_stdoutBuffer);
+         QString outputString = QString::fromLocal8Bit(m_stdoutBuffer);
          QTextIStream output(&outputString);
          QString line;
 
@@ -1201,7 +1202,7 @@ ClientProcess* SmbProtocol::getProcess(const QString& host, const QString& share
    proc=new ClientProcess();
 
    QCStringList args;
-   args<<QCString("//")+m_nmbName+QCString("/")+share.utf8();
+   args<<QCString("//")+m_nmbName+QCString("/")+share.local8Bit();
    if (!m_workgroup.isEmpty())
       args<<QCString("-W")+m_workgroup.latin1();
    if (!m_user.isEmpty())
@@ -1233,7 +1234,7 @@ ClientProcess* SmbProtocol::getProcess(const QString& host, const QString& share
       {
          proc=new ClientProcess();
          QCStringList tmpArgs;
-         tmpArgs<<QString("//"+host+"/"+share).utf8();
+         tmpArgs<<QString("//"+host+"/"+share).local8Bit();
          if (!m_workgroup.isEmpty())
             tmpArgs<<QCString("-W")+m_workgroup.latin1();
          if (!user.isEmpty())

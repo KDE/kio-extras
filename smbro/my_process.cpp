@@ -103,7 +103,7 @@ bool ClientProcess::start(const QCString& binary, QCStringList& args)
    setTerminal(true);
    // Try to set the default locale to make the parsing of the output
    // of `smbclient' easier.
-   putenv("LANG=C");
+//   putenv("LANG=C");
    int ret = PtyProcess::exec(binary, args);
    //kdDebug()<<"ClientProcess::start() exec() returned "<<ret<<endl;
    if (ret != 0)
