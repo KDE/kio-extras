@@ -8,3 +8,4 @@ defaultMimetype=text/html
 determineMimetypeFromExtension=false
 DocPath=kioslave/info.html
 Icon=help_index
+Class=:local

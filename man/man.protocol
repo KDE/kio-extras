@@ -9,3 +9,4 @@ defaultMimetype=text/html
 determineMimetypeFromExtension=false
 DocPath=kioslave/man.html
 Icon=man
+Class=:local

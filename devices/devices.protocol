@@ -12,3 +12,4 @@ linking=false
 moving=false
 Icon=blockdevice
 maxInstances=2
+Class=:local
