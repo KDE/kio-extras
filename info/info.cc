@@ -57,8 +57,8 @@ void InfoProtocol::get( const KURL& url )
     // extract the path and node from url
     decodeURL( url );
 
-    QString cmds("%1 %2 %3 %4 \"%5\" \"%6\"");
-    QCString cmd = cmds.arg(m_perl).arg(m_infoScript).arg(locate("data", "kio_info/kde-info2html.conf")).arg(KGlobal::dirs()->findResourceDir("icon", "hicolor/22x22/actions/up.png")).arg(m_page).arg(m_node).latin1();
+    QString cmds("%1 %2 %3 \"%4\" \"%5\" \"%6\"");
+    QCString cmd = cmds.arg(m_perl).arg(m_infoScript).arg(locate("data", "kio_info/kde-info2html.conf")).arg(KGlobal::dirs()->findResourceDir("icon", "crystalsvg/22x22/actions/up.png")).arg(m_page).arg(m_node).latin1();
     kdDebug( 7108 ) << "cmd: " << (const char *)cmd << endl;
     
     FILE *fd = popen( cmd.data(), "r" );
