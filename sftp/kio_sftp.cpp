@@ -45,6 +45,9 @@
 7-17-2001 - If the user changes the host, the slave doesn't change host! setHost() is not
             called, nor is another ioslave spawned. I have not investigated the problem
             yet. ljf
+7-21-2001 - got slave working with kde 2.2 cvs
+7-22-2001 - probable solution to getting password prompt -- open with controlling
+            but don't connect stdin/out to terminal. duh!
 
 DEBUGGING
 We are pretty much left with kdDebug messages for debugging. We can't use a gdb
@@ -127,7 +130,7 @@ kio_sftpProtocol::~kio_sftpProtocol()
 
 
 void kio_sftpProtocol::get(const KURL& url ) {
-    kdDebug(KIO_SFTP_DB) << "kio_sftp::get(const KURL& url)" << endl ;
+    kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::get(" << url.prettyURL() << ")" << endl ;
     if( !mConnected ) {
         openConnection();
         if( !mConnected ) {
@@ -146,6 +149,11 @@ void kio_sftpProtocol::get(const KURL& url ) {
     }
     totalSize(attr.fileSize());
 
+    // We cannot get file if it is a directory
+	if( attr.fileType() == S_IFDIR ) {
+	    error(ERR_IS_DIRECTORY, url.prettyURL());
+	    return;
+	}	
 
     Q_UINT32 pflags = SSH2_FXF_READ;
     QByteArray handle, mydata;
@@ -191,10 +199,13 @@ void kio_sftpProtocol::get(const KURL& url ) {
 void kio_sftpProtocol::setHost (const QString& h, int port, const QString& user, const QString& pass){
     kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::setHost() " << user << "@" << h << ":" << port << endl;
 
-    mHost = h;
     if( port <= 0 )
         port = 22;
 
+    if( mHost != h || mPort != port || user != mUsername )
+        closeConnection();
+
+    mHost = h;
     mPort = port;
     mUsername = user;
 }
@@ -438,6 +449,7 @@ void kio_sftpProtocol::mimetype ( const KURL& url ){
     processedSize(offset);
     sftpClose(handle);
     finished();
+    kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::mimetype(): END" << endl;
 }
 
 /** No descriptions */
@@ -490,6 +502,7 @@ void kio_sftpProtocol::listDir(const KURL& url) {
     }
 
     finished();
+    kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::listDir(): END" << endl;
 }
 
 /** Make a directory.
@@ -567,7 +580,7 @@ void kio_sftpProtocol::mkdir(const KURL&url, int permissions){
 
 /** No descriptions */
 void kio_sftpProtocol::rename(const KURL& src, const KURL& dest, bool overwrite){
-    kdError(KIO_SFTP_DB) << "kio_sftpProtocol::rename(" << src.prettyURL() << ", " << dest.prettyURL() << ")" << endl;
+    kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::rename(" << src.prettyURL() << ", " << dest.prettyURL() << ")" << endl;
 
     if( !mConnected ) {
         openConnection();
@@ -580,39 +593,52 @@ void kio_sftpProtocol::rename(const KURL& src, const KURL& dest, bool overwrite)
 
     int code;
     bool failed = false;
+    kdDebug() << "rename 1";
     if( (code = sftpRename(src, dest)) != SSH2_FX_OK ) {
+        kdDebug() << "rename 2";
         if( overwrite ) { // try to delete the destination
+            kdDebug() << "rename 3";
             sftpFileAttr attr;
             if( (code = sftpStat(dest, attr)) != SSH2_FX_OK ) {
+                kdDebug() << "rename 4";
                 failed = true;
             }
             else {
+                kdDebug() << "rename 5";
                 if( (code = sftpRemove(dest, !S_ISDIR(attr.permissions())) ) != SSH2_FX_OK ) {
+                    kdDebug() << "rename 6";
                     failed = true;
                 }
                 else {
+                    kdDebug() << "renaem 7";
                     // XXX what if rename fails again? We have lost the file.
                     // Maybe rename dest to a temporary name first? If rename is
                     // successful, then delete?
-                    if( (code = sftpRename(src, dest)) != SSH2_FX_OK )
+                    if( (code = sftpRename(src, dest)) != SSH2_FX_OK ) {
+                        kdDebug() << "rename 8";
                         failed = true;
+                    }
                 }
             }
         }
         else if( code == SSH2_FX_FAILURE ) {
+            kdDebug() << "rename 9";
             error(ERR_FILE_ALREADY_EXIST, dest.prettyURL() );
             return;
         }
         else
             failed = true;
-   }
-
+    }
+    kdDebug() << "rename 10";
     // What error code do we return? Code for the original symlink command
     // or for the last command or for both? The second one is implemented here.
-    if( failed )
+    if( failed ) {
         processStatus(code);
-
+        return;
+    }
+    kdDebug() << "rename 11";
     finished();
+    kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::rename(): END" << endl;
 }
 
 /** No descriptions */
@@ -778,14 +804,14 @@ bool kio_sftpProtocol::getPacket(QByteArray& msg) {
         mymemcpy(buf, msg, offset, len);
         offset += len;
     }
-//    kdDebug(KIO_SFTP_DB) << "Got packet (" << msg.size() << "): [" << msg << "]" << endl;
+    kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::getPacket(): END size = " << msg.size() << endl;
     return true;
 }
 
 /** Send an sftp packet to stdin of the ssh process. */
 bool kio_sftpProtocol::putPacket(QByteArray& p){
-    kdDebug(KIO_SFTP_DB) << "kiosftp_Protocol::putPacket(): size == " << p.size() << endl;
-//    kdDebug(KIO_SFTP_DB) << "sending packet (" << p.size() << "): [" << p << "]" << endl;
+    kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::putPacket(): size == " << p.size() << endl;
+
     int ret = ssh.writeStdin(p.data(), p.size(), true /*blocking*/, true /*wait all*/);
 
     if( ret <= 0 )
@@ -804,16 +830,17 @@ bool kio_sftpProtocol::startSsh() {
     }
     
     ssh.clearArguments();
-//    ssh << sshPath;
+//    ssh << sshPath;               // path to ssh program
     ssh << "/usr/local/bin/ssh";
-    ssh << "-v" << "-v" << "-v";
-    ssh << "-l" << mUsername;
-    ssh << "-s";
-    ssh << "-oForwardX11=no";
-    ssh << "-oForwardAgent=no";
-    ssh << "-oProtocol=2";
-    ssh << mHost;
-    ssh << "sftp";
+    ssh << "-v" << "-v" << "-v";  // lots of ssh debugging
+    ssh << "-l" << mUsername;     // connect with this username
+    ssh << "-s";                  // use an external service, namely sftp
+    ssh << "-oForwardX11=no";     // disable forwarding of X11 connections
+    ssh << "-oForwardAgent=no";   // disable forward agent
+    ssh << "-oProtocol=2";        // use SSHv2
+    ssh << "-enone";              // disable ssh escape character
+    ssh << mHost;                 // connect to this host
+    ssh << "sftp";                // use this service
 /*
     char *x;
     QStrList* list = ssh.args();
@@ -825,29 +852,6 @@ bool kio_sftpProtocol::startSsh() {
 */
     kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::startSsh(): ssh is " << (ssh.isRunning()?"":"not") << " running" << endl;
 
-    // XXX Connect signals
-    if( !QObject::connect(&ssh, SIGNAL(processExited(KProcess *)),
-                     this, SLOT(slotSshExited(KProcess *))) ) {
-        kdDebug(KIO_SFTP_DB) << "connect processExited to slotSshExited failed" << endl;
-    }
-#if 0
-    if( !QObject::connect(&ssh, SIGNAL(receivedStdout (int, int &)),
-                     this, SLOT(slotReceivedStdout(int, int&))) ) {
-        kdDebug(KIO_SFTP_DB) << "connect receivedStdout to slotReceivedStdout failed" << endl;
-    }
-    if( !QObject::connect(&ssh, SIGNAL(receivedStdout (KProcess *, char *, int)),
-                     this, SLOT(slotReceivedStdout(KProcess *, char *, int))) ) {
-        kdDebug(KIO_SFTP_DB) << "connect receivedStdout(buf) to slotReceivedStdout(buf) failed" << endl;
-    }
-    if( !QObject::connect(&ssh, SIGNAL(receivedStderr (KProcess *, char *, int)),
-                     this, SLOT(slotReceivedStderr(KProcess *, char*, int))) ) {
-        kdDebug(KIO_SFTP_DB) << "connect receivedStderr to slotReceivedStderr failed" << endl;
-    }
-    if( !QObject::connect(&ssh, SIGNAL(wroteStdin(KProcess *)),
-                          this, SLOT(wroteStdinDone(KProcess *))) ) {
-        kdDebug(KIO_SFTP_DB) << "connect wroteStdin to slotWroteStdinDone failed" << endl;
-    }
-#endif
     if( !ssh.start(KProcess::NotifyOnExit, KProcess::All) ){
         kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::startSsh(): start failed" << endl;
         error(ERR_CANNOT_LAUNCH_PROCESS, sshPath);
