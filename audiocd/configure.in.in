@@ -1,7 +1,7 @@
 AC_MSG_CHECKING(for cdparanoia libraries and headers)
 
 AC_ARG_WITH(cdparanoia,
-  [  --with-cdparanoia[=DIR] Compile in cdparanoia support. [default=check]],
+  [  --with-cdparanoia[=DIR] Compile in cdparanoia support [default=check]],
   [
     case "$withval" in
     yes)
@@ -45,7 +45,7 @@ no) AC_MSG_RESULT(no) ;;
 NOTFOUND) AC_MSG_RESULT(searched but not found) ;;
 *)
   if test "x$with_cdparanoia" = "xFOUND" ; then
-    AC_MSG_RESULT(found (incs=$para_incdir libs=$para_libdir))
+    AC_MSG_RESULT(incs=$para_incdir libs=$para_libdir)
   else
     AC_MSG_RESULT($with_cdparanoia)
     CDPARANOIA_ROOT="$with_cdparanoia"
