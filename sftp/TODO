@@ -1,5 +1,7 @@
 TODO:
-
+- Password caching doesn't work. We get a new dialog box every time a new kio_sftp process starts.
+  Very annoying.
+  
 - Support for use of public keys, maybe ssh-agent, a key management app, etc.
 
 - bug: when changing hostname in locationbar, password dialog pops up at
@@ -14,6 +16,10 @@ TODO:
 
 COMPLETED
 =========
+
+- Orphaned ssh processes are bad. Shame on me. - Done 
+  Use SIGKILL to kill the ssh process. The ssh client seems to catch 
+  SIGTERM from its parent and ignore them.
 
 - Continuing partial upload - doesn't create .part file.d
   fixed I think, but I am unable to test resume. kio denies my resume request - Done
