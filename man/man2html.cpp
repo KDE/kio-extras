@@ -328,7 +328,7 @@ static void add_links(char *c)
                 file = file.stripWhiteSpace();
                 for (int index = 0; includedirs[index]; index++) {
                     QCString str = QCString(includedirs[index]) + "/" + file;
-                    if (access(str, R_OK)) {
+                    if (!access(str, R_OK)) {
                         dir = includedirs[index];
                         break;
                     }
