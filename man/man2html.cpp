@@ -347,6 +347,180 @@ static CSTRDEF standardchar[] = {
     { V('s','l'), 1, "/" },
     { V('s','q'), 2, "[]" },
     { V('u','l'), 1, "_" },
+    { V('-','D'), 1, "&#208" },
+    { V('S','d'), 1, "&#240" },
+    { V('T','P'), 1, "&#222" },
+    { V('T','p'), 1, "&#254" },
+    { V('A','E'), 1, "&#198" },
+    { V('a','e'), 1, "&#230" },
+    { V('O','E'), 1, "&#338" },
+    { V('o','e'), 1, "&#339" },
+    { V('s','s'), 1, "&#223" },
+    { V('\'','A'), 1, "&#193" },
+    { V('\'','E'), 1, "&#201" },
+    { V('\'','I'), 1, "&#205" },
+    { V('\'','O'), 1, "&#211" },
+    { V('\'','U'), 1, "&#218" },
+    { V('\'','Y'), 1, "&#211" },
+    { V('\'','a'), 1, "&#225" },
+    { V('\'','e'), 1, "&#233" },
+    { V('\'','i'), 1, "&#237" },
+    { V('\'','o'), 1, "&#243" },
+    { V('\'','u'), 1, "&#250" },
+    { V('\'','y'), 1, "&#253" },
+    { V(':','A'), 1, "&#196" },
+    { V(':','E'), 1, "&#203" },
+    { V(':','I'), 1, "&#207" },
+    { V(':','O'), 1, "&#214" },
+    { V(':','U'), 1, "&#220" },
+    { V(':','a'), 1, "&#228" },
+    { V(':','e'), 1, "&#235" },
+    { V(':','i'), 1, "&#239" },
+    { V(':','o'), 1, "&#246" },
+    { V(':','u'), 1, "&#252" },
+    { V(':','y'), 1, "&#255" },
+    { V('^','A'), 1, "&#194" },
+    { V('^','E'), 1, "&#202" },
+    { V('^','I'), 1, "&#206" },
+    { V('^','O'), 1, "&#212" },
+    { V('^','U'), 1, "&#219" },
+    { V('^','a'), 1, "&#226" },
+    { V('^','e'), 1, "&#234" },
+    { V('^','i'), 1, "&#238" },
+    { V('^','o'), 1, "&#244" },
+    { V('^','u'), 1, "&#251" },
+    { V('`','A'), 1, "&#192" },
+    { V('`','E'), 1, "&#200" },
+    { V('`','I'), 1, "&#204" },
+    { V('`','O'), 1, "&#210" },
+    { V('`','U'), 1, "&#217" },
+    { V('`','a'), 1, "&#224" },
+    { V('`','e'), 1, "&#232" },
+    { V('`','i'), 1, "&#236" },
+    { V('`','o'), 1, "&#242" },
+    { V('`','u'), 1, "&#249" },
+    { V('~','A'), 1, "&#195" },
+    { V('~','N'), 1, "&#209" },
+    { V('~','O'), 1, "&#213" },
+    { V('~','a'), 1, "&#227" },
+    { V('~','n'), 1, "&#241" },
+    { V('~','o'), 1, "&#245" },
+    { V(',','C'), 1, "&#199" },
+    { V(',','c'), 1, "&#231" },
+    { V('/','L'), 1, "L" },
+    { V('/','l'), 1, "l" },
+    { V('/','O'), 1, "&#216" },
+    { V('/','o'), 1, "&#248" },
+    { V('o','A'), 1, "&#197" },
+    { V('o','a'), 1, "&#229" },
+    { V('a','"'), 1, "\"" },
+    { V('a','-'), 1, "&#175" },
+    { V('a','.'), 1, "." },
+    { V('a','^'), 1, "&#710" },
+    { V('a','b'), 1, "`" },
+    { V('a','c'), 1, "&#184" },
+    { V('a','d'), 1, "&#168" },
+    { V('a','h'), 1, "v" },
+    { V('a','o'), 1, "&#176" },
+    { V('a','~'), 1, "&#732" },
+    { V('h','o'), 1, "&#184" },
+    { V('.','i'), 1, "i" },
+    { V('C','s'), 1, "&#164" },
+    { V('D','o'), 1, "$" },
+    { V('P','o'), 1, "&#163" },
+    { V('Y','e'), 1, "&#165" },
+    { V('F','n'), 1, "&#402" },
+    { V('F','o'), 1, "&#171" },
+    { V('F','c'), 1, "&#187" },
+    { V('f','o'), 1, "&#171" },
+    { V('f','c'), 1, "&#187" },
+    { V('r','!'), 1, "&#161" },
+    { V('r','?'), 1, "&#191" },
+    { V('O','f'), 1, "&#170" },
+    { V('O','m'), 1, "&#186" },
+    { V('p','c'), 1, "&#183" },
+    { V('S','1'), 1, "&#185" },
+    { V('S','2'), 1, "&#178" },
+    { V('S','3'), 1, "&#179" },
+    { V('<','-'), 1, "&#8592" },
+    { V('-','>'), 1, "&#8594" },
+    { V('<','>'), 1, "&#8596" },
+    { V('d','a'), 1, "&#8595" },
+    { V('u','a'), 1, "&#8593" },
+    { V('l','A'), 1, "&#8656" },
+    { V('r','A'), 1, "&#8658" },
+    { V('h','A'), 1, "&#8660" },
+    { V('d','A'), 1, "&#8659" },
+    { V('u','A'), 1, "&#8657" },
+    { V('b','a'), 1, "|" },
+    { V('b','b'), 1, "&#166" },
+    { V('t','m'), 1, "&#174" },
+    { V('d','d'), 1, "&#8224" },
+    { V('p','s'), 1, "&#182" },
+    { V('e','n'), 1, "&#8211" },
+    { V('%','0'), 1, "&#8240" },
+    { V('f','/'), 1, "/" },
+    { V('s','d'), 1, "&#8243" },
+    { V('h','a'), 1, "&#170" },
+    { V('t','i'), 1, "&#732" },
+    { V('l','B'), 1, "[" },
+    { V('r','B'), 1, "]" },
+    { V('l','C'), 1, "{" },
+    { V('r','C'), 1, "}" },
+    { V('l','a'), 1, "&lt" },
+    { V('r','a'), 1, "&gt" },
+    { V('l','h'), 1, "&le" },
+    { V('r','h'), 1, "&ge" },
+    { V('B','q'), 1, ",," },
+    { V('b','q'), 1, "," },
+    { V('l','q'), 1, "\"" },
+    { V('r','q'), 1, "\"" },
+    { V('o','q'), 1, "`" },
+    { V('c','q'), 1, "'" },
+    { V('a','q'), 1, "'" },
+    { V('d','q'), 1, "\"" },
+    { V('a','t'), 1, "@" },
+    { V('s','h'), 1, "#" },
+    { V('r','s'), 1, "\\" },
+    { V('t','f'), 1, "&#8756" },
+    { V('~','~'), 1, "&#8773" },
+    { V('~','='), 1, "&#8776" },
+    { V('!','='), 1, "&#8800" },
+    { V('<','='), 1, "&#8804" },
+    { V('=','='), 2, "==" },
+    { V('=','~'), 2, "=~" },
+    { V('>','='), 1, "&#8805" },
+    { V('A','N'), 1, "&#8743" },
+    { V('O','R'), 1, "&#8744" },
+    { V('t','e'), 1, "&#8707" },
+    { V('f','a'), 1, "&#8704" },
+    { V('A','h'), 1, "&#8501" },
+    { V('I','m'), 1, "&#8465" },
+    { V('R','e'), 1, "&#8476" },
+    { V('i','f'), 1, "&#8734" },
+    { V('m','d'), 1, "&#8901" },
+    { V('m','o'), 1, "&#8711" },
+    { V('n','m'), 1, "&#8712" },
+    { V('p','t'), 1, "&#8733" },
+    { V('p','p'), 1, "&#8869" },
+    { V('s','b'), 1, "&#8834" },
+    { V('s','p'), 1, "&#8835" },
+    { V('i','b'), 1, "&#8838" },
+    { V('i','p'), 1, "&#8839" },
+    { V('i','s'), 1, "&#8747" },
+    { V('s','r'), 1, "&#8730" },
+    { V('p','d'), 1, "&#8706" },
+    { V('c','*'), 1, "&#8855" },
+    { V('c','+'), 1, "&#8853" },
+    { V('c','a'), 1, "&#8745" },
+    { V('c','u'), 1, "&#8746" },
+    { V('g','r'), 1, "V" },
+    { V('C','R'), 1, "&#8629" },
+    { V('s','t'), 1, "-)" },
+    { V('/','_'), 1, "&#8736" },
+    { V('w','p'), 1, "&#8472" },
+    { V('l','z'), 1, "&#9674" },
+    { V('a','n'), 1, "-" }
 };
 
 /* default: print code */
@@ -1586,7 +1760,7 @@ static void trans_char(char *c, char s, char t)
     }
 }
 
-static char *fill_words(char *c, char *words[], int *n)
+static char *fill_words(char *c, char *words[], int *n, bool newline)
 {
     char *sl=c;
     int slash=0;
@@ -1596,21 +1770,25 @@ static char *fill_words(char *c, char *words[], int *n)
     while (*sl && (*sl!='\n' || slash)) {
 	if (!slash) {
 	    if (*sl=='"') {
-		*sl='\a';
-		skipspace=!skipspace;
+                if (skipspace && (*(sl+1)=='"'))
+                    *sl++ = '\a';
+                else {
+        	    *sl='\a';
+	            skipspace=!skipspace;
+                }
 	    } else if (*sl==escapesym) {
 		slash=1;
                 if (sl[1]=='\n')
                     *sl='\a';
 	    } else if ((*sl==' ' || *sl=='\t') && !skipspace) {
-		*sl='\n';
+		if (newline) *sl='\n';
 		if (words[*n]!=sl) (*n)++;
 		words[*n]=sl+1;
 	    }
 	} else {
 	    if (*sl=='"') {
 		sl--;
-		*sl='\n';
+		if (newline) *sl='\n';
 		if (words[*n]!=sl) (*n)++;
 		sl++;
 		while (*sl && *sl !='\n') sl++;
@@ -2021,7 +2199,7 @@ static char *scan_request(char *c)
             char **oldargument;
             int deflen;
             int onff;
-            sl=fill_words(c+j, wordlist, &words);
+            sl=fill_words(c+j, wordlist, &words, true);
             c=sl+1;
             *sl='\0';
             for (i=1;i<words; i++) wordlist[i][-1]='\0';
@@ -2052,7 +2230,7 @@ static char *scan_request(char *c)
         }
         else
         {
-            switch (get_request(c, nlen))
+            switch (int request = get_request(c, nlen))
             {
 	case REQ_ab:
 	    h=c+j;
@@ -2110,6 +2288,7 @@ static char *scan_request(char *c)
 	    {
 		STRDEF *de;
 		int oldcurpos=curpos;
+
 		c=c+j;
 		i=V(c[0],c[1]);
 		j=0;
@@ -2279,24 +2458,24 @@ static char *scan_request(char *c)
 	    }
 	    c=skip_till_newline(c);
 	    break;
-            case REQ_el:
-                {
+        case REQ_el:
+        {
             int ifelseval = s_ifelseval.pop();
 	    /* .el anything : else part of if else */
-                if (ifelseval)
-                {
+            if (ifelseval)
+            {
 		c=c+j;
 		c[-1]='\n';
 		c=scan_troff(c,1,NULL);
-                }
-                else
+            }
+            else
 		c=skip_till_newline(c+j);
 	    break;
         }
 	case REQ_ie:
 	    /* .ie c anything : then part of if else */
-            case REQ_if:
-                {
+        case REQ_if:
+        {
 	    /* .if c anything
 	     * .if !c anything
 	     * .if N anything
@@ -2306,15 +2485,18 @@ static char *scan_request(char *c)
 	     */
 	    c=c+j;
 	    c=scan_expression(c, &i);
-	    int ifelseval=!i;
-            s_ifelseval.push( ifelseval );
-                if (i)
-                {
+            if (request == REQ_ie)
+            {
+	        int ifelseval=!i;
+                s_ifelseval.push( ifelseval );
+            }
+            if (i)
+            {
 		*c='\n';
 		c++;
 		c=scan_troff(c,1,NULL);
-                }
-                else
+            }
+            else
 		c=skip_till_newline(c);
 	    break;
         }
@@ -2462,7 +2644,7 @@ static char *scan_request(char *c)
 	case REQ_I:
             /* parse one line in a certain font */
 	    out_html(change_to_font(*c));
-	    trans_char(c,'"','\a');
+	    fill_words(c, wordlist, &words, false);
 	    c=c+j;
 	    if (*c=='\n') c++;
 	    c=scan_troff(c, 1, NULL);
@@ -2488,7 +2670,7 @@ static char *scan_request(char *c)
          char *semicolon=strchr(c,';');
          if ((semicolon!=0) && (semicolon<eol)) *semicolon=' ';
 
-         sl=fill_words(c, wordlist, &words);
+         sl=fill_words(c, wordlist, &words, true);
          c=sl+1;
          /* .BR name (section)
           ** indicates a link. It will be added in the output routine.
@@ -2528,18 +2710,18 @@ static char *scan_request(char *c)
 	    out_html(change_to_font('R'));
 	    out_html("[");
 	    curpos++;
-   case REQ_Ft:       //perhaps "Function return type"
-   case REQ_Fa:       //"Function argument"
-   case REQ_BR:
-	case REQ_BI:
+        case REQ_Ft:       //perhaps "Function return type"
+        case REQ_Fa:       //"Function argument"
+        case REQ_BR:
+        case REQ_BI:
 	case REQ_IB:
 	case REQ_IR:
 	case REQ_RB:
 	case REQ_RI:
       {
          bool inFMode=(c[0]=='F');
-                if (inFMode)
-                {
+         if (inFMode)
+         {
             c[0]='B';
             c[1]='I';
          };
@@ -2548,7 +2730,7 @@ static char *scan_request(char *c)
          font[1] = c[1];
          c=c+j;
          if (*c=='\n') c++;
-         sl=fill_words(c, wordlist, &words);
+         sl=fill_words(c, wordlist, &words, true);
          c=sl+1;
          /* .BR name (section)
           ** indicates a link. It will be added in the output routine.
@@ -2583,7 +2765,7 @@ static char *scan_request(char *c)
                 c=skip_till_newline(c);
                 break;
 	case REQ_IP:
-	    sl=fill_words(c+j, wordlist, &words);
+	    sl=fill_words(c+j, wordlist, &words, true);
 	    c=sl+1;
                 if (!dl_set[itemdepth])
                 {
@@ -2652,7 +2834,7 @@ static char *scan_request(char *c)
 	    break;
 	case REQ_Rs:	/* BSD mandoc */
 	case REQ_RS:
-	    sl=fill_words(c+j, wordlist, &words);
+	    sl=fill_words(c+j, wordlist, &words, true);
 	    j=1;
 	    if (words>0) scan_expression(wordlist[0], &j);
                 if (j>=0)
@@ -2758,7 +2940,7 @@ static char *scan_request(char *c)
 	case REQ_TH:
                 if (!output_possible)
                 {
-		sl = fill_words(c+j, wordlist, &words);
+		sl = fill_words(c+j, wordlist, &words, true);
                     if (words>1)
                     {
 		    for (i=1; i<words; i++) wordlist[i][-1]='\0';
@@ -2823,7 +3005,7 @@ static char *scan_request(char *c)
 	    break;
             case REQ_TX:
                 {
-	    sl=fill_words(c+j, wordlist, &words);
+	    sl=fill_words(c+j, wordlist, &words, true);
 	    *sl='\0';
 	    out_html(change_to_font('I'));
 	    if (words>1) wordlist[1][-1]='\0';
@@ -2912,7 +3094,7 @@ static char *scan_request(char *c)
                 char endmacro[SMALL_STR_MAX];
 		c=c+j;
 
-                sl = fill_words(c, wordlist, &words);
+                sl = fill_words(c, wordlist, &words, true);
                 char *name = wordlist[0];
                 c = name;
                 while ((*c != ' ') && (*c != '\n')) c++;
