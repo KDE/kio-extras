@@ -1,6 +1,6 @@
 AC_MSG_CHECKING(whether to compile LDAP support)
 AC_ARG_WITH(ldap,
-[  --with-ldap=PATH        Set path for LDAP files [default=check]],
+[  --without-ldap=PATH     Set path for LDAP files [default=check]],
 [ case "$withval" in
   yes)
     with_ldap=CHECK
