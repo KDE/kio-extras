@@ -46,8 +46,8 @@
  * Process an debug node
  */
 void 
-xsltDebug(xsltTransformContextPtr ctxt, xmlNodePtr node, xmlNodePtr inst,
-	  xsltStylePreCompPtr comp) {
+xsltDebug(xsltTransformContextPtr ctxt ATTRIBUTE_UNUSED, xmlNodePtr node ATTRIBUTE_UNUSED,
+	  xmlNodePtr inst ATTRIBUTE_UNUSED, xsltStylePreCompPtr comp ATTRIBUTE_UNUSED) {
     int i, j;
 
     fprintf(stdout, "Templates:\n");

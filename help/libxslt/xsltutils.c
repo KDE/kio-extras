@@ -24,7 +24,6 @@
 #include "xsltInternals.h"
 #include "imports.h"
 
-
 /************************************************************************
  * 									*
  * 		Handling of XSLT stylesheets messages			*
@@ -86,8 +85,8 @@ xsltMessage(xsltTransformContextPtr ctxt, xmlNodePtr node, xmlNodePtr inst) {
  * 
  * Default handler for out of context error messages.
  */
-void
-xsltGenericErrorDefaultFunc(void *ctx, const char *msg, ...) {
+static void
+xsltGenericErrorDefaultFunc(void *ctx ATTRIBUTE_UNUSED, const char *msg, ...) {
     va_list args;
 
     if (xsltGenericErrorContext == NULL)
@@ -132,8 +131,8 @@ xsltSetGenericErrorFunc(void *ctx, xmlGenericErrorFunc handler) {
  * 
  * Default handler for out of context error messages.
  */
-void
-xsltGenericDebugDefaultFunc(void *ctx, const char *msg, ...) {
+static void
+xsltGenericDebugDefaultFunc(void *ctx ATTRIBUTE_UNUSED, const char *msg, ...) {
     va_list args;
 
     if (xsltGenericDebugContext == NULL)

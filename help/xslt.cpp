@@ -58,7 +58,10 @@ QString transform( const QString &pat )
 	if (doc == NULL) {
             return parsed;
 	}
-	xmlDocPtr res = xsltApplyStylesheet(style_sheet, doc);
+ 	// the params can be used to customize it more flexible
+	const char *params[16 + 1];
+	params[0] = NULL;
+	xmlDocPtr res = xsltApplyStylesheet(style_sheet, doc, params);
 	xmlFreeDoc(doc);
 	if (res != NULL) {
             xmlOutputBufferPtr outp = xmlOutputBufferCreateIO(writeToQString, closeQString, &parsed, 0);

@@ -10,6 +10,8 @@
  * Bjorn Reese <breese@users.sourceforge.net>
  */
 
+#include "xsltconfig.h"
+
 #include <math.h>
 #include <limits.h>
 #include <float.h>
@@ -398,7 +400,7 @@ xsltNumberFormatGetAnyLevel(xsltTransformContextPtr context,
 			    xmlChar *count,
 			    xmlChar *from,
 			    double *array,
-			    int max,
+			    int max ATTRIBUTE_UNUSED,
 			    xmlDocPtr doc,
 			    xmlNodePtr elem)
 {

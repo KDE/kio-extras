@@ -93,7 +93,7 @@ struct _xsltAttrElem {
  *
  * Returns the newly allocated xsltAttrElemPtr or NULL in case of error
  */
-xsltAttrElemPtr
+static xsltAttrElemPtr
 xsltNewAttrElem(xmlNodePtr attr) {
     xsltAttrElemPtr cur;
 
@@ -114,7 +114,7 @@ xsltNewAttrElem(xmlNodePtr attr) {
  *
  * Free up the memory allocated by @attr
  */
-void
+static void
 xsltFreeAttrElem(xsltAttrElemPtr attr) {
     memset(attr, -1, sizeof(xsltAttrElem));
     xmlFree(attr);
@@ -126,7 +126,7 @@ xsltFreeAttrElem(xsltAttrElemPtr attr) {
  *
  * Free up the memory allocated by @list
  */
-void
+static void
 xsltFreeAttrElemList(xsltAttrElemPtr list) {
     xsltAttrElemPtr next;
     
@@ -146,7 +146,7 @@ xsltFreeAttrElemList(xsltAttrElemPtr list) {
  *
  * Returns the new list pointer
  */
-xsltAttrElemPtr
+static xsltAttrElemPtr
 xsltAddAttrElemList(xsltAttrElemPtr list, xmlNodePtr attr) {
     xsltAttrElemPtr next, cur;
 
@@ -177,7 +177,7 @@ xsltAddAttrElemList(xsltAttrElemPtr list, xmlNodePtr attr) {
  *
  * Returns the new list pointer
  */
-xsltAttrElemPtr
+static xsltAttrElemPtr
 xsltMergeAttrElemList(xsltAttrElemPtr list, xsltAttrElemPtr old) {
     xsltAttrElemPtr cur;
     int add;
@@ -381,7 +381,7 @@ error:
 
 void
 xsltApplyAttributeSet(xsltTransformContextPtr ctxt, xmlNodePtr node,
-	              xmlNodePtr inst, xmlChar *attributes) {
+	              xmlNodePtr inst ATTRIBUTE_UNUSED, xmlChar *attributes) {
     xmlChar *ncname = NULL;
     xmlChar *prefix = NULL;
     xmlChar *attribute, *end;

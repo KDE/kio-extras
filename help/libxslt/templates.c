@@ -405,7 +405,7 @@ xsltAttrListTemplateProcess(xsltTransformContextPtr ctxt,
  * Returns the computed tree replacement
  */
 xmlNodePtr *
-xsltTemplateProcess(xsltTransformContextPtr ctxt, xmlNodePtr node) {
+xsltTemplateProcess(xsltTransformContextPtr ctxt ATTRIBUTE_UNUSED, xmlNodePtr node) {
     if (node == NULL)
 	return(NULL);
     
