@@ -280,7 +280,7 @@ void SMBSlave::reportError(const SMBUrl &url)
         break;
 #ifdef ENOTUNIQ
     case ENOTUNIQ:
-        error( ERR_SLAVE_DEFINED, i18n( "The given name could not be resolved to an unique server. "
+        error( ERR_SLAVE_DEFINED, i18n( "The given name could not be resolved to a unique server. "
                                         "Make sure your network is setup without any name conflicts "
                                         "between names used by Windows and by UNIX name resolution." ) );
         break;
