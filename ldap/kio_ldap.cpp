@@ -98,7 +98,7 @@ void LDAPProtocol::get(const KURL &_url)
       error(ERR_COULD_NOT_AUTHENTICATE, "bla");
       return;
       }*/
-  KLDAP::SearchRequest search(c, _url, KLDAP::Request::Synchronous);
+  KLDAP::SearchRequest search(c, usrc, KLDAP::Request::Synchronous);
 
   // Check for connection errors
   if( c.handle() == 0 ) {
@@ -221,7 +221,7 @@ void LDAPProtocol::stat( const KURL &_url )
     name = name.left(pos);
   if ((pos = name.find("=")) > 0)
     name.remove(0,pos+1);
-  atom.m_str = name;
+  atom.m_str = name.replace(' ', "_") + ".ldif";
   entry.append(atom);
 
   atom.m_uds = UDS_FILE_TYPE;
@@ -244,7 +244,6 @@ void LDAPProtocol::stat( const KURL &_url )
   atom.m_uds = UDS_URL;
   atom.m_long = 0;
   KLDAP::Url url(urlPrefix);
-  //url.setProtocol("ldap");
   url.setHost(usrc.host());
   url.setPort(usrc.port());
   url.setPath("/"+usrc.dn());
@@ -320,7 +319,7 @@ void LDAPProtocol::listDir(const KURL &_url)
       error(ERR_COULD_NOT_AUTHENTICATE, "bla");
       return;
       }*/
-  KLDAP::SearchRequest search(c, _url, KLDAP::Request::Synchronous);
+  KLDAP::SearchRequest search(c, usrc, KLDAP::Request::Synchronous);
   QStringList att;
   att.append("dn");
   search.setAttributes(att);
@@ -384,7 +383,7 @@ void LDAPProtocol::listDir(const KURL &_url)
 	  url.setHost(usrc.host());
 	  url.setPort(usrc.port());
 	  url.setPath("/"+e.dn());
-	  url.setScope(LDAP_SCOPE_ONELEVEL);
+	  url.setScope(LDAP_SCOPE_SUBTREE);
 	  atom.m_str = url.prettyURL();
 	  kdDebug(7125) << "kio_ldap:listDir(dir) put url:" << atom.m_str << endl;
 	  entry.append(atom);
@@ -412,7 +411,7 @@ void LDAPProtocol::listDir(const KURL &_url)
 	name = name.left(pos);
       if ((pos = name.find("=")) > 0)
 	name.remove(0,pos+1);
-      atom.m_str = name;
+      atom.m_str = name.replace(' ', "_") + ".ldif";
       entry.append(atom);
 
       // the file type

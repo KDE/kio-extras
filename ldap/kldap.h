@@ -9,7 +9,7 @@
 #include <lber.h>
 #include <ldap.h>
 
-class KURL;
+#include "kldapurl.h"
 
 namespace KLDAP
 {
@@ -524,7 +524,7 @@ namespace KLDAP
      * @param m The mode for the request.
      *
      */
-    SearchRequest(Connection &c, const KURL &_url, RunMode m=Asynchronous);
+    SearchRequest(Connection &c, KLDAP::Url &_url, RunMode m=Asynchronous);
 
     /// Derived method from Request.
     virtual bool execute();

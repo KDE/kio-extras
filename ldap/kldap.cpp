@@ -1,15 +1,18 @@
 #include <config.h>
 #include <stdlib.h>
-#include <qtextstream.h>
 
 #ifdef TIME_WITH_SYS_TIME
 #include <sys/time.h>
 #endif
 #include <time.h>
-#include "kldap.h"
-#include "kldapurl.h"
+
+#include <qtextstream.h>
+
 #include <kdebug.h>
 #include <kmdcodec.h>
+
+#include "kldap.h"
+#include "kldapurl.h"
 
 using namespace KLDAP;
 
@@ -207,12 +210,10 @@ bool Request::abandon()
 }
 
 
-SearchRequest::SearchRequest(Connection &c, const KURL &_url, RunMode m)
+SearchRequest::SearchRequest(Connection &c, KLDAP::Url &url, RunMode m)
   : Request(c,m), _base(""), _filter("(objectClass=*"), _scope(LDAP_SCOPE_SUBTREE),
     _attrsonly(0), entry(0)
 {
-  Url url(_url);
-
   expected = LDAP_RES_SEARCH_RESULT;
 
   // close the connection if not to the right host/port

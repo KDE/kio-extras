@@ -1,10 +1,10 @@
 #ifndef _K_LDAPURL_H_
 #define _K_LDAPURL_H_
 
-#include <kurl.h>
 #include <qstring.h>
 #include <qstringlist.h>
 
+#include <kurl.h>
 
 namespace KLDAP
 {
@@ -15,16 +15,16 @@ namespace KLDAP
 
     Url(const KURL &_url);
   
-    QString dn() { return _dn; };
+    QString dn() const { return _dn; };
     void setDn(QString dn) { _dn = dn; update(); };
 
     QStringList &attributes() { return _attributes; };
     void setAttributes(const QStringList &attributes) { _attributes=attributes; update(); };
 
-    int scope() { return _scope; };
+    int scope() const { return _scope; };
     void setScope(int scope) { _scope=scope; update(); };
 
-    QString filter() { QString item=decode_string(_filter); return item; };
+    QString filter() const { QString item=decode_string(_filter); return item; };
     void setFilter(QString filter) { _filter=filter; update(); } ;
 
   protected:
