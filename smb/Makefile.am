@@ -5,14 +5,14 @@ LDFLAGS =$(all_libraries)
 ####### Files
 
 #bin_PROGRAMS = kiosmb
-#kiosmb_SOURCES = kio_smb.cpp \
-#             kio_smb_auth.cpp \
-#             kio_smb_cache.cpp \
-#             kio_smb_browse.cpp \
-#             kio_smb_config.cpp \
-#             kio_smb_dir.cpp \
-#             kio_smb_file.cpp \
-#             kio_smb_internal.cpp \
+#kiosmb_SOURCES = kio_smb.cpp 
+#             kio_smb_auth.cpp 
+#             kio_smb_cache.cpp 
+#             kio_smb_browse.cpp 
+#             kio_smb_config.cpp 
+#             kio_smb_dir.cpp 
+#             kio_smb_file.cpp 
+#             kio_smb_internal.cpp 
 #             main.cpp
 #kiosmb_LDADD = -lkio -lsmbclient
 
