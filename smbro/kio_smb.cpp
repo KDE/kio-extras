@@ -302,7 +302,7 @@ SmbProtocol::SmbReturnCode SmbProtocol::waitUntilStarted(ClientProcess *proc, co
                   ::write(proc->fd(),"\n",1);
                }
                else
-                  ::write(proc->fd(),(password+"\n").latin1(),password.length()+1);
+                  ::write(proc->fd(),(password+"\n").local8Bit(),password.length()+1);
                //read the echoed \n
                char c;
                ::read(proc->fd(),&c,1);
@@ -380,7 +380,7 @@ SmbProtocol::SmbReturnCode SmbProtocol::getShareInfo(ClientProcess* shareLister,
                   ::write(shareLister->fd(),"\n",1);
                }
                else
-                  ::write(shareLister->fd(),(password+"\n").latin1(),password.length()+1);
+                  ::write(shareLister->fd(),(password+"\n").local8Bit(),password.length()+1);
                //read the echoed \n
                char c;
                ::read(shareLister->fd(),&c,1);
@@ -398,11 +398,11 @@ void SmbProtocol::listShares()
    QCStringList args;
    args<<QCString("-L")+m_nmbName;
    if (!m_user.isEmpty())
-      args<<QCString("-U")+m_user.latin1();
+      args<<QCString("-U")+m_user.local8Bit();
    if (!m_ip.isEmpty())
       args<<QCString("-I")+m_ip;
    if (!m_workgroup.isEmpty())
-      args<<QCString("-W")+m_workgroup.latin1();
+      args<<QCString("-W")+m_workgroup.local8Bit();
    if (!proc->start("smbclient",args))
    {
       error( KIO::ERR_CANNOT_LAUNCH_PROCESS, "smbclient"+i18n("\nMake sure that the samba package is installed properly on your system."));
@@ -428,11 +428,11 @@ void SmbProtocol::listShares()
          QCStringList tmpArgs;
          tmpArgs<<QCString("-L")+m_nmbName;
          if (!user.isEmpty())
-            tmpArgs<<QCString("-U")+user.latin1();
+            tmpArgs<<QCString("-U")+user.local8Bit();
          if (!m_ip.isEmpty())
             args<<QCString("-I")+m_ip;
          if (!m_workgroup.isEmpty())
-            tmpArgs<<QCString("-W")+m_workgroup.latin1();
+            tmpArgs<<QCString("-W")+m_workgroup.local8Bit();
          if (!proc->start("smbclient",tmpArgs))
          {
             error( KIO::ERR_CANNOT_LAUNCH_PROCESS, "smbclient"+i18n("\nMake sure that the samba package is installed properly on your system."));
@@ -501,7 +501,7 @@ void SmbProtocol::listShares()
       }
       else if (mode==2)
       {
-         kdDebug(7101)<<"Smb::listShares(): line: -"<<line.latin1()<<"-"<<endl;
+         kdDebug(7101)<<"Smb::listShares(): line: -"<<line.local8Bit()<<"-"<<endl;
          if (line.isEmpty())
             break;
          else if (line.mid(typePos,3)=="IPC")
@@ -694,7 +694,6 @@ void SmbProtocol::createUDSEntry(const StatInfo& info, UDSEntry& entry)
 
 StatInfo SmbProtocol::createStatInfo(const QString line)
 {
-//   kdDebug(7101)<<"Smb::createStatInfo() -"<<line.utf8()<<"-"<<endl;
    QString name;
    QString size;
 
@@ -785,9 +784,7 @@ StatInfo SmbProtocol::createStatInfo(const QString line)
 StatInfo SmbProtocol::_stat(const KURL& url)
 {
    //kdDebug(7101)<<"Smb::_stat() prettyURL(): -"<<url.prettyURL()<<"-"<<endl;
-   //kdDebug(7101)<<"Smb::_stat() latin1() : -"<<url.path().latin1()<<"-"<<endl;
-   //kdDebug(7101)<<"Smb::_stat() local8Bit() : -"<<url.path().local8Bit()<<"-"<<endl;
-   kdDebug(7101)<<"Smb::_stat() utf8() : -"<<url.path().utf8()<<"-"<<endl;
+   kdDebug(7101)<<"Smb::_stat() local8() : -"<<url.path().local8Bit()<<"-"<<endl;
    StatInfo info;
 
    QString path( url.path());
@@ -815,7 +812,6 @@ StatInfo SmbProtocol::_stat(const KURL& url)
       return info;
    };
 
-   //QCString command=QCString("dir \"")+smbPath.latin1()+QCString("\"\n");
    QCString command=QCString("dir \"")+smbPath.local8Bit()+QCString("\"\n");
    kdDebug(7101)<<"Smb::_stat(): executing command: -"<<command<<"-"<<endl;
 
@@ -888,7 +884,7 @@ StatInfo SmbProtocol::_stat(const KURL& url)
 
 void SmbProtocol::stat( const KURL & url)
 {
-   kdDebug(7101)<<"Smb::stat(): -"<<url.path().utf8()<<"-"<<endl;
+   kdDebug(7101)<<"Smb::stat(): -"<<url.path().local8Bit()<<"-"<<endl;
 
    if (m_currentHost.isEmpty())
    {
@@ -910,7 +906,7 @@ See the KDE Control Center under Network, LANBrowsing for more information."));
 
 void SmbProtocol::get( const KURL& url )
 {
-   kdDebug(7101)<<"Smb::get() "<<url.path().utf8()<<endl;
+   kdDebug(7101)<<"Smb::get() "<<url.path().local8Bit()<<endl;
    QString path( url.path());
 
    QString share;
@@ -1095,11 +1091,11 @@ To get a list of all hosts use lan:/ or rlan:/ .\n\
 See the KDE Control Center under Network, LANBrowsing for more information."));
       return;
    };
-   QCString nmbName=host.latin1();
+   QCString nmbName=host.local8Bit();
    QCString ipString("");
    //try to find the netbios name of this host
    //first try to get the ip address of the host
-   struct hostent *hp=gethostbyname(host.latin1());
+   struct hostent *hp=gethostbyname(host.local8Bit());
    if (hp==0)
    {
       //if this fails, we should assume that the given host name
@@ -1158,7 +1154,7 @@ See the KDE Control Center under Network, LANBrowsing for more information."));
                kdDebug(7101)<<"Smb::setHost() using name from line -"<<line<<"-"<<endl;
                line=line.left(line.find('<'));
                line=line.stripWhiteSpace();
-               nmbName=line.latin1();
+               nmbName=line.local8Bit();
                break;
             };
          };
@@ -1204,9 +1200,9 @@ ClientProcess* SmbProtocol::getProcess(const QString& host, const QString& share
    QCStringList args;
    args<<QCString("//")+m_nmbName+QCString("/")+share.local8Bit();
    if (!m_workgroup.isEmpty())
-      args<<QCString("-W")+m_workgroup.latin1();
+      args<<QCString("-W")+m_workgroup.local8Bit();
    if (!m_user.isEmpty())
-      args<<QCString("-U")+m_user.latin1();
+      args<<QCString("-U")+m_user.local8Bit();
    if (!m_ip.isEmpty())
       args<<QCString("-I")+m_ip;
 
@@ -1236,9 +1232,9 @@ ClientProcess* SmbProtocol::getProcess(const QString& host, const QString& share
          QCStringList tmpArgs;
          tmpArgs<<QString("//"+host+"/"+share).local8Bit();
          if (!m_workgroup.isEmpty())
-            tmpArgs<<QCString("-W")+m_workgroup.latin1();
+            tmpArgs<<QCString("-W")+m_workgroup.local8Bit();
          if (!user.isEmpty())
-            tmpArgs<<QCString("-U")+user.latin1();
+            tmpArgs<<QCString("-U")+user.local8Bit();
          if (!m_ip.isEmpty())
             args<<QCString("-I")+m_ip;
          if (!proc->start("smbclient",tmpArgs))
