@@ -17,7 +17,7 @@
 
 #include <iostream>
 
-#include <k2url.h>
+#include <kurl.h>
 #include <kapp.h>
 #include <klocale.h>
 #include <kregexp.h>
@@ -282,7 +282,7 @@ void TraderProtocol::slotGet( const char *_url )
 
   string url = _url;
   
-  K2URL usrc( _url );
+  KURL usrc( _url );
   if ( usrc.isMalformed() )
   {
     error( ERR_MALFORMED_URL, url.c_str() );
@@ -969,7 +969,7 @@ void TraderProtocol::slotListDir( const char *_url )
 {
   string url = _url;
   
-  K2URL usrc( _url );
+  KURL usrc( _url );
   if ( usrc.isMalformed() )
   {
     error( ERR_MALFORMED_URL, url.c_str() );
@@ -1159,7 +1159,7 @@ void TraderProtocol::slotTestDir( const char *_url )
 {
   string url = _url;
   
-  K2URL usrc( _url );
+  KURL usrc( _url );
   if ( usrc.isMalformed() )
   {
     error( ERR_MALFORMED_URL, url.c_str() );
