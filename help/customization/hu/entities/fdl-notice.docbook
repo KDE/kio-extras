@@ -1,9 +1,9 @@
-<para>Permission is granted to copy, distribute and/or modify this
-document under the terms of the GNU Free Documentation License,
-Version 1.1 or any later version published by the Free Software
-Foundation; with &FDLInvariantSections;, with &FDLFrontCoverText;, and
-with &FDLBackCoverText;.  A copy of the license is included in <xref
-linkend="gnu-fdl">.</para>
+<para>Ez a dokumentum szabadon másolható, továbbadható és/vagy
+módosítható a GNU Free Documentation License (az 1.1-es vagy bármelyik
+annál későbbi változat) feltételeinek betartásával. A licencet a Free Software
+Foundation adta ki, lásd: &FDLInvariantSections;, &FDLFrontCoverText;, és
+&FDLBackCoverText;. A licenc másolata megtalálható itt: <xref
+linkend="gnu-fdl"/>.</para>
 <!--
 Local variables:
 mode: sgml
