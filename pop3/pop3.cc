@@ -1,11 +1,8 @@
 // $Id$
 
-#include "pop3.h"
-
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <sys/time.h>
-#include <sys/wait.h>
 
 #include <netinet/in.h>
 #include <arpa/inet.h>
@@ -16,58 +13,26 @@
 #include <netdb.h>
 #include <unistd.h>
 
+#include <qglobal.h>
+
 #include <kurl.h>
 #include <kprotocolmanager.h>
 #include <ksock.h>
 #include <kautoarray.h>
 
-#ifndef MAX
-#define MAX(a,b)	(((a) > (b)) ? (a) : (b))
-#define MIN(a,b)	(((a) < (b)) ? (a) : (b))
-#endif
-
+#include "pop3.h"
 
 bool open_PassDlg( const QString& _head, QString& _user, QString& _pass );
 
-extern "C" {
-  void sigsegv_handler(int);
-  void sigchld_handler(int);
-  void sigalrm_handler(int);
-};
-
 int main(int , char **)
 {
-  signal(SIGCHLD, sigchld_handler);
-  signal(SIGSEGV, sigsegv_handler);
+  signal(SIGCHLD, IOProtocol::sigchld_handler);
+  signal(SIGSEGV, IOProtocol::sigsegv_handler);
 
   Connection parent( 0, 1 );
 
   POP3Protocol pop3( &parent );
   pop3.dispatchLoop();
-}
-
-void sigsegv_handler(int )
-{
-  // Debug and printf should be avoided because they might
-  // call malloc.. and get in a nice recursive malloc loop
-  write(2, "kio_pop3 : ###############SEG FAULT#############\n", 49);
-  exit(1);
-}
-
-void sigchld_handler(int)
-{
-  int pid, status;
-
-  while(true) {
-    pid = waitpid(-1, &status, WNOHANG);
-    if ( pid <= 0 ) {
-      // Reinstall signal handler, since Linux resets to default after
-      // the signal occured ( BSD handles it different, but it should do
-      // no harm ).
-      signal(SIGCHLD, sigchld_handler);
-      return;
-    }
-  }
 }
 
 POP3Protocol::POP3Protocol(Connection *_conn) : IOProtocol(_conn)
@@ -115,18 +80,18 @@ bool POP3Protocol::getResponse (char *r_buf, unsigned int r_len)
 
   if (strncmp(buf, "+OK ", 4)==0) {
     if (r_buf && r_len) {
-      memcpy(r_buf, buf+4, MIN(r_len,recv_len-4));
+      memcpy(r_buf, buf+4, QMIN(r_len,recv_len-4));
     }
     return true;
   } else if (strncmp(buf, "-ERR ", 5)==0) {
     if (r_buf && r_len) {
-      memcpy(r_buf, buf+5, MIN(r_len,recv_len-5));
+      memcpy(r_buf, buf+5, QMIN(r_len,recv_len-5));
     }
     return false;
   } else {
     fprintf(stderr, "Invalid POP3 response received!\n");fflush(stderr);
     if (r_buf && r_len) {
-      memcpy(r_buf, buf, MIN(r_len,recv_len));
+      memcpy(r_buf, buf, QMIN(r_len,recv_len));
     }
     return false;
   }
