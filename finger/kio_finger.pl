@@ -16,7 +16,7 @@ $maile   = '</A>';
 $domainName	= '<FONT class="domainName">';
 $ipNumber  	= '<FONT class="ipNumber">';
 $OS	 	= '<FONT class="OS">';
-$username 	= '<FONT class="username"';
+$username 	= '<FONT class="username">';
 $directory	= '<FONT class="directory">';
 $shell 		= '<FONT class="shell">';
 $notLoggedIn 	= '<FONT class="Login">';
