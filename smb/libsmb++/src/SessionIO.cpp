@@ -49,6 +49,8 @@
 #ifdef DEBUG
 #include <stdio.h>
 #include <iostream.h>
+#else
+#define DEBUG 0
 #endif
 
 SessionIO::SessionIO(const char *ourName) : NMBIO(ourName)

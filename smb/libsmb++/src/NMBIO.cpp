@@ -40,6 +40,8 @@
 #ifdef DEBUG
 #include <stdio.h>
 #include <iostream.h>
+#else
+#define DEBUG 0
 #endif
 
 #ifdef HAVE_SYS_SELECT_H

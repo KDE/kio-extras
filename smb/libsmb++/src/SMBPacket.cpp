@@ -33,6 +33,8 @@
 #ifdef DEBUG
 #include <iostream.h>
 #include <stdio.h>
+#else
+#define DEBUG 0
 #endif
 
 SMBPacket::SMBPacket(uint8 dial)

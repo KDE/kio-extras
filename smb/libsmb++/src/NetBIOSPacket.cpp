@@ -26,6 +26,8 @@
 #include <string.h>
 #ifdef DEBUG
 #include <iostream.h>
+#else
+#define DEBUG 0
 #endif
 
 NetBIOSPacket::NetBIOSPacket()

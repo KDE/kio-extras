@@ -22,6 +22,11 @@
 #include "defines.h"
 #include <string.h>
 #include <iostream.h>
+
+#ifndef DEBUG
+#define DEBUG 0
+#endif
+
 #ifndef USE_SAMBA
 
 #include "CharCnv.h"

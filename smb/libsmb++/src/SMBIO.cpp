@@ -18,6 +18,10 @@
     to the Free Software Foundation, Inc., 675 Mass Ave, Cambridge,
     MA 02139, USA.
 */
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "defines.h"
 #ifndef USE_SAMBA
 
@@ -50,6 +54,8 @@
 #ifdef DEBUG
 #include <iostream.h>
 #include <stdio.h>
+#else
+#define DEBUG 0
 #endif
 
 // Reversed comparison between strings
