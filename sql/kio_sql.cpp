@@ -218,7 +218,7 @@ KDBProtocol::get( const KURL& url )
     do {
         str = makeIndent(indent) + QString("<Row ");
         for (int i = 0;i < numFields; i++) {
-            str += QString("%1=\"%2\" ").arg(ptr->field(i).name()).arg(QString(ptr->field(i)));
+            str += QString("%1=\"%2\" ").arg(ptr->field(i).name()).arg(ptr->field(i)->toString());
         }
         
         str += QString("/>\n");
