@@ -1,4 +1,4 @@
-## Makefile.am of kdenonbeta/kioslave/gzip
+## Makefile.am of kdebase/kioslave/gzip
 
 INCLUDES=	$(all_includes)
 LDFLAGS =       $(all_libraries) $(KDE_RPATH)
