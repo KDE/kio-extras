@@ -684,7 +684,7 @@ builds each FISH request and sets the error counter
 */
 bool fishProtocol::sendCommand(fish_command_type cmd, ...) {
     const fish_info &info = fishInfo[cmd];
-    myDebug( << "queueing: cmd="<< cmd << "['" << *info.command << "'](" << info.params <<"), alt=['" << *info.alt << "'], lines=" << info.lines << endl);
+    myDebug( << "queueing: cmd="<< cmd << "['" << info.command << "'](" << info.params <<"), alt=['" << info.alt << "'], lines=" << info.lines << endl);
 
     va_list list;
     va_start(list, cmd);
@@ -917,7 +917,8 @@ void fishProtocol::manageConnection(const QString &l) {
                     atom.m_long = 0;
                     pos = line.findRev('/');
                     atom.m_str = thisFn = line.mid(pos < 0?1:pos+1);
-                    udsEntry.append(atom);
+                    if ((listReason != STAT) && (listReason != STATCHECK))
+                        udsEntry.append(atom);
                     errorCount--;
                     break;
 
@@ -951,6 +952,8 @@ void fishProtocol::manageConnection(const QString &l) {
                 typeAtom.m_long = 0;
                 if (listReason == STAT) {
                     if (thisFn == wantedFn) udsStatEntry = udsEntry; //2
+                } else if (listReason == STATCHECK) {
+                    if (thisFn == ".") udsStatEntry = udsEntry; //2
                 } else if (listReason == LIST) {
                     listEntry(udsEntry, false); //1
                 } else if (listReason == CHECK) checkExist = true; //0
@@ -1046,6 +1049,7 @@ void fishProtocol::manageConnection(const QString &l) {
                 listReason = STATCHECK;
                 sendCommand(FISH_LIST,(const char *)url.path().local8Bit());
                 udsStatEntry.clear();
+                finished(); // continue with STATCHECK
             } else if (listReason == STATCHECK) {
                 error(ERR_DOES_NOT_EXIST,url.prettyURL());
                 udsStatEntry.clear();
@@ -1091,15 +1095,34 @@ void fishProtocol::manageConnection(const QString &l) {
                 if (udsStatEntry.size() == 0) {
                     listReason = STATCHECK;
                     sendCommand(FISH_LIST,(const char *)url.path().local8Bit());
-                } else statEntry(udsStatEntry);
+                } else {
+                    UDSAtom atom;
+
+                    atom.m_uds = KIO::UDS_NAME;
+                    atom.m_str = url.fileName();
+                    udsStatEntry.append( atom );
+                    statEntry(udsStatEntry);
+                }
                 udsStatEntry.clear();
             } else if (listReason == CHECK) {
                 if (!checkOverwrite && checkExist) error(ERR_FILE_ALREADY_EXIST,url.prettyURL());
             } else if (listReason == SIZE) {
                 wasSize = true;
             } else if (listReason == STATCHECK) {
-                listReason = STAT;
-                sendCommand(FISH_LIST,(const char *)statPath.local8Bit());
+                UDSAtom atom;
+
+                if (udsStatEntry.size() == 0)
+                {
+                    // Fake it because it seems to exist
+                    atom.m_uds = KIO::UDS_FILE_TYPE;
+                    atom.m_long = S_IFDIR;
+                    udsStatEntry.append( atom );
+                }
+
+                atom.m_uds = KIO::UDS_NAME;
+                atom.m_str = url.fileName();
+                udsStatEntry.append( atom );
+                statEntry(udsStatEntry);
             }
         } else if (fishCommand == FISH_APPEND) {
             dataReq();
