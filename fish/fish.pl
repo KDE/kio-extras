@@ -10,6 +10,7 @@ more reliable.
 =cut
 
 use Fcntl;
+
 $|++;
 #open(DEBUG,">/tmp/kio_fish.debug.$$.log");
 # save code in initial directory if just transferred
@@ -232,14 +233,16 @@ sub read_loop {
     my $fn = unquote($_[0]);
     my ($size) = ($_[1]?int($_[1]):(stat($fn))[7]);
     my $error = '';
+    print "### 501 Is directory\n" and return if -d $fn;
     sysopen(FH,$fn,O_RDONLY) || ($error = $!);
     if ($_[2]) {
         sysseek(FH,int($_[2]),0) || do { close(FH); $error ||= $!; };
     }
+    print "### 500 $error\n" and return if $error;
     if (@_ < 2) {
-        print "### 500 $error\n" and return if $error;
-        print "$size\n### 100\n";
+        print "$size\n";
     }
+    print "### 100\n";
     my $buffer = '';
     my $read = 1;
     while ($size > 16384 && ($read = sysread(FH,$buffer,16384)) > 0) {

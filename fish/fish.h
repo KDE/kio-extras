@@ -108,8 +108,6 @@ protected: // Protected attributes
   /** for LIST/STAT */
   KIO::UDSAtom typeAtom;
   /** for LIST/STAT */
-  bool isFirst;
-  /** for LIST/STAT */
   QString thisFn;
   /** for STAT */
   QString wantedFn;
@@ -149,7 +147,7 @@ protected: // Protected attributes
   /** true if a command stack is currently executing */
   bool isRunning;
   /** reason of LIST command */
-  enum { CHECK, LIST, STAT, SIZE, STATCHECK } listReason;
+  enum { CHECK, LIST, STAT, STATCHECK } listReason;
   /** true if FISH server understands COPY command */
   bool hasCopy;
   /** true if FISH server understands RSYNC command */

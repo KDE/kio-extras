@@ -80,8 +80,8 @@
 #include "fish.h"
 #include "fishcode.h"
 
-#if 0
-#define myDebug(x) kdDebug() << __LINE__ << ": " x
+#if 1
+#define myDebug(x) kdDebug(7127) << __LINE__ << ": " x
 #define connected() do{myDebug( << "_______ emitting connected()" << endl); connected();}while(0)
 #define dataReq() do{myDebug( << "_______ emitting dataReq()" << endl); dataReq();}while(0)
 #define needSubURLData() do{myDebug( << "_______ emitting needSubURLData()" << endl); needSubURLData();}while(0)
@@ -202,7 +202,7 @@ const struct fishProtocol::fish_info fishProtocol::fishInfo[] = {
       ("chgrp %1 %2"),
       0 },
     { ("READ"), 3,
-      ("cat %3 | ( [ \"`expr %1 / 4096`\" -gt 0 ] && dd bs=4096 count=`expr %1 / 4096` >/dev/null;"
+      ("echo '### 100';cat %3 | ( [ \"`expr %1 / 4096`\" -gt 0 ] && dd bs=4096 count=`expr %1 / 4096` >/dev/null;"
               "[ \"`expr %1 % 4096`\" -gt 0 ] && dd bs=`expr %1 % 4096` count=1 >/dev/null;"
               "dd bs=%2 count=1; ) 2>/dev/null;"),
       0 },
@@ -903,7 +903,6 @@ void fishProtocol::manageConnection(const QString &l) {
                 case 'S':
                     atom.m_uds = UDS_SIZE;
                     atom.m_long = line.mid(1).toLongLong(&isOk);
-                    if (listReason == SIZE && atom.m_long < recvLen) recvLen = atom.m_long; //FIXME: untested
                     if (!isOk) break;
                     errorCount--;
                     udsEntry.append(atom);
@@ -958,13 +957,6 @@ void fishProtocol::manageConnection(const QString &l) {
                 } else if (listReason == LIST) {
                     listEntry(udsEntry, false); //1
                 } else if (listReason == CHECK) checkExist = true; //0
-                else if (listReason == SIZE) {
-                    if (!isFirst) { //3
-                        if (recvLen >= 0) mimeType("inode/directory");
-                        recvLen = -1;
-                    }
-                }
-                isFirst = false;
                 errorCount--;
                 udsEntry.clear();
             }
@@ -991,7 +983,11 @@ void fishProtocol::manageConnection(const QString &l) {
         case FISH_FISH:
             writeChild(fishCode, fishCodeLen);
             break;
+        case FISH_READ:
+            recvLen = 1024;
+            /* fall through */
         case FISH_RETR:
+            myDebug( << "reading " << recvLen << endl);
             if (recvLen == -1) {
                 error(ERR_COULD_NOT_READ,url.prettyURL());
                 shutdownConnection();
@@ -1029,10 +1025,18 @@ void fishProtocol::manageConnection(const QString &l) {
             shutdownConnection();
             break;
         case FISH_READ:
-            mimeType("inode/directory");
-            mimeTypeSent = true;
-            recvLen = 0;
-            finished();
+            if ( rc == 501 )
+            {
+               mimeType("inode/directory");
+               mimeTypeSent = true;
+               recvLen = 0;
+               finished();
+            }
+            else
+            {
+               error(ERR_COULD_NOT_READ,url.prettyURL());
+               shutdownConnection();
+            }
             break;
         case FISH_FISH:
         case FISH_VER:
@@ -1045,7 +1049,7 @@ void fishProtocol::manageConnection(const QString &l) {
             break;
         case FISH_LIST:
             myDebug( << "list error. reason: " << listReason << endl);
-            if (listReason == LIST || listReason == SIZE) error(ERR_CANNOT_ENTER_DIRECTORY,url.prettyURL());
+            if (listReason == LIST) error(ERR_CANNOT_ENTER_DIRECTORY,url.prettyURL());
             else if (listReason == STAT) {
                 listReason = STATCHECK;
                 sendCommand(FISH_LIST,(const char *)url.path().local8Bit());
@@ -1085,7 +1089,6 @@ void fishProtocol::manageConnection(const QString &l) {
         default : break;
         }
     } else {
-        bool wasSize = false;
         if (fishCommand == FISH_STOR) fishCommand = (hasAppend?FISH_APPEND:FISH_WRITE);
         if (fishCommand == FISH_FISH) {
             connected();
@@ -1107,8 +1110,6 @@ void fishProtocol::manageConnection(const QString &l) {
                 udsStatEntry.clear();
             } else if (listReason == CHECK) {
                 if (!checkOverwrite && checkExist) error(ERR_FILE_ALREADY_EXIST,url.prettyURL());
-            } else if (listReason == SIZE) {
-                wasSize = true;
             } else if (listReason == STATCHECK) {
                 UDSAtom atom;
 
@@ -1140,12 +1141,6 @@ void fishProtocol::manageConnection(const QString &l) {
             data(QByteArray());
         }
         finished();
-        if (wasSize) {
-            rawRead = recvLen;
-            t_start = t_last = time(NULL);
-            dataRead = 0;
-            mimeTypeSent = false;
-        }
     }
 }
 
@@ -1309,7 +1304,6 @@ void fishProtocol::finished() {
         rawWrite = -1;
         udsEntry.clear();
         udsStatEntry.clear();
-        isFirst = true;
         writeStdin(commandList.first());
         //if (fishCommand != FISH_APPEND && fishCommand != FISH_WRITE) infoMessage("Sending "+(commandList.first().mid(1,commandList.first().find("\n")-1))+"...");
         commandList.remove(commandList.begin());
@@ -1428,8 +1422,6 @@ void fishProtocol::mimetype(const KURL& u){
         sendCommand(FISH_PWD);
     } else {
         recvLen = 1024;
-        listReason = SIZE;
-        sendCommand(FISH_LIST,(const char *)url.path().local8Bit());
         sendCommand(FISH_READ,"0","1024",(const char *)url.path().local8Bit());
     }
     run();
