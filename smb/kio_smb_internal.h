@@ -40,35 +40,10 @@
  *   SMBURLTYPE_WORKGROUP_OR_SERVER - "smb:/mygroup" or "smb:/myserver"
  *   URLTYPE_SHARE_OR_PATH - "smb:/mygroupe/mymachine/myshare/mydir"
  */
-typedef enum _SMBUrlType
-{
+enum SMBUrlType {
     SMBURLTYPE_UNKNOWN = 0, SMBURLTYPE_ENTIRE_NETWORK = 1,
     SMBURLTYPE_WORKGROUP_OR_SERVER = 2, SMBURLTYPE_SHARE_OR_PATH = 3
-}
-SMBUrlType;
-
-/**
- * AuthInfo is a bit different to KIO::AuthInfo
- * To use it for both urltypes smb:/ and smb:// workgroup will not be used for
- * searching in cache.
- * Workgroup is optional.
- * In KURL are :
- * server and share           = path (right ?? i think share should be realm)
- * userinfo (<domain;]user>)  = user
- * password                   = password
- *
- * Could be removed if we only use KIO caching.
- */
-struct SMBAuthInfo
-{
-    QCString m_workgroup;
-    QCString m_server;
-    QCString m_share;
-    QCString m_username;
-    QCString m_passwd;
-    QCString m_domain;
 };
-
 
 
 //===========================================================================
@@ -121,16 +96,6 @@ public:
      * Return a URL that is suitable for libsmbclient
      */
     QCString toSmbcUrl() const { return m_surl; }
-
-    /**
-     * Return a SMBAuthInfo of url
-     */
-    void getAuthInfo(SMBAuthInfo & auth);
-
-    /**
-     * Return a SMBAuthInfo of url
-     */
-    SMBAuthInfo getAuthInfo();
 
 private:
     /**

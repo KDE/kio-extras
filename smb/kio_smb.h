@@ -118,8 +118,6 @@ private:
      */
     bool m_showHiddenShares;
 
-    QPtrList<SMBAuthInfo> m_auth_cache;
-
     /**
      * libsmbclient need global variables to store in,
      * else it crashes on exit next method after use cache_stat,
@@ -143,75 +141,7 @@ protected:
     // Cache functions (kio_smb_auth.cpp)
     //---------------------------------------------
 
-    //Authentication methods
-    /** Description : open auth dialog and cache userinfo if OK button pressed
-        Parameter :   SMBAuthInfo auth, workgroup, server, share are shown in dlg
-                                 could be username, domain and passwd are changed
-        Return :      false if authDlg cancled, else true and username, domain
-                      and passwd are changed in SMBAuth
-    */
-    bool authDlg(SMBAuthInfo& auth);
-
-    /**
-     * Description :  search for a cached userinfo
-     * Parameter :    SMBAuth.m_server and SMBAuth.m_share are searchparameter
-     * Return :       true if found, else false
-     *                if true : SMBAuth.m_username
-     *                          SMBAuth.m_domain
-     *                          SMBAuth.m_password
-     *                are changed
-     */
-    bool cache_get_AuthInfo( SMBAuthInfo& auth );
-
-    /**
-     * Description :  Remove an authinfo
-     * Parameter :    SMBAuthInfo.m_server and SMBAuthInfo.m_share are
-     *                searchparameter
-     */
-    void cache_clear_AuthInfo(const SMBAuthInfo& auth);
-
-    /**
-     * Description :  cache an authinfo
-     * Parameter :    SMBAuthInfo the info to cache
-     *                store_in_kdesu if true other kioslaves
-     *                can use the info
-     */
-    void cache_set_AuthInfo( const SMBAuthInfo& auth, bool store_in_kdesu=false );
-
     //Stat methods
-
-
-    /**
-     * Description :  call smbc_stat and return stats of the url
-     * Parameter :    SMBUrl the url to stat
-     * Return :       stat* of the url
-     * Note :         it has some problems with stat in method, looks like
-     *                something leave(or removed) on the stack. If your
-     *                method segfault on returning try to change the stat*
-     *                variable
-     */
-    int cache_stat( const SMBUrl& url, struct stat* st );
-
-    /**
-     * Description :  create a KIO::AuthInfo structure from the SMBAuthInfo struct
-     */
-    AuthInfo cache_create_AuthInfo( const SMBAuthInfo& auth );
-
-
-    /**
-     * Description :  open a passworddialog and set the new information
-     *                in SMBAuthInfo. Update m_current_url and cache it.
-     *                (Not Implemented : we should redirect if new username or
-     *                 domain is given)
-     * Parameter :    SMBAuthInfo.m_username will be shown in passworddialog
-     * Return :       true if user pressed ok, else false
-     *                if true
-     *                   SMBAuthInfo.m_username
-     *                   SMBAuthInfo.m_domain
-     *                   SMBAuthInfo.m_password
-     *                are changed.
-     */
-    bool setAuthInfo(SMBAuthInfo &auth);
 
     //-----------------------------------------
     // Browsing functions (kio_smb_browse.cpp)
@@ -226,6 +156,17 @@ protected:
      * Return :       false if any error occoured (errno), else true
      */
     bool browse_stat_path(const SMBUrl& url, UDSEntry& udsentry, bool ignore_errors);
+
+    /**
+     * Description :  call smbc_stat and return stats of the url
+     * Parameter :    SMBUrl the url to stat
+     * Return :       stat* of the url
+     * Note :         it has some problems with stat in method, looks like
+     *                something leave(or removed) on the stack. If your
+     *                method segfault on returning try to change the stat*
+     *                variable
+     */
+    int cache_stat( const SMBUrl& url, struct stat* st );
 
     //---------------------------------------------
     // Configuration functions (kio_smb_config.cpp)

@@ -7,7 +7,6 @@ AM_LDFLAGS =$(all_libraries)
 kde_module_LTLIBRARIES = kio_smb.la
 kio_smb_la_SOURCES = kio_smb.cpp \
              kio_smb_auth.cpp \
-             kio_smb_cache.cpp \
              kio_smb_browse.cpp \
              kio_smb_config.cpp \
              kio_smb_dir.cpp \

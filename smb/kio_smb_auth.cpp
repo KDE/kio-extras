@@ -35,7 +35,7 @@
 #include <qdir.h>
 #include <stdlib.h>
 
-
+// call for libsmbclient
 //==========================================================================
 void auth_smbc_get_data(const char *server,const char *share,
                         char *workgroup, int wgmaxlen,
@@ -56,8 +56,6 @@ void SMBSlave::auth_smbc_get_data(const char *server,const char *share,
                                   char *password, int pwmaxlen)
 //--------------------------------------------------------------------------
 {
-    (void)wgmaxlen;
-
     //check this to see if we "really" need to authenticate...
     SMBUrlType t = m_current_url.getType();
     if( t == SMBURLTYPE_ENTIRE_NETWORK )
@@ -65,114 +63,51 @@ void SMBSlave::auth_smbc_get_data(const char *server,const char *share,
         kdDebug(KIO_SMB) << "we don't really need to authenticate for this top level url, returning" << endl;
         return;
     }
+    kdDebug(KIO_SMB) << "AAAAAAAAAAAAAA auth_smbc_get_dat: set user=" << username << ", workgroup=" << workgroup
+                     << " server=" << server << ", share=" << share << endl;
 
-    SMBAuthInfo auth;
-    QString  user_prompt;
-    QString  passwd_prompt;
+    QString s_server = QString::fromUtf8(server);
+    QString s_share = QString::fromUtf8(share);
+    workgroup[wgmaxlen - 1] = 0;
+    QString s_workgroup = QString::fromUtf8(workgroup);
+    username[unmaxlen - 1] = 0;
+    QString s_username = QString::fromUtf8(username);
+    password[pwmaxlen - 1] = 0;
+    QString s_password = QString::fromUtf8(password);
 
-    auth.m_workgroup = workgroup;
-    auth.m_server    = server;
-    auth.m_share     = share;
+    KIO::AuthInfo info;
+    info.url = KURL("smb:///");
+    info.url.setHost(s_server + "|" + s_workgroup);
+    info.url.setPath("/" + s_share);
 
-    setAuthInfo(auth);
+    info.username = s_username;
+    info.password = s_password;
 
-    // looks like a bug in libsmbclient, so only 64 byte will be set
-    // it crashes with wgmaxlen
-    memset(workgroup,0, 64 );
-    memset(username,0,unmaxlen);
-    memset(password,0,pwmaxlen);
-    // looks like a bug in libsmbclient, so only 64 byte will be set
-    // it crashes with wgmaxlen
-    if (auth.m_domain.isEmpty())
-      strncpy(workgroup,auth.m_workgroup,64-1);
-    else
-      strncpy(workgroup,auth.m_domain,64-1);
-    if (!auth.m_username.isEmpty())
-      strncpy(username,auth.m_username,unmaxlen - 1);
-    if (!auth.m_passwd.isEmpty())
-      strncpy(password,auth.m_passwd,pwmaxlen - 1);
-    //kdDebug(KIO_SMB) << "auth_smbc_get_dat: set user="<<username<<", \nworkgroup="<<workgroup<<", \npassword="<<password<< endl;
-
-}
-
-//--------------------------------------------------------------------------
-bool SMBSlave::setAuthInfo(SMBAuthInfo &auth) {
-/*
-    // set defaults
-    auth.m_workgroup = m_default_workgroup.local8Bit();
-    auth.m_username = m_default_user.local8Bit();
-    auth.m_passwd = m_default_password.local8Bit();
-
-    // look in cache
-    bool infocached = cache_get_AuthInfo(auth);
-
-    // local userinfo from KUrl ?
-    if (!m_current_url.user().isEmpty()) {
-      kdDebug(KIO_SMB) << "setAuthInfo set userinfo from m_current_url"<< endl;
-
-      auth.m_domain = m_current_url.getUserDomain().local8Bit();
-      auth.m_username = m_current_url.getUser().local8Bit();
-
-      if (!m_current_url.password().isEmpty())
-    	auth.m_passwd = m_current_url.getPassword().local8Bit();
-
-      cache_set_AuthInfo(auth, true);
-      if ( ((!m_current_url.getUser().isEmpty()) && (auth.m_passwd.isEmpty()))) {
-           return authDlg(auth);
-      }
-      infocached=true;
-    }
-
-    // update userinfo in SMBUrl if cached found and no userinfo in SMBUrl
-    else if (infocached) {
-      if (auth.m_domain.isEmpty())
-	m_current_url.setUserInfo(auth.m_username + ":" + auth.m_passwd);
-      else
-	m_current_url.setUserInfo(auth.m_domain + ";" + auth.m_username + ":" + auth.m_passwd);
-    }
-
-    return infocached;
-*/
-}
-
-// TODO: if username changed we have to change the kurl (redirect)
-bool SMBSlave::authDlg(SMBAuthInfo& auth)
-{
-    if ( auth.m_username.isEmpty()) {
-        auth.m_username = m_default_user.local8Bit();
-        auth.m_passwd   = m_default_password.local8Bit();
-    }
-    QString msg = i18n(
+    info.prompt = i18n(
         "Please enter authentication information for:\n"
         "Workgroup = %1\n"
         "Server = %2\n"
         "Share = %3" )
-                  .arg( auth.m_workgroup )
-                  .arg( auth.m_server )
-                  .arg( auth.m_share );
+                  .arg( workgroup )
+                  .arg( server )
+                  .arg( share );
 
-        KIO::AuthInfo authInfo;
-        authInfo.username = auth.m_username;
-        authInfo.password = auth.m_passwd;
-        authInfo.prompt = msg;
-        if(openPassDlg(authInfo))
-        {
-            m_current_url.setUser(authInfo.username);
-            m_current_url.setPass(authInfo.password);
-            auth.m_username = authInfo.username.local8Bit();
-            auth.m_passwd = authInfo.password.local8Bit();
-            cache_set_AuthInfo(auth, true);
-            return true;
+    if ( !checkCachedAuthentication( info ) )
+    {
+        if ( openPassDlg(info) ) {
+            strncpy(username, info.username.utf8(),unmaxlen - 1);
+            strncpy(password, info.password.utf8(),pwmaxlen - 1);
+            kdDebug(KIO_SMB) << "got password" << endl;
         }
-        return false;
+    }
+    memset(password, 0, pwmaxlen);
 }
 
 //--------------------------------------------------------------------------
-int SMBSlave::auth_initialize_smbc()
 // Initalizes the smbclient library
 //
 // Returns: 0 on success -1 with errno set on error
-//--------------------------------------------------------------------------
+int SMBSlave::auth_initialize_smbc()
 {
     kdDebug() << "auth_initialize_smbc " << endl;
     if(m_initialized_smbc == false)

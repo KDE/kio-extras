@@ -41,14 +41,19 @@
 
 using namespace KIO;
 
+int SMBSlave::cache_stat(const SMBUrl &url, struct stat* st )
+{
+    int result = smbc_stat(url.toSmbcUrl(), st);
+    kdDebug(KIO_SMB) << "smbc_stat " << url.toSmbcUrl() << " " << errno << " " << result << endl;
+    return result;
+}
+
 //---------------------------------------------------------------------------
 bool SMBSlave::browse_stat_path(const SMBUrl& url, UDSEntry& udsentry, bool ignore_errors)
   // Returns: true on success, false on failure
 {
-  UDSAtom     udsatom;
+    UDSAtom     udsatom;
 
-  // realy needed ?
-  // memset(&st,0,sizeof(st));
    if(cache_stat(url, &st) == 0)
    {
       if(!S_ISDIR(st.st_mode) && !S_ISREG(st.st_mode))
@@ -119,57 +124,56 @@ bool SMBSlave::browse_stat_path(const SMBUrl& url, UDSEntry& udsentry, bool igno
 //===========================================================================
 void SMBSlave::stat( const KURL& kurl )
 {
-  kdDebug(KIO_SMB) << "SMBSlave::stat on"<< endl;
-  // make a valid URL
-  KURL url = checkURL(kurl);
+    kdDebug(KIO_SMB) << "SMBSlave::stat on"<< endl;
+    // make a valid URL
+    KURL url = checkURL(kurl);
 
-  // if URL is not valid we have to redirect to correct URL
-  if (url != kurl)
-  {
-      redirection(url);
-      finished();
-      return;
-  }
+    // if URL is not valid we have to redirect to correct URL
+    if (url != kurl)
+    {
+        redirection(url);
+        finished();
+        return;
+    }
 
-  m_current_url = url;
+    m_current_url = url;
 
-  UDSAtom     udsatom;
-  UDSEntry    udsentry;
-  // Set name
-  udsatom.m_uds = KIO::UDS_NAME;
-  udsatom.m_str = kurl.fileName();
-  udsentry.append( udsatom );
+    UDSAtom     udsatom;
+    UDSEntry    udsentry;
+    // Set name
+    udsatom.m_uds = KIO::UDS_NAME;
+    udsatom.m_str = kurl.fileName();
+    udsentry.append( udsatom );
 
-  switch(m_current_url.getType())
+    switch(m_current_url.getType())
     {
     case SMBURLTYPE_UNKNOWN:
-      error(ERR_MALFORMED_URL,m_current_url.url());
-      return;
+        error(ERR_MALFORMED_URL,m_current_url.url());
+        return;
 
     case SMBURLTYPE_ENTIRE_NETWORK:
     case SMBURLTYPE_WORKGROUP_OR_SERVER:
-      udsatom.m_uds = KIO::UDS_FILE_TYPE;
-      udsatom.m_long = S_IFDIR;
-      udsentry.append(udsatom);
-      break;
+        udsatom.m_uds = KIO::UDS_FILE_TYPE;
+        udsatom.m_long = S_IFDIR;
+        udsentry.append(udsatom);
+        break;
 
     case SMBURLTYPE_SHARE_OR_PATH:
-      if (browse_stat_path(m_current_url, udsentry, false))
-	break;
-      else {
-	kdDebug(KIO_SMB) << "SMBSlave::stat ERROR!!"<< endl;
-        finished();
-	return;
-      }
+        if (browse_stat_path(m_current_url, udsentry, false))
+            break;
+        else {
+            kdDebug(KIO_SMB) << "SMBSlave::stat ERROR!!"<< endl;
+            finished();
+            return;
+        }
     default:
-      kdDebug(KIO_SMB) << "SMBSlave::stat UNKNOWN " << url.url() << endl;
-      finished();
-      return;
+        kdDebug(KIO_SMB) << "SMBSlave::stat UNKNOWN " << url.url() << endl;
+        finished();
+        return;
     }
 
-  statEntry(udsentry);
-  finished();
-
+    statEntry(udsentry);
+    finished();
 }
 
 //===========================================================================
@@ -274,9 +278,7 @@ void SMBSlave::listDir( const KURL& kurl )
    struct smbc_dirent  *dirp = NULL;
    UDSEntry    udsentry;
    UDSAtom     atom;
-   // bool cancel = false;
- OPEN_DIR:
-   ;
+
    dirfd = smbc_opendir( m_current_url.toSmbcUrl() );
    kdDebug(KIO_SMB) << "SMBSlave::listDir open " << m_current_url.toSmbcUrl() << " " << m_current_url.getType() << " " << dirfd << endl;
    if(dirfd >= 0)
@@ -377,23 +379,9 @@ void SMBSlave::listDir( const KURL& kurl )
    }
    else
    {
-       if (errno == EPERM || errno == EACCES)
-       {
-           SMBAuthInfo auth;
-           m_current_url.getAuthInfo(auth);
-           if (!authDlg(auth))
-           {
-               cache_clear_AuthInfo(m_current_url.getAuthInfo());
-               error(ERR_ACCESS_DENIED, m_current_url.url());
-               return;
-           }
-           else
-               goto OPEN_DIR;
-       } else {
-           reportError(m_current_url);
-           finished();
-           return;
-       }
+       reportError(m_current_url);
+       finished();
+       return;
    }
 
    listEntry(udsentry, true);

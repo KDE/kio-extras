@@ -204,36 +204,18 @@ void SMBSlave::del( const KURL &kurl, bool isfile)
 
     if(isfile)
     {
-SMBC_DEL:
         // Delete file
         kdDebug(KIO_SMB) << "SMBSlave:: unlink " << kurl.url() << endl;
         if(smbc_unlink(m_current_url.toSmbcUrl()) == -1)
         {
             switch(errno)
             {
-            case EACCES:
-            case EPERM:
-	      // if access denied, first open passDlg
-	      if ((errno == EPERM) || (errno ==  EACCES)) {
-		SMBAuthInfo auth;
-		m_current_url.getAuthInfo(auth);
-		cache_clear_AuthInfo(auth);
-		if (!authDlg(auth)) {
-		  error(ERR_ACCESS_DENIED, m_current_url.url());
-		  return;
-		}
-		else
-		  goto SMBC_DEL;
-	      }
-	      break;
             case EISDIR:
                 error( KIO::ERR_IS_DIRECTORY, m_current_url.url());
                 break;
-
             default:
-                error( KIO::ERR_CANNOT_DELETE, m_current_url.url());
+                reportError(kurl);
             }
-	    return;
         }
     }
     else
@@ -242,20 +224,7 @@ SMBC_DEL:
         // Delete directory
         if(smbc_rmdir(m_current_url.toSmbcUrl()) == -1)
         {
-            switch(errno)
-            {
-            case EACCES:
-            case EPERM:
-	        kdDebug(KIO_SMB) << "SMBSlave:: KIO::ERR_ACCESS_DENIED " << kurl.url() << endl;
-                error( KIO::ERR_ACCESS_DENIED, m_current_url.url());
-                break;
-
-            default:
-	        kdDebug(KIO_SMB) << "SMBSlave:: KIO::ERR_COULD_NOT_RMDIR " << kurl.url() << endl;
-                error( KIO::ERR_COULD_NOT_RMDIR, m_current_url.url());
-                break;
-            }
-	    return;
+            reportError(kurl);
         }
     }
 
@@ -268,27 +237,9 @@ void SMBSlave::mkdir( const KURL &kurl, int permissions )
     kdDebug(KIO_SMB) << "SMBSlave::mkdir on " << kurl.url() << endl;
     m_current_url = kurl;
 
-SMBC_MKDIR:
     if(smbc_mkdir(m_current_url.toSmbcUrl(), 0777) != 0)
     {
-        switch(errno)
-        {
-        case EACCES:
-        case EPERM:
-	  // if access denied, first open passDlg
- 	  if ((errno == EPERM) || (errno ==  EACCES)) {
-	    SMBAuthInfo auth;
-	    m_current_url.getAuthInfo(auth);
-	    cache_clear_AuthInfo(auth);
-	    if (!authDlg(auth)) {
-	      error(ERR_ACCESS_DENIED, m_current_url.url());
-	      return;
-	    }
-	    else
-	      goto SMBC_MKDIR;
-	  }
-	  break;
-        case EEXIST:
+        if (errno == EEXIST) {
             if(cache_stat(m_current_url, &st ) == 0)
             {
                 if(S_ISDIR(st.st_mode ))
@@ -300,15 +251,9 @@ SMBC_MKDIR:
             {
                 error( KIO::ERR_FILE_ALREADY_EXIST, m_current_url.url());
             }
-            break;
-
-        default:
-	    kdDebug(KIO_SMB) << "SMBSlave:: KIO::ERR_COULD_NOT_MKDIR " << kurl.url() << endl;
-            error( KIO::ERR_COULD_NOT_MKDIR, m_current_url.url());
-            break;
-        }
+        } else
+            reportError(kurl);
 	kdDebug(KIO_SMB) << "SMBSlave::mkdir exit with error " << kurl.url() << endl;
-	return;
     }
     else
     {

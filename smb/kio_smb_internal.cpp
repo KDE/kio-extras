@@ -134,34 +134,3 @@ SMBUrlType SMBUrl::getType() const
     return m_type;
 }
 
-void SMBUrl::getAuthInfo(SMBAuthInfo & auth) {
-    /* TODO: find out what this is supposed to do
-    auth.m_workgroup = getWorkgroup().local8Bit();
-  QString servershare = getServerShareDir();
-  int endshareidx=0;
-  int endserveridx = servershare.find('/',3);
-  kdDebug(KIO_SMB) << "endserveridx = "<< endserveridx<<", endshareidx="<<endshareidx << endl;
-  if (endserveridx<=0) {
-    auth.m_share     = "";
-    endserveridx = servershare.length();
-  }
-  else {
-    endshareidx = servershare.find('/',endserveridx+1 );
-    if (endshareidx<=0)
-      endshareidx = servershare.length();
-    auth.m_share   = servershare.mid(endserveridx+1, endshareidx-endserveridx-1).local8Bit();
-  }
-  kdDebug(KIO_SMB) << "endserveridx = "<< endserveridx<<", endshareidx="<<endshareidx <<auth.m_share<< endl;
-  auth.m_server    = servershare.mid(servershare.findRev('/',3)+1, endserveridx-servershare.findRev('/',3)-1).local8Bit();
-  auth.m_domain    = getUserDomain().local8Bit();
-  auth.m_username  = getUser().local8Bit();
-  auth.m_passwd    = getPassword().local8Bit();
-    */
-}
-
-
-SMBAuthInfo SMBUrl::getAuthInfo() {
-  SMBAuthInfo sa;
-  getAuthInfo(sa);
-  return sa;
-}
