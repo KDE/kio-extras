@@ -472,19 +472,18 @@ void KAudiocdModule::slotAddCDDBServer() {
 }
 
 void KAudiocdModule::slotDelCDDBServer() {
+    QStringList::Iterator it =  cddbserverlist.find(cddb_server_listbox->currentText ());
 
-  QStringList::Iterator it =  cddbserverlist.find(cddb_server->text());
+    if( it == cddbserverlist.end()) return;
 
-  if( it == cddbserverlist.end()) return;
+    cddbserverlist.remove(it);
+    cddbserverlist.sort();
 
-  cddbserverlist.remove(it);
-  cddbserverlist.sort();
+    cddb_server->clear();
+    cddb_server_listbox->clear();
+    cddb_server_listbox->insertStringList(cddbserverlist);
 
-  cddb_server->clear();
-  cddb_server_listbox->clear();
-  cddb_server_listbox->insertStringList(cddbserverlist);
-
-  slotConfigChanged();
+    slotConfigChanged();
 
 }
 
