@@ -27,7 +27,12 @@
 #include <grp.h>
 #include <stdio.h>
 #include <sys/stat.h>
-#include <rpc/rpc.h> // for clnt_call
+
+// This is needed on Solaris so that rpc.h defines clnttcp_create etc.
+#ifndef PORTMAP
+#define PORTMAP
+#endif
+#include <rpc/rpc.h> // for clnt_call etc.
 
 /* #include <sys/socket.h>
 #include <netinet/in.h>
