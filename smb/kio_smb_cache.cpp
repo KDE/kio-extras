@@ -79,14 +79,14 @@ void SMBSlave::cache_clear_AuthInfo(const QString& workgroup)
         if( it->m_workgroup == workgroup.local8Bit() )
         {
             m_auth_cache.remove();
+            //now clear it in the password caching daemon as well- but how??
+            //the method was deprecated, but Dawit said he would reimplement it
+            //delCachedAuthentication( cache_create_AuthInfo(*it) );
             it = m_auth_cache.current();
         }
         else
             it = m_auth_cache.next();
     }
-
-    //now clear it in the password caching daemon as well- but how??
-    //the method was deprecated, but Dawit said he would reimplement it
 }
 
 void SMBSlave::cache_set_AuthInfo(const SMBAuthInfo& _auth,

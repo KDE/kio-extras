@@ -154,7 +154,8 @@ void SMBSlave::stat( const KURL& kurl )
     SlaveBase::statEntry(udsentry);
     SlaveBase::finished();
 
-    kdDebug(KIO_SMB) << "SMBSlave::stat on " << kurl.url() << " is returning" << endl;
+    kdDebug(KIO_SMB) << "SMBSlave::stat on " << kurl.url()
+                     << " is returning" << endl;
 }
 
 //===========================================================================
@@ -278,7 +279,8 @@ void SMBSlave::listDir( const KURL& kurl )
     }
     else
     {
-        kdDebug(KIO_SMB) << "there was error, error = " << strerror( errno ) << endl;
+        kdDebug(KIO_SMB) << "there was error, error = " << strerror( errno )
+                         << endl;
 
         switch(errno)
         {
