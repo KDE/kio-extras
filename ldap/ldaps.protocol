@@ -1,6 +1,6 @@
 [Protocol]
 exec=kio_ldap
-protocol=ldap
+protocol=ldaps
 input=none
 output=filesystem
 listing=Name,

@@ -95,9 +95,10 @@ NOTFOUND) AC_MSG_RESULT(searched but not found) ;;
   ;;
 esac
 
+AC_CHECK_HEADERS(sasl.h)
+
 AC_SUBST(LDAP_INCS)
 AC_SUBST(LDAP_LIBS)
 AC_SUBST(LDAP_RPATH)
 
 AM_CONDITIONAL(include_kioslave_ldap, test -n "$LDAP_SUBDIR")
-
