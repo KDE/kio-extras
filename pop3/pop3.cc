@@ -229,16 +229,17 @@ bool POP3Protocol::command (const char *cmd, char *recv_buf, unsigned int len)
  */
 
   // Write the command
-  if (Write(cmd, strlen(cmd)) != static_cast<ssize_t>(strlen(cmd)))
+  char *cmdrn;
+  cmdrn = static_cast<char *>(malloc(strlen(cmd) + 3));
+  sprintf(cmdrn, "%s\r\n", cmd);
+  
+  if (Write(cmdrn, strlen(cmdrn)) != static_cast<ssize_t>(strlen(cmdrn)))
   {
     m_sError = i18n("Could not send to server.\n");
+    free(cmdrn);
     return false;
   }
-  if (Write("\r\n", 2) != 2)
-  {
-    m_sError = i18n("Could not send to server.\n");
-    return false;
-  }
+  free(cmdrn);
   return getResponse(recv_buf, len, cmd);
 }
 
