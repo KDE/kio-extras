@@ -633,17 +633,17 @@ void MANProtocol::checkManPaths()
             while (!is.eof())
             {
                 QString line = is.readLine();
-                if ( manpath_regex.match(line, 0) == 0 )
+                if ( manpath_regex.search(line, 0) == 0 )
                 {
                     QString path = line.mid(8).stripWhiteSpace();
                     constr_path += path;
                 }
-                else if ( mandatory_regex.match(line, 0) == 0 )
+                else if ( mandatory_regex.search(line, 0) == 0 )
                 {
                     QString path = line.mid(18).stripWhiteSpace();
                     constr_path += path;
                 }
-                else if ( manpath_map_regex.match(line, 0) == 0 )
+                else if ( manpath_map_regex.search(line, 0) == 0 )
                 {
                     // The entry is "MANPATH_MAP  <path>  <manpath>"
                     QStringList mapping =

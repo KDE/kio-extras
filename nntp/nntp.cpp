@@ -89,7 +89,7 @@ void NNTPProtocol::get(const KURL& url) {
   QString msg_id;
 
   // path should be like: /group/<msg_id>
-  if (regMsgId.match(path) != 0) {
+  if (regMsgId.search(path) != 0) {
     error(ERR_DOES_NOT_EXIST,path);
     return;
   }
@@ -237,7 +237,7 @@ void NNTPProtocol::stat( const KURL& url ) {
     fillUDSEntry(entry, QString::null, 0, postingAllowed, false);
 
   // /group = message list
-  } else if (regGroup.match(path) == 0) {
+  } else if (regGroup.search(path) == 0) {
     if (path.left(1) == "/") path.remove(0,1);
     if ((pos = path.find('/')) > 0) group = path.left(pos);
     else group = path;
@@ -247,7 +247,7 @@ void NNTPProtocol::stat( const KURL& url ) {
     fillUDSEntry(entry, group, 0, postingAllowed, false);
 
   // /group/<msg_id> = message
-  } else if (regMsgId.match(path) == 0) {
+  } else if (regMsgId.search(path) == 0) {
     pos = path.find('<');
     group = path.left(pos);
     msg_id = path.right(path.length()-pos);
