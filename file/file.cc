@@ -31,8 +31,8 @@
 string testLogFile( const char *_filename );
 int check( Connection *_con );
 
-void sig_handler( int );
-void sig_handler2( int );
+void sigchld_handler( int );
+void sigsegv_handler( int );
 
 int main( int argc, char **argv )
 {
