@@ -71,7 +71,7 @@ public:
 						if (pass) delete pass;
 						pass = new char[it->password.local8Bit().length()+1];
 						strcpy(pass,it->password.local8Bit().data());
-						kDebugInfo( 7106, "CallBack: use binding: user=%s, pass=%s", debugString(user), debugString(pass));
+						kdDebug(7106) << "CallBack: use binding: user=" << user << ", pass=" << pass << endl;
 						havePass=true;
 						return user;
 					}
@@ -80,7 +80,7 @@ public:
 				myUser = user?user:"";
 				myPass = "";
 				res = proto->openPassDlg(message, myUser, myPass, optmessage);
-				kDebugInfo( 7106, "CallBack: res=%s", res?debugString("true"):debugString("false"));
+				kdDebug(7106) << "CallBack: res=" << (res?"true":"false") << endl;
 				if (!res) {
 					if (user) {delete user; user = 0;}
 					if (pass) {delete pass; pass = 0;}
@@ -92,7 +92,7 @@ public:
 					if (pass) delete pass;
 					pass=new char[myPass.local8Bit().length()+1];
 					strcpy(pass,myPass.local8Bit().data());
-					kDebugInfo( 7106, "CallBack: user=%s, pass=%s", debugString(user), debugString(pass));
+					kdDebug(7106) << "CallBack: user=" << user << ", pass=" << pass << endl;
 					havePass=true;
 					// Store the new binding info in case of success
 					proto->bserver = optmessage;
@@ -108,7 +108,7 @@ public:
 				myUser = optmessage;
 				myPass = "";
 				res = proto->openPassDlg(message, myUser, myPass, proto->currentHost);
-				kDebugInfo( 7106, "CallBack: res=%s", res?debugString("true"):debugString("false"));
+				kdDebug(7106) << "CallBack: res=" << (res?"true":"false") << endl;
 				if (!res) {
 					if (user) {delete user; user = 0;}
 					if (pass) {delete pass; pass = 0;}
@@ -120,7 +120,7 @@ public:
 					if (pass) delete pass;
 					pass=new char[myPass.local8Bit().length()+1];
 					strcpy(pass,myPass.local8Bit().data());
-					kDebugInfo( 7106, "CallBack: user=%s, pass=%s", debugString(user), debugString(pass));
+					kdDebug(7106) << "CallBack: user=" << user << ", pass=" << pass << endl;
 					havePass=true;
 					// Store the new binding info in case of success
 					proto->bserver = proto->currentHost;
@@ -144,7 +144,7 @@ public:
 						if (pass) delete pass;
 						pass = new char[it->password.local8Bit().length()+1];
 						strcpy(pass,it->password.local8Bit().data());
-						kDebugInfo( 7106, "CallBack: use binding: service=%s, pass=%s", debugString(service), debugString(pass));
+						kdDebug(7106) << "CallBack: use binding: service=" << service << ", pass=" << pass << endl;
 						haveServicePass=true;
 						return pass;
 					}
@@ -153,8 +153,8 @@ public:
 				myUser = user?user:"";
 				myPass = "";
 				res = proto->openPassDlg(message, myUser, myPass, proto->currentHost);
-				kDebugInfo( 7106, "CallBack: res=%s", res?debugString("true"):debugString("false"));
-				kDebugInfo( 7106, "CallBack: user=%s, pass=%s", debugString(user), debugString(pass));
+				kdDebug(7106) << "CallBack: res=" << (res?"true":"false") << endl;
+				kdDebug(7106) << "CallBack: user=" << user << ", pass=" << pass << endl;
 				if (!res) {
 					if (service) {delete service; service = 0;}
 					if (pass) {delete pass; pass = 0;}
@@ -166,7 +166,7 @@ public:
 					if (pass) delete pass;
 					pass=new char[myPass.local8Bit().length()+1];
 					strcpy(pass,myPass.local8Bit().data());
-					kDebugInfo( 7106, "CallBack: service=%s, pass=%s", debugString(service), debugString(pass));
+					kdDebug(7106) << "CallBack: service=" << service << ", pass=" << pass << endl;
 					haveServicePass=true;
 					// Store the new binding info in case of success
 					proto->bserver = proto->currentHost;
@@ -186,7 +186,7 @@ int kdemain( int argc, char **argv )
 {
   KInstance instance( "kio_smb" );
 
-  kDebugInfo(7106, "Starting %d", getpid());
+  kdDebug(7106) << "Starting " << getpid() << endl;
 
   if (argc != 4)
   {
@@ -197,14 +197,14 @@ int kdemain( int argc, char **argv )
   SmbProtocol slave(argv[2], argv[3]);
   slave.dispatchLoop();
 
-  kDebugInfo(7106, "Done" );
+  kdDebug(7106) << "Done" << endl;
   return 0;
 }
 
 
 SmbProtocol::SmbProtocol( const QCString &pool, const QCString &app) : SlaveBase( "smb", pool, app )
 {
-	kDebugInfo( 7106, "Constructor");
+  kdDebug( 7106 ) << "Constructor" << endl;
 	currentHost=QString::null;
 	currentIP=QString::null;
 	currentUser=QString::null;
@@ -311,7 +311,7 @@ SmbProtocol::~SmbProtocol()
 // Uses this function to get information in the url
 void SmbProtocol::setHost(const QString& host, int ip, const QString& user, const QString& pass)
 {
-	kDebugInfo( 7106, "in set host method");
+  kdDebug( 7106 ) << "in set host method" << endl;
 	currentHost=host;
 	currentIP=ip;
 	currentUser=user;
@@ -321,10 +321,10 @@ void SmbProtocol::setHost(const QString& host, int ip, const QString& user, cons
 QString SmbProtocol::buildFullLibURL(const QString &pathArg)
 {
 	Util util;
-	kDebugInfo( 7106, "currentUser: %s", debugString(currentUser));
-	kDebugInfo( 7106, "currentPass: %s", debugString(currentPass));
-	kDebugInfo( 7106, "currentHost: %s", debugString(currentHost));
-	kDebugInfo( 7106, "currentIP: %s", debugString(currentIP));
+	kdDebug( 7106 ) << "currentUser: " << currentUser << endl;
+	kdDebug( 7106 ) << "currentPass: " << currentPass << endl;
+	kdDebug( 7106 ) << "currentHost: " << currentHost << endl;
+	kdDebug( 7106 ) << "currentIP: " << currentIP << endl;
 	QString path = pathArg;
 	if (path[0]=='/') path.remove(0,1);
 	// NB20000423: Hmmm, with smb:// => smb:/ conversion, now there is no host
@@ -349,14 +349,14 @@ QString SmbProtocol::buildFullLibURL(const QString &pathArg)
 		);
 	util.parse(ret);
 	currentHost = util.host(); // Make sure we have the host, not the workgroup
-	kDebugInfo( 7106, "converting argument %s to %s", debugString(pathArg), debugString(ret));
+	kdDebug(7106) << "converting argument " << pathArg << " to " << ret << endl;
 	return ret;
 }
 
 void SmbProtocol::mkdir( const KURL& url, int /*permissions*/ )
 {
 	QString path = buildFullLibURL(url.path());
-	kDebugInfo( 7106, "entering mkdir %s", debugString(path));
+	kdDebug(7106) << "entering mkdir " << path << endl;
 	struct stat buff;
 	if ( smb.stat( path, &buff ) == -1 ) {
 		if ( smb.mkdir( path ) != 0 ) {
@@ -384,7 +384,7 @@ void SmbProtocol::mkdir( const KURL& url, int /*permissions*/ )
 void SmbProtocol::get( const KURL& url, bool /* reload */)
 {
 	QString path = buildFullLibURL(url.path());
-	kDebugInfo( 7106, "entering get %s", debugString(path));
+	kdDebug( 7106 ) << "entering get " << path << endl;
 
 	struct stat buff;
 	if ( smb.stat( path, &buff ) == -1 ) {
@@ -453,7 +453,7 @@ void SmbProtocol::get( const KURL& url, bool /* reload */)
 void SmbProtocol::put( const KURL& url, int /*_mode*/, bool _overwrite, bool _resume )
 {
     QString dest_orig = buildFullLibURL(url.path());
-    kDebugInfo( 7106, "entering put %s", debugString(dest_orig));
+    kdDebug(7106) << "entering put " << dest_orig << endl;
 
     struct stat buff_orig;
     bool orig_exists = ( smb.stat( dest_orig, &buff_orig ) != -1 );
@@ -469,7 +469,7 @@ void SmbProtocol::put( const KURL& url, int /*_mode*/, bool _overwrite, bool _re
     QString dest = dest_orig;
 	if ( orig_exists && !_resume )
 	{
-		kDebugInfo( 7106, "Deleting destination file %s", debugString(dest_orig) );
+	  kdDebug(7106) << "Deleting destination file " << dest_orig << endl;
 		remove( dest_orig );
 		// Catch errors when we try to open the file.
 	}
@@ -481,7 +481,7 @@ void SmbProtocol::put( const KURL& url, int /*_mode*/, bool _overwrite, bool _re
 	}
 
 	if ( m_fPut == -1 ) {
-	kDebugInfo( 7106, "####################### COULD NOT WRITE %s", debugString(dest));
+	  kdDebug(7106) << "####################### COULD NOT WRITE " << dest << endl;
 		if ( smb.error() == EACCES ) {
 			error( KIO::ERR_WRITE_ACCESS_DENIED, dest );
 		} else {
@@ -490,7 +490,7 @@ void SmbProtocol::put( const KURL& url, int /*_mode*/, bool _overwrite, bool _re
 		return;
 	}
 
-	kDebugInfo( 7106, "Put: Ready" );
+	kdDebug( 7106 ) << "Put: Ready" << endl;
 
 	int result;
 	// Loop until we got 0 (end of data)
@@ -510,7 +510,7 @@ void SmbProtocol::put( const KURL& url, int /*_mode*/, bool _overwrite, bool _re
 	if (result != 0)
 	{
 		smb.close(m_fPut);
-		kDebugInfo( 7106, "Error during 'put'. Aborting.");
+		kdDebug( 7106 ) << "Error during 'put'. Aborting." << endl;
 		::exit(255);
 	}
 
@@ -529,7 +529,7 @@ void SmbProtocol::rename( const KURL &srcArg, const KURL &destArg,
 {
     QString src = buildFullLibURL(srcArg.path());
     QString dest = buildFullLibURL(destArg.path());
-    kDebugInfo( 7106, "entering rename %s -> %s", debugString(src), debugString(dest));
+    kdDebug(7106) << "entering rename " << src << " -> " << dest << endl;
 
     struct stat buff_src;
     if ( smb.stat( src, &buff_src ) == -1 ) {
@@ -575,7 +575,7 @@ void SmbProtocol::rename( const KURL &srcArg, const KURL &destArg,
 void SmbProtocol::del( const KURL& url, bool isfile)
 {
     QString path = url.path(); // Not URL??
-	kDebugInfo( 7106, "entering del %s", debugString(path));
+    kdDebug(7106) << "entering del " << path << endl;
 	/*****
 	* Delete files
 	*****/
@@ -600,7 +600,7 @@ void SmbProtocol::del( const KURL& url, bool isfile)
 		* Delete empty directory
 		*****/
 
-		kDebugInfo( 7106, "Deleting directory %s", debugString(path) );
+       	  kdDebug(7106) << "Deleting directory " << path << endl;
 
 		// TODO deletingFile( source );
 
@@ -609,7 +609,7 @@ void SmbProtocol::del( const KURL& url, bool isfile)
 		* Delete empty directory
 		*****/
 
-		kdDebug( 7106 ) << "Deleting directory " << debugString(path) << endl;
+		kdDebug(7106) << "Deleting directory " << path << endl;
 
 		if ( smb.rmdir( path ) == -1 ) {
 			if ((smb.error() == EACCES) || (smb.error() == EPERM))
@@ -714,7 +714,7 @@ void SmbProtocol::createUDSEntry( const SMBdirent *dent, const QString & /*path*
 void SmbProtocol::stat( const KURL &url)
 {
 	QString path = buildFullLibURL(url.path());
-	kDebugInfo( 7106, "entering stat %s", debugString(path));
+	kdDebug( 7106 ) << "entering stat " << path << endl;
 	struct stat buff;
 	if ( smb.stat( path, &buff ) == -1 ) {
 		error( KIO::ERR_DOES_NOT_EXIST, path );
@@ -729,29 +729,29 @@ void SmbProtocol::stat( const KURL &url)
 	for( ; it != entry.end(); it++ ) {
 		switch ((*it).m_uds) {
 			case KIO::UDS_FILE_TYPE:
-				kDebugInfo("File Type : %d", (mode_t)((*it).m_long) );
+			  kdDebug(7106) << "File Type : " << (mode_t)((*it).m_long) << endl;
 				break;
 			case KIO::UDS_ACCESS:
-				kDebugInfo("Access permissions : %d", (mode_t)((*it).m_long) );
+			  kdDebug(7106) << "Access permissions : " << (int)(mode_t)(*it).m_long << endl;
 				break;
 			case KIO::UDS_USER:
-				kDebugInfo("User : %s", ((*it).m_str.ascii() ) );
+			  kdDebug(7106) << "User : " << (*it).m_str << endl;
 				break;
 			case KIO::UDS_GROUP:
-				kDebugInfo("Group : %s", ((*it).m_str.ascii() ) );
+			  kdDebug(7106) << "Group : " << (*it).m_str << endl;
 				break;
 			case KIO::UDS_NAME:
-				kDebugInfo("Name : %s", ((*it).m_str.ascii() ) );
+			kdDebug(7106) << "Name : " << (*it).m_str << endl;
 				//m_strText = decodeFileName( (*it).m_str );
 				break;
 			case KIO::UDS_URL:
-				kDebugInfo("URL : %s", ((*it).m_str.ascii() ) );
+			kdDebug(7106) << "URL : " << (*it).m_str << endl;
 				break;
 			case KIO::UDS_MIME_TYPE:
-				kDebugInfo("MimeType : %s", ((*it).m_str.ascii() ) );
+			kdDebug(7106) << "MimeType : " << (*it).m_str << endl;
 				break;
 			case KIO::UDS_LINK_DEST:
-				kDebugInfo("LinkDest : %s", ((*it).m_str.ascii() ) );
+			kdDebug(7106) << "LinkDest : " << (*it).m_str << endl;
 				break;
 		}
 	}
@@ -765,7 +765,7 @@ void SmbProtocol::stat( const KURL &url)
 void SmbProtocol::listDir( const KURL& url )
 {
 	QString path = buildFullLibURL(url.path());
-	kDebugInfo( 7106, "=============== LIST %s ===============", debugString(path) );
+	kdDebug( 7106 ) << "=============== LIST " << path << " ===============" << endl;
 
 	struct stat buff;
 	if ( smb.stat( path, &buff ) == -1 ) {
@@ -802,9 +802,9 @@ void SmbProtocol::listDir( const KURL& url )
 
 	listEntry( entry, true ); // ready
 
-	kDebugInfo(7106, "============= COMPLETED LIST ============" );
+	kdDebug(7106) << "============= COMPLETED LIST ============" << endl;
 
 	finished();
 
-	kDebugInfo(7106, "=============== BYE ===========" );
+	kdDebug(7106) << "=============== BYE ===========" << endl;
 }
