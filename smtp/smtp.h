@@ -75,7 +75,7 @@ protected:
                   unsigned int real_len = 0);
   bool Authenticate();
   void ParseFeatures(const char *buf);
-  bool PutRecipients(QStringList & list);
+  bool putRecipients( const QStringList & list );
   int GetVal(char *buf);
 
   unsigned short m_iOldPort;

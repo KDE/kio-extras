@@ -289,12 +289,8 @@ void SMTPProtocol::put(const KURL & url, int /*permissions */ ,
 
   // Loop through our To and CC recipients, and send the proper
   // SMTP commands, for the benefit of the server.
-  if (!PutRecipients(recip))
-    return;                     // To
-  if (!PutRecipients(cc))
-    return;                     // Carbon Copy (CC)
-  if (!PutRecipients(bcc))
-    return;                     // Blind Carbon Copy (BCC)
+  if ( !putRecipients( recip + cc + bcc ) )
+    return;
 
   // Begin sending the actual message contents (most headers+body)
   if (!command("DATA", false)) 
@@ -379,11 +375,11 @@ void SMTPProtocol::put(const KURL & url, int /*permissions */ ,
   finished();
 }
 
-bool SMTPProtocol::PutRecipients(QStringList & list)
+bool SMTPProtocol::putRecipients( const QStringList & list )
 {
-  QString formatted_recip = QString::fromLatin1("RCPT TO: <%1>");
-  for (QStringList::const_iterator it = list.begin(); it != list.end(); ++it) {
-    if (!command(formatted_recip.arg(*it), false)) {
+  const QString formatted_recip = QString::fromLatin1("RCPT TO: <%1>");
+  for ( QStringList::const_iterator it = list.begin(); it != list.end(); ++it )
+    if ( !command( formatted_recip.arg(*it), false ) ) {
       if (!m_errorSent)
       {
         error(KIO::ERR_NO_CONTENT,
@@ -394,7 +390,6 @@ bool SMTPProtocol::PutRecipients(QStringList & list)
       smtp_close();
       return false;
     }
-  }
   return true;
 }
 
