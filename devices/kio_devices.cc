@@ -185,10 +185,20 @@ void HelloProtocol::listDir(const KURL& url)
         		        	                 	*proc << "kio_devices_mounthelper";
                 		                 		*proc << "-m" << url.url();
 	                        		         	proc->start(KProcess::Block);
+								int ec=0;
+								if (proc->normalExit()) ec=proc->exitStatus();
         	                        		 	delete proc;
-	
-	        		                        	redirection(mp);
-        		        	                	finished();
+
+								if (ec)
+								{
+									error(KIO::ERR_SLAVE_DEFINED,i18n("Device not mounted"));
+									finished();
+								}
+								else
+								{
+		        		                        	redirection(mp);
+        			        	                	finished();
+								}
 							}
 							else
 								error(KIO::ERR_SLAVE_DEFINED,i18n("Device not accessible"));

@@ -90,7 +90,7 @@ void KIODevicesMountHelperApp::slotResult(KIO::Job* job)
 void KIODevicesMountHelperApp::error()
 {
 	KMessageBox::error(0,errorStr);
-	kapp->quit();
+	kapp->exit(1);
 }
 
 void KIODevicesMountHelperApp::finished()
