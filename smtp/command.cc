@@ -210,7 +210,7 @@ namespace KioSMTP {
     }
     do {
       result = sasl_client_start(conn, mechanisms,
-        &client_interact, 0, &mOutlen, &mMechusing);
+        &client_interact, &mOut, &mOutlen, &mMechusing);
 
       if (result == SASL_INTERACT)
         if ( !saslInteract( client_interact ) ) {
@@ -299,15 +299,24 @@ namespace KioSMTP {
     mNeedResponse = true;
     QCString cmd;
 #ifdef HAVE_LIBSASL2
+    QByteArray tmp, challenge;
     if ( !mUngetSASLResponse.isNull() ) {
       // implement un-ungetCommandLine
       cmd = mUngetSASLResponse;
       mUngetSASLResponse = 0;
     } else if ( mFirstTime ) {
-      cmd = "AUTH " + QCString( mMechusing );
+      QString firstCommand = "AUTH " + QCString( mMechusing );
+      
+      tmp.setRawData( mOut, mOutlen );
+      KCodecs::base64Encode( tmp, challenge );
+      tmp.resetRawData( mOut, mOutlen );
+      if ( !challenge.isEmpty() ) {
+        firstCommand += " ";
+        firstCommand += QString::fromLatin1( challenge.data(), challenge.size() );
+      }
+      cmd = firstCommand.latin1();
       kdDebug(7112) << "mechusing: " << mMechusing << endl;
     } else {
-      QByteArray tmp, challenge;
 //      kdDebug(7112) << "SS: '" << mLastChallenge << "'" << endl;
       tmp.setRawData( mLastChallenge.data(), mLastChallenge.length() );
       KCodecs::base64Decode( tmp, challenge );

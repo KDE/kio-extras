@@ -505,7 +505,7 @@ int POP3Protocol::loginSASL( KIO::AuthInfo &ai )
 
     do {
       result = sasl_client_start(conn, sasl_list.join(" ").latin1(), 
-        &client_interact, 0, &outlen, &mechusing);
+        &client_interact, &out, &outlen, &mechusing);
 
       if (result == SASL_INTERACT)
         if ( !saslInteract( client_interact, ai ) ) {
@@ -523,8 +523,19 @@ int POP3Protocol::loginSASL( KIO::AuthInfo &ai )
     
     POP3_DEBUG << "Preferred authentication method is " << mechusing << "." << endl;
     
-    QByteArray challenge(2049), tmp;
-    resp = command( "AUTH " + QCString(mechusing), challenge.data(), 2049 );
+    QByteArray challenge, tmp;
+
+    QString firstCommand = "AUTH " + QString::fromLatin1( mechusing );
+    challenge.setRawData( out, outlen );
+    KCodecs::base64Encode( challenge, tmp );
+    challenge.resetRawData( out, outlen );
+    if ( !tmp.isEmpty() ) {
+      firstCommand += " ";
+      firstCommand += QString::fromLatin1( tmp.data(), tmp.size() );
+    }
+    
+    challenge.resize( 2049 );
+    resp = command( firstCommand.latin1(), challenge.data(), 2049 );
     if ( resp == Ok || resp == Cont ) {
       do {
         challenge.resize(challenge.find(0));
