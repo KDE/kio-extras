@@ -30,21 +30,22 @@
 #include <kmimetype.h>
 #include <kmimemagic.h>
 
-mimeHeader::mimeHeader() :
-	typeList(17,false),
-	dispositionList(17,false)
+mimeHeader::mimeHeader ():
+typeList (17, false), dispositionList (17, false)
 {
-	originalHdrLines.setAutoDelete( true );
-	additionalHdrLines.setAutoDelete( false ); // is also in original lines
-	nestedParts.setAutoDelete( true );
-	typeList.setAutoDelete( true );
-	dispositionList.setAutoDelete( true );
-	nestedMessage = NULL;
-	contentLength = 0;
-	contentType = "application/octet-stream";
+  originalHdrLines.setAutoDelete (true);
+  additionalHdrLines.setAutoDelete (false); // is also in original lines
+  nestedParts.setAutoDelete (true);
+  typeList.setAutoDelete (true);
+  dispositionList.setAutoDelete (true);
+  nestedMessage = NULL;
+  contentLength = 0;
+  contentType = "application/octet-stream";
 }
 
-mimeHeader::~mimeHeader(){}
+mimeHeader::~mimeHeader ()
+{
+}
 
 /*
 QList<mimeHeader> mimeHeader::getAllParts()
@@ -67,538 +68,640 @@ QList<mimeHeader> mimeHeader::getAllParts()
 	return retVal;
 } */
 
-void mimeHeader::addHdrLine(mimeHdrLine *aHdrLine)
+void
+mimeHeader::addHdrLine (mimeHdrLine * aHdrLine)
 {
-	mimeHdrLine *addLine = new mimeHdrLine(aHdrLine);
-	if(addLine)
-	{
-  	originalHdrLines.append(addLine);
-  	if(qstrnicmp(addLine->getLabel(),"Content-",8))
-  	{
-	  	additionalHdrLines.append(addLine);
-  	} else {
-  		int skip;
-  		char *aCStr = addLine->getValue().data();
-			QDict<QString> *aList;
-			
-			aList = NULL;  		
-  		skip = mimeHdrLine::parseSeparator(';',aCStr);
-  		if(skip > 0)
-  		{
-			int cut = 0;
-			if(skip >= 2)
-			{
-				if(aCStr[skip-1] == '\r') cut++;
-				if(aCStr[skip-1] == '\n') cut++;
-				if(aCStr[skip-2] == '\r') cut++;
-				if(aCStr[skip-1] == ';') cut++;
-			}
-	  		QCString mimeValue = QCString(aCStr,skip-cut+1); // cutting of one because of 0x00
-			
-  	  	
-  	  	if(!qstricmp(addLine->getLabel(),"Content-Disposition"))
-  	  	{
-  	  		aList = &dispositionList;
-  	  		_contentDisposition = mimeValue;
-  	  	} else if(!qstricmp(addLine->getLabel(),"Content-Type")) {
-  	  		aList = &typeList;
-  	  		contentType = mimeValue;
-  	  	} else if(!qstricmp(addLine->getLabel(),"Content-Transfer-Encoding")) {
-  	  		contentEncoding = mimeValue;
-  	  	} else if(!qstricmp(addLine->getLabel(),"Content-ID")) {
-  	  		contentID = mimeValue;
-  	  	} else if(!qstricmp(addLine->getLabel(),"Content-Description")) {
-  	  		_contentDescription = mimeValue;
-  	  	} else if(!qstricmp(addLine->getLabel(),"Content-MD5")) {
-  	  		contentMD5 = mimeValue;
-  	  	} else if(!qstricmp(addLine->getLabel(),"Content-Length")) {
-  	  		contentLength = mimeValue.toULong();
-  	  	} else {
-			  	additionalHdrLines.append(addLine);
-  	  	}
-//	  		cout << addLine->getLabel().data() << ": '" << mimeValue.data() << "'" << endl;
-    		
-    		aCStr += skip;
-    		while((skip = mimeHdrLine::parseSeparator(';',aCStr)))
-    		{
-      		if(skip > 0)
-      		{
-      			QCString aParm;
-      			
-      			aParm = QCString(aCStr,skip);
-      			aParm = aParm.simplifyWhiteSpace().stripWhiteSpace();
-      			addParameter(aParm,aList);
-//      			cout << "-- '" << aParm.data() << "'" << endl;
-      			mimeValue = QCString(addLine->getValue().data(),skip);
-      			aCStr += skip;
-      		} else break;
-    		}
-  		}
-  	}
+  mimeHdrLine *addLine = new mimeHdrLine (aHdrLine);
+  if (addLine)
+  {
+    originalHdrLines.append (addLine);
+    if (qstrnicmp (addLine->getLabel (), "Content-", 8))
+    {
+      additionalHdrLines.append (addLine);
+    }
+    else
+    {
+      int skip;
+      char *aCStr = addLine->getValue ().data ();
+      QDict < QString > *aList;
+
+      aList = NULL;
+      skip = mimeHdrLine::parseSeparator (';', aCStr);
+      if (skip > 0)
+      {
+        int cut = 0;
+        if (skip >= 2)
+        {
+          if (aCStr[skip - 1] == '\r')
+            cut++;
+          if (aCStr[skip - 1] == '\n')
+            cut++;
+          if (aCStr[skip - 2] == '\r')
+            cut++;
+          if (aCStr[skip - 1] == ';')
+            cut++;
+        }
+        QCString mimeValue = QCString (aCStr, skip - cut + 1);  // cutting of one because of 0x00
+
+
+        if (!qstricmp (addLine->getLabel (), "Content-Disposition"))
+        {
+          aList = &dispositionList;
+          _contentDisposition = mimeValue;
+        }
+        else if (!qstricmp (addLine->getLabel (), "Content-Type"))
+        {
+          aList = &typeList;
+          contentType = mimeValue;
+        }
+        else
+          if (!qstricmp (addLine->getLabel (), "Content-Transfer-Encoding"))
+        {
+          contentEncoding = mimeValue;
+        }
+        else if (!qstricmp (addLine->getLabel (), "Content-ID"))
+        {
+          contentID = mimeValue;
+        }
+        else if (!qstricmp (addLine->getLabel (), "Content-Description"))
+        {
+          _contentDescription = mimeValue;
+        }
+        else if (!qstricmp (addLine->getLabel (), "Content-MD5"))
+        {
+          contentMD5 = mimeValue;
+        }
+        else if (!qstricmp (addLine->getLabel (), "Content-Length"))
+        {
+          contentLength = mimeValue.toULong ();
+        }
+        else
+        {
+          additionalHdrLines.append (addLine);
+        }
+//        cout << addLine->getLabel().data() << ": '" << mimeValue.data() << "'" << endl;
+
+        aCStr += skip;
+        while ((skip = mimeHdrLine::parseSeparator (';', aCStr)))
+        {
+          if (skip > 0)
+          {
+            QCString aParm;
+
+            aParm = QCString (aCStr, skip);
+            aParm = aParm.simplifyWhiteSpace ().stripWhiteSpace ();
+            addParameter (aParm, aList);
+//            cout << "-- '" << aParm.data() << "'" << endl;
+            mimeValue = QCString (addLine->getValue ().data (), skip);
+            aCStr += skip;
+          }
+          else
+            break;
+        }
+      }
+    }
   }
 }
 
-void mimeHeader::addParameter(QCString aParameter,QDict<QString> *aList)
+void
+mimeHeader::addParameter (QCString aParameter, QDict < QString > *aList)
 {
-	QString *aValue;
-	QCString aLabel;
-	int pos = aParameter.find('=');
-//	cout << aParameter.left(pos).data();
-	aValue = new QString();
-	aValue->setLatin1(aParameter.right(aParameter.length() - pos - 1));
-	aLabel = aParameter.left(pos);
-	if((*aValue)[0] == '"')
-		*aValue = aValue->mid(1,aValue->length()-2);
-      			
-	aList->insert(aLabel,aValue);
-//	cout << "=" << aValue->data() << endl;
+  QString *aValue;
+  QCString aLabel;
+  int pos = aParameter.find ('=');
+//  cout << aParameter.left(pos).data();
+  aValue = new QString ();
+  aValue->setLatin1 (aParameter.right (aParameter.length () - pos - 1));
+  aLabel = aParameter.left (pos);
+  if ((*aValue)[0] == '"')
+    *aValue = aValue->mid (1, aValue->length () - 2);
+
+  aList->insert (aLabel, aValue);
+//  cout << "=" << aValue->data() << endl;
 }
 
-QString mimeHeader::getDispositionParm(QCString aStr)
+QString
+mimeHeader::getDispositionParm (QCString aStr)
 {
-	return getParameter(aStr,&dispositionList);
+  return getParameter (aStr, &dispositionList);
 }
 
-QString mimeHeader::getTypeParm(QCString aStr)
+QString
+mimeHeader::getTypeParm (QCString aStr)
 {
-	return getParameter(aStr,&typeList);
+  return getParameter (aStr, &typeList);
 }
 
-void mimeHeader::setDispositionParm(QCString aLabel,QString aValue)
+void
+mimeHeader::setDispositionParm (QCString aLabel, QString aValue)
 {
-	setParameter(aLabel,aValue,&dispositionList);
-	return;
+  setParameter (aLabel, aValue, &dispositionList);
+  return;
 }
 
-void mimeHeader::setTypeParm(QCString aLabel,QString aValue)
+void
+mimeHeader::setTypeParm (QCString aLabel, QString aValue)
 {
-	setParameter(aLabel,aValue,&typeList);
-	return;
+  setParameter (aLabel, aValue, &typeList);
+  return;
 }
 
-QDictIterator<QString> mimeHeader::getDispositionIterator()
+QDictIterator < QString > mimeHeader::getDispositionIterator ()
 {
-	return QDictIterator<QString>(dispositionList);
+  return QDictIterator < QString > (dispositionList);
 }
 
-QDictIterator<QString> mimeHeader::getTypeIterator()
+QDictIterator < QString > mimeHeader::getTypeIterator ()
 {
-	return QDictIterator<QString>(typeList);
+  return QDictIterator < QString > (typeList);
 }
 
-QListIterator<mimeHdrLine> mimeHeader::getOriginalIterator()
+QListIterator < mimeHdrLine > mimeHeader::getOriginalIterator ()
 {
-	return QListIterator<mimeHdrLine>(originalHdrLines);
+  return QListIterator < mimeHdrLine > (originalHdrLines);
 }
 
-QListIterator<mimeHdrLine> mimeHeader::getAdditionalIterator()
+QListIterator < mimeHdrLine > mimeHeader::getAdditionalIterator ()
 {
-	return QListIterator<mimeHdrLine>(additionalHdrLines);
+  return QListIterator < mimeHdrLine > (additionalHdrLines);
 }
 
-void mimeHeader::outputHeader(mimeIO &useIO)
-{	
-	if(!getDisposition().isEmpty())
-	{
-  	useIO.outputMimeLine(QCString("Content-Disposition: ")
-  		+ getDisposition()
-  		+ outputParameter(&dispositionList));
-	}
-	
-	if(!getType().isEmpty())
-	{
-  	useIO.outputMimeLine(QCString("Content-Type: ")
-  		+ getType()
-  		+ outputParameter(&typeList));
-	}
-	if(!getDescription().isEmpty())
-  	useIO.outputMimeLine(QCString("Content-Description: ") + getDescription());
-	if(!getID().isEmpty())
-  	useIO.outputMimeLine(QCString("Content-ID: ") + getID());
-	if(!getMD5().isEmpty())
-  	useIO.outputMimeLine(QCString("Content-MD5: ") + getMD5());
-	if(!getEncoding().isEmpty())
-  	useIO.outputMimeLine(QCString("Content-Transfer-Encoding: ") + getEncoding());
-	
-	QListIterator<mimeHdrLine> ait = getAdditionalIterator();
-	while(ait.current())
-	{
-		useIO.outputMimeLine(ait.current()->getLabel() + ": " + ait.current()->getValue());
-		++ait;
-	}
-	useIO.outputMimeLine(QCString(""));
+void
+mimeHeader::outputHeader (mimeIO & useIO)
+{
+  if (!getDisposition ().isEmpty ())
+  {
+    useIO.outputMimeLine (QCString ("Content-Disposition: ")
+                          + getDisposition ()
+                          + outputParameter (&dispositionList));
+  }
+
+  if (!getType ().isEmpty ())
+  {
+    useIO.outputMimeLine (QCString ("Content-Type: ")
+                          + getType () + outputParameter (&typeList));
+  }
+  if (!getDescription ().isEmpty ())
+    useIO.outputMimeLine (QCString ("Content-Description: ") +
+                          getDescription ());
+  if (!getID ().isEmpty ())
+    useIO.outputMimeLine (QCString ("Content-ID: ") + getID ());
+  if (!getMD5 ().isEmpty ())
+    useIO.outputMimeLine (QCString ("Content-MD5: ") + getMD5 ());
+  if (!getEncoding ().isEmpty ())
+    useIO.outputMimeLine (QCString ("Content-Transfer-Encoding: ") +
+                          getEncoding ());
+
+  QListIterator < mimeHdrLine > ait = getAdditionalIterator ();
+  while (ait.current ())
+  {
+    useIO.outputMimeLine (ait.current ()->getLabel () + ": " +
+                          ait.current ()->getValue ());
+    ++ait;
+  }
+  useIO.outputMimeLine (QCString (""));
 }
 
-QString mimeHeader::getParameter(QCString aStr,QDict<QString> *aDict)
+QString
+mimeHeader::getParameter (QCString aStr, QDict < QString > *aDict)
 {
-	QString retVal,*found;
-	if(aDict)
-	{
-		//see if it is a normal parameter
-		found = aDict->find(aStr);
-		if(!found)
-		{
-			//might be a continuated or encoded parameter
-			found = aDict->find(aStr+"*");
-			if(!found)
-			{
-				//continuated parameter
-				QString decoded,encoded;
-				int part=0;
-				
-				do {
-    			QCString search;
-    			search.setNum(part);
-    			search = aStr + "*" + search;
-    			found = aDict->find(search);
-    			if(!found) {
-	    			found = aDict->find(search+"*");
-	    			if(found) encoded += rfcDecoder::encodeRFC2231String(*found);
-	    		} else {
-	    			encoded += *found;
-	    		}
-	    		part++;
-				} while (found);
-				if(encoded.find("'") >= 0)
-				{
-					retVal = rfcDecoder::decodeRFC2231String(encoded.local8Bit());
-				} else {
-					retVal = rfcDecoder::decodeRFC2231String(QCString("''") + encoded.local8Bit());
-				}
-			} else {
-				//simple encoded parameter
-				retVal = rfcDecoder::decodeRFC2231String(found->local8Bit());
-			}
-		} else {
-			retVal = *found;
-		}
-	}
-	return retVal;
+  QString retVal, *found;
+  if (aDict)
+  {
+    //see if it is a normal parameter
+    found = aDict->find (aStr);
+    if (!found)
+    {
+      //might be a continuated or encoded parameter
+      found = aDict->find (aStr + "*");
+      if (!found)
+      {
+        //continuated parameter
+        QString decoded, encoded;
+        int part = 0;
+
+        do
+        {
+          QCString search;
+          search.setNum (part);
+          search = aStr + "*" + search;
+          found = aDict->find (search);
+          if (!found)
+          {
+            found = aDict->find (search + "*");
+            if (found)
+              encoded += rfcDecoder::encodeRFC2231String (*found);
+          }
+          else
+          {
+            encoded += *found;
+          }
+          part++;
+        }
+        while (found);
+        if (encoded.find ("'") >= 0)
+        {
+          retVal = rfcDecoder::decodeRFC2231String (encoded.local8Bit ());
+        }
+        else
+        {
+          retVal =
+            rfcDecoder::decodeRFC2231String (QCString ("''") +
+                                             encoded.local8Bit ());
+        }
+      }
+      else
+      {
+        //simple encoded parameter
+        retVal = rfcDecoder::decodeRFC2231String (found->local8Bit ());
+      }
+    }
+    else
+    {
+      retVal = *found;
+    }
+  }
+  return retVal;
 }
 
-void mimeHeader::setParameter(QCString aLabel,QString aValue,QDict<QString> *aDict)
+void
+mimeHeader::setParameter (QCString aLabel, QString aValue,
+                          QDict < QString > *aDict)
 {
-	bool encoded=true;
+  bool encoded = true;
 
-  if(aDict)
+  if (aDict)
   {
 
-	//see if it needs to get encoded
-  	if(encoded && aLabel.find('*') == -1)
-  	{
-  		aValue = rfcDecoder::encodeRFC2231String(aValue);
-  	}
-  	//see if it needs to be truncated
-  	if(aValue.length() + aLabel.length() + 4 > 80)
-  	{
-  		unsigned int limit = 80 - 8 - aLabel.length();
-  		int i=0;
-			QString shortValue;
-			QCString shortLabel;
-			  		
-  		while(!aValue.isEmpty())
-  		{
-  			//don't truncate the encoded chars
-  			int offset=0;
-  			if(limit > aValue.length()) limit = aValue.length();
-  			offset = aValue.findRev('%',limit);
-  			if(offset == limit-1 || offset == limit-2)
-  			{
-//  				cout << "offset " << offset << "-" << limit << "=" << limit-offset << endl;
-  				offset = limit-offset;
-  			} else offset = 0;
-  			shortValue = aValue.left(limit-offset);
-  			shortLabel.setNum(i);
-  			shortLabel = aLabel + "*" + shortLabel;
-  			aValue = aValue.right(aValue.length()-limit+offset);
-  			if(encoded)
-  			{
-	  			if(i == 0)
-  				{
-  					shortValue = "''" + shortValue;
-  				}
-  				shortLabel += "*";
-  			}
-//  			cout << shortLabel << "-" << shortValue << endl;
-	  		aDict->insert(shortLabel,new QString(shortValue));
-  			i++;
-  		}
-  	} else {
-  		aDict->insert(aLabel,new QString(aValue));
-  	}
+    //see if it needs to get encoded
+    if (encoded && aLabel.find ('*') == -1)
+    {
+      aValue = rfcDecoder::encodeRFC2231String (aValue);
+    }
+    //see if it needs to be truncated
+    if (aValue.length () + aLabel.length () + 4 > 80)
+    {
+      unsigned int limit = 80 - 8 - aLabel.length ();
+      int i = 0;
+      QString shortValue;
+      QCString shortLabel;
+
+      while (!aValue.isEmpty ())
+      {
+        //don't truncate the encoded chars
+        int offset = 0;
+        if (limit > aValue.length ())
+          limit = aValue.length ();
+        offset = aValue.findRev ('%', limit);
+        if (offset == limit - 1 || offset == limit - 2)
+        {
+//          cout << "offset " << offset << "-" << limit << "=" << limit-offset << endl;
+          offset = limit - offset;
+        }
+        else
+          offset = 0;
+        shortValue = aValue.left (limit - offset);
+        shortLabel.setNum (i);
+        shortLabel = aLabel + "*" + shortLabel;
+        aValue = aValue.right (aValue.length () - limit + offset);
+        if (encoded)
+        {
+          if (i == 0)
+          {
+            shortValue = "''" + shortValue;
+          }
+          shortLabel += "*";
+        }
+//        cout << shortLabel << "-" << shortValue << endl;
+        aDict->insert (shortLabel, new QString (shortValue));
+        i++;
+      }
+    }
+    else
+    {
+      aDict->insert (aLabel, new QString (aValue));
+    }
   }
 }
 
-QCString mimeHeader::outputParameter(QDict<QString> *aDict)
+QCString
+mimeHeader::outputParameter (QDict < QString > *aDict)
 {
-	QCString retVal;
-	if(aDict)
-	{
-  	QDictIterator<QString> it(*aDict);
-  	while ( it.current() ) {
-  		retVal += (";\n\t" + it.currentKey() + "=").latin1();
-  		if(it.current()->find(' ') > 0 || it.current()->find(';') > 0)
-  		{
-  			retVal += '"' + it.current()->utf8() + '"';
-  		} else {
-  			retVal += it.current()->utf8();
-  		}
-  		// << it.current()->utf8() << "'";
-  		++it;
-  	}
-  	retVal += "\n";
+  QCString retVal;
+  if (aDict)
+  {
+    QDictIterator < QString > it (*aDict);
+    while (it.current ())
+    {
+      retVal += (";\n\t" + it.currentKey () + "=").latin1 ();
+      if (it.current ()->find (' ') > 0 || it.current ()->find (';') > 0)
+      {
+        retVal += '"' + it.current ()->utf8 () + '"';
+      }
+      else
+      {
+        retVal += it.current ()->utf8 ();
+      }
+      // << it.current()->utf8() << "'";
+      ++it;
+    }
+    retVal += "\n";
   }
-	return retVal;
+  return retVal;
 }
 
-void mimeHeader::outputPart(mimeIO &useIO)
+void
+mimeHeader::outputPart (mimeIO & useIO)
 {
-	QListIterator<mimeHeader> nestedParts = getNestedIterator();
-	QCString boundary;
-	if(!getTypeParm("boundary").isEmpty()) boundary = getTypeParm("boundary").latin1();
-	
-	outputHeader(useIO);
-	if(!getPreBody().isEmpty()) useIO.outputMimeLine(getPreBody());
-	if(getNestedMessage()) getNestedMessage()->outputPart(useIO);
-	while( nestedParts.current() ) {
-		if(!boundary.isEmpty())
-			useIO.outputMimeLine("--" + boundary);
-		nestedParts.current()->outputPart(useIO);
-		++nestedParts;
-	}
-	if(!boundary.isEmpty())
-		useIO.outputMimeLine("--" + boundary + "--");
-	if(!getPostBody().isEmpty()) useIO.outputMimeLine(getPostBody());
+  QListIterator < mimeHeader > nestedParts = getNestedIterator ();
+  QCString boundary;
+  if (!getTypeParm ("boundary").isEmpty ())
+    boundary = getTypeParm ("boundary").latin1 ();
+
+  outputHeader (useIO);
+  if (!getPreBody ().isEmpty ())
+    useIO.outputMimeLine (getPreBody ());
+  if (getNestedMessage ())
+    getNestedMessage ()->outputPart (useIO);
+  while (nestedParts.current ())
+  {
+    if (!boundary.isEmpty ())
+      useIO.outputMimeLine ("--" + boundary);
+    nestedParts.current ()->outputPart (useIO);
+    ++nestedParts;
+  }
+  if (!boundary.isEmpty ())
+    useIO.outputMimeLine ("--" + boundary + "--");
+  if (!getPostBody ().isEmpty ())
+    useIO.outputMimeLine (getPostBody ());
 }
 
-int mimeHeader::parsePart(mimeIO &useIO,QString boundary)
-{  	
-		int retVal = 0;		
-		bool mbox = false;
-		QCString preNested,postNested;
-		mbox = parseHeader(useIO);
-		
-		qDebug("mimeHeader::parsePart - parsing part '%s'",getType().data());
-		if(!qstrnicmp(getType(),"Multipart",9))
-		{
-			retVal = parseBody(useIO,preNested,getTypeParm("boundary")); //this is a message in mime format stuff
-			setPreBody(preNested);
-			int localRetVal;
-			do {
-				mimeHeader *aHeader = new mimeHeader;
-
-				// set default type for multipart/digest
-				if(!qstrnicmp(getType(),"Multipart/Digest",16))
-					aHeader->setType("Message/RFC822");
-
-				localRetVal = aHeader->parsePart(useIO,getTypeParm("boundary"));
-				addNestedPart(aHeader);
-			} while(localRetVal);   //get nested stuff
-		}
-		if(!qstrnicmp(getType(),"Message/RFC822",14))
-		{
-			mailHeader *msgHeader = new mailHeader;
-			retVal = msgHeader->parsePart(useIO,boundary);
-			setNestedMessage(msgHeader);			
-		} else {
-			retVal = parseBody(useIO,postNested,boundary,mbox); //just a simple part remaining
-			setPostBody(postNested);
-		}
-	return retVal;
-}
-
-int mimeHeader::parseBody(mimeIO &useIO,QCString &messageBody,QString boundary,bool mbox)
-{		
-		QCString inputStr;
-		QCString buffer;
-		QString partBoundary;
-		QString partEnd;
-  	int retVal = 0; //default is last part
-		
-		if(!boundary.isEmpty())
-		{
-			partBoundary = QString("--") + boundary;
-			partEnd = QString("--") + boundary + "--";
-		}
-  	
-  	while(useIO.inputLine(inputStr))
-  	{
-		//check for the end of all parts
-		if(!partEnd.isEmpty() && !qstrnicmp(inputStr,partEnd.latin1(),partEnd.length()-1))
-		{
-			retVal = 0; //end of these parts
-			break;
-		} else if(!partBoundary.isEmpty() && !qstrnicmp(inputStr,partBoundary.latin1(),partBoundary.length()-1))
-		{
-			retVal = 1; //continue with next part
-			break;
-		} else if(mbox && inputStr.find("From ") == 0)
-		{
-			retVal = 0; // end of mbox
-			break;
-		}
-		buffer += inputStr;
-		if(buffer.length() > 16384)
-		{
-			messageBody += buffer;
-			buffer = "";
-		}				
-	}
-
-	messageBody += buffer;
-	return retVal;
-}
-
-bool mimeHeader::parseHeader(mimeIO &useIO)
-{  	
-	bool mbox = false;
-	bool first = true;
-	mimeHdrLine my_line;
-	QCString inputStr;
-
-	qDebug("mimeHeader::parseHeader - starting parsing");
-  	while(useIO.inputLine(inputStr))
-  	{
-  			int appended;
-			if(inputStr.find("From ") != 0 || !first)
-			{
-				first = false;
-				appended = my_line.appendStr(inputStr);
-  				if(!appended)
-  				{
-						addHdrLine(&my_line);
-  					appended = my_line.setStr(inputStr);
-  				}
-  				if(appended <= 0) break;
-			} else {
-				mbox = true;
-				first = false;
-			}
-  			inputStr = (const char *)NULL;
-  	}
-
-	qDebug("mimeHeader::parseHeader - finished parsing");
-	return mbox;
-}
-
-mimeHeader *mimeHeader::bodyPart(const QString &_str)
+int
+mimeHeader::parsePart (mimeIO & useIO, QString boundary)
 {
-	// see if it is nested a little deeper
-	if(_str.find(".") != -1)
-	{
-		QString tempStr = _str;
-		int which;
-		mimeHeader *tempPart;
-		
-		tempStr = _str.right(_str.length() - _str.find(".") - 1);
-		if(nestedMessage)
-		{
-			qDebug("mimeHeader::bodyPart - recursing message");
-			tempPart = nestedMessage->nestedParts.at(_str.left(_str.find(".")).toULong()-1);
-		} else {
-			qDebug("mimeHeader::bodyPart - recursing mixed");
-			tempPart = nestedParts.at(_str.left(_str.find(".")).toULong()-1);
-		}
-		if(tempPart) tempPart = tempPart->bodyPart(tempStr);
-		return tempPart;
-	}
+  int retVal = 0;
+  bool mbox = false;
+  QCString preNested, postNested;
+  mbox = parseHeader (useIO);
 
-	qDebug("mimeHeader::bodyPart - returning part %s",_str.latin1());
-	// or pick just the plain part
-	if(nestedMessage)
-	{
-		qDebug("mimeHeader::bodyPart - message");
-		return nestedMessage->nestedParts.at(_str.toULong()-1);
-	}
-	qDebug("mimeHeader::bodyPart - mixed");
-	return nestedParts.at(_str.toULong()-1);
+  qDebug ("mimeHeader::parsePart - parsing part '%s'", getType ().data ());
+  if (!qstrnicmp (getType (), "Multipart", 9))
+  {
+    retVal = parseBody (useIO, preNested, getTypeParm ("boundary"));  //this is a message in mime format stuff
+    setPreBody (preNested);
+    int localRetVal;
+    do
+    {
+      mimeHeader *aHeader = new mimeHeader;
+
+      // set default type for multipart/digest
+      if (!qstrnicmp (getType (), "Multipart/Digest", 16))
+        aHeader->setType ("Message/RFC822");
+
+      localRetVal = aHeader->parsePart (useIO, getTypeParm ("boundary"));
+      addNestedPart (aHeader);
+    }
+    while (localRetVal);        //get nested stuff
+  }
+  if (!qstrnicmp (getType (), "Message/RFC822", 14))
+  {
+    mailHeader *msgHeader = new mailHeader;
+    retVal = msgHeader->parsePart (useIO, boundary);
+    setNestedMessage (msgHeader);
+  }
+  else
+  {
+    retVal = parseBody (useIO, postNested, boundary, mbox); //just a simple part remaining
+    setPostBody (postNested);
+  }
+  return retVal;
+}
+
+int
+mimeHeader::parseBody (mimeIO & useIO, QCString & messageBody,
+                       QString boundary, bool mbox)
+{
+  QCString inputStr;
+  QCString buffer;
+  QString partBoundary;
+  QString partEnd;
+  int retVal = 0;               //default is last part
+
+  if (!boundary.isEmpty ())
+  {
+    partBoundary = QString ("--") + boundary;
+    partEnd = QString ("--") + boundary + "--";
+  }
+
+  while (useIO.inputLine (inputStr))
+  {
+    //check for the end of all parts
+    if (!partEnd.isEmpty ()
+        && !qstrnicmp (inputStr, partEnd.latin1 (), partEnd.length () - 1))
+    {
+      retVal = 0;               //end of these parts
+      break;
+    }
+    else if (!partBoundary.isEmpty ()
+             && !qstrnicmp (inputStr, partBoundary.latin1 (),
+                            partBoundary.length () - 1))
+    {
+      retVal = 1;               //continue with next part
+      break;
+    }
+    else if (mbox && inputStr.find ("From ") == 0)
+    {
+      retVal = 0;               // end of mbox
+      break;
+    }
+    buffer += inputStr;
+    if (buffer.length () > 16384)
+    {
+      messageBody += buffer;
+      buffer = "";
+    }
+  }
+
+  messageBody += buffer;
+  return retVal;
+}
+
+bool
+mimeHeader::parseHeader (mimeIO & useIO)
+{
+  bool mbox = false;
+  bool first = true;
+  mimeHdrLine my_line;
+  QCString inputStr;
+
+  qDebug ("mimeHeader::parseHeader - starting parsing");
+  while (useIO.inputLine (inputStr))
+  {
+    int appended;
+    if (inputStr.find ("From ") != 0 || !first)
+    {
+      first = false;
+      appended = my_line.appendStr (inputStr);
+      if (!appended)
+      {
+        addHdrLine (&my_line);
+        appended = my_line.setStr (inputStr);
+      }
+      if (appended <= 0)
+        break;
+    }
+    else
+    {
+      mbox = true;
+      first = false;
+    }
+    inputStr = (const char *) NULL;
+  }
+
+  qDebug ("mimeHeader::parseHeader - finished parsing");
+  return mbox;
+}
+
+mimeHeader *
+mimeHeader::bodyPart (const QString & _str)
+{
+  // see if it is nested a little deeper
+  if (_str.find (".") != -1)
+  {
+    QString tempStr = _str;
+    int which;
+    mimeHeader *tempPart;
+
+    tempStr = _str.right (_str.length () - _str.find (".") - 1);
+    if (nestedMessage)
+    {
+      qDebug ("mimeHeader::bodyPart - recursing message");
+      tempPart =
+        nestedMessage->nestedParts.at (_str.left (_str.find (".")).
+                                       toULong () - 1);
+    }
+    else
+    {
+      qDebug ("mimeHeader::bodyPart - recursing mixed");
+      tempPart = nestedParts.at (_str.left (_str.find (".")).toULong () - 1);
+    }
+    if (tempPart)
+      tempPart = tempPart->bodyPart (tempStr);
+    return tempPart;
+  }
+
+  qDebug ("mimeHeader::bodyPart - returning part %s", _str.latin1 ());
+  // or pick just the plain part
+  if (nestedMessage)
+  {
+    qDebug ("mimeHeader::bodyPart - message");
+    return nestedMessage->nestedParts.at (_str.toULong () - 1);
+  }
+  qDebug ("mimeHeader::bodyPart - mixed");
+  return nestedParts.at (_str.toULong () - 1);
 }
 
 #ifdef KMAIL_COMPATIBLE
 // compatibility subroutines
-QString mimeHeader::bodyDecoded()
+QString
+mimeHeader::bodyDecoded ()
 {
-	qDebug("mimeHeader::bodyDecoded");
-	QByteArray temp;
-	
-	temp = bodyDecodedBinary();
-	return QString::fromLatin1(temp.data(),temp.count());
+  qDebug ("mimeHeader::bodyDecoded");
+  QByteArray temp;
+
+  temp = bodyDecodedBinary ();
+  return QString::fromLatin1 (temp.data (), temp.count ());
 }
 
-QByteArray mimeHeader::bodyDecodedBinary()
+QByteArray
+mimeHeader::bodyDecodedBinary ()
 {
-	QByteArray retVal;
+  QByteArray retVal;
 
-	retVal = postMultipartBody;
-	if(contentEncoding.find("quoted-printable",0,false) == 0) retVal = rfcDecoder::decodeQuotedPrintable(retVal);
-	else if(contentEncoding.find("base64",0,false) == 0) retVal = rfcDecoder::decodeBase64(retVal);
+  retVal = postMultipartBody;
+  if (contentEncoding.find ("quoted-printable", 0, false) == 0)
+    retVal = rfcDecoder::decodeQuotedPrintable (retVal);
+  else if (contentEncoding.find ("base64", 0, false) == 0)
+    retVal = rfcDecoder::decodeBase64 (retVal);
 
-	qDebug("mimeHeader::bodyDecodedBinary - size is %d",retVal.size());
-	return retVal;
+  qDebug ("mimeHeader::bodyDecodedBinary - size is %d", retVal.size ());
+  return retVal;
 }
 
-void mimeHeader::setBodyEncodedBinary(const QByteArray &_arr)
+void
+mimeHeader::setBodyEncodedBinary (const QByteArray & _arr)
 {
-	setBodyEncoded(_arr);
+  setBodyEncoded (_arr);
 }
 
-void mimeHeader::setBodyEncoded(const QByteArray &_arr)
+void
+mimeHeader::setBodyEncoded (const QByteArray & _arr)
 {
-	QByteArray setVal;
+  QByteArray setVal;
 
-	qDebug("mimeHeader::setBodyEncoded - in size %d",_arr.size());	
-	if(contentEncoding.find("quoted-printable",0,false) == 0) setVal = rfcDecoder::encodeQuotedPrintable(_arr);
-	else if(contentEncoding.find("base64",0,false) == 0) setVal = rfcDecoder::encodeBase64(_arr);
-	else setVal.duplicate(_arr);
-	qDebug("mimeHeader::setBodyEncoded - out size %d",setVal.size());	
-	
-	postMultipartBody.duplicate(setVal);
-	qDebug("mimeHeader::setBodyEncoded - out size %d",postMultipartBody.size());	
+  qDebug ("mimeHeader::setBodyEncoded - in size %d", _arr.size ());
+  if (contentEncoding.find ("quoted-printable", 0, false) == 0)
+    setVal = rfcDecoder::encodeQuotedPrintable (_arr);
+  else if (contentEncoding.find ("base64", 0, false) == 0)
+    setVal = rfcDecoder::encodeBase64 (_arr);
+  else
+    setVal.duplicate (_arr);
+  qDebug ("mimeHeader::setBodyEncoded - out size %d", setVal.size ());
+
+  postMultipartBody.duplicate (setVal);
+  qDebug ("mimeHeader::setBodyEncoded - out size %d",
+          postMultipartBody.size ());
 }
 
-QString mimeHeader::iconName()
+QString
+mimeHeader::iconName ()
 {
-	QString fileName;
+  QString fileName;
 
-	fileName = KMimeType::mimeType(contentType.lower())->icon(QString::null,false);
-	fileName = KGlobal::instance()->iconLoader()->iconPath( fileName, KIcon::Desktop );
-//	if (fileName.isEmpty())
-//		fileName = KGlobal::instance()->iconLoader()->iconPath( "unknown", KIcon::Desktop );
-	return fileName;
+  fileName =
+    KMimeType::mimeType (contentType.lower ())->icon (QString::null, false);
+  fileName =
+    KGlobal::instance ()->iconLoader ()->iconPath (fileName, KIcon::Desktop);
+//  if (fileName.isEmpty())
+//    fileName = KGlobal::instance()->iconLoader()->iconPath( "unknown", KIcon::Desktop );
+  return fileName;
 }
 
-void mimeHeader::setNestedMessage(mailHeader *inPart,bool destroy)
+void
+mimeHeader::setNestedMessage (mailHeader * inPart, bool destroy)
 {
-//	if(nestedMessage && destroy) delete nestedMessage;
-	nestedMessage = inPart;
+//  if(nestedMessage && destroy) delete nestedMessage;
+  nestedMessage = inPart;
 }
 
-QString mimeHeader::headerAsString()
+QString
+mimeHeader::headerAsString ()
 {
-	mimeIOQString myIO;
-	
-	outputHeader(myIO);
-	return myIO.getString();
+  mimeIOQString myIO;
+
+  outputHeader (myIO);
+  return myIO.getString ();
 }
 
-QString mimeHeader::magicSetType(bool aAutoDecode)
+QString
+mimeHeader::magicSetType (bool aAutoDecode)
 {
   QString mimetype;
   QByteArray body;
   KMimeMagicResult *result;
- 
+
   int sep;
 
-  KMimeMagic::self()->setFollowLinks(TRUE); // is it necessary ?
+  KMimeMagic::self ()->setFollowLinks (TRUE); // is it necessary ?
 
-  if (aAutoDecode) 
-    body = bodyDecodedBinary();
-  else 
+  if (aAutoDecode)
+    body = bodyDecodedBinary ();
+  else
     body = postMultipartBody;
- 
-  result = KMimeMagic::self()->findBufferType( body );
-  mimetype = result->mimeType();
+
+  result = KMimeMagic::self ()->findBufferType (body);
+  mimetype = result->mimeType ();
   contentType = mimetype;
-	return mimetype;
+  return mimetype;
 }
-#endif	
+#endif

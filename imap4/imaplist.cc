@@ -44,26 +44,19 @@
 #include "imaplist.h"
 #include "imapparser.h"
 
-imapList::imapList()
-  : noInferiors_(false),
-    noSelect_(false),
-    marked_(false),
-    unmarked_(false)
+imapList::imapList ():noInferiors_ (false),
+noSelect_ (false), marked_ (false), unmarked_ (false)
 {
 }
 
-imapList::imapList(const imapList & lr)
-  : hierarchyDelimiter_(lr.hierarchyDelimiter_),
-    name_(lr.name_),
-    noInferiors_(lr.noInferiors_),
-    noSelect_(lr.noSelect_),
-    marked_(lr.marked_),
-    unmarked_(lr.unmarked_)
+imapList::imapList (const imapList & lr):hierarchyDelimiter_ (lr.hierarchyDelimiter_),
+name_ (lr.name_),
+noInferiors_ (lr.noInferiors_),
+noSelect_ (lr.noSelect_), marked_ (lr.marked_), unmarked_ (lr.unmarked_)
 {
 }
 
-  imapList &
-imapList::operator = (const imapList & lr)
+imapList & imapList::operator = (const imapList & lr)
 {
   // Avoid a = a.
   if (this == &lr)
@@ -79,35 +72,43 @@ imapList::operator = (const imapList & lr)
   return *this;
 }
 
-imapList::imapList(const QString & inStr)
-  : noInferiors_(false),
-    noSelect_(false),
-    marked_(false),
-    unmarked_(false)
+imapList::imapList (const QString & inStr):noInferiors_ (false),
+noSelect_ (false),
+marked_ (false), unmarked_ (false)
 {
-	QString s = inStr;
+  QString
+    s =
+    inStr;
 
-	if(s[0] != '(') return; //not proper format for us
-  
-	s = s.right(s.length()-1); // tie off (
+  if (s[0] != '(')
+    return;                     //not proper format for us
 
-	//process the attributes
-	QString attribute;
-	
-	while(!s.isEmpty() && s[0] != ')')
-	{
-		attribute = imapParser::parseOneWord(s);
-		if(-1 != attribute.find("\\Noinferiors",0,false)) noInferiors_  = true;
-		else if(-1 != attribute.find("\\Noselect",0,false)) noSelect_ = true;
-		else if(-1 != attribute.find("\\Marked",0,false)) marked_ = true;
-		else if(-1 != attribute.find("\\Unmarked",0,false)) unmarked_ = true;
-		else qDebug("imapList::imapList: bogus attribute %s",attribute.latin1());
-	}
+  s = s.right (s.length () - 1);  // tie off (
 
-	s = s.right(s.length()-1); // tie off )
-	imapParser::skipWS(s);
+  //process the attributes
+  QString
+    attribute;
 
-	hierarchyDelimiter_ = imapParser::parseOneWord(s);
-	if(hierarchyDelimiter_ == "NIL") hierarchyDelimiter_ = QString::null;
-  	name_ = rfcDecoder::fromIMAP(imapParser::parseOneWord(s)); // decode modified UTF7
+  while (!s.isEmpty () && s[0] != ')')
+  {
+    attribute = imapParser::parseOneWord (s);
+    if (-1 != attribute.find ("\\Noinferiors", 0, false))
+      noInferiors_ = true;
+    else if (-1 != attribute.find ("\\Noselect", 0, false))
+      noSelect_ = true;
+    else if (-1 != attribute.find ("\\Marked", 0, false))
+      marked_ = true;
+    else if (-1 != attribute.find ("\\Unmarked", 0, false))
+      unmarked_ = true;
+    else
+      qDebug ("imapList::imapList: bogus attribute %s", attribute.latin1 ());
+  }
+
+  s = s.right (s.length () - 1);  // tie off )
+  imapParser::skipWS (s);
+
+  hierarchyDelimiter_ = imapParser::parseOneWord (s);
+  if (hierarchyDelimiter_ == "NIL")
+    hierarchyDelimiter_ = QString::null;
+  name_ = rfcDecoder::fromIMAP (imapParser::parseOneWord (s));  // decode modified UTF7
 }

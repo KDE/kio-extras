@@ -57,159 +57,208 @@
 #include <kio/passdlg.h>
 #include <klocale.h> */
 
-imapCommand::imapCommand()
+imapCommand::imapCommand ()
 {
-	mComplete = false;
-	mId = QString::null;
+  mComplete = false;
+  mId = QString::null;
 }
 
-imapCommand::imapCommand(const QString &command,const QString &parameter)
-//	aCommand(NULL),
-//	mResult(NULL),
-//	mParameter(NULL)
+imapCommand::imapCommand (const QString & command, const QString & parameter)
+//  aCommand(NULL),
+//  mResult(NULL),
+//  mParameter(NULL)
 {
-	mComplete = false;
-	aCommand = command;
-	aParameter = parameter;
-	mId = QString::null;
+  mComplete = false;
+  aCommand = command;
+  aParameter = parameter;
+  mId = QString::null;
 }
 
-bool imapCommand::isComplete()
+bool
+imapCommand::isComplete ()
 {
-	return mComplete;
+  return mComplete;
 }
 
-const QString &imapCommand::result()
+const QString &
+imapCommand::result ()
 {
-	return mResult;
+  return mResult;
 }
 
-const QString &imapCommand::id()
+const QString &
+imapCommand::id ()
 {
-	return mId;
+  return mId;
 }
 
-const QString &imapCommand::parameter()
+const QString &
+imapCommand::parameter ()
 {
-	return aParameter;
+  return aParameter;
 }
 
-const QString &imapCommand::command()
+const QString &
+imapCommand::command ()
 {
-	return aCommand;
+  return aCommand;
 }
 
-void imapCommand::setId(const QString &id)
+void
+imapCommand::setId (const QString & id)
 {
-	if(mId.isEmpty()) mId = id;
+  if (mId.isEmpty ())
+    mId = id;
 }
 
-void imapCommand::setComplete()
+void
+imapCommand::setComplete ()
 {
-	mComplete = true;
+  mComplete = true;
 }
 
-void imapCommand::setResult(const QString &result)
+void
+imapCommand::setResult (const QString & result)
 {
-	mResult = result;
+  mResult = result;
 }
 
-void imapCommand::setCommand(const QString &command)
+void
+imapCommand::setCommand (const QString & command)
 {
-	aCommand = command;
+  aCommand = command;
 }
 
-void imapCommand::setParameter(const QString &parameter)
+void
+imapCommand::setParameter (const QString & parameter)
 {
-	aParameter = parameter;
+  aParameter = parameter;
 }
 
-const QString imapCommand::getStr()
+const QString
+imapCommand::getStr ()
 {
 
-	return id() + " " + command() + " " + parameter() + "\r\n";
+  return id () + " " + command () + " " + parameter () + "\r\n";
 }
 
-imapCommand *imapCommand::clientNoop()
+imapCommand *
+imapCommand::clientNoop ()
 {
-	return new imapCommand("NOOP","");
+  return new imapCommand ("NOOP", "");
 }
 
-imapCommand *imapCommand::clientFetch(ulong uid,const QString &fields,bool nouid)
+imapCommand *
+imapCommand::clientFetch (ulong uid, const QString & fields, bool nouid)
 {
-	return clientFetch(uid,uid,fields,nouid);
+  return clientFetch (uid, uid, fields, nouid);
 }
 
-imapCommand *imapCommand::clientFetch(ulong fromUid,ulong toUid,const QString &fields,bool nouid)
+imapCommand *
+imapCommand::clientFetch (ulong fromUid, ulong toUid, const QString & fields,
+                          bool nouid)
 {
-	QString uid;
+  QString uid;
 
-	uid.setNum(fromUid);
-	if(fromUid != toUid)
-	{
-		uid += ":";
-		if(toUid < fromUid) uid += "*";
-		else uid += QString().setNum(toUid);
-	}
-	return clientFetch(uid,fields,nouid);
+  uid.setNum (fromUid);
+  if (fromUid != toUid)
+  {
+    uid += ":";
+    if (toUid < fromUid)
+      uid += "*";
+    else
+      uid += QString ().setNum (toUid);
+  }
+  return clientFetch (uid, fields, nouid);
 }
 
-imapCommand *imapCommand::clientFetch(const QString &sequence,const QString &fields,bool nouid)
+imapCommand *
+imapCommand::clientFetch (const QString & sequence, const QString & fields,
+                          bool nouid)
 {
-	return new imapCommand(nouid ? "FETCH" : "UID FETCH",sequence + " (" + fields + ")");
+  return new imapCommand (nouid ? "FETCH" : "UID FETCH",
+                          sequence + " (" + fields + ")");
 }
 
-imapCommand *imapCommand::clientList(const QString &reference,const QString &path,bool lsub)
+imapCommand *
+imapCommand::clientList (const QString & reference, const QString & path,
+                         bool lsub)
 {
-	return new imapCommand(lsub ? "LSUB" : "LIST",QString("\"") + rfcDecoder::toIMAP(reference) + "\" \"" +rfcDecoder::toIMAP(path)+"\"");
+  return new imapCommand (lsub ? "LSUB" : "LIST",
+                          QString ("\"") + rfcDecoder::toIMAP (reference) +
+                          "\" \"" + rfcDecoder::toIMAP (path) + "\"");
 }
 
-imapCommand *imapCommand::clientSelect(const QString &path,bool examine)
+imapCommand *
+imapCommand::clientSelect (const QString & path, bool examine)
 {
-	return new imapCommand(examine ? "EXAMINE" : "SELECT",QString("\"")+rfcDecoder::toIMAP(path)+"\"");
+  return new imapCommand (examine ? "EXAMINE" : "SELECT",
+                          QString ("\"") + rfcDecoder::toIMAP (path) + "\"");
 }
 
-imapCommand *imapCommand::clientCopy(const QString &box,const QString &sequence,bool nouid)
+imapCommand *
+imapCommand::clientCopy (const QString & box, const QString & sequence,
+                         bool nouid)
 {
-	return new imapCommand(nouid ? "COPY" : "UID COPY",sequence + " \""+rfcDecoder::toIMAP(box)+"\"");
+  return new imapCommand (nouid ? "COPY" : "UID COPY",
+                          sequence + " \"" + rfcDecoder::toIMAP (box) + "\"");
 }
 
-imapCommand *imapCommand::clientAppend(const QString &box,const QString &extras,ulong size)
+imapCommand *
+imapCommand::clientAppend (const QString & box, const QString & extras,
+                           ulong size)
 {
-	return new imapCommand("APPEND","\""+rfcDecoder::toIMAP(box)+"\" {"+QString().setNum(size)+"}");
+  return new imapCommand ("APPEND",
+                          "\"" + rfcDecoder::toIMAP (box) + "\" {" +
+                          QString ().setNum (size) + "}");
 }
 
-imapCommand *imapCommand::clientStatus(const QString &path,const QString &parameters)
+imapCommand *
+imapCommand::clientStatus (const QString & path, const QString & parameters)
 {
-	return new imapCommand("STATUS",QString("\"")+rfcDecoder::toIMAP(path)+"\" (" + parameters + ")");
+  return new imapCommand ("STATUS",
+                          QString ("\"") + rfcDecoder::toIMAP (path) +
+                          "\" (" + parameters + ")");
 }
 
-imapCommand *imapCommand::clientCreate(const QString &path)
+imapCommand *
+imapCommand::clientCreate (const QString & path)
 {
-	return new imapCommand("CREATE",QString("\"")+rfcDecoder::toIMAP(path)+"\"");
+  return new imapCommand ("CREATE",
+                          QString ("\"") + rfcDecoder::toIMAP (path) + "\"");
 }
 
-imapCommand *imapCommand::clientDelete(const QString &path)
+imapCommand *
+imapCommand::clientDelete (const QString & path)
 {
-	return new imapCommand("DELETE",QString("\"")+rfcDecoder::toIMAP(path)+"\"");
+  return new imapCommand ("DELETE",
+                          QString ("\"") + rfcDecoder::toIMAP (path) + "\"");
 }
 
-imapCommand *imapCommand::clientExpunge()
+imapCommand *
+imapCommand::clientExpunge ()
 {
-	return new imapCommand("EXPUNGE",QString(""));
+  return new imapCommand ("EXPUNGE", QString (""));
 }
 
-imapCommand *imapCommand::clientRename(const QString &src,const QString &dest)
+imapCommand *
+imapCommand::clientRename (const QString & src, const QString & dest)
 {
-	return new imapCommand("RENAME",QString("\"")+rfcDecoder::toIMAP(src)+"\" \"" +rfcDecoder::toIMAP(dest)+"\"");
+  return new imapCommand ("RENAME",
+                          QString ("\"") + rfcDecoder::toIMAP (src) +
+                          "\" \"" + rfcDecoder::toIMAP (dest) + "\"");
 }
 
-imapCommand *imapCommand::clientSearch(const QString &search,bool nouid)
+imapCommand *
+imapCommand::clientSearch (const QString & search, bool nouid)
 {
-	return new imapCommand(nouid ? "SEARCH" : "UID SEARCH",search);
+  return new imapCommand (nouid ? "SEARCH" : "UID SEARCH", search);
 }
 
-imapCommand *imapCommand::clientStore(const QString &set,const QString &item,const QString &data,bool nouid)
+imapCommand *
+imapCommand::clientStore (const QString & set, const QString & item,
+                          const QString & data, bool nouid)
 {
-	return new imapCommand(nouid ? "STORE" : "UID STORE",set + " "+item+" ("+data+")");
+  return new imapCommand (nouid ? "STORE" : "UID STORE",
+                          set + " " + item + " (" + data + ")");
 }

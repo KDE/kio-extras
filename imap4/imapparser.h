@@ -39,205 +39,282 @@ class QString;
 class mailAddress;
 class mimeHeader;
 
-class imapCache {
-  public:
-	imapCache() { myHeader = NULL;mySize=0;myFlags=0;myDate.tm_year=0;myUid=0; }
-	~imapCache(){;}
-	
-	mailHeader *getHeader() { return myHeader; }	
-	void setHeader(mailHeader *inHeader) { myHeader = inHeader; }
-	
-	ulong getSize() { return mySize; }
-	void setSize(ulong inSize) { mySize = inSize; }
-	
-	ulong getUid() { return myUid; }
-	void setUid(ulong inUid) { myUid = inUid; }
-	
-	ulong getFlags() { return myFlags; }
-	void setFlags(ulong inFlags) { myFlags = inFlags; }
-	
-	const struct tm* getDate() { return &myDate; }
-	QString getDateStr() { return mimeHdrLine::getDateStr(&myDate); }
-	void setDateStr(const QString &_str) { mimeHdrLine::parseDate(_str.latin1(),&myDate); }
-	
-  protected:
-	mailHeader *myHeader;
-	ulong mySize;
-	ulong myFlags;
-	ulong myUid;
-	struct tm myDate;
+class imapCache
+{
+public:
+  imapCache ()
+  {
+    myHeader = NULL;
+    mySize = 0;
+    myFlags = 0;
+    myDate.tm_year = 0;
+    myUid = 0;
+  }
+   ~imapCache ()
+  {;
+  }
+
+  mailHeader *getHeader ()
+  {
+    return myHeader;
+  }
+  void setHeader (mailHeader * inHeader)
+  {
+    myHeader = inHeader;
+  }
+
+  ulong getSize ()
+  {
+    return mySize;
+  }
+  void setSize (ulong inSize)
+  {
+    mySize = inSize;
+  }
+
+  ulong getUid ()
+  {
+    return myUid;
+  }
+  void setUid (ulong inUid)
+  {
+    myUid = inUid;
+  }
+
+  ulong getFlags ()
+  {
+    return myFlags;
+  }
+  void setFlags (ulong inFlags)
+  {
+    myFlags = inFlags;
+  }
+
+  const struct tm *getDate ()
+  {
+    return &myDate;
+  }
+  QString getDateStr ()
+  {
+    return mimeHdrLine::getDateStr (&myDate);
+  }
+  void setDateStr (const QString & _str)
+  {
+    mimeHdrLine::parseDate (_str.latin1 (), &myDate);
+  }
+
+protected:
+  mailHeader * myHeader;
+  ulong mySize;
+  ulong myFlags;
+  ulong myUid;
+  struct tm myDate;
 };
 
 
-class imapParser {
+class imapParser
+{
 
-  public:
-  
-	// the different states the client can be in
-	enum IMAP_STATE {
-		ISTATE_NO,
-		ISTATE_CONNECT,
-		ISTATE_LOGIN,
-		ISTATE_SELECT
-	};
+public:
 
-  public:
-	imapParser();
-	virtual ~imapParser();
+  // the different states the client can be in
+  enum IMAP_STATE
+  {
+    ISTATE_NO,
+    ISTATE_CONNECT,
+    ISTATE_LOGIN,
+    ISTATE_SELECT
+  };
 
-	enum IMAP_STATE getState(){return currentState;};
+public:
+    imapParser ();
+    virtual ~ imapParser ();
 
-	const QString &getCurrentBox(){return currentBox;};
-	
-	imapCommand *sendCommand(imapCommand *); 
-	imapCommand *doCommand(imapCommand *);
+  enum IMAP_STATE getState ()
+  {
+    return currentState;
+  };
+
+  const QString & getCurrentBox ()
+  {
+    return currentBox;
+  };
+
+  imapCommand *sendCommand (imapCommand *);
+  imapCommand *doCommand (imapCommand *);
 
 
-	bool clientLogin(const QString &,const QString &);
-	bool clientAuthenticate(const QString &,const QString &,const QString &);	
+  bool clientLogin (const QString &, const QString &);
+  bool clientAuthenticate (const QString &, const QString &, const QString &);
 
-	// main loop for the parser
-	// reads one line and dispatches it to the appropriate sub parser
-	bool parseLoop();
+  // main loop for the parser
+  // reads one line and dispatches it to the appropriate sub parser
+  bool parseLoop ();
 
-	// parses all untagged responses and passes them on to the following parsers
-	void parseUntagged(QString &result);
+  // parses all untagged responses and passes them on to the following parsers
+  void parseUntagged (QString & result);
 
-	void parseRecent(ulong value,QString &result);
-	void parseResult(QString &result,QString &rest);
-	void parseCapability(QString &result);
-	void parseFlags(QString &result);
-	void parseList(QString &result);
-	void parseLsub(QString &result);
-	void parseSearch(QString &result);
-	void parseStatus(QString &result);
-	void parseExists(ulong value,QString &result);
-	void parseExpunge(ulong value,QString &result);
+  void parseRecent (ulong value, QString & result);
+  void parseResult (QString & result, QString & rest);
+  void parseCapability (QString & result);
+  void parseFlags (QString & result);
+  void parseList (QString & result);
+  void parseLsub (QString & result);
+  void parseSearch (QString & result);
+  void parseStatus (QString & result);
+  void parseExists (ulong value, QString & result);
+  void parseExpunge (ulong value, QString & result);
 
-	// parses the results of a fetch command
-	// processes it with the following sub parsers
-	void parseFetch(ulong value,QString &inWords);
+  // parses the results of a fetch command
+  // processes it with the following sub parsers
+  void parseFetch (ulong value, QString & inWords);
 
-	// read a envelope from imap and parse the adresses
-	mailHeader *parseEnvelope(QString &inWords);
-	QValueList<mailAddress> parseAdressList(QString &inWords);
-	mailAddress parseAdress(QString &inWords);
+  // read a envelope from imap and parse the adresses
+  mailHeader *parseEnvelope (QString & inWords);
+  QValueList < mailAddress > parseAdressList (QString & inWords);
+  mailAddress parseAdress (QString & inWords);
 
-	// parse the result of the body command
-	void parseBody(QString &inWords);
+  // parse the result of the body command
+  void parseBody (QString & inWords);
 
-	// parse the body structure recursively
-	mimeHeader *parseBodyStructure(QString &inWords,const QString &section,mimeHeader *inHeader=NULL);
+  // parse the body structure recursively
+  mimeHeader *parseBodyStructure (QString & inWords, const QString & section,
+                                  mimeHeader * inHeader = NULL);
 
-	// parse only one not nested part
-	mimeHeader *parseSimplePart(QString &inWords,const QString &section);
+  // parse only one not nested part
+  mimeHeader *parseSimplePart (QString & inWords, const QString & section);
 
-	// parse a parameter list (name value pairs)
-	QDict<QString> parseParameters(QString &inWords);
+  // parse a parameter list (name value pairs)
+  QDict < QString > parseParameters (QString & inWords);
 
-	// parse the disposition list (disposition (name value pairs))
-	// the disposition has the key 'content-disposition'
-	QDict<QString> parseDisposition(QString &inWords);
+  // parse the disposition list (disposition (name value pairs))
+  // the disposition has the key 'content-disposition'
+  QDict < QString > parseDisposition (QString & inWords);
 
   // reimplement these
 
-	// relay hook to send the fetched data directly to an upper level
-	virtual void parseRelay(const QByteArray &buffer);
+  // relay hook to send the fetched data directly to an upper level
+  virtual void parseRelay (const QByteArray & buffer);
 
-	// relay hook to announce the fetched data directly to an upper level
-	virtual void parseRelay(ulong);
+  // relay hook to announce the fetched data directly to an upper level
+  virtual void parseRelay (ulong);
 
-	// read at least len bytes
-	virtual bool parseRead (QByteArray &buffer,ulong len,ulong relay=0);
+  // read at least len bytes
+  virtual bool parseRead (QByteArray & buffer, ulong len, ulong relay = 0);
 
-	// read at least a line (up to CRLF)
-	virtual void parseReadLine (QByteArray &buffer,ulong relay=0);
-	
-	// write argument to server
-	virtual void parseWriteLine(const QString &);
+  // read at least a line (up to CRLF)
+  virtual void parseReadLine (QByteArray & buffer, ulong relay = 0);
+
+  // write argument to server
+  virtual void parseWriteLine (const QString &);
 
   // generic parser routines
 
-	// parse a parenthesized list
-	void parseSentence(QString &inWords);
+  // parse a parenthesized list
+  void parseSentence (QString & inWords);
 
-	// parse a literal or word, may require more data
-	QString parseLiteral(QString &inWords,bool relay=false);
+  // parse a literal or word, may require more data
+  QString parseLiteral (QString & inWords, bool relay = false);
 
   // static parser routines, can be used elsewhere
 
-	// skip over whitespace
-	static void skipWS(QString &inWords);
-	
-	// parse one word (maybe quoted) upto next space " ) ] }
-	static QString parseOneWord(QString &inWords);
+  // skip over whitespace
+  static void skipWS (QString & inWords);
 
-	// parse one number using parseOneWord
-	static bool parseOneNumber(QString &inWords,ulong &num);
+  // parse one word (maybe quoted) upto next space " ) ] }
+  static QString parseOneWord (QString & inWords);
 
-	// extract the box,section,list type, uid, uidvalidity from an url
-	static void parseURL(const KURL &_url,QString &_box,QString &_section,QString &_type,QString &_uid,QString &_validity);
+  // parse one number using parseOneWord
+  static bool parseOneNumber (QString & inWords, ulong & num);
+
+  // extract the box,section,list type, uid, uidvalidity from an url
+  static void parseURL (const KURL & _url, QString & _box, QString & _section,
+                        QString & _type, QString & _uid, QString & _validity);
 
 
   // access to the uid cache and other properties
-  	imapCache *getUid(const QString &_str) { return uidCache[_str]; };
+  imapCache *getUid (const QString & _str)
+  {
+    return uidCache[_str];
+  };
 
-	QDictIterator<imapCache> getUidIterator() { return QDictIterator<imapCache>(uidCache); };
-	uint getCacheSize() { return uidCache.count();}
-	imapCache *getLastHandled() { return lastHandled; };
-	
-	const QStringList &getResults() { return lastResults; };
+  QDictIterator < imapCache > getUidIterator ()
+  {
+    return QDictIterator < imapCache > (uidCache);
+  };
+  uint getCacheSize ()
+  {
+    return uidCache.count ();
+  }
+  imapCache *getLastHandled ()
+  {
+    return lastHandled;
+  };
 
-	const imapInfo &getStatus() { return lastStatus; };
-	const imapInfo &getSelected() { return selectInfo; };
+  const QStringList & getResults ()
+  {
+    return lastResults;
+  };
 
-	const QString &getContinuation() { return continuation; };
+  const imapInfo & getStatus ()
+  {
+    return lastStatus;
+  };
+  const imapInfo & getSelected ()
+  {
+    return selectInfo;
+  };
 
-	bool hasCapability(const QString &);
-			
-   protected:
-   
-	// the current state we're in
-	enum IMAP_STATE currentState;
-	
-	// the box selected
-	QString currentBox;
-	
-	// here we store the result from select/examine and unsolicited updates
-	imapInfo selectInfo;
+  const QString & getContinuation ()
+  {
+    return continuation;
+  };
 
-	// the results from the last status command
-	imapInfo lastStatus;
-	
-	// the results from the capabilities, split at ' '
-	QStringList imapCapabilities;
+  bool hasCapability (const QString &);
 
-	// the results from list/lsub commands
-	QValueList<imapList> listResponses;
+protected:
 
-	// queues handling the running commands
-	QList<imapCommand> sentQueue;      // no autodelete
-	QList<imapCommand> completeQueue;  // autodelete !!
-	
-	// everything we didn't handle, everything but the greeting is bogus
-	QStringList unhandled;
+  // the current state we're in
+  enum IMAP_STATE currentState;
 
-	// the last continuation request (there MUST not be more than one pending)
-	QString continuation;
+  // the box selected
+  QString currentBox;
 
-	// our own little message cache
-	QDict<imapCache> uidCache;
-	
-	// the last uid seen while a fetch
-	QString seenUid;
-	imapCache *lastHandled;
-			
-	ulong commandCounter;
+  // here we store the result from select/examine and unsolicited updates
+  imapInfo selectInfo;
 
-	QStringList lastResults;
-		
-  private:
-	imapParser & operator = (const imapParser &); // hide the copy ctor
+  // the results from the last status command
+  imapInfo lastStatus;
+
+  // the results from the capabilities, split at ' '
+  QStringList imapCapabilities;
+
+  // the results from list/lsub commands
+  QValueList < imapList > listResponses;
+
+  // queues handling the running commands
+  QList < imapCommand > sentQueue;  // no autodelete
+  QList < imapCommand > completeQueue;  // autodelete !!
+
+  // everything we didn't handle, everything but the greeting is bogus
+  QStringList unhandled;
+
+  // the last continuation request (there MUST not be more than one pending)
+  QString continuation;
+
+  // our own little message cache
+  QDict < imapCache > uidCache;
+
+  // the last uid seen while a fetch
+  QString seenUid;
+  imapCache *lastHandled;
+
+  ulong commandCounter;
+
+  QStringList lastResults;
+
+private:
+  imapParser & operator = (const imapParser &); // hide the copy ctor
 
 };
 #endif

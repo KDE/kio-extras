@@ -28,41 +28,54 @@
 #include <qcstring.h>
 #include "rfcdecoder.h"
 
-class mailAddress {
-public: 
-	mailAddress();
-	~mailAddress();
-	mailAddress(char *aCStr);
-	mailAddress(const mailAddress &);
+class mailAddress
+{
+public:
+  mailAddress ();
+  ~mailAddress ();
+  mailAddress (char *aCStr);
+    mailAddress (const mailAddress &);
     mailAddress & operator = (const mailAddress &);
-	
-	void setUser(const QCString &aUser) { user = aUser;};
-	const QCString &getUser() const { return user;};
-	void setHost(const QCString &aHost) { host = aHost;};
-	const QCString &getHost() const { return host;};
 
-	void setFullName(const QString &aFull);
-	void setFullNameRaw(const QCString &aFull);
-	const QString getFullName() const;
-	const QCString &getFullNameRaw() const;
+  void setUser (const QCString & aUser)
+  {
+    user = aUser;
+  };
+  const QCString & getUser () const
+  {
+    return user;
+  };
+  void setHost (const QCString & aHost)
+  {
+    host = aHost;
+  };
+  const QCString & getHost () const
+  {
+    return host;
+  };
 
-	void setComment(const QString &aComment);
-	void setCommentRaw(const QCString &);
-	const QString getComment() const;
-	const QCString &getCommentRaw() const;
+  void setFullName (const QString & aFull);
+  void setFullNameRaw (const QCString & aFull);
+  const QString getFullName () const;
+  const QCString & getFullNameRaw () const;
 
-	int parseAddress(char *);
-	const QCString getStr();
-	bool isEmpty() const;
+  void setComment (const QString & aComment);
+  void setCommentRaw (const QCString &);
+  const QString getComment () const;
+  const QCString & getCommentRaw () const;
 
-	static QString emailAddrAsAnchor(const mailAddress &,bool);
-	static QString emailAddrAsAnchor(const QList<mailAddress> &,bool);
-	
+  int parseAddress (char *);
+  const QCString getStr ();
+  bool isEmpty () const;
+
+  static QString emailAddrAsAnchor (const mailAddress &, bool);
+  static QString emailAddrAsAnchor (const QList < mailAddress > &, bool);
+
 private:
-	QCString user;
-	QCString host;
-	QCString rawFullName;
-	QCString rawComment;
+  QCString user;
+  QCString host;
+  QCString rawFullName;
+  QCString rawComment;
 };
 
 #endif
