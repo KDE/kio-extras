@@ -216,8 +216,7 @@ sub MenuItem2HTML {
 	$MenuLinkText = $5;
 	if ($2) {
 	    $MenuLinkFile  = $3;
-         $MenuLinkTag   = $4;
-         $MenuLinkTag ||= 'Top';
+         $MenuLinkTag   = $4 || 'Top';
 	    $MenuLinkText = ($2 ? ' ' x (length($2)+1) : '') . "$5\n";
 	} else {
 	    $Line = $5;
