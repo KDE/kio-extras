@@ -2458,9 +2458,9 @@ static char *scan_request(char *c)
                             wordlist[i][strlen(wordlist[i])-1] = 0;
                     }
 		    output_possible=1;
-		    out_html( DOCTYPE"<HTML><HEAD><TITLE>Manpage of ");
+		    out_html( DOCTYPE"<HTML><HEAD><TITLE>");
 		    out_html( wordlist[0]);
-		    out_html( "</TITLE>\n");
+		    out_html( " Manpage</TITLE>\n");
                     out_html( "<link rel=\"stylesheet\" href=\"KDE_COMMON_DIR/kde-default.css\" type=\"text/css\">\n" );
                     out_html( "</HEAD>\n\n" );
                     out_html("<BODY BGCOLOR=\"#FFFFFF\">\n\n" );
@@ -3569,7 +3569,7 @@ char *read_man_page(const char *filename)
 int main(int argc, char **argv)
 {
     if (argc < 2) {
-        std::cerr << "call: " << argv[0] << "filename\n";
+        std::cerr << "call: " << argv[0] << " <filename>\n";
         return 1;
     }
     if (chdir(argv[1])) {
