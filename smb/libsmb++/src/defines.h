@@ -32,7 +32,13 @@
 #include "config.h"
 #endif
 
-/* From here this isn't */
+// NB20000528: How didn't I see this before? The config check doesn't have
+// the OVERKILL #define by default for KDE, so we end up supposing all
+// Windows stations behave nicely, never crash, respect the protocol,...
+#define OVERKILL 1     // common sense mode on
+// This resolves using DNS if NetBIOS fails (ex: outside broadcast range and
+// no WINS)
+#define DNSQUERY yes
 
 /*********************
  CHECKS SECTION
