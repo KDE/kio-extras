@@ -70,7 +70,8 @@ void POP3Protocol::openConnection( const QString& _host, int _port, const QStrin
 
 void POP3Protocol::closeConnection()
 {
-  ready();
+  // this is not needed anymore
+  //ready();
 }
 
 bool POP3Protocol::getResponse (char *r_buf, unsigned int r_len)
@@ -365,7 +366,7 @@ void POP3Protocol::get( const QString& __url, const QString&, bool )
     else
       result = command("UIDL");
     if (result) {
-      ready();
+      //ready();
       gettingFile(_url);
       while (!feof(fp)) {
 	memset(buf, 0, sizeof(buf));
@@ -413,7 +414,7 @@ LIST
                          // getting at the headers by d/l the whole message
                          // and stopping at the first blank line used if the
                          // TOP cmd isn't supported
-      ready();
+      //ready();
       gettingFile(_url);
       mimeType("text/plain");
       memset(buf, 0, sizeof(buf));
@@ -482,7 +483,7 @@ LIST
       pop3_close(); return;
     }
     if (command(path)) {
-      ready();
+      //ready();
       gettingFile(_url);
       mimeType("message/rfc822");
       totalSize(msg_len);
@@ -523,7 +524,7 @@ LIST
     memset(buf, 0, sizeof(buf));
     if (command(path, buf, sizeof(buf)-1)) {
       const int len = strlen(buf);
-      ready();
+      //ready();
       gettingFile(_url);
       mimeType("text/plain");
       totalSize(len);
