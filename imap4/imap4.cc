@@ -375,13 +375,13 @@ IMAP4Protocol::listDir (const KURL & _url)
             if (selectInfo.uidNextAvailable ())
               stretch = QString ().setNum (selectInfo.uidNext ()).length ();
             UDSEntry entry;
-            mailHeader fake;
+            imapCache fake;
 
             for (QStringList::Iterator it = list.begin (); it != list.end ();
                  ++it)
             {
-              fake.setPartSpecifier ((*it));
-              doListEntry (_url, &fake, stretch);
+              fake.setUid((*it).toULong());
+              doListEntry (_url, stretch, &fake);
             }
             entry.clear ();
             listEntry (entry, true);
@@ -436,30 +436,23 @@ IMAP4Protocol::listDir (const KURL & _url)
             UDSEntry entry;
 
             if (mySequence.isEmpty()) mySequence = "1:*";
-            if (mySection.isEmpty()) mySection = "UID RFC822.SIZE";
+
+            bool withSubject = mySection.isEmpty();
+            if (mySection.isEmpty()) mySection = "UID RFC822.SIZE ENVELOPE";
+            
             bool withFlags = mySection.upper().find("FLAGS") != -1;
             imapCommand *fetch =
               sendCommand (imapCommand::
                            clientFetch (mySequence, mySection));
+            imapCache *cache;
             do
             {
               while (!parseLoop ());
 
-              mailHeader *lastone;
-              imapCache *cache;
               cache = getLastHandled ();
-              if (cache)
-                lastone = cache->getHeader ();
-              else
-                lastone = NULL;
 
               if (cache && !fetch->isComplete())
-              {
-                mailHeader fake;
-                fake.setPartSpecifier(QString::number(cache->getUid()));
-                fake.setLength(cache->getSize());
-                doListEntry (_url, &fake, stretch, cache, withFlags);
-              }
+                doListEntry (_url, stretch, cache, withFlags, withSubject);
             }
             while (!fetch->isComplete ());
             entry.clear ();
@@ -1438,10 +1431,10 @@ IMAP4Protocol::getMimeType (enum IMAP_TYPE aType)
 
 
 void
-IMAP4Protocol::doListEntry (const KURL & _url, mailHeader * what, int stretch,
-  imapCache * cache, bool withFlags)
+IMAP4Protocol::doListEntry (const KURL & _url, int stretch, imapCache * cache,
+  bool withFlags, bool withSubject)
 {
-  if (what)
+  if (cache)
   {
     UDSEntry entry;
     UDSAtom atom;
@@ -1451,12 +1444,18 @@ IMAP4Protocol::doListEntry (const KURL & _url, mailHeader * what, int stretch,
     entry.clear ();
 
     atom.m_uds = UDS_NAME;
-    atom.m_str = what->getPartSpecifier ();
+    atom.m_str = QString::number(cache->getUid());
     atom.m_long = 0;
     if (stretch > 0)
     {
       atom.m_str = "0000000000000000" + atom.m_str;
       atom.m_str = atom.m_str.right (stretch);
+    }
+    if (withSubject)
+    {
+      mailHeader *header = cache->getHeader();
+      if (header)
+        atom.m_str += " " + header->getSubject();
     }
 //    atom.m_str.prepend(";UID=");
     entry.append (atom);
@@ -1465,7 +1464,7 @@ IMAP4Protocol::doListEntry (const KURL & _url, mailHeader * what, int stretch,
     atom.m_str = aURL.url ();
     if (atom.m_str[atom.m_str.length () - 1] != '/')
       atom.m_str += "/";
-    atom.m_str += ";UID=" + what->getPartSpecifier ();
+    atom.m_str += ";UID=" + QString::number(cache->getUid());
     atom.m_long = 0;
     entry.append (atom);
 
@@ -1475,7 +1474,7 @@ IMAP4Protocol::doListEntry (const KURL & _url, mailHeader * what, int stretch,
     entry.append (atom);
 
     atom.m_uds = UDS_SIZE;
-    atom.m_long = what->getLength ();
+    atom.m_long = cache->getSize();
     entry.append (atom);
 
     atom.m_uds = UDS_MIME_TYPE;

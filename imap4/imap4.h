@@ -125,8 +125,8 @@ protected:
   {
     outputLine (_str.latin1 ());
   }
-  void doListEntry (const KURL & _url, mailHeader * what, int stretch,
-    imapCache * cache = NULL, bool withFlags = FALSE);
+  void doListEntry (const KURL & _url, int stretch, imapCache * cache = NULL,
+    bool withFlags = FALSE, bool withSubject = FALSE);
   void doListEntry (const KURL & _url, const QString & myBox,
                     const imapList & item);
 
