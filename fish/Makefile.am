@@ -17,11 +17,11 @@ fish.cpp: fish.h fishcode.h
 
 fishcode.h: fish.pl
 	if echo | md5sum > /dev/null 2>&1 ; then \
-	SUM=`md5sum -t fish.pl | cut -d ' ' -f 1`; else \
-	SUM=`md5 -q fish.pl` ; fi ; \
+	SUM=`md5sum -t $(srcdir)/fish.pl | cut -d ' ' -f 1`; else \
+	SUM=`md5 -q $(srcdir)/fish.pl` ; fi ; \
 	echo '#define CHECKSUM "'$$SUM'"' > $@; \
 	echo 'static const char *fishCode(' >> $@; \
-	sed -e 's/\\/\\\\/g;s/"/\\"/g;s/^[ 	]*/"/;/^"# /d;s/[ 	]*$$/\\n"/;/^"\\n"$$/d;s/{CHECKSUM}/'$$SUM'/;' fish.pl >> $@; \
+	sed -e 's/\\/\\\\/g;s/"/\\"/g;s/^[ 	]*/"/;/^"# /d;s/[ 	]*$$/\\n"/;/^"\\n"$$/d;s/{CHECKSUM}/'$$SUM'/;' $(srcdir)/fish.pl >> $@; \
 	echo ');' >> $@;
 
 
