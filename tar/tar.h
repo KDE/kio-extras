@@ -15,6 +15,9 @@ public:
 			bool _resume, unsigned int );
   virtual void slotCopy( const char *_source, const char *_dest );
 
+  virtual void slotListDir( const char *_url );
+  virtual void slotTestDir( const char *_url );
+
   virtual void slotData( void *_p, int _len );
   virtual void slotDataEnd();
   

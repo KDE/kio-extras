@@ -4,6 +4,7 @@ exec=kio_tar
 protocol=tar
 input=stream
 output=stream
+listing=Name,Type,Size,Date,Access,Owner,Group,Link
 reading=true
 source=false
 
