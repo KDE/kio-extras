@@ -240,7 +240,7 @@ void LDAPProtocol::stat( const QString &path, const QString& query )
   if (!isDir) {
     atom.m_uds = UDS_MIME_TYPE;
     atom.m_long = 0;
-    atom.m_str = "text/ldif";
+    atom.m_str = "text/plain";
     entry.append(atom);
   }
 
@@ -250,10 +250,28 @@ void LDAPProtocol::stat( const QString &path, const QString& query )
 }
 
 /**
+ * Get the mimetype. For now its text/plain for each non-subentry
+ */
+void LDAPProtocol::mimetype(const QString &path, const QString& query)
+{
+  QString _url = urlPrefix + path;
+  if (!query.isEmpty()) { _url += "?" + query; }
+  kDebugInfo(7110, "kio_ldap: mimetype(%s)", debugString(_url));
+  KLDAP::Url usrc(_url);
+  if (usrc.isMalformed() || usrc.scope() != LDAP_SCOPE_BASE) {
+    error(ERR_MALFORMED_URL, strdup(_url));
+    return;
+  }
+  mimeType("text/plain");
+  finished();
+}
+
+/**
  * List the contents of a directory.
  */
 void LDAPProtocol::listDir(const QString &path, const QString& query)
 {
+  unsigned long total=0, actual=0, dirs=0;
   QString _url = urlPrefix + path;
   if (!query.isEmpty()) { _url += "?" + query; }
   kDebugInfo(7110, "kio_ldap: listDir(%s)", debugString(_url));
@@ -286,6 +304,8 @@ void LDAPProtocol::listDir(const QString &path, const QString& query)
   // publish the directories
   for (KLDAP::Entry e=search.first(); !search.end(); e=search.next())
     {
+      total++;
+      totalSize(total+dirs);
       entry.clear();
 
       // test if it is really a directory (NOTE: This is expensive!)
@@ -301,6 +321,8 @@ void LDAPProtocol::listDir(const QString &path, const QString& query)
 
       if (cnt > 0)
 	{
+	  dirs++;
+	  totalSize(total+dirs);
 	  // the name
 	  int pos;
 	  atom.m_uds = UDS_NAME;
@@ -338,9 +360,14 @@ void LDAPProtocol::listDir(const QString &path, const QString& query)
 	  entry.append(atom);
 
 	  listEntry(entry, false);
+	  actual++;
+	  processedSize(actual);
 	}
     }
 
+  totalSize(total+dirs);
+  actual = dirs;
+  processedSize(actual);
   // publish the nodes
   for (KLDAP::Entry e=search.first(); !search.end(); e=search.next())
     {
@@ -367,7 +394,7 @@ void LDAPProtocol::listDir(const QString &path, const QString& query)
       // the mimetype
       atom.m_uds = UDS_MIME_TYPE;
       atom.m_long = 0;
-      atom.m_str = "text/ldif";
+      atom.m_str = "text/plain";
       entry.append(atom);
 
       // the url
@@ -385,9 +412,12 @@ void LDAPProtocol::listDir(const QString &path, const QString& query)
       entry.append(atom);
 
       listEntry(entry, false);
+      actual++;
+      processedSize(actual);
     }
   entry.clear();
   listEntry(entry, true);
+  processedSize(total+dirs);
   // we are done
   finished();  
 }
