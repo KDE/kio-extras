@@ -1,8 +1,5 @@
 // $Id$
 
-#include <stdio.h>
-#include <stdlib.h>
-
 #include <qstring.h>
 
 #include <kdebug.h>
@@ -27,8 +24,8 @@ extern "C" {
 	int module_version() {return KSASL_MODULE_REV;}
 }
 
-QString base64_encode_string(const char *string, unsigned int len);
-QString base64_encode_auth_line(const char *username, const char *pass);
+QString base64_encode_string(const QString &string);
+QString base64_encode_auth_line(const QString &username, const QString &pass);
 
 PlainAuth::PlainAuth()
 	: KSASLAuthModule()
@@ -46,7 +43,7 @@ QString PlainAuth::auth_method()
 
 QString PlainAuth::auth_response(const QString &, const KURL &auth_url)
 {
-	return base64_encode_auth_line(auth_url.user().latin1(), auth_url.pass().latin1());
+	return base64_encode_auth_line(auth_url.user(), auth_url.pass());
 }
 
 /*
@@ -63,7 +60,7 @@ QString PlainAuth::auth_response(const QString &, const KURL &auth_url)
  * OF THIS MATERIAL FOR ANY PURPOSE.  IT IS PROVIDED "AS IS",
  * WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES.
  */
-QString base64_encode_string( const char *buf, unsigned int len )
+QString base64_encode_string( const QString &buf)
 {
   char basis_64[] =
     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
@@ -71,6 +68,7 @@ QString base64_encode_string( const char *buf, unsigned int len )
   int inPos  = 0;
   int c1, c2, c3;
   unsigned int i;
+  unsigned int len=buf.length();
 
   /* Get three characters at a time and encode them. */
   for (i=0; i < len/3; ++i) {
@@ -107,15 +105,14 @@ QString base64_encode_string( const char *buf, unsigned int len )
   return out.copy();
 }
 
-QString base64_encode_auth_line(const char *username, const char *pass)
+QString base64_encode_auth_line(const QString &username, const QString &pass)
 {
-	QString ret;
-        int len;
-        char *line;
-        len=((strlen(username)*2)+strlen(pass)+2);
-        line=static_cast<char *>(malloc(len));
-        sprintf(line, "%s%c%s%c%s", username, 0, username,0, pass);
-        ret=base64_encode_string(line, len);
-        free(line);
+	QString ret, line;
+	line.append(username);
+	line.append(QChar(static_cast<char>(0)));
+	line.append(username);
+	line.append(QChar(static_cast<char>(0)));
+	line.append(pass);
+        ret=base64_encode_string(line);
         return ret;
 }
