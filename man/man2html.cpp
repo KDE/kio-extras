@@ -2442,6 +2442,12 @@ static char *scan_request(char *c)
 		if (words>1) {
 		    for (i=1; i<words; i++) wordlist[i][-1]='\0';
 		    *sl='\0';
+                    for (i=0; i<words; i++) {
+                        if (wordlist[i][0] == '\007')
+                            wordlist[i]++;
+                        if (wordlist[i][strlen(wordlist[i])-1] == '\007')
+                            wordlist[i][strlen(wordlist[i])-1] = 0;
+                    }
 		    output_possible=1;
 		    out_html( DOCTYPE"<HTML><HEAD><TITLE>Manpage of ");
 		    out_html( wordlist[0]);
@@ -2477,7 +2483,8 @@ static char *scan_request(char *c)
                     out_html( "</h1>\n" );
                     out_html("\n" );
                     out_html("Section: " );
-                    if (words>4) out_html(wordlist[4]);
+                    if (words>4)
+                        out_html(wordlist[4]);
 		    else
 			out_html(section_name(wordlist[1]));
 		    out_html(" (");
@@ -3508,7 +3515,7 @@ void scan_man_page(const char *man_page)
 void output_real(const char *insert)
 {
     (void)insert;
-    // printf("%s", insert);
+    printf("%s", insert);
 }
 
 char *read_man_page(const char *filename)
