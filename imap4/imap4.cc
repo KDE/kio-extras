@@ -127,9 +127,9 @@ sigchld_handler (int signo)
 }
 
 IMAP4Protocol::IMAP4Protocol (const QCString & pool, const QCString & app, bool isSSL):TCPSlaveBase ((isSSL ? 993 : 143), (isSSL ? "imaps" : "imap4"), pool,
-              app, isSSL), imapParser (),
-mimeIO ()
+              app, isSSL), imapParser (), mimeIO (), outputBuffer(outputCache)
 {
+  outputBufferIndex = 0L;
   mySSL = isSSL;
   readBuffer[0] = 0x00;
   relayEnabled = false;
@@ -1852,11 +1852,11 @@ IMAP4Protocol::outputLine (const QCString & _str, int len)
 
   if (cacheOutput)
   {
-    QBuffer stream(outputCache);
-    stream.open(IO_WriteOnly);
-    stream.at(outputCache.size());
-    stream.writeBlock(_str.data(), len);
-    stream.close();
+    outputBuffer.open(IO_WriteOnly);
+    outputBuffer.at(outputBufferIndex);
+    outputBuffer.writeBlock(_str.data(), len);
+    outputBufferIndex += len;
+    outputBuffer.close();
     return 0;
   }
 
@@ -1875,11 +1875,15 @@ IMAP4Protocol::outputLine (const QCString & _str, int len)
 void IMAP4Protocol::flushOutput()
 {
   // send out cached data to the application
-  if (outputCache.isEmpty()) return;
+  if (outputBufferIndex == 0L)
+    return;
+  outputCache.resize(outputBufferIndex);
   data(outputCache);
-  mProcessedSize += outputCache.size();
+  mProcessedSize += outputBufferIndex;
   processedSize( mProcessedSize );
-  outputCache.resize(0);
+  outputBufferIndex = 0L;
+  outputCache[0] = '\0';
+  outputBuffer.setBuffer(outputCache);
 }
 
 ssize_t IMAP4Protocol::myRead(void *data, ssize_t len)

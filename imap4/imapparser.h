@@ -50,9 +50,9 @@ class parseString
 {
 public:
   parseString() { pos = 0; }
-  char operator[](uint i) { return data[i + pos]; }
-  bool isEmpty() { return pos >= data.size(); }
-  QCString cstr()
+  char operator[](uint i) const { return data[i + pos]; }
+  bool isEmpty() const { return pos >= data.size(); }
+  QCString cstr() const
   {
     if (pos >= data.size()) return QCString();
     return QCString(data.data() + pos, data.size() - pos + 1);
@@ -62,13 +62,25 @@ public:
     int res = data.find(c, index + pos);
     return (res == -1) ? res : (res - pos);
   }
-  QCString left(uint len)
+  void takeAll(QCString& dest) const
   {
-    return QCString(data.data() + pos, len + 1);
+    if (pos >= data.size()) {
+      dest.truncate(0);
+    } else {
+      dest = (data.data() + pos);
+    }
   }
-  QCString mid(uint start, uint len)
+  // Warning: does not check for going past end of "data"
+  void takeLeft(QCString& dest, uint len) const
   {
-    return QCString(data.data() + pos + start, len + 1);
+    dest.resize(len + 1);
+    qmemmove(dest.data(), data.data() + pos, len);
+  }
+  // Warning: does not check for going past end of "data"
+  void takeMid(QCString& dest, uint start, uint len) const
+  {
+    dest.resize(len + 1);
+    qmemmove(dest.data(), data.data() + pos + start, len);
   }
   void clear()
   {
