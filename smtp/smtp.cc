@@ -61,7 +61,6 @@
 #include <kdebug.h>
 #include <kinstance.h>
 #include <kio/connection.h>
-#include <kio/emailsettings.h>
 #include <kio/slaveinterface.h>
 #include <kio/sasl/saslcontext.h>
 #include <klocale.h>
