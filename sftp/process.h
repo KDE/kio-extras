@@ -100,16 +100,18 @@ public:
     /** Return the pid of the process. */
     int pid() {return m_Pid;};
 
-    int stdinout() {return m_stdinout;}
+    int stdio() {return m_stdinout;}
+
+    int stderr() {return m_err;}
 
 protected:
     bool m_bErase, m_bTerminal;
-    int m_Pid, m_Fd, m_stdinout;
+    int m_Pid, m_Fd, m_stdinout, m_err;
     QCString m_Command, m_Exit;
 
 private:
     int init();
-    int SetupTTY(int fd, int stdio);
+    int SetupTTY(int fd);
 
     PTY *m_pPTY;
     QCString m_Inbuf, m_TTY;

@@ -73,7 +73,7 @@ int MyPtyProcess::init()
 	return -1;
     if ((m_pPTY->grantpt() < 0) || (m_pPTY->unlockpt() < 0)) 
     {
-	kdError(900) << k_lineinfo << "Master setup failed.\n";
+	kdError(900) << k_lineinfo << "Master setup failed.\n" << endl;
 	m_Fd = -1;
 	return -1;
     }
@@ -188,6 +188,7 @@ void MyPtyProcess::unreadLine(QCString line, bool addnl)
 
 int MyPtyProcess::exec(QCString command, QCStringList args)
 {
+    kdDebug(900) << "MyPtyProcess::exec()" << endl;
     if (init() < 0)
 	return -1;
 
@@ -202,11 +203,16 @@ int MyPtyProcess::exec(QCString command, QCStringList args)
     // Also create a socket pair to connect to standard in/out.
     // This will allow use to bypass the terminal.
     int inout[2];
-    if( socketpair(AF_UNIX, SOCK_STREAM, 0, inout) == -1 ) {
-        kdError(900) << k_lineinfo << "Could not create socketpair" << endl;
-        _exit(1);
+    int err[2];
+    int ok = 1;
+    ok &= socketpair(AF_UNIX, SOCK_STREAM, 0, inout) >= 0;
+    ok &= socketpair(AF_UNIX, SOCK_STREAM, 0, err  ) >= 0;
+    if( !ok ) {
+        kdDebug(900) << "Could not create socket" << endl;
+        return -1;
     }
     m_stdinout = inout[0];
+    m_err = err[0];
 
     if ((m_Pid = fork()) == -1) 
     {
@@ -217,48 +223,57 @@ int MyPtyProcess::exec(QCString command, QCStringList args)
     // Parent
     if (m_Pid) 
     {
-	close(slave);
-	close(inout[1]);
-	return 0;
+	    close(slave);
+    	close(inout[1]);
+	    close(err[1]);
+    	return 0;
     }
 
     // Child
 	
-    if( (dup2(inout[1], STDIN_FILENO)  == -1) ||
-        (dup2(inout[1], STDOUT_FILENO) == -1) ) {
+    ok = 1;
+    ok &= dup2(inout[1], STDIN_FILENO)  >= 0;
+    ok &= dup2(inout[1], STDOUT_FILENO) >= 0;
+    ok &= dup2(err[1],   STDERR_FILENO) >= 0;
+
+    if( !ok )
+    {
         kdError(900) << "dup of socket descriptor failed" << endl;
         _exit(1);
     }
+
     close(inout[1]);
     close(inout[0]);
+    close(err[1]);
+    close(err[0]);
 
-    if (SetupTTY(slave, inout[1]) < 0)
+    if (SetupTTY(slave) < 0)
 	    _exit(1);
 
     // From now on, terminal output goes through the tty.
-
     QCString path;
     if (command.contains('/'))
-	path = command;
+	    path = command;
     else 
     {
-	QString file = KStandardDirs::findExe(command);
-	if (file.isEmpty()) 
-	{
-	    kdError(900) << k_lineinfo << command << " not found\n"; 
-	    _exit(1);
-	} 
-	path = QFile::encodeName(file);
+	    QString file = KStandardDirs::findExe(command);
+    	if (file.isEmpty())
+	    {
+	        kdError(900) << k_lineinfo << command << " not found\n";
+    	    _exit(1);
+	    }
+    	path = QFile::encodeName(file);
     }
 
     int i;
     const char * argp[32];
     argp[0] = path;
     QCStringList::Iterator it;
-    for (i=1, it=args.begin(); it!=args.end() && i<31; it++)
-	argp[i++] = *it;
+    for (i=1, it=args.begin(); it!=args.end() && i<31; it++) {
+    	argp[i++] = *it;
+    	kdDebug(900) << *it << endl;
+    }
     argp[i] = 0L;
-	
     execv(path, (char * const *)argp);
     kdError(900) << k_lineinfo << "execv(\"" << path << "\"): " << perror << "\n";
     _exit(1);
@@ -412,7 +427,7 @@ int MyPtyProcess::waitForChild()
  * so we'll never get EIO when reading from it.
  */
 
-int MyPtyProcess::SetupTTY(int fd, int stdio)
+int MyPtyProcess::SetupTTY(int fd)
 {    
     // Reset signal handlers
     for (int sig = 1; sig < NSIG; sig++)
@@ -423,7 +438,7 @@ int MyPtyProcess::SetupTTY(int fd, int stdio)
 //    struct rlimit rlp;
 //    getrlimit(RLIMIT_NOFILE, &rlp);
 //    for (int i = 0; i < (int)rlp.rlim_cur; i++)
-//    if (i != fd && i != stdio) close(i);
+//    if (i != fd) close(i);
 
     // Create a new session.
     setsid();
