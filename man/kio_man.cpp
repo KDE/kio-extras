@@ -642,9 +642,10 @@ void MANProtocol::showIndex(const QString& section)
                         findAllResources("manpath",
                                          QString("man%1/*").arg(section), true);
 
-    pages += KGlobal::dirs()->
+    /* pages += KGlobal::dirs()->
              findAllResources("manpath",
                               QString("sman%1/*").arg(section), true);
+*/
 
     // print out the list
     os << "<table>" << endl;
