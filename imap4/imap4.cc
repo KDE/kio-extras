@@ -123,7 +123,7 @@ sigchld_handler (int signo)
 const QString hidePass(KURL aUrl)
 {
   aUrl.setPass(QString::null);
-  return KURL::decode_string(aUrl.url());
+  return KURL::decode_string(aUrl.prettyURL());
 }
 
 IMAP4Protocol::IMAP4Protocol (const QCString & pool, const QCString & app, bool isSSL):TCPSlaveBase ((isSSL ? 993 : 143), (isSSL ? "imaps" : "imap4"), pool,
@@ -306,7 +306,7 @@ IMAP4Protocol::listDir (const KURL & _url)
   {
     KURL url = _url;
     url.setPath("/");
-    redirection( url.url() );
+    redirection( url );
     finished();
     return;
   }
@@ -1007,19 +1007,26 @@ void
 IMAP4Protocol::special (const QByteArray & aData)
 {
   if (!makeLogin()) return;
-  KURL _url(aData.data() + 1);
-  if (aData.at(0) == 'C')
+
+  QDataStream stream(aData, IO_ReadOnly); 
+
+  int tmp;
+  stream >> tmp;  
+    
+  if (tmp  == 'C')
   {
-    copy(_url, KURL(aData.data() + aData.find('\0') + 1), 0, FALSE);
-    return;
+    KURL src;
+    KURL dest;
+    stream >> src >> dest;
+    copy(src, dest, 0, FALSE);
   }
-  if (aData.at(0) == 'c')
+  else if (tmp == 'c')
   {
 kdDebug(7116) << "IMAP4Protocol::special" << endl;
     infoMessage(imapCapabilities.join(" "));
     finished();
   }
-  if (aData.at(0) == 'N')
+  else if (tmp == 'N')
   {
     imapCommand *cmd = doCommand(imapCommand::clientNoop());
     completeQueue.removeRef (cmd);
@@ -1027,6 +1034,10 @@ kdDebug(7116) << "IMAP4Protocol::special" << endl;
   }
   else
   {
+    KURL _url;
+    QCString newFlags;
+    stream >> _url >> newFlags;
+    
     QString aBox, aSequence, aLType, aSection, aValidity, aDelimiter;
     parseURL (_url, aBox, aSection, aLType, aSequence, aValidity, aDelimiter);
     if (assureBox (aBox, false))
@@ -1041,7 +1052,6 @@ kdDebug(7116) << "IMAP4Protocol::special" << endl;
         return;
       }
       completeQueue.removeRef (cmd);
-      QCString newFlags = aData.data() + aData.find('\0') + 1;
       if (!newFlags.isEmpty())
       {
         cmd = doCommand (imapCommand::
@@ -1404,7 +1414,7 @@ IMAP4Protocol::parseWriteLine (const QString & aStr)
   QCString writer = aStr.utf8 ();
 
   // append CRLF if necessary
-  if (writer[writer.length () - 1] != '\n')
+  if (!writer.length() || (writer[writer.length () - 1] != '\n'))
     writer += "\r\n";
 
   // write it
@@ -1475,7 +1485,7 @@ IMAP4Protocol::doListEntry (const KURL & _url, int stretch, imapCache * cache,
     entry.append (atom);
 
     atom.m_uds = UDS_URL;
-    atom.m_str = aURL.url ();
+    atom.m_str = aURL.url(0, 106); // utf-8
     if (atom.m_str[atom.m_str.length () - 1] != '/')
       atom.m_str += "/";
     atom.m_str += ";UID=" + QString::number(cache->getUid());
@@ -1589,7 +1599,7 @@ IMAP4Protocol::doListEntry (const KURL & _url, const QString & myBox,
 
       atom.m_uds = UDS_URL;
       QString path = aURL.path();
-      atom.m_str = aURL.url ();
+      atom.m_str = aURL.url (0, 106); // utf-8
       if (path.right(1) == "/" && !path.isEmpty() && path != "/")
         path = path.left(path.length() - 1);
       if (!path.isEmpty() && path != "/"
@@ -1597,7 +1607,7 @@ IMAP4Protocol::doListEntry (const KURL & _url, const QString & myBox,
         path += item.hierarchyDelimiter();
       path += mailboxName;
       aURL.setPath(path);
-      atom.m_str = aURL.url();
+      atom.m_str = aURL.url(0, 106); // utf-8
       atom.m_long = 0;
       entry.append (atom);
 
