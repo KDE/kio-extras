@@ -24,7 +24,10 @@ using namespace KIO;
 bool parseUrl(QString url, QString &title, int &section)
 {
   section = 0; // 0 means we have to search :)
-  
+
+  while (url.left(1) == "/")
+    url.remove(0,1);
+
   title = url;
 
   int pos = url.find('(');
@@ -100,13 +103,13 @@ void MANProtocol::get(const QString& path, const QString& query, bool /*reload*/
       return;
     }
   cmd += " " + exec;
-  exec = KGlobal::dirs()->findExe("man2html");
+  exec = locate("exe", "man2html");
   if (exec.isEmpty())
     {
       outputError(i18n("man2html command not found!"));
       return;
     }
-  cmd += " " + exec + " -cgiurl 'man:${title}(${section})' -compress -bare ";
+  cmd += " " + exec + " -cgiurl 'man:/${title}(${section})' -compress -bare ";
   if (!query.isEmpty())
     cmd += " -k";
   
