@@ -292,17 +292,19 @@ EOF
 #----------------------------------------------------------
 #                   ParsHeaderToken
 #----------------------------------------------------------
-# Parses the heaer line of an info node for a specific
+# Parses the header line of an info node for a specific
 # link directive (e.g. Up, Prev)
+#
+# Returns a link as (InfoFile,Tag).
 #----------------------------------------------------------
 sub ParsHeaderToken {
-  my ($HL, $Token) = @_;
+  my ($HeaderLine, $Token) = @_;
   my ($InfoFile, $Tag, $Temp);
-  return ("", "") if $HL !~ /$Token:/; #-- token not available
-  $HL =~ m!$Token:$WS(\(($FTAG)\))!;
+  return ("", "") if $HeaderLine !~ /$Token:/; #-- token not available
+  $HeaderLine =~ m!$Token:$WS(\(($FTAG)\))!;
   $InfoFile = $2;
   $Temp     = $2 ne "" ? '\(' . $2 . '\)' : "";
-  $HL =~ m!$Token:$WS$Temp$WSS([^\t\,\.\n]+)?([\t\,\.\n])!;
+  $HeaderLine =~ m!$Token:$WS$Temp$WSS([^\t\,\n]+)?([\t\,\.\n])!;
   $Tag = $1 || "Top";
   return $InfoFile, $Tag;
 }
