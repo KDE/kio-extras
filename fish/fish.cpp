@@ -46,8 +46,9 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <netdb.h>
-#ifdef HAVE_SYS_TYPES_H
 #include <sys/types.h>
+#ifdef HAVE_STROPTS
+#include <stropts.h>
 #endif
 #ifdef HAVE_SYS_IOCTL_H
 #include <sys/ioctl.h>

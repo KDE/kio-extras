@@ -1,7 +1,7 @@
 CFLAGS="$CFLAGS -D_GNU_SOURCE"
 CXXFLAGS="$CXXFLAGS -D_GNU_SOURCE"
 
-AC_CHECK_HEADERS(termios.h pty.h libutil.h util.h sys/types.h sys/ioctl.h)
+AC_CHECK_HEADERS(termios.h pty.h libutil.h util.h sys/types.h sys/ioctl.h stropts.h)
 
 kde_save_LIBS="$LIBS"
 LIBS="$LIBS $LIBUTIL"
