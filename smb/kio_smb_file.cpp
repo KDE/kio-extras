@@ -160,12 +160,12 @@ void SMBSlave::put( const KURL& kurl,
     {
         if (S_ISDIR(st.st_mode))
         {
-	  kdDebug(KIO_SMB) << "SMBSlave::put on " << kurl <<" already isdir !!"<< endl;
+            kdDebug(KIO_SMB) << "SMBSlave::put on " << kurl <<" already isdir !!"<< endl;
             error( KIO::ERR_DIR_ALREADY_EXIST,  m_current_url.prettyURL());
         }
         else
         {
-	  kdDebug(KIO_SMB) << "SMBSlave::put on " << kurl <<" already exist !!"<< endl;
+            kdDebug(KIO_SMB) << "SMBSlave::put on " << kurl <<" already exist !!"<< endl;
             error( KIO::ERR_FILE_ALREADY_EXIST, m_current_url.prettyURL());
         }
         return;
@@ -173,8 +173,8 @@ void SMBSlave::put( const KURL& kurl,
 
     if (exists && !resume && overwrite)
     {
-         kdDebug(KIO_SMB) << "SMBSlave::put exists try to remove " << m_current_url.toSmbcUrl()<< endl;
-	 //   remove(m_current_url.url().local8Bit());
+        kdDebug(KIO_SMB) << "SMBSlave::put exists try to remove " << m_current_url.toSmbcUrl()<< endl;
+        //   remove(m_current_url.url().local8Bit());
     }
 
 
@@ -204,12 +204,12 @@ void SMBSlave::put( const KURL& kurl,
     {
         if ( errno == EACCES )
         {
-	  kdDebug(KIO_SMB) << "SMBSlave::put error " << kurl <<" access denied !!"<< endl;
+            kdDebug(KIO_SMB) << "SMBSlave::put error " << kurl <<" access denied !!"<< endl;
             error( KIO::ERR_WRITE_ACCESS_DENIED, m_current_url.prettyURL());
         }
         else
         {
-	  kdDebug(KIO_SMB) << "SMBSlave::put error " << kurl <<" can not open for writing !!"<< endl;
+            kdDebug(KIO_SMB) << "SMBSlave::put error " << kurl <<" can not open for writing !!"<< endl;
             error( KIO::ERR_CANNOT_OPEN_FOR_WRITING, m_current_url.prettyURL());
         }
         return;

@@ -240,13 +240,14 @@ void SMBSlave::reportError(const SMBUrl &url)
         }
     case ENOTDIR:
     case EFAULT:
-        error(ERR_DOES_NOT_EXIST, url.prettyURL());
+        error( ERR_DOES_NOT_EXIST, url.prettyURL());
         break;
     case EPERM:
     case EACCES:
         error( ERR_ACCESS_DENIED, url.prettyURL() );
         break;
     case EIO:
+    case ENETUNREACH:
         error( ERR_CONNECTION_BROKEN, url.prettyURL());
         break;
     case ENOMEM:
