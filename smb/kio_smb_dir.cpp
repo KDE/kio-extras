@@ -232,6 +232,7 @@ void SMBSlave::del( const KURL &kurl, bool isfile)
             case EACCES:
             case EPERM:
                 error( KIO::ERR_ACCESS_DENIED, m_current_url.toKioUrl());
+                cache_clear_AuthInfo( m_current_workgroup );
                 break;
 
             case EISDIR:
@@ -279,6 +280,7 @@ void SMBSlave::mkdir( const KURL &kurl, int permissions )
         case EACCES:
         case EPERM:
             error( KIO::ERR_ACCESS_DENIED, m_current_url.toKioUrl());
+            cache_clear_AuthInfo( m_current_workgroup );
             break;
 
         case EEXIST:

@@ -32,6 +32,9 @@
 #include "kio_smb.h"
 #include "kio_smb_internal.h"
 
+#include <qdir.h>
+#include <stdlib.h>
+
 
 //==========================================================================
 void auth_smbc_get_data(const char *server,const char *share,
@@ -77,6 +80,7 @@ void SMBSlave::auth_smbc_get_data(const char *server,const char *share,
     auth.m_server    = server;
     auth.m_share     = share;
 
+    bool copyinfo = false;
     if( cache_get_AuthInfo(auth) == false)
     {
         user_prompt = username;
@@ -93,15 +97,15 @@ void SMBSlave::auth_smbc_get_data(const char *server,const char *share,
             cache_set_AuthInfo(auth, true);
 
             // Hand the data back to libsmbclient if the user didn't cancel
-            memset(workgroup,0,wgmaxlen);
-            memset(username,0,unmaxlen);
-            memset(password,0,pwmaxlen);
-            strncpy(workgroup,auth.m_workgroup,wgmaxlen - 1);
-            strncpy(username,auth.m_username,unmaxlen - 1);
-            strncpy(password,auth.m_passwd,pwmaxlen - 1);
+            copyinfo = true;
         }
     }
     else
+    {
+        copyinfo = true;
+    }
+
+    if( copyinfo )
     {
         // Hand the data back to libsmbclient if it's been cached
         memset(workgroup,0,wgmaxlen);
@@ -123,7 +127,50 @@ int SMBSlave::auth_initialize_smbc()
     if(m_initialized_smbc == false)
     {
         //check for $HOME/.smb/smb.conf, the library dies without it...
+        //create it with a sane default if it's not there
+        bool mksmbdir = false, mksmbconf = false;
+        QCString homedir = ::getenv( "$HOM$" );
+        QDir dir( homedir );
 
+        if( dir.cd( ".smb" ) )
+        {
+            if( !dir.exists( "smb.conf" ) )
+            {
+                mksmbconf = true;
+            }
+        }
+        else
+        {
+            mksmbdir = true;
+            mksmbconf = true;
+        }
+
+        if( mksmbdir )
+            dir.mkdir( ".smb" );
+
+        if( mksmbconf )
+        {
+            //copy our default workgroup to the smb.conf file
+            QFile conf( homedir + "/.smb/smb.conf" );
+            if( conf.open( IO_WriteOnly ) )
+            {
+                QTextStream output( &conf );
+                output << "[global]" << endl;
+                output << "\tworkgroup = " << m_default_workgroup << endl;
+                conf.close();
+            }
+            else
+            {
+                SlaveBase::error(ERR_INTERNAL,
+                    i18n(
+"You are missing your $HOME/.smb/smbconf file, and we could not create it.\n\
+Please manually create it to enable the smb ioslave to operate correctly.\n\
+The smb conf file could look like:\
+[global]\
+    workgroup= <YOUR_DEFAULT_WORKGROUP>"));
+                return -1;
+            }
+        }
 
         if(smbc_init(::auth_smbc_get_data,0) == -1)
         {

@@ -84,6 +84,8 @@ void SMBSlave::cache_clear_AuthInfo(const QString& workgroup)
         else
             it = m_auth_cache.next();
     }
+
+    //now clear it in the password caching daemon as well- but how???
 }
 
 void SMBSlave::cache_set_AuthInfo(const SMBAuthInfo& _auth,
