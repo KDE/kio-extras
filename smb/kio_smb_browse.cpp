@@ -1,3 +1,4 @@
+
 /////////////////////////////////////////////////////////////////////////////
 //
 // Project:     SMB kioslave for KDE2
@@ -48,34 +49,17 @@ bool SMBSlave::browse_stat_path(const SMBUrl& url, UDSEntry& udsentry)
 
   // realy needed ?
   // memset(&st,0,sizeof(st));
-// OPEN_STAT:
    if(cache_stat(url, &st) == 0)
    {
-      if(S_ISDIR(st.st_mode))
-      {
-         kdDebug(KIO_SMB) << "SMBSlave::browse_stat_path is DIR"<< endl;
-         // Directory
-         udsatom.m_uds  = KIO::UDS_FILE_TYPE;
-         udsatom.m_long = S_IFDIR;
-         udsentry.append(udsatom);
-      }
-      else if(S_ISREG(st.st_mode))
-      {
-         kdDebug(KIO_SMB) << "SMBSlave::browse_stat_path is FILE"<< endl;
-         // Regular file
-         udsatom.m_uds  = KIO::UDS_FILE_TYPE;
-         udsatom.m_long = S_IFREG;
-         udsentry.append(udsatom);
-      }
-      else
+      if(!S_ISDIR(st.st_mode) && !S_ISREG(st.st_mode))
       {
          kdDebug(KIO_SMB)<<"SMBSlave::browse_stat_path mode: "<<st.st_mode<<endl;
-         error(ERR_INTERNAL, i18n("Unknown error condition"));
+         error(ERR_UNKNOWN, i18n("Unknown file type, neither dir or file."));
          return false;
       }
 
       udsatom.m_uds  = KIO::UDS_FILE_TYPE;
-      udsatom.m_long = st.st_mode;
+      udsatom.m_long = st.st_mode & S_IFMT;
       udsentry.append(udsatom);
 
       udsatom.m_uds  = KIO::UDS_SIZE;
@@ -85,25 +69,23 @@ bool SMBSlave::browse_stat_path(const SMBUrl& url, UDSEntry& udsentry)
       udsatom.m_uds  = KIO::UDS_USER;
       uid_t uid = st.st_uid;
       struct passwd *user = getpwuid( uid );
-      if ( user ) {
-         udsatom.m_str = user->pw_name;
-      }
+      if ( user )
+          udsatom.m_str = user->pw_name;
       else
-         udsatom.m_str = QString::number( uid );
+          udsatom.m_str = QString::number( uid );
       udsentry.append(udsatom);
 
       udsatom.m_uds  = KIO::UDS_GROUP;
       gid_t gid = st.st_gid;
       struct group *grp = getgrgid( gid );
-      if ( grp ) {
-         udsatom.m_str = grp->gr_name;
-      }
+      if ( grp )
+          udsatom.m_str = grp->gr_name;
       else
-         udsatom.m_str = QString::number( gid );
+          udsatom.m_str = QString::number( gid );
       udsentry.append(udsatom);
 
       udsatom.m_uds  = KIO::UDS_ACCESS;
-      udsatom.m_long = st.st_mode;
+      udsatom.m_long = st.st_mode & 07777;
       udsentry.append(udsatom);
 
       udsatom.m_uds  = UDS_MODIFICATION_TIME;
@@ -140,7 +122,7 @@ bool SMBSlave::browse_stat_path(const SMBUrl& url, UDSEntry& udsentry)
          error(ERR_INTERNAL, "BAD File descriptor");
       default:
          kdDebug(KIO_SMB)<<"SMBSlave::browse_stat_path errno: "<<errno<< endl;
-         error(ERR_INTERNAL, i18n("Unknown error condition"));
+         error(ERR_INTERNAL, i18n("Unknown error condition %1").arg(strerror(errno)));
       }
 
       kdDebug(KIO_SMB) << "SMBSlave::browse_stat_path ERROR!!"<< endl;
@@ -249,9 +231,7 @@ void SMBSlave::listDir( const KURL& kurl )
       return;
    }
 
-
    m_current_url.fromKioUrl( kurl );
-
 
    int                 dirfd;
    struct smbc_dirent  *dirp = NULL;
@@ -264,33 +244,23 @@ void SMBSlave::listDir( const KURL& kurl )
    kdDebug(KIO_SMB) << "SMBSlave::listDir open " << kurl.url() << endl;
    if(dirfd >= 0)
    {
-      while(1)
-      {
+       do {
          dirp = smbc_readdir(dirfd);
-         if(dirp == NULL)
-         {
-            break;
-         }
+         if(dirp == 0)
+             break;
+
          // Set name
          atom.m_uds = KIO::UDS_NAME;
          QString dirpName = toUnicode( dirp->name );
          atom.m_str = dirpName;
          udsentry.append( atom );
-         if (((!m_showHiddenShares) && (atom.m_str.right(1)=="$"))
-             || (atom.m_str=="$IPC")
-             || (atom.m_str==".")
-             || (atom.m_str==".."))
+         if (atom.m_str=="$IPC" || atom.m_str=="." || atom.m_str == "..")
          {
 //            fprintf(stderr,"----------- hide: -%s-\n",dirp->name);
             // do nothing and hide the hidden shares
          }
          else if(dirp->smbc_type == SMBC_FILE)
          {
-            // Set type
-            atom.m_uds = KIO::UDS_FILE_TYPE;
-            atom.m_long = S_IFREG;
-            udsentry.append( atom );
-
             // Set stat information
             m_current_url.append(dirpName);
             browse_stat_path(m_current_url, udsentry);
@@ -301,22 +271,12 @@ void SMBSlave::listDir( const KURL& kurl )
          }
          else if(dirp->smbc_type == SMBC_DIR)
          {
-            // Set type
-            atom.m_uds = KIO::UDS_FILE_TYPE;
-            atom.m_long = S_IFDIR;
-            udsentry.append( atom );
+             m_current_url.append(dirpName);
+             browse_stat_path(m_current_url, udsentry);
+             m_current_url.truncate();
 
-            // Set stat information
-            if(strcmp(dirp->name,".") &&
-               strcmp(dirp->name,".."))
-            {
-               m_current_url.append(dirpName);
-               browse_stat_path(m_current_url, udsentry);
-               m_current_url.truncate();
-            }
-
-               // Call base class to list entry
-            listEntry(udsentry, false);
+             // Call base class to list entry
+             listEntry(udsentry, false);
          }
          else if(dirp->smbc_type == SMBC_SERVER ||
                  dirp->smbc_type == SMBC_FILE_SHARE)
@@ -362,7 +322,7 @@ void SMBSlave::listDir( const KURL& kurl )
             // continue;
          }
          udsentry.clear();
-      }
+       } while (dirp); // checked already in the head
 
       // clean up
       smbc_closedir(dirfd);
@@ -400,10 +360,10 @@ void SMBSlave::listDir( const KURL& kurl )
          error(ERR_INTERNAL, i18n("libsmbclient failed to initialize"));
          break;
       case ENODEV:
-         error(ERR_INTERNAL, i18n("Server or workgroup could not be found"));
+         error(ERR_DOES_NOT_EXIST, i18n("Share could not be found on given server"));
          break;
       default:
-         error(ERR_INTERNAL, i18n("Unknown error condition"));
+          error(ERR_INTERNAL, i18n("Unknown error condition %1").arg(strerror(errno)));
       }
       return;
    }
