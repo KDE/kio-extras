@@ -532,7 +532,7 @@ static void add_links(char *c)
 		    *e='\0';
                     QCString str;
 		    if (subsec)
-                        str.sprintf("<A HREF=\"man:/%s(%c,%c))\">%s</A>", h, sec, tolower(subsec), h);
+                        str.sprintf("<A HREF=\"man:/%s(%c,%c)\">%s</A>", h, sec, tolower(subsec), h);
 		    else
                         str.sprintf("<A HREF=\"man:/%s(%c)\">%s</A>", h, sec, h);
                     output_real(str.data());
@@ -3216,7 +3216,7 @@ static char *scan_troff(char *c, int san, char **result)
 	    h++;
 	    FLUSHIBP;
 	    h = scan_request(h);
-	    if (san && h[-1]=='\n') h--;
+	    if (h && san && h[-1]=='\n') h--;
 	} else if (mandoc_line
 		   && *(h) && isupper(*(h))
 		   && *(h+1) && islower(*(h+1))
@@ -3347,7 +3347,7 @@ static char *scan_troff(char *c, int san, char **result)
     }
     FLUSHIBP;
     if (buffer) buffer[buffpos]='\0';
-    if (san && *h) h++;
+    if (san && h && *h) h++;
     newline_for_fun=exnewline_for_fun;
     if (result) {
 	*result = buffer;
