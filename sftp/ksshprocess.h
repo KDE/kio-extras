@@ -134,6 +134,7 @@ public:
      * at any time.
      */
     enum SshVersion {
+	OPENSSH_3_6,
         OPENSSH,
         SSH,
         SSH_VER_MAX,
@@ -348,7 +349,7 @@ public:
      *
      * @return A string describing the ssh version recognized by KSshProcess
      */
-    QString versionStr();
+    //QString versionStr();
 
     /**
      * Get the last error encountered by KSshProcess.
@@ -594,9 +595,16 @@ private:
     QCStringList mArgs;
     void init();
 
+	/**
+	 * Handler to clean up when ssh process terminates.
+	 */
+	static void SIGCHLD_handler(int signo);
+	void installSignalHandlers();
+	void removeSignalHandlers();
+
     QString getLine();
     
-    static const char * const versionStrs[];
+    static QRegExp versionStrs[];
     static const char * const passwordPrompt[];
     static const char * const passphrasePrompt[];
     static const char * const authSuccessMsg[];

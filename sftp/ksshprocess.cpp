@@ -82,57 +82,68 @@
  * so that is matched last. We use these generic version strings
  * so we can do a best effor to  support unknown ssh versions.
  */
-const char * const KSshProcess::versionStrs[] = {
-    "OpenSSH",
-    "SSH Secure Shell"
+QRegExp KSshProcess::versionStrs[] = {
+    QRegExp("OpenSSH_3\\.[6-9]|OpenSSH_[1-9]*[4-9]\\.[0-9]"),
+    QRegExp("OpenSSH"),
+    QRegExp("SSH Secure Shell")
 };
 
 const char * const KSshProcess::passwordPrompt[] = {
+    "password:", // OpenSSH
     "password:", // OpenSSH
     "password:"  // SSH
 };
 
 const char * const KSshProcess::passphrasePrompt[] = {
     "Enter passphrase for key",
+    "Enter passphrase for key",
     "Passphrase for key"
 };
 
 const char * const KSshProcess::authSuccessMsg[] = {
+    "Authentication succeeded",
     "ssh-userauth2 successful",
     "Received SSH_CROSS_AUTHENTICATED packet"
 };
 
 const char* const KSshProcess::authFailedMsg[] = {
     "Permission denied (",
+    "Permission denied (",
     "Authentication failed."
 };
 
 const char* const KSshProcess::tryAgainMsg[] = {
+    "please try again",
     "please try again",
     "adjfhjsdhfdsjfsjdfhuefeufeuefe"
 };
 
 QRegExp KSshProcess::hostKeyMissingMsg[] = {
     QRegExp("The authenticity of host|No (DSA|RSA) host key is known for"),
+    QRegExp("The authenticity of host|No (DSA|RSA) host key is known for"),
     QRegExp("Host key not found from database")
 };
 
 const char* const KSshProcess::continuePrompt[] = {
+    "Are you sure you want to continue connecting (yes/no)?",
     "Are you sure you want to continue connecting (yes/no)?",
     "Are you sure you want to continue connecting (yes/no)?"
 };
 
 const char* const KSshProcess::hostKeyChangedMsg[] = {
     "WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!",
+    "WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!",
     "WARNING: HOST IDENTIFICATION HAS CHANGED!"
 };
 
 QRegExp KSshProcess::keyFingerprintMsg[] = {
     QRegExp("..(:..){15}"),
+    QRegExp("..(:..){15}"),
     QRegExp(".....(-.....){10}")
 };
 
 QRegExp KSshProcess::knownHostsFileMsg[] = {
+    QRegExp("Add correct host key in (.*) to get rid of this message."),
     QRegExp("Add correct host key in (.*) to get rid of this message."),
     QRegExp("Add correct host key to \"(.*)\"")
 };
@@ -140,6 +151,7 @@ QRegExp KSshProcess::knownHostsFileMsg[] = {
 
 // This prompt only applies to commerical ssh.
 const char* const KSshProcess::changeHostKeyOnDiskPrompt[] = {
+    "as;jf;sajkfdslkfjas;dfjdsa;fj;dsajfdsajf",
     "as;jf;sajkfdslkfjas;dfjdsa;fj;dsajfdsajf",
     "Do you want to change the host key on disk (yes/no)?"
 };
@@ -154,28 +166,61 @@ const char* const KSshProcess::changeHostKeyOnDiskPrompt[] = {
 // "yes" or explicitly set to "ask".
 QRegExp KSshProcess::hostKeyVerifyFailedMsg[] = {
     QRegExp("Host key verification failed\\."),
+    QRegExp("Host key verification failed\\."),
     QRegExp("Disconnected; key exchange or algorithm? negotiation failed \\(Key exchange failed\\.\\)\\.")
 };
 
 const char * const KSshProcess::connectionClosedMsg[] = {
     "Connection closed by remote host",
+    "Connection closed by remote host",
     "Connection closed by remote host"
 };
+
+
+void KSshProcess::SIGCHLD_handler(int) {
+	while(waitpid(-1, NULL, WNOHANG) > 0);
+}
+
+void KSshProcess::installSignalHandlers() {
+    struct sigaction act;
+    memset(&act,0,sizeof(act));
+    act.sa_handler = SIGCHLD_handler;
+    act.sa_flags = 0
+#ifdef SA_NOCLDSTOP
+	    | SA_NOCLDSTOP
+#endif
+#ifdef SA_RESTART
+	    | SA_RESTART
+#endif
+	    ;
+    sigaction(SIGCHLD,&act,NULL);
+}
+					
+void KSshProcess::removeSignalHandlers() {
+	struct sigaction act;
+	memset(&act,0,sizeof(act));
+	act.sa_handler = SIG_DFL;
+	sigaction(SIGCHLD,&act,NULL);
+}
 
 KSshProcess::KSshProcess() : mVersion(UNKNOWN_VER), mConnected(false), 
         mRunning(false), mConnectState(0) {
     mSshPath = KStandardDirs::findExe(QString::fromLatin1("ssh"));
     kdDebug(KSSHPROC) << "KSshProcess::KSshProcess(): ssh path [" << 
-        mSshPath << "]" << endl;
+		mSshPath << "]" << endl;
+	installSignalHandlers();
 }
 
 KSshProcess::KSshProcess(QString pathToSsh) :
     mSshPath(pathToSsh), mVersion(UNKNOWN_VER), mConnected(false),
     mRunning(false), mConnectState(0)  {
+	installSignalHandlers();
 }
 
 KSshProcess::~KSshProcess(){
     disconnect();
+    removeSignalHandlers();
+    while(waitpid(-1, NULL, WNOHANG) > 0);
 }
 
 bool KSshProcess::setSshPath(QString pathToSsh) {
@@ -191,6 +236,7 @@ KSshProcess::SshVersion KSshProcess::version() {
     QString cmd;
     cmd = mSshPath+" -V 2>&1";
 
+    // Get version string from ssh client.
     FILE *p;
     if( (p = popen(cmd.latin1(), "r")) == NULL ) {
         kdDebug(KSSHPROC) << "KSshProcess::version(): "
@@ -198,6 +244,7 @@ KSshProcess::SshVersion KSshProcess::version() {
         return UNKNOWN_VER;
     }
 
+    // Determine of the version from the version string. 
     size_t len;
     char buf[128];
     if( (len = fread(buf, sizeof(char), sizeof(buf)-1, p)) == 0 ) {
@@ -223,6 +270,9 @@ KSshProcess::SshVersion KSshProcess::version() {
         }
     }
 
+    kdDebug(KSSHPROC) << "KSshPRocess::version(): version number = "
+	    << mVersion << endl;
+    
     if( mVersion == UNKNOWN_VER ) {
         kdDebug(KSSHPROC) << "KSshProcess::version(): "
             "Sorry, I don't know about this version of ssh" << endl;
@@ -232,7 +282,7 @@ KSshProcess::SshVersion KSshProcess::version() {
 
     return mVersion;
 }
-
+/*
 QString KSshProcess::versionStr() {
     if( mVersion == UNKNOWN_VER ) {
         version();
@@ -242,7 +292,7 @@ QString KSshProcess::versionStr() {
 
     return QString::fromLatin1(versionStrs[mVersion]);
 }
-
+*/
 
 bool KSshProcess::setOptions(const SshOptList& opts) {
     kdDebug(KSSHPROC) << "KSshProcess::setOptions()" << endl;
@@ -420,23 +470,7 @@ void KSshProcess::kill(int signal) {
         if( ::kill(ssh.pid(), signal) == 0 ) {
             // clean up if we tried to kill the process
             if( signal == SIGTERM || signal == SIGKILL ) {
-                struct timeval timeout;
-                timeout.tv_sec = 0;
-                timeout.tv_usec = 500;
-                select(0, NULL, NULL, NULL, &timeout);
-                // FIXME: I don't really think we want WNOHANG here, but sometimes
-                // we kill ssh above and it doesn't die so we hang on waitpid().
-                if( ::waitpid(ssh.pid(), NULL, WNOHANG) == 0 ) {
-                    kdDebug(KSSHPROC) << "KSshProcess::kill(): kill didn't work, trying SIGKILL" << endl;
-                    // Ssh processes didn't die. Try harder.
-                    // Give up if we don't succeed. 
-                    if( ::kill(ssh.pid(), SIGKILL) == 0 ) {
-                        ::waitpid(ssh.pid(), NULL, 0);
-                    }
-                    else {
-                        kdDebug(KSSHPROC) << "KSshProcess::kill(): kill failed" << endl;
-                    }
-                }
+		while(waitpid(-1, NULL, WNOHANG) > 0);
                 mConnected = false;
                 mRunning = false;
             }
@@ -710,7 +744,9 @@ bool KSshProcess::connect() {
                 mErrorMsg = i18n("Failed to execute ssh process.");
                 return false;
             }
-            
+           
+            kdDebug(KSSHPROC) << "KSshPRocess::connect(): ssh pid = " << ssh.pid() << endl;
+	    
             // set flag to indicate what have started a ssh process
             mRunning = true;
             mConnectState = STATE_WAIT_PROMPT;
