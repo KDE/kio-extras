@@ -162,7 +162,7 @@ void ThumbnailProtocol::get(const KURL &url)
             if (item.isValid() && item.value().type() == QVariant::Image)
             {
                 img = item.value().toImage();
-                kdDebug() << "using KFMI for the thumbnail\n";
+                kdDebug(7115) << "using KFMI for the thumbnail\n";
                 kfmiThumb = true;
             }
         }
@@ -171,7 +171,7 @@ void ThumbnailProtocol::get(const KURL &url)
      
     if (!kfmiThumb)
     {
-        kdDebug() << "using thumb creator for the thumbnail\n";
+        kdDebug(7115) << "using thumb creator for the thumbnail\n";
         QString plugin = metaData("plugin");
         if (plugin.isEmpty())
         {
