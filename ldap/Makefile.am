@@ -1,8 +1,8 @@
 ## Makefile.am of kdebase/kioslave/ldap
 
-INCLUDES=	$(all_includes) $(LDAP_INCS)
-AM_LDFLAGS =       $(all_libraries) $(KDE_RPATH) $(LDAP_RPATH)
-LDADD	=	$(LIB_KIO) $(LDAP_LIBS)
+INCLUDES   = $(all_includes) $(LDAP_INCS)
+AM_LDFLAGS = $(all_libraries) $(KDE_RPATH) $(LDAP_RPATH)
+LDADD      = $(LIB_KIO) $(LDAP_LIBS)
 
 ####### Files
 
