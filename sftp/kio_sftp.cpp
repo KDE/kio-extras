@@ -868,38 +868,38 @@ void kio_sftpProtocol::sftpCopyPut(const KURL& src, const KURL& dest, int permis
     KDE_struct_stat buff;
     QCString file (QFile::encodeName(src.path()));
     
-    if (KDE_stat(file.data(), &buff) == -1)
-    { 
+    if (KDE_stat(file.data(), &buff) == -1) { 
         error (ERR_DOES_NOT_EXIST, src.prettyURL());
         return;
     }
     
-    if (S_ISDIR (buff.st_mode))
-    {
+    if (S_ISDIR (buff.st_mode)) {
         error (ERR_IS_DIRECTORY, src.prettyURL());
         return;
     }
     
     int fd = KDE_open (file.data(), O_RDONLY);
-    if (fd == -1)
-    {
+    if (fd == -1) {
         error (ERR_CANNOT_OPEN_FOR_READING, src.prettyURL());
         return;
     }
     
-    totalSize (buff.st_size);
+    totalSize (buff.st_size);    
     
+    sftpPut (dest, permissions, true, overwrite, fd);
+    
+    // Close the file descriptor...
+    ::close( fd );
+}
+
+void kio_sftpProtocol::sftpPut( const KURL& dest, int permissions, bool resume, bool overwrite, int fd ) {
+
     openConnection();
     if( !mConnected ) {
         error(ERR_COULD_NOT_CONNECT, mHost);
         finished();
         return;
     }
-        
-    sftpPut (dest, permissions, true, overwrite, fd);  
-}
-
-void kio_sftpProtocol::sftpPut( const KURL& dest, int permissions, bool resume, bool overwrite, int fd ) {
     
     bool markPartial = config()->readBoolEntry("MarkPartial", true);
     kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::sftpPut: Mark partial = "
@@ -1132,14 +1132,7 @@ void kio_sftpProtocol::put ( const KURL& url, int permissions, bool overwrite, b
     kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::put(" << url << ")" << endl
                          << "kio_sftpProtocol::put(): overwrite = " << overwrite
                          << ", resume = " << resume << endl;
-
-    openConnection();
-    if( !mConnected ) {
-        error(ERR_COULD_NOT_CONNECT, mHost);
-        finished();
-        return;
-    }
-    
+                            
     sftpPut( url, permissions, resume, overwrite );
 }
 
