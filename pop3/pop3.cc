@@ -466,7 +466,7 @@ bool POP3Protocol::pop3_open()
       if (metaData("auth") == "APOP") {
         error(ERR_COULD_NOT_LOGIN,
               i18n
-              ("Login via APOP failed. The server may not support support APOP, or the password may be wrong.\n\n%1").
+              ("Login via APOP failed. The server may not support APOP, or the password may be wrong.\n\n%1").
               arg(m_sError));
         return false;
       } else {
