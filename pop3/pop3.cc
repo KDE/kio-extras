@@ -604,8 +604,13 @@ void POP3Protocol::special(const QByteArray & aData)
 {
   QString result;
   char buf[MAX_PACKET_LEN];
-  if (aData.at(0) != 'c')
+  QDataStream stream(aData, IO_ReadOnly);
+  int tmp;
+  stream >> tmp;
+
+  if (tmp != 'c')
     return;
+
   for (int i = 0; i < 2; i++) {
     QCString cmd = (i) ? "AUTH" : "CAPA";
     if (!command(cmd))
