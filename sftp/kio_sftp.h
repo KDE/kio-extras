@@ -45,6 +45,7 @@ public:
   virtual void listDir(const KURL& url) ;
   virtual void mimetype(const KURL& url);
   virtual void stat(const KURL& url);
+  virtual void copy(const KURL &src, const KURL &dest, int permissions, bool overwrite);
   virtual void put(const KURL& url, int permissions, bool overwrite, bool resume);
   virtual void closeConnection();
   virtual void slave_status();
@@ -88,6 +89,13 @@ private: // Private variables
 
   /** Version of the sftp protocol we are using. */
   int sftpVersion;
+  
+  struct Status 
+  {
+    int code;
+    KIO::filesize_t size;
+    QString text;
+  };
 
 private: // private methods
   /** 
@@ -118,7 +126,9 @@ private: // private methods
   /** Send an sftp packet to stdin of the ssh process. */
   bool putPacket(QByteArray& p);
   /** Process SSH_FXP_STATUS packets. */
-  void processStatus(Q_UINT8, QString message = QString::null);
+  void processStatus(Q_UINT8, const QString& message = QString::null);
+  /** Process SSH_FXP_STATUS packes and return the result. */
+  Status doProcessStatus(Q_UINT8, const QString& message = QString::null);
   /** Opens a directory handle for url.path. Returns true if succeeds. */
   int sftpOpenDirectory(const KURL& url, QByteArray& handle);
   /** Closes a directory or file handle. */
@@ -140,11 +150,17 @@ private: // private methods
   /** No descriptions */
   int sftpOpen(const KURL& url, const Q_UINT32 pflags, const sftpFileAttr& attr, QByteArray& handle);
   /** No descriptions */
-  int sftpRead(const QByteArray& handle, Q_UINT32 offset, Q_UINT32 len, QByteArray& data);
+  int sftpRead(const QByteArray& handle, Q_UINT64 offset, Q_UINT32 len, QByteArray& data);
   /** No descriptions */
-  int sftpWrite(const QByteArray& handle, Q_UINT32 offset, const QByteArray& data);
+  int sftpWrite(const QByteArray& handle, Q_UINT64 offset, const QByteArray& data);
+  
+  /** Performs faster upload when the source is a local file... */
+  void sftpCopyPut(const KURL& src, const KURL& dest, int mode, bool overwrite);
+  /** Performs faster download when the destination is a local file... */
+  void sftpCopyGet(const KURL& dest, const KURL& src, int mode, bool overwrite);
+  
+  /** */
+  Status sftpGet( const KURL& src, KIO::filesize_t offset = 0, int fd = -1);
+  void sftpPut( const KURL& dest, int permissions, bool resume, bool overwrite, int fd = -1);
 };
-
-void mymemcpy(const char* b, QByteArray& a, unsigned int offset, unsigned int len);
-
 #endif

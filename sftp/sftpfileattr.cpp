@@ -36,7 +36,7 @@ sftpFileAttr::~sftpFileAttr(){
 }
 
 /** Constructor to initialize the file attributes on declaration. */
-sftpFileAttr::sftpFileAttr(Q_UINT32 size, uid_t uid, gid_t gid,
+sftpFileAttr::sftpFileAttr(Q_UINT64 size, uid_t uid, gid_t gid,
                     mode_t permissions, time_t atime,
                     time_t mtime, Q_UINT32 extendedCount) {
     clear();
@@ -118,8 +118,7 @@ QDataStream& operator<< (QDataStream& s, const sftpFileAttr& fa) {
     s << (Q_UINT32)fa.mFlags;
 
     if( fa.mFlags & SSH2_FILEXFER_ATTR_SIZE )
-        // since we don't have a 64 bit int, output the top byte as zero
-        { s << (Q_UINT32)0 << (Q_UINT32)fa.mSize; }
+        { s << (Q_UINT64)fa.mSize; }
 
     if( fa.mFlags & SSH2_FILEXFER_ATTR_UIDGID )
         { s << (Q_UINT32)fa.mUid << (Q_UINT32)fa.mGid; }
@@ -147,7 +146,7 @@ QDataStream& operator>> (QDataStream& s, sftpFileAttr& fa) {
     //     we get a bad sftp packet.
     fa.clear();
 	QByteArray fn;
-    Q_UINT32 size;
+    Q_UINT64 size;
     if( fa.mDirAttrs ) {
         s >> fn; 
 

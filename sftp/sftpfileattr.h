@@ -43,7 +43,7 @@ private: // Private attributes
     /** Size of the file in bytes.
           Note: size should be a 64 bit integer but I have not yet determined the best way to declare
           this in a portable manner. Q_UINT64 is not necessarily 64 bits. Argh! */
-    Q_INT32 mSize;
+    Q_UINT64 mSize;
 
     /** User id of the owner of the file. */
     uid_t mUid;
@@ -87,8 +87,8 @@ public:
     ~sftpFileAttr();
 
     /** Constructor to initialize the file attributes on declaration. */
-    sftpFileAttr(Q_UINT32 size_, uid_t uid_, gid_t gid_, mode_t permissions_,
-                                      time_t atime_, time_t mtime_, Q_UINT32 extendedCount_ = 0);
+    sftpFileAttr(Q_UINT64 size_, uid_t uid_, gid_t gid_, mode_t permissions_,
+                 time_t atime_, time_t mtime_, Q_UINT32 extendedCount_ = 0);
 
     /** Return the size of the sftp attribute not including filename or longname*/
     Q_UINT32 size() const;
@@ -97,7 +97,7 @@ public:
     void clear();
 
     /** Set the size of the file. */
-    void setFileSize(Q_UINT32 s)
+    void setFileSize(Q_UINT64 s)
         { mSize = s; mFlags |= SSH2_FILEXFER_ATTR_SIZE; }
 
     /** The size file attribute will not be included in the UDSEntry
@@ -106,7 +106,7 @@ public:
         { mSize = 0; mFlags &= ~SSH2_FILEXFER_ATTR_SIZE; };
 
     /** Returns the size of the file. */
-    Q_UINT32 fileSize() const { return mSize; }
+    Q_UINT64 fileSize() const { return mSize; }
 
     /** Sets the POSIX permissions of the file. */
     void setPermissions(mode_t p)

@@ -60,6 +60,8 @@ MyPtyProcess::MyPtyProcess()
     m_bTerminal = false;
     m_bErase = false;
     m_pPTY = 0L;
+    m_Pid = -1;
+    m_Fd = -1;
 }
 
 

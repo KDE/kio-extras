@@ -460,12 +460,12 @@ int KSshProcess::error(QString& msg) {
 void KSshProcess::kill(int signal) {
     int pid = ssh.pid();
     
-    kdDebug(KSSHPROC) << "KSshProcess::kill(signal:" << signal << "): "
-        "ssh pid is " << pid << endl;
-    kdDebug(KSSHPROC) << "KSshPRocess::kill(): "
-        "we are " << (mConnected ? "" : "not ") << "connected" << endl;
-    kdDebug(KSSHPROC) << "KSshProcess::kill(): "
-        "we are " << (mRunning ? "" : "not ") <<"running a ssh process" << endl;
+    kdDebug(KSSHPROC) << "KSshProcess::kill(signal:" << signal 
+                      << "): ssh pid is " << pid << endl;
+    kdDebug(KSSHPROC) << "KSshPRocess::kill(): we are " 
+                      << (mConnected ? "" : "not ") << "connected" << endl;
+    kdDebug(KSSHPROC) << "KSshProcess::kill(): we are " 
+                      << (mRunning ? "" : "not ") << "running a ssh process" << endl;
 
     if( mRunning && pid > 1 ) {
             // Kill the child process...
