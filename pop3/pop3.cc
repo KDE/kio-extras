@@ -63,12 +63,11 @@ bool POP3Protocol::getResponse (char *r_buf, unsigned int r_len)
   FD_SET(m_iSock, &FDs);
 
   // And keep waiting if it timed out
-  do {
-	// Yes, it's true, Linux sucks.
-	m_tTimeout.tv_sec=10;
-	m_tTimeout.tv_usec=0;
-  }  while (::select(m_iSock+1, &FDs, 0, 0, &m_tTimeout) ==0);
-
+  while (::select(m_iSock+1, &FDs, 0, 0, &m_tTimeout) ==0) {
+    // Yes, it's true, Linux sucks.
+    m_tTimeout.tv_sec=10;
+    m_tTimeout.tv_usec=0;
+   }
 
   // Clear out the buffer
   memset(buf, 0, r_len);
@@ -78,7 +77,6 @@ bool POP3Protocol::getResponse (char *r_buf, unsigned int r_len)
   // This is really a funky crash waiting to happen if something isn't
   // null terminated.
   recv_len=strlen(buf);
-  fprintf(stderr,"buf is:%s\n", buf);
 
 /*
  *   From rfc1939:
@@ -123,8 +121,6 @@ bool POP3Protocol::command (const char *cmd, char *recv_buf, unsigned int len)
  *   SPACE character.  Keywords are three or four characters long. Each
  *   argument may be up to 40 characters long.
  */
-
-  fprintf(stderr,"Buffer is: %s\n", cmd);
 
   // Write the command
   if (::write(m_iSock, cmd, strlen(cmd)) != (ssize_t)strlen(cmd))
