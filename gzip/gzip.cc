@@ -68,6 +68,13 @@ GZipProtocol::GZipProtocol( const QCString &pool, const QCString &app )
 
 void GZipProtocol::get( const KURL & )
 {
+  if (subURL.isEmpty())
+  {
+     error( KIO::ERR_NO_SOURCE_PROTOCOL, QString::fromLatin1("gzip") );
+     return;
+  }
+  needSubURLData();
+
   z_stream zStream;
   zStream.next_in = Z_NULL;
   zStream.avail_in = 0;
@@ -169,7 +176,6 @@ kdDebug(7110) << "avail_out = " << zStream.avail_out << endl;
             KMimeMagicResult * result = KMimeMagic::self()->findBufferFileType( outputBuffer, subURL.fileName() );
             kdDebug(7110) << "Emitting mimetype " << result->mimeType() << endl;
             mimeType( result->mimeType() );
-            delete result;
             bNeedMimetype = false;
         }
         data( outputBuffer ); // Send data
@@ -199,19 +205,21 @@ kdDebug(7110) << "avail_out = " << zStream.avail_out << endl;
   if (bError)
   {
      error(KIO::ERR_COULD_NOT_READ, subURL.url());
+     subURL = KURL(); // Clear subURL
      return;
   }
 
+  subURL = KURL(); // Clear subURL
   finished();
 }
 
 void GZipProtocol::put( const KURL &url, int, bool _overwrite, bool /*_resume*/ )
 {
+  error( KIO::ERR_UNSUPPORTED_ACTION, QString::fromLatin1("put"));
 }
 
 void GZipProtocol::setSubURL(const KURL &url)
 {
    subURL = url;
-   needSubURLData();
 }
 
