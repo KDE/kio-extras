@@ -381,7 +381,7 @@ bool POP3Protocol::pop3_open()
       return true;
 
     if (metaData("auth") == "APOP" && !supports_apop) {
-      error(ERR_COULD_NOT_CONNECT,
+      error(ERR_COULD_NOT_LOGIN,
             i18n("Your POP3 server does not support APOP.\n"
                  "Choose a different authentication method."));
       return false;
@@ -468,7 +468,7 @@ bool POP3Protocol::pop3_open()
       if (metaData("auth") == "APOP") {
         error(ERR_COULD_NOT_LOGIN,
               i18n
-              ("Login via APOP failed. The server may not support APOP, or the password may be wrong.\n\n%1").
+              ("Login via APOP failed. The server may not support APOP although it claims to support it or the password may be wrong.\n\n%1").
               arg(m_sError));
         return false;
       } else {
