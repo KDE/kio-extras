@@ -1,6 +1,7 @@
 [Protocol]
 exec=kio_smtp
 protocol=smtp
+Capabilities=SASL
 input=none
 output=filesystem
 listing=Name,Type,Size

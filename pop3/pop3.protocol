@@ -1,6 +1,7 @@
 [Protocol]
 exec=kio_pop3
 protocol=pop3
+capabilities=SASL
 input=none
 output=filesystem
 listing=Name,Type,Size
