@@ -64,6 +64,11 @@
             viewing in kpart.
           - get port number using getservbyname instead of hard coding it.
 2-27-2002 - testing before committing back to cvs, test with openssh 3, ssh 3
+6-??-2002 - rewrote openConnection() to using new KSshProcess connect proceedures
+7-20-2002 - Don't put up a message box when auth fails because of now or changed key,
+            the call to error() will put up the dialog.
+          - Connect fails and no more password are prompted for when we get
+            ERR_AUTH_FAILED from KSshProcess.
 
 DEBUGGING
 We are pretty much left with kdDebug messages for debugging. We can't use a gdb
@@ -401,6 +406,8 @@ void kio_sftpProtocol::openConnection(){
     int err;           // error code from KSshProcess
     QString msg;       // msg for dialog box
     QString caption;   // dialog box caption
+    bool firstTime = true;
+    bool dlgResult;
     
     while( !(mConnected = ssh.connect()) ) {
         err = ssh.error();
@@ -421,10 +428,23 @@ void kio_sftpProtocol::openConnection(){
             }
             else {
                 info.prompt =
+                    
                     i18n("Please enter your username and password.");
             }
+           
+            info.caption = i18n("Sftp Login");
+            info.commentLabel = i18n("site:");
+            info.comment = "sftp://"+mHost;
+            info.keepPassword = true;
+           
+            if( firstTime ) {
+                dlgResult = openPassDlg(info);
+            }
+            else {
+                dlgResult = openPassDlg(info, i18n("Incorrect username or password."));
+            }
             
-            if( openPassDlg(info) ) {
+            if( dlgResult ) {
                if( info.username.isEmpty() || info.password.isEmpty() ) {
                     error(ERR_COULD_NOT_AUTHENTICATE,
                       i18n("Please enter a username and password"));
@@ -434,9 +454,12 @@ void kio_sftpProtocol::openConnection(){
             else {
                 // user canceled or dialog failed to open
                 error(ERR_USER_CANCELED, QString::null);
+                closeConnection();
                 return;
             }
 
+            firstTime = false;
+            
             // Check if the username has changed. SSH only accepts
             // the username at startup. If the username has changed
             // we must disconnect ssh, change the SSH_USERNAME
@@ -483,9 +506,8 @@ void kio_sftpProtocol::openConnection(){
             break;
                 
         case KSshProcess::ERR_NEW_HOST_KEY:
-            caption = i18n("Warning: Unrecognized host key!");    
+            caption = i18n("Warning: Cannot verify host's identity!");    
             msg = ssh.errorMsg();
-            msg += "\n"+i18n("Shall we continue connecting to %1?").arg(mHost);
             if( KMessageBox::Yes != messageBox(WarningYesNo, msg, caption) ) {
                 closeConnection();
                 error(ERR_USER_CANCELED, QString::null);
@@ -495,9 +517,8 @@ void kio_sftpProtocol::openConnection(){
             break;
             
         case KSshProcess::ERR_DIFF_HOST_KEY:
-            caption = i18n("Warning: Host key changed!");    
+            caption = i18n("Warning: Host's identity changed!");    
             msg = ssh.errorMsg();
-            msg += "\n"+i18n("Shall we continue connecting to %1?").arg(mHost);
             if( KMessageBox::Yes != messageBox(WarningYesNo, msg, caption) ) {
                 closeConnection();
                 error(ERR_USER_CANCELED, QString::null);
@@ -507,19 +528,17 @@ void kio_sftpProtocol::openConnection(){
             break;
             
         case KSshProcess::ERR_AUTH_FAILED:
-            continue;
+            infoMessage(i18n("Authentication failed."));
+            error(ERR_COULD_NOT_LOGIN, i18n("Authentication failed."));
+            return;
             
         case KSshProcess::ERR_AUTH_FAILED_NEW_KEY:
-            caption = i18n("Warning: Unrecognized host key!");
             msg = ssh.errorMsg();
-            messageBox(Information, msg, caption);
             error(ERR_COULD_NOT_LOGIN, msg);
             return;
             
         case KSshProcess::ERR_AUTH_FAILED_DIFF_KEY:
-            caption = i18n("Warning: Host key changed!");
             msg = ssh.errorMsg();
-            messageBox(Information, msg, caption);
             error(ERR_COULD_NOT_LOGIN, msg);
             return;
         
@@ -598,48 +617,6 @@ void kio_sftpProtocol::openConnection(){
     mConnected = true;
     connected();
     return;
-
-#if 0
-        // Now we wait to see whether we get a response on the stdinout file descriptor
-        // or on the pty file desciptor. If the former, we are successfully connected.
-        // If the latter, authentication failed.
-        int stdiofd = ssh.stdioFd();
-        fd_set rfds;
-        struct timeval tv;
-        FD_ZERO(&rfds);
-//        FD_SET(ptyfd, &rfds);           // Add pty file descriptor
-        FD_SET(stdiofd, &rfds);         // Add stdin/out file descriptor
-        tv.tv_sec = 60; tv.tv_usec = 0; // 60 second timeout
-
-        int ret = select(stdiofd+1, &rfds, NULL, NULL, &tv);
-        kdDebug(KIO_SFTP_DB) << "Select returned " << ret << endl;
-        if( ret > 0 ) {
-            if( FD_ISSET(stdiofd, &rfds) ) {
-                kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::openConnection(): Authentication successful" << endl;
-                break;
-            }
-        }
-        else if( ret == 0 ) {
-            kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::openConnection(): timed out waiting for a response" << endl;
-            error(ERR_SERVER_TIMEOUT, i18n("Timed out waiting for a response from the server."));
-            return;
-        }
-        else {
-            kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::openConnection(): select error: " << strerror(errno) << endl;
-            error(ERR_INTERNAL, QString::null);
-            return;
-        }
-    }
-
-
-    if( tries > RETRIES ) {
-        // Login failed
-        infoMessage(i18n("Login failed."));
-        error(ERR_COULD_NOT_LOGIN,
-          i18n("Could not login to %1.\nMaximum number of retries exceeded.").arg(mHost));
-        return;
-    }
-#endif
 }
 
 
