@@ -95,6 +95,8 @@ protected:
 	  */
 	bool pop3_open ();
 
+	const QCString encodeRFC2104 (const QCString & text, const QCString & key);
+
 	int m_cmd;
 	unsigned short int m_iOldPort;
 	struct timeval m_tTimeout;
