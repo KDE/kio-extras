@@ -1121,7 +1121,21 @@ void AudioCDProtocol::getParameters() {
 
   }
 
-  d->gf->mode = config->readNumEntry("mode",0); // stereo, mono etc ... default is stereo
+  // d->gf->mode = config->readNumEntry("mode",0); // stereo, mono etc ... default is stereo
+
+  switch (   config->readNumEntry("mode",0) ) {
+
+    case 0: lame_set_mode(d->gf, STEREO);
+                break;
+    case 1: lame_set_mode(d->gf, JOINT_STEREO);
+                break;
+    case 2: lame_set_mode(d->gf,DUAL_CHANNEL);
+                break;
+    case 3: lame_set_mode(d->gf,MONO);
+                break;
+    default: lame_set_mode(d->gf,STEREO);
+                break;
+  }
 
   d->gf->copyright = config->readBoolEntry("copyright",false);
   d->gf->original = config->readBoolEntry("original",true);
