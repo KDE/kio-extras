@@ -1,5 +1,0 @@
-read-write wrapper ioslave for smb, it needs a working samba installation.
-Writing is supported with samba 2.2.4, for earlier versions you need the patch 
-from http://lisa-home.sourceforge.net/smbclientpatch.html
-
-Alex

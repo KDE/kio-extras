@@ -4,8 +4,6 @@ endif
 
 if include_kioslave_smb
 SMB_SUBDIR=smb
-else
-SMB_SUBDIR=smbro
 endif
 
 if include_devicesdir
