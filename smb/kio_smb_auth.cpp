@@ -83,7 +83,6 @@ void SMBSlave::auth_smbc_get_data(const char *server,const char *share,
 
     if( setAuthInfo(auth) )
     {
-        kdDebug(KIO_SMB) << "auth_smbc_get_data auth.m_workgroup="<<auth.m_workgroup<<", auth.m_domain="<<auth.m_domain<<", auth.m_username="<<auth.m_username<< endl;
         // Hand the data back to libsmbclient if it's been cached
         // looks like a bug in libsmbclient, so only 64 byte will be set
         // it crashes with wgmaxlen
@@ -107,8 +106,6 @@ bool SMBSlave::setAuthInfo(SMBAuthInfo &auth) {
     if (!m_current_url.getUser().isEmpty()) {
       QString domain = m_current_url.getUserDomain();
       QString user =  m_current_url.getUser();
-      kdDebug(KIO_SMB) << "setAuthInfo auth.m_workgroup="<<auth.m_workgroup<<", auth.m_username="<<auth.m_username<<", auth.m_domain ="<<auth.m_domain  << endl;
-      kdDebug(KIO_SMB) << "setAuthInfo domain="<<domain<<", user="<<user  << endl;
 
 
 
