@@ -57,3 +57,14 @@ Your standard get (read) only slave has three public methods:
   virtual void slotCopy( const char *_source, const char *_dest );
 	Used by such progams as Caitoo, instead of gettingFile you'll want
 	to use copyingFile().	
+
+IF YOU'RE STILL READING THIS AND ARE INTERESTED IN WORKING ON AN IOSLAVE,
+AS OF April 28th, THE FOLLOWING SLAVES ARE SEVERLY LACKING IN
+FUNCTIONALITY:
+
+	IMAP4 (Perhaps imap2 support should be added)
+	TAR
+	
+If those don't suit you perhaps you'd be interested in adding a slave for:
+
+	BZIP2
