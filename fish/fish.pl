@@ -53,30 +53,36 @@ MAIN: while (<STDIN>) {
 		my $ofn = unquote($1);
 		my $fn = unquote($2);
 		my ($size) = (stat($ofn))[7];
-		sysopen(FH,$ofn,O_RDONLY) || do { print "### 500 $!\n"; next; };
-		sysopen(OFH,$fn,O_WRONLY|O_CREAT|O_TRUNC) || do { close(FH); print "### 500 $!\n"; next; };
-		local $/ = undef;
-		my $buffer = '';
 		my $read = 1;
-		while ($size > 16384 && ($read = sysread(FH,$buffer,16384)) > 0) {
-			$size -= $read;
-			if (syswrite(OFH,$buffer,$read) != $read) {
-				close(FH); close(OFH);
-				print "### 500 $!\n";
-				next MAIN;
+		if (-l $ofn) {
+			my $dest = readlink($ofn);
+			unlink($fn);
+			symlink($dest,$fn) || $read = 0;
+		} else {
+			sysopen(FH,$ofn,O_RDONLY) || do { print "### 500 $!\n"; next; };
+			sysopen(OFH,$fn,O_WRONLY|O_CREAT|O_TRUNC) || do { close(FH); print "### 500 $!\n"; next; };
+			local $/ = undef;
+			my $buffer = '';
+			while ($size > 16384 && ($read = sysread(FH,$buffer,16384)) > 0) {
+				$size -= $read;
+				if (syswrite(OFH,$buffer,$read) != $read) {
+					close(FH); close(OFH);
+					print "### 500 $!\n";
+					next MAIN;
+				}
+				
 			}
-			
-		}
-		while ($size > 0 && ($read = sysread(FH,$buffer,$size)) > 0) {
-			$size -= $read;
-			if (syswrite(OFH,$buffer,$read) != $read) {
-				close(FH); close(OFH);
-				print "### 500 $!\n";
-				next MAIN;
+			while ($size > 0 && ($read = sysread(FH,$buffer,$size)) > 0) {
+				$size -= $read;
+				if (syswrite(OFH,$buffer,$read) != $read) {
+					close(FH); close(OFH);
+					print "### 500 $!\n";
+					next MAIN;
+				}
 			}
+			close(FH);
+			close(OFH);
 		}
-		close(FH);
-		close(OFH);
 		if ($read > 0) {
 			print "### 200\n";
 		} else {

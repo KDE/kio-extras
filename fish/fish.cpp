@@ -75,7 +75,7 @@
 #include "fish.h"
 #include "fishcode.h"
 
-#if 0
+#if 1
 #define myDebug(x) kdDebug() << __LINE__ << ": " x
 #define connected() do{myDebug( << "_______ emitting connected()" << endl); connected();}while(0)
 #define dataReq() do{myDebug( << "_______ emitting dataReq()" << endl); dataReq();}while(0)
@@ -178,7 +178,7 @@ const struct fishProtocol::fish_info fishProtocol::fishInfo[] = {
 	// Yes, this is "ibs=1", since dd "count" is input blocks.
 	// On network connections, read() may not fill the buffer
 	// completely (no more data immediately available), but dd
-	// does ignore that fact. Sorry, writes are slow.
+	// does ignore that fact by design. Sorry, writes are slow.
 	// OTOH, WRITE is not used by the current ioslave methods,
 	// we use APPEND.
 	{ ("WRITE"), 3,
@@ -186,7 +186,7 @@ const struct fishProtocol::fish_info fishProtocol::fishInfo[] = {
 		      "( dd ibs=32768 obs=%1 seek=1 of=%3 2>/dev/null || echo Error $?; cat >/dev/null; )"),
 	  0 },
 	{ ("COPY"), 2,
-	  ("cp -f %1 %2"),
+	  ("if [ -L %1 ]; then if cp -pdf %1 %2 2>/dev/null; then :; else LINK=\"`readlink %1`\"; ln -sf $LINK %2; fi; else cp -pf %1 %2; fi"),
 	  0 },
 	{ ("APPEND"), 2,
 	  (">> %2; echo '### 001'; ( [ %1 -gt 0 ] && dd ibs=1 obs=%1 count=%1 2> /dev/null; ) | ( cat >> %2 || echo Error $?; cat >/dev/null; )"),
@@ -250,7 +250,7 @@ void fishProtocol::openConnection() {
 
 static int open_pty_pair(int fd[2])
 {
-#if defined(HAVE_GETPT) && defined(HAVE_TERMIOS_H)
+#if defined(HAVE_TERMIOS_H) && defined(HAVE_GRANTPT)
 /** with kind regards to The GNU C Library
 Reference Manual for Version 2.2.x of the GNU C Library */
 	int master, slave;
@@ -261,7 +261,11 @@ Reference Manual for Version 2.2.x of the GNU C Library */
 	ti.c_cflag = CLOCAL|CREAD|CS8;
 	ti.c_cc[VMIN] = 1;
 
+#ifdef HAVE_GETPT
 	master = getpt();
+#else
+	master = open("/dev/ptmx", O_RDWR);
+#endif
 	if (master < 0) return 0;
 
 	if (grantpt(master) < 0 || unlockpt(master) < 0) goto close_master;
@@ -720,8 +724,8 @@ void fishProtocol::manageConnection(const QString &l) {
 						atom.m_long = 0;
 						atom.m_str = "inode/directory";
 						udsEntry.append(atom);
-						if (!typeAtom.m_long) typeAtom.m_long = S_IFDIR;
-					} else if (!typeAtom.m_long) {
+						typeAtom.m_long = S_IFDIR;
+					} else {
 						if (line[1] == '-') {
 							typeAtom.m_long = S_IFREG;
 						} else if (line[1] == 'l') {
@@ -839,7 +843,7 @@ void fishProtocol::manageConnection(const QString &l) {
 					atom.m_long = 0;
 					atom.m_str = line.mid(1);
 					udsEntry.append(atom);
-					typeAtom.m_long = S_IFLNK;
+					if (!typeAtom.m_long) typeAtom.m_long = S_IFLNK;
 					errorCount--;
 					break;
 				}
@@ -1119,7 +1123,7 @@ void fishProtocol::get(const KURL& u){
 
 /** put a file */
 void fishProtocol::put(const KURL& u, int permissions, bool overwrite, bool /*resume*/){
-	myDebug( << "@@@@@@@@@ put " << u.url() << " " << permissions << " " << overwrite << " " << resume << endl);
+	myDebug( << "@@@@@@@@@ put " << u.url() << " " << permissions << " " << overwrite << " " /* << resume */ << endl);
 	setHost(u.host(),u.port(),u.user(),u.pass());
 	url = u;
 	openConnection();
