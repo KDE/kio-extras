@@ -35,13 +35,6 @@
 #include <qmap.h>
 #include <qcstring.h>
 
-/*struct MasterInfo
-{
-   MasterInfo(const QString& name, const QString& ipAddress):nmbName(name),ip(ipAddress) {};
-   QString nmbName;
-   QString ip;
-};*/
-
 struct StatInfo
 {
    StatInfo():name(""),time(0),size(0),mode(0),isDir(false),isValid(false) {;};
@@ -70,9 +63,14 @@ class SmbProtocol : public KIO::SlaveBase
 
       virtual void mkdir( const KURL& url, int permissions );
       virtual void del( const KURL& url, bool isfile);
+
+      virtual void special( const QByteArray & );
+
    protected:
-      SmbReturnCode waitUntilStarted(ClientProcess *proc,const QString& password);
-      SmbReturnCode getShareInfo(ClientProcess* shareLister,const QString& password);
+      bool getAuth(KIO::AuthInfo& auth, const QString& server, const QString& wg, const QString& share, const QString& realm, const QString& user, bool& firstLoop);
+
+      SmbReturnCode waitUntilStarted(ClientProcess *proc,const QString& password, const char* prompt);
+      SmbReturnCode getShareInfo(ClientProcess* shareLister,const QString& password, bool listWgs=false);
       //bool waitUntilStarted(ClientProcess *proc,const QString& password);
       //bool getShareInfo(ClientProcess* shareLister,const QString& password);
       ClientProcess* getProcess(const QString& host, const QString& share);
@@ -106,13 +104,11 @@ class SmbProtocol : public KIO::SlaveBase
 
       //configuration data
       bool m_showHiddenShares;
+//      bool m_useDefaultAuth;
+//      bool m_storePasswords; //dangerous !
+
       QString m_password;
       QString m_user;
-      /*QString m_shareListingPassword;
-      QString m_shareListingUser;
-
-      QString m_shareAccessingPassword;
-      QString m_shareAccessingUser;*/
 
       QString m_defaultWorkgroup;
       QString m_currentWorkgroup;

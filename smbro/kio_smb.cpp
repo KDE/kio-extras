@@ -121,6 +121,43 @@ void SmbProtocol::getShareAndPath(const KURL& url, QString& share, QString& rest
    kdDebug(KIO_SMB)<<"getShareAndPath: path: -"<<path<<"-  share: -"<<share<<"-  rest: -"<<rest<<"-"<<endl;
 };
 
+QString my_unscramble(const QString& secret)
+{
+   QString plain="";
+   for (uint i=0; i<secret.length()/3; i++)
+   {
+      QChar qc1 = secret[i*3];
+      QChar qc2 = secret[i*3+1];
+      QChar qc3 = secret[i*3+2];
+      unsigned int a1 = qc1.latin1() - '0';
+      unsigned int a2 = qc2.latin1() - 'A';
+      unsigned int a3 = qc3.latin1() - '0';
+      unsigned int num = ((a1 & 0x3F) << 10) | ((a2& 0x1F) << 5) | (a3 & 0x1F);
+      plain[i] = QChar((uchar)((num - 17) ^ 173)); // restore
+   }
+   return plain;
+};
+
+QString my_scramble(const QString& plain)
+{
+   //taken from Nicola Brodu's smb ioslave
+   //it's not really secure, but at
+   //least better than storing the plain password
+   QString scrambled;
+   for (uint i=0; i<plain.length(); i++)
+   {
+      QChar c = plain[i];
+      unsigned int num = (c.unicode() ^ 173) + 17;
+      unsigned int a1 = (num & 0xFC00) >> 10;
+      unsigned int a2 = (num & 0x3E0) >> 5;
+      unsigned int a3 = (num & 0x1F);
+      scrambled += (char)(a1+'0');
+      scrambled += (char)(a2+'A');
+      scrambled += (char)(a3+'0');
+   }
+   return scrambled;
+};
+
 SmbProtocol::SmbProtocol (const QCString &pool, const QCString &app )
 :SlaveBase( "smb", pool, app )
 ,m_stdoutBuffer(0)
@@ -130,12 +167,9 @@ SmbProtocol::SmbProtocol (const QCString &pool, const QCString &app )
 ,m_ip("")
 ,m_processes(17,false)
 ,m_showHiddenShares(true)
+//,m_storePasswords(false)
 ,m_password("")
 ,m_user("")
-/*,m_shareListingPassword("")
-,m_shareListingUser("")
-,m_shareAccessingPassword("")
-,m_shareAccessingUser("")*/
 ,m_defaultWorkgroup("")
 ,m_currentWorkgroup("")
 {
@@ -154,28 +188,18 @@ SmbProtocol::SmbProtocol (const QCString &pool, const QCString &app )
    m_months.insert("Nov",11);
    m_months.insert("Dec",12);
 
-  KConfig *cfg = new KConfig("kioslaverc", true);
-  cfg->setGroup("Browser Settings/SMBro");
-  m_user=cfg->readEntry("User","");
-  m_defaultWorkgroup=cfg->readEntry("Workgroup","");
-  m_currentWorkgroup=m_defaultWorkgroup;
-  m_showHiddenShares=cfg->readBoolEntry("ShowHiddenShares",false);
+   KConfig *cfg = new KConfig("kioslaverc", true);
+   cfg->setGroup("Browser Settings/SMBro");
+   m_user=cfg->readEntry("User","");
+   m_defaultWorkgroup=cfg->readEntry("Workgroup","");
+   m_currentWorkgroup=m_defaultWorkgroup;
+   m_showHiddenShares=cfg->readBoolEntry("ShowHiddenShares",false);
+//   m_storePasswords=cfg->readBoolEntry("StorePasswords",false);  //default to false, it's dangerous !
 
-  // unscramble, taken from Nicola Brodu's smb ioslave
-  //not really secure, but better than storing the plain password
-  QString scrambled = cfg->readEntry( "Password","" );
-  m_password = "";
-  for (uint i=0; i<scrambled.length()/3; i++)
-  {
-     QChar qc1 = scrambled[i*3];
-     QChar qc2 = scrambled[i*3+1];
-     QChar qc3 = scrambled[i*3+2];
-     unsigned int a1 = qc1.latin1() - '0';
-     unsigned int a2 = qc2.latin1() - 'A';
-     unsigned int a3 = qc3.latin1() - '0';
-     unsigned int num = ((a1 & 0x3F) << 10) | ((a2& 0x1F) << 5) | (a3 & 0x1F);
-     m_password[i] = QChar((uchar)((num - 17) ^ 173)); // restore
-  }
+   // unscramble, taken from Nicola Brodu's smb ioslave
+   //not really secure, but better than storing the plain password
+   QString scrambled = cfg->readEntry( "Password","" );
+   m_password=my_unscramble(scrambled);
 };
 
 SmbProtocol::~SmbProtocol()
@@ -291,7 +315,7 @@ bool SmbProtocol::stopAfterError(const KURL& url, bool notSureWhetherErrorOccure
    return true;
 };
 
-SmbProtocol::SmbReturnCode SmbProtocol::waitUntilStarted(ClientProcess *proc, const QString& password)
+SmbProtocol::SmbReturnCode SmbProtocol::waitUntilStarted(ClientProcess *proc, const QString& password, const char* prompt)
 {
    //not ok
    if (proc==0) return SMB_ERROR;
@@ -312,6 +336,8 @@ SmbProtocol::SmbReturnCode SmbProtocol::waitUntilStarted(ClientProcess *proc, co
       if (exitStatus!=-1)
       {
          kdDebug(KIO_SMB)<<"Smb::waitUntilStarted() smbclient exited with exitcode "<<exitStatus<<endl;
+         if ((exitStatus==0) && (prompt==0)) //smbmount
+            return SMB_OK;
          if (alreadyEnteredPassword)
             return SMB_WRONGPASSWORD;
          return SMB_ERROR;
@@ -340,7 +366,7 @@ SmbProtocol::SmbReturnCode SmbProtocol::waitUntilStarted(ClientProcess *proc, co
                alreadyEnteredPassword=true;
             }
             //or whether it prints the prompt :-)
-            else if (strstr(m_stdoutBuffer+m_stdoutSize-12,"smb: \\>")!=0)
+            else if ((prompt!=0) && (strstr(m_stdoutBuffer+m_stdoutSize-12,"smb: \\>")!=0))
             {
                proc->startingFinished=true;
                return SMB_OK;
@@ -350,7 +376,7 @@ SmbProtocol::SmbReturnCode SmbProtocol::waitUntilStarted(ClientProcess *proc, co
    };
 };
 
-SmbProtocol::SmbReturnCode SmbProtocol::getShareInfo(ClientProcess* shareLister,const QString& password)
+SmbProtocol::SmbReturnCode SmbProtocol::getShareInfo(ClientProcess* shareLister,const QString& password, bool listWgs)
 {
    if (shareLister==0) return SMB_ERROR;
 
@@ -376,9 +402,11 @@ SmbProtocol::SmbReturnCode SmbProtocol::getShareInfo(ClientProcess* shareLister,
          {
             kdDebug(KIO_SMB)<<"::getShareInfo() exitStaus==0"<<endl;
             if (m_stdoutBuffer==0) return SMB_OK;
-            if (strstr(m_stdoutBuffer,"ERRDOS - ERRnoaccess")==0)
+            if ((strstr(m_stdoutBuffer,"ERRDOS - ERRnoaccess")!=0) ||
+                ((strstr(m_stdoutBuffer,"NT_STATUS_ACCESS_DENIED")!=0) && (listWgs==false)))
+               return SMB_WRONGPASSWORD;
+            else
                return SMB_OK; //probably
-            else return SMB_WRONGPASSWORD;
          }
          else if (alreadyEnteredPassword)
          {
@@ -424,6 +452,39 @@ SmbProtocol::SmbReturnCode SmbProtocol::getShareInfo(ClientProcess* shareLister,
    };
 };
 
+bool SmbProtocol::getAuth(AuthInfo& auth, const QString& server, const QString& wg, const QString& share, const QString& realm, const QString& user, bool& firstLoop)
+{
+   auth.url=KURL("smb://"+server.lower());
+   auth.username = user;
+   auth.keepPassword=true;
+   auth.realmValue=realm.lower();
+
+   QString c, cl;
+   cl=i18n("Server");
+   c=server;
+   if (!wg.isEmpty())
+   {
+      cl+="."+i18n("Workgroup");
+      c+="."+wg;
+   };
+   if (!share.isEmpty())
+   {
+      cl+="/"+i18n("Share");
+      c+="/"+share;
+   };
+   auth.comment=c;
+   auth.commentLabel=cl;
+   if (firstLoop)
+   {
+      firstLoop=false;
+      if (checkCachedAuthentication(auth))
+         return true;
+   };
+   if (openPassDlg(auth))
+      return true;
+   return false;
+};
+
 void SmbProtocol::listShares()
 {
    kdDebug(KIO_SMB)<<"Smb::listShares() "<<endl;
@@ -446,6 +507,8 @@ void SmbProtocol::listShares()
    QString user(m_user);
 
    SmbReturnCode result(SMB_NOTHING);
+   bool firstLoop=true;
+   AuthInfo ai;
    //repeat until user/password is ok or the user cancels
    //while (!getShareInfo(proc,password))
    while (result=getShareInfo(proc,password), result==SMB_WRONGPASSWORD)
@@ -455,9 +518,9 @@ void SmbProtocol::listShares()
       delete proc;
       proc=0;
       KIO::AuthInfo authInfo;
-      authInfo.username = user;
-      if (openPassDlg(authInfo))
+      if (getAuth(authInfo,QString(m_nmbName),m_currentWorkgroup,"",user+"_"+QString(m_nmbName),user,firstLoop))
       {
+         ai=authInfo;
          user = authInfo.username;
          password = authInfo.password;
          proc=new ClientProcess();
@@ -477,6 +540,48 @@ void SmbProtocol::listShares()
          };
       }
       else break;
+/*    authInfo.url=KURL("smb://"+m_nmbName);
+      authInfo.username = user;
+      authInfo.keepPassword=true;
+      authInfo.realmValue=user+"_"+QString(m_nmbName);
+      if (m_currentWorkgroup.isEmpty())
+      {
+         authInfo.commentLabel=i18n("Server:");
+         authInfo.comment=QString(m_nmbName);
+      }
+      else
+      {
+         authInfo.commentLabel=i18n("Server, Workgroup:");
+         authInfo.comment=QString(m_nmbName)+", "+m_currentWorkgroup;
+      };
+      bool hasAuth=false;
+      if (firstLoop)
+      {
+         hasAuth=checkCachedAuthentication(authInfo);
+         firstLoop=false;
+      };
+      if ((hasAuth) || (openPassDlg(authInfo)))
+      {
+         ai=authInfo;
+         user = authInfo.username;
+         password = authInfo.password;
+         proc=new ClientProcess();
+         QCStringList tmpArgs;
+         tmpArgs<<QCString("-L")+m_nmbName;
+         if (!user.isEmpty())
+            tmpArgs<<QCString("-U")+user.local8Bit();
+         if (!m_ip.isEmpty())
+            args<<QCString("-I")+m_ip;
+         if (!m_currentWorkgroup.isEmpty())
+            tmpArgs<<QCString("-W")+m_currentWorkgroup.local8Bit();
+         if (!proc->start("smbclient",tmpArgs))
+         {
+            error( KIO::ERR_CANNOT_LAUNCH_PROCESS, "smbclient"+i18n("\nMake sure that the samba package is installed properly on your system."));
+            delete proc;
+            return;
+         };
+      }
+      else break;*/
    };
    //here smbclient has already exited
    if (proc!=0)
@@ -502,6 +607,9 @@ void SmbProtocol::listShares()
    if (stopAfterError(url,true))
       return;
 
+   //if we get here, we had success
+   if (!ai.username.isEmpty()) //we used the AuthInfo
+      cacheAuthentication(ai);
 
    QString outputString = QString::fromLocal8Bit(m_stdoutBuffer);
    QTextIStream output(&outputString);
@@ -1476,17 +1584,23 @@ bool SmbProtocol::searchWorkgroups()
    QString user(m_user);
 
    SmbReturnCode result(SMB_NOTHING);
+   AuthInfo ai;
+   bool firstLoop=true;
    //repeat until user/password is ok or the user cancels
-   while (result=getShareInfo(proc,password), result==SMB_WRONGPASSWORD)
+   while (result=getShareInfo(proc,password,true), result==SMB_WRONGPASSWORD)
    {
       kdDebug(KIO_SMB)<<"Smb::listWorkgroups() failed with password"<<endl;
       //it failed with the default password
       delete proc;
       proc=0;
+
       KIO::AuthInfo authInfo;
+      if (getAuth(authInfo,QString(m_nmbName),m_currentWorkgroup,"",user+"_"+QString(m_nmbName)+"_ListWgs",user,firstLoop))
+/*      KIO::AuthInfo authInfo;
       authInfo.username = user;
-      if (openPassDlg(authInfo))
+      if (openPassDlg(authInfo))*/
       {
+         ai=authInfo;
          user = authInfo.username;
          password = authInfo.password;
          proc=new ClientProcess();
@@ -1529,6 +1643,10 @@ bool SmbProtocol::searchWorkgroups()
 
    if (stopAfterError(url,true))
       return false;
+
+   //if we get here, we had success
+   if (!ai.username.isEmpty()) //we used the AuthInfo
+      cacheAuthentication(ai);
 
    QString outputString = QString::fromLocal8Bit(m_stdoutBuffer);
    QTextIStream output(&outputString);
@@ -1659,6 +1777,8 @@ void SmbProtocol::listHosts()
    QString password(m_password);
    QString user(m_user);
 
+   AuthInfo ai;
+   bool firstLoop=true;
    SmbReturnCode result(SMB_NOTHING);
    //repeat until user/password is ok or the user cancels
    while (result=getShareInfo(proc,password), result==SMB_WRONGPASSWORD)
@@ -1668,9 +1788,12 @@ void SmbProtocol::listHosts()
       delete proc;
       proc=0;
       KIO::AuthInfo authInfo;
+      if (getAuth(authInfo,QString(m_nmbName),m_currentWorkgroup,"",user+QString(m_nmbName)+"_ListHosts",user,firstLoop))
+/*      KIO::AuthInfo authInfo;
       authInfo.username = user;
-      if (openPassDlg(authInfo))
+      if (openPassDlg(authInfo))*/
       {
+         ai=authInfo;
          user = authInfo.username;
          password = authInfo.password;
          proc=new ClientProcess();
@@ -1713,6 +1836,10 @@ void SmbProtocol::listHosts()
 
    if (stopAfterError(url,true))
       return;
+
+   //if we get here, we had success
+   if (!ai.username.isEmpty()) //we used the AuthInfo
+      cacheAuthentication(ai);
 
    QString outputString = QString::fromLocal8Bit(m_stdoutBuffer);
    QTextIStream output(&outputString);
@@ -1938,20 +2065,24 @@ ClientProcess* SmbProtocol::getProcess(const QString& host, const QString& share
    QString user(m_user);
 
    SmbReturnCode result(SMB_NOTHING);
+   AuthInfo ai;
+   bool firstLoop=true;
    //repeat until user/password is ok or the user cancels
-   //while (!waitUntilStarted(proc,password))
    //although I hate stuff like the comma-operator
    //IMHO it is still better than while((result=waitUntilStarted())==SMB:WRONGPASSWORD)
-   while (result=waitUntilStarted(proc,password), result==SMB_WRONGPASSWORD)
+   while (result=waitUntilStarted(proc,password,"smb: \\>"), result==SMB_WRONGPASSWORD)
    {
       kdDebug(KIO_SMB)<<"Smb::getProcess: failed with password"<<endl;
       //it failed with the default password
       delete proc;
       proc=0;
       KIO::AuthInfo authInfo;
+      if (getAuth(authInfo,QString(m_nmbName),m_currentWorkgroup,share,user+"_"+share+QString(m_nmbName),user,firstLoop))
+/*      KIO::AuthInfo authInfo;
       authInfo.username = user;
-      if (openPassDlg(authInfo))
+      if (openPassDlg(authInfo))*/
       {
+         ai=authInfo;
          user = authInfo.username;
          password = authInfo.password;
          proc=new ClientProcess();
@@ -1986,5 +2117,175 @@ ClientProcess* SmbProtocol::getProcess(const QString& host, const QString& share
    //finally we got it :-)
    kdDebug(KIO_SMB)<<"Smb::getProcess: succeeded"<<endl;
    m_processes.insert(key,proc);
+   //if we get here, we had success
+   if (!ai.username.isEmpty()) //we used the AuthInfo
+      cacheAuthentication(ai);
    return proc;
 };
+
+
+void SmbProtocol::special( const QByteArray & data)
+{
+   kdDebug(KIO_SMB)<<"Smb::special()"<<endl;
+   int tmp;
+   QDataStream stream(data, IO_ReadOnly);
+   stream >> tmp;
+   //mounting and umounting are both blocking, "guarded" by a SIGALARM in the future
+   switch (tmp)
+   {
+   case 1:
+      {
+         QString remotePath, mountPoint, user, password;
+         stream >> remotePath >> mountPoint >> user >> password;
+         QStringList sl=QStringList::split("/",remotePath);
+         QString share,host;
+         if (sl.count()>=2)
+         {
+            host=(*sl.at(0)).mid(2);
+            share=(*sl.at(1));
+            kdDebug(KIO_SMB)<<"special() host -"<<host.latin1()<<"- share -"<<share.latin1()<<"-"<<endl;
+         };
+
+         password=m_password;
+         user=m_user;
+         ClientProcess *proc=new ClientProcess();
+         QCStringList args;
+         args<<remotePath.local8Bit()<<mountPoint.local8Bit();
+         kdDebug(KIO_SMB)<<"Smb::special() rem: -"<<remotePath.local8Bit()<<"- mount: -"<<mountPoint.local8Bit()<<"-"<<endl;
+
+         QCString opts="-o";
+         if (!user.isEmpty())
+         {
+            opts+="username=";
+            opts+=user.local8Bit();
+            kdDebug(KIO_SMB)<<"Smb::special() user -"<<user.local8Bit()<<"-"<<endl;
+         };
+         if (!password.isEmpty())
+         {
+            opts+=",password=";
+            opts+=password.local8Bit();
+         };
+         if (opts!="-o")
+         {
+            args<<opts;
+            kdDebug(KIO_SMB)<<"Smb::special() adding opts"<<endl;
+         };
+         kdDebug(KIO_SMB)<<"Smb::special() opts-"<<opts<<"-"<<endl;
+         if (!proc->start("smbmount",args))
+         {
+            error( KIO::ERR_CANNOT_LAUNCH_PROCESS, "smbmount"+i18n("\nMake sure that the samba package is installed properly on your system."));
+            delete proc;
+            return;
+         };
+
+         bool firstLoop=true;
+         AuthInfo ai;
+         SmbReturnCode result(SMB_NOTHING);
+         //repeat until user/password is ok or the user cancels
+         //although I hate stuff like the comma-operator
+         //IMHO it is still better than while((result=waitUntilStarted())==SMB:WRONGPASSWORD)
+         while (result=waitUntilStarted(proc,password,0), result==SMB_WRONGPASSWORD)
+         {
+            kdDebug(KIO_SMB)<<"Smb::getProcess: failed with password"<<endl;
+            //it failed with the default password
+            delete proc;
+            proc=0;
+            KIO::AuthInfo authInfo;
+            if (getAuth(authInfo,host,"",share,user+"_"+share+host,user,firstLoop))
+/*            KIO::AuthInfo authInfo;
+            authInfo.username = user;
+            if (openPassDlg(authInfo))*/
+            {
+               ai=authInfo;
+               user = authInfo.username;
+               password = authInfo.password;
+
+               proc=new ClientProcess();
+               QCStringList tmpArgs;
+               tmpArgs<<remotePath.local8Bit()<<mountPoint.local8Bit();
+               kdDebug(KIO_SMB)<<"Smb::special() rem: -"<<remotePath.local8Bit()<<"- mount: -"<<mountPoint.local8Bit()<<"-"<<endl;
+
+               QCString opts="-o";
+               if (!user.isEmpty())
+               {
+                  opts+="username=";
+                  opts+=user.local8Bit();
+                  kdDebug(KIO_SMB)<<"Smb::special() user -"<<user.local8Bit()<<"-"<<endl;
+               };
+               if (!password.isEmpty())
+               {
+                  opts+=",password=";
+                  opts+=password.local8Bit();
+               };
+               if (opts!="-o")
+               {
+                  tmpArgs<<opts;
+                  kdDebug(KIO_SMB)<<"Smb::special() adding opts"<<endl;
+               };
+               if (!proc->start("smbmount",tmpArgs))
+               {
+                  error( KIO::ERR_CANNOT_LAUNCH_PROCESS, "smbmount"+i18n("\nMake sure that the samba package is installed properly on your system."));
+                  delete proc;
+                  return;
+               };
+            }
+            else
+            {
+               //we don't want to care in the calling code
+               error(ERR_USER_CANCELED,"");
+               return;
+            };
+         };
+         if (result==SMB_ERROR)
+         {
+            error( KIO::ERR_CANNOT_LAUNCH_PROCESS, "wrlg sudgäajäl jtlw4jrt");
+            return;
+         };
+         delete proc;
+         //if we get here, we had success
+         if (!ai.username.isEmpty())
+            cacheAuthentication(ai);
+      }
+      break;
+   case 2:
+      {
+         QString mountPoint;
+         stream >> mountPoint;
+         ClientProcess proc;
+         QCStringList args;
+         args<<mountPoint.local8Bit();
+         if (!proc.start("smbumount",args))
+         {
+            error( KIO::ERR_CANNOT_LAUNCH_PROCESS, "smbumount"+i18n("\nMake sure that the samba package is installed properly on your system."));
+            return;
+         };
+         clearBuffer();
+         while (1)  //until smbumount exits
+         {
+            bool stdoutEvent;
+            proc.select(1,0,&stdoutEvent);
+            int exitStatus=proc.exited();
+            if (exitStatus!=-1)
+            {
+               kdDebug(KIO_SMB)<<"Smb::waitUntilStarted() smbclient exited with exitcode "<<exitStatus<<endl;
+               if (exitStatus!=0)
+               {
+                  if (m_stdoutSize>0)
+                     kdDebug(KIO_SMB)<<"Smb::waitUntilStarted(): received: -"<<m_stdoutBuffer<<"-"<<endl;
+                  error( KIO::ERR_CANNOT_LAUNCH_PROCESS, "smbumount");
+               }
+               else
+                  finished();
+               return;
+            };
+            if (stdoutEvent)
+               readOutput(proc.fd());
+         };
+      }
+      break;
+   default:
+      break;
+   }
+   finished();
+};
+
