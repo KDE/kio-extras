@@ -251,7 +251,7 @@ void kio_sftpProtocol::get(const KURL& url ) {
          * up properly.
          */
         if( wasKilled() ) {
-            error(ERR_UNKNOWN, i18n("sftp slave unexpectedly killed"));
+            error(ERR_UNKNOWN, i18n("SFTP slave unexpectedly killed"));
             return;
         }
     }
@@ -301,7 +301,7 @@ void kio_sftpProtocol::openConnection(){
     if(mConnected) return;
 
     infoMessage(
-   i18n("Opening sftp connection to host <b>%1:%2</b>").arg(mHost).arg(mPort));
+   i18n("Opening SFTP connection to host <b>%1:%2</b>").arg(mHost).arg(mPort));
 
     if( mHost.isEmpty() ) {
         kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::openConnection(): "
@@ -317,7 +317,7 @@ void kio_sftpProtocol::openConnection(){
     info.url.setProtocol("sftp");
     info.url.setHost(mHost);
     info.url.setPort(mPort);
-    info.caption = i18n("Sftp Login");
+    info.caption = i18n("SFTP Login");
     info.comment = "sftp://"+mHost;
     info.commentLabel = i18n("site:");
     info.username = mUsername;
@@ -821,7 +821,7 @@ void kio_sftpProtocol::put ( const KURL& url, int permissions, bool overwrite, b
          * up properly.
          */
         if( wasKilled() ) {
-            error(ERR_UNKNOWN, i18n("sftp slave unexpectedly killed"));
+            error(ERR_UNKNOWN, i18n("SFTP slave unexpectedly killed"));
             return;
         }
     }

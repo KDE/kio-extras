@@ -898,8 +898,8 @@ bool KSshProcess::connect() {
                 mErrorMsg = i18n("A new host key was detected and "
                     "strict host key checking is enabled. Therefore, "
                     "authentication to %1 failed. Manually update the host "
-                    "key to the known hosts file or contact your "
-                    "adminstrator").arg(mHost);
+                    "key in the \"known hosts\" file or contact your "
+                    "adminstrator.").arg(mHost);
                 mConnectState = STATE_FATAL;
             }
             else if( line.contains(continuePrompt[mVersion]) ) {
@@ -925,11 +925,11 @@ bool KSshProcess::connect() {
         // message to reflect this, return false and hope for caller response.
         case STATE_NEW_KEY_CONTINUE:
             mError = ERR_NEW_HOST_KEY;
-            mErrorMsg = i18n("Host key is not in database of known "
-                "host keys.  This could mean that your connection is being "
+            mErrorMsg = i18n("The host key is not in the database of known "
+                "host keys. This could mean that your connection is being "
                 "intercepted by a third party. Terminate your connection or "
                 "verify the host key fingerprint with your system "
-                "administrator.\n Key fingerprint is %1").arg(mKeyFingerprint);
+                "administrator.\nThe key fingerprint is %1.").arg(mKeyFingerprint);
             mConnectState = STATE_SEND_CONTINUE;
             return false;
 
@@ -955,8 +955,8 @@ bool KSshProcess::connect() {
                     "detected and "
                     "strict host key checking is enabled. Therefore, "
                     "authentication to %1 failed. Manually add the host "
-                    "key to the known hosts file or contact your "
-                    "adminstrator").arg(mHost);
+                    "key to the \"known hosts\" file or contact your "
+                    "adminstrator.").arg(mHost);
                 mConnectState = STATE_FATAL;
             }
             else if( line.contains(continuePrompt[mVersion]) ) {
@@ -978,11 +978,11 @@ bool KSshProcess::connect() {
         case STATE_DIFF_KEY_CONTINUE:
             mError = ERR_DIFF_HOST_KEY;
             mErrorMsg = i18n("The host key sent by the server "
-                "is different from the host key in the known hosts file. "
+                "is different from the host key in the \"known hosts\" file. "
                 "This could mean a third party is intercepting your "
                 "connection. Terminate your connection or verify the host "
                 "key fingerprint with your system administrator.\n"
-                "Key fingerprint is %1").arg(mKeyFingerprint);
+                "The key fingerprint is %1.").arg(mKeyFingerprint);
             mConnectState = STATE_SEND_CONTINUE;
             return false;
 
