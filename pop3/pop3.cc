@@ -203,7 +203,8 @@ bool POP3Protocol::getResponse (char *r_buf, unsigned int r_len, const char *cmd
 		if (r_buf && r_len) {
 			memcpy(r_buf, buf, QMIN(r_len,recv_len));
 		}
-		m_sError = i18n("Invalid response from server:\n   \"%1\"").arg(buf);
+		if (!buf || !*buf) m_sError = i18n("The server terminated the connection.");
+		else m_sError = i18n("Invalid response from server:\n   \"%1\"").arg(buf);
 		if (buf) free(buf);
 		return false;
 	}
@@ -271,7 +272,7 @@ bool POP3Protocol::pop3_open(const KURL &url)
 		// If the server doesn't respond with a greeting
 		if (!getResponse(greeting_buf, GREETING_BUF_LEN, "")) {
 			m_sError = i18n("Could not login to %1.\n\n").arg(m_sServer) +
-			i18n("Server does not respond properly:\n%1\n").arg(greeting_buf);
+		((!greeting_buf || !*greeting_buf) ? i18n("The server terminated the connection immediately.") : i18n("Server does not respond properly:\n%1\n").arg(greeting_buf));
 			error( ERR_COULD_NOT_LOGIN, m_sError );
 			free(greeting_buf);
 			return false;	// we've got major problems, and possibly the
