@@ -89,17 +89,60 @@ EOF
 }
 
 #---------------------------------------------------------
+#                     Redirect
+#---------------------------------------------------------
+# Since we can't do a kioslave redirection from here, we resort to an HTML
+# redirection.
+#---------------------------------------------------------
+
+sub Redirect {
+	my ($File,$Tag) = @_;
+	print STDERR "info: Redirecting to $File/$Tag\n";
+	# I will fix this tomorrow. Today it is too late (0h32 in Vienna).
+	print <<EOF;
+	<html><body><p><a href="info:$File/$Tag">Click here</a></body></html>
+EOF
+	
+	exit 0;
+}
+
+#---------------------------------------------------------
 #                     FileNotFound
 #---------------------------------------------------------
 # If the file is not found and the node is '', try to go through
 # dir entries.
 # This deals with cases like info:ls should open "coreutils/ls invocation"
-#
-# Since we can't do a kioslave redirection from here, we resort to an HTML
-# redirection.
 #---------------------------------------------------------
 sub FileNotFound {
 	my ($FileName,$NodeName) = @_;
+	print STDERR "info: Not found $FileName, $NodeName\n";
+	if ($NodeName ne 'Top' or $FileName eq 'dir') { &DieFileNotFound($FileName) }
+	# Try to find it in dir
+
+
+	my $DirFileName = &FindFile('dir');
+	print STDERR "info: Going on, reading $DirFileName";
+	if ($DirFileName =~ m/.info.bz2$/ ) {
+		open DIR, "bzcat $DirFileName|";
+	}
+	elsif ($DirFileName =~ m/.info.gz$/ ) {
+		open DIR, "gzip -dc $DirFileName|";
+	}
+	else {
+		open DIR, $DirFileName;
+	}
+	my $looking = 1;
+	while (<DIR>) {
+		if ($looking and not /\* Menu/) { next }
+		$looking = 0;
+		my @item = &ParseMenuItem($_,'dir');
+		if (!defined(@item)) { print STDERR "\ninfo: -> undefined!"; next }
+    		my ($MenuLinkTag, $MenuLinkFile, $MenuLinkRef, $MenuLinkText) = @item;
+		if ($MenuLinkRef eq $FileName) {
+			&Redirect($MenuLinkFile, $MenuLinkTag);
+			exit 0;
+		}
+	}
 	&DieFileNotFound($FileName);
 }
 
@@ -327,7 +370,7 @@ sub ParseMenuItem {
 		$MenuLinkText = $Line;
 	    }
 	}
-    } else {		
+    } else {
 	return undef;
     }
     $MenuLinkTag = &Escape($MenuLinkTag); # -- escape special chars
@@ -344,7 +387,7 @@ sub MenuItem2HTML {
     my ($Line, $BaseInfoFile) = @_;
     my @parse_results = &ParseMenuItem($Line, $BaseInfoFile);
     if (!defined (@parse_results)) { return $Line; }
-    my ($MenuLinkTag, $MenuLinkFile, $MenuLinkRef, $MenuLinkText) = &ParseMenuItem(@_);
+    my ($MenuLinkTag, $MenuLinkFile, $MenuLinkRef, $MenuLinkText) = @parse_results;
     #-- produce a HTML line
     return "<tr class=\"infomenutr\"><td class=\"infomenutd\" width=\"30%\"><ul><li><a href=\"info:/$MenuLinkFile/$MenuLinkTag\">$MenuLinkRef</a></ul></td><td class=\"infomenutd\">$MenuLinkText";
 }
