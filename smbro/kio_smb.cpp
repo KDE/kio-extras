@@ -364,11 +364,13 @@ SmbProtocol::SmbReturnCode SmbProtocol::waitUntilStarted(ClientProcess *proc, co
       if (stdoutEvent)
       {
          readOutput(proc->fd());
+//         kdDebug(KIO_SMB)<<"Smb::waitUntilStarted() read -"<<m_stdoutBuffer<<"-"<<endl;
          //don't search the whole buffer, only the last 12 bytes
-         if (m_stdoutSize>12)
+//         kdDebug(KIO_SMB)<<"Smb::waitUntilStarted() stdoutSize: "<<m_stdoutSize<<endl;
+         if (m_stdoutSize>=10)
          {
             //check whether it asks for the password
-            if (strstr(m_stdoutBuffer+m_stdoutSize-12,"\nPassword:")!=0)
+            if (strstr(m_stdoutBuffer+m_stdoutSize-10,"Password:")!=0)
             {
                kdDebug(KIO_SMB)<<"Smb::waitUntilStarted(): received: -"<<m_stdoutBuffer<<"-"<<endl;
                if (password.isEmpty())
