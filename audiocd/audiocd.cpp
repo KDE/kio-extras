@@ -539,7 +539,7 @@ AudioCDProtocol::initRequest(const KURL & url)
     (
      &d->vc,
      const_cast<char *>("kde-encoder"),
-     const_cast<char *>(QString::fromUtf8("kio_audiocd").utf8().data())
+     "kio_audiocd"
     );
 
 #endif
