@@ -256,7 +256,13 @@ void HALBackend::setVolumeProperties(Medium* medium)
 {
 	kdDebug() << "HALBackend::setVolumeProperties for " << medium->id() << endl;
 
-	HalVolume* halVolume = hal_volume_from_udi(m_halContext, medium->id().ascii());
+	const char* udi = medium->id().ascii();
+	/* Check if the device still exists */
+	if (!hal_device_exists(m_halContext, udi))
+			return;
+
+	/* Get device information from libhal-storage */
+	HalVolume* halVolume = hal_volume_from_udi(m_halContext, udi);
 	QString driveUdi = hal_volume_get_storage_device_udi(halVolume);
 	HalDrive*  halDrive  = hal_drive_from_udi(m_halContext, driveUdi.ascii());
 
@@ -324,7 +330,12 @@ void HALBackend::setFloppyProperties(Medium* medium)
 {
 	kdDebug() << "HALBackend::setFloppyProperties for " << medium->id() << endl;
 
-	HalDrive*  halDrive  = hal_drive_from_udi(m_halContext, medium->id().ascii());
+	const char* udi = medium->id().ascii();
+	/* Check if the device still exists */
+	if (!hal_device_exists(m_halContext, udi))
+		return;
+
+	HalDrive*  halDrive  = hal_drive_from_udi(m_halContext, udi);
 	int numVolumes;
 	char** volumes = hal_drive_find_all_volumes(m_halContext, halDrive, &numVolumes);
 	HalVolume* halVolume = NULL;
@@ -369,6 +380,11 @@ void HALBackend::setFloppyProperties(Medium* medium)
 void HALBackend::setCameraProperties(Medium* medium)
 {
 	kdDebug() << "HALBackend::setCameraProperties for " << medium->id() << endl;
+
+	const char* udi = medium->id().ascii();
+	/* Check if the device still exists */
+	if (!hal_device_exists(m_halContext, udi))
+		return;
 
 	/** @todo find name */
 	medium->setName("camera");
