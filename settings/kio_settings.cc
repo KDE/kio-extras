@@ -34,7 +34,8 @@
    class SettingsProtocol : public KIO::SlaveBase
    {
    public:
-      SettingsProtocol( const QCString &pool, const QCString &app);
+      enum RunMode { SettingsMode, ProgramsMode };
+      SettingsProtocol(const QCString &protocol, const QCString &pool, const QCString &app);
       virtual ~SettingsProtocol();
 #if 0
       virtual void get( const KURL& url );
@@ -44,6 +45,7 @@
       void listRoot();
    private:
 	DCOPClient *m_dcopClient;
+	RunMode m_runMode;
   };
 
   extern "C" {
@@ -51,7 +53,7 @@
       {
           kdDebug()<<"kdemain for devices"<<endl;
           KInstance instance( "kio_devices" );
-          SettingsProtocol slave(argv[2], argv[3]);
+          SettingsProtocol slave(argv[1], argv[2], argv[3]);
           slave.dispatchLoop();
           return 0;
       }
@@ -62,8 +64,12 @@
 static void createFileEntry(KIO::UDSEntry& entry, const QString& name, const QString& url, const QString& mime,const QString& iconName);
 static void createDirEntry(KIO::UDSEntry& entry, const QString& name, const QString& url, const QString& mime,const QString& iconName);
 
-SettingsProtocol::SettingsProtocol( const QCString &pool, const QCString &app): SlaveBase( "devices", pool, app )
+SettingsProtocol::SettingsProtocol( const QCString &protocol, const QCString &pool, const QCString &app): SlaveBase( protocol, pool, app )
 {
+	// Adjusts which part of the K Menu to virtualize.
+	if( protocol == "programs" ) m_runMode = ProgramsMode;
+	else m_runMode = SettingsMode;
+
 	m_dcopClient=new DCOPClient();
 	if (!m_dcopClient->attach())
 	{
@@ -84,31 +90,63 @@ void SettingsProtocol::stat(const KURL& url)
 	QString mp;
 
 	QString relPath=url.path();
-	if (!relPath.startsWith("/Settings")) relPath="Settings"+relPath;
-	else relPath=relPath.right(relPath.length()-1);
+
+	switch( m_runMode )
+	{
+		case( SettingsMode ):
+			if (!relPath.startsWith("/Settings")) relPath="Settings"+relPath;
+			else relPath=relPath.right(relPath.length()-1);
+			break;
+
+		case( ProgramsMode ):
+			relPath=relPath.right(relPath.length()-1);
+			break;
+	}
 
 	kdDebug()<<"SettingsProtocol: stat for:"<<relPath<<endl;
 	KServiceGroup::Ptr grp = KServiceGroup::group(relPath);	
 
-	createDirEntry(entry, i18n("Settings"), url.url(), "inode/directory",grp->icon());
+	switch( m_runMode )
+	{
+		case( SettingsMode ):
+			createDirEntry(entry, i18n("Settings"), url.url(), "inode/directory",grp->icon());
+			break;
+
+		case( ProgramsMode ):
+			createDirEntry(entry, i18n("Programs"), url.url(), "inode/directory",grp->icon());
+			break;
+	}
+
 	statEntry(entry);
 	finished();
 	return;
+
 #if 0
 	switch (path.count())
 	{
-		case 0:
-		        createDirEntry(entry, i18n("Settings"), "settings:/", "inode/directory");
+		case( 0 ):
+			switch( m_runMode )
+			{
+				case( SettingsMode ):
+			        	createDirEntry(entry, i18n("Settings"), "settings:/", "inode/directory");
+					break;
+
+				case( ProgramsMode ):
+			        	createDirEntry(entry, i18n("Programs"), "programs:/", "inode/directory");
+					break;
+			}
+
 		        statEntry(entry);
 		        finished();
 			break;
+
 		default:
 
                 QStringList info=deviceInfo(url.fileName());
 
                 if (info.empty())
                 {
-                        error(KIO::ERR_SLAVE_DEFINED,i18n("Unknown device"));
+                        error(KIO::ERR_SLAVE_DEFINED,i18n("Unknown application"));
                         return;
                 }
 
@@ -146,10 +184,7 @@ void SettingsProtocol::stat(const KURL& url)
         		        	                	finished();
 							}
 							else
-								error(KIO::ERR_SLAVE_DEFINED,i18n("Device not accessible"));
-
-
-//	                                                error(KIO::ERR_SLAVE_DEFINED,i18n("Device not mounted"));
+								error(KIO::ERR_SLAVE_DEFINED,i18n("Program not accessible"));
 	                                        }
 	                                        return;
 					}
@@ -212,8 +247,17 @@ void SettingsProtocol::listDir(const KURL& url)
 		    count++;
 		    kdDebug()<<"Settings Protocol: adding group entry"<<endl;
                     QString relPath=g->relPath();
-		    relPath=relPath.right(relPath.length()-9); //Settings/ ==9
-		    createDirEntry(entry, groupCaption, "settings:/"+relPath, "inode/directory",g->icon());
+
+		    switch( m_runMode )
+		    {
+			case( SettingsMode ):
+			    relPath=relPath.right(relPath.length()-9); //Settings/ ==9
+			    createDirEntry(entry, groupCaption, "settings:/"+relPath, "inode/directory",g->icon());
+			    break;
+			case( ProgramsMode ):
+			    createDirEntry(entry, groupCaption, "programs:/"+relPath, "inode/directory",g->icon());
+			    break;
+		    }
 	            listEntry(entry, false);
 	        }
         	else {
