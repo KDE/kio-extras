@@ -39,6 +39,7 @@ extern "C"
 
 bool ImageCreator::create(const QString &path, int, int, QImage &img)
 {
+    qDebug( "ImageCreator::create %s", path.latin1() );
     // create image preview
     return img.load( path );
 }

@@ -20,7 +20,7 @@
 #ifndef _IMAGECREATOR_H_
 #define _IMAGECREATOR_H_ "$Id$"
 
-#include "thumbcreator.h"
+#include <kio/thumbcreator.h>
 
 class ImageCreator : public ThumbCreator
 {

@@ -20,7 +20,7 @@
 #ifndef _GSCREATOR_H_
 #define _GSCREATOR_H_ "$Id$"
 
-#include "thumbcreator.h"
+#include <kio/thumbcreator.h>
 
 class GSCreator : public ThumbCreator
 {

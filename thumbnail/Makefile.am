@@ -30,7 +30,6 @@ gsthumbnail_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN)
 
 noinst_HEADERS = thumbnail.h imagecreator.h textcreator.h htmlcreator.h \
 	gscreator.h
-include_HEADERS = thumbcreator.h
 
 kdelnk_DATA = thumbnail.protocol
 kdelnkdir = $(kde_servicesdir)

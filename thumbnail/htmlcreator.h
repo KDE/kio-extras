@@ -20,7 +20,7 @@
 #ifndef _HTMLCREATOR_H_
 #define _HTMLCREATOR_H_ "$Id$"
 
-#include "thumbcreator.h"
+#include <kio/thumbcreator.h>
 
 class KHTMLPart;
 

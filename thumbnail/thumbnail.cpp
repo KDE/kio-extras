@@ -45,7 +45,7 @@
 #include <kdebug.h>
 
 #include "thumbnail.h"
-#include "thumbcreator.h"
+#include <kio/thumbcreator.h>
 
 // Recognized metadata entries:
 // mimeType     - the mime type of the file, used for the overlay icon if any

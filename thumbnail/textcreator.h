@@ -20,7 +20,7 @@
 #ifndef _TEXTCREATOR_H_
 #define _TEXTCREATOR_H_ "$Id$"
 
-#include "thumbcreator.h"
+#include <kio/thumbcreator.h>
 
 class KPixmapSplitter;
 
