@@ -30,8 +30,6 @@
 #include <qfile.h>
 #include <qimage.h>
 
-#include <kdebug.h>
-
 #include "gscreator.h"
 
 extern "C"
