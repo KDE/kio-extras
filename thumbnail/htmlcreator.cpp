@@ -57,6 +57,7 @@ bool HTMLCreator::create(const QString &path, int width, int height, QImage &img
         m_html->setJScriptEnabled(false);
         m_html->setJavaEnabled(false);
         m_html->setPluginsEnabled(false);
+        m_html->setMetaRefreshEnabled(false);
     }
     m_html->openURL(path);
     m_completed = false;
