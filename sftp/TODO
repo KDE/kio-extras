@@ -21,5 +21,8 @@ TODO:
   every change even without pressing enter
   - Bug report submitted to konqueror
 
-
-
+- bug: kio_sftp crashes KDE completely when one or more of konq, kio and
+  kio_sftp are compiled with the objprelink patches. None of the other
+  kioslaves do this for me, but it also happened when I recompiled kio_sftp
+  without the preloading, so I'm unsure whether it's a kio_sftp or kio or
+  konq bug. Will investigate some more. (Rob)
