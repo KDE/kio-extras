@@ -424,8 +424,13 @@ bool SMTPProtocol::smtp_open (const KURL &url)
 	}
 
 	// we should also check kemailsettings as well..
-	if (haveTLS) { 
-		haveTLS=false;
+	if (haveTLS && canUseTLS()) { 
+                // For now we're gonna force it on.
+                if (!command(ASCII("STARTTLS"))) {
+                   haveTLS = false;
+                } else if (startTLS()) {
+                   kdDebug() << "TLS has been enabled!" << endl;
+                } else haveTLS=false;
 	}
 
 	// Now we try and login
