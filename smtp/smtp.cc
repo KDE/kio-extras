@@ -483,8 +483,8 @@ bool SMTPProtocol::smtp_open(const QString& fakeHostname)
     }
   }
 
-  auto_ptr<Command> cmd( new EHLOCommand( this, m_hostname ) );
-  if ( !execute( cmd.get() ) ) {
+  EHLOCommand ehloCmdPreTLS( this, m_hostname );
+  if ( !execute( &ehloCmdPreTLS ) ) {
     smtp_close();
     return false;
   }
@@ -502,8 +502,8 @@ bool SMTPProtocol::smtp_open(const QString& fakeHostname)
        */
       //kdDebug(7112) << "TLS has been enabled!" << endl;
 
-      auto_ptr<Command> cmd2( new EHLOCommand( this, m_hostname ) );
-      if ( !execute( cmd2.get() ) ) {
+      EHLOCommand ehloCmdPostTLS( this, m_hostname );
+      if ( !execute( &ehloCmdPostTLS ) ) {
         smtp_close();
         return false;
       }
@@ -553,8 +553,8 @@ bool SMTPProtocol::authenticate()
   else
     strList = mCapabilities.saslMethods();
 
-  auto_ptr<Command> cmd( new AuthCommand( this, strList, m_sUser, m_sPass ) );
-  return execute( cmd.get() );
+  AuthCommand authCmd( this, strList, m_sUser, m_sPass );
+  return execute( &authCmd );
 }
 
 void SMTPProtocol::parseFeatures( const Response & ehloResponse ) {
