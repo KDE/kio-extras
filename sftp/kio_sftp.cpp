@@ -130,6 +130,7 @@ kio_sftpProtocol::kio_sftpProtocol(const QCString &pool_socket, const QCString &
     setMultipleAuthCaching(true);
     mMsgId = 0;
     mPort = -1;
+//    ssh.setSshPath("/usr/local/bin/ssh");
 }
 
 
@@ -249,6 +250,10 @@ void kio_sftpProtocol::openConnection(){
     KSshProcess::SshOpt opt;
     KSshProcess::SshOptList opts;
 
+//    opt.opt = KSshProcess::SSH_VERBOSE;
+//    opts.append(opt);
+//    opts.append(opt);
+
     if( mPort != -1 ) {
         opt.opt = KSshProcess::SSH_PORT;
         opt.num = mPort;
@@ -278,6 +283,16 @@ void kio_sftpProtocol::openConnection(){
     opt.opt = KSshProcess::SSH_ESCAPE_CHAR;
     opt.num = -1; // don't use any escape character
     opts.append(opt);
+
+    KSshProcess::SshOptListIterator usernameIt;
+    opt.opt = KSshProcess::SSH_USERNAME;
+    opt.str = mUsername;
+    usernameIt = opts.append(opt);
+
+    KSshProcess::SshOptListIterator passwdIt;
+    opt.opt = KSshProcess::SSH_PASSWD;
+    opt.str = mPassword;
+    passwdIt = opts.append(opt);
 
     // setup AuthInfo
     AuthInfo info;
@@ -336,15 +351,11 @@ void kio_sftpProtocol::openConnection(){
             }
         } // We have a username and password at this point
 
-        opt.opt = KSshProcess::SSH_USERNAME;
-        opt.str = mUsername;
-        opts.append(opt);
+        (*usernameIt).str = mUsername;
+        (*passwdIt).str = mPassword;
 
-        opt.opt = KSshProcess::SSH_PASSWD;
-        opt.str = mPassword;
-        opts.append(opt);
 
-        ssh.setArgs(opts);
+        ssh.setOptions(opts);
 
         if( !ssh.connect() ) {
             infoMessage(i18n("Connection failed."));
@@ -375,8 +386,13 @@ void kio_sftpProtocol::openConnection(){
             }
 
             if( !ssh.connect(true) ) {
-                mConnected = false;
-                return;
+                switch( ssh.error() ){
+                case KSshProcess::ERR_AUTH_FAILED:
+                    continue; // retry
+                default:
+                    mConnected = false;
+                    return;
+                }
             }
         }
 
@@ -422,7 +438,7 @@ void kio_sftpProtocol::openConnection(){
     }
 
 
-    if( tries == RETRIES ) {
+    if( tries > RETRIES ) {
         // Login failed
         infoMessage(i18n("Login failed."));
         error(ERR_COULD_NOT_LOGIN,
