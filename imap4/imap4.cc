@@ -1111,11 +1111,13 @@ IMAP4Protocol::stat (const KURL & _url)
     }
     imapCommand *cmd = doCommand(imapCommand::clientStatus(aBox, aSection));
     completeQueue.removeRef(cmd);
-    if (getStatus().unseenAvailable())
+    if ((aSection == "UIDNEXT" && getStatus().uidNextAvailable())
+      || (aSection == "UNSEEN" && getStatus().unseenAvailable()))
     {
       atom.m_uds = UDS_SIZE;
       atom.m_str = QString::null;
-      atom.m_long = getStatus().unseen();
+      atom.m_long = (aSection == "UIDNEXT") ? getStatus().uidNext()
+        : getStatus().unseen();
       entry.append(atom);
     }
   } else
