@@ -58,6 +58,7 @@ imapParser::imapParser ()
 
 imapParser::~imapParser ()
 {
+  delete lastHandled;
 }
 
 imapCommand *
@@ -1527,7 +1528,7 @@ QByteArray imapParser::parseOneWord (parseString & inWords, bool stopAtBracket)
 {
   QCString retVal;
 
-  if (inWords[0] == '"')
+  if (inWords.length() && inWords[0] == '"')
   {
     int i = 1;
     bool quote = FALSE;
@@ -1554,15 +1555,13 @@ QByteArray imapParser::parseOneWord (parseString & inWords, bool stopAtBracket)
   }
   else
   {
-    int i = -1;
-    char ch;
-    do
-    {
-      i++;
-      ch = inWords[i];
-    } while (i < inWords.length() && ch != ' ' && ch != '(' && ch != ')'
-      && ch != '\r' && ch != '\n' && ch != '\t'
-      && (!stopAtBracket || (ch != '[' && ch != ']')));
+      int i;
+      for (i = 0; i < inWords.length(); ++i) {
+          char ch = inWords[i];
+          if (ch <= ' ' || ch == '(' || ch == ')' ||
+              (stopAtBracket && (ch == '[' || ch == ']')))
+              break;
+      }
 
     if (i < inWords.length())
     {
