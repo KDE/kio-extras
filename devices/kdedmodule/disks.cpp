@@ -61,6 +61,7 @@ QString DiskEntry::niceDescription()
 	else if (dType.contains("smb")) return i18n("Remote Share");
 	else if (dType.contains("nfs")) return i18n("Remote Share");
 	else if (dType.contains("cdrom")) return i18n("CD-ROM");
+	else if (dType.contains("dvd")) return i18n("DVD");
 	else if (dType.contains("cdwriter")) return i18n("CD Recorder");
 	else if (dType.contains("floppy")) return i18n("Floppy");
 	else if (dType.contains("zip")) return i18n("Zip Disk");
@@ -123,6 +124,8 @@ QString DiskEntry::discType()
     else if (-1!=deviceName().find("cdrw",0,FALSE)) typeName="kdedevice/cdwriter";
     else if (-1!=mountPoint().find("cdrw",0,FALSE)) typeName="kdedevice/cdwriter";
     else if (-1!=deviceName().find("cdrecorder",0,FALSE)) typeName="kdedevice/cdwriter";
+    else if (-1!=mountPoint().find("dvd",0,FALSE)) typeName="kdedevice/dvd";   
+    else if (-1!=deviceName().find("dvd",0,FALSE)) typeName="kdedevice/dvd";   
     else if (-1!=deviceName().find("/dev/scd",0,FALSE)) typeName="kdedevice/cdrom";
     else if (-1!=deviceName().find("/dev/sr",0,FALSE)) typeName="kdedevice/cdrom";
 
