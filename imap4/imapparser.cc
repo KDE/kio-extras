@@ -1276,10 +1276,14 @@ imapParser::parseFetch (ulong value, QString & inWords)
         if (word == "ENVELOPE")
         {
           mailHeader *envelope = NULL;
+          ulong flags = 0;
           imapCache *cache = uidCache[seenUid];
 
           if (cache)
+          {
             envelope = cache->getHeader ();
+            flags = cache->getFlags ();
+          }
 
           kdDebug(7116) << "imapParser::parseFetch - got " << envelope << " from Cache for " << seenUid << endl;
           if ((envelope && !envelope->getMessageId ().isEmpty ())
@@ -1300,6 +1304,7 @@ imapParser::parseFetch (ulong value, QString & inWords)
               envelope->setPartSpecifier (seenUid + ".0");
               cache->setHeader (envelope);
               cache->setUid (seenUid.toULong ());
+              cache->setFlags (flags);
               uidCache.replace (seenUid, cache);
               kdDebug(7116) << "imapParser::parseFetch - giving " << envelope << " to Cache for " << seenUid << endl;
             }
