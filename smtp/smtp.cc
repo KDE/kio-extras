@@ -65,7 +65,7 @@
 #include <klocale.h>
 #include <iostream.h>
 
-#include "emailsettings.h"
+#include <kio/emailsettings.h>
 #include "smtp.h"
 
 using namespace KIO;
