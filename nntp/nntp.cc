@@ -334,8 +334,8 @@ void NNTPProtocol::slotGet(const char *_url)
 // List of supported commands
 //
 // URI                                Command   Result
-// news://user:pass@domain/index       LIST      List message sizes
-// news://user:pass@domain/uidl        UIDL      List message UIDs
+// news://user:pass@domain/index       LIST      List newsgroups
+// news://user:pass@domain/group/name     GROUP NAME      change to NAME
 // news://user:pass@domain/remove/#1   DELE #1   Mark a message for deletion
 // news://user:pass@domain/download/#1 RETR #1   Get message header and body
 // news://user:pass@domain/list/#1     LIST #1   Get size of a message
@@ -407,23 +407,6 @@ void NNTPProtocol::slotGet(const char *_url)
 	buf[strlen(buf)-2]='\0';
 	if (strcmp(buf, ".")==0)  break; // End of data.	
 	else {
-/*
-LIST
-+OK Mailbox scan listing follows
-1 2979
-2 1348
-3 1213
-4 1286
-5 2363
-6 1410
-7 2048
-8 958
-9 91684
-10 3770
-11 1547
-12 649
-.
-*/
 		size+=strlen(buf);
 		data(buf, strlen(buf));
 		totalSize(size);
@@ -465,6 +448,39 @@ LIST
       speed(0); finished();
     }
   }
+
+else if (cmd == "group") {
+    (void)path.toInt(&ok);
+   // if (!ok) return; //  We fscking need a number!
+    path.prepend("GROUP ");
+    if (command(path)) { // This should be checked, and a more hackish way of
+                         // getting at the headers by d/l the whole message
+                         // and stopping at the first blank line used if the
+                         // TOP cmd isn't supported
+      ready();
+      gettingFile(_url);
+      mimeType("text/plain");
+      memset(buf, 0, sizeof(buf));
+      while (!feof(fp)) {
+	memset(buf, 0, sizeof(buf));
+	if (!fgets(buf, sizeof(buf)-1, fp))
+	  break;  // Error??
+	// HACK: This assumes fread stops at the first \n and not \r
+	buf[strlen(buf)-2]='\0';
+	if (strcmp(buf, ".")==0)  break; // End of data.
+	else if (strcmp(buf, "..")==0)
+		data (".", 1);
+	else
+		data(buf, strlen(buf));
+      }
+      fprintf(stderr,"Finishing up\n");fflush(stderr);
+      dataEnd();
+      speed(0); finished();
+    }
+  }
+
+
+
 
   else if (cmd == "remove") {
     (void)path.toInt(&ok);
@@ -562,12 +578,48 @@ LIST
     m_cmd = CMD_NONE;
     return;
   }
+// New message get command starts here
+else {
+  cmd.prepend("GROUP ");   
+ 
+command(cmd);  
+ 
+(void)path.toInt(&ok);
+   // if (!ok) return; //  We fscking need a number!
+    path.prepend("ARTICLE ");
+    if (command(path)) { // This should be checked, and a more hackish way of
+                         // getting at the headers by d/l the whole message
+                         // and stopping at the first blank line used if the
+                         // TOP cmd isn't supported
+      ready();
+      gettingFile(_url);
+      mimeType("text/plain");
+      memset(buf, 0, sizeof(buf));
+      while (!feof(fp)) {
+	memset(buf, 0, sizeof(buf));
+	if (!fgets(buf, sizeof(buf)-1, fp))
+	  break;  // Error??
+	// HACK: This assumes fread stops at the first \n and not \r
+	buf[strlen(buf)-2]='\0';
+	if (strcmp(buf, ".")==0)  break; // End of data.
+	else if (strcmp(buf, "..")==0)
+		data (".", 1);
+	else
+		data(buf, strlen(buf));
+      }
+      fprintf(stderr,"Finishing up\n");fflush(stderr);
+      dataEnd();
+      speed(0); finished();
+    }
+  }
 
+
+// New message get ends here - CJM
 }
 
 void NNTPProtocol::slotListDir (const char *_url)
 {
-  bool isINT; int num_messages=0;
+
   char buf[512];
   QCString q_buf;
   KURL usrc( _url );
