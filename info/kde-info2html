@@ -39,7 +39,7 @@
 use strict;
 
 # set here the full path of the info2html.conf
-$0 =~ m!(.*/)[^/]+$!;
+$0 =~ m#(.*/)[^/]+$#;
 my $IMAGEDIR = "file:$ARGV[1]/"; # TV: broken, broken, not passed
 my $config_file = $ARGV[0];
 require $config_file;  #-- configuration settings
@@ -699,7 +699,7 @@ sub InfoNode2HTML {
           $prev = $Line;
         } else {
 	  $prev = $Line;
-	  $Line =~ s!- (Variable|Function|Macro|Command|Special Form|User Option):.*$!<em>$1</em>!;
+	  $Line =~ s#- (Variable|Function|Macro|Command|Special Form|User Option):.*$#<em>$1</em>#;
           $Line =~ s/^[ \t]*//;
           print $Line;
         }
@@ -739,7 +739,7 @@ sub InfoNode2HTML {
            $prev = $Line;
          } else {
            $prev = $Line;
-	   $Line =~ s!- (Variable|Function|Macro|Command|Special Form|User Option):.*$!<em>$&</em>!;
+	   $Line =~ s#- (Variable|Function|Macro|Command|Special Form|User Option):.*$#<em>$&</em>#;
            $Line =~ s/`([^']*)'/`<span class="option">$1<\/span>'/g;  #'
            $Line =~ s/((news|ftp|http):\/\/[A-Za-z0-9\.\/\#\-_\~]*)/<a href="$1">$1<\/a>/g; 
            $Line =~ s/([A-Za-z0-9\.\/\#\-_\~]*\@[A-Za-z0-9\.\/\#\-_\~]*\.[A-Za-z]{2,3})/<a href="mailto:$1">$1<\/a>/g; 
