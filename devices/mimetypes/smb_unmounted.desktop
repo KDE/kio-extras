@@ -3,7 +3,7 @@ Encoding=UTF-8
 Icon=nfs_unmount
 Type=MimeType
 MimeType=kdedevice/smb_unmounted
-Comment=Unmounted Samba (M$ Network) Share
+Comment=Unmounted Samba (Microsoft Network) Share
 Patterns=
 
 X-KDE-AutoEmbed=true
