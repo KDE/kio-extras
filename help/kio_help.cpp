@@ -26,6 +26,8 @@
 
 #include <qvaluelist.h>
 #include <qfileinfo.h>
+#include <qfile.h>
+#include <qtextstream.h>
 
 #include <kshred.h>
 #include <kdebug.h>
@@ -60,27 +62,6 @@ QString HelpProtocol::langLookup(QString fname)
   // assemble the local search paths
   QStringList const &localDoc = KGlobal::dirs()->findDirs("html", "");
 
-  // try to strip the doc path prefix
-  bool found=false;
-  for (unsigned int id=0; id<localDoc.count(); id++)
-    {
-      if (fname.find(localDoc[id]) == 0)
-	{
-	  kdDebug() << "Cutting off " << localDoc[id] << endl;
-	  fname = fname.mid(localDoc[id].length());
-	  found = true;
-	  break;
-	}
-    }
-
-  // cut of the language
-  if (found)
-    {
-      int pos = fname.find('/');
-      if (pos > 0)
-	fname = fname.mid(pos+1);
-    }
-
   // look up the different languages
   for (int id=localDoc.count()-1; id >= 0; --id)
     {      
@@ -114,13 +95,47 @@ QString HelpProtocol::lookupFile(QString fname, QString query)
   QString anchor, path, result;
 
   // if we have a query, look if it contains an anchor
-  //  if (!query.isEmpty())
-    //    if (query.left(8) == "?anchor=")
-  //      anchor = query.mid(9);
+  if (!query.isEmpty())
+    if (query.left(8) == "?anchor=")
+      anchor = query.mid(8);
 
   path = fname;
 
   kdDebug() << "lookupFile: path=" << path << " anchor=" << anchor << endl;
+
+  if (!anchor.isEmpty())
+    {
+      // try to locate .anchors file
+      result = langLookup(path + "/.anchors");
+      if (!result.isEmpty())
+	{
+	  // parse anchors file to get our real page
+	  QFile anch(result);
+	  if (anch.open(IO_ReadOnly))
+	    {
+	      QTextStream ts(&anch);
+	      
+	      QString line;
+	      QStringList items;
+	      while (!ts.atEnd())
+		{
+		  line = ts.readLine();
+
+		  if (line.left(6) == "anchor")
+		    {
+		      items = QStringList::split(' ', line);
+		      if (items[1] == anchor)
+			{
+			  redirection(KURL(QString("help:%1/%2").arg(path).arg(items[2])));
+			  return path + "/" + items[2];
+			}
+		    }
+		}
+
+	      anch.close();
+	    }	  
+	}
+    }
 
   result = langLookup(path);
   if (result.isEmpty())
