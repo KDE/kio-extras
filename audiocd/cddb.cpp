@@ -185,7 +185,7 @@ CDDB::get_discid(QValueList<int>& track_ofs)
 
     for (int i = num_tracks - 1; i >= 0; i--)
       {
-	unsigned int n = track_ofs[i];
+	int n = track_ofs[i];
 	n /= 75;
 	while (n > 0)
 	  {
@@ -317,7 +317,7 @@ bool
 CDDB::queryCD(QValueList<int>& track_ofs)
 {
   int num_tracks = track_ofs.count() - 2;
-  if (!remote || num_tracks < 1)
+  if (!remote || fd == 0 || num_tracks < 1)
     return false;
   unsigned int id = get_discid(track_ofs);
   if (id == m_discid)
