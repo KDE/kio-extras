@@ -99,6 +99,7 @@ protected:
 	QString m_sServer, m_sPass, m_sUser;
 	bool m_try_apop, m_try_sasl, opened;
 	QString m_sError;
+        bool mUseTLS;
 };
 
 #endif
