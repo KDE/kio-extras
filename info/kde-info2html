@@ -45,7 +45,7 @@
 use strict;
 
 # set here the full path of the info2html.conf
-$0 =~ m#(.*/)[^/]+$#;
+push @INC, $1 if $0 =~ m!(.*/)[^/]+$!; # full path of config file is passed in ARGV[1] by caller but let's clean this anyway
 my $IMAGEDIR = "file:$ARGV[1]/"; # TV: broken, broken, not passed
 my $config_file = $ARGV[0];
 require $config_file;  #-- configuration settings
@@ -303,14 +303,15 @@ EOF
 #----------------------------------------------------------
 sub ParsHeaderToken {
   my ($HeaderLine, $Token) = @_;
-  my ($InfoFile, $Tag, $Temp);
   return ("", "") if $HeaderLine !~ /$Token:/; #-- token not available
-  $HeaderLine =~ m!$Token:$WS(\(($FTAG)\))!;
-  $InfoFile = $2;
-  $Temp     = $2 ne "" ? '\(' . $2 . '\)' : "";
-  $HeaderLine =~ m!$Token:$WS$Temp$WSS([^\t\,\n]+)?([\t\,\.\n])!;
-  $Tag = $1 || "Top";
-  return $InfoFile, $Tag;
+  my ($InfoFile, $node, $Temp);
+  if ($HeaderLine =~ m!$Token:$WS(\(($FTAG)\))!) {
+      $InfoFile = $2;
+      $Temp     = $2 ne "" ? '\(' . $2 . '\)' : "";
+  }
+  $node = $1 if $HeaderLine =~ m!$Token:$WS$Temp$WSS([^\t,\n]+)?([\t,\.\n])!;
+  $node ||= "Top";
+  return $InfoFile, $node;
 }
 
 #---------------------------------------------------------
@@ -479,18 +480,16 @@ sub ReadTagTable {
       }
     }
   }
-  my $Tag;
   #-- scan the entrys
   local $_;
   while (<FH>) {
     $$IsIndirect = 1 if /^\(Indirect\)/i;
     last if /$NODEBORDER/;
-    /Node:[ \t]+([^$REDIRSEP]+)$REDIRSEP(\d+)/;
-    $Tag = $1;
-    $Tag =~ tr/A-Z/a-z/;     #-- to lowercase
-    my $Offset = $2;
-    my $File = $1 if /File:[ \t]+([^\t,]+)/;
-    $TagList->{$Tag} = $File."#".$Offset;
+    if (/Node:[ \t]+([^$REDIRSEP]+)$REDIRSEP(\d+)/) {
+        my ($Tag, $Offset) = (lc($1), $2);
+        my $File = $1 if /File:[ \t]+([^\t,]+)/;
+        $TagList->{$Tag} = $File."#".$Offset;
+    }
   }
   close(FH);
 }
@@ -540,16 +539,16 @@ sub ParsCrossRefs {
 	next;
     }
 #print "--- Com. CR : $CrossRef --- \n";
-    $CrossRef =~ /([^:]+):/;    #-- A more complicated one ..
-    $CrossRefRef = $1;
-    $CrossRef  = $';
-    $CrossRefText = $CrossRef;
+    if ($CrossRef =~ /([^:]+):/) {  #-- A more complicated one ..
+        $CrossRefRef = $1;
+        $CrossRef  = $';
+        $CrossRefText = $CrossRef;
+    }
     if ($CrossRef =~ /^(\s|\n|-NEWLINE-)*\(($FTAG)\)/) {  #-- .. with another file ?
      $CrossRefFile = $2;
      $CrossRef = $';
     }
-    $CrossRef  =~ /^(\s|\n|-NEWLINE-)*($TAG)?($TE)/;     #-- ... and a tag ?
-    $CrossRefTag = $2;
+    $CrossRefTag = $2 if $CrossRef  =~ /^(\s|\n|-NEWLINE-)*($TAG)?($TE)/;     #-- ... and a tag ?
     if ($CrossRefTag eq "" && $CrossRefFile eq "") {
       $NewLine .= "*Note : $CrossRefText$3";
       next;
