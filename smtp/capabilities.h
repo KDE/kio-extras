@@ -35,9 +35,9 @@
 #include <qmap.h>
 #include <qcstring.h>
 #include <qstring.h>
+#include <qstringlist.h>
 
 class QStrIList;
-class QStringList;
 
 namespace KioSMTP {
 
