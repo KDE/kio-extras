@@ -439,9 +439,6 @@ int SMTPProtocol::getResponse(bool handleErrors,
     recv_len = readLine(buf, len - 1);
   }
 
-  // And grab the data
-  //recv_len = readLine(buf, len - 1);
-
   if (recv_len < 1) 
   {
     if (isConnectionValid())
