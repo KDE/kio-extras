@@ -90,6 +90,7 @@ So we can't connect.
 #include <time.h>
 #include <netdb.h>
 #include <string.h>
+#include <netinet/in.h>
 #include <sys/time.h>
 #include <sys/stat.h>
 #include <sys/types.h>
