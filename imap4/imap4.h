@@ -62,7 +62,8 @@ public:
   virtual void slave_status ();
   virtual void mimetype (const KURL & _url);
   virtual void del (const KURL & _url, bool isFile);
-  /** Change the status. data = URL + '\0' + Flags + '\0' */
+  /** Change the status. data = 'S' + URL + '\0' + Flags + '\0' 
+   *  Copy a mail: data = 'C' + srcURL + '\0' + destURL + '\0' */
   virtual void special (const QByteArray & data);
   virtual void listDir (const KURL & _url);
   virtual void setSubURL (const KURL & _url);

@@ -953,7 +953,12 @@ IMAP4Protocol::del (const KURL & _url, bool isFile)
 void
 IMAP4Protocol::special (const QByteArray & data)
 {
-  KURL _url(data.data());
+  KURL _url(data.data() + 1);
+  if (data.at(0) == 'C')
+  {
+    copy(_url, KURL(data.data() + data.find('\0') + 1), 0, FALSE);
+    return;
+  }
   QString aBox, aSequence, aLType, aSection, aValidity, aDelimiter;
   parseURL (_url, aBox, aSection, aLType, aSequence, aValidity, aDelimiter);
   if (assureBox (aBox, false))
