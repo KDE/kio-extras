@@ -483,8 +483,11 @@ if (tmp_str[0] == QChar('"')) {
    entry.append(atom);
    debug(QString("=> Adding atom str=%1 long=%2").arg(atom.m_str).arg(atom.m_long));
 
-   if (Attributes.find("Noselect", 0, false) != -1) {
+   // \Noselect = directory
+   if (Attributes.find("\\Noselect", 0, false) != -1) {
       atom.m_str = "NOSELECT_";
+   } else if (Attributes.find("\\Noinferiors", 0, false) != -1) {
+      atom.m_str = "NOINFERIORS_";
    } else {
       atom.m_str = "";
    }
@@ -496,7 +499,13 @@ if (tmp_str[0] == QChar('"')) {
 
    atom.m_uds = UDS_FILE_TYPE;
    atom.m_str = "";
-   atom.m_long = S_IFREG;
+   // \Noinferiors = mailbox
+   if (Attributes.find("\\Noselect", 0, false) != -1) {
+      atom.m_long = S_IFREG;
+   } else if (Attributes.find("\\Noinferiors", 0, false) != -1) {
+      atom.m_long = S_IFDIR;
+   } else
+//   atom.m_long = S_IFREG;
    entry.append(atom);
    debug(QString("=> Adding atom str=%1 long=%2").arg(atom.m_str).arg(atom.m_long));
 
