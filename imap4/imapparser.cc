@@ -575,7 +575,8 @@ imapParser::parseList (QString & result)
   while (!result.isEmpty () && result[0] != ')')
   {
     attribute = imapParser::parseOneWord (result);
-    if (-1 != attribute.find ("\\Noinferiors", 0, false))
+    if (-1 != attribute.find ("\\Noinferiors", 0, false)  // FIXME: different
+      || -1 != attribute.find ("\\HasNoChildren", 0, false)) // case required
       this_one.setNoInferiors (true);
     else if (-1 != attribute.find ("\\Noselect", 0, false))
       this_one.setNoSelect (true);

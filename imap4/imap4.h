@@ -35,6 +35,7 @@ enum IMAP_TYPE
   ITYPE_UNKNOWN,
   ITYPE_DIR,
   ITYPE_BOX,
+  ITYPE_DIR_AND_BOX,
   ITYPE_MSG
 };
 
@@ -102,7 +103,8 @@ protected:
 
   enum IMAP_TYPE
   parseURL (const KURL & _url, QString & _box, QString & _section,
-            QString & _type, QString & _uid, QString & _validity);
+            QString & _type, QString & _uid, QString & _validity,
+            QString & _hierarchyDelimiter);
   QString getMimeType (enum IMAP_TYPE);
 
   bool makeLogin ();
