@@ -80,7 +80,7 @@ extern "C"
   int FixupTOC(cdrom_drive *d, int tracks);
 
 #ifdef HAVE_LAME
-  static int _lamelibMissing = true;
+  static int _lamelibMissing = false;
 
   static lame_global_flags* (*_lamelib_lame_init)(void) = NULL;
   static int (*_lamelib_lame_init_params) (lame_global_flags*) = NULL;
@@ -328,7 +328,7 @@ bool AudioCDProtocol::initLameLib(){
    if ( _lamelib_lame_init != NULL )
       return true;
 
-   if ( _lamelibMissing == 1 )  // we tried already, do not try again
+   if ( _lamelibMissing == true )  // we tried already, do not try again
       return false;
 
    // load the lame lib, if not done already
