@@ -49,6 +49,7 @@ bool SMBSlave::cache_get_AuthInfo(SMBAuthInfo& auth)
             kdDebug(KIO_SMB) << "found in top level cache" << endl;
             auth.m_username = it->m_username;
             auth.m_passwd   = it->m_passwd;
+            auth.m_domain   = it->m_domain;
             return true;
         }
     }
@@ -59,7 +60,15 @@ bool SMBSlave::cache_get_AuthInfo(SMBAuthInfo& auth)
     if( checkCachedAuthentication( kauth ) )
     {
         kdDebug(KIO_SMB) << "found in password caching daemon" << endl;
-        auth.m_username = kauth.username.local8Bit();
+        // extract domain
+        if (kauth.username.contains(';')) {
+          auth.m_domain = kauth.username.left(kauth.username.find(';')).local8Bit();
+          auth.m_username =  kauth.username.right(kauth.username.length()
+                                          -kauth.username.find(';')-1).local8Bit();
+        }
+        else {
+          auth.m_username = kauth.username.local8Bit();
+        }
         auth.m_passwd = kauth.password.local8Bit();
 
         //store the info for later lookups
@@ -92,6 +101,7 @@ void SMBSlave::cache_clear_AuthInfo(const QString& workgroup)
 void SMBSlave::cache_set_AuthInfo(const SMBAuthInfo& _auth,
                                   bool store_in_kdesu)
 {
+    kdDebug(KIO_SMB) << "cache_set_AuthInfo user="<<_auth.m_username<<", PW="<<_auth.m_passwd<<", SERVER="<<_auth.m_server << endl;
     SMBAuthInfo* auth = new SMBAuthInfo;
     auth->m_passwd    = _auth.m_passwd;
     auth->m_server    = _auth.m_server;
@@ -107,6 +117,7 @@ void SMBSlave::cache_set_AuthInfo(const SMBAuthInfo& _auth,
         cacheAuthentication( kauth );
     }
 }
+
 
 void SMBSlave::cache_add_workgroup( const QString& workgroup)
 {
@@ -145,6 +156,8 @@ AuthInfo SMBSlave::cache_create_AuthInfo( const SMBAuthInfo& auth )
     }
 
     rval.username = auth.m_username;
+    if (!auth.m_domain.isEmpty())
+      rval.username.prepend(auth.m_domain + ";");
     rval.password = auth.m_passwd;
 
     kdDebug(KIO_SMB) << "cache_create_AuthInfo, url = " << rval.url.url() << endl;
