@@ -1,5 +1,5 @@
 ## kdebase/kioslave
 ## $Id$
 
-SUBDIRS = ftp gzip http tar pop3 gopher $(LDAP_SUBDIR)
+SUBDIRS = ftp gzip http tar pop3 nntp gopher $(LDAP_SUBDIR)
 
