@@ -79,28 +79,31 @@ void sig_handler( int )
   }
 }
 
+char *getPasswordCallBack(const char * c) {return NULL;}
 
 SmbProtocol::SmbProtocol( Connection *_conn ) : IOProtocol( _conn )
 {
-	smbio=new SMBIO;
+	smbio.setPasswordCallback(getPasswordCallBack);
 }
 
 SmbProtocol::~SmbProtocol()
 {
-	if (smbio) delete smbio;
-	smbio=NULL;
+//	if (smbio) delete smbio;
+//	smbio=NULL;
 	debug( "kio_destructor : end" );
 }
 
 
 void SmbProtocol::slotCopy( list<string>& _source, const char *_dest )
 {
+	debug( "kio_smb : slotCopy <List> %s", _dest );
 	doCopy( _source, _dest );
 }
 
 
 void SmbProtocol::slotCopy( const char* _source, const char *_dest )
 {
+	debug( "kio_smb : slotCopy %s %s", _source, _dest );
 	list<string> lst;
 	lst.push_back( _source );
 
@@ -145,16 +148,16 @@ void SmbProtocol::doCopy( list<string>& _source, const char *_dest )
 	for( ; soit != _source.end(); ++soit ) {
 		debug( "kio_smb : Checking %s", soit->c_str() );
 		char *workgroup=NULL, *host=NULL, *share=NULL, *file=NULL, *user=NULL;
-		int result=smbio->parse(decode(soit->c_str()).ascii(), workgroup, host, share, file, user);
+		int result=smbio.parse(decode(soit->c_str()).ascii(), workgroup, host, share, file, user);
 		if (workgroup) delete workgroup; workgroup=NULL;
 		if (host) delete host; host=NULL;
 		if (share) delete share; share=NULL;
 		if (file) delete file; file=NULL;
 		if (user) delete user; user=NULL;
-		if (result==-1) {
+/*		if (result==-1) {
 			error( ERR_MALFORMED_URL, soit->c_str() );
 			return;
-		}
+		}*/
 	}
 	debug( "kio_smb : All source URLs ok." );
 
@@ -526,7 +529,7 @@ void SmbProtocol::doCopy( list<string>& _source, const char *_dest )
 
 		debug( "kio_smb : Opening %s", fit->absSource.ascii() );
 
-		int fd = smbio->open( decode(fit->absSource.ascii()).ascii() );
+		int fd = smbio.open( decode(fit->absSource.ascii()).ascii() );
 		if ( fd == -1 ) {
 			error( ERR_CANNOT_OPEN_FOR_READING, fit->absSource );
 			return;
@@ -537,7 +540,7 @@ void SmbProtocol::doCopy( list<string>& _source, const char *_dest )
 		char buffer[ bufSize ];
 		int count;
 		do {
-			count=smbio->read(fd, buffer, bufSize);
+			count=smbio.read(fd, buffer, bufSize);
 			if (count==-1) {
 				error( ERR_COULD_NOT_READ, fit->absSource );
 				return;
@@ -561,7 +564,7 @@ void SmbProtocol::doCopy( list<string>& _source, const char *_dest )
 
 			// An error ?
 			if ( job.hasFinished() ) {
-				smbio->close( fd );
+				smbio.close( fd );
 				finished();
 				return;
 			}
@@ -571,7 +574,7 @@ void SmbProtocol::doCopy( list<string>& _source, const char *_dest )
 
 		job.dataEnd();
 		
-		smbio->close( fd );
+		smbio.close( fd );
 
 		while( !job.hasFinished() )
 			job.dispatch();
@@ -594,6 +597,7 @@ void SmbProtocol::doCopy( list<string>& _source, const char *_dest )
   
 void SmbProtocol::slotGet( const char *_url )
 {
+	debug( "kio_smb : slotGet %s", _url );
 	string url = _url;
 
 	KURL usrc( _url );
@@ -602,19 +606,19 @@ void SmbProtocol::slotGet( const char *_url )
 		return;
 	}
 	char *workgroup=NULL, *host=NULL, *share=NULL, *file=NULL, *user=NULL;
-	int result=smbio->parse(decode(_url).ascii(), workgroup, host, share, file, user);
+	int result=smbio.parse(decode(_url).ascii(), workgroup, host, share, file, user);
 	if (workgroup) delete workgroup; workgroup=NULL;
 	if (host) delete host; host=NULL;
 	if (share) delete share; share=NULL;
 	if (file) delete file; file=NULL;
 	if (user) delete user; user=NULL;
-	if (result==-1) {
+/*	if (result==-1) {
 		error( ERR_MALFORMED_URL, url.c_str() );
 		return;
-	}
+	}*/
 
 	struct stat buff;
-	if ( smbio->stat( decode(url.c_str()).ascii(), &buff ) == -1 ) {
+	if ( smbio.stat( decode(url.c_str()).ascii(), &buff ) == -1 ) {
 		error( ERR_DOES_NOT_EXIST, url.c_str() );
 		return;
 	}
@@ -626,7 +630,7 @@ void SmbProtocol::slotGet( const char *_url )
 	}
 	debug( "kio_smb : Get, checkpoint 3" );
 
-	int fd = smbio->open( decode(url.c_str()).ascii() , O_RDONLY);
+	int fd = smbio.open( decode(url.c_str()).ascii() , O_RDONLY);
 	if ( fd == -1 ) {
 		error( ERR_CANNOT_OPEN_FOR_READING, url.c_str() );
 		return;
@@ -648,7 +652,7 @@ void SmbProtocol::slotGet( const char *_url )
 	char buffer[ bufSize ];
 	int count;
 	do {
-		count=smbio->read(fd, buffer, bufSize);
+		count=smbio.read(fd, buffer, bufSize);
 		if (count==-1) {
 			error( ERR_COULD_NOT_READ, url.c_str() );
 			return;
@@ -668,7 +672,7 @@ void SmbProtocol::slotGet( const char *_url )
 
 	dataEnd();
   
-	smbio->close( fd );
+	smbio.close( fd );
 
 	processedSize( buff.st_size );
 	time_t t = time( 0L );
@@ -691,19 +695,20 @@ void SmbProtocol::slotGetSize( const char *_url )
 		return;
 	}
 	char *workgroup=NULL, *host=NULL, *share=NULL, *file=NULL, *user=NULL;
-	int result=smbio->parse(decode(_url).ascii(), workgroup, host, share, file, user);
+	int result=smbio.parse(decode(_url).ascii(), workgroup, host, share, file, user);
 	if (workgroup) delete workgroup; workgroup=NULL;
 	if (host) delete host; host=NULL;
 	if (share) delete share; share=NULL;
 	if (file) delete file; file=NULL;
 	if (user) delete user; user=NULL;
-	if (result==-1) {
+/*	if (result==-1) {
 		error( ERR_MALFORMED_URL, url.c_str() );
 		return;
-	}
+	}*/
 
+	debug( "kio_smb : Getting size, url OK" );
 	struct stat buff;
-	if ( smbio->stat( decode(url.c_str()).ascii(), &buff ) == -1 ) {
+	if ( smbio.stat( decode(url.c_str()).ascii(), &buff ) == -1 ) {
 		error( ERR_DOES_NOT_EXIST, url.c_str() );
 		return;
 	}
@@ -717,6 +722,7 @@ void SmbProtocol::slotGetSize( const char *_url )
 	totalSize( buff.st_size );
 
 	finished();
+	debug( "kio_smb : Getting size, end" );
 }
 
 
@@ -732,20 +738,20 @@ void SmbProtocol::slotListDir( const char *_url )
 	}
 	debug( "kio_smb : listDir 2 %s", _url);
 	char *workgroup=NULL, *host=NULL, *share=NULL, *file=NULL, *user=NULL;
-	int result=smbio->parse(decode(_url).ascii(), workgroup, host, share, file, user);
+	int result=smbio.parse(decode(_url).ascii(), workgroup, host, share, file, user);
 	if (workgroup) delete workgroup; workgroup=NULL;
 	if (host) delete host; host=NULL;
 	if (share) delete share; share=NULL;
 	if (file) delete file; file=NULL;
 	if (user) delete user; user=NULL;
-	if (result==-1) {
+/*	if (result==-1) {
 		error( ERR_MALFORMED_URL, url.c_str() );
 		return;
-	}
+	}*/
 	debug( "kio_smb : listDir 3 %s", _url);
 
 	struct stat buff;
-	if ( smbio->stat( decode(url.c_str()).ascii(), &buff ) == -1 ) {
+	if ( smbio.stat( decode(url.c_str()).ascii(), &buff ) == -1 ) {
 		error( ERR_DOES_NOT_EXIST, url.c_str() );
 		return;
 	}
@@ -757,14 +763,14 @@ void SmbProtocol::slotListDir( const char *_url )
 	}
 
 	struct SMBdirent *ep;
-	int dp = smbio->opendir( decode(url.c_str()).ascii() );
+	int dp = smbio.opendir( decode(url.c_str()).ascii() );
 	if ( dp == -1 )
 	{
 		error( ERR_CANNOT_ENTER_DIRECTORY, url.c_str() );
 		return;
 	}
 
-	while ( ( ep = smbio->readdir( dp ) ) != 0L )
+	while ( ( ep = smbio.readdir( dp ) ) != 0L )
 	{
 		if ( strcmp( ep->d_name, "." ) == 0 || strcmp( ep->d_name, ".." ) == 0 )
 		continue;
@@ -799,7 +805,7 @@ void SmbProtocol::slotListDir( const char *_url )
 		listEntry( entry );
 	}
 
-	smbio->closedir( dp );
+	smbio.closedir( dp );
 
 	finished();
 }
@@ -807,6 +813,7 @@ void SmbProtocol::slotListDir( const char *_url )
 
 void SmbProtocol::slotTestDir( const char *_url )
 {
+	debug( "kio_smb : testing %s", _url );
 	string url = _url;
 	
 	KURL usrc( _url );
@@ -814,20 +821,22 @@ void SmbProtocol::slotTestDir( const char *_url )
 		error( ERR_MALFORMED_URL, url.c_str() );
 		return;
 	}
+	debug( "kio_smb : testing %s, kurl OK", decode(_url).ascii() );
 	char *workgroup=NULL, *host=NULL, *share=NULL, *file=NULL, *user=NULL;
-	int result=smbio->parse(decode(_url).ascii(), workgroup, host, share, file, user);
+	int result=smbio.parse(decode(_url).ascii(), workgroup, host, share, file, user);
 	if (workgroup) delete workgroup; workgroup=NULL;
 	if (host) delete host; host=NULL;
 	if (share) delete share; share=NULL;
 	if (file) delete file; file=NULL;
 	if (user) delete user; user=NULL;
-	if (result==-1) {
+/*	if (result==-1) {
 		error( ERR_MALFORMED_URL, url.c_str() );
 		return;
-	}
+	}*/
+	debug( "kio_smb : testing %s, smburl OK", decode(_url).ascii() );
 
 	struct stat buff;
-	if ( smbio->stat( decode(url.c_str()).ascii(), &buff ) == -1 ) {
+	if ( smbio.stat( decode(url.c_str()).ascii(), &buff ) == -1 ) {
 		error( ERR_DOES_NOT_EXIST, url.c_str() );
 		return;
 	}
@@ -838,6 +847,7 @@ void SmbProtocol::slotTestDir( const char *_url )
 		isFile();
 
 	finished();
+	debug( "kio_smb : testing %s, end", _url );
 }
 
 
@@ -846,7 +856,7 @@ long SmbProtocol::listRecursive( const char *smbURL, const char *dest, list<Copy
 	KURL u(dest);
 	if (!dirChecked) {
 		struct stat statBuf;
-		if (smbio->stat(decode(smbURL).ascii(),&statBuf)==-1) return -1;
+		if (smbio.stat(decode(smbURL).ascii(),&statBuf)==-1) return -1;
 
 		if ( !S_ISDIR(statBuf.st_mode) ) {
 			Copy c;
@@ -861,7 +871,7 @@ long SmbProtocol::listRecursive( const char *smbURL, const char *dest, list<Copy
 		}
 	}
 
-	int dd=smbio->opendir(decode(smbURL).ascii());
+	int dd=smbio.opendir(decode(smbURL).ascii());
 	if (dd==-1) {
 		debug( "kio_smb : %s should have been a valid directory !", smbURL);
 		return -1;
@@ -880,7 +890,7 @@ long SmbProtocol::listRecursive( const char *smbURL, const char *dest, list<Copy
 	
 	// First add all files in this dir. We'll do directories later, so
 	// that the connection to the SMB server isn't broken.
-	while ((dent=smbio->readdir(dd))) {
+	while ((dent=smbio.readdir(dd))) {
 		QString newName = dent->d_name;
 		if ( !S_ISDIR(dent->st_mode) ) {
 			Copy c;
@@ -894,7 +904,7 @@ long SmbProtocol::listRecursive( const char *smbURL, const char *dest, list<Copy
 			totalSize+=dent->st_size;
 		} else newDirs.push_back(dent->d_name);
 	}
-	smbio->closedir(dd);
+	smbio.closedir(dd);
 
 	// Now we can go into each directory found recursively
 	list<string>::iterator ndit = newDirs.begin();

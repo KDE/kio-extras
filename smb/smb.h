@@ -13,6 +13,7 @@
 
 #include <sys/types.h>
 
+
 class SmbProtocol : public IOProtocol
 {
 public:
@@ -37,7 +38,7 @@ public:
   
 protected:
 
-	SMBIO *smbio;
+	SMBIO smbio;
 
 	struct Copy
 	{
