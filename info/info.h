@@ -23,7 +23,6 @@ protected:
 
     void decodeURL( const KURL &url );
     void decodePath( QString path );
-    QCString errorMessage();
 
 private:
 
