@@ -26,7 +26,7 @@
 
 #include <qstringlist.h>
 #include <qvaluelist.h>
-#include <qlist.h>
+#include <qptrlist.h>
 #include <qdict.h>
 
 #include "imaplist.h"
@@ -294,8 +294,8 @@ protected:
   QValueList < imapList > listResponses;
 
   // queues handling the running commands
-  QList < imapCommand > sentQueue;  // no autodelete
-  QList < imapCommand > completeQueue;  // autodelete !!
+  QPtrList < imapCommand > sentQueue;  // no autodelete
+  QPtrList < imapCommand > completeQueue;  // autodelete !!
 
   // everything we didn't handle, everything but the greeting is bogus
   QStringList unhandled;

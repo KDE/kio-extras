@@ -162,7 +162,7 @@ mailHeader::outputHeader (mimeIO & useIO)
 
 int
 mailHeader::parseAddressList (const char *inCStr,
-                              QList < mailAddress > *aList)
+                              QPtrList < mailAddress > *aList)
 {
   int advance = 0;
   int skip = 1;
@@ -193,11 +193,11 @@ mailHeader::parseAddressList (const char *inCStr,
 }
 
 QCString
-mailHeader::getAddressStr (QList < mailAddress > *aList)
+mailHeader::getAddressStr (QPtrList < mailAddress > *aList)
 {
   QCString retVal;
 
-  QListIterator < mailAddress > it = QListIterator < mailAddress > (*aList);
+  QPtrListIterator < mailAddress > it = QPtrListIterator < mailAddress > (*aList);
   while (it.current ())
   {
     retVal += it.current ()->getStr ();

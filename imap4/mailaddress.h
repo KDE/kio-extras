@@ -23,7 +23,7 @@
  *
  *********************************************************************/
 
-#include <qlist.h>
+#include <qptrlist.h>
 #include <qstring.h>
 #include <qcstring.h>
 #include "rfcdecoder.h"
@@ -69,7 +69,7 @@ public:
   bool isEmpty () const;
 
   static QString emailAddrAsAnchor (const mailAddress &, bool);
-  static QString emailAddrAsAnchor (const QList < mailAddress > &, bool);
+  static QString emailAddrAsAnchor (const QPtrList < mailAddress > &, bool);
 
 private:
   QCString user;

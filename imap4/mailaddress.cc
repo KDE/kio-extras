@@ -304,10 +304,10 @@ mailAddress::emailAddrAsAnchor (const mailAddress & adr, bool shortAdr)
 }
 
 QString
-mailAddress::emailAddrAsAnchor (const QList < mailAddress > &list, bool value)
+mailAddress::emailAddrAsAnchor (const QPtrList < mailAddress > &list, bool value)
 {
   QString retVal;
-  QListIterator < mailAddress > it (list);
+  QPtrListIterator < mailAddress > it (list);
 
   while (it.current ())
   {

@@ -18,7 +18,7 @@
 #ifndef MIMEHEADER_H
 #define MIMEHEADER_H
 
-#include <qlist.h>
+#include <qptrlist.h>
 #include <qdict.h>
 
 #include "mimehdrline.h"
@@ -133,8 +133,8 @@ public:
     partSpecifier = _str;
   };
 
-  QListIterator < mimeHdrLine > getOriginalIterator ();
-  QListIterator < mimeHdrLine > getAdditionalIterator ();
+  QPtrListIterator < mimeHdrLine > getOriginalIterator ();
+  QPtrListIterator < mimeHdrLine > getAdditionalIterator ();
   void setContent (QCString aContent)
   {
     mimeContent = aContent;
@@ -183,9 +183,9 @@ public:
   {
     nestedParts.append (inPart);
   };
-  QListIterator < mimeHeader > getNestedIterator ()
+  QPtrListIterator < mimeHeader > getNestedIterator ()
   {
-    return QListIterator < mimeHeader > (nestedParts);
+    return QPtrListIterator < mimeHeader > (nestedParts);
   };
 
   // clears all parts and deletes them from memory
@@ -314,10 +314,10 @@ protected:
   static QString getParameter (QCString, QDict < QString > *);
   static void setParameter (QCString, QString, QDict < QString > *);
 
-  QList < mimeHdrLine > originalHdrLines;
+  QPtrList < mimeHdrLine > originalHdrLines;
 
 private:
-  QList < mimeHdrLine > additionalHdrLines;
+  QPtrList < mimeHdrLine > additionalHdrLines;
   QDict < QString > typeList;
   QDict < QString > dispositionList;
   QCString contentType;
@@ -331,7 +331,7 @@ private:
   QCString preMultipartBody;
   QCString postMultipartBody;
   mimeHeader *nestedMessage;
-  QList < mimeHeader > nestedParts;
+  QPtrList < mimeHeader > nestedParts;
   QString partSpecifier;
 
 };

@@ -50,9 +50,9 @@ mimeHeader::~mimeHeader ()
 }
 
 /*
-QList<mimeHeader> mimeHeader::getAllParts()
+QPtrList<mimeHeader> mimeHeader::getAllParts()
 {
-	QList<mimeHeader> retVal;
+	QPtrList<mimeHeader> retVal;
 
 	// caller is responsible for clearing
 	retVal.setAutoDelete( false );
@@ -218,14 +218,14 @@ QDictIterator < QString > mimeHeader::getTypeIterator ()
   return QDictIterator < QString > (typeList);
 }
 
-QListIterator < mimeHdrLine > mimeHeader::getOriginalIterator ()
+QPtrListIterator < mimeHdrLine > mimeHeader::getOriginalIterator ()
 {
-  return QListIterator < mimeHdrLine > (originalHdrLines);
+  return QPtrListIterator < mimeHdrLine > (originalHdrLines);
 }
 
-QListIterator < mimeHdrLine > mimeHeader::getAdditionalIterator ()
+QPtrListIterator < mimeHdrLine > mimeHeader::getAdditionalIterator ()
 {
-  return QListIterator < mimeHdrLine > (additionalHdrLines);
+  return QPtrListIterator < mimeHdrLine > (additionalHdrLines);
 }
 
 void
@@ -254,7 +254,7 @@ mimeHeader::outputHeader (mimeIO & useIO)
     useIO.outputMimeLine (QCString ("Content-Transfer-Encoding: ") +
                           getEncoding ());
 
-  QListIterator < mimeHdrLine > ait = getAdditionalIterator ();
+  QPtrListIterator < mimeHdrLine > ait = getAdditionalIterator ();
   while (ait.current ())
   {
     useIO.outputMimeLine (ait.current ()->getLabel () + ": " +
@@ -415,7 +415,7 @@ mimeHeader::outputParameter (QDict < QString > *aDict)
 void
 mimeHeader::outputPart (mimeIO & useIO)
 {
-  QListIterator < mimeHeader > nestedParts = getNestedIterator ();
+  QPtrListIterator < mimeHeader > nestedParts = getNestedIterator ();
   QCString boundary;
   if (!getTypeParm ("boundary").isEmpty ())
     boundary = getTypeParm ("boundary").latin1 ();

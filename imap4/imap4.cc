@@ -643,7 +643,7 @@ IMAP4Protocol::put (const KURL & _url, int, bool, bool)
   }
   else
   {
-    QList < QByteArray > bufferList;
+    QPtrList < QByteArray > bufferList;
     int length = 0;
 
     int result;

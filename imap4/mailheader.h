@@ -135,8 +135,8 @@ public:
     return QCString ();
   }
 
-  static int parseAddressList (const char *, QList < mailAddress > *);
-  static QCString getAddressStr (QList < mailAddress > *);
+  static int parseAddressList (const char *, QPtrList < mailAddress > *);
+  static QCString getAddressStr (QPtrList < mailAddress > *);
 #ifdef KMAIL_COMPATIBLE
   QString subject ()
   {
@@ -150,15 +150,15 @@ public:
   {
     return replytoAdr;
   }
-  const QList < mailAddress > &to ()
+  const QPtrList < mailAddress > &to ()
   {
     return toAdr;
   }
-  const QList < mailAddress > &cc ()
+  const QPtrList < mailAddress > &cc ()
   {
     return ccAdr;
   }
-  const QList < mailAddress > &bcc ()
+  const QPtrList < mailAddress > &bcc ()
   {
     return bccAdr;
   }
@@ -168,9 +168,9 @@ public:
 #endif
 
 private:
-  QList < mailAddress > toAdr;
-  QList < mailAddress > ccAdr;
-  QList < mailAddress > bccAdr;
+  QPtrList < mailAddress > toAdr;
+  QPtrList < mailAddress > ccAdr;
+  QPtrList < mailAddress > bccAdr;
   mailAddress fromAdr;
   mailAddress senderAdr;
   mailAddress returnpathAdr;
