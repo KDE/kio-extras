@@ -35,7 +35,7 @@ class sftpFileAttr {
 
 private: // Private attributes
     /** Name of file. */
-    QString mFilename;
+    QCString mFilename;
 
     /** Specifies which fields of the file attribute are available. */
     Q_UINT32 mFlags;
