@@ -224,6 +224,11 @@ void SmbProtocol::clearBuffer()
 
 bool SmbProtocol::stopAfterError(const KURL& url, bool notSureWhetherErrorOccured, bool onlyCheckForExistance)
 {
+   if (wasKilled())
+   {
+      finished();
+      return true;
+   };
    if (m_stdoutSize==0)
    {
       //error(KIO::ERR_UNKNOWN,"");
@@ -356,6 +361,8 @@ SmbProtocol::SmbReturnCode SmbProtocol::getShareInfo(ClientProcess* shareLister,
    {
       bool stdoutEvent;
       shareLister->select(1,0,&stdoutEvent);
+      if (wasKilled())
+         return SMB_OK;
       int exitStatus=shareLister->exited();
       if (exitStatus!=-1)
       {
@@ -1167,7 +1174,9 @@ void SmbProtocol::put( const KURL& url, int, bool _overwrite, bool)
       dataReq();
       result=readData(array);
       kdDebug(KIO_SMB)<<"Smb::put() readData() result="<<result<<endl;
-      if (result>0)
+      if (wasKilled())
+         loopFinished=true;
+      else if (result>0)
       {
          int bytesLeft=array.size();
          char* buf=array.data();
@@ -1337,13 +1346,15 @@ void SmbProtocol::get( const KURL& url )
       };
 
       struct timeval tv;
-      tv.tv_sec=10;
+      tv.tv_sec=1;
       tv.tv_usec=0;
       fd_set readFDs;
       FD_ZERO(&readFDs);
       FD_SET(fifoFD,&readFDs);
       result=select(fifoFD+1,&readFDs,0,0,&tv);
-      if (result==1)
+      if (wasKilled())
+         loopFinished=true;
+      else if (result==1)
       {
          int i=::read(fifoFD,buf,32*1024);
          if (i==0)
