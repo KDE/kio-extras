@@ -59,7 +59,7 @@ FilterProtocol::FilterProtocol( const QCString & protocol, const QCString &pool,
 {
     QString mimetype = QString::fromLatin1("application/x-") + QString::fromLatin1(protocol);
     filter = KFilterBase::findFilterByMimeType( mimetype );
-    ASSERT(filter);
+    Q_ASSERT(filter);
 }
 
 void FilterProtocol::get( const KURL & )
