@@ -190,24 +190,13 @@ char *MANProtocol::readManPage(const char *_filename)
 
     QFile raw(filename);
     KFilterBase *f = KFilterBase::findFilterByFileName(filename);
-    QIODevice *fd(0);
-    if (f==0)
-    {
-       // in this case we don't have to delete fd or f later
-       fd=&raw;
-    }
-    else
-    {
-       f->setDevice(&raw);
-       fd=new KFilterDev(f);
-    };
+
+    QIODevice *fd= KFilterDev::createFilterDevice(f,&raw);
+
     if (!fd->open(IO_ReadOnly))
     {
-       if (f!=0)
-       {
-          delete f;
-          delete fd;
-       };
+       delete f;
+       delete fd;
        return 0;
     }
     char buffer[1025];
@@ -220,11 +209,9 @@ char *MANProtocol::readManPage(const char *_filename)
     }
     kdDebug(7107) << "read " << text.length() << endl;
     fd->close();
-    if (f!=0)
-    {
-       delete fd;
-       delete f;
-    };
+
+    delete fd;
+    delete f;
 
     int l = text.length();
     char *buf = new char[l + 4];
@@ -261,7 +248,7 @@ void MANProtocol::outputMatchingPages(const QStringList* matchingPages)
     os <<"</title></head>\n<body bgcolor=#ffffff><h1>";
     os << i18n("There are more than one man page matching");
     os << "</h1>\n<ul>";
-    for (int i=0; i<matchingPages->count(); i++)
+    for (unsigned int i=0; i<matchingPages->count(); i++)
        os<<"<li><a href=man:"<<QFile::encodeName((*matchingPages)[i])<<">"<<(*matchingPages)[i]<<"</href><br>\n<br>\n";
     os<< "</ul>\n</body>\n</html>"<<endl;
 
