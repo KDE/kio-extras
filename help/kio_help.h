@@ -35,7 +35,7 @@ private:
 
   QString langLookup(QString fname);
   
-  QString lookupFile(QString fname, QString query);
+  QString lookupFile(QString fname, QString query, bool &redirect);
 
 };
 

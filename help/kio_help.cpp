@@ -88,9 +88,9 @@ QString HelpProtocol::langLookup(QString fname)
 }
 
 
-QString HelpProtocol::lookupFile(QString fname, QString query)
+QString HelpProtocol::lookupFile(QString fname, QString query, bool &redirect)
 {
-  kdDebug() << "lookupFile: filename=" << fname << " query=" << query << endl;
+  redirect = false;
 
   QString anchor, path, result;
 
@@ -125,9 +125,10 @@ QString HelpProtocol::lookupFile(QString fname, QString query)
 		    {
 		      items = QStringList::split(' ', line);
 		      if (items[1] == anchor)
-			{
+			{			  
 			  redirection(KURL(QString("help:%1/%2").arg(path).arg(items[2])));
-			  return path + "/" + items[2];
+			  redirect = true;
+			  return QString::null;
 			}
 		    }
 		}
@@ -142,11 +143,20 @@ QString HelpProtocol::lookupFile(QString fname, QString query)
     {
       result = langLookup(path+"/index.html");
       if (!result.isEmpty())
-	redirection(KURL(QString("help:%1/index.html").arg(path)));
+	{
+	  redirection(KURL(QString("help:%1/index.html").arg(path)));
+	  redirect = true;
+	}
       else
 	{
-	  result = langLookup("khelpcenter/main.html");
-	  redirection(KURL("help:/khelpcenter/main.html")); // FIXME! Use the right anchor, or the right page
+	  result = langLookup("khelpcenter/index.html");
+	  if (!result.isEmpty())
+	    {
+	      redirection(KURL("help:/khelpcenter/index.html"));
+	      redirect = true;
+	      return QString::null;
+	    }
+	  return QString::null;
 	}
     }
 
@@ -165,7 +175,15 @@ void HelpProtocol::get( const KURL& url, bool /* reload */)
 {
   kdDebug() << "get: path=" << url.path() << " query=" << url.query() << endl;
 
-  QString doc = lookupFile(url.path(), url.query());
+  bool redirect;
+  QString doc = lookupFile(url.path(), url.query(), redirect);
+
+  if (redirect)
+    {
+      finished();
+      return;
+    }
+
   if (doc.isEmpty())
     {
       error( KIO::ERR_DOES_NOT_EXIST, url.url() );
