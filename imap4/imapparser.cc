@@ -1595,23 +1595,30 @@ QByteArray imapParser::parseLiteral (parseString & inWords, bool relay, bool sto
 QByteArray imapParser::parseOneWord (parseString & inWords, bool stopAtBracket)
 {
   QCString retVal;
+  uint len;
 
   if (inWords.length() && inWords[0] == '"')
   {
     unsigned int i = 1;
     bool quote = FALSE;
-    while (i < inWords.length() && (inWords[i] != '"' || quote))
+    len = inWords.length();
+    while (i < len && (inWords[i] != '"' || quote))
     {
       if (inWords[i] == '\\') quote = !quote;
       else quote = FALSE;
       i++;
     }
-    if (i < inWords.length())
+    if (i < len)
     {
       inWords.pos++;
       retVal = inWords.left(i - 1);
-      for (unsigned int j = 0; j < retVal.length(); j++)
-        if (retVal[j] == '\\') retVal.remove(j, 1);
+      len = i - 1;
+      for (unsigned int j = 0; j < len; j++) {
+        if (retVal[j] == '\\') {
+          retVal.remove(j, 1);
+          len--; // update since we altered it
+        }
+      }
       inWords.pos += i;
     }
     else
@@ -1623,15 +1630,16 @@ QByteArray imapParser::parseOneWord (parseString & inWords, bool stopAtBracket)
   }
   else
   {
-      unsigned int i;
-      for (i = 0; i < inWords.length(); ++i) {
-          char ch = inWords[i];
-          if (ch <= ' ' || ch == '(' || ch == ')' ||
-              (stopAtBracket && (ch == '[' || ch == ']')))
-              break;
-      }
+    unsigned int i;
+    len = inWords.length();
+    for (i = 0; i < len; ++i) {
+        char ch = inWords[i];
+        if (ch <= ' ' || ch == '(' || ch == ')' ||
+            (stopAtBracket && (ch == '[' || ch == ']')))
+            break;
+    }
 
-    if (i < inWords.length())
+    if (i < len)
     {
       retVal = inWords.left (i);
       inWords.pos += i;
