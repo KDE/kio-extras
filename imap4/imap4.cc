@@ -480,9 +480,12 @@ IMAP4Protocol::listDir (const KURL & _url)
               else
                 lastone = NULL;
 
-              if (!fetch->isComplete ())
+              if (cache && !fetch->isComplete())
               {
-                doListEntry (_url, lastone, stretch);
+                mailHeader fake;
+                fake.setPartSpecifier(QString::number(cache->getUid()));
+                fake.setLength(cache->getSize());
+                doListEntry (_url, &fake, stretch);
               }
             }
             while (!fetch->isComplete ());
