@@ -192,4 +192,21 @@ void RemoteProtocol::get(const KURL &url)
 	error(KIO::ERR_MALFORMED_URL, url.prettyURL());
 }
 
+void RemoteProtocol::rename(const KURL &src, const KURL &dest,
+                            bool overwrite)
+{
+	if (src.protocol()!="remote" || dest.protocol()!="remote"
+         || m_impl.isWizardURL(src) || m_impl.isWizardURL(dest))
+	{
+		error(KIO::ERR_UNSUPPORTED_ACTION, src.prettyURL());
+		return;
+	}
 
+	if (m_impl.renameFolders(src.fileName(), dest.fileName(), overwrite))
+	{
+		finished();
+		return;
+	}
+
+	error(KIO::ERR_CANNOT_RENAME, src.prettyURL());
+}

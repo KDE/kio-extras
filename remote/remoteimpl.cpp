@@ -269,3 +269,32 @@ bool RemoteImpl::deleteNetworkFolder(const QString &filename) const
 	return false;
 }
 
+bool RemoteImpl::renameFolders(const QString &src, const QString &dest,
+                               bool overwrite) const
+{
+	kdDebug() << "RemoteImpl::renameFolders: "
+	          << src << ", " << dest << endl;
+
+	QString directory;
+	if (findDirectory(src+".desktop", directory))
+	{
+		if (!overwrite && QFile::exists(directory+dest+".desktop"))
+		{
+			return false;
+		}
+		
+		kdDebug() << "Renaming " << directory << src << ".desktop"<< endl;
+		QDir dir(directory);
+		bool res = dir.rename(src+".desktop", dest+".desktop");
+		if (res)
+		{
+			KDesktopFile desktop(directory+dest+".desktop");
+			desktop.writeEntry("Name", dest);
+		}
+		return res;
+	}
+
+	return false;
+}
+
+

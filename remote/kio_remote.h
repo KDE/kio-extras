@@ -34,6 +34,7 @@ public:
 	virtual void stat(const KURL &url);
 	virtual void del(const KURL &url, bool isFile);
 	virtual void get(const KURL &url);
+	virtual void rename(const KURL &src, const KURL &dest, bool overwrite);
 
 private:
 	void listRoot();
