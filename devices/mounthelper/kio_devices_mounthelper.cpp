@@ -71,7 +71,7 @@ KIODevicesMountHelperApp::KIODevicesMountHelperApp():KApplication() {
 								mp=(*it).replace(0,5,"");
 								KProcess *proc = new KProcess();
 								*proc << "kdeeject";
-								*proc << mp; 
+								*proc << mp;
 								proc->start();
 								connect( proc, SIGNAL(processExited(KProcess *)), this, SLOT( finished() ) );
 							}
@@ -126,7 +126,7 @@ static KCmdLineOptions options[] =
     { "m", I18N_NOOP("Mount given URL (default)"), 0 },
     { "e", I18N_NOOP("Eject given URL via kdeeject"), 0},
     {"!+[URL]",   I18N_NOOP("devices:/ URL to mount/unmount/eject."), 0 },
-    { 0, 0, 0}
+    KCmdLineLastOption
 };
 
 
