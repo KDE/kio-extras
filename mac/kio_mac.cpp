@@ -316,7 +316,7 @@ QValueList<KIO::UDSAtom> MacProtocol::makeUDS(const QString& _line) {
     //is it a file or a directory
     KRegExp dirRE("^d. +([^ ]+) +([^ ]+) +([^ ]+) +([^ ]+) +([^ ]+) +(.*)");
     KRegExp fileRE("^([f|F]). +(....)/(....) +([^ ]+) +([^ ]+) +([^ ]+) +([^ ]+) +([^ ]+) +(.*)");
-    if (dirRE.match(line)) {
+    if (dirRE.match(line.latin1())) {
         UDSAtom atom;
         atom.m_uds = KIO::UDS_NAME;
         atom.m_str = dirRE.group(6);
@@ -334,7 +334,7 @@ QValueList<KIO::UDSAtom> MacProtocol::makeUDS(const QString& _line) {
         atom.m_long = 0755;
         entry.append(atom);
 
-    } else if (fileRE.match(line)) {
+    } else if (fileRE.match(line.latin1())) {
         UDSAtom atom;
         atom.m_uds = KIO::UDS_NAME;
         atom.m_str = fileRE.group(9);
@@ -430,7 +430,7 @@ int MacProtocol::makeTime(QString mday, QString mon, QString third) {
     //if the file is recent (last 12 months) hpls gives us the time,
     // otherwise it only prints the year
     KRegExp hourMin("(..):(..)");
-    if (hourMin.match(third)) {
+    if (hourMin.match(third.latin1())) {
         QDate currentDate(QDate::currentDate());
 
         if (month > currentDate.month()) {
