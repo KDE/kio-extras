@@ -29,14 +29,3 @@ EXTRA_DIST=$(data_DATA)
 
 METASOURCES = AUTO
 
-#Problem: The paths to pictures in the templates are static. We must adjust 
-#them to reflect the directory where they are installed.
-install-data-local:
-	@echo
-	@echo "Setting up the templates"
-	@echo
-	@echo "Problem: The paths to pictures in the templates are static." 
-	@echo "We must adjust them to reflect the directory where they are installed."
-	#@(perl setupTemplates.pl $(kde_datadir)/kfinger/kio_finger)
-	@echo
-	@echo "done"
