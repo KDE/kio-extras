@@ -35,6 +35,7 @@
 #include <sys/time.h>
 #include <sys/wait.h>
 #include <fcntl.h>
+#include <errno.h>
 
 #include <qfile.h>
 #include <qimage.h>
@@ -92,8 +93,11 @@ bool DjVuCreator::create(const QString &path, int width, int height, QImage &img
         struct timeval tv;
         tv.tv_sec = 20;
         tv.tv_usec = 0;
-        if (select(output[0] + 1, &fds, 0, 0, &tv) <= 0) 
+        if (select(output[0] + 1, &fds, 0, 0, &tv) <= 0) {
+          if (errno == EINTR || errno == EAGAIN)
+            continue;
           break; // error or timeout
+        }
         if (FD_ISSET(output[0], &fds)) {
           int count = read(output[0], data.data() + offset, 1024);
           if (count == -1)
@@ -112,7 +116,7 @@ bool DjVuCreator::create(const QString &path, int width, int height, QImage &img
       }
       if (!ok)
         kill(pid, SIGTERM);
-      int status;
+      int status = 0;
       if (waitpid(pid, &status, 0) != pid || (status != 0  && status != 256) )
         ok = false;
     }
