@@ -34,6 +34,8 @@
 #include <kurl.h>
 #include <kidna.h>
 #include <kmdcodec.h>
+#include <kdebug.h>
+
 #include <assert.h>
 
 namespace KioSMTP {
@@ -42,6 +44,9 @@ namespace KioSMTP {
     Request request;
 
     const QStringList query = QStringList::split( '&', url.query().mid(1) );
+#ifndef NDEBUG
+    kdDebug(7112) << "Parsing request from query:\n" + query.join("\n" ) << endl;
+#endif
     for ( QStringList::const_iterator it = query.begin() ; it != query.end() ; ++it ) {
       int equalsPos = (*it).find( '=' );
       if ( equalsPos <= 0 )
@@ -68,6 +73,13 @@ namespace KioSMTP {
 	request.setProfileName( value );
       else if ( key == "hostname" )
 	request.setHeloHostname( value );
+      else if ( key == "body" )
+	request.set8BitBody( value.upper() == "8BIT" );
+      else if ( key == "size" )
+	request.setSize( value.toUInt() );
+      else
+	kdWarning(7112) << "while parsing query: unknown query item \""
+			<< key << "\" with value \"" << value << "\"" << endl;
     }
 
     return request;
