@@ -129,7 +129,11 @@ xmlParserInputPtr meinExternalEntityLoader(const char *URL, const char *ID,
     QString file = locate("dtd", URL);
     if (!file.isEmpty())
         ret = xmlNewInputFromFile(ctxt, file.latin1());
-
+    else {
+        if (KStandardDirs::exists( QDir::currentDirPath() + "/" + URL ) )
+            file = QDir::currentDirPath() + "/" + URL;
+        ret = xmlNewInputFromFile(ctxt, file.latin1());
+    }
     if (ret == NULL) {
         if ((ctxt->sax != NULL) && (ctxt->sax->warning != NULL))
             ctxt->sax->warning(ctxt,
