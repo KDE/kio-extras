@@ -424,7 +424,8 @@ int MacProtocol::makeTime(QString mday, QString mon, QString third) {
     else if (mon == "Dec") { month = 12; }
     else {
         error(ERR_CANNOT_LAUNCH_PROCESS,
-              "Month output from hpls -l not mached, e-mail jr@jriddell.org");
+              "Month output from hpls -l not matched, e-mail jr@jriddell.org");
+        month = 13;
     }
 
     //if the file is recent (last 12 months) hpls gives us the time,
