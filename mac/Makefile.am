@@ -1,7 +1,7 @@
 ## Makfile.am for kio_mac
 
 INCLUDES= $(all_includes)
-AM_LDFLAGS = $(all_libraries) $(KDE_RPATH)
+LDFLAGS = $(all_libraries) $(KDE_RPATH)
 
 ####### Files
 

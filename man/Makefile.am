@@ -1,7 +1,7 @@
 ## Makefile.am of kdebase/kioslave/man
 
 INCLUDES= $(all_includes)
-AM_LDFLAGS = $(all_libraries) $(KDE_RPATH)
+LDFLAGS = $(all_libraries) $(KDE_RPATH)
 
 EXTRA_PROGRAMS = kio_man_test man2html
 

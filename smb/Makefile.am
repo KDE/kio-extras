@@ -1,7 +1,7 @@
 ## Makefile.am of kdebase/kioslave/man
 
 INCLUDES=$(all_includes)
-AM_LDFLAGS =$(all_libraries) 
+LDFLAGS =$(all_libraries) 
 ####### Files
 
 #bin_PROGRAMS = kiosmb

@@ -2,7 +2,7 @@
 ## Makefile.am of kdebase/kioslave/thumbnail
 
 INCLUDES = $(all_includes)
-AM_LDFLAGS = $(all_libraries) $(KDE_RPATH)
+LDFLAGS = $(all_libraries) $(KDE_RPATH)
 METASOURCES = AUTO
 
 kde_module_LTLIBRARIES = kio_thumbnail.la imagethumbnail.la \
