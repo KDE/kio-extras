@@ -76,11 +76,11 @@ void LDAPProtocol::setHost( const QString& _host, int _port,
 /**
  * Get the information contained in the URL.
  */
-void LDAPProtocol::get(const QString &path, const QString& query,
-		       bool reload )
+void LDAPProtocol::get(const KURL &url, bool reload )
 {
-  QString _url = urlPrefix + path;
-  if (!query.isEmpty()) { _url += "?" + query; }
+  /*QString _url = urlPrefix + path;
+  if (!query.isEmpty()) { _url += "?" + query; }*/
+  QString _url = url.url();
   kDebugInfo(7110, "kio_ldap::get(%s)", debugString(_url));
   KLDAP::Url usrc(_url);
 
@@ -159,10 +159,11 @@ void LDAPProtocol::get(const QString &path, const QString& query,
 /**
  * Test if the url contains a directory or a file.
  */
-void LDAPProtocol::stat( const QString &path, const QString& query )
+void LDAPProtocol::stat( const KURL &a_url )
 {
-  QString _url = urlPrefix + path;
-  if (!query.isEmpty()) { _url += "?" + query; }
+  /*QString _url = urlPrefix + path;
+  if (!query.isEmpty()) { _url += "?" + query; }*/
+  QString _url = a_url.url();
   kDebugInfo(7110, "kio_ldap: stat(%s)", debugString(_url));
   KLDAP::Url usrc(_url);
 
@@ -182,14 +183,14 @@ void LDAPProtocol::stat( const QString &path, const QString& query )
   QStrList att;
   att.append("dn");
   search.setAttributes(att);
-  if (query.isEmpty()) search.setScope(LDAP_SCOPE_ONELEVEL);
+  if (a_url.query().isEmpty()) search.setScope(LDAP_SCOPE_ONELEVEL);
   search.execute();
   search.finish();
   int cnt=0;
   for (KLDAP::Entry e=search.first(); !search.end(); e=search.next())
     cnt++;
   int isDir = 1;
-  if (query.isEmpty()) {
+  if (a_url.query().isEmpty()) {
     /* we searched for a subdir */
     if (cnt == 0) isDir=0;
   } else {
@@ -252,10 +253,11 @@ void LDAPProtocol::stat( const QString &path, const QString& query )
 /**
  * Get the mimetype. For now its text/plain for each non-subentry
  */
-void LDAPProtocol::mimetype(const QString &path, const QString& query)
+void LDAPProtocol::mimetype(const KURL &url)
 {
-  QString _url = urlPrefix + path;
-  if (!query.isEmpty()) { _url += "?" + query; }
+  /*QString _url = urlPrefix + path;
+  if (!query.isEmpty()) { _url += "?" + query; }*/
+  QString _url = url.url();
   kDebugInfo(7110, "kio_ldap: mimetype(%s)", debugString(_url));
   KLDAP::Url usrc(_url);
   if (usrc.isMalformed() || usrc.scope() != LDAP_SCOPE_BASE) {
@@ -269,11 +271,12 @@ void LDAPProtocol::mimetype(const QString &path, const QString& query)
 /**
  * List the contents of a directory.
  */
-void LDAPProtocol::listDir(const QString &path, const QString& query)
+void LDAPProtocol::listDir(const KURL &url)
 {
   unsigned long total=0, actual=0, dirs=0;
-  QString _url = urlPrefix + path;
-  if (!query.isEmpty()) { _url += "?" + query; }
+  /*QString _url = urlPrefix + path;
+  if (!query.isEmpty()) { _url += "?" + query; }*/
+  QString _url = url.url();
   kDebugInfo(7110, "kio_ldap: listDir(%s)", debugString(_url));
   KLDAP::Url usrc(_url);
 
