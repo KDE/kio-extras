@@ -55,6 +55,16 @@
             allow them to choose whether or not to continue. This is a big improvement.
           - Todo: support use of keys and ssh agent
                   put()'s resume functionality needs some work
+1-26-2002 - Rewrote put() following the ftp::put() so it should behave the same way
+          - increase the size of the data packet we ask for in ::get up to 60k.
+            Through-put increases nicely.
+          - Call closeConnection() from construction. Keeps from having unused ssh
+            processes laying around after failed operations.
+2-19-2002 - get() now emits mimetype, fixes problem with konqi not downloading file for
+            viewing in kpart.
+          - get port number using getservbyname instead of hard coding it.
+2-27-2002 - testing before committing back to cvs, test with openssh 3, ssh 3
+
 DEBUGGING
 We are pretty much left with kdDebug messages for debugging. We can't use a gdb
 as described in the ioslave DEBUG.howto because kdeinit has to run in a terminal.
@@ -79,6 +89,7 @@ So we can't connect.
 #include <ctype.h>
 #include <time.h>
 #include <netdb.h>
+#include <string.h>
 #include <sys/time.h>
 #include <sys/stat.h>
 #include <sys/types.h>
@@ -92,6 +103,9 @@ So we can't connect.
 #include <kstandarddirs.h>
 #include <klocale.h>
 #include <kurl.h>
+#include <kio/ioslave_defaults.h>
+#include <kmimetype.h>
+#include <kmimemagic.h>
 
 #include "sftp.h"
 #include "kio_sftp.h"
@@ -137,6 +151,7 @@ kio_sftpProtocol::kio_sftpProtocol(const QCString &pool_socket, const QCString &
 
 kio_sftpProtocol::~kio_sftpProtocol() {
   kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::~kio_sftpProtocol()" << endl;
+  closeConnection();
 }
 
 void kio_sftpProtocol::get(const KURL& url ) {
@@ -150,6 +165,7 @@ void kio_sftpProtocol::get(const KURL& url ) {
         }
     }
 
+    
     // Get resume offset
     Q_UINT32 offset = 0;
     Q_UINT32 startingOffset = 0;
@@ -157,6 +173,7 @@ void kio_sftpProtocol::get(const KURL& url ) {
     QString resumeOffset =  metaData(QString::fromLatin1("resume"));
     if( !resumeOffset.isEmpty() ) {
         startingOffset = offset = resumeOffset.toInt();
+        kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::get(): canResume()" << endl;
         canResume();
         kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::get(): resume offset is " << offset << endl;
     }
@@ -177,7 +194,7 @@ void kio_sftpProtocol::get(const KURL& url ) {
 
 	// Send total size and processed size so far
     size = attr.fileSize();
-    totalSize(size);
+   // totalSize(size);
     processedSize(offset);	
 	
     Q_UINT32 pflags = SSH2_FXF_READ;
@@ -188,14 +205,19 @@ void kio_sftpProtocol::get(const KURL& url ) {
         return;
     }
 
-    // How big should each data packet be? Large gives better tranfer rate
-    // over high speed connections, low probably better for modems.
-    Q_UINT32 len = 8*1024;
+    // needed for determining mimetype
+    // note: have to emit mimetype before emitting totalsize.
+    QByteArray mimeBuffer;
+    unsigned int mimeBufferLen = 0, cpyLen, oldSize;
+    bool foundMimetype = false;
+    
+    // How big should each data packet be? Definitely not bigger than 64kb or
+    // you will overflow the 2 byte size variable in a sftp packet.
+    Q_UINT32 len = 60*1024;
     time_t now, start = time(NULL), last = start;
     code = SSH2_FX_OK;
     while( code == SSH2_FX_OK ) {
         if( (code = sftpRead(handle, offset, len, mydata)) == SSH2_FX_OK ) {
-            data(mydata);
             offset += mydata.size();
             processedSize(offset);
             now = time(NULL);
@@ -204,6 +226,29 @@ void kio_sftpProtocol::get(const KURL& url ) {
                 last = now;
             }
             kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::get(): offset = " << offset << endl;
+            
+            // save data for mimetype.  pretty much follows what is in the ftp ioslave
+            if( !foundMimetype ) {
+                oldSize = mimeBuffer.size();
+                mimeBuffer.resize(oldSize + mydata.size());
+                memcpy(mimeBuffer.data()+oldSize, mydata.data(), mydata.size());
+
+                if( mimeBuffer.size() > 1024 ||  offset == size ) {
+                    // determine mimetype
+                    KMimeMagicResult* result =
+                        KMimeMagic::self()->findBufferFileType(mimeBuffer, url.filename());
+                    kdDebug(7102) << "kiosftp_Protocol::get(): mimetype is " <<
+                                      result->mimeType() << endl;
+                    mimeType(result->mimeType());
+                    data(mimeBuffer);
+                    mimeBuffer.resize(0);
+                    totalSize(size);
+                    foundMimetype = true;
+                }
+            }
+            else {        
+                data(mydata);
+            }
         }
     }
 
@@ -212,9 +257,12 @@ void kio_sftpProtocol::get(const KURL& url ) {
         return; // return here or still send empty array to indicate end of read?
     }
 
+                     
+   
     data(QByteArray());
     processedSize(offset);
     sftpClose(handle);
+    kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::get(): emit finished()" << endl;
     finished();
 }
 
@@ -226,13 +274,21 @@ void kio_sftpProtocol::setHost (const QString& h, int port, const QString& user,
         closeConnection();
 
     mHost = h;
+    
     if( port > 0 )
         mPort = port;
-    else
-        mPort = -1;
+    else {
+        struct servent *pse;
+        if( (pse = getservbyname("ssh", "tcp") ) == NULL )
+            mPort = 22;
+        else
+            mPort = ntohs(pse->s_port);
+    }
+    
     mUsername = user;
     mPassword = pass;
 }
+
 
 void kio_sftpProtocol::openConnection(){
     kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::openConnection() to " << mUsername << "@" << mHost << ":" << mPort << endl;
@@ -310,7 +366,7 @@ void kio_sftpProtocol::openConnection(){
     int tries = 0;
     while( tries++ < RETRIES ) {
         kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::openConnection(): Auth try " << tries << endl;
-        kdDebug(KIO_SFTP_DB) << "usename = " << mUsername << endl;
+        kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::openConnection(): usename = " << mUsername << endl;
 
         // If we tried and failed, set info message
         if( tries > 1 )
@@ -318,8 +374,13 @@ void kio_sftpProtocol::openConnection(){
 
         kdDebug(KIO_SFTP_DB) << "checkAuth = " <<
          (checkCachedAuthentication(info) ? "true" : "false") << endl;
+
+        // XXX Check the cached auth info reveals a previously used username
+        // ask if the user wants to used that account.
+        
         // Check for cached auth info if this is our first try
-        if( tries == 1 && !mUsername.isEmpty() &&
+//        if( tries == 1 && !mUsername.isEmpty() &&
+        if( tries == 1 &&
               checkCachedAuthentication(info) ) {
             kdDebug(KIO_SFTP_DB) << "Got auth info from cache" << endl;
             gotFromCache = true;
@@ -380,7 +441,7 @@ void kio_sftpProtocol::openConnection(){
                 return;
             }
 
-            msg += "\n"+i18n("Shall we contine connecting to %1?").arg(mHost);
+            msg += "\n"+i18n("Shall we continue connecting to %1?").arg(mHost);
             if( KMessageBox::Yes != messageBox(WarningYesNo, msg, caption) ) {
                 mConnected = false;
                 return;
@@ -485,10 +546,216 @@ void kio_sftpProtocol::closeConnection() {
     kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::closeConnection()" << endl;
     ssh.kill();
     mConnected = false;
-    kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::closeConnection(): END" << endl;
 }
 
 
+void kio_sftpProtocol::put ( const KURL& url, int permissions, bool overwrite, bool resume ){
+    kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::put(" << url.prettyURL() << ")" << endl;
+    kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::put(): overwrite = " <<
+                            (overwrite ? "true" : "false") <<
+                            "  resume = " <<
+                            (resume ? "true" : "false" ) << endl;
+    if( !mConnected ) {
+        openConnection();
+        if( !mConnected ) {
+            error(ERR_COULD_NOT_CONNECT, QString::null);
+            finished();
+            return;
+        }
+    }
+
+    bool markPartial = config()->readBoolEntry("MarkPartial", true);
+    kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::put(): mark partial = " <<
+                             (markPartial ? "true" : "false") << endl;
+
+    KURL origUrl = url;
+    KURL partUrl = url;
+    partUrl.setFileName(partUrl.filename()+".part");
+
+    int code;
+    sftpFileAttr origAttr, partAttr;
+    bool origExists = false, partExists = false;
+    
+    // Stat original (without part ext)  to see if it already exists
+    if( (code = sftpStat(origUrl, origAttr)) == SSH2_FX_OK ) {
+        kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::put(): file already exists" << endl;
+        origExists = true;
+    }
+    else if( code != SSH2_FX_NO_SUCH_FILE ) {
+        processStatus(code, origUrl.prettyURL());
+        return;
+    }
+
+    // Stat file with part ext to see if it already exists.
+    if( (code = sftpStat(partUrl, partAttr)) == SSH2_FX_OK ) {
+        kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::put(): file.part already exists" << endl;
+        partExists = true;
+    }
+    else if( code != SSH2_FX_NO_SUCH_FILE ) {
+        processStatus(code, partUrl.prettyURL());
+        return;
+    }
+
+
+    if( origExists ) {
+        // delete remote file if its size is zero
+        if( origAttr.fileSize() == 0 ) {
+            if( sftpRemove(origUrl, true) != SSH2_FX_OK ) {
+                error(ERR_CANNOT_DELETE_PARTIAL, origUrl.prettyURL());
+                return;
+            }
+        }
+        
+        // return file exists error if we weren't instructed to overwrite or resume
+        else if( !overwrite && !resume ) {
+            // notify the job that we can resume this file
+            kdDebug(KIO_SFTP_DB) << "can resume = " << canResume(partAttr.fileSize()) << endl;
+            error(ERR_FILE_ALREADY_EXIST, origUrl.prettyURL());
+            return;
+        }
+        
+        // rename file with a partial ext if we are marking partials
+        else if( markPartial ) {
+            if( sftpRename(origUrl, partUrl) != SSH2_FX_OK ) {
+                error(ERR_CANNOT_RENAME_PARTIAL, origUrl.prettyURL());
+                return;
+            }
+        }
+    }
+    else if( partExists ) {
+        // delete remote file if its size is zero
+        if( partAttr.fileSize() == 0 ) {
+            if( sftpRemove(partUrl, true) != SSH2_FX_OK ) {
+                error(ERR_CANNOT_DELETE_PARTIAL, partUrl.prettyURL());
+                return;
+            }
+        }
+        
+        // return file exists error if we weren't instructed to overwrite or resume
+        else if( !overwrite && !resume ) {
+            // notify the job that we can resume this file
+            kdDebug(KIO_SFTP_DB) << "can resume = " << canResume(partAttr.fileSize()) << endl;
+            error(ERR_FILE_ALREADY_EXIST, partUrl.prettyURL());
+            return;
+        }
+        
+        // remove part ext if we are not marking partial files
+        else if( !markPartial ) {
+            if( sftpRename(partUrl, origUrl) != SSH2_FX_OK ) {
+                error(ERR_CANNOT_RENAME_PARTIAL, origUrl.prettyURL());
+                return;
+            }
+        }
+    }
+        
+
+    // determine url we will actually write to
+    KURL writeUrl = markPartial ? partUrl : origUrl;
+    
+    // determine beginning offset  
+    Q_UINT32 beginningOffset;
+    if( markPartial ) {
+        beginningOffset = partExists ? partAttr.fileSize() + 1 : 0;
+    }
+    else {
+        beginningOffset = origExists ? origAttr.fileSize() + 1 : 0;
+    }
+    
+
+    Q_UINT32 pflags = 0;
+    if( overwrite && !resume ) {
+        beginningOffset = 0;
+        pflags = SSH2_FXF_WRITE | SSH2_FXF_CREAT | SSH2_FXF_TRUNC;
+    }
+    else if( !overwrite && !resume ) {
+        beginningOffset = 0;
+        pflags = SSH2_FXF_WRITE | SSH2_FXF_CREAT | SSH2_FXF_EXCL;
+    }
+    else if( overwrite && resume )
+        pflags = SSH2_FXF_WRITE | SSH2_FXF_CREAT;
+    else if( !overwrite && resume )
+        pflags = SSH2_FXF_WRITE | SSH2_FXF_CREAT | SSH2_FXF_APPEND;
+
+    sftpFileAttr attr;
+    
+    // set the permissions of the file we write to if it didn't already exist
+    if( !partExists && !origExists )
+        attr.setPermissions(permissions);
+
+    QByteArray handle;
+    code = sftpOpen(writeUrl, pflags, attr, handle);
+    if( code == SSH2_FX_FAILURE ) { // assume failure means file exists
+        error(ERR_FILE_ALREADY_EXIST, writeUrl.prettyURL());
+        return;
+    }
+    else if( code != SSH2_FX_OK ) {
+        processStatus(code, writeUrl.prettyURL());
+        return;
+    }
+
+    Q_UINT32 offset = beginningOffset;
+    int nbytes;
+    time_t now, start = time(NULL), last = start;
+    QByteArray mydata;
+
+    processedSize(offset);
+    dataReq();
+    nbytes = readData(mydata);
+    while( nbytes > 0 ) {
+        if( (code = sftpWrite(handle, offset, mydata)) != SSH2_FX_OK ) {
+            error(ERR_COULD_NOT_WRITE, url.prettyURL());
+            return;
+        }
+
+        offset += mydata.size();
+        processedSize(offset);
+
+        now = time(NULL);
+        if( now - last > 1 ) {
+            speed((offset - beginningOffset) / (now - start));
+            last = now;
+        }
+        kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::put(): offset = " << offset << endl;
+
+        dataReq();
+        nbytes = readData(mydata);
+    }
+
+    if( nbytes != 0 ) {
+        sftpClose(handle);
+        
+        if( markPartial ) {
+
+            // remove remote file if it smaller than our keep size
+            uint minKeepSize = config()->readNumEntry("MinimumKeepSize", DEFAULT_MINIMUM_KEEP_SIZE);
+            
+            if( sftpStat(writeUrl, attr) == SSH2_FX_OK ) {
+                if( attr.fileSize() < minKeepSize ) {
+                    sftpRemove(writeUrl, true);
+                }
+            }
+        }
+        
+        return;
+    }
+
+    if( (code = sftpClose(handle)) != SSH2_FX_OK ) {
+        error(ERR_COULD_NOT_WRITE, writeUrl.prettyURL());
+        return;
+    }
+
+    // if wrote to a partial file, then remove the part ext
+    if( markPartial ) {
+        if( sftpRename(partUrl, origUrl) != SSH2_FX_OK ) {
+            error(ERR_CANNOT_RENAME_PARTIAL, origUrl.prettyURL());
+            return;
+        }
+    }
+
+    finished();
+}
+
+#if 0
 void kio_sftpProtocol::put ( const KURL& url, int permissions, bool overwrite, bool resume ){
     kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::put(" << url.prettyURL() << ")" << endl;
     kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::put(): overwrite = " <<
@@ -577,7 +844,7 @@ void kio_sftpProtocol::put ( const KURL& url, int permissions, bool overwrite, b
         attr.setPermissions(permissions);
 
     QByteArray handle;
-    code = sftpOpen(url, pflags, attr, handle);
+    code = sftpOpen(writeUrl, pflags, attr, handle);
     if( code == SSH2_FX_FAILURE ) { // assume failure means file exists
         error(ERR_FILE_ALREADY_EXIST, url.prettyURL());
         return;
@@ -587,9 +854,6 @@ void kio_sftpProtocol::put ( const KURL& url, int permissions, bool overwrite, b
         return;
     }
 
-    // How big should each data packet be? Large gives better tranfer rate
-    // over high speed connections, low probably better for modems.
-    // unused Q_UINT32 len = 8*1024;
     Q_UINT32 offset = beginningOffset;
     int nbytes;
     time_t now, start = time(NULL), last = start;
@@ -631,7 +895,7 @@ void kio_sftpProtocol::put ( const KURL& url, int permissions, bool overwrite, b
 
     finished();
 }
-
+#endif
 
 void kio_sftpProtocol::stat ( const KURL& url ){
     kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::stat( " << url.prettyURL() << " )" << endl;
@@ -879,7 +1143,7 @@ void kio_sftpProtocol::rename(const KURL& src, const KURL& dest, bool overwrite)
                     failed = true;
                 }
                 else {
-                    kdDebug() << "renaem 7" << endl;
+                    kdDebug() << "rename 7" << endl;
                     // XXX what if rename fails again? We have lost the file.
                     // Maybe rename dest to a temporary name first? If rename is
                     // successful, then delete?
@@ -1011,26 +1275,24 @@ void kio_sftpProtocol::slave_status(){
 }
 
 bool kio_sftpProtocol::getPacket(QByteArray& msg) {
-    kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::getPacket()" << endl;
+//    kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::getPacket()" << endl;
     int len;
     unsigned int msgLen;
     char buf[4096];
 
     // Get the message length and type
     len = atomicio(ssh.stdioFd(), buf, 4, true /*read*/);
-    if( len == 0 ) {
+    if( len == 0 || len == -1 ) {
+        closeConnection();
         error( ERR_CONNECTION_BROKEN, mHost);
         return false;
     }
-    else if( len == -1 ) {
-        error( ERR_CONNECTION_BROKEN, mHost);
-        return false;
-    }
+    
     QByteArray a;
     a.duplicate(buf, (unsigned int)4);
     QDataStream s(a, IO_ReadOnly);
     s >> msgLen;
-//    kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::getPacket(): Got msg length of " << msgLen << endl;
+    kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::getPacket(): Got msg length of " << msgLen << endl;
     if( !msg.resize(msgLen) ) {
         error( ERR_OUT_OF_MEMORY, "Could not allocate memory for sftp packet.");
         return false;
@@ -1040,10 +1302,12 @@ bool kio_sftpProtocol::getPacket(QByteArray& msg) {
     while( msgLen ) {
         len = atomicio(ssh.stdioFd(), buf, MIN(msgLen, sizeof(buf)), true /*read*/);
         if( len == 0 ) {
+            closeConnection();
             error(ERR_CONNECTION_BROKEN, "Connection closed");
             return false;
         }
         else if( len == -1 ) {
+            closeConnection();
             error(ERR_CONNECTION_BROKEN, "Couldn't read sftp packet");
             return false;
         }
@@ -1051,7 +1315,7 @@ bool kio_sftpProtocol::getPacket(QByteArray& msg) {
         mymemcpy(buf, msg, offset, len);
         offset += len;
     }
-    kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::getPacket(): END size = " << msg.size() << endl;
+ //   kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::getPacket(): END size = " << msg.size() << endl;
     return true;
 }
 
@@ -1179,7 +1443,8 @@ int kio_sftpProtocol::sftpOpenDirectory(const KURL& url, QByteArray& handle){
 
     r >> type >> id;
     if( id != expectedId ) {
-        kdError(KIO_SFTP_DB) << "kio_sftpProtocol::sftpOpenDirectory: sftp packet id mismatch" << endl;
+        kdError(KIO_SFTP_DB) << "kio_sftpProtocol::sftpOpenDirectory: sftp packet id mismatch: " << 
+            "expected " << expectedId << ", got " << id << endl;
         return -1;
     }
 
@@ -1284,6 +1549,7 @@ int kio_sftpProtocol::sftpSetStat(const KURL& url, const sftpFileAttr& attr){
 
     return code;
 }
+
 /** Sends a sftp command to remove a file or directory. */
 int kio_sftpProtocol::sftpRemove(const KURL& url, bool isfile){
     QString path = url.path();
