@@ -32,7 +32,14 @@
 
 #include <kio/tcpslavebase.h>
 
-class KDESasl;
+#include <qstring.h>
+#include <qcstring.h>
+#include <qstringlist.h>
+#include <qstrlist.h>
+
+namespace KioSMTP {
+  class Response;
+};
 
 class SMTPProtocol : public KIO::TCPSlaveBase {
 public:
@@ -53,30 +60,22 @@ protected:
 
   bool smtp_open(const QString& fakeHostname = QString::null);
   void smtp_close();
+
   /** Send command @p cmd. The line ending CRLF is added here. */
-  bool command(QCString cmd, 
-               bool handleErrors = true,
-               char *r_buf = NULL, 
-               unsigned int r_len = 0);
+  bool command( QCString cmd, KioSMTP::Response * resp=0 );
   /** This is an overloaded member function, provided for
       convenience. It behaves essentially like the above function. */
-  bool command(const QString & cmd, 
-               bool handleErrors = true,
-               char *r_buf = NULL, 
-               unsigned int r_len = 0);
+  bool command( const QString & cmd, KioSMTP::Response * resp=0 );
   /** This is an overloaded member function, provided for
       convenience. It behaves essentially like the above function. */
-  bool command(const char * cmd, 
-               bool handleErrors = true,
-               char *r_buf = NULL, 
-               unsigned int r_len = 0);
-  int getResponse(bool handleErrors = true,
-                  char *real_buf = NULL, 
-                  unsigned int real_len = 0);
-  bool Authenticate();
-  void ParseFeatures(const char *buf);
+  bool command( const char * cmd, KioSMTP::Response * resp=0 );
+
+  KioSMTP::Response getResponse( bool * ok );
+
+  bool authenticate();
+  void parseFeatures( const KioSMTP::Response & ehloResponse, bool afterTLS=false );
+  void clearCapabilities();
   bool putRecipients( const QStringList & list );
-  int GetVal(char *buf);
 
   unsigned short m_iOldPort;
   bool m_opened;
@@ -87,15 +86,14 @@ protected:
   QString m_sPass, m_sOldPass;
   QString m_hostname;
 
-  QString  m_sAuthConfig;
   QCString m_lastError;
 
   static const int DEFAULT_RESPONSE_BUFFER = 512;
   static const int DEFAULT_EHLO_BUFFER = 5120;
   static const int SMTP_MIN_NEGATIVE_REPLY = 400;
 
-  class Response;
-  class Capabilities;
+  QStringList mCapabilities;
+  QStrIList mAuthMethods;
 };
 
 #endif
