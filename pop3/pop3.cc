@@ -306,7 +306,7 @@ bool POP3Protocol::pop3_open ()
 		closeConnection();
 
 		if(!ConnectToHost(m_sServer.ascii(), m_iPort)) {
-			error(ERR_COULD_NOT_CONNECT, m_sServer);
+			// error(ERR_COULD_NOT_CONNECT, m_sServer);
 			// ConnectToHost has already send an error message.
 			return false; 
 		}
