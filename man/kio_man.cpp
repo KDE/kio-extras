@@ -846,17 +846,17 @@ int compare_man_index(const void *s1, const void *s2)
 
     if ( m1->manpage_len < m2->manpage_len)
     {
-	i = strncmp( m1->manpage_begin,
-		     m2->manpage_begin,
-		     m1->manpage_len);
+	i = qstrncmp( m1->manpage_begin,
+		      m2->manpage_begin,
+		      m1->manpage_len);
 	if (!i)
 	    return -1;
 	return i;
     }
 
-    return strncmp( m1->manpage_begin,
-		    m2->manpage_begin,
-		    m1->manpage_len);
+    return qstrncmp( m1->manpage_begin,
+		     m2->manpage_begin,
+		     m1->manpage_len);
 }
 
 #else /* !_USE_QSORT */
@@ -990,7 +990,7 @@ void MANProtocol::showIndex(const QString& section)
 
         char *manpage_end;
         struct man_index_t *manindex = new man_index_t;
-	manindex->manpath = (*page).local8Bit();
+	manindex->manpath = strdup((*page).local8Bit());
 
 	manindex->manpage_begin = strrchr(manindex->manpath, '/');
 	if (manindex->manpage_begin)
@@ -1090,17 +1090,7 @@ void MANProtocol::showIndex(const QString& section)
 	}
 	os << "<tr><td><a href=\"man:"
 	   << manindex->manpath << "\">\n";
-	// !!!!!!!!!!!!!!!!!!!!!!
-	//
-	// WARNING
-	//
-	// here I do modify the const QString from "pages".
-	// I assume, they are not used afterwards anyways
-	//
-	// Maybe I could use a QTextStream::WriteRaw(const char *, uint len)
-	// too, but how about locale encoded Filenames ??
-	//
-	// !!!!!!!!!!!!!!!!!!!!!!
+
 	((char *)manindex->manpage_begin)[manindex->manpage_len] = '\0';
 	os << manindex->manpage_begin
 	   << "</a></td><td>&nbsp;</td><td> "
@@ -1109,8 +1099,10 @@ void MANProtocol::showIndex(const QString& section)
 	last_index = manindex;
     }
 
-    for (int i=0; i<listlen; i++)
+    for (int i=0; i<listlen; i++) {
+	::free(indexlist[i]->manpath);   // allocated by strdup
 	delete indexlist[i];
+    }
 
     delete [] indexlist;
 
@@ -1164,7 +1156,7 @@ void MANProtocol::showIndex(const QString& section)
 
     // print footer
     os << "</body></html>" << endl;
-
+    
     infoMessage(QString::null);
     data(output.local8Bit());
     finished();
