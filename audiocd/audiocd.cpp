@@ -50,8 +50,8 @@ extern "C"
    included.  (matz) */
 #undef _I386_TYPES_H
 /* And <linux/byteorder/swab.h> uses GNU C extensions without providing
-   fallbacks for non-GNUisms.  Fortunately we (and no other header) needs
-   the swab routines.  */
+   fallbacks for non-GNUisms.  Fortunately we (or other headers) don't
+   need the swab routines.  */
 #define _LINUX_BYTEORDER_SWAB_H
 #endif
 #include <linux/cdrom.h>
@@ -322,6 +322,8 @@ class AudioCDProtocol::Private
   long vorbis_bitrate_lower;
   long vorbis_bitrate_upper;
   long vorbis_bitrate_nominal;
+  int  vorbis_encode_method;
+  double vorbis_quality;
   int vorbis_bitrate;
 #endif
 
@@ -551,7 +553,17 @@ AudioCDProtocol::initRequest(const KURL & url)
 
 #ifdef HAVE_VORBIS
 
- vorbis_encode_init(&d->vi, 2, 44100, d->vorbis_bitrate_upper, d->vorbis_bitrate_nominal, d->vorbis_bitrate_lower);
+  switch (d->vorbis_encode_method) {
+       case 0:
+/* Support very old libvorbis by simply falling through.  */
+#if HAVE_VORBIS >= 2
+       vorbis_encode_init_vbr(&d->vi, 2, 44100, d->vorbis_quality/10.0);
+       break;
+#endif
+       case 1:
+       vorbis_encode_init(&d->vi, 2, 44100, d->vorbis_bitrate_upper, d->vorbis_bitrate_nominal, d->vorbis_bitrate_lower);
+       break;
+  }
 
 #endif
 
@@ -1368,6 +1380,16 @@ static char mp3buffer[mp3buffer_size];
 
         while(vorbis_analysis_blockout(&d->vd,&d->vb)==1) {
           vorbis_analysis(&d->vb,&d->op);
+/* Support ancient libvorbis (< RC3).  */
+#if HAVE_VORBIS >= 2
+          /* Non-ancient case.  */
+          vorbis_bitrate_addblock(&d->vb);
+
+          while(vorbis_bitrate_flushpacket(&d->vd, &d->op)) {
+#else
+          /* Make a lexical block to place the #ifdef's nearby.  */
+          if (1) {
+#endif
           ogg_stream_packetin(&d->os,&d->op);
 
           while(int result=ogg_stream_pageout(&d->os,&d->og)) {
@@ -1389,6 +1411,7 @@ static char mp3buffer[mp3buffer_size];
 	    processed +=  d->og.header_len + d->og.body_len;
           }
         }
+      }
       }
 #endif
 
@@ -1585,6 +1608,9 @@ void AudioCDProtocol::getParameters() {
 
   config->setGroup("Vorbis");
 
+  d->vorbis_encode_method = config->readNumEntry("encmethod", 0); // 0 for quality, 1 for managed bitrate
+  d->vorbis_quality = config->readDoubleNumEntry("quality",3.0); // default quality level of 3, to match oggenc
+
   if ( config->readBoolEntry("set_vorbis_min_bitrate",false) ) {
     d->vorbis_bitrate_lower = config->readNumEntry("vorbis_min_bitrate",40) * 1000;
   } else {
@@ -1597,6 +1623,7 @@ void AudioCDProtocol::getParameters() {
     d->vorbis_bitrate_upper = -1;
   }
   
+  // this is such a hack!
   if ( d->vorbis_bitrate_upper != -1 && d->vorbis_bitrate_lower != -1 ) {
     d->vorbis_bitrate = 104000; // empirically determined ...?!
 
