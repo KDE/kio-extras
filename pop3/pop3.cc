@@ -329,7 +329,7 @@ bool POP3Protocol::pop3_open( KURL &_url )
   if (_url.port()) {
     port = _url.port();
   } else {
-    struct servent *sent = getservbyname("spop3", "tcp");
+    struct servent *sent = getservbyname("pop-3", "tcp");
     if (sent) {
        port = ntohs(sent->s_port);
     } else {
