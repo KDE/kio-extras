@@ -238,8 +238,9 @@ static STRDEF standardstring[] = {
     { V('r','q'), 2, "''", NULL },
     { 0, 0, NULL, NULL}
 };
+#endif
 
-
+//used in expand_char, e.g. for "\(bu"
 static STRDEF standardchar[] = {
     { V('*','*'), 1, "*", NULL  },
     { V('*','A'), 1, "A", NULL  },
@@ -300,7 +301,7 @@ static STRDEF standardchar[] = {
     { V('a','a'), 1, "&#180;", NULL  },
     { V('a','p'), 1, "~", NULL  },
     { V('b','r'), 1, "|", NULL  },
-    { V('b','u'), 1, "*", NULL  },
+    { V('b','u'), 1, "<li></li>", NULL  },
     { V('b','v'), 1, "|", NULL  },
     { V('c','i'), 1, "o", NULL  },
     { V('c','o'), 1, "&#169;", NULL  },
@@ -338,7 +339,6 @@ static STRDEF standardchar[] = {
     { V('u','l'), 1, "_", NULL  },
     { 0, 0, NULL, NULL  }
 };
-#endif
 
 /* default: print code */
 
@@ -367,14 +367,14 @@ static char charb[TINY_STR_MAX];
 static const char *expand_char(int nr)
 {
   STRDEF *h;
-  h=chardef;
+  h=standardchar;
   if (!nr) return NULL;
   while (h)
-      if (h->nr==nr) {
-	  curpos+=h->slen;
-	  return h->st;
-      } else
-	  h=h->next;
+     if (h->nr==nr) {
+        curpos+=h->slen;
+        return h->st;
+     } else
+        h++;
   charb[0]=nr/256;
   charb[1]=nr%256;
   charb[2]='\0';
@@ -798,13 +798,13 @@ static char *scan_escape(char *c)
     case '\n':
     case '&': h=""; break;
     case '(':
-	c++;
-	i= c[0]*256+c[1];
-	c++;
-	h = expand_char(i);
-	break;
+       c++;
+       i= c[0]*256+c[1];
+       c++;
+       h = expand_char(i);
+       break;
     case '*':
-	c++;
+    c++;
 	if (*c=='(') {
 	    c++;
 	    i= c[0]*256+c[1];
