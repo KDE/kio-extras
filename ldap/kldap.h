@@ -8,8 +8,9 @@
 #include <lber.h>
 #include <ldap.h>
 #include <config.h>
-#ifndef TIME_WITH_SYS_TIME
+#ifdef TIME_WITH_SYS_TIME
 #include <sys/time.h>
+#include <time.h>
 #else
 #include <time.h>
 #endif
@@ -59,7 +60,7 @@ namespace KLDAP
      * Return the last result code.
      *
      * Returns the result of the last LDAP operation.
-     * 
+     *
      * The possible values are defined in ldap.h. The most
      * prominent result code is LDAP_SUCCESS.
      */
@@ -67,7 +68,7 @@ namespace KLDAP
 
     /**
      * Returns a description of the last result.
-     * 
+     *
      * Returns a textual description of the last result code.
      * This text can be used in error messages.
      *
@@ -87,11 +88,11 @@ namespace KLDAP
      * @return TRUE, if result == LDAP_SUCCESS, else FALSE
      */
     bool check(int r);
- 
+
     int res;          // the last result code checked
     LDAP *_handle;    // the ldap handle
-    
-  }; 
+
+  };
 
   /**
    * A LDAP connection.
@@ -123,12 +124,12 @@ namespace KLDAP
      *
      */
     Connection(const char *s="localhost", int p=LDAP_PORT);
-    
+
     /**
      * Destructor. Destroys the connection.
      *
      * The destructor disconnects from the server, is
-     * the connection was still active. 
+     * the connection was still active.
      *
      */
     ~Connection();
@@ -170,7 +171,7 @@ namespace KLDAP
      *
      * This method is used to authenticate to the server.
      *
-     * Some servers require the user to authenticate before 
+     * Some servers require the user to authenticate before
      * operations are allowed. Currently, there are two authentication
      * methods:
      *
@@ -178,7 +179,7 @@ namespace KLDAP
      * Kerberos authentication using a ticket.
      *
      * Please note that LDAP does not provide a high level of
-     * security. Especially simple authentication over 
+     * security. Especially simple authentication over
      * unencrypted lines is dangerous.
      *
      * @param dn Distinguished name of the entity to authorize as.
@@ -197,14 +198,14 @@ namespace KLDAP
 
     /// Returns the port for the connection.
     int port() { return _port; }
-    
+
     /// Sets the port for the connection.
     void setPort(int port) { _port=port; };
 
   private:
 
     QString _server;
-    int     _port;   
+    int     _port;
 
   };
 
@@ -214,7 +215,7 @@ namespace KLDAP
    * This class encapsulates a LDAP attribute.
    * Attributes are returned as results of queries.
    *
-   * Note that an attribute can have more than one value. 
+   * Note that an attribute can have more than one value.
    * In fact, most attributes have several values.
    *
    * @short A LDAP attribute.
@@ -229,7 +230,7 @@ namespace KLDAP
     /**
      * Constructor. Initializes an attribute.
      *
-     * The constructor sets up the data structures 
+     * The constructor sets up the data structures
      * necessary to retrieve an attributes values.
      *
      * @param h The LDAP handle.
@@ -241,7 +242,7 @@ namespace KLDAP
 
     /// Returns the name of the attribute.
     QString name() { return _name; };
-    
+
     /**
      * Returns the attributes values.
      *
@@ -253,7 +254,7 @@ namespace KLDAP
      *
      * @param list The list that will store the values.
      *
-     */     
+     */
     void getValues(QStrList &list);
 
 
@@ -305,7 +306,7 @@ namespace KLDAP
     /**
      * Constructor. Creates a LDAP entry.
      *
-     * The constructor initializes the data structures 
+     * The constructor initializes the data structures
      * necessary to retrieve an entries attributes.
      *
      * @param h The LDAP handle.
@@ -318,7 +319,7 @@ namespace KLDAP
      * Returns the distinguished name of the entry.
      *
      * The distinguished name of the entry is a unique
-     * identifier of an entry. 
+     * identifier of an entry.
      *
      * @return The distinguished name.
      *
@@ -351,15 +352,15 @@ namespace KLDAP
     Attribute getAttribute(const char *name);
 
   private:
-    
+
     LDAPMessage *message;
 
   };
 
-  /** 
+  /**
    * The base class for LDAP requests.
    *
-   * This class is the base of all classes encapsulating 
+   * This class is the base of all classes encapsulating
    * LDAP requests. It contains the methods and datastructures
    * to send a request to the servern and retrieve the results.
    *
@@ -377,7 +378,7 @@ namespace KLDAP
      *
      * LDAP operations can be done in two ways: Synchronous requests
      * block the calling process until the result is available.
-     * Asynchronous request return immediately and require the 
+     * Asynchronous request return immediately and require the
      * programm to retrieve the result later.
      *
      * As LDAP operations connect to a (remote) server, nonblocking
@@ -415,7 +416,7 @@ namespace KLDAP
     /**
      * Finish the request.
      *
-     * This method retrieves the result of the request. 
+     * This method retrieves the result of the request.
      * If the mode is "Asynchronous", this will block until the
      * result is available, or the timeout has been exceeded.
      *
@@ -435,7 +436,7 @@ namespace KLDAP
      *
      */
     virtual bool abandon();
-    
+
     /**
      * Set timeout usage.
      *
@@ -458,12 +459,12 @@ namespace KLDAP
      *
      * Allows to set the time to wait for a request to finish.
      *
-     * You can use a timeout of 0 seconds, 0 microseconds to 
-     * implement a polling. 
+     * You can use a timeout of 0 seconds, 0 microseconds to
+     * implement a polling.
      *
      * Note that the timeout is ignored until you call
      * setUseTimeout(TRUE).
-     * 
+     *
      * @see Request#setUseTimeout
      *
      * @param sec seconds to wait
@@ -471,7 +472,7 @@ namespace KLDAP
      *
      */
     void setTimeout(int sec, int usec=0) { _timeout.tv_sec=sec; _timeout.tv_usec=usec; };
-    
+
     /**
      * Returns the timeout.
      *
@@ -504,7 +505,7 @@ namespace KLDAP
    * This class enapsulates LDAP search requests, the most common
    * form of LDAP requests.
    *
-   */ 
+   */
   class SearchRequest : public Request
   {
   public:
@@ -512,7 +513,7 @@ namespace KLDAP
     /**
      * Constructor. Initializes a search request.
      *
-     * Creates a new search request object. 
+     * Creates a new search request object.
      *
      * @param c The connection to use.
      * @param m The mode for the request.
@@ -528,7 +529,7 @@ namespace KLDAP
      * LDAP urls are defined in RFC 2255.
      *
      * @param c The connection to use.
-     * @param url The LDAP url. 
+     * @param url The LDAP url.
      * @param m The mode for the request.
      *
      */
@@ -541,7 +542,7 @@ namespace KLDAP
      * Performs a search.
      *
      * This method is a just a shortcut for:
-     * 
+     *
      * setBase(base); setFilter(filter); execute();
      *
      * @param base The base DN to start the search.
@@ -570,10 +571,10 @@ namespace KLDAP
      */
     QString base() { return _base; };
 
-    /** 
+    /**
      * Set the filter for the search.
      *
-     * This method sets a filter expression for the 
+     * This method sets a filter expression for the
      * search. The search will only return entries matching
      * the filter.
      *
@@ -592,7 +593,7 @@ namespace KLDAP
      *
      * This method sets the list of attributes to return
      * for each entry found in the search.
-     * 
+     *
      * @param list The list of attributes to return.
      *
      */
@@ -660,7 +661,7 @@ namespace KLDAP
     int      _scope, _attrsonly;
 
     LDAPMessage *entry;
-    
+
   };
 
 };
