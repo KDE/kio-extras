@@ -1,6 +1,6 @@
 /*  This file is part of the KDE libraries
     Copyright (C) 2000 Carsten Pfeiffer <pfeiffer@kde.org>
-                  2000 Malte Starostik <malte@kde.org> 
+                  2000 Malte Starostik <malte@kde.org>
 
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Library General Public
@@ -55,17 +55,39 @@ bool TextCreator::create(const QString &path, int width, int height, QImage &img
         QString pixmap = locate( "data", "konqueror/pics/thumbnailfont_7x4.png" );
         if ( !pixmap.isEmpty() )
         {
-            // FIXME: make configurable...
-            // DF: What, the size ? You can determine it from m_size.
-            // CP: no, I meant the font-pixmap and the glyph-size
+            // FIXME: make font/glyphsize configurable...
             m_splitter->setPixmap( QPixmap( pixmap ));
             m_splitter->setItemSize( QSize( 4, 7 ));
         }
     }
 
     bool ok = false;
+
+    // determine some sizes...
+    // example: width: 60, height: 64
+    QSize pixmapSize( width, height );
+    if (height * 3 > width * 4)
+        pixmapSize.setHeight( width * 4 / 3 );
+    else
+        pixmapSize.setWidth( height * 3 / 4 );
+
+    // one pixel for the rectangle, the rest. whitespace
+    int xborder = 1 + pixmapSize.width()/16;  // minimum x-border
+    int yborder = 1 + pixmapSize.height()/16; // minimum y-border
+
+    QSize chSize = m_splitter->itemSize(); // the size of one char
+    int xOffset = chSize.width();
+    int yOffset = chSize.height();
+
+    // calculate a better border so that the text is centered
+    int canvasWidth  = pixmapSize.width()  - 2*xborder;
+    int canvasHeight = pixmapSize.height() -  2*yborder;
+    int numCharsPerLine = (int) (canvasWidth / chSize.width());
+    int numLines = (int) (canvasHeight / chSize.height());
+
+    const int bytesToRead = numCharsPerLine * numLines;
+
     // create text-preview
-    const int bytesToRead = 1024; // FIXME, make configurable
     QFile file( path );
     if ( file.open( IO_ReadOnly ))
     {
@@ -78,29 +100,10 @@ bool TextCreator::create(const QString &path, int width, int height, QImage &img
             QString text = QString::fromLocal8Bit( data );
             // FIXME: maybe strip whitespace and read more?
 
-            QRect rect;
-
-            // example: width: 60, height: 64
-            QPixmap pix;
-            if (height * 3 > width * 4)
-                pix.resize(width, width * 4 / 3);
-            else
-                pix.resize(height * 3 / 4, height);
+            QPixmap pix( pixmapSize );
             pix.fill( QColor( 245, 245, 245 ) ); // light-grey background
 
-            QSize chSize = m_splitter->itemSize(); // the size of one char
-            int xOffset = chSize.width();
-            int yOffset = chSize.height();
-
-            // one pixel for the rectangle, the rest. whitespace
-            int xborder = 1 + pix.width()/16;    // minimum x-border
-            int yborder = 1 + pix.height()/16; // minimum y-border
-
-            // calculate a better border so that the text is centered
-            int canvasWidth = pix.width() - 2*xborder;
-            int canvasHeight = pix.height() -  2*yborder;
-            int numCharsPerLine = (int) (canvasWidth / chSize.width());
-            int numLines = (int) (canvasHeight / chSize.height());
+            QRect rect;
 
             int rest = pix.width() - (numCharsPerLine * chSize.width());
             xborder = QMAX( xborder, rest/2); // center horizontally
@@ -150,7 +153,7 @@ bool TextCreator::create(const QString &path, int width, int height, QImage &img
                     i++; // skip the next character (\n) as well
                     continue;
                 }
-                
+
                 rect = m_splitter->coordinates( ch );
                 if ( !rect.isEmpty() )
                 {
