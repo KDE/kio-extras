@@ -133,7 +133,7 @@ void HelloProtocol::stat(const KURL& url)
 	                                        if (mounted)
 	                                        {
 //	                                                if (mp=="/") mp="";
-	                                                redirection(mp);
+	                                                redirection(KURL( mp ));
 	                                                finished();
 	                                        }
 	                                        else
@@ -146,7 +146,7 @@ void HelloProtocol::stat(const KURL& url)
 	                        		         	proc->start(KProcess::Block);
         	                        		 	delete proc;
 
-	        		                        	redirection(mp);
+	        		                        	redirection(KURL( mp ));
         		        	                	finished();
 							}
 							else
@@ -201,7 +201,7 @@ void HelloProtocol::listDir(const KURL& url)
 						if (mounted)
 						{
 //							if (mp=="/") mp="";
-							redirection(mp);
+							redirection(KURL( mp ));
 							finished();
 						}
 						else
@@ -223,7 +223,7 @@ void HelloProtocol::listDir(const KURL& url)
 								}
 								else
 								{
-		        		                        	redirection(mp);
+		        		                        	redirection(KURL( mp ));
         			        	                	finished();
 								}
 							}

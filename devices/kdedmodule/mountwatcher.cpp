@@ -397,8 +397,8 @@ void MountWatcherModule::readDFDone()
 	if (triggerUpdate)
 	{
 	        KDirNotify_stub allDirNotify("*", "KDirNotify*");
-	        allDirNotify.FilesAdded( "devices:/" );
-	        allDirNotify.FilesAdded( "system:/" );
+	        allDirNotify.FilesAdded( KURL( "devices:/" ) );
+	        allDirNotify.FilesAdded( KURL( "system:/" ) );
 	} else
 		kdDebug()<<" kiodevices No Update needed"<<endl;
 }

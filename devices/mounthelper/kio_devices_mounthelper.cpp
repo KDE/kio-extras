@@ -54,7 +54,7 @@ KIODevicesMountHelperApp::KIODevicesMountHelperApp():KApplication() {
 		return;
 	}
 	QString device=info[1];
-	KURL mp=info[2];
+	KURL mp ( info[2] );
 	if (args->isSet("u"))
 	{
 		//KAutoUnmount *um=new KAutoUnmount(mp,QString::null);

@@ -89,7 +89,7 @@ bool KManPart::openFile()
 
    m_htmlData.truncate(0);
 
-   m_job = KIO::get( QString("man:")+m_file, true, false );
+   m_job = KIO::get( KURL( QString("man:")+m_file ), true, false );
    connect( m_job, SIGNAL( data( KIO::Job *, const QByteArray &) ), SLOT( readData( KIO::Job *, const QByteArray &) ) );
    connect( m_job, SIGNAL( result( KIO::Job * ) ), SLOT( jobDone( KIO::Job * ) ) );
    return true;
