@@ -131,7 +131,7 @@ void TARProtocol::createUDSEntry( const KTarEntry * tarEntry, UDSEntry & entry )
     entry.append(atom);
 
     atom.m_uds = UDS_FILE_TYPE;
-    atom.m_long = tarEntry->isFile() ? S_IFREG : S_IFDIR; // HACK
+    atom.m_long = tarEntry->permissions() & S_IFMT; // keep file type only
     entry.append( atom );
 
     atom.m_uds = UDS_SIZE;
@@ -143,7 +143,7 @@ void TARProtocol::createUDSEntry( const KTarEntry * tarEntry, UDSEntry & entry )
     entry.append( atom );
 
     atom.m_uds = UDS_ACCESS;
-    atom.m_long = tarEntry->permissions();
+    atom.m_long = tarEntry->permissions() & 07777; // keep permissions only
     entry.append( atom );
 
     atom.m_uds = UDS_USER;
