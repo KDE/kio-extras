@@ -20,7 +20,7 @@
 #ifndef _KIO_MEDIA_H_
 #define _KIO_MEDIA_H_
 
-#include <forwardingslavebase.h>
+#include <kio/forwardingslavebase.h>
 
 #include "mediaimpl.h"
 
