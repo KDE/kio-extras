@@ -25,7 +25,6 @@
 
 #include "my_process.h"
 
-#include <iostream.h>
 #include <sys/types.h>
 
 #include <qobject.h>

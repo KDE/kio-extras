@@ -22,8 +22,6 @@
 #include <config.h>
 #endif
 
-#include <iostream.h>
-
 #ifdef HAVE_STRING_H
 #include <string.h>
 #else
@@ -1157,7 +1155,7 @@ ClientProcess* SmbProtocol::getProcess(const QString& host, const QString& share
    };
    QString password(m_password);
    QString user(m_user);
-   
+
    SmbReturnCode result(SMB_NOTHING);
    //repeat until user/password is ok or the user cancels
    //while (!waitUntilStarted(proc,password))

@@ -20,7 +20,6 @@
 
 #include "my_process.h"
 
-#include <iostream.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <signal.h>
@@ -99,7 +98,7 @@ int ClientProcess::select(int secs, int usecs, bool* readEvent, bool* writeEvent
 };
 
 bool ClientProcess::start(const QCString& binary, QCStringList& args)
-{    
+{
    setTerminal(true);
    // Try to set the default locale to make the parsing of the output
    // of `smbclient' easier.
