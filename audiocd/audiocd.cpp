@@ -817,7 +817,7 @@ AudioCDProtocol::listDir(const KURL & url)
               error(KIO::ERR_INTERNAL, url.path());
               return;
           }
-        app_file(entry, name.replace(QRegExp("/"), "%2F"), size);
+        app_file(entry, name, size);
         listEntry(entry, false);
       }
     }
