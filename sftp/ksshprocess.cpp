@@ -294,6 +294,7 @@ bool KSshProcess::setOptions(const SshOptList& opts) {
     else if( mVersion <= SSH ) {
         mArgs.append("-o"); // So we can check if the connection was successful
         mArgs.append("AuthenticationSuccessMsg yes");
+        mArgs.append("-v");
     }
 
     if( mHost.isEmpty() ) {
@@ -381,7 +382,7 @@ bool KSshProcess::connect(bool acceptHostKey) {
             FD_SET(ptyfd, &rfds);           // Add pty file descriptor
             FD_SET(errfd, &rfds);           // Add std error file descriptor
             tv.tv_sec = 60; tv.tv_usec = 0; // 60 second timeout
-            
+
             // Wait for a message from ssh on stderr or the pty.
             int ret = ::select(maxfd+1, &rfds, NULL, NULL, &tv);
 
@@ -417,6 +418,7 @@ bool KSshProcess::connect(bool acceptHostKey) {
                 else {
                     // We've already seen the passwd prompt once
                     // so auth must have failed
+                    kdDebug(KSSHPROC) << "KSshProcess::connect(): Authentication failed" << endl;
                     kill();
                     mError = ERR_AUTH_FAILED;
                     return false;
@@ -435,12 +437,12 @@ bool KSshProcess::connect(bool acceptHostKey) {
                 kdDebug(KSSHPROC) << "KSshProcess::connect(): found password prompt" << endl;
                 if( !gotPasswdPrompt ) { // this is the first time we've seen the prompt
                     gotPasswdPrompt = true;
-                    ssh.WaitSlave();
                     ssh.writeLine(mPassword.latin1());
                 }
                 else {
                     // We've already seen the passwd prompt once
                     // so auth must have failed
+                    kdDebug(KSSHPROC) << "KSshProcess::connect(): Authentication failed" << endl;
                     kill();
                     mError = ERR_AUTH_FAILED;
                     return false;
@@ -477,6 +479,7 @@ bool KSshProcess::connect(bool acceptHostKey) {
             }
             else if( errLine.contains(authSuccessMsg[mVersion]) ) {
                 // Authentication has succeeded!
+                kdDebug(KSSHPROC) << "KSshProcess::connect(): Authentication succeeded." << endl;
                 return true;
             }
             else {
