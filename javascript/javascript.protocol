@@ -1,7 +1,0 @@
-[Protocol]
-exec=kio_about
-protocol=javascript
-input=none
-output=filesystem
-reading=true
-defaultMimetype=text/html
