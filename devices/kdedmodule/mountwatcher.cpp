@@ -328,8 +328,6 @@ bool MountWatcherModule::createLink(const KURL& deviceURL, const KURL& destinati
             config.writeEntry( QString::fromLatin1("Dev"), *(info.at(1)) );
 			config.writeEntry( QString::fromLatin1("Encoding"),
                                QString::fromLatin1("UTF-8"));
-			config.writeEntry( QString::fromLatin1("FSType"),
-                               QString::fromLatin1("Default") );
 			config.writeEntry( QString::fromLatin1("Icon"), "hdd_mount");
 			config.writeEntry( QString::fromLatin1("UnmountIcon"), "hdd_unmount");
 			config.writeEntry( QString::fromLatin1("MountPoint"),

@@ -446,7 +446,6 @@ void HelloProtocol::listRoot()
 			"Actions=Format\n"
 			"Dev=/dev/fd0\n"
 			"Encoding=UTF-8\n"
-			"FSType=Default\n"
 			"Icon=3floppy_mount\n"
 			"MountPoint=/media/floppy\n"
 			"ReadOnly=false\n"
