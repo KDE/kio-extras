@@ -18,7 +18,7 @@ imagethumbnail_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN)
 
 textthumbnail_la_SOURCES = textcreator.cpp
 textthumbnail_la_LIBADD = $(LIB_KDECORE)
-textthumbnail_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN)
+textthumbnail_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) -lkdefx
 
 htmlthumbnail_la_SOURCES = htmlcreator.cpp
 htmlthumbnail_la_LIBADD = $(LIB_KHTML)
