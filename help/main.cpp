@@ -18,7 +18,6 @@
 #include <stdlib.h>
 #include "kio_help.h"
 #include <xslt.h>
-#include <klocale.h>
 
 extern int xmlLoadExtDtdDefaultValue;
 
@@ -27,7 +26,6 @@ extern "C"
     int kdemain( int argc, char **argv )
     {
         KInstance instance( "kio_help" );
-        ( void )KGlobal::locale()->charset();
         fillInstance(instance);
         (void)instance.config(); // we need this one to make sure system globals are read
 

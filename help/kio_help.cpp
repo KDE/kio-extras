@@ -130,8 +130,8 @@ QString HelpProtocol::lookupFile(const QString &fname,
 
 void HelpProtocol::notFound()
 {
-    data(QCString(i18n("<html>The requested help file could not be found. Check that "
-                       "you have installed the documentation.</html>").local8Bit()));
+    data( QTextCodec::codecForLocale()->fromUnicode( i18n("<html>The requested help file could not be found. Check that "
+                                                          "you have installed the documentation.</html>" ) ) );
     finished();
 }
 
@@ -217,10 +217,10 @@ void HelpProtocol::get( const KURL& url )
     kdDebug() << "parsed " << parsed.length() << endl;
 
     if (parsed.isEmpty()) {
-        data(QString(
+        data(QTextCodec::codecForLocale()->fromUnicode( QString(
             "<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=%1\"></head>\n"
             "%2<br>%3</html>" ).arg( QTextCodec::codecForLocale()->name() ).
-             arg( i18n( "The requested help file could not be parsed:" ) ).arg( file ).local8Bit() );
+                                                        arg( i18n( "The requested help file could not be parsed:" ) ).arg( file ) ) );
     } else {
         QString query = url.query(), anchor;
 
@@ -272,11 +272,11 @@ void HelpProtocol::emitFile( const KURL& url )
     int index = parsed.find(QString("<FILENAME filename=\"%1\"").arg(filename));
     if (index == -1) {
         if ( filename == "index.html" ) {
-            data( parsed.local8Bit() );
+            data( QTextCodec::codecForLocale()->fromUnicode( parsed ) );
             return;
         }
 
-        data(QCString(i18n("<html>Couldn't find filename %1 in %2</html>").arg(filename).arg(url.url()).local8Bit()));
+        data(QTextCodec::codecForLocale()->fromUnicode( i18n("<html>Couldn't find filename %1 in %2</html>").arg(filename).arg(url.url() ) ) );
         return;
     }
 
@@ -285,7 +285,7 @@ void HelpProtocol::emitFile( const KURL& url )
     filedata.replace( QRegExp( "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">" ),
                       QString( "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=%1\">" ).arg(  QTextCodec::codecForLocale()->name() ) );
 
-    data(filedata.local8Bit());
+    data( QTextCodec::codecForLocale()->fromUnicode( filedata ) );
 }
 
 void HelpProtocol::mimetype( const KURL &)
