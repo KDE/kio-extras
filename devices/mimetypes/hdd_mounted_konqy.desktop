@@ -1,7 +1,7 @@
 [Desktop Entry]
 ServiceTypes=kdedevice/hdd_mounted
 Actions=hdd_unmount
-X-KDE-Priority=0
+X-KDE-Priority=TopLevel
 
 [Desktop Action hdd_unmount]
 Name=Unmount

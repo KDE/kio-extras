@@ -1,7 +1,7 @@
 [Desktop Entry]
 ServiceTypes=kdedevice/dvd_mounted
 Actions=dvd_unmount;dvd_eject;
-X-KDE-Priority=0
+X-KDE-Priority=TopLevel
 
 [Desktop Action dvd_unmount]
 Name=Unmount

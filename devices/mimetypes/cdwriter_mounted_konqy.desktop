@@ -1,7 +1,7 @@
 [Desktop Entry]
 ServiceTypes=kdedevice/cdwriter_mounted
 Actions=cdwriter_unmount;cdwriter_eject;
-X-KDE-Priority=0
+X-KDE-Priority=TopLevel
 
 [Desktop Action cdwriter_unmount]
 Name=Unmount

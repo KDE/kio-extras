@@ -1,7 +1,7 @@
 [Desktop Entry]
 ServiceTypes=kdedevice/floppy_unmounted
 Actions=floppy_mount
-X-KDE-Priority=0
+X-KDE-Priority=TopLevel
 
 [Desktop Action floppy_mount]
 Name=Mount
