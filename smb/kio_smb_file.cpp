@@ -152,7 +152,7 @@ void SMBSlave::put( const KURL& kurl,
     mode_t      mode;
     QByteArray  filedata;
 
-    //    kdDebug(KIO_SMB) << "SMBSlave::put on " << kurl << endl;
+    kdDebug(KIO_SMB) << "SMBSlave::put on " << kurl << endl;
 
 
     exists = (cache_stat(m_current_url, &st) != -1 );
@@ -212,6 +212,7 @@ void SMBSlave::put( const KURL& kurl,
             kdDebug(KIO_SMB) << "SMBSlave::put error " << kurl <<" can not open for writing !!"<< endl;
             error( KIO::ERR_CANNOT_OPEN_FOR_WRITING, m_current_url.prettyURL());
         }
+        finished();
         return;
     }
 
@@ -224,24 +225,29 @@ void SMBSlave::put( const KURL& kurl,
 
         if (readData(filedata) <= 0)
         {
+            kdDebug(KIO_SMB) << "readData <= 0" << endl;
             break;
         }
         kdDebug(KIO_SMB) << "SMBSlave::put write " << m_current_url.toSmbcUrl()<< endl;
 	buf = filedata.data();
 	bufsize = filedata.size();
-        if(smbc_write(filefd, buf,bufsize) < 0)
+        int size = smbc_write(filefd, buf, bufsize);
+        if ( size < 0)
         {
-	  kdDebug(KIO_SMB) << "SMBSlave::put error " << kurl <<" could not write !!"<< endl;
+            kdDebug(KIO_SMB) << "SMBSlave::put error " << kurl <<" could not write !!"<< endl;
             error( KIO::ERR_COULD_NOT_WRITE, m_current_url.prettyURL());
+            finished();
             return;
         }
+        kdDebug(KIO_SMB ) << "wrote " << size << endl;
     }
     kdDebug(KIO_SMB) << "SMBSlave::put close " << m_current_url.toSmbcUrl()<< endl;
 
     if(smbc_close(filefd))
     {
-      kdDebug(KIO_SMB) << "SMBSlave::put on " << kurl <<" could not write !!"<< endl;
+        kdDebug(KIO_SMB) << "SMBSlave::put on " << kurl <<" could not write !!"<< endl;
         error( KIO::ERR_COULD_NOT_WRITE, m_current_url.prettyURL());
+        finished();
         return;
     }
 
