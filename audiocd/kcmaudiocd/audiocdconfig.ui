@@ -99,7 +99,7 @@
                                 </property>
                                 <property stdset="1">
                                     <name>text</name>
-                                    <string>&amp;Determine device automatically</string>
+                                    <string>De&amp;termine device automatically</string>
                                 </property>
                                 <property stdset="1">
                                     <name>checked</name>
@@ -504,7 +504,7 @@
                                 </property>
                                 <property stdset="1">
                                     <name>text</name>
-                                    <string>M&amp;aximal bitrate:</string>
+                                    <string>Ma&amp;ximal bitrate:</string>
                                 </property>
                             </widget>
                             <widget row="2"  column="1" >
@@ -751,18 +751,15 @@
                                         </property>
                                         <property stdset="1">
                                             <name>text</name>
-                                            <string>Quality:</string>
+                                            <string>&amp;Quality:</string>
                                         </property>
-                                        <property stdset="1">
-                                            <name>textFormat</name>
-                                            <enum>PlainText</enum>
+                                        <property>
+                                            <name>buddy</name>
+                                            <cstring>quality</cstring>
                                         </property>
                                         <property stdset="1">
                                             <name>alignment</name>
-                                            <set>AlignCenter</set>
-                                        </property>
-                                        <property>
-                                            <name>hAlign</name>
+                                            <set>AlignLeft</set>
                                         </property>
                                     </widget>
                                     <widget>
@@ -864,7 +861,7 @@
                                         </property>
                                         <property stdset="1">
                                             <name>text</name>
-                                            <string>&amp;Copyrighted</string>
+                                            <string>Cop&amp;yrighted</string>
                                         </property>
                                         <property>
                                             <name>toolTip</name>
@@ -883,7 +880,7 @@
                                         </property>
                                         <property stdset="1">
                                             <name>text</name>
-                                            <string>&amp;Original</string>
+                                            <string>Origi&amp;nal</string>
                                         </property>
                                         <property stdset="1">
                                             <name>checked</name>
@@ -906,7 +903,7 @@
                                         </property>
                                         <property stdset="1">
                                             <name>text</name>
-                                            <string>&amp;ISO Encoding</string>
+                                            <string>&amp;ISO encoding</string>
                                         </property>
                                         <property>
                                             <name>toolTip</name>
@@ -925,7 +922,7 @@
                                         </property>
                                         <property stdset="1">
                                             <name>text</name>
-                                            <string>&amp;Error Protection</string>
+                                            <string>&amp;Error protection</string>
                                         </property>
                                     </widget>
                                     <widget>
@@ -936,7 +933,7 @@
                                         </property>
                                         <property stdset="1">
                                             <name>text</name>
-                                            <string>&amp;Write ID3 Tag</string>
+                                            <string>&amp;Write ID3 tag</string>
                                         </property>
                                         <property stdset="1">
                                             <name>checked</name>
@@ -1243,7 +1240,7 @@
                                 </property>
                                 <property stdset="1">
                                     <name>text</name>
-                                    <string>M&amp;aximal bitrate</string>
+                                    <string>Maximal bi&amp;trate</string>
                                 </property>
                                 <property>
                                     <name>whatsThis</name>
@@ -1689,7 +1686,7 @@
                 </property>
                 <attribute>
                     <name>title</name>
-                    <string>&amp;CDDB Settings</string>
+                    <string>C&amp;DDB Settings</string>
                 </attribute>
                 <vbox>
                     <property stdset="1">
@@ -1774,7 +1771,7 @@
                         </property>
                         <property stdset="1">
                             <name>title</name>
-                            <string>Directories for CDDB files</string>
+                            <string>CDDB Directories</string>
                         </property>
                         <vbox>
                             <property stdset="1">
@@ -1895,7 +1892,7 @@
                         </property>
                         <property stdset="1">
                             <name>title</name>
-                            <string>Remote Access</string>
+                            <string>CDD&amp;B Server</string>
                         </property>
                         <vbox>
                             <property stdset="1">
@@ -1906,21 +1903,6 @@
                                 <name>spacing</name>
                                 <number>6</number>
                             </property>
-                            <widget>
-                                <class>QLabel</class>
-                                <property stdset="1">
-                                    <name>name</name>
-                                    <cstring>TextLabel1_3</cstring>
-                                </property>
-                                <property stdset="1">
-                                    <name>text</name>
-                                    <string>CDDB &amp;Server:</string>
-                                </property>
-                                <property>
-                                    <name>buddy</name>
-                                    <cstring>cddb_server</cstring>
-                                </property>
-                            </widget>
                             <widget>
                                 <class>QLayoutWidget</class>
                                 <property stdset="1">
@@ -2012,7 +1994,7 @@
                                                 </property>
                                                 <property stdset="1">
                                                     <name>text</name>
-                                                    <string>&amp;Add</string>
+                                                    <string>Add</string>
                                                 </property>
                                                 <property stdset="1">
                                                     <name>default</name>
@@ -2031,7 +2013,7 @@
                                                 </property>
                                                 <property stdset="1">
                                                     <name>text</name>
-                                                    <string>&amp;Delete</string>
+                                                    <string>Delete</string>
                                                 </property>
                                                 <property>
                                                     <name>whatsThis</name>
