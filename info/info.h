@@ -28,8 +28,9 @@ private:
     QString   m_page;
     QString   m_node;
 
-    QString   m_infoScript;
     QString   m_perl;
+    QString   m_infoScript;
+    QString   m_infoConf;
 };
 
 #endif // __info_h__

@@ -12,6 +12,7 @@
 #include <kstandarddirs.h>
 #include <kiconloader.h>
 #include <kinstance.h>
+#include <klocale.h>
 
 #include "info.h"
 
@@ -24,12 +25,23 @@ InfoProtocol::InfoProtocol( const QCString &pool, const QCString &app )
 {
     kdDebug( 7108 ) << "InfoProtocol::InfoProtocol" << endl;
 
-    m_infoScript = locate( "data", "kio_info/kde-info2html" );
-
     m_perl = KGlobal::dirs()->findExe( "perl" );
+    m_infoScript = locate( "data", "kio_info/kde-info2html" );
+    m_infoConf = locate("data", "kio_info/kde-info2html.conf");
 
-    if( m_infoScript.isEmpty() )
-	kdError( 7108 ) << "Critical error: Cannot locate 'kde-info2html' for HTML-conversion" << endl;
+    if( m_perl.isNull() || m_infoScript.isNull() || m_infoConf.isNull() ) {
+	kdError( 7108 ) << "Critical error: Cannot locate files for HTML-conversion" << endl;
+	QString errorStr;
+	if ( m_perl.isNull() ) {
+		errorStr = "perl.";
+	} else {
+		QString missing =m_infoScript.isNull() ?  "kio_info/kde-info2html" : "kio_info/kde-info2html.conf";
+		errorStr = "kde-info2html" + i18n( "\nUnable to locate file %1 which is necessary to run this service. "
+				"Please check your software installation" ).arg( missing );
+	}
+	error( KIO::ERR_CANNOT_LAUNCH_PROCESS, errorStr );
+	exit();
+    }
 
     kdDebug( 7108 ) << "InfoProtocol::InfoProtocol - done" << endl;
 }
@@ -76,7 +88,7 @@ void InfoProtocol::get( const KURL& url )
     cmd += " ";
     cmd += KProcess::quote(m_infoScript);
     cmd += " ";
-    cmd += KProcess::quote(locate("data", "kio_info/kde-info2html.conf"));
+    cmd += KProcess::quote(m_infoConf);
     cmd += " ";
     cmd += KProcess::quote(path);
     cmd += " ";
@@ -87,13 +99,23 @@ void InfoProtocol::get( const KURL& url )
     kdDebug( 7108 ) << "cmd: " << cmd << endl;
 
     FILE *fd = popen( QFile::encodeName(cmd), "r" );
+    if ( !fd ) {
+        kdDebug( 7108 ) << "InfoProtocol::get popen failed" << endl;
+        error( ERR_CANNOT_LAUNCH_PROCESS, cmd );
+        return;
+    }
 
     char buffer[ 4096 ];
     QByteArray array;
 
+    bool empty = true;
     while ( !feof( fd ) )
     {
       int n = fread( buffer, 1, sizeof( buffer ), fd );
+      if ( !n && feof( fd ) && empty ) {
+	      error( ERR_CANNOT_LAUNCH_PROCESS, cmd );
+	      return;
+      }
       if ( n < 0 )
       {
         // ERROR
@@ -101,6 +123,8 @@ void InfoProtocol::get( const KURL& url )
         pclose( fd );
 	return;
       }
+
+      empty = false;
       array.setRawData( buffer, n );
       data( array );
       array.resetRawData( buffer, n );
