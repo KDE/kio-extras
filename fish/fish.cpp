@@ -244,7 +244,7 @@ fishProtocol::fishProtocol(const QCString &pool_socket, const QCString &app_sock
     sendLen = -1;
     connectionAuth.keepPassword = true;
     connectionAuth.url.setProtocol("fish");
-    epoch.setTime_t(0);
+    epoch.setTime_t(0, Qt::UTC);
     outBufPos = -1;
     outBuf = NULL;
     outBufLen = 0;
