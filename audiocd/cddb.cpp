@@ -373,12 +373,12 @@ CDDB::queryCD(QValueList<int>& track_ofs)
 	    return false;
 	  r = r.stripWhiteSpace();
 	  if (r == end)
-	    break;
+	    return false;
 	  QCString catg, d_id, title;
 	  parse_query_resp(r, catg, d_id, title);
 	  kdDebug(7101) << "CDDB: found close CD: category=" << catg << " DiscId="
 	    << d_id << " Title=`" << title << "'" << endl;
-	}
+        }
     }
   else
     {
