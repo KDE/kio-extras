@@ -157,7 +157,7 @@ bool GopherProtocol::gopher_open( KURL &_url )
   // is a port specified in /etc/services, and if so use that
   // otherwise as a last resort use the "official" port of 110.
 
-  unsigned int port;
+  unsigned short int port;
   struct sockaddr_in server_name;
   memset(&server_name, 0, sizeof(server_name));
   static char buf[512];

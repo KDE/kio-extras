@@ -105,7 +105,7 @@ void IMAP4Protocol::imap4_close ()
 
 bool IMAP4Protocol::imap4_open( KURL &_url )
 {
-  unsigned int port;
+  unsigned short int port;
   struct sockaddr_in server_name;
   struct servent *sent;
   QString login_str;
@@ -114,7 +114,7 @@ bool IMAP4Protocol::imap4_open( KURL &_url )
   // We want 143 as the default, but -1 means no port was specified.
   // Why 0 wasn't chosen is beyond me.
   sent = getservbyname("imap4", "tcp");
-  port = (_url.port() != -1) ? _url.port() : (sent ? ntohs(sent->s_port) : 143);
+  port = (_url.port() != 0) ? _url.port() : (sent ? ntohs(sent->s_port) : 143);
 
   m_iSock = ::socket(PF_INET, SOCK_STREAM, 0);
   if (!KSocket::initSockaddr(&server_name, _url.host(), port))

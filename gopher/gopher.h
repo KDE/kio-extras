@@ -84,7 +84,7 @@ public:
   bool gopher_open (KURL &_url);
 
   int m_cmd, m_iSock;
-  uint m_iOldPort;
+  unsigned short int m_iOldPort;
   struct timeval m_tTimeout;
   FILE *fp;
   IOJob* m_pJob;
