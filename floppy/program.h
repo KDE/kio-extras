@@ -20,7 +20,6 @@ public:
    int stderrFD() {return mStderr[0];};
    int pid()      {return m_pid;};
    int kill();
-   void closeFDs();
    int select(int secs, int usecs, bool& stdoutReceived, bool& stderrReceived/*, bool& stdinWaiting*/);
 protected:
 	int mStdout[2];

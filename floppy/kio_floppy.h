@@ -30,6 +30,19 @@
 #include <qobject.h>
 #include <qstring.h>
 
+struct StatInfo
+{
+   StatInfo():name(""),time(0),size(0),mode(0),freeSpace(0),isDir(false),isValid(false) {;};
+   QString name;
+   time_t time;
+   int size;
+   int mode;
+   int freeSpace;
+   bool isDir:1;
+   bool isValid:1;
+};
+
+
 class FloppyProtocol : public KIO::SlaveBase
 {
    public:
@@ -42,14 +55,20 @@ class FloppyProtocol : public KIO::SlaveBase
       virtual void del( const KURL& url, bool isfile);
       virtual void rename(const KURL &src, const KURL &dest, bool overwrite);
       virtual void get( const KURL& url );
-      virtual void put( const KURL& url, int _mode,bool _overwrite, bool _resume );
+      virtual void put( const KURL& url, int _mode,bool overwrite, bool _resume );
       //virtual void copy( const KURL& src, const KURL &dest, int, bool overwrite );
    protected:
       Program *m_mtool;
       int readStdout();
       int readStderr();
 
-      bool createUDSEntry(const QString line, KIO::UDSEntry& entry, bool makeStat=false, const QString& dirName="");
+      StatInfo createStatInfo(const QString line, bool makeStat=false, const QString& dirName="");
+      void createUDSEntry(const StatInfo& info, KIO::UDSEntry& entry);
+      StatInfo _stat(const KURL& _url);
+      int freeSpace(const KURL& url);
+
+      bool stopAfterError(const KURL& url, const QString& drive);
+
       void clearBuffers();
       void terminateBuffers();
       char *m_stdoutBuffer;
