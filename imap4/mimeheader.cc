@@ -15,6 +15,7 @@
  *                                                                         *
  ***************************************************************************/
 
+#include <time.h>
 #include "mimeheader.h"
 #include "mimehdrline.h"
 #include "mailheader.h"
@@ -22,7 +23,7 @@
 
 #include <qregexp.h>
 
-#include <ostream.h>
+#include <iostream.h>
 #include <kglobal.h>
 #include <kinstance.h>
 #include <kiconloader.h>

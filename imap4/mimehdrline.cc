@@ -23,6 +23,7 @@
 
 #include <qtextcodec.h>
 
+#include <config.h>
 #include "mimehdrline.h"
 #include "rfcdecoder.h"
 
