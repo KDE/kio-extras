@@ -4,6 +4,8 @@
 
 #include <qstring.h>
 #include <qcstring.h>
+#include <qstringlist.h>
+#include <qdict.h>
 
 
 #include <kio/global.h>
@@ -40,6 +42,12 @@ private slots:
 
 
 private:
+
+  void initCache(QString section);
+  QString pageName(QString page);
+
+  QDict<char> *_cache;
+
 
   QCString _shellStdout;
 

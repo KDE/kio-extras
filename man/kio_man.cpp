@@ -1,11 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/stat.h>
+#include <string.h>
 
 
 #include <qdir.h>
 #include <qfile.h>
 #include <qtextstream.h>
+#include <qdict.h>
+#include <qcstring.h>
 
 
 #include <kdebug.h>
@@ -46,13 +49,14 @@ bool parseUrl(QString url, QString &title, QString &section)
 
 
 MANProtocol::MANProtocol(const QCString &pool_socket, const QCString &app_socket)
-  : QObject(), SlaveBase("man", pool_socket, app_socket)
+  : QObject(), SlaveBase("man", pool_socket, app_socket), _cache(0)
 {
 }
 
 
 MANProtocol::~MANProtocol()
 {
+  delete _cache;
 }
 
 
@@ -75,7 +79,7 @@ void MANProtocol::get(const QString& path, const QString& query, bool /*reload*/
 
 
   // see if an index was requested
-  if (query.isEmpty() && title.isEmpty())
+  if (query.isEmpty() && (title.isEmpty() || title == "/"))
     {
       if (section == "index")
 	showMainIndex();
@@ -307,9 +311,13 @@ void MANProtocol::showMainIndex()
     sectList = "1:2:3:4:5:6:7:8:9:n";
   QStringList sections = QStringList::split(':', sectList);
 
+  os << "<table>" << endl;
+
   QStringList::ConstIterator it;
   for (it = sections.begin(); it != sections.end(); ++it)
-    os << "<p><a href=\"man:(" << *it << ")\">Section " << *it << "</a>: " << sectionName(*it) << "<br>" << endl;
+    os << "<tr><td><a href=\"man:(" << *it << ")\">Section " << *it << "</a></td><td>&nbsp;</td><td> " << sectionName(*it) << "</td></tr>" << endl;
+  
+  os << "</table>" << endl;
 
   // print footer
   os << "</body></html>" << endl;
@@ -319,25 +327,8 @@ void MANProtocol::showMainIndex()
 }
 
 
-QString pageName(QString page)
+QStringList getManPaths()
 {
-  return QString::null;
-}
-
-
-void MANProtocol::showIndex(QString section)
-{
-  QCString output;
-  
-  QTextStream os(output, IO_WriteOnly);
-
-  // print header
-  os << "<html>" << endl;
-  os << i18n("<head><title>UNIX Manual Index</title></head>") << endl;
-  os << i18n("<body bgcolor=#ffffff><h1>Index for Section %1: %2</h1>").arg(section).arg(sectionName(section)) << endl;
-
-  // compose list of search paths -------------------------------------------------------------
-
   QStringList manPaths;
 
   // TODO: GNU man understands "man -w" to give the real man path used
@@ -378,6 +369,77 @@ void MANProtocol::showIndex(QString section)
     manPaths.append("/usr/local/man");
   if (!manPaths.contains("/usr/share/man"))
     manPaths.append("/usr/share/man");
+
+  return manPaths;
+}
+
+
+void MANProtocol::initCache(QString section)
+{
+  delete _cache;
+  _cache = new QDict<char>(231, false);
+  _cache->setAutoDelete(true);
+  
+  // locate whatis databases
+  QStringList manPaths = getManPaths();
+  QStringList::ConstIterator it;
+  for (it = manPaths.begin(); it != manPaths.end(); ++it)
+    {
+      QFile whatis(QString("%1/whatis").arg(*it));
+      if (whatis.open(IO_ReadOnly))
+	{
+	  QTextStream is(&whatis);
+
+	  QString line, tag, desc;
+	  while (!is.eof())
+	    {
+	      line = is.readLine();
+	      int pos1 = line.find(QString("(%1").arg(section));
+	      if (pos1 <= 0)
+		continue;
+	      
+	      int pos = line.find("-");
+	      if (pos <= 0)
+		continue;
+
+	      desc = line.mid(pos + 1).stripWhiteSpace();
+	      tag = line.left(pos1).stripWhiteSpace();
+
+	      QStringList tags = QStringList::split(',', tag);
+	      QStringList::ConstIterator t;
+	      for (t=tags.begin(); t != tags.end(); ++t)
+		_cache->insert((*t).stripWhiteSpace().latin1(), strdup(desc.local8Bit()));
+	    }
+
+	  whatis.close();
+	}
+    }
+}
+
+
+QString MANProtocol::pageName(QString page)
+{
+  const char *pagename = (*_cache)[page.latin1()];
+  if (pagename)
+    return pagename;
+  return page;
+}
+
+
+void MANProtocol::showIndex(QString section)
+{
+  QCString output;
+  
+  QTextStream os(output, IO_WriteOnly);
+
+  // print header
+  os << "<html>" << endl;
+  os << i18n("<head><title>UNIX Manual Index</title></head>") << endl;
+  os << i18n("<body bgcolor=#ffffff><h1>Index for Section %1: %2</h1>").arg(section).arg(sectionName(section)) << endl;
+
+  // compose list of search paths -------------------------------------------------------------
+
+  QStringList manPaths = getManPaths();
 
   // search for the man pages
   QStringList pages;
@@ -437,13 +499,17 @@ void MANProtocol::showIndex(QString section)
     }
 
   // print out the list
+  os << "<table>" << endl;
   pages.sort();
+  initCache(section);
   QStringList::ConstIterator page;
   for (page = pages.begin(); page != pages.end(); ++page)
     {
-      os << "<p><a href=\"man:" << *page << "(" << section << ")\">";
-      os << *page << " " << pageName(*page) << "</a><br>" << endl;
+      os << "<tr><td><a href=\"man:" << *page << "(" << section << ")\">";
+      os << *page << "</a></td><td>&nbsp;</td><td> " << pageName(*page) << "</td></tr>" << endl;
     }
+
+  os << "</table>" << endl;
 
   // print footer
   os << "</body></html>" << endl;
