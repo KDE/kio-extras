@@ -478,14 +478,19 @@ bool MountWatcherModule::createLink(const KURL& deviceURL, const KURL& destinati
 
 bool MountWatcherModule::setDisplayName(const QString& oldName, const QString& newName)
 {
+	kdDebug() << "oldName=" << oldName << " newName=" << newName << endl;
+	
 	DiskEntry *to_rename = 0L;
 	for (DiskEntry *ent=mDiskList.first();ent;ent=mDiskList.next())
 	{
-		if (ent->niceDescription()==oldName)
+		QString mountPoint = "file:"+ent->mountPoint();
+		QString desc = basicDeviceInfoForMountPoint(mountPoint)[0];
+
+		if (desc==oldName)
 		{
 			to_rename = ent;
 		}
-		else if (ent->niceDescription()==newName)
+		else if (desc==newName)
 		{
 			return false;
 		}

@@ -56,7 +56,7 @@ DiskEntry::DiskEntry(QObject *parent, const char *name)
 
 QString DiskEntry::niceDescription()
 {
-	if (m_userDescription!="") return m_userDescription;
+	if (!m_userDescription.isEmpty()) return m_userDescription;
 	
 	const QString dType(discType());
 	if (dType.contains("hdd"))	return i18n("Hard Disc");

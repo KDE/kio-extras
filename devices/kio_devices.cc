@@ -98,10 +98,12 @@ DevicesProtocol::~DevicesProtocol()
 void DevicesProtocol::rename(KURL const &oldURL, KURL const &newURL, bool) {
 	kdDebug(7126)<<"DevicesProtocol::rename(): old="<<oldURL<<" new="<<newURL<<endl;
 	
+	QString oldPath = KIO::decodeFileName( oldURL.path().remove(0,1) );
+	QString newPath = KIO::decodeFileName( newURL.path().remove(0,1) );
+	
 	DCOPRef mountwatcher("kded", "mountwatcher");
 	DCOPReply reply = mountwatcher.call( "setDisplayName",
-	                                     oldURL.path().remove(0,1),
-	                                     newURL.path().remove(0,1) );
+	                                     oldPath, newPath );
 
 	bool ok = false;
 	
@@ -125,7 +127,7 @@ void DevicesProtocol::rename(KURL const &oldURL, KURL const &newURL, bool) {
 void DevicesProtocol::mountAndRedirect(const KURL& url)
 {
 	QString device;
-	QString path = url.encodedPathAndQuery();
+	QString path = url.path();//encodedPathAndQuery();
 	int i = path.find('/', 1);
 	if (i > 0)
 	{
@@ -458,11 +460,13 @@ void DevicesProtocol::listRoot()
 		}
 // FIXME: look for the real ending
 		++it;
-		QString url="devices:/"+KURL::encode_string_no_slash(*it); //++it;
+		KURL url("devices:/");
+		url.addPath( KIO::encodeFileName(*it) );
+		//++it;
 		QString name=*it; ++it;
 		++it; ++it;
 		QString type=*it; ++it; ++it;
-		createFileEntry(entry,name,url,type);
+		createFileEntry(entry,name,url.url(),type);
 		listEntry(entry,false);
 		count++;
 	}
