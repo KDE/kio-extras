@@ -52,24 +52,15 @@ NNTPProtocol::NNTPProtocol (Connection *_conn ): SlaveBase ("nntp",_conn)
 	}
 
 
-void NNTPProtocol::openConnection(const QString& host, int ip, const QString& user, const QString& pass)
+void NNTPProtocol::setHost(const QString& host, int ip, const QString& user, const QString& pass)
 	{
-	kDebugInfo( 7106, "in open connection method");
+	kDebugInfo( 7106, "in set host method");
 	currentHost=host;
 	currentIP=ip;
 	currentUser=user;
 	currentPass=pass;
-	connected();
 	}
 
-void NNTPProtocol::closeConnection()
-	{
-	kDebugInfo( 7106, "in close connection method");
-	currentHost=QString::null;
-	currentIP=QString::null;
-	currentUser=QString::null;
-	currentPass=QString::null;
-	}
 
 void NNTPProtocol::special(const QByteArray &)
 	{
