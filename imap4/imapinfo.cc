@@ -220,17 +220,16 @@ ulong imapInfo::_flags (const QString & inFlags, QString & userflags)
     0;
   QString
     entry;
-  QString
-    flagsString =
-    inFlags;
+  parseString flagsString;
+  flagsString.data.duplicate(inFlags.latin1(), inFlags.length());
   userflags = "";
 
   if (flagsString[0] == '(')
-    flagsString = flagsString.right (flagsString.length () - 1);
+    flagsString.pos++;
 
   while (!flagsString.isEmpty () && flagsString[0] != ')')
   {
-    entry = imapParser::parseOneWord (flagsString);
+    entry = imapParser::b2c(imapParser::parseOneWord (flagsString));
 
     if (0 != entry.contains ("\\Seen", false))
       flags ^= Seen;
@@ -247,7 +246,7 @@ ulong imapInfo::_flags (const QString & inFlags, QString & userflags)
     else if (0 != entry.contains ("\\*", false))
       flags ^= User;
     else if (entry.isEmpty ())
-      flagsString = "";
+      flagsString.clear();
     else
       userflags += entry + " ";
   }

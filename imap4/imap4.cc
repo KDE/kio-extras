@@ -273,7 +273,6 @@ IMAP4Protocol::get (const KURL & _url)
               if (cache->getFlags () != 0)
                 outputLineStr ("X-Flags: " +
                                QString ().setNum (cache->getFlags ()) + "\r\n");
-              outputLine ("\r\n");
             } else cacheOutput = true;
             lastone->outputPart (*this);
             cacheOutput = false;

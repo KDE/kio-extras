@@ -40,6 +40,44 @@ class QString;
 class mailAddress;
 class mimeHeader;
 
+class parseString
+{
+public:
+  parseString() { pos = 0; }
+  char operator[](uint i) { return data[i + pos]; }
+  bool isEmpty() { return pos >= data.size(); }
+  QCString cstr()
+  {
+    if (pos >= data.size()) return QCString();
+    return QCString(data.data() + pos, data.size() - pos + 1);
+  }
+  int find(char c, int index = 0)
+  {
+    int res = data.find(c, index + pos);
+    return (res == -1) ? res : (res - pos);
+  }
+  QCString left(uint len)
+  {
+    return QCString(data.data() + pos, len + 1);
+  }
+  void clear()
+  {
+    data.resize(0);
+    pos = 0;
+  }
+  uint length()
+  {
+    return data.size() - pos;
+  }
+  void fromString(const QString &s)
+  {
+    clear();
+    data.duplicate(s.latin1(), s.length());
+  }
+  QByteArray data;
+  uint pos;
+};
+
 class imapCache
 {
 public:
@@ -105,6 +143,15 @@ public:
   {
     mimeHdrLine::parseDate (_str.latin1 (), &myDate);
   }
+  void clear()
+  {
+    if (myHeader) delete myHeader;
+    myHeader = NULL;
+    mySize = 0;
+    myFlags = 0;
+    myDate.tm_year = 0;
+    myUid = 0;
+  }
 
 protected:
   mailHeader * myHeader;
@@ -154,45 +201,45 @@ public:
   int parseLoop ();
 
   // parses all untagged responses and passes them on to the following parsers
-  void parseUntagged (QString & result);
+  void parseUntagged (parseString & result);
 
-  void parseRecent (ulong value, QString & result);
-  void parseResult (QString & result, QString & rest,
+  void parseRecent (ulong value, parseString & result);
+  void parseResult (QByteArray & result, parseString & rest,
     const QString & command = QString::null);
-  void parseCapability (QString & result);
-  void parseFlags (QString & result);
-  void parseList (QString & result);
-  void parseLsub (QString & result);
-  void parseSearch (QString & result);
-  void parseStatus (QString & result);
-  void parseExists (ulong value, QString & result);
-  void parseExpunge (ulong value, QString & result);
+  void parseCapability (parseString & result);
+  void parseFlags (parseString & result);
+  void parseList (parseString & result);
+  void parseLsub (parseString & result);
+  void parseSearch (parseString & result);
+  void parseStatus (parseString & result);
+  void parseExists (ulong value, parseString & result);
+  void parseExpunge (ulong value, parseString & result);
 
   // parses the results of a fetch command
   // processes it with the following sub parsers
-  void parseFetch (ulong value, QString & inWords);
+  void parseFetch (ulong value, parseString & inWords);
 
   // read a envelope from imap and parse the adresses
-  mailHeader *parseEnvelope (QString & inWords);
-  QValueList < mailAddress > parseAdressList (QString & inWords);
-  mailAddress parseAdress (QString & inWords);
+  mailHeader *parseEnvelope (parseString & inWords);
+  QValueList < mailAddress > parseAdressList (parseString & inWords);
+  mailAddress parseAdress (parseString & inWords);
 
   // parse the result of the body command
-  void parseBody (QString & inWords);
+  void parseBody (parseString & inWords);
 
   // parse the body structure recursively
-  mimeHeader *parseBodyStructure (QString & inWords, const QString & section,
-                                  mimeHeader * inHeader = NULL);
+  mimeHeader *parseBodyStructure (parseString & inWords,
+    const QString & section, mimeHeader * inHeader = NULL);
 
   // parse only one not nested part
-  mimeHeader *parseSimplePart (QString & inWords, const QString & section);
+  mimeHeader *parseSimplePart (parseString & inWords, const QString & section);
 
   // parse a parameter list (name value pairs)
-  QDict < QString > parseParameters (QString & inWords);
+  QDict < QString > parseParameters (parseString & inWords);
 
   // parse the disposition list (disposition (name value pairs))
   // the disposition has the key 'content-disposition'
-  QDict < QString > parseDisposition (QString & inWords);
+  QDict < QString > parseDisposition (parseString & inWords);
 
   // reimplement these
 
@@ -214,21 +261,25 @@ public:
   // generic parser routines
 
   // parse a parenthesized list
-  void parseSentence (QString & inWords);
+  void parseSentence (parseString & inWords);
 
   // parse a literal or word, may require more data
-  QString parseLiteral (QString & inWords, bool relay = false);
+  QByteArray parseLiteral (parseString & inWords, bool relay = false);
 
   // static parser routines, can be used elsewhere
 
+  static QCString b2c(const QByteArray &ba)
+  { return QCString(ba.data(), ba.size() + 1); }
+
   // skip over whitespace
-  static void skipWS (QString & inWords);
+  static void skipWS (parseString & inWords);
 
   // parse one word (maybe quoted) upto next space " ) ] }
-  static QString parseOneWord (QString & inWords, bool stopAtBracket = FALSE);
+  static QByteArray parseOneWord (parseString & inWords,
+    bool stopAtBracket = FALSE);
 
   // parse one number using parseOneWord
-  static bool parseOneNumber (QString & inWords, ulong & num);
+  static bool parseOneNumber (parseString & inWords, ulong & num);
 
   // extract the box,section,list type, uid, uidvalidity from an url
   static void parseURL (const KURL & _url, QString & _box, QString & _section,
@@ -254,7 +305,7 @@ public:
     return selectInfo;
   };
 
-  const QString & getContinuation ()
+  const QByteArray & getContinuation ()
   {
     return continuation;
   };
@@ -289,7 +340,7 @@ protected:
   QStringList unhandled;
 
   // the last continuation request (there MUST not be more than one pending)
-  QString continuation;
+  QByteArray continuation;
 
   // the last uid seen while a fetch
   QString seenUid;

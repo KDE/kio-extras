@@ -78,14 +78,13 @@ imapList::imapList (const QString & inStr):noInferiors_ (false),
 noSelect_ (false),
 marked_ (false), unmarked_ (false)
 {
-  QString
-    s =
-    inStr;
+  parseString s;
+  s.data.duplicate(inStr.latin1(), inStr.length());
 
   if (s[0] != '(')
     return;                     //not proper format for us
 
-  s = s.right (s.length () - 1);  // tie off (
+  s.pos++;  // tie off (
 
   //process the attributes
   QString
@@ -93,7 +92,7 @@ marked_ (false), unmarked_ (false)
 
   while (!s.isEmpty () && s[0] != ')')
   {
-    attribute = imapParser::parseOneWord (s);
+    attribute = imapParser::b2c(imapParser::parseOneWord (s));
     if (-1 != attribute.find ("\\Noinferiors", 0, false))
       noInferiors_ = true;
     else if (-1 != attribute.find ("\\Noselect", 0, false))
@@ -106,10 +105,10 @@ marked_ (false), unmarked_ (false)
       kdDebug(7116) << "imapList::imapList: bogus attribute " << attribute << endl;
   }
 
-  s = s.right (s.length () - 1);  // tie off )
+  s.pos++;  // tie off )
   imapParser::skipWS (s);
 
-  hierarchyDelimiter_ = imapParser::parseOneWord (s);
+  hierarchyDelimiter_ = imapParser::b2c(imapParser::parseOneWord(s));
   if (hierarchyDelimiter_ == "NIL")
     hierarchyDelimiter_ = QString::null;
   name_ = rfcDecoder::fromIMAP (imapParser::parseOneWord (s));  // decode modified UTF7
