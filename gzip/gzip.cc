@@ -132,6 +132,10 @@ void GZipProtocol::slotCopy( const char *_source, const char *_dest )
     zip_cmd = "bzip";
   else if ( path == "/bzip/decompress" )
     zip_cmd = "bunzip";
+  else if ( path == "/bzip2/compress" )
+    zip_cmd = "bzip2";
+  else if ( path == "/bzip2/decompress" )
+    zip_cmd = "bunzip2";
   else
   {
     QString e = "gzip:";
@@ -232,6 +236,10 @@ void GZipProtocol::slotGet( const char *_url )
     zip_cmd = "bzip";
   else if ( path == "/bzip/decompress" )
     zip_cmd = "bunzip";
+  else if ( path == "/bzip2/compress" )
+    zip_cmd = "bzip2";
+  else if ( path == "/bzip2/decompress" )
+    zip_cmd = "bunzip2";
   else
   {
     error( ERR_UNSUPPORTED_ACTION, path );
@@ -341,6 +349,10 @@ void GZipProtocol::slotPut( const char *_url, int, bool _overwrite, bool /*_resu
     zip_cmd = "bzip";
   else if ( path == "/bzip/decompress" )
     zip_cmd = "bunzip";
+  else if ( path == "/bzip2/compress" )
+    zip_cmd = "bzip2";
+  else if ( path == "/bzip2/decompress" )
+    zip_cmd = "bunzip2";  
   else
   {
     QString e = "gzip:";
