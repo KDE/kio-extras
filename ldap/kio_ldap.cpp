@@ -218,7 +218,7 @@ int LDAPProtocol::asyncSearch( LDAPUrl &usrc )
     usrc.scope() << " filter=" << usrc.filter() << "attrs=" << usrc.attributes() << 
     endl;
   retval = ldap_search_ext( mLDAP, usrc.dn().utf8(), scope, 
-    usrc.filter().isEmpty() ? 0 : usrc.filter().utf8(), attrs, 0, 
+    usrc.filter().isEmpty() ? QCString() : usrc.filter().utf8(), attrs, 0, 
     serverctrls, clientctrls,
     0, 0, &msgid );
 
@@ -933,7 +933,7 @@ void LDAPProtocol::put( const KURL &_url, int, bool overwrite, bool )
                 " deloldrdn: " << ldif.delOldRdn() << endl;
               controlsFromMetaData( &serverctrls, &clientctrls );
               ldaperr = ldap_rename_s( mLDAP, ldif.dn().utf8(), ldif.newRdn().utf8(), 
-                ldif.newSuperior().isEmpty() ? 0 : ldif.newSuperior().utf8(), 
+                ldif.newSuperior().isEmpty() ? QCString() : ldif.newSuperior().utf8(), 
                 ldif.delOldRdn(), serverctrls, clientctrls );
 
               FREELDAPMEM;
