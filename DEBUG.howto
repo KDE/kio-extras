@@ -45,6 +45,18 @@ that a SIGSTOP has been received so you will have to type 'continue' a second
 time.
 
 
+Debugging io-slaves with valgrind
+=================================
+
+KLauncher can be told to run certain io-slaves through valgrind. The following
+command can be used to let klauncher run all https io-slaves via valgrind:
+
+	KDE_SLAVE_VALGRIND=https kdeinit
+
+The valgrind output will appear as the stderr output of the kdeinit process.
+The $VALGRIND_OPTS environment variable can be used to pass options to valgrind.
+
+
 How to get debug output
 =======================
 
