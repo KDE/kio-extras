@@ -117,8 +117,6 @@ void TARProtocol::slotGet(const char *_url)
   TARFilter filter(this, tar_cmd, argv);
   m_pFilter = &filter;
   if ( filter.pid() == -1 ) {
-    fprintf(stderr,"FILTER FAILED\n");
-    fflush(stderr);
     error(ERR_CANNOT_LAUNCH_PROCESS, tar_cmd);
     finished();
     return;
