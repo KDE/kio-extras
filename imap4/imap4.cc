@@ -703,6 +703,8 @@ IMAP4Protocol::put (const KURL & _url, int, bool, bool)
       {
         bufferList.append (buffer);
         length += result;
+      } else {
+	delete buffer;
       }
     }
     while (result > 0);
@@ -1389,10 +1391,10 @@ void IMAP4Protocol::closeConnection()
 
 bool IMAP4Protocol::makeLogin ()
 {
-  kdDebug(7116) << "IMAP4::makeLogin - checking login" << endl;
   if (getState () == ISTATE_LOGIN || getState () == ISTATE_SELECT)
     return true;
 
+  kdDebug(7116) << "IMAP4::makeLogin - checking login" << endl;
   bool alreadyConnected = getState() == ISTATE_CONNECT;
   if (alreadyConnected || connectToHost (myHost.latin1(), myPort))
   {

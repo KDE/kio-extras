@@ -59,6 +59,7 @@ imapParser::imapParser ()
 imapParser::~imapParser ()
 {
   delete lastHandled;
+  lastHandled = 0L;
 }
 
 imapCommand *
@@ -1178,6 +1179,7 @@ void imapParser::parseFetch (ulong /* value */, parseString & inWords)
   inWords.pos++;
   skipWS (inWords);
 
+  delete lastHandled;
   lastHandled = NULL;
 
   while (!inWords.isEmpty () && inWords[0] != ')')
