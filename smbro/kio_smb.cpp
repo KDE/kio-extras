@@ -329,7 +329,7 @@ bool SmbProtocol::stopAfterError(const KURL& url, bool notSureWhetherErrorOccure
    else
    {
       kdDebug(KIO_SMB)<<"Smb::stopAfterError() -"<<m_stdoutBuffer<<"-"<<endl;
-      error( KIO::ERR_UNKNOWN, i18n("Hmm..."));
+      error( KIO::ERR_UNKNOWN, i18n("Couldn't parse response message."));
    };
    return true;
 };
@@ -1559,7 +1559,7 @@ QCString SmbProtocol::getMasterBrowser()
             line=line.left(line.find("__MSBROWSE__")-1);
             line=line.stripWhiteSpace();
             masterBrowser="";
-            for (int i=0; i<line.length(); i++)
+            for (uint i=0; i<line.length(); i++)
                if ((line[i].isDigit()) || (line[i]=='.'))
                   masterBrowser+=line[i].latin1();
             break;
