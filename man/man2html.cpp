@@ -619,6 +619,7 @@ static void add_links(char *c)
     int i,j,nr;
     char *f, *g,*h;
     char *idtest[6]; /* url, mailto, www, ftp, manpage */
+    bool ok;
     out_length+=strlen(c);
     /* search for (section) */
     nr=0;
@@ -682,10 +683,24 @@ static void add_links(char *c)
 	    f=idtest[j];
 	    /* check section */
 	    g=strchr(f,')');
-	    if (g && f-g<6 && (isalnum(f[-1]) || f[-1]=='>') &&
-		((isdigit(f[1]) && f[1]!='0' &&
-		  (f[2]==')' || (isalpha(f[2]) && f[3]==')') || f[2]=='X')) ||
-		 (f[2]==')' && (f[1]=='n' || f[1]=='l')))) {
+	    if (g!=NULL && (g-f)<12 && (isalnum(f[-1]) || f[-1]=='>') &&
+			     isdigit(f[1]) && f[1]!='0')
+	    {
+		ok = TRUE;
+		h = f+2;
+		while (h<g)
+		{
+		    if (!isalpha(*h++))
+		    {
+			ok = FALSE;
+			break;
+		    }
+		}
+	    }
+	    else ok = FALSE;
+
+	    if (ok)
+	    {
 		/* this might be a link */
 		h=f-1;
 		/* skip html makeup */
