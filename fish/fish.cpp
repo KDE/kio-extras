@@ -161,11 +161,11 @@ const struct fishProtocol::fish_info fishProtocol::fishInfo[] = {
       ("pwd"),
       1 },
     { ("LIST"), 1,
-      ("echo `ls -Lla %1 2> /dev/null | grep '^[-dsplcb]' | wc -l`; ls -Lla %1 2>/dev/null | grep '^[-dspl]' | ( while read p x u g s m d y n; do file -b -i $n 2>/dev/null | sed -e '\\,^[^/]*$,d;s/^/M/;s,/.*[ \t],/,'; FILE=%1; if [ -e %1\"/$n\" ]; then FILE=%1\"/$n\"; fi; if [ -L \"$FILE\" ]; then echo \":$n\"; ls -lad \"$FILE\" | sed -e 's/.* -> /L/'; else echo \":$n\" | sed -e 's/ -> /\\\nL/'; fi; echo \"P$p $u.$g\nS$s\nd$m $d $y\n\"; done; );"
-                "ls -Lla %1 2>/dev/null | grep '^[cb]' | ( while read p x u g a i m d y n; do echo \"P$p $u.$g\nE$a$i\nd$m $d $y\n:$n\n\"; done; )"),
+      ("echo `ls -Lla %1 2> /dev/null | grep '^[-dsplcb]' | wc -l`; ls -Lla %1 2>/dev/null | grep '^[-dspl]' | ( while read -r p x u g s m d y n; do file -b -i $n 2>/dev/null | sed -e '\\,^[^/]*$,d;s/^/M/;s,/.*[ \t],/,'; FILE=%1; if [ -e %1\"/$n\" ]; then FILE=%1\"/$n\"; fi; if [ -L \"$FILE\" ]; then echo \":$n\"; ls -lad \"$FILE\" | sed -e 's/.* -> /L/'; else echo \":$n\" | sed -e 's/ -> /\\\nL/'; fi; echo \"P$p $u.$g\nS$s\nd$m $d $y\n\"; done; );"
+                "ls -Lla %1 2>/dev/null | grep '^[cb]' | ( while read -r p x u g a i m d y n; do echo \"P$p $u.$g\nE$a$i\nd$m $d $y\n:$n\n\"; done; )"),
       0 },
     { ("RETR"), 1,
-      ("ls -l %1 2>&1 | ( read a b c d x e; echo $x ) 2>&1; echo '### 001'; cat %1"),
+      ("ls -l %1 2>&1 | ( read -r a b c d x e; echo $x ) 2>&1; echo '### 001'; cat %1"),
       1 },
     { ("STOR"), 2,
       ("> %2; echo '### 001'; ( [ \"`expr %1 / 4096`\" -gt 0 ] && dd bs=4096 count=`expr %1 / 4096` 2>/dev/null;"
@@ -679,7 +679,7 @@ bool fishProtocol::sendCommand(fish_command_type cmd, ...) {
     va_start(list, cmd);
     QString realCmd = info.command;
     QString realAlt = info.alt;
-    static QRegExp rx("[][\\\\\n $`#!()*?{}~&<>;'\"|\t]");
+    static QRegExp rx("[][\\\\\n $`#!()*?{}~&<>;'\"%^@|\t]");
     for (int i = 0; i < info.params; i++) {
         QString arg(va_arg(list, const char *));
         int pos = -2;
