@@ -44,7 +44,9 @@ MAIN: while (<STDIN>) {
 #    print DEBUG "$_\n";
     s/^#//;
     /^VER / && do {
-        print "VER 0.0.2 copy append lscount lslinks lsmime exec\n### 200\n";
+        # We do not advertise "append" capability anymore, as "write" is
+        # as fast in perl mode and more reliable (overlapping writes)
+        print "VER 0.0.2 copy lscount lslinks lsmime exec\n### 200\n";
         next;
     };
     /^PWD$/ && do {
@@ -263,6 +265,7 @@ sub write_loop {
     my $fn = unquote($_[1]);
     my $error = '';
     sysopen(FH,$fn,$_[2]) || do { print "### 400 $!\n"; return; };
+    eval { flock(FH,2); };
     if ($_[3]) {
         sysseek(FH,int($_[3]),0) || do { close(FH);print "### 400 $!\n"; return; };
     }
