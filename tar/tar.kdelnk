@@ -1,0 +1,10 @@
+# KDE Config File
+[Protocol]
+exec=kio_tar
+protocol=tar
+input=stream
+output=stream
+reading=true
+source=false
+
+
