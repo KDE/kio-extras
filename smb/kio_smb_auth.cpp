@@ -140,10 +140,14 @@ bool SMBSlave::authDlg(SMBAuthInfo& auth) {
     auth.m_username = m_default_user.local8Bit();
     auth.m_passwd   = m_default_password.local8Bit();
   }
-        QString msg( "Please enter Authentication information for:\n" );
-        msg.append( "Workgroup = " + auth.m_workgroup + "\n" );
-        msg.append( "Server = " + auth.m_server + "\n" );
-        msg.append( "Share = " + auth.m_share);
+        QString msg = i18n( 
+            "Please enter authentication information for:\n"
+            "Workgroup = %1\n"
+            "Server = %2\n"
+            "Share = %3" )
+            .arg( auth.m_workgroup )
+            .arg( auth.m_server )
+            .arg( auth.m_share );
 
         KIO::AuthInfo authInfo;
         authInfo.username = auth.m_username;
