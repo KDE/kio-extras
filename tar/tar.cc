@@ -75,7 +75,7 @@ void TARProtocol::slotGet(const char *_url)
 
   // Start the file protcol
   KIOSlave slave(exec);
-  if (slave.pid() == -1) {
+  if (!slave.isRunning()) {
     error(ERR_CANNOT_LAUNCH_PROCESS, exec);
     return;
   }

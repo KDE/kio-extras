@@ -70,7 +70,7 @@ void GZipProtocol::slotCopy( const char *_source, const char *_dest )
 
   // Start the dest slave
   KIOSlave dest_slave( dest_exec );
-  if ( dest_slave.pid() == -1 ) {
+  if ( !dest_slave.isRunning()) {
     error( ERR_CANNOT_LAUNCH_PROCESS, dest_exec );
     m_cmd = CMD_NONE;
     return;
@@ -157,7 +157,7 @@ void GZipProtocol::slotCopy( const char *_source, const char *_dest )
 
   // Start the source slave
   KIOSlave source_slave( source_exec );
-  if ( source_slave.pid() == -1 ) {
+  if ( !source_slave.isRunning()) {
     error( ERR_CANNOT_LAUNCH_PROCESS, source_exec );
     return;
   }
@@ -260,7 +260,7 @@ void GZipProtocol::slotGet( const char *_url )
 
   // Start the file protcol
   KIOSlave slave( exec );
-  if ( slave.pid() == -1 ) {
+  if ( !slave.isRunning() ) {
     error( ERR_CANNOT_LAUNCH_PROCESS, exec );
     return;
   }
@@ -367,7 +367,7 @@ void GZipProtocol::slotPut( const char *_url, int, bool _overwrite, bool /*_resu
 
   // Start the protocol
   KIOSlave slave( exec );
-  if ( slave.pid() == -1 ) {
+  if ( !slave.isRunning() ) {
     error( ERR_CANNOT_LAUNCH_PROCESS, exec );
     finished();
     return;
@@ -523,6 +523,7 @@ GZipIOJob::GZipIOJob( KIOConnection *_conn, GZipProtocol *_gzip ) : KIOJobBase( 
 void GZipIOJob::slotData( void *_p, int _len )
 {
   m_pGZip->jobData( _p, _len );
+
 }
 
 void GZipIOJob::slotDataEnd()
