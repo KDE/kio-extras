@@ -15,5 +15,3 @@ noinst_HEADERS = tar.h
 kioconfig_DATA = tar.desktop
 kioconfigdir = $(kde_confdir)/protocols
 
-messages:
-

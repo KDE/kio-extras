@@ -14,5 +14,3 @@ noinst_HEADERS = kio_ldap.h kldap.h kldapurl.h
 kioconfig_DATA = ldap.desktop
 kioconfigdir = $(kde_confdir)/protocols
 
-messages:
-

@@ -15,5 +15,3 @@ noinst_HEADERS = gopher.h
 kioconfig_DATA = gopher.desktop
 kioconfigdir = $(kde_confdir)/protocols
 
-messages:
-

@@ -15,5 +15,3 @@ noinst_HEADERS = pop3.h
 kioconfig_DATA = pop3.desktop
 kioconfigdir = $(kde_confdir)/protocols
 
-messages:
-

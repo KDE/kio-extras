@@ -15,5 +15,3 @@ noinst_HEADERS = imap4.h md5.h base64md5.h
 kioconfig_DATA = imap4.desktop
 kioconfigdir = $(kde_confdir)/protocols
 
-messages:
-

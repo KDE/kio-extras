@@ -14,5 +14,3 @@ noinst_HEADERS = gzip.h
 kioconfig_DATA = gzip.desktop bzip.desktop bzip2.desktop
 kioconfigdir = $(kde_confdir)/protocols
 
-messages:
-
