@@ -10,18 +10,13 @@
  * 2. Redistributions in binary form must reproduce the above copyright
  *    notice, this list of conditions and the following disclaimer in the
  *    documentation and/or other materials provided with the distribution.
- * 3. Redistributions of source code or in binary form must consent to
- *    future terms and conditions as set forth by the founding author(s).
- *    The founding author is defined as the creator of following code, or
- *    lacking a clearly defined creator, the founding author is defined as
- *    the first person to claim copyright to, and contribute significantly
- *    to the following code.
- * 4. The following code may be used without explicit consent in any
- *    product provided the previous three conditions are met, and that
- *    the following source code be made available at no cost to consumers
- *    of mentioned product and the founding author as defined above upon
- *    request.  This condition may at any time be waived by means of 
- *    explicit written consent from the founding author.
+ * 3. The `container project' is defined as the group of libraries and/or
+ *    programs that this software has originally been distributed with.
+ *    For all intents and purposes the `container project' for this 
+ *    software is `kdebase'.
+ * 4. Redistributions of source code or in binary form must not be 
+ *    separated from and must adhere to the licensing terms set forth 
+ *    by the individual components of the container project.
  *
  * THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS ``AS IS'' AND
  * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
@@ -76,10 +71,9 @@
 
 #include "smtp.h"
 
-const char *SMTPProtocol::DEFAULT_EMAIL="someuser@is.using.a.pre.release.kde.ioslave.compliments.of.kde.org";
-const int SMTPProtocol::DEFAULT_RESPONSE_BUFFER=512;
-const int SMTPProtocol::DEFAULT_EHLO_BUFFER=5120;
-
+const char *SMTPProtocol::DEFAULT_EMAIL = "someuser@is.using.a.pre.release.kde.ioslave.compliments.of.kde.org";
+const int SMTPProtocol::DEFAULT_RESPONSE_BUFFER = 512;
+const int SMTPProtocol::DEFAULT_EHLO_BUFFER = 5120;
 
 using namespace KIO;
 
@@ -274,14 +268,14 @@ void SMTPProtocol::put (const KURL &url, int /*permissions*/, bool /*overwrite*/
 
 	// Write out the To header for the benefit of the mail clients
 	query = ASCII("To: %1\r\n");
-	for ( QStringList::Iterator it = recip.begin(); it != recip.end(); ++it ) {
+	for (QStringList::Iterator it = recip.begin(); it != recip.end(); ++it) {
 		query = query.arg(*it);
 		WRITE_STRING(query);
 	}
 
 	// Write out the CC header for the benefit of the mail clients
 	query = ASCII("CC: %1\r\n");
-	for ( QStringList::Iterator it = cc.begin(); it != cc.end(); ++it ) {
+	for (QStringList::Iterator it = cc.begin(); it != cc.end(); ++it) {
 		query = query.arg(*it);
 		WRITE_STRING(query);
 	}
@@ -311,7 +305,7 @@ void SMTPProtocol::put (const KURL &url, int /*permissions*/, bool /*overwrite*/
 void SMTPProtocol::PutRecipients (QStringList &list, const KURL &url)
 {
 	QString formatted_recip = ASCII("RCPT TO: %1");
-	for ( QStringList::Iterator it = list.begin(); it != list.end(); ++it ) {
+	for (QStringList::Iterator it = list.begin(); it != list.end(); ++it) {
 		if (!command(formatted_recip.arg(*it)))
 			HandleSMTPWriteError(url);
 	}
@@ -372,7 +366,8 @@ int SMTPProtocol::getResponse (char *r_buf, unsigned int r_len)
 		error(ERR_UNKNOWN, "Line too short");
 	char *origbuf = buf;
 	if (buf[3] == '-') { // Multiline response
-		while ( (buf[3] == '-') && (len-recv_len > 3) ) { // Three is quite arbitrary
+		// Three is quite arbitrary
+		while ((buf[3] == '-') && (len-recv_len > 3)) {
 			buf += recv_len;
 			len -= (recv_len+1);
 			recv_len = ReadLine(buf, len-1);
@@ -398,7 +393,7 @@ bool SMTPProtocol::command (const QString &cmd, char *recv_buf, unsigned int len
 	QCString write_buf = cmd.local8Bit();
 
 	// Write the command
-	if ( Write(static_cast<const char *>(write_buf), write_buf.length() ) != static_cast<ssize_t>(write_buf.length()) ) {
+	if (Write(static_cast<const char *>(write_buf), write_buf.length() ) != static_cast<ssize_t>(write_buf.length())) {
 		m_sError = i18n("Could not send to server.\n");
 		return false;
 	}
@@ -413,11 +408,11 @@ bool SMTPProtocol::command (const QString &cmd, char *recv_buf, unsigned int len
 bool SMTPProtocol::smtp_open (const KURL &url)
 {
 	kdDebug () << "kio_smtp: IT WANTS " << url.host() << endl;
-	if ( (m_iOldPort == GetPort(m_iPort)) && (m_sOldServer == m_sServer) && (m_sOldUser == m_sUser) ) {
+	if ((m_iOldPort == GetPort(m_iPort)) && (m_sOldServer == m_sServer) && (m_sOldUser == m_sUser)) {
 		return true;
 	} else {
 		smtp_close();
-		if( !ConnectToHost(m_sServer.latin1(), m_iPort))
+		if (!ConnectToHost(m_sServer.latin1(), m_iPort))
 			return false; // ConnectToHost has already send an error message.
 		opened = true;
 	}
@@ -560,7 +555,7 @@ void SMTPProtocol::ParseFeatures (const char *_buf)
 
 	// We want it to be between 250 and 259 inclusive, and it needs to be "nnn-blah" or "nnn blah"
 	// So sez the SMTP spec..
-	if ( (buf.left(2) != "25") || (!isdigit(buf[2])) || (!(buf.at(3) == '-') && !(buf.at(3) == ' ')) )
+	if ((buf.left(2) != "25") || (!isdigit(buf[2])) || (!(buf.at(3) == '-') && !(buf.at(3) == ' ')))
 		return; // We got an invalid line..
 	// Clop off the beginning, no need for it really
 	buf = buf.mid(4, buf.length()); 
@@ -606,8 +601,8 @@ void SMTPProtocol::GetAddresses (const QString &str, const QString &delim, QStri
 {
 	int curpos = 0;
 
-	while ( (curpos = str.find(delim, curpos) ) != -1 ) {
-		if ( (str.at(curpos-1) == "?") || (str.at(curpos-1) == "&") ) {
+	while ((curpos = str.find(delim, curpos) ) != -1) {
+		if ((str.at(curpos-1) == "?") || (str.at(curpos-1) == "&")) {
 			curpos += delim.length();
 			if (str.find("&", curpos) != -1)
 				list += str.mid(curpos, str.find("&", curpos)-curpos);

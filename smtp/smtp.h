@@ -10,18 +10,13 @@
  * 2. Redistributions in binary form must reproduce the above copyright
  *    notice, this list of conditions and the following disclaimer in the
  *    documentation and/or other materials provided with the distribution.
- * 3. Redistributions of source code or in binary form must consent to
- *    future terms and conditions as set forth by the founding author(s).
- *    The founding author is defined as the creator of following code, or
- *    lacking a clearly defined creator, the founding author is defined as
- *    the first person to claim copyright to, and contribute significantly
- *    to the following code.
- * 4. The following code may be used without explicit consent in any
- *    product provided the previous three conditions are met, and that
- *    the following source code be made available at no cost to consumers
- *    of mentioned product and the founding author as defined above upon
- *    request.  This condition may at any time be waived by means of 
- *    explicit written consent from the founding author.
+ * 3. The `container project' is defined as the group of libraries and/or
+ *    programs that this software has originally been distributed with.
+ *    For all intents and purposes the `container project' for this 
+ *    software is `kdebase'.
+ * 4. Redistributions of source code or in binary form must not be 
+ *    separated from and must adhere to the licensing terms set forth 
+ *    by the individual components of the container project.
  *
  * THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS ``AS IS'' AND
  * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
@@ -41,7 +36,11 @@
 #ifndef _SMTP_H
 #define _SMTP_H "$Id$"
 
+#include <qcstring.h>
 #include <qstring.h>
+
+#include <kurl.h>
+
 #include <kio/tcpslavebase.h>
 
 class KSASLContext;
@@ -68,8 +67,8 @@ protected:
 	void ParseFeatures (const char *buf);
 	void PutRecipients (QStringList &list, const KURL &url);
 
-	inline ssize_t WRITE_STRING(const QString &x);
-	static inline QString ASCII(const char *x);
+ 	inline ssize_t WRITE_STRING (const QString &x);
+	static inline QString ASCII (const char *x);
 	static inline int GetVal (char *buf);
 	static inline void GetAddresses (const QString &str, const QString &delim, QStringList &list);
 	static const int DEFAULT_RESPONSE_BUFFER;
