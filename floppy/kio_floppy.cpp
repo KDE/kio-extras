@@ -22,8 +22,6 @@
 #include <config.h>
 #endif
 
-#include <iostream.h>
-
 #ifdef HAVE_STRING_H
 #include <string.h>
 #else
