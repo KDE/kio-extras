@@ -130,13 +130,13 @@ bool MANProtocol::addWhatIs(QMap<QString, QString> &i, const QString &name, cons
 {
     QFile f(name);
     if (!f.open(IO_ReadOnly))
-	    return false;
+        return false;
     QRegExp re( mark );
     QTextStream t(&f);
     QString l;
     while (!t.eof())
     {
-	    l = t.readLine();	
+	    l = t.readLine();
 	    int pos = re.search( l );
 	    if (pos != -1)
 	    {
@@ -160,10 +160,10 @@ QMap<QString, QString> MANProtocol::buildIndexMap(const QString &section)
     QMap<QString, QString> i;
     QStringList man_dirs = manDirectories();
     // Supplementary places for whatis databases
-    man_dirs << "/var/cache/man";
+    man_dirs << "/var/cache/man" << "/var/catman";
     QStringList names;
     names << "whatis.db" << "whatis";
-    QString mark = "\\s+\\(" + section + "\\)\\s+-\\s+";
+    QString mark = "\\s+\\(" + section + "[a-z]*\\)\\s+-\\s+";
 
     for ( QStringList::ConstIterator it_dir = man_dirs.begin();
           it_dir != man_dirs.end();
@@ -273,7 +273,7 @@ QStringList MANProtocol::findPages(const QString &section,
 		  sect = file.mid(3);
 		else if (file.startsWith(sman))
 		  sect = file.mid(4);
-		
+
 		// Only add sect if not already contained, avoid duplicates
 		if (!sect_list.contains(sect))
 		  sect_list += sect;
@@ -422,7 +422,7 @@ void MANProtocol::get(const KURL& url )
     finished();
 }
 
-void MANProtocol::slotGetStdOutput(KProcess* /* p */, char *s, int len) 
+void MANProtocol::slotGetStdOutput(KProcess* /* p */, char *s, int len)
 {
   *myStdStream += QString::fromLocal8Bit(s, len);
 }
@@ -432,10 +432,10 @@ char *MANProtocol::readManPage(const char *_filename)
     QCString filename = _filename;
 
     char *buf = NULL;
-    
+
     /* Determine type of man page file by checking its path. Determination by
      * MIME type with KMimeType doesn't work reliablely. E.g., Solaris 7:
-     * /usr/man/sman7fs/pcfs.7fs -> text/x-csrc : WRONG 
+     * /usr/man/sman7fs/pcfs.7fs -> text/x-csrc : WRONG
      * If the path name constains the string sman, assume that it's SGML and
      * convert it to roff format (used on Solaris). */
     //QString file_mimetype = KMimeType::findByPath(QString(filename), 0, false)->name();
@@ -443,15 +443,15 @@ char *MANProtocol::readManPage(const char *_filename)
       {
 	*myStdStream="";
 	KProcess proc;
-	
+
 	/* Determine path to sgml2roff, if not already done. */
 	getProgramPath();
 	proc << mySgml2RoffPath << filename;
-	
-	QApplication::connect(&proc, SIGNAL(receivedStdout (KProcess *, char *, int)), 
+
+	QApplication::connect(&proc, SIGNAL(receivedStdout (KProcess *, char *, int)),
 			      this, SLOT(slotGetStdOutput(KProcess *, char *, int)));
 	proc.start(KProcess::Block, KProcess::All);
-	
+
 	buf = (char*)myStdStream->latin1();
 	// Does not work (return string is empty): buf = QCString(myStdStream->local8Bit());
       }
@@ -1288,7 +1288,7 @@ void MANProtocol::showIndex(const QString& section)
 
     // print footer
     os << "</body></html>" << endl;
-    
+
     infoMessage(QString::null);
     mimeType("text/html");
     data(output.local8Bit());
@@ -1343,7 +1343,7 @@ void MANProtocol::getProgramPath()
   mySgml2RoffPath = KGlobal::dirs()->findExe("sgml2roff", QString(SGML2ROFF_DIRS));
   if (!mySgml2RoffPath.isEmpty())
     return;
-  
+
   /* Cannot find sgml2roff programm: */
   outputError(i18n("Could not find the sgml2roff program on your system. Please install it, if necessary, and extend the search path by adjusting the environment variable PATH before starting KDE."));
   finished();
