@@ -109,6 +109,8 @@ private:
     QPtrList<SMBAuthInfo> m_auth_cache;
     QStringList        m_workgroup_cache;
 
+    // libsmbclient need global variables to store in, else it crashes, looks like gcc (C/C++) failure
+    struct stat st;
 
 protected:
     //---------------------------------------------
