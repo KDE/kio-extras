@@ -144,7 +144,7 @@ void ThumbnailProtocol::get(const KURL &url)
     }
 
     QImage img = pix.convertToImage();
-    if ((flags & ThumbCreator::BlendIcon) && KGlobal::iconLoader()->alphaBlending())
+    if ((flags & ThumbCreator::BlendIcon) && KGlobal::iconLoader()->alphaBlending(KIcon::Desktop))
     {
         // blending the mimetype icon in
         QImage icon = getIcon();
