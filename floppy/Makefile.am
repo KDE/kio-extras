@@ -5,11 +5,11 @@ LDFLAGS = $(all_libraries) $(KDE_RPATH)
 
 ####### Files
 
-lib_LTLIBRARIES = kio_floppy.la
+kde_module_LTLIBRARIES = kio_floppy.la
 
 kio_floppy_la_SOURCES = kio_floppy.cpp program.cpp
-kio_floppy_la_LIBADD = -lkio
-kio_floppy_la_LDFLAGS = -module -avoid-version -no-undefined
+kio_floppy_la_LIBADD = $(LIB_KIO)
+kio_floppy_la_LDFLAGS = -module $(KDE_PLUGIN)
 noinst_HEADERS = 
 
 kdelnk_DATA = floppy.protocol

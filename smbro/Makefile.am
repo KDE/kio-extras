@@ -1,15 +1,15 @@
 ## Makefile.am of kdebase/kioslave/smb
 
-INCLUDES=	$(all_includes)
-LDFLAGS =   $(all_libraries) $(KDE_RPATH)
+INCLUDES= $(all_includes)
+LDFLAGS = $(all_libraries) $(KDE_RPATH)
 
 ####### Files
 
-lib_LTLIBRARIES = kio_smb.la
+kde_module_LTLIBRARIES = kio_smb.la
 
 kio_smb_la_SOURCES = kio_smb.cpp my_process.cpp
 kio_smb_la_LIBADD = -lkio -lkdesu
-kio_smb_la_LDFLAGS = -module -avoid-version
+kio_smb_la_LDFLAGS = -module $(KDE_PLUGIN)
 noinst_HEADERS = kio_smb.h my_process.h
 
 kdelnk_DATA = smb.protocol
