@@ -41,9 +41,9 @@ class mailAddress;
 class mimeHeader;
 
 
-/** @brief a string used during parsing 
+/** @brief a string used during parsing
  * the string allows you to move the effective start of the string using
- * str.pos++ and str.pos--. 
+ * str.pos++ and str.pos--.
  * @bug it is possible to move past the beginning and end of the string
  */
 class parseString
@@ -179,7 +179,7 @@ public:
   /** the different states the client can be in */
   enum IMAP_STATE
   {
-    ISTATE_NO,       /**< Not connected */ 
+    ISTATE_NO,       /**< Not connected */
     ISTATE_CONNECT,  /**< Connected but not logged in */
     ISTATE_LOGIN,    /**< Logged in */
     ISTATE_SELECT    /**< A folder is currently selected */
@@ -200,14 +200,14 @@ public:
     return rfcDecoder::fromIMAP(currentBox);
   };
 
-  /** 
-   * @brief do setup and send the command to parseWriteLine 
+  /**
+   * @brief do setup and send the command to parseWriteLine
    * @param aCmd The command to perform
    * @return The completed command
    */
   imapCommand *sendCommand (imapCommand * aCmd);
-  /** 
-   * @brief perform a command and wait to parse the result 
+  /**
+   * @brief perform a command and wait to parse the result
    * @param aCmd The command to perform
    * @return The completed command
    */
@@ -234,15 +234,15 @@ public:
   bool clientAuthenticate (const QString & aUser, const QString & aPass,
                const QString & aAuth, bool isSSL, QString & resultInfo);
 
-  /** 
+  /**
    * main loop for the parser
    * reads one line and dispatches it to the appropriate sub parser
    */
   int parseLoop ();
 
   /**
-   * @brief parses all untagged responses and passes them on to the 
-   * following parsers 
+   * @brief parses all untagged responses and passes them on to the
+   * following parsers
    */
   void parseUntagged (parseString & result);
 
@@ -259,6 +259,10 @@ public:
   void parseList (parseString & result);
   /** @brief parse a LSUB line */
   void parseLsub (parseString & result);
+  /** @brief parse a LISTRIGHTS line */
+  void parseListRights (parseString & result);
+  /** @brief parse a MYRIGHTS line */
+  void parseMyRights (parseString & result);
   /** @brief parse a SEARCH line */
   void parseSearch (parseString & result);
   /** @brief parse a STATUS line */
@@ -267,6 +271,8 @@ public:
   void parseExists (ulong value, parseString & result);
   /** @brief parse a EXPUNGE line */
   void parseExpunge (ulong value, parseString & result);
+  /** @brief parse a ACL line */
+  void parseAcl (parseString & result);
 
   /**
    * parses the results of a fetch command
@@ -289,7 +295,7 @@ public:
     QString & section, mimeHeader * inHeader = 0);
 
   /** parse only one not nested part */
-  mimeHeader *parseSimplePart (parseString & inWords, QString & section, 
+  mimeHeader *parseSimplePart (parseString & inWords, QString & section,
       mimeHeader * localPart = 0);
 
   /** parse a parameter list (name value pairs) */
@@ -325,9 +331,9 @@ public:
   void parseSentence (parseString & inWords);
 
   /** parse a literal or word, may require more data */
-  QCString parseLiteralC(parseString & inWords, bool relay = false, 
+  QCString parseLiteralC(parseString & inWords, bool relay = false,
                            bool stopAtBracket = false, int *outlen = 0L);
-  inline QByteArray parseLiteral (parseString & inWords, bool relay = false, 
+  inline QByteArray parseLiteral (parseString & inWords, bool relay = false,
                            bool stopAtBracket = false) {
     int len = 0; // string size
     // Choice: we can create an extra QCString, or we can get the buffer in
@@ -362,7 +368,7 @@ public:
                         QString & _type, QString & _uid, QString & _validity);
 
 
- /** @brief return the last handled foo 
+ /** @brief return the last handled foo
   * @todo work out what a foo is
   */
   imapCache *getLastHandled ()
@@ -423,14 +429,14 @@ protected:
   /** @brief the results from the capabilities, split at ' ' */
   QStringList imapCapabilities;
 
-  /** @brief the results from list/lsub commands */
+  /** @brief the results from list/lsub/listrights commands */
   QValueList < imapList > listResponses;
 
   /** @brief queues handling the running commands */
   QPtrList < imapCommand > sentQueue;  // no autodelete
   QPtrList < imapCommand > completeQueue;  // autodelete !!
 
-  /** 
+  /**
    * everything we didn't handle, everything but the greeting is bogus
    */
   QStringList unhandled;
@@ -444,6 +450,7 @@ protected:
 
   ulong commandCounter;
 
+  /** @brief the results from search/acl commands */
   QStringList lastResults;
 
 private:

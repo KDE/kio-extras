@@ -311,5 +311,40 @@ imapCommand::clientStartTLS ()
   return new imapCommand ("STARTTLS", "");
 }
 
+imapCommand *
+imapCommand::clientSetACL( const QString& box, const QString& user, const QString& acl )
+{
+  return new imapCommand ("SETACL", QString("\"") + rfcDecoder::toIMAP (box)
+                          + "\" \"" + rfcDecoder::toIMAP (user)
+                          + "\" \"" + rfcDecoder::toIMAP (acl) + "\"");
+}
 
+imapCommand *
+imapCommand::clientDeleteACL( const QString& box, const QString& user )
+{
+  return new imapCommand ("DELETEACL", QString("\"") + rfcDecoder::toIMAP (box)
+                          + "\" \"" + rfcDecoder::toIMAP (user)
+                          + "\"");
+}
 
+imapCommand *
+imapCommand::clientGetACL( const QString& box )
+{
+  return new imapCommand ("GETACL", QString("\"") + rfcDecoder::toIMAP (box)
+                          + "\"");
+}
+
+imapCommand *
+imapCommand::clientListRights( const QString& box, const QString& user )
+{
+  return new imapCommand ("LISTRIGHTS", QString("\"") + rfcDecoder::toIMAP (box)
+                          + "\" \"" + rfcDecoder::toIMAP (user)
+                          + "\"");
+}
+
+imapCommand *
+imapCommand::clientMyRights( const QString& box )
+{
+  return new imapCommand ("MYRIGHTS", QString("\"") + rfcDecoder::toIMAP (box)
+                          + "\"");
+}

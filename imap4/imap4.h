@@ -67,8 +67,6 @@ public:
   virtual void slave_status ();
   virtual void mimetype (const KURL & _url);
   virtual void del (const KURL & _url, bool isFile);
-  /** Change the status. data = 'S' + URL + '\0' + Flags + '\0'
-   *  Copy a mail: data = 'C' + srcURL + '\0' + destURL + '\0' */
   virtual void special (const QByteArray & data);
   virtual void listDir (const KURL & _url);
   virtual void setSubURL (const KURL & _url);
@@ -81,7 +79,7 @@ public:
     bool overwrite);
 
   /** @brief reimplement the parser
-   * relay hook to send the fetched data directly to an upper level 
+   * relay hook to send the fetched data directly to an upper level
    */
   virtual void parseRelay (const QByteArray & buffer);
 
@@ -131,6 +129,8 @@ protected:
     bool withFlags = FALSE, bool withSubject = FALSE);
   void doListEntry (const KURL & _url, const QString & myBox,
                     const imapList & item);
+
+  void specialACLCommand( int command, QDataStream& stream );
 
 private:
 

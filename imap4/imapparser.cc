@@ -82,8 +82,9 @@ imapParser::sendCommand (imapCommand * aCmd)
   sentQueue.append (aCmd);
 
   continuation.resize(0);
+  const QString& command = aCmd->command();
 
-  if (aCmd->command () == "SELECT" || aCmd->command () == "EXAMINE")
+  if (command == "SELECT" || command == "EXAMINE")
   {
      // we need to know which box we are selecting
     parseString p;
@@ -91,20 +92,20 @@ imapParser::sendCommand (imapCommand * aCmd)
     currentBox = parseOneWordC(p);
     kdDebug(7116) << "imapParser::sendCommand - setting current box to " << currentBox << endl;
   }
-  else if (aCmd->command () == "CLOSE")
+  else if (command == "CLOSE")
   {
      // we no longer have a box open
     currentBox = QString::null;
   }
-  else if (aCmd->command ().find ("SEARCH") != -1)
+  else if (command.find ("SEARCH") != -1
+           || command == "ACL"
+           || command == "LISTRIGHTS"
+           || command == "MYRIGHTS")
   {
     lastResults.clear ();
   }
-  else if (aCmd->command ().find ("LIST") != -1)
-  {
-    listResponses.clear ();
-  }
-  else if (aCmd->command ().find ("LSUB") != -1)
+  else if (command == "LIST"
+           || command == "LSUB")
   {
     listResponses.clear ();
   }
@@ -190,7 +191,7 @@ imapParser::clientAuthenticate (const QString & aUser, const QString & aPass,
 void
 imapParser::parseUntagged (parseString & result)
 {
-//  kdDebug(7116) << "imapParser::parseUntagged - '" << result << "'" << endl;
+  //kdDebug(7116) << "imapParser::parseUntagged - '" << result.cstr() << "'" << endl;
 
   parseOneWordC(result);        // *
   QByteArray what = parseLiteral (result); // see whats coming next
@@ -247,7 +248,7 @@ imapParser::parseUntagged (parseString & result)
     }
     break;
 
-  case 'L':                    // LIST or LSUB
+  case 'L':                    // LIST or LSUB or LISTRIGHTS
     if (qstrncmp(what, "LIST", what.size()) == 0)
     {
       parseList (result);
@@ -256,8 +257,18 @@ imapParser::parseUntagged (parseString & result)
     {
       parseLsub (result);
     }
+    else if (qstrncmp(what, "LISTRIGHTS", what.size()) == 0)
+    {
+      parseListRights (result);
+    }
     break;
 
+  case 'M': // MYRIGHTS
+    if (qstrncmp(what, "MYRIGHTS", what.size()) == 0)
+    {
+      parseMyRights (result);
+    }
+    break;
   case 'S':                    // SEARCH or STATUS
     if (qstrncmp(what, "SEARCH", what.size()) == 0)
     {
@@ -269,6 +280,12 @@ imapParser::parseUntagged (parseString & result)
     }
     break;
 
+  case 'A': // ACL
+    if (qstrncmp(what, "ACL", what.size()) == 0)
+    {
+      parseAcl (result);
+    }
+    break;
   default:
     //better be a number
     {
@@ -330,6 +347,7 @@ void
 imapParser::parseResult (QByteArray & result, parseString & rest,
   const QString & command)
 {
+  kdDebug() << k_funcinfo << "rest=" << rest.cstr() << " command=" << command << endl;
   if (command == "SELECT") selectInfo.setReadWrite(true);
 
   if (rest[0] == '[')
@@ -360,6 +378,7 @@ imapParser::parseResult (QByteArray & result, parseString & rest,
         uint end = rest.data.find(']', rest.pos);
         QCString flags(rest.data.data() + rest.pos, end - rest.pos);
         selectInfo.setPermanentFlags (flags);
+        rest.pos = end;
       }
       break;
 
@@ -407,35 +426,30 @@ imapParser::parseResult (QByteArray & result, parseString & rest,
       rest.pos++; //tie off ]
     skipWS (rest);
   }
-  QString action = command;
+
   if (command.isEmpty())
   {
-    // FIXME: BAD BAD BAD:  What does this mean!?  shadowing is evil here.
-    kdWarning() << "Command is empty!!  BAD BAD BAD - result follow:" << endl;
-    QCString action = parseOneWordC(rest);
-    kdWarning() << "                   New action is: " << action << endl;
-    if (action == "UID") {
-      action = parseOneWordC(rest);
-      kdWarning() << "                   Since it's UID, we do useless data copy of: [" << action << "]" <<  endl;
-    }
+    // This happens when parsing an intermediate result line (those that start with '*').
+    // No state change involved, so we can stop here.
+    return;
   }
 
-  switch (action[0].latin1 ())
+  switch (command[0].latin1 ())
   {
   case 'A':
-    if (action == "AUTHENTICATE")
+    if (command == "AUTHENTICATE")
       if (qstrncmp(result, "OK", result.size()) == 0)
         currentState = ISTATE_LOGIN;
     break;
 
   case 'L':
-    if (action == "LOGIN")
+    if (command == "LOGIN")
       if (qstrncmp(result, "OK", result.size()) == 0)
         currentState = ISTATE_LOGIN;
     break;
 
   case 'E':
-    if (action == "EXAMINE")
+    if (command == "EXAMINE")
     {
       if (qstrncmp(result, "OK", result.size()) == 0)
         currentState = ISTATE_SELECT;
@@ -450,7 +464,7 @@ imapParser::parseResult (QByteArray & result, parseString & rest,
     break;
 
   case 'S':
-    if (action == "SELECT")
+    if (command == "SELECT")
     {
       if (qstrncmp(result, "OK", result.size()) == 0)
         currentState = ISTATE_SELECT;
@@ -522,6 +536,35 @@ void imapParser::parseLsub (parseString & result)
 {
   imapList this_one (result.cstr());
   listResponses.append (this_one);
+}
+
+void imapParser::parseListRights (parseString & result)
+{
+  parseOneWordC (result); // skip mailbox name
+  parseOneWordC (result); // skip user id
+  int outlen = 1;
+  while ( outlen ) {
+    QCString word = parseOneWordC (result, false, &outlen);
+    lastResults.append (word);
+  }
+}
+
+void imapParser::parseAcl (parseString & result)
+{
+  parseOneWordC (result); // skip mailbox name
+  int outlen = 1;
+  // The result is user1 perm1 user2 perm2 etc. The caller will sort it out.
+  while ( outlen ) {
+    QCString word = parseOneWordC (result, false, &outlen);
+    lastResults.append (word);
+  }
+}
+
+void imapParser::parseMyRights (parseString & result)
+{
+  parseOneWordC (result); // skip mailbox name
+  Q_ASSERT( lastResults.isEmpty() ); // we can only be called once
+  lastResults.append (parseOneWordC (result) );
 }
 
 void imapParser::parseSearch (parseString & result)
@@ -899,7 +942,7 @@ mimeHeader * imapParser::parseBodyStructure (parseString & inWords,
   QString & inSection, mimeHeader * localPart)
 {
   bool init = false;
-  if (inSection.isEmpty()) 
+  if (inSection.isEmpty())
   {
     // first run
     init = true;
@@ -932,7 +975,7 @@ mimeHeader * imapParser::parseBodyStructure (parseString & inWords,
       localPart->clearTypeParameters ();
       localPart->clearDispositionParameters ();
       // an envelope was passed in so this is the multipart header
-      outSection = inSection + ".HEADER"; 
+      outSection = inSection + ".HEADER";
     }
     if (inWords[0] == '(' && init)
       inSection = "0";
@@ -948,7 +991,7 @@ mimeHeader * imapParser::parseBodyStructure (parseString & inWords,
     while (inWords[0] == '(')
     {
       outSection = QString::number(++section);
-      if (!init) 
+      if (!init)
         outSection = inSection + "." + outSection;
       mimeHeader *subpart = parseBodyStructure (inWords, outSection, 0);
       localPart->addNestedPart (subpart);
@@ -1033,7 +1076,7 @@ void imapParser::parseBody (parseString & inWords)
     inWords.pos++;
 
     specifier = parseOneWord (inWords, TRUE);
-    
+
     if (inWords[0] == '(')
     {
       inWords.pos++;
@@ -1077,8 +1120,8 @@ void imapParser::parseBody (parseString & inWords)
     }
     else if (qstrncmp(specifier, "HEADER.FIELDS", specifier.size()) == 0)
     {
-      // BODY[HEADER.FIELDS (References)] {n} 
-      //kdDebug(7116) << "imapParser::parseBody - HEADER.FIELDS: " 
+      // BODY[HEADER.FIELDS (References)] {n}
+      //kdDebug(7116) << "imapParser::parseBody - HEADER.FIELDS: "
       // << QCString(label.data(), label.size()+1) << endl;
       if (qstrncmp(label, "REFERENCES", label.size()) == 0)
       {
@@ -1234,7 +1277,7 @@ void imapParser::parseFetch (ulong /* value */, parseString & inWords)
           {
             lastHandled->setUid (seenUid.toULong ());
           }
-          if (envelope) 
+          if (envelope)
             envelope->setPartSpecifier (seenUid);
         }
         break;

@@ -1060,6 +1060,15 @@ IMAP4Protocol::del (const KURL & _url, bool isFile)
   finished ();
 }
 
+/*
+ * Copy a mail: data = 'C' + srcURL (KURL) + destURL (KURL)
+ * Capabilities: data = 'c'. Result shipped in infoMessage() signal
+ * No-op: data = 'N'
+ * Unsubscribe: data = 'U' + URL (KURL)
+ * Subscribe: data = 'u' + URL (KURL)
+ * Change the status: data = 'S' + URL (KURL) + Flags (QCString)
+ * ACL commands: data = 'A' + command + URL (KURL) + command-dependent args
+ */
 void
 IMAP4Protocol::special (const QByteArray & aData)
 {
@@ -1071,25 +1080,29 @@ IMAP4Protocol::special (const QByteArray & aData)
   int tmp;
   stream >> tmp;
 
-  if (tmp  == 'C')
+  switch (tmp) {
+  case 'C':
   {
     KURL src;
     KURL dest;
     stream >> src >> dest;
     copy(src, dest, 0, FALSE);
+    break;
   }
-  else if (tmp == 'c')
+  case 'c':
   {
     infoMessage(imapCapabilities.join(" "));
     finished();
+    break;
   }
-  else if (tmp == 'N')
+  case 'N':
   {
     imapCommand *cmd = doCommand(imapCommand::clientNoop());
     completeQueue.removeRef (cmd);
     finished();
+    break;
   }
-  else if (tmp == 'U')
+  case 'U':
   {
     // unsubscribe
     KURL _url;
@@ -1100,14 +1113,16 @@ IMAP4Protocol::special (const QByteArray & aData)
     if (cmd->result () != "OK")
     {
       error(ERR_NO_CONTENT, i18n("Unsubscribe of folder %1 "
-            "failed. The server returned: %2").arg(_url.prettyURL())
-                                              .arg(cmd->resultInfo()));
+                                 "failed. The server returned: %2")
+            .arg(_url.prettyURL())
+            .arg(cmd->resultInfo()));
       return;
     }
     completeQueue.removeRef (cmd);
     finished();
+    break;
   }
-  else if (tmp == 'u')
+  case 'u':
   {
     // subscribe
     KURL _url;
@@ -1118,14 +1133,24 @@ IMAP4Protocol::special (const QByteArray & aData)
     if (cmd->result () != "OK")
     {
       error(ERR_NO_CONTENT, i18n("Subscribe of folder %1 "
-            "failed. The server returned: %2").arg(_url.prettyURL())
-                                              .arg(cmd->resultInfo()));
+                                 "failed. The server returned: %2")
+            .arg(_url.prettyURL())
+            .arg(cmd->resultInfo()));
       return;
     }
     completeQueue.removeRef (cmd);
     finished();
+    break;
   }
-  else
+  case 'A': // acl
+  {
+    int cmd;
+    stream >> cmd;
+    specialACLCommand( cmd, stream );
+    finished();
+    break;
+  }
+  default:
   {
     // status ('S')
     KURL _url;
@@ -1136,28 +1161,126 @@ IMAP4Protocol::special (const QByteArray & aData)
     parseURL (_url, aBox, aSection, aLType, aSequence, aValidity, aDelimiter);
     if (!assureBox(aBox, false)) return;
     imapCommand *cmd = doCommand (imapCommand::
-      clientStore (aSequence, "-FLAGS.SILENT",
-      "\\SEEN \\ANSWERED \\FLAGGED \\DRAFT"));
+                                  clientStore (aSequence, "-FLAGS.SILENT",
+                                               "\\SEEN \\ANSWERED \\FLAGGED \\DRAFT"));
     if (cmd->result () != "OK")
     {
       error(ERR_NO_CONTENT, i18n("Changing the flags of message %1 "
-        "failed.").arg(_url.prettyURL()));
+                                 "failed.").arg(_url.prettyURL()));
       return;
     }
     completeQueue.removeRef (cmd);
     if (!newFlags.isEmpty())
     {
       cmd = doCommand (imapCommand::
-        clientStore (aSequence, "+FLAGS.SILENT", newFlags));
+                       clientStore (aSequence, "+FLAGS.SILENT", newFlags));
       if (cmd->result () != "OK")
       {
         error(ERR_NO_CONTENT, i18n("Changing the flags of message %1 "
-          "failed.").arg(_url.prettyURL()));
+                                   "failed.").arg(_url.prettyURL()));
         return;
       }
       completeQueue.removeRef (cmd);
     }
     finished();
+    break;
+  }
+  }
+}
+
+void
+IMAP4Protocol::specialACLCommand( int command, QDataStream& stream )
+{
+  // All commands start with the URL to the box
+  KURL _url;
+  stream >> _url;
+  QString aBox, aSequence, aLType, aSection, aValidity, aDelimiter;
+  parseURL (_url, aBox, aSection, aLType, aSequence, aValidity, aDelimiter);
+
+  switch( command ) {
+  case 'S': // SETACL
+  {
+    QString user, acl;
+    stream >> user >> acl;
+    kdDebug(7116) << "SETACL " << aBox << " " << user << " " << acl << endl;
+    imapCommand *cmd = doCommand(imapCommand::clientSetACL(aBox, user, acl));
+    if (cmd->result () != "OK")
+    {
+      error(ERR_NO_CONTENT, i18n("Setting the Access Control List on folder %1 "
+                                 "for user %2 failed. The server returned: %3")
+            .arg(_url.prettyURL())
+            .arg(user)
+            .arg(cmd->resultInfo()));
+      return;
+    }
+    completeQueue.removeRef (cmd);
+    break;
+  }
+  case 'D': // DELETEACL
+  {
+    QString user;
+    stream >> user;
+    kdDebug(7116) << "DELETEACL " << aBox << " " << user << endl;
+    imapCommand *cmd = doCommand(imapCommand::clientDeleteACL(aBox, user));
+    if (cmd->result () != "OK")
+    {
+      error(ERR_NO_CONTENT, i18n("Deleting the Access Control List on folder %1 "
+                                 "for user %2 failed. The server returned: %3")
+            .arg(_url.prettyURL())
+            .arg(user)
+            .arg(cmd->resultInfo()));
+      return;
+    }
+    completeQueue.removeRef (cmd);
+    break;
+  }
+  case 'G': // GETACL
+  {
+    kdDebug(7116) << "GETACL " << aBox << endl;
+    imapCommand *cmd = doCommand(imapCommand::clientGetACL(aBox));
+    if (cmd->result () != "OK")
+    {
+      error(ERR_NO_CONTENT, i18n("Retrieving the Access Control List on folder %1 "
+                                 "failed. The server returned: %2")
+            .arg(_url.prettyURL())
+            .arg(cmd->resultInfo()));
+      return;
+    }
+    // Returning information to the application from a special() command isn't easy.
+    // I'm reusing the infoMessage trick seen above (for capabilities), but this
+    // limits me to a string instead of a stringlist. I'm using space as separator,
+    // since I don't think it can be used in login names.
+    kdDebug(7116) << getResults() << endl;
+    infoMessage(getResults().join( " " ));
+    break;
+  }
+  case 'L': // LISTRIGHTS
+  {
+    // Do we need this one? It basically shows which rights are tied together, but that's all?
+    break;
+  }
+  case 'M': // MYRIGHTS
+  {
+    kdDebug(7116) << "MYRIGHTS " << aBox << endl;
+    imapCommand *cmd = doCommand(imapCommand::clientMyRights(aBox));
+    if (cmd->result () != "OK")
+    {
+      error(ERR_NO_CONTENT, i18n("Retrieving the Access Control List on folder %1 "
+                                 "failed. The server returned: %2")
+            .arg(_url.prettyURL())
+            .arg(cmd->resultInfo()));
+      return;
+    }
+    QStringList lst = getResults();
+    kdDebug(7116) << "myrights results: " << lst << endl;
+    if ( !lst.isEmpty() ) {
+      Q_ASSERT( lst.count() == 1 );
+      infoMessage( lst.first() );
+    }
+    break;
+  }
+  default:
+    kdWarning(7116) << "Unknown special ACL command:" << command << endl;
   }
 }
 
@@ -1524,6 +1647,7 @@ bool IMAP4Protocol::makeLogin ()
 void
 IMAP4Protocol::parseWriteLine (const QString & aStr)
 {
+  //kdDebug(7116) << "Writing: " << aStr << endl;
   QCString writer = aStr.utf8();
   int len = writer.length();
 
