@@ -61,6 +61,9 @@ public:
   void setTypeParm (QCString, QString);
   QDictIterator < QString > getTypeIterator ();
 
+  // recursively serialize all important contents to the QDataStream
+  void serialize(QDataStream& stream);
+
   QCString getType ()
   {
     return contentType;

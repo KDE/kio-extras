@@ -801,11 +801,10 @@ QDict < QString > imapParser::parseParameters (parseString & inWords)
 }
 
 mimeHeader * imapParser::parseSimplePart (parseString & inWords,
-  const QString & inSection)
+  QString & inSection, mimeHeader * localPart)
 {
   QByteArray type, subtype, id, description, encoding;
   QDict < QString > parameters (17, false);
-  mimeHeader *localPart = NULL;
   ulong size;
 
   parameters.setAutoDelete (true);
@@ -813,7 +812,8 @@ mimeHeader * imapParser::parseSimplePart (parseString & inWords,
   if (inWords[0] != '(')
     return NULL;
 
-  localPart = new mimeHeader;
+  if (!localPart)
+    localPart = new mimeHeader;
 
   localPart->setPartSpecifier (inSection);
 
@@ -847,6 +847,7 @@ mimeHeader * imapParser::parseSimplePart (parseString & inWords,
 
   //body description
   description = parseLiteral (inWords);
+  localPart->setDescription (b2c(description));
 
   //body encoding
   encoding = parseLiteral (inWords);
@@ -857,13 +858,10 @@ mimeHeader * imapParser::parseSimplePart (parseString & inWords,
     localPart->setLength (size);
 
   // type specific extensions
-  if (qstrnicmp(type, "MESSAGE", type.size()) == 0
-      && qstrnicmp(subtype, "RFC822", type.size()) == 0)
+  if (localPart->getType() == "MESSAGE/RFC822")
   {
     //envelope structure
     mailHeader *envelope = parseEnvelope (inWords);
-    if (envelope)
-      envelope->setPartSpecifier (inSection + ".0");
 
     //body structure
     parseBodyStructure (inWords, inSection, envelope);
@@ -876,7 +874,7 @@ mimeHeader * imapParser::parseSimplePart (parseString & inWords,
   }
   else
   {
-    if (qstrnicmp(type, "TEXT", type.size()) == 0)
+    if (type.data() ==  "TEXT")
     {
       //text lines
       ulong lines;
@@ -926,16 +924,23 @@ mimeHeader * imapParser::parseSimplePart (parseString & inWords,
 }
 
 mimeHeader * imapParser::parseBodyStructure (parseString & inWords,
-  const QString & inSection, mimeHeader * localPart)
+  QString & inSection, mimeHeader * localPart)
 {
+  bool init = false;
+  if (inSection.isEmpty()) 
+  {
+    // first run
+    init = true;
+    // assume one part
+    inSection = "1";
+  }
   int section = 0;
-  QString outSection;
 
   if (inWords[0] != '(')
   {
     // skip ""
     parseOneWord (inWords);
-    return NULL;
+    return 0;
   }
   inWords.pos++;
   skipWS (inWords);
@@ -944,6 +949,7 @@ mimeHeader * imapParser::parseBodyStructure (parseString & inWords,
   {
     QByteArray subtype;
     QDict < QString > parameters (17, false);
+    QString outSection;
     parameters.setAutoDelete (true);
     if (!localPart)
       localPart = new mimeHeader;
@@ -953,15 +959,28 @@ mimeHeader * imapParser::parseBodyStructure (parseString & inWords,
       localPart->clearNestedParts ();
       localPart->clearTypeParameters ();
       localPart->clearDispositionParameters ();
+      // an envelope was passed in so this is the multipart header
+      outSection = inSection + ".HEADER"; 
+    }
+    if (inWords[0] == '(' && init)
+      inSection = "0";
+
+    // set the section
+    if ( !outSection.isEmpty() ) {
+      localPart->setPartSpecifier(outSection);
+    } else {
+      localPart->setPartSpecifier(inSection);
     }
 
-    // is multipart
+    // is multipart (otherwise its a simplepart and handled later)
     while (inWords[0] == '(')
     {
+      outSection = "";
       section++;
       outSection.setNum (section);
-      outSection = inSection + "." + outSection;
-      mimeHeader *subpart = parseBodyStructure (inWords, outSection);
+      if (!init) 
+        outSection = inSection + "." + outSection;
+      mimeHeader *subpart = parseBodyStructure (inWords, outSection, 0);
       localPart->addNestedPart (subpart);
     }
 
@@ -1010,7 +1029,9 @@ mimeHeader * imapParser::parseBodyStructure (parseString & inWords,
     // is simple part
     inWords.pos--;
     inWords.data[inWords.pos] = '('; //fake a sentence
-    localPart = parseSimplePart (inWords, inSection);
+    if ( localPart )
+      inSection = inSection + ".1";
+    localPart = parseSimplePart (inWords, inSection, localPart);
     inWords.pos--;
     inWords.data[inWords.pos] = ')'; //remove fake
   }
@@ -1142,7 +1163,8 @@ void imapParser::parseBody (parseString & inWords)
     {
       kdDebug(7116) << "imapParser::parseBody - reading " << envelope << " " << seenUid.ascii () << endl;
       // fill it up with data
-      mimeHeader *body = parseBodyStructure (inWords, seenUid, envelope);
+      QString section;
+      mimeHeader *body = parseBodyStructure (inWords, section, envelope);
       if (body != envelope)
         delete body;
     }
@@ -1208,19 +1230,16 @@ void imapParser::parseFetch (ulong /* value */, parseString & inWords)
           if (lastHandled)
             envelope = lastHandled->getHeader ();
 
-          if (!envelope)
-          {
-            // don't know where to put it, throw it away
-            parseSentence (inWords);
-          }
-          else
-          {
-            // fill it up with data
-            mimeHeader *body =
-              parseBodyStructure (inWords, seenUid, envelope);
-            if (body != envelope)
-              delete body;
-          }
+          // fill it up with data
+          QString section;
+          mimeHeader *body =
+            parseBodyStructure (inWords, section, envelope);
+          QByteArray data;
+          QDataStream stream( data, IO_WriteOnly );
+          body->serialize(stream);
+          parseRelay(data);
+
+          delete body;
         }
         break;
 
@@ -1242,7 +1261,7 @@ void imapParser::parseFetch (ulong /* value */, parseString & inWords)
           {
             lastHandled->setUid (seenUid.toULong ());
           }
-          if (envelope)
+          if (envelope) 
             envelope->setPartSpecifier (seenUid);
         }
         break;
@@ -1459,7 +1478,7 @@ void
 imapParser::parseURL (const KURL & _url, QString & _box, QString & _section,
                       QString & _type, QString & _uid, QString & _validity)
 {
-  kdDebug(7116) << "imapParser::parseURL - " << endl;
+//  kdDebug(7116) << "imapParser::parseURL - " << endl;
   QStringList parameters;
 
   _box = _url.path ();

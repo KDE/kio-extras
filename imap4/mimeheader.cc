@@ -601,6 +601,30 @@ mimeHeader::bodyPart (const QString & _str)
   return nestedParts.at (_str.toULong () - 1);
 }
 
+void mimeHeader::serialize(QDataStream& stream)
+{
+  int nestedcount = nestedParts.count();
+  if (nestedParts.isEmpty() && nestedMessage) 
+    nestedcount = 1;
+  stream << nestedcount << contentType << QString (getTypeParm ("name")) << _contentDescription 
+    << _contentDisposition << contentEncoding << contentLength << partSpecifier;
+  // serialize nested message
+  if (nestedMessage)
+    nestedMessage->serialize(stream);
+
+  // serialize nested parts
+  if (!nestedParts.isEmpty())
+  {
+    QPtrListIterator < mimeHeader > it(nestedParts);
+    mimeHeader* part;
+    while ( (part = it.current()) != 0 ) 
+    {
+      ++it;
+      part->serialize(stream);
+    }
+  }
+}
+
 #ifdef KMAIL_COMPATIBLE
 // compatibility subroutines
 QString

@@ -277,10 +277,11 @@ public:
 
   /** parse the body structure recursively */
   mimeHeader *parseBodyStructure (parseString & inWords,
-    const QString & section, mimeHeader * inHeader = NULL);
+    QString & section, mimeHeader * inHeader = 0);
 
   /** parse only one not nested part */
-  mimeHeader *parseSimplePart (parseString & inWords, const QString & section);
+  mimeHeader *parseSimplePart (parseString & inWords, QString & section, 
+      mimeHeader * localPart = 0);
 
   /** parse a parameter list (name value pairs) */
   QDict < QString > parseParameters (parseString & inWords);
