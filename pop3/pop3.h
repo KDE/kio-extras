@@ -79,18 +79,21 @@ protected:
 	  */
 	bool getResponse (char *buf, unsigned int len, const char *command);
 
+	/** Call int pop3_open() and report an error, if if fails */
+        void openConnection();
+
 	/**
 	  *  Attempt to properly shut down the POP3 connection by sending
 	  *  "QUIT\r\n" before closing the socket.
 	  */
-	void pop3_close ();
+	void closeConnection();
 
 	/**
 	  * Attempt to initiate a POP3 connection via a TCP socket.  If no port
 	  * is passed, port 110 is assumed, if no user || password is
 	  * specified, the user is prompted for them.
 	  */
-	bool pop3_open (const KURL &url);
+	bool pop3_open ();
 
 	int m_cmd;
 	unsigned short int m_iOldPort;

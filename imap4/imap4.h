@@ -111,7 +111,7 @@ protected:
 
   bool makeLogin ();
 
-  QString myHost, myUser, myPass, myAuth;
+  QString myHost, myUser, myPass, myAuth, myTLS;
   int myPort;
 
   bool relayEnabled;

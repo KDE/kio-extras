@@ -508,75 +508,12 @@ IMAP4Protocol::setHost (const QString & _host, int _port,
   {
     if (!myHost.isEmpty ())
       closeConnection ();
-
-    if (ConnectToHost (_host.ascii (), _port))
-    {
-
-//      fcntl (m_iSock, F_SETFL, (fcntl (m_iSock, F_GETFL) | O_NDELAY));
-
-//WORK      myState = ISTATE_CONNECT;
-      myHost = _host;
-      myUser = _user.left (_user.find (";AUTH=", 0, false));
-      myPass = _pass;
-
-      if (_user.find (";AUTH=", 0, false) != -1)
-        myAuth =
-          _user.right (_user.length () - _user.find (";AUTH=", 0, false) - 6);
-      kdDebug(7116) << "IMAP4::setHost - host= " << _host << ", port= " << _port << ", user= " << _user << ", auth= " << myAuth << ", pass=xx" << endl;
-
-      imapCommand *cmd;
-
-      while (!parseLoop ());    //get greeting
-      unhandled.clear ();       //get rid of it
-      cmd = doCommand (new imapCommand ("CAPABILITY", ""));
-
-      kdDebug(7116) << "IMAP4: setHost: capability" << endl;
-      for (QStringList::Iterator it = imapCapabilities.begin ();
-           it != imapCapabilities.end (); ++it)
-      {
-        kdDebug(7116) << "'" << (*it) << "'" << endl;
-      }
-
-      completeQueue.removeRef (cmd);
-      if (canUseTLS() && hasCapability(QString("STARTTLS"))) {
-          imapCommand *cmd = doCommand (imapCommand::clientStartTLS());
-          if (cmd->result () == "OK") {
-             completeQueue.removeRef(cmd);
-             if (startTLS()) {
-                kdDebug() << "TLS mode has been enabled." << endl;
-                imapCommand *cmd2 = doCommand (new imapCommand ("CAPABILITY", ""));
-                for (QStringList::Iterator it = imapCapabilities.begin ();
-                                          it != imapCapabilities.end (); ++it) {
-                       kdDebug(7116) << "'" << (*it) << "'" << endl;
-                }
-                completeQueue.removeRef (cmd2);
-             } else {
-                kdDebug() << "TLS mode setup has failed.  Aborting." << endl;
-                myHost = QString::null;
-                myUser = QString::null;
-                myPass = QString::null;
-                myAuth = QString::null;
-                error (ERR_ABORTED, myAuth);
-                closeConnection();
-             }
-          } else completeQueue.removeRef(cmd);
-      }
-
-    }
-    else
-    {
-      kdDebug(7116) << "IMAP4: setHost: ConnectToHost Failed!" << endl;
-      myHost = QString::null;
-      myUser = QString::null;
-      myPass = QString::null;
-      myAuth = QString::null;
-    }
+    myHost = _host;
+    myPort = _port;
+    myUser = _user;
+    myPass = _pass;
   }
-  else
-  {
-    kdDebug(7116) << "IMAP4: setHost: reusing connection" << endl;
-  }
-//  parseLoop();
+
 }
 
 void
@@ -1187,6 +1124,70 @@ bool IMAP4Protocol::makeLogin ()
   kdDebug(7116) << "IMAP4::makeLogin - checking login" << endl;
   if (getState () == ISTATE_LOGIN || getState () == ISTATE_SELECT)
     return true;
+
+  if (ConnectToHost (myHost.latin1(), myPort))
+  {
+//      fcntl (m_iSock, F_SETFL, (fcntl (m_iSock, F_GETFL) | O_NDELAY));
+
+//WORK      myState = ISTATE_CONNECT;
+    myAuth = metaData("auth");
+    myTLS  = metaData("tls");
+
+    imapCommand *cmd;
+
+    while (!parseLoop ());    //get greeting
+    unhandled.clear ();       //get rid of it
+    cmd = doCommand (new imapCommand ("CAPABILITY", ""));
+
+    kdDebug(7116) << "IMAP4: setHost: capability" << endl;
+    for (QStringList::Iterator it = imapCapabilities.begin ();
+         it != imapCapabilities.end (); ++it)
+    {
+      kdDebug(7116) << "'" << (*it) << "'" << endl;
+    }
+
+    completeQueue.removeRef (cmd);
+    if (myTLS == "on" && !hasCapability(QString("STARTTLS")))
+    {
+      error(ERR_ABORTED, i18n("The server does not support TLS."));
+      closeConnection();
+      return false;
+    }
+    if ((myTLS == "on" || (canUseTLS() && myTLS != "off")) && 
+      hasCapability(QString("STARTTLS")))
+    {
+      imapCommand *cmd = doCommand (imapCommand::clientStartTLS());
+      if (cmd->result () == "OK")
+      {
+        completeQueue.removeRef(cmd);
+        if (startTLS())
+        {
+          kdDebug() << "TLS mode has been enabled." << endl;
+          imapCommand *cmd2 = doCommand (new imapCommand ("CAPABILITY", ""));
+          for (QStringList::Iterator it = imapCapabilities.begin ();
+                                     it != imapCapabilities.end (); ++it)
+          {
+            kdDebug(7116) << "'" << (*it) << "'" << endl;
+          }
+          completeQueue.removeRef (cmd2);
+        } else {
+          kdDebug() << "TLS mode setup has failed.  Aborting." << endl;
+          myHost = QString::null;
+          myUser = QString::null;
+          myPass = QString::null;
+          error (ERR_ABORTED, myAuth);
+          closeConnection();
+        }
+      } else completeQueue.removeRef(cmd);
+    }
+  }
+  else
+  {
+    kdDebug(7116) << "IMAP4: setHost: ConnectToHost Failed!" << endl;
+    myHost = QString::null;
+    myUser = QString::null;
+    myPass = QString::null;
+  }
 
   if (!myAuth.isEmpty () && myAuth != "*"
       && !hasCapability (QString ("AUTH=") + myAuth))

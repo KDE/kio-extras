@@ -116,7 +116,7 @@ POP3Protocol::POP3Protocol(const QCString &pool, const QCString &app, bool isSSL
 POP3Protocol::~POP3Protocol()
 {
 	kdDebug() << "~POP3Protocol()" << endl;
-	pop3_close();
+	closeConnection();
 }
 
 void POP3Protocol::setHost( const QString& _host, int _port, const QString& _user, const QString& _pass )
@@ -238,7 +238,15 @@ bool POP3Protocol::command (const char *cmd, char *recv_buf, unsigned int len)
 	return getResponse(recv_buf, len, cmd);
 }
 
-void POP3Protocol::pop3_close ()
+void POP3Protocol::openConnection()
+{
+	if (!pop3_open()) {
+		kdDebug() << "pop3_open failed" << endl;
+		closeConnection();
+	} else connected();
+}
+
+void POP3Protocol::closeConnection()
 {
 	// If the file pointer exists, we can assume the socket is valid,
 	// and to make sure that the server doesn't magically undo any of
@@ -254,7 +262,7 @@ void POP3Protocol::pop3_close ()
 	opened = false;
 }
 
-bool POP3Protocol::pop3_open(const KURL &url)
+bool POP3Protocol::pop3_open()
 {
 	char buf[512], *greeting_buf;
 	if ( (m_iOldPort == GetPort(m_iPort)) && (m_sOldServer == m_sServer) &&
@@ -262,9 +270,12 @@ bool POP3Protocol::pop3_open(const KURL &url)
 		kdDebug() << "Reusing old connection" << endl;
 		return true;
 	} else {
-		pop3_close();
+		closeConnection();
 		if( !ConnectToHost(m_sServer.ascii(), m_iPort))
+		{
+			error( ERR_COULD_NOT_CONNECT, m_sServer);
 			return false; // ConnectToHost has already send an error message.
+		}
 		opened = true;
 
 		greeting_buf=static_cast<char *>(malloc(GREETING_BUF_LEN));
@@ -298,20 +309,28 @@ bool POP3Protocol::pop3_open(const KURL &url)
 		m_sOldServer = m_sServer;
 
                 // Try to go into TLS mode
-                if (canUseTLS() && command("STLS")) {
+                if ((metaData("tls") == "on" || (canUseTLS() &&
+                  metaData("tls") != "off")) && command("STLS"))
+                {
                    if (startTLS()) {
                       kdDebug() << "TLS mode has been enabled." << endl;
                    } else {
                       kdDebug() << "TLS mode setup has failed.  Aborting." << endl;
-                      messageBox(Information,
+		      error( ERR_COULD_NOT_CONNECT,
                                  i18n("Your POP3 server claims to "
                                       "support TLS but negotiation "
                                       "was unsuccessful.  You can "
                                       "disable TLS in KDE using the "
-                                      "crypto settings module."),
-                                 i18n("Connection Failed"));
+                                      "crypto settings module."));
                       return false;
                    }
+                }
+                else if (metaData("tls") == "on")
+                {
+                  error( ERR_COULD_NOT_CONNECT,
+                    i18n("Your POP3 server does not support TLS. Disable\n"
+                         "TLS, if you want to connect without encryption."));
+                  return false;
                 }
 
 		QString usr, pass, one_string="USER ";
@@ -322,7 +341,7 @@ bool POP3Protocol::pop3_open(const KURL &url)
 			// Prompt for usernames
 			QString head=i18n("Username and password for your POP3 account:");
 			if (!openPassDlg(head, usr, pass)) {
-				pop3_close();
+				closeConnection();
 				return false;
 			} else {
 #ifndef NAPOP
@@ -363,9 +382,9 @@ bool POP3Protocol::pop3_open(const KURL &url)
 				return true;
 
 			kdDebug() << "Couldn't login via APOP. Falling back to USER/PASS" << endl;
-			pop3_close();
+			closeConnection();
 			m_try_apop = false;
-			return pop3_open(url);
+			return pop3_open();
 		}
 #endif
 		// Let's try SASL stuff first.. it might be more secure
@@ -387,6 +406,9 @@ bool POP3Protocol::pop3_open(const KURL &url)
 			sasl_auth=buf;
 			sasl_auth.replace(QRegExp("."), "");
 			sasl_auth.replace(QRegExp("\\r\\n"), " ");
+			KURL url;
+			url.setUser(m_sUser);
+			url.setPass(m_sPass);
 			KSASLContext *m_pSASL = new KSASLContext;
 			m_pSASL->setURL(url);
 			sasl_buffer = m_pSASL->chooseMethod(sasl_auth);
@@ -416,9 +438,9 @@ bool POP3Protocol::pop3_open(const KURL &url)
 		}
 		else if (m_try_sasl)
 		{
-			pop3_close();
+			closeConnection();
 			m_try_sasl = false;
-			return pop3_open(url);
+			return pop3_open();
 		}
 
 		// Fall back to conventional USER/PASS scheme
@@ -426,7 +448,7 @@ bool POP3Protocol::pop3_open(const KURL &url)
 			kdDebug() << "Couldn't login. Bad username Sorry" << endl;
 			m_sError = i18n("Could not login to %1.\n\n").arg(m_sServer) + m_sError;
 			error( ERR_COULD_NOT_LOGIN, m_sError );
-			pop3_close();
+			closeConnection();
 			return false;
 		}
 
@@ -442,7 +464,7 @@ bool POP3Protocol::pop3_open(const KURL &url)
 			kdDebug() << "Couldn't login. Bad password Sorry." << endl;
 			m_sError = i18n("Could not login to %1.\n\n").arg(m_sServer) + m_sError;
 			error( ERR_COULD_NOT_LOGIN, m_sError );
-			pop3_close();
+			closeConnection();
 			return false;
 		}
 		return true;
@@ -511,9 +533,9 @@ void POP3Protocol::get( const KURL& url )
 	cmd = path.left(path.find('/'));
 	path.remove(0,path.find('/')+1);
 
-	if (!pop3_open(url)) {
+	if (!pop3_open()) {
 		kdDebug() << "pop3_open failed" << endl;
-		pop3_close();
+		closeConnection();
 		error( ERR_COULD_NOT_CONNECT, m_sServer);
 		return;
 	}
@@ -626,7 +648,7 @@ LIST
 			// We need a space, otherwise we got an invalid reply
 			if (!list_cmd.find(" ")) {
 				kdDebug(7105) << "List command needs a space? " << list_cmd << endl;
-				pop3_close();
+				closeConnection();
 				error( ERR_INTERNAL, i18n("Unexpected response from POP3 server."));
 				return;
 			}
@@ -634,12 +656,12 @@ LIST
 			msg_len = list_cmd.toUInt(&ok);
 			if (!ok) {
 				kdDebug(7105) << "LIST command needs to return a number? :" << list_cmd << ":" << endl;
-				pop3_close();
+				closeConnection();
 				error( ERR_INTERNAL, i18n("Unexpected response from POP3 server."));
 				return;
 			}
 		} else {
-			pop3_close();
+			closeConnection();
 			error( ERR_INTERNAL, i18n("Unexpected response from POP3 server."));
 			return;
 		}
@@ -671,7 +693,7 @@ LIST
 			speed(0); finished();
 		} else {
 			kdDebug() << "Couldn't login. Bad RETR Sorry" << endl;
-			pop3_close();
+			closeConnection();
 			error( ERR_INTERNAL, i18n("Couldn't login."));
 			return;
 		}
@@ -697,13 +719,13 @@ LIST
 			data(QByteArray());
 			speed(0); finished();
 		} else {
-			pop3_close();
+			closeConnection();
 			error( ERR_INTERNAL, i18n("Unexpected response from POP3 server."));
 			return;
 		}
 	} else if (cmd == "commit") {
 		kdDebug() << "Issued QUIT" << endl;
-		pop3_close();
+		closeConnection();
 		finished();
 		m_cmd = CMD_NONE;
 		return;
@@ -717,10 +739,10 @@ void POP3Protocol::listDir (const KURL &url)
 	QCString q_buf;
 
 	// Try and open a connection
-	if (!pop3_open(url)) {
+	if (!pop3_open()) {
 		kdDebug() << "pop3_open failed" << endl;
 		error( ERR_COULD_NOT_CONNECT, m_sServer);
-		pop3_close();
+		closeConnection();
 		return;
 	}
 	// Check how many messages we have. STAT is by law required to
@@ -734,7 +756,7 @@ void POP3Protocol::listDir (const KURL &url)
 	q_buf=buf;
 	if (q_buf.find(" ")==-1) {
 		error(ERR_INTERNAL, "Invalid POP3 response, we should have at least one space!");
-		pop3_close();
+		closeConnection();
 		return;
 	}
 	q_buf.remove(q_buf.find(" "), q_buf.length());
@@ -742,7 +764,7 @@ void POP3Protocol::listDir (const KURL &url)
 	num_messages=q_buf.toUInt(&isINT);
 	if (!isINT) {
 		error(ERR_INTERNAL, "Invalid POP3 STAT response!");
-		pop3_close();
+		closeConnection();
 		return;
 	}
 	UDSEntry entry;
@@ -828,10 +850,10 @@ void POP3Protocol::del( const KURL& url, bool /*isfile*/ )
 	QString invalidURI=QString::null;
 	bool isInt;
 
-	if ( !pop3_open(url) ) {
+	if ( !pop3_open() ) {
 		kdDebug() << "pop3_open failed" << endl;
 		error( ERR_COULD_NOT_CONNECT, m_sServer );
-		pop3_close();
+		closeConnection();
 		return;
 	}
 
