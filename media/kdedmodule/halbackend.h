@@ -35,6 +35,8 @@
 #include <qstringlist.h>
 #include <qstring.h>
 
+#include <config.h>
+
 /* We acknowledge the the dbus API is unstable */
 #define DBUS_API_SUBJECT_TO_CHANGE
 /* DBus-Qt bindings */
@@ -42,6 +44,54 @@
 /* HAL libraries */
 #include <libhal.h>
 #include <libhal-storage.h>
+
+/* libhal-storage renamed its functions between 0.4 and 0.5 series.
+These defines enable backward compatibility */
+#ifdef HAL_0_4
+	#define LibHalStoragePolicy				HalStoragePolicy
+	#define LibHalDrive						HalDrive
+	#define LibHalVolume					HalVolume
+	#define LibHalVolumeDiscType			HalVolumeDiscType
+	#define libhal_storage_policy_free		hal_storage_policy_free
+	#define libhal_storage_policy_new		hal_storage_policy_new
+	#define libhal_drive_from_udi			hal_drive_from_udi
+	#define libhal_drive_find_all_volumes	hal_drive_find_all_volumes
+	#define libhal_drive_get_type			hal_drive_get_type
+	#define libhal_drive_get_device_file	hal_drive_get_device_file
+	#define libhal_drive_free				hal_drive_free
+	#define libhal_drive_policy_compute_display_name	hal_drive_policy_compute_display_name
+	#define libhal_drive_is_hotpluggable	hal_drive_is_hotpluggable
+	#define libhal_volume_from_udi			hal_volume_from_udi
+	#define libhal_volume_get_device_file	hal_volume_get_device_file
+	#define libhal_volume_get_mount_point	hal_volume_get_mount_point
+	#define libhal_volume_get_fstype		hal_volume_get_fstype
+	#define libhal_volume_is_mounted		hal_volume_is_mounted
+	#define libhal_volume_get_disc_type		hal_volume_get_disc_type
+	#define libhal_volume_free				hal_volume_free
+	#define libhal_volume_policy_compute_display_name	hal_volume_policy_compute_display_name
+	#define libhal_volume_disc_has_data		hal_volume_disc_has_data
+	#define libhal_volume_disc_has_audio	hal_volume_disc_has_audio
+	#define libhal_volume_disc_is_blank		hal_volume_disc_is_blank
+	#define libhal_volume_is_disc			hal_volume_is_disc
+	#define libhal_volume_get_storage_device_udi	hal_volume_get_storage_device_udi
+	#define LIBHAL_VOLUME_DISC_TYPE_CDROM		HAL_VOLUME_DISC_TYPE_CDROM
+	#define LIBHAL_VOLUME_DISC_TYPE_CDR			HAL_VOLUME_DISC_TYPE_CDR
+	#define LIBHAL_VOLUME_DISC_TYPE_CDRW		HAL_VOLUME_DISC_TYPE_CDRW
+	#define LIBHAL_VOLUME_DISC_TYPE_DVDROM		HAL_VOLUME_DISC_TYPE_DVDROM
+	#define LIBHAL_VOLUME_DISC_TYPE_DVDRAM		HAL_VOLUME_DISC_TYPE_DVDRAM
+	#define LIBHAL_VOLUME_DISC_TYPE_DVDR		HAL_VOLUME_DISC_TYPE_DVDR
+	#define LIBHAL_VOLUME_DISC_TYPE_DVDRW		HAL_VOLUME_DISC_TYPE_DVDRW
+	#define LIBHAL_VOLUME_DISC_TYPE_DVDPLUSR	HAL_VOLUME_DISC_TYPE_DVDPLUSR
+	#define LIBHAL_VOLUME_DISC_TYPE_DVDPLUSRW	HAL_VOLUME_DISC_TYPE_DVDPLUSRW
+	#define LIBHAL_DRIVE_TYPE_COMPACT_FLASH			HAL_DRIVE_TYPE_COMPACT_FLASH
+	#define LIBHAL_DRIVE_TYPE_MEMORY_STICK			HAL_DRIVE_TYPE_MEMORY_STICK
+	#define LIBHAL_DRIVE_TYPE_SMART_MEDIA 			HAL_DRIVE_TYPE_SMART_MEDIA
+	#define LIBHAL_DRIVE_TYPE_SD_MMC				HAL_DRIVE_TYPE_SD_MMC
+	#define LIBHAL_DRIVE_TYPE_PORTABLE_AUDIO_PLAYER	HAL_DRIVE_TYPE_PORTABLE_AUDIO_PLAYER
+	#define LIBHAL_DRIVE_TYPE_CAMERA				HAL_DRIVE_TYPE_CAMERA
+	#define LIBHAL_DRIVE_TYPE_TAPE					HAL_DRIVE_TYPE_TAPE
+#endif
+
 
 /**
 * A handy function to query a hal string
@@ -192,7 +242,7 @@ private:
 	/**
 	* libhal-storage HAL policy, e.g. for icon names
 	*/
-	HalStoragePolicy*	m_halStoragePolicy;
+	LibHalStoragePolicy*	m_halStoragePolicy;
 
 	/**
 	* The DBus-Qt bindings connection for mainloop integration

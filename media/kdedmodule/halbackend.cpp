@@ -23,7 +23,7 @@
 #include <kurl.h>
 #include <kdebug.h>
 
-#define MOUNT_SUFFIX	(hal_volume_is_mounted(halVolume) ? QString("_mounted") : QString("_unmounted"))
+#define MOUNT_SUFFIX	(libhal_volume_is_mounted(halVolume) ? QString("_mounted") : QString("_unmounted"))
 
 /* Static instance of this class, for static HAL callbacks */
 static HALBackend* s_HALBackend;
@@ -57,7 +57,7 @@ HALBackend::~HALBackend()
 	if (m_halContext)
 		hal_shutdown(m_halContext);
 	if (m_halStoragePolicy)
-		hal_storage_policy_free(m_halStoragePolicy);
+		libhal_storage_policy_free(m_halStoragePolicy);
 }
 
 /* Connect to the HAL */
@@ -87,7 +87,7 @@ bool HALBackend::InitHal()
 	}
 
 	/* libhal-storage initialization */
-	m_halStoragePolicy = hal_storage_policy_new();
+	m_halStoragePolicy = libhal_storage_policy_new();
 	/** @todo define libhal-storage icon policy */
 
 	/* List devices at startup */
@@ -266,30 +266,31 @@ void HALBackend::setVolumeProperties(Medium* medium)
 			return;
 
 	/* Get device information from libhal-storage */
-	HalVolume* halVolume = hal_volume_from_udi(m_halContext, udi);
+	LibHalVolume* halVolume = libhal_volume_from_udi(m_halContext, udi);
 	if (!halVolume)
 		return;
-
-	QString driveUdi = hal_volume_get_storage_device_udi(halVolume);
-	HalDrive*  halDrive  = hal_drive_from_udi(m_halContext, driveUdi.ascii());
+	QString driveUdi = libhal_volume_get_storage_device_udi(halVolume);
+	LibHalDrive*  halDrive  = libhal_drive_from_udi(m_halContext, driveUdi.ascii());
 
 	medium->setName(
-		generateName(hal_volume_get_device_file(halVolume)) );
+		generateName(libhal_volume_get_device_file(halVolume)) );
 
 	medium->mountableState(
-		hal_volume_get_device_file(halVolume),		/* Device node */
-		hal_volume_get_mount_point(halVolume),		/* Mount point */
-		hal_volume_get_fstype(halVolume),			/* Filesystem type */
-		hal_volume_is_mounted(halVolume) );			/* Mounted ? */
+		libhal_volume_get_device_file(halVolume),		/* Device node */
+		libhal_volume_get_mount_point(halVolume),		/* Mount point */
+		libhal_volume_get_fstype(halVolume),			/* Filesystem type */
+		libhal_volume_is_mounted(halVolume) );			/* Mounted ? */
 
 	QString mimeType;
-	if (hal_volume_is_disc(halVolume))
+	if (libhal_volume_is_disc(halVolume))
 	{
 		mimeType = "media/cdrom" + MOUNT_SUFFIX;
 
-		HalVolumeDiscType discType = hal_volume_get_disc_type(halVolume);
-		if ((discType == HAL_VOLUME_DISC_TYPE_CDR) || (discType == HAL_VOLUME_DISC_TYPE_CDRW))
-			if (hal_volume_disc_is_blank(halVolume))
+		LibHalVolumeDiscType discType = libhal_volume_get_disc_type(halVolume);
+		if ((discType == LIBHAL_VOLUME_DISC_TYPE_CDROM) ||
+		    (discType == LIBHAL_VOLUME_DISC_TYPE_CDR) ||
+			(discType == LIBHAL_VOLUME_DISC_TYPE_CDRW))
+			if (libhal_volume_disc_is_blank(halVolume))
 			{
 				mimeType = "media/blankcd";
 				medium->unmountableState("");
@@ -297,10 +298,10 @@ void HALBackend::setVolumeProperties(Medium* medium)
 			else
 				mimeType = "media/cdwriter" + MOUNT_SUFFIX;
 
-		if ((discType == HAL_VOLUME_DISC_TYPE_DVDROM) || (discType == HAL_VOLUME_DISC_TYPE_DVDRAM) ||
-			(discType == HAL_VOLUME_DISC_TYPE_DVDR) || (discType == HAL_VOLUME_DISC_TYPE_DVDRW) ||
-			(discType == HAL_VOLUME_DISC_TYPE_DVDPLUSR) || (discType == HAL_VOLUME_DISC_TYPE_DVDPLUSRW) )
-			if (hal_volume_disc_is_blank(halVolume))
+		if ((discType == LIBHAL_VOLUME_DISC_TYPE_DVDROM) || (discType == LIBHAL_VOLUME_DISC_TYPE_DVDRAM) ||
+			(discType == LIBHAL_VOLUME_DISC_TYPE_DVDR) || (discType == LIBHAL_VOLUME_DISC_TYPE_DVDRW) ||
+			(discType == LIBHAL_VOLUME_DISC_TYPE_DVDPLUSR) || (discType == LIBHAL_VOLUME_DISC_TYPE_DVDPLUSRW) )
+			if (libhal_volume_disc_is_blank(halVolume))
 			{
 				mimeType = "media/blankdvd";
 				medium->unmountableState("");
@@ -308,16 +309,16 @@ void HALBackend::setVolumeProperties(Medium* medium)
 			else
 				mimeType = "media/dvd" + MOUNT_SUFFIX;
 
-		if (hal_volume_disc_has_audio(halVolume) && !hal_volume_disc_has_data(halVolume))
+		if (libhal_volume_disc_has_audio(halVolume) && !libhal_volume_disc_has_data(halVolume))
 		{
 			mimeType = "media/audiocd";
-			medium->unmountableState( "audiocd:/?device=" + QString(hal_volume_get_device_file(halVolume)) );
+			medium->unmountableState( "audiocd:/?device=" + QString(libhal_volume_get_device_file(halVolume)) );
 		}
 
 		medium->setIconName(QString::null);
-		
+
 		/* check if the disc id a vcd or a video dvd */
-		DiscType type = LinuxCDPolling::identifyDiscType(hal_volume_get_device_file(halVolume));
+		DiscType type = LinuxCDPolling::identifyDiscType(libhal_volume_get_device_file(halVolume));
 		switch (type)
 		{
 		  case DiscType::VCD:
@@ -334,44 +335,46 @@ void HALBackend::setVolumeProperties(Medium* medium)
 	else
 	{
 		mimeType = "media/hdd" + MOUNT_SUFFIX;
-		if (hal_drive_is_hotpluggable(halDrive))
-		{		
+		if (libhal_drive_is_hotpluggable(halDrive))
+		{
 			mimeType = "media/removable" + MOUNT_SUFFIX;
 			medium->needMounting();
-			switch (hal_drive_get_type(halDrive)) {
-			case HAL_DRIVE_TYPE_COMPACT_FLASH:
+			switch (libhal_drive_get_type(halDrive)) {
+			case LIBHAL_DRIVE_TYPE_COMPACT_FLASH:
 				medium->setIconName("compact_flash" + MOUNT_SUFFIX);
 				break;
-			case HAL_DRIVE_TYPE_MEMORY_STICK:
+			case LIBHAL_DRIVE_TYPE_MEMORY_STICK:
 				medium->setIconName("memory_stick" + MOUNT_SUFFIX);
 				break;
-			case HAL_DRIVE_TYPE_SMART_MEDIA:
+			case LIBHAL_DRIVE_TYPE_SMART_MEDIA:
 				medium->setIconName("smart_media" + MOUNT_SUFFIX);
 				break;
-			case HAL_DRIVE_TYPE_SD_MMC:
+			case LIBHAL_DRIVE_TYPE_SD_MMC:
 				medium->setIconName("sd_mmc" + MOUNT_SUFFIX);
 				break;
-			case HAL_DRIVE_TYPE_PORTABLE_AUDIO_PLAYER:
+			case LIBHAL_DRIVE_TYPE_PORTABLE_AUDIO_PLAYER:
 				medium->setIconName(QString::null); //FIXME need icon
 				break;
-			case HAL_DRIVE_TYPE_CAMERA:
+			case LIBHAL_DRIVE_TYPE_CAMERA:
 				medium->setIconName("camera" + MOUNT_SUFFIX);
-				break;			
-			case HAL_DRIVE_TYPE_TAPE:
+				break;
+			case LIBHAL_DRIVE_TYPE_TAPE:
 				medium->setIconName(QString::null); //FIXME need icon
-				break;			
-			default:	
+				break;
+			default:
 				medium->setIconName(QString::null);
 			};
 		};
 	}
 	medium->setMimeType(mimeType);
 
-	medium->setLabel(QString::fromUtf8( hal_volume_policy_compute_display_name(halDrive,
-		halVolume, m_halStoragePolicy) ) );
+	QString volume_name = QString::fromUtf8(libhal_volume_policy_compute_display_name(halDrive, halVolume, m_halStoragePolicy));
+	//QString drive_name =  QString::fromUtf8(libhal_drive_policy_compute_display_name(halDrive, halVolume, m_halStoragePolicy));
+	QString media_name = volume_name;
+	medium->setLabel(media_name);
 
-	hal_drive_free(halDrive);
-	hal_volume_free(halVolume);
+	libhal_drive_free(halDrive);
+	libhal_volume_free(halVolume);
 }
 
 // Handle floppies and zip drives
@@ -384,29 +387,31 @@ void HALBackend::setFloppyProperties(Medium* medium)
 	if (!hal_device_exists(m_halContext, udi))
 		return;
 
-	HalDrive*  halDrive  = hal_drive_from_udi(m_halContext, udi);
+	LibHalDrive*  halDrive  = libhal_drive_from_udi(m_halContext, udi);
+	if (!halDrive)
+		return;
 	int numVolumes;
-	char** volumes = hal_drive_find_all_volumes(m_halContext, halDrive, &numVolumes);
-	HalVolume* halVolume = NULL;
+	char** volumes = libhal_drive_find_all_volumes(m_halContext, halDrive, &numVolumes);
+	LibHalVolume* halVolume = NULL;
 	kdDebug() << " found " << numVolumes << " volumes" << endl;
 	if (numVolumes)
-		halVolume = hal_volume_from_udi(m_halContext, volumes[0]);
+		halVolume = libhal_volume_from_udi(m_halContext, volumes[0]);
 
 	medium->setName(
-		generateName(hal_drive_get_device_file(halDrive)) );
+		generateName(libhal_drive_get_device_file(halDrive)) );
 
 	if (halVolume)
 	{
 		medium->mountableState(
-			hal_volume_get_device_file(halVolume),		/* Device node */
-			hal_volume_get_mount_point(halVolume),		/* Mount point */
-			hal_volume_get_fstype(halVolume),			/* Filesystem type */
-			hal_volume_is_mounted(halVolume) );			/* Mounted ? */
+			libhal_volume_get_device_file(halVolume),		/* Device node */
+			libhal_volume_get_mount_point(halVolume),		/* Mount point */
+			libhal_volume_get_fstype(halVolume),			/* Filesystem type */
+			libhal_volume_is_mounted(halVolume) );			/* Mounted ? */
 	}
 	else
 	{
 		medium->mountableState(
-			hal_drive_get_device_file(halDrive),		/* Device node */
+			libhal_drive_get_device_file(halDrive),		/* Device node */
 			"",											/* Mount point */
 			"",											/* Filesystem type */
 			false );									/* Mounted ? */
@@ -419,7 +424,7 @@ void HALBackend::setFloppyProperties(Medium* medium)
 		else
 			medium->setMimeType("media/floppy_unmounted");
 	}
-	
+
 	if (hal_device_get_property_QString(m_halContext, udi, "storage.drive_type") == "zip")
 	{
 		if (halVolume)
@@ -427,14 +432,24 @@ void HALBackend::setFloppyProperties(Medium* medium)
 		else
 			medium->setMimeType("media/zip_unmounted");
 	}
-	
+
 	medium->setIconName(QString::null);
 
-	medium->setLabel(QString::fromUtf8( hal_drive_policy_compute_display_name(halDrive,
-		halVolume, m_halStoragePolicy) ) );
+	QString media_name;
+	if (halVolume)
+	{
+		QString volume_name = QString::fromUtf8(libhal_drive_policy_compute_display_name(halDrive, halVolume, m_halStoragePolicy));
+		media_name = volume_name;
+	}
+	else
+	{
+		QString drive_name =  QString::fromUtf8(libhal_drive_policy_compute_display_name(halDrive, halVolume, m_halStoragePolicy));
+		media_name = drive_name;
+	}
+	medium->setLabel(media_name);
 
-	hal_drive_free(halDrive);
-	hal_volume_free(halVolume);
+	libhal_drive_free(halDrive);
+	libhal_volume_free(halVolume);
 }
 
 void HALBackend::setCameraProperties(Medium* medium)

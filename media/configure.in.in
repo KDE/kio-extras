@@ -28,6 +28,15 @@ if test "x$hal_test" = "xyes" ; then
     HAL_INCS="-I$hal_incdir"
     hal_inc=FOUND
   fi
+
+  if test -r $hal_incdir/libhal-storage.h ; then
+    hal_storage_version=4
+    grep LibHalVolume $hal_incdir/libhal-storage.h \
+    > /dev/null 2>&1 && hal_storage_version=5
+    if test $hal_storage_version = 4 ; then
+      AC_DEFINE(HAL_0_4, , [HAL API version 0.4])
+    fi
+  fi
   
   search_libs="$kde_libraries /usr/lib /usr/local/lib"
   AC_FIND_FILE(libhal.so libhal-storage.so, $search_libs, hal_libdir)
