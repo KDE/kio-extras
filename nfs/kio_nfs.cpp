@@ -379,12 +379,16 @@ void NFSProtocol::openConnection()
    }
    QCString hostName("localhost");
    char nameBuffer[1024];
+   nameBuffer[0] = '\0';
    if (gethostname(nameBuffer, 1024)==0) {
+      nameBuffer[sizeof(nameBuffer)-1] = '\0';
       hostName=nameBuffer;
       // I have the same problem here as Stefan Westerfeld, that's why I use
       // the getdomainname() from fakes.cpp (renamed to x_getdomainname()), this one works
       // taken from kdelibs/arts/mcopy/mcoputils.cc
+      nameBuffer[0] = '\0';
       if (x_getdomainname(nameBuffer, 1024)==0) {
+	 nameBuffer[sizeof(nameBuffer)-1] = '\0';
          /*
           * I don't know why, but on my linux machine, the domainname
           * always ends up being (none), which is certainly no valid
