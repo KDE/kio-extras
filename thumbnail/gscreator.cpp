@@ -96,7 +96,6 @@ static const char *gsargs[] = {
     "-sDEVICE=png16m",
     "-sOutputFile=-",
     "-dSAFER",
-    "-dPARANOIDSAFER",
     "-dNOPAUSE",
     "-dFirstPage=1",
     "-dLastPage=1",
