@@ -29,6 +29,7 @@
 #include <kiconloader.h>
 #include <kmimetype.h>
 #include <kmimemagic.h>
+#include <kmdcodec.h>
 #include <kdebug.h>
 
 mimeHeader::mimeHeader ():
@@ -618,11 +619,11 @@ mimeHeader::bodyDecodedBinary ()
 {
   QByteArray retVal;
 
-  retVal = postMultipartBody;
   if (contentEncoding.find ("quoted-printable", 0, false) == 0)
-    retVal = rfcDecoder::decodeQuotedPrintable (retVal);
+    retVal = KCodecs::quotedPrintableDecode(postMultipartBody);
   else if (contentEncoding.find ("base64", 0, false) == 0)
-    retVal = rfcDecoder::decodeBase64 (retVal);
+    KCodecs:base64Decode(postMultipartBody, retVal);
+  else retVal = postMultipartBody;
 
   kdDebug(7116) << "mimeHeader::bodyDecodedBinary - size is " << retVal.size () << endl;
   return retVal;
@@ -641,9 +642,9 @@ mimeHeader::setBodyEncoded (const QByteArray & _arr)
 
   kdDebug(7116) << "mimeHeader::setBodyEncoded - in size " << _arr.size () << endl;
   if (contentEncoding.find ("quoted-printable", 0, false) == 0)
-    setVal = rfcDecoder::encodeQuotedPrintable (_arr);
+    setVal = KCodecs::quotedPrintableEncode(_arr);
   else if (contentEncoding.find ("base64", 0, false) == 0)
-    setVal = rfcDecoder::encodeBase64 (_arr);
+    KCodecs::base64Encode(_arr, setVal);
   else
     setVal.duplicate (_arr);
   kdDebug(7116) << "mimeHeader::setBodyEncoded - out size " << setVal.size () << endl;

@@ -43,6 +43,8 @@
 #include <qstringlist.h>
 
 #include <kurl.h>
+#include <kmdcodec.h>
+#include <kio/sasl/saslcontext.h>
 #include <kdebug.h>
 
 imapParser::imapParser ():
@@ -146,38 +148,36 @@ imapParser::clientAuthenticate (const QString & aUser, const QString & aPass,
 
       parseOneWord (challenge); // +
       challenge = challenge.left (challenge.length () - 2); // trim CRLF
-      challenge = rfcDecoder::decodeBase64 (challenge.utf8 ()); // challenge is BASE64 encoded
 
       kdDebug(7116) << "IMAP4: authenticate key=" << challenge << endl;
 
       if (aAuth.upper () == "LOGIN")
       {
+        challenge = KCodecs::base64Decode(challenge);
         if (challenge.find ("User", 0, false) != -1)
         {
-          challenge = rfcDecoder::encodeBase64 (aUser.utf8 ());
+          challenge = KCodecs::base64Encode(aUser.utf8());
         }
         else if (challenge.find ("Pass", 0, false) != -1)
         {
-          challenge = rfcDecoder::encodeBase64 (aPass.utf8 ());
+          challenge = KCodecs::base64Encode(aPass.utf8());
         }
-      }
-      else if (aAuth.upper () == "CRAM-MD5")
-      {
-        QCString password = aPass.latin1 ();
-        QCString cchallenge = challenge.latin1 ();
-
-        challenge = rfcDecoder::encodeRFC2104 (cchallenge, password);
-        challenge = aUser + " " + challenge;
-//        kdDebug(7116) << "IMAP4: authenticate response=" << challenge << endl;
-        challenge = rfcDecoder::encodeBase64 (challenge.utf8 ());
       }
       else if (aAuth.upper () == "ANONYMOUS")
       {
         // we should present the challenge to the user and ask
         // him for a mail-adress or what ever
-        challenge = rfcDecoder::encodeBase64 (aUser.utf8 ());
+        challenge = KCodecs::base64Encode(aUser.utf8());
+      } else {
+        KSASLContext saslContext;
+        KURL url;
+        url.setUser(aUser);
+        url.setPass(aPass);
+        saslContext.setURL(url);
+        saslContext.chooseMethod(aAuth.upper());
+        challenge = saslContext.generateResponse(challenge, true);
       }
-
+ 
       // we will ALWAYS write back a line to satisfiy the continuation
       parseWriteLine (challenge);
 
