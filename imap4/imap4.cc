@@ -371,6 +371,12 @@ IMAP4Protocol::listDir (const KURL & _url)
           else if (!selectInfo.countAvailable() || selectInfo.count())
           {
             cmd = doCommand (imapCommand::clientSearch (query));
+            if (cmd->result() != "OK")
+            {
+              error(ERR_UNSUPPORTED_ACTION, hidePass(_url));
+              completeQueue.removeRef (cmd);
+              return;
+            }
             completeQueue.removeRef (cmd);
 
             QStringList list = getResults ();
