@@ -125,7 +125,7 @@ bool GSCreator::create(const QString &path, int, int, QImage &img)
                 FD_ZERO(&fds);
                 FD_SET(output[0], &fds);
                 struct timeval tv;
-                tv.tv_sec = 5;
+                tv.tv_sec = 20;
                 tv.tv_usec = 0;
                 if (select(output[0] + 1, &fds, 0, 0, &tv) <= 0)
                     break; // error or timeout
