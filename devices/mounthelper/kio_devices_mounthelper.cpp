@@ -109,7 +109,7 @@ void KIODevicesMountHelperApp::slotResult(KIO::Job* job)
 
 void KIODevicesMountHelperApp::error()
 {
-	KMessageBox::error(0,errorStr);
+	KMessageBox::error(0,errorStr+i18n("\nPlease check that the disk is entered correctly."));
 	kapp->exit(1);
 }
 
