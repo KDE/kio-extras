@@ -503,7 +503,7 @@ url="http://apps.kde.org/kapp">http://apps.kde.org/kapp</ulink>.
 </sect1>
 
 <sect1 id="compilation">
-<title>Compilation and installation</title>
+<title>Compilation and Installation</title>
 
 <para>
 In order to compile and install KApp on your system, type the following in the base
