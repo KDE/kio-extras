@@ -1,5 +1,5 @@
 /*  This file is part of the KDE libraries
-    Copyright (C) 2000 Carsten Pfeiffer <pfeiffer@kde.org>
+    Copyright (C) 2000,2002 Carsten Pfeiffer <pfeiffer@kde.org>
                   2000 Malte Starostik <malte@kde.org>
 
     This library is free software; you can redistribute it and/or
@@ -74,6 +74,9 @@ bool TextCreator::create(const QString &path, int width, int height, QImage &img
     else
         pixmapSize.setWidth( height * 3 / 4 );
 
+    if ( pixmapSize != m_pixmap.size() )
+        m_pixmap.resize( pixmapSize );
+    
     // one pixel for the rectangle, the rest. whitespace
     int xborder = 1 + pixmapSize.width()/16;  // minimum x-border
     int yborder = 1 + pixmapSize.height()/16; // minimum y-border
@@ -100,7 +103,7 @@ bool TextCreator::create(const QString &path, int width, int height, QImage &img
             m_data = new char[bytesToRead+1];
             m_dataSize = bytesToRead + 1;
         }
-            
+
         int read = file.readBlock( m_data, bytesToRead );
         if ( read > 0 )
         {
@@ -109,20 +112,19 @@ bool TextCreator::create(const QString &path, int width, int height, QImage &img
             QString text = QString::fromLocal8Bit( m_data );
             // FIXME: maybe strip whitespace and read more?
 
-            QPixmap pix( pixmapSize );
-            pix.fill( QColor( 245, 245, 245 ) ); // light-grey background
+            m_pixmap.fill( QColor( 245, 245, 245 ) ); // light-grey background
 
             QRect rect;
 
-            int rest = pix.width() - (numCharsPerLine * chSize.width());
+            int rest = m_pixmap.width() - (numCharsPerLine * chSize.width());
             xborder = QMAX( xborder, rest/2); // center horizontally
-            rest = pix.height() - (numLines * chSize.height());
+            rest = m_pixmap.height() - (numLines * chSize.height());
             yborder = QMAX( yborder, rest/2); // center vertically
             // end centering
 
             int x = xborder, y = yborder; // where to paint the characters
-            int posNewLine  = pix.width() - (chSize.width() + xborder);
-            int posLastLine = pix.height() - (chSize.height() + yborder);
+            int posNewLine  = m_pixmap.width() - (chSize.width() + xborder);
+            int posLastLine = m_pixmap.height() - (chSize.height() + yborder);
             bool newLine = false;
             Q_ASSERT( posNewLine > 0 );
             const QPixmap *fontPixmap = &(m_splitter->pixmap());
@@ -166,15 +168,15 @@ bool TextCreator::create(const QString &path, int width, int height, QImage &img
                 rect = m_splitter->coordinates( ch );
                 if ( !rect.isEmpty() )
                 {
-                    bitBlt( &pix, QPoint(x,y), fontPixmap, rect, Qt::CopyROP );
+                    bitBlt( &m_pixmap, QPoint(x,y), fontPixmap, rect, Qt::CopyROP );
                 }
 
                 x += xOffset; // next character
             }
             if (ok)
-                img = pix.convertToImage();
+                img = m_pixmap.convertToImage();
         }
-        
+
         file.close();
     }
     return ok;

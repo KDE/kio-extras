@@ -20,6 +20,7 @@
 #ifndef _TEXTCREATOR_H_
 #define _TEXTCREATOR_H_ "$Id$"
 
+#include <qpixmap.h>
 #include <kio/thumbcreator.h>
 
 class KPixmapSplitter;
@@ -36,6 +37,7 @@ private:
     KPixmapSplitter *m_splitter;
     char *m_data;
     int m_dataSize;
+    QPixmap m_pixmap;
 };
 
 #endif
