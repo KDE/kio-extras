@@ -1222,6 +1222,11 @@ void imapParser::parseFetch (ulong /* value */, parseString & inWords)
         {
           parseBody (inWords);
         }
+        else if (word == "BODY[]" )
+        {
+	  // Do the same as with "RFC822"
+          parseLiteral (inWords, true);
+        }
         else if (word == "BODYSTRUCTURE")
         {
           mailHeader *envelope = NULL;
@@ -1294,6 +1299,7 @@ void imapParser::parseFetch (ulong /* value */, parseString & inWords)
       case 'F':
         if (word == "FLAGS")
         {
+	  kdDebug(7116) << "GOT FLAGS " << inWords.cstr() << endl;
           if (!lastHandled) lastHandled = new imapCache();
           lastHandled->setFlags (imapInfo::_flags (inWords.cstr()));
         }

@@ -195,14 +195,18 @@ IMAP4Protocol::get (const KURL & _url)
     {
       aSection = "UID RFC822.HEADER";
     }
-    else
+    else if (aSection.find ("BODY.PEEK[", 0, false) != -1) {
+      aSection.prepend("UID RFC822.SIZE INTERNALDATE FLAGS ");
+    }
+	else
     {
       if (aSection.isEmpty()) aSection = "UID RFC822";
+      else if (aSection == "FLAGS" ) ; /*aSection = "UID FLAGS";*/
       else aSection = "UID BODY[" + aSection + "]";
     }
     if (aEnum == ITYPE_BOX || aEnum == ITYPE_DIR_AND_BOX)
     {
-      aSection += " RFC822.SIZE INTERNALDATE FLAGS";
+      if( aSection != "FLAGS" ) aSection += " RFC822.SIZE INTERNALDATE FLAGS";
 
       // write the digest header
       outputLine
@@ -257,10 +261,12 @@ IMAP4Protocol::get (const KURL & _url)
 
         if (!cmd->isComplete ())
         {
-          if (lastone && ((aSection.find ("BODYSTRUCTURE", 0, false) != -1)
+          if ((aSection.find ("BODYSTRUCTURE", 0, false) != -1)
+                    || (aSection.find ("FLAGS", 0, false) != -1)
+                    || (aSection.find ("UID", 0, false) != -1)
                     || (aSection.find ("ENVELOPE", 0, false) != -1)
                     || (aSection.find ("BODY.PEEK[0]", 0, false) != -1
-                        && (aEnum == ITYPE_BOX || aEnum == ITYPE_DIR_AND_BOX))))
+                        && (aEnum == ITYPE_BOX || aEnum == ITYPE_DIR_AND_BOX)))
           {
             if (aEnum == ITYPE_BOX || aEnum == ITYPE_DIR_AND_BOX)
             {
@@ -279,7 +285,7 @@ IMAP4Protocol::get (const KURL & _url)
                 outputLineStr ("X-Flags: " +
                                QString ().setNum (cache->getFlags ()) + "\r\n");
             } else cacheOutput = true;
-            lastone->outputPart (*this);
+            if( lastone ) lastone->outputPart (*this);
             cacheOutput = false;
             flushOutput();
           }
