@@ -10,7 +10,7 @@ kio_settings_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN)
 
 noinst_HEADERS = kio_settings.h
 
-kdelnk_DATA = settings.protocol programs.protocol
+kdelnk_DATA = settings.protocol programs.protocol applications.protocol
 kdelnkdir = $(kde_servicesdir)
 
 

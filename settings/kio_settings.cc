@@ -34,7 +34,7 @@
 class SettingsProtocol : public KIO::SlaveBase
 {
 public:
-	enum RunMode { SettingsMode, ProgramsMode };
+	enum RunMode { SettingsMode, ProgramsMode, ApplicationsMode };
 	SettingsProtocol(const QCString &protocol, const QCString &pool, const QCString &app);
 	virtual ~SettingsProtocol();
 	virtual void get( const KURL& url );
@@ -103,7 +103,10 @@ SettingsProtocol::SettingsProtocol( const QCString &protocol, const QCString &po
 	if ( protocol == "programs" )
 		m_runMode = ProgramsMode;
 	else
-		m_runMode = SettingsMode;
+		if (protocol == "applications")
+			m_runMode = ApplicationsMode;
+		else
+			m_runMode = SettingsMode;
 
 	m_dcopClient = new DCOPClient();
 	if (!m_dcopClient->attach())
@@ -188,11 +191,14 @@ void SettingsProtocol::stat(const KURL& url)
 	KServiceGroup::Ptr grp = KServiceGroup::group(servicePath);
 
 	if (grp && grp->isValid()) {
-		createDirEntry(entry, (m_runMode == SettingsMode) ? i18n("Settings") : i18n("Programs"),
+		createDirEntry(entry, (m_runMode == SettingsMode) ? i18n("Settings") : ( (m_runMode==ApplicationsMode) ? i18n("Applications") : i18n("Programs")),
 			url.url(), "inode/directory",grp->icon() );
 	} else {
 		KService::Ptr service = KService::serviceByName( url.fileName() );
 		if (service && service->isValid()) {
+//			QString desktopEntryPath = "file:" + locate("apps", service->desktopEntryPath());
+//			createFileEntry(entry, service->name(), desktopEntryPath, "application/x-desktop", service->icon());
+
 			createFileEntry(entry, service->name(), url.url(), "application/x-desktop", service->icon());
 		} else {
 			error(KIO::ERR_SLAVE_DEFINED,i18n("Unknown settings folder"));
@@ -265,6 +271,10 @@ void SettingsProtocol::listDir(const KURL& url)
 			  case( ProgramsMode ):
 				kdDebug() << "SettingsProtocol: adding entry programs:/" << relPath << endl;
 				createDirEntry(entry, groupCaption, "programs:/"+relPath, "inode/directory",g->icon());
+				break;
+			  case( ApplicationsMode ):
+				kdDebug() << "SettingsProtocol: adding entry applications:/" << relPath << endl;
+				createDirEntry(entry, groupCaption, "applications:/"+relPath, "inode/directory",g->icon());
 				break;
 		}
 
