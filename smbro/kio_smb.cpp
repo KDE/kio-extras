@@ -706,7 +706,10 @@ StatInfo SmbProtocol::createStatInfo(const QString line)
 
 //"      A   213123  Mon Mar 12"
    //the \\d+ is required for files bigger than 100.000.000 bytes
-   int startOfData=line.find(QRegExp("    [SADR ][SADR ][SADR ] [ \\d][ \\d][ \\d][ \\d][ \\d][ \\d][ \\d]\\d+  [A-Z][a-z][a-z] [A-Z][a-z][a-z] [ \\d]\\d"));
+   //smbclient 1.9.18p10 has at least 9 for the filesize
+   //version 2.0.5 to at least 2.2.0 has at least 8 characters
+   //version 2.2.2 has at least 7 characters
+   int startOfData=line.find(QRegExp("    [SADR ][SADR ][SADR ] [ \\d][ \\d][ \\d][ \\d][ \\d][ \\d]\\d+  [A-Z][a-z][a-z] [A-Z][a-z][a-z] [ \\d]\\d"));
    //kdDebug(7101)<<"createStatInfo: regexp at: "<<startOfData<<endl;
    if (startOfData==-1)
    {
