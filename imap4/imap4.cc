@@ -1467,14 +1467,16 @@ IMAP4Protocol::doListEntry (const KURL & _url, const QString & myBox,
       }
 
       atom.m_uds = UDS_URL;
+      QString path = aURL.path();
       atom.m_str = aURL.url ();
-      if (atom.m_str.right(1) == "/" && !aURL.path().isEmpty() 
-        && aURL.path() != "/")
-          atom.m_str = atom.m_str.left(atom.m_str.length() - 1);
-      if (!aURL.path().isEmpty() && aURL.path() != "/"
-        && atom.m_str.right(hdLen) != item.hierarchyDelimiter())
-        atom.m_str += item.hierarchyDelimiter();
-      atom.m_str += mailboxName;
+      if (path.right(1) == "/" && !path.isEmpty() && path != "/")
+        path = path.left(path.length() - 1);
+      if (!path.isEmpty() && path != "/"
+        && path.right(hdLen) != item.hierarchyDelimiter())
+        path += item.hierarchyDelimiter();
+      path += mailboxName;
+      aURL.setPath(path);
+      atom.m_str = aURL.url();
       atom.m_long = 0;
       entry.append (atom);
 
