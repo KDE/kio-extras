@@ -201,6 +201,15 @@ bool POP3Protocol::getResponse (char *r_buf, unsigned int r_len, const char *cmd
 		if (buf)
 			delete [] buf;
 		return false;
+	} else if (strncmp(buf, "+ ", 2)==0) {
+		if (r_buf && r_len)
+		{
+			memcpy(r_buf, buf+2, QMIN(r_len, recv_len-4));
+			r_buf[QMIN(r_len-1, recv_len-4)] = '\0';
+		}
+		if (buf)
+			delete [] buf;
+		return true;
 	} else {
 		kdDebug() << "Invalid POP3 response received!" << endl;
 		if (r_buf && r_len) {
@@ -411,10 +420,12 @@ bool POP3Protocol::pop3_open()
 				if (strcmp(buf, ".\r\n")==0) break; // End of data
 				// sanders, changed -2 to -1 below
 				buf[strlen(buf)-2]='\0';
+				if (!sasl_auth.isEmpty()) sasl_auth += " ";
+				sasl_auth += buf;
 			}
 
-			sasl_auth=buf;
-			sasl_auth.replace(QRegExp("."), "");
+/*			sasl_auth=buf;
+			sasl_auth.replace(QRegExp("\\."), ""); */
 			sasl_auth.replace(QRegExp("\\r\\n"), " ");
 			KURL url;
 			url.setUser(m_sUser);
@@ -438,11 +449,22 @@ bool POP3Protocol::pop3_open()
 					// See the SMTP ioslave
 					if (sasl_auth == "PLAIN")
 						b64=false;
-					ret = command(m_pSASL->generateResponse(challenge, false).latin1());
+					ret = command(m_pSASL->generateResponse(challenge, b64).latin1());
 					delete [] challenge;
 					delete m_pSASL;
 					if (ret)
+					{
+						m_sOldUser = m_sUser;
+						m_sOldPass = m_sPass;
 						return true;
+					}
+				}
+				if (metaData("auth") == "SASL")
+				{
+					error( ERR_COULD_NOT_CONNECT,
+					i18n("Login via SASL (%1) failed.")
+					.arg(sasl_auth) );
+					return false;
 				}
 			}
 		}
