@@ -44,7 +44,7 @@
 #else
 #define DF_ARGS       "-k"
 #define NO_FS_TYPE    true
-#endif		
+#endif
 
 #ifdef _OS_SOLARIS_
 
@@ -75,8 +75,8 @@ class Disks : public DisksBase
  public:
   Disks(bool deepCopies=TRUE) { dc = deepCopies;};
   ~Disks() { clear(); };
-private: 
-  int compareItems( DiskEntry s1, DiskEntry s2 ) 
+private:
+  int compareItems( DiskEntry s1, DiskEntry s2 )
   {
     int ret = s1.deviceName().compare(s2.deviceName());
     if( ret == 0 )
@@ -87,19 +87,6 @@ private:
     kdDebug() << "compareDISKS " << s1.deviceName() << " vs " << s2.deviceName() << " (" << ret << ")" << endl;
     return( ret );
   }
-
-  /*
-  int compareItems( DiskEntry* s1, DiskEntry* s2 ) {
-	int ret;
-	ret = strcmp (static_cast<DiskEntry*>(s1)->deviceName(),
-		      static_cast<DiskEntry*>(s2)->deviceName() );
-	if (0 == ret)
-	   ret = strcmp (static_cast<DiskEntry*>(s1)->mountPoint(),
-			 static_cast<DiskEntry*>(s2)->mountPoint());
-	return ret;
-      };
-  */
-
   bool  dc;
 };
 
@@ -109,7 +96,7 @@ class DiskList : public QObject
 public:
    DiskList( QObject *parent=0, const char *name=0 );
  ~DiskList();
-   int readFSTAB(); 
+   int readFSTAB();
    int readDF();
    int find(const DiskEntry* disk) {return disks->find(disk);};
    DiskEntry*  at(uint index) {return disks->at(index);};
@@ -119,18 +106,15 @@ public:
 
 signals:
    void readDFDone();
-   void criticallyFull(DiskEntry *disk);
 
 public slots:
-  void loadSettings();
-  void applySettings();
   void loadExclusionLists();
-   
+
 private slots:
    void receivedDFStdErrOut(KProcess *, char *data, int len);
    void dfDone();
 
-private: 
+private:
   void replaceDeviceEntry(DiskEntry *disk);
   void replaceDeviceEntryMounted(DiskEntry *disk);
   bool ignoreDisk(DiskEntry *disk);
@@ -139,8 +123,7 @@ private:
   KProcess         *dfProc;
   QString           dfStringErrOut;
   bool              readingDFStdErrOut;
-  KConfig           *config;
-  QPtrList<QRegExp> mountPointExclusionList; 
+  QPtrList<QRegExp> mountPointExclusionList;
 };
 /***************************************************************************/
 

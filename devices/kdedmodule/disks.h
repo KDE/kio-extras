@@ -43,46 +43,19 @@ class DiskEntry : public QObject
   Q_OBJECT
 public:
   DiskEntry(QObject *parent=0, const char *name=0);
-  DiskEntry(const QString & deviceName, QObject *parent=0, const char *name=0);
-  ~DiskEntry();
-  QString lastSysError() {return sysStringErrOut; };
   QString deviceName() const { return device; };
   QString realDeviceName() const { return realDevice; };
   QString mountPoint() const { return mountedOn; };
   QString mountOptions() const { return options; };
+  bool mounted() const { return isMounted; }
   ino_t inode() const {return m_inode; };
   bool inodeType() const {return m_inodeType;};
-  /**
-   * sets the used mountCommand for the actual DiskEntry.
-   * @param mntcmd   is a string containing the executable file and
-   *                 special codes which will be filled in when used: <BR>
-   *                 %m : mountpoint <BR>
-   *                 %d : deviceName <BR>
-   *                 %t : filesystem type <BR>
-   *                 %o : mount options <BR>
-   *                 all this information is gained from the objects' data
-   *                 if no mountCommand is set it defaults to "mount %d"
-   **/
-  QString mountCommand() const { return mntcmd; };
-  /**
-   * sets the used umountCommand for the actual DiskEntry.
-   * @param mntcmd   is a string containing the executable file and
-   *                 special codes which will be filled in when used: <BR>
-   *                 %m : mountpoint <BR>
-   *                 %d : deviceName <BR>
-   *                 all this information is gained from the objects' data
-   *                 if no umountCommand is set it defaults to "umount %d"
-   **/
-  QString umountCommand() const { return umntcmd; };
   QString fsType() const { return type; };
-  bool mounted() const { return isMounted; };
   int kBSize() const { return size; };
 
-  QString discType();  
+  QString discType();
   QString niceDescription();
 
-  QString iconName();
-  QString realIconName() { return icoName; };
   QString prettyKBSize() const { return KIO::convertSizeFromKB(size); };
   int kBUsed() const { return used; };
   QString prettyKBUsed() const { return KIO::convertSizeFromKB(used); };
@@ -91,7 +64,6 @@ public:
   float percentFull() const;
 
 signals:
-  void sysCallError(DiskEntry *disk, int err_no);
   void deviceNameChanged();
   void mountPointChanged();
   void mountOptionsChanged();
@@ -100,56 +72,37 @@ signals:
   void kBSizeChanged();
   void kBUsedChanged();
   void kBAvailChanged();
-  void iconNameChanged();
 
 public slots:
-
-  int toggleMount();
-  int mount();
-  int umount();
-  int remount();
   void setMountCommand(const QString & mnt);
   void setUmountCommand(const QString & umnt);
   void setDeviceName(const QString & deviceName);
   void setMountPoint(const QString & mountPoint);
-  void setIconName(const QString & iconName);
   void setMountOptions(const QString & mountOptions);
   void setFsType(const QString & fsType);
   void setMounted(bool nowMounted);
   void setKBSize(int kb_size);
   void setKBUsed(int kb_used);
   void setKBAvail(int kb_avail);
-  QString guessIconName();
-
-private slots:
-   void receivedSysStdErrOut(KProcess *, char *data, int len);
 
 private:
   void init();
-  int sysCall(const QString & command);
   QString prettyPrint(int kBValue) const;
-
-  KShellProcess     *sysProc;
-  QString           sysStringErrOut;
-  bool              readingSysStdErrOut;
 
   QString     device,
 	      realDevice,
               type,
               mountedOn,
-              options,
-              icoName,
-              mntcmd,
-              umntcmd;
+      options;
+
 
   int         size,
               used,
               avail;       // ATTENTION: used+avail != size (clustersize!)
 
   bool        isMounted,
-              iconSetByUser,
 	      m_inodeType;
-	      
+
   ino_t	      m_inode;
 };
 

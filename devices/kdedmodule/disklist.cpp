@@ -45,30 +45,6 @@ DiskList::DiskList(QObject *parent, const char *name)
   mountPointExclusionList.setAutoDelete(true);
   loadExclusionLists();
 
-  /*
-#ifdef _OS_LINUX_
-  kdDebug() << "_OS_LINUX_" << endl;
-#endif
-#ifdef _OS_FREEBSD_
-  kdDebug() << "_OS_FREEBSD_" << endl;
-#endif
-#ifdef _OS_SUN_
-  kdDebug() << "_OS_SUN_" << endl;
-#endif
-#ifdef _OS_SOLARIS_
-  kdDebug() << "_OS_SOLARIS_" << endl;
-#endif
-#ifdef _OS_HPUX_
-  kdDebug() << "_OS_HPUX_" << endl;
-#endif
-#ifdef _OS_UNIX_
-  kdDebug() << "_OS_UNIX_" << endl;
-#endif
-  */
-
-if (NO_FS_TYPE)
-  kdDebug() << "df gives no FS_TYPE" << endl;
-
    disks = new Disks;
    disks->setAutoDelete(TRUE);
 
@@ -82,8 +58,6 @@ if (NO_FS_TYPE)
               this, SLOT(dfDone() ) );
 
        readingDFStdErrOut=FALSE;
-       config = kapp->config();
-       loadSettings();
        //readFSTAB();
        //readDF();
 };
@@ -97,32 +71,6 @@ DiskList::~DiskList()
 };
 
 
-/***************************************************************************
-  * saves the KConfig for special mount/umount scripts
-**/
-void DiskList::applySettings()
-{
-  QString oldgroup=config->group();
-  config->setGroup("DiskList");
-  QString key;
-  DiskEntry *disk;
-  for (disk=disks->first();disk!=0;disk=disks->next()) {
-   key.sprintf("Mount%s%s%s%s",SEPARATOR,disk->deviceName().latin1()
-                              ,SEPARATOR,disk->mountPoint().latin1());
-   config->writeEntry(key,disk->mountCommand());
-
-   key.sprintf("Umount%s%s%s%s",SEPARATOR,disk->deviceName().latin1()
-                              ,SEPARATOR,disk->mountPoint().latin1());
-   config->writeEntry(key,disk->umountCommand());
-
-   key.sprintf("Icon%s%s%s%s",SEPARATOR,disk->deviceName().latin1()
-                              ,SEPARATOR,disk->mountPoint().latin1());
-   config->writeEntry(key,disk->realIconName());
- }
- config->sync();
- config->setGroup(oldgroup);
-}
-
 void DiskList::loadExclusionLists()
 {
   QString val;
@@ -132,31 +80,6 @@ void DiskList::loadExclusionLists()
 	  mountPointExclusionList.append(new QRegExp(val));
 }
 
-
-
-/***************************************************************************
-  * reads the KConfig for special mount/umount scripts
-**/
-void DiskList::loadSettings()
-{
-  config->setGroup("DiskList");
-  QString key;
-  DiskEntry *disk;
-  for (disk=disks->first();disk!=0;disk=disks->next()) {
-    key.sprintf("Mount%s%s%s%s",SEPARATOR,disk->deviceName().latin1()
-		,SEPARATOR,disk->mountPoint().latin1());
-    disk->setMountCommand(config->readEntry(key,""));
-
-    key.sprintf("Umount%s%s%s%s",SEPARATOR,disk->deviceName().latin1()
-		,SEPARATOR,disk->mountPoint().latin1());
-    disk->setUmountCommand(config->readEntry(key,""));
-
-    key.sprintf("Icon%s%s%s%s",SEPARATOR,disk->deviceName().latin1()
-		,SEPARATOR,disk->mountPoint().latin1());
-    QString icon=config->readEntry(key,"");
-    if (!icon.isEmpty()) disk->setIconName(icon);
- }
-}
 
 /***************************************************************************
   * tries to figure out the possibly mounted fs
@@ -208,8 +131,6 @@ QFile f(FSTAB);
     f.close();
   } //if f.open
 
-  loadSettings(); //to get the mountCommands
-
   //  kdDebug() << "DiskList::readFSTAB DONE" << endl;
   return 1;
 }
@@ -233,7 +154,7 @@ bool DiskList::ignoreDisk(DiskEntry *disk)
 		for (QRegExp *exp=mountPointExclusionList.getFirst();exp;exp=mountPointExclusionList.next())
 		{
 			kdDebug()<<"TRYING TO DO A REGEXP SEARCH"<<endl;
-			if (exp->search(disk->mountPoint())!=-1) 
+			if (exp->search(disk->mountPoint())!=-1)
 			{
 				kdDebug()<<"IGNORING BECAUSE OF REGEXP SEARCH"<<endl;
 				return true;
@@ -242,7 +163,7 @@ bool DiskList::ignoreDisk(DiskEntry *disk)
 	}
 
 	return ignore;
-}		
+}
 
 
 
@@ -283,7 +204,7 @@ int DiskList::readDF()
     kdWarning(7020)<<i18n("could not execute [%1]").arg(DF_COMMAND)<<endl;
     return 0;
   }
-  
+
   return 1;
 }
 
@@ -369,7 +290,6 @@ void DiskList::dfDone()
   }//while further lines available
 
   readingDFStdErrOut=FALSE;
-  loadSettings(); //to get the mountCommands
   emit readDFDone();
 }
 
@@ -395,7 +315,7 @@ void DiskList::replaceDeviceEntryMounted(DiskEntry *disk)
 		disks->append(disk);
 	else
 		delete disk;
-	
+
 }
 
 /***************************************************************************
@@ -483,8 +403,6 @@ void DiskList::replaceDeviceEntry(DiskEntry *disk)
           s.append("user");
           disk->setMountOptions(s);
        }
-      disk->setMountCommand(olddisk->mountCommand());
-      disk->setUmountCommand(olddisk->umountCommand());
 
       //FStab after an older DF ... needed for critFull
       //so the DF-KBUsed survive a FStab lookup...
@@ -494,14 +412,6 @@ void DiskList::replaceDeviceEntry(DiskEntry *disk)
          disk->setKBUsed(olddisk->kBUsed());
          disk->setKBAvail(olddisk->kBAvail());
       }
-          if ( (olddisk->percentFull() != -1) &&
-               (olddisk->percentFull() <  FULL_PERCENT) &&
-                  (disk->percentFull() >= FULL_PERCENT) ) {
-	    kdDebug() << "Device " << disk->deviceName()
-		      << " is critFull! " << olddisk->percentFull()
-		      << "--" << disk->percentFull() << endl;
-            emit criticallyFull(disk);
-	  }
       disks->remove(pos); // really deletes old one
       disks->insert(pos,disk);
   } else {
