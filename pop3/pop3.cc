@@ -356,18 +356,25 @@ bool POP3Protocol::pop3_open()
     ssl = SSL_new(ctx);
     if (!ssl) {
       error( ERR_COULD_NOT_CONNECT, m_sServer );
+      close(m_iSock);
       return false;
     }
 
     SSL_set_fd(ssl, m_iSock);
     if (-1 == SSL_connect(ssl)) {
       error( ERR_COULD_NOT_CONNECT, m_sServer );
+      close(m_iSock);
+      SSL_shutdown(ssl);
+      SSL_free(ssl);
       return false;
     }
 
     server_cert = SSL_get_peer_certificate(ssl);
     if (!server_cert) {
       error( ERR_COULD_NOT_CONNECT, m_sServer );
+      close(m_iSock);
+      SSL_shutdown(ssl);
+      SSL_free(ssl);
       return false;
     }
 
@@ -413,8 +420,8 @@ bool POP3Protocol::pop3_open()
       // Prompt for usernames
       QString head=i18n("Username and password for your POP3 account:");
       if (!openPassDlg(head, usr, pass)) {
-	return false;
 	pop3_close();
+	return false;
       } else {
 #ifdef APOP
 	apop_string.append(usr);
