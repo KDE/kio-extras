@@ -875,7 +875,7 @@ class QManIndexList : public QManIndexListBase
 {
 public:
 private:
-    int compareItems( QCollection::Item s1, QCollection::Item s2 )
+    int compareItems( QPtrCollection::Item s1, QCollection::Item s2 )
 	{
 	    struct man_index_t *m1 = (struct man_index_t *)s1;
 	    struct man_index_t *m2 = (struct man_index_t *)s2;
