@@ -15,7 +15,9 @@ public:
     virtual ~InfoProtocol();
 
     virtual void get( const KURL& url );
+    virtual void stat( const KURL& url );
     virtual void mimetype( const KURL& url );
+    virtual void listDir( const KURL& url );
 
 protected:
 

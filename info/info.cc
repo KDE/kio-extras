@@ -1,7 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <sys/stat.h>
 
 #include <qdir.h>
+#include <qfile.h>
+#include <qtextstream.h>
 
 #include <kdebug.h>
 #include <kprocess.h>
@@ -186,6 +189,85 @@ QCString InfoProtocol::errorMessage()
 
     // i18n !!!!!!!!!!!!!!!!!!
     return QCString( "<html><body bgcolor=\"#FFFFFF\">An error occured during converting an info-page to HTML</body></html>" );
+}
+
+// A minimalistic stat with only the file type
+// This seems to be enough for konqueror
+void InfoProtocol::stat( const KURL &url )
+{
+	UDSEntry uds_entry;
+	UDSAtom  uds_atom;
+
+	// Regular file with rwx permission for all
+	uds_atom.m_uds = KIO::UDS_FILE_TYPE;
+	uds_atom.m_long = S_IFREG | S_IRWXU | S_IRWXG | S_IRWXO;
+
+	uds_entry.append( uds_atom );
+
+	statEntry( uds_entry );
+
+	finished();
+}
+
+void InfoProtocol::listDir( const KURL &url )
+{
+    kdDebug( 7108 ) << "InfoProtocol::listDir" << endl;
+ 
+    if ( !url.directory(true,true).isEmpty()
+         && url.directory(true,true) != QString("/") )
+    {
+        error( KIO::ERR_CANNOT_ENTER_DIRECTORY, url.path() );
+        return;
+    }
+ 
+    // Match info nodes in the 'dir' file
+    // "* infopage:" at the start of a line
+    QRegExp regex( "^\\*  *[^: ][^:]*:", false );
+ 
+    QFile f( "/usr/info/dir" );
+ 
+    if ( f.open(IO_ReadOnly) ) {
+        QTextStream t( &f );
+        QString s;
+ 
+        int start, len;
+ 
+        UDSEntryList uds_entry_list;
+        UDSEntry     uds_entry;
+        UDSAtom      uds_atom;
+ 
+        uds_atom.m_uds = KIO::UDS_NAME; // we only do names...
+        uds_entry.append( uds_atom );
+ 
+        while ( !t.eof() ) {
+            s = t.readLine();
+ 
+            start = regex.match( s, 0, &len );
+ 
+            if ( start != -1 ) {
+            // Found "* infonode:", add "infonode" to matches
+ 
+                int pos = 1;
+                while ( pos < len && s[pos] == ' ')
+                    pos++;
+ 
+                QString name = s.mid( pos, (len-pos-1) ).lower();
+ 
+                if ( !name.isEmpty() ) {
+                    uds_entry[0].m_str = name;
+                    uds_entry_list.append( uds_entry );
+                }
+            }
+        }
+        f.close();
+ 
+        listEntries( uds_entry_list );
+        finished();
+    }
+    else {
+        kdError(7108) << "cannot open file '/usr/info/dir'" << endl;
+    }
+    kdDebug( 7108 ) << "InfoProtocol::listDir - done" << endl;
 }
 
 extern "C" { int kdemain( int argc, char **argv ); }
