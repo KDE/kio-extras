@@ -258,7 +258,7 @@ void POP3Protocol::slotGet(const char *_url)
   path = usrc.path().copy();
 
   if (path.left(1)=="/") path.remove(0,1);
-  if (path.isEmpty() || (path.find("/") == -1)) {
+  if (path.isEmpty() || ((path.find("/") == -1) && (path != "index")) ) {
     error( ERR_MALFORMED_URL, strdup(_url) );
     m_cmd = CMD_NONE;
     return; 
@@ -274,6 +274,41 @@ void POP3Protocol::slotGet(const char *_url)
   }
 
   if (cmd == "index") {
+    if (command("LIST")) {
+      ready();
+      gettingFile(_url);
+      while (!feof(fp)) {
+	memset(buf, 0, sizeof(buf));
+	if (!fgets(buf, sizeof(buf)-1, fp))
+	  break;  // Error??
+	// HACK: This assumes fread stops at the first \n and not \r
+	buf[strlen(buf)-2]='\0';
+	if (strcmp(buf, ".")==0)  break; // End of data.	
+	else {
+/*
+LIST
++OK Mailbox scan listing follows
+1 2979
+2 1348
+3 1213
+4 1286
+5 2363
+6 1410
+7 2048
+8 958
+9 91684
+10 3770
+11 1547
+12 649
+.
+*/
+		data(buf, strlen(buf));
+	}
+      }
+      fprintf(stderr,"Finishing up list\n");fflush(stderr);
+      dataEnd();
+      speed(0); finished();
+    }
   }
 
   else if (cmd == "headers") {
@@ -295,7 +330,10 @@ void POP3Protocol::slotGet(const char *_url)
 	// HACK: This assumes fread stops at the first \n and not \r
 	buf[strlen(buf)-2]='\0';
 	if (strcmp(buf, ".")==0)  break; // End of data.
-	data(buf, strlen(buf));
+	else if (strcmp(buf, "..")==0)
+		data (".", 1);
+	else
+		data(buf, strlen(buf));
       }
       fprintf(stderr,"Finishing up\n");fflush(stderr);
       dataEnd();
@@ -456,5 +494,6 @@ void POP3IOJob::slotDataEnd()
 
 void POP3IOJob::slotError(int _errid, const char *_txt)
 {
+  IOJob::slotError( _errid, _txt );
   m_pPOP3->jobError(_errid, _txt );
 }
