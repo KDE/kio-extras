@@ -799,7 +799,7 @@ AudioCDProtocol::stat(const KURL & url)
 
   UDSAtom atom;
   atom.m_uds = KIO::UDS_NAME;
-  atom.m_str = KURL::encode_string_no_slash( url.filename() );
+  atom.m_str = url.filename().replace(QRegExp("/"), "%2F");
   entry.append(atom);
 
   atom.m_uds = KIO::UDS_FILE_TYPE;
