@@ -89,9 +89,9 @@ int kdemain(int argc, char **argv)
     exit(-1);
   }
 
-  bool useSSL = (strcmp(argv[1], "smtps") == 0) ? true : false;
   // We might as well allocate it on the heap.  Since there's a heap o room there..
-  SMTPProtocol *slave = new SMTPProtocol(argv[2], argv[3], useSSL);
+  SMTPProtocol *slave = new SMTPProtocol( argv[2], argv[3],
+					  qstricmp( argv[1], "smtps" ) == 0 );
   slave->dispatchLoop();
 
   delete slave;
@@ -803,12 +803,12 @@ void SMTPProtocol::ParseFeatures(const char* buf)
       ((buf[3] != '-') && (buf[3] != ' ')))
     return;                     // We got an invalid line..
 
-  if (strncmp(&buf[4], "AUTH", strlen("AUTH")) == 0) {  // Look for auth stuff
+  if (qstrnicmp(&buf[4], "AUTH", strlen("AUTH")) == 0) {  // Look for auth stuff
     if (m_sAuthConfig.isNull())
       m_sAuthConfig = &buf[5 + strlen("AUTH")];
     m_sAuthConfig.replace(QRegExp("[\r\n]"), "");
   } 
-  else if (strncmp(&buf[4], "STARTTLS", strlen("STARTTLS")) == 0) {
+  else if (qstrnicmp(&buf[4], "STARTTLS", strlen("STARTTLS")) == 0) {
     m_haveTLS = true;
   }
 }
