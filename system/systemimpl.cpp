@@ -128,7 +128,7 @@ void SystemImpl::createTopLevelEntry(KIO::UDSEntry &entry) const
 	addAtom(entry, KIO::UDS_FILE_TYPE, S_IFDIR);
 	addAtom(entry, KIO::UDS_ACCESS, 0555);
 	addAtom(entry, KIO::UDS_MIME_TYPE, 0, "inode/system_directory");
-	addAtom(entry, KIO::UDS_ICON_NAME, 0, "kfm");
+	addAtom(entry, KIO::UDS_ICON_NAME, 0, "system");
 	addAtom(entry, KIO::UDS_USER, 0, "root");
 	addAtom(entry, KIO::UDS_GROUP, 0, "root");
 }
