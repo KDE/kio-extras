@@ -340,9 +340,7 @@ sub filetype {
     return $result;
 }
 
-my $noFile = undef;
 sub mimetype {
-    return '' if $noFile;
     my $fn = shift;
     return "Minode/directory\n" if -d $fn;
     pipe(IN,OUT);
@@ -354,7 +352,6 @@ sub mimetype {
         close(IN);
         chomp $type;
         chomp $type;
-        $noFile = 1, return '' if !length($type);
         $type =~ s/[,; ].*//;
         return '' if ($type !~ m/\//);
         return "M$type\n"
