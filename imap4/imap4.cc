@@ -1507,7 +1507,7 @@ IMAP4Protocol::parseURL (const KURL & _url, QString & _box,
 
     if (makeLogin ())
     {
-      if (getCurrentBox () != _box)
+      if (getCurrentBox () != _box || _type == "LIST")
       {
         imapCommand *cmd;
 
