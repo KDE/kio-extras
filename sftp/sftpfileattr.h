@@ -19,11 +19,13 @@
 #define SFTPFILEATTR_H
 
 #include <sys/types.h>
+
 #include <qglobal.h>
 #include <qstring.h>
+#include <qdatastream.h>
+
 #include <kio/global.h>
 #include <kdebug.h>
-#include <qdatastream.h>
 
 #include "sftp.h"
 
@@ -80,9 +82,14 @@ private: // Private attributes
 
     /** Whether >> operator should read filename and longname from the stream. */
     bool mDirAttrs;
+    
+    /** Holds the encoding of the remote host */
+    QCString mEncoding;
 
 public:
     sftpFileAttr();
+    
+    sftpFileAttr(const char* encoding);
 
     ~sftpFileAttr();
 
@@ -246,6 +253,9 @@ public:
 
     /** Returns the file type as determined from the file permissions */
     mode_t fileType() const;
+    
+    /** Set the encoding of the remote file system */
+    void setEncoding( const char* encoding );
 };
 
 #endif

@@ -22,8 +22,10 @@
 #include <sys/stat.h>
 
 #include <qstring.h>
-#include <kio/global.h>
 #include <qdatastream.h>
+
+#include <kio/global.h>
+#include <kremoteencoding.h>
 
 using namespace KIO;
 
@@ -31,6 +33,13 @@ sftpFileAttr::sftpFileAttr(){
     clear();
     mDirAttrs = false;
 }
+
+sftpFileAttr::sftpFileAttr(const char* encoding){
+    clear();
+    mDirAttrs = false;
+    mEncoding = encoding;
+}
+
 
 sftpFileAttr::~sftpFileAttr(){
 }
@@ -55,7 +64,7 @@ The UDSEntry is generated from the sftp file attributes. */
 UDSEntry sftpFileAttr::entry() {
     UDSEntry entry;
     UDSAtom atom;
-
+   
     atom.m_uds = UDS_NAME;
     atom.m_str = mFilename;
     entry.append(atom);
@@ -145,12 +154,14 @@ QDataStream& operator>> (QDataStream& s, sftpFileAttr& fa) {
     // XXX Add some error checking in here in case
     //     we get a bad sftp packet.
     fa.clear();
-	QByteArray fn;
+    
+    QByteArray fn;
     Q_UINT64 size;
     if( fa.mDirAttrs ) {
         s >> fn; 
 
-		fa.mFilename = QString::fromUtf8(fn.data(),fn.size());
+        KRemoteEncoding encoder ( fa.mEncoding.data() );
+        fa.mFilename = encoder.decode( QCString(fn.data(), fn.size()+1) );
 
         s >> fa.mLongname;
         size = fa.mLongname.size();
@@ -192,56 +203,72 @@ QDataStream& operator>> (QDataStream& s, sftpFileAttr& fa) {
 }
 /** Parse longname for the owner and group names. */
 void sftpFileAttr::getUserGroupNames(){
-        // Get the name of the owner and group of the file from longname.
-        QString user, group;
-        if( mLongname.isEmpty() ) {
-            // do not have the user name so use the user id instead
-            user.setNum(mUid);
-            group.setNum(mGid);
+    // Get the name of the owner and group of the file from longname.
+    QString user, group;
+    if( mLongname.isEmpty() ) {
+        // do not have the user name so use the user id instead
+        user.setNum(mUid);
+        group.setNum(mGid);
+    }
+    else {
+        int field = 0;
+        int i = 0;
+        int l = mLongname.length();
+        
+        KRemoteEncoding encoder( mEncoding.data() );
+        QString longName = encoder.decode( mLongname );
+        
+        kdDebug(7120) << "Decoded:  " << longName << endl;
+        
+        // Find the beginning of the third field which contains the user name.
+        while( field != 2 ) {
+            if( longName[i].isSpace() ) {
+                field++; i++;
+                while( i < l && longName[i].isSpace() ) { i++; }
+            }
+            else { i++; }
         }
-        else {
-            int field = 0;
-            int i = 0;
-            int l = mLongname.length();
-            // Find the beginning of the third field which contains the user name.
-            while( field != 2 ) {
-                if( isspace(mLongname[i]) ) {
-                    field++; i++;
-                    while( i < l && isspace(mLongname[i]) ) { i++; }
-                }
-                else { i++; }
-            }
-            // i is the index of the first character of the third field.
-            while( i < l && !isspace(mLongname[i]) ) {
-                user.append(mLongname[i]);
-                i++;
-            }
-            // i is the first character of the space between fields 3 and 4
-            // user contains the owner's user name
-            while( i < l && isspace(mLongname[i]) ) {
-                i++;
-            }
-            // i is the first character of the fourth field
-            while( i < l && !isspace(mLongname[i]) ) {
-                group.append(mLongname[i]);
-                i++;
-            }
-            // group contains the name of the group.
+        // i is the index of the first character of the third field.
+        while( i < l && !longName[i].isSpace() ) {
+            user.append(longName[i]);
+            i++;
         }
-        mUserName = user;
-        mGroupName = group;
+
+        // i is the first character of the space between fields 3 and 4
+        // user contains the owner's user name
+        while( i < l && longName[i].isSpace() ) {
+            i++;
+        }
+        
+        // i is the first character of the fourth field
+        while( i < l && !longName[i].isSpace() ) {
+            group.append(longName[i]);
+            i++;
+        }
+        // group contains the name of the group.
+    }
+    
+    mUserName = user;
+    mGroupName = group;
 }
 
 /** No descriptions */
 kdbgstream& operator<< (kdbgstream& s, sftpFileAttr& a) {
-    s << "Filename: " << a.mFilename << ", Uid: " << a.mUid << ", Gid: " << a.mGid;
-    s << ", Username: " << a.mUserName << ", GroupName: " << a.mGroupName;
-    s << ", Permissions: " << a.mPermissions << ", size: " << a.mSize;
-    s << ", atime: " << a.mAtime << ", mtime: " << a.mMtime;
-    s << ", extended cnt: " << a.mExtendedCount;
+    s << "Filename: " << a.mFilename
+      << ", Uid: " << a.mUid 
+      << ", Gid: " << a.mGid
+      << ", Username: " << a.mUserName 
+      << ", GroupName: " << a.mGroupName
+      << ", Permissions: " << a.mPermissions 
+      << ", size: " << a.mSize
+      << ", atime: " << a.mAtime 
+      << ", mtime: " << a.mMtime
+      << ", extended cnt: " << a.mExtendedCount;
     
-    if (S_ISLNK(a.mLinkType))
-      s << ", Destination: " << a.mLinkDestination;
+    if (S_ISLNK(a.mLinkType)) {
+      s << ", Link Type: " << a.mLinkType;
+      s << ", Link Destination: " << a.mLinkDestination;
+    }
       
     return s;
 }
@@ -267,6 +294,7 @@ void sftpFileAttr::clear(){
     mFlags = 0;
     mLongname = "\0";
     mLinkType = 0;
+    mEncoding = "\0";
 }
 
 /** Return the size of the sftp attribute. */
@@ -312,5 +340,10 @@ mode_t sftpFileAttr::fileType() const{
       type |= S_IFSOCK;
     
     return type;
+}
+
+void sftpFileAttr::setEncoding( const char* encoding )
+{
+    mEncoding = encoding;
 }
 // vim:ts=4:sw=4
