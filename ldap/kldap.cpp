@@ -481,7 +481,7 @@ QCString SearchRequest::asLDIF()
 		QByteArray tmp;
 		tmp.setRawData( val, len );
 		//os << name << ": " << QCString(tmp) << endl;
-		result += QCString(name) + ": " + tmp;
+		result += QCString(name) + ": " + QCString( tmp.data(), tmp.size()+1 );
 		tmp.resetRawData( val, len );
 	      } else {		
 		QByteArray tmp;
