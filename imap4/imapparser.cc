@@ -1699,14 +1699,10 @@ imapParser::parseLiteral (QString & inWords, bool relay)
 //        kdDebug(7116) << "requested " << runLen << "d and got " << fill.size() << endl;
 //        kdDebug(7116) << "last bytes " << fill[runLen-4] << " " << fill[runLen-3] << " " << fill[runLen-2] << " " << fill[runLen-1] << endl;
         retVal = QString::fromLatin1 (fill.data (), runLen);  // our data
-        inWords = QString::fromLatin1 (fill.data () + runLen);  // what remains
-        if (inWords.isEmpty ())
-        {
-          QByteArray prefetch;
-          parseReadLine (prefetch); // must get more
-          inWords = QString::fromLatin1 (prefetch.data (), prefetch.size ());
+        QByteArray prefetch;
+        parseReadLine (prefetch); // must get more
+        inWords = QString::fromLatin1 (prefetch.data (), prefetch.size ());
 //          kdDebug(7116) << "prefetched [" << inWords.length() << "] - '" << inWords << "'" << endl;
-        }
 //        kdDebug(7116) << "requested " << runLen << "d and got " << fill.length() << endl;
 //        inWords = inWords.left(inWords.length()-2); // tie off CRLF
 //        kdDebug(7116) << "|\n|\nV" << endl;
