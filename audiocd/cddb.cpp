@@ -60,13 +60,13 @@ CDDB::set_server(const char *hostname, unsigned short int _port)
       deinit();
     }
   remote = (hostname != 0) && (*hostname != 0);
-  kdDebug(7101) << "CDDB: set_server, host=" << hostname << "port=" << _port << endl;
+  kdDebug(7117) << "CDDB: set_server, host=" << hostname << "port=" << _port << endl;
   if (remote)
     {
       ks = new KExtendedSocket(hostname, _port);
       if (ks->connect() < 0)
 	{
-	  kdDebug(7101) << "CDDB: Can't connect!" << endl;
+	  kdDebug(7117) << "CDDB: Can't connect!" << endl;
 	  delete ks;
 	  ks = 0;
           return false;
@@ -119,7 +119,7 @@ CDDB::readLine(QCString& ret)
 	  if (ret.length() && ret[ret.length()-1] == '\r')
 	    ret.resize(ret.length());
 	  buf.remove(0, ni+1);
-	  kdDebug(7101) << "CDDB: got  `" << ret << "'" << endl;
+	  kdDebug(7117) << "CDDB: got  `" << ret << "'" << endl;
 	  return true;
 	}
 
@@ -143,7 +143,7 @@ CDDB::writeLine(const QCString& line)
 {
   const char *b = line.data();
   int l = line.length();
-  kdDebug(7101) << "CDDB: send `" << line << "'" << endl;
+  kdDebug(7117) << "CDDB: send `" << line << "'" << endl;
   while (l)
     {
       ssize_t wl = ks->writeBlock(b, l);
@@ -266,11 +266,16 @@ CDDB::parse_read_resp(QTextStream *stream, QTextStream *write_stream)
       r = r.stripWhiteSpace();
       if (r.isEmpty() || r[0] == '#')
         continue;
-      if (r.left(7) == "DTITLE=")
+      if (r.left(6) == "CATEG=" )
         {
-	  r.remove(0, 7);
-	  m_title += QString::fromLocal8Bit(r.stripWhiteSpace());
-	}
+        r.remove(0, 6);
+        m_category = QString::fromLocal8Bit(r.stripWhiteSpace());
+        }
+      else if (r.left(7) == "DTITLE=")
+        {
+	    r.remove(0, 7);
+	    m_title += QString::fromLocal8Bit(r.stripWhiteSpace());
+	    }
       else if (r.left(6) == "TTITLE")
         {
 	  r.remove(0, 6);
@@ -307,13 +312,13 @@ CDDB::parse_read_resp(QTextStream *stream, QTextStream *write_stream)
   else
     m_artist.replace(QRegExp("/"), "%2f");
 
-  kdDebug(7101) << "CDDB: found Title: `" << m_title << "'" << endl;
+  kdDebug(7117) << "CDDB: found Title: `" << m_title << "'" << endl;
   for (int i = 0; i < m_tracks; i++)
     {
       if (m_names[i].isEmpty())
         m_names[i] += i18n("Track %1").arg(i);
       m_names[i].replace(QRegExp("/"), "%2f");
-      kdDebug(7101) << "CDDB: found Track " << i+1 << ": `" << m_names[i]
+      kdDebug(7117) << "CDDB: found Track " << i+1 << ": `" << m_names[i]
         << "'" << endl;
     }
   return true;
@@ -396,6 +401,7 @@ CDDB::queryCD(QValueList<int>& track_ofs)
   m_tracks = num_tracks;
   m_title = "";
   m_artist = "";
+  m_category = "";
   m_names.clear();
   m_discid = id;
   if (local)
@@ -430,7 +436,10 @@ CDDB::queryCD(QValueList<int>& track_ofs)
       /* an exact match */
       r.remove(0, 3);
       parse_query_resp(r, catg, d_id, title);
-      kdDebug(7101) << "CDDB: found exact CD: category=" << catg << " DiscId="
+      m_category = catg;
+      if ( m_category.isEmpty() )
+        m_category = i18n("Unknown");
+      kdDebug(7117) << "CDDB: found exact CD: category=" << catg << " DiscId="
         << d_id << " Title=`" << title << "'" << endl;
       q = "cddb read " + catg + " " + d_id;
       if (!writeLine(q))
@@ -449,11 +458,12 @@ CDDB::queryCD(QValueList<int>& track_ofs)
 	      file.remove();
 	      return false;
 	    }
+      stream << "CATEG=" << m_category << endl;
 	  file.close();
 	  QString newname (file.name());
 	  newname.truncate(newname.findRev('.'));
 	  if (QDir::current().rename(file.name(), newname)) {
-	    kdDebug(7101) << "CDDB: rename failed" << endl;
+	    kdDebug(7117) << "CDDB: rename failed" << endl;
 	    file.remove();
 	  }
 	}
@@ -474,7 +484,7 @@ CDDB::queryCD(QValueList<int>& track_ofs)
 	    return false;
 	  QCString catg, d_id, title;
 	  parse_query_resp(r, catg, d_id, title);
-	  kdDebug(7101) << "CDDB: found close CD: category=" << catg << " DiscId="
+	  kdDebug(7117) << "CDDB: found close CD: category=" << catg << " DiscId="
 	    << d_id << " Title=`" << title << "'" << endl;
         }
     }
@@ -483,7 +493,7 @@ CDDB::queryCD(QValueList<int>& track_ofs)
       /* 202 - no match found
          403 - Database entry corrupt
 	 409 - no handshake */
-      kdDebug(7101) << "CDDB: query returned code " << code << endl;
+      kdDebug(7117) << "CDDB: query returned code " << code << endl;
       return false;
     }
 

@@ -249,7 +249,7 @@ kdemain(int argc, char ** argv)
 {
   KInstance instance("kio_audiocd");
 
-  kdDebug(7101) << "Starting " << getpid() << endl;
+  kdDebug(7117) << "Starting " << getpid() << endl;
 
   if (argc != 4)
   {
@@ -263,7 +263,7 @@ kdemain(int argc, char ** argv)
   AudioCDProtocol slave(argv[2], argv[3]);
   slave.dispatchLoop();
 
-  kdDebug(7101) << "Done" << endl;
+  kdDebug(7117) << "Done" << endl;
   return 0;
 }
 
@@ -304,6 +304,7 @@ class AudioCDProtocol::Private
     int tracks;
     QString cd_title;
     QString cd_artist;
+    QString cd_category;
     QStringList titles;
     bool is_audio[100];
     CDDB *cddb;
@@ -738,7 +739,7 @@ AudioCDProtocol::initRequest(const KURL & url)
   if (d->req_track >= d->tracks)
     d->req_track = -1;
 
-  kdDebug(7101) << "audiocd: dir=" << dname << " file=" << d->fname
+  kdDebug(7117) << "audiocd: dir=" << dname << " file=" << d->fname
     << " req_track=" << d->req_track << " which_dir=" << d->which_dir << endl;
   return drive;
 }
@@ -771,7 +772,7 @@ AudioCDProtocol::get(const KURL & url)
      }
     
      if ( (_lamelib_lame_init_params) (d->gf) < 0) { // tell lame the new parameters
-       kdDebug(7101) << "lame init params failed" << endl;
+       kdDebug(7117) << "lame init params failed" << endl;
        return;
      }
   };
@@ -807,8 +808,23 @@ AudioCDProtocol::get(const KURL & url)
     vorbis_comment_add_tag
       (
        &d->vc,
+       const_cast<char *>("genre"),
+       const_cast<char *>(d->cd_category.utf8().data())
+      );
+
+    vorbis_comment_add_tag
+      (
+       &d->vc,
        const_cast<char *>("tracknumber"),
        const_cast<char *>(QString::number(trackNumber).utf8().data())
+      );
+
+     QDateTime dt = QDateTime::currentDateTime();
+     vorbis_comment_add_tag
+      (
+       &d->vc,
+       const_cast<char *>("date"),
+       const_cast<char *>(dt.toString("yyyy-MM-dd hh:mm:ss").utf8().data())
       );
   }
 #endif
@@ -984,6 +1000,7 @@ AudioCDProtocol::updateCD(struct cdrom_drive * drive)
           d->based_on_cddb = true;
           d->cd_title = d->cddb->title();
           d->cd_artist = d->cddb->artist();
+          d->cd_category = d->cddb->category();
           for (int i = 0; i < d->tracks; i++)
             {
               QString n;
@@ -1239,7 +1256,7 @@ AudioCDProtocol::pickDrive()
 
   if (0 == drive)
   {
-    kdDebug(7101) << "Can't find an audio CD" << endl;
+    kdDebug(7117) << "Can't find an audio CD" << endl;
   }
 
   return drive;
@@ -1312,7 +1329,7 @@ AudioCDProtocol::parseArgs(const KURL & url)
       || old_cddb_port != d->cddbPort)
     d->discid = 0;
 
-  kdDebug(7101) << "CDDB: use_cddb = " << d->remoteCDDB << endl;
+  kdDebug(7117) << "CDDB: use_cddb = " << d->remoteCDDB << endl;
 
 }
 
@@ -1328,7 +1345,7 @@ AudioCDProtocol::paranoiaRead(
 
   if (0 == paranoia)
   {
-    kdDebug(7101) << "paranoia_init failed" << endl;
+    kdDebug(7117) << "paranoia_init failed" << endl;
     return;
   }
 
@@ -1413,7 +1430,7 @@ static char mp3buffer[mp3buffer_size];
 
     if (0 == buf)
     {
-      kdDebug(7101) << "Unrecoverable error in paranoia_read" << endl;
+      kdDebug(7117) << "Unrecoverable error in paranoia_read" << endl;
       break;
     }
     else
@@ -1427,7 +1444,7 @@ static char mp3buffer[mp3buffer_size];
             (d->gf,buf,CD_FRAMESAMPLES,(unsigned char *)mp3buffer,(int)mp3buffer_size) ;
 
          if (mp3bytes < 0 ) {
-            kdDebug(7101) << "lame encoding failed" << endl;
+            kdDebug(7117) << "lame encoding failed" << endl;
             break;
          }
 
@@ -1509,7 +1526,7 @@ static char mp3buffer[mp3buffer_size];
      int mp3bytes = _lamelib_lame_encode_finish(d->gf,(unsigned char *)mp3buffer,(int)mp3buffer_size);
 
      if (mp3bytes < 0 ) {
-       kdDebug(7101) << "lame encoding failed" << endl;
+       kdDebug(7117) << "lame encoding failed" << endl;
      }
 
      if (mp3bytes > 0) {

@@ -37,6 +37,7 @@ public:
   bool queryCD(QValueList<int>& track_ofs);
   QString title() const { return m_title; }
   QString artist() const { return m_artist; }
+  QString category() const { return m_category; }
   int trackCount() const { return m_tracks; }
   QString track(int i) const;
 private:
@@ -57,6 +58,7 @@ private:
   int m_tracks;
   QString m_title;
   QString m_artist;
+  QString m_category;
   QStringList m_names;
 };
 
