@@ -79,7 +79,7 @@ bool SMBSlave::cache_get_AuthInfo(SMBAuthInfo& auth)
 }
 
 
-void SMBSlave::cache_clear_AuthInfo(const SMBAuthInfo& auth) 
+void SMBSlave::cache_clear_AuthInfo(const SMBAuthInfo& auth)
 {
 
     SMBAuthInfo* it = m_auth_cache.first();
@@ -91,7 +91,7 @@ void SMBSlave::cache_clear_AuthInfo(const SMBAuthInfo& auth)
         {
             it = m_auth_cache.current();
         }
-      else 
+      else
 	it = m_auth_cache.next();
     }
 
@@ -134,6 +134,7 @@ int SMBSlave::cache_stat(const SMBUrl& url, struct stat* st)
     SMBAuthInfo auth;
 DO_STAT:
    result = smbc_stat(url.toSmbcUrl(), st);
+   kdDebug(KIO_SMB) << "smbc_stat " << url.toKioUrl() << " " << errno << " " << result << endl;
    if ((result !=0) && (errno == EACCES)) {
       // if access denied, first open passDlg
       kdDebug(KIO_SMB) << "cache_stat auth ERROR"<<endl;

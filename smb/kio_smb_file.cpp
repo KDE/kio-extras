@@ -1,32 +1,32 @@
 ////////////////////////////////////////////////////////////////////////////
-//                                                                         
+//
 // Project:     SMB kioslave for KDE2
 //
 // File:        kio_smb_file.cpp
-//                                                                         
-// Abstract:    member function implementations for SMBSlave that deal with 
+//
+// Abstract:    member function implementations for SMBSlave that deal with
 //              SMB file access
 //
 // Author(s):   Matthew Peterson <mpeterson@caldera.com>
 //
 //---------------------------------------------------------------------------
-//                                                                  
-// Copyright (c) 2000  Caldera Systems, Inc.                        
-//                                                                         
-// This program is free software; you can redistribute it and/or modify it 
+//
+// Copyright (c) 2000  Caldera Systems, Inc.
+//
+// This program is free software; you can redistribute it and/or modify it
 // under the terms of the GNU General Public License as published by the
-// Free Software Foundation; either version 2.1 of the License, or  
-// (at your option) any later version.                                     
-//                                                                         
-//     This program is distributed in the hope that it will be useful,     
-//     but WITHOUT ANY WARRANTY; without even the implied warranty of      
-//     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the       
-//     GNU Lesser General Public License for more details.                 
-//                                                                         
-//     You should have received a copy of the GNU General Public License 
+// Free Software Foundation; either version 2.1 of the License, or
+// (at your option) any later version.
+//
+//     This program is distributed in the hope that it will be useful,
+//     but WITHOUT ANY WARRANTY; without even the implied warranty of
+//     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//     GNU Lesser General Public License for more details.
+//
+//     You should have received a copy of the GNU General Public License
 //     along with this program; see the file COPYING.  If not, please obtain
-//     a copy from http://www.gnu.org/copyleft/gpl.html   
-//                                                                         
+//     a copy from http://www.gnu.org/copyleft/gpl.html
+//
 /////////////////////////////////////////////////////////////////////////////
 
 
@@ -41,7 +41,7 @@ void SMBSlave::get( const KURL& kurl )
     char        buf[MAX_XFER_BUF_SIZE];
     int         filefd          = 0;
     ssize_t     bytesread       = 0;
-    time_t      curtime         = 0;
+    // time_t      curtime         = 0;
     time_t      lasttime        = 0;
     time_t      starttime       = 0;
     ssize_t     totalbytesread  = 0;
@@ -60,7 +60,7 @@ void SMBSlave::get( const KURL& kurl )
       return;
     }
 
-    
+
     if(auth_initialize_smbc() == -1)
     {
         return;
@@ -82,7 +82,7 @@ void SMBSlave::get( const KURL& kurl )
     }
 
     // Set the total size
-    totalSize( st.st_size ); 
+    totalSize( st.st_size );
 
     // Open and read the file
     filefd = smbc_open(url.toSmbcUrl(),O_RDONLY,0);
@@ -98,14 +98,14 @@ void SMBSlave::get( const KURL& kurl )
                 if(bytesread == 0)
                 {
                     // All done reading
-                    break; 
+                    break;
                 }
                 else if(bytesread < 0)
                 {
                     error( KIO::ERR_COULD_NOT_READ, url.toKioUrl());
                     return;
                 }
-    
+
                 filedata.setRawData(buf,bytesread);
 		if (isFirstPacket)
 		{
@@ -115,19 +115,19 @@ void SMBSlave::get( const KURL& kurl )
 		}
                 data( filedata );
                 filedata.resetRawData(buf,bytesread);
-     
+
                 // increment total bytes read
-                totalbytesread += bytesread; 
-    
+                totalbytesread += bytesread;
+
 		processedSize(totalbytesread);
             }
-    
+
         }
 
         smbc_close(filefd);
     }
     else
-    {    
+    {
           error( KIO::ERR_CANNOT_OPEN_FOR_READING, url.toKioUrl());
 	  return;
     }
@@ -138,11 +138,11 @@ void SMBSlave::get( const KURL& kurl )
 
 //===========================================================================
 void SMBSlave::put( const KURL& kurl,
-                    int permissions, 
-                    bool overwrite, 
+                    int permissions,
+                    bool overwrite,
                     bool resume )
 {
-  
+
     void *buf;
     size_t bufsize;
 
@@ -163,7 +163,7 @@ void SMBSlave::put( const KURL& kurl,
         {
 	  kdDebug(KIO_SMB) << "SMBSlave::put on " << kurl.url() <<" allready isdir !!"<< endl;
             error( KIO::ERR_DIR_ALREADY_EXIST,  m_current_url.toKioUrl());
-        }   
+        }
         else
         {
 	  kdDebug(KIO_SMB) << "SMBSlave::put on " << kurl.url() <<" allready exist !!"<< endl;
@@ -171,22 +171,22 @@ void SMBSlave::put( const KURL& kurl,
         }
         return;
     }
- 
+
     if (exists && !resume && overwrite)
     {
          kdDebug(KIO_SMB) << "SMBSlave::put exists try to remove " << m_current_url.toSmbcUrl()<< endl;
 	 //   remove(m_current_url.toKioUrl().local8Bit());
     }
 
-    
-    if (resume) 
+
+    if (resume)
     {
         // append if resuming
         kdDebug(KIO_SMB) << "SMBSlave::put resume " << m_current_url.toSmbcUrl()<< endl;
         filefd = smbc_open(m_current_url.toSmbcUrl(), O_RDWR, 0 );
         smbc_lseek(filefd, 0, SEEK_END);
-    } 
-    else 
+    }
+    else
     {
         if (permissions != -1)
         {
@@ -200,22 +200,22 @@ void SMBSlave::put( const KURL& kurl,
         kdDebug(KIO_SMB) << "SMBSlave::put NO resume " << m_current_url.toSmbcUrl()<< endl;
         filefd = smbc_open(m_current_url.toSmbcUrl(), O_CREAT | O_TRUNC | O_WRONLY, mode);
     }
- 
-    if ( filefd < 0 ) 
+
+    if ( filefd < 0 )
     {
-        if ( errno == EACCES ) 
+        if ( errno == EACCES )
         {
 	  kdDebug(KIO_SMB) << "SMBSlave::put error " << kurl.url() <<" access denied !!"<< endl;
             error( KIO::ERR_WRITE_ACCESS_DENIED, m_current_url.toKioUrl());
         }
-        else 
+        else
         {
 	  kdDebug(KIO_SMB) << "SMBSlave::put error " << kurl.url() <<" can not open for writing !!"<< endl;
             error( KIO::ERR_CANNOT_OPEN_FOR_WRITING, m_current_url.toKioUrl());
         }
         return;
     }
- 
+
     // Loop until we got 0 (end of data)
     while(1)
     {
@@ -245,7 +245,7 @@ void SMBSlave::put( const KURL& kurl,
         error( KIO::ERR_COULD_NOT_WRITE, m_current_url.toKioUrl());
         return;
     }
- 
+
     // set final permissions, if the file was just created
     if ( permissions != -1 && !exists )
     {
@@ -253,10 +253,10 @@ void SMBSlave::put( const KURL& kurl,
         // TODO: put in call to chmod when it is working!
         // smbc_chmod(url.toSmbcUrl(),permissions);
     }
- 
+
     // We have done our job => finish
     finished();
-}               
+}
 
 
 

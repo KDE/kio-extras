@@ -1,32 +1,32 @@
 /////////////////////////////////////////////////////////////////////////////
-//                                                                         
+//
 // Project:     SMB kioslave for KDE2
 //
 // File:        kio_smb_auth.cpp
-//                                                                         
-// Abstract:    member function implementations for SMBSlave that deal with 
+//
+// Abstract:    member function implementations for SMBSlave that deal with
 //              SMB directory access
 //
 // Author(s):   Matthew Peterson <mpeterson@caldera.com>
 //
 //---------------------------------------------------------------------------
-//                                                                  
-// Copyright (c) 2000  Caldera Systems, Inc.                        
-//                                                                         
-// This program is free software; you can redistribute it and/or modify it 
+//
+// Copyright (c) 2000  Caldera Systems, Inc.
+//
+// This program is free software; you can redistribute it and/or modify it
 // under the terms of the GNU General Public License as published by the
-// Free Software Foundation; either version 2.1 of the License, or  
+// Free Software Foundation; either version 2.1 of the License, or
 // (at your option) any later version.
-//                                                                         
-//     This program is distributed in the hope that it will be useful,     
-//     but WITHOUT ANY WARRANTY; without even the implied warranty of      
-//     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the       
-//     GNU Lesser General Public License for more details.                 
-//                                                                         
-//     You should have received a copy of the GNU General Public License 
+//
+//     This program is distributed in the hope that it will be useful,
+//     but WITHOUT ANY WARRANTY; without even the implied warranty of
+//     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//     GNU Lesser General Public License for more details.
+//
+//     You should have received a copy of the GNU General Public License
 //     along with this program; see the file COPYING.  If not, please obtain
 //     a copy from http://www.gnu.org/copyleft/gpl.html
-//                                                                         
+//
 /////////////////////////////////////////////////////////////////////////////
 
 #include "kio_smb.h"
@@ -56,6 +56,8 @@ void SMBSlave::auth_smbc_get_data(const char *server,const char *share,
                                   char *password, int pwmaxlen)
 //--------------------------------------------------------------------------
 {
+    (void)wgmaxlen;
+
     //check this to see if we "really" need to authenticate...
     SMBUrlType t = m_current_url.getType();
     if( t == SMBURLTYPE_ENTIRE_NETWORK )
@@ -92,7 +94,7 @@ void SMBSlave::auth_smbc_get_data(const char *server,const char *share,
     if (!auth.m_passwd.isEmpty())
       strncpy(password,auth.m_passwd,pwmaxlen - 1);
     //kdDebug(KIO_SMB) << "auth_smbc_get_dat: set user="<<username<<", \nworkgroup="<<workgroup<<", \npassword="<<password<< endl;
-    
+
 }
 
 //--------------------------------------------------------------------------
@@ -109,7 +111,7 @@ bool SMBSlave::setAuthInfo(SMBAuthInfo &auth) {
     // local userinfo from KUrl ?
     if (!m_current_url.getUser().isEmpty()) {
       kdDebug(KIO_SMB) << "setAuthInfo set userinfo from m_current_url"<< endl;
-      
+
       auth.m_domain = m_current_url.getUserDomain().local8Bit();
       auth.m_username = m_current_url.getUser().local8Bit();
 
@@ -121,7 +123,7 @@ bool SMBSlave::setAuthInfo(SMBAuthInfo &auth) {
            return authDlg(auth);
       }
       infocached=true;
-    } 
+    }
 
     // update userinfo in SMBUrl if cached found and no userinfo in SMBUrl
     else if (infocached) {
@@ -129,8 +131,8 @@ bool SMBSlave::setAuthInfo(SMBAuthInfo &auth) {
 	m_current_url.setUserInfo(auth.m_username + ":" + auth.m_passwd);
       else
 	m_current_url.setUserInfo(auth.m_domain + ";" + auth.m_username + ":" + auth.m_passwd);
-    }  
-    
+    }
+
     return infocached;
 }
 
@@ -140,7 +142,7 @@ bool SMBSlave::authDlg(SMBAuthInfo& auth) {
     auth.m_username = m_default_user.local8Bit();
     auth.m_passwd   = m_default_password.local8Bit();
   }
-        QString msg = i18n( 
+        QString msg = i18n(
             "Please enter authentication information for:\n"
             "Workgroup = %1\n"
             "Server = %2\n"
@@ -164,17 +166,14 @@ bool SMBSlave::authDlg(SMBAuthInfo& auth) {
         return false;
 }
 
-
-
-
-
 //--------------------------------------------------------------------------
 int SMBSlave::auth_initialize_smbc()
 // Initalizes the smbclient library
-// 
+//
 // Returns: 0 on success -1 with errno set on error
 //--------------------------------------------------------------------------
 {
+    kdDebug() << "auth_initialize_smbc " << endl;
     if(m_initialized_smbc == false)
     {
         //check for $HOME/.smb/smb.conf, the library dies without it...
@@ -217,19 +216,19 @@ int SMBSlave::auth_initialize_smbc()
             else
             {
                 SlaveBase::error(ERR_INTERNAL,
-                    i18n(
-"You are missing your $HOME/.smb/smb.conf file, and we could not create it.\n\
-Please manually create it to enable the smb ioslave to operate correctly.\n\
-The smb.conf file could look like: \
-[global]\
-    workgroup= <YOUR_DEFAULT_WORKGROUP>"));
+                    i18n("You are missing your $HOME/.smb/smb.conf file, and we could not create it.\n"
+                         "Please manually create it to enable the smb ioslave to operate correctly.\n"
+                         "The smb.conf file could look like:\n"
+                         "[global]\n"
+                         "workgroup= <YOUR_DEFAULT_WORKGROUP>"));
                 return -1;
             }
         }
 
+        kdDebug() << "smbc_init call" << endl;
         if(smbc_init(::auth_smbc_get_data,0) == -1)
         {
-            SlaveBase::error(ERR_INTERNAL, TEXT_SMBC_INIT_FAILED);
+            SlaveBase::error(ERR_INTERNAL, i18n("libsmbclient failed to initialize"));
             return -1;
         }
 

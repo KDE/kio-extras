@@ -40,7 +40,6 @@
 
 using namespace KIO;
 
-
 //---------------------------------------------------------------------------
 bool SMBSlave::browse_stat_path(const SMBUrl& url, UDSEntry& udsentry)
   // Returns: true on success, false on failure
@@ -49,7 +48,7 @@ bool SMBSlave::browse_stat_path(const SMBUrl& url, UDSEntry& udsentry)
 
   // realy needed ?
   // memset(&st,0,sizeof(st));
-OPEN_STAT:
+// OPEN_STAT:
    if(cache_stat(url, &st) == 0)
    {
       if(S_ISDIR(st.st_mode))
@@ -71,7 +70,7 @@ OPEN_STAT:
       else
       {
          kdDebug(KIO_SMB)<<"SMBSlave::browse_stat_path mode: "<<st.st_mode<<endl;
-         error(ERR_INTERNAL, TEXT_UNKNOWN_ERROR);
+         error(ERR_INTERNAL, i18n("Unknown error condition"));
          return false;
       }
 
@@ -136,12 +135,12 @@ OPEN_STAT:
          error( ERR_ACCESS_DENIED, url.toKioUrl() );
          break;
       case ENOMEM:
-         error(ERR_OUT_OF_MEMORY, TEXT_OUT_OF_MEMORY);
+          error(ERR_OUT_OF_MEMORY, i18n("Out of memory"));
       case EBADF:
-         error(ERR_INTERNAL, "BAD Filediscriptor");
+         error(ERR_INTERNAL, "BAD File descriptor");
       default:
          kdDebug(KIO_SMB)<<"SMBSlave::browse_stat_path errno: "<<errno<< endl;
-         error(ERR_INTERNAL, TEXT_UNKNOWN_ERROR);
+         error(ERR_INTERNAL, i18n("Unknown error condition"));
       }
 
       kdDebug(KIO_SMB) << "SMBSlave::browse_stat_path ERROR!!"<< endl;
@@ -258,8 +257,8 @@ void SMBSlave::listDir( const KURL& kurl )
    struct smbc_dirent  *dirp = NULL;
    UDSEntry    udsentry;
    UDSAtom     atom;
-   bool cancel = false;
-   OPEN_DIR:
+   // bool cancel = false;
+ OPEN_DIR:
    ;
    dirfd = smbc_opendir( m_current_url.toSmbcUrl());
    kdDebug(KIO_SMB) << "SMBSlave::listDir open " << kurl.url() << endl;
@@ -395,16 +394,16 @@ void SMBSlave::listDir( const KURL& kurl )
          }
          break;
       case ENOMEM:
-         error(ERR_OUT_OF_MEMORY, TEXT_OUT_OF_MEMORY);
+          error(ERR_OUT_OF_MEMORY, i18n("Out of memory"));
          break;
       case EUCLEAN:
-         error(ERR_INTERNAL, TEXT_SMBC_INIT_FAILED);
+         error(ERR_INTERNAL, i18n("libsmbclient failed to initialize"));
          break;
       case ENODEV:
-         error(ERR_INTERNAL, TEXT_NOSRV_WG);
+         error(ERR_INTERNAL, i18n("Server or workgroup could not be found"));
          break;
       default:
-         error(ERR_INTERNAL, TEXT_UNKNOWN_ERROR);
+         error(ERR_INTERNAL, i18n("Unknown error condition"));
       }
       return;
    }

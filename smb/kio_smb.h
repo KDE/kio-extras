@@ -1,11 +1,11 @@
 /////////////////////////////////////////////////////////////////////////////
-//                                                                         
+//
 // Project:     SMB kioslave for KDE2
 //
-// File:        kio_smb.h  
-//                                                                         
-// Abstract:    The main kio slave class declaration.  For convenience, 
-//              in concurrent devlopment, the implementation for this class 
+// File:        kio_smb.h
+//
+// Abstract:    The main kio slave class declaration.  For convenience,
+//              in concurrent devlopment, the implementation for this class
 //              is separated into several .cpp files -- the file containing
 //              the implementation should be noted in the comments for each
 //              member function.
@@ -13,23 +13,23 @@
 // Author(s):   Matthew Peterson <mpeterson@caldera.com>
 //
 //---------------------------------------------------------------------------
-//                                                                  
-// Copyright (c) 2000  Caldera Systems, Inc.                        
-//                                                                         
-// This program is free software; you can redistribute it and/or modify it 
+//
+// Copyright (c) 2000  Caldera Systems, Inc.
+//
+// This program is free software; you can redistribute it and/or modify it
 // under the terms of the GNU General Public License as published by the
-// Free Software Foundation; either version 2.1 of the License, or  
-// (at your option) any later version.                                     
-//                                                                         
-//     This program is distributed in the hope that it will be useful,     
-//     but WITHOUT ANY WARRANTY; without even the implied warranty of      
-//     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the       
-//     GNU Lesser General Public License for more details.                 
-//                                                                         
-//     You should have received a copy of the GNU General Public License 
+// Free Software Foundation; either version 2.1 of the License, or
+// (at your option) any later version.
+//
+//     This program is distributed in the hope that it will be useful,
+//     but WITHOUT ANY WARRANTY; without even the implied warranty of
+//     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//     GNU Lesser General Public License for more details.
+//
+//     You should have received a copy of the GNU General Public License
 //     along with this program; see the file COPYING.  If not, please obtain
-//     a copy from http://www.gnu.org/copyleft/gpl.html   
-//                                                                         
+//     a copy from http://www.gnu.org/copyleft/gpl.html
+//
 /////////////////////////////////////////////////////////////////////////////
 
 
@@ -43,7 +43,7 @@
 #include <qptrlist.h>
 #include <qstringlist.h>
 #include <qtextstream.h>
-#include <qstrlist.h> 
+#include <qstrlist.h>
 
 //--------------
 // KDE includes
@@ -53,7 +53,7 @@
 #include <kio/global.h>
 #include <kio/slavebase.h>
 #include <kurl.h>
-#include <klocale.h>  
+#include <klocale.h>
 
 //-----------------------------
 // Standard C library includes
@@ -65,7 +65,7 @@
 #include <netinet/in.h>
 #include <net/if.h>
 #include <arpa/inet.h>
-#include <stdio.h> 
+#include <stdio.h>
 #include <errno.h>
 #include <time.h>
 
@@ -73,26 +73,20 @@
 //-------------------------------
 // Samba client library includes
 //-------------------------------
-extern "C" 
+extern "C"
 {
 #include <libsmbclient.h>
 }
-                                 
+
 //---------------------------
 // kio_smb internal includes
 //---------------------------
 #include "kio_smb_internal.h"
 
 #define MAX_XFER_BUF_SIZE           16348
-#define TEXT_UNKNOWN_ERROR          i18n("Unknown error condition")
-#define TEXT_SMBC_INIT_FAILED       i18n("libsmbclient failed to initialize")
-#define TEXT_OUT_OF_MEMORY          i18n("Out of memory")
-#define TEXT_AUTHENTICATION_PROMPT  i18n("Enter workgroup/domain authentication information")
-#define TEXT_NOSRV_WG               i18n("Server or workgroup could not be found")
 #define KIO_SMB                     7106
 
-
-using namespace KIO; 
+using namespace KIO;
 
 //===========================================================================
 
@@ -129,12 +123,12 @@ private:
     /**
      * libsmbclient need global variables to store in,
      * else it crashes on exit next method after use cache_stat,
-     * looks like gcc (C/C++) failure 
+     * looks like gcc (C/C++) failure
      */
     struct stat st;
 protected:
     //---------------------------------------------
-    // Authentication functions (kio_smb_auth.cpp) 
+    // Authentication functions (kio_smb_auth.cpp)
     //---------------------------------------------
     // (please prefix functions with auth)
 
@@ -179,8 +173,8 @@ protected:
     /**
      * Description :  cache an authinfo
      * Parameter :    SMBAuthInfo the info to cache
-     *                store_in_kdesu if true other kioslaves 
-     *                can use the info 
+     *                store_in_kdesu if true other kioslaves
+     *                can use the info
      */
     void cache_set_AuthInfo( const SMBAuthInfo& auth, bool store_in_kdesu=false );
 
@@ -205,47 +199,47 @@ protected:
 
 
     /**
-     * Description :  open a passworddialog and set the new information 
+     * Description :  open a passworddialog and set the new information
      *                in SMBAuthInfo. Update m_current_url and cache it.
      *                (Not Implemented : we should redirect if new username or
      *                 domain is given)
      * Parameter :    SMBAuthInfo.m_username will be shown in passworddialog
      * Return :       true if user pressed ok, else false
-     *                if true   
+     *                if true
      *                   SMBAuthInfo.m_username
      *                   SMBAuthInfo.m_domain
-     *                   SMBAuthInfo.m_password 
-     *                are changed. 
+     *                   SMBAuthInfo.m_password
+     *                are changed.
      */
     bool setAuthInfo(SMBAuthInfo &auth);
-    
+
     //-----------------------------------------
-    // Browsing functions (kio_smb_browse.cpp) 
+    // Browsing functions (kio_smb_browse.cpp)
     //-----------------------------------------
     // (please prefix functions with browse)
 
     /**
-     * Description :  Return a stat of given SMBUrl. Calls cache_stat and 
+     * Description :  Return a stat of given SMBUrl. Calls cache_stat and
      *                pack it in UDSEntry. UDSEntry will not be cleared
      * Parameter :    SMBUrl the url to stat
-     * Return :       false if any error occoured (errno), else true 
+     * Return :       false if any error occoured (errno), else true
      */
     bool browse_stat_path(const SMBUrl& url, UDSEntry& udsentry);
-    
+
     //---------------------------------------------
-    // Configuration functions (kio_smb_config.cpp) 
+    // Configuration functions (kio_smb_config.cpp)
     //---------------------------------------------
     // (please prefix functions with config)
-    
+
 
     //---------------------------------------
-    // Directory functions (kio_smb_dir.cpp) 
+    // Directory functions (kio_smb_dir.cpp)
     //---------------------------------------
     // (please prefix functions with dir)
 
 
     //--------------------------------------
-    // File IO functions (kio_smb_file.cpp) 
+    // File IO functions (kio_smb_file.cpp)
     //--------------------------------------
     // (please prefix functions with file)
 
@@ -257,7 +251,7 @@ protected:
     /**
      * Description :  correct a given URL
      *                valid URL's are
-     * 
+     *
      *                smb://[[domain;]user[:password]@]server[:port][/share[/path[/file]]]
      *                smb:/[[domain;]user[:password]@][group/[server[/share[/path[/file]]]]]
      *                domain   = workgroup(domain) of the user
@@ -290,14 +284,14 @@ public:
 
     //-----------------------------------------------------------------------
     // Overwritten functions from the base class that define the operation of
-    // this slave. (See the base class headerfile slavebase.h for more 
+    // this slave. (See the base class headerfile slavebase.h for more
     // details)
     //-----------------------------------------------------------------------
 
     // Functions overwritten in kio_smb.cpp
     SMBSlave(const QCString& pool, const QCString& app);
     virtual ~SMBSlave();
-    
+
     // Functions overwritten in kio_smb_browse.cpp
     virtual void listDir( const KURL& url );
     virtual void stat( const KURL& url );
@@ -343,10 +337,10 @@ void auth_smbc_get_data(const char *server,const char *share,
 
 //===========================================================================
 // Main slave entrypoint (see kio_smb.cpp)
-extern "C" 
-{ 
+extern "C"
+{
 
-int kdemain( int argc, char **argv ); 
+int kdemain( int argc, char **argv );
 
 }
 
