@@ -48,7 +48,7 @@ HTMLCreator::~HTMLCreator()
     delete m_html;
 }
 
-bool HTMLCreator::create(const QString &path, int extent, QPixmap &pix)
+bool HTMLCreator::create(const QString &path, int width, int height, QImage &img)
 {
     if (!m_html)
     {
@@ -67,14 +67,21 @@ bool HTMLCreator::create(const QString &path, int extent, QPixmap &pix)
         
     // render the HTML page on a bigger pixmap and use smoothScale,
     // looks better than directly scaling with the QPainter (malte)
-    pix.resize(600, 640);
+    QPixmap pix;
+    if (width > 400 || height > 600)
+    {
+        if (height * 3 > width * 4)
+            pix.resize(width, width * 4 / 3);
+        else
+            pix.resize(height * 3 / 4, height);
+    }
+    else
+        pix.resize(400, 600);
     // light-grey background, in case loadind the page failed
     pix.fill( QColor( 245, 245, 245 ) );
 
-    float ratio = 15.0 / 16.0; // so we get a page-like size
-    int width = (int) (ratio * (float) extent);
     int borderX = pix.width() / width,
-        borderY = pix.height() / extent;
+        borderY = pix.height() / height;
     QRect rc(borderX, borderY, pix.width() - borderX * 2, pix.height() - borderY * 2);
 
     QPainter p;
@@ -82,7 +89,7 @@ bool HTMLCreator::create(const QString &path, int extent, QPixmap &pix)
     m_html->paint(&p, rc);
     p.end();
  
-    pix.convertFromImage(pix.convertToImage().smoothScale(width, extent));
+    img = pix.convertToImage();
     return true;
 }
 

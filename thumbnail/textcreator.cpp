@@ -22,6 +22,7 @@
 
 #include <qfile.h>
 #include <qpixmap.h>
+#include <qimage.h>
 
 #include <kstddirs.h>
 #include <kpixmapsplitter.h>
@@ -46,7 +47,7 @@ TextCreator::~TextCreator()
     delete m_splitter;
 }
 
-bool TextCreator::create(const QString &path, int extent, QPixmap &pix)
+bool TextCreator::create(const QString &path, int width, int height, QImage &img)
 {
     if ( !m_splitter )
     {
@@ -80,9 +81,11 @@ bool TextCreator::create(const QString &path, int extent, QPixmap &pix)
             QRect rect;
 
             // example: width: 60, height: 64
-            float ratio = 15.0 / 16.0; // so we get a page-like size
-            int width = (int) (ratio * (float) extent);
-            pix.resize( width, extent );
+            QPixmap pix;
+            if (height * 3 > width * 4)
+                pix.resize(width, width * 4 / 3);
+            else
+                pix.resize(height * 3 / 4, height);
             pix.fill( QColor( 245, 245, 245 ) ); // light-grey background
 
             QSize chSize = m_splitter->itemSize(); // the size of one char
@@ -90,24 +93,24 @@ bool TextCreator::create(const QString &path, int extent, QPixmap &pix)
             int yOffset = chSize.height();
 
             // one pixel for the rectangle, the rest. whitespace
-            int xborder = 1 + width/16;    // minimum x-border
-            int yborder = 1 + extent/16; // minimum y-border
+            int xborder = 1 + pix.width()/16;    // minimum x-border
+            int yborder = 1 + pix.height()/16; // minimum y-border
 
             // calculate a better border so that the text is centered
-            int canvasWidth = width - 2*xborder;
-            int canvasHeight = extent -  2*yborder;
+            int canvasWidth = pix.width() - 2*xborder;
+            int canvasHeight = pix.height() -  2*yborder;
             int numCharsPerLine = (int) (canvasWidth / chSize.width());
             int numLines = (int) (canvasHeight / chSize.height());
 
-            int rest = width - (numCharsPerLine * chSize.width());
+            int rest = pix.width() - (numCharsPerLine * chSize.width());
             xborder = QMAX( xborder, rest/2); // center horizontally
-            rest = extent - (numLines * chSize.height());
+            rest = pix.height() - (numLines * chSize.height());
             yborder = QMAX( yborder, rest/2); // center vertically
             // end centering
 
             int x = xborder, y = yborder; // where to paint the characters
-            int posNewLine  = width - (chSize.width() + xborder);
-            int posLastLine = extent - (chSize.height() + yborder);
+            int posNewLine  = pix.width() - (chSize.width() + xborder);
+            int posLastLine = pix.height() - (chSize.height() + yborder);
             bool newLine = false;
             ASSERT( posNewLine > 0 );
             const QPixmap *fontPixmap = &(m_splitter->pixmap());
@@ -156,6 +159,8 @@ bool TextCreator::create(const QString &path, int extent, QPixmap &pix)
 
                 x += xOffset; // next character
             }
+            if (ok)
+                img = pix.convertToImage();
         }
         file.close();
     }

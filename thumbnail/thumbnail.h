@@ -40,9 +40,11 @@ protected:
     
 private:
     QString m_mimeType;
+    int m_width;
+    int m_height;
+    bool m_keepAspectRatio;
     int m_iconSize;
-    int m_extent;
-    int m_transparency;
+    int m_iconAlpha;
     // Thumbnail creators
     QDict<ThumbCreator> m_creators;
     // transparent icon cache

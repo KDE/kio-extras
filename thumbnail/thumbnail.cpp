@@ -36,7 +36,6 @@
 #include <kiconloader.h>
 #include <kimageeffect.h>
 #include <kmimetype.h>
-#include <kservice.h>
 #include <klibloader.h>
 #include <kdebug.h>
 
@@ -45,18 +44,16 @@
 
 // Recognized metadata entries:
 // mimeType     - the mime type of the file, used for the overlay icon if any
+// width        - maximum width for the thumbnail
+// height       - maximum height for the thumbnail
 // iconSize     - the size of the overlay icon to use if any
-// extent       - the requested "extent" of the thumbnail. The extent
-//                specifies the maximum accepted size of the image, either
-//                horizontally or vertically depending on the thumb's
-//                orientation.
-// transparency - the transparency value used for icon overlays
-// plugin       - the name of the plugin to be used for thumbnail creation.
+// iconAlpha    - the transparency value used for icon overlays
+// plugin       - the name of the plugin library to be used for thumbnail creation.
 //                Provided by the application to save an addition KTrader
 //                query here.
 // shmid        - the shared memory segment id to write the image's data to.
 //                The segment is assumed to provide enough space for a 32-bit
-//                image sized extent x extent pixels.
+//                image sized width x height pixels.
 //                If this is given, the data returned by the slave will be:
 //                    int width
 //                    int height
@@ -106,6 +103,15 @@ void ThumbnailProtocol::get(const KURL &url)
         error(KIO::ERR_INTERNAL, "No MIME Type specified.");
         return;
     }
+
+    m_width = metaData("width").toInt();
+    m_height = metaData("height").toInt();
+    if (m_width <= 0 || m_height <= 0)
+    {
+        error(KIO::ERR_INTERNAL, "No or invalid size specified.");
+        return;
+    }
+
     int iconSize = metaData("iconSize").toInt();
     if (!iconSize)
         iconSize = KGlobal::iconLoader()->currentSize(KIcon::Desktop);
@@ -113,12 +119,9 @@ void ThumbnailProtocol::get(const KURL &url)
         m_iconDict.clear();
     m_iconSize = iconSize;
 
-    m_extent = metaData("extent").toInt();
-    if (!m_extent)
-        m_extent = 64;
-    m_transparency = metaData("transparency").toInt();
-    if (!m_transparency)
-        m_transparency = 0;
+    m_iconAlpha = metaData("iconAlpha").toInt();
+    if (m_iconAlpha)
+        m_iconAlpha = (m_iconAlpha << 24) | 0xffffff;
     QString plugin = metaData("plugin");
     if (plugin.isEmpty())
     {
@@ -130,8 +133,7 @@ void ThumbnailProtocol::get(const KURL &url)
     {
         // Don't use KLibFactory here, this is not a QObject and
         // neither is ThumbCreator
-        KService::Ptr service = KService::serviceByDesktopName(plugin);
-        KLibrary *library = KLibLoader::self()->library(service->library().latin1());
+        KLibrary *library = KLibLoader::self()->library(plugin.latin1());
         if (library)
         {
             newCreator create = (newCreator)library->symbol("new_creator");
@@ -146,16 +148,26 @@ void ThumbnailProtocol::get(const KURL &url)
         m_creators.insert(plugin, creator);
     }
 
-    QPixmap pix;
-    if (!creator->create(url.path(), m_extent, pix))
+    QImage img;
+    if (!creator->create(url.path(), m_width, m_height, img))
     {
         error(KIO::ERR_INTERNAL, "Cannot create thumbnail for " + url.path());
         return;
+    }
+    if (img.width() > m_width || img.height() > m_height)
+    {
+        double imgRatio = (double)img.height() / (double)img.width();
+        if (imgRatio > (double)m_height / (double)m_width)
+            img = img.smoothScale((double)m_height / imgRatio, m_height);
+        else
+            img = img.smoothScale(m_width, (double)m_width * imgRatio);
     }
     ThumbCreator::Flags flags = creator->flags();
 
     if (flags & ThumbCreator::DrawFrame)
     {
+        QPixmap pix;
+        pix.convertFromImage(img);
         int x2 = pix.width() - 1;
         int y2 = pix.height() - 1;
         // paint a black rectangle around the "page"
@@ -168,17 +180,17 @@ void ThumbnailProtocol::get(const KURL &url)
         p.drawLine( 0, 0, x2, 0 );
         p.drawLine( 0, 0, 0, y2 );
         p.end();
+        img = pix.convertToImage();
     }
 
-    QImage img = pix.convertToImage();
     if ((flags & ThumbCreator::BlendIcon) && KGlobal::iconLoader()->alphaBlending(KIcon::Desktop))
     {
         // blending the mimetype icon in
         QImage icon = getIcon();
 
-        int x = pix.width() - icon.width() - 4;
+        int x = img.width() - icon.width() - 4;
         x = QMAX( x, 0 );
-        int y = pix.height() - icon.height() - 6;
+        int y = img.height() - icon.height() - 6;
         y = QMAX( y, 0 );
         KImageEffect::blendOnLower( x, y, icon, img );
     }
@@ -196,7 +208,7 @@ void ThumbnailProtocol::get(const KURL &url)
 			error(KIO::ERR_INTERNAL, "Failed to attach to shared memory segment " + shmid);
 			return;
 		}
-		if (img.width() * img.height() > m_extent * m_extent)
+		if (img.width() * img.height() > m_width * m_height)
 		{
 			error(KIO::ERR_INTERNAL, "Image is too big for the shared memory segment");
 			shmdt(shmaddr);
@@ -225,7 +237,7 @@ const QImage& ThumbnailProtocol::getIcon()
         {
             QRgb *line = (QRgb *) icon->scanLine( y );
             for ( int x = 0; x < w; x++ )
-            line[x] &= m_transparency; // transparency
+            line[x] &= m_iconAlpha; // transparency
         }
 
         m_iconDict.insert( m_mimeType, icon );

@@ -30,7 +30,7 @@ class HTMLCreator : public QObject, public ThumbCreator
 public:
     HTMLCreator();
     virtual ~HTMLCreator();
-    virtual bool create(const QString &path, int extent, QPixmap &pix);
+    virtual bool create(const QString &path, int width, int height, QImage &img);
     virtual Flags flags() const;
 
 protected:

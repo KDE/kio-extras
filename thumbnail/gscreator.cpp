@@ -28,7 +28,6 @@
 #include <sys/wait.h>
 
 #include <qfile.h>
-#include <qpixmap.h>
 #include <qimage.h>
 
 #include "gscreator.h"
@@ -65,7 +64,7 @@ static const char *gsargs[] = {
     0
 };
 
-bool GSCreator::create(const QString &path, int extent, QPixmap &pix)
+bool GSCreator::create(const QString &path, int, int, QImage &img)
 {
     int input[2];
     int output[2];
@@ -157,37 +156,7 @@ bool GSCreator::create(const QString &path, int extent, QPixmap &pix)
     }
     close(output[1]);
 
-    if ( ok && pix.loadFromData( data ) )
-    {
-        int w = pix.width(), h = pix.height();
-        // scale to pixie size
-        if(w > extent || h > extent)
-        {
-            if(w > h)
-            {
-                h = (int)( (double)( h * extent ) / w );
-                if ( h == 0 ) h = 1;
-                w = extent;
-                ASSERT( h <= extent );
-            }
-            else
-            {
-                w = (int)( (double)( w * extent ) / h );
-                if ( w == 0 ) w = 1;
-                h = extent;
-                ASSERT( w <= extent );
-            }
-            QImage img(pix.convertToImage().smoothScale( w, h ));
-            if ( img.width() != w || img.height() != h )
-            {
-                // Resizing failed. Aborting.
-                return false;
-            }
-            pix.convertFromImage( img );
-        }
-        return true;
-    }
-    return false;
+    return ok && img.loadFromData( data );
 }
 
 ThumbCreator::Flags GSCreator::flags() const

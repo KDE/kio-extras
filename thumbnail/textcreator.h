@@ -29,7 +29,7 @@ class TextCreator : public ThumbCreator
 public:
     TextCreator();
     virtual ~TextCreator();
-    virtual bool create(const QString &path, int extent, QPixmap &pix);
+    virtual bool create(const QString &path, int width, int height, QImage &img);
     virtual Flags flags() const;
 
 private:
