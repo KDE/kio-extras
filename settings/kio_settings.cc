@@ -256,6 +256,13 @@ void SettingsProtocol::listDir(const KURL& url)
 		    count++;
                     QString relPath=g->relPath();
 
+		    // Do not display the "Settings" menu group in Programs Mode.
+		    if( (m_runMode == ProgramsMode) && relPath.startsWith( "Settings" ) )
+		    {
+			kdDebug() << "SettingsProtocol: SKIPPING entry programs:/" << relPath << endl;
+			continue;
+		    }
+
 		    switch( m_runMode )
 		    {
 			case( SettingsMode ):
@@ -263,6 +270,7 @@ void SettingsProtocol::listDir(const KURL& url)
 			    kdDebug() << "SettingsProtocol: adding entry settings:/" << relPath << endl;
 			    createDirEntry(entry, groupCaption, "settings:/"+relPath, "inode/directory",g->icon());
 			    break;
+
 			case( ProgramsMode ):
 			    kdDebug() << "SettingsProtocol: adding entry programs:/" << relPath << endl;
 			    createDirEntry(entry, groupCaption, "programs:/"+relPath, "inode/directory",g->icon());
