@@ -1,0 +1,16 @@
+[Protocol]
+exec=kio_system
+protocol=system
+input=none
+output=filesystem
+listing=Name,Type,Size,Date,Access,Owner,Group,Link
+reading=true
+writing=false
+makedir=false
+deleting=false
+linking=false
+moving=false
+Icon=kfm
+maxInstances=2
+#TODO DocPath=kioslave/file.html
+Class=:local
