@@ -370,11 +370,19 @@ bool SMTPProtocol::smtp_open(const KURL &url)
 
 	// Now we try and login
 	if (!m_sUser.isNull()) {
-		if (!m_sPass.isNull()) {
-			if (!Authenticate(url)) {
-				error(ERR_ACCESS_DENIED, i18n("Authentication failed"));
+		KURL auth_url=url;
+		if (m_sPass.isNull()) {
+			QString head=i18n("Username and password for your SMTP account:");
+                        if (!openPassDlg(head, m_sUser, m_sPass)) {
+				error(ERR_COULD_NOT_LOGIN, i18n("When prompted, you ran away."));
 				return false;
 			}
+			auth_url.setPass(m_sPass);
+			auth_url.setUser(m_sUser);
+		}
+		if (!Authenticate(auth_url)) {
+			error(ERR_ACCESS_DENIED, i18n("Authentication failed"));
+			return false;
 		}
 	}
 
