@@ -230,7 +230,7 @@ void SMBSlave::reportError(const SMBUrl &url)
         break;  //hmmm, otherwise the whole dir isn't listed (caused e.g. by pagefile.sys), aleXXX
     case ENOENT:
         if (url.getType() == SMBURLTYPE_ENTIRE_NETWORK) {
-            error( KIO::ERR_SLAVE_DEFINED, i18n("Couldn't find any workgroups in your local network."));
+            error( ERR_SLAVE_DEFINED, i18n("Couldn't find any workgroups in your local network."));
             break;
         }
     case ENOTDIR:
@@ -245,13 +245,13 @@ void SMBSlave::reportError(const SMBUrl &url)
         error( ERR_CONNECTION_BROKEN, url.url());
         break;
     case ENOMEM:
-        error(ERR_OUT_OF_MEMORY, i18n("Out of memory"));
+        error( ERR_OUT_OF_MEMORY, url.url() );
         break;
     case EUCLEAN:
         error( ERR_INTERNAL, i18n("libsmbclient failed to initialize"));
         break;
     case ENODEV:
-        error( ERR_DOES_NOT_EXIST, i18n("Share could not be found on given server"));
+        error( ERR_SLAVE_DEFINED, i18n("Share could not be found on given server"));
         break;
     case EBADF:
         error( ERR_INTERNAL, "BAD File descriptor");
@@ -297,11 +297,11 @@ void SMBSlave::listDir( const KURL& kurl )
            // Set name
            atom.m_uds = KIO::UDS_NAME;
            QString dirpName = QString::fromUtf8( dirp->name );
-           kdDebug(KIO_SMB) << "dirp->name " <<  dirp->name  << endl;
+           kdDebug(KIO_SMB) << "dirp->name " <<  dirp->name  << " " << dirpName << endl;
            atom.m_str = dirpName;
            udsentry.append( atom );
-           if (atom.m_str=="$IPC" || atom.m_str=="." || atom.m_str == ".." ||
-               atom.m_str == "ADMIN$" || atom.m_str == "print$")
+           if (atom.m_str.upper()=="$IPC" || atom.m_str=="." || atom.m_str == ".." ||
+               atom.m_str.upper() == "ADMIN$" || atom.m_str.lower() == "printer$")
            {
 //            fprintf(stderr,"----------- hide: -%s-\n",dirp->name);
                // do nothing and hide the hidden shares
@@ -340,10 +340,14 @@ void SMBSlave::listDir( const KURL& kurl )
 
                if (dirp->smbc_type == SMBC_SERVER) {
                    atom.m_uds = KIO::UDS_URL;
-                   QString workgroup = m_current_url.host().upper();
+                   // QString workgroup = m_current_url.host().upper();
+                   KURL u("smb:/");
+                   u.setHost(dirpName);
+                   atom.m_str = u.url();
+
                    // when libsmbclient knows
                    // atom.m_str = QString("smb://%1?WORKGROUP=%2").arg(dirpName).arg(workgroup.upper());
-                   atom.m_str = QString("smb://%1").arg(KURL::encode_string(dirpName, 106));
+                   kdDebug(KIO_SMB) << "list item " << atom.m_str << endl;
                    udsentry.append(atom);
                }
 
@@ -362,9 +366,6 @@ void SMBSlave::listDir( const KURL& kurl )
                atom.m_long = (S_IRUSR | S_IRGRP | S_IROTH | S_IXUSR | S_IXGRP | S_IXOTH);
                udsentry.append(atom);
 
-               // remember the workgroup
-               // we don't use it
-               //	      cache_add_workgroup(dirp->name);
                // Call base class to list entry
                listEntry(udsentry, false);
            }
