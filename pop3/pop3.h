@@ -37,7 +37,7 @@ public:
 //  virtual void openConnection();
 //  virtual void closeConnection();
 
-  virtual void get( const QString& __url, const QString& query, bool reload );
+  virtual void get( const QString& path, const QString& query, bool reload );
   virtual void stat( const QString& path, const QString& query );
   virtual void del( const QString &path, bool isfile);
   virtual void listDir( const QString& path, const QString& query );
@@ -80,14 +80,20 @@ public:
     * is passed, port 110 is assumed, if no user || password is
     * specified, the user is prompted for them.
     */
-  bool pop3_open( KURL &_url );
+  bool pop3_open ();
+
+  /**
+   * Build URL for error reporting purposes 
+   */
+  QString buildUrl(const QString &path);
 
   int m_cmd, m_iSock;
   unsigned short int m_iOldPort;
   struct timeval m_tTimeout;
   QString m_sOldServer, m_sOldPass, m_sOldUser;
   FILE *fp;
-  QString urlPrefix;
+  unsigned short int m_iPort;
+  QString m_sServer, m_sPass, m_sUser;
 #ifdef SPOP3
   SSL_CTX *ctx;
   SSL *ssl;

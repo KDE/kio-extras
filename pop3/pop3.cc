@@ -133,23 +133,23 @@ POP3Protocol::~POP3Protocol()
 #endif
 }
 
+QString POP3Protocol::buildUrl(const QString &path)
+{
+  KURL url;
+  url.setHost( m_sServer );
+  url.setPort( m_iPort );
+  url.setUser( m_sUser );
+  // We don't put the password in.. we don't want to show passwords on the screen.
+  url.setPath( path );
+  return url.url();
+}
+
 void POP3Protocol::setHost( const QString& _host, int _port, const QString& _user, const QString& _pass )
 {
-#ifdef SPOP3
-  urlPrefix = "spop3://";
-#else
-  urlPrefix = "pop3://";
-#endif
-  if (!_user.isEmpty()) {
-    urlPrefix += _user;
-    if (!_pass.isEmpty())
-      urlPrefix += ":" + _pass;
-    urlPrefix += "@";
-  }
-  urlPrefix += _host;
-  if (_port)
-    urlPrefix += QString( ":%1" ).arg( _port );
-  debug( "urlPrefix " + urlPrefix );
+  m_sServer = _host;
+  m_iPort = _port;
+  m_sUser = _user;
+  m_sPass = _pass;
 }
 
 bool POP3Protocol::getResponse (char *r_buf, unsigned int r_len)
@@ -298,7 +298,7 @@ void POP3Protocol::pop3_close ()
 #endif
 }
 
-bool POP3Protocol::pop3_open( KURL &_url )
+bool POP3Protocol::pop3_open()
 {
   // This function is simply a wrapper to establish the connection
   // to the server.  It's a bit more complicated than ::connect
@@ -315,8 +315,8 @@ bool POP3Protocol::pop3_open( KURL &_url )
   // Why 0 wasn't chosen is beyond me.
  
 #ifdef SPOP3
-  if (_url.port()) {
-    port = _url.port();
+  if (m_iPort) {
+    port = m_iPort;
   } else {
     struct servent *sent = getservbyname("spop3", "tcp");
     if (sent) {
@@ -326,8 +326,8 @@ bool POP3Protocol::pop3_open( KURL &_url )
     }
   }
 #else
-  if (_url.port()) {
-    port = _url.port();
+  if (m_iPort) {
+    port = m_iPort;
   } else {
     struct servent *sent = getservbyname("pop-3", "tcp");
     if (sent) {
@@ -337,16 +337,17 @@ bool POP3Protocol::pop3_open( KURL &_url )
     }
   }
 #endif
-  if ( (m_iOldPort == port) && (m_sOldServer == _url.host()) && (m_sOldUser == _url.user()) && (m_sOldPass == _url.pass())) {
+  if ( (m_iOldPort == port) && (m_sOldServer == m_sServer) && 
+       (m_sOldUser == m_sUser) && (m_sOldPass == m_sPass)) {
     fprintf(stderr,"Reusing old connection\n");
     return true;
   } else {
     pop3_close();
     m_iSock = ::socket(PF_INET, SOCK_STREAM, 0);
-    if (!KSocket::initSockaddr(&server_name, _url.host(), port))
+    if (!KSocket::initSockaddr(&server_name, m_sServer, port))
       return false;
     if (::connect(m_iSock, (struct sockaddr*)(&server_name), sizeof(server_name))) {
-      error( ERR_COULD_NOT_CONNECT, strdup(_url.host()));
+      error( ERR_COULD_NOT_CONNECT, m_sServer);
       return false;
     }
 
@@ -354,19 +355,19 @@ bool POP3Protocol::pop3_open( KURL &_url )
     // do the SSL negotiation
     ssl = SSL_new(ctx);
     if (!ssl) {
-      error( -31337, strdup(_url.host()));
+      error( -31337, m_sServer );
       return false;
     }
 
     SSL_set_fd(ssl, m_iSock);
     if (-1 == SSL_connect(ssl)) {
-      error( -31338, strdup(_url.host()));
+      error( -31338, m_sServer );
       return false;
     }
 
     server_cert = SSL_get_peer_certificate(ssl);
     if (!server_cert) {
-      error( -31339, strdup(_url.host()));
+      error( -31339, m_sServer );
       return false;
     }
 
@@ -402,13 +403,13 @@ bool POP3Protocol::pop3_open( KURL &_url )
 #endif
 
     m_iOldPort = port;
-    m_sOldServer = _url.host();
+    m_sOldServer = m_sServer;
 
     QString usr, pass, one_string="USER ";
 #ifdef APOP
     QString apop_string = "APOP ";
 #endif
-    if (_url.user().isEmpty() || _url.pass().isEmpty()) {
+    if (m_sUser.isEmpty() || m_sPass.isEmpty()) {
       // Prompt for usernames
       QString head=i18n("Username and password for your POP3 account:");
       if (!openPassDlg(head, usr, pass)) {
@@ -423,25 +424,24 @@ bool POP3Protocol::pop3_open( KURL &_url )
       }
     } else {
 #ifdef APOP
-      apop_string.append(_url.user());
+      apop_string.append(m_sUser);
 #endif
-      one_string.append(_url.user());
-      m_sOldUser = _url.user();
+      one_string.append(m_sUser);
+      m_sOldUser = m_sUser;
     }
 
     memset(buf, 0, sizeof(buf));
 #ifdef APOP
     if(apop) {
       char *c = greeting.data() + apop_pos;
-      char *pass;
       unsigned char digest[16];
       char ascii_digest[33];
       Bin_MD5Context ctx;
 
-      if (_url.pass().isEmpty())
+      if ( m_sPass.isEmpty())
 	m_sOldPass = pass;
       else
-	m_sOldPass = _url.pass();
+	m_sOldPass = m_sPass;
 
       // Generate digest
       Bin_MD5Init(&ctx);
@@ -474,12 +474,12 @@ bool POP3Protocol::pop3_open( KURL &_url )
     }
     
     one_string="PASS ";
-    if (_url.pass().isEmpty()) {
+    if (m_sPass.isEmpty()) {
       m_sOldPass = pass;
       one_string.append(pass);
     } else {
-      m_sOldPass = _url.pass();
-      one_string.append(_url.pass());
+      m_sOldPass = m_sPass;
+      one_string.append(m_sPass);
     }
     if (!command(one_string, buf, sizeof(buf))) {
       fprintf(stderr, "Couldn't login. Bad password Sorry\n");
@@ -510,7 +510,7 @@ size_t POP3Protocol::realGetSize(unsigned int msg_num)
   return ret;
 }
 
-void POP3Protocol::get( const QString& __url, const QString&, bool )
+void POP3Protocol::get( const QString& _path, const QString&, bool )
 {
 // List of supported commands
 //
@@ -532,38 +532,22 @@ void POP3Protocol::get( const QString& __url, const QString&, bool )
   bool ok=true;
   static char buf[512];
   QByteArray array;
-  QString path, cmd;
-  QString _url = urlPrefix + __url;
-  KURL usrc(_url);
-  if ( usrc.isMalformed() ) {
-    error( ERR_MALFORMED_URL, _url );
-    m_cmd = CMD_NONE;
-    return;
-  }
 
-#ifdef SPOP3
-  if (usrc.protocol() != "spop3") {
-    error( ERR_INTERNAL, "kio_spop3 got non spop3 url" );
-#else
-  if (usrc.protocol() != "pop3") {
-    error( ERR_INTERNAL, "kio_pop3 got non pop3 url" );
-#endif
-    m_cmd = CMD_NONE;
-    return;
-  }
-
-  path = usrc.path().copy();
+  QString cmd;
+  QString path = _path;
+  
+  buildUrl(path);
 
   if (path.at(0)=='/') path.remove(0,1);
   if (path.isEmpty()) {
     debug("We should be a dir!!");
-    error(ERR_IS_DIRECTORY, _url);
+    error(ERR_IS_DIRECTORY, buildUrl(_path));
     m_cmd=CMD_NONE; return;
   }
 
   if (((path.find("/") == -1) && (path != "index") &&
        (path != "uidl") && (path != "commit")) ) {
-    error( ERR_MALFORMED_URL, _url );
+    error( ERR_MALFORMED_URL, buildUrl(_path) );
     m_cmd = CMD_NONE;
     return;
   }
@@ -571,13 +555,13 @@ void POP3Protocol::get( const QString& __url, const QString&, bool )
   cmd = path.left(path.find("/"));
   path.remove(0,path.find("/")+1);
 
-  if (!pop3_open(usrc)) {
+  if (!pop3_open()) {
 #ifdef SPOP3
     fprintf(stderr,"spop3_open failed\n");
 #else
     fprintf(stderr,"pop3_open failed\n");
 #endif
-    error( ERR_COULD_NOT_CONNECT, strdup(usrc.host()));
+    error( ERR_COULD_NOT_CONNECT, m_sServer);
     pop3_close();
     return;
   }
@@ -591,7 +575,7 @@ void POP3Protocol::get( const QString& __url, const QString&, bool )
       result = command("UIDL");
     if (result) {
       //ready();
-      gettingFile(_url);
+      gettingFile(buildUrl(_path));
 #ifdef SPOP3
       while (SSL_pending(ssl)) {
         memset(buf, 0, sizeof(buf));
@@ -645,7 +629,7 @@ LIST
                          // and stopping at the first blank line used if the
                          // TOP cmd isn't supported
       //ready();
-      gettingFile(_url);
+      gettingFile(buildUrl(_path));
       mimeType("text/plain");
       memset(buf, 0, sizeof(buf));
 #ifdef SPOP3
@@ -718,7 +702,7 @@ LIST
     }
     if (command(path)) {
       //ready();
-      gettingFile(_url);
+      gettingFile(buildUrl(_path));
       mimeType("message/rfc822");
       totalSize(msg_len);
       memset(buf, 0, sizeof(buf));
@@ -764,7 +748,7 @@ LIST
     if (command(path, buf, sizeof(buf)-1)) {
       const int len = strlen(buf);
       //ready();
-      gettingFile(_url);
+      gettingFile(buildUrl(_path));
       mimeType("text/plain");
       totalSize(len);
       array.setRawData(buf, len);
@@ -790,25 +774,20 @@ LIST
 
 }
 
-void POP3Protocol::listDir( const QString & _path, const QString& /*query*/ )
+void POP3Protocol::listDir( const QString & /*path*/, const QString& /*query*/ )
 {
   bool isINT; int num_messages=0;
   char buf[512];
   QCString q_buf;
-  QString _url = urlPrefix + _path;
-  KURL usrc( _url );
-  if ( usrc.isMalformed() ) {
-    error( ERR_MALFORMED_URL, _url );
-    return;
-  }
+
   // Try and open a connection
-  if (!pop3_open(usrc)) {
+  if (!pop3_open()) {
 #ifdef SPOP3
     fprintf(stderr,"spop3_open failed\n");
 #else
     fprintf(stderr,"pop3_open failed\n");
 #endif
-    error( ERR_COULD_NOT_CONNECT, strdup(usrc.host()));
+    error( ERR_COULD_NOT_CONNECT, m_sServer);
     pop3_close();
     return;
   }
@@ -852,25 +831,20 @@ void POP3Protocol::listDir( const QString & _path, const QString& /*query*/ )
     fprintf(stderr,"Mimetype is %s\n", atom.m_str.ascii());
 
     atom.m_uds = UDS_URL;
-    QString uds_url;
-    if (usrc.user().isEmpty() || usrc.pass().isEmpty()) {
+    KURL uds_url;
 #ifdef SPOP3
-      uds_url="spop3://%1/download/%2";
+    uds_url.setProtocol("spop3");
 #else
-      uds_url="pop3://%1/download/%2";
+    uds_url.setProtocol("pop3");
 #endif
-      atom.m_str = uds_url.arg(usrc.host()).arg(i+1);
-    } else {
-#ifdef SPOP3
-      uds_url="spop3://%1:%2@%3/download/%3";
-#else
-      uds_url="pop3://%1:%2@%3/download/%3";
-#endif
-      atom.m_str = uds_url.arg(usrc.user()).arg(usrc.pass()).arg(usrc.host()).arg(i+1);
-    }
+    uds_url.setUser(m_sUser);
+    uds_url.setPass(m_sPass);
+    uds_url.setHost(m_sServer);
+    uds_url.setPath(QString::fromLatin1("/download/%1").arg(i+1));
+    atom.m_str = uds_url.url();
     atom.m_long = 0;
     entry.append(atom);
-    fprintf(stderr,"URL is %s\n", atom.m_str.ascii());
+fprintf(stderr,"URL is %s\n", atom.m_str.ascii());
 
     atom.m_uds = UDS_FILE_TYPE;
     atom.m_str = "";
@@ -910,24 +884,16 @@ void POP3Protocol::stat( const QString & path, const QString& /*query*/ )
 
 void POP3Protocol::del( const QString& path, bool /*isfile*/ )
 {
-  QString _url = urlPrefix + path;
-  KURL usrc(_url);
   QString invalidURI=QString::null;
   bool isInt;
 
-  if ( usrc.isMalformed() ) {
-    error( ERR_MALFORMED_URL, _url );
-    m_cmd = CMD_NONE;
-    return;
-  }
-
-  if ( !pop3_open(usrc) ) {
+  if ( !pop3_open() ) {
 #ifdef SPOP3
     fprintf(stderr,"spop3_open failed\n");
 #else
     fprintf(stderr,"pop3_open failed\n");
 #endif
-    error( ERR_COULD_NOT_CONNECT, strdup(usrc.host()));
+    error( ERR_COULD_NOT_CONNECT, m_sServer );
     pop3_close();
     return;
   }
