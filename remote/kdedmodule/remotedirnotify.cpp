@@ -39,15 +39,18 @@ RemoteDirNotify::RemoteDirNotify()
 
 KURL RemoteDirNotify::toRemoteURL(const KURL &url)
 {
+	kdDebug() << "RemoteDirNotify::toRemoteURL(" << url << ")" << endl;
 	if ( m_baseURL.isParentOf(url) )
 	{
 		QString path = KURL::relativePath(m_baseURL.path(),
 						  url.path());
-		KURL result("remote:/"+path );
+		KURL result("remote:/"+path);
 		result.cleanPath();
+		kdDebug() << "result => " << result << endl;
 		return result;
 	}
 
+	kdDebug() << "result => KURL()" << endl;
 	return KURL();
 }
 
@@ -73,6 +76,8 @@ KURL::List RemoteDirNotify::toRemoteURLList(const KURL::List &list)
 
 ASYNC RemoteDirNotify::FilesAdded(const KURL &directory)
 {
+	kdDebug() << "RemoteDirNotify::FilesAdded" << endl;
+	
 	KURL new_dir = toRemoteURL(directory);
 
 	if (new_dir.isValid())
@@ -82,24 +87,57 @@ ASYNC RemoteDirNotify::FilesAdded(const KURL &directory)
 	}
 }
 
+// This hack is required because of the way we manage .desktop files with
+// Forwarding Slaves, their URL is out of the ioslave (most remote:/ files
+// have a file:/ based UDS_URL so that they are executed correctly.
+// Hence, FilesRemoved and FilesChanged does nothing... We're forced to use
+// FilesAdded to re-list the modified directory.
+inline void evil_hack(const KURL::List &list)
+{
+	KDirNotify_stub notifier("*", "*");
+	
+	KURL::List notified;
+	
+	KURL::List::const_iterator it = list.begin();
+	KURL::List::const_iterator end = list.end();
+
+	for (; it!=end; ++it)
+	{
+		KURL url = (*it).upURL();
+
+		if (!notified.contains(url))
+		{
+			notifier.FilesAdded(url);
+			notified.append(url);
+		}
+	}
+}
+
+
 ASYNC RemoteDirNotify::FilesRemoved(const KURL::List &fileList)
 {
+	kdDebug() << "RemoteDirNotify::FilesRemoved" << endl;
+	
 	KURL::List new_list = toRemoteURLList(fileList);
 
 	if (!new_list.isEmpty())
 	{
-		KDirNotify_stub notifier("*", "*");
-		notifier.FilesRemoved( new_list );
+		//KDirNotify_stub notifier("*", "*");
+		//notifier.FilesRemoved( new_list );
+		evil_hack(new_list);
 	}
 }
 
 ASYNC RemoteDirNotify::FilesChanged(const KURL::List &fileList)
 {
+	kdDebug() << "RemoteDirNotify::FilesChanged" << endl;
+	
 	KURL::List new_list = toRemoteURLList(fileList);
 
 	if (!new_list.isEmpty())
 	{
-		KDirNotify_stub notifier("*", "*");
-		notifier.FilesChanged( new_list );
+		//KDirNotify_stub notifier("*", "*");
+		//notifier.FilesChanged( new_list );
+		evil_hack(new_list);
 	}
 }
