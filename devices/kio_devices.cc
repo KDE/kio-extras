@@ -1,5 +1,6 @@
 /* This file is part of the KDE project
    Copyright (C) 2002,2003 Joseph Wenninger <jowenn@kde.org>
+   Copyright (C) 2004 Waldo Bastian <bastian@kde.org>
 
    This library is free software; you can redistribute it and/or
    modify it under the terms of the GNU Library General Public
@@ -32,18 +33,19 @@
    class DevicesProtocol : public KIO::SlaveBase
    {
    public:
-      DevicesProtocol( const QCString& protocol ,const QCString &pool, const QCString &app);
-      virtual ~DevicesProtocol();
+	DevicesProtocol( const QCString& protocol ,const QCString &pool, const QCString &app);
+	virtual ~DevicesProtocol();
 #if 0
-      virtual void get( const KURL& url );
+	virtual void get( const KURL& url );
 #endif
-      virtual void stat(const KURL& url);
-      virtual void listDir(const KURL& url);
-      void listRoot();
-   private:
-	DCOPClient *m_dcopClient;
-	uint mountpointMappingCount();
-	bool fullMode;
+	virtual void stat(const KURL& url);
+	virtual void listDir(const KURL& url);
+	virtual void put( const KURL& url, int , bool overwrite, bool );
+	virtual void mkdir( const KURL& url, int permissions );
+	void listRoot();
+
+   protected:
+	void mountAndRedirect(const KURL& url);
 	QString deviceNode(uint id);
 	bool deviceMounted(const QString dev);
 	bool deviceMounted(int);
@@ -54,17 +56,21 @@
 	QStringList deviceInfo(const QString name);
 
 	QStringList kmobile_list( QString deviceName );
+   
+   private:
+	uint mountpointMappingCount();
+	bool fullMode;
   };
 
   extern "C" {
-      int kdemain( int, char **argv )
-      {
-          kdDebug()<<"kdemain for devices"<<endl;
-          KInstance instance( "kio_devices" );
-          DevicesProtocol slave(argv[1],argv[2], argv[3]);
-          slave.dispatchLoop();
-          return 0;
-      }
+	int kdemain( int, char **argv )
+	{
+		kdDebug(7126)<<"kdemain for devices"<<endl;
+		KInstance instance( "kio_devices" );
+		DevicesProtocol slave(argv[1],argv[2], argv[3]);
+		slave.dispatchLoop();
+		return 0;
+	}
   }
 
 
@@ -75,168 +81,141 @@ static void createDirEntry(KIO::UDSEntry& entry, const QString& name, const QStr
 DevicesProtocol::DevicesProtocol( const QCString& protocol, const QCString &pool, const QCString &app): 
 		SlaveBase(protocol,  pool, app )
 {
-	kdDebug()<<"DevicesProtocol: Called with slavename:"<<protocol<<endl;
+	kdDebug(7126)<<"Called with slavename: " << protocol << endl;
 	if (protocol=="system") fullMode=true; else fullMode=false;
-	m_dcopClient=new DCOPClient();
-	if (!m_dcopClient->attach())
-	{
-		kdDebug()<<"ERROR WHILE CONNECTING TO DCOPSERVER"<<endl;
-	}
 }
 
 DevicesProtocol::~DevicesProtocol()
 {
-	delete m_dcopClient;
 }
+
+void DevicesProtocol::mountAndRedirect(const KURL& url)
+{
+	QString device;
+	QString path = url.path();
+	int i = path.find('/', 1);
+	if (i > 0)
+	{
+		device = path.mid(1, i-1);
+		path = path.mid(i+1);
+	}
+	else
+	{
+		device = path.mid(1);
+		path = QString::null;
+	}
+	QStringList info = deviceInfo(device);
+
+	if (info.empty())
+	{
+		error(KIO::ERR_SLAVE_DEFINED,i18n("Unknown device %1").arg(url.fileName()));
+		return;
+	}
+
+	QStringList::Iterator it=info.begin();
+	if (it!=info.end())
+	{
+		QString device=*it; ++it;
+		if (it!=info.end())
+		{
+			++it;
+			if (it!=info.end())
+			{
+				QString mp=*it; ++it;++it;
+				if (it!=info.end())
+				{
+					bool mounted=((*it)=="true");
+					if (!mounted)
+					{
+						if (!mp.startsWith("file:/"))
+						{
+							error(KIO::ERR_SLAVE_DEFINED,i18n("Device not accessible"));
+							return;
+						}
+						KProcess *proc = new KProcess;
+						*proc << "kio_devices_mounthelper";
+						*proc << "-m" << url.url();
+						proc->start(KProcess::Block);
+						int ec = 0;
+						if (proc->normalExit())
+							ec = proc->exitStatus();
+						delete proc;
+
+						if (ec)
+						{
+							error(KIO::ERR_SLAVE_DEFINED,i18n("Device not mounted"));
+							return;
+						}
+					}
+					KURL newUrl(mp);
+					if (!path.isEmpty())
+						newUrl.cd(path);
+					redirection(newUrl);
+					finished();
+					return;
+				}
+			}
+		}
+	}
+	error(KIO::ERR_SLAVE_DEFINED,i18n("Illegal data received"));
+	return;
+}
+
 
 void DevicesProtocol::stat(const KURL& url)
 {
-        QStringList     path = QStringList::split('/', url.encodedPathAndQuery(-1), false);
-        KIO::UDSEntry   entry;
-        QString mime;
-	QString mp;
-
-	switch (path.count())
+	kdDebug(7126) << "stat: " << url << endl;
+	if (url.path().length() <= 1)
 	{
-		case 0:
-			if (fullMode)
-			        createDirEntry(entry, i18n("System"), "system:/", "inode/directory");
-			else
-			        createDirEntry(entry, i18n("Devices"), "devices:/", "inode/directory");
-		        statEntry(entry);
-		        finished();
-			break;
-		default:
-
-                QStringList info=deviceInfo(url.fileName());
-
-                if (info.empty())
-                {
-                        error(KIO::ERR_SLAVE_DEFINED,i18n("Unknown device: %1").arg(url.fileName()));
-                        return;
-                }
-
-
-                QStringList::Iterator it=info.begin();
-                if (it!=info.end())
-                {
-                        QString device=*it; ++it;
-                        if (it!=info.end())
-                        {
-				++it;
-				if (it!=info.end())
-				{
-	                                QString mp=*it; ++it;++it;
-	                                if (it!=info.end())
-	                                {
-	                                        bool mounted=((*it)=="true");
-	                                        if (mounted)
-	                                        {
-//	                                                if (mp=="/") mp="";
-	                                                redirection(KURL( mp ));
-	                                                finished();
-	                                        }
-	                                        else
-	                                        {
-							if (mp.startsWith("file:/"))
-							{
-			        	        	        KProcess *proc = new KProcess;
-        		        	                 	*proc << "kio_devices_mounthelper";
-                		                 		*proc << "-m" << url.url();
-	                        		         	proc->start(KProcess::Block);
-        	                        		 	delete proc;
-
-	        		                        	redirection(KURL( mp ));
-        		        	                	finished();
-							}
-							else
-								error(KIO::ERR_SLAVE_DEFINED,i18n("Device not accessible"));
-
-
-//	                                                error(KIO::ERR_SLAVE_DEFINED,i18n("Device not mounted"));
-	                                        }
-	                                        return;
-					}
-                                }
-                        }
-                }
-                error(KIO::ERR_SLAVE_DEFINED,i18n("Illegal data received"));
+		KIO::UDSEntry   entry;
+		if (fullMode)
+			createDirEntry(entry, i18n("System"), "system:/", "inode/directory");
+		else
+			createDirEntry(entry, i18n("Devices"), "devices:/", "inode/directory");
+		statEntry(entry);
+		finished();
 		return;
-		break;
-        }
+	}
 
+	mountAndRedirect(url);
 }
 
 
 
 void DevicesProtocol::listDir(const KURL& url)
 {
-	kdDebug()<<"DevicesProtocol::listdir: "<<url.url()<<endl;
-	if ((url==KURL("devices:/")) || (url==KURL("system:/")))
-		listRoot();
-	else
+	kdDebug(7126) << "listdir: " << url << endl;
+	if (url.path().length() <= 1)
 	{
-		QStringList info=deviceInfo(url.fileName());
-
-		if (info.empty())
-		{
-			error(KIO::ERR_SLAVE_DEFINED,i18n("Unknown device %1").arg(url.fileName()));
-			return;
-		}
-
-
-		QStringList::Iterator it=info.begin();
-		if (it!=info.end())
-		{
-			QString device=*it; ++it;
-			if (it!=info.end())
-			{
-				++it;
-				if (it!=info.end())
-				{
-					QString mp=*it; ++it;++it;
-					if (it!=info.end())
-					{
-						bool mounted=((*it)=="true");
-						if (mounted)
-						{
-//							if (mp=="/") mp="";
-							redirection(KURL( mp ));
-							finished();
-						}
-						else
-						{
-							if (mp.startsWith("file:/"))
-							{
-			        	        	        KProcess *proc = new KProcess;
-        		        	                 	*proc << "kio_devices_mounthelper";
-                		                 		*proc << "-m" << url.url();
-	                        		         	proc->start(KProcess::Block);
-								int ec=0;
-								if (proc->normalExit()) ec=proc->exitStatus();
-        	                        		 	delete proc;
-
-								if (ec)
-								{
-									error(KIO::ERR_SLAVE_DEFINED,i18n("Device not mounted"));
-									finished();
-								}
-								else
-								{
-		        		                        	redirection(KURL( mp ));
-        			        	                	finished();
-								}
-							}
-							else
-								error(KIO::ERR_SLAVE_DEFINED,i18n("Device not accessible"));
-						}
-						return;
-					}
-				}
-			}
-		}
-		error(KIO::ERR_SLAVE_DEFINED,i18n("Illegal data received"));
+		listRoot();
+		return;
 	}
+
+	mountAndRedirect(url);
+}
+
+void DevicesProtocol::put( const KURL& url, int /*permissions*/, bool /*overwrite*/, bool /*resume*/ )
+{
+	kdDebug(7126) << "put: " << url << endl;
+	if (url.path().length() <= 1)
+	{
+		error( KIO::ERR_ACCESS_DENIED, url.prettyURL() );
+		return;
+	}
+
+	mountAndRedirect(url);
+}
+
+void DevicesProtocol::mkdir( const KURL& url, int )
+{
+	kdDebug(7126) << "mkdir: " << url << endl;
+	if (url.path().length() <= 1)
+	{
+		error( KIO::ERR_ACCESS_DENIED, url.prettyURL() );
+		return;
+	}
+
+	mountAndRedirect(url);
 }
 
 uint DevicesProtocol::mountpointMappingCount()
@@ -245,13 +224,13 @@ uint DevicesProtocol::mountpointMappingCount()
 	QByteArray param;
 	QCString retType;
 	uint count=0;
-      if ( m_dcopClient->call( "kded",
+	if ( dcopClient()->call( "kded",
 		 "mountwatcher", "mountpointMappingCount()", param,retType,data,false ) )
-      {
-	QDataStream stream1(data,IO_ReadOnly);
-	stream1>>count;
-      }
-      return count;
+	{
+		QDataStream stream1(data,IO_ReadOnly);
+		stream1>>count;
+	}
+	return count;
 }
 
 QString DevicesProtocol::deviceNode(uint id)
@@ -262,66 +241,65 @@ QString DevicesProtocol::deviceNode(uint id)
 	QString retVal;
 	QDataStream streamout(param,IO_WriteOnly);
 	streamout<<id;
-	if ( m_dcopClient->call( "kded",
+	if ( dcopClient()->call( "kded",
 		 "mountwatcher", "devicenode(int)", param,retType,data,false ) )
-      {
-	QDataStream streamin(data,IO_ReadOnly);
-	streamin>>retVal;
-      }
-      return retVal;
-
+	{
+		QDataStream streamin(data,IO_ReadOnly);
+		streamin>>retVal;
+	}
+	return retVal;
 }
 
 bool DevicesProtocol::deviceMounted(const QString dev)
 {
-        QByteArray data;
-        QByteArray param;
-        QCString retType;
-        bool retVal=false;
-        QDataStream streamout(param,IO_WriteOnly);
-        streamout<<dev;
-        if ( m_dcopClient->call( "kded",
-                 "mountwatcher", "mounted(QString)", param,retType,data,false ) )
-      {
-        QDataStream streamin(data,IO_ReadOnly);
-        streamin>>retVal;
-      }
-      return retVal;
+	QByteArray data;
+	QByteArray param;
+	QCString retType;
+	bool retVal=false;
+	QDataStream streamout(param,IO_WriteOnly);
+	streamout<<dev;
+	if ( dcopClient()->call( "kded",
+		 "mountwatcher", "mounted(QString)", param,retType,data,false ) )
+	{
+		QDataStream streamin(data,IO_ReadOnly);
+		streamin>>retVal;
+	}
+	return retVal;
 }
 
 
 QStringList DevicesProtocol::kmobile_list(const QString deviceName)
 {
-        QByteArray data;
-        QByteArray param;
-        QCString retType;
-        QStringList retVal;
-        QDataStream streamout(param,IO_WriteOnly);
-        streamout<<deviceName;
-        if ( m_dcopClient->call( "kmobile",
-                 "kmobileIface", "kio_devices_deviceInfo(QString)", param,retType,data,false ) )
-      {
-        QDataStream streamin(data,IO_ReadOnly);
-        streamin>>retVal;
-      }
-      return retVal;
+	QByteArray data;
+	QByteArray param;
+	QCString retType;
+	QStringList retVal;
+	QDataStream streamout(param,IO_WriteOnly);
+	streamout<<deviceName;
+	if ( dcopClient()->call( "kmobile",
+		 "kmobileIface", "kio_devices_deviceInfo(QString)", param,retType,data,false ) )
+	{
+		QDataStream streamin(data,IO_ReadOnly);
+		streamin>>retVal;
+	}
+	return retVal;
 }
 
 
 QStringList DevicesProtocol::deviceInfo(QString name)
 {
-        QByteArray data;
-        QByteArray param;
-        QCString retType;
-        QStringList retVal;
-        QDataStream streamout(param,IO_WriteOnly);
-        streamout<<name;
-        if ( m_dcopClient->call( "kded",
-                 "mountwatcher", "basicDeviceInfo(QString)", param,retType,data,false ) )
-        {
-          QDataStream streamin(data,IO_ReadOnly);
-          streamin>>retVal;
-        }
+	QByteArray data;
+	QByteArray param;
+	QCString retType;
+	QStringList retVal;
+	QDataStream streamout(param,IO_WriteOnly);
+	streamout<<name;
+	if ( dcopClient()->call( "kded",
+		 "mountwatcher", "basicDeviceInfo(QString)", param,retType,data,false ) )
+	{
+		QDataStream streamin(data,IO_ReadOnly);
+		streamin>>retVal;
+	}
 	// kmobile support
 	if (retVal.isEmpty())
 		retVal = kmobile_list(name);
@@ -332,38 +310,38 @@ QStringList DevicesProtocol::deviceInfo(QString name)
 
 bool DevicesProtocol::deviceMounted(int id)
 {
-        QByteArray data;
-        QByteArray param;
-        QCString retType;
-        bool retVal=false;
-        QDataStream streamout(param,IO_WriteOnly);
-        streamout<<id;
-        if ( m_dcopClient->call( "kded",
-                 "mountwatcher", "mounted(int)", param,retType,data,false ) )
-      {
-        QDataStream streamin(data,IO_ReadOnly);
-        streamin>>retVal;
-      }
-      return retVal;
+	QByteArray data;
+	QByteArray param;
+	QCString retType;
+	bool retVal=false;
+	QDataStream streamout(param,IO_WriteOnly);
+	streamout<<id;
+	if ( dcopClient()->call( "kded",
+		 "mountwatcher", "mounted(int)", param,retType,data,false ) )
+	{
+		QDataStream streamin(data,IO_ReadOnly);
+		streamin>>retVal;
+	}
+	return retVal;
 }
 
 
 QStringList DevicesProtocol::deviceList()
 {
-        QByteArray data;
-        QByteArray param;
-        QCString retType;
-        QStringList retVal;
-        QDataStream streamout(param,IO_WriteOnly);
+	QByteArray data;
+	QByteArray param;
+	QCString retType;
+	QStringList retVal;
+	QDataStream streamout(param,IO_WriteOnly);
 	
-	kdDebug()<<"list dir: Fullmode=="<<fullMode<<endl;
+	kdDebug(7126)<<"list dir: Fullmode=="<<fullMode<<endl;
 	QString dcopFun=fullMode?"basicSystemList()":"basicList()";
-        if ( m_dcopClient->call( "kded",
-                 "mountwatcher", dcopFun.utf8(), param,retType,data,false ) )
-        {
-          QDataStream streamin(data,IO_ReadOnly);
-          streamin>>retVal;
-        }
+	if ( dcopClient()->call( "kded",
+		 "mountwatcher", dcopFun.utf8(), param,retType,data,false ) )
+	{
+		QDataStream streamin(data,IO_ReadOnly);
+		streamin>>retVal;
+	}
 	else
 	{
 		retVal.append(QString::fromLatin1("!!!ERROR!!!"));
@@ -371,60 +349,60 @@ QStringList DevicesProtocol::deviceList()
 	// add mobile devices info (kmobile)
 	retVal += kmobile_list(QString::null);
 
-      return retVal;
+	return retVal;
 }
 
 QString DevicesProtocol::mountPoint(const QString dev)
 {
-        QByteArray data;
-        QByteArray param;
-        QCString retType;
-        QString retVal;
-        QDataStream streamout(param,IO_WriteOnly);
-        streamout<<dev;
-        if ( m_dcopClient->call( "kded",
-                 "mountwatcher", "mountpoint(QString)", param,retType,data,false ) )
-      {
-        QDataStream streamin(data,IO_ReadOnly);
-        streamin>>retVal;
-      }
-      return retVal;
+	QByteArray data;
+	QByteArray param;
+	QCString retType;
+	QString retVal;
+	QDataStream streamout(param,IO_WriteOnly);
+	streamout<<dev;
+	if ( dcopClient()->call( "kded",
+		 "mountwatcher", "mountpoint(QString)", param,retType,data,false ) )
+	{
+		QDataStream streamin(data,IO_ReadOnly);
+		streamin>>retVal;
+	}
+	return retVal;
 }
 
 QString DevicesProtocol::mountPoint(int id)
 {
-        QByteArray data;
-        QByteArray param;
-        QCString retType;
-        QString retVal;
-        QDataStream streamout(param,IO_WriteOnly);
-        streamout<<id;
-        if ( m_dcopClient->call( "kded",
-                 "mountwatcher", "mountpoint(int)", param,retType,data,false ) )
-      {
-        QDataStream streamin(data,IO_ReadOnly);
-        streamin>>retVal;
-      }
-      return retVal;
+	QByteArray data;
+	QByteArray param;
+	QCString retType;
+	QString retVal;
+	QDataStream streamout(param,IO_WriteOnly);
+	streamout<<id;
+	if ( dcopClient()->call( "kded",
+		 "mountwatcher", "mountpoint(int)", param,retType,data,false ) )
+	{
+		QDataStream streamin(data,IO_ReadOnly);
+		streamin>>retVal;
+	}
+	return retVal;
 }
 
 
 
 QString DevicesProtocol::deviceType(int id)
 {
-        QByteArray data;
-        QByteArray param;
-        QCString retType;
-        QString retVal;
-        QDataStream streamout(param,IO_WriteOnly);
-        streamout<<id;
-        if ( m_dcopClient->call( "kded",
-                 "mountwatcher", "type(int)", param,retType,data,false ) )
-      {
-        QDataStream streamin(data,IO_ReadOnly);
-        streamin>>retVal;
-      }
-      return retVal;
+	QByteArray data;
+	QByteArray param;
+	QCString retType;
+	QString retVal;
+	QDataStream streamout(param,IO_WriteOnly);
+	streamout<<id;
+	if ( dcopClient()->call( "kded",
+		 "mountwatcher", "type(int)", param,retType,data,false ) )
+	{
+		QDataStream streamin(data,IO_ReadOnly);
+		streamin>>retVal;
+	}
+	return retVal;
 }
 
 
@@ -436,12 +414,12 @@ void DevicesProtocol::listRoot()
 
 	QStringList list=deviceList();
 	count=0;
-        for ( QStringList::Iterator it = list.begin(); it != list.end(); ++it )
+	for ( QStringList::Iterator it = list.begin(); it != list.end(); ++it )
 	{
 		if ((*it)=="!!!ERROR!!!")
 		{
-                        error(KIO::ERR_SLAVE_DEFINED,i18n("The KDE mountwatcher is not running. Please activate it in Control Center->KDE Components->Service Manager, if you want to use the devices:/ protocol"));
-                        return;
+			error(KIO::ERR_SLAVE_DEFINED,i18n("The KDE mountwatcher is not running. Please activate it in Control Center->KDE Components->Service Manager, if you want to use the devices:/ protocol"));
+			return;
 		}
 // FIXME: look for the real ending
 		QString url="devices:/"+(*it); ++it;
@@ -452,14 +430,14 @@ void DevicesProtocol::listRoot()
 		listEntry(entry,false);
 		count++;
 	}
-        totalSize(count);
-        listEntry(entry, true);
+	totalSize(count);
+	listEntry(entry, true);
 
 
-        // Jobs entry
+	// Jobs entry
 
-        // finish
-        finished();
+	// finish
+	finished();
 }
 
 #if 0
@@ -490,29 +468,30 @@ void DevicesProtocol::listRoot()
 
 void addAtom(KIO::UDSEntry& entry, unsigned int ID, long l, const QString& s = QString::null)
 {
-        KIO::UDSAtom    atom;
-        atom.m_uds = ID;
-        atom.m_long = l;
-        atom.m_str = s;
-        entry.append(atom);
+	KIO::UDSAtom    atom;
+	atom.m_uds = ID;
+	atom.m_long = l;
+	atom.m_str = s;
+	entry.append(atom);
 }
 
 static void createFileEntry(KIO::UDSEntry& entry, const QString& name, const QString& url, const QString& mime)
 {
-        entry.clear();
-        addAtom(entry, KIO::UDS_NAME, 0, name);
-        addAtom(entry, KIO::UDS_FILE_TYPE, S_IFDIR);//REG);
-        addAtom(entry, KIO::UDS_URL, 0, url);
-        addAtom(entry, KIO::UDS_ACCESS, 0500);
-       if (mime.startsWith("icon:")) {
-                kdDebug()<<"setting prefered icon:"<<mime.right(mime.length()-5)<<endl;
-                addAtom(entry,KIO::UDS_ICON_NAME,0,mime.right(mime.length()-5));
-                addAtom(entry,KIO::UDS_MIME_TYPE,0,"inode/directory");
-        }
-	else
-	        addAtom(entry, KIO::UDS_MIME_TYPE, 0, mime);
-        addAtom(entry, KIO::UDS_SIZE, 0);
-        addAtom(entry, KIO::UDS_GUESSED_MIME_TYPE, 0, "inode/directory");
+	entry.clear();
+	addAtom(entry, KIO::UDS_NAME, 0, name);
+	addAtom(entry, KIO::UDS_FILE_TYPE, S_IFDIR);//REG);
+	addAtom(entry, KIO::UDS_URL, 0, url);
+	addAtom(entry, KIO::UDS_ACCESS, 0500);
+	if (mime.startsWith("icon:")) {
+		kdDebug(7126)<<"setting prefered icon:"<<mime.right(mime.length()-5)<<endl;
+		addAtom(entry,KIO::UDS_ICON_NAME,0,mime.right(mime.length()-5));
+		addAtom(entry,KIO::UDS_MIME_TYPE,0,"inode/directory");
+	}
+	else {
+		addAtom(entry, KIO::UDS_MIME_TYPE, 0, mime);
+	}
+	addAtom(entry, KIO::UDS_SIZE, 0);
+	addAtom(entry, KIO::UDS_GUESSED_MIME_TYPE, 0, "inode/directory");
 	addAtom(entry, KIO::UDS_CREATION_TIME,1);
 	addAtom(entry, KIO::UDS_MODIFICATION_TIME,time(0));
 }
@@ -520,22 +499,22 @@ static void createFileEntry(KIO::UDSEntry& entry, const QString& name, const QSt
 
 static void createDirEntry(KIO::UDSEntry& entry, const QString& name, const QString& url, const QString& mime)
 {
-        entry.clear();
-        addAtom(entry, KIO::UDS_NAME, 0, name);
-        addAtom(entry, KIO::UDS_FILE_TYPE, S_IFDIR);
-        addAtom(entry, KIO::UDS_ACCESS, 0500);
-	kdDebug()<<"DEVICES: "<<mime<<endl;
+	entry.clear();
+	addAtom(entry, KIO::UDS_NAME, 0, name);
+	addAtom(entry, KIO::UDS_FILE_TYPE, S_IFDIR);
+	addAtom(entry, KIO::UDS_ACCESS, 0500);
+	kdDebug(7126)<<"Dir Entry: "<<mime<<endl;
 	if (mime.startsWith("icon:")) {
-		kdDebug()<<"setting prefered icon:"<<mime.right(mime.length()-5)<<endl;
+		kdDebug(7126)<<"setting prefered icon:"<<mime.right(mime.length()-5)<<endl;
 		addAtom(entry,KIO::UDS_ICON_NAME,0,mime.right(mime.length()-5));
 		addAtom(entry,KIO::UDS_MIME_TYPE,0,"inode/directory");	
 	}
-        else {
+	else {
 		addAtom(entry, KIO::UDS_MIME_TYPE, 0, mime);
 	}
-        addAtom(entry, KIO::UDS_URL, 0, url);
-        addAtom(entry, KIO::UDS_SIZE, 0);
-        addAtom(entry, KIO::UDS_GUESSED_MIME_TYPE, 0, "inode/directory");
+	addAtom(entry, KIO::UDS_URL, 0, url);
+	addAtom(entry, KIO::UDS_SIZE, 0);
+	addAtom(entry, KIO::UDS_GUESSED_MIME_TYPE, 0, "inode/directory");
 
-//        addAtom(entry, KIO::UDS_GUESSED_MIME_TYPE, 0, "application/x-desktop");
+//	addAtom(entry, KIO::UDS_GUESSED_MIME_TYPE, 0, "application/x-desktop");
 }
