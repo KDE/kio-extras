@@ -183,27 +183,27 @@ void SMTPProtocol::put( const KURL& url, int /*permissions*/, bool /*overwrite*/
 	subject=formatted_recip.arg(subject);
 	Write(subject.latin1(), subject.length());
 
-	formatted_recip="To: %1";
+	formatted_recip="To: %1\r\n";
 	for ( QStringList::Iterator it = recip.begin(); it != recip.end(); ++it ) {
 		subject=formatted_recip.arg(*it);
 		Write(subject.latin1(), subject.length());
-		Write("\r\n", 2);
 	}
 
-	formatted_recip="CC: %1";
+	formatted_recip="CC: %1\r\n";
 	for ( QStringList::Iterator it = cc.begin(); it != cc.end(); ++it ) {
 		subject=formatted_recip.arg(*it);
 		Write(subject.latin1(), subject.length());
-		Write("\r\n", 2);
 	}
 
 	if (mset->getSetting(KEMailSettings::RealName) != QString::null) {
-		from="From: ";
-		from+=mset->getSetting(KEMailSettings::RealName);
-		from+=" <";
-		from+=mset->getSetting(KEMailSettings::EmailAddress);
-		from+=">\r\n";
-		Write(from.latin1(), from.length());
+		if (mset->getSetting(KEMailSettings::EmailAddress) != QString::null) {
+			from="From: ";
+			from+=mset->getSetting(KEMailSettings::RealName);
+			from+=" <";
+			from+=mset->getSetting(KEMailSettings::EmailAddress);
+			from+=">\r\n";
+			Write(from.latin1(), from.length());
+		}
 	}
 	delete mset;
 
