@@ -81,26 +81,50 @@ QString DiskEntry::discType()
 	QString tmp=deviceName();
 	tmp=tmp.right(tmp.length()-5);
 	tmp=tmp.left(3);
-	tmp="/proc/ide/"+tmp+"/media";
-	kdDebug(7020)<<"Trying to read file "<<tmp<<endl;
-	QFile infoFile(tmp);
+	QString mediafilename="/proc/ide/"+tmp+"/media";
+	QString modelfilename="/proc/ide/"+tmp+"/model";
+
+	QFile infoFile(mediafilename);
 	if (infoFile.open(IO_ReadOnly))
 	{
-		int len;
-		if (-1==(len=infoFile.readLine(tmpInfo,20))) typeName="kdedevice/TESTONLY";
+		if (-1 == infoFile.readLine(tmpInfo,20)) 
+			typeName="kdedevice/hdd";
 		else
 		{
 			kdDebug(7020)<<"Type according to proc file system:"<<tmpInfo<<endl;
-//			tmpInfo.fromLatin1(str,len);
-			if (tmpInfo.contains("disk")) typeName="kdedevice/hdd";
-			else
-				if (tmpInfo.contains("cdrom")) typeName="kdedevice/cdrom";
-				else
-					if (tmpInfo.contains("floppy")) typeName="kdedevice/zip"; // eg IDE zip drives
-					else typeName="kdedevice/hdd";
+			if (tmpInfo.contains("disk"))   // disks
+				typeName="kdedevice/hdd";
+
+			else if (tmpInfo.contains("cdrom")) {    // cdroms and cdwriters
+					QFile modelFile(modelfilename);
+					if(modelFile.open(IO_ReadOnly)) {
+						if( -1 != modelFile.readLine(tmpInfo,80) ) {
+							tmpInfo = tmpInfo.lower();
+							if( tmpInfo.contains("-rw") ||
+							    tmpInfo.contains("cdrw") ||
+							    tmpInfo.contains("dvd-rw") ||
+							    tmpInfo.contains("dvd+rw") )
+								typeName="kdedevice/cdwriter";
+							else 
+								typeName="kdedevice/cdrom";
+						}
+						else
+							typeName="kdedevice/cdrom";
+						modelFile.close();
+					}
+					else 
+						typeName="kdedevice/cdrom";
+			}
+			else if (tmpInfo.contains("floppy")) 
+				typeName="kdedevice/zip"; // eg IDE zip drives
+					
+			else 
+				typeName="kdedevice/hdd";
 		}
 		infoFile.close();
-	} else typeName="kdedevice/hdd"; // this should never be reached
+	} 
+	else 
+		typeName="kdedevice/hdd"; // this should never be reached
     }
     else
 #elif defined(__FreeBSD__)
