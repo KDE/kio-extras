@@ -253,7 +253,8 @@ void SMTPProtocol::put(const KURL &url, int /*permissions*/, bool /*overwrite*/,
 			return;
 		}
 	}
-	from.prepend(ASCII("MAIL FROM: "));
+	from.prepend(ASCII("MAIL FROM: <"));
+	from.append(ASCII(">"));
 
 	if (!smtp_open())
 	        error(ERR_SERVICE_NOT_AVAILABLE, i18n("SMTPProtocol::smtp_open failed (%1)").arg(open_url.path()));
@@ -345,7 +346,7 @@ void SMTPProtocol::put(const KURL &url, int /*permissions*/, bool /*overwrite*/,
 
 bool SMTPProtocol::PutRecipients (QStringList &list, const KURL &url)
 {
-	QString formatted_recip = ASCII("RCPT TO: %1");
+	QString formatted_recip = ASCII("RCPT TO: <%1>");
 	for ( QStringList::Iterator it = list.begin(); it != list.end(); ++it ) {
 		if (!command(formatted_recip.arg(*it)))
 		{
@@ -407,14 +408,16 @@ int SMTPProtocol::getResponse (char *r_buf, unsigned int r_len)
 		while ( (buf[3] == '-') && (len-recv_len > 3) ) { // Three is quite arbitrary
 			buf += recv_len;
 			len -= (recv_len+1);
-			if (!waitForResponse(60)) return 999;
+//	if (!waitForResponse(60)) return 999;   causes hanging with TLS
 			recv_len = readLine(buf, len-1);
 			if (recv_len == 0)
 				buf[0] = buf[1] = buf[2] = buf[3] = ' ';
 		}
 		buf = origbuf;
+		if (r_len) {
 		memcpy(r_buf, buf, strlen(buf));
 		r_buf[r_len-1] = 0;
+		}
 		lastError = QCString(buf + 4, recv_len - 4);
 		return GetVal(buf);
 	} else {
@@ -496,7 +499,7 @@ bool SMTPProtocol::smtp_open()
                       }
                       return false;
                    }
-                   if (!command(ASCII("HELO " + QCString(hostname, 100)))) {
+                   if (!command(ASCII("EHLO " + QCString(hostname, 100)))) {
                      error(ERR_COULD_NOT_LOGIN, i18n("The server said: %1").arg(lastError));
                      smtp_close();
                      return false;
