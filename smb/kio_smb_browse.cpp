@@ -50,6 +50,7 @@ OPEN_STAT:
     {
       if(S_ISDIR(st.st_mode))
         {
+	  kdDebug(KIO_SMB) << "SMBSlave::browse_stat_path is DIR"<< endl;
 	  // Directory
 	  udsatom.m_uds  = KIO::UDS_FILE_TYPE;
 	  udsatom.m_long = S_IFDIR;
@@ -57,6 +58,7 @@ OPEN_STAT:
         }
       else if(S_ISREG(st.st_mode))
         {
+	  kdDebug(KIO_SMB) << "SMBSlave::browse_stat_path is FILE"<< endl;
 	  // Regular file
 	  udsatom.m_uds  = KIO::UDS_FILE_TYPE;
 	  udsatom.m_long = S_IFREG;
@@ -115,18 +117,16 @@ OPEN_STAT:
     }
   else
     {
-      // TODO: Authentication needed
-      switch(errno)
+    switch(errno)
         {
         case ENOENT:
         case ENOTDIR:
         case EFAULT:
-	  error(ERR_DOES_NOT_EXIST, url.toKioUrl());
+	    error(ERR_DOES_NOT_EXIST, url.toKioUrl());
 	  break;
         case EPERM:
         case EACCES:
-	  error(ERR_ACCESS_DENIED, m_current_url.toKioUrl());
-	  cache_clear_AuthInfo(m_current_workgroup);
+            error( ERR_ACCESS_DENIED, url.toKioUrl() );
 	  break;
         case ENOMEM:
 	  error(ERR_OUT_OF_MEMORY, TEXT_OUT_OF_MEMORY);
@@ -135,6 +135,8 @@ OPEN_STAT:
         default:
 	  error(ERR_INTERNAL, TEXT_UNKNOWN_ERROR);
         }
+
+      kdDebug(KIO_SMB) << "SMBSlave::browse_stat_path ERROR!!"<< endl;
       return false;
     }
 
@@ -142,36 +144,6 @@ OPEN_STAT:
 }
 
 
-//===========================================================================
-// TODO: complete checking
-const KURL SMBSlave::checkURL(const KURL& kurl) {
-  // smb:/ normaly have no userinfo
-  // we must redirect ourself to remove the username and password
-  if (kurl.url().contains('@') && !kurl.url().contains("smb://")) {
-    KURL url(kurl);
-    url.setPath("/"+kurl.url().right( kurl.url().length()-kurl.url().find('@') -1));
-    QString userinfo = kurl.url().mid(5, kurl.url().find('@')-5);
-    if(userinfo.contains(':'))  {
-      url.setUser(userinfo.left(userinfo.find(':')));
-      url.setPass(userinfo.right(userinfo.length()-userinfo.find(':')-1));
-    }
-    else {
-      url.setUser(userinfo);
-    }
-    return url;
-  }
-
-  // no emtpy path
-  QString path = kurl.path();
-  if (path.isEmpty())
-    {
-      KURL url(kurl);
-      url.setPath("/");
-      return url;
-    }
-
-  return kurl;
-}
 
 //===========================================================================
 // TODO: Add stat cache
@@ -206,9 +178,12 @@ void SMBSlave::stat( const KURL& kurl )
       break;
 
     case SMBURLTYPE_SHARE_OR_PATH:
-      browse_stat_path(m_current_url, udsentry);
-      break;
-
+      if (browse_stat_path(m_current_url, udsentry))
+	break;
+      else {
+	kdDebug(KIO_SMB) << "SMBSlave::stat ERROR!!"<< endl;
+	return;
+      }
     default:
       kdDebug(KIO_SMB) << "SMBSlave::stat UNKNOWN " << url.url() << endl;
       return;
@@ -219,6 +194,35 @@ void SMBSlave::stat( const KURL& kurl )
 
 }
 
+//===========================================================================
+// TODO: complete checking
+const KURL SMBSlave::checkURL(const KURL& kurl) {
+  // smb:/ normaly have no userinfo
+  // we must redirect ourself to remove the username and password
+  if (kurl.url().contains('@') && !kurl.url().contains("smb://")) {
+    KURL url(kurl);
+    url.setPath("/"+kurl.url().right( kurl.url().length()-kurl.url().find('@') -1));
+    QString userinfo = kurl.url().mid(5, kurl.url().find('@')-5);
+    if(userinfo.contains(':'))  {
+      url.setUser(userinfo.left(userinfo.find(':')));
+      url.setPass(userinfo.right(userinfo.length()-userinfo.find(':')-1));
+    }
+    else {
+      url.setUser(userinfo);
+    }
+    return url;
+  }
+  // no emtpy path
+  QString path = kurl.path();
+  if (path.isEmpty())
+    {
+      KURL url(kurl);
+      url.setPath("/");
+      return url;
+    }
+
+  return kurl;
+}
 
 
 
@@ -332,7 +336,8 @@ void SMBSlave::listDir( const KURL& kurl )
 	      udsentry.append(atom); 
 
 	      // remember the workgroup
-	      cache_add_workgroup(dirp->name);
+	      // we don't use it
+	      //	      cache_add_workgroup(dirp->name);
 
 	      // Call base class to list entry
 	      listEntry(udsentry, false);
@@ -364,12 +369,12 @@ void SMBSlave::listDir( const KURL& kurl )
 	  break;
         case EPERM:
         case EACCES:
-	  cache_clear_AuthInfo(m_current_workgroup);
 	  // if access denied, first open passDlg
  	  if ((errno == EPERM) || (errno ==  EACCES)) {
 	    SMBAuthInfo auth;
 	    m_current_url.getAuthInfo(auth);
 	    if (!authDlg(auth)) {
+	      cache_clear_AuthInfo(m_current_url.getAuthInfo());
 	      error(ERR_ACCESS_DENIED, m_current_url.toKioUrl());
 	      return;
 	    }
