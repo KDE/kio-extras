@@ -108,7 +108,7 @@ MountHelper::MountHelper() : KApplication()
 
 void MountHelper::invokeEject(const QString &device)
 {
-	KProcess *proc = new KProcess();
+	KProcess *proc = new KProcess(this);
 	*proc << "kdeeject";
 	*proc << device;
 	proc->start();
