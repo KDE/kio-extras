@@ -745,28 +745,30 @@ void POP3Protocol::get(const KURL & url)
     QString list_cmd("LIST ");
     list_cmd += path;
     memset(buf, 0, sizeof(buf));
-    if (!noProgress && command(list_cmd.ascii(), buf, sizeof(buf) - 1)) {
-      list_cmd = buf;
-      // We need a space, otherwise we got an invalid reply
-      if (!list_cmd.find(" ")) {
-        POP3_DEBUG << "List command needs a space? " << list_cmd << endl;
+    if ( !noProgress ) {
+      if (command(list_cmd.ascii(), buf, sizeof(buf) - 1)) {
+        list_cmd = buf;
+        // We need a space, otherwise we got an invalid reply
+        if (!list_cmd.find(" ")) {
+          POP3_DEBUG << "List command needs a space? " << list_cmd << endl;
+          closeConnection();
+          error(ERR_INTERNAL, i18n("Unexpected response from POP3 server."));
+          return;
+        }
+        list_cmd.remove(0, list_cmd.find(" ") + 1);
+        msg_len = list_cmd.toUInt(&ok);
+        if (!ok) {
+          POP3_DEBUG << "LIST command needs to return a number? :" <<
+              list_cmd << ":" << endl;
+          closeConnection();
+          error(ERR_INTERNAL, i18n("Unexpected response from POP3 server."));
+          return;
+        }
+      } else {
         closeConnection();
-        error(ERR_INTERNAL, i18n("Unexpected response from POP3 server."));
+        error(ERR_COULD_NOT_READ, m_sError);
         return;
       }
-      list_cmd.remove(0, list_cmd.find(" ") + 1);
-      msg_len = list_cmd.toUInt(&ok);
-      if (!ok) {
-        POP3_DEBUG << "LIST command needs to return a number? :" <<
-            list_cmd << ":" << endl;
-        closeConnection();
-        error(ERR_INTERNAL, i18n("Unexpected response from POP3 server."));
-        return;
-      }
-    } else {
-      closeConnection();
-      error(ERR_COULD_NOT_READ, m_sError);
-      return;
     }
 
     int activeCommands = 0;
