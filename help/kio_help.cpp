@@ -60,11 +60,11 @@ QString HelpProtocol::langLookup(QString fname)
   QStringList search;
 
   // assemble the local search paths
-  QStringList const &localDoc = KGlobal::dirs()->findDirs("html", "");
+  const QStringList localDoc = KGlobal::dirs()->resourceDirs("html");
 
   // look up the different languages
   for (int id=localDoc.count()-1; id >= 0; --id)
-    {      
+    {
       QStringList langs = KGlobal::locale()->languageList();
       langs.append("default");
       langs.append("en");
@@ -76,7 +76,7 @@ QString HelpProtocol::langLookup(QString fname)
   // try to locate the file
   QStringList::Iterator it;
   for (it = search.begin(); it != search.end(); ++it)
-    {      
+    {
       kdDebug() << "Looking for help in: " << *it << endl;
 
       QFileInfo info(*it);
@@ -114,7 +114,7 @@ QString HelpProtocol::lookupFile(QString fname, QString query, bool &redirect)
 	  if (anch.open(IO_ReadOnly))
 	    {
 	      QTextStream ts(&anch);
-	      
+
 	      QString line;
 	      QStringList items;
 	      while (!ts.atEnd())
@@ -125,7 +125,7 @@ QString HelpProtocol::lookupFile(QString fname, QString query, bool &redirect)
 		    {
 		      items = QStringList::split(' ', line);
 		      if (items[1] == anchor)
-			{			  
+			{
 			  redirection(KURL(QString("help:%1/%2").arg(path).arg(items[2])));
 			  redirect = true;
 			  return QString::null;
@@ -134,7 +134,7 @@ QString HelpProtocol::lookupFile(QString fname, QString query, bool &redirect)
 		}
 
 	      anch.close();
-	    }	  
+	    }
 	}
     }
 
@@ -180,7 +180,7 @@ void HelpProtocol::notFound()
 }
 
 
-HelpProtocol::HelpProtocol( const QCString &pool, const QCString &app ) 
+HelpProtocol::HelpProtocol( const QCString &pool, const QCString &app )
   : SlaveBase( "help", pool, app )
 {
 }
@@ -218,23 +218,24 @@ void HelpProtocol::mimetype( const KURL &)
 }
 
 
-extern "C" 
+extern "C"
 {
   int kdemain( int argc, char **argv )
   {
     KInstance instance( "kio_help" );
-    
+    (void)instance.config(); // we need this one to make sure system globals are read
+
     kdDebug(7101) << "Starting " << getpid() << endl;
-    
+
     if (argc != 4)
       {
 	fprintf(stderr, "Usage: kio_help protocol domain-socket1 domain-socket2\n");
 	exit(-1);
       }
-    
+
     HelpProtocol slave(argv[2], argv[3]);
     slave.dispatchLoop();
-    
+
     kdDebug(7101) << "Done" << endl;
     return 0;
   }
