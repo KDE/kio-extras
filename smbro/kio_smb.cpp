@@ -1275,9 +1275,9 @@ void SmbProtocol::put( const KURL& url, int perm, bool _overwrite, bool resume)
    if (_overwrite==false && (info.isValid))
    {
       if (info.isDir)
-         error(KIO::ERR_DIR_ALREADY_EXIST,url.url());
+         error(KIO::ERR_DIR_ALREADY_EXIST,url.prettyURL());
       else
-         error(KIO::ERR_FILE_ALREADY_EXIST,url.url());
+         error(KIO::ERR_FILE_ALREADY_EXIST,url.prettyURL());
       return;
    }
    QString share;
@@ -1295,7 +1295,7 @@ void SmbProtocol::put( const KURL& url, int perm, bool _overwrite, bool resume)
    if ((result!=0) && (errno!=EEXIST))
    {
       //perror("creating fifo failed: ");
-      error(ERR_CANNOT_OPEN_FOR_WRITING,url.path()+i18n("\nCould not create required pipe %1.").arg(fifoName));
+      error(ERR_CANNOT_OPEN_FOR_WRITING,url.prettyURL()+i18n("\nCould not create required pipe %1.").arg(fifoName));
       return;
    }
    QCString command=QCString("put ")+fifoName+QCString(" \"")+smbPath.local8Bit()+QCString("\"\n");
@@ -1345,7 +1345,7 @@ void SmbProtocol::put( const KURL& url, int perm, bool _overwrite, bool resume)
    {
       //we failed (we might have no read access to the remote file)
       perror("SmbProtocol::put() open() failed");
-      error(ERR_CANNOT_OPEN_FOR_WRITING,url.path()+i18n("\nCould not create required pipe %1.").arg(fifoName));
+      error(ERR_CANNOT_OPEN_FOR_WRITING,url.prettyURL()+i18n("\nCould not create required pipe %1.").arg(fifoName));
       remove(fifoName);
       return;
    }
@@ -1355,7 +1355,7 @@ void SmbProtocol::put( const KURL& url, int perm, bool _overwrite, bool resume)
    if (flags<0)
    {
       //hmm, shouldn't happen
-      error(ERR_CANNOT_OPEN_FOR_WRITING,url.path()+i18n("\nCould not fcntl() pipe %1.").arg(fifoName));
+      error(ERR_CANNOT_OPEN_FOR_WRITING,url.prettyURL()+i18n("\nCould not fcntl() pipe %1.").arg(fifoName));
       remove(fifoName);
       return;
    }
@@ -1363,7 +1363,7 @@ void SmbProtocol::put( const KURL& url, int perm, bool _overwrite, bool resume)
    if (fcntl(fifoFD,F_SETFL,flags)<0)
    {
       //hmm, shouldn't happen
-      error(ERR_CANNOT_OPEN_FOR_WRITING,url.path()+i18n("\nCould not fcntl() pipe %1.").arg(fifoName));
+      error(ERR_CANNOT_OPEN_FOR_WRITING,url.prettyURL()+i18n("\nCould not fcntl() pipe %1.").arg(fifoName));
       remove(fifoName);
       return;
    }
@@ -1449,7 +1449,7 @@ void SmbProtocol::get( const KURL& url )
    if ((info.isValid==false) || (info.isDir))
    {
       kdDebug(KIO_SMB)<<"Smb::get() file not found"<<endl;
-      error(ERR_CANNOT_OPEN_FOR_READING,url.url());
+      error(ERR_CANNOT_OPEN_FOR_READING,url.prettyURL());
       return;
    }
 
@@ -1468,7 +1468,7 @@ void SmbProtocol::get( const KURL& url )
    if ((result!=0) && (errno!=EEXIST))
    {
       //perror("creating fifo failed: ");
-      error(ERR_CANNOT_OPEN_FOR_READING,url.path()+i18n("\nCould not create required pipe %1.").arg(fifoName));
+      error(ERR_CANNOT_OPEN_FOR_READING,url.prettyURL()+i18n("\nCould not create required pipe %1.").arg(fifoName));
       return;
    }
 
@@ -1500,7 +1500,7 @@ void SmbProtocol::get( const KURL& url )
    {
       //we failed (we might have no read access to the remote file)
       perror("SmbProtocol::get() open() failed");
-      error(ERR_CANNOT_OPEN_FOR_READING,url.path()+i18n("\nCould not create required pipe %1.").arg(fifoName));
+      error(ERR_CANNOT_OPEN_FOR_READING,url.prettyURL()+i18n("\nCould not create required pipe %1.").arg(fifoName));
       remove(fifoName);
       return;
 
@@ -1511,7 +1511,7 @@ void SmbProtocol::get( const KURL& url )
    if (flags<0)
    {
       //hmm, shouldn't happen
-      error(ERR_CANNOT_OPEN_FOR_READING,url.path()+i18n("\nCould not fcntl() pipe %1.").arg(fifoName));
+      error(ERR_CANNOT_OPEN_FOR_READING,url.prettyURL()+i18n("\nCould not fcntl() pipe %1.").arg(fifoName));
       remove(fifoName);
       return;
    }
@@ -1519,7 +1519,7 @@ void SmbProtocol::get( const KURL& url )
    if (fcntl(fifoFD,F_SETFL,flags)<0)
    {
       //hmm, shouldn't happen
-      error(ERR_CANNOT_OPEN_FOR_READING,url.path()+i18n("\nCould not fcntl() pipe %1.").arg(fifoName));
+      error(ERR_CANNOT_OPEN_FOR_READING,url.prettyURL()+i18n("\nCould not fcntl() pipe %1.").arg(fifoName));
       remove(fifoName);
       return;
    }
@@ -2336,7 +2336,7 @@ void SmbProtocol::special( const QByteArray & data)
          }
          if (result==SMB_ERROR)
          {
-            error( KIO::ERR_CANNOT_LAUNCH_PROCESS, "wrlg sudgäajäl jtlw4jrt");
+            error( KIO::ERR_CANNOT_LAUNCH_PROCESS, "smbmount"+i18n("\nMake sure that the samba package is installed properly on your system."));
             return;
          }
          delete proc;
