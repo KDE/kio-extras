@@ -208,8 +208,8 @@ AudioCDProtocol::initRequest(const KURL & url)
   
   vorbis_info_init(&d->vi);
   vorbis_comment_init(&d->vc);
-  char *kde_vorbis_comment = KDE_VORBIS_TAG;
-  vorbis_comment_add(&d->vc, kde_vorbis_comment);
+  const char *kde_vorbis_comment = KDE_VORBIS_TAG;
+  vorbis_comment_add(&d->vc, (char*)kde_vorbis_comment);
 
 #endif
 
@@ -360,10 +360,13 @@ AudioCDProtocol::get(const KURL & url)
 
 #ifdef HAVE_VORBIS
   if (filetype == "ogg" && d->based_on_cddb && d->write_vorbis_comments ) {
-    const char *tname =   d->titles[trackNumber-1].latin1(); 
-    vorbis_comment_add_tag(&d->vc,"title",tname+3);
-    vorbis_comment_add_tag(&d->vc,"artist",d->cd_artist.latin1());
-    vorbis_comment_add_tag(&d->vc,"album",d->cd_title.latin1());
+    const char *tname =   d->titles[trackNumber-1].latin1();
+    vorbis_comment_add_tag(&d->vc,(char*)"title",(char*)tname+3);
+    vorbis_comment_add_tag(&d->vc,(char*)"artist",(char*)d->cd_artist.latin1());
+    vorbis_comment_add_tag(&d->vc,(char*)"album",(char*)d->cd_title.latin1());
+    char trackString[3];
+    sprintf(trackString, "%2.2i", trackNumber);
+    vorbis_comment_add_tag(&d->vc,(char*)"tracknumber", trackString);
   }
 #endif
 
