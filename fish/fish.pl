@@ -57,7 +57,7 @@ MAIN: while (<STDIN>) {
 		if (-l $ofn) {
 			my $dest = readlink($ofn);
 			unlink($fn);
-			symlink($dest,$fn) || $read = 0;
+			symlink($dest,$fn) || ($read = 0);
 		} else {
 			sysopen(FH,$ofn,O_RDONLY) || do { print "### 500 $!\n"; next; };
 			sysopen(OFH,$fn,O_WRONLY|O_CREAT|O_TRUNC) || do { close(FH); print "### 500 $!\n"; next; };
