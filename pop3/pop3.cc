@@ -63,18 +63,15 @@
 
 #include "pop3.h"
 
-#ifdef __GNUC__
-#warning "Should APOP even be conditionalized?"
-#endif
-#define APOP
 #define GREETING_BUF_LEN 1024
 #define MAX_RESPONSE_LEN 512
 
-extern "C" {
-        int kdemain(int argc, char **argv);
-#ifdef APOP
-        #include "md5.h"
+#ifndef NAPOP
+	#include <kio/kmdbase.h>
 #endif
+
+extern "C" {
+	int kdemain(int argc, char **argv);
 };
 
 using namespace KIO;
@@ -286,7 +283,7 @@ bool POP3Protocol::pop3_open()
     QCString greeting(greeting_buf);
     free(greeting_buf);
 
-#ifdef APOP
+#ifndef NAPOP
     //
     // Does the server support APOP?
     //
@@ -302,7 +299,7 @@ bool POP3Protocol::pop3_open()
     m_sOldServer = m_sServer;
 
     QString usr, pass, one_string="USER ";
-#ifdef APOP
+#ifndef NAPOP
     QString apop_string = "APOP ";
 #endif
     if (m_sUser.isEmpty() || m_sPass.isEmpty()) {
@@ -312,7 +309,7 @@ bool POP3Protocol::pop3_open()
         pop3_close();
         return false;
       } else {
-#ifdef APOP
+#ifndef NAPOP
         apop_string.append(usr);
 #endif
         one_string.append(usr);
@@ -320,7 +317,7 @@ bool POP3Protocol::pop3_open()
         m_sUser=usr; m_sPass=pass;
       }
     } else {
-#ifdef APOP
+#ifndef NAPOP
       apop_string.append(m_sUser);
 #endif
       one_string.append(m_sUser);
@@ -328,12 +325,10 @@ bool POP3Protocol::pop3_open()
     }
 
     memset(buf, 0, sizeof(buf));
-#ifdef APOP
+#ifndef NAPOP
     if(apop && m_try_apop) {
       char *c = greeting.data() + apop_pos;
-      unsigned char digest[16];
-      char ascii_digest[33];
-      Bin_MD5Context ctx;
+      KMD5 ctx;
 
       if ( m_sPass.isEmpty())
         m_sOldPass = pass;
@@ -341,20 +336,13 @@ bool POP3Protocol::pop3_open()
         m_sOldPass = m_sPass;
 
       // Generate digest
-      Bin_MD5Init(&ctx);
-      Bin_MD5Update(&ctx,
-                    (unsigned char *)c,
-                    (unsigned)strlen(c));
-      Bin_MD5Update(&ctx,
-                    (unsigned char *)m_sOldPass.local8Bit().data(),
-                    (unsigned)m_sOldPass.local8Bit().length());
-      Bin_MD5Final(digest, &ctx);
-      for(int i = 0; i < 16; i++)
-        sprintf(ascii_digest+2*i, "%02x", digest[i]);
+      ctx.update((unsigned char *)c, (unsigned)strlen(c));
+      ctx.update((unsigned char *)m_sOldPass.local8Bit().data(), (unsigned)m_sOldPass.local8Bit().length());
+      ctx.finalize();
 
       // Genenerate APOP command
       apop_string.append(" ");
-      apop_string.append(ascii_digest);
+      apop_string.append(ctx.hexDigest());
 
       if(command(apop_string.local8Bit(), buf, sizeof(buf)))
         return true;
