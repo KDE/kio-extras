@@ -217,7 +217,7 @@ void SMTPProtocol::put(const KURL & url, int /*permissions */ ,
 
   KEMailSettings mset;
   KURL open_url = url;
-  if (profile == QString::null) {
+  if (profile.isNull()) {
     //kdDebug() << "kio_smtp: Profile is null" << endl;
     QStringList profiles = mset.profiles();
     bool hasProfile = false;
@@ -255,7 +255,7 @@ void SMTPProtocol::put(const KURL & url, int /*permissions */ ,
   // and then format accordingly (either: emailaddress@host.com or
   // Real Name <emailaddress@host.com>)
   if (from.isEmpty()) {
-    if (mset.getSetting(KEMailSettings::EmailAddress) != QString::null) {
+    if (!mset.getSetting(KEMailSettings::EmailAddress).isNull()) {
       from = mset.getSetting(KEMailSettings::EmailAddress);
     } 
     else {
@@ -312,8 +312,8 @@ void SMTPProtocol::put(const KURL & url, int /*permissions */ ,
   }
 
   if (headers) {
-    if (mset.getSetting(KEMailSettings::EmailAddress) != QString::null) {
-      if (mset.getSetting(KEMailSettings::RealName) != QString::null) {
+    if (!mset.getSetting(KEMailSettings::EmailAddress).isNull()) {
+      if (!mset.getSetting(KEMailSettings::RealName).isNull()) {
         from =
             QString::fromLatin1("From: %1 <%2>\r\n").arg(mset.
                                            getSetting(KEMailSettings::
@@ -548,7 +548,7 @@ bool SMTPProtocol::smtp_open(const QString& fakeHostname)
       m_iOldPort == port(m_iPort) &&
       m_sOldServer == m_sServer && 
       m_sOldUser == m_sUser &&
-      (fakeHostname == QString::null || m_hostname == fakeHostname)) 
+      (fakeHostname.isNull() || m_hostname == fakeHostname)) 
   {
     return true;
   } 
@@ -574,7 +574,7 @@ bool SMTPProtocol::smtp_open(const QString& fakeHostname)
   QByteArray ehloByteArray(DEFAULT_EHLO_BUFFER);
   ehloByteArray.fill(0);
 
-  if (fakeHostname != QString::null)
+  if (!fakeHostname.isNull())
   {
     m_hostname = fakeHostname;
   }
@@ -585,7 +585,7 @@ bool SMTPProtocol::smtp_open(const QString& fakeHostname)
     KExtendedSocket::resolve(addr, m_hostname, tmpPort);
     delete addr;
 
-    if(m_hostname == QString::null)
+    if(m_hostname.isNull())
     {
       m_hostname = "localhost.invalid";
     }
@@ -729,7 +729,7 @@ bool SMTPProtocol::Authenticate()
   auth_method = SASL.chooseMethod(strList);
 
   // If none are available, set it up so we can start over again
-  if (auth_method == QString::null) 
+  if (auth_method.isNull()) 
   {
     //kdDebug() << "kio_smtp: no authentication available" << endl;
     error(KIO::ERR_COULD_NOT_LOGIN,
@@ -802,7 +802,7 @@ void SMTPProtocol::ParseFeatures(const char* buf)
     return;                     // We got an invalid line..
 
   if (strncmp(&buf[4], "AUTH", strlen("AUTH")) == 0) {  // Look for auth stuff
-    if (m_sAuthConfig == QString::null)
+    if (m_sAuthConfig.isNull())
       m_sAuthConfig = &buf[5 + strlen("AUTH")];
     m_sAuthConfig.replace(QRegExp("[\r\n]"), "");
   } 
