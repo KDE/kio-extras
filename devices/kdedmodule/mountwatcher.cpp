@@ -24,6 +24,7 @@
 #include <qfile.h>
 #include <qimage.h>
 #include <qtimer.h>
+#include <qregexp.h>
 
 #include <kdatastream.h> // DO NOT REMOVE, otherwise bool marshalling breaks
 #include <kicontheme.h>
@@ -32,8 +33,8 @@
 #include <kstandarddirs.h>
 #include <kautomount.h>
 #include <kdirwatch.h>
-#include <qregexp.h>
 #include <kdebug.h>
+#include <kglobal.h>
 
 #include "mountwatcher.moc"
 #include "mountwatcher.h"
@@ -111,7 +112,7 @@ bool   MountWatcherModule::mounted(QString name)
 	return (name=="//ide1/MP3")?true:false;
 }
 
-void MountWatcherModule::mount( bool readonly, const QString& format, const QString& device, const QString& 
+void MountWatcherModule::mount( bool readonly, const QString& format, const QString& device, const QString&
 mountpoint,
               const QString & desktopFile, bool show_filemanager_window )
 {
@@ -225,10 +226,10 @@ void MountWatcherModule::readDFDone()
 		mountList<<it.data().description;
 		mountList<<" ";
 		mountList<<it.data().url;
-		mountList<<it.data().mimeType;		
+		mountList<<it.data().mimeType;
 		mountList<<(it.data().mountState?"true":"false");
 		mountList<<"---";
-		
+
 	}
 
         KDirNotify_stub allDirNotify("*", "KDirNotify*");
@@ -251,25 +252,25 @@ bool MountWatcherModule::createLink(const KURL& deviceURL, const KURL& destinati
 		if (f.open(IO_ReadWrite))
 		{
 			f.close();
-                        KSimpleConfig config( path );
-                        config.setDesktopGroup();
-                        config.writeEntry( QString::fromLatin1("Dev"), *(info.at(1)) );
+            KSimpleConfig config( path );
+            config.setDesktopGroup();
+            config.writeEntry( QString::fromLatin1("Dev"), *(info.at(1)) );
 			config.writeEntry( QString::fromLatin1("Encoding"),
-						QString::fromLatin1("UTF-8"));
+                               QString::fromLatin1("UTF-8"));
 			config.writeEntry( QString::fromLatin1("FSType"),
-						QString::fromLatin1("Default") );
+                               QString::fromLatin1("Default") );
 			config.writeEntry( QString::fromLatin1("Icon"), "hdd_mount");
 			config.writeEntry( QString::fromLatin1("UnmountIcon"), "hdd_unmount");
-			config.writeEntry( QString::fromLatin1("MountPoint"), 
-					(*info.at(2)).right((*(info.at(2))).length()-5));
+			config.writeEntry( QString::fromLatin1("MountPoint"),
+                               (*info.at(2)).right((*(info.at(2))).length()-5));
 			config.writeEntry( QString::fromLatin1("Icon"), "hdd_mount");
 			config.writeEntry( QString::fromLatin1("Type"),
-					QString::fromLatin1("FSDevice"));
-                        config.sync();
+                               QString::fromLatin1("FSDevice"));
+            config.sync();
 			return true;
 
 		}
-		
+
 	}
 	return false;
 }
@@ -279,6 +280,7 @@ bool MountWatcherModule::createLink(const KURL& deviceURL, const KURL& destinati
 extern "C" {
     KDEDModule *create_mountwatcher(const QCString &obj)
     {
+        KGlobal::locale()->insertCatalogue("kio_devices");
         return new MountWatcherModule(obj);
     }
 };

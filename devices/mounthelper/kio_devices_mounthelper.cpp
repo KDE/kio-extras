@@ -7,8 +7,10 @@
 #include <dcopclient.h>
 #include <qtimer.h>
 #include <kdebug.h>
+#include <kglobal.h>
 
 #include "kio_devices_mounthelper.h"
+
 #include "kio_devices_mounthelper.moc"
 
 QStringList KIODevicesMountHelperApp::deviceInfo(QString name)
@@ -45,9 +47,9 @@ KIODevicesMountHelperApp::KIODevicesMountHelperApp():KApplication() {
 
 	                        if (it!=info.end())
         	                {
-                	                QString mp=*it; 
+                	                QString mp=*it;
                         	        {
-	
+
 						if (args->isSet("u"))
 						{
 
@@ -86,7 +88,7 @@ void KIODevicesMountHelperApp::slotResult(KIO::Job* job)
 		QTimer::singleShot(0,this,SLOT(finished()));
 	}
 }
-      
+
 void KIODevicesMountHelperApp::error()
 {
 	KMessageBox::error(0,errorStr);
@@ -120,7 +122,7 @@ int main(int argc, char **argv)
 	printf("BLAH2\n");
 
     KApplication *app=new  KIODevicesMountHelperApp();
+    KGlobal::locale()->insertCatalogue("kio_devices");
 
     app->exec();
-
 }

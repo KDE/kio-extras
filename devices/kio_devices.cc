@@ -6,7 +6,7 @@
    #include <qtextstream.h>
    #include <klocale.h>
    #include <sys/stat.h>
-   #include <dcopclient.h>  
+   #include <dcopclient.h>
    #include <qdatastream.h>
    #include <time.h>
    #include <kprocess.h>
@@ -34,18 +34,18 @@
 	QStringList deviceList();
 	QStringList deviceInfo(const QString name);
   };
-  
+
   extern "C" {
       int kdemain( int, char **argv )
       {
-	  kdDebug()<<"kdemain for devices"<<endl;
-          KInstance instance( "kio_hello" );
+          kdDebug()<<"kdemain for devices"<<endl;
+          KInstance instance( "kio_devices" );
           HelloProtocol slave(argv[2], argv[3]);
           slave.dispatchLoop();
           return 0;
       }
   }
-  
+
 
 
 static void createFileEntry(KIO::UDSEntry& entry, const QString& name, const QString& url, const QString& mime);
@@ -118,7 +118,7 @@ void HelloProtocol::stat(const KURL& url)
                 		                 		*proc << "-m" << url.url();
 	                        		         	proc->start(KProcess::Block);
         	                        		 	delete proc;
-	
+
 	        		                        	redirection(mp);
         		        	                	finished();
 							}
@@ -133,13 +133,13 @@ void HelloProtocol::stat(const KURL& url)
                                 }
                         }
                 }
-                error(KIO::ERR_SLAVE_DEFINED,i18n("illegal data received"));
+                error(KIO::ERR_SLAVE_DEFINED,i18n("Illegal data received"));
 		return;
 		break;
         }
 
 };
-	
+
 
 
 void HelloProtocol::listDir(const KURL& url)
@@ -150,14 +150,14 @@ void HelloProtocol::listDir(const KURL& url)
 	else
 	{
 		QStringList info=deviceInfo(url.fileName());
-		
+
 		if (info.empty())
 		{
 			error(KIO::ERR_SLAVE_DEFINED,i18n("Unknown device"));
 			return;
 		}
-		
-		
+
+
 		QStringList::Iterator it=info.begin();
 		if (it!=info.end())
 		{
@@ -202,13 +202,13 @@ void HelloProtocol::listDir(const KURL& url)
 							}
 							else
 								error(KIO::ERR_SLAVE_DEFINED,i18n("Device not accessible"));
-						}					
+						}
 						return;
 					}
 				}
 			}
 		}
-		error(KIO::ERR_SLAVE_DEFINED,i18n("illegal data received"));
+		error(KIO::ERR_SLAVE_DEFINED,i18n("Illegal data received"));
 	}
 }
 
@@ -377,7 +377,7 @@ void HelloProtocol::listRoot()
 
 	QStringList list=deviceList();
 	count=0;
-        for ( QStringList::Iterator it = list.begin(); it != list.end(); ++it ) 
+        for ( QStringList::Iterator it = list.begin(); it != list.end(); ++it )
 	{
 // FIXME: look for the real ending
 		QString url="devices:/"+(*it); ++it;
@@ -422,7 +422,7 @@ void HelloProtocol::listRoot()
  */
   redirection("file:/");
   //finished();
-} 
+}
 #endif
 
 void addAtom(KIO::UDSEntry& entry, unsigned int ID, long l, const QString& s = QString::null)

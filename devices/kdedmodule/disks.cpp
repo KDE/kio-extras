@@ -186,7 +186,7 @@ QString DiskEntry::iconName()
 
 QString DiskEntry::guessIconName()
 {
-  QString iconName;
+    QString iconName;
     // try to be intelligent
     if (-1!=mountPoint().find("cdrom",0,FALSE)) iconName+="cdrom";
     else if (-1!=deviceName().find("cdrom",0,FALSE)) iconName+="cdrom";
@@ -195,9 +195,9 @@ QString DiskEntry::guessIconName()
     else if (-1!=mountPoint().find("mo",0,FALSE)) iconName+="mo";
     else if (-1!=deviceName().find("mo",0,FALSE)) iconName+="mo";
     else if (-1!=deviceName().find("fd",0,FALSE)) {
-            if (-1!=deviceName().find("360",0,FALSE)) iconName+="5floppy";
-            if (-1!=deviceName().find("1200",0,FALSE)) iconName+="5floppy";
-            else iconName+="3floppy";
+        if (-1!=deviceName().find("360",0,FALSE)) iconName+="5floppy";
+        if (-1!=deviceName().find("1200",0,FALSE)) iconName+="5floppy";
+        else iconName+="3floppy";
 	 }
     else if (-1!=mountPoint().find("floppy",0,FALSE)) iconName+="3floppy";
     else if (-1!=mountPoint().find("zip",0,FALSE)) iconName+="zip";
@@ -212,7 +212,7 @@ QString DiskEntry::guessIconName()
     //debug("device %s is %s",deviceName().latin1(),iconName.latin1());
 
     //emit iconNameChanged();
-  return iconName;
+    return iconName;
 };
 
 
@@ -257,11 +257,11 @@ QString DiskEntry::discType()
 //			tmpInfo.fromLatin1(str,len);
 			if (tmpInfo.contains("disk")) typeName="kdedevice/hdd";
 			else
-				if (tmpInfo.contains("cdrom")) typeName="kdedevice/cdrom"; 
+				if (tmpInfo.contains("cdrom")) typeName="kdedevice/cdrom";
 				else
-					if (tmpInfo.contains("floppy")) typeName="kdedevice/zip"; // eg IDE zip drives 
+					if (tmpInfo.contains("floppy")) typeName="kdedevice/zip"; // eg IDE zip drives
 					else typeName="kdedevice/hdd";
-		}	
+		}
 		infoFile.close();
 	} else typeName="kdedevice/hdd"; // this should never be reached
     }
@@ -314,7 +314,7 @@ int DiskEntry::sysCall(const QString & command)
     {
 //WARNING FIXME
      kdWarning(7020)<<i18n("could not execute [%1]").arg(command)<<endl;
-     return -1; 
+     return -1;
     }
 
   if (sysProc->exitStatus()!=0) emit sysCallError(this, sysProc->exitStatus());
