@@ -2,6 +2,6 @@
 exec=kio_finger
 protocol=finger
 input=none
-output=filesystem
+output=stream
 reading=true
 defaultMimetype=text/html

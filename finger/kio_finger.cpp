@@ -107,7 +107,7 @@ void FingerProtocol::get(const KURL& url )
 
   kdDebug() << "query: " << query << endl;
   
-  // Check the valifity of the query 
+  // Check the validity of the query 
 
   QRegExp regExp("?refreshRate=[0-9][0-9]*", true, true);
   if (query.contains(regExp)) {
@@ -119,15 +119,14 @@ void FingerProtocol::get(const KURL& url )
   
   kdDebug() << "Refresh rate: " << refreshRate << endl;
  
-
   myKProcess = new KShellProcess();  
   *myKProcess << *myPerlPath << *myFingerScript << *myFingerPath
 	      << refreshRate << myURL->host() << myURL->user() ;
   	
   connect(myKProcess, SIGNAL(receivedStdout(KProcess *, char *, int)), 
 	  this, SLOT(slotGetStdOutput(KProcess *, char *, int)));
-  connect(myKProcess, SIGNAL(receivedStderr(KProcess *, char *, int)), 
-	  this, SLOT(slotGetStdOutput(KProcess *, char *, int)));
+  //connect(myKProcess, SIGNAL(receivedStderr(KProcess *, char *, int)), 
+  //	  this, SLOT(slotGetStdOutput(KProcess *, char *, int)));
   
   myKProcess->start(KProcess::Block, KProcess::All);
 
@@ -146,7 +145,7 @@ void FingerProtocol::get(const KURL& url )
 
 
 void FingerProtocol::slotGetStdOutput(KProcess* /* p */, char *stdout, int len) {
-  kdDebug() <<  "void FingerProtocol::slotGetStdoutOutput()" << endl;		
+  //kdDebug() <<  "void FingerProtocol::slotGetStdoutOutput()" << endl;		
   *myStdStream += QString::fromLocal8Bit(stdout, len);
 }
 
@@ -167,15 +166,16 @@ void FingerProtocol::mimetype(const KURL & /*url*/)
 void FingerProtocol::getProgramPath()
 {
   //kdDebug() << "kfingerMainWindow::getProgramPath()" << endl;
+  
   myPerlPath = new QString();
-
-  // Not to sure wether I'm using the right error number here. - schlpbch -  
-
   *myPerlPath = QString(KGlobal::dirs()->findExe("perl"));
+ 
+  // Not to sure wether I'm using the right error number here. - schlpbch -   
   if (myPerlPath->isEmpty())
     {
       kdDebug() << "Perl command not found" << endl; 	
-      this->error(ERR_CANNOT_LAUNCH_PROCESS, i18n("Perl command not found"));
+      this->error(ERR_CANNOT_LAUNCH_PROCESS,
+		  i18n("Could not find the Perl program on your system, please install.")); 
       exit(-1);
     } 
   else 
@@ -183,24 +183,38 @@ void FingerProtocol::getProgramPath()
       kdDebug() << "Perl command found:" << *myPerlPath << endl; 
     }
 
-  myFingerPath = new QString();
-  
+  myFingerPath = new QString();  
   *myFingerPath = QString(KGlobal::dirs()->findExe("finger"));
+  
+  /*
+   * I decided not to provide my finger implementation:
+   *  1. It's very unlikely that it's not installed.
+   *  2. If it's not installed, then there might be reasons for it (security).
+   */
+
   if ((myFingerPath->isEmpty()))
-    {
-      kdDebug() << "Finger command not found, trying KDEfinger instead" << endl;
-      *myFingerPath = QString(KGlobal::dirs()->findExe("KDEfinger"));   
-      if (myFingerPath->isEmpty())
+    {   
+      kdDebug() << "Finger command not found" << endl;
+      this->error(ERR_CANNOT_LAUNCH_PROCESS, 
+		  i18n("Could not find the Finger program on your system, please install."));
+      exit(-1);
+
+      /*
+	kdDebug() << "Finger command not found, trying KDEfinger instead" << endl;
+	*myFingerPath = QString(KGlobal::dirs()->findExe("KDEfinger"));   
+	if (myFingerPath->isEmpty())
 	{
-	  kdDebug() << "KDEFinger command not found" << endl;
-	  this->error(ERR_CANNOT_LAUNCH_PROCESS, 
-		      i18n("Neither finger nor KDEfinger command not found"));
-	  exit(-1);
+	kdDebug() << "KDEFinger command not found" << endl;
+	this->error(ERR_CANNOT_LAUNCH_PROCESS, 
+	i18n("Neither finger nor KDEfinger command found"));
+	exit(-1);
+      
 	} 
-      else
+	else
 	{
-	  kdDebug() << "KDEfinger command found:" << *myPerlPath << endl; 
+	kdDebug() << "KDEfinger command found:" << *myPerlPath << endl; 
 	}
+      */
     }
   else
     {
@@ -210,15 +224,18 @@ void FingerProtocol::getProgramPath()
   myFingerScript = new QString(locate("data","kfinger/kio_finger/finger.pl"));
   if (myFingerScript->isEmpty())
     {
-      this->error(ERR_CANNOT_LAUNCH_PROCESS, i18n("Default finger script not found"));
-      kdDebug() << "Default finger script not found" << endl; 
+      kdDebug() << "kio_finger perl script not found" << endl;     
+      this->error(ERR_CANNOT_LAUNCH_PROCESS,
+		  i18n("kio_finger perl script not found."));
       exit(-1);
     } else {
-      kdDebug() << "Default finger script found: " << *myFingerScript << endl;  
+      kdDebug() << "kio_finger perl script found: " << *myFingerScript << endl;  
     }
 }
 
+
 /* --------------------------------------------------------------------------- */
+
 
 void FingerProtocol::parseCommandLine(const KURL& url) {
   myURL = new KURL(url); 
@@ -248,8 +265,8 @@ void FingerProtocol::parseCommandLine(const KURL& url) {
    * If no refresh rate is given, set it to defaultRefreshRate
    */
 
- if (myURL->query().isEmpty()) {
-   myURL->setQuery("?refreshRate="+defaultRefreshRate);
+  if (myURL->query().isEmpty()) {
+    myURL->setQuery("?refreshRate="+defaultRefreshRate);
   }
 }
 
