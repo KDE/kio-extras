@@ -616,9 +616,16 @@ LIST
         if (strcmp(buf, ".\r\n")==0) break; // End of data
         // sanders, changed -2 to -1 below
         buf[strlen(buf)-1]='\0';
-        array.setRawData(buf, strlen(buf));
-        data( array );
-        array.resetRawData(buf, strlen(buf));
+        if (buf[0] == 46 && buf[1] == 46)
+        {                         // .. at the start of a line means only .
+          array.setRawData(&buf[1], strlen(buf) - 1);
+          data( array );
+          array.resetRawData(&buf[1], strlen(buf) - 1);
+        } else {
+          array.setRawData(buf, strlen(buf));
+          data( array );
+          array.resetRawData(buf, strlen(buf));
+        }
         p_size+=strlen(buf);
         processedSize(p_size);
       }
