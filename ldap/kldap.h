@@ -646,7 +646,7 @@ namespace KLDAP
      *
      * @return the search result as LDIF string.
      */
-    QString asLDIF();
+    QCString asLDIF();
 
   private:
 

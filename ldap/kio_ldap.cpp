@@ -144,7 +144,7 @@ void LDAPProtocol::get(const KURL &url)
   }
 
   // collect the result
-  QCString result = search.asLDIF().utf8();
+  QCString result = search.asLDIF();
 
   // tell the mimetype
   mimeType("text/plain");

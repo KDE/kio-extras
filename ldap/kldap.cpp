@@ -256,7 +256,8 @@ bool SearchRequest::execute()
   // call the inherited method
   Request::execute();
 
-  kdDebug() << "search request: " << _base << " " << _scope << " " << _filter << endl;
+  kdDebug() << "search request: base=\"" << _base << "\" scope=\"" << _scope 
+	    << "\" filter=\"" << _filter << "\"" << endl;
 
   // Honour the attributes to return
   char **attrs = 0;
@@ -444,10 +445,9 @@ static QCString breakIntoLines( const QCString& str )
   return result;
 }
 
-QString SearchRequest::asLDIF()
+QCString SearchRequest::asLDIF()
 {
-  QString         result;
-  QTextOStream    os(&result);
+  QCString         result;
   BerElement     *entry;
   char           *name;
   struct berval **bvals;
@@ -457,7 +457,7 @@ QString SearchRequest::asLDIF()
     {
       // print the dn
       char* dn = ldap_get_dn(handle(), item);
-      os << "dn: " <<  dn << endl;
+      result += "dn: "; result += dn; result += '\n';
       //kdDebug() << "Outputting dn: \"" << dn << "\"" << endl;
       ldap_memfree( dn );
 
@@ -482,15 +482,17 @@ QString SearchRequest::asLDIF()
 		// There should be no NULLs in here
 		QByteArray tmp;
 		tmp.setRawData( val, len );
-		os << name << ": " << QCString(tmp) << endl;
+		//os << name << ": " << QCString(tmp) << endl;
+		result += name; result += ": "; result += tmp; result += '\n';
 		tmp.resetRawData( val, len );
 	      } else {		
 		QByteArray tmp;
 		tmp.setRawData( val, len );
 		QCString tmp2 = breakIntoLines( KCodecs::base64Encode( tmp, false ));
 		tmp.resetRawData( val, len );
-		os << name << ":: " << endl;
-		os << " " << tmp2 << endl;
+		//os << name << ":: " << endl;
+		//os << " " << tmp2 << endl;
+		result += name;	result += ":: \n "; result += tmp2; result += '\n';
 	      }
 	    }
 	    ldap_value_free_len(bvals);
@@ -500,7 +502,7 @@ QString SearchRequest::asLDIF()
 	}
 
       // next entry
-      os << endl;
+      result += '\n';
       item = ldap_next_entry(handle(), item);
     }
   //kdDebug() << "result=\"" << result << "\"" << endl;  
