@@ -45,24 +45,17 @@ void InfoProtocol::get( const KURL& url )
     kdDebug( 7108 ) << "InfoProtocol::get" << endl;
     kdDebug( 7108 ) << "URL: " << url.prettyURL() << " , Path :" << url.path() << endl;
 
+    if (url.path()=="/")
+    {
+       KURL newUrl("info:/dir");
+       redirection(newUrl);
+       finished();
+       return;
+    };
+
     mimeType("text/html");
     // extract the path and node from url
     decodeURL( url );
-    /*
-    if( m_page.isEmpty() )
-    {
-	//error( 1, "Syntax error in URL" );
-	
-	QByteArray array = errorMessage();
-	
-	data( array );
-	finished();
-
-	return;
-    }
-    */
-    if ( m_page.isEmpty() )
-      m_page = "dir";
 
     QString cmds("%1 %2 %3 %4 \"%5\" \"%6\"");
     QCString cmd = cmds.arg(m_perl).arg(m_infoScript).arg(locate("data", "kio_info/kde-info2html.conf")).arg(KGlobal::dirs()->findResourceDir("icon", "hicolor/22x22/actions/up.png")).arg(m_page).arg(m_node).latin1();
