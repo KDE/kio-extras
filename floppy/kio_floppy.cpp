@@ -332,7 +332,7 @@ void FloppyProtocol::listDir( const KURL& _url)
       line=output.readLine();
       kdDebug(7101)<<"Floppy::listDir(): line: -"<<line<<"- length: "<<line.length()<<endl;
 
-      if (mode==0) 
+      if (mode==0)
       {
          if (line.isEmpty())
          {
@@ -509,7 +509,7 @@ StatInfo FloppyProtocol::_stat(const KURL& url)
       delete m_mtool;
       m_mtool=0;
       error(ERR_CANNOT_LAUNCH_PROCESS,"mdir"+i18n("\nEnsure that the mtools package is installed correctly on your system."));
-      return;
+      return info;
    };
 
 
@@ -603,7 +603,7 @@ int FloppyProtocol::freeSpace(const KURL& url)
       delete m_mtool;
       m_mtool=0;
       error(ERR_CANNOT_LAUNCH_PROCESS,"mdir"+i18n("\nEnsure that the mtools package is installed correctly on your system."));
-      return;
+      return -1;
    };
 
 
@@ -856,7 +856,7 @@ void FloppyProtocol::rename( const KURL &src, const KURL &dest, bool _overwrite 
    QString destPath( QFile::encodeName(dest.path()));
 
    kdDebug(7101)<<"Floppy::rename() -"<<srcPath<<"- to -"<<destPath<<"-"<<endl;
-      
+
    if ((srcPath.isEmpty()) || (srcPath=="/"))
       srcPath="/a/";
 
