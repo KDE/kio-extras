@@ -251,9 +251,11 @@ IMAP4Protocol::get (const KURL & _url)
       relayEnabled = true;
 
     cmd = sendCommand (imapCommand::clientFetch (aSequence, aSection));
+    int res;
     do
     {
-      while (!parseLoop ());
+      while (!(res = parseLoop()));
+      if (res == -1) break;
 
       mailHeader *lastone = NULL;
       imapCache *cache;
@@ -510,7 +512,7 @@ IMAP4Protocol::setHost (const QString & _host, int _port,
     if (ConnectToHost (_host.ascii (), _port))
     {
 
-      fcntl (m_iSock, F_SETFL, (fcntl (m_iSock, F_GETFL) | O_NDELAY));
+//      fcntl (m_iSock, F_SETFL, (fcntl (m_iSock, F_GETFL) | O_NDELAY));
 
 //WORK      myState = ISTATE_CONNECT;
       myHost = _host;
@@ -596,13 +598,11 @@ IMAP4Protocol::parseRelay (ulong len)
 
 bool IMAP4Protocol::parseReadLine (QByteArray & buffer, ulong relay)
 {
+  if (myHost.isEmpty()) return FALSE;
   char buf[1024];
   fd_set FDs;
   ulong readLen;
   struct timeval m_tTimeout;
-
-  FD_ZERO (&FDs);
-  FD_SET (m_iSock, &FDs);
 
   errno = 0;
   while (1)
@@ -610,42 +610,52 @@ bool IMAP4Protocol::parseReadLine (QByteArray & buffer, ulong relay)
     memset (&buf, sizeof (buf), 0);
     if ((readLen = ReadLine (buf, sizeof (buf) - 1)) == 0)
     {
-      m_tTimeout.tv_sec = 0;
-      m_tTimeout.tv_usec = 0;
-      if (select(m_iSock+1, &FDs, 0, 0, &m_tTimeout) != 0)
+      int wait_time = 120;
+kdDebug(7116) << "Vor dem Warten" << endl;
+      do {
+        FD_ZERO (&FDs);
+        FD_SET (m_iSock, &FDs);
+        m_tTimeout.tv_sec = 1;
+        m_tTimeout.tv_usec = 0;
+        wait_time--;
+      }
+      while (wait_time && select(m_iSock+1, &FDs, 0, 0, &m_tTimeout) == 0);
+kdDebug(7116) << "Nach dem Warten" << endl;
+
+      if ((readLen = ReadLine (buf, sizeof (buf) - 1)) == 0)
       {
         error (ERR_CONNECTION_BROKEN, myHost);
+        myHost = QString::null;
         return FALSE;
       }
     }
-    else
+
+kdDebug(7116) << readLen << " Bytes gelesen: " << buf << endl;
+    if (relay > 0)
     {
-      if (relay > 0)
-      {
-        QByteArray relayData;
+    QByteArray relayData;
 
-        if (readLen < relay)
-          relay = readLen;
-        relayData.setRawData (buf, relay);
-        parseRelay (relayData);
-        relayData.resetRawData (buf, relay);
-        kdDebug(7116) << "relayed : " << relay << "d" << endl;
-      }
-      // append to buffer
-      {
-        QBuffer stream (buffer);
-
-        stream.open (IO_WriteOnly);
-        stream.at (buffer.size ());
-        stream.writeBlock (buf, readLen);
-        stream.close ();
-//        kdDebug(7116) << "appended " << readLen << "d got now " << buffer.size() << endl;
-      }
-      if (buffer[buffer.size () - 1] != '\n')
-        kdDebug(7116) << "************************** Partial filled buffer" << endl;
-      else
-        break;
+      if (readLen < relay)
+        relay = readLen;
+      relayData.setRawData (buf, relay);
+      parseRelay (relayData);
+      relayData.resetRawData (buf, relay);
+      kdDebug(7116) << "relayed : " << relay << "d" << endl;
     }
+    // append to buffer
+    {
+      QBuffer stream (buffer);
+
+      stream.open (IO_WriteOnly);
+      stream.at (buffer.size ());
+      stream.writeBlock (buf, readLen);
+      stream.close ();
+//        kdDebug(7116) << "appended " << readLen << "d got now " << buffer.size() << endl;
+    }
+    if (buffer[buffer.size () - 1] != '\n')
+      kdDebug(7116) << "************************** Partial filled buffer" << endl;
+    else
+      break;
   }
   return TRUE;
 }
@@ -1168,6 +1178,8 @@ void IMAP4Protocol::closeConnection()
   if (getState() == ISTATE_NO) return;
   imapCommand *cmd = doCommand (imapCommand::clientLogout());
   completeQueue.removeRef (cmd);
+  CloseDescriptor();
+  myHost = QString::null;
 }
 
 bool IMAP4Protocol::makeLogin ()
@@ -1552,7 +1564,7 @@ mymemccpy (void *dest, const void *src, int c, size_t n)
   return NULL;
 }
 
-ssize_t
+/* ssize_t
 IMAP4Protocol::ReadLine (char *buf, ssize_t len)
 {
   ssize_t result;
@@ -1596,7 +1608,7 @@ IMAP4Protocol::ReadLine (char *buf, ssize_t len)
   if (len <= 0)
     len = 0;
   return len;
-}
+} */
 
 bool
 IMAP4Protocol::assureBox (const QString & aBox, bool readonly)

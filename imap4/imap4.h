@@ -101,7 +101,7 @@ protected:
   bool assureBox (const QString & aBox, bool readonly);
 
   // our new ReadLine supports 0x00 within data
-  ssize_t ReadLine (char *data, ssize_t len);
+//  ssize_t ReadLine (char *data, ssize_t len);
 
   enum IMAP_TYPE
   parseURL (const KURL & _url, QString & _box, QString & _section,
