@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Type=MimeType
+MimeType=media/gphoto2camera
+Name=gphoto2 camera
+Icon=camera_unmount
+
+X-KDE-AutoEmbed=true
+X-KDE-IsAlso=inode/directory
+
