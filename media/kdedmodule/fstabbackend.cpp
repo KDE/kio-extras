@@ -136,6 +136,7 @@ void FstabBackend::handleMtabChange()
 			m_mediaList.changeMediumState(id, true, mime,
 			                              icon, label);
 		}
+#if 0
 		else if ( !m_mtabIds.contains(id) )
 		{
 			QString name = generateName(dev);
@@ -153,6 +154,7 @@ void FstabBackend::handleMtabChange()
 
 			m_mediaList.addMedium(m);
 		}
+#endif
 	}
 
 	QStringList::iterator it2 = m_mtabIds.begin();
@@ -174,10 +176,12 @@ void FstabBackend::handleMtabChange()
 			m_mediaList.changeMediumState(*it2, false, mime,
 			                              icon, label);
 		}
+#if 0
 		else if ( !new_mtabIds.contains(*it2) )
 		{
 			m_mediaList.removeMedium(*it2);
 		}
+#endif
 	}
 
 	m_mtabIds = new_mtabIds;
