@@ -67,6 +67,14 @@ KCMCgi::KCMCgi(QWidget *parent, const char *name)
 
   load();
   updateButton();
+  KAboutData *about =
+    new KAboutData( I18N_NOOP("kcmcgi"),
+                    I18N_NOOP("CGI KIO Slave Control Module"),
+                    0, 0, KAboutData::License_GPL,
+                    I18N_NOOP("(c) 2002 Cornelius Schumacher") );
+
+  about->addAuthor( "Cornelius Schumacher", 0, "schumacher@kde.org" );
+  setAboutData(about);
 }
 
 KCMCgi::~KCMCgi()
@@ -140,17 +148,4 @@ QString KCMCgi::quickHelp() const
               "local CGI programs without the need to run a web server. "
               "In this control module you can configure the paths that "
               "are searched for CGI scripts.");
-}
-
-const KAboutData* KCMCgi::aboutData() const
-{
-  KAboutData *about =
-    new KAboutData( I18N_NOOP("kcmcgi"),
-                    I18N_NOOP("CGI KIO Slave Control Module"),
-                    0, 0, KAboutData::License_GPL,
-                    I18N_NOOP("(c) 2002 Cornelius Schumacher") );
-
-  about->addAuthor( "Cornelius Schumacher", 0, "schumacher@kde.org" );
-
-  return about;
 }

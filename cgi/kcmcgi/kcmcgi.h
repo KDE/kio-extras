@@ -32,8 +32,6 @@ class KCMCgi : public KCModule
     KCMCgi( QWidget *parent = 0, const char *name = 0 );
     ~KCMCgi();
 
-    virtual const KAboutData * aboutData () const;
-
     void load();
     void save();
     void defaults();
@@ -52,8 +50,6 @@ class KCMCgi : public KCModule
     QPushButton *mRemoveButton;
 
     KConfig *mConfig;
-
-    KAboutData *mAboutData;
 };
 
 #endif
