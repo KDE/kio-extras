@@ -312,16 +312,19 @@ bool POP3Protocol::pop3_open()
                 if ((metaData("tls") == "on" || (canUseTLS() &&
                   metaData("tls") != "off")) && command("STLS"))
                 {
-                   if (startTLS()) {
+                   int tlsrc = startTLS();
+                   if (tlsrc == 1) {
                       kdDebug() << "TLS mode has been enabled." << endl;
                    } else {
-                      kdDebug() << "TLS mode setup has failed.  Aborting." << endl;
-		      error( ERR_COULD_NOT_CONNECT,
+                      if (tlsrc != -3) {
+                         kdDebug() << "TLS mode setup has failed.  Aborting." << endl;
+                         error( ERR_COULD_NOT_CONNECT,
                                  i18n("Your POP3 server claims to "
                                       "support TLS but negotiation "
                                       "was unsuccessful.  You can "
                                       "disable TLS in KDE using the "
                                       "crypto settings module."));
+                      }
                       return false;
                    }
                 }
