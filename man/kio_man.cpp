@@ -39,7 +39,8 @@ bool parseUrl(const QString& _url, QString &title, QString &section)
         if (KStandardDirs::exists(url)) {
             title = url;
             return true;
-        }
+        } else
+            kdDebug(7107) << url << " does not exist" << endl;
     }
 
     while (url.at(0) == '/')
@@ -77,6 +78,8 @@ MANProtocol::~MANProtocol()
 QString MANProtocol::findPage(const QString &section, const QString &title)
 {
     checkManPaths();
+    if (title.at(0) == '/')
+        return title;
     QStringList list = KGlobal::dirs()->findAllResources("manpath", QString("man*/%1.*").arg(title));
     return list[0];
 }
@@ -116,15 +119,7 @@ void MANProtocol::get(const KURL& url )
         return;
     }
 
-    // see if an index was requested
-    if (url.query().isEmpty() && (title.isEmpty() || title == "/"))
-    {
-        if (section == "index" || section.isEmpty())
-            showMainIndex();
-        else
-            showIndex(section);
-        return;
-    }
+
 
     // tell we are getting the file
     gettingFile(url.url());
@@ -134,7 +129,7 @@ void MANProtocol::get(const KURL& url )
 
     char *buf = readManPage(filename);
     if (!buf) {
-        outputError(i18n("open of %1 failed").arg(filename));
+        outputError(i18n("open of %1 failed").arg(title));
         return;
     }
     // will call output_real
@@ -263,26 +258,26 @@ void MANProtocol::stat( const KURL& url)
 extern "C"
 {
 
-  int kdemain( int argc, char **argv )
-  {
-    KLocale::setMainCatalogue("kdelibs");
-    KInstance instance("kio_man");
+    int kdemain( int argc, char **argv ) {
 
-    kdDebug(7107) <<  "STARTING " << getpid() << endl;
+        KLocale::setMainCatalogue("kdelibs");
+        KInstance instance("kio_man");
 
-    if (argc != 4)
-      {
-	fprintf(stderr, "Usage: kio_man protocol domain-socket1 domain-socket2\n");
-	exit(-1);
-      }
+        kdDebug(7107) <<  "STARTING " << getpid() << endl;
 
-    MANProtocol slave(argv[2], argv[3]);
-    slave.dispatchLoop();
+        if (argc != 4)
+        {
+            fprintf(stderr, "Usage: kio_man protocol domain-socket1 domain-socket2\n");
+            exit(-1);
+        }
 
-    kdDebug(7107) << "Done" << endl;
+        MANProtocol slave(argv[2], argv[3]);
+        slave.dispatchLoop();
 
-    return 0;
-  }
+        kdDebug(7107) << "Done" << endl;
+
+        return 0;
+    }
 
 }
 
@@ -403,14 +398,7 @@ void MANProtocol::checkManPaths()
 
     int index = 0;
     while (manpaths[index]) {
-        kdDebug(7107) << "adding manpath " << manpaths[index] << endl;
         KGlobal::dirs()->addResourceDir("manpath", manpaths[index++]);
-    }
-
-    manPaths = KGlobal::dirs()->resourceDirs("manpath");
-    QStringList::ConstIterator page;
-    for (page = manPaths.begin(); page != manPaths.end(); ++page) {
-        kdDebug(7107) << *page << endl;
     }
 
     // add MANPATH paths
@@ -438,10 +426,16 @@ void MANProtocol::showIndex(const QString& section)
     // compose list of search paths -------------------------------------------------------------
 
     checkManPaths();
+    infoMessage(i18n("Generating Index"));
 
     // search for the man pages
-    QStringList pages = KGlobal::dirs()->findAllResources("manpath",
-                                                          QString("*man%1*/*").arg(section), true);
+    QStringList pages = KGlobal::dirs()->
+                        findAllResources("manpath",
+                                         QString("man%1/*").arg(section), true);
+
+    pages += KGlobal::dirs()->
+             findAllResources("manpath",
+                              QString("sman%1/*").arg(section), true);
 
     // print out the list
     os << "<table>" << endl;
@@ -450,9 +444,36 @@ void MANProtocol::showIndex(const QString& section)
     QStringList::ConstIterator page;
     for (page = pages.begin(); page != pages.end(); ++page)
     {
-        kdDebug(7107) << "page: " << *page << endl;
-        os << "<tr><td>" << *page;
-        os << "</td><td>" << endl;
+        QString fileName = *page;
+
+        // skip compress extension
+        if (fileName.right(4) == ".bz2")
+        {
+            fileName.truncate(fileName.length()-4);
+        }
+        else if (fileName.right(3) == ".gz")
+        {
+            fileName.truncate(fileName.length()-3);
+        }
+        else if (fileName.right(2) == ".Z")
+        {
+            fileName.truncate(fileName.length()-2);
+        }
+
+        // strip section
+        int pos = fileName.findRev('.');
+        if ((pos > 0) && (fileName.mid(pos).find(section) > 0))
+            fileName = fileName.left(pos);
+
+        pos = fileName.findRev('/');
+        if (pos > 0)
+            fileName = fileName.mid(pos+1);
+
+        if (!fileName.isEmpty()) {
+            os << "<tr><td><a href=\"man:" << *page << "\">\n"
+               << fileName << "</a></td><td>&nbsp;</td><td> "
+               << "no idea yet" << "</td></tr>"  << endl;
+        }
     }
 
     os << "</table>" << endl;
@@ -460,6 +481,7 @@ void MANProtocol::showIndex(const QString& section)
     // print footer
     os << "</body></html>" << endl;
 
+    infoMessage(QString::null);
     data(output);
     finished();
 }

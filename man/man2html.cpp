@@ -390,9 +390,9 @@ static void add_links(char *c)
 		    *e='\0';
                     QCString str;
 		    if (subsec)
-                        str.sprintf("<A HREF=\"man:/%c/%c/%s\">%s</A>", sec, tolower(subsec), h, h);
+                        str.sprintf("<A HREF=\"man:/%s(%c,%c))\">%s</A>", h, sec, tolower(subsec), h);
 		    else
-                        str.sprintf("<A HREF=\"man:/%c/%s\">%s</A>", sec, h, h);
+                        str.sprintf("<A HREF=\"man:/%s(%c)\">%s</A>", h, sec, h);
                     output_real(str.data());
 		    *e=t;
 		    c=e;
@@ -1097,7 +1097,7 @@ static char *scan_table(char *c)
 		currow->at(curfield).setContents(g);
                 FORWARDCUR;
 	    }
-            if (g) free(g);
+            delete [] g;
 
 	    if (c[-1]=='\n') {
 		currow=next_row(currow);
@@ -1147,7 +1147,7 @@ static char *scan_table(char *c)
 		    currow->at(curfield).setContents(g);
                     FORWARDCUR;
 		}
-                if (g) free(g);
+                delete [] g;
 	    }
 	    if (i) *c=itemsep;
 	    c=h;
@@ -1316,8 +1316,8 @@ static char *scan_expression(char *c, int *result)
 	if (!st1 && !st2) value=1;
 	else if (!st1 || !st2) value=0;
 	else value=(!strcmp(st1, st2));
-	if (st1) free(st1);
-	if (st2) free(st2);
+	delete [] st1;
+        delete [] st2;
 	if (tcmp) c=c+3;
 	c++;
     } else {
@@ -1722,7 +1722,7 @@ static char *scan_request(char *c)
 		    de->st=NULL;
 		    strdef=de;
 		} else {
-		    if (de->st) free(de->st);
+		    delete [] de->st;
 		    de->slen=0;
 		    de->st=NULL;
 		}
@@ -1765,7 +1765,7 @@ static char *scan_request(char *c)
 		    if (mode) {
 			char *h=NULL;
 			c=scan_troff(c, 1, &h);
-			free(de->st);
+			delete [] de->st;
 			de->slen=0;
 			de->st=h;
 		    } else
@@ -1951,7 +1951,6 @@ static char *scan_request(char *c)
 	case V('s','o'):
 	    {
 		/* FILE *f; */
-		struct stat stbuf;
 		char *buf;
 		char *name=NULL;
 		curpos=0;
@@ -2332,7 +2331,7 @@ static char *scan_request(char *c)
 		sl=fill_words(c, wordlist, &words);
 		i=V(c[0],c[1]);j=2;
 		if (words==1) {
-                    wordlist[1] = strdup("..");
+                    wordlist[1] = qstrdup("..");
                 } else {
 		    wordlist[1]--;
 		    wordlist[1][0]='.';
@@ -2852,7 +2851,7 @@ static char *scan_request(char *c)
 		    else {
 		      scan_troff(wordlist[i],1,&h);
 		    }
-		    wordlist[i] = strdup(h);
+		    wordlist[i] = qstrdup(h);
                     delete [] h;
 		}
 		for (i=words;i<20; i++) wordlist[i]=NULL;
@@ -3222,7 +3221,7 @@ void scan_man_page(const char *man_page)
 #ifdef SIMPLE_MAN2HTML
 void output_real(const char *insert)
 {
-    printf("%s", insert);
+//    printf("%s", insert);
 }
 
 char *read_man_page(const char *filename)
