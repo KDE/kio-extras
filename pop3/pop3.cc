@@ -607,15 +607,19 @@ LIST
 	array.resetRawData(buf, strlen(buf));
 	totalSize(size);
       }
-      fprintf(stderr,"Finishing up list\n");
-      data( QByteArray() );
-      speed(0); finished();
     }
+    fprintf(stderr,"Finishing up list\n");
+    data( QByteArray() );
+    speed(0); finished();
   }
 
   else if (cmd == "headers") {
     (void)path.toInt(&ok);
-    if (!ok) return; //  We fscking need a number!
+    if (!ok) 
+    {
+       error( ERR_INTERNAL, i18n("Unexpected response from POP3 server."));
+       return; //  We fscking need a number!
+    }
     path.prepend("TOP ");
     path.append(" 0");
     if (command(path)) { // This should be checked, and a more hackish way of
@@ -654,13 +658,17 @@ LIST
       }
       fprintf(stderr,"Finishing up\n");
       data( QByteArray() );
-      speed(0); finished();
+      speed(0);finished();
     }
   }
 
   else if (cmd == "remove") {
     (void)path.toInt(&ok);
-    if (!ok) return; //  We fscking need a number!
+    if (!ok) 
+    {
+       error( ERR_INTERNAL, i18n("Unexpected response from POP3 server."));
+       return; //  We fscking need a number!
+    }
     path.prepend("DELE ");
     command(path);
     finished();
@@ -672,8 +680,11 @@ LIST
     unsigned int msg_len=0;
     (void)path.toInt(&ok);
     QString list_cmd("LIST ");
-    if (!ok)
-      return; //  We fscking need a number!
+    if (!ok) 
+    {
+       error( ERR_INTERNAL, i18n("Unexpected response from POP3 server."));
+       return; //  We fscking need a number!
+    }
     list_cmd+= path;
     path.prepend("RETR ");
     memset(buf, 0, sizeof(buf));
@@ -683,16 +694,21 @@ LIST
       if (!list_cmd.find(" ")) {
 	kdDebug(7105) << "List command needs a space? " << list_cmd << endl;
         pop3_close();
+        error( ERR_INTERNAL, i18n("Unexpected response from POP3 server."));
         return;
       }
       list_cmd.remove(0, list_cmd.find(" ")+1);
       msg_len = list_cmd.toUInt(&ok);
       if (!ok) {
 	kdDebug(7105) << "LIST command needs to return a number? :" << list_cmd << ":" << endl;
-	pop3_close();return;
+	pop3_close();
+        error( ERR_INTERNAL, i18n("Unexpected response from POP3 server."));
+	return;
       }
     } else {
-      pop3_close(); return;
+      pop3_close(); 
+      error( ERR_INTERNAL, i18n("Unexpected response from POP3 server."));
+      return;
     }
     if (command(path)) {
       //ready();
@@ -726,6 +742,7 @@ LIST
     } else {
       fprintf(stderr, "Couldn't login. Bad RETR Sorry\n");
       pop3_close();
+      error( ERR_INTERNAL, i18n("Couldn't login."));
       return;
     }
   }
@@ -754,7 +771,9 @@ LIST
       data(QByteArray());
       speed(0); finished();
     } else {
-      pop3_close(); return;
+      pop3_close(); 
+      error( ERR_INTERNAL, i18n("Unexpected response from POP3 server."));
+      return;
     }
   }
 
