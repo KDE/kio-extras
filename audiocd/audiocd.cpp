@@ -1048,7 +1048,8 @@ static char mp3buffer[mp3buffer_size];
 
 #ifdef HAVE_LAME
       if ( filetype == "mp3" ) {
-         int mp3bytes = lame_encode_buffer_interleaved(d->gf,buf,CD_FRAMESAMPLES,mp3buffer,(int)mp3buffer_size);
+         int mp3bytes =
+           lame_encode_buffer_interleaved(d->gf,buf,CD_FRAMESAMPLES,(unsigned char *)mp3buffer,(int)mp3buffer_size);
 
          if (mp3bytes < 0 ) {
             kdDebug(7101) << "lame encoding failed" << endl;
@@ -1130,7 +1131,7 @@ static char mp3buffer[mp3buffer_size];
   }
 #ifdef HAVE_LAME
   if (filetype == "mp3") {
-     int mp3bytes = lame_encode_finish(d->gf,mp3buffer,(int)mp3buffer_size);
+     int mp3bytes = lame_encode_finish(d->gf,(unsigned char *)mp3buffer,(int)mp3buffer_size);
 
      if (mp3bytes < 0 ) {
        kdDebug(7101) << "lame encoding failed" << endl;
