@@ -1,0 +1,11 @@
+lots of stuff:
+
+-uid, gid, permissions for creation, symlink checking and creation, error checking
+-cache handling: how long should file handles be cached ?
+	should the stat'ed structures be cached ? no, IMHO
+-honour the overwrite and resume flags
+-do I have to destroy the clnt_tcp_creat()ed CLIENT ?
+-the encodeFileName()-stuff
+-yet more stuff
+
+Alex
