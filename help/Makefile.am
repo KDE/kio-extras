@@ -15,12 +15,14 @@ noinst_HEADERS = kio_help.h
 kdelnk_DATA = help.protocol
 kdelnkdir = $(kde_servicesdir)
 
-bin_PROGRAMS = meinproc saxon
+bin_PROGRAMS = meinproc saxon 
 meinproc_LDADD = $(LIB_KDECORE) libxslt/libxslt.la
 meinproc_SOURCES = meinproc.cpp xslt.cpp
 
 saxon_LDADD = $(LIB_KDECORE) libxslt/libxslt.la
 saxon_SOURCES = saxon.cpp xslt.cpp 
+
+bin_SCRIPTS = xmlizer
 
 METASOURCES = AUTO
 

@@ -208,7 +208,7 @@ void HelpProtocol::get( const KURL& url )
         target.setHTMLRef(url.htmlRef());
 
     QString file = target.path();
-    if (!KStandardDirs::exists(file))
+    if (!KStandardDirs::exists(file) || file.right(4) == "html")
         file = file.left(file.findRev('/')) + "/index.docbook";
     else {
         kdDebug() << "emitFile redirection " << url.url().latin1() << endl;

@@ -34,7 +34,27 @@ QString transform( const QString &pat )
 	else
 	    xmlIndentTreeOutput = 0;
 
-	xmlDocPtr doc = xmlParseFile(pat.latin1());
+        QFile xmlFile( pat );
+        xmlFile.open(IO_ReadOnly);
+        QCString contents;
+        contents.assign(xmlFile.readAll());
+        xmlFile.close();
+        QString tmp;
+        if (contents.left(5) != "<?xml") {
+            FILE *p = popen(QString::fromLatin1("xmlizer %1").arg(pat).latin1(), "r");
+            xmlFile.open(IO_ReadOnly, p);
+            char buffer[5001];
+            contents.truncate(0);
+            int len;
+            while ((len = xmlFile.readBlock(buffer, 5000)) != 0) {
+                buffer[len] = 0;
+                contents += buffer;
+            }
+            xmlFile.close();
+            pclose(p);
+        }
+
+	xmlDocPtr doc = xmlParseMemory(contents.data(), contents.length());
 	if (doc == NULL) {
             return parsed;
 	}
