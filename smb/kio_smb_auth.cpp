@@ -80,10 +80,58 @@ void SMBSlave::auth_smbc_get_data(const char *server,const char *share,
     auth.m_server    = server;
     auth.m_share     = share;
 
-    bool copyinfo = false;
-    if( cache_get_AuthInfo(auth) == false)
+
+    if( setAuthInfo(auth) )
     {
-        user_prompt = username;
+        kdDebug(KIO_SMB) << "auth_smbc_get_data auth.m_workgroup="<<auth.m_workgroup<<", auth.m_domain="<<auth.m_domain<<", auth.m_username="<<auth.m_username<< endl;
+        // Hand the data back to libsmbclient if it's been cached
+        // looks like a bug in libsmbclient, so only 64 byte will be set
+        // it crashes with wgmaxlen
+        memset(workgroup,0, 64 );
+        memset(username,0,unmaxlen);
+        memset(password,0,pwmaxlen);
+        // looks like a bug in libsmbclient, so only 64 byte will be set
+        // it crashes with wgmaxlen
+        if (auth.m_domain.isEmpty())
+          strncpy(workgroup,auth.m_workgroup,64-1);
+        else
+          strncpy(workgroup,auth.m_domain,64-1);
+        strncpy(username,auth.m_username,unmaxlen - 1);
+        strncpy(password,auth.m_passwd,pwmaxlen - 1);
+    }
+}
+
+//--------------------------------------------------------------------------
+bool SMBSlave::setAuthInfo(SMBAuthInfo &auth) {
+    bool infocached = cache_get_AuthInfo(auth);
+    if (!m_current_url.getUser().isEmpty()) {
+      QString domain = m_current_url.getUserDomain();
+      QString user =  m_current_url.getUser();
+      kdDebug(KIO_SMB) << "setAuthInfo auth.m_workgroup="<<auth.m_workgroup<<", auth.m_username="<<auth.m_username<<", auth.m_domain ="<<auth.m_domain  << endl;
+      kdDebug(KIO_SMB) << "setAuthInfo domain="<<domain<<", user="<<user  << endl;
+
+
+
+      // user chached before ? and password is empty let the old password
+      if ( auth.m_username ==  user.local8Bit()
+            && (auth.m_domain == domain.local8Bit())
+            && m_current_url.getPassword().isEmpty()) {
+           cache_set_AuthInfo(auth, true);
+           return true;
+      }
+      auth.m_domain = domain.local8Bit();
+      auth.m_username = user.local8Bit();
+      auth.m_passwd = m_current_url.getPassword().local8Bit();
+      cache_set_AuthInfo(auth, true);
+
+      infocached=true;
+    }
+    // user without password in kurl or
+    // no user in kurl and info not chached
+    if ( ((!m_current_url.getUser().isEmpty()) && (m_current_url.getPassword().isEmpty())) ||
+        (!infocached) ) {
+        QString user_prompt = auth.m_username;
+        QString passwd_prompt = auth.m_passwd;
 
         QString msg( "Please enter Authentication information for:\n" );
         msg.append( "Workgroup = " + auth.m_workgroup + "\n" );
@@ -92,30 +140,20 @@ void SMBSlave::auth_smbc_get_data(const char *server,const char *share,
 
         if(openPassDlg(msg, user_prompt, passwd_prompt))
         {
-            auth.m_username = user_prompt.local8Bit();
+            m_current_url.setUser(user_prompt);
+            auth.m_username = m_current_url.getUser().local8Bit();
             auth.m_passwd = passwd_prompt.local8Bit();
             cache_set_AuthInfo(auth, true);
-
-            // Hand the data back to libsmbclient if the user didn't cancel
-            copyinfo = true;
+            return true;
         }
-    }
-    else
-    {
-        copyinfo = true;
+        else
+            return false;
     }
 
-    if( copyinfo )
-    {
-        // Hand the data back to libsmbclient if it's been cached
-        memset(workgroup,0,wgmaxlen);
-        memset(username,0,unmaxlen);
-        memset(password,0,pwmaxlen);
-        strncpy(workgroup,auth.m_workgroup,wgmaxlen - 1);
-        strncpy(username,auth.m_username,unmaxlen - 1);
-        strncpy(password,auth.m_passwd,pwmaxlen - 1);
-    }
+    return infocached;
 }
+
+
 
 //--------------------------------------------------------------------------
 int SMBSlave::auth_initialize_smbc()
