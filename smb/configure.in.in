@@ -5,7 +5,10 @@ KDE_CHECK_LIB(smbclient, smbc_init, ,[SMB_SUBDIR=""] )
 AM_CONDITIONAL(include_kioslave_smb, test -n "$SMB_SUBDIR")
 
    AC_CHECK_FUNC(yp_get_default_domain)
+   SMBCLIENT_EXTRA_LIBS=""
    if test $ac_cv_func_yp_get_default_domain = no; then
-     AC_CHECK_LIB(nsl, yp_get_default_domain, X_EXTRA_LIBS="$X_EXTRA_LIBS -lnsl")
+     KDE_CHECK_LIB(nsl, yp_get_default_domain, SMBCLIENT_EXTRA_LIBS="-lnsl",, )
    fi
+
+   AC_SUBST(SMBCLIENT_EXTRA_LIBS)
 

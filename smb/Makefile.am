@@ -26,7 +26,7 @@ kio_smb_la_SOURCES = kio_smb.cpp \
              kio_smb_file.cpp \
              kio_smb_internal.cpp
 
-kio_smb_la_LIBADD = -lkio -lsmbclient
+kio_smb_la_LIBADD = -lkio -lsmbclient $(SMBCLIENT_EXTRA_LIBS)
 
 kio_smb_la_LDFLAGS = -module -avoid-version -no-undefined
 
