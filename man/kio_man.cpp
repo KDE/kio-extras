@@ -244,17 +244,22 @@ QStringList MANProtocol::findPages(const QString &_section,
 
     QStringList list;
 
+    // kdDebug() << "findPages '" << section << "' '" << title << "'\n";
     if (title.at(0) == '/') {
        list.append(title);
        return list;
     }
 
+    QString star( "*" );
+
     //
     // Find man sections in this directory
     //
     QStringList sect_list;
+    if ( section.isEmpty() )
+        section = star;
 
-    if ( !section.isEmpty() && section != QString("*") )
+    if ( section != star )
     {
         //
         // Section given as argument
@@ -264,8 +269,9 @@ QStringList MANProtocol::findPages(const QString &_section,
             section.truncate(section.length() - 1);
             sect_list += section;
         }
-    } else
-        return list;
+    } else {
+        sect_list += section;
+    }
 
     QStringList man_dirs = manDirectories();
 
@@ -309,21 +315,24 @@ QStringList MANProtocol::findPages(const QString &_section,
 
                 // Only add sect if not already contained, avoid duplicates
                 if (!sect_list.contains(sect) && _section.isEmpty())  {
+                    kdDebug() << "another section " << sect << endl;
                     sect_list += sect;
                 }
             }
 
             ::closedir( dp );
 
-            QString dir = man_dir + QString("/man") + (*it_sect) + '/';
-            QString sdir = man_dir + QString("/sman") + (*it_sect) + '/';
+            if ( *it_sect != star ) { // in that case we only look around for sections
+                QString dir = man_dir + QString("/man") + (*it_sect) + '/';
+                QString sdir = man_dir + QString("/sman") + (*it_sect) + '/';
 
-            findManPagesInSection(dir, title, full_path, list);
-            findManPagesInSection(sdir, title, full_path, list);
+                findManPagesInSection(dir, title, full_path, list);
+                findManPagesInSection(sdir, title, full_path, list);
+            }
         }
     }
 
-    kdDebug() << "finished " << list << endl;
+//    kdDebug() << "finished " << list << " " << sect_list << endl;
 
     return list;
 }
