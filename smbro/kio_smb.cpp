@@ -206,6 +206,10 @@ bool SmbProtocol::stopAfterError(const KURL& url, bool notSureWhetherErrorOccure
    {
       error( KIO::ERR_COULD_NOT_CONNECT, m_currentHost+i18n("\nThere is probably no SMB service running on this host."));
    }
+   else if (outputString.contains("smbclient not found"))
+   {
+      error( KIO::ERR_CANNOT_LAUNCH_PROCESS, "smbclient"+i18n("\nMake sure that the samba package is installed properly on your system."));
+   }
    //host not found
    else if ((outputString.contains("Connection to")) && (outputString.contains("failed")))
    {
@@ -382,7 +386,7 @@ void SmbProtocol::listShares()
       args<<QCString("-W")+m_workgroup.latin1();
    if (!proc->start("smbclient",args))
    {
-      error( KIO::ERR_COULD_NOT_STAT, m_currentHost+i18n("\nMake sure that smbclient is installed properly on your system."));
+      error( KIO::ERR_CANNOT_LAUNCH_PROCESS, "smbclient"+i18n("\nMake sure that the samba package is installed properly on your system."));
       //delete proc;
       return;
    };
@@ -410,7 +414,7 @@ void SmbProtocol::listShares()
             tmpArgs<<QCString("-W")+m_workgroup.latin1();
          if (!proc->start("smbclient",tmpArgs))
          {
-            error( KIO::ERR_COULD_NOT_STAT, m_currentHost+i18n("\nMake sure that smbclient is installed properly on your system."));
+            error( KIO::ERR_CANNOT_LAUNCH_PROCESS, "smbclient"+i18n("\nMake sure that the samba package is installed properly on your system."));
             delete proc;
             return;
          };
@@ -532,6 +536,13 @@ void SmbProtocol::listDir( const KURL& _url)
    kdDebug(7101)<<"Smb::listDir() "<<_url.path()<<endl;
    QString path( QFile::encodeName(_url.path()));
 
+   if (m_currentHost.isEmpty())
+   {
+      error(ERR_UNKNOWN_HOST,i18n("To access the shares of a host, use smb://hostname\n\
+To get a list of all hosts use lan:/ or rlan:/ .\n\
+See the KDE Control Center under Network, LANBrowsing for more information."));
+      return;
+   };
    if (path.isEmpty())
    {
       KURL url(_url);
@@ -843,6 +854,15 @@ StatInfo SmbProtocol::_stat(const KURL& url)
 void SmbProtocol::stat( const KURL & url)
 {
    kdDebug(7101)<<"Smb::stat(): -"<<url.path().latin1()<<"-"<<endl;
+
+   if (m_currentHost.isEmpty())
+   {
+      kdDebug(7101)<<"Smb::stat(): host.isEmpty()"<<endl;
+      error(ERR_UNKNOWN_HOST,i18n("\nTo access the shares of a host, use smb://hostname\n\
+To get a list of all hosts use lan:/ or rlan:/ ."));//\n
+//See the KDE Control Center under Network, LANBrowsing for more information."));
+      return;
+   };
    StatInfo info=this->_stat(url);
    if (!info.isValid)
       return;
@@ -1123,7 +1143,7 @@ ClientProcess* SmbProtocol::getProcess(const QString& host, const QString& share
    //kdDebug(7101)<<"Smb::getProcess: started process: "<<proc->start("smbclient",args)<<endl;
    if (!proc->start("smbclient",args))
    {
-      error( KIO::ERR_COULD_NOT_STAT, m_currentHost+i18n("\nMake sure that smbclient is installed properly on your system."));
+      error( KIO::ERR_CANNOT_LAUNCH_PROCESS, "smbclient"+i18n("\nMake sure that the samba package is installed properly on your system."));
       return 0;
    };
    QString password(m_password);
@@ -1152,7 +1172,7 @@ ClientProcess* SmbProtocol::getProcess(const QString& host, const QString& share
             tmpArgs<<QCString("-U")+user.latin1();
          if (!proc->start("smbclient",tmpArgs))
          {
-            error( KIO::ERR_COULD_NOT_STAT, m_currentHost+i18n("\nMake sure that smbclient is installed properly on your system."));
+            error( KIO::ERR_CANNOT_LAUNCH_PROCESS, "smbclient"+i18n("\nMake sure that the samba package is installed properly on your system."));
             delete proc;
             return 0;
          };
