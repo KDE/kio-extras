@@ -45,8 +45,8 @@
 #include <kmdcodec.h>
 #include <kurl.h>
 
-#include <kio/ksasl/saslmodule.h>
-#include <kio/ksasl/saslcontext.h>
+#include <kio/sasl/saslmodule.h>
+#include <kio/sasl/saslcontext.h>
 
 imapParser::imapParser ():
 uidCache (17, false)
