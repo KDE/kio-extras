@@ -337,7 +337,7 @@ void NNTPProtocol::slotGet(const char *_url)
 // news://user:pass@domain/index       LIST      List newsgroups
 // news://user:pass@domain/group/name     GROUP NAME      change to NAME
 // news://user:pass@domain/remove/#1   DELE #1   Mark a message for deletion
-// news://user:pass@domain/download/#1 RETR #1   Get message header and body
+// news://user:pass@domain/get/MSGID RETR MSGID   Get message header and body
 // news://user:pass@domain/list/#1     LIST #1   Get size of a message
 // news://user:pass@domain/uid/#1      UIDL #1   Get UID of a message
 // news://user:pass@domain/commit      QUIT      Delete marked messages
@@ -442,6 +442,41 @@ void NNTPProtocol::slotGet(const char *_url)
 		data (".", 1);
 	else
 		data(buf, strlen(buf));
+      }
+      fprintf(stderr,"Finishing up\n");fflush(stderr);
+      dataEnd();
+      speed(0); finished();
+    }
+  }
+
+else if (cmd == "get") {
+    //(void)path.toInt(&ok);
+    //if (!ok) return; //  We fscking need a number!
+    path.prepend("ARTICLE ");
+    //path.append(" 0");
+    if (command(path)) { // This should be checked, and a more hackish way of
+                         // getting at the headers by d/l the whole message
+                         // and stopping at the first blank line used if the
+                         // TOP cmd isn't supported
+      ready();
+      gettingFile(_url);
+      mimeType("text/plain");
+      memset(buf, 0, sizeof(buf));
+      while (!feof(fp)) {
+	memset(buf, 0, sizeof(buf));
+	if (!fgets(buf, sizeof(buf)-1, fp))
+	  break;  // Error??
+	// HACK: This assumes fread stops at the first \n and not \r
+	buf[strlen(buf)-2]='\0';
+	if (strcmp(buf, ".")==0)  break; // End of data.
+	else 
+	if (strcmp(buf, "..")==0)
+		data (".", 1);
+	else	
+		{
+		fprintf(stderr,"%s\n",buf);
+		data(buf, strlen(buf));
+		}
       }
       fprintf(stderr,"Finishing up\n");fflush(stderr);
       dataEnd();
@@ -581,12 +616,8 @@ else if (cmd == "group") {
 // New message get command starts here
 else {
   cmd.prepend("GROUP ");   
- 
-command(cmd);  
- 
-(void)path.toInt(&ok);
-   // if (!ok) return; //  We fscking need a number!
-    path.prepend("ARTICLE ");
+  command(cmd);  
+   path.prepend("ARTICLE ");
     if (command(path)) { // This should be checked, and a more hackish way of
                          // getting at the headers by d/l the whole message
                          // and stopping at the first blank line used if the
