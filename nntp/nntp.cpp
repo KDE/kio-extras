@@ -226,7 +226,7 @@ void NNTPProtocol::stat( const KURL& url ) {
   DBG << "stat " << url.prettyURL() << endl;
   UDSEntry entry;
   QString path = QDir::cleanDirPath(url.path());
-  QRegExp regGroup = QRegExp("^\\/?[a-z\\.\\-_]+\\/?$",false);
+  QRegExp regGroup = QRegExp("^\\/?[a-z0-9\\.\\-_]+\\/?$",false);
   QRegExp regMsgId = QRegExp("^\\/?[a-z0-9\\.\\-_]+\\/<\\S+>$", false);
   int pos;
   QString group;
@@ -376,7 +376,7 @@ bool NNTPProtocol::fetchGroup(QString& group) {
   }
 
   if (first.toLong() == 0L)
-    return false;
+    return true;
 
   UDSEntry entry;
   UDSEntryList entryList;
@@ -480,7 +480,7 @@ void NNTPProtocol::fillUDSEntry(UDSEntry& entry, const QString& name, int size,
   if (is_article) {
     atom.m_uds = UDS_MIME_TYPE;
     atom.m_long= 0;
-    atom.m_str = "text/plain";
+    atom.m_str = "message/news";
     entry.append(atom);
   }
 }
