@@ -80,6 +80,10 @@ using namespace KIO;
 
 #define MAX_IPC_SIZE (1024*32)
 
+#define DEFAULT_CD_DEVICE "/dev/cdrom"
+
+#define DEFAULT_CDDB_SERVER "freedb.freedb.org:8880"
+
 extern "C"
 {
   int kdemain(int argc, char ** argv);
@@ -203,11 +207,6 @@ class AudioCDProtocol::Private
 
     void clear()
     {
-      path = QString::null;
-      paranoiaLevel = 2;
-      useCDDB = true;
-      cddbServer = "freedb.freedb.org";
-      cddbPort = 888;
       which_dir = Unknown;
       req_track = -1;
     }
@@ -301,8 +300,12 @@ AudioCDProtocol::initRequest(const KURL & url)
 
 #endif
 
+	// first get the parameters from the Kontrol Center Module
   getParameters();
+
+	// then these parameters can be overruled by args in the URL
   parseArgs(url);
+
 
 #ifdef HAVE_VORBIS
 
@@ -320,11 +323,12 @@ AudioCDProtocol::initRequest(const KURL & url)
 
   if (0 != cdda_open(drive))
   {
-    error(KIO::ERR_DOES_NOT_EXIST, url.path());
+    error(KIO::ERR_CANNOT_OPEN_FOR_READING, url.path());
     return 0;
   }
 
   updateCD(drive);
+
   d->fname = url.filename(false);
   QString dname = url.directory(true, false);
   if (!dname.isEmpty() && dname[0] == '/')
@@ -862,8 +866,8 @@ AudioCDProtocol::pickDrive()
 
     if (0 == drive)
     {
-      if (QFile("/dev/cdrom").exists())
-        drive = cdda_identify("/dev/cdrom", CDDA_MESSAGE_PRINTIT, 0);
+      if (QFile(DEFAULT_CD_DEVICE).exists())
+        drive = cdda_identify(DEFAULT_CD_DEVICE, CDDA_MESSAGE_PRINTIT, 0);
     }
   }
 
@@ -938,6 +942,7 @@ AudioCDProtocol::parseArgs(const KURL & url)
     d->discid = 0;
 
   kdDebug(7101) << "CDDB: use_cddb = " << d->useCDDB << endl;
+
 }
 
   void
@@ -1165,6 +1170,35 @@ void AudioCDProtocol::getParameters() {
   KConfig *config;
   config = new KConfig("kcmaudiocdrc");
 
+  config->setGroup("CDDA");
+
+  if (!config->readBoolEntry("autosearch",true)) {
+     d->path = config->readEntry("device",DEFAULT_CD_DEVICE);
+   }
+
+  d->paranoiaLevel = 1; // enable paranoia error correction, but allow skipping
+
+  if (config->readBoolEntry("disable_paranoia",false)) {
+    d->paranoiaLevel = 0; // disable all paranoia error correction
+  }
+
+  if (config->readBoolEntry("never_skip",true)) {
+    d->paranoiaLevel = 2;  // never skip on errors of the medium, should be default for high quality
+  }
+
+  config->setGroup("CDDB");
+
+  d->useCDDB = config->readBoolEntry("enable_cddb",true);
+
+  QString cddbserver = config->readEntry("cddb_server",DEFAULT_CDDB_SERVER);
+  int portPos = cddbserver.find(':');
+  if (-1 == portPos) {
+    d->cddbServer = cddbserver;
+  } else {
+    d->cddbServer = cddbserver.left(portPos);
+    d->cddbPort = cddbserver.mid(portPos + 1).toInt();
+  }
+
 #ifdef HAVE_LAME
 
   config->setGroup("MP3");
@@ -1210,12 +1244,10 @@ void AudioCDProtocol::getParameters() {
       d->gf->VBR_q = quality;
       
     }
-    
+
     if ( config->readBoolEntry("write_xing_tag",true) ) d->gf->bWriteVbrTag = 1;
 
   }
-
-  // d->gf->mode = config->readNumEntry("mode",0); // stereo, mono etc ... default is stereo
 
   switch (   config->readNumEntry("mode",0) ) {
 
