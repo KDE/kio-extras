@@ -253,11 +253,17 @@ void DiskList::setAllOld()
 
 void DiskList::removeOldDisks()
 {
-   for( u_int i=0; i<disks->count(); i++ )
+   DiskEntry *item = disks->first(); 
+   while (item)
    {
-      DiskEntry *item = disks->at(i);
       if(item->old())
-	  	 disks->remove(i);
+      {
+  	 disks->remove(item);
+	 item = disks->current();
+      }
+      else
+	 item = disks->next();
+      
    }
 }
 
