@@ -1819,3 +1819,4 @@ imapParser::hasCapability (const QString & cap)
   }
   return false;
 }
+

@@ -126,7 +126,6 @@ protected:
 
   char readBuffer[IMAP_BUFFER];
   int readSize;
-  bool mUseTLS;
 };
 
 #endif

@@ -74,6 +74,7 @@ public:
   static imapCommand *clientStore (const QString & set, const QString & item,
                                    const QString & data, bool nouid = false);
   static imapCommand *clientLogout ();
+  static imapCommand *clientStartTLS ();
 protected:
     QString aCommand;
   QString mId;

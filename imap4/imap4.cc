@@ -535,7 +535,33 @@ IMAP4Protocol::setHost (const QString & _host, int _port,
         kdDebug(7116) << "'" << (*it) << "'" << endl;
       }
 
+#if 0
+// This code doesn't seem to work and I can't figure out why.
       completeQueue.removeRef (cmd);
+      if (canUseTLS() && hasCapability(QString("STARTTLS"))) {
+          imapCommand *cmd = doCommand (imapCommand::clientStartTLS());
+          if (cmd->result () == "OK") {
+             completeQueue.removeRef(cmd);
+             if (startTLS()) {
+                kdDebug() << "TLS mode has been enabled." << endl;
+                imapCommand *cmd2 = doCommand (new imapCommand ("CAPABILITY", ""));
+                for (QStringList::Iterator it = imapCapabilities.begin ();
+                                          it != imapCapabilities.end (); ++it) {
+                       kdDebug(7116) << "'" << (*it) << "'" << endl;
+                }
+                completeQueue.removeRef (cmd2);
+             } else {
+                kdDebug() << "TLS mode setup has failed.  Aborting." << endl;
+                myHost = QString::null;
+                myUser = QString::null;
+                myPass = QString::null;
+                myAuth = QString::null;
+                error (ERR_ABORTED, myAuth);
+                closeConnection();
+             }
+          } else completeQueue.removeRef(cmd);
+      }
+#endif
     }
     else
     {

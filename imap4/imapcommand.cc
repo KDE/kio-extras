@@ -270,3 +270,12 @@ imapCommand::clientLogout ()
 {
   return new imapCommand ("LOGOUT", "");
 }
+
+imapCommand *
+imapCommand::clientStartTLS ()
+{
+  return new imapCommand ("STARTTLS", "");
+}
+
+
+
