@@ -1,20 +1,15 @@
 [Desktop Entry]
 Encoding=UTF-8
 Type=Service
-Name=PostScript, PDF & DVI Files
+Name=PostScript, PDF and DVI Files
 Name[be]=PostScript, PDF і DVI файлы
-Name[bg]=Postscript, PDF & DVI Файлове
-Name[bs]=Postscript, PDF & DVI datoteke
-Name[da]=PostScript, PDF & DVI filer
-Name[de]=PostScript, PDF & DVI Dateien
-Name[eu]=Postscript, PDF eta DVI Fitxategiak
-Name[fa]=پرونده‌های PostScript, PDF & DVI
+Name[da]=PostScript, PDF & DVI-filer
+Name[es]=PostScript, PDF & archivos DVI
+Name[eu]=PostScript, PDF & DVI Fitzategiak
 Name[hu]=PostScript, PDF és DVI fájlok
-Name[lo]=ແຟ້ມໂຟສະຄິບແລະ PDF &
-Name[pt_BR]=Arquivos PostScript & DVI
-Name[sk]=Súbory PostScript, PDF & DVI
+Name[pt_BR]=Arquivos PostScript, PDF &  DVI
+Name[sl]=Datoteke Postscript, PDF in DVI
 Name[sv]=Postscript-, PDF- och DVI-filer
-Name[zh_CN]=PostScript、PDF 和 DVI 文件
 ServiceTypes=ThumbCreator
 MimeTypes=application/x-dvi,application/postscript,application/pdf,image/x-eps
 X-KDE-Library=gsthumbnail
