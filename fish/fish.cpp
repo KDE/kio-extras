@@ -202,7 +202,7 @@ const struct fishProtocol::fish_info fishProtocol::fishInfo[] = {
       ("chgrp %1 %2"),
       0 },
     { ("READ"), 3,
-      ("echo '### 100';cat %3 | ( [ \"`expr %1 / 4096`\" -gt 0 ] && dd bs=4096 count=`expr %1 / 4096` >/dev/null;"
+      ("echo '### 100';cat %3 /dev/zero | ( [ \"`expr %1 / 4096`\" -gt 0 ] && dd bs=4096 count=`expr %1 / 4096` >/dev/null;"
               "[ \"`expr %1 % 4096`\" -gt 0 ] && dd bs=`expr %1 % 4096` count=1 >/dev/null;"
               "dd bs=%2 count=1; ) 2>/dev/null;"),
       0 },
