@@ -85,10 +85,10 @@ extern "C"
 
 #define MAX_XFER_BUF_SIZE           16348
 #define TEXT_UNKNOWN_ERROR          i18n("Unknown error condition")
-#define TEXT_SMBC_INIT_FAILED       i18n("libsmbclient filed to intialize")
-#define TEXT_OUT_OF_MEMORY          i18n("Out of Memory")
+#define TEXT_SMBC_INIT_FAILED       i18n("libsmbclient failed to initialize")
+#define TEXT_OUT_OF_MEMORY          i18n("Out of memory")
 #define TEXT_AUTHENTICATION_PROMPT  i18n("Enter workgroup/domain authentication information")
-#define TEXT_NOSRV_WG               i18n("Server or Workgroup could not be found")
+#define TEXT_NOSRV_WG               i18n("Server or workgroup could not be found")
 #define KIO_SMB                     7106
 
 
