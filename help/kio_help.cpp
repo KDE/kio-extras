@@ -236,7 +236,7 @@ void HelpProtocol::emitFile( const KURL& url )
     }
 
     QString filedata = splitOut(parsed, index);
-    data(QCString(filedata.utf8().data()));
+    data(filedata.local8Bit());
 }
 
 void HelpProtocol::mimetype( const KURL &)

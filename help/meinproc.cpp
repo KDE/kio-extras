@@ -68,7 +68,8 @@ main(int argc, char **argv) {
         QString filedata = splitOut(output, index);
         QFile file(filename);
         file.open(IO_WriteOnly);
-        file.writeBlock(filedata.latin1(), filedata.length());
+	QCString data = filedata.local8Bit();
+        file.writeBlock(data.data(), data.length());
         file.close();
 
         index += 8;
