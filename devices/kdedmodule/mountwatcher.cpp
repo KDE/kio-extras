@@ -66,6 +66,7 @@ MountWatcherModule::MountWatcherModule(const QCString &obj)
 	mDiskList.readFSTAB();
 	mDiskList.readMNTTAB();
 	readDFDone();
+	addSpecialDevice("printsettings", i18n("Printer Settings"),"print:/","print/printer",true);
 }
 
 MountWatcherModule::~MountWatcherModule()
