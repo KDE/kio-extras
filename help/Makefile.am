@@ -15,9 +15,12 @@ noinst_HEADERS = kio_help.h
 kdelnk_DATA = help.protocol
 kdelnkdir = $(kde_servicesdir)
 
-bin_PROGRAMS = meinproc saxon checkXML
+bin_PROGRAMS = meinproc saxon checkXML xml2man
 meinproc_LDADD = xslt_pure.o libxslt/libxslt.la $(LIB_KDECORE)
 meinproc_SOURCES = meinproc.cpp
+
+xml2man_LDADD = xslt_pure.o libxslt/libxslt.la $(LIB_KDECORE)
+xml2man_SOURCES = xml2man.cpp
 
 xslt_pure.o: xslt.cpp
 	-rm -f xslt_pure.cpp

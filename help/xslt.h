@@ -4,6 +4,7 @@
 #include <libxml/parser.h>
 
 QString transform(const QString &file, const QString& stylesheet);
+QString transform(xmlParserCtxtPtr ctxt, const QString &tss);
 xmlParserInputPtr meinExternalEntityLoader(const char *URL, const char *ID,
 					   xmlParserCtxtPtr ctxt);
 QString splitOut(const QString &parsed, int index);

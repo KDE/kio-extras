@@ -33,78 +33,86 @@ void closeQString(void * context) {
 
 QString transform( const QString &pat, const QString& tss)
 {
+    INFO(i18n("Reading document"));
+    QFile xmlFile( pat );
+    xmlFile.open(IO_ReadOnly);
+    QCString contents;
+    contents.assign(xmlFile.readAll());
+    contents.truncate(xmlFile.size());
+    xmlFile.close();
+    QString tmp;
+    if (contents.left(5) != "<?xml") {
+        fprintf(stderr, "xmlizer\n");
+        INFO(i18n("XMLize document"));
+        FILE *p = popen(QString::fromLatin1("xmlizer %1").arg(pat).latin1(), "r");
+        xmlFile.open(IO_ReadOnly, p);
+        char buffer[5001];
+        contents.truncate(0);
+        int len;
+        while ((len = xmlFile.readBlock(buffer, 5000)) != 0) {
+            buffer[len] = 0;
+            contents += buffer;
+        }
+        xmlFile.close();
+        pclose(p);
+    }
+
+    INFO(i18n("Parsing document"));
+    xmlParserCtxtPtr ctxt = xmlCreateMemoryParserCtxt(contents.data(),
+                                                      contents.length());
+    int directory = pat.findRev('/');
+    if (directory != -1)
+        ctxt->directory = (char *)xmlStrdup((const xmlChar *)pat.
+                                            left(directory + 1).latin1());
+
+    return transform( ctxt, tss );
+}
+
+QString transform(xmlParserCtxtPtr ctxt, const QString &tss)
+{
+    QString parsed;
+
     INFO(i18n("Parsing stylesheet"));
 
     xsltStylesheetPtr style_sheet =
         xsltParseStylesheetFile((const xmlChar *)tss.latin1());
 
-    QString parsed;
-
-    if (style_sheet != NULL) {
-        if (style_sheet->indent == 1)
-	    xmlIndentTreeOutput = 1;
-	else
-	    xmlIndentTreeOutput = 0;
-
-        INFO(i18n("Reading document"));
-        QFile xmlFile( pat );
-        xmlFile.open(IO_ReadOnly);
-        QCString contents;
-        contents.assign(xmlFile.readAll());
-        contents.truncate(xmlFile.size());
-        xmlFile.close();
-        QString tmp;
-        if (contents.left(5) != "<?xml") {
-            fprintf(stderr, "xmlizer\n");
-            INFO(i18n("XMLize document"));
-            FILE *p = popen(QString::fromLatin1("xmlizer %1").arg(pat).latin1(), "r");
-            xmlFile.open(IO_ReadOnly, p);
-            char buffer[5001];
-            contents.truncate(0);
-            int len;
-            while ((len = xmlFile.readBlock(buffer, 5000)) != 0) {
-                buffer[len] = 0;
-                contents += buffer;
-            }
-            xmlFile.close();
-            pclose(p);
-        }
-
-        INFO(i18n("Parsing document"));
-        xmlParserCtxtPtr ctxt = xmlCreateMemoryParserCtxt(contents.data(),
-                                                          contents.length());
-        int directory = pat.findRev('/');
-        if (directory != -1)
-            ctxt->directory = (char *)xmlStrdup((const xmlChar *)pat.left(directory + 1).latin1());
-        xmlParseDocument(ctxt);
-        xmlDocPtr doc;
-        if (ctxt->wellFormed)
-            doc = ctxt->myDoc;
-        else {
-            xmlFreeDoc(ctxt->myDoc);
-            xmlFreeParserCtxt(ctxt);
-            return parsed;
-        }
-        xmlFreeParserCtxt(ctxt);
-
- 	// the params can be used to customize it more flexible
-	const char *params[16 + 1];
-	params[0] = NULL;
-        INFO(i18n("Applying stylesheet"));
-	xmlDocPtr res = xsltApplyStylesheet(style_sheet, doc, params);
-	xmlFreeDoc(doc);
-	if (res != NULL) {
-            xmlOutputBufferPtr outp = xmlOutputBufferCreateIO(writeToQString, closeQString, &parsed, 0);
-            outp->written = 0;
-            INFO(i18n("Writing document"));
-            xsltSaveResultTo ( outp, res, style_sheet );
-            xmlOutputBufferFlush(outp);
-            xmlFreeDoc(res);
-        }
-        xsltFreeStylesheet(style_sheet);
-    } else {
-        kdDebug() << "couldn't parse style sheet " << tss << endl;
+    if ( !style_sheet ) {
+        return parsed;
     }
+
+    if (style_sheet->indent == 1)
+        xmlIndentTreeOutput = 1;
+    else
+        xmlIndentTreeOutput = 0;
+
+
+    xmlParseDocument(ctxt);
+    xmlDocPtr doc;
+    if (ctxt->wellFormed)
+        doc = ctxt->myDoc;
+    else {
+        xmlFreeDoc(ctxt->myDoc);
+        xmlFreeParserCtxt(ctxt);
+        return parsed;
+    }
+    xmlFreeParserCtxt(ctxt);
+
+    // the params can be used to customize it more flexible
+    const char *params[16 + 1];
+    params[0] = NULL;
+    INFO(i18n("Applying stylesheet"));
+    xmlDocPtr res = xsltApplyStylesheet(style_sheet, doc, params);
+    xmlFreeDoc(doc);
+    if (res != NULL) {
+        xmlOutputBufferPtr outp = xmlOutputBufferCreateIO(writeToQString, closeQString, &parsed, 0);
+        outp->written = 0;
+        INFO(i18n("Writing document"));
+        xsltSaveResultTo ( outp, res, style_sheet );
+        xmlOutputBufferFlush(outp);
+        xmlFreeDoc(res);
+    }
+    xsltFreeStylesheet(style_sheet);
 
     return parsed;
 }
