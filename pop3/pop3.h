@@ -44,7 +44,7 @@ public:
     * getSize command will emit a signal, which would be harder
     * to trap when doing something like listing a directory.
     */
-  long realGetSize(unsigned int msg_num);
+  size_t realGetSize(unsigned int msg_num);
 
   /**
     *  Send a command to the server, and wait for the one-line-status

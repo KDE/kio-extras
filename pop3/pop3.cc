@@ -2,6 +2,7 @@
 
 #include <sys/types.h>
 #include <sys/socket.h>
+#include <sys/stat.h>
 #include <sys/time.h>
 
 #include <netinet/in.h>
@@ -128,8 +129,6 @@ bool POP3Protocol::command (const char *cmd, char *recv_buf, unsigned int len)
  *   argument may be up to 40 characters long.
  */
 
-  fprintf(stderr,"Cmd called with:%s:\n", cmd);
-
   // Write the command
   if (::write(m_iSock, cmd, strlen(cmd)) != (ssize_t)strlen(cmd))
     return false;
@@ -239,23 +238,21 @@ bool POP3Protocol::pop3_open( KURL &_url )
   }
 }
 
-long POP3Protocol::realGetSize(unsigned int msg_num)
+size_t POP3Protocol::realGetSize(unsigned int msg_num)
 {
   char buf[512];
   QCString cmd;
-  long ret=0;
+  size_t ret=0;
   memset(buf, 0, 512);
-  cmd.sprintf("LIST %d", msg_num);
-  fprintf(stderr,"LIST cmd is:%s:\n", cmd.data());
+  cmd.sprintf("LIST %u", msg_num);
   if (!command(cmd.data(), buf, 512))
     return 0;
   else {
-    fprintf(stderr,"LIST buf is :%s:\n", buf);
     cmd=buf;
     cmd.remove(0, cmd.find(" "));
     ret=cmd.toLong();
   }
-  fprintf(stderr,"Attempting to return for %d\n", msg_num);
+  fprintf(stderr,"Attempting to return for %u\n", msg_num);
   return ret;
 }
 
@@ -528,19 +525,28 @@ void POP3Protocol::slotListDir (const char *_url)
 	}
 	UDSEntry entry;
 	UDSAtom atom;
+	QString fname;
 	for (int i=0; i < num_messages; i++) {
-	  QString fname="Message %1";
+	  fname="Message %1";
 
 	  atom.m_uds = UDS_NAME;
+	  atom.m_long = 0;
 	  atom.m_str = fname.arg(i+1);
-	  entry.push_back( atom );
+	  entry.push_back(atom);
+
+	  atom.m_uds = UDS_FILE_TYPE;
+	  atom.m_str = "";
+	  atom.m_long = S_IFREG;
+	  entry.push_back(atom);
 
 	  atom.m_uds = UDS_SIZE;
+	  atom.m_str = "";
 	  atom.m_long = realGetSize(i+1);
 	  fprintf(stderr,"Real size is %ld\n", atom.m_long);
 	  entry.push_back(atom);
-	  
+
 	  listEntry(entry);
+	  entry.clear();
 	}
 	finished();
 }
