@@ -111,6 +111,7 @@ KSshProcess::~KSshProcess(){
 void KSshProcess::init() {
     mVersion = -1;
     mConnected = false;
+    mRunning = false;
 }
 
 bool KSshProcess::setSshPath(QString pathToSsh) {
@@ -340,10 +341,23 @@ int KSshProcess::error(QString& msg) {
 }
 
 void KSshProcess::kill(int signal) {
-    // expects the signal to kill the process. we should change this later
-    ::kill(ssh.pid(), signal);
-    ::waitpid(ssh.pid(), NULL, 0);
-    mConnected = false;
+    kdDebug(KSSHPROC) << "KSshProcess::kill(): ssh pid is " << ssh.pid() << endl;
+    kdDebug(KSSHPROC) << "KSshPRocess::kill(): we are " << (mConnected ? "" : "not ") <<
+        "connected" << endl;
+    kdDebug(KSSHPROC) << "KSshProcess::kill(): we are " << (mRunning ? "" : "not ") <<
+        "running a ssh process" << endl;
+
+    if( mRunning && ssh.pid() > 1 ) {  // make sure there is a running ssh process
+        if( ::kill(ssh.pid(), signal) == 0 ) {
+            ::waitpid(ssh.pid(), NULL, 0);
+            mConnected = false;
+            mRunning = false;
+        }
+        else
+            kdDebug(KSSHPROC) << "KSshProcess::kill(): kill failed" << endl;
+    }
+    else
+        kdDebug(KSSHPROC) << "KSshProcess::kill(): Refusing to kill ssh process" << endl;
 }
 
 bool KSshProcess::connect(bool acceptHostKey) {
@@ -366,7 +380,9 @@ bool KSshProcess::connect(bool acceptHostKey) {
         mError = ERR_CANNOT_LAUNCH;
         return false;
     }
-
+    
+    mRunning = true;
+    
     int ptyfd = ssh.fd();
     int errfd = ssh.stderrFd();
     int stdiofd = ssh.stdioFd();
@@ -488,6 +504,7 @@ bool KSshProcess::connect(bool acceptHostKey) {
             else if( errLine.contains(authSuccessMsg[mVersion]) ) {
                 // Authentication has succeeded!
                 kdDebug(KSSHPROC) << "KSshProcess::connect(): Authentication succeeded." << endl;
+                mConnected = true;
                 return true;
             }
             else {

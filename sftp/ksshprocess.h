@@ -258,6 +258,7 @@ private:
     QString mUsername;
     QString mHost;
     bool mConnected;
+    bool mRunning;
     int mPort;
     int mError;
     QString mErrorMsg;
