@@ -38,7 +38,7 @@ using namespace KIO;
 
 extern "C" {
     int kdemain(int, char **argv) {
-        KInstance instance("mac");
+        KInstance instance("kio_mac");
         MacProtocol slave(argv[2], argv[3]);
         slave.dispatchLoop();
         return 0;
@@ -93,7 +93,7 @@ void MacProtocol::get(const KURL& url) {
     if (modepos != -1) {
         mode += query.mid(modepos + 5, 1);
         if (mode != "-r" && mode != "-b" && mode != "-m" && mode != "-t" && mode != "-a") {
-            error(ERR_MALFORMED_URL, "Unknown mode");
+            error(ERR_MALFORMED_URL, i18n("Unknown mode"));
         }
     } else if (textpos != -1) {
         mode += "t";

@@ -18,3 +18,6 @@ kdelnkdir = $(kde_servicesdir)
 
 METASOURCES = AUTO
 KDE_ICON = AUTO
+
+messages:
+	$(XGETTEXT) *.cpp -o $(podir)/kio_mac.pot
