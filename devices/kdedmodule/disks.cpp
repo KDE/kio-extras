@@ -223,6 +223,7 @@ QString DiskEntry::niceDescription()
 	else if (dType.contains("cdrom")) return i18n("CDRom");
 	else if (dType.contains("cdwriter")) return i18n("CDRecorder");
 	else if (dType.contains("floppy")) return i18n("Floppy");
+	else if (dType.contains("zip")) return i18n("Zip Disk");
 	else return i18n("Unknown");
 }
 

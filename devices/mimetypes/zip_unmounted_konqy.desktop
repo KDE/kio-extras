@@ -1,0 +1,14 @@
+[Desktop Entry]
+ServiceTypes=kdedevice/zip_unmounted
+Actions=zip_mount
+
+[Desktop Action zip_mount]
+Name=Mount
+Name[af]=mount
+Name[da]=Montér
+Name[he]=חבר
+Name[hr]=Montiraj
+Name[pt_BR]=Montar
+Name[sv]=Montera
+Name[tr]=Bağla
+Exec=kio_devices_mounthelper -m %u

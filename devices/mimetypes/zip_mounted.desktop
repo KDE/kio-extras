@@ -1,0 +1,9 @@
+[Desktop Entry]
+Encoding=UTF-8
+Icon=zip_mount
+Type=MimeType
+MimeType=kdedevice/zip_mounted
+Comment=Mounted Zip Disk
+Patterns=
+
+X-KDE-AutoEmbed=true

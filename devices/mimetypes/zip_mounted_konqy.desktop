@@ -1,0 +1,14 @@
+[Desktop Entry]
+ServiceTypes=kdedevice/zip_mounted
+Actions=zip_unmount
+
+[Desktop Action zip_unmount]
+Name=Unmount
+Name[af]=ontkoppel
+Name[da]=Afmontér
+Name[he]=נתק
+Name[hr]=Demontiraj
+Name[pt_BR]=Desmontar
+Name[sv]=Avmontera
+Name[tr]=Ayır
+Exec=kio_devices_mounthelper -u %u
