@@ -3,7 +3,7 @@ Encoding=UTF-8
 Icon=hdd_mount
 Type=MimeType
 MimeType=media/hdd_mounted
-Comment=Mounted Hard Disc Volume
+Comment=Mounted Hard Disk Volume
 Patterns=
 
 X-KDE-AutoEmbed=true

@@ -3,7 +3,7 @@ Encoding=UTF-8
 Icon=hdd_unmount
 Type=MimeType
 MimeType=media/hdd_unmounted
-Comment=Unmounted Hard Disc Volume
+Comment=Unmounted Hard Disk Volume
 Patterns=
 
 X-KDE-AutoEmbed=true
