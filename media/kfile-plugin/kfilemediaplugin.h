@@ -23,6 +23,8 @@
 #include <kfilemetainfo.h>
 #include <kurl.h>
 
+#include "medium.h"
+
 class KFileMediaPlugin : public KFilePlugin
 {
 Q_OBJECT
@@ -34,7 +36,7 @@ public:
 
 private:
 	void addMimeType(const char *mimeType);
-	QString askMountPoint(KFileMetaInfo &info);
+	const Medium askMedium(KFileMetaInfo &info);
 
 	unsigned long m_total;
 	unsigned long m_used;

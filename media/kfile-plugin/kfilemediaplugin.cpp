@@ -30,8 +30,6 @@
 #include <qapplication.h>
 #include <qeventloop.h>
 
-#include "medium.h"
-
 typedef KGenericFactory<KFileMediaPlugin> KFileMediaPluginFactory;
 K_EXPORT_COMPONENT_FACTORY(kfile_media, KFileMediaPluginFactory("kfile_media"))
 
@@ -39,71 +37,109 @@ KFileMediaPlugin::KFileMediaPlugin(QObject *parent, const char *name,
 		                     const QStringList& args)
 	: KFilePlugin(parent, name, args)
 {
-	addMimeType( "media/cdrom_mounted" );
-	addMimeType( "media/cdwriter_mounted" );
-	addMimeType( "media/dvd_mounted" );
-	addMimeType( "media/floppy5_mounted" );
-	addMimeType( "media/floppy_mounted" );
+	addMimeType( "media/audiocd" );
 	addMimeType( "media/hdd_mounted" );
+	addMimeType( "media/blankcd" );
+	addMimeType( "media/hdd_unmounted" );
+	addMimeType( "media/blankdvd" );
+	addMimeType( "media/cdrom_mounted" );
+	addMimeType( "media/cdrom_unmounted" );
+	addMimeType( "media/cdwriter_mounted" );
+	addMimeType( "media/nfs_mounted" );
+	addMimeType( "media/cdwriter_unmounted" );
+	addMimeType( "media/nfs_unmounted" );
 	addMimeType( "media/removable_mounted" );
+	addMimeType( "media/dvd_mounted" );
+	addMimeType( "media/removable_unmounted" );
+	addMimeType( "media/dvd_unmounted" );
+	addMimeType( "media/smb_mounted" );
+	addMimeType( "media/dvdvideo" );
+	addMimeType( "media/smb_unmounted" );
+	addMimeType( "media/floppy5_mounted" );
+	addMimeType( "media/svcd" );
+	addMimeType( "media/floppy5_unmounted" );
+	addMimeType( "media/vcd" );
+	addMimeType( "media/floppy_mounted" );
 	addMimeType( "media/zip_mounted" );
+	addMimeType( "media/floppy_unmounted" );
+	addMimeType( "media/zip_unmounted" );
+	addMimeType( "media/gphoto2camera" );
 }
 
 bool KFileMediaPlugin::readInfo(KFileMetaInfo &info, uint /*what*/)
 {
-	QString mount_point = askMountPoint(info);
+	const Medium medium = askMedium(info);
 
-	KDiskFreeSp *df = new KDiskFreeSp();
-
-	m_total = 0;
-	m_used = 0;
-	m_free = 0;
-	connect(df, SIGNAL( done() ), this, SLOT( slotDfDone() ));
-	connect(df, SIGNAL( foundMountPoint(const QString &,
-	                                    unsigned long,
-	                                    unsigned long,
-	                                    unsigned long) ),
-	        this, SLOT( slotFoundMountPoint(const QString &,
-	                                        unsigned long,
-	                                        unsigned long,
-	                                        unsigned long)) );
-
-	df->readDF(mount_point);
-
-	qApp->eventLoop()->enterLoop();
-
-	int percent = 0;
-	int length = 0;
-
-	if (m_total != 0)
-	{
-		percent = 100 * m_used / m_total;
-		length = 150 * m_used / m_total;
-	}
+	if (medium.id().isNull()) return false;
+	
+	QString mount_point = medium.mountPoint();
+	KURL base_url = medium.prettyBaseURL();
+	QString device_node = medium.deviceNode();
 
 	KFileMetaInfoGroup group = appendGroup(info, "mediumInfo");
 
-	appendItem(group, "free", (long long unsigned)m_free);
-	appendItem(group, "used", (long long unsigned)m_used);
-	appendItem(group, "total", (long long unsigned)m_total);
+	if (base_url.isValid())
+	{
+		appendItem(group, "baseURL", base_url.prettyURL());
+	}
 
-	group = appendGroup(info, "mediumSummary");
+	if (!device_node.isEmpty())
+	{
+		appendItem(group, "deviceNode", device_node);
+	}
 
-	appendItem(group, "percent", QString("%1\%").arg(percent));
+	if (!mount_point.isEmpty() && medium.isMounted())
+	{	
+		KDiskFreeSp *df = new KDiskFreeSp();
+		
+		m_total = 0;
+		m_used = 0;
+		m_free = 0;
+		connect(df, SIGNAL( done() ), this, SLOT( slotDfDone() ));
+		connect(df, SIGNAL( foundMountPoint(const QString &,
+		                                    unsigned long,
+		                                    unsigned long,
+		                                    unsigned long) ),
+		        this, SLOT( slotFoundMountPoint(const QString &,
+		                                        unsigned long,
+		                                        unsigned long,
+		                                        unsigned long)) );
 
-	QPixmap bar(150, 20);
-	QPainter p(&bar);
+		df->readDF(mount_point);
 
-	p.fillRect(0, 0, length, 20, Qt::red);
-	p.fillRect(length, 0, 150-length, 20, Qt::green);
+		qApp->eventLoop()->enterLoop();
 
-	QColorGroup cg = QApplication::palette().active();
+		int percent = 0;
+		int length = 0;
 
-	QApplication::style().drawPrimitive(QStyle::PE_Panel, &p,
-	                                    QRect(0, 0, 150, 20), cg,
-	                                    QStyle::Style_Sunken);
+		if (m_total != 0)
+		{
+			percent = 100 * m_used / m_total;
+			length = 150 * m_used / m_total;
+		}
 
-	appendItem( group, "thumbnail", bar );
+		appendItem(group, "free", (long long unsigned)m_free);
+		appendItem(group, "used", (long long unsigned)m_used);
+		appendItem(group, "total", (long long unsigned)m_total);
+
+		group = appendGroup(info, "mediumSummary");
+
+		appendItem(group, "percent", QString("%1\%").arg(percent));
+
+		QPixmap bar(150, 20);
+		QPainter p(&bar);
+
+		p.fillRect(0, 0, length, 20, Qt::red);
+		p.fillRect(length, 0, 150-length, 20, Qt::green);
+
+		QColorGroup cg = QApplication::palette().active();
+
+		QApplication::style().drawPrimitive(QStyle::PE_Panel, &p,
+		                                    QRect(0, 0, 150, 20), cg,
+		                                    QStyle::Style_Sunken);
+
+		appendItem( group, "thumbnail", bar );
+	}
 
 	return true;
 }
@@ -122,17 +158,17 @@ void KFileMediaPlugin::slotDfDone()
 	qApp->eventLoop()->exitLoop();
 }
 
-QString KFileMediaPlugin::askMountPoint(KFileMetaInfo &info)
+const Medium KFileMediaPlugin::askMedium(KFileMetaInfo &info)
 {
 	DCOPRef mediamanager("kded", "mediamanager");
 	DCOPReply reply = mediamanager.call( "properties", info.url().fileName() );
 
 	if ( !reply.isValid() )
 	{
-		return QString::null;
+		return Medium(QString::null, QString::null);
 	}
 
-	return Medium::create(reply).mountPoint();
+	return Medium::create(reply);
 }
 
 void KFileMediaPlugin::addMimeType(const char *mimeType)
@@ -152,6 +188,9 @@ void KFileMediaPlugin::addMimeType(const char *mimeType)
 	item = addItemInfo(group, "total", i18n("Total"), QVariant::Int);
 	setUnit(item, KFileMimeTypeInfo::KiloBytes);
 
+	item = addItemInfo(group, "baseURL", i18n("Base URL"), QVariant::String);
+	item = addItemInfo(group, "mountPoint", i18n("Mount Point"), QVariant::String);
+	item = addItemInfo(group, "deviceNode", i18n("Device Node"), QVariant::String);
 
 	group = addGroupInfo(info, "mediumSummary", i18n("Medium Summary"));
 
