@@ -30,6 +30,87 @@
 
 #include <iostream.h>
 
+#include <qapplication.h>
+#include <qlineedit.h>
+#include <qlabel.h>
+#include <qlayout.h>
+#include <qdialog.h>
+#include <qaccel.h>
+
+#include <klocale.h>
+
+// used to create a dialog
+QApplication *QtApp;
+
+// class adapted from passworddialog
+class CallbackDialog : public QDialog
+{
+protected:
+    QLineEdit *theLineEdit;
+
+public:
+	CallbackDialog( const char *text, bool echo=false, QWidget* parent=0, const char* name=0, bool modal=true, WFlags f=0 );
+	const char *answer(); // the user answer
+};
+
+CallbackDialog::CallbackDialog( const char *text, bool echo, QWidget* parent, const char* name, bool modal, WFlags f )
+   : QDialog(parent, name, modal, f)
+{
+	QVBoxLayout *vLay = new QVBoxLayout(this, 10 /* border */, 5);
+
+	QLabel *l = new QLabel(text, this);
+	
+	l->adjustSize();
+	l->setMinimumSize(l->size());
+	vLay->addWidget(l);
+
+	// The horizontal layout for label + lineedit
+//	QHBoxLayout *hLay = new QHBoxLayout(5);
+	
+	
+	theLineEdit = new QLineEdit( this );
+	if (!echo) theLineEdit->setEchoMode( QLineEdit::Password );
+	theLineEdit->adjustSize();
+	theLineEdit->setFixedHeight(theLineEdit->height());
+//	hLay->addWidget(theLineEdit,10);
+	vLay->addWidget(theLineEdit,10);
+//	vLay->addLayout(hLay);
+
+	QAccel *ac = new QAccel(this);
+	ac->connectItem( ac->insertItem(Key_Escape), this, SLOT(reject()) );
+	connect( theLineEdit, SIGNAL(returnPressed()), SLOT(accept()) );
+}
+
+const char *CallbackDialog::answer() // the user answer
+{
+	if ( theLineEdit )
+		return theLineEdit->text();
+	else
+		return 0;
+}
+
+
+// used by the lib to get info
+// should display its argument and return an answer allocated with new.
+char *getPasswordCallBack(const char * c)
+{
+	if (!c) return 0;
+	QString s("");
+	if (!strcmp(c,"User")) s+=i18n("User");
+	else if (!strcmp(c,"Password")) s+=i18n("Password");
+	else if (!strncmp(c,"Password for service ",21)) {
+		s+=i18n("Password for service ");
+		s+=(c+21);
+	}
+	CallbackDialog d(s, false);
+	d.show();
+	char *rep=d.answer();
+	char *ret=new char[strlen(rep)+1];
+	strcpy(ret,rep);
+	return ret;
+}
+
+
 // simple wrapper for KURL::decode
 QString decode( const char *url );
 
@@ -43,6 +124,8 @@ int main( int argc, char **argv )
 	signal(SIGSEGV,sig_handler2);
 
 	debug( "kio_smb : Starting");
+	
+	QtApp = new QApplication( argc, argv );
 
 	Connection parent( 0, 1 );
 
@@ -79,7 +162,6 @@ void sig_handler( int )
   }
 }
 
-char *getPasswordCallBack(const char * c) {return NULL;}
 
 SmbProtocol::SmbProtocol( Connection *_conn ) : IOProtocol( _conn )
 {
@@ -88,8 +170,6 @@ SmbProtocol::SmbProtocol( Connection *_conn ) : IOProtocol( _conn )
 
 SmbProtocol::~SmbProtocol()
 {
-//	if (smbio) delete smbio;
-//	smbio=NULL;
 	debug( "kio_destructor : end" );
 }
 
@@ -545,6 +625,7 @@ void SmbProtocol::doCopy( list<string>& _source, const char *_dest )
 				error( ERR_COULD_NOT_READ, fit->absSource );
 				return;
 			}
+			if (count==0) break;
 			job.data( buffer, count );
 			processed_size += count;
 
@@ -569,7 +650,7 @@ void SmbProtocol::doCopy( list<string>& _source, const char *_dest )
 				return;
 			}
 
-		} while (count==bufSize);
+		} while (count>0);
 
 
 		job.dataEnd();
@@ -657,6 +738,7 @@ void SmbProtocol::slotGet( const char *_url )
 			error( ERR_COULD_NOT_READ, url.c_str() );
 			return;
 		}
+		if (count==0) break;
 		data( buffer, count );
 		processed_size += count;
 
@@ -667,7 +749,7 @@ void SmbProtocol::slotGet( const char *_url )
 			t_last = t;
 		}
 
-	} while (count==bufSize);
+	} while (count>0);
 	debug( "kio_smb : Get, checkpoint 4" );
 
 	dataEnd();
