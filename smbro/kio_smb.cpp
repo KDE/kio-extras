@@ -38,6 +38,8 @@
 #include <time.h>
 #include <stdio.h>
 #include <errno.h>
+#include <fcntl.h>
+
 
 #include <netdb.h>
 #include <sys/socket.h>
@@ -956,6 +958,36 @@ void SmbProtocol::get( const KURL& url )
          if (memchr(m_stdoutBuffer,'\n',m_stdoutSize)!=0)
             loopFinished=true;
    } while (!loopFinished);
+   clearBuffer();
+
+   int fifoFD=open(fifoName,O_RDONLY|O_NONBLOCK);
+   if (fifoFD==-1)
+   {
+      //we failed (we might have no read access to the remote file)
+      perror("SmbProtocol::get() open() failed");
+      error(ERR_CANNOT_OPEN_FOR_READING,url.path()+i18n("\nCould not create required pipe %1 .").arg(fifoName));
+      remove(fifoName);
+      return;
+
+   };
+
+   //now we have it, now we can make it blocking again
+   int flags=fcntl(fifoFD,F_GETFL,0);
+   if (flags<0)
+   {
+      //hmm, shouldn't happen
+      error(ERR_CANNOT_OPEN_FOR_READING,url.path()+i18n("\nCould not fcntl() pipe %1 .").arg(fifoName));
+      remove(fifoName);
+      return;
+   };
+   flags&=~O_NONBLOCK;
+   if (fcntl(fifoFD,F_SETFL,flags)<0)
+   {
+      //hmm, shouldn't happen
+      error(ERR_CANNOT_OPEN_FOR_READING,url.path()+i18n("\nCould not fcntl() pipe %1 .").arg(fifoName));
+      remove(fifoName);
+      return;
+   };
 
    //now read from the fifo
    //this might evetually block :-(
@@ -963,7 +995,7 @@ void SmbProtocol::get( const KURL& url )
    //we entered "get some_file /tmp/the_fifo" into smbclient
    //the fifo /tmp/the_fifo exists and the remote some_file exists too,
    //we checked this with the _stat() call, so why should it not work ?
-   FILE * fifo=fopen(fifoName,"r");
+/*   FILE * fifo=fopen(fifoName,"r");
    if (fifo==0)
    {
       //hmm, how should we get here ?
@@ -971,7 +1003,7 @@ void SmbProtocol::get( const KURL& url )
       return;
    };
 
-   int fifoFD=fileno(fifo);
+   int fifoFD=fileno(fifo);*/
    char buf[32*1024];
    time_t t_start = time( 0L );
    time_t t_last = t_start;
@@ -990,7 +1022,7 @@ void SmbProtocol::get( const KURL& url )
       {
          //this should not happen !
          stopAfterError(url,false);
-         fclose(fifo);
+         close(fifoFD);
          remove(fifoName);
          return;
          /*loopFinished=true;
@@ -1032,7 +1064,7 @@ void SmbProtocol::get( const KURL& url )
          loopFinished=true;
    } while(!loopFinished);
 
-   fclose(fifo);
+   close(fifoFD);
 
    clearBuffer();
    bool stdoutEvent;
