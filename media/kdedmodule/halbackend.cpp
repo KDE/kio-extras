@@ -43,6 +43,7 @@ HALBackend::HALBackend(MediaList &list, QObject* parent)
 	: QObject()
 	, BackendBase(list)
 	, m_halContext(NULL)
+	, m_halStoragePolicy(NULL)
 	, m_parent(parent)
 {
 	s_HALBackend = this;
