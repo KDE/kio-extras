@@ -15,7 +15,14 @@ class InfoProtocol : public KIO::SlaveBase
     virtual void get( const QString& path, const QString& query, bool reload );
     virtual void mimetype( const QString& path );
 
+ protected:
+
+    void decodePath( QString path );
+
  private:
+
+    QString   m_page;
+    QString   m_node;
 
     KProcess *m_pProc;
     QString   m_infoScript;
