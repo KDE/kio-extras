@@ -1,3 +1,22 @@
+
+/***************************************************************************
+                          kio_finger.cpp  -  description
+                             -------------------
+    begin                : Sun Aug 12 2000
+    copyright            : (C) 2000 by Andreas Schlapbach
+    email                : schlpbch@iam.unibe.ch
+ ***************************************************************************/
+
+/***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/stat.h>
@@ -61,10 +80,6 @@ FingerProtocol::FingerProtocol(const QCString &pool_socket, const QCString &app_
 FingerProtocol::~FingerProtocol()
 {
   kdDebug() << "FingerProtocol::~FingerProtocol()" << endl;
-  delete myPerlPath;
-  delete myHTMLHeader;
-  delete myHTMLTail;
-  delete myURL;
   delete myStdStream;
 }
 
@@ -80,14 +95,14 @@ void FingerProtocol::get(const KURL& url )
 
   kdDebug() << "kio_finger: "<< myURL->prettyURL() << endl;
 
-  //Reset the stream
+  // Reset the stream
   *myStdStream="";
 
   // Emit the header
   data(QCString(*myHTMLHeader));
   
   myKProcess = new KShellProcess();  
-  *myKProcess << *myPerlPath << *myFingerScript  << myURL->host() << myURL->user();
+  *myKProcess << *myPerlPath << *myFingerScript << *myFingerPath << myURL->host() << myURL->user();
   	
   connect(myKProcess, SIGNAL(receivedStdout(KProcess *, char *, int)), 
 	  this, SLOT(slotGetStdOutput(KProcess *, char *, int)));
@@ -103,6 +118,10 @@ void FingerProtocol::get(const KURL& url )
   finished();  
 
   //clean up
+  delete myPerlPath;
+  delete myFingerPath;
+  delete myHTMLHeader;
+  delete myHTMLTail;
   delete myKProcess;
   delete myURL;
 }
@@ -143,59 +162,74 @@ void FingerProtocol::getProgramPath()
 {
   //kdDebug() << "kfingerMainWindow::getProgramPath()" << endl;
   myPerlPath = new QString();
-  
-#warning Currently relies on /usr/bin/finger. Will be removed later. - schlpbch -
+
+  // Not to sure wether I'm using the right error number here. - schlpbch -  
+
   *myPerlPath = QString(KGlobal::dirs()->findExe("perl"));
   if (myPerlPath->isEmpty())
     {
+      this->error(ERR_CANNOT_LAUNCH_PROCESS, i18n("Perl command not found"));
       kdDebug() << "Perl command not found" << endl; 	
-      //myRawFingerMode=true;
+      exit(-1);
     } else {
-      kdDebug() << "Perl command found" << endl; 
+      kdDebug() << "Perl command found:" << *myPerlPath << endl; 
+    }
+
+  *myFingerPath = QString(KGlobal::dirs()->findExe("finger"));
+  if (myFingerPath->isEmpty())
+    {
+      this->error(ERR_CANNOT_LAUNCH_PROCESS, i18n("finger command not found"));
+      kdDebug() << "Finger command not found" << endl; 	
+      exit(-1);
+    } else {
+      kdDebug() << "Finger command found:" << *myFingerPath << endl; 
     }
   
   myFingerScript = new QString(locate("data","kfinger/kio_finger/finger.pl"));
   if (myFingerScript->isEmpty())
     {
-      kdDebug() << "Default finger script not found" << endl;    
-      //myRawFingerMode=true;
+      this->error(ERR_CANNOT_LAUNCH_PROCESS, i18n("Default finger script not found"));
+      kdDebug() << "Default finger script not found" << endl; 
+      exit(-1);
     } else {
-      kdDebug() << "Default finger script found" << endl;  
+      kdDebug() << "Default finger script found: " << *myFingerScript << endl;  
     }
   
   QFile headFile(locate("data","kfinger/kio_finger/fingerHead"));
   myHTMLHeader = new QString();
   if( !headFile.open( IO_ReadOnly ) ) 
     {
-    kdDebug() << "Couldn't read file:" << headFile.name() << endl;
-    *myHTMLHeader="<HTML><BODY><PRE>";
+      this->warning(i18n("Couldn't read file: ") + headFile.name());
+      kdDebug() << "Couldn't read file: " << headFile.name() << endl;
+      *myHTMLHeader="<HTML><BODY><PRE>";
     }
   else 
     {
-    QTextStream headStream(&headFile);
-    while( !headStream.eof() ) {
-      myHTMLHeader->append(headStream.readLine());
+      QTextStream headStream(&headFile);
+      while( !headStream.eof() ) {
+	myHTMLHeader->append(headStream.readLine());
+      }
+      headFile.close();
+      kdDebug() << "Read file:" << headFile.name() << endl;
     }
-    headFile.close();
-    kdDebug() << "Read file:" << headFile.name() << endl;
-  }
-
+  
   QFile tailFile(locate("data","kfinger/kio_finger/fingerTail"));
   myHTMLTail = new QString() ;
   if( !tailFile.open( IO_ReadOnly ) ) 
     {
-    kdDebug() << "Couldn't read file:" << tailFile.name() <<  endl;
-    *myHTMLTail = "</PRE></BODY></HTML>";
+      this->warning(i18n("Couldn't read file: ") + tailFile.name());   
+      kdDebug() << "Couldn't read file: " << tailFile.name() <<  endl;
+      *myHTMLTail = "</PRE></BODY></HTML>";
     }
   else
     {
-    QTextStream tailStream(&tailFile);
-    while( !tailStream.eof() ) {
-      myHTMLTail->append(tailStream.readLine());
+      QTextStream tailStream(&tailFile);
+      while( !tailStream.eof() ) {
+	myHTMLTail->append(tailStream.readLine());
+      }
+      tailFile.close();
+      kdDebug() << "Read file:" << tailFile.name() << endl;
     }
-    tailFile.close();
-    kdDebug() << "Read file:" << tailFile.name() << endl;
-  }
 }
 
 /* --------------------------------------------------------------------------- */

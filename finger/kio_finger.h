@@ -1,3 +1,22 @@
+
+/***************************************************************************
+                          kio_finger.h  -  description
+                             -------------------
+    begin                : Sun Aug 12 2000
+    copyright            : (C) 2000 by Andreas Schlapbach
+    email                : schlpbch@iam.unibe.ch
+ ***************************************************************************/
+
+/***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
+
+
 #ifndef __kio_finger_h__
 #define __kio_finger_h__
 
@@ -27,6 +46,7 @@ private slots:
 
 private:
   QString	        *myPerlPath; 		
+  QString               *myFingerPath;
   QString               *myFingerScript; 
   QString		*myHTMLHeader;
   QString		*myHTMLTail;
