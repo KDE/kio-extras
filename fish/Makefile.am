@@ -16,10 +16,12 @@ kdelnkdir = $(kde_servicesdir)
 fish.cpp: fish.h fishcode.h
 
 fishcode.h: fish.pl
-	SUM=`md5sum -t $< | cut -d ' ' -f 1`; \
+	if which md5sum > /dev/null 2>&1 ; then \
+	SUM=`md5sum -t $> | cut -d ' ' -f 1`; else \
+	SUM=`md5 -q $>` ; fi ; \
 	echo '#define CHECKSUM "'$$SUM'"' > $@; \
 	echo 'static const char *fishCode(' >> $@; \
-	sed -e 's/\\/\\\\/g;s/"/\\"/g;s/^[ 	]*/"/;/^"# /d;s/[ 	]*$$/\\n"/;/^"\\n"$$/d;s/{CHECKSUM}/'$$SUM'/;' $< >> $@; \
+	sed -e 's/\\/\\\\/g;s/"/\\"/g;s/^[ 	]*/"/;/^"# /d;s/[ 	]*$$/\\n"/;/^"\\n"$$/d;s/{CHECKSUM}/'$$SUM'/;' $> >> $@; \
 	echo ');' >> $@;
 
 
