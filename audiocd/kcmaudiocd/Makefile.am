@@ -11,7 +11,7 @@ libkcm_audiocd_la_METASOURCES = AUTO
 
 KDE_ICON = cdrom_unmount
 
-messages:
+messages: rc.cpp
 	$(XGETTEXT) *.cpp -o $(podir)/kcmaudiocd.pot
 
 DISTCLEANFILES = $(lib_audiocd_METASOURCES)
