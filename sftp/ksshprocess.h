@@ -71,6 +71,15 @@ enum SshOptType {
   SSH_ESCAPE_CHAR,
   /* command for ssh to perform once it is connected */
   SSH_COMMAND,
+  /* Set ssh verbosity. This may be added multiple times. It may also cause KSSHProcess
+   * to fail since we don't understand all the debug messages. */
+  SSH_VERBOSE,
+  /* Set a ssh option as one would find in the ssh_config file
+   * The str member should be set to 'optName value' */
+  SSH_OPTION,
+  /* Set some other option not supported by KSSHProcess. The option should
+   * be specified in the str member of SshOpt. */
+  SSH_OTHER,
   SSH_OPT_MAX // always last
 }; // that's all for now
 
@@ -106,8 +115,18 @@ enum SshError {
     ERR_TIMED_OUT,
     /* Internal error, probably from a system call */
     ERR_INTERNAL,
+    /* ssh was disconnect from the host */
     ERR_DISCONNECTED,
-
+    /* No ssh options have been set. Call setArgs() before calling connect. */
+    ERR_NO_OPTIONS,
+    /* A host key was received from an unknown host. 
+     * Call connect() with the acceptHostKey argument to accept the key. */
+    ERR_NEW_HOST_KEY,
+    /* A host key different from what is stored in the user's known_hosts file
+     * has be received. This is an indication of an attack*/
+    ERR_DIFF_HOST_KEY,
+    /* An invalid option was found in the SSH option list */
+    ERR_INVALID_OPT,
     ERR_MAX
 };
 
@@ -125,10 +144,11 @@ public:
 	~KSSHProcess();
     QString version();
     int error(QString& msg);
+    int error() { return mError; }
     void kill(int signal = SIGTERM);
     void printArgs();
     bool setArgs(const SshOptList& opts);
-    bool connect();
+    bool connect(bool acceptHostKey = false);
 private:
     QString mSshPath;
     int mVersion;
@@ -138,6 +158,7 @@ private:
     bool mConnected;
     int mPort;
     int mError;
+    QString mErrorMsg;
     MyPtyProcess ssh;
     QCStringList mArgs;
     void init();
@@ -147,6 +168,7 @@ private:
     static const char * const authFailedPrompt[];
     static const char * const hostKeyMissing[];
     static const char * const hostKeyChanged[];
+    static const char * const continuePrompt[];
 };
 
 #endif
