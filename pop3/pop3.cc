@@ -275,6 +275,8 @@ bool POP3Protocol::sendCommand(const char *cmd)
    *   argument may be up to 40 characters long.
    */
 
+  if (!isConnectionValid()) return false;
+
   char *cmdrn = new char[strlen(cmd) + 3];
   sprintf(cmdrn, "%s\r\n", (cmd) ? cmd : "");
 
