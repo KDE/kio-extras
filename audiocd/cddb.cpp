@@ -250,7 +250,7 @@ CDDB::parse_read_resp(QTextStream *stream, QTextStream *write_stream)
         {
 	  if (stream->atEnd())
 	    break;
-	  r = stream->readLine().local8Bit();
+	  r = stream->readLine().latin1();
 	}
       else
         {
@@ -269,7 +269,7 @@ CDDB::parse_read_resp(QTextStream *stream, QTextStream *write_stream)
       if (r.left(7) == "DTITLE=")
         {
 	  r.remove(0, 7);
-	  m_title += r.stripWhiteSpace();
+	  m_title += QString::fromLocal8Bit(r.stripWhiteSpace());
 	}
       else if (r.left(6) == "TTITLE")
         {
@@ -282,7 +282,7 @@ CDDB::parse_read_resp(QTextStream *stream, QTextStream *write_stream)
 	      if (ok && i >= 0 && i < m_tracks)
 	        {
 		  r.remove(0, e+1);
-		  m_names[i] += r;
+		  m_names[i] += QString::fromLocal8Bit(r);
 		}
 	    }
 	}

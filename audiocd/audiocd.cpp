@@ -954,7 +954,7 @@ static void
 app_dir(UDSEntry& e, const QString & n, size_t s)
 {
   e.clear();
-  app_entry(e, KIO::UDS_NAME, n);
+  app_entry(e, KIO::UDS_NAME, QFile::decodeName(n.local8Bit()));
   app_entry(e, KIO::UDS_FILE_TYPE, S_IFDIR);
   app_entry(e, KIO::UDS_ACCESS, 0400);
   app_entry(e, KIO::UDS_SIZE, s);
@@ -964,7 +964,7 @@ static void
 app_file(UDSEntry& e, const QString & n, size_t s)
 {
   e.clear();
-  app_entry(e, KIO::UDS_NAME, n);
+  app_entry(e, KIO::UDS_NAME, QFile::decodeName(n.local8Bit()));
   app_entry(e, KIO::UDS_FILE_TYPE, S_IFREG);
   app_entry(e, KIO::UDS_ACCESS, 0400);
   app_entry(e, KIO::UDS_SIZE, s);
