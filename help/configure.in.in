@@ -38,19 +38,19 @@ AC_SUBST(WITH_MEM_DEBUG)
 
 AC_CHECK_HEADERS(ctype.h sys/types.h ieeefp.h nan.h math.h fp_class.h float.h ansidecl.h)
 AC_CHECK_FUNC(isnan, , AC_CHECK_LIB(m, isnan,
-  [M_LIBS="-lm"; AC_DEFINE(HAVE_ISNAN)]))
+  [M_LIBS="-lm"; AC_DEFINE(HAVE_ISNAN, 1, [Define if you have isnan])]))
  
 AC_CHECK_FUNC(isinf, , AC_CHECK_LIB(m, isinf,
-  [M_LIBS="-lm"; AC_DEFINE(HAVE_ISINF)]))
+  [M_LIBS="-lm"; AC_DEFINE(HAVE_ISINF, 1, [Define if you have isinf])]))
  
 AC_CHECK_FUNC(pow, , AC_CHECK_LIB(m, pow,
-  [M_LIBS="-lm"; AC_DEFINE(HAVE_POW)]))
+  [M_LIBS="-lm"; AC_DEFINE(HAVE_POW, 1, [Define if you have pow])]))
  
-AC_CHECK_FUNC(floor, , AC_CHECK_LIB(m, pow,
-  [M_LIBS="-lm"; AC_DEFINE(HAVE_FLOOR)]))
+AC_CHECK_FUNC(floor, , AC_CHECK_LIB(m, floor,
+  [M_LIBS="-lm"; AC_DEFINE(HAVE_FLOOR, 1, [Define if you have floor])]))
  
-AC_CHECK_FUNC(fabs, , AC_CHECK_LIB(m, pow,
-  [M_LIBS="-lm"; AC_DEFINE(HAVE_FABS)]))
+AC_CHECK_FUNC(fabs, , AC_CHECK_LIB(m, fabs,
+  [M_LIBS="-lm"; AC_DEFINE(HAVE_FABS, 1, [Define if you have fabs])]))
 
 AC_SUBST(M_LIBS)
 
