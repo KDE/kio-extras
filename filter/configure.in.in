@@ -54,19 +54,7 @@ else
 
    AC_MSG_RESULT($ac_cv_lib_bzip2_prefix)
     
-   if test ! "$ac_cv_lib_bzip2_prefix" = no; then
-     dnl BZIP2DIR=bzip2
-     dnl AC_SUBST(BZIP2DIR)
-     BZIP2FILES="bzip.protocol bzip2.protocol"
-     AC_SUBST(BZIP2FILES)
-    
-     dnl LIBBZ2="$ac_cv_lib_bzip2_prefix"
-     dnl AC_SUBST(LIBBZ2)
-
-     dnl AC_DEFINE(NEED_BZ2_PREFIX, 1, [Define if the libbz2 functions need the BZ2_ prefix])
-   dnl else, we just ignore this
-   fi
-
+   AM_CONDITIONAL(include_BZIP2, test ! "$ac_cv_lib_bzip2_prefix" = no)
 fi
 ])
 

@@ -1,4 +1,5 @@
 SMB_SUBDIR="smb"
 KDE_CHECK_HEADER(libsmbclient.h, ,[SMB_SUBDIR=""] )
 KDE_CHECK_LIB(smbclient, smbc_init, ,[SMB_SUBDIR=""] )
-AC_SUBST(SMB_SUBDIR)
+
+AM_CONDITIONAL(include_kioslave_smb, test -n "$SMB_SUBDIR")

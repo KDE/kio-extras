@@ -17,12 +17,12 @@ kdelnkdir = $(kde_servicesdir)
 
 METASOURCES = AUTO
 
-mount_xdr.c: mount.x
-	rpcgen $(srcdir)/mount.x
+$(srcdir)/mount_xdr.c: $(srcdir)/mount.x
+	cd $(srcdir) && rpcgen ./mount.x
 
 
-nfs_prot_xdr.c: nfs_prot.x
-	rpcgen $(srcdir)/nfs_prot.x
+$(srcdir)/nfs_prot_xdr.c: $(srcdir)/nfs_prot.x
+	cd $(srcdir) && rpcgen ./nfs_prot.x
 
 messages:
 	$(XGETTEXT) *.cpp -o $(podir)/kio_nfs.pot
