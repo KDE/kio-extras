@@ -18,13 +18,23 @@ class SmbProtocol : public IOProtocol
 {
 public:
 	SmbProtocol( Connection *_conn );
-	virtual ~SmbProtocol();
+//	virtual ~SmbProtocol();
   
 	virtual void slotGet( const char *_url );
 	virtual void slotGetSize( const char *_url );
 
+	virtual void slotPut( const char *_url, int _mode,
+				bool _overwrite, bool _resume, int _size );
+
+	virtual void slotMkdir( const char *_url, int _mode );
+
 	virtual void slotCopy( const char *_source, const char *_dest );
 	virtual void slotCopy( QStringList& _source, const char *_dest );
+
+	virtual void slotMove( const char *_source, const char *_dest );
+	virtual void slotMove( QStringList& _source, const char *_dest );
+
+	virtual void slotDel( QStringList& _source );
 
 	virtual void slotListDir( const char *_url );
 	virtual void slotTestDir( const char *_url );
@@ -38,30 +48,39 @@ public:
   
 protected:
 
-	SMBIO smbio;
+	SMBIO *smbio;
 
-	struct Copy {
-		QString absSource;
-		QString relDest;
-		mode_t mode;
-		off_t size;
-	};
-
-	struct CopyDir {
-		QString absSource;
-		QString relDest;
-		mode_t mode;
-	};
-
-	struct Del {
+	struct Copy
+	{
 		QString m_strAbsSource;
 		QString m_strRelDest;
 		mode_t m_mode;
 		off_t m_size;
 	};
 
-	long listRecursive( const char *smbURL, const char *dest, list<Copy>& _files, list<CopyDir>& _dirs, bool dirChecked=false);
-	void doCopy( QStringList& _source, const char *_dest );
+	struct CopyDir
+	{
+		QString m_strAbsSource;
+		QString m_strRelDest;
+		mode_t m_mode;
+		ino_t m_ino;
+	};
+
+	struct Del
+	{
+		QString m_strAbsSource;
+		QString m_strRelDest;
+		mode_t m_mode;
+		off_t m_size;
+	};
+
+	int m_cmd;
+	bool m_bIgnoreJobErrors;
+
+	long listRecursive( const char *smbURL, const char *dest,
+		QValueList<Copy>& _files, QValueList<CopyDir>& _dirs, bool dirChecked=false);
+	void doCopy( QStringList& _source, const char *_dest, bool _rename, bool _move = false );
+	int m_fPut;
 };
 
 class SmbIOJob : public IOJob
