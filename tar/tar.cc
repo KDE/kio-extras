@@ -53,12 +53,22 @@ TARProtocol::~TARProtocol()
 bool TARProtocol::checkNewFile( QString fullPath, QString & path )
 {
     kdDebug(7109) << "TARProtocol::checkNewFile " << fullPath << endl;
+
+
     // Are we already looking at that file ?
     if ( m_tarFile && m_tarFile->fileName() == fullPath.left(m_tarFile->fileName().length()) )
     {
-        path = fullPath.mid( m_tarFile->fileName().length() );
-        kdDebug(7109) << "TARProtocol::checkNewFile returning " << path << endl;
-        return true;
+        // Has it changed ?
+        struct stat statbuf;
+        if ( ::stat( QFile::encodeName( m_tarFile->fileName() ), &statbuf ) == 0 )
+        {
+            if ( m_mtime == statbuf.st_mtime )
+            {
+                path = fullPath.mid( m_tarFile->fileName().length() );
+                kdDebug(7109) << "TARProtocol::checkNewFile returning " << path << endl;
+                return true;
+            }
+        }
     }
     kdDebug(7109) << "Need to open a new file" << endl;
 
@@ -87,6 +97,7 @@ bool TARProtocol::checkNewFile( QString fullPath, QString & path )
         if ( ::stat( QFile::encodeName(tryPath), &statbuf ) == 0 && !S_ISDIR(statbuf.st_mode) )
         {
             tarFile = tryPath;
+            m_mtime = statbuf.st_mtime;
             path = fullPath.mid( pos + 1 );
             kdDebug(7109) << "fullPath=" << fullPath << " path=" << path << endl;
             len = path.length();

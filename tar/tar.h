@@ -21,6 +21,7 @@
 #define _TAR_H "$Id$"
 
 #include <kio/slavebase.h>
+#include <sys/types.h>
 
 class KTarEntry;
 
@@ -39,7 +40,7 @@ protected:
     bool checkNewFile( QString fullPath, QString & path );
 
     KTarGz * m_tarFile;
-
+    time_t m_mtime;
 };
 
 #endif
