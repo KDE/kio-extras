@@ -103,9 +103,6 @@ void CgiProtocol::get( const KURL& url )
   }
 
   char buffer[ 4090 ];
-  QByteArray array;
-
-  QCString output;
 
   while ( !feof( fd ) )
   {
@@ -124,9 +121,8 @@ void CgiProtocol::get( const KURL& url )
 
     buffer[n] = 0;
 
-    output.append( buffer );
-
     if ( stripHeader ) {
+      QCString output = buffer; // this assumes buffer is text and not binary
       int colon = output.find( ':' );
       int newline = output.find( '\n' );
       int semicolon = output.findRev( ';', newline );
@@ -159,6 +155,12 @@ void CgiProtocol::get( const KURL& url )
       if ( start >= 0 ) output = output.mid( start );
 
       stripHeader = false;
+      data( output );
+    } else {
+      QByteArray array;
+      array.setRawData( buffer, n );
+      data( array );
+      array.resetRawData( buffer, n );
     }
   }
 
@@ -167,8 +169,6 @@ void CgiProtocol::get( const KURL& url )
   } else {
     pclose( fd );
   }
-
-  data( output );
 
   finished();
 
