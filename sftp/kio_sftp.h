@@ -42,33 +42,17 @@ public:
   virtual ~kio_sftpProtocol();
   virtual void setHost(const QString& h, int port, const QString& user, const QString& pass);
   virtual void get(const KURL& url);
-  /** No descriptions */
   virtual void listDir(const KURL& url) ;
-  /** No descriptions */
   virtual void mimetype(const KURL& url);
-  /** No descriptions */
   virtual void stat(const KURL& url);
-  /** No descriptions */
   virtual void put(const KURL& url, int permissions, bool overwrite, bool resume);
-  /** No descriptions */
   virtual void closeConnection();
-  /** No descriptions */
-//  virtual void reparseConfiguration();
-  /** No descriptions */
   virtual void slave_status();
-  /** No descriptions */
   virtual void del(const KURL &url, bool isfile);
-  /** No descriptions */
-//  virtual void copy(const KURL &src, const KURL &dest, int permissions, bool overwrite);
-  /** No descriptions */
   virtual void chmod(const KURL& url, int permissions);
-  /** No descriptions */
   virtual void symlink(const QString& target, const KURL& dest, bool overwrite);
-  /** No descriptions */
   virtual void rename(const KURL& src, const KURL& dest, bool overwrite);
-  /** No descriptions */
   virtual void mkdir(const KURL&url, int permissions);
-  /** No descriptions */
   virtual void openConnection();
 
 private: // Private variables
@@ -103,11 +87,6 @@ private: // Private variables
   int defaultPort;
 
 private: // private methods
-  /** Starts the ssh process and authenticates the user by waiting for the
-      ssh password prompt, sending the users password, and checking
-      for success.  Will keep trying until user cancels or ssh dies. */
-  bool startSsh();
-
   bool getPacket(QByteArray& msg);
 
   /** Used to have the server canonicalize any given path name to an absolute path.
