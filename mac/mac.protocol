@@ -19,6 +19,7 @@ Description[nl]=Een kioslave voor MacOS HFS+-partities
 Description[nn]=Ein IU-slave for MacOS HFS+-partisjonar
 Description[pt]=Um kioslave para partições MacOS HFS+
 Description[pt_BR]=Um protocolo para as partições HFS+ do MacOS 
+Description[ru]=Модуль ввода-вывода для файловой системы MacOS HFS+
 Description[sv]=En I/O-slav för MacOS HFS+ partitioner
 Description[ta]=MacOS HFS+ partitionsக்கு ஒரு க்யோஸ்லேவ்
 Description[tr]=MacOS HFS+ bölümleri için kioslave
