@@ -316,6 +316,15 @@ void TARProtocol::get( const KURL & url )
         return;
     }
     const KTarFile* tarFileEntry = static_cast<const KTarFile *>(tarEntry);
+    if ( !tarEntry->symlink().isEmpty() )
+    {
+      kdDebug(7102) << "Redirection to " << tarEntry->symlink() << endl;
+      KURL realURL( url, tarEntry->symlink() );
+      kdDebug(7102) << "realURL= " << realURL.url() << endl;
+      redirection( realURL.url() );
+      finished();
+      return;
+    }
 
     totalSize( tarFileEntry->size() );
 
