@@ -1,15 +1,19 @@
-## Makefile.am of kdebase/kioslave/gzip
+## Makefile.am of kdebase/kioslave/file
 
-INCLUDES=	$(all_includes)
-LDFLAGS =       $(all_libraries) $(KDE_RPATH)
-LDADD	=	$(LIB_KIO)
+AM_CPPFLAGS = -DQT_NO_CAST_ASCII -DQT_NO_ASCII_CAST
+
+INCLUDES = $(all_includes)
 
 ####### Files
 
-bin_PROGRAMS = kio_gzip
+lib_LTLIBRARIES = kio_gzip.la
 
-kio_gzip_SOURCES = gzip.cc
+kio_gzip_la_SOURCES = gzip.cc
+kio_gzip_la_LIBADD = $(LIB_KIO)
+kio_gzip_la_LDFLAGS = -module -avoid-version -no-undefined
 noinst_HEADERS = gzip.h
 
-kdelnk_DATA = gzip.protocol bzip.protocol bzip2.protocol
+METASOURCES = AUTO
+
 kdelnkdir = $(kde_servicesdir)
+kdelnk_DATA = gzip.protocol

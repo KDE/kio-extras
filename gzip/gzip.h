@@ -1,62 +1,45 @@
+/*
+This file is part of KDE
+
+ Copyright (C) 2000 Waldo Bastian (bastian@kde.org)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
+AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN
+AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+*/
+
 #ifndef __gzip_h__
 #define __gzip_h__
 
-#include <kio_interface.h>
-#include <kio_base.h>
-#include <kio_filter.h>
+#include <qobject.h>
+#include <kio/global.h>
+#include <kio/slavebase.h>
 
-class GZipProtocol : public KIOProtocol
+class GZipProtocol : public QObject, public KIO::SlaveBase
 {
 public:
-  GZipProtocol( KIOConnection *_conn );
+  GZipProtocol( const QCString &pool, const QCString &app );
 
-  virtual void slotGet( const char *_url );
-  virtual void slotPut( const char *_url, int _mode, bool _overwrite,
-			bool _resume, unsigned int );
-  virtual void slotCopy( const char *_source, const char *_dest );
-
-  virtual void slotTestDir( const char *_url );
-
-  virtual void slotData( void *_p, int _len );
-  virtual void slotDataEnd();
-
-  void jobData( void *_p, int _len );
-  void jobError( int _errid, const char *_text );
-  void jobDataEnd();
-  void filterData( void *_p, int _len );
-
-  KIOConnection* connection() { return KIOConnectionSignals::m_pConnection; }
-
-protected:
-
-  int m_cmd;
-  const char* m_strProtocol;
-  KIOFilter* m_pFilter;
-  KIOJobBase* m_pJob;
-};
-
-class GZipIOJob : public KIOJobBase
-{
-public:
-  GZipIOJob( KIOConnection *_conn, GZipProtocol *_gzip );
-
-  virtual void slotData( void *_p, int _len );
-  virtual void slotDataEnd();
-  virtual void slotError( int _errid, const char *_txt );
-
-protected:
-  GZipProtocol* m_pGZip;
-};
-
-class GZipFilter : public KIOFilter
-{
-public:
-  GZipFilter( const char *_prg, GZipProtocol *_gzip );
-
-  virtual void emitData( void *_p, int _len );
-
-protected:
-  GZipProtocol* m_pGZip;
+  virtual void get( const KURL &url );
+  virtual void put( const KURL &url, int _mode, bool _overwrite,
+                    bool _resume );
+  virtual void setSubURL(const KURL &url);
+                    
+private:
+  KURL subURL;                    
 };
 
 #endif
