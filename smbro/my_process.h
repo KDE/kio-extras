@@ -23,10 +23,6 @@
 #include <qcstring.h>
 #include <kdesu/process.h>
 
-/**
- * A C++ API to passwd.
- */
-
 class ClientProcess:public PtyProcess
 {
    public:

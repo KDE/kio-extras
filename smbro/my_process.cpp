@@ -1,3 +1,23 @@
+/*  This file is part of the KDE project
+
+    Copyright (C) 2000 Alexander Neundorf <neundorf@kde.org>
+
+    This library is free software; you can redistribute it and/or
+    modify it under the terms of the GNU Library General Public
+    License as published by the Free Software Foundation; either
+    version 2 of the License, or (at your option) any later version.
+
+    This library is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+    Library General Public License for more details.
+
+    You should have received a copy of the GNU Library General Public License
+    along with this library; see the file COPYING.LIB.  If not, write to
+    the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+    Boston, MA 02111-1307, USA.
+*/
+
 #include "my_process.h"
 
 #include <iostream.h>
@@ -11,8 +31,7 @@
 ClientProcess::ClientProcess()
 :startingFinished(false)
 ,m_exited(-1)
-{
-}
+{}
 
 ClientProcess::~ClientProcess()
 {
@@ -37,6 +56,11 @@ int ClientProcess::exited()
    if (WIFEXITED(s))
    {
       m_exited=WEXITSTATUS(s);
+      return m_exited;
+   };
+   if (WIFSIGNALED(s))
+   {
+      m_exited=2;
       return m_exited;
    };
    return -1;
@@ -74,36 +98,6 @@ int ClientProcess::select(int secs, int usecs, bool* readEvent, bool* writeEvent
    return result;
 };
 
-/*int ClientProcess::exec(const char *passwd)
-{    
-   //if (m_User.isEmpty())
-      //return -1;
-   //if (check)
-      setTerminal(true);
-
-   // Try to set the default locale to make the parsing of the output
-   // of `smbclient' easier.
-   putenv("LANG=C");
-
-   QCStringList args;
-   //args += "-L localhost";
-   args += "-L";
-   args += "localhost";
-   int ret = PtyProcess::exec("smbclient", args);
-   if (ret < 0)
-   {
-      cerr<<"could not execute smbclient"<<endl;
-      return PasswdNotFound;
-   }
-
-   ret = ConversePasswd(passwd, TRUE);
-   if (ret < 0)
-      cerr<< "Conversation with smbclientfailed.\n";
-
-   waitForChild();
-   return ret;
-}*/
-
 bool ClientProcess::start(const QCString& binary, QCStringList& args)
 {    
    setTerminal(true);
@@ -111,6 +105,7 @@ bool ClientProcess::start(const QCString& binary, QCStringList& args)
    // of `smbclient' easier.
    putenv("LANG=C");
    int ret = PtyProcess::exec(binary, args);
+   //kdDebug()<<"ClientProcess::start() exec() returned "<<ret<<endl;
    if (ret != 0)
    {
       //cerr<<"could not execute smbclient"<<endl;
@@ -118,36 +113,3 @@ bool ClientProcess::start(const QCString& binary, QCStringList& args)
    }
    return true;
 }
-
-/*
- * The tricky thing is to make this work with a lot of different passwd
- * implementations. We _don't_ want implementation specific routines.
- * Return values: -1 = unknown error, 0 = ok, >0 = error code.
- */
-/*int ClientProcess::ConversePasswd(const char *passwd,int check)
-{
-   QCString line;
-   bool passwordGiven(FALSE);
-
-   do
-   {
-      line = readLine();
-      if (line.isNull())
-      {
-         return -1;
-      }
-
-      cerr<<"read line: -"<<line<<"-"<<endl;
-      if (line.contains("Password:"))
-      {
-         WaitSlave();
-         write(m_Fd, passwd, strlen(passwd));
-         write(m_Fd, "\n", 1);
-         cerr<<"fed the password into smbclient"<<endl;
-         passwordGiven=TRUE;
-      };
-   } while (!passwordGiven);
-
-   return 0;
-}*/
-

@@ -71,7 +71,7 @@ int kdemain( int argc, char **argv )
      fprintf(stderr, "Usage: kio_smb protocol domain-socket1 domain-socket2\n");
      exit(-1);
   }
-  kdDebug(7101) << "Smb: kdemain: starting" << endl;
+  //kdDebug(7101) << "Smb: kdemain: starting" << endl;
 
   SmbProtocol slave(argv[2], argv[3]);
   slave.dispatchLoop();
@@ -194,7 +194,8 @@ bool SmbProtocol::stopAfterError(const KURL& url, bool notSureWhetherErrorOccure
    if (m_stdoutSize==0)
    {
       //error(KIO::ERR_UNKNOWN,"");
-      error( KIO::ERR_CONNECTION_BROKEN, m_currentHost);
+      //error( KIO::ERR_CONNECTION_BROKEN, m_currentHost);
+      error( KIO::ERR_CANNOT_LAUNCH_PROCESS, "smbclient"+i18n("\nMake sure that the samba package is installed properly on your system."));
       return true;
    };
 
@@ -233,7 +234,7 @@ bool SmbProtocol::stopAfterError(const KURL& url, bool notSureWhetherErrorOccure
    //file not found
    else if ((outputString.contains("ERRDOS")) && (outputString.contains("ERRbadfile")))
    {
-      kdDebug(7101)<<"Smb::stopAfterError() contains both, reporting error"<<endl;
+      //kdDebug(7101)<<"Smb::stopAfterError() contains both, reporting error"<<endl;
       error( KIO::ERR_DOES_NOT_EXIST, url.prettyURL());
    }
    else if (outputString.contains("Broken pipe"))
@@ -327,7 +328,7 @@ SmbProtocol::SmbReturnCode SmbProtocol::getShareInfo(ClientProcess* shareLister,
       {
          kdDebug(7101)<<"Smb::getShareInfo(): smbclient exited with status "<<exitStatus<<endl;
          if (exitStatus!=0)
-            kdDebug(7101)<<"Smb::getShareInfo(): received: "<<m_stdoutBuffer<<"-"<<endl;
+            kdDebug(7101)<<"Smb::getShareInfo(): received: -"<<m_stdoutBuffer<<"-"<<endl;
 
          if (exitStatus==0)
          {
@@ -564,13 +565,17 @@ See the KDE Control Center under Network, LANBrowsing for more information."));
 
    ClientProcess *proc=getProcess(m_currentHost, share);
    if (proc==0)
+   {
+      kdDebug(7101)<<"Smb::listDir() proc==0"<<endl;
       return;
+   };
 
    QCString command=QCString("dir \"")+smbPath.latin1()+QCString("\\*\"\n");
    kdDebug(7101)<<"Smb::listDir(): executing command: -"<<command<<"-"<<endl;
 
    if (::write(proc->fd(),command.data(),command.length())<0)
    {
+      kdDebug(7101)<<"Smb::listDir() could not ::write()"<<endl;
       error(ERR_CONNECTION_BROKEN,m_currentHost);
       return;
    };
@@ -585,7 +590,7 @@ See the KDE Control Center under Network, LANBrowsing for more information."));
       if (exitStatus!=-1)
       {
          //this should not happen !
-         kdDebug(7101)<<"Smb::listDir(): smbclient exited"<<endl;
+         kdDebug(7101)<<"Smb::listDir(): smbclient exited "<<exitStatus<<endl;
          stopAfterError(_url,false);
          return;
       };
@@ -594,7 +599,7 @@ See the KDE Control Center under Network, LANBrowsing for more information."));
       if (stdoutEvent)
       {
          readOutput(proc->fd());
-         kdDebug(7101)<<"Smb::listDir(): read: -"<<m_stdoutBuffer<<"-"<<endl;
+         //kdDebug(7101)<<"Smb::listDir(): read: -"<<m_stdoutBuffer<<"-"<<endl;
          //don't search the whole buffer, only the last 12 bytes
          if (m_stdoutSize>12)
          {
@@ -640,7 +645,7 @@ See the KDE Control Center under Network, LANBrowsing for more information."));
    totalSize( totalNumber);
    listEntry( entry, true ); // ready
    finished();
-   kdDebug(7101)<<"Smb::listDir() ends"<<endl;
+   //kdDebug(7101)<<"Smb::listDir() ends"<<endl;
 };
 
 void SmbProtocol::createUDSEntry(const StatInfo& info, UDSEntry& entry)
@@ -857,10 +862,10 @@ void SmbProtocol::stat( const KURL & url)
 
    if (m_currentHost.isEmpty())
    {
-      kdDebug(7101)<<"Smb::stat(): host.isEmpty()"<<endl;
+      //kdDebug(7101)<<"Smb::stat(): host.isEmpty()"<<endl;
       error(ERR_UNKNOWN_HOST,i18n("\nTo access the shares of a host, use smb://hostname\n\
-To get a list of all hosts use lan:/ or rlan:/ ."));//\n
-//See the KDE Control Center under Network, LANBrowsing for more information."));
+To get a list of all hosts use lan:/ or rlan:/ .\n\
+See the KDE Control Center under Network, LANBrowsing for more information."));
       return;
    };
    StatInfo info=this->_stat(url);
@@ -1025,7 +1030,9 @@ void SmbProtocol::setHost(const QString& host, int /*port*/, const QString& /*us
    kdDebug(7101)<<"Smb::setHost: -"<<host<<"-"<<endl;
    if (host.isEmpty())
    {
-      error(ERR_UNKNOWN_HOST,"");
+      error(ERR_UNKNOWN_HOST,i18n("To access the shares of a host, use smb://hostname\n\
+To get a list of all hosts use lan:/ or rlan:/ .\n\
+See the KDE Control Center under Network, LANBrowsing for more information."));
       return;
    };
    QCString nmbName=host.latin1();
@@ -1118,7 +1125,6 @@ ClientProcess* SmbProtocol::getProcess(const QString& host, const QString& share
       //this will be done the next time we come here, and we always come here :-)
       if (proc->exited()!=-1)
       {
-         kdDebug(7101)<<"Smb::getProcess(): process exited !"<<endl;
          //we have autoDelete==true, so we don't need to delete proc explicitly
          m_processes.remove(key);
          proc=0;
@@ -1140,7 +1146,6 @@ ClientProcess* SmbProtocol::getProcess(const QString& host, const QString& share
    if (!m_user.isEmpty())
       args<<QCString("-U")+m_user.latin1();
 
-   //kdDebug(7101)<<"Smb::getProcess: started process: "<<proc->start("smbclient",args)<<endl;
    if (!proc->start("smbclient",args))
    {
       error( KIO::ERR_CANNOT_LAUNCH_PROCESS, "smbclient"+i18n("\nMake sure that the samba package is installed properly on your system."));
