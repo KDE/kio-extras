@@ -102,6 +102,10 @@
 #define sendmimeType(x) mimeType(x)
 #endif
 
+#if defined(__FreeBSD__)
+#define SIGCLD SIGCHLD
+#endif
+
 static char *sshPath = NULL;
 // disabled: currently not needed. Didn't work reliably.
 // static int isOpenSSH = 0;
