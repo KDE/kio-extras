@@ -949,7 +949,7 @@ void SmbProtocol::get( const KURL& url )
 
    QString share;
    QString smbPath;
-   getShareAndPath(path,share,smbPath);
+   getShareAndPath(url,share,smbPath);
 
    StatInfo info=this->_stat(url);
    //the error was already reported in _stat()
