@@ -2,6 +2,7 @@
  * Copyright (c) 2000, 2001 Alex Zepeda <zipzippy@sonic.net>
  * Copyright (c) 2001 Michael Häckel <Michael@Haeckel.Net>
  * Copyright (c) 2002 Aaron J. Seigo <aseigo@olympusproject.org>
+ * Copyright (c) 2003 Marc Mutz <mutz@kde.org>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -35,44 +36,35 @@
 #include "request.h"
 #include "response.h"
 using KioSMTP::Capabilities;
+using KioSMTP::Command;
+using KioSMTP::EHLOCommand;
+using KioSMTP::AuthCommand;
+using KioSMTP::MailFromCommand;
+using KioSMTP::RcptToCommand;
+using KioSMTP::DataCommand;
 using KioSMTP::Request;
 using KioSMTP::Response;
 
 #include <kemailsettings.h>
 #include <ksock.h>
 #include <kdebug.h>
-#include <kmdcodec.h>
 #include <kinstance.h>
 #include <kio/connection.h>
 #include <kio/slaveinterface.h>
-#include <kio/kdesasl.h>
 #include <klocale.h>
-#include <kidna.h>
 
-#include <qbuffer.h>
 #include <qstring.h>
 #include <qstringlist.h>
 #include <qcstring.h>
-#include <qregexp.h>
+
+#include <memory>
+using std::auto_ptr;
 
 #include <ctype.h>
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
-#include <assert.h>
 
-
-// hackishly fixing QCStringList flaws...
-static QCString join( char sep, const QCStringList & list ) {
-  if ( list.empty() )
-    return QCString();
-  QCString result = list.front();
-  for ( QCStringList::const_iterator it = ++list.begin() ; it != list.end() ; ++it )
-    result += sep + *it;
-  return result;
-}
-
-//using namespace KIO;
 
 extern "C" {
   int kdemain(int argc, char **argv);
@@ -99,10 +91,10 @@ SMTPProtocol::SMTPProtocol(const QCString & pool, const QCString & app,
                 useSSL ? "smtps" : "smtp", 
                 pool, app, useSSL),
    m_iOldPort(0),
-   m_opened(false),
-   m_errorSent(false)
+   m_opened(false)
 {
   //kdDebug(7112) << "SMTPProtocol::SMTPProtocol" << endl;
+  mPendingCommandQueue.setAutoDelete( true );
 }
 
 
@@ -127,12 +119,23 @@ void SMTPProtocol::closeConnection()
   smtp_close();
 }
 
-void SMTPProtocol::special(const QByteArray & /* aData */)
-{
-  infoMessage( createSpecialResponse() );
+void SMTPProtocol::special( const QByteArray & aData ) {
+  QDataStream s( aData, IO_ReadOnly );
+  int what;
+  s >> what;
+  if ( what == 'c' ) {
+    infoMessage( createSpecialResponse() );
 #ifndef NDEBUG
-  kdDebug(7112) << "special() returns \"" << createSpecialResponse() << "\"" << endl;
+    kdDebug(7112) << "special('c') returns \"" << createSpecialResponse() << "\"" << endl;
 #endif
+  } else if ( what == 'N' ) {
+    if ( !execute( Command::NOOP ) )
+      return;
+  } else {
+    error( KIO::ERR_SERVICE_NOT_AVAILABLE,
+	   i18n("The application sent an invalid request.") );
+    return;
+  }
   finished();
 }
 
@@ -205,41 +208,23 @@ void SMTPProtocol::put(const KURL & url, int /*permissions */ ,
     return;
   }
 
-  if ( !command( "MAIL FROM: <" + request.fromAddress() + '>' ) )
-  {
-    if (!m_errorSent)
-    {
-      error(KIO::ERR_NO_CONTENT, i18n("The server did not accept the "
-                                 "sender address.\nThe server responded: \"%1\"").arg(m_lastError));
-    }
-
-    smtp_close(); // ### try resetting the dialogue instead.
-    return;
-  }
+  queueCommand( new MailFromCommand( this, request.fromAddress().latin1() ) );
 
   // Loop through our To and CC recipients, and send the proper
   // SMTP commands, for the benefit of the server.
-  if ( !putRecipients( request.recipients() ) )
-    return;
+  QStringList recipients = request.recipients();
+  for ( QStringList::const_iterator it = recipients.begin() ; it != recipients.end() ; ++it )
+    queueCommand( new RcptToCommand( this, (*it).latin1() ) );
 
-  // Begin sending the actual message contents (most headers+body)
-  if (!command("DATA")) 
-  {
-    if (!m_errorSent)
-    {
-      error(KIO::ERR_NO_CONTENT, 
-            i18n("The attempt to start sending the "
-                 "message content failed.\nThe server responded: \"%1\"")
-                .arg(m_lastError));
-    }
+  queueCommand( new DataCommand( this ) );
 
-    smtp_close(); // ### try resetting the dialogue instead.
+  if ( !executeQueuedCommands() )
     return;
-  }
 
   // Write slave-generated header fields (if any):
   const char * headerFields = request.headerFields();
-  write( headerFields, qstrlen( headerFields ) );
+  if ( headerFields && *headerFields )
+    write( headerFields, qstrlen( headerFields ) );
 
   // Write client-provided data:
   int result;
@@ -259,35 +244,17 @@ void SMTPProtocol::put(const KURL & url, int /*permissions */ ,
   bool ok = false;
   Response response = getResponse( &ok );
   if ( !ok || !response.isOk() ) {
-    if (!m_errorSent)
-      error(KIO::ERR_NO_CONTENT, 
-            i18n("The message content was not accepted.\n"
-		 "The server responded: \"%1\"").arg( join('\n',response.lines())) );
-    smtp_close(); // ### try resetting the dialogue instead
+    error( KIO::ERR_NO_CONTENT, 
+	   i18n("The message content was not accepted.\n"
+		"%1").arg( response.errorMessage() ) );
+    if ( !execute( Command::RSET ) )
+      smtp_close();
     return;
   }
 
-  command("RSET");
   finished();
 }
 
-bool SMTPProtocol::putRecipients( const QStringList & list )
-{
-  const QString formatted_recip = QString::fromLatin1("RCPT TO: <%1>");
-  for ( QStringList::const_iterator it = list.begin(); it != list.end(); ++it )
-    if ( !command( formatted_recip.arg(*it) ) ) {
-      if (!m_errorSent)
-      {
-        error(KIO::ERR_NO_CONTENT,
-              i18n("One of the recipients was not accepted.\nThe server responded: \"%1\"")
-                  .arg(m_lastError));
-      }
-
-      smtp_close();
-      return false;
-    }
-  return true;
-}
 
 void SMTPProtocol::setHost(const QString & host, int port,
                            const QString & user, const QString & pass)
@@ -310,7 +277,6 @@ Response SMTPProtocol::getResponse( bool * ok ) {
     // wait for data...
     if ( !waitForResponse( 60 ) ) {
       error( KIO::ERR_SERVER_TIMEOUT, m_sServer );
-      m_errorSent = true;
       return response;
     }
 
@@ -318,7 +284,6 @@ Response SMTPProtocol::getResponse( bool * ok ) {
     recv_len = readLine( buf, sizeof(buf) - 1 );
     if ( recv_len < 1 && !isConnectionValid() ) {
       error( KIO::ERR_CONNECTION_BROKEN, m_sServer );
-      m_errorSent = true;
       return response;
     }
 
@@ -332,7 +297,6 @@ Response SMTPProtocol::getResponse( bool * ok ) {
 
   if ( !response.isValid() ) {
     error( KIO::ERR_NO_CONTENT, i18n("Invalid SMTP response (%1) recveived.").arg(response.code()) );
-    m_errorSent = true;
     return response;
   }
 
@@ -342,38 +306,43 @@ Response SMTPProtocol::getResponse( bool * ok ) {
   return response;
 }
 
+bool SMTPProtocol::executeQueuedCommands() {
+  for ( Command * cmd = mPendingCommandQueue.dequeue() ; cmd ; cmd = mPendingCommandQueue.dequeue() )
+    if ( !execute( cmd ) ) {
+      if ( cmd->isErrorFatal() || !execute( Command::RSET ) )
+	smtp_close();
+      mPendingCommandQueue.clear();
+      return false;
+    }
 
-bool SMTPProtocol::command( const QString & cmd, Response * response ) {
-  return command( QCString(cmd.latin1()), response );
+  return true;
 }
 
-bool SMTPProtocol::command( const char *cmd, Response * response ) {
-  return command( QCString(cmd), response );
+bool SMTPProtocol::execute( Command::Type type ) {
+  auto_ptr<Command> cmd( Command::createSimpleCommand( type, this ) );
+  kdFatal( !cmd.get(), 7112 ) << "Command::createSimpleCommand( " << (int)type << " ) returned null!" << endl;
+  return execute( cmd.get() );
 }
 
-bool SMTPProtocol::command( QCString cmd, Response * response ) {
-  //kdDebug(7112) << "C: " << cmd.data() << endl;
-
-  cmd += "\r\n";
-  ssize_t cmd_len = cmd.length();
-
-  // Write the command
-  if ( write( cmd.data(), cmd_len ) != cmd_len )
+bool SMTPProtocol::execute( Command * cmd ) {
+  if ( !cmd ) {
+    kdWarning(7112) << "SMTPProtocol::execute() called with no command to run!" << endl;
     return false;
-
-  bool ok = false;
-  if ( response ) {
-    *response = getResponse( &ok );
-    ok = ok && response->isOk();
-    if ( !ok )
-      m_lastError = join( '\n', response->lines() );
-  } else {
-    Response r = getResponse( &ok );
-    ok = ok && r.isOk();
-    if ( !ok )
-      m_lastError = join( '\n', r.lines() );
   }
-  return ok;
+  while ( !cmd->isComplete() ) {
+    // send command
+    QCString cmdline = cmd->nextCommandLine();
+    ssize_t cmdline_len = cmdline.length();
+    //kdDebug(7112) << "C: " << cmdline.data();
+    if ( write( cmdline.data(), cmdline_len ) != cmdline_len )
+      return false;
+    // process response
+    bool ok = false;
+    Response r = getResponse( &ok );
+    if ( !ok || !cmd->processResponse( r ) )
+      return false;
+  }
+  return true;
 }
 
 bool SMTPProtocol::smtp_open(const QString& fakeHostname)
@@ -398,11 +367,10 @@ bool SMTPProtocol::smtp_open(const QString& fakeHostname)
   Response greeting = getResponse( &ok );
   if ( !ok || !greeting.isOk() )
   {
-    if (!m_errorSent)
-    {
-      error(KIO::ERR_COULD_NOT_LOGIN, 
-            i18n("The server did not accept the connection: \"%1\"").arg( join('\n', greeting.lines())));
-    }
+    if ( ok )
+      error( KIO::ERR_COULD_NOT_LOGIN, 
+             i18n("The server did not accept the connection.\n"
+		  "%1").arg( greeting.errorMessage() ) );
     smtp_close();
     return false;
   }
@@ -424,48 +392,17 @@ bool SMTPProtocol::smtp_open(const QString& fakeHostname)
     }
   }
 
-  Response ehloResponse;
-  if ( !command( "EHLO " + KIDNA::toAsciiCString(m_hostname), &ehloResponse ) )
-  {
-    if (m_errorSent)
-    {
-      smtp_close();
-      return false;
-    }
-
-    // Let's just check to see if it speaks plain ol' SMTP
-    if (!command( "HELO " + KIDNA::toAsciiCString(m_hostname) )) {
-      if (!m_errorSent)
-        error(KIO::ERR_COULD_NOT_LOGIN,
-              i18n("The server responded: \"%1\"").arg(m_lastError));
-      smtp_close();
-      return false;
-    }
+  auto_ptr<Command> cmd( new EHLOCommand( this, m_hostname ) );
+  if ( !execute( cmd.get() ) ) {
+    smtp_close();
+    return false;
   }
-
-  parseFeatures( ehloResponse );
 
   if ( ( haveCapability("STARTTLS") && canUseTLS() && metaData("tls") != "off" )
        || metaData("tls") == "on" ) {
     // For now we're gonna force it on.
 
-    if (command("STARTTLS")) {
-      int tlsrc = startTLS();
-
-      if (tlsrc != 1) {
-        if (tlsrc != -3) {
-          //kdDebug(7112) << "TLS negotiation failed!" << endl;
-          messageBox(Information,
-                     i18n("Your SMTP server claims to "
-                          "support TLS, but negotiation "
-                          "was unsuccessful.\nYou can "
-                          "disable TLS in KDE using the "
-                          "crypto settings module."),
-                     i18n("Connection Failed"));
-        }
-        smtp_close();
-        return false;
-      }
+    if ( execute( Command::STARTTLS ) ) {
 
       /*
        * we now have TLS going
@@ -474,28 +411,11 @@ bool SMTPProtocol::smtp_open(const QString& fakeHostname)
        */
       //kdDebug(7112) << "TLS has been enabled!" << endl;
 
-      ehloResponse.clear();
-      if ( !command( "EHLO " + KIDNA::toAsciiCString(m_hostname), &ehloResponse ) )
-      {
-        if (!m_errorSent)
-        {
-            error(KIO::ERR_COULD_NOT_LOGIN,
-                  i18n("The server responded: \"%1\"").arg(m_lastError));
-        }
+      cmd = auto_ptr<Command>( new EHLOCommand( this, m_hostname ) );
+      if ( !execute( cmd.get() ) ) {
         smtp_close();
         return false;
       }
-
-      parseFeatures( ehloResponse ); // reparse capabilities after starttls
-
-    }
-    else if (metaData("tls") == "on") {
-      if (!m_errorSent)
-        error(KIO::ERR_COULD_NOT_LOGIN,
-              i18n("Your SMTP server does not support TLS. Disable "
-                   "TLS, if you want to connect without encryption."));
-      smtp_close();
-      return false;
     }
   }
   // Now we try and login
@@ -536,83 +456,14 @@ bool SMTPProtocol::authenticate()
   if ( !haveCapability( "AUTH" ) && metaData( "sasl" ).isEmpty() )
     return true;
 
-  KDESasl SASL(m_sUser, m_sPass, usingSSL() ? "smtps" : "smtp");
-
   QStrIList strList( true ); // deep copies
   if (!metaData("sasl").isEmpty())
     strList.append(metaData("sasl").latin1());
   else
     strList = mCapabilities.saslMethods();
 
-  // If none are available, set it up so we can start over again
-  if ( !SASL.chooseMethod( strList ) )
-  {
-    //kdDebug(7112) << "kio_smtp: no authentication available" << endl;
-    if ( metaData("sasl").isEmpty() )
-      error(KIO::ERR_COULD_NOT_LOGIN,
-	    i18n("No compatible authentication methods found."));
-    else
-      error(KIO::ERR_COULD_NOT_LOGIN,
-              i18n("Your SMTP server doesn't support %1.\n"
-                   "Choose a different authentication method.")
-                   .arg( metaData("sasl") ));
-    return false;
-  }
-
-  int numResponses = 0;
-  QCString cmd = "AUTH " + SASL.method();
-
-  if ( SASL.clientStarts() ) {
-    ++numResponses;
-    cmd += ' ' + SASL.getResponse();
-  }
-
-  Response saslResponse;
-  if ( !command( cmd, &saslResponse ) )
-  {
-    if (!m_errorSent)
-    {
-      error(KIO::ERR_COULD_NOT_LOGIN,
-	    i18n("Your SMTP server doesn't support %1.\n"
-		 "Choose a different authentication method.")
-	    .arg(SASL.method()));
-    }
-    return false;
-  }
-
-  if ( SASL.dialogComplete( numResponses ) )
-    return true;
-
-  QByteArray ba;
-  if ( !saslResponse.lines().empty() )
-    ba.duplicate( saslResponse.lines().front().data(),
-		  saslResponse.lines().front().length() );
-  ++numResponses;
-  cmd = SASL.getResponse(ba);
-
-  saslResponse.clear();
-  bool ret = command( cmd, &saslResponse );
-  if ( ret && !SASL.dialogComplete( numResponses ) )
-  {
-    if ( !saslResponse.lines().empty() )
-      ba.duplicate( saslResponse.lines().front().data(),
-		    saslResponse.lines().front().length() );
-    else
-      ba.resize( 0 );
-    cmd = SASL.getResponse(ba);
-    ++numResponses;
-    ret = command(cmd);
-  }
-
-  if (!ret && !m_errorSent)
-  {
-    error(KIO::ERR_COULD_NOT_LOGIN,
-	  i18n
-	  ("Authentication failed.\nMost likely the password is wrong.\nThe server responded: \"%1\"").
-	  arg(m_lastError));
-  }
-
-  return ret;
+  auto_ptr<Command> cmd( new AuthCommand( this, strList, m_sUser, m_sPass ) );
+  return execute( cmd.get() );
 }
 
 void SMTPProtocol::parseFeatures( const Response & ehloResponse ) {
@@ -634,13 +485,14 @@ void SMTPProtocol::smtp_close()
   if (!m_opened)                  // We're already closed
     return;
 
-  command("QUIT");
+  execute( Command::QUIT );
   closeDescriptor();
   m_sOldServer = QString::null;
   m_sOldUser = QString::null;
   m_sOldPass = QString::null;
   
   mCapabilities.clear();
+  mPendingCommandQueue.clear();
 
   m_opened = false;
 }

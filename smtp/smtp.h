@@ -32,17 +32,20 @@
 #include <kio/tcpslavebase.h>
 
 #include "capabilities.h"
+#include "command.h"
 
 #include <qstring.h>
 #include <qcstring.h>
 #include <qstringlist.h>
 #include <qstrlist.h>
+#include <qptrqueue.h>
 
 namespace KioSMTP {
   class Response;
 };
 
 class SMTPProtocol : public KIO::TCPSlaveBase {
+  friend class KioSMTP::Command;
 public:
   SMTPProtocol(const QCString & pool, const QCString & app, bool useSSL);
   virtual ~ SMTPProtocol();
@@ -62,15 +65,13 @@ protected:
   bool smtp_open(const QString& fakeHostname = QString::null);
   void smtp_close();
 
-  /** Send command @p cmd. The line ending CRLF is added here. */
-  bool command( QCString cmd, KioSMTP::Response * resp=0 );
-  /** This is an overloaded member function, provided for
-      convenience. It behaves essentially like the above function. */
-  bool command( const QString & cmd, KioSMTP::Response * resp=0 );
-  /** This is an overloaded member function, provided for
-      convenience. It behaves essentially like the above function. */
-  bool command( const char * cmd, KioSMTP::Response * resp=0 );
-
+  /** Execute command @p cmd */
+  bool execute( KioSMTP::Command * cmd );
+  /** Execute a command of type @p type */
+  bool execute( KioSMTP::Command::Type type );
+  /** Execute the queued commands. Tears down the connection if a
+      command which is marked as failing fatally fails. */
+  bool executeQueuedCommands();
   /** Parse a single response from the server. Single- vs. multiline
       responses are correctly detected.
 
@@ -84,7 +85,6 @@ protected:
 
   bool authenticate();
   void parseFeatures( const KioSMTP::Response & ehloResponse );
-  bool putRecipients( const QStringList & list );
 
   /** This is a pure convenience wrapper around
       @ref KioSMTP::Capabilities::have() */
@@ -97,17 +97,21 @@ protected:
     return mCapabilities.createSpecialResponse( usingTLS() || haveCapability( "STARTTLS" ) );
   }
 
+  void queueCommand( KioSMTP::Command * command ) {
+    mPendingCommandQueue.enqueue( command );
+  }
+
   unsigned short m_iOldPort;
   bool m_opened;
-  bool m_errorSent;
   QString m_sServer, m_sOldServer;
   QString m_sUser, m_sOldUser;
   QString m_sPass, m_sOldPass;
   QString m_hostname;
 
-  QCString m_lastError;
-
   KioSMTP::Capabilities mCapabilities;
+
+  typedef QPtrQueue<KioSMTP::Command> CommandQueue;
+  CommandQueue mPendingCommandQueue;
 };
 
 #endif
