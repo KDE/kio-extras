@@ -64,7 +64,7 @@
             viewing in kpart.
           - get port number using getservbyname instead of hard coding it.
 2-27-2002 - testing before committing back to cvs, test with openssh 3, ssh 3
-6-??-2002 - rewrote openConnection() to using new KSshProcess connect proceedures
+6-?-2002 - rewrote openConnection() to using new KSshProcess connect proceedures
 7-20-2002 - Don't put up a message box when auth fails because of now or changed key,
             the call to error() will put up the dialog.
           - Connect fails and no more password are prompted for when we get
@@ -1769,7 +1769,7 @@ kdbgstream& operator<< (kdbgstream& s, const QByteArray& a) {
     QString str;
     for(i = 0; i < l-1; i++)
         s << str.sprintf("%02X ",(unsigned char)a[i]);
-    s << str.sprintf("%02X",(unsigned char)a[i]); // why do this??
+    s << str.sprintf("%02X",(unsigned char)a[i]); // why do this?
     return s;
 }
 
