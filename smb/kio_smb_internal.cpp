@@ -79,24 +79,29 @@ SMBUrl& SMBUrl::append(const QString &filedir)
 void SMBUrl::setUserInfo(const QString &userinfo)
   //-----------------------------------------------------------------------
 {
-  QString userd;
+    QString userd;
 
-  // extract password
-  int pos_dp = userinfo.findRev(':');
-  if (pos_dp>1) {
-    m_password = userinfo.right(userinfo.length()-pos_dp-1);
-    userd = userinfo.left(pos_dp);
-  }
-  else
-    userd = userinfo;
+    // extract password
+    int pos_dp = userinfo.findRev(':');
+    if (pos_dp>=0) {
+        m_password = userinfo.mid(pos_dp + 1);
+        userd = userinfo.left(pos_dp);
+    }
+    else {
+        userd = userinfo;
+        m_password = QString::null;
+    }
 
-  // extract domain
-  if (userd.contains(';')) {
-    m_userdomain = userd.left(userinfo.find(';'));
-    m_user =  userd.right(userinfo.length()-userd.find(';')-1);
-  }
-  else
-    m_user =  userd;
+    // extract domain
+    if (userd.contains(';')) {
+        pos_dp = userinfo.find(';');
+        m_userdomain = userd.left(pos_dp);
+        m_user = userd.mid(pos_dp + 1);
+    }
+    else {
+        m_user =  userd;
+        m_userdomain = QString::null;
+    }
 }
 
 //-----------------------------------------------------------------------
@@ -105,9 +110,9 @@ void SMBUrl::fromKioUrl(const KURL& kurl)
 {
   m_type     = SMBURLTYPE_UNKNOWN;
   m_kio_url  = kurl.prettyURL();
-  m_user     = "";
-  m_userdomain = "";
-  m_password   = "";
+  m_user     = QString::null;
+  m_userdomain = QString::null;
+  m_password   = QString::null;
 
   // remove userinfo from m_kio_url
   if (m_kio_url.contains('@')) {
@@ -126,7 +131,7 @@ void SMBUrl::fromKioUrl(const KURL& kurl)
     // find workgroup
     m_workgroup_index = m_kio_url.find('/') + 1;
     m_workgroup_len = m_kio_url.find('/',m_workgroup_index);
-    
+
     if(m_workgroup_len < 0)
     {
       m_workgroup_len = m_kio_url.length();
@@ -191,7 +196,7 @@ SMBUrlType SMBUrl::getType()
 {
   int pos1;
   int pos2;
-    
+
   if(m_type != SMBURLTYPE_UNKNOWN)
     {
       return m_type;
@@ -301,7 +306,7 @@ void SMBUrl::getAuthInfo(SMBAuthInfo & auth) {
   }
   else {
     endshareidx = servershare.find('/',endserveridx+1 );
-    if (endshareidx<=0) 
+    if (endshareidx<=0)
       endshareidx = servershare.length();
     auth.m_share   = servershare.mid(endserveridx+1, endshareidx-endserveridx-1).local8Bit();
   }
