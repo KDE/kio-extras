@@ -68,6 +68,7 @@ DiskList::DiskList(QObject *parent, const char *name)
 **/
 DiskList::~DiskList()
 {
+    delete dfProc;
 };
 
 
