@@ -570,7 +570,7 @@ SMBmvPacket::SMBmvPacket(uint16 TID, const char *srcfile, const char *dstfile, u
 }
 
 const int SMBnegprotPacket::NbDialect=6;
-char *SMBnegprotPacket::dialect[] =
+const char *SMBnegprotPacket::dialect[] =
 {
 "PC NETWORK PROGRAM 1.0",
 "PCLAN1.0",

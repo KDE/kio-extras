@@ -78,7 +78,7 @@ char* NetBIOSPacket::NBName(const char *name, bool groupFlag)
 	cout<<"name : "<<name<<"\nlen : "<<(int)len<<"\n";
 #endif
 	
-	char *sco=NBSCOPE; //NetBIOS scope
+	const char *sco=NBSCOPE; //NetBIOS scope
 	uint32 posLen=33;
 	uint32 posCur=34;
 	uint16 len2=strlen(sco);

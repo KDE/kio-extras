@@ -205,7 +205,7 @@ class SMBnegprotPacket : public SMBPacket  /* negotiate protocol */
 {
 protected:
 	static const int NbDialect;
-	static char *dialect[];
+	static const char *dialect[];
 public:
 	SMBnegprotPacket(uint8 dial=0);
 	int16 getAcceptedDialect();
