@@ -809,34 +809,34 @@ void LDAPProtocol::put( const KURL &_url, int, bool overwrite, bool )
               return;
             case LDIF::Entry_Del:
               kdDebug(7125) << "kio_ldap_del" << endl;
-              ldaperr = ldap_delete_s( mLDAP, ldif.Dn().utf8() );
+              ldaperr = ldap_delete_s( mLDAP, ldif.dn().utf8() );
               break;
             case LDIF::Entry_Modrdn:
-              kdDebug(7125) << "kio_ldap_modrdn olddn:" << ldif.Dn() << 
+              kdDebug(7125) << "kio_ldap_modrdn olddn:" << ldif.dn() << 
                 " newRdn: " <<  ldif.newRdn() << 
                 " newSuperior: " << ldif.newSuperior() << 
                 " deloldrdn: " << ldif.delOldRdn() << endl;
-              ldaperr = ldap_rename_s( mLDAP, ldif.Dn().utf8(), ldif.newRdn().utf8(), 
+              ldaperr = ldap_rename_s( mLDAP, ldif.dn().utf8(), ldif.newRdn().utf8(), 
                 ldif.newSuperior().isEmpty() ? 0 : ldif.newSuperior().utf8(), 
                 ldif.delOldRdn(), 0, 0 );
               break;
             case LDIF::Entry_Mod:
               kdDebug(7125) << "kio_ldap_mod"  << endl;
               if ( lmod ) {
-                ldaperr = ldap_modify_s( mLDAP, ldif.Dn().utf8(), lmod );
+                ldaperr = ldap_modify_s( mLDAP, ldif.dn().utf8(), lmod );
                 ldap_mods_free( lmod, 1 );
                 lmod = 0;
               }
               break;
             case LDIF::Entry_Add:
-              kdDebug(7125) << "kio_ldap_add " << ldif.Dn() << endl;
+              kdDebug(7125) << "kio_ldap_add " << ldif.dn() << endl;
               if ( lmod ) {
-                ldaperr = ldap_add_s( mLDAP, ldif.Dn().utf8(), lmod );
+                ldaperr = ldap_add_s( mLDAP, ldif.dn().utf8(), lmod );
                 if ( ldaperr == LDAP_ALREADY_EXISTS && overwrite ) {
-                  kdDebug(7125) << ldif.Dn() << " already exists, delete first" << endl;
-                  ldaperr = ldap_delete_s( mLDAP, ldif.Dn().utf8() );
+                  kdDebug(7125) << ldif.dn() << " already exists, delete first" << endl;
+                  ldaperr = ldap_delete_s( mLDAP, ldif.dn().utf8() );
                   if ( ldaperr == LDAP_SUCCESS ) 
-                    ldaperr = ldap_add_s( mLDAP, ldif.Dn().utf8(), lmod );
+                    ldaperr = ldap_add_s( mLDAP, ldif.dn().utf8(), lmod );
                 }
                 ldap_mods_free( lmod, 1 );
                 lmod = 0;
