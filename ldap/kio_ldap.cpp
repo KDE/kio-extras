@@ -54,7 +54,7 @@ int kdemain(int argc, char **argv)
 LDAPProtocol::LDAPProtocol(const QCString &pool, const QCString &app)
   : SlaveBase( "ldap", pool, app) 
 {
-    kDebugInfo(7110, "LDAPProtocol::LDAPProtocol");
+    kdDebug(7110) << "LDAPProtocol::LDAPProtocol" << endl;
 }
 
 void LDAPProtocol::setHost( const QString& _host, int _port,
@@ -70,7 +70,7 @@ void LDAPProtocol::setHost( const QString& _host, int _port,
   urlPrefix += _host;
   if (_port)
     urlPrefix += QString( ":%1" ).arg( _port );
-  debug( "urlPrefix " + urlPrefix );
+  kdDebug() << "urlPrefix " << urlPrefix << endl;
 }
 
 /**
@@ -81,7 +81,7 @@ void LDAPProtocol::get(const KURL &url, bool reload )
   /*QString _url = urlPrefix + path;
   if (!query.isEmpty()) { _url += "?" + query; }*/
   QString _url = url.url();
-  kDebugInfo(7110, "kio_ldap::get(%s)", debugString(_url));
+  kdDebug(7110) << "kio_ldap::get(" << _url << ")" << endl;
   KLDAP::Url usrc(_url);
 
   // check if the URL is a valid LDAP URL
@@ -164,7 +164,7 @@ void LDAPProtocol::stat( const KURL &a_url )
   /*QString _url = urlPrefix + path;
   if (!query.isEmpty()) { _url += "?" + query; }*/
   QString _url = a_url.url();
-  kDebugInfo(7110, "kio_ldap: stat(%s)", debugString(_url));
+  kdDebug(7110) << "kio_ldap: stat(" << _url << ")" << endl;
   KLDAP::Url usrc(_url);
 
   // check if the URL is a valid LDAP URL
@@ -235,7 +235,7 @@ void LDAPProtocol::stat( const KURL &a_url )
   else
     url.setScope(LDAP_SCOPE_BASE);
   atom.m_str = url.url();
-  kDebugInfo(7110, "kio_ldap:stat put url:%s", debugString(atom.m_str));
+  kdDebug(7110) << "kio_ldap:stat put url:" << atom.m_str << endl;
   entry.append(atom);
 
   if (!isDir) {
@@ -258,7 +258,7 @@ void LDAPProtocol::mimetype(const KURL &url)
   /*QString _url = urlPrefix + path;
   if (!query.isEmpty()) { _url += "?" + query; }*/
   QString _url = url.url();
-  kDebugInfo(7110, "kio_ldap: mimetype(%s)", debugString(_url));
+  kdDebug(7110) << "kio_ldap: mimetype(" << _url << ")" << endl;
   KLDAP::Url usrc(_url);
   if (usrc.isMalformed() || usrc.scope() != LDAP_SCOPE_BASE) {
     error(ERR_MALFORMED_URL, strdup(_url));
@@ -277,7 +277,7 @@ void LDAPProtocol::listDir(const KURL &url)
   /*QString _url = urlPrefix + path;
   if (!query.isEmpty()) { _url += "?" + query; }*/
   QString _url = url.url();
-  kDebugInfo(7110, "kio_ldap: listDir(%s)", debugString(_url));
+  kdDebug(7110) << "kio_ldap: listDir(" << _url << ")" << endl;
   KLDAP::Url usrc(_url);
 
   // check if the URL is a valid LDAP URL
@@ -348,18 +348,18 @@ void LDAPProtocol::listDir(const KURL &url)
 	  atom.m_uds = UDS_URL;
 	  atom.m_long = 0;
 	  KLDAP::Url url(urlPrefix);
-	  //kDebugInfo(7110, "kio_ldap:listDir(dir) put url1:" + url.url());
+	  //kdDebug(7110) << "kio_ldap:listDir(dir) put url1:" << endl;
 	  //url.setProtocol("ldap");
-	  //kDebugInfo(7110, "kio_ldap:listDir(dir) put url2:" + url.url());
+	  //kdDebug(7110) << "kio_ldap:listDir(dir) put url2:" << endl;
 	  url.setHost(usrc.host());
-	  //kDebugInfo(7110, "kio_ldap:listDir(dir) put url3:" + url.url());
+	  //kdDebug(7110) << "kio_ldap:listDir(dir) put url3:" << endl;
 	  url.setPort(usrc.port());
-	  //kDebugInfo(7110, "kio_ldap:listDir(dir) put url4:" + url.url());
+	  //kdDebug(7110) << "kio_ldap:listDir(dir) put url4:" << endl;
 	  url.setPath("/"+e.dn());
-	  //kDebugInfo(7110, "kio_ldap:listDir(dir) put url5:" + url.url());
+	  //kdDebug(7110) << "kio_ldap:listDir(dir) put url5:" << endl;
 	  url.setScope(LDAP_SCOPE_ONELEVEL);
 	  atom.m_str = url.url();
-	  kDebugInfo(7110, "kio_ldap:listDir(dir) put url:%s", debugString(atom.m_str));
+	  kdDebug(7110) << "kio_ldap:listDir(dir) put url:" << atom.m_str << endl;
 	  entry.append(atom);
 
 	  listEntry(entry, false);
@@ -411,7 +411,7 @@ void LDAPProtocol::listDir(const KURL &url)
       url.setScope(LDAP_SCOPE_BASE);
       atom.m_str = url.url();
       QString dbgurl = url.url();
-      kDebugInfo(7110, "kio_ldap:listDir(file) put url:%s", debugString(url.url()));
+      kdDebug(7110) << "kio_ldap:listDir(file) put url:" << url.url() << endl;
       entry.append(atom);
 
       listEntry(entry, false);

@@ -308,7 +308,7 @@ void GZipProtocol::slotGet( const char *_url )
 
   QString src = KURL::join( lst );
 
-  qDebug( "kio_gzip : Nested fetching %s", src.ascii() );
+  kdDebug() << "kio_gzip : Nested fetching " << src << endl;
 
   job.get( src );
   while( !job.isReady() && !job.hasFinished() )

@@ -162,7 +162,7 @@ void TARProtocol::listDir( const QString & path, const QString& /*query*/ )
     return;
   }
 
-  kdebug( KDEBUG_INFO, 0, QString("Opening KTarGz on %1").arg((*lst.begin()).path()));
+  kdDebug(0) << QString("Opening KTarGz on %1").arg((*lst.begin()).path()) << endl;
   KTarGz ktar( (*lst.begin()).path() );
   if ( !ktar.open( IO_ReadOnly ) ) {
     error( ERR_CANNOT_ENTER_DIRECTORY, strdup(_url) );
@@ -174,7 +174,7 @@ void TARProtocol::listDir( const QString & path, const QString& /*query*/ )
   const KTarDirectory* dir;
   if (!path.isEmpty() && path != "/")
   {
-    kdebug( KDEBUG_INFO, 0, QString("Looking for entry %1").arg(path) );
+    kdDebug(0) << QString("Looking for entry %1").arg(path) << endl;
     const KTarEntry* e = root->entry( path );
     ASSERT( e && e->isDirectory() );
     dir = (KTarDirectory*)e;

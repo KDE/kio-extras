@@ -3,11 +3,9 @@
 
 #include "kldap.h"
 #include "kldapurl.h"
-#include "debug.h"
-
+#include <kdebug.h>
 
 using namespace KLDAP;
-
 
 LDAPBase::LDAPBase()
   : res(0), _handle(0)
@@ -21,7 +19,7 @@ bool LDAPBase::check(int r)
   res = r;
 
   // output result
-  debug << ": " << error() << endl;
+  kdDebug() << ": " << error() << endl;
 
   // succeeded?
   return r == LDAP_SUCCESS;
@@ -55,8 +53,8 @@ bool Connection::connect()
   // try to connect to the server
   _handle = ldap_open(const_cast<char*>(_server.ascii()), _port);
 
-  debug << "open connection to " << _server << ":" << _port;
-  debug << ((handle() != 0) ? " succeeded" : " failed") << endl;
+  kdDebug() << "open connection to " << _server << ":" << _port;
+  kdDebug() << ((handle() != 0) ? " succeeded" : " failed") << endl;
 
   // test if connect succeeded
   return handle() != 0;
@@ -69,7 +67,7 @@ bool Connection::disconnect()
   if (!handle())
     return TRUE;
 
-  debug << "close connection to " << _server << ":" << _port;
+  kdDebug() << "close connection to " << _server << ":" << _port;
 
   // close the connection to the server
   check(ldap_unbind(handle()));
@@ -84,7 +82,7 @@ bool Connection::authenticate(const char *dn, const char *cred, int method)
   if (!handle())
     return FALSE;
 
-  debug << "authentication";
+  kdDebug() << "authentication";
 
   return check(ldap_bind_s(handle(), const_cast<char*>(dn), const_cast<char*>(cred), method));
 }
@@ -127,7 +125,7 @@ bool Request::finish()
   if (!handle())
     return FALSE;
 
-  debug << "finish request" << endl;
+  kdDebug() << "finish request" << endl;
 
   // if sync, the result is already there
   // if not: get the result
@@ -249,7 +247,7 @@ bool SearchRequest::execute()
   // call the inherited method
   Request::execute();
 
-  debug << "search request: " << _base << " " << _scope << " " << _filter << endl;
+  kdDebug() << "search request: " << _base << " " << _scope << " " << _filter << endl;
 
   // Honour the attributes to return
   char **attrs = 0;
@@ -319,14 +317,14 @@ bool SearchRequest::execute()
 
 bool SearchRequest::search(QString base, QString filter)
 {
-  debug << "search: base=" << base << " filter=" << filter;
+  kdDebug() << "search: base=" << base << " filter=" << filter;
 
   setBase(base);
   setFilter(filter);
 
   bool retval = execute();
 
-  debug << (retval ? ": Success" : "Failed") << endl;
+  kdDebug() << (retval ? ": Success" : "Failed") << endl;
   
   return retval;
 }
