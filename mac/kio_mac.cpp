@@ -182,9 +182,9 @@ void MacProtocol::stat(const KURL& url) {
 QValueList<KIO::UDSAtom> MacProtocol::doStat(const KURL& url) {
     QString filename = prepareHP(url);
 
-    if (filename == NULL) {
+    if (filename.isNull()) {
         error(ERR_DOES_NOT_EXIST, i18n("No filename was found in the URL"));
-    } else if (filename != "") {
+    } else if (! filename.isEmpty()) {
         myKProcess = new KShellProcess();
 
         *myKProcess << "hpls -ld" << filename;
@@ -221,6 +221,8 @@ QValueList<KIO::UDSAtom> MacProtocol::doStat(const KURL& url) {
             UDSEntry entry = makeUDS("d         0 item               Jan 01  2000 /");
             return entry;
     }//if filename == null
+
+    return QValueList<KIO::UDSAtom>();
 }
 
 //prepareHP() called from get() listDir() and stat()
