@@ -278,8 +278,8 @@ void SMTPProtocol::put(const KURL & url, int /*permissions */ ,
   {
     if (!m_errorSent)
     {
-      error(KIO::ERR_NO_CONTENT, i18n("The server didn't accept the "
-                                 "sender address.\nThe server said: \"%1\"").arg(m_lastError));
+      error(KIO::ERR_NO_CONTENT, i18n("The server did not accept the "
+                                 "sender address.\nThe server responded: \"%1\"").arg(m_lastError));
     }
 
     smtp_close();
@@ -302,7 +302,7 @@ void SMTPProtocol::put(const KURL & url, int /*permissions */ ,
     {
       error(KIO::ERR_NO_CONTENT, 
             i18n("The attempt to start sending the "
-                 "message content failed.\nThe server said: \"%1\"")
+                 "message content failed.\nThe server responded: \"%1\"")
                 .arg(m_lastError));
     }
 
@@ -375,7 +375,7 @@ void SMTPProtocol::put(const KURL & url, int /*permissions */ ,
   if (getResponse(false) >= SMTP_MIN_NEGATIVE_REPLY) {
     if (!m_errorSent)
       error(KIO::ERR_NO_CONTENT, 
-            i18n("The message content was not accepted.\nThe server said: \"%1\"").arg(m_lastError));
+            i18n("The message content was not accepted.\nThe server responded: \"%1\"").arg(m_lastError));
     smtp_close();
     return;
   }
@@ -392,7 +392,7 @@ bool SMTPProtocol::PutRecipients(QStringList & list)
       if (!m_errorSent)
       {
         error(KIO::ERR_NO_CONTENT,
-              i18n("One of the recipients was not accepted.\nThe server said: \"%1\"")
+              i18n("One of the recipients was not accepted.\nThe server responded: \"%1\"")
                   .arg(m_lastError));
       }
 
@@ -570,7 +570,7 @@ bool SMTPProtocol::smtp_open(const QString& fakeHostname)
     if (!m_errorSent)
     {
       error(KIO::ERR_COULD_NOT_LOGIN, 
-            i18n("The server didn't accept the connection: \"%1\"").arg(m_lastError));
+            i18n("The server did not accept the connection: \"%1\"").arg(m_lastError));
     }
     smtp_close();
     return false;
@@ -608,7 +608,7 @@ bool SMTPProtocol::smtp_open(const QString& fakeHostname)
     if (!command(("HELO " + m_hostname))) {
       if (!m_errorSent)
         error(KIO::ERR_COULD_NOT_LOGIN,
-              i18n("The server said: \"%1\"").arg(m_lastError));
+              i18n("The server responded: \"%1\"").arg(m_lastError));
       smtp_close();
       return false;
     }
@@ -656,7 +656,7 @@ bool SMTPProtocol::smtp_open(const QString& fakeHostname)
         if (!m_errorSent)
         {
             error(KIO::ERR_COULD_NOT_LOGIN,
-                  i18n("The server said: \"%1\"").arg(m_lastError));
+                  i18n("The server responded: \"%1\"").arg(m_lastError));
         }
         smtp_close();
         return false;
@@ -789,7 +789,7 @@ bool SMTPProtocol::Authenticate()
     {
       error(KIO::ERR_COULD_NOT_LOGIN,
             i18n
-            ("Authentication failed.\nMost likely the password is wrong.\nThe server said: \"%1\"").
+            ("Authentication failed.\nMost likely the password is wrong.\nThe server responded: \"%1\"").
             arg(m_lastError));
     }
 
