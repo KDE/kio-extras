@@ -14,7 +14,7 @@
    class HelloProtocol : public KIO::SlaveBase
    {
    public:
-      HelloProtocol( const QCString &pool, const QCString &app);
+      HelloProtocol( const QCString& protocol ,const QCString &pool, const QCString &app);
       virtual ~HelloProtocol();
 #if 0
       virtual void get( const KURL& url );
@@ -25,6 +25,7 @@
    private:
 	DCOPClient *m_dcopClient;
 	uint mountpointMappingCount();
+	bool fullMode;
 	QString deviceNode(uint id);
 	bool deviceMounted(const QString dev);
 	bool deviceMounted(int);
@@ -42,7 +43,7 @@
       {
           kdDebug()<<"kdemain for devices"<<endl;
           KInstance instance( "kio_devices" );
-          HelloProtocol slave(argv[2], argv[3]);
+          HelloProtocol slave(argv[1],argv[2], argv[3]);
           slave.dispatchLoop();
           return 0;
       }
@@ -53,8 +54,11 @@
 static void createFileEntry(KIO::UDSEntry& entry, const QString& name, const QString& url, const QString& mime);
 static void createDirEntry(KIO::UDSEntry& entry, const QString& name, const QString& url, const QString& mime);
 
-HelloProtocol::HelloProtocol( const QCString &pool, const QCString &app): SlaveBase( "devices", pool, app )
+HelloProtocol::HelloProtocol( const QCString& protocol, const QCString &pool, const QCString &app): 
+		SlaveBase(protocol,  pool, app )
 {
+	kdDebug()<<"HelloProtocol: Called with slavename:"<<protocol<<endl;
+	if (protocol=="system") fullMode=true; else fullMode=false;
 	m_dcopClient=new DCOPClient();
 	if (!m_dcopClient->attach())
 	{
@@ -77,7 +81,10 @@ void HelloProtocol::stat(const KURL& url)
 	switch (path.count())
 	{
 		case 0:
-		        createDirEntry(entry, i18n("My Computer"), "devices:/", "inode/directory");
+			if (fullMode)
+			        createDirEntry(entry, i18n("System"), "system:/", "inode/directory");
+			else
+			        createDirEntry(entry, i18n("Devices"), "devices:/", "inode/directory");
 		        statEntry(entry);
 		        finished();
 			break;
@@ -87,7 +94,7 @@ void HelloProtocol::stat(const KURL& url)
 
                 if (info.empty())
                 {
-                        error(KIO::ERR_SLAVE_DEFINED,i18n("Unknown device"));
+                        error(KIO::ERR_SLAVE_DEFINED,i18n("Unknown device: %1").arg(url.fileName()));
                         return;
                 }
 
@@ -147,7 +154,7 @@ void HelloProtocol::stat(const KURL& url)
 void HelloProtocol::listDir(const KURL& url)
 {
 	kdDebug()<<"HELLO PROTOCOLL::listdir: "<<url.url()<<endl;
-	if (url==KURL("devices:/"))
+	if ((url==KURL("devices:/")) || (url==KURL("system:/")))
 		listRoot();
 	else
 	{
@@ -155,7 +162,7 @@ void HelloProtocol::listDir(const KURL& url)
 
 		if (info.empty())
 		{
-			error(KIO::ERR_SLAVE_DEFINED,i18n("Unknown device"));
+			error(KIO::ERR_SLAVE_DEFINED,i18n("Unknown device %1").arg(url.fileName()));
 			return;
 		}
 
@@ -330,8 +337,11 @@ QStringList HelloProtocol::deviceList()
         QCString retType;
         QStringList retVal;
         QDataStream streamout(param,IO_WriteOnly);
+	
+	kdDebug()<<"list dir: Fullmode=="<<fullMode<<endl;
+	QString dcopFun=fullMode?"basicSystemList()":"basicList()";
         if ( m_dcopClient->call( "kded",
-                 "mountwatcher", "basicList()", param,retType,data,false ) )
+                 "mountwatcher", dcopFun.utf8(), param,retType,data,false ) )
         {
           QDataStream streamin(data,IO_ReadOnly);
           streamin>>retVal;
@@ -476,7 +486,13 @@ static void createFileEntry(KIO::UDSEntry& entry, const QString& name, const QSt
         addAtom(entry, KIO::UDS_FILE_TYPE, S_IFDIR);//REG);
         addAtom(entry, KIO::UDS_URL, 0, url);
         addAtom(entry, KIO::UDS_ACCESS, 0500);
-        addAtom(entry, KIO::UDS_MIME_TYPE, 0, mime);
+       if (mime.startsWith("icon:")) {
+                kdDebug()<<"setting prefered icon:"<<mime.right(mime.length()-5)<<endl;
+                addAtom(entry,KIO::UDS_ICON_NAME,0,mime.right(mime.length()-5));
+                addAtom(entry,KIO::UDS_MIME_TYPE,0,"inode/directory");
+        }
+	else
+	        addAtom(entry, KIO::UDS_MIME_TYPE, 0, mime);
         addAtom(entry, KIO::UDS_SIZE, 0);
         addAtom(entry, KIO::UDS_GUESSED_MIME_TYPE, 0, "inode/directory");
 	addAtom(entry, KIO::UDS_CREATION_TIME,1);
@@ -490,9 +506,18 @@ static void createDirEntry(KIO::UDSEntry& entry, const QString& name, const QStr
         addAtom(entry, KIO::UDS_NAME, 0, name);
         addAtom(entry, KIO::UDS_FILE_TYPE, S_IFDIR);
         addAtom(entry, KIO::UDS_ACCESS, 0500);
-        addAtom(entry, KIO::UDS_MIME_TYPE, 0, mime);
+	kdDebug()<<"DEVICES: "<<mime<<endl;
+	if (mime.startsWith("icon:")) {
+		kdDebug()<<"setting prefered icon:"<<mime.right(mime.length()-5)<<endl;
+		addAtom(entry,KIO::UDS_ICON_NAME,0,mime.right(mime.length()-5));
+		addAtom(entry,KIO::UDS_MIME_TYPE,0,"inode/directory");	
+	}
+        else {
+		addAtom(entry, KIO::UDS_MIME_TYPE, 0, mime);
+	}
         addAtom(entry, KIO::UDS_URL, 0, url);
         addAtom(entry, KIO::UDS_SIZE, 0);
         addAtom(entry, KIO::UDS_GUESSED_MIME_TYPE, 0, "inode/directory");
+
 //        addAtom(entry, KIO::UDS_GUESSED_MIME_TYPE, 0, "application/x-desktop");
 }

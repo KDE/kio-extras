@@ -35,6 +35,7 @@ struct specialEntry
 	QString url;
 	QString mimeType;
 	bool mountState;
+	bool fromConfigFile;
 };
 
 typedef QMap<QString,specialEntry> EntryMap;
@@ -51,6 +52,7 @@ private:
     DiskList mDiskList;
     EntryMap mEntryMap;
     QStringList mountList;
+    QStringList completeList;
     bool firstTime;
     uint mtabsize;
 k_dcop:
@@ -62,6 +64,7 @@ k_dcop:
     bool    mounted(int id);
     bool    mounted(QString name);
     QStringList basicList();
+    QStringList basicSystemList();
     QStringList basicDeviceInfo(QString);
     QStringList basicDeviceInfoForMountPoint(QString);
     void addSpecialDevice(const QString& uniqueIdentifier, const QString& description,
@@ -69,11 +72,15 @@ k_dcop:
     void removeSpecialDevice(const QString& uniqueIdentifier);
     bool createLink(const KURL& deviceURL, const KURL& destinationURL);
     void reloadExclusionLists();
+    void reReadSpecialConfig();
 k_dcop_signals:
     void mountSituationChanged();
 
 
 protected slots:
+    void addSpecialDeviceInternal(const QString& uniqueIdentifier, const QString& description,
+			 const QString& URL, const QString& mimetype,bool mountState,bool fromConfigFile);
+
 	void dirty(const QString&);
 	void readDFDone();
 };

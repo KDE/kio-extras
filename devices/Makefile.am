@@ -10,7 +10,7 @@ kio_devices_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN)
 
 noinst_HEADERS = kio_devices.h
 
-kdelnk_DATA = devices.protocol
+kdelnk_DATA = devices.protocol system.protocol
 kdelnkdir = $(kde_servicesdir)
 
 

@@ -65,13 +65,52 @@ MountWatcherModule::MountWatcherModule(const QCString &obj)
 
 	mDiskList.readFSTAB();
 	mDiskList.readMNTTAB();
+	reReadSpecialConfig();
 	readDFDone();
-	addSpecialDevice("printsettings", i18n("Printer Settings"),"print:/","print/printer",true);
 }
+
 
 MountWatcherModule::~MountWatcherModule()
 {
 }
+
+void MountWatcherModule::reReadSpecialConfig() {
+	KConfig cfg("mountwatcher");
+
+	QStringList internat=cfg.readListEntry("catalogues");
+	for ( QStringList::Iterator it = internat.begin(); it != internat.end(); ++it )
+		KGlobal::locale()->insertCatalogue(*it);
+
+	QString entryTemplate="specialEntry:%1";
+
+	bool somethingChanged;
+	do {
+		somethingChanged=false;
+		for (EntryMap::iterator it=mEntryMap.begin();it!=mEntryMap.end();++it) {
+			if (it.data().fromConfigFile) {
+				somethingChanged=true;
+				mEntryMap.remove(it);
+				break;
+			}
+		}
+	} while (somethingChanged);
+
+	for (int i=0;cfg.hasGroup(entryTemplate.arg(i));i++) {
+		cfg.setGroup(entryTemplate.arg(i));
+		QString uniqueID=cfg.readEntry("uniqueID");
+		if (uniqueID.isEmpty()) continue;
+		QString description=cfg.readEntry("description");
+		if (description.isEmpty()) continue;
+		description=i18n(description.utf8());
+		QString URL=cfg.readEntry("URL");
+		if (URL.isEmpty()) continue;
+		QString mimetype=cfg.readEntry("mimetype");
+		if (mimetype.isEmpty()) continue;
+		addSpecialDeviceInternal(uniqueID,description,URL,mimetype,true,true);
+	}
+
+}
+
 
 uint MountWatcherModule::mountpointMappingCount()
 {
@@ -81,6 +120,11 @@ uint MountWatcherModule::mountpointMappingCount()
 QStringList MountWatcherModule::basicList()
 {
 	return mountList;
+}
+
+QStringList MountWatcherModule::basicSystemList()
+{
+	return completeList;
 }
 
 QString  MountWatcherModule::mountpoint(int id)
@@ -168,7 +212,7 @@ void MountWatcherModule::dirty(const QString& str)
 QStringList MountWatcherModule::basicDeviceInfo(QString name)
 {
 	QStringList tmp;
-	for (QStringList::Iterator it=mountList.begin();it!=mountList.end();)
+	for (QStringList::Iterator it=completeList.begin();it!=completeList.end();)
 	{
 		if ((*it)==name)
 		{
@@ -178,12 +222,12 @@ QStringList MountWatcherModule::basicDeviceInfo(QString name)
 				tmp<<(*it);
 				++it;
 			}
-			while ((it!=mountList.end()) && ((*it)!="---"));
+			while ((it!=completeList.end()) && ((*it)!="---"));
 			++it;
 		}
 		else
 		{
-			while ((it!=mountList.end()) && ((*it)!="---"))	++it;
+			while ((it!=completeList.end()) && ((*it)!="---"))	++it;
 			++it;
 		}
 	}
@@ -223,12 +267,19 @@ QStringList MountWatcherModule::basicDeviceInfoForMountPoint(QString mountpoint)
 void MountWatcherModule::addSpecialDevice(const QString& uniqueIdentifier, const QString& description,
  const QString& URL, const QString& mimetype,bool mountState)
 {
+	addSpecialDeviceInternal(uniqueIdentifier,description,URL,mimetype,mountState,false);
+}
+
+void MountWatcherModule::addSpecialDeviceInternal(const QString& uniqueIdentifier, const QString& description,
+ const QString& URL, const QString& mimetype,bool mountState,bool fromConfigFile)
+{
 	specialEntry ent;
 	ent.id=uniqueIdentifier;
 	ent.description=description;
 	ent.url=URL;
 	ent.mimeType=mimetype;
 	ent.mountState=mountState;
+	ent.fromConfigFile=fromConfigFile;
 	mEntryMap.insert(uniqueIdentifier,ent,true);
 	readDFDone();
 }
@@ -242,6 +293,7 @@ void MountWatcherModule::removeSpecialDevice(const QString& uniqueIdentifier)
 void MountWatcherModule::readDFDone()
 {
 	QStringList oldmountList(mountList);
+	QStringList oldcompleteList(completeList);
 	mountList.clear();
 	KURL::List fileList;
 	QMap <QString,QString> descriptionToDeviceMap;
@@ -311,26 +363,26 @@ void MountWatcherModule::readDFDone()
 			fileList<<KURL(QString("devices:/")+entryName);
 		}
 	}
-
+	completeList=mountList;
 	for (EntryMap::iterator it=mEntryMap.begin();it!=mEntryMap.end();++it)
 	{
-		mountList<<it.data().id;
-		mountList<<it.data().description;
-		mountList<<" ";
-		mountList<<it.data().url;
-		mountList<<it.data().mimeType;
-		mountList<<(it.data().mountState?"true":"false");
-		mountList<<"---";
+		completeList<<it.data().id;
+		completeList<<it.data().description;
+		completeList<<" ";
+		completeList<<it.data().url;
+		completeList<<it.data().mimeType;
+		completeList<<(it.data().mountState?"true":"false");
+		completeList<<"---";
 
 	}
 	bool triggerUpdate=false;
-	if (mountList.count()!=oldmountList.count())
+	if (completeList.count()!=oldcompleteList.count())
 		triggerUpdate=true;
 	else
 	{
-		QStringList::iterator it1=mountList.begin();
-		QStringList::iterator it2=oldmountList.begin();
-		while (it1!=mountList.end())
+		QStringList::iterator it1=completeList.begin();
+		QStringList::iterator it2=oldcompleteList.begin();
+		while (it1!=completeList.end())
 		{
 			if ((*it1)!=(*it2)) {
 				triggerUpdate=true;
@@ -345,6 +397,7 @@ void MountWatcherModule::readDFDone()
 	{
 	        KDirNotify_stub allDirNotify("*", "KDirNotify*");
 	        allDirNotify.FilesAdded( "devices:/" );
+	        allDirNotify.FilesAdded( "system:/" );
 	} else
 		kdDebug()<<" kiodevices No Update needed"<<endl;
 }
