@@ -56,16 +56,18 @@ KCMCgi::KCMCgi(QWidget *parent, const char *name)
 
   QHBox *buttonBox = new QHBox( topBox );
   buttonBox->setSpacing( KDialog::spacingHint() );
-    
+
   mAddButton = new QPushButton( i18n("Add..."), buttonBox );
   connect( mAddButton, SIGNAL( clicked() ), SLOT( addPath() ) );
 
   mRemoveButton = new QPushButton( i18n("Remove"), buttonBox );
   connect( mRemoveButton, SIGNAL( clicked() ), SLOT( removePath() ) );
+  connect( mListBox, SIGNAL( clicked ( QListBoxItem * )),this, SLOT( slotItemSelected( QListBoxItem *)));
 
   mConfig = new KConfig("kcmcgirc");
 
   load();
+  updateButton();
 }
 
 KCMCgi::~KCMCgi()
@@ -73,15 +75,26 @@ KCMCgi::~KCMCgi()
   delete mConfig;
 }
 
+void KCMCgi::slotItemSelected( QListBoxItem * )
+{
+    updateButton();
+}
+
+void KCMCgi::updateButton()
+{
+    mRemoveButton->setEnabled( mListBox->selectedItem ());
+}
+
 void KCMCgi::defaults()
 {
   mListBox->clear();
+  updateButton();
 }
 
 void KCMCgi::save()
 {
   QStringList paths;
-  
+
   uint i;
   for( i = 0; i < mListBox->count(); ++i ) {
     paths.append( mListBox->text( i ) );
@@ -104,11 +117,12 @@ void KCMCgi::load()
 void KCMCgi::addPath()
 {
   QString path = KFileDialog::getExistingDirectory( QString::null, this );
-  
+
   if ( !path.isEmpty() ) {
     mListBox->insertItem( path );
     emit changed( true );
   }
+  updateButton();
 }
 
 void KCMCgi::removePath()
@@ -118,6 +132,7 @@ void KCMCgi::removePath()
     mListBox->removeItem( index );
     emit changed( true );
   }
+  updateButton();
 }
 
 QString KCMCgi::quickHelp() const

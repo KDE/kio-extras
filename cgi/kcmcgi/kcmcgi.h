@@ -31,7 +31,7 @@ class KCMCgi : public KCModule
   public:
     KCMCgi( QWidget *parent = 0, const char *name = 0 );
     ~KCMCgi();
-    
+
     virtual const KAboutData * aboutData () const;
 
     void load();
@@ -44,14 +44,15 @@ class KCMCgi : public KCModule
   protected slots:
     void addPath();
     void removePath();
-
+    void slotItemSelected( QListBoxItem * item );
   private:
+    void updateButton();
     QListBox *mListBox;
     QPushButton *mAddButton;
     QPushButton *mRemoveButton;
-    
+
     KConfig *mConfig;
-    
+
     KAboutData *mAboutData;
 };
 
