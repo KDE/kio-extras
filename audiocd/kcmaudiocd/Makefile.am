@@ -17,6 +17,6 @@ messages: rc.cpp
 DISTCLEANFILES = $(lib_audiocd_METASOURCES)
 
 data_DATA = audiocd.desktop
-datadir = $(kde_appsdir)/Settings/Personalization
+datadir = $(kde_appsdir)/Settings/Sound
 
 audiocdconfig.cpp: audiocdconfig.h
