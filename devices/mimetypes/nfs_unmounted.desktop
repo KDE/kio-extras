@@ -1,0 +1,9 @@
+[Desktop Entry]
+Encoding=UTF-8
+Icon=nfs_unmount
+Type=MimeType
+MimeType=kdedevice/nfs_unmounted
+Comment=Unmounted NFS resource
+Patterns=
+
+X-KDE-AutoEmbed=true

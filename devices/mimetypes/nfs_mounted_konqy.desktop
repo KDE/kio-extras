@@ -1,0 +1,12 @@
+[Desktop Entry]
+ServiceTypes=kdedevice/nfs_mounted
+Actions=smb_unmount
+
+[Desktop Action smb_unmount]
+Name=Unmount
+Name[af]=ontkoppel
+Name[da]=Afmontér
+Name[he]=נתק
+Name[sv]=Avmontera
+Name[tr]=Ayır
+Exec=kio_devices_mounthelper -u %u
