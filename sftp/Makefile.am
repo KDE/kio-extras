@@ -9,7 +9,7 @@ LDFLAGS =
 
 kio_sftp_la_METASOURCES=AUTO
 
-kio_sftp_la_SOURCES = kprocessblockingrw.cpp process.cpp atomicio.cpp kio_sftp.cpp sftpfileattr.cpp 
+kio_sftp_la_SOURCES = process.cpp atomicio.cpp kio_sftp.cpp sftpfileattr.cpp
 kio_sftp_la_LIBADD = -lkio -lqt -lkio -lkdeui -lkdecore -lXext -lX11
 
 kio_sftp_la_LDFLAGS = -module $(KDE_PLUGIN)  
