@@ -1,0 +1,22 @@
+
+KDE_FIND_PATH(xml2-config, XML_CONFIG, "/usr/local/bin:/opt/local/bin", [
+  AC_MSG_WARN(Could not find libxml2 anywhere, check ftp://xmlsoft.org/.)
+])
+
+vers=`$XML_CONFIG --version | sed -e 's/libxml //' | awk 'BEGIN { FS = "."; } { printf "%d", ($1 * 1000 + $2) * 1000 + $3;}'`
+if test "$vers" -ge 2003002
+then
+   LIBXML_LIBS="`$XML_CONFIG --libs`"
+   LIBXML_CFLAGS="`$XML_CONFIG --cflags`"
+else
+   AC_MSG_ERROR(You need at least libxml 2.3.2 for this version of libxslt)
+fi
+ 
+AC_SUBST(LIBXML_LIBS)
+AC_SUBST(LIBXML_CFLAGS)
+
+WITH_MEM_DEBUG=0
+AC_SUBST(WITH_MEM_DEBUG)
+
+dnl AC_OUTPUT(kioslave/help/libxslt/xsltconfig.h)
+

@@ -1,5 +1,5 @@
 #ifndef __help_h__
-#define __help_h__ 
+#define __help_h__
 
 
 #include <sys/types.h>
@@ -18,27 +18,26 @@
 #include <kio/global.h>
 #include <kio/slavebase.h>
 
-
 class HelpProtocol : public KIO::SlaveBase
 {
 public:
 
-  HelpProtocol( const QCString &pool, const QCString &app);
-  virtual ~HelpProtocol() { }
+    HelpProtocol( const QCString &pool, const QCString &app);
+    virtual ~HelpProtocol() { }
 
-  virtual void get( const KURL& url );
+    virtual void get( const KURL& url );
 
-  virtual void mimetype( const KURL& url );
+    virtual void mimetype( const KURL& url );
 
 
 private:
 
-  QString langLookup(QString fname);
-  
-  QString lookupFile(QString fname, QString query, bool &redirect);
+    QString langLookup(QString fname);
+    void emitFile( const KURL &url );
+    QString lookupFile(QString fname, QString query, bool &redirect);
 
-  void notFound();
-
+    void notFound();
+    QString parsed;
 };
 
 
