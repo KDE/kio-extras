@@ -21,9 +21,9 @@
 #include <grp.h>
 #include <assert.h>
 
-#include <iostream.h>
+#include <kurl.h>
 
-#include <k2url.h>
+#include <iostream.h>
 
 string testLogFile( const char *_filename );
 int check( Connection *_con );
@@ -87,7 +87,7 @@ void FileProtocol::slotMkdir( const char *_url, int _mode )
 {
   string url = _url;
   
-  K2URL usrc( _url );
+  KURL usrc( _url );
   if ( usrc.isMalformed() )
   {
     error( ERR_MALFORMED_URL, url.c_str() );
@@ -185,12 +185,12 @@ void FileProtocol::doCopy( list<string>& _source, const char *_dest, bool _renam
   
   debug( "kio_file : Making copy to %s", _dest );
   
-  // Check wether the URLs are wellformed
+  // Check whether the URLs are wellformed
   list<string>::iterator soit = _source.begin();
   for( ; soit != _source.end(); ++soit )
   {    
     debug( "kio_file : Checking %s", soit->c_str() );
-    K2URL usrc( *soit );
+    KURL usrc( soit->c_str() );
     if ( usrc.isMalformed() )
     {
       error( ERR_MALFORMED_URL, soit->c_str() );
@@ -209,47 +209,47 @@ void FileProtocol::doCopy( list<string>& _source, const char *_dest, bool _renam
 
   // Make a copy of the parameter. if we do IPC calls from here, then we overwrite
   // our argument. This is tricky! ( but saves memory and speeds things up )
-  string dest = _dest;
+  QString dest = _dest;
   
   // Check wellformedness of the destination
-  K2URL udest( dest );
+  KURL udest( dest );
   if ( udest.isMalformed() )
   {
-    error( ERR_MALFORMED_URL, dest.c_str() );
+    error( ERR_MALFORMED_URL, dest );
     m_cmd = CMD_NONE;
     return;
   }
 
-  debug( "kio_file : Dest ok %s", dest.c_str() );
+  debug( "kio_file : Dest ok %s", dest.data() );
 
   // Extract destinations right most protocol
-  list<K2URL> lst;
-  if ( !K2URL::split( dest.c_str(), lst )  )
+  KURLList lst;
+  if ( !KURL::split( dest, lst )  )
   {
-    error( ERR_MALFORMED_URL, dest.c_str() );
+    error( ERR_MALFORMED_URL, dest );
     m_cmd = CMD_NONE;
     return;
   }
 
   // Find IO server for destination
-  string exec = ProtocolManager::self()->find( lst.back().protocol() );
+  string exec = ProtocolManager::self()->find( lst.getLast()->protocol() );
 
   if ( exec.empty() )
   {
-    error( ERR_UNSUPPORTED_PROTOCOL, lst.back().protocol() );
+    error( ERR_UNSUPPORTED_PROTOCOL, lst.getLast()->protocol() );
     m_cmd = CMD_NONE;
     return;
   }
 
   // Is the right most protocol a filesystem protocol ?
-  if ( ProtocolManager::self()->outputType( lst.back().protocol() ) != ProtocolManager::T_FILESYSTEM )
+  if ( ProtocolManager::self()->outputType( lst.getLast()->protocol() ) != ProtocolManager::T_FILESYSTEM )
   {
-    error( ERR_PROTOCOL_IS_NOT_A_FILESYSTEM, lst.back().protocol() );
+    error( ERR_PROTOCOL_IS_NOT_A_FILESYSTEM, lst.getLast()->protocol() );
     m_cmd = CMD_NONE;
     return;
   }
       
-  debug( "kio_file : IO server ok %s", dest.c_str() );
+  debug( "kio_file : IO server ok %s", dest.data() );
 
   // Get a list of all source files and directories
   list<Copy> files;
@@ -262,7 +262,7 @@ void FileProtocol::doCopy( list<string>& _source, const char *_dest, bool _renam
   for( ; soit != _source.end(); ++soit )
   {    
     debug( "kio_file : Executing %s", soit->c_str() );
-    K2URL usrc( *soit );
+    KURL usrc( soit->c_str() );
     debug( "kio_file : Parsed URL" );
     // Did an error occur ?
     int s;
@@ -276,16 +276,16 @@ void FileProtocol::doCopy( list<string>& _source, const char *_dest, bool _renam
     size += s;
   }
 
-  debug( "kio_file : Recursive 1 %s", dest.c_str() );
+  debug( "kio_file : Recursive 1 %s", dest.data() );
 
-  // Check wether we do not copy a directory in itself or one of its subdirectories
+  // Check whether we do not copy a directory in itself or one of its subdirectories
   struct stat buff2;
   if ( udest.isLocalFile() && stat( udest.path(), &buff2 ) == 0 )
   {
     bool b_error = false;
     for( soit = _source.begin(); soit != _source.end(); ++soit )
     {    
-      K2URL usrc( *soit );  
+      KURL usrc( soit->c_str() );  
 
       struct stat buff1;
       // Can we stat both the source, too ? ( Should always be the case )
@@ -316,7 +316,7 @@ void FileProtocol::doCopy( list<string>& _source, const char *_dest, bool _renam
     }
   }
 
-  debug( "kio_file : Recursive ok %s", dest.c_str() );
+  debug( "kio_file : Recursive ok %s", dest.data() );
 
   m_cmd = CMD_GET;
   
@@ -332,7 +332,7 @@ void FileProtocol::doCopy( list<string>& _source, const char *_dest, bool _renam
   // Put a protocol on top of the job
   FileIOJob job( &slave, this );
 
-  debug( "kio_file : Job started ok %s", dest.c_str() );
+  debug( "kio_file : Job started ok %s", dest.data() );
 
   // Tell our client what we 'r' gonna do
   totalSize( size );
@@ -345,9 +345,9 @@ void FileProtocol::doCopy( list<string>& _source, const char *_dest, bool _renam
   
   // Replace the relative destinations with absolut destinations
   // by prepending the destinations path
-  string tmp1 = lst.back().path( 1 );
+  string tmp1 = lst.getLast()->path( 1 ).data();
   // Strip '/'
-  string tmp1_stripped = lst.back().path( -1 );
+  string tmp1_stripped = lst.getLast()->path( -1 ).data();
 
   list<CopyDir>::iterator dit = dirs.begin();
   for( ; dit != dirs.end(); dit++ )
@@ -370,7 +370,7 @@ void FileProtocol::doCopy( list<string>& _source, const char *_dest, bool _renam
     fit->m_strRelDest += tmp2;
   }
   
-  debug( "kio_file : Destinations ok %s", dest.c_str() );
+  debug( "kio_file : Destinations ok %s", dest.data() );
 
   /*****
    * Make directories
@@ -391,12 +391,12 @@ void FileProtocol::doCopy( list<string>& _source, const char *_dest, bool _renam
     {
       job.clearError();
 
-      list<K2URL> l( lst );
-      l.back().setPath( dit->m_strRelDest.c_str() );
+      KURLList l( lst );
+      l.getLast()->setPath( dit->m_strRelDest.c_str() );
 
-      string d;
-      list<K2URL>::iterator it = l.begin();
-      for( ; it != l.end(); it++ )
+      QString d;
+      KURL * it = l.first();
+      for( ; it ; it = l.next() );
 	d += it->url();
 
       // Is this URL on the skip list ?
@@ -404,7 +404,7 @@ void FileProtocol::doCopy( list<string>& _source, const char *_dest, bool _renam
       list<string>::iterator sit = skip_list.begin();
       for( ; sit != skip_list.end() && !skip; sit++ )
 	// Is d a subdirectory of *sit ?
-	if ( strncmp( sit->c_str(), d.c_str(), sit->size() ) == 0 )
+	if ( strncmp( sit->c_str(), d, sit->size() ) == 0 )
 	  skip = true;
       
       if ( skip )
@@ -414,18 +414,18 @@ void FileProtocol::doCopy( list<string>& _source, const char *_dest, bool _renam
       bool overwrite = false;
       list<string>::iterator oit = overwrite_list.begin();
       for( ; oit != overwrite_list.end() && !overwrite; oit++ )
-	if ( strncmp( oit->c_str(), d.c_str(), oit->size() ) == 0 )
+	if ( strncmp( oit->c_str(), d, oit->size() ) == 0 )
 	  overwrite = true;
       
       if ( overwrite )
 	continue;
       
       // Tell what we are doing
-      makingDir( d.c_str() );
+      makingDir( d );
       
       // debug( "kio_file : Making remote dir %s", d );
       // Create the directory
-      job.mkdir( d.c_str(), dit->m_mode );
+      job.mkdir( d, dit->m_mode );
       while( !job.hasFinished() )
 	job.dispatch();
 
@@ -435,8 +435,8 @@ void FileProtocol::doCopy( list<string>& _source, const char *_dest, bool _renam
 	// Can we prompt the user and ask for a solution ?
 	if ( /* m_bGUI && */ job.errorId() == ERR_DOES_ALREADY_EXIST )
 	{    
-	  string old_path = l.back().path( 1 );
-	  string old_url = l.back().url( 1 );
+	  string old_path = l.getLast()->path( 1 ).data();
+	  string old_url = l.getLast()->url( 1 ).data();
 	  // Should we skip automatically ?
 	  if ( auto_skip )
 	  {
@@ -456,7 +456,7 @@ void FileProtocol::doCopy( list<string>& _source, const char *_dest, bool _renam
 	  if ( dirs.size() > 1 )
 	    m = (RenameDlg_Mode)(M_MULTI | M_SKIP | M_OVERWRITE ); */
 	  RenameDlg_Mode m = (RenameDlg_Mode)( M_MULTI | M_SKIP | M_OVERWRITE );
-	  string tmp2 = l.back().url();
+	  string tmp2 = l.getLast()->url().data();
 	  RenameDlg_Result r = open_RenameDlg( dit->m_strAbsSource.c_str(), tmp2.c_str(), m, n );
 	  if ( r == R_CANCEL ) 
 	  {
@@ -466,12 +466,12 @@ void FileProtocol::doCopy( list<string>& _source, const char *_dest, bool _renam
 	  }
 	  else if ( r == R_RENAME )
 	  {
-	    K2URL u( n.c_str() );
+	    KURL u( n.c_str() );
 	    // The Dialog should have checked this.
 	    if ( u.isMalformed() )
 	      assert( 0 );
 	    // The new path with trailing '/'
-	    string tmp3 = u.path( 1 );
+	    string tmp3 = u.path( 1 ).data();
 	    renamed( tmp3.c_str() );
 	    ///////
 	    // Replace old path with tmp3 
@@ -536,7 +536,7 @@ void FileProtocol::doCopy( list<string>& _source, const char *_dest, bool _renam
     processedDirs( ++processed_dirs );
   }
 
-  debug( "kio_file : Created directories %s", dest.c_str() );
+  debug( "kio_file : Created directories %s", dest.data() );
   
   /*****
    * Copy files
@@ -555,14 +555,14 @@ void FileProtocol::doCopy( list<string>& _source, const char *_dest, bool _renam
     do { 
       job.clearError();
 
-      list<K2URL> l( lst );
-      l.back().setPath( fit->m_strRelDest.c_str() );
+      KURLList l( lst );
+      l.getLast()->setPath( fit->m_strRelDest.c_str() );
     
       // debug( "kio_file : ########### SET Path to '%s'", fit->m_strRelDest.c_str() );
       
-      string d;
-      list<K2URL>::iterator it = l.begin();
-      for( ; it != l.end(); it++ )
+      QString d;
+      KURL * it = l.first();
+      for( ; it ; it = l.next() );
 	d += it->url();
 
       // Is this URL on the skip list ?
@@ -570,24 +570,24 @@ void FileProtocol::doCopy( list<string>& _source, const char *_dest, bool _renam
       list<string>::iterator sit = skip_list.begin();
       for( ; sit != skip_list.end() && !skip; sit++ )
 	// Is 'd' a file in directory '*sit' or one of its subdirectories ?
-	if ( strncmp( sit->c_str(), d.c_str(), sit->size() ) == 0 )
+	if ( strncmp( sit->c_str(), d, sit->size() ) == 0 )
 	  skip = true;
     
       if ( skip )
 	continue;
     
       string realpath = "file:"; realpath += fit->m_strAbsSource;
-      copyingFile( realpath.c_str(), d.c_str() );
+      copyingFile( realpath.c_str(), d );
     
       // debug( "kio_file : Writing to %s", d );
        
       // Is this URL on the overwrite list ?
       list<string>::iterator oit = overwrite_list.begin();
       for( ; oit != overwrite_list.end() && !overwrite; oit++ )
-	if ( strncmp( oit->c_str(), d.c_str(), oit->size() ) == 0 )
+	if ( strncmp( oit->c_str(), d, oit->size() ) == 0 )
 	  overwrite = true;
       
-      job.put( d.c_str(), fit->m_mode, overwrite_all || overwrite,
+      job.put( d, fit->m_mode, overwrite_all || overwrite,
 	       false, fit->m_size );
 
       while( !job.isReady() && !job.hasFinished() )
@@ -609,7 +609,7 @@ void FileProtocol::doCopy( list<string>& _source, const char *_dest, bool _renam
 	    skip_copying = true;
 	    continue;
 	  }
-	  string tmp2 = l.back().url();
+	  string tmp2 = l.getLast()->url().data();
 	  SkipDlg_Result r;
 	  r = open_SkipDlg( tmp2.c_str(), ( files.size() > 1 ) );
 	  if ( r == S_CANCEL )
@@ -651,7 +651,7 @@ void FileProtocol::doCopy( list<string>& _source, const char *_dest, bool _renam
 	  if ( files.size() > 1 )
 	    m = (RenameDlg_Mode)( M_MULTI | M_SKIP | M_OVERWRITE );
 
-	  string tmp2 = l.back().url();
+	  string tmp2 = l.getLast()->url().data();
 	  RenameDlg_Result r = open_RenameDlg( fit->m_strAbsSource.c_str(), tmp2.c_str(), m, n );
 
 	  if ( r == R_CANCEL ) 
@@ -662,11 +662,11 @@ void FileProtocol::doCopy( list<string>& _source, const char *_dest, bool _renam
 	  }
 	  else if ( r == R_RENAME )
 	  {
-	    K2URL u( n.c_str() );
+	    KURL u( n.c_str() );
 	    // The Dialog should have checked this.
 	    if ( u.isMalformed() )
 	      assert( 0 );
-	    renamed( u.path( -1 ).c_str() );
+	    renamed( u.path( -1 ) );
 	    // Change the destination name of the current file
 	    fit->m_strRelDest = u.path( -1 );
 	    // Dont clear error => we will repeat the current command
@@ -771,7 +771,7 @@ void FileProtocol::doCopy( list<string>& _source, const char *_dest, bool _renam
     processedFiles( ++processed_files );
   }
 
-  debug( "kio_file : Copied files %s", dest.c_str() );
+  debug( "kio_file : Copied files %s", dest.data() );
 
   if ( _move ) {
     slotDel( _source );
@@ -786,7 +786,7 @@ void FileProtocol::slotGet( const char *_url )
 {
   string url = _url;
   
-  K2URL usrc( _url );
+  KURL usrc( _url );
   if ( usrc.isMalformed() )
   {
     error( ERR_MALFORMED_URL, url.c_str() );
@@ -873,7 +873,7 @@ void FileProtocol::slotGetSize( const char *_url )
 
   m_cmd = CMD_GET_SIZE;
   
-  K2URL usrc( _url );
+  KURL usrc( _url );
   if ( usrc.isMalformed() )
   {
     error( ERR_MALFORMED_URL, url.c_str() );
@@ -915,8 +915,8 @@ void FileProtocol::slotPut( const char *_url, int _mode, bool _overwrite, bool _
   string url_orig = _url;
   string url_part = url_orig + ".part";
 
-  K2URL udest_orig( url_orig );
-  K2URL udest_part( url_part );
+  KURL udest_orig( url_orig.c_str() );
+  KURL udest_part( url_part.c_str() );
 
   bool m_bMarkPartial = ProtocolManager::self()->getMarkPartial();
 
@@ -975,7 +975,7 @@ void FileProtocol::slotPut( const char *_url, int _mode, bool _overwrite, bool _
       }
   }
 
-  K2URL udest;
+  KURL udest;
 
   // if we are using marking of partial downloads -> add .part extension
   if ( m_bMarkPartial ) {
@@ -1069,12 +1069,12 @@ void FileProtocol::slotDel( const char *_url )
 
 void FileProtocol::slotDel( list<string>& _source )
 {
-  // Check wether the URLs are wellformed
+  // Check whether the URLs are wellformed
   list<string>::iterator soit = _source.begin();
   for( ; soit != _source.end(); ++soit )
   {    
     debug( "kio_file : Checking %s", soit->c_str() );
-    K2URL usrc( *soit );
+    KURL usrc( soit->c_str() );
     if ( usrc.isMalformed() )
     {
       error( ERR_MALFORMED_URL, soit->c_str() );
@@ -1102,10 +1102,10 @@ void FileProtocol::slotDel( list<string>& _source )
   for( ; soit != _source.end(); ++soit )
   {    
     debug( "kio_file : Executing %s", soit->c_str() );
-    K2URL usrc( *soit );
+    KURL usrc( soit->c_str() );
     debug( "kio_file : Parsed URL" );
     // Did an error occur ?
-    int s;
+//    int s;
 //     if ( ( s = listRecursive( usrc.path(), fs, ds, false ) ) == -1 )
 //       {
 // 	// Error message is already sent
@@ -1113,7 +1113,7 @@ void FileProtocol::slotDel( list<string>& _source )
 // 	return;
 //       }
     // Sum up the total amount of bytes we have to copy
-    size += s;
+//  size += s;
   }
 
   debug( "kio_file : Recursive ok" );
@@ -1176,7 +1176,7 @@ void FileProtocol::slotListDir( const char *_url )
 {
   string url = _url;
   
-  K2URL usrc( _url );
+  KURL usrc( _url );
   if ( usrc.isMalformed() )
   {
     error( ERR_MALFORMED_URL, url.c_str() );
@@ -1211,7 +1211,7 @@ void FileProtocol::slotListDir( const char *_url )
   DIR *dp = 0L;
   struct dirent *ep;
 
-  string dir = usrc.path( 0 );
+  string dir = usrc.path( 0 ).data();
   dp = opendir( dir.c_str() );
   if ( dp == 0L )
   {
@@ -1233,7 +1233,7 @@ void FileProtocol::slotListDir( const char *_url )
     atom.m_str = ep->d_name;
     entry.push_back( atom );
   
-    string tmp = usrc.path( 1 );
+    string tmp = usrc.path( 1 ).data();
     tmp += ep->d_name;
 
     string slink = "";
@@ -1325,7 +1325,7 @@ void FileProtocol::slotTestDir( const char *_url )
 {
   string url = _url;
   
-  K2URL usrc( _url );
+  KURL usrc( _url );
   if ( usrc.isMalformed() )
   {
     error( ERR_MALFORMED_URL, url.c_str() );
@@ -1436,7 +1436,7 @@ long FileProtocol::listRecursive( const char *_path, list<Copy>& _files, list<Co
 {
   struct stat buff;
 
-  // Check wether we have to copy the complete directory tree beginning by its root.
+  // Check whether we have to copy the complete directory tree beginning by its root.
   int len = strlen( _path );
   while( len >= 1 && _path[ len -1 ] == '/' )
     len--;
@@ -1471,7 +1471,7 @@ long FileProtocol::listRecursive( const char *_path, list<Copy>& _files, list<Co
     return -1;
   }
   
-  K2URL u( p.c_str() );
+  KURL u( p.c_str() );
   // Should be checked before, but who knows
   if ( u.isMalformed() )
     assert( 0 );
