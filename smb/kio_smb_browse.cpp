@@ -236,8 +236,16 @@ void SMBSlave::reportError(const SMBUrl &url)
     case ENOENT:
         if (url.getType() == SMBURLTYPE_ENTIRE_NETWORK) {
             error( ERR_SLAVE_DEFINED, i18n("Unable to find any workgroups in your local network."));
-            break;
         }
+        break;
+    case ENOMEDIUM:
+        error( ERR_SLAVE_DEFINED,
+               i18n( "No media in device for %1" ).arg( url.prettyURL() ) );
+        break;
+    case ECONNREFUSED:
+        error(  ERR_SLAVE_DEFINED,
+                i18n( "Could not connect to host for %1" ).arg( url.prettyURL() ) );
+        break;
     case ENOTDIR:
     case EFAULT:
         error( ERR_DOES_NOT_EXIST, url.prettyURL());
