@@ -71,7 +71,7 @@ namespace KioSMTP {
   int TransactionState::errorCode() const {
     if ( !failed() )
       return 0;
-    if ( failedFatally() )
+    if ( mErrorCode )
       return mErrorCode;
     if ( haveRejectedRecipients() || !dataCommandSucceeded() )
       return KIO::ERR_NO_CONTENT;
@@ -83,7 +83,7 @@ namespace KioSMTP {
     if ( !failed() )
       return QString::null;
 
-    if ( failedFatally() )
+    if ( !mErrorMessage.isEmpty() )
       return mErrorMessage;
 
     if ( haveRejectedRecipients() ) {
