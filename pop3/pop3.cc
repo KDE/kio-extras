@@ -84,15 +84,22 @@ bool POP3Protocol::getResponse (char *r_buf, unsigned int r_len)
   char buf[r_len ? r_len : 512];
   unsigned int recv_len=0;
   fd_set FDs;
-  // Wait for input
+
+  // Wait for something to come from the server
   FD_ZERO(&FDs);
   FD_SET(m_iSock, &FDs);
+
+  // And keep waiting if it timed out
   while (::select(m_iSock+1, &FDs, 0, 0, &m_tTimeout) ==0);
+
+  // Clear out the buffer
   memset(&buf, 0, r_len);
+  // And grab the data
   if (fgets(buf, sizeof(buf)-1, fp) == 0)
     return false;
+  // This is really a funky crash waiting to happen if something isn't
+  // null terminated.
   recv_len=strlen(buf);
-  debug("Response was:%s:", buf);
 
 /*
  *   From rfc1939:
@@ -164,10 +171,17 @@ void POP3Protocol::pop3_close ()
 
 bool POP3Protocol::pop3_open( KURL &_url )
 {
+  // This function is simply a wrapper to establish the connection
+  // to the server.  It's a bit more complicated than ::connect
+  // because we first have to check to see if the user specified
+  // a port, and if so use it, otherwise we check to see if there
+  // is a port specified in /etc/services, and if so use that
+  // otherwise as a last resort use the "official" port of 110.
+
   unsigned int port;
   struct sockaddr_in server_name;
   memset(&server_name, 0, sizeof(server_name));
-  char buf[512];
+  static char buf[512];
 
   // We want 110 as the default, but -1 means no port was specified.
   // Why 0 wasn't chosen is beyond me.
@@ -176,9 +190,7 @@ bool POP3Protocol::pop3_open( KURL &_url )
     fprintf(stderr,"Reusing old connection\n");fflush(stderr);
     return true;
   } else {
-    debug("Calling pop3close()");
     pop3_close();
-    debug("DOneclose");
     m_iSock = ::socket(PF_INET, SOCK_STREAM, 0);
     if (!KSocket::initSockaddr(&server_name, _url.host(), port))
       return false;
@@ -186,13 +198,18 @@ bool POP3Protocol::pop3_open( KURL &_url )
       error( ERR_COULD_NOT_CONNECT, strdup(_url.host()));
       return false;
     }
+
+    // Since we want to use stdio on the socket,
+    // we must fdopen it to get a file pointer,
+    // if it fails, close everything up
     if ((fp = fdopen(m_iSock, "w+")) == 0) {
       close(m_iSock);
       return false;
     }
-    
+
     if (!getResponse())  // If the server doesn't respond with a greeting
-      return false;
+      return false;      // we've got major problems, and possibly the
+                         // wrong port
 
     m_iOldPort = port;
     m_sOldServer = _url.host();
@@ -237,10 +254,57 @@ bool POP3Protocol::pop3_open( KURL &_url )
   }
 }
 
+void POP3Protocol::slotGetSize( const char * _url )
+{
+  // This should I deally call the totalSize function for the URL,
+  // but I haven't really tested this.
+  bool ok=true;
+  static char buf[512];
+  QString path, cmd;
+  KURL usrc(_url);
+
+  // We can't work on an invalid URL.
+  if ( usrc.isMalformed() ) {
+    error( ERR_MALFORMED_URL, strdup(_url) );
+    m_cmd = CMD_NONE;
+    return;
+  }
+
+  if (usrc.protocol() != "pop") {
+    error( ERR_INTERNAL, "kio_pop3 got non pop3 url" );
+    m_cmd = CMD_NONE;
+    return;
+  }
+
+  if (path.left(1)=="/") path.remove(0,1);
+  if (path.isEmpty()) {
+    debug("We should be a dir!!");
+    error(ERR_IS_DIRECTORY, strdup(_url));
+    m_cmd=CMD_NONE; return;
+  }
+
+  if (((path.find("/") == -1) && (path != "index")) ) {
+    error( ERR_MALFORMED_URL, strdup(_url) );
+    m_cmd = CMD_NONE;
+    return; 
+  }
+
+  cmd = path.left(path.find("/"));
+  path.remove(0,path.find("/")+1);
+  if (!pop3_open(usrc)) {
+    fprintf(stderr,"pop3_open failed\n");fflush(stderr);
+    pop3_close();
+    return;
+  }
+
+//  if (cmd == "index") {
+
+}
+
 void POP3Protocol::slotGet(const char *_url)
 {
   bool ok=true;
-  char buf[512];
+  static char buf[512];
   QString path, cmd;
   KURL usrc(_url);
   if ( usrc.isMalformed() ) {
@@ -258,7 +322,13 @@ void POP3Protocol::slotGet(const char *_url)
   path = usrc.path().copy();
 
   if (path.left(1)=="/") path.remove(0,1);
-  if (path.isEmpty() || ((path.find("/") == -1) && (path != "index")) ) {
+  if (path.isEmpty()) {
+    debug("We should be a dir!!");
+    error(ERR_IS_DIRECTORY, strdup(_url));
+    m_cmd=CMD_NONE; return;
+  }
+
+  if (((path.find("/") == -1) && (path != "index")) ) {
     error( ERR_MALFORMED_URL, strdup(_url) );
     m_cmd = CMD_NONE;
     return; 
@@ -404,9 +474,29 @@ LIST
   }
 }
 
-void POP3Protocol::slotPut(const char *, int, bool ,
-			  bool, unsigned int)
+void POP3Protocol::slotListDir (const char *_url)
 {
+	debug( "kio_pop3 : listDir 1 %s", _url);
+	KURL usrc( _url );
+	if ( usrc.isMalformed() ) {
+		error( ERR_MALFORMED_URL, _url );
+		return;
+	}
+
+}
+
+void POP3Protocol::slotTestDir (const char *_url)
+{
+        debug( "kio_pop3 : testing");
+	KURL usrc(_url);
+        debug( "kio_pop3 : testing");
+	if (usrc.path() == "/")
+		isDirectory();
+	else
+		isFile();
+        debug( "kio_pop3 : testing");
+	finished();
+        debug( "kio_pop3 : testing");
 }
 
 void POP3Protocol::slotCopy(const char *, const char *)
@@ -468,6 +558,10 @@ void POP3Protocol::jobDataEnd()
   default:
     abort();
   }
+}
+
+void POP3Protocol::slotDel( QStringList& _source )
+{
 }
 
 /*************************************

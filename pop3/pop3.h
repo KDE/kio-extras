@@ -19,12 +19,16 @@ public:
   POP3Protocol (Connection *_conn);
   
   virtual void slotGet (const char *_url);
-  virtual void slotPut (const char *_url, int _mode, bool _overwrite,
-			bool _resume, unsigned int);
+  virtual void slotGetSize (const char *_url );
   virtual void slotCopy (const char *_source, const char *_dest);
 
   virtual void slotData (void *_p, int _len);
   virtual void slotDataEnd ();
+
+  virtual void slotDel( QStringList& _source );
+
+  virtual void slotListDir( const char *_url );
+  virtual void slotTestDir( const char *_url );
   
   void jobData (void *_p, int _len);
   void jobError (int _errid, const char *_text);
