@@ -316,6 +316,9 @@ namespace KioSMTP {
       }
       cmd = firstCommand.latin1();
       kdDebug(7112) << "mechusing: " << mMechusing << endl;
+
+      /* FIXME: ugly hack */
+      if ( QString::fromLatin1( mMechusing ) == "PLAIN" ) mComplete = true;
     } else {
 //      kdDebug(7112) << "SS: '" << mLastChallenge << "'" << endl;
       tmp.setRawData( mLastChallenge.data(), mLastChallenge.length() );
