@@ -853,8 +853,8 @@ mimeHeader * imapParser::parseSimplePart (parseString & inWords,
   localPart->setEncoding (b2c(encoding));
 
   //body size
-  if (parseOneNumber (inWords, size));
-  localPart->setLength (size);
+  if (parseOneNumber (inWords, size))
+    localPart->setLength (size);
 
   // type specific extensions
   if (qstrnicmp(type, "MESSAGE", type.size()) == 0
@@ -1151,9 +1151,6 @@ void imapParser::parseBody (parseString & inWords)
 
 void imapParser::parseFetch (ulong value, parseString & inWords)
 {
-  // just the id
-  if (value);
-
   if (inWords[0] != '(')
     return;
   inWords.pos++;
