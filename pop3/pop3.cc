@@ -175,7 +175,7 @@ bool POP3Protocol::getResponse(char *r_buf, unsigned int r_len,
   unsigned int recv_len = 0;
   // fd_set FDs;
 
-  // Give the buffer the appropiate size
+  // Give the buffer the appropriate size
   r_len = r_len ? r_len : MAX_RESPONSE_LEN;
 
   buf = new char[r_len];

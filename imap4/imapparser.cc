@@ -162,7 +162,7 @@ imapParser::clientAuthenticate (const QString & aUser, const QString & aPass,
       if (aAuth.upper () == "ANONYMOUS")
       {
         // we should present the challenge to the user and ask
-        // him for a mail-adress or what ever
+        // him for a mail-address or what ever
         challenge = KCodecs::base64Encode(aUser.utf8());
       } else {
         challenge = sasl.getResponse(challenge);
@@ -576,7 +576,7 @@ void imapParser::parseExpunge (ulong value, parseString & result)
   Q_UNUSED(result);
 }
 
-QValueList < mailAddress > imapParser::parseAdressList (parseString & inWords)
+QValueList < mailAddress > imapParser::parseAddressList (parseString & inWords)
 {
   QValueList < mailAddress > retVal;
 
@@ -592,7 +592,7 @@ QValueList < mailAddress > imapParser::parseAdressList (parseString & inWords)
     while (!inWords.isEmpty () && inWords[0] != ')')
     {
       if (inWords[0] == '(')
-        retVal.append (parseAdress (inWords));
+        retVal.append (parseAddress (inWords));
       else
         break;
     }
@@ -605,7 +605,7 @@ QValueList < mailAddress > imapParser::parseAdressList (parseString & inWords)
   return retVal;
 }
 
-mailAddress imapParser::parseAdress (parseString & inWords)
+mailAddress imapParser::parseAddress (parseString & inWords)
 {
   QByteArray user, host, full, comment;
   mailAddress retVal;
@@ -652,7 +652,7 @@ mailHeader * imapParser::parseEnvelope (parseString & inWords)
   envelope->setSubjectEncoded (subject.ascii ());
 
   //from
-  list = parseAdressList (inWords);
+  list = parseAddressList (inWords);
   for (QValueListIterator < mailAddress > it = list.begin ();
        it != list.end (); ++it)
   {
@@ -660,7 +660,7 @@ mailHeader * imapParser::parseEnvelope (parseString & inWords)
   }
 
   //sender
-  list = parseAdressList (inWords);
+  list = parseAddressList (inWords);
   for (QValueListIterator < mailAddress > it = list.begin ();
        it != list.end (); ++it)
   {
@@ -668,7 +668,7 @@ mailHeader * imapParser::parseEnvelope (parseString & inWords)
   }
 
   //reply-to
-  list = parseAdressList (inWords);
+  list = parseAddressList (inWords);
   for (QValueListIterator < mailAddress > it = list.begin ();
        it != list.end (); ++it)
   {
@@ -676,7 +676,7 @@ mailHeader * imapParser::parseEnvelope (parseString & inWords)
   }
 
   //to
-  list = parseAdressList (inWords);
+  list = parseAddressList (inWords);
   for (QValueListIterator < mailAddress > it = list.begin ();
        it != list.end (); ++it)
   {
@@ -684,7 +684,7 @@ mailHeader * imapParser::parseEnvelope (parseString & inWords)
   }
 
   //cc
-  list = parseAdressList (inWords);
+  list = parseAddressList (inWords);
   for (QValueListIterator < mailAddress > it = list.begin ();
        it != list.end (); ++it)
   {
@@ -692,7 +692,7 @@ mailHeader * imapParser::parseEnvelope (parseString & inWords)
   }
 
   //bcc
-  list = parseAdressList (inWords);
+  list = parseAddressList (inWords);
   for (QValueListIterator < mailAddress > it = list.begin ();
        it != list.end (); ++it)
   {

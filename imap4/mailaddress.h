@@ -2,7 +2,7 @@
 #define _MAILADDRESS_H "$Id$"
 /**********************************************************************
  *
- *   mailaddress.h - mail adress handler
+ *   mailaddress.h - mail address handler
  *   Copyright (C) 2000 s.carstens@gmx.de
  *
  *   This program is free software; you can redistribute it and/or modify

@@ -265,12 +265,12 @@ public:
    */
   void parseFetch (ulong value, parseString & inWords);
 
-  /** read a envelope from imap and parse the adresses */
+  /** read a envelope from imap and parse the addresses */
   mailHeader *parseEnvelope (parseString & inWords);
   /** @brief parse an address list and return a list of addresses */
-  QValueList < mailAddress > parseAdressList (parseString & inWords);
+  QValueList < mailAddress > parseAddressList (parseString & inWords);
   /** @brief parse an address and return it */
-  mailAddress parseAdress (parseString & inWords);
+  mailAddress parseAddress (parseString & inWords);
 
   /** parse the result of the body command */
   void parseBody (parseString & inWords);

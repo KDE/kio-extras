@@ -160,12 +160,12 @@ void SMBSlave::put( const KURL& kurl,
     {
         if (S_ISDIR(st.st_mode))
         {
-	  kdDebug(KIO_SMB) << "SMBSlave::put on " << kurl.url() <<" allready isdir !!"<< endl;
+	  kdDebug(KIO_SMB) << "SMBSlave::put on " << kurl.url() <<" already isdir !!"<< endl;
             error( KIO::ERR_DIR_ALREADY_EXIST,  m_current_url.url());
         }
         else
         {
-	  kdDebug(KIO_SMB) << "SMBSlave::put on " << kurl.url() <<" allready exist !!"<< endl;
+	  kdDebug(KIO_SMB) << "SMBSlave::put on " << kurl.url() <<" already exist !!"<< endl;
             error( KIO::ERR_FILE_ALREADY_EXIST, m_current_url.url());
         }
         return;
