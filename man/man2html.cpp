@@ -120,7 +120,7 @@
 #include <assert.h>
 
 #include <man2html.h>
-#include <iostream.h>
+#include <iostream>
 using namespace std;
 
 #define NULL_TERMINATED(n) ((n) + 1)
