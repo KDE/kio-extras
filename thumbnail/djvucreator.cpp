@@ -69,24 +69,19 @@ bool DjVuCreator::create(const QString &path, int width, int height, QImage &img
   argv[1] = "-page";
   argv[2] = "1";
   argv[3] = "-size";
-  argv[4] = (const char*) sizearg; 
-  argv[5] = (const char*) fnamearg; 
+  argv[4] = sizearg.data(); 
+  argv[5] = fnamearg.data(); 
   argv[6] = 0;
   
   pid_t pid = fork(); 
-  if (pid < 0)
-    {
-      return false;
-    }
-
-  if (pid > 0)
+  if (pid == 0)
     {
       close(output[0]);
       dup2(output[1], STDOUT_FILENO);	  
       execvp(argv[0], const_cast<char *const *>(argv));
       exit(1);
     }
-  else if (pid == 0)
+  else if (pid >= 0)
     {
       close(output[1]);
       int offset = 0;
