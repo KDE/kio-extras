@@ -1,4 +1,5 @@
 /*  This file is part of the KDE project
+
     Copyright (C) 2000 Alexander Neundorf <neundorf@kde.org>
 
     This library is free software; you can redistribute it and/or
@@ -417,6 +418,7 @@ void NFSProtocol::openConnection()
    if (!checkForError(clnt_stat,0,m_currentHost.latin1())) return;
 
    fhstatus fhStatus;
+   bool atLeastOnceSucceeded(FALSE);
    for(; exportlist!=0;exportlist = exportlist->ex_next)
    {
       kdDebug(7101)<<"found export: "<<exportlist->ex_dir<<endl;
@@ -426,19 +428,20 @@ void NFSProtocol::openConnection()
                             (xdrproc_t) xdr_fhstatus,(char*) &fhStatus,total_timeout);
       if (fhStatus.fhs_status==0)
       {
+         atLeastOnceSucceeded=TRUE;
          NFSFileHandle fh;
          fh=fhStatus.fhstatus_u.fhs_fhandle;
          m_handleCache.insert(QString("/")+KIO::encodeFileName(exportlist->ex_dir),fh);
          m_exportedDirs.append(KIO::encodeFileName(exportlist->ex_dir));
          //cerr<<"appending file -"<<KIO::encodeFileName(exportlist->ex_dir).latin1()<<"- with FH: -"<<fhStatus.fhstatus_u.fhs_fhandle<<"-"<<endl;
-      }
-      else
-      {
-         closeConnection();
-         error( ERR_COULD_NOT_AUTHENTICATE, m_currentHost.latin1());
-         return;
       };
    }
+   if (!atLeastOnceSucceeded)
+   {
+      closeConnection();
+      error( ERR_COULD_NOT_AUTHENTICATE, m_currentHost.latin1());
+      return;
+   };
    server_addr.sin_port = 0;
 
    //now create the client for the nfs daemon
@@ -989,6 +992,7 @@ bool NFSProtocol::checkForError(int clientStat, int nfsStat, const QString& text
    if (clientStat!=RPC_SUCCESS)
    {
       kdDebug(7101)<<"rpc error: "<<clientStat<<endl;
+      //does this mapping make sense ?
       error(ERR_CONNECTION_BROKEN,i18n("A RPC error occured"));
       return FALSE;
    };
