@@ -891,7 +891,7 @@ void FloppyProtocol::rename( const KURL &src, const KURL &dest, bool _overwrite 
    if (_overwrite)
       args<<"mren"<<"-o"<<(srcDrive+srcFloppyPath)<<(destDrive+destFloppyPath);
    else
-      args<<"mren"<<"-s"<<(srcDrive+srcFloppyPath)<<(destDrive+destFloppyPath);
+      args<<"mren"<<"-D"<<"s"<<(srcDrive+srcFloppyPath)<<(destDrive+destFloppyPath);
 
    kdDebug(7101)<<"Floppy::move(): executing: mren -"<<(srcDrive+srcFloppyPath)<<"  "<<(destDrive+destFloppyPath)<<endl;
 
