@@ -153,8 +153,8 @@ const struct fishProtocol::fish_info fishProtocol::fishInfo[] = {
     { ("FISH"), 0,
       ("echo; /bin/sh start_fish_server > /dev/null 2>/dev/null; perl .fishsrv.pl " CHECKSUM " 2>/dev/null; perl -e '$|=1; print \"### 100 transfer fish server\\n\"; while(<STDIN>) { last if /^__END__/; $code.=$_; } exit(eval($code));' 2>/dev/null"),
       1 },
-    { ("VER 0.0.2 copy append lscount lslinks lsmime"), 0,
-      ("echo 'VER 0.0.2 copy append lscount lslinks lsmime'"),
+    { ("VER 0.0.2 copy append lscount lslinks lsmime exec"), 0,
+      ("echo 'VER 0.0.2 copy append lscount lslinks lsmime exec'"),
       1 },
     { ("PWD"), 0,
       ("pwd"),
@@ -220,6 +220,9 @@ const struct fishProtocol::fish_info fishProtocol::fishInfo[] = {
       0 },
     { ("APPEND"), 2,
       (">> %2; echo '### 001'; ( [ %1 -gt 0 ] && dd ibs=1 obs=%1 count=%1 2> /dev/null; ) | ( cat >> %2 || echo Error $?; cat >/dev/null; )"),
+      0 },
+    { ("EXEC"), 2,
+      ("eval %1 < /dev/null > %2 2>&1; echo \"#RESULT# $?\" >> %2;"),
       0 }
 };
 
@@ -282,6 +285,7 @@ void fishProtocol::openConnection() {
 
     myDebug( << "connecting to: " << connectionUser << "@" << connectionHost << ":" << connectionPort << endl);
     sendCommand(FISH_FISH);
+    sendCommand(FISH_VER);
     if (connectionStart()) {
         error(ERR_COULD_NOT_CONNECT,thisFn);
         shutdownConnection();
@@ -425,7 +429,7 @@ bool fishProtocol::connectionStart() {
         }
 #undef common_args
 
-        myDebug( << "could not exec " << ex << endl);
+        //myDebug( << "could not exec " << ex << endl);
         ::exit(-1);
     }
     close(fd[1]);
@@ -620,6 +624,7 @@ Closes the connection
 void fishProtocol::shutdownConnection(bool forced){
     if (childPid) {
         kill(childPid,SIGTERM);
+        wait(NULL);
         childPid = 0;
         close(childFd);
         childFd = -1;
@@ -743,6 +748,7 @@ void fishProtocol::manageConnection(const QString &l) {
                 hasCopy = line.contains(" copy ");
                 hasRsync = line.contains(" rsync ");
                 hasAppend = line.contains(" append ");
+                hasExec = line.contains(" exec ");
             } else {
                 error(ERR_UNSUPPORTED_PROTOCOL,line);
                 shutdownConnection();
@@ -957,7 +963,8 @@ void fishProtocol::manageConnection(const QString &l) {
             rawWrite = sendLen;
             //myDebug( << "sending " << sendLen << endl);
             writeChild(NULL,0);
-	default : break;
+            break;
+        default : break;
         }
     } else if (rc/100 != 2) {
         switch (fishCommand) {
@@ -1019,13 +1026,12 @@ void fishProtocol::manageConnection(const QString &l) {
         case FISH_SYMLINK:
             error(ERR_COULD_NOT_WRITE,url.prettyURL());
             break;
-	default : break;
+        default : break;
         }
     } else {
         bool wasSize = false;
         if (fishCommand == FISH_STOR) fishCommand = (hasAppend?FISH_APPEND:FISH_WRITE);
         if (fishCommand == FISH_FISH) {
-            sendCommand(FISH_VER);
             connected();
         } else if (fishCommand == FISH_LIST) {
             if (listReason == LIST) {
@@ -1472,6 +1478,41 @@ void fishProtocol::del(const KURL &u, bool isFile){
         sendCommand((isFile?FISH_DELE:FISH_RMD),url.path().latin1());
     }
     run();
+}
+/** special like background execute */
+void fishProtocol::special( const QByteArray &data ){
+    int tmp;
+
+    if (hasExec) {
+        QDataStream stream(data, IO_ReadOnly);
+
+        stream >> tmp;
+        switch (tmp) {
+            case FISH_EXEC_CMD: // SSH EXEC
+            {
+                KURL u;
+                QString command;
+                QString tempfile;
+                stream >> u;
+                stream >> command;
+                myDebug( << "@@@@@@@@@ exec " << u.url() << " " << command << endl);
+                setHost(u.host(),u.port(),u.user(),u.pass());
+                url = u;
+                openConnection();
+                if (!isLoggedIn) return;
+                sendCommand(FISH_EXEC,command.latin1(),url.path().latin1());
+                run();
+                break;
+            }
+            default:
+                // Some command we don't understand.
+                error(ERR_UNSUPPORTED_ACTION,QString().setNum(tmp));
+                break;
+        }
+    } else {
+        error(ERR_UNSUPPORTED_PROTOCOL,"EXEC");
+        shutdownConnection();
+    }
 }
 /** report status */
 void fishProtocol::slave_status() {

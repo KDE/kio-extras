@@ -27,6 +27,7 @@
 #include <kio/authinfo.h>
 #include <time.h>
 
+#define FISH_EXEC_CMD 'X'
 
 class fishProtocol : public KIO::SlaveBase
 {
@@ -78,6 +79,8 @@ It is set to false if the connection becomes closed.
   void slave_status();
   /** removes a file or directory */
   void del(const KURL &u, bool isfile);
+  /** special like background execute */
+  void special( const QByteArray &data );
 
 private: // Private attributes
   /** the SSH process used to communicate with the remote end */
@@ -151,6 +154,8 @@ protected: // Protected attributes
   bool hasRsync;
   /** true if FISH server understands APPEND command */
   bool hasAppend;
+  /** true if FISH server understands EXEC command */
+  bool hasExec;
   /** permission of created file */
   int putPerm;
   /** true if file may be overwritten */
@@ -179,7 +184,7 @@ protected: // Protected attributes
   enum fish_command_type { FISH_FISH, FISH_VER, FISH_PWD, FISH_LIST, FISH_RETR, FISH_STOR,
     FISH_CWD, FISH_CHMOD, FISH_DELE, FISH_MKD, FISH_RMD,
     FISH_RENAME, FISH_LINK, FISH_SYMLINK, FISH_CHOWN,
-    FISH_CHGRP, FISH_READ, FISH_WRITE, FISH_COPY, FISH_APPEND } fishCommand;
+    FISH_CHGRP, FISH_READ, FISH_WRITE, FISH_COPY, FISH_APPEND, FISH_EXEC } fishCommand;
   int fishCodeLen;
 protected: // Protected methods
   /** manages initial communication setup including password queries */

@@ -42,7 +42,7 @@ MAIN: while (<STDIN>) {
     next if !length($_) || substr($_,0,1) ne '#';
     s/^#//;
     /^VER / && do {
-        print "VER 0.0.2 copy append lscount lsmime\n### 200\n";
+        print "VER 0.0.2 copy append lscount lslinks lsmime exec\n### 200\n";
         next;
     };
     /^PWD$/ && do {
@@ -192,6 +192,11 @@ MAIN: while (<STDIN>) {
     };
     /^READ\s+(\d+)\s+(\d+)\s+((?:\\.|[^\\])*?)\s*$/ && do {
         read_loop($3,$2,$1);
+        next;
+    };
+    /^EXEC\s+((?:\\.|[^\\])*?)\s+((?:\\.|[^\\])*?)\s*$/ && do {
+        system("eval $1 < /dev/null > $2 2>&1; echo \"#RESULT# $?\" >> $1;");
+        print "### 200\n";
         next;
     };
 }
