@@ -4,7 +4,7 @@ kde_module_LTLIBRARIES = kcm_cgi.la
 
 kcm_cgi_la_SOURCES = kcmcgi.cpp
 kcm_cgi_la_LDFLAGS  = $(all_libraries) -module -avoid-version -no-undefined
-kcm_cgi_la_LIBADD = -lkdeui $(LIB_KIO) $(LIB_KFILE)
+kcm_cgi_la_LIBADD = -lkdeui $(LIB_KIO)
 
 INCLUDES= $(all_includes) 
 
