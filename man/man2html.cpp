@@ -516,11 +516,17 @@ static void add_links(char *c)
 		    if (h!=c) h--;
 		}
 		if (isalnum(*h)) {
-		    char t,sec,subsec, *e;
+		    char t,sec, *e;
+		    QString subsec;
+		    QString fstr(f);
 		    e=h+1;
 		    sec=f[1];
 		    subsec=f[2];
-		    if ((subsec=='X' && f[3]!=')')|| subsec==')') subsec='\0';
+		    int index = fstr.find(')', 2);
+		    if (index != -1)
+		      subsec = fstr.mid(2, index - 2);
+		    else // No closing ')' found, take first character as subsection.
+		      subsec = fstr.mid(2, 1);
 		    while (h>c && (isalnum(h[-1]) || h[-1]=='_'
 				    || h[-1]==':' || h[-1]=='-' || h[-1]=='.'))
 			h--;
@@ -531,10 +537,10 @@ static void add_links(char *c)
 		    t=*e;
 		    *e='\0';
                     QCString str;
-		    if (subsec)
-                        str.sprintf("<A HREF=\"man:/%s(%c%c)\">%s</A>", h, sec, tolower(subsec), h);
-		    else
+		    if (subsec.isEmpty())
                         str.sprintf("<A HREF=\"man:/%s(%c)\">%s</A>", h, sec, h);
+		    else
+                        str.sprintf("<A HREF=\"man:/%s(%c%s)\">%s</A>", h, sec, subsec.lower().latin1(), h);
                     output_real(str.data());
 		    *e=t;
 		    c=e;

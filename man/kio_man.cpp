@@ -402,30 +402,7 @@ void MANProtocol::get(const KURL& url )
     else
     {
        QCString filename=QFile::encodeName(foundPages[0]);
-       const char *buf = NULL;
-
-       /* Determine mime type of file. If type is text/html, assume that it's
-	* SGML and convert it to roff format (used on Solaris). Other
-	* possibility: filename.contains("sman", false) */
-       QString file_mimetype = KMimeType::findByPath(QString(filename), 0, false)->name();
-       if (file_mimetype == "text/html")
-	 {
-	   *myStdStream="";
-	   KProcess proc;
-
-	   /* Determine path to sgml2roff, if not already done. */
-	   getProgramPath();
-	   proc << mySgml2RoffPath << filename;
-
-	   QApplication::connect(&proc, SIGNAL(receivedStdout (KProcess *, char *, int)), 
-				 this, SLOT(slotGetStdOutput(KProcess *, char *, int)));
-	   proc.start(KProcess::Block, KProcess::All);
-	   
-	   buf = myStdStream->latin1();
-	   // Does not work (return string is empty): buf = QCString(myStdStream->local8Bit());
-	 }
-       else
-	 buf = readManPage(filename);
+       char *buf = readManPage(filename);
 
        if (!buf)
        {
@@ -454,6 +431,32 @@ char *MANProtocol::readManPage(const char *_filename)
 {
     QCString filename = _filename;
 
+    char *buf = NULL;
+    
+    /* Determine type of man page file by checking its path. Determination by
+     * MIME type with KMimeType doesn't work reliablely. E.g., Solaris 7:
+     * /usr/man/sman7fs/pcfs.7fs -> text/x-csrc : WRONG 
+     * If the path name constains the string sman, assume that it's SGML and
+     * convert it to roff format (used on Solaris). */
+    //QString file_mimetype = KMimeType::findByPath(QString(filename), 0, false)->name();
+    if (filename.contains("sman", false)) //file_mimetype == "text/html" || )
+      {
+	*myStdStream="";
+	KProcess proc;
+	
+	/* Determine path to sgml2roff, if not already done. */
+	getProgramPath();
+	proc << mySgml2RoffPath << filename;
+	
+	QApplication::connect(&proc, SIGNAL(receivedStdout (KProcess *, char *, int)), 
+			      this, SLOT(slotGetStdOutput(KProcess *, char *, int)));
+	proc.start(KProcess::Block, KProcess::All);
+	
+	buf = (char*)myStdStream->latin1();
+	// Does not work (return string is empty): buf = QCString(myStdStream->local8Bit());
+      }
+    else
+      {
     if (QDir::isRelativePath(filename)) {
         kdDebug(7107) << "relative " << filename << endl;
         filename = QDir::cleanDirPath(lastdir + "/" + filename).utf8();
@@ -488,10 +491,11 @@ char *MANProtocol::readManPage(const char *_filename)
     delete fd;
 
     int l = text.length();
-    char *buf = new char[l + 4];
+	buf = new char[l + 4];
     memcpy(buf + 1, text.data(), l);
     buf[0]=buf[l]='\n';
     buf[l+1]=buf[l+2]='\0';
+      }
 
     return buf;
 }
