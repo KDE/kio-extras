@@ -105,7 +105,7 @@ private:
     QString  m_current_workgroup;
     QString  m_default_workgroup;
     SMBUrl   m_current_url;
-
+    
     QPtrList<SMBAuthInfo> m_auth_cache;
     QStringList        m_workgroup_cache;
 
@@ -135,6 +135,9 @@ protected:
     //create a KIO::AuthInfo structure from the SMBAuthInfo struct
     AuthInfo cache_create_AuthInfo( const SMBAuthInfo& auth );
 
+    // set userinfo from kurl and ask for password (if not given)
+    // ask too if not cached
+    bool setAuthInfo(SMBAuthInfo &auth);
     
     //-----------------------------------------
     // Browsing functions (kio_smb_browse.cpp) 
@@ -162,7 +165,18 @@ protected:
     //----------------------------
     // Misc functions (this file)
     //----------------------------
-    
+    // correct a given URL
+    // valid URL's are
+    // smb://[[domain;]user[:password]@]server[:port][/share[/path[/file]]]
+    // smb:/[[domain;]user[:password]@][group/[server[/share[/path[/file]]]]]
+    // domain   = workgroup(domain) of the user
+    // user     = username
+    // password = password of useraccount
+    // group    = workgroup(domain) of server
+    // server   = host to connect
+    // share    = a share of the server (host)
+    // path     = a path of the share
+    const KURL checkURL(const KURL& kurl);
 
 public:
     
