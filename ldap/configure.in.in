@@ -46,7 +46,7 @@ NOTFOUND) AC_MSG_RESULT(searched but not found) ;;
     LDAP_ROOT="$with_ldap"
     if test "x$LDAP_ROOT" != "x/usr" ; then
       LDAP_INCS="-I${LDAP_ROOT}/include"
-      LDAP_LIBS="-L${LDAP_ROOT}/lib"
+      LDAP_LIBS="-L${LDAP_ROOT}/lib "
       if test "$USE_RPATH" = "yes" ; then
         LDAP_RPATH="-R ${LDAP_ROOT}/lib"
       fi
