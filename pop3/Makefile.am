@@ -10,6 +10,6 @@ kio_pop3_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN)
 
 noinst_HEADERS = pop3.h
 
-kdelnk_DATA = pop3.protocol 
+kdelnk_DATA = pop3.protocol pop3s.protocol
 kdelnkdir = $(kde_servicesdir)
 
