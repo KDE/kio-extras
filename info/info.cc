@@ -88,15 +88,16 @@ void InfoProtocol::get( const KURL& url )
 
     FILE *fd = popen( QFile::encodeName(cmd), "r" );
 
-    char buffer[ 4090 ];
+    char buffer[ 4096 ];
     QByteArray array;
 
     while ( !feof( fd ) )
     {
-      int n = fread( buffer, 1, 2048, fd );
-      if ( n == -1 )
+      int n = fread( buffer, 1, sizeof( buffer ), fd );
+      if ( n < 0 )
       {
         // ERROR
+	kdDebug( 7108 ) << "InfoProtocol::get ERROR!" << endl;
         pclose( fd );
 	return;
       }
@@ -310,7 +311,7 @@ int kdemain( int argc, char **argv )
 
   if (argc != 4)
   {
-     fprintf(stderr, "Usage: kio_file protocol domain-socket1 domain-socket2\n");
+     fprintf(stderr, "Usage: kio_info protocol domain-socket1 domain-socket2\n");
      exit(-1);
   }
 
