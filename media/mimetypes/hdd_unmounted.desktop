@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Icon=hdd_unmount
+Type=MimeType
+MimeType=media/hdd_unmounted
+Comment=Unmounted Hard Disc Volume
+Patterns=
+
+X-KDE-AutoEmbed=true
+X-KDE-IsAlso=inode/directory

@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Icon=3floppy_mount
+Type=MimeType
+MimeType=media/floppy_mounted
+Comment=Mounted Floppy
+Patterns=
+
+X-KDE-AutoEmbed=true
+X-KDE-IsAlso=inode/directory

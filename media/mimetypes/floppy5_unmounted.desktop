@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Icon=5floppy_unmount
+Type=MimeType
+MimeType=media/floppy5_unmounted
+Comment=Unmounted 5¼" Floppy
+Patterns=
+
+X-KDE-AutoEmbed=true
+X-KDE-IsAlso=inode/directory

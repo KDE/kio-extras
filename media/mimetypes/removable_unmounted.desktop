@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Icon=usbpendrive_unmount
+Type=MimeType
+MimeType=media/removable_unmounted
+Comment=Unmounted Removable Medium
+Patterns=
+
+X-KDE-AutoEmbed=true
+X-KDE-IsAlso=inode/directory

@@ -1,0 +1,7 @@
+[Desktop Entry]
+Encoding=UTF-8
+Type=Service
+Name=Medium Information
+ServiceTypes=KFilePlugin
+X-KDE-Library=kfile_media
+MimeType=media/cdrom_mounted;media/cdwriter_mounted;media/dvd_mounted;media/floppy5_mounted;media/floppy_mounted;media/hdd_mounted;media/removable_mounted;media/zip_mounted

@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Icon=zip_unmount
+Type=MimeType
+MimeType=media/zip_unmounted
+Comment=Unmounted Zip Disk
+Patterns=
+
+X-KDE-AutoEmbed=true
+X-KDE-IsAlso=inode/directory

@@ -1,0 +1,17 @@
+[Protocol]
+exec=kio_media
+protocol=media
+input=none
+output=filesystem
+listing=Name,Type,Size,Date,AccessDate,Access,Owner,Group,Link
+reading=true
+writing=true
+makedir=true
+deleting=true
+linking=true
+moving=true
+Icon=blockdevice
+maxInstances=2
+#TODO DocPath=kioslave/file.html
+Class=:local
+

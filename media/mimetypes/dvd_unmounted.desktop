@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Icon=dvd_unmount
+Type=MimeType
+MimeType=kdedevice/dvd_unmounted
+Comment=Unmounted DVD
+Patterns=
+
+X-KDE-AutoEmbed=true
+X-KDE-IsAlso=inode/directory

@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Type=Service
+Name=KDED Media Manager
+Comment=Keep track of media activities and allow to (un)mount (media:/)
+ServiceTypes=KDEDModule
+X-KDE-ModuleType=Library
+X-KDE-Library=mediamanager
+X-KDE-FactoryName=mediamanager
+X-KDE-Kded-load-on-demand=true

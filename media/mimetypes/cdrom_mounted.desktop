@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Icon=cdrom_mount
+Type=MimeType
+MimeType=media/cdrom_mounted
+Comment=Mounted CD-ROM
+Patterns=
+
+X-KDE-AutoEmbed=true
+X-KDE-IsAlso=inode/directory
