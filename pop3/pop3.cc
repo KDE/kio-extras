@@ -11,6 +11,7 @@
 #include <errno.h>
 #include <signal.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <netdb.h>
 #include <unistd.h>
 
@@ -20,6 +21,7 @@
 #include <kurl.h>
 #include <kprotocolmanager.h>
 #include <ksock.h>
+#include <kio_interface.h>
 
 #include "pop3.h"
 
@@ -533,17 +535,17 @@ void POP3Protocol::slotListDir (const char *_url)
 	  atom.m_uds = UDS_NAME;
 	  atom.m_long = 0;
 	  atom.m_str = fname.arg(i+1);
-	  entry.push_back(atom);
+	  entry.append(atom);
 
 	  atom.m_uds = UDS_FILE_TYPE;
 	  atom.m_str = "";
 	  atom.m_long = S_IFREG;
-	  entry.push_back(atom);
+	  entry.append(atom);
 
 	  atom.m_uds = UDS_SIZE;
 	  atom.m_str = "";
 	  atom.m_long = realGetSize(i+1);
-	  entry.push_back(atom);
+	  entry.append(atom);
 
 	  listEntry(entry);
 	  entry.clear();
