@@ -80,14 +80,14 @@ extern "C"
   int FixupTOC(cdrom_drive *d, int tracks);
 
 #ifdef HAVE_LAME
-//  static KLibrary (*_lamelib)(void) = NULL;
+  static int _lamelibMissing = true;
+
   static lame_global_flags* (*_lamelib_lame_init)(void) = NULL;
   static int (*_lamelib_lame_init_params) (lame_global_flags*) = NULL;
   static void (*_lamelib_id3tag_init)(lame_global_flags*) = NULL;
   static void (*_lamelib_id3tag_set_album)(lame_global_flags*, const char*) = NULL;
   static void (*_lamelib_id3tag_set_artist)(lame_global_flags*, const char*) = NULL;
   static void (*_lamelib_id3tag_set_title)(lame_global_flags*, const char*) = NULL;
-//  static void (*_lamelib_id3tag_set_params)(lame_global_flags*) = NULL;
   static int  (*_lamelib_lame_encode_buffer_interleaved) (
           lame_global_flags*, short int*, int, unsigned char*, int) = NULL;
   static int  (*_lamelib_lame_encode_finish) (
@@ -328,7 +328,7 @@ bool AudioCDProtocol::initLameLib(){
    if ( _lamelib_lame_init != NULL )
       return true;
 
-   if ( _lamelib_lame_init == (void*) -1 )  // we tried already, do not try again
+   if ( _lamelibMissing == 1 )  // we tried already, do not try again
       return false;
 
    // load the lame lib, if not done already
@@ -358,7 +358,7 @@ bool AudioCDProtocol::initLameLib(){
    }
 
   if ( _lamelib == NULL ){
-      _lamelib_lame_init = (void*) -1;
+      _lamelibMissing = true;
       return false;
   }else{
     _lamelib_lame_init =
@@ -477,13 +477,13 @@ bool AudioCDProtocol::initLameLib(){
             _lamelib_lame_set_highpasswidth == NULL
            ){
             error(KIO::ERR_DOES_NOT_EXIST, "A symbol in this library was not found");
-           _lamelib_lame_init = (void*) -1;
+           _lamelibMissing = true;
            return false;
        }
        if ( NULL == (d->gf = (_lamelib_lame_init)()) )
        { // init the lame_global_flags structure with defaults
           error(KIO::ERR_DOES_NOT_EXIST, "" );
-          _lamelib_lame_init = (void*) -1;
+          _lamelibMissing = true;
           return false;
        }
    }
