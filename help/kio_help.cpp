@@ -156,13 +156,21 @@ QString HelpProtocol::lookupFile(QString fname, QString query, bool &redirect)
 	      redirect = true;
 	      return QString::null;
 	    }
-	  return QString::null;
+          notFound();
+	  return QString::null();
 	}
     }
 
   return result;
 }
 
+
+void HelpProtocol::notFound()
+{
+  data(QCString(i18n("<html>The requested help file could not be found. Check if "
+	    "you have installed the documentation.</html>").local8Bit()));
+  finished();
+}
 
 
 HelpProtocol::HelpProtocol( const QCString &pool, const QCString &app ) 

@@ -37,6 +37,8 @@ private:
   
   QString lookupFile(QString fname, QString query, bool &redirect);
 
+  void notFound();
+
 };
 
 
