@@ -24,7 +24,7 @@
   back to KProcess should be easy.
 */
 
-#include "../config.h"
+#include "config.h"
 
 #include <qcstring.h>
 #include <qsocket.h>
@@ -75,8 +75,6 @@
 #include "fish.h"
 #include "fishcode.h"
 
-QDateTime fishProtocol::epoch;
-
 #if 0
 #define myDebug(x) kdDebug() << __LINE__ << ": " x
 #define connected() do{myDebug( << "_______ emitting connected()" << endl); connected();}while(0)
@@ -122,58 +120,58 @@ int kdemain( int argc, char **argv )
 }
 
 const struct fishProtocol::fish_info fishProtocol::fishInfo[] = {
-	{ new QString("FISH"), 0,
-	  new QString("echo; /bin/sh start_fish_server > /dev/null 2>/dev/null; perl .fishsrv.pl " CHECKSUM " 2>/dev/null; perl -e '$|=1; print \"### 100 transfer fish server\\n\"; while(<STDIN>) { last if /^__END__/; $code.=$_; } exit(eval($code));' 2>/dev/null"),
+	{ ("FISH"), 0,
+	  ("echo; /bin/sh start_fish_server > /dev/null 2>/dev/null; perl .fishsrv.pl " CHECKSUM " 2>/dev/null; perl -e '$|=1; print \"### 100 transfer fish server\\n\"; while(<STDIN>) { last if /^__END__/; $code.=$_; } exit(eval($code));' 2>/dev/null"),
 	  1 },
-	{ new QString("VER 0.0.2 copy append lscount lslinks lsmime"), 0,
-	  new QString("echo 'VER 0.0.2 copy append lscount lslinks lsmime'"),
+	{ ("VER 0.0.2 copy append lscount lslinks lsmime"), 0,
+	  ("echo 'VER 0.0.2 copy append lscount lslinks lsmime'"),
 	  1 },
-	{ new QString("PWD"), 0,
-	  new QString("pwd"),
+	{ ("PWD"), 0,
+	  ("pwd"),
 	  1 },
-	{ new QString("LIST"), 1,
-	  new QString("echo `ls -Lla %1 2> /dev/null | grep '^[-dsplcb]' | wc -l`; ls -Lla %1 2>/dev/null | grep '^[-dspl]' | ( while read p x u g s m d y n; do file -b -i $n 2>/dev/null | sed -e '\\,^[^/]*$,d;s/^/M/;s,/.*[ \t],/,'; FILE=%1; if [ -e %1\"/$n\" ]; then FILE=%1\"/$n\"; fi; if [ -L \"$FILE\" ]; then echo \":$n\"; ls -lad \"$FILE\" | sed -e 's/.* -> /L/'; else echo \":$n\" | sed -e 's/ -> /\\\nL/'; fi; echo \"P$p $u.$g\nS$s\nd$m $d $y\n\"; done; );"
+	{ ("LIST"), 1,
+	  ("echo `ls -Lla %1 2> /dev/null | grep '^[-dsplcb]' | wc -l`; ls -Lla %1 2>/dev/null | grep '^[-dspl]' | ( while read p x u g s m d y n; do file -b -i $n 2>/dev/null | sed -e '\\,^[^/]*$,d;s/^/M/;s,/.*[ \t],/,'; FILE=%1; if [ -e %1\"/$n\" ]; then FILE=%1\"/$n\"; fi; if [ -L \"$FILE\" ]; then echo \":$n\"; ls -lad \"$FILE\" | sed -e 's/.* -> /L/'; else echo \":$n\" | sed -e 's/ -> /\\\nL/'; fi; echo \"P$p $u.$g\nS$s\nd$m $d $y\n\"; done; );"
 	            "ls -Lla %1 2>/dev/null | grep '^[cb]' | ( while read p x u g a i m d y n; do echo \"P$p $u.$g\nE$a$i\nd$m $d $y\n:$n\n\"; done; )"),
 	  0 },
-	{ new QString("RETR"), 1,
-	  new QString("ls -l %1 2>&1 | ( read a b c d x e; echo $x ) 2>&1; echo '### 001'; cat %1"),
+	{ ("RETR"), 1,
+	  ("ls -l %1 2>&1 | ( read a b c d x e; echo $x ) 2>&1; echo '### 001'; cat %1"),
 	  1 },
-	{ new QString("STOR"), 2,
-	  new QString("> %2; echo '### 001'; ( [ \"`expr %1 / 4096`\" -gt 0 ] && dd bs=4096 count=`expr %1 / 4096` 2>/dev/null;"
+	{ ("STOR"), 2,
+	  ("> %2; echo '### 001'; ( [ \"`expr %1 / 4096`\" -gt 0 ] && dd bs=4096 count=`expr %1 / 4096` 2>/dev/null;"
 		      "[ \"`expr %1 % 4096`\" -gt 0 ] && dd bs=`expr %1 % 4096` count=1 2>/dev/null; ) | ( cat > %2 || echo Error $?; cat > /dev/null )"),
 	  0 },
-	{ new QString("CWD"), 1,
-	  new QString("cd %1"),
+	{ ("CWD"), 1,
+	  ("cd %1"),
 	  0 },
-	{ new QString("CHMOD"), 2,
-	  new QString("chmod %1 %2"),
+	{ ("CHMOD"), 2,
+	  ("chmod %1 %2"),
 	  0 },
-	{ new QString("DELE"), 1,
-	  new QString("rm -f %1"),
+	{ ("DELE"), 1,
+	  ("rm -f %1"),
 	  0 },
-	{ new QString("MKD"), 1,
-	  new QString("mkdir %1"),
+	{ ("MKD"), 1,
+	  ("mkdir %1"),
 	  0 },
-	{ new QString("RMD"), 1,
-	  new QString("rmdir %1"),
+	{ ("RMD"), 1,
+	  ("rmdir %1"),
 	  0 },
-	{ new QString("RENAME"), 2,
-	  new QString("mv -f %1 %2"),
+	{ ("RENAME"), 2,
+	  ("mv -f %1 %2"),
 	  0 },
-	{ new QString("LINK"), 2,
-	  new QString("ln -f %1 %2"),
+	{ ("LINK"), 2,
+	  ("ln -f %1 %2"),
 	  0 },
-	{ new QString("SYMLINK"), 2,
-	  new QString("ln -sf %1 %2"),
+	{ ("SYMLINK"), 2,
+	  ("ln -sf %1 %2"),
 	  0 },
-	{ new QString("CHOWN"), 2,
-	  new QString("chown %1 %2"),
+	{ ("CHOWN"), 2,
+	  ("chown %1 %2"),
 	  0 },
-	{ new QString("CHGRP"), 2,
-	  new QString("chgrp %1 %2"),
+	{ ("CHGRP"), 2,
+	  ("chgrp %1 %2"),
 	  0 },
-	{ new QString("READ"), 3,
-	  new QString("cat %3 | ( [ \"`expr %1 / 4096`\" -gt 0 ] && dd bs=4096 count=`expr %1 / 4096` >/dev/null;"
+	{ ("READ"), 3,
+	  ("cat %3 | ( [ \"`expr %1 / 4096`\" -gt 0 ] && dd bs=4096 count=`expr %1 / 4096` >/dev/null;"
 		      "[ \"`expr %1 % 4096`\" -gt 0 ] && dd bs=`expr %1 % 4096` count=1 >/dev/null;"
 		      "dd bs=%2 count=1; ) 2>/dev/null;"),
 	  0 },
@@ -183,15 +181,15 @@ const struct fishProtocol::fish_info fishProtocol::fishInfo[] = {
 	// does ignore that fact. Sorry, writes are slow.
 	// OTOH, WRITE is not used by the current ioslave methods,
 	// we use APPEND.
-	{ new QString("WRITE"), 3,
-	  new QString(">> %3; echo '### 001'; ( [ %2 -gt 0 ] && dd ibs=1 obs=%2 count=%2 2>/dev/null ) | "
+	{ ("WRITE"), 3,
+	  (">> %3; echo '### 001'; ( [ %2 -gt 0 ] && dd ibs=1 obs=%2 count=%2 2>/dev/null ) | "
 		      "( dd ibs=32768 obs=%1 seek=1 of=%3 2>/dev/null || echo Error $?; cat >/dev/null; )"),
 	  0 },
-	{ new QString("COPY"), 2,
-	  new QString("cp -f %1 %2"),
+	{ ("COPY"), 2,
+	  ("cp -f %1 %2"),
 	  0 },
-	{ new QString("APPEND"), 2,
-	  new QString(">> %2; echo '### 001'; ( [ %1 -gt 0 ] && dd ibs=1 obs=%1 count=%1 2> /dev/null; ) | ( cat >> %2 || echo Error $?; cat >/dev/null; )"),
+	{ ("APPEND"), 2,
+	  (">> %2; echo '### 001'; ( [ %1 -gt 0 ] && dd ibs=1 obs=%1 count=%1 2> /dev/null; ) | ( cat >> %2 || echo Error $?; cat >/dev/null; )"),
 	  0 }
 };
 
@@ -220,6 +218,7 @@ fishProtocol::fishProtocol(const QCString &pool_socket, const QCString &app_sock
 	isStat = false; // FIXME: just a workaround for konq deficiencies
 	redirectUser = ""; // FIXME: just a workaround for konq deficiencies
 	redirectPass = ""; // FIXME: just a workaround for konq deficiencies
+	fishCodeLen = strlen(fishCode);
 }
 /* ---------------------------------------------------------------------------------- */
 
@@ -285,7 +284,9 @@ Reference Manual for Version 2.2.x of the GNU C Library */
 	fd[1] = slave;
 	return 0;
 
+#if (defined(HAVE_ISASTREAM) || defined(isastream)) && defined(I_PUSH)
 close_slave:
+#endif
 	close(slave);
 
 close_master:
@@ -451,7 +452,6 @@ manages initial communication setup including password queries
 int fishProtocol::establishConnection(char *buffer, int len) {
 	QString buf;
 	buf.setLatin1(buffer,len);
-	int result;
 	int pos;
 	myDebug( << "establishing: got " << buf << endl);
 	while (childPid && ((pos = buf.find('\n')) >= 0 ||
@@ -594,8 +594,8 @@ bool fishProtocol::sendCommand(fish_command_type cmd, ...) {
 
 	va_list list;
 	va_start(list, cmd);
-	QString realCmd = *info.command;
-	QString realAlt = *info.alt;
+	QString realCmd = info.command;
+	QString realAlt = info.alt;
 	static QRegExp rx("[][\\\\\n $`#!()*?{}~&<>;'\"|\t]");
 	for (int i = 0; i < info.params; i++) {
 		QString arg(va_arg(list, const char *));
@@ -611,6 +611,7 @@ bool fishProtocol::sendCommand(fish_command_type cmd, ...) {
 	s.append(realCmd).append("\n").append(realAlt).append(" 2>&1;echo '### 000'\n");
 	commandList.append(s);
 	commandCodes.append(cmd);
+	return true;
 }
 
 /**
@@ -879,7 +880,7 @@ void fishProtocol::manageConnection(const QString &l) {
 	} else if (rc == 100) {
 		switch (fishCommand) {
 		case FISH_FISH:
-			writeChild(fishCode,fishCode.length());
+			writeChild(fishCode, fishCodeLen);
 			break;
 		case FISH_RETR:
 			if (recvLen == -1) {
@@ -1117,7 +1118,7 @@ void fishProtocol::get(const KURL& u){
 }
 
 /** put a file */
-void fishProtocol::put(const KURL& u, int permissions, bool overwrite, bool resume){
+void fishProtocol::put(const KURL& u, int permissions, bool overwrite, bool /*resume*/){
 	myDebug( << "@@@@@@@@@ put " << u.url() << " " << permissions << " " << overwrite << " " << resume << endl);
 	setHost(u.host(),u.port(),u.user(),u.pass());
 	url = u;

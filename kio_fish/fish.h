@@ -161,12 +161,12 @@ protected: // Protected attributes
   int dataRead;
   time_t t_last, t_start;
   /** unix timestamp "0" as QDateTime */
-  static QDateTime epoch;
+  QDateTime epoch;
   /** details about each fishCommand */
-  const static struct fish_info {
-  	QString *command;
+  static const struct fish_info {
+  	const char *command;
   	int params;
-  	QString *alt;
+  	const char *alt;
   	int lines;
   } fishInfo[];
   /** last FISH command sent to server */
@@ -174,6 +174,7 @@ protected: // Protected attributes
 	FISH_CWD, FISH_CHMOD, FISH_DELE, FISH_MKD, FISH_RMD,
 	FISH_RENAME, FISH_LINK, FISH_SYMLINK, FISH_CHOWN,
 	FISH_CHGRP, FISH_READ, FISH_WRITE, FISH_COPY, FISH_APPEND } fishCommand;
+  int fishCodeLen;	
 protected: // Protected methods
   /** manages initial communication setup including password queries */
   int establishConnection(char *buffer, int buflen);

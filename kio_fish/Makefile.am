@@ -18,7 +18,7 @@ fish.cpp: fish.h fishcode.h
 fishcode.h: fish.pl
 	SUM=`md5sum -t $< | cut -d ' ' -f 1`; \
 	echo '#define CHECKSUM "'$$SUM'"' > $@; \
-	echo 'static QString fishCode(' >> $@; \
+	echo 'static const char *fishCode(' >> $@; \
 	sed -e 's/\\/\\\\/g;s/"/\\"/g;s/^[ 	]*/"/;/^"# /d;s/[ 	]*$$/\\n"/;/^"\\n"$$/d;s/{CHECKSUM}/'$$SUM'/;' $< >> $@; \
 	echo ');' >> $@;
 
