@@ -357,7 +357,9 @@ close_master:
 
     return openpty(fd,fd+1,NULL,&ti,NULL);
 #else
+#ifdef __GNUC__
 #warning "No tty support available. Password dialog won't work."
+#endif
     return socketpair(PF_UNIX,SOCK_STREAM,0,fd);
 #endif
 #endif
