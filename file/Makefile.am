@@ -1,0 +1,15 @@
+## Makefile.am of kdenonbeta/kioslave/file
+
+INCLUDES=	$(all_includes)
+LDFLAGS =       $(all_libraries) $(KDE_RPATH)
+LDADD	=	$(LIB_KIO)
+
+####### Files
+
+bin_PROGRAMS = kio_file
+
+kio_file_SOURCES = file.cc
+noinst_HEADERS = file.h
+
+messages:
+

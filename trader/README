@@ -1,0 +1,22 @@
+This protocol implementation is not
+part of standard KFM since it needs CORBA
+and an OMG Trader.
+
+Remote Trader A
+Remote Trader B
+....
+- Local Trader
+	- Documents
+		- Text
+			- Plain
+				* Information
+				* KEdit
+				* Emacs
+			HTML
+			C++
+		Image
+		Video
+	Printer
+	News
+		Sport
+		Politics
