@@ -28,6 +28,7 @@
 
 #include "process.h"
 #include "sftpfileattr.h"
+#include "ksshprocess.h"
 
 #define KIO_SFTP_DB 7116
 
@@ -52,13 +53,13 @@ public:
   /** No descriptions */
   virtual void closeConnection();
   /** No descriptions */
-  virtual void reparseConfiguration();
+//  virtual void reparseConfiguration();
   /** No descriptions */
   virtual void slave_status();
   /** No descriptions */
   virtual void del(const KURL &url, bool isfile);
   /** No descriptions */
-  virtual void copy(const KURL &src, const KURL &dest, int permissions, bool overwrite);
+//  virtual void copy(const KURL &src, const KURL &dest, int permissions, bool overwrite);
   /** No descriptions */
   virtual void chmod(const KURL& url, int permissions);
   /** No descriptions */
@@ -69,10 +70,6 @@ public:
   virtual void mkdir(const KURL&url, int permissions);
   /** No descriptions */
   virtual void openConnection();
-  /** Gets the DirAttrs flag. */
-  bool getDirAttrsFlag() const;
-  /** Sets the DirAttrs flag.  This flag affects how the >> operator works on data streams. */
-  void setDirAttrsFlag(bool flag);
 
 private: // Private variables
   /** True if ioslave is connected to sftp server. */
@@ -85,7 +82,7 @@ private: // Private variables
   int mPort;
 
   /** Ssh process to which we send the sftp packets. */
-  MyPtyProcess ssh;
+  KSshProcess ssh;
 
   /** Username to use when connecting */
   QString mUsername;

@@ -56,8 +56,6 @@ Ssh will detect this terminal and ask for a password there, but will just get ga
 So we can't connect.
 */
 
-
-
 #include <qcstring.h>
 #include <qstring.h>
 #include <qdatastream.h>
@@ -86,11 +84,14 @@ So we can't connect.
 #include <kurl.h>
 #include <kdebug.h>
 #include <kstddirs.h>
+#include <kmessagebox.h>
 
 #include "sftp.h"
 #include "kio_sftp.h"
 #include "atomicio.h"
 #include "sftpfileattr.h"
+#include "ksshprocess.h"
+#include "kssh.h"
 
 #define MIN(a,b) (((a)<(b))?(a):(b))
 #define RETRIES 3
@@ -123,24 +124,13 @@ kio_sftpProtocol::kio_sftpProtocol(const QCString &pool_socket, const QCString &
     mConnected = false;
     setMultipleAuthCaching(true);
     mMsgId = 0;
-
-//    struct servent *sp;
-//    sp = getservbyname("ssh", "tcp");
-//    if( sp == NULL )
-        defaultPort = 22;
-//    else
-//        defaultPort = sp->s_port;
-
-//    kdDebug(KIO_SFTP_DB) << "got port = " << defaultPort << " for " << sp->s_name;
+    mPort = -1;
 }
 
 
-kio_sftpProtocol::~kio_sftpProtocol()
-{
+kio_sftpProtocol::~kio_sftpProtocol() {
   kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::~kio_sftpProtocol()" << endl;
 }
-
-
 
 void kio_sftpProtocol::get(const KURL& url ) {
     kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::get(" << url.prettyURL() << ")" << endl ;
@@ -226,14 +216,14 @@ void kio_sftpProtocol::get(const KURL& url ) {
 void kio_sftpProtocol::setHost (const QString& h, int port, const QString& user, const QString& pass){
     kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::setHost() " << user << "@" << h << ":" << port << endl;
 
-    if( port <= 0 )
-        port = defaultPort;
-
     if( mHost != h || mPort != port || user != mUsername || mPassword != pass )
         closeConnection();
 
     mHost = h;
-    mPort = port;
+    if( port > 0 )
+        mPort = port;
+    else
+        mPort = -1;
     mUsername = user;
     mPassword = pass;
 }
@@ -251,6 +241,40 @@ void kio_sftpProtocol::openConnection(){
         error(ERR_UNKNOWN_HOST, QString::null);
         return;
     }
+
+    // Setup our ssh options
+    KSshProcess::SshOpt opt;
+    KSshProcess::SshOptList opts;
+
+    if( mPort != -1 ) {
+        opt.opt = KSshProcess::SSH_PORT;
+        opt.num = mPort;
+        opts.append(opt);
+    }
+
+    opt.opt = KSshProcess::SSH_SUBSYSTEM;
+    opt.str = "sftp";
+    opts.append(opt);
+
+    opt.opt = KSshProcess::SSH_FORWARDX11;
+    opt.boolean = false;
+    opts.append(opt);
+
+    opt.opt = KSshProcess::SSH_FORWARDAGENT;
+    opt.boolean = false;
+    opts.append(opt);
+
+    opt.opt = KSshProcess::SSH_PROTOCOL;
+    opt.num = 2;
+    opts.append(opt);
+
+    opt.opt = KSshProcess::SSH_HOST;
+    opt.str = mHost;
+    opts.append(opt);
+
+    opt.opt = KSshProcess::SSH_ESCAPE_CHAR;
+    opt.num = -1; // don't use any escape character
+    opts.append(opt);
 
     // setup AuthInfo
     AuthInfo info;
@@ -309,29 +333,51 @@ void kio_sftpProtocol::openConnection(){
             }
         } // We have a username and password at this point
 
-        if( !startSsh() ) {
+        opt.opt = KSshProcess::SSH_USERNAME;
+        opt.str = mUsername;
+        opts.append(opt);
+
+        opt.opt = KSshProcess::SSH_PASSWD;
+        opt.str = mPassword;
+        opts.append(opt);
+
+        ssh.setArgs(opts);
+
+        if( !ssh.connect() ) {
             infoMessage(i18n("Connection failed."));
-            mConnected = false;
-            return;
+
+            QString msg, caption;
+            int err = ssh.error(msg);
+            switch( err ) {
+            case KSshProcess::ERR_NEW_HOST_KEY:
+                caption = i18n("Warning: Host key not found!");
+                break;
+
+            case KSshProcess::ERR_DIFF_HOST_KEY:
+                caption = i18n("Warning: Host key has changed!");
+                break;
+
+            case KSshProcess::ERR_AUTH_FAILED:
+                continue; // retry connection
+
+            default:
+                mConnected = false;
+                return;
+            }
+
+            msg += "\n"+i18n("Shall we contine connecting to ")+mHost+i18n("?");
+            if( KMessageBox::Yes != messageBox(KMessageBox::WarningYesNo, msg, caption) ) {
+                mConnected = false;
+                return;
+            }
+
+            if( !ssh.connect(true) ) {
+                mConnected = false;
+                return;
+            }
         }
+
         infoMessage(i18n("Connected to ")+mHost);
-
-        // Get password prompt
-        //kdDebug(KIO_SFTP_DB) << "got 123: [" << ssh.readLine() << "]";
-        QCString prompt = ssh.readLine();
-        kdDebug(KIO_SFTP_DB) << "got prompt: [" << prompt << "]";
-        if( !prompt.contains("password:", false) ) {
-            kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::openConnection(): could not find password prompt" << endl;
-            error(ERR_COULD_NOT_LOGIN, i18n("Could not login to %1.").arg(mHost));
-            closeConnection();
-            return;
-        }
-
-        // Send password
-        infoMessage(i18n("Sending login information..."));
-        ssh.WaitSlave();
-        ssh.writeLine(mPassword.latin1());
-        kdDebug(KIO_SFTP_DB) << "got [" << ssh.readLine() << "]";
 
         // Now send init packet.
         kdDebug(KIO_SFTP_DB) << "Sending SSH2_FXP_INIT packet." << endl;
@@ -344,27 +390,20 @@ void kio_sftpProtocol::openConnection(){
         // Now we wait to see whether we get a response on the stdinout file descriptor
         // or on the pty file desciptor. If the former, we are successfully connected.
         // If the latter, authentication failed.
-        int ptyfd = ssh.fd(), stdiofd = ssh.stdio();
+        int stdiofd = ssh.stdio();
         fd_set rfds;
         struct timeval tv;
         FD_ZERO(&rfds);
-        FD_SET(ptyfd, &rfds);           // Add pty file descriptor
+//        FD_SET(ptyfd, &rfds);           // Add pty file descriptor
         FD_SET(stdiofd, &rfds);         // Add stdin/out file descriptor
         tv.tv_sec = 60; tv.tv_usec = 0; // 60 second timeout
-        int maxfd = (ptyfd > stdiofd) ? ptyfd : stdiofd;
 
-        int ret = select(maxfd+1, &rfds, NULL, NULL, &tv);
+        int ret = select(stdiofd+1, &rfds, NULL, NULL, &tv);
         kdDebug(KIO_SFTP_DB) << "Select returned " << ret;
         if( ret > 0 ) {
             if( FD_ISSET(stdiofd, &rfds) ) {
                 kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::openConnection(): Authentication successful";
                 break;
-            }
-            if( FD_ISSET(ptyfd, &rfds) ) {
-                prompt = ssh.readLine();
-                kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::openConnection(): Authentication failed" << "[" << prompt << "]";
-                closeConnection();
-                mPassword = QString::null;
             }
         }
         else if( ret == 0 ) {
@@ -424,8 +463,7 @@ void kio_sftpProtocol::openConnection(){
 /** No descriptions */
 void kio_sftpProtocol::closeConnection() {
     kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::closeConnection()" << endl;
-    ::kill(ssh.pid(), SIGTERM);
-    ::waitpid(ssh.pid(), NULL, 0);
+    ssh.kill();
     mConnected = false;
     kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::closeConnection(): END";
 }
@@ -931,11 +969,11 @@ void kio_sftpProtocol::chmod(const KURL& url, int permissions){
 }
 
 /** No descriptions */
-void kio_sftpProtocol::copy(const KURL &src, const KURL &dest, int permissions, bool overwrite) {
-    kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::copy()" << endl;
-    error(ERR_UNSUPPORTED_ACTION, QString::null);
-    finished();
-}
+//void kio_sftpProtocol::copy(const KURL &src, const KURL &dest, int permissions, bool overwrite) {
+//    kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::copy()" << endl;
+//    error(ERR_UNSUPPORTED_ACTION, QString::null);
+//    finished();
+//}
 
 /** No descriptions */
 void kio_sftpProtocol::del(const KURL &url, bool isfile){
@@ -964,9 +1002,9 @@ void kio_sftpProtocol::slave_status(){
 }
 
 /** No descriptions */
-void kio_sftpProtocol::reparseConfiguration(){
-    kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::reparseConfiguration()" << endl;
-}
+//void kio_sftpProtocol::reparseConfiguration(){
+//    kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::reparseConfiguration()" << endl;
+//}
 
 
 bool kio_sftpProtocol::getPacket(QByteArray& msg) {
@@ -1021,38 +1059,6 @@ bool kio_sftpProtocol::putPacket(QByteArray& p){
     ret = atomicio(ssh.stdio(), p.data(), p.size(), false /*write*/);
     if( ret <= 0 )
         return false;
-
-    return true;
-}
-
-bool kio_sftpProtocol::startSsh() {
-    kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::startSsh()" << endl;
-    QString sshPath;
-    sshPath = KStandardDirs::findExe(QString::fromLatin1("ssh"));
-    if( sshPath.isEmpty() ) {
-        kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::startSsh(): ssh path is empty" << endl;
-        error(ERR_CANNOT_LAUNCH_PROCESS, sshPath);
-        return false;
-    }
-
-    QCStringList args;
-//    args.append("-v"); args.append("-v"); args.append("-v");
-    args.append("-p"); args.append(QString::number(mPort).latin1());
-    args.append("-l");
-    args.append(mUsername.latin1());
-    args.append("-s");
-    args.append("-o"); args.append("ForwardX11 no");
-    args.append("-o"); args.append("ForwardAgent=no");
-    args.append("-oProtocol=2");
-    args.append("-enone");
-    args.append(mHost.latin1());
-    args.append("sftp");
-
-    if( ssh.exec(sshPath.latin1(), args) ) {
-        kdDebug(KIO_SFTP_DB) << "Starting of ssh failed" << endl;
-        error(ERR_CANNOT_LAUNCH_PROCESS, sshPath);
-        return false;
-    }
 
     return true;
 }
