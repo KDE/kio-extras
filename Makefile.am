@@ -1,4 +1,4 @@
 
-SUBDIRS = ftp file gzip http
+SUBDIRS = file ftp http gzip
 
 messages:
