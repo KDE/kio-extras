@@ -43,21 +43,21 @@ extern "C" { int kdemain(int argc, char **argv); }
 
 int kdemain(int argc, char **argv)
 {
-	KInstance instance( "kio_nntp" );
-	if (argc != 4)
-	{
-	fprintf(stderr, "usage statement needs to go here\n");
-	exit(-1);
-	}
-	NNTPProtocol slave(argv[2], argv[3]);
-	slave.dispatchLoop();
-	return 0;
+        KInstance instance( "kio_nntp" );
+        if (argc != 4)
+        {
+        fprintf(stderr, "usage statement needs to go here\n");
+        exit(-1);
+        }
+        NNTPProtocol slave(argv[2], argv[3]);
+        slave.dispatchLoop();
+        return 0;
 }
 
 NNTPProtocol::NNTPProtocol(const QCString &pool, const QCString &app)
   : SlaveBase( "nntp", pool, app)
 {
-  debug( "NNTPProtocol()" );
+  kdDebug() << "NNTPProtocol::NNTPProtocol" << endl;
   m_cmd = CMD_NONE;
   m_iSock = m_iOldPort = 0;
   m_tTimeout.tv_sec=10;
@@ -67,7 +67,7 @@ NNTPProtocol::NNTPProtocol(const QCString &pool, const QCString &app)
 
 NNTPProtocol::~NNTPProtocol()
 {
-  debug( "~NNTPProtocol()" );
+  kdDebug() << "NNTPProtocol::~NNTPProtocol" << endl;
   nntp_close();
 }
 
@@ -224,7 +224,7 @@ bool NNTPProtocol::nntp_open( const KURL &_url )
       close(m_iSock);
       return false;
     }
-	
+
     QCString greeting (1024);
     if (!getResponse())  // If the server doesn't respond with a greeting
       return false;      // we've got major problems, and possibly the
@@ -238,11 +238,11 @@ bool NNTPProtocol::nntp_open( const KURL &_url )
       // Prompt for usernames
       QString head=i18n("Username and password for your NNTP account:");
       if (!openPassDlg(head, usr, pass)) {
-	return false;
-	nntp_close();
+        return false;
+        nntp_close();
       } else {
-	one_string.append(usr);
-	m_sOldUser=usr;
+        one_string.append(usr);
+        m_sOldUser=usr;
       }
     } else {
       one_string.append(_url.user());
@@ -322,7 +322,7 @@ void NNTPProtocol::get( const KURL& url )
 
   if (path.at(0)=='/') path.remove(0,1);
   if (path.isEmpty()) {
-    debug("We should be a dir!!");
+    kdDebug() << "We should be a dir!!" << endl;
     error(ERR_IS_DIRECTORY, url.url());
     m_cmd=CMD_NONE; return;
   }
@@ -355,13 +355,13 @@ void NNTPProtocol::get( const KURL& url )
       //ready();
       gettingFile(url.url());
       while (!feof(fp)) {
-	memset(buf, 0, sizeof(buf));
-	if (!fgets(buf, sizeof(buf)-1, fp))
-	  break;  // Error??
-	// HACK: This assumes fread stops at the first \n and not \r
-	if (strcmp(buf, ".\r\n")==0) break; // End of data
-	// sanders, changed -2 to -1 below
-	buf[strlen(buf)-2]='\0';
+        memset(buf, 0, sizeof(buf));
+        if (!fgets(buf, sizeof(buf)-1, fp))
+          break;  // Error??
+        // HACK: This assumes fread stops at the first \n and not \r
+        if (strcmp(buf, ".\r\n")==0) break; // End of data
+        // sanders, changed -2 to -1 below
+        buf[strlen(buf)-2]='\0';
 /*
 LIST
 +OK Mailbox scan listing follows
@@ -379,11 +379,11 @@ LIST
 12 649
 .
 */
-	size+=strlen(buf);
-	array.setRawData(buf, strlen(buf));
-	data( array );
-	array.resetRawData(buf, strlen(buf));
-	totalSize(size);
+        size+=strlen(buf);
+        array.setRawData(buf, strlen(buf));
+        data( array );
+        array.resetRawData(buf, strlen(buf));
+        totalSize(size);
       }
       fprintf(stderr,"Finishing up list\n");
       data( QByteArray() );
@@ -405,26 +405,26 @@ LIST
       mimeType("text/plain");
       memset(buf, 0, sizeof(buf));
       while (!feof(fp)) {
-	fprintf(stderr,"xxxxxxxxxxxFinishing up\n");
-	memset(buf, 0, sizeof(buf));
-	if (!fgets(buf, sizeof(buf)-1, fp))
-	  break;  // Error??
+        fprintf(stderr,"xxxxxxxxxxxFinishing up\n");
+        memset(buf, 0, sizeof(buf));
+        if (!fgets(buf, sizeof(buf)-1, fp))
+          break;  // Error??
 
-	// HACK: This assumes fread stops at the first \n and not \r
-	if (strcmp(buf, ".\r\n")==0) break; // End of data
-	// sanders, changed -2 to -1 below
-	buf[strlen(buf)-1]='\0';
-	if (strcmp(buf, "..")==0) {
-	  buf[0] = '.';
-	  array.setRawData(buf, 1);
-	  data( array );
-	  array.resetRawData(buf, 1);
-	}
-	else {
-	  array.setRawData(buf, strlen(buf));
-	  data( array );
-	  array.resetRawData(buf, strlen(buf));
-	}
+        // HACK: This assumes fread stops at the first \n and not \r
+        if (strcmp(buf, ".\r\n")==0) break; // End of data
+        // sanders, changed -2 to -1 below
+        buf[strlen(buf)-1]='\0';
+        if (strcmp(buf, "..")==0) {
+          buf[0] = '.';
+          array.setRawData(buf, 1);
+          data( array );
+          array.resetRawData(buf, 1);
+        }
+        else {
+          array.setRawData(buf, strlen(buf));
+          data( array );
+          array.resetRawData(buf, strlen(buf));
+        }
       }
       fprintf(stderr,"Finishing up\n");
       data( QByteArray() );
@@ -455,15 +455,15 @@ LIST
       list_cmd=buf;
       // We need a space, otherwise we got an invalid reply
       if (!list_cmd.find(" ")) {
-	kdDebug(7105) << "List command needs a space? " << list_cmd << endl;
+        kdDebug(7105) << "List command needs a space? " << list_cmd << endl;
         nntp_close();
         return;
       }
       list_cmd.remove(0, list_cmd.find(" ")+1);
       msg_len = list_cmd.toUInt(&ok);
       if (!ok) {
-	kdDebug(7105) << "LIST command needs to return a number? :" << list_cmd << ":" << endl;
-	nntp_close();return;
+        kdDebug(7105) << "LIST command needs to return a number? :" << list_cmd << ":" << endl;
+        nntp_close();return;
       }
     } else {
       nntp_close(); return;
@@ -475,18 +475,18 @@ LIST
       totalSize(msg_len);
       memset(buf, 0, sizeof(buf));
       while (!feof(fp)) {
-	memset(buf, 0, sizeof(buf));
-	if (!fgets(buf, sizeof(buf)-1, fp))
-	  break;  // Error??
-	// HACK: This assumes fread stops at the first \n and not \r
-	if (strcmp(buf, ".\r\n")==0) break; // End of data
-	// sanders, changed -2 to -1 below
-	buf[strlen(buf)-1]='\0';
-	array.setRawData(buf, strlen(buf));
-	data( array );
-	array.resetRawData(buf, strlen(buf));
-	p_size+=strlen(buf);
-	processedSize(p_size);
+        memset(buf, 0, sizeof(buf));
+        if (!fgets(buf, sizeof(buf)-1, fp))
+          break;  // Error??
+        // HACK: This assumes fread stops at the first \n and not \r
+        if (strcmp(buf, ".\r\n")==0) break; // End of data
+        // sanders, changed -2 to -1 below
+        buf[strlen(buf)-1]='\0';
+        array.setRawData(buf, strlen(buf));
+        data( array );
+        array.resetRawData(buf, strlen(buf));
+        p_size+=strlen(buf);
+        processedSize(p_size);
       }
       fprintf(stderr,"Finishing up\n");
       data(QByteArray());
@@ -517,7 +517,7 @@ LIST
       data( array );
       array.resetRawData(buf, len);
       processedSize(len);
-      debug( buf );
+      kdDebug() << buf << endl;
       fprintf(stderr,"Finishing up uid\n");
       data(QByteArray());
       speed(0); finished();
@@ -615,7 +615,7 @@ void NNTPProtocol::listDir( const KURL& url)
     entry.clear();
   }
   listEntry( entry, true ); // ready
-  
+
   finished();
 }
 
@@ -648,7 +648,7 @@ void NNTPProtocol::del( const KURL& url, bool /*isfile*/ )
     nntp_close();
     return;
   }
-  
+
   QString _path = url.path();
   if (_path.at(0) == '/')
     _path.remove(0,1);
@@ -662,7 +662,7 @@ void NNTPProtocol::del( const KURL& url, bool /*isfile*/ )
     }
   }
 
-  debug( "NNTPProtocol::del " + _path );
+  kdDebug() << "NNTPProtocol::del " << _path << endl;
   finished();
 }
 

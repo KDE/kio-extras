@@ -104,9 +104,9 @@ int kdemain( int argc, char **argv )
 //
 //   COMMANDS WE SUPPORT:
 //
-// 
+//
 //   COMMANDS WE SHOULD SUPPORT:
-//   QUIT,       EXPN,       HELO,       EHLO,       HELP,       NOOP, 
+//   QUIT,       EXPN,       HELO,       EHLO,       HELP,       NOOP,
 //   VRFY,       RSET,       DATA,       RCPT TO:,   MESG FROM:, ETRN,
 //   VERB,       DSN,        8BITMIME,   SIZE,       ONEX,       XUSR
 //
@@ -115,7 +115,7 @@ int kdemain( int argc, char **argv )
 //
 //   COMMANDS THAT DON'T SEEM SUPPORTED ANYMORE:
 //   SAML FROM:, SOML FROM:, SEND FROM:, TURN
-//   
+//
 
 SMTPProtocol::SMTPProtocol(const QCString &pool, const QCString &app)
 #ifdef SSMTP
@@ -124,8 +124,8 @@ SMTPProtocol::SMTPProtocol(const QCString &pool, const QCString &app)
   : SlaveBase( "smtp", pool, app)
 #endif
 {
-  debug( "SMTPProtocol()" );
-  
+  kdDebug() << "SMTPProtocol::SMTPProtocol" << endl;
+
 
 #ifdef SSMTP
   ssl = NULL;
@@ -139,7 +139,7 @@ SMTPProtocol::SMTPProtocol(const QCString &pool, const QCString &app)
 
 SMTPProtocol::~SMTPProtocol()
 {
-  debug( "~SMTPProtocol()" );
+  kdDebug() << "SMTPProtocol::~SMTPProtocol" << endl;
   smtp_close();
 #ifdef SSMTP
   SSL_CTX_free(ctx);
@@ -203,7 +203,7 @@ void SMTPProtocol::setHost( const QString& host, int port, const QString& /*user
 // DATA:       Initial: 354;  data -> Success: 250; Fail: 552, 554, 451, 452
 //             Fail: 451, 554; Error: 500, 501, 503, 421
 // RSET:       Success: 250; Fail: ; Error: 500, 501, 504, 421
-// VRFY:       Success: 250, 251; Fail: 550, 551, 553; 
+// VRFY:       Success: 250, 251; Fail: 550, 551, 553;
 //             Error: 500, 501, 502, 504, 421
 // EXPN:       Success: 250; Fail: 550; Error: 500, 501, 502, 504, 421
 // HELP:       Success: ; Fail: ; Error: 500, 501, 502, 504, 421
@@ -217,13 +217,13 @@ void SMTPProtocol::setHost( const QString& host, int port, const QString& /*user
 // SIZE:       ???
 // ONEX:       ???
 // XUSR:       ???
-// 
+//
 
 bool SMTPProtocol::getResponse(char *r_buf, unsigned int r_len) {
   char *buf=0;
   unsigned int recv_len=0;
   fd_set FDs;
- 
+
   // Give the buffer the appropiate size
   if (r_len)
     buf=(char *)malloc(r_len);
@@ -231,7 +231,7 @@ bool SMTPProtocol::getResponse(char *r_buf, unsigned int r_len) {
     buf=(char *)malloc(512);
     r_len=512;
   }
- 
+
   // And keep waiting if it timed out
   unsigned int wait_time=60; // Wait 60sec. max.
   do
@@ -245,13 +245,13 @@ bool SMTPProtocol::getResponse(char *r_buf, unsigned int r_len) {
     m_tTimeout.tv_usec=0;
   }
   while (wait_time && (::select(m_iSock+1, &FDs, 0, 0, &m_tTimeout) ==0));
- 
+
   if (wait_time == 0)
   {
     fprintf(stderr, "No response from SMTP server in 60 secs.\n");
     return false;
   }
- 
+
   // Clear out the buffer
   memset(buf, 0, r_len);
   // And grab the data
@@ -271,7 +271,7 @@ bool SMTPProtocol::getResponse(char *r_buf, unsigned int r_len) {
   // This is really a funky crash waiting to happen if something isn't
   // null terminated.
   recv_len=strlen(buf);
- 
+
   // [E]SMTP returns responses as follows:
   //
   // xxx-text
@@ -336,7 +336,7 @@ bool SMTPProtocol::command(const char *buf, char *r_buf, unsigned int r_len) {
   // Write the command
   int rc = SSL_write(ssl, buf, strlen(buf));
   if (rc <= 0) return false;
- 
+
   rc = SSL_write(ssl, "\r\n", 2);
   if (rc <= 0) return false;
 #else
@@ -393,7 +393,7 @@ memset(&server_name, 0, sizeof(server_name));
     if (::connect(m_iSock, (struct sockaddr*)(&server_name), sizeof(server_name))) {
       error( ERR_COULD_NOT_CONNECT, m_sServer);
       return false;
-    } 
+    }
 
 
 // Either setup SSL or setup the stdin/stdout descriptor
@@ -406,7 +406,7 @@ memset(&server_name, 0, sizeof(server_name));
     close(m_iSock);
     return false;
   }
- 
+
   SSL_set_fd(ssl, m_iSock);
   if (-1 == SSL_connect(ssl)) {
     error( ERR_COULD_NOT_CONNECT, m_sServer );
@@ -452,7 +452,7 @@ void SMTPProtocol::smtp_close() {
     SSL_free(ssl);
     ssl = NULL;
     m_iSock = 0;
-    m_sOldServer = ""; 
+    m_sOldServer = "";
     m_iOldPort = 0;
   }
 #else

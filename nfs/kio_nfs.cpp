@@ -79,7 +79,7 @@ int kdemain( int argc, char **argv )
      exit(-1);
   }
   kdDebug(7101) << "NFS: kdemain: starting" << endl;
-  
+
   NFSProtocol slave(argv[2], argv[3]);
   slave.dispatchLoop();
   kdDebug(7101) << "NFS: kdemain: Done" << endl;
@@ -288,7 +288,7 @@ void NFSProtocol::openConnection()
    total_timeout.tv_sec = 20;
    total_timeout.tv_usec = 0;
 
-	exports exportlist;
+        exports exportlist;
    //now do the stuff
    memset(&exportlist, '\0', sizeof(exportlist));
    kdDebug(7101)<<5<<endl;
@@ -313,7 +313,7 @@ void NFSProtocol::openConnection()
          //TODO remove this ugly hack
          m_handleCache.insert(QString("/")+KIO::encodeFileName(exportlist->ex_dir),fh);
          m_exportedDirs.append(KIO::encodeFileName(exportlist->ex_dir));
-         cerr<<"appending file -"<<KIO::encodeFileName(exportlist->ex_dir).data()<<"- with FH: -"<<fhStatus.fhstatus_u.fhs_fhandle<<"-"<<endl;
+         cerr<<"appending file -"<<KIO::encodeFileName(exportlist->ex_dir).latin1()<<"- with FH: -"<<fhStatus.fhstatus_u.fhs_fhandle<<"-"<<endl;
       }
       else
       {
@@ -322,7 +322,7 @@ void NFSProtocol::openConnection()
 
    }
    server_addr.sin_port = 0;
-	m_sock = RPC_ANYSOCK;
+        m_sock = RPC_ANYSOCK;
    m_client = clnttcp_create(&server_addr,NFSPROG,NFSVERS,&m_sock,0,0);
    if (m_client == NULL)
    {
@@ -497,7 +497,7 @@ void NFSProtocol::listDir( const KURL& _url)
       atom.m_uds = KIO::UDS_FILE_TYPE;
       atom.m_long =dirres.diropres_u.diropres.attributes.mode & S_IFMT; // extract file type
       entry.append( atom );
-	
+
       atom.m_uds = KIO::UDS_USER;
       uid_t uid = dirres.diropres_u.diropres.attributes.uid;
       QString *temp = usercache.find( uid );

@@ -43,9 +43,9 @@
 #define MAX_RESPONSE_LEN 512
 
 extern "C" {
-	int kdemain(int argc, char **argv);
+        int kdemain(int argc, char **argv);
 #ifdef APOP
-	#include "md5.h"
+        #include "md5.h"
 #endif
 };
 
@@ -64,9 +64,9 @@ int kdemain( int argc, char **argv )
 
   // Are we looking to use SSL?
   if (strcasecmp(argv[1], "pop3s") == 0)
-	slave = new POP3Protocol(argv[2], argv[3], true);
+        slave = new POP3Protocol(argv[2], argv[3], true);
   else
-	slave = new POP3Protocol(argv[2], argv[3], false);
+        slave = new POP3Protocol(argv[2], argv[3], false);
 
   slave->dispatchLoop();
   delete slave;
@@ -226,7 +226,7 @@ bool POP3Protocol::pop3_open()
       free(greeting_buf);
       return false;      // we've got major problems, and possibly the
                          // wrong port
-    }   
+    }
     QCString greeting(greeting_buf);
     free(greeting_buf);
 
@@ -253,15 +253,15 @@ bool POP3Protocol::pop3_open()
       // Prompt for usernames
       QString head=i18n("Username and password for your POP3 account:");
       if (!openPassDlg(head, usr, pass)) {
-	pop3_close();
-	return false;
+        pop3_close();
+        return false;
       } else {
 #ifdef APOP
-	apop_string.append(usr);
+        apop_string.append(usr);
 #endif
-	one_string.append(usr);
-	m_sOldUser=usr;
-	m_sUser=usr; m_sPass=pass;
+        one_string.append(usr);
+        m_sOldUser=usr;
+        m_sUser=usr; m_sPass=pass;
       }
     } else {
 #ifdef APOP
@@ -280,28 +280,28 @@ bool POP3Protocol::pop3_open()
       Bin_MD5Context ctx;
 
       if ( m_sPass.isEmpty())
-	m_sOldPass = pass;
+        m_sOldPass = pass;
       else
-	m_sOldPass = m_sPass;
+        m_sOldPass = m_sPass;
 
       // Generate digest
       Bin_MD5Init(&ctx);
       Bin_MD5Update(&ctx,
-		    (unsigned char *)c,
-		    (unsigned)strlen(c));
+                    (unsigned char *)c,
+                    (unsigned)strlen(c));
       Bin_MD5Update(&ctx,
-		    (unsigned char *)m_sOldPass.data(),
-		    (unsigned)m_sOldPass.length());
+                    (unsigned char *)m_sOldPass.local8Bit().data(),
+                    (unsigned)m_sOldPass.local8Bit().length());
       Bin_MD5Final(digest, &ctx);
       for(int i = 0; i < 16; i++)
-	sprintf(ascii_digest+2*i, "%02x", digest[i]);
+        sprintf(ascii_digest+2*i, "%02x", digest[i]);
 
       // Genenerate APOP command
       apop_string.append(" ");
       apop_string.append(ascii_digest);
 
       if(command(apop_string, buf, sizeof(buf)))
-	return true;
+        return true;
 
       kdDebug() << "Couldn't login via APOP. Falling back to USER/PASS" << endl;
       pop3_close();
@@ -419,12 +419,12 @@ void POP3Protocol::get( const KURL& url )
       gettingFile(url.url());
       while (!AtEOF()) {
         memset(buf, 0, sizeof(buf));
-	ReadLine(buf, sizeof(buf)-1);
+        ReadLine(buf, sizeof(buf)-1);
 
-	// HACK: This assumes fread stops at the first \n and not \r
-	if (strcmp(buf, ".\r\n")==0) break; // End of data
-	// sanders, changed -2 to -1 below
-	buf[strlen(buf)-2]='\0';
+        // HACK: This assumes fread stops at the first \n and not \r
+        if (strcmp(buf, ".\r\n")==0) break; // End of data
+        // sanders, changed -2 to -1 below
+        buf[strlen(buf)-2]='\0';
 /*
 LIST
 +OK Mailbox scan listing follows
@@ -442,11 +442,11 @@ LIST
 12 649
 .
 */
-	size+=strlen(buf);
-	array.setRawData(buf, strlen(buf));
-	data( array );
-	array.resetRawData(buf, strlen(buf));
-	totalSize(size);
+        size+=strlen(buf);
+        array.setRawData(buf, strlen(buf));
+        data( array );
+        array.resetRawData(buf, strlen(buf));
+        totalSize(size);
       }
     }
     kdDebug() << "Finishing up list" << endl;
@@ -473,23 +473,23 @@ LIST
       memset(buf, 0, sizeof(buf));
       while (!AtEOF()) {
         memset(buf, 0, sizeof(buf));
-	ReadLine(buf, sizeof(buf)-1);
+        ReadLine(buf, sizeof(buf)-1);
 
-	// HACK: This assumes fread stops at the first \n and not \r
-	if (strcmp(buf, ".\r\n")==0) break; // End of data
-	// sanders, changed -2 to -1 below
-	buf[strlen(buf)-1]='\0';
-	if (strcmp(buf, "..")==0) {
-	  buf[0] = '.';
-	  array.setRawData(buf, 1);
-	  data( array );
-	  array.resetRawData(buf, 1);
-	}
-	else {
-	  array.setRawData(buf, strlen(buf));
-	  data( array );
-	  array.resetRawData(buf, strlen(buf));
-	}
+        // HACK: This assumes fread stops at the first \n and not \r
+        if (strcmp(buf, ".\r\n")==0) break; // End of data
+        // sanders, changed -2 to -1 below
+        buf[strlen(buf)-1]='\0';
+        if (strcmp(buf, "..")==0) {
+          buf[0] = '.';
+          array.setRawData(buf, 1);
+          data( array );
+          array.resetRawData(buf, 1);
+        }
+        else {
+          array.setRawData(buf, strlen(buf));
+          data( array );
+          array.resetRawData(buf, strlen(buf));
+        }
       }
       kdDebug() << "Finishing up" << endl;
       data( QByteArray() );
@@ -527,7 +527,7 @@ LIST
       list_cmd=buf;
       // We need a space, otherwise we got an invalid reply
       if (!list_cmd.find(" ")) {
-	kdDebug(7105) << "List command needs a space? " << list_cmd << endl;
+        kdDebug(7105) << "List command needs a space? " << list_cmd << endl;
         pop3_close();
         error( ERR_INTERNAL, i18n("Unexpected response from POP3 server."));
         return;
@@ -535,10 +535,10 @@ LIST
       list_cmd.remove(0, list_cmd.find(" ")+1);
       msg_len = list_cmd.toUInt(&ok);
       if (!ok) {
-	kdDebug(7105) << "LIST command needs to return a number? :" << list_cmd << ":" << endl;
-	pop3_close();
+        kdDebug(7105) << "LIST command needs to return a number? :" << list_cmd << ":" << endl;
+        pop3_close();
         error( ERR_INTERNAL, i18n("Unexpected response from POP3 server."));
-	return;
+        return;
       }
     } else {
       pop3_close();
@@ -554,15 +554,15 @@ LIST
       while (!AtEOF()) {
         ReadLine(buf, sizeof(buf)-1);
 
-	// HACK: This assumes fread stops at the first \n and not \r
-	if (strcmp(buf, ".\r\n")==0) break; // End of data
-	// sanders, changed -2 to -1 below
-	buf[strlen(buf)-1]='\0';
-	array.setRawData(buf, strlen(buf));
-	data( array );
-	array.resetRawData(buf, strlen(buf));
-	p_size+=strlen(buf);
-	processedSize(p_size);
+        // HACK: This assumes fread stops at the first \n and not \r
+        if (strcmp(buf, ".\r\n")==0) break; // End of data
+        // sanders, changed -2 to -1 below
+        buf[strlen(buf)-1]='\0';
+        array.setRawData(buf, strlen(buf));
+        data( array );
+        array.resetRawData(buf, strlen(buf));
+        p_size+=strlen(buf);
+        processedSize(p_size);
       }
       kdDebug() << "Finishing up" << endl;
       data(QByteArray());
@@ -670,9 +670,9 @@ void POP3Protocol::listDir( const KURL & /* url*/ )
     atom.m_uds = UDS_URL;
     KURL uds_url;
     if (m_bIsSSL)
-	uds_url.setProtocol("pop3s");
+        uds_url.setProtocol("pop3s");
     else
-	uds_url.setProtocol("pop3");
+        uds_url.setProtocol("pop3");
     uds_url.setUser(m_sUser);
     uds_url.setPass(m_sPass);
     uds_url.setHost(m_sServer);

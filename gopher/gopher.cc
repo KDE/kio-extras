@@ -61,7 +61,7 @@ GopherProtocol::GopherProtocol(const QCString &pool, const QCString &app)
 
 GopherProtocol::~GopherProtocol()
 {
-	gopher_close();
+        gopher_close();
 }
 
 void GopherProtocol::gopher_close ()
@@ -104,7 +104,7 @@ bool GopherProtocol::gopher_open( const KURL &_url )
     }
   }
   return true;
-  
+
 }
 
 void GopherProtocol::setHost( const QString & _host, int _port, const QString &_user, const QString &_pass)
@@ -141,7 +141,7 @@ void GopherProtocol::stat (const KURL &url)
       atom.m_long = S_IRUSR | S_IRGRP | S_IROTH; // readable by everybody
       entry.append( atom );
 
-#if 0  
+#if 0
       atom.m_uds = KIO::UDS_SIZE;
       atom.m_long = m_iSize;
       entry.append( atom );
@@ -286,7 +286,7 @@ void GopherProtocol::get(const KURL &usrc)
   }
   if (path.at(0)=='/') path.remove(0,1);
   if (path.isEmpty()) {
-    debug("We should be a dir!!");
+      kdDebug() << "We should be a dir!!" << endl;
     error(ERR_IS_DIRECTORY, usrc.url());
     m_cmd=CMD_NONE; return;
   }
