@@ -110,3 +110,6 @@ AC_SUBST(LIBSSL)
 
 
 AC_PATH_SSL
+
+AM_CONDITIONAL(SPOP3, test -n "$ssl_libraries")
+
