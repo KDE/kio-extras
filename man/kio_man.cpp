@@ -818,7 +818,7 @@ void MANProtocol::checkManPaths()
 // the beginning of the man page name
 // and the length of the name
 struct man_index_t {
-    const char *manpath;  // the full path including man file
+    char *manpath;  // the full path including man file
     const char *manpage_begin;  // pointer to the begin of the man file name in the path
     int manpage_len; // len of the man file name
 };
