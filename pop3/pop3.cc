@@ -56,7 +56,11 @@ bool POP3Protocol::getResponse (char *r_buf, unsigned int r_len)
   FD_SET(m_iSock, &FDs);
 
   // And keep waiting if it timed out
-  while (::select(m_iSock+1, &FDs, 0, 0, &m_tTimeout) ==0);
+  while (::select(m_iSock+1, &FDs, 0, 0, &m_tTimeout) ==0) {
+	// Yes, it's true, Linux sucks.
+	m_tTimeout.tv_sec=10;
+	m_tTimeout.tv_usec=0;
+  }
 
   // Clear out the buffer
   memset(&buf, 0, r_len);
