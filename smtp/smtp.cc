@@ -223,7 +223,7 @@ void SMTPProtocol::put(const KURL & url, int /*permissions */ ,
     return;
 
   // Write slave-generated header fields (if any):
-  const char * headerFields = request.headerFields();
+  const char * headerFields = request.headerFields( mset.getSetting( KEMailSettings::RealName ) );
   if ( headerFields && *headerFields )
     write( headerFields, qstrlen( headerFields ) );
 
