@@ -179,8 +179,10 @@ unsigned int
 CDDB::get_discid(QValueList<int>& track_ofs)
 {
     unsigned int id = 0;
-    int num_tracks = track_ofs.count() - 1;
-    // last track_ofs[] is the begin of lead_out track
+    int num_tracks = track_ofs.count() - 2;
+
+    // the last two track_ofs[] are disc begin and disc end
+
     for (int i = num_tracks - 1; i >= 0; i--)
       {
 	unsigned int n = track_ofs[i];
@@ -191,8 +193,8 @@ CDDB::get_discid(QValueList<int>& track_ofs)
 	    n /= 10;
 	  }
       }
-    unsigned int l = track_ofs[num_tracks];
-    l -= track_ofs[0];
+    unsigned int l = track_ofs[num_tracks + 1];
+    l -= track_ofs[num_tracks];
     l /= 75;
     id = ((id % 255) << 24) | (l << 8) | num_tracks;
     return id;
@@ -314,7 +316,7 @@ CDDB::parse_read_resp()
 bool
 CDDB::queryCD(QValueList<int>& track_ofs)
 {
-  int num_tracks = track_ofs.count() - 1;
+  int num_tracks = track_ofs.count() - 2;
   if (!remote || num_tracks < 1)
     return false;
   unsigned int id = get_discid(track_ofs);
@@ -326,7 +328,7 @@ CDDB::queryCD(QValueList<int>& track_ofs)
   m_artist = "";
   m_names.clear();
   m_discid = id;
-  unsigned int length = track_ofs[num_tracks] - track_ofs[0];
+  unsigned int length = track_ofs[num_tracks+1] - track_ofs[num_tracks];
   QCString q;
   q.sprintf("cddb query %08x %d", id, num_tracks);
   QCString num;
