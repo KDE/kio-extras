@@ -29,6 +29,8 @@
 #endif
 #include <errno.h>
 #include <unistd.h>
+#include <qdir.h>
+#include <qtextstream.h>
 #include <qregexp.h>
 #include <kdebug.h>
 #include <ksock.h>
@@ -37,8 +39,9 @@
 #include "cddb.h"
 
 CDDB::CDDB()
-  : fd(0), port(0), remote(false)
+  : fd(0), port(0), remote(false), save_local(false)
 {
+  cddb_dirs += ".cddb";
 }
 
 CDDB::~CDDB()
@@ -80,7 +83,7 @@ CDDB::set_server(const char *hostname, unsigned short int _port)
       port = _port;
       QCString r;
       readLine(r); // the server greeting
-      writeLine("cddb hello kde-user blubb kio_audiocd 0.3");
+      writeLine("cddb hello kde-user blubb kio_audiocd 0.4");
       readLine(r);
     }
   return true;
@@ -109,6 +112,7 @@ CDDB::readLine(QCString& ret)
   int read_length = 0;
   char small_b[128];
   fd_set set;
+
   ret.resize(0);
   while (read_length < 40000)
     {
@@ -133,15 +137,15 @@ CDDB::readLine(QCString& ret)
       tv.tv_usec = 0;
       if (::select(fd+1, &set, 0, 0, &tv) < 0)
         return false;
-      ssize_t l = ::read(fd, &small_b, sizeof(small_b));
+      ssize_t l = ::read(fd, &small_b, sizeof(small_b)-1);
       if (l <= 0)
         {
 	  // l==0 normally means fd got closed, but we really need a lineend
 	  return false;
 	}
+      small_b[l] = 0;
       read_length += l;
-      for (int i = 0; i < l; i++)
-        buf += small_b[i];
+      buf += small_b;
     }
   return false;
 }
@@ -241,7 +245,7 @@ CDDB::track(int i) const
 }
 
 bool
-CDDB::parse_read_resp()
+CDDB::parse_read_resp(QTextStream *stream, QTextStream *write_stream)
 {
   /* Note, that m_names and m_title should be empty */
   QCString end = ".";
@@ -254,10 +258,23 @@ CDDB::parse_read_resp()
   while (1)
     {
       QCString r;
-      if (!readLine(r))
-        return false;
+      if (stream)
+        {
+	  if (stream->atEnd())
+	    break;
+	  r = stream->readLine().local8Bit();
+	}
+      else
+        {
+          if (!readLine(r))
+            return false;
+        }
+      /* Normally the "." is not saved into the local files, but be
+	 tolerant about this.  */
       if (r == end)
         break;
+      if (write_stream)
+        *write_stream << r << endl;
       r = r.stripWhiteSpace();
       if (r.isEmpty() || r[0] == '#')
         continue;
@@ -307,28 +324,104 @@ CDDB::parse_read_resp()
     {
       if (m_names[i].isEmpty())
         m_names[i] += i18n("Track %1").arg(i);
-        m_names[i].replace(QRegExp("/"), "%2f");
+      m_names[i].replace(QRegExp("/"), "%2f");
       kdDebug(7101) << "CDDB: found Track " << i+1 << ": `" << m_names[i]
         << "'" << endl;
     }
   return true;
 }
 
+void
+CDDB::add_cddb_dirs(const QStringList& list)
+{
+  cddb_dirs = list;
+  if (cddb_dirs.isEmpty())
+    cddb_dirs += ".cddb";
+}
+
+/* Locates and opens the local file corresponding to that discid.
+   Returns TRUE, if file is found and ready for reading.
+   Returns FALSE, if file isn't found.  In this case ret_file is initialized
+   with a QFile which resides in the first cddb_dir, and has a temp name
+   (the ID + getpid()).  You can open it for writing.  */
+bool
+CDDB::searchLocal(unsigned int id, QFile *ret_file)
+{
+  QDir dir;
+  QString filename;
+  filename = QString("%1").arg(id, 0, 16).rightJustify(8, '0');
+  QStringList::ConstIterator it;
+  for (it = cddb_dirs.begin(); it != cddb_dirs.end(); ++it)
+    {
+      dir.setPath(*it);
+      if (!dir.exists())
+        continue;
+      /* First look in dir directly.  */
+      ret_file->setName (*it + "/" + filename);
+      if (ret_file->exists() && ret_file->open(IO_ReadOnly))
+        return true;
+      /* And then in the subdirs of dir (representing the categories normally).
+       */
+      const QFileInfoList *subdirs = dir.entryInfoList (QDir::Dirs);
+      QFileInfoListIterator fiit(*subdirs);
+      QFileInfo *fi;
+      while ((fi = fiit.current()) != 0)
+        {
+	  ret_file->setName (*it + "/" + fi->fileName() + "/" + filename);
+	  if (ret_file->exists() && ret_file->open(IO_ReadOnly))
+	    return true;
+	  ++fiit;
+	}
+    }
+  QString pid;
+  pid.setNum(::getpid());
+  ret_file->setName (cddb_dirs[0] + "/" + filename + "." + pid);
+  /* Try to create the save location.  */
+  dir.setPath(cddb_dirs[0]);
+  if (save_local && !dir.exists())
+    {
+      dir = QDir::current();
+      dir.mkdir(cddb_dirs[0]);
+    }
+  return false;
+}
+
 bool
 CDDB::queryCD(QValueList<int>& track_ofs)
 {
   int num_tracks = track_ofs.count() - 2;
-  if (!remote || fd == 0 || num_tracks < 1)
+  if (num_tracks < 1)
     return false;
   unsigned int id = get_discid(track_ofs);
+  QFile file;
+  bool local;
+  /* Already read this ID.  */
   if (id == m_discid)
     return true;
+
+  /* First look for a local file.  */
+  local = searchLocal (id, &file);
+  /* If we have no local file, and no remote connection, barf.  */
+  if (!local && (!remote || fd == 0))
+    return false;
 
   m_tracks = num_tracks;
   m_title = "";
   m_artist = "";
   m_names.clear();
   m_discid = id;
+  if (local)
+    {
+      QTextStream stream(&file);
+      /* XXX Hmm, what encoding is used by CDDB files?  local? Unicode?
+         Nothing?  */
+      stream.setEncoding(QTextStream::Latin1);
+      parse_read_resp(&stream, 0);
+      file.close();
+      return true;
+    }
+
+  /* Remote CDDB query.  */
   unsigned int length = track_ofs[num_tracks+1] - track_ofs[num_tracks];
   QCString q;
   q.sprintf("cddb query %08x %d", id, num_tracks);
@@ -360,7 +453,23 @@ CDDB::queryCD(QValueList<int>& track_ofs)
       code = get_code(r);
       if (code != 210)
         return false;
-      if (!parse_read_resp())
+      if (save_local && file.open(IO_WriteOnly))
+        {
+	  QTextStream stream(&file);
+	  if (!parse_read_resp(0, &stream))
+	    {
+	      file.remove();
+	      return false;
+	    }
+	  file.close();
+	  QString newname (file.name());
+	  newname.truncate(newname.findRev('.'));
+	  if (QDir::current().rename(file.name(), newname)) {
+	    kdDebug(7101) << "CDDB: rename failed" << endl;
+	    file.remove();
+	  }
+	}
+      else if (!parse_read_resp(0, 0))
         return false;
     }
   else if (code == 211)

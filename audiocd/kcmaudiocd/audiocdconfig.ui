@@ -1717,7 +1717,7 @@
                             <name>title</name>
                             <string>Options</string>
                         </property>
-                        <hbox>
+                        <vbox>
                             <property stdset="1">
                                 <name>margin</name>
                                 <number>11</number>
@@ -1745,7 +1745,143 @@
                                     <string>CDDB enables you to lookup the song index of your CD by using a database on the Internet. Thus, information like artist, songname and release year can be automatically inserted into your MP3 or ogg vorbis file.</string>
                                 </property>
                             </widget>
-                        </hbox>
+                            <widget>
+                                <class>QCheckBox</class>
+                                <property stdset="1">
+                                    <name>name</name>
+                                    <cstring>cddb_save_local</cstring>
+                                </property>
+                                <property stdset="1">
+                                    <name>text</name>
+                                    <string>&amp;Save remote CDDB entries to local files</string>
+                                </property>
+                                <property stdset="1">
+                                    <name>checked</name>
+                                    <bool>true</bool>
+                                </property>
+                                <property>
+                                    <name>whatsThis</name>
+                                    <string>To speed up further searches, or to support disconnected operation CDDB entries can be saved into local files.  The directory where these are saved into, is the first in the list below.  It should be writable to you, so $HOME/.cddb/ is recommended.</string>
+                                </property>
+                            </widget>
+                        </vbox>
+                    </widget>
+                    <widget>
+                        <class>QGroupBox</class>
+                        <property stdset="1">
+                            <name>name</name>
+                            <cstring>GroupBox22</cstring>
+                        </property>
+                        <property stdset="1">
+                            <name>title</name>
+                            <string>Directories for CDDB files</string>
+                        </property>
+                        <vbox>
+                            <property stdset="1">
+                                <name>margin</name>
+                                <number>11</number>
+                            </property>
+                            <property stdset="1">
+                                <name>spacing</name>
+                                <number>6</number>
+                            </property>
+                            <widget>
+                                <class>QLabel</class>
+                                <property stdset="1">
+                                    <name>name</name>
+                                    <cstring>TextLabel1_4</cstring>
+                                </property>
+                                <property stdset="1">
+                                    <name>text</name>
+                                    <string>Main directory (here the files are saved into):</string>
+                                </property>
+                            </widget>
+                            <widget>
+                                <class>QLayoutWidget</class>
+                                <property stdset="1">
+                                    <name>name</name>
+                                    <cstring>Layout28</cstring>
+                                </property>
+                                <grid>
+                                    <property stdset="1">
+                                        <name>margin</name>
+                                        <number>0</number>
+                                    </property>
+                                    <property stdset="1">
+                                        <name>spacing</name>
+                                        <number>6</number>
+                                    </property>
+                                    <widget row="2"  column="1" >
+                                        <class>QPushButton</class>
+                                        <property stdset="1">
+                                            <name>name</name>
+                                            <cstring>cddbdir_del_push</cstring>
+                                        </property>
+                                        <property stdset="1">
+                                            <name>text</name>
+                                            <string>Delete</string>
+                                        </property>
+                                    </widget>
+                                    <widget row="1"  column="0" >
+                                        <class>QLabel</class>
+                                        <property stdset="1">
+                                            <name>name</name>
+                                            <cstring>TextLabel2</cstring>
+                                        </property>
+                                        <property stdset="1">
+                                            <name>text</name>
+                                            <string>Additionally searched directories:</string>
+                                        </property>
+                                    </widget>
+                                    <widget row="2"  column="0" >
+                                        <class>QListBox</class>
+                                        <item>
+                                            <property>
+                                                <name>text</name>
+                                                <string>.cddb/</string>
+                                            </property>
+                                        </item>
+                                        <property stdset="1">
+                                            <name>name</name>
+                                            <cstring>cddbdir_listbox</cstring>
+                                        </property>
+                                        <property stdset="1">
+                                            <name>minimumSize</name>
+                                            <size>
+                                                <width>0</width>
+                                                <height>80</height>
+                                            </size>
+                                        </property>
+                                        <property>
+                                            <name>whatsThis</name>
+                                            <string>List all directories, where local CDDB entries are search also.  The first in this list is the directory where entries are saved.</string>
+                                        </property>
+                                    </widget>
+                                    <widget row="0"  column="1" >
+                                        <class>QPushButton</class>
+                                        <property stdset="1">
+                                            <name>name</name>
+                                            <cstring>cddbdir_add_push</cstring>
+                                        </property>
+                                        <property stdset="1">
+                                            <name>text</name>
+                                            <string>Add</string>
+                                        </property>
+                                    </widget>
+                                    <widget row="0"  column="0" >
+                                        <class>QLineEdit</class>
+                                        <property stdset="1">
+                                            <name>name</name>
+                                            <cstring>cddbdir</cstring>
+                                        </property>
+                                        <property stdset="1">
+                                            <name>text</name>
+                                            <string>.cddb/</string>
+                                        </property>
+                                    </widget>
+                                </grid>
+                            </widget>
+                        </vbox>
                     </widget>
                     <widget>
                         <class>QGroupBox</class>
@@ -1997,6 +2133,12 @@
         <signal>toggled(bool)</signal>
         <receiver>GroupBox35</receiver>
         <slot>setEnabled(bool)</slot>
+    </connection>
+    <connection>
+        <sender>cddbdir_listbox</sender>
+        <signal>selected(const QString&amp;)</signal>
+        <receiver>cddbdir</receiver>
+        <slot>setText(const QString&amp;)</slot>
     </connection>
     <slot access="public">toggleLowpass()</slot>
 </connections>

@@ -33,6 +33,7 @@
 
 #include "kcmaudiocd.moc"
 
+#define CDDB_DEFAULT_DIR ".cddb/"
 #define CDDB_DEFAULT_SERVER "freedb.freedb.org:8880"
 
 // MPEG Layer 3 Bitrates
@@ -107,11 +108,16 @@ KAudiocdModule::KAudiocdModule(QWidget *parent, const char *name)
     ec_neverskip_check = audiocdConfig->ec_neverskip_check;
 
     cddb_enable = audiocdConfig->cddb_enable;
+    cddb_save_local = audiocdConfig->cddb_save_local;
     cddb_server = audiocdConfig->cddb_server;
+    cddbdir = audiocdConfig->cddbdir;
 
     cddb_server_listbox = audiocdConfig->cddb_server_listbox;
+    cddbdir_listbox = audiocdConfig->cddbdir_listbox;
     cddbserver_add_push = audiocdConfig->cddbserver_add_push;
     cddbserver_del_push = audiocdConfig->cddbserver_del_push;
+    cddbdir_add_push = audiocdConfig->cddbdir_add_push;
+    cddbdir_del_push = audiocdConfig->cddbdir_del_push;
 
     config = new KConfig("kcmaudiocdrc");
 
@@ -130,9 +136,13 @@ KAudiocdModule::KAudiocdModule(QWidget *parent, const char *name)
 
     //CDDB Options
     connect(cddb_enable, SIGNAL(clicked()), this, SLOT(slotConfigChanged()));
+    connect(cddb_save_local, SIGNAL(clicked()), this, SLOT(slotConfigChanged()));
     connect(cddbserver_add_push,SIGNAL(clicked()), this, SLOT(slotAddCDDBServer()));
     connect(cddbserver_del_push,SIGNAL(clicked()), this, SLOT(slotDelCDDBServer()));
+    connect(cddbdir_add_push, SIGNAL(clicked()), this, SLOT(slotAddCDDBDir()));
+    connect(cddbdir_del_push, SIGNAL(clicked()), this, SLOT(slotDelCDDBDir()));
     connect(cddb_server,SIGNAL(textChanged(const QString &)),this,SLOT(slotConfigChanged()));
+    connect(cddbdir, SIGNAL(textChanged(const QString &)), this, SLOT(slotConfigChanged()));
 
     //MP3 Encoding Method
     connect(enc_method,SIGNAL(activated(int)),SLOT(slotSelectMethod(int)));
@@ -193,6 +203,7 @@ void KAudiocdModule::slotServerTextChanged(const QString &_text )
 void KAudiocdModule::defaults() {
 
   cddbserverlist = CDDB_DEFAULT_SERVER;
+  cddbdirlist = CDDB_DEFAULT_DIR;
 
   cddb_enable->setChecked(true);
   cddb_server->setText(CDDB_DEFAULT_SERVER);
@@ -297,9 +308,13 @@ void KAudiocdModule::save() {
   config->writeEntry("never_skip",ec_neverskip_check->isChecked());
 
   config->setGroup("CDDB");
+  config->writeEntry("dont_use_cddb", false);
   config->writeEntry("enable_cddb",cddb_enable->isChecked());
+  config->writeEntry("save_cddb", cddb_save_local->isChecked());
   config->writeEntry("cddb_server",cddb_server->text());
   config->writeEntry("cddb_server_list",cddbserverlist);
+  config->writeEntry("cddbdir", cddbdir->text());
+  config->writeEntry("local_cddb_dirs", cddbdirlist);
 
   config->setGroup("MP3");
 
@@ -361,10 +376,16 @@ void KAudiocdModule::load() {
   config->setGroup("CDDB");
 
   cddb_enable->setChecked(config->readBoolEntry("enable_cddb",true));
+  cddb_save_local->setChecked(config->readBoolEntry("save_cddb", true));
   cddb_server->setText(config->readEntry("cddb_server",CDDB_DEFAULT_SERVER));
+  cddbdir->setText(config->readEntry("cddbdir", CDDB_DEFAULT_DIR));
   cddbserverlist = config->readListEntry("cddb_server_list",',');
+  cddbdirlist = config->readListEntry("local_cddb_dirs", ',');
+  if (!cddbdirlist.isEmpty()) cddbdir->setText(cddbdirlist[0]);
   cddb_server_listbox->clear();
   cddb_server_listbox->insertStringList(cddbserverlist);
+  cddbdir_listbox->clear();
+  cddbdir_listbox->insertStringList(cddbdirlist);
 
   config->setGroup("MP3");
 
@@ -479,6 +500,17 @@ void KAudiocdModule::slotAddCDDBServer() {
 
 }
 
+void KAudiocdModule::slotAddCDDBDir() {
+  if(cddbdirlist.find(cddbdir->text()) != cddbdirlist.end()) return;
+
+  cddbdirlist.append(cddbdir->text());
+
+  cddbdir_listbox->clear();
+  cddbdir_listbox->insertStringList(cddbdirlist);
+
+  slotConfigChanged();
+}
+
 void KAudiocdModule::slotDelCDDBServer() {
     QStringList::Iterator it =  cddbserverlist.find(cddb_server_listbox->currentText ());
 
@@ -493,6 +525,20 @@ void KAudiocdModule::slotDelCDDBServer() {
 
     slotConfigChanged();
     slotServerSelectionChanged();
+}
+
+void KAudiocdModule::slotDelCDDBDir() {
+  QStringList::Iterator it =  cddbdirlist.find(cddbdir->text());
+
+  if( it == cddbdirlist.end()) return;
+
+  cddbdirlist.remove(it);
+
+  cddbdir->clear();
+  cddbdir_listbox->clear();
+  cddbdir_listbox->insertStringList(cddbdirlist);
+
+  slotConfigChanged();
 }
 
 

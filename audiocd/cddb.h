@@ -19,13 +19,18 @@
 #define _CDDB_H_
 
 #include <qcstring.h>
+#include <qvaluelist.h>
 #include <qstringlist.h>
 
+class QFile;
+class QTextStream;
 class CDDB {
 public:
   CDDB();
   ~CDDB();
   bool set_server(const char *hostname = 0, unsigned short int port = 0);
+  void add_cddb_dirs(const QStringList& list);
+  void save_cddb (bool save) { save_local = save; }
   unsigned int get_discid(QValueList<int>& track_ofs);
   bool queryCD(QValueList<int>& track_ofs);
   QString title() const { return m_title; }
@@ -36,11 +41,14 @@ private:
   bool readLine(QCString& s);
   bool writeLine(const QCString& s);
   bool deinit();
-  bool parse_read_resp();
+  bool parse_read_resp(QTextStream*, QTextStream*);
+  bool searchLocal(unsigned int id, QFile *ret_file);
   int fd;
   QCString h_name;
   unsigned short int port;
   bool remote;
+  bool save_local;
+  QStringList cddb_dirs;
   QCString buf;
   unsigned int m_discid;
 

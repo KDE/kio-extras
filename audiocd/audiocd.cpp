@@ -284,6 +284,7 @@ class AudioCDProtocol::Private
     QString path;
     int paranoiaLevel;
     bool useCDDB;
+    bool remoteCDDB;
     QString cddbServer;
     int cddbPort;
     unsigned int discid;
@@ -883,7 +884,8 @@ AudioCDProtocol::updateCD(struct cdrom_drive * drive)
 
   if (d->useCDDB)
     {
-      d->cddb->set_server(d->cddbServer.latin1(), d->cddbPort);
+      if (d->remoteCDDB)
+        d->cddb->set_server(d->cddbServer.latin1(), d->cddbPort);
 
       if (d->cddb->queryCD(qvl))
         {
@@ -1156,7 +1158,7 @@ AudioCDProtocol::parseArgs(const KURL & url)
 {
   QString old_cddb_server = d->cddbServer;
   int old_cddb_port = d->cddbPort;
-  bool old_use_cddb = d->useCDDB;
+  bool old_use_cddb = d->remoteCDDB;
 
   d->clear();
 
@@ -1192,7 +1194,7 @@ AudioCDProtocol::parseArgs(const KURL & url)
     }
     else if (attribute == "use_cddb")
     {
-      d->useCDDB = (0 != value.toInt());
+      d->remoteCDDB = (0 != value.toInt());
     }
     else if (attribute == "cddb_server")
     {
@@ -1213,12 +1215,12 @@ AudioCDProtocol::parseArgs(const KURL & url)
      changed the server (port).  We simply reset the saved discid, which
      forces a reread of CDDB information.  */
 
-  if ((old_use_cddb != d->useCDDB && d->useCDDB == true)
+  if ((old_use_cddb != d->remoteCDDB && d->remoteCDDB == true)
       || old_cddb_server != d->cddbServer
       || old_cddb_port != d->cddbPort)
     d->discid = 0;
 
-  kdDebug(7101) << "CDDB: use_cddb = " << d->useCDDB << endl;
+  kdDebug(7101) << "CDDB: use_cddb = " << d->remoteCDDB << endl;
 
 }
 
@@ -1454,8 +1456,8 @@ void AudioCDProtocol::getParameters() {
   config->setGroup("CDDA");
 
   if (!config->readBoolEntry("autosearch",true)) {
-     d->path = config->readEntry("device",DEFAULT_CD_DEVICE);
-   }
+    d->path = config->readEntry("device",DEFAULT_CD_DEVICE);
+  }
 
   d->paranoiaLevel = 1; // enable paranoia error correction, but allow skipping
 
@@ -1469,7 +1471,10 @@ void AudioCDProtocol::getParameters() {
 
   config->setGroup("CDDB");
 
-  d->useCDDB = config->readBoolEntry("enable_cddb",true);
+  d->useCDDB = !config->readBoolEntry("dont_use_cddb", false);
+  d->remoteCDDB = config->readBoolEntry("enable_cddb",true);
+  d->cddb->add_cddb_dirs (config->readListEntry("local_cddb_dirs"));
+  d->cddb->save_cddb (config->readBoolEntry("save_cddb", true));
 
   QString cddbserver = config->readEntry("cddb_server",DEFAULT_CDDB_SERVER);
   int portPos = cddbserver.find(':');
