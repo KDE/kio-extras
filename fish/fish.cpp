@@ -119,6 +119,7 @@ static void ripper(int)
 
 int kdemain( int argc, char **argv )
 {
+    KLocale::setMainCatalogue("kio_fish");
     KInstance instance("fish");
 
     myDebug( << "*** Starting fish " << endl);
