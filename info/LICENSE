@@ -1,3 +1,9 @@
+The following license is applicable to all files in this directory, with the
+exception of kde-info2html and kde-info2html.conf which are licensed under the GPL,
+since they are based on GPL work.
+
+LICENSE:
+
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
 in the Software without restriction, including without limitation the rights
