@@ -19,6 +19,7 @@
 #include "kgzipfilter.h"
 #include <zlib.h>
 #include <kdebug.h>
+#include <klibloader.h>
 
 /* gzip flag byte */
 #define ASCII_FLAG   0x01 /* bit 0 set: file probably ascii text */
@@ -28,6 +29,23 @@
 #define COMMENT      0x10 /* bit 4 set: file comment present */
 #define RESERVED     0xE0 /* bits 5..7: reserved */
 
+class KGzipFilterFactory : public KLibFactory
+{
+public:
+    KGzipFilterFactory() : KLibFactory() {}
+    ~KGzipFilterFactory(){}
+    QObject *createObject( QObject *, const char *, const char*, const QStringList & )
+    {
+        return new KGzipFilter;
+    }
+};
+
+extern "C" {
+    void *init_kgzipfilter()
+    {
+        return new KGzipFilterFactory;
+    }
+}
 
 class KGzipFilter::KGzipFilterPrivate
 {
@@ -37,8 +55,7 @@ public:
     bool bCompressed;
 };
 
-KGzipFilter::KGzipFilter( QIODevice * dev )
-        : KFilterBase(dev)
+KGzipFilter::KGzipFilter()
 {
     d = new KGzipFilterPrivate;
     d->zStream.zalloc = (alloc_func)0;

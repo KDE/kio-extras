@@ -16,30 +16,29 @@
    Boston, MA 02111-1307, USA.
 */
 
-#ifndef __kgzipfilter__h
-#define __kgzipfilter__h
+#ifndef __kcompr_filter_h
+#define __kcompr_filter_h
 
 #include "kfilterbase.h"
+#include <qstring.h>
 
-class KGzipFilter : public KFilterBase
+class KComprManager
 {
 public:
-    KGzipFilter();
-    virtual ~KGzipFilter();
+    static KComprManager * self();
 
-    virtual void init();
-    virtual void terminate();
-    virtual void reset();
-    virtual bool readHeader();
-    virtual void setOutBuffer( char * data, uint maxlen );
-    virtual void setInBuffer( char * data, uint size );
-    virtual int  inBufferAvailable() const;
-    virtual int  outBufferAvailable() const;
-    virtual Result uncompress();
+    ~KComprManager();
+
+protected:
+    KComprManager();
+
+public:
+
+    KFilterBase * findFilterByFileName( const QString & fileName );
+    KFilterBase * findFilterByMimeType( const QString & mimeType );
+
 private:
-    Result uncompress_noop();
-    class KGzipFilterPrivate;
-    KGzipFilterPrivate *d;
+    static KComprManager * s_comprManager;
 };
 
 #endif

@@ -29,7 +29,8 @@
 #include <qfile.h>
 #include <kdebug.h>
 
-#include "kgzipdev.h"
+#include "kfilterdev.h"
+#include "kcomprmanager.h"
 
 #include "ktar.h"
 
@@ -495,6 +496,7 @@ public:
     KTarGzPrivate() {}
 
     QIODevice * fileDev;
+    KFilterBase * filter;
 };
 
 KTarGz::KTarGz( const QString& filename )
@@ -502,13 +504,22 @@ KTarGz::KTarGz( const QString& filename )
   m_filename = filename;
   d = new KTarGzPrivate;
   d->fileDev = new QFile( m_filename );
-  setDevice( new KGzipDev( d->fileDev ) );
+  d->filter = KComprManager::self()->findFilterByFileName( m_filename );
+  d->filter->setDevice( d->fileDev );
+  /*
+  if ( m_filename.right(4) == ".bz2" )
+      d->filter = new KBzip2Filter( d->fileDev );
+  else
+      d->filter = new KGzipFilter( d->fileDev );
+  */
+  setDevice( new KFilterDev( d->filter ) );
 }
 
 KTarGz::KTarGz( QIODevice * dev )
 {
   d = new KTarGzPrivate;
   d->fileDev = 0L;
+  d->filter = 0L;
   setDevice( dev );
 }
 

@@ -16,16 +16,16 @@
    Boston, MA 02111-1307, USA.
 */
 
-#ifndef __kgzipfilter__h
-#define __kgzipfilter__h
+#ifndef __kbzip2filter__h
+#define __kbzip2filter__h
 
 #include "kfilterbase.h"
 
-class KGzipFilter : public KFilterBase
+class KBzip2Filter : public KFilterBase
 {
 public:
-    KGzipFilter();
-    virtual ~KGzipFilter();
+    KBzip2Filter();
+    virtual ~KBzip2Filter();
 
     virtual void init();
     virtual void terminate();
@@ -37,9 +37,8 @@ public:
     virtual int  outBufferAvailable() const;
     virtual Result uncompress();
 private:
-    Result uncompress_noop();
-    class KGzipFilterPrivate;
-    KGzipFilterPrivate *d;
+    class KBzip2FilterPrivate;
+    KBzip2FilterPrivate *d;
 };
 
 #endif

@@ -1,6 +1,8 @@
 /* This file is part of the KDE libraries
    Copyright (C) 2000 David Faure <faure@kde.org>
 
+#include "kfilterbase.h"
+
    This library is free software; you can redistribute it and/or
    modify it under the terms of the GNU Library General Public
    License version 2 as published by the Free Software Foundation.
@@ -16,30 +18,11 @@
    Boston, MA 02111-1307, USA.
 */
 
-#ifndef __kgzipfilter__h
-#define __kgzipfilter__h
-
 #include "kfilterbase.h"
 
-class KGzipFilter : public KFilterBase
+KFilterBase::KFilterBase()
 {
-public:
-    KGzipFilter();
-    virtual ~KGzipFilter();
 
-    virtual void init();
-    virtual void terminate();
-    virtual void reset();
-    virtual bool readHeader();
-    virtual void setOutBuffer( char * data, uint maxlen );
-    virtual void setInBuffer( char * data, uint size );
-    virtual int  inBufferAvailable() const;
-    virtual int  outBufferAvailable() const;
-    virtual Result uncompress();
-private:
-    Result uncompress_noop();
-    class KGzipFilterPrivate;
-    KGzipFilterPrivate *d;
-};
+}
 
-#endif
+#include "kfilterbase.moc"

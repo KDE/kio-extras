@@ -15,28 +15,26 @@
    the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
    Boston, MA 02111-1307, USA.
 */
-#ifndef __kgzipdev_h
-#define __kgzipdev_h
+#ifndef __kfilterdev_h
+#define __kfilterdev_h
 
 #include <qiodevice.h>
 class KFilterBase;
 
 /**
- * A class for reading and writing gzipped data onto a device
+ * A class for reading and writing compressed data onto a device
  * (e.g. file, but other usages are possible, like a buffer or a socket)
  *
  * @author David Faure <faure@kde.org>
  */
-class KGzipDev : public QIODevice
+class KFilterDev : public QIODevice
 {
 public:
     /**
-     * Create a KGzipDev.
-     * @param dev the device where the compressed data should
-     * be read and written.
+     * Create a KFilterDev for a given filter (e.g. gzip, bzip2 etc.)
      */
-    KGzipDev( QIODevice * dev );
-    virtual ~KGzipDev();
+    KFilterDev( KFilterBase * filter );
+    virtual ~KFilterDev();
 
     virtual bool open( int mode );
     virtual void close();
@@ -62,8 +60,8 @@ public:
     virtual int ungetch( int );
 private:
     KFilterBase *filter;
-    class KGzipDevPrivate;
-    KGzipDevPrivate * d;
+    class KFilterDevPrivate;
+    KFilterDevPrivate * d;
 };
 
 #endif

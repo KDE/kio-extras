@@ -19,16 +19,17 @@
 #ifndef __kfilterbase__h
 #define __kfilterbase__h
 
-#include <qglobal.h>
+#include <qobject.h>
 class QIODevice;
 
-class KFilterBase
+class KFilterBase : public QObject
 {
+    Q_OBJECT
 public:
-    KFilterBase( QIODevice * dev ) : m_dev(dev) {}
-
+    KFilterBase();
     virtual ~KFilterBase() {}
 
+    void setDevice( QIODevice * dev ) { m_dev = dev; }
     QIODevice * device() { return m_dev; }
     virtual void init() {}
     virtual void terminate() {}

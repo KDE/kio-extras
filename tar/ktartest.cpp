@@ -1,6 +1,7 @@
 #include "ktar.h"
 #include <stdio.h>
 #include <qfile.h>
+#include <kinstance.h>
 
 void recursive_print( const KTarDirectory * dir, const QString & path )
 {
@@ -33,6 +34,8 @@ int main( int argc, char** argv )
     usage();
     return 1;
   }
+  KInstance instance("ktartest");
+
   QString command = argv[1];
   if ( command == "list" )
   {

@@ -154,10 +154,7 @@ public:
 
   /**
    * Creates an instance that operates on the given device.
-   * The device can be zipped (KGzipDev) or non zipped (QFile, etc.).
-   * This is mainly for use in kio_tar, where the encoding/decoding can
-   * be done by any filtering protocol (gzip, bzip2,...) and the data
-   * being given by any protocol (file, ftp, http, ...)
+   * The device can be compressed (KFilterDev) or not (QFile, etc.).
    */
   KTarGz( QIODevice * dev );
 
