@@ -15,29 +15,25 @@
    along with this library; see the file COPYING.LIB.  If not, write to
    the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
    Boston, MA 02111-1307, USA.
+
+   $Id$
+
 */
 
 #include <string.h>
 #include <time.h>
 
 #include <qglobal.h>
-#include <qbuffer.h>
 #include <qfile.h>
-#include <qimage.h>
 #include <qtimer.h>
-#include <qregexp.h>
 
 #include <kdatastream.h> // DO NOT REMOVE, otherwise bool marshalling breaks
-#include <kicontheme.h>
-#include <kimageio.h>
 #include <ksimpleconfig.h>
 #include <kstandarddirs.h>
-#include <kautomount.h>
 #include <kdirwatch.h>
 #include <kdebug.h>
 #include <kglobal.h>
 
-#include "mountwatcher.moc"
 #include "mountwatcher.h"
 #include "kdirnotify_stub.h"
 
@@ -72,7 +68,7 @@ MountWatcherModule::MountWatcherModule(const QCString &obj)
 
 	mDiskList.readFSTAB();
 	mDiskList.readMNTTAB();
-       	readDFDone();
+	readDFDone();
 }
 
 MountWatcherModule::~MountWatcherModule()
@@ -126,7 +122,7 @@ void MountWatcherModule::reloadExclusionLists()
 	mDiskList.loadExclusionLists();
 	mDiskList.readFSTAB();
 	mDiskList.readMNTTAB();
-       	readDFDone();
+	readDFDone();
 }
 
 void MountWatcherModule::dirty(const QString& str)
@@ -141,9 +137,9 @@ void MountWatcherModule::dirty(const QString& str)
 		if (newsize!=mtabsize) {
 			mtabsize=newsize;
 			kdDebug()<<"MTAB FILESIZE:"<<f.size()<<endl;
-		        mDiskList.readFSTAB();
-	        	mDiskList.readMNTTAB();
-	        	readDFDone();
+			mDiskList.readFSTAB();
+			mDiskList.readMNTTAB();
+			readDFDone();
 			return;
 		}
 	}
@@ -151,9 +147,9 @@ void MountWatcherModule::dirty(const QString& str)
 #ifdef FSTAB
 	if (str==FSTAB)
 	{
-	        mDiskList.readFSTAB();
-	        mDiskList.readMNTTAB();
-        	readDFDone();
+		mDiskList.readFSTAB();
+		mDiskList.readMNTTAB();
+		readDFDone();
 		return;
 	}
 #endif
@@ -243,14 +239,15 @@ void MountWatcherModule::readDFDone()
 		QString entryName="";
 		entryName+=ent->deviceName().replace("/", "");
 		entryName+=ent->mountPoint().replace("/","");
-                QString filename = KURL(ent->deviceName()).fileName();
-                if(!filename.isEmpty())
-                        filename = QString::fromLatin1(" (") + filename + ")";
-		else filename=" ";
-       	        if (ent->mounted())
+		QString filename = KURL(ent->deviceName()).fileName();
+		if(!filename.isEmpty())
+			filename = QString::fromLatin1(" (") + filename + ")";
+		else
+			filename=" ";
+		if (ent->mounted())
 		{
 			mountList<<(entryName);
-                 	mountList<<i18n("%1%2 mounted at %3").arg(ent->niceDescription()).arg(filename).arg(ent->mountPoint());
+			mountList<<i18n("%1%2 mounted at %3").arg(ent->niceDescription()).arg(filename).arg(ent->mountPoint());
 			mountList<<ent->deviceName();
 //			mountList<<ent->mountPoint();
 			mountList<<"file:/"+(ent->mountPoint().startsWith("/")?ent->mountPoint().right(ent->mountPoint().length()-1):ent->mountPoint());
@@ -259,10 +256,10 @@ void MountWatcherModule::readDFDone()
 			mountList<<"---";
 			fileList<<KURL(QString("devices:/")+entryName);
 		}
-               	else
+		else
 		{
 			mountList<<entryName;
-                 	mountList<<i18n("%1%2 (not mounted)").arg(ent->niceDescription()).arg(filename);
+			mountList<<i18n("%1%2 (not mounted)").arg(ent->niceDescription()).arg(filename);
 			mountList<<ent->deviceName();
 			mountList<<"file:/"+(ent->mountPoint().startsWith("/")?ent->mountPoint().right(ent->mountPoint().length()-1):ent->mountPoint());
 			mountList<< ent->discType()+"_unmounted";
@@ -284,7 +281,8 @@ void MountWatcherModule::readDFDone()
 
 	}
 	bool triggerUpdate=false;
-	if (mountList.count()!=oldmountList.count()) triggerUpdate=true;
+	if (mountList.count()!=oldmountList.count())
+		triggerUpdate=true;
 	else
 	{
 		QStringList::iterator it1=mountList.begin();
@@ -304,7 +302,8 @@ void MountWatcherModule::readDFDone()
 	{
 	        KDirNotify_stub allDirNotify("*", "KDirNotify*");
 	        allDirNotify.FilesAdded( "devices:/" );
-	} else kdDebug()<<" kiodevices No Update needed"<<endl;
+	} else
+		kdDebug()<<" kiodevices No Update needed"<<endl;
 }
 
 bool MountWatcherModule::createLink(const KURL& deviceURL, const KURL& destinationURL)
@@ -353,3 +352,5 @@ extern "C" {
         return new MountWatcherModule(obj);
     }
 };
+
+#include "mountwatcher.moc"
