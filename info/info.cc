@@ -58,15 +58,25 @@ void InfoProtocol::get( const KURL& url )
     // extract the path and node from url
     decodeURL( url );
 
-    QString cmds("%1 %2 %3 \"%4\" \"%5\" \"%6\"");
     QString path = KGlobal::iconLoader()->iconPath("up", KIcon::Toolbar, true);
     int revindex = path.findRev('/');
     path = path.left(revindex);
 
-    QCString cmd = cmds.arg(m_perl).arg(m_infoScript).arg(locate("data", "kio_info/kde-info2html.conf")).arg(path).arg(m_page).arg(m_node).latin1();
-    kdDebug( 7108 ) << "cmd: " << (const char *)cmd << endl;
+    QString cmd = KProcess::quote(m_perl);
+    cmd += " ";
+    cmd += KProcess::quote(m_infoScript);
+    cmd += " ";
+    cmd += KProcess::quote(locate("data", "kio_info/kde-info2html.conf"));
+    cmd += " ";
+    cmd += KProcess::quote(path);
+    cmd += " ";
+    cmd += KProcess::quote(m_page);
+    cmd += " ";
+    cmd += KProcess::quote(m_node);
+    
+    kdDebug( 7108 ) << "cmd: " << cmd << endl;
 
-    FILE *fd = popen( cmd.data(), "r" );
+    FILE *fd = popen( QFile::encodeName(cmd), "r" );
 
     char buffer[ 4090 ];
     QByteArray array;
