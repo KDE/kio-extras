@@ -98,6 +98,8 @@ namespace KioSMTP {
     if ( tls )
       result.push_back( "STARTTLS" );
     result += saslMethodsQSL();
+    if ( have( "PIPELINING" ) )
+      result.push_back( "PIPELINING" );
     return result.join( " " );
   }
 
