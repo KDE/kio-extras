@@ -1188,9 +1188,10 @@ void imapParser::parseFetch (ulong /* value */, parseString & inWords)
       parseSentence (inWords);
     else
     {
-      QString word = parseLiteral (inWords, false, true);
+      QByteArray array = parseLiteral(inWords, false, true);
+      QCString word(array, array.size() + 1);
 
-      switch (word[0].latin1 ())
+      switch (array[0])
       {
       case 'E':
         if (word == "ENVELOPE")
