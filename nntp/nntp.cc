@@ -294,7 +294,7 @@ size_t NNTPProtocol::realGetSize(unsigned int msg_num)
   return ret;
 }
 
-void NNTPProtocol::get( const KURL& url, bool )
+void NNTPProtocol::get( const KURL& url )
 {
 // List of supported commands
 //

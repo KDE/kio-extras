@@ -21,7 +21,7 @@ public:
   virtual void setHost(const QString& host, int port,
 		       const QString& user, const QString& pass);
 
-  virtual void get( const KURL& url, bool reload );
+  virtual void get( const KURL& url );
   virtual void stat( const KURL& url );
   virtual void mimetype( const KURL& url );
   virtual void listDir( const KURL& url );

@@ -171,7 +171,7 @@ HelpProtocol::HelpProtocol( const QCString &pool, const QCString &app )
 }
 
 
-void HelpProtocol::get( const KURL& url, bool /* reload */)
+void HelpProtocol::get( const KURL& url )
 {
   kdDebug() << "get: path=" << url.path() << " query=" << url.query() << endl;
 

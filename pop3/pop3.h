@@ -37,7 +37,7 @@ public:
 //  virtual void openConnection();
 //  virtual void closeConnection();
 
-  virtual void get( const KURL& url, bool reload );
+  virtual void get( const KURL& url );
   virtual void stat( const KURL& url );
   virtual void del( const KURL &url, bool isfile);
   virtual void listDir( const KURL &url );

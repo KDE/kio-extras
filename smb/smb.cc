@@ -404,7 +404,7 @@ void SmbProtocol::mkdir( const KURL& url, int /*permissions*/ )
 	return;
 }
 
-void SmbProtocol::get( const KURL& url, bool /* reload */)
+void SmbProtocol::get( const KURL& url )
 {
 	QString path = buildFullLibURL(url.path());
 	kdDebug( 7106 ) << "entering get " << path << endl;

@@ -34,7 +34,7 @@ InfoProtocol::~InfoProtocol()
     kdDebug( 7108 ) << "InfoProtocol::~InfoProtocol - done" << endl;
 }
 
-void InfoProtocol::get( const KURL& url, bool /*reload*/ )
+void InfoProtocol::get( const KURL& url )
 {
     kdDebug( 7108 ) << "InfoProtocol::get" << endl;
     kdDebug( 7108 ) << url.path() << endl;

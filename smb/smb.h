@@ -17,7 +17,7 @@ public:
 	// Uses this function to get information in the url
 	virtual void setHost(const QString& host, int ip, const QString& user, const QString& pass);
 
-	virtual void get( const KURL& url, bool reload );
+	virtual void get( const KURL& url );
 	virtual void put( const KURL& url, int _mode,
 				bool _overwrite, bool _resume );
 	virtual void rename( const KURL& src, const KURL& dest,

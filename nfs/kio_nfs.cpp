@@ -907,7 +907,7 @@ void NFSProtocol::chmod( const KURL& url, int permissions )
    finished();
 }
 
-void NFSProtocol::get( const KURL& url, bool /* reload */)
+void NFSProtocol::get( const KURL& url )
 {
    QString thePath( QFile::encodeName(url.path()));
    kdDebug(7101) <<  "getting -"<< thePath <<"-"<< endl;

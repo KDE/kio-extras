@@ -28,10 +28,9 @@ public:
   TARProtocol( KIO::Connection *connection = 0 );
   virtual ~TARProtocol();
 
-  virtual void listDir( const QString & path, const QString& query );
-  virtual void stat( const QString & path, const QString& query );
-
-  virtual void get( const QString& path, const QString& query, bool reload );
+  virtual void listDir( const KURL & url );
+  virtual void stat( const KURL & url );
+  virtual void get( const KURL & url );
 
   /*
   void jobData( void *_p, int _len );

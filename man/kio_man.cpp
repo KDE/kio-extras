@@ -60,7 +60,7 @@ MANProtocol::~MANProtocol()
 }
 
 
-void MANProtocol::get(const KURL& url, bool /*reload*/)
+void MANProtocol::get(const KURL& url )
 {
   kdDebug(7107) << "GET " << url.url() << endl;
 

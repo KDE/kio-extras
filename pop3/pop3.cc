@@ -514,7 +514,7 @@ size_t POP3Protocol::realGetSize(unsigned int msg_num)
   return ret;
 }
 
-void POP3Protocol::get( const KURL& url, bool )
+void POP3Protocol::get( const KURL& url )
 {
 // List of supported commands
 //

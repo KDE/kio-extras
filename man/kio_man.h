@@ -24,7 +24,7 @@ public:
   MANProtocol(const QCString &pool_socket, const QCString &app_socket);
   virtual ~MANProtocol();
 
-  virtual void get(const KURL& url, bool reload);
+  virtual void get(const KURL& url);
   virtual void stat(const KURL& url);
 
   virtual void mimetype(const KURL &url);
