@@ -671,6 +671,8 @@ void LDAPProtocol::openConnection()
   QString mechanism = mMech.isEmpty() ? "DIGEST-MD5" : mMech;
   mFirstAuth = true; mCancel = false;
 
+  const bool cached = checkCachedAuthentication( info );
+
   ret = LDAP_SUCCESS;
   while (!auth) {
     if ( !mAuthSASL && (
@@ -678,9 +680,10 @@ void LDAPProtocol::openConnection()
       !( mBindName.isEmpty() && mPassword.isEmpty() ) && //For anonymous bind
        ( mBindName.isEmpty() || mPassword.isEmpty() ) ) || !mFirstAuth ) )
     {
-      if ( mFirstAuth ?
-        openPassDlg( info ) :
-        openPassDlg( info, i18n("Invalid authorization information.") ) ) {
+      if ( ( mFirstAuth && cached ) ||
+           ( mFirstAuth ?
+             openPassDlg( info ) :
+             openPassDlg( info, i18n("Invalid authorization information.") ) ) ) {
 
         mBindName = info.username;
         mPassword = info.password;
