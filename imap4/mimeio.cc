@@ -15,8 +15,9 @@
  *                                                                         *
  ***************************************************************************/
 
+#include <iostream.h>
+
 #include "mimeio.h"
-#include <ostream.h>
 
 mimeIO::mimeIO()
 {
