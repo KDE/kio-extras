@@ -15,3 +15,6 @@ noinst_HEADERS = kio_smb.h my_process.h
 kdelnk_DATA = smb.protocol
 kdelnkdir = $(kde_servicesdir)
 
+messages:
+	$(XGETTEXT) *.cpp -o $(podir)/kio_smbro.pot
+

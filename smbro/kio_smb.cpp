@@ -62,6 +62,7 @@ extern "C" { int kdemain(int argc, char **argv); }
 
 int kdemain( int argc, char **argv )
 {
+  KLocale::setMainCatalogue("kio_smbro");
   KInstance instance( "kio_smb" );
 
   if (argc != 4)
