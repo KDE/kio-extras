@@ -1956,17 +1956,17 @@ static char *skip_till_newline(char *c)
 static int get_request(char *req, int len)
 {
     static const char *requests[] = {
-        "ab", "di", "ds", "as", "br", "c2", "cc", "ce", "ec", "eo", "ex", "fc", 
-        "fi", "ft", "el", "ie", "if", "ig", "nf", "ps", "sp", "so", "ta", "ti", 
-        "tm", "B",  "I",  "Fd", "Fn", "Fo", "Fc", "OP", "Ft", "Fa", "BR", "BI", 
-        "IB", "IR", "RB", "RI", "DT", "IP", "TP", "IX", "P",  "LP", "PP", "HP", 
-        "PD", "Rs", "RS", "Re", "RE", "SB", "SM", "Ss", "SS", "Sh", "SH", "Sx", 
-        "TS", "Dt", "TH", "TX", "rm", "rn", "nx", "in", "nr", "am", "de", "Bl", 
-        "El", "It", "Bk", "Ek", "Dd", "Os", "Bt", "At", "Fx", "Nx", "Ox", "Bx", 
-        "Ux", "Dl", "Bd", "Ed", "Be", "Xr", "Fl", "Pa", "Pf", "Pp", "Dq", "Op", 
-        "Oo", "Oc", "Pq", "Ql", "Sq", "Ar", "Ad", "Em", "Va", "Xc", "Nd", "Nm", 
-        "Cd", "Cm", "Ic", "Ms", "Or", "Sy", "Dv", "Ev", "Fr", "Li", "No", "Ns", 
-        "Tn", "nN", "%A", "%D", "%N", "%O", "%P", "%Q", "%V", "%B", "%J", "%R", 
+        "ab", "di", "ds", "as", "br", "c2", "cc", "ce", "ec", "eo", "ex", "fc",
+        "fi", "ft", "el", "ie", "if", "ig", "nf", "ps", "sp", "so", "ta", "ti",
+        "tm", "B",  "I",  "Fd", "Fn", "Fo", "Fc", "OP", "Ft", "Fa", "BR", "BI",
+        "IB", "IR", "RB", "RI", "DT", "IP", "TP", "IX", "P",  "LP", "PP", "HP",
+        "PD", "Rs", "RS", "Re", "RE", "SB", "SM", "Ss", "SS", "Sh", "SH", "Sx",
+        "TS", "Dt", "TH", "TX", "rm", "rn", "nx", "in", "nr", "am", "de", "Bl",
+        "El", "It", "Bk", "Ek", "Dd", "Os", "Bt", "At", "Fx", "Nx", "Ox", "Bx",
+        "Ux", "Dl", "Bd", "Ed", "Be", "Xr", "Fl", "Pa", "Pf", "Pp", "Dq", "Op",
+        "Oo", "Oc", "Pq", "Ql", "Sq", "Ar", "Ad", "Em", "Va", "Xc", "Nd", "Nm",
+        "Cd", "Cm", "Ic", "Ms", "Or", "Sy", "Dv", "Ev", "Fr", "Li", "No", "Ns",
+        "Tn", "nN", "%A", "%D", "%N", "%O", "%P", "%Q", "%V", "%B", "%J", "%R",
         "%T", NULL};
     int r = 0;
     while (requests[r] && strncmp(req, requests[r], len)) r++;
@@ -2007,7 +2007,7 @@ static char *scan_request(char *c)
         int j, nlen;
         if (c[1]=='\n') j=1; else j=2;
         nlen = 0;
-        while ((c[nlen] != ' ') && (c[nlen] != '\t') && 
+        while ((c[nlen] != ' ') && (c[nlen] != '\t') &&
                 (c[nlen] != '\n') && (c[nlen] != escapesym)) nlen++;
         j = nlen;
         while (c[j]==' ' || c[j]=='\t') j++;
@@ -2190,7 +2190,7 @@ static char *scan_request(char *c)
 	case REQ_ce:
 	    c=c+j;
                 if (*c=='\n')
-                    i=1; 
+                    i=1;
                 else
                 {
 		i=0;
@@ -2799,6 +2799,7 @@ static char *scan_request(char *c)
                     out_html("25px; top : 85px; left : 0px; background-image :\n" );
                     out_html("url('KDE_COMMON_DIR/doctop1b.png'); background-repeat : no-repeat;\n" );
                     out_html("background-color : transparent; z-index : 5;\"></div></div>\n" );
+                    out_html("<div style=\"position : absolute; top : 125px; margin-left : 10px; margin-right : 10px;\">");
                     out_html("<h1>" );
                         out_html( scan_troff(wordlist[0], 0, NULL ) );
                     out_html( "</h1>\n" );
@@ -3874,6 +3875,7 @@ void scan_man_page(const char *man_page)
         output_real( "<img src=\"KDE_COMMON_DIR/bottom2.png\" align=\"right\" height=\"59\" width=\"227\" alt=\"KDE Logo\">\n");
         output_real( "<div id=\"navtable2\" style=\"width : 100%; margin-left: 0px; margin-right:\n");
         output_real( "0px; z-index : 15; background-color : transparent;\"></div>\n");
+        output_real( "</div>  \n");
         output_real( "</div>  \n");
 	output_real("</BODY>\n</HTML>\n");
     }
