@@ -182,8 +182,8 @@ void TARProtocol::slotListDir( const char *_url )
     return;
   }
 
-  kdebug( KDEBUG_INFO, 0, QString("Opening KTar on %1").arg((*lst.begin()).path()));
-  KTar ktar( (*lst.begin()).path() );
+  kdebug( KDEBUG_INFO, 0, QString("Opening KTarGz on %1").arg((*lst.begin()).path()));
+  KTarGz ktar( (*lst.begin()).path() );
   if ( !ktar.open( IO_ReadOnly ) ) {
     error( ERR_CANNOT_ENTER_DIRECTORY, strdup(_url) );
     m_cmd = CMD_NONE;
@@ -308,8 +308,8 @@ void TARProtocol::slotTestDir( const char *_url )
     return;
   }
 
-  kdebug( KDEBUG_INFO, 0, QString("Opening KTar on %1").arg((*lst.begin()).path()));
-  KTar ktar( (*lst.begin()).path() );
+  kdebug( KDEBUG_INFO, 0, QString("Opening KTarGz on %1").arg((*lst.begin()).path()));
+  KTarGz ktar( (*lst.begin()).path() );
   if ( !ktar.open( IO_ReadOnly ) ) {
     error( ERR_CANNOT_ENTER_DIRECTORY, strdup(_url) );
     m_cmd = CMD_NONE;
