@@ -37,6 +37,8 @@
 #   March 6 2003      Substitute use of absolute fixed file URLs to images with help:common URLs
 #                     for the images and style sheet. By Luis Pedro Coelho
 #   March 9 2003      Add support for browsing by file. by Luis Pedro Coelho
+#   June  11 2003     Update the layout of the sides to the new infopageslayout.
+#                     by Sven Leiber <s.leiber@web.de>
 #
 #-------------------------------------------------------
 
@@ -48,10 +50,8 @@ my $IMAGEDIR = "file:$ARGV[1]/"; # TV: broken, broken, not passed
 my $config_file = $ARGV[0];
 require $config_file;  #-- configuration settings
 
-my $CR_URL = "<img src=\"$IMAGEDIR/forward.png\" align=\"top\" border=\"0\" alt=\"See\"/>";
-my $UP_URL = "<img src=\"$IMAGEDIR/up.png\" align=\"top\" border=\"0\" alt=\"Up\"/>";
-my $NEXT_URL = "<img src=\"$IMAGEDIR/forward.png\" align=\"top\" border=\"0\" alt=\"Next\"/>";
-my $PREV_URL = "<img src=\"$IMAGEDIR/back.png\" align=\"top\" border=\"0\" alt=\"Prev\"/>";
+my $STYLESHEET_KDE = "<link rel=\"stylesheet\" href=\"help:common/kde-default.css\" type=\"text/css\"/>";
+my $LOGO_KDE = "<img src=\"help:/common/kde_logo.png\" alt=\"KDE - The K Desktop Environment\" width=\"296\" height=\"79\" border=\"0\">";
 
 # the use of a query should make sure it never conflicts with a "real" path
 my $BROWSE_BY_FILE_PATH = '/browse_by_file?special=yes';
@@ -114,7 +114,7 @@ sub Redirect {
 	</body>
 	</html>
 EOF
-	
+
 	exit 0;
 }
 
@@ -192,15 +192,15 @@ sub Escape {
 #
 #  $Base =~ s!.*/!!g;
 #  $Dir  =~ s!\Q$Base\E!!;
-# 
+#
 #  foreach (@info2html::config::INFODIR) {
 #      return 1 if $Dir =~ /^$_/;
 #  }
-#  
+#
 #  foreach my $i (split(/:/, $ENV{INFOPATH})) {
 #     return 1 if $Dir =~ /^$i/;
 #  }
-#  
+#
 #  return 0;
 #}
 
@@ -220,12 +220,12 @@ sub Escape {
 
 sub infocat {
 # Collect them all into an array that can be sorted
-	
+
 	my %InfoFile;
 	my %LinkText;
 	my @dirs;
-	
-        foreach my $dir (@info2html::config::INFODIR) {	
+
+        foreach my $dir (@info2html::config::INFODIR) {
 		push @dirs, $dir;
 	}
 	if ($ENV{'INFOPATH'}) {
@@ -412,7 +412,7 @@ sub MenuItem2HTML {
 #---------------------------------------------------------
 sub ReadIndirectTable {
   my ($FileName, $FileNames, $Offsets) = @_;
-  
+
   local *FH1;
   if ($FileName =~ /\.gz$/) {
     open(FH1, " gunzip -q -d -c $FileName|") || &DieFileNotFound($FileName);
@@ -531,7 +531,7 @@ sub ParsCrossRefs {
       $CrossRefTag = &Escape($CrossRefTag);   # -- escape specials
       $BaseInfoFile = &Escape($BaseInfoFile);
       $NewLine .= "<a href=\"info:/$BaseInfoFile/$CrossRefTag\">";
-      $NewLine .= "$CR_URL$CrossRefRef</a>$CrossRefText";
+      $NewLine .= "$CrossRefRef</a>$CrossRefText";
       next;                     # -- .. take the next one
     }
     if ($CrossRef !~ /$TE/) {	# never mind if tag doesn't end on this line
@@ -566,7 +566,7 @@ sub ParsCrossRefs {
     $CrossRefFile = &Escape($CrossRefFile);
     #-- append the HTML text
     $NewLine .= "<a href=\"info:/$CrossRefFile/$CrossRefTag\">";
-    $NewLine .= "$CR_URL$CrossRefRef</a>$CrossRefText";
+    $NewLine .= "$CrossRefRef</a>$CrossRefText";
   }
   if ($NewLine =~ /\*Note([^\t\,\.]*)$/i) {
       return "$DONTPRINTYET$NewLine";
@@ -588,18 +588,6 @@ sub PrintLinkInfo {
   my ($LinkFileEsc, $LinkTypeText);
   return if $LinkFile eq "" && $LinkTag eq "";
 
-  #-- Linke Type 'Prev'
-  if ($LinkType =~ /Prev/) {
-     $LinkTypeText = $PREV_URL;
-  }
-  #-- Link Type 'Up'
-  elsif ($LinkType =~ /Up/) {
-    $LinkTypeText = $UP_URL;
-  }
-  #-- Link Type 'Next'
-  elsif ($LinkType =~ /Next/) {
-        $LinkTypeText = $NEXT_URL;
-  }
   #-- If no auxiliary file specified use the current info file
   $LinkFile ||= $BaseInfoFile;
   my $LinkRef  = $LinkTag;
@@ -609,7 +597,7 @@ sub PrintLinkInfo {
   print <<EOF;
 <a href="info:/$LinkFileEsc/$LinkTag">
    $LinkTypeText
-  <em>($LinkFile)</em> <strong>$LinkRef</strong>
+  <strong>$LinkRef</strong>
 </a>
 EOF
 }
@@ -624,7 +612,7 @@ sub PrintHeader {
   my @LinkList = @{$LinkList};
 
   my $UpcaseInfoFile = $BaseInfoFile;
-  $UpcaseInfoFile =~ tr/a-z/A-Z/; 
+  $UpcaseInfoFile =~ tr/a-z/A-Z/;
   #-- TEXT for the header of an info node
   print <<EOF;
 <?xml version="1.0" encoding="utf-8"?>
@@ -632,77 +620,45 @@ sub PrintHeader {
 <html>
    <head>
       <title>Info: ($BaseInfoFile) $LinkList[1]</title>
-      <link rel="stylesheet" href="help:common/kde-default.css" type="text/css"/>
-      <style>
-         UL {
-            margin: 0em 0em 0em 0em;
-         }
-         TABLE.infomenutable {
-            padding: 0em 0em 0em 0em;
-            width: 100%;
-         }
-         TD.infomenutd {
-            margin: 0em 0em 0em 0em;
-            vertical-align: top;
-         /* font-family: monospace; */
-         }
-         TR.infomenutr {
-            margin: 0em 0em 0em 0em;
-         }
-      </style>
+      $STYLESHEET_KDE
    </head>
-   <body bgcolor="#ffffff">
+   <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
 
-   <div id="headline" style="position : absolute; height : 85px; z-index : 100; background : transparent; 
-        text-align : center; text-transform: smallcaps; width : 100%; top : 0px; left : 0px; width : 100%; color : #000000;">
-
-      <h1>$UpcaseInfoFile: $LinkList[1]</h1>
-   </div>
-
-   <div id="navbackground" style="position : absolute; width : 100%; height: 124px; 
-        background-image : url('help:common/doctop2.png'); 
-        z-index : 5; left: 0px; top : 0px; padding : 0px;"> 
-   
-        <div id="bulb1" style="padding : 0px; position : absolute; z-index : 15; 
-             width : 150px; height : 85px; top : 0px; left : 0px; 
-             background : url('help:common/doctop1.png') repeat;">
-        </div>
-
-        <div id="gradient" style="position : absolute; width : 275px; height : 85px; z-index : 19px; 
-             top : 0px; padding : 0px; left : 150px; 
-             background-image : url('help:common/doctop1a.png'); 
-             background-repeat : no-repeat; background-color : transparent; visibility : visible;">
-        </div>
-
-        <div id="bulb-bit" style="position : absolute;   width : 100%;   height : 90px;   top : 85px;   
-             left : 0px;   background-image : url('help:/common/doctop1b.png');   background-repeat : no-repeat;   
-             background-color : transparent;   z-index : 5;">
-             
-             <table width="100%" id="navtable">
-               <tbody>
-                  <tr>
-                     <td align="left" class="left"/>
-                     <td align="center" class="center"/>
-                     <td align="right" class="right">
-
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr class="header"><td colspan="2"></td></tr>
+<tr id="logo"><td valign="top">
+    $LOGO_KDE
+  </td><td valign="middle" align="center" id="location">
+    <h1>$UpcaseInfoFile: $LinkList[1]</h1>
+</td></tr>
+</table>
+<table width="100%" class="header">
+<tbody>
 EOF
-  common_headers($LinkList, $BaseInfoFile);
-  print <<EOF;
-                     </td>
-                  </tr>
-               </tbody>
-            </table>
-         </div>
-      </div>
+    common_headers($LinkList, $BaseInfoFile);
+print <<EOF;
+</td></tr>
+</tbody>
+</table>
       <div id="contents" style="position: absolute; top : 115px">
+      <div class="chapter">
 EOF
 }
 
 sub common_headers {
   my ($LinkList, $BaseInfoFile) = @_;
   my @LinkList = @{$LinkList};
+  print <<EOF;
+      <tr><td width="33%" align="left" valign="top" class="navLeft">
+EOF
   &PrintLinkInfo("Prev", $LinkList[6], $LinkList[7], $BaseInfoFile);
+  print <<EOF;
+        </td><td width="34%" align="center" valign="top" class="navCenter">
+EOF
   &PrintLinkInfo("Up",   $LinkList[4], $LinkList[5], $BaseInfoFile);
+  print <<EOF;
+        </td><td width="33%" align="right" valign="top" class="navRight">
+EOF
   &PrintLinkInfo("Next", $LinkList[2], $LinkList[3], $BaseInfoFile);
 }
 
@@ -712,28 +668,25 @@ sub common_headers {
 #  prints the footer for an info node in HTML format
 #---------------------------------------------------------
 sub PrintFooter {
-  my ($LinkList, $BaseInfoFile) = @_;
+  my ($LinkList, $BaseInfoFile, $LinkFile) = @_;
+
+  $LinkFile ||= $BaseInfoFile;
+
   #-- TEXT for the footer of an info node
   print <<EOF;
-      <table width="100%">
-         <tbody>
-            <tr>
-               <td align="left"/>
-               <td align="center" />
-               <td align="right" >
+    </div>
+    <table border="0" cellpadding="0" cellspacing="0" width="100%" class="bottom-nav">
 EOF
   common_headers($LinkList, $BaseInfoFile);
   print <<EOF;
-               </td>
-            </tr>
-         </tbody>
-      </table>
+          <br /><em>$LinkFile</em>
+        </td></tr>
+     </table>
       <hr/>
       <em>Automatically generated by a version of
       <a href="$info2html::config::DOC_URL">
          <b>info2html</b>
       </a> modified for <a href="http://www.kde.org/">KDE</a></em>.
-  </div>
    </body>
 </html>
 EOF
@@ -760,7 +713,7 @@ sub PrintByFileLink {
 	print <<EOF
 
 	<hr width="80%"/>
-	<p>If you did not find what you were looking for try <a href="info:$BROWSE_BY_FILE_PATH">browsing by file</a> to 
+	<p>If you did not find what you were looking for try <a href="info:$BROWSE_BY_FILE_PATH">browsing by file</a> to
 	see files from packages which did not update the directory.
 EOF
 }
@@ -821,7 +774,7 @@ sub InfoNode2HTML {
       }
     }
   }
-  
+
   return &ReplyNotFoundMessage($FileName, $Tag) unless $Found; # -- break if not found;
 
   &PrintHeader(\@LinkList, $BaseInfoFile);
@@ -838,7 +791,7 @@ sub InfoNode2HTML {
   my $PrevMenu;
   local $_;
   while (<FH2>) {
-    $LineCount++;  
+    $LineCount++;
     last if /$NODEBORDER/;
     #-- replace meta characters
     #s/"`"([^"'"]*)"'"/"<span class=\"option\">"$1"</span>"/g;
@@ -870,7 +823,7 @@ sub InfoNode2HTML {
       print "<h3>Menu</h3>\n";
     }
     elsif ($InMenu == 1) {
-	    # This is pretty crappy code. 
+	    # This is pretty crappy code.
 	    # A lot of logic (like the ParsCrossRefs and tranforming Variable: etc) is repeated below.
 	    # There have been a few bugs which were fixed in one branch of the code and left in the other.
 	    # This should be refactored.
@@ -944,8 +897,8 @@ sub InfoNode2HTML {
            $prev = $Line;
 	   $Line =~ s#- (Variable|Function|Macro|Command|Special Form|User Option):.*$#<strong>$&</strong>#;
            $Line =~ s/`([^']*)'/`<span class="option">$1<\/span>'/g;  #'
-           $Line =~ s/((news|ftp|http):\/\/[A-Za-z0-9\.\/\#\-_\~]*)/<a href="$1">$1<\/a>/g; 
-           $Line =~ s/([A-Za-z0-9\.\/\#\-_\~]*\@[A-Za-z0-9\.\/\#\-_\~]*\.[A-Za-z]{2,3})/<a href="mailto:$1">$1<\/a>/g; 
+           $Line =~ s/((news|ftp|http):\/\/[A-Za-z0-9\.\/\#\-_\~]*)/<a href="$1">$1<\/a>/g;
+           $Line =~ s/([A-Za-z0-9\.\/\#\-_\~]*\@[A-Za-z0-9\.\/\#\-_\~]*\.[A-Za-z]{2,3})/<a href="mailto:$1">$1<\/a>/g;
            $Par = $Par . $Line;
            $ParLines[$ParLine] = $Line;
            $ParLine++;
@@ -959,7 +912,7 @@ sub InfoNode2HTML {
   if ($PrevMenu =~ "") {
     print &MenuItem2HTML($PrevMenu,$BaseInfoFile);
   }
-  
+
   close(FH2);
 
   if ($BaseInfoFile =~ m/dir/i
@@ -995,7 +948,7 @@ sub GetFileAndOffset {
   $NodeName =~ tr/A-Z/a-z/;
   &ReadIndirectTable($BaseInfoFile, \@FileNames, \@Offsets);
 
-  
+
 # This looks wastefull:
 # We build a whole TagList hash and then use it to lookup the tag info.
 # Why not pass $NodeName to ReadTagTable and let it return just the desired info?
@@ -1006,7 +959,7 @@ sub GetFileAndOffset {
   ($File, $Offset) = split(/#/, $TagList{$NodeName});
   return $File, &max($Offset - 100, 0) if $File; #-- there is an explicite
                                                #-- not in the tag table
-  
+
   if ($IsIndirect == 1) {
       foreach my $i (0..$#Offsets) {
           $FileOffset = $Offsets[$i] if $Offsets[$i] <= $Offset;
@@ -1027,7 +980,7 @@ sub FindFile {
     foreach my $Name ($File, $Alt) {
         my $gzName  = $Name . '.gz';
         my $bz2Name = $Name . '.bz2';
-        
+
         foreach (@info2html::config::INFODIR) {
             return "$_/$Name"    if -e "$_/$Name";
             return "$_/$gzName"  if -e "$_/$gzName";
