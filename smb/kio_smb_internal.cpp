@@ -90,6 +90,9 @@ void SMBUrl::fromKioUrl(const KURL& kurl)
 {
     m_type     = SMBURLTYPE_UNKNOWN;
     m_kio_url  = kurl.prettyURL();
+    m_user     = "";
+    m_userdomain = "";
+    m_password   = "";
     // remove userinfo from m_kio_url
     if (m_kio_url.contains('@')) {
       int pos_at = m_kio_url.find('@');
