@@ -582,31 +582,27 @@ bool SMTPProtocol::authenticate()
   }
 
   if ( SASL.dialogComplete( numResponses ) )
+    return true;
+
+  QByteArray ba;
+  if ( !saslResponse.lines().empty() )
+    ba.duplicate( saslResponse.lines().front().data(),
+		  saslResponse.lines().front().length() );
+  ++numResponses;
+  cmd = SASL.getResponse(ba);
+
+  saslResponse.clear();
+  ret = command( cmd, &saslResponse );
+  if ( !SASL.dialogComplete( numResponses ) )
   {
-    ret = true;
-  }
-  else
-  {
-    QByteArray ba;
     if ( !saslResponse.lines().empty() )
       ba.duplicate( saslResponse.lines().front().data(),
 		    saslResponse.lines().front().length() );
-    ++numResponses;
+    else
+      ba.resize( 0 );
     cmd = SASL.getResponse(ba);
-
-    saslResponse.clear();
-    ret = command( cmd, &saslResponse );
-    if ( !SASL.dialogComplete( numResponses ) )
-    {
-      if ( !saslResponse.lines().empty() )
-	ba.duplicate( saslResponse.lines().front().data(),
-		      saslResponse.lines().front().length() );
-      else
-	ba.resize( 0 );
-      cmd = SASL.getResponse(ba);
-      ++numResponses;
-      ret = command(cmd);
-    }
+    ++numResponses;
+    ret = command(cmd);
   }
 
   if (!ret && !m_errorSent)
