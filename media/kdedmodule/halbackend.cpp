@@ -33,9 +33,9 @@ QString hal_device_get_property_QString(LibHalContext *ctx, const char* udi, con
 {
 	char*   _ppt_string;
 	QString _ppt_QString;
-	_ppt_string = hal_device_get_property_string(ctx, udi, key);
+	_ppt_string = libhal_device_get_property_string(ctx, udi, key, NULL);
 	_ppt_QString = QString(_ppt_string ? _ppt_string : "");
-	hal_free_string(_ppt_string);
+	libhal_free_string(_ppt_string);
 	return _ppt_QString;
 }
 
@@ -55,7 +55,14 @@ HALBackend::~HALBackend()
 {
 	/* Close HAL connection */
 	if (m_halContext)
+	{
+		#ifdef HAL_0_4
 		hal_shutdown(m_halContext);
+		#else
+		libhal_ctx_shutdown(m_halContext, NULL);
+		libhal_ctx_free(m_halContext);
+		#endif
+	}
 	if (m_halStoragePolicy)
 		libhal_storage_policy_free(m_halStoragePolicy);
 }
@@ -63,6 +70,7 @@ HALBackend::~HALBackend()
 /* Connect to the HAL */
 bool HALBackend::InitHal()
 {
+#ifdef HAL_0_4 /* HAL API 0.4 */
 	/* libhal initialization */
 	m_halFunctions.main_loop_integration	= HALBackend::hal_main_loop_integration;
 	m_halFunctions.device_added				= HALBackend::hal_device_added;
@@ -75,18 +83,56 @@ bool HALBackend::InitHal()
 	m_halContext = hal_initialize(&m_halFunctions, FALSE);
 	if (!m_halContext)
 	{
-		kdDebug()<<"Failed to initialize HAL!"<<endl;
+		kdDebug() << "Failed to initialize HAL!" << endl;
 		return false;
 	}
 
 	/** @todo customize watch policy */
-	if (hal_device_property_watch_all(m_halContext))
+	/* NOTICE: this code chunk doesn't seem necessary for the .05 API... still, it should */
+	kdDebug() << "Watch properties" << endl;
+	if (libhal_device_property_watch_all(m_halContext, NULL))
 	{
-		kdDebug()<<"Failed to watch HAL properties!"<<endl;
+		kdDebug() << "Failed to watch HAL properties!" << endl;
 		return false;
 	}
 
+#else /* HAL API >= 0.5 */
+	kdDebug() << "Context new" << endl;
+	m_halContext = libhal_ctx_new();
+	if (!m_halContext)
+	{
+		kdDebug() << "Failed to initialize HAL!" << endl;
+		return false;
+	}
+
+	// Main loop integration
+	kdDebug() << "Main loop integration" << endl;
+	DBusError error;
+	DBusConnection *dbus_connection = dbus_bus_get(DBUS_BUS_SYSTEM, &error);
+	if (dbus_error_is_set(&error))
+		return false;
+	MainLoopIntegration(dbus_connection);
+	libhal_ctx_set_dbus_connection(m_halContext, dbus_connection);
+
+	// HAL callback functions
+	kdDebug() << "Callback functions" << endl;
+	libhal_ctx_set_device_added(m_halContext, HALBackend::hal_device_added);
+	libhal_ctx_set_device_removed(m_halContext, HALBackend::hal_device_removed);
+	libhal_ctx_set_device_new_capability (m_halContext, NULL);
+	libhal_ctx_set_device_lost_capability (m_halContext, NULL);
+	libhal_ctx_set_device_property_modified (m_halContext, HALBackend::hal_device_property_modified);
+	libhal_ctx_set_device_condition(m_halContext, HALBackend::hal_device_condition);
+
+	kdDebug() << "Context Init" << endl;
+	if (!libhal_ctx_init(m_halContext, NULL))
+	{
+		kdDebug() << "Failed to init HAL context!" << endl;
+		return false;
+	}
+#endif
+
 	/* libhal-storage initialization */
+	kdDebug() << "Storage Policy" << endl;
 	m_halStoragePolicy = libhal_storage_policy_new();
 	/** @todo define libhal-storage icon policy */
 
@@ -97,8 +143,10 @@ bool HALBackend::InitHal()
 /* List devices (at startup)*/
 bool HALBackend::ListDevices()
 {
+	kdDebug() << "ListDevices" << endl;
+
 	int numDevices;
-	char** halDeviceList = hal_get_all_devices(m_halContext, &numDevices);
+	char** halDeviceList = libhal_get_all_devices(m_halContext, &numDevices, NULL);
 
 	if (!halDeviceList)
 		return false;
@@ -116,7 +164,7 @@ void HALBackend::AddDevice(const char *udi)
 {
 	/* We don't deal with devices that do not expose their capabilities.
 	If we don't check this, we will get a lot of warning messages from libhal */
-	if (!hal_device_property_exists(m_halContext, udi, "info.capabilities"))
+	if (!libhal_device_property_exists(m_halContext, udi, "info.capabilities", NULL))
 		return;
 
 	/* If the device is already listed, do not process.
@@ -126,11 +174,11 @@ void HALBackend::AddDevice(const char *udi)
 		return;
 
 	/* Add volume block devices */
-	if (hal_device_query_capability(m_halContext, udi, "volume"))
+	if (libhal_device_query_capability(m_halContext, udi, "volume", NULL))
 	{
 		/* We only list volume that have a filesystem or volume that have an audio track*/
 		if ( (hal_device_get_property_QString(m_halContext, udi, "volume.fsusage") != "filesystem") &&
-		     (!hal_device_get_property_bool(m_halContext, udi, "volume.disc.has_audio")) )
+		     (!libhal_device_get_property_bool(m_halContext, udi, "volume.disc.has_audio", NULL)) )
 			return;
 		/* Query drive udi */
 		QString driveUdi = hal_device_get_property_QString(m_halContext, udi, "block.storage_device");
@@ -150,7 +198,7 @@ void HALBackend::AddDevice(const char *udi)
 	}
 
 	/* Floppy & zip drives */
-	if (hal_device_query_capability(m_halContext, udi, "storage"))
+	if (libhal_device_query_capability(m_halContext, udi, "storage", NULL))
 		if ((hal_device_get_property_QString(m_halContext, udi, "storage.drive_type") == "floppy") ||
 		    (hal_device_get_property_QString(m_halContext, udi, "storage.drive_type") == "zip"))
 		{
@@ -162,7 +210,7 @@ void HALBackend::AddDevice(const char *udi)
 		}
 
 	/* Camera handled by gphoto2*/
-	if (hal_device_query_capability(m_halContext, udi, "camera"))
+	if (libhal_device_query_capability(m_halContext, udi, "camera", NULL))
 
 		{
 			/* Create medium */
@@ -229,8 +277,8 @@ const char* HALBackend::findMediumUdiFromUdi(const char* udi)
 		return medium->id().ascii();
 
 	/* Hard part : this is a volume whose drive is registered */
-	if (hal_device_property_exists(m_halContext, udi, "info.capabilities"))
-		if (hal_device_query_capability(m_halContext, udi, "volume"))
+	if (libhal_device_property_exists(m_halContext, udi, "info.capabilities", NULL))
+		if (libhal_device_query_capability(m_halContext, udi, "volume", NULL))
 		{
 			QString driveUdi = hal_device_get_property_QString(m_halContext, udi, "block.storage_device");
 			return findMediumUdiFromUdi(driveUdi.ascii());
@@ -244,11 +292,11 @@ void HALBackend::ResetProperties(const char* mediumUdi)
 	kdDebug() << "HALBackend::setProperties" << endl;
 
 	Medium* m = new Medium(mediumUdi, "");
-	if (hal_device_query_capability(m_halContext, mediumUdi, "volume"))
+	if (libhal_device_query_capability(m_halContext, mediumUdi, "volume", NULL))
 		setVolumeProperties(m);
-	if (hal_device_query_capability(m_halContext, mediumUdi, "storage"))
+	if (libhal_device_query_capability(m_halContext, mediumUdi, "storage", NULL))
 		setFloppyProperties(m);
-	if (hal_device_query_capability(m_halContext, mediumUdi, "camera"))
+	if (libhal_device_query_capability(m_halContext, mediumUdi, "camera", NULL))
 		setCameraProperties(m);
 
 	m_mediaList.changeMediumState(*m);
@@ -262,7 +310,7 @@ void HALBackend::setVolumeProperties(Medium* medium)
 
 	const char* udi = medium->id().ascii();
 	/* Check if the device still exists */
-	if (!hal_device_exists(m_halContext, udi))
+	if (!libhal_device_exists(m_halContext, udi, NULL))
 			return;
 
 	/* Get device information from libhal-storage */
@@ -384,7 +432,7 @@ void HALBackend::setFloppyProperties(Medium* medium)
 
 	const char* udi = medium->id().ascii();
 	/* Check if the device still exists */
-	if (!hal_device_exists(m_halContext, udi))
+	if (!libhal_device_exists(m_halContext, udi, NULL))
 		return;
 
 	LibHalDrive*  halDrive  = libhal_drive_from_udi(m_halContext, udi);
@@ -458,7 +506,7 @@ void HALBackend::setCameraProperties(Medium* medium)
 
 	const char* udi = medium->id().ascii();
 	/* Check if the device still exists */
-	if (!hal_device_exists(m_halContext, udi))
+	if (!libhal_device_exists(m_halContext, udi, NULL))
 		return;
 
 	/** @todo find name */
@@ -480,6 +528,7 @@ QString HALBackend::generateName(const QString &devNode)
 ** HAL CALL-BACKS                        **
 ******************************************/
 
+#ifdef HAL_0_4
 void HALBackend::hal_main_loop_integration(LibHalContext *ctx,
 			DBusConnection *dbus_connection)
 {
@@ -487,6 +536,7 @@ void HALBackend::hal_main_loop_integration(LibHalContext *ctx,
 	Q_UNUSED(ctx);
 	s_HALBackend->MainLoopIntegration(dbus_connection);
 }
+#endif
 
 void HALBackend::hal_device_added(LibHalContext *ctx, const char *udi)
 {
@@ -511,8 +561,15 @@ void HALBackend::hal_device_property_modified(LibHalContext *ctx, const char *ud
 	Q_UNUSED(is_added);
 	s_HALBackend->ModifyDevice(udi, key);
 }
+
 void HALBackend::hal_device_condition(LibHalContext *ctx, const char *udi,
-			const char *condition_name, DBusMessage *message)
+			const char *condition_name,
+			#ifdef HAL_0_4
+			DBusMessage *message
+			#else
+			const char* message
+			#endif
+			)
 {
 	kdDebug() << "HALBackend::hal_device_condition " << udi << " -- " << condition_name << endl;
 	Q_UNUSED(ctx);

@@ -45,9 +45,10 @@
 #include <libhal.h>
 #include <libhal-storage.h>
 
-/* libhal-storage renamed its functions between 0.4 and 0.5 series.
+/* The HAL API changed between 0.4 and 0.5 series.
 These defines enable backward compatibility */
 #ifdef HAL_0_4
+	// libhal-storage 0.4 API
 	#define LibHalStoragePolicy				HalStoragePolicy
 	#define LibHalDrive						HalDrive
 	#define LibHalVolume					HalVolume
@@ -90,6 +91,16 @@ These defines enable backward compatibility */
 	#define LIBHAL_DRIVE_TYPE_PORTABLE_AUDIO_PLAYER	HAL_DRIVE_TYPE_PORTABLE_AUDIO_PLAYER
 	#define LIBHAL_DRIVE_TYPE_CAMERA				HAL_DRIVE_TYPE_CAMERA
 	#define LIBHAL_DRIVE_TYPE_TAPE					HAL_DRIVE_TYPE_TAPE
+
+	// libhal 0.4 API
+	#define libhal_free_string hal_free_string
+	#define libhal_device_exists(ctx, udi, error) hal_device_exists(ctx, udi)
+	#define libhal_device_property_watch_all(ctx, error) hal_device_property_watch_all(ctx)
+	#define libhal_get_all_devices(ctx, num_devices, error) hal_get_all_devices(ctx, num_devices)
+	#define libhal_device_property_exists(ctx, udi, key, error) hal_device_property_exists(ctx, udi, key)
+	#define libhal_device_get_property_bool(ctx, udi, key, error) hal_device_get_property_bool(ctx, udi, key)
+	#define libhal_device_get_property_string(ctx, udi, key, error) hal_device_get_property_string(ctx, udi, key)
+	#define libhal_device_query_capability(ctx, udi, capability, error) hal_device_query_capability(ctx, udi, capability)
 #endif
 
 
@@ -225,7 +236,13 @@ public:
 	*  @param  message             D-BUS message with variable parameters depending on condition
 	*/
 	static void hal_device_condition(LibHalContext *ctx, const char *udi,
-				const char *condition_name, DBusMessage *message);
+				const char *condition_name,
+				#ifdef HAL_0_4
+				DBusMessage *message
+				#else
+				const char* message
+				#endif
+				);
 
 /* HAL and DBus structures */
 private:
@@ -234,10 +251,12 @@ private:
 	*/
 	LibHalContext*		m_halContext;
 
+#ifdef HAL_0_4
 	/**
 	* Structure defining the hal callback function for devices events
 	*/
 	LibHalFunctions 	m_halFunctions;
+#endif
 
 	/**
 	* libhal-storage HAL policy, e.g. for icon names

@@ -12,18 +12,18 @@ AM_CONDITIONAL(include_media_linuxcdpolling, test "$LINUXCDPOLLING" = "yes")
 AC_ARG_WITH(hal,AC_HELP_STRING([--with-hal],[Enable HAL support  [default=check]]),[hal_test="$withval"],[hal_test="yes"])
 
 if test "x$hal_test" = "xyes" ; then
-  
+
 ########### Check for the HAL
-  
+
   AC_MSG_CHECKING(for the HAL)
-  
+
   hal_inc=NOTFOUND
   hal_lib=NOTFOUND
   hal=NOTFOUND
-  
-  search_incs="$kde_includes /usr/include /usr/local/include /usr/include/hal /usr/local/include/hal"
+
+  search_incs="$kde_includes /usr/include /usr/include/hal /usr/local/include /usr/local/include/hal"
   AC_FIND_FILE(libhal.h libhal-storage.h, $search_incs, hal_incdir)
-  
+
   if [test -r $hal_incdir/libhal.h] && [test -r $hal_incdir/libhal-storage.h] ; then
     HAL_INCS="-I$hal_incdir"
     hal_inc=FOUND
@@ -37,75 +37,75 @@ if test "x$hal_test" = "xyes" ; then
       AC_DEFINE(HAL_0_4, , [HAL API version 0.4])
     fi
   fi
-  
+
   search_libs="$kde_libraries /usr/lib /usr/local/lib"
   AC_FIND_FILE(libhal.so libhal-storage.so, $search_libs, hal_libdir)
-  
+
   if [test -r $hal_libdir/libhal.so] && [test -r $hal_libdir/libhal-storage.so] ; then
     HAL_LIBS="-L$hal_libdir -lhal -lhal-storage"
     hal_lib=FOUND
   fi
-  
-  
+
+
   if [test $hal_inc = FOUND] && [test $hal_lib = FOUND] ; then
       AC_MSG_RESULT(headers $hal_incdir  libraries $hal_libdir)
   	hal=FOUND
   else
       AC_MSG_RESULT(searched but not found)
   fi
-  
+
   AC_SUBST(HAL_INCS)
   AC_SUBST(HAL_LIBS)
-  
-  
+
+
 ########### Check for DBus
-  
+
   AC_MSG_CHECKING(for DBus)
-  
+
   dbus_inc=NOTFOUND
   dbus_lib=NOTFOUND
   dbus=NOTFOUND
-  
-  search_incs="$kde_includes /usr/include /usr/local/include /usr/include/dbus-1.0 /usr/local/include/dbus-1.0"
+
+  search_incs="$kde_includes /usr/include /usr/include/dbus-1.0 /usr/local/include /usr/local/include/dbus-1.0"
   AC_FIND_FILE(dbus/dbus.h, $search_incs, dbus_incdir)
-  
+
   search_incs_arch_deps="$kde_includes /usr/lib/dbus-1.0/include /usr/local/lib/dbus-1.0/include"
   AC_FIND_FILE(dbus/dbus-arch-deps.h, $search_incs_arch_deps, dbus_incdir_arch_deps)
-  
+
   if [test -r $dbus_incdir/dbus/dbus.h] && [test -r $dbus_incdir_arch_deps/dbus/dbus-arch-deps.h] ; then
     DBUS_INCS="-I$dbus_incdir -I$dbus_incdir_arch_deps"
     dbus_inc=FOUND
   fi
-  
+
   search_libs="$kde_libraries /usr/lib /usr/local/lib"
   AC_FIND_FILE(libdbus-1.so, $search_libs, dbus_libdir)
-  
+
   if test -r $dbus_libdir/libdbus-1.so ; then
     DBUS_LIBS="-L$dbus_libdir -ldbus-1"
     dbus_lib=FOUND
   fi
-  
+
   if [test $dbus_inc = FOUND] && [test $dbus_lib = FOUND] ; then
     AC_MSG_RESULT(headers $dbus_incdir $dbus_incdir_arch_deps  libraries $dbus_libdir)
     dbus=FOUND
   else
     AC_MSG_RESULT(searched but not found)
   fi
-  
+
   AC_SUBST(DBUS_INCS)
   AC_SUBST(DBUS_LIBS)
-  
+
 ########### Check for DBus-Qt bindings
-  
+
   AC_MSG_CHECKING(for DBus-Qt bindings)
-  
+
   dbusqt_inc=NOTFOUND
   dbusqt_lib=NOTFOUND
   dbusqt=NOTFOUND
-  
-  search_incs="$kde_includes /usr/include /usr/local/include /usr/include/dbus-1.0 /usr/local/include/dbus-1.0"
+
+  search_incs="$kde_includes /usr/include /usr/include/dbus-1.0 /usr/local/include /usr/local/include/dbus-1.0"
   AC_FIND_FILE(dbus/connection.h, $search_incs, dbusqt_incdir)
-  
+
   if test -r $dbusqt_incdir/dbus/connection.h ; then
     have_qt_patch=0
     grep dbus_connection_setup_with_qt_main $dbusqt_incdir/dbus/connection.h \
@@ -115,15 +115,15 @@ if test "x$hal_test" = "xyes" ; then
       dbusqt_inc=FOUND
     fi
   fi
-  
+
   search_libs="$kde_libraries /usr/lib /usr/local/lib"
   AC_FIND_FILE(libdbus-qt-1.so, $search_libs, dbusqt_libdir)
-  
+
   if test -r $dbusqt_libdir/libdbus-qt-1.so ; then
     DBUSQT_LIBS="-L$dbusqt_libdir -ldbus-qt-1"
     dbusqt_lib=FOUND
   fi
-  
+
   if [test $dbusqt_inc = FOUND] && [test $dbusqt_lib = FOUND] ; then
     AC_MSG_RESULT(headers $dbusqt_incdir libraries $dbusqt_libdir)
     dbusqt=FOUND
