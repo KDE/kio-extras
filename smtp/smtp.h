@@ -26,7 +26,23 @@ class SMTPProtocol : public KIO::SlaveBase {
   SMTPProtocol( const QCString &pool, const QCString &app );
   virtual ~SMTPProtocol();
 
+  virtual void setHost(const QString& host, int port, const QString& user, const QString& pass);
+
+  virtual void put( const QString& path, int permissions, bool overwrite, bool resume);
+
  private:
+
+  bool smtp_open(KURL &url);
+  void smtp_close();
+  bool command(const char *buf, char *r_buf = NULL, unsigned int r_len = 0);
+  bool getResponse(char *buf = NULL, unsigned int len = 0);
+  QString buildUrl(const QString &path);
+
+  int m_iSock;
+  FILE *fp;
+  QString urlPrefix;
+  QString m_sServer, m_sOldServer;
+  unsigned short int m_iPort, m_iOldPort;
 #ifdef SSMTP
   SSL_CTX *ctx;
   SSL *ssl;
