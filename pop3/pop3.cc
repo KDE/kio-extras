@@ -210,13 +210,13 @@ POP3_DEBUG << "response = " << buf << endl;
 		}
 
 		QString command = QString::fromLatin1(cmd);
-		QString serverMsg = QString::fromLatin1(buf).stripWhiteSpace();
+		QString serverMsg = QString::fromLatin1(buf).mid(5).stripWhiteSpace();
 
 		if (command.left(4) == "PASS") {
 			command = i18n("PASS <your password>");
 		}
 
-		m_sError = i18n("I said:\n   \"%1\"\n\nAnd then the server said:\n   \"%2\"").arg(command).arg(serverMsg);
+		m_sError = i18n("The server said: \"%1\"").arg(serverMsg);
 
 		if (buf) {
 			delete [] buf;
@@ -398,7 +398,9 @@ bool POP3Protocol::pop3_open ()
 			return false;
 		}
 
-		QString usr, pass, one_string = QString::fromLatin1("USER ");
+		QString usr = m_sUser;
+                QString pass;
+                QString one_string = QString::fromLatin1("USER ");
 		QString apop_string = QString::fromLatin1("APOP ");
 		if (m_sUser.isEmpty() || m_sPass.isEmpty()) {
 			// Prompt for usernames
@@ -688,7 +690,7 @@ void POP3Protocol::get (const KURL& url)
 		(void)path.toInt(&ok);
 		if (!ok) {
 			error(ERR_INTERNAL, i18n("Unexpected response from POP3 server."));
-			return; //  We fscking need a number!
+			return;
 		}
 		path.prepend("TOP ");
 		path.append(" 0");
@@ -768,7 +770,7 @@ void POP3Protocol::get (const KURL& url)
 			}
 		} else {
 			closeConnection();
-			error(ERR_INTERNAL, i18n("Unexpected response from POP3 server."));
+			error(ERR_COULD_NOT_READ, m_sError);
 			return;
 		}
 
@@ -844,7 +846,7 @@ void POP3Protocol::get (const KURL& url)
 			} else {
 				POP3_DEBUG << "Couldn't login. Bad RETR Sorry" << endl;
 				closeConnection();
-				error(ERR_INTERNAL, i18n("Couldn't login."));
+				error(ERR_COULD_NOT_READ, m_sError);
 				return;
 			}
 		}
