@@ -10,6 +10,7 @@
 #include <kinstance.h>
 #include "kio_help.h"
 #include <klocale.h>
+#include <assert.h>
 
 extern HelpProtocol *slave;
 
@@ -30,7 +31,8 @@ QString transform( const QString &pat )
     if (slave) slave->infoMessage(i18n("Looking up stylesheet"));
     QString tss = locate("dtd", "customization/kde-chunk.xsl");
     if (slave) slave->infoMessage(i18n("Parsing stylesheet"));
-    xsltStylesheetPtr style_sheet = xsltParseStylesheetFile((const xmlChar *)tss.latin1());
+    xsltStylesheetPtr style_sheet =
+        xsltParseStylesheetFile((const xmlChar *)tss.latin1());
 
     QString parsed;
 
@@ -45,9 +47,11 @@ QString transform( const QString &pat )
         xmlFile.open(IO_ReadOnly);
         QCString contents;
         contents.assign(xmlFile.readAll());
+        contents.truncate(xmlFile.size());
         xmlFile.close();
         QString tmp;
         if (contents.left(5) != "<?xml") {
+            fprintf(stderr, "xmlizer\n");
             if (slave) slave->infoMessage(i18n("XMLize document"));
             FILE *p = popen(QString::fromLatin1("xmlizer %1").arg(pat).latin1(), "r");
             xmlFile.open(IO_ReadOnly, p);
@@ -63,13 +67,8 @@ QString transform( const QString &pat )
         }
 
         if (slave) slave->infoMessage(i18n("Parsing document"));
-        /*const char *data = contents.data();
-        int len = contents.length();
-        fprintf(stderr, "%x %x %x %x\n", data[len], data[len - 1],
-        data[len - 2], data[len - 3]); */
-
         xmlParserCtxtPtr ctxt = xmlCreateMemoryParserCtxt(contents.data(),
-                                                          contents.length() - 1);
+                                                          contents.length());
         int directory = pat.findRev('/');
         if (directory != -1)
             ctxt->directory = strdup(pat.left(directory + 1).latin1());
