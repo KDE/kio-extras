@@ -101,7 +101,7 @@ QString transform(xmlParserCtxtPtr ctxt, const QString &tss)
         return parsed;
     }
 
-    ctxt->myDoc->URL = (char *)xmlStrcat(ctxt->directory, "index.docbook" );
+    xmlFreeParserCtxt(ctxt);
 
     // the params can be used to customize it more flexible
     const char *params[16 + 1];
@@ -118,8 +118,6 @@ QString transform(xmlParserCtxtPtr ctxt, const QString &tss)
         xmlFreeDoc(res);
     }
     xsltFreeStylesheet(style_sheet);
-
-    xmlFreeParserCtxt(ctxt);
 
     return parsed;
 }

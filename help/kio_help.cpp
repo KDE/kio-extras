@@ -218,7 +218,7 @@ void HelpProtocol::get( const KURL& url )
 
     if (parsed.isEmpty()) {
         data(QString(
-            "<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=%1\">\n"
+            "<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=%1\"></head>\n"
             "%2<br>%3</html>" ).arg( QTextCodec::codecForLocale()->name() ).
              arg( i18n( "The requested help file could not be parsed:" ) ).arg( file ).local8Bit() );
     } else
