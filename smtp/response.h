@@ -32,7 +32,11 @@
 #ifndef __KIOSMTP_RESPONSE_H__
 #define __KIOSMTP_RESPONSE_H__
 
-#include <kcmdlineargs.h> // for QCStringList :-(
+#include <qcstring.h>
+#include <qvaluelist.h>
+typedef QValueList<QCString> QCStringList;
+
+class QString;
 
 namespace KioSMTP {
 
@@ -44,11 +48,16 @@ namespace KioSMTP {
 	mSawLastLine(false),
 	mWellFormed(true) {}
 
+    void parseLine( const char * line ) {
+      parseLine( line, qstrlen( line ) );
+    }
     void parseLine( const char * line, int len );
 
     /** Return an internationalized error message according to the
 	response's code. */
     QString errorMessage() const;
+    /** Translate the SMTP error code into a KIO one */
+    int errorCode() const;
 
     enum Reply {
       UnknownReply = -1,
@@ -92,6 +101,16 @@ namespace KioSMTP {
     bool isWellFormed() const { return mWellFormed; }
 
     void clear() { *this = Response(); }
+
+#ifdef KIOSMTP_COMPARATORS
+    bool operator==( const Response & other ) const {
+      return mCode == other.mCode &&
+	mValid == other.mValid &&
+	mSawLastLine == other.mSawLastLine &&
+	mWellFormed == other.mWellFormed &&
+	mLines == other.mLines;
+    }
+#endif
 
   private:
     unsigned int mCode;

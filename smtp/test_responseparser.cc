@@ -30,6 +30,7 @@ int main ( int, char** ) {
   assert( r.isPositive() );
   assert( r.isOk() );
   assert( r.code() == 250 );
+  assert( r.errorCode() == 0 );
   assert( r.first() == 2 );
   assert( r.second() == 5 );
   assert( r.third() == 0 );
@@ -78,6 +79,28 @@ int main ( int, char** ) {
     assert( r.lines().count() == i + 1 );
   }
   assert( r.lines().back() == "PIPELINING" );
+
+  r.clear();
+  r.parseLine( "230", 3 );
+  assert( r.isValid() );
+  assert( r.isWellFormed() ); // even though it isn't ;-)
+  assert( r.code() == 230 );
+  assert( r.lines().count() == 1 );
+  assert( r.lines().front().isNull() );
+
+  r.clear();
+  r.parseLine( "230\r\n", 5 );
+  assert( r.isValid() );
+  assert( r.isWellFormed() ); // even though it isn't ;-)
+  assert( r.code() == 230 );
+  assert( r.lines().count() == 1 );
+  assert( r.lines().front().isNull() );
+
+  r.clear();
+  r.parseLine( " 23 ok", 6 );
+  assert( !r.isValid() );
+  assert( !r.isWellFormed() );
+
   return 0;
 }
 
