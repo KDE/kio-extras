@@ -2247,7 +2247,7 @@ static char *scan_request(char *c)
 		    out_html("<STYLE TYPES=\"text/css\">\n");
 		    out_html("DIV.section {margin-left:2cm}\n");
 		    out_html("</STYLE>\n");
-		    out_html("</HEAD><BODY BGCOLOR=\"#FFD0A0\">\n<H1>");
+		    out_html("</HEAD><BODY BGCOLOR=\"#FFFFFF\">\n<H1>");
 		    out_html(wordlist[0]);
 		    out_html("</H1>\nSection: ");
 		    if (words>4) out_html(wordlist[4]);
