@@ -27,6 +27,7 @@ public:
     virtual void mimetype(const KURL &url);
 
     void outputError(const QString& errmsg);
+    void outputMatchingPages(const QStringList* matchingPages);
 
     void showMainIndex();
     void showIndex(const QString& section);
@@ -39,7 +40,7 @@ public:
 
 private:
     void checkManPaths();
-    QString findPage(const QString& section, const QString &title);
+    QStringList *findPages(const QString& section, const QString &title);
 
     void addToBuffer(const char *buffer, int buflen);
     QString pageName(const QString& page) const;
