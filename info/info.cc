@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include <qdir.h>
+
 #include <kdebug.h>
 #include <kprocess.h>
 #include <kstddirs.h>
@@ -37,9 +39,10 @@ InfoProtocol::~InfoProtocol()
 void InfoProtocol::get( const KURL& url )
 {
     kdDebug( 7108 ) << "InfoProtocol::get" << endl;
-    kdDebug( 7108 ) << url.path() << endl;
+    kdDebug( 7108 ) << "URL: " << url.prettyURL() << " , Path :" << url.path() << endl;
 
-    decodePath( url.path() );
+    // extract the path and node from url
+    decodeURL( url );
     /*
     if( m_page.isEmpty() )
     {
@@ -58,6 +61,7 @@ void InfoProtocol::get( const KURL& url )
 
     QString cmds("%1 %2 %3 %4 \"%5\" \"%6\"");
     QCString cmd = cmds.arg(m_perl).arg(m_infoScript).arg(locate("data", "kio_info/kde-info2html.conf")).arg(KGlobal::dirs()->findResourceDir("icon", "hicolor/22x22/actions/up.png")).arg(m_page).arg(m_node).latin1();
+    //kdDebug( 7108 ) << "cmd: " << (const char *)cmd << endl;
     
     FILE *fd = popen( cmd.data(), "r" );
     
@@ -98,6 +102,54 @@ void InfoProtocol::mimetype( const KURL& /* url */ )
     kdDebug( 7108 ) << "InfoProtocol::mimetype - done" << endl;
 }
 
+void InfoProtocol::decodeURL( const KURL &url )
+{
+    kdDebug( 7108 ) << "InfoProtocol::decodeURL" << endl;
+
+    /* test for valid directory in url.path().
+     * else test for valid dir in url.host()+url.path() because
+     *  of "info://usr/local/info/infopage/Top" made from the
+     *  "info2html" program.
+     * If there is no possibility to get a valid dir, assume the url to 
+     *  be a valid page description.
+     */
+
+
+    QString dirstr;
+    if (url.hasHost()) {
+      dirstr = '/';
+      dirstr += url.host();
+    }
+    dirstr += url.path(); // there HAS to be a url.path() at least
+    //kdDebug( 7108 ) << "dirstring: " << dirstr << endl;
+
+    /* now we got a description where a directory is in.
+     * Lets test it */
+
+    int slashPos = dirstr.find( "/", 1 );
+    int oldPos = 1;
+    QDir dir(dirstr.left(slashPos));
+    //kdDebug( 7108 ) << "dirpath: " << dir.path() << endl;
+    while (dir.exists()) {
+      oldPos = slashPos;
+      slashPos = dirstr.find( "/", oldPos+1 );
+      if (-1 == slashPos) {
+	// no more '/' found, 
+	// the whole string is a valid path ?
+	break;
+      }
+      dir.setPath(dirstr.left(slashPos));
+      //kdDebug( 7108 ) << "dirpath-loop: " << dir.path() << endl;
+    }
+
+    // oldPos now has the last dir '/'
+    //kdDebug( 7108 ) << "dirstr_ length = " <<dirstr.length() << ", pos = " << oldPos << endl;
+    //kdDebug( 7108 ) << "info_ request: " << dirstr.right(dirstr.length() - oldPos) << endl;
+    decodePath(dirstr.right(dirstr.length() - oldPos));
+
+    kdDebug( 7108 ) << "InfoProtocol::decodeURL - done" << endl;
+}
+
 void InfoProtocol::decodePath( QString path )
 {
     kdDebug( 7108 ) << "InfoProtocol::decodePath" << endl;
@@ -106,7 +158,10 @@ void InfoProtocol::decodePath( QString path )
     m_node = "";
 
     // remove leading slash
-    path = path.right( path.length() - 1 );
+    if ('/' == path[0]) {
+      path = path.right( path.length() - 1 );
+    }
+    //kdDebug( 7108 ) << "Path: " << path << endl;
 
     int slashPos = path.find( "/" );
 
@@ -118,7 +173,9 @@ void InfoProtocol::decodePath( QString path )
     }
 
     m_page = path.left( slashPos );
-    m_node = path.right( path.length() - slashPos - 1);
+
+    // remove leading+trailing whitespace
+    m_node = path.right( path.length() - slashPos - 1).stripWhiteSpace ();
 
     kdDebug( 7108 ) << "InfoProtocol::decodePath - done" << endl;
 }
