@@ -539,35 +539,35 @@ void NFSProtocol::listDir( const KURL& _url)
          atom.m_str = *temp;
       entry.append( atom );
 
-      KIO::UDSEntry::ConstIterator it = entry.begin();
-      for( ; it != entry.end(); it++ )
+      KIO::UDSEntry::ConstIterator iter = entry.begin();
+      for( ; iter != entry.end(); iter++ )
       {
-         switch ((*it).m_uds)
+         switch ((*iter).m_uds)
          {
          case KIO::UDS_FILE_TYPE:
-            kdDebug(7101) << "File Type : " << (mode_t)((*it).m_long) << endl;
+            kdDebug(7101) << "File Type : " << (mode_t)((*iter).m_long) << endl;
             break;
          case KIO::UDS_ACCESS:
-            kdDebug(7101) << "Access permissions : " << (mode_t)((*it).m_long) << endl;
+            kdDebug(7101) << "Access permissions : " << (mode_t)((*iter).m_long) << endl;
             break;
          case KIO::UDS_USER:
-            kdDebug(7101) << "User : " << ((*it).m_str.ascii() ) << endl;
+            kdDebug(7101) << "User : " << ((*iter).m_str.ascii() ) << endl;
             break;
          case KIO::UDS_GROUP:
-            kdDebug(7101) << "Group : " << ((*it).m_str.ascii() ) << endl;
+            kdDebug(7101) << "Group : " << ((*iter).m_str.ascii() ) << endl;
             break;
          case KIO::UDS_NAME:
-            kdDebug(7101) << "Name : " << ((*it).m_str.ascii() ) << endl;
-            //m_strText = decodeFileName( (*it).m_str );
+            kdDebug(7101) << "Name : " << ((*iter).m_str.ascii() ) << endl;
+            //m_strText = decodeFileName( (*iter).m_str );
             break;
          case KIO::UDS_URL:
-            kdDebug(7101) << "URL : " << ((*it).m_str.ascii() ) << endl;
+            kdDebug(7101) << "URL : " << ((*iter).m_str.ascii() ) << endl;
             break;
          case KIO::UDS_MIME_TYPE:
-            kdDebug(7101) << "MimeType : " << ((*it).m_str.ascii() ) << endl;
+            kdDebug(7101) << "MimeType : " << ((*iter).m_str.ascii() ) << endl;
             break;
          case KIO::UDS_LINK_DEST:
-            kdDebug(7101) << "LinkDest : " << ((*it).m_str.ascii() ) << endl;
+            kdDebug(7101) << "LinkDest : " << ((*iter).m_str.ascii() ) << endl;
             break;
          }
       }
