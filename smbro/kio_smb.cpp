@@ -570,7 +570,7 @@ See the KDE Control Center under Network, LANBrowsing for more information."));
       return;
    };
 
-   QCString command=QCString("dir \"")+smbPath.latin1()+QCString("\\*\"\n");
+   QCString command=QCString("dir \"")+smbPath.utf8()+QCString("\\*\"\n");
    kdDebug(7101)<<"Smb::listDir(): executing command: -"<<command<<"-"<<endl;
 
    if (::write(proc->fd(),command.data(),command.length())<0)
@@ -674,7 +674,7 @@ void SmbProtocol::createUDSEntry(const StatInfo& info, UDSEntry& entry)
 
 StatInfo SmbProtocol::createStatInfo(const QString line)
 {
-   kdDebug(7101)<<"Smb::createStatInfo() -"<<line.latin1()<<"-"<<endl;
+   kdDebug(7101)<<"Smb::createStatInfo() -"<<line.utf8()<<"-"<<endl;
    QString name;
    QString size;
 
@@ -758,7 +758,10 @@ StatInfo SmbProtocol::createStatInfo(const QString line)
 
 StatInfo SmbProtocol::_stat(const KURL& url)
 {
-   kdDebug(7101)<<"Smb::_stat(): -"<<url.path().latin1()<<"-"<<endl;
+   //kdDebug(7101)<<"Smb::_stat() prettyURL(): -"<<url.prettyURL()<<"-"<<endl;
+   //kdDebug(7101)<<"Smb::_stat() latin1() : -"<<url.path().latin1()<<"-"<<endl;
+   //kdDebug(7101)<<"Smb::_stat() local8Bit() : -"<<url.path().local8Bit()<<"-"<<endl;
+   kdDebug(7101)<<"Smb::_stat() utf8() : -"<<url.path().utf8()<<"-"<<endl;
    StatInfo info;
 
    QString path( QFile::encodeName(url.path()));
@@ -786,7 +789,8 @@ StatInfo SmbProtocol::_stat(const KURL& url)
       return info;
    };
 
-   QCString command=QCString("dir \"")+smbPath.latin1()+QCString("\"\n");
+   //QCString command=QCString("dir \"")+smbPath.latin1()+QCString("\"\n");
+   QCString command=QCString("dir \"")+smbPath.utf8()+QCString("\"\n");
    kdDebug(7101)<<"Smb::_stat(): executing command: -"<<command<<"-"<<endl;
 
    if (::write(proc->fd(),command.data(),command.length())<0)
@@ -858,7 +862,7 @@ StatInfo SmbProtocol::_stat(const KURL& url)
 
 void SmbProtocol::stat( const KURL & url)
 {
-   kdDebug(7101)<<"Smb::stat(): -"<<url.path().latin1()<<"-"<<endl;
+   kdDebug(7101)<<"Smb::stat(): -"<<url.path().utf8()<<"-"<<endl;
 
    if (m_currentHost.isEmpty())
    {
@@ -880,7 +884,7 @@ See the KDE Control Center under Network, LANBrowsing for more information."));
 
 void SmbProtocol::get( const KURL& url )
 {
-   kdDebug(7101)<<"Smb::get() "<<url.path().latin1()<<endl;
+   kdDebug(7101)<<"Smb::get() "<<url.path().utf8()<<endl;
    QString path( QFile::encodeName(url.path()));
 
    QString share;
@@ -911,7 +915,7 @@ void SmbProtocol::get( const KURL& url )
       return;
    };
 
-   QCString command=QCString("get \"")+smbPath.latin1()+QCString("\" ")+fifoName+"\n";
+   QCString command=QCString("get \"")+smbPath.utf8()+QCString("\" ")+fifoName+"\n";
    kdDebug(7101)<<"Smb::get(): executing command: -"<<command<<"-"<<endl;
 
    if (::write(proc->fd(),command.data(),command.length())<0)
@@ -1140,7 +1144,7 @@ ClientProcess* SmbProtocol::getProcess(const QString& host, const QString& share
    proc=new ClientProcess();
 
    QCStringList args;
-   args<<QCString("//")+m_nmbName+QCString("/")+share.latin1();
+   args<<QCString("//")+m_nmbName+QCString("/")+share.utf8();
    if (!m_workgroup.isEmpty())
       args<<QCString("-W")+m_workgroup.latin1();
    if (!m_user.isEmpty())
@@ -1170,7 +1174,7 @@ ClientProcess* SmbProtocol::getProcess(const QString& host, const QString& share
       {
          proc=new ClientProcess();
          QCStringList tmpArgs;
-         tmpArgs<<QString("//"+host+"/"+share).latin1();
+         tmpArgs<<QString("//"+host+"/"+share).utf8();
          if (!m_workgroup.isEmpty())
             tmpArgs<<QCString("-W")+m_workgroup.latin1();
          if (!user.isEmpty())
