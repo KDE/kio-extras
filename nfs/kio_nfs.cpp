@@ -205,8 +205,8 @@ time_t NFSFileHandle::age() const
 ostream& operator<< (ostream& s, const NFSFileHandle& x)
 {
    for (int i =0; i<NFS_FHSIZE; i++)
-      s<<iostream::hex<<(unsigned int)x[i]<<" ";
-   s<<iostream::dec;
+      s<<std::hex<<(unsigned int)x[i]<<" ";
+   s<<std::dec;
    return s;
 }
 
