@@ -1,13 +1,13 @@
 ## Makefile.am of kdebase/kioslave/CorelSmb
 
 
-INCLUDES= -DQT_20	$(all_includes)  -I./CorelLibraries/SambaNetworking/mwn -I./CorelLibraries/ccui -I$(QTDIR)
+INCLUDES= -DQT_20	$(all_includes)  -I./Libraries/SambaNetworking/mwn -I./Libraries/ccui -I$(QTDIR)
 LDADD = $(LIB_KDECORE)
 LDFLAGS =   $(all_libraries) $(KDE_RPATH)
 ####### Files
 
 lib_LTLIBRARIES = kio_corel_smb.la
-
+                                  
 kio_corel_smb_la_SOURCES = corel_smb.cpp
 kio_corel_smb_la_LIBADD = $(LIB_KDECORE)  -lkio -lccui -lmwn @EXTRA_LIBSMB_ADD@
 kio_corel_smb_la_LDFLAGS = -module -avoid-version @EXTRA_LIBSMB_FLAGS@
