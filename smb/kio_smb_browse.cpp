@@ -259,6 +259,11 @@ void SMBSlave::reportError(const SMBUrl &url)
     case EBADF:
         error( ERR_INTERNAL, i18n("BAD File descriptor"));
         break;
+    case ENOTUNIQ:
+        error( ERR_SLAVE_DEFINED, i18n( "The given name could not be resolved to an unique server. "
+                                        "Make sure your network is setup without any name conflicts "
+                                        "between names used by Windows and by Unix name resolution." ) );
+        break;
     case 0: // success
 	  error( ERR_INTERNAL, i18n("libsmbclient reported an error, but didn't specify "
 								"what the problem is. This might indicate a severe problem "
@@ -271,7 +276,7 @@ void SMBSlave::reportError(const SMBUrl &url)
 								"if they ask for it)") );
 	  break;
     default:
-	  error( ERR_INTERNAL, i18n("Unknown error condition in stat: %1").arg(strerror(errno)));
+        error( ERR_INTERNAL, i18n("Unknown error condition in stat: %1").arg(QString::fromLocal8Bit( strerror(errno))) );
     }
 }
 
