@@ -69,6 +69,19 @@
 #include <klocale.h>
 #include <qregexp.h>
 
+/*
+ * The following are tables of string and regexps we match
+ * against the output of ssh.  An entry in each array 
+ * corresponds the the version of ssh found in versionStrs[].
+ * 
+ * The version strings must be ordered in the array from most
+ * specific to least specific in cases where the beginning
+ * of several version strings are the similar. For example,
+ * consider the openssh version strings.  The generic "OpenSSH"
+ * must be the last of the openssh version strings in the array
+ * so that is matched last. We use these generic version strings
+ * so we can do a best effor to  support unknown ssh versions.
+ */
 const char * const KSshProcess::versionStrs[] = {
     "OpenSSH_2.9p1",
     "OpenSSH_2.9p2",
@@ -124,23 +137,13 @@ const char* const KSshProcess::tryAgainMsg[] = {
     "adjfhjsdhfdsjfsjdfhuefeufeuefe"
 };
 
-const char* const KSshProcess::hostKeyMissing[] = {
+const char* const KSshProcess::hostKeyMissingMsg[] = {
     "The authenticity of host",
     "The authenticity of host",
     "The authenticity of host",
     "The authenticity of host",
     "Host key not found from database",
     "Host key not found from database"
-};
-
-const char* const KSshProcess::keyFingerprintMsg[] = {
-    "key fingerprint",
-    "key fingerprint",
-    "key fingerprint",
-    "key fingerprint",
-    "key fingerprint",
-    "key fingerprint",
-    "key fingerprint"
 };
 
 const char* const KSshProcess::continuePrompt[] = {
@@ -152,23 +155,33 @@ const char* const KSshProcess::continuePrompt[] = {
     "Are you sure you want to continue connecting (yes/no)?"
 };
 
-const char* const KSshProcess::hostKeyChanged[] = {
+const char* const KSshProcess::hostKeyChangedMsg[] = {
     "WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!",
     "WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!",
     "WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!",
     "WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!",
-    "WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!",
-    "WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!"
+    "WARNING: HOST IDENTIFICATION HAS CHANGED!",
+    "WARNING: HOST IDENTIFICATION HAS CHANGED!"
 };
 
-const char* const KSshProcess::hostKeyAcceptedMsg[] = {
-    "xxxxxxxxxx",
-    "xxxxxxxxx",
-    "xxxxxxxxxxx",
-    "xxxxxxxxxx",
-    "xxxxxxxxxxx",
-    "xxxxxxxxxxx"
+QRegExp KSshProcess::keyFingerprintMsg[] = {
+    QRegExp("..(:..){15}"),
+    QRegExp("..(:..){15}"),
+    QRegExp("..(:..){15}"),
+    QRegExp("..(:..){15}"),
+    QRegExp("..(:..){15}"),
+    QRegExp("..(:..){15}")
 };
+
+QRegExp KSshProcess::knownHostsFileMsg[] = {
+    QRegExp("Add correct host key in (.*) to get rid of this message."),
+    QRegExp("Add correct host key in (.*) to get rid of this message."),
+    QRegExp("Add correct host key in (.*) to get rid of this message."),
+    QRegExp("Add correct host key in (.*) to get rid of this message."),
+    QRegExp("Add correct host key in (.*) to get rid of this message."),
+    QRegExp("Add correct host key in (.*) to get rid of this message.")
+};
+
 
 // We need this in addition the authFailedMsg because when
 // OpenSSH gets a changed host key it will fail to connect
@@ -746,26 +759,26 @@ bool KSshProcess::connect() {
                     i18n("Error encountered while talking to ssh.");
                 mConnectState = STATE_FATAL;
             }
-            else if( line.contains(passwordPrompt[mVersion]) ) {
+            else if( line.find(passwordPrompt[mVersion]) != -1 ) {
                 mConnectState = STATE_TRY_PASSWD;
             }
-            else if( line.contains(passphrasePrompt[mVersion]) ) {
+            else if( line.find(passphrasePrompt[mVersion]) != -1 ) {
                 mConnectState = STATE_TRY_PASSPHRASE;
             }
-            else if( line.contains(authSuccessMsg[mVersion]) ) {
+            else if( line.find(authSuccessMsg[mVersion]) != -1 ) {
                 return true;
             }
-            else if( line.contains(authFailedMsg[mVersion])
-                    && !line.contains(tryAgainMsg[mVersion]) ) {
+            else if( line.find(authFailedMsg[mVersion]) != -1
+                    && line.find(tryAgainMsg[mVersion]) == -1 ) {
                 mConnectState = STATE_AUTH_FAILED;
             }
-            else if( line.contains(hostKeyMissing[mVersion]) ) {
+            else if( line.find(hostKeyMissingMsg[mVersion]) != -1 ) {
                 mConnectState = STATE_NEW_KEY_WAIT_CONTINUE;
             }
-            else if( line.contains(hostKeyChanged[mVersion]) ) {
+            else if( line.find(hostKeyChangedMsg[mVersion]) != -1 ) {
                 mConnectState = STATE_DIFF_KEY_WAIT_CONTINUE;
             }
-            else if( line.contains(continuePrompt[mVersion]) ) {
+            else if( line.find(continuePrompt[mVersion]) != -1 ) {
                 //mConnectState = STATE_SEND_CONTINUE;
                 kdDebug(KSSHPROC) << "KSshProcess:connect(): "
                     "Got continue prompt where we shouldn't (STATE_WAIT_PROMPT)"
@@ -774,11 +787,7 @@ bool KSshProcess::connect() {
                 mErrorMsg =
                     i18n("Error encountered while talking to ssh.");
             }
-            else if( line.contains(keyFingerprintMsg[mVersion]) ) {
-                mKeyFingerprint = line;
-                mConnectState = STATE_WAIT_PROMPT;
-            }
-            else if( line.contains(connectionClosedMsg[mVersion]) ) {
+            else if( line.find(connectionClosedMsg[mVersion]) != -1 ) {
                 mConnectState = STATE_FATAL;
                 mError = ERR_CLOSED_BY_REMOTE_HOST;
                 mErrorMsg = i18n("Connection closed by remote host.");
@@ -875,7 +884,7 @@ bool KSshProcess::connect() {
             mError = ERR_AUTH_FAILED;
             mErrorMsg = i18n("Authentication to %1 failed").arg(mHost);
             mConnectState = STATE_FATAL;
-            return false;
+            break; 
         
         // STATE_NEW_KEY_WAIT_CONTINUE:
         // Grab lines from ssh until we get a continue prompt or a auth
@@ -891,28 +900,30 @@ bool KSshProcess::connect() {
                     i18n("Error encountered while talking to ssh.");
                 mConnectState = STATE_FATAL;
             }
-            else if( (line.contains(authFailedMsg[mVersion])
-                           && !line.contains(tryAgainMsg[mVersion]))
-                    || line.contains(hostKeyVerifyFailedMsg[mVersion]) ) {
+            else if( (line.find(authFailedMsg[mVersion]) != -1
+                           && line.find(tryAgainMsg[mVersion]) == -1)
+                    || line.find(hostKeyVerifyFailedMsg[mVersion]) != -1 ) {
                 mError = ERR_AUTH_FAILED_NEW_KEY;
-                mErrorMsg = i18n("A new host key was detected and "
-                    "strict host key checking is enabled. Therefore, "
-                    "authentication to %1 failed. Manually update the host "
-                    "key in the \"known hosts\" file or contact your "
-                    "adminstrator.").arg(mHost);
+                mErrorMsg = i18n(
+                    "The identity of the remote host '%1' could not be verified "
+                    "because the host's key is not in the \"known hosts\" "
+                    "file. Manually, add the host's key to the \"known hosts\" "
+                    "file or contact your administrator."
+                ).arg(mHost);
                 mConnectState = STATE_FATAL;
             }
-            else if( line.contains(continuePrompt[mVersion]) ) {
+            else if( line.find(continuePrompt[mVersion]) != -1 ) {
                 mConnectState = STATE_NEW_KEY_CONTINUE;
             }
-            else if( line.contains(keyFingerprintMsg[mVersion]) ) {
-                mKeyFingerprint = line;
-                mConnectState = STATE_NEW_KEY_WAIT_CONTINUE;
-            }
-            else if( line.contains(connectionClosedMsg[mVersion]) ) {
+            else if( line.find(connectionClosedMsg[mVersion]) != -1 ) {
                 mConnectState = STATE_FATAL;
                 mError = ERR_CLOSED_BY_REMOTE_HOST;
                 mErrorMsg = i18n("Connection closed by remote host.");
+            }
+            else if( line.find(keyFingerprintMsg[mVersion]) != -1 ) {
+                mKeyFingerprint = keyFingerprintMsg[mVersion].cap();
+                kdDebug(KSSHPROC) << "Found key fingerprint: " << mKeyFingerprint << endl;
+                mConnectState = STATE_NEW_KEY_WAIT_CONTINUE;
             }
             else {
                 // ignore line
@@ -925,11 +936,13 @@ bool KSshProcess::connect() {
         // message to reflect this, return false and hope for caller response.
         case STATE_NEW_KEY_CONTINUE:
             mError = ERR_NEW_HOST_KEY;
-            mErrorMsg = i18n("The host key is not in the database of known "
-                "host keys. This could mean that your connection is being "
-                "intercepted by a third party. Terminate your connection or "
-                "verify the host key fingerprint with your system "
-                "administrator.\nThe key fingerprint is %1.").arg(mKeyFingerprint);
+            mErrorMsg = i18n(
+                "The identity of the remote host '%1' could not be "
+                "verified. The host's key fingerprint is:\n%2\nYou should "
+                "verify the fingerprint with the host's administrator before "
+                "connecting.\n\n"
+                "Would you like to accept the host's key and connect anyway? "
+            ).arg(mHost).arg(mKeyFingerprint);
             mConnectState = STATE_SEND_CONTINUE;
             return false;
 
@@ -947,23 +960,32 @@ bool KSshProcess::connect() {
                     i18n("Error encountered while talking to ssh.");
                 mConnectState = STATE_FATAL;
             }
-            else if( (line.contains(authFailedMsg[mVersion])
-                           && !line.contains(tryAgainMsg[mVersion]))
-                    || line.contains(hostKeyVerifyFailedMsg[mVersion]) ) {
+            else if( (line.find(authFailedMsg[mVersion]) != -1
+                           && line.find(tryAgainMsg[mVersion]) == -1)
+                    || line.find(hostKeyVerifyFailedMsg[mVersion]) != -1 ) {
                 mError = ERR_AUTH_FAILED_NEW_KEY;
-                mErrorMsg = i18n("A new changed host key was "
-                    "detected and "
-                    "strict host key checking is enabled. Therefore, "
-                    "authentication to %1 failed. Manually add the host "
-                    "key to the \"known hosts\" file or contact your "
-                    "adminstrator.").arg(mHost);
+                mErrorMsg = i18n(
+                    "WARNING: The identity of the remote host '%1' has changed!\n\n"
+                    "Someone could be eavesdropping on your connection, or the "
+                    "administrator may have just changed the host's key. "
+                    "Either way, you should verify the host's key fingerprint with the host's "
+                    "administrator. The key fingerprint is:\n%2\n"
+                    "Add the correct host key to \"%3\" to "
+                    "get rid of this message."
+                ).arg(mHost).arg(mKeyFingerprint).arg(mKnownHostsFile);
                 mConnectState = STATE_FATAL;
             }
-            else if( line.contains(continuePrompt[mVersion]) ) {
+            else if( line.find(continuePrompt[mVersion]) != -1 ) {
                 mConnectState = STATE_DIFF_KEY_CONTINUE;
             }
-            else if( line.contains(keyFingerprintMsg[mVersion]) ) {
-                mKeyFingerprint = line;
+            else if( line.find(keyFingerprintMsg[mVersion]) != -1 ) {
+                mKeyFingerprint = keyFingerprintMsg[mVersion].cap();
+                kdDebug(KSSHPROC) << "Found key fingerprint: " << mKeyFingerprint << endl;
+                mConnectState = STATE_DIFF_KEY_WAIT_CONTINUE;
+            }
+            else if( line.find(knownHostsFileMsg[mVersion]) != -1 ) {
+                mKnownHostsFile = (knownHostsFileMsg[mVersion]).cap(1);
+                kdDebug(KSSHPROC) << "Found known hosts file name: " << mKnownHostsFile << endl;
                 mConnectState = STATE_DIFF_KEY_WAIT_CONTINUE;
             }
             else {
@@ -977,12 +999,14 @@ bool KSshProcess::connect() {
         // and return false to signal need to caller action.
         case STATE_DIFF_KEY_CONTINUE:
             mError = ERR_DIFF_HOST_KEY;
-            mErrorMsg = i18n("The host key sent by the server "
-                "is different from the host key in the \"known hosts\" file. "
-                "This could mean a third party is intercepting your "
-                "connection. Terminate your connection or verify the host "
-                "key fingerprint with your system administrator.\n"
-                "The key fingerprint is %1.").arg(mKeyFingerprint);
+            mErrorMsg = i18n(
+                "WARNING: The identity of the remote host '%1' has changed!\n\n"
+                "Someone could be eavesdropping on your connection, or the "
+                "administrator may have just changed the host's key. "
+                "Either way, you should verify the host's key fingerprint with the host's "
+                "administrator before connecting. The key fingerprint is:\n%2\n\n"
+                "Would you like to accept the host's new key and connect anyway?"
+            ).arg(mHost).arg(mKeyFingerprint);
             mConnectState = STATE_SEND_CONTINUE;
             return false;
 
