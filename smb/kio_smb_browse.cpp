@@ -132,7 +132,7 @@ bool SMBSlave::browse_stat_path(const SMBUrl& _url, UDSEntry& udsentry, bool ign
 //===========================================================================
 void SMBSlave::stat( const KURL& kurl )
 {
-    kdDebug(KIO_SMB) << "SMBSlave::stat on"<< endl;
+    kdDebug(KIO_SMB) << "SMBSlave::stat on "<< kurl.url() << endl;
     // make a valid URL
     KURL url = checkURL(kurl);
 
@@ -158,6 +158,7 @@ void SMBSlave::stat( const KURL& kurl )
     {
     case SMBURLTYPE_UNKNOWN:
         error(ERR_MALFORMED_URL,m_current_url.prettyURL());
+        finished();
         return;
 
     case SMBURLTYPE_ENTIRE_NETWORK:
@@ -230,14 +231,14 @@ KURL SMBSlave::checkURL(const KURL& kurl) const
 
 void SMBSlave::reportError(const SMBUrl &url)
 {
+    kdDebug() << "reportError " << url.url() << " " << perror << endl;
     switch(errno)
     {
-    case EBUSY:
-        break;  //hmmm, otherwise the whole dir isn't listed (caused e.g. by pagefile.sys), aleXXX
     case ENOENT:
-        if (url.getType() == SMBURLTYPE_ENTIRE_NETWORK) {
+        if (url.getType() == SMBURLTYPE_ENTIRE_NETWORK)
             error( ERR_SLAVE_DEFINED, i18n("Unable to find any workgroups in your local network."));
-        }
+        else
+            error( ERR_DOES_NOT_EXIST, url.prettyURL());
         break;
     case ENOMEDIUM:
         error( ERR_SLAVE_DEFINED,
