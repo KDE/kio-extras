@@ -34,7 +34,7 @@
 
 class KDESasl;
 
-class SMTPProtocol:public KIO::TCPSlaveBase {
+class SMTPProtocol : public KIO::TCPSlaveBase {
 public:
   SMTPProtocol(const QCString & pool, const QCString & app, bool useSSL);
   virtual ~ SMTPProtocol();
@@ -93,6 +93,9 @@ protected:
   static const int DEFAULT_RESPONSE_BUFFER = 512;
   static const int DEFAULT_EHLO_BUFFER = 5120;
   static const int SMTP_MIN_NEGATIVE_REPLY = 400;
+
+  class Request;
+  class Response;
 };
 
 #endif

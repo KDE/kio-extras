@@ -32,34 +32,8 @@
 #include <config.h>
 #endif
 
-#include <sys/types.h>
-#include <sys/socket.h>
-#include <sys/stat.h>
-#include <sys/time.h>
-#ifdef HAVE_SYS_SELECT_H
-#include <sys/select.h>
-#endif
+#include "smtp.h"
 
-#include <netinet/in.h>
-#include <arpa/inet.h>
-
-#include <ctype.h>
-#include <errno.h>
-#include <netdb.h>
-#include <stdlib.h>
-#include <string.h>
-#include <signal.h>
-#include <stdio.h>
-#include <unistd.h>
-
-#include <qbuffer.h>
-#include <qstring.h>
-#include <qstringlist.h>
-#include <qcstring.h>
-#include <qglobal.h>
-#include <qregexp.h>
-
-#include <kprotocolmanager.h>
 #include <kemailsettings.h>
 #include <ksock.h>
 #include <kdebug.h>
@@ -71,7 +45,18 @@
 #include <klocale.h>
 #include <kidna.h>
 
-#include "smtp.h"
+#include <qbuffer.h>
+#include <qstring.h>
+#include <qstringlist.h>
+#include <qcstring.h>
+#include <qregexp.h>
+
+#include <ctype.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <assert.h>
+
 
 //using namespace KIO;
 
@@ -98,6 +83,111 @@ int kdemain(int argc, char **argv)
   return 0;
 }
 
+static bool isUsAscii( const QString & s ) {
+  for ( uint i = 0 ; i < s.length() ; ++i )
+    if ( s[i].unicode() > 127 ) return false;
+  return true;
+}
+
+class SMTPProtocol::Request {
+public:
+  Request() : mSubject( "missing subject" ), mEmitHeaders( true ) {}
+  
+  static Request fromURL( const KURL & url );
+
+  QString profileName() const { return mProfileName; }
+  void setProfileName( const QString & profileName ) { mProfileName = profileName; }
+  bool hasProfile() const { return !profileName().isNull(); }
+
+  QString subject() const { return mSubject; }
+  void setSubject( const QString & subject ) { mSubject = subject; }
+  bool hasValidSubject() const { return isUsAscii( mSubject ); }
+
+  QString fromAddress() const { return mFromAddress; }
+  void setFromAddress( const QString & fromAddress ) { mFromAddress = fromAddress; }
+  bool hasFromAddress() const { return !mFromAddress.isEmpty(); }
+
+  QStringList recipients() const { return to() + cc() + bcc() ; }
+  bool hasRecipients() const { return !to().empty() || !cc().empty() || !bcc().empty() ; }
+
+  QStringList to() const { return mTo; }
+  QStringList cc() const { return mCc; }
+  QStringList bcc() const { return mBcc; }
+  void addTo( const QString & to ) { mTo.push_back( to ); }
+  void addCc( const QString & cc ) { mCc.push_back( cc ); }
+  void addBcc( const QString & bcc ) { mBcc.push_back( bcc ); }
+
+  QString heloHostname() const { return mHeloHostname; }
+  QCString heloHostnameCString() const { return KIDNA::toAsciiCString( heloHostname() ); }
+  void setHeloHostname( const QString & hostname ) { mHeloHostname = hostname; }
+
+  bool emitHeaders() const { return mEmitHeaders; }
+  void setEmitHeaders( bool emitHeaders ) { mEmitHeaders = emitHeaders; }
+
+  /** If @ref #emitHeaders() is true, returns the rfc2822
+      serialization of the header fields "To", "Cc", "Subject" and
+      "From", as determined by the respective settings. If @ref
+      #emitHeaders() is false, returns a null string. */
+  const char * headerFields() const;
+
+private:
+  QStringList mTo, mCc, mBcc;
+  QString mProfileName, mSubject, mFromAddress, mHeloHostname;
+  bool mEmitHeaders;
+};
+
+SMTPProtocol::Request SMTPProtocol::Request::fromURL( const KURL & url ) {
+  Request request;
+
+  const QStringList query = QStringList::split( '&', url.query().mid(1) );
+  for ( QStringList::const_iterator it = query.begin() ; it != query.end() ; ++it ) {
+    int equalsPos = (*it).find( '=' );
+    if ( equalsPos <= 0 )
+      continue;
+
+    const QString key = (*it).left( equalsPos ).lower();
+    const QString value = KURL::decode_string( (*it).mid( equalsPos + 1 ) );
+
+    if ( key == "to" )
+      request.addTo( value );
+    else if ( key == "cc" )
+      request.addCc( value );
+    else if ( key == "bcc" )
+      request.addBcc( value );
+    else if ( key == "headers" ) {
+      request.setEmitHeaders( value == "0" );
+      request.setEmitHeaders( false ); // ### ???
+    }
+    else if ( key == "subject" )
+      request.setSubject( value );
+    else if ( key == "from" )
+      request.setFromAddress( value );
+    else if ( key == "profile" )
+      request.setProfileName( value );
+    else if ( key == "hostname" )
+      request.setHeloHostname( value );
+  }
+
+  return request;
+}
+
+const char * SMTPProtocol::Request::headerFields() const {
+  if ( !emitHeaders() )
+    return 0;
+
+  assert( hasFromAddress() ); // should have been checked for by
+			      // caller (MAIL FROM comes before DATA)
+
+  // (we use QString for speed and convenience (QStringList::join()) reasons)
+  QString result = "From: " + fromAddress() + "\r\n";
+  if ( hasValidSubject() )
+    result += "Subject: " + subject() + "\r\n";
+  if ( !to().empty() )
+    result += "To: " + to().join( ",\r\n\t" /* line folding */ ) + "\r\n";
+  if ( !cc().empty() )
+    result += "Cc: " + cc().join( ",\r\n\t" /* line folding */ ) + "\r\n";
+  return result.latin1();
+}
 
 SMTPProtocol::SMTPProtocol(const QCString & pool, const QCString & app,
                            bool useSSL)
@@ -161,73 +251,14 @@ void SMTPProtocol::special(const QByteArray & /* aData */)
 void SMTPProtocol::put(const KURL & url, int /*permissions */ ,
                        bool /*overwrite */ , bool /*resume */ )
 {
-  QStringList query = QStringList::split('&', url.query().remove(0, 1));
-  QString subject = QString::fromLatin1("missing subject");
-  QString profile;
-  QString from;
-  QString localHostname;
-  QStringList recip, bcc, cc;
-  bool headers = true;
-
-  // sort out our query string
-  for (QStringList::const_iterator it = query.begin(); it != query.end(); ++it)
-  {
-    int equalsAt = (*it).find('=');
-
-    if (equalsAt > 0)
-    {
-      QString key = (*it).left(equalsAt).lower();
-      QString value = KURL::decode_string((*it).right((*it).length() - (equalsAt + 1)));
-
-      if (key == "to")
-      {
-        recip.append(value);
-      }
-      else if (key == "cc")
-      {
-        cc.append(value);
-      }
-      else if (key == "bcc")
-      {
-        bcc.append(value);
-      }
-      else if (key == "headers")
-      {
-        headers = (value == "0");
-        headers = false;
-      }
-      else if (key == "subject")
-      {
-        subject = value;
-      }
-      else if (key == "from")
-      {
-        from = value;
-      }
-      else if (key == "profile")
-      {
-        profile = value;
-      }
-      else if (key == "hostname")
-      {
-        localHostname = value;
-      }
-    }
-  }
+  Request request = Request::fromURL( url ); // parse settings from URL's query
 
   KEMailSettings mset;
   KURL open_url = url;
-  if (profile.isNull()) {
+  if ( !request.hasProfile() ) {
     //kdDebug() << "kio_smtp: Profile is null" << endl;
-    QStringList profiles = mset.profiles();
-    bool hasProfile = false;
-    for (QStringList::const_iterator it = profiles.begin(); it != profiles.end(); ++it) {
-      if ((*it) == open_url.host()) {
-        hasProfile = true;
-        break;
-      }
-    }
-    if (hasProfile) {
+    bool hasProfile = mset.profiles().contains( open_url.host() );
+    if ( hasProfile ) {
       mset.setProfile(open_url.host());
       open_url.setHost(mset.getSetting(KEMailSettings::OutServer));
       m_sUser = mset.getSetting(KEMailSettings::OutServerLogin);
@@ -247,35 +278,33 @@ void SMTPProtocol::put(const KURL & url, int /*permissions */ ,
     }
   } 
   else {
-    mset.setProfile(profile);
+    mset.setProfile( request.profileName() );
   }
 
   // Check KEMailSettings to see if we've specified an E-Mail address
   // if that worked, check to see if we've specified a real name
   // and then format accordingly (either: emailaddress@host.com or
   // Real Name <emailaddress@host.com>)
-  if (from.isEmpty()) {
-    if (!mset.getSetting(KEMailSettings::EmailAddress).isNull()) {
-      from = mset.getSetting(KEMailSettings::EmailAddress);
-    } 
+  if ( !request.hasFromAddress() ) {
+    const QString from = mset.getSetting( KEMailSettings::EmailAddress );
+    if ( !from.isNull() )
+      request.setFromAddress( from );
     else {
       error(KIO::ERR_NO_CONTENT, i18n("The sender address is missing."));
-      smtp_close();
+      smtp_close(); // ### try resetting the dialogue instead
       return;
     }
   }
-  from.prepend(QString::fromLatin1("MAIL FROM: <"));
-  from.append(QString::fromLatin1(">"));
 
-  if (!smtp_open(localHostname))
+  if ( !smtp_open( request.heloHostname() ) )
   {
     error(KIO::ERR_SERVICE_NOT_AVAILABLE,
-          i18n("SMTPProtocol::smtp_open failed (%1)")
+          i18n("SMTPProtocol::smtp_open failed (%1)") // ### better error message?
               .arg(open_url.path()));
     return;
   }
 
-  if (!command(from, false))
+  if ( !command( "MAIL FROM: <" + request.fromAddress() + '>', false ) )
   {
     if (!m_errorSent)
     {
@@ -283,13 +312,13 @@ void SMTPProtocol::put(const KURL & url, int /*permissions */ ,
                                  "sender address.\nThe server responded: \"%1\"").arg(m_lastError));
     }
 
-    smtp_close();
+    smtp_close(); // ### try resetting the dialogue instead.
     return;
   }
 
   // Loop through our To and CC recipients, and send the proper
   // SMTP commands, for the benefit of the server.
-  if ( !putRecipients( recip + cc + bcc ) )
+  if ( !putRecipients( request.recipients() ) )
     return;
 
   // Begin sending the actual message contents (most headers+body)
@@ -303,52 +332,16 @@ void SMTPProtocol::put(const KURL & url, int /*permissions */ ,
                 .arg(m_lastError));
     }
 
-    smtp_close();
+    smtp_close(); // ### try resetting the dialogue instead.
     return;
   }
 
-  if (headers) {
-    if (!mset.getSetting(KEMailSettings::EmailAddress).isNull()) {
-      if (!mset.getSetting(KEMailSettings::RealName).isNull()) {
-        from =
-            QString::fromLatin1("From: %1 <%2>\r\n").arg(mset.
-                                           getSetting(KEMailSettings::
-                                                      RealName))
-            .arg(mset.getSetting(KEMailSettings::EmailAddress));
-      } 
-      else {
-        from =
-            QString::fromLatin1("From: %1\r\n").arg(mset.
-                                      getSetting(KEMailSettings::
-                                                 EmailAddress));
-      }
-    } 
-    else {
-      error(KIO::ERR_NO_CONTENT, i18n("The sender address is missing."));
-      smtp_close(); // TODO: do we _really_ need to close the connection here/
-      return;
-    }
-    write(from.latin1(), strlen(from.latin1()));
+  // Write slave-generated header fields (if any):
+  const char * headerFields = request.headerFields();
+  write( headerFields, qstrlen( headerFields ) );
 
-    subject = QString::fromLatin1("Subject: %1\r\n").arg(subject);
-    write(subject.latin1(), strlen(subject.latin1()));
-
-    // Write out the To header for the benefit of the mail clients
-    for (QStringList::const_iterator it = recip.begin(); it != recip.end(); ++it) {
-      QString header = QString::fromLatin1("To: %1\r\n").arg(*it);
-      write(header.latin1(), strlen(header.latin1()));
-    }
-
-    // Write out the CC header for the benefit of the mail clients
-    for (QStringList::const_iterator it = cc.begin(); it != cc.end(); ++it) {
-      QString header = QString::fromLatin1("CC: %1\r\n").arg(*it);
-      write(header.latin1(), strlen(header.latin1()));
-    }
-  }
-
-  // Loop until we got 0 (end of data)
+  // Write client-provided data:
   int result;
-
   do {
     dataReq();                  // Request for data
     QByteArray buffer;
@@ -366,7 +359,7 @@ void SMTPProtocol::put(const KURL & url, int /*permissions */ ,
     if (!m_errorSent)
       error(KIO::ERR_NO_CONTENT, 
             i18n("The message content was not accepted.\nThe server responded: \"%1\"").arg(m_lastError));
-    smtp_close();
+    smtp_close(); // ### try resetting the dialogue instead
     return;
   }
 
