@@ -30,7 +30,7 @@ dirtreedir = $(kde_datadir)/konqueror/dirtree/remote
 METASOURCES = AUTO
 
 mimetypedir = $(kde_mimedir)/application
-mimetype_DATA = x-smb-workgroup.desktop
+mimetype_DATA = x-smb-workgroup.desktop x-smb-server.desktop
 
 messages:
 	$(XGETTEXT) *.cpp -o $(podir)/kio_smb.pot

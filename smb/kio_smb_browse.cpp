@@ -310,11 +310,20 @@ void SMBSlave::listDir( const KURL& kurl )
            // Set name
            atom.m_uds = KIO::UDS_NAME;
            QString dirpName = QString::fromUtf8( dirp->name );
-           kdDebug(KIO_SMB) << "dirp->name " <<  dirp->name  << " " << dirpName << endl;
-           atom.m_str = dirpName;
+           QString comment = QString::fromUtf8( dirp->comment, dirp->commentlen );
+           if ( dirp->smbc_type == SMBC_SERVER || dirp->smbc_type == SMBC_WORKGROUP ) {
+               atom.m_str = dirpName.lower();
+               atom.m_str.at( 0 ) = dirpName.at( 0 ).upper();
+               if ( !comment.isEmpty() && dirp->smbc_type == SMBC_SERVER )
+                   atom.m_str += " (" + comment + ")";
+           } else
+               atom.m_str = dirpName;
+
+           kdDebug(KIO_SMB) << "dirp->name " <<  dirp->name  << " " << dirpName << " '" << comment << "'" << " " << dirp->smbc_type << endl;
+
            udsentry.append( atom );
            if (atom.m_str.upper()=="$IPC" || atom.m_str=="." || atom.m_str == ".." ||
-               atom.m_str.upper() == "ADMIN$" || atom.m_str.lower() == "printer$")
+               atom.m_str.upper() == "ADMIN$" || atom.m_str.lower() == "printer$" || atom.m_str.lower() == "print$" )
            {
 //            fprintf(stderr,"----------- hide: -%s-\n",dirp->name);
                // do nothing and hide the hidden shares
@@ -362,6 +371,10 @@ void SMBSlave::listDir( const KURL& kurl )
                    // atom.m_str = QString("smb://%1?WORKGROUP=%2").arg(dirpName).arg(workgroup.upper());
                    kdDebug(KIO_SMB) << "list item " << atom.m_str << endl;
                    udsentry.append(atom);
+
+                   atom.m_uds = KIO::UDS_MIME_TYPE;
+                   atom.m_str = QString::fromLatin1("application/x-smb-server");
+                   udsentry.append(atom);
                }
 
                // Call base class to list entry
@@ -381,6 +394,13 @@ void SMBSlave::listDir( const KURL& kurl )
 
                atom.m_uds = KIO::UDS_MIME_TYPE;
                atom.m_str = QString::fromLatin1("application/x-smb-workgroup");
+               udsentry.append(atom);
+
+               atom.m_uds = KIO::UDS_URL;
+               // QString workgroup = m_current_url.host().upper();
+               KURL u("smb:/");
+               u.setHost(dirpName);
+               atom.m_str = u.url();
                udsentry.append(atom);
 
                // Call base class to list entry
