@@ -3,6 +3,7 @@ Encoding=UTF-8
 Icon=5floppy_mount
 Type=MimeType
 MimeType=kdedevice/floppy5_mounted
+Name=Mounted 5"1/4 Floppy
 Patterns=
 
 X-KDE-AutoEmbed=true

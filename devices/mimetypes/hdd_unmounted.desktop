@@ -3,6 +3,7 @@ Encoding=UTF-8
 Icon=hdd_unmount
 Type=MimeType
 MimeType=kdedevice/hdd_unmounted
+Name=Unmounted Harddrive Partition
 Patterns=
 
 X-KDE-AutoEmbed=true

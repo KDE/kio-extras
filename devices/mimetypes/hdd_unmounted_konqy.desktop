@@ -1,0 +1,10 @@
+[Desktop Entry]
+ServiceTypes=kdedevice/hdd_unmounted
+Actions=hdd_mount
+
+[Desktop Action hdd_mount]
+Name=Mount
+Name[af]=mount
+Name[da]=Montér
+Name[sv]=Montera
+Exec=kio_devices_mounthelper -m %u

@@ -3,6 +3,7 @@ Encoding=UTF-8
 Icon=cdrom_mount
 Type=MimeType
 MimeType=kdedevice/cdrom_mounted
+Name= Mounted CDRom
 Patterns=
 
 X-KDE-AutoEmbed=true

@@ -1,0 +1,10 @@
+[Desktop Entry]
+ServiceTypes=kdedevice/hdd_mounted
+Actions=hdd_unmount
+
+[Desktop Action hdd_unmount]
+Name=Unmount
+Name[af]=ontkoppel
+Name[da]=Afmontér
+Name[sv]=Avmontera
+Exec=kio_devices_mounthelper -u %u

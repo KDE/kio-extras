@@ -1,0 +1,10 @@
+[Desktop Entry]
+ServiceTypes=kdedevice/floppy5_mounted
+Actions=floppy5_unmount
+
+[Desktop Action floppy5_unmount]
+Name=Unmount
+Name[af]=ontkoppel
+Name[da]=Afmontér
+Name[sv]=Avmontera
+Exec=kio_devices_mounthelper -u %u

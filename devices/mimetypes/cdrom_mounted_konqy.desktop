@@ -1,0 +1,10 @@
+[Desktop Entry]
+ServiceTypes=kdedevice/cdrom_mounted
+Actions=cdrom_unmount
+
+[Desktop Action cdrom_unmount]
+Name=Unmount
+Name[af]=ontkoppel
+Name[da]=Afmontér
+Name[sv]=Avmontera
+Exec=kio_devices_mounthelper -u %u

@@ -3,6 +3,7 @@ Encoding=UTF-8
 Icon=hdd_mount
 Type=MimeType
 MimeType=kdedevice/hdd_mounted
+Name=Mounted Harddrive Partition
 Patterns=
 
 X-KDE-AutoEmbed=true
