@@ -429,10 +429,15 @@ void NFSProtocol::openConnection()
          atLeastOnceSucceeded=TRUE;
          NFSFileHandle fh;
          fh=fhStatus.fhstatus_u.fhs_fhandle;
-         m_handleCache.insert(QString("/")+KIO::encodeFileName(exportlist->ex_dir),fh);
-         m_exportedDirs.append(KIO::encodeFileName(exportlist->ex_dir));
-         //cerr<<"appending file -"<<KIO::encodeFileName(exportlist->ex_dir).latin1()<<"- with FH: -"<<fhStatus.fhstatus_u.fhs_fhandle<<"-"<<endl;
-      };
+         QString fname;
+         if ( exportlist->ex_dir[0] == '/' )
+            fname = KIO::encodeFileName(exportlist->ex_dir + 1);
+         else
+            fname = KIO::encodeFileName(exportlist->ex_dir);
+         m_handleCache.insert(QString("/")+fname,fh);
+         m_exportedDirs.append(fname);
+         // kdDebug() <<"appending file -"<<fname<<"- with FH: -"<<fhStatus.fhstatus_u.fhs_fhandle<<"-"<<endl;
+      }
    }
    if (!atLeastOnceSucceeded)
    {
