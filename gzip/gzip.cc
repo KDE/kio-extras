@@ -267,7 +267,7 @@ void GZipProtocol::slotGet( const char *_url )
   QString exec = KProtocolManager::self().executable( (*lst.begin()).protocol() );
 
   if ( exec.isEmpty() ) {
-    error( ERR_UNSUPPORTED_PROTOCOL, lst.begin()->protocol() );
+    error( ERR_UNSUPPORTED_PROTOCOL, (*lst.begin()).protocol() );
     m_cmd = CMD_NONE;
     return;
   }
@@ -369,7 +369,7 @@ void GZipProtocol::slotPut( const char *_url, int, bool _overwrite, bool /*_resu
   lst.remove( lst.begin() );
   
   // Find someone who can handle the new left most protocol
-  QString exec = KProtocolManager::self().executable( lst.begin()->protocol() );
+  QString exec = KProtocolManager::self().executable( (*lst.begin()).protocol() );
 
   // Did we find someone to handle this protocol ?
   if ( exec.isEmpty() ) {

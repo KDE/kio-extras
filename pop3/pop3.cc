@@ -53,7 +53,7 @@ void sigsegv_handler(int )
   exit(1);
 }
 
-void sigchld_handler(int signo)
+void sigchld_handler(int)
 {
   int pid, status;
 
@@ -415,7 +415,7 @@ void POP3Protocol::slotCopy(const char *, const char *)
   fflush(stderr);
 }
 
-void POP3Protocol::slotData(void *_p, int _len)
+void POP3Protocol::slotData(void *, int)
 {
   switch (m_cmd) {
     case CMD_PUT:

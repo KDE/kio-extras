@@ -38,7 +38,7 @@ void sigsegv_handler(int )
   exit(1);
 }
 
-void sigchld_handler(int signo)
+void sigchld_handler(int )
 {
   int pid, status;
 
@@ -91,7 +91,7 @@ void TARProtocol::slotGet(const char *_url)
   // Remove tar protocol
   lst.remove(lst.begin());
 
-  QString exec = KProtocolManager::self().executable(lst.begin()->protocol());
+  QString exec = KProtocolManager::self().executable((*lst.begin()).protocol());
 
   if (exec.isEmpty()) {
     error(ERR_UNSUPPORTED_PROTOCOL, (*lst.begin()).protocol());
@@ -143,8 +143,8 @@ void TARProtocol::slotGet(const char *_url)
   m_cmd = CMD_NONE;
 }
 
-void TARProtocol::slotPut(const char *_url, int _mode, bool _overwrite,
-			  bool _resume, unsigned int)
+void TARProtocol::slotPut(const char *, int , bool ,
+			  bool , unsigned int)
 {
 }
 

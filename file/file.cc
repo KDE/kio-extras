@@ -34,7 +34,7 @@ int check( Connection *_con );
 void sigchld_handler( int );
 void sigsegv_handler( int );
 
-int main( int argc, char **argv )
+int main( int , char ** )
 {
   signal(SIGCHLD, sigchld_handler);
   signal(SIGSEGV, sigsegv_handler);
