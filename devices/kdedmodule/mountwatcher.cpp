@@ -230,8 +230,8 @@ void MountWatcherModule::readDFDone()
 	for (DiskEntry *ent=mDiskList.first();ent;ent=mDiskList.next())
 	{
 		QString entryName="";
-		entryName+=ent->deviceName().replace( QRegExp("/"), "" );
-		entryName+=ent->mountPoint().replace(QRegExp("/"),"");
+		entryName+=ent->deviceName().replace("/", "");
+		entryName+=ent->mountPoint().replace("/","");
                 QString filename = KURL(ent->deviceName()).fileName();
                 if(!filename.isEmpty())
                         filename = QString::fromLatin1(" (") + filename + ")";

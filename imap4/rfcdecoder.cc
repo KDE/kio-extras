@@ -305,8 +305,7 @@ rfcDecoder::codecForName (const QString & _str)
   if (_str.isEmpty ())
     return NULL;
   return QTextCodec::codecForName (_str.lower ().
-                                   replace (QRegExp ("windows"),
-                                            "cp").latin1 ());
+                                   replace ("windows", "cp").latin1 ());
 }
 
 //-----------------------------------------------------------------------------

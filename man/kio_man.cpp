@@ -345,7 +345,7 @@ void MANProtocol::output(const char *insert)
         output_string += insert;
     if (!insert || output_string.length() > 2000) {
         // TODO find out the language of the man page and put the right common dir in
-        output_string.replace( QRegExp( "KDE_COMMON_DIR" ), QString( "file:%1/en/common" ).arg( common_dir ).local8Bit());
+        output_string.replace( "KDE_COMMON_DIR", QString( "file:%1/en/common" ).arg( common_dir ).local8Bit());
         //kdDebug(7107) << "output " << output_string << endl;
         data(output_string);
         output_string.truncate(0);

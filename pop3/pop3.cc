@@ -620,7 +620,7 @@ void POP3Protocol::special(const QByteArray & aData)
       if (qstrcmp(buf, ".\r\n") == 0)
         break;
       result += " " + QString(buf).left(strlen(buf) - 2)
-          .replace(QRegExp(" "), "-");
+          .replace(" ", "-");
     }
   }
   if (supports_apop)
