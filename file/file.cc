@@ -1572,7 +1572,7 @@ QString testLogFile( const char *_filename )
   }
   
   result = "";  
-  char *p = "";
+  const char *p = "";
   while ( p != 0L ) {
     p = fgets( buffer, sizeof(buffer)-1, f );
     if ( p != 0L )

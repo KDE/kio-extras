@@ -258,8 +258,8 @@ void POP3Protocol::slotGetSize( const char * _url )
 {
   // This should I deally call the totalSize function for the URL,
   // but I haven't really tested this.
-  bool ok=true;
-  static char buf[512];
+  // bool ok=true;
+  // static char buf[512];
   QString path, cmd;
   KURL usrc(_url);
 
@@ -560,7 +560,7 @@ void POP3Protocol::jobDataEnd()
   }
 }
 
-void POP3Protocol::slotDel( QStringList& _source )
+void POP3Protocol::slotDel( QStringList&  )
 {
 }
 
