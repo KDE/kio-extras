@@ -684,13 +684,13 @@ static void add_links(char *c)
 	    /* check section */
 	    g=strchr(f,')');
 	    if (g!=NULL && (g-f)<12 && (isalnum(f[-1]) || f[-1]=='>') &&
-			     isdigit(f[1]) && f[1]!='0')
+		isdigit(f[1]) && f[1]!='0' && ((g-f)<=2 || isalpha(f[2])))
 	    {
 		ok = TRUE;
 		h = f+2;
 		while (h<g)
 		{
-		    if (!isalpha(*h++))
+		    if (!isalnum(*h++))
 		    {
 			ok = FALSE;
 			break;
