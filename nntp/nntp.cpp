@@ -23,6 +23,7 @@
 #include <ksock.h>
 #include <kapp.h>
 #include <kdebug.h>
+#include <klocale.h>
 
 #include "nntp.h"
 
@@ -36,7 +37,9 @@
 
 #define DBG_AREA 7114
 #define DBG kdDebug(DBG_AREA)
-
+#define ERR kdError(DBG_AREA)
+#define WRN kdWarning(DBG_AREA)
+#define FAT kdFatal(DBG_AREA)
 
 using namespace KIO;
 
@@ -64,7 +67,7 @@ NNTPProtocol::NNTPProtocol (const QCString &pool, const QCString &app)
   DBG << "=============> NNTPProtocol::NNTPProtocol" << endl;
   if (!QObject::connect(&socket, SIGNAL(error(KIO::Error,const QString&)),
         this, SLOT(socketError(KIO::Error,const QString&)))) {
-        DBG << "ERROR connecting socket.error() with socketError()" << endl;
+        ERR << "ERROR connecting socket.error() with socketError()" << endl;
   }
 }
 
@@ -102,12 +105,10 @@ void NNTPProtocol::get(const KURL& url) {
   // select group
   int res_code = send_cmd("GROUP "+group);
   if (res_code == 411){
-    error(ERR_DOES_NOT_EXIST,path);
+    error(ERR_DOES_NOT_EXIST, path);
     return;
   } else if (res_code != 211) {
-    error(ERR_INTERNAL,"Unexpected server response on GROUP: "+
-        resp_line);
-    nntp_close();
+    unexpected_response(res_code,"GROUP");
     return;
   }
 
@@ -117,9 +118,7 @@ void NNTPProtocol::get(const KURL& url) {
     error(ERR_DOES_NOT_EXIST,path);
     return;
   } else if (res_code != 220) {
-    error(ERR_INTERNAL,"Unexpected server response on GROUP: "+
-        resp_line);
-    nntp_close();
+    unexpected_response(res_code,"ARTICLE");
     return;
   }
 
@@ -128,7 +127,7 @@ void NNTPProtocol::get(const KURL& url) {
   QByteArray buffer;
   //socket.read(buffer,MAX_BUFFER_SIZE); ??
   while (socket.readLine(line) && line != ".\r\n") {
-    DBG << "data: [" << line << "]" << endl;
+    // DBG << "data: [" << line << "]" << endl;
     if (line.left(2) == "..") line.remove(0,1);
     // cannot use QCString, because it would send the 0-terminator too
     buffer.setRawData(line.data(),line.length());
@@ -152,7 +151,7 @@ void NNTPProtocol::special(const QByteArray& data) {
   if (cmd == 1) {
     if (post_article()) finished();
   } else {
-    error(ERR_UNSUPPORTED_ACTION,"Invalid command.");
+    error(ERR_UNSUPPORTED_ACTION,i18n("Invalid special command %1").arg(cmd));
   }
 }
 
@@ -162,11 +161,10 @@ bool NNTPProtocol::post_article() {
   // send post command
   int res_code = send_cmd("POST");
   if (res_code == 440) { // posting not allowed
-    error(ERR_WRITE_ACCESS_DENIED,QString::null);
+    error(ERR_WRITE_ACCESS_DENIED,host);
     return false;
-  } else if (res_code != 340) { // ok, send article
-    error(ERR_INTERNAL,"Unexpected response from NNTP server"+resp_line);
-    nntp_close();
+  } else if (res_code != 340) { // 340: ok, send article
+    unexpected_response(res_code,"POST");
     return false;
   }
 
@@ -200,7 +198,7 @@ bool NNTPProtocol::post_article() {
 
   // error occured?
   if (result<0) {
-    DBG << "error while getting article data for posting" << endl;
+    ERR << "error while getting article data for posting" << endl;
     nntp_close();
     return false;
   }
@@ -211,12 +209,10 @@ bool NNTPProtocol::post_article() {
   // get answer
   res_code = eval_resp();
   if (res_code == 441) { // posting failed
-    error(ERR_COULD_NOT_WRITE,resp_line);
+    error(ERR_COULD_NOT_WRITE,host);
     return false;
   } else if (res_code != 240) {
-    error(ERR_INTERNAL,"Unexpected response from server after sending article "+
-      resp_line);
-    nntp_close();
+    unexpected_response(res_code,"POST");
     return false;
   }
 
@@ -294,9 +290,7 @@ void NNTPProtocol::fetchGroups() {
   // send LIST command
   int res_code = send_cmd("LIST");
   if (res_code != 215) {
-    error(ERR_INTERNAL, "Unexpected response from server after LIST: "+
-        resp_line);
-    nntp_close();
+    unexpected_response(res_code,"LIST");
     return;
   }
 
@@ -307,14 +301,14 @@ void NNTPProtocol::fetchGroups() {
   UDSEntry entry;
   UDSEntryList entryList;
 
-  int n=1; // debug
+  // int n=1; // debug
 
   while (socket.readLine(line) && line != ".\r\n") {
     // group name
     if ((pos = line.find(' ')) > 0) {
 
       group = line.left(pos);
-      DBG << n++ << " group: " << group << endl;
+      // DBG << n++ << " group: " << group << endl;
 
       // number of messages
       line.remove(0,pos+1);
@@ -353,9 +347,7 @@ bool NNTPProtocol::fetchGroup(QString& group) {
     error(ERR_DOES_NOT_EXIST,group);
     return false;
   } else if (res_code != 211) {
-    error(ERR_INTERNAL,"Unexpected server response on GROUP: "+
-        resp_line);
-    nntp_close();
+    unexpected_response(res_code,"GROUP");
     return false;
   }
 
@@ -367,8 +359,8 @@ bool NNTPProtocol::fetchGroup(QString& group) {
   {
     first = resp_line.mid(pos+1,pos2-pos-1);
   } else {
-    error(ERR_INTERNAL,"Could not extract first message number from server response: "+
-      resp_line);
+    error(ERR_INTERNAL,i18n("Could not extract first message number from server response:\n%1").
+      arg(resp_line));
     return false;
   }
 
@@ -378,8 +370,7 @@ bool NNTPProtocol::fetchGroup(QString& group) {
   // set art pointer to first article and get msg-id of it
   res_code = send_cmd("STAT "+first);
   if (res_code != 223) {
-    error(ERR_INTERNAL,"Unexpected response from server: "+
-      resp_line);
+    unexpected_response(res_code,"STAT");
     return false;
   }
 
@@ -390,8 +381,8 @@ bool NNTPProtocol::fetchGroup(QString& group) {
     fillUDSEntry(entry, msg_id, 0, false, true);
     entryList.append(entry);
   } else {
-    error(ERR_INTERNAL,"Could not extract first message id from server response: "+
-      resp_line);
+    error(ERR_INTERNAL,i18n("Could not extract first message id from server response:\n%1").
+      arg(resp_line));
     return false;
   }
 
@@ -403,8 +394,7 @@ bool NNTPProtocol::fetchGroup(QString& group) {
       if (entryList.count()) listEntries(entryList);
       return true;
     } else if (res_code != 223) {
-      error(ERR_INTERNAL,"Unexpected response from server: "+resp_line);
-      nntp_close();
+      unexpected_response(res_code,"NEXT");
       return false;
     }
 
@@ -418,8 +408,8 @@ bool NNTPProtocol::fetchGroup(QString& group) {
         entryList.clear();
       }
     } else {
-      error(ERR_INTERNAL,"Could not extract message id from server response: "+
-        resp_line);
+      error(ERR_INTERNAL,i18n("Could not extract message id from server response:\n%1").
+        arg(resp_line));
       return false;
     }
   }
@@ -511,9 +501,7 @@ void NNTPProtocol::nntp_open() {
              201 server ready - no posting allowed
         */
         if ( !(res_code == 200 || res_code == 201) ) {
-          error(ERR_UNKNOWN, "Unexpected response from NNTP server: "+
-                resp_line+". Expected 200 or 201");
-          nntp_close();
+          unexpected_response(res_code,"CONNECT");
           return;
         }
 
@@ -532,29 +520,6 @@ int NNTPProtocol::eval_resp() {
   resp_line = QString::fromUtf8(line);
 
   DBG << "eval_resp:" << resp_line << endl;
-
-  // check for errors
-  if (res_code == 0) {
-    error(ERR_INTERNAL, "Unexpected response from server or out of sync:"+
-        resp_line);
-    nntp_close();
-  } else if (res_code == 400) {
-    error(ERR_SERVICE_NOT_AVAILABLE,"400 - service discontinued");
-    nntp_close();
-  } else if (res_code == 500) {
-    error(ERR_INTERNAL,"500 - command not recognized");
-    nntp_close();
-  } else if (res_code == 501) {
-    error(ERR_INTERNAL,"501 - command syntax error");
-    nntp_close();
-  } else if (res_code == 502) {
-    error(ERR_ACCESS_DENIED, "502 - access restriction or permission denied");
-    nntp_close();
-  } else if (res_code == 503) {
-    error(ERR_INTERNAL_SERVER, "503 program fault - command not performed");
-    nntp_close();
-  };
-
   return res_code;
 }
 
@@ -563,7 +528,7 @@ int NNTPProtocol::send_cmd(const QString &cmd) {
   QCString _cmd = cmd.utf8();
 
   if (!socket.connected()) {
-    DBG << "NOT CONNECTED, cannot send cmd " << cmd << endl;
+    ERR << "NOT CONNECTED, cannot send cmd " << cmd << endl;
     return 0;
   }
 
@@ -580,8 +545,7 @@ int NNTPProtocol::send_cmd(const QString &cmd) {
     res_code = eval_resp();
 
     if (res_code != 381) {
-      error(ERR_UNKNOWN,"unexpected response from NNTP server after sending user info");
-      nntp_close();
+      // error should be handled by invoking function
       return res_code;
     }
 
@@ -592,8 +556,7 @@ int NNTPProtocol::send_cmd(const QString &cmd) {
     res_code = eval_resp();
 
     if (res_code != 281) {
-      error(ERR_UNKNOWN,"unexpected response from NNTP server after sending password");
-      nntp_close();
+      // error should be handled by invoking function
       return res_code;
     }
 
@@ -608,7 +571,7 @@ int NNTPProtocol::send_cmd(const QString &cmd) {
 }
 
 void NNTPProtocol::socketError(Error errnum, const QString& errinfo) {
-  DBG << "ERROR (socket): " << errnum << " " << errinfo << endl;
+  ERR << "ERROR (socket): " << errnum << " " << errinfo << endl;
   error(errnum, errinfo);
 }
 
@@ -632,6 +595,70 @@ void NNTPProtocol::setHost(const QString& _host, int _port,
   user = _user;
   pass = _pass;
 }
+
+void NNTPProtocol::unexpected_response(int res_code, const QString& command) {
+  ERR << "Unexpected response to " << command << " command: (" << res_code << ") "
+      << resp_line << endl;
+  error(ERR_INTERNAL,i18n("Unexpected server response to %1 command:\n%2").
+    arg(command).arg(resp_line));
+  
+  // close connection
+  nntp_close();
+}
+
+/* not really necessary, because the slave has to
+   use the KIO::Error's instead, but let this here for
+   documentation of the NNTP response codes and may
+   by later use.
+QString& NNTPProtocol::errorStr(int resp_code) {
+  QString ret;
+
+  switch (resp_code) {
+  case 100: ret = "help text follows"; break;
+  case 199: ret = "debug output"; break;
+
+  case 200: ret = "server ready - posting allowed"; break;
+  case 201: ret = "server ready - no posting allowed"; break;
+  case 202: ret = "slave status noted"; break;
+  case 205: ret = "closing connection - goodbye!"; break;
+  case 211: ret = "group selected"; break;
+  case 215: ret = "list of newsgroups follows"; break;
+  case 220: ret = "article retrieved - head and body follow"; break;
+  case 221: ret = "article retrieved - head follows"; break;
+  case 222: ret = "article retrieved - body follows"; break;
+  case 223: ret = "article retrieved - request text separately"; break;
+  case 230: ret = "list of new articles by message-id follows"; break;
+  case 231: ret = "list of new newsgroups follows"; break;
+  case 235: ret = "article transferred ok"; break;
+  case 240: ret = "article posted ok"; break;
+
+  case 335: ret = "send article to be transferred"; break;
+  case 340: ret = "send article to be posted"; break;
+
+  case 400: ret = "service discontinued"; break;
+  case 411: ret = "no such news group"; break;
+  case 412: ret = "no newsgroup has been selected"; break;
+  case 420: ret = "no current article has been selected"; break;
+  case 421: ret = "no next article in this group"; break;
+  case 422: ret = "no previous article in this group"; break;
+  case 423: ret = "no such article number in this group"; break;
+  case 430: ret = "no such article found"; break;
+  case 435: ret = "article not wanted - do not send it"; break;
+  case 436: ret = "transfer failed - try again later"; break;
+  case 437: ret = "article rejected - do not try again"; break;
+  case 440: ret = "posting not allowed"; break;
+  case 441: ret = "posting failed"; break;
+
+  case 500: ret = "command not recognized"; break;
+  case 501: ret = "command syntax error"; break;
+  case 502: ret = "access restriction or permission denied"; break;
+  case 503: ret = "program fault - command not performed"; break;
+  default:  ret = QString("unknown NNTP response code %1").arg(resp_code);
+  }
+
+  return ret;
+}
+*/
 
 
 /***************** class TCPWrapper ******************/
@@ -748,13 +775,13 @@ bool TCPWrapper::readData() {
     } while (bytes<0 && errno==EINTR); // ignore signals
 
     if (bytes <= 0) { // there was an error
-      DBG << "error reading from socket" << endl;
+      ERR << "error reading from socket" << endl;
       emit error(ERR_COULD_NOT_READ,strerror(errno));
       disconnect();
       return false;
     }
 
-    DBG << bytes << " bytes read" << endl;
+    // DBG << bytes << " bytes read" << endl;
     data_end += bytes;
     *data_end = 0;
 
@@ -773,7 +800,7 @@ bool TCPWrapper::readyForReading(){
   fd_set fdsR, fdsE;
   timeval tv;
 
-  DBG << "waiting until socket is ready for reading" << endl;
+  // DBG << "waiting until socket is ready for reading" << endl;
 
   // wait until we can read or exception or timeout
   int ret;
@@ -785,7 +812,7 @@ bool TCPWrapper::readyForReading(){
     tv.tv_sec = timeOut;
     tv.tv_usec = 0;
     ret = select(FD_SETSIZE, &fdsR, NULL, &fdsE, &tv);
-    DBG << "select (r): " << ret << " errno: " << errno << endl;
+    // DBG << "select (r): " << ret << " errno: " << errno << endl;
   } while ((ret<0) && (errno == EINTR)); // ignore signals
 
   if (ret < 0) { // -1: select failed
@@ -817,13 +844,13 @@ bool TCPWrapper::writeData(const QByteArray &data) {
 
   if (readyForWriting()) {
 
-     DBG << "writing " << chars << "bytes [" << data.data() << "]" << endl;
+     // DBG << "writing " << chars << "bytes [" << data.data() << "]" << endl;
 
      while (byteCount < chars) {
 
        bytes = ::write(tcpSocket, &data.data()[byteCount], chars-byteCount);
        if (bytes <= 0) {
-         DBG << "error writing to socket" << endl;
+         ERR << "error writing to socket" << endl;
          emit error(ERR_COULD_NOT_WRITE,strerror(errno));
          disconnect();
          return false;
@@ -832,7 +859,7 @@ bool TCPWrapper::writeData(const QByteArray &data) {
        }
      }
 
-     DBG << bytes << " bytes written" << endl;
+     // DBG << bytes << " bytes written" << endl;
 
      return true;
   }
@@ -854,7 +881,7 @@ bool TCPWrapper::readyForWriting() {
     tv.tv_sec = timeOut;
     tv.tv_usec = 0;
     ret = select(FD_SETSIZE, NULL, &fdsW, &fdsE, &tv);
-    DBG << "select (w): " << ret << " errno: " << errno << endl;
+    // DBG << "select (w): " << ret << " errno: " << errno << endl;
   } while ((ret<0) && (errno == EINTR)); // ignore signals
 
   if (ret < 0) { // -1: select failed
@@ -908,7 +935,6 @@ bool TCPWrapper::readLine(QCString &line) {
   thisLine=nextLine+2;
   return true;
 }
-
 
 
 

@@ -15,16 +15,9 @@
 #include <kio/slavebase.h>
 
 /* TODO:
-
   - test special post command
   - progress information in get, and maybe post
-  - better NNTP error handling, method returning all the strings for
-    error numbers and decides, if disconnect or ignore the error
-  - second arg in error() sometimes is wrong, where it's documented,
-    for which errors this is add info, filename, a.s.o.?
-  - i18n, error handling should be ok before this to avoide translating
-    the strings more than once
-  - remove lot of debug stuff
+  - remove unnecessary debug stuff
 */
 
 class TCPWrapper: public QObject {
@@ -131,7 +124,8 @@ class NNTPProtocol : public QObject, public KIO::SlaveBase
    void fillUDSEntry(KIO::UDSEntry& entry, const QString& name, int size, bool posting_allowed,
       bool is_article); // makes an UDSEntry with file informations,
                         // used in stat and listDir
-
+   // QString& errorStr(int resp_code); // gives the NNTP error message for a server response code
+   void unexpected_response(int res_code, const QString& command); // error handling for unexpected responses
 };
 
 
