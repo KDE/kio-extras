@@ -5,9 +5,6 @@
  * These parts are free software; you can redistribute and/or modify
  * them under the terms of the GNU General Public License as published by
  * the Free Software Foundation; version 2.
- *
- * $Id$
- *
  */
 
 #include <kcmdlineargs.h>
