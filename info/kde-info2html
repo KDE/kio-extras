@@ -295,22 +295,23 @@ sub Tab2Space {
 }
 
 #--------------------------------------------------------
-#                     MenuItem2HTML
+#                     ParseMenuItem
 #--------------------------------------------------------
-# Transform an info menu item in HTML with references
+# Takes a line containing a Menu item and returns a list of
+# ($MenuLinkTag, $MenuLinkFile, $MenuLinkRef, $MenuLinkText)
+# or undef if the parsing fails
 #-------------------------------------------------------
-sub MenuItem2HTML {
-    my ($Line, $BaseInfoFile) = @_;
-    my ($MenuLinkTag, $MenuLinkFile, $MenuLinkRef, $MenuLinkText);
 
-    $Line = &Tab2Space($Line);	# make sure columns line up well
+sub ParseMenuItem {
+	my ($Line,$BaseInfoFile) = @_;
+	my ($MenuLinkTag, $MenuLinkFile, $MenuLinkRef, $MenuLinkText);
+	$Line = &Tab2Space($Line);	# make sure columns line up well
 
     if ($Line =~ /\* ([^:]+)::/) { # -- is a simple entry ending with :: ?
 	$MenuLinkTag  = $1;
 	$MenuLinkRef  = $1;
 	$MenuLinkText = $'; #' --just to help emacs perl-mode
 	$MenuLinkFile = &Escape($BaseInfoFile);
-
     } elsif ($Line =~ /\* ([^:]+):(\s*\(($FTAG)\)($TAG)?$TE\.?)?(.*)$/) {
 	$MenuLinkFile = $BaseInfoFile;
 	$MenuLinkRef  = $1;
@@ -326,11 +327,24 @@ sub MenuItem2HTML {
 		$MenuLinkText = $Line;
 	    }
 	}
-    } else {			# can't determin link, just show it
-	return $Line;
+    } else {		
+	return undef;
     }
     $MenuLinkTag = &Escape($MenuLinkTag); # -- escape special chars
     $MenuLinkText =~ s/^ *//;
+    return ($MenuLinkTag, $MenuLinkFile, $MenuLinkRef, $MenuLinkText);
+}
+
+#--------------------------------------------------------
+#                     MenuItem2HTML
+#--------------------------------------------------------
+# Transform an info menu item in HTML with references
+#-------------------------------------------------------
+sub MenuItem2HTML {
+    my ($Line, $BaseInfoFile) = @_;
+    my @parse_results = &ParseMenuItem($Line, $BaseInfoFile);
+    if (!defined (@parse_results)) { return $Line; }
+    my ($MenuLinkTag, $MenuLinkFile, $MenuLinkRef, $MenuLinkText) = &ParseMenuItem(@_);
     #-- produce a HTML line
     return "<tr class=\"infomenutr\"><td class=\"infomenutd\" width=\"30%\"><ul><li><a href=\"info:/$MenuLinkFile/$MenuLinkTag\">$MenuLinkRef</a></ul></td><td class=\"infomenutd\">$MenuLinkText";
 }
