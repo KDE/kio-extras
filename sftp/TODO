@@ -1,7 +1,14 @@
 TODO:
-- Notify the user when a new host key is received.
-- Warn the user when the host key changes.
-- Add support for other versions of OpenSSH and SSH.
+- continuing partial upload - doesn't create .part file.d
+  fixed I think, but I am unable to test resume. kio denies my resume request 
+- when typing sftp url into konqi, konqi tries to connect before we finish
+  typing url. Konqi is trying to do directory completion, but we don't 
+  want this when connecting to a remote server the first time. kio_ftp
+  doesn't do this...why?
+- when a connection gets canceled we are leaving ssh processes behind - done
+- Notify the user when a new host key is received. - done
+- Warn the user when the host key changes. - done
+- Add support for other versions of OpenSSH and SSH. - done
 - Support for use of public keys, maybe ssh-agent, a key management app, etc.
 - store passwords per user/host pair, not per connection
   (multiple users per host work now, but when switching views one has to
@@ -15,7 +22,7 @@ TODO:
 
 - support for different ports (sftp://user@host:port), this can be done by
   adding the argument -oPort=7022 (or whatever port) to sftp, could not get
-  it to work properly though
+  it to work properly though - done
 
 - bug: when changing hostname in locationbar, password dialog pops up at
   every change even without pressing enter
