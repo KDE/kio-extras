@@ -215,11 +215,11 @@ void SMTPProtocol::put(const KURL & url, int /*permissions */ ,
     }
   }
 
-  KEMailSettings *mset = new KEMailSettings;
+  KEMailSettings mset;
   KURL open_url = url;
   if (profile == QString::null) {
     //kdDebug() << "kio_smtp: Profile is null" << endl;
-    QStringList profiles = mset->profiles();
+    QStringList profiles = mset.profiles();
     bool hasProfile = false;
     for (QStringList::Iterator it = profiles.begin(); it != profiles.end(); ++it) {
       if ((*it) == open_url.host()) {
@@ -228,10 +228,10 @@ void SMTPProtocol::put(const KURL & url, int /*permissions */ ,
       }
     }
     if (hasProfile) {
-      mset->setProfile(open_url.host());
-      open_url.setHost(mset->getSetting(KEMailSettings::OutServer));
-      m_sUser = mset->getSetting(KEMailSettings::OutServerLogin);
-      m_sPass = mset->getSetting(KEMailSettings::OutServerPass);
+      mset.setProfile(open_url.host());
+      open_url.setHost(mset.getSetting(KEMailSettings::OutServer));
+      m_sUser = mset.getSetting(KEMailSettings::OutServerLogin);
+      m_sPass = mset.getSetting(KEMailSettings::OutServerPass);
 
       if (m_sUser.isEmpty())
         m_sUser = QString::null;
@@ -243,11 +243,11 @@ void SMTPProtocol::put(const KURL & url, int /*permissions */ ,
       m_iPort = open_url.port();
     } 
     else {
-      mset->setProfile(mset->defaultProfileName());
+      mset.setProfile(mset.defaultProfileName());
     }
   } 
   else {
-    mset->setProfile(profile);
+    mset.setProfile(profile);
   }
 
   // Check KEMailSettings to see if we've specified an E-Mail address
@@ -255,8 +255,8 @@ void SMTPProtocol::put(const KURL & url, int /*permissions */ ,
   // and then format accordingly (either: emailaddress@host.com or
   // Real Name <emailaddress@host.com>)
   if (from.isEmpty()) {
-    if (mset->getSetting(KEMailSettings::EmailAddress) != QString::null) {
-      from = mset->getSetting(KEMailSettings::EmailAddress);
+    if (mset.getSetting(KEMailSettings::EmailAddress) != QString::null) {
+      from = mset.getSetting(KEMailSettings::EmailAddress);
     } 
     else {
       error(KIO::ERR_NO_CONTENT, i18n("The sender address is missing."));
@@ -312,17 +312,17 @@ void SMTPProtocol::put(const KURL & url, int /*permissions */ ,
   }
 
   if (headers) {
-    if (mset->getSetting(KEMailSettings::EmailAddress) != QString::null) {
-      if (mset->getSetting(KEMailSettings::RealName) != QString::null) {
+    if (mset.getSetting(KEMailSettings::EmailAddress) != QString::null) {
+      if (mset.getSetting(KEMailSettings::RealName) != QString::null) {
         from =
-            QString::fromLatin1("From: %1 <%2>\r\n").arg(mset->
+            QString::fromLatin1("From: %1 <%2>\r\n").arg(mset.
                                            getSetting(KEMailSettings::
                                                       RealName))
-            .arg(mset->getSetting(KEMailSettings::EmailAddress));
+            .arg(mset.getSetting(KEMailSettings::EmailAddress));
       } 
       else {
         from =
-            QString::fromLatin1("From: %1\r\n").arg(mset->
+            QString::fromLatin1("From: %1\r\n").arg(mset.
                                       getSetting(KEMailSettings::
                                                  EmailAddress));
       }
@@ -353,8 +353,6 @@ void SMTPProtocol::put(const KURL & url, int /*permissions */ ,
       header = QString::fromLatin1("CC: %1\r\n");
     }
   }
-
-  delete mset;
 
   // Loop until we got 0 (end of data)
   int result;
