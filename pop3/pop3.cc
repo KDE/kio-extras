@@ -103,6 +103,7 @@ POP3Protocol::POP3Protocol(const QCString &pool, const QCString &app, bool isSSL
 	m_iOldPort = 0;
 	m_tTimeout.tv_sec = 10;
 	m_tTimeout.tv_usec = 0;
+	supports_apop = false;
 	m_try_apop = true;
 	m_try_sasl = true;
 	opened = false;
@@ -355,8 +356,10 @@ bool POP3Protocol::pop3_open ()
 		}
 
 		int apop_pos = greeting.find(re);
-		bool apop = (bool)(apop_pos != -1);
-		if (metaData("auth") == "APOP" && !apop) {
+		supports_apop = (bool)(apop_pos != -1);
+		if (metaData("nologin") == "on") return true;
+
+		if (metaData("auth") == "APOP" && !supports_apop) {
 			error(ERR_COULD_NOT_CONNECT,
 			i18n("Your POP3 server does not support APOP.\n"
 			     "Choose a different authentication method."));
@@ -412,7 +415,7 @@ bool POP3Protocol::pop3_open ()
 			m_sOldUser = m_sUser;
 		}
 		memset(buf, 0, sizeof(buf));
-		if (apop && m_try_apop) {
+		if (supports_apop && m_try_apop) {
 			char *c = greeting.data() + apop_pos;
 			KMD5 ctx;
 
@@ -562,6 +565,29 @@ size_t POP3Protocol::realGetSize(unsigned int msg_num)
 	}
 	delete [] buf;
 	return ret;
+}
+
+void POP3Protocol::special (const QByteArray & aData)
+{
+  QString result;
+  char buf[MAX_PACKET_LEN];
+  if (aData.at(0) != 'c') return;
+  for (int i = 0; i < 2; i++)
+  {
+    QCString cmd = (i) ? "AUTH" : "CAPA";
+    if (!command(cmd)) continue;
+    while (true)
+    {
+      myReadLine(buf, MAX_PACKET_LEN-1);
+      if (qstrcmp(buf, ".\r\n") == 0) break;
+      result += " " + QString(buf).left(strlen(buf)-2)
+      .replace(QRegExp(" "), "-");
+    }
+  }
+  if (supports_apop) result += " APOP";
+  result = result.mid(1);
+  infoMessage(result);
+  finished();
 }
 
 void POP3Protocol::get (const KURL& url)

@@ -49,6 +49,7 @@ public:
 
 	virtual void setHost (const QString& host, int port, const QString& user, const QString& pass);
 
+	virtual void special (const QByteArray &aData);
 	virtual void get (const KURL& url);
 	virtual void stat (const KURL& url);
 	virtual void del (const KURL &url, bool isfile);
@@ -111,7 +112,7 @@ protected:
 	struct timeval m_tTimeout;
 	QString m_sOldServer, m_sOldPass, m_sOldUser;
 	QString m_sServer, m_sPass, m_sUser;
-	bool m_try_apop, m_try_sasl, opened;
+	bool m_try_apop, m_try_sasl, opened, supports_apop;
 	QString m_sError;
 	char readBuffer[MAX_PACKET_LEN];
 	ssize_t readBufferLen;
