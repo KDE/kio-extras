@@ -69,6 +69,7 @@ ThumbnailProtocol::ThumbnailProtocol(const QCString &pool, const QCString &app)
 {
     m_creators.setAutoDelete(true);
     m_iconDict.setAutoDelete(true);
+    m_iconSize = 0;
 }
 
 ThumbnailProtocol::~ThumbnailProtocol()
@@ -83,9 +84,13 @@ void ThumbnailProtocol::get(const KURL &url)
         error(KIO::ERR_INTERNAL, "No MIME Type specified.");
         return;
     }
-    m_iconSize = metaData("iconSize").toInt();
-    if (!m_iconSize)
-        m_iconSize = KGlobal::iconLoader()->currentSize(KIcon::Desktop);
+    int iconSize = metaData("iconSize").toInt();
+    if (!iconSize)
+        iconSize = KGlobal::iconLoader()->currentSize(KIcon::Desktop);
+	if (iconSize != m_iconSize)
+        m_iconDict.clear();
+    m_iconSize = iconSize;
+
     m_extent = metaData("extent").toInt();
     if (!m_extent)
         m_extent = 64;
