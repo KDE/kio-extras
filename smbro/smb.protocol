@@ -8,4 +8,5 @@ reading=true
 deleting=true
 makedir=true
 writing=true
+DocPath=kioslave/smb.html
 Icon=samba

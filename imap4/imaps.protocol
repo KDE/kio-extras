@@ -23,5 +23,5 @@ moving=false
 # Can be source protocol
 source=true
 
-DocPath=kioslave/imaps.protocol
+DocPath=kioslave/imaps.html
 Icon=folder_inbox
