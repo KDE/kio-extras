@@ -79,7 +79,7 @@ extern "C"
 
 int kdemain(int argc, char **argv)
 {
-    nice( 15 );
+    nice( 5 );
     // creating KApplication in a slave in not a very good idea,
     // as dispatchLoop() doesn't allow it to process its messages,
     // so it for example wouldn't reply to ksmserver - on the other
