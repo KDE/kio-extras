@@ -74,6 +74,9 @@ private: // Private attributes
 
     /** If file is a link, contains the destination of the link */
     QString mLinkDestination;
+    
+    /** If resource is a link, contains the type the link,e.g. file,dir... */
+    mode_t mLinkType;
 
     /** Whether >> operator should read filename and longname from the stream. */
     bool mDirAttrs;
@@ -197,6 +200,11 @@ public:
 
     QString linkDestination()
         { return mLinkDestination; }
+    
+    /** Sets the actual type a symbolic link points to. */
+    void setLinkType (mode_t type) { mLinkType = type; }
+    
+    mode_t linkType() const { return mLinkType; }       
 
     /** No descriptions */
     void setFilename(const QString& fn)

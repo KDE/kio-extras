@@ -99,7 +99,7 @@ UDSEntry sftpFileAttr::entry() {
         // Set the type if we know what it is
         if( type != 0 ) {
             atom.m_uds = UDS_FILE_TYPE;
-            atom.m_long = type;
+            atom.m_long = (mLinkType ? mLinkType:type);
             entry.append(atom);
         }
 
@@ -261,6 +261,7 @@ void sftpFileAttr::clear(){
     mFlags = 0;
 //    mLinkDestination = NULL;
     mLongname = "\0";
+    mLinkType = 0;
 }
 
 /** Return the size of the sftp attribute. */

@@ -1705,11 +1705,12 @@ int kio_sftpProtocol::sftpReadDir(const QByteArray& handle, const KURL& url){
     kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::sftpReadDir()" << endl;
 
     KURL myurl = url;
-    sftpFileAttr attr; attr.setDirAttrsFlag(true);
+    sftpFileAttr attr; 
     QByteArray p;
     Q_UINT32 id, expectedId, count;
     Q_UINT8 type;
-
+    
+    attr.setDirAttrsFlag(true);
     QDataStream s(p, IO_WriteOnly);
     id = expectedId = mMsgId++;
     s << (Q_UINT32)(1 /*type*/ + 4 /*id*/ + 4 /*str length*/ + handle.size());
@@ -1743,20 +1744,35 @@ int kio_sftpProtocol::sftpReadDir(const QByteArray& handle, const KURL& url){
     r >> count;
     kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::sftpReadDir(): got " << count << " entries" << endl;
 
-    while(count--) {
+    while(count--) {        
         r >> attr;
-
-        if( S_ISLNK(attr.permissions())
-				&& isSupportedOperation(SSH2_FXP_READLINK)) {
+                
+        if( S_ISLNK(attr.permissions()) && isSupportedOperation(SSH2_FXP_READLINK) ) {
             myurl = url;
             myurl.addPath(attr.filename());
             QString target;
             if( (code = sftpReadLink(myurl, target)) == SSH2_FX_OK ) {
-                kdDebug(KIO_SFTP_DB) << "got link dest " << target << endl;
+                kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::sftpReadDir(): Got link dest " << target << endl;
+                               
+                myurl = url;
+                if( target[0] == '/' )
+                    myurl.setPath(target);                    
+                else
+                {
+                    myurl.addPath(target);
+                    if (target[0] == '.')
+                        myurl.cleanPath();
+                }
+                
+                sftpFileAttr attr2;                                        
+                (void) sftpStat(myurl, attr2);                                
+                if (attr2.fileType() != 0)
+                    attr.setLinkType(attr2.fileType());
+                
                 attr.setLinkDestination(target);
             }
         }
-
+        
         listEntry(attr.entry(), false);
     }
 
@@ -1878,7 +1894,7 @@ int kio_sftpProtocol::sftpSymLink(const QString& target, const KURL& dest){
 }
 /** Stats a file. */
 int kio_sftpProtocol::sftpStat(const KURL& url, sftpFileAttr& attr){
-    kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::sftpStat()" << endl;
+    kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::sftpStat(): " << url << endl;
     QByteArray p;
     QDataStream s(p, IO_WriteOnly);
     QString path = url.path();
