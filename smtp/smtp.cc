@@ -170,7 +170,7 @@ void SMTPProtocol::special(const QByteArray & aData)
 void SMTPProtocol::put(const KURL & url, int /*permissions */ ,
                        bool /*overwrite */ , bool /*resume */ )
 {
-  QString query = KURL::decode_string(url.query());
+  QString query = url.query();
   QString subject = ASCII("missing subject");
   QString profile = QString::null;
   QString from = QString::null;
@@ -720,9 +720,9 @@ void GetAddresses(const QString & str, const QString & delim,
     if ((str.at(curpos - 1) == "?") || (str.at(curpos - 1) == "&")) {
       curpos += delim.length();
       if (str.find("&", curpos) != -1)
-        list += str.mid(curpos, str.find("&", curpos) - curpos);
+        list += KURL::decode_string(str.mid(curpos, str.find("&", curpos) - curpos));
       else
-        list += str.mid(curpos, str.length());
+        list += KURL::decode_string(str.mid(curpos, str.length()));
     } else
       curpos += delim.length();
   }
