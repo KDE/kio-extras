@@ -56,7 +56,7 @@ void SMBSlave::auth_smbc_get_data(const char *server,const char *share,
                                   char *password, int pwmaxlen)
 //--------------------------------------------------------------------------
 {
-    kdDebug(KIO_SMB) << "auth_smbc_get_data, server = " << server <<
+    kdDebug(KIO_SMB) << "auth_smbc_get_data server = " << server <<
                         ", share = " << share << ", workgroup = " << workgroup << endl;
 
     //check this to see if we "really" need to authenticate...
@@ -104,20 +104,16 @@ void SMBSlave::auth_smbc_get_data(const char *server,const char *share,
 bool SMBSlave::setAuthInfo(SMBAuthInfo &auth) {
     bool infocached = cache_get_AuthInfo(auth);
     if (!m_current_url.getUser().isEmpty()) {
+      //      kdDebug(KIO_SMB) << "setAuthInfo : local Userinfo password ="<< m_current_url.getPassword().local8Bit()<<";"<<auth.m_passwd << endl;
+      
       QString domain = m_current_url.getUserDomain();
       QString user =  m_current_url.getUser();
 
 
 
-      // user chached before ? and password is empty let the old password
-      if ( auth.m_username ==  user.local8Bit()
-            && (auth.m_domain == domain.local8Bit())
-            && m_current_url.getPassword().isEmpty()) {
-           cache_set_AuthInfo(auth, true);
-           return true;
-      }
       auth.m_domain = domain.local8Bit();
       auth.m_username = user.local8Bit();
+      if (!m_current_url.getPassword().isEmpty())
       auth.m_passwd = m_current_url.getPassword().local8Bit();
       cache_set_AuthInfo(auth, true);
 
@@ -125,7 +121,7 @@ bool SMBSlave::setAuthInfo(SMBAuthInfo &auth) {
     }
     // user without password in kurl or
     // no user in kurl and info not chached
-    if ( ((!m_current_url.getUser().isEmpty()) && (m_current_url.getPassword().isEmpty())) ||
+    if ( ((!m_current_url.getUser().isEmpty()) && (m_current_url.getPassword().isEmpty())) &&
         (!infocached) ) {
         QString user_prompt = auth.m_username;
         QString passwd_prompt = auth.m_passwd;
@@ -138,6 +134,7 @@ bool SMBSlave::setAuthInfo(SMBAuthInfo &auth) {
         if(openPassDlg(msg, user_prompt, passwd_prompt))
         {
             m_current_url.setUser(user_prompt);
+	    m_current_url.setPassword(passwd_prompt);
             auth.m_username = m_current_url.getUser().local8Bit();
             auth.m_passwd = passwd_prompt.local8Bit();
             cache_set_AuthInfo(auth, true);
