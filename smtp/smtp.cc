@@ -91,6 +91,20 @@ int kdemain( int argc, char **argv )
 }
 
 
+
+//
+//   COMMANDS WE SUPPORT:
+//
+// 
+//   COMMANDS WE SHOULD SUPPORT:
+//   QUIT,       EXPN,       HELO,       EHLO,       HELP,       NOOP, 
+//   VRFY,       RSET,       DATA,       RCPT TO:,   MESG FROM:, ETRN,
+//   VERB,       DSN
+//
+//   COMMANDS THAT DON'T SEEM SUPPORTED ANYMORE:
+//   SAML FROM:, SOML FROM:, SEND FROM:, TURN
+//   
+
 SMTPProtocol::SMTPProtocol(const QCString &pool, const QCString &app)
 #ifdef SSMTP
   : SlaveBase( "ssmtp", pool, app)
@@ -141,6 +155,58 @@ void SMTPProtocol::setHost( const QString& host, int port, const QString& /*user
   m_iPort = port;
 }
 
+
+
+//
+// REPLY CODES
+//       (is this up to date?)
+// 5xx - errors
+// 500 Syntax error, command unrecognized, parameter required
+// 501 Syntax error in parameters or arguments
+// 502 Command not implemented
+// 503 Bad sequence of commands
+// 504 Command parameter not implemented
+//
+//     - status
+// 211 System status or help reply
+// 214 Help message
+// 220 <domain> Service ready
+// 221 <domain> Service closing transmission channel
+// 421 <domain> Service not available, closing transmission channel
+//
+//     - success or error
+// 250 Requested mail action okay, completed
+// 251 User not local; will forward to <addr>
+// 450 Requested mail action not taken: mailbox unavailable (busy)
+// 550 Requested action not taken: mailbox unavailable (not found)
+// 451 Requested action aborted: error in processing
+// 551 User not local; please try <addr>
+// 452 Requested action not taken: insufficient storage
+// 553 Requested action not taken: mailbox name not allowed
+// 354 Start mail input; end with <CRLF>.<CRLF>
+// 554 Transaction failed
+//
+// Commands with their replies:
+//
+// CONNECTION: Success: 220; Fail: 421; Error:
+// HELO:       Success: 250; Fail: ; Error: 500, 501, 504, 421
+// MAIL FROM:: Success: 250; Fail: 552, 451, 452; Error: 500, 501, 421
+// RCPT FROM:: Success: 250, 251; Fail: 550, 551, 552, 553, 450, 451, 452;
+//             Error: 500, 501, 503, 421
+// DATA:       Initial: 354;  data -> Success: 250; Fail: 552, 554, 451, 452
+//             Fail: 451, 554; Error: 500, 501, 503, 421
+// RSET:       Success: 250; Fail: ; Error: 500, 501, 504, 421
+// VRFY:       Success: 250, 251; Fail: 550, 551, 553; 
+//             Error: 500, 501, 502, 504, 421
+// EXPN:       Success: 250; Fail: 550; Error: 500, 501, 502, 504, 421
+// HELP:       Success: ; Fail: ; Error: 500, 501, 502, 504, 421
+// NOOP:       Success: 250; Fail: ; Error: 500, 421
+// QUIT:       Success: 221; Fail: ; Error: 500
+// EHLO:       ???
+// VERB:       ???
+// ETRN:       ???
+// DSN:        ???
+// 
 
 bool SMTPProtocol::getResponse(char *r_buf, unsigned int r_len) {
   char *buf=0;
@@ -202,6 +268,8 @@ bool SMTPProtocol::getResponse(char *r_buf, unsigned int r_len) {
  *
  */
  
+  // HERE WE CHECK THE SUCCESSFUL RESPONSES FIRST 1xy,2xy,3xy
+  // AND THE ERROR RESPONSES SECOND               4xy,5xy
   if (strncmp(buf, "250 ", 4)==0) {           // standard "OK"
     if (r_buf && r_len) {
       memcpy(r_buf, buf+4, QMIN(r_len,recv_len-4));
