@@ -100,9 +100,8 @@ void MANProtocol::get(const KURL& url )
 
   if (url.query().isEmpty())
     {
+      if ( !section.isEmpty() ) cmd += " " + section;
       cmd += " " + title;
-      if (section > 0)
-	cmd += QString(" %1").arg(section);
     }
   else
     cmd += " -k " + url.query();
