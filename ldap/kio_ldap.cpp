@@ -79,7 +79,7 @@ void LDAPProtocol::checkErr( const KURL &_url )
   if ( ldap_get_option( mLDAP, LDAP_OPT_ERROR_NUMBER, &ret ) == -1 ) {
     error( KIO::ERR_UNKNOWN, _url.prettyURL() );
   } else {
-    LDAPErr( ret, _url.prettyURL() );
+    if ( ret != LDAP_SUCCESS ) LDAPErr( ret, _url.prettyURL() );
   }
 }
 
@@ -640,9 +640,9 @@ void LDAPProtocol::get( const KURL &_url )
       checkErr( _url );
       return;
     }
+    kdDebug(7125) << " ldap_result: " << ret << endl;
     if ( ret == LDAP_RES_SEARCH_RESULT ) break;
     if ( ret != LDAP_RES_SEARCH_ENTRY ) continue;
-    kdDebug(7125) << " ldap_result: " << ret << endl;
     
     entry = ldap_first_entry( mLDAP, msg );
     while ( entry ) {
@@ -652,11 +652,12 @@ void LDAPProtocol::get( const KURL &_url )
       array.setRawData( result.data(), result.length() );
       data(array);
       processedSize( processed_size );
-      array.resetRawData(result.data(), result.length() );
+      array.resetRawData( result.data(), result.length() );
     
-      entry = ldap_next_entry(mLDAP, entry);
+      entry = ldap_next_entry( mLDAP, entry );
     }
-  
+    checkErr( _url );
+      
     ldap_msgfree(msg);
   // tell the length
   }
@@ -993,7 +994,7 @@ void LDAPProtocol::listDir( const KURL &_url )
     
       entry = ldap_next_entry( mLDAP, entry );
     }
-  
+    checkErr( _url );
     ldap_msgfree( msg );
   }
   
