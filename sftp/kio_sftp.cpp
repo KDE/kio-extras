@@ -790,18 +790,9 @@ void kio_sftpProtocol::put ( const KURL& url, int permissions, bool overwrite, b
 
         // return file exists error if we weren't instructed to overwrite or resume
         else if( !overwrite && !resume ) {
-            // notify the job that we can resume this file. If the io-slave
-            // doing the GET replies that it can resume continue, else send
-            // "a file already exists" error message.
-            kdDebug(KIO_SFTP_DB) << "Size = " << origAttr.fileSize();
-            resume = canResume(origAttr.fileSize());
-            kdDebug(KIO_SFTP_DB) << "Can resume = " << resume;
-            if (!resume)
-            {
               error(ERR_FILE_ALREADY_EXIST, origUrl.prettyURL());
               return;
             }
-        }
 
         // rename file with a partial ext if we are marking partials
         else if( markPartial ) {
