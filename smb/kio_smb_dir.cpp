@@ -47,7 +47,6 @@ void SMBSlave::copy( const KURL& ksrc,
     time_t          starttime;
     time_t          lasttime;
     time_t          curtime;
-    struct stat     st;
     int             n;
     int             dstflags;
     int             srcfd = -1;
@@ -76,14 +75,29 @@ void SMBSlave::copy( const KURL& ksrc,
         {
              error( KIO::ERR_DOES_NOT_EXIST, src.toKioUrl());
         }
-        goto FINISHED;
+        return;
     }
     if ( S_ISDIR( st.st_mode ) )
     {
         error( KIO::ERR_IS_DIRECTORY, src.toKioUrl() );
-        goto FINISHED;
+        return;
     }
     totalSize(st.st_size);
+
+    // Check to se if the destination exists
+    if(cache_stat(dst, &st) != -1)
+    {
+        if(S_ISDIR(st.st_mode))
+        {
+            error( KIO::ERR_DIR_ALREADY_EXIST, dst.toKioUrl());
+	    return;
+        }
+        if(!overwrite)
+        {
+            error( KIO::ERR_FILE_ALREADY_EXIST, dst.toKioUrl());
+	    return;
+	}
+    }
 
     // Open the source file
     srcfd = smbc_open(src.toSmbcUrl(), O_RDONLY, 0);
@@ -97,7 +111,7 @@ void SMBSlave::copy( const KURL& ksrc,
         {
             error( KIO::ERR_DOES_NOT_EXIST, src.toKioUrl() );
         }
-
+	return;
     }
 
     // Determine initial creation mode
@@ -113,7 +127,7 @@ void SMBSlave::copy( const KURL& ksrc,
     
     // Open the destination file
     dstflags = O_CREAT | O_TRUNC | O_WRONLY;
-    if(overwrite)
+    if(!overwrite)
     {
         dstflags |= O_EXCL;
     }
@@ -128,14 +142,14 @@ void SMBSlave::copy( const KURL& ksrc,
         {
             error(KIO::ERR_CANNOT_OPEN_FOR_READING, dst.toKioUrl());
         }
+	if(srcfd >= 0 )
+	{
+	  smbc_close(srcfd);
+	}
         return;
     }
 
-    if(buf == NULL)
-    {
-        goto FINISHED;
-    }
-    
+
     // Perform copy
     while(1)
     {
@@ -145,6 +159,7 @@ void SMBSlave::copy( const KURL& ksrc,
             n = smbc_write(dstfd, buf, n);
             if(n == -1)
             {
+	        kdDebug(KIO_SMB) << "SMBSlave::copy copy now KIO::ERR_COULD_NOT_WRITE" << endl;
                 error( KIO::ERR_COULD_NOT_WRITE, dst.toKioUrl());
                 break;
             }
@@ -157,15 +172,15 @@ void SMBSlave::copy( const KURL& ksrc,
                 speed(processed_size / (curtime - starttime));
                 lasttime = curtime;
             }
-        }
+	}
         else if(n == 0)
-        {
-            break; // finished
-        }
-        else
-        {
+	{
+	      break; // finished
+	}
+	else
+	{
             error( KIO::ERR_COULD_NOT_READ, src.toKioUrl());
-            break;
+	    break;
         }
     }
         
@@ -181,20 +196,13 @@ void SMBSlave::copy( const KURL& ksrc,
     {
         if(smbc_close(dstfd) == 0)
         {
-            /*
+
             // TODO: set final permissions
-            if(_mode != -1)
-            {
-                if(::chmod(_dest.data(), _mode) != 0)
-                {
-                    warning( i18n( "Could not change permissions for\n%1" ).arg( dst.toKioUrl() ) );
-                }
-            }
-            */
         }
         else
         {
             error( KIO::ERR_COULD_NOT_WRITE, dst.toKioUrl());
+	    return;
         }
     }
 
@@ -227,6 +235,7 @@ void SMBSlave::del( const KURL &kurl, bool isfile)
             default:
                 error( KIO::ERR_CANNOT_DELETE, m_current_url.toKioUrl());
             }
+	    return;
         }
     }
     else
@@ -246,6 +255,7 @@ void SMBSlave::del( const KURL &kurl, bool isfile)
                 break;
             }
         }
+	return;
     }
 
     finished();
@@ -256,7 +266,6 @@ void SMBSlave::mkdir( const KURL &kurl, int permissions )
 {
     kdDebug(KIO_SMB) << "SMBSlave::mkdir on " << kurl.url() << endl;
     m_current_url.fromKioUrl( kurl );
-    struct stat st;
 
     if(smbc_mkdir(m_current_url.toSmbcUrl(), 0777) != 0)
     {
@@ -286,6 +295,7 @@ void SMBSlave::mkdir( const KURL &kurl, int permissions )
             error( KIO::ERR_COULD_NOT_MKDIR, m_current_url.toKioUrl());
             break;
         }
+	return;
     }
     else
     {
@@ -304,7 +314,6 @@ void SMBSlave::mkdir( const KURL &kurl, int permissions )
 void SMBSlave::rename( const KURL& ksrc, const KURL& kdest, bool overwrite )
 {
 
-    struct stat st;
     SMBUrl      src;
     SMBUrl      dst;
 
@@ -319,50 +328,43 @@ void SMBSlave::rename( const KURL& ksrc, const KURL& kdest, bool overwrite )
     {
         if(S_ISDIR(st.st_mode))
         {
-            error( KIO::ERR_DIR_ALREADY_EXIST, src.toKioUrl());
-            goto FINISHED;
+            error( KIO::ERR_DIR_ALREADY_EXIST, dst.toKioUrl());
+	    return;
         }
         if(!overwrite)
         {
-            error( KIO::ERR_FILE_ALREADY_EXIST, src.toKioUrl());
-            goto FINISHED;
-        }
+            error( KIO::ERR_FILE_ALREADY_EXIST, dst.toKioUrl());
+	    return;
+	}
     }
-
     if(smbc_rename(src.toSmbcUrl(), dst.toSmbcUrl())!=0)
     {
-        switch(errno)
-        {
+      switch(errno)
+      {
         case ENOENT:
-            if(cache_stat(src, &st) == -1)
-            {
-                if(errno == EACCES)
-                {
-		  kdDebug(KIO_SMB) << "SMBSlave::rename new name = " << ksrc.url() <<" access denied !!"<< endl;
-                    error(KIO::ERR_ACCESS_DENIED, dst.toKioUrl());
-                }
-                else
-                {
-		  kdDebug(KIO_SMB) << "SMBSlave::rename new name = " << ksrc.url() <<" does not exists !!"<< endl;
-                    error(KIO::ERR_DOES_NOT_EXIST, src.toKioUrl());
-                }
-            }
-            break;
+          if(cache_stat(src, &st) == -1)
+          {
+              if(errno == EACCES)
+	      {
+                error(KIO::ERR_ACCESS_DENIED, src.toKioUrl());
+              }
+              else
+              {
+                error(KIO::ERR_DOES_NOT_EXIST, src.toKioUrl());
+              }
+          }
+          break;
 
         case EACCES:
         case EPERM:
-	  kdDebug(KIO_SMB) << "SMBSlave::rename new name = " << kdest.url() <<" access denied !!"<< endl;
-            error( KIO::ERR_ACCESS_DENIED, dst.toKioUrl() );
-            break;
+          error( KIO::ERR_ACCESS_DENIED, dst.toKioUrl() );
+          break;
 
         default:
-	  kdDebug(KIO_SMB) << "SMBSlave::rename new name = " << kdest.url() <<" unknown error !!"<< endl;
-            error( KIO::ERR_CANNOT_RENAME, src.toKioUrl() );
-        }
+          error( KIO::ERR_CANNOT_RENAME, src.toKioUrl() );
+      }
+      return;
     }
-
-    FINISHED:
-
     finished();
 }
 
