@@ -55,6 +55,7 @@ private slots:
  void slotEcDisable();
  void slotAddCDDBServer();
  void slotDelCDDBServer();
+ void slotServerTextChanged(const QString & );
 private:
 
   AudiocdConfig *audiocdConfig;

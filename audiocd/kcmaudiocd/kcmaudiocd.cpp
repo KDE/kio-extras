@@ -107,6 +107,7 @@ KAudiocdModule::KAudiocdModule(QWidget *parent, const char *name)
 
     cddb_enable = audiocdConfig->cddb_enable;
     cddb_server = audiocdConfig->cddb_server;
+
     cddb_server_listbox = audiocdConfig->cddb_server_listbox;
     cddbserver_add_push = audiocdConfig->cddbserver_add_push;
     cddbserver_del_push = audiocdConfig->cddbserver_del_push;
@@ -114,6 +115,10 @@ KAudiocdModule::KAudiocdModule(QWidget *parent, const char *name)
     config = new KConfig("kcmaudiocdrc");
 
     load();
+
+    cddbserver_add_push->setEnabled(!cddb_server->text().isEmpty());
+
+    connect(cddb_server, SIGNAL(textChanged ( const QString & )),this,SLOT(slotServerTextChanged(const QString & )));
 
     //CDDA Options
     connect(cd_autosearch_check,SIGNAL(clicked()),this,SLOT(slotConfigChanged()));
@@ -171,6 +176,11 @@ KAudiocdModule::KAudiocdModule(QWidget *parent, const char *name)
     connect(vorbis_nominal_br,SIGNAL(activated(int)),SLOT(slotConfigChanged()));
 
 };
+
+void KAudiocdModule::slotServerTextChanged(const QString &_text )
+{
+    cddbserver_add_push->setEnabled(!_text.isEmpty());
+}
 
 void KAudiocdModule::defaults() {
 
@@ -363,7 +373,7 @@ void KAudiocdModule::load() {
   crc->setChecked(config->readBoolEntry("crc",false));
   id3_tag->setChecked(config->readBoolEntry("id3",true));
 
-  
+
   int brate = config->readNumEntry("cbrbitrate",160);
   cbr_bitrate->setCurrentItem(getBitrateIndex(brate));
 
@@ -396,7 +406,7 @@ void KAudiocdModule::load() {
   slotChangeFilter();
 
   config->setGroup("Vorbis");
-  
+
   brate = config->readNumEntry("vorbis_min_bitrate",40);
   vorbis_min_br->setCurrentItem(getVorbisBitrateIndex(brate));
 
@@ -411,30 +421,30 @@ void KAudiocdModule::load() {
   set_vorbis_nominal_br->setChecked(config->readBoolEntry("set_vorbis_nominal_bitrate",true));
 
   vorbis_comments->setChecked(config->readBoolEntry("vorbis_comments",true));
-   
+
 
 }
 
 int KAudiocdModule::getBitrateIndex(int value) {
-  
-  for (uint i=0;i < sizeof(bitrates);i++) 
-    if (value == bitrates[i]) 
+
+  for (uint i=0;i < sizeof(bitrates);i++)
+    if (value == bitrates[i])
       return i;
   return -1;
 }
 
 int KAudiocdModule::getVorbisBitrateIndex(int value) {
-  
-  for (uint i=0;i < sizeof(vorbis_bitrates);i++) 
-    if (value == vorbis_bitrates[i]) 
+
+  for (uint i=0;i < sizeof(vorbis_bitrates);i++)
+    if (value == vorbis_bitrates[i])
       return i;
   return -1;
 }
 
 int KAudiocdModule::getVorbisNominalBitrateIndex(int value) {
-  
-  for (uint i=0;i < sizeof(vorbis_nominal_bitrates);i++) 
-    if (value == vorbis_nominal_bitrates[i]) 
+
+  for (uint i=0;i < sizeof(vorbis_nominal_bitrates);i++)
+    if (value == vorbis_nominal_bitrates[i])
       return i;
   return -1;
 }
@@ -448,7 +458,8 @@ void KAudiocdModule::slotConfigChanged() {
 
 void KAudiocdModule::slotAddCDDBServer() {
 
-  if(cddbserverlist.find(cddb_server->text()) != cddbserverlist.end()) return;
+    QString strCddb=cddb_server->text();
+    if(strCddb.isEmpty() || (cddbserverlist.find(strCddb) != cddbserverlist.end())) return;
 
   cddbserverlist.append(cddb_server->text());
   cddbserverlist.sort();
@@ -565,7 +576,7 @@ void KAudiocdModule::slotSelectMethod(int index) {
 void KAudiocdModule::slotUpdateVBRWidgets() {
 
   if (vbr_average_br->isEnabled()) {
-    
+
     if(vbr_average_br->isChecked()) {
 
       vbr_min_br->setChecked(false);
@@ -574,7 +585,7 @@ void KAudiocdModule::slotUpdateVBRWidgets() {
       vbr_max_br->setChecked(false);
       vbr_max_br->setDisabled(true);
       vbr_mean_brate->setEnabled(true);
-     
+
     } else {
 
        vbr_min_br->setEnabled(true);
