@@ -533,11 +533,12 @@ LIST
 				// HACK: This assumes fread stops at the first \n and not \r
 				if (strcmp(buf, ".\r\n")==0) break; // End of data
 				// sanders, changed -2 to -1 below
-				buf[strlen(buf)-2]='\0';
-				size+=strlen(buf);
-				array.setRawData(buf, strlen(buf));
+				int bufStrLen = strlen(buf);
+				buf[bufStrLen-2]='\0';
+				size+=bufStrLen;
+				array.setRawData(buf, bufStrLen);
 				data( array );
-				array.resetRawData(buf, strlen(buf));
+				array.resetRawData(buf, bufStrLen);
 				totalSize(size);
 			}
 		}
