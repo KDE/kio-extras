@@ -58,6 +58,7 @@
 #include <kinstance.h>
 #include <kio/connection.h>
 #include <kio/slaveinterface.h>
+#include <kio/sasl/saslcontext.h>
 #include <kio/passdlg.h>
 #include <klocale.h>
 
@@ -251,7 +252,7 @@ void POP3Protocol::pop3_close ()
 	opened = false;
 }
 
-bool POP3Protocol::pop3_open()
+bool POP3Protocol::pop3_open(const KURL &url)
 {
 	char buf[512], *greeting_buf;
 	if ( (m_iOldPort == GetPort(m_iPort)) && (m_sOldServer == m_sServer) &&
@@ -345,9 +346,44 @@ bool POP3Protocol::pop3_open()
 			kdDebug() << "Couldn't login via APOP. Falling back to USER/PASS" << endl;
 			pop3_close();
 			m_try_apop = false;
-			return pop3_open();
+			return pop3_open(url);
 		}
 #endif
+		// Let's try SASL stuff first.. it might be more secure
+		QString sasl_auth, sasl_buffer="AUTH";
+		memset(buf, 0, sizeof(buf));
+
+		// We need to check what methods the server supports...
+		// This is based on RFC 1734's wisdom
+		if (command(sasl_buffer.local8Bit(), buf, sizeof(buf))) {
+			sasl_auth=buf;
+			sasl_auth.replace(QRegExp("."), "");
+			sasl_auth.replace(QRegExp("\\r\\n"), " ");
+			KSASLContext *m_pSASL = new KSASLContext;
+			m_pSASL->setURL(url);
+			sasl_buffer = m_pSASL->chooseMethod(sasl_auth);
+			sasl_auth=sasl_buffer;
+			if (sasl_buffer == QString::null) {
+				delete m_pSASL;
+			} else {
+				// Yich character arrays..
+				char *challenge=static_cast<char *>(malloc(2049));
+				sasl_buffer.prepend("AUTH ");
+				if (!command(sasl_buffer.latin1(), challenge, 2049)) {
+					free(challenge);
+					delete m_pSASL; m_pSASL=0;
+				} else {
+					bool ret, b64=true;
+					// See the SMTP ioslave
+					if (sasl_auth == "PLAIN")
+						b64=false;
+					ret = command(m_pSASL->generateResponse(challenge, false).latin1());
+					free(challenge);
+					delete m_pSASL;
+					if (ret) return true;
+				}
+			}
+		}
 
 		// Fall back to conventional USER/PASS scheme
 		if (!command(one_string.local8Bit(), buf, sizeof(buf))) {
@@ -439,7 +475,7 @@ void POP3Protocol::get( const KURL& url )
 	cmd = path.left(path.find('/'));
 	path.remove(0,path.find('/')+1);
 
-	if (!pop3_open()) {
+	if (!pop3_open(url)) {
 		kdDebug() << "pop3_open failed" << endl;
 		pop3_close();
 		error( ERR_COULD_NOT_CONNECT, m_sServer);
@@ -637,14 +673,14 @@ LIST
 	}
 }
 
-void POP3Protocol::listDir( const KURL & /* url*/ )
+void POP3Protocol::listDir (const KURL &url)
 {
 	bool isINT; int num_messages=0;
 	char buf[MAX_RESPONSE_LEN];
 	QCString q_buf;
 
 	// Try and open a connection
-	if (!pop3_open()) {
+	if (!pop3_open(url)) {
 		kdDebug() << "pop3_open failed" << endl;
 		error( ERR_COULD_NOT_CONNECT, m_sServer);
 		pop3_close();
@@ -755,7 +791,7 @@ void POP3Protocol::del( const KURL& url, bool /*isfile*/ )
 	QString invalidURI=QString::null;
 	bool isInt;
 
-	if ( !pop3_open() ) {
+	if ( !pop3_open(url) ) {
 		kdDebug() << "pop3_open failed" << endl;
 		error( ERR_COULD_NOT_CONNECT, m_sServer );
 		pop3_close();

@@ -90,7 +90,7 @@ protected:
 	  * is passed, port 110 is assumed, if no user || password is
 	  * specified, the user is prompted for them.
 	  */
-	bool pop3_open ();
+	bool pop3_open (const KURL &url);
 
 	int m_cmd;
 	unsigned short int m_iOldPort;
