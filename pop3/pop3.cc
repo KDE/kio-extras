@@ -144,7 +144,6 @@ ssize_t POP3Protocol::myReadLine(char *data, ssize_t len)
   ssize_t copyLen = 0, readLen = 0;
   while (true) {
     while (copyLen < readBufferLen && readBuffer[copyLen] != '\n') copyLen++;
-POP3_DEBUG << "readBufferLen = " << readBufferLen << ", copyLen = " << copyLen << endl;
     if (copyLen < readBufferLen || copyLen == len)
     {
       copyLen++;
@@ -163,7 +162,6 @@ POP3_DEBUG << "readBufferLen = " << readBufferLen << ", copyLen = " << copyLen <
 
 bool POP3Protocol::getResponse (char *r_buf, unsigned int r_len, const char *cmd)
 {
-POP3_DEBUG << "POP3Protocol::getResponse" << endl;
 	char *buf = 0;
 	unsigned int recv_len = 0;
 	fd_set FDs;
@@ -176,7 +174,6 @@ POP3_DEBUG << "POP3Protocol::getResponse" << endl;
 	// Clear out the buffer
 	memset(buf, 0, r_len);
 	myReadLine(buf, r_len-1);
-POP3_DEBUG << "response = " << buf << endl;
 
 	// This is really a funky crash waiting to happen if something isn't
 	// null terminated.
