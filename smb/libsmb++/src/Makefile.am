@@ -11,7 +11,7 @@ libsmb___la_SOURCES = types.cpp Options.cpp Util.cpp Resolve.cpp FileManagementI
 noinst_HEADERS = \
 	smb++.h \
 	strtool.h \
-	cursesHacks.h
+	cursesHacks.h \
 	defines.h \
 	Util.h \
 	FileManagementInterface.h \
