@@ -78,7 +78,7 @@ int main( int argc, char** argv )
     const KTarDirectory* dir = tar.directory();
 
     const KTarEntry* e = dir->entry( argv[3] );
-    ASSERT( e && e->isFile() );
+    Q_ASSERT( e && e->isFile() );
     const KTarFile* f = (KTarFile*)e;
 
     QByteArray arr( f->data() );
@@ -148,7 +148,7 @@ int main( int argc, char** argv )
     recursive_print(dir, "");
 
     const KTarEntry* e = dir->entry( "mydir/test3" );
-    ASSERT( e && e->isFile() );
+    Q_ASSERT( e && e->isFile() );
     const KTarFile* f = (KTarFile*)e;
 
     QByteArray arr( f->data() );
