@@ -1,0 +1,13 @@
+[Desktop Entry]
+Encoding=UTF-8
+Icon=cdrom_unmount
+Type=MimeType
+MimeType=kdedevice/cdrom_unmounted
+Comment=Unmounted CDROM
+Comment[da]=Afmonteret CDROM
+Comment[he]=תקליטור מנותק
+Comment[sv]=Avmonterad cd-rom
+Comment[tr]=Ayrılmış CD Sürücü
+Patterns=
+
+X-KDE-AutoEmbed=true

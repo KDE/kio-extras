@@ -1,8 +1,8 @@
 [Desktop Entry]
-ServiceTypes=kdedevice/nfs_mounted
-Actions=nfs_unmount
+ServiceTypes=kdedevice/cdwriter_mounted
+Actions=cdwriter_unmount
 
-[Desktop Action nfs_unmount]
+[Desktop Action cdwriter_unmount]
 Name=Unmount
 Name[af]=ontkoppel
 Name[da]=Afmontér

@@ -1,0 +1,12 @@
+[Desktop Entry]
+ServiceTypes=kdedevice/cdwriter_unmounted
+Actions=cdwriter_mount
+
+[Desktop Action cdwriter_mount]
+Name=Mount
+Name[af]=mount
+Name[da]=Montér
+Name[he]=חבר
+Name[sv]=Montera
+Name[tr]=Bağla
+Exec=kio_devices_mounthelper -m %u
