@@ -106,7 +106,7 @@ private:
      * From Controlcenter
      */
     QString  m_default_user;
-    QString  m_default_workgroup;
+//    QString  m_default_workgroup; //currently unused, Alex <neundorf@kde.org>
     QString  m_default_password;
     QString  m_default_encoding;
 
@@ -119,7 +119,7 @@ private:
     /**
      * From Controlcenter, show SHARE$ or not
      */
-    bool m_showHiddenShares;
+//    bool m_showHiddenShares;     //currently unused, Alex <neundorf@kde.org>
 
     /**
      * libsmbclient need global variables to store in,

@@ -40,8 +40,8 @@ void SMBSlave::reparseConfiguration()
   KConfig *cfg = new KConfig("kioslaverc", true);
   cfg->setGroup("Browser Settings/SMBro");
   m_default_user=cfg->readEntry("User");
-  m_default_workgroup=cfg->readEntry("Workgroup");
-  m_showHiddenShares=cfg->readBoolEntry("ShowHiddenShares",false);
+//  m_default_workgroup=cfg->readEntry("Workgroup");
+//  m_showHiddenShares=cfg->readBoolEntry("ShowHiddenShares",false);
 
   QString m_encoding = QTextCodec::codecForLocale()->name();
   m_default_encoding = cfg->readEntry( "Encoding", m_encoding.lower() );
