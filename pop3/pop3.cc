@@ -4,6 +4,10 @@
 #include <sys/socket.h>
 #include <sys/stat.h>
 #include <sys/time.h>
+#include <ctype.h>
+#ifdef HAVE_SYS_SELECT_H
+#include <sys/select.h>
+#endif
 
 #include <netinet/in.h>
 #include <arpa/inet.h>
@@ -18,41 +22,55 @@
 #include <qcstring.h>
 #include <qglobal.h>
 
-#include <kurl.h>
 #include <kprotocolmanager.h>
 #include <ksock.h>
-#include <kio_interface.h>
 #include <kdebug.h>
 #include <kinstance.h>
+#include <kio/connection.h>
+#include <kio/slaveinterface.h>
+#include <kio/passdlg.h>
 
 #include "pop3.h"
 
-bool open_PassDlg( const QString& _head, QString& _user, QString& _pass );
+using namespace KIO;
 
-int main(int , char **)
+POP3Protocol::POP3Protocol(Connection *_conn)
+  : SlaveBase( "pop3", _conn)
 {
-  signal(SIGCHLD, KIOProtocol::sigchld_handler);
-// Prevents coredumps (from SIGSEGV) if -DNDEBUG is used
-#ifdef NDEBUG
-  signal(SIGSEGV, KIOProtocol::sigsegv_handler);
-#endif
-
-  KInstance instance( "kio_pop3" );
-
-  KIOConnection parent( 0, 1 );
-
-  POP3Protocol pop3( &parent );
-  pop3.dispatchLoop();
-}
-
-POP3Protocol::POP3Protocol(KIOConnection *_conn) : KIOProtocol(_conn)
-{
+  debug( "POP3Protocol()" );
   m_cmd = CMD_NONE;
-  m_pJob = 0L;
   m_iSock = m_iOldPort = 0;
   m_tTimeout.tv_sec=10;
   m_tTimeout.tv_usec=0;
   fp = 0;
+}
+
+POP3Protocol::~POP3Protocol()
+{
+  debug( "~POP3Protocol()" );
+  pop3_close();
+}
+
+void POP3Protocol::openConnection( const QString& _host, int _port, const QString& _user, const QString& _pass )
+{
+  urlPrefix = "pop3://";
+  if (!_user.isEmpty()) {
+    urlPrefix += _user;
+    if (!_pass.isEmpty())
+      urlPrefix += ":" + _pass;
+    urlPrefix += "@";
+  }
+  urlPrefix += _host;
+  if (_port)
+    urlPrefix += QString( ":%1" ).arg( _port );
+  debug( "urlPrefix " + urlPrefix );
+
+  connected();
+}
+
+void POP3Protocol::closeConnection()
+{
+  ready();
 }
 
 bool POP3Protocol::getResponse (char *r_buf, unsigned int r_len)
@@ -220,7 +238,7 @@ bool POP3Protocol::pop3_open( KURL &_url )
     if (_url.user().isEmpty() || _url.pass().isEmpty()) {
       // Prompt for usernames
       QString head="Username and password for your POP3 account:";
-      if (!open_PassDlg(head, usr, pass)) {
+      if (!openPassDlg(head, usr, pass)) {
 	return false;
 	pop3_close();
       } else {
@@ -276,70 +294,19 @@ size_t POP3Protocol::realGetSize(unsigned int msg_num)
   return ret;
 }
 
-void POP3Protocol::slotGetSize( const char * _url )
-{
-  // This should I deally call the totalSize function for the URL,
-  // but I haven't really tested this.
-  // bool ok=true;
-  // static char buf[512];
-  QString path, cmd;
-  KURL usrc(_url);
-
-  // We can't work on an invalid URL.
-  if ( usrc.isMalformed() ) {
-    error( ERR_MALFORMED_URL, strdup(_url) );
-    m_cmd = CMD_NONE;
-    return;
-  }
-
-  if (usrc.protocol() != "pop") {
-    error( ERR_INTERNAL, "kio_pop3 got non pop3 url" );
-    m_cmd = CMD_NONE;
-    return;
-  }
-
-  if (path.at(0)=='/') path.remove(0,1);
-  if (path.isEmpty()) {
-    qDebug("We should be a dir!!");
-    error(ERR_IS_DIRECTORY, strdup(_url));
-    m_cmd=CMD_NONE; return;
-  }
-  if (path.left(8)=="Message ") path.remove(0,8);
-
-  bool isINT;
-  int msg_num=path.toUInt(&isINT);
-  if (!isINT) {
-    //error(ERR_MALFORMED_URL, strdup(_url));
-    return;
-  }
-
-  if (!pop3_open(usrc)) {
-    fprintf(stderr,"pop3_open failed\n");fflush(stderr);
-    error( ERR_COULD_NOT_CONNECT, strdup(usrc.host()));
-    pop3_close();
-    return;
-  }
-
-  totalSize(realGetSize(msg_num));
-  finished();
-  m_cmd = CMD_NONE;
-
-}
-
-
-void POP3Protocol::slotGet(const char *_url)
+void POP3Protocol::get( const QString& __url, const QString&, bool )
 {
 // List of supported commands
 //
-// URI                                Command   Result
-// pop://user:pass@domain/index       LIST      List message sizes
-// pop://user:pass@domain/uidl        UIDL      List message UIDs
-// pop://user:pass@domain/remove/#1   DELE #1   Mark a message for deletion
-// pop://user:pass@domain/download/#1 RETR #1   Get message header and body
-// pop://user:pass@domain/list/#1     LIST #1   Get size of a message
-// pop://user:pass@domain/uid/#1      UIDL #1   Get UID of a message
-// pop://user:pass@domain/commit      QUIT      Delete marked messages
-// pop://user:pass@domain/headers/#1  TOP #1    Get header of message
+// URI                                 Command   Result
+// pop3://user:pass@domain/index       LIST      List message sizes
+// pop3://user:pass@domain/uidl        UIDL      List message UIDs
+// pop3://user:pass@domain/remove/#1   DELE #1   Mark a message for deletion
+// pop3://user:pass@domain/download/#1 RETR #1   Get message header and body
+// pop3://user:pass@domain/list/#1     LIST #1   Get size of a message
+// pop3://user:pass@domain/uid/#1      UIDL #1   Get UID of a message
+// pop3://user:pass@domain/commit      QUIT      Delete marked messages
+// pop3://user:pass@domain/headers/#1  TOP #1    Get header of message
 //
 // Notes:
 // Sizes are in bytes.
@@ -348,15 +315,17 @@ void POP3Protocol::slotGet(const char *_url)
 
   bool ok=true;
   static char buf[512];
+  QByteArray array;
   QString path, cmd;
+  QString _url = urlPrefix + __url;
   KURL usrc(_url);
   if ( usrc.isMalformed() ) {
-    error( ERR_MALFORMED_URL, strdup(_url) );
+    error( ERR_MALFORMED_URL, _url );
     m_cmd = CMD_NONE;
     return;
   }
 
-  if (usrc.protocol() != "pop") {
+  if (usrc.protocol() != "pop3") {
     error( ERR_INTERNAL, "kio_pop3 got non pop3 url" );
     m_cmd = CMD_NONE;
     return;
@@ -367,13 +336,13 @@ void POP3Protocol::slotGet(const char *_url)
   if (path.at(0)=='/') path.remove(0,1);
   if (path.isEmpty()) {
     debug("We should be a dir!!");
-    error(ERR_IS_DIRECTORY, strdup(_url));
+    error(ERR_IS_DIRECTORY, _url);
     m_cmd=CMD_NONE; return;
   }
 
   if (((path.find("/") == -1) && (path != "index") &&
        (path != "uidl") && (path != "commit")) ) {
-    error( ERR_MALFORMED_URL, strdup(_url) );
+    error( ERR_MALFORMED_URL, _url );
     m_cmd = CMD_NONE;
     return;
   }
@@ -403,9 +372,9 @@ void POP3Protocol::slotGet(const char *_url)
 	if (!fgets(buf, sizeof(buf)-1, fp))
 	  break;  // Error??
 	// HACK: This assumes fread stops at the first \n and not \r
+	if (strcmp(buf, ".\r\n")==0) break; // End of data
+	// sanders, changed -2 to -1 below
 	buf[strlen(buf)-2]='\0';
-	if (strcmp(buf, ".")==0)  break; // End of data.	
-	else {
 /*
 LIST
 +OK Mailbox scan listing follows
@@ -423,13 +392,14 @@ LIST
 12 649
 .
 */
-		size+=strlen(buf);
-		data(buf, strlen(buf));
-		totalSize(size);
-	}
+	size+=strlen(buf);
+	array.setRawData(buf, strlen(buf));
+	data( array );
+	array.resetRawData(buf, strlen(buf));
+	totalSize(size);
       }
       fprintf(stderr,"Finishing up list\n");fflush(stderr);
-      dataEnd();
+      data( QByteArray() );
       speed(0); finished();
     }
   }
@@ -448,19 +418,29 @@ LIST
       mimeType("text/plain");
       memset(buf, 0, sizeof(buf));
       while (!feof(fp)) {
+	fprintf(stderr,"xxxxxxxxxxxFinishing up\n");fflush(stderr);
 	memset(buf, 0, sizeof(buf));
 	if (!fgets(buf, sizeof(buf)-1, fp))
 	  break;  // Error??
+
 	// HACK: This assumes fread stops at the first \n and not \r
-	buf[strlen(buf)-2]='\0';
-	if (strcmp(buf, ".")==0)  break; // End of data.
-	else if (strcmp(buf, "..")==0)
-		data (".", 1);
-	else
-		data(buf, strlen(buf));
+	if (strcmp(buf, ".\r\n")==0) break; // End of data
+	// sanders, changed -2 to -1 below
+	buf[strlen(buf)-1]='\0';
+	if (strcmp(buf, "..")==0) {
+	  buf[0] = '.';
+	  array.setRawData(buf, 1);
+	  data( array );
+	  array.resetRawData(buf, 1);
+	}
+	else {
+	  array.setRawData(buf, strlen(buf));
+	  data( array );
+	  array.resetRawData(buf, strlen(buf));
+	}
       }
       fprintf(stderr,"Finishing up\n");fflush(stderr);
-      dataEnd();
+      data( QByteArray() );
       speed(0); finished();
     }
   }
@@ -512,14 +492,17 @@ LIST
 	if (!fgets(buf, sizeof(buf)-1, fp))
 	  break;  // Error??
 	// HACK: This assumes fread stops at the first \n and not \r
-	buf[strlen(buf)-2]='\0';
-	if (strcmp(buf, ".")==0)  break; // End of data.
-	data(buf, strlen(buf));
+	if (strcmp(buf, ".\r\n")==0) break; // End of data
+	// sanders, changed -2 to -1 below
+	buf[strlen(buf)-1]='\0';
+	array.setRawData(buf, strlen(buf));
+	data( array );
+	array.resetRawData(buf, strlen(buf));
 	p_size+=strlen(buf);
 	processedSize(p_size);
       }
       fprintf(stderr,"Finishing up\n");fflush(stderr);
-      dataEnd();
+      data(QByteArray());
       speed(0); finished();
     } else {
       fprintf(stderr, "Couldn't login. Bad RETR Sorry\n");
@@ -544,11 +527,13 @@ LIST
       gettingFile(_url);
       mimeType("text/plain");
       totalSize(len);
-      data(buf, len);
+      array.setRawData(buf, len);
+      data( array );
+      array.resetRawData(buf, len);
       processedSize(len);
       debug( buf );
       fprintf(stderr,"Finishing up uid\n");fflush(stderr);
-      dataEnd();
+      data(QByteArray());
       speed(0); finished();
     } else {
       pop3_close(); return;
@@ -556,6 +541,7 @@ LIST
   }
 
   else if (cmd == "commit") {
+    fprintf(stderr,"Issued QUIT\n");fflush(stderr);
     pop3_close();
     finished();
     m_cmd = CMD_NONE;
@@ -564,11 +550,12 @@ LIST
 
 }
 
-void POP3Protocol::slotListDir (const char *_url)
+void POP3Protocol::listDir( const QString & _path )
 {
   bool isINT; int num_messages=0;
   char buf[512];
   QCString q_buf;
+  QString _url = urlPrefix + _path;
   KURL usrc( _url );
   if ( usrc.isMalformed() ) {
     error( ERR_MALFORMED_URL, _url );
@@ -603,8 +590,8 @@ void POP3Protocol::slotListDir (const char *_url)
     pop3_close();
     return;
   }
-  KUDSEntry entry;
-  KUDSAtom atom;
+  UDSEntry entry;
+  UDSAtom atom;
   QString fname;
   for (int i=0; i < num_messages; i++) {
     fname="Message %1";
@@ -618,20 +605,20 @@ void POP3Protocol::slotListDir (const char *_url)
     atom.m_long = 0;
     atom.m_str = "text/plain";
     entry.append(atom);
-fprintf(stderr,"Mimetype is %s\n", atom.m_str.ascii());
+    fprintf(stderr,"Mimetype is %s\n", atom.m_str.ascii());
 
     atom.m_uds = UDS_URL;
     QString uds_url;
     if (usrc.user().isEmpty() || usrc.pass().isEmpty()) {
-      uds_url="pop://%1/download/%2";
+      uds_url="pop3://%1/download/%2";
       atom.m_str = uds_url.arg(usrc.host()).arg(i+1);
     } else {
-      uds_url="pop://%1:%2@%3/download/%3";
+      uds_url="pop3://%1:%2@%3/download/%3";
       atom.m_str = uds_url.arg(usrc.user()).arg(usrc.pass()).arg(usrc.host()).arg(i+1);
     }
     atom.m_long = 0;
     entry.append(atom);
-fprintf(stderr,"URL is %s\n", atom.m_str.ascii());
+    fprintf(stderr,"URL is %s\n", atom.m_str.ascii());
 
     atom.m_uds = UDS_FILE_TYPE;
     atom.m_str = "";
@@ -643,156 +630,71 @@ fprintf(stderr,"URL is %s\n", atom.m_str.ascii());
     atom.m_long = realGetSize(i+1);
     entry.append(atom);
 
-    listEntry(entry);
+    listEntry(entry, false);
     entry.clear();
   }
+  listEntry( entry, true ); // ready
+  
   finished();
 }
 
-void POP3Protocol::slotTestDir (const char *_url)
+void POP3Protocol::stat( const QString & path )
 {
-	KURL usrc(_url);
-	// An empty path is essentially a request for an index...
-	if (usrc.path() == "/" || usrc.path() == "")
-		isDirectory();
-	else
-		isFile();
-	finished();
+  QString _path = path;
+  if (_path.at(0) == '/')
+    _path.remove(0,1);
+
+  UDSEntry entry;
+  UDSAtom atom;
+  atom.m_uds = KIO::UDS_NAME;
+  atom.m_str = _path;
+  entry.append( atom );
+
+  // TODO: maybe get the size of the message?
+
+  statEntry( entry );
+  finished();
 }
 
-void POP3Protocol::slotCopy(const char *, const char *)
+void POP3Protocol::del( const QString& path, bool /*isfile*/ )
 {
-  fprintf(stderr, "POP3Protocol::slotCopy\n");
-  fflush(stderr);
-}
+  QString _url = urlPrefix + path;
+  KURL usrc(_url);
+  QString invalidURI=QString::null;
+  bool isInt;
 
-void POP3Protocol::slotData(void *, int)
-{
-  switch (m_cmd) {
-    case CMD_PUT:
-	// Send data here
-      break;
-    default:
-      abort();
-      break;
-    }
-}
-
-void POP3Protocol::slotDataEnd()
-{
-  switch (m_cmd) {
-    case CMD_PUT:
-      m_cmd = CMD_NONE;
-      break;
-    default:
-      abort();
-      break;
-    }
-}
-
-void POP3Protocol::jobData(void *, int )
-{
-  switch (m_cmd) {
-  case CMD_GET:
-    break;
-  case CMD_COPY:
-    break;
-  default:
-    abort();
+  if ( usrc.isMalformed() ) {
+    error( ERR_MALFORMED_URL, _url );
+    m_cmd = CMD_NONE;
+    return;
   }
-}
 
-void POP3Protocol::jobError(int _errid, const char *_text)
-{
-  error(_errid, _text);
-}
-
-void POP3Protocol::jobDataEnd()
-{
-  switch (m_cmd) {
-  case CMD_GET:
-    dataEnd();
-    break;
-  case CMD_COPY:
-    m_pJob->dataEnd();
-    break;
-  default:
-    abort();
-  }
-}
-
-void POP3Protocol::slotDel( QStringList& _list )
-{
-    // FIXME: this should iterate through the possible URIs, and
-    // put them into some sort of dict based on the server they correspond
-    // to, and count them and validate them.  *then* and only then
-    // should it actually try and delete them.
-
-    QStringList::Iterator files = _list.begin();
-    QString path, invalidURI=QString::null;
-    bool isInt;
-    KURL blah=(*_list.begin());
-    if ( !pop3_open(blah) ) {
-      fprintf(stderr,"pop3_open failed\n");fflush(stderr);
-      error( ERR_COULD_NOT_CONNECT, strdup(blah.host()));
-      pop3_close();
-      return;
-    }
-    totalSize(_list.count());
-    totalFiles(_list.count());
-    totalDirs(0);
-    for (; files != _list.end(); ++files) {
-	KURL target(*files);
-	if ( target.isMalformed() ) {
-	  error( ERR_MALFORMED_URL, *files );
-	  m_cmd = CMD_NONE;
-	  return;
-	}
-	path=target.path();
-	if (path.at(0) == '/')
-	  path.remove(0,1);
-	(void)path.toUInt(&isInt);
-	if (!isInt) {
-	  invalidURI=path;
-	} else {
-	  path.prepend("DELE ");
-	  if (!command(path)) {
-	    invalidURI=path;
-	  }
-	}
-    }
-    if (!invalidURI.isEmpty()) {
-	error(ERR_MALFORMED_URL, invalidURI);
-    }
+  if ( !pop3_open(usrc) ) {
+    fprintf(stderr,"pop3_open failed\n");fflush(stderr);
+    error( ERR_COULD_NOT_CONNECT, strdup(usrc.host()));
     pop3_close();
-    finished();
-    m_cmd=CMD_NONE;
+    return;
+  }
+  
+  QString _path = path;
+  if (_path.at(0) == '/')
+    _path.remove(0,1);
+  (void)_path.toUInt(&isInt);
+  if (!isInt) {
+    invalidURI=_path;
+  } else {
+    _path.prepend("DELE ");
+    if (!command(_path)) {
+      invalidURI=_path;
+    }
+  }
+
+  debug( "POP3Protocol::del " + _path );
+  finished();
 }
 
-/*************************************
- *
- * POP3IOJob
- *
- *************************************/
-
-POP3IOJob::POP3IOJob(KIOConnection *_conn, POP3Protocol *_pop3) :
-	KIOJobBase(_conn)
-{
-  m_pPOP3 = _pop3;
-}
-
-void POP3IOJob::slotData(void *_p, int _len)
-{
-  m_pPOP3->jobData( _p, _len );
-}
-
-void POP3IOJob::slotDataEnd()
-{
-  m_pPOP3->jobDataEnd();
-}
-
-void POP3IOJob::slotError(int _errid, const char *_txt)
-{
-  KIOJobBase::slotError( _errid, _txt );
-  m_pPOP3->jobError(_errid, _txt );
+extern "C" {
+    SlaveBase *init_pop3() {
+        return new POP3Protocol();
+    }
 }

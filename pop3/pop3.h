@@ -8,33 +8,21 @@
 
 #include <qstring.h>
 
-#include <kio_interface.h>
-#include <kio_base.h>
-#include <kio_filter.h>
-#include <kurl.h>
+#include <kio/slavebase.h>
 
-class POP3Protocol : public KIOProtocol
+class POP3Protocol : public KIO::SlaveBase
 {
 public:
-  POP3Protocol (KIOConnection *_conn);
-  
-  virtual void slotGet (const char *_url);
-  virtual void slotGetSize (const char *_url );
-  virtual void slotCopy (const char *_source, const char *_dest);
+  POP3Protocol (KIO::Connection *connection = 0 );
+  virtual ~POP3Protocol();
 
-  virtual void slotData (void *_p, int _len);
-  virtual void slotDataEnd ();
+  virtual void openConnection( const QString& host, int port, const QString& user, const QString& pass );
+  virtual void closeConnection();
 
-  virtual void slotDel( QStringList& _source );
-
-  virtual void slotListDir( const char *_url );
-  virtual void slotTestDir( const char *_url );
-  
-  void jobData (void *_p, int _len);
-  void jobError (int _errid, const char *_text);
-  void jobDataEnd ();
-  
-  KIOConnection* connection () { return KIOConnectionSignals::m_pConnection; }
+  virtual void get( const QString& __url, const QString& query, bool reload );
+  virtual void stat( const QString & );
+  virtual void del( const QString &path, bool isfile);
+  virtual void listDir( const QString& path );
   
  protected:
 
@@ -74,27 +62,14 @@ public:
     * is passed, port 110 is assumed, if no user || password is
     * specified, the user is prompted for them.
     */
-  bool pop3_open (KURL &_url);
+  bool pop3_open( KURL &_url );
 
   int m_cmd, m_iSock;
   unsigned short int m_iOldPort;
   struct timeval m_tTimeout;
   QString m_sOldServer, m_sOldPass, m_sOldUser;
   FILE *fp;
-  KIOJobBase* m_pJob;
-};
-
-class POP3IOJob : public KIOJobBase
-{
- public:
-  POP3IOJob (KIOConnection *_conn, POP3Protocol *_pop3);
-  
-  virtual void slotData (void *_p, int _len);
-  virtual void slotDataEnd ();
-  virtual void slotError (int _errid, const char *_txt);
-  
- protected:
-  POP3Protocol *m_pPOP3;
+  QString urlPrefix;
 };
 
 #endif
