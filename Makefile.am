@@ -8,5 +8,6 @@
 
 #added nfs subdir
 #removed nfs subdir, it does not compile
+#added gopher, isn't it time for a proper changelog yet?
 
 SUBDIRS = smb smtp pop3 nntp info $(LDAP_SUBDIR) man help

@@ -19,40 +19,50 @@
 #include <qcstring.h>
 #include <qglobal.h>
 
-#include <kurl.h>
 #include <kprotocolmanager.h>
 #include <ksock.h>
+#include <kdebug.h>
 #include <kinstance.h>
+#include <kio/connection.h>
+#include <kio/slaveinterface.h>
+#include <kio/passdlg.h>
+
+#include <klocale.h>
 
 #include "gopher.h"
 
 #include <iostream.h>
 
-bool open_PassDlg( const QString& _head, QString& _user, QString& _pass );
 
-int main(int , char **)
+using namespace KIO;
+
+extern "C" { int kdemain(int argc, char **argv); }
+
+int kdemain(int argc, char **argv)
 {
-  signal(SIGCHLD, KIOProtocol::sigchld_handler);
-#ifdef NDEBUG
-  signal(SIGSEGV, KIOProtocol::sigsegv_handler);
-#endif
-
   KInstance instance( "kio_gopher" );
-
-  KIOConnection parent( 0, 1 );
-
-  GopherProtocol gopher( &parent );
-  gopher.dispatchLoop();
+  if (argc != 4) {
+    fprintf(stderr, "usage statement needs to go here\n");
+    exit(-1);
+  }
+  GopherProtocol slave(argv[2], argv[3]);
+  slave.dispatchLoop();
+  return 0;
 }
 
-GopherProtocol::GopherProtocol(KIOConnection *_conn) : KIOProtocol(_conn)
+GopherProtocol::GopherProtocol(const QCString &pool, const QCString &app)
+  : SlaveBase( "gopher", pool, app)
 {
   m_cmd = CMD_NONE;
-  m_pJob = 0L;
   m_iSock = 0;
   m_tTimeout.tv_sec=10;
   m_tTimeout.tv_usec=0;
   fp = 0;
+}
+
+GopherProtocol::~GopherProtocol()
+{
+	gopher_close();
 }
 
 void GopherProtocol::gopher_close ()
@@ -63,7 +73,7 @@ void GopherProtocol::gopher_close ()
   }
 }
 
-bool GopherProtocol::gopher_open( KURL &_url )
+bool GopherProtocol::gopher_open( const KURL &_url )
 {
   // This function is simply a wrapper to establish the connection
   // to the server.  It's a bit more complicated than ::connect
@@ -90,10 +100,10 @@ bool GopherProtocol::gopher_open( KURL &_url )
 
   gopher_close();
   m_iSock = ::socket(PF_INET, SOCK_STREAM, 0);
-  if (!KSocket::initSockaddr(&server_name, _url.host(), port))
+  if (!KSocket::initSockaddr(&server_name, m_sServer.ascii(), port))
     return false;
   if (::connect(m_iSock, (struct sockaddr*)(&server_name), sizeof(server_name))) {
-    error( ERR_COULD_NOT_CONNECT, strdup(_url.host()));
+    error( ERR_COULD_NOT_CONNECT, _url.host());
     return false;
   }
 
@@ -111,25 +121,25 @@ bool GopherProtocol::gopher_open( KURL &_url )
   if (path.isEmpty()) {
     // We just want the initial listing
     if (::write(m_iSock, "\r\n", 2) != 2) {
-      error(ERR_COULD_NOT_CONNECT, strdup(_url.host()));
+      error(ERR_COULD_NOT_CONNECT, _url.host());
       return false;
     }
   } else {
     path.remove(0,1); // Remove the type identifier
     // It should not be empty here
     if (path.isEmpty()) {
-      error(ERR_MALFORMED_URL, strdup(_url.host()));
+      error(ERR_MALFORMED_URL, _url.host());
       gopher_close();
       return false;
     }
     // Otherwise we should send our request
     if (::write(m_iSock, path.ascii(), strlen(path.ascii())) != strlen(path.ascii())) {
-      error(ERR_COULD_NOT_CONNECT, strdup(_url.host()));
+      error(ERR_COULD_NOT_CONNECT, _url.host());
       gopher_close();
       return false;
     }
     if (::write(m_iSock, "\r\n", 2) != 2) {
-      error(ERR_COULD_NOT_CONNECT, strdup(_url.host()));
+      error(ERR_COULD_NOT_CONNECT, _url.host());
       gopher_close();
       return false;
     }
@@ -138,12 +148,57 @@ bool GopherProtocol::gopher_open( KURL &_url )
   
 }
 
-void GopherProtocol::slotListDir( const char *_url )
+void GopherProtocol::setHost( const QString & _host, int _port, const QString &_user, const QString &_pass)
 {
-  KURL dest(_url);
+  m_sServer = _host;
+  m_iPort = _port;
+  m_sUser = _user;
+  m_sPass = _pass;
+}
+
+void GopherProtocol::stat (const KURL &url)
+{
+  kdDebug() << "STAT CALLZ" << endl;
+  QString _path = url.path();
+  if (_path.at(0) == '/')
+    _path.remove(0,1);
+  UDSEntry entry;
+  UDSAtom atom;
+  atom.m_uds = KIO::UDS_NAME;
+  atom.m_str = _path;
+  entry.append( atom );
+
+  atom.m_uds = KIO::UDS_FILE_TYPE;
+  if ((url.path() == "/") || (_path.at(0) == '1') ) {
+   kdDebug() << "Is a DIR" << endl;
+   atom.m_long = S_IFDIR;
+  } else {
+   kdDebug() << "Is a FILE" << endl;
+   atom.m_long = S_IFREG;
+  }
+  entry.append( atom );
+
+      atom.m_uds = KIO::UDS_ACCESS;
+      atom.m_long = S_IRUSR | S_IRGRP | S_IROTH; // readable by everybody
+      entry.append( atom );
+
+#if 0  
+      atom.m_uds = KIO::UDS_SIZE;
+      atom.m_long = m_iSize;
+      entry.append( atom );
+#endif
+
+  // TODO: maybe get the size of the message?
+  statEntry( entry );
+  finished();
+}
+
+
+void GopherProtocol::listDir( const KURL &dest )
+{
   QString path = dest.path();
   if ( dest.isMalformed() ) {
-    error( ERR_MALFORMED_URL, strdup(_url) );
+    error( ERR_MALFORMED_URL, dest.url() );
     m_cmd = CMD_NONE;
     return;
   }
@@ -159,8 +214,8 @@ void GopherProtocol::slotListDir( const char *_url )
   }
   if (path.at(0) == '/') path.remove(0,1);
 
-  KUDSEntry entry;
-  KUDSAtom atom;
+  UDSEntry entry;
+  UDSAtom atom;
   QString line;
   char buf[128];
   while (fgets(buf, 127, fp)) {
@@ -233,45 +288,21 @@ void GopherProtocol::slotListDir( const char *_url )
     atom.m_long = 0;
     entry.append(atom);
 
-    listEntry(entry);
-    memset(buf, 0, 127);
+    listEntry(entry, false);
+    entry.clear();
   }
+  listEntry(entry, true);
   finished();
   return;
 }
 
-void GopherProtocol::slotTestDir( const char *_url )
+void GopherProtocol::get(const KURL &usrc, bool reload)
 {
-  KURL usrc(_url);
-  // An empty path is essentially a request for an index...
-  QString path = usrc.path();
-  if (path.at(0)=='/') path.remove(0,1);
-  if (path.isEmpty() || path.at(0) == '1')
-    isDirectory();
-  else
-    isFile();
-  finished();
-}
-
-void GopherProtocol::slotGetSize( const char *_url )
-{
-  KURL target(_url);
-  if (target.path() == "/aboutme.txt") {
-    totalSize(strlen(GopherProtocol::abouttext));
-    finished();
-    m_cmd = CMD_NONE;
-  }
-  
-}
-
-void GopherProtocol::slotGet(const char *_url)
-{
-  // bool ok=true;
-  // static char buf[512];
+  QByteArray array;
   QString path, cmd;
-  KURL usrc(_url);
+  //KURL usrc(_url);
   if ( usrc.isMalformed() ) {
-    error( ERR_MALFORMED_URL, strdup(_url) );
+    error( ERR_MALFORMED_URL, usrc.url() );
     m_cmd = CMD_NONE;
     return;
   }
@@ -285,22 +316,23 @@ void GopherProtocol::slotGet(const char *_url)
   path = usrc.path();
 
   if (path == "/aboutme.txt") {
-    ready();
-    gettingFile(_url);
+    gettingFile(usrc.url());
     mimeType("text/plain");
-    data(GopherProtocol::abouttext, strlen(GopherProtocol::abouttext));
-    dataEnd();
+    array.setRawData(GopherProtocol::abouttext, strlen(GopherProtocol::abouttext));
+    data(array);
+    array.resetRawData(GopherProtocol::abouttext, strlen(GopherProtocol::abouttext));
+    data(QByteArray());
     processedSize(strlen(GopherProtocol::abouttext));
     finished();
   }
   if (path.at(0)=='/') path.remove(0,1);
   if (path.isEmpty()) {
     debug("We should be a dir!!");
-    error(ERR_IS_DIRECTORY, strdup(_url));
+    error(ERR_IS_DIRECTORY, usrc.url());
     m_cmd=CMD_NONE; return;
   }
   if (path.length() < 2) {
-    error(ERR_MALFORMED_URL, strdup(_url));
+    error(ERR_MALFORMED_URL, usrc.url());
     return;
   }
   char type = path.ascii()[0];
@@ -309,7 +341,7 @@ void GopherProtocol::slotGet(const char *_url)
   switch ((GopherType)type) {
   case GOPHER_GIF:  {
     gopher_open(usrc);
-    if(!readRawData(_url, "image/gif")) {
+    if(!readRawData(usrc.url(), "image/gif")) {
       error(ERR_INTERNAL, "rawReadData failed");
       return;
     }
@@ -317,7 +349,7 @@ void GopherProtocol::slotGet(const char *_url)
   }
   case GOPHER_UUENCODE: {
     gopher_open(usrc);
-    if (!readRawData(_url, "text/plain")) {
+    if (!readRawData(usrc.url(), "text/plain")) {
       error(ERR_INTERNAL, "rawReadData failed");
       return;
     }
@@ -326,7 +358,7 @@ void GopherProtocol::slotGet(const char *_url)
   case GOPHER_BINARY:
   case GOPHER_PCBINARY: {
     gopher_open(usrc);
-    if(!readRawData(_url, "application/ocet-stream")) {
+    if(!readRawData(usrc.url(), "application/ocet-stream")) {
       error(ERR_INTERNAL, "rawReadData failed");
       return;
     }
@@ -334,7 +366,7 @@ void GopherProtocol::slotGet(const char *_url)
   }
   case GOPHER_TEXT: {
     gopher_open(usrc);
-    if(!readRawData(_url, "text/plain")) {
+    if(!readRawData(usrc.url(), "text/plain")) {
       error(ERR_INTERNAL, "rawReadData failed");
       return;
     }
@@ -345,113 +377,26 @@ void GopherProtocol::slotGet(const char *_url)
   }
 }
 
-bool GopherProtocol::readRawData(const char *_url, const char *mimetype)
+bool GopherProtocol::readRawData(const QString &_url, const char *mimetype)
 {
+  QByteArray array;
   char buf[1024];
-  ready();
   gettingFile(_url);
   mimeType(mimetype);
   ssize_t read_ret=0;
   size_t total_size=0;
   while ((read_ret=::read(m_iSock, buf, 1024))>0) {
-      data(buf, read_ret);
       total_size+=read_ret;
+      array.setRawData(buf, read_ret);
+      data( array );
+      array.resetRawData(buf, read_ret);
+      totalSize(total_size);
   }
-  dataEnd();
   processedSize(total_size);
   finished();
   gopher_close();
   finished();
   return true;
-}
-
-void GopherProtocol::slotCopy(const char *, const char *)
-{
-  fprintf(stderr, "GopherProtocol::slotCopy\n");
-  fflush(stderr);
-}
-
-void GopherProtocol::slotData(void *, int)
-{
-  switch (m_cmd) {
-    case CMD_PUT:
-	// Send data here
-      break;
-    default:
-      abort();
-      break;
-    }
-}
-
-void GopherProtocol::slotDataEnd()
-{
-  switch (m_cmd) {
-    case CMD_PUT:
-      m_cmd = CMD_NONE;
-      break;
-    default:
-      abort();
-      break;
-    }
-}
-
-void GopherProtocol::jobData(void *, int )
-{
-  switch (m_cmd) {
-  case CMD_GET:
-    break;
-  case CMD_COPY:
-    break;
-  default:
-    abort();
-  }
-}
-
-void GopherProtocol::jobError(int _errid, const char *_text)
-{
-  error(_errid, _text);
-}
-
-void GopherProtocol::jobDataEnd()
-{
-  switch (m_cmd) {
-  case CMD_GET:
-    dataEnd();
-    break;
-  case CMD_COPY:
-    m_pJob->dataEnd();
-    break;
-  default:
-    abort();
-  }
-}
-
-/*************************************
- *
- * GopherIOJob
- *
- *************************************/
-
-GopherIOJob::GopherIOJob(KIOConnection *_conn, GopherProtocol *_gopher) :
-	KIOJobBase(_conn)
-{
-  m_pGopher = _gopher;
-}
-  
-void GopherIOJob::slotData(void *_p, int _len)
-{
-  m_pGopher->jobData( _p, _len );
-}
-
-void GopherIOJob::slotDataEnd()
-{
-  m_pGopher->jobDataEnd();
-}
-
-void GopherIOJob::slotError(int _errid, const char *_txt)
-{
-  KIOJobBase::slotError( _errid, _txt );
-  m_pGopher->jobError(_errid, _txt );
 }
 
 const char *GopherProtocol::abouttext=
