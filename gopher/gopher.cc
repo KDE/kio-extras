@@ -298,7 +298,6 @@ void GopherProtocol::get(const KURL &usrc)
   path = usrc.path();
 
   if (path == "/aboutme.txt") {
-    gettingFile(usrc.url());
     mimeType("text/plain");
     array.setRawData(GopherProtocol::abouttext, strlen(GopherProtocol::abouttext));
     data(array);
@@ -360,7 +359,6 @@ bool GopherProtocol::readRawData(const QString &_url, const char *mimetype)
 {
   QByteArray array;
   char buf[1024];
-  gettingFile(_url);
   mimeType(mimetype);
   ssize_t read_ret=0;
   size_t total_size=0;

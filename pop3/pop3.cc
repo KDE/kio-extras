@@ -473,8 +473,6 @@ void POP3Protocol::get( const KURL& url )
     else
       result = command("UIDL");
     if (result) {
-      //ready();
-      gettingFile(url.url());
       while (!AtEOF()) {
         memset(buf, 0, sizeof(buf));
         ReadLine(buf, sizeof(buf)-1);
@@ -525,8 +523,6 @@ LIST
                          // getting at the headers by d/l the whole message
                          // and stopping at the first blank line used if the
                          // TOP cmd isn't supported
-      //ready();
-      gettingFile(url.url());
       mimeType("text/plain");
       memset(buf, 0, sizeof(buf));
       while (!AtEOF()) {
@@ -604,8 +600,6 @@ LIST
       return;
     }
     if (command(path.ascii())) {
-      //ready();
-      gettingFile(url.url());
       mimeType("message/rfc822");
       totalSize(msg_len);
       memset(buf, 0, sizeof(buf));
@@ -651,8 +645,6 @@ LIST
     memset(buf, 0, sizeof(buf));
     if (command(path.ascii(), buf, sizeof(buf)-1)) {
       const int len = strlen(buf);
-      //ready();
-      gettingFile(url.url());
       mimeType("text/plain");
       totalSize(len);
       array.setRawData(buf, len);

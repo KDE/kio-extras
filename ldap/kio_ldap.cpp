@@ -101,10 +101,6 @@ void LDAPProtocol::get(const KURL &url)
       }*/
   KLDAP::SearchRequest search(c, _url.latin1(), KLDAP::Request::Synchronous);
 
-  // tell that we are ready and getting the data
-  //ready();
-  gettingFile(_url);
-
   // wait for the request
   search.execute();
   search.finish();

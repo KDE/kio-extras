@@ -11,52 +11,10 @@ Well, that's nice.  How do they work?
 To understand it, you'll need two ice cubes, a pair of handcuffs, and a
 ferret.  Some Crisco (or other shortening) is optional.  Well, that aside,
 this document focuses on the business end of the whole kio library.  The
-ioslave.  Any basic kioslave will have these public methods:
-
-  ctor ( Connection *_conn );
-	The constructor, handles initialization, and initializes the base
-	class IOProtocol w/ the Connection pointer.
-
-  virtual dtor() { }
-	The destructor.  Pretty much does what you think.  It's a sweeper
-	of sorts.
-
-  virtual bool error( int _err, const char *_txt );
-	Handles errors in a standard way.  Usually IOProtocol::error is
-	called to pop up a message box.
-
-  void jobError( int _errid, const char *_txt );
-	Similar to ::error().
-
-  Connection* connection();
-
-Your standard get (read) only slave has three public methods:
-
-  virtual void slotGet( const char *_url );
-	This is essentially a Qt style slot, and thus doesn't return
-	anything of value.  Before any data is "emitted" the read()
-	member must be called, and a mimetype should be emitted via
-	the mimeType method which takes a c/qstring as its only argument.
-	Following this, the gettingFile(c/qstring) member must be called.
-	The gettingFile(c/qstring) indicates the name of the URI being
-	accessed. Then comes totalSize(), canResume(bool). Next a Data is
-	emitted via the data(void *, s_int) member, which takes a void
-	pointer that's holding the data, and a signed integer representing
-	the length, the processedSize(unsigned long) member should also be
-	called with the total amount of data that's been sent for this
-	job, also the speed(u_long) member can be useful taking the bytes
-	per second as its argument.... My experience has shown that using
-	data > 2048 bytes tends not to work.  When finished, the
-	dataEnd(), and finished() members must be called.
-
-  virtual void slotGetSize( const char *_url );
-	Again this doesn't return anything, but does usually send out
-	the total size via the totalSize member, which takes one unsigned
-	long argument.
-
-  virtual void slotCopy( const char *_source, const char *_dest );
-	Used by such progams as Caitoo, instead of gettingFile you'll want
-	to use copyingFile().	
+ioslave. See the documentation of the SlaveBase class for the methods
+you need to reimplement, and see 
+http://developer.kde.org/documentation/design/kde/ioslaves/ for more docu
+online.
 
 That's nice, but how can I use it?
 
@@ -65,81 +23,22 @@ Any time you'd like to use non blocking IO over a high level protocol
 
 That's nice, but how do I use it?
 
-Basically, you create "jobs" by constructing a KIOJob object (the correct
-prototypes, etc, etc, are in kio/job.h).  Once this is done, you connect
-the appropriate signals and slots (you can look in the appropriate headers
-for more available signals), and then call the appropriate function.
-
-In the following example, since the goal is to download a file, the
-sigData and sigFinished signals are connected, and the correct URL is
-passed to the ::get method.  Other possibilities would be put, delete,
-rename, move, and so-on.
-
-> KIOJob *job;
-> [..]
-> job = new KIOJob();
-> connect(job, SIGNAL( sigFinished( int ) ), this, SLOT(slotFinished(int)));
-> connect(job, SIGNAL(sigData( int, const char*, int ) ), this, SLOT(slotData((
-> int, const char*, int ) ));
-> job->get("pop://host/download/1");
-> job->get("pop://host/remove/1");
+Basically, you create "jobs" by calling a public KIO::blah method
+(the correct prototypes, etc, are in kio/job.h). Once this is done, you
+connect to the result() signal, and wait for the result. There are
+other signals emitted by jobs, see kio/jobclasses.h. Once again,
+see the online documentation for more.
 
 
-IF YOU'RE STILL READING THIS AND ARE INTERESTED IN WORKING ON AN IOSLAVE,
-AS OF April 28th, THE FOLLOWING SLAVES ARE SEVERELY LACKING IN
-FUNCTIONALITY:
+If you are interested in working on an ioslave,
+the following slaves are severely lacking in functionality:
 
 	IMAP4 (Perhaps imap2 support should be added)
-	TAR
-	
-If those don't suit you perhaps you'd be interested in adding a slave for:
-
-	BZIP2
+	SMTP
+        SMB
 
 -------------
 
-I have made a number of changes to the API of KIO in order to clean
-things up a bit. The changes should not break code using the KIOJob
-API, but may cause problems if you are using lower level calls. To
-prevent everything breaking at once, I have added a few typedefs to
-make classes available under the old names as well as the new ones.
-You can disable the typedefs by defining NO_KIO_COMPATABILITY to
-test your code. The typedefs will be removed soon, so please update
-your apps.
+Original document by Rich.
+Updated for KDE 2 by David.
 
-There is now a class KIO which contains all of the constants used in
-the IO slave communication, including the UDS_XXX constants. The
-constants themselves have all converted from #defines to enums to
-reduce namespace polution.
-
-Connection has been renamed to KIOConnection
-ConnectionSlots has been renamed to KIOConnectionSlots
-ConnectionSignals has been renamed to KIOConnectionSignals
-IOJob has been renamed to KIOJobBase
-CachedIOJob has been renamed to KIOCachedJob
-IOProtocol has been renamed to KIOProtocol
-UDSEntry has been renamed to KUDSEntry
-UDSAtom has been renamed to KUDSAtom
-Slave has been renamed to KIOSlave
-UserPaths has been renamed to KUserPaths
-
-I have updated about half of the ioslave protocols to the new
-API so far. The typedefs allow the other protocols to work until
-I fix them too, at which point I will remove the typedefs.
-
-Notes
-=====
-
-Why does UserPaths exist at all? Shouldn't the methods in it be
-moved to KStandardDirs in kdecore?
-
-Shouldn't classes like KDirWatcher be in kdecore?
-
-There are a number of places where the code uses ints, but the
-values will always be one of the constants. I have not changed
-these to use the enum type, as leaving them alone makes it easier
-to extend the API. In order for this to work, you should make sure
-you don't forget to provide a default implementation for commands
-or error codes you don't understand.
-
-Rich.

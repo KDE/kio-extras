@@ -151,8 +151,7 @@ void MANProtocol::get(const KURL& url )
         return;
     }
 
-    // tell we are getting the file
-    gettingFile(url.url());
+    // tell the mimetype
     mimeType("text/html");
 
     QStringList *foundPages=findPages(section, title);
