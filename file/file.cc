@@ -28,7 +28,7 @@
 
 #include <iostream.h>
 
-string testLogFile( const char *_filename );
+QString testLogFile( const char *_filename );
 int check( Connection *_con );
 
 void sigchld_handler( int );
@@ -86,18 +86,14 @@ FileProtocol::FileProtocol( Connection *_conn ) : IOProtocol( _conn )
 
 void FileProtocol::slotMkdir( const char *_url, int _mode )
 {
-  string url = _url;
-  
   KURL usrc( _url );
-  if ( usrc.isMalformed() )
-  {
-    error( ERR_MALFORMED_URL, url.c_str() );
+  if ( usrc.isMalformed() ) {
+    error( ERR_MALFORMED_URL, strdup(_url) );
     m_cmd = CMD_NONE;
     return;
   }
 
-  if ( !usrc.isLocalFile() )
-  {
+  if ( !usrc.isLocalFile() ) {
     error( ERR_INTERNAL, "kio_file got non local name in mkdir command" );
     m_cmd = CMD_NONE;
     return;
@@ -108,15 +104,14 @@ void FileProtocol::slotMkdir( const char *_url, int _mode )
   {
     if ( ::mkdir( usrc.path(), S_IRWXU ) != 0 )
     {
-      if ( errno == EACCES )
-      {  
-	error( ERR_ACCESS_DENIED, url.c_str() );
+      if ( errno == EACCES ) {  
+	error( ERR_ACCESS_DENIED, strdup(_url) );
 	m_cmd = CMD_NONE;
 	return;
       }
       else
       {  
-	error( ERR_COULD_NOT_MKDIR, url.c_str() );
+	error( ERR_COULD_NOT_MKDIR, strdup(_url) );
 	m_cmd = CMD_NONE;
 	return;
       }
@@ -124,9 +119,8 @@ void FileProtocol::slotMkdir( const char *_url, int _mode )
     else
     {
       if ( _mode != -1 )
-	if ( chmod( usrc.path(), _mode ) == -1 )
-	{
-	  error( ERR_CANNOT_CHMOD, url.c_str() );
+	if ( chmod( usrc.path(), _mode ) == -1 ) {
+	  error( ERR_CANNOT_CHMOD, strdup(_url) );
 	  m_cmd = CMD_NONE;
 	  return;
 	}
@@ -136,20 +130,19 @@ void FileProtocol::slotMkdir( const char *_url, int _mode )
     }
   }
 
-  if ( S_ISDIR( buff.st_mode ) )
-  {
-    error( ERR_DOES_ALREADY_EXIST, url.c_str() );
+  if ( S_ISDIR( buff.st_mode ) ) {
+    error( ERR_DOES_ALREADY_EXIST, strdup(_url) );
     m_cmd = CMD_NONE;
     return;
   }
     
-  error( ERR_COULD_NOT_MKDIR, url.c_str() );
+  error( ERR_COULD_NOT_MKDIR, strdup(_url) );
   m_cmd = CMD_NONE;
   return;
 }
 
 
-void FileProtocol::slotCopy( list<string>& _source, const char *_dest )
+void FileProtocol::slotCopy( QStringList& _source, const char *_dest )
 {
   doCopy( _source, _dest, false );
 }
@@ -157,14 +150,14 @@ void FileProtocol::slotCopy( list<string>& _source, const char *_dest )
 
 void FileProtocol::slotCopy( const char* _source, const char *_dest )
 {
-  list<string> lst;
-  lst.push_back( _source );
+  QStringList lst;
+  lst.append( _source );
   
   doCopy( lst, _dest, true );
 }
 
 
-void FileProtocol::slotMove( list<string>& _source, const char *_dest )
+void FileProtocol::slotMove( QStringList& _source, const char *_dest )
 {
   doCopy( _source, _dest, false, true );
 }
@@ -172,34 +165,31 @@ void FileProtocol::slotMove( list<string>& _source, const char *_dest )
 
 void FileProtocol::slotMove( const char* _source, const char *_dest )
 {
-  list<string> lst;
-  lst.push_back( _source );
+  QStringList lst;
+  lst.append( _source );
   
   doCopy( lst, _dest, true, true );
 }
 
 
-void FileProtocol::doCopy( list<string>& _source, const char *_dest, bool _rename, bool _move ) {
+void FileProtocol::doCopy( QStringList& _source, const char *_dest, bool _rename, bool _move ) {
 
   if ( _rename )
-    assert( _source.size() == 1 );
+    assert( _source.count() == 1 );
   
   debug( "kio_file : Making copy to %s", _dest );
   
   // Check whether the URLs are wellformed
-  list<string>::iterator soit = _source.begin();
-  for( ; soit != _source.end(); ++soit )
-  {    
-    debug( "kio_file : Checking %s", soit->c_str() );
-    KURL usrc( soit->c_str() );
-    if ( usrc.isMalformed() )
-    {
-      error( ERR_MALFORMED_URL, soit->c_str() );
+  QStringList::Iterator soit = _source.begin();
+  for( ; soit != _source.end(); soit++ ) {    
+    debug( "kio_file : Checking %s", (*soit).ascii() );
+    KURL usrc(*soit);
+    if ( usrc.isMalformed() ) {
+      error( ERR_MALFORMED_URL, *soit );
       m_cmd = CMD_NONE;
       return;
     }
-    if ( !usrc.isLocalFile() )
-    {
+    if ( !usrc.isLocalFile() ) {
       error( ERR_INTERNAL, "kio_file got non local file as source in copy command" );
       m_cmd = CMD_NONE;
       return;
@@ -214,8 +204,7 @@ void FileProtocol::doCopy( list<string>& _source, const char *_dest, bool _renam
   
   // Check wellformedness of the destination
   KURL udest( dest );
-  if ( udest.isMalformed() )
-  {
+  if ( udest.isMalformed() ) {
     error( ERR_MALFORMED_URL, dest );
     m_cmd = CMD_NONE;
     return;
@@ -252,13 +241,12 @@ void FileProtocol::doCopy( list<string>& _source, const char *_dest, bool _renam
   debug( "kio_file : Looping" );
   for( ; soit != _source.end(); ++soit )
   {    
-    debug( "kio_file : Executing %s", soit->c_str() );
-    KURL usrc( soit->c_str() );
+    debug( "kio_file : Executing %s", (*soit).ascii() );
+    KURL usrc( (*soit).ascii() );
     debug( "kio_file : Parsed URL" );
     // Did an error occur ?
     int s;
-    if ( ( s = listRecursive( usrc.path(), files, dirs, _rename ) ) == -1 )
-    {
+    if ( ( s = listRecursive( usrc.path(), files, dirs, _rename ) ) == -1 ) {
       // Error message is already sent
       m_cmd = CMD_NONE;
       return;
@@ -276,12 +264,11 @@ void FileProtocol::doCopy( list<string>& _source, const char *_dest, bool _renam
     bool b_error = false;
     for( soit = _source.begin(); soit != _source.end(); ++soit )
     {    
-      KURL usrc( soit->c_str() );  
+      KURL usrc( (*soit).ascii() );  
 
       struct stat buff1;
       // Can we stat both the source, too ? ( Should always be the case )
-      if ( stat( usrc.path(), &buff1 ) == 0 )
-      {
+      if ( stat( usrc.path(), &buff1 ) == 0 ) {
 	bool b_error = false;
 	// Are source and dest equal ? => error
 	if ( buff1.st_ino == buff2.st_ino )
@@ -299,9 +286,8 @@ void FileProtocol::doCopy( list<string>& _source, const char *_dest, bool _renam
     }
 
     // Do we have a cyclic copy now ? => error
-    if ( b_error )
-    {
-      error( ERR_CYCLIC_COPY, soit->c_str() );
+    if ( b_error ) {
+      error( ERR_CYCLIC_COPY, *soit );
       m_cmd = CMD_NONE;
       return;
     }
@@ -558,8 +544,8 @@ void FileProtocol::doCopy( list<string>& _source, const char *_dest, bool _renam
       if ( skip )
 	continue;
     
-      string realpath = "file:"; realpath += fit->m_strAbsSource;
-      copyingFile( realpath.c_str(), d );
+      QString realpath = "file:"; realpath += fit->m_strAbsSource;
+      copyingFile( realpath, d );
     
       // debug( "kio_file : Writing to %s", d );
        
@@ -594,8 +580,7 @@ void FileProtocol::doCopy( list<string>& _source, const char *_dest, bool _renam
 	  QString tmp2 = ud.url();
 	  SkipDlg_Result r;
 	  r = open_SkipDlg( tmp2, ( files.size() > 1 ) );
-	  if ( r == S_CANCEL )
-	  {
+	  if ( r == S_CANCEL ) {
 	    error( ERR_USER_CANCELED, "" );
 	    m_cmd = CMD_NONE;
 	    return;
@@ -766,34 +751,28 @@ void FileProtocol::doCopy( list<string>& _source, const char *_dest, bool _renam
   
 void FileProtocol::slotGet( const char *_url )
 {
-  string url = _url;
-  
   KURL usrc( _url );
-  if ( usrc.isMalformed() )
-  {
-    error( ERR_MALFORMED_URL, url.c_str() );
+  if ( usrc.isMalformed() ) {
+    error( ERR_MALFORMED_URL, strdup(_url) );
     m_cmd = CMD_NONE;
     return;
   }
 
-  if ( !usrc.isLocalFile() )
-  {
+  if ( !usrc.isLocalFile() ) {
     error( ERR_INTERNAL, "kio_file got non local file in get command" );
     m_cmd = CMD_NONE;
     return;
   }
 
   struct stat buff;
-  if ( stat( usrc.path(), &buff ) == -1 )
-  {
-    error( ERR_DOES_NOT_EXIST, url.c_str() );
+  if ( stat( usrc.path(), &buff ) == -1 ) {
+    error( ERR_DOES_NOT_EXIST, strdup(_url) );
     m_cmd = CMD_NONE;
     return;
   }
 
-  if ( S_ISDIR( buff.st_mode ) )
-  {
-    error( ERR_IS_DIRECTORY, url.c_str() );
+  if ( S_ISDIR( buff.st_mode ) ) {
+    error( ERR_IS_DIRECTORY, strdup(_url) );
     m_cmd = CMD_NONE;
     return;
   }
@@ -801,9 +780,8 @@ void FileProtocol::slotGet( const char *_url )
   m_cmd = CMD_GET;
   
   FILE *f = fopen( usrc.path(), "rb" );
-  if ( f == 0L )
-  {
-    error( ERR_CANNOT_OPEN_FOR_READING, url.c_str() );
+  if ( f == 0L ) {
+    error( ERR_CANNOT_OPEN_FOR_READING, strdup(_url) );
     m_cmd = CMD_NONE;
     return;
   }
@@ -849,43 +827,35 @@ void FileProtocol::slotGet( const char *_url )
 
 void FileProtocol::slotGetSize( const char *_url )
 {
-  string url = _url;
-  
-//   debug( "kio_file : Getting size" );
-
   m_cmd = CMD_GET_SIZE;
   
   KURL usrc( _url );
-  if ( usrc.isMalformed() )
-  {
-    error( ERR_MALFORMED_URL, url.c_str() );
+  if ( usrc.isMalformed() ) {
+    error( ERR_MALFORMED_URL, strdup(_url) );
     m_cmd = CMD_NONE;
     return;
   }
 
-  if ( !usrc.isLocalFile() )
-  {
+  if ( !usrc.isLocalFile() ) {
     error( ERR_INTERNAL, "kio_file got non local file in get size command" );
     m_cmd = CMD_NONE;
     return;
   }
 
   struct stat buff;
-  if ( stat( usrc.path(), &buff ) == -1 )
-  {
-    error( ERR_DOES_NOT_EXIST, url.c_str() );
+  if ( stat( usrc.path(), &buff ) == -1 ) {
+    error( ERR_DOES_NOT_EXIST, strdup(_url) );
     m_cmd = CMD_NONE;
     return;
   }
 
-  if ( S_ISDIR( buff.st_mode ) )  // !!! needed ?
-  {
-    error( ERR_IS_DIRECTORY, url.c_str() );
+  if ( S_ISDIR( buff.st_mode ) )  { // !!! needed ?
+    error( ERR_IS_DIRECTORY, strdup(_url) );
     m_cmd = CMD_NONE;
     return;
   }
 
-  totalSize( buff.st_size );  
+  totalSize( buff.st_size );
   
   finished();
   m_cmd = CMD_NONE;
@@ -894,30 +864,28 @@ void FileProtocol::slotGetSize( const char *_url )
 
 void FileProtocol::slotPut( const char *_url, int _mode, bool _overwrite, bool _resume, int _size )
 {
-  string url_orig = _url;
-  string url_part = url_orig + ".part";
+  QString url_orig = _url;
+  QString url_part = url_orig + ".part";
 
-  KURL udest_orig( url_orig.c_str() );
-  KURL udest_part( url_part.c_str() );
+  KURL udest_orig( url_orig );
+  KURL udest_part( url_part );
 
   bool m_bMarkPartial = KProtocolManager::self().markPartial();
 
-  if ( udest_orig.isMalformed() )
-  {
-    error( ERR_MALFORMED_URL, url_orig.c_str() );
+  if ( udest_orig.isMalformed() ) {
+    error( ERR_MALFORMED_URL, url_orig );
     finished();
     m_cmd = CMD_NONE;
     return;
   }
 
-  if ( !udest_orig.isLocalFile() )
-  {
+  if ( !udest_orig.isLocalFile() ) {
     error( ERR_INTERNAL, "kio_file got non local file as destination in put command" );
     finished();
     m_cmd = CMD_NONE;
     return;
   }
-  
+
   m_cmd = CMD_PUT;
 
   struct stat buff;
@@ -944,8 +912,7 @@ void FileProtocol::slotPut( const char *_url, int _mode, bool _overwrite, bool _
     if ( ! m_bMarkPartial )
       rename ( udest_part.path(), udest_orig.path() );
 
-    if ( !_overwrite && !_resume )
-      {
+    if ( !_overwrite && !_resume ) {
 	if ( buff.st_size == _size )
 	  error( ERR_DOES_ALREADY_EXIST_FULL, udest_orig.path() );
 	else
@@ -971,7 +938,7 @@ void FileProtocol::slotPut( const char *_url, int _mode, bool _overwrite, bool _
   {
     debug("Write Access denied for '%s' %d",udest.path(),errno );
     
-    error( ERR_WRITE_ACCESS_DENIED, url.c_str() );
+    error( ERR_WRITE_ACCESS_DENIED, strdup(_url) );
     finished();
     m_cmd = CMD_NONE;
     return;
@@ -982,8 +949,7 @@ void FileProtocol::slotPut( const char *_url, int _mode, bool _overwrite, bool _
   else
     m_fPut = fopen( udest.path(), "wb" );
 
-  if ( m_fPut == 0L )
-  {
+  if ( m_fPut == 0L ) {
     debug( "kio_file : ####################### COULD NOT WRITE %s", udest.path().ascii() );
     if ( errno == EACCES )
       error( ERR_WRITE_ACCESS_DENIED, udest.path() );
@@ -1008,8 +974,7 @@ void FileProtocol::slotPut( const char *_url, int _mode, bool _overwrite, bool _
 
       // after full download rename the file back to original name
       if ( m_bMarkPartial ) {
-	if ( rename( udest.path(), udest_orig.path() ) )
-	  {
+	if ( rename( udest.path(), udest_orig.path() ) ) {
 	    error( ERR_CANNOT_RENAME, udest_orig.path() );
 	    m_cmd = CMD_NONE;
 	    finished();
@@ -1019,8 +984,7 @@ void FileProtocol::slotPut( const char *_url, int _mode, bool _overwrite, bool _
 
       // do chmod only after full download
       if ( _mode != -1 ) {
-	if ( chmod( udest_orig.path(), _mode ) == -1 )
-	  {
+	if ( chmod( udest_orig.path(), _mode ) == -1 ) {
 	    error( ERR_CANNOT_CHMOD, udest_orig.path() );
 	    m_cmd = CMD_NONE;
 	    finished();
@@ -1040,22 +1004,20 @@ void FileProtocol::slotPut( const char *_url, int _mode, bool _overwrite, bool _
 }
 
 
-void FileProtocol::slotDel( list<string>& _source )
+void FileProtocol::slotDel( QStringList& _source )
 {
   // Check whether the URLs are wellformed
-  list<string>::iterator soit = _source.begin();
+  QStringList::Iterator soit = _source.begin();
   for( ; soit != _source.end(); ++soit )
   {    
-    debug( "kio_file : Checking %s", soit->c_str() );
-    KURL usrc( soit->c_str() );
-    if ( usrc.isMalformed() )
-    {
-      error( ERR_MALFORMED_URL, soit->c_str() );
+    debug( "kio_file : Checking %s", (*soit).ascii() );
+    KURL usrc( *soit );
+    if ( usrc.isMalformed() ) {
+      error( ERR_MALFORMED_URL, *soit );
       m_cmd = CMD_NONE;
       return;
     }
-    if ( !usrc.isLocalFile() )
-    {
+    if ( !usrc.isLocalFile() ) {
       error( ERR_INTERNAL, "kio_file got non local file in delete command" );
       m_cmd = CMD_NONE;
       return;
@@ -1074,8 +1036,8 @@ void FileProtocol::slotDel( list<string>& _source )
   debug( "kio_file : Looping" );
   for( ; soit != _source.end(); ++soit )
   {    
-    debug( "kio_file : Executing %s", soit->c_str() );
-    KURL usrc( soit->c_str() );
+    debug( "kio_file : Executing %s", (*soit).ascii() );
+    KURL usrc( (*soit).ascii() );
     debug( "kio_file : Parsed URL" );
     // Did an error occur ?
 //    int s;
@@ -1147,34 +1109,28 @@ void FileProtocol::slotDel( list<string>& _source )
 
 void FileProtocol::slotListDir( const char *_url )
 {
-  string url = _url;
-  
   KURL usrc( _url );
-  if ( usrc.isMalformed() )
-  {
-    error( ERR_MALFORMED_URL, url.c_str() );
+  if ( usrc.isMalformed() ) {
+    error( ERR_MALFORMED_URL, strdup(_url) );
     m_cmd = CMD_NONE;
     return;
   }
 
-  if ( !usrc.isLocalFile() )
-  {
+  if ( !usrc.isLocalFile() ) {
     error( ERR_INTERNAL, "kio_file got non local file in list command" );
     m_cmd = CMD_NONE;
     return;
   }
 
   struct stat buff;
-  if ( stat( usrc.path(), &buff ) == -1 )
-  {
-    error( ERR_DOES_NOT_EXIST, url.c_str() );
+  if ( stat( usrc.path(), &buff ) == -1 ) {
+    error( ERR_DOES_NOT_EXIST, strdup(_url) );
     m_cmd = CMD_NONE;
     return;
   }
 
-  if ( !S_ISDIR( buff.st_mode ) )
-  {
-    error( ERR_IS_FILE, url.c_str() );
+  if ( !S_ISDIR( buff.st_mode ) ) {
+    error( ERR_IS_FILE, strdup(_url) );
     m_cmd = CMD_NONE;
     return;
   }
@@ -1184,17 +1140,15 @@ void FileProtocol::slotListDir( const char *_url )
   DIR *dp = 0L;
   struct dirent *ep;
 
-  string dir = usrc.path( 0 ).data();
-  dp = opendir( dir.c_str() );
-  if ( dp == 0L )
-  {
-    error( ERR_CANNOT_ENTER_DIRECTORY, url.c_str() );
+  QString dir = usrc.path( 0 );
+  dp = opendir( dir.ascii() );
+  if ( dp == 0L ) {
+    error( ERR_CANNOT_ENTER_DIRECTORY, strdup(_url) );
     m_cmd = CMD_NONE;
     return;
   }
     
-  while ( ( ep = readdir( dp ) ) != 0L )
-  {
+  while ( ( ep = readdir( dp ) ) != 0L ) {
     if ( strcmp( ep->d_name, "." ) == 0 || strcmp( ep->d_name, ".." ) == 0 )
       continue;
 
@@ -1206,22 +1160,20 @@ void FileProtocol::slotListDir( const char *_url )
     atom.m_str = ep->d_name;
     entry.push_back( atom );
   
-    string tmp = usrc.path( 1 ).data();
+    QString tmp = usrc.path( 1 );
     tmp += ep->d_name;
 
-    string slink = "";
+    QString slink = "";
     mode_t type;
     mode_t access;
  
     struct stat buff;
     struct stat lbuff;
-    if ( stat( tmp.c_str(), &buff ) == -1 )
-    {
+    if ( stat( tmp.ascii(), &buff ) == -1 )  {
       // A link poiting to nowhere ?
-      if ( lstat( tmp.c_str(), &lbuff ) == -1 )
-      {
+      if ( lstat( tmp.ascii(), &lbuff ) == -1 ) {
 	// Should never happen
-	error( ERR_DOES_NOT_EXIST, tmp.c_str() );
+	error( ERR_DOES_NOT_EXIST, tmp );
 	m_cmd = CMD_NONE;
 	return;
       }
@@ -1229,20 +1181,16 @@ void FileProtocol::slotListDir( const char *_url )
       // It is a link pointing to nowhere
       type = S_IFMT - 1;
       access = S_IRWXU | S_IRWXG | S_IRWXO;
-    }
-    else
-    {
-      lstat( tmp.c_str(), &lbuff );
+    } else {
+      lstat( tmp.ascii(), &lbuff );
       type = buff.st_mode;
       access = buff.st_mode;
       // Is it a link
-      if ( S_ISLNK( lbuff.st_mode ) )
-      {  
+      if ( S_ISLNK( lbuff.st_mode ) ) {  
 	type |= S_IFLNK;
 	char buffer2[ 1000 ];
-	int n = readlink( tmp.c_str(), buffer2, 1000 );
-	if ( n != -1 )
-	{
+	int n = readlink( tmp.ascii(), buffer2, 1000 );
+	if ( n != -1 ) {
 	  buffer2[ n ] = 0;
 	  slink = buffer2;
 	}
@@ -1295,27 +1243,22 @@ void FileProtocol::slotListDir( const char *_url )
 
 void FileProtocol::slotTestDir( const char *_url )
 {
-  string url = _url;
-  
   KURL usrc( _url );
-  if ( usrc.isMalformed() )
-  {
-    error( ERR_MALFORMED_URL, url.c_str() );
+  if ( usrc.isMalformed() ) {
+    error( ERR_MALFORMED_URL, strdup(_url) );
     m_cmd = CMD_NONE;
     return;
   }
 
-  if ( !usrc.isLocalFile() )
-  {
+  if ( !usrc.isLocalFile() ) {
     error( ERR_INTERNAL, "kio_file got non local file in testdir command" );
     m_cmd = CMD_NONE;
     return;
   }
 
   struct stat buff;
-  if ( stat( usrc.path(), &buff ) == -1 )
-  {
-    error( ERR_DOES_NOT_EXIST, url.c_str() );
+  if ( stat( usrc.path(), &buff ) == -1 ) {
+    error( ERR_DOES_NOT_EXIST, strdup(_url) );
     m_cmd = CMD_NONE;
     return;
   }
@@ -1346,14 +1289,13 @@ void FileProtocol::slotMount( bool _ro, const char *_fstype, const char* _dev, c
   
   sprintf( buffer, "/tmp/mnt%i", t );
   
-  string err = testLogFile( buffer );
-  if ( err.empty() )
-  {
+  QString err = testLogFile( buffer );
+  if ( err.isEmpty() ) {
     finished();
     return;
   }
 
-  error( ERR_COULD_NOT_MOUNT, err.c_str() );
+  error( ERR_COULD_NOT_MOUNT, err );
   m_cmd = CMD_NONE;
 
   return;
@@ -1371,14 +1313,13 @@ void FileProtocol::slotUnmount( const char *_point )
 
   sprintf( buffer, "/tmp/mnt%i", t );
 
-  string err = testLogFile( buffer );
-  if ( err.empty() )
-  {
+  QString err = testLogFile( buffer );
+  if ( err.isEmpty() ) {
     finished();
     return;
   }
 
-  error( ERR_COULD_NOT_MOUNT, err.c_str() );
+  error( ERR_COULD_NOT_MOUNT, err );
   m_cmd = CMD_NONE;
 
   return;
@@ -1608,24 +1549,22 @@ void FileIOJob::slotError( int _errid, const char *_txt )
  *
  *************************************/
 
-string testLogFile( const char *_filename )
+QString testLogFile( const char *_filename )
 {
   char buffer[ 1024 ];
   struct stat buff;
 
-  string result;
+  QString result;
   
   stat( _filename, &buff );
   int size = buff.st_size;
-  if ( size == 0 )
-  {
+  if ( size == 0 ) {
     unlink( _filename );
     return result;
   }
   
   FILE * f = fopen( _filename, "rb" );
-  if ( f == 0L )
-  {
+  if ( f == 0L ) {
     unlink( _filename );
     result = "Could not read ";
     result += _filename;
@@ -1634,9 +1573,8 @@ string testLogFile( const char *_filename )
   
   result = "";  
   char *p = "";
-  while ( p != 0L )
-  {
-    p = fgets( buffer, 1023, f );
+  while ( p != 0L ) {
+    p = fgets( buffer, sizeof(buffer)-1, f );
     if ( p != 0L )
       result += buffer;
   }
