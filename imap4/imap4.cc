@@ -929,7 +929,10 @@ IMAP4Protocol::del (const KURL & _url, bool isFile)
         completeQueue.removeRef(cmd);
         setState(ISTATE_LOGIN);
       }
-      imapCommand *cmd = doCommand (imapCommand::clientDelete (aBox));
+      // We unsubscribe, otherwise we get ghost folders on UW-IMAP
+      imapCommand *cmd = doCommand(imapCommand::clientUnsubscribe(aBox));
+      completeQueue.removeRef(cmd);
+      cmd = doCommand(imapCommand::clientDelete (aBox));
       // If this doesn't work, we try to empty the mailbox first
       if (cmd->result () != "OK")
       {
@@ -1012,6 +1015,7 @@ IMAP4Protocol::special (const QByteArray & aData)
   }
   if (aData.at(0) == 'c')
   {
+kdDebug(7116) << "IMAP4Protocol::special" << endl;
     infoMessage(imapCapabilities.join(" "));
     finished();
   }
@@ -1270,7 +1274,8 @@ bool IMAP4Protocol::makeLogin ()
   if (getState () == ISTATE_LOGIN || getState () == ISTATE_SELECT)
     return true;
 
-  if (getState() == ISTATE_CONNECT || connectToHost (myHost.latin1(), myPort))
+  bool alreadyConnected = getState() == ISTATE_CONNECT;
+  if (alreadyConnected || connectToHost (myHost.latin1(), myPort))
   {
 //      fcntl (m_iSock, F_SETFL, (fcntl (m_iSock, F_GETFL) | O_NDELAY));
 
@@ -1282,7 +1287,7 @@ bool IMAP4Protocol::makeLogin ()
     imapCommand *cmd;
 
     unhandled.clear ();
-    while (!parseLoop ());    //get greeting
+    if (!alreadyConnected) while (!parseLoop ());    //get greeting
     QString greeting;
     if (!unhandled.isEmpty()) greeting = unhandled.first().stripWhiteSpace();
     unhandled.clear ();       //get rid of it
