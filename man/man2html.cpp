@@ -2716,7 +2716,7 @@ static char *scan_request(char *c)
 	    if (fillout) curpos++; else curpos=0;
 	    break;
 
-   case V('A','t'):	/* BSD mandoc */
+	case V('A','t'):	/* BSD mandoc */
 	case V('F','x'):	/* BSD mandoc */
 	case V('N','x'):	/* BSD mandoc */
 	case V('O','x'):	/* BSD mandoc */
@@ -2724,15 +2724,15 @@ static char *scan_request(char *c)
 	    trans_char(c,'"','\a');
 	    c=c+j;
 	    if (*c=='\n') c++;
-       if (i==V('A','t'))      out_html("AT&amp;T Unix ");
-       else if (i==V('F','x')) out_html("FreeBSD ");
-       else if (i==V('N','x')) out_html("NetBSD ");
-       else if (i==V('O','x')) out_html("OpenBSD ");
-       else if (i==V('B','x')) out_html("BSD ");
+	    if (i==V('A','t'))      out_html("AT&amp;T Unix ");
+	    else if (i==V('F','x')) out_html("FreeBSD ");
+	    else if (i==V('N','x')) out_html("NetBSD ");
+	    else if (i==V('O','x')) out_html("OpenBSD ");
+	    else if (i==V('B','x')) out_html("BSD ");
 	    c=scan_troff_mandoc(c, 1, NULL);
 	    if (fillout) curpos++; else curpos=0;
 	    break;
-   case V('D','l'):	/* BSD mandoc */
+	case V('D','l'):	/* BSD mandoc */
 	    c=c+j;
 	    out_html(NEWLINE);
 	    out_html("<BLOCKQUOTE>");
