@@ -1,0 +1,17 @@
+The SMTP kioslave currently conforms to the following SMTP-related RFCs:
+
+2821 Simple Mail Transfer Protocol. J. Klensin, Ed.. April 2001.
+     (Format: TXT=192504 bytes) (Obsoletes RFC0821, RFC0974, RFC1869)
+     (Status: PROPOSED STANDARD)
+
+3207 SMTP Service Extension for Secure SMTP over Transport Layer
+     Security. P. Hoffman. February 2002. (Format: TXT=18679 bytes)
+     (Obsoletes RFC2487) (Status: PROPOSED STANDARD)
+
+2554 SMTP Service Extension for Authentication. J. Myers. March 1999.
+     (Format: TXT=20534 bytes) (Status: PROPOSED STANDARD)
+(with PLAIN, DIGEST-MD5 and CRAM-MD5 SASL mechanisms)
+
+Known shortcomings:
+- Uses just-send-8bit instead of checking (and using) 8BITMIME.
+- Doesn't enforce the CRLF lineending convention on user-supplied data.
