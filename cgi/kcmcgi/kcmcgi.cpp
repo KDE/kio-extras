@@ -137,7 +137,7 @@ void KCMCgi::removePath()
 
 QString KCMCgi::quickHelp() const
 {
-  return i18n("<h1>CGI programs</h1> The CGI KIO slave lets you execute "
+  return i18n("<h1>CGI Scripts</h1> The CGI KIO slave lets you execute "
               "local CGI programs without the need to run a web server. "
               "In this control module you can configure the paths that "
               "are searched for CGI scripts.");
