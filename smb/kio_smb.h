@@ -71,7 +71,7 @@
 
 
 //-------------------------------
-// Samba client librarh includes
+// Samba client library includes
 //-------------------------------
 extern "C" 
 {
@@ -95,7 +95,7 @@ extern "C"
 using namespace KIO; 
 
 //===========================================================================
-class SMBSlave : public SlaveBase
+class SMBSlave : public KIO::SlaveBase
 {
 private:
     //---------------------------------------------------------------------
@@ -207,18 +207,14 @@ public:
     virtual void reparseConfiguration();
 
     // Functions overwritten in kio_smb_dir.cpp
-    virtual void chmod( const KURL& kurl, int permissions );
     virtual void copy( const KURL& src, const KURL &dest, int permissions, bool overwrite );
     virtual void del( const KURL& kurl, bool isfile);
     virtual void mkdir( const KURL& kurl, int permissions );
     virtual void rename( const KURL& src, const KURL& dest, bool overwrite );
-    virtual void symlink( const QString& target, const KURL& dest, bool overwrite );
 
     // Functions overwritten in kio_smb_file.cpp
     virtual void get( const KURL& kurl );
-    virtual void mimetype( const KURL& url );
     virtual void put( const KURL& kurl, int permissions, bool overwrite, bool resume );
-    virtual void setSubURL(const KURL& kurl);
 
     // Functions not implemented  (yet)
     //virtual void setHost(const QString& host, int port, const QString& user, const QString& pass);
