@@ -240,7 +240,11 @@ int DiskList::readDF()
   dfProc->clearArguments();
   (*dfProc) << DF_COMMAND << DF_ARGS;
   if (!dfProc->start( KProcess::NotifyOnExit, KProcess::AllOutput ))
-    qFatal(i18n("could not execute [%s]").local8Bit().data(), DF_COMMAND);
+  {
+    kdWarning(7020)<<i18n("could not execute [%1]").arg(DF_COMMAND)<<endl;
+    return 0;
+  }
+  
   return 1;
 }
 
@@ -257,7 +261,10 @@ void DiskList::dfDone()
   QTextStream t (dfStringErrOut, IO_ReadOnly);
   QString s=t.readLine();
   if ( ( s.isEmpty() ) || ( s.left(10) != "Filesystem" ) )
-    qFatal("Error running df command... got [%s]",s.latin1());
+  {
+    kdWarning(7020)<<QString("Error running df command, couldn't parse output")<<endl;
+    return;
+  }
   while ( !t.atEnd() ) {
     QString u,v;
     DiskEntry *disk;
