@@ -93,6 +93,8 @@ private: // Private attributes
   int outBufPos;
   /** length of buffer */
   int outBufLen;
+  /** use su if true else use ssh */
+  bool local;
   /**  // FIXME: just a workaround for konq deficiencies */
   bool isStat;
   /**  // FIXME: just a workaround for konq deficiencies */

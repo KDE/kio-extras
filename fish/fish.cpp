@@ -104,6 +104,7 @@
 #endif
 
 static char *sshPath = NULL;
+static char *suPath = NULL;
 // disabled: currently not needed. Didn't work reliably.
 // static int isOpenSSH = 0;
 
@@ -235,6 +236,9 @@ fishProtocol::fishProtocol(const QCString &pool_socket, const QCString &app_sock
         // isOpenSSH = !system("ssh -V 2>&1 | grep OpenSSH > /dev/null");
         sshPath = strdup(KStandardDirs::findExe("ssh").latin1());
     }
+    if (suPath == NULL) {
+        suPath = strdup(KStandardDirs::findExe("su").latin1());
+    }
     childPid = 0;
     connectionPort = 0;
     isLoggedIn = false;
@@ -245,6 +249,7 @@ fishProtocol::fishProtocol(const QCString &pool_socket, const QCString &app_sock
     rawWrite = -1;
     recvLen = -1;
     sendLen = -1;
+    setMultipleAuthCaching( true );
     connectionAuth.keepPassword = true;
     connectionAuth.url.setProtocol("fish");
     epoch.setTime_t(0, Qt::UTC);
@@ -263,8 +268,8 @@ fishProtocol::fishProtocol(const QCString &pool_socket, const QCString &app_sock
 
 fishProtocol::~fishProtocol()
 {
-  myDebug( << "fishProtocol::~fishProtocol()" << endl);
-  shutdownConnection(true);
+    myDebug( << "fishProtocol::~fishProtocol()" << endl);
+    shutdownConnection(true);
 }
 
 /* --------------------------------------------------------------------------- */
@@ -281,7 +286,7 @@ void fishProtocol::openConnection() {
        return;
     }
 
-    infoMessage("Connecting...");
+    infoMessage(i18n("Connecting..."));
 
     myDebug( << "connecting to: " << connectionUser << "@" << connectionHost << ":" << connectionPort << endl);
     sendCommand(FISH_FISH);
@@ -416,19 +421,21 @@ bool fishProtocol::connectionStart() {
         if (dev) close(open(dev, O_WRONLY, 0));
         setpgid(0,0);
 
-#define common_args "-l", connectionUser.latin1(), "-x", "-e", "none", \
-    "-q", connectionHost.latin1(), \
-    "echo FISH:;env TZ=UTC LANG=C LC_ALL=C LOCALE=C /bin/sh", (void *)0
-    // disabled: leave compression up to the client.
-    // (isOpenSSH?"-C":"+C"),
-
-        if (connectionPort) {
-            execl(sshPath, "ssh", "-p", QString::number(connectionPort).latin1(), common_args);
+        if (local) {
+            execl(suPath, "su", "-l", connectionUser.latin1(), "-c", "cd ~;echo FISH:;env TZ=UTC LANG=C LC_ALL=C LOCALE=C /bin/sh", (void *)0);
         } else {
-            execl(sshPath, "ssh", common_args);
-        }
-#undef common_args
+            #define common_args "-l", connectionUser.latin1(), "-x", "-e", "none", \
+                "-q", connectionHost.latin1(), \
+                "echo FISH:;env TZ=UTC LANG=C LC_ALL=C LOCALE=C /bin/sh", (void *)0
+            // disabled: leave compression up to the client.
+            // (isOpenSSH?"-C":"+C"),
 
+            if (connectionPort)
+                execl(sshPath, "ssh", "-p", QString::number(connectionPort).latin1(), common_args);
+            else
+                execl(sshPath, "ssh", common_args);
+            #undef common_args
+        }
         //myDebug( << "could not exec " << ex << endl);
         ::exit(-1);
     }
@@ -510,16 +517,17 @@ int fishProtocol::establishConnection(char *buffer, int len) {
         pos++;
         QString str = buf.left(pos);
         buf = buf.mid(pos);
-        if (str == "\n") continue;
-          if (str == "FISH:\n") {
+        if (str == "\n")
+            continue;
+        if (str == "FISH:\n") {
             thisFn = QString::null;
-              infoMessage("Initiating protocol...");
+            infoMessage(i18n("Initiating protocol..."));
             if (!connectionAuth.password.isEmpty()) {
                 connectionAuth.password = connectionAuth.password.left(connectionAuth.password.length()-1);
-                  cacheAuthentication(connectionAuth);
+                cacheAuthentication(connectionAuth);
             }
-              isLoggedIn = true;
-              return 0;
+            isLoggedIn = true;
+            return 0;
         } else if (!str.isEmpty()) {
             thisFn += str;
           } else if (buf.right(2) == ": ") {
@@ -535,14 +543,21 @@ int fishProtocol::establishConnection(char *buffer, int len) {
                 redirectPass = "";
                 return -1;
             } else if (!connectionPassword.isEmpty()) {
-                //myDebug( << "sending cpass" << endl);
+                myDebug( << "sending cpass" << endl);
                 connectionAuth.password = connectionPassword+"\n";
                 connectionPassword = QString::null;
+                // su does not like receving a password directly after sending
+                // the password prompt so we wait a while.
+                if (local)
+                    sleep(1);
                 writeChild(connectionAuth.password.latin1(),connectionAuth.password.length());
             } else {
-                //myDebug( << "sending mpass" << endl);
+                myDebug( << "sending mpass" << endl);
                 connectionAuth.prompt = thisFn+buf;
-                connectionAuth.caption = "SSH Authorization";
+                if (local)
+                    connectionAuth.caption = i18n("Local login");
+                else
+                    connectionAuth.caption = i18n("SSH Authorization");
                 if (!checkCachedAuthentication(connectionAuth) && !openPassDlg(connectionAuth)) {
                     error(ERR_USER_CANCELED,connectionHost);
                     shutdownConnection();
@@ -563,6 +578,9 @@ int fishProtocol::establishConnection(char *buffer, int len) {
                     finished();
                     return -1;
                 }
+                myDebug( << "sending pass" << endl);
+                if (local)
+                    sleep(1);
                 writeChild(connectionAuth.password.latin1(),connectionAuth.password.length());
             }
             thisFn = QString::null;
@@ -588,6 +606,7 @@ sets connection information for subsequent commands
 void fishProtocol::setHost(const QString & host, int port, const QString & u, const QString & pass){
     QString user(u);
 
+    local = (host == "localhost" && port == 0);
     if (port <= 0) port = 0;
     if (user.isEmpty()) user = getenv("LOGNAME");
 
@@ -615,6 +634,7 @@ This function gets called from the application side of the universe,
 it shouldn't send any response.
  */
 void fishProtocol::closeConnection(){
+    myDebug( << "closeConnection()" << endl);
     shutdownConnection(true);
 }
 
@@ -631,7 +651,7 @@ void fishProtocol::shutdownConnection(bool forced){
         if (!forced)
         {
            dropNetwork();
-           infoMessage("Disconnected.");
+           infoMessage(i18n("Disconnected."));
         }
     }
     outBufPos = -1;
@@ -992,7 +1012,7 @@ void fishProtocol::manageConnection(const QString &l) {
             error(ERR_CANNOT_ENTER_DIRECTORY,url.prettyURL());
             break;
         case FISH_LIST:
-            //myDebug( << "list error. reason: " << listReason << endl);
+            myDebug( << "list error. reason: " << listReason << endl);
             if (listReason == LIST || listReason == SIZE) error(ERR_CANNOT_ENTER_DIRECTORY,url.prettyURL());
             else if (listReason == STAT) {
                 listReason = STATCHECK;
@@ -1305,7 +1325,7 @@ void fishProtocol::run() {
 void fishProtocol::stat(const KURL& u){
     myDebug( << "@@@@@@@@@ stat " << u.url() << endl);
     setHost(u.host(),u.port(),u.user(),u.pass());
-     url = u;
+    url = u;
     isStat = true; // FIXME: just a workaround for konq deficiencies
     openConnection();
     isStat = false; // FIXME: just a workaround for konq deficiencies
@@ -1329,7 +1349,7 @@ void fishProtocol::stat(const KURL& u){
 void fishProtocol::mimetype(const KURL& u){
     myDebug( << "@@@@@@@@@ mimetype " << u.url() << endl);
     setHost(u.host(),u.port(),u.user(),u.pass());
-     url = u;
+    url = u;
     openConnection();
     if (!isLoggedIn) return;
     url.cleanPath();
@@ -1347,7 +1367,7 @@ void fishProtocol::mimetype(const KURL& u){
 void fishProtocol::listDir(const KURL& u){
     myDebug( << "@@@@@@@@@ listDir " << u.url() << endl);
     setHost(u.host(),u.port(),u.user(),u.pass());
-     url = u;
+    url = u;
     openConnection();
     if (!isLoggedIn) return;
     url.cleanPath();
@@ -1363,7 +1383,7 @@ void fishProtocol::listDir(const KURL& u){
 void fishProtocol::mkdir(const KURL& u, int permissions) {
     myDebug( << "@@@@@@@@@ mkdir " << u.url() << " " << permissions << endl);
     setHost(u.host(),u.port(),u.user(),u.pass());
-     url = u;
+    url = u;
     openConnection();
     if (!isLoggedIn) return;
     url.cleanPath();
@@ -1383,7 +1403,7 @@ void fishProtocol::rename(const KURL& s, const KURL& d, bool overwrite) {
         return;
     }
     setHost(s.host(),s.port(),s.user(),s.pass());
-     url = d;
+    url = d;
     openConnection();
     if (!isLoggedIn) return;
     KURL src = s;
@@ -1405,7 +1425,7 @@ void fishProtocol::rename(const KURL& s, const KURL& d, bool overwrite) {
 void fishProtocol::symlink(const QString& target, const KURL& u, bool overwrite) {
     myDebug( << "@@@@@@@@@ symlink " << target << " " << u.url() << " " << overwrite << endl);
     setHost(u.host(),u.port(),u.user(),u.pass());
-     url = u;
+    url = u;
     openConnection();
     if (!isLoggedIn) return;
     url.cleanPath();
@@ -1425,7 +1445,7 @@ void fishProtocol::symlink(const QString& target, const KURL& u, bool overwrite)
 void fishProtocol::chmod(const KURL& u, int permissions){
     myDebug( << "@@@@@@@@@ chmod " << u.url() << " " << permissions << endl);
     setHost(u.host(),u.port(),u.user(),u.pass());
-     url = u;
+    url = u;
     openConnection();
     if (!isLoggedIn) return;
     url.cleanPath();
@@ -1445,7 +1465,7 @@ void fishProtocol::copy(const KURL &s, const KURL &d, int permissions, bool over
     }
     //myDebug( << s.url() << endl << d.url() << endl);
     setHost(s.host(),s.port(),s.user(),s.pass());
-     url = d;
+    url = d;
     openConnection();
     if (!isLoggedIn) return;
     KURL src = s;

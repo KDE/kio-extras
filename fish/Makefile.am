@@ -24,5 +24,8 @@ fishcode.h: fish.pl
 	sed -e 's/\\/\\\\/g;s/"/\\"/g;s/^[ 	]*/"/;/^"# /d;s/[ 	]*$$/\\n"/;/^"\\n"$$/d;s/{CHECKSUM}/'$$SUM'/;' $(srcdir)/fish.pl >> $@; \
 	echo ');' >> $@;
 
+messages:
+	$(XGETTEXT) *.cpp -o $(podir)/kio_fish.pot
+
 
 
