@@ -35,42 +35,44 @@
 
 class KDESasl;
 
-class SMTPProtocol
-	: public KIO::TCPSlaveBase {
+class SMTPProtocol:public KIO::TCPSlaveBase {
 public:
-	SMTPProtocol (const QCString &pool, const QCString &app, bool useSSL);
-	virtual ~SMTPProtocol ();
+  SMTPProtocol(const QCString & pool, const QCString & app, bool useSSL);
+  virtual ~ SMTPProtocol();
 
-	virtual void setHost (const QString &host, int port, const QString &user, const QString &pass);
+  virtual void setHost(const QString & host, int port,
+                       const QString & user, const QString & pass);
 
-	virtual void special (const QByteArray &aData);
-	virtual void put (const KURL &url, int permissions, bool overwrite, bool resume);
-	virtual void stat (const KURL &url);
-	virtual void openConnection();
-	virtual void closeConnection();
+  virtual void special(const QByteArray & aData);
+  virtual void put(const KURL & url, int permissions, bool overwrite,
+                   bool resume);
+  virtual void stat(const KURL & url);
+  virtual void openConnection();
+  virtual void closeConnection();
 
 protected:
 
-	bool smtp_open ();
-	void smtp_close ();
-	bool command (const QString &buf, char *r_buf = NULL, unsigned int r_len = 0);
-	int getResponse (char *real_buf = NULL, unsigned int real_len = 0);
-	bool Authenticate ();
-	void ParseFeatures (const char *buf);
-	bool PutRecipients (QStringList &list, const KURL &url);
+  bool smtp_open();
+  void smtp_close();
+  bool command(const QString & buf, char *r_buf =
+               NULL, unsigned int r_len = 0);
+  int getResponse(char *real_buf = NULL, unsigned int real_len = 0);
+  bool Authenticate();
+  void ParseFeatures(const char *buf);
+  bool PutRecipients(QStringList & list, const KURL & url);
 
-	unsigned short m_iOldPort;
-	bool opened, haveTLS;
-	struct timeval m_tTimeout;
-	QString m_sServer, m_sOldServer;
-	QString m_sUser, m_sOldUser;
-	QString m_sPass, m_sOldPass;
-	QString m_sError;
+  unsigned short m_iOldPort;
+  bool opened, haveTLS;
+  struct timeval m_tTimeout;
+  QString m_sServer, m_sOldServer;
+  QString m_sUser, m_sOldUser;
+  QString m_sPass, m_sOldPass;
+  QString m_sError;
 
-	KDESasl *m_pSASL;
-	QString m_sAuthConfig;
-	QCString lastError;
-	bool errorSent;
+  KDESasl *m_pSASL;
+  QString m_sAuthConfig;
+  QCString lastError;
+  bool errorSent;
 };
 
 #endif
