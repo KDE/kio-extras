@@ -609,6 +609,19 @@ QString KAudiocdModule::quickHelp() const
                         " version of the lame or ogg libraries.");
 }
 
+const KAboutData* KAudiocdModule::aboutData() const
+{
+ 
+    KAboutData *about =
+    new KAboutData(I18N_NOOP("kcmaudiocd"), I18N_NOOP("KDE Audio-CD Slave Control Module"),
+                  0, 0, KAboutData::License_GPL,
+                  I18N_NOOP("(c) 2000 - 2001 Carsten Duvenhorst"));
+ 
+    about->addAuthor("Carsten Duvenhorst", 0, "duvenhorst@duvnet.de");
+ 
+    return about;
+}
+
 extern "C"
 {
     KCModule *create_audiocd(QWidget *parent, const char *name)

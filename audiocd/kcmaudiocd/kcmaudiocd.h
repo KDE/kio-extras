@@ -38,24 +38,25 @@ public:
 
   KAudiocdModule(QWidget *parent=0, const char *name=0);
 
-   QString quickHelp() const;
+  QString quickHelp() const;
+  const KAboutData* aboutData() const;    
 
 public slots:
 
- void defaults();
- void save();
- void load();
+  void defaults();
+  void save();
+  void load();
  
 private slots:
 
- void slotSelectMethod(int);
- void slotUpdateVBRWidgets();
- void slotConfigChanged();
- void slotChangeFilter();
- void slotEcDisable();
- void slotAddCDDBServer();
- void slotDelCDDBServer();
- void slotServerTextChanged(const QString & );
+  void slotSelectMethod(int);
+  void slotUpdateVBRWidgets();
+  void slotConfigChanged();
+  void slotChangeFilter();
+  void slotEcDisable();
+  void slotAddCDDBServer();
+  void slotDelCDDBServer();
+  void slotServerTextChanged(const QString & );
 private:
 
   AudiocdConfig *audiocdConfig;
