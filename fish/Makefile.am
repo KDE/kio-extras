@@ -3,7 +3,7 @@ kde_module_LTLIBRARIES = kio_fish.la
 INCLUDES = $(all_includes)
 
 kio_fish_la_SOURCES = fish.cpp
-kio_fish_la_LIBADD = $(LIB_KIO) $(LIB_UTIL)
+kio_fish_la_LIBADD = $(LIB_KIO) $(LIBUTIL)
 kio_fish_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN)
 
 EXTRA_DIST = AUTHORS COPYING ChangeLog INSTALL README TODO FAQ fish.pl
