@@ -84,7 +84,8 @@ void Util::parse(const char *name, bool interpretDirs)
 //	cerr<<ntoken<<endl;
 	
 	// create the token and separator tables
-	char **token = new (char*)[ntoken];
+        typedef char* CharPtr;
+	char **token = new CharPtr[ntoken];
 	char *separator = new char[ntoken];
 	// fill the table
 	lastpos = (char*)name;
