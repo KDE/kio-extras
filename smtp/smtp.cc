@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2000, 2001 Alex Zepeda <jazepeda@pacbell.net>
+ * Copyright (c) 2001 Michael Häckel <Michael@Haeckel.Net>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -125,18 +126,6 @@ SMTPProtocol::~SMTPProtocol ()
 {
 	kdDebug() << "SMTPProtocol::~SMTPProtocol" << endl;
 	smtp_close();
-}
-
-void SMTPProtocol::HandleSMTPWriteError (const KURL &url)
-{
-	// Attempt to save face and call RSET, and if that works
-	// try and shut down nicely.
-	if (!command( ASCII("RSET") )) {
-		error(ERR_SERVICE_NOT_AVAILABLE, i18n("RSET failed %1").arg(url.path()));
-	} else {
-		smtp_close();
-		error(ERR_COULD_NOT_WRITE, i18n("RSET succeeded %1").arg(url.path()));
-	}
 }
 
 void SMTPProtocol::openConnection()
@@ -278,9 +267,9 @@ void SMTPProtocol::put(const KURL &url, int /*permissions*/, bool /*overwrite*/,
 
 	// Loop through our To and CC recipients, and send the proper
 	// SMTP commands, for the benefit of the server.
-	PutRecipients(recip, open_url);	// To
-	PutRecipients(cc, open_url);	// Carbon Copy (CC)
-	PutRecipients(bcc, open_url);	// Blind Carbon Copy (BCC)
+	if (!PutRecipients(recip, open_url)) return;	// To
+	if (!PutRecipients(cc, open_url)) return;	// Carbon Copy (CC)
+	if (!PutRecipients(bcc, open_url)) return;	// Blind Carbon Copy (BCC)
 
 	// Begin sending the actual message contents (most headers+body)
 	if (!command(ASCII("DATA"))) {
@@ -354,15 +343,18 @@ void SMTPProtocol::put(const KURL &url, int /*permissions*/, bool /*overwrite*/,
 	finished();
 }
 
-void SMTPProtocol::PutRecipients (QStringList &list, const KURL &url)
+bool SMTPProtocol::PutRecipients (QStringList &list, const KURL &url)
 {
 	QString formatted_recip = ASCII("RCPT TO: %1");
 	for ( QStringList::Iterator it = list.begin(); it != list.end(); ++it ) {
 		if (!command(formatted_recip.arg(*it)))
 		{
 			error(ERR_NO_CONTENT, i18n("The server didn't accept one of the recipients.\nIt said: ").arg(lastError));
+			smtp_close();
+			return FALSE;
 		}
 	}
+	return TRUE;
 }
 
 void SMTPProtocol::setHost (const QString &host, int port, const QString &user, const QString &pass)

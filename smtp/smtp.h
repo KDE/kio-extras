@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2000, 2001 Alex Zepeda <jazepeda@pacbell.net>
+ * Copyright (c) 2001 Michael Häckel <Michael@Haeckel.Net>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -55,9 +56,8 @@ protected:
 	bool command (const QString &buf, char *r_buf = NULL, unsigned int r_len = 0);
 	int getResponse (char *real_buf = NULL, unsigned int real_len = 0);
 	bool Authenticate ();
-	void HandleSMTPWriteError (const KURL &url);
 	void ParseFeatures (const char *buf);
-	void PutRecipients (QStringList &list, const KURL &url);
+	bool PutRecipients (QStringList &list, const KURL &url);
 
 	unsigned short m_iOldPort;
 	bool opened, haveTLS;
