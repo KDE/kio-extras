@@ -55,22 +55,7 @@ public:
   
  protected:
 
-  /**
-    *  Send a command to the server, and wait for the one-line-status
-    *  reply via getResponse.  Similar rules apply.  If no buffer is
-    *  specified, no data is passed back.
-    */
-  bool command (const char *buf, char *r_buf=0, unsigned int r_len=0);
-
-  /**
-    *  All Gopher commands will generate a response.  Each response will
-    *  either be prefixed with a "+OK " or a "-ERR ".  The getResponse 
-    *  fucntion will wait until there's data to be read, and then read in
-    *  the first line (the response), and copy the response sans +OK/-ERR
-    *  into a buffer (up to len bytes) if one was passed to it.  It will
-    *  return true if the response was affirmitave, or false otherwise.
-    */
-  bool getResponse (char *buf=0, unsigned int len=0);
+  bool readRawData(const char *_url, const char *mimetype=0);
 
   /**
     *  Attempt to properly shut down the Gopher connection.
@@ -84,11 +69,11 @@ public:
   bool gopher_open (KURL &_url);
 
   int m_cmd, m_iSock;
-  unsigned short int m_iOldPort;
   struct timeval m_tTimeout;
   FILE *fp;
   IOJob* m_pJob;
   GopherType current_type;
+  static const char *abouttext;
 };
 
 class GopherIOJob : public IOJob

@@ -24,12 +24,14 @@
 
 #include "gopher.h"
 
+#include <iostream.h>
+
 bool open_PassDlg( const QString& _head, QString& _user, QString& _pass );
 
 int main(int , char **)
 {
   signal(SIGCHLD, IOProtocol::sigchld_handler);
-  signal(SIGSEGV, IOProtocol::sigsegv_handler);
+  //signal(SIGSEGV, IOProtocol::sigsegv_handler);
 
   Connection parent( 0, 1 );
 
@@ -41,103 +43,10 @@ GopherProtocol::GopherProtocol(Connection *_conn) : IOProtocol(_conn)
 {
   m_cmd = CMD_NONE;
   m_pJob = 0L;
-  m_iSock = m_iOldPort = 0;
+  m_iSock = 0;
   m_tTimeout.tv_sec=10;
   m_tTimeout.tv_usec=0;
   fp = 0;
-}
-
-bool GopherProtocol::getResponse (char *r_buf, unsigned int r_len)
-{
-  char *buf=0;
-  unsigned int recv_len=0;
-  fd_set FDs;
-
-  // Give the buffer the appropiate size
-  if (r_len)
-    buf=(char *)malloc(r_len);
-  else {
-    buf=(char *)malloc(512);
-    r_len=512;
-  }
-
-  // Wait for something to come from the server
-  FD_ZERO(&FDs);
-  FD_SET(m_iSock, &FDs);
-
-  // And keep waiting if it timed out
-  unsigned int wait_time=1;
-  while (::select(m_iSock+1, &FDs, 0, 0, &m_tTimeout) ==0) {
-    // Yes, it's true, Linux sucks.
-    wait_time++;
-    m_tTimeout.tv_sec=wait_time;
-    m_tTimeout.tv_usec=0;
-  }
-
-  // Clear out the buffer
-  memset(buf, 0, r_len);
-  // And grab the data
-  if (fgets(buf, r_len-1, fp) == 0) {
-    if (buf) free(buf);
-    return false;
-  }
-  // This is really a funky crash waiting to happen if something isn't
-  // null terminated.
-  recv_len=strlen(buf);
-
-/*
- *   From rfc1939:
- *
- *   Responses in the Gopher consist of a status indicator and a keyword
- *   possibly followed by additional information.  All responses are
- *   terminated by a CRLF pair.  Responses may be up to 512 characters
- *   long, including the terminating CRLF.  There are currently two status
- *   indicators: positive ("+OK") and negative ("-ERR").  Servers MUST
- *   send the "+OK" and "-ERR" in upper case.
- */
-
-  if (strncmp(buf, "+OK ", 4)==0) {
-    if (r_buf && r_len) {
-      memcpy(r_buf, buf+4, QMIN(r_len,recv_len-4));
-    }
-    if (buf) free(buf);
-    return true;
-  } else if (strncmp(buf, "-ERR ", 5)==0) {
-    if (r_buf && r_len) {
-      memcpy(r_buf, buf+5, QMIN(r_len,recv_len-5));
-    }
-    if (buf) free(buf);
-    return false;
-  } else {
-    fprintf(stderr, "Invalid Gopher response received!\n");fflush(stderr);
-    if (r_buf && r_len) {
-      memcpy(r_buf, buf, QMIN(r_len,recv_len));
-    }
-    if (buf) free(buf);
-    return false;
-  }
-}
-
-bool GopherProtocol::command (const char *cmd, char *recv_buf, unsigned int len)
-{
-
-/*
- *   From rfc1939:
- *
- *   Commands in the Gopher consist of a case-insensitive keyword, possibly
- *   followed by one or more arguments.  All commands are terminated by a
- *   CRLF pair.  Keywords and arguments consist of printable ASCII
- *   characters.  Keywords and arguments are each separated by a single
- *   SPACE character.  Keywords are three or four characters long. Each
- *   argument may be up to 40 characters long.
- */
-
-  // Write the command
-  if (::write(m_iSock, cmd, strlen(cmd)) != (ssize_t)strlen(cmd))
-    return false;
-  if (::write(m_iSock, "\r\n", 2) != 2)
-    return false;
-  return getResponse(recv_buf, len);
 }
 
 void GopherProtocol::gopher_close ()
@@ -155,15 +64,14 @@ bool GopherProtocol::gopher_open( KURL &_url )
   // because we first have to check to see if the user specified
   // a port, and if so use it, otherwise we check to see if there
   // is a port specified in /etc/services, and if so use that
-  // otherwise as a last resort use the "official" port of 110.
+  // otherwise as a last resort use the "official" port of 70.
 
   unsigned short int port;
   struct sockaddr_in server_name;
   memset(&server_name, 0, sizeof(server_name));
   static char buf[512];
 
-  // We want 110 as the default, but -1 means no port was specified.
-  // Why 0 wasn't chosen is beyond me.
+  // We want 70 as the default
   port = _url.port() ? _url.port() : 70;
   gopher_close();
   m_iSock = ::socket(PF_INET, SOCK_STREAM, 0);
@@ -179,6 +87,7 @@ bool GopherProtocol::gopher_open( KURL &_url )
   // if it fails, close everything up
   if ((fp = fdopen(m_iSock, "w+")) == 0) {
     close(m_iSock);
+    m_iSock=0;
     return false;
   }
 
@@ -190,23 +99,25 @@ bool GopherProtocol::gopher_open( KURL &_url )
       error(ERR_COULD_NOT_CONNECT, strdup(_url.host()));
       return false;
     }
-  }
-  path.remove(0,1); // Remove the type identifier
-  // It sholud not be empty here
-  if (path.isEmpty()) {
-    gopher_close();
-    return false;
-  }
-  // Otherwise we should send our request
-  if (::write(m_iSock, path.ascii(), strlen(path.ascii())) != strlen(path.ascii())) {
-    error(ERR_COULD_NOT_CONNECT, strdup(_url.host()));
-    gopher_close();
-    return false;
-  }
-  if (::write(m_iSock, "\r\n", 2) != 2) {
-    error(ERR_COULD_NOT_CONNECT, strdup(_url.host()));
-    gopher_close();
-    return false;
+  } else {
+    path.remove(0,1); // Remove the type identifier
+    // It should not be empty here
+    if (path.isEmpty()) {
+      error(ERR_MALFORMED_URL, strdup(_url.host()));
+      gopher_close();
+      return false;
+    }
+    // Otherwise we should send our request
+    if (::write(m_iSock, path.ascii(), strlen(path.ascii())) != strlen(path.ascii())) {
+      error(ERR_COULD_NOT_CONNECT, strdup(_url.host()));
+      gopher_close();
+      return false;
+    }
+    if (::write(m_iSock, "\r\n", 2) != 2) {
+      error(ERR_COULD_NOT_CONNECT, strdup(_url.host()));
+      gopher_close();
+      return false;
+    }
   }
   return true;
   
@@ -214,14 +125,80 @@ bool GopherProtocol::gopher_open( KURL &_url )
 
 void GopherProtocol::slotListDir( const char *_url )
 {
+  KURL dest(_url);
+  QString path = dest.path();
+  if ( dest.isMalformed() ) {
+    error( ERR_MALFORMED_URL, strdup(_url) );
+    m_cmd = CMD_NONE;
+    return;
+  }
+
+  if (dest.protocol() != "gopher") {
+    error( ERR_INTERNAL, "kio_gopher got non gopher url" );
+    m_cmd = CMD_NONE;
+    return;
+  }
+  gopher_open(dest);
+  if (path.left(1) == "/") path.remove(0,1);
+
+  UDSEntry entry;
+  UDSAtom atom;
+  QString line;
+  char buf[128];
+  while (fgets(buf, 127, fp)) {
+    line = buf+1;
+    switch ((GopherType)buf[0]) {
+    case GOPHER_MENU: {
+      entry.clear();
+      atom.m_uds = UDS_NAME;
+      atom.m_long = 0;
+      atom.m_str = line.mid(0,line.find("\t"));
+      entry.append(atom);
+
+      atom.m_uds = UDS_FILE_TYPE;
+      atom.m_str = "";
+      atom.m_long = S_IFDIR;
+      entry.append(atom);
+
+      atom.m_uds = UDS_SIZE;
+      atom.m_str = QString::null;
+      atom.m_long = 0;
+      entry.append(atom);
+
+      listEntry(entry);
+      break;
+    }
+    default: {
+      break;
+    }
+    }
+  }
+  finished();
+  return;
 }
 
 void GopherProtocol::slotTestDir( const char *_url )
 {
+  KURL usrc(_url);
+  // An empty path is essentially a request for an index...
+  QString path = usrc.path();
+  if (path.left(1)=="/") path.remove(0,1);
+  if (path.isEmpty() || path.left(1) == "1")
+    isDirectory();
+  else
+    isFile();
+  finished();
 }
 
 void GopherProtocol::slotGetSize( const char *_url )
 {
+  KURL target(_url);
+  if (target.path() == "/aboutme.txt") {
+    totalSize(strlen(GopherProtocol::abouttext));
+    finished();
+    m_cmd = CMD_NONE;
+  }
+  
 }
 
 void GopherProtocol::slotGet(const char *_url)
@@ -237,13 +214,22 @@ void GopherProtocol::slotGet(const char *_url)
   }
 
   if (usrc.protocol() != "gopher") {
-    error( ERR_INTERNAL, "kio_gopher got non pop3 url" );
+    error( ERR_INTERNAL, "kio_gopher got non gopher url" );
     m_cmd = CMD_NONE;
     return;
   }
 
   path = usrc.path();
 
+  if (path == "/aboutme.txt") {
+    ready();
+    gettingFile(_url);
+    mimeType("text/plain");
+    data(GopherProtocol::abouttext, strlen(GopherProtocol::abouttext));
+    dataEnd();
+    processedSize(strlen(GopherProtocol::abouttext));
+    finished();
+  }
   if (path.left(1)=="/") path.remove(0,1);
   if (path.isEmpty()) {
     debug("We should be a dir!!");
@@ -255,29 +241,44 @@ void GopherProtocol::slotGet(const char *_url)
     return;
   }
   char type = path.ascii()[0];
-  fprintf(stderr,"Type is:");
-  current_type=type;
-  switch (type) {
+  //fprintf(stderr,"Type is:");
+  current_type=(GopherType)type;
+  switch ((GopherType)type) {
+  case GOPHER_GIF:  {
+    gopher_open(usrc);
+    if(!readRawData(_url, "image/gif")) {
+      error(ERR_INTERNAL, "rawReadData failed");
+      return;
+    }
+  }
   case GOPHER_TEXT: {
     gopher_open(usrc);
-    char buf[1024];
-    ready();
-    gettingFile(_url);
-    mimeType("text/plain");
-    ssize_t read_ret=0;
-    size_t total_size=0;
-    while ((read_ret=::read(m_iSock, buf, 1024))>0) {
+    if(!readRawData(_url, "text/plain")) {
+      error(ERR_INTERNAL, "rawReadData failed");
+      return;
+    }
+  }
+  }
+}
+
+bool GopherProtocol::readRawData(const char *_url, const char *mimetype)
+{
+  char buf[1024];
+  ready();
+  gettingFile(_url);
+  mimeType(mimetype);
+  ssize_t read_ret=0;
+  size_t total_size=0;
+  while ((read_ret=::read(m_iSock, buf, 1024))>0) {
       data(buf, read_ret);
       total_size+=read_ret;
-    }
-    dataEnd();
-    processedSize(total_size);
-    finished();
-    gopher_close();
   }
-  }
-
+  dataEnd();
+  processedSize(total_size);
   finished();
+  gopher_close();
+  finished();
+  return true;
 }
 
 void GopherProtocol::slotCopy(const char *, const char *)
@@ -368,3 +369,11 @@ void GopherIOJob::slotError(int _errid, const char *_txt)
   IOJob::slotError( _errid, _txt );
   m_pGopher->jobError(_errid, _txt );
 }
+
+const char *GopherProtocol::abouttext=
+"gopher  n.  1. Any of various short tailed, burrowing mammals of the
+family Geomyidae, of North America.  2. (Amer. colloq.) Native or
+inhabitant of Minnesota: the Gopher State.  3. (Amer. colloq.) One
+who runs errands, does odd-jobs, fetches or delivers documents for
+office staff.  4. (computer tech.) software following a simple
+protocol for burrowing through a TCP/IP internet.";
