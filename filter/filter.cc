@@ -76,7 +76,7 @@ void FilterProtocol::get( const KURL & )
   }
   needSubURLData();
 
-  filter->init();
+  filter->init(IO_ReadOnly);
 
   bool bNeedHeader = true;
   bool bNeedMimetype = true;
