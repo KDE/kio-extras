@@ -537,7 +537,6 @@ struct man_index_t {
 typedef man_index_t *man_index_ptr;
 
 #ifdef _USE_QSORT
-#warning using qsort
 int compare_man_index(const void *s1, const void *s2)
 {
     struct man_index_t *m1 = *(struct man_index_t **)s1;
