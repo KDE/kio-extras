@@ -74,6 +74,13 @@ using std::auto_ptr;
 #ifdef HAVE_SYS_SOCKET_H
 # include <sys/socket.h>
 #endif
+#include <netdb.h>
+
+#ifndef NI_NAMEREQD
+// FIXME for KDE 3.3: fake defintion
+// API design flaw in KExtendedSocket::resolve
+# define NI_NAMEREQD	0
+#endif
 
 extern "C" {
   int kdemain(int argc, char **argv);
@@ -501,7 +508,14 @@ bool SMTPProtocol::smtp_open(const QString& fakeHostname)
   { 
     QString tmpPort;
     KSocketAddress* addr = KExtendedSocket::localAddress(m_iSock);
-    KExtendedSocket::resolve(addr, m_hostname, tmpPort);
+    // perform name lookup. NI_NAMEREQD means: don't return a numeric
+    // value (we need to know when we get have the IP address, so we
+    // can enclose it in sqaure brackets (domain-literal). Failure to
+    // do so is normally harmless with IPv4, but fails for IPv6:
+    if (KExtendedSocket::resolve(addr, m_hostname, tmpPort, NI_NAMEREQD) != 0)
+      // FQDN resolution failed
+      // use the IP address as domain-literal
+      m_hostname = '[' + addr->nodeName() + ']';
     delete addr;
 
     if(m_hostname.isEmpty())
