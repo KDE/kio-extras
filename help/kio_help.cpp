@@ -53,11 +53,9 @@ void addList(QStringList &dest, const QStringList &source)
 }
 
 
-QString lookupFile(QString fname)
+QString langLookup(QString fname)
 {
   QStringList search;
-
-  kdDebug() << "filename 1 = " << fname << endl;
 
   // assemble the local search paths
   QStringList const &localDoc = KGlobal::dirs()->findDirs("html", "");
@@ -74,8 +72,6 @@ QString lookupFile(QString fname)
 	  break;
 	}
     }
-
-  kdDebug() << "filename 2 = " << fname << endl;
 
   // cut of the language
   if (found)
@@ -96,11 +92,11 @@ QString lookupFile(QString fname)
 	search.append(QString("%1/%2/%3").arg(localDoc[id]).arg(*lang).arg(fname));
     }
 
-  // try to locate the urls  
+  // try to locate the file
   QStringList::Iterator it;
   for (it = search.begin(); it != search.end(); ++it)
     {      
-      kdDebug() << "Lookiing for help in: " << *it << endl;
+      kdDebug() << "Looking for help in: " << *it << endl;
 
       QFileInfo info(*it);
       if (info.exists() && info.isFile() && info.isReadable())
@@ -111,6 +107,29 @@ QString lookupFile(QString fname)
 }
 
 
+QString lookupFile(QString fname, QString query)
+{
+  kdDebug() << "lookupFile: filename=" << fname << " query=" << query << endl;
+
+  QString anchor, path, result;
+
+  // if we have a query, look if it contains an anchor
+  //  if (!query.isEmpty())
+    //    if (query.left(8) == "?anchor=")
+  //      anchor = query.mid(9);
+
+  path = fname;
+
+  kdDebug() << "lookupFile: path=" << path << " anchor=" << anchor << endl;
+
+  result = langLookup(path);
+  if (result.isEmpty())
+    result = langLookup(path + "/index.html");
+
+  return result;
+}
+
+
 
 HelpProtocol::HelpProtocol( const QCString &pool, const QCString &app ) 
   : SlaveBase( "help", pool, app )
@@ -118,9 +137,11 @@ HelpProtocol::HelpProtocol( const QCString &pool, const QCString &app )
 }
 
 
-void HelpProtocol::get( const QString& path, const QString& /*query*/, bool /* reload */)
+void HelpProtocol::get( const QString& path, const QString& query, bool /* reload */)
 {
-  QString doc = lookupFile(path);
+  kdDebug() << "get: path=" << path << " query=" << query << endl;
+
+  QString doc = lookupFile(path, query);
   if (doc.isEmpty())
     {
       error( KIO::ERR_DOES_NOT_EXIST, path );
@@ -154,6 +175,8 @@ void HelpProtocol::get( const QString& path, const QString& /*query*/, bool /* r
 
     char buffer[ 4090 ];
     QByteArray array;
+
+    mimeType("text/html");
 
     while( !feof( f ) )
 	{
@@ -192,10 +215,10 @@ void HelpProtocol::get( const QString& path, const QString& /*query*/, bool /* r
 }
 
 
-void HelpProtocol::stat( const QString & path, const QString& /*query*/ )
+void HelpProtocol::stat( const QString & path, const QString& query )
 {
-  QString doc = lookupFile(path);
-
+  kdDebug() << "stat: path=" << path << " query=" << query << endl;
+  QString doc = lookupFile(path, query);
   if (doc.isEmpty())
     {
       error( KIO::ERR_DOES_NOT_EXIST, path );
