@@ -23,6 +23,7 @@ KFileDevicePlugin::KFileDevicePlugin(QObject *parent, const char *name,
 	addMimeType( "kdedevice/floppy5_mounted" );
 	addMimeType( "kdedevice/floppy_mounted" );
 	addMimeType( "kdedevice/hdd_mounted" );
+	addMimeType( "kdedevice/removable_mounted" );
 	addMimeType( "kdedevice/zip_mounted" );
 }
 

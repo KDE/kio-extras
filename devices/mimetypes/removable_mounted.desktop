@@ -1,0 +1,9 @@
+[Desktop Entry]
+Encoding=UTF-8
+Icon=usbpendrive_mount
+Type=MimeType
+MimeType=kdedevice/removable_mounted
+Comment=Mounted Removable Device
+Patterns=
+
+X-KDE-AutoEmbed=true

@@ -4,4 +4,4 @@ Type=Service
 Name=Device Information
 ServiceTypes=KFilePlugin
 X-KDE-Library=kfile_device
-MimeType=kdedevice/cdrom_mounted;kdedevice/cdwriter_mounted;kdedevice/dvd_mounted;kdedevice/floppy5_mounted;kdedevice/floppy_mounted;kdedevice/hdd_mounted;kdedevice/zip_mounted
+MimeType=kdedevice/cdrom_mounted;kdedevice/cdwriter_mounted;kdedevice/dvd_mounted;kdedevice/floppy5_mounted;kdedevice/floppy_mounted;kdedevice/hdd_mounted;kdedevice/removable_mounted;kdedevice/zip_mounted

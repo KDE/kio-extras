@@ -63,6 +63,7 @@ QString DiskEntry::niceDescription()
 	else if (dType.contains("cdwriter")) return i18n("CD Recorder");
 	else if (dType.contains("floppy")) return i18n("Floppy");
 	else if (dType.contains("zip")) return i18n("Zip Disk");
+	else if (dType.contains("removable")) return i18n("Removable Device");
 	else return i18n("Unknown");
 }
 
@@ -161,7 +162,11 @@ QString DiskEntry::discType()
     else if (-1!=mountPoint().find("floppy",0,FALSE)) typeName="kdedevice/floppy";
 
 
-    else if (-1!=mountPoint().find("zip",0,FALSE)) typeName+="kdedevice/zip";
+    else if (-1!=mountPoint().find("usb",0,FALSE)) typeName="kdedevice/removable";
+    else if (-1!=mountPoint().find("firewire",0,FALSE)) typeName="kdedevice/removable";
+    else if (-1!=mountPoint().find("removable",0,FALSE)) typeName="kdedevice/removable";
+    
+    else if (-1!=mountPoint().find("zip",0,FALSE)) typeName="kdedevice/zip";
     else if (-1!=fsType().find("nfs",0,FALSE)) typeName="kdedevice/nfs";
     else if (-1!=fsType().find("smb",0,FALSE)) typeName="kdedevice/smb";
     else if (-1!=deviceName().find("//",0,FALSE)) typeName="kdedevice/smb";
