@@ -477,7 +477,11 @@ void MANProtocol::showIndex(QString section)
 		  file += *itFile;
 	
 		  // skip compress extension
-		  if (fileName.right(3) == ".gz")
+		  if (fileName.right(4) == ".bz2")
+		    {
+		      fileName.truncate(fileName.length()-4);
+		    }
+		  else if (fileName.right(3) == ".gz")
 		    {
 		      fileName.truncate(fileName.length()-3);
 		    }
@@ -505,7 +509,7 @@ void MANProtocol::showIndex(QString section)
   QStringList::ConstIterator page;
   for (page = pages.begin(); page != pages.end(); ++page)
     {
-      os << "<tr><td><a href=\"man:" << *page << "(" << section << ")\">";
+      os << "<tr><td><a href=\"man:/" << *page << "(" << section << ")\">";
       os << *page << "</a></td><td>&nbsp;</td><td> " << pageName(*page) << "</td></tr>" << endl;
     }
 
