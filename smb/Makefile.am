@@ -22,4 +22,4 @@ noinst_HEADERS = kio_smb.h
 kioconfig_DATA = smb.desktop
 kioconfigdir = $(kde_confdir)/protocols
 
-messages:
+
