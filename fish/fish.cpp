@@ -27,6 +27,7 @@
 #include "config.h"
 
 #include <qcstring.h>
+#include <qfile.h>
 #include <qsocket.h>
 #include <qdatetime.h>
 #include <qbitarray.h>
@@ -242,10 +243,10 @@ fishProtocol::fishProtocol(const QCString &pool_socket, const QCString &app_sock
     if (sshPath == NULL) {
         // disabled: currently not needed. Didn't work reliably.
         // isOpenSSH = !system("ssh -V 2>&1 | grep OpenSSH > /dev/null");
-        sshPath = strdup(E(KStandardDirs::findExe("ssh")));
+        sshPath = strdup(QFile::encodeName(KStandardDirs::findExe("ssh")));
     }
     if (suPath == NULL) {
-        suPath = strdup(E(KStandardDirs::findExe("su")));
+        suPath = strdup(QFile::encodeName(KStandardDirs::findExe("su")));
     }
     childPid = 0;
     connectionPort = 0;
@@ -394,7 +395,7 @@ bool fishProtocol::connectionStart() {
     }
 
     if (!requestNetwork()) return true;
-    myDebug( << "Exec: " << (local ? "su" : "ssh") << " Port: " << connectionPort << " User: " << connectionUser << endl);
+    myDebug( << "Exec: " << (local ? suPath : sshPath) << " Port: " << connectionPort << " User: " << connectionUser << endl);
     childPid = fork();
     if (childPid == -1) {
         myDebug( << "fork failed, error: " << strerror(errno) << endl);
