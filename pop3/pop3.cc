@@ -745,7 +745,8 @@ void POP3Protocol::get(const KURL & url)
     QString list_cmd("LIST ");
     list_cmd += path;
     memset(buf, 0, sizeof(buf));
-    if (noProgress);
+    if (noProgress)
+        /* nothing */;
     else if (command(list_cmd.ascii(), buf, sizeof(buf) - 1)) {
       list_cmd = buf;
       // We need a space, otherwise we got an invalid reply
