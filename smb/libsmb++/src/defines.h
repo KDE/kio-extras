@@ -109,6 +109,13 @@ typedef int bool
 #define INT16_IS_4_BYTE_LONG
 #endif
 
+#ifdef _AIX
+#undef int8
+#undef int16
+#undef int32
+#include <sys/inttypes.h>
+#endif
+
 /*******************
  BIG ENDIAN SECTION
 *******************/
