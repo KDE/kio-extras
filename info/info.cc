@@ -197,67 +197,6 @@ void InfoProtocol::stat( const KURL & )
 	finished();
 }
 
-/*void InfoProtocol::listDir( const KURL &url )
-{
-    kdDebug( 7108 ) << "InfoProtocol::listDir" << endl;
-
-    if ( !url.directory(true,true).isEmpty()
-         && url.directory(true,true) != QString("/") )
-    {
-        error( KIO::ERR_CANNOT_ENTER_DIRECTORY, url.path() );
-        return;
-    }
-
-    // Match info nodes in the 'dir' file
-    // "* infopage:" at the start of a line
-    QRegExp regex( "^\\*  *[^: ][^:]*:", false );
-
-    QFile f( "/usr/info/dir" );
-
-    if ( f.open(IO_ReadOnly) ) {
-        QTextStream t( &f );
-        QString s;
-
-        int start, len;
-
-        UDSEntryList uds_entry_list;
-        UDSEntry     uds_entry;
-        UDSAtom      uds_atom;
-
-        uds_atom.m_uds = KIO::UDS_NAME; // we only do names...
-        uds_entry.append( uds_atom );
-
-        while ( !t.eof() ) {
-            s = t.readLine();
-
-            start = regex.match( s, 0, &len );
-
-            if ( start != -1 ) {
-            // Found "* infonode:", add "infonode" to matches
-
-                int pos = 1;
-                while ( pos < len && s[pos] == ' ')
-                    pos++;
-
-                QString name = s.mid( pos, (len-pos-1) ).lower();
-
-                if ( !name.isEmpty() ) {
-                    uds_entry[0].m_str = name;
-                    uds_entry_list.append( uds_entry );
-                }
-            }
-        }
-        f.close();
-
-        listEntries( uds_entry_list );
-        finished();
-    }
-    else {
-        kdError(7108) << "cannot open file '/usr/info/dir'" << endl;
-    }
-    kdDebug( 7108 ) << "InfoProtocol::listDir - done" << endl;
-}*/
-
 extern "C" { int kdemain( int argc, char **argv ); }
 
 int kdemain( int argc, char **argv )
