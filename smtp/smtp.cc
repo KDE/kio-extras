@@ -98,7 +98,7 @@ void SMTPProtocol::put( const KURL& url, int /*permissions*/, bool /*overwrite*/
 /*
   smtp://smtphost:port/send?to=user@host.com&subject=blah
 */
-	QString query = url.query().mid(1, url.query().length());
+	QString query = url.query();
 	QString subject="missing subject";
 	QStringList recip, cc;
 
@@ -220,15 +220,18 @@ int SMTPProtocol::getResponse(char *r_buf, unsigned int r_len)
 	// null terminated.
 	recv_len=strlen(buf);
 
+	if (recv_len < 7)
+		error(ERR_UNKNOWN, "-");
 	char *origbuf=buf;
 	if (buf[3] == '-') { // Multiline response
 		while ( (buf[3] == '-') && (r_len-recv_len > 3) ) { // Three is quite arbitrary
 			buf+=recv_len;
 			r_len-=(recv_len+1);
 			recv_len=ReadLine(buf, r_len-1);
+			if (recv_len == 0)
+				buf[0]=buf[1]=buf[2]=buf[3]=' ';
 		}
 		buf=origbuf;
-		fprintf(stderr,"kio_smtp: data diz: '%s'\n", buf);
 		return GetVal(buf);
 	} else {
 		// Really crude, whee
@@ -286,7 +289,7 @@ bool SMTPProtocol::smtp_open()
 		}
 	}
 	free(ehlobuf);
-	
+
 
 	m_iOldPort = m_iPort;
 	m_sOldServer = m_sServer;
@@ -297,7 +300,7 @@ bool SMTPProtocol::smtp_open()
 
 void SMTPProtocol::smtp_close()
 {
-	if (!opened)
+	if (!opened) // We're already closed
 		return;
 	command("QUIT");
 	CloseDescriptor();
@@ -307,6 +310,7 @@ void SMTPProtocol::smtp_close()
 
 void SMTPProtocol::stat( const KURL & url )
 {
+	QString path = url.path();
         error( KIO::ERR_DOES_NOT_EXIST, url.path() );
 }
 
@@ -323,10 +327,13 @@ void GetAddresses(const QString &str, const QString &delim, QStringList &list)
 {
 	int curpos=0;
 	while ( (curpos = str.find(delim, curpos) ) != -1) {
-		curpos+=delim.length();
-		if (str.find("&", curpos) != -1)
-			list+=str.mid(curpos, str.find("&", curpos)-curpos);
-		else
-			list+=str.mid(curpos, str.length());
+		if ( (str.at(curpos-1) == "?") || (str.at(curpos-1) == "&") ) {
+			curpos+=delim.length();
+			if (str.find("&", curpos) != -1)
+				list+=str.mid(curpos, str.find("&", curpos)-curpos);
+			else
+				list+=str.mid(curpos, str.length());
+		} else
+			curpos+=delim.length();
 	}
 }
