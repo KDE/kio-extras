@@ -420,7 +420,7 @@ bool POP3Protocol::pop3_open()
     QString apop_string = QString::fromLatin1("APOP ");
     if (m_sUser.isEmpty() || m_sPass.isEmpty()) {
       // Prompt for usernames
-      authInfo.comment = i18n("Username and password for your POP3 account:");
+      authInfo.prompt = i18n("Username and password for your POP3 account:");
       if (!openPassDlg(authInfo)) {
         closeConnection();
         return false;

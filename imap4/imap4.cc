@@ -1356,7 +1356,7 @@ bool IMAP4Protocol::makeLogin ()
     KIO::AuthInfo authInfo;
     authInfo.username = myUser;
     authInfo.password = myPass;
-    authInfo.caption = i18n ("Username and password for your IMAP account:");
+    authInfo.prompt = i18n ("Username and password for your IMAP account:");
     if (myUser.isEmpty () || myPass.isEmpty ()) {
       if(openPassDlg (authInfo)) {
         myUser = authInfo.username;
