@@ -261,7 +261,7 @@ void MediaImpl::slotMountResult(KIO::Job *job)
 	if ( job->error() != 0)
 	{
 		m_lastErrorCode = job->error();
-		m_lastErrorMessage = job->errorString();
+		m_lastErrorMessage = job->errorText();
 		qApp->eventLoop()->exitLoop();
 	}
 }
