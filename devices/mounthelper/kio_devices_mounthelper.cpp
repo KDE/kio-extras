@@ -110,7 +110,7 @@ static KCmdLineOptions options[] =
 {
     { "u", I18N_NOOP("Unmount given URL"), 0 },
     { "m", I18N_NOOP("Mount given URL (default)"), 0 },
-    {"!+[URL]",   I18N_NOOP("devices:/ url to mount/unmount."), 0 },
+    {"!+[URL]",   I18N_NOOP("devices:/ URL to mount/unmount."), 0 },
     { 0, 0, 0}
 };
 
