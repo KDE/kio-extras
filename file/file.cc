@@ -1265,8 +1265,7 @@ void FileProtocol::slotListDir( const char *_url )
       // Is it a link
       if ( S_ISLNK( lbuff.st_mode ) )
       {  
-	// it is save to set this bit here since it belongs to access and has no meaning here
-	type |= S_ISVTX;
+	type |= S_IFLNK;
 	char buffer2[ 1000 ];
 	int n = readlink( tmp.c_str(), buffer2, 1000 );
 	if ( n != -1 )
@@ -1571,7 +1570,7 @@ long FileProtocol::listRecursive2( const char *_abs_path, const char *_rel_path,
       Copy c;
       c.m_strAbsSource = p2;
       c.m_strRelDest = tmp;
-      c.m_mode = buff.st_mode & ( S_ISUID | S_ISGID | S_ISVTX | S_IRWXU | S_IRWXG | S_IRWXO );
+      c.m_mode = buff.st_mode & ( S_ISUID | S_ISGID | S_IFLNK | S_IRWXU | S_IRWXG | S_IRWXO );
       c.m_size = buff.st_size;
       _files.push_back( c );
       size += buff.st_size;
