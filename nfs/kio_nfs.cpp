@@ -55,6 +55,7 @@
 #include <klocale.h>
 
 #include <kio/global.h>
+#include <iostream>
 
 #include "nfs_prot.h"
 #define fhandle _fhandle
