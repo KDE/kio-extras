@@ -28,6 +28,7 @@
 #include <strings.h>
 #endif
 
+#include <signal.h>
 #include <errno.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -63,6 +64,18 @@ using namespace KIO;
 
 extern "C" { int kdemain(int argc, char **argv); }
 
+SmbProtocol *globalSlave(0);
+
+void destruct(int sigNumber)
+{
+   signal(sigNumber,SIG_IGN);
+   if (globalSlave!=0)
+      delete globalSlave;
+   globalSlave=0;
+   exit(0);
+};
+
+
 int kdemain( int argc, char **argv )
 {
   KLocale::setMainCatalogue("kio_smbro");
@@ -75,8 +88,38 @@ int kdemain( int argc, char **argv )
   }
   //kdDebug(7101) << "Smb: kdemain: starting" << endl;
 
-  SmbProtocol slave(argv[2], argv[3]);
-  slave.dispatchLoop();
+   signal(SIGINT,&destruct);
+	signal(SIGQUIT,&destruct);
+	signal(SIGILL,&destruct);
+	signal(SIGTRAP,&destruct);
+	signal(SIGABRT,&destruct);
+	signal(SIGBUS,&destruct);
+	signal(SIGSEGV,&destruct);
+	signal(SIGUSR2,&destruct);
+	signal(SIGPIPE,&destruct);
+	signal(SIGALRM,&destruct);
+	signal(SIGTERM,&destruct);
+	signal(SIGFPE,&destruct);
+#ifdef SIGPOLL
+   signal(SIGPOLL, &destruct);
+#endif
+#ifdef SIGSYS
+   signal(SIGSYS, &destruct);
+#endif
+#ifdef SIGVTALRM
+   signal(SIGVTALRM, &destruct);
+#endif
+#ifdef SIGXCPU
+   signal(SIGXCPU, &destruct);
+#endif
+#ifdef SIGXFSZ
+   signal(SIGXFSZ, &destruct);
+#endif
+
+
+  SmbProtocol *slave=new SmbProtocol(argv[2], argv[3]);
+  globalSlave=slave;
+  slave->dispatchLoop();
   return 0;
 }
 
@@ -153,6 +196,7 @@ SmbProtocol::SmbProtocol (const QCString &pool, const QCString &app )
 
 SmbProtocol::~SmbProtocol()
 {
+   kdDebug(7101)<<"Smb::~Smb()"<<endl;
    if (m_stdoutBuffer!=0)
       delete [] m_stdoutBuffer;
    m_processes.clear();
