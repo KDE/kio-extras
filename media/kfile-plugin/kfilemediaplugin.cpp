@@ -157,7 +157,7 @@ void KFileMediaPlugin::addMimeType(const char *mimeType)
 
 	item = addItemInfo(group, "percent", i18n("Usage"), QVariant::String);
 
-	item = addItemInfo( group, "thumbnail", i18n("Bar graph"), QVariant::Image );
+	item = addItemInfo( group, "thumbnail", i18n("Bar Graph"), QVariant::Image );
 	setHint( item, KFileMimeTypeInfo::Thumbnail );
 }
 
