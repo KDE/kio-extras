@@ -84,7 +84,7 @@ public:
   virtual void parseRelay (ulong);
 
   // read at least len bytes
-  //virtual bool parseRead (QByteArray &buffer,ulong len,ulong relay=0);
+  virtual bool parseRead (QByteArray &buffer,ulong len,ulong relay=0);
 
   // read at least a line (up to CRLF)
   virtual bool parseReadLine (QByteArray & buffer, ulong relay = 0);

@@ -531,6 +531,39 @@ IMAP4Protocol::parseRelay (ulong len)
 }
 
 
+bool IMAP4Protocol::parseRead(QByteArray & buffer, ulong len, ulong relay)
+{
+  char buf[4096];
+  while (buffer.size() < len && !AtEOF())
+  {
+    ulong readLen = Read(buf, QMIN(len - buffer.size(), sizeof(buf) - 1));
+    if (readLen == 0)
+    {
+      error (ERR_CONNECTION_BROKEN, myHost);
+      setState(ISTATE_CONNECT);
+      closeConnection();
+      return FALSE;
+    }
+    if (relay > buffer.size())
+    {
+      QByteArray relayData;
+      int currentRelay = QMIN(relay - buffer.size(), readLen);
+      relayData.setRawData(buf, currentRelay);
+      parseRelay(relayData);
+      relayData.resetRawData(buf, currentRelay);
+    }
+    {
+      QBuffer stream (buffer);
+      stream.open (IO_WriteOnly);
+      stream.at (buffer.size ());
+      stream.writeBlock (buf, readLen);
+      stream.close ();
+    }
+  }
+  return (buffer.size() == len);
+}
+
+
 bool IMAP4Protocol::parseReadLine (QByteArray & buffer, ulong relay)
 {
   if (myHost.isEmpty()) return FALSE;
@@ -1127,6 +1160,7 @@ void IMAP4Protocol::closeConnection()
     completeQueue.removeRef (cmd);
   }
   CloseDescriptor();
+  setState(ISTATE_NO);
 }
 
 bool IMAP4Protocol::makeLogin ()
