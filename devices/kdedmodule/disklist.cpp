@@ -189,7 +189,8 @@ QFile f(FSTAB);
 	      && (disk->fsType() != "swap")
 	      && (disk->mountPoint() != "/dev/swap")
 	      && (disk->mountPoint() != "/dev/pts")
-	      && (disk->mountPoint().find("/proc") == -1 ) )
+	      && (disk->mountPoint().find("/proc") == -1 )
+	      && (disk->deviceName().find("shm") == -1  ))
 	   replaceDeviceEntry(disk);
          else
            delete disk;
@@ -315,7 +316,8 @@ void DiskList::dfDone()
 	   && (disk->fsType() != "swap")
 	   && (disk->mountPoint() != "/dev/swap")
 	   && (disk->mountPoint() != "/dev/pts")
-	   && (disk->mountPoint().find("/proc") == -1 ) ) {
+	   && (disk->mountPoint().find("/proc") == -1 )
+	   && (disk->deviceName().find("shm") == -1  ) ) {
         disk->setMounted(TRUE);    // its now mounted (df lists only mounted)
 	replaceDeviceEntry(disk);
       } else

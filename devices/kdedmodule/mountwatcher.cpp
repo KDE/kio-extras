@@ -182,7 +182,8 @@ void MountWatcherModule::readDFDone()
 			mountList<<(entryName);
                  	mountList<<i18n("%1 mounted at %2").arg(ent->deviceName()).arg(ent->mountPoint());
 			mountList<<ent->deviceName();
-			mountList<<ent->mountPoint();
+//			mountList<<ent->mountPoint();
+			mountList<<"file:/"+(ent->mountPoint().startsWith("/")?ent->mountPoint().right(ent->mountPoint().length()-1):ent->mountPoint());
 			mountList<< ent->discType()+"_mounted";
 			mountList<<"true";
 			mountList<<"---";
@@ -193,7 +194,7 @@ void MountWatcherModule::readDFDone()
 			mountList<<entryName;
                  	mountList<<i18n("%1 (not mounted)").arg(ent->deviceName());
 			mountList<<ent->deviceName();
-			mountList<<ent->mountPoint();
+			mountList<<"file:/"+(ent->mountPoint().startsWith("/")?ent->mountPoint().right(ent->mountPoint().length()-1):ent->mountPoint());
 			mountList<< ent->discType()+"_unmounted";
 			mountList<<"false";
 			mountList<<"---";

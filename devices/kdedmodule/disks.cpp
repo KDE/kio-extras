@@ -1,6 +1,7 @@
 /*
  * disks.cpp
  *
+ * Copyright (c) 2002 Joseph Wenninger <jowenn@kde.org>
  * Copyright (c) 1998 Michael Kropfberger <michael.kropfberger@gmx.net>
  *
  * Requires the Qt widget libraries, available at no cost at
@@ -199,6 +200,8 @@ QString DiskEntry::guessIconName()
     else if (-1!=mountPoint().find("floppy",0,FALSE)) iconName+="3floppy";
     else if (-1!=mountPoint().find("zip",0,FALSE)) iconName+="zip";
     else if (-1!=fsType().find("nfs",0,FALSE)) iconName+="nfs";
+    else if (-1!=fsType().find("fat",0,FALSE)) iconName+="hdd_windows";
+    else if (-1!=fsType().find("msdos",0,FALSE)) iconName+="hdd_windows";
     else iconName+="hdd";
     mounted() ? iconName+="_mount" : iconName+="_unmount";
 //    if ( -1==mountOptions().find("user",0,FALSE) )
@@ -212,14 +215,47 @@ QString DiskEntry::guessIconName()
 
 QString DiskEntry::discType()
 {
+  kdDebug(7020)<<"disc/device type guessing"<<endl;
   QString typeName;
     // try to be intelligent
+#ifdef Q_OS_LINUX
+  char str[21];
+  QString tmpInfo;
+    if (deviceName().startsWith("/dev/hd"))
+    {
+	kdDebug(7020)<<"Advanced IDE device type guessing"<<endl;
+	QString tmp=deviceName();
+	tmp=tmp.right(tmp.length()-5);
+	tmp=tmp.left(3);
+	tmp="/proc/ide/"+tmp;
+	QFile infoFile(tmp);
+	infoFile.open(IO_ReadOnly);
+	int len;
+	if (-1==(len=infoFile.readLine(str,20))) typeName="kdedevice/TESTONLY";
+	else
+	{
+		tmpInfo.fromLatin1(str,len);
+		if (tmpInfo.contains("disk")) typeName="kdedevice/hdd";
+		else
+			if (tmpInfo.contains("cdrom")) typeName="kdedevice/cdrom";
+			else
+				if (tmpInfo.contains("floppy")) typeName="kdedevice/zip";
+				else typeName="kdedevice/hdd";
+	}
+	infoFile.close();
+    }
+    else
+#endif
     if (-1!=mountPoint().find("cdrom",0,FALSE)) typeName="kdedevice/cdrom";
     else if (-1!=deviceName().find("cdrom",0,FALSE)) typeName="kdedevice/cdrom";
-    else if (-1!=mountPoint().find("writer",0,FALSE)) typeName="kdedevice/cdwriter";
-    else if (-1!=deviceName().find("writer",0,FALSE)) typeName="kdedevice/cdwriter";
-    else if (-1!=mountPoint().find("mo",0,FALSE)) typeName="kdedevice/mo";
-    else if (-1!=deviceName().find("mo",0,FALSE)) typeName="kdedevice/mo";
+    else if (-1!=mountPoint().find("cdwriter",0,FALSE)) typeName="kdedevice/cdwriter";
+    else if (-1!=deviceName().find("cdwriter",0,FALSE)) typeName="kdedevice/cdwriter";
+    else if (-1!=deviceName().find("cdrw",0,FALSE)) typeName="kdedevice/cdwriter";
+    else if (-1!=mountPoint().find("cdrw",0,FALSE)) typeName="kdedevice/cdwriter";
+    else if (-1!=deviceName().find("scd",0,FALSE)) typeName="kdedevice/cdrom";
+
+//    else if (-1!=mountPoint().find("mo",0,FALSE)) typeName="kdedevice/mo";
+//    else if (-1!=deviceName().find("mo",0,FALSE)) typeName="kdedevice/mo";
     else if (-1!=deviceName().find("fd",0,FALSE)) {
             if (-1!=deviceName().find("360",0,FALSE)) typeName="kdedevice/floppy5";
             if (-1!=deviceName().find("1200",0,FALSE)) typeName="kdedevice/floppy5";
