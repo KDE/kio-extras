@@ -11,8 +11,8 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>384</width>
-            <height>571</height>
+            <width>456</width>
+            <height>490</height>
         </rect>
     </property>
     <property stdset="1">
@@ -25,16 +25,16 @@
     <property>
         <name>layoutSpacing</name>
     </property>
-    <grid>
+    <vbox>
         <property stdset="1">
             <name>margin</name>
-            <number>3</number>
+            <number>1</number>
         </property>
         <property stdset="1">
             <name>spacing</name>
-            <number>6</number>
+            <number>1</number>
         </property>
-        <widget row="0"  column="0" >
+        <widget>
             <class>QTabWidget</class>
             <property stdset="1">
                 <name>name</name>
@@ -56,7 +56,7 @@
                     <name>title</name>
                     <string>MP3 Settings</string>
                 </attribute>
-                <grid>
+                <vbox>
                     <property stdset="1">
                         <name>margin</name>
                         <number>11</number>
@@ -65,13 +65,401 @@
                         <name>spacing</name>
                         <number>6</number>
                     </property>
-                    <widget row="0"  column="0" >
+                    <widget>
                         <class>QLayoutWidget</class>
                         <property stdset="1">
                             <name>name</name>
-                            <cstring>Layout32</cstring>
+                            <cstring>Layout31</cstring>
                         </property>
-                        <vbox>
+                        <hbox>
+                            <property stdset="1">
+                                <name>margin</name>
+                                <number>0</number>
+                            </property>
+                            <property stdset="1">
+                                <name>spacing</name>
+                                <number>6</number>
+                            </property>
+                            <widget>
+                                <class>QGroupBox</class>
+                                <property stdset="1">
+                                    <name>name</name>
+                                    <cstring>GroupBox4</cstring>
+                                </property>
+                                <property stdset="1">
+                                    <name>title</name>
+                                    <string>Encoding Method</string>
+                                </property>
+                                <vbox>
+                                    <property stdset="1">
+                                        <name>margin</name>
+                                        <number>11</number>
+                                    </property>
+                                    <property stdset="1">
+                                        <name>spacing</name>
+                                        <number>6</number>
+                                    </property>
+                                    <widget>
+                                        <class>QLayoutWidget</class>
+                                        <property stdset="1">
+                                            <name>name</name>
+                                            <cstring>Layout17</cstring>
+                                        </property>
+                                        <grid>
+                                            <property stdset="1">
+                                                <name>margin</name>
+                                                <number>0</number>
+                                            </property>
+                                            <property stdset="1">
+                                                <name>spacing</name>
+                                                <number>6</number>
+                                            </property>
+                                            <widget row="0"  column="0" >
+                                                <class>QComboBox</class>
+                                                <item>
+                                                    <property>
+                                                        <name>text</name>
+                                                        <string>Constant Bitrate</string>
+                                                    </property>
+                                                </item>
+                                                <item>
+                                                    <property>
+                                                        <name>text</name>
+                                                        <string>Variable Bitrate</string>
+                                                    </property>
+                                                </item>
+                                                <property stdset="1">
+                                                    <name>name</name>
+                                                    <cstring>enc_method</cstring>
+                                                </property>
+                                            </widget>
+                                            <widget row="1"  column="0" >
+                                                <class>QComboBox</class>
+                                                <item>
+                                                    <property>
+                                                        <name>text</name>
+                                                        <string>stereo</string>
+                                                    </property>
+                                                </item>
+                                                <item>
+                                                    <property>
+                                                        <name>text</name>
+                                                        <string>joint stereo</string>
+                                                    </property>
+                                                </item>
+                                                <item>
+                                                    <property>
+                                                        <name>text</name>
+                                                        <string>dual channel</string>
+                                                    </property>
+                                                </item>
+                                                <item>
+                                                    <property>
+                                                        <name>text</name>
+                                                        <string>mono</string>
+                                                    </property>
+                                                </item>
+                                                <property stdset="1">
+                                                    <name>name</name>
+                                                    <cstring>stereo</cstring>
+                                                </property>
+                                            </widget>
+                                            <widget row="2"  column="0" >
+                                                <class>QLayoutWidget</class>
+                                                <property stdset="1">
+                                                    <name>name</name>
+                                                    <cstring>Layout16</cstring>
+                                                </property>
+                                                <grid>
+                                                    <property stdset="1">
+                                                        <name>margin</name>
+                                                        <number>0</number>
+                                                    </property>
+                                                    <property stdset="1">
+                                                        <name>spacing</name>
+                                                        <number>6</number>
+                                                    </property>
+                                                    <widget row="1"  column="0" >
+                                                        <class>QLayoutWidget</class>
+                                                        <property stdset="1">
+                                                            <name>name</name>
+                                                            <cstring>Layout15</cstring>
+                                                        </property>
+                                                        <grid>
+                                                            <property stdset="1">
+                                                                <name>margin</name>
+                                                                <number>0</number>
+                                                            </property>
+                                                            <property stdset="1">
+                                                                <name>spacing</name>
+                                                                <number>6</number>
+                                                            </property>
+                                                            <widget row="0"  column="1" >
+                                                                <class>QSlider</class>
+                                                                <property stdset="1">
+                                                                    <name>name</name>
+                                                                    <cstring>quality</cstring>
+                                                                </property>
+                                                                <property stdset="1">
+                                                                    <name>minValue</name>
+                                                                    <number>0</number>
+                                                                </property>
+                                                                <property stdset="1">
+                                                                    <name>maxValue</name>
+                                                                    <number>9</number>
+                                                                </property>
+                                                                <property stdset="1">
+                                                                    <name>pageStep</name>
+                                                                    <number>1</number>
+                                                                </property>
+                                                                <property stdset="1">
+                                                                    <name>value</name>
+                                                                    <number>5</number>
+                                                                </property>
+                                                                <property stdset="1">
+                                                                    <name>orientation</name>
+                                                                    <enum>Horizontal</enum>
+                                                                </property>
+                                                            </widget>
+                                                            <widget row="0"  column="0" >
+                                                                <class>QLabel</class>
+                                                                <property stdset="1">
+                                                                    <name>name</name>
+                                                                    <cstring>TextLabel3</cstring>
+                                                                </property>
+                                                                <property stdset="1">
+                                                                    <name>text</name>
+                                                                    <string>high</string>
+                                                                </property>
+                                                            </widget>
+                                                            <widget row="0"  column="2" >
+                                                                <class>QLabel</class>
+                                                                <property stdset="1">
+                                                                    <name>name</name>
+                                                                    <cstring>TextLabel2</cstring>
+                                                                </property>
+                                                                <property stdset="1">
+                                                                    <name>text</name>
+                                                                    <string>low</string>
+                                                                </property>
+                                                            </widget>
+                                                        </grid>
+                                                    </widget>
+                                                    <widget row="0"  column="0" >
+                                                        <class>QLabel</class>
+                                                        <property stdset="1">
+                                                            <name>name</name>
+                                                            <cstring>TextLabel1</cstring>
+                                                        </property>
+                                                        <property stdset="1">
+                                                            <name>text</name>
+                                                            <string>Quality:</string>
+                                                        </property>
+                                                        <property stdset="1">
+                                                            <name>textFormat</name>
+                                                            <enum>PlainText</enum>
+                                                        </property>
+                                                        <property stdset="1">
+                                                            <name>alignment</name>
+                                                            <set>AlignCenter</set>
+                                                        </property>
+                                                        <property>
+                                                            <name>hAlign</name>
+                                                        </property>
+                                                    </widget>
+                                                </grid>
+                                            </widget>
+                                        </grid>
+                                    </widget>
+                                </vbox>
+                            </widget>
+                            <widget>
+                                <class>QGroupBox</class>
+                                <property stdset="1">
+                                    <name>name</name>
+                                    <cstring>GroupBox1</cstring>
+                                </property>
+                                <property stdset="1">
+                                    <name>title</name>
+                                    <string>Options</string>
+                                </property>
+                                <hbox>
+                                    <property stdset="1">
+                                        <name>margin</name>
+                                        <number>11</number>
+                                    </property>
+                                    <property stdset="1">
+                                        <name>spacing</name>
+                                        <number>6</number>
+                                    </property>
+                                    <widget>
+                                        <class>QLayoutWidget</class>
+                                        <property stdset="1">
+                                            <name>name</name>
+                                            <cstring>Layout16</cstring>
+                                        </property>
+                                        <vbox>
+                                            <property stdset="1">
+                                                <name>margin</name>
+                                                <number>0</number>
+                                            </property>
+                                            <property stdset="1">
+                                                <name>spacing</name>
+                                                <number>6</number>
+                                            </property>
+                                            <widget>
+                                                <class>QCheckBox</class>
+                                                <property stdset="1">
+                                                    <name>name</name>
+                                                    <cstring>copyright</cstring>
+                                                </property>
+                                                <property stdset="1">
+                                                    <name>text</name>
+                                                    <string>&amp;Copyrighted</string>
+                                                </property>
+                                                <property>
+                                                    <name>toolTip</name>
+                                                    <string>mark mp3 file as copyrighted</string>
+                                                </property>
+                                            </widget>
+                                            <widget>
+                                                <class>QCheckBox</class>
+                                                <property stdset="1">
+                                                    <name>name</name>
+                                                    <cstring>original</cstring>
+                                                </property>
+                                                <property stdset="1">
+                                                    <name>text</name>
+                                                    <string>&amp;Original</string>
+                                                </property>
+                                                <property stdset="1">
+                                                    <name>checked</name>
+                                                    <bool>true</bool>
+                                                </property>
+                                                <property>
+                                                    <name>toolTip</name>
+                                                    <string>mark mp3 file as an original</string>
+                                                </property>
+                                            </widget>
+                                            <widget>
+                                                <class>QCheckBox</class>
+                                                <property stdset="1">
+                                                    <name>name</name>
+                                                    <cstring>iso</cstring>
+                                                </property>
+                                                <property stdset="1">
+                                                    <name>text</name>
+                                                    <string>&amp;ISO Encoding</string>
+                                                </property>
+                                                <property>
+                                                    <name>toolTip</name>
+                                                    <string>try to use strict ISO encoding</string>
+                                                </property>
+                                            </widget>
+                                            <widget>
+                                                <class>QCheckBox</class>
+                                                <property stdset="1">
+                                                    <name>name</name>
+                                                    <cstring>crc</cstring>
+                                                </property>
+                                                <property stdset="1">
+                                                    <name>text</name>
+                                                    <string>&amp;Error Protection</string>
+                                                </property>
+                                            </widget>
+                                            <widget>
+                                                <class>QCheckBox</class>
+                                                <property stdset="1">
+                                                    <name>name</name>
+                                                    <cstring>id3_tag</cstring>
+                                                </property>
+                                                <property stdset="1">
+                                                    <name>text</name>
+                                                    <string>&amp;Write ID3 Tag</string>
+                                                </property>
+                                                <property stdset="1">
+                                                    <name>checked</name>
+                                                    <bool>true</bool>
+                                                </property>
+                                                <property>
+                                                    <name>toolTip</name>
+                                                    <string>if checked and if cddb support is available, an id3 tag will be appended</string>
+                                                </property>
+                                                <property>
+                                                    <name>whatsThis</name>
+                                                    <string>if checked and if cddb support is available, an id3 tag will be appended</string>
+                                                </property>
+                                            </widget>
+                                        </vbox>
+                                    </widget>
+                                </hbox>
+                            </widget>
+                        </hbox>
+                    </widget>
+                    <widget>
+                        <class>QLayoutWidget</class>
+                        <property stdset="1">
+                            <name>name</name>
+                            <cstring>Layout23</cstring>
+                        </property>
+                        <hbox>
+                            <property stdset="1">
+                                <name>margin</name>
+                                <number>0</number>
+                            </property>
+                            <property stdset="1">
+                                <name>spacing</name>
+                                <number>6</number>
+                            </property>
+                            <widget>
+                                <class>QPushButton</class>
+                                <property stdset="1">
+                                    <name>name</name>
+                                    <cstring>advanced</cstring>
+                                </property>
+                                <property stdset="1">
+                                    <name>text</name>
+                                    <string>&amp;Advanced &gt;&gt;</string>
+                                </property>
+                                <property stdset="1">
+                                    <name>toggleButton</name>
+                                    <bool>false</bool>
+                                </property>
+                                <property stdset="1">
+                                    <name>toggleButton</name>
+                                    <bool>false</bool>
+                                </property>
+                            </widget>
+                            <spacer>
+                                <property>
+                                    <name>name</name>
+                                    <cstring>Spacer5</cstring>
+                                </property>
+                                <property stdset="1">
+                                    <name>orientation</name>
+                                    <enum>Horizontal</enum>
+                                </property>
+                                <property stdset="1">
+                                    <name>sizeType</name>
+                                    <enum>Expanding</enum>
+                                </property>
+                                <property>
+                                    <name>sizeHint</name>
+                                    <size>
+                                        <width>20</width>
+                                        <height>20</height>
+                                    </size>
+                                </property>
+                            </spacer>
+                        </hbox>
+                    </widget>
+                    <widget>
+                        <class>QLayoutWidget</class>
+                        <property stdset="1">
+                            <name>name</name>
+                            <cstring>Layout22</cstring>
+                        </property>
+                        <hbox>
                             <property stdset="1">
                                 <name>margin</name>
                                 <number>0</number>
@@ -84,9 +472,9 @@
                                 <class>QLayoutWidget</class>
                                 <property stdset="1">
                                     <name>name</name>
-                                    <cstring>Layout31</cstring>
+                                    <cstring>Layout21</cstring>
                                 </property>
-                                <hbox>
+                                <vbox>
                                     <property stdset="1">
                                         <name>margin</name>
                                         <number>0</number>
@@ -96,1008 +484,6 @@
                                         <number>6</number>
                                     </property>
                                     <widget>
-                                        <class>QGroupBox</class>
-                                        <property stdset="1">
-                                            <name>name</name>
-                                            <cstring>GroupBox4</cstring>
-                                        </property>
-                                        <property stdset="1">
-                                            <name>title</name>
-                                            <string>Encoding Method</string>
-                                        </property>
-                                        <vbox>
-                                            <property stdset="1">
-                                                <name>margin</name>
-                                                <number>11</number>
-                                            </property>
-                                            <property stdset="1">
-                                                <name>spacing</name>
-                                                <number>6</number>
-                                            </property>
-                                            <widget>
-                                                <class>QLayoutWidget</class>
-                                                <property stdset="1">
-                                                    <name>name</name>
-                                                    <cstring>Layout17</cstring>
-                                                </property>
-                                                <grid>
-                                                    <property stdset="1">
-                                                        <name>margin</name>
-                                                        <number>0</number>
-                                                    </property>
-                                                    <property stdset="1">
-                                                        <name>spacing</name>
-                                                        <number>6</number>
-                                                    </property>
-                                                    <widget row="0"  column="0" >
-                                                        <class>QComboBox</class>
-                                                        <item>
-                                                            <property>
-                                                                <name>text</name>
-                                                                <string>Constant Bitrate</string>
-                                                            </property>
-                                                        </item>
-                                                        <item>
-                                                            <property>
-                                                                <name>text</name>
-                                                                <string>Variable Bitrate</string>
-                                                            </property>
-                                                        </item>
-                                                        <property stdset="1">
-                                                            <name>name</name>
-                                                            <cstring>enc_method</cstring>
-                                                        </property>
-                                                    </widget>
-                                                    <widget row="1"  column="0" >
-                                                        <class>QComboBox</class>
-                                                        <item>
-                                                            <property>
-                                                                <name>text</name>
-                                                                <string>stereo</string>
-                                                            </property>
-                                                        </item>
-                                                        <item>
-                                                            <property>
-                                                                <name>text</name>
-                                                                <string>joint stereo</string>
-                                                            </property>
-                                                        </item>
-                                                        <item>
-                                                            <property>
-                                                                <name>text</name>
-                                                                <string>dual channel</string>
-                                                            </property>
-                                                        </item>
-                                                        <item>
-                                                            <property>
-                                                                <name>text</name>
-                                                                <string>mono</string>
-                                                            </property>
-                                                        </item>
-                                                        <property stdset="1">
-                                                            <name>name</name>
-                                                            <cstring>stereo</cstring>
-                                                        </property>
-                                                    </widget>
-                                                    <widget row="2"  column="0" >
-                                                        <class>QLayoutWidget</class>
-                                                        <property stdset="1">
-                                                            <name>name</name>
-                                                            <cstring>Layout16</cstring>
-                                                        </property>
-                                                        <grid>
-                                                            <property stdset="1">
-                                                                <name>margin</name>
-                                                                <number>0</number>
-                                                            </property>
-                                                            <property stdset="1">
-                                                                <name>spacing</name>
-                                                                <number>6</number>
-                                                            </property>
-                                                            <widget row="1"  column="0" >
-                                                                <class>QLayoutWidget</class>
-                                                                <property stdset="1">
-                                                                    <name>name</name>
-                                                                    <cstring>Layout15</cstring>
-                                                                </property>
-                                                                <grid>
-                                                                    <property stdset="1">
-                                                                        <name>margin</name>
-                                                                        <number>0</number>
-                                                                    </property>
-                                                                    <property stdset="1">
-                                                                        <name>spacing</name>
-                                                                        <number>6</number>
-                                                                    </property>
-                                                                    <widget row="0"  column="1" >
-                                                                        <class>QSlider</class>
-                                                                        <property stdset="1">
-                                                                            <name>name</name>
-                                                                            <cstring>quality</cstring>
-                                                                        </property>
-                                                                        <property stdset="1">
-                                                                            <name>minValue</name>
-                                                                            <number>0</number>
-                                                                        </property>
-                                                                        <property stdset="1">
-                                                                            <name>maxValue</name>
-                                                                            <number>9</number>
-                                                                        </property>
-                                                                        <property stdset="1">
-                                                                            <name>pageStep</name>
-                                                                            <number>1</number>
-                                                                        </property>
-                                                                        <property stdset="1">
-                                                                            <name>value</name>
-                                                                            <number>5</number>
-                                                                        </property>
-                                                                        <property stdset="1">
-                                                                            <name>orientation</name>
-                                                                            <enum>Horizontal</enum>
-                                                                        </property>
-                                                                    </widget>
-                                                                    <widget row="0"  column="0" >
-                                                                        <class>QLabel</class>
-                                                                        <property stdset="1">
-                                                                            <name>name</name>
-                                                                            <cstring>TextLabel3</cstring>
-                                                                        </property>
-                                                                        <property stdset="1">
-                                                                            <name>text</name>
-                                                                            <string>high</string>
-                                                                        </property>
-                                                                    </widget>
-                                                                    <widget row="0"  column="2" >
-                                                                        <class>QLabel</class>
-                                                                        <property stdset="1">
-                                                                            <name>name</name>
-                                                                            <cstring>TextLabel2</cstring>
-                                                                        </property>
-                                                                        <property stdset="1">
-                                                                            <name>text</name>
-                                                                            <string>low</string>
-                                                                        </property>
-                                                                    </widget>
-                                                                </grid>
-                                                            </widget>
-                                                            <widget row="0"  column="0" >
-                                                                <class>QLabel</class>
-                                                                <property stdset="1">
-                                                                    <name>name</name>
-                                                                    <cstring>TextLabel1</cstring>
-                                                                </property>
-                                                                <property stdset="1">
-                                                                    <name>text</name>
-                                                                    <string>Quality</string>
-                                                                </property>
-                                                                <property stdset="1">
-                                                                    <name>textFormat</name>
-                                                                    <enum>PlainText</enum>
-                                                                </property>
-                                                                <property stdset="1">
-                                                                    <name>alignment</name>
-                                                                    <set>AlignCenter</set>
-                                                                </property>
-                                                                <property>
-                                                                    <name>hAlign</name>
-                                                                </property>
-                                                            </widget>
-                                                        </grid>
-                                                    </widget>
-                                                </grid>
-                                            </widget>
-                                        </vbox>
-                                    </widget>
-                                    <widget>
-                                        <class>QGroupBox</class>
-                                        <property stdset="1">
-                                            <name>name</name>
-                                            <cstring>GroupBox1</cstring>
-                                        </property>
-                                        <property stdset="1">
-                                            <name>title</name>
-                                            <string>Options</string>
-                                        </property>
-                                        <hbox>
-                                            <property stdset="1">
-                                                <name>margin</name>
-                                                <number>11</number>
-                                            </property>
-                                            <property stdset="1">
-                                                <name>spacing</name>
-                                                <number>6</number>
-                                            </property>
-                                            <widget>
-                                                <class>QLayoutWidget</class>
-                                                <property stdset="1">
-                                                    <name>name</name>
-                                                    <cstring>Layout16</cstring>
-                                                </property>
-                                                <vbox>
-                                                    <property stdset="1">
-                                                        <name>margin</name>
-                                                        <number>0</number>
-                                                    </property>
-                                                    <property stdset="1">
-                                                        <name>spacing</name>
-                                                        <number>6</number>
-                                                    </property>
-                                                    <widget>
-                                                        <class>QCheckBox</class>
-                                                        <property stdset="1">
-                                                            <name>name</name>
-                                                            <cstring>copyright</cstring>
-                                                        </property>
-                                                        <property stdset="1">
-                                                            <name>text</name>
-                                                            <string>Copyrighted</string>
-                                                        </property>
-                                                        <property>
-                                                            <name>toolTip</name>
-                                                            <string>mark mp3 file as copyrighted</string>
-                                                        </property>
-                                                    </widget>
-                                                    <widget>
-                                                        <class>QCheckBox</class>
-                                                        <property stdset="1">
-                                                            <name>name</name>
-                                                            <cstring>original</cstring>
-                                                        </property>
-                                                        <property stdset="1">
-                                                            <name>text</name>
-                                                            <string>Original</string>
-                                                        </property>
-                                                        <property stdset="1">
-                                                            <name>checked</name>
-                                                            <bool>true</bool>
-                                                        </property>
-                                                        <property>
-                                                            <name>toolTip</name>
-                                                            <string>mark mp3 file as an original</string>
-                                                        </property>
-                                                    </widget>
-                                                    <widget>
-                                                        <class>QCheckBox</class>
-                                                        <property stdset="1">
-                                                            <name>name</name>
-                                                            <cstring>iso</cstring>
-                                                        </property>
-                                                        <property stdset="1">
-                                                            <name>text</name>
-                                                            <string>ISO Encoding</string>
-                                                        </property>
-                                                        <property>
-                                                            <name>toolTip</name>
-                                                            <string>try to use strict ISO encoding</string>
-                                                        </property>
-                                                    </widget>
-                                                    <widget>
-                                                        <class>QCheckBox</class>
-                                                        <property stdset="1">
-                                                            <name>name</name>
-                                                            <cstring>crc</cstring>
-                                                        </property>
-                                                        <property stdset="1">
-                                                            <name>text</name>
-                                                            <string>Error Protection</string>
-                                                        </property>
-                                                    </widget>
-                                                    <widget>
-                                                        <class>QCheckBox</class>
-                                                        <property stdset="1">
-                                                            <name>name</name>
-                                                            <cstring>id3_tag</cstring>
-                                                        </property>
-                                                        <property stdset="1">
-                                                            <name>text</name>
-                                                            <string>Write ID3 Tag</string>
-                                                        </property>
-                                                        <property stdset="1">
-                                                            <name>checked</name>
-                                                            <bool>true</bool>
-                                                        </property>
-                                                        <property>
-                                                            <name>toolTip</name>
-                                                            <string>if checked and if cddb support is available, an id3 tag will be appended</string>
-                                                        </property>
-                                                        <property>
-                                                            <name>whatsThis</name>
-                                                            <string>if checked and if cddb support is available, an id3 tag will be appended</string>
-                                                        </property>
-                                                    </widget>
-                                                </vbox>
-                                            </widget>
-                                        </hbox>
-                                    </widget>
-                                </hbox>
-                            </widget>
-                            <widget>
-                                <class>QLayoutWidget</class>
-                                <property stdset="1">
-                                    <name>name</name>
-                                    <cstring>Layout81</cstring>
-                                </property>
-                                <grid>
-                                    <property stdset="1">
-                                        <name>margin</name>
-                                        <number>0</number>
-                                    </property>
-                                    <property stdset="1">
-                                        <name>spacing</name>
-                                        <number>6</number>
-                                    </property>
-                                    <widget row="2"  column="0" >
-                                        <class>QGroupBox</class>
-                                        <property stdset="1">
-                                            <name>name</name>
-                                            <cstring>GroupBox83</cstring>
-                                        </property>
-                                        <property stdset="1">
-                                            <name>title</name>
-                                            <string>Filter Settings</string>
-                                        </property>
-                                        <property stdset="1">
-                                            <name>alignment</name>
-                                            <set>AlignVCenter|AlignLeft</set>
-                                        </property>
-                                        <property>
-                                            <name>hAlign</name>
-                                        </property>
-                                        <property>
-                                            <name>vAlign</name>
-                                        </property>
-                                        <grid>
-                                            <property stdset="1">
-                                                <name>margin</name>
-                                                <number>11</number>
-                                            </property>
-                                            <property stdset="1">
-                                                <name>spacing</name>
-                                                <number>6</number>
-                                            </property>
-                                            <widget row="0"  column="0" >
-                                                <class>QLayoutWidget</class>
-                                                <property stdset="1">
-                                                    <name>name</name>
-                                                    <cstring>Layout52</cstring>
-                                                </property>
-                                                <vbox>
-                                                    <property stdset="1">
-                                                        <name>margin</name>
-                                                        <number>0</number>
-                                                    </property>
-                                                    <property stdset="1">
-                                                        <name>spacing</name>
-                                                        <number>6</number>
-                                                    </property>
-                                                    <widget>
-                                                        <class>QCheckBox</class>
-                                                        <property stdset="1">
-                                                            <name>name</name>
-                                                            <cstring>enable_lowpass</cstring>
-                                                        </property>
-                                                        <property stdset="1">
-                                                            <name>text</name>
-                                                            <string>Lowpass Filter Cutoff Above</string>
-                                                        </property>
-                                                    </widget>
-                                                    <widget>
-                                                        <class>QSpinBox</class>
-                                                        <property stdset="1">
-                                                            <name>name</name>
-                                                            <cstring>lowfilterfreq</cstring>
-                                                        </property>
-                                                        <property stdset="1">
-                                                            <name>enabled</name>
-                                                            <bool>false</bool>
-                                                        </property>
-                                                        <property stdset="1">
-                                                            <name>suffix</name>
-                                                            <string> Hz</string>
-                                                        </property>
-                                                        <property stdset="1">
-                                                            <name>maxValue</name>
-                                                            <number>20000</number>
-                                                        </property>
-                                                    </widget>
-                                                </vbox>
-                                            </widget>
-                                            <widget row="1"  column="0" >
-                                                <class>QLayoutWidget</class>
-                                                <property stdset="1">
-                                                    <name>name</name>
-                                                    <cstring>Layout57</cstring>
-                                                </property>
-                                                <grid>
-                                                    <property stdset="1">
-                                                        <name>margin</name>
-                                                        <number>0</number>
-                                                    </property>
-                                                    <property stdset="1">
-                                                        <name>spacing</name>
-                                                        <number>6</number>
-                                                    </property>
-                                                    <widget row="0"  column="0" >
-                                                        <class>QCheckBox</class>
-                                                        <property stdset="1">
-                                                            <name>name</name>
-                                                            <cstring>enable_highpass</cstring>
-                                                        </property>
-                                                        <property stdset="1">
-                                                            <name>text</name>
-                                                            <string>Highpass Filter Cutoff Below</string>
-                                                        </property>
-                                                    </widget>
-                                                    <widget row="1"  column="0" >
-                                                        <class>QSpinBox</class>
-                                                        <property stdset="1">
-                                                            <name>name</name>
-                                                            <cstring>highfilterfreq</cstring>
-                                                        </property>
-                                                        <property stdset="1">
-                                                            <name>enabled</name>
-                                                            <bool>false</bool>
-                                                        </property>
-                                                        <property stdset="1">
-                                                            <name>suffix</name>
-                                                            <string> Hz</string>
-                                                        </property>
-                                                        <property stdset="1">
-                                                            <name>maxValue</name>
-                                                            <number>200</number>
-                                                        </property>
-                                                    </widget>
-                                                </grid>
-                                            </widget>
-                                            <widget row="0"  column="1" >
-                                                <class>QLayoutWidget</class>
-                                                <property stdset="1">
-                                                    <name>name</name>
-                                                    <cstring>Layout54</cstring>
-                                                </property>
-                                                <vbox>
-                                                    <property stdset="1">
-                                                        <name>margin</name>
-                                                        <number>0</number>
-                                                    </property>
-                                                    <property stdset="1">
-                                                        <name>spacing</name>
-                                                        <number>6</number>
-                                                    </property>
-                                                    <widget>
-                                                        <class>QCheckBox</class>
-                                                        <property stdset="1">
-                                                            <name>name</name>
-                                                            <cstring>set_lpf_width</cstring>
-                                                        </property>
-                                                        <property stdset="1">
-                                                            <name>enabled</name>
-                                                            <bool>false</bool>
-                                                        </property>
-                                                        <property stdset="1">
-                                                            <name>text</name>
-                                                            <string>Lowpass Filter Width</string>
-                                                        </property>
-                                                    </widget>
-                                                    <widget>
-                                                        <class>QSpinBox</class>
-                                                        <property stdset="1">
-                                                            <name>name</name>
-                                                            <cstring>lowfilterwidth</cstring>
-                                                        </property>
-                                                        <property stdset="1">
-                                                            <name>enabled</name>
-                                                            <bool>false</bool>
-                                                        </property>
-                                                        <property stdset="1">
-                                                            <name>suffix</name>
-                                                            <string> Hz</string>
-                                                        </property>
-                                                        <property stdset="1">
-                                                            <name>maxValue</name>
-                                                            <number>5000</number>
-                                                        </property>
-                                                    </widget>
-                                                </vbox>
-                                            </widget>
-                                            <widget row="1"  column="1" >
-                                                <class>QLayoutWidget</class>
-                                                <property stdset="1">
-                                                    <name>name</name>
-                                                    <cstring>Layout56</cstring>
-                                                </property>
-                                                <vbox>
-                                                    <property stdset="1">
-                                                        <name>margin</name>
-                                                        <number>0</number>
-                                                    </property>
-                                                    <property stdset="1">
-                                                        <name>spacing</name>
-                                                        <number>6</number>
-                                                    </property>
-                                                    <widget>
-                                                        <class>QCheckBox</class>
-                                                        <property stdset="1">
-                                                            <name>name</name>
-                                                            <cstring>set_hpf_width</cstring>
-                                                        </property>
-                                                        <property stdset="1">
-                                                            <name>enabled</name>
-                                                            <bool>false</bool>
-                                                        </property>
-                                                        <property stdset="1">
-                                                            <name>text</name>
-                                                            <string>Highpass Filter Width</string>
-                                                        </property>
-                                                    </widget>
-                                                    <widget>
-                                                        <class>QSpinBox</class>
-                                                        <property stdset="1">
-                                                            <name>name</name>
-                                                            <cstring>highfilterwidth</cstring>
-                                                        </property>
-                                                        <property stdset="1">
-                                                            <name>enabled</name>
-                                                            <bool>false</bool>
-                                                        </property>
-                                                        <property stdset="1">
-                                                            <name>suffix</name>
-                                                            <string> Hz</string>
-                                                        </property>
-                                                        <property stdset="1">
-                                                            <name>maxValue</name>
-                                                            <number>50</number>
-                                                        </property>
-                                                    </widget>
-                                                </vbox>
-                                            </widget>
-                                        </grid>
-                                    </widget>
-                                    <widget row="1"  column="0" >
-                                        <class>QGroupBox</class>
-                                        <property stdset="1">
-                                            <name>name</name>
-                                            <cstring>vbr_settings</cstring>
-                                        </property>
-                                        <property stdset="1">
-                                            <name>enabled</name>
-                                            <bool>false</bool>
-                                        </property>
-                                        <property stdset="1">
-                                            <name>title</name>
-                                            <string>Variable Bitrate Settings</string>
-                                        </property>
-                                        <grid>
-                                            <property stdset="1">
-                                                <name>margin</name>
-                                                <number>11</number>
-                                            </property>
-                                            <property stdset="1">
-                                                <name>spacing</name>
-                                                <number>6</number>
-                                            </property>
-                                            <widget row="0"  column="0" >
-                                                <class>QLayoutWidget</class>
-                                                <property stdset="1">
-                                                    <name>name</name>
-                                                    <cstring>Layout32</cstring>
-                                                </property>
-                                                <grid>
-                                                    <property stdset="1">
-                                                        <name>margin</name>
-                                                        <number>0</number>
-                                                    </property>
-                                                    <property stdset="1">
-                                                        <name>spacing</name>
-                                                        <number>6</number>
-                                                    </property>
-                                                    <widget row="2"  column="0" >
-                                                        <class>QCheckBox</class>
-                                                        <property stdset="1">
-                                                            <name>name</name>
-                                                            <cstring>vbr_average_br</cstring>
-                                                        </property>
-                                                        <property stdset="1">
-                                                            <name>text</name>
-                                                            <string>average bitrate</string>
-                                                        </property>
-                                                        <property stdset="1">
-                                                            <name>checked</name>
-                                                            <bool>true</bool>
-                                                        </property>
-                                                    </widget>
-                                                    <widget row="1"  column="1" >
-                                                        <class>QComboBox</class>
-                                                        <item>
-                                                            <property>
-                                                                <name>text</name>
-                                                                <string>32 kbs</string>
-                                                            </property>
-                                                        </item>
-                                                        <item>
-                                                            <property>
-                                                                <name>text</name>
-                                                                <string>40 kbs</string>
-                                                            </property>
-                                                        </item>
-                                                        <item>
-                                                            <property>
-                                                                <name>text</name>
-                                                                <string>48 kbs</string>
-                                                            </property>
-                                                        </item>
-                                                        <item>
-                                                            <property>
-                                                                <name>text</name>
-                                                                <string>56 kbs</string>
-                                                            </property>
-                                                        </item>
-                                                        <item>
-                                                            <property>
-                                                                <name>text</name>
-                                                                <string>64 kbs</string>
-                                                            </property>
-                                                        </item>
-                                                        <item>
-                                                            <property>
-                                                                <name>text</name>
-                                                                <string>80 kbs</string>
-                                                            </property>
-                                                        </item>
-                                                        <item>
-                                                            <property>
-                                                                <name>text</name>
-                                                                <string>96 kbs</string>
-                                                            </property>
-                                                        </item>
-                                                        <item>
-                                                            <property>
-                                                                <name>text</name>
-                                                                <string>112 kbs</string>
-                                                            </property>
-                                                        </item>
-                                                        <item>
-                                                            <property>
-                                                                <name>text</name>
-                                                                <string>128 kbs</string>
-                                                            </property>
-                                                        </item>
-                                                        <item>
-                                                            <property>
-                                                                <name>text</name>
-                                                                <string>160 kbs</string>
-                                                            </property>
-                                                        </item>
-                                                        <item>
-                                                            <property>
-                                                                <name>text</name>
-                                                                <string>192 kbs</string>
-                                                            </property>
-                                                        </item>
-                                                        <item>
-                                                            <property>
-                                                                <name>text</name>
-                                                                <string>224 kbs</string>
-                                                            </property>
-                                                        </item>
-                                                        <item>
-                                                            <property>
-                                                                <name>text</name>
-                                                                <string>256 kbs</string>
-                                                            </property>
-                                                        </item>
-                                                        <item>
-                                                            <property>
-                                                                <name>text</name>
-                                                                <string>320 kbs</string>
-                                                            </property>
-                                                        </item>
-                                                        <property stdset="1">
-                                                            <name>name</name>
-                                                            <cstring>vbr_max_brate</cstring>
-                                                        </property>
-                                                        <property stdset="1">
-                                                            <name>enabled</name>
-                                                            <bool>false</bool>
-                                                        </property>
-                                                        <property stdset="1">
-                                                            <name>currentItem</name>
-                                                            <number>13</number>
-                                                        </property>
-                                                    </widget>
-                                                    <widget row="0"  column="0"  rowspan="1"  colspan="2" >
-                                                        <class>QLayoutWidget</class>
-                                                        <property stdset="1">
-                                                            <name>name</name>
-                                                            <cstring>Layout30</cstring>
-                                                        </property>
-                                                        <vbox>
-                                                            <property stdset="1">
-                                                                <name>margin</name>
-                                                                <number>0</number>
-                                                            </property>
-                                                            <property stdset="1">
-                                                                <name>spacing</name>
-                                                                <number>6</number>
-                                                            </property>
-                                                            <widget>
-                                                                <class>QLayoutWidget</class>
-                                                                <property stdset="1">
-                                                                    <name>name</name>
-                                                                    <cstring>Layout29</cstring>
-                                                                </property>
-                                                                <hbox>
-                                                                    <property stdset="1">
-                                                                        <name>margin</name>
-                                                                        <number>0</number>
-                                                                    </property>
-                                                                    <property stdset="1">
-                                                                        <name>spacing</name>
-                                                                        <number>6</number>
-                                                                    </property>
-                                                                    <widget>
-                                                                        <class>QCheckBox</class>
-                                                                        <property stdset="1">
-                                                                            <name>name</name>
-                                                                            <cstring>vbr_min_br</cstring>
-                                                                        </property>
-                                                                        <property stdset="1">
-                                                                            <name>enabled</name>
-                                                                            <bool>false</bool>
-                                                                        </property>
-                                                                        <property stdset="1">
-                                                                            <name>text</name>
-                                                                            <string>minimal bitrate</string>
-                                                                        </property>
-                                                                    </widget>
-                                                                    <widget>
-                                                                        <class>QComboBox</class>
-                                                                        <item>
-                                                                            <property>
-                                                                                <name>text</name>
-                                                                                <string>32 kbs</string>
-                                                                            </property>
-                                                                        </item>
-                                                                        <item>
-                                                                            <property>
-                                                                                <name>text</name>
-                                                                                <string>40 kbs</string>
-                                                                            </property>
-                                                                        </item>
-                                                                        <item>
-                                                                            <property>
-                                                                                <name>text</name>
-                                                                                <string>48 kbs</string>
-                                                                            </property>
-                                                                        </item>
-                                                                        <item>
-                                                                            <property>
-                                                                                <name>text</name>
-                                                                                <string>56 kbs</string>
-                                                                            </property>
-                                                                        </item>
-                                                                        <item>
-                                                                            <property>
-                                                                                <name>text</name>
-                                                                                <string>64 kbs</string>
-                                                                            </property>
-                                                                        </item>
-                                                                        <item>
-                                                                            <property>
-                                                                                <name>text</name>
-                                                                                <string>80 kbs</string>
-                                                                            </property>
-                                                                        </item>
-                                                                        <item>
-                                                                            <property>
-                                                                                <name>text</name>
-                                                                                <string>96 kbs</string>
-                                                                            </property>
-                                                                        </item>
-                                                                        <item>
-                                                                            <property>
-                                                                                <name>text</name>
-                                                                                <string>112 kbs</string>
-                                                                            </property>
-                                                                        </item>
-                                                                        <item>
-                                                                            <property>
-                                                                                <name>text</name>
-                                                                                <string>128 kbs</string>
-                                                                            </property>
-                                                                        </item>
-                                                                        <item>
-                                                                            <property>
-                                                                                <name>text</name>
-                                                                                <string>160 kbs</string>
-                                                                            </property>
-                                                                        </item>
-                                                                        <item>
-                                                                            <property>
-                                                                                <name>text</name>
-                                                                                <string>192 kbs</string>
-                                                                            </property>
-                                                                        </item>
-                                                                        <item>
-                                                                            <property>
-                                                                                <name>text</name>
-                                                                                <string>224 kbs</string>
-                                                                            </property>
-                                                                        </item>
-                                                                        <item>
-                                                                            <property>
-                                                                                <name>text</name>
-                                                                                <string>256 kbs</string>
-                                                                            </property>
-                                                                        </item>
-                                                                        <item>
-                                                                            <property>
-                                                                                <name>text</name>
-                                                                                <string>320 kbs</string>
-                                                                            </property>
-                                                                        </item>
-                                                                        <property stdset="1">
-                                                                            <name>name</name>
-                                                                            <cstring>vbr_min_brate</cstring>
-                                                                        </property>
-                                                                        <property stdset="1">
-                                                                            <name>enabled</name>
-                                                                            <bool>false</bool>
-                                                                        </property>
-                                                                        <property stdset="1">
-                                                                            <name>currentItem</name>
-                                                                            <number>1</number>
-                                                                        </property>
-                                                                    </widget>
-                                                                </hbox>
-                                                            </widget>
-                                                            <widget>
-                                                                <class>QCheckBox</class>
-                                                                <property stdset="1">
-                                                                    <name>name</name>
-                                                                    <cstring>vbr_min_hard</cstring>
-                                                                </property>
-                                                                <property stdset="1">
-                                                                    <name>enabled</name>
-                                                                    <bool>false</bool>
-                                                                </property>
-                                                                <property stdset="1">
-                                                                    <name>text</name>
-                                                                    <string>minimal value is a hard limit</string>
-                                                                </property>
-                                                            </widget>
-                                                        </vbox>
-                                                    </widget>
-                                                    <widget row="1"  column="0" >
-                                                        <class>QCheckBox</class>
-                                                        <property stdset="1">
-                                                            <name>name</name>
-                                                            <cstring>vbr_max_br</cstring>
-                                                        </property>
-                                                        <property stdset="1">
-                                                            <name>enabled</name>
-                                                            <bool>false</bool>
-                                                        </property>
-                                                        <property stdset="1">
-                                                            <name>text</name>
-                                                            <string>maximal bitrate</string>
-                                                        </property>
-                                                    </widget>
-                                                    <widget row="3"  column="0"  rowspan="1"  colspan="2" >
-                                                        <class>QCheckBox</class>
-                                                        <property stdset="1">
-                                                            <name>name</name>
-                                                            <cstring>vbr_xing_tag</cstring>
-                                                        </property>
-                                                        <property stdset="1">
-                                                            <name>text</name>
-                                                            <string>write Xing VBR tag</string>
-                                                        </property>
-                                                        <property stdset="1">
-                                                            <name>checked</name>
-                                                            <bool>true</bool>
-                                                        </property>
-                                                    </widget>
-                                                    <widget row="2"  column="1" >
-                                                        <class>QComboBox</class>
-                                                        <item>
-                                                            <property>
-                                                                <name>text</name>
-                                                                <string>32 kbs</string>
-                                                            </property>
-                                                        </item>
-                                                        <item>
-                                                            <property>
-                                                                <name>text</name>
-                                                                <string>40 kbs</string>
-                                                            </property>
-                                                        </item>
-                                                        <item>
-                                                            <property>
-                                                                <name>text</name>
-                                                                <string>48 kbs</string>
-                                                            </property>
-                                                        </item>
-                                                        <item>
-                                                            <property>
-                                                                <name>text</name>
-                                                                <string>56 kbs</string>
-                                                            </property>
-                                                        </item>
-                                                        <item>
-                                                            <property>
-                                                                <name>text</name>
-                                                                <string>64 kbs</string>
-                                                            </property>
-                                                        </item>
-                                                        <item>
-                                                            <property>
-                                                                <name>text</name>
-                                                                <string>80 kbs</string>
-                                                            </property>
-                                                        </item>
-                                                        <item>
-                                                            <property>
-                                                                <name>text</name>
-                                                                <string>96 kbs</string>
-                                                            </property>
-                                                        </item>
-                                                        <item>
-                                                            <property>
-                                                                <name>text</name>
-                                                                <string>112 kbs</string>
-                                                            </property>
-                                                        </item>
-                                                        <item>
-                                                            <property>
-                                                                <name>text</name>
-                                                                <string>128 kbs</string>
-                                                            </property>
-                                                        </item>
-                                                        <item>
-                                                            <property>
-                                                                <name>text</name>
-                                                                <string>160 kbs</string>
-                                                            </property>
-                                                        </item>
-                                                        <item>
-                                                            <property>
-                                                                <name>text</name>
-                                                                <string>192 kbs</string>
-                                                            </property>
-                                                        </item>
-                                                        <item>
-                                                            <property>
-                                                                <name>text</name>
-                                                                <string>224 kbs</string>
-                                                            </property>
-                                                        </item>
-                                                        <item>
-                                                            <property>
-                                                                <name>text</name>
-                                                                <string>256 kbs</string>
-                                                            </property>
-                                                        </item>
-                                                        <item>
-                                                            <property>
-                                                                <name>text</name>
-                                                                <string>320 kbs</string>
-                                                            </property>
-                                                        </item>
-                                                        <property stdset="1">
-                                                            <name>name</name>
-                                                            <cstring>vbr_mean_brate</cstring>
-                                                        </property>
-                                                        <property stdset="1">
-                                                            <name>currentItem</name>
-                                                            <number>9</number>
-                                                        </property>
-                                                    </widget>
-                                                </grid>
-                                            </widget>
-                                        </grid>
-                                    </widget>
-                                    <widget row="0"  column="0" >
                                         <class>QGroupBox</class>
                                         <property stdset="1">
                                             <name>name</name>
@@ -1248,74 +634,19 @@
                                             </widget>
                                         </grid>
                                     </widget>
-                                </grid>
-                            </widget>
-                        </vbox>
-                    </widget>
-                </grid>
-            </widget>
-            <widget>
-                <class>QWidget</class>
-                <property stdset="1">
-                    <name>name</name>
-                    <cstring>tab</cstring>
-                </property>
-                <attribute>
-                    <name>title</name>
-                    <string>Ogg Vorbis Settings</string>
-                </attribute>
-                <grid>
-                    <property stdset="1">
-                        <name>margin</name>
-                        <number>11</number>
-                    </property>
-                    <property stdset="1">
-                        <name>spacing</name>
-                        <number>6</number>
-                    </property>
-                    <widget row="0"  column="0" >
-                        <class>QLayoutWidget</class>
-                        <property stdset="1">
-                            <name>name</name>
-                            <cstring>Layout109</cstring>
-                        </property>
-                        <grid>
-                            <property stdset="1">
-                                <name>margin</name>
-                                <number>0</number>
-                            </property>
-                            <property stdset="1">
-                                <name>spacing</name>
-                                <number>6</number>
-                            </property>
-                            <widget row="0"  column="0" >
-                                <class>QLayoutWidget</class>
-                                <property stdset="1">
-                                    <name>name</name>
-                                    <cstring>Layout108</cstring>
-                                </property>
-                                <grid>
-                                    <property stdset="1">
-                                        <name>margin</name>
-                                        <number>0</number>
-                                    </property>
-                                    <property stdset="1">
-                                        <name>spacing</name>
-                                        <number>6</number>
-                                    </property>
-                                    <widget row="0"  column="0" >
+                                    <widget>
                                         <class>QGroupBox</class>
                                         <property stdset="1">
                                             <name>name</name>
-                                            <cstring>ogg_settings</cstring>
+                                            <cstring>vbr_settings</cstring>
                                         </property>
                                         <property stdset="1">
                                             <name>enabled</name>
-                                            <bool>true</bool>
+                                            <bool>false</bool>
                                         </property>
                                         <property stdset="1">
                                             <name>title</name>
-                                            <string>Vorbis Bitrate Settings</string>
+                                            <string>Variable Bitrate Settings</string>
                                         </property>
                                         <grid>
                                             <property stdset="1">
@@ -1330,7 +661,7 @@
                                                 <class>QLayoutWidget</class>
                                                 <property stdset="1">
                                                     <name>name</name>
-                                                    <cstring>Layout110</cstring>
+                                                    <cstring>Layout32</cstring>
                                                 </property>
                                                 <grid>
                                                     <property stdset="1">
@@ -1341,103 +672,19 @@
                                                         <name>spacing</name>
                                                         <number>6</number>
                                                     </property>
-                                                    <widget row="0"  column="1" >
-                                                        <class>QComboBox</class>
-                                                        <item>
-                                                            <property>
-                                                                <name>text</name>
-                                                                <string>32 kbs</string>
-                                                            </property>
-                                                        </item>
-                                                        <item>
-                                                            <property>
-                                                                <name>text</name>
-                                                                <string>40 kbs</string>
-                                                            </property>
-                                                        </item>
-                                                        <item>
-                                                            <property>
-                                                                <name>text</name>
-                                                                <string>48 kbs</string>
-                                                            </property>
-                                                        </item>
-                                                        <item>
-                                                            <property>
-                                                                <name>text</name>
-                                                                <string>56 kbs</string>
-                                                            </property>
-                                                        </item>
-                                                        <item>
-                                                            <property>
-                                                                <name>text</name>
-                                                                <string>64 kbs</string>
-                                                            </property>
-                                                        </item>
-                                                        <item>
-                                                            <property>
-                                                                <name>text</name>
-                                                                <string>80 kbs</string>
-                                                            </property>
-                                                        </item>
-                                                        <item>
-                                                            <property>
-                                                                <name>text</name>
-                                                                <string>96 kbs</string>
-                                                            </property>
-                                                        </item>
-                                                        <item>
-                                                            <property>
-                                                                <name>text</name>
-                                                                <string>112 kbs</string>
-                                                            </property>
-                                                        </item>
-                                                        <item>
-                                                            <property>
-                                                                <name>text</name>
-                                                                <string>128 kbs</string>
-                                                            </property>
-                                                        </item>
-                                                        <item>
-                                                            <property>
-                                                                <name>text</name>
-                                                                <string>160 kbs</string>
-                                                            </property>
-                                                        </item>
-                                                        <item>
-                                                            <property>
-                                                                <name>text</name>
-                                                                <string>192 kbs</string>
-                                                            </property>
-                                                        </item>
-                                                        <item>
-                                                            <property>
-                                                                <name>text</name>
-                                                                <string>224 kbs</string>
-                                                            </property>
-                                                        </item>
-                                                        <item>
-                                                            <property>
-                                                                <name>text</name>
-                                                                <string>256 kbs</string>
-                                                            </property>
-                                                        </item>
-                                                        <item>
-                                                            <property>
-                                                                <name>text</name>
-                                                                <string>350 kbs</string>
-                                                            </property>
-                                                        </item>
+                                                    <widget row="2"  column="0" >
+                                                        <class>QCheckBox</class>
                                                         <property stdset="1">
                                                             <name>name</name>
-                                                            <cstring>vorbis_min_br</cstring>
+                                                            <cstring>vbr_average_br</cstring>
                                                         </property>
                                                         <property stdset="1">
-                                                            <name>enabled</name>
-                                                            <bool>false</bool>
+                                                            <name>text</name>
+                                                            <string>A&amp;verage bitrate</string>
                                                         </property>
                                                         <property stdset="1">
-                                                            <name>currentItem</name>
-                                                            <number>1</number>
+                                                            <name>checked</name>
+                                                            <bool>true</bool>
                                                         </property>
                                                     </widget>
                                                     <widget row="1"  column="1" >
@@ -1523,12 +770,12 @@
                                                         <item>
                                                             <property>
                                                                 <name>text</name>
-                                                                <string>350 kbs</string>
+                                                                <string>320 kbs</string>
                                                             </property>
                                                         </item>
                                                         <property stdset="1">
                                                             <name>name</name>
-                                                            <cstring>vorbis_max_br</cstring>
+                                                            <cstring>vbr_max_brate</cstring>
                                                         </property>
                                                         <property stdset="1">
                                                             <name>enabled</name>
@@ -1539,38 +786,249 @@
                                                             <number>13</number>
                                                         </property>
                                                     </widget>
-                                                    <widget row="0"  column="0" >
-                                                        <class>QCheckBox</class>
+                                                    <widget row="0"  column="0"  rowspan="1"  colspan="2" >
+                                                        <class>QLayoutWidget</class>
                                                         <property stdset="1">
                                                             <name>name</name>
-                                                            <cstring>set_vorbis_min_br</cstring>
+                                                            <cstring>Layout30</cstring>
                                                         </property>
-                                                        <property stdset="1">
-                                                            <name>enabled</name>
-                                                            <bool>true</bool>
-                                                        </property>
-                                                        <property stdset="1">
-                                                            <name>text</name>
-                                                            <string>minimal bitrate</string>
-                                                        </property>
+                                                        <vbox>
+                                                            <property stdset="1">
+                                                                <name>margin</name>
+                                                                <number>0</number>
+                                                            </property>
+                                                            <property stdset="1">
+                                                                <name>spacing</name>
+                                                                <number>6</number>
+                                                            </property>
+                                                            <widget>
+                                                                <class>QLayoutWidget</class>
+                                                                <property stdset="1">
+                                                                    <name>name</name>
+                                                                    <cstring>Layout29</cstring>
+                                                                </property>
+                                                                <hbox>
+                                                                    <property stdset="1">
+                                                                        <name>margin</name>
+                                                                        <number>0</number>
+                                                                    </property>
+                                                                    <property stdset="1">
+                                                                        <name>spacing</name>
+                                                                        <number>6</number>
+                                                                    </property>
+                                                                    <widget>
+                                                                        <class>QCheckBox</class>
+                                                                        <property stdset="1">
+                                                                            <name>name</name>
+                                                                            <cstring>vbr_min_br</cstring>
+                                                                        </property>
+                                                                        <property stdset="1">
+                                                                            <name>enabled</name>
+                                                                            <bool>false</bool>
+                                                                        </property>
+                                                                        <property stdset="1">
+                                                                            <name>text</name>
+                                                                            <string>&amp;Minimal bitrate</string>
+                                                                        </property>
+                                                                    </widget>
+                                                                    <widget>
+                                                                        <class>QComboBox</class>
+                                                                        <item>
+                                                                            <property>
+                                                                                <name>text</name>
+                                                                                <string>32 kbs</string>
+                                                                            </property>
+                                                                        </item>
+                                                                        <item>
+                                                                            <property>
+                                                                                <name>text</name>
+                                                                                <string>40 kbs</string>
+                                                                            </property>
+                                                                        </item>
+                                                                        <item>
+                                                                            <property>
+                                                                                <name>text</name>
+                                                                                <string>48 kbs</string>
+                                                                            </property>
+                                                                        </item>
+                                                                        <item>
+                                                                            <property>
+                                                                                <name>text</name>
+                                                                                <string>56 kbs</string>
+                                                                            </property>
+                                                                        </item>
+                                                                        <item>
+                                                                            <property>
+                                                                                <name>text</name>
+                                                                                <string>64 kbs</string>
+                                                                            </property>
+                                                                        </item>
+                                                                        <item>
+                                                                            <property>
+                                                                                <name>text</name>
+                                                                                <string>80 kbs</string>
+                                                                            </property>
+                                                                        </item>
+                                                                        <item>
+                                                                            <property>
+                                                                                <name>text</name>
+                                                                                <string>96 kbs</string>
+                                                                            </property>
+                                                                        </item>
+                                                                        <item>
+                                                                            <property>
+                                                                                <name>text</name>
+                                                                                <string>112 kbs</string>
+                                                                            </property>
+                                                                        </item>
+                                                                        <item>
+                                                                            <property>
+                                                                                <name>text</name>
+                                                                                <string>128 kbs</string>
+                                                                            </property>
+                                                                        </item>
+                                                                        <item>
+                                                                            <property>
+                                                                                <name>text</name>
+                                                                                <string>160 kbs</string>
+                                                                            </property>
+                                                                        </item>
+                                                                        <item>
+                                                                            <property>
+                                                                                <name>text</name>
+                                                                                <string>192 kbs</string>
+                                                                            </property>
+                                                                        </item>
+                                                                        <item>
+                                                                            <property>
+                                                                                <name>text</name>
+                                                                                <string>224 kbs</string>
+                                                                            </property>
+                                                                        </item>
+                                                                        <item>
+                                                                            <property>
+                                                                                <name>text</name>
+                                                                                <string>256 kbs</string>
+                                                                            </property>
+                                                                        </item>
+                                                                        <item>
+                                                                            <property>
+                                                                                <name>text</name>
+                                                                                <string>320 kbs</string>
+                                                                            </property>
+                                                                        </item>
+                                                                        <property stdset="1">
+                                                                            <name>name</name>
+                                                                            <cstring>vbr_min_brate</cstring>
+                                                                        </property>
+                                                                        <property stdset="1">
+                                                                            <name>enabled</name>
+                                                                            <bool>false</bool>
+                                                                        </property>
+                                                                        <property stdset="1">
+                                                                            <name>currentItem</name>
+                                                                            <number>1</number>
+                                                                        </property>
+                                                                    </widget>
+                                                                </hbox>
+                                                            </widget>
+                                                            <widget>
+                                                                <class>QCheckBox</class>
+                                                                <property stdset="1">
+                                                                    <name>name</name>
+                                                                    <cstring>vbr_min_hard</cstring>
+                                                                </property>
+                                                                <property stdset="1">
+                                                                    <name>enabled</name>
+                                                                    <bool>false</bool>
+                                                                </property>
+                                                                <property stdset="1">
+                                                                    <name>text</name>
+                                                                    <string>Minimal val&amp;ue is a hard limit</string>
+                                                                </property>
+                                                            </widget>
+                                                        </vbox>
                                                     </widget>
                                                     <widget row="1"  column="0" >
                                                         <class>QCheckBox</class>
                                                         <property stdset="1">
                                                             <name>name</name>
-                                                            <cstring>set_vorbis_max_br</cstring>
+                                                            <cstring>vbr_max_br</cstring>
                                                         </property>
                                                         <property stdset="1">
                                                             <name>enabled</name>
-                                                            <bool>true</bool>
+                                                            <bool>false</bool>
                                                         </property>
                                                         <property stdset="1">
                                                             <name>text</name>
-                                                            <string>maximal bitrate</string>
+                                                            <string>Maximal bitra&amp;te</string>
+                                                        </property>
+                                                    </widget>
+                                                    <widget row="3"  column="0"  rowspan="1"  colspan="2" >
+                                                        <class>QCheckBox</class>
+                                                        <property stdset="1">
+                                                            <name>name</name>
+                                                            <cstring>vbr_xing_tag</cstring>
+                                                        </property>
+                                                        <property stdset="1">
+                                                            <name>text</name>
+                                                            <string>Write &amp;Xing VBR tag</string>
+                                                        </property>
+                                                        <property stdset="1">
+                                                            <name>checked</name>
+                                                            <bool>true</bool>
                                                         </property>
                                                     </widget>
                                                     <widget row="2"  column="1" >
                                                         <class>QComboBox</class>
+                                                        <item>
+                                                            <property>
+                                                                <name>text</name>
+                                                                <string>32 kbs</string>
+                                                            </property>
+                                                        </item>
+                                                        <item>
+                                                            <property>
+                                                                <name>text</name>
+                                                                <string>40 kbs</string>
+                                                            </property>
+                                                        </item>
+                                                        <item>
+                                                            <property>
+                                                                <name>text</name>
+                                                                <string>48 kbs</string>
+                                                            </property>
+                                                        </item>
+                                                        <item>
+                                                            <property>
+                                                                <name>text</name>
+                                                                <string>56 kbs</string>
+                                                            </property>
+                                                        </item>
+                                                        <item>
+                                                            <property>
+                                                                <name>text</name>
+                                                                <string>64 kbs</string>
+                                                            </property>
+                                                        </item>
+                                                        <item>
+                                                            <property>
+                                                                <name>text</name>
+                                                                <string>80 kbs</string>
+                                                            </property>
+                                                        </item>
+                                                        <item>
+                                                            <property>
+                                                                <name>text</name>
+                                                                <string>96 kbs</string>
+                                                            </property>
+                                                        </item>
+                                                        <item>
+                                                            <property>
+                                                                <name>text</name>
+                                                                <string>112 kbs</string>
+                                                            </property>
+                                                        </item>
                                                         <item>
                                                             <property>
                                                                 <name>text</name>
@@ -1592,107 +1050,689 @@
                                                         <item>
                                                             <property>
                                                                 <name>text</name>
+                                                                <string>224 kbs</string>
+                                                            </property>
+                                                        </item>
+                                                        <item>
+                                                            <property>
+                                                                <name>text</name>
                                                                 <string>256 kbs</string>
                                                             </property>
                                                         </item>
                                                         <item>
                                                             <property>
                                                                 <name>text</name>
-                                                                <string>350 kbs</string>
+                                                                <string>320 kbs</string>
                                                             </property>
                                                         </item>
                                                         <property stdset="1">
                                                             <name>name</name>
-                                                            <cstring>vorbis_nominal_br</cstring>
+                                                            <cstring>vbr_mean_brate</cstring>
                                                         </property>
                                                         <property stdset="1">
                                                             <name>currentItem</name>
-                                                            <number>1</number>
-                                                        </property>
-                                                    </widget>
-                                                    <widget row="2"  column="0" >
-                                                        <class>QCheckBox</class>
-                                                        <property stdset="1">
-                                                            <name>name</name>
-                                                            <cstring>set_vorbis_nominal_br</cstring>
-                                                        </property>
-                                                        <property stdset="1">
-                                                            <name>text</name>
-                                                            <string>average bitrate</string>
-                                                        </property>
-                                                        <property stdset="1">
-                                                            <name>checked</name>
-                                                            <bool>true</bool>
+                                                            <number>9</number>
                                                         </property>
                                                     </widget>
                                                 </grid>
                                             </widget>
                                         </grid>
                                     </widget>
-                                    <widget row="1"  column="0" >
-                                        <class>QGroupBox</class>
+                                </vbox>
+                            </widget>
+                            <widget>
+                                <class>QGroupBox</class>
+                                <property stdset="1">
+                                    <name>name</name>
+                                    <cstring>filter_settings</cstring>
+                                </property>
+                                <property stdset="1">
+                                    <name>title</name>
+                                    <string>Filter Settings</string>
+                                </property>
+                                <property stdset="1">
+                                    <name>alignment</name>
+                                    <set>AlignVCenter|AlignLeft</set>
+                                </property>
+                                <property>
+                                    <name>hAlign</name>
+                                </property>
+                                <property>
+                                    <name>vAlign</name>
+                                </property>
+                                <vbox>
+                                    <property stdset="1">
+                                        <name>margin</name>
+                                        <number>11</number>
+                                    </property>
+                                    <property stdset="1">
+                                        <name>spacing</name>
+                                        <number>6</number>
+                                    </property>
+                                    <widget>
+                                        <class>QLayoutWidget</class>
                                         <property stdset="1">
                                             <name>name</name>
-                                            <cstring>GroupBox193</cstring>
+                                            <cstring>Layout54</cstring>
                                         </property>
+                                        <vbox>
+                                            <property stdset="1">
+                                                <name>margin</name>
+                                                <number>0</number>
+                                            </property>
+                                            <property stdset="1">
+                                                <name>spacing</name>
+                                                <number>6</number>
+                                            </property>
+                                            <widget>
+                                                <class>QCheckBox</class>
+                                                <property stdset="1">
+                                                    <name>name</name>
+                                                    <cstring>set_lpf_width</cstring>
+                                                </property>
+                                                <property stdset="1">
+                                                    <name>enabled</name>
+                                                    <bool>false</bool>
+                                                </property>
+                                                <property stdset="1">
+                                                    <name>text</name>
+                                                    <string>&amp;Lowpass Filter Width</string>
+                                                </property>
+                                            </widget>
+                                            <widget>
+                                                <class>QSpinBox</class>
+                                                <property stdset="1">
+                                                    <name>name</name>
+                                                    <cstring>lowfilterwidth</cstring>
+                                                </property>
+                                                <property stdset="1">
+                                                    <name>enabled</name>
+                                                    <bool>false</bool>
+                                                </property>
+                                                <property stdset="1">
+                                                    <name>suffix</name>
+                                                    <string> Hz</string>
+                                                </property>
+                                                <property stdset="1">
+                                                    <name>maxValue</name>
+                                                    <number>5000</number>
+                                                </property>
+                                            </widget>
+                                        </vbox>
+                                    </widget>
+                                    <widget>
+                                        <class>QLayoutWidget</class>
                                         <property stdset="1">
-                                            <name>title</name>
-                                            <string>Options</string>
+                                            <name>name</name>
+                                            <cstring>Layout56</cstring>
                                         </property>
-                                        <widget>
-                                            <class>QCheckBox</class>
+                                        <vbox>
                                             <property stdset="1">
-                                                <name>name</name>
-                                                <cstring>vorbis_comments</cstring>
+                                                <name>margin</name>
+                                                <number>0</number>
                                             </property>
                                             <property stdset="1">
-                                                <name>enabled</name>
-                                                <bool>true</bool>
+                                                <name>spacing</name>
+                                                <number>6</number>
+                                            </property>
+                                            <widget>
+                                                <class>QCheckBox</class>
+                                                <property stdset="1">
+                                                    <name>name</name>
+                                                    <cstring>set_hpf_width</cstring>
+                                                </property>
+                                                <property stdset="1">
+                                                    <name>enabled</name>
+                                                    <bool>false</bool>
+                                                </property>
+                                                <property stdset="1">
+                                                    <name>text</name>
+                                                    <string>&amp;Highpass Filter Width</string>
+                                                </property>
+                                            </widget>
+                                            <widget>
+                                                <class>QSpinBox</class>
+                                                <property stdset="1">
+                                                    <name>name</name>
+                                                    <cstring>highfilterwidth</cstring>
+                                                </property>
+                                                <property stdset="1">
+                                                    <name>enabled</name>
+                                                    <bool>false</bool>
+                                                </property>
+                                                <property stdset="1">
+                                                    <name>suffix</name>
+                                                    <string> Hz</string>
+                                                </property>
+                                                <property stdset="1">
+                                                    <name>maxValue</name>
+                                                    <number>50</number>
+                                                </property>
+                                            </widget>
+                                        </vbox>
+                                    </widget>
+                                    <widget>
+                                        <class>QLayoutWidget</class>
+                                        <property stdset="1">
+                                            <name>name</name>
+                                            <cstring>Layout52</cstring>
+                                        </property>
+                                        <vbox>
+                                            <property stdset="1">
+                                                <name>margin</name>
+                                                <number>0</number>
                                             </property>
                                             <property stdset="1">
-                                                <name>geometry</name>
-                                                <rect>
-                                                    <x>11</x>
-                                                    <y>17</y>
-                                                    <width>324</width>
-                                                    <height>17</height>
-                                                </rect>
+                                                <name>spacing</name>
+                                                <number>6</number>
+                                            </property>
+                                            <widget>
+                                                <class>QCheckBox</class>
+                                                <property stdset="1">
+                                                    <name>name</name>
+                                                    <cstring>enable_lowpass</cstring>
+                                                </property>
+                                                <property stdset="1">
+                                                    <name>text</name>
+                                                    <string>Lowpass Filter Cutoff A&amp;bove</string>
+                                                </property>
+                                            </widget>
+                                            <widget>
+                                                <class>QSpinBox</class>
+                                                <property stdset="1">
+                                                    <name>name</name>
+                                                    <cstring>lowfilterfreq</cstring>
+                                                </property>
+                                                <property stdset="1">
+                                                    <name>enabled</name>
+                                                    <bool>false</bool>
+                                                </property>
+                                                <property stdset="1">
+                                                    <name>suffix</name>
+                                                    <string> Hz</string>
+                                                </property>
+                                                <property stdset="1">
+                                                    <name>maxValue</name>
+                                                    <number>20000</number>
+                                                </property>
+                                            </widget>
+                                        </vbox>
+                                    </widget>
+                                    <widget>
+                                        <class>QLayoutWidget</class>
+                                        <property stdset="1">
+                                            <name>name</name>
+                                            <cstring>Layout57</cstring>
+                                        </property>
+                                        <grid>
+                                            <property stdset="1">
+                                                <name>margin</name>
+                                                <number>0</number>
                                             </property>
                                             <property stdset="1">
-                                                <name>text</name>
-                                                <string>add track information</string>
+                                                <name>spacing</name>
+                                                <number>6</number>
                                             </property>
-                                        </widget>
+                                            <widget row="0"  column="0" >
+                                                <class>QCheckBox</class>
+                                                <property stdset="1">
+                                                    <name>name</name>
+                                                    <cstring>enable_highpass</cstring>
+                                                </property>
+                                                <property stdset="1">
+                                                    <name>text</name>
+                                                    <string>Highpa&amp;ss Filter Cutoff Below</string>
+                                                </property>
+                                            </widget>
+                                            <widget row="1"  column="0" >
+                                                <class>QSpinBox</class>
+                                                <property stdset="1">
+                                                    <name>name</name>
+                                                    <cstring>highfilterfreq</cstring>
+                                                </property>
+                                                <property stdset="1">
+                                                    <name>enabled</name>
+                                                    <bool>false</bool>
+                                                </property>
+                                                <property stdset="1">
+                                                    <name>suffix</name>
+                                                    <string> Hz</string>
+                                                </property>
+                                                <property stdset="1">
+                                                    <name>maxValue</name>
+                                                    <number>200</number>
+                                                </property>
+                                            </widget>
+                                        </grid>
+                                    </widget>
+                                </vbox>
+                            </widget>
+                        </hbox>
+                    </widget>
+                </vbox>
+            </widget>
+            <widget>
+                <class>QWidget</class>
+                <property stdset="1">
+                    <name>name</name>
+                    <cstring>tab</cstring>
+                </property>
+                <attribute>
+                    <name>title</name>
+                    <string>Ogg Vorbis Settings</string>
+                </attribute>
+                <vbox>
+                    <property stdset="1">
+                        <name>margin</name>
+                        <number>11</number>
+                    </property>
+                    <property stdset="1">
+                        <name>spacing</name>
+                        <number>6</number>
+                    </property>
+                    <widget>
+                        <class>QLayoutWidget</class>
+                        <property stdset="1">
+                            <name>name</name>
+                            <cstring>Layout108</cstring>
+                        </property>
+                        <grid>
+                            <property stdset="1">
+                                <name>margin</name>
+                                <number>0</number>
+                            </property>
+                            <property stdset="1">
+                                <name>spacing</name>
+                                <number>6</number>
+                            </property>
+                            <widget row="0"  column="0" >
+                                <class>QGroupBox</class>
+                                <property stdset="1">
+                                    <name>name</name>
+                                    <cstring>ogg_settings</cstring>
+                                </property>
+                                <property stdset="1">
+                                    <name>enabled</name>
+                                    <bool>true</bool>
+                                </property>
+                                <property stdset="1">
+                                    <name>title</name>
+                                    <string>Vorbis Bitrate Settings</string>
+                                </property>
+                                <grid>
+                                    <property stdset="1">
+                                        <name>margin</name>
+                                        <number>11</number>
+                                    </property>
+                                    <property stdset="1">
+                                        <name>spacing</name>
+                                        <number>6</number>
+                                    </property>
+                                    <widget row="0"  column="0" >
+                                        <class>QLayoutWidget</class>
+                                        <property stdset="1">
+                                            <name>name</name>
+                                            <cstring>Layout110</cstring>
+                                        </property>
+                                        <grid>
+                                            <property stdset="1">
+                                                <name>margin</name>
+                                                <number>0</number>
+                                            </property>
+                                            <property stdset="1">
+                                                <name>spacing</name>
+                                                <number>6</number>
+                                            </property>
+                                            <widget row="0"  column="1" >
+                                                <class>QComboBox</class>
+                                                <item>
+                                                    <property>
+                                                        <name>text</name>
+                                                        <string>32 kbs</string>
+                                                    </property>
+                                                </item>
+                                                <item>
+                                                    <property>
+                                                        <name>text</name>
+                                                        <string>40 kbs</string>
+                                                    </property>
+                                                </item>
+                                                <item>
+                                                    <property>
+                                                        <name>text</name>
+                                                        <string>48 kbs</string>
+                                                    </property>
+                                                </item>
+                                                <item>
+                                                    <property>
+                                                        <name>text</name>
+                                                        <string>56 kbs</string>
+                                                    </property>
+                                                </item>
+                                                <item>
+                                                    <property>
+                                                        <name>text</name>
+                                                        <string>64 kbs</string>
+                                                    </property>
+                                                </item>
+                                                <item>
+                                                    <property>
+                                                        <name>text</name>
+                                                        <string>80 kbs</string>
+                                                    </property>
+                                                </item>
+                                                <item>
+                                                    <property>
+                                                        <name>text</name>
+                                                        <string>96 kbs</string>
+                                                    </property>
+                                                </item>
+                                                <item>
+                                                    <property>
+                                                        <name>text</name>
+                                                        <string>112 kbs</string>
+                                                    </property>
+                                                </item>
+                                                <item>
+                                                    <property>
+                                                        <name>text</name>
+                                                        <string>128 kbs</string>
+                                                    </property>
+                                                </item>
+                                                <item>
+                                                    <property>
+                                                        <name>text</name>
+                                                        <string>160 kbs</string>
+                                                    </property>
+                                                </item>
+                                                <item>
+                                                    <property>
+                                                        <name>text</name>
+                                                        <string>192 kbs</string>
+                                                    </property>
+                                                </item>
+                                                <item>
+                                                    <property>
+                                                        <name>text</name>
+                                                        <string>224 kbs</string>
+                                                    </property>
+                                                </item>
+                                                <item>
+                                                    <property>
+                                                        <name>text</name>
+                                                        <string>256 kbs</string>
+                                                    </property>
+                                                </item>
+                                                <item>
+                                                    <property>
+                                                        <name>text</name>
+                                                        <string>350 kbs</string>
+                                                    </property>
+                                                </item>
+                                                <property stdset="1">
+                                                    <name>name</name>
+                                                    <cstring>vorbis_min_br</cstring>
+                                                </property>
+                                                <property stdset="1">
+                                                    <name>enabled</name>
+                                                    <bool>false</bool>
+                                                </property>
+                                                <property stdset="1">
+                                                    <name>currentItem</name>
+                                                    <number>1</number>
+                                                </property>
+                                            </widget>
+                                            <widget row="1"  column="1" >
+                                                <class>QComboBox</class>
+                                                <item>
+                                                    <property>
+                                                        <name>text</name>
+                                                        <string>32 kbs</string>
+                                                    </property>
+                                                </item>
+                                                <item>
+                                                    <property>
+                                                        <name>text</name>
+                                                        <string>40 kbs</string>
+                                                    </property>
+                                                </item>
+                                                <item>
+                                                    <property>
+                                                        <name>text</name>
+                                                        <string>48 kbs</string>
+                                                    </property>
+                                                </item>
+                                                <item>
+                                                    <property>
+                                                        <name>text</name>
+                                                        <string>56 kbs</string>
+                                                    </property>
+                                                </item>
+                                                <item>
+                                                    <property>
+                                                        <name>text</name>
+                                                        <string>64 kbs</string>
+                                                    </property>
+                                                </item>
+                                                <item>
+                                                    <property>
+                                                        <name>text</name>
+                                                        <string>80 kbs</string>
+                                                    </property>
+                                                </item>
+                                                <item>
+                                                    <property>
+                                                        <name>text</name>
+                                                        <string>96 kbs</string>
+                                                    </property>
+                                                </item>
+                                                <item>
+                                                    <property>
+                                                        <name>text</name>
+                                                        <string>112 kbs</string>
+                                                    </property>
+                                                </item>
+                                                <item>
+                                                    <property>
+                                                        <name>text</name>
+                                                        <string>128 kbs</string>
+                                                    </property>
+                                                </item>
+                                                <item>
+                                                    <property>
+                                                        <name>text</name>
+                                                        <string>160 kbs</string>
+                                                    </property>
+                                                </item>
+                                                <item>
+                                                    <property>
+                                                        <name>text</name>
+                                                        <string>192 kbs</string>
+                                                    </property>
+                                                </item>
+                                                <item>
+                                                    <property>
+                                                        <name>text</name>
+                                                        <string>224 kbs</string>
+                                                    </property>
+                                                </item>
+                                                <item>
+                                                    <property>
+                                                        <name>text</name>
+                                                        <string>256 kbs</string>
+                                                    </property>
+                                                </item>
+                                                <item>
+                                                    <property>
+                                                        <name>text</name>
+                                                        <string>350 kbs</string>
+                                                    </property>
+                                                </item>
+                                                <property stdset="1">
+                                                    <name>name</name>
+                                                    <cstring>vorbis_max_br</cstring>
+                                                </property>
+                                                <property stdset="1">
+                                                    <name>enabled</name>
+                                                    <bool>false</bool>
+                                                </property>
+                                                <property stdset="1">
+                                                    <name>currentItem</name>
+                                                    <number>13</number>
+                                                </property>
+                                            </widget>
+                                            <widget row="0"  column="0" >
+                                                <class>QCheckBox</class>
+                                                <property stdset="1">
+                                                    <name>name</name>
+                                                    <cstring>set_vorbis_min_br</cstring>
+                                                </property>
+                                                <property stdset="1">
+                                                    <name>enabled</name>
+                                                    <bool>true</bool>
+                                                </property>
+                                                <property stdset="1">
+                                                    <name>text</name>
+                                                    <string>minimal bitrate</string>
+                                                </property>
+                                            </widget>
+                                            <widget row="1"  column="0" >
+                                                <class>QCheckBox</class>
+                                                <property stdset="1">
+                                                    <name>name</name>
+                                                    <cstring>set_vorbis_max_br</cstring>
+                                                </property>
+                                                <property stdset="1">
+                                                    <name>enabled</name>
+                                                    <bool>true</bool>
+                                                </property>
+                                                <property stdset="1">
+                                                    <name>text</name>
+                                                    <string>maximal bitrate</string>
+                                                </property>
+                                            </widget>
+                                            <widget row="2"  column="1" >
+                                                <class>QComboBox</class>
+                                                <item>
+                                                    <property>
+                                                        <name>text</name>
+                                                        <string>128 kbs</string>
+                                                    </property>
+                                                </item>
+                                                <item>
+                                                    <property>
+                                                        <name>text</name>
+                                                        <string>160 kbs</string>
+                                                    </property>
+                                                </item>
+                                                <item>
+                                                    <property>
+                                                        <name>text</name>
+                                                        <string>192 kbs</string>
+                                                    </property>
+                                                </item>
+                                                <item>
+                                                    <property>
+                                                        <name>text</name>
+                                                        <string>256 kbs</string>
+                                                    </property>
+                                                </item>
+                                                <item>
+                                                    <property>
+                                                        <name>text</name>
+                                                        <string>350 kbs</string>
+                                                    </property>
+                                                </item>
+                                                <property stdset="1">
+                                                    <name>name</name>
+                                                    <cstring>vorbis_nominal_br</cstring>
+                                                </property>
+                                                <property stdset="1">
+                                                    <name>currentItem</name>
+                                                    <number>1</number>
+                                                </property>
+                                            </widget>
+                                            <widget row="2"  column="0" >
+                                                <class>QCheckBox</class>
+                                                <property stdset="1">
+                                                    <name>name</name>
+                                                    <cstring>set_vorbis_nominal_br</cstring>
+                                                </property>
+                                                <property stdset="1">
+                                                    <name>text</name>
+                                                    <string>average bitrate</string>
+                                                </property>
+                                                <property stdset="1">
+                                                    <name>checked</name>
+                                                    <bool>true</bool>
+                                                </property>
+                                            </widget>
+                                        </grid>
                                     </widget>
                                 </grid>
                             </widget>
-                            <spacer row="1"  column="0" >
-                                <property>
+                            <widget row="1"  column="0" >
+                                <class>QGroupBox</class>
+                                <property stdset="1">
                                     <name>name</name>
-                                    <cstring>Spacer1</cstring>
+                                    <cstring>GroupBox193</cstring>
                                 </property>
                                 <property stdset="1">
-                                    <name>orientation</name>
-                                    <enum>Vertical</enum>
+                                    <name>title</name>
+                                    <string>Options</string>
                                 </property>
-                                <property stdset="1">
-                                    <name>sizeType</name>
-                                    <enum>Expanding</enum>
-                                </property>
-                                <property>
-                                    <name>sizeHint</name>
-                                    <size>
-                                        <width>20</width>
-                                        <height>20</height>
-                                    </size>
-                                </property>
-                            </spacer>
+                                <widget>
+                                    <class>QCheckBox</class>
+                                    <property stdset="1">
+                                        <name>name</name>
+                                        <cstring>vorbis_comments</cstring>
+                                    </property>
+                                    <property stdset="1">
+                                        <name>enabled</name>
+                                        <bool>true</bool>
+                                    </property>
+                                    <property stdset="1">
+                                        <name>geometry</name>
+                                        <rect>
+                                            <x>11</x>
+                                            <y>17</y>
+                                            <width>324</width>
+                                            <height>17</height>
+                                        </rect>
+                                    </property>
+                                    <property stdset="1">
+                                        <name>text</name>
+                                        <string>add track information</string>
+                                    </property>
+                                </widget>
+                            </widget>
                         </grid>
                     </widget>
-                </grid>
+                    <spacer>
+                        <property>
+                            <name>name</name>
+                            <cstring>Spacer1</cstring>
+                        </property>
+                        <property stdset="1">
+                            <name>orientation</name>
+                            <enum>Vertical</enum>
+                        </property>
+                        <property stdset="1">
+                            <name>sizeType</name>
+                            <enum>Expanding</enum>
+                        </property>
+                        <property>
+                            <name>sizeHint</name>
+                            <size>
+                                <width>20</width>
+                                <height>20</height>
+                            </size>
+                        </property>
+                    </spacer>
+                </vbox>
             </widget>
         </widget>
-    </grid>
+    </vbox>
 </widget>
 <connections>
     <connection>

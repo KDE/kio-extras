@@ -21,6 +21,7 @@
 #include <kglobal.h>
 
 #include <qlayout.h>
+#include <qpushbutton.h>
 #include <qcheckbox.h>
 #include <qcombobox.h>
 #include <qgroupbox.h>
@@ -28,6 +29,8 @@
 #include <qspinbox.h>
 
 #include "kcmaudiocd.h"
+
+#include "kcmaudiocd.moc"
 
 // MPEG Layer 3 Bitrates
 static int bitrates[] = { 32, 40, 48, 56, 64, 80, 96, 112, 128, 160, 192, 224, 256, 320 };
@@ -98,6 +101,9 @@ KAudiocdModule::KAudiocdModule(QWidget *parent, const char *name)
 
     load();
 
+    // "Advanced" Button
+    connect(audiocdConfig->advanced, SIGNAL(clicked()), SLOT(slotShowAdvanced()));
+
     //MP3 Encoding Method
     connect(enc_method,SIGNAL(activated(int)),SLOT(slotSelectMethod(int)));
     connect(stereo,SIGNAL(activated(int)),SLOT(slotConfigChanged()));
@@ -133,7 +139,7 @@ KAudiocdModule::KAudiocdModule(QWidget *parent, const char *name)
     connect(highfilterwidth,SIGNAL(valueChanged(int)),SLOT(slotConfigChanged()));
     connect(lowfilterfreq,SIGNAL(valueChanged(int)),SLOT(slotConfigChanged()));
     connect(highfilterfreq,SIGNAL(valueChanged(int)),SLOT(slotConfigChanged()));
-    
+
     // Vorbis
     connect(set_vorbis_min_br,SIGNAL(clicked()),this,SLOT(slotConfigChanged()));
     connect(set_vorbis_max_br,SIGNAL(clicked()),this,SLOT(slotConfigChanged()));
@@ -141,7 +147,14 @@ KAudiocdModule::KAudiocdModule(QWidget *parent, const char *name)
     connect(vorbis_min_br,SIGNAL(activated(int)),SLOT(slotConfigChanged()));
     connect(vorbis_max_br,SIGNAL(activated(int)),SLOT(slotConfigChanged()));
     connect(vorbis_nominal_br,SIGNAL(activated(int)),SLOT(slotConfigChanged()));
-    
+
+    //init layout
+   audiocdConfig->cbr_settings->hide();
+   audiocdConfig->vbr_settings->hide();
+   audiocdConfig->filter_settings->hide();
+   audiocdConfig->advanced->setText(i18n("Advanced >>"));
+
+
 };
 
 void KAudiocdModule::defaults() {
@@ -233,7 +246,7 @@ void KAudiocdModule::save() {
   
 
   config->setGroup("MP3");
- 
+
   config->writeEntry("mode",mode);
   config->writeEntry("quality",encquality);
   config->writeEntry("encmethod",encmethod);
@@ -362,7 +375,7 @@ int KAudiocdModule::getVorbisBitrateIndex(int value) {
   
   int i;
   for (i=0;i < sizeof(vorbis_bitrates);i++) 
-    if (value == vorbis_bitrates[i]) 
+    if (value == vorbis_bitrates[i])
       return i;
   return -1;
 }
@@ -453,7 +466,7 @@ void KAudiocdModule::slotSelectMethod(int index) {
 void KAudiocdModule::slotUpdateVBRWidgets() {
 
   if (vbr_average_br->isEnabled()) {
-    
+
     if(vbr_average_br->isChecked()) {
 
       vbr_min_br->setChecked(false);
@@ -462,7 +475,7 @@ void KAudiocdModule::slotUpdateVBRWidgets() {
       vbr_max_br->setChecked(false);
       vbr_max_br->setDisabled(true);
       vbr_mean_brate->setEnabled(true);
-     
+
     } else {
 
        vbr_min_br->setEnabled(true);
@@ -474,6 +487,25 @@ void KAudiocdModule::slotUpdateVBRWidgets() {
   slotConfigChanged();
 
   return;
+}
+
+void KAudiocdModule::slotShowAdvanced() {
+
+ if (audiocdConfig->filter_settings->isHidden())
+ {
+   audiocdConfig->cbr_settings->show();
+   audiocdConfig->vbr_settings->show();
+   audiocdConfig->filter_settings->show();
+   audiocdConfig->advanced->setText(i18n("<< Basic"));
+ }
+ else
+ {
+   audiocdConfig->cbr_settings->hide();
+   audiocdConfig->vbr_settings->hide();
+   audiocdConfig->filter_settings->hide();
+   audiocdConfig->advanced->setText(i18n("Advanced >>"));
+ }
+
 }
 
 extern "C"

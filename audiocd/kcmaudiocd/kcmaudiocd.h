@@ -50,7 +50,8 @@ private slots:
  void slotUpdateVBRWidgets();
  void slotConfigChanged();
  void slotChangeFilter();
- 
+ void slotShowAdvanced();
+
 private:
 
   AudiocdConfig *audiocdConfig;
