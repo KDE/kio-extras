@@ -144,6 +144,7 @@ private:
   char readBuffer[IMAP_BUFFER];
   ssize_t readBufferLen;
   int readSize;
+  QDateTime mTimeOfLastNoop;
 };
 
 #endif

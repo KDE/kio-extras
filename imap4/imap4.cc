@@ -63,6 +63,7 @@
 #include <sys/wait.h>
 
 #include <qbuffer.h>
+#include <qdatetime.h>
 #include <kprotocolmanager.h>
 #include <kmessagebox.h>
 #include <kdebug.h>
@@ -140,6 +141,7 @@ mimeIO ()
   relayEnabled = false;
   readBufferLen = 0;
   cacheOutput = false;
+  mTimeOfLastNoop = QDateTime();
 }
 
 IMAP4Protocol::~IMAP4Protocol ()
@@ -200,9 +202,12 @@ IMAP4Protocol::get (const KURL & _url)
     }
 	else
     {
-      if (aSection.isEmpty()) aSection = "UID RFC822";
-      else if (aSection == "FLAGS" ) ; /*aSection = "UID FLAGS";*/
-      else aSection = "UID BODY[" + aSection + "]";
+      if (aSection.isEmpty()) 
+         aSection = "UID RFC822";
+      else if (aSection == "FLAGS" ) 
+         ; /*aSection = "UID FLAGS";*/
+      else
+         aSection = "UID BODY[" + aSection + "]";
     }
     if (aEnum == ITYPE_BOX || aEnum == ITYPE_DIR_AND_BOX)
     {
@@ -1869,7 +1874,7 @@ bool
 IMAP4Protocol::assureBox (const QString & aBox, bool readonly)
 {
   if (aBox.isEmpty()) return false;
-
+  
   imapCommand *cmd = NULL;
 
   if (aBox != getCurrentBox () || (!getSelected().readWrite() && !readonly))
@@ -1904,10 +1909,16 @@ IMAP4Protocol::assureBox (const QString & aBox, bool readonly)
   }
   else
   {
-    // give the server a chance to deliver updates
+    // Give the server a chance to deliver updates every ten seconds.
+    // Doing this means a server roundtrip and since assureBox is called
+    // after every mail, we do it with a timeout.
     kdDebug(7116) << "IMAP4Protocol::assureBox - reusing box" << endl;
-    cmd = doCommand (imapCommand::clientNoop ());
-    completeQueue.removeRef (cmd);
+    if ( mTimeOfLastNoop.secsTo( QDateTime::currentDateTime() ) > 10 ) {
+      cmd = doCommand (imapCommand::clientNoop ());
+      completeQueue.removeRef (cmd);
+      mTimeOfLastNoop = QDateTime::currentDateTime();
+      kdDebug(7116) << "IMAP4Protocol::assureBox - noop timer fired" << endl;
+    }
   }
 
   // if it is the mode we want
