@@ -1493,7 +1493,7 @@ bool sftpProtocol::getPacket(QByteArray& msg) {
         return false;
     }
 
-    unsigned int sizeof_buf = sizeof(buf);
+    size_t sizeof_buf = sizeof(buf);
     unsigned int offset = 0;
     while( msgLen ) {
         len = atomicio(ssh.stdioFd(), buf, kMin(msgLen, sizeof_buf), true /*read*/);
