@@ -43,6 +43,17 @@ extern "C"
 /* This is in support for the Mega Hack, if cdparanoia ever is fixed, or we
    use another ripping library we can remove this.  */
 #ifdef __linux__
+#ifdef __KCC
+/* KAI C++'s sys/types.h defines _I386_TYPES_H to get rid of non-ANSI things
+   from asm/types.h, which also removes __u8,__u16, which are required
+   by linux/cdrom.h.  The only chance is to undef it again, so it gets
+   included.  (matz) */
+#undef _I386_TYPES_H
+/* And <linux/byteorder/swab.h> uses GNU C extensions without providing
+   fallbacks for non-GNUisms.  Fortunately we (and no other header) needs
+   the swab routines.  */
+#define _LINUX_BYTEORDER_SWAB_H
+#endif
 #include <linux/cdrom.h>
 #endif
 #include <sys/ioctl.h>
@@ -143,7 +154,7 @@ int hack_track;
    it.  We need to override it, so we implement it ourself in the hope, that
    shared lib semantics make the calls in libcdda_interface to FixupTOC end
    up here, instead of it's own copy.  This usually works.
-   You don't want to know the reason for this.  */
+   You don't want to know the reason for this.  (matz) */
 int FixupTOC(cdrom_drive *d, int tracks)
 {
   int j;
