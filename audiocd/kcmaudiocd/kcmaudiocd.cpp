@@ -29,6 +29,7 @@
 #include <qlineedit.h>
 #include <qlistbox.h>
 #include <qpushbutton.h>
+#include <kaboutdata.h>
 
 #include "kcmaudiocd.moc"
 
