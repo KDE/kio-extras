@@ -389,7 +389,7 @@ sftpProtocol::Status sftpProtocol::sftpGet( const KURL& src, KIO::filesize_t off
                 if( mimeBuffer.size() > 1024 ||  offset == fileSize ) {
                     // determine mimetype
                     KMimeMagicResult* result =
-                        KMimeMagic::self()->findBufferFileType(mimeBuffer, src.filename());
+                        KMimeMagic::self()->findBufferFileType(mimeBuffer, src.fileName());
                     kdDebug(KIO_SFTP_DB) << "sftpGet(): mimetype is " <<
                                       result->mimeType() << endl;
                     mimeType(result->mimeType());
@@ -925,7 +925,7 @@ void sftpProtocol::sftpPut( const KURL& dest, int permissions, bool resume, bool
     
     // Stat file with part ext to see if it already exists...
     KURL partUrl( origUrl );
-    partUrl.setFileName( partUrl.filename() + ".part" );
+    partUrl.setFileName( partUrl.fileName() + ".part" );
     
     Q_UINT64 offset = 0;    
     bool partExists = false;
@@ -1155,7 +1155,7 @@ void sftpProtocol::stat ( const KURL& url ){
     }
     else {
         //kdDebug() << "We sent and received stat packet ok" << endl;
-        attr.setFilename(url.filename());
+        attr.setFilename(url.fileName());
         statEntry(attr.entry());
     }
     
@@ -2071,7 +2071,7 @@ int sftpProtocol::sftpStat(const KURL& url, sftpFileAttr& attr) {
     }
 
     r >> attr;
-    attr.setFilename(url.filename());
+    attr.setFilename(url.fileName());
     kdDebug(KIO_SFTP_DB) << "sftpStat(): " << attr << endl;    
     
     // If the stat'ed resource is a symlink, perform a recursive stat
