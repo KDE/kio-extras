@@ -243,10 +243,12 @@ void SMBSlave::reportError(const SMBUrl &url)
         else
             error( ERR_DOES_NOT_EXIST, url.prettyURL());
         break;
+#ifdef ENOMEDIUM
     case ENOMEDIUM:
         error( ERR_SLAVE_DEFINED,
                i18n( "No media in device for %1" ).arg( url.prettyURL() ) );
         break;
+#endif
 #ifdef EHOSTDOWN
     case EHOSTDOWN:
 #endif
