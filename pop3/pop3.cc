@@ -92,7 +92,7 @@ bool POP3Protocol::getResponse (char *r_buf, unsigned int r_len)
   if (fgets(buf, sizeof(buf)-1, fp) == 0)
     return false;
   recv_len=strlen(buf);
-  debug("I got:%s:", buf);
+  debug("Response was:%s:", buf);
   if (strncmp(buf, "+OK ", 4)==0) {
     if (r_buf && r_len) {
       memcpy(r_buf, buf+4, MIN(r_len,recv_len-4));
@@ -190,6 +190,7 @@ void POP3Protocol::slotGet(const char *_url)
 {
   fprintf(stderr,"slotGet\n"); fflush(stderr);
   bool ok;
+  char buf[512];
   QString path, cmd;
   KURL usrc(_url);
   if ( usrc.isMalformed() ) {
@@ -225,6 +226,36 @@ void POP3Protocol::slotGet(const char *_url)
   if (cmd == "index") {
   }
 
+  else if (cmd == "headers") {
+    int msg_num = path.toInt(&ok);
+    if (!ok) return; //  We fscking need a number!
+    path.prepend("TOP ");
+    path.append(" 0");
+    if (command(path)) { // This should be checked, and a more hackish way of
+                         // getting at the headers by d/l the whole message
+                         // and stopping at the first blank line used if the
+                         // TOP cmd isn't supported
+      ready();
+      gettingFile(_url);
+      time_t t_start = time( 0L );
+      time_t t_last = t_start;
+      bzero(buf, sizeof(buf));
+      while (!feof(fp)) {
+	bzero(buf, sizeof(buf));
+	if (!fgets(buf, sizeof(buf)-1, fp))
+	  break;  // Error??
+	// HACK: This assumes fread stops at the first \n and not \r
+	buf[strlen(buf)-2]='\0';
+	if (strcmp(buf, ".")==0)  break; // End of data.
+	data(buf, strlen(buf));
+      }
+      fprintf(stderr,"Finishing up\n");fflush(stderr);
+      pop3_close();
+      dataEnd();
+      speed(0); finished();
+    }
+  }
+
   else if (cmd == "remove") {
     int msg_num = path.toInt(&ok);
     if (!ok) return; //  We fscking need a number!
@@ -233,29 +264,49 @@ void POP3Protocol::slotGet(const char *_url)
   }
   
   else if (cmd == "download") {
-    int msg_num = path.toInt(&ok);
-    if (!ok) return; //  We fscking need a number!
+    int p_size=0, msg_num = path.toInt(&ok);
+    unsigned int msg_len=0;
+    char buf[512];
+    QString list_cmd("LIST ");
+    if (!ok)
+      return; //  We fscking need a number!
+    list_cmd+= path;
     path.prepend("RETR ");
-    char buf[1024];
+    bzero(buf, sizeof(buf));
+    if (command(list_cmd, buf, sizeof(buf))) {
+      list_cmd=buf;
+      // We need a space, otherwise we got an invalid reply
+      if (!list_cmd.find(" ")) {
+	debug("List command needs a space? %s", list_cmd.data());
+        pop3_close();
+        return;
+      }
+      list_cmd.remove(0,list_cmd.find(" ")+1);
+      msg_len = list_cmd.toUInt(&ok);
+      if (!ok) {
+	debug("List command needs a number? %s", list_cmd.data());
+	pop3_close();return;
+      }
+    } else {
+      pop3_close(); return;
+    }
     if (command(path)) {
       ready();
       gettingFile(_url);
+      totalSize(msg_len);
       time_t t_start = time( 0L );
       time_t t_last = t_start;
-      bzero(&buf, 1024);
+      bzero(buf, sizeof(buf));
       while (!feof(fp)) {
-	bzero(&buf, 1024);
-	if (!fgets(buf, 1023, fp))
+	bzero(buf, sizeof(buf));
+	if (!fgets(buf, sizeof(buf)-1, fp))
 	  break;  // Error??
-	int b_len=strlen(buf)-1;
-	while (buf[b_len]=='\r' || buf[b_len]=='\n') {
-	  if (buf[b_len] == '\r') buf[b_len]='\0';
-	  if (buf[b_len] == '\n') buf[b_len]='\0';
-	  b_len=strlen(buf)-1;
-	}
-
+	// HACK: This assumes fread stops at the first \n and not \r
+	buf[strlen(buf)-2]='\0';
 	if (strcmp(buf, ".")==0)  break; // End of data.
 	data(buf, strlen(buf));
+	p_size+=strlen(buf);
+	processedSize(p_size);
       }
       fprintf(stderr,"Finishing up\n");fflush(stderr);
       pop3_close();
