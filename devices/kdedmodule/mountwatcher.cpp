@@ -90,9 +90,15 @@ QString  MountWatcherModule::mountpoint(int id)
 	return mDiskList.at(id)->mountPoint();
 }
 
-QString MountWatcherModule::mountpoint(QString name)
+QString MountWatcherModule::mountpoint(QString devicename)
 {
-	return (name=="//ide1/MP3")?"/mnt2":"/mnt";
+	DiskEntry *ent;
+	for (ent=mDiskList.first(); ent; ent=mDiskList.next()) {
+		if (ent->deviceName() == devicename)
+			return ent->mountPoint();
+	}
+
+	return QString::null;
 }
 
 QString  MountWatcherModule::devicenode(int id)
@@ -114,7 +120,13 @@ bool   MountWatcherModule::mounted(int id)
 
 bool   MountWatcherModule::mounted(QString name)
 {
-	return (name=="//ide1/MP3")?true:false;
+	DiskEntry *ent;
+	for (ent=mDiskList.first(); ent; ent=mDiskList.next()) {
+		if ( (ent->deviceName() == name) || (ent->realDeviceName() == name) || (ent->mountPoint() == name) )
+			return true;
+	}
+
+	return false;
 }
 
 void MountWatcherModule::reloadExclusionLists()
