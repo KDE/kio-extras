@@ -506,12 +506,6 @@ KTarGz::KTarGz( const QString& filename )
   d->fileDev = new QFile( m_filename );
   d->filter = KComprManager::self()->findFilterByFileName( m_filename );
   d->filter->setDevice( d->fileDev );
-  /*
-  if ( m_filename.right(4) == ".bz2" )
-      d->filter = new KBzip2Filter( d->fileDev );
-  else
-      d->filter = new KGzipFilter( d->fileDev );
-  */
   setDevice( new KFilterDev( d->filter ) );
 }
 
