@@ -40,6 +40,7 @@ public:
   virtual void get(const KURL& url);
   virtual void mimetype(const KURL &url);
   virtual void listDir(const KURL &url);
+  virtual void redirection(const KURL &url);
 
 private slots:
   void       slotGetStdOutput(KProcess*, char*, int);

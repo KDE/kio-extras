@@ -118,12 +118,22 @@ void FingerProtocol::get(const KURL& url )
   finished();  
 
   //clean up
+  /*
   delete myPerlPath;
   delete myFingerPath;
   delete myHTMLHeader;
   delete myHTMLTail;
   delete myKProcess;
   delete myURL;
+  */
+}
+
+
+/* ---------------------------------------------------------------------------------- */
+
+
+void FingerProtocol::redirection(const KURL& url){
+  kdDebug() << "Redirection to: "  << url.url() << endl;
 }
 
 
