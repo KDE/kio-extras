@@ -1,4 +1,4 @@
-INCLUDES= -I$(srcdir)/../.. -I$(srcdir)/.. $(all_includes)
+INCLUDES= -I$(srcdir)/../.. -I$(srcdir)/.. $(SSL_INCLUDES) $(all_includes)
 
 ####### Files
 
