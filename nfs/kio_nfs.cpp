@@ -46,7 +46,7 @@
 #include <netdb.h>
 #include <arpa/inet.h>
 #include <errno.h>
-#include "getopt.h"
+//#include "getopt.h"
 
 #include "nfs_prot.h"
 #include "mount.h"
