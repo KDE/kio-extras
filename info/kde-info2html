@@ -86,6 +86,21 @@ EOF
 }
 
 #---------------------------------------------------------
+#                     FileNotFound
+#---------------------------------------------------------
+# If the file is not found and the node is '', try to go through
+# dir entries.
+# This deals with cases like info:ls should open "coreutils/ls invocation"
+#
+# Since we can't do a kioslave redirection from here, we resort to an HTML
+# redirection.
+#---------------------------------------------------------
+sub FileNotFound {
+	my ($FileName,$NodeName) = @_;
+	&DieFileNotFound($FileName);
+}
+
+#---------------------------------------------------------
 #                      Escape
 #---------------------------------------------------------
 #  This procedures escapes some special characeters. The
@@ -963,7 +978,7 @@ if ($BaseInfoFile eq '#special#' and $NodeName eq 'browse_by_file') {
 }
 
 $BaseInfoFile = "dir" if $BaseInfoFile =~ /^dir$/i;
-my $FileNameFull = &FindFile($BaseInfoFile) || &DieFileNotFound($BaseInfoFile);
+my $FileNameFull = &FindFile($BaseInfoFile) || &FileNotFound($BaseInfoFile,$NodeName);
 my ($File, $Offset) = &GetFileAndOffset($FileNameFull, $NodeName);
 $File ||= $BaseInfoFile;
 $FileNameFull = &FindFile($File);
