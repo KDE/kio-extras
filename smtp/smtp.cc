@@ -159,9 +159,9 @@ void SMTPProtocol::put( const KURL& url, int /*permissions*/, bool /*overwrite*/
 	if (mset->getSetting(KEMailSettings::EmailAddress) != QString::null) {
 		from+=mset->getSetting(KEMailSettings::EmailAddress);
 		if (mset->getSetting(KEMailSettings::RealName) != QString::null) {
-			from.prepend(QString::fromLatin1(" <");
+			from.prepend(QString::fromLatin1(" <"));
 			from.prepend(mset->getSetting(KEMailSettings::RealName));
-			from.append(QString::fromLatin1(">");
+			from.append(QString::fromLatin1(">"));
 		}
 	} else
 		from+="someuser@is.using.a.pre.release.kde.ioslave.compliments.of.kde.org";
