@@ -177,10 +177,13 @@ void MountWatcherModule::readDFDone()
 		QString entryName="entries_";
 		entryName+=ent->deviceName().replace( QRegExp("/"), "" );
 		entryName+=ent->mountPoint().replace(QRegExp("/"),"");
+                QString filename = KURL(ent->deviceName()).fileName();
+                if(!filename.isEmpty())
+                        filename = QString::fromLatin1(" (") + filename + ")";
        	        if (ent->mounted())
 		{
 			mountList<<(entryName);
-                 	mountList<<i18n("%1 (%2) mounted at %3").arg(ent->niceDescription()).arg(KURL(ent->deviceName()).fileName()).arg(ent->mountPoint());
+                 	mountList<<i18n("%1%2 mounted at %3").arg(ent->niceDescription()).arg(filename).arg(ent->mountPoint());
 			mountList<<ent->deviceName();
 //			mountList<<ent->mountPoint();
 			mountList<<"file:/"+(ent->mountPoint().startsWith("/")?ent->mountPoint().right(ent->mountPoint().length()-1):ent->mountPoint());
@@ -192,7 +195,7 @@ void MountWatcherModule::readDFDone()
                	else
 		{
 			mountList<<entryName;
-                 	mountList<<i18n("%1 (%2) (not mounted)").arg(ent->niceDescription()).arg(KURL(ent->deviceName()).fileName());
+                 	mountList<<i18n("%1%2 (not mounted)").arg(ent->niceDescription()).arg(filename);
 			mountList<<ent->deviceName();
 			mountList<<"file:/"+(ent->mountPoint().startsWith("/")?ent->mountPoint().right(ent->mountPoint().length()-1):ent->mountPoint());
 			mountList<< ent->discType()+"_unmounted";
