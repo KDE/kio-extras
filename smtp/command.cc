@@ -48,8 +48,8 @@ namespace KioSMTP {
   // Command (base class)
   //
 
-  Command::Command( SMTPProtocol * smtp, bool fatalErrors )
-    : mSMTP( smtp ), mComplete( false ), mFatalErrors( fatalErrors )
+  Command::Command( SMTPProtocol * smtp, int flags )
+    : mSMTP( smtp ), mComplete( false ), mFlags( flags )
   {
     assert( smtp );
   }
@@ -86,6 +86,10 @@ namespace KioSMTP {
 
   bool Command::usingSSL() const {
     return mSMTP->usingSSL();
+  }
+
+  bool Command::haveCapability( const char * cap ) const {
+    return mSMTP->haveCapability( cap );
   }
 
   //
@@ -161,7 +165,7 @@ namespace KioSMTP {
 			    const QStrIList & mechanisms,
 			    const QString & user,
 			    const QString & pass )
-    : Command( smtp, true ),
+    : Command( smtp, CloseConnectionOnError|OnlyLastInPipeline ),
       mSASL( user, pass, usingSSL() ? "smtps" : "smtp" ),
       mNumResponses( 0 ),
       mFirstTime( true )
@@ -227,14 +231,19 @@ namespace KioSMTP {
   //
 
   QCString MailFromCommand::nextCommandLine() {
-    return "MAIL FROM:<" + mAddr + ">\r\n";
+    QCString cmdLine = "MAIL FROM:<" + mAddr + '>';
+    if ( m8Bit )
+      cmdLine += " BODY=8BITMIME";
+    if ( mSize && haveCapability("SIZE") )
+      cmdLine += " SIZE=" + QCString().setNum( mSize );
+    return cmdLine + "\r\n";
   }
 
   bool MailFromCommand::processResponse( const Response & r ) {
     mComplete = true;
     if ( r.code() == 250 )
       return true;
-
+    // ### better error messages...
     if ( mAddr.isEmpty() )
       mSMTP->error( KIO::ERR_NO_CONTENT,
 		    i18n("The server did not accept the blank sender address.\n"

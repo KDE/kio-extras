@@ -90,12 +90,17 @@ namespace KioSMTP {
   }
 
   QString Response::errorMessage() const {
+    QString msg;
     if ( lines().count() > 1 )
-      return i18n("The server responded:\n%1")
+      msg = i18n("The server responded:\n%1")
 	.arg( join( '\n', lines() ) );
     else
-      return i18n("The server responded: \"%1\"")
+      msg = i18n("The server responded: \"%1\"")
 	.arg( lines().front() );
+    if ( first() == 4 )
+      msg += '\n' + i18n("This is a temporary failure. "
+			 "You may try again later.");
+    return msg;
   }
 
 

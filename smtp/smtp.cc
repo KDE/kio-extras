@@ -65,6 +65,12 @@ using std::auto_ptr;
 #include <string.h>
 #include <stdio.h>
 
+#ifdef HAVE_SYSY_TYPES_H
+# include <sys/types.h>
+#endif
+#ifdef HAVE_SYS_SOCKET_H
+# include <sys/socket.h>
+#endif
 
 extern "C" {
   int kdemain(int argc, char **argv);
@@ -98,6 +104,15 @@ SMTPProtocol::SMTPProtocol(const QCString & pool, const QCString & app,
   mSentCommandQueue.setAutoDelete( true );
 }
 
+int SMTPProtocol::sendBufferSize() const {
+  const int fd = ::fileno( fp );
+  int value = -1;
+  ksize_t len = sizeof(value);
+  if ( fd < 0 || ::getsockopt( fd, SOL_SOCKET, SO_SNDBUF, (char*)&value, &len ) )
+    value = 1024; // let's be conservative
+  kdDebug(7112) << "send buffer size seems to be " << value << " octets." << endl;
+  return value;
+}
 
 SMTPProtocol::~SMTPProtocol()
 {
@@ -153,6 +168,7 @@ void SMTPProtocol::special( const QByteArray & aData ) {
 // subject=text
 // profile=text (this will override the "host" setting)
 // hostname=text (used in the HELO)
+// body={7bit,8bit} (default: 7bit; 8bit activates the use of the 8BITMIME SMTP extension)
 void SMTPProtocol::put(const KURL & url, int /*permissions */ ,
                        bool /*overwrite */ , bool /*resume */ )
 {
@@ -209,7 +225,16 @@ void SMTPProtocol::put(const KURL & url, int /*permissions */ ,
     return;
   }
 
-  queueCommand( new MailFromCommand( this, request.fromAddress().latin1() ) );
+  if ( request.is8BitBody()
+       && !haveCapability("8BITMIME") && metaData("8bitmime") != "on" ) {
+    error( KIO::ERR_SERVICE_NOT_AVAILABLE,
+	   i18n("Your server does not support sending of 8bit messages.\n"
+		"Please use base64 or quoted-printable encoding.") );
+    return;
+  }
+
+  queueCommand( new MailFromCommand( this, request.fromAddress().latin1(),
+				     request.is8BitBody(), request.size() ) );
 
   // Loop through our To and CC recipients, and send the proper
   // SMTP commands, for the benefit of the server.
@@ -288,7 +313,7 @@ Response SMTPProtocol::getResponse( bool * ok ) {
       return response;
     }
 
-    //kdDebug(7112) << "S: " << QCString( buf, recv_len + 1 ).data() << endl;
+    //kdDebug(7112) << "S: " << QCString( buf, recv_len + 1 ).data();
     // ...and parse lines...
     response.parseLine( buf, recv_len );
 
@@ -311,27 +336,73 @@ bool SMTPProtocol::executeQueuedCommands() {
   if ( canPipelineCommands() )
     return executeQueuedCommandsPipelined();
 
-  for ( Command * cmd = mPendingCommandQueue.dequeue() ; cmd ; cmd = mPendingCommandQueue.dequeue() )
+  for ( Command * cmd = mPendingCommandQueue.dequeue() ; cmd ; cmd = mPendingCommandQueue.dequeue() ) {
     if ( !execute( cmd ) ) {
-      if ( cmd->isErrorFatal() || !execute( Command::RSET ) )
+      if ( cmd->closeConnectionOnError() || !execute( Command::RSET ) )
 	smtp_close();
+      delete cmd; cmd = 0;
       mPendingCommandQueue.clear();
       return false;
     }
+    delete cmd; cmd = 0;
+  }
 
   return true;
+}
+
+QCString SMTPProtocol::collectPipelineCommands() {
+  QCString cmdLine;
+  int cmdLine_len = 0;
+  while ( mPendingCommandQueue.head() ) {
+    Command * cmd = mPendingCommandQueue.head();
+    if ( cmd->isComplete() ) { // this command doesn't want to be executed
+      delete mPendingCommandQueue.dequeue();
+      break;
+    }
+    QCString currentCmdLine = cmd->nextCommandLine();
+    cmdLine_len += currentCmdLine.length();
+    if ( cmdLine_len && cmdLine_len > sendBufferSize() )
+      // must all fit into the send buffer, else connection deadlocks,
+      // but we need to have at least _one_ command to send
+      break;
+    mSentCommandQueue.enqueue( mPendingCommandQueue.dequeue() );
+    cmdLine += currentCmdLine;
+    if ( cmd->mustBeLastInPipeline() )
+      break;
+  }
+  return cmdLine;
+}
+
+bool SMTPProtocol::batchProcessResponses() {
+  bool success = true;
+  while ( !mSentCommandQueue.isEmpty() ) {
+    Command * cmd = mSentCommandQueue.dequeue();
+    bool ok = false;
+    Response r = getResponse( &ok );
+    if ( !ok || !cmd->processResponse( r ) )
+      // we must still process all commands to empty the incoming pipe!
+      // ### flush the recv buffer and return false on !ok instead?
+      success = false;
+    else
+      assert( cmd->isComplete() );
+    delete cmd; cmd = 0;
+  }
+  return success;
 }
 
 bool SMTPProtocol::executeQueuedCommandsPipelined() {
   kdDebug(7112) << "using pipelining" << endl;
 
-  for ( Command * cmd = mPendingCommandQueue.dequeue() ; cmd ; cmd = mPendingCommandQueue.dequeue() )
-    if ( !execute( cmd ) ) {
-      if ( cmd->isErrorFatal() || !execute( Command::RSET ) )
-	smtp_close();
-      mPendingCommandQueue.clear();
-      return false;
+  while( !mPendingCommandQueue.isEmpty() ) {
+    QCString cmdline = collectPipelineCommands();
+    if ( !cmdline.isEmpty() ) {
+      if ( !sendCommandLine( cmdline ) || !batchProcessResponses() ) {
+	mPendingCommandQueue.clear();
+	mSentCommandQueue.clear();
+	return false;
+      }
     }
+  }
 
   return true;
 }
@@ -342,17 +413,18 @@ bool SMTPProtocol::execute( Command::Type type ) {
   return execute( cmd.get() );
 }
 
-bool SMTPProtocol::execute( Command * cmd ) {
-  if ( !cmd ) {
-    kdWarning(7112) << "SMTPProtocol::execute() called with no command to run!" << endl;
+bool SMTPProtocol::sendCommandLine( const QCString & cmdline ) {
+  //kdDebug(7112) << "C: " << cmdline.data();
+  ssize_t cmdline_len = cmdline.length();
+  if ( write( cmdline.data(), cmdline_len ) != cmdline_len )
     return false;
-  }
+  return true;
+}
+
+bool SMTPProtocol::execute( Command * cmd ) {
+  kdFatal( !cmd, 7112 ) << "SMTPProtocol::execute() called with no command to run!" << endl;
   while ( !cmd->isComplete() ) {
-    // send command
-    QCString cmdline = cmd->nextCommandLine();
-    ssize_t cmdline_len = cmdline.length();
-    //kdDebug(7112) << "C: " << cmdline.data();
-    if ( write( cmdline.data(), cmdline_len ) != cmdline_len )
+    if ( !sendCommandLine( cmd->nextCommandLine() ) )
       return false;
     // process response
     bool ok = false;

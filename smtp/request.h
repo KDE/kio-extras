@@ -73,6 +73,12 @@ namespace KioSMTP {
     bool emitHeaders() const { return mEmitHeaders; }
     void setEmitHeaders( bool emitHeaders ) { mEmitHeaders = emitHeaders; }
 
+    bool is8BitBody() const { return m8Bit; }
+    void set8BitBody( bool a8Bit ) { m8Bit = a8Bit; }
+
+    unsigned int size() const { return mSize; }
+    void setSize( unsigned int size ) { mSize = size; }
+
     /** If @ref #emitHeaders() is true, returns the rfc2822
 	serialization of the header fields "To", "Cc", "Subject" and
 	"From", as determined by the respective settings. If @ref
@@ -83,6 +89,8 @@ namespace KioSMTP {
     QStringList mTo, mCc, mBcc;
     QString mProfileName, mSubject, mFromAddress, mHeloHostname;
     bool mEmitHeaders;
+    bool m8Bit;
+    unsigned int mSize;
   };
 
 }; // namespace KioSMTP

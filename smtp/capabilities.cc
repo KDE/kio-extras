@@ -100,6 +100,18 @@ namespace KioSMTP {
     result += saslMethodsQSL();
     if ( have( "PIPELINING" ) )
       result.push_back( "PIPELINING" );
+    if ( have( "8BITMIME" ) )
+      result.push_back( "8BITMIME" );
+    if ( have( "SIZE" ) ) {
+      bool ok = false;
+      unsigned int size = mCapabilities["SIZE"].front().toUInt( &ok );
+      if ( ok && !size )
+	result.push_back( "SIZE=*" ); // any size
+      else if ( ok )
+	result.push_back( "SIZE=" + QString::number( size ) ); // fixed max
+      else
+	result.push_back( "SIZE" ); // indetermined
+    }
     return result.join( " " );
   }
 

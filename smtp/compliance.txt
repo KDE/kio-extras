@@ -1,9 +1,11 @@
 The SMTP kioslave currently conforms to the following SMTP-related RFCs:
 
+Base Spec:
 2821 Simple Mail Transfer Protocol. J. Klensin, Ed.. April 2001.
      (Format: TXT=192504 bytes) (Obsoletes RFC0821, RFC0974, RFC1869)
      (Status: PROPOSED STANDARD)
 
+Encryption/Auth:
 3207 SMTP Service Extension for Secure SMTP over Transport Layer
      Security. P. Hoffman. February 2002. (Format: TXT=18679 bytes)
      (Obsoletes RFC2487) (Status: PROPOSED STANDARD)
@@ -12,6 +14,20 @@ The SMTP kioslave currently conforms to the following SMTP-related RFCs:
      (Format: TXT=20534 bytes) (Status: PROPOSED STANDARD)
 (with all SASL mechanisms supported by KDESasl)
 
+General:
+1652 SMTP Service Extension for 8bit-MIMEtransport. J. Klensin, N.
+     Freed, M. Rose, E. Stefferud, D. Crocker. July 1994. (Format:
+     TXT=11842 bytes) (Obsoletes RFC1426) (Status: DRAFT STANDARD)
+
+1870 SMTP Service Extension for Message Size Declaration. J. Klensin,
+     N. Freed, K. Moore. November 1995. (Format: TXT=18226 bytes)
+     (Obsoletes RFC1653) (Also STD0010) (Status: STANDARD)
+
+2920 SMTP Service Extension for Command Pipelining. N. Freed.
+     September 2000. (Format: TXT=17065 bytes) (Obsoletes RFC2197) (Also
+     STD0060) (Status: STANDARD)
+
 Known shortcomings:
-- Uses just-send-8bit instead of checking (and using) 8BITMIME.
 - Doesn't enforce the CRLF lineending convention on user-supplied data.
+- Due to the lack of a Mulit_Put_ in the KIO infrastructure, pipelining
+  across messages isn't supported.

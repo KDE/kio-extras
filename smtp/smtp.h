@@ -91,6 +91,10 @@ protected:
   bool authenticate();
   void parseFeatures( const KioSMTP::Response & ehloResponse );
 
+  bool sendCommandLine( const QCString & cmd );
+  QCString collectPipelineCommands();
+  bool batchProcessResponses();
+
   /** This is a pure convenience wrapper around
       @ref KioSMTP::Capabilities::have() */
   bool haveCapability( const char * cap ) const {
@@ -101,6 +105,9 @@ protected:
   bool canPipelineCommands() const {
     return haveCapability("PIPELINING") && metaData("pipelining") != "off" ;
   }
+
+  /** Wrapper around getsockopt(..., SO_SNDBUF,...) */
+  int sendBufferSize() const;
 
   /** This is a pure convenience wrapper around
       @ref KioSMTP::Capabilities::createSpecialResponse */

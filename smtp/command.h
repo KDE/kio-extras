@@ -46,7 +46,12 @@ namespace KioSMTP {
 
   class Command {
   public:
-    Command( SMTPProtocol * smtp, bool fatalErrors=false );
+    enum Flags {
+      OnlyLastInPipeline = 1,
+      CloseConnectionOnError = 2
+    };
+
+    Command( SMTPProtocol * smtp, int flags=0 );
     virtual ~Command();
 
     enum Type {
@@ -61,12 +66,17 @@ namespace KioSMTP {
     bool isComplete() const { return mComplete; }
     /** @return whether an error in executing this command is so fatal
 	that closing the connection is the only option */
-    bool isErrorFatal() const { return mFatalErrors; }
+    bool closeConnectionOnError() const {
+      return mFlags & CloseConnectionOnError;
+    }
+    bool mustBeLastInPipeline() const {
+      return mFlags & OnlyLastInPipeline;
+    }
 
   protected:
     SMTPProtocol * mSMTP;
     bool mComplete;
-    bool mFatalErrors;
+    const int mFlags;
 
   protected:
     // only relay methods to enable access to slave-protected methods
@@ -74,12 +84,13 @@ namespace KioSMTP {
     void parseFeatures( const Response & r );
     int startTLS();
     bool usingSSL() const;
+    bool haveCapability( const char * cap ) const;
   };
 
   class EHLOCommand : public Command {
   public:
     EHLOCommand( SMTPProtocol * smtp, const QString & hostname )
-      : Command( smtp, true ),
+      : Command( smtp, CloseConnectionOnError|OnlyLastInPipeline ),
 	mEHLONotSupported( false ),
 	mHostname( hostname ) {}
 
@@ -93,7 +104,7 @@ namespace KioSMTP {
   class StartTLSCommand : public Command {
   public:
     StartTLSCommand( SMTPProtocol * smtp )
-      : Command( smtp, true ) {}
+      : Command( smtp, CloseConnectionOnError|OnlyLastInPipeline ) {}
 
     QCString nextCommandLine();
     bool processResponse( const Response & response );
@@ -115,13 +126,16 @@ namespace KioSMTP {
 
   class MailFromCommand : public Command {
   public:
-    MailFromCommand( SMTPProtocol * smtp, const QCString & addr )
-      : Command( smtp ), mAddr( addr ) {}
+    MailFromCommand( SMTPProtocol * smtp, const QCString & addr,
+		     bool eightBit=false, unsigned int size=0  )
+      : Command( smtp ), mAddr( addr ), m8Bit( eightBit ), mSize( size ) {}
 
     QCString nextCommandLine();
     bool processResponse( const Response & response );
   private:
     QCString mAddr;
+    bool m8Bit;
+    unsigned int mSize;
   };
 
   class RcptToCommand : public Command {
@@ -140,7 +154,7 @@ namespace KioSMTP {
   class DataCommand : public Command {
   public:
     DataCommand( SMTPProtocol * smtp )
-      : Command( smtp ) {}
+      : Command( smtp, OnlyLastInPipeline ) {}
 
     QCString nextCommandLine();
     bool processResponse( const Response & response );
@@ -149,7 +163,7 @@ namespace KioSMTP {
   class NoopCommand : public Command {
   public:
     NoopCommand( SMTPProtocol * smtp )
-      : Command( smtp ) {}
+      : Command( smtp, OnlyLastInPipeline ) {}
 
     QCString nextCommandLine();
     //bool processResponse( const Response & response );
@@ -158,7 +172,7 @@ namespace KioSMTP {
   class RsetCommand : public Command {
   public:
     RsetCommand( SMTPProtocol * smtp )
-      : Command( smtp, true ) {}
+      : Command( smtp, CloseConnectionOnError ) {}
 
     QCString nextCommandLine();
     //bool processResponse( const Response & response );
@@ -167,7 +181,7 @@ namespace KioSMTP {
   class QuitCommand : public Command {
   public:
     QuitCommand( SMTPProtocol * smtp )
-      : Command( smtp, true ) {}
+      : Command( smtp, CloseConnectionOnError|OnlyLastInPipeline ) {}
 
     QCString nextCommandLine();
     //bool processResponse( const Response & response );
