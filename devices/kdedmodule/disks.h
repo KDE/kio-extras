@@ -74,8 +74,6 @@ signals:
   void kBAvailChanged();
 
 public slots:
-  void setMountCommand(const QString & mnt);
-  void setUmountCommand(const QString & umnt);
   void setDeviceName(const QString & deviceName);
   void setMountPoint(const QString & mountPoint);
   void setMountOptions(const QString & mountOptions);
