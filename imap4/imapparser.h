@@ -1,5 +1,5 @@
 #ifndef _IMAPPARSER_H
-#define _IMAPPARSER_H "$Id: imapparser.h,v 1.0 2000/12/04"
+#define _IMAPPARSER_H
 /**********************************************************************
  *
  *   imapparser.h  - IMAP4rev1 Parser

@@ -19,7 +19,7 @@
 */
 
 #ifndef _DJVUCREATOR_H_
-#define _DJVUCREATOR_H_ "$Id$"
+#define _DJVUCREATOR_H_
 
 #include <kio/thumbcreator.h>
 

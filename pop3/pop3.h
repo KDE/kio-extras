@@ -23,11 +23,10 @@
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  *
- *	$Id$
  */
 
 #ifndef _POP3_H
-#define _POP3_H "$Id$"
+#define _POP3_H 
 
 #include <sys/types.h>
 #include <sys/time.h>

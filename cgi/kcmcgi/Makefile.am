@@ -1,4 +1,3 @@
-# $Id$
 
 kde_module_LTLIBRARIES = kcm_cgi.la
 

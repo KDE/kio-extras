@@ -1,5 +1,5 @@
 #ifndef __LDAP_H__
-#define __LDAP_H__ "$Id$"
+#define __LDAP_H__
 
 #include <qstring.h>
 #include <qvaluelist.h>

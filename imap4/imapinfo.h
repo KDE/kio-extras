@@ -1,5 +1,5 @@
 #ifndef _IMAPINFO_H
-#define _IMAPINFO_H "$Id$"
+#define _IMAPINFO_H
 /**********************************************************************
  *
  *   imapinfo.h  - IMAP4rev1 SELECT / EXAMINE handler

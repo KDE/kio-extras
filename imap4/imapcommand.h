@@ -1,5 +1,5 @@
 #ifndef _IMAPCOMMAND_H
-#define _IMAPCOMMAND_H "$Id$"
+#define _IMAPCOMMAND_H
 /**********************************************************************
  *
  *   imapcommand.h  - IMAP4rev1 command handler

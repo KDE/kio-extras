@@ -1,8 +1,6 @@
 /*
  * disklist.cpp
  *
- * $Id$
- *
  * Copyright (c) 1999 Michael Kropfberger <michael.kropfberger@gmx.net>
  *
  * Requires the Qt widget libraries, available at no cost at

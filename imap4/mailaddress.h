@@ -1,5 +1,5 @@
 #ifndef _MAILADDRESS_H
-#define _MAILADDRESS_H "$Id$"
+#define _MAILADDRESS_H
 /**********************************************************************
  *
  *   mailaddress.h - mail address handler

@@ -1,4 +1,3 @@
-## $Id$
 ## Makefile.am of kdebase/kioslave/thumbnail
 
 INCLUDES = $(all_includes)

@@ -18,7 +18,7 @@
 */
 
 #ifndef _TEXTCREATOR_H_
-#define _TEXTCREATOR_H_ "$Id$"
+#define _TEXTCREATOR_H_
 
 #include <qpixmap.h>
 #include <kio/thumbcreator.h>

@@ -1,5 +1,5 @@
 #ifndef _IMAPLIST_H
-#define _IMAPLIST_H "$Id$"
+#define _IMAPLIST_H
 /**********************************************************************
  *
  *   imaplist.h  - IMAP4rev1 list response handler

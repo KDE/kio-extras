@@ -18,7 +18,7 @@
 */
 
 #ifndef _GSCREATOR_H_
-#define _GSCREATOR_H_ "$Id$"
+#define _GSCREATOR_H_
 
 #include <kio/thumbcreator.h>
 

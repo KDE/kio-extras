@@ -1,7 +1,5 @@
 /*  This file is part of the KDE project
 
-    $Id$
-
     Copyright (C) 2000 Alexander Neundorf <neundorf@kde.org>
 
     This library is free software; you can redistribute it and/or

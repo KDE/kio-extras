@@ -1,4 +1,3 @@
-## $Id$
 ## Makefile.am of kdebase/kioslave/tar
 
 INCLUDES = $(all_includes)

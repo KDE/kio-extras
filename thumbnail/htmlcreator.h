@@ -18,7 +18,7 @@
 */
 
 #ifndef _HTMLCREATOR_H_
-#define _HTMLCREATOR_H_ "$Id$"
+#define _HTMLCREATOR_H_
 
 #include <kio/thumbcreator.h>
 

@@ -1,5 +1,3 @@
-## $Id$
-
 if include_kioslave_ldap
 LDAP_SUBDIR=ldap
 endif

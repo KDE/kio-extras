@@ -1,5 +1,5 @@
 #ifndef _IMAP4_H
-#define _IMAP4_H "$Id$"
+#define _IMAP4_H
 /**********************************************************************
  *
  *   imap4.h  - IMAP4rev1 KIOSlave

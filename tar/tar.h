@@ -18,7 +18,7 @@
 */
 
 #ifndef _TAR_H
-#define _TAR_H "$Id$"
+#define _TAR_H
 
 #include <kio/slavebase.h>
 #include <sys/types.h>

@@ -18,7 +18,7 @@
 */
 
 #ifndef _THUMBNAIL_H_
-#define _THUMBNAIL_H_ "$Id$"
+#define _THUMBNAIL_H_
 
 #include <qdict.h>
 

@@ -7,7 +7,7 @@
 */
 
 #ifndef _NNTP_H
-#define _NNTP_H "$Id$"
+#define _NNTP_H
 
 #include <qobject.h>
 #include <qstring.h>

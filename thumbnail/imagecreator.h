@@ -18,7 +18,7 @@
 */
 
 #ifndef _IMAGECREATOR_H_
-#define _IMAGECREATOR_H_ "$Id$"
+#define _IMAGECREATOR_H_
 
 #include <kio/thumbcreator.h>
 

@@ -17,9 +17,6 @@
     Boston, MA 02111-1307, USA.
 */
 
-// $Id$
-
-
 /*  This function gets a path of a DVI, EPS, PS or PDF file and
     produces a PNG-Thumbnail which is stored as a QImage
 
