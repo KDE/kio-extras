@@ -68,12 +68,8 @@ void SMBSlave::auth_smbc_get_data(const char *server,const char *share,
     QString  user_prompt;
     QString  passwd_prompt;
 
-    if(m_current_workgroup.length() == 0)
-    {
-        m_current_workgroup = workgroup;
-    }
 
-    auth.m_workgroup = m_current_workgroup.local8Bit();
+    auth.m_workgroup = workgroup;
     auth.m_server    = server;
     auth.m_share     = share;
 
@@ -95,26 +91,30 @@ void SMBSlave::auth_smbc_get_data(const char *server,const char *share,
       strncpy(username,auth.m_username,unmaxlen - 1);
     if (!auth.m_passwd.isEmpty())
       strncpy(password,auth.m_passwd,pwmaxlen - 1);
+    //kdDebug(KIO_SMB) << "auth_smbc_get_dat: set user="<<username<<", \nworkgroup="<<workgroup<<", \npassword="<<password<< endl;
+    
 }
 
 //--------------------------------------------------------------------------
 bool SMBSlave::setAuthInfo(SMBAuthInfo &auth) {
+
     // set defaults
     auth.m_workgroup = m_default_workgroup.local8Bit();
     auth.m_username = m_default_user.local8Bit();
     auth.m_passwd = m_default_password.local8Bit();
-    
+
     // look in cache
     bool infocached = cache_get_AuthInfo(auth);
 
     // local userinfo from KUrl ?
     if (!m_current_url.getUser().isEmpty()) {
+      kdDebug(KIO_SMB) << "setAuthInfo set userinfo from m_current_url"<< endl;
       
       auth.m_domain = m_current_url.getUserDomain().local8Bit();
       auth.m_username = m_current_url.getUser().local8Bit();
 
       if (!m_current_url.getPassword().isEmpty())
-	auth.m_passwd = m_current_url.getPassword().local8Bit();
+    	auth.m_passwd = m_current_url.getPassword().local8Bit();
 
       cache_set_AuthInfo(auth, true);
       if ( ((!m_current_url.getUser().isEmpty()) && (auth.m_passwd.isEmpty()))) {
@@ -122,20 +122,19 @@ bool SMBSlave::setAuthInfo(SMBAuthInfo &auth) {
       }
       infocached=true;
     } 
+
     // update userinfo in SMBUrl if cached found and no userinfo in SMBUrl
     else if (infocached) {
-      m_current_url.setPassword(auth.m_passwd);
       if (auth.m_domain.isEmpty())
-	m_current_url.setUser(auth.m_username);
+	m_current_url.setUserInfo(auth.m_username + ":" + auth.m_passwd);
       else
-	m_current_url.setUser(auth.m_domain + ";" + auth.m_username);
+	m_current_url.setUserInfo(auth.m_domain + ";" + auth.m_username + ":" + auth.m_passwd);
     }  
     
-
-
     return infocached;
 }
 
+// TODO: if username changed we have to change the kurl (redirect)
 bool SMBSlave::authDlg(SMBAuthInfo& auth) {
   if ( auth.m_username.isEmpty()) {
     auth.m_username = m_default_user.local8Bit();
@@ -151,14 +150,12 @@ bool SMBSlave::authDlg(SMBAuthInfo& auth) {
 
         if(openPassDlg(msg, user_prompt, passwd_prompt))
         {
-            m_current_url.setUser(user_prompt);
-	    m_current_url.setPassword(passwd_prompt);
-            auth.m_username = m_current_url.getUser().local8Bit();
+    	    m_current_url.setUserInfo(user_prompt + ":" + passwd_prompt);
+            auth.m_username = user_prompt.local8Bit();
             auth.m_passwd = passwd_prompt.local8Bit();
             cache_set_AuthInfo(auth, true);
             return true;
         }
-
         return false;
 }
 
@@ -236,5 +233,4 @@ The smb.conf file could look like: \
 
     return 0;
 }
-
 
