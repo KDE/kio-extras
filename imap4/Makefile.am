@@ -12,7 +12,7 @@ bin_PROGRAMS = kio_imap4
 kio_imap4_SOURCES = imap4.cc
 noinst_HEADERS = imap4.h
 
-kioconfig_DATA = imap4.kdelnk
+kioconfig_DATA = imap4.desktop
 kioconfigdir = $(kde_confdir)/protocols
 
 messages:

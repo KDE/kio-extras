@@ -12,7 +12,7 @@ bin_PROGRAMS = kio_pop3
 kio_pop3_SOURCES = pop3.cc
 noinst_HEADERS = pop3.h
 
-kioconfig_DATA = pop3.kdelnk
+kioconfig_DATA = pop3.desktop
 kioconfigdir = $(kde_confdir)/protocols
 
 messages:

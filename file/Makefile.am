@@ -11,7 +11,7 @@ bin_PROGRAMS = kio_file
 kio_file_SOURCES = file.cc
 noinst_HEADERS = file.h
 
-kioconfig_DATA = file.kdelnk
+kioconfig_DATA = file.desktop
 kioconfigdir = $(kde_confdir)/protocols
 
 messages:
