@@ -55,8 +55,8 @@ printf <<HTMLHeader;
     </TH>
   </TR>
   <TR>   
-    <TH class="couriertext">
-      <TABLE class="fingerTable" cellpadding="0" cellspacing="2">
+    <TH>
+      <TABLE class="courierText" cellpadding="0" cellspacing="2">
 HTMLHeader
 
 # Run finger command and save it into a buffer
@@ -100,7 +100,7 @@ if ($USER) { # is $USER nil ?
 print <<UserQuery; 
   </TR>
   <TR>
-    <TH class="couriertext" colspan="2">
+    <TH class="commandText" colspan="2">
       <A HREF='finger://$USER\@$HOST'>finger</A>
     </TH>
   </TR>
@@ -109,8 +109,8 @@ UserQuery
 } else {
 
 print <<HostQueryHead;
-    <TH class="couriertext">
-      <TABLE  class="fingerTable" cellpadding="0" cellspacing="2">
+    <TH>
+      <TABLE class="courierText" cellpadding="0" cellspacing="2">
 HostQueryHead
 
     @lines = split /^/m, $buffer;

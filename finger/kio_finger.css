@@ -1,7 +1,3 @@
-/*
-Please don't edit by hand, us kfinger instead - schlpbch
-*/
-
 BODY {
 	color: #FFFFCC;
 	background-color: #000000;
@@ -16,7 +12,7 @@ A:active {color: #999999}
 H1 {
 	color: #999999;
 	background-color: #000000;	
-	font: 20pt Helvetica; 
+	font: 200% Helvetica, sans-serif; 
 	font-variant: normal; 
 	padding: 1em;
 	margin: auto;
@@ -28,28 +24,31 @@ H1 {
 	margin: auto;
 }
 	
-.fingerTable {
-	background-color: #000000;
-	border: 0;
-	margin: auto;
+
+.courierText {
+	color: #FFFFCC;
+	background-color: #000000;	
+	font: 120% Courier, sans-serif;
+	font-variant: normal; 
+	text-align: left;
+	padding: 0em;
 }
 
-.niceText {
-	color: #009999;
+.commandText {
+	color: #FFFFCC;
 	background-color: #000000;	
-	font: 12pt Arial; 
+	font: 120% Courier, sans-serif;
 	font-variant: normal; 
 	text-align: center;
 	padding: 0.5em;
 }
 
-.courierText {
-	color: #FFFFCC;
+.niceText {
+	color: #009999;
 	background-color: #000000;	
-	font: 12pt Courier;
+	font: 120% Arial, sans-serif; 
 	font-variant: normal; 
 	text-align: center;
-	margin: auto;
 	padding: 0.5em;
 }
 
@@ -64,4 +63,5 @@ H1 {
 .newMail	{ color: #82A7D0}
 .noNewMail 	{ color: #BB0000}
 .noPlan 	{ color: #BB0000}
+
 	
