@@ -99,13 +99,13 @@ foreach $output (@lines)
     $output =~ s/^(\w+)/$mails$1\@$HOST$urlspace$1$urlend/m unless ($output =~ m/$keywordlist/m);  
    }
   # line consists of white space only?
-  if ($output =~ m/^(\w*)\n/gi) 
+  if ($output =~ m/\S/gi) 
    {
-    print "        <TR><TD><PRE>  </PRE></TD></TR>\n";
+    print "        <TR><TD><PRE>$output</PRE></TD></TR>\n";
    } 
   else 
    {
-    print "        <TR><TD><PRE>$output</PRE></TD></TR>\n";
+    print "        <TR><TD><PRE>  </PRE></TD></TR>\n";
    }    
 }
 
