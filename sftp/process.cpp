@@ -193,7 +193,8 @@ void MyPtyProcess::unreadLineFrom(QCString inbuf, QCString line, bool addnl)
 
 int MyPtyProcess::exec(QCString command, QCStringList args)
 {
-    kdDebug(PTYPROC) << "MyPtyProcess::exec(): " << command << ", args= " << args << endl;
+  kdDebug(PTYPROC) << "MyPtyProcess::exec(): " << command << endl;// << ", args = " << args << endl;
+
     if (init() < 0)
         return -1;
 
