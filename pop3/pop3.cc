@@ -269,7 +269,8 @@ bool POP3Protocol::pop3_open()
     pop3_close();
     if( !ConnectToHost(m_sServer.ascii(), m_iPort))
        return false; // ConnectToHost has already send an error message.
-
+    opened = true;
+    
     greeting_buf=static_cast<char *>(malloc(GREETING_BUF_LEN));
     memset(greeting_buf, 0, GREETING_BUF_LEN);
     // If the server doesn't respond with a greeting
@@ -355,10 +356,7 @@ bool POP3Protocol::pop3_open()
       apop_string.append(ascii_digest);
 
       if(command(apop_string.local8Bit(), buf, sizeof(buf)))
-      {
-	opened = true;
         return true;
-      }
 
       kdDebug() << "Couldn't login via APOP. Falling back to USER/PASS" << endl;
       pop3_close();
@@ -391,7 +389,6 @@ bool POP3Protocol::pop3_open()
       pop3_close();
       return false;
     }
-    opened = true;
     return true;
   }
 }
@@ -460,7 +457,7 @@ void POP3Protocol::get( const KURL& url )
   cmd = path.left(path.find('/'));
   path.remove(0,path.find('/')+1);
 
-  if (!pop3_open()) { 
+  if (!pop3_open()) {
     kdDebug() << "pop3_open failed" << endl;
     pop3_close();
     error( ERR_COULD_NOT_CONNECT, m_sServer);
