@@ -537,7 +537,6 @@ IMAP4Protocol::setHost (const QString & _host, int _port,
         kdDebug(7116) << "'" << (*it) << "'" << endl;
       }
 
-#if 0
 // This code doesn't seem to work and I can't figure out why.
       completeQueue.removeRef (cmd);
       if (canUseTLS() && hasCapability(QString("STARTTLS"))) {
@@ -563,7 +562,7 @@ IMAP4Protocol::setHost (const QString & _host, int _port,
              }
           } else completeQueue.removeRef(cmd);
       }
-#endif
+
     }
     else
     {
