@@ -1,3 +1,12 @@
+/*
+ * Parts of this file are
+ * Copyright 2003 Waldo Bastian <bastian@kde.org>
+ *
+ * These parts are free software; you can redistribute and/or modify
+ * them under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; version 2.
+ */
+
 #include <kcmdlineargs.h>
 #include <klocale.h>
 #include <kapplication.h>
@@ -36,60 +45,35 @@ KIODevicesMountHelperApp::KIODevicesMountHelperApp():KApplication() {
 	KCmdLineArgs *args = KCmdLineArgs::parsedArgs();;
 
 	KURL url(args->url(0));
-		QStringList info=deviceInfo(url.fileName());
-                QStringList::Iterator it=info.begin();
+	QStringList info=deviceInfo(url.fileName());
 //		KMessageBox::information(0,url.url());
-                if (it!=info.end())
-                {
-                	++it;
-			if (it!=info.end())
-			{
-			        QString device=*it;
-
-	                        if (it!=info.end())
-        	                {
-                	                QString mp=*it;
-                        	        {
-
-						if (args->isSet("u"))
-						{
-							if (it!=info.end())
-							{
-								++it;
-								mp=(*it).replace(0,5,"");
-
-								//KAutoUnmount *um=new KAutoUnmount(mp,QString::null);
-								KIO::Job * job = KIO::unmount( mp );
-							 	connect( job, SIGNAL( result( KIO::Job * ) ), this, SLOT( slotResult( KIO::Job * ) ) );
-							}
-						}
-						else if (args->isSet("e"))
-						{
-							if (it!=info.end())
-							{
-								++it;
-								mp=(*it).replace(0,5,"");
-								KProcess *proc = new KProcess();
-								*proc << "kdeeject";
-								*proc << mp;
-								proc->start();
-								connect( proc, SIGNAL(processExited(KProcess *)), this, SLOT( finished() ) );
-							}
-						}
-						else
-						{
-							 KIO::Job* job = KIO::mount( false, 0, device, mp);
-							 connect( job, SIGNAL( result( KIO::Job * ) ), this, SLOT( slotResult( KIO::Job * ) ) );
-						}
-        	                                return;
-                	                }
-				}
-                        }
-                }
+	if (info.count() < 3)
+	{
 //		KMessageBox::information(0,"Wrong data");
 		QTimer::singleShot(0,this,SLOT(finished()));
-                return;
-
+		return;
+	}
+        QString device=info[1];
+	KURL mp=info[2];
+	if (args->isSet("u"))
+	{
+		//KAutoUnmount *um=new KAutoUnmount(mp,QString::null);
+		KIO::Job * job = KIO::unmount( mp.path() );
+	 	connect( job, SIGNAL( result( KIO::Job * ) ), this, SLOT( slotResult( KIO::Job * ) ) );
+	}
+	else if (args->isSet("e"))
+	{
+		KProcess *proc = new KProcess();
+		*proc << "kdeeject";
+		*proc << mp.path();
+		proc->start();
+		connect( proc, SIGNAL(processExited(KProcess *)), this, SLOT( finished() ) );
+	}
+	else
+	{
+		 KIO::Job* job = KIO::mount( false, 0, device, mp.path());
+		 connect( job, SIGNAL( result( KIO::Job * ) ), this, SLOT( slotResult( KIO::Job * ) ) );
+	}
 }
 
 void KIODevicesMountHelperApp::slotResult(KIO::Job* job)
@@ -132,13 +116,10 @@ static KCmdLineOptions options[] =
 
 int main(int argc, char **argv)
 {
-	printf("BLAH\n");
-     KCmdLineArgs::init(argc, argv, "kio_devices_mounthelper", "kio_devices_mounthelper", "0.1");
-	printf("BLAH1\n");
+    KCmdLineArgs::init(argc, argv, "kio_devices_mounthelper", "kio_devices_mounthelper", "0.2");
 
     KCmdLineArgs::addCmdLineOptions( options );
     KApplication::addCmdLineOptions();
-	printf("BLAH2\n");
 
     KApplication *app=new  KIODevicesMountHelperApp();
     KGlobal::locale()->insertCatalogue("kio_devices");
