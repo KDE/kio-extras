@@ -239,7 +239,7 @@ void SMTPProtocol::put (const KURL &url, int /*permissions*/, bool /*overwrite*/
 		result = readData(buffer);
 		if (result > 0) {
 			Write(buffer.data(), buffer.size());
-		} else if (result <= 0) {
+		} else if (result < 0) {
 			error(ERR_COULD_NOT_WRITE, url.path());
 		}
 	} while (result > 0);
