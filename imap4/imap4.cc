@@ -1026,7 +1026,7 @@ kdDebug(7116) << "IMAP4Protocol::special" << endl;
     {
       imapCommand *cmd = doCommand (imapCommand::
         clientStore (aSequence, "-FLAGS.SILENT",
-        "\\SEEN \\ANSWERED \\FLAGGED \\DRAFT \\DELETED"));
+        "\\SEEN \\ANSWERED \\FLAGGED \\DRAFT"));
       if (cmd->result () != "OK")
       {
         error(ERR_NO_CONTENT, i18n("Changing the flags of message %1 "
