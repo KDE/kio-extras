@@ -536,41 +536,40 @@ int POP3Protocol::loginSASL( KIO::AuthInfo &ai )
     
     challenge.resize( 2049 );
     resp = command( firstCommand.latin1(), challenge.data(), 2049 );
-    if ( resp == Ok || resp == Cont ) {
+    while( resp == Cont ) {
+      challenge.resize(challenge.find(0));
+//      POP3_DEBUG << "S: " << QCString(challenge.data(),challenge.size()+1) << endl;
+      KCodecs::base64Decode( challenge, tmp );
       do {
-        challenge.resize(challenge.find(0));
-//        POP3_DEBUG << "S: " << QCString(challenge.data(),challenge.size()+1) << endl;
-        KCodecs::base64Decode( challenge, tmp );
-        do {
-          result = sasl_client_step(conn, tmp.isEmpty() ? 0 : tmp.data(),
-                                  tmp.size(),
-                                  &client_interact,
-                                  &out, &outlen);
+        result = sasl_client_step(conn, tmp.isEmpty() ? 0 : tmp.data(),
+                                tmp.size(),
+                                &client_interact,
+                                &out, &outlen);
 
-          if (result == SASL_INTERACT)
-            if ( !saslInteract( client_interact, ai ) ) {
-              closeConnection();
-              sasl_dispose( &conn );
-              return -1;
-            };
-        } while ( result == SASL_INTERACT );
-        if ( result != SASL_CONTINUE && result != SASL_OK ) {
-          POP3_DEBUG << "sasl_client_step failed with: " << result << endl;
-          SASLERROR
-          sasl_dispose( &conn );
-          return -1;
-        }
+        if (result == SASL_INTERACT)
+          if ( !saslInteract( client_interact, ai ) ) {
+            closeConnection();
+            sasl_dispose( &conn );
+            return -1;
+          };
+      } while ( result == SASL_INTERACT );
+      if ( result != SASL_CONTINUE && result != SASL_OK ) {
+        POP3_DEBUG << "sasl_client_step failed with: " << result << endl;
+        SASLERROR
+        sasl_dispose( &conn );
+        return -1;
+      }
 
-        challenge.setRawData( out, outlen );
-        KCodecs::base64Encode( challenge, tmp );
-        challenge.resetRawData( out, outlen );
+      challenge.setRawData( out, outlen );
+      KCodecs::base64Encode( challenge, tmp );
+      challenge.resetRawData( out, outlen );
 //        POP3_DEBUG << "C: " << QCString(tmp.data(),tmp.size()+1) << endl;
-        tmp.resize(tmp.size()+1);
-        tmp[tmp.size()-1] = '\0';
-        challenge.resize(2049);
-        resp = command( tmp.data(), challenge.data(), 2049 );
-      } while( resp == Cont );
+      tmp.resize(tmp.size()+1);
+      tmp[tmp.size()-1] = '\0';
+      challenge.resize(2049);
+      resp = command( tmp.data(), challenge.data(), 2049 );
     }
+
     sasl_dispose( &conn );
     if ( resp == Ok ) {
       POP3_DEBUG << "SASL authenticated" << endl;
