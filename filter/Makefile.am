@@ -1,5 +1,3 @@
-SUBDIRS = gzip $(BZIP2DIR)
-
 KDE_CPPFLAGS = -DQT_NO_CAST_ASCII
 
 INCLUDES = $(all_includes)
@@ -14,5 +12,5 @@ noinst_HEADERS = filter.h
 METASOURCES = AUTO
 
 protocoldir = $(kde_servicesdir)
-protocol_DATA = gzip.protocol
+protocol_DATA = gzip.protocol $(BZIP2FILES)
 
