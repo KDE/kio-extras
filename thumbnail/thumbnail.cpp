@@ -159,12 +159,15 @@ void ThumbnailProtocol::get(const KURL &url)
             service->property("SupportsThumbnail").toBool())
         {
             KFileMetaInfo info(url.path(), m_mimeType, KFileMetaInfo::Thumbnail);
-            KFileMetaInfoItem item = info.item(KFileMimeTypeInfo::Thumbnail);
-            if (item.isValid() && item.value().type() == QVariant::Image)
+            if (info.isValid())
             {
-                img = item.value().toImage();
-                kdDebug(7115) << "using KFMI for the thumbnail\n";
-                kfmiThumb = true;
+                KFileMetaInfoItem item = info.item(KFileMimeTypeInfo::Thumbnail);
+                if (item.isValid() && item.value().type() == QVariant::Image)
+                {
+                    img = item.value().toImage();
+                    kdDebug(7115) << "using KFMI for the thumbnail\n";
+                    kfmiThumb = true;
+                }
             }
         }
     }
