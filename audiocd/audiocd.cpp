@@ -395,10 +395,12 @@ AudioCDProtocol::updateCD(struct cdrom_drive * drive)
   d->based_on_cddb = false;
   for (int i = 0; i < d->tracks; i++)
     {
+      QString num;
       int ti = i + 1;
       QString s;
+      num.sprintf("%02d", ti);
       if (IS_AUDIO(drive, ti))
-        s = d->s_track.arg(ti);
+        s = d->s_track.arg(num);
       else
         s.sprintf("data%02d", ti);
       d->titles.append( s );
@@ -504,20 +506,22 @@ AudioCDProtocol::listDir(const KURL & url)
       if (d->is_audio[i-1])
       {
         QString s;
+        QString num2;
         long size = CD_FRAMESIZE_RAW *
           ( cdda_track_lastsector(drive, i) - cdda_track_firstsector(drive, i));
 
-        if (i==1)
+        /*if (i==1)
           s.sprintf("_%08x.wav", d->discid);
-        else
+        else*/
           s.sprintf(".wav");
 
+        num2.sprintf("%02d", i);
         QString name;
         switch (d->which_dir)
           {
             case Device:
             case Root: name.sprintf("track%02d.cda", i); break;
-            case ByTrack: name = d->s_track.arg(i) + s; break;
+            case ByTrack: name = d->s_track.arg(num2) + s; break;
             case ByName:
             case Title: name = d->titles[i - 1] + s; break;
             case Info:
