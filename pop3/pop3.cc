@@ -411,8 +411,11 @@ bool POP3Protocol::pop3_open()
 
 		// We need to check what methods the server supports...
 		// This is based on RFC 1734's wisdom
-		if (m_try_sasl && command(sasl_buffer.local8Bit())) {
-			while (!AtEOF()) {
+		if (m_try_sasl && (hasMetaData("sasl") ||
+              		command(sasl_buffer.local8Bit())))
+		{
+			if (hasMetaData("sasl")) sasl_auth = metaData("sasl");
+			else while (!AtEOF()) {
 				memset(buf, 0, sizeof(buf));
 				ReadLine(buf, sizeof(buf)-1);
 
@@ -424,9 +427,6 @@ bool POP3Protocol::pop3_open()
 				sasl_auth += buf;
 			}
 
-/*			sasl_auth=buf;
-			sasl_auth.replace(QRegExp("\\."), ""); */
-			sasl_auth.replace(QRegExp("\\r\\n"), " ");
 			KURL url;
 			url.setUser(m_sUser);
 			url.setPass(m_sPass);
