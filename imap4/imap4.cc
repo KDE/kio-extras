@@ -930,9 +930,40 @@ IMAP4Protocol::del (const KURL & _url, bool isFile)
         setState(ISTATE_LOGIN);
       }
       imapCommand *cmd = doCommand (imapCommand::clientDelete (aBox));
+      // If this doesn't work, we try to empty the mailbox first
       if (cmd->result () != "OK")
-        error (ERR_COULD_NOT_RMDIR, hidePass(_url));
-      completeQueue.removeRef (cmd);
+      {
+        completeQueue.removeRef(cmd);
+        bool stillOk = true;
+        if (!assureBox(aBox, false)) stillOk = false;
+        if (stillOk)
+        {
+          imapCommand *cmd = doCommand(
+            imapCommand::clientStore("1:*", "+FLAGS.SILENT", "\\DELETED"));
+          if (cmd->result () != "OK") stillOk = false;
+          completeQueue.removeRef(cmd);
+        }
+        if (stillOk)
+        {
+          imapCommand *cmd = doCommand(imapCommand::clientClose());
+          if (cmd->result () != "OK") stillOk = false;
+          completeQueue.removeRef(cmd);
+          setState(ISTATE_LOGIN);
+        }
+        if (stillOk)
+        {
+          imapCommand *cmd = doCommand (imapCommand::clientDelete(aBox));
+          if (cmd->result () != "OK") stillOk = false;
+          completeQueue.removeRef(cmd);
+        }
+        if (!stillOk)
+        {
+          error (ERR_COULD_NOT_RMDIR, hidePass(_url));
+          return;
+        }
+      } else {
+        completeQueue.removeRef (cmd);
+      }
     }
     break;
 
