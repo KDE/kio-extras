@@ -254,7 +254,7 @@ KSshProcess::SshVersion KSshProcess::version() {
         return UNKNOWN_VER;
     }
     if( pclose(p) == -1 ) {
-        kdError(KSSHPROC) << "KSshProcess::version(): pclose failed.";
+        kdError(KSSHPROC) << "KSshProcess::version(): pclose failed." << endl;
     }
     buf[len] = '\0';
     QString ver;
