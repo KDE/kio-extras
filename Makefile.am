@@ -6,4 +6,6 @@
 
 # smb and pop3 working again (add nntp on 3/17/2000)
 
-SUBDIRS = smb smtp pop3 nntp info $(LDAP_SUBDIR) man help
+#added nfs subdir
+
+SUBDIRS = nfs smb smtp pop3 nntp info $(LDAP_SUBDIR) man help
