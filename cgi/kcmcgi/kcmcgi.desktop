@@ -138,4 +138,4 @@ Keywords[xx]=xxCGI,KIO,Slave,Pathsxx
 Keywords[zh_CN]=CGI,KIO,Slave,Paths,路径
 Keywords[zh_TW]=CGI,KIO,Slave,Paths,路徑
 Keywords[zu]=CGI,KIO,Slave,Izindlela
-Categories=Qt;KDE;Settings;X-KDE-settings-webbrowsing
+Categories=Qt;KDE;X-KDE-settings-webbrowsing
