@@ -3,6 +3,8 @@
 #include <kio_filter.h>
 #include <kio_manager.h>
 
+#include <qapplication.h>
+
 #include <errno.h>
 #include <stdio.h>
 #include <signal.h>
@@ -311,7 +313,7 @@ void GZipProtocol::slotGet( const char *_url )
     src += it->url();
   }
   
-  cerr << "Nested fetching " << src << endl;
+  debug( "kio_gzip : Nested fetching %s", src.c_str() );
   
   job.get( src.c_str() );
   while( !job.isReady() && !job.hasFinished() )

@@ -40,18 +40,20 @@ int main( int argc, char **argv )
 
   ProtocolManager manager;
   
+  debug( "kio_file : Starting");
+
   if ( !doit() )
   {
-    cerr << "Could not do it :-(" << endl;
+    debug( "kio_file : Could not do it :-(");
     exit(1);
   }
 
-  cerr << "Done" << endl;
+  debug( "kio_file : Done" );
 }
 
 void sig_handler2( int )
 {
-  cerr << "###############SEG FILE#############" << endl;
+  debug( "kio_file : ###############SEG FILE#############" );
   exit(1);
 }
 
@@ -83,11 +85,13 @@ int doit()
   return 1;
 }
 
+
 FileProtocol::FileProtocol( Connection *_conn ) : IOProtocol( _conn )
 {
   m_cmd = CMD_NONE;
   m_bIgnoreJobErrors = false;
 }
+
 
 void FileProtocol::slotMkdir( const char *_url, int _mode )
 {
@@ -189,13 +193,13 @@ void FileProtocol::doCopy( list<string>& _source, const char *_dest, bool _renam
   if ( _rename )
     assert( _source.size() == 1 );
   
-  cerr << "Making copy to " << _dest << endl;
+  debug( "kio_file : Making copy to %s", _dest );
   
   // Check wether the URLs are wellformed
   list<string>::iterator soit = _source.begin();
   for( ; soit != _source.end(); ++soit )
   {    
-    cerr << "Checking " << *soit << endl;
+    debug( "kio_file : Checking %s", soit->c_str() );
     K2URL usrc( *soit );
     if ( usrc.isMalformed() )
     {
@@ -211,7 +215,7 @@ void FileProtocol::doCopy( list<string>& _source, const char *_dest, bool _renam
     }
   }
 
-  cerr << "All URLs ok " << _dest << endl;
+  debug( "kio_file : All URLs ok %s", _dest );
 
   // Make a copy of the parameter. if we do IPC calls from here, then we overwrite
   // our argument. This is tricky! ( but saves memory and speeds things up )
@@ -226,7 +230,7 @@ void FileProtocol::doCopy( list<string>& _source, const char *_dest, bool _renam
     return;
   }
 
-  cerr << "Dest ok " << dest << endl;
+  debug( "kio_file : Dest ok %s", dest.c_str() );
 
   // Extract destinations right most protocol
   list<K2URL> lst;
@@ -255,21 +259,21 @@ void FileProtocol::doCopy( list<string>& _source, const char *_dest, bool _renam
     return;
   }
       
-  cerr << "IO server ok " << dest << endl;
+  debug( "kio_file : IO server ok %s", dest.c_str() );
 
   // Get a list of all source files and directories
   list<Copy> files;
   list<CopyDir> dirs;
   int size = 0;
-  cerr << "Iterating" << endl;
+  debug( "kio_file : Iterating" );
 
   soit = _source.begin();
-  cerr << "Looping" << endl;
+  debug( "kio_file : Looping" );
   for( ; soit != _source.end(); ++soit )
   {    
-    cerr << "Executing " << *soit << endl;
+    debug( "kio_file : Executing %s", soit->c_str() );
     K2URL usrc( *soit );
-    cerr << "Parsed URL" << endl;
+    debug( "kio_file : Parsed URL" );
     // Did an error occur ?
     int s;
     if ( ( s = listRecursive( usrc.path(), files, dirs, _rename ) ) == -1 )
@@ -282,7 +286,7 @@ void FileProtocol::doCopy( list<string>& _source, const char *_dest, bool _renam
     size += s;
   }
 
-  cerr << "Recursive 1 " << dest << endl;
+  debug( "kio_file : Recursive 1 %s", dest.c_str() );
 
   // Check wether we do not copy a directory in itself or one of its subdirectories
   struct stat buff2;
@@ -322,7 +326,7 @@ void FileProtocol::doCopy( list<string>& _source, const char *_dest, bool _renam
     }
   }
 
-  cerr << "Recursive ok " << dest << endl;
+  debug( "kio_file : Recursive ok %s", dest.c_str() );
 
   m_cmd = CMD_GET;
   
@@ -338,7 +342,7 @@ void FileProtocol::doCopy( list<string>& _source, const char *_dest, bool _renam
   // Put a protocol on top of the job
   FileIOJob job( &slave, this );
 
-  cerr << "Job started ok " << dest << endl;
+  debug( "kio_file : Job started ok %s", dest.c_str() );
 
   // Tell our client what we 'r' gonna do
   totalSize( size );
@@ -373,7 +377,7 @@ void FileProtocol::doCopy( list<string>& _source, const char *_dest, bool _renam
     fit->m_strRelDest += tmp2;
   }
   
-  cerr << "Destinations ok " << dest << endl;
+  debug( "kio_file : Destinations ok %s", dest.c_str() );
 
   /*****
    * Make directories
@@ -426,7 +430,7 @@ void FileProtocol::doCopy( list<string>& _source, const char *_dest, bool _renam
       // Tell what we are doing
       makingDir( d.c_str() );
       
-      // cerr << "Making remote dir " << d << endl;
+      // debug( "kio_file : Making remote dir %s", d );
       // Create the directory
       job.mkdir( d.c_str(), dit->m_mode );
       while( !job.hasFinished() )
@@ -539,7 +543,7 @@ void FileProtocol::doCopy( list<string>& _source, const char *_dest, bool _renam
     processedDirs( ++processed_dirs );
   }
 
-  cerr << "Created directories " << dest << endl;
+  debug( "kio_file : Created directories %s", dest.c_str() );
   
   /*****
    * Copy files
@@ -561,7 +565,7 @@ void FileProtocol::doCopy( list<string>& _source, const char *_dest, bool _renam
       list<K2URL> l( lst );
       l.back().setPath( fit->m_strRelDest.c_str() );
     
-      // cerr << "########### SET Path to '" << fit->m_strRelDest.c_str() << "'" << endl;
+      // debug( "kio_file : ########### SET Path to '%s'", fit->m_strRelDest.c_str() );
       
       string d;
       list<K2URL>::iterator it = l.begin();
@@ -582,7 +586,7 @@ void FileProtocol::doCopy( list<string>& _source, const char *_dest, bool _renam
       string realpath = "file:"; realpath += fit->m_strAbsSource;
       copyingFile( realpath.c_str(), d.c_str() );
     
-      // cerr << "Writing to " << d << endl;
+      // debug( "kio_file : Writing to %s", d );
        
       // Is this URL on the overwrite list ?
       list<string>::iterator oit = overwrite_list.begin();
@@ -600,7 +604,7 @@ void FileProtocol::doCopy( list<string>& _source, const char *_dest, bool _renam
       if ( job.hasError() ) {
 	int currentError = job.errorId();
 
-	cerr << "################# COULD NOT PUT " << currentError << endl;
+	debug("################# COULD NOT PUT %d", currentError);
 	// if ( /* m_bGUI && */ job.errorId() == ERR_WRITE_ACCESS_DENIED )
 	if ( /* m_bGUI && */ currentError != ERR_DOES_ALREADY_EXIST &&
 			     currentError != ERR_DOES_ALREADY_EXIST_FULL )
@@ -712,7 +716,7 @@ void FileProtocol::doCopy( list<string>& _source, const char *_dest, bool _renam
     if ( skip_copying )
       continue;
 
-    //cerr << "Opening " << fit->m_strAbsSource << endl;
+    //debug( "kio_file : Opening %s", fit->m_strAbsSource );
     
     FILE *f = fopen( fit->m_strAbsSource.c_str(), "rb" );
     if ( f == 0L )
@@ -727,7 +731,7 @@ void FileProtocol::doCopy( list<string>& _source, const char *_dest, bool _renam
       int n = fread( buffer, 1, 2048, f );
 
       // !!! slow down loop for local testing
-//       for ( int tmpi = 0; tmpi < 800000; tmpi++ ) ;
+      for ( int tmpi = 0; tmpi < 800000; tmpi++ ) ;
 
       job.data( buffer, n );
       processed_size += n;
@@ -745,6 +749,7 @@ void FileProtocol::doCopy( list<string>& _source, const char *_dest, bool _renam
       // Check for error messages from slave
       while ( check( &slave ) )
 	job.dispatch();
+
       // An error ?
       if ( job.hasFinished() )
       {
@@ -773,7 +778,7 @@ void FileProtocol::doCopy( list<string>& _source, const char *_dest, bool _renam
     processedFiles( ++processed_files );
   }
 
-  cerr << "Copied files " << dest << endl;
+  debug( "kio_file : Copied files %s", dest.c_str() );
 
   if ( _move ) {
     slotDel( _source );
@@ -873,6 +878,8 @@ void FileProtocol::slotGetSize( const char *_url )
 {
   string url = _url;
   
+//   debug( "kio_file : Getting size" );
+
   m_cmd = CMD_GET_SIZE;
   
   K2URL usrc( _url );
@@ -960,7 +967,6 @@ void FileProtocol::slotPut( const char *_url, int _mode, bool _overwrite, bool _
       return;
     }
   } else if ( stat( udest_part.path(), &buff ) != -1 ) {
-
     // if file with extension .part exists but we are not using mark partial
     // -> rename XXX.part to original name
     if ( ! m_bMarkPartial )
@@ -983,15 +989,15 @@ void FileProtocol::slotPut( const char *_url, int _mode, bool _overwrite, bool _
 
   // if we are using marking of partial downloads -> add .part extension
   if ( m_bMarkPartial ) {
+    debug( "kio_file : Adding .part extension to %s", udest_orig.path() );
     udest = udest_part;
-    cerr << "marking as partial\n";
   } else
     udest = udest_orig;
 
 
   /* if ( access( udest.path(), W_OK ) == -1 )
   {
-    cerr << "Write Access denied for '" << udest.path() << "' " << errno << endl;
+    debug("Write Access denied for '%s' %d",udest.path(),errno );
     
     error( ERR_WRITE_ACCESS_DENIED, url.c_str() );
     finished();
@@ -1006,7 +1012,7 @@ void FileProtocol::slotPut( const char *_url, int _mode, bool _overwrite, bool _
 
   if ( m_fPut == 0L )
   {
-    cerr << "####################### COULD NOT WRITE " << udest.path() << endl;
+    debug( "kio_file : ####################### COULD NOT WRITE %s", udest.path() );
     if ( errno == EACCES )
       error( ERR_WRITE_ACCESS_DENIED, udest.path() );
     else
@@ -1064,7 +1070,7 @@ void FileProtocol::slotPut( const char *_url, int _mode, bool _overwrite, bool _
 
 void FileProtocol::slotDel( const char *_url )
 {
-  cerr << "Deleting file " << _url << endl;
+  debug( "kio_file : Deleting file %s", _url );
 
   K2URL usrc( _url );
   if ( usrc.isMalformed() )
@@ -1118,7 +1124,7 @@ void FileProtocol::slotDel( list<string>& _source )
   list<string>::iterator soit = _source.begin();
   for( ; soit != _source.end(); ++soit )
   {    
-    cerr << "Checking " << *soit << endl;
+    debug( "kio_file : Checking %s", soit->c_str() );
     K2URL usrc( *soit );
     if ( usrc.isMalformed() )
     {
@@ -1141,7 +1147,7 @@ void FileProtocol::slotDel( list<string>& _source )
 	return;
       }
 
-    cerr << "Deleting " << usrc.path() << endl;
+    debug( "kio_file : Deleting %s", usrc.path() );
 
     deletingFile( usrc.path() );
 
@@ -1212,7 +1218,7 @@ void FileProtocol::slotListDir( const char *_url )
     if ( strcmp( ep->d_name, "." ) == 0 || strcmp( ep->d_name, ".." ) == 0 )
       continue;
 
-    // cerr << "Listing " << ep->d_name << endl;
+    // debug( "kio_file : Listing %s", ep->d_name );
 
     UDSEntry entry;
     UDSAtom atom;
@@ -1450,7 +1456,7 @@ long FileProtocol::listRecursive( const char *_path, list<Copy>& _files, list<Co
   
   string p;
   p.assign( _path, len );
-  cerr << "########## RECURSIVE LISTING " << p << endl;
+  debug( "kio_file : ########## RECURSIVE LISTING %s", p.c_str() );
   
   if ( stat( p.c_str(), &buff ) == -1 )
   {
@@ -1506,7 +1512,7 @@ long FileProtocol::listRecursive( const char *_path, list<Copy>& _files, list<Co
   c.m_mode = buff.st_mode;
   c.m_ino = buff.st_ino;
   _dirs.push_back( c );
-  cerr << "########### STARTING RECURSION with " << tmp1 << " and " << tmp2 << endl;
+  debug( "kio_file : ########### STARTING RECURSION with %s and %s",tmp1.c_str(), tmp2.c_str() );
   
   return listRecursive2( tmp1.c_str(), tmp2.c_str(), _files, _dirs );
 }
