@@ -1609,7 +1609,7 @@ void
 imapParser::parseURL (const KURL & _url, QString & _box, QString & _section,
                       QString & _type, QString & _uid, QString & _validity)
 {
-  kdDebug(7116) << "imapParser::parseURL - " << _url.url () << endl;
+  kdDebug(7116) << "imapParser::parseURL - " << endl;
   QStringList parameters;
 
   _box = _url.path ();
@@ -1637,11 +1637,9 @@ imapParser::parseURL (const KURL & _url, QString & _box, QString & _section,
       _validity = temp.right (temp.length () - 12);
   }
 //  kdDebug(7116) << "URL: section= " << _section << ", type= " << _type << ", uid= " << _uid << endl;
-//  kdDebug(7116) << "URL: url() " << _url.url() << endl;
 //  kdDebug(7116) << "URL: user() " << _url.user() << endl;
 //  kdDebug(7116) << "URL: path() " << _url.path() << endl;
 //  kdDebug(7116) << "URL: encodedPathAndQuery() " << _url.encodedPathAndQuery() << endl;
-//  kdDebug(7116) << "URL: decoded(url()) " << KURL::decode_string(_url.url()) << endl;
 
   if (!_box.isEmpty ())
   {

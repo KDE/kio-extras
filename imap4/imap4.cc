@@ -173,7 +173,7 @@ IMAP4Protocol::~IMAP4Protocol ()
 void
 IMAP4Protocol::get (const KURL & _url)
 {
-  kdDebug(7116) << "IMAP4::get -  " << _url.url () << endl;
+  kdDebug(7116) << "IMAP4::get -  " << hidePass(_url) << endl;
   QString aBox, aSequence, aType, aSection, aValidity, aDelimiter;
   enum IMAP_TYPE aEnum =
     parseURL (_url, aBox, aSection, aType, aSequence, aValidity, aDelimiter);
@@ -313,7 +313,7 @@ IMAP4Protocol::get (const KURL & _url)
 void
 IMAP4Protocol::listDir (const KURL & _url)
 {
-  kdDebug(7116) << "IMAP4::listDir - " << _url.url () << endl;
+  kdDebug(7116) << "IMAP4::listDir - " << hidePass(_url) << endl;
 
   QString myBox, mySequence, myLType, mySection, myValidity, myDelimiter;
   enum IMAP_TYPE myType =
@@ -447,7 +447,7 @@ IMAP4Protocol::listDir (const KURL & _url)
 
             newUrl.setPath ("/" + myBox + ";UIDVALIDITY=" +
                             QString ().setNum (selectInfo.uidValidity ()));
-            kdDebug(7116) << "IMAP4::listDir - redirecting to " << newUrl.url () << endl;
+            kdDebug(7116) << "IMAP4::listDir - redirecting to " << hidePass(newUrl) << endl;
             redirection (newUrl);
 
 
@@ -639,7 +639,7 @@ bool IMAP4Protocol::parseReadLine (QByteArray & buffer, ulong relay)
 void
 IMAP4Protocol::mimetype (const KURL & _url)
 {
-  kdDebug(7116) << "IMAP4::mimetype - " << _url.url () << endl;
+  kdDebug(7116) << "IMAP4::mimetype - " << hidePass(_url) << endl;
   QString aBox, aSequence, aType, aSection, aValidity, aDelimiter;
 
   mimeType (getMimeType(parseURL (_url, aBox, aSection, aType, aSequence,
@@ -650,14 +650,14 @@ IMAP4Protocol::mimetype (const KURL & _url)
 void
 IMAP4Protocol::setSubURL (const KURL & _url)
 {
-  kdDebug(7116) << "IMAP4::setSubURL - " << _url.url () << endl;
+  kdDebug(7116) << "IMAP4::setSubURL - " << hidePass(_url) << endl;
   KIO::TCPSlaveBase::setSubURL (_url);
 }
 
 void
 IMAP4Protocol::put (const KURL & _url, int, bool, bool)
 {
-  kdDebug(7116) << "IMAP4::put - " << _url.url () << endl;
+  kdDebug(7116) << "IMAP4::put - " << hidePass(_url) << endl;
 //  KIO::TCPSlaveBase::put(_url,permissions,overwrite,resume);
   QString aBox, aSequence, aLType, aSection, aValidity, aDelimiter;
   enum IMAP_TYPE aType =
@@ -774,7 +774,7 @@ IMAP4Protocol::put (const KURL & _url, int, bool, bool)
 void
 IMAP4Protocol::mkdir (const KURL & _url, int)
 {
-  kdDebug(7116) << "IMAP4::mkdir - " << _url.url () << endl;
+  kdDebug(7116) << "IMAP4::mkdir - " << hidePass(_url) << endl;
 //  KIO::TCPSlaveBase::mkdir(_url,permissions);
   QString aBox, aSequence, aLType, aSection, aValidity, aDelimiter;
   parseURL (_url, aBox, aSection, aLType, aSequence, aValidity, aDelimiter);
@@ -792,7 +792,7 @@ IMAP4Protocol::mkdir (const KURL & _url, int)
 void
 IMAP4Protocol::copy (const KURL & src, const KURL & dest, int, bool overwrite)
 {
-  kdDebug(7116) << "IMAP4::copy - [" << (overwrite ? "Overwrite" : "NoOverwrite") << "] " << src.url () << " -> " << dest.url () << endl;
+  kdDebug(7116) << "IMAP4::copy - [" << (overwrite ? "Overwrite" : "NoOverwrite") << "] " << hidePass(src) << " -> " << hidePass(dest) << endl;
   QString sBox, sSequence, sLType, sSection, sValidity, sDelimiter;
   QString dBox, dSequence, dLType, dSection, dValidity, dDelimiter;
   enum IMAP_TYPE sType =
@@ -892,7 +892,7 @@ IMAP4Protocol::copy (const KURL & src, const KURL & dest, int, bool overwrite)
 void
 IMAP4Protocol::del (const KURL & _url, bool isFile)
 {
-  kdDebug(7116) << "IMAP4::del - [" << (isFile ? "File" : "NoFile") << "] " << _url.url () << endl;
+  kdDebug(7116) << "IMAP4::del - [" << (isFile ? "File" : "NoFile") << "] " << hidePass(_url) << endl;
   QString aBox, aSequence, aLType, aSection, aValidity, aDelimiter;
   enum IMAP_TYPE aType =
     parseURL (_url, aBox, aSection, aLType, aSequence, aValidity, aDelimiter);
@@ -1010,7 +1010,7 @@ IMAP4Protocol::special (const QByteArray & data)
 void
 IMAP4Protocol::rename (const KURL & src, const KURL & dest, bool overwrite)
 {
-  kdDebug(7116) << "IMAP4::rename - [" << (overwrite ? "Overwrite" : "NoOverwrite") << "] " << src.url () << " -> " << dest.url () << endl;
+  kdDebug(7116) << "IMAP4::rename - [" << (overwrite ? "Overwrite" : "NoOverwrite") << "] " << hidePass(src) << " -> " << hidePass(dest) << endl;
   QString sBox, sSequence, sLType, sSection, sValidity, sDelimiter;
   QString dBox, dSequence, dLType, dSection, dValidity, dDelimiter;
   enum IMAP_TYPE sType =
@@ -1065,7 +1065,7 @@ IMAP4Protocol::dispatch (int command, const QByteArray & data)
 void
 IMAP4Protocol::stat (const KURL & _url)
 {
-  kdDebug(7116) << "IMAP4::stat - " << _url.url () << endl;
+  kdDebug(7116) << "IMAP4::stat - " << hidePass(_url) << endl;
   QString aBox, aSequence, aLType, aSection, aValidity, aDelimiter;
   enum IMAP_TYPE aType =
     parseURL (_url, aBox, aSection, aLType, aSequence, aValidity, aDelimiter);
@@ -1098,7 +1098,7 @@ IMAP4Protocol::stat (const KURL & _url)
 
         newUrl.setPath ("/" + aBox + ";UIDVALIDITY=" +
                         QString ().setNum (validity));
-        kdDebug(7116) << "IMAP4::stat - redirecting to " << newUrl.url () << endl;
+        kdDebug(7116) << "IMAP4::stat - redirecting to " << hidePass(newUrl) << endl;
         redirection (newUrl);
       }
     }
@@ -1112,7 +1112,7 @@ IMAP4Protocol::stat (const KURL & _url)
       if (validity > 0 && validity != aValidity.toULong ())
       {
         aType = ITYPE_UNKNOWN;
-        kdDebug(7116) << "IMAP4::stat - url has invalid validity [" << validity << "d] " << _url.url () << endl;
+        kdDebug(7116) << "IMAP4::stat - url has invalid validity [" << validity << "d] " << hidePass(_url) << endl;
       }
     }
   }
@@ -1496,7 +1496,6 @@ IMAP4Protocol::parseURL (const KURL & _url, QString & _box,
                          QString & _section, QString & _type, QString & _uid,
                          QString & _validity, QString & _hierarchyDelimiter)
 {
-//  kdDebug(7116) << "IMAP4::parseURL - " << _url.url() << endl;
   enum IMAP_TYPE retVal;
   retVal = ITYPE_UNKNOWN;
   _hierarchyDelimiter = QString();
