@@ -109,7 +109,7 @@ SMTPProtocol::SMTPProtocol(const QCString & pool, const QCString & app,
 
 unsigned int SMTPProtocol::sendBufferSize() const {
   // ### how much is eaten by SSL/TLS overhead?
-  const int fd = ::fileno( fp );
+  const int fd = fileno( fp );
   int value = -1;
   ksize_t len = sizeof(value);
   if ( fd < 0 || ::getsockopt( fd, SOL_SOCKET, SO_SNDBUF, (char*)&value, &len ) )
