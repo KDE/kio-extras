@@ -45,7 +45,6 @@
 #include <errno.h>
 #include <netdb.h>
 #include <signal.h>
-#include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
 
@@ -61,8 +60,8 @@
 
 #include <kio/connection.h>
 #include <kio/slaveinterface.h>
-#include <kio/ksasl/saslmodule.h>
-#include <kio/ksasl/saslcontext.h>
+#include <kio/sasl/saslmodule.h>
+#include <kio/sasl/saslcontext.h>
 #include <kio/passdlg.h>
 
 #include "pop3.h"
@@ -80,13 +79,13 @@ using namespace KIO;
 
 int kdemain( int argc, char **argv )
 {
-	KInstance instance( "kio_pop3" );
 
 	if (argc != 4) {
 		kdDebug() << "Usage: kio_pop3 protocol domain-socket1 domain-socket2" << endl;
-		exit(-1);
+		return -1;
 	}
 
+	KInstance instance( "kio_pop3" );
 	POP3Protocol *slave;
 
 	// Are we looking to use SSL?
@@ -137,7 +136,7 @@ bool POP3Protocol::getResponse (char *r_buf, unsigned int r_len, const char *cmd
 	// Give the buffer the appropiate size
 	r_len = r_len ? r_len : MAX_RESPONSE_LEN;
 
-	buf=static_cast<char *>(malloc(r_len));
+	buf = new char[r_len];
 
 	// And keep waiting if it timed out
 	unsigned int wait_time=600; // Wait 600sec. max.
@@ -185,7 +184,8 @@ bool POP3Protocol::getResponse (char *r_buf, unsigned int r_len, const char *cmd
 			memcpy(r_buf, (buf[3] == ' ' ? buf+4 : buf+3),
 				QMIN(r_len, (buf[3] == ' ' ? recv_len-4 : recv_len-3)));
 		}
-		if (buf) free(buf);
+		if (buf)
+			delete [] buf;
 		return true;
 	} else if (strncmp(buf, "-ERR", 4)==0) {
 		if (r_buf && r_len) {
@@ -198,7 +198,8 @@ bool POP3Protocol::getResponse (char *r_buf, unsigned int r_len, const char *cmd
 			command = i18n("PASS <your password>");
 		}
 		m_sError = i18n("I said:\n   \"%1\"\n\nAnd then the server said:\n   \"%2\"").arg(command).arg(serverMsg);
-		if (buf) free(buf);
+		if (buf)
+			delete [] buf;
 		return false;
 	} else {
 		kdDebug() << "Invalid POP3 response received!" << endl;
@@ -207,7 +208,8 @@ bool POP3Protocol::getResponse (char *r_buf, unsigned int r_len, const char *cmd
 		}
 		if (!buf || !*buf) m_sError = i18n("The server terminated the connection.");
 		else m_sError = i18n("Invalid response from server:\n   \"%1\"").arg(buf);
-		if (buf) free(buf);
+		if (buf)
+			delete [] buf;
 		return false;
 	}
 }
@@ -226,16 +228,15 @@ bool POP3Protocol::command (const char *cmd, char *recv_buf, unsigned int len)
 	 */
 
 	// Write the command
-	char *cmdrn;
-	cmdrn = static_cast<char *>(malloc(strlen(cmd) + 3));
+	char *cmdrn = new char[strlen(cmd) + 3];
 	sprintf(cmdrn, "%s\r\n", cmd);
 
 	if (Write(cmdrn, strlen(cmdrn)) != static_cast<ssize_t>(strlen(cmdrn))) {
 		m_sError = i18n("Could not send to server.\n");
-		free(cmdrn);
+		delete [] cmdrn;
 		return false;
 	}
-	free(cmdrn);
+	delete [] cmdrn;
 	return getResponse(recv_buf, len, cmd);
 }
 
@@ -279,7 +280,7 @@ bool POP3Protocol::pop3_open()
 		}
 		opened = true;
 
-		greeting_buf=static_cast<char *>(malloc(GREETING_BUF_LEN));
+		greeting_buf=new char[GREETING_BUF_LEN];
 		memset(greeting_buf, 0, GREETING_BUF_LEN);
 
 		// If the server doesn't respond with a greeting
@@ -287,12 +288,12 @@ bool POP3Protocol::pop3_open()
 			m_sError = i18n("Could not login to %1.\n\n").arg(m_sServer) +
 		((!greeting_buf || !*greeting_buf) ? i18n("The server terminated the connection immediately.") : i18n("Server does not respond properly:\n%1\n").arg(greeting_buf));
 			error( ERR_COULD_NOT_LOGIN, m_sError );
-			free(greeting_buf);
+			delete [] greeting_buf;
 			return false;	// we've got major problems, and possibly the
 					// wrong port
 		}
 		QCString greeting(greeting_buf);
-		free(greeting_buf);
+		delete [] greeting_buf;
 
 		//
 		// Does the server support APOP?
@@ -409,10 +410,10 @@ bool POP3Protocol::pop3_open()
 				delete m_pSASL;
 			} else {
 				// Yich character arrays..
-				char *challenge=static_cast<char *>(malloc(2049));
+				char *challenge=new char[2049];
 				sasl_buffer.prepend("AUTH ");
 				if (!command(sasl_buffer.latin1(), challenge, 2049)) {
-					free(challenge);
+					delete [] challenge;
 					delete m_pSASL; m_pSASL=0;
 				} else {
 					bool ret, b64=true;
@@ -421,7 +422,7 @@ bool POP3Protocol::pop3_open()
 					if (sasl_auth == "PLAIN")
 						b64=false;
 					ret = command(m_pSASL->generateResponse(challenge, false).latin1());
-					free(challenge);
+					delete [] challenge;
 					delete m_pSASL;
 					if (ret)
 						return true;
@@ -469,18 +470,18 @@ size_t POP3Protocol::realGetSize(unsigned int msg_num)
 	QCString cmd;
 	size_t ret=0;
 
-	buf=static_cast<char *>(malloc(MAX_RESPONSE_LEN));
+	buf=new char[MAX_RESPONSE_LEN];
 	memset(buf, 0, MAX_RESPONSE_LEN);
 	cmd.sprintf("LIST %u", msg_num);
 	if (!command(cmd.data(), buf, MAX_RESPONSE_LEN)) {
-		free(buf);
+		delete [] buf;
 		return 0;
 	} else {
 		cmd=buf;
 		cmd.remove(0, cmd.find(" "));
 		ret=cmd.toLong();
 	}
-	free(buf);
+	delete [] buf;
 	return ret;
 }
 
