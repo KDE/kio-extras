@@ -8,6 +8,7 @@
 #include <qtimer.h>
 #include <kdebug.h>
 #include <kglobal.h>
+#include <kprocess.h>
 
 #include "kio_devices_mounthelper.h"
 
@@ -62,6 +63,19 @@ KIODevicesMountHelperApp::KIODevicesMountHelperApp():KApplication() {
 							 	connect( job, SIGNAL( result( KIO::Job * ) ), this, SLOT( slotResult( KIO::Job * ) ) );
 							}
 						}
+						else if (args->isSet("e"))
+						{
+							if (it!=info.end())
+							{
+								++it;
+								mp=(*it).replace(0,5,"");
+								KProcess *proc = new KProcess();
+								*proc << "kdeeject";
+								*proc << mp; 
+								proc->start();
+								connect( proc, SIGNAL(processExited(KProcess *)), this, SLOT( finished() ) );
+							}
+						}
 						else
 						{
 							 KIO::Job* job = KIO::mount( false, QString::null.ascii(), device, QString::null);
@@ -110,7 +124,8 @@ static KCmdLineOptions options[] =
 {
     { "u", I18N_NOOP("Unmount given URL"), 0 },
     { "m", I18N_NOOP("Mount given URL (default)"), 0 },
-    {"!+[URL]",   I18N_NOOP("devices:/ URL to mount/unmount."), 0 },
+    { "e", I18N_NOOP("Eject given URL via kdeeject"), 0},
+    {"!+[URL]",   I18N_NOOP("devices:/ URL to mount/unmount/eject."), 0 },
     { 0, 0, 0}
 };
 
