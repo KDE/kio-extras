@@ -53,12 +53,13 @@ QApplication *QtApp;
 // We also need echo for user names, no echo for passwords.
 // Next version of the lib will have a better mechanism
 // Note : removing this from here would make this kio_slave no Qt app anymore
-class CallbackDialog : public QDialog
+class CallbackDialog : public QDialog, public SmbAnswerCallback
 {
 protected:
     QLineEdit *theLineEdit;
 
 public:
+	// constructor
 	CallbackDialog( const char *text, bool echo=false, QWidget* parent=0, const char* name=0, bool modal=true, WFlags f=0 );
 	const char *answer(); // the user answer
 };
@@ -104,14 +105,12 @@ const char *CallbackDialog::answer() // the user answer
 // should display its argument and return an answer allocated with new.
 // A callback class with virtual function should be used in the lib in the
 // future
-char *getPasswordCallBack(const char * c)
+char *getPasswordCallBack(const char * c, bool echo)
 {
 	if (!c) return 0;
 	QString s;
-	bool echo=false;
 	if (!strcmp(c,"User")) {
 		s+=i18n("User");
-		echo=true;
 	}
 	else if (!strcmp(c,"Password")) s+=i18n("Password");
 	else if (!strncmp(c,"Password for service ",21)) {
