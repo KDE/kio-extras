@@ -27,6 +27,9 @@ kdelnkdir = $(kde_servicesdir)
 dirtree_DATA = smb-network.desktop
 dirtreedir = $(kde_datadir)/konqueror/dirtree/remote
 
+remote_DATA = smb-network.desktop
+remotedir = $(kde_datadir)/remoteview
+
 METASOURCES = AUTO
 
 mimetypedir = $(kde_mimedir)/application
