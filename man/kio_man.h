@@ -30,6 +30,10 @@ public:
   void outputError(QString errmsg);
 
 
+  void showMainIndex();
+  void showIndex(QString section);
+
+
 private slots:
 
   void shellStdout(KProcess *, char *buffer, int buflen);
