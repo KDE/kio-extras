@@ -189,6 +189,8 @@ class imapParser {
 	const QStringList &getResults() { return lastResults; };
 
 	const imapInfo &getStatus() { return lastStatus; };
+	const imapInfo &getSelected() { return selectInfo; };
+
 	const QString &getContinuation() { return continuation; };
 
 	bool hasCapability(const QString &);

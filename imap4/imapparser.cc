@@ -1019,7 +1019,34 @@ void imapParser::parseBody(QString &inWords)
 		if(inWords[0] == ']')
 		inWords = inWords.right(inWords.length() - 1);	// eat it
 		skipWS(inWords);
-		parseLiteral(inWords,true);
+
+		// parse the header
+		if(specifier == "0") {
+			mailHeader *envelope=NULL;
+			imapCache *cache = uidCache[seenUid];
+			if(cache) envelope = cache->getHeader();
+
+			if(!envelope || seenUid.isEmpty())
+			{
+				qDebug("imapParser::parseBody - discarding %p %s",envelope,seenUid.ascii());
+				// don't know where to put it, throw it away
+				parseLiteral(inWords,true);
+			} else {
+				qDebug("imapParser::parseBody - reading %p %s",envelope,seenUid.ascii());
+				// fill it up with data
+				QString theHeader = parseLiteral(inWords,true);
+				mimeIOQString myIO;
+				
+				myIO.setString(theHeader);
+				envelope->parseHeader(myIO);
+				
+			}
+			lastHandled = cache;
+		} else {
+			// throw it away
+			parseLiteral(inWords,true);
+		}
+
 	} else {
 		mailHeader *envelope=NULL;
 		imapCache *cache = uidCache[seenUid];
@@ -1431,8 +1458,8 @@ QString imapParser::parseLiteral(QString &inWords,bool relay)
 				
 				if(relay) parseRelay(runLen);
 				parseRead(fill,runLen,relay ? runLen : 0);
-				qDebug("requested %ld and got %d",runLen,fill.size());
-				qDebug("last bytes %x %x %x %x",fill[runLen-4],fill[runLen-3],fill[runLen-2],fill[runLen-1]);
+//				qDebug("requested %ld and got %d",runLen,fill.size());
+//				qDebug("last bytes %x %x %x %x",fill[runLen-4],fill[runLen-3],fill[runLen-2],fill[runLen-1]);
 				retVal = QString::fromLatin1( fill.data(),runLen);  // our data
 				inWords = QString::fromLatin1( fill.data()+runLen); // what remains
 				if(inWords.isEmpty())
@@ -1440,7 +1467,7 @@ QString imapParser::parseLiteral(QString &inWords,bool relay)
 					QByteArray prefetch;
 					parseReadLine(prefetch);  // must get more
 					inWords = QString::fromLatin1(prefetch.data(),prefetch.size());
-					qDebug("prefetched [%d] - '%s'",inWords.length(),inWords.latin1());
+//					qDebug("prefetched [%d] - '%s'",inWords.length(),inWords.latin1());
 				}
 //				qDebug("requested %ld and got %d",runLen,fill.length());
 //				inWords = inWords.left(inWords.length()-2); // tie off CRLF

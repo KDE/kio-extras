@@ -148,7 +148,15 @@ int mimeIOQString::outputLine(const QCString &_str)
 	return _str.length();
 }
 
-int mimeIOQString::inputLine(QCString &)
+int mimeIOQString::inputLine(QCString &_str)
 {
-	return 0;
+	if(theString.isEmpty())
+		return 0;
+	
+	int i = theString.find('\n');
+
+	if(i == -1)
+		return 0;
+	_str = theString.left(i+1).latin1();
+	theString = theString.right(theString.length()-i-1);
 }

@@ -30,17 +30,18 @@
 mailAddress::mailAddress() :
 	user((const char *)NULL),
 	host((const char *)NULL),
-	fullName((const char *)NULL),
-	comment((const char *)NULL)
+	rawFullName((const char *)NULL),
+	rawComment((const char *)NULL)
 {
 }
 
 mailAddress::mailAddress(const mailAddress &lr) :
 	user(lr.user),
 	host(lr.host),
-	fullName(lr.fullName),
-	comment(lr.comment)
+	rawFullName(lr.rawFullName),
+	rawComment(lr.rawComment)
 {
+//	qDebug("mailAddress::mailAddress - %s",getStr().data());
 }
 
 mailAddress &mailAddress::operator = (const mailAddress & lr)
@@ -51,8 +52,10 @@ mailAddress &mailAddress::operator = (const mailAddress & lr)
 
 	user = lr.user;
 	host = lr.host;
-	fullName = lr.fullName;
-	comment = lr.comment;
+	rawFullName = lr.rawFullName;
+	rawComment = lr.rawComment;
+
+//	qDebug("mailAddress::operator= - %s",getStr().data());
 	
   return *this;
 }
@@ -66,8 +69,8 @@ mailAddress::~mailAddress(){
 mailAddress::mailAddress(char * aCStr) :
 	user((const char *)NULL),
 	host((const char *)NULL),
-	fullName((const char *)NULL),
-	comment((const char *)NULL)
+	rawFullName((const char *)NULL),
+	rawComment((const char *)NULL)
 {
 	parseAddress(aCStr);
 }
@@ -87,11 +90,11 @@ int mailAddress::parseAddress(char *aCStr){
   		{
   			case '"' :
   				advance = mimeHdrLine::parseQuoted('"','"',aCStr);
-  				fullName += QCString(aCStr,advance+1);
+  				rawFullName += QCString(aCStr,advance+1);
   				break;
   			case '(' :
   				advance = mimeHdrLine::parseQuoted('(',')',aCStr);
-  				comment += QCString(aCStr,advance+1);
+  				rawComment += QCString(aCStr,advance+1);
   				break;
   			case '<' :
   				advance = mimeHdrLine::parseQuoted('<','>',aCStr);
@@ -107,10 +110,10 @@ int mailAddress::parseAddress(char *aCStr){
   				{
     				if(*aCStr != ',')
     				{
-      					fullName += QCString(aCStr,advance+1);
+      					rawFullName += QCString(aCStr,advance+1);
           				if(mimeHdrLine::skipWS((const char *)&aCStr[advance]) > 0)
           				{
-  	    						fullName += ' ';
+  	    						rawFullName += ' ';
           				}
         			}
   				}
@@ -135,39 +138,39 @@ int mailAddress::parseAddress(char *aCStr){
   		}
 		}
 		//let's see what we've got
-		if(fullName.isEmpty())
+		if(rawFullName.isEmpty())
 		{
 			if(user.isEmpty()) retVal = 0;
 			else {
   				if(host.isEmpty())
   				{
-  					fullName = user;
+  					rawFullName = user;
   					user = "";
   				}
 			}
 		} else if(user.isEmpty()) {
-			if(fullName.find('@') >= 0)
+			if(rawFullName.find('@') >= 0)
 			{
-				user = fullName.latin1();
+				user = rawFullName;
 				host = user.right(user.length()-user.find("@")-1);
 				user = user.left(user.find("@"));
-				fullName = "";
+				rawFullName = "";
 			}
 		}
-		//get rid of <> and ""
-		if(!fullName.isEmpty())
+
+		if(!rawFullName.isEmpty())
 		{
-			if(fullName[0] == '"')
-				fullName = fullName.mid(1,fullName.length()-2);
-			fullName = fullName.simplifyWhiteSpace().stripWhiteSpace();
-			fullName = rfcDecoder::decodeRFC2047String(fullName.ascii());
+//			if(fullName[0] == '"')
+//				fullName = fullName.mid(1,fullName.length()-2);
+//			fullName = fullName.simplifyWhiteSpace().stripWhiteSpace();
+//			fullName = rfcDecoder::decodeRFC2047String(fullName.ascii());
 		}
-		if(!comment.isEmpty())
+		if(!rawComment.isEmpty())
 		{
-			if(comment[0] == '(')
-				comment = comment.mid(1,comment.length()-2);
-			comment = comment.simplifyWhiteSpace().stripWhiteSpace();
-			comment = rfcDecoder::decodeRFC2047String(comment.ascii());
+			if(rawComment[0] == '(')
+				rawComment = rawComment.mid(1,rawComment.length()-2);
+			rawComment = rawComment.simplifyWhiteSpace().stripWhiteSpace();
+//			comment = rfcDecoder::decodeRFC2047String(comment.ascii());
 		}
 	} else {
 		//debug();
@@ -179,9 +182,9 @@ const QCString mailAddress::getStr()
 {
 	QCString retVal;
 	
-	if(!fullName.isEmpty())
+	if(!rawFullName.isEmpty())
 	{
-		retVal = QCString("\"") + rfcDecoder::encodeRFC2047String(fullName).ascii() + "\" ";
+		retVal = getFullNameRaw() + " ";
 	}
 	if(!user.isEmpty())
 	{
@@ -189,9 +192,9 @@ const QCString mailAddress::getStr()
 		if(!host.isEmpty()) retVal += "@" + host;
 		retVal += ">";
 	}	
-	if(!comment.isEmpty())
+	if(!rawComment.isEmpty())
 	{
-		retVal = '(' + rfcDecoder::encodeRFC2047String(comment).ascii() + ')';
+		retVal = '(' + getCommentRaw() + ')';
 	}
 //	qDebug("mailAddress::getStr - '%s'",retVal.data());
 	return retVal;
@@ -202,15 +205,15 @@ bool mailAddress::isEmpty() const
 	return (user.isEmpty());
 }
 
-void mailAddress::setFullNameRaw(const QCString &_str)
-{
-	fullName = rfcDecoder::decodeRFC2047String(_str);
-};
+void mailAddress::setFullNameRaw(const QCString &_str) { rawFullName = _str; }
+void mailAddress::setFullName(const QString &_str) { rawFullName = rfcDecoder::encodeRFC2047String(_str).latin1(); }
+const QString mailAddress::getFullName() const { return rfcDecoder::decodeRFC2047String(rawFullName); }
+const QCString &mailAddress::getFullNameRaw() const { return rawFullName; }
 
-void mailAddress::setCommentRaw(const QCString &_str)
-{
-	comment = rfcDecoder::decodeRFC2047String(_str);
-};
+void mailAddress::setCommentRaw(const QCString &_str) { rawComment = _str; }
+void mailAddress::setComment(const QString &_str) { rawComment = rfcDecoder::encodeRFC2047String(_str).latin1(); }
+const QString mailAddress::getComment() const { return rfcDecoder::decodeRFC2047String(rawComment); }
+const QCString &mailAddress::getCommentRaw() const { return rawComment; }
 
 QString mailAddress::emailAddrAsAnchor(const mailAddress &adr,bool shortAdr)
 {

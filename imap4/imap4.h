@@ -84,6 +84,9 @@ public:
   
 protected:
 
+	// select or examine the box if needed
+	bool assureBox(const QString &aBox,bool readonly);
+
 	// our new ReadLine supports 0x00 within data
 	ssize_t ReadLine(char *data,ssize_t len);
 
@@ -95,6 +98,8 @@ protected:
 	QString myHost,myUser,myPass,myAuth;
 	int myPort;
 
+	bool relayEnabled;
+	
 	void outputLineStr(const QString &_str) {outputLine(_str.latin1());}
 	void doListEntry(const KURL &_url,mailHeader *what,int stretch);
 	void doListEntry(const KURL &_url,const QString &myBox,const imapList &item);

@@ -41,13 +41,15 @@ public:
 	void setHost(const QCString &aHost) { host = aHost;};
 	const QCString &getHost() const { return host;};
 
-	void setFullName(const QString &aFull) { fullName = aFull;};
+	void setFullName(const QString &aFull);
 	void setFullNameRaw(const QCString &aFull);
-	const QString &getFullName() const { return fullName;};
+	const QString getFullName() const;
+	const QCString &getFullNameRaw() const;
 
-	void setComment(const QString &aComment) { comment = aComment;};
+	void setComment(const QString &aComment);
 	void setCommentRaw(const QCString &);
-	const QString &getComment() const { return comment;};
+	const QString getComment() const;
+	const QCString &getCommentRaw() const;
 
 	int parseAddress(char *);
 	const QCString getStr();
@@ -59,8 +61,8 @@ public:
 private:
 	QCString user;
 	QCString host;
-	QString fullName;
-	QString comment;
+	QCString rawFullName;
+	QCString rawComment;
 };
 
 #endif

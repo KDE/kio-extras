@@ -146,6 +146,7 @@ IMAP4Protocol::IMAP4Protocol(const QCString &pool, const QCString &app, bool isS
 {
 	readBuffer[0] = 0x00;
 	readSize = 0;
+	relayEnabled = false;
 }
 
 IMAP4Protocol::~IMAP4Protocol() {
@@ -164,15 +165,7 @@ void IMAP4Protocol::get(const KURL &_url) {
 	}
 	
 	imapCommand *cmd = NULL;
-	if(aBox != getCurrentBox())
-	{
-		cmd = doCommand(imapCommand::clientSelect(aBox,true));
-		completeQueue.removeRef(cmd);
-	} else {
-		cmd = doCommand(imapCommand::clientNoop());
-		completeQueue.removeRef(cmd);
-		qDebug("IMAP4Protocol::get - reusing selected box");
-	}
+	if(! assureBox(aBox,true) ) { error(ERR_COULD_NOT_READ,_url.url()); return; }
 
 #ifdef USE_VALIDITY
 	if(selectInfo.uidValidityAvailable() && !aValidity.isEmpty() && selectInfo.uidValidity() != aValidity.toULong())
@@ -188,11 +181,12 @@ void IMAP4Protocol::get(const KURL &_url) {
 		} else if(aSection.find("ENVELOPE",0,false) != -1) {
 			aSection = "ENVELOPE";
 		} else {
-			if(aEnum == ITYPE_BOX) aSection="ENVELOPE RFC822.SIZE INTERNALDATE FLAGS";
-			else aSection = "BODY.PEEK[" + aSection + "]";
+			aSection = "BODY.PEEK[" + aSection + "]";
 		}
 		if(aEnum == ITYPE_BOX)
 		{
+			aSection +=" RFC822.SIZE INTERNALDATE FLAGS";
+
 			// write the digest header
 			outputLine("Content-Type: multipart/digest; boundary=\"IMAPDIGEST\"\r\n");
 			if(selectInfo.recentAvailable())
@@ -212,6 +206,8 @@ void IMAP4Protocol::get(const KURL &_url) {
 			outputLine("\r\n");
 		}
 
+		if(aEnum == ITYPE_MSG) relayEnabled = true;
+		
 		cmd = sendCommand(imapCommand::clientFetch(aSequence,aSection));
 		do {
 			while(!parseLoop());
@@ -224,7 +220,9 @@ void IMAP4Protocol::get(const KURL &_url) {
 			if(!cmd->isComplete())
 			{
 				qDebug("IMAP4::get - got %p from client",lastone);
-				if(lastone && ((aSection.find("BODYSTRUCTURE",0,false) != -1) || (aSection.find("ENVELOPE",0,false) != -1) ) )
+				if(lastone && (	(aSection.find("BODYSTRUCTURE",0,false) != -1)
+								|| (aSection.find("ENVELOPE",0,false) != -1)
+								|| (aSection.find("BODY.PEEK[0]",0,false) != -1 && aEnum == ITYPE_BOX) ) )
 				{
 					if(aEnum == ITYPE_BOX)
 					{
@@ -257,6 +255,7 @@ void IMAP4Protocol::get(const KURL &_url) {
 	data(QByteArray());
 
 	finished();
+	relayEnabled = false;
    qDebug( "IMAP4::get -  finished");
 }
 
@@ -302,16 +301,7 @@ void IMAP4Protocol::listDir(const KURL &_url) {
 			if(!query.isEmpty()) {
 				imapCommand *cmd = NULL;
 				
-				if(myBox != getCurrentBox())
-				{
-					cmd = doCommand(imapCommand::clientSelect(myBox,true));
-				} else {
-					cmd = doCommand(imapCommand::clientNoop());
-				}
-
-				completeQueue.removeRef(cmd);
-
-				if(myBox == getCurrentBox())
+				if(assureBox(myBox,true))
 				{
 					cmd = doCommand( imapCommand::clientSearch(query) );
 					completeQueue.removeRef(cmd);
@@ -350,15 +340,8 @@ void IMAP4Protocol::listDir(const KURL &_url) {
 			}
 		} else {
 
-			imapCommand *cmd = NULL;
-			if(myBox != getCurrentBox())
-			{
-				cmd = doCommand(imapCommand::clientSelect(myBox,true));
-			} else {
-				cmd = doCommand(imapCommand::clientNoop());
-			}
-
-			if(cmd && cmd->result() == "OK")
+//			imapCommand *cmd = NULL;
+			if(assureBox(myBox,true))
 			{
 				qDebug("IMAP4: select returned:");
 				if(selectInfo.recentAvailable()) qDebug("Recent: %ld",selectInfo.recent());
@@ -411,7 +394,7 @@ void IMAP4Protocol::listDir(const KURL &_url) {
 			} else {
     		  error(ERR_CANNOT_ENTER_DIRECTORY, _url.url());
 			}
-			completeQueue.removeRef(cmd);
+//			completeQueue.removeRef(cmd);
 		}
 	} else {
       error(ERR_CANNOT_ENTER_DIRECTORY, _url.url());
@@ -470,12 +453,12 @@ void IMAP4Protocol::setHost(const QString &_host, int _port, const QString &_use
 
 void IMAP4Protocol::parseRelay(const QByteArray &buffer)
 {
-	data(buffer);
+	if(relayEnabled) data(buffer);
 }
 
 void IMAP4Protocol::parseRelay(ulong len)
 {
-	totalSize(len);
+	if(relayEnabled) totalSize(len);
 }
 
 
@@ -514,7 +497,7 @@ void IMAP4Protocol::parseReadLine (QByteArray &buffer,ulong relay)
 				
 				if(readLen < relay) relay = readLen;
 				relayData.setRawData(buf,relay);
-				data(relayData);
+				parseRelay(relayData);
 				relayData.resetRawData(buf,relay);
 				qDebug("relayed : %ld",relay);
 			}
@@ -713,15 +696,8 @@ void  IMAP4Protocol::copy ( const KURL &src, const KURL &dest, int permissions, 
 	}
 	if(sType == ITYPE_MSG)
 	{
-		//first select the source box
-		if(getCurrentBox() != sBox)
-		{
-			imapCommand *cmd = doCommand(imapCommand::clientSelect(sBox,true));
-			completeQueue.removeRef(cmd);
-		}
-		
-		//continue on success
-		if(getCurrentBox() == sBox)
+		//select the source box
+		if(assureBox(sBox,true))
 		{
 			qDebug("IMAP4::copy - %s -> %s",sBox.latin1(),dBox.latin1());
 
@@ -756,9 +732,14 @@ void IMAP4Protocol::del( const KURL &_url, bool isFile)
 					if( cmd->result() != "OK" ) error(ERR_CANNOT_DELETE,_url.url());
 					completeQueue.removeRef(cmd);
 				} else {
-					imapCommand *cmd= doCommand( imapCommand::clientStore(aSequence,"+FLAGS","\\DELETED"));
-					if( cmd->result() != "OK" ) error(ERR_CANNOT_DELETE,_url.url());
-					completeQueue.removeRef(cmd);
+					// if open for read/write 
+					if( assureBox( aBox, false ) )
+					{
+						imapCommand *cmd= doCommand( imapCommand::clientStore(aSequence,"+FLAGS","\\DELETED"));
+						if( cmd->result() != "OK" ) error(ERR_CANNOT_DELETE,_url.url());
+						completeQueue.removeRef(cmd);
+					} else
+						error(ERR_CANNOT_DELETE,_url.url());					
 				}
 			} else {
 				//TODO delete the mailbox
@@ -775,9 +756,14 @@ void IMAP4Protocol::del( const KURL &_url, bool isFile)
 			
 		case ITYPE_MSG :
 			{
-				imapCommand *cmd= doCommand( imapCommand::clientStore(aSequence,"+FLAGS","\\DELETED"));
-				if( cmd->result() != "OK" ) error(ERR_CANNOT_DELETE,_url.url());
-				completeQueue.removeRef(cmd);
+				// if open for read/write 
+				if( assureBox( aBox, false ) )
+				{
+					imapCommand *cmd= doCommand( imapCommand::clientStore(aSequence,"+FLAGS","\\DELETED"));
+					if( cmd->result() != "OK" ) error(ERR_CANNOT_DELETE,_url.url());
+					completeQueue.removeRef(cmd);
+				} else
+					error(ERR_CANNOT_DELETE,_url.url());
 			}
 			break;
 			
@@ -1223,11 +1209,14 @@ enum IMAP_TYPE IMAP4Protocol::parseURL(const KURL &_url,QString &_box,QString &_
 int IMAP4Protocol::outputLine(const QCString &_str)
 {
 	QByteArray temp;
+	bool relay = relayEnabled;
 	
+	relayEnabled = true;	
 	temp.setRawData(_str.data(),_str.length());
 	parseRelay(temp);
 	temp.resetRawData(_str.data(),_str.length());
 
+	relayEnabled = relay;
 	return 0;
 }
 
@@ -1284,4 +1273,40 @@ ssize_t IMAP4Protocol::ReadLine(char *buf,ssize_t len)
 	
 	if(len <= 0) len = 0;	
 	return len;
+}
+
+bool IMAP4Protocol::assureBox(const QString &aBox,bool readonly)
+{
+	imapCommand *cmd = NULL;
+
+	if(aBox != getCurrentBox())
+	{
+		// open the box with the appropriate mode
+		qDebug("IMAP4Protocol::assureBox - opening box");
+		cmd = doCommand(imapCommand::clientSelect(aBox,readonly));
+		completeQueue.removeRef(cmd);
+	} else {
+		// check if it is the mode we want
+		if( getSelected().readWrite() || readonly)
+		{
+			// give the server a chance to deliver updates
+			qDebug("IMAP4Protocol::assureBox - reusing box");
+			cmd = doCommand(imapCommand::clientNoop());
+			completeQueue.removeRef(cmd);
+		} else {
+			// reopen the box with the appropriate mode
+			qDebug("IMAP4Protocol::assureBox - reopening box");
+			cmd = doCommand(imapCommand::clientSelect(aBox,readonly));
+			completeQueue.removeRef(cmd);
+		}
+	}
+
+	// if it isn't opened
+	if( aBox != getCurrentBox() ) return false;
+
+	// if it is the mode we want
+	if( getSelected().readWrite() || readonly ) return true;
+
+	// we goofed somewhere
+	return false;
 }

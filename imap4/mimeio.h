@@ -62,7 +62,8 @@ class mimeIOQString : public mimeIO
 	virtual int outputLine(const QCString &);
 	virtual int inputLine(QCString &);
 	QString getString() { return theString;};
-	
+	void setString(const QString &_str) { theString = _str; };	
+
   protected:
   	QString theString;
 };
