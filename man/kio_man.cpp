@@ -30,24 +30,31 @@ MANProtocol *MANProtocol::_self = 0;
 
 bool parseUrl(const QString& _url, QString &title, QString &section)
 {
-  section = "";
+    section = "";
 
-  QString url = _url;
-  while (url.left(1) == "/")
-    url.remove(0,1);
+    QString url = _url;
+    if (url.at(0) == '/') {
+        if (KStandardDirs::exists(url)) {
+            title = url;
+            return true;
+        }
+    }
 
-  title = url;
+    while (url.left(1).at(0) == '/')
+        url.remove(0,1);
 
-  int pos = url.find('(');
-  if (pos < 0)
+    title = url;
+
+    int pos = url.find('(');
+    if (pos < 0)
+        return false;
+
+    title = title.left(pos);
+
+    section = url.mid(pos+1);
+    section = section.left(section.length()-1);
+
     return true;
-
-  title = title.left(pos);
-
-  section = url.mid(pos+1);
-  section = section.left(section.length()-1);
-
-  return true;
 }
 
 
@@ -68,7 +75,10 @@ MANProtocol::~MANProtocol()
 
 QCString MANProtocol::findPage(const QString &section, const QString &title) const
 {
-    return "/usr/share/man/man1/gcc.1.gz";
+    if (title.at(0) == '/')
+        return title.utf8();
+    else
+        return "/usr/share/man/man1/gcc.1.gz";
 }
 
 void output_real(const char *insert)
