@@ -21,6 +21,7 @@
 #include <errno.h>
 
 #include <kstddirs.h>
+#include <qregexp.h>
 
 const char * const KSshProcess::versionStrs[] = {
     "OpenSSH_2.9p1",
@@ -45,8 +46,8 @@ const char * const KSshProcess:: authSuccessMsg[] = {
     "ssh-userauth2 successful",
     "ssh-userauth2 successful",
     "ssh-userauth2 successful",
-    "Authentication successful.",
-    "Authentication successful."
+    "Received SSH_CROSS_AUTHENTICATED packet",
+    "Received SSH_CROSS_AUTHENTICATED packet"
 };
 
 const char* const KSshProcess::authFailedPrompt[] = {
@@ -288,13 +289,13 @@ bool KSshProcess::setOptions(const SshOptList& opts) {
     mArgs.append("NumberOfPasswordPrompts 2");
     mArgs.append("-o");
     mArgs.append("StrictHostKeyChecking ask");
+    mArgs.append("-v"); // So we get a message that the connection was successful
     if( mVersion <= OPENSSH ) {
-        mArgs.append("-v"); // So we get a message that the connection was successful
+        // nothing
     }
     else if( mVersion <= SSH ) {
         mArgs.append("-o"); // So we can check if the connection was successful
         mArgs.append("AuthenticationSuccessMsg yes");
-        mArgs.append("-v");
     }
 
     if( mHost.isEmpty() ) {
@@ -405,6 +406,7 @@ bool KSshProcess::connect(bool acceptHostKey) {
         }
         
         if( !ptyLine.isEmpty() ) {
+            ptyLine.replace(QRegExp(mPassword), "");
             kdDebug(KSSHPROC) << "KSshProcess::connect(): got line from pty [" << ptyLine << "]" << endl;
 
             // OpenSSH print password prompt to the terminal
