@@ -64,7 +64,7 @@ int c = 0;
 
     buf[c] = x;
 
-    if (x == '\n') {  
+    if (x == '\n') {
       buf[c+1] = 0;
       break;
     }
@@ -206,15 +206,17 @@ bool POP3Protocol::getResponse (char *r_buf, unsigned int r_len)
  *   send the "+OK" and "-ERR" in upper case.
  */
 
-  if (strncmp(buf, "+OK ", 4)==0) {
+  if (strncmp(buf, "+OK", 3)==0) {
     if (r_buf && r_len) {
-      memcpy(r_buf, buf+4, QMIN(r_len,recv_len-4));
+      memcpy(r_buf, (buf[3] == ' ' ? buf+4 : buf+3),
+             QMIN(r_len, (buf[3] == ' ' ? recv_len-4 : recv_len-3)));
     }
     if (buf) free(buf);
     return true;
-  } else if (strncmp(buf, "-ERR ", 5)==0) {
+  } else if (strncmp(buf, "-ERR", 4)==0) {
     if (r_buf && r_len) {
-      memcpy(r_buf, buf+5, QMIN(r_len,recv_len-5));
+      memcpy(r_buf, (buf[4] == ' ' ? buf+5 : buf+4),
+             QMIN(r_len, (buf[4] == ' ' ? recv_len-5 : recv_len-4)));
     }
     if (buf) free(buf);
     return false;
@@ -302,7 +304,7 @@ bool POP3Protocol::pop3_open()
 
   // We want 110 as the default, but -1 means no port was specified.
   // Why 0 wasn't chosen is beyond me.
- 
+
 #ifdef SPOP3
   if (m_iPort) {
     port = m_iPort;
@@ -326,7 +328,7 @@ bool POP3Protocol::pop3_open()
     }
   }
 #endif
-  if ( (m_iOldPort == port) && (m_sOldServer == m_sServer) && 
+  if ( (m_iOldPort == port) && (m_sOldServer == m_sServer) &&
        (m_sOldUser == m_sUser) && (m_sOldPass == m_sPass)) {
     fprintf(stderr,"Reusing old connection\n");
     return true;
@@ -382,7 +384,7 @@ bool POP3Protocol::pop3_open()
 
     QCString greeting( 1024 );
     // If the server doesn't respond with a greeting
-    if (!getResponse(greeting.data(), greeting.size()))  
+    if (!getResponse(greeting.data(), greeting.size()))
       return false;      // we've got major problems, and possibly the
                          // wrong port
 
@@ -445,11 +447,11 @@ bool POP3Protocol::pop3_open()
 		    (unsigned char *)c,
 		    (unsigned)strlen(c));
       Bin_MD5Update(&ctx,
-		    (unsigned char *)m_sOldPass.data(), 
+		    (unsigned char *)m_sOldPass.data(),
 		    (unsigned)m_sOldPass.length());
       Bin_MD5Final(digest, &ctx);
       for(int i = 0; i < 16; i++)
-	sprintf(ascii_digest+2*i, "%02x", digest[i]);      
+	sprintf(ascii_digest+2*i, "%02x", digest[i]);
 
       // Genenerate APOP command
       apop_string.append(" ");
@@ -457,8 +459,8 @@ bool POP3Protocol::pop3_open()
 
       if(command(apop_string, buf, sizeof(buf)))
 	return true;
-      
-      fprintf(stderr, "Couldn't login via APOP. Falling back to USER/PASS\n"); 
+
+      fprintf(stderr, "Couldn't login via APOP. Falling back to USER/PASS\n");
     }
 #endif
 
@@ -468,7 +470,7 @@ bool POP3Protocol::pop3_open()
       pop3_close();
       return false;
     }
-    
+
     one_string="PASS ";
     if (m_sPass.isEmpty()) {
       m_sOldPass = pass;
@@ -531,7 +533,7 @@ void POP3Protocol::get( const KURL& url, bool )
 
   QString cmd;
   QString path = url.path();
-  
+
   if (path.at(0)=='/') path.remove(0,1);
   if (path.isEmpty()) {
     debug("We should be a dir!!");
@@ -615,7 +617,7 @@ LIST
 
   else if (cmd == "headers") {
     (void)path.toInt(&ok);
-    if (!ok) 
+    if (!ok)
     {
        error( ERR_INTERNAL, i18n("Unexpected response from POP3 server."));
        return; //  We fscking need a number!
@@ -664,7 +666,7 @@ LIST
 
   else if (cmd == "remove") {
     (void)path.toInt(&ok);
-    if (!ok) 
+    if (!ok)
     {
        error( ERR_INTERNAL, i18n("Unexpected response from POP3 server."));
        return; //  We fscking need a number!
@@ -680,7 +682,7 @@ LIST
     unsigned int msg_len=0;
     (void)path.toInt(&ok);
     QString list_cmd("LIST ");
-    if (!ok) 
+    if (!ok)
     {
        error( ERR_INTERNAL, i18n("Unexpected response from POP3 server."));
        return; //  We fscking need a number!
@@ -706,7 +708,7 @@ LIST
 	return;
       }
     } else {
-      pop3_close(); 
+      pop3_close();
       error( ERR_INTERNAL, i18n("Unexpected response from POP3 server."));
       return;
     }
@@ -771,7 +773,7 @@ LIST
       data(QByteArray());
       speed(0); finished();
     } else {
-      pop3_close(); 
+      pop3_close();
       error( ERR_INTERNAL, i18n("Unexpected response from POP3 server."));
       return;
     }
@@ -873,7 +875,7 @@ fprintf(stderr,"URL is %s\n", atom.m_str.ascii());
     entry.clear();
   }
   listEntry( entry, true ); // ready
-  
+
   finished();
 }
 
@@ -910,7 +912,7 @@ void POP3Protocol::del( const KURL& url, bool /*isfile*/ )
     pop3_close();
     return;
   }
-  
+
   QString _path = url.path();
   if (_path.at(0) == '/')
     _path.remove(0,1);
