@@ -291,7 +291,7 @@ Response SMTPProtocol::getResponse( bool * ok ) {
   int recv_len = 0;
   do {
     // wait for data...
-    if ( !waitForResponse( 60 ) ) {
+    if ( !waitForResponse( 600 ) ) {
       error( KIO::ERR_SERVER_TIMEOUT, m_sServer );
       return response;
     }
