@@ -4,10 +4,6 @@ if include_kioslave_ldap
 LDAP_SUBDIR=ldap
 endif
 
-if include_kioslave_audiocd
-AUDIOCD_SUBDIR=audiocd
-endif
-
 if include_kioslave_smb
 SMB_SUBDIR=smb
 endif
