@@ -191,8 +191,7 @@ KURL SMBSlave::checkURL(const KURL& kurl) const {
         if(userinfo.contains(':'))  {
             url.setUser(userinfo.left(userinfo.find(':')));
             url.setPass(userinfo.right(userinfo.length()-userinfo.find(':')-1));
-        }
-        else {
+        } else {
             url.setUser(userinfo);
         }
         kdDebug() << "checkURL return2 " << url.url() << endl;
@@ -286,7 +285,8 @@ void SMBSlave::listDir( const KURL& kurl )
            QString dirpName = toUnicode( dirp->name );
            atom.m_str = dirpName;
            udsentry.append( atom );
-           if (atom.m_str=="$IPC" || atom.m_str=="." || atom.m_str == "..")
+           if (atom.m_str=="$IPC" || atom.m_str=="." || atom.m_str == ".." ||
+               atom.m_str == "ADMIN$" || atom.m_str == "print$")
            {
 //            fprintf(stderr,"----------- hide: -%s-\n",dirp->name);
                // do nothing and hide the hidden shares
@@ -328,7 +328,7 @@ void SMBSlave::listDir( const KURL& kurl )
                    QString workgroup = m_current_url.host().upper();
                    // when libsmbclient knows
                    // atom.m_str = QString("smb://%1?WORKGROUP=%2").arg(dirpName).arg(workgroup.upper());
-                   atom.m_str = QString("smb://%1").arg(dirpName);
+                   atom.m_str = QString("smb://%1").arg(KURL::encode_string(dirpName));
                    udsentry.append(atom);
                }
 
