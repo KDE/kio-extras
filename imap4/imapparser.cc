@@ -1735,12 +1735,19 @@ imapParser::parseOneWord (QString & inWords)
 
   if (inWords[0] == '"')
   {
-    int i = inWords.find (QRegExp("[^\\\\]\""));
-    if (i != -1)
+    int i = 1;
+    bool quote = FALSE;
+    while (i < inWords.length() && (inWords[i] != '"' || quote))
     {
-      retVal = inWords.left (i + 1);
+      if (inWords[i] == '\\') quote = !quote;
+      else quote = FALSE;
+      i++;
+    }
+    if (i < inWords.length())
+    {
+      retVal = inWords.left (i);
       retVal = retVal.right (retVal.length () - 1);
-      inWords = inWords.right (inWords.length () - i - 2);
+      inWords = inWords.right (inWords.length () - i - 1);
     }
     else
     {
