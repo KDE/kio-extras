@@ -660,8 +660,8 @@ $PROGRAM =~ s!.*/!!;
 
 print $1;
 
-$BaseInfoFile = $ARGV[2];
-$NodeName     = $ARGV[3];
+$BaseInfoFile = $ARGV[1];
+$NodeName     = $ARGV[2];
 &DirnameCheck($BaseInfoFile) || &DieFileNotFound($BaseInfoFile);
 
 
