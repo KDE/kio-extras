@@ -23,11 +23,11 @@
 #include <kio/slavebase.h>
 #include <sys/types.h>
 
-class TARProtocol : public KIO::SlaveBase
+class ArchiveProtocol : public KIO::SlaveBase
 {
 public:
-    TARProtocol( const QCString &pool, const QCString &app );
-    virtual ~TARProtocol();
+    ArchiveProtocol( const QCString &pool, const QCString &app );
+    virtual ~ArchiveProtocol();
 
     virtual void listDir( const KURL & url );
     virtual void stat( const KURL & url );

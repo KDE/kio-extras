@@ -34,28 +34,28 @@ int kdemain( int argc, char **argv )
      exit(-1);
   }
 
-  TARProtocol slave(argv[2], argv[3]);
+  ArchiveProtocol slave(argv[2], argv[3]);
   slave.dispatchLoop();
 
   kdDebug(7109) << "Done" << endl;
   return 0;
 }
 
-TARProtocol::TARProtocol( const QCString &pool, const QCString &app ) : SlaveBase( "tar", pool, app )
+ArchiveProtocol::ArchiveProtocol( const QCString &pool, const QCString &app ) : SlaveBase( "tar", pool, app )
 {
-  kdDebug( 7109 ) << "TarProtocol::TarProtocol" << endl;
+  kdDebug( 7109 ) << "ArchiveProtocol::ArchiveProtocol" << endl;
   m_archiveFile = 0L;
 }
 
-TARProtocol::~TARProtocol()
+ArchiveProtocol::~ArchiveProtocol()
 {
     delete m_archiveFile;
 }
 
-bool TARProtocol::checkNewFile( const KURL & url, QString & path )
+bool ArchiveProtocol::checkNewFile( const KURL & url, QString & path )
 {
     QString fullPath = url.path();
-    kdDebug(7109) << "TARProtocol::checkNewFile " << fullPath << endl;
+    kdDebug(7109) << "ArchiveProtocol::checkNewFile " << fullPath << endl;
 
 
     // Are we already looking at that file ?
@@ -68,7 +68,7 @@ bool TARProtocol::checkNewFile( const KURL & url, QString & path )
             if ( m_mtime == statbuf.st_mtime )
             {
                 path = fullPath.mid( m_archiveName.length() );
-                kdDebug(7109) << "TARProtocol::checkNewFile returning " << path << endl;
+                kdDebug(7109) << "ArchiveProtocol::checkNewFile returning " << path << endl;
                 return true;
             }
         }
@@ -118,7 +118,7 @@ bool TARProtocol::checkNewFile( const KURL & url, QString & path )
     }
     if ( archiveFile.isEmpty() )
     {
-        kdDebug(7109) << "TARProtocol::checkNewFile: not found" << endl;
+        kdDebug(7109) << "ArchiveProtocol::checkNewFile: not found" << endl;
         return false;
     }
 
@@ -150,7 +150,7 @@ bool TARProtocol::checkNewFile( const KURL & url, QString & path )
 }
 
 
-void TARProtocol::createUDSEntry( const KArchiveEntry * archiveEntry, UDSEntry & entry )
+void ArchiveProtocol::createUDSEntry( const KArchiveEntry * archiveEntry, UDSEntry & entry )
 {
     UDSAtom atom;
     entry.clear();
@@ -187,9 +187,9 @@ void TARProtocol::createUDSEntry( const KArchiveEntry * archiveEntry, UDSEntry &
     entry.append( atom );
 }
 
-void TARProtocol::listDir( const KURL & url )
+void ArchiveProtocol::listDir( const KURL & url )
 {
-    kdDebug( 7109 ) << "TarProtocol::listDir " << url.url() << endl;
+    kdDebug( 7109 ) << "ArchiveProtocol::listDir " << url.url() << endl;
 
     QString path;
     if ( !checkNewFile( url, path ) )
@@ -218,7 +218,7 @@ void TARProtocol::listDir( const KURL & url )
         KURL redir( url.protocol() + QString::fromLatin1( ":/") );
         kdDebug() << "url.path()==" << url.path() << endl;
         redir.setPath( url.path() + QString::fromLatin1("/") );
-        kdDebug() << "TARProtocol::listDir: redirection " << redir.url() << endl;
+        kdDebug() << "ArchiveProtocol::listDir: redirection " << redir.url() << endl;
         redirection( redir );
         finished();
         return;
@@ -265,10 +265,10 @@ void TARProtocol::listDir( const KURL & url )
 
     finished();
 
-    kdDebug( 7109 ) << "TarProtocol::listDir done" << endl;
+    kdDebug( 7109 ) << "ArchiveProtocol::listDir done" << endl;
 }
 
-void TARProtocol::stat( const KURL & url )
+void ArchiveProtocol::stat( const KURL & url )
 {
     QString path;
     UDSEntry entry;
@@ -277,7 +277,7 @@ void TARProtocol::stat( const KURL & url )
         // We may be looking at a real directory - this happens
         // when pressing up after being in the root of an archive
         QCString _path( QFile::encodeName(url.path()));
-        kdDebug( 7109 ) << "TARProtocol::stat (stat) on " << _path << endl;
+        kdDebug( 7109 ) << "ArchiveProtocol::stat (stat) on " << _path << endl;
         struct stat buff;
         if ( ::stat( _path.data(), &buff ) == -1 || !S_ISDIR( buff.st_mode ) ) {
             kdDebug() << "isdir=" << S_ISDIR( buff.st_mode ) << "  errno=" << strerror(errno) << endl;
@@ -289,7 +289,7 @@ void TARProtocol::stat( const KURL & url )
         atom.m_uds = KIO::UDS_NAME;
         atom.m_str = url.fileName();
         entry.append( atom );
-        kdDebug( 7109 ) << "TARProtocol::stat returning name=" << url.fileName() << endl;
+        kdDebug( 7109 ) << "ArchiveProtocol::stat returning name=" << url.fileName() << endl;
 
         atom.m_uds = KIO::UDS_FILE_TYPE;
         atom.m_long = buff.st_mode & S_IFMT;
@@ -326,9 +326,9 @@ void TARProtocol::stat( const KURL & url )
     finished();
 }
 
-void TARProtocol::get( const KURL & url )
+void ArchiveProtocol::get( const KURL & url )
 {
-    kdDebug( 7109 ) << "TarProtocol::get" << url.url() << endl;
+    kdDebug( 7109 ) << "ArchiveProtocol::get" << url.url() << endl;
 
     QString path;
     if ( !checkNewFile( url, path ) )

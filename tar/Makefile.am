@@ -18,6 +18,6 @@ ktartest_LDADD = $(LIB_KSYCOCA)
 
 noinst_HEADERS = tar.h
 
-kdelnk_DATA = tar.protocol
+kdelnk_DATA = tar.protocol ar.protocol zip.protocol
 kdelnkdir = $(kde_servicesdir)
 
