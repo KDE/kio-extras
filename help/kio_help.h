@@ -32,6 +32,13 @@ public:
 
   void createUDSEntry( const QString & filename, const QString & path, KIO::UDSEntry & entry );
 
+
+private:
+
+  QString langLookup(QString fname);
+  
+  QString lookupFile(QString fname, QString query);
+
 };
 
 

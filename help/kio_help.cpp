@@ -53,7 +53,7 @@ void addList(QStringList &dest, const QStringList &source)
 }
 
 
-QString langLookup(QString fname)
+QString HelpProtocol::langLookup(QString fname)
 {
   QStringList search;
 
@@ -107,7 +107,7 @@ QString langLookup(QString fname)
 }
 
 
-QString lookupFile(QString fname, QString query)
+QString HelpProtocol::lookupFile(QString fname, QString query)
 {
   kdDebug() << "lookupFile: filename=" << fname << " query=" << query << endl;
 
@@ -124,7 +124,11 @@ QString lookupFile(QString fname, QString query)
 
   result = langLookup(path);
   if (result.isEmpty())
-    result = langLookup(path + "/index.html");
+    {
+      result = langLookup(path+"/index.html");
+      if (!result.isEmpty())
+	redirection(KURL(QString("help:%1/index.html").arg(path)));
+    }
 
   return result;
 }
