@@ -1,6 +1,6 @@
 [Desktop Entry]
 ServiceTypes=kdedevice/cdrom_unmounted
-Actions=cdrom_mount
+Actions=cdrom_mount;cdrom_eject;
 
 [Desktop Action cdrom_mount]
 Name=Mount
@@ -44,3 +44,7 @@ Name[zh_CN]=装载
 Name[zh_TW]=掛載
 Name[zu]=Yenyusa
 Exec=kio_devices_mounthelper -m %u
+
+[Desktop Action cdrom_eject]
+Name=Eject
+Exec=kio_devices_mounthelper -e %u

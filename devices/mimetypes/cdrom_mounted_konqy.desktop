@@ -1,6 +1,6 @@
 [Desktop Entry]
 ServiceTypes=kdedevice/cdrom_mounted
-Actions=cdrom_unmount
+Actions=cdrom_unmount;cdrom_eject;
 
 [Desktop Action cdrom_unmount]
 Name=Unmount
@@ -46,3 +46,8 @@ Name[zh_CN]=卸载
 Name[zh_TW]=未掛載
 Name[zu]=Yehlisa
 Exec=kio_devices_mounthelper -u %u
+
+[Desktop Action cdrom_eject]
+Name=Eject
+Exec=kio_devices_mounthelper -e %u
+

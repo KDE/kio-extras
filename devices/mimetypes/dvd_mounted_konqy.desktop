@@ -1,0 +1,13 @@
+[Desktop Entry]
+ServiceTypes=kdedevice/dvd_mounted
+Actions=dvd_unmount;dvd_eject;
+
+
+[Desktop Action dvd_unmount]
+Name=Unmount
+Exec=kio_devices_mounthelper -u %u
+
+
+[Desktop Action dvd_eject]
+Name=Eject
+Exec=kio_devices_mounthelper -e %u

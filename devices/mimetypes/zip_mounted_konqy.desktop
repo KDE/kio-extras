@@ -46,3 +46,4 @@ Name[zh_CN]=卸载
 Name[zh_TW]=未掛載
 Name[zu]=Yehlisa
 Exec=kio_devices_mounthelper -u %u
+
