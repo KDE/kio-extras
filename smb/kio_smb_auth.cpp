@@ -98,6 +98,36 @@ void SMBSlave::auth_smbc_get_data(const char *server,const char *share,
     }
 }
 
+bool SMBSlave::checkPassword(SMBUrl &url)
+{
+    KIO::AuthInfo info;
+    info.url = KURL("smb:///");
+    info.url.setHost(url.prettyHost());
+    QString share = url.path();
+    int index = share.find('/', 1);
+    if (index > 1)
+        share = share.left(index);
+    if (share.at(0) == '/')
+        share = share.mid(1);
+    info.url.setPath(share);
+
+    info.prompt = i18n(
+        "Please enter authentication information for:\n"
+        "Server = %1\n"
+        "Share = %2" )
+                  .arg( url.prettyHost() )
+                  .arg( share );
+    info.username = url.user();
+    info.password = url.pass();
+
+    if ( openPassDlg(info) ) {
+        url.setUser(info.username);
+        url.setPass(info.password);
+        return true;
+    }
+    return false;
+}
+
 //--------------------------------------------------------------------------
 // Initalizes the smbclient library
 //

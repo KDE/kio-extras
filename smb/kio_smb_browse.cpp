@@ -49,11 +49,14 @@ int SMBSlave::cache_stat(const SMBUrl &url, struct stat* st )
 }
 
 //---------------------------------------------------------------------------
-bool SMBSlave::browse_stat_path(const SMBUrl& url, UDSEntry& udsentry, bool ignore_errors)
+bool SMBSlave::browse_stat_path(const SMBUrl& _url, UDSEntry& udsentry, bool ignore_errors)
   // Returns: true on success, false on failure
 {
     UDSAtom     udsatom;
 
+    SMBUrl url = _url;
+
+ again:
    if(cache_stat(url, &st) == 0)
    {
       if(!S_ISDIR(st.st_mode) && !S_ISREG(st.st_mode))
@@ -109,9 +112,13 @@ bool SMBSlave::browse_stat_path(const SMBUrl& url, UDSEntry& udsentry, bool igno
    }
    else
    {
-       if (!ignore_errors)
+       if (!ignore_errors) {
+           if (errno == EPERM || errno == EACCES)
+               if (checkPassword(url))
+                   goto again;
+
            reportError(url);
-       else if (errno == ENOENT || errno == ENOTDIR) {
+       } else if (errno == ENOENT || errno == ENOTDIR) {
            warning(i18n("File does not exist: %1").arg(url.url()));
        }
        kdDebug(KIO_SMB) << "SMBSlave::browse_stat_path ERROR!!"<< endl;
@@ -385,31 +392,10 @@ void SMBSlave::listDir( const KURL& kurl )
    }
    else
    {
-       if (errno == EPERM || errno == EACCES) {
-           KIO::AuthInfo info;
-           info.url = KURL("smb:///");
-           info.url.setHost(url.prettyHost());
-           QString share = url.path();
-           int index = share.find('/', 1);
-           if (index > 1)
-               share = share.left(index);
-           info.url.setPath(share);
+       if (errno == EPERM || errno == EACCES)
+           if (checkPassword(m_current_url))
+               goto again;
 
-           info.prompt = i18n(
-               "Please enter authentication information for:\n"
-               "Server = %1\n"
-               "Share = %2" )
-                         .arg( url.prettyHost() )
-                         .arg( share );
-           info.username = m_current_url.user();
-           info.password = m_current_url.pass();
-
-           if ( openPassDlg(info) ) {
-                m_current_url.setUser(info.username);
-                m_current_url.setPass(info.password);
-                goto again;
-           }
-       }
        reportError(m_current_url);
        finished();
        return;

@@ -137,6 +137,9 @@ protected:
      */
     bool auth_initialize_smbc();
 
+    bool checkPassword(SMBUrl &url);
+
+
     //---------------------------------------------
     // Cache functions (kio_smb_auth.cpp)
     //---------------------------------------------
