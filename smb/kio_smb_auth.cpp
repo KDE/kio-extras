@@ -140,19 +140,20 @@ bool SMBSlave::authDlg(SMBAuthInfo& auth) {
     auth.m_username = m_default_user.local8Bit();
     auth.m_passwd   = m_default_password.local8Bit();
   }
-        QString user_prompt = auth.m_username;
-        QString passwd_prompt = auth.m_passwd;
-
         QString msg( "Please enter Authentication information for:\n" );
         msg.append( "Workgroup = " + auth.m_workgroup + "\n" );
         msg.append( "Server = " + auth.m_server + "\n" );
         msg.append( "Share = " + auth.m_share);
 
-        if(openPassDlg(msg, user_prompt, passwd_prompt))
+        KIO::AuthInfo authInfo;
+        authInfo.username = auth.m_username;
+        authInfo.password = auth.m_passwd;
+        authInfo.prompt = msg;
+        if(openPassDlg(authInfo))
         {
-    	    m_current_url.setUserInfo(user_prompt + ":" + passwd_prompt);
-            auth.m_username = user_prompt.local8Bit();
-            auth.m_passwd = passwd_prompt.local8Bit();
+            m_current_url.setUserInfo(authInfo.username + ":" + authInfo.password);
+            auth.m_username = authInfo.username.local8Bit();
+            auth.m_passwd = authInfo.password.local8Bit();
             cache_set_AuthInfo(auth, true);
             return true;
         }
