@@ -254,9 +254,6 @@ void SMBSlave::reportError(const SMBUrl &url)
     case ENOMEM:
         error( ERR_OUT_OF_MEMORY, url.url() );
         break;
-    case EUCLEAN:
-        error( ERR_INTERNAL, i18n("libsmbclient failed to initialize"));
-        break;
     case ENODEV:
         error( ERR_SLAVE_DEFINED, i18n("Share could not be found on given server"));
         break;
