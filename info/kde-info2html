@@ -83,7 +83,9 @@ EOF
 sub Escape{
   local($Tag) = @_;
   #-- escaping is not needed anymore  KG/28.6.94
+  #-- it is, for "?" %3f (info:/cvs/What is CVS?), kaper/23.7.02
   $Tag =~ s/ /%20/g;		#  space
+  $Tag =~ s/\?$/%3f/g;		#  space
 #  $Tag =~ s/\+/%AB/g;		#  +
   $Tag;
 }
