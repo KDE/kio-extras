@@ -106,12 +106,9 @@ bool POP3Protocol::getResponse (char *r_buf, unsigned int r_len)
   fd_set FDs;
 
   // Give the buffer the appropiate size
-  if (r_len)
-    buf=(char *)malloc(r_len);
-  else {
-    buf=(char *)malloc(MAX_RESPONSE_LEN);
-    r_len=MAX_RESPONSE_LEN;
-  }
+  r_len = r_len ? r_len : MAX_RESPONSE_LEN;
+
+  buf=static_cast<char *>(malloc(r_len));
 
   // And keep waiting if it timed out
   unsigned int wait_time=60; // Wait 60sec. max.
@@ -263,6 +260,7 @@ bool POP3Protocol::pop3_open()
 #endif
 	one_string.append(usr);
 	m_sOldUser=usr;
+	m_sUser=user; m_sPass=pass;
       }
     } else {
 #ifdef APOP
@@ -708,8 +706,13 @@ void POP3Protocol::stat( const KURL & url )
 
   UDSEntry entry;
   UDSAtom atom;
-  atom.m_uds = KIO::UDS_NAME;
+
+  atom.m_uds = UDS_NAME;
   atom.m_str = _path;
+  entry.append( atom );
+
+  atom.m_uds = UDS_FILE_TYPE;
+  atom.m_str = "message/rfc822";
   entry.append( atom );
 
   // TODO: maybe get the size of the message?
