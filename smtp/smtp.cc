@@ -337,19 +337,15 @@ void SMTPProtocol::put(const KURL & url, int /*permissions */ ,
     write(subject.latin1(), strlen(subject.latin1()));
 
     // Write out the To header for the benefit of the mail clients
-    QString header = QString::fromLatin1("To: %1\r\n");
     for (QStringList::Iterator it = recip.begin(); it != recip.end(); ++it) {
-      header = header.arg(*it);
+      QString header = QString::fromLatin1("To: %1\r\n").arg(*it);
       write(header.latin1(), strlen(header.latin1()));
-      header = QString::fromLatin1("To: %1\r\n");
     }
 
     // Write out the CC header for the benefit of the mail clients
-    header = QString::fromLatin1("CC: %1\r\n");
     for (QStringList::Iterator it = cc.begin(); it != cc.end(); ++it) {
-      header = header.arg(*it);
+      QString header = QString::fromLatin1("CC: %1\r\n").arg(*it);
       write(header.latin1(), strlen(header.latin1()));
-      header = QString::fromLatin1("CC: %1\r\n");
     }
   }
 
