@@ -167,12 +167,13 @@ void FingerProtocol::getProgramPath()
       kdDebug() << "Perl command found:" << *myPerlPath << endl; 
     }
 
+  myFingerPath = new QString();
+  
   *myFingerPath = QString(KGlobal::dirs()->findExe("finger"));
-  if (myFingerPath->isEmpty())
+  if (!(myFingerPath->isEmpty()))
     {
-      this->error(ERR_CANNOT_LAUNCH_PROCESS, i18n("finger command not found"));
-      kdDebug() << "Finger command not found" << endl; 	
-      exit(-1);
+      kdDebug() << "Finger command not found, using YAfinger instead" << endl;
+      *myFingerPath = QString(KGlobal::dirs()->findExe("YAfinger"));  
     } else {
       kdDebug() << "Finger command found:" << *myFingerPath << endl; 
     }
