@@ -1,5 +1,6 @@
 /*
   Copyright (C) 2000 Rik Hemsley (rikkus) <rik@kde.org>
+  Copyright (C) 2001 Carsten Duvenhorst <duvenhorst@m2.uni-hannover.de>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -38,10 +39,12 @@ class AudioCDProtocol : public KIO::SlaveBase
     virtual void listDir(const KURL &);
 
   protected:
-
+   
     void writeHeader(long);
     struct cdrom_drive * pickDrive();
     void parseArgs(const KURL &);
+
+    void getParameters();
 
     void paranoiaRead(
         struct cdrom_drive * drive,
@@ -56,6 +59,7 @@ class AudioCDProtocol : public KIO::SlaveBase
 
     class Private;
     Private * d;
+    
 };
 
 #endif

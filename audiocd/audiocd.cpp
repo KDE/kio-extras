@@ -45,12 +45,12 @@ extern "C"
 #ifdef HAVE_VORBIS
 #include <time.h>
 #include <vorbis/vorbisenc.h>
-#define KDE_VORBIS_TAG "Track encoded by KDE 2.x"
+#define KDE_VORBIS_TAG "Track encoded by KDE audiocd KIOSlave"
 #endif
 
 void paranoiaCallback(long, int);
 }
-
+#include <kconfig.h>
 #include <kdebug.h>
 #include <kurl.h>
 #include <kprotocolmanager.h>
@@ -145,19 +145,26 @@ class AudioCDProtocol::Private
     QString s_vorbis;
 
 #ifdef HAVE_LAME
-    lame_global_flags *gf;
+  lame_global_flags *gf;
+  int bitrate;
+  bool write_id3;
 #endif
 
 #ifdef HAVE_VORBIS
-    ogg_stream_state os; /* take physical pages, weld into a logical stream of packets */
-    ogg_page         og; /* one Ogg bitstream page.  Vorbis packets are inside */
-    ogg_packet       op; /* one raw packet of data for decode */
+  ogg_stream_state os; /* take physical pages, weld into a logical stream of packets */
+  ogg_page         og; /* one Ogg bitstream page.  Vorbis packets are inside */
+  ogg_packet       op; /* one raw packet of data for decode */
     
-    vorbis_info      vi; /* struct that stores all the static vorbis bitstream settings */
-    vorbis_comment   vc; /* struct that stores all the user comments */
+  vorbis_info      vi; /* struct that stores all the static vorbis bitstream settings */
+  vorbis_comment   vc; /* struct that stores all the user comments */
 
-    vorbis_dsp_state vd; /* central working state for the packet->PCM decoder */
-    vorbis_block     vb; /* local working space for packet->PCM decode */
+  vorbis_dsp_state vd; /* central working state for the packet->PCM decoder */
+  vorbis_block     vb; /* local working space for packet->PCM decode */
+  bool  write_vorbis_comments;
+  long vorbis_bitrate_lower;
+  long vorbis_bitrate_upper;
+  long vorbis_bitrate_nominal;
+  int vorbis_bitrate;
 #endif
 
     Which_dir which_dir;
@@ -194,23 +201,26 @@ AudioCDProtocol::initRequest(const KURL & url)
     error(KIO::ERR_DOES_NOT_EXIST, url.path());
     return 0;
   }
-
-  d->gf->brate = 128;
   id3tag_init (d->gf);
 #endif
 
 #ifdef HAVE_VORBIS
-  /* choose an encoding mode */
-  /* (mode 0: 44kHz stereo uncoupled, roughly 128kbps VBR) */
+  
   vorbis_info_init(&d->vi);
-  vorbis_encode_init(&d->vi, 2, 44100, -1, 128000, -1);
-
   vorbis_comment_init(&d->vc);
   char *kde_vorbis_comment = KDE_VORBIS_TAG;
   vorbis_comment_add(&d->vc, kde_vorbis_comment);
+
 #endif
 
+  getParameters();
   parseArgs(url);
+
+#ifdef HAVE_VORBIS
+
+ vorbis_encode_init(&d->vi, 2, 44100, d->vorbis_bitrate_upper, d->vorbis_bitrate_nominal, d->vorbis_bitrate_lower);
+
+#endif
 
   struct cdrom_drive * drive = pickDrive();
 
@@ -333,7 +343,7 @@ AudioCDProtocol::get(const KURL & url)
  QString filetype = determineFiletype(d->fname);
 
 #ifdef HAVE_LAME
-  if (filetype == "mp3" && d->based_on_cddb) {
+  if (filetype == "mp3" && d->based_on_cddb && d->write_id3) {
     /* If CDDB is used to determine the filenames, tell lame to append ID3v1 TAG to MP3 Files */
     const char *tname =   d->titles[trackNumber-1].latin1();    // set trackname
     id3tag_set_album(d->gf, d->cd_title.latin1());
@@ -349,7 +359,7 @@ AudioCDProtocol::get(const KURL & url)
 #endif
 
 #ifdef HAVE_VORBIS
-  if (filetype == "ogg" && d->based_on_cddb ) {
+  if (filetype == "ogg" && d->based_on_cddb && d->write_vorbis_comments ) {
     const char *tname =   d->titles[trackNumber-1].latin1(); 
     vorbis_comment_add_tag(&d->vc,"title",tname+3);
     vorbis_comment_add_tag(&d->vc,"artist",d->cd_artist.latin1());
@@ -366,13 +376,12 @@ AudioCDProtocol::get(const KURL & url)
   long time_secs = (8 * totalByteCount) / (44100 * 2 * 16);
 
   if (filetype == "mp3")
-    totalSize((time_secs * d->gf->brate * 1000)/8);
+    totalSize((time_secs * d->bitrate * 1000)/8);
 #endif
 
 #ifdef HAVE_VORBIS
   if (filetype == "ogg") {
-    // TODO: Is there a way to forecast the filelength at VBR????
-    totalSize(totalByteCount);
+    totalSize((time_secs * d->vorbis_bitrate)/8);
   }
 #endif
 
@@ -442,12 +451,12 @@ AudioCDProtocol::stat(const KURL & url)
       long length_seconds = (filesize) / 176400;
 #ifdef HAVE_LAME
       if (filetype == "mp3")
-        atom.m_long = (length_seconds * d->gf->brate*1000) / 8;
+        atom.m_long = (length_seconds * d->bitrate*1000) / 8;
 #endif
 
 #ifdef HAVE_VORBIS
       if (filetype == "ogg")
-        atom.m_long = (length_seconds * d->vi.bitrate_nominal) / 8;
+        atom.m_long = (length_seconds * d->vorbis_bitrate) / 8;
 #endif
 
       if (filetype == "cda") atom.m_long = filesize;
@@ -478,8 +487,8 @@ AudioCDProtocol::get_discid(struct cdrom_drive * drive)
           n /= 10;
         }
     }
-  unsigned int l = (cdda_track_lastsector(drive, drive->tracks));
-  l -= cdda_track_firstsector(drive, 1);
+  unsigned int l = (cdda_disc_lastsector(drive));
+  l -= cdda_disc_firstsector(drive);
   l /= 75;
   id = ((id % 255) << 24) | (l << 8) | drive->tracks;
   return id;
@@ -496,12 +505,14 @@ AudioCDProtocol::updateCD(struct cdrom_drive * drive)
   d->cd_title = i18n("No Title");
   d->titles.clear();
   QValueList<int> qvl;
+
   for (int i = 0; i < d->tracks; i++)
     {
       d->is_audio[i] = IS_AUDIO (drive, i + 1);
       qvl.append(cdda_track_firstsector(drive, i + 1) + 150);
     }
-  qvl.append(cdda_track_lastsector(drive, d->tracks) + 150 + 1);
+  qvl.append(cdda_disc_firstsector(drive));
+  qvl.append(cdda_disc_lastsector(drive));
 
   if (d->useCDDB)
     {
@@ -670,14 +681,14 @@ AudioCDProtocol::listDir(const KURL & url)
 #ifdef HAVE_LAME
             case MP3:
               name = d->titles[i - 1] + s2;
-              size = (length_seconds * d->gf->brate*1000) / 8; // length * bitrate / 8;
+              size = (length_seconds * d->bitrate*1000) / 8; // length * bitrate / 8;
               break;
 #endif
 
 #ifdef HAVE_VORBIS
             case Vorbis:
               name = d->titles[i - 1] + s3;
-              size = (length_seconds * d->vi.bitrate_nominal) / 8; // length * bitrate / 8; 
+              size = (length_seconds * d->vorbis_bitrate) / 8; // length * bitrate / 8; 
               break;
 #endif
 
@@ -798,12 +809,7 @@ AudioCDProtocol::parseArgs(const KURL & url)
     {
       d->path = value;
     }
-#ifdef HAVE_LAME
-    else if (attribute == "br")
-    {
-        d->gf->brate = value.toLong();
-    }
-#endif
+
     else if (attribute == "paranoia_level")
     {
       d->paranoiaLevel = value.toInt();
@@ -991,16 +997,16 @@ static char mp3buffer[mp3buffer_size];
             char * oggheader = reinterpret_cast<char *>(d->og.header);
             char * oggbody = reinterpret_cast<char *>(d->og.body);
 
-            output.setRawData(oggheader, d->og.header_len);
+	    output.setRawData(oggheader, d->og.header_len);
             data(output);
             output.resetRawData(oggheader, d->og.header_len);
-
+	   
             output.setRawData(oggbody, d->og.body_len);
             data(output);
             output.resetRawData(oggbody, d->og.body_len);
+	    processed +=  d->og.header_len + d->og.body_len;
           }
         }
-        processed += CD_FRAMESIZE_RAW;
       }
 #endif
 
@@ -1057,8 +1063,131 @@ static char mp3buffer[mp3buffer_size];
   paranoia = 0;
 }
 
-  void
-paranoiaCallback(long, int)
+
+void AudioCDProtocol::getParameters() {
+
+  KConfig *config;
+  config = new KConfig("kcmaudiocdrc");
+
+#ifdef HAVE_LAME
+
+  config->setGroup("MP3");
+
+  int quality = config->readNumEntry("quality",2);
+
+  if (quality < 0 ) quality = 0;
+  if (quality > 9) quality = 9;
+
+  int method = config->readNumEntry("encmethod",0);
+
+  if (method == 0) { 
+    
+    // Constant Bitrate Encoding
+    d->gf->VBR = vbr_off;
+    d->gf->brate = config->readNumEntry("cbrbitrate",160);
+    d->bitrate = d->gf->brate;
+    d->gf->quality = quality;
+
+  } else {
+    
+    // Variable Bitrate Encoding
+    
+    if (config->readBoolEntry("set_vbr_avr",true)) {
+
+      d->gf->VBR = vbr_abr;
+      d->gf->VBR_mean_bitrate_kbps = config->readNumEntry("vbr_average_bitrate",0);
+
+      d->bitrate = d->gf->VBR_mean_bitrate_kbps;
+
+    } else {
+
+      if (d->gf->VBR == vbr_off) d->gf->VBR = vbr_default; 
+
+      if (config->readBoolEntry("set_vbr_min",true)) 
+	d->gf->VBR_min_bitrate_kbps = config->readNumEntry("vbr_min_bitrate",0);
+      if (config->readBoolEntry("vbr_min_hard",true))
+	d->gf->VBR_hard_min = 1;
+      if (config->readBoolEntry("set_vbr_max",true)) 
+	d->gf->VBR_max_bitrate_kbps = config->readNumEntry("vbr_max_bitrate",0);
+
+      d->bitrate = 128;
+      d->gf->VBR_q = quality;
+      
+    }
+    
+    if ( config->readBoolEntry("write_xing_tag",true) ) d->gf->bWriteVbrTag = 1;
+
+  }
+
+  d->gf->mode = config->readNumEntry("mode",0); // stereo, mono etc ... default is stereo
+
+  d->gf->copyright = config->readBoolEntry("copyright",false);
+  d->gf->original = config->readBoolEntry("original",true);
+  d->gf->strict_ISO = config->readBoolEntry("iso",false);
+  d->gf->error_protection = config->readBoolEntry("crc",false);
+
+  d->write_id3 = config->readBoolEntry("id3",true);
+
+  if ( config->readBoolEntry("enable_lowpassfilter",false) ) {
+  
+    d->gf->lowpassfreq = config->readNumEntry("lowpassfilter_freq",0);
+    
+    if (config->readBoolEntry("set_lowpassfilter_width",false)) {
+      d->gf->lowpasswidth = config->readNumEntry("lowpassfilter_width",0);
+    }
+
+  }
+
+  if ( config->readBoolEntry("enable_highpassfilter",false) ) {
+  
+    d->gf->highpassfreq = config->readNumEntry("highpassfilter_freq",0);
+    
+    if (config->readBoolEntry("set_highpassfilter_width",false)) {
+      d->gf->highpasswidth = config->readNumEntry("highpassfilter_width",0);
+    }
+
+  }
+#endif // HAVE_LAME
+
+#ifdef HAVE_VORBIS
+
+  config->setGroup("Vorbis");
+
+  if ( config->readBoolEntry("set_vorbis_min_bitrate",false) ) {
+    d->vorbis_bitrate_lower = config->readNumEntry("vorbis_min_bitrate",40) * 1000;
+  } else {
+    d->vorbis_bitrate_lower = -1;
+  }
+
+  if ( config->readBoolEntry("set_vorbis_max_bitrate",false) ) {
+    d->vorbis_bitrate_upper = config->readNumEntry("vorbis_max_bitrate",350) * 1000;
+  } else {
+    d->vorbis_bitrate_upper = -1;
+  }
+  
+  if ( d->vorbis_bitrate_upper != -1 && d->vorbis_bitrate_lower != -1 ) {
+    d->vorbis_bitrate = 104000; // empirically determined ...?!
+
+  } else {
+    d->vorbis_bitrate = 160 * 1000;
+  }
+
+  if ( config->readBoolEntry("set_vorbis_nominal_bitrate",true) ) {
+    d->vorbis_bitrate_nominal = config->readNumEntry("vorbis_nominal_bitrate",160) * 1000;
+    d->vorbis_bitrate = d->vorbis_bitrate_nominal;
+  } else {
+    d->vorbis_bitrate_nominal = -1;
+  }
+
+  d->write_vorbis_comments = config->readBoolEntry("vorbis_comments",true);
+  
+
+#endif // HAVE_VORBIS
+  delete config;
+  return;
+}
+
+void paranoiaCallback(long, int)
 {
   // Do we want to show info somewhere ?
   // Not yet.
