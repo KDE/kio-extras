@@ -287,7 +287,8 @@ struct NBHostEnt *NMBIO::gethostbyname(const char *name, bool groupFlag)
 		}
 	
 		int yes=1;
-	    if (setsockopt(sock,SOL_SOCKET,SO_BROADCAST,&yes,sizeof(int)) < 0)
+ 		// David: the (void*) cast is required for Solaris
+	    if (setsockopt(sock,SOL_SOCKET,SO_BROADCAST,(void*)&yes,sizeof(int)) < 0)
 //			|(fcntl(sock, F_SETFL, O_NONBLOCK)< 0))
 		{
 #if DEBUG >= 1
