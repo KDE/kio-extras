@@ -42,8 +42,13 @@ extern "C"
 
 /* This is in support for the Mega Hack, if cdparanoia ever is fixed, or we
    use another ripping library we can remove this.  */
+#ifdef __linux__
 #include <linux/cdrom.h>
+#endif
 #include <sys/ioctl.h>
+#if defined(__NetBSD__) || defined(__OpenBSD__)
+#include <sys/cdio.h>
+#endif
 
 #ifdef HAVE_LAME
 #include <lame/lame.h>
@@ -157,14 +162,24 @@ int FixupTOC(cdrom_drive *d, int tracks)
   start_of_first_data_as_in_toc = -1;
   hack_track = -1;
   if (d->ioctl_fd != -1) {
+    int ms_addr;
+#ifdef __linux__
     struct cdrom_multisession ms_str;
     ms_str.addr_format = CDROM_LBA;
     if (ioctl(d->ioctl_fd, CDROMMULTISESSION, &ms_str) == -1)
       return -1;
-    if (ms_str.addr.lba > 100) {
+    ms_addr = ms_str.addr.lba;
+#endif
+#if defined(__NetBSD__) || defined(__OpenBSD__)
+    ms_addr = 0;   /* last session */
+    if (ioctl(d->ioctl_fd, CDIOREADMSADDR, &ms_addr) == -1)
+      return -1;
+#endif
+
+    if (ms_addr > 100) {
       for (j = tracks-1; j >= 0; j--)
         if (j > 0 && !IS_AUDIO(d,j) && IS_AUDIO(d,j-1)) {
-          if (d->disc_toc[j].dwStartSector > ms_str.addr.lba - 11400) {
+          if (d->disc_toc[j].dwStartSector > ms_addr - 11400) {
             /* The next two code lines are the purpose of duplicating this
              * function, all others are an exact copy of paranoias FixupTOC().
              * The gory details: CD-Extra consist of N audio-tracks in the
@@ -185,7 +200,7 @@ int FixupTOC(cdrom_drive *d, int tracks)
              * length is only implicitely given.  Bloody sh*.  */
             start_of_first_data_as_in_toc = d->disc_toc[j].dwStartSector;
             hack_track = j + 1;
-            d->disc_toc[j].dwStartSector = ms_str.addr.lba - 11400;
+            d->disc_toc[j].dwStartSector = ms_addr - 11400;
           }
           break;
         }

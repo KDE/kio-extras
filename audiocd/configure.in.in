@@ -35,6 +35,11 @@ if test "x$with_cdparanoia" = "xCHECK" ; then
         fi
         CDPARANOIA_LIBS="${CDPARANOIA_LIBS}-lcdda_paranoia -lcdda_interface"
 	with_cdparanoia=FOUND
+	# a.out shared libs don't have .so files, but .so.*
+	if test $ext = a &&
+	   ls $para_dir | grep "^libcdda_paranoia.so.*" 2>&1 >/dev/null; then
+          ext=so
+        fi
         break
       fi
     done
