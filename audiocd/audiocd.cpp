@@ -1473,14 +1473,15 @@ static char mp3buffer[mp3buffer_size];
         vorbis_analysis_wrote(&d->vd,i);
 
         while(vorbis_analysis_blockout(&d->vd,&d->vb)==1) {
-          vorbis_analysis(&d->vb,&d->op);
 /* Support ancient libvorbis (< RC3).  */
 #if HAVE_VORBIS >= 2
+	  vorbis_analysis(&d->vb,NULL);
           /* Non-ancient case.  */
           vorbis_bitrate_addblock(&d->vb);
 
           while(vorbis_bitrate_flushpacket(&d->vd, &d->op)) {
 #else
+          vorbis_analysis(&d->vb,&d->op);
           /* Make a lexical block to place the #ifdef's nearby.  */
           if (1) {
 #endif
