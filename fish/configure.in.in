@@ -2,6 +2,8 @@ CFLAGS="$CFLAGS -D_GNU_SOURCE"
 CXXFLAGS="$CXXFLAGS -D_GNU_SOURCE"
 
 AC_CHECK_HEADERS(termios.h pty.h libutil.h sys/types.h sys/ioctl.h)
-AC_CHECK_LIB(util, openpty, [LIBUTIL="-lutil"])
-AC_SUBST(LIBUTIL)
-AC_CHECK_FUNCS(getpt openpty unlockpt grantpt isastream)
+
+kde_save_LIBS="$LIBS"
+LIBS="$LIBS $LIBUTIL"
+AC_CHECK_FUNCS(getpt openpty isastream)
+LIBS="$kde_save_LIBS"
