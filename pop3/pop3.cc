@@ -725,7 +725,7 @@ LIST
 	}
 }
 
-void POP3Protocol::listDir (const KURL &url)
+void POP3Protocol::listDir (const KURL &)
 {
 	bool isINT; int num_messages=0;
 	char buf[MAX_RESPONSE_LEN];
