@@ -108,7 +108,7 @@ POP3Protocol::POP3Protocol(const QCString &pool, const QCString &app)
   : SlaveBase( "pop3", pool, app)
 #endif
 {
-  debug( "POP3Protocol()" );
+  kdDebug() << "POP3Protocol()" << endl;
   m_cmd = CMD_NONE;
   m_iSock = m_iOldPort = 0;
   m_tTimeout.tv_sec=10;
@@ -126,7 +126,7 @@ POP3Protocol::POP3Protocol(const QCString &pool, const QCString &app)
 
 POP3Protocol::~POP3Protocol()
 {
-  debug( "~POP3Protocol()" );
+  kdDebug() << "~POP3Protocol()" << endl;
   pop3_close();
 #ifdef SPOP3
   SSL_CTX_free(ctx);
@@ -536,20 +536,20 @@ void POP3Protocol::get( const KURL& url, bool )
 
   if (path.at(0)=='/') path.remove(0,1);
   if (path.isEmpty()) {
-    debug("We should be a dir!!");
+    kdDebug() << "We should be a dir!!" << endl;
     error(ERR_IS_DIRECTORY, url.url());
     m_cmd=CMD_NONE; return;
   }
 
-  if (((path.find("/") == -1) && (path != "index") &&
+  if (((path.find('/') == -1) && (path != "index") &&
        (path != "uidl") && (path != "commit")) ) {
     error( ERR_MALFORMED_URL, url.url() );
     m_cmd = CMD_NONE;
     return;
   }
 
-  cmd = path.left(path.find("/"));
-  path.remove(0,path.find("/")+1);
+  cmd = path.left(path.find('/'));
+  path.remove(0,path.find('/')+1);
 
   if (!pop3_open()) {
 #ifdef SPOP3
@@ -768,7 +768,7 @@ LIST
       data( array );
       array.resetRawData(buf, len);
       processedSize(len);
-      debug( buf );
+      kdDebug() << buf << endl;
       fprintf(stderr,"Finishing up uid\n");
       data(QByteArray());
       speed(0); finished();
@@ -926,6 +926,6 @@ void POP3Protocol::del( const KURL& url, bool /*isfile*/ )
     }
   }
 
-  debug( "POP3Protocol::del " + _path );
+  kdDebug() << "POP3Protocol::del " << _path << endl;
   finished();
 }

@@ -191,7 +191,7 @@ void HelpProtocol::get( const KURL& url, bool /* reload */)
     }
 
     struct stat buff;
-    if ( ::stat( doc, &buff ) == -1 ) {
+    if ( ::stat( QFile::encodeName(doc), &buff ) == -1 ) {
         if ( errno == EACCES )
            error( KIO::ERR_ACCESS_DENIED, doc );
         else
@@ -204,7 +204,7 @@ void HelpProtocol::get( const KURL& url, bool /* reload */)
 	return;
     }
 
-    FILE *f = fopen( doc, "rb" );
+    FILE *f = fopen( QFile::encodeName(doc), "rb" );
     if ( f == 0L ) {
 	error( KIO::ERR_CANNOT_OPEN_FOR_READING, doc );
 	return;
