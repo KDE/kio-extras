@@ -1354,7 +1354,7 @@ void imapParser::parseSentence (parseString & inWords)
       break;
     case ')':
       inWords.pos++;
-      stack = stack.left (stack.length () - 1);
+      stack.truncate(stack.length() - 1);
       break;
     case '[':
       inWords.pos++;
@@ -1362,7 +1362,7 @@ void imapParser::parseSentence (parseString & inWords)
       break;
     case ']':
       inWords.pos++;
-      stack = stack.left (stack.length () - 1);
+      stack.truncate(stack.length() - 1);
       break;
     default:
       parseLiteral (inWords);
@@ -1523,7 +1523,7 @@ imapParser::parseURL (const KURL & _url, QString & _box, QString & _section,
     if (_box[0] == '/')
       _box = _box.right (_box.length () - 1);
     if (!_box.isEmpty () && _box[_box.length () - 1] == '/')
-      _box = _box.left (_box.length () - 1);
+      _box.truncate(_box.length() - 1);
   }
   kdDebug(7116) << "URL: box= " << _box << ", section= " << _section << ", type= " << _type << ", uid= " << _uid << ", validity= " << _validity << endl;
 }
@@ -1551,8 +1551,7 @@ QByteArray imapParser::parseLiteral (parseString & inWords, bool relay, bool sto
     if (runLen > 0)
     {
       bool proper;
-      strLen = inWords.left (runLen);
-      strLen = strLen.right (strLen.length () - 1);
+      strLen = inWords.mid(1, runLen - 1);
       inWords.pos += runLen + 1;
       runLen = strLen.toULong (&proper);
       if (proper)

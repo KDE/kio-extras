@@ -65,6 +65,10 @@ public:
   {
     return QCString(data.data() + pos, len + 1);
   }
+  QCString mid(uint start, uint len)
+  {
+    return QCString(data.data() + pos + start, len + 1);
+  }
   void clear()
   {
     data.resize(0);
