@@ -43,18 +43,18 @@ public:
 private slots:
   void       slotGetStdOutput(KProcess*, char*, int);
 
-private: 
+private:
   KURL                  *myURL;
 
-  QString	        *myPerlPath; 		
+  QString	        *myPerlPath;
   QString               *myFingerPath;
-  QString               *myFingerPerlScript;  
+  QString               *myFingerPerlScript;
   QString               *myFingerCSSFile;
-  
-  QString		*myStdStream;  
 
- 
-  KShellProcess	        *myKProcess;
+  QString		*myStdStream;
+
+
+  KProcess	        *myKProcess;
 
   void       getProgramPath();
   void       parseCommandLine(const KURL& url);

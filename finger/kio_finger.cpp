@@ -48,24 +48,24 @@ extern "C"
   int kdemain( int argc, char **argv )
   {
     KInstance instance( "kio_finger" );
-    
+
     //kdDebug() << "*** Starting kio_finger " << getpid() << endl;
-    
+
     if (argc != 4)
       {
 	fprintf(stderr, "Usage: kio_finger protocol domain-socket1 domain-socket2\n");
 	exit(-1);
       }
-    
+
     FingerProtocol slave(argv[2], argv[3]);
     slave.dispatchLoop();
-    
+
     //kdDebug() << "*** kio_finger Done" << endl;
     return 0;
   }
-} 
+}
 
-   
+
 /* ---------------------------------------------------------------------------------- */
 
 
@@ -98,20 +98,20 @@ FingerProtocol::~FingerProtocol()
 void FingerProtocol::get(const KURL& url )
 {
   //kdDebug() << "kio_finger::get(const KURL& url)" << endl ;
-	      
+
   this->parseCommandLine(url);
 
   //kdDebug() << "myURL: " << myURL->prettyURL() << endl;
 
   // Reset the stream
   *myStdStream="";
-  
+
   QString query = myURL->query();
   QString refreshRate = defaultRefreshRate;
 
   //kdDebug() << "query: " << query << endl;
-  
-  // Check the validity of the query 
+
+  // Check the validity of the query
 
   QRegExp regExp("?refreshRate=[0-9][0-9]*", true, true);
   if (query.contains(regExp)) {
@@ -120,28 +120,28 @@ void FingerProtocol::get(const KURL& url )
     regExp.search(query);
     refreshRate = regExp.cap(0);
   }
-  
+
   //kdDebug() << "Refresh rate: " << refreshRate << endl;
- 
-  myKProcess = new KShellProcess();  
-  *myKProcess << *myPerlPath << *myFingerPerlScript 
-	      << *myFingerPath << *myFingerCSSFile 
+
+  myKProcess = new KProcess();
+  *myKProcess << *myPerlPath << *myFingerPerlScript
+	      << *myFingerPath << *myFingerCSSFile
 	      << refreshRate << myURL->host() << myURL->user() ;
-  	
-  connect(myKProcess, SIGNAL(receivedStdout(KProcess *, char *, int)), 
+
+  connect(myKProcess, SIGNAL(receivedStdout(KProcess *, char *, int)),
 	  this, SLOT(slotGetStdOutput(KProcess *, char *, int)));
-  //connect(myKProcess, SIGNAL(receivedStderr(KProcess *, char *, int)), 
+  //connect(myKProcess, SIGNAL(receivedStderr(KProcess *, char *, int)),
   //	  this, SLOT(slotGetStdOutput(KProcess *, char *, int)));
-  
+
   myKProcess->start(KProcess::Block, KProcess::All);
 
   data(QCString(myStdStream->local8Bit()));
- 
+
   data(QByteArray());
-  finished();  
+  finished();
 
   //clean up
-  
+
   delete myKProcess;
 }
 
@@ -149,9 +149,9 @@ void FingerProtocol::get(const KURL& url )
 /* ---------------------------------------------------------------------------------- */
 
 
-void FingerProtocol::slotGetStdOutput(KProcess* /* p */, char *s, int len) 
+void FingerProtocol::slotGetStdOutput(KProcess* /* p */, char *s, int len)
 {
-  //kdDebug() <<  "void FingerProtocol::slotGetStdoutOutput()" << endl;		
+  //kdDebug() <<  "void FingerProtocol::slotGetStdoutOutput()" << endl;
   *myStdStream += QString::fromLocal8Bit(s, len);
 }
 
@@ -164,7 +164,7 @@ void FingerProtocol::mimetype(const KURL & /*url*/)
   mimeType("text/html");
   finished();
 }
-     
+
 
 /* ---------------------------------------------------------------------------------- */
 
@@ -172,56 +172,56 @@ void FingerProtocol::mimetype(const KURL & /*url*/)
 void FingerProtocol::getProgramPath()
 {
   //kdDebug() << "kfingerMainWindow::getProgramPath()" << endl;
-  // Not to sure wether I'm using the right error number here. - schlpbch -  
+  // Not to sure wether I'm using the right error number here. - schlpbch -
 
   myPerlPath = new QString(KGlobal::dirs()->findExe("perl"));
   if (myPerlPath->isEmpty())
     {
-      //kdDebug() << "Perl command not found" << endl; 	
+      //kdDebug() << "Perl command not found" << endl;
       this->error(ERR_CANNOT_LAUNCH_PROCESS,
-		  i18n("Could not find the Perl program on your system, please install.")); 
+		  i18n("Could not find the Perl program on your system, please install."));
       exit();
-    } 
-  else 
-    {
-      //kdDebug() << "Perl command found:" << *myPerlPath << endl; 
     }
-  
+  else
+    {
+      //kdDebug() << "Perl command found:" << *myPerlPath << endl;
+    }
+
   myFingerPath = new QString(KGlobal::dirs()->findExe("finger"));
   if ((myFingerPath->isEmpty()))
-    {   
+    {
       //kdDebug() << "Finger command not found" << endl;
-      this->error(ERR_CANNOT_LAUNCH_PROCESS, 
+      this->error(ERR_CANNOT_LAUNCH_PROCESS,
 		  i18n("Could not find the Finger program on your system, please install."));
       exit();
     }
   else
     {
-      //kdDebug() << "Finger command found:" << *myFingerPath << endl; 
+      //kdDebug() << "Finger command found:" << *myFingerPath << endl;
     }
-  
+
   myFingerPerlScript = new QString(locate("data","kio_finger/kio_finger.pl"));
   if (myFingerPerlScript->isEmpty())
     {
-      //kdDebug() << "kio_finger.pl script not found" << endl;     
+      //kdDebug() << "kio_finger.pl script not found" << endl;
       this->error(ERR_CANNOT_LAUNCH_PROCESS,
 		  i18n("kio_finger Perl script not found."));
       exit();
     }
   else
     {
-      //kdDebug() << "kio_finger perl script found: " << *myFingerPerlScript << endl;  
-    } 
-  
+      //kdDebug() << "kio_finger perl script found: " << *myFingerPerlScript << endl;
+    }
+
   myFingerCSSFile = new QString(locate("data","kio_finger/kio_finger.css"));
   if (myFingerCSSFile->isEmpty())
     {
-      //kdDebug() << "kio_finger.css file not found" << endl;     
+      //kdDebug() << "kio_finger.css file not found" << endl;
       this->warning(i18n("kio_finger CSS script not found. Output will look ugly."));
     }
   else
     {
-      //kdDebug() << "kio_finger CSS file found: " << *myFingerCSSFile << endl;  
+      //kdDebug() << "kio_finger CSS file found: " << *myFingerCSSFile << endl;
     }
 }
 
@@ -229,29 +229,29 @@ void FingerProtocol::getProgramPath()
 /* --------------------------------------------------------------------------- */
 
 
-void FingerProtocol::parseCommandLine(const KURL& url) 
+void FingerProtocol::parseCommandLine(const KURL& url)
 {
-  myURL = new KURL(url); 
-  
+  myURL = new KURL(url);
+
   /*
    * Generate a valid finger url
    */
 
-  if(myURL->isEmpty() || myURL->isMalformed() || 
-     (myURL->user().isEmpty() && myURL->host().isEmpty())) 
+  if(myURL->isEmpty() || myURL->isMalformed() ||
+     (myURL->user().isEmpty() && myURL->host().isEmpty()))
     {
       myURL->setProtocol("finger");
       myURL->setUser("");
       myURL->setHost("localhost");
     }
-  
+
   /*
    * If no specifc port is specified, set it to 79.
    */
 
   if(myURL->port() == 0) {
     myURL->setPort(79);
-  } 
+  }
 
   /*
    * If no refresh rate is given, set it to defaultRefreshRate
