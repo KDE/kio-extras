@@ -228,7 +228,7 @@ char *NMBIO::decodeNBName(const char* NBName, bool groupFlag)
 
 struct NBHostEnt *NMBIO::gethostbyname(const char *name, bool groupFlag)
 {
-	struct in_addr ip;
+
 //	struct sockaddr_in connectParam; // parameters of the connection
 	NBHostEnt *ret=0, *current=0;
 
@@ -286,7 +286,7 @@ struct NBHostEnt *NMBIO::gethostbyname(const char *name, bool groupFlag)
 		}
 	
 		int yes=1;
-	    if (setsockopt(sock,SOL_SOCKET,SO_BROADCAST,&yes,sizeof(int)) < 0)
+	    if (setsockopt(sock,SOL_SOCKET,SO_BROADCAST,(char*)&yes,sizeof(int)) < 0)
 //			|(fcntl(sock, F_SETFL, O_NONBLOCK)< 0))
 		{
 #if DEBUG >= 1
@@ -308,7 +308,7 @@ struct NBHostEnt *NMBIO::gethostbyname(const char *name, bool groupFlag)
 		cout<<"\n";
 #endif
 		
-		if (sendto(sock, p, query.getLength(), 0, (sockaddr*)socknetaddr, sizeof(struct sockaddr_in))==-1)
+		if (sendto(sock, (int8*)p, query.getLength(), 0, (sockaddr*)socknetaddr, sizeof(struct sockaddr_in))==-1)
 		{
 #if DEBUG >= 1
 		  cout<< "NMBIO::gethostbyname, cannot send datagram.\n";
@@ -457,7 +457,7 @@ struct NBHostEnt *NMBIO::gethostbyaddr(uint32 IP, bool groupFlag)
 	cout<<"\n";
 #endif
 				
-	if (sendto(sock, p, query.getLength(), 0, (sockaddr*)&connectParam, sizeof(connectParam))==-1)
+	if (sendto(sock, (int8*)p, query.getLength(), 0, (sockaddr*)&connectParam, sizeof(connectParam))==-1)
 	{
 #if DEBUG >= 1
 		cout<<"NMBIO::gethostbyaddr, cannot send datagram.\n";
@@ -549,7 +549,7 @@ struct NBHostEnt *NMBIO::askNBNS(const char *name, bool groupFlag)
 	for (int i=0; i<query.getLength(); i++) printf("%X ",p[i]);
 	cout<<"\n";
 #endif
-	if (sendto(sock, p, query.getLength(), 0, (sockaddr*)&connectParam, sizeof(connectParam))==-1)
+	if (sendto(sock, (int8*)p, query.getLength(), 0, (sockaddr*)&connectParam, sizeof(connectParam))==-1)
 	{
 #if DEBUG >= 1
 		cout<<"NMBIO::askNBNS, cannot send datagram.\n";
@@ -626,7 +626,7 @@ struct NBHostEnt *NMBIO::askNBNS(const char *name, bool groupFlag)
 	for (int i=0; i<query.getLength(); i++) printf("%X ",p[i]);
 	cout<<"\n";
 #endif
-	if (sendto(sock, p, query.getLength(), 0, (sockaddr*)&connectParam, sizeof(connectParam))==-1)
+	if (sendto(sock, (int8*)p, query.getLength(), 0, (sockaddr*)&connectParam, sizeof(connectParam))==-1)
 	{
 #if DEBUG >= 1
 			cout<<"NMBIO::askNBNS, verification, cannot send datagram.\n";

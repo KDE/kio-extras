@@ -12,6 +12,10 @@
 #include <unistd.h>
 #include <string.h>
 
+#ifdef rewinddir
+#undef rewinddir
+#endif
+
 #include "kio_smb.h"
 #include <sys/types.h>
 #ifdef HAVE_SYS_TIME_H
