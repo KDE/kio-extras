@@ -190,7 +190,6 @@ SmbProtocol::SmbProtocol (const QCString &pool, const QCString &app )
 ,m_user("")
 ,m_defaultWorkgroup("")
 ,m_currentWorkgroup("")
-,m_usefulLineFound(false)
 {
    kdDebug(KIO_SMB)<<"Smb::Smb: -"<<pool<<"-"<<endl;
    m_processes.setAutoDelete(true);
@@ -275,42 +274,6 @@ int SmbProtocol::readOutput(int fd)
    }
    m_stdoutBuffer=newBuffer;
 
-   //m_stdoutBuffer is definitely 0-terminated
-/*   if (m_usefulLineFound==false)
-   {
-      char *tmpBuffer=m_stdoutBuffer;
-      while (1)
-      {
-         char *eol=strchr(tmpBuffer,'\n');
-         if (eol==0)
-            break;
-         if (eol==tmpBuffer)
-         {
-            tmpBuffer=eol+1;
-            continue;
-         }
-         //the line contains something
-         *eol='\0';   //easier searching
-
-         int lineLength=strlen(tmpBuffer);
-         char searchString[16];
-         strcpy(searchString,"smb: \\>");
-         if (lineLength<16)
-            searchString[lineLength]='\0';
-
-         char* prompt=strstr(tmpBuffer,searchString);
-
-         *eol='\n';   //restore it
-         if (prompt!=tmpBuffer)
-         {
-            m_usefulLineFound=true;
-            break;
-         }
-         tmpBuffer=eol+1;   // the next line
-         if (*tmpBuffer=='\0')
-            break;
-      }
-   }*/
    return length;
 }
 
@@ -320,7 +283,6 @@ void SmbProtocol::clearBuffer()
    if (m_stdoutBuffer!=0)
       delete [] m_stdoutBuffer;
    m_stdoutBuffer=0;
-   m_usefulLineFound=false;
 }
 
 void SmbProtocol::readCommandEcho(ClientProcess *proc)
@@ -426,6 +388,11 @@ bool SmbProtocol::stopAfterError(const KURL& url, bool notSureWhetherErrorOccure
       kdDebug(KIO_SMB)<<"stopAfterError() 9"<<endl;
       kdDebug(KIO_SMB)<<"Smb::stopAfterError() contains both, reporting error"<<endl;
       error( KIO::ERR_DOES_NOT_EXIST, url.prettyURL());
+   }
+   else if (outputString.contains("NT_STATUS_DIRECTORY_NOT_EMPTY"))
+   {
+      kdDebug(KIO_SMB)<<"stopAfterError() 9a"<<endl;
+      error( KIO::ERR_COULD_NOT_RMDIR, url.prettyURL());
    }
    else if ((outputString.contains("NT_STATUS_NO_SUCH_FILE"))  && (onlyCheckForExistance==false))
    {
@@ -877,18 +844,6 @@ See the KDE Control Center under Network, LANBrowsing for more information."));
          //don't search the whole buffer, only the last 12 bytes
          if (receivedTerminatingPrompt())
             loopFinished=true;
-/*         if (m_stdoutSize>12)
-         {
-            if ((strstr(m_stdoutBuffer+m_stdoutSize-12,"\nsmb: \\>")!=0) && (m_usefulLineFound==true))
-//            if (strstr(m_stdoutBuffer+m_stdoutSize-12,"\nsmb: \\>")!=0)
-            {
-               loopFinished=true;
-               kdDebug()<<"offset: "<<int(strstr(m_stdoutBuffer+m_stdoutSize-12,"\nsmb: \\>")-m_stdoutBuffer)<<endl;
-            }
-//               loopFinished=true;
-//            if (strstr(m_stdoutBuffer+m_stdoutSize-12,"\rsmb: \\>")!=0)
-//               loopFinished=true;
-         }*/
       }
    } while (!loopFinished);
    kdDebug(KIO_SMB)<<"Smb::listDir(): reading done: -"<<m_stdoutBuffer<<"-"<<endl;
@@ -1112,12 +1067,13 @@ StatInfo SmbProtocol::createStatInfo(const QString line)
 
    static QDateTime beginningOfTimes(QDate(1970,1,1),QTime(1,0));
 
+//   kdDebug(KIO_SMB)<<"createStatInfo line -"<<line<<"-"<<endl;
 //"      A   213123  Mon Mar 12"
    //the \\d+ is required for files bigger than 100.000.000 bytes
    //smbclient 1.9.18p10 has at least 9 for the filesize
    //version 2.0.5 to at least 2.2.0 has at least 8 characters
    //version 2.2.2 has at least 7 characters
-   int startOfData=line.find(QRegExp("    [SADR ][SADR ][SADR ] [ \\d][ \\d][ \\d][ \\d][ \\d][ \\d]\\d+  [A-Z][a-z][a-z] [A-Z][a-z][a-z] [ \\d]\\d"));
+   int startOfData=line.find(QRegExp("    [HSADR ][HSADR ][HSADR ] [ \\d][ \\d][ \\d][ \\d][ \\d][ \\d]\\d+  [A-Z][a-z][a-z] [A-Z][a-z][a-z] [ \\d]\\d"));
 //   kdDebug(KIO_SMB)<<"createStatInfo: regexp at: "<<startOfData<<endl;
    if (startOfData==-1)
    {
@@ -1139,9 +1095,9 @@ StatInfo SmbProtocol::createStatInfo(const QString line)
       return info;
    }
 
-   //kdDebug(KIO_SMB)<<"createStatInfo: name: -"<<name<<"-"<<endl;
+//   kdDebug(KIO_SMB)<<"createStatInfo: name: -"<<name<<"-"<<endl;
 
-   //kdDebug(KIO_SMB)<<"createStatInfo: line(start+5..7): -"<<line.mid(startOfData+5,3)<<"-"<<endl;
+//   kdDebug(KIO_SMB)<<"createStatInfo: line(start+5..7): -"<<line.mid(startOfData+5,3)<<"-"<<endl;
    //this offset is required for files bigger than 100.000.000 bytes
    int sizeOffset(0);
    while (line[startOfData+16+sizeOffset]!=' ')
@@ -1157,7 +1113,7 @@ StatInfo SmbProtocol::createStatInfo(const QString line)
       info.isDir=false;
       size=line.mid(startOfData+7,9+sizeOffset);
       info.size=size.toInt();
-      //kdDebug(KIO_SMB)<<"createStatInfo: size: -"<<size<<"-"<<endl;
+//      kdDebug(KIO_SMB)<<"createStatInfo: size: -"<<size<<"-"<<endl;
    }
 
    info.name=name;
@@ -1194,7 +1150,7 @@ StatInfo SmbProtocol::createStatInfo(const QString line)
    else
       info.mode = S_IRUSR | S_IRGRP | S_IROTH;
 
-//   kdDebug(KIO_SMB)<<"Smb::createUDSEntry() ends"<<endl;
+   kdDebug(KIO_SMB)<<"Smb::createUDSEntry() ends"<<endl;
    return info;
 }
 
@@ -1262,15 +1218,6 @@ StatInfo SmbProtocol::_stat(const KURL& url, bool onlyCheckForExistance)
          //don't search the whole buffer, only the last 12 bytes
          if (receivedTerminatingPrompt())
             loopFinished=true;
-/*         if (m_stdoutSize>12)
-         {
-            if ((strstr(m_stdoutBuffer+m_stdoutSize-12,"\nsmb: \\>")!=0) && (m_usefulLineFound==true))
-//            if (strstr(m_stdoutBuffer+m_stdoutSize-12,"\nsmb: \\>")!=0)
-            {
-               loopFinished=true;
-               kdDebug()<<"offset: "<<int(strstr(m_stdoutBuffer+m_stdoutSize-12,"\nsmb: \\>")-m_stdoutBuffer)<<endl;
-            }
-         }*/
       }
    } while (!loopFinished);
    kdDebug(KIO_SMB)<<"Smb::_stat(): read: -"<<m_stdoutBuffer<<"-"<<endl;
@@ -1290,7 +1237,7 @@ StatInfo SmbProtocol::_stat(const KURL& url, bool onlyCheckForExistance)
    {
       line=output.readLine();
       kdDebug(KIO_SMB)<<"line -"<<line<<"-"<<endl;
-      int startOfData=line.find(QRegExp("    [SADR ][SADR ][SADR ] [ \\d][ \\d][ \\d][ \\d][ \\d][ \\d]\\d+  [A-Z][a-z][a-z] [A-Z][a-z][a-z] [ \\d]\\d"));
+      int startOfData=line.find(QRegExp("    [HSADR ][HSADR ][HSADR ] [ \\d][ \\d][ \\d][ \\d][ \\d][ \\d]\\d+  [A-Z][a-z][a-z] [A-Z][a-z][a-z] [ \\d]\\d"));
       if (startOfData!=-1)
       {
          return createStatInfo(line);
@@ -1470,10 +1417,12 @@ void SmbProtocol::put( const KURL& url, int, bool _overwrite, bool)
 
    close(fifoFD);
 
-   clearBuffer();
-   result=proc->select(1,0,&stdoutEvent);
-   if (stdoutEvent)
-      readOutput(proc->fd());
+
+   waitForTerminatingPrompt(proc);
+//   clearBuffer();
+//   result=proc->select(1,0,&stdoutEvent);
+//   if (stdoutEvent)
+//      readOutput(proc->fd());
 
    remove(fifoName);
 
