@@ -327,7 +327,7 @@ void HALBackend::setVolumeProperties(Medium* medium)
 				medium->setIconName("memory_stick" + MOUNT_SUFFIX);
 				break;
 			case HAL_DRIVE_TYPE_SMART_MEDIA:
-				medium->setIconName("smartmedia" + MOUNT_SUFFIX);
+				medium->setIconName("smart_media" + MOUNT_SUFFIX);
 				break;
 			case HAL_DRIVE_TYPE_SD_MMC:
 				medium->setIconName("sd_mmc" + MOUNT_SUFFIX);
