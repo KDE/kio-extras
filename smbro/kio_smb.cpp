@@ -1487,7 +1487,7 @@ void SmbProtocol::get( const KURL& url )
 
          }
       }
-      else
+      else if (result<0)
          loopFinished=true;
    } while(!loopFinished);
 
