@@ -197,11 +197,12 @@ MAIN: while (<STDIN>) {
     /^EXEC\s+((?:\\.|[^\\])*?)\s+((?:\\.|[^\\])*?)\s*$/ && do {
         my $tempfile = unquote($2);
         my $command = unquote($1);
+        $command = $command . ";echo \"###RESULT: \$?\"";
         print("### 500 $!\n"), next
             if (!sysopen(FH,$tempfile,O_CREAT|O_EXCL|O_WRONLY,0600));
         my $pid = fork();
         print("### 500 $!\n"), next
-            if (!defined $pid); 
+            if (!defined $pid);
         if ($pid == 0) {
             open(STDOUT,'>>&FH');
             open(STDERR,'>>&FH');
@@ -211,7 +212,6 @@ MAIN: while (<STDIN>) {
             exit(255);
         }
         waitpid($pid,0);
-        print FH "###RESULT: $?\n";
         close(FH);
         print "### 200\n";
         next;
