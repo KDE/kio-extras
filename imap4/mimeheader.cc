@@ -27,6 +27,7 @@
 #include <kinstance.h>
 #include <kiconloader.h>
 #include <kmimetype.h>
+#include <kmimemagic.h>
 
 mimeHeader::mimeHeader() :
 	typeList(17,false),
@@ -382,6 +383,11 @@ int mimeHeader::parsePart(mimeIO &useIO,QString boundary)
 			int localRetVal;
 			do {
 				mimeHeader *aHeader = new mimeHeader;
+
+				// set default type for multipart/digest
+				if(!qstrnicmp(getType(),"Multipart/Digest",16))
+					aHeader->setType("Message/RFC822");
+
 				localRetVal = aHeader->parsePart(useIO,getTypeParm("boundary"));
 				addNestedPart(aHeader);
 			} while(localRetVal);   //get nested stuff
@@ -509,6 +515,7 @@ mimeHeader *mimeHeader::bodyPart(const QString &_str)
 // compatibility subroutines
 QString mimeHeader::bodyDecoded()
 {
+	qDebug("mimeHeader::bodyDecoded");
 	QByteArray temp;
 	
 	temp = bodyDecodedBinary();
@@ -519,21 +526,31 @@ QByteArray mimeHeader::bodyDecodedBinary()
 {
 	QByteArray retVal;
 
-	retVal.duplicate(postMultipartBody.data(),postMultipartBody.length());
+	retVal = postMultipartBody;
 	if(contentEncoding.find("quoted-printable",0,false) == 0) retVal = rfcDecoder::decodeQuotedPrintable(retVal);
 	else if(contentEncoding.find("base64",0,false) == 0) retVal = rfcDecoder::decodeBase64(retVal);
+
+	qDebug("mimeHeader::bodyDecodedBinary - size is %d",retVal.size());
 	return retVal;
+}
+
+void mimeHeader::setBodyEncodedBinary(const QByteArray &_arr)
+{
+	setBodyEncoded(_arr);
 }
 
 void mimeHeader::setBodyEncoded(const QByteArray &_arr)
 {
 	QByteArray setVal;
-	
+
+	qDebug("mimeHeader::setBodyEncoded - in size %d",_arr.size());	
 	if(contentEncoding.find("quoted-printable",0,false) == 0) setVal = rfcDecoder::encodeQuotedPrintable(_arr);
 	else if(contentEncoding.find("base64",0,false) == 0) setVal = rfcDecoder::encodeBase64(_arr);
 	else setVal.duplicate(_arr);
+	qDebug("mimeHeader::setBodyEncoded - out size %d",setVal.size());	
 	
 	postMultipartBody.duplicate(setVal);
+	qDebug("mimeHeader::setBodyEncoded - out size %d",postMultipartBody.size());	
 }
 
 QString mimeHeader::iconName()
@@ -551,5 +568,34 @@ void mimeHeader::setNestedMessage(mailHeader *inPart,bool destroy)
 {
 //	if(nestedMessage && destroy) delete nestedMessage;
 	nestedMessage = inPart;
+}
+
+QString mimeHeader::headerAsString()
+{
+	mimeIOQString myIO;
+	
+	outputHeader(myIO);
+	return myIO.getString();
+}
+
+QString mimeHeader::magicSetType(bool aAutoDecode)
+{
+  QString mimetype;
+  QByteArray body;
+  KMimeMagicResult *result;
+ 
+  int sep;
+
+  KMimeMagic::self()->setFollowLinks(TRUE); // is it necessary ?
+
+  if (aAutoDecode) 
+    body = bodyDecodedBinary();
+  else 
+    body = postMultipartBody;
+ 
+  result = KMimeMagic::self()->findBufferType( body );
+  mimetype = result->mimeType();
+  contentType = mimetype;
+	return mimetype;
 }
 #endif	

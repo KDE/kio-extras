@@ -75,7 +75,7 @@ public:
 	
 	static int parseAddressList(const char *,QList<mailAddress> *);
 	static QCString getAddressStr(QList<mailAddress> *);
-#ifndef NO_KMAIL
+#ifdef KMAIL_COMPATIBLE
 	QString subject() { return getSubject();}
 	const mailAddress &from() { return fromAdr; }
 	const mailAddress &replyTo() { return replytoAdr; }

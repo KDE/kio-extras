@@ -29,8 +29,6 @@
   *@author Sven Carstens
   */
 
-class mailHeader;
-
 class mimeHeader {
 public: 
 	mimeHeader();
@@ -95,8 +93,10 @@ public:
 	QCString getPostBody() { return postMultipartBody; };
 	void setPostBody(QCString &inBody) { postMultipartBody = inBody; contentLength = inBody.length();};
 
-	mailHeader *getNestedMessage() { return nestedMessage; };
-	void setNestedMessage(mailHeader *inPart,bool destroy=true);
+	mimeHeader *getNestedMessage() { return nestedMessage; };
+	void setNestedMessage(mimeHeader *inPart,bool destroy=true)
+	{ if(nestedMessage && destroy) delete nestedMessage;
+          nestedMessage = inPart; };
 
 //	mimeHeader *getNestedPart() { return nestedPart; };
 	void addNestedPart(mimeHeader *inPart) { nestedParts.append(inPart); };
@@ -130,7 +130,7 @@ public:
 	QString charset() { return getTypeParm("charset"); }
 	QString bodyDecoded();
 	void setBodyEncoded(const QByteArray &);
-	void setBodyEncodedBinary(const QByteArray &_arr) { setBodyEncoded(_arr);}
+	void setBodyEncodedBinary(const QByteArray &);
 	QByteArray bodyDecodedBinary();
 	QString name() { return QString(getTypeParm("name")); }
 	void setName(const QString &_str) { setTypeParm("name",_str); }
@@ -139,8 +139,8 @@ public:
 	void setContentDescription(const QString &_str) { _contentDescription = rfcDecoder::encodeRFC2047String(_str).latin1();}
 	QString msgIdMD5() { return QString(contentMD5); }
 	QString iconName();
-	QString magicSetType() { return QString("Whatcha want?"); }
-	QString headerAsString() { return QString("Whatcha want?"); }
+	QString magicSetType(bool aAutoDecode=true);
+	QString headerAsString();
 	ulong size() { return 0; }
 	void fromString(const QByteArray &) {;}
 	void setContentDisposition(const QString &_str){ setDisposition(_str.latin1()); }
@@ -167,7 +167,7 @@ private:
 	QCString mimeContent;
 	QCString preMultipartBody;
 	QCString postMultipartBody;
-	mailHeader *nestedMessage;
+	mimeHeader *nestedMessage;
 	QList<mimeHeader> nestedParts;
 	QString partSpecifier;
 	

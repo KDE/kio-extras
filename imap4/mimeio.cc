@@ -132,3 +132,22 @@ int mimeIOQFile::inputLine(QCString &data)
 
 	return data.length();
 }
+
+mimeIOQString::mimeIOQString()
+{
+}
+
+mimeIOQString::~mimeIOQString()
+{
+}
+
+int mimeIOQString::outputLine(const QCString &_str)
+{
+	theString += _str;
+	return _str.length();
+}
+
+int mimeIOQString::inputLine(QCString &)
+{
+	return 0;
+}

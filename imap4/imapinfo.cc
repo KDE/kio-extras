@@ -186,7 +186,7 @@ imapInfo::imapInfo(const QStringList & list)
 }
 
   ulong
-imapInfo::_flags(const QString & flagsString) const
+imapInfo::_flags(const QString & flagsString)
 {
   QString ignore;
 
@@ -194,7 +194,7 @@ imapInfo::_flags(const QString & flagsString) const
 }
 
   ulong
-imapInfo::_flags(const QString & inFlags,QString &userflags) const
+imapInfo::_flags(const QString & inFlags,QString &userflags)
 {
 	ulong flags = 0;
 	QString entry;

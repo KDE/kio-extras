@@ -95,6 +95,7 @@ protected:
 	QString myHost,myUser,myPass,myAuth;
 	int myPort;
 
+	void outputLineStr(const QString &_str) {outputLine(_str.latin1());}
 	void doListEntry(const KURL &_url,mailHeader *what,int stretch);
 	void doListEntry(const KURL &_url,const QString &myBox,const imapList &item);
 

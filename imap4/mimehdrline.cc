@@ -371,7 +371,8 @@ QCString mimeHdrLine::getDateStr(struct tm *timeStruct,int gmt_off)
 	return QCString(retVal);
 }
 
-int mimeHdrLine::parseDate(const char *inCStr,struct tm *fillTime,int *gmt_off){
+int mimeHdrLine::parseDate(const char *inCStr,struct tm *fillTime,int *gmt_off)
+{
 	char *aCStr = (char *)inCStr;
 	int retVal = 0;
 	int state=0;
@@ -495,6 +496,8 @@ int mimeHdrLine::parseDate(const char *inCStr,struct tm *fillTime,int *gmt_off){
     }
     if (state < 10) ++state;
 
+	// imap internal date is seperated by '-' not ' '
+	if(aCStr[skip] == '-') skip++;
     aCStr += skip;
     retVal += skip;
   	

@@ -54,4 +54,17 @@ class mimeIOQFile : public mimeIO
   	QFile myFile;
 };
 
+class mimeIOQString : public mimeIO
+{
+  public:
+	mimeIOQString();
+	virtual ~mimeIOQString();
+	virtual int outputLine(const QCString &);
+	virtual int inputLine(QCString &);
+	QString getString() { return theString;};
+	
+  protected:
+  	QString theString;
+};
+
 #endif

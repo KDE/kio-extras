@@ -39,6 +39,36 @@ class QString;
 class mailAddress;
 class mimeHeader;
 
+class imapCache {
+  public:
+	imapCache() { myHeader = NULL;mySize=0;myFlags=0;myDate.tm_year=0;myUid=0; }
+	~imapCache(){;}
+	
+	mailHeader *getHeader() { return myHeader; }	
+	void setHeader(mailHeader *inHeader) { myHeader = inHeader; }
+	
+	ulong getSize() { return mySize; }
+	void setSize(ulong inSize) { mySize = inSize; }
+	
+	ulong getUid() { return myUid; }
+	void setUid(ulong inUid) { myUid = inUid; }
+	
+	ulong getFlags() { return myFlags; }
+	void setFlags(ulong inFlags) { myFlags = inFlags; }
+	
+	const struct tm* getDate() { return &myDate; }
+	QString getDateStr() { return mimeHdrLine::getDateStr(&myDate); }
+	void setDateStr(const QString &_str) { mimeHdrLine::parseDate(_str.latin1(),&myDate); }
+	
+  protected:
+	mailHeader *myHeader;
+	ulong mySize;
+	ulong myFlags;
+	ulong myUid;
+	struct tm myDate;
+};
+
+
 class imapParser {
 
   public:
@@ -150,11 +180,11 @@ class imapParser {
 
 
   // access to the uid cache and other properties
-  	mailHeader *getUid(const QString &_str) { return uidCache[_str]; };
+  	imapCache *getUid(const QString &_str) { return uidCache[_str]; };
 
-	QDictIterator<mailHeader> getUidIterator() { return QDictIterator<mailHeader>(uidCache); };
+	QDictIterator<imapCache> getUidIterator() { return QDictIterator<imapCache>(uidCache); };
 	uint getCacheSize() { return uidCache.count();}
-	mailHeader *getLastHandled() { return lastHandled; };
+	imapCache *getLastHandled() { return lastHandled; };
 	
 	const QStringList &getResults() { return lastResults; };
 
@@ -194,11 +224,11 @@ class imapParser {
 	QString continuation;
 
 	// our own little message cache
-	QDict<mailHeader> uidCache;
+	QDict<imapCache> uidCache;
 	
 	// the last uid seen while a fetch
 	QString seenUid;
-	mailHeader *lastHandled;
+	imapCache *lastHandled;
 			
 	ulong commandCounter;
 

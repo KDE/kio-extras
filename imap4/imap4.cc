@@ -156,7 +156,12 @@ IMAP4Protocol::~IMAP4Protocol() {
 void IMAP4Protocol::get(const KURL &_url) {
    qDebug( "IMAP4::get -  %s",_url.url().latin1());
 	QString aBox,aSequence,aType,aSection,aValidity;
-	parseURL(_url,aBox,aSection,aType,aSequence,aValidity);
+	enum IMAP_TYPE aEnum = parseURL(_url,aBox,aSection,aType,aSequence,aValidity);
+	
+	if(aSequence.isEmpty())
+	{
+		aSequence = "1:*";
+	}
 	
 	imapCommand *cmd = NULL;
 	if(aBox != getCurrentBox())
@@ -183,16 +188,69 @@ void IMAP4Protocol::get(const KURL &_url) {
 		} else if(aSection.find("ENVELOPE",0,false) != -1) {
 			aSection = "ENVELOPE";
 		} else {
-			aSection = "BODY.PEEK[" + aSection + "]";
+			if(aEnum == ITYPE_BOX) aSection="ENVELOPE RFC822.SIZE INTERNALDATE FLAGS";
+			else aSection = "BODY.PEEK[" + aSection + "]";
 		}
-		cmd = doCommand(imapCommand::clientFetch(aSequence,aSection));
+		if(aEnum == ITYPE_BOX)
+		{
+			// write the digest header
+			outputLine("Content-Type: multipart/digest; boundary=\"IMAPDIGEST\"\r\n");
+			if(selectInfo.recentAvailable())
+				outputLineStr("X-Recent: " +QString().setNum(selectInfo.recent())+"\r\n");
+			if(selectInfo.countAvailable())
+				outputLineStr("X-Count: "+QString().setNum(selectInfo.count())+"\r\n");
+			if(selectInfo.unseenAvailable())
+				outputLineStr("X-Unseen: "+QString().setNum(selectInfo.unseen())+"\r\n");
+			if(selectInfo.uidValidityAvailable())
+				outputLineStr("X-uidValidity: "+QString().setNum(selectInfo.uidValidity())+"\r\n");
+			if(selectInfo.flagsAvailable())
+				outputLineStr("X-Flags: "+QString().setNum(selectInfo.flags())+"\r\n");
+			if(selectInfo.permanentFlagsAvailable())
+				outputLineStr("X-PermanentFlags: "+QString().setNum(selectInfo.permanentFlags())+"\r\n");
+			if(selectInfo.readWriteAvailable())
+				outputLineStr(QString("X-Access: ")+ (selectInfo.readWrite() ? "Read/Write" : "Read only") + "\r\n");
+			outputLine("\r\n");
+		}
+
+		cmd = sendCommand(imapCommand::clientFetch(aSequence,aSection));
+		do {
+			while(!parseLoop());
+
+			mailHeader *lastone = NULL;
+			imapCache *cache;
+			cache = getLastHandled();
+			if(cache) lastone = cache->getHeader();
+
+			if(!cmd->isComplete())
+			{
+				qDebug("IMAP4::get - got %p from client",lastone);
+				if(lastone && ((aSection.find("BODYSTRUCTURE",0,false) != -1) || (aSection.find("ENVELOPE",0,false) != -1) ) )
+				{
+					if(aEnum == ITYPE_BOX)
+					{
+						// write the mime header (default is here message/rfc822)
+						outputLine("--IMAPDIGEST\r\n");
+						if(cache->getUid() != 0)
+							outputLineStr("X-UID: " + QString().setNum(cache->getUid()) + "\r\n");
+						if(cache->getSize() != 0)
+							outputLineStr("X-Length: "+ QString().setNum(cache->getSize())+"\r\n");
+						if(cache->getDate()->tm_year != 0)
+							outputLineStr("X-Date: "+cache->getDateStr()+"\r\n");
+						if(cache->getFlags() != 0)
+							outputLineStr("X-Flags: "+ QString().setNum(cache->getFlags())+"\r\n");
+						outputLine("\r\n");
+					}
+					lastone->outputPart(*this);
+				}
+			}
+		} while(!cmd->isComplete());
+		if(aEnum == ITYPE_BOX)
+		{
+			// write the end boundary
+			outputLine("--IMAPDIGEST--\r\n");
+		}
+
 		completeQueue.removeRef(cmd);
-
-		//
-		mailHeader *received = getUid(aSequence);
-
-		qDebug("IMAP4::get - got %p from cache",received);
-		if(received && (aSection == "BODYSTRUCTURE" || aSection == "ENVELOPE")) received->outputPart(*this);
 	}
 
 	// just to keep everybody happy when no data arrived
@@ -263,7 +321,8 @@ void IMAP4Protocol::listDir(const KURL &_url) {
 
 					if(selectInfo.uidNextAvailable()) stretch = QString().setNum(selectInfo.uidNext()).length();
 					UDSEntry entry;
-					mailHeader *lastone;
+					mailHeader *lastone=NULL;
+					imapCache *cache;
 					mailHeader fake;
 
 //					qDebug("SEARCH returned - %d",list.count());
@@ -272,7 +331,9 @@ void IMAP4Protocol::listDir(const KURL &_url) {
 //						qDebug("SEARCH processing - %s",(*it).latin1());
 
 						// get the cached entry
-						lastone = getUid((*it));
+						cache = getUid((*it));
+						if(cache) lastone = cache->getHeader();
+						else lastone = NULL;
 
 						// if the uid is not in the cache we fake an entry
 						if(!lastone)
@@ -334,8 +395,10 @@ void IMAP4Protocol::listDir(const KURL &_url) {
 						while(!parseLoop());
 
 						mailHeader *lastone;
-
-						lastone = getLastHandled();
+						imapCache *cache;
+						cache = getLastHandled();
+						if(cache) lastone = cache->getHeader();
+						else lastone = NULL;
 
 						if(!fetch->isComplete())
 						{
