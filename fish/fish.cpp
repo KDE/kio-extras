@@ -687,7 +687,7 @@ int fishProtocol::makeTimeFromLs(const QString &monthStr, const QString &dayStr,
     int currentMonth = month;
     int day = dayStr.toInt();
 
-    static const char *monthNames[12] = {
+    static const char * const monthNames[12] = {
           "Jan", "Feb", "Mar", "Apr", "May", "Jun",
         "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
     };
