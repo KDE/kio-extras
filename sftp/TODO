@@ -1,8 +1,6 @@
 - store passwords per user/host pair, not per connection
   (multiple users per host work now, but when switching views one has to
    re-enter the login info every single time)
-- do not move items to trash when deleting (probably a generic kio_slave
-  problem, though, makes no sense to download everything you want to delete)
 - support for different ports (sftp://user@host:port), this can be done by
   adding the argument -oPort=7022 (or whatever port) to sftp, could not get
   it to work properly though
