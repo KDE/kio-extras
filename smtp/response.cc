@@ -83,7 +83,7 @@ namespace KioSMTP {
       return;
     }
 
-    mLines.push_back( len > 4 ? QCString( line+4, len-4+1 ).stripWhiteSpace() : 0 );
+    mLines.append( len > 4 ? QCString( line+4, len-4+1 ).stripWhiteSpace() : QCString() );
   }
 
 
