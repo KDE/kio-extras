@@ -183,7 +183,7 @@ LinuxCDPolling::LinuxCDPolling(MediaList &list)
 	        this, SLOT(slotMediumRemoved(const QString &)) );
 
 	connect(&m_mediaList, SIGNAL(mediumStateChanged(const QString &,
-	                                               const QString &)),
+	                                               const QString &, bool)),
 	        this, SLOT(slotMediumStateChanged(const QString &)) );
 
 	QTimer *timer = new QTimer(this);
