@@ -32,6 +32,10 @@
 #include "halbackend.h"
 #endif //COMPILE_HALBACKEND
 
+#ifdef COMPILE_LINUXCDPOLLING
+#include "linuxcdpolling.h"
+#endif //COMPILE_LINUXCDPOLLING
+
 
 MediaManager::MediaManager(const QCString &obj)
     : KDEDModule(obj), m_dirNotify(m_mediaList)
@@ -55,14 +59,20 @@ MediaManager::MediaManager(const QCString &obj)
 	else
 	{
 		delete halBackend;
-		m_backends.append( new FstabBackend(m_mediaList) );
 		mp_removableBackend = new RemovableBackend(m_mediaList);
 		m_backends.append( mp_removableBackend );
+//#ifdef COMPILE_LINUXCDPOLLING
+//		m_backends.append( new LinuxCDPolling(m_mediaList) );
+//#endif //COMPILE_LINUXCDPOLLING
+		m_backends.append( new FstabBackend(m_mediaList) );
 	}
 #else //COMPILE_HALBACKEND
-	m_backends.append( new FstabBackend(m_mediaList) );
 	mp_removableBackend = new RemovableBackend(m_mediaList);
 	m_backends.append( mp_removableBackend );
+//#ifdef COMPILE_LINUXCDPOLLING
+	//m_backends.append( new LinuxCDPolling(m_mediaList) );
+//#endif //COMPILE_LINUXCDPOLLING
+	m_backends.append( new FstabBackend(m_mediaList) );
 #endif //COMPILE_HALBACKEND
 }
 

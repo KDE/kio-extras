@@ -1,3 +1,13 @@
+########### Check for linux/cdrom.h
+
+AC_CHECK_HEADER(linux/cdrom.h,
+[
+  AC_DEFINE(COMPILE_LINUXCDPOLLING, , [media linux cd polling compilation])
+  LINUXCDPOLLING=yes
+  AC_SUBST(LINUXCDPOLLING)
+  AM_CONDITIONAL(include_media_linuxcdpolling, test "$LINUXCDPOLLING" = "yes")
+])
+
 ########### Check for the HAL
 
 AC_MSG_CHECKING(for the HAL)
