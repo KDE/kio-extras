@@ -436,9 +436,19 @@ StatInfo FloppyProtocol::createStatInfo(const QString line, bool makeStat, const
       //kdDebug(7101)<<"Floppy::createUDSEntry() size: -"<<size<<"-"<<endl;
    }
 
-   day=line.mid(26,2);
-   month=line.mid(23,2);
-   year=line.mid(29,4);
+        //TEEKANNE JPG     70796 01-02-2003  17:47  Teekanne.jpg
+   if (line[25]=='-')
+   {
+      month=line.mid(23,2);
+      day=line.mid(26,2);
+      year=line.mid(29,4);
+   }
+   else //SETUP    PKG      1019 1997-09-25  10:31  setup.pkg
+   {
+      year=line.mid(23,4);
+      month=line.mid(28,2);
+      day=line.mid(31,2);
+   }
    hour=line.mid(35,2);
    minute=line.mid(38,2);
    //kdDebug(7101)<<"Floppy::createUDSEntry() day: -"<<day<<"-"<<month<<"-"<<year<<"- -"<<hour<<"-"<<minute<<"-"<<endl;
