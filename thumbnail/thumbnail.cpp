@@ -153,7 +153,7 @@ void ThumbnailProtocol::get(const KURL &url)
         }
     }
     
-   ThumbCreator::Flags flags = 0;
+   ThumbCreator::Flags flags = ThumbCreator::None;
      
     if (!kfmiThumb)
     {
