@@ -68,11 +68,8 @@ public:
   virtual void listDir( const KURL &_url );
 
 protected:
-
   ssize_t getSize( const KURL &_url );
-
-  virtual void slotTestDir( const char *_url );
-
+//  virtual void slotTestDir( const char *_url );
   void startLoop();
   
   

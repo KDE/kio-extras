@@ -167,6 +167,7 @@ unsigned int IMAP4Protocol::command (enum IMAP_COMMAND type, const QString &_arg
 
 void IMAP4Protocol::imap4_close ()
 {
+   kdDebug() << "closing..." << endl;
    m_uLastCmd=0;
    exit(0);
 }
@@ -362,6 +363,7 @@ void IMAP4Protocol::listDir(const KURL &_url) {
    }
 
    bool LIST = true;  // use LIST vs LSUB
+   urlPath = _url.path().copy();
    if (urlPath.find(";TYPE=", 0, false) != -1) {
       int i = urlPath.find(";TYPE=", 0, false);
       QString t = urlPath.mid(i+6);
@@ -371,6 +373,7 @@ void IMAP4Protocol::listDir(const KURL &_url) {
       urlPath = urlPath.left(i);
    }
    QString mailRef = urlPath;
+   kdDebug() << "LIST: mailRef=" << mailRef << endl;
    // further parse urlPath
    if (LIST) command(ICMD_LIST, "\"" + mailRef + "\" \"%\"");
    else command(ICMD_LSUB, "\"" + mailRef + "\" \"%\"");
