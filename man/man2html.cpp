@@ -105,6 +105,7 @@
 
 
 #include <stdio.h>
+#include <iostream.h>
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
@@ -198,6 +199,11 @@ static char *strlimitcpy(char *to, char *from, int n, int limit)
 
 
 //typedef struct STRDEF STRDEF;
+struct CSTRDEF {
+    int nr, slen;
+    const char *st;
+};
+
 struct STRDEF {
     int nr,slen;
     char *st;
@@ -232,7 +238,7 @@ static INTDEF standardint[] = {
     { V('.','V'), 1,0, NULL }, /* the me package tests for this */
     { 0, 0, 0, NULL } };
 
-static STRDEF standardstring[] = {
+static CSTRDEF standardstring[] = {
     { V('R',' '), 1, "&#174;", NULL },
     { V('l','q'), 2, "``", NULL },
     { V('r','q'), 2, "''", NULL },
@@ -241,103 +247,102 @@ static STRDEF standardstring[] = {
 #endif
 
 //used in expand_char, e.g. for "\(bu"
-static STRDEF standardchar[] = {
-    { V('*','*'), 1, "*", NULL  },
-    { V('*','A'), 1, "A", NULL  },
-    { V('*','B'), 1, "B", NULL  },
-    { V('*','C'), 2, "Xi", NULL  },
-    { V('*','D'), 5, "Delta", NULL  },
-    { V('*','E'), 1, "E", NULL  },
-    { V('*','F'), 3, "Phi", NULL  },
-    { V('*','G'), 5, "Gamma", NULL  },
-    { V('*','H'), 5, "Theta", NULL  },
-    { V('*','I'), 1, "I", NULL  },
-    { V('*','K'), 1, "K", NULL  },
-    { V('*','L'), 6, "Lambda", NULL  },
-    { V('*','M'), 1, "M", NULL  },
-    { V('*','N'), 1, "N", NULL  },
-    { V('*','O'), 1, "O", NULL  },
-    { V('*','P'), 2, "Pi", NULL  },
-    { V('*','Q'), 3, "Psi", NULL  },
-    { V('*','R'), 1, "P", NULL  },
-    { V('*','S'), 5, "Sigma", NULL  },
-    { V('*','T'), 1, "T", NULL  },
-    { V('*','U'), 1, "Y", NULL  },
-    { V('*','W'), 5, "Omega", NULL  },
-    { V('*','X'), 1, "X", NULL  },
-    { V('*','Y'), 1, "H", NULL  },
-    { V('*','Z'), 1, "Z", NULL  },
-    { V('*','a'), 5, "alpha", NULL },
-    { V('*','b'), 4, "beta", NULL },
-    { V('*','c'), 2, "xi", NULL },
-    { V('*','d'), 5, "delta", NULL },
-    { V('*','e'), 7, "epsilon", NULL },
-    { V('*','f'), 3, "phi", NULL },
-    { V('*','g'), 5, "gamma", NULL },
-    { V('*','h'), 5, "theta", NULL },
-    { V('*','i'), 4, "iota", NULL },
-    { V('*','k'), 5, "kappa", NULL },
-    { V('*','l'), 6, "lambda", NULL },
-    { V('*','m'), 1, "&#181;", NULL  },
-    { V('*','n'), 2, "nu", NULL },
-    { V('*','o'), 1, "o", NULL },
-    { V('*','p'), 2, "pi", NULL },
-    { V('*','q'), 3, "psi", NULL },
-    { V('*','r'), 3, "rho", NULL },
-    { V('*','s'), 5, "sigma", NULL },
-    { V('*','t'), 3, "tau", NULL },
-    { V('*','u'), 7, "upsilon", NULL },
-    { V('*','w'), 5, "omega", NULL },
-    { V('*','x'), 3, "chi", NULL },
-    { V('*','y'), 3, "eta", NULL },
-    { V('*','z'), 4, "zeta", NULL },
-    { V('t','s'), 5, "sigma", NULL },
-    { V('+','-'), 1, "&#177;", NULL  },
-    { V('1','2'), 1, "&#189;", NULL  },
-    { V('1','4'), 1, "&#188;", NULL  },
-    { V('3','4'), 1, "&#190;", NULL  },
-    { V('F','i'), 3, "ffi", NULL  },
-    { V('F','l'), 3, "ffl", NULL  },
-    { V('a','a'), 1, "&#180;", NULL  },
-    { V('a','p'), 1, "~", NULL  },
-    { V('b','r'), 1, "|", NULL  },
-    { V('b','u'), 1, "<li></li>", NULL  },
-    { V('b','v'), 1, "|", NULL  },
-    { V('c','i'), 1, "o", NULL  },
-    { V('c','o'), 1, "&#169;", NULL  },
-    { V('c','t'), 1, "&#162;", NULL  },
-    { V('d','e'), 1, "&#176;", NULL  },
-    { V('d','g'), 1, "+", NULL  },
-    { V('d','i'), 1, "&#247;", NULL  },
-    { V('e','m'), 1, "-", NULL  },
-    { V('e','m'), 3, "---", NULL },
-    { V('e','q'), 1, "=", NULL  },
-    { V('e','s'), 1, "&#216;", NULL  },
-    { V('f','f'), 2, "ff", NULL  },
-    { V('f','i'), 2, "fi", NULL  },
-    { V('f','l'), 2, "fl", NULL  },
-    { V('f','m'), 1, "&#180;", NULL  },
-    { V('g','a'), 1, "`", NULL  },
-    { V('h','y'), 1, "-", NULL  },
-    { V('l','c'), 2, "|&#175;", NULL  },
-    { V('l','f'), 2, "|_", NULL  },
-    { V('l','k'), 1, "<FONT SIZE=+2>{</FONT>", NULL  },
-    { V('m','i'), 1, "-", NULL  },
-    { V('m','u'), 1, "&#215;", NULL  },
-    { V('n','o'), 1, "&#172;", NULL  },
-    { V('o','r'), 1, "|", NULL  },
-    { V('p','l'), 1, "+", NULL  },
-    { V('r','c'), 2, "&#175;|", NULL  },
-    { V('r','f'), 2, "_|", NULL  },
-    { V('r','g'), 1, "&#174;", NULL  },
-    { V('r','k'), 1, "<FONT SIZE=+2>}</FONT>", NULL  },
-    { V('r','n'), 1, "&#175;", NULL  },
-    { V('r','u'), 1, "_", NULL  },
-    { V('s','c'), 1, "&#167;", NULL  },
-    { V('s','l'), 1, "/", NULL  },
-    { V('s','q'), 2, "[]", NULL  },
-    { V('u','l'), 1, "_", NULL  },
-    { 0, 0, NULL, NULL  }
+static CSTRDEF standardchar[] = {
+    { V('*','*'), 1, "*" },
+    { V('*','A'), 1, "A" },
+    { V('*','B'), 1, "B" },
+    { V('*','C'), 2, "Xi" },
+    { V('*','D'), 5, "Delta" },
+    { V('*','E'), 1, "E" },
+    { V('*','F'), 3, "Phi" },
+    { V('*','G'), 5, "Gamma" },
+    { V('*','H'), 5, "Theta" },
+    { V('*','I'), 1, "I" },
+    { V('*','K'), 1, "K" },
+    { V('*','L'), 6, "Lambda" },
+    { V('*','M'), 1, "M" },
+    { V('*','N'), 1, "N" },
+    { V('*','O'), 1, "O" },
+    { V('*','P'), 2, "Pi" },
+    { V('*','Q'), 3, "Psi" },
+    { V('*','R'), 1, "P" },
+    { V('*','S'), 5, "Sigma" },
+    { V('*','T'), 1, "T" },
+    { V('*','U'), 1, "Y" },
+    { V('*','W'), 5, "Omega" },
+    { V('*','X'), 1, "X" },
+    { V('*','Y'), 1, "H" },
+    { V('*','Z'), 1, "Z" },
+    { V('*','a'), 5, "alpha"},
+    { V('*','b'), 4, "beta"},
+    { V('*','c'), 2, "xi"},
+    { V('*','d'), 5, "delta"},
+    { V('*','e'), 7, "epsilon"},
+    { V('*','f'), 3, "phi"},
+    { V('*','g'), 5, "gamma"},
+    { V('*','h'), 5, "theta"},
+    { V('*','i'), 4, "iota"},
+    { V('*','k'), 5, "kappa"},
+    { V('*','l'), 6, "lambda"},
+    { V('*','m'), 1, "&#181;" },
+    { V('*','n'), 2, "nu"},
+    { V('*','o'), 1, "o"},
+    { V('*','p'), 2, "pi"},
+    { V('*','q'), 3, "psi"},
+    { V('*','r'), 3, "rho"},
+    { V('*','s'), 5, "sigma"},
+    { V('*','t'), 3, "tau"},
+    { V('*','u'), 7, "upsilon"},
+    { V('*','w'), 5, "omega"},
+    { V('*','x'), 3, "chi"},
+    { V('*','y'), 3, "eta"},
+    { V('*','z'), 4, "zeta"},
+    { V('t','s'), 5, "sigma"},
+    { V('+','-'), 1, "&#177;" },
+    { V('1','2'), 1, "&#189;" },
+    { V('1','4'), 1, "&#188;" },
+    { V('3','4'), 1, "&#190;" },
+    { V('F','i'), 3, "ffi" },
+    { V('F','l'), 3, "ffl" },
+    { V('a','a'), 1, "&#180;" },
+    { V('a','p'), 1, "~" },
+    { V('b','r'), 1, "|" },
+    { V('b','u'), 1, "<li></li>" },
+    { V('b','v'), 1, "|" },
+    { V('c','i'), 1, "o" },
+    { V('c','o'), 1, "&#169;" },
+    { V('c','t'), 1, "&#162;" },
+    { V('d','e'), 1, "&#176;" },
+    { V('d','g'), 1, "+" },
+    { V('d','i'), 1, "&#247;" },
+    { V('e','m'), 1, "-" },
+    { V('e','m'), 3, "---"},
+    { V('e','q'), 1, "=" },
+    { V('e','s'), 1, "&#216;" },
+    { V('f','f'), 2, "ff" },
+    { V('f','i'), 2, "fi" },
+    { V('f','l'), 2, "fl" },
+    { V('f','m'), 1, "&#180;" },
+    { V('g','a'), 1, "`" },
+    { V('h','y'), 1, "-" },
+    { V('l','c'), 2, "|&#175;" },
+    { V('l','f'), 2, "|_" },
+    { V('l','k'), 1, "<FONT SIZE=+2>{</FONT>" },
+    { V('m','i'), 1, "-" },
+    { V('m','u'), 1, "&#215;" },
+    { V('n','o'), 1, "&#172;" },
+    { V('o','r'), 1, "|" },
+    { V('p','l'), 1, "+" },
+    { V('r','c'), 2, "&#175;|" },
+    { V('r','f'), 2, "_|" },
+    { V('r','g'), 1, "&#174;" },
+    { V('r','k'), 1, "<FONT SIZE=+2>}</FONT>" },
+    { V('r','n'), 1, "&#175;" },
+    { V('r','u'), 1, "_" },
+    { V('s','c'), 1, "&#167;" },
+    { V('s','l'), 1, "/" },
+    { V('s','q'), 2, "[]" },
+    { V('u','l'), 1, "_" },
 };
 
 /* default: print code */
@@ -366,15 +371,13 @@ static char charb[TINY_STR_MAX];
 
 static const char *expand_char(int nr)
 {
-  STRDEF *h;
-  h=standardchar;
   if (!nr) return NULL;
-  while (h)
-     if (h->nr==nr) {
-        curpos+=h->slen;
-        return h->st;
-     } else
-        h++;
+  for (size_t i = 0; i < sizeof(standardchar)/sizeof(CSTRDEF); i++) {
+      if (standardchar[i].nr==nr) {
+          curpos+=standardchar[i].slen;
+          return standardchar[i].st;
+      }
+  }
   charb[0]=nr/256;
   charb[1]=nr%256;
   charb[2]='\0';
@@ -777,7 +780,7 @@ static char *scan_escape(char *c)
 	if (argument) {
 	    c++;
 	    i=(*c -'1');
-	    if (i < 0 || i > (int)strlen(*argument) || !(h=argument[i])) h="";
+	    if (i < 0 || (*argument && i > (int)strlen(*argument)) || !(h=argument[i])) h="";
 	}
 	break;
     case 'z':
@@ -3269,7 +3272,7 @@ static char *scan_troff(char *c, int san, char **result)
 		curpos++;
 		break;
 	    case '\n':
-		if (h[-1]=='\n' && fillout) {
+		if (h != c && h[-1]=='\n' && fillout) {
 		    intbuff[ibp++]='<';
 		    intbuff[ibp++]='P';
 		    intbuff[ibp++]='>';
@@ -3504,7 +3507,8 @@ void scan_man_page(const char *man_page)
 #ifdef SIMPLE_MAN2HTML
 void output_real(const char *insert)
 {
-    printf("%s", insert);
+    (void)insert;
+    // printf("%s", insert);
 }
 
 char *read_man_page(const char *filename)
@@ -3516,9 +3520,11 @@ char *read_man_page(const char *filename)
     struct stat stbuf;
     size_t buf_size;
     if (stat(filename, &stbuf) == -1) {
+        std::cerr << "read_man_page: can't find " << filename << endl;
         return NULL;
     }
     if (!S_ISREG(stbuf.st_mode)) {
+        std::cerr << "read_man_page: no file " << filename << endl;
         return NULL;
     }
     buf_size = stbuf.st_size;
@@ -3541,8 +3547,10 @@ char *read_man_page(const char *filename)
 
 int main(int argc, char **argv)
 {
-    if (argc < 2)
+    if (argc < 2) {
+        std::cerr << "call: " << argv[0] << "filename\n";
         return 1;
+    }
     if (chdir(argv[1])) {
         char *buf = read_man_page(argv[1]);
         if (buf) {
