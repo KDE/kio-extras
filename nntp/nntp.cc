@@ -210,10 +210,10 @@ bool NNTPProtocol::nntp_open( const KURL &_url )
   } else {
     nntp_close();
     m_iSock = ::socket(PF_INET, SOCK_STREAM, 0);
-    if (!KSocket::initSockaddr(&server_name, _url.host(), port))
+    if (!KSocket::initSockaddr(&server_name, _url.host().local8Bit(), port))
       return false;
     if (::connect(m_iSock, (struct sockaddr*)(&server_name), sizeof(server_name))) {
-      error( ERR_COULD_NOT_CONNECT, strdup(_url.host()));
+      error( ERR_COULD_NOT_CONNECT, _url.host());
       return false;
     }
 
@@ -251,7 +251,7 @@ bool NNTPProtocol::nntp_open( const KURL &_url )
 
     memset(buf, 0, sizeof(buf));
 
-    if (!command(one_string, buf, sizeof(buf))) {
+    if (!command(one_string.local8Bit(), buf, sizeof(buf))) {
       fprintf(stderr, "Couldn't login. Bad username Sorry\n");
       nntp_close();
       return false;
@@ -265,7 +265,7 @@ bool NNTPProtocol::nntp_open( const KURL &_url )
       m_sOldPass = _url.pass();
       one_string.append(_url.pass());
     }
-    if (!command(one_string, buf, sizeof(buf))) {
+    if (!command(one_string.local8Bit(), buf, sizeof(buf))) {
       fprintf(stderr, "Couldn't login. Bad password Sorry\n");
       nntp_close();
       return false;
@@ -396,7 +396,7 @@ LIST
     if (!ok) return; //  We fscking need a number!
     path.prepend("TOP ");
     path.append(" 0");
-    if (command(path)) { // This should be checked, and a more hackish way of
+    if (command(path.ascii())) { // This should be checked, and a more hackish way of
                          // getting at the headers by d/l the whole message
                          // and stopping at the first blank line used if the
                          // TOP cmd isn't supported
@@ -436,7 +436,7 @@ LIST
     (void)path.toInt(&ok);
     if (!ok) return; //  We fscking need a number!
     path.prepend("DELE ");
-    command(path);
+    command(path.ascii());
     finished();
     m_cmd = CMD_NONE;
   }
@@ -451,7 +451,7 @@ LIST
     list_cmd+= path;
     path.prepend("RETR ");
     memset(buf, 0, sizeof(buf));
-    if (command(list_cmd, buf, sizeof(buf)-1)) {
+    if (command(list_cmd.ascii(), buf, sizeof(buf)-1)) {
       list_cmd=buf;
       // We need a space, otherwise we got an invalid reply
       if (!list_cmd.find(" ")) {
@@ -468,7 +468,7 @@ LIST
     } else {
       nntp_close(); return;
     }
-    if (command(path)) {
+    if (command(path.ascii())) {
       //ready();
       gettingFile(url.url());
       mimeType("message/rfc822");
@@ -507,7 +507,7 @@ LIST
     else
       path.prepend("LIST ");
     memset(buf, 0, sizeof(buf));
-    if (command(path, buf, sizeof(buf)-1)) {
+    if (command(path.ascii(), buf, sizeof(buf)-1)) {
       const int len = strlen(buf);
       //ready();
       gettingFile(url.url());
@@ -657,7 +657,7 @@ void NNTPProtocol::del( const KURL& url, bool /*isfile*/ )
     invalidURI=_path;
   } else {
     _path.prepend("DELE ");
-    if (!command(_path)) {
+    if (!command(_path.ascii())) {
       invalidURI=_path;
     }
   }

@@ -388,7 +388,7 @@ memset(&server_name, 0, sizeof(server_name));
   } else {
     smtp_close();
     m_iSock = ::socket(PF_INET, SOCK_STREAM, 0);
-    if (!KSocket::initSockaddr(&server_name, m_sServer, port))
+    if (!KSocket::initSockaddr(&server_name, m_sServer.local8Bit(), port))
       return false;
     if (::connect(m_iSock, (struct sockaddr*)(&server_name), sizeof(server_name))) {
       error( ERR_COULD_NOT_CONNECT, m_sServer);

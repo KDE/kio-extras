@@ -1,4 +1,3 @@
-AM_CPPFLAGS = -UQT_NO_ASCII_CAST
 INCLUDES= -I$(srcdir)/../.. -I$(srcdir)/.. $(SSL_INCLUDES) $(all_includes)
 
 ####### Files

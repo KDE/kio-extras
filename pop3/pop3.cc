@@ -347,7 +347,7 @@ bool POP3Protocol::pop3_open()
       apop_string.append(" ");
       apop_string.append(ascii_digest);
 
-      if(command(apop_string, buf, sizeof(buf)))
+      if(command(apop_string.local8Bit(), buf, sizeof(buf)))
         return true;
 
       kdDebug() << "Couldn't login via APOP. Falling back to USER/PASS" << endl;
@@ -358,7 +358,7 @@ bool POP3Protocol::pop3_open()
 #endif
 
     // Fall back to conventional USER/PASS scheme
-    if (!command(one_string, buf, sizeof(buf))) {
+    if (!command(one_string.local8Bit(), buf, sizeof(buf))) {
       kdDebug() << "Couldn't login. Bad username Sorry" << endl;
       m_sError = i18n("Could not login to %1.\n\n").arg(m_sServer) + m_sError;
       error( ERR_COULD_NOT_LOGIN, m_sError );
@@ -374,7 +374,7 @@ bool POP3Protocol::pop3_open()
       m_sOldPass = m_sPass;
       one_string.append(m_sPass);
     }
-    if (!command(one_string, buf, sizeof(buf))) {
+    if (!command(one_string.local8Bit(), buf, sizeof(buf))) {
       kdDebug() << "Couldn't login. Bad password Sorry." << endl;
       m_sError = i18n("Could not login to %1.\n\n").arg(m_sServer) + m_sError;
       error( ERR_COULD_NOT_LOGIN, m_sError );
@@ -512,7 +512,7 @@ LIST
     }
     path.prepend("TOP ");
     path.append(" 0");
-    if (command(path)) { // This should be checked, and a more hackish way of
+    if (command(path.ascii())) { // This should be checked, and a more hackish way of
                          // getting at the headers by d/l the whole message
                          // and stopping at the first blank line used if the
                          // TOP cmd isn't supported
@@ -554,7 +554,7 @@ LIST
        return; //  We fscking need a number!
     }
     path.prepend("DELE ");
-    command(path);
+    command(path.ascii());
     finished();
     m_cmd = CMD_NONE;
   }
@@ -572,7 +572,7 @@ LIST
     list_cmd+= path;
     path.prepend("RETR ");
     memset(buf, 0, sizeof(buf));
-    if (command(list_cmd, buf, sizeof(buf)-1)) {
+    if (command(list_cmd.ascii(), buf, sizeof(buf)-1)) {
       list_cmd=buf;
       // We need a space, otherwise we got an invalid reply
       if (!list_cmd.find(" ")) {
@@ -594,7 +594,7 @@ LIST
       error( ERR_INTERNAL, i18n("Unexpected response from POP3 server."));
       return;
     }
-    if (command(path)) {
+    if (command(path.ascii())) {
       //ready();
       gettingFile(url.url());
       mimeType("message/rfc822");
@@ -633,7 +633,7 @@ LIST
     else
       path.prepend("LIST ");
     memset(buf, 0, sizeof(buf));
-    if (command(path, buf, sizeof(buf)-1)) {
+    if (command(path.ascii(), buf, sizeof(buf)-1)) {
       const int len = strlen(buf);
       //ready();
       gettingFile(url.url());
@@ -796,7 +796,7 @@ void POP3Protocol::del( const KURL& url, bool /*isfile*/ )
     invalidURI=_path;
   } else {
     _path.prepend("DELE ");
-    if (!command(_path)) {
+    if (!command(_path.ascii())) {
       invalidURI=_path;
     }
   }

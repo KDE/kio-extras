@@ -1,6 +1,6 @@
 ## Makefile.am of kdebase/kioslave/file
 
-AM_CPPFLAGS = -DQT_NO_CAST_ASCII -DQT_NO_ASCII_CAST
+AM_CPPFLAGS = -DQT_NO_CAST_ASCII
 
 INCLUDES = $(all_includes)
 

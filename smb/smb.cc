@@ -355,7 +355,7 @@ QString SmbProtocol::buildFullLibURL(const QString &pathArg)
                 currentIP.isEmpty()?(const char*)0:(const char*)currentIP.local8Bit()
                 );*/
         // NB20000423: but the path is correct => can retrieve the host for bindings
-        QString ret = util.buildURL(
+        QCString ret = util.buildURL(
                 currentUser.isEmpty()?(const char*)0:(const char*)currentUser.local8Bit(),
                 currentPass.isEmpty()?(const char*)0:(const char*)currentPass.local8Bit(),
                 0,
@@ -376,8 +376,8 @@ void SmbProtocol::mkdir( const KURL& url, int /*permissions*/ )
         kdDebug(7106) << "entering mkdir " << path << endl;
         struct stat buff;
         callbackUsed=false;
-        if ( smb.stat( path, &buff ) == -1 ) {
-                if ( smb.mkdir( path ) != 0 ) {
+        if ( smb.stat( QFile::encodeName(path), &buff ) == -1 ) {
+                if ( smb.mkdir( QFile::encodeName(path) ) != 0 ) {
                         if ( smb.error() == EACCES ) {
                                 error( KIO::ERR_ACCESS_DENIED, path );
                                 return;
@@ -411,7 +411,7 @@ void SmbProtocol::get( const KURL& url )
 
         struct stat buff;
         callbackUsed=false;
-        if ( smb.stat( path, &buff ) == -1 ) {
+        if ( smb.stat( QFile::encodeName(path), &buff ) == -1 ) {
                 if ( smb.error() == EACCES )
                         error( KIO::ERR_ACCESS_DENIED, path );
                 else
@@ -430,7 +430,7 @@ void SmbProtocol::get( const KURL& url )
         }
 
         callbackUsed=false;
-        int fd = smb.open( path, O_RDONLY );
+        int fd = smb.open( QFile::encodeName(path), O_RDONLY );
         if ( fd == -1 ) {
                 error( KIO::ERR_CANNOT_OPEN_FOR_READING, path );
                 return;
@@ -499,7 +499,7 @@ void SmbProtocol::put( const KURL& url, int /*_mode*/, bool _overwrite, bool _re
 
         callbackUsed = false;
     struct stat buff_orig;
-    bool orig_exists = ( smb.stat( dest_orig, &buff_orig ) != -1 );
+    bool orig_exists = ( smb.stat( QFile::encodeName(dest_orig), &buff_orig ) != -1 );
     if ( orig_exists &&  !_overwrite && !_resume)
     {
         if (S_ISDIR(buff_orig.st_mode))
@@ -518,17 +518,17 @@ void SmbProtocol::put( const KURL& url, int /*_mode*/, bool _overwrite, bool _re
         if ( orig_exists && !_resume )
         {
           kdDebug(7106) << "Deleting destination file " << dest_orig << endl;
-                remove( dest_orig );
+                remove( QFile::encodeName(dest_orig) );
                 // Catch errors when we try to open the file.
         }
 
         callbackUsed = false;
         if ( _resume ) {
-                m_fPut = smb.open( dest, O_WRONLY | O_APPEND );  // append if resuming
+                m_fPut = smb.open( QFile::encodeName(dest), O_WRONLY | O_APPEND );  // append if resuming
         } else {
                 // NB20000628: SMB servers create with RDWR, so open with RDWR, or
                 // the native code will reopen the file in RDONLY, and possible bug
-                m_fPut = smb.open( dest, O_CREAT | O_TRUNC | O_RDWR);
+                m_fPut = smb.open( QFile::encodeName(dest), O_CREAT | O_TRUNC | O_RDWR);
         }
         // used callback successfully => new binding!
         if (callbackUsed) {
@@ -589,7 +589,7 @@ void SmbProtocol::rename( const KURL &srcArg, const KURL &destArg,
 
     struct stat buff_src;
         callbackUsed = false;
-    if ( smb.stat( src, &buff_src ) == -1 ) {
+    if ( smb.stat( QFile::encodeName(src), &buff_src ) == -1 ) {
         if ( smb.error() == EACCES )
            error( KIO::ERR_ACCESS_DENIED, src );
         else
@@ -603,7 +603,7 @@ void SmbProtocol::rename( const KURL &srcArg, const KURL &destArg,
         }
 
     struct stat buff_dest;
-    bool dest_exists = ( smb.stat( dest, &buff_dest ) != -1 );
+    bool dest_exists = ( smb.stat( QFile::encodeName(dest), &buff_dest ) != -1 );
     if ( dest_exists )
     {
         if (S_ISDIR(buff_dest.st_mode))
@@ -620,7 +620,7 @@ void SmbProtocol::rename( const KURL &srcArg, const KURL &destArg,
     }
 
         callbackUsed = false;
-    if ( smb.rename( src, dest))
+    if ( smb.rename( QFile::encodeName(src), QFile::encodeName(dest)))
     {
         if (( smb.error() == EACCES ) || (smb.error() == EPERM)) {
             error( KIO::ERR_ACCESS_DENIED, dest );
@@ -654,7 +654,7 @@ void SmbProtocol::del( const KURL& url, bool isfile)
                 // TODO deletingFile( source );
 
                 callbackUsed = false;
-                if ( smb.unlink( path ) == -1 ) {
+                if ( smb.unlink( QFile::encodeName(path) ) == -1 ) {
                         if ((smb.error() == EACCES) || (smb.error() == EPERM))
                                 error( KIO::ERR_ACCESS_DENIED, path);
                         else if (smb.error() == EISDIR)
@@ -686,7 +686,7 @@ void SmbProtocol::del( const KURL& url, bool isfile)
                 kdDebug(7106) << "Deleting directory " << path << endl;
 
                 callbackUsed = false;
-                if ( smb.rmdir( path ) == -1 ) {
+                if ( smb.rmdir( QFile::encodeName(path) ) == -1 ) {
                         if ((smb.error() == EACCES) || (smb.error() == EPERM))
                                 error( KIO::ERR_ACCESS_DENIED, path);
                         else {
@@ -718,7 +718,7 @@ void SmbProtocol::createUDSEntry( const QString & filename, const QString & path
         struct stat buff;
 
         callbackUsed = false;
-        if ( smb.stat( path, &buff ) == -1 )  {
+        if ( smb.stat( QFile::encodeName(path), &buff ) == -1 )  {
                 kdDebug( 7106 ) << "cannot stat in createUDSEntry!!!" << endl;
                 return;
         }
@@ -803,7 +803,7 @@ void SmbProtocol::stat( const KURL &url)
         kdDebug( 7106 ) << "entering stat " << path << endl;
         struct stat buff;
         callbackUsed = false;
-        if ( smb.stat( path, &buff ) == -1 ) {
+        if ( smb.stat( QFile::encodeName(path), &buff ) == -1 ) {
                 error( KIO::ERR_DOES_NOT_EXIST, path );
                 return;
         }
@@ -861,7 +861,7 @@ void SmbProtocol::listDir( const KURL& url )
 
         callbackUsed = false;
         struct stat buff;
-        if ( smb.stat( path, &buff ) == -1 ) {
+        if ( smb.stat( QFile::encodeName(path), &buff ) == -1 ) {
                 error( KIO::ERR_DOES_NOT_EXIST, path );
                 return;
         }
@@ -877,7 +877,7 @@ void SmbProtocol::listDir( const KURL& url )
 
         callbackUsed = false;
         struct SMBdirent *ep;
-        int dp = smb.opendir( path );
+        int dp = smb.opendir( QFile::encodeName(path) );
         if ( dp == -1 ) {
                 if (callbackUsed) error( KIO::ERR_ACCESS_DENIED, path);
                 else error( KIO::ERR_CANNOT_ENTER_DIRECTORY, path );

@@ -1,7 +1,5 @@
 ## Makefile.am of kdebase/kioslave/smb
 
-AM_CPPFLAGS = -UQT_NO_ASCII_CAST
-
 SUBDIRS=libsmb++
 
 INCLUDES=	$(all_includes)
