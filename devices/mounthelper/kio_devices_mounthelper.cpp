@@ -6,6 +6,7 @@
 #include <kmessagebox.h>
 #include <dcopclient.h>
 #include <qtimer.h>
+#include <kdebug.h>
 
 #include "kio_devices_mounthelper.h"
 #include "kio_devices_mounthelper.moc"
@@ -49,15 +50,16 @@ KIODevicesMountHelperApp::KIODevicesMountHelperApp():KApplication() {
 	
 						if (args->isSet("u"))
 						{
-							KAutoUnmount *um=new KAutoUnmount(mp,QString::null);
-							connect(um,SIGNAL(finished()),this,SLOT(finished()));		
-							connect(um,SIGNAL(error()),this,SLOT(error()));		
+
+							//KAutoUnmount *um=new KAutoUnmount(mp,QString::null);
+							KIO::Job * job = KIO::unmount( mp );
+						 	connect( job, SIGNAL( result( KIO::Job * ) ), this, SLOT( slotResult( KIO::Job * ) ) );
+
 						}
 						else
 						{
-							KAutoMount *m=new KAutoMount(false,QString::null,device,QString::null,QString::null,false);
-							connect(m,SIGNAL(finished()),this,SLOT(finished()));		
-							connect(m,SIGNAL(error()),this,SLOT(error()));		
+							 KIO::Job* job = KIO::mount( false, QString::null.ascii(), device, QString::null);
+							 connect( job, SIGNAL( result( KIO::Job * ) ), this, SLOT( slotResult( KIO::Job * ) ) );
 						}
         	                                return;
                 	                }
@@ -65,14 +67,29 @@ KIODevicesMountHelperApp::KIODevicesMountHelperApp():KApplication() {
                         }
                 }
 //		KMessageBox::information(0,"Wrong data");
-		QTimer::singleShot(0,this,SLOT(error()));
+		QTimer::singleShot(0,this,SLOT(finished()));
                 return;
 
 }
 
+void KIODevicesMountHelperApp::slotResult(KIO::Job* job)
+{
+	if (job->error())
+	{
+		errorStr=job->errorText();
+		QTimer::singleShot(0,this,SLOT(error()));
+	}
+	else
+	{
+//		KDirNotify_stub allDirNotify("*", "KDirNotify*");
+//		allDirNotify.FilesAdded( mountpoint );
+		QTimer::singleShot(0,this,SLOT(finished()));
+	}
+}
       
 void KIODevicesMountHelperApp::error()
 {
+	KMessageBox::error(0,errorStr);
 	kapp->quit();
 }
 
