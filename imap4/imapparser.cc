@@ -1109,8 +1109,8 @@ void imapParser::parseBody (parseString & inWords)
     else if (qstrncmp(specifier, "HEADER.FIELDS", specifier.size()) == 0)
     {
       // BODY[HEADER.FIELDS (References)] {n} 
-      kdDebug(7116) << "imapParser::parseBody - HEADER.FIELDS: " 
-       << QCString(label.data(), label.size()+1) << endl;
+      //kdDebug(7116) << "imapParser::parseBody - HEADER.FIELDS: " 
+      // << QCString(label.data(), label.size()+1) << endl;
       if (qstrncmp(label, "REFERENCES", label.size()) == 0)
       {
        mailHeader *envelope = NULL;
@@ -1300,7 +1300,7 @@ void imapParser::parseFetch (ulong /* value */, parseString & inWords)
       case 'F':
         if (word == "FLAGS")
         {
-	  kdDebug(7116) << "GOT FLAGS " << inWords.cstr() << endl;
+	  //kdDebug(7116) << "GOT FLAGS " << inWords.cstr() << endl;
           if (!lastHandled) lastHandled = new imapCache();
           lastHandled->setFlags (imapInfo::_flags (inWords.cstr()));
         }
