@@ -130,11 +130,8 @@ public:
     imapParser ();
     virtual ~ imapParser ();
 
-  enum IMAP_STATE getState ()
-  {
-    return currentState;
-  };
-  virtual void resetState() { currentState = ISTATE_NO; }
+  virtual enum IMAP_STATE getState () { return currentState; }
+  virtual void setState(enum IMAP_STATE state) { currentState = state; }
 
   const QString getCurrentBox ()
   {

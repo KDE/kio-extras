@@ -406,6 +406,8 @@ IMAP4Protocol::listDir (const KURL & _url)
             }
             entry.clear ();
             listEntry (entry, true);
+          } else {
+            error(ERR_CANNOT_ENTER_DIRECTORY, hidePass(_url));
           }
         }
       }
@@ -504,8 +506,6 @@ void
 IMAP4Protocol::setHost (const QString & _host, int _port,
                         const QString & _user, const QString & _pass)
 {
-  kdDebug(7116) << "IMAP4::setHost - host= " << _host << ", port= " << _port << ", user= " << _user << ", pass=xx" << endl;
-
   if (myHost != _host || myPort != _port || myUser != _user)
   {
     if (!myHost.isEmpty ())
@@ -515,7 +515,6 @@ IMAP4Protocol::setHost (const QString & _host, int _port,
     myUser = _user;
     myPass = _pass;
   }
-
 }
 
 void
@@ -560,12 +559,12 @@ bool IMAP4Protocol::parseReadLine (QByteArray & buffer, ulong relay)
       if ((readLen = ReadLine (buf, sizeof (buf) - 1)) == 0)
       {
         error (ERR_CONNECTION_BROKEN, myHost);
-        myHost = QString::null;
+        setState(ISTATE_CONNECT);
+        closeConnection();
         return FALSE;
       }
     }
 
-kdDebug(7116) << readLen << " Bytes gelesen: " << buf << endl;
     if (relay > 0)
     {
     QByteArray relayData;
@@ -685,7 +684,8 @@ IMAP4Protocol::put (const KURL & _url, int, bool, bool)
         {
           error (ERR_CONNECTION_BROKEN, myHost);
           completeQueue.removeRef (cmd);
-          finished ();
+          closeConnection();
+          finished();
           return;
         }
       }
@@ -1096,8 +1096,6 @@ IMAP4Protocol::stat (const KURL & _url)
     break;
   }
 
-
-
   statEntry (entry);
   kdDebug(7116) << "IMAP4::stat - Finishing stat" << endl;
   finished ();
@@ -1111,10 +1109,12 @@ void IMAP4Protocol::openConnection()
 void IMAP4Protocol::closeConnection()
 {
   if (getState() == ISTATE_NO) return;
-  imapCommand *cmd = doCommand (imapCommand::clientLogout());
-  completeQueue.removeRef (cmd);
+  if (getState() != ISTATE_CONNECT)
+  {
+    imapCommand *cmd = doCommand (imapCommand::clientLogout());
+    completeQueue.removeRef (cmd);
+  }
   CloseDescriptor();
-  myHost = QString::null;
 }
 
 bool IMAP4Protocol::makeLogin ()
@@ -1125,11 +1125,11 @@ bool IMAP4Protocol::makeLogin ()
   if (getState () == ISTATE_LOGIN || getState () == ISTATE_SELECT)
     return true;
 
-  if (ConnectToHost (myHost.latin1(), myPort))
+  if (getState() == ISTATE_CONNECT || ConnectToHost (myHost.latin1(), myPort))
   {
 //      fcntl (m_iSock, F_SETFL, (fcntl (m_iSock, F_GETFL) | O_NDELAY));
 
-//WORK      myState = ISTATE_CONNECT;
+    setState(ISTATE_CONNECT);
     myAuth = metaData("auth");
     myTLS  = metaData("tls");
 
@@ -1173,27 +1173,20 @@ bool IMAP4Protocol::makeLogin ()
           completeQueue.removeRef (cmd2);
         } else {
           kdDebug() << "TLS mode setup has failed.  Aborting." << endl;
-          myHost = QString::null;
-          myUser = QString::null;
-          myPass = QString::null;
-          error (ERR_ABORTED, myAuth);
+          error (ERR_ABORTED, i18n("Starting TLS failed."));
           closeConnection();
+          return false;
         }
       } else completeQueue.removeRef(cmd);
     }
-  }
-  else
-  {
-    kdDebug(7116) << "IMAP4: setHost: ConnectToHost Failed!" << endl;
-    myHost = QString::null;
-    myUser = QString::null;
-    myPass = QString::null;
   }
 
   if (!myAuth.isEmpty () && myAuth != "*"
       && !hasCapability (QString ("AUTH=") + myAuth))
   {
-    error (ERR_UNSUPPORTED_PROTOCOL, myAuth);
+    error (ERR_UNSUPPORTED_PROTOCOL, i18n("Authentication method %1 not "
+      "supported.").arg(myAuth));
+    closeConnection();
     return false;
   }
 
@@ -1233,12 +1226,7 @@ bool IMAP4Protocol::makeLogin ()
       break;
   }
 
-
-
-  if (getState () == ISTATE_LOGIN)
-    return true;
-
-  return false;
+  return getState() == ISTATE_LOGIN;
 }
 
 void
