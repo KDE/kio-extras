@@ -29,7 +29,6 @@ public:
 
     virtual void mimetype( const KURL& url );
 
-
 private:
 
     QString langLookup(QString fname);

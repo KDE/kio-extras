@@ -177,10 +177,12 @@ void HelpProtocol::notFound()
     finished();
 }
 
+HelpProtocol *slave = 0;
 
 HelpProtocol::HelpProtocol( const QCString &pool, const QCString &app )
   : SlaveBase( "help", pool, app )
 {
+    slave = this;
 }
 
 void HelpProtocol::get( const KURL& url )
@@ -192,6 +194,9 @@ void HelpProtocol::get( const KURL& url )
     doc = url.path();
     if (doc.at(doc.length() - 1) == '/')
         doc += "index.html";
+
+    infoMessage(i18n("Looking up correct file"));
+
     doc = lookupFile(doc, url.query(), redirect);
 
     if (redirect)
@@ -225,6 +230,9 @@ void HelpProtocol::get( const KURL& url )
             return;
         }
     }
+
+    infoMessage(i18n("Preparing document"));
+
     parsed = transform(file);
     if (parsed.isEmpty()) {
         data(QCString(i18n("<html>The requested help file could not be parsed:<br>%1</html>").arg(file).latin1()));
@@ -236,6 +244,8 @@ void HelpProtocol::get( const KURL& url )
 
 void HelpProtocol::emitFile( const KURL& url )
 {
+    infoMessage(i18n("Looking up section"));
+
     QString filename = url.path().mid(url.path().findRev('/') + 1);
 
     int index = parsed.find(QString("<FILENAME filename=\"%1\"").arg(filename));

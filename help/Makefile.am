@@ -8,7 +8,7 @@ LDFLAGS = $(all_libraries) $(KDE_RPATH)
 kde_module_LTLIBRARIES = kio_help.la
 
 kio_help_la_SOURCES = kio_help.cpp main.cpp xslt.cpp
-kio_help_la_LIBADD = -lkio libxslt/libxslt.la
+kio_help_la_LIBADD = $(LIB_KIO) libxslt/libxslt.la
 kio_help_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) -R/usr/local/lib
 noinst_HEADERS = kio_help.h
 
@@ -16,14 +16,14 @@ kdelnk_DATA = help.protocol
 kdelnkdir = $(kde_servicesdir)
 
 bin_PROGRAMS = meinproc saxon checkXML
-meinproc_LDADD = $(LIB_KDECORE) libxslt/libxslt.la
-meinproc_SOURCES = meinproc.cpp xslt.cpp
+meinproc_LDADD = $(LIB_KIO) libxslt/libxslt.la
+meinproc_SOURCES = meinproc.cpp xslt.cpp kio_help.cpp
 
-saxon_LDADD = $(LIB_KDECORE) libxslt/libxslt.la
-saxon_SOURCES = saxon.cpp xslt.cpp 
+saxon_LDADD = $(LIB_KIO) libxslt/libxslt.la
+saxon_SOURCES = saxon.cpp xslt.cpp kio_help.cpp
 
-checkXML_SOURCES = checkXML.cpp xslt.cpp
-checkXML_LDADD = $(LIB_KDECORE) libxslt/libxslt.la
+checkXML_SOURCES = checkXML.cpp xslt.cpp kio_help.cpp
+checkXML_LDADD = $(LIB_KIO) libxslt/libxslt.la
 
 bin_SCRIPTS = xmlizer
 

@@ -8,6 +8,10 @@
 #include <qdir.h>
 #include <xslt.h>
 #include <kinstance.h>
+#include "kio_help.h"
+#include <klocale.h>
+
+extern HelpProtocol *slave;
 
 int writeToQString(void * context, const char * buffer, int len)
 {
@@ -23,7 +27,9 @@ void closeQString(void * context) {
 
 QString transform( const QString &pat )
 {
+    if (slave) slave->infoMessage(i18n("Looking up stylesheet"));
     QString tss = locate("dtd", "customization/kde-chunk.xsl");
+    if (slave) slave->infoMessage(i18n("Parsing stylesheet"));
     xsltStylesheetPtr style_sheet = xsltParseStylesheetFile((const xmlChar *)tss.latin1());
 
     QString parsed;
@@ -34,6 +40,7 @@ QString transform( const QString &pat )
 	else
 	    xmlIndentTreeOutput = 0;
 
+        if (slave) slave->infoMessage(i18n("Reading document"));
         QFile xmlFile( pat );
         xmlFile.open(IO_ReadOnly);
         QCString contents;
@@ -41,6 +48,7 @@ QString transform( const QString &pat )
         xmlFile.close();
         QString tmp;
         if (contents.left(5) != "<?xml") {
+            if (slave) slave->infoMessage(i18n("XMLize document"));
             FILE *p = popen(QString::fromLatin1("xmlizer %1").arg(pat).latin1(), "r");
             xmlFile.open(IO_ReadOnly, p);
             char buffer[5001];
@@ -54,6 +62,7 @@ QString transform( const QString &pat )
             pclose(p);
         }
 
+        if (slave) slave->infoMessage(i18n("Parsing document"));
 	xmlDocPtr doc = xmlParseMemory(contents.data(), contents.length());
 	if (doc == NULL) {
             return parsed;
@@ -61,11 +70,13 @@ QString transform( const QString &pat )
  	// the params can be used to customize it more flexible
 	const char *params[16 + 1];
 	params[0] = NULL;
+        if (slave) slave->infoMessage(i18n("Applying stylesheet"));
 	xmlDocPtr res = xsltApplyStylesheet(style_sheet, doc, params);
 	xmlFreeDoc(doc);
 	if (res != NULL) {
             xmlOutputBufferPtr outp = xmlOutputBufferCreateIO(writeToQString, closeQString, &parsed, 0);
             outp->written = 0;
+            if (slave) slave->infoMessage(i18n("Writing document"));
             htmlDocContentDumpOutput(outp, res, 0);
             xmlOutputBufferFlush(outp);
             xmlFreeDoc(res);
