@@ -80,6 +80,8 @@ kdemain(int argc, char ** argv)
   return 0;
 }
 
+enum Which_dir { Unknown = 0, Device, ByName, ByTrack, Title, Info, Root };
+
 class AudioCDProtocol::Private
 {
   public:
@@ -89,6 +91,11 @@ class AudioCDProtocol::Private
       clear();
       discid = 0;
       cddb = 0;
+      based_on_cddb = false;
+      s_byname = i18n("By Name");
+      s_bytrack = i18n("By Track");
+      s_track = i18n("Track %1");
+      s_info = i18n("Information");
     }
 
     void clear()
@@ -98,6 +105,8 @@ class AudioCDProtocol::Private
       useCDDB = false;
       cddbServer = QString::null;
       cddbPort = -1;
+      which_dir = Unknown;
+      req_track = -1;
     }
 
     QString path;
@@ -108,9 +117,19 @@ class AudioCDProtocol::Private
     unsigned int discid;
     int tracks;
     QString cd_title;
+    QString cd_artist;
     QStringList titles;
     bool is_audio[100];
     CDDB *cddb;
+    bool based_on_cddb;
+    QString s_byname;
+    QString s_bytrack;
+    QString s_track;
+    QString s_info;
+
+    Which_dir which_dir;
+    int req_track;
+    QString fname;
 };
 
 AudioCDProtocol::AudioCDProtocol(const QCString & pool, const QCString & app)
@@ -126,8 +145,8 @@ AudioCDProtocol::~AudioCDProtocol()
   delete d;
 }
 
-  void
-AudioCDProtocol::get(const KURL & url)
+struct cdrom_drive *
+AudioCDProtocol::initRequest(const KURL & url)
 {
   parseArgs(url);
 
@@ -136,21 +155,110 @@ AudioCDProtocol::get(const KURL & url)
   if (0 == drive)
   {
     error(KIO::ERR_DOES_NOT_EXIST, url.path());
-    return;
+    return 0;
   }
 
   if (0 != cdda_open(drive))
   {
     error(KIO::ERR_DOES_NOT_EXIST, url.path());
-    return;
+    return 0;
   }
 
   updateCD(drive);
+  d->fname = url.filename(false);
+  QString dname = url.directory(true, false);
+  if (!dname.isEmpty() && dname[0] == '/')
+    dname = dname.mid(1);
 
-  // Track name looks like this: trackNN.wav
-  int trackNumber = url.filename().mid(5, 2).toInt();
+  /* A hack, for when konqi wants to list the directory audiocd:/Bla
+     it really submits this URL, instead of audiocd:/Bla/ to us. We could
+     send (in listDir) the UDS_NAME as "Bla/" for directories, but then
+     konqi shows them as "Bla//" in the status line.  */
+  if (dname.isEmpty() &&
+      (d->fname == d->cd_title || d->fname == d->s_byname ||
+       d->fname == d->s_bytrack || d->fname == d->s_info ||
+       d->fname == "dev"))
+    {
+      dname = d->fname;
+      d->fname = "";
+    }
 
-  if (trackNumber < 0 || trackNumber > cdda_tracks(drive))
+  if (dname.isEmpty())
+    d->which_dir = Root;
+  else if (dname == d->cd_title)
+    d->which_dir = Title;
+  else if (dname == d->s_byname)
+    d->which_dir = ByName;
+  else if (dname == d->s_bytrack)
+    d->which_dir = ByTrack;
+  else if (dname == d->s_info)
+    d->which_dir = Info;
+  else if (dname.left(4) == "dev/")
+    {
+      d->which_dir = Device;
+      dname = dname.mid(4);
+    }
+  else if (dname == "dev")
+    {
+      d->which_dir = Device;
+      dname = "";
+    }  
+  else
+    d->which_dir = Unknown;
+
+  d->req_track = -1;
+  if (!d->fname.isEmpty())
+    {
+      QString n(d->fname);
+      int pi = n.findRev('.');
+      if (pi >= 0)
+        n.truncate(pi);
+      int i;
+      for (i = 0; i < d->tracks; i++)
+        if (d->titles[i] == n)
+          break;
+      if (i < d->tracks)
+        d->req_track = i;
+      else
+        {
+          /* Not found in title list.  Try hard to find a number in the
+             string.  */
+          unsigned int ui, j;
+          ui = 0;
+          while (ui < n.length())
+            if (n[ui++].isDigit())
+              break;
+          for (j = ui; j < n.length(); j++)
+            if (!n[j].isDigit())
+              break;
+          if (ui < n.length())
+            {
+              bool ok;
+              /* The external representation counts from 1.  */
+              d->req_track = n.mid(ui, j - i).toInt(&ok) - 1;
+              if (!ok)
+                d->req_track = -1;
+            }
+        }
+    }
+  if (d->req_track >= d->tracks)
+    d->req_track = -1;
+
+  kdDebug(7101) << "audiocd: dir=" << dname << " file=" << d->fname
+    << " req_track=" << d->req_track << " which_dir=" << d->which_dir << endl;
+  return drive;
+}
+
+  void
+AudioCDProtocol::get(const KURL & url)
+{
+  struct cdrom_drive * drive = initRequest(url);
+  if (!drive)
+    return;
+
+  int trackNumber = d->req_track + 1;
+
+  if (trackNumber <= 0 || trackNumber > cdda_tracks(drive))
   {
     error(KIO::ERR_DOES_NOT_EXIST, url.path());
     return;
@@ -178,48 +286,25 @@ AudioCDProtocol::get(const KURL & url)
   void
 AudioCDProtocol::stat(const KURL & url)
 {
-  parseArgs(url);
-
-  struct cdrom_drive * drive = pickDrive();
-
-  if (0 == drive)
-  {
-    error(KIO::ERR_DOES_NOT_EXIST, url.path());
+  struct cdrom_drive * drive = initRequest(url);
+  if (!drive)
     return;
-  }
 
-  if (0 != cdda_open(drive))
-  {
-    error(KIO::ERR_DOES_NOT_EXIST, url.path());
-    return;
-  }
+  bool isFile = !d->fname.isEmpty();
 
-  updateCD(drive);
+  int trackNumber = d->req_track + 1;
 
-  QString filename(url.path());
-
-  bool isFile = filename.length() > 1;
-
-  int trackNumber = 0;
-
-  if (isFile)
-  {
-    // Track name looks like this: trackNN.wav
-    trackNumber = url.filename().mid(5, 2).toInt();
-
-    if (trackNumber < 1 || trackNumber > cdda_tracks(drive))
+  if (isFile && (trackNumber < 1 || trackNumber > d->tracks))
     {
-      error(KIO::ERR_DOES_NOT_EXIST, filename);
+      error(KIO::ERR_DOES_NOT_EXIST, url.path());
       return;
     }
-  }
-
 
   UDSEntry entry;
 
   UDSAtom atom;
   atom.m_uds = KIO::UDS_NAME;
-  atom.m_str = url.path();
+  atom.m_str = url.filename();
   entry.append(atom);
 
   atom.m_uds = KIO::UDS_FILE_TYPE;
@@ -295,7 +380,9 @@ AudioCDProtocol::updateCD(struct cdrom_drive * drive)
 
   if (d->cddb->queryCD(qvl))
     {
+      d->based_on_cddb = true;
       d->cd_title = d->cddb->title();
+      d->cd_artist = d->cddb->artist();
       for (int i = 0; i < d->tracks; i++)
         {
           QString n;
@@ -305,80 +392,143 @@ AudioCDProtocol::updateCD(struct cdrom_drive * drive)
       return;
     }
 
+  d->based_on_cddb = false;
   for (int i = 0; i < d->tracks; i++)
     {
       int ti = i + 1;
       QString s;
       if (IS_AUDIO(drive, ti))
-        s.sprintf("track%02d", ti);
+        s = d->s_track.arg(ti);
       else
-        s.sprintf("dataa%02d", ti);
+        s.sprintf("data%02d", ti);
       d->titles.append( s );
     }
+}
+
+static void
+app_entry(UDSEntry& e, unsigned int uds, const QString& str)
+{
+  UDSAtom a;
+  a.m_uds = uds;
+  a.m_str = str;
+  e.append(a);
+}
+
+static void
+app_entry(UDSEntry& e, unsigned int uds, long l)
+{
+  UDSAtom a;
+  a.m_uds = uds;
+  a.m_long = l;
+  e.append(a);
+}
+
+static void
+app_dir(UDSEntry& e, const QString & n, size_t s)
+{
+  e.clear();
+  app_entry(e, KIO::UDS_NAME, n);
+  app_entry(e, KIO::UDS_FILE_TYPE, S_IFDIR);
+  app_entry(e, KIO::UDS_ACCESS, 0400);
+  app_entry(e, KIO::UDS_SIZE, s);
+}
+
+static void
+app_file(UDSEntry& e, const QString & n, size_t s)
+{
+  e.clear();
+  app_entry(e, KIO::UDS_NAME, n);
+  app_entry(e, KIO::UDS_FILE_TYPE, S_IFREG);
+  app_entry(e, KIO::UDS_ACCESS, 0400);
+  app_entry(e, KIO::UDS_SIZE, s);
 }
 
   void
 AudioCDProtocol::listDir(const KURL & url)
 {
-  parseArgs(url);
-
-  struct cdrom_drive * drive = pickDrive();
-
-  if (0 == drive)
-  {
-    error(KIO::ERR_DOES_NOT_EXIST, url.path());
+  struct cdrom_drive * drive = initRequest(url);
+  if (!drive)
     return;
-  }
-
-  if (0 != cdda_open(drive))
-  {
-    error(KIO::ERR_DOES_NOT_EXIST, url.path());
-    return;
-  }
-
-  QStrList entryNames;
 
   UDSEntry entry;
 
-  updateCD(drive);
-  
-  int trackCount = d->tracks;
-
-  for (int i = 1; i <= trackCount; i++)
-  {
-    if (d->is_audio[i-1])
+  if (d->which_dir == Unknown)
     {
-      QString s;
-      if (i==1)
-        s.sprintf("_%08x.wav", d->discid);
-      else
-        s.sprintf(".wav");
+      error(KIO::ERR_DOES_NOT_EXIST, url.path());
+      return;
+    }
 
-      entry.clear();
-      UDSAtom atom;
+  if (!d->fname.isEmpty() && d->which_dir != Device)
+    {
+      error(KIO::ERR_IS_FILE, url.path());
+      return;
+    }
 
-      atom.m_uds = KIO::UDS_NAME;
-      atom.m_str = d->titles[i-1] + s;
-      entry.append(atom);
+  /* XXX We can't handle which_dir == Device for now */
 
-      atom.m_uds = KIO::UDS_FILE_TYPE;
-      atom.m_long = S_IFREG;
-      entry.append(atom);
+  bool do_tracks = true;
 
-      atom.m_uds = KIO::UDS_ACCESS;
-      atom.m_long = 0400;
-      entry.append(atom);
-
-      atom.m_uds = KIO::UDS_SIZE;
-      atom.m_long = CD_FRAMESIZE_RAW * (
-          cdda_track_lastsector(drive, i) -
-          cdda_track_firstsector(drive, i)
-          );
-      entry.append(atom);
-
+  if (d->which_dir == Root)
+    {
+      /* List our virtual directories.  */
+      if (d->based_on_cddb)
+        {
+          app_dir(entry, d->s_byname, d->tracks);
+          listEntry(entry, false);
+        }
+      app_dir(entry, d->s_info, 1);
+      listEntry(entry, false);
+      app_dir(entry, d->cd_title, d->tracks);
+      listEntry(entry, false);
+      app_dir(entry, d->s_bytrack, d->tracks);
+      listEntry(entry, false);
+      app_dir(entry, QString("dev"), 1);
       listEntry(entry, false);
     }
-  }
+  else if (d->which_dir == Device && url.path().length() <= 5) // "/dev{/}"
+    {
+      app_dir(entry, QString("cdrom"), d->tracks);
+      listEntry(entry, false);
+      do_tracks = false;
+    }
+  else if (d->which_dir == Info)
+    {
+      /* List some text files */
+      /* XXX */
+      do_tracks = false;
+    }
+
+  if (do_tracks)
+    for (int i = 1; i <= d->tracks; i++)
+    {
+      if (d->is_audio[i-1])
+      {
+        QString s;
+        long size = CD_FRAMESIZE_RAW *
+          ( cdda_track_lastsector(drive, i) - cdda_track_firstsector(drive, i));
+
+        if (i==1)
+          s.sprintf("_%08x.wav", d->discid);
+        else
+          s.sprintf(".wav");
+
+        QString name;
+        switch (d->which_dir)
+          {
+            case Device:
+            case Root: name.sprintf("track%02d.cda", i); break;
+            case ByTrack: name = d->s_track.arg(i) + s; break;
+            case ByName:
+            case Title: name = d->titles[i - 1] + s; break;
+            case Info:
+            case Unknown:
+              error(KIO::ERR_INTERNAL, url.path());
+              return;
+          }
+        app_file(entry, name, size);
+        listEntry(entry, false);
+      }
+    }
 
   totalSize(entry.count());
   listEntry(entry, true);

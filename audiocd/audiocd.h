@@ -49,18 +49,12 @@ class AudioCDProtocol : public KIO::SlaveBase
         long lastSector
     );
 
-    bool createUDSEntry(
-        const QString & filename,
-        const QCString & path,
-        KIO::UDSEntry & entry
-    );
-
+    struct cdrom_drive * initRequest(const KURL &);
     unsigned int get_discid(struct cdrom_drive *);
     void updateCD(struct cdrom_drive *);
 
     class Private;
     Private * d;
-
 };
 
 #endif

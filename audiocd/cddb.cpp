@@ -285,8 +285,9 @@ CDDB::parse_read_resp()
   int si = m_title.find('/');
   if (si > 0)
     {
-      m_artist = m_title.left(si);
+      m_artist = m_title.left(si).stripWhiteSpace();
       m_title.remove(0, si+1);
+      m_title = m_title.stripWhiteSpace();
     }
   
   if (m_title.isEmpty())
