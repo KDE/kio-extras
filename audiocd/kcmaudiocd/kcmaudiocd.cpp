@@ -417,8 +417,7 @@ void KAudiocdModule::load() {
 
 int KAudiocdModule::getBitrateIndex(int value) {
   
-  int i;
-  for (i=0;i < sizeof(bitrates);i++) 
+  for (uint i=0;i < sizeof(bitrates);i++) 
     if (value == bitrates[i]) 
       return i;
   return -1;
@@ -426,8 +425,7 @@ int KAudiocdModule::getBitrateIndex(int value) {
 
 int KAudiocdModule::getVorbisBitrateIndex(int value) {
   
-  int i;
-  for (i=0;i < sizeof(vorbis_bitrates);i++) 
+  for (uint i=0;i < sizeof(vorbis_bitrates);i++) 
     if (value == vorbis_bitrates[i]) 
       return i;
   return -1;
@@ -435,8 +433,7 @@ int KAudiocdModule::getVorbisBitrateIndex(int value) {
 
 int KAudiocdModule::getVorbisNominalBitrateIndex(int value) {
   
-  int i;
-  for (i=0;i < sizeof(vorbis_nominal_bitrates);i++) 
+  for (uint i=0;i < sizeof(vorbis_nominal_bitrates);i++) 
     if (value == vorbis_nominal_bitrates[i]) 
       return i;
   return -1;

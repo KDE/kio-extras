@@ -61,7 +61,6 @@ typedef enum MPEG_mode_e {
 #ifdef HAVE_VORBIS
 #include <time.h>
 #include <vorbis/vorbisenc.h>
-#define KDE_VORBIS_TAG "Track encoded by KDE audiocd KIOSlave"
 #endif
 
 void paranoiaCallback(long, int);
@@ -295,8 +294,13 @@ AudioCDProtocol::initRequest(const KURL & url)
   
   vorbis_info_init(&d->vi);
   vorbis_comment_init(&d->vc);
-  const char *kde_vorbis_comment = KDE_VORBIS_TAG;
-  vorbis_comment_add(&d->vc, (char*)kde_vorbis_comment);
+
+  vorbis_comment_add_tag
+    (
+     &d->vc,
+     const_cast<char *>("kde-encoder"),
+     const_cast<char *>(QString::fromUtf8("kio_audiocd").utf8().data())
+    );
 
 #endif
 
@@ -451,14 +455,38 @@ AudioCDProtocol::get(const KURL & url)
 #endif
 
 #ifdef HAVE_VORBIS
-  if (filetype == "ogg" && d->based_on_cddb && d->write_vorbis_comments ) {
-    const char *tname =   d->titles[trackNumber-1].latin1();
-    vorbis_comment_add_tag(&d->vc,(char*)"title",(char*)tname+3);
-    vorbis_comment_add_tag(&d->vc,(char*)"artist",(char*)d->cd_artist.latin1());
-    vorbis_comment_add_tag(&d->vc,(char*)"album",(char*)d->cd_title.latin1());
-    char trackString[3];
-    sprintf(trackString, "%2.2i", trackNumber);
-    vorbis_comment_add_tag(&d->vc,(char*)"tracknumber", trackString);
+
+  if (filetype == "ogg" && d->based_on_cddb && d->write_vorbis_comments)
+  {
+    QString trackName(d->titles[trackNumber - 1].mid(3));
+
+    vorbis_comment_add_tag
+      (
+       &d->vc,
+       const_cast<char *>("title"),
+       const_cast<char *>(trackName.utf8().data())
+      );
+
+    vorbis_comment_add_tag
+      (
+       &d->vc,
+       const_cast<char *>("artist"),
+       const_cast<char *>(d->cd_artist.utf8().data())
+      );
+
+    vorbis_comment_add_tag
+      (
+       &d->vc,
+       const_cast<char *>("album"),
+       const_cast<char *>(d->cd_title.utf8().data())
+      );
+
+    vorbis_comment_add_tag
+      (
+       &d->vc,
+       const_cast<char *>("tracknumber"),
+       const_cast<char *>(QString::number(trackNumber).utf8().data())
+      );
   }
 #endif
 
@@ -869,6 +897,11 @@ AudioCDProtocol::pickDrive()
       if (QFile(DEFAULT_CD_DEVICE).exists())
         drive = cdda_identify(DEFAULT_CD_DEVICE, CDDA_MESSAGE_PRINTIT, 0);
     }
+  }
+
+  if (0 == drive)
+  {
+    kdDebug(7101) << "Can't find an audio CD" << endl;
   }
 
   return drive;

@@ -234,7 +234,7 @@ parse_query_resp (const QCString& _r, QCString& catg, QCString& d_id, QCString& 
 QString
 CDDB::track(int i) const
 {
-  if (i < 0 || i >= m_names.count())
+  if (i < 0 || i >= int(m_names.count()))
     return QString();
   return m_names[i];
 }
