@@ -20,9 +20,7 @@ METASOURCES = AUTO
 fish.lo: fishcode.h
 
 fishcode.h: fish.pl
-	if echo | md5sum > /dev/null 2>&1 ; then \
-	SUM=`md5sum $(srcdir)/fish.pl | cut -d ' ' -f 1`; else \
-	SUM=`md5 $(srcdir)/fish.pl | cut -d ' ' -f 4`; fi; \
+	SUM=`$(MD5SUM) $(srcdir)/fish.pl | cut -d ' ' $(MD5SUM_CUT)`; \
 	echo '#define CHECKSUM "'$$SUM'"' > $@; \
 	echo 'static const char *fishCode(' >> $@; \
 	sed -e 's/\\/\\\\/g;s/"/\\"/g;s/^[ 	]*/"/;/^"# /d;s/[ 	]*$$/\\n"/;/^"\\n"$$/d;s/{CHECKSUM}/'$$SUM'/;' $(srcdir)/fish.pl >> $@; \
