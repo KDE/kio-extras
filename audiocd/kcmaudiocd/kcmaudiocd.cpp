@@ -550,12 +550,12 @@ void KAudiocdModule::slotChangeFilter() {
 void KAudiocdModule::slotSelectMethod(int index) {
   // constant bitrate selected
   if (index == 1 ) {
-    vbr_settings->setEnabled(true);
-    cbr_settings->setDisabled(true);
+    vbr_settings->show();
+    cbr_settings->hide();
   } else {
     // variable bitrate selected
-    vbr_settings->setDisabled(true);
-    cbr_settings->setEnabled(true);
+    vbr_settings->hide();
+    cbr_settings->show();
   }
   slotConfigChanged();
   return;
@@ -589,6 +589,17 @@ void KAudiocdModule::slotUpdateVBRWidgets() {
   slotConfigChanged();
 
   return;
+}
+
+QString KAudiocdModule::quickHelp() const
+{
+    return i18n("<h1>Audio-CD Slave</h1> The Audio-CD Slave enables you to easily"
+                        " rip wav, mp3 or ogg vorbis files from your CD-ROM or DVD drive."
+                        " The slave is invoked by typing <i>\"audiocd:/\"</i> in Konqerors location"
+                        " bar. In this module, you can configure all aspects of the slave like"
+                        " encoding, CDDB lookup and device settings. Note that mp3 and ogg"
+                        " vorbis encoding are only available if the KDE was built with a recenct"
+                        " version of the lame or ogg libraries.");
 }
 
 extern "C"
