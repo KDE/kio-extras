@@ -32,16 +32,18 @@
 #include <kio/tcpslavebase.h>
 
 #include "capabilities.h"
-#include "command.h"
 
 #include <qstring.h>
-#include <qcstring.h>
-#include <qstringlist.h>
-#include <qstrlist.h>
 #include <qptrqueue.h>
+
+class QCString;
+template <typename T> class QMemArray;
+typedef QMemArray<char> QByteArray;
 
 namespace KioSMTP {
   class Response;
+  class TransactionState;
+  class Command;
 };
 
 class SMTPProtocol : public KIO::TCPSlaveBase {
@@ -63,19 +65,25 @@ public:
 protected:
 
   bool smtp_open(const QString& fakeHostname = QString::null);
-  void smtp_close();
+
+  /** Closes the connection. If @p nice is true (default), then QUIT
+      is sent and it's reponse waited for. */
+  void smtp_close( bool nice=true );
 
   /** Execute command @p cmd */
-  bool execute( KioSMTP::Command * cmd );
+  bool execute( KioSMTP::Command * cmd, KioSMTP::TransactionState * ts=0 );
   /** Execute a command of type @p type */
-  bool execute( KioSMTP::Command::Type type );
-  /** Execute the queued commands. Tears down the connection if a
-      command which is marked as failing fatally fails. */
-  bool executeQueuedCommands();
-  /** Execute the queued commands taking advantage of
-      pipelining. Automatically called from @ref
-      #executeQueuedCommand() if pipelining is available */
-  bool executeQueuedCommandsPipelined();
+  bool execute( int type, KioSMTP::TransactionState * ts=0 );
+  /** Execute the queued commands. If something goes horribly wrong
+      (sending command oline fails, getting response fails or some
+      command raises the failedFatally() flag in @p ts, shuts down the
+      connection with <code>smtp_close( false )</code>. If The
+      transaction fails gracefully (<code>ts->failed()</code> is
+      true), issues a RSET command.
+
+      @return true if transaction succeeded, false otherwise.
+  **/
+  bool executeQueuedCommands( KioSMTP::TransactionState * ts );
 
   /** Parse a single response from the server. Single- vs. multiline
       responses are correctly detected.
@@ -92,8 +100,8 @@ protected:
   void parseFeatures( const KioSMTP::Response & ehloResponse );
 
   bool sendCommandLine( const QCString & cmd );
-  QCString collectPipelineCommands();
-  bool batchProcessResponses();
+  QCString collectPipelineCommands( KioSMTP::TransactionState * ts );
+  bool batchProcessResponses( KioSMTP::TransactionState * ts );
 
   /** This is a pure convenience wrapper around
       @ref KioSMTP::Capabilities::have() */
@@ -107,7 +115,7 @@ protected:
   }
 
   /** Wrapper around getsockopt(..., SO_SNDBUF,...) */
-  int sendBufferSize() const;
+  unsigned int sendBufferSize() const;
 
   /** This is a pure convenience wrapper around
       @ref KioSMTP::Capabilities::createSpecialResponse */
@@ -118,10 +126,7 @@ protected:
   void queueCommand( KioSMTP::Command * command ) {
     mPendingCommandQueue.enqueue( command );
   }
-
-  void queueCommand( KioSMTP::Command::Type type ) {
-    queueCommand( KioSMTP::Command::createSimpleCommand( type, this ) );
-  }
+  void queueCommand( int type );
 
   unsigned short m_iOldPort;
   bool m_opened;

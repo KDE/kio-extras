@@ -35,6 +35,8 @@
 #include "smtp.h"
 #include "request.h"
 #include "response.h"
+#include "transactionstate.h"
+#include "command.h"
 using KioSMTP::Capabilities;
 using KioSMTP::Command;
 using KioSMTP::EHLOCommand;
@@ -42,8 +44,10 @@ using KioSMTP::AuthCommand;
 using KioSMTP::MailFromCommand;
 using KioSMTP::RcptToCommand;
 using KioSMTP::DataCommand;
+using KioSMTP::TransferCommand;
 using KioSMTP::Request;
 using KioSMTP::Response;
+using KioSMTP::TransactionState;
 
 #include <kemailsettings.h>
 #include <ksock.h>
@@ -66,7 +70,7 @@ using std::auto_ptr;
 #include <stdio.h>
 #include <assert.h>
 
-#ifdef HAVE_SYSY_TYPES_H
+#ifdef HAVE_SYS_TYPES_H
 # include <sys/types.h>
 #endif
 #ifdef HAVE_SYS_SOCKET_H
@@ -105,34 +109,30 @@ SMTPProtocol::SMTPProtocol(const QCString & pool, const QCString & app,
   mSentCommandQueue.setAutoDelete( true );
 }
 
-int SMTPProtocol::sendBufferSize() const {
+unsigned int SMTPProtocol::sendBufferSize() const {
+  // ### how much is eaten by SSL/TLS overhead?
   const int fd = ::fileno( fp );
   int value = -1;
   ksize_t len = sizeof(value);
   if ( fd < 0 || ::getsockopt( fd, SOL_SOCKET, SO_SNDBUF, (char*)&value, &len ) )
     value = 1024; // let's be conservative
   kdDebug(7112) << "send buffer size seems to be " << value << " octets." << endl;
-  return value;
+  return value > 0 ? value : 1024 ;
 }
 
-SMTPProtocol::~SMTPProtocol()
-{
+SMTPProtocol::~SMTPProtocol() {
   //kdDebug(7112) << "SMTPProtocol::~SMTPProtocol" << endl;
   smtp_close();
 }
 
-void SMTPProtocol::openConnection()
-{
-  if (smtp_open()) {
+void SMTPProtocol::openConnection() {
+  if ( smtp_open() )
     connected();
-  } 
-  else {
+  else
     closeConnection();
-  }
 }
 
-void SMTPProtocol::closeConnection()
-{
+void SMTPProtocol::closeConnection() {
   smtp_close();
 }
 
@@ -149,7 +149,7 @@ void SMTPProtocol::special( const QByteArray & aData ) {
     if ( !execute( Command::NOOP ) )
       return;
   } else {
-    error( KIO::ERR_SERVICE_NOT_AVAILABLE,
+    error( KIO::ERR_INTERNAL,
 	   i18n("The application sent an invalid request.") );
     return;
   }
@@ -194,7 +194,7 @@ void SMTPProtocol::put(const KURL & url, int /*permissions */ ,
       open_url.setPass(m_sPass);
       m_sServer = open_url.host();
       m_iPort = open_url.port();
-    } 
+    }
     else {
       mset.setProfile(mset.defaultProfileName());
     }
@@ -213,7 +213,6 @@ void SMTPProtocol::put(const KURL & url, int /*permissions */ ,
       request.setFromAddress( from );
     else if ( request.emitHeaders() ) {
       error(KIO::ERR_NO_CONTENT, i18n("The sender address is missing."));
-      smtp_close(); // ### try resetting the dialogue instead
       return;
     }
   }
@@ -244,42 +243,20 @@ void SMTPProtocol::put(const KURL & url, int /*permissions */ ,
     queueCommand( new RcptToCommand( this, (*it).latin1() ) );
 
   queueCommand( Command::DATA );
+  queueCommand( new TransferCommand( this, request.headerFields( mset.getSetting( KEMailSettings::RealName ) ) ) );
 
-  if ( !executeQueuedCommands() )
-    return;
-
-  // Write slave-generated header fields (if any):
-  const char * headerFields = request.headerFields( mset.getSetting( KEMailSettings::RealName ) );
-  if ( headerFields && *headerFields )
-    write( headerFields, qstrlen( headerFields ) );
-
-  // Write client-provided data:
-  int result;
-  do {
-    dataReq();                  // Request for data
-    QByteArray buffer;
-    result = readData(buffer);
-    if (result > 0) {
-      write(buffer.data(), buffer.size());
-    } 
-    else if (result < 0) {
-      error(KIO::ERR_COULD_NOT_WRITE, open_url.path());
+  TransactionState ts;
+  if ( !executeQueuedCommands( &ts ) ) {
+    kdDebug() << "executeCommandLine returned false!" << endl;
+    if ( ts.errorCode() ) {
+      kdDebug() << "transaction has error (" << ts.errorCode() << ") \""
+		<< ts.errorMessage() << "\"" << endl;
+      error( ts.errorCode(), ts.errorMessage() );
     }
-  } while (result > 0);
-
-  write("\r\n.\r\n", 5);
-  bool ok = false;
-  Response response = getResponse( &ok );
-  if ( !ok || !response.isOk() ) {
-    error( KIO::ERR_NO_CONTENT, 
-	   i18n("The message content was not accepted.\n"
-		"%1").arg( response.errorMessage() ) );
-    if ( !execute( Command::RSET ) )
-      smtp_close();
-    return;
+  } else {
+    kdDebug() << "emitting finished" << endl;
+    finished();
   }
-
-  finished();
 }
 
 
@@ -292,7 +269,19 @@ void SMTPProtocol::setHost(const QString & host, int port,
   m_sPass = pass;
 }
 
+bool SMTPProtocol::sendCommandLine( const QCString & cmdline ) {
+  kdDebug( cmdline.length() < 4096, 7112) << "C: " << cmdline.data();
+  kdDebug( cmdline.length() >= 4096, 7112) << "C: <" << cmdline.length() << " bytes>" << endl;
+  ssize_t cmdline_len = cmdline.length();
+  if ( write( cmdline.data(), cmdline_len ) != cmdline_len ) {
+    error( KIO::ERR_COULD_NOT_WRITE, m_sServer );
+    return false;
+  }
+  return true;
+}
+
 Response SMTPProtocol::getResponse( bool * ok ) {
+  kdDebug() << "getResponse()" << endl;
   if ( ok )
     *ok = false;
 
@@ -314,7 +303,7 @@ Response SMTPProtocol::getResponse( bool * ok ) {
       return response;
     }
 
-    //kdDebug(7112) << "S: " << QCString( buf, recv_len + 1 ).data();
+    kdDebug(7112) << "S: " << QCString( buf, recv_len + 1 ).data();
     // ...and parse lines...
     response.parseLine( buf, recv_len );
 
@@ -333,106 +322,168 @@ Response SMTPProtocol::getResponse( bool * ok ) {
   return response;
 }
 
-bool SMTPProtocol::executeQueuedCommands() {
-  if ( canPipelineCommands() )
-    return executeQueuedCommandsPipelined();
+bool SMTPProtocol::executeQueuedCommands( TransactionState * ts ) {
+  assert( ts );
 
-  for ( Command * cmd = mPendingCommandQueue.dequeue() ; cmd ; cmd = mPendingCommandQueue.dequeue() ) {
-    if ( !execute( cmd ) ) {
-      if ( cmd->closeConnectionOnError() || !execute( Command::RSET ) )
-	smtp_close();
-      delete cmd; cmd = 0;
-      mPendingCommandQueue.clear();
+  kdDebug( canPipelineCommands(), 7112 ) << "using pipelining" << endl;
+
+  while( !mPendingCommandQueue.isEmpty() ) {
+    QCString cmdline = collectPipelineCommands( ts );
+    if ( ts->failedFatally() ) {
+      smtp_close( false ); // _hard_ shutdown
       return false;
     }
-    delete cmd; cmd = 0;
+    if ( cmdline.isEmpty() )
+      continue;
+    if ( !sendCommandLine( cmdline ) ||
+	 !batchProcessResponses( ts ) ||
+	 ts->failedFatally() ) {
+      smtp_close( false ); // _hard_ shutdown
+      return false;
+    }
   }
 
+  if ( ts->failed() ) {
+    if ( !execute( Command::RSET ) )
+      smtp_close( false );
+    return false;
+  }
   return true;
 }
 
-QCString SMTPProtocol::collectPipelineCommands() {
+QCString SMTPProtocol::collectPipelineCommands( TransactionState * ts ) {
+  assert( ts );
+
   QCString cmdLine;
-  int cmdLine_len = 0;
+  unsigned int cmdLine_len = 0;
+
   while ( mPendingCommandQueue.head() ) {
+
     Command * cmd = mPendingCommandQueue.head();
-    if ( cmd->isComplete() ) { // this command doesn't want to be executed
+
+    if ( cmd->doNotExecute( ts ) ) {
       delete mPendingCommandQueue.dequeue();
+      if ( cmdLine_len )
+	break;
+      else
+	continue;
+    }
+
+    if ( cmdLine_len && cmd->mustBeFirstInPipeline() ) {
+      kdDebug() << "end of pipeline since next command mustBeFirstInPipeline()" << endl;
       break;
     }
-    QCString currentCmdLine = cmd->nextCommandLine();
-    cmdLine_len += currentCmdLine.length();
-    if ( cmdLine_len && cmdLine_len > sendBufferSize() )
-      // must all fit into the send buffer, else connection deadlocks,
-      // but we need to have at least _one_ command to send
+
+    if ( cmdLine_len && !canPipelineCommands() ) {
+      kdDebug() << "end of pipeline since can't pipeline at all" << endl;
       break;
+    }
+
+    while ( !cmd->isComplete() && !cmd->needsResponse() ) {
+      const QCString currentCmdLine = cmd->nextCommandLine( ts );
+      if ( ts->failedFatally() ) {
+	kdDebug() << "left while loop since transaction failed fatally" << endl;
+	return cmdLine;
+      }
+      const unsigned int currentCmdLine_len = currentCmdLine.length();
+
+      if ( cmdLine_len && cmdLine_len + currentCmdLine_len > sendBufferSize() ) {
+	// must all fit into the send buffer, else connection deadlocks,
+	// but we need to have at least _one_ command to send
+	cmd->ungetCommandLine( currentCmdLine, ts );
+	kdDebug() << "end of pipeline since " << cmdLine_len
+		  << " + " << currentCmdLine_len << " > " << sendBufferSize() << endl;
+	return cmdLine;
+      }
+      cmdLine_len += currentCmdLine_len;
+      cmdLine += currentCmdLine;
+    }
+    kdDebug( cmd->isComplete() ) << "left while loop since command is complete" << endl;
+    kdDebug( cmd->needsResponse() ) << "left while loop since command needs response" << endl;
+
     mSentCommandQueue.enqueue( mPendingCommandQueue.dequeue() );
-    cmdLine += currentCmdLine;
-    if ( cmd->mustBeLastInPipeline() )
+
+    if ( cmd->mustBeLastInPipeline() ) {
+      kdDebug() << "end of pipeline since current command mustBeLastInPipeLine()" << endl;
       break;
+    }
   }
+
   return cmdLine;
 }
 
-bool SMTPProtocol::batchProcessResponses() {
-  bool success = true;
+bool SMTPProtocol::batchProcessResponses( TransactionState * ts ) {
+  assert( ts );
+
   while ( !mSentCommandQueue.isEmpty() ) {
-    Command * cmd = mSentCommandQueue.dequeue();
+
+    Command * cmd = mSentCommandQueue.head();
+    assert( cmd->isComplete() );
+
     bool ok = false;
     Response r = getResponse( &ok );
-    if ( !ok || !cmd->processResponse( r ) )
-      // we must still process all commands to empty the incoming pipe!
-      // ### flush the recv buffer and return false on !ok instead?
-      success = false;
-    else
-      assert( cmd->isComplete() );
-    delete cmd; cmd = 0;
+    if ( !ok )
+      return false;
+    cmd->processResponse( r, ts );
+    if ( ts->failedFatally() )
+      return false;
+
+    mSentCommandQueue.remove();
   }
-  return success;
+
+  return true;
 }
 
-bool SMTPProtocol::executeQueuedCommandsPipelined() {
-  kdDebug(7112) << "using pipelining" << endl;
+void SMTPProtocol::queueCommand( int type ) {
+  queueCommand( Command::createSimpleCommand( type, this ) );
+}
 
-  while( !mPendingCommandQueue.isEmpty() ) {
-    QCString cmdline = collectPipelineCommands();
-    if ( !cmdline.isEmpty() ) {
-      if ( !sendCommandLine( cmdline ) || !batchProcessResponses() ) {
-	mPendingCommandQueue.clear();
-	mSentCommandQueue.clear();
+bool SMTPProtocol::execute( int type, TransactionState * ts ) {
+  kdDebug( 7112 ) << "exeute( " << type << ", " << ts << " )" << endl;
+  auto_ptr<Command> cmd( Command::createSimpleCommand( type, this ) );
+  kdFatal( !cmd.get(), 7112 ) << "Command::createSimpleCommand( " << type << " ) returned null!" << endl;
+  return execute( cmd.get(), ts );
+}
+
+// ### fold into pipelining engine? How? (execute() is often called
+// ### when command queues are _not_ empty!)
+bool SMTPProtocol::execute( Command * cmd, TransactionState * ts ) {
+  kdDebug( 7112 ) << "execute( " << cmd << ", " << ts << " )" << endl;
+  kdFatal( !cmd, 7112 ) << "SMTPProtocol::execute() called with no command to run!" << endl;
+
+  if ( cmd->doNotExecute( ts ) )
+    return true;
+
+  do {
+    while ( !cmd->isComplete() && !cmd->needsResponse() ) {
+      const QCString cmdLine = cmd->nextCommandLine( ts );
+      if ( ts && ts->failedFatally() ) {
+	smtp_close( false );
+	return false;
+      }
+      if ( cmdLine.isEmpty() )
+	continue;
+      if ( !sendCommandLine( cmdLine ) ) {
+	smtp_close( false );
 	return false;
       }
     }
-  }
 
-  return true;
-}
-
-bool SMTPProtocol::execute( Command::Type type ) {
-  auto_ptr<Command> cmd( Command::createSimpleCommand( type, this ) );
-  kdFatal( !cmd.get(), 7112 ) << "Command::createSimpleCommand( " << (int)type << " ) returned null!" << endl;
-  return execute( cmd.get() );
-}
-
-bool SMTPProtocol::sendCommandLine( const QCString & cmdline ) {
-  //kdDebug(7112) << "C: " << cmdline.data();
-  ssize_t cmdline_len = cmdline.length();
-  if ( write( cmdline.data(), cmdline_len ) != cmdline_len )
-    return false;
-  return true;
-}
-
-bool SMTPProtocol::execute( Command * cmd ) {
-  kdFatal( !cmd, 7112 ) << "SMTPProtocol::execute() called with no command to run!" << endl;
-  while ( !cmd->isComplete() ) {
-    if ( !sendCommandLine( cmd->nextCommandLine() ) )
-      return false;
-    // process response
     bool ok = false;
     Response r = getResponse( &ok );
-    if ( !ok || !cmd->processResponse( r ) )
+    if ( !ok ) {
+      smtp_close( false );
       return false;
-  }
+    }
+    if ( !cmd->processResponse( r, ts ) ) {
+      if ( ts && ts->failedFatally() ||
+	   cmd->closeConnectionOnError() ||
+	   !execute( Command::RSET ) )
+	smtp_close( false );
+      return false;
+    }
+  } while ( !cmd->isComplete() );
+
   return true;
 }
 
@@ -443,16 +494,12 @@ bool SMTPProtocol::smtp_open(const QString& fakeHostname)
       m_sOldServer == m_sServer && 
       m_sOldUser == m_sUser &&
       (fakeHostname.isNull() || m_hostname == fakeHostname)) 
-  {
     return true;
-  } 
-  else 
-  {
-    smtp_close();
-    if (!connectToHost(m_sServer, m_iPort))
-      return false;             // connectToHost has already send an error message.
-    m_opened = true;
-  }
+
+  smtp_close();
+  if (!connectToHost(m_sServer, m_iPort))
+    return false;             // connectToHost has already send an error message.
+  m_opened = true;
 
   bool ok = false;
   Response greeting = getResponse( &ok );
@@ -495,13 +542,8 @@ bool SMTPProtocol::smtp_open(const QString& fakeHostname)
 
     if ( execute( Command::STARTTLS ) ) {
 
-      /*
-       * we now have TLS going
-       * send our ehlo line
-       * reset our features, and reparse them
-       */
-      //kdDebug(7112) << "TLS has been enabled!" << endl;
-
+      // re-issue EHLO to refresh the capability list (could be have
+      // been faked before TLS was enabled):
       EHLOCommand ehloCmdPostTLS( this, m_hostname );
       if ( !execute( &ehloCmdPostTLS ) ) {
         smtp_close();
@@ -571,12 +613,12 @@ void SMTPProtocol::parseFeatures( const Response & ehloResponse ) {
 #endif
 }
 
-void SMTPProtocol::smtp_close()
-{
+void SMTPProtocol::smtp_close( bool nice ) {
   if (!m_opened)                  // We're already closed
     return;
 
-  execute( Command::QUIT );
+  if ( nice )
+    execute( Command::QUIT );
   closeDescriptor();
   m_sOldServer = QString::null;
   m_sOldUser = QString::null;
@@ -584,6 +626,7 @@ void SMTPProtocol::smtp_close()
   
   mCapabilities.clear();
   mPendingCommandQueue.clear();
+  mSentCommandQueue.clear();
 
   m_opened = false;
 }
