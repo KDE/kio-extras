@@ -246,6 +246,8 @@ void MANProtocol::outputError(const QString& errmsg)
     QCString output;
 
     QTextStream os(output, IO_WriteOnly);
+    // QTextSream on a QCString needs to be told explicitely to use local8Bit conversion !
+    os.setEncoding(QTextStream::Locale);
 
     os << "<html>" << endl;
     os << i18n("<head><title>Man output</title></head>") << endl;
@@ -385,6 +387,8 @@ void MANProtocol::showMainIndex()
     QCString output;
 
     QTextStream os(output, IO_WriteOnly);
+    // QTextSream on a QCString needs to be told explicitely to use local8Bit conversion !
+    os.setEncoding(QTextStream::Locale);
 
     // print header
     os << "<html>" << endl;
@@ -483,6 +487,8 @@ void MANProtocol::showIndex(const QString& section)
     QCString output;
 
     QTextStream os(output, IO_WriteOnly);
+    // QTextSream on a QCString needs to be told explicitely to use local8Bit conversion !
+    os.setEncoding(QTextStream::Locale);
 
     // print header
     os << "<html>" << endl;
