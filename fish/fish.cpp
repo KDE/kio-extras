@@ -1110,7 +1110,11 @@ void fishProtocol::manageConnection(const QString &l) {
             if (listReason == LIST) {
                 listEntry(UDSEntry(),true);
             } else if (listReason == CHECK) {
-                if (!checkOverwrite && checkExist) error(ERR_FILE_ALREADY_EXIST,url.prettyURL());
+                if (!checkOverwrite && checkExist)
+                {
+                    error(ERR_FILE_ALREADY_EXIST,url.prettyURL());
+                    return; // Don't call finished!
+                }
             }
         } else if (fishCommand == FISH_STAT) {
             UDSAtom atom;
