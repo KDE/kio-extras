@@ -355,7 +355,8 @@ bool POP3Protocol::pop3_open(const KURL &url)
 
 		// We need to check what methods the server supports...
 		// This is based on RFC 1734's wisdom
-		if (command(sasl_buffer.local8Bit(), buf, sizeof(buf))) {
+		#warning Fix this next line. the 0 added to make kmail work.
+		if (0 && command(sasl_buffer.local8Bit(), buf, sizeof(buf))) {
 			sasl_auth=buf;
 			sasl_auth.replace(QRegExp("."), "");
 			sasl_auth.replace(QRegExp("\\r\\n"), " ");
