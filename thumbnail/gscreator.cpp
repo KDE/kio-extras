@@ -22,6 +22,8 @@
 #include <assert.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <signal.h>
+#include <sys/select.h>
 #include <sys/wait.h>
 
 #include <qfile.h>
@@ -58,6 +60,21 @@ static const char *gsargs[6] = {
     0
 };
 
+static pid_t pid;
+static int status;
+bool done;
+
+void sighandler(int sig)
+{
+    if (sig == SIGCHLD)
+    {
+        assert(waitpid(pid, &status, 0) == pid);
+        done = true;
+    }
+    else
+        kill(pid, SIGTERM);
+}
+
 bool GSCreator::create(const QString &path, int extent, QPixmap &pix)
 {
     QFile psFile(path);
@@ -68,12 +85,13 @@ bool GSCreator::create(const QString &path, int extent, QPixmap &pix)
     int output[2];
     QByteArray data(1024);
     bool ok = false;
-    
+
     if (pipe(input) == -1)
         return false;
     if (pipe(output) != -1)
     {
-        pid_t pid = fork();
+        done = false;
+        pid = fork();
         if (pid == 0)
         {
             // Child process, reopen stdin/stdout on the pipes and exec gs
@@ -82,6 +100,7 @@ bool GSCreator::create(const QString &path, int extent, QPixmap &pix)
             dup2(input[0], STDIN_FILENO);
             dup2(output[1], STDOUT_FILENO);
             close(STDERR_FILENO);
+            
             execvp("gs", const_cast<char *const *>(gsargs));
             exit(1);
         }
@@ -89,34 +108,66 @@ bool GSCreator::create(const QString &path, int extent, QPixmap &pix)
         {
             // Parent process, write prolog and actual ps file to gs
             // and read the png output
+            struct sigaction act;
+            act.sa_handler = sighandler;
+            sigemptyset(&act.sa_mask);
+            act.sa_flags = 0;
+            sigaction(SIGCHLD, &act, 0);
+            sigaction(SIGPIPE, &act, 0);
+            sigaction(SIGALRM, &act, 0);
+            alarm(5);
+
             close(input[0]);
             close(output[1]);
 
             int count = write(input[1], prolog, strlen(prolog));
             if (count  == static_cast<int>(strlen(prolog)))
             {
-                while ((count = psFile.readBlock(data.data(), data.size())) > 0)
+                int offset = 0;
+                for (;;)
                 {
-                    if (write(input[1], data.data(), count) != count)
-                        break;
-                }
-                if (count == 0)
-                {
-                    int offset = 0;
-                    while ((count = read(output[0],
-                        data.data() + offset, 1024)) > 0)
+                    fd_set rfds, wfds;
+                    FD_ZERO(&rfds);
+                    FD_ZERO(&wfds);
+                    FD_SET(output[0], &rfds);
+                    int maxfd = output[0] + 1;
+                    if (!psFile.atEnd())
                     {
-                        if (count == 1024)
-                            data.resize(data.size() + 1024);
-                        offset += count;
+                        FD_SET(input[1], &wfds);
+                        maxfd = QMAX(maxfd, input[1] + 1);
                     }
-                    if (count == 0)
-                        ok = true;
-                    data.resize(offset);
+                    if (select(maxfd, &rfds, &wfds, 0, 0) == -1)
+                        break;
+
+                    if (FD_ISSET(output[0], &rfds))
+                    {
+                        if ((count = read(output[0], data.data() + offset, 1024)) == -1)
+                            break;
+                        if (count == 0)
+                        {
+                            ok = true;
+                            break;
+                        }
+                        offset += count;
+                        data.resize(offset + 1024);
+                    }
+                    if (FD_ISSET(input[1], &wfds))
+                    {
+                        char buf[1024];
+                        if ((count = psFile.readBlock(buf, sizeof(buf))) == -1)
+                            break;
+                        if (write(input[1], buf, count) == -1)
+                            break;
+                        if (count == 0)
+                            maxfd = output[0] + 1;
+                    }
                 }
+                data.resize(offset);
             }
-            int status;
-            if (waitpid(pid, &status, 0) != pid || status != 0)
+            while (!done);
+            alarm(0);
+
+            if (status != 0)
                 ok = false;
         }
         else
