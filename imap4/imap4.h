@@ -103,6 +103,7 @@ public:
   QStringList capabilities, serverResponses;
   int authState;
   QString authKey, urlPath, folderDelimiter;
+  QString action;
 };
 
 class IMAP4IOJob : public KIOJobBase
