@@ -24,6 +24,20 @@
 #include <kurl.h>
 #include "disklist.h"
 #include <qstringlist.h>
+#include <qmap.h>
+
+
+struct specialEntry 
+{
+	QString id;
+	QString description;
+//	QString device;
+	QString url;
+	QString mimeType;
+	bool mountState;
+};
+
+typedef QMap<QString,specialEntry> EntryMap;
 
 class MountWatcherModule : public KDEDModule
 {
@@ -35,6 +49,7 @@ public:
 
 private:
     DiskList mDiskList;
+    EntryMap mEntryMap;
     QStringList mountList;
     bool firstTime;
 
@@ -50,7 +65,8 @@ k_dcop:
               const QString & desktopFile, bool show_filemanager_window);
     QStringList basicList();
     QStringList basicDeviceInfo(QString);
-
+    void addSpecialDevice(const QString& uniqueIdentifier, const QString& description,
+			 const QString& URL, const QString& mimetype,bool mountState);
 k_dcop_signals:
     void mountSituationChaged();
 

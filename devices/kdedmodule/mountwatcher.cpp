@@ -45,7 +45,6 @@ MountWatcherModule::MountWatcherModule(const QCString &obj)
 	mDiskList.readFSTAB();
 	mDiskList.readDF();
 
-
 #ifdef MTAB
 	KDirWatch::self()->addFile(MTAB);
 #endif
@@ -168,6 +167,19 @@ QStringList MountWatcherModule::basicDeviceInfo(QString name)
 }
 
 
+void MountWatcherModule::addSpecialDevice(const QString& uniqueIdentifier, const QString& description,
+ const QString& URL, const QString& mimetype,bool mountState)
+{
+	specialEntry ent;
+	ent.id=uniqueIdentifier;
+	ent.description=description;
+	ent.url=URL;
+	ent.mimeType=mimetype;
+	ent.mountState=mountState;
+	mEntryMap.insert(uniqueIdentifier,ent,true);
+	readDFDone();
+}
+
 void MountWatcherModule::readDFDone()
 {
 	mountList.clear();
@@ -180,6 +192,7 @@ void MountWatcherModule::readDFDone()
                 QString filename = KURL(ent->deviceName()).fileName();
                 if(!filename.isEmpty())
                         filename = QString::fromLatin1(" (") + filename + ")";
+		else filename=" ";
        	        if (ent->mounted())
 		{
 			mountList<<(entryName);
@@ -203,6 +216,18 @@ void MountWatcherModule::readDFDone()
 			mountList<<"---";
 			fileList<<KURL(QString("devices:/")+entryName);
 		}
+	}
+
+	for (EntryMap::iterator it=mEntryMap.begin();it!=mEntryMap.end();++it)
+	{
+		mountList<<it.data().id;
+		mountList<<it.data().description;
+		mountList<<" ";
+		mountList<<it.data().url;
+		mountList<<it.data().mimeType;		
+		mountList<<(it.data().mountState?"true":"false");
+		mountList<<"---";
+		
 	}
 
         KDirNotify_stub allDirNotify("*", "KDirNotify*");
