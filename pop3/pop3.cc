@@ -9,10 +9,10 @@
 #include <arpa/inet.h>
 
 #include <errno.h>
+#include <netdb.h>
+#include <stdlib.h>
 #include <signal.h>
 #include <stdio.h>
-#include <stdlib.h>
-#include <netdb.h>
 #include <unistd.h>
 
 #include <qcstring.h>
