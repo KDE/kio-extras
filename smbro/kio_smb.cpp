@@ -532,9 +532,9 @@ SmbProtocol::SmbReturnCode SmbProtocol::getShareInfo(ClientProcess* shareLister,
       {
          int result=readOutput(shareLister->fd());
          //don't search the whole buffer, only the last 12 bytes
-         if ((result>0) && (m_stdoutSize>12))
+         if ((result>0) && (m_stdoutSize>=10))
          {
-            if (strstr(m_stdoutBuffer+m_stdoutSize-12,"\nPassword:")!=0)
+            if (strstr(m_stdoutBuffer+m_stdoutSize-10,"Password:")!=0)
             {
                kdDebug(KIO_SMB)<<"Smb::getShareInfo() received: -"<<m_stdoutBuffer<<"-"<<endl;
                //everything went fine until now, so we can safely delete

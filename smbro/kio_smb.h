@@ -94,7 +94,6 @@ class SmbProtocol : public KIO::SlaveBase
       bool stopAfterError(const KURL& url, bool notSureWhetherErrorOccurred, bool onlyCheckForExistance=false);
 
       void clearBuffer();
-      void terminateBuffer();
       char *m_stdoutBuffer;
       int m_stdoutSize;
       QString m_currentHost;
