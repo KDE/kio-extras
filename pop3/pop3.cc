@@ -242,6 +242,8 @@ bool POP3Protocol::command (const char *cmd, char *recv_buf, unsigned int len)
 
 void POP3Protocol::openConnection()
 {
+	m_try_apop = !hasMetaData("auth") || metaData("auth") == "APOP";
+	m_try_sasl = !hasMetaData("auth") || metaData("auth") == "SASL";
 	if (!pop3_open()) {
 		kdDebug() << "pop3_open failed" << endl;
 		closeConnection();
@@ -304,6 +306,13 @@ bool POP3Protocol::pop3_open()
 			greeting.truncate(greeting.length() - 2);
 		int apop_pos = greeting.find(re);
 		bool apop = (bool)(apop_pos != -1);
+		if (metaData("auth") == "APOP" && !apop)
+		{
+			error( ERR_COULD_NOT_CONNECT,
+			i18n("Your POP3 server does not support APOP.\n"
+			     "Choose a different authentication method.") );
+			return false;
+		}
 
 		m_iOldPort = m_iPort;
 		m_sOldServer = m_sServer;
@@ -380,7 +389,12 @@ bool POP3Protocol::pop3_open()
 			kdDebug() << "Couldn't login via APOP. Falling back to USER/PASS" << endl;
 			closeConnection();
 			m_try_apop = false;
-			return pop3_open();
+			if (metaData("auth") == "APOP")
+			{
+				error( ERR_COULD_NOT_CONNECT,
+				i18n("Login via APOP failed:\n%1").arg(buf) );
+				return false;
+			} else return pop3_open();
 		}
 
 		// Let's try SASL stuff first.. it might be more secure
@@ -436,7 +450,15 @@ bool POP3Protocol::pop3_open()
 		{
 			closeConnection();
 			m_try_sasl = false;
-			return pop3_open();
+			if (metaData("auth") != "SASL") return pop3_open();
+		}
+
+		if (metaData("auth") == "SASL")
+		{
+			error( ERR_COULD_NOT_CONNECT,
+			i18n("Your POP3 server does not support SASL.\n"
+			     "Choose a different authentication method.") );
+			return false;
 		}
 
 		// Fall back to conventional USER/PASS scheme
