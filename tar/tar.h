@@ -1,5 +1,5 @@
 #ifndef _TAR_H
-#define _TAR_H "$Id"
+#define _TAR_H "$Id$"
 
 #include <kio_interface.h>
 #include <kio_base.h>
