@@ -1,0 +1,10 @@
+[Protocol]
+exec=kio_mac
+protocol=mac
+input=none
+output=filesystem
+reading=true
+listing=Name,Type,Size,Date
+defaultMimetype=application/octet-stream
+Description=A kioslave for MacOS HFS+ partitions
+Icon=mac

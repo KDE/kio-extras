@@ -1,0 +1,14 @@
+FIXMEs:
+	Amazingly, none that I can think of
+
+grep TODO kio_mac.cpp
+        //TODO this means dev=foo must be the last argument in the query
+        //TODO this error interrupts the user when typing ?dev=foo on each letter of foo
+        //TODO are there any more characters to escape?
+        QString theSize(fileRE.group(4)); //TODO: this is data size, what about  resource size?
+
+Future things:
+	- maybe make it work with plain old hfs partitions
+	- possibly use libhfsp directly
+        - A Friend suggested reading the resource data for the icon to display - advanced I think.
+ 	- Follow symlinks/aliases (requires reading the resource fork as well)

@@ -1,0 +1,65 @@
+From the hfsplus man page:
+
+       "HFS+,  also  known  as  the Macintosh Extended Format, was
+       introduced by Apple Computer in 1998 with the  release  of
+       MacOS 8.1.  It contains many improvements over the old HFS
+       file system, most notably the ability to  allocate  up  to
+       2^64  blocks,  resulting in much more efficient storage of
+       many small files on large disks."
+
+This kio slave lets you read an HFS+ partition from konqueror
+or any other KDE file dialogue.  It uses hfsplus tools so you will
+need these installed for it to work.
+
+TO INSTALL
+
+Read the INSTALL file.
+
+
+NOTES
+
+Just enter mac:/ into Konqueror and you should see the contents of
+your MacOS partition.  Actually you'll probably get an error message
+saying you havn't specified the right partition.  Enter something
+like mac:/?dev=/dev/hda2 to specify the partition (if you don't know
+which partition MacOS is on you can probably guess by changing hda2 to
+hda3 and so on or use the print command from mac-fdisk.  The partition
+will be used the next time so you don't have to specify it each time.
+
+Hfsplus tools let you see the file and copy data from the HFS+
+partition but not to copy data to it or change the filenames or such like.
+
+HFS+ actually keeps two files for every one you see (called forks), a
+resource fork and a data fork.  The default copy mode when you're
+copying files across to you native drive is raw data which means it
+just copies the data.  Text files are copied in text mode (same as raw
+format but changes the line endings to be Unix friendly and gets rid
+of some funny extra characters - strongly advised for text files)
+unless you specify otherwise.  You can also copy the files across in
+Mac Binary II format or specify text or raw format with another query:
+mac:/myfile?mode=b or mac:/myfile?mode=t  See man hpcopy for more.
+
+Note that you need permissions to read your HFS+ partition.  How you
+get this depends on your distribution, do a ls -l /dev/hdaX on it to
+see.  Under Debian you have to be in the disk group (just add your
+username to the end of the entry in /etc/group).
+
+File types are done with matching the HFS+ type and application label
+and then by extentions.  See the source for the exact matching that
+happens and feel free to suggest improvements.
+
+For some reason some directories in MacOS end in a funny tall f
+character.  This seems to confuse hfstools.
+
+You can't easiily use the command line tools while you are browsing
+using kio-mac in Konqueror.  Konqueror continuously refreshes it's
+view which mean hpmount is being called every few seconds.  Click on
+Konqueror's home button before using the tools yourself on the command
+line.
+
+Hidden files are now shown all the time.  Apparantly Konqueror only
+considers files with a dot at the front of the name to be hidden which
+is a bit system dependant.
+
+Please e-mail me with any comments, problems and success stories:
+Jonathan Riddell, jr@jriddell.org

@@ -1,0 +1,39 @@
+10 Feb 2002 - Jonathan Riddell <jr@jriddell.org>
+	- v1.0
+	- Nicer icon (thanks to ikons project)
+	- moved into KDE CVS kdenonbeta
+	- Everything seems to be stable, lets up the version number to prove me wrong
+
+1 Feb 2002 - Jonathan Riddell <jr@jriddell.org>
+	- v0.8
+	- Now displays hidden files
+	- Locked files are copied as read only
+	- Nice icon
+	- sources now use autoconf/automake
+	- Fixed regular expression which matches some files as directories
+	- Aliases now display as links
+
+26 Jan 2002 - Jonathan Riddell <jr@jriddell.org>
+	- v0.7
+	- Converts some HFS+ file types and application labels into mimetypes
+	- Added a SuSE Makefile
+	- Hopefully managed to get the SuSE RPMs working
+	- When copying files kio-mac now reports the amount progressed so
+  	  you can see how much has been copied
+	- Text files are now copies over in text mode by default
+
+24 Jan2002 - Jonathan Riddell <jr@jriddell.org>
+	- v0.6
+	- It can now read empty directories without complaining
+	- Fixed the way data was being passed back to KDE which corrupted some files
+	- Fixed Makefile a bit
+	- Now reports the modified date to as good an acuracy as hpls -l gives it
+	- Found a truly bizarre bug while doing the above which broke
+  	  things a lot less than it should have
+
+21 Jan 2002 - Jonathan Riddell <jr@jriddell.org>
+	- v0.5
+	- Initial release
+	- talks to hfs+ partitions using hptools
+	- surprisingly successful
+	
