@@ -368,9 +368,23 @@ void ArchiveProtocol::get( const KURL & url )
     kdDebug(7109) << "Emitting mimetype " << result->mimeType() << endl;
     mimeType( result->mimeType() );
 
-    data( completeData );
+    QByteArray partialData;
+    int offset = 0;
+    const int inc = 0x800000; // 8MB
 
+    while ( offset + inc < archiveFileEntry->size() ) {
+        partialData.setRawData( completeData.data() + offset, inc );
+        data( partialData );
+        partialData.resetRawData( completeData.data() + offset, inc );
+        processedSize( offset + inc );
+	offset += inc;
+    }
+
+    partialData.setRawData( completeData.data() + offset, archiveFileEntry->size() - offset );
+    data( partialData );
+    partialData.resetRawData( completeData.data() + offset, archiveFileEntry->size() - offset );
     processedSize( archiveFileEntry->size() );
+
     data( QByteArray() );
 
     finished();
