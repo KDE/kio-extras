@@ -1,5 +1,5 @@
-SUBDIRS= .
-#kdedmodule wizard
+SUBDIRS= . kdedmodule
+# wizard
 
 INCLUDES = $(all_includes)
 METASOURCES = AUTO
