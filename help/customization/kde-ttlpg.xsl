@@ -13,11 +13,14 @@
 </xsl:template>
 
 <xsl:template match="author" mode="titlepage.mode">
-  <h3 class="{name(.)}">
+  <h3 class="{name(.)}"><!--Documentation by--> <!-- to internationalise -->
     <xsl:call-template name="person.name"/>
   </h3>
   <xsl:apply-templates mode="titlepage.mode" select="./affiliation"/>
 </xsl:template>
+
+<!-- other things to be added:
+disable email-link of author on title page, add date phrase: Last updated, revision? -->
 
 <xsl:template match="othercredit" mode="titlepage.mode">
   <p class="{name(.)}">
