@@ -99,7 +99,6 @@ QString  MountWatcherModule::devicenode(int id)
 QString  MountWatcherModule::type(int id)
 {
 	return mDiskList.at(id)->discType();
-//	return (id==1)?"kdedevice/floppy_unmounted":"kdedevice/floppy_mounted";
 }
 
 bool   MountWatcherModule::mounted(int id)
@@ -111,16 +110,6 @@ bool   MountWatcherModule::mounted(QString name)
 {
 	return (name=="//ide1/MP3")?true:false;
 }
-
-void MountWatcherModule::mount( bool readonly, const QString& format, const QString& device, const QString&
-mountpoint,
-              const QString & desktopFile, bool show_filemanager_window )
-{
-
-	KAutoMount *m=new KAutoMount( readonly, format, device, mountpoint,
-              desktopFile, show_filemanager_window);
-}
-
 
 void MountWatcherModule::dirty(const QString& str)
 {
