@@ -61,6 +61,7 @@
 
 #define GREETING_BUF_LEN 1024
 #define MAX_RESPONSE_LEN 512
+#define MAX_PACKET_LEN 4096
 
 #define POP3_DEBUG kdDebug(7105)
 
@@ -580,8 +581,9 @@ void POP3Protocol::get (const KURL& url)
 // No support for the STAT command has been implemented.
 // commit closes the connection to the server after issuing the QUIT command.
 
-	bool ok = true;
-	char buf[MAX_RESPONSE_LEN];
+	bool ok=true;
+	char buf[MAX_PACKET_LEN];
+	char destbuf[MAX_PACKET_LEN];
 	QByteArray array;
 
 	QString cmd, path = url.path();
@@ -702,6 +704,7 @@ void POP3Protocol::get (const KURL& url)
 		finished();
 		m_cmd = CMD_NONE;
 	} else if (cmd == "download") {
+		bool noProgress = (metaData("progress") == "off");
 		int p_size = 0;
 		unsigned int msg_len = 0;
 		(void)path.toInt(&ok);
@@ -713,7 +716,8 @@ void POP3Protocol::get (const KURL& url)
 		list_cmd += path;
 		path.prepend("RETR ");
 		memset(buf, 0, sizeof(buf));
-		if (command(list_cmd.ascii(), buf, sizeof(buf)-1)) {
+		if (noProgress);
+		else if (command(list_cmd.ascii(), buf, sizeof(buf)-1)) {
 			list_cmd = buf;
 			// We need a space, otherwise we got an invalid reply
 			if (!list_cmd.find(" ")) {
@@ -740,26 +744,45 @@ void POP3Protocol::get (const KURL& url)
 			mimeType("message/rfc822");
 			totalSize(msg_len);
 			memset(buf, 0, sizeof(buf));
+			char ending = '\n';
+			bool endOfMail = false;
+			bool eat = false;
 			while (!AtEOF()) {
-				ReadLine(buf, sizeof(buf)-1);
+				ssize_t readlen = Read(buf, sizeof(buf)-1);
+				if (ending == '.' && readlen > 1 && buf[0] == '\r' && buf[1] == '\n') break;
+				bool newline = (ending == '\n');
 
-				// HACK: This assumes fread stops at the first \n and not \r
-				if (strcmp(buf, ".\r\n") == 0) {
-					break; // End of data
+				if (buf[readlen-1] == '\n') ending = '\n';
+				else if (buf[readlen-1] == '.' && ((readlen > 1) ? buf[readlen-2] == '\n' : ending == '\n')) ending = '.';
+				else ending = ' ';
+
+				char *buf1 = buf, *buf2 = destbuf;
+				// ".." at start of a line means only "."
+				// "." means end of data
+				for (ssize_t i = 0; i < readlen; i++)
+				{
+				  if (*buf1 == '\r' && eat) { endOfMail = true; break; }
+				  else if (*buf1 == '\n') { newline = true; eat = false; }
+				  else if (*buf1 == '.' && newline) { newline = false; eat = true; }
+				  else { newline = false; eat = false; }
+				  if (!eat) { *buf2 = *buf1; buf2++; }
+				  buf1++;
 				}
-				// sanders, changed -2 to -1 below
-				buf[strlen(buf)-1] = '\0';
-				if (buf[0] == 46 && buf[1] == 46) { // .. at the start of a line means only .
-					array.setRawData(&buf[1], strlen(buf) - 1);
-					data(array);
-					array.resetRawData(&buf[1], strlen(buf) - 1);
-				} else {
-					array.setRawData(buf, strlen(buf));
-					data(array);
-					array.resetRawData(buf, strlen(buf));
+
+				if (buf2 > destbuf)
+				{
+				  array.setRawData(destbuf, buf2 - destbuf);
+				  data( array );
+				  array.resetRawData(destbuf, buf2 - destbuf);
 				}
-				p_size += strlen(buf);
-				processedSize(p_size);
+
+				if (endOfMail) break;
+
+				if (!noProgress)
+				{
+				  p_size += readlen;
+				  processedSize(p_size);
+				}
 			}
 			POP3_DEBUG << "Finishing up" << endl;
 			data(QByteArray());
