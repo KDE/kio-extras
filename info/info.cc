@@ -54,6 +54,16 @@ void InfoProtocol::get( const KURL& url )
        return;
     };
 
+    // some people write info://autoconf instead of info:/autoconf
+    if (!url.host().isEmpty()) {
+        KURL newURl(url);
+        newURl.setPath(url.host()+url.path());
+        newURl.setHost(QString::null);
+        redirection(newURl);
+        finished();
+        return;
+    }
+
     mimeType("text/html");
     // extract the path and node from url
     decodeURL( url );
@@ -73,7 +83,7 @@ void InfoProtocol::get( const KURL& url )
     cmd += KProcess::quote(m_page);
     cmd += " ";
     cmd += KProcess::quote(m_node);
-    
+
     kdDebug( 7108 ) << "cmd: " << cmd << endl;
 
     FILE *fd = popen( QFile::encodeName(cmd), "r" );
