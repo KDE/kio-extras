@@ -229,6 +229,7 @@ bool MediaImpl::ensureMediumMounted(Medium &medium)
 		KIO::Job* job = KIO::mount(false, 0,
 		                           medium.deviceNode(),
 		                           medium.mountPoint());
+		job->setInteractive(false);
 		connect( job, SIGNAL( result( KIO::Job * ) ),
 		         this, SLOT( slotMountResult( KIO::Job * ) ) );
 		kapp->dcopClient()
