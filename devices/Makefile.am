@@ -17,6 +17,8 @@ kdelnkdir = $(kde_servicesdir)
 dataEntry_DATA = devices.desktop
 dataEntrydir = $(kde_datadir)/konqsidebartng/entries
 
+defaultInclude_DATA=mountwatcher.desktop
+defaultIncludedir=$(kde_confdir)
 
 
 SUBDIRS=. kdedmodule mounthelper mimetypes

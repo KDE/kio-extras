@@ -1,13 +1,13 @@
 i18n=
 [specialEntry:0]
 uniqueID=printersettings
-description=Printer Settings
+Name=Printer Settings
 URL=print:/
 mimetype=print/printer
 
 [specialEntry:1]
 uniqueID=systemsettings
-description=System Settings
+Name=System Settings
 URL=settings:/
 mimetype=icon:kcontrol
 

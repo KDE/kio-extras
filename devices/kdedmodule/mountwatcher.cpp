@@ -75,7 +75,7 @@ MountWatcherModule::~MountWatcherModule()
 }
 
 void MountWatcherModule::reReadSpecialConfig() {
-	KConfig cfg("mountwatcher");
+	KConfig cfg("mountwatcher.desktop");
 
 	QStringList internat=cfg.readListEntry("catalogues");
 	for ( QStringList::Iterator it = internat.begin(); it != internat.end(); ++it )
@@ -97,9 +97,10 @@ void MountWatcherModule::reReadSpecialConfig() {
 
 	for (int i=0;cfg.hasGroup(entryTemplate.arg(i));i++) {
 		cfg.setGroup(entryTemplate.arg(i));
+		if (cfg.readEntry("hidden","false")=="true") continue;
 		QString uniqueID=cfg.readEntry("uniqueID");
 		if (uniqueID.isEmpty()) continue;
-		QString description=cfg.readEntry("description");
+		QString description=cfg.readEntry("Name");
 		if (description.isEmpty()) continue;
 		description=i18n(description.utf8());
 		QString URL=cfg.readEntry("URL");
