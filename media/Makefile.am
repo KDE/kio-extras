@@ -15,7 +15,7 @@ dummy.cpp:
 kde_services_DATA = media.protocol
 
 noinst_LTLIBRARIES = libkiomedia.la
-libkiomedia_la_SOURCES = kio_media.cpp mediaimpl.cpp mediaimpl.skel forwardingslavebase.cpp
+libkiomedia_la_SOURCES = kio_media.cpp mediaimpl.cpp mediaimpl.skel
 
 check_PROGRAMS = testmedia
 testmedia_SOURCES = testmedia.cpp
