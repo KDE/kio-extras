@@ -44,14 +44,15 @@ public:
 
 	virtual void put (const KURL &url, int permissions, bool overwrite, bool resume);
 	virtual void stat (const KURL &url);
+	virtual void openConnection();
 
 protected:
 
-	bool smtp_open (const KURL &u);
+	bool smtp_open ();
 	void smtp_close ();
 	bool command (const QString &buf, char *r_buf = NULL, unsigned int r_len = 0);
 	int getResponse (char *real_buf = NULL, unsigned int real_len = 0);
-	bool Authenticate (const KURL &url);
+	bool Authenticate ();
 	void HandleSMTPWriteError (const KURL &url);
 	void ParseFeatures (const char *buf);
 	void PutRecipients (QStringList &list, const KURL &url);

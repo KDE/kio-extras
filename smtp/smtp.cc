@@ -140,27 +140,47 @@ void SMTPProtocol::HandleSMTPWriteError (const KURL &url)
 	}
 }
 
+void SMTPProtocol::openConnection()
+{
+	if (smtp_open())
+	{
+		connected();
+	}
+	else
+	{
+		closeConnection();
+	}
+}
+
 // Usage: smtp://smtphost:port/send?to=user@host.com&subject=blah
 // If smtphost is the name of a profile, it'll use the information 
 // provided by that profile.  If it's not a profile name, it'll use it as
 // nature intended.
 // One can also specify in the query:
+// headers=0 (turns of header generation)
 // to=emailaddress
 // cc=emailaddress
 // bcc=emailaddress
 // subject=text
 // profile=text (this will override the "host" setting
-void SMTPProtocol::put (const KURL &url, int /*permissions*/, bool /*overwrite*/, bool /*resume*/)
+void SMTPProtocol::put(const KURL &url, int /*permissions*/, bool /*overwrite*/, bool /*resume*/)
 {
 	QString query = url.query();
 	QString subject = ASCII("missing subject");
 	QString profile = QString::null;
         QString from = QString::null;
 	QStringList recip, bcc, cc, temp_list;
+	bool headers = true;
 
 	GetAddresses(query, ASCII("to="), recip);
 	GetAddresses(query, ASCII("cc="), cc);
 	GetAddresses(query, ASCII("bcc="), bcc);
+
+	GetAddresses(query, ASCII("headers="), temp_list);
+	if (temp_list.count() && temp_list.last() == "0")
+	{
+		headers = false;
+	}
 
 	// find the subject
 	GetAddresses(query, ASCII("subject="), temp_list);
@@ -185,10 +205,14 @@ void SMTPProtocol::put (const KURL &url, int /*permissions*/, bool /*overwrite*/
 	KURL open_url = url;
 	if (profile == QString::null) {
 	kdDebug() << "kio_smtp: Profile is null" << endl;
-		QStringList profiles = mset->profiles(); bool hasProfile=false;
+		QStringList profiles = mset->profiles(); 
+		bool hasProfile=false;
 		for (QStringList::Iterator it=profiles.begin(); it != profiles.end(); ++it) {
 			if ((*it) == open_url.host())
+			{
 				hasProfile=true;
+				break;
+			}
 		}
 		if (hasProfile) {
 			mset->setProfile(open_url.host());
@@ -226,7 +250,7 @@ void SMTPProtocol::put (const KURL &url, int /*permissions*/, bool /*overwrite*/
 	}
 	from.prepend(ASCII("MAIL FROM: "));
 
-	if (!smtp_open(open_url))
+	if (!smtp_open())
 	        error(ERR_SERVICE_NOT_AVAILABLE, i18n("SMTPProtocol::smtp_open failed (%1)").arg(open_url.path()));
 
 	if (!command(from)) {
@@ -245,36 +269,40 @@ void SMTPProtocol::put (const KURL &url, int /*permissions*/, bool /*overwrite*/
 		HandleSMTPWriteError(open_url);
 	}
 
-	if (mset->getSetting(KEMailSettings::EmailAddress) != QString::null) {
-		if (mset->getSetting(KEMailSettings::RealName) != QString::null) {
-			from = ASCII("From: %1 <%2>\r\n").arg(mset->getSetting(KEMailSettings::RealName)).arg(mset->getSetting(KEMailSettings::EmailAddress));
+	if (headers)
+	{
+		if (mset->getSetting(KEMailSettings::EmailAddress) != QString::null) {
+			if (mset->getSetting(KEMailSettings::RealName) != QString::null) {
+				from = ASCII("From: %1 <%2>\r\n").arg(mset->getSetting(KEMailSettings::RealName))
+						.arg(mset->getSetting(KEMailSettings::EmailAddress));
+			} else {
+				from = ASCII("From: %1\r\n").arg(mset->getSetting(KEMailSettings::EmailAddress));
+			}
 		} else {
-			from = ASCII("From: %1\r\n").arg(mset->getSetting(KEMailSettings::EmailAddress));
+			from = ASCII("From: %1\r\n").arg(DEFAULT_EMAIL);
 		}
-	} else {
-		from = ASCII("From: %1\r\n").arg(DEFAULT_EMAIL);
-	}
-	WRITE_STRING(from);
+		WRITE_STRING(from);
 
-	subject = ASCII("Subject: %1\r\n").arg(subject);
-	WRITE_STRING(subject);
+		subject = ASCII("Subject: %1\r\n").arg(subject);
+		WRITE_STRING(subject);
 
-	// Write out the To header for the benefit of the mail clients
-	query = ASCII("To: %1\r\n");
-	for ( QStringList::Iterator it = recip.begin(); it != recip.end(); ++it ) {
-		query = query.arg(*it);
-		WRITE_STRING(query);
-	}
+		// Write out the To header for the benefit of the mail clients
+		query = ASCII("To: %1\r\n");
+		for ( QStringList::Iterator it = recip.begin(); it != recip.end(); ++it ) {
+			query = query.arg(*it);
+			WRITE_STRING(query);
+		}
 
-	// Write out the CC header for the benefit of the mail clients
-	query = ASCII("CC: %1\r\n");
-	for ( QStringList::Iterator it = cc.begin(); it != cc.end(); ++it ) {
-		query = query.arg(*it);
-		WRITE_STRING(query);
+		// Write out the CC header for the benefit of the mail clients
+		query = ASCII("CC: %1\r\n");
+		for ( QStringList::Iterator it = cc.begin(); it != cc.end(); ++it ) {
+			query = query.arg(*it);
+			WRITE_STRING(query);
+		}
 	}
 
 	delete mset;
-
+	
 	// Loop until we got 0 (end of data)
 	int result;
 	QByteArray buffer;
@@ -397,10 +425,9 @@ bool SMTPProtocol::command (const QString &cmd, char *recv_buf, unsigned int len
 	return (getResponse(recv_buf, len) < 400);
 }
 
-bool SMTPProtocol::smtp_open (const KURL &url)
+bool SMTPProtocol::smtp_open()
 {
-	kdDebug () << "kio_smtp: IT WANTS " << url.host() << endl;
-	if ( (m_iOldPort == GetPort(m_iPort)) && (m_sOldServer == m_sServer) && (m_sOldUser == m_sUser) ) {
+	if (opened && (m_iOldPort == GetPort(m_iPort)) && (m_sOldServer == m_sServer) && (m_sOldUser == m_sUser)) {
 		return true;
 	} else {
 		smtp_close();
@@ -458,17 +485,14 @@ bool SMTPProtocol::smtp_open (const KURL &url)
 
 	// Now we try and login
 	if (!m_sUser.isNull()) {
-		KURL auth_url=url;
 		if (m_sPass.isNull()) {
 			QString head=i18n("Username and password for your SMTP account:");
                         if (!openPassDlg(head, m_sUser, m_sPass)) {
 				error(ERR_COULD_NOT_LOGIN, i18n("When prompted, you ran away."));
 				return false;
 			}
-			auth_url.setPass(m_sPass);
-			auth_url.setUser(m_sUser);
 		}
-		if (!Authenticate(auth_url)) {
+		if (!Authenticate()) {
 			error(ERR_COULD_NOT_LOGIN, i18n("Authentication failed"));
 			return false;
 		}
@@ -482,7 +506,7 @@ bool SMTPProtocol::smtp_open (const KURL &url)
 	return true;
 }
 
-bool SMTPProtocol::Authenticate (const KURL &url)
+bool SMTPProtocol::Authenticate()
 {
 	bool ret;
 	QString auth_method;
@@ -490,7 +514,7 @@ bool SMTPProtocol::Authenticate (const KURL &url)
 	// Generate a new context.. now this isn't the most efficient way of doing things, but for now this suffices
 	if (m_pSASL)
 		delete m_pSASL;
-	m_pSASL = new KDESasl(url);
+	m_pSASL = new KDESasl(m_sUser, m_sPass);
 
 	// Choose available method from what the server has given us in  its greeting
 	QStringList sl = QStringList::split(' ', m_sAuthConfig);
