@@ -49,7 +49,7 @@ KCMCgi::KCMCgi(QWidget *parent, const char *name)
   QVBoxLayout *topLayout = new QVBoxLayout(this);
   topLayout->setMargin( KDialog::marginHint() );
 
-  QGroupBox *topBox = new QGroupBox( 1, Horizontal, i18n("Paths to CGI Programs"), this );
+  QGroupBox *topBox = new QGroupBox( 1, Horizontal, i18n("Paths to local CGI Programs"), this );
   topLayout->addWidget( topBox );
 
   mListBox = new QListBox( topBox );
@@ -123,7 +123,7 @@ void KCMCgi::removePath()
 QString KCMCgi::quickHelp() const
 {
   return i18n("<h1>CGI programs</h1> The CGI KIO slave lets you execute "
-              "CGI programs without the need to run a web server. "
+              "local CGI programs without the need to run a web server. "
               "In this control module you can configure the paths that "
               "are searched for CGI scripts.");
 }
