@@ -960,7 +960,7 @@ static int single_escape=0;
 static char *scan_escape(char *c)
 {
     const char *h=NULL;
-    char b[5];
+    char b[32];
     INTDEF *intd;
     int exoutputp,exskipescape;
     int i,j;
@@ -1120,6 +1120,17 @@ static char *scan_escape(char *c)
     case '<': h="&lt;";curpos++; break;
     case '>': h="&gt;";curpos++; break;
     case '\\': if (single_escape) { c--; break;}
+    case 'N':
+	if (*++c) c++; // c += 2
+	if (sscanf(c, "%d", &i) != 1)
+		break;
+	c+=sprintf(b, "%d", i); // Skip over number
+	switch(i) {
+		case 8: h="\t";curpos=(curpos+8)&0xfff8; break;
+		case 34: h="&quot;"; curpos++; break;
+		default: b[0]=i; b[1]=0; h=b; curpos++; break;
+	}
+	break;
     default: b[0]=*c; b[1]=0; h=b; curpos++; break;
     }
     c++;
