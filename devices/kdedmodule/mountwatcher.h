@@ -52,7 +52,7 @@ private:
     EntryMap mEntryMap;
     QStringList mountList;
     bool firstTime;
-
+    uint mtabsize;
 k_dcop:
     uint    mountpointMappingCount();
     QString mountpoint(int id);

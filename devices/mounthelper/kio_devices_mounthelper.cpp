@@ -52,11 +52,15 @@ KIODevicesMountHelperApp::KIODevicesMountHelperApp():KApplication() {
 
 						if (args->isSet("u"))
 						{
+							if (it!=info.end())
+							{
+								++it;
+								mp=(*it).replace(0,5,"");
 
-							//KAutoUnmount *um=new KAutoUnmount(mp,QString::null);
-							KIO::Job * job = KIO::unmount( mp );
-						 	connect( job, SIGNAL( result( KIO::Job * ) ), this, SLOT( slotResult( KIO::Job * ) ) );
-
+								//KAutoUnmount *um=new KAutoUnmount(mp,QString::null);
+								KIO::Job * job = KIO::unmount( mp );
+							 	connect( job, SIGNAL( result( KIO::Job * ) ), this, SLOT( slotResult( KIO::Job * ) ) );
+							}
 						}
 						else
 						{

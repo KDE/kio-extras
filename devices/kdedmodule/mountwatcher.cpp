@@ -41,7 +41,7 @@
 #include "kdirnotify_stub.h"
 
 MountWatcherModule::MountWatcherModule(const QCString &obj)
-    : KDEDModule(obj),mDiskList(this)
+    : KDEDModule(obj),mDiskList(this),mtabsize(0)
 {
 	firstTime=true;
 	mDiskList.readFSTAB();
@@ -125,10 +125,17 @@ void MountWatcherModule::dirty(const QString& str)
 #ifdef MTAB
 	if (str==MTAB)
 	{
-	        mDiskList.readFSTAB();
-	        mDiskList.readDF();
-		return;
-
+		QFile f(MTAB);
+		f.open(IO_ReadOnly);
+		uint newsize=f.readAll().size();
+		f.close();
+		if (newsize!=mtabsize) {
+			mtabsize=newsize;
+			kdDebug()<<"MTAB FILESIZE:"<<f.size()<<endl;
+		        mDiskList.readFSTAB();
+	        	mDiskList.readDF();
+			return;
+		}
 	}
 #endif
 #ifdef FSTAB
@@ -286,7 +293,7 @@ void MountWatcherModule::readDFDone()
 	{
 	        KDirNotify_stub allDirNotify("*", "KDirNotify*");
 	        allDirNotify.FilesAdded( "devices:/" );
-	}
+	} else kdDebug()<<" kiodevices No Update needed"<<endl;
 }
 
 bool MountWatcherModule::createLink(const KURL& deviceURL, const KURL& destinationURL)
