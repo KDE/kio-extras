@@ -1376,7 +1376,7 @@ imapParser::parseFetch (ulong value, QString & inWords)
         else if (word.find ("RFC822") == 0)
         {
           // might be RFC822 RFC822.TEXT RFC822.HEADER
-          parseLiteral (inWords);
+          parseLiteral (inWords, true);
         }
         break;
 

@@ -205,11 +205,12 @@ IMAP4Protocol::get (const KURL & _url)
     }
     else if (aSection.find ("ENVELOPE", 0, false) != -1)
     {
-      aSection = "ENVELOPE";
+      aSection = "UID ENVELOPE";
     }
     else
     {
-      aSection = "BODY.PEEK[" + aSection + "]";
+      if (aSection.isEmpty()) aSection = "UID RFC822";
+      else aSection = "UID BODY.PEEK[" + aSection + "]";
     }
     if (aEnum == ITYPE_BOX)
     {
