@@ -558,69 +558,66 @@ bool SMTPProtocol::authenticate()
                    .arg( metaData("sasl") ));
     return false;
   }
-  else 
+
+  bool ret = false;
+  int numResponses = 0;
+  QCString cmd = "AUTH " + SASL.method();
+
+  if ( SASL.clientStarts() ) {
+    ++numResponses;
+    cmd += ' ' + SASL.getResponse();
+  }
+
+  Response saslResponse;
+  if ( !command( cmd, &saslResponse ) )
   {
-    bool ret = false;
-    int numResponses = 0;
-    QCString cmd = "AUTH " + SASL.method();
-
-    if ( SASL.clientStarts() ) {
-      ++numResponses;
-      cmd += ' ' + SASL.getResponse();
-    }
-
-    Response saslResponse;
-    if ( !command( cmd, &saslResponse ) )
+    if (!m_errorSent)
     {
-      if (!m_errorSent)
-      {
-        error(KIO::ERR_COULD_NOT_LOGIN,
-              i18n("Your SMTP server doesn't support %1.\n"
-                   "Choose a different authentication method.")
-                   .arg(SASL.method()));
-      }
-      return false;
+      error(KIO::ERR_COULD_NOT_LOGIN,
+	    i18n("Your SMTP server doesn't support %1.\n"
+		 "Choose a different authentication method.")
+	    .arg(SASL.method()));
     }
+    return false;
+  }
 
-    if ( SASL.dialogComplete( numResponses ) )
+  if ( SASL.dialogComplete( numResponses ) )
+  {
+    ret = true;
+  }
+  else
+  {
+    QByteArray ba;
+    if ( !saslResponse.lines().empty() )
+      ba.duplicate( saslResponse.lines().front().data(),
+		    saslResponse.lines().front().length() );
+    ++numResponses;
+    cmd = SASL.getResponse(ba);
+
+    saslResponse.clear();
+    ret = command( cmd, &saslResponse );
+    if ( !SASL.dialogComplete( numResponses ) )
     {
-      ret = true;
-    }
-    else
-    {
-      QByteArray ba;
       if ( !saslResponse.lines().empty() )
 	ba.duplicate( saslResponse.lines().front().data(),
 		      saslResponse.lines().front().length() );
-      ++numResponses;
+      else
+	ba.resize( 0 );
       cmd = SASL.getResponse(ba);
-
-      saslResponse.clear();
-      ret = command( cmd, &saslResponse );
-      if ( !SASL.dialogComplete( numResponses ) )
-      {
-	if ( !saslResponse.lines().empty() )
-	  ba.duplicate( saslResponse.lines().front().data(),
-			saslResponse.lines().front().length() );
-	else
-	  ba.resize( 0 );
-        cmd = SASL.getResponse(ba);
-	++numResponses;
-        ret = command(cmd);
-      }
+      ++numResponses;
+      ret = command(cmd);
     }
-
-    if (!ret && !m_errorSent)
-    {
-      error(KIO::ERR_COULD_NOT_LOGIN,
-            i18n
-            ("Authentication failed.\nMost likely the password is wrong.\nThe server responded: \"%1\"").
-            arg(m_lastError));
-    }
-
-    return ret;
   }
-  return false;
+
+  if (!ret && !m_errorSent)
+  {
+    error(KIO::ERR_COULD_NOT_LOGIN,
+	  i18n
+	  ("Authentication failed.\nMost likely the password is wrong.\nThe server responded: \"%1\"").
+	  arg(m_lastError));
+  }
+
+  return ret;
 }
 
 void SMTPProtocol::parseFeatures( const Response & ehloResponse ) {
