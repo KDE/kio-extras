@@ -12,7 +12,7 @@ Comment[bs]=Demontiran CD-ROM
 Comment[ca]=CD-ROM desmuntat
 Comment[cs]=Odpojená CDROM
 Comment[cy]=CD-ROM wedi'i ddadosod
-Comment[da]=Afmonteret CD-ROM
+Comment[da]=Afmonteret cd-rom
 Comment[de]=Nicht eingebundene CD-ROM
 Comment[el]=Αποπροσαρτημένο CD-ROM
 Comment[eo]=Malkroĉita CDROM
@@ -68,3 +68,4 @@ Comment[zu]=I-CD-ROM eyehlisiwe
 Patterns=
 
 X-KDE-AutoEmbed=true
+X-KDE-IsAlso=inode/directory

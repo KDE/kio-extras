@@ -12,7 +12,7 @@ Comment[bs]=Demontiran CD pisač
 Comment[ca]=CD Writer desmuntat
 Comment[cs]=Odpojená vypalovačka CD
 Comment[cy]=Ysgrifennwr CD wedi'i ddadosod
-Comment[da]=Afmonteret CD-skriver
+Comment[da]=Afmonteret cd-skriver
 Comment[de]=Nicht eingebundener CD-Brenner
 Comment[el]=Αποπροσαρτημένο CD Writer
 Comment[eo]=Malkroĉita CDRW
@@ -69,3 +69,4 @@ Comment[zu]=I-CD-Writer eyehlisiwe
 Patterns=
 
 X-KDE-AutoEmbed=true
+X-KDE-IsAlso=inode/directory

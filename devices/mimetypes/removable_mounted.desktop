@@ -7,3 +7,4 @@ Comment=Mounted Removable Device
 Patterns=
 
 X-KDE-AutoEmbed=true
+X-KDE-IsAlso=inode/directory

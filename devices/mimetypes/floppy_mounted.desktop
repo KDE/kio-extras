@@ -68,3 +68,4 @@ Comment[zu]=I-Floppy eyenyusiwe
 Patterns=
 
 X-KDE-AutoEmbed=true
+X-KDE-IsAlso=inode/directory

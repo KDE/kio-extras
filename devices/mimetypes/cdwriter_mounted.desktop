@@ -12,7 +12,7 @@ Comment[bs]=Montiran CD pisač
 Comment[ca]=CD Writer muntat
 Comment[cs]=Připojená vypalovačka CD
 Comment[cy]=Ysgrifennwr CD wedi'i osod
-Comment[da]=Monteret CD-skriver
+Comment[da]=Monteret cd-skriver
 Comment[de]=Eingebundener CD-Brenner
 Comment[el]=Προσαρτημένο CD Writer
 Comment[eo]=Kroĉita CDRW
@@ -69,3 +69,4 @@ Comment[zu]=I-CD-Writer eyenyusiwe
 Patterns=
 
 X-KDE-AutoEmbed=true
+X-KDE-IsAlso=inode/directory

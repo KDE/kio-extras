@@ -66,3 +66,4 @@ Comment[zu]=I-CD-ROM eyenyusiwe
 Patterns=
 
 X-KDE-AutoEmbed=true
+X-KDE-IsAlso=inode/directory

@@ -67,3 +67,4 @@ Comment[zu]=I-disk yokuhlanganiselwe ndawonye eyehlisiwe
 Patterns=
 
 X-KDE-AutoEmbed=true
+X-KDE-IsAlso=inode/directory
