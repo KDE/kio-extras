@@ -6,25 +6,19 @@ LDFLAGS = $(all_libraries) $(KDE_RPATH)
 
 ####### Files
 
-bin_PROGRAMS = KDEfinger
-
-KDEfinger_SOURCES = KDEfingerMain.cpp KDEfinger.cpp fingerSocket.cpp
-KDEfinger_LDFLAGS = $(all_libraries) $(KDE_RPATH)
-KDEfinger_LDADD = $(LIB_KFILE)   
-
 lib_LTLIBRARIES = kio_finger.la
 
 kio_finger_la_SOURCES = kio_finger.cpp 
 kio_finger_la_LIBADD = -lkio
 kio_finger_la_LDFLAGS = -module -avoid-version -no-undefined
 
-noinst_HEADERS = kio_finger.h KDEfinger.h fingerSocket.h
+noinst_HEADERS = kio_finger.h 
 
 kdelnk_DATA = finger.protocol
 kdelnkdir = $(kde_servicesdir)
 
-data_DATA = finger.pl 
-datadir = $(kde_datadir)/kfinger/kio_finger
+data_DATA = kio_finger.pl 
+datadir = $(kde_datadir)/kio_finger
 EXTRA_DIST=$(data_DATA)   
 
 METASOURCES = AUTO

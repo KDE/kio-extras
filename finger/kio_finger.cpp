@@ -221,7 +221,7 @@ void FingerProtocol::getProgramPath()
       kdDebug() << "Finger command found:" << *myFingerPath << endl; 
     }
   
-  myFingerScript = new QString(locate("data","kfinger/kio_finger/finger.pl"));
+  myFingerScript = new QString(locate("data","kio_finger/kio_finger.pl"));
   if (myFingerScript->isEmpty())
     {
       kdDebug() << "kio_finger perl script not found" << endl;     
