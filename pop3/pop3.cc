@@ -307,7 +307,7 @@ bool POP3Protocol::pop3_open(const KURL &url)
                                  i18n("Your POP3 server claims to "
                                       "support TLS but negotiation "
                                       "was unsuccessful.  You can "
-                                      "disable TLS in the KDE in the "
+                                      "disable TLS in KDE using the "
                                       "crypto settings module."),
                                  i18n("Connection Failed"));
                       return false;
