@@ -339,12 +339,14 @@ IMAP4Protocol::listDir (const KURL & _url)
         UDSEntry entry;
         UDSAtom atom;
         KURL aURL = _url;
+        if (aURL.path().find(";") != -1) 
+          aURL.setPath(aURL.path().left(aURL.path().find(";")));
 
         kdDebug(7116) << "IMAP4Protocol::listDir - got " << listResponses.count () << endl;
 
         for (QValueListIterator < imapList > it = listResponses.begin ();
              it != listResponses.end (); ++it)
-          doListEntry (_url, myBox, (*it));
+          doListEntry (aURL, myBox, (*it));
         entry.clear ();
         listEntry (entry, true);
       }
@@ -1446,7 +1448,7 @@ IMAP4Protocol::parseURL (const KURL & _url, QString & _box,
 
   if (!_box.isEmpty ())
   {
-//     kdDebug(7116) << "IMAP4::parseURL: box " << _box << endl;
+    kdDebug(7116) << "IMAP4::parseURL: box " << _box << endl;
 
     if (makeLogin ())
     {
@@ -1506,29 +1508,11 @@ IMAP4Protocol::parseURL (const KURL & _url, QString & _box,
         retVal = ITYPE_MSG;
     }
   }
-  switch (retVal)
+  if (_type == "LIST")
   {
-  case ITYPE_DIR:
-    kdDebug(7116) << "IMAP4::parseURL: dir" << endl;
-    break;
-
-  case ITYPE_BOX:
-    kdDebug(7116) << "IMAP4::parseURL: box" << endl;
-    break;
-
-  case ITYPE_DIR_AND_BOX:
-    kdDebug(7116) << "IMAP4::parseURL: dir and box" << endl;
-    break;
-
-  case ITYPE_MSG:
-    kdDebug(7116) << "IMAP4::parseURL: msg" << endl;
-    break;
-
-  case ITYPE_UNKNOWN:
-    kdDebug(7116) << "IMAP4::parseURL: unknown" << endl;
-    break;
+    retVal = ITYPE_DIR;
+    if (_hierarchyDelimiter.isEmpty()) _hierarchyDelimiter ="/";
   }
-  kdDebug(7116) << "URL: box= " << _box << ", section= " << _section << ", type= " << _type << ", uid= " << _uid << ", validity= " << _validity << endl;
 
   return retVal;
 }

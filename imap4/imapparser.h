@@ -136,9 +136,9 @@ public:
   };
   virtual void resetState() { currentState = ISTATE_NO; }
 
-  const QString & getCurrentBox ()
+  const QString getCurrentBox ()
   {
-    return currentBox;
+    return rfcDecoder::fromIMAP(currentBox);
   };
 
   imapCommand *sendCommand (imapCommand *);
