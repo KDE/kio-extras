@@ -241,7 +241,7 @@ void kio_sftpProtocol::get(const KURL& url ) {
                     // determine mimetype
                     KMimeMagicResult* result =
                         KMimeMagic::self()->findBufferFileType(mimeBuffer, url.filename());
-                    kdDebug(7102) << "kiosftp_Protocol::get(): mimetype is " <<
+                    kdDebug(KIO_SFTP_DB) << "kiosftp_Protocol::get(): mimetype is " <<
                                       result->mimeType() << endl;
                     mimeType(result->mimeType());
                     data(mimeBuffer);
