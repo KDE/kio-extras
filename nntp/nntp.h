@@ -1,6 +1,5 @@
 
 #ifndef _NNTP_H
-#define _NNTP_H
 #define _NNTP_H "$Id$"
 
 #include <sys/types.h>
@@ -15,12 +14,11 @@
 class NNTPProtocol : public KIO::SlaveBase
 {
 public:
-  NNTPProtocol (KIO::Connection *connection = 0 );
+  NNTPProtocol (const QCString &pool, const QCString &app );
   virtual ~NNTPProtocol();
 
-  virtual void openConnection( const QString& host, int port, const QString& user, const QString& pass );
-  virtual void closeConnection();
-
+  virtual void setHost (const QString& host, int port, const QString& user, const QString& pass );
+ 
   virtual void get( const QString& __url, const QString& query, bool reload );
   virtual void stat( const QString & );
   virtual void del( const QString &path, bool isfile);

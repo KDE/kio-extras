@@ -33,8 +33,23 @@
 
 using namespace KIO;
 
-NNTPProtocol::NNTPProtocol(Connection *_conn)
-  : SlaveBase( "nntp", _conn)
+extern "C" { int kdemain(int argc, char **argv); }
+
+int kdemain(int argc, char **argv)
+{
+	KInstance instance( "kio_nntp" );
+	if (argc != 4)
+	{
+	fprintf(stderr, "usage statement needs to go here\n");
+	exit(-1);
+	}
+	NNTPProtocol slave(argv[2], argv[3]);
+	slave.dispatchLoop();
+	return 0;
+}
+
+NNTPProtocol::NNTPProtocol(const QCString &pool, const QCString &app)
+  : SlaveBase( "nntp", pool, app)
 {
   debug( "NNTPProtocol()" );
   m_cmd = CMD_NONE;
@@ -50,7 +65,7 @@ NNTPProtocol::~NNTPProtocol()
   nntp_close();
 }
 
-void NNTPProtocol::openConnection( const QString& _host, int _port, const QString& _user, const QString& _pass )
+void NNTPProtocol::setHost( const QString& _host, int _port, const QString& _user, const QString& _pass )
 {
   urlPrefix = "news://";
   if (!_user.isEmpty()) {
@@ -64,13 +79,6 @@ void NNTPProtocol::openConnection( const QString& _host, int _port, const QStrin
     urlPrefix += QString( ":%1" ).arg( _port );
   debug( "urlPrefix " + urlPrefix );
 
-  connected();
-}
-
-void NNTPProtocol::closeConnection()
-{
-  // this is not needed anymore
-  //ready();
 }
 
 bool NNTPProtocol::getResponse (char *r_buf, unsigned int r_len)
@@ -118,7 +126,7 @@ bool NNTPProtocol::getResponse (char *r_buf, unsigned int r_len)
   // null terminated.
   recv_len=strlen(buf);
 
-/*
+/*   CJM: CHANGE THIS!!!!
  *   From rfc1939:
  *
  *   Responses in the NNTP consist of a status indicator and a keyword
@@ -142,7 +150,7 @@ bool NNTPProtocol::getResponse (char *r_buf, unsigned int r_len)
     if (buf) free(buf);
     return false;
   } else {
-    fprintf(stderr, "Invalid NNTP response received!\n");fflush(stderr);
+    fprintf(stderr, "Invalid NNTP response received!\n");
     if (r_buf && r_len) {
       memcpy(r_buf, buf, QMIN(r_len,recv_len));
     }
@@ -154,7 +162,7 @@ bool NNTPProtocol::getResponse (char *r_buf, unsigned int r_len)
 bool NNTPProtocol::command (const char *cmd, char *recv_buf, unsigned int len)
 {
 
-/*
+/*   CJM: CHANGE THIS!!!
  *   From rfc1939:
  *
  *   Commands in the NNTP consist of a case-insensitive keyword, possibly
@@ -196,18 +204,18 @@ bool NNTPProtocol::nntp_open( KURL &_url )
   // because we first have to check to see if the user specified
   // a port, and if so use it, otherwise we check to see if there
   // is a port specified in /etc/services, and if so use that
-  // otherwise as a last resort use the "official" port of 110.
+  // otherwise as a last resort use the "official" port of 119.
 
   unsigned short int port;
   ksockaddr_in server_name;
   memset(&server_name, 0, sizeof(server_name));
   static char buf[512];
 
-  // We want 110 as the default, but -1 means no port was specified.
+  // We want 119 as the default, but -1 means no port was specified.
   // Why 0 wasn't chosen is beyond me.
-  port = _url.port() ? _url.port() : 110;
+  port = _url.port() ? _url.port() : 119;
   if ( (m_iOldPort == port) && (m_sOldServer == _url.host()) && (m_sOldUser == _url.user()) && (m_sOldPass == _url.pass())) {
-    fprintf(stderr,"Reusing old connection\n");fflush(stderr);
+    fprintf(stderr,"Reusing old connection\n");
     return true;
   } else {
     nntp_close();
@@ -226,7 +234,8 @@ bool NNTPProtocol::nntp_open( KURL &_url )
       close(m_iSock);
       return false;
     }
-
+	
+    QCString greeting (1024);
     if (!getResponse())  // If the server doesn't respond with a greeting
       return false;      // we've got major problems, and possibly the
                          // wrong port
@@ -249,9 +258,11 @@ bool NNTPProtocol::nntp_open( KURL &_url )
       one_string.append(_url.user());
       m_sOldUser = _url.user();
     }
+
     memset(buf, 0, sizeof(buf));
+
     if (!command(one_string, buf, sizeof(buf))) {
-      fprintf(stderr, "Couldn't login. Bad username Sorry\n"); fflush(stderr);
+      fprintf(stderr, "Couldn't login. Bad username Sorry\n");
       nntp_close();
       return false;
     }
@@ -265,12 +276,11 @@ bool NNTPProtocol::nntp_open( KURL &_url )
       one_string.append(_url.pass());
     }
     if (!command(one_string, buf, sizeof(buf))) {
-      fprintf(stderr, "Couldn't login. Bad password Sorry\n"); fflush(stderr);
+      fprintf(stderr, "Couldn't login. Bad password Sorry\n");
       nntp_close();
       return false;
     }
     return true;
-
   }
 }
 
@@ -351,7 +361,7 @@ void NNTPProtocol::get( const QString& __url, const QString&, bool )
   path.remove(0,path.find("/")+1);
 
   if (!nntp_open(usrc)) {
-    fprintf(stderr,"nntp_open failed\n");fflush(stderr);
+    fprintf(stderr,"nntp_open failed\n");
     error( ERR_COULD_NOT_CONNECT, strdup(usrc.host()));
     nntp_close();
     return;
@@ -398,7 +408,7 @@ LIST
 	array.resetRawData(buf, strlen(buf));
 	totalSize(size);
       }
-      fprintf(stderr,"Finishing up list\n");fflush(stderr);
+      fprintf(stderr,"Finishing up list\n");
       data( QByteArray() );
       speed(0); finished();
     }
@@ -418,7 +428,7 @@ LIST
       mimeType("text/plain");
       memset(buf, 0, sizeof(buf));
       while (!feof(fp)) {
-	fprintf(stderr,"xxxxxxxxxxxFinishing up\n");fflush(stderr);
+	fprintf(stderr,"xxxxxxxxxxxFinishing up\n");
 	memset(buf, 0, sizeof(buf));
 	if (!fgets(buf, sizeof(buf)-1, fp))
 	  break;  // Error??
@@ -439,7 +449,7 @@ LIST
 	  array.resetRawData(buf, strlen(buf));
 	}
       }
-      fprintf(stderr,"Finishing up\n");fflush(stderr);
+      fprintf(stderr,"Finishing up\n");
       data( QByteArray() );
       speed(0); finished();
     }
@@ -501,12 +511,11 @@ LIST
 	p_size+=strlen(buf);
 	processedSize(p_size);
       }
-      fprintf(stderr,"Finishing up\n");fflush(stderr);
+      fprintf(stderr,"Finishing up\n");
       data(QByteArray());
       speed(0); finished();
     } else {
       fprintf(stderr, "Couldn't login. Bad RETR Sorry\n");
-      fflush(stderr);
       nntp_close();
       return;
     }
@@ -532,7 +541,7 @@ LIST
       array.resetRawData(buf, len);
       processedSize(len);
       debug( buf );
-      fprintf(stderr,"Finishing up uid\n");fflush(stderr);
+      fprintf(stderr,"Finishing up uid\n");
       data(QByteArray());
       speed(0); finished();
     } else {
@@ -541,7 +550,7 @@ LIST
   }
 
   else if (cmd == "commit") {
-    fprintf(stderr,"Issued QUIT\n");fflush(stderr);
+    fprintf(stderr,"Issued QUIT\n");
     nntp_close();
     finished();
     m_cmd = CMD_NONE;
@@ -563,7 +572,7 @@ void NNTPProtocol::listDir( const QString & _path )
   }
   // Try and open a connection
   if (!nntp_open(usrc)) {
-    fprintf(stderr,"nntp_open failed\n");fflush(stderr);
+    fprintf(stderr,"nntp_open failed\n");
     error( ERR_COULD_NOT_CONNECT, strdup(usrc.host()));
     nntp_close();
     return;
@@ -670,7 +679,7 @@ void NNTPProtocol::del( const QString& path, bool /*isfile*/ )
   }
 
   if ( !nntp_open(usrc) ) {
-    fprintf(stderr,"nntp_open failed\n");fflush(stderr);
+    fprintf(stderr,"nntp_open failed\n");
     error( ERR_COULD_NOT_CONNECT, strdup(usrc.host()));
     nntp_close();
     return;
@@ -693,9 +702,4 @@ void NNTPProtocol::del( const QString& path, bool /*isfile*/ )
   finished();
 }
 
-extern "C" {
-    SlaveBase *init_nntp() {
-        return new NNTPProtocol();
-    }
-}
 
