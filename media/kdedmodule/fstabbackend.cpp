@@ -22,6 +22,7 @@
 #include <kdirwatch.h>
 #include <kurl.h>
 #include <kmountpoint.h>
+#include <kstandarddirs.h>
 
 #ifdef _OS_SOLARIS_
 #define FSTAB "/etc/vfstab"
@@ -217,8 +218,8 @@ void FstabBackend::handleFstabChange()
 QString FstabBackend::generateId(const QString &devNode,
                                  const QString &mountPoint)
 {
-	QString d = devNode;
-	QString m = mountPoint;
+	QString d = KStandardDirs::realFilePath(devNode);
+	QString m = KStandardDirs::realPath(mountPoint);
 
 	return "/org/kde/mediamanager/fstab/"
 	      +d.replace("/", "")
