@@ -80,8 +80,8 @@ void SMBUrl::updateCache()
 {
     // we have to use pretty here as smbc is unable to handle e.g. %20
     m_surl = fromUnicode(KURL::url());
-    if (m_surl.left(5) == "smb:/" && m_surl.at(6) != '/')
-        m_surl = "smb://" + m_surl.mid(6);
+    if (m_surl == "smb:/")
+        m_surl = "smb://";
 
     m_type = SMBURLTYPE_UNKNOWN;
     // update m_type

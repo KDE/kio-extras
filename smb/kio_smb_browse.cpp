@@ -151,10 +151,12 @@ void SMBSlave::stat( const KURL& kurl )
 	break;
       else {
 	kdDebug(KIO_SMB) << "SMBSlave::stat ERROR!!"<< endl;
+        finished();
 	return;
       }
     default:
       kdDebug(KIO_SMB) << "SMBSlave::stat UNKNOWN " << url.url() << endl;
+      finished();
       return;
     }
 
@@ -166,31 +168,48 @@ void SMBSlave::stat( const KURL& kurl )
 //===========================================================================
 // TODO: complete checking
 KURL SMBSlave::checkURL(const KURL& kurl) const {
-  // smb:/ normaly have no userinfo
-  // we must redirect ourself to remove the username and password
-  if (kurl.url().contains('@') && !kurl.url().contains("smb://")) {
-    KURL url(kurl);
-    url.setPath("/"+kurl.url().right( kurl.url().length()-kurl.url().find('@') -1));
-    QString userinfo = kurl.url().mid(5, kurl.url().find('@')-5);
-    if(userinfo.contains(':'))  {
-      url.setUser(userinfo.left(userinfo.find(':')));
-      url.setPass(userinfo.right(userinfo.length()-userinfo.find(':')-1));
-    }
-    else {
-      url.setUser(userinfo);
-    }
-    return url;
-  }
-  // no emtpy path
-  QString path = kurl.path();
-  if (path.isEmpty())
-    {
-      KURL url(kurl);
-      url.setPath("/");
-      return url;
+
+    kdDebug(KIO_SMB) << "checkURL " << kurl << endl;
+    QString surl = kurl.url();
+    if (surl.startsWith("smb:/")) {
+        if (surl.length() == 5) // just the above
+            return kurl; // unchanged
+
+        if (surl.at(5) != '/') {
+            surl = "smb://" + surl.mid(5);
+            kdDebug(KIO_SMB) << "checkURL return1 " << surl << " " << KURL(surl).url() << endl;
+            return KURL(surl);
+        }
     }
 
-  return kurl;
+    // smb:/ normaly have no userinfo
+    // we must redirect ourself to remove the username and password
+    if (surl.contains('@') && !surl.contains("smb://")) {
+        KURL url(kurl);
+        url.setPath("/"+kurl.url().right( kurl.url().length()-kurl.url().find('@') -1));
+        QString userinfo = kurl.url().mid(5, kurl.url().find('@')-5);
+        if(userinfo.contains(':'))  {
+            url.setUser(userinfo.left(userinfo.find(':')));
+            url.setPass(userinfo.right(userinfo.length()-userinfo.find(':')-1));
+        }
+        else {
+            url.setUser(userinfo);
+        }
+        kdDebug() << "checkURL return2 " << url.url() << endl;
+        return url;
+    }
+    // no emtpy path
+    QString path = kurl.path();
+    if (path.isEmpty())
+    {
+        KURL url(kurl);
+        url.setPath("/");
+        kdDebug() << "checkURL return3 " << url.url() << endl;
+        return url;
+    }
+
+    kdDebug() << "checkURL return3 " << kurl.url() << endl;
+    return kurl;
 }
 
 void SMBSlave::reportError(const SMBUrl &url)
@@ -304,12 +323,20 @@ void SMBSlave::listDir( const KURL& kurl )
                atom.m_long = (S_IRUSR | S_IRGRP | S_IROTH | S_IXUSR | S_IXGRP | S_IXOTH);
                udsentry.append(atom);
 
+               if (dirp->smbc_type == SMBC_SERVER) {
+                   atom.m_uds = KIO::UDS_URL;
+                   QString workgroup = m_current_url.host().upper();
+                   // when libsmbclient knows
+                   // atom.m_str = QString("smb://%1?WORKGROUP=%2").arg(dirpName).arg(workgroup.upper());
+                   atom.m_str = QString("smb://%1").arg(dirpName);
+                   udsentry.append(atom);
+               }
+
                // Call base class to list entry
                listEntry(udsentry, false);
             }
            else if(dirp->smbc_type == SMBC_WORKGROUP)
            {
-
                // Set type
                atom.m_uds = KIO::UDS_FILE_TYPE;
                atom.m_long = S_IFDIR;
