@@ -32,14 +32,6 @@
 #include "kio_smb.h"
 #include "kio_smb_internal.h"
 
-//===========================================================================
-// TODO: add when libsmbclient supports it
-void SMBSlave::chmod( const KURL& /*url*/, int /*permissions*/ )
-{
-    error(KIO::ERR_UNSUPPORTED_ACTION, "SMB filesystem does not yet support chmod()");
-    finished();
-}
-
 
 //===========================================================================
 // TODO: add when libsmbclient supports it
@@ -48,7 +40,6 @@ void SMBSlave::copy( const KURL& ksrc,
                      int permissions, 
                      bool overwrite)
 {
-    kdDebug(KIO_SMB) << "SMBSlave::copy with src = " << ksrc.url() << "and dest = " << kdst.url() << endl;
 
     SMBUrl          src;
     SMBUrl          dst;
@@ -62,8 +53,10 @@ void SMBSlave::copy( const KURL& ksrc,
     int             srcfd = -1;
     int             dstfd = -1;
     int             processed_size = 0;
-    unsigned char*  buf = 0;
+    unsigned char   buf[MAX_XFER_BUF_SIZE];
     
+    kdDebug(KIO_SMB) << "SMBSlave::copy with src = " << ksrc.url() << "and dest = " << kdst.url() << endl;
+
     // setup times
     starttime = time(NULL);
     lasttime = starttime;
@@ -138,8 +131,6 @@ void SMBSlave::copy( const KURL& ksrc,
         return;
     }
 
-    // Allocate the read buffer 
-    buf = (unsigned char*) malloc(MAX_XFER_BUF_SIZE);
     if(buf == NULL)
     {
         goto FINISHED;
@@ -181,11 +172,6 @@ void SMBSlave::copy( const KURL& ksrc,
     
     FINISHED:
     
-    if(buf)
-    {
-        free(buf);
-    }
-    
     if(srcfd >= 0 )
     {
         smbc_close(srcfd);
@@ -214,7 +200,6 @@ void SMBSlave::copy( const KURL& ksrc,
 
     finished();
 }
-
 
 //===========================================================================
 void SMBSlave::del( const KURL &kurl, bool isfile)
@@ -318,14 +303,16 @@ void SMBSlave::mkdir( const KURL &kurl, int permissions )
 //===========================================================================
 void SMBSlave::rename( const KURL& ksrc, const KURL& kdest, bool overwrite )
 {
-    kdDebug(KIO_SMB) << "SMBSlave::rename, old name = " << ksrc.url() << ", new name = " << kdest.url() << endl;
 
+    struct stat st;
     SMBUrl      src;
     SMBUrl      dst;
-    struct stat st;
+
+    kdDebug(KIO_SMB) << "SMBSlave::rename, old name = " << ksrc.url() << ", new name = " << kdest.url() << endl;
 
     src.fromKioUrl(ksrc);
     dst.fromKioUrl(kdest);
+
 
     // Check to se if the destination exists
     if(cache_stat(dst, &st) != -1)
@@ -342,7 +329,7 @@ void SMBSlave::rename( const KURL& ksrc, const KURL& kdest, bool overwrite )
         }
     }
 
-    if(smbc_rename(src.toSmbcUrl(), dst.toSmbcUrl()))
+    if(smbc_rename(src.toSmbcUrl(), dst.toSmbcUrl())!=0)
     {
         switch(errno)
         {
@@ -351,10 +338,12 @@ void SMBSlave::rename( const KURL& ksrc, const KURL& kdest, bool overwrite )
             {
                 if(errno == EACCES)
                 {
-                    error(KIO::ERR_ACCESS_DENIED, src.toKioUrl());
+		  kdDebug(KIO_SMB) << "SMBSlave::rename new name = " << ksrc.url() <<" access denied !!"<< endl;
+                    error(KIO::ERR_ACCESS_DENIED, dst.toKioUrl());
                 }
                 else
                 {
+		  kdDebug(KIO_SMB) << "SMBSlave::rename new name = " << ksrc.url() <<" does not exists !!"<< endl;
                     error(KIO::ERR_DOES_NOT_EXIST, src.toKioUrl());
                 }
             }
@@ -362,10 +351,12 @@ void SMBSlave::rename( const KURL& ksrc, const KURL& kdest, bool overwrite )
 
         case EACCES:
         case EPERM:
+	  kdDebug(KIO_SMB) << "SMBSlave::rename new name = " << kdest.url() <<" access denied !!"<< endl;
             error( KIO::ERR_ACCESS_DENIED, dst.toKioUrl() );
             break;
 
         default:
+	  kdDebug(KIO_SMB) << "SMBSlave::rename new name = " << kdest.url() <<" unknown error !!"<< endl;
             error( KIO::ERR_CANNOT_RENAME, src.toKioUrl() );
         }
     }
@@ -375,13 +366,4 @@ void SMBSlave::rename( const KURL& ksrc, const KURL& kdest, bool overwrite )
     finished();
 }
 
-
-//===========================================================================
-void SMBSlave::symlink( const QString& /*target*/,
-                        const KURL& /*dest*/, 
-                        bool /*overwrite*/ )
-{
-    error(KIO::ERR_UNSUPPORTED_ACTION, "SMB filesystem does not support symlinks");
-    finished();
-}
 
