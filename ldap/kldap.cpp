@@ -152,7 +152,7 @@ bool Request::finish()
 	{
 	  running = FALSE;
 	  id = 0;
-	  return check(handle()->ld_errno);
+	  return check(ldap_result2error(handle(), req_result, 1));
 	}
 
       // check if the timeout was exceeded
@@ -280,7 +280,7 @@ bool SearchRequest::execute()
 	{
 	  id = 0;
 	  running = FALSE;
-	  return check(handle()->ld_errno);
+	  return FALSE; /* ldap_search returning -1 is ALWAYS trouble */
 	}
       return TRUE;
     }
