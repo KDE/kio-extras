@@ -11,7 +11,8 @@ deleting=true
 linking=true
 moving=true
 Icon=blockdevice
-maxInstances=2
+maxInstances=4
 #TODO DocPath=kioslave/file.html
 Class=:local
-
+deleteRecursive=true
+fileNameUsedForCopying=Name

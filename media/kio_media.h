@@ -20,12 +20,11 @@
 #ifndef _KIO_MEDIA_H_
 #define _KIO_MEDIA_H_
 
-#include <kio/slavebase.h>
-#include <qobject.h>
+#include "forwardingslavebase.h"
 
 #include "mediaimpl.h"
 
-class MediaProtocol : public QObject, public KIO::SlaveBase
+class MediaProtocol : public KIO::ForwardingSlaveBase
 {
 Q_OBJECT
 public:
@@ -33,35 +32,15 @@ public:
 	              const QCString &app);
 	virtual ~MediaProtocol();
 
-	virtual void get(const KURL &url);
-	virtual void put(const KURL &url, int mode,
-	                 bool overwrite, bool resume);
-	virtual void copy(const KURL &src, const KURL &dest,
-	                  int mode, bool overwrite );
-	virtual void rename(const KURL &src, const KURL &dest, bool overwrite);
-	virtual void symlink(const QString &target, const KURL &dest,
-	                     bool overwrite);
+	virtual bool rewriteURL(const KURL &url, KURL &newUrl);
 
+	virtual void put(const KURL &url, int permissions,
+	                 bool overwrite, bool resume);
+	virtual void rename(const KURL &src, const KURL &dest, bool overwrite);
+	virtual void mkdir(const KURL &url, int permissions);
+	virtual void del(const KURL &url, bool isFile);
 	virtual void stat(const KURL &url);
 	virtual void listDir(const KURL &url);
-	virtual void mkdir(const KURL &url, int permissions);
-	virtual void chmod(const KURL &url, int permissions);
-	virtual void del(const KURL &url, bool isFile);
-
-	// TODO?
-	/**
-	 * Special commands supported by this slave:
-	 * 1 - mount
-	 * 2 - unmount
-	 */
-	//virtual void special( const QByteArray &data);
-	//void unmount(const QString &mediumName);
-	//void mount(const QString &mediumName, bool readOnly);
-
-private slots:
-	void slotResult(KIO::Job *job);
-	void slotStatResult(KIO::Job *job);
-	void slotEntries(KIO::Job *job, const KIO::UDSEntryList &entries);
 
 private:
 	void listRoot();

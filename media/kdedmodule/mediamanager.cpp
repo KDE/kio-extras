@@ -74,6 +74,25 @@ QStringList MediaManager::properties(const QString &name)
 	}
 }
 
+const QString &MediaManager::nameForLabel(const QString &label)
+{
+	const QPtrList<Medium> media = m_mediaList.list();
+
+	QPtrList<Medium>::const_iterator it = media.begin();
+	QPtrList<Medium>::const_iterator end = media.end();
+	for (; it!=end; ++it)
+	{
+		const Medium *m = *it;
+
+		if (m->prettyLabel()==label)
+		{
+			return m->name();
+		}
+	}
+
+	return QString::null;
+}
+
 ASYNC MediaManager::setUserLabel(const QString &name, const QString &label)
 {
 	m_mediaList.setUserLabel(name, label);
@@ -82,7 +101,7 @@ ASYNC MediaManager::setUserLabel(const QString &name, const QString &label)
 void MediaManager::slotMediumAdded(const QString &/*id*/, const QString &name)
 {
 	kdDebug() << "MediaManager::slotMediumAdded: " << name << endl;
-	
+
 	KDirNotify_stub notifier("*", "*");
 	notifier.FilesAdded( KURL("media:/") );
 
@@ -92,7 +111,7 @@ void MediaManager::slotMediumAdded(const QString &/*id*/, const QString &name)
 void MediaManager::slotMediumRemoved(const QString &/*id*/, const QString &name)
 {
 	kdDebug() << "MediaManager::slotMediumRemoved: " << name << endl;
-	
+
 	KDirNotify_stub notifier("*", "*");
 	notifier.FilesRemoved( KURL("media:/"+name) );
 
@@ -102,7 +121,7 @@ void MediaManager::slotMediumRemoved(const QString &/*id*/, const QString &name)
 void MediaManager::slotMediumChanged(const QString &/*id*/, const QString &name)
 {
 	kdDebug() << "MediaManager::slotMediumChanged: " << name << endl;
-	
+
 	KDirNotify_stub notifier("*", "*");
 	notifier.FilesChanged( KURL("media:/"+name) );
 

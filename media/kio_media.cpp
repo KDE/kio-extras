@@ -57,7 +57,7 @@ extern "C" {
 
 MediaProtocol::MediaProtocol(const QCString &protocol,
                              const QCString &pool, const QCString &app)
-	: QObject(), SlaveBase(protocol, pool, app)
+	: ForwardingSlaveBase(protocol, pool, app)
 {
 }
 
@@ -65,28 +65,42 @@ MediaProtocol::~MediaProtocol()
 {
 }
 
-void MediaProtocol::get(const KURL &url)
+bool MediaProtocol::rewriteURL(const KURL &url, KURL &newUrl)
 {
-	kdDebug() << "MediaProtocol::get: " << url << endl;
+	QString name, path;
 
-	error(KIO::ERR_UNSUPPORTED_ACTION, "Not implemented yet");
+	if ( !m_impl.parseURL(url, name, path) )
+	{
+		error(KIO::ERR_MALFORMED_URL, url.prettyURL());
+		return false;
+	}
+
+
+	if ( !m_impl.realURL(name, path, newUrl) )
+	{
+		error( m_impl.lastErrorCode(), m_impl.lastErrorMessage() );
+		return false;
+	}
+
+	return true;
 }
 
-void MediaProtocol::put(const KURL &url, int mode, bool overwrite, bool resume)
+void MediaProtocol::put(const KURL &url, int permissions,
+                        bool overwrite, bool resume)
 {
-	kdDebug() << "MediaProtocol::put: " << url << ", " << overwrite << ", "
-	          << resume << endl;
+	kdDebug() << "MediaProtocol::put: " << url << endl;
 
-	error(KIO::ERR_UNSUPPORTED_ACTION, "Not implemented yet");
-}
+	QString name, path;
+	bool ok = m_impl.parseURL(url, name, path);
 
-void MediaProtocol::copy(const KURL &src, const KURL &dest,
-                         int mode, bool overwrite )
-{
-	kdDebug() << "MediaProtocol::copy: " << src << ", " << dest << ", "
-	          << overwrite << endl;
-
-	error(KIO::ERR_UNSUPPORTED_ACTION, "Not implemented yet");
+	if ( ok && path.isEmpty() )
+	{
+		error(KIO::ERR_CANNOT_OPEN_FOR_WRITING, url.prettyURL());
+	}
+	else
+	{
+		ForwardingSlaveBase::put(url, permissions, overwrite, resume);
+	}
 }
 
 void MediaProtocol::rename(const KURL &src, const KURL &dest, bool overwrite)
@@ -94,16 +108,61 @@ void MediaProtocol::rename(const KURL &src, const KURL &dest, bool overwrite)
 	kdDebug() << "MediaProtocol::rename: " << src << ", " << dest << ", "
 	          << overwrite << endl;
 
-	error(KIO::ERR_UNSUPPORTED_ACTION, "Not implemented yet");
+	QString src_name, src_path;
+	bool ok = m_impl.parseURL(src, src_name, src_path);
+	QString dest_name, dest_path;
+	ok &= m_impl.parseURL(dest, dest_name, dest_path);
+
+	if ( ok && src_path.isEmpty() && dest_path.isEmpty()
+	  && src.protocol() == "media" && dest.protocol() == "media" )
+	{
+		if (!m_impl.setUserLabel(src_name, dest_name))
+		{
+			error(m_impl.lastErrorCode(), m_impl.lastErrorMessage());
+		}
+		else
+		{
+			finished();
+		}
+	}
+	else
+	{
+		ForwardingSlaveBase::rename(src, dest, overwrite);
+	}
 }
 
-void MediaProtocol::symlink(const QString &target, const KURL &dest,
-                            bool overwrite)
+void MediaProtocol::mkdir(const KURL &url, int permissions)
 {
-	kdDebug() << "MediaProtocol::symlink: " << target << ", "
-	          << dest << ", " << overwrite << endl;
+	kdDebug() << "MediaProtocol::mkdir: " << url << endl;
 
-	error(KIO::ERR_UNSUPPORTED_ACTION, "Not implemented yet");
+	QString name, path;
+	bool ok = m_impl.parseURL(url, name, path);
+
+	if ( ok && path.isEmpty() )
+	{
+		error(KIO::ERR_COULD_NOT_MKDIR, url.prettyURL());
+	}
+	else
+	{
+		ForwardingSlaveBase::mkdir(url, permissions);
+	}
+}
+
+void MediaProtocol::del(const KURL &url, bool isFile)
+{
+	kdDebug() << "MediaProtocol::del: " << url << endl;
+
+	QString name, path;
+	bool ok = m_impl.parseURL(url, name, path);
+
+	if ( ok && path.isEmpty() )
+	{
+		error(KIO::ERR_CANNOT_DELETE, url.prettyURL());
+	}
+	else
+	{
+		ForwardingSlaveBase::del(url, isFile);
+	}
 }
 
 void MediaProtocol::stat(const KURL &url)
@@ -132,35 +191,22 @@ void MediaProtocol::stat(const KURL &url)
 	if( path.isEmpty() )
 	{
 		KIO::UDSEntry entry;
-		ok = m_impl.statMedium(name, entry);
-		statEntry(entry);
-		finished();
-	}
-	else
-	{
-		KIO::StatJob *job = m_impl.stat(name, path);
-		if ( job == 0L )
+
+		if ( m_impl.statMedium(name, entry)
+		  || m_impl.statMediumByLabel(name, entry) )
 		{
-			error( m_impl.lastErrorCode(), m_impl.lastErrorMessage() );
+			statEntry(entry);
+			finished();
 		}
 		else
 		{
-			connect( job, SIGNAL( result(KIO::Job *) ),
-			         this, SLOT( slotStatResult(KIO::Job *) ) );
-
-			qApp->eventLoop()->enterLoop();
+			error(KIO::ERR_DOES_NOT_EXIST, url.prettyURL());
 		}
 	}
-}
-
-void MediaProtocol::slotStatResult(KIO::Job *job)
-{
-	if ( job->error() == 0)
+	else
 	{
-		statEntry( static_cast<KIO::StatJob *>(job)->statResult() );
+		ForwardingSlaveBase::stat(url);
 	}
-
-	slotResult(job);
 }
 
 void MediaProtocol::listDir(const KURL &url)
@@ -182,24 +228,7 @@ void MediaProtocol::listDir(const KURL &url)
 		return;
 	}
 
-	KIO::ListJob *job = m_impl.list(name, path);
-	if ( job == 0L )
-	{
-		error( m_impl.lastErrorCode(), m_impl.lastErrorMessage() );
-	}
-	else
-	{
-		connect( job, SIGNAL( result(KIO::Job *) ),
-			 this, SLOT( slotResult(KIO::Job *) ) );
-		connect( job, SIGNAL( entries(KIO::Job *, const KIO::UDSEntryList &) ),
-			 this, SLOT( slotEntries(KIO::Job *, const KIO::UDSEntryList &) ) );
-		qApp->eventLoop()->enterLoop();
-	}
-}
-
-void MediaProtocol::slotEntries(KIO::Job */*job*/, const KIO::UDSEntryList &entries)
-{
-	listEntries( entries );
+	ForwardingSlaveBase::listDir(url);
 }
 
 void MediaProtocol::listRoot()
@@ -234,40 +263,5 @@ void MediaProtocol::listRoot()
 	finished();
 }
 
-void MediaProtocol::mkdir(const KURL &url, int permissions)
-{
-	kdDebug() << "MediaProtocol::mkdir: " << url << endl;
-
-	error(KIO::ERR_UNSUPPORTED_ACTION, "Not implemented yet");
-}
-
-void MediaProtocol::chmod(const KURL &url, int permissions)
-{
-	kdDebug() << "MediaProtocol::chmod: " << url << endl;
-
-	error(KIO::ERR_UNSUPPORTED_ACTION, "Not implemented yet");
-}
-
-void MediaProtocol::del(const KURL &url, bool isFile)
-{
-	kdDebug() << "MediaProtocol::del: " << url << ", " << isFile << endl;
-
-	error(KIO::ERR_UNSUPPORTED_ACTION, "Not implemented yet");
-}
-
-
-void MediaProtocol::slotResult(KIO::Job *job)
-{
-	if ( job->error() != 0)
-	{
-		error( job->error(), job->errorString() );
-	}
-	else
-	{
-		finished();
-	}
-
-	qApp->eventLoop()->exitLoop();
-}
 
 #include "kio_media.moc"

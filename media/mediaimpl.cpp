@@ -22,6 +22,7 @@
 #include <klocale.h>
 #include <kdebug.h>
 #include <dcopref.h>
+#include <kio/netaccess.h>
 
 #include <qapplication.h>
 #include <qeventloop.h>
@@ -30,7 +31,7 @@
 
 #include "medium.h"
 
-bool MediaImpl::parseURL(const KURL &url, QString &name, QString &path)
+bool MediaImpl::parseURL(const KURL &url, QString &name, QString &path) const
 {
 	QString url_path = url.path();
 
@@ -49,22 +50,20 @@ bool MediaImpl::parseURL(const KURL &url, QString &name, QString &path)
 	return name != QString::null;
 }
 
-KIO::StatJob *MediaImpl::stat(const QString &name, const QString &path)
+bool MediaImpl::realURL(const QString &name, const QString &path, KURL &url)
 {
-	kdDebug() << "MediaImpl::list: " << name << ", " << path << endl;
-
 	bool ok;
 	Medium m = findMediumByName(name, ok);
-	if ( !ok ) return 0L;
+	if ( !ok ) return false;
 
 	ok = ensureMediumMounted(m);
-	if ( !ok ) return 0L;
+	if ( !ok ) return false;
 
-	KURL file = m.prettyBaseURL();
-	file.addPath(path);
-
-	return KIO::stat(file, false);
+	url = m.prettyBaseURL();
+	url.addPath(path);
+	return true;
 }
+
 
 bool MediaImpl::statMedium(const QString &name, KIO::UDSEntry &entry)
 {
@@ -82,27 +81,42 @@ bool MediaImpl::statMedium(const QString &name, KIO::UDSEntry &entry)
 
 	Medium m = Medium::create(reply);
 
+	if (m.id().isEmpty())
+	{
+		entry.clear();
+		return false;
+	}
+
 	createMediumEntry(entry, m);
 
 	return true;
 }
 
-KIO::ListJob *MediaImpl::list(const QString &name, const QString &path)
+bool MediaImpl::statMediumByLabel(const QString &label, KIO::UDSEntry &entry)
 {
-	kdDebug() << "MediaImpl::list: " << name << ", " << path << endl;
+	kdDebug() << "MediaImpl::statMediumByLabel: " << label << endl;
 
-	bool ok;
-	Medium m = findMediumByName(name, ok);
-	if ( !ok ) return 0L;
+	DCOPRef mediamanager("kded", "mediamanager");
+	DCOPReply reply = mediamanager.call( "nameForLabel", label );
 
-	ok = ensureMediumMounted(m);
-	if ( !ok ) return 0L;
+	if ( !reply.isValid() )
+	{
+		m_lastErrorCode = KIO::ERR_SLAVE_DEFINED;
+		m_lastErrorMessage = i18n("The KDE mediamanager is not running.");
+		return false;
+	}
 
-	KURL directory = m.prettyBaseURL();
-	directory.addPath(path);
+	QString name = reply;
 
-	return KIO::listDir(directory, false);
+	if (name.isEmpty())
+	{
+		entry.clear();
+		return false;
+	}
+
+	return statMedium(name, entry);
 }
+
 
 bool MediaImpl::listMedia(QValueList<KIO::UDSEntry> &list)
 {
@@ -137,6 +151,45 @@ bool MediaImpl::listMedia(QValueList<KIO::UDSEntry> &list)
 	return true;
 }
 
+bool MediaImpl::setUserLabel(const QString &name, const QString &label)
+{
+	kdDebug() << "MediaImpl::setUserLabel: " << name << ", " << label << endl;
+
+
+	DCOPRef mediamanager("kded", "mediamanager");
+	DCOPReply reply = mediamanager.call( "nameForLabel", label );
+
+	if ( !reply.isValid() )
+	{
+		m_lastErrorCode = KIO::ERR_SLAVE_DEFINED;
+		m_lastErrorMessage = i18n("The KDE mediamanager is not running.");
+		return false;
+	}
+	else
+	{
+		QString returned_name = reply;
+		if (!returned_name.isEmpty()
+		 && returned_name!=name)
+		{
+			m_lastErrorCode = KIO::ERR_DIR_ALREADY_EXIST;
+			m_lastErrorMessage = i18n("This media name already exist.");
+			return false;
+		}
+	}
+
+	reply = mediamanager.call( "setUserLabel", name, label );
+
+	if ( !reply.isValid() )
+	{
+		m_lastErrorCode = KIO::ERR_SLAVE_DEFINED;
+		m_lastErrorMessage = i18n("The KDE mediamanager is not running.");
+		return false;
+	}
+	else
+	{
+		return true;
+	}
+}
 
 const Medium MediaImpl::findMediumByName(const QString &name, bool &ok)
 {
@@ -202,14 +255,64 @@ static void addAtom(KIO::UDSEntry &entry, unsigned int ID, long l,
 void MediaImpl::createTopLevelEntry(KIO::UDSEntry& entry) const
 {
 	entry.clear();
+	addAtom(entry, KIO::UDS_URL, 0, "media:/");
 	addAtom(entry, KIO::UDS_NAME, 0, ".");
 	addAtom(entry, KIO::UDS_FILE_TYPE, S_IFDIR);
-	addAtom(entry, KIO::UDS_ACCESS, 0500);
+	addAtom(entry, KIO::UDS_ACCESS, 0555);
 	addAtom(entry, KIO::UDS_MIME_TYPE, 0, "inode/directory");
+	addAtom(entry, KIO::UDS_ICON_NAME, 0, "blockdevice");
+	addAtom(entry, KIO::UDS_USER, 0, "root");
+	addAtom(entry, KIO::UDS_GROUP, 0, "root");
 }
 
+void MediaImpl::slotStatResult(KIO::Job *job)
+{
+	if ( job->error() == 0)
+	{
+		KIO::StatJob *stat_job = static_cast<KIO::StatJob *>(job);
+		m_entryBuffer = stat_job->statResult();
+	}
+
+	qApp->eventLoop()->exitLoop();
+}
+
+KIO::UDSEntry MediaImpl::extractUrlInfos(const KURL &url)
+{
+	m_entryBuffer.clear();
+
+	KIO::StatJob *job = KIO::stat(url, false);
+	connect( job, SIGNAL( result(KIO::Job *) ),
+	         this, SLOT( slotStatResult(KIO::Job *) ) );
+	qApp->eventLoop()->enterLoop();
+
+	KIO::UDSEntry::iterator it = m_entryBuffer.begin();
+	KIO::UDSEntry::iterator end = m_entryBuffer.end();
+
+	KIO::UDSEntry infos;
+
+	for(; it!=end; ++it)
+	{
+		switch( (*it).m_uds )
+		{
+		case KIO::UDS_ACCESS:
+		case KIO::UDS_USER:
+		case KIO::UDS_GROUP:
+		case KIO::UDS_CREATION_TIME:
+		case KIO::UDS_MODIFICATION_TIME:
+		case KIO::UDS_ACCESS_TIME:
+			infos.append(*it);
+			break;
+		default:
+			break;
+		}
+	}
+
+	return infos;
+}
+
+
 void MediaImpl::createMediumEntry(KIO::UDSEntry& entry,
-                                  const Medium &medium) const
+                                  const Medium &medium)
 {
 	kdDebug() << "MediaProtocol::createMedium" << endl;
 
@@ -220,19 +323,27 @@ void MediaImpl::createMediumEntry(KIO::UDSEntry& entry,
 	entry.clear();
 
 	addAtom(entry, KIO::UDS_URL, 0, url);
-	addAtom(entry, KIO::UDS_NAME, 0, medium.label());
+	addAtom(entry, KIO::UDS_NAME, 0, medium.prettyLabel());
 
 	addAtom(entry, KIO::UDS_FILE_TYPE, S_IFDIR);
-	// Use the mountpoint or base url access
-	addAtom(entry, KIO::UDS_ACCESS, 0500);
+
+	addAtom(entry, KIO::UDS_MIME_TYPE, 0, medium.mimeType());
+	addAtom(entry, KIO::UDS_GUESSED_MIME_TYPE, 0, "inode/directory");
 
 	if (!medium.iconName().isEmpty())
 	{
 		addAtom(entry, KIO::UDS_ICON_NAME, 0, medium.iconName());
 	}
 
-	addAtom(entry, KIO::UDS_MIME_TYPE, 0, medium.mimeType());
-	addAtom(entry, KIO::UDS_GUESSED_MIME_TYPE, 0, "inode/directory");
+	if (medium.needMounting())
+	{
+		addAtom(entry, KIO::UDS_ACCESS, 0400);
+	}
+	else
+	{
+		KURL url = medium.prettyBaseURL();
+		entry+= extractUrlInfos(url);
+	}
 }
 
 #include "mediaimpl.moc"

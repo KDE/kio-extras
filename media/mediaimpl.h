@@ -33,16 +33,13 @@ class MediaImpl : public QObject
 {
 Q_OBJECT
 public:
+	bool parseURL(const KURL &url, QString &name, QString &path) const;
+	bool realURL(const QString &name, const QString &path, KURL &url);
 
-	static bool parseURL(const KURL &url, QString &name, QString &path);
-
-	KIO::StatJob *stat(const QString &name, const QString &path);
 	bool statMedium(const QString &name, KIO::UDSEntry &entry);
-
-	KIO::ListJob *list(const QString &name, const QString &path);
+	bool statMediumByLabel(const QString &label, KIO::UDSEntry &entry);
 	bool listMedia(QValueList<KIO::UDSEntry> &list);
-
-
+	bool setUserLabel(const QString &name, const QString &label);
 
 	void createTopLevelEntry(KIO::UDSEntry& entry) const;
 
@@ -51,13 +48,17 @@ public:
 
 private slots:
 	void slotMountResult(KIO::Job *job);
+	void slotStatResult(KIO::Job *job);
 
 private:
 	const Medium findMediumByName(const QString &name, bool &ok);
 	bool ensureMediumMounted(const Medium &medium);
 
+	KIO::UDSEntry extractUrlInfos(const KURL &url);
+	KIO::UDSEntry m_entryBuffer;
+
 	void createMediumEntry(KIO::UDSEntry& entry,
-	                       const Medium &medium) const;
+	                       const Medium &medium);
 
 	/// Last error code stored in class to simplify API.
 	/// Note that this means almost no method can be const.
