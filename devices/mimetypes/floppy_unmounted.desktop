@@ -7,7 +7,6 @@ Comment=Unmounted Floppy
 Comment[da]=Afmonteret floppy
 Comment[he]=תקליטון מנותק
 Comment[sv]=Avmonterad diskett
->>>>>>> 1.4
 Patterns=
 
 X-KDE-AutoEmbed=true
