@@ -37,6 +37,7 @@
 
 #include "pop3.h"
 
+#warning "Should APOP even be conditionalized?"
 #define APOP
 #define GREETING_BUF_LEN 1024
 #define MAX_RESPONSE_LEN 512
@@ -260,7 +261,7 @@ bool POP3Protocol::pop3_open()
 #endif
 	one_string.append(usr);
 	m_sOldUser=usr;
-	m_sUser=user; m_sPass=pass;
+	m_sUser=usr; m_sPass=pass;
       }
     } else {
 #ifdef APOP
