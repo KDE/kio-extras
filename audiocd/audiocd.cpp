@@ -1336,6 +1336,9 @@ static char mp3buffer[mp3buffer_size];
            output.resetRawData(mp3buffer, mp3bytes);
            processed += mp3bytes;
          }
+         // reinit lame after finish title
+         d->gf = (_lamelib_lame_init)();
+         (void) ((_lamelib_id3tag_init)(d->gf));
       }
 #endif
 
