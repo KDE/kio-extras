@@ -1131,17 +1131,7 @@ void MANProtocol::showIndex(const QString& section)
 
 	os << "<tr><td><a href=\"man:"
 	   << manindex->manpath << "\">\n";
-	// !!!!!!!!!!!!!!!!!!!!!!
-	//
-	// WARNING
-	//
-	// here I do modify the const QString from "pages".
-	// I assume, they are not used afterwards anyways
-	//
-	// Maybe I could use a QTextStream::WriteRaw(const char *, uint len)
-	// too, but how about locale encoded Filenames ??
-	//
-	// !!!!!!!!!!!!!!!!!!!!!!
+
 	manindex->manpage_begin[manindex->manpage_len] = '\0';
 	os << manindex->manpage_begin
 	   << "</a></td><td>&nbsp;</td><td> "
@@ -1158,6 +1148,7 @@ void MANProtocol::showIndex(const QString& section)
     os << "</body></html>" << endl;
     
     infoMessage(QString::null);
+    mimeType("text/html");
     data(output.local8Bit());
     finished();
 }
