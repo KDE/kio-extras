@@ -85,6 +85,8 @@ void SMBSlave::auth_smbc_get_data(const char *server,const char *share,
     info.password = s_password;
     info.verifyPath = true;
 
+    kdDebug(KIO_SMB) << "libsmb-auth-callback URL:" << info.url << endl;
+
     if ( !checkCachedAuthentication( info ) )
     {
         if ( m_default_user.isEmpty() )
@@ -109,6 +111,8 @@ void SMBSlave::auth_smbc_get_data(const char *server,const char *share,
 
 bool SMBSlave::checkPassword(SMBUrl &url)
 {
+    kdDebug(KIO_SMB) << "checkPassword for " << url << endl;
+
     KIO::AuthInfo info;
     info.url = KURL("smb:///");
     info.url.setHost(url.host());
@@ -118,7 +122,7 @@ bool SMBSlave::checkPassword(SMBUrl &url)
         share = share.left(index);
     if (share.at(0) == '/')
         share = share.mid(1);
-    info.url.setPath(share);
+    info.url.setPath("/" + share);
 
     if ( share.isEmpty() )
         info.prompt = i18n(
@@ -131,16 +135,18 @@ bool SMBSlave::checkPassword(SMBUrl &url)
             "Share = %2" )
                       .arg( url.host() )
                       .arg( share );
+
     info.username = url.user();
     info.password = url.pass();
+    kdDebug(KIO_SMB) << "call openPassDlg for " << info.url << endl;
 
     if ( openPassDlg(info) ) {
-        kdDebug() << "openPassDlg returned " << info.username << endl;
+        kdDebug(KIO_SMB) << "openPassDlg returned " << info.username << endl;
         url.setUser(info.username);
         url.setPass(info.password);
         return true;
     }
-    kdDebug() << "no value from openPassDlg\n";
+    kdDebug(KIO_SMB) << "no value from openPassDlg\n";
     return false;
 }
 
@@ -150,10 +156,10 @@ bool SMBSlave::checkPassword(SMBUrl &url)
 // Returns: 0 on success -1 with errno set on error
 bool SMBSlave::auth_initialize_smbc()
 {
-    kdDebug() << "auth_initialize_smbc " << endl;
+    kdDebug(KIO_SMB) << "auth_initialize_smbc " << endl;
     if(m_initialized_smbc == false)
     {
-        kdDebug() << "smbc_init call" << endl;
+        kdDebug(KIO_SMB) << "smbc_init call" << endl;
         KSimpleConfig cfg( "kioslaverc", true );
 
         cfg.setGroup( "SMB" );

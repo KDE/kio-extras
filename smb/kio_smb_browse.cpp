@@ -46,7 +46,7 @@ using namespace KIO;
 int SMBSlave::cache_stat(const SMBUrl &url, struct stat* st )
 {
     int result = smbc_stat( url.toSmbcUrl(), st);
-    kdDebug(KIO_SMB) << "smbc_stat " << url.url() << " " << errno << " " << result << endl;
+    kdDebug(KIO_SMB) << "smbc_stat " << url << " " << errno << " " << result << endl;
     kdDebug(KIO_SMB) << "size " << (long)st->st_size << endl;
     return result;
 }
@@ -135,7 +135,7 @@ bool SMBSlave::browse_stat_path(const SMBUrl& _url, UDSEntry& udsentry, bool ign
 //===========================================================================
 void SMBSlave::stat( const KURL& kurl )
 {
-    kdDebug(KIO_SMB) << "SMBSlave::stat on "<< kurl.url() << endl;
+    kdDebug(KIO_SMB) << "SMBSlave::stat on "<< kurl << endl;
     // make a valid URL
     KURL url = checkURL(kurl);
 
@@ -218,7 +218,7 @@ KURL SMBSlave::checkURL(const KURL& kurl) const
         } else {
             url.setUser(userinfo);
         }
-        kdDebug() << "checkURL return2 " << url << endl;
+        kdDebug(KIO_SMB) << "checkURL return2 " << url << endl;
         return url;
     }
 
@@ -228,13 +228,13 @@ KURL SMBSlave::checkURL(const KURL& kurl) const
     if (url.path().isEmpty())
         url.setPath("/");
 
-    kdDebug() << "checkURL return3 " << url << endl;
+    kdDebug(KIO_SMB) << "checkURL return3 " << url << endl;
     return url;
 }
 
 void SMBSlave::reportError(const SMBUrl &url)
 {
-    kdDebug() << "reportError " << url.url() << " " << perror << endl;
+    kdDebug(KIO_SMB) << "reportError " << url << " " << perror << endl;
     switch(errno)
     {
     case ENOENT:
@@ -306,7 +306,7 @@ void SMBSlave::reportError(const SMBUrl &url)
 //===========================================================================
 void SMBSlave::listDir( const KURL& kurl )
 {
-   kdDebug(KIO_SMB) << "SMBSlave::listDir on " << kurl.url() << endl;
+   kdDebug(KIO_SMB) << "SMBSlave::listDir on " << kurl << endl;
 
    // check (correct) URL
    KURL url = checkURL(kurl);
@@ -350,7 +350,7 @@ void SMBSlave::listDir( const KURL& kurl )
            kdDebug(KIO_SMB) << "dirp->name " <<  dirp->name  << " " << dirpName << " '" << comment << "'" << " " << dirp->smbc_type << endl;
 
            udsentry.append( atom );
-           if (atom.m_str.upper()=="$IPC" || atom.m_str=="." || atom.m_str == ".." ||
+           if (atom.m_str.upper()=="IPC$" || atom.m_str=="." || atom.m_str == ".." ||
                atom.m_str.upper() == "ADMIN$" || atom.m_str.lower() == "printer$" || atom.m_str.lower() == "print$" )
            {
 //            fprintf(stderr,"----------- hide: -%s-\n",dirp->name);

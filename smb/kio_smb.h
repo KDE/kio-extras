@@ -259,14 +259,14 @@ public:
     //virtual void openConnection();
     //virtual void closeConnection();
     //virtual void slave_status();
-    //virtual void special( const QByteArray & );
     virtual void special( const QByteArray & );
 
 private slots:
     void readOutput(KProcess *proc, char *buffer, int buflen);
+    void readStdErr(KProcess *proc, char *buffer, int buflen);
 
 private:
-    QString mybuf;
+    QString mybuf, mystderr;
 
 };
 
