@@ -755,7 +755,7 @@ IMAP4Protocol::put (const KURL & _url, int, bool, bool)
           }
         }
         // MUST reselect to get the new message
-        if (aBox == getCurrentBox ())
+        else if (aBox == getCurrentBox ())
         {
           cmd =
             doCommand (imapCommand::
