@@ -44,6 +44,10 @@
 #include <kmimetype.h>
 #include <klibloader.h>
 #include <kdebug.h>
+#include <kservice.h>
+#include <kservicetype.h>
+#include <kuserprofile.h>
+#include <kfilemetainfo.h>
 
 #include "thumbnail.h"
 #include <kio/thumbcreator.h>
@@ -128,38 +132,66 @@ void ThumbnailProtocol::get(const KURL &url)
     m_iconAlpha = metaData("iconAlpha").toInt();
     if (m_iconAlpha)
         m_iconAlpha = (m_iconAlpha << 24) | 0xffffff;
-    QString plugin = metaData("plugin");
-    if (plugin.isEmpty())
-    {
-        error(KIO::ERR_INTERNAL, "No plugin specified.");
-        return;
-    }
-    ThumbCreator *creator = m_creators[plugin];
-    if (!creator)
-    {
-        // Don't use KLibFactory here, this is not a QObject and
-        // neither is ThumbCreator
-        KLibrary *library = KLibLoader::self()->library(QFile::encodeName(plugin));
-        if (library)
-        {
-            newCreator create = (newCreator)library->symbol("new_creator");
-            if (create)
-                creator = create();
-        }
-        if (!creator)
-        {
-            error(KIO::ERR_INTERNAL, "Cannot load ThumbCreator " + plugin);
-            return;
-        }
-        m_creators.insert(plugin, creator);
-    }
 
     QImage img;
-    if (!creator->create(url.path(), m_width, m_height, img))
+
+    // ### KFMI
+    bool kfmiThumb = false;
+    KService::Ptr service =
+        KServiceTypeProfile::preferredService( m_mimeType, "KFilePlugin");
+    
+    if ( service && service->isValid() && /*url.isLocalFile() && */
+         service->property("SupportsThumbnail").toBool())
     {
-        error(KIO::ERR_INTERNAL, "Cannot create thumbnail for " + url.path());
-        return;
+        KFileMetaInfo info(url.path(), m_mimeType, KFileMetaInfo::Thumbnail);
+        KFileMetaInfoItem item = info.item(KFileMimeTypeInfo::Thumbnail);
+        if (item.isValid() && item.value().type() == QVariant::Image)
+        {
+            img = item.value().toImage();
+            kdDebug() << "using KFMI for the thumbnail\n";
+            kfmiThumb = true;
+        }
     }
+    
+   ThumbCreator::Flags flags = 0;
+     
+    if (!kfmiThumb)
+    {
+        kdDebug() << "using thumb creator for the thumbnail\n";
+        QString plugin = metaData("plugin");
+        if (plugin.isEmpty())
+        {
+            error(KIO::ERR_INTERNAL, "No plugin specified.");
+            return;
+        }
+        ThumbCreator *creator = m_creators[plugin];
+        if (!creator)
+        {
+            // Don't use KLibFactory here, this is not a QObject and
+            // neither is ThumbCreator
+            KLibrary *library = KLibLoader::self()->library(QFile::encodeName(plugin));
+            if (library)
+            {
+                newCreator create = (newCreator)library->symbol("new_creator");
+                if (create)
+                    creator = create();
+            }
+            if (!creator)
+            {
+                error(KIO::ERR_INTERNAL, "Cannot load ThumbCreator " + plugin);
+                return;
+            }
+            m_creators.insert(plugin, creator);
+        }
+
+        if (!creator->create(url.path(), m_width, m_height, img))
+        {
+            error(KIO::ERR_INTERNAL, "Cannot create thumbnail for " + url.path());
+            return;
+        }
+        flags = creator->flags();
+    }
+
     if (img.width() > m_width || img.height() > m_height)
     {
         double imgRatio = (double)img.height() / (double)img.width();
@@ -168,7 +200,6 @@ void ThumbnailProtocol::get(const KURL &url)
         else
             img = img.smoothScale(m_width, QMAX((double)m_width * imgRatio, 1));
     }
-    ThumbCreator::Flags flags = creator->flags();
 
     if (flags & ThumbCreator::DrawFrame)
     {
