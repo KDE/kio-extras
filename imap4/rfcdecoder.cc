@@ -185,6 +185,7 @@ rfcDecoder::toIMAP (const QString & inSrc)
         if (bitstogo)
         {
           dst += base64chars[(bitbuf << (6 - bitstogo)) & 0x3F];
+          bitstogo = 0;
         }
         dst += '-';
         utf7mode = 0;
