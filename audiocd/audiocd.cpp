@@ -45,17 +45,6 @@ extern "C"
 
 #ifdef HAVE_LAME
 #include <lame/lame.h>
-#ifdef MPG_MD_STEREO
-typedef enum MPEG_mode_e {
-    STEREO=0,
-    JOINT_STEREO,
-    DUAL_CHANNEL,   /* LAME doesn't supports this! */
-    MONO,
-    NOT_SET,
-    MAX_INDICATOR   /* Don't use this! It's used for sanity checks. */
-} MPEG_mode;
-#define lame_set_mode(gf,m) (((gf)->mode)=(m))
-#endif
 #endif
 
 #ifdef HAVE_VORBIS
@@ -1246,10 +1235,10 @@ void AudioCDProtocol::getParameters() {
   if (method == 0) { 
     
     // Constant Bitrate Encoding
-    d->gf->VBR = vbr_off;
-    d->gf->brate = config->readNumEntry("cbrbitrate",160);
-    d->bitrate = d->gf->brate;
-    d->gf->quality = quality;
+    lame_set_VBR(d->gf, vbr_off);
+    lame_set_brate(d->gf,config->readNumEntry("cbrbitrate",160));
+    d->bitrate = lame_get_brate(d->gf);
+    lame_set_quality(d->gf, quality);
 
   } else {
     
@@ -1257,28 +1246,28 @@ void AudioCDProtocol::getParameters() {
     
     if (config->readBoolEntry("set_vbr_avr",true)) {
 
-      d->gf->VBR = vbr_abr;
-      d->gf->VBR_mean_bitrate_kbps = config->readNumEntry("vbr_average_bitrate",0);
+      lame_set_VBR(d->gf,vbr_abr);
+      lame_set_VBR_mean_bitrate_kbps(d->gf, config->readNumEntry("vbr_average_bitrate",0));
 
-      d->bitrate = d->gf->VBR_mean_bitrate_kbps;
+      d->bitrate = lame_get_VBR_mean_bitrate_kbps(d->gf);
 
     } else {
 
-      if (d->gf->VBR == vbr_off) d->gf->VBR = vbr_default; 
+      if (lame_get_VBR(d->gf) == vbr_off) lame_set_VBR(d->gf, vbr_default);
 
       if (config->readBoolEntry("set_vbr_min",true)) 
-	d->gf->VBR_min_bitrate_kbps = config->readNumEntry("vbr_min_bitrate",0);
+	lame_set_VBR_min_bitrate_kbps(d->gf, config->readNumEntry("vbr_min_bitrate",0));
       if (config->readBoolEntry("vbr_min_hard",true))
-	d->gf->VBR_hard_min = 1;
+	lame_set_VBR_hard_min(d->gf, 1);
       if (config->readBoolEntry("set_vbr_max",true)) 
-	d->gf->VBR_max_bitrate_kbps = config->readNumEntry("vbr_max_bitrate",0);
+	lame_set_VBR_max_bitrate_kbps(d->gf, config->readNumEntry("vbr_max_bitrate",0));
 
       d->bitrate = 128;
-      d->gf->VBR_q = quality;
+      lame_set_VBR_q(d->gf, quality);
       
     }
 
-    if ( config->readBoolEntry("write_xing_tag",true) ) d->gf->bWriteVbrTag = 1;
+    if ( config->readBoolEntry("write_xing_tag",true) ) lame_set_bWriteVbrTag(d->gf, 1);
 
   }
 
@@ -1296,29 +1285,29 @@ void AudioCDProtocol::getParameters() {
                 break;
   }
 
-  d->gf->copyright = config->readBoolEntry("copyright",false);
-  d->gf->original = config->readBoolEntry("original",true);
-  d->gf->strict_ISO = config->readBoolEntry("iso",false);
-  d->gf->error_protection = config->readBoolEntry("crc",false);
+  lame_set_copyright(d->gf, config->readBoolEntry("copyright",false));
+  lame_set_original(d->gf, config->readBoolEntry("original",true));
+  lame_set_strict_ISO(d->gf, config->readBoolEntry("iso",false));
+  lame_set_error_protection(d->gf, config->readBoolEntry("crc",false));
 
   d->write_id3 = config->readBoolEntry("id3",true);
 
   if ( config->readBoolEntry("enable_lowpassfilter",false) ) {
-  
-    d->gf->lowpassfreq = config->readNumEntry("lowpassfilter_freq",0);
-    
+
+    lame_set_lowpassfreq(d->gf, config->readNumEntry("lowpassfilter_freq",0));
+
     if (config->readBoolEntry("set_lowpassfilter_width",false)) {
-      d->gf->lowpasswidth = config->readNumEntry("lowpassfilter_width",0);
+      lame_set_lowpasswidth(d->gf, config->readNumEntry("lowpassfilter_width",0));
     }
 
   }
 
   if ( config->readBoolEntry("enable_highpassfilter",false) ) {
-  
-    d->gf->highpassfreq = config->readNumEntry("highpassfilter_freq",0);
-    
+
+    lame_set_highpassfreq(d->gf, config->readNumEntry("highpassfilter_freq",0));
+
     if (config->readBoolEntry("set_highpassfilter_width",false)) {
-      d->gf->highpasswidth = config->readNumEntry("highpassfilter_width",0);
+      lame_set_highpasswidth(d->gf, config->readNumEntry("highpassfilter_width",0));
     }
 
   }
