@@ -51,8 +51,10 @@ public:
     myDate.tm_year = 0;
     myUid = 0;
   }
-   ~imapCache ()
-  {;
+
+  ~imapCache ()
+  {
+    if (myHeader) delete myHeader;
   }
 
   mailHeader *getHeader ()
@@ -233,20 +235,6 @@ public:
                         QString & _type, QString & _uid, QString & _validity);
 
 
-  // access to the uid cache and other properties
-  imapCache *getUid (const QString & _str)
-  {
-    return uidCache[_str];
-  };
-
-  QDictIterator < imapCache > getUidIterator ()
-  {
-    return QDictIterator < imapCache > (uidCache);
-  };
-  uint getCacheSize ()
-  {
-    return uidCache.count ();
-  }
   imapCache *getLastHandled ()
   {
     return lastHandled;
@@ -303,12 +291,9 @@ protected:
   // the last continuation request (there MUST not be more than one pending)
   QString continuation;
 
-  // our own little message cache
-  QDict < imapCache > uidCache;
-
   // the last uid seen while a fetch
   QString seenUid;
-  imapCache *lastHandled, *preCache;
+  imapCache *lastHandled;
 
   ulong commandCounter;
 

@@ -371,31 +371,13 @@ IMAP4Protocol::listDir (const KURL & _url)
             if (selectInfo.uidNextAvailable ())
               stretch = QString ().setNum (selectInfo.uidNext ()).length ();
             UDSEntry entry;
-            mailHeader *lastone = NULL;
-            imapCache *cache;
             mailHeader fake;
 
-//            kdDebug(7116) << "SEARCH returned - " << list.count() << endl;
             for (QStringList::Iterator it = list.begin (); it != list.end ();
                  ++it)
             {
-//              kdDebug(7116) << "SEARCH processing - " << (*it) << endl;
-
-              // get the cached entry
-              cache = getUid ((*it));
-              if (cache)
-                lastone = cache->getHeader ();
-              else
-                lastone = NULL;
-
-              // if the uid is not in the cache we fake an entry
-/*              if (!lastone)  Does not really work with the cache, Michael */
-              {
-//                kdDebug(7116) << "SEARCH faking - " << (*it) << endl;
-                fake.setPartSpecifier ((*it));
-                lastone = &fake;
-              }
-              doListEntry (_url, lastone, stretch);
+              fake.setPartSpecifier ((*it));
+              doListEntry (_url, &fake, stretch);
             }
             entry.clear ();
             listEntry (entry, true);
@@ -1196,9 +1178,7 @@ void IMAP4Protocol::closeConnection()
   setState(ISTATE_NO);
   completeQueue.clear();
   sentQueue.clear();
-  uidCache.clear();
   lastHandled = NULL;
-  preCache = NULL;
   currentBox = QString::null;
   readBufferLen = 0;
 }

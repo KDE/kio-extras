@@ -47,16 +47,13 @@
 #include <kurl.h>
 #include <kio/kdesasl.h>
 
-imapParser::imapParser ():
-uidCache (17, false)
+imapParser::imapParser ()
 {
-  uidCache.setAutoDelete (true);
   sentQueue.setAutoDelete (false);
   completeQueue.setAutoDelete (true);
   currentState = ISTATE_NO;
   commandCounter = 0;
   lastHandled = NULL;
-  preCache = NULL;
 }
 
 imapParser::~imapParser ()
@@ -334,8 +331,8 @@ imapParser::parseUntagged (QString & result)
           if (what == "FETCH")
           {
             seenUid = QString::null;
-            if (preCache) delete preCache;
-            preCache = new imapCache();
+            if (lastHandled) delete lastHandled;
+            lastHandled = new imapCache();
             parseFetch (number, result);
           }
           else
@@ -519,7 +516,6 @@ imapParser::parseResult (QString & result, QString & rest,
   case 'E':
     if (action == "EXAMINE")
     {
-      uidCache.clear ();
       if (result == "OK")
         currentState = ISTATE_SELECT;
       else
@@ -535,7 +531,6 @@ imapParser::parseResult (QString & result, QString & rest,
   case 'S':
     if (action == "SELECT")
     {
-      uidCache.clear ();
       if (result == "OK")
         currentState = ISTATE_SELECT;
       else
@@ -1185,9 +1180,8 @@ imapParser::parseBody (QString & inWords)
     if (specifier == "0")
     {
       mailHeader *envelope = NULL;
-      imapCache *cache = uidCache[seenUid];
-      if (cache)
-        envelope = cache->getHeader ();
+      if (lastHandled)
+        envelope = lastHandled->getHeader ();
 
       if (!envelope || seenUid.isEmpty ())
       {
@@ -1206,7 +1200,6 @@ imapParser::parseBody (QString & inWords)
         envelope->parseHeader (myIO);
 
       }
-      lastHandled = cache;
     }
     else
     {
@@ -1218,9 +1211,8 @@ imapParser::parseBody (QString & inWords)
   else
   {
     mailHeader *envelope = NULL;
-    imapCache *cache = uidCache[seenUid];
-    if (cache)
-      envelope = cache->getHeader ();
+    if (lastHandled)
+      envelope = lastHandled->getHeader ();
 
     if (!envelope || seenUid.isEmpty ())
     {
@@ -1236,7 +1228,6 @@ imapParser::parseBody (QString & inWords)
       if (body != envelope)
         delete body;
     }
-    lastHandled = cache;
   }
 }
 
@@ -1266,10 +1257,10 @@ imapParser::parseFetch (ulong value, QString & inWords)
         if (word == "ENVELOPE")
         {
           mailHeader *envelope = NULL;
-          imapCache *cache = (seenUid.isEmpty()) ? preCache : uidCache[seenUid];
 
-          if (cache)
-            envelope = cache->getHeader ();
+          if (lastHandled)
+            envelope = lastHandled->getHeader ();
+          else lastHandled = new imapCache();
 
           if (envelope && !envelope->getMessageId ().isEmpty ())
           {
@@ -1283,11 +1274,10 @@ imapParser::parseFetch (ulong value, QString & inWords)
             if (envelope)
             {
               envelope->setPartSpecifier (seenUid + ".0");
-              cache->setHeader (envelope);
-              cache->setUid (seenUid.toULong ());
+              lastHandled->setHeader (envelope);
+              lastHandled->setUid (seenUid.toULong ());
             }
           }
-          lastHandled = cache;
         }
         break;
 
@@ -1299,10 +1289,9 @@ imapParser::parseFetch (ulong value, QString & inWords)
         else if (word == "BODYSTRUCTURE")
         {
           mailHeader *envelope = NULL;
-          imapCache *cache = (seenUid.isEmpty()) ? preCache : uidCache[seenUid];
 
-          if (cache)
-            envelope = cache->getHeader ();
+          if (lastHandled)
+            envelope = lastHandled->getHeader ();
 
           if (!envelope)
           {
@@ -1317,7 +1306,6 @@ imapParser::parseFetch (ulong value, QString & inWords)
             if (body != envelope)
               delete body;
           }
-          lastHandled = cache;
         }
         break;
 
@@ -1326,9 +1314,9 @@ imapParser::parseFetch (ulong value, QString & inWords)
         {
           seenUid = parseOneWord (inWords);
           mailHeader *envelope = NULL;
-          imapCache *cache = uidCache[seenUid];
-          if (cache)
-            envelope = cache->getHeader ();
+          if (lastHandled)
+            envelope = lastHandled->getHeader ();
+          else lastHandled = new imapCache();
 
           if (envelope || seenUid.isEmpty ())
           {
@@ -1337,20 +1325,10 @@ imapParser::parseFetch (ulong value, QString & inWords)
           }
           else
           {
-            // fill up the cache
-            if (preCache)
-            {
-              cache = preCache;
-              preCache = NULL;
-            } else {
-              cache = new imapCache ();
-            }
-            cache->setUid (seenUid.toULong ());
-            uidCache.replace (seenUid, cache);
+            lastHandled->setUid (seenUid.toULong ());
           }
           if (envelope)
             envelope->setPartSpecifier (seenUid);
-          lastHandled = cache;
         }
         break;
 
@@ -1358,12 +1336,10 @@ imapParser::parseFetch (ulong value, QString & inWords)
         if (word == "RFC822.SIZE")
         {
           ulong size;
-          imapCache *cache = (seenUid.isEmpty()) ? preCache : uidCache[seenUid];
           parseOneNumber (inWords, size);
 
-          if (cache)
-            cache->setSize (size);
-          lastHandled = cache;
+          if (lastHandled)
+            lastHandled->setSize (size);
         }
         else if (word.find ("RFC822") == 0)
         {
@@ -1377,22 +1353,18 @@ imapParser::parseFetch (ulong value, QString & inWords)
         {
           QString date;
           date = parseOneWord (inWords);
-          imapCache *cache = (seenUid.isEmpty()) ? preCache : uidCache[seenUid];
-          if (cache)
-            cache->setDateStr (date);
-          lastHandled = cache;
+          if (lastHandled)
+            lastHandled->setDateStr (date);
         }
         break;
 
       case 'F':
         if (word == "FLAGS")
         {
-          imapCache *cache = (seenUid.isEmpty()) ? preCache : uidCache[seenUid];
-          if (cache)
-            cache->setFlags (imapInfo::_flags (inWords));
+          if (lastHandled)
+            lastHandled->setFlags (imapInfo::_flags (inWords));
           else
             parseSentence (inWords);
-          lastHandled = cache;
         }
         break;
 
