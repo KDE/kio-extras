@@ -18,7 +18,7 @@ kdelnkdir = $(kde_servicesdir)
 METASOURCES = AUTO
 
 
-bin_SCRIPTS = man2html
+bin_SCRIPTS = kman2html
 
 
 messages:

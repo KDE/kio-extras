@@ -114,10 +114,10 @@ void MANProtocol::get(const KURL& url )
       return;
     }
   cmd += " " + exec;
-  exec = locate("exe", "man2html");
+  exec = locate("exe", "kman2html");
   if (exec.isEmpty())
     {
-      outputError(i18n("man2html command not found!"));
+      outputError(i18n("kman2html command not found!"));
       return;
     }
   cmd += " " + exec + " -cgiurl 'man:/${title}(${section})' -compress -bare ";
