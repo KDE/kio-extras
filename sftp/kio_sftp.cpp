@@ -1248,7 +1248,7 @@ bool kio_sftpProtocol::getPacket(QByteArray& msg) {
     s >> msgLen;
 //    kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::getPacket(): Got msg length of " << msgLen << endl;
     if( !msg.resize(msgLen) ) {
-        error( ERR_OUT_OF_MEMORY, i18n("Could not allocate memory for sftp packet."));
+        error( ERR_OUT_OF_MEMORY, i18n("Could not allocate memory for SFTP packet."));
         return false;
     }
 
@@ -1266,7 +1266,7 @@ bool kio_sftpProtocol::getPacket(QByteArray& msg) {
             kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::getPacket(): read error, ret = " <<
                 len << ", error =" << strerror(errno) << endl;
             closeConnection();
-            error(ERR_CONNECTION_BROKEN, i18n("Could not read sftp packet"));
+            error(ERR_CONNECTION_BROKEN, i18n("Could not read SFTP packet"));
             return false;
         }
         msgLen -= len;
@@ -1363,13 +1363,13 @@ void kio_sftpProtocol::processStatus(Q_UINT8 code, QString message){
         error(ERR_ACCESS_DENIED, message);
         break;
     case SSH2_FX_FAILURE:
-        error(ERR_UNKNOWN, i18n("Sftp command failed for an unknown reason."));
+        error(ERR_UNKNOWN, i18n("SFTP command failed for an unknown reason."));
         break;
     case SSH2_FX_BAD_MESSAGE:
-        error(ERR_UNKNOWN, i18n("The sftp server recieved a bad message."));
+        error(ERR_UNKNOWN, i18n("The SFTP server received a bad message."));
         break;
     case SSH2_FX_OP_UNSUPPORTED:
-        error(ERR_UNKNOWN, i18n("You attempted an operation unsupported by the sftp server."));
+        error(ERR_UNKNOWN, i18n("You attempted an operation unsupported by the SFTP server."));
 //    Should never be returned by server
 //    case SSH2_FX_NO_CONNECTION:
 //    case SSH2_FX_CONNECTION_LOST:
