@@ -2,8 +2,11 @@
 exec=kio_sftp
 protocol=sftp
 input=none
-output=stream
+listing=Name,Type,Size,Date,Access,Owner,Group,Link
+output=filesystem
 reading=true
-defaultMimetype=text/plain
-Icon=remote
+writing=true
+makedir=true
+deleting=true
+Icon=ftp
 Description=A kioslave for sftp
