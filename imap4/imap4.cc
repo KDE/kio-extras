@@ -52,6 +52,7 @@
 
 #include <qbuffer.h>
 #include <kprotocolmanager.h>
+#include <kmessagebox.h>
 #include <kdebug.h>
 #include <kio/connection.h>
 #include <kio/slaveinterface.h>
@@ -763,13 +764,38 @@ IMAP4Protocol::mkdir (const KURL & _url, int)
   parseURL(parentUrl, aBox, aSection, aLType, aSequence, aValidity, aDelimiter);
 /*  if (aBox[aBox.length () - 1] != '/')
     aBox += "/"; */
-  imapCommand *cmd = doCommand (imapCommand::clientCreate (
-    (newBox.isEmpty()) ? aBox : aBox + aDelimiter + newBox));
+  newBox = (newBox.isEmpty()) ? aBox : aBox + aDelimiter + newBox;
+  imapCommand *cmd = doCommand (imapCommand::clientCreate(newBox));
 
   if (cmd->result () != "OK")
+  {
     error (ERR_COULD_NOT_MKDIR, hidePass(_url));
-
+    completeQueue.removeRef (cmd);
+    return;
+  }
   completeQueue.removeRef (cmd);
+
+  enum IMAP_TYPE type =
+    parseURL(_url, aBox, aSection, aLType, aSequence, aValidity, aDelimiter);
+  if (type == ITYPE_BOX)
+  {
+    if (messageBox(QuestionYesNo,
+      i18n("What do you want to store in this folder?"), i18n("Create folder"),
+      i18n("&Messages"), i18n("&Subfolders")) == KMessageBox::No)
+    {
+      cmd = doCommand(imapCommand::clientDelete(newBox));
+      completeQueue.removeRef (cmd);
+      cmd = doCommand(imapCommand::clientCreate(newBox + aDelimiter));
+      if (cmd->result () != "OK")
+      {
+        error (ERR_COULD_NOT_MKDIR, hidePass(_url));
+        completeQueue.removeRef (cmd);
+        return;
+      }
+      completeQueue.removeRef (cmd);
+    }
+  }
+
   finished ();
 }
 
@@ -1595,7 +1621,7 @@ IMAP4Protocol::parseURL (const KURL & _url, QString & _box,
   }
   if (_type == "LIST")
   {
-    retVal = ITYPE_DIR;
+//    retVal = ITYPE_DIR;    ???
     if (_hierarchyDelimiter.isEmpty()) _hierarchyDelimiter ="/";
   }
 
