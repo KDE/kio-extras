@@ -13,7 +13,7 @@ DISTCLEANFILES = fishcode.h
 kdelnk_DATA = fish.protocol
 kdelnkdir = $(kde_servicesdir)
 
-fish.cpp: fish.h fishcode.h
+$(srcdir)/fish.cpp: fishcode.h
 
 fishcode.h: fish.pl
 	if echo | md5sum > /dev/null 2>&1 ; then \
