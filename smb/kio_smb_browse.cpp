@@ -42,7 +42,7 @@
 using namespace KIO;
 
 //---------------------------------------------------------------------------
-bool SMBSlave::browse_stat_path(const SMBUrl& url, UDSEntry& udsentry)
+bool SMBSlave::browse_stat_path(const SMBUrl& url, UDSEntry& udsentry, bool ignore_errors)
   // Returns: true on success, false on failure
 {
   UDSAtom     udsatom;
@@ -54,7 +54,8 @@ bool SMBSlave::browse_stat_path(const SMBUrl& url, UDSEntry& udsentry)
       if(!S_ISDIR(st.st_mode) && !S_ISREG(st.st_mode))
       {
          kdDebug(KIO_SMB)<<"SMBSlave::browse_stat_path mode: "<<st.st_mode<<endl;
-         error(ERR_UNKNOWN, i18n("Unknown file type, neither dir or file."));
+         warning(i18n("%1:\n"
+                      "Unknown file type, neither dir or file.").arg(url.toKioUrl()));
          return false;
       }
 
@@ -106,23 +107,30 @@ bool SMBSlave::browse_stat_path(const SMBUrl& url, UDSEntry& udsentry)
       switch(errno)
       {
       case EBUSY:
-               break;  //hmmm, otherwise the whole dir isn't listed (caused e.g. by pagefile.sys), aleXXX
+          break;  //hmmm, otherwise the whole dir isn't listed (caused e.g. by pagefile.sys), aleXXX
       case ENOENT:
       case ENOTDIR:
       case EFAULT:
-         error(ERR_DOES_NOT_EXIST, url.toKioUrl());
+          if (ignore_errors)
+              warning(i18n("File does not exist: %1").arg(url.toKioUrl()));
+          else
+              error(ERR_DOES_NOT_EXIST, url.toKioUrl());
          break;
       case EPERM:
       case EACCES:
-         error( ERR_ACCESS_DENIED, url.toKioUrl() );
-         break;
+          if (!ignore_errors)
+              error( ERR_ACCESS_DENIED, url.toKioUrl() );
+          break;
       case ENOMEM:
-          error(ERR_OUT_OF_MEMORY, i18n("Out of memory"));
+          if (!ignore_errors)
+              error(ERR_OUT_OF_MEMORY, i18n("Out of memory"));
       case EBADF:
-         error(ERR_INTERNAL, "BAD File descriptor");
+          if (!ignore_errors)
+              error(ERR_INTERNAL, "BAD File descriptor");
       default:
          kdDebug(KIO_SMB)<<"SMBSlave::browse_stat_path errno: "<<errno<< endl;
-         error(ERR_INTERNAL, i18n("Unknown error condition %1").arg(strerror(errno)));
+         if (!ignore_errors)
+             error(ERR_INTERNAL, i18n("Unknown error condition %1").arg(strerror(errno)));
       }
 
       kdDebug(KIO_SMB) << "SMBSlave::browse_stat_path ERROR!!"<< endl;
@@ -167,7 +175,7 @@ void SMBSlave::stat( const KURL& kurl )
       break;
 
     case SMBURLTYPE_SHARE_OR_PATH:
-      if (browse_stat_path(m_current_url, udsentry))
+      if (browse_stat_path(m_current_url, udsentry, false))
 	break;
       else {
 	kdDebug(KIO_SMB) << "SMBSlave::stat ERROR!!"<< endl;
@@ -263,7 +271,7 @@ void SMBSlave::listDir( const KURL& kurl )
          {
             // Set stat information
             m_current_url.append(dirpName);
-            browse_stat_path(m_current_url, udsentry);
+            browse_stat_path(m_current_url, udsentry, true);
             m_current_url.truncate();
 
             // Call base class to list entry
@@ -272,7 +280,7 @@ void SMBSlave::listDir( const KURL& kurl )
          else if(dirp->smbc_type == SMBC_DIR)
          {
              m_current_url.append(dirpName);
-             browse_stat_path(m_current_url, udsentry);
+             browse_stat_path(m_current_url, udsentry, true);
              m_current_url.truncate();
 
              // Call base class to list entry

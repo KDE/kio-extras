@@ -222,9 +222,10 @@ protected:
      * Description :  Return a stat of given SMBUrl. Calls cache_stat and
      *                pack it in UDSEntry. UDSEntry will not be cleared
      * Parameter :    SMBUrl the url to stat
+     *                ignore_errors do not call error(), but warning()
      * Return :       false if any error occoured (errno), else true
      */
-    bool browse_stat_path(const SMBUrl& url, UDSEntry& udsentry);
+    bool browse_stat_path(const SMBUrl& url, UDSEntry& udsentry, bool ignore_errors);
 
     //---------------------------------------------
     // Configuration functions (kio_smb_config.cpp)
