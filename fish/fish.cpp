@@ -103,10 +103,6 @@
 #define sendmimeType(x) mimeType(x)
 #endif
 
-#if defined(__FreeBSD__)
-#define SIGCLD SIGCHLD
-#endif
-
 static char *sshPath = NULL;
 // disabled: currently not needed. Didn't work reliably.
 // static int isOpenSSH = 0;
@@ -142,7 +138,7 @@ int kdemain( int argc, char **argv )
     | SA_RESTART
 #endif
     ;
-    sigaction(SIGCLD,&act,NULL);
+    sigaction(SIGCHLD,&act,NULL);
     
     fishProtocol slave(argv[2], argv[3]);
     slave.dispatchLoop();
