@@ -5,6 +5,7 @@ It supports LOGIN, AUTHENTICATE LOGIN, AUTHENTICATE ANONYMOUS and
 AUTHENTICATE CRAM-MD5.
 It supports the rfc2192 URL naming convention.
 
+- UIDVALIDITY check is removed for the moment
 - mkdir will only create directories not mailboxes
   (how to check what the user wants ?)
   use edit->new->directory from konqueror

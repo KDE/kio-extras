@@ -162,11 +162,12 @@ void IMAP4Protocol::get(const KURL &_url) {
 		qDebug("IMAP4Protocol::get - reusing selected box");
 	}
 
-	if(!selectInfo.uidValidityAvailable() || selectInfo.uidValidity() != aValidity.toULong())
+/*	if(selectInfo.uidValidityAvailable() && !aValidity.isEmpty() && selectInfo.uidValidity() != aValidity.toULong())
 	{
 		// this url is stale
 		error(ERR_COULD_NOT_READ,_url.url());
-	} else {
+	} else */
+	{
 		if(aSection.find("STRUCTURE",0,false) != -1)
 		{
 			aSection = "BODYSTRUCTURE";
@@ -297,7 +298,7 @@ void IMAP4Protocol::listDir(const KURL &_url) {
 				if(selectInfo.permanentFlagsAvailable()) qDebug("PermanentFlags: %ld",selectInfo.permanentFlags());
 				if(selectInfo.readWriteAvailable()) qDebug("Access: %s",selectInfo.readWrite() ? "Read/Write" : "Read only");
 
-				if(selectInfo.uidValidityAvailable() && selectInfo.uidValidity() != myValidity.toULong())
+/*				if(selectInfo.uidValidityAvailable() && selectInfo.uidValidity() != myValidity.toULong())
 				{
 					//redirect
 					KURL newUrl = _url;
@@ -307,7 +308,8 @@ void IMAP4Protocol::listDir(const KURL &_url) {
 					redirection(newUrl);
 					
 					
-				} else if(selectInfo.count()>0) {
+				} else */
+				if(selectInfo.count()>0) {
 					int stretch = 0;
 
 					if(selectInfo.uidNextAvailable()) stretch = QString().setNum(selectInfo.uidNext()).length();
@@ -762,46 +764,46 @@ void IMAP4Protocol::stat(const KURL &_url)
 	QString aBox,aSequence,aLType,aSection,aValidity;
 	enum IMAP_TYPE aType = parseURL(_url,aBox,aSection,aLType,aSequence,aValidity);
 	
-	if(aType == ITYPE_BOX)
+	if(aType == ITYPE_BOX || aType == ITYPE_MSG)
 	{
-		imapCommand *cmd = doCommand(imapCommand::clientStatus(aBox,"UIDVALIDITY"));
-
-//		qDebug("IMAP4: status returned:");
-//		if(getStatus().recentAvailable()) qDebug("Recent: %ld",getStatus().recent());
-//		if(getStatus().countAvailable()) qDebug("Count: %ld",getStatus().count());
-//		if(getStatus().unseenAvailable()) qDebug("Unseen: %ld",getStatus().unseen());
-//		if(getStatus().uidValidityAvailable()) qDebug("uidValidity: %ld",getStatus().uidValidity());
-//		if(getStatus().uidNextAvailable()) qDebug("uidNext: %ld",getStatus().uidNext());
-//		if(getStatus().flagsAvailable()) qDebug("Flags: %ld",getStatus().flags());
-//		if(getStatus().permanentFlagsAvailable()) qDebug("PermanentFlags: %ld",getStatus().permanentFlags());
-//		if(getStatus().readWriteAvailable()) qDebug("Access: %s",getStatus().readWrite() ? "Read/Write" : "Read only");
-		
-		completeQueue.removeRef(cmd);
-
-		// has no or an invalid uidvalidity
-		if(getStatus().uidValidityAvailable() && getStatus().uidValidity() != aValidity.toULong())
+		ulong validity = 0;
+		// see if the box is already in select/examine state
+		if(aBox == getCurrentBox()) validity = selectInfo.uidValidity();
+		else
 		{
-			//redirect
-			KURL newUrl = _url;
-
-			newUrl.setPath("/" + aBox + ";UIDVALIDITY="+ QString().setNum(getStatus().uidValidity()));
-			qDebug("IMAP4::stat - redirecting to %s",newUrl.url().latin1());
-			redirection(newUrl);
+			// do a status lookup on the box
+			// only do this if the box is not selected
+			// the server might change the validity for new select/examine
+			imapCommand *cmd = doCommand(imapCommand::clientStatus(aBox,"UIDVALIDITY"));
+			completeQueue.removeRef(cmd);
+			validity = getStatus().uidValidity();
 		}
-	} else if(aType == ITYPE_MSG) {
-		imapCommand *cmd = doCommand(imapCommand::clientStatus(aBox,"MESSAGES UIDVALIDITY UIDNEXT"));
-		completeQueue.removeRef(cmd);
-
-		//must determine if this message exists
-		//cause konqueror will check this on paste operations
-		
-		// has an invalid uidvalidity
-		// or no messages in box
-		if(getStatus().count() == 0 || (!aValidity.isEmpty() && getStatus().uidValidityAvailable() && getStatus().uidValidity() != aValidity.toULong()))
+		validity = 0; // temporary
+	
+		if(aType == ITYPE_BOX)
 		{
-			aType = ITYPE_UNKNOWN;
-			qDebug("IMAP4::stat - url has invalid validity [%ld] %s",getStatus().uidValidity(),_url.url().latin1());
-		}		
+			// has no or an invalid uidvalidity
+			if(validity > 0 && validity != aValidity.toULong())
+			{
+				//redirect
+				KURL newUrl = _url;
+
+				newUrl.setPath("/" + aBox + ";UIDVALIDITY="+ QString().setNum(validity));
+				qDebug("IMAP4::stat - redirecting to %s",newUrl.url().latin1());
+				redirection(newUrl);
+			}
+		} else if(aType == ITYPE_MSG) {
+			//must determine if this message exists
+			//cause konqueror will check this on paste operations
+
+			// has an invalid uidvalidity
+			// or no messages in box
+			if(validity > 0 && validity != aValidity.toULong())
+			{
+				aType = ITYPE_UNKNOWN;
+				qDebug("IMAP4::stat - url has invalid validity [%ld] %s",validity,_url.url().latin1());
+			}		
+		}
 	}
 
 
