@@ -31,6 +31,11 @@
 #include <kio/passdlg.h>
 
 #include "pop3.h"
+extern "C" {
+#include "md5.h"
+};
+
+#define APOP
 
 using namespace KIO;
 
@@ -96,7 +101,7 @@ bool POP3Protocol::getResponse (char *r_buf, unsigned int r_len)
 
   if (wait_time == 0)
   {
-    fprintf(stderr, "No response from POP3 server in 60 secs.\n");fflush(stderr);
+    fprintf(stderr, "No response from POP3 server in 60 secs.\n");
     return false;
   }
 
@@ -135,7 +140,7 @@ bool POP3Protocol::getResponse (char *r_buf, unsigned int r_len)
     if (buf) free(buf);
     return false;
   } else {
-    fprintf(stderr, "Invalid POP3 response received!\n");fflush(stderr);
+    fprintf(stderr, "Invalid POP3 response received!\n");
     if (r_buf && r_len) {
       memcpy(r_buf, buf, QMIN(r_len,recv_len));
     }
@@ -190,7 +195,6 @@ bool POP3Protocol::pop3_open( KURL &_url )
   // a port, and if so use it, otherwise we check to see if there
   // is a port specified in /etc/services, and if so use that
   // otherwise as a last resort use the "official" port of 110.
-
   unsigned short int port;
   ksockaddr_in server_name;
   memset(&server_name, 0, sizeof(server_name));
@@ -200,7 +204,7 @@ bool POP3Protocol::pop3_open( KURL &_url )
   // Why 0 wasn't chosen is beyond me.
   port = _url.port() ? _url.port() : 110;
   if ( (m_iOldPort == port) && (m_sOldServer == _url.host()) && (m_sOldUser == _url.user()) && (m_sOldPass == _url.pass())) {
-    fprintf(stderr,"Reusing old connection\n");fflush(stderr);
+    fprintf(stderr,"Reusing old connection\n");
     return true;
   } else {
     pop3_close();
@@ -220,14 +224,31 @@ bool POP3Protocol::pop3_open( KURL &_url )
       return false;
     }
 
-    if (!getResponse())  // If the server doesn't respond with a greeting
+    QCString greeting( 1024 );
+    // If the server doesn't respond with a greeting
+    if (!getResponse(greeting.data(), greeting.size()))  
       return false;      // we've got major problems, and possibly the
                          // wrong port
+
+#ifdef APOP
+    //
+    // Does the server support APOP?
+    //
+    QString apop_cmd;
+    QRegExp re("<[A-Za-z0-9\\.\\-_]+@[A-Za-z0-9\\.\\-_]+>$", false);
+    if(greeting.length() > 0)
+      greeting.truncate(greeting.length() - 2);
+    int apop_pos = greeting.find(re);
+    bool apop = (bool)(apop_pos != -1);
+#endif
 
     m_iOldPort = port;
     m_sOldServer = _url.host();
 
     QString usr, pass, one_string="USER ";
+#ifdef APOP
+    QString apop_string = "APOP ";
+#endif
     if (_url.user().isEmpty() || _url.pass().isEmpty()) {
       // Prompt for usernames
       QString head="Username and password for your POP3 account:";
@@ -235,20 +256,64 @@ bool POP3Protocol::pop3_open( KURL &_url )
 	return false;
 	pop3_close();
       } else {
+#ifdef APOP
+	apop_string.append(usr);
+#endif
 	one_string.append(usr);
 	m_sOldUser=usr;
       }
     } else {
+#ifdef APOP
+      apop_string.append(_url.user());
+#endif
       one_string.append(_url.user());
       m_sOldUser = _url.user();
     }
+
     memset(buf, 0, sizeof(buf));
+#ifdef APOP
+    if(apop) {
+      char *c = greeting.data() + apop_pos;
+      char *pass;
+      unsigned char digest[16];
+      char ascii_digest[33];
+      Bin_MD5Context ctx;
+
+      if (_url.pass().isEmpty())
+	m_sOldPass = pass;
+      else
+	m_sOldPass = _url.pass();
+
+      // Generate digest
+      Bin_MD5Init(&ctx);
+      Bin_MD5Update(&ctx,
+		    (unsigned char *)c,
+		    (unsigned)strlen(c));
+      Bin_MD5Update(&ctx,
+		    (unsigned char *)m_sOldPass.data(), 
+		    (unsigned)m_sOldPass.length());
+      Bin_MD5Final(digest, &ctx);
+      for(int i = 0; i < 16; i++)
+	sprintf(ascii_digest+2*i, "%02x", digest[i]);      
+
+      // Genenerate APOP command
+      apop_string.append(" ");
+      apop_string.append(ascii_digest);
+
+      if(command(apop_string, buf, sizeof(buf)))
+	return true;
+      
+      fprintf(stderr, "Couldn't login via APOP. Falling back to USER/PASS\n"); 
+    }
+#endif
+
+    // Fall back to conventional USER/PASS scheme
     if (!command(one_string, buf, sizeof(buf))) {
-      fprintf(stderr, "Couldn't login. Bad username Sorry\n"); fflush(stderr);
+      fprintf(stderr, "Couldn't login. Bad username Sorry\n");
       pop3_close();
       return false;
     }
-
+    
     one_string="PASS ";
     if (_url.pass().isEmpty()) {
       m_sOldPass = pass;
@@ -258,12 +323,11 @@ bool POP3Protocol::pop3_open( KURL &_url )
       one_string.append(_url.pass());
     }
     if (!command(one_string, buf, sizeof(buf))) {
-      fprintf(stderr, "Couldn't login. Bad password Sorry\n"); fflush(stderr);
+      fprintf(stderr, "Couldn't login. Bad password Sorry\n");
       pop3_close();
       return false;
     }
     return true;
-
   }
 }
 
@@ -344,7 +408,7 @@ void POP3Protocol::get( const QString& __url, const QString&, bool )
   path.remove(0,path.find("/")+1);
 
   if (!pop3_open(usrc)) {
-    fprintf(stderr,"pop3_open failed\n");fflush(stderr);
+    fprintf(stderr,"pop3_open failed\n");
     error( ERR_COULD_NOT_CONNECT, strdup(usrc.host()));
     pop3_close();
     return;
@@ -391,7 +455,7 @@ LIST
 	array.resetRawData(buf, strlen(buf));
 	totalSize(size);
       }
-      fprintf(stderr,"Finishing up list\n");fflush(stderr);
+      fprintf(stderr,"Finishing up list\n");
       data( QByteArray() );
       speed(0); finished();
     }
@@ -411,7 +475,7 @@ LIST
       mimeType("text/plain");
       memset(buf, 0, sizeof(buf));
       while (!feof(fp)) {
-	fprintf(stderr,"xxxxxxxxxxxFinishing up\n");fflush(stderr);
+	fprintf(stderr,"xxxxxxxxxxxFinishing up\n");
 	memset(buf, 0, sizeof(buf));
 	if (!fgets(buf, sizeof(buf)-1, fp))
 	  break;  // Error??
@@ -432,7 +496,7 @@ LIST
 	  array.resetRawData(buf, strlen(buf));
 	}
       }
-      fprintf(stderr,"Finishing up\n");fflush(stderr);
+      fprintf(stderr,"Finishing up\n");
       data( QByteArray() );
       speed(0); finished();
     }
@@ -494,12 +558,11 @@ LIST
 	p_size+=strlen(buf);
 	processedSize(p_size);
       }
-      fprintf(stderr,"Finishing up\n");fflush(stderr);
+      fprintf(stderr,"Finishing up\n");
       data(QByteArray());
       speed(0); finished();
     } else {
       fprintf(stderr, "Couldn't login. Bad RETR Sorry\n");
-      fflush(stderr);
       pop3_close();
       return;
     }
@@ -525,7 +588,7 @@ LIST
       array.resetRawData(buf, len);
       processedSize(len);
       debug( buf );
-      fprintf(stderr,"Finishing up uid\n");fflush(stderr);
+      fprintf(stderr,"Finishing up uid\n");
       data(QByteArray());
       speed(0); finished();
     } else {
@@ -534,7 +597,7 @@ LIST
   }
 
   else if (cmd == "commit") {
-    fprintf(stderr,"Issued QUIT\n");fflush(stderr);
+    fprintf(stderr,"Issued QUIT\n");
     pop3_close();
     finished();
     m_cmd = CMD_NONE;
@@ -556,7 +619,7 @@ void POP3Protocol::listDir( const QString & _path )
   }
   // Try and open a connection
   if (!pop3_open(usrc)) {
-    fprintf(stderr,"pop3_open failed\n");fflush(stderr);
+    fprintf(stderr,"pop3_open failed\n");
     error( ERR_COULD_NOT_CONNECT, strdup(usrc.host()));
     pop3_close();
     return;
@@ -663,7 +726,7 @@ void POP3Protocol::del( const QString& path, bool /*isfile*/ )
   }
 
   if ( !pop3_open(usrc) ) {
-    fprintf(stderr,"pop3_open failed\n");fflush(stderr);
+    fprintf(stderr,"pop3_open failed\n");
     error( ERR_COULD_NOT_CONNECT, strdup(usrc.host()));
     pop3_close();
     return;

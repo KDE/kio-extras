@@ -4,7 +4,7 @@ INCLUDES= -I$(srcdir)/../.. -I$(srcdir)/.. $(all_includes)
 
 lib_LTLIBRARIES = kio_pop3.la
 
-kio_pop3_la_SOURCES = pop3.cc
+kio_pop3_la_SOURCES = pop3.cc md5.c
 kio_pop3_la_LIBADD  = $(LIB_KIO)
 kio_pop3_la_LDFLAGS = $(all_libraries) -module -avoid-version
 
