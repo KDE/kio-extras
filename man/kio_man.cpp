@@ -23,6 +23,8 @@
 #include <zlib.h>
 #include <man2html.h>
 #include <assert.h>
+#include <kfilterbase.h>
+#include <kfilterdev.h>
 
 using namespace KIO;
 
@@ -59,7 +61,7 @@ bool parseUrl(const QString& _url, QString &title, QString &section)
 
 
 MANProtocol::MANProtocol(const QCString &pool_socket, const QCString &app_socket)
-    : QObject(), SlaveBase("man", pool_socket, app_socket), m_unzippedData(0)
+    : QObject(), SlaveBase("man", pool_socket, app_socket)
 {
     assert(!_self);
     _self = this;
@@ -84,15 +86,22 @@ void MANProtocol::output(const char *insert)
     if (insert)
         output_string += insert;
     if (!insert || output_string.length() > 2000) {
+        kdDebug(7107) << "output " << output_string << endl;
         data(output_string);
         output_string.truncate(0);
     }
 }
 
+// called by man2html
+char *read_man_page(const char *filename)
+{
+    return MANProtocol::self()->readManPage(filename);
+}
+
+// called by man2html
 void output_real(const char *insert)
 {
     MANProtocol::self()->output(insert);
-
 }
 
 void MANProtocol::get(const KURL& url )
@@ -123,51 +132,63 @@ void MANProtocol::get(const KURL& url )
 
     QCString filename=QFile::encodeName(findPage(section, title));
 
-    gzFile file = gzopen(filename, "rb");
-    if (!file) {
+    char *buf = readManPage(filename);
+    if (!buf) {
         outputError(i18n("open of %1 failed").arg(filename));
         return;
     }
-
-    delete [] m_unzippedData;
-    m_unzippedBufferSize=10;
-    m_unzippedData=new char[m_unzippedBufferSize];
-    m_unzippedLength = 0;
-
-    char buffer[1024];
-    while (!gzeof(file)) {
-        int read = gzread(file, buffer, 1024);
-        addToBuffer(buffer, read);
-    }
-
     // will call output_real
-    scan_man_page(m_unzippedData);
+    scan_man_page(buf);
+    delete [] buf;
 
     output(0); // flush
 
     // tell we are done
     data(QByteArray());
     finished();
-
-    delete [] m_unzippedData;
-    m_unzippedData = 0;
 }
 
-void MANProtocol::addToBuffer(const char *buffer, int buflen)
+char *MANProtocol::readManPage(const char *_filename)
 {
-    //check if the buffer is large enough for the new data
-    while (m_unzippedLength+buflen+3>m_unzippedBufferSize)
-    {
-        //hmm, lets make it bigger
-        char *newBuf=new char[m_unzippedBufferSize*3/2+1];
-        memcpy(newBuf,m_unzippedData,m_unzippedLength);
-        m_unzippedBufferSize=m_unzippedBufferSize*3/2;
-        delete [] m_unzippedData;
-        m_unzippedData=newBuf;
-        m_unzippedData[m_unzippedBufferSize]='\0';
+    QCString filename = _filename;
+
+    if (QDir::isRelativePath(filename)) {
+        kdDebug(7107) << "relative " << filename << endl;
+        filename = QDir::cleanDirPath(lastdir + "/" + filename).utf8();
+        if (!KStandardDirs::exists(filename)) { // exists perhaps with suffix
+            lastdir = filename.left(filename.findRev('/'));
+            QDir mandir(lastdir);
+            mandir.setNameFilter(filename.mid(filename.findRev('/') + 1) + ".*");
+            filename = lastdir + "/" + QFile::encodeName(mandir.entryList().first());
+        }
+        kdDebug(7107) << "resolved to " << filename << endl;
     }
-    memcpy(m_unzippedData+m_unzippedLength, buffer, buflen);
-    m_unzippedLength+=buflen;
+    lastdir = filename.left(filename.findRev('/'));
+
+    QFile raw(filename);
+    KFilterBase *f = KFilterBase::findFilterByFileName(filename);
+    if (!f)
+        return 0;
+
+    f->setDevice(&raw);
+
+    KFilterDev *fd = new KFilterDev(f);
+    if (!fd->open(IO_ReadOnly)) {
+        delete fd;
+        return 0;
+    }
+    char buffer[1025];
+    int n;
+    QCString text;
+    while ( ( n = fd->readBlock(buffer, 1024) ) ) {
+        buffer[n] = 0;
+        text += buffer;
+    }
+    kdDebug(7107) << "read " << text.length() << endl;
+    fd->close();
+    delete fd;
+    delete f;
+    return qstrdup(text.data());
 }
 
 void MANProtocol::outputError(const QString& errmsg)
@@ -184,7 +205,6 @@ void MANProtocol::outputError(const QString& errmsg)
     data(output);
     finished();
 }
-
 
 void MANProtocol::stat( const KURL& url)
 {

@@ -152,7 +152,7 @@ using namespace std;
 static char *stralloc(int len)
 {
   /* allocate enough for len + NULL */
-  char *news = (char*)malloc((len + 1) * sizeof(char));
+  char *news = new char [len+1];
   if (!news) {
     fprintf(stderr, "man2html: out of memory\n");
     exit(EXIT_FAILURE);
@@ -180,14 +180,12 @@ static char *strlimitcpy(char *to, char *from, int n, int limit)
 ** about this program or about troff.
 */
 
-typedef struct STRDEF STRDEF;
 struct STRDEF {
     int nr,slen;
     char *st;
     STRDEF *next;
 };
 
-typedef struct INTDEF INTDEF;
 struct INTDEF {
     int nr;
     int val;
@@ -261,39 +259,6 @@ static const char *expand_string(int nr)
 	h=h->next;
   return NULL;
 }
-
-static char *read_man_page(const char *filename)
-{
-  int man_pipe = 0;
-  char *man_buf = NULL;
-
-  FILE *man_stream = NULL;
-  struct stat stbuf;
-  size_t buf_size;
-  if (stat(filename, &stbuf) == -1) {
-      return NULL;
-  }
-  if (!S_ISREG(stbuf.st_mode)) {
-      return NULL;
-  }
-  buf_size = stbuf.st_size;
-  man_buf = stralloc(buf_size+5);
-  man_pipe = 0;
-  man_stream = fopen(filename, "r");
-  if (man_stream) {
-      man_buf[0] = '\n';
-      if (fread(man_buf+1, 1, buf_size, man_stream) == buf_size) {
-          man_buf[buf_size] = '\n';
-          man_buf[buf_size + 1] = man_buf[buf_size + 2] = '\0';
-      }
-      else {
-	man_buf = NULL;
-      }
-      fclose(man_stream);
-  }
-  return man_buf;
-}
-
 
 static char outbuffer[NULL_TERMINATED(HUGE_STR_MAX)];
 static int obp=0;
@@ -1750,7 +1715,7 @@ static char *scan_request(char *c)
 		de=strdef;
 		while (de && de->nr !=i) de=de->next;
 		if (!de) {
-		    de=(STRDEF*) malloc(sizeof(STRDEF));
+		    de=new STRDEF();
 		    de->nr=i;
 		    de->slen=0;
 		    de->next=strdef;
@@ -1786,7 +1751,7 @@ static char *scan_request(char *c)
 		curpos=0;
 		if (!de) {
 		    char *h;
-		    de=(STRDEF*) malloc(sizeof(STRDEF));
+		    de=new STRDEF();
 		    de->nr=i;
 		    de->slen=0;
 		    de->next=strdef;
@@ -2022,8 +1987,8 @@ static char *scan_request(char *c)
 			buf[l+1]=buf[l+2]='\0';
 			scan_troff(buf+1,0,NULL);
 		    }
-		    if (buf) free(buf);
-		    if (name) free(name);
+		    if (buf) delete [] buf;
+		    if (name) delete [] name;
 		}
 		*c++='\n';
 		break;
@@ -2315,7 +2280,7 @@ static char *scan_request(char *c)
 		de=strdef;
 		while (de && de->nr!=j) de=de->next;
 		if (de) {
-		    if (de->st) free(de->st);
+		    delete [] de->st;
                     de->st=0;
 		    de->nr=0;
 		}
@@ -2342,7 +2307,7 @@ static char *scan_request(char *c)
 		intd=intdef;
 		while (intd && intd->nr!=i) intd=intd->next;
 		if (!intd) {
-		    intd = (INTDEF*) malloc(sizeof(INTDEF));
+		    intd = new INTDEF();
 		    intd->nr=i;
 		    intd->val=0;
 		    intd->incr=0;
@@ -2400,10 +2365,10 @@ static char *scan_request(char *c)
 		    }
 		    h[j]=0;
 		    if (de) {
-			if (de->st) free(de->st);
+                        delete [] de->st;
 			de->st=h;
 		    } else {
-			de = (STRDEF*) malloc(sizeof(STRDEF));
+			de = new STRDEF();
 			de->nr=i;
 			de->next=defdef;
 			de->st=h;
@@ -2411,7 +2376,7 @@ static char *scan_request(char *c)
 		    }
 		}
                 if (words==1) {
-                    free(wordlist[1]);
+                    delete [] wordlist[1];
                 }
 	    }
 	    c=skip_till_newline(c);
@@ -2893,7 +2858,7 @@ static char *scan_request(char *c)
 		      scan_troff(wordlist[i],1,&h);
 		    }
 		    wordlist[i] = strdup(h);
-                    free(h);
+                    delete [] h;
 		}
 		for (i=words;i<20; i++) wordlist[i]=NULL;
 		deflen = strlen(owndef->st);
@@ -2909,7 +2874,7 @@ static char *scan_request(char *c)
 		}
 		newline_for_fun=onff;
 		argument=oldargument;
-		for (i=0; i<words; i++) if (wordlist[i]) free(wordlist[i]);
+		for (i=0; i<words; i++) delete [] wordlist[i];
 		*sl='\n';
 	    }
 	    else if (mandoc_command &&
@@ -3201,8 +3166,8 @@ void scan_man_page(const char *man_page)
     while (cursor) {
         defdef = cursor->next;
         if (cursor->st)
-            free(cursor->st);
-        free(cursor);
+            delete [] cursor->st;
+        delete cursor;
         cursor = defdef;
     }
     defdef = 0;
@@ -3211,8 +3176,8 @@ void scan_man_page(const char *man_page)
     while (cursor) {
         strdef = cursor->next;
         if (cursor->st)
-            free(cursor->st);
-        free(cursor);
+            delete [] cursor->st;
+        delete cursor;
         cursor = strdef;
     }
     strdef = 0;
@@ -3220,9 +3185,8 @@ void scan_man_page(const char *man_page)
     cursor = chardef;
     while (cursor) {
         chardef = cursor->next;
-        if (cursor->st)
-            free(cursor->st);
-        free(cursor);
+        delete [] cursor->st;
+        delete cursor;
         cursor = chardef;
     }
     chardef = 0;
@@ -3230,13 +3194,12 @@ void scan_man_page(const char *man_page)
     INTDEF *cursor2 = intdef;
     while (cursor2) {
         intdef = cursor2->next;
-        free(cursor2);
+        delete cursor2;
         cursor2 = intdef;
     }
     intdef = 0;
 
-    if (buffer)
-        free(buffer);
+    delete [] buffer;
     buffer = 0;
 
     escapesym='\\';
@@ -3267,6 +3230,38 @@ void output_real(const char *insert)
     printf("%s", insert);
 }
 
+char *read_man_page(const char *filename)
+{
+    int man_pipe = 0;
+    char *man_buf = NULL;
+
+    FILE *man_stream = NULL;
+    struct stat stbuf;
+    size_t buf_size;
+    if (stat(filename, &stbuf) == -1) {
+        return NULL;
+    }
+    if (!S_ISREG(stbuf.st_mode)) {
+        return NULL;
+    }
+    buf_size = stbuf.st_size;
+    man_buf = stralloc(buf_size+5);
+    man_pipe = 0;
+    man_stream = fopen(filename, "r");
+    if (man_stream) {
+        man_buf[0] = '\n';
+        if (fread(man_buf+1, 1, buf_size, man_stream) == buf_size) {
+            man_buf[buf_size] = '\n';
+            man_buf[buf_size + 1] = man_buf[buf_size + 2] = '\0';
+        }
+        else {
+            man_buf = NULL;
+        }
+        fclose(man_stream);
+    }
+    return man_buf;
+}
+
 int main(int argc, char **argv)
 {
     if (argc < 2)
@@ -3275,7 +3270,7 @@ int main(int argc, char **argv)
         char *buf = read_man_page(argv[1]);
         if (buf) {
             scan_man_page(buf);
-            free(buf);
+            delete [] buf;
         }
     } else {
         DIR *dir = opendir(".");
@@ -3285,12 +3280,13 @@ int main(int argc, char **argv)
             char *buf = read_man_page(ent->d_name);
             if (buf) {
                 scan_man_page(buf);
-                free(buf);
+                delete [] buf;
             }
         }
         closedir(dir);
     }
     return 0;
 }
+
 
 #endif

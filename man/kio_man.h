@@ -30,7 +30,10 @@ public:
 
     void showMainIndex();
     void showIndex(const QString& section);
+
+    // the following two functions are the interface to man2html
     void output(const char *insert);
+    char *readManPage(const char *filename);
 
     static MANProtocol *self();
 
@@ -42,11 +45,8 @@ private:
     QString pageName(const QString& page) const;
     QCString output_string;
 
-    ssize_t m_unzippedLength;
-    ssize_t m_unzippedBufferSize;
-    char *m_unzippedData;
-
     static MANProtocol *_self;
+    QCString lastdir;
 
 };
 
