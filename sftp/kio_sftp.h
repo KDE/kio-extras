@@ -83,10 +83,30 @@ private: // Private variables
   /** User's password */
   QString mPassword;
 
-  /* default port for ssh */
+  /** default port for ssh */
   int defaultPort;
 
+  /** Version of the sftp protocol we are using. */
+  int sftpVersion;
+
 private: // private methods
+  /** 
+   * Type is a sftp packet type found in .sftp.h'.
+   * Example: SSH2_FXP_READLINK, SSH2_FXP_RENAME, etc.
+   *
+   * Returns true if the type is supported by the sftp protocol
+   * version negociated by the client and server (sftpVersion).
+   */
+  bool isSupportedOperation(int type);
+  
+  /**
+   * Get the name of the user running this slave.  This should be
+   * the same username that SSH uses by default.  This is used to
+   * determine if the user entered a username different from their
+   * name on this host.
+   */
+  QString getCurrentUsername();
+  
   bool getPacket(QByteArray& msg);
 
   /** Used to have the server canonicalize any given path name to an absolute path.
