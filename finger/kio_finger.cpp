@@ -180,7 +180,7 @@ void FingerProtocol::getProgramPath()
       //kdDebug() << "Perl command not found" << endl; 	
       this->error(ERR_CANNOT_LAUNCH_PROCESS,
 		  i18n("Could not find the Perl program on your system, please install.")); 
-      exit(-1);
+      exit();
     } 
   else 
     {
@@ -193,7 +193,7 @@ void FingerProtocol::getProgramPath()
       //kdDebug() << "Finger command not found" << endl;
       this->error(ERR_CANNOT_LAUNCH_PROCESS, 
 		  i18n("Could not find the Finger program on your system, please install."));
-      exit(-1);
+      exit();
     }
   else
     {
@@ -206,7 +206,7 @@ void FingerProtocol::getProgramPath()
       //kdDebug() << "kio_finger.pl script not found" << endl;     
       this->error(ERR_CANNOT_LAUNCH_PROCESS,
 		  i18n("kio_finger Perl script not found."));
-      exit(-1);
+      exit();
     }
   else
     {
