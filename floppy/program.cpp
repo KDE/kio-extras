@@ -143,7 +143,7 @@ bool Program::start()
       }
       arglist[mArgs.count()]=0;
       //make parsing easier
-      putenv("LANG=C");
+      putenv(strdup("LANG=C"));
       execvp(arglist[0], arglist);
       //we only get here if execvp() failed
       ::write(notificationPipe[1],"failed",strlen("failed"));
