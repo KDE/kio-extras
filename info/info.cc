@@ -44,7 +44,7 @@ void InfoProtocol::get( const KURL& url )
     kdDebug( 7108 ) << "InfoProtocol::get" << endl;
     kdDebug( 7108 ) << "URL: " << url.prettyURL() << " , Path :" << url.path() << endl;
 
-    mimeType("test/html");
+    mimeType("text/html");
     // extract the path and node from url
     decodeURL( url );
     /*
