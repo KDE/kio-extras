@@ -34,6 +34,7 @@
 #include <kurl.h>
 #include <kidna.h>
 #include <kmdcodec.h>
+#include <assert.h>
 
 namespace KioSMTP {
 
