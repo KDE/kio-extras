@@ -83,7 +83,7 @@ imapParser::sendCommand (imapCommand * aCmd)
   if (aCmd->command () == "SELECT" || aCmd->command () == "EXAMINE")
   {
     currentBox = aCmd->parameter ();
-    currentBox = rfcDecoder::decodeQuoting(parseOneWord(currentBox));
+    currentBox = parseOneWord(currentBox);
     kdDebug(7116) << "imapParser::sendCommand - setting current box to " << currentBox << endl;
   }
   else if (aCmd->command ().find ("SEARCH") != -1)
@@ -609,8 +609,7 @@ imapParser::parseList (QString & result)
   result = result.right (result.length () - 1); // tie off )
   imapParser::skipWS (result);
 
-  this_one.setHierarchyDelimiter(rfcDecoder::decodeQuoting(
-    imapParser::parseLiteral(result)));
+  this_one.setHierarchyDelimiter(imapParser::parseLiteral(result));
   this_one.setName (rfcDecoder::fromIMAP (imapParser::parseLiteral (result)));  // decode modified UTF7
 
   listResponses.append (this_one);
@@ -1747,6 +1746,8 @@ imapParser::parseOneWord (QString & inWords)
     {
       retVal = inWords.left (i);
       retVal = retVal.right (retVal.length () - 1);
+      for (int j = 0; j < retVal.length(); j++)
+        if (retVal[j] == '\\') retVal.remove(j, 1);
       inWords = inWords.right (inWords.length () - i - 1);
     }
     else
