@@ -84,7 +84,7 @@ QStrList &Url::attributes()
   for (char *it=_attributes.first(); it; it=_attributes.next())
     {
       QString item(it);
-      decode(item);
+      item = decode_string(item);
       _attr_decoded.append(item);
     }
   

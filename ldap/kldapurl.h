@@ -25,7 +25,7 @@ namespace KLDAP
     int scope() { return _scope; };
     void setScope(int scope) { _scope=scope; update(); };
 
-    QString filter() { QString item=_filter; decode(item); return item; };
+    QString filter() { QString item=decode_string(_filter); return item; };
     void setFilter(QString filter) { _filter=filter; update(); } ;
 
   protected:
