@@ -180,6 +180,6 @@ namespace KioSMTP {
     bool mComplete;
   };
 
-}; // namespace KioSMTP
+} // namespace KioSMTP
 
 #endif // __KIOSMTP_TRANSACTIONSTATE_H__

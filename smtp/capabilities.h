@@ -72,6 +72,6 @@ namespace KioSMTP {
     QMap<QString,QStringList> mCapabilities;
   };
 
-}; // namespace KioSMTP
+} // namespace KioSMTP
 
 #endif // __KIOSMTP_CAPABILITIES_H__

@@ -111,4 +111,4 @@ namespace KioSMTP {
     return i18n("Unhandled error condition. Please send a bug report.");
   }
 
-};
+}

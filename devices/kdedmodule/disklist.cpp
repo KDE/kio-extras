@@ -45,7 +45,7 @@ DiskList::DiskList(QObject *parent, const char *name)
 
    disks = new Disks;
    disks->setAutoDelete(TRUE);
-};
+}
 
 
 /***************************************************************************
@@ -53,7 +53,7 @@ DiskList::DiskList(QObject *parent, const char *name)
 **/
 DiskList::~DiskList()
 {
-};
+}
 
 
 void DiskList::loadExclusionLists()

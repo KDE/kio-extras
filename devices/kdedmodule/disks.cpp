@@ -165,21 +165,21 @@ void DiskEntry::setDeviceName(const QString & deviceName)
    m_inodeType=true;
    m_inode=st.st_ino;
  }
-};
+}
 
 void DiskEntry::setMountPoint(const QString & mountPoint)
 {
   mountedOn=mountPoint;
-};
+}
 
 void DiskEntry::setFsType(const QString & fsType)
 {
   type=fsType;
-};
+}
 
 void DiskEntry::setMounted(bool nowMounted)
 {
   isMounted=nowMounted;
-};
+}
 
 #include "disks.moc"

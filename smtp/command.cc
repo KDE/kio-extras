@@ -491,5 +491,5 @@ namespace KioSMTP {
     return "QUIT\r\n";
   }
 
-}; // namespace KioSMTP
+} // namespace KioSMTP
 

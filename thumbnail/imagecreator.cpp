@@ -35,7 +35,7 @@ extern "C"
         KImageIO::registerFormats();
         return new ImageCreator;
     }
-};
+}
 
 bool ImageCreator::create(const QString &path, int, int, QImage &img)
 {

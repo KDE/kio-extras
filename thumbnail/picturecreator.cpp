@@ -33,7 +33,7 @@ extern "C"
     {
         return new PictureCreator;
     }
-};
+}
 
 bool PictureCreator::create(const QString &path, int width, int height, QImage &img)
 {

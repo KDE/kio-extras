@@ -265,6 +265,6 @@ namespace KioSMTP {
     QCString nextCommandLine( TransactionState * );
   };
 
-}; // namespace KioSMTP
+} // namespace KioSMTP
 
 #endif // __KIOSMTP_COMMAND_H__

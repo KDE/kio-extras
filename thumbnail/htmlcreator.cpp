@@ -36,7 +36,7 @@ extern "C"
     {
         return new HTMLCreator;
     }
-};
+}
 
 HTMLCreator::HTMLCreator()
     : m_html(0)

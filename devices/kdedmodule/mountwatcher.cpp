@@ -393,6 +393,6 @@ extern "C" {
         KGlobal::locale()->insertCatalogue("kio_devices");
         return new MountWatcherModule(obj);
     }
-};
+}
 
 #include "mountwatcher.moc"

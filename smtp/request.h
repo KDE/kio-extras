@@ -95,6 +95,6 @@ namespace KioSMTP {
     unsigned int mSize;
   };
 
-}; // namespace KioSMTP
+} // namespace KioSMTP
 
 #endif // __KIOSMTP_REQUEST_H__

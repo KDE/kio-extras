@@ -140,7 +140,7 @@ void HelloProtocol::stat(const KURL& url)
 		break;
         }
 
-};
+}
 
 
 

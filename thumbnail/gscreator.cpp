@@ -79,7 +79,7 @@ extern "C"
     {
         return new GSCreator;
     }
-};
+}
 
 // This PS snippet will be prepended to the actual file so that only
 // the first page is output.

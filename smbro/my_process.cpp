@@ -44,7 +44,7 @@ void ClientProcess::kill()
    ::waitpid(pid(),&s,WNOHANG);
    ::kill(pid(), SIGTERM);
    ::waitpid(pid(),&s,0);
-};
+}
 
 int ClientProcess::exited()
 {
@@ -64,7 +64,7 @@ int ClientProcess::exited()
       return m_exited;
    };
    return -1;
-};
+}
 
 int ClientProcess::select(int secs, int usecs, bool* readEvent, bool* writeEvent)
 {

@@ -35,7 +35,7 @@ extern "C"
     {
         return new TextCreator;
     }
-};
+}
 
 TextCreator::TextCreator()
     : m_splitter(0),

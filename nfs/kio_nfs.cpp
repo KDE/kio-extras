@@ -133,14 +133,14 @@ void stripTrailingSlash(QString& path)
    //if (path=="/") return;
    if (path=="/") path="";
    else if (path[path.length()-1]=='/') path.truncate(path.length()-1);
-};
+}
 
 void getLastPart(const QString& path, QString& lastPart, QString& rest)
 {
    int slashPos=path.findRev("/");
    lastPart=path.mid(slashPos+1);
    rest=path.left(slashPos+1);
-};
+}
 
 QString removeFirstPart(const QString& path)
 {
@@ -149,7 +149,7 @@ QString removeFirstPart(const QString& path)
    result=path.mid(1);
    int slashPos=result.find("/");
    return result.mid(slashPos+1);
-};
+}
 
 NFSFileHandle::NFSFileHandle()
 :m_isInvalid(FALSE)
@@ -157,7 +157,7 @@ NFSFileHandle::NFSFileHandle()
    m_handle=new char[NFS_FHSIZE+1];
    memset(m_handle,'\0',NFS_FHSIZE+1);
    m_detectTime=time(0);
-};
+}
 
 NFSFileHandle::NFSFileHandle(const NFSFileHandle & handle)
 :m_isInvalid(FALSE)
@@ -167,7 +167,7 @@ NFSFileHandle::NFSFileHandle(const NFSFileHandle & handle)
    memcpy(m_handle,handle.m_handle,NFS_FHSIZE);
    m_isInvalid=handle.m_isInvalid;
    m_detectTime=handle.m_detectTime;
-};
+}
 
 NFSFileHandle::~NFSFileHandle()
 {
@@ -198,7 +198,7 @@ NFSFileHandle& NFSFileHandle::operator= (const char* src)
 time_t NFSFileHandle::age() const
 {
    return (time(0)-m_detectTime);
-};
+}
 
 /*
 ostream& operator<< (ostream& s, const NFSFileHandle& x)
@@ -217,12 +217,12 @@ NFSProtocol::NFSProtocol (const QCString &pool, const QCString &app )
 ,m_lastCheck(time(0))
 {
    kdDebug(7121)<<"NFS::NFS: -"<<pool<<"-"<<endl;
-};
+}
 
 NFSProtocol::~NFSProtocol()
 {
    closeConnection();
-};
+}
 
 void NFSProtocol::checkForOldFHs()
 {
@@ -250,7 +250,7 @@ void NFSProtocol::checkForOldFHs()
    };
    kdDebug(7121)<<"left items: "<<m_handleCache.count()<<endl;
    m_lastCheck=time(0);
-};
+}
 
 void NFSProtocol::closeConnection()
 {
@@ -260,17 +260,17 @@ void NFSProtocol::closeConnection()
    CLNT_DESTROY(m_client);
 
    m_client=0;
-};
+}
 
 bool NFSProtocol::isExportedDir(const QString& path)
 {
    return (m_exportedDirs.find(path.mid(1))!=m_exportedDirs.end());
-};
+}
 
 bool NFSProtocol::isRoot(const QString& path)
 {
    return (path.isEmpty() || (path=="/"));
-};
+}
 
 //this one works recursive
 NFSFileHandle NFSProtocol::getFileHandle(QString path)
@@ -335,7 +335,7 @@ NFSFileHandle NFSProtocol::getFileHandle(QString path)
    m_handleCache.insert(path,parentFH);
    kdDebug(7121)<<"return FH -"<<parentFH<<"-"<<endl;
    return parentFH;
-};
+}
 
 void NFSProtocol::openConnection()
 {
@@ -605,7 +605,7 @@ void NFSProtocol::listDir( const KURL& _url)
    };
    listEntry( entry, true ); // ready
    finished();
-};
+}
 
 void NFSProtocol::createVirtualDirEntry(UDSEntry & entry)
 {
@@ -630,7 +630,7 @@ void NFSProtocol::createVirtualDirEntry(UDSEntry & entry)
    atom.m_uds = KIO::UDS_SIZE;
    atom.m_long = 1024;
    entry.append( atom );
-};
+}
 
 void NFSProtocol::stat( const KURL & url)
 {
@@ -812,7 +812,7 @@ void NFSProtocol::completeAbsoluteLinkUDSEntry(UDSEntry& entry, const QCString& 
    atom.m_uds = KIO::UDS_CREATION_TIME;
    atom.m_long = buff.st_ctime;
    entry.append( atom );
-};
+}
 
 void NFSProtocol::completeBadLinkUDSEntry(UDSEntry& entry, fattr& attributes)
 {
@@ -831,7 +831,7 @@ void NFSProtocol::completeBadLinkUDSEntry(UDSEntry& entry, fattr& attributes)
    atom.m_uds = KIO::UDS_SIZE;
    atom.m_long = 0L;
    entry.append( atom );
-};
+}
 
 void NFSProtocol::completeUDSEntry(UDSEntry& entry, fattr& attributes)
 {
@@ -927,7 +927,7 @@ void NFSProtocol::completeUDSEntry(UDSEntry& entry, fattr& attributes)
          break;
       }
    }*/
-};
+}
 
 void NFSProtocol::setHost(const QString& host, int /*port*/, const QString& /*user*/, const QString& /*pass*/)
 {
@@ -1056,7 +1056,7 @@ bool NFSProtocol::checkForError(int clientStat, int nfsStat, const QString& text
       return FALSE;
    };
    return TRUE;
-};
+}
 
 void NFSProtocol::del( const KURL& url, bool isfile)
 {
@@ -1116,7 +1116,7 @@ void NFSProtocol::del( const KURL& url, bool isfile)
       m_handleCache.remove(m_handleCache.find(thePath));
       finished();
    };
-};
+}
 
 void NFSProtocol::chmod( const KURL& url, int permissions )
 {
@@ -1203,7 +1203,7 @@ void NFSProtocol::get( const KURL& url )
    } while (offset>0);
    data( QByteArray() );
    finished();
-};
+}
 
 //TODO the partial putting thing is not yet implemented
 void NFSProtocol::put( const KURL& url, int _mode, bool _overwrite, bool /*_resume*/ )
@@ -1330,7 +1330,7 @@ void NFSProtocol::put( const KURL& url, int _mode, bool _overwrite, bool /*_resu
        }
     } while ( result > 0 );
     finished();
-};
+}
 
 void NFSProtocol::rename( const KURL &src, const KURL &dest, bool _overwrite )
 {
@@ -1388,7 +1388,7 @@ void NFSProtocol::rename( const KURL &src, const KURL &dest, bool _overwrite )
                              (xdrproc_t) xdr_nfsstat, (char*)&nfsStat,total_timeout);
    if (!checkForError(clnt_stat,nfsStat,destPath)) return;
    finished();
-};
+}
 
 void NFSProtocol::copy( const KURL &src, const KURL &dest, int _mode, bool _overwrite )
 {
@@ -1550,7 +1550,7 @@ void NFSProtocol::symlink( const QString &target, const KURL &dest, bool )
 
    finished();
 
-};
+}
 
 bool NFSProtocol::isValidLink(const QString& parentDir, const QString& linkDest)
 {
@@ -1581,7 +1581,7 @@ bool NFSProtocol::isValidLink(const QString& parentDir, const QString& linkDest)
       return (!fh.isInvalid());
    };
    return FALSE;
-};
+}
 
 bool NFSProtocol::isAbsoluteLink(const QString& path)
 {
@@ -1589,5 +1589,5 @@ bool NFSProtocol::isAbsoluteLink(const QString& path)
    if (path.isEmpty()) return TRUE;
    if (path[0]=='/') return TRUE;
    return FALSE;
-};
+}
 

@@ -189,7 +189,7 @@ int Program::select(int secs, int usecs, bool& stdoutReceived, bool& stderrRecei
       //stdinWaiting=(FD_ISSET(stdinFD(),&writeFDs));
    };
    return result;
-};
+}
 
 int Program::kill()
 {
@@ -197,5 +197,5 @@ int Program::kill()
       return -1;
    return ::kill(m_pid, SIGTERM);
    //::kill(m_pid, SIGKILL);
-};
+}
 

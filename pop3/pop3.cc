@@ -68,7 +68,7 @@
 
 extern "C" {
   int kdemain(int argc, char **argv);
-};
+}
 
 using namespace KIO;
 

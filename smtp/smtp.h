@@ -45,7 +45,7 @@ namespace KioSMTP {
   class Response;
   class TransactionState;
   class Command;
-};
+}
 
 class SMTPProtocol : public KIO::TCPSlaveBase {
   friend class KioSMTP::Command;

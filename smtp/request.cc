@@ -186,4 +186,4 @@ namespace KioSMTP {
     return result;
   }
 
-}; // namespace KioSMTP
+} // namespace KioSMTP

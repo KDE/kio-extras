@@ -139,5 +139,5 @@ namespace KioSMTP {
 
 
 
-}; // namespace KioSMTP
+} // namespace KioSMTP
 

@@ -51,7 +51,7 @@ extern "C"
     {
         return new DjVuCreator;
     }
-};
+}
 
 bool DjVuCreator::create(const QString &path, int width, int height, QImage &img)
 {

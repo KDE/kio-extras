@@ -77,7 +77,7 @@ extern "C"
 {
   void sigalrm_handler (int);
   int kdemain (int argc, char **argv);
-};
+}
 
 int
 kdemain (int argc, char **argv)

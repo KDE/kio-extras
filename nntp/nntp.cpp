@@ -533,7 +533,7 @@ void NNTPProtocol::nntp_open() {
       connected();
       return;
     }
-};
+}
 
 int NNTPProtocol::eval_resp() {
   QCString line;

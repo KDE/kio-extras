@@ -120,6 +120,6 @@ namespace KioSMTP {
     bool mWellFormed;
   };
 
-}; // namespace KioSMTP
+} // namespace KioSMTP
 
 #endif // __KIOSMTP_RESPONSE_H__
