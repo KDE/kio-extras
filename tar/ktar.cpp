@@ -97,6 +97,7 @@ bool KTarBase::open( int mode )
     QString username = pw ? QFile::decodeName(pw->pw_name) : QString::number( getuid() );
     QString groupname = grp ? QFile::decodeName(grp->gr_name) : QString::number( getgid() );
 
+    kdDebug() << "Making root dir " << endl;
     d->rootDir = new KTarDirectory( this, QString::fromLatin1("/"), (int)(0777 + S_IFDIR), 0, username, groupname, QString::null );
 
     // read dir infos
@@ -640,20 +641,33 @@ KTarEntry* KTarDirectory::entry( QString name )
   int pos = name.find( '/' );
   if ( pos == 0 ) // ouch absolute path (see also KTarBase::findOrCreate)
   {
-    name = name.mid( 1 ); // remove leading slash
+    if (name.length()>1)
+    {
+      name = name.mid( 1 ); // remove leading slash
+      pos = name.find( '/' ); // look again
+    }
+    else // "/"
+      return this;
+  }
+  // trailing slash ? -> remove
+  if ( pos != -1 && pos == (int)name.length()-1 )
+  {
+    name = name.left( pos );
     pos = name.find( '/' ); // look again
   }
   if ( pos != -1 )
   {
     QString left = name.left( pos );
     QString right = name.mid( pos + 1 );
-
+ 
+    //kdDebug() << "KTarDirectory::entry left=" << left << " right=" << right << endl;
+ 
     KTarEntry* e = m_entries[ left ];
     if ( !e || !e->isDirectory() )
       return 0;
     return ((KTarDirectory*)e)->entry( right );
   }
-
+ 
   return m_entries[ name ];
 }
 
