@@ -277,7 +277,7 @@ sub ReadTagTable{
 
   if ( $FileName =~ /\.gz$/ ) {
     open(FH," gunzip -q -d -c $FileName|") || &DieFileNotFound($FileName);
-  } elsif ( $FileName =~ /\.gz$/ ) {
+  } elsif ( $FileName =~ /\.bz2$/ ) {
     open(FH," bunzip2 -q -d -c $FileName|") || &DieFileNotFound($FileName);
   } else {
     open(FH,$FileName) || &DieFileNotFound($FileName);
@@ -508,7 +508,6 @@ sub InfoNode2HTML{
   if ( $FileName =~ /\.gz$/ ) {
     open(FH2," gunzip -q -d -c $FileName|") || &DieFileNotFound($FileName);
   } elsif ( $FileName =~ /\.bz2$/ ) {
-    print( "Michael (file) : $FileName\n" );
     open(FH2, " bunzip2 -q -d -c $FileName|") || &DieFileNotFound($FileName);
   } else {
     open(FH2,$FileName) || &DieFileNotFound($FileName);
