@@ -507,7 +507,7 @@ rfcDecoder::encodeRFC2047String (const QString & _str)
       }
       else
         stop = l;
-      if (resultLen - rptr - 1 <= start -  latin + 1) {
+      if (resultLen - rptr - 1 <= start -  latin + 1 + 16 /* =?iso-88... */) {
         resultLen += (start - latin + 1) * 2 + 20; // more space
 	result.resize(resultLen);
       }
