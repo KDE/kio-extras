@@ -1,16 +1,18 @@
 INCLUDES= $(all_includes)
 
+LDFLAGS =$(all_libraries)
+
 ####### Files
 
-kde_module_LTLIBRARIES = kio_mycomputer.la
+kde_module_LTLIBRARIES = kio_devices.la
 
-kio_mycomputer_la_SOURCES = mycomputer.cc
-kio_mycomputer_la_LIBADD  = $(LIB_KSYCOCA)
-kio_mycomputer_la_LDFLAGS = -module $(KDE_PLUGIN)
+kio_devices_la_SOURCES = kio_devices.cc
+kio_devices_la_LIBADD  = $(LIB_KSYCOCA)
+kio_devices_la_LDFLAGS = -module $(KDE_PLUGIN)
 
-noinst_HEADERS = mycomputer.h
+noinst_HEADERS = kio_devices.h
 
-kdelnk_DATA = mycomputer.protocol
+kdelnk_DATA = devices.protocol
 kdelnkdir = $(kde_servicesdir)
 
 

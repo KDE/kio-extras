@@ -1,3 +1,4 @@
+
    #include <kio/slavebase.h>
    #include <kinstance.h>
    #include <kdebug.h>
@@ -28,12 +29,13 @@
 	QString mountPoint(const QString dev);
 	QString mountPoint(int);
 	QString deviceType(int);
+	QStringList deviceList();
   };
   
   extern "C" {
       int kdemain( int, char **argv )
       {
-	  kdDebug()<<"kdemain for mycomputer"<<endl;
+	  kdDebug()<<"kdemain for devices"<<endl;
           KInstance instance( "kio_hello" );
           HelloProtocol slave(argv[2], argv[3]);
           slave.dispatchLoop();
@@ -46,7 +48,7 @@
 static void createFileEntry(KIO::UDSEntry& entry, const QString& name, const QString& url, const QString& mime);
 static void createDirEntry(KIO::UDSEntry& entry, const QString& name, const QString& url, const QString& mime);
 
-HelloProtocol::HelloProtocol( const QCString &pool, const QCString &app): SlaveBase( "mycomputer", pool, app )
+HelloProtocol::HelloProtocol( const QCString &pool, const QCString &app): SlaveBase( "devices", pool, app )
 {
 	m_dcopClient=new DCOPClient();
 	if (!m_dcopClient->attach())
@@ -69,11 +71,22 @@ void HelloProtocol::stat(const KURL& url)
 	switch (path.count())
 	{
 		case 0:
-		        createDirEntry(entry, i18n("My Computer"), "mycomputer:/", "inode/directory");
+		        createDirEntry(entry, i18n("My Computer"), "devices:/", "inode/directory");
 		        statEntry(entry);
 			break;
 		default:
-			redirection("file:/");
+	                if (url.queryItem("mounted")=="true")
+        	        {
+                	        QString mp=url.queryItem("mp");
+                        	if (mp=="/") mp="";
+	                        redirection("file:/"+mp);
+        	                finished();
+                	}
+			else
+			{
+				error(KIO::ERR_SLAVE_DEFINED,i18n("Device not mounted"));
+//					redirection("file:/");
+			}
 //			createFileEntry(entry,i18n("blah"),url,"application/x-desktop");
 			break;
 	};
@@ -86,7 +99,7 @@ void HelloProtocol::listDir(const KURL& url)
 {
 	kdDebug()<<"HELLO PROTOCOLL::listdir: "<<url.url()<<endl;
 
-	if (url==KURL("mycomputer:/"))
+	if (url==KURL("devices:/"))
 		listRoot();
 	else
 	{
@@ -96,10 +109,13 @@ void HelloProtocol::listDir(const KURL& url)
 			QString mp=url.queryItem("mp");
 			if (mp=="/") mp="";
 			redirection("file:/"+mp);
+			finished();
 		}
 		else
-			redirection("mycomputer:/");
-		finished();
+		{
+			error(KIO::ERR_SLAVE_DEFINED,i18n("Device not mounted"));
+//			redirection("devices:/");
+		}
 	}
 	
 }
@@ -172,6 +188,23 @@ bool HelloProtocol::deviceMounted(int id)
 }
 
 
+QStringList HelloProtocol::deviceList()
+{
+        QByteArray data;
+        QByteArray param;
+        QCString retType;
+        QStringList retVal;
+        QDataStream streamout(param,IO_WriteOnly);
+//        streamout<<dev;
+        if ( m_dcopClient->call( "kded",
+                 "mountwatcher", "list()", param,retType,data,false ) )
+      {
+        QDataStream streamin(data,IO_ReadOnly);
+        streamin>>retVal;
+      }
+      return retVal;
+}
+
 QString HelloProtocol::mountPoint(const QString dev)
 {
         QByteArray data;
@@ -233,16 +266,29 @@ void HelloProtocol::listRoot()
 	uint count;
    {
 
+#if 0
       uint count=mountpointMappingCount();
 	for (uint i=0;i<count;i++)
 	{
 		QString device=deviceNode(i);
 		if (deviceMounted(i))
-		        createFileEntry(entry, i18n("%1 mounted at %2").arg(deviceNode(i)).arg(mountPoint(i)), QString("mycomputer:/entries?dev=")+deviceNode(i)+"&mp="+mountPoint(i)+"&mounted=true", deviceType(i)+"_mounted");
+		        createFileEntry(entry, i18n("%1 mounted at %2").arg(deviceNode(i)).arg(mountPoint(i)), QString("devices:/entries?dev=")+deviceNode(i)+"&mp="+mountPoint(i)+"&mounted=true", deviceType(i)+"_mounted");
 		else
-		        createFileEntry(entry, i18n("%1 (not mounted)").arg(deviceNode(i)), QString("mycomputer:/entries?dev=")+deviceNode(i)+"&mp="+mountPoint(i)+"&mounted=false", deviceType(i)+"_unmounted");
+		        createFileEntry(entry, i18n("%1 (not mounted)").arg(deviceNode(i)), QString("devices:/entries?dev=")+deviceNode(i)+"&mp="+mountPoint(i)+"&mounted=false", deviceType(i)+"_unmounted");
         	listEntry(entry, false);
 		
+	}
+#endif
+	QStringList list=deviceList();
+	count=0;
+        for ( QStringList::Iterator it = list.begin(); it != list.end(); ++it ) 
+	{
+		QString name=*it; ++it;
+		QString url=*it; ++it;
+		QString type=*it; ++it;
+		createFileEntry(entry,name,url,type);
+		listEntry(entry,false);
+		count++;
 	}
         totalSize(count);
         listEntry(entry, true);
@@ -250,7 +296,7 @@ void HelloProtocol::listRoot()
 
 
 
-//        createFileEntry(entry, i18n("floppy"), "mycomputer:/blah", "kdedevice/floppy_unmounted");
+//        createFileEntry(entry, i18n("floppy"), "devices:/blah", "kdedevice/floppy_unmounted");
   //      listEntry(entry, false);
 
         // Jobs entry

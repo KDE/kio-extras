@@ -1,6 +1,6 @@
 [Protocol]
-exec=kio_mycomputer
-protocol=mycomputer
+exec=kio_devices
+protocol=devices
 input=none
 output=filesystem
 listing=Name,Type,Size,Date,Access,Owner,Group,Link,

@@ -30,7 +30,7 @@
 #include <kimageio.h>
 #include <ksimpleconfig.h>
 #include <kstandarddirs.h>
-#include <kio/kautomount.h>
+#include <kautomount.h>
 
 #include "mountwatcher.moc"
 #include "mountwatcher.h"
@@ -50,6 +50,31 @@ MountWatcherModule::~MountWatcherModule()
 uint MountWatcherModule::mountpointMappingCount()
 {
 	return mDiskList.count();
+}
+
+QStringList MountWatcherModule::list()
+{
+	QStringList list;
+	for (DiskEntry *ent=mDiskList.first();ent;ent=mDiskList.next())
+	{
+                if (ent->mounted())
+		{
+                 	list<<i18n("%1 mounted at %2").arg(ent->deviceName()).arg(ent->mountPoint());
+			list<<(QString("devices:/entries?dev=")+ent->deviceName()+
+			"&mp="+ent->mountPoint()+"&mounted=true");
+			list<< ent->discType()+"_mounted";
+			list<<"true";
+		}
+                else
+		{
+                 	list<<i18n("%1 (not mounted)").arg(ent->deviceName());
+			list<<QString("devices:/entries?dev=")+ent->deviceName()+
+			"&mp="+ent->mountPoint()+"&mounted=false";
+			list<< ent->discType()+"_unmounted";
+			list<<"false";
+		}
+	}
+	return list;
 }
 
 QString  MountWatcherModule::mountpoint(int id)
