@@ -63,6 +63,7 @@
 #include <sys/time.h>
 #include <sys/wait.h>
 #include <fcntl.h>
+#include <errno.h>
 
 #include <qfile.h>
 #include <qimage.h>
@@ -232,8 +233,10 @@ bool GSCreator::create(const QString &path, int, int, QImage &img)
 	  struct timeval tv;
 	  tv.tv_sec = 20;
 	  tv.tv_usec = 0;
-	  if (select(output[0] + 1, &fds, 0, 0, &tv) <= 0) 
+	  if (select(output[0] + 1, &fds, 0, 0, &tv) <= 0) {
+            if ( errno == EINTR || errno == EAGAIN ) continue;
 	    break; // error or timeout
+          }
 	  if (FD_ISSET(output[0], &fds)) {
 	    count = read(output[0], data.data() + offset, 1024);
 	    if (count == -1)
@@ -254,7 +257,7 @@ bool GSCreator::create(const QString &path, int, int, QImage &img)
     }
     if (!ok) // error or timeout, gs probably didn't exit yet
       kill(pid, SIGTERM);
-    int status;
+    int status = 0;
     if (waitpid(pid, &status, 0) != pid || (status != 0  && status != 256) )
       ok = false;
   } 
