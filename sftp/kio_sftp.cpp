@@ -1493,9 +1493,10 @@ bool sftpProtocol::getPacket(QByteArray& msg) {
         return false;
     }
 
+    unsigned int sizeof_buf = sizeof(buf);
     unsigned int offset = 0;
     while( msgLen ) {
-        len = atomicio(ssh.stdioFd(), buf, kMin(msgLen, sizeof(buf)), true /*read*/);
+        len = atomicio(ssh.stdioFd(), buf, kMin(msgLen, sizeof_buf), true /*read*/);
         if( len == 0 ) {
             kdDebug(KIO_SFTP_DB) << "getPacket(): nothing to read, ret = " <<
                 len << ", error =" << strerror(errno) << endl;
