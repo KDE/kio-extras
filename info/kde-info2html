@@ -127,7 +127,7 @@ EOF
 #---------------------------------------------------------
 sub FileNotFound {
 	my ($FileName,$NodeName) = @_;
-	if ($NodeName ne 'Top' or $FileName eq 'dir') { &DieFileNotFound($FileName) }
+	DieFileNotFound($FileName) if $NodeName ne 'Top' || $FileName eq 'dir';
 	# Try to find it in dir
 
 	my $DirFileName = &FindFile('dir');
@@ -142,7 +142,7 @@ sub FileNotFound {
 	}
 	my $looking = 1;
 	while (<DIR>) {
-		if ($looking and not /\* Menu/) { next }
+		next if $looking && !/\* Menu/;
 		$looking = 0;
 		my @item = &ParseMenuItem($_,'dir');
 		if (!defined(@item)) { next }
@@ -1012,7 +1012,7 @@ $PROGRAM =~ s!.*/!!;
 my ($BaseInfoFile, $NodeName) = ($ARGV[2], $ARGV[3]);
 #&DirnameCheck($BaseInfoFile) || &DieFileNotFound($BaseInfoFile);
 
-if ($BaseInfoFile eq '#special#' and $NodeName eq 'browse_by_file') {
+if ($BaseInfoFile eq '#special#' && $NodeName eq 'browse_by_file') {
 	&BrowseByFile;
 	exit 0;
 }
