@@ -125,13 +125,13 @@ void GZipProtocol::slotCopy( const char *_source, const char *_dest )
   QString zip_cmd;
   QString path = usrc.path();
   if ( path == "/compress" )
-    zip_cmd = "/usr/bin/gzip";
+    zip_cmd = "gzip";
   else if ( path == "/decompress" )
-    zip_cmd = "/usr/bin/gunzip";
+    zip_cmd = "gunzip";
   else if ( path == "/bzip/compress" )
-    zip_cmd = "/usr/local/bin/bzip";
+    zip_cmd = "bzip";
   else if ( path == "/bzip/decompress" )
-    zip_cmd = "/usr/local/bin/bunzip";
+    zip_cmd = "bunzip";
   else
   {
     QString e = "gzip:";
@@ -225,13 +225,13 @@ void GZipProtocol::slotGet( const char *_url )
   QString zip_cmd;
   QString path = (*lst.begin()).path();
   if ( path == "/compress" )
-    zip_cmd = "/usr/bin/gzip";
+    zip_cmd = "gzip";
   else if ( path == "/decompress" )
-    zip_cmd = "/usr/bin/gunzip";
+    zip_cmd = "gunzip";
   else if ( path == "/bzip/compress" )
-    zip_cmd = "/usr/local/bin/bzip";
+    zip_cmd = "bzip";
   else if ( path == "/bzip/decompress" )
-    zip_cmd = "/usr/local/bin/bunzip";
+    zip_cmd = "bunzip";
   else
   {
     error( ERR_UNSUPPORTED_ACTION, path );
@@ -334,13 +334,13 @@ void GZipProtocol::slotPut( const char *_url, int, bool _overwrite, bool /*_resu
   QString zip_cmd;
   QString path = (*lst.begin()).path();
   if ( path == "/compress" )
-    zip_cmd = "/usr/bin/gzip";
+    zip_cmd = "gzip";
   else if ( path == "/decompress" )
-    zip_cmd = "/usr/bin/gunzip";
+    zip_cmd = "gunzip";
   else if ( path == "/bzip/compress" )
-    zip_cmd = "/usr/local/bin/bzip";
+    zip_cmd = "bzip";
   else if ( path == "/bzip/decompress" )
-    zip_cmd = "/usr/local/bin/bunzip";
+    zip_cmd = "bunzip";
   else
   {
     QString e = "gzip:";
