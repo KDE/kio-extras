@@ -1,0 +1,14 @@
+# KDE Config File
+[Protocol]
+exec=kio_nntp
+protocol=news
+input=none
+output=filesystem
+listing=Name,Type,Size
+reading=true
+writing=false
+deleting=true
+source=true
+makedir=false
+linking=false
+moving=false
