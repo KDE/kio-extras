@@ -70,7 +70,7 @@ void sigchld_handler( int )
       // Reinstall signal handler, since Linux resets to default after
       // the signal occured ( BSD handles it different, but it should do
       // no harm ).
-      signal( SIGCHLD, sig_handler );
+      signal( SIGCHLD, sigchld_handler );
       return;
     }
   }
