@@ -1,6 +1,5 @@
-# KDE Config File
 [Protocol]
-lib=kio_gzip.la
+exec=kio_gzip
 protocol=gzip
 mimetype=application/gzip
 input=stream

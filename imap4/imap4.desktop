@@ -1,4 +1,3 @@
-# KDE Config File
 [Protocol]
 # The executable, of course
 exec=kio_imap4

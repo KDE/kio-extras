@@ -1,6 +1,5 @@
-# KDE Config File
 [Protocol]
-lib=kio_tar.la
+exec=kio_tar
 protocol=tar
 mimetype=application/x-tar
 input=stream

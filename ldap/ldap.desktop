@@ -1,4 +1,3 @@
-# KDE Config File
 [Protocol]
 exec=kio_ldap
 protocol=ldap
