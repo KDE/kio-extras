@@ -1,0 +1,37 @@
+Freqeuently Asked Questions, last updated for kio_fish 1.1
+
+Q: Typing fish:/some.host.com does not work
+A: It is fish://some.host.com (double slash)
+
+Q: How can I use a different port?
+A: Use regular URL syntax: fish://some.host.com:2222
+
+Q: Something isn't working. I get strange/no displays
+A: Could be a bug, could be a problem with the remote
+   tools. Try having perl somewhere in the PATH on the
+   remote machine, that should work reliably. Shell-
+   only mode is prone to different tool's opinion about
+   parameters and what they mean. Shell-only mode is
+   thouroughly tested only on GNU tools, and has
+   superficial testing on BSD and Digital Unix. Solaris
+   seems to have problems. Any reports for shell mode on
+   non-GNU machines welcome (BTW, if you see a file
+   .fishsrv.pl in your remote home directory, fish did
+   use perl mode)
+   
+Q: The connection stays open. How do I disconnect?
+A: Just wait. The system default idle timeout is used.
+   (about a minute or so)
+   
+Q: Why are there no icons?
+A: With this release, you should have icons almost always,
+   but best results are obtained if you install a recent
+   version of the 'file' utility that supports the '-i'
+   option.
+
+Q: How do I specify which program to use for SSH?
+A: Not at all, sorry. After evaluating other programs (rsh,
+   rlogin, telnet) I came to the conclusion it was way too
+   complex to support these, as only ssh supports both,
+   password authentication and automatic execution.
+

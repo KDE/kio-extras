@@ -1,0 +1,14 @@
+[Protocol]
+exec=kio_fish
+protocol=fish
+input=none
+output=filesystem
+listing=Name,Type,Size,Date,Access,Owner,Group,Link,
+reading=true
+writing=true
+makedir=true
+deleting=true
+linking=true
+moving=true
+Icon=remote
+Description=A kioslave for the FISH protocol

@@ -1,0 +1,27 @@
+1.1.1
+	fixed shell mode symlink display
+
+	made perl server compatible with 5.005
+
+1.1
+	added a perl server implementation which is transferred
+	and started automatically if perl is present
+
+	added KDE3 support
+
+	added support for commercial SSH
+
+	modifed shell commands to use file(1)'s -i option (version
+	3.37 and up) instead of local hack
+
+	fixed an annoying bug with copying/moving dir trees
+
+	fixed bug which made creating new files fail sometimes
+
+	added support for changing the user name in the pass dialog
+
+1.0.1
+	added #include <sys/resource.h> (needed on some platforms)
+
+1.0
+	initial release
