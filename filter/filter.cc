@@ -37,7 +37,7 @@ extern "C" { int kdemain(int argc, char **argv); }
 
 int kdemain( int argc, char ** argv)
 {
-  KInstance instance( "kio_gzip" );
+  KInstance instance( "kio_filter" );
 
   kdDebug(7110) << "Starting " << getpid() << endl;
 
