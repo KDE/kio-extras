@@ -969,23 +969,31 @@ IMAP4Protocol::special (const QByteArray & data)
     copy(_url, KURL(data.data() + data.find('\0') + 1), 0, FALSE);
     return;
   }
-  QString aBox, aSequence, aLType, aSection, aValidity, aDelimiter;
-  parseURL (_url, aBox, aSection, aLType, aSequence, aValidity, aDelimiter);
-  if (assureBox (aBox, false))
+  if (data.at(0) == 'N')
   {
-    imapCommand *cmd = doCommand (imapCommand::
-      clientStore (aSequence, "-FLAGS",
-      "\\SEEN \\ANSWERED \\FLAGGED \\DRAFT \\DELETED"));
-    if (cmd->result () != "OK")
-      error (ERR_NO_CONTENT, hidePass(_url));
-    completeQueue.removeRef (cmd);
-    cmd = doCommand (imapCommand::
-      clientStore (aSequence, "+FLAGS", data.data() + data.find('\0') + 1));
-    if (cmd->result () != "OK")
-      error (ERR_NO_CONTENT, hidePass(_url));
+    imapCommand *cmd = doCommand(imapCommand::clientNoop());
     completeQueue.removeRef (cmd);
   }
-  else error (ERR_CANNOT_OPEN_FOR_WRITING, hidePass(_url));
+  else
+  {
+    QString aBox, aSequence, aLType, aSection, aValidity, aDelimiter;
+    parseURL (_url, aBox, aSection, aLType, aSequence, aValidity, aDelimiter);
+    if (assureBox (aBox, false))
+    {
+      imapCommand *cmd = doCommand (imapCommand::
+        clientStore (aSequence, "-FLAGS",
+        "\\SEEN \\ANSWERED \\FLAGGED \\DRAFT \\DELETED"));
+      if (cmd->result () != "OK")
+        error (ERR_NO_CONTENT, hidePass(_url));
+      completeQueue.removeRef (cmd);
+      cmd = doCommand (imapCommand::
+        clientStore (aSequence, "+FLAGS", data.data() + data.find('\0') + 1));
+      if (cmd->result () != "OK")
+        error (ERR_NO_CONTENT, hidePass(_url));
+      completeQueue.removeRef (cmd);
+    }
+    else error (ERR_CANNOT_OPEN_FOR_WRITING, hidePass(_url));
+  }
   finished();
 }
 
@@ -1161,6 +1169,7 @@ void IMAP4Protocol::closeConnection()
   }
   CloseDescriptor();
   setState(ISTATE_NO);
+  currentBox = QString::null;
 }
 
 bool IMAP4Protocol::makeLogin ()
