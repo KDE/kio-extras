@@ -94,6 +94,7 @@ public:
   FILE *fp;
   unsigned short int m_iPort;
   QString m_sServer, m_sPass, m_sUser;
+  bool m_try_apop;
 #ifdef SPOP3
   SSL_CTX *ctx;
   SSL *ssl;

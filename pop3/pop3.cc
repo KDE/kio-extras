@@ -113,6 +113,7 @@ POP3Protocol::POP3Protocol(const QCString &pool, const QCString &app)
   m_iSock = m_iOldPort = 0;
   m_tTimeout.tv_sec=10;
   m_tTimeout.tv_usec=0;
+  m_try_apop = true;
   fp = 0;
 
 #ifdef SPOP3
@@ -430,7 +431,7 @@ bool POP3Protocol::pop3_open()
 
     memset(buf, 0, sizeof(buf));
 #ifdef APOP
-    if(apop) {
+    if(apop && m_try_apop) {
       char *c = greeting.data() + apop_pos;
       unsigned char digest[16];
       char ascii_digest[33];
@@ -461,6 +462,9 @@ bool POP3Protocol::pop3_open()
 	return true;
 
       fprintf(stderr, "Couldn't login via APOP. Falling back to USER/PASS\n");
+      pop3_close();
+      m_try_apop = false;
+      return pop3_open();
     }
 #endif
 
