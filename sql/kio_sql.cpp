@@ -139,24 +139,34 @@ KDBProtocol::get( const KURL& url )
     KURL checkUrl(QString("sql://%1:%2").arg(host).arg(port));
 
     KDB::Database *base = 0;
-    if (!checkCachedAuthentication( checkUrl, user, pwd, plugin, extra) ) { // check failed, ask for user/pwd
-        
+
+    KIO::AuthInfo info;
+    info.url = checkUrl;
+    info.username = user;
+    info.password = pwd;
+    info.realmValue = checkUrl.url() + "/" + plugin + "/" + user;
+    info.verifyPath = false;
+    
+    if (!checkCachedAuthentication( info ) ) { // check failed, ask for user/pwd
+
+        info.prompt = i18n("Please enter username and password for %1").arg(host);
         // try until you get a valid password or a cancel
         while (true) {
-            if (!openPassDlg(i18n("Please enter username and password for %1").arg(host), user, pwd, false) ) {
+            
+            if ( !openPassDlg(info) ) {
                 error(ERR_ACCESS_DENIED,path);
                 return;
             }
             
-            base = DBENGINE->openDatabase( plugin, host, port, user, pwd, database);
+            base = DBENGINE->openDatabase( plugin, host, port, info.username, info.password, database);
             if (base) {
                 // ok, got the rigth user/pwd, store them
-                cacheAuthentication(checkUrl, user, pwd, plugin);
+                cacheAuthentication(info);
                 break;
             }
         }
     } else {
-        base = DBENGINE->openDatabase( plugin, host, port, user, pwd, database);
+        base = DBENGINE->openDatabase( plugin, host, port, info.username, info.password, database);
         if (!base) {
             error(ERR_ACCESS_DENIED,path);
             return;
@@ -320,30 +330,39 @@ KDBProtocol::listDir( const KURL& url )
 
             infoMessage(i18n("Connecting to %1").arg(checkUrl.prettyURL()));
 
-            if (!checkCachedAuthentication( checkUrl, user, pwd, plugin, extra ) ) { // check failed, ask for user/pwd
-                
+            KIO::AuthInfo info;
+            info.url = checkUrl;
+            info.username = user;
+            info.password = pwd;
+            info.realmValue = checkUrl.url() + "/" + plugin + "/" + user;
+            info.verifyPath = false;
+    
+            if (!checkCachedAuthentication( info ) ) { // check failed, ask for user/pwd
+
+                info.prompt = i18n("Please enter username and password for %1").arg(host);
                 // try until you get a valid password or a cancel
                 while (true) {
-                    if (!openPassDlg(i18n("Please enter username and password for %1").arg(host), user, pwd, false) ) {
+                    
+                    if ( !openPassDlg(info) ) {
                         error(ERR_ACCESS_DENIED,path);
                         return;
                     }
-                    conn = DBENGINE->openConnection( plugin, host, port, user, pwd);
+                    
+                    conn = DBENGINE->openConnection( plugin, host, port, info.username, info.password);
                     if (conn) {
-                        kdDebug(7111) << "connection opened: " << conn->prettyPrint() << endl;
-                        cacheAuthentication(checkUrl, user, pwd, plugin);
-                        infoMessage(i18n("Connection OK"));
+                        // ok, got the rigth user/pwd, store them
+                        cacheAuthentication(info);
                         break;
                     }
                 }
             } else {
-                conn = DBENGINE->openConnection( plugin, host, port, user, pwd);
+                conn = DBENGINE->openConnection( plugin, host, port, info.username, info.password);
                 if (!conn) {
                     error(ERR_ACCESS_DENIED,path);
                     return;
                 }
             }
-            
+
             KDB::DatabaseIterator it = conn->begin();
             UDSEntry entry;
             while (it.current()) {
@@ -354,7 +373,6 @@ KDBProtocol::listDir( const KURL& url )
             listEntry(entry, true);
             conn->close();
             
-            
             break;
         }
     case DATABASE: //list all queries and tables
@@ -364,34 +382,39 @@ KDBProtocol::listDir( const KURL& url )
             
             kdDebug(7111) << "check auth cache for URL: " << checkUrl.prettyURL() << endl;
 
-            if (!checkCachedAuthentication( checkUrl, user, pwd, plugin, extra ) ) { // check failed, ask for user/pwd
-                kdDebug(7111) << "Autentication not found in cache: asking user." << endl;
-        
+            KIO::AuthInfo info;
+            info.url = checkUrl;
+            info.username = user;
+            info.password = pwd;
+            info.realmValue = checkUrl.url() + "/" + plugin + "/" + user;
+            info.verifyPath = false;
+            
+            if (!checkCachedAuthentication( info ) ) { // check failed, ask for user/pwd
+                
+                info.prompt = i18n("Please enter username and password for %1").arg(host);
                 // try until you get a valid password or a cancel
                 while (true) {
-                    kdDebug(7111) << "Autentication invalid: try again." << endl;
-
-                    if (!openPassDlg(i18n("Please enter username and password for %1").arg(host), user, pwd, false) ) {
+                    
+                    if ( !openPassDlg(info) ) {
                         error(ERR_ACCESS_DENIED,path);
                         return;
                     }
-            
-                    base = DBENGINE->openDatabase( plugin, host, port, user, pwd, database);
+                    
+                    base = DBENGINE->openDatabase( plugin, host, port, info.username, info.password, database);
                     if (base) {
                         // ok, got the rigth user/pwd, store them
-                        cacheAuthentication(checkUrl, user, pwd, plugin);
+                        cacheAuthentication(info);
                         break;
                     }
                 }
             } else {
-                kdDebug(7111) << "Autentication found in cache: " << user << "-" << pwd << endl;
-
-                base = DBENGINE->openDatabase( plugin, host, port, user, pwd, database);
+                base = DBENGINE->openDatabase( plugin, host, port, info.username, info.password, database);
                 if (!base) {
                     error(ERR_ACCESS_DENIED,path);
                     return;
                 }
             }
+            
             QStringList tabs = base->tableNames();
             UDSEntry entry;
             kdDebug(7111) << "Listing tables:" << endl;
