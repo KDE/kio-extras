@@ -75,17 +75,17 @@ void CgiProtocol::get( const KURL& url )
   if ( pos >= 0 ) file = path.mid( pos + 1 );
   else file = path;
 
-  QCString cmd;
+  QString cmd;
 
   bool stripHeader = false;
   bool forwardFile = true;
 
   QStringList::ConstIterator it;
   for( it = mCgiPaths.begin(); it != mCgiPaths.end(); ++it ) {
-    cmd = QFile::encodeName(*it);
+    cmd = *it;
     if ( !(*it).endsWith("/") )
         cmd += "/";
-    cmd += QFile::encodeName( file );
+    cmd += file;
     if ( KStandardDirs::exists( cmd ) ) {
       forwardFile = false;
       stripHeader = true;
@@ -110,7 +110,7 @@ void CgiProtocol::get( const KURL& url )
   } else {
     kdDebug(7124) << "Cmd: " << cmd << endl;
 
-    fd = popen( cmd.data(), "r" );
+    fd = popen( QFile::encodeName(KProcess::quote( cmd )).data(), "r" );
 
     if ( !fd ) {
       kdDebug(7124) << "Error running '" << cmd << "'" << endl;
