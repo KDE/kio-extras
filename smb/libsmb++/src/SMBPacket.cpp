@@ -488,7 +488,7 @@ SMBclosePacket::SMBclosePacket(uint16 fid)
 	modified=1;
 }
 
-SMBunlinkPacket::SMBunlinkPacket(uint16 TID=0, const char *filename="", uint8 dial=0) : SMBPacket(dial)
+SMBunlinkPacket::SMBunlinkPacket(uint16 TID, const char *filename, uint8 dial) : SMBPacket(dial)
 {
 	smb_com=SMBunlink;
 	smb_tid=TID;
@@ -516,7 +516,7 @@ SMBunlinkPacket::SMBunlinkPacket(uint16 TID=0, const char *filename="", uint8 di
 }
 
 
-SMBmkdirPacket::SMBmkdirPacket(uint16 TID=0, const char *pathname="", uint8 dial=0) : SMBPacket(dial)
+SMBmkdirPacket::SMBmkdirPacket(uint16 TID, const char *pathname, uint8 dial) : SMBPacket(dial)
 {
 	smb_com=SMBmkdir;
 	smb_tid=TID;
@@ -542,7 +542,7 @@ SMBmkdirPacket::SMBmkdirPacket(uint16 TID=0, const char *pathname="", uint8 dial
 }
 
 
-SMBrmdirPacket::SMBrmdirPacket(uint16 TID=0, const char *pathname="", uint8 dial=0) : SMBmkdirPacket(TID, pathname, dial)
+SMBrmdirPacket::SMBrmdirPacket(uint16 TID, const char *pathname, uint8 dial) : SMBmkdirPacket(TID, pathname, dial)
 {
 	smb_com=SMBrmdir;
 	modified=1;

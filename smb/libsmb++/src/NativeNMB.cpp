@@ -32,7 +32,7 @@
 #include "NMBIO.h"
 #include "strtool.h"
 
-hostent *NativeNMB::gethostbyname(const char *name, bool groupquery=false)
+hostent *NativeNMB::gethostbyname(const char *name, bool groupquery)
 {
 	NBHostEnt *foo = nmbio->gethostbyname(name, groupquery);
 	if (!foo) return 0;

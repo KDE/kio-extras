@@ -27,7 +27,7 @@ int Resolve::instances = 0;
 Resolve::Cache *Resolve::Cache::cache = 0;
 
 Resolve::Cache::Cache(const char* newname, struct in_addr* newip,
-			bool newisGroup=false, int newtimeout=300)
+			bool newisGroup, int newtimeout)
 {
 	name=0; newstrcpy(name, newname);
 	ip = *newip;
@@ -58,7 +58,7 @@ Resolve::Cache *Resolve::Cache::next()
 	return afterMe;
 }
 
-void Resolve::Cache::resetTimeout(int newtimeout=300)
+void Resolve::Cache::resetTimeout(int newtimeout)
 {
 	if (newtimeout) timeout = time(0) + newtimeout;
 	else timeout = 0;
@@ -147,7 +147,7 @@ bool Resolve::isWorkgroup(const char* name)
 }
 
 // Redefine parent virtual to use the cache
-hostent *Resolve::gethostbyname(const char *name, bool groupquery=false)
+hostent *Resolve::gethostbyname(const char *name, bool groupquery)
 {
 	// look in the cache first
 	Cache *c = Cache::find(name);

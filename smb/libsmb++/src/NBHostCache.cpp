@@ -30,7 +30,7 @@
 #include <stdio.h>
 #endif
 
-NBHostEnt::NBHostEnt(const char *nbn=0, const char *n=0, uint32 i=0, NBHostEnt *ne=0, bool groupFlag=0)
+NBHostEnt::NBHostEnt(const char *nbn, const char *n, uint32 i, NBHostEnt *ne, bool groupFlag)
 {
 	if (nbn) {
 		NBName=new char[strlen(nbn)+1];
@@ -147,7 +147,7 @@ void NBHostCache::remove(const char *n)
 
 }
 
-NBHostEnt *NBHostCache::find(const char *n, bool groupFlag=false)
+NBHostEnt *NBHostCache::find(const char *n, bool groupFlag)
 {
 #if DEBUG >=6
 printf("NBHostCache::find: name=%s, groupflag=%d\n",n,groupFlag);
@@ -176,7 +176,7 @@ printf("found %s and %d\n",cur->host->name,cur->host->isGroup);
 }
     
     
-NBHostEnt *NBHostCache::find(uint32 ip, bool groupFlag=false)
+NBHostEnt *NBHostCache::find(uint32 ip, bool groupFlag)
 {
   purgeOldEntries();
   if(base!=0) {

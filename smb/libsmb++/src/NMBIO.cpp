@@ -227,7 +227,7 @@ char *NMBIO::decodeNBName(const char* NBName, bool groupFlag)
 	return ret;
 }
 
-struct NBHostEnt *NMBIO::gethostbyname(const char *name, bool groupFlag=false)
+struct NBHostEnt *NMBIO::gethostbyname(const char *name, bool groupFlag)
 {
 //	struct in_addr ip;
 //	struct sockaddr_in connectParam; // parameters of the connection
@@ -511,14 +511,14 @@ cout<<"Name found : "<<ret->name<<"\n";
 	return ret;
 }
 
-void NMBIO::addNameIpToCache(const char *hostname, uint32 ip, uint32 timeout, bool groupFlag=false)
+void NMBIO::addNameIpToCache(const char *hostname, uint32 ip, uint32 timeout, bool groupFlag)
 {
   NameQueryPacket *nameQP = new NameQueryPacket(hostname, 0, 0, groupFlag);
   cache->add(nameQP->getQueryNBName(), hostname, ip, 0, groupFlag, timeout);
 }  
 
 
-struct NBHostEnt *NMBIO::askNBNS(const char *name, bool groupFlag=false)
+struct NBHostEnt *NMBIO::askNBNS(const char *name, bool groupFlag)
 {
 	if (!NBNS) return 0;
 	

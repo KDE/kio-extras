@@ -48,9 +48,11 @@ static int mystrcasecmp(const char *c1, const char *c2)
 #ifndef strcasecmp
 	int l1=strlen(c1), l2=strlen(c2);
 	int i=0;
+	char a1, a2;
 	while ((i<l1) && (i<l2))
 	{
-		char a1=toupper(c1[i]), a2=toupper(c2[i]);
+		a1=toupper(c1[i]);
+		a2=toupper(c2[i]);
 		if (a1<a2) return -1;
 		if (a1>a2) return 1;
 		i++;
