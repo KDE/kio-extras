@@ -3,7 +3,7 @@
 ## and there is no way another program can include a bad smb.h by error
 
 lib_LTLIBRARIES = libsmb.la
-libsmb_la_LDFLAGS = -version-info 1:0:0
+libsmb_la_LDFLAGS = -version-info 1:0:0 -no-undefined
 
 libsmb_la_SOURCES = \
 	DES.c++ \
