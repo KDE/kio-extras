@@ -1,0 +1,12 @@
+1. Implement LF->CRLF and dotstuffing in the slave. It's a kind of
+   transfer encoding and the app using the slave should not be
+   bothered to handle it.
+2. Implement the CHUNKING extension (rfc 3030; as soon as I find an
+   SMTP server that supports it) (should have (1))
+3. Better error message (translated standard meanings of the known
+   response codes, ENHANCEDSTATUSCODES extension (rfc2034))
+4. (KIO) MultiPutJob to support pipelining across messages
+5. Ged rid of slave's header generation after checking who on earth
+   uses that...
+
+and further refactoring to make the code pleasant to look at ;-)
