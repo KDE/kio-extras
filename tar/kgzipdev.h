@@ -19,6 +19,7 @@
 #define __kgzipdev_h
 
 #include <qiodevice.h>
+class KFilterBase;
 
 /**
  * A class for reading and writing gzipped data onto a device
@@ -60,6 +61,7 @@ public:
     virtual int putch( int );
     virtual int ungetch( int );
 private:
+    KFilterBase *filter;
     class KGzipDevPrivate;
     KGzipDevPrivate * d;
 };

@@ -17,121 +17,26 @@
 */
 
 #include "kgzipdev.h"
+#include "kgzipfilter.h"
 #include <kdebug.h>
-#include <zlib.h>
 #include <stdio.h> // for EOF
 #include <assert.h>
-
-/* gzip flag byte */
-#define ASCII_FLAG   0x01 /* bit 0 set: file probably ascii text */
-#define HEAD_CRC     0x02 /* bit 1 set: header CRC present */
-#define EXTRA_FIELD  0x04 /* bit 2 set: extra field present */
-#define ORIG_NAME    0x08 /* bit 3 set: original file name present */
-#define COMMENT      0x10 /* bit 4 set: file comment present */
-#define RESERVED     0xE0 /* bits 5..7: reserved */
 
 class KGzipDev::KGzipDevPrivate
 {
 public:
-    KGzipDevPrivate( QIODevice * _dev )
-        : dev(_dev)
-    {
-        zStream.zalloc = (alloc_func)0;
-        zStream.zfree = (free_func)0;
-        zStream.opaque = (voidpf)0;
-    }
-
-    // warning this may be read-only specific
-    void init()
-    {
-        zStream.next_in = Z_NULL;
-        zStream.avail_in = 0;
-        ungetchBuffer.resize(0);
-        /*outputBuffer.resize( 8*1024 );// Start with a modest buffer
-          zStream.avail_out = outputBuffer.size();
-          zStream.next_out = (Bytef *) outputBuffer.data();*/
-
-        int result = inflateInit2(&zStream, -MAX_WBITS);
-        kdDebug() << "inflateInit returned " << result << endl;
-        // Not idea what to do with result :)
-
-        bNeedHeader = true;
-        bCompressed = true;
-    }
-
-    void terminate()
-    {
-        // readonly specific !
-        int result = inflateEnd(&zStream);
-        kdDebug() << "inflateEnd returned " << result << endl;
-    }
-
-    // hide away the dirty stuff :)
-    bool readHeader()
-    {
-        // Assume the first block of data contains the whole header.
-        // The right way is to build this as a big state machine which
-        // is a pain in the ass.
-        Bytef *p = zStream.next_in;
-        int i = zStream.avail_in;
-        if ((i -= 10)  < 0) return false; // Need at least 10 bytes
-        if (*p++ != 0x1f) return false; // GZip magic
-        if (*p++ != 0x8b) return false;
-        int method = *p++;
-        int flags = *p++;
-        if ((method != Z_DEFLATED) || (flags & RESERVED) != 0) return false;
-        p += 6;
-        if ((flags & EXTRA_FIELD) != 0) // skip extra field
-        {
-            if ((i -= 2) < 0) return false; // Need at least 2 bytes
-            int len = *p++;
-            len += (*p++) << 8;
-            if ((i -= len) < 0) return false; // Need at least len bytes
-            p += len;
-        }
-        if ((flags & ORIG_NAME) != 0) // skip original file name
-        {
-            while( (i > 0) && (*p))
-            {
-                i--; p++;
-            }
-            if (--i <= 0) return false;
-            p++;
-        }
-        if ((flags & COMMENT) != 0) // skip comment
-        {
-            while( (i > 0) && (*p))
-            {
-                i--; p++;
-            }
-            if (--i <= 0) return false;
-            p++;
-        }
-        if ((flags & HEAD_CRC) != 0) // skipthe header crc
-        {
-            if ((i-=2) < 0) return false;
-            p += 2;
-        }
-
-        zStream.avail_in = i;
-        zStream.next_in = p;
-        return true;
-    }
-
-    // The reason for this stuff here is to avoid including zlib.h in kgzipdev.h
-    z_stream zStream;
-    QIODevice * dev;
     bool bNeedHeader;
-    bool bCompressed;
     QByteArray inputBuffer;
     QCString ungetchBuffer;
+
     //QByteArray outputBuffer;
 };
 
 KGzipDev::KGzipDev( QIODevice * dev )
 {
     assert(dev);
-    d = new KGzipDevPrivate(dev);
+    d = new KGzipDevPrivate;
+    filter = new KGzipFilter(dev);
     // Some setFlags calls are probably missing here,
     // for proper results of the state methods,
     // but the Qt doc says "internal" (??).
@@ -139,6 +44,7 @@ KGzipDev::KGzipDev( QIODevice * dev )
 
 KGzipDev::~KGzipDev()
 {
+    delete filter;
     delete d;
 }
 
@@ -146,8 +52,10 @@ bool KGzipDev::open( int mode )
 {
     kdDebug() << "KGzipDev::open " << mode << endl;
     ASSERT( mode == IO_ReadOnly ); // for now
-    d->init();
-    bool ret = d->dev->open( mode );
+    filter->init();
+    bool ret = filter->device()->open( mode );
+    d->ungetchBuffer.resize(0);
+    d->bNeedHeader = true;
     if ( !ret )
         kdWarning() << "Couldn't open underlying device" << endl;
     ioIndex = 0;
@@ -158,14 +66,14 @@ void KGzipDev::close()
 {
     kdDebug() << "KGzipDev::close" << endl;
 
-    d->dev->close();
-    d->terminate();
+    filter->device()->close();
+    filter->terminate();
 }
 
 void KGzipDev::flush()
 {
     kdDebug() << "KGzipDev::flush" << endl;
-    d->dev->flush();
+    filter->device()->flush();
 }
 
 uint KGzipDev::size() const
@@ -196,8 +104,11 @@ bool KGzipDev::at( int pos )
     {
         ioIndex = 0;
         // We can forget about the cached data
-        d->init();
-        return d->dev->reset();
+        d->ungetchBuffer.resize(0);
+        d->bNeedHeader = true;
+        filter->setInBuffer(0L,0);
+        filter->reset();
+        return filter->device()->reset();
     }
 
     if ( ioIndex < pos ) // we can start from here
@@ -220,84 +131,60 @@ bool KGzipDev::at( int pos )
 
 bool KGzipDev::atEnd() const
 {
-    return d->dev->atEnd();
+    return filter->device()->atEnd();
 }
 
 int KGzipDev::readBlock( char *data, uint maxlen )
 {
-    d->zStream.avail_out = maxlen;
-    d->zStream.next_out = (Bytef *) data;
+    filter->setOutBuffer( data, maxlen );
 
     uint dataReceived = 0;
     uint availOut = maxlen;
-    int result;
+    KFilterBase::Result result;
     while ( dataReceived < maxlen )
     {
-        if (d->zStream.avail_in == 0)
+        if (filter->inBufferEmpty())
         {
             // Not sure about the best size to set there.
             // For sure, it should be bigger than the header size (see comment in readHeader)
             d->inputBuffer.resize( 8*1024 );
             // Request data from underlying device
-            d->zStream.avail_in = d->dev->readBlock( d->inputBuffer.data(),
-                                                     d->inputBuffer.size() );
-            d->zStream.next_in = (Bytef*) d->inputBuffer.data();
-            kdDebug() << "KGzipDev::readBlock got " << d->zStream.avail_in << " bytes from d->dev" << endl;
+            int size = filter->device()->readBlock( d->inputBuffer.data(),
+                                                    d->inputBuffer.size() );
+            filter->setInBuffer( d->inputBuffer.data(), size );
+            kdDebug() << "KGzipDev::readBlock got " << size << " bytes from device" << endl;
         }
         if (d->bNeedHeader)
         {
-            if ( ! d->readHeader() )
-            {
-                kdWarning() << "KGzipDev: Error reading header, assuming non-compressed stream" << endl;
-                d->bCompressed = false;
-            }
+            (void) filter->readHeader();
             d->bNeedHeader = false;
         }
 
-        if ( d->bCompressed )
+        result = filter->uncompress();
+
+        if (result == KFilterBase::ERROR)
         {
-            result = inflate(&d->zStream, Z_SYNC_FLUSH);
-            kdDebug() << "inflate returned " << result << endl;
-        } else
-        {
-            // I'm not sure we really need support for that (uncompressed streams),
-            // but why not, it can't hurt to have it. One case I can think of is someone
-            // naming a tar file "blah.tar.gz" :-)
-            if ( d->zStream.avail_in )
-            {
-                int n = (d->zStream.avail_in < d->zStream.avail_out) ? d->zStream.avail_in : d->zStream.avail_out;
-                memcpy( d->zStream.next_out, d->zStream.next_in, n );
-                d->zStream.avail_out -= n;
-                d->zStream.next_in += n;
-                d->zStream.avail_in -= n;
-                result = Z_OK;
-            } else
-                result = Z_STREAM_END;
+            kdDebug() << "KGzipDev: Error when uncompressing data" << endl;
+            // What to do ?
+            break;
         }
 
         // No more space in output buffer, or finished ?
-        if ((d->zStream.avail_out == 0) || (result == Z_STREAM_END))
+        if ((filter->outBufferFull()) || (result == KFilterBase::END))
         {
             // We got that much data since the last time we went here
-            uint outReceived = availOut - d->zStream.avail_out;
+            uint outReceived = availOut - filter->outBufferAvailable();
 
-            kdDebug() << "avail_out = " << d->zStream.avail_out << " result=" << result << " outReceived=" << outReceived << endl;
+            //kdDebug() << "avail_out = " << filter->outBufferAvailable() << " result=" << result << " outReceived=" << outReceived << endl;
 
             // Move on in the output buffer
             data += outReceived;
             dataReceived += outReceived;
             ioIndex += outReceived;
-            if (result == Z_STREAM_END)
+            if (result == KFilterBase::END)
                 break; // Finished.
             availOut = maxlen - dataReceived;
-            d->zStream.avail_out = availOut;
-            d->zStream.next_out = (Bytef *) data;
-        }
-        if (result != Z_OK)
-        {
-            kdDebug() << "KGzipDev: result NOT OK" << endl;
-            // What to do ?
-            break;
+            filter->setOutBuffer( data, availOut );
         }
     }
 
