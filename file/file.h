@@ -4,7 +4,7 @@
 #include <kio_interface.h>
 #include <kio_base.h>
 
-#include <string>
+#include <string.h>
 #include <list>
 
 #include <stdio.h>
@@ -65,6 +65,14 @@ protected:
     ino_t m_ino;
   };
   
+  struct Del
+  {
+    string m_strAbsSource;
+    string m_strRelDest;
+    mode_t m_mode;
+    off_t m_size;
+  };
+
   void doCopy( list<string>& _source, const char *_dest, bool _rename, bool _move = false );
 
   long listRecursive( const char *_path, list<Copy>& _files,

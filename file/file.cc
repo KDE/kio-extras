@@ -17,12 +17,11 @@
 #include <dirent.h>
 #include <time.h>
 #include <unistd.h>
-#include <string.h>
 #include <pwd.h>
 #include <grp.h>
 #include <assert.h>
 
-#include <iostream>
+#include <iostream.h>
 
 #include <k2url.h>
 
@@ -37,7 +36,7 @@ int main( int argc, char **argv )
   signal(SIGCHLD,sig_handler);
   signal(SIGSEGV,sig_handler2);
 
-  ProtocolManager manager;
+//   ProtocolManager manager;
   
   debug( "kio_file : Starting");
 
@@ -725,7 +724,7 @@ void FileProtocol::doCopy( list<string>& _source, const char *_dest, bool _renam
       int n = fread( buffer, 1, 2048, f );
 
       // !!! slow down loop for local testing
-//       for ( int tmpi = 0; tmpi < 800000; tmpi++ ) ;
+//        for ( int tmpi = 0; tmpi < 800000; tmpi++ ) ;
 
       job.data( buffer, n );
       processed_size += n;
@@ -1061,56 +1060,15 @@ void FileProtocol::slotPut( const char *_url, int _mode, bool _overwrite, bool _
 
 void FileProtocol::slotDel( const char *_url )
 {
-  debug( "kio_file : Deleting file %s", _url );
-
-  K2URL usrc( _url );
-  if ( usrc.isMalformed() )
-    {
-      error( ERR_MALFORMED_URL, _url );
-      m_cmd = CMD_NONE;
-      return;
-    }
-
-  if ( !usrc.isLocalFile() )
-    {
-      error( ERR_INTERNAL, "kio_file got non local file in delete command" );
-      m_cmd = CMD_NONE;
-      return;
-    }
-
-  struct stat buff;
-  if ( stat( usrc.path(), &buff ) == -1 )
-    {
-      error( ERR_DOES_NOT_EXIST, _url );
-      m_cmd = CMD_NONE;
-      return;
-    }
-
-  m_cmd = CMD_DEL;
-
-  deletingFile( _url );
-
-  totalSize( buff.st_size );
-  totalFiles( 1 );
-  totalDirs( 0 );
-
-  if ( remove( usrc.path() ) )
-    {
-      error( ERR_CANNOT_DELETE, _url );
-      m_cmd = CMD_NONE;
-      return;
-    }
-
-  finished();
+  list<string> lst;
+  lst.push_back( _url );
   
-  m_cmd = CMD_NONE;
+  slotDel( lst );
 }
 
 
 void FileProtocol::slotDel( list<string>& _source )
 {
-  m_cmd = CMD_MDEL;
-
   // Check wether the URLs are wellformed
   list<string>::iterator soit = _source.begin();
   for( ; soit != _source.end(); ++soit )
@@ -1129,25 +1087,83 @@ void FileProtocol::slotDel( list<string>& _source )
       m_cmd = CMD_NONE;
       return;
     }
+  }
 
-    struct stat buff;
-    if ( stat( usrc.path(), &buff ) == -1 )
-      {
-	error( ERR_DOES_NOT_EXIST, usrc.path() );
-	m_cmd = CMD_NONE;
-	return;
-      }
+  debug( "kio_file : All URLs ok" );
 
-    debug( "kio_file : Deleting %s", usrc.path() );
+  // Get a list of all source files and directories
+  list<Copy> fs;
+  list<CopyDir> ds;
+  int size = 0;
+  debug( "kio_file : Iterating" );
 
-    deletingFile( usrc.path() );
+  soit = _source.begin();
+  debug( "kio_file : Looping" );
+  for( ; soit != _source.end(); ++soit )
+  {    
+    debug( "kio_file : Executing %s", soit->c_str() );
+    K2URL usrc( *soit );
+    debug( "kio_file : Parsed URL" );
+    // Did an error occur ?
+    int s;
+//     if ( ( s = listRecursive( usrc.path(), fs, ds, false ) ) == -1 )
+//       {
+// 	// Error message is already sent
+// 	m_cmd = CMD_NONE;
+// 	return;
+//       }
+    // Sum up the total amount of bytes we have to copy
+    size += s;
+  }
 
-    if ( remove( usrc.path() ) )
-      {
-	error( ERR_CANNOT_DELETE, usrc.path() );
-	m_cmd = CMD_NONE;
-	return;
-      }
+  debug( "kio_file : Recursive ok" );
+
+  if ( fs.size() == 1 )
+    m_cmd = CMD_DEL;
+  else
+    m_cmd = CMD_MDEL;
+
+  // Tell our client what we 'r' gonna do
+  totalSize( size );
+  totalFiles( fs.size() );
+  totalDirs( ds.size() );
+
+  /*****
+   * Delete files
+   *****/
+
+  list<Copy>::iterator fit = fs.begin();
+  for( ; fit != fs.end(); fit++ ) { 
+
+    string filename = fit->m_strAbsSource;
+    debug( "kio_file : Deleting file %s", filename.c_str() );
+
+    deletingFile( filename.c_str() );
+
+    if ( unlink( filename.c_str() ) == -1 ) {
+      error( ERR_CANNOT_DELETE, filename.c_str() );
+      m_cmd = CMD_NONE;
+      return;
+    }
+  }
+
+  /*****
+   * Delete empty directories
+   *****/
+
+  list<CopyDir>::iterator dit = ds.begin();
+  for( ; dit != ds.end(); dit++ ) { 
+
+    string dirname = dit->m_strAbsSource;
+    debug( "kio_file : Deleting directory %s", dirname.c_str() );
+
+    deletingFile( dirname.c_str() );
+
+    if ( rmdir( dirname.c_str() ) == -1 ) {
+      error( ERR_COULD_NOT_RMDIR, dirname.c_str() );
+      m_cmd = CMD_NONE;
+      return;
+    }
   }
 
   finished();
@@ -1513,7 +1529,6 @@ long FileProtocol::listRecursive2( const char *_abs_path, const char *_rel_path,
 {
   long size = 0;
   
-  cerr << "listRecursive2 " << _abs_path << "  " << _rel_path << endl;
   string p = _abs_path;
   p += _rel_path;
 
