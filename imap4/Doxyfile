@@ -50,7 +50,7 @@ WARN_LOGFILE           =
 # configuration options related to the input files
 #---------------------------------------------------------------------------
 INPUT                  = .
-FILE_PATTERNS          = *.h
+FILE_PATTERNS          = *.h *.cc
 RECURSIVE              = YES
 
 # If the value of the INPUT tag contains directories, you can use the 
