@@ -257,7 +257,10 @@ void SMBSlave::reportError(const SMBUrl &url)
         break;
     case EIO:
     case ENETUNREACH:
-        error( ERR_CONNECTION_BROKEN, url.prettyURL());
+        if ( url.getType() == SMBURLTYPE_ENTIRE_NETWORK || url.getType() == SMBURLTYPE_WORKGROUP_OR_SERVER )
+            error( ERR_SLAVE_DEFINED, i18n( "Error while connecting to server responsible for %1" ).arg( url.prettyURL() ) );
+        else
+            error( ERR_CONNECTION_BROKEN, url.prettyURL());
         break;
     case ENOMEM:
         error( ERR_OUT_OF_MEMORY, url.prettyURL() );
