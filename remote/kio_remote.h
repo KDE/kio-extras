@@ -31,9 +31,13 @@ public:
 	               const QCString &app);
 	virtual ~RemoteProtocol();
 
-	virtual bool rewriteURL(const KURL &url, KURL &newUrl);
-
 	virtual void listDir(const KURL &url);
+
+protected:
+	virtual bool rewriteURL(const KURL &url, KURL &newUrl);
+	virtual void prepareUDSEntry(KIO::UDSEntry &entry,
+	                             bool listing=false) const;
+
 
 private:
 	KURL m_baseURL;

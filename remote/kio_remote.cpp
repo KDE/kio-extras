@@ -27,6 +27,8 @@
 #include <kglobal.h>
 #include <kstandarddirs.h>
 #include <kservice.h>
+#include <kmimetype.h>
+#include <kdesktopfile.h>
 
 #include <qdir.h>
 
@@ -84,14 +86,6 @@ RemoteProtocol::~RemoteProtocol()
 {
 }
 
-bool RemoteProtocol::rewriteURL(const KURL &url, KURL &newUrl)
-{
-	newUrl = m_baseURL;
-	newUrl.addPath(url.path());
-
-	return true;
-}
-
 static void addAtom(KIO::UDSEntry& entry, unsigned int ID,
                     long l, const QString& s = QString::null)
 {
@@ -102,10 +96,8 @@ static void addAtom(KIO::UDSEntry& entry, unsigned int ID,
 	entry.append(atom);
 }
 
-static bool createWizardEntry(KIO::UDSEntry &entry)
+static KURL findWizardRealURL()
 {
-	entry.clear();
-
 	KURL url;
 	KService::Ptr service = KService::serviceByDesktopName(WIZARD_SERVICE);
 
@@ -115,7 +107,17 @@ static bool createWizardEntry(KIO::UDSEntry &entry)
 				    service->desktopEntryPath())
 				);
 	}
-	else
+
+	return url;
+}
+
+static bool createWizardEntry(KIO::UDSEntry &entry)
+{
+	entry.clear();
+
+	KURL url = findWizardRealURL();
+
+	if (!url.isValid())
 	{
 		return false;
 	}
@@ -130,6 +132,62 @@ static bool createWizardEntry(KIO::UDSEntry &entry)
 	return true;
 }
 
+
+bool RemoteProtocol::rewriteURL(const KURL &url, KURL &newUrl)
+{
+	newUrl = m_baseURL;
+	newUrl.addPath(url.path());
+
+	return true;
+}
+
+void RemoteProtocol::prepareUDSEntry(KIO::UDSEntry &entry, bool listing) const
+{
+	KIO::UDSEntry::iterator it = entry.begin();
+	KIO::UDSEntry::iterator end = entry.end();
+
+	QString name;
+
+	for(; it!=end; ++it)
+	{
+		if ( (*it).m_uds == KIO::UDS_NAME )
+		{
+			name = (*it).m_str;
+			break;
+		}
+	}
+
+	KURL remote = requestedURL();
+	KURL real = processedURL();
+
+	if (listing)
+	{
+		remote.addPath(name);
+		real.addPath(name);
+	}
+
+	QString mime = KMimeType::findByPath(real.path())->name();
+
+	if (mime == "application/x-desktop")
+	{
+		KDesktopFile desktop(real.path());
+
+		entry.clear();
+
+		addAtom(entry, KIO::UDS_NAME, 0, desktop.readName());
+		addAtom(entry, KIO::UDS_FILE_TYPE, S_IFDIR);
+		addAtom(entry, KIO::UDS_URL, 0, remote.url());
+		addAtom(entry, KIO::UDS_ACCESS, 0500);
+		addAtom(entry, KIO::UDS_MIME_TYPE, 0, "inode/directory");
+		addAtom(entry, KIO::UDS_ICON_NAME, 0, desktop.readIcon());
+
+		return;
+	}
+
+	ForwardingSlaveBase::prepareUDSEntry(entry, listing);
+}
+
+
 void RemoteProtocol::listDir(const KURL &url)
 {
 	kdDebug() << "RemoteProtocol::listDir: " << url << endl;
@@ -143,8 +201,23 @@ void RemoteProtocol::listDir(const KURL &url)
 			listEntry(entry, true);
 		}
 	}
+	else
+	{
+		KURL new_url;
+		rewriteURL(url, new_url);
+		QString mime = KMimeType::findByPath(new_url.path())->name();
+		if (mime =="application/x-desktop")
+		{
+			KDesktopFile desktop(new_url.path(), true);
+
+			redirection(desktop.readURL());
+			finished();
+			return;
+		}
+	}
 
 	ForwardingSlaveBase::listDir(url);
 }
+
 
 #include "kio_remote.moc"
