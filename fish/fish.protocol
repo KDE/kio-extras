@@ -29,4 +29,5 @@ Description[sv]=En I/O-slav för protokollet FISH
 Description[ta]=FISH நெறிமுறைக்கான ஒரு க்யோஸ்லேவ்
 Description[tr]=FISH protokolü için kioslave
 Description[uk]=Підлеглий B/В для протоколу FISH
+Description[xx]=xxA kioslave for the FISH protocolxx
 DocPath=kioslave/fish.html

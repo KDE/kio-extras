@@ -28,6 +28,7 @@ Description[sv]=En I/O-slav för SFTP
 Description[ta]=sftpக்கான ஒரு க்யோஸ்லேவ்
 Description[tr]=Sftp için kioslave
 Description[uk]=Підлеглий В/В для sftp
+Description[xx]=xxA kioslave for sftpxx
 Description[zh_CN]=sftp 的 kioslave
 DocPath=kioslave/sftp.html
 Icon=ftp

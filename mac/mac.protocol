@@ -24,5 +24,6 @@ Description[sv]=En I/O-slav för MacOS HFS+ partitioner
 Description[ta]=MacOS HFS+ partitionsக்கு ஒரு க்யோஸ்லேவ்
 Description[tr]=MacOS HFS+ bölümleri için kioslave
 Description[uk]=Підлеглий B/В для розділів MacOS HFS+
+Description[xx]=xxA kioslave for MacOS HFS+ partitionsxx
 Icon=mac
 DocPath=kioslave/mac.html
