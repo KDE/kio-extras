@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2000, 2001 Alex Zepeda <zipzippy@sonic.net>
- * Copyright (c) 2001 Michael Hï¿½kel <Michael@Haeckel.Net>
+ * Copyright (c) 2001 Michael Häckel <Michael@Haeckel.Net>
  * Copyright (c) 2002 Aaron J. Seigo <aseigo@olympusproject.org>
  * Copyright (c) 2003 Marc Mutz <mutz@kde.org>
  * All rights reserved.
@@ -551,7 +551,7 @@ bool SMTPProtocol::smtp_open(const QString& fakeHostname)
       KIO::AuthInfo authInfo;
       authInfo.username = m_sUser;
       authInfo.password = m_sPass;
-      authInfo.prompt = i18n("User name and password for your SMTP account:");
+      authInfo.prompt = i18n("Username and password for your SMTP account:");
       if (!openPassDlg(authInfo)) {
         error(KIO::ERR_COULD_NOT_LOGIN, i18n("When prompted, you ran away."));
         smtp_close();

@@ -130,7 +130,7 @@ void MacProtocol::listDir(const KURL& url) {
     QString filename = prepareHP(url);
 
     if (filename.isNull()) {
-        error(ERR_CANNOT_LAUNCH_PROCESS, i18n("No file name was found."));
+        error(ERR_CANNOT_LAUNCH_PROCESS, i18n("No filename was found"));
     } else {
         myKProcess = new KProcess();
         *myKProcess << "hpls" << "-la" << filename;
@@ -143,7 +143,7 @@ void MacProtocol::listDir(const KURL& url) {
 
         if ((!myKProcess->normalExit()) || (!myKProcess->exitStatus() == 0)) {
             error(ERR_CANNOT_LAUNCH_PROCESS,
-                  i18n("There was an error with hpls - please ensure it is installed."));
+                  i18n("There was an error with hpls - please ensure it is installed"));
         }
 
         //clean up
@@ -186,7 +186,7 @@ QValueList<KIO::UDSAtom> MacProtocol::doStat(const KURL& url) {
     QString filename = prepareHP(url);
 
     if (filename.isNull()) {
-        error(ERR_DOES_NOT_EXIST, i18n("No file name was found in the URL."));
+        error(ERR_DOES_NOT_EXIST, i18n("No filename was found in the URL"));
     } else if (! filename.isEmpty()) {
         myKProcess = new KShellProcess();
 
@@ -200,7 +200,7 @@ QValueList<KIO::UDSAtom> MacProtocol::doStat(const KURL& url) {
 
         if ((!myKProcess->normalExit()) || (!myKProcess->exitStatus() == 0)) {
             error(ERR_CANNOT_LAUNCH_PROCESS,
-                  i18n("hpls did not exit normally - please ensure you have installed the hfsplus tools."));
+                  i18n("hpls did not exit normally - please ensure you have installed the hfsplus tools"));
         }
 
         //clean up
@@ -323,7 +323,7 @@ QString MacProtocol::prepareHP(const KURL& url) {
 
         if ((!myKProcess->normalExit()) || (!myKProcess->exitStatus() == 0)) {
             error(ERR_CANNOT_LAUNCH_PROCESS,
-                  i18n("hpcd did not exit normally - please ensure it is installed."));
+                  i18n("hpcd did not exit normally - please ensure it is installed"));
             return NULL;
         }
 

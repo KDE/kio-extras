@@ -524,7 +524,7 @@ void kio_sftpProtocol::openConnection() {
     if( mHost.isEmpty() ) {
         kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::openConnection(): "
             "Need hostname" << endl;
-        error(ERR_UNKNOWN_HOST, i18n("No host name specified"));
+        error(ERR_UNKNOWN_HOST, i18n("No hostname specified"));
         return;
     }
 
@@ -642,12 +642,12 @@ void kio_sftpProtocol::openConnection() {
 
             if( err == KSshProcess::ERR_NEED_PASSPHRASE ) {
                 info.prompt =
-                    i18n("Please enter your user name and key passphrase.");
+                    i18n("Please enter your username and key passphrase.");
             }
             else {
                 info.prompt =
 
-                    i18n("Please enter your user name and password.");
+                    i18n("Please enter your username and password.");
             }
 
             info.caption = i18n("SFTP Login");
@@ -661,13 +661,13 @@ void kio_sftpProtocol::openConnection() {
                 dlgResult = openPassDlg(info);
             }
             else {
-                dlgResult = openPassDlg(info, i18n("Incorrect user name or password"));
+                dlgResult = openPassDlg(info, i18n("Incorrect username or password"));
             }
 
             if( dlgResult ) {
                if( info.username.isEmpty() || info.password.isEmpty() ) {
                     error(ERR_COULD_NOT_AUTHENTICATE,
-                      i18n("Please enter a user name and password"));
+                      i18n("Please enter a username and password"));
                     continue;
                 }
             }
