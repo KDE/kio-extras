@@ -384,6 +384,37 @@ public:
     void kill(int signal = SIGTERM);
 
     /**
+     * The pid of the ssh process started by this instance of KSshProcess.
+     * Only valid if KSshProcess::running() returns true;
+     * 
+     * @return The pid of the running ssh process.
+     */
+    int pid() { return ssh.pid(); }
+    
+    /**
+     * Whether a ssh connection has been  established with a
+     * remote host.  A establish connection means ssh has successfully
+     * authenticated with the remote host and user data can be transfered
+     * between the local and remote host.  This cannot return
+     * true unless the most recent call to KSshProccess::connect() returned true.
+     *
+     * @return True if a ssh connection has been established with a remote
+     *         host. False otherwise.
+     */
+    bool connected() { return mConnected; }
+
+    /**
+     * Whether a ssh process is currently running.  This  only indicates
+     * if a ssh process has been started and is still running.  It does not
+     * tell if authentication has been successful.  This may return true
+     * even if the most recent call to KSshProcess::connect() returned false.
+     *
+     * @return True if a ssh process started by this instance of KSshProcess
+     *         is running. False otherwise.
+     */
+    bool running() { return mRunning; }
+    
+    /**
      * Print the command line arguments ssh is run with using kdDebug.
      */
     void printArgs();
@@ -526,6 +557,12 @@ private:
     QString mKeyFingerprint;
 
     /**
+     * The location of the known host key file. We grab this from
+     * any error messages ssh prints out.
+     */
+    QString mKnownHostsFile;
+
+    /**
      * The state of our connect state machine.
      */
     int mConnectState;
@@ -567,13 +604,14 @@ private:
     static const char * const passphrasePrompt[];
     static const char * const authSuccessMsg[];
     static const char * const authFailedMsg[];
-    static const char * const hostKeyMissing[];
-    static const char * const hostKeyChanged[];
+    static const char * const hostKeyMissingMsg[];
+    static const char * const hostKeyChangedMsg[];
     static const char * const continuePrompt[];
     static const char * const hostKeyAcceptedMsg[];
-    static const char * const keyFingerprintMsg[];
     static const char * const tryAgainMsg[];
     static const char * const hostKeyVerifyFailedMsg[];
     static const char * const connectionClosedMsg[];
+    static QRegExp keyFingerprintMsg[];
+    static QRegExp knownHostsFileMsg[];
 };
 #endif
