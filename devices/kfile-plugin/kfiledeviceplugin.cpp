@@ -138,7 +138,8 @@ QString KFileDevicePlugin::askMountPoint(KFileMetaInfo &info)
 		QDataStream streamin(data,IO_ReadOnly);
 		streamin>>retVal;
 
-		return KURL(retVal[3]).path();
+		if ( retVal.count() > 3 )
+		    return KURL(retVal[3]).path();
 	}
 
 	return QString::null;
