@@ -761,7 +761,7 @@ void kio_sftpProtocol::put ( const KURL& url, int permissions, bool overwrite, b
     // Stat original (without part ext)  to see if it already exists
     if( (code = sftpStat(origUrl, origAttr)) == SSH2_FX_OK ) {
         kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::put(): file already exists" << endl;
-        origExists = true;
+        origExists = true;        
     }
     else if( code != SSH2_FX_NO_SUCH_FILE ) {
         processStatus(code, origUrl.prettyURL());
@@ -771,7 +771,7 @@ void kio_sftpProtocol::put ( const KURL& url, int permissions, bool overwrite, b
     // Stat file with part ext to see if it already exists.
     if( (code = sftpStat(partUrl, partAttr)) == SSH2_FX_OK ) {
         kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::put(): file.part already exists" << endl;
-        partExists = true;
+        partExists = true;        
     }
     else if( code != SSH2_FX_NO_SUCH_FILE ) {
         processStatus(code, partUrl.prettyURL());
@@ -875,7 +875,15 @@ void kio_sftpProtocol::put ( const KURL& url, int permissions, bool overwrite, b
         error(ERR_FILE_ALREADY_EXIST, writeUrl.prettyURL());
         return;
     }
-    else if( code != SSH2_FX_OK ) {
+    else if( code != SSH2_FX_OK ) {        
+        // Rename the file back to its original name if a
+        // put fails due to permissions problems...
+        if (markPartial && overwrite)
+        {
+          (void) sftpRename(partUrl, origUrl);
+          writeUrl = origUrl;
+        }
+        
         processStatus(code, writeUrl.prettyURL());
         return;
     }
