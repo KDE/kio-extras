@@ -467,6 +467,7 @@ bool SMTPProtocol::smtp_open()
 	gethostname(hostname, 100);
 	if (!command(ASCII("EHLO " + QCString(hostname, 100)), ehlobuf.buffer().data(), 5119)) {
 		if (!command(ASCII("HELO " + QCString(hostname, 100)))) { // Let's just check to see if it speaks plain ol' SMTP
+			error(ERR_COULD_NOT_LOGIN, i18n("The server said: %1").arg(lastError));
 			smtp_close();
 			return false;
 		}
