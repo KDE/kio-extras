@@ -23,12 +23,13 @@
 
 #include <qregexp.h>
 
-#include <iostream.h>
+// #include <iostream.h>
 #include <kglobal.h>
 #include <kinstance.h>
 #include <kiconloader.h>
 #include <kmimetype.h>
 #include <kmimemagic.h>
+#include <kdebug.h>
 
 mimeHeader::mimeHeader ():
 typeList (17, false), dispositionList (17, false)
@@ -444,7 +445,7 @@ mimeHeader::parsePart (mimeIO & useIO, QString boundary)
   QCString preNested, postNested;
   mbox = parseHeader (useIO);
 
-  qDebug ("mimeHeader::parsePart - parsing part '%s'", getType ().data ());
+  kdDebug(7116) << "mimeHeader::parsePart - parsing part '" << getType () << "'" << endl;
   if (!qstrnicmp (getType (), "Multipart", 9))
   {
     retVal = parseBody (useIO, preNested, getTypeParm ("boundary"));  //this is a message in mime format stuff
@@ -534,7 +535,7 @@ mimeHeader::parseHeader (mimeIO & useIO)
   mimeHdrLine my_line;
   QCString inputStr;
 
-  qDebug ("mimeHeader::parseHeader - starting parsing");
+  kdDebug(7116) << "mimeHeader::parseHeader - starting parsing" << endl;
   while (useIO.inputLine (inputStr))
   {
     int appended;
@@ -558,7 +559,7 @@ mimeHeader::parseHeader (mimeIO & useIO)
     inputStr = (const char *) NULL;
   }
 
-  qDebug ("mimeHeader::parseHeader - finished parsing");
+  kdDebug(7116) << "mimeHeader::parseHeader - finished parsing" << endl;
   return mbox;
 }
 
@@ -574,14 +575,14 @@ mimeHeader::bodyPart (const QString & _str)
     tempStr = _str.right (_str.length () - _str.find (".") - 1);
     if (nestedMessage)
     {
-      qDebug ("mimeHeader::bodyPart - recursing message");
+      kdDebug(7116) << "mimeHeader::bodyPart - recursing message" << endl;
       tempPart =
         nestedMessage->nestedParts.at (_str.left (_str.find (".")).
                                        toULong () - 1);
     }
     else
     {
-      qDebug ("mimeHeader::bodyPart - recursing mixed");
+      kdDebug(7116) << "mimeHeader::bodyPart - recursing mixed" << endl;
       tempPart = nestedParts.at (_str.left (_str.find (".")).toULong () - 1);
     }
     if (tempPart)
@@ -589,14 +590,14 @@ mimeHeader::bodyPart (const QString & _str)
     return tempPart;
   }
 
-  qDebug ("mimeHeader::bodyPart - returning part %s", _str.latin1 ());
+  kdDebug(7116) << "mimeHeader::bodyPart - returning part " << _str << endl;
   // or pick just the plain part
   if (nestedMessage)
   {
-    qDebug ("mimeHeader::bodyPart - message");
+    kdDebug(7116) << "mimeHeader::bodyPart - message" << endl;
     return nestedMessage->nestedParts.at (_str.toULong () - 1);
   }
-  qDebug ("mimeHeader::bodyPart - mixed");
+  kdDebug(7116) << "mimeHeader::bodyPart - mixed" << endl;
   return nestedParts.at (_str.toULong () - 1);
 }
 
@@ -605,7 +606,7 @@ mimeHeader::bodyPart (const QString & _str)
 QString
 mimeHeader::bodyDecoded ()
 {
-  qDebug ("mimeHeader::bodyDecoded");
+  kdDebug(7116) << "mimeHeader::bodyDecoded" << endl;
   QByteArray temp;
 
   temp = bodyDecodedBinary ();
@@ -623,7 +624,7 @@ mimeHeader::bodyDecodedBinary ()
   else if (contentEncoding.find ("base64", 0, false) == 0)
     retVal = rfcDecoder::decodeBase64 (retVal);
 
-  qDebug ("mimeHeader::bodyDecodedBinary - size is %d", retVal.size ());
+  kdDebug(7116) << "mimeHeader::bodyDecodedBinary - size is " << retVal.size () << endl;
   return retVal;
 }
 
@@ -638,18 +639,17 @@ mimeHeader::setBodyEncoded (const QByteArray & _arr)
 {
   QByteArray setVal;
 
-  qDebug ("mimeHeader::setBodyEncoded - in size %d", _arr.size ());
+  kdDebug(7116) << "mimeHeader::setBodyEncoded - in size " << _arr.size () << endl;
   if (contentEncoding.find ("quoted-printable", 0, false) == 0)
     setVal = rfcDecoder::encodeQuotedPrintable (_arr);
   else if (contentEncoding.find ("base64", 0, false) == 0)
     setVal = rfcDecoder::encodeBase64 (_arr);
   else
     setVal.duplicate (_arr);
-  qDebug ("mimeHeader::setBodyEncoded - out size %d", setVal.size ());
+  kdDebug(7116) << "mimeHeader::setBodyEncoded - out size " << setVal.size () << endl;
 
   postMultipartBody.duplicate (setVal);
-  qDebug ("mimeHeader::setBodyEncoded - out size %d",
-          postMultipartBody.size ());
+  kdDebug(7116) << "mimeHeader::setBodyEncoded - out size " << postMultipartBody.size () << endl;
 }
 
 QString

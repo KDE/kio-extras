@@ -43,6 +43,8 @@
 #include "imapinfo.h"
 #include "imapparser.h"
 
+#include <kdebug.h>
+
 imapInfo::imapInfo ():count_ (0),
 recent_ (0),
 unseen_ (0),
@@ -124,14 +126,13 @@ permanentFlagsAvailable_ (false), readWriteAvailable_ (false)
 {
   for (QStringList::ConstIterator it (list.begin ()); it != list.end (); ++it)
   {
-    QString
-    line (*it);
+    QString line (*it);
 
     line = line.left (line.length () - 2);
     QStringList
     tokens (QStringList::split (' ', line));
 
-    qDebug ("Processing: %s", line.latin1 ());
+    kdDebug(7116) << "Processing: " << line << endl;
     if (tokens[0] != "*")
       continue;
 
@@ -157,7 +158,7 @@ permanentFlagsAvailable_ (false), readWriteAvailable_ (false)
           line.
           find (')');
 
-        qDebug ("Checking permFlags from %d to %d", flagsStart, flagsEnd);
+        kdDebug(7116) << "Checking permFlags from " << flagsStart << " to " << flagsEnd << endl;
         if ((-1 != flagsStart) && (-1 != flagsEnd) && flagsStart < flagsEnd)
           setPermanentFlags (_flags (line.mid (flagsStart, flagsEnd)));
 
@@ -172,7 +173,7 @@ permanentFlagsAvailable_ (false), readWriteAvailable_ (false)
       }
       else
       {
-        qDebug ("unknown token2: %s", tokens[2].latin1 ());
+        kdDebug(7116) << "unknown token2: " << tokens[2] << endl;
       }
     }
     else if (tokens[1] == "FLAGS")
@@ -198,8 +199,7 @@ permanentFlagsAvailable_ (false), readWriteAvailable_ (false)
         setRecent (tokens[1].toULong ());
 
       else
-        qDebug ("unknown token1/2: %s %s", tokens[1].latin1 (),
-                tokens[2].latin1 ());
+        kdDebug(7116) << "unknown token1/2: " << tokens[1] << " " << tokens[2] << endl;
     }
   }
 
@@ -252,8 +252,7 @@ ulong imapInfo::_flags (const QString & inFlags, QString & userflags)
       userflags += entry + " ";
   }
 
-  qDebug ("imapInfo::_flags - %s -> %ld, %s", inFlags.latin1 (), flags,
-          userflags.latin1 ());
+  kdDebug(7116) << "imapInfo::_flags - " << inFlags << " -> " << flags << "d, " << userflags << endl;
 
   return flags;
 }

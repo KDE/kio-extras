@@ -40,7 +40,7 @@ host (lr.host),
 rawFullName (lr.rawFullName),
 rawComment (lr.rawComment)
 {
-//  qDebug("mailAddress::mailAddress - %s",getStr().data());
+//  kdDebug(7116) << "mailAddress::mailAddress - " << getStr() << endl;
 }
 
 mailAddress & mailAddress::operator = (const mailAddress & lr)
@@ -54,7 +54,7 @@ mailAddress & mailAddress::operator = (const mailAddress & lr)
   rawFullName = lr.rawFullName;
   rawComment = lr.rawComment;
 
-//  qDebug("mailAddress::operator= - %s",getStr().data());
+//  kdDebug(7116) << "mailAddress::operator= - " << getStr() << endl;
 
   return *this;
 }
@@ -213,7 +213,7 @@ mailAddress::getStr ()
   {
     retVal = '(' + getCommentRaw () + ')';
   }
-//  qDebug("mailAddress::getStr - '%s'",retVal.data());
+//  kdDebug(7116) << "mailAddress::getStr - '" << retVal << "'" << endl;
   return retVal;
 }
 

@@ -44,6 +44,8 @@
 #include "imaplist.h"
 #include "imapparser.h"
 
+#include <kdebug.h>
+
 imapList::imapList ():noInferiors_ (false),
 noSelect_ (false), marked_ (false), unmarked_ (false)
 {
@@ -101,7 +103,7 @@ marked_ (false), unmarked_ (false)
     else if (-1 != attribute.find ("\\Unmarked", 0, false))
       unmarked_ = true;
     else
-      qDebug ("imapList::imapList: bogus attribute %s", attribute.latin1 ());
+      kdDebug(7116) << "imapList::imapList: bogus attribute " << attribute << endl;
   }
 
   s = s.right (s.length () - 1);  // tie off )

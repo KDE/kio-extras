@@ -43,6 +43,7 @@
 #include <qstringlist.h>
 
 #include <kurl.h>
+#include <kdebug.h>
 
 imapParser::imapParser ():
 uidCache (17, false)
@@ -81,8 +82,7 @@ imapParser::sendCommand (imapCommand * aCmd)
   {
     currentBox = aCmd->parameter ();
     currentBox = parseOneWord (currentBox);
-    qDebug ("imapParser::sendCommand - setting current box to %s",
-            currentBox.latin1 ());
+    kdDebug(7116) << "imapParser::sendCommand - setting current box to " << currentBox << endl;
   }
   else if (aCmd->command ().find ("SEARCH") != -1)
   {
@@ -144,7 +144,7 @@ imapParser::clientAuthenticate (const QString & aUser, const QString & aPass,
       challenge = challenge.left (challenge.length () - 2); // trim CRLF
       challenge = rfcDecoder::decodeBase64 (challenge.utf8 ()); // challenge is BASE64 encoded
 
-      qDebug ("IMAP4: authenticate key=%s", challenge.latin1 ());
+      kdDebug(7116) << "IMAP4: authenticate key=" << challenge << endl;
 
       if (aAuth.upper () == "LOGIN")
       {
@@ -164,7 +164,7 @@ imapParser::clientAuthenticate (const QString & aUser, const QString & aPass,
 
         challenge = rfcDecoder::encodeRFC2104 (cchallenge, password);
         challenge = aUser + " " + challenge;
-//        qDebug("IMAP4: authenticate response=%s",challenge.latin1());
+//        kdDebug(7116) << "IMAP4: authenticate response=" << challenge << endl;
         challenge = rfcDecoder::encodeBase64 (challenge.utf8 ());
       }
       else if (aAuth.upper () == "ANONYMOUS")
@@ -177,7 +177,7 @@ imapParser::clientAuthenticate (const QString & aUser, const QString & aPass,
       // we will ALWAYS write back a line to satisfiy the continuation
       parseWriteLine (challenge);
 
-//      qDebug("Wrote: '%s'",rfcDecoder::decodeBase64(challenge.utf8()).data());
+//      kdDebug(7116) << "Wrote: '" << rfcDecoder::decodeBase64(challenge.utf8()) << "'" << endl;
       continuation = QString::null;
     }
   }
@@ -192,7 +192,7 @@ imapParser::clientAuthenticate (const QString & aUser, const QString & aPass,
 void
 imapParser::parseUntagged (QString & result)
 {
-//  qDebug("imapParser::parseUntagged - '%s'",result.latin1());
+//  kdDebug(7116) << "imapParser::parseUntagged - '" << result << "'" << endl;
 
   parseOneWord (result);        // *
   QString what = parseOneWord (result); // see whats coming next
@@ -212,8 +212,7 @@ imapParser::parseUntagged (QString & result)
     }
     else
     {
-      qDebug ("imapParser::parseUntagged - unknown response %s %s",
-              what.latin1 (), result.latin1 ());
+      kdDebug(7116) << "imapParser::parseUntagged - unknown response " << what << " " << result << endl;
     }
     break;
 
@@ -224,8 +223,7 @@ imapParser::parseUntagged (QString & result)
     }
     else
     {
-      qDebug ("imapParser::parseUntagged - unknown response %s %s",
-              what.latin1 (), result.latin1 ());
+      kdDebug(7116) << "imapParser::parseUntagged - unknown response " << what << " " << result << endl;
     }
     break;
 
@@ -236,8 +234,7 @@ imapParser::parseUntagged (QString & result)
     }
     else
     {
-      qDebug ("imapParser::parseUntagged - unknown response %s %s",
-              what.latin1 (), result.latin1 ());
+      kdDebug(7116) << "imapParser::parseUntagged - unknown response " << what << " " << result << endl;
     }
     break;
 
@@ -249,8 +246,7 @@ imapParser::parseUntagged (QString & result)
     }
     else
     {
-      qDebug ("imapParser::parseUntagged - unknown response %s %s",
-              what.latin1 (), result.latin1 ());
+      kdDebug(7116) << "imapParser::parseUntagged - unknown response " << what << " " << result << endl;
     }
     break;
 
@@ -262,8 +258,7 @@ imapParser::parseUntagged (QString & result)
     }
     else
     {
-      qDebug ("imapParser::parseUntagged - unknown response %s %s",
-              what.latin1 (), result.latin1 ());
+      kdDebug(7116) << "imapParser::parseUntagged - unknown response " << what << " " << result << endl;
     }
     break;
 
@@ -274,8 +269,7 @@ imapParser::parseUntagged (QString & result)
     }
     else
     {
-      qDebug ("imapParser::parseUntagged - unknown response %s %s",
-              what.latin1 (), result.latin1 ());
+      kdDebug(7116) << "imapParser::parseUntagged - unknown response " << what << " " << result << endl;
     }
     break;
 
@@ -290,8 +284,7 @@ imapParser::parseUntagged (QString & result)
     }
     else
     {
-      qDebug ("imapParser::parseUntagged - unknown response %s %s",
-              what.latin1 (), result.latin1 ());
+      kdDebug(7116) << "imapParser::parseUntagged - unknown response " << what << " " << result << endl;
     }
     break;
 
@@ -306,8 +299,7 @@ imapParser::parseUntagged (QString & result)
     }
     else
     {
-      qDebug ("imapParser::parseUntagged - unknown response %s %s",
-              what.latin1 (), result.latin1 ());
+      kdDebug(7116) << "imapParser::parseUntagged - unknown response " << what << " " << result << endl;
     }
     break;
 
@@ -334,8 +326,7 @@ imapParser::parseUntagged (QString & result)
           }
           else
           {
-            qDebug ("imapParser::parseUntagged - unknown response %ld %s %s",
-                    number, what.latin1 (), result.latin1 ());
+            kdDebug(7116) << "imapParser::parseUntagged - unknown response " << number << "d " << what << " " << result << endl;
           }
           break;
 
@@ -347,8 +338,7 @@ imapParser::parseUntagged (QString & result)
           }
           else
           {
-            qDebug ("imapParser::parseUntagged - unknown response %ld %s %s",
-                    number, what.latin1 (), result.latin1 ());
+            kdDebug(7116) << "imapParser::parseUntagged - unknown response " << number << "d " << what << " " << result << endl;
           }
           break;
 
@@ -360,8 +350,7 @@ imapParser::parseUntagged (QString & result)
           }
           else
           {
-            qDebug ("imapParser::parseUntagged - unknown response %ld %s %s",
-                    number, what.latin1 (), result.latin1 ());
+            kdDebug(7116) << "imapParser::parseUntagged - unknown response " << number << "d " << what << " " << result << endl;
           }
           break;
 
@@ -372,20 +361,17 @@ imapParser::parseUntagged (QString & result)
           }
           else
           {
-            qDebug ("imapParser::parseUntagged - unknown response %ld %s %s",
-                    number, what.latin1 (), result.latin1 ());
+            kdDebug(7116) << "imapParser::parseUntagged - unknown response " << number << "d " << what << " " << result << endl;
           }
           break;
         default:
-          qDebug ("imapParser::parseUntagged - unknown response %ld %s %s",
-                  number, what.latin1 (), result.latin1 ());
+          kdDebug(7116) << "imapParser::parseUntagged - unknown response " << number << "d " << what << " " << result << endl;
           break;
         }
       }
       else
       {
-        qDebug ("imapParser::parseUntagged - unknown response %s %s",
-                what.latin1 (), result.latin1 ());
+        kdDebug(7116) << "imapParser::parseUntagged - unknown response " << what << " " << result << endl;
       }
     }
     break;
@@ -406,105 +392,95 @@ imapParser::parseResult (QString & result, QString & rest)
     case 'A':                  // ALERT
       if (option == "ALERT")
       {
-        qDebug ("imapParser::parseResult - %s %s %s", result.latin1 (),
-                option.latin1 (), rest.latin1 ());
+        kdDebug(7116) << "imapParser::parseResult - " << result << " " << option << " " << rest << endl;
       }
       else
       {
-        qDebug ("imapParser::parseResult - unknown response %s %s %s",
-                result.latin1 (), option.latin1 (), rest.latin1 ());
+        kdDebug(7116) << "imapParser::parseResult - unknown response " << result << " " << option << " " << rest << endl;
       }
       break;
 
     case 'N':                  // NEWNAME
       if (option == "NEWNAME")
       {
-        qDebug ("imapParser::parseResult - %s %s %s", result.latin1 (),
-                option.latin1 (), rest.latin1 ());
+        kdDebug(7116) << "imapParser::parseResult - " << result << " " << option << " " << rest << endl;
       }
       else
       {
-        qDebug ("imapParser::parseResult - unknown response %s %s %s",
-                result.latin1 (), option.latin1 (), rest.latin1 ());
+        kdDebug(7116) << "imapParser::parseResult - unknown response " << result << " " << option << " " << rest << endl;
       }
       break;
 
     case 'P':                  //PARSE or PERMANENTFLAGS
       if (option == "PARSE")
       {
-        qDebug ("imapParser::parseResult - %s %s %s", result.latin1 (),
-                option.latin1 (), rest.latin1 ());
+        kdDebug(7116) << "imapParser::parseResult - " << result << " " << option << " " << rest << endl;
       }
       else if (option == "PERMANENTFLAGS")
       {
-//          qDebug("imapParser::parseResult - %s %s %s",result.latin1(),option.latin1(),rest.latin1());
+//          kdDebug(7116) << "imapParser::parseResult - " << result << " " << option << " " << rest << endl;
         QString flags = rest.left (rest.find (']'));
         selectInfo.setPermanentFlags (flags);
       }
       else
       {
-        qDebug ("imapParser::parseResult - unknown response %s %s %s",
-                result.latin1 (), option.latin1 (), rest.latin1 ());
+        kdDebug(7116) << "imapParser::parseResult - unknown response " << result << " " << option << " " << rest << endl;
       }
       break;
 
     case 'R':                  //READ-ONLY or READ-WRITE
       if (option == "READ-ONLY")
       {
-//          qDebug("imapParser::parseResult - %s %s %s",result.latin1(),option.latin1(),rest.latin1());
+//          kdDebug(7116) << "imapParser::parseResult - " << result << " " << option << " " << rest << endl;
         selectInfo.setReadWrite (false);
       }
       else if (option == "READ-WRITE")
       {
-//          qDebug("imapParser::parseResult - %s %s %s",result.latin1(),option.latin1(),rest.latin1());
+//          kdDebug(7116) << "imapParser::parseResult - " << result << " " << option << " " << rest << endl;
         selectInfo.setReadWrite (true);
       }
       else
       {
-        qDebug ("imapParser::parseResult - unknown response %s %s %s",
-                result.latin1 (), option.latin1 (), rest.latin1 ());
+        kdDebug(7116) << "imapParser::parseResult - unknown response " << result << " " << option << " " << rest << endl;
       }
       break;
 
     case 'T':                  //TRYCREATE
       if (option == "TRYCREATE")
       {
-        qDebug ("imapParser::parseResult - %s %s %s", result.latin1 (),
-                option.latin1 (), rest.latin1 ());
+        kdDebug(7116) << "imapParser::parseResult - " << result << " " << option << " " << rest << endl;
       }
       else
       {
-        qDebug ("imapParser::parseResult - unknown response %s %s %s",
-                result.latin1 (), option.latin1 (), rest.latin1 ());
+        kdDebug(7116) << "imapParser::parseResult - unknown response " << result << " " << option << " " << rest << endl;
       }
       break;
 
     case 'U':                  //UIDVALIDITY or UNSEEN
       if (option == "UIDVALIDITY")
       {
-//          qDebug("imapParser::parseResult - %s %s %s",result.latin1(),option.latin1(),rest.latin1());
+//          kdDebug(7116) << "imapParser::parseResult - " << result << " " << option << " " << rest << endl;
         ulong value;
         if (parseOneNumber (rest, value))
           selectInfo.setUidValidity (value);
       }
       else if (option == "UNSEEN")
       {
-//          qDebug("imapParser::parseResult - %s %s %s",result.latin1(),option.latin1(),rest.latin1());
+//          kdDebug(7116) << "imapParser::parseResult - " << result << " " << option << " " << rest << endl;
         ulong value;
         if (parseOneNumber (rest, value))
           selectInfo.setUnseen (value);
       }
       else if (option == "UIDNEXT")
       {
-//          qDebug("imapParser::parseResult - %s %s %s",result.latin1(),option.latin1(),rest.latin1());
+//          kdDebug(7116) << "imapParser::parseResult - " << result << " " << option << " " << rest << endl;
         ulong value;
         if (parseOneNumber (rest, value))
           selectInfo.setUidNext (value);
       }
       else
       {
-        qDebug ("imapParser::parseResult - unknown response %s %s %s",
-                result.latin1 (), option.latin1 (), rest.latin1 ());
+        kdDebug(7116) << "imapParser::parseResult - unknown response " << result << " " << option << " " << rest << endl;
       }
       break;
 
@@ -543,8 +519,7 @@ imapParser::parseResult (QString & result, QString & rest)
           currentState = ISTATE_LOGIN;
         currentBox = QString::null;
       }
-      qDebug ("imapParser::parseResult - current box is now %s",
-              currentBox.latin1 ());
+      kdDebug(7116) << "imapParser::parseResult - current box is now " << currentBox << endl;
     }
     break;
 
@@ -560,8 +535,7 @@ imapParser::parseResult (QString & result, QString & rest)
           currentState = ISTATE_LOGIN;
         currentBox = QString::null;
       }
-      qDebug ("imapParser::parseResult - current box is now %s",
-              currentBox.latin1 ());
+      kdDebug(7116) << "imapParser::parseResult - current box is now " << currentBox << endl;
     }
     break;
 
@@ -580,14 +554,14 @@ imapParser::parseCapability (QString & result)
 void
 imapParser::parseFlags (QString & result)
 {
-//  qDebug("imapParser::parseFlags - %s",result.latin1());
+//  kdDebug(7116) << "imapParser::parseFlags - " << result << endl;
   selectInfo.setFlags (result);
 }
 
 void
 imapParser::parseList (QString & result)
 {
-//  qDebug("imapParser::parseList - %s",result.latin1());
+//  kdDebug(7116) << "imapParser::parseList - " << result << endl;
   imapList this_one;
 
   if (result[0] != '(')
@@ -610,8 +584,7 @@ imapParser::parseList (QString & result)
     else if (-1 != attribute.find ("\\Unmarked", 0, false))
       this_one.setUnmarked (true);
     else
-      qDebug ("imapParser::parseList - unknown attribute %s",
-              attribute.latin1 ());
+      kdDebug(7116) << "imapParser::parseList - unknown attribute " << attribute << endl;
   }
 
   result = result.right (result.length () - 1); // tie off )
@@ -626,7 +599,7 @@ imapParser::parseList (QString & result)
 void
 imapParser::parseLsub (QString & result)
 {
-  qDebug ("imapParser::parseLsub - %s", result.latin1 ());
+  kdDebug(7116) << "imapParser::parseLsub - " << result << endl;
   imapList this_one (result);
   listResponses.append (this_one);
 }
@@ -634,7 +607,7 @@ imapParser::parseLsub (QString & result)
 void
 imapParser::parseSearch (QString & result)
 {
-//  qDebug("imapParser::parseSearch - %s",result.latin1());
+//  kdDebug(7116) << "imapParser::parseSearch - " << result << endl;
   QString entry;
   ulong value;
 
@@ -642,13 +615,13 @@ imapParser::parseSearch (QString & result)
   {
     lastResults.append (QString ().setNum (value));
   }
-//  qDebug("imapParser::parseSearch - %s",result.latin1());
+//  kdDebug(7116) << "imapParser::parseSearch - " << result << endl;
 }
 
 void
 imapParser::parseStatus (QString & inWords)
 {
-  qDebug ("imapParser::parseStatus - %s", inWords.latin1 ());
+  kdDebug(7116) << "imapParser::parseStatus - " << inWords << endl;
   lastStatus = imapInfo ();
 
   parseOneWord (inWords);       // swallow the box
@@ -687,7 +660,7 @@ imapParser::parseStatus (QString & inWords)
 void
 imapParser::parseExists (ulong value, QString & result)
 {
-//  qDebug("imapParser::parseExists - [%ld] %s",value,result.latin1());
+//  kdDebug(7116) << "imapParser::parseExists - [" << value << "d] " << result << endl;
   selectInfo.setCount (value);
   result = QString::null;
 }
@@ -695,14 +668,14 @@ imapParser::parseExists (ulong value, QString & result)
 void
 imapParser::parseExpunge (ulong value, QString & result)
 {
-  qDebug ("imapParser::parseExpunge - [%ld] %s", value, result.latin1 ());
+  kdDebug(7116) << "imapParser::parseExpunge - [" << value << "d] " << result << endl;
 }
 
 QValueList < mailAddress > imapParser::parseAdressList (QString & inWords)
 {
   QValueList < mailAddress > retVal;
 
-//  qDebug("imapParser::parseAdressList - %s",inWords.latin1());
+//  kdDebug(7116) << "imapParser::parseAdressList - " << inWords << endl;
   if (inWords[0] != '(')
   {
     parseOneWord (inWords);     // parse NIL
@@ -734,7 +707,7 @@ imapParser::parseAdress (QString & inWords)
   QString user, host, full, comment;
   mailAddress retVal;
 
-//  qDebug("imapParser::parseAdress - %s",inWords.latin1());
+//  kdDebug(7116) << "imapParser::parseAdress - " << inWords << endl;
   if (inWords[0] != '(')
     return retVal;
   inWords = inWords.right (inWords.length () - 1);
@@ -750,11 +723,11 @@ imapParser::parseAdress (QString & inWords)
   retVal.setUser (user.ascii ());
   retVal.setHost (host.ascii ());
 
-//  qDebug("imapParser::parseAdress - '%s' '%s' '%s' '%s'",full.latin1(),comment.latin1(),user.latin1(),host.latin1()); 
+//  kdDebug(7116) << "imapParser::parseAdress - '" << full << "' '" << comment << "' '" << user << "' '" << host << "'" << endl;
   if (inWords[0] == ')')
     inWords = inWords.right (inWords.length () - 1);
   skipWS (inWords);
-//  qDebug("imapParser::parseAdress - %s",inWords.latin1());
+//  kdDebug(7116) << "imapParser::parseAdress - " << inWords << endl;
 
   return retVal;
 }
@@ -765,7 +738,7 @@ imapParser::parseEnvelope (QString & inWords)
   mailHeader *envelope = NULL;
   QValueList < mailAddress > list;
 
-//  qDebug("imapParser::parseEnvelope - %s",inWords.latin1());
+//  kdDebug(7116) << "imapParser::parseEnvelope - " << inWords << endl;
 
   if (inWords[0] != '(')
     return envelope;
@@ -774,7 +747,7 @@ imapParser::parseEnvelope (QString & inWords)
 
 
   envelope = new mailHeader;
-  qDebug ("imapParser::parseEnvelope - creating %p", envelope);
+  kdDebug(7116) << "imapParser::parseEnvelope - creating " << envelope << endl;
 
   //date
   QString date = parseLiteral (inWords);
@@ -855,7 +828,7 @@ imapParser::parseEnvelope (QString & inWords)
   skipWS (inWords);
 
   return envelope;
-//  qDebug("imapParser::parseEnvelope - %s",inWords.latin1());
+//  kdDebug(7116) << "imapParser::parseEnvelope - " << inWords << endl;
 }
 
 // parse parameter pairs into a dictionary
@@ -923,7 +896,7 @@ QDict < QString > imapParser::parseParameters (QString & inWords)
       label = parseLiteral (inWords);
       value = parseLiteral (inWords);
       retVal.insert (label, new QString (value));
-//      qDebug("imapParser::parseParameters - %s = '%s'",label.latin1(),value.latin1());
+//      kdDebug(7116) << "imapParser::parseParameters - " << label << " = '" << value << "'" << endl;
     }
 
     if (inWords[0] != ')')
@@ -950,7 +923,7 @@ imapParser::parseSimplePart (QString & inWords, const QString & inSection)
 
   localPart = new mimeHeader;
 
-  qDebug ("imapParser::parseSimplePart - section %s", inSection.ascii ());
+  kdDebug(7116) << "imapParser::parseSimplePart - section " << inSection.ascii () << endl;
 
   localPart->setPartSpecifier (inSection);
 
@@ -996,7 +969,7 @@ imapParser::parseSimplePart (QString & inWords, const QString & inSection)
   // type specific extensions
   if (type.upper () == "MESSAGE" && subtype.upper () == "RFC822")
   {
-//    qDebug("imapParse::parseSimplePart - parse up message %s",inWords.latin1());
+//    kdDebug(7116) << "imapParse::parseSimplePart - parse up message " << inWords << endl;
 
     //envelope structure
     mailHeader *envelope = parseEnvelope (inWords);
@@ -1056,7 +1029,7 @@ imapParser::parseSimplePart (QString & inWords, const QString & inSection)
       parseLiteral (inWords);
   }
 
-//  qDebug("imapParser::parseSimplePart - %s/%s - %s",type.latin1(),subtype.latin1(),encoding.latin1());
+//  kdDebug(7116) << "imapParser::parseSimplePart - " << type << "/" << subtype << " - " << encoding << endl;
 
   if (inWords[0] == ')')
     inWords = inWords.right (inWords.length () - 1);
@@ -1108,7 +1081,7 @@ imapParser::parseBodyStructure (QString & inWords, const QString & inSection,
 
     // fetch subtype
     subtype = parseOneWord (inWords);
-//    qDebug("imapParser::parseBodyStructure - multipart/%s",subtype.latin1());
+//    kdDebug(7116) << "imapParser::parseBodyStructure - multipart/" << subtype << endl;
 
     localPart->setType (("MULTIPART/" + subtype).ascii ());
 
@@ -1182,7 +1155,7 @@ imapParser::parseBody (QString & inWords)
     inWords = inWords.right (inWords.length () - 1);  // eat it
 
     specifier = parseOneWord (inWords);
-    qDebug ("imapParser::parseBody : specifier [%s]", specifier.latin1 ());
+    kdDebug(7116) << "imapParser::parseBody : specifier [" << specifier << "]" << endl;
 
     if (inWords[0] == '(')
     {
@@ -1192,7 +1165,7 @@ imapParser::parseBody (QString & inWords)
       while (!inWords.isEmpty () && inWords[0] != ')')
       {
         label = parseOneWord (inWords);
-        qDebug ("imapParser::parseBody - mimeLabel : %s", label.latin1 ());
+        kdDebug(7116) << "imapParser::parseBody - mimeLabel : " << label << endl;
       }
 
       if (inWords[0] == ')')
@@ -1212,15 +1185,13 @@ imapParser::parseBody (QString & inWords)
 
       if (!envelope || seenUid.isEmpty ())
       {
-        qDebug ("imapParser::parseBody - discarding %p %s", envelope,
-                seenUid.ascii ());
+        kdDebug(7116) << "imapParser::parseBody - discarding " << envelope << " " << seenUid.ascii () << endl;
         // don't know where to put it, throw it away
         parseLiteral (inWords, true);
       }
       else
       {
-        qDebug ("imapParser::parseBody - reading %p %s", envelope,
-                seenUid.ascii ());
+        kdDebug(7116) << "imapParser::parseBody - reading " << envelope << " " << seenUid.ascii () << endl;
         // fill it up with data
         QString theHeader = parseLiteral (inWords, true);
         mimeIOQString myIO;
@@ -1247,15 +1218,13 @@ imapParser::parseBody (QString & inWords)
 
     if (!envelope || seenUid.isEmpty ())
     {
-      qDebug ("imapParser::parseBody - discarding %p %s", envelope,
-              seenUid.ascii ());
+      kdDebug(7116) << "imapParser::parseBody - discarding " << envelope << " " << seenUid.ascii () << endl;
       // don't know where to put it, throw it away
       parseSentence (inWords);
     }
     else
     {
-      qDebug ("imapParser::parseBody - reading %p %s", envelope,
-              seenUid.ascii ());
+      kdDebug(7116) << "imapParser::parseBody - reading " << envelope << " " << seenUid.ascii () << endl;
       // fill it up with data
       mimeHeader *body = parseBodyStructure (inWords, seenUid, envelope);
       if (body != envelope)
@@ -1268,7 +1237,7 @@ imapParser::parseBody (QString & inWords)
 void
 imapParser::parseFetch (ulong value, QString & inWords)
 {
-//  qDebug("imapParser::parseFetch - [%ld] %s",value,inWords.latin1());
+//  kdDebug(7116) << "imapParser::parseFetch - [" << value << "d] " << inWords << endl;
 
   // just the id
   if (value);
@@ -1298,21 +1267,18 @@ imapParser::parseFetch (ulong value, QString & inWords)
           if (cache)
             envelope = cache->getHeader ();
 
-          qDebug ("imapParser::parseFetch - got %p from Cache for %s",
-                  envelope, seenUid.latin1 ());
+          kdDebug(7116) << "imapParser::parseFetch - got " << envelope << " from Cache for " << seenUid << endl;
           if ((envelope && !envelope->getMessageId ().isEmpty ())
               || seenUid.isEmpty ())
           {
             // we have seen this one already
             // or don't know where to put it
-            qDebug ("imapParser::parseFetch - discarding %p %s", envelope,
-                    seenUid.ascii ());
+            kdDebug(7116) << "imapParser::parseFetch - discarding " << envelope << " " << seenUid << endl;
             parseSentence (inWords);
           }
           else
           {
-            qDebug ("imapParser::parseFetch - reading %p %s", envelope,
-                    seenUid.ascii ());
+            kdDebug(7116) << "imapParser::parseFetch - reading " << envelope << " " << seenUid  << endl;
             envelope = parseEnvelope (inWords);
             if (envelope)
             {
@@ -1321,8 +1287,7 @@ imapParser::parseFetch (ulong value, QString & inWords)
               cache->setHeader (envelope);
               cache->setUid (seenUid.toULong ());
               uidCache.replace (seenUid, cache);
-              qDebug ("imapParser::parseFetch - giving %p to Cache for %s",
-                      envelope, seenUid.latin1 ());
+              kdDebug(7116) << "imapParser::parseFetch - giving " << envelope << " to Cache for " << seenUid << endl;
             }
           }
           lastHandled = cache;
@@ -1344,15 +1309,13 @@ imapParser::parseFetch (ulong value, QString & inWords)
 
           if (!envelope || seenUid.isEmpty ())
           {
-            qDebug ("imapParser::parseFetch - discarding %p %s", envelope,
-                    seenUid.ascii ());
+            kdDebug(7116) << "imapParser::parseFetch - discarding " << envelope << " " << seenUid.ascii () << endl;
             // don't know where to put it, throw it away
             parseSentence (inWords);
           }
           else
           {
-            qDebug ("imapParser::parseFetch - reading %p %s", envelope,
-                    seenUid.ascii ());
+            kdDebug(7116) << "imapParser::parseFetch - reading " << envelope << " " << seenUid.ascii () << endl;
             // fill it up with data
             mimeHeader *body =
               parseBodyStructure (inWords, seenUid, envelope);
@@ -1367,7 +1330,7 @@ imapParser::parseFetch (ulong value, QString & inWords)
         if (word == "UID")
         {
           seenUid = parseOneWord (inWords);
-//            qDebug("imapParser::parseFetch - processing uid %s",seenUid.ascii());
+//            kdDebug(7116) << "imapParser::parseFetch - processing uid " << seenUid << endl;
           mailHeader *envelope = NULL;
           imapCache *cache = uidCache[seenUid];
           if (cache)
@@ -1388,9 +1351,7 @@ imapParser::parseFetch (ulong value, QString & inWords)
               cache->setHeader (envelope);
               cache->setUid (seenUid.toULong ());
               uidCache.replace (seenUid, cache);
-              qDebug
-                ("imapParser::parseFetch - creating new cache entry %p for %s",
-                 envelope, seenUid.latin1 ());
+              kdDebug(7116) << "imapParser::parseFetch - creating new cache entry " << envelope << " for " << seenUid << endl;
             }
           }
           if (envelope)
@@ -1448,7 +1409,7 @@ imapParser::parseFetch (ulong value, QString & inWords)
         break;
 
       default:
-        qDebug ("imapParser::parseFetch - ignoring %s", inWords.latin1 ());
+        kdDebug(7116) << "imapParser::parseFetch - ignoring " << inWords << endl;
         parseLiteral (inWords);
         break;
       }
@@ -1479,7 +1440,7 @@ imapParser::parseSentence (QString & inWords)
   QString stack;
   bool first = true;
 
-//  qDebug("imapParser::parseSentence - %s",inWords.latin1());
+//  kdDebug(7116) << "imapParser::parseSentence - " << inWords << endl;
   //find the first nesting parentheses
 
   while (!inWords.isEmpty () && (!stack.isEmpty () || first))
@@ -1518,7 +1479,7 @@ imapParser::parseSentence (QString & inWords)
 void
 imapParser::parseRecent (ulong value, QString & result)
 {
-//  qDebug("imapParser::parseRecent - [%ld] %s",value,result.latin1());
+//  kdDebug(7116) << "imapParser::parseRecent - [" << value << "d] " << result << endl;
   selectInfo.setRecent (value);
   result = QString::null;
 }
@@ -1537,8 +1498,7 @@ imapParser::parseLoop ()
   if (!sentQueue.count ())
   {
     // maybe greeting or BYE everything else SHOULD not happen, use NOOP or IDLE
-    qDebug ("imapParser::parseLoop - unhandledResponse: \n%s",
-            result.latin1 ());
+    kdDebug(7116) << "imapParser::parseLoop - unhandledResponse: \n" << result << endl;
     unhandled << result;
   }
   else
@@ -1552,7 +1512,7 @@ imapParser::parseLoop ()
       parseUntagged (result);
       break;
     case '+':
-      qDebug ("imapParser::parseLoop - continue: \n%s", result.latin1 ());
+      kdDebug(7116) << "imapParser::parseLoop - continue: \n" << result << endl;
       continuation = result;
       break;
     default:
@@ -1569,13 +1529,12 @@ imapParser::parseLoop ()
 
           sentQueue.removeRef (current);
           completeQueue.append (current);
-          qDebug ("imapParser::parseLoop -  completed %s: %s",
-                  resultCode.latin1 (), result.latin1 ());
+          kdDebug(7116) << "imapParser::parseLoop -  completed " << resultCode << ": " << result << endl;
           parseResult (resultCode, result);
         }
         else
         {
-          qDebug ("imapParser::parseLoop - unknown tag '%s'", tag.latin1 ());
+          kdDebug(7116) << "imapParser::parseLoop - unknown tag '" << tag << "'" << endl;
           result = tag + " " + result;
         }
       }
@@ -1614,8 +1573,8 @@ imapParser::parseRead (QByteArray & buffer, ulong len, ulong relay)
     else
       localRelay = 0;
 
-//    qDebug("imapParser::parseRead - remaining %ld",relay-buffer.length());
-    qDebug ("got now : %d needing still : %ld", buffer.size (), localRelay);
+//    kdDebug(7116) << "imapParser::parseRead - remaining " << relay-buffer.length() << "d" << endl;
+    kdDebug(7116) << "got now : " << buffer.size () << " needing still : " << localRelay << "d" << endl;
     parseReadLine (buffer, localRelay);
   }
   return (len <= buffer.size ());
@@ -1641,7 +1600,7 @@ void
 imapParser::parseURL (const KURL & _url, QString & _box, QString & _section,
                       QString & _type, QString & _uid, QString & _validity)
 {
-  qDebug ("imapParser::parseURL - %s", _url.url ().latin1 ());
+  kdDebug(7116) << "imapParser::parseURL - " << _url.url () << endl;
   QStringList parameters;
 
   _box = _url.path ();
@@ -1668,12 +1627,12 @@ imapParser::parseURL (const KURL & _url, QString & _box, QString & _section,
     else if (temp.find ("uidvalidity=", 0, false) == 0)
       _validity = temp.right (temp.length () - 12);
   }
-//  qDebug("URL: section= %s, type= %s, uid= %s",_section.latin1(),_type.latin1(),_uid.latin1());
-//  qDebug("URL: url() %s",_url.url().latin1());
-//  qDebug("URL: user() %s",_url.user().latin1());
-//  qDebug("URL: path() %s",_url.path().latin1());
-//  qDebug("URL: encodedPathAndQuery() %s",_url.encodedPathAndQuery().latin1());
-//  qDebug("URL: decoded(url()) %s",KURL::decode_string(_url.url()).latin1());
+//  kdDebug(7116) << "URL: section= " << _section << ", type= " << _type << ", uid= " << _uid << endl;
+//  kdDebug(7116) << "URL: url() " << _url.url() << endl;
+//  kdDebug(7116) << "URL: user() " << _url.user() << endl;
+//  kdDebug(7116) << "URL: path() " << _url.path() << endl;
+//  kdDebug(7116) << "URL: encodedPathAndQuery() " << _url.encodedPathAndQuery() << endl;
+//  kdDebug(7116) << "URL: decoded(url()) " << KURL::decode_string(_url.url()) << endl;
 
   if (!_box.isEmpty ())
   {
@@ -1682,9 +1641,7 @@ imapParser::parseURL (const KURL & _url, QString & _box, QString & _section,
     if (!_box.isEmpty () && _box[_box.length () - 1] == '/')
       _box = _box.left (_box.length () - 1);
   }
-  qDebug ("URL: box= %s, section= %s, type= %s, uid= %s, validity= %s",
-          _box.latin1 (), _section.latin1 (), _type.latin1 (), _uid.latin1 (),
-          _validity.latin1 ());
+  kdDebug(7116) << "URL: box= " << _box << ", section= " << _section << ", type= " << _type << ", uid= " << _uid << ", validity= " << _validity << endl;
 }
 
 void
@@ -1726,8 +1683,8 @@ imapParser::parseLiteral (QString & inWords, bool relay)
         if (relay)
           parseRelay (runLen);
         parseRead (fill, runLen, relay ? runLen : 0);
-//        qDebug("requested %ld and got %d",runLen,fill.size());
-//        qDebug("last bytes %x %x %x %x",fill[runLen-4],fill[runLen-3],fill[runLen-2],fill[runLen-1]);
+//        kdDebug(7116) << "requested " << runLen << "d and got " << fill.size() << endl;
+//        kdDebug(7116) << "last bytes " << fill[runLen-4] << " " << fill[runLen-3] << " " << fill[runLen-2] << " " << fill[runLen-1] << endl;
         retVal = QString::fromLatin1 (fill.data (), runLen);  // our data
         inWords = QString::fromLatin1 (fill.data () + runLen);  // what remains
         if (inWords.isEmpty ())
@@ -1735,34 +1692,32 @@ imapParser::parseLiteral (QString & inWords, bool relay)
           QByteArray prefetch;
           parseReadLine (prefetch); // must get more
           inWords = QString::fromLatin1 (prefetch.data (), prefetch.size ());
-//          qDebug("prefetched [%d] - '%s'",inWords.length(),inWords.latin1());
+//          kdDebug(7116) << "prefetched [" << inWords.length() << "] - '" << inWords << "'" << endl;
         }
-//        qDebug("requested %ld and got %d",runLen,fill.length());
+//        kdDebug(7116) << "requested " << runLen << "d and got " << fill.length() << endl;
 //        inWords = inWords.left(inWords.length()-2); // tie off CRLF
-//        qDebug("|\n|\nV");
-//        qDebug("%s^",retVal.latin1());
-//        qDebug("|\n|\n'%s'",inWords.latin1());
+//        kdDebug(7116) << "|\n|\nV" << endl;
+//        kdDebug(7116) << retVal << "^" << endl;
+//        kdDebug(7116) << "|\n|\n'" << inWords << "'" << endl;
 
         // no duplicate data transfers
         relay = false;
       }
       else
       {
-        qDebug ("imapParser::parseLiteral - error parsing {} - %s",
-                strLen.latin1 ());
+        kdDebug(7116) << "imapParser::parseLiteral - error parsing {} - " << strLen << endl;
       }
     }
     else
     {
       inWords = "";
-      qDebug ("imapParser::parseLiteral - error parsing unmatched {");
+      kdDebug(7116) << "imapParser::parseLiteral - error parsing unmatched {" << endl;
     }
   }
   else
   {
     retVal = parseOneWord (inWords);
   }
-//  debug((temp+QString("> '")+retVal+"'").latin1());
   skipWS (inWords);
   return retVal;
 }
@@ -1785,7 +1740,7 @@ imapParser::parseOneWord (QString & inWords)
     }
     else
     {
-      qDebug ("imapParser::parseOneWord - error parsing unmatched \"");
+      kdDebug(7116) << "imapParser::parseOneWord - error parsing unmatched \"" << endl;
       retVal = inWords;
       inWords = "";
     }
@@ -1830,7 +1785,6 @@ imapParser::parseOneWord (QString & inWords)
     if (retVal == "NIL")
       retVal = QString::null;
   }
-//  qDebug((temp+QString("> '")+retVal+"'").latin1());
   skipWS (inWords);
   return retVal;
 }
@@ -1846,11 +1800,11 @@ imapParser::parseOneNumber (QString & inWords, ulong & num)
 bool
 imapParser::hasCapability (const QString & cap)
 {
-//  qDebug("imapParser::hasCapability - Looking for '%s'",cap.latin1());
+//  kdDebug(7116) << "imapParser::hasCapability - Looking for '" << cap << "'" << endl;
   for (QStringList::Iterator it = imapCapabilities.begin ();
        it != imapCapabilities.end (); ++it)
   {
-//    qDebug("imapParser::hasCapability - Examining '%s'",(*it).latin1());
+//    kdDebug(7116) << "imapParser::hasCapability - Examining '" << (*it) << "'" << endl;
     if (cap.lower () == (*it).lower ())
     {
       return true;

@@ -361,7 +361,7 @@ rfcDecoder::decodeRFC2047String (const QString & _str, QString & charset,
         valid = FALSE;
       pos += 3;
       i += 3;
-//    qDebug("rfcDecoder::decodeRFC2047String - charset %s - language %s - '%s'",charset.latin1(),language.latin1(),pos);
+//    kdDebug(7116) << "rfcDecoder::decodeRFC2047String - charset " << charset << " - language " << language << " - '" << pos << "'" << endl;
     }
     if (valid)
     {
@@ -387,10 +387,10 @@ rfcDecoder::decodeRFC2047String (const QString & _str, QString & charset,
         for (i = str.length () - 1; i >= 0; i--)
           if (str[i] == '_')
             str[i] = ' ';
-//    qDebug("rfcDecoder::decodeRFC2047String - before QP '%s'",str.data());
+//    kdDebug(7116) << "rfcDecoder::decodeRFC2047String - before QP '" << str << "'" << endl;
 
         str = QCString (decodeQuotedPrintable (str));
-//    qDebug("rfcDecoder::decodeRFC2047String - after QP '%s'",str.data());
+//    kdDebug(7116) << "rfcDecoder::decodeRFC2047String - after QP '" << str << "'" << endl;
       }
       else
       {
@@ -405,7 +405,7 @@ rfcDecoder::decodeRFC2047String (const QString & _str, QString & charset,
     }
     else
     {
-//    qDebug("rfcDecoder::decodeRFC2047String - invalid");
+//    kdDebug(7116) << "rfcDecoder::decodeRFC2047String - invalid" << endl;
       //result += "=?";
       //pos = beg -1; // because pos gets increased shortly afterwards
       pos = beg - 2;
@@ -418,7 +418,7 @@ rfcDecoder::decodeRFC2047String (const QString & _str, QString & charset,
     QTextCodec *aCodec = codecForName (charset.ascii ());
     if (aCodec)
     {
-//    qDebug("Codec is %s",aCodec->name());
+//    kdDebug(7116) << "Codec is " << aCodec->name() << endl;
       return aCodec->toUnicode (result);
     }
   }
@@ -602,7 +602,7 @@ rfcDecoder::decodeRFC2231String (const QString & _str)
     return _str;
   language = _str.mid (p + 1, l - p - 1);
 
-  //qDebug("Charset: %s Language: %s",charset.latin1(),language.latin1());
+  //kdDebug(7116) << "Charset: " << charset << " Language: " << language << endl;
 
   char ch, ch2;
   p = 0;
@@ -714,7 +714,7 @@ rfcDecoder::encodeBase64 (const QByteArray & input)
   int c1, c2, c3;
   int lineLen = 0;
 
-//  qDebug("rfcDecoder::encodeBase64 - got %d",inLen);
+//  kdDebug(7116) << "rfcDecoder::encodeBase64 - got " << inLen << endl;
 
   /* Get three characters at a time and encode them. */
   for (size_t i = 0; i < inLen / 3; ++i)
@@ -765,7 +765,7 @@ rfcDecoder::encodeBase64 (const QByteArray & input)
   }
   QCString deb (output.data (), output.count () + 1);
 
-//  qDebug("rfcDecoder::encodeBase64 - give %d '%s'",output.count(),deb.data());
+//  kdDebug(7116) << "rfcDecoder::encodeBase64 - give " << output.count() << " '" << deb << "'" << endl;
 
   return output;
 }
@@ -791,7 +791,7 @@ rfcDecoder::decodeBase64 (const QByteArray & input)
   size_t inPos = 0;
   size_t inLen = input.count ();
 
-//  qDebug("rfcDecoder::decodeBase64 - got %d",inLen);
+//  kdDebug(7116) << "rfcDecoder::decodeBase64 - got " << inLen << endl;
 
   while (inPos < inLen)
   {
@@ -908,7 +908,7 @@ rfcDecoder::decodeBase64 (const QByteArray & input)
 
   QCString deb (output.data (), output.count () + 1);
 
-//  qDebug("rfcDecoder::decodeBase64 - give %d '%s'",output.count(),deb.data());
+//  kdDebug(7116) << "rfcDecoder::decodeBase64 - give " << output.count() << " '" << deb << "'" << endl;
 
   return output;
 }
@@ -1064,7 +1064,7 @@ rfcDecoder::decodeQuotedPrintable (const QByteArray & input)
   while (inPos < aInLen)
   {
     /* Get line */
-//    qDebug("-> %d , %d",inPos,aInLen);
+//    kdDebug(7116) << "-> " << inPos << " , " << aInLen << endl;
     lineLen = 0;
     isEolFound = 0;
     while (!isEolFound && lineLen < aInLen - inPos)
@@ -1079,7 +1079,7 @@ rfcDecoder::decodeQuotedPrintable (const QByteArray & input)
 
     nextLineStart = inPos + lineLen;
 
-//    qDebug("-> lineLen %d , %d",lineLen,nextLineStart);
+//    kdDebug(7116) << "-> lineLen " << lineLen << " , " << nextLineStart << endl;
 
     numChars = lineLen;
     /* Remove white space from end of line */
@@ -1097,7 +1097,7 @@ rfcDecoder::decodeQuotedPrintable (const QByteArray & input)
     softLineBrk = 0;
     while (inPos < charsEnd)
     {
-//      qDebug("+> %d , %d",inPos,charsEnd);
+//      kdDebug(7116) << "+> " << inPos << " , " << charsEnd << endl;
       ch = input[inPos++] & 0x7F;
       if (ch != '=')
       {
