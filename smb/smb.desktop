@@ -9,6 +9,4 @@ reading=true
 writing=true
 makedir=true
 deleting=true
-linking=false
-moving=true
 
