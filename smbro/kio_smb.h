@@ -20,6 +20,8 @@
 #ifndef KIO_SMBRO_H
 #define KIO_SMBRO_H
 
+#define KIO_SMB                     7106
+
 #include <kio/slavebase.h>
 #include <kio/global.h>
 
@@ -63,6 +65,9 @@ class SmbProtocol : public KIO::SlaveBase
       virtual void get( const KURL& url );
       virtual void setHost(const QString& host, int port, const QString& user, const QString& pass );
 
+      virtual void put( const KURL& url, int _mode, bool _overwrite, bool _resume );
+//      virtual void rename( const KURL &src, const KURL &dest, bool overwrite );
+
       virtual void mkdir( const KURL& url, int permissions );
       virtual void del( const KURL& url, bool isfile);
    protected:
@@ -77,7 +82,7 @@ class SmbProtocol : public KIO::SlaveBase
 
       StatInfo createStatInfo(const QString line);
       void createUDSEntry(const StatInfo& info, KIO::UDSEntry& entry);
-      StatInfo _stat(const KURL& _url);
+      StatInfo _stat(const KURL& _url, bool onlyCheckForExistance=false);
       void listShares();
       void listWorkgroups();
       void listHosts();
@@ -85,7 +90,7 @@ class SmbProtocol : public KIO::SlaveBase
       QCString getNmbName(QCString ipString);
       QCString getMasterBrowser();
 
-      bool stopAfterError(const KURL& url, bool notSureWhetherErrorOccurred);
+      bool stopAfterError(const KURL& url, bool notSureWhetherErrorOccurred, bool onlyCheckForExistance=false);
 
       void clearBuffer();
       void terminateBuffer();
