@@ -116,6 +116,7 @@
 #include <sys/time.h>
 #include <errno.h>
 
+#include <qvaluestack.h>
 #include <qstring.h>
 #include <qptrlist.h>
 #include "man2html.h"
@@ -146,6 +147,8 @@
 #define BD_LITERAL  1
 #define BD_INDENT   2
 
+//static char *sections = "123456789nl";
+
 static char *stralloc(int len)
 {
   /* allocate enough for len + NULL */
@@ -165,6 +168,20 @@ static char *strmaxcpy(char *to, const char *from, int n)
   return to;
 }
 
+#if 0 // unused
+static char *strmaxcat(char *to, char *from, int n)
+{				/* Assumes space for n plus a null */
+  int to_len = strlen(to);
+  if (to_len < n) {
+    int from_len = strlen(from);
+    int cp = (to_len + from_len <= n) ? from_len : n - to_len;
+    strncpy(to + to_len, from, cp);
+    to[to_len + cp] = '\0';
+  }
+  return to;
+}
+#endif
+
 static char *strlimitcpy(char *to, char *from, int n, int limit)
 {                               /* Assumes space for limit plus a null */
   int len = n > limit ? limit : n;
@@ -173,16 +190,21 @@ static char *strlimitcpy(char *to, char *from, int n, int limit)
   return to;
 }
 
+// Usage, pipe stuff for gzip -> removed
+
 /* below this you should not change anything unless you know a lot
 ** about this program or about troff.
 */
 
+
+//typedef struct STRDEF STRDEF;
 struct STRDEF {
     int nr,slen;
     char *st;
     STRDEF *next;
 };
 
+//typedef struct INTDEF INTDEF;
 struct INTDEF {
     int nr;
     int val;
@@ -196,6 +218,127 @@ static STRDEF *chardef, *strdef, *defdef;
 static INTDEF *intdef;
 
 #define V(A,B) ((A)*256+(B))
+
+#if 0 // unused, seems to be for index stuff
+static INTDEF standardint[] = {
+    { V('n',' '), NROFF,0, NULL },
+    { V('t',' '), 1-NROFF,0, NULL },
+    { V('o',' '), 1,0, NULL },
+    { V('e',' '), 0,0, NULL },
+    { V('.','l'), 70,0,NULL },
+    { V('.','$'), 0,0, NULL },
+    { V('.','A'), NROFF,0, NULL },
+    { V('.','T'), 1-NROFF,0, NULL },
+    { V('.','V'), 1,0, NULL }, /* the me package tests for this */
+    { 0, 0, 0, NULL } };
+
+static STRDEF standardstring[] = {
+    { V('R',' '), 1, "&#174;", NULL },
+    { V('l','q'), 2, "``", NULL },
+    { V('r','q'), 2, "''", NULL },
+    { 0, 0, NULL, NULL}
+};
+
+
+static STRDEF standardchar[] = {
+    { V('*','*'), 1, "*", NULL  },
+    { V('*','A'), 1, "A", NULL  },
+    { V('*','B'), 1, "B", NULL  },
+    { V('*','C'), 2, "Xi", NULL  },
+    { V('*','D'), 5, "Delta", NULL  },
+    { V('*','E'), 1, "E", NULL  },
+    { V('*','F'), 3, "Phi", NULL  },
+    { V('*','G'), 5, "Gamma", NULL  },
+    { V('*','H'), 5, "Theta", NULL  },
+    { V('*','I'), 1, "I", NULL  },
+    { V('*','K'), 1, "K", NULL  },
+    { V('*','L'), 6, "Lambda", NULL  },
+    { V('*','M'), 1, "M", NULL  },
+    { V('*','N'), 1, "N", NULL  },
+    { V('*','O'), 1, "O", NULL  },
+    { V('*','P'), 2, "Pi", NULL  },
+    { V('*','Q'), 3, "Psi", NULL  },
+    { V('*','R'), 1, "P", NULL  },
+    { V('*','S'), 5, "Sigma", NULL  },
+    { V('*','T'), 1, "T", NULL  },
+    { V('*','U'), 1, "Y", NULL  },
+    { V('*','W'), 5, "Omega", NULL  },
+    { V('*','X'), 1, "X", NULL  },
+    { V('*','Y'), 1, "H", NULL  },
+    { V('*','Z'), 1, "Z", NULL  },
+    { V('*','a'), 5, "alpha", NULL },
+    { V('*','b'), 4, "beta", NULL },
+    { V('*','c'), 2, "xi", NULL },
+    { V('*','d'), 5, "delta", NULL },
+    { V('*','e'), 7, "epsilon", NULL },
+    { V('*','f'), 3, "phi", NULL },
+    { V('*','g'), 5, "gamma", NULL },
+    { V('*','h'), 5, "theta", NULL },
+    { V('*','i'), 4, "iota", NULL },
+    { V('*','k'), 5, "kappa", NULL },
+    { V('*','l'), 6, "lambda", NULL },
+    { V('*','m'), 1, "&#181;", NULL  },
+    { V('*','n'), 2, "nu", NULL },
+    { V('*','o'), 1, "o", NULL },
+    { V('*','p'), 2, "pi", NULL },
+    { V('*','q'), 3, "psi", NULL },
+    { V('*','r'), 3, "rho", NULL },
+    { V('*','s'), 5, "sigma", NULL },
+    { V('*','t'), 3, "tau", NULL },
+    { V('*','u'), 7, "upsilon", NULL },
+    { V('*','w'), 5, "omega", NULL },
+    { V('*','x'), 3, "chi", NULL },
+    { V('*','y'), 3, "eta", NULL },
+    { V('*','z'), 4, "zeta", NULL },
+    { V('t','s'), 5, "sigma", NULL },
+    { V('+','-'), 1, "&#177;", NULL  },
+    { V('1','2'), 1, "&#189;", NULL  },
+    { V('1','4'), 1, "&#188;", NULL  },
+    { V('3','4'), 1, "&#190;", NULL  },
+    { V('F','i'), 3, "ffi", NULL  },
+    { V('F','l'), 3, "ffl", NULL  },
+    { V('a','a'), 1, "&#180;", NULL  },
+    { V('a','p'), 1, "~", NULL  },
+    { V('b','r'), 1, "|", NULL  },
+    { V('b','u'), 1, "*", NULL  },
+    { V('b','v'), 1, "|", NULL  },
+    { V('c','i'), 1, "o", NULL  },
+    { V('c','o'), 1, "&#169;", NULL  },
+    { V('c','t'), 1, "&#162;", NULL  },
+    { V('d','e'), 1, "&#176;", NULL  },
+    { V('d','g'), 1, "+", NULL  },
+    { V('d','i'), 1, "&#247;", NULL  },
+    { V('e','m'), 1, "-", NULL  },
+    { V('e','m'), 3, "---", NULL },
+    { V('e','q'), 1, "=", NULL  },
+    { V('e','s'), 1, "&#216;", NULL  },
+    { V('f','f'), 2, "ff", NULL  },
+    { V('f','i'), 2, "fi", NULL  },
+    { V('f','l'), 2, "fl", NULL  },
+    { V('f','m'), 1, "&#180;", NULL  },
+    { V('g','a'), 1, "`", NULL  },
+    { V('h','y'), 1, "-", NULL  },
+    { V('l','c'), 2, "|&#175;", NULL  },
+    { V('l','f'), 2, "|_", NULL  },
+    { V('l','k'), 1, "<FONT SIZE=+2>{</FONT>", NULL  },
+    { V('m','i'), 1, "-", NULL  },
+    { V('m','u'), 1, "&#215;", NULL  },
+    { V('n','o'), 1, "&#172;", NULL  },
+    { V('o','r'), 1, "|", NULL  },
+    { V('p','l'), 1, "+", NULL  },
+    { V('r','c'), 2, "&#175;|", NULL  },
+    { V('r','f'), 2, "_|", NULL  },
+    { V('r','g'), 1, "&#174;", NULL  },
+    { V('r','k'), 1, "<FONT SIZE=+2>}</FONT>", NULL  },
+    { V('r','n'), 1, "&#175;", NULL  },
+    { V('r','u'), 1, "_", NULL  },
+    { V('s','c'), 1, "&#167;", NULL  },
+    { V('s','l'), 1, "/", NULL  },
+    { V('s','q'), 2, "[]", NULL  },
+    { V('u','l'), 1, "_", NULL  },
+    { 0, 0, NULL, NULL  }
+};
+#endif
 
 /* default: print code */
 
@@ -305,7 +448,7 @@ static void add_links(char *c)
     idtest[3]=strstr(c,"ftp.");
     idtest[4]=strchr(c+1,'(');
     idtest[5]=strstr(c+1,".h&gt;");
-    for (i=0; i<6 && !nr; i++) nr = (idtest[i]!=NULL);
+    for (i=0; i<6; i++) nr += (idtest[i]!=NULL);
     while (nr) {
 	j=-1;
 	for (i=0; i<6; i++)
@@ -485,7 +628,7 @@ static void add_links(char *c)
 	if (idtest[3] && idtest[3]<c) idtest[3]=strstr(c,"ftp.");
 	if (idtest[4] && idtest[4]<c) idtest[4]=strchr(c+1,'(');
 	if (idtest[5] && idtest[5]<c) idtest[5]=strstr(c+1,".h&gt;");
-	for (i=0; i<6 && !nr; i++) nr = (idtest[i]!=NULL);
+	for (i=0; i<6; i++) nr += (idtest[i]!=NULL);
     }
     output_real(c);
 }
@@ -498,6 +641,7 @@ static void out_html(const char *c)
 {
   if (!c) return;
 
+  // Added, probably due to the const?
   char *c2 = qstrdup(c);
   char *c3 = c2;
 
@@ -622,8 +766,11 @@ static char *scan_escape(char *c)
     switch (*c) {
     case 'e': h="\\"; curpos++;break;
     case '0':
-    case ' ': h="&nbsp;";curpos++; break;
-    case '|': h=""; break;
+    case '~': // non-breakable-space (resizeable!)
+    case '|': // half-non-breakable-space
+    case '^': // quarter-non-breakable-space
+    case ' ':
+	h="&nbsp;";curpos++; break;
     case '"': SKIPEOL; c--; h=""; break;
     case '$':
 	if (argument) {
@@ -642,7 +789,6 @@ static char *scan_escape(char *c)
 	}
 	break;
     case 'k': c++; if (*c=='(') c+=2;
-    case '^':
     case '!':
     case '%':
     case 'a':
@@ -650,15 +796,7 @@ static char *scan_escape(char *c)
     case 'r':
     case 'u':
     case '\n':
-        h="";
-        break;
-    case '&':
-        b[0] = c[1];
-        b[1] = 0;
-        out_html(b);
-        c++;
-        h="";
-        break;
+    case '&': h=""; break;
     case '(':
 	c++;
 	i= c[0]*256+c[1];
@@ -1666,7 +1804,10 @@ static char *skip_till_newline(char *c)
     return c;
 }
 
-static int ifelseval=0;
+// &%(#@ c programs !!!
+//static int ifelseval=0;
+// If/else can be nested!
+static QValueStack<int> s_ifelseval;
 
 static char *scan_request(char *c)
 {
@@ -1878,7 +2019,8 @@ static char *scan_request(char *c)
 	    }
 	    c=skip_till_newline(c);
 	    break;
-	case V('e','l'):
+	case V('e','l'): {
+            int ifelseval = s_ifelseval.pop();
 	    /* .el anything : else part of if else */
 	    if (ifelseval) {
 		c=c+j;
@@ -1887,9 +2029,10 @@ static char *scan_request(char *c)
 	    } else
 		c=skip_till_newline(c+j);
 	    break;
+        }
 	case V('i','e'):
 	    /* .ie c anything : then part of if else */
-	case V('i','f'):
+	case V('i','f'): {
 	    /* .if c anything
 	     * .if !c anything
 	     * .if N anything
@@ -1899,7 +2042,8 @@ static char *scan_request(char *c)
 	     */
 	    c=c+j;
 	    c=scan_expression(c, &i);
-	    ifelseval=!i;
+	    int ifelseval=!i;
+            s_ifelseval.push( ifelseval );
 	    if (i) {
 		*c='\n';
 		c++;
@@ -1907,6 +2051,7 @@ static char *scan_request(char *c)
 	    } else
 		c=skip_till_newline(c);
 	    break;
+        }
 	case V('i','g'):
 	    {
 		const char *endwith="..\n";
@@ -3168,10 +3313,17 @@ static char *scan_troff_mandoc(char *c, int san, char **result)
     return ret;
 }
 
+// Entry point
 void scan_man_page(const char *man_page)
 {
     if (!man_page)
         return;
+
+    // ## Do more init
+    // Unlike man2html, we actually call this several times, hence the need to
+    // properly cleanup all those static vars
+    s_ifelseval.clear();
+    section = false;
 
     output_possible = false;
     int strLength = strlen(man_page);
