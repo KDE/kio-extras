@@ -436,7 +436,8 @@ void SMTPProtocol::ParseFeatures(const char *_buf)
 	buf=buf.mid(4, buf.length()); // Clop off the beginning, no need for it really
 
 	if (buf.left(4) == "AUTH") { // Look for auth stuff
-		m_sAuthConfig=buf.mid(5, buf.length());
+		if (m_sAuthConfig.isEmpty()) 
+			m_sAuthConfig=buf.mid(5, buf.length());
 	} else if (buf.left(8) == "STARTTLS") {
 		haveTLS=true;
 	}
@@ -450,10 +451,12 @@ void SMTPProtocol::smtp_close()
 	command(QString::fromLatin1("QUIT"));
 	CloseDescriptor();
 	m_sOldServer = "";
+	m_pSASL=0;
+	m_sAuthConfig=QString::null;
 	opened = false;
 }
 
-void SMTPProtocol::stat( const KURL & url )
+void SMTPProtocol::stat(const KURL & url)
 {
 	QString path = url.path();
         error( KIO::ERR_DOES_NOT_EXIST, url.path() );
