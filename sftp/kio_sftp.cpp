@@ -377,7 +377,7 @@ void kio_sftpProtocol::openConnection(){
             }
 
             msg += "\n"+i18n("Shall we contine connecting to ")+mHost+i18n("?");
-            if( KMessageBox::Yes != messageBox(KMessageBox::WarningYesNo, msg, caption) ) {
+            if( KMessageBox::Yes != messageBox(WarningYesNo, msg, caption) ) {
                 mConnected = false;
                 return;
             }
