@@ -73,7 +73,7 @@ bool GopherProtocol::gopher_open( KURL &_url )
   // otherwise as a last resort use the "official" port of 70.
 
   unsigned short int port;
-  struct sockaddr_in server_name;
+  ksockaddr_in server_name;
   memset(&server_name, 0, sizeof(server_name));
   // static char buf[512];
 
