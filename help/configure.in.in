@@ -2,7 +2,7 @@
 # don't use it yet
 HELP_SLAVE=help
 
-KDE_FIND_PATH(xml2-config, XML_CONFIG, "/usr/local/bin:/opt/local/bin:$PATH", [
+KDE_FIND_PATH(xml2-config, XML_CONFIG, [${prefix}/bin /usr/local/bin /opt/local/bin], [
   AC_MSG_WARN([Could not find libxml2 anywhere, check ftp://xmlsoft.org/ for libxml >= 2.3.7.])
   HELP_SLAVE=
 ])
