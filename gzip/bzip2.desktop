@@ -1,7 +1,8 @@
 # KDE Config File
 [Protocol]
-exec=kio_gzip
+lib=kio_gzip.la
 protocol=bzip2
+mimetype=application/x-bzip2
 input=stream
 output=stream
 reading=true

@@ -1,6 +1,6 @@
 # KDE Config File
 [Protocol]
-exec=kio_smb
+lib=kio_smb.la
 protocol=smb
 input=none
 output=filesystem
