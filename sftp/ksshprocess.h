@@ -45,6 +45,51 @@
  * to communicate with ssh.
  *
  * @author Lucas Fisher
+ *
+ * Example: Connect to ssh server on localhost
+ *   KSshProcess::SshOpt opt;
+ *   KSshProcess::SshOptList options;
+ *
+ *   opt.opt = KSshProcess::SSH_HOST;
+ *   opt.str = "localhost";
+ *   options.append(opt);
+ *
+ *   opt.opt = KSshProcess::SSH_USERNAME;
+ *   opt.str = "me";
+ *   options.append(opt);
+ *
+ *   opt.opt = KSshProcess::SSH_PASSWD;
+ *   opt.str = "mypassword";
+ *   options.append(opt);
+ *
+ *   KSshProcess ssh;
+ *   if( !ssh.setOptions(options) ) {
+ *       int err = ssh.error();
+ *       // process error
+ *        return false;
+ *   }
+ *
+ *   if( !ssh.connect(false) ) {
+ *       int err = ssh.error();
+ *       switch( err ) {
+ *       case KSshProcess::ERR_NEW_HOST_KEY:
+ *       case KSshProcess::ERR_DIFF_HOST_KEY:
+ *           // ask user whether to continue
+ *           break;
+ *       default:
+ *           // alert user
+ *           return;
+ *       }
+ *
+ *       if( continue ) {
+ *            if( !ssh.connect(true) ) {
+ *                 // alert user
+ *                 return;
+ *            }
+ *       }
+ *   }
+ *   // We have an open ssh connection to localhost
+ *
  */
 
 class KSshProcess {
@@ -74,7 +119,20 @@ public:
     typedef QValueList<SshOpt> SshOptList;
     typedef QValueListIterator<SshOpt> SshOptListIterator;
     typedef QValueListConstIterator<SshOpt> SshOptListConstIterator;
-	
+
+    /**
+     * Ssh versions supported by KSshProcess.
+     */
+    enum SshVersion {
+        OPENSSH_2_9P1,
+        OPENSSH_2_9P2,
+        OPENSSH_2_9,   // if we don't find the previous 2.9 verisons use this
+        OPENSSH,       // if we don't match any of the above, use the latest version
+        SSH_3_0_0,
+        SSH,
+        SSH_VER_MAX    // always last
+    };	
+
     /**
      * Initialize a SSH process using the first SSH binary found in the PATH
      */
@@ -89,11 +147,31 @@ public:
 	~KSshProcess();
 
     /**
-     * Get the ssh version string.
+     * Set the ssh binary KSshProcess should use.
      *
-     * @return  The string outputted by 'ssh -V'.
+     * @param pathToSsh Full path to the ssh binary.
+     *
+     * @return True if the ssh binary is found and KSshProcess
+     *         recognizes the version.
+     *
      */
-    QString version();
+	bool setSshPath(QString pathToSsh);
+
+    /**
+     * Get the ssh version.
+     *
+     * @return  The ssh version or -1 if KSshProcess does not recognize
+     *          the ssh version. The returned value corresponds to the
+     *          member of the SshVersion enum.
+     */
+    int version();
+
+    /**
+     * Get a string describing the ssh version
+     *
+     * @return A string describing the ssh version recognized by KSshProcess
+     */
+    QString versionStr();
 
     /**
      * Get the last error encountered by KSshProcess.
@@ -137,8 +215,10 @@ public:
      * This must be called before connect().  See SshOptType for a list of
      * supported ssh options.  The required options are SSH_USERNAME, SSH_PASSWD,
      * and SSH_HOST.
+     *
+     * To reset the saved options, just recall setOptions()
      */
-    bool setArgs(const SshOptList& opts);
+    bool setOptions(const SshOptList& opts);
 
     /**
      * Create a ssh connection based on the options provided by setOptions().
@@ -187,6 +267,7 @@ private:
 
     static const char * const versionStrs[];
     static const char * const passwdPrompt[];
+    static const char * const authSuccessMsg[];
     static const char * const authFailedPrompt[];
     static const char * const hostKeyMissing[];
     static const char * const hostKeyChanged[];
@@ -234,23 +315,12 @@ public:
     }; // that's all for now
 
     /**
-     * Ssh versions supported by KSshProcess.
-     */
-    enum SshVersion {
-        OPENSSH_2_9P1,
-        OPENSSH_2_9P2,
-        OPENSSH_2_9,   // if we don't find the previous 2.9 verisons use this
-        OPENSSH,       // if we don't match any of the above, use the latest version
-        SSH_3_0_0,
-        SSH,
-        SSH_VER_MAX    // always last
-    };
-    
-    /**
      * Errors that KSshProcess can encounter.  When a member function returns
      * false, call error() to retrieve one of these error codes.
      */
     enum SshError {
+        /* Don't recognize the ssh version */
+        ERR_UNKNOWN_VERSION,
         /* Cannot lauch ssh client */
         ERR_CANNOT_LAUNCH,
         /* Interaction with the ssh client failed. This happens when we can't
