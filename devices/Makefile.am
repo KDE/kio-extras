@@ -17,6 +17,9 @@ kdelnkdir = $(kde_servicesdir)
 dataEntry_DATA = devices.desktop
 dataEntrydir = $(kde_datadir)/konqsidebartng/entries
 
+globalkickerentriesdir   = $(kde_datadir)/konqsidebartng/kicker_entries
+globalkickerentries_DATA = devices.desktop
+
 defaultInclude_DATA=mountwatcher.desktop
 defaultIncludedir=$(kde_confdir)
 
