@@ -125,9 +125,9 @@ QString RemoteImpl::findDesktopFile(const QString &filename) const
 	kdDebug() << "RemoteImpl::findDesktopFile" << endl;
 	
 	QString directory;
-	if (findDirectory(filename, directory))
+	if (findDirectory(filename+".desktop", directory))
 	{
-		return directory+filename;
+		return directory+filename+".desktop";
 	}
 	
 	return QString::null;
@@ -226,8 +226,11 @@ void RemoteImpl::createEntry(KIO::UDSEntry &entry,
 
 	entry.clear();
 
+	QString new_filename = file;
+	new_filename.truncate( file.length()-8);
+	
 	addAtom(entry, KIO::UDS_NAME, 0, desktop.readName());
-	addAtom(entry, KIO::UDS_URL, 0, "remote:/"+file);
+	addAtom(entry, KIO::UDS_URL, 0, "remote:/"+new_filename);
 
 	addAtom(entry, KIO::UDS_FILE_TYPE, S_IFDIR);
 	addAtom(entry, KIO::UDS_MIME_TYPE, 0, "inode/directory");
@@ -235,7 +238,7 @@ void RemoteImpl::createEntry(KIO::UDSEntry &entry,
 	QString icon = desktop.readIcon();
 
 	addAtom(entry, KIO::UDS_ICON_NAME, 0, icon);
-	addAtom(entry, KIO::UDS_LINK_DEST, 0, directory+file);
+	addAtom(entry, KIO::UDS_LINK_DEST, 0, desktop.readURL());
 }
 
 bool RemoteImpl::statNetworkFolder(KIO::UDSEntry &entry, const QString &filename) const
@@ -243,9 +246,9 @@ bool RemoteImpl::statNetworkFolder(KIO::UDSEntry &entry, const QString &filename
 	kdDebug() << "RemoteImpl::statNetworkFolder: " << filename << endl;
 
 	QString directory;
-	if (findDirectory(filename, directory))
+	if (findDirectory(filename+".desktop", directory))
 	{
-		createEntry(entry, directory, filename);
+		createEntry(entry, directory, filename+".desktop");
 		return true;
 	}
 	
@@ -257,10 +260,10 @@ bool RemoteImpl::deleteNetworkFolder(const QString &filename) const
 	kdDebug() << "RemoteImpl::deleteNetworkFolder: " << filename << endl;
 
 	QString directory;
-	if (findDirectory(filename, directory))
+	if (findDirectory(filename+".desktop", directory))
 	{
-		kdDebug() << "Removing " << directory << filename << endl;
-		return QFile::remove(directory+filename);
+		kdDebug() << "Removing " << directory << filename << ".desktop" << endl;
+		return QFile::remove(directory+filename+".desktop");
 	}
 	
 	return false;
