@@ -1106,7 +1106,7 @@ void SmbProtocol::put( const KURL& url, int, bool _overwrite, bool)
       if (strstr(m_stdoutBuffer,fifoName.data())!=0)
       {
          remove(fifoName);
-         error(ERR_SLAVE_DEFINED,i18n("Sorry, to be able to write to a remote samba share you have to patch and recompile smbclient.\n\\
+         error(ERR_SLAVE_DEFINED,i18n("To be able to write to a remote Samba share you must patch and recompile smbclient.\n\\
 Visit http://lisa-home.sourceforge.net/smbclientpatch.html and follow the instructions there."));
          return;
       };
