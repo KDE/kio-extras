@@ -7,6 +7,10 @@ Erik Forsberg <forsberg@lysator.liu.se>
 Artur Frysiak <wiget@t17.ds.pwr.wroc.pl>
 	Introduced Automake and libtool in libsmb. PLD CVS maintainer.
 
+Kir Kostuchenko <kir@users.sourceforge.net>
+    Add iso8859-2, iso8859-5, iso8859-7, koi8-r and roman8 charsets conversion.
+    mkdir segfault fix. DEBUG >= 2 segfault fix. Tests. SMBIO::create bugfix.
+
 All
 	Many suggestions, testing, support...
 	

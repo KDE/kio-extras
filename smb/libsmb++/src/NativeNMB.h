@@ -30,7 +30,7 @@
 #include "NameQueryInterface.h"
 #include <netdb.h>
 
-class NMBIO;
+#include "NMBIO.h" //class NMBIO;
 
 class NativeNMB : public NameQueryInterface
 {

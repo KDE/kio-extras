@@ -24,6 +24,8 @@
 #include <unistd.h> // for getpid(), getuid(), getgid()
 #include <fcntl.h>	// need open() flags
 #include <string.h>
+#include <stdlib.h>
+
 #include <time.h>	// needed for mktime() and tm, time_t structs
 #include "SMBPacket.h"
 #include "SMBCodes.h"
@@ -245,10 +247,10 @@ SMBcreatePacket::SMBcreatePacket(uint16 TID, const char *filename, uint8 dial) :
 	
 	if (filename)
 	{
-		smb_bcc=2+strlen(filename);
+		smb_bcc=2+strlen( filename );
 		smb_buf=new uint8[smb_bcc];
 		smb_buf[0]=4;	// data is ASCIIZ
-		strcpy((char*)(smb_buf+1), filename);
+		strcpy((char*)(smb_buf+1), filename );
 		smb_buf[smb_bcc-1]=0;
 	}
 	else
@@ -285,10 +287,10 @@ SMBgetatrPacket::SMBgetatrPacket(uint16 tid, const char *filename, uint8 dial) :
 	
 	if (filename)
 	{
-		smb_bcc=2+strlen(filename);
+		smb_bcc=2+strlen( filename );
 		smb_buf=new uint8[smb_bcc];
 		smb_buf[0]=4;	// data is ASCIIZ
-		strcpy((char*)(smb_buf+1), filename);
+		strcpy((char*)(smb_buf+1), filename );
 		smb_buf[smb_bcc-1]=0;
 	}
 	else
@@ -499,10 +501,10 @@ SMBunlinkPacket::SMBunlinkPacket(uint16 TID, const char *filename, uint8 dial) :
 	
 	if (filename)
 	{
-		smb_bcc=2+strlen(filename);
+		smb_bcc=2+strlen( filename );
 		smb_buf=new uint8[smb_bcc];
 		smb_buf[0]=4;	// data is ASCIIZ
-		strcpy((char*)(smb_buf+1), filename);
+		strcpy((char*)(smb_buf+1), filename );
 		smb_buf[smb_bcc-1]=0;
 	}
 	else
@@ -525,10 +527,10 @@ SMBmkdirPacket::SMBmkdirPacket(uint16 TID, const char *pathname, uint8 dial) : S
 	
 	if (pathname)
 	{
-		smb_bcc=2+strlen(pathname);
+		smb_bcc=2+strlen( pathname );
 		smb_buf=new uint8[smb_bcc];
 		smb_buf[0]=4;	// data is ASCIIZ
-		strcpy((char*)(smb_buf+1), pathname);
+		strcpy((char*)(smb_buf+1), pathname );
 		smb_buf[smb_bcc-1]=0;
 	}
 	else
@@ -717,8 +719,8 @@ void SMBtconPacket::setPath(const char *chemin)
 	if (path) delete path;
 	if (chemin)
 	{
-		path = new char[strlen(chemin)+1];
-		strcpy(path,chemin);
+		path = new char[ strlen(chemin) + 1 ];
+		strcpy(path, chemin);
 	}
 	else
 	{

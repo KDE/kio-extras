@@ -607,6 +607,7 @@ int SMBIO::open(const char* file, int flags, int)
 		// and clear the TRUNC flag if any
 		// otherwise it will lead to another call to create below !
 		flags &= ~O_TRUNC;
+		stat(file,&statbuf);    // Get status of recently created file.
 	// now check if we didn't wan't the file to exist !
 	} else if ( (flags & O_EXCL) && (flags & O_CREAT)) {
 		errno=EEXIST;
@@ -729,11 +730,12 @@ int SMBIO::open(const char* file, int flags, int)
 }
 
 
-// As its unix equivalent, creat does the same as open with
+// As its unix equivalent, creat should do the same as open with
 // O_CREAT|O_WRONLY|O_TRUNC
+// NB20000828: but sometimes there is a bug, change it to RDWR is OK
 int SMBIO::creat(const char* file, int mode)
 {
-	return open(file,O_CREAT|O_WRONLY|O_TRUNC, mode);
+	return open(file,O_CREAT|O_RDWR|O_TRUNC, mode);
 }
 
 
@@ -1857,11 +1859,11 @@ int SMBIO::unlink(const char *file)
 		delete p;
 		return -1;
 	}
-	delete p;
 	if ((errno=p->getError())!=0) {
 		errno=EACCES;
 		return -1;
 	}
+	delete p;
 	return 0;
 }
 	
@@ -1983,11 +1985,11 @@ int SMBIO::rmdir(const char *pathname)
 		delete p;
 		return -1;
 	}
-	delete p;
 	if ((errno=p->getError())!=0) {
 		errno=EACCES;
 		return -1;
 	}
+	delete p;
 	return 0;
 }
 
@@ -2130,11 +2132,13 @@ int SMBIO::mkdir(const char *pathname)
 		delete p;
 		return -1;
 	}
-	delete p;
+
 	if ((errno=p->getError())!=0) {
 		errno=EACCES;
 		return -1;
 	}
+
+	delete p;
 	return 0;
 }
 
@@ -2942,11 +2946,15 @@ int SMBIO::getWorkgroupMembers(const char *workgroup, const char *user)
 }
 
 
-int SMBIO::parse(const char *name, char* &workgroup, char* &host, char* &share,
+int SMBIO::parse(const char *n, char* &workgroup, char* &host, char* &share,
 	char* &dir, char* &user)
 {
 	// Port this to the old crappy convention "caller manages pointers"
 	// Here, no password or IP
+    char *name = 0;
+    newstrcpy( name, n );
+    if( char_cnv ) char_cnv->unix2win( name );
+
 	util.parse(name);
 	workgroup=0;
 	host=0;
@@ -2958,6 +2966,8 @@ int SMBIO::parse(const char *name, char* &workgroup, char* &host, char* &share,
 	newstrcpy(share, util.share());
 	newstrcpy(dir, util.path());
 	newstrcpy(user, util.user());
+
+	if (name) delete name;
 	return 0;
 }
 
@@ -3295,6 +3305,9 @@ cout<<"  dir : "; if (info->dir) cout<<info->dir; else cout<<"0"; cout<<"\n";
 				char *pattern=new char[tmplen+3]; // search pattern
 				strcpy(pattern,info->dir);
 				strcpy(pattern+tmplen,"\\*"); // append \* to dir
+				
+//				if( char_cnv ) char_cnv->unix2win( pattern );
+
 				trans->paramLength=12+tmplen+3;
 				trans->param=new uint8[trans->paramLength];
 				trans->param[0]=0x02|0x04|0x10; // include hidden, system, directory
@@ -3470,7 +3483,10 @@ cout<<"  dir : "; if (info->dir) cout<<info->dir; else cout<<"0"; cout<<"\n";
 int SMBIO::closedir(int dirdesc)
 {
 #if DEBUG >= 2
-	cout<<"directory "<<getFdCellFromFd((FdCell*)fdInfo, dirdesc)->name<<" closed.\n";
+	if( getFdCellFromFd((FdCell*)fdInfo, dirdesc) )
+	  cout<<"directory "<<getFdCellFromFd((FdCell*)fdInfo, dirdesc)->name<<" closed.\n";
+	else
+	  cout<<"SMBIO::closedir( " << dirdesc << " ): getFdCellFromFd((FdCell*)fdInfo, dirdesc) == NULL" << endl;
 #endif
 	return closeFd(fdInfo, dirdesc);
 }
@@ -3619,7 +3635,7 @@ char *SMBIO::append(const char *URL, const char *string)
 	// Port this to the old crappy convention "caller manages pointers"
 	char *tmp = util.append(URL, string, true);
 	char *ret=new char[strlen(tmp)+1];
-	strcpy(ret,URL);
+	strcpy(ret,tmp);
 	return ret;
 }
 

@@ -23,6 +23,7 @@
 #include <kshred.h>
 #include <kdebug.h>
 #include <klocale.h>
+#include <kglobal.h>
 #include <kurl.h>
 #include <kprotocolmanager.h>
 #include <kmimemagic.h>
@@ -212,6 +213,7 @@ SmbProtocol::SmbProtocol( const QCString &pool, const QCString &app) : SlaveBase
         currentPass=QString::null;
         cb = new MyCallback(this);
         smb.setPasswordCallback(cb);
+        smb.setCharSet(KGlobal::locale()->charset().latin1());
 
         // Load config info
         KConfig *g_pConfig = new KConfig("kioslaverc");

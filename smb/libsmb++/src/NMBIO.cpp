@@ -53,7 +53,7 @@ NMBIO::NMBIO(const char *name) // can specify our host name
 {
 	socknetaddr = new (struct sockaddr_in);
 	struct hostent *us;
-	cache = new NBHostCache();
+	cache = new NBHostCache;
 	NBNS=0;
 	if (name) {
 		ourName=new char[strlen(name)+1];

@@ -44,12 +44,12 @@ hostent *NativeNMB::gethostbyname(const char *name, bool groupquery)
 
 NativeNMB::NativeNMB()
 {
-	nmbio = new NMBIO();
+	nmbio = new NMBIO;
 	returnValue.h_name = 0;
 	returnValue.h_aliases = 0;
 	returnValue.h_addrtype = AF_INET;
 	returnValue.h_length = 4;
-	returnValue.h_addr_list = (char **) new char*[2];
+    returnValue.h_addr_list = (char **) new char*[2];
 	returnValue.h_addr_list[0] = new char[4];
 	returnValue.h_addr_list[1] = 0;
 }

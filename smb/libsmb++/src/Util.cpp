@@ -84,8 +84,8 @@ void Util::parse(const char *name, bool interpretDirs)
 //	cerr<<ntoken<<endl;
 	
 	// create the token and separator tables
-        typedef char* CharPtr;
-	char **token = new CharPtr[ntoken];
+    typedef char* CharPtr;
+    char **token = new CharPtr[ntoken];
 	char *separator = new char[ntoken];
 	// fill the table
 	lastpos = (char*)name;
@@ -368,7 +368,7 @@ char *Util::append(const char* URL, const char *string, bool interpretDirs)
 	// append the string
 	newstrappend(appendValue, "/", string);
 	// reparse for a correct URL and interpreting the directories
-	parse(URL, interpretDirs);
+	parse(appendValue, interpretDirs);
 	// Final reconstruction
 	newstrcpy(appendValue,	buildURL(user(),password(),workgroup(),host(),share(),path(),ip()));
 	return appendValue;

@@ -102,7 +102,7 @@ Resolve::Resolve()
 	rethostent.h_aliases = 0;
 	rethostent.h_addrtype = AF_INET;
 	rethostent.h_length = 4;
-	rethostent.h_addr_list = (char **) new char*[2];
+    rethostent.h_addr_list = (char **) new char*[2];
 	rethostent.h_addr_list[0] = new char[4];
 	rethostent.h_addr_list[1] = 0;
 	
@@ -132,10 +132,12 @@ bool Resolve::isWorkgroup(const char* name)
 {
 	// static method, so define a temporary object here
 	// Anyway, all instances share the same cache...
-	Resolve r;
+	Resolve *r = new Resolve;
+	if (!r) return false;
 	
 	// Try standard host first
-	if (r.gethostbyname(name, false)) return false;
+	if (r->gethostbyname(name, false)) return false;
+	delete r;
 
 	return true;
 	// hack

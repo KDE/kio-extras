@@ -27,6 +27,7 @@
 #include <sys/stat.h>
 #include "SessionPacket.h"
 
+
 class SMBPacket : public SessionMessagePacket
 {
 protected:
@@ -79,26 +80,26 @@ But maybe one day...
 class SMBmkdirPacket : public SMBPacket    /* create directory */
 {
 public:
-	SMBmkdirPacket(uint16 TID=0, const char *pathname="", uint8 dial=0);
+	SMBmkdirPacket(uint16 TID = 0, const char *pathname = 0, uint8 dial=0);
 };
 
 class SMBrmdirPacket : public SMBmkdirPacket    /* delete directory */
 {
 public:
-	SMBrmdirPacket(uint16 TID=0, const char *pathname="", uint8 dial=0);
+	SMBrmdirPacket(uint16 TID = 0, const char *pathname = 0, uint8 dial=0);
 };
 
 class SMBopenPacket : public SMBPacket     /* open file */
 {
 public:
-	SMBopenPacket(uint16 TID=0, const char *filename="", int flags=2, uint8 dial=0);
+	SMBopenPacket(uint16 TID = 0, const char *filename = 0, int flags=2, uint8 dial=0);
 	uint16 getFID();
 };
 
 class SMBcreatePacket : public SMBPacket   /* create file */
 {
 public:
-	SMBcreatePacket(uint16 TID=0, const char *filename="", uint8 dial=0);
+	SMBcreatePacket(uint16 TID = 0, const char *filename = 0, uint8 dial=0);
 	uint16 getFID();
 };
 
@@ -115,19 +116,19 @@ class SMBflushPacket : public SMBPacket    /* flush file */
 class SMBunlinkPacket : public SMBPacket   /* delete file */
 {
 public:
-	SMBunlinkPacket(uint16 TID=0, const char *filename="", uint8 dial=0);
+	SMBunlinkPacket(uint16 TID = 0, const char *filename = 0, uint8 dial=0);
 };
 
 class SMBmvPacket : public SMBPacket       /* rename file */
 {
 public:
-	SMBmvPacket(uint16 TID=0, const char *srcfile="", const char *dstfile="", uint8 dial=0);
+	SMBmvPacket(uint16 TID = 0, const char *srcfile = 0, const char *dstfile = 0, uint8 dial=0);
 };
 
 class SMBgetatrPacket : public SMBPacket   /* get file attributes */
 {
 public:
-	SMBgetatrPacket(uint16 tid=0, const char *filename="", uint8 dial=0);
+	SMBgetatrPacket(uint16 TID = 0, const char *filename = 0, uint8 dial=0);
 	struct stat *getStat();
 };
 
@@ -187,7 +188,7 @@ protected:
 	char* device;
 	void update();	// Parent virtual
 public:
-	SMBtconPacket(const char* chemin=0, const uint8* pass=0, uint32 length=0, const char* dev="A:", uint8 dial=0);
+	SMBtconPacket(const char* chemin, const uint8* pass=0, uint32 length=0, const char* dev="A:", uint8 dial=0);
 	void setPath(const char* chemin);
 	void setPassword(const uint8* pass, uint32 length);
 	void setDevice(const char* dev);
@@ -407,7 +408,7 @@ class SMBtconXPacket : public SMBtconPacket          /* tree connect and X */
 protected:
 	void update();	// ancestor virtual
 public:
-	SMBtconXPacket(const char* chemin=0, const uint8* pass=0, uint32 length=0, const char* dev="A:", uint8 dial=0);
+	SMBtconXPacket(const char* chemin = 0, const uint8* pass=0, uint32 length=0, const char* dev="A:", uint8 dial=0);
 	virtual uint16 getMaxMessageSize(); // returns 0 on error
 	virtual uint16 getTID();	// returns -1 on error
 };
@@ -473,3 +474,18 @@ class SMBuloggoffXPacket : public SMBPacket      /* User logoff and X */
 
 #endif
 #endif // __SMBPACKET_H__
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
