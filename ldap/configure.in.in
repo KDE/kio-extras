@@ -63,6 +63,9 @@ NOTFOUND) AC_MSG_RESULT(searched but not found) ;;
   [
   #include <lber.h>
   #include <ldap.h>
+  #if LDAP_VENDOR_VERSION < 20000
+  #error OpenLDAP version too old, please upgrade to version 2 or higher
+  #endif
   ],
   [
   LDAP *ldap;
