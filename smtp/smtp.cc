@@ -432,30 +432,28 @@ int SMTPProtocol::getResponse(bool handleErrors,
     len = DEFAULT_RESPONSE_BUFFER;
   }
 
-  while (recv_len < 1 && waitForResponse(60))
+  while (recv_len < 1)
   {
-    // grab the data
-    recv_len = readLine(buf, len - 1);
-  }
-
-  if (recv_len < 1) 
-  {
-    if (isConnectionValid())
+    if (!waitForResponse(60))
     {
       if (handleErrors)
       {
           error(KIO::ERR_SERVER_TIMEOUT, m_sServer + QString("<<") + buf + QString(">>"));
           m_errorSent = true;
       }
+      free(buf);
+      return 999;
     }
-    else
+
+    // grab the data
+    recv_len = readLine(buf, len - 1);
+    if ((recv_len < 1) && !isConnectionValid())
     {
       error(KIO::ERR_CONNECTION_BROKEN, m_sServer);
       m_errorSent = true;
+      free(buf);
+      return 999;
     }
-
-    free(buf);
-    return 999;
   }
 
   if (recv_len < 4) {
