@@ -1,4 +1,30 @@
-// $Id$
+/*
+ * Copyright (c) 1999,2000 Alex Zepeda
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ * 1. Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ * 2. Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS ``AS IS'' AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED.  IN NO EVENT SHALL THE AUTHOR OR CONTRIBUTORS BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+ * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+ * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ * SUCH DAMAGE.
+ *
+ *	$Id$
+ */
 
 #include <sys/types.h>
 #include <sys/socket.h>
@@ -36,13 +62,15 @@
 
 using namespace KIO;
 
-extern "C" { int kdemain(int argc, char **argv); }
+extern "C" {
+	int kdemain(int argc, char **argv);
+}
 
 int kdemain(int argc, char **argv)
 {
   KInstance instance( "kio_gopher" );
   if (argc != 4) {
-    fprintf(stderr, "usage statement needs to go here\n");
+    kdDebug() << " Usage: kio_gopher protocol domain-socket1 domain-socket2" << endl;
     exit(-1);
   }
   GopherProtocol slave(argv[2], argv[3]);
@@ -56,7 +84,6 @@ GopherProtocol::GopherProtocol(const QCString &pool, const QCString &app)
   m_cmd = CMD_NONE;
   m_tTimeout.tv_sec=10;
   m_tTimeout.tv_usec=0;
-  fp = 0;
 }
 
 GopherProtocol::~GopherProtocol()
@@ -66,10 +93,7 @@ GopherProtocol::~GopherProtocol()
 
 void GopherProtocol::gopher_close ()
 {
-  if (fp) {
-    fclose(fp);
-    fp=0;
-  }
+  CloseDescriptor();
 }
 
 bool GopherProtocol::gopher_open( const KURL &_url )
@@ -92,7 +116,7 @@ bool GopherProtocol::gopher_open( const KURL &_url )
       return false;
     }
     // Otherwise we should send our request
-    if (Write(path.ascii(), strlen(path.ascii())) != strlen(path.ascii())) {
+    if (Write(path.ascii(), strlen(path.ascii())) != static_cast<ssize_t>(strlen(path.ascii()))) {
       error(ERR_COULD_NOT_CONNECT, _url.host());
       gopher_close();
       return false;
@@ -177,8 +201,7 @@ void GopherProtocol::listDir( const KURL &dest )
   UDSAtom atom;
   QString line;
   char buf[128];
-  while (fgets(buf, 127, fp)) {
-
+  while (ReadLine(buf, 127)) {
     line = buf+1;
     if (strcmp(buf, ".\r\n")==0) {
       finished();
@@ -297,9 +320,9 @@ void GopherProtocol::get(const KURL &usrc)
   char type = path.ascii()[0];
   //fprintf(stderr,"Type is:");
   current_type=(GopherType)type;
+  gopher_open(usrc);
   switch ((GopherType)type) {
   case GOPHER_GIF:  {
-    gopher_open(usrc);
     if(!readRawData(usrc.url(), "image/gif")) {
       error(ERR_INTERNAL, "rawReadData failed");
       return;
@@ -307,7 +330,6 @@ void GopherProtocol::get(const KURL &usrc)
     break;
   }
   case GOPHER_UUENCODE: {
-    gopher_open(usrc);
     if (!readRawData(usrc.url(), "text/plain")) {
       error(ERR_INTERNAL, "rawReadData failed");
       return;
@@ -316,7 +338,6 @@ void GopherProtocol::get(const KURL &usrc)
   }
   case GOPHER_BINARY:
   case GOPHER_PCBINARY: {
-    gopher_open(usrc);
     if(!readRawData(usrc.url(), "application/ocet-stream")) {
       error(ERR_INTERNAL, "rawReadData failed");
       return;
@@ -324,7 +345,6 @@ void GopherProtocol::get(const KURL &usrc)
     break;
   }
   case GOPHER_TEXT: {
-    gopher_open(usrc);
     if(!readRawData(usrc.url(), "text/plain")) {
       error(ERR_INTERNAL, "rawReadData failed");
       return;
