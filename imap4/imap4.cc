@@ -888,10 +888,14 @@ IMAP4Protocol::del (const KURL & _url, bool isFile)
     {
       if (aSequence == "*")
       {
-        imapCommand *cmd = doCommand (imapCommand::clientExpunge ());
-        if (cmd->result () != "OK")
-          error (ERR_CANNOT_DELETE, hidePass(_url));
-        completeQueue.removeRef (cmd);
+        if (assureBox (aBox, false))
+        {
+          imapCommand *cmd = doCommand (imapCommand::clientExpunge ());
+          if (cmd->result () != "OK")
+            error (ERR_CANNOT_DELETE, hidePass(_url));
+          completeQueue.removeRef (cmd);
+        }
+        else error (ERR_CANNOT_DELETE, hidePass(_url));
       }
       else
       {
