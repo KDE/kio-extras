@@ -74,7 +74,7 @@
 //this is taken from kdelibs/kdecore/fakes.cpp
 //#if !defined(HAVE_GETDOMAINNAME)
 
-#include <sys/utsname.h> 
+#include <sys/utsname.h>
 #include <netdb.h>
 #include <strings.h>
 #include <errno.h>
@@ -210,8 +210,8 @@ time_t NFSFileHandle::age() const
 ostream& operator<< (ostream& s, const NFSFileHandle& x)
 {
    for (int i =0; i<NFS_FHSIZE; i++)
-      s<<hex<<(unsigned int)x[i]<<" ";
-   s<<dec;
+      s<<iostream::hex<<(unsigned int)x[i]<<" ";
+   s<<iostream::dec;
    return s;
 }
 
@@ -263,7 +263,7 @@ void NFSProtocol::closeConnection()
    m_sock=-1;
    if (m_client==0) return;
    CLNT_DESTROY(m_client);
-   
+
    m_client=0;
 };
 
@@ -761,7 +761,7 @@ void NFSProtocol::completeAbsoluteLinkUDSEntry(UDSEntry& entry, const QCString& 
 	atom.m_uds = KIO::UDS_FILE_TYPE;
 	atom.m_long = buff.st_mode & S_IFMT; // extract file type
 	entry.append( atom );
-	
+
 	atom.m_uds = KIO::UDS_ACCESS;
 	atom.m_long = buff.st_mode & 07777; // extract permissions
 	entry.append( atom );
@@ -824,7 +824,7 @@ void NFSProtocol::completeBadLinkUDSEntry(UDSEntry& entry, fattr& attributes)
 {
    // It is a link pointing to nowhere
    completeUDSEntry(entry,attributes);
-   
+
    UDSAtom atom;
    atom.m_uds = KIO::UDS_FILE_TYPE;
    atom.m_long = S_IFMT - 1;
@@ -1354,7 +1354,7 @@ void NFSProtocol::rename( const KURL &src, const KURL &dest, bool _overwrite )
    stripTrailingSlash(srcPath);
    stripTrailingSlash(destPath);
    kdDebug(7101)<<"renaming -"<<srcPath<<"- to -"<<destPath<<"-"<<endl;
-      
+
    if (isRoot(srcPath) || isExportedDir(srcPath))
    {
       error(ERR_CANNOT_RENAME,srcPath);
@@ -1548,7 +1548,7 @@ void NFSProtocol::symlink( const QString &target, const KURL &dest, bool )
       error(ERR_ACCESS_DENIED,destPath);
       return;
    };
-   
+
    kdDebug(7101)<<"tach"<<endl;
    QCString tmpStr=target.latin1();
    symlinkargs symLinkArgs;
@@ -1564,7 +1564,7 @@ void NFSProtocol::symlink( const QString &target, const KURL &dest, bool )
    if (!checkForError(clnt_stat,nfsStat,destPath)) return;
 
    finished();
-      
+
 };
 
 bool NFSProtocol::isValidLink(const QString& parentDir, const QString& linkDest)
