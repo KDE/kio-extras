@@ -12,6 +12,8 @@
 #include <ktar.h>
 #include <kmimemagic.h>
 
+#include <errno.h> // to be removed
+
 #include "tar.h"
 
 using namespace KIO;
@@ -88,8 +90,13 @@ bool TARProtocol::checkNewFile( QString fullPath, QString & path )
             path = fullPath.mid( pos + 1 );
             kdDebug(7109) << "fullPath=" << fullPath << " path=" << path << endl;
             len = path.length();
-            if ( len != 0 && path[ len - 1 ] == '/' )
-                path.truncate( len - 1 );
+            if ( len > 1 )
+            {
+                if ( path[ len - 1 ] == '/' )
+                    path.truncate( len - 1 );
+            }
+            else
+                path = QString::fromLatin1("/");
             kdDebug(7109) << "Found. tarFile=" << tarFile << " path=" << path << endl;
             break;
         }
@@ -160,14 +167,16 @@ void TARProtocol::listDir( const KURL & url )
     if ( !checkNewFile( url.path(), path ) )
     {
         QCString _path( QFile::encodeName(url.path()));
+        kdDebug( 7109 ) << "Checking (stat) on " << _path << endl;
         struct stat buff;
-        if ( ::lstat( _path.data(), &buff ) == -1 || !S_ISDIR( buff.st_mode ) ) {
+        if ( ::stat( _path.data(), &buff ) == -1 || !S_ISDIR( buff.st_mode ) ) {
             error( KIO::ERR_DOES_NOT_EXIST, url.path() );
             return;
         }
         // It's a real dir
         KURL redir;
         redir.setPath( url.path() );
+        kdDebug( 7109 ) << "Ok, redirection to " << redir.url() << endl;
         redirection( redir );
         finished();
         return;
@@ -176,6 +185,7 @@ void TARProtocol::listDir( const KURL & url )
     if ( path.isEmpty() )
     {
         KURL redir( QString::fromLatin1( "tar:/") );
+        kdDebug() << "url.path()==" << url.path() << endl;
         redir.setPath( url.path() + QString::fromLatin1("/") );
         kdDebug() << "TARProtocol::listDir: redirection " << redir.url() << endl;
         redirection( redir );
@@ -236,8 +246,10 @@ void TARProtocol::stat( const KURL & url )
         // We may be looking at a real directory - this happens
         // when pressing up after being in the root of an archive
         QCString _path( QFile::encodeName(url.path()));
+        kdDebug( 7109 ) << "TARProtocol::stat (stat) on " << _path << endl;
         struct stat buff;
-        if ( ::lstat( _path.data(), &buff ) == -1 || !S_ISDIR( buff.st_mode ) ) {
+        if ( ::stat( _path.data(), &buff ) == -1 || !S_ISDIR( buff.st_mode ) ) {
+            kdDebug() << "isdir=" << S_ISDIR( buff.st_mode ) << "  errno=" << strerror(errno) << endl;
             error( KIO::ERR_DOES_NOT_EXIST, url.path() );
             return;
         }
@@ -246,6 +258,7 @@ void TARProtocol::stat( const KURL & url )
         atom.m_uds = KIO::UDS_NAME;
         atom.m_str = url.fileName();
         entry.append( atom );
+        kdDebug( 7109 ) << "TARProtocol::stat returning name=" << url.fileName() << endl;
 
         atom.m_uds = KIO::UDS_FILE_TYPE;
         atom.m_long = buff.st_mode & S_IFMT;
