@@ -22,10 +22,7 @@ CFLAGS="$kde_save_CFLAGS"
 AC_MSG_RESULT($ac_cv_lib_bzip2)
 
 if test ! "$ac_cv_lib_bzip2" = no; then
-  dnl BZIP2DIR=bzip2
-  dnl AC_SUBST(BZIP2DIR)
-  BZIP2FILES="bzip.protocol bzip2.protocol"
-  AC_SUBST(BZIP2FILES)
+  BZIP2DIR=bzip2
 
   dnl LIBBZ2="$ac_cv_lib_bzip2"
   dnl AC_SUBST(LIBBZ2)
@@ -53,9 +50,10 @@ else
    ])dnl
 
    AC_MSG_RESULT($ac_cv_lib_bzip2_prefix)
-    
+   BZIP2DIR=bzip2    
    AM_CONDITIONAL(include_BZIP2, test ! "$ac_cv_lib_bzip2_prefix" = no)
 fi
+AM_CONDITIONAL(include_BZIP2, test -n "$BZIP2DIR")
 ])
 
 AC_FIND_BZIP2
