@@ -693,6 +693,16 @@ IMAP4Protocol::put (const KURL & _url, int, bool, bool)
         error (ERR_COULD_NOT_WRITE, myHost);
       else
       {
+        if (hasCapability("UIDPLUS"))
+        {
+          QString uid = cmd->resultInfo();
+          if (uid.find("APPENDUID") != -1)
+          {
+            uid = uid.section(" ", 2, 2);
+            uid = uid.left(uid.length()-1);
+            infoMessage("UID "+uid);
+          }
+        }
         // MUST reselect to get the new message
         if (aBox == getCurrentBox ())
         {
@@ -853,7 +863,20 @@ IMAP4Protocol::copy (const KURL & src, const KURL & dest, int, bool overwrite)
     imapCommand *cmd =
       doCommand (imapCommand::clientCopy (dBox, sSequence));
     if (cmd->result () != "OK")
+    {
       error (ERR_COULD_NOT_WRITE, hidePass(dest));
+    } else {
+      if (hasCapability("UIDPLUS"))
+      {
+        QString uid = cmd->resultInfo();
+        if (uid.find("COPYUID") != -1)
+        {
+          uid = uid.section(" ", 2, 3);
+          uid = uid.left(uid.length()-1);
+          infoMessage("UID "+uid);
+        }
+      }
+    }
     completeQueue.removeRef (cmd);
   }
   else
@@ -980,6 +1003,7 @@ IMAP4Protocol::special (const QByteArray & aData)
 {
   if (!makeLogin()) return;
 
+  kdDebug(7116) << "IMAP4Protocol::special" << endl;
   QDataStream stream(aData, IO_ReadOnly); 
 
   int tmp;
@@ -994,7 +1018,6 @@ IMAP4Protocol::special (const QByteArray & aData)
   }
   else if (tmp == 'c')
   {
-kdDebug(7116) << "IMAP4Protocol::special" << endl;
     infoMessage(imapCapabilities.join(" "));
     finished();
   }
@@ -1006,6 +1029,7 @@ kdDebug(7116) << "IMAP4Protocol::special" << endl;
   }
   else
   {
+    // status ('S')
     KURL _url;
     QCString newFlags;
     stream >> _url >> newFlags;
