@@ -73,6 +73,7 @@ So we can't connect.
 #define MIN(a,b) (((a)<(b))?(a):(b))
 #define RETRIES 3
 
+
 using namespace KIO;
 extern "C"
 {
@@ -886,7 +887,7 @@ void kio_sftpProtocol::sftpCopyPut(const KURL& src, const KURL& dest, int permis
     
     totalSize (buff.st_size);    
     
-    sftpPut (dest, permissions, true, overwrite, fd);
+    sftpPut (dest, permissions, false, overwrite, fd);
     
     // Close the file descriptor...
     ::close( fd );
@@ -902,132 +903,138 @@ void kio_sftpProtocol::sftpPut( const KURL& dest, int permissions, bool resume, 
     }
     
     bool markPartial = config()->readBoolEntry("MarkPartial", true);
+    
     kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::sftpPut: Mark partial = "
-                         << markPartial << endl;
+                         << markPartial << ", Resume = " << resume 
+                         << ", Overwrite = " << overwrite << endl;
 
-    KURL origUrl ( dest );
-    KURL partUrl ( dest );
-    partUrl.setFileName(partUrl.filename() + ".part");
-
-    sftpFileAttr origAttr, partAttr;
+    KURL origUrl( dest );
+    sftpFileAttr origAttr;
     bool origExists = false;
-    bool partExists = false;
-
+    
     // Stat original (without part ext)  to see if it already exists
     int code = sftpStat(origUrl, origAttr);
     
     if( code == SSH2_FX_OK ) {
-        kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::sftpPut(): file already exists" << endl;
-        origExists = true;        
-    }    
-    else if( code != SSH2_FX_NO_SUCH_FILE ) {
-        processStatus(code, origUrl.prettyURL());
-        return;
-    }
-    
-    // Stat file with part ext to see if it already exists.
-    if( markPartial ) {
-        code = sftpStat(partUrl, partAttr);
-        if ( code == SSH2_FX_OK) {
-            kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::sftpPut(): file.part already exists" << endl;
-            partExists = true;        
-        }
-        else if( code != SSH2_FX_NO_SUCH_FILE ) {
-            processStatus(code, partUrl.prettyURL());
+        kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::sftpPut(): <file> already exists" << endl;
+        
+        // Do not waste time/resources with more remote stat calls if the file exists 
+        // and we weren't instructed to overwrite it...
+        if( !overwrite ) {
+            error(ERR_FILE_ALREADY_EXIST, origUrl.prettyURL());
             return;
         }
-    }
-
-    if( origExists ) {
-        // delete remote file if its size is zero
+        // Delete remote file if its size is zero
         if( origAttr.fileSize() == 0 ) {
             if( sftpRemove(origUrl, true) != SSH2_FX_OK ) {
                 error(ERR_CANNOT_DELETE_PARTIAL, origUrl.prettyURL());
                 return;
             }
         }
-
-        // return file exists error if we weren't instructed to overwrite or resume
-        else if( !overwrite && !resume ) {
-              error(ERR_FILE_ALREADY_EXIST, origUrl.prettyURL());
-              return;
-        }
-
-        // rename file with a partial ext if we are marking partials
-        else if( markPartial ) {
-            if( !S_ISLNK(origAttr.fileType()) && sftpRename(origUrl, partUrl) != SSH2_FX_OK ) {
-                error(ERR_CANNOT_RENAME_PARTIAL, origUrl.prettyURL());
-                return;
+        else {
+        
+            // Find the real file if the file being copied to is a symlink...        
+            if( S_ISLNK(origAttr.permissions()) && isSupportedOperation(SSH2_FXP_READLINK) ) {
+                
+                QString target;
+                if ( (code=sftpReadLink( origUrl, target )) != SSH2_FX_OK ) {
+                    doProcessStatus( code, i18n("Could not copy file to '%1'").arg(origUrl.host()) );
+                    return;
+                }
+                
+                if( target[0] == '/' )
+                    origUrl.setPath( target );
+                else
+                    origUrl.addPath( target );
+                 
+                origUrl.cleanPath();
             }
         }
-    }
-    else if( partExists ) {
-        // delete remote file if its size is zero
-        if( partAttr.fileSize() == 0 ) {
-            if( sftpRemove(partUrl, true) != SSH2_FX_OK ) {
-                error(ERR_CANNOT_DELETE_PARTIAL, partUrl.prettyURL());
-                return;
-            }
-        }
-
-        // return file exists error if we weren't instructed to overwrite or resume
-        else if( !overwrite && !resume ) {
-            // notify the job that we can resume this file. If the io-slave
-            // doing the GET replies that it can resume continue, else send
-            // "a file already exists" error message.
-            kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::sftpPut: Size = " << partAttr.fileSize();
-            resume = canResume(partAttr.fileSize());
-            kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::sftpPut: Can resume = " << resume;
-            if (!resume)
-            {
-              error(ERR_FILE_ALREADY_EXIST, partUrl.prettyURL());
-              return;
-            }
-        }
-
-        // remove part ext if we are not marking partial files
-        else if( !markPartial ) {
-            if( sftpRename(partUrl, origUrl) != SSH2_FX_OK ) {
-                error(ERR_CANNOT_RENAME_PARTIAL, origUrl.prettyURL());
-                return;
-            }
-        }
+        origExists = true;
+    }    
+    else if( code != SSH2_FX_NO_SUCH_FILE ) {
+        processStatus(code, origUrl.prettyURL());
+        return;
     }
     
-    // determine url we will actually write to
-    KURL writeUrl = markPartial ? partUrl : origUrl;
-
-    // determine beginning offset
-    Q_UINT64 offset;
+    // Stat file with part ext to see if it already exists...
+    KURL partUrl( origUrl );
+    partUrl.setFileName( partUrl.filename() + ".part" );
+    
+    bool partExists = false;
+    Q_UINT64 offset = 0;
+    
     if( markPartial ) {
-        offset = partExists ? partAttr.fileSize() : 0;
-    }
-    else {
-        offset = origExists ? origAttr.fileSize() : 0;
+    
+        if( origExists && sftpRename(origUrl, partUrl) != SSH2_FX_OK ) {
+            error(ERR_CANNOT_RENAME_ORIGINAL, origUrl.prettyURL());
+            return;
+        }
+        else {
+            
+            sftpFileAttr partAttr;
+            code = sftpStat(partUrl, partAttr);
+            
+            if ( code == SSH2_FX_OK) {
+                kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::sftpPut(): <file.part> already exists" << endl;
+                partExists = true;            
+                
+                offset = partAttr.fileSize();
+                              
+                // delete remote file if its size is zero
+                if( offset == 0 ) {
+                    if( sftpRemove(partUrl, true) != SSH2_FX_OK ) {
+                        error(ERR_CANNOT_DELETE_PARTIAL, partUrl.prettyURL());
+                        return;
+                    }
+                }                    
+                else if( !overwrite && !resume ) {
+                    // Notify the job that we can resume this file. If the io-slave
+                    // doing the GET replies that it can resume continue, else send
+                    // "a file already exists" error message.               
+                    if (fd != -1)
+                        resume = (KDE_lseek(fd, offset, SEEK_SET) != -1);
+                    else
+                        resume = canResume( offset );
+                    
+                    kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::sftpPut: Can resume = " << resume
+                                        << ", Resume offset = " << offset;
+                    
+                    if (!resume) {
+                      error(ERR_FILE_ALREADY_EXIST, partUrl.prettyURL());
+                      return;
+                    }
+                }
+                else {
+                    offset = 0;
+                }
+            }
+            else if( code != SSH2_FX_NO_SUCH_FILE ) {
+                processStatus(code, partUrl.prettyURL());
+                return;
+            }
+        }
     }
 
+    // Determine the url we will actually write to...
+    KURL writeUrl (markPartial ? partUrl:origUrl);
 
     Q_UINT32 pflags = 0;
-    if( overwrite && !resume ) {
-        offset = 0;
+    if( overwrite && !resume )
         pflags = SSH2_FXF_WRITE | SSH2_FXF_CREAT | SSH2_FXF_TRUNC;
-    }
-    else if( !overwrite && !resume ) {
-        offset = 0;
+    else if( !overwrite && !resume )
         pflags = SSH2_FXF_WRITE | SSH2_FXF_CREAT | SSH2_FXF_EXCL;
-    }
     else if( overwrite && resume )
         pflags = SSH2_FXF_WRITE | SSH2_FXF_CREAT;
     else if( !overwrite && resume )
         pflags = SSH2_FXF_WRITE | SSH2_FXF_CREAT | SSH2_FXF_APPEND;
-
     
     sftpFileAttr attr;
     QByteArray handle;
-        
+    
     // set the permissions of the file we write to if it didn't already exist
     if( !partExists && !origExists )
-        attr.setPermissions(permissions);
+        attr.setPermissions(permissions);    
     
     code = sftpOpen(writeUrl, pflags, attr, handle);
     if( code == SSH2_FX_FAILURE ) { // assume failure means file exists
@@ -1038,8 +1045,8 @@ void kio_sftpProtocol::sftpPut( const KURL& dest, int permissions, bool resume, 
         // Rename the file back to its original name if a
         // put fails due to permissions problems...
         if (markPartial && overwrite) {
-          (void) sftpRename(partUrl, origUrl);
-          writeUrl = origUrl;
+            (void) sftpRename(partUrl, origUrl);
+            writeUrl = origUrl;
         }
         
         processStatus(code, writeUrl.prettyURL());
@@ -1051,12 +1058,13 @@ void kio_sftpProtocol::sftpPut( const KURL& dest, int permissions, bool resume, 
        
     do {        
         if (fd != -1) {
-          buff.resize(4096);
-          nbytes = ::read(fd, buff.data(), buff.size());
+            buff.resize( 16*1024 );
+            if ( (nbytes = ::read(fd, buff.data(), buff.size())) > -1 )
+                buff.resize( nbytes );
         }
         else {
-          dataReq();
-          nbytes = readData(buff);
+            dataReq();
+            nbytes = readData( buff );
         }
         
         if (nbytes > 0) {
@@ -1076,12 +1084,10 @@ void kio_sftpProtocol::sftpPut( const KURL& dest, int permissions, bool resume, 
             if( wasKilled() ) {
                 sftpClose(handle);
                 closeConnection();
-                error(ERR_UNKNOWN, i18n("SFTP slave unexpectedly killed"));
+                error(ERR_UNKNOWN, i18n("An internal error occurred. Please try the request again."));
                 return;
             }
-        }        
-        
-        buff.resize(0);
+        }
     } while( nbytes > 0 );
 
     if( nbytes != 0 ) {
@@ -1098,7 +1104,7 @@ void kio_sftpProtocol::sftpPut( const KURL& dest, int permissions, bool resume, 
             }
         }
         
-        error( ERR_UNKNOWN, i18n("Unknown error occurred while copying the file "
+        error( ERR_UNKNOWN, i18n("Unknown error was encountered while copying the file "
                                  "to '%1'. Please try again.").arg(dest.host()) );
         return;
     }
@@ -1108,17 +1114,8 @@ void kio_sftpProtocol::sftpPut( const KURL& dest, int permissions, bool resume, 
         return;
     }
 
-    // if wrote to a partial file, then remove the part ext
-    if( markPartial ) {
-        // If the original URL is a symlink and we were asked to overwrite it,
-        // remove the symlink first. This ensures that we do not overwrite the
-        // current source if the symlink points to it.
-        if( overwrite && S_ISLNK(origAttr.fileType()) && 
-            sftpRemove(origUrl,true) != SSH2_FX_OK ) {
-            error(ERR_CANNOT_DELETE_ORIGINAL, origUrl.prettyURL());
-            return;
-        }
-          
+    // If wrote to a partial file, then remove the part ext
+    if( markPartial ) {          
         if( sftpRename(partUrl, origUrl) != SSH2_FX_OK ) {
             error(ERR_CANNOT_RENAME_PARTIAL, origUrl.prettyURL());
             return;
@@ -1186,12 +1183,12 @@ void kio_sftpProtocol::stat ( const KURL& url ){
     else {
         //kdDebug() << "We sent and received stat packet ok" << endl;
         attr.setFilename(url.filename());
-        // dies here when stating file for rename
         statEntry(attr.entry());
     }
     
     finished();
-    kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::stat(): END" << endl;
+
+    kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::stat: END" << endl;
     return;
 }
 
@@ -1955,11 +1952,9 @@ int kio_sftpProtocol::sftpReadDir(const QByteArray& handle, const KURL& url){
                 if( target[0] == '/' )
                     myurl.setPath(target);                    
                 else
-                {
                     myurl.addPath(target);
-                    if (target[0] == '.')
-                        myurl.cleanPath();
-                }
+                    
+                myurl.cleanPath();
                 
                 sftpFileAttr attr2;                                        
                 (void) sftpStat(myurl, attr2);                                
@@ -2108,7 +2103,7 @@ int kio_sftpProtocol::sftpStat(const KURL& url, sftpFileAttr& attr){
 
     r >> attr;
     attr.setFilename(url.filename());
-    kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::stat():: " << attr << endl;
+    kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::sftpStat(): " << attr << endl;
     return SSH2_FX_OK;
 }
 
