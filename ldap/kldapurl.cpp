@@ -94,9 +94,8 @@ QStrList &Url::attributes()
 
 void Url::update()
 {
-  QString q = "";
+  QString q = "?";
   
-  // the first '?' is implicit (by setQuery)
   // set the attributes to query
   if (_attributes.count() > 0)
     {

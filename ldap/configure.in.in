@@ -19,8 +19,8 @@ no)
   LDAP_LIBS="-L${LDAP_ROOT}/lib -lldap -llber"
   kde_safe_LIBS="$LIBS"
   kde_safe_CFLAGS="$CFLAGS"
-  LIBS="$LIBS $all_libraries $LDAP_LIBS"
-  CFLAGS="$CFLAGS $all_includes $LDAP_INCS"
+  LIBS="$LIBS $all_libraries $LDAP_LIBS $KERBEROS_LIBS"
+  CFLAGS="$CFLAGS $all_includes $LDAP_INCS $KERBEROS_INCS"
   AC_LANG_SAVE
   AC_LANG_C
   AC_TRY_LINK(dnl

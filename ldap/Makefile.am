@@ -9,8 +9,8 @@ LDADD	=	$(LIB_KIO) $(LDAP_LIBS)
 lib_LTLIBRARIES = kio_ldap.la
 
 kio_ldap_la_SOURCES = kio_ldap.cpp kldap.cpp kldapurl.cpp
-kio_ldap_la_LIBADD = $(LIB_KIO) $(LDAP_LIBS)
-kio_ldap_la_LDFLAGS = $(all_libraries) $(KDE_RPATH) $(LDAP_RPATH) -module -avoid-version
+kio_ldap_la_LIBADD = $(LIB_KIO) $(LDAP_LIBS) $(KERBEROS_LIBS)
+kio_ldap_la_LDFLAGS = $(all_libraries) $(KDE_RPATH) $(LDAP_RPATH) $(KRB_RPATH) -module -avoid-version
 
 noinst_HEADERS = kio_ldap.h kldap.h kldapurl.h
 
