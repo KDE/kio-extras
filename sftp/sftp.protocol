@@ -21,6 +21,7 @@ Description[pt]=Um 'kioslave' para sftp
 Description[pt_BR]=Uma implementação para o sftp
 Description[sv]=En I/O-slav för SFTP
 Description[ta]=sftpக்கான ஒரு க்யோஸ்லேவ்
+Description[tr]=Sftp için kioslave
 Description[uk]=Підлеглий В/В для sftp
 DocPath=kioslave/sftp.html
 Icon=ftp

@@ -21,5 +21,6 @@ Description[pt]=Um 'kioslave' para protocolo FISH
 Description[pt_BR]=Uma implementação para o protocolo FISH
 Description[sv]=En I/O-slav för protokollet FISH
 Description[ta]=FISH நெறிமுறைக்கான ஒரு க்யோஸ்லேவ்
+Description[tr]=FISH protokolü için kioslave
 Description[uk]=Підлеглий B/В для протоколу FISH
 DocPath=kioslave/fish.html
