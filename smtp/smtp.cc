@@ -65,10 +65,8 @@
 #include <iostream.h>
 
 #include "emailsettings.h"
-#include "base64.h"
-#include "cram_auth.h"
-#include "digest_auth.h"
 #include "smtp.h"
+#include "ksasl/saslcontext.h"
 
 using namespace KIO;
 
@@ -107,12 +105,14 @@ SMTPProtocol::SMTPProtocol(const QCString &pool, const QCString &app)
 	haveTLS=false;
 	m_iSock=0;
 	m_iOldPort = 0;
-	m_sOldServer="";
+	m_sOldServer=QString::null;
 	m_tTimeout.tv_sec=10;
 	m_tTimeout.tv_usec=0;
 	//m_pSSL=0;
-	m_eAuthSupport=AUTH_None;
-	auth_digestmd5 = new DigestAuth;
+
+	// Auth stuff
+	m_pSASL=0;
+	m_sAuthConfig=QString::null;
 }
 
 
@@ -327,7 +327,7 @@ bool SMTPProtocol::command(const char *cmd, char *recv_buf, unsigned int len) {
 
 bool SMTPProtocol::smtp_open(const KURL &url)
 {
-	if ( (m_iOldPort == GetPort(m_iPort)) && (m_sOldServer == m_sServer) ) {
+	if ( (m_iOldPort == GetPort(m_iPort)) && (m_sOldServer == m_sServer) && (m_sOldUser == m_sUser) ) {
 		return true;
 	} else {
 		smtp_close();
@@ -384,39 +384,44 @@ bool SMTPProtocol::smtp_open(const KURL &url)
 
 bool SMTPProtocol::Authenticate(const KURL &url)
 {
-	// true == success
-	if (m_eAuthSupport & AUTH_DIGEST) {
-		char *challenge=static_cast<char *>(malloc(2049));
-		QString resp;
-		if (command("AUTH DIGEST-MD5", challenge, 2049)) {
-			auth_digestmd5->UseChallenge(url, challenge, true);
-			free(challenge);
-			auth_digestmd5->GenerateResponse(resp);
-			if (command(resp.latin1())) {
-				if (command(""))
-					return true;
-				auth_digestmd5->decNonceCount();
-			}
-		} else
-			free(challenge);
-	}
+	bool ret;
+	QString auth_method;
 
-	if (m_eAuthSupport & AUTH_CRAM) {
-		char *challenge=static_cast<char *>(malloc(2049));
-		QString resp;
-		if (command("AUTH CRAM-MD5", challenge, 2049)) {
-			resp=generate_cram_auth(m_sUser.latin1(), m_sPass.latin1(), challenge);
-			free(challenge);
-			if (command(resp.latin1()))
-				return true;
-		} else
-			free(challenge);
-	}
+	// Generate a new context.. now this isn't the most efficient way of doing things, but for now this suffices
+	if (m_pSASL) delete m_pSASL;
+	m_pSASL = new KSASLContext;
+	m_pSASL->setURL(url);
 
-	if (m_eAuthSupport & AUTH_Plain) {
-		QString aline = "AUTH PLAIN %1\r\n";
-		aline.arg(create_auth_plain(m_sUser.latin1(), m_sPass.latin1()));
-		return command(aline.latin1());
+	// Choose available method from what the server has given us in  its greeting
+	auth_method = m_pSASL->chooseMethod(m_sAuthConfig);
+
+	// If none are available, set it up so we can start over again
+	if (auth_method == QString::null) {
+		delete m_pSASL; m_pSASL=0;
+		return false;
+	} else {
+		char *challenge=static_cast<char *>(malloc(2049));
+		// I've probably made some troll seek shelter somewhere else.. yay gov'nr and his matrix.. yes that one.. that looked like a  bird.. no not harvey milk
+		if (!command(QString(QString("AUTH ")+auth_method).latin1(), challenge, 2049)) {
+			free(challenge);
+			delete m_pSASL; m_pSASL=0;
+			return false;
+		}
+
+		// Now for the stupid part
+		// PLAIN auth has embedded null characters.  Ew.
+		// so it's encoded in HEX as part of its spec IIRC.
+		// so.. let that auth module do the b64 encoding itself..
+		// it's easier than generating a byte array simply to pass 
+		// around null characters.  Stupid stupid stupid.
+		if (auth_method == "PLAIN") {
+			ret = command(m_pSASL->generateResponse(challenge, false).latin1());
+		} else {
+			// Since SMTP does indeed needs its auth responses base64 encoded... for some reason
+			ret = command(m_pSASL->generateResponse(challenge, true).latin1());
+		}
+		free(challenge);
+		return ret;
 	}
 	return false;
 }
@@ -434,12 +439,8 @@ void SMTPProtocol::ParseFeatures(const char *_buf)
 	buf=buf.mid(4, buf.length()); // Clop off the beginning, no need for it really
 
 	if (buf.left(4) == "AUTH") { // Look for auth stuff
-		if (buf.find("DIGEST-MD5") != -1)
- 			m_eAuthSupport = (SMTPProtocol::AUTH)(m_eAuthSupport | AUTH_DIGEST);
-		if (buf.find("CRAM-MD5") != -1)
-			m_eAuthSupport = (SMTPProtocol::AUTH)(m_eAuthSupport | AUTH_CRAM);
-		if (buf.find("PLAIN") != -1)
-			m_eAuthSupport = (SMTPProtocol::AUTH)(m_eAuthSupport | AUTH_Plain);
+		// keep this for later use ^^^^
+		m_sAuthConfig=buf.mid(5, buf.length());
 	} else if (buf.left(8) == "STARTTLS") {
 		haveTLS=true;
 	}

@@ -34,7 +34,7 @@
 
 #include <kconfig.h>
 
-class DigestAuth;
+class KSASLContext;
 
 class SMTPProtocol
 	: public KIO::TCPSlaveBase {
@@ -48,12 +48,6 @@ public:
 	virtual void stat(const KURL&url);
 
 protected:
-	enum AUTH {
-		AUTH_None	=0x000,
-		AUTH_Plain	=0x002,
-		AUTH_DIGEST	=0x004,
-		AUTH_CRAM	=0x006
-	};
 
 	bool smtp_open(const KURL &u);
 	void smtp_close();
@@ -65,13 +59,15 @@ protected:
 
 	unsigned short m_iOldPort;
 	bool opened, haveTLS;
-	enum AUTH m_eAuthSupport;
 	struct timeval m_tTimeout;
 	QString m_sServer, m_sOldServer;
 	QString m_sUser, m_sOldUser;
 	QString m_sPass, m_sOldPass;
 	QString m_sError;
-	DigestAuth *auth_digestmd5;
+
+	// Auth stuff.. perhaps for TCPSlaveBase?
+	KSASLContext *m_pSASL;
+	QString m_sAuthConfig;
 };
 
 #endif
