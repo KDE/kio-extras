@@ -48,6 +48,7 @@ bool HTMLCreator::create(const QString &path, int extent, QPixmap &pix)
         connect(m_html, SIGNAL(completed()), SLOT(slotCompleted()));
         m_html->enableJScript(false);
         m_html->enableJava(false);
+        m_html->enablePlugins(false);
     }
     m_html->openURL(path);
     m_completed = false;
