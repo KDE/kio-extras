@@ -565,7 +565,7 @@ StatInfo FloppyProtocol::_stat(const KURL& url)
    if (m_stdoutSize==0)
    {
       info.isValid=false;
-      error( KIO::ERR_COULD_NOT_STAT, i18n("%1\nReason unknown.").arg(url.prettyURL()));
+      error( KIO::ERR_COULD_NOT_STAT, url.prettyURL());
       return info;
    }
 
@@ -580,11 +580,11 @@ StatInfo FloppyProtocol::_stat(const KURL& url)
          continue;
       StatInfo info=createStatInfo(line,true,url.fileName());
       if (info.isValid==false)
-         error( KIO::ERR_COULD_NOT_STAT, i18n("%1\nReason unknown.").arg(url.prettyURL()));
+         error( KIO::ERR_COULD_NOT_STAT, url.prettyURL());
       return info;
    }
    if (info.isValid==false)
-      error( KIO::ERR_COULD_NOT_STAT, i18n("%1\nReason unknown.").arg(url.prettyURL()));
+      error( KIO::ERR_COULD_NOT_STAT, url.prettyURL());
    return info;
 }
 
@@ -654,7 +654,7 @@ int FloppyProtocol::freeSpace(const KURL& url)
 
    if (m_stdoutSize==0)
    {
-      error( KIO::ERR_COULD_NOT_STAT, i18n("%1\nReason unknown.").arg(url.prettyURL()));
+      error( KIO::ERR_COULD_NOT_STAT, url.prettyURL());
       return -1;
    }
 
@@ -1138,7 +1138,7 @@ void FloppyProtocol::put( const KURL& url, int , bool overwrite, bool )
             if (bytesRead>freeSpaceLeft)
             {
                result=0;
-               error( KIO::ERR_COULD_NOT_WRITE, i18n("%1\nThe disk in drive %2 is probably full.").arg(url.prettyURL(),drive));
+               error( KIO::ERR_SLAVE_DEFINED, i18n("Could not write to file %1.\nThe disk in drive %2 is probably full.").arg(url.prettyURL(),drive));
             }
             else
             {
