@@ -119,6 +119,7 @@ kio_sftpProtocol::kio_sftpProtocol(const QCString &pool_socket, const QCString &
   : QObject(), SlaveBase("kio_sftp", pool_socket, app_socket) {
     kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::kio_sftpProtocol()" << endl;
     mConnected = false;
+    setMultipleAuthCaching(true);
     mMsgId = 0;
 }
 
@@ -239,49 +240,60 @@ void kio_sftpProtocol::openConnection(){
     info.url.setProtocol("sftp");
     info.url.setHost(mHost);
     info.url.setPort(mPort);
+    info.caption = i18n("Sftp Login");
+    info.comment = "sftp://"+mHost;
+    info.commentLabel = i18n("site:");
+    info.username = mUsername;
 
     QByteArray p;
-    int tries = RETRIES+1;
-    while( --tries ) {
-        // Search for auth info if we don't already have it
-        if( mUsername.isEmpty() || mPassword.isEmpty() ) {
+    bool gotFromCache = false;
+    int tries = 0;
+    while( tries++ < RETRIES ) {
+        kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::openConnection(): Auth try " << tries;
+        kdDebug(KIO_SFTP_DB) << "usename = " << mUsername;
 
-            // Check for cached auth info if this is our first try
-            if( checkCachedAuthentication(info) && tries == RETRIES ) {
+        // If we tried and failed, set info message
+        if( tries > 1 )
+            infoMessage(i18n("Login failed. Retrying..."));
+
+        kdDebug(KIO_SFTP_DB) << "checkAuth = " <<
+         (checkCachedAuthentication(info) ? "true" : "false");
+        // Check for cached auth info if this is our first try
+        if( tries == 1 && !mUsername.isEmpty() &&
+              checkCachedAuthentication(info) ) {
+            kdDebug(KIO_SFTP_DB) << "Got auth info from cache";
+            gotFromCache = true;
+            mUsername = info.username;
+            mPassword = info.password;
+        }
+        // cache was dry or we don't have a username, so ask user
+        else {
+            gotFromCache = false;
+            if( tries == 1 ) // this is first try
+                info.prompt =
+                  i18n("Please enter your username and password.");
+            else // this is a retry
+                info.prompt =
+                  i18n("Login failed.\nPlease confirm your username and password, and enter them again.");
+
+            if( openPassDlg(info) ) {
+               if( info.username.isEmpty() || info.password.isEmpty() ) {
+                    error(ERR_COULD_NOT_AUTHENTICATE,
+                      i18n("Please enter a username and password"));
+                    continue;
+                }
                 mUsername = info.username;
                 mPassword = info.password;
             }
-            else { // No auth info cached so ask user
-                info.caption = i18n("Sftp Login");
-                info.comment = "sftp://"+mHost;
-                info.commentLabel = i18n("site:");
-                info.username = mUsername;
-
-                if( tries == RETRIES ) // this is first try
-                    info.prompt =
-                      i18n("Please enter your username and password.");
-                else // this is a retry
-                    info.prompt =
-                      i18n("Login failed.\nPlease confirm your username and password, and enter them again.");
-
-                if( openPassDlg(info) ) {
-                   if( info.username.isEmpty() || info.password.isEmpty() ) {
-                        error(ERR_COULD_NOT_AUTHENTICATE,
-                          i18n("Please enter a username and password"));
-                        continue;
-                    }
-                    mUsername = info.username;
-                    mPassword = info.password;
-                }
-                else {
-                    // user canceled or dialog failed to open
-                    error(ERR_USER_CANCELED, QString::null);
-                    return;
-                }
+            else {
+                // user canceled or dialog failed to open
+                error(ERR_USER_CANCELED, QString::null);
+                return;
             }
         } // We have a username and password at this point
 
         if( !startSsh() ) {
+            infoMessage(i18n("Connection failed."));
             mConnected = false;
             return;
         }
@@ -311,7 +323,6 @@ void kio_sftpProtocol::openConnection(){
         // Now we wait to see whether we get a response on the stdinout file descriptor
         // or on the pty file desciptor. If the former, we are successfully connected.
         // If the latter, authentication failed.
-
         int ptyfd = ssh.fd(), stdiofd = ssh.stdinout();
         fd_set rfds;
         struct timeval tv;
@@ -349,8 +360,9 @@ void kio_sftpProtocol::openConnection(){
     }
 
 
-    if( !tries ) {
+    if( tries == RETRIES ) {
         // Login failed
+        infoMessage(i18n("Login failed."));
         error(ERR_COULD_NOT_LOGIN,
           i18n("Could not login to %1.\nMaximum number of retries exceeded.").arg(mHost));
         return;
@@ -380,9 +392,10 @@ void kio_sftpProtocol::openConnection(){
     }
 
     // Login succeeded!
+    infoMessage(i18n("Login OK"));
     info.username = mUsername;
     info.password = mPassword;
-    cacheAuthentication(info);
+    if( !gotFromCache ) cacheAuthentication(info);
     mConnected = true;
     connected();
     return;
@@ -504,7 +517,7 @@ void kio_sftpProtocol::stat ( const KURL& url ){
     if( !url.hasPath() ) {
         KURL newUrl, oldUrl;
         newUrl = oldUrl = url;
-        oldUrl.setPath(QString::fromLatin1("."));
+        oldUrl.addPath(QString::fromLatin1("."));
         if( sftpRealPath(oldUrl, newUrl) == SSH2_FX_OK ) {
             kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::stat: Redirecting to " << newUrl.prettyURL() << endl;
             redirection(newUrl);
@@ -594,7 +607,7 @@ void kio_sftpProtocol::listDir(const KURL& url) {
     if( !url.hasPath() ) {
         KURL newUrl, oldUrl;
         newUrl = oldUrl = url;
-        oldUrl.setPath(QString::fromLatin1("."));
+        oldUrl.addPath(QString::fromLatin1("."));
         if( sftpRealPath(oldUrl, newUrl) == SSH2_FX_OK ) {
             kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::listDir: Redirecting to " << newUrl.prettyURL() << endl;
             redirection(newUrl);
