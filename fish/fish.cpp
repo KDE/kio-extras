@@ -378,6 +378,7 @@ bool fishProtocol::connectionStart() {
     }
 
     if (!requestNetwork()) return true;
+    myDebug( << "exec " << sshPath << " -p " << connectionPort << " -l " << connectionUser << " -x -e none -q " << connectionHost << " echo ... " << endl);
     childPid = fork();
     if (childPid == -1) {
         myDebug( << "fork failed, error: " << strerror(errno) << endl);
@@ -423,7 +424,7 @@ bool fishProtocol::connectionStart() {
         setpgid(0,0);
 
         if (local) {
-            execl(suPath, "su", "-l", connectionUser.latin1(), "-c", "cd ~;echo FISH:;exec /bin/sh -c \"if env true 2>/dev/null; then env PS1= PS2= TZ=UTC LANG=C LC_ALL=C LOCALE=C /bin/sh; else PS1= PS2= TZ=UTC LANG=C LC_ALL=C LOCALE=C /bin/sh; fi\"", (void *)0);
+            execl(suPath, "su", "-", connectionUser.latin1(), "-c", "cd ~;echo FISH:;exec /bin/sh -c \"if env true 2>/dev/null; then env PS1= PS2= TZ=UTC LANG=C LC_ALL=C LOCALE=C /bin/sh; else PS1= PS2= TZ=UTC LANG=C LC_ALL=C LOCALE=C /bin/sh; fi\"", (void *)0);
         } else {
             #define common_args "-l", connectionUser.latin1(), "-x", "-e", "none", \
                 "-q", connectionHost.latin1(), \
@@ -437,7 +438,7 @@ bool fishProtocol::connectionStart() {
                 execl(sshPath, "ssh", common_args);
             #undef common_args
         }
-        //myDebug( << "could not exec " << ex << endl);
+        myDebug( << "could not exec! " << strerror(errno) << endl);
         ::exit(-1);
     }
     close(fd[1]);
