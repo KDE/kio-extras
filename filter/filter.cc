@@ -30,7 +30,6 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #include <kdebug.h>
 #include <kmimemagic.h>
 #include <kfilterbase.h>
-#include <kcomprmanager.h>
 
 #include "filter.h"
 
@@ -59,7 +58,7 @@ FilterProtocol::FilterProtocol( const QCString & protocol, const QCString &pool,
  : KIO::SlaveBase( protocol, pool, app )
 {
     QString mimetype = QString::fromLatin1("application/x-") + protocol;
-    filter = KComprManager::self()->findFilterByMimeType( mimetype );
+    filter = KFilterBase::findFilterByMimeType( mimetype );
     ASSERT(filter);
 }
 

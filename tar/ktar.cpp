@@ -30,7 +30,7 @@
 #include <kdebug.h>
 
 #include "kfilterdev.h"
-#include "kcomprmanager.h"
+#include "kfilterbase.h"
 
 #include "ktar.h"
 
@@ -504,7 +504,7 @@ KTarGz::KTarGz( const QString& filename )
   m_filename = filename;
   d = new KTarGzPrivate;
   d->fileDev = new QFile( m_filename );
-  d->filter = KComprManager::self()->findFilterByFileName( m_filename );
+  d->filter = KFilterBase::findFilterByFileName( m_filename );
   d->filter->setDevice( d->fileDev );
   setDevice( new KFilterDev( d->filter ) );
 }
