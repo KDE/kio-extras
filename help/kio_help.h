@@ -33,7 +33,8 @@ private:
 
     QString langLookup(QString fname);
     void emitFile( const KURL &url );
-    QString lookupFile(QString fname, QString query, bool &redirect);
+    QString lookupFile(const QString &fname, const QString &query,
+                       bool &redirect);
 
     void notFound();
     QString parsed;

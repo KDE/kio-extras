@@ -261,7 +261,7 @@ static bool readCache( const QString &filename,
         buffer[n] = 0;
         text += buffer;
     }
-    kdDebug(7107) << "read " << text.length() << endl;
+    kdDebug() << "read " << text.length() << endl;
     fd->close();
 
     output = QString::fromUtf8( text );

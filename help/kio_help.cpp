@@ -86,20 +86,14 @@ QString HelpProtocol::langLookup(QString fname)
 }
 
 
-QString HelpProtocol::lookupFile(QString fname, QString query, bool &redirect)
+QString HelpProtocol::lookupFile(const QString &fname,
+                                 const QString &query, bool &redirect)
 {
     redirect = false;
 
-    QString anchor, path, result;
-
-    // if we have a query, look if it contains an anchor
-    if (!query.isEmpty())
-        if (query.left(8) == "?anchor=")
-            anchor = query.mid(8).upper();
+    QString path, result;
 
     path = fname;
-
-    kdDebug() << "lookupFile: path=" << path << " anchor=" << anchor << endl;
 
     result = langLookup(path);
     if (result.isEmpty())
@@ -107,8 +101,11 @@ QString HelpProtocol::lookupFile(QString fname, QString query, bool &redirect)
         result = langLookup(path+"/index.html");
         if (!result.isEmpty())
 	{
-            kdDebug() << "redirect to " << QString("help:%1/index.html").arg(path) << endl;
-            redirection(KURL(QString("help:%1/index.html").arg(path)));
+            KURL red( "help:/" );
+            red.setPath( path + "/index.html" );
+            red.setQuery( query );
+            redirection(red);
+            kdDebug() << "redirect to " << red.url() << endl;
             redirect = true;
 	}
         else
@@ -184,6 +181,8 @@ void HelpProtocol::get( const KURL& url )
     if (url.hasHTMLRef())
         target.setHTMLRef(url.htmlRef());
 
+    kdDebug() << "target " << target.url() << endl;
+
     QString file = target.path();
     if (!KStandardDirs::exists(file) || file.right(4) == "html") {
         file = file.left(file.findRev('/')) + "/index.docbook";
@@ -201,7 +200,12 @@ void HelpProtocol::get( const KURL& url )
 
     infoMessage(i18n("Preparing document"));
 
+    kdDebug() << "look for cache " << endl;
+
     parsed = lookForCache( file );
+
+    kdDebug() << "cached parsed " << parsed.length() << endl;
+
     if ( parsed.isEmpty() ) {
         parsed = transform(file, locate("dtd", "customization/kde-chunk.xsl"));
         if ( !parsed.isEmpty() ) {
@@ -216,13 +220,51 @@ void HelpProtocol::get( const KURL& url )
         }
     } else infoMessage( i18n( "Using cached version" ) );
 
+    kdDebug() << "parsed " << parsed.length() << endl;
+
     if (parsed.isEmpty()) {
         data(QString(
             "<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=%1\"></head>\n"
             "%2<br>%3</html>" ).arg( QTextCodec::codecForLocale()->name() ).
              arg( i18n( "The requested help file could not be parsed:" ) ).arg( file ).local8Bit() );
-    } else
-        emitFile( target );
+    } else {
+        QString query = url.query(), anchor;
+
+        // if we have a query, look if it contains an anchor
+        if (!query.isEmpty())
+            if (query.left(8) == "?anchor=")
+                anchor = query.mid(8).lower();
+
+        kdDebug() << "anchor: " << anchor << endl;
+
+        if ( !anchor.isEmpty() )
+        {
+            int index = 0;
+            while ( true ) {
+                index = parsed.find( QRegExp( "<a name=" ), index);
+                if ( index == -1 ) {
+                    kdDebug() << "no anchor\n";
+                    break; // use whatever is the target, most likely index.html
+                }
+
+                if ( parsed.mid( index, 11 + anchor.length() ).lower() ==
+                     QString( "<a name=\"%1\">" ).arg( anchor ) )
+                {
+                    index = parsed.findRev( "<FILENAME filename=", index ) +
+                             strlen( "<FILENAME filename=\"" );
+                    QString filename=parsed.mid( index, 2000 );
+                    filename = filename.left( filename.find( '\"' ) );
+                    QString path = target.path();
+                    path = path.left( path.findRev( '/' ) + 1) + filename;
+                    kdDebug() << "anchor found in " << path <<endl;
+                    target.setPath( path );
+                    break;
+                }
+                index++;
+            }
+        }
+        emitFile( target);
+    }
 
     finished();
 }
