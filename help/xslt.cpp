@@ -5,6 +5,7 @@
 #include <libxml/parserInternals.h>
 #include <kdebug.h>
 #include <kstddirs.h>
+#include <qdir.h>
 #include <xslt.h>
 #include <kinstance.h>
 
@@ -57,7 +58,8 @@ QString transform( const QString &pat )
 xmlParserInputPtr meinExternalEntityLoader(const char *URL, const char *ID,
 					   xmlParserCtxtPtr ctxt) {
     xmlParserInputPtr ret = NULL;
-    // xsltSetGenericDebugFunc(stderr, NULL);
+
+    // fprintf(stderr, "loading %s %s\n", URL, ID);
 
     if (URL == NULL) {
         if ((ctxt->sax != NULL) && (ctxt->sax->warning != NULL))
@@ -137,4 +139,5 @@ QString splitOut(const QString &parsed, int index)
 
 void fillInstance(KInstance &ins) {
     ins.dirs()->addResourceType("dtd", KStandardDirs::kde_default("data") + "ksgmltools2/");
+    ins.dirs()->addResourceDir("dtd", QDir::currentDirPath());
 }

@@ -35,6 +35,7 @@
 #include "xsltInternals.h"
 #include "xsltutils.h"
 #include "functions.h"
+#include <stdlib.h>
 #include "numbersInternals.h"
 #include "keys.h"
 #include "documents.h"
@@ -141,7 +142,14 @@ xsltDocumentFunction(xmlXPathParserContextPtr ctxt, int nargs){
 	    base = xmlNodeGetBase(ctxt->context->doc,
 				  ctxt->context->node);
 	}
+	if (!strcmp(obj->stringval, "../common/l10n.xml")) {
+		char base2[1000];
+		strcpy(base2, getenv("KDEDIR"));
+		strcat(base2, "/share/apps/ksgmltools2/xsl/common/l10n.xsl");
+		base = strdup(base2);
+	}
 	URI = xmlBuildURI(obj->stringval, base);
+	fprintf(stderr, "URI %s %s %s\n", obj->stringval, base, URI);
 	if (base != NULL)
 	    xmlFree(base);
         if (URI == NULL) {
