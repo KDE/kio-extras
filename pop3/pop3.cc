@@ -293,6 +293,7 @@ void POP3Protocol::slotGet(const char *_url)
     if (command(path)) {
       ready();
       gettingFile(_url);
+      mimeType("message/rfc822");
       totalSize(msg_len);
       time_t t_start = time( 0L );
       time_t t_last = t_start;
