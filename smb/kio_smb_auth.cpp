@@ -82,25 +82,47 @@ void SMBSlave::auth_smbc_get_data(const char *server,const char *share,
 
     info.username = s_username;
     info.password = s_password;
-
-    info.prompt = i18n(
-        "Please enter authentication information for:\n"
-        "Workgroup = %1\n"
-        "Server = %2\n"
-        "Share = %3" )
-                  .arg( workgroup )
-                  .arg( server )
-                  .arg( share );
+    info.verifyPath = true;
 
     if ( !checkCachedAuthentication( info ) )
     {
+        // ok, we do not know the password. Let's try anonymous before we try for real
+        info.username = "anonymous_smb";
+        info.password = QString::null;
+        info.url.setUser( "anonymous_smb" );
+        if ( !checkCachedAuthentication( info ) )
+        {
+            // ok, we never tried anonymous before. Try that first
+            cacheAuthentication(info);
+            strncpy(password, info.password.utf8(),pwmaxlen - 1);
+            kdDebug(KIO_SMB) << "pushed anonymous" << endl;
+            return;
+        }
+
+        // when we have an anonymous cached, then it didn't work
+        // ask the user for a password
+        info.username = s_username;
+        info.password = s_password;
+        info.url.setUser(s_username);
+
+        info.prompt = i18n(
+            "Please enter authentication information for:\n"
+            "Workgroup = %1\n"
+            "Server = %2\n"
+            "Share = %3" )
+                      .arg( s_workgroup )
+                      .arg( s_server )
+                      .arg( s_share );
         if ( openPassDlg(info) ) {
             strncpy(username, info.username.utf8(),unmaxlen - 1);
             strncpy(password, info.password.utf8(),pwmaxlen - 1);
-            kdDebug(KIO_SMB) << "got password" << endl;
+            kdDebug(KIO_SMB) << "got password through dialog" << endl;
         }
+    } else {
+        strncpy(username, info.username.utf8(),unmaxlen - 1);
+        strncpy(password, info.password.utf8(),pwmaxlen - 1);
+        kdDebug(KIO_SMB) << "got password through cache" << endl;
     }
-    memset(password, 0, pwmaxlen);
 }
 
 //--------------------------------------------------------------------------
@@ -162,7 +184,12 @@ int SMBSlave::auth_initialize_smbc()
         }
 
         kdDebug() << "smbc_init call" << endl;
-        if(smbc_init(::auth_smbc_get_data,0) == -1)
+        int debug_level = 0;
+#ifndef NDEBUG
+        debug_level = 10;
+#endif
+
+        if(smbc_init(::auth_smbc_get_data,debug_level) == -1)
         {
             SlaveBase::error(ERR_INTERNAL, i18n("libsmbclient failed to initialize"));
             return -1;
