@@ -308,17 +308,45 @@ void HALBackend::setVolumeProperties(Medium* medium)
 			medium->unmountableState( "audiocd:/?device=" + QString(hal_volume_get_device_file(halVolume)) );
 		}
 
+		medium->setIconName(QString::null);
+		
 		/** @todo check if the disc id a vcd or a video dvd (only for mounted volumes) */
 	}
 	else
 	{
 		mimeType = "media/hdd" + MOUNT_SUFFIX;
 		if (hal_drive_is_hotpluggable(halDrive))
+		{		
 			mimeType = "media/removable" + MOUNT_SUFFIX;
+			medium->needMounting();
+			switch (hal_drive_get_type(halDrive)) {
+			case HAL_DRIVE_TYPE_COMPACT_FLASH:
+				medium->setIconName("compact_flash" + MOUNT_SUFFIX);
+				break;
+			case HAL_DRIVE_TYPE_MEMORY_STICK:
+				medium->setIconName("memory_stick" + MOUNT_SUFFIX);
+				break;
+			case HAL_DRIVE_TYPE_SMART_MEDIA:
+				medium->setIconName("smartmedia" + MOUNT_SUFFIX);
+				break;
+			case HAL_DRIVE_TYPE_SD_MMC:
+				medium->setIconName("sd_mmc" + MOUNT_SUFFIX);
+				break;
+			case HAL_DRIVE_TYPE_PORTABLE_AUDIO_PLAYER:
+				medium->setIconName(QString::null); //FIXME need icon
+				break;
+			case HAL_DRIVE_TYPE_CAMERA:
+				medium->setIconName("camera" + MOUNT_SUFFIX);
+				break;			
+			case HAL_DRIVE_TYPE_TAPE:
+				medium->setIconName(QString::null); //FIXME need icon
+				break;			
+			default:	
+				medium->setIconName(QString::null);
+			};
+		};
 	}
 	medium->setMimeType(mimeType);
-
-	medium->setIconName(QString::null);
 
 	medium->setLabel(QString::fromUtf8( hal_volume_policy_compute_display_name(halDrive,
 		halVolume, m_halStoragePolicy) ) );
