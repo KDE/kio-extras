@@ -40,8 +40,8 @@ public:
 	bool removeMedium(const QString &id);
 
 	bool changeMediumState(const QString &id,
-	                       const QString &baseURL = QString::null,
-                               const QString &mimeType = QString::null,
+	                       const QString &baseURL,
+	                       const QString &mimeType = QString::null,
 	                       const QString &iconName = QString::null,
 	                       const QString &label = QString::null);
 	bool changeMediumState(const QString &id,
