@@ -11,7 +11,7 @@ InfoProtocol::InfoProtocol( Connection *connection )
     , m_page( "" )
     , m_node( "" )
 {
-    kDebugInfo( 7106, "InfoProtocol::InfoProtocol" );
+    kDebugInfo( 7108, "InfoProtocol::InfoProtocol" );
 
     m_pProc = new KProcess();
     connect( m_pProc, SIGNAL( processExited( KProcess* ) ),
@@ -22,24 +22,24 @@ InfoProtocol::InfoProtocol( Connection *connection )
     m_infoScript = locate( "data", "kinfobrowser/kde-info2html" );
 
     if( m_infoScript.isEmpty() )
-	kDebugFatal( 7106, "Critical error: Cannot locate 'kde-info2html' for HTML-conversion" );
+	kDebugFatal( 7108, "Critical error: Cannot locate 'kde-info2html' for HTML-conversion" );
     
-    kDebugInfo( 7106, "InfoProtocol::InfoProtocol - done" );
+    kDebugInfo( 7108, "InfoProtocol::InfoProtocol - done" );
 }
 
 InfoProtocol::~InfoProtocol()
 {
-    kDebugInfo( 7106, "InfoProtocol::~InfoProtocol" );
+    kDebugInfo( 7108, "InfoProtocol::~InfoProtocol" );
 
     delete m_pProc;
     
-    kDebugInfo( 7106, "InfoProtocol::~InfoProtocol - done" );
+    kDebugInfo( 7108, "InfoProtocol::~InfoProtocol - done" );
 }
 
 void InfoProtocol::get( const QString& path, const QString& /*query*/, bool /*reload*/ )
 {
-    kDebugInfo( 7106, "InfoProtocol::get" );
-    kDebugInfo( 7106, path.data() );
+    kDebugInfo( 7108, "InfoProtocol::get" );
+    kDebugInfo( 7108, path.data() );
 
     decodePath( path );
 
@@ -70,12 +70,12 @@ void InfoProtocol::get( const QString& path, const QString& /*query*/, bool /*re
 
     m_pProc->start( KProcess::NotifyOnExit, KProcess::Stdout );
 
-    kDebugInfo( 7106, "InfoProtocol::get - done" );
+    kDebugInfo( 7108, "InfoProtocol::get - done" );
 }
 
 void InfoProtocol::mimetype( const QString& /*path*/ )
 {
-    kDebugInfo( 7106, "InfoProtocol::mimetype" );
+    kDebugInfo( 7108, "InfoProtocol::mimetype" );
 
     // to get rid of those "Open with" dialogs...
     mimeType( "text/html" );
@@ -83,12 +83,12 @@ void InfoProtocol::mimetype( const QString& /*path*/ )
     // finish action
     finished();
     
-    kDebugInfo( 7106, "InfoProtocol::mimetype - done" );
+    kDebugInfo( 7108, "InfoProtocol::mimetype - done" );
 }
 
 void InfoProtocol::slotProcessExited( KProcess* )
 {
-    kDebugInfo( 7106, "InfoProtocol::slotProcessExited" );
+    kDebugInfo( 7108, "InfoProtocol::slotProcessExited" );
 
     // I dont know if this is needed
     m_pProc->kill();
@@ -96,24 +96,24 @@ void InfoProtocol::slotProcessExited( KProcess* )
     // finish kioslave
     finished();
     
-    kDebugInfo( 7106, "InfoProtocol::slotProcessExited - done" );
+    kDebugInfo( 7108, "InfoProtocol::slotProcessExited - done" );
 }
 
 void InfoProtocol::slotReceivedStdout( KProcess*, char* htmldata, int len )
 {
-    kDebugInfo( 7106, "InfoProtocol::slotReceivedStdout" );
+    kDebugInfo( 7108, "InfoProtocol::slotReceivedStdout" );
 
     QByteArray array;
 
     array = QCString( htmldata, len );
     data( array );
     
-    kDebugInfo( 7106, "InfoProtocol::slotReceivedStdout - done" );
+    kDebugInfo( 7108, "InfoProtocol::slotReceivedStdout - done" );
 }
 
 void InfoProtocol::decodePath( QString path )
 {
-    kDebugInfo( 7106, "InfoProtocol::decodePath" );
+    kDebugInfo( 7108, "InfoProtocol::decodePath" );
 
     m_page = "";
     m_node = "";
@@ -141,16 +141,16 @@ void InfoProtocol::decodePath( QString path )
     m_page = path.left( slashPos );
     m_node = path.right( path.length() - slashPos - 1 );
 
-    kDebugInfo( 7106, "InfoProtocol::decodePath - done" );
+    kDebugInfo( 7108, "InfoProtocol::decodePath - done" );
 }
 
 QCString InfoProtocol::errorMessage()
 {
-    kDebugInfo( 7106, "InfoProtocol::errorMessage" );
+    kDebugInfo( 7108, "InfoProtocol::errorMessage" );
 
     return QCString( "<html><body bgcolor=\"#FFFFFF\">An error occured during converting an info-page to HTML</body></html>" );
     
-    kDebugInfo( 7106, "InfoProtocol::errorMessage - done" );
+    kDebugInfo( 7108, "InfoProtocol::errorMessage - done" );
 }
 
 extern "C"
