@@ -761,7 +761,7 @@ IMAP4Protocol::put (const KURL & _url, int, bool, bool)
           if (uid.find("APPENDUID") != -1)
           {
             uid = uid.section(" ", 2, 2);
-            uid = uid.left(uid.length()-1);
+            uid.truncate(uid.length()-1);
             infoMessage("UID "+uid);
           }
         }
@@ -935,7 +935,7 @@ IMAP4Protocol::copy (const KURL & src, const KURL & dest, int, bool overwrite)
         if (uid.find("COPYUID") != -1)
         {
           uid = uid.section(" ", 2, 3);
-          uid = uid.left(uid.length()-1);
+          uid.truncate(uid.length()-1);
           infoMessage("UID "+uid);
         }
       }
