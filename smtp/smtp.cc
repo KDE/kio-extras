@@ -402,7 +402,7 @@ bool SMTPProtocol::Authenticate(const KURL &url)
 	if (auth_method == QString::null) {
 		delete m_pSASL; m_pSASL=0;
 		kdDebug() << "kio_smtp: no authentication available" << endl;
-		error(ERR_SERVICE_NOT_AVAILABLE, i18n("No compatible authentication methods found.");
+		error(ERR_SERVICE_NOT_AVAILABLE, i18n("No compatible authentication methods found."));
 		return false;
 	} else {
 		char *challenge=static_cast<char *>(malloc(2049));
