@@ -62,6 +62,8 @@ MacProtocol::~MacProtocol() {
     delete logStream;
     logStream = 0;
 */
+    delete myKProcess;
+    myKProcess = 0L;
 }
 
 //get() called when a file is to be read
