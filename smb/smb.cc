@@ -25,7 +25,6 @@
 #include <kurl.h>
 #include <kprotocolmanager.h>
 #include <kinstance.h>
-#include <kdebug2.h>
 #include "smb.h"
 
 using namespace KIO;
@@ -86,7 +85,7 @@ public:
 	}
 };
 
-SmbProtocol::SmbProtocol( Connection *_conn ) : SlaveBase( _conn )
+SmbProtocol::SmbProtocol( Connection *_conn ) : SlaveBase( "smb", _conn )
 {
 	kDebugInfo( 7106, "Constructor");
 	currentHost=QString::null;
