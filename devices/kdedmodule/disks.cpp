@@ -216,12 +216,13 @@ QString DiskEntry::guessIconName()
 
 QString DiskEntry::niceDescription()
 {
-	if (discType().contains("hdd"))	return i18n("Harddisc");
-	else if (discType().contains("smb")) return i18n("Remote Share");
-	else if (discType().contains("nfs")) return i18n("Remote Share");
-	else if (discType().contains("cdrom")) return i18n("CDRom");
-	else if (discType().contains("cdwriter")) return i18n("CDRecorder");
-	else if (discType().contains("floppy")) return i18n("Floppy");
+	const QString dType(discType());
+	if (dType.contains("hdd"))	return i18n("Harddisc");
+	else if (dType.contains("smb")) return i18n("Remote Share");
+	else if (dType.contains("nfs")) return i18n("Remote Share");
+	else if (dType.contains("cdrom")) return i18n("CDRom");
+	else if (dType.contains("cdwriter")) return i18n("CDRecorder");
+	else if (dType.contains("floppy")) return i18n("Floppy");
 	else return i18n("Unknown");
 }
 
