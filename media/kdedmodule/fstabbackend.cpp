@@ -294,7 +294,8 @@ void FstabBackend::guess(const QString &devNode, const QString &mountPoint,
 		mimeType = "media/nfs";
 		label = i18n("Remote Share");
 	}
-	else if ( fsType.find("smb")!=-1 || devNode.find("//")!=-1 )
+	else if ( fsType.find("smb")!=-1 || fsType.find("cifs")!=-1
+	       || devNode.find("//")!=-1 )
 	{
 		mimeType = "media/smb";
 		label = i18n("Remote Share");
