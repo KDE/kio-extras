@@ -109,7 +109,7 @@ static KCmdLineOptions options[] =
     { "u", I18N_NOOP("Unmount given URL"), 0 },
     { "m", I18N_NOOP("Mount given URL (default)"), 0 },
     { "e", I18N_NOOP("Eject given URL via kdeeject"), 0},
-    {"!+[URL]",   I18N_NOOP("devices:/ URL to mount/unmount/eject."), 0 },
+    {"!+[URL]",   I18N_NOOP("devices:/ URL to mount/unmount/eject"), 0 },
     KCmdLineLastOption
 };
 
