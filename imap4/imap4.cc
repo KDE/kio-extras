@@ -1154,9 +1154,8 @@ IMAP4Protocol::special (const QByteArray & aData)
     finished();
     break;
   }
-  default:
+  case 'S': // status
   {
-    // status ('S')
     KURL _url;
     QCString newFlags;
     stream >> _url >> newFlags;
@@ -1189,6 +1188,9 @@ IMAP4Protocol::special (const QByteArray & aData)
     finished();
     break;
   }
+  default:
+    kdWarning(7116) << "Unknown command in special(): " << tmp << endl;
+    break;
   }
 }
 
