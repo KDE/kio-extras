@@ -91,7 +91,7 @@ static const char *prolog =
     "} def\n"
     "/showpage { .showpage.firstonly } def\n";
 
-static const char *gsargs[] = {
+static const char * gsargs[] = {
     "gs",
     "-sDEVICE=png16m",
     "-sOutputFile=-",
@@ -121,7 +121,7 @@ static const char *dvipsargs[] = {
     0
 };
 
-bool correctDVI(QString filename);
+static bool correctDVI(const QString& filename);
 
 bool GSCreator::create(const QString &path, int, int, QImage &img)
 {
@@ -158,7 +158,7 @@ bool GSCreator::create(const QString &path, int, int, QImage &img)
     while (*arg)
       ++arg;
     if( no_dvi )
-      *arg = path.latin1();
+      *arg = QFile::encodeName( path ).data();
     else if( !no_dvi ) 
       *arg = "-";
 
@@ -166,7 +166,7 @@ bool GSCreator::create(const QString &path, int, int, QImage &img)
     arg = dvipsargs;
     while (*arg)
       ++arg;
-    *arg = path.latin1();
+    *arg = QFile::encodeName( path ).data();
     
     if( !no_dvi ){
       pipe(dvipipe);
@@ -281,7 +281,7 @@ ThumbCreator::Flags GSCreator::flags() const
 // Quick function to check if the filename corresponds to a valid DVI
 // file. Returns true if <filename> is a DVI file, false otherwise.
 
-bool correctDVI(QString filename)
+static bool correctDVI(const QString& filename)
 {
   QFile f(filename);
   if (!f.open(IO_ReadOnly))
