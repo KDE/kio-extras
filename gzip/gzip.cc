@@ -63,7 +63,7 @@ int kdemain( int argc, char ** argv)
 }
 
 GZipProtocol::GZipProtocol( const QCString &pool, const QCString &app )
- : SlaveBase( "gzip", pool, app )
+ : KIO::SlaveBase( "gzip", pool, app )
 { }
 
 void GZipProtocol::get( const KURL & )
