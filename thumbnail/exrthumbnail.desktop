@@ -2,7 +2,10 @@
 Encoding=UTF-8
 Type=Service
 Name=EXR Images
+Name[sk]=Obrázky EXR
+Name[tr]=EXR Görüntüsü
 ServiceTypes=ThumbCreator
 MimeTypes=image/x-exr
 X-KDE-Library=exrthumbnail
 CacheThumbnail=true
+IgnoreMaximumSize=true

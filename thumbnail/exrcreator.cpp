@@ -21,6 +21,9 @@
 
 #include <kimageio.h>
 #include <kdebug.h>
+#include <kconfig.h>
+#include <kglobal.h>
+#include <qfile.h>
 
 #include <ImfInputFile.h>
 #include <ImfPreviewImage.h>
@@ -54,12 +57,25 @@ bool EXRCreator::create(const QString &path, int, int, QImage &img)
 	return true;
     } else {
         // do it the hard way
+	// We ignore maximum size when just extracting the thumnail
+	// from the header, but it is very expensive to render large
+	// EXR images just to turn it into an icon, so we go back
+	// to honouring it in here.
 	kdDebug() << "EXRcreator - using original image" << endl;
-	if (!img.load( path ))
+	KConfig * config = KGlobal::config();
+	KConfigGroupSaver cgs( config, "PreviewSettings" );
+	unsigned long long maxSize = config->readNumEntry( "MaximumSize", 1024*1024 /* 1MB */ );
+	unsigned long long fileSize = QFile( path ).size();
+	if ( (fileSize > 0) && (fileSize < maxSize) ) {
+	    if (!img.load( path )) {
+		return false;
+	    }
+	    if (img.depth() != 32)
+		img = img.convertDepth( 32 );
+	    return true;
+	} else {
 	    return false;
-	if (img.depth() != 32)
-	    img = img.convertDepth( 32 );
-	return true;
+	}
     }
 }
 
