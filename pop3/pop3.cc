@@ -126,7 +126,7 @@ void POP3Protocol::setHost( const QString& _host, int _port, const QString& _use
   m_sPass = _pass;
 }
 
-bool POP3Protocol::getResponse (char *r_buf, unsigned int r_len)
+bool POP3Protocol::getResponse (char *r_buf, unsigned int r_len, const char *cmd)
 {
   char *buf=0;
   unsigned int recv_len=0;
@@ -153,6 +153,9 @@ bool POP3Protocol::getResponse (char *r_buf, unsigned int r_len)
 
   if (wait_time == 0) {
     kdDebug() << "No response from POP3 server in 60 secs." << endl;
+    m_sError = i18n("No response from POP3 server in 60 secs.");
+    if (r_buf)
+       r_buf[0] = 0; 
     return false;
   }
 
@@ -187,6 +190,14 @@ bool POP3Protocol::getResponse (char *r_buf, unsigned int r_len)
       memcpy(r_buf, (buf[4] == ' ' ? buf+5 : buf+4),
              QMIN(r_len, (buf[4] == ' ' ? recv_len-5 : recv_len-4)));
     }
+    QString command = QString::fromLatin1(cmd);
+    QString serverMsg = QString::fromLatin1(buf).stripWhiteSpace();
+    if (command.left(4) == "PASS")
+    {
+       command = i18n("PASS <your password>");
+    }
+    m_sError = i18n("I said:\n   \"%1\"\n\nAnd then the server said:\n   \"%2\"")
+   			.arg(command).arg(serverMsg);
     if (buf) free(buf);
     return false;
   } else {
@@ -194,6 +205,7 @@ bool POP3Protocol::getResponse (char *r_buf, unsigned int r_len)
     if (r_buf && r_len) {
       memcpy(r_buf, buf, QMIN(r_len,recv_len));
     }
+    m_sError = i18n("Invalid response from server:\n   \"%1\"").arg(buf);
     if (buf) free(buf);
     return false;
   }
@@ -215,10 +227,16 @@ bool POP3Protocol::command (const char *cmd, char *recv_buf, unsigned int len)
 
   // Write the command
   if (Write(cmd, strlen(cmd)) != static_cast<ssize_t>(strlen(cmd)))
+  {
+    m_sError = i18n("Could not send to server.\n");    
     return false;
+  }
   if (Write("\r\n", 2) != 2)
+  {
+    m_sError = i18n("Could not send to server.\n");    
     return false;
-  return getResponse(recv_buf, len);
+  }
+  return getResponse(recv_buf, len, cmd);
 }
 
 void POP3Protocol::pop3_close ()
@@ -248,7 +266,10 @@ bool POP3Protocol::pop3_open()
     greeting_buf=static_cast<char *>(malloc(GREETING_BUF_LEN));
     memset(greeting_buf, 0, GREETING_BUF_LEN);
     // If the server doesn't respond with a greeting
-    if (!getResponse(greeting_buf, GREETING_BUF_LEN)) {
+    if (!getResponse(greeting_buf, GREETING_BUF_LEN, "")) {
+      m_sError = i18n("Could not login to %1.\n\n").arg(m_sServer) +
+                 i18n("Server does not respond properly:\n%1\n").arg(greeting_buf);
+      error( ERR_COULD_NOT_LOGIN, m_sError );
       free(greeting_buf);
       return false;      // we've got major problems, and possibly the
                          // wrong port
@@ -339,7 +360,8 @@ bool POP3Protocol::pop3_open()
     // Fall back to conventional USER/PASS scheme
     if (!command(one_string, buf, sizeof(buf))) {
       kdDebug() << "Couldn't login. Bad username Sorry" << endl;
-      error( ERR_COULD_NOT_CONNECT, "Couldn't login. Bad username Sorry\n" );
+      m_sError = i18n("Could not login to %1.\n\n").arg(m_sServer) + m_sError;
+      error( ERR_COULD_NOT_LOGIN, m_sError );
       pop3_close();
       return false;
     }
@@ -354,7 +376,8 @@ bool POP3Protocol::pop3_open()
     }
     if (!command(one_string, buf, sizeof(buf))) {
       kdDebug() << "Couldn't login. Bad password Sorry." << endl;
-      error( ERR_COULD_NOT_CONNECT, "Couldn't login. Bad password Sorry\n" );
+      m_sError = i18n("Could not login to %1.\n\n").arg(m_sServer) + m_sError;
+      error( ERR_COULD_NOT_LOGIN, m_sError );
       pop3_close();
       return false;
     }

@@ -79,7 +79,7 @@ public:
     *  into a buffer (up to len bytes) if one was passed to it.  It will
     *  return true if the response was affirmitave, or false otherwise.
     */
-  bool getResponse (char *buf=0, unsigned int len=0);
+  bool getResponse (char *buf, unsigned int len, const char *command);
 
   /**
     *  Attempt to properly shut down the POP3 connection by sending
@@ -94,17 +94,13 @@ public:
     */
   bool pop3_open ();
 
-  /**
-   * Build URL for error reporting purposes 
-   */
-  QString buildUrl(const QString &path);
-
   int m_cmd;
   unsigned short int m_iOldPort;
   struct timeval m_tTimeout;
   QString m_sOldServer, m_sOldPass, m_sOldUser;
   QString m_sServer, m_sPass, m_sUser;
   bool m_try_apop;
+  QString m_sError;
 };
 
 #endif
