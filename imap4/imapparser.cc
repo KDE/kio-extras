@@ -45,9 +45,6 @@
 #include <kmdcodec.h>
 #include <kurl.h>
 
-#include <kio/sasl/saslmodule.h>
-#include <kio/sasl/saslcontext.h>
-
 imapParser::imapParser ():
 uidCache (17, false)
 {
@@ -170,14 +167,19 @@ imapParser::clientAuthenticate (const QString & aUser, const QString & aPass,
         // we should present the challenge to the user and ask
         // him for a mail-adress or what ever
         challenge = KCodecs::base64Encode(aUser.utf8());
-      } else {
-        KSASLContext saslContext;
-        KURL url;
-        url.setUser(aUser);
-        url.setPass(aPass);
-        saslContext.setURL(url);
-        saslContext.chooseMethod(aAuth.upper());
-        challenge = saslContext.generateResponse(challenge, true);
+      }
+      else if (aAuth.upper () == "PLAIN")
+      {
+        challenge = KCodecs::base64Encode(aUser + '\0' + aUser + '\0' + aPass);
+      }
+      else if (aAuth.upper () == "CRAM-MD5")
+      {
+        QCString password = aPass.latin1 ();
+        QCString cchallenge = KCodecs::base64Decode(challenge).latin1();
+
+        challenge = rfcDecoder::encodeRFC2104 (cchallenge, password);
+        challenge = aUser + " " + challenge;
+        challenge = KCodecs::base64Encode(challenge.utf8());
       }
 
       // we will ALWAYS write back a line to satisfiy the continuation

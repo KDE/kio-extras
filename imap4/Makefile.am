@@ -4,10 +4,10 @@ INCLUDES= -I$(srcdir)/.. $(SSL_INCLUDES) $(all_includes)
 
 kde_module_LTLIBRARIES = kio_imap4.la
 
-kio_imap4_la_SOURCES = 	imapcommand.cc imaplist.cc mailaddress.cc \
+kio_imap4_la_SOURCES = 	md5.cc imapcommand.cc imaplist.cc mailaddress.cc \
   mimeheader.cc rfcdecoder.cc imap4.cc imapinfo.cc imapparser.cc mailheader.cc \
   mimehdrline.cc  mimeio.cc
-kio_imap4_la_LIBADD  = -lksasl $(LIB_KIO) $(LIB_KSYCOCA)
+kio_imap4_la_LIBADD  = $(LIB_KIO) $(LIB_KSYCOCA)
 kio_imap4_la_LDFLAGS = $(all_libraries) $(KDE_RPATH) -module $(KDE_PLUGIN)
 
 noinst_HEADERS = imap4.h
