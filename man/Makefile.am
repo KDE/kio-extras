@@ -19,3 +19,7 @@ METASOURCES = AUTO
 
 
 bin_SCRIPTS = man2html
+
+
+messages:
+	$(XGETTEXT) -C *.cpp *.h -o $(podir)/kio_man.pot

@@ -239,6 +239,7 @@ extern "C"
 
   int kdemain( int argc, char **argv )
   {
+    KLocale::setMainCatalogue("kdelibs");
     KInstance instance("kio_man");
     
     kdDebug(7107) <<  "STARTING " << getpid() << endl;
