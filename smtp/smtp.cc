@@ -507,6 +507,12 @@ bool SMTPProtocol::smtp_open()
 
   char hostname[100];
   gethostname(hostname, 100);
+
+  if(hostname[0] == '\0')
+  {
+    strncpy(hostname, "there", strlen("there") + 1);
+  }
+  
   if (!command
       (ASCII("EHLO " + QCString(hostname, 100)), ehlobuf.buffer().data(),
        5119)) {
