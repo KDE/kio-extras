@@ -150,6 +150,8 @@ bool KTarBase::open( int mode )
         const char* p = buffer + 0x64;
         while( *p == ' ' ) ++p;
         int access = (int)strtol( p, &dummy, 8 );
+        if (isdir)
+          access |= S_IFDIR; // f*cking broken tar files
 
         // read user and group
         QString user( buffer + 0x109 );
