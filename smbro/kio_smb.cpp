@@ -50,6 +50,7 @@
 #include <qcstring.h>
 #include <qfile.h>
 #include <qregexp.h>
+#include <qdir.h>
 
 #include "kio_smb.h"
 
@@ -80,6 +81,22 @@ int kdemain( int argc, char **argv )
   kdDebug(KIO_SMB)<<"exiting normally"<<endl;
   return 0;
 }
+
+int makeDirHier(const QString& path)
+{
+   QString s(path);
+   QStringList sl=QStringList::split("/",s);
+   s="";
+   QDir d;
+   for ( QStringList::Iterator it = sl.begin(); it != sl.end(); it++ )
+   {
+      s+="/"+(*it);
+      if ((!d.exists(s)) && (!d.mkdir(s)))
+            return -1;
+   };
+   return 0;
+};
+
 
 void SmbProtocol::getShareAndPath(const KURL& url, QString& share, QString& rest)
 {
@@ -2134,6 +2151,7 @@ void SmbProtocol::special( const QByteArray & data)
    switch (tmp)
    {
    case 1:
+   case 3:
       {
          QString remotePath, mountPoint, user, password;
          stream >> remotePath >> mountPoint >> user >> password;
@@ -2146,6 +2164,8 @@ void SmbProtocol::special( const QByteArray & data)
             kdDebug(KIO_SMB)<<"special() host -"<<host.latin1()<<"- share -"<<share.latin1()<<"-"<<endl;
          };
 
+         if (tmp==3)
+            makeDirHier(mountPoint);
          password=m_password;
          user=m_user;
          ClientProcess *proc=new ClientProcess();
@@ -2248,6 +2268,7 @@ void SmbProtocol::special( const QByteArray & data)
       }
       break;
    case 2:
+   case 4:
       {
          QString mountPoint;
          stream >> mountPoint;
@@ -2268,6 +2289,15 @@ void SmbProtocol::special( const QByteArray & data)
             if (exitStatus!=-1)
             {
                kdDebug(KIO_SMB)<<"Smb::waitUntilStarted() smbclient exited with exitcode "<<exitStatus<<endl;
+               if (tmp==4)
+               {
+                  QDir dir(mountPoint);
+                  dir.cdUp();
+                  dir.rmdir(mountPoint);
+                  QString p=dir.path();
+                  dir.cdUp();
+                  dir.rmdir(p);
+               };
                if (exitStatus!=0)
                {
                   if (m_stdoutSize>0)
