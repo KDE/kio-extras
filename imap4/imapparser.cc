@@ -646,10 +646,10 @@ mailHeader * imapParser::parseEnvelope (parseString & inWords)
   envelope = new mailHeader;
 
   //date
-  envelope->setDate(parseLiteral(inWords).data());
+  envelope->setDate(b2c(parseLiteral(inWords)));
 
   //subject
-  envelope->setSubjectEncoded(parseLiteral(inWords).data());
+  envelope->setSubjectEncoded(b2c(parseLiteral(inWords)));
 
   //from
   list = parseAddressList (inWords);
@@ -700,10 +700,10 @@ mailHeader * imapParser::parseEnvelope (parseString & inWords)
   }
 
   //in-reply-to
-  envelope->setInReplyTo(parseLiteral(inWords).data());
+  envelope->setInReplyTo(b2c(parseLiteral(inWords)));
 
   //message-id
-  envelope->setMessageId(parseLiteral(inWords).data());
+  envelope->setMessageId(b2c(parseLiteral(inWords)));
 
   // see if we have more to come
   while (!inWords.isEmpty () && inWords[0] != ')')
@@ -754,8 +754,7 @@ QDict < QString > imapParser::parseDisposition (parseString & inWords)
 
   if (!disposition.isEmpty ())
   {
-    QString str = b2c(disposition);
-    retVal.insert ("content-disposition", new QString(str));
+    retVal.insert ("content-disposition", new QString(b2c(disposition)));
   }
 
   return retVal;
@@ -785,8 +784,7 @@ QDict < QString > imapParser::parseParameters (parseString & inWords)
       QByteArray label, value;
       label = parseLiteral (inWords);
       value = parseLiteral (inWords);
-      QString str = b2c(value);
-      retVal.insert (b2c(label), new QString (str));
+      retVal.insert (b2c(label), new QString(b2c(value)));
     }
 
     if (inWords[0] != ')')
@@ -801,7 +799,8 @@ QDict < QString > imapParser::parseParameters (parseString & inWords)
 mimeHeader * imapParser::parseSimplePart (parseString & inWords,
   QString & inSection, mimeHeader * localPart)
 {
-  QByteArray type, subtype, id, description, encoding;
+  QByteArray subtype;
+  QCString typeStr;
   QDict < QString > parameters (17, false);
   ulong size;
 
@@ -819,12 +818,12 @@ mimeHeader * imapParser::parseSimplePart (parseString & inWords,
   skipWS (inWords);
 
   //body type
-  type = parseLiteral (inWords);
+  typeStr = b2c(parseLiteral (inWords));
 
   //body subtype
   subtype = parseLiteral (inWords);
 
-  localPart->setType (b2c(type) + "/" + b2c(subtype));
+  localPart->setType (typeStr + "/" + b2c(subtype));
 
   //body parameter parenthesized list
   parameters = parseParameters (inWords);
@@ -840,16 +839,13 @@ mimeHeader * imapParser::parseSimplePart (parseString & inWords,
   }
 
   //body id
-  id = parseLiteral (inWords);
-  localPart->setID (b2c(id));
+  localPart->setID (b2c(parseLiteral(inWords)));
 
   //body description
-  description = parseLiteral (inWords);
-  localPart->setDescription (b2c(description));
+  localPart->setDescription (b2c(parseLiteral(inWords)));
 
   //body encoding
-  encoding = parseLiteral (inWords);
-  localPart->setEncoding (b2c(encoding));
+  localPart->setEncoding (b2c(parseLiteral(inWords)));
 
   //body size
   if (parseOneNumber (inWords, size))
@@ -872,7 +868,7 @@ mimeHeader * imapParser::parseSimplePart (parseString & inWords,
   }
   else
   {
-    if (type.data() ==  "TEXT")
+    if (typeStr ==  "TEXT")
     {
       //text lines
       ulong lines;
@@ -885,12 +881,12 @@ mimeHeader * imapParser::parseSimplePart (parseString & inWords,
     // body disposition
     parameters = parseDisposition (inWords);
     {
-      QDictIterator < QString > it (parameters);
       QString *disposition = parameters[QString ("content-disposition")];
 
       if (disposition)
         localPart->setDisposition (disposition->ascii ());
       parameters.remove (QString ("content-disposition"));
+      QDictIterator < QString > it (parameters);
       while (it.current ())
       {
         localPart->setDispositionParm (it.currentKey ().ascii (),
