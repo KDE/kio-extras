@@ -899,7 +899,10 @@ IMAP4Protocol::del (const KURL & _url, bool isFile)
     }
     else
     {
-      //TODO delete the mailbox
+      imapCommand *cmd = doCommand (imapCommand::clientDelete (aBox));
+      if (cmd->result () != "OK")
+        error (ERR_COULD_NOT_RMDIR, hidePass(_url));
+      completeQueue.removeRef (cmd);
     }
     break;
 
