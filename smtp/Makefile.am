@@ -31,13 +31,7 @@ test_commands_LDFLAGS = $(all_libraries)
 interactivesmtpserver_SOURCES = interactivesmtpserver.cc
 interactivesmtpserver_LDADD = $(LIB_QT)
 interactivesmtpserver_LDFLAGS = $(all_libraries)
-
-interactivesmtpserver.o: interactivesmtpserver.moc
-
-interactivesmtpserver.moc: $(srcdir)/interactivesmtpserver.cc
-	$(MOC) -i $< -o $@
-
-CLEANFILES = interactivesmtpserver.moc
+interactivesmtpserver_METASOURCES = AUTO
 
 messages:
 	$(XGETTEXT) *.cc -o $(podir)/kio_smtp.pot
