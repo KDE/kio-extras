@@ -267,7 +267,13 @@ QString DiskEntry::discType()
     }
     else
 #endif
-
+#ifdef Q_OS_FREEBSD
+    if (-1!=deviceName().find("/acd",0,FALSE)) typeName="kdedevice/cdrom";
+    else if (-1!=deviceName().find("/scd",0,FALSE)) typeName="kdedevice/cdrom";
+    else if (-1!=deviceName().find("/ad",0,FALSE)) typeName="kdedevice/hdd";
+    else if (-1!=deviceName().find("/da",0,FALSE)) typeName="kdedevice/hdd";
+    else
+#endif
     /* Guessing of cdrom and cd recorder devices */
     if (-1!=mountPoint().find("cdrom",0,FALSE)) typeName="kdedevice/cdrom";
     else if (-1!=deviceName().find("cdrom",0,FALSE)) typeName="kdedevice/cdrom";
