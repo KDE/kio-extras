@@ -86,19 +86,18 @@ marked_ (false), unmarked_ (false)
   s.pos++;  // tie off (
 
   //process the attributes
-  QString
-    attribute;
+  QCString attribute;
 
   while (!s.isEmpty () && s[0] != ')')
   {
-    attribute = imapParser::b2c(imapParser::parseOneWord (s));
-    if (-1 != attribute.find ("\\Noinferiors", 0, false))
+    attribute = imapParser::parseOneWordC(s).lower();
+    if (-1 != attribute.find ("\\noinferiors"))
       noInferiors_ = true;
-    else if (-1 != attribute.find ("\\Noselect", 0, false))
+    else if (-1 != attribute.find ("\\noselect"))
       noSelect_ = true;
-    else if (-1 != attribute.find ("\\Marked", 0, false))
+    else if (-1 != attribute.find ("\\marked"))
       marked_ = true;
-    else if (-1 != attribute.find ("\\Unmarked", 0, false))
+    else if (-1 != attribute.find ("\\unmarked"))
       unmarked_ = true;
     else
       kdDebug(7116) << "imapList::imapList: bogus attribute " << attribute << endl;
@@ -107,7 +106,7 @@ marked_ (false), unmarked_ (false)
   s.pos++;  // tie off )
   imapParser::skipWS (s);
 
-  hierarchyDelimiter_ = imapParser::b2c(imapParser::parseOneWord(s));
+  hierarchyDelimiter_ = imapParser::parseOneWordC(s);
   if (hierarchyDelimiter_ == "NIL")
     hierarchyDelimiter_ = QString::null;
   name_ = rfcDecoder::fromIMAP (imapParser::parseOneWord (s));  // decode modified UTF7

@@ -40,6 +40,7 @@ class QString;
 class mailAddress;
 class mimeHeader;
 
+
 /** @brief a string used during parsing 
  * the string allows you to move the effective start of the string using
  * str.pos++ and str.pos--. 
@@ -320,20 +321,32 @@ public:
   void parseSentence (parseString & inWords);
 
   /** parse a literal or word, may require more data */
-  QByteArray parseLiteral (parseString & inWords, bool relay = false, 
-                           bool stopAtBracket = false);
+  QCString parseLiteralC(parseString & inWords, bool relay = false, 
+                           bool stopAtBracket = false, int *outlen = 0L);
+  inline QByteArray parseLiteral (parseString & inWords, bool relay = false, 
+                           bool stopAtBracket = false) {
+    int len = 0; // string size
+    // Choice: we can create an extra QCString, or we can get the buffer in
+    // the wrong size to start.  Let's try option b.
+    return QByteArray().duplicate(parseLiteralC(inWords, relay, stopAtBracket, &len).data(), len);
+  }
 
   // static parser routines, can be used elsewhere
 
   static QCString b2c(const QByteArray &ba)
   { return QCString(ba.data(), ba.size() + 1); }
 
-  /** skip over whitespace */
-  static void skipWS (parseString & inWords);
-
   /** parse one word (maybe quoted) upto next space " ) ] } */
-  static QByteArray parseOneWord (parseString & inWords,
-    bool stopAtBracket = FALSE);
+  static QCString parseOneWordC (parseString & inWords,
+    bool stopAtBracket = FALSE, int *len = 0L);
+  static inline QByteArray parseOneWord (parseString & inWords,
+    bool stopAtBracket = FALSE) {
+    int len = 0; // string size
+    // Choice: we can create an extra QCString, or we can get the buffer in
+    // the wrong size to start.  Let's try option b.
+    return QByteArray().duplicate(parseOneWordC(inWords, stopAtBracket, &len).data(), len);
+  }
+
 
   /** parse one number using parseOneWord */
   static bool parseOneNumber (parseString & inWords, ulong & num);
@@ -375,6 +388,17 @@ public:
 
   /** @brief see if server has a capability */
   bool hasCapability (const QString &);
+
+  static inline void skipWS (parseString & inWords)
+  {
+    char c;
+    while (!inWords.isEmpty() &&
+      ((c = inWords[0]) == ' ' || c == '\t' || c == '\r' || c == '\n'))
+    {
+      inWords.pos++;
+    }
+  }
+
 
 protected:
 
