@@ -801,6 +801,7 @@ IMAP4Protocol::mkdir (const KURL & _url, int)
 
   enum IMAP_TYPE type =
     parseURL(_url, aBox, aSection, aLType, aSequence, aValidity, aDelimiter);
+  kdDebug(7116) << "IMAP4::mkdir - parseURL of " << _url << " returned type " << type << endl;
   if (type == ITYPE_BOX)
   {
     if (messageBox(QuestionYesNo,
@@ -1762,7 +1763,7 @@ IMAP4Protocol::parseURL (const KURL & _url, QString & _box,
           for (QValueListIterator < imapList > it = listResponses.begin ();
                it != listResponses.end (); ++it)
           {
-//            kdDebug(7116) << "IMAP4::parseURL - checking " << _box << " to " << (*it).name() << endl;
+            //kdDebug(7116) << "IMAP4::parseURL - checking " << _box << " to " << (*it).name() << endl;
             if (_box == (*it).name ())
             {
               _hierarchyDelimiter = (*it).hierarchyDelimiter();
@@ -1810,7 +1811,8 @@ IMAP4Protocol::parseURL (const KURL & _url, QString & _box,
   }
   if (_type == "LIST")
   {
-    retVal = ITYPE_DIR;
+    /* what the heck is that part for ?? (carsten) */
+//    retVal = ITYPE_DIR; 
     if (_hierarchyDelimiter.isEmpty()) _hierarchyDelimiter ="/";
   }
 
