@@ -11,6 +11,7 @@ kio_imap4_la_LIBADD  = -lkdesasl $(LIB_KIO)
 kio_imap4_la_LDFLAGS = $(all_libraries) $(KDE_RPATH) -module $(KDE_PLUGIN)
 
 noinst_HEADERS = imap4.h
+EXTRA_DIST = README Doxyfile
 
 kdelnk_DATA = imap4.protocol imaps.protocol
 kdelnkdir = $(kde_servicesdir)
