@@ -12,3 +12,5 @@ linking=true
 moving=true
 Icon=remote
 Description=A kioslave for the FISH protocol
+DocPath=kioslave/fish.html
+X-KDE-ParentApp=kioslave
