@@ -74,41 +74,25 @@ struct SMBAuthInfo
 //===========================================================================
 /**
  * Class to handle URL's
- * it can convert KURL to smbUrl 
+ * it can convert KURL to smbUrl
  * and Handle UserInfo
- * it also check the correctness of the URL 
+ * it also check the correctness of the URL
  */
-class SMBUrl
+class SMBUrl : public KURL
 {
-    /**
-     * Type of URL 
-     * @see _SMBUrlType 
-     */
-    SMBUrlType m_type;
-    QString m_kio_url;
-    QString m_smbc_url;
-    QString m_user;
-    QString m_password;
-    QString m_userdomain;
 
-    int m_workgroup_index;
-    int m_workgroup_len;
 
 public:
     SMBUrl();
     SMBUrl(const KURL & kurl);
 
     /**
-     * set the URL from KURL, all attributes will be updated
-     */
-    void fromKioUrl(const KURL & kurl);
-
-    /**
      * Appends the specified file and dir to this SMBUrl
      * "smb://server/share" --> "smb://server/share/filedir"
      */
-    SMBUrl & append(const QString &filedir);
+    void addPath(const QString &filedir);
 
+    bool cd(const QString &dir);
 
     /**
      *   Returns the type of this SMBUrl:
@@ -117,61 +101,26 @@ public:
      *   SMBURLTYPE_WORKGROUP_OR_SERVER - "smb:/mygroup" or "smb:/myserver"
      *   URLTYPE_SHARE_OR_PATH - "smb:/mygroupe/mymachine/myshare/mydir"
      */
-    SMBUrlType getType();
+    SMBUrlType getType() const;
 
+    void setPass( const QString& _txt ) { KURL::setPass(_txt); updateCache(); }
+    void setUser( const QString& _txt ) { KURL::setUser(_txt); updateCache(); }
+    void setHost( const QString& _txt ) { KURL::setHost(_txt); updateCache(); }
 
     /**
      * Returns the workgroup if it given in url
      */
-    QString getWorkgroup() const;
+//    QString getWorkgroup() const;
 
     /**
      * Returns path after workgroup
      */
-    QString getServerShareDir() const;
-
-    /**
-     * Description : extract the domain and the username from userinfo
-     * Parameter :   userinfo = [domain;]<user>[:password]
-     */
-    void setUserInfo(const QString & userinfo);
-
-
-    /**
-     * Return a URL that is suitable for libsmbclient
-     */
-    QCString toSmbcUrl() const;
-
-    /**
-     * Return a that is suitable for kio framework
-     */
-    const QString & toKioUrl() const;
-
-    /*
-     * Truncates one file/dir level
-     * "smb://server/share/filedir" --> "smb://server/share"
-     */
-    void truncate();
+//    QString getServerShareDir() const;
 
      /**
-      * Setter for m_password
-      */
-     void setPassword(const QString & _password);
-
-    /**
-     * Returns the username if given in KURL or updated through passdialog
+     * Return a URL that is suitable for libsmbclient
      */
-    QString getUser() const;
-
-    /**
-     * Returns the password if given in KURL or updated through passdialog
-     */
-    QString getPassword() const;
-
-    /**
-     * Returns the domain if given in KURL or updated through passdialog
-     */
-    QString getUserDomain() const;
+    QCString toSmbcUrl() const { return m_surl; }
 
     /**
      * Return a SMBAuthInfo of url
@@ -189,6 +138,14 @@ private:
      */
     QCString fromUnicode( const QString &_str ) const;
 
+    void updateCache();
+    QCString m_surl;
+
+    /**
+     * Type of URL
+     * @see _SMBUrlType
+     */
+    mutable SMBUrlType m_type;
 };
 
 

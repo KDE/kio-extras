@@ -55,7 +55,7 @@ bool SMBSlave::browse_stat_path(const SMBUrl& url, UDSEntry& udsentry, bool igno
       {
          kdDebug(KIO_SMB)<<"SMBSlave::browse_stat_path mode: "<<st.st_mode<<endl;
          warning(i18n("%1:\n"
-                      "Unknown file type, neither dir or file.").arg(url.toKioUrl()));
+                      "Unknown file type, neither dir or file.").arg(url.prettyURL()));
          return false;
       }
 
@@ -104,43 +104,17 @@ bool SMBSlave::browse_stat_path(const SMBUrl& url, UDSEntry& udsentry, bool igno
    }
    else
    {
-      switch(errno)
-      {
-      case EBUSY:
-          break;  //hmmm, otherwise the whole dir isn't listed (caused e.g. by pagefile.sys), aleXXX
-      case ENOENT:
-      case ENOTDIR:
-      case EFAULT:
-          if (ignore_errors)
-              warning(i18n("File does not exist: %1").arg(url.toKioUrl()));
-          else
-              error(ERR_DOES_NOT_EXIST, url.toKioUrl());
-         break;
-      case EPERM:
-      case EACCES:
-          if (!ignore_errors)
-              error( ERR_ACCESS_DENIED, url.toKioUrl() );
-          break;
-      case ENOMEM:
-          if (!ignore_errors)
-              error(ERR_OUT_OF_MEMORY, i18n("Out of memory"));
-      case EBADF:
-          if (!ignore_errors)
-              error(ERR_INTERNAL, "BAD File descriptor");
-      default:
-         kdDebug(KIO_SMB)<<"SMBSlave::browse_stat_path errno: "<<errno<< endl;
-         if (!ignore_errors)
-             error(ERR_INTERNAL, i18n("Unknown error condition %1").arg(strerror(errno)));
-      }
-
-      kdDebug(KIO_SMB) << "SMBSlave::browse_stat_path ERROR!!"<< endl;
-      return false;
-    }
+       if (!ignore_errors)
+           reportError(url);
+       else if (errno == ENOENT || errno == ENOTDIR) {
+           warning(i18n("File does not exist: %1").arg(url.url()));
+       }
+       kdDebug(KIO_SMB) << "SMBSlave::browse_stat_path ERROR!!"<< endl;
+       return false;
+   }
 
    return true;
 }
-
-
 
 //===========================================================================
 // TODO: Add stat cache
@@ -150,8 +124,7 @@ void SMBSlave::stat( const KURL& kurl )
   // make a valid URL
   KURL url = checkURL(kurl);
 
-  m_current_url.fromKioUrl( url );
-
+  m_current_url = url;
 
   UDSAtom     udsatom;
   UDSEntry    udsentry;
@@ -160,11 +133,10 @@ void SMBSlave::stat( const KURL& kurl )
   udsatom.m_str = kurl.fileName();
   udsentry.append( udsatom );
 
-
   switch(m_current_url.getType())
     {
     case SMBURLTYPE_UNKNOWN:
-      error(ERR_MALFORMED_URL,m_current_url.toKioUrl());
+      error(ERR_MALFORMED_URL,m_current_url.url());
       return;
 
     case SMBURLTYPE_ENTIRE_NETWORK:
@@ -193,7 +165,7 @@ void SMBSlave::stat( const KURL& kurl )
 
 //===========================================================================
 // TODO: complete checking
-const KURL SMBSlave::checkURL(const KURL& kurl) {
+KURL SMBSlave::checkURL(const KURL& kurl) const {
   // smb:/ normaly have no userinfo
   // we must redirect ourself to remove the username and password
   if (kurl.url().contains('@') && !kurl.url().contains("smb://")) {
@@ -221,7 +193,39 @@ const KURL SMBSlave::checkURL(const KURL& kurl) {
   return kurl;
 }
 
-
+void SMBSlave::reportError(const SMBUrl &url)
+{
+    switch(errno)
+    {
+    case EBUSY:
+        break;  //hmmm, otherwise the whole dir isn't listed (caused e.g. by pagefile.sys), aleXXX
+    case ENOENT:
+    case ENOTDIR:
+    case EFAULT:
+        error(ERR_DOES_NOT_EXIST, url.url());
+        break;
+    case EPERM:
+    case EACCES:
+        error( ERR_ACCESS_DENIED, url.url() );
+        break;
+    case EIO:
+        error( ERR_CONNECTION_BROKEN, url.url());
+        break;
+    case ENOMEM:
+        error(ERR_OUT_OF_MEMORY, i18n("Out of memory"));
+        break;
+    case EUCLEAN:
+        error( ERR_INTERNAL, i18n("libsmbclient failed to initialize"));
+        break;
+    case ENODEV:
+        error( ERR_DOES_NOT_EXIST, i18n("Share could not be found on given server"));
+        break;
+    case EBADF:
+        error( ERR_INTERNAL, "BAD File descriptor");
+    default:
+        error( ERR_INTERNAL, i18n("Unknown error condition in stat: %1").arg(strerror(errno)));
+    }
+}
 
 //===========================================================================
 // TODO: Add dir cache
@@ -239,7 +243,7 @@ void SMBSlave::listDir( const KURL& kurl )
       return;
    }
 
-   m_current_url.fromKioUrl( kurl );
+   m_current_url = kurl;
 
    int                 dirfd;
    struct smbc_dirent  *dirp = NULL;
@@ -249,46 +253,47 @@ void SMBSlave::listDir( const KURL& kurl )
  OPEN_DIR:
    ;
    dirfd = smbc_opendir( m_current_url.toSmbcUrl());
-   kdDebug(KIO_SMB) << "SMBSlave::listDir open " << kurl.url() << endl;
+   kdDebug(KIO_SMB) << "SMBSlave::listDir open " << kurl << " " << m_current_url.getType() << " " << dirfd << endl;
    if(dirfd >= 0)
    {
        do {
-         dirp = smbc_readdir(dirfd);
-         if(dirp == 0)
-             break;
+           kdDebug(KIO_SMB) << "smbc_readdir " << endl;
+           dirp = smbc_readdir(dirfd);
+           if(dirp == 0)
+               break;
 
-         // Set name
-         atom.m_uds = KIO::UDS_NAME;
-         QString dirpName = toUnicode( dirp->name );
-         atom.m_str = dirpName;
-         udsentry.append( atom );
-         if (atom.m_str=="$IPC" || atom.m_str=="." || atom.m_str == "..")
-         {
+           // Set name
+           atom.m_uds = KIO::UDS_NAME;
+           QString dirpName = toUnicode( dirp->name );
+           atom.m_str = dirpName;
+           udsentry.append( atom );
+           if (atom.m_str=="$IPC" || atom.m_str=="." || atom.m_str == "..")
+           {
 //            fprintf(stderr,"----------- hide: -%s-\n",dirp->name);
-            // do nothing and hide the hidden shares
-         }
-         else if(dirp->smbc_type == SMBC_FILE)
-         {
-            // Set stat information
-            m_current_url.append(dirpName);
-            browse_stat_path(m_current_url, udsentry, true);
-            m_current_url.truncate();
+               // do nothing and hide the hidden shares
+           }
+           else if(dirp->smbc_type == SMBC_FILE)
+           {
+               // Set stat information
+               m_current_url.addPath(dirpName);
+               browse_stat_path(m_current_url, udsentry, true);
+               m_current_url.cd("..");
 
-            // Call base class to list entry
-            listEntry(udsentry, false);
-         }
-         else if(dirp->smbc_type == SMBC_DIR)
-         {
-             m_current_url.append(dirpName);
-             browse_stat_path(m_current_url, udsentry, true);
-             m_current_url.truncate();
+               // Call base class to list entry
+               listEntry(udsentry, false);
+           }
+           else if(dirp->smbc_type == SMBC_DIR)
+           {
+               m_current_url.addPath(dirpName);
+               browse_stat_path(m_current_url, udsentry, true);
+               m_current_url.cd("..");
 
-             // Call base class to list entry
-             listEntry(udsentry, false);
-         }
-         else if(dirp->smbc_type == SMBC_SERVER ||
-                 dirp->smbc_type == SMBC_FILE_SHARE)
-            {
+               // Call base class to list entry
+               listEntry(udsentry, false);
+           }
+           else if(dirp->smbc_type == SMBC_SERVER ||
+                   dirp->smbc_type == SMBC_FILE_SHARE)
+           {
                // Set type
                atom.m_uds = KIO::UDS_FILE_TYPE;
                atom.m_long = S_IFDIR;
@@ -302,78 +307,58 @@ void SMBSlave::listDir( const KURL& kurl )
                // Call base class to list entry
                listEntry(udsentry, false);
             }
-         else if(dirp->smbc_type == SMBC_WORKGROUP)
-         {
+           else if(dirp->smbc_type == SMBC_WORKGROUP)
+           {
 
-            // Set type
-            atom.m_uds = KIO::UDS_FILE_TYPE;
-            atom.m_long = S_IFDIR;
-            udsentry.append( atom );
+               // Set type
+               atom.m_uds = KIO::UDS_FILE_TYPE;
+               atom.m_long = S_IFDIR;
+               udsentry.append( atom );
 
-            // Set permissions
-            atom.m_uds  = KIO::UDS_ACCESS;
-            atom.m_long = (S_IRUSR | S_IRGRP | S_IROTH | S_IXUSR | S_IXGRP | S_IXOTH);
-            udsentry.append(atom);
+               // Set permissions
+               atom.m_uds  = KIO::UDS_ACCESS;
+               atom.m_long = (S_IRUSR | S_IRGRP | S_IROTH | S_IXUSR | S_IXGRP | S_IXOTH);
+               udsentry.append(atom);
 
-            // remember the workgroup
-            // we don't use it
-            //	      cache_add_workgroup(dirp->name);
-            // Call base class to list entry
-            listEntry(udsentry, false);
-         }
-         else
-         {
-             kdDebug(KIO_SMB) << "SMBSlave::listDir SMBC_UNKNOWN :" << dirpName << endl;
-            // TODO: we don't handle SMBC_IPC_SHARE, SMBC_PRINTER_SHARE
-            //       SMBC_LINK, SMBC_COMMS_SHARE
-            //SlaveBase::error(ERR_INTERNAL, TEXT_UNSUPPORTED_FILE_TYPE);
-            // continue;
-         }
-         udsentry.clear();
+               // remember the workgroup
+               // we don't use it
+               //	      cache_add_workgroup(dirp->name);
+               // Call base class to list entry
+               listEntry(udsentry, false);
+           }
+           else
+           {
+               kdDebug(KIO_SMB) << "SMBSlave::listDir SMBC_UNKNOWN :" << dirpName << endl;
+               // TODO: we don't handle SMBC_IPC_SHARE, SMBC_PRINTER_SHARE
+               //       SMBC_LINK, SMBC_COMMS_SHARE
+               //SlaveBase::error(ERR_INTERNAL, TEXT_UNSUPPORTED_FILE_TYPE);
+               // continue;
+           }
+           udsentry.clear();
        } while (dirp); // checked already in the head
 
-      // clean up
-      smbc_closedir(dirfd);
+       // clean up
+       smbc_closedir(dirfd);
    }
    else
    {
-      switch(errno)
-      {
-      case ENOENT:
-      case ENOTDIR:
-      case EFAULT:
-         error(ERR_DOES_NOT_EXIST, m_current_url.toKioUrl());
-         break;
-      case EPERM:
-      case EACCES:
-         // if access denied, first open passDlg
-         if ((errno == EPERM) || (errno ==  EACCES))
-         {
-            SMBAuthInfo auth;
-            m_current_url.getAuthInfo(auth);
-            if (!authDlg(auth))
-            {
+       if (errno == EPERM || errno == EACCES)
+       {
+           SMBAuthInfo auth;
+           m_current_url.getAuthInfo(auth);
+           if (!authDlg(auth))
+           {
                cache_clear_AuthInfo(m_current_url.getAuthInfo());
-               error(ERR_ACCESS_DENIED, m_current_url.toKioUrl());
+               error(ERR_ACCESS_DENIED, m_current_url.url());
                return;
-            }
-            else
+           }
+           else
                goto OPEN_DIR;
-         }
-         break;
-      case ENOMEM:
-          error(ERR_OUT_OF_MEMORY, i18n("Out of memory"));
-         break;
-      case EUCLEAN:
-         error(ERR_INTERNAL, i18n("libsmbclient failed to initialize"));
-         break;
-      case ENODEV:
-         error(ERR_DOES_NOT_EXIST, i18n("Share could not be found on given server"));
-         break;
-      default:
-          error(ERR_INTERNAL, i18n("Unknown error condition %1").arg(strerror(errno)));
-      }
-      return;
+       } else {
+           reportError(m_current_url);
+           finished();
+           return;
+       }
    }
 
    listEntry(udsentry, true);

@@ -97,7 +97,7 @@ void SMBSlave::auth_smbc_get_data(const char *server,const char *share,
 
 //--------------------------------------------------------------------------
 bool SMBSlave::setAuthInfo(SMBAuthInfo &auth) {
-
+/*
     // set defaults
     auth.m_workgroup = m_default_workgroup.local8Bit();
     auth.m_username = m_default_user.local8Bit();
@@ -107,13 +107,13 @@ bool SMBSlave::setAuthInfo(SMBAuthInfo &auth) {
     bool infocached = cache_get_AuthInfo(auth);
 
     // local userinfo from KUrl ?
-    if (!m_current_url.getUser().isEmpty()) {
+    if (!m_current_url.user().isEmpty()) {
       kdDebug(KIO_SMB) << "setAuthInfo set userinfo from m_current_url"<< endl;
 
       auth.m_domain = m_current_url.getUserDomain().local8Bit();
       auth.m_username = m_current_url.getUser().local8Bit();
 
-      if (!m_current_url.getPassword().isEmpty())
+      if (!m_current_url.password().isEmpty())
     	auth.m_passwd = m_current_url.getPassword().local8Bit();
 
       cache_set_AuthInfo(auth, true);
@@ -132,6 +132,7 @@ bool SMBSlave::setAuthInfo(SMBAuthInfo &auth) {
     }
 
     return infocached;
+*/
 }
 
 // TODO: if username changed we have to change the kurl (redirect)
@@ -156,7 +157,8 @@ bool SMBSlave::authDlg(SMBAuthInfo& auth)
         authInfo.prompt = msg;
         if(openPassDlg(authInfo))
         {
-            m_current_url.setUserInfo(authInfo.username + ":" + authInfo.password);
+            m_current_url.setUser(authInfo.username);
+            m_current_url.setPass(authInfo.password);
             auth.m_username = authInfo.username.local8Bit();
             auth.m_passwd = authInfo.password.local8Bit();
             cache_set_AuthInfo(auth, true);

@@ -41,261 +41,89 @@
 // SMBUrl Function Implementation
 //===========================================================================
 
+void updateCache() {}
 
 //-----------------------------------------------------------------------
 SMBUrl::SMBUrl()
-  //-----------------------------------------------------------------------
 {
-  m_type = SMBURLTYPE_UNKNOWN;
+    m_type = SMBURLTYPE_UNKNOWN;
 }
 
 //-----------------------------------------------------------------------
 SMBUrl::SMBUrl(const KURL& kurl)
+    : KURL(kurl)
   //-----------------------------------------------------------------------
 {
-  fromKioUrl(kurl);
+    updateCache();
 }
 
 
 //-----------------------------------------------------------------------
-SMBUrl& SMBUrl::append(const QString &filedir)
-  // Appends the specified file and dir to this SMBUrl
-  // "smb://server/share" --> "smb://server/share/filedir"
-  //-----------------------------------------------------------------------
+void SMBUrl::addPath(const QString &filedir)
 {
-  if(m_smbc_url[m_smbc_url.length()-1] != '/')
-    m_smbc_url.append("/");
-  m_smbc_url.append(filedir);
-
-  if(m_kio_url[m_kio_url.length()-1] != '/')
-    m_kio_url.append("/");
-  m_kio_url.append(filedir);
-
-  return *this;
-}
-
-
-//-----------------------------------------------------------------------
-void SMBUrl::setUserInfo(const QString &userinfo)
-  //-----------------------------------------------------------------------
-{
-    QString userd;
-
-    // extract password
-    int pos_dp = userinfo.findRev(':');
-    if (pos_dp>=0) {
-        m_password = userinfo.mid(pos_dp + 1);
-        userd = userinfo.left(pos_dp);
-    }
-    else {
-        userd = userinfo;
-        m_password = QString::null;
-    }
-
-    // extract domain
-    if (userd.contains(';')) {
-        pos_dp = userinfo.find(';');
-        m_userdomain = userd.left(pos_dp);
-        m_user = userd.mid(pos_dp + 1);
-    }
-    else {
-        m_user =  userd;
-        m_userdomain = QString::null;
-    }
+    KURL::addPath(filedir);
+    updateCache();
 }
 
 //-----------------------------------------------------------------------
-void SMBUrl::fromKioUrl(const KURL& kurl)
-  //-----------------------------------------------------------------------
+bool SMBUrl::cd(const QString &filedir)
 {
-  m_type     = SMBURLTYPE_UNKNOWN;
-  m_kio_url  = kurl.prettyURL();
-  m_user     = QString::null;
-  m_userdomain = QString::null;
-  m_password   = QString::null;
-
-  // remove userinfo from m_kio_url
-  if (m_kio_url.contains('@')) {
-    int pos_at = m_kio_url.find('@');
-    int pos_slash = m_kio_url.findRev('/', pos_at);
-    // setup userinfo
-    setUserInfo(m_kio_url.mid(pos_slash+1, pos_at-pos_slash-1));
-    m_kio_url.remove(pos_slash+1, pos_at-pos_slash);
-    // on "smb://" the password is stored int pass()
-    if (!kurl.pass().isEmpty())
-      m_password = kurl.pass();
-  }
-
-  m_smbc_url = m_kio_url;
-  if (!m_smbc_url.contains("smb://")) {
-    // find workgroup
-    m_workgroup_index = m_kio_url.find('/') + 1;
-    m_workgroup_len = m_kio_url.find('/',m_workgroup_index);
-
-    if(m_workgroup_len < 0)
-    {
-      m_workgroup_len = m_kio_url.length();
-    }
-    m_workgroup_len = m_workgroup_len - m_workgroup_index;
-  }
-  else {
-    // only "smb:/" contains the workgroup
-    m_workgroup_len = m_workgroup_index = 0;
-
-  }
-
-  SMBUrlType t = getType();
-  if( t == SMBURLTYPE_WORKGROUP_OR_SERVER )
-    {
-      int end_index = m_smbc_url.length() - 1;
-      if( m_smbc_url[ end_index ] == '/' )
-	m_smbc_url.remove( end_index, 1 );
-    }
-
-  // remove Workgroup if smb:/workgroup/host/share
-  if ( ((t == SMBURLTYPE_WORKGROUP_OR_SERVER) ||
-	(t == SMBURLTYPE_SHARE_OR_PATH)) &&
-       !m_smbc_url.contains("smb://") &&
-       (m_smbc_url.find('/', 5)>0)    &&
-       (m_smbc_url.find('/', 5)<(int)m_smbc_url.length()-1)) {
-    int pos_slash_host = m_kio_url.find('/', 5);
-    int pos_slash_wg = m_smbc_url.findRev('/',  pos_slash_host-1);
-    m_smbc_url.remove( pos_slash_wg+1, pos_slash_host-pos_slash_wg);
-  }
-  if (!m_smbc_url.contains("smb://"))
-    m_smbc_url = m_smbc_url.insert(4,'/');
-
+    if (!KURL::cd(filedir))
+        return false;
+    updateCache();
+    return true;
 }
 
 //-----------------------------------------------------------------------
-QCString SMBUrl::toSmbcUrl() const
-  // Return a URL that is suitable for libsmbclient
+void SMBUrl::updateCache()
   //-----------------------------------------------------------------------
 {
-  kdDebug(KIO_SMB) << "toSmbcURL, returning: " << m_smbc_url << endl;
-  return fromUnicode( m_smbc_url );
+    // we have to use pretty here as smbc is unable to handle e.g. %20
+    m_surl = fromUnicode(KURL::uRL());
+    if (m_surl.left(5) == "smb:/" && m_surl.at(6) != '/')
+        m_surl = "smb://" + m_surl.mid(6);
 
+    m_type = SMBURLTYPE_UNKNOWN;
+    // update m_type
+    (void)getType();
 }
 
 //-----------------------------------------------------------------------
-const QString& SMBUrl::toKioUrl() const
-  // Return a URL that is suitable for kio framework
-  //-----------------------------------------------------------------------
-{
-  return m_kio_url;
-}
-
-//-----------------------------------------------------------------------
-SMBUrlType SMBUrl::getType()
+SMBUrlType SMBUrl::getType() const
   // Returns the type of this SMBUrl:
   //   SMBURLTYPE_UNKNOWN  - Type could not be determined. Bad SMB Url.
   //   SMBURLTYPE_ENTIRE_NETWORK - "smb:/" is entire network
   //   SMBURLTYPE_WORKGROUP_OR_SERVER - "smb:/mygroup" or "smb:/myserver"
-  //   URLTYPE_SHARE_OR_PATH - "smb:/mygroupe/mymachine/myshare/mydir"
+  //   SMBURLTYPE_SHARE_OR_PATH - "smb:/mygroupe/mymachine/myshare/mydir"
   //-----------------------------------------------------------------------
 {
-  int pos1;
-  int pos2;
+    if(m_type != SMBURLTYPE_UNKNOWN)
+        return m_type;
 
-  if(m_type != SMBURLTYPE_UNKNOWN)
+    if (protocol() != "smb")
     {
-      return m_type;
+        m_type = SMBURLTYPE_UNKNOWN;
+        return m_type;
     }
 
-  // check to see if we can find a "smb:/"
-  pos1 = m_kio_url.find("smb:/");
-  if(pos1 == -1)
+    if (path(1) == "/")
     {
-      m_type = SMBURLTYPE_UNKNOWN;
-      return m_type;
+        if (host().isEmpty())
+            m_type = SMBURLTYPE_ENTIRE_NETWORK;
+        else
+            m_type = SMBURLTYPE_WORKGROUP_OR_SERVER;
+        return m_type;
     }
 
-  // Check for entire network exactly "smb:/"
-  if(m_kio_url.length() == 5)
-    {
-      m_type = SMBURLTYPE_ENTIRE_NETWORK;
-      return m_type;
-    }
+    // Check for the path if we get this far
+    m_type = SMBURLTYPE_SHARE_OR_PATH;
 
-  // skip the "smb://"
-  if (m_kio_url.contains("smb://"))
-    pos1 = 6;
-  else  // skip "smb:/"
-    pos1 = 5;
-
-  kdDebug(KIO_SMB) << "getType: pos1="<<pos1<< endl;
-  // Check for the workgroup
-  pos2 = m_kio_url.find('/',pos1);
-  if (!m_kio_url.contains("smb://") && (pos2!=-1))  // means smb:/workgroup/host
-    pos2 = m_kio_url.find('/',pos2+1);
-
-  if ((pos2 == -1) || (pos2 == (int)(m_kio_url.length()-1)))
-    {   // smb://host/
-      m_type = SMBURLTYPE_WORKGROUP_OR_SERVER;
-      return m_type;
-    }
-
-
-  // Check for the path if we get this far
-  m_type = SMBURLTYPE_SHARE_OR_PATH;
-
-  return m_type;
-}
-
-
-//-----------------------------------------------------------------------
-void SMBUrl::truncate()
-  // Truncates one file/dir level
-  // "smb://server/share/filedir" --> "smb://server/share"
-  //-----------------------------------------------------------------------
-{
-  m_smbc_url.truncate(m_smbc_url.findRev('/'));
-  m_kio_url.truncate(m_kio_url.findRev('/'));
-}
-
-//-----------------------------------------------------------------------
-QString SMBUrl::getWorkgroup() const
-  //-----------------------------------------------------------------------
-{
-  return m_kio_url.mid(m_workgroup_index, m_workgroup_len);
-}
-
-
-//-----------------------------------------------------------------------
-QString SMBUrl::getServerShareDir() const
-  //-----------------------------------------------------------------------
-{
-  return m_kio_url.right(m_kio_url.length() - (m_workgroup_index + m_workgroup_len));
-}
-
-//-----------------------------------------------------------------------
-void SMBUrl::setPassword(const QString &_password ) {
-  //-----------------------------------------------------------------------
-  m_password = _password;
-}
-
-//-----------------------------------------------------------------------
-QString SMBUrl::getUser() const
-  //-----------------------------------------------------------------------
-{
-  return m_user;
-}
-
-//-----------------------------------------------------------------------
-QString SMBUrl::getPassword() const
-  //-----------------------------------------------------------------------
-{
-  return m_password;
-}
-//-----------------------------------------------------------------------
-QString SMBUrl::getUserDomain() const
-  //-----------------------------------------------------------------------
-{
-  return m_userdomain;
+    return m_type;
 }
 
 void SMBUrl::getAuthInfo(SMBAuthInfo & auth) {
-  auth.m_workgroup = getWorkgroup().local8Bit();
+    /* TODO: find out what this is supposed to do
+    auth.m_workgroup = getWorkgroup().local8Bit();
   QString servershare = getServerShareDir();
   int endshareidx=0;
   int endserveridx = servershare.find('/',3);
@@ -315,6 +143,7 @@ void SMBUrl::getAuthInfo(SMBAuthInfo & auth) {
   auth.m_domain    = getUserDomain().local8Bit();
   auth.m_username  = getUser().local8Bit();
   auth.m_passwd    = getPassword().local8Bit();
+    */
 }
 
 

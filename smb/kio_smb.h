@@ -265,12 +265,14 @@ protected:
      * Parameter :    KURL the url to check
      * Return :       new KURL if its corrected. else the same KURL
      */
-    const KURL checkURL(const KURL& kurl);
+    KURL checkURL(const KURL& kurl) const;
 
     /**
      * Change from char* (MS Windows's character encoding) to QString
      */
     QString toUnicode( char *_str ) const;
+
+    void reportError(const SMBUrl &kurl);
 
 public:
 
