@@ -6,11 +6,11 @@ LDFLAGS = $(all_libraries) $(KDE_RPATH)
 
 ####### Files
 
-lib_LTLIBRARIES = kio_finger.la
+kde_module_LTLIBRARIES = kio_finger.la
 
 kio_finger_la_SOURCES = kio_finger.cpp 
 kio_finger_la_LIBADD = -lkio
-kio_finger_la_LDFLAGS = -module -avoid-version -no-undefined
+kio_finger_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN)
 
 noinst_HEADERS = kio_finger.h 
 

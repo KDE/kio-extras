@@ -936,5 +936,4 @@ bool TCPWrapper::readLine(QCString &line) {
   return true;
 }
 
-
-
+#include "nntp.moc"

@@ -6,11 +6,11 @@ INCLUDES = $(all_includes)
 
 ####### Files
 
-lib_LTLIBRARIES = kio_gzip.la
+kde_module_LTLIBRARIES = kio_gzip.la
 
 kio_gzip_la_SOURCES = gzip.cc
 kio_gzip_la_LIBADD = $(LIB_KIO)
-kio_gzip_la_LDFLAGS = $(all_libraries) -module -avoid-version -no-undefined
+kio_gzip_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN)
 noinst_HEADERS = gzip.h
 
 METASOURCES = AUTO

@@ -5,11 +5,11 @@ LDFLAGS = $(all_libraries) $(KDE_RPATH)
 
 ####### Files
 
-lib_LTLIBRARIES = kio_nfs.la
+kde_module_LTLIBRARIES = kio_nfs.la
 
 kio_nfs_la_SOURCES = kio_nfs.cpp mount_xdr.c nfs_prot_xdr.c
 kio_nfs_la_LIBADD = -lkio
-kio_nfs_la_LDFLAGS = -module -avoid-version -no-undefined
+kio_nfs_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN)
 noinst_HEADERS = nfs_prot.h mount.h
 
 kdelnk_DATA = nfs.protocol

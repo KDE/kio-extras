@@ -7,11 +7,11 @@ LDFLAGS =   $(all_libraries) $(KDE_RPATH)
 
 ####### Files
 
-lib_LTLIBRARIES = kio_smb.la
+kde_module_LTLIBRARIES = kio_smb.la
 
 kio_smb_la_SOURCES = smb.cc
 kio_smb_la_LIBADD = -lkio libsmb++/src/libsmb++.la @EXTRA_LIBSMB_ADD@
-kio_smb_la_LDFLAGS = -module -avoid-version @EXTRA_LIBSMB_FLAGS@
+kio_smb_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) @EXTRA_LIBSMB_FLAGS@
 noinst_HEADERS = smb.h
 
 if LINKHOOK
@@ -31,9 +31,3 @@ endif
 kdelnk_DATA = smb.protocol
 kdelnkdir = $(kde_servicesdir)
 
-check_PROGRAMS = linktest
-linktest_SOURCES = $(kio_smb_la_SOURCES) linktest.cpp
-linktest.cpp:
-	echo "int main() {};" > linktest.cpp
-linktest_LDFLAGS  = $(all_libraries) -module -avoid-version
-linktest_LDADD = $(kio_smb_la_LIBADD)
