@@ -53,7 +53,20 @@ protected:
 
   bool smtp_open(const QString& fakeHostname = QString::null);
   void smtp_close();
-  bool command(const QString & buf, 
+  /** Send command @p cmd. The line ending CRLF is added here. */
+  bool command(QCString cmd, 
+               bool handleErrors = true,
+               char *r_buf = NULL, 
+               unsigned int r_len = 0);
+  /** This is an overloaded member function, provided for
+      convenience. It behaves essentially like the above function. */
+  bool command(const QString & cmd, 
+               bool handleErrors = true,
+               char *r_buf = NULL, 
+               unsigned int r_len = 0);
+  /** This is an overloaded member function, provided for
+      convenience. It behaves essentially like the above function. */
+  bool command(const char * cmd, 
                bool handleErrors = true,
                char *r_buf = NULL, 
                unsigned int r_len = 0);

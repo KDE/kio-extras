@@ -296,7 +296,7 @@ void SMTPProtocol::put(const KURL & url, int /*permissions */ ,
     return;                     // Blind Carbon Copy (BCC)
 
   // Begin sending the actual message contents (most headers+body)
-  if (!command(QString::fromLatin1("DATA"), false)) 
+  if (!command("DATA", false)) 
   {
     if (!m_errorSent)
     {
@@ -374,7 +374,7 @@ void SMTPProtocol::put(const KURL & url, int /*permissions */ ,
     return;
   }
 
-  command(QString::fromLatin1("RSET"));
+  command("RSET");
   finished();
 }
 
@@ -518,20 +518,24 @@ int SMTPProtocol::getResponse(bool handleErrors,
   return retVal;
 }
 
-bool SMTPProtocol::command(const QString & cmd, 
-                           bool handleError,
-                           char *recv_buf,
-                           unsigned int len)
-{
-  QCString write_buf = cmd.latin1();
-  write_buf += "\r\n";
+bool SMTPProtocol::command( const QString & cmd, bool handleError,
+			    char * r_buf, unsigned int r_len ) {
+  return command( QCString(cmd.latin1()), handleError, r_buf, r_len );
+}
+
+bool SMTPProtocol::command( const char *cmd, bool handleError,
+			    char * r_buf, unsigned int r_len ) {
+  return command( QCString(cmd), handleError, r_buf, r_len );
+}
+
+bool SMTPProtocol::command( QCString cmd, bool handleError,
+			    char *recv_buf, unsigned int len ) {
+  cmd += "\r\n";
+  ssize_t cmd_len = cmd.length();
 
   // Write the command
-  if (write(static_cast < const char *>(write_buf), write_buf.length()) !=
-      static_cast < ssize_t > (write_buf.length())) 
-  {
+  if ( write( cmd.data(), cmd_len ) != cmd_len )
     return false;
-  }
 
   return (getResponse(handleError, recv_buf, len) < SMTP_MIN_NEGATIVE_REPLY);
 }
@@ -615,7 +619,7 @@ bool SMTPProtocol::smtp_open(const QString& fakeHostname)
       || metaData("tls") == "on") {
     // For now we're gonna force it on.
 
-    if (command(QString::fromLatin1("STARTTLS"))) {
+    if (command("STARTTLS")) {
       int tlsrc = startTLS();
 
       if (tlsrc != 1) {
@@ -811,7 +815,7 @@ void SMTPProtocol::smtp_close()
   if (!m_opened)                  // We're already closed
     return;
 
-  command(QString::fromLatin1("QUIT"));
+  command("QUIT");
   closeDescriptor();
   m_sOldServer = QString::null;
   m_sOldUser = QString::null;
