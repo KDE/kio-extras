@@ -1159,14 +1159,18 @@ void kio_sftpProtocol::mkdir(const KURL&url, int permissions){
     r >> code;
     if( code != SSH2_FX_OK ) {
         kdError(KIO_SFTP_DB) << "kio_sftpProtocol::mkdir(): failed with code " << code << endl;
+        
+        // Check if mkdir failed because the directory already exists so that
+        // we can return the appropriate message...
+        sftpFileAttr dirAttr;
+        if ( sftpStat(url, dirAttr) == SSH2_FX_OK )
+        {
+          error( ERR_DIR_ALREADY_EXIST, url.prettyURL() );
+          return;
+        }
+                
         error(ERR_COULD_NOT_MKDIR, path);
     }
-// we don't need to do this separately since it is done in the mkdir packet
-//    sftpFileAttr attr;
-//    attr.setPermissions(permissions);
-//    if( (code = sftpSetStat(url, attr)) != SSH2_FX_OK ) {
-//        processStatus(code);
-//    }
 
     finished();
 }
@@ -1189,41 +1193,38 @@ void kio_sftpProtocol::rename(const KURL& src, const KURL& dest, bool overwrite)
         }
     }
 
-    int code;
-    bool failed = false;
-    if( (code = sftpRename(src, dest)) != SSH2_FX_OK ) {
-        if( overwrite ) { // try to delete the destination
+    // Always stat the destination before attempting to rename 
+    // a file or a directory...
             sftpFileAttr attr;
-            if( (code = sftpStat(dest, attr)) != SSH2_FX_OK ) {
-                failed = true;
-            }
-            else {
-                if( (code = sftpRemove(dest, !S_ISDIR(attr.permissions())) ) != SSH2_FX_OK ) {
-                    failed = true;
-                }
-                else {
-                    // XXX what if rename fails again? We have lost the file.
-                    // Maybe rename dest to a temporary name first? If rename is
-                    // successful, then delete?
-                    if( (code = sftpRename(src, dest)) != SSH2_FX_OK ) {
-                        failed = true;
-                    }
-                }
-            }
+    int code = sftpStat(dest, attr);    
+    
+    // If the destination directory, exists tell it to the job
+    // so it the proper action can be presented to the user...
+    if( code == SSH2_FX_OK ) 
+    {    
+      if (!overwrite)
+      {
+        if ( S_ISDIR(attr.permissions()) )
+          error( KIO::ERR_DIR_ALREADY_EXIST, dest.url() );
+        else
+          error( KIO::ERR_FILE_ALREADY_EXIST, dest.url() );
+        return;
         }
-        else if( code == SSH2_FX_FAILURE ) {
-            error(ERR_FILE_ALREADY_EXIST, dest.prettyURL() );
+      
+      // If overwrite is specified, then simply remove the existing file/dir first...
+      if( (code = sftpRemove( dest, !S_ISDIR(attr.permissions()) )) != SSH2_FX_OK )
+      {
+        processStatus(code);
             return;
         }
-        else
-            failed = true;
     }
-    // What error code do we return? Code for the original symlink command
-    // or for the last command or for both? The second one is implemented here.
-    if( failed ) {
+    
+    // Do the renaming...
+    if( (code = sftpRename(src, dest)) != SSH2_FX_OK ) {
         processStatus(code);
         return;
     }
+    
     finished();
     kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::rename(): END" << endl;
 }
