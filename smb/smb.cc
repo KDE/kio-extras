@@ -40,9 +40,9 @@ protected:
 	bool havePass;
 	bool haveServicePass;
 public:
-	MyCallback(SmbProtocol *p) : proto(p), havePass(false),
-		haveServicePass(false), user(0), pass(0), message(0), service(0) {}
-	
+	MyCallback(SmbProtocol *p) : proto(p), 
+		user(0), pass(0), service(0),
+        	havePass(false), haveServicePass(false) {}
 	~MyCallback() {
 		if (user) {delete user; user = 0;}
 		if (pass) {delete pass; pass = 0;}
@@ -202,7 +202,7 @@ QString SmbProtocol::buildFullLibURL(const QString &pathArg)
 	return ret;
 }
 
-void SmbProtocol::mkdir( const QString& pathArg, int permissions )
+void SmbProtocol::mkdir( const QString& pathArg, int /*permissions*/ )
 {
 	QString path = buildFullLibURL(pathArg);
 	kDebugInfo( 7106, "entering mkdir %s", debugString(path));
@@ -506,7 +506,6 @@ void SmbProtocol::createUDSEntry( const QString & filename, const QString & path
 	atom.m_long = buff.st_size;
 	entry.append( atom );
 
-	notype:
 	atom.m_uds = KIO::UDS_MODIFICATION_TIME;
 	atom.m_long = buff.st_mtime;
 	entry.append( atom );
@@ -522,7 +521,7 @@ void SmbProtocol::createUDSEntry( const QString & filename, const QString & path
 
 // NB: That's because the smb servers can return statistics at the same time
 //     => no need to re-stat after an opendir
-void SmbProtocol::createUDSEntry( const SMBdirent *dent, const QString & path, UDSEntry & entry  )
+void SmbProtocol::createUDSEntry( const SMBdirent *dent, const QString & /*path*/, UDSEntry & entry  )
 {
 	assert(entry.count() == 0); // by contract :-)
 	UDSAtom atom;
@@ -548,7 +547,6 @@ void SmbProtocol::createUDSEntry( const SMBdirent *dent, const QString & path, U
 	atom.m_long = dent->st_size;
 	entry.append( atom );
 
-	notype:
 	atom.m_uds = KIO::UDS_MODIFICATION_TIME;
 	atom.m_long = dent->st_mtime;
 	entry.append( atom );
