@@ -292,7 +292,7 @@ void fishProtocol::openConnection() {
     sendCommand(FISH_FISH);
     sendCommand(FISH_VER);
     if (connectionStart()) {
-        error(ERR_COULD_NOT_CONNECT,thisFn);
+        error(ERR_COULD_NOT_CONNECT,connectionHost);
         shutdownConnection();
         return;
     };
