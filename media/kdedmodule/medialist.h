@@ -39,6 +39,7 @@ public:
 	QString addMedium(Medium *medium);
 	bool removeMedium(const QString &id);
 
+	bool changeMediumState(const Medium &medium);
 	bool changeMediumState(const QString &id,
 	                       const QString &baseURL,
 	                       const QString &mimeType = QString::null,

@@ -110,6 +110,49 @@ bool MediaList::removeMedium(const QString &id)
 	return true;
 }
 
+bool MediaList::changeMediumState(const Medium &medium)
+{
+	kdDebug() << "MediaList::changeMediumState(const Medium &)" << endl;
+
+	if ( !m_idMap.contains(medium.id()) ) return false;
+
+	Medium *m = m_idMap[medium.id()];
+
+	if ( medium.isMountable() )
+	{
+		QString device_node = medium.deviceNode();
+		QString mount_point = medium.mountPoint();
+		QString fs_type = medium.fsType();
+		bool mounted = medium.isMounted();
+
+		m->mountableState( device_node, mount_point,
+		                   fs_type, mounted );
+	}
+	else
+	{
+		m->unmountableState( medium.baseURL() );
+	}
+
+
+	if (!medium.mimeType().isEmpty())
+	{
+		m->setMimeType( medium.mimeType() );
+	}
+
+	if (!medium.iconName().isEmpty())
+	{
+		m->setIconName( medium.iconName() );
+	}
+
+	if (!medium.label().isEmpty())
+	{
+		m->setLabel( medium.label() );
+	}
+
+	emit mediumStateChanged(m->id(), m->name());
+	return true;
+}
+
 bool MediaList::changeMediumState(const QString &id,
                                   const QString &baseURL,
                                   const QString &mimeType,
