@@ -411,9 +411,13 @@ imapParser::parseResult (QByteArray & result, parseString & rest,
   if (command.isEmpty())
   {
     // FIXME: BAD BAD BAD:  What does this mean!?  shadowing is evil here.
+    kdWarning() << "Command is empty!!  BAD BAD BAD - result follow:" << endl;
     QByteArray action = parseOneWord (rest);
-    if (qstrncmp(action, "UID", action.size()) == 0)
+    kdWarning() << "                   New action is: " << b2c(action) << endl;
+    if (qstrncmp(action, "UID", action.size()) == 0) {
       action = parseOneWord (rest);
+      kdWarning() << "                   Since it's UID, we do useless data copy of: [" << b2c(action) << "]" <<  endl;
+    }
   }
 
   switch (action[0].latin1 ())
