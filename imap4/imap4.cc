@@ -953,6 +953,30 @@ IMAP4Protocol::del (const KURL & _url, bool isFile)
 }
 
 void
+IMAP4Protocol::special (const QByteArray & data)
+{
+  KURL _url(data.data());
+  QString aBox, aSequence, aLType, aSection, aValidity;
+  parseURL (_url, aBox, aSection, aLType, aSequence, aValidity);
+  if (assureBox (aBox, false))
+  {
+    imapCommand *cmd = doCommand (imapCommand::
+      clientStore (aSequence, "-FLAGS",
+      "\\SEEN \\ANSWERED \\FLAGGED \\DRAFT \\DELETED"));
+    if (cmd->result () != "OK")
+      error (ERR_NO_CONTENT, hidePass(_url));
+    completeQueue.removeRef (cmd);
+    cmd = doCommand (imapCommand::
+      clientStore (aSequence, "+FLAGS", data.data() + data.find('\0') + 1));
+    if (cmd->result () != "OK")
+      error (ERR_NO_CONTENT, hidePass(_url));
+    completeQueue.removeRef (cmd);
+  }
+  else error (ERR_CANNOT_OPEN_FOR_WRITING, hidePass(_url));
+  finished();
+}
+
+void
 IMAP4Protocol::rename (const KURL & src, const KURL & dest, bool overwrite)
 {
   qDebug ("IMAP4::rename - [%s] %s -> %s",
