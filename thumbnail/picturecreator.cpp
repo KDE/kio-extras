@@ -27,7 +27,10 @@
 #include <qimage.h>
 
 #include "picturecreator.h"
+
+#ifdef HAVE_LIBART
 #include <ksvgiconengine.h>
+#endif
 
 extern "C"
 {
