@@ -223,7 +223,7 @@ namespace KioSMTP {
     }
 #else
   mSMTP->error(KIO::ERR_COULD_NOT_AUTHENTICATE,
-      i18n("Authentication support is not compiled into kio_smtp.");
+      i18n("Authentication support is not compiled into kio_smtp."));
 #endif
   }
 
@@ -298,6 +298,7 @@ namespace KioSMTP {
   QCString AuthCommand::nextCommandLine( TransactionState * ) {
     mNeedResponse = true;
     QCString cmd;
+#ifdef HAVE_LIBSASL2
     if ( !mUngetSASLResponse.isNull() ) {
       // implement un-ungetCommandLine
       cmd = mUngetSASLResponse;
@@ -334,6 +335,7 @@ namespace KioSMTP {
 //      kdDebug(7112) << "CC: '" << cmd << "'" << endl;
       mComplete = ( result == SASL_OK );
     }
+#endif //HAVE_LIBSASL2
     cmd += "\r\n";
     return cmd;
   }
