@@ -48,7 +48,16 @@ void SMBSlave::get( const KURL& kurl )
     struct stat st;
     QByteArray  filedata;
     SMBUrl      url;
-    
+
+    // check (correct) URL
+    KURL kvurl = checkURL(kurl);
+    // if URL is not valid we have to redirect to correct URL
+    if (kvurl != kurl) {
+      redirection(kvurl);
+      finished();
+      return;
+    }
+
     
     if(auth_initialize_smbc() == -1)
     {
@@ -142,6 +151,7 @@ void SMBSlave::put( const KURL& kurl,
                     bool resume )
 {
     kdDebug(KIO_SMB) << "SMBSlave::put on " << kurl.url() << endl;
+
     m_current_url.fromKioUrl( kurl );
 
     int         filefd;
@@ -149,6 +159,8 @@ void SMBSlave::put( const KURL& kurl,
     mode_t      mode;
     struct stat st;
     QByteArray  filedata;
+
+
 
     exists = (cache_stat(m_current_url, &st) != -1 );
     if ( exists &&  !overwrite && !resume)
