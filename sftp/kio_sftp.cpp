@@ -1098,7 +1098,7 @@ void kio_sftpProtocol::sftpPut( const KURL& dest, int permissions, bool resume, 
             }
         }
         
-        error( ERR_UNKNOWN, i18n("Unknown error occured while copying the file"
+        error( ERR_UNKNOWN, i18n("Unknown error occurred while copying the file "
                                  "to '%1'. Please try again.").arg(dest.host()) );
         return;
     }
