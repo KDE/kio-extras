@@ -42,6 +42,9 @@ void CgiProtocol::get( const KURL& url )
 #endif
   QCString protocol = "SERVER_PROTOCOL=HTTP";
   putenv( protocol.data() );
+  
+  QCString requestMethod = "REQUEST_METHOD=GET";
+  putenv( requestMethod.data() );
 
   QCString query = url.query().mid( 1 ).local8Bit();
   query.prepend( "QUERY_STRING=" );
