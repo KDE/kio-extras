@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Service
+Name=Pictures
+ServiceTypes=ThumbCreator
+MimeTypes=image/svg+xml
+X-KDE-Library=picturethumbnail
+CacheThumbnail=true
