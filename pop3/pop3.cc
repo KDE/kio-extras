@@ -469,7 +469,7 @@ bool POP3Protocol::pop3_open ()
 				if (!command(sasl_buffer.latin1(), challenge, 2049)) {
 					delete [] challenge;
 				} else {
-					bool ret, b64 = true;
+					bool ret = false;
 
 					// See the SMTP ioslave
 					if (sasl_auth == "PLAIN") {
