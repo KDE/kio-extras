@@ -1,0 +1,16 @@
+dnl only compile devices on linux
+
+
+AC_MSG_CHECKING([Checking if devices should be compiled])
+
+if test "x`uname`" = "xLinux"; then
+  DEVICESDIR=devices
+  AC_SUBST(DEVICESDIR)
+  AC_MSG_RESULT([Linux -> yes])
+else
+  DEVICESDIR=
+  AC_SUBST(DEVICESDIR)
+  AC_MSG_RESULT([NON Linux -> no])
+fi
+
+AM_CONDITIONAL(include_devicesdir, test -n "$DEVICESDIR")
