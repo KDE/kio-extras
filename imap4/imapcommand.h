@@ -73,6 +73,7 @@ public:
                                     false);
   static imapCommand *clientStore (const QString & set, const QString & item,
                                    const QString & data, bool nouid = false);
+  static imapCommand *clientLogout ();
 protected:
     QString aCommand;
   QString mId;

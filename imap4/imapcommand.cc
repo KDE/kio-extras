@@ -262,3 +262,9 @@ imapCommand::clientStore (const QString & set, const QString & item,
   return new imapCommand (nouid ? "STORE" : "UID STORE",
                           set + " " + item + " (" + data + ")");
 }
+
+imapCommand *
+imapCommand::clientLogout ()
+{
+  return new imapCommand ("LOGOUT", "");
+}

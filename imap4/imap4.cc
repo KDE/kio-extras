@@ -1143,6 +1143,13 @@ void IMAP4Protocol::openConnection()
   if (makeLogin()) connected();
 }
 
+void IMAP4Protocol::closeConnection()
+{
+  if (getState() == ISTATE_NO) return;
+  imapCommand *cmd = doCommand (imapCommand::clientLogout());
+  completeQueue.removeRef (cmd);
+}
+
 bool IMAP4Protocol::makeLogin ()
 {
   bool skipFirst = true;

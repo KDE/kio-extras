@@ -54,6 +54,7 @@ public:
   virtual ~IMAP4Protocol ();
 
   virtual void openConnection();
+  virtual void closeConnection();
 
   virtual void setHost (const QString & _host, int _port, const QString & _user,
     const QString & _pass);
