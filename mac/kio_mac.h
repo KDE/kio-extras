@@ -47,7 +47,7 @@ protected:
 
     long processedBytes;
     QString* standardOutputStream;
-    KShellProcess* myKProcess;
+    KProcess* myKProcess;
 
     //for debugging
     //QFile* logFile;

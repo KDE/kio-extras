@@ -102,7 +102,7 @@ void MacProtocol::get(const KURL& url) {
     }
 
     //now we can read the file
-    myKProcess = new KShellProcess();
+    myKProcess = new KProcess();
 
     *myKProcess << "hpcopy" << mode << path << "-";
 
@@ -135,8 +135,8 @@ void MacProtocol::listDir(const KURL& url) {
     if (filename.isNull()) {
         error(ERR_CANNOT_LAUNCH_PROCESS, i18n("No filename was found"));
     } else {
-        myKProcess = new KShellProcess();
-        *myKProcess << "hpls -la" << filename;
+        myKProcess = new KProcess();
+        *myKProcess << "hpls" << "-la" << filename;
 
         *standardOutputStream = "";
         connect(myKProcess, SIGNAL(receivedStdout(KProcess *, char *, int)),
@@ -193,7 +193,7 @@ QValueList<KIO::UDSAtom> MacProtocol::doStat(const KURL& url) {
     } else if (! filename.isEmpty()) {
         myKProcess = new KShellProcess();
 
-        *myKProcess << "hpls -ld" << filename;
+        *myKProcess << "hpls" << "-ld" << filename;
 
         *standardOutputStream = "";
         connect(myKProcess, SIGNAL(receivedStdout(KProcess *, char *, int)),
@@ -263,7 +263,7 @@ QString MacProtocol::prepareHP(const KURL& url) {
     delete config; config = 0;
 
     //first we run just hpmount and check the output to see if it's version 1.0.2 or 1.0.4
-    myKProcess = new KShellProcess();
+    myKProcess = new KProcess();
     *myKProcess << "hpmount";
     *standardOutputStream = "";
     connect(myKProcess, SIGNAL(receivedStderr(KProcess *, char *, int)),
@@ -282,11 +282,11 @@ QString MacProtocol::prepareHP(const KURL& url) {
             this, SLOT(slotGetStdOutput(KProcess *, char *, int)));
 
     //now mount the drive
-    myKProcess = new KShellProcess();
+    myKProcess = new KProcess();
     if (version102) {
         *myKProcess << "hpmount" << device;
     } else {
-        *myKProcess << "hpmount -r" << device;
+        *myKProcess << "hpmount" << "-r" << device;
     }
 
     myKProcess->start(KProcess::Block, KProcess::All);
@@ -319,8 +319,8 @@ QString MacProtocol::prepareHP(const KURL& url) {
         dir = path.left(s);
         path = path.mid(s+1);
 
-        myKProcess = new KShellProcess();
-        *myKProcess << "hpcd " << dir;
+        myKProcess = new KProcess();
+        *myKProcess << "hpcd" << dir;
 
         myKProcess->start(KProcess::Block, KProcess::All);
 
