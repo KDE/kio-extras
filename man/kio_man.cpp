@@ -40,14 +40,14 @@ bool parseUrl(const QString& _url, QString &title, QString &section)
         }
     }
 
-    while (url.left(1).at(0) == '/')
+    while (url.at(0) == '/')
         url.remove(0,1);
 
     title = url;
 
     int pos = url.find('(');
     if (pos < 0)
-        return false;
+        return true;
 
     title = title.left(pos);
 
@@ -59,7 +59,7 @@ bool parseUrl(const QString& _url, QString &title, QString &section)
 
 
 MANProtocol::MANProtocol(const QCString &pool_socket, const QCString &app_socket)
-    : QObject(), SlaveBase("man", pool_socket, app_socket), _cache(0), m_unzippedData(0)
+    : QObject(), SlaveBase("man", pool_socket, app_socket), m_unzippedData(0)
 {
     assert(!_self);
     _self = this;
@@ -70,24 +70,29 @@ MANProtocol *MANProtocol::self() { return _self; }
 MANProtocol::~MANProtocol()
 {
     _self = 0;
-    delete _cache;
 }
 
-QCString MANProtocol::findPage(const QString &section, const QString &title) const
+QString MANProtocol::findPage(const QString &section, const QString &title)
 {
-    if (title.at(0) == '/')
-        return title.utf8();
-    else
-        return "/usr/share/man/man1/gcc.1.gz";
+    checkManPaths();
+    QStringList list = KGlobal::dirs()->findAllResources("manpath", QString("man*/%1.*").arg(title));
+    return list[0];
+}
+
+void MANProtocol::output(const char *insert)
+{
+    if (insert)
+        output_string += insert;
+    if (!insert || output_string.length() > 2000) {
+        data(output_string);
+        output_string.truncate(0);
+    }
 }
 
 void output_real(const char *insert)
 {
-    QByteArray b;
-    int strLength = strlen(insert);
-    b.setRawData(insert, strLength);
-    MANProtocol::self()->data(b);
-    b.resetRawData(insert, strLength);
+    MANProtocol::self()->output(insert);
+
 }
 
 void MANProtocol::get(const KURL& url )
@@ -98,7 +103,7 @@ void MANProtocol::get(const KURL& url )
 
     if (!parseUrl(url.path(), title, section))
     {
-        error(KIO::ERR_MALFORMED_URL, url.url());
+        showMainIndex();
         return;
     }
 
@@ -116,11 +121,11 @@ void MANProtocol::get(const KURL& url )
     gettingFile(url.url());
     mimeType("text/html");
 
-    QCString filename=findPage(section, title);
+    QCString filename=QFile::encodeName(findPage(section, title));
 
     gzFile file = gzopen(filename, "rb");
     if (!file) {
-        outputError(i18n("open failed"));
+        outputError(i18n("open of %1 failed").arg(filename));
         return;
     }
 
@@ -137,6 +142,8 @@ void MANProtocol::get(const KURL& url )
 
     // will call output_real
     scan_man_page(m_unzippedData);
+
+    output(0); // flush
 
     // tell we are done
     data(QByteArray());
@@ -165,64 +172,64 @@ void MANProtocol::addToBuffer(const char *buffer, int buflen)
 
 void MANProtocol::outputError(const QString& errmsg)
 {
-  QCString output;
+    QCString output;
 
-  QTextStream os(output, IO_WriteOnly);
+    QTextStream os(output, IO_WriteOnly);
 
-  os << "<html>" << endl;
-  os << i18n("<head><title>Man output</title></head>") << endl;
-  os << i18n("<body bgcolor=#ffffff><h1>KDE Man Viewer Error</h1>") << errmsg << "</body>" << endl;
-  os << "</html>" << endl;
+    os << "<html>" << endl;
+    os << i18n("<head><title>Man output</title></head>") << endl;
+    os << i18n("<body bgcolor=#ffffff><h1>KDE Man Viewer Error</h1>") << errmsg << "</body>" << endl;
+    os << "</html>" << endl;
 
-  data(output);
-  finished();
+    data(output);
+    finished();
 }
 
 
 void MANProtocol::stat( const KURL& url)
 {
-  kdDebug(7107) << "ENTERING STAT " << url.url();
+    kdDebug(7107) << "ENTERING STAT " << url.url();
 
-  QString title, section;
+    QString title, section;
 
-  if (!parseUrl(url.path(), title, section))
+    if (!parseUrl(url.path(), title, section))
     {
-      error(KIO::ERR_MALFORMED_URL, url.url());
-      return;
+        error(KIO::ERR_MALFORMED_URL, url.url());
+        return;
     }
 
-  kdDebug(7107) << "URL " << url.url() << " parsed to title='" << title << "' section=" << section << endl;
+    kdDebug(7107) << "URL " << url.url() << " parsed to title='" << title << "' section=" << section << endl;
 
 
-  UDSEntry entry;
-  UDSAtom atom;
+    UDSEntry entry;
+    UDSAtom atom;
 
-  atom.m_uds = UDS_NAME;
-  atom.m_long = 0;
-  atom.m_str = title;
-  entry.append(atom);
+    atom.m_uds = UDS_NAME;
+    atom.m_long = 0;
+    atom.m_str = title;
+    entry.append(atom);
 
-  atom.m_uds = UDS_FILE_TYPE;
-  atom.m_str = "";
-  atom.m_long = S_IFREG;
-  entry.append(atom);
+    atom.m_uds = UDS_FILE_TYPE;
+    atom.m_str = "";
+    atom.m_long = S_IFREG;
+    entry.append(atom);
 
-  atom.m_uds = UDS_URL;
-  atom.m_long = 0;
-  QString newUrl = "man:"+title;
-  if (!section.isEmpty())
-    newUrl += QString("(%1)").arg(section);
-  atom.m_str = newUrl;
-  entry.append(atom);
+    atom.m_uds = UDS_URL;
+    atom.m_long = 0;
+    QString newUrl = "man:"+title;
+    if (!section.isEmpty())
+        newUrl += QString("(%1)").arg(section);
+    atom.m_str = newUrl;
+    entry.append(atom);
 
-  atom.m_uds = UDS_MIME_TYPE;
-  atom.m_long = 0;
-  atom.m_str = "text/html";
-  entry.append(atom);
+    atom.m_uds = UDS_MIME_TYPE;
+    atom.m_long = 0;
+    atom.m_str = "text/html";
+    entry.append(atom);
 
-  statEntry(entry);
+    statEntry(entry);
 
-  finished();
+    finished();
 }
 
 
@@ -254,262 +261,180 @@ extern "C"
 
 void MANProtocol::mimetype(const KURL & /*url*/)
 {
-  mimeType("text/html");
-  finished();
+    mimeType("text/html");
+    finished();
 }
 
-QString sectionName(QString section)
+QString sectionName(const QString& section)
 {
-  if (section == "1")
-    return i18n("User Commands");
-  else if (section == "2")
-    return i18n("System Calls");
-  else if (section == "3")
-    return i18n("Subroutines");
-  else if (section == "4")
-    return i18n("Devices");
-  else if (section == "5")
-    return i18n("File Formats");
-  else if (section == "6")
-    return i18n("Games");
-  else if (section == "7")
-    return i18n("Miscellaneous");
-  else if (section == "8")
-    return i18n("System Administration");
-  else if (section == "9")
-    return i18n("Kernel");
-  else if (section == "n")
-    return i18n("New");
+    if (section == "1")
+        return i18n("User Commands");
+    else if (section == "2")
+        return i18n("System Calls");
+    else if (section == "3")
+        return i18n("Subroutines");
+    else if (section == "4")
+        return i18n("Devices");
+    else if (section == "5")
+        return i18n("File Formats");
+    else if (section == "6")
+        return i18n("Games");
+    else if (section == "7")
+        return i18n("Miscellaneous");
+    else if (section == "8")
+        return i18n("System Administration");
+    else if (section == "9")
+        return i18n("Kernel");
+    else if (section == "n")
+        return i18n("New");
 
-  return QString::null;
+    return QString::null;
 }
 
 
 void MANProtocol::showMainIndex()
 {
-  QCString output;
+    QCString output;
 
-  QTextStream os(output, IO_WriteOnly);
+    QTextStream os(output, IO_WriteOnly);
 
-  // print header
-  os << "<html>" << endl;
-  os << i18n("<head><title>UNIX Manual Index</title></head>") << endl;
-  os << i18n("<body bgcolor=#ffffff><h1>UNIX Manual Index</h1>") << endl;
+    // print header
+    os << "<html>" << endl;
+    os << i18n("<head><title>UNIX Manual Index</title></head>") << endl;
+    os << i18n("<body bgcolor=#ffffff><h1>UNIX Manual Index</h1>") << endl;
 
-  QString sectList = getenv("MANSECT");
-  if (sectList.isEmpty())
-    sectList = "1:2:3:4:5:6:7:8:9:n";
-  QStringList sections = QStringList::split(':', sectList);
+    QString sectList = getenv("MANSECT");
+    if (sectList.isEmpty())
+        sectList = "1:2:3:4:5:6:7:8:9:n";
+    QStringList sections = QStringList::split(':', sectList);
 
-  os << "<table>" << endl;
+    os << "<table>" << endl;
 
-  QStringList::ConstIterator it;
-  for (it = sections.begin(); it != sections.end(); ++it)
-    os << "<tr><td><a href=\"man:(" << *it << ")\">Section " << *it << "</a></td><td>&nbsp;</td><td> " << sectionName(*it) << "</td></tr>" << endl;
+    QStringList::ConstIterator it;
+    for (it = sections.begin(); it != sections.end(); ++it)
+        os << "<tr><td><a href=\"man:(" << *it << ")\">Section " << *it << "</a></td><td>&nbsp;</td><td> " << sectionName(*it) << "</td></tr>" << endl;
 
-  os << "</table>" << endl;
+    os << "</table>" << endl;
 
-  // print footer
-  os << "</body></html>" << endl;
+    // print footer
+    os << "</body></html>" << endl;
 
-  data(output);
-  finished();
+    data(output);
+    finished();
 }
 
 
-QStringList getManPaths()
+void MANProtocol::checkManPaths()
 {
-  QStringList manPaths;
+    static bool inited = false;
 
-  // TODO: GNU man understands "man -w" to give the real man path used
-  // by the program. We should use this instead of all this guessing!
+    if (inited)
+        return;
 
-  // add MANPATH paths
-  QString envPath = getenv("MANPATH");
-  if (!envPath.isEmpty())
-    manPaths = QStringList::split(':', envPath);
+    inited = true;
 
-  // add paths from /etc/man.conf
-  QRegExp manpath("^MANPATH\\s");
-  QFile mc("/etc/man.conf");
-  if (mc.open(IO_ReadOnly))
+    QStringList manPaths;
+
+    // add paths from /etc/man.conf
+    QRegExp manpath("^MANPATH\\s");
+    QFile mc("/etc/man.conf");
+    if (mc.open(IO_ReadOnly))
     {
-      QTextStream is(&mc);
+        QTextStream is(&mc);
 
-      while (!is.eof())
+        while (!is.eof())
 	{
-	  QString line = is.readLine();
-	  if (manpath.match(line) == 0)
+            QString line = is.readLine();
+            if (manpath.find(line, 0) == 0)
 	    {
-	      QString path = line.mid(8).stripWhiteSpace();
-	      if (!manPaths.contains(path))
-		manPaths.append(path);
+                QString path = line.mid(8).stripWhiteSpace();
+                KGlobal::dirs()->addResourceDir("manpath", path);
 	    }
 	}
 
-      mc.close();
+        mc.close();
     }
 
-  // add default paths
-  if (!manPaths.contains("/usr/man"))
-    manPaths.append("/usr/man");
-  if (!manPaths.contains("/usr/X11R6/man"))
-    manPaths.append("/usr/X11R6/man");
-  if (!manPaths.contains("/usr/local/man"))
-    manPaths.append("/usr/local/man");
-  if (!manPaths.contains("/usr/share/man"))
-    manPaths.append("/usr/share/man");
+    static const char *manpaths[] = {
+                    "/usr/X11/man/",
+                    "/usr/X11R6/man/",
+                    "/usr/man/",
+                    "/usr/local/man/",
+                    "/usr/exp/man/",
+                    "/usr/openwin/man/",
+                    "/usr/tex/man/",
+                    "/usr/www/man/",
+                    "/usr/lang/man/",
+                    "/usr/gnu/man/",
+                    "/usr/share/man",
+                    "/usr/motif/man/",
+                    "/usr/titools/man/",
+                    "/usr/sunpc/man/",
+                    "/usr/ncd/man/",
+                    "/usr/newsprint/man/",
+                    NULL };
 
-  return manPaths;
-}
-
-
-void MANProtocol::initCache(const QString& section)
-{
-  delete _cache;
-  _cache = new QDict<char>(231, false);
-  _cache->setAutoDelete(true);
-
-  // locate whatis databases
-  QStringList manPaths = getManPaths();
-  QStringList::ConstIterator it;
-  for (it = manPaths.begin(); it != manPaths.end(); ++it)
-    {
-      QFile whatis(QString("%1/whatis").arg(*it));
-      if (whatis.open(IO_ReadOnly))
-	{
-	  QTextStream is(&whatis);
-
-	  QString line, tag, desc;
-	  while (!is.eof())
-	    {
-	      line = is.readLine();
-	      int pos1 = line.find(QString("(%1").arg(section));
-	      if (pos1 <= 0)
-		continue;
-
-	      int pos = line.find("-");
-	      if (pos <= 0)
-		continue;
-
-	      desc = line.mid(pos + 1).stripWhiteSpace();
-	      tag = line.left(pos1).stripWhiteSpace();
-
-	      QStringList tags = QStringList::split(',', tag);
-	      QStringList::ConstIterator t;
-	      for (t=tags.begin(); t != tags.end(); ++t)
-		_cache->insert((*t).stripWhiteSpace().latin1(), strdup(desc.local8Bit()));
-	    }
-
-	  whatis.close();
-	}
+    int index = 0;
+    while (manpaths[index]) {
+        kdDebug(7107) << "adding manpath " << manpaths[index] << endl;
+        KGlobal::dirs()->addResourceDir("manpath", manpaths[index++]);
     }
+
+    manPaths = KGlobal::dirs()->resourceDirs("manpath");
+    QStringList::ConstIterator page;
+    for (page = manPaths.begin(); page != manPaths.end(); ++page) {
+        kdDebug(7107) << *page << endl;
+    }
+
+    // add MANPATH paths
+    QString envPath = getenv("MANPATH");
+    if (!envPath.isEmpty()) {
+        manPaths = QStringList::split(':', envPath);
+        for (QStringList::ConstIterator it = manPaths.begin();
+             it != manPaths.end(); ++it)
+            KGlobal::dirs()->addResourceDir("manpath", *it);
+    }
+
 }
-
-
-QString MANProtocol::pageName(const QString& page) const
-{
-  const char *pagename = (*_cache)[page.latin1()];
-  if (pagename)
-    return pagename;
-  return page;
-}
-
 
 void MANProtocol::showIndex(const QString& section)
 {
-  QCString output;
+    QCString output;
 
-  QTextStream os(output, IO_WriteOnly);
+    QTextStream os(output, IO_WriteOnly);
 
-  // print header
-  os << "<html>" << endl;
-  os << i18n("<head><title>UNIX Manual Index</title></head>") << endl;
-  os << i18n("<body bgcolor=#ffffff><h1>Index for Section %1: %2</h1>").arg(section).arg(sectionName(section)) << endl;
+    // print header
+    os << "<html>" << endl;
+    os << i18n("<head><title>UNIX Manual Index</title></head>") << endl;
+    os << i18n("<body bgcolor=#ffffff><h1>Index for Section %1: %2</h1>").arg(section).arg(sectionName(section)) << endl;
 
-  // compose list of search paths -------------------------------------------------------------
+    // compose list of search paths -------------------------------------------------------------
 
-  QStringList manPaths = getManPaths();
+    checkManPaths();
 
-  // search for the man pages
-  QStringList pages;
-  QStringList::ConstIterator it;
-  for (it = manPaths.begin(); it != manPaths.end(); ++it)
+    // search for the man pages
+    QStringList pages = KGlobal::dirs()->findAllResources("manpath",
+                                                          QString("*man%1*/*").arg(section), true);
+
+    // print out the list
+    os << "<table>" << endl;
+    pages.sort();
+
+    QStringList::ConstIterator page;
+    for (page = pages.begin(); page != pages.end(); ++page)
     {
-      QDir dir(*it, QString("man%1*").arg(section), 0, QDir::Dirs);
-
-      if (!dir.exists())
-	continue;
-
-      QStringList dirList = dir.entryList();
-      QStringList::Iterator itDir;
-      for (itDir = dirList.begin(); !(*itDir).isNull(); ++itDir)
-	{
-	  if ( (*itDir).at(0) == '.' )
-	    continue;
-
-	  QString dirName = QString("%1/%2").arg(*it).arg(*itDir);
-	  QDir fileDir(dirName, QString("*.%1*").arg(section), 0, QDir::Files | QDir::Hidden | QDir::Readable);
-
-	  if (!fileDir.exists())
-	    return;
-
-	  // does dir contain files
-	  if (fileDir.count() > 0)
-	    {
-	      QStringList fileList = fileDir.entryList();
-	      QStringList::Iterator itFile;
-	      for (itFile = fileList.begin(); !(*itFile).isNull(); ++itFile)
-		{
-		  QString fileName = *itFile;
-		  QString file = dirName;
-		  file += '/';
-		  file += *itFile;
-
-		  // skip compress extension
-		  if (fileName.right(4) == ".bz2")
-		    {
-		      fileName.truncate(fileName.length()-4);
-		    }
-		  else if (fileName.right(3) == ".gz")
-		    {
-		      fileName.truncate(fileName.length()-3);
-		    }
-		  else if (fileName.right(2) == ".Z")
-		    {
-		      fileName.truncate(fileName.length()-2);
-		    }
-
-		  // strip section
-		  int pos = fileName.findRev('.');
-		  if ((pos > 0) && (fileName.mid(pos).find(section) > 0))
-		    fileName = fileName.left(pos);
-
-		  if (!fileName.isEmpty() && !pages.contains(fileName))
-		    pages.append(fileName);
-		}
-	    }
-	}
+        kdDebug(7107) << "page: " << *page << endl;
+        os << "<tr><td>" << *page;
+        os << "</td><td>" << endl;
     }
 
-  // print out the list
-  os << "<table>" << endl;
-  pages.sort();
-  initCache(section);
-  QStringList::ConstIterator page;
-  for (page = pages.begin(); page != pages.end(); ++page)
-    {
-      os << "<tr><td><a href=\"man:/" << *page << "(" << section << ")\">";
-      os << *page << "</a></td><td>&nbsp;</td><td> " << pageName(*page) << "</td></tr>" << endl;
-    }
+    os << "</table>" << endl;
 
-  os << "</table>" << endl;
+    // print footer
+    os << "</body></html>" << endl;
 
-  // print footer
-  os << "</body></html>" << endl;
-
-  data(output);
-  finished();
+    data(output);
+    finished();
 }
 
 

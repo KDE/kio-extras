@@ -30,17 +30,17 @@ public:
 
     void showMainIndex();
     void showIndex(const QString& section);
+    void output(const char *insert);
 
     static MANProtocol *self();
 
-    QCString findPage(const QString& section, const QString &title) const;
-
 private:
-    void addToBuffer(const char *buffer, int buflen);
-    void initCache(const QString& section);
-    QString pageName(const QString& page) const;
+    void checkManPaths();
+    QString findPage(const QString& section, const QString &title);
 
-    QDict<char> *_cache;
+    void addToBuffer(const char *buffer, int buflen);
+    QString pageName(const QString& page) const;
+    QCString output_string;
 
     ssize_t m_unzippedLength;
     ssize_t m_unzippedBufferSize;
