@@ -1575,6 +1575,13 @@ IMAP4Protocol::parseURL (const KURL & _url, QString & _box,
   {
     kdDebug(7116) << "IMAP4::parseURL: box " << _box << endl;
 
+    // Hack for UW-IMAP news folders
+    if (_box.left(5) == "#news")
+    {
+      _hierarchyDelimiter = ".";
+      retVal = ITYPE_DIR_AND_BOX;
+    } else
+
     if (makeLogin ())
     {
       if (getCurrentBox () != _box || _type == "LIST" || _type == "LSUB")
