@@ -2999,34 +2999,22 @@ static char *scan_request(char *c)
                     out_html( "<link rel=\"stylesheet\" href=\"KDE_COMMON_DIR/kde-default.css\" type=\"text/css\">\n" );
                     out_html( "</HEAD>\n\n" );
                     out_html("<BODY BGCOLOR=\"#FFFFFF\">\n\n" );
-                    out_html("<div id=\"headline\" style=\"position : absolute; height : 85px; z-index :\n" );
-                    out_html("100; background : transparent; text-align : center; text-transform:\n" );
-                    out_html("smallcaps; width : 100%; top : 0px; left : 0px; width : 100%; color :\n" );
-                    out_html("#000000;\">\n" );
-                    out_html("\n" );
-                    out_html("<H1>" );
-                        out_html( scan_troff(wordlist[0], 0, NULL ) );
-                    out_html("</H1>\n" );
-                    out_html("</div>\n" );
-                    out_html("<div id=\"navbackground\" style=\"position : absolute; width : 100%; height\n" );
-                    out_html(": 124px; background-image : url('KDE_COMMON_DIR/doctop2.png'); z-index : 5; left\n" );
-                    out_html(": 0px; top : 0px; padding : 0px;\"> <div id=\"bulb1\" style=\"padding : 0px;\n" );
-                    out_html("position : absolute; z-index : 15; width : 150px; height : 85px; top :\n" );
-                    out_html("0px; left : 0px; background : url('KDE_COMMON_DIR/doctop1.png') repeat;\"></div>\n" );
-                    out_html("<div id=\"gradient\" style=\"position : absolute; width : 275px; height :\n" );
-                    out_html("85px; z-index : 19px; top : 0px; padding : 0px; left : 150px;\n" );
-                    out_html("background-image : url('KDE_COMMON_DIR/doctop1a.png'); background-repeat :\n" );
-                    out_html("no-repeat; background-color : transparent; visibility : visible;\"></div>\n" );
-                    out_html("\n" );
-                    out_html("<div id=\"bulb-bit\" style=\"position : absolute; width : 100%; height :\n" );
-                    out_html("25px; top : 85px; left : 0px; background-image :\n" );
-                    out_html("url('KDE_COMMON_DIR/doctop1b.png'); background-repeat : no-repeat;\n" );
-                    out_html("background-color : transparent; z-index : 5;\"></div></div>\n" );
-                    out_html("<div style=\"position : absolute; top : 125px; margin-left : 10px; margin-right : 10px;\">");
+                    out_html("<div style=\"background-image: url(KDE_COMMON_DIR/top-middle.png); width: 100%; height: 131px;\">\n" );
+		    out_html("<div style=\"position: absolute; right: 0px;\">\n");
+		    out_html("<img src=\"KDE_COMMON_DIR/top-right-konqueror.png\" style=\"margin: 0px\" alt=\"\" />\n");
+		    out_html("</div>\n");
+
+		    out_html("<div style=\"position: absolute; left: 0px;\">\n");
+		    out_html("<img src=\"KDE_COMMON_DIR/top-left.png\" style=\"margin: 0px\" alt=\"\" />\n");
+		    out_html("</div>\n");
+		    out_html("<div style=\"position: absolute; top: 25px; right: 100px; text-align: right; font-size: xx-large; font-weight: bold; text-shadow: #fff 0px 0px 5px; color: #444\">\n");
+		    out_html( scan_troff(wordlist[0], 0, NULL ) );
+		    out_html("</div>\n");
+		    out_html("</div>\n");
+		    out_html("<div style=\"margin-left: 5em; margin-right: 5em;\">\n");
                     out_html("<h1>" );
                         out_html( scan_troff(wordlist[0], 0, NULL ) );
                     out_html( "</h1>\n" );
-                    out_html("\n" );
                     out_html("Section: " );
                     if (words>4)
                             out_html(scan_troff(wordlist[4], 0, NULL) );
@@ -4088,17 +4076,17 @@ void scan_man_page(const char *man_page)
     }
 
     if (output_possible) {
-        output_real( "<div id=\"bottom-nav\" style=\"position : relative; width : 100%;\n");
-        output_real( "height : 185px; left : 0px; right : 0px; top : 0px; margin-top: 100px;\n");
-        output_real( "background-image : url('KDE_COMMON_DIR/bottom1.png'); background-repeat :\n");
-        output_real( "repeat-x; background-color : transparent; margin-left: 0px;\n");
-        output_real( "margin-right: 0px; z-index : 25;\">\n");
-        output_real( "<img src=\"KDE_COMMON_DIR/bottom2.png\" align=\"right\" height=\"59\" width=\"227\" alt=\"KDE Logo\">\n");
-        output_real( "<div id=\"navtable2\" style=\"width : 100%; margin-left: 0px; margin-right:\n");
-        output_real( "0px; z-index : 15; background-color : transparent;\"></div>\n");
-        output_real( "</div>  \n");
-        output_real( "</div>  \n");
-	output_real("</BODY>\n</HTML>\n");
+      output_real("</div>\n");
+      output_real("<div class=\"bannerBottom\" style=\"background-image: url(KDE_COMMON_DIR/bottom-middle.png); background-repeat: x-repeat; width: 100%; height: 100px; bottom:0px;\">\n");
+      output_real("<div class=\"BannerBottomRight\">\n");
+      output_real("<img src=\"KDE_COMMON_DIR/bottom-right.png\" style=\"margin: 0px\" alt=\"\"/>\n");
+      output_real("</div>\n");
+      output_real("<div class=\"bannerBottomLeft\">\n");
+      output_real("<img src=\"KDE_COMMON_DIR/bottom-left.png\" style=\"margin: 0px;\" alt=\"\"/>\n");
+      output_real("</div>\n");
+      output_real("</div>\n");
+
+      output_real("</BODY>\n</HTML>\n");
     }
     delete [] buf;
 
