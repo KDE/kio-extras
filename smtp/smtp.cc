@@ -61,6 +61,7 @@
 #include <kdebug.h>
 #include <kinstance.h>
 #include <kio/connection.h>
+#include <kio/emailsettings.h>
 #include <kio/slaveinterface.h>
 #include <kio/sasl/saslcontext.h>
 #include <klocale.h>
@@ -156,9 +157,14 @@ void SMTPProtocol::put( const KURL& url, int /*permissions*/, bool /*overwrite*/
 		mset->setProfile(mset->defaultProfileName());
 	}
 	QString from("MAIL FROM: ");
-	if (mset->getSetting(KEMailSettings::EmailAddress) != QString::null)
+	if (mset->getSetting(KEMailSettings::EmailAddress) != QString::null) {
 		from+=mset->getSetting(KEMailSettings::EmailAddress);
-	else
+		if (mset->getSetting(KEMailSettings::RealName) != QString::null) {
+			from.prepend(QString::fromLatin1(" <");
+			from.prepend(mset->getSetting(KEMailSettings::RealName));
+			from.append(QString::fromLatin1(">");
+		}
+	} else
 		from+="someuser@is.using.a.pre.release.kde.ioslave.compliments.of.kde.org";
 
 	if (! command(from.latin1())) {
@@ -356,11 +362,7 @@ bool SMTPProtocol::smtp_open(const KURL &url)
 	}
 
 	if (haveTLS) { // we should also check kemailsettings as well..
-		if (command("STARTTLS")) {
-			//m_pSSL=new KSSL(true);
-			//m_pSSL->connect(m_iSock);
-		} else
-			haveTLS=false;
+		haveTLS=false;
 	}
 
 	// Now we try and login
