@@ -157,16 +157,17 @@ void SMTPProtocol::put( const KURL& url, int /*permissions*/, bool /*overwrite*/
 	if (mset->defaultProfileName() != QString::null) {
 		mset->setProfile(mset->defaultProfileName());
 	}
-	QString from("MAIL FROM: ");
+	QString from;
 	if (mset->getSetting(KEMailSettings::EmailAddress) != QString::null) {
-		from+=mset->getSetting(KEMailSettings::EmailAddress);
+		from=mset->getSetting(KEMailSettings::EmailAddress);
 		if (mset->getSetting(KEMailSettings::RealName) != QString::null) {
 			from.prepend(QString::fromLatin1(" <"));
-			from.prepend(mset->getSetting(KEMailSettings::RealName));
 			from.append(QString::fromLatin1(">"));
+			from.prepend(mset->getSetting(KEMailSettings::RealName));
 		}
 	} else
-		from+="someuser@is.using.a.pre.release.kde.ioslave.compliments.of.kde.org";
+		from="someuser@is.using.a.pre.release.kde.ioslave.compliments.of.kde.org";
+	from.prepend("MAIL FROM: ");
 
 	if (!command(from)) {
 		HandleSMTPWriteError(url);
@@ -429,6 +430,11 @@ bool SMTPProtocol::Authenticate(const KURL &url)
 		kdDebug() << "kio_smtp: IT wants me to send: " << cmd << endl;
 		ret = command(cmd);
 		free(challenge);
+		kdDebug() << "kio_smtp: auth did something" << endl;
+		if (ret)
+			kdDebug() << "kio_smtp: auth worked" << endl;
+		else
+			kdDebug() << "kio_smtp: auth no worked" << endl;
 		return ret;
 	}
 	return false;
