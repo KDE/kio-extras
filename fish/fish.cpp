@@ -66,6 +66,7 @@
 #include <kglobal.h>
 #include <kstandarddirs.h>
 #include <klocale.h>
+#include <kremoteencoding.h>
 #include <kurl.h>
 #include <ksock.h>
 #include <stdarg.h>
@@ -80,7 +81,7 @@
 #include "fish.h"
 #include "fishcode.h"
 
-#if 1
+#ifndef NDEBUG 
 #define myDebug(x) kdDebug(7127) << __LINE__ << ": " x
 #define connected() do{myDebug( << "_______ emitting connected()" << endl); connected();}while(0)
 #define dataReq() do{myDebug( << "_______ emitting dataReq()" << endl); dataReq();}while(0)
@@ -106,6 +107,8 @@ static char *sshPath = NULL;
 static char *suPath = NULL;
 // disabled: currently not needed. Didn't work reliably.
 // static int isOpenSSH = 0;
+
+#define E(x) ((const char*)remoteEncoding()->encode(x).data())
 
 using namespace KIO;
 extern "C" {
@@ -239,10 +242,10 @@ fishProtocol::fishProtocol(const QCString &pool_socket, const QCString &app_sock
     if (sshPath == NULL) {
         // disabled: currently not needed. Didn't work reliably.
         // isOpenSSH = !system("ssh -V 2>&1 | grep OpenSSH > /dev/null");
-        sshPath = strdup((const char *)KStandardDirs::findExe("ssh").local8Bit());
+        sshPath = strdup(E(KStandardDirs::findExe("ssh")));
     }
     if (suPath == NULL) {
-        suPath = strdup((const char *)KStandardDirs::findExe("su").local8Bit());
+        suPath = strdup(E(KStandardDirs::findExe("su")));
     }
     childPid = 0;
     connectionPort = 0;
@@ -1116,13 +1119,13 @@ void fishProtocol::manageConnection(const QString &l) {
             statEntry(udsStatEntry);
         } else if (fishCommand == FISH_APPEND) {
             dataReq();
-            if (readData(rawData) > 0) sendCommand(FISH_APPEND,(const char *)QString::number(rawData.size()).local8Bit(),(const char *)url.path().local8Bit());
-            else if (!checkExist && putPerm > -1) sendCommand(FISH_CHMOD,(const char *)QString::number(putPerm,8).local8Bit(),(const char *)url.path().local8Bit());
+            if (readData(rawData) > 0) sendCommand(FISH_APPEND,E(QString::number(rawData.size())),E(url.path()));
+            else if (!checkExist && putPerm > -1) sendCommand(FISH_CHMOD,E(QString::number(putPerm,8)),E(url.path()));
             sendLen = rawData.size();
         } else if (fishCommand == FISH_WRITE) {
             dataReq();
-            if (readData(rawData) > 0) sendCommand(FISH_WRITE,(const char *)QString::number(putPos).local8Bit(),(const char *)QString::number(rawData.size()).local8Bit(),(const char *)url.path().local8Bit());
-            else if (!checkExist && putPerm > -1) sendCommand(FISH_CHMOD,(const char *)QString::number(putPerm,8).local8Bit(),(const char *)url.path().local8Bit());
+            if (readData(rawData) > 0) sendCommand(FISH_WRITE,E(QString::number(putPos)),E(QString::number(rawData.size())),E(url.path()));
+            else if (!checkExist && putPerm > -1) sendCommand(FISH_CHMOD,E(QString::number(putPerm,8)),E(url.path()));
             putPos += rawData.size();
             sendLen = rawData.size();
         } else if (fishCommand == FISH_RETR) {
@@ -1179,7 +1182,7 @@ void fishProtocol::sent()
 
 int fishProtocol::received(const char *buffer, int buflen)
 {
-    QString buf;
+    int pos = 0;
     do {
         if (buflen <= 0) break;
 
@@ -1233,16 +1236,27 @@ int fishProtocol::received(const char *buffer, int buflen)
         }
 
         if (buflen <= 0) break;
-        buf.setLatin1(buffer,buflen);
-        int pos;
-        if ((pos = buf.find('\n')) >= 0) {
-            buffer += pos+1;
-            buflen -= pos+1;
-            QString s = buf.left(pos);
-            manageConnection(s);
-            buf = buf.mid(pos+1);
+
+        pos = 0;
+        // Find newline
+        while((pos < buflen) && (buffer[pos] != '\n'))
+            ++pos;
+        
+        if (pos < buflen)
+        {
+           QString s = remoteEncoding()->decode(QCString(buffer,pos+1));
+        
+           buffer += pos+1;
+           buflen -= pos+1;
+
+           manageConnection(s);
+           
+           pos = 0;
+           // Find next newline
+           while((pos < buflen) && (buffer[pos] != '\n'))
+               ++pos;
         }
-    } while (childPid && buflen && (rawRead > 0 || buf.find('\n') >= 0));
+    } while (childPid && buflen && (rawRead > 0 || pos < buflen));
     return buflen;
 }
 /** get a file */
@@ -1257,7 +1271,7 @@ void fishProtocol::get(const KURL& u){
         sendCommand(FISH_PWD);
     } else {
         recvLen = -1;
-        sendCommand(FISH_RETR,(const char *)url.path().local8Bit());
+        sendCommand(FISH_RETR,E(url.path()));
     }
     run();
 }
@@ -1278,8 +1292,8 @@ void fishProtocol::put(const KURL& u, int permissions, bool overwrite, bool /*re
         checkExist = false;
         putPos = 0;
         listReason = CHECK;
-        sendCommand(FISH_LIST,(const char *)url.path().local8Bit());
-        sendCommand(FISH_STOR,"0",(const char *)url.path().local8Bit());
+        sendCommand(FISH_LIST,E(url.path()));
+        sendCommand(FISH_STOR,"0",E(url.path()));
     }
     run();
 }
@@ -1391,7 +1405,7 @@ void fishProtocol::stat(const KURL& u){
     if (!url.hasPath()) {
         sendCommand(FISH_PWD);
     } else {
-        sendCommand(FISH_STAT,(const char *)url.path(-1).local8Bit());
+        sendCommand(FISH_STAT,E(url.path(-1)));
     }
     run();
 }
@@ -1407,7 +1421,7 @@ void fishProtocol::mimetype(const KURL& u){
         sendCommand(FISH_PWD);
     } else {
         recvLen = 1024;
-        sendCommand(FISH_READ,"0","1024",(const char *)url.path().local8Bit());
+        sendCommand(FISH_READ,"0","1024",E(url.path()));
     }
     run();
 }
@@ -1423,7 +1437,7 @@ void fishProtocol::listDir(const KURL& u){
         sendCommand(FISH_PWD);
     } else {
         listReason = LIST;
-        sendCommand(FISH_LIST,(const char *)url.path().local8Bit());
+        sendCommand(FISH_LIST,E(url.path()));
     }
     run();
 }
@@ -1438,8 +1452,8 @@ void fishProtocol::mkdir(const KURL& u, int permissions) {
     if (!url.hasPath()) {
         sendCommand(FISH_PWD);
     } else {
-        sendCommand(FISH_MKD,(const char *)url.path().local8Bit());
-        if (permissions > -1) sendCommand(FISH_CHMOD,(const char *)QString::number(permissions,8).local8Bit(),(const char *)url.path().local8Bit());
+        sendCommand(FISH_MKD,E(url.path()));
+        if (permissions > -1) sendCommand(FISH_CHMOD,E(QString::number(permissions,8)),E(url.path()));
     }
     run();
 }
@@ -1463,9 +1477,9 @@ void fishProtocol::rename(const KURL& s, const KURL& d, bool overwrite) {
         if (!overwrite) {
             listReason = CHECK;
             checkOverwrite = false;
-            sendCommand(FISH_LIST,(const char *)url.path().local8Bit());
+            sendCommand(FISH_LIST,E(url.path()));
         }
-        sendCommand(FISH_RENAME,(const char *)src.path().local8Bit(),(const char *)url.path().local8Bit());
+        sendCommand(FISH_RENAME,E(src.path()),E(url.path()));
     }
     run();
 }
@@ -1483,9 +1497,9 @@ void fishProtocol::symlink(const QString& target, const KURL& u, bool overwrite)
         if (!overwrite) {
             listReason = CHECK;
             checkOverwrite = false;
-            sendCommand(FISH_LIST,(const char *)url.path().local8Bit());
+            sendCommand(FISH_LIST,E(url.path()));
         }
-        sendCommand(FISH_SYMLINK,(const char *)target.local8Bit(),(const char *)url.path().local8Bit());
+        sendCommand(FISH_SYMLINK,E(target),E(url.path()));
     }
     run();
 }
@@ -1500,7 +1514,7 @@ void fishProtocol::chmod(const KURL& u, int permissions){
     if (!url.hasPath()) {
         sendCommand(FISH_PWD);
     } else {
-        if (permissions > -1) sendCommand(FISH_CHMOD,(const char *)QString::number(permissions,8).local8Bit(),(const char *)url.path().local8Bit());
+        if (permissions > -1) sendCommand(FISH_CHMOD,E(QString::number(permissions,8)),E(url.path()));
     }
     run();
 }
@@ -1525,10 +1539,10 @@ void fishProtocol::copy(const KURL &s, const KURL &d, int permissions, bool over
         if (!overwrite) {
             listReason = CHECK;
             checkOverwrite = false;
-            sendCommand(FISH_LIST,(const char *)url.path().local8Bit());
+            sendCommand(FISH_LIST,E(url.path()));
         }
-        sendCommand(FISH_COPY,(const char *)src.path().local8Bit(),(const char *)url.path().local8Bit());
-        if (permissions > -1) sendCommand(FISH_CHMOD,(const char *)QString::number(permissions,8).local8Bit(),(const char *)url.path().local8Bit());
+        sendCommand(FISH_COPY,E(src.path()),E(url.path()));
+        if (permissions > -1) sendCommand(FISH_CHMOD,E(QString::number(permissions,8)),E(url.path()));
     }
     run();
 }
@@ -1543,7 +1557,7 @@ void fishProtocol::del(const KURL &u, bool isFile){
     if (!url.hasPath()) {
         sendCommand(FISH_PWD);
     } else {
-        sendCommand((isFile?FISH_DELE:FISH_RMD),(const char *)url.path().local8Bit());
+        sendCommand((isFile?FISH_DELE:FISH_RMD),E(url.path()));
     }
     run();
 }
@@ -1568,7 +1582,7 @@ void fishProtocol::special( const QByteArray &data ){
                 url = u;
                 openConnection();
                 if (!isLoggedIn) return;
-                sendCommand(FISH_EXEC,(const char *)command.local8Bit(),(const char *)url.path().local8Bit());
+                sendCommand(FISH_EXEC,E(command),E(url.path()));
                 run();
                 break;
             }
