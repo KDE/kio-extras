@@ -923,6 +923,8 @@ void fishProtocol::manageConnection(const QString &l) {
                         atom.m_long = 0;
                         atom.m_str = line.mid(1);
                         udsEntry.append(atom);
+                        if ( line.mid(1) == "inode/directory" ) // a symlink to a dir is a dir
+                          typeAtom.m_long = S_IFDIR;
                     }
                     errorCount--;
                     break;
