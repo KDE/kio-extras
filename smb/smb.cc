@@ -110,10 +110,7 @@ char *getPasswordCallBack(const char * c)
 	}
 	CallbackDialog d(s, echo);
 	d.show();
-	const char *rep=d.answer();
-	char *ret=new char[strlen(rep)+1];
-	strcpy(ret,rep);
-	return ret;
+	return qstrdup(d.answer());
 }
 
 
