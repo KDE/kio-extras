@@ -82,6 +82,7 @@ imapParser::sendCommand (imapCommand * aCmd)
 
   if (aCmd->command () == "SELECT" || aCmd->command () == "EXAMINE")
   {
+     // we need to know which box we are selecting
     parseString p;
     p.fromString(aCmd->parameter());
     currentBox = b2c(parseOneWord(p));
@@ -89,6 +90,7 @@ imapParser::sendCommand (imapCommand * aCmd)
   }
   else if (aCmd->command () == "CLOSE")
   {
+     // we no longer have a box open
     currentBox = QString::null;
   }
   else if (aCmd->command ().find ("SEARCH") != -1)

@@ -162,13 +162,13 @@ class imapParser
 
 public:
 
-  // the different states the client can be in
+  /** the different states the client can be in */
   enum IMAP_STATE
   {
-    ISTATE_NO,
-    ISTATE_CONNECT,
-    ISTATE_LOGIN,
-    ISTATE_SELECT
+    ISTATE_NO,       /**< Not connected */ 
+    ISTATE_CONNECT,  /**< Connected but not logged in */
+    ISTATE_LOGIN,    /**< Logged in */
+    ISTATE_SELECT    /**< A folder is currently selected */
   };
 
 public:
@@ -183,24 +183,55 @@ public:
     return rfcDecoder::fromIMAP(currentBox);
   };
 
-  imapCommand *sendCommand (imapCommand *);
-  imapCommand *doCommand (imapCommand *);
+  /** 
+   * @brief do setup and send the command to parseWriteLine 
+   * @param aCmd The command to perform
+   * @return The completed command
+   */
+  imapCommand *sendCommand (imapCommand * aCmd);
+  /** 
+   * @brief perform a command and wait to parse the result 
+   * @param aCmd The command to perform
+   * @return The completed command
+   */
+  imapCommand *doCommand (imapCommand * aCmd);
 
 
-  bool clientLogin (const QString &, const QString &, QString &);
-  bool clientAuthenticate (const QString &, const QString &, const QString &,
-    bool, QString &);
+  /**
+   * @brief plaintext login
+   * @param aUser Username
+   * @param aPass Password
+   * @param resultInfo The resultinfo from the command
+   * @return success or failure
+   */
+  bool clientLogin (const QString & aUser, const QString & aPass, QString & resultInfo);
+  /**
+   * @brief non-plaintext login
+   * @param aUser Username
+   * @param aPass Password
+   * @param aAuth authentication method
+   * @param isSSL are we using SSL
+   * @param resultInfo The resultinfo from the command
+   * @return success or failure
+   */
+  bool clientAuthenticate (const QString & aUser, const QString & aPass,
+               const QString & aAuth, bool isSSL, QString & resultInfo);
 
-  // main loop for the parser
-  // reads one line and dispatches it to the appropriate sub parser
+  /** 
+   * main loop for the parser
+   * reads one line and dispatches it to the appropriate sub parser
+   */
   int parseLoop ();
 
-  // parses all untagged responses and passes them on to the following parsers
+  /**
+   * @brief parses all untagged responses and passes them on to the 
+   * following parsers 
+   */
   void parseUntagged (parseString & result);
 
   void parseRecent (ulong value, parseString & result);
   void parseResult (QByteArray & result, parseString & rest,
-    const QString & command = QString::null);
+                    const QString & command = QString::null);
   void parseCapability (parseString & result);
   void parseFlags (parseString & result);
   void parseList (parseString & result);
@@ -210,55 +241,60 @@ public:
   void parseExists (ulong value, parseString & result);
   void parseExpunge (ulong value, parseString & result);
 
-  // parses the results of a fetch command
-  // processes it with the following sub parsers
+  /**
+   * parses the results of a fetch command
+   * processes it with the following sub parsers
+   */
   void parseFetch (ulong value, parseString & inWords);
 
-  // read a envelope from imap and parse the adresses
+  /** read a envelope from imap and parse the adresses */
   mailHeader *parseEnvelope (parseString & inWords);
   QValueList < mailAddress > parseAdressList (parseString & inWords);
   mailAddress parseAdress (parseString & inWords);
 
-  // parse the result of the body command
+  /** parse the result of the body command */
   void parseBody (parseString & inWords);
 
-  // parse the body structure recursively
+  /** parse the body structure recursively */
   mimeHeader *parseBodyStructure (parseString & inWords,
     const QString & section, mimeHeader * inHeader = NULL);
 
-  // parse only one not nested part
+  /** parse only one not nested part */
   mimeHeader *parseSimplePart (parseString & inWords, const QString & section);
 
-  // parse a parameter list (name value pairs)
+  /** parse a parameter list (name value pairs) */
   QDict < QString > parseParameters (parseString & inWords);
 
-  // parse the disposition list (disposition (name value pairs))
-  // the disposition has the key 'content-disposition'
+  /**
+   * parse the disposition list (disposition (name value pairs))
+   * the disposition has the key 'content-disposition'
+   */
   QDict < QString > parseDisposition (parseString & inWords);
 
   // reimplement these
 
-  // relay hook to send the fetched data directly to an upper level
+  /** relay hook to send the fetched data directly to an upper level */
   virtual void parseRelay (const QByteArray & buffer);
 
-  // relay hook to announce the fetched data directly to an upper level
+  /** relay hook to announce the fetched data directly to an upper level
+   */
   virtual void parseRelay (ulong);
 
-  // read at least len bytes
+  /** read at least len bytes */
   virtual bool parseRead (QByteArray & buffer, ulong len, ulong relay = 0);
 
-  // read at least a line (up to CRLF)
+  /** read at least a line (up to CRLF) */
   virtual bool parseReadLine (QByteArray & buffer, ulong relay = 0);
 
-  // write argument to server
+  /** write argument to server */
   virtual void parseWriteLine (const QString &);
 
   // generic parser routines
 
-  // parse a parenthesized list
+  /** parse a parenthesized list */
   void parseSentence (parseString & inWords);
 
-  // parse a literal or word, may require more data
+  /** parse a literal or word, may require more data */
   QByteArray parseLiteral (parseString & inWords, bool relay = false, 
                            bool stopAtBracket = false);
 
@@ -267,17 +303,17 @@ public:
   static QCString b2c(const QByteArray &ba)
   { return QCString(ba.data(), ba.size() + 1); }
 
-  // skip over whitespace
+  /** skip over whitespace */
   static void skipWS (parseString & inWords);
 
-  // parse one word (maybe quoted) upto next space " ) ] }
+  /** parse one word (maybe quoted) upto next space " ) ] } */
   static QByteArray parseOneWord (parseString & inWords,
     bool stopAtBracket = FALSE);
 
-  // parse one number using parseOneWord
+  /** parse one number using parseOneWord */
   static bool parseOneNumber (parseString & inWords, ulong & num);
 
-  // extract the box,section,list type, uid, uidvalidity from an url
+  /** extract the box,section,list type, uid, uidvalidity from an url */
   static void parseURL (const KURL & _url, QString & _box, QString & _section,
                         QString & _type, QString & _uid, QString & _validity);
 
@@ -310,35 +346,37 @@ public:
 
 protected:
 
-  // the current state we're in
+  /** the current state we're in */
   enum IMAP_STATE currentState;
 
-  // the box selected
+  /** the box selected */
   QString currentBox;
 
-  // here we store the result from select/examine and unsolicited updates
+  /** here we store the result from select/examine and unsolicited updates */
   imapInfo selectInfo;
 
-  // the results from the last status command
+  /** the results from the last status command */
   imapInfo lastStatus;
 
-  // the results from the capabilities, split at ' '
+  /** the results from the capabilities, split at ' ' */
   QStringList imapCapabilities;
 
-  // the results from list/lsub commands
+  /** the results from list/lsub commands */
   QValueList < imapList > listResponses;
 
-  // queues handling the running commands
+  /** queues handling the running commands */
   QPtrList < imapCommand > sentQueue;  // no autodelete
   QPtrList < imapCommand > completeQueue;  // autodelete !!
 
-  // everything we didn't handle, everything but the greeting is bogus
+  /** 
+   * everything we didn't handle, everything but the greeting is bogus
+   */
   QStringList unhandled;
 
-  // the last continuation request (there MUST not be more than one pending)
+  /** the last continuation request (there MUST not be more than one pending) */
   QByteArray continuation;
 
-  // the last uid seen while a fetch
+  /** the last uid seen while a fetch */
   QString seenUid;
   imapCache *lastHandled;
 
