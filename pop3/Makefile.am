@@ -6,7 +6,7 @@ lib_LTLIBRARIES = kio_pop3.la
 
 kio_pop3_la_SOURCES = pop3.cc
 kio_pop3_la_LIBADD  = $(LIB_KIO)
-kio_pop3_la_LDFLAGS = -module -avoid-version
+kio_pop3_la_LDFLAGS = $(all_libraries) -module -avoid-version
 
 noinst_HEADERS = pop3.h
 
