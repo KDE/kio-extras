@@ -292,14 +292,19 @@ CDDB::parse_read_resp()
   
   if (m_title.isEmpty())
     m_title = i18n("No Title");
+  else
+    m_title.replace(QRegExp("/"), "%2f");
   if (m_artist.isEmpty())
     m_artist = i18n("Unknown");
+  else
+    m_artist.replace(QRegExp("/"), "%2f");
 
   kdDebug(7101) << "CDDB: found Title: `" << m_title << "'" << endl;
   for (int i = 0; i < m_tracks; i++)
     {
       if (m_names[i].isEmpty())
         m_names[i] += i18n("Track %1").arg(i);
+        m_names[i].replace(QRegExp("/"), "%2f");
       kdDebug(7101) << "CDDB: found Track " << i+1 << ": `" << m_names[i]
         << "'" << endl;
     }
