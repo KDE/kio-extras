@@ -113,7 +113,7 @@ void FingerProtocol::get(const KURL& url )
   if (query.contains(regExp)) {
     kdDebug() << "looks like a valid query" << endl;
     KRegExp regExp( "([0-9]+)" );
-    regExp.match(query);
+    regExp.match(query.local8Bit());
     refreshRate = regExp.group(0);
   }
   
@@ -130,7 +130,7 @@ void FingerProtocol::get(const KURL& url )
   
   myKProcess->start(KProcess::Block, KProcess::All);
 
-  data(QCString(*myStdStream));
+  data(QCString(myStdStream->local8Bit()));
  
   data(QByteArray());
   finished();  
