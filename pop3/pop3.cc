@@ -61,8 +61,8 @@
 
 #include <kio/connection.h>
 #include <kio/slaveinterface.h>
-#include <kio/sasl/saslmodule.h>
-#include <kio/sasl/saslcontext.h>
+#include <kio/ksasl/saslmodule.h>
+#include <kio/ksasl/saslcontext.h>
 #include <kio/passdlg.h>
 
 #include "pop3.h"
@@ -229,7 +229,7 @@ bool POP3Protocol::command (const char *cmd, char *recv_buf, unsigned int len)
 	char *cmdrn;
 	cmdrn = static_cast<char *>(malloc(strlen(cmd) + 3));
 	sprintf(cmdrn, "%s\r\n", cmd);
-  
+
 	if (Write(cmdrn, strlen(cmdrn)) != static_cast<ssize_t>(strlen(cmdrn))) {
 		m_sError = i18n("Could not send to server.\n");
 		free(cmdrn);

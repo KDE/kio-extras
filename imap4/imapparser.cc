@@ -45,8 +45,8 @@
 #include <kmdcodec.h>
 #include <kurl.h>
 
-#include <kio/sasl/saslmodule.h>
-#include <kio/sasl/saslcontext.h>
+#include <kio/ksasl/saslmodule.h>
+#include <kio/ksasl/saslcontext.h>
 
 imapParser::imapParser ():
 uidCache (17, false)
@@ -178,7 +178,7 @@ imapParser::clientAuthenticate (const QString & aUser, const QString & aPass,
         saslContext.chooseMethod(aAuth.upper());
         challenge = saslContext.generateResponse(challenge, true);
       }
- 
+
       // we will ALWAYS write back a line to satisfiy the continuation
       parseWriteLine (challenge);
 
@@ -818,7 +818,7 @@ imapParser::parseEnvelope (QString & inWords)
   QString reply = parseLiteral (inWords);
   envelope->setInReplyTo (reply.ascii ());
 
-  //message-id  
+  //message-id
   QString message = parseLiteral (inWords);
   envelope->setMessageId (message.ascii ());
 
