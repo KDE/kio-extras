@@ -35,7 +35,7 @@ protected:
 // NB: That's because the smb servers can return statistics at the same time
 //   => no need to re-stat after an opendir, SMBdirent inherits struct stat :-)
 	void createUDSEntry( const SMBdirent* dent, const QString & path, KIO::UDSEntry & entry  );
-	
+
 	MyCallback *cb;
 	SMB smb;
 	int m_fPut;
@@ -56,8 +56,10 @@ protected:
 	bool storeBindings; // policy for new bindings
 	void loadBindings(bool force = false);
 	void saveBindings(); // Will store on the disk if required
+	// Add without repetition a new item in the list
+	void addBinding(const QString &e, const QString& h, const QString& l, const QString& p);
 
-	// The callback set those values, and on success the new bnding is created
+	// The callback set those values, and on success the new binding is created
 	bool callbackUsed;
 	QString bserver, bshare, blogin, bpassword;
 

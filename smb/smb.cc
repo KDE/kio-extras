@@ -54,7 +54,7 @@ public:
 		if (pass) {delete pass; pass = 0;}
 		if (service) {delete service; service = 0;}
 	}
-	
+
 	char *getAnswer(int type, const char *optmessage) {
 		proto->callbackUsed = true;
 		bool res = true;
@@ -102,7 +102,7 @@ public:
 					proto->bpassword = pass;
 				}
 				return user;
-			
+
 			case ANSWER_USER_PASSWORD:
 				if (havePass) return pass;
 				message = i18n("Password for user %1").arg(optmessage);
@@ -130,7 +130,7 @@ public:
 					proto->bpassword = pass;
 				}
 				return pass;
-			
+
 			case ANSWER_SERVICE_PASSWORD:
 /*				if (haveServicePass && !strcmp(service, optmessage))
 					return pass; // we have it already*/
@@ -153,7 +153,7 @@ public:
 				message = i18n("Password for service %1 (user ignored)").arg(optmessage);
 				myUser = user?user:"";
 				myPass = "";
-				res = proto->openPassDlg(message, myUser, myPass, proto->currentHost);
+				res = proto->openPassDlg(message, myUser, myPass, "smbSHARE/" + proto->currentHost + QString("/") + optmessage);
 				kdDebug(7106) << "CallBack: res=" << (res?"true":"false") << endl;
 				kdDebug(7106) << "CallBack: user=" << user << ", pass=" << pass << endl;
 				if (!res) {
@@ -227,7 +227,7 @@ SmbProtocol::SmbProtocol( const QCString &pool, const QCString &app) : SlaveBase
 	if (!tmp.isEmpty()) smb.setWINSAddress(tmp.latin1());
 #endif
 	delete g_pConfig;
-	
+
 	bindings.setAutoDelete(true);
 	loadBindings(true); // load the bindings at least once
 }
@@ -301,6 +301,22 @@ void SmbProtocol::saveBindings() // Will store on the disk if required
 	delete g_pConfig;
 }
 
+// Add without repetition a new item in the list
+void SmbProtocol::addBinding(const QString &e, const QString& h, const QString& l, const QString& p)
+{
+	for (Binding* it = bindings.first(); (it); it = bindings.next()) {
+		// either share or login is empty
+		// new login for server, or new password for share
+		// it->share==share must be true in both case (both empty, or equal)
+		if (it->server==e && it->share==h) {
+			it->login = l; it->password = p;
+			return;
+		}
+	}
+	// Not found, append
+	bindings.append(new Binding(bserver, bshare, blogin, bpassword));
+}
+
 SmbProtocol::~SmbProtocol()
 {
 	if (cb) delete cb;
@@ -359,6 +375,7 @@ void SmbProtocol::mkdir( const KURL& url, int /*permissions*/ )
 	QString path = buildFullLibURL(url.path());
 	kdDebug(7106) << "entering mkdir " << path << endl;
 	struct stat buff;
+	callbackUsed=false;
 	if ( smb.stat( path, &buff ) == -1 ) {
 		if ( smb.mkdir( path ) != 0 ) {
 			if ( smb.error() == EACCES ) {
@@ -371,6 +388,11 @@ void SmbProtocol::mkdir( const KURL& url, int /*permissions*/ )
 		} else {
 			finished();
 		}
+	}
+	// used callback successfully => new binding!
+	if (callbackUsed) {
+		addBinding(bserver, bshare, blogin, bpassword);
+		saveBindings(); // Will store on the disk if required
 	}
 
 	if ( S_ISDIR( buff.st_mode ) ) {
@@ -388,6 +410,7 @@ void SmbProtocol::get( const KURL& url, bool /* reload */)
 	kdDebug( 7106 ) << "entering get " << path << endl;
 
 	struct stat buff;
+	callbackUsed=false;
 	if ( smb.stat( path, &buff ) == -1 ) {
 		if ( smb.error() == EACCES )
 			error( KIO::ERR_ACCESS_DENIED, path );
@@ -395,16 +418,27 @@ void SmbProtocol::get( const KURL& url, bool /* reload */)
 			error( KIO::ERR_DOES_NOT_EXIST, path );
 		return;
 	}
+	// used callback successfully => new binding!
+	if (callbackUsed) {
+		addBinding(bserver, bshare, blogin, bpassword);
+		saveBindings(); // Will store on the disk if required
+	}
 
 	if ( S_ISDIR( buff.st_mode ) ) {
 		error( KIO::ERR_IS_DIRECTORY, path );
 		return;
 	}
 
+	callbackUsed=false;
 	int fd = smb.open( path, O_RDONLY );
 	if ( fd == -1 ) {
 		error( KIO::ERR_CANNOT_OPEN_FOR_READING, path );
 		return;
+	}
+	// used callback successfully => new binding!
+	if (callbackUsed) {
+		addBinding(bserver, bshare, blogin, bpassword);
+		saveBindings(); // Will store on the disk if required
 	}
 
 	totalSize( buff.st_size );
@@ -463,6 +497,7 @@ void SmbProtocol::put( const KURL& url, int /*_mode*/, bool _overwrite, bool _re
     QString dest_orig = buildFullLibURL(url.path());
     kdDebug(7106) << "entering put " << dest_orig << endl;
 
+	callbackUsed = false;
     struct stat buff_orig;
     bool orig_exists = ( smb.stat( dest_orig, &buff_orig ) != -1 );
     if ( orig_exists &&  !_overwrite && !_resume)
@@ -473,6 +508,11 @@ void SmbProtocol::put( const KURL& url, int /*_mode*/, bool _overwrite, bool _re
            error( KIO::ERR_FILE_ALREADY_EXIST, dest_orig );
         return;
     }
+	// used callback successfully => new binding!
+	if (callbackUsed) {
+		addBinding(bserver, bshare, blogin, bpassword);
+		saveBindings(); // Will store on the disk if required
+	}
 
     QString dest = dest_orig;
 	if ( orig_exists && !_resume )
@@ -482,10 +522,18 @@ void SmbProtocol::put( const KURL& url, int /*_mode*/, bool _overwrite, bool _re
 		// Catch errors when we try to open the file.
 	}
 
+	callbackUsed = false;
 	if ( _resume ) {
 		m_fPut = smb.open( dest, O_WRONLY | O_APPEND );  // append if resuming
 	} else {
-		m_fPut = smb.open( dest, O_CREAT | O_TRUNC | O_WRONLY);
+		// NB20000628: SMB servers create with RDWR, so open with RDWR, or
+		// the native code will reopen the file in RDONLY, and possible bug
+		m_fPut = smb.open( dest, O_CREAT | O_TRUNC | O_RDWR);
+	}
+	// used callback successfully => new binding!
+	if (callbackUsed) {
+		addBinding(bserver, bshare, blogin, bpassword);
+		saveBindings(); // Will store on the disk if required
 	}
 
 	if ( m_fPut == -1 ) {
@@ -527,7 +575,7 @@ void SmbProtocol::put( const KURL& url, int /*_mode*/, bool _overwrite, bool _re
 		error( KIO::ERR_COULD_NOT_WRITE, dest_orig);
 		return;
 	}
-	
+
 	// We have done our job => finish
 	finished();
 }
@@ -540,6 +588,7 @@ void SmbProtocol::rename( const KURL &srcArg, const KURL &destArg,
     kdDebug(7106) << "entering rename " << src << " -> " << dest << endl;
 
     struct stat buff_src;
+	callbackUsed = false;
     if ( smb.stat( src, &buff_src ) == -1 ) {
         if ( smb.error() == EACCES )
            error( KIO::ERR_ACCESS_DENIED, src );
@@ -547,6 +596,11 @@ void SmbProtocol::rename( const KURL &srcArg, const KURL &destArg,
            error( KIO::ERR_DOES_NOT_EXIST, src );
 		return;
     }
+	// used callback successfully => new binding!
+	if (callbackUsed) {
+		addBinding(bserver, bshare, blogin, bpassword);
+		saveBindings(); // Will store on the disk if required
+	}
 
     struct stat buff_dest;
     bool dest_exists = ( smb.stat( dest, &buff_dest ) != -1 );
@@ -565,6 +619,7 @@ void SmbProtocol::rename( const KURL &srcArg, const KURL &destArg,
         }
     }
 
+	callbackUsed = false;
     if ( smb.rename( src, dest))
     {
         if (( smb.error() == EACCES ) || (smb.error() == EPERM)) {
@@ -575,6 +630,11 @@ void SmbProtocol::rename( const KURL &srcArg, const KURL &destArg,
         }
         return;
     }
+	// used callback successfully => new binding!
+	if (callbackUsed) {
+		addBinding(bserver, bshare, blogin, bpassword);
+		saveBindings(); // Will store on the disk if required
+	}
 
     finished();
 }
@@ -593,6 +653,7 @@ void SmbProtocol::del( const KURL& url, bool isfile)
 
 		// TODO deletingFile( source );
 
+		callbackUsed = false;
 		if ( smb.unlink( path ) == -1 ) {
 			if ((smb.error() == EACCES) || (smb.error() == EPERM))
 				error( KIO::ERR_ACCESS_DENIED, path);
@@ -601,6 +662,11 @@ void SmbProtocol::del( const KURL& url, bool isfile)
 			else
 				error( KIO::ERR_CANNOT_DELETE, path );
 			return;
+		}
+		// used callback successfully => new binding!
+		if (callbackUsed) {
+			addBinding(bserver, bshare, blogin, bpassword);
+			saveBindings(); // Will store on the disk if required
 		}
 	} else {
 
@@ -619,6 +685,7 @@ void SmbProtocol::del( const KURL& url, bool isfile)
 
 		kdDebug(7106) << "Deleting directory " << path << endl;
 
+		callbackUsed = false;
 		if ( smb.rmdir( path ) == -1 ) {
 			if ((smb.error() == EACCES) || (smb.error() == EPERM))
 				error( KIO::ERR_ACCESS_DENIED, path);
@@ -627,6 +694,11 @@ void SmbProtocol::del( const KURL& url, bool isfile)
 				error( KIO::ERR_COULD_NOT_RMDIR, path );
 				return;
 			}
+		}
+		// used callback successfully => new binding!
+		if (callbackUsed) {
+			addBinding(bserver, bshare, blogin, bpassword);
+			saveBindings(); // Will store on the disk if required
 		}
 	}
 
@@ -645,9 +717,15 @@ void SmbProtocol::createUDSEntry( const QString & filename, const QString & path
 	mode_t access;
 	struct stat buff;
 
+	callbackUsed = false;
 	if ( smb.stat( path, &buff ) == -1 )  {
 		kdDebug( 7106 ) << "cannot stat in createUDSEntry!!!" << endl;
 		return;
+	}
+	// used callback successfully => new binding!
+	if (callbackUsed) {
+		addBinding(bserver, bshare, blogin, bpassword);
+		saveBindings(); // Will store on the disk if required
 	}
 
 	type = buff.st_mode & S_IFMT; // extract file type
@@ -724,13 +802,19 @@ void SmbProtocol::stat( const KURL &url)
 	QString path = buildFullLibURL(url.path());
 	kdDebug( 7106 ) << "entering stat " << path << endl;
 	struct stat buff;
+	callbackUsed = false;
 	if ( smb.stat( path, &buff ) == -1 ) {
 		error( KIO::ERR_DOES_NOT_EXIST, path );
 		return;
 	}
+	// used callback successfully => new binding!
+	if (callbackUsed) {
+		addBinding(bserver, bshare, blogin, bpassword);
+		saveBindings(); // Will store on the disk if required
+	}
 
 	UDSEntry entry;
-	createUDSEntry( url.filename(), path, entry );
+	createUDSEntry( url.fileName(), path, entry );
 ///////// debug code
 
 	KIO::UDSEntry::ConstIterator it = entry.begin();
@@ -775,19 +859,24 @@ void SmbProtocol::listDir( const KURL& url )
 	QString path = buildFullLibURL(url.path());
 	kdDebug( 7106 ) << "=============== LIST " << path << " ===============" << endl;
 
+	callbackUsed = false;
 	struct stat buff;
 	if ( smb.stat( path, &buff ) == -1 ) {
 		error( KIO::ERR_DOES_NOT_EXIST, path );
 		return;
 	}
-
 	if ( !S_ISDIR( buff.st_mode ) ) {
 		error( KIO::ERR_IS_FILE, path );
 		return;
 	}
+	// used callback successfully => new binding!
+	if (callbackUsed) {
+		addBinding(bserver, bshare, blogin, bpassword);
+		saveBindings(); // Will store on the disk if required
+	}
 
-	struct SMBdirent *ep;
 	callbackUsed = false;
+	struct SMBdirent *ep;
 	int dp = smb.opendir( path );
 	if ( dp == -1 ) {
 		if (callbackUsed) error( KIO::ERR_ACCESS_DENIED, path);
@@ -796,7 +885,7 @@ void SmbProtocol::listDir( const KURL& url )
 	}
 	// used callback successfully => new binding!
 	if (callbackUsed) {
-		bindings.append(new Binding(bserver, bshare, blogin, bpassword));
+		addBinding(bserver, bshare, blogin, bpassword);
 		saveBindings(); // Will store on the disk if required
 	}
 
