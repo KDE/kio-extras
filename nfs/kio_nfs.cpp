@@ -340,7 +340,12 @@ NFSFileHandle NFSProtocol::getFileHandle(QString path)
 
 void NFSProtocol::openConnection()
 {
-   kdDebug(7121)<<"NFS::openConnection"<<endl;
+   kdDebug(7121)<<"NFS::openConnection for -" << m_currentHost.latin1() << "-" << endl;
+   if (m_currentHost.isEmpty())
+   {
+      error(ERR_UNKNOWN_HOST,"");
+      return;
+   }
    struct sockaddr_in server_addr;
    if (m_currentHost[0] >= '0' && m_currentHost[0] <= '9')
    {
@@ -444,11 +449,20 @@ void NFSProtocol::openConnection()
    closeConnection();
    m_sock = RPC_ANYSOCK;
    m_client = clnttcp_create(&server_addr,NFSPROG,NFSVERS,&m_sock,0,0);
-   if (m_client == NULL)
+   if (m_client == 0)
    {
-      error( ERR_COULD_NOT_CONNECT, m_currentHost.latin1());
-      return;
-   };
+      server_addr.sin_port = 0;
+      m_sock = RPC_ANYSOCK;
+      pertry_timeout.tv_sec = 3;
+      pertry_timeout.tv_usec = 0;
+      m_client = clntudp_create(&server_addr,NFSPROG, NFSVERS, pertry_timeout, &m_sock);
+      if (m_client==0)
+      {
+         clnt_pcreateerror(const_cast<char *>("NFS clntudp_create"));
+         error(ERR_COULD_NOT_CONNECT, m_currentHost.latin1());
+         return;
+      }
+   }
    m_client->cl_auth = authunix_create(hostName.data(),geteuid(),getegid(),0,0);
    connected();
    kdDebug(7121)<<"openConnection succeeded"<<endl;
