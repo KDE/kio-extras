@@ -1,26 +1,26 @@
+#include <stdio.h>
+#include <stdlib.h>
+
 #include <kdebug.h>
 #include <kprocess.h>
 #include <kstddirs.h>
+#include <kinstance.h>
 
 #include "info.h"
 
 using namespace KIO;
 
-InfoProtocol::InfoProtocol( Connection *connection )
-    : SlaveBase( "info", connection )
+InfoProtocol::InfoProtocol( const QCString &pool, const QCString &app )
+    : SlaveBase( "info", pool, app )
     , m_page( "" )
     , m_node( "" )
 {
     kDebugInfo( 7108, "InfoProtocol::InfoProtocol" );
 
-    m_pProc = new KProcess();
-    connect( m_pProc, SIGNAL( processExited( KProcess* ) ),
-	     this ,SLOT( slotProcessExited( KProcess* ) ) );
-    connect( m_pProc, SIGNAL( receivedStdout( KProcess*, char*, int ) ),
-	     this, SLOT( slotReceivedStdout( KProcess*, char*, int ) ) );
+    m_infoScript = locate( "data", "kio_info/kde-info2html" );
 
-    m_infoScript = locate( "data", "kinfobrowser/kde-info2html" );
-
+    m_perl = KGlobal::dirs()->findExe( "perl" );
+    
     if( m_infoScript.isEmpty() )
 	kDebugFatal( 7108, "Critical error: Cannot locate 'kde-info2html' for HTML-conversion" );
     
@@ -31,8 +31,6 @@ InfoProtocol::~InfoProtocol()
 {
     kDebugInfo( 7108, "InfoProtocol::~InfoProtocol" );
 
-    delete m_pProc;
-    
     kDebugInfo( 7108, "InfoProtocol::~InfoProtocol - done" );
 }
 
@@ -42,7 +40,7 @@ void InfoProtocol::get( const QString& path, const QString& /*query*/, bool /*re
     kDebugInfo( 7108, path.data() );
 
     decodePath( path );
-
+    /*
     if( m_page.isEmpty() )
     {
 	//error( 1, "Syntax error in URL" );
@@ -54,22 +52,41 @@ void InfoProtocol::get( const QString& path, const QString& /*query*/, bool /*re
 
 	return;
     }
-
-    /*
-    data( QByteArray( errorMessage() ) );
-    finished();
     */
+    if ( m_page.isEmpty() )
+      m_page = "dir";
 
-    if( m_pProc->isRunning() )
-	m_pProc->kill();
+    QCString cmd = m_perl.local8Bit();
+    cmd.append( " " );
+    cmd.append( m_infoScript.local8Bit() );
+    cmd.append( " " );
+    cmd.append( m_page.local8Bit() );
+    cmd.append( " " );
+    cmd.append( m_node.local8Bit() );    
+    
+    FILE *fd = popen( cmd.data(), "r" );
+    
+    char buffer[ 4090 ];
+    QByteArray array;
+    
+    while ( !feof( fd ) )
+    {
+      int n = fread( buffer, 1, 2048, fd );
+      if ( n == -1 )
+      {
+        // ERROR
+        pclose( fd );
+	return;
+      }
+      array.setRawData( buffer, n );
+      data( array );
+      array.resetRawData( buffer, n );
+    }
+    
+    pclose( fd );
 
-    m_pProc->clearArguments();
-
-    *m_pProc << "perl" << "/home/devel/src/kde-2.0/kdebase/khelpcenter/kinfobrowser/kde-info2html" << "dir" << "Top";
-    //*m_pProc << "perl" << m_infoScript.latin1() << m_page.latin1() << m_node.latin1();
-
-    m_pProc->start( KProcess::NotifyOnExit, KProcess::Stdout );
-
+    finished();
+    
     kDebugInfo( 7108, "InfoProtocol::get - done" );
 }
 
@@ -82,33 +99,8 @@ void InfoProtocol::mimetype( const QString& /*path*/ )
 
     // finish action
     finished();
-    
+
     kDebugInfo( 7108, "InfoProtocol::mimetype - done" );
-}
-
-void InfoProtocol::slotProcessExited( KProcess* )
-{
-    kDebugInfo( 7108, "InfoProtocol::slotProcessExited" );
-
-    // I dont know if this is needed
-    m_pProc->kill();
-
-    // finish kioslave
-    finished();
-    
-    kDebugInfo( 7108, "InfoProtocol::slotProcessExited - done" );
-}
-
-void InfoProtocol::slotReceivedStdout( KProcess*, char* htmldata, int len )
-{
-    kDebugInfo( 7108, "InfoProtocol::slotReceivedStdout" );
-
-    QByteArray array;
-
-    array = QCString( htmldata, len );
-    data( array );
-    
-    kDebugInfo( 7108, "InfoProtocol::slotReceivedStdout - done" );
 }
 
 void InfoProtocol::decodePath( QString path )
@@ -117,14 +109,6 @@ void InfoProtocol::decodePath( QString path )
 
     m_page = "";
     m_node = "";
-
-/*
-    TODO: why is this wrong ?
-
-    // test leading slash
-    if( path.left( 1 ) == "/" )
-	return; // error
-*/
 
     // remove leading slash
     path = path.right( path.length() - 1 );
@@ -148,15 +132,26 @@ QCString InfoProtocol::errorMessage()
 {
     kDebugInfo( 7108, "InfoProtocol::errorMessage" );
 
+    // i18n !!!!!!!!!!!!!!!!!!
     return QCString( "<html><body bgcolor=\"#FFFFFF\">An error occured during converting an info-page to HTML</body></html>" );
-    
-    kDebugInfo( 7108, "InfoProtocol::errorMessage - done" );
 }
 
-extern "C"
+extern "C" { int kdemain( int argc, char **argv ); }
+
+int kdemain( int argc, char **argv )
 {
-    SlaveBase *init_info()
-    {
-	return new InfoProtocol();
-    }
+  KInstance instance( "kio_info" );
+
+  kdDebug() << "kio_info starting " << getpid() << endl;
+
+  if (argc != 4)
+  {
+     fprintf(stderr, "Usage: kio_file protocol domain-socket1 domain-socket2\n");
+     exit(-1);
+  }
+
+  InfoProtocol slave( argv[2], argv[3] );
+  slave.dispatchLoop();
+
+  return 0;
 }

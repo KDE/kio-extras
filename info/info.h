@@ -7,14 +7,11 @@
 
 class KProcess;
 
-class InfoProtocol : public QObject
-                   , public KIO::SlaveBase
+class InfoProtocol : public KIO::SlaveBase
 {
-    Q_OBJECT
-
 public:
 
-    InfoProtocol( KIO::Connection *connection = 0 );
+    InfoProtocol( const QCString &pool, const QCString &app );
     virtual ~InfoProtocol();
 
     virtual void get( const QString& path, const QString& query, bool reload );
@@ -25,18 +22,13 @@ protected:
     void decodePath( QString path );
     QCString errorMessage();
 
-protected slots:
-
-    void slotProcessExited( KProcess* );
-    void slotReceivedStdout( KProcess*, char*, int );
-
 private:
 
     QString   m_page;
     QString   m_node;
 
-    KProcess *m_pProc;
     QString   m_infoScript;
+    QString   m_perl;
 };
 
 #endif // __info_h__

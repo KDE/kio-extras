@@ -1,6 +1,6 @@
 # KDE Config File
 [Protocol]
-exec=kio_info
+lib=kio_info.la
 protocol=info
 input=none
 output=filesystem

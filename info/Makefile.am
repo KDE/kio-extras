@@ -22,3 +22,6 @@ test_LDADD = $(kio_info_la_LIBADD)
 
 kioconfig_DATA = info.desktop
 kioconfigdir = $(kde_confdir)/protocols
+
+data_DATA = kde-info2html kde-info2html.conf
+datadir = $(kde_datadir)/kio_info
