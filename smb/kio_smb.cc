@@ -806,26 +806,26 @@ void SmbProtocol::slotListDir( const char *_url )
 		UDSAtom atom;
 		atom.m_uds = UDS_NAME;
 		atom.m_str = ep->d_name;
-		entry.push_back( atom );
+		entry.append( atom );
 
 		atom.m_uds = UDS_FILE_TYPE;
 		atom.m_long = ep->st_mode;
-		entry.push_back( atom );
+		entry.append( atom );
 		atom.m_uds = UDS_SIZE;
 		atom.m_long = ep->st_size;
-		entry.push_back( atom );
+		entry.append( atom );
 		atom.m_uds = UDS_MODIFICATION_TIME;
 		atom.m_long = ep->st_mtime;
-		entry.push_back( atom );
+		entry.append( atom );
 		atom.m_uds = UDS_ACCESS;
 		atom.m_long = ep->st_mode;
-		entry.push_back( atom );
+		entry.append( atom );
 		atom.m_uds = UDS_ACCESS_TIME;
 		atom.m_long = ep->st_atime;
-		entry.push_back( atom );
+		entry.append( atom );
 		atom.m_uds = UDS_CREATION_TIME;
 		atom.m_long = ep->st_ctime;
-		entry.push_back( atom );
+		entry.append( atom );
 
 		listEntry( entry );
 	}
