@@ -660,8 +660,7 @@ AudioCDProtocol::initRequest(const KURL & url)
           if (start < n.length()){
             bool ok;
             // The external representation counts from 1 so subtrac 1.  
-            d->req_track = n.mid(start-1, end - start +1).toInt(&ok) - 1;
-            kdDebug(7101) << "audiocd: track=" <<  d->req_track << endl;
+            d->req_track = n.mid(start-1, end - start+2).toInt(&ok) - 1;
             if (!ok)
               d->req_track = -1;
           }
