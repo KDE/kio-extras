@@ -2,6 +2,12 @@
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, version 2 of the License
+=pod
+This file was transferred by kio_fish, a network client part of the
+KDE project. You may safely delete it, it will be transferred again
+when needed. It's only purpose is to make kio_fish access faster and
+more reliable.
+=cut
 
 use Fcntl;
 
@@ -302,7 +308,7 @@ sub mimetype {
         close(IN);
         chomp $type;
         chomp $type;
-        $noFile = 1 and return '' if !length($type);
+        $noFile = 1, return '' if !length($type);
         $type =~ s/[,; ].*//;
         return '' if ($type !~ m/\//);
         return "M$type\n"
