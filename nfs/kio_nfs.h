@@ -27,6 +27,8 @@
 #include <qstringlist.h>
 #include <qintdict.h>
 
+
+#define PORTMAP  //this seems to be required to compile on Solaris 8
 #include <rpc/rpc.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
