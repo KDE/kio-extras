@@ -1123,7 +1123,8 @@ void FileProtocol::slotListDir( const char *_url )
       access = buff.st_mode;
       // Is it a link
       if ( S_ISLNK( lbuff.st_mode ) ) {  
-	type |= S_IFLNK;
+	// type |= S_IFLNK; No !! This screws S_ISDIR and friends. (David)
+        // caller should check UDS_LINK_DEST instead
 	char buffer2[ 1000 ];
 	int n = readlink( tmp.ascii(), buffer2, 1000 );
 	if ( n != -1 ) {
