@@ -135,6 +135,7 @@ IMAP4Protocol::IMAP4Protocol (const QCString & pool, const QCString & app, bool 
   readBufferLen = 0;
   cacheOutput = false;
   mTimeOfLastNoop = QDateTime();
+  mHierarchyDelim.clear();
 }
 
 IMAP4Protocol::~IMAP4Protocol ()
@@ -327,7 +328,7 @@ IMAP4Protocol::get (const KURL & _url)
 void
 IMAP4Protocol::listDir (const KURL & _url)
 {
-  kdDebug(7116) << "IMAP4::listDir - " << _url.prettyURL() << endl;
+  kdDebug(7116) << " IMAP4::listDir - " << _url.prettyURL() << endl;
 
   if (_url.path().isEmpty())
   {
@@ -339,9 +340,10 @@ IMAP4Protocol::listDir (const KURL & _url)
   }
 
   QString myBox, mySequence, myLType, mySection, myValidity, myDelimiter;
+  // parseURL with caching
   enum IMAP_TYPE myType =
     parseURL (_url, myBox, mySection, myLType, mySequence, myValidity,
-      myDelimiter);
+      myDelimiter, true);
 
   if (!makeLogin()) return;
 
@@ -540,6 +542,7 @@ IMAP4Protocol::setHost (const QString & _host, int _port,
     myPort = _port;
     myUser = _user;
     myPass = _pass;
+    mHierarchyDelim.clear();
   }
 }
 
@@ -1575,7 +1578,7 @@ bool IMAP4Protocol::makeLogin ()
         int tlsrc = startTLS();
         if (tlsrc == 1)
         {
-          kdDebug() << "TLS mode has been enabled." << endl;
+          kdDebug(7116) << "TLS mode has been enabled." << endl;
           imapCommand *cmd2 = doCommand (new imapCommand ("CAPABILITY", ""));
           for (QStringList::Iterator it = imapCapabilities.begin ();
                                      it != imapCapabilities.end (); ++it)
@@ -1584,7 +1587,7 @@ bool IMAP4Protocol::makeLogin ()
           }
           completeQueue.removeRef (cmd2);
         } else {
-          kdDebug() << "TLS mode setup has failed.  Aborting." << endl;
+          kdWarning(7116) << "TLS mode setup has failed.  Aborting." << endl;
           error (ERR_COULD_NOT_LOGIN, i18n("Starting TLS failed."));
           closeConnection();
           return false;
@@ -1863,7 +1866,8 @@ IMAP4Protocol::doListEntry (const KURL & _url, const QString & myBox,
 enum IMAP_TYPE
 IMAP4Protocol::parseURL (const KURL & _url, QString & _box,
                          QString & _section, QString & _type, QString & _uid,
-                         QString & _validity, QString & _hierarchyDelimiter)
+                         QString & _validity, QString & _hierarchyDelimiter,
+                         bool cache)
 {
   enum IMAP_TYPE retVal;
   retVal = ITYPE_UNKNOWN;
@@ -1887,40 +1891,51 @@ IMAP4Protocol::parseURL (const KURL & _url, QString & _box,
     {
       if (getCurrentBox () != _box || _type == "LIST" || _type == "LSUB")
       {
-        imapCommand *cmd;
-
-        cmd = doCommand (imapCommand::clientList ("", _box));
-        if (cmd->result () == "OK")
+        QString myNamespace = QString::null; // until namespace is supported
+        if (cache && mHierarchyDelim.contains(myNamespace))
         {
-          for (QValueListIterator < imapList > it = listResponses.begin ();
-               it != listResponses.end (); ++it)
+          _hierarchyDelimiter = mHierarchyDelim[myNamespace];
+          retVal = ITYPE_DIR;
+          kdDebug(7116) << "IMAP4::parseURL - got delimiter from cache:" << _hierarchyDelimiter << endl;
+        } else
+        {
+          imapCommand *cmd;
+
+          cmd = doCommand (imapCommand::clientList ("", _box));
+          if (cmd->result () == "OK")
           {
-            //kdDebug(7116) << "IMAP4::parseURL - checking " << _box << " to " << (*it).name() << endl;
-            if (_box == (*it).name ())
+            for (QValueListIterator < imapList > it = listResponses.begin ();
+                it != listResponses.end (); ++it)
             {
-              _hierarchyDelimiter = (*it).hierarchyDelimiter();
-              if ((*it).noSelect ())
+              //kdDebug(7116) << "IMAP4::parseURL - checking " << _box << " to " << (*it).name() << endl;
+              if (_box == (*it).name ())
               {
-                retVal = ITYPE_DIR;
-              }
-              else if ((*it).noInferiors ())
-              {
-                retVal = ITYPE_BOX;
-              }
-              else
-              {
-                retVal = ITYPE_DIR_AND_BOX;
+                _hierarchyDelimiter = (*it).hierarchyDelimiter();
+                if (!mHierarchyDelim.contains(myNamespace))
+                  mHierarchyDelim[myNamespace] = _hierarchyDelimiter;
+                if ((*it).noSelect ())
+                {
+                  retVal = ITYPE_DIR;
+                }
+                else if ((*it).noInferiors ())
+                {
+                  retVal = ITYPE_BOX;
+                }
+                else
+                {
+                  retVal = ITYPE_DIR_AND_BOX;
+                }
               }
             }
+            // if we got no list response for the box it's probably some kind of prefix
+            // e.g. #mh
+            if (retVal == ITYPE_UNKNOWN)
+              retVal = ITYPE_DIR;
+          } else {
+            kdDebug(7116) << "IMAP4::parseURL - got error for " << _box << endl;
           }
-          // if we got no list response for the box it's probably some kind of prefix
-          // e.g. #mh
-          if (retVal == ITYPE_UNKNOWN)
-            retVal = ITYPE_DIR;
-        } else {
-          kdDebug(7116) << "IMAP4::parseURL - got error for " << _box << endl;
-        }
-        completeQueue.removeRef (cmd);
+          completeQueue.removeRef (cmd);
+        } // cache
       }
       else
       {

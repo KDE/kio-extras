@@ -116,7 +116,7 @@ protected:
   enum IMAP_TYPE
   parseURL (const KURL & _url, QString & _box, QString & _section,
             QString & _type, QString & _uid, QString & _validity,
-            QString & _hierarchyDelimiter);
+            QString & _hierarchyDelimiter, bool cache = false);
   QString getMimeType (enum IMAP_TYPE);
 
   bool makeLogin ();
@@ -148,6 +148,7 @@ private:
   ssize_t readBufferLen;
   int readSize;
   QDateTime mTimeOfLastNoop;
+  QMap<QString, QString> mHierarchyDelim;
 };
 
 #endif
