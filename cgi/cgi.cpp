@@ -62,21 +62,24 @@ void CgiProtocol::get( const KURL& url )
 
   QStringList::ConstIterator it;
   for( it = mCgiPaths.begin(); it != mCgiPaths.end(); ++it ) {
-    cmd = (*it).local8Bit() + "/" + file.local8Bit();
+    cmd = QFile::encodeName(*it);
+    if ( !(*it).endsWith("/") )
+        cmd += "/";
+    cmd += QFile::encodeName( file );
     if ( KStandardDirs::exists( cmd ) ) {
       forwardFile = false;
       stripHeader = true;
       break;
     }
   }
-  
+
   FILE *fd;
 
   if ( forwardFile ) {
     kdDebug() << "Forwarding to '" << path << "'" << endl;
 
-    QCString filepath = path.local8Bit();
-  
+    QCString filepath = QFile::encodeName( path );
+
     fd = fopen( filepath.data(), "r" );
 
     if ( !fd ) {
@@ -95,7 +98,7 @@ void CgiProtocol::get( const KURL& url )
       return;
     }
   }
-  
+
   char buffer[ 4090 ];
   QByteArray array;
 
@@ -117,7 +120,7 @@ void CgiProtocol::get( const KURL& url )
     }
 
     buffer[n] = 0;
-    
+
     output.append( buffer );
 
     if ( stripHeader ) {
@@ -134,7 +137,7 @@ void CgiProtocol::get( const KURL& url )
       kdDebug() << "  semicolon: " << semicolon << endl;
       kdDebug() << "  end: " << end << endl;
 #endif
-      
+
       QCString contentType = output.mid( colon + 1, end - colon - 1 );
 
       contentType = contentType.stripWhiteSpace();
@@ -142,16 +145,16 @@ void CgiProtocol::get( const KURL& url )
       kdDebug() << "ContentType: '" << contentType << "'" << endl;
 
       mimeType( contentType );
-      
+
       int start = output.find( "\r\n\r\n" );
       if ( start >= 0 ) start += 4;
       else {
         start = output.find( "\n\n" );
         if ( start >= 0 ) start += 2;
       }
-      
+
       if ( start >= 0 ) output = output.mid( start );
-    
+
       stripHeader = false;
     }
   }
