@@ -1,25 +1,26 @@
-#include "gzip.h"
+// $Id$
 
-#include <kio_filter.h>
+#include <sys/types.h>
+#include <sys/wait.h>
 
-#include <qapplication.h>
-
+#include <assert.h>
 #include <errno.h>
 #include <stdio.h>
 #include <signal.h>
-#include <sys/types.h>
-#include <sys/wait.h>
+
+#include <qapplication.h>
 
 #include <iostream>
 
 #include <kurl.h>
 #include <kprotocolmanager.h>
+#include <kio_filter.h>
 
-void sig_handler( int signum );
+#include "gzip.h"
 
 int main( int , char ** )
 {
-  signal (SIGCHLD, sig_handler);
+  signal (SIGCHLD, IOProtocol::sigchld_handler);
 
   Connection parent( 0, 1 );
 
@@ -29,24 +30,6 @@ int main( int , char ** )
   while(1);
   return 0;
 }
-
-void sig_handler( int sig )
-{
-  switch (sig) {
-  case SIGCHLD: {
-	  int status;
-	  int saved_errno = errno;
-
-	  while( waitpid( -1, &status, WNOHANG ) > 0 );
-
-	  errno = saved_errno;
-	  signal( SIGCHLD, sig_handler );
-  }
-  }
-
-  return;
-}
-
 
 GZipProtocol::GZipProtocol( Connection *_conn ) : IOProtocol( _conn )
 {
