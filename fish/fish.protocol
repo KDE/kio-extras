@@ -15,6 +15,7 @@ Description=A kioslave for the FISH protocol
 Description[bn]=ফিশ (FISH) প্রোটোকল-এর জন্য একটি kioslave
 Description[cs]=Pomocný protokol FISH
 Description[da]=En kioslave for FISH-protokollen
+Description[es]=Un kioslave para el protocolo FISH
 Description[fr]=Un kioslave pour le protocole FISH
 Description[fy]=In kioslave foar it FISH protokol
 Description[hu]=KDE-protokoll a FISH protokollhoz

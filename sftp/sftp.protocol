@@ -14,6 +14,7 @@ Icon=ftp
 Description=A kioslave for sftp
 Description[bn]=এস.এফ.টি.পি-র জন্য একটি kioslave
 Description[da]=En kioslave for sftp
+Description[es]=Un kioslave para sftp
 Description[fr]=Un kioslave pour le sftp
 Description[fy]=Een kioslave Foar sftp
 Description[ga]=kioslave le haghaidh sftp

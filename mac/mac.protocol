@@ -10,6 +10,7 @@ Description=A kioslave for MacOS HFS+ partitions
 Description[bn]=ম্যাক-ও-এস HFS+ পার্টিশন-এর জন্য একটি kioslave
 Description[cs]=Pomocný protokol pro diskové oddíly MacOS HFS+
 Description[da]=En kioslave for MacOS HFS+ partitioner
+Description[es]=Un kioslave para particiones  MacOS HFS+
 Description[fr]=Un kioslave pour les partitions MacOS HFS+
 Description[fy]=In kioslave foar MacOS HFS+-partities
 Description[hu]=KDE-protokoll MacOS HFS+ partíciók kezeléséhez
