@@ -1,6 +1,10 @@
+/*
+Please don't edit by hand, us kfinger instead - schlpbch
+*/
+
 BODY {
 	color: #FFFFCC;
-	background: #000000;
+	background-color: #000000;
 	padding: 2em;
 	margin: auto;
 }
@@ -10,48 +14,41 @@ A:visited {color: #999999}
 A:active {color: #999999}
 
 H1 {
-	font-family: Verdana, Arial, Helvetica, sans-serif; 
-	font-style: normal;
-	font-variant: normal; 
-	font-size: 20px; 
-	font-weight: bold;
 	color: #999999;
-	background: #000000;	
-	margin: auto;
+	background-color: #000000;	
+	font: 20pt Helvetica; 
+	font-variant: normal; 
 	padding: 1em;
+	margin: auto;
 }
 	
 .mainTable {
-	background: #000000;
-	border: thin solid #444444;
+	background-color: #000000;
+	border: thin solid;
 	margin: auto;
 }
 	
 .fingerTable {
-	background: #000000;
+	background-color: #000000;
 	border: 0;
 	margin: auto;
 }
 
 .niceText {
-	font-family: Verdana, Arial, Helvetica, sans-serif; 
-	font-style: normal;
-	font-variant: normal; 
-	font-size: 12px; 
-	font-weight: normal;
-	text-align: center;
 	color: #009999;
+	background-color: #000000;	
+	font: 12pt Arial; 
+	font-variant: normal; 
+	text-align: center;
 	padding: 0.5em;
 }
 
 .courierText {
-	font-family: Courier, sans-serif;
-	font-style: normal;
-	font-variant: normal; 
-	font-size: 12px; 
-	font-weight: normal;
-	text-align: center;
 	color: #FFFFCC;
+	background-color: #000000;	
+	font: 12pt Courier;
+	font-variant: normal; 
+	text-align: center;
 	margin: auto;
 	padding: 0.5em;
 }
