@@ -519,11 +519,11 @@ void MANProtocol::checkManPaths()
 // the beginning of the man page name
 // and the length of the name
 struct man_index_t {
-    char *manpath;  // the full path including man file
-    char *manpage_begin;  // pointer to the begin of the man file name in the path
+    const char *manpath;  // the full path including man file
+    const char *manpage_begin;  // pointer to the begin of the man file name in the path
     int manpage_len; // len of the man file name
 };
-
+typedef man_index_t *man_index_ptr;
 
 #ifdef _USE_QSORT
 #warning using qsort
@@ -693,7 +693,7 @@ void MANProtocol::showIndex(const QString& section)
 #ifdef _USE_QSORT
 
     int listlen = pages.count();
-    struct man_index_t *indexlist[listlen];
+    man_index_ptr *indexlist = new man_index_ptr[listlen];
     listlen = 0;
 
 #else /* !_USE_QSORT */
@@ -716,7 +716,7 @@ void MANProtocol::showIndex(const QString& section)
         struct man_index_t *manindex = new man_index_t;
 	manindex->manpath = (*page).latin1();
 
-	manindex->manpage_begin = rindex(manindex->manpath, '/');
+	manindex->manpage_begin = strrchr(manindex->manpath, '/');
 	if (manindex->manpage_begin)
 	{
 	    manindex->manpage_begin++;
@@ -728,7 +728,7 @@ void MANProtocol::showIndex(const QString& section)
 	    assert(manindex->manpage_begin >= manindex->manpath);
 	}
 	
-	manpage_end = index(manindex->manpage_begin, '.');
+	manpage_end = strchr(manindex->manpage_begin, '.');
 	if (NULL == manpage_end) 
 	{
 	    // no '.' ending ???
@@ -803,7 +803,7 @@ void MANProtocol::showIndex(const QString& section)
 	// too, but how about locale encoded Filenames ??
 	//
 	// !!!!!!!!!!!!!!!!!!!!!!
-	manindex->manpage_begin[manindex->manpage_len] = '\0';
+	((char *)manindex->manpage_begin)[manindex->manpage_len] = '\0';
 	os << manindex->manpage_begin
 	   << "</a></td><td>&nbsp;</td><td> "
 	   << "no idea yet"
@@ -813,6 +813,8 @@ void MANProtocol::showIndex(const QString& section)
 
     for (int i=0; i<listlen; i++)
 	delete indexlist[i];
+ 
+    delete [] indexlist;
 
 #else /* !_USE_QSORT */
 
@@ -857,7 +859,6 @@ void MANProtocol::showIndex(const QString& section)
 	   << "</td></tr>"  << endl;
 	last_index = manindex;
     }
-
 #endif /* _USE_QSORT */
 #endif /* _USE_OLD_CODE */    
 
