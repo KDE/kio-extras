@@ -1085,7 +1085,11 @@ void fishProtocol::manageConnection(const QString &l) {
             error(ERR_COULD_NOT_RMDIR,url.prettyURL());
             break;
         case FISH_DELE:
+            error(ERR_CANNOT_DELETE,url.prettyURL());
+            break;
         case FISH_RENAME:
+            error(ERR_CANNOT_RENAME,url.prettyURL());
+            break;
         case FISH_COPY:
         case FISH_LINK:
         case FISH_SYMLINK:
@@ -1387,7 +1391,7 @@ void fishProtocol::stat(const KURL& u){
     if (!url.hasPath()) {
         sendCommand(FISH_PWD);
     } else {
-        sendCommand(FISH_STAT,(const char *)url.path().local8Bit());
+        sendCommand(FISH_STAT,(const char *)url.path(-1).local8Bit());
     }
     run();
 }
