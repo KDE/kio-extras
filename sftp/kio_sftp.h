@@ -30,7 +30,7 @@
 #include "sftpfileattr.h"
 #include "ksshprocess.h"
 
-#define KIO_SFTP_DB 7116
+#define KIO_SFTP_DB 7120
 
 class QCString;
 

@@ -409,7 +409,7 @@ void kio_sftpProtocol::openConnection(){
         // Now we wait to see whether we get a response on the stdinout file descriptor
         // or on the pty file desciptor. If the former, we are successfully connected.
         // If the latter, authentication failed.
-        int stdiofd = ssh.stdio();
+        int stdiofd = ssh.stdioFd();
         fd_set rfds;
         struct timeval tv;
         FD_ZERO(&rfds);
@@ -1016,7 +1016,7 @@ bool kio_sftpProtocol::getPacket(QByteArray& msg) {
     char buf[4096];
 
     // Get the message length and type
-    len = atomicio(ssh.stdio(), buf, 4, true /*read*/);
+    len = atomicio(ssh.stdioFd(), buf, 4, true /*read*/);
     if( len == 0 ) {
         error( ERR_CONNECTION_BROKEN, mHost);
         return false;
@@ -1037,7 +1037,7 @@ bool kio_sftpProtocol::getPacket(QByteArray& msg) {
 
     unsigned int offset = 0;
     while( msgLen ) {
-        len = atomicio(ssh.stdio(), buf, MIN(msgLen, sizeof(buf)), true /*read*/);
+        len = atomicio(ssh.stdioFd(), buf, MIN(msgLen, sizeof(buf)), true /*read*/);
         if( len == 0 ) {
             error(ERR_CONNECTION_BROKEN, "Connection closed");
             return false;
@@ -1058,7 +1058,7 @@ bool kio_sftpProtocol::getPacket(QByteArray& msg) {
 bool kio_sftpProtocol::putPacket(QByteArray& p){
     kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::putPacket(): size == " << p.size() << endl;
     int ret;
-    ret = atomicio(ssh.stdio(), p.data(), p.size(), false /*write*/);
+    ret = atomicio(ssh.stdioFd(), p.data(), p.size(), false /*write*/);
     if( ret <= 0 )
         return false;
 

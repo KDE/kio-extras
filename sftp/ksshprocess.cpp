@@ -368,8 +368,8 @@ bool KSshProcess::connect(bool acceptHostKey) {
     }
 
     int ptyfd = ssh.fd();
-    int errfd = ssh.stderr();
-    int stdiofd = ssh.stdio();
+    int errfd = ssh.stderrFd();
+    int stdiofd = ssh.stdioFd();
     fd_set rfds;
     struct timeval tv;
     int maxfd = ptyfd > errfd ? ptyfd : errfd;  // find max file descriptor

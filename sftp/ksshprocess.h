@@ -29,7 +29,7 @@
 
 #include "process.h"
 
-#define KSSHPROC 7116
+#define KSSHPROC 7120
 
 /**
  * Provides version independent access to ssh. Currently supported
@@ -236,14 +236,14 @@ public:
      *
      * @return The file description for stdin and stdout of the ssh process.
      */
-    int stdio() { return ssh.stdio(); }
+    int stdioFd() { return ssh.stdioFd(); }
 
     /**
      * Access to standard error of the ssh process.
      *
      * @return The file descriptior for stderr of the ssh process.
      */
-    int stderr() { return ssh.stderr(); }
+    int stderrFd() { return ssh.stderrFd(); }
 
     /**
      * Access the pty to which the ssh process is attached.

@@ -18,6 +18,8 @@
 #include <qstringlist.h>
 #include <qvaluelist.h>
 
+#define PTYPROC 7120
+
 class PTY;
 typedef QValueList<QCString> QCStringList;
 
@@ -121,9 +123,9 @@ public:
     /** Return the pid of the process. */
     int pid() {return m_Pid;};
 
-    int stdio() {return m_stdinout;}
+    int stdioFd() {return m_stdinout;}
 
-    int stderr() {return m_err;}
+    int stderrFd() {return m_err;}
 
 protected:
     bool m_bErase, m_bTerminal;
