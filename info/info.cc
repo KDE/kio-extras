@@ -130,29 +130,7 @@ void InfoProtocol::decodeURL( const KURL &url )
 {
     kdDebug( 7108 ) << "InfoProtocol::decodeURL" << endl;
 
-    QString dirstr = url.path(); // there HAS to be a url.path() at least
-    //kdDebug( 7108 ) << "dirstring: " << dirstr << endl;
-
-    int slashPos = dirstr.find( "/", 1 );
-    int oldPos = 0;
-    QDir dir(dirstr.left(slashPos));
-    //kdDebug( 7108 ) << "dirpath: " << dir.path() << endl;
-    while (dir.exists()) {
-      oldPos = slashPos;
-      slashPos = dirstr.find( "/", oldPos+1 );
-      if (-1 == slashPos) {
-	// no more '/' found,
-	// the whole string is a valid path ?
-	break;
-      }
-      dir.setPath(dirstr.left(slashPos));
-      //kdDebug( 7108 ) << "dirpath-loop: " << dir.path() << endl;
-    }
-
-    // oldPos now has the last dir '/'
-    //kdDebug( 7108 ) << "dirstr_ length = " <<dirstr.length() << ", pos = " << oldPos << endl;
-    //kdDebug( 7108 ) << "info_ request: " << dirstr.right(dirstr.length() - oldPos) << endl;
-    decodePath(dirstr.right(1+dirstr.length() - oldPos));
+    decodePath( url.path() );
 
     kdDebug( 7108 ) << "InfoProtocol::decodeURL - done" << endl;
 }
