@@ -18,6 +18,7 @@ Comment[et]=Pisipiltide käsitlemine
 Comment[fi]=Esikatselukuvien hallinta
 Comment[fr]=Gestionnaire d'aperçu des images
 Comment[he]=מנהל הדוגמיות
+Comment[hr]=Upravljač umanjenim sličicama (thumbnails)
 Comment[hu]=A gyorsnézeti ikonok kezelője
 Comment[is]=Þumalmyndaforrit
 Comment[it]=Gestore delle miniature
@@ -51,4 +52,7 @@ Comment[zh_TW]=縮放圖處理器
 Type=QStringList
 
 [PropertyDef::CacheThumbnail]
+Type=bool
+
+[PropertyDef::IgnoreMaximumSize]
 Type=bool
