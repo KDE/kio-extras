@@ -51,7 +51,7 @@ POP3Protocol::~POP3Protocol()
   pop3_close();
 }
 
-void POP3Protocol::openConnection( const QString& _host, int _port, const QString& _user, const QString& _pass )
+void POP3Protocol::setHost( const QString& _host, int _port, const QString& _user, const QString& _pass )
 {
   urlPrefix = "pop3://";
   if (!_user.isEmpty()) {
@@ -64,14 +64,6 @@ void POP3Protocol::openConnection( const QString& _host, int _port, const QStrin
   if (_port)
     urlPrefix += QString( ":%1" ).arg( _port );
   debug( "urlPrefix " + urlPrefix );
-
-  connected();
-}
-
-void POP3Protocol::closeConnection()
-{
-  // this is not needed anymore
-  //ready();
 }
 
 bool POP3Protocol::getResponse (char *r_buf, unsigned int r_len)

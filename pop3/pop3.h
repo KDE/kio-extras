@@ -16,8 +16,10 @@ public:
   POP3Protocol (KIO::Connection *connection = 0 );
   virtual ~POP3Protocol();
 
-  virtual void openConnection( const QString& host, int port, const QString& user, const QString& pass );
-  virtual void closeConnection();
+  virtual void setHost( const QString& host, int port, const QString& user, const QString& pass );
+ 
+//  virtual void openConnection();
+//  virtual void closeConnection();
 
   virtual void get( const QString& __url, const QString& query, bool reload );
   virtual void stat( const QString & );
