@@ -67,8 +67,8 @@ That's nice, but how do I use it?
 
 Basically, you create "jobs" by constructing a KIOJob object (the correct
 prototypes, etc, etc, are in kio_job.h).  Once this is done, you connect
-the appropiate signals and slots (you can look in the appropiate headers
-for more available signals), and then call the appropiate function.
+the appropriate signals and slots (you can look in the appropriate headers
+for more available signals), and then call the appropriate function.
 
 In the following example, since the goal is to download a file, the
 sigData and sigFinished signals are connected, and the correct URL is
@@ -86,7 +86,7 @@ rename, move, and so-on.
 
 
 IF YOU'RE STILL READING THIS AND ARE INTERESTED IN WORKING ON AN IOSLAVE,
-AS OF April 28th, THE FOLLOWING SLAVES ARE SEVERLY LACKING IN
+AS OF April 28th, THE FOLLOWING SLAVES ARE SEVERELY LACKING IN
 FUNCTIONALITY:
 
 	IMAP4 (Perhaps imap2 support should be added)
