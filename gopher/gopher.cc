@@ -4,6 +4,7 @@
 #include <sys/socket.h>
 #include <sys/stat.h>
 #include <sys/time.h>
+#include <sys/param.h>
 
 #include <netinet/in.h>
 #include <arpa/inet.h>
@@ -31,7 +32,9 @@ bool open_PassDlg( const QString& _head, QString& _user, QString& _pass );
 int main(int , char **)
 {
   signal(SIGCHLD, IOProtocol::sigchld_handler);
-  //signal(SIGSEGV, IOProtocol::sigsegv_handler);
+#ifdef NDEBUG
+  signal(SIGSEGV, IOProtocol::sigsegv_handler);
+#endif
 
   Connection parent( 0, 1 );
 
@@ -72,7 +75,16 @@ bool GopherProtocol::gopher_open( KURL &_url )
   static char buf[512];
 
   // We want 70 as the default
-  port = _url.port() ? _url.port() : 70;
+  if (_url.port())
+    port=_url.port();
+  else {
+    struct servent *srv=getservbyname("gopher", "tcp");
+    if (srv) {
+      port=ntohs(srv->s_port);
+    } else
+      port=70;
+  }
+
   gopher_close();
   m_iSock = ::socket(PF_INET, SOCK_STREAM, 0);
   if (!KSocket::initSockaddr(&server_name, _url.host(), port))
@@ -138,7 +150,10 @@ void GopherProtocol::slotListDir( const char *_url )
     m_cmd = CMD_NONE;
     return;
   }
-  gopher_open(dest);
+  if (!gopher_open(dest)) {
+    gopher_close();
+    return;
+  }
   if (path.at(0) == '/') path.remove(0,1);
 
   UDSEntry entry;
@@ -146,32 +161,54 @@ void GopherProtocol::slotListDir( const char *_url )
   QString line;
   char buf[128];
   while (fgets(buf, 127, fp)) {
+
     line = buf+1;
+    if (strcmp(buf, ".\r\n")==0) {
+      finished();
+      return;
+    }
+    entry.clear();
+    atom.m_uds = UDS_NAME;
+    atom.m_long = 0;
+    atom.m_str = line.mid(0,line.find("\t"));
+    line.remove(0, line.find("\t")+1);
+    entry.append(atom);
+
+    atom.m_uds = UDS_FILE_TYPE;
+    atom.m_str = "";
     switch ((GopherType)buf[0]) {
-    case GOPHER_MENU: {
-      entry.clear();
-      atom.m_uds = UDS_NAME;
-      atom.m_long = 0;
-      atom.m_str = line.mid(0,line.find("\t"));
-      entry.append(atom);
-
-      atom.m_uds = UDS_FILE_TYPE;
-      atom.m_str = "";
+    case GOPHER_MENU:{
       atom.m_long = S_IFDIR;
-      entry.append(atom);
-
-      atom.m_uds = UDS_SIZE;
-      atom.m_str = QString::null;
-      atom.m_long = 0;
-      entry.append(atom);
-
-      listEntry(entry);
       break;
     }
     default: {
-      break;
+      atom.m_long = S_IFREG;
     }
     }
+    entry.append(atom);
+
+    atom.m_uds = UDS_URL;
+    KURL uds;
+    QString path("/");
+    uds.setProtocol("gopher");
+    path.append(line.mid(0,line.find("\t")));
+    if (path == "//") path="/";
+    uds.setPath(path);
+    line.remove(0, line.find("\t")+1);
+    uds.setHost(line.mid(0,line.find("\t")));
+    line.remove(0, line.find("\t")+1);
+    uds.setPort(line.mid(0,line.find("\t")).toUShort());
+    atom.m_long = 0;
+    atom.m_str = uds.url();
+    entry.append(atom);
+
+    atom.m_uds = UDS_SIZE;
+    atom.m_str = QString::null;
+    atom.m_long = 0;
+    entry.append(atom);
+
+    listEntry(entry);
+    memset(buf, 0, 127);
   }
   finished();
   return;
@@ -250,6 +287,24 @@ void GopherProtocol::slotGet(const char *_url)
       error(ERR_INTERNAL, "rawReadData failed");
       return;
     }
+    break;
+  }
+  case GOPHER_UUENCODE: {
+    gopher_open(usrc);
+    if (!readRawData(_url, "text/plain")) {
+      error(ERR_INTERNAL, "rawReadData failed");
+      return;
+    }
+    break;
+  }
+  case GOPHER_BINARY:
+  case GOPHER_PCBINARY: {
+    gopher_open(usrc);
+    if(!readRawData(_url, "application/ocet-stream")) {
+      error(ERR_INTERNAL, "rawReadData failed");
+      return;
+    }
+    break;
   }
   case GOPHER_TEXT: {
     gopher_open(usrc);
@@ -257,6 +312,7 @@ void GopherProtocol::slotGet(const char *_url)
       error(ERR_INTERNAL, "rawReadData failed");
       return;
     }
+    break;
   }
   }
 }
