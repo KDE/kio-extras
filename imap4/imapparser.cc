@@ -488,8 +488,7 @@ void imapParser::parseList (parseString & result)
   {
     QByteArray ba = imapParser::parseOneWord(result);
     attribute = QCString(ba.data(), ba.size() + 1);
-    if (-1 != attribute.find ("\\Noinferiors", 0, false)  // FIXME: different
-      || -1 != attribute.find ("\\HasNoChildren", 0, false)) // case required
+    if (-1 != attribute.find ("\\Noinferiors", 0, false))
       this_one.setNoInferiors (true);
     else if (-1 != attribute.find ("\\Noselect", 0, false))
       this_one.setNoSelect (true);
@@ -497,7 +496,9 @@ void imapParser::parseList (parseString & result)
       this_one.setMarked (true);
     else if (-1 != attribute.find ("\\Unmarked", 0, false))
       this_one.setUnmarked (true);
-    else
+    else if (-1 != attribute.find ("\\HasNoChildren", 0, false)) {
+      // not important
+    } else
       kdDebug(7116) << "imapParser::parseList - unknown attribute " << attribute << endl;
   }
 
