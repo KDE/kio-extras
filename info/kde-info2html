@@ -56,6 +56,9 @@ my $PREV_URL = "<img src=\"$IMAGEDIR/back.png\" align=\"top\" border=\"0\" alt=\
 # the use of a query should make sure it never conflicts with a "real" path
 my $BROWSE_BY_FILE_PATH = '/browse_by_file?special=yes';
 
+
+my $DONTPRINTYET = 'DONTPRINTYET ';
+
 #-- patterns
 my $NODEBORDER    = '\037\014?';      #-- delimiter of an info node
 my $REDIRSEP      = '\177';           #-- delimiter in tag tables
@@ -566,7 +569,7 @@ sub ParsCrossRefs {
     $NewLine .= "$CR_URL$CrossRefRef</a>$CrossRefText";
   }
   if ($NewLine =~ /\*Note([^\t\,\.]*)$/i) {
-      return "DONTPRINTYET $NewLine";
+      return "$DONTPRINTYET$NewLine";
   } else {
       $NewLine;  #-- return the new line
   }
@@ -883,8 +886,10 @@ sub InfoNode2HTML {
       }
       else {
         $Line = &ParsCrossRefs($prev,$_,$BaseInfoFile);
-        if ($Line =~ /^DONTPRINTYET (.*)$/) {
-          $prev = $1;
+        if ($Line =~ /^$DONTPRINTYET/) {
+          $prev = $Line;
+	  $prev =~ s/^$DONTPRINTYET//;
+	  chomp $prev;
         }
         elsif ($LineCount == 2) {
           $prev = $Line;
@@ -924,8 +929,10 @@ sub InfoNode2HTML {
             }
          }
          $Line = &ParsCrossRefs($prev,$_,$BaseInfoFile);
-         if ($Line =~ /^DONTPRINTYET (.*)$/) {
-           $prev = $1;
+         if ($Line =~ /^$DONTPRINTYET/) {
+           $prev = $Line;
+	   $prev =~ s/^$DONTPRINTYET//;
+	   chomp $prev;
          } elsif ($LineCount == 2) {
            $prev = $Line;
          } else {
