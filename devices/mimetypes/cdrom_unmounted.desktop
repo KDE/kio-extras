@@ -3,7 +3,7 @@ Encoding=UTF-8
 Icon=cdrom_unmount
 Type=MimeType
 MimeType=kdedevice/cdrom_unmounted
-Name=Unmounted CDRom
+Name=Unmounted CDROM
 Patterns=
 
 X-KDE-AutoEmbed=true

@@ -3,7 +3,7 @@ Encoding=UTF-8
 Icon=floppy5_unmount
 Type=MimeType
 MimeType=kdedevice/floppy5_unmounted
-Name=Unmounted 5"1/4 Floppy
+Name=Unmounted 5¼" Floppy
 Patterns=
 
 X-KDE-AutoEmbed=true
