@@ -147,16 +147,12 @@ QDataStream& operator>> (QDataStream& s, sftpFileAttr& fa) {
     // XXX Add some error checking in here in case
     //     we get a bad sftp packet.
     fa.clear();
+	QByteArray fn;
     Q_UINT32 size;
     if( fa.mDirAttrs ) {
-        s >> fa.mFilename;
-        size = fa.mFilename.size();
-        fa.mFilename.resize(size+1);
-        fa.mFilename[size] = 0;
+        s >> fn; 
 
-        // for( int i = 0; i < fa.mFilename.size(); i++ ) {
-        //    kdDebug() << (int)fa.mFilename[i] << endl;
-        // }
+		fa.mFilename = QString::fromUtf8(fn.data(),fn.size());
 
         s >> fa.mLongname;
         size = fa.mLongname.size();
@@ -259,7 +255,7 @@ void sftpFileAttr::clear(){
     clearFileSize();
     clearPermissions();
     clearExtensions();
-    mFilename = "\0";
+    mFilename = QString::null;
     mGroupName =  QString::null;
     mUserName = QString::null;
     mFlags = 0;

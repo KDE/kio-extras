@@ -35,7 +35,7 @@ class sftpFileAttr {
 
 private: // Private attributes
     /** Name of file. */
-    QCString mFilename;
+    QString mFilename;
 
     /** Specifies which fields of the file attribute are available. */
     Q_UINT32 mFlags;
@@ -200,10 +200,10 @@ public:
 
     /** No descriptions */
     void setFilename(const QString& fn)
-        { mFilename = fn.latin1(); }
+        { mFilename = fn; }
 
     QString filename() const
-        { QString x = mFilename; return x; }
+        { return mFilename; }
 
     /** Returns a UDSEntry describing the file.
        The UDSEntry is generated from the sftp file attributes. */
