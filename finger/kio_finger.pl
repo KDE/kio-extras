@@ -13,18 +13,18 @@ $maile   = '</A>';
 # Highlight various information, configurable via the CSS file,
 # best done using kfinger  
 
-$domainName	= '<FONT class="domainName">';
-$ipNumber  	= '<FONT class="ipNumber">';
-$OS	 	= '<FONT class="OS">';
-$username 	= '<FONT class="username">';
-$directory	= '<FONT class="directory">';
-$shell 		= '<FONT class="shell">';
-$notLoggedIn 	= '<FONT class="Login">';
-$loggedIn  	= '<FONT class="noLogin">';
-$newMail 	= '<FONT class="newMail">';
-$noNewMail 	= '<FONT class="noNewMail">';
-$noPlan 	= '<FONT class="noPlan">';
-$close	 	= '</FONT>';
+$domainName	= '<CODE class="domainName">';
+$ipNumber  	= '<CODE class="ipNumber">';
+$OS	 	= '<CODE class="OS">';
+$username 	= '<CODE class="username">';
+$directory	= '<CODE class="directory">';
+$shell 		= '<CODE class="shell">';
+$notLoggedIn 	= '<CODE class="Login">';
+$loggedIn  	= '<CODE class="noLogin">';
+$newMail 	= '<CODE class="newMail">';
+$noNewMail 	= '<CODE class="noNewMail">';
+$noPlan 	= '<CODE class="noPlan">';
+$close	 	= '</CODE>';
 
 # Those names get skipped, so if there's a user with such a name, bad luck.
 
@@ -43,9 +43,9 @@ printf <<HTMLHeader;
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <HTML>
 <HEAD>
-  <meta http-equiv="refresh" content="$REFRESHRATE"/>
+  <meta http-equiv="refresh" content="$REFRESHRATE">
   <TITLE>finger $USER\@$HOST</TITLE>
-  <LINK type="text/css" rel="stylesheet" href="file:$CSSFILE" /> 
+  <LINK type="text/css" rel="stylesheet" href="file:$CSSFILE"> 
 </HEAD>
 <BODY>
   <TABLE class="mainTable" cellspacing="0">
