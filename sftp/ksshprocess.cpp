@@ -590,7 +590,10 @@ QString KSshProcess::getLine() {
             tv.tv_sec = 60; tv.tv_usec = 0; // 60 second timeout
     
             // Wait for a message from ssh on stderr or the pty.
-            int ret = ::select(maxfd+1, &rfds, NULL, &efds, &tv);
+            int ret = -1;
+            do 
+              ret = ::select(maxfd+1, &rfds, NULL, &efds, &tv);
+            while( ret == -1 && errno == EINTR );
     
             // Handle any errors from select
             if( ret == 0 ) {
