@@ -89,7 +89,7 @@ void SMTPProtocol::put( const KURL& url, int /*permissions*/, bool /*overwrite*/
 */
 	QString query = url.query().mid(1, url.query().length());
 	QString subject="missing subject";
-	QStringList recip;
+	QStringList recip, cc;
 	int curpos=0;
 
 	while ( (curpos = query.find("to=", curpos) ) != -1) {
@@ -98,6 +98,15 @@ void SMTPProtocol::put( const KURL& url, int /*permissions*/, bool /*overwrite*/
 			recip+=query.mid(curpos, query.find("&", curpos)-curpos);
 		else
 			recip+=query.mid(curpos, query.length());
+	}
+
+	curpos=0;
+	while ( (curpos = query.find("cc=", curpos) ) != -1) {
+		curpos+=3;
+		if (query.find("&", curpos) != -1)
+			cc+=query.mid(curpos, query.find("&", curpos)-curpos);
+		else
+			cc+=query.mid(curpos, query.length());
 	}
 
 	// find the subject
@@ -111,12 +120,16 @@ void SMTPProtocol::put( const KURL& url, int /*permissions*/, bool /*overwrite*/
 	
 	if (!smtp_open())
 	        error( KIO::ERR_DOES_NOT_EXIST, url.path() );
+
 	if (! command("MAIL FROM: someuser@is.using.a.pre.release.kde.ioslave.compliments.of.kde.org", 0, 0)) {
 		return;
 	}
 
 	QString formatted_recip="RCPT TO: %1";
 	for ( QStringList::Iterator it = recip.begin(); it != recip.end(); ++it ) {
+		command(formatted_recip.arg(*it).latin1(), 0, 0);
+	}
+	for ( QStringList::Iterator it = cc.begin(); it != cc.end(); ++it ) {
 		command(formatted_recip.arg(*it).latin1(), 0, 0);
 	}
 
@@ -128,6 +141,12 @@ void SMTPProtocol::put( const KURL& url, int /*permissions*/, bool /*overwrite*/
 
 	formatted_recip="To: %1";
 	for ( QStringList::Iterator it = recip.begin(); it != recip.end(); ++it ) {
+		subject=formatted_recip.arg(*it);
+		Write(subject.latin1(), subject.length());
+	}
+
+	formatted_recip="CC: %1";
+	for ( QStringList::Iterator it = cc.begin(); it != cc.end(); ++it ) {
 		subject=formatted_recip.arg(*it);
 		Write(subject.latin1(), subject.length());
 	}
