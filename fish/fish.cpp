@@ -458,6 +458,8 @@ bool fishProtocol::connectionStart() {
         if (outBufPos >= 0) FD_SET(childFd,&wfds);
         rc = select(childFd+1, &rfds, &wfds, NULL, NULL);
         if (rc < 0) {
+            if (errno == EINTR)
+                continue;
             myDebug( << "select failed, rc: " << rc << ", error: " << strerror(errno) << endl);
             return true;
         }
@@ -466,6 +468,8 @@ bool fishProtocol::connectionStart() {
             else rc = 0;
             if (rc >= 0) outBufPos += rc;
             else {
+                if (errno == EINTR)
+                    continue;
                 myDebug( << "write failed, rc: " << rc << ", error: " << strerror(errno) << endl);
                 outBufPos = -1;
                 //return true;
@@ -484,6 +488,8 @@ bool fishProtocol::connectionStart() {
                 if (noff > 0) memmove(buf,buf+offset+rc-noff,noff);
                 offset = noff;
             } else {
+                if (errno == EINTR)
+                    continue;
                 myDebug( << "read failed, rc: " << rc << ", error: " << strerror(errno) << endl);
                 return true;
             }
@@ -648,10 +654,9 @@ Closes the connection
  */
 void fishProtocol::shutdownConnection(bool forced){
     if (childPid) {
-        kill(childPid,SIGTERM);
-        wait(NULL);
+        kill(childPid,SIGTERM); // We may not have permission...
         childPid = 0;
-        close(childFd);
+        close(childFd); // ...in which case this should do the trick
         childFd = -1;
         if (!forced)
         {
@@ -1299,6 +1304,8 @@ void fishProtocol::run() {
             if (outBufPos >= 0) FD_SET(childFd,&wfds);
             rc = select(childFd+1, &rfds, &wfds, NULL, NULL);
             if (rc < 0) {
+                if (errno == EINTR)
+                    continue;
                 myDebug( << "select failed, rc: " << rc << ", error: " << strerror(errno) << endl);
                 error(ERR_CONNECTION_BROKEN,connectionHost);
                 shutdownConnection();
@@ -1312,6 +1319,8 @@ void fishProtocol::run() {
                 else rc = 0;
                 if (rc >= 0) outBufPos += rc;
                 else {
+                    if (errno == EINTR)
+                        continue;
                     myDebug( << "write failed, rc: " << rc << ", error: " << strerror(errno) << endl);
                     error(ERR_CONNECTION_BROKEN,connectionHost);
                     shutdownConnection();
@@ -1332,6 +1341,8 @@ void fishProtocol::run() {
                     //myDebug( << "left " << noff << " bytes: " << QString::fromLatin1(buf,offset) << endl);
                     offset = noff;
                 } else {
+                    if (errno == EINTR)
+                        continue;
                     myDebug( << "read failed, rc: " << rc << ", error: " << strerror(errno) << endl);
                     error(ERR_CONNECTION_BROKEN,connectionHost);
                     shutdownConnection();
