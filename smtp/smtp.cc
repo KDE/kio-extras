@@ -148,7 +148,22 @@ bool SMTPProtocol::getResponse(char *buf, unsigned int len) {
 
 
 bool SMTPProtocol::command(const char *buf, char *r_buf, unsigned int r_len) {
-
+#ifdef SPOP3
+  // Write the command
+  int rc = SSL_write(ssl, buf, strlen(buf));
+  if (rc <= 0) return false;
+ 
+  rc = SSL_write(ssl, "\r\n", 2);
+  if (rc <= 0) return false;
+#else
+  // Write the command
+  unsigned int x = strlen(buf);
+  if (::write(m_iSock, buf, x) != (ssize_t)x)
+    return false;
+  if (::write(m_iSock, "\r\n", 2) != 2)
+    return false;
+#endif
+  return getResponse(r_buf, r_len);
 }
 
 
