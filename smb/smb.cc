@@ -197,10 +197,6 @@ void SmbProtocol::get( const QString& pathArg, const QString& /*query*/, bool /*
 		return;
 	}
 
-	ready();
-
-	// TODO gettingFile( usrc );
-
 	totalSize( buff.st_size );
 	int processed_size = 0;
 	time_t t_start = time( 0L );
@@ -286,11 +282,7 @@ void SmbProtocol::put( const QString& dest_orig_arg, int _mode, bool _overwrite,
 		return;
 	}
 
-	// We are ready for receiving data
-	ready();
-
 	kDebugInfo( 7106, "Put: Ready" );
-
 
 	int result;
 	// Loop until we got 0 (end of data)
@@ -356,8 +348,6 @@ void SmbProtocol::rename( const QString &srcArg, const QString &destArg,
            return;
         }
     }
-
-    ready();
 
     if ( smb.rename( src, dest))
     {
