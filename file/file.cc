@@ -974,14 +974,14 @@ void FileProtocol::slotDel( QStringList& _source )
     struct stat stat_buf;
     qDebug( "kio_file : Checking %s", (*source_it).ascii() );
     KURL victim( (*source_it) );
-    if (stat(victim.path(), &stat_buf)) {
-      error(ERR_MALFORMED_URL, *source_it);
+    int s;
+    if ( ( s = listRecursive( victim.path(), fs, ds, false ) ) == -1 ) {
+      // Error message is already sent
+      m_cmd = CMD_NONE;
       return;
     }
-    if ( S_ISDIR( stat_buf.st_mode ) ) {
-      
-    } else {
-    }
+    // Sum up the total amount of bytes we have to copy
+    size += s;
     qDebug( "kio_file : Parsed URL OK and added to appropiate list" );
   }
 
