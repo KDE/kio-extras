@@ -2784,7 +2784,7 @@ static char *scan_request(char *c)
 	    c=sl+1;
                 if (!dl_set[itemdepth])
                 {
-		out_html("<DL COMPACT>\n");
+		out_html("<DL>\n");
 		dl_set[itemdepth]=1;
 	    }
 	    out_html("<DT>");
@@ -2796,7 +2796,7 @@ static char *scan_request(char *c)
 	case REQ_TP:
                 if (!dl_set[itemdepth])
                 {
-		out_html("<br><br><DL COMPACT>\n");
+		out_html("<br><br><DL>\n");
 		dl_set[itemdepth]=1;
 	    }
 	    out_html("<DT>");
@@ -2836,7 +2836,7 @@ static char *scan_request(char *c)
 	case REQ_HP:
                 if (!dl_set[itemdepth])
                 {
-		out_html("<DL COMPACT>");
+		out_html("<DL>");
 		dl_set[itemdepth]=1;
 	    }
 	    out_html("<DT>\n");
@@ -2856,7 +2856,7 @@ static char *scan_request(char *c)
                 {
 		itemdepth++;
 		dl_set[itemdepth]=0;
-		out_html("<DL COMPACT><DT><DD>");
+		out_html("<DL><DT><DD>");
 		c=skip_till_newline(c);
 		curpos=0;
 		break;
@@ -3202,7 +3202,7 @@ static char *scan_request(char *c)
                 {
                     /* HTML Descriptive List */
 	        dl_set[itemdepth] = BL_DESC_LIST;
-	        out_html("<DL COMPACT>\n");
+	        out_html("<DL>\n");
 	    }
                 if (fillout)
                     out_html("<br><br>\n");
