@@ -357,6 +357,16 @@ IMAP4Protocol::listDir (const KURL & _url)
           doCommand (imapCommand::clientList ("", boxName, false));
           if (listResponses.count() == 0)
             boxOk = false;
+          else
+          {
+            for (QValueListIterator < imapList > it2 = listResponses.begin ();
+                it2 != listResponses.end (); ++it2)
+            {
+              // copy the flags from the list-command for uw-imap
+              if (boxName == (*it2).name())
+                (*it) = (*it2);
+            }
+          }
         }
         if (boxOk)
           doListEntry (aURL, myBox, (*it));
