@@ -29,7 +29,6 @@
 #include <qfileinfo.h>
 
 #include "disks.h"
-#include "disks.moc"
 
 /****************************************************/
 /********************* DiskEntry ********************/
@@ -266,12 +265,15 @@ QString DiskEntry::discType()
 	} else typeName="kdedevice/hdd"; // this should never be reached
     }
     else
-#endif
-#ifdef Q_OS_FREEBSD
+#elif defined(__FreeBSD__)
     if (-1!=deviceName().find("/acd",0,FALSE)) typeName="kdedevice/cdrom";
     else if (-1!=deviceName().find("/scd",0,FALSE)) typeName="kdedevice/cdrom";
     else if (-1!=deviceName().find("/ad",0,FALSE)) typeName="kdedevice/hdd";
     else if (-1!=deviceName().find("/da",0,FALSE)) typeName="kdedevice/hdd";
+    else if (-1!=deviceName().find("/afd",0,FALSE)) typeName="kdedevice/zip";
+#if 0
+    else if (-1!=deviceName().find("/ast",0,FALSE)) typeName="kdedevice/tape";
+#endif
     else
 #endif
     /* Guessing of cdrom and cd recorder devices */
@@ -413,3 +415,4 @@ void DiskEntry::setKBAvail(int kb_avail)
 };
 
 
+#include "disks.moc"
