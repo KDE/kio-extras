@@ -96,15 +96,19 @@ char *getPasswordCallBack(const char * c)
 {
 	if (!c) return 0;
 	QString s("");
-	if (!strcmp(c,"User")) s+=i18n("User");
+	bool echo=false;
+	if (!strcmp(c,"User")) {
+		s+=i18n("User");
+		echo=true;
+	}
 	else if (!strcmp(c,"Password")) s+=i18n("Password");
 	else if (!strncmp(c,"Password for service ",21)) {
 		s+=i18n("Password for service ");
 		s+=(c+21);
 	}
-	CallbackDialog d(s, false);
+	CallbackDialog d(s, echo);
 	d.show();
-	char *rep=d.answer();
+	const char *rep=d.answer();
 	char *ret=new char[strlen(rep)+1];
 	strcpy(ret,rep);
 	return ret;
@@ -225,7 +229,7 @@ void SmbProtocol::doCopy( list<string>& _source, const char *_dest )
 
 	// Check whether the URLs are wellformed
 	list<string>::iterator soit = _source.begin();
-	for( ; soit != _source.end(); ++soit ) {
+/*	for( ; soit != _source.end(); ++soit ) {
 		debug( "kio_smb : Checking %s", soit->c_str() );
 		char *workgroup=NULL, *host=NULL, *share=NULL, *file=NULL, *user=NULL;
 		int result=smbio.parse(decode(soit->c_str()).ascii(), workgroup, host, share, file, user);
@@ -234,11 +238,12 @@ void SmbProtocol::doCopy( list<string>& _source, const char *_dest )
 		if (share) delete share; share=NULL;
 		if (file) delete file; file=NULL;
 		if (user) delete user; user=NULL;
-/*		if (result==-1) {
+		if (result==-1) {
 			error( ERR_MALFORMED_URL, soit->c_str() );
 			return;
-		}*/
+		}
 	}
+*/
 	debug( "kio_smb : All source URLs ok." );
 
 	// Get a list of all source files and directories
@@ -616,7 +621,7 @@ void SmbProtocol::doCopy( list<string>& _source, const char *_dest )
 		}
 
 		// You can use any buffer size
-		int bufSize=4096;
+		const int bufSize=4096;
 		char buffer[ bufSize ];
 		int count;
 		do {
@@ -686,14 +691,14 @@ void SmbProtocol::slotGet( const char *_url )
 		error( ERR_MALFORMED_URL, url.c_str() );
 		return;
 	}
-	char *workgroup=NULL, *host=NULL, *share=NULL, *file=NULL, *user=NULL;
+/*	char *workgroup=NULL, *host=NULL, *share=NULL, *file=NULL, *user=NULL;
 	int result=smbio.parse(decode(_url).ascii(), workgroup, host, share, file, user);
 	if (workgroup) delete workgroup; workgroup=NULL;
 	if (host) delete host; host=NULL;
 	if (share) delete share; share=NULL;
 	if (file) delete file; file=NULL;
 	if (user) delete user; user=NULL;
-/*	if (result==-1) {
+	if (result==-1) {
 		error( ERR_MALFORMED_URL, url.c_str() );
 		return;
 	}*/
@@ -729,7 +734,7 @@ void SmbProtocol::slotGet( const char *_url )
 	// smblib accepts any buffer size, but there was a comment in
 	// a kioslave saying that >2048 introduced problems for ioslaves
 	// I should really investigate...
-	int bufSize=2048;
+	const int bufSize=2048;
 	char buffer[ bufSize ];
 	int count;
 	do {
@@ -776,14 +781,14 @@ void SmbProtocol::slotGetSize( const char *_url )
 		error( ERR_MALFORMED_URL, url.c_str() );
 		return;
 	}
-	char *workgroup=NULL, *host=NULL, *share=NULL, *file=NULL, *user=NULL;
+/*	char *workgroup=NULL, *host=NULL, *share=NULL, *file=NULL, *user=NULL;
 	int result=smbio.parse(decode(_url).ascii(), workgroup, host, share, file, user);
 	if (workgroup) delete workgroup; workgroup=NULL;
 	if (host) delete host; host=NULL;
 	if (share) delete share; share=NULL;
 	if (file) delete file; file=NULL;
 	if (user) delete user; user=NULL;
-/*	if (result==-1) {
+	if (result==-1) {
 		error( ERR_MALFORMED_URL, url.c_str() );
 		return;
 	}*/
@@ -819,14 +824,14 @@ void SmbProtocol::slotListDir( const char *_url )
 		return;
 	}
 	debug( "kio_smb : listDir 2 %s", _url);
-	char *workgroup=NULL, *host=NULL, *share=NULL, *file=NULL, *user=NULL;
+/*	char *workgroup=NULL, *host=NULL, *share=NULL, *file=NULL, *user=NULL;
 	int result=smbio.parse(decode(_url).ascii(), workgroup, host, share, file, user);
 	if (workgroup) delete workgroup; workgroup=NULL;
 	if (host) delete host; host=NULL;
 	if (share) delete share; share=NULL;
 	if (file) delete file; file=NULL;
 	if (user) delete user; user=NULL;
-/*	if (result==-1) {
+	if (result==-1) {
 		error( ERR_MALFORMED_URL, url.c_str() );
 		return;
 	}*/
@@ -903,7 +908,7 @@ void SmbProtocol::slotTestDir( const char *_url )
 		error( ERR_MALFORMED_URL, url.c_str() );
 		return;
 	}
-	debug( "kio_smb : testing %s, kurl OK", decode(_url).ascii() );
+/*	debug( "kio_smb : testing %s, kurl OK", decode(_url).ascii() );
 	char *workgroup=NULL, *host=NULL, *share=NULL, *file=NULL, *user=NULL;
 	int result=smbio.parse(decode(_url).ascii(), workgroup, host, share, file, user);
 	if (workgroup) delete workgroup; workgroup=NULL;
@@ -911,7 +916,7 @@ void SmbProtocol::slotTestDir( const char *_url )
 	if (share) delete share; share=NULL;
 	if (file) delete file; file=NULL;
 	if (user) delete user; user=NULL;
-/*	if (result==-1) {
+	if (result==-1) {
 		error( ERR_MALFORMED_URL, url.c_str() );
 		return;
 	}*/
@@ -1005,7 +1010,7 @@ long SmbProtocol::listRecursive( const char *smbURL, const char *dest, list<Copy
 	return totalSize;
 }
 
-void SmbProtocol::slotData( void *_p, int _len )
+void SmbProtocol::slotData( void *, int  )
 {
 }
 
