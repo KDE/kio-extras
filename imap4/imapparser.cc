@@ -1130,8 +1130,7 @@ void imapParser::parseBody (parseString & inWords)
          int end = references.findRev ('>');
          if (start < end)
                  references = references.mid (start, end - start + 1);
-
-         references = references.stripWhiteSpace();
+         references = references.simplifyWhiteSpace();
          envelope->setReferences(references);
        }
       }
