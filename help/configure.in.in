@@ -11,6 +11,15 @@ vers=`$XML_CONFIG --version 2>/dev/null | sed -e 's/libxml //' | awk 'BEGIN { FS
 if test -z "$vers" || test "$vers" -ge 2003005
 then
    LIBXML_LIBS="`$XML_CONFIG --libs`"
+   LIBXML_RPATH=
+   for args in $LIBXML_LIBS; do
+	case $args in
+	  -L*)
+	     LIBXML_RPATH="$LIBXML_RPATH $args"
+ 	     ;;
+	esac
+   done
+   LIBXML_RPATH=`echo $LIBXML_RPATH | sed -e "s/-L/-R/"`
    LIBXML_CFLAGS="`$XML_CONFIG --cflags`"
 else
    AC_MSG_WARN([You need at least libxml 2.3.5])
@@ -19,6 +28,7 @@ fi
  
 AC_SUBST(LIBXML_LIBS)
 AC_SUBST(LIBXML_CFLAGS)
+AC_SUBST(LIBXML_RPATH)
 AC_SUBST(HELP_SLAVE)
 
 WITH_MEM_DEBUG=0
