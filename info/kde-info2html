@@ -42,10 +42,10 @@ my $IMAGEDIR = "file:$ARGV[1]/"; # TV: broken, broken, not passed
 my $config_file = $ARGV[0];
 require $config_file;  #-- configuration settings
 
-my $CR_URL = "<img src=\"$IMAGEDIR/forward.png\" align=top border=0 alt=\"See\">";
-my $UP_URL = "<img src=\"$IMAGEDIR/up.png\" align=top border=0 alt=\"Up\">";
-my $NEXT_URL = "<img src=\"$IMAGEDIR/forward.png\" align=top border=0 alt=\"Next\">";
-my $PREV_URL = "<img src=\"$IMAGEDIR/back.png\" align=top border=0 alt=\"Prev\">";
+my $CR_URL = "<img src=\"$IMAGEDIR/forward.png\" align=\"top\" border=\"0\" alt=\"See\"/>";
+my $UP_URL = "<img src=\"$IMAGEDIR/up.png\" align=\"top\" border=\"0\" alt=\"Up\"/>";
+my $NEXT_URL = "<img src=\"$IMAGEDIR/forward.png\" align=\"top\" border=\"0\" alt=\"Next\"/>";
+my $PREV_URL = "<img src=\"$IMAGEDIR/back.png\" align=\"top\" border=\"0\" alt=\"Prev\"/>";
 
 
 #-- patterns
@@ -463,57 +463,73 @@ sub PrintHeader {
   $UpcaseInfoFile =~ tr/a-z/A-Z/; 
   #-- TEXT for the header of an info node
   print <<EOF;
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html>
-<head><title>Info: ($BaseInfoFile) $LinkList[1]</title>
-<link rel="stylesheet" href="file:$prefix/share/doc/kde/HTML/en/common/kde-default.css" type="text/css">
-<style>
-UL {
-   margin: 0em 0em 0em 0em;
-}
-TABLE.infomenutable {
-   padding: 0em 0em 0em 0em;
-   width: 100%;
-}
-TD.infomenutd {
-   margin: 0em 0em 0em 0em;
-   vertical-align: top;
-/* font-family: monospace; */
-}
-TR.infomenutr {
-   margin: 0em 0em 0em 0em;
-}
-</style>
-</head>
-<body bgcolor=#ffffff>
+   <head>
+      <title>Info: ($BaseInfoFile) $LinkList[1]</title>
+      <link rel="stylesheet" href="file:$prefix/share/doc/kde/HTML/en/common/kde-default.css" type="text/css"/>
+      <style>
+         UL {
+            margin: 0em 0em 0em 0em;
+         }
+         TABLE.infomenutable {
+            padding: 0em 0em 0em 0em;
+            width: 100%;
+         }
+         TD.infomenutd {
+            margin: 0em 0em 0em 0em;
+            vertical-align: top;
+         /* font-family: monospace; */
+         }
+         TR.infomenutr {
+            margin: 0em 0em 0em 0em;
+         }
+      </style>
+   </head>
+   <body bgcolor="#ffffff">
 
-<div id="headline" style="position : absolute; height : 85px; z-index :
-100; background : transparent; text-align : center; text-transform:
-smallcaps; width : 100%; top : 0px; left : 0px; width : 100%; color :
-#000000;">
+   <div id="headline" style="position : absolute; height : 85px; z-index : 100; background : transparent; 
+        text-align : center; text-transform: smallcaps; width : 100%; top : 0px; left : 0px; width : 100%; color : #000000;">
 
-<h1>$UpcaseInfoFile: $LinkList[1]</h1>
-</div>
-<div id="navbackground" style="position : absolute; width : 100%; height
-: 124px; background-image : url('file:/$prefix/share/doc/kde/HTML/en/common/doctop2.png'); z-index : 5; left
-: 0px; top : 0px; padding : 0px;"> <div id="bulb1" style="padding : 0px;
-position : absolute; z-index : 15; width : 150px; height : 85px; top :
-0px; left : 0px; background : url('file:/$prefix/share/doc/kde/HTML/en/common/doctop1.png') repeat;"></div>
-<div id="gradient" style="position : absolute; width : 275px; height :
-85px; z-index : 19px; top : 0px; padding : 0px; left : 150px;
-background-image : url('file:/$prefix/share/doc/kde/HTML/en/common/doctop1a.png'); background-repeat :
-no-repeat; background-color : transparent; visibility : visible;"></div>
-<div 
-id="bulb-bit" style="position : absolute;   width : 100%;   height : 90px;   top 
-: 85px;   left : 0px;   background-image : url('help:/common/doctop1b.png');   
-background-repeat : no-repeat;   background-color : transparent;   z-index : 
-5;"><table width="100%" id="navtable"><tbody><tr><td align="left" 
-class="left"></td><td align="center" class="center"><td align="right" 
-class="right">
+      <h1>$UpcaseInfoFile: $LinkList[1]</h1>
+   </div>
+
+   <div id="navbackground" style="position : absolute; width : 100%; height: 124px; 
+        background-image : url('file:/$prefix/share/doc/kde/HTML/en/common/doctop2.png'); 
+        z-index : 5; left: 0px; top : 0px; padding : 0px;"> 
+   
+        <div id="bulb1" style="padding : 0px; position : absolute; z-index : 15; 
+             width : 150px; height : 85px; top : 0px; left : 0px; 
+             background : url('file:/$prefix/share/doc/kde/HTML/en/common/doctop1.png') repeat;">
+        </div>
+
+        <div id="gradient" style="position : absolute; width : 275px; height : 85px; z-index : 19px; 
+             top : 0px; padding : 0px; left : 150px; 
+             background-image : url('file:/$prefix/share/doc/kde/HTML/en/common/doctop1a.png'); 
+             background-repeat : no-repeat; background-color : transparent; visibility : visible;">
+        </div>
+
+        <div id="bulb-bit" style="position : absolute;   width : 100%;   height : 90px;   top : 85px;   
+             left : 0px;   background-image : url('help:/common/doctop1b.png');   background-repeat : no-repeat;   
+             background-color : transparent;   z-index : 5;">
+             
+             <table width="100%" id="navtable">
+               <tbody>
+                  <tr>
+                     <td align="left" class="left"/>
+                     <td align="center" class="center"/>
+                     <td align="right" class="right">
 
 EOF
   common_headers($LinkList, $BaseInfoFile);
   print <<EOF;
-</td></tr></tbody></table></div></div>
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
 EOF
 }
 
@@ -534,16 +550,26 @@ sub PrintFooter {
   my ($LinkList, $BaseInfoFile) = @_;
   #-- TEXT for the footer of an info node
   print <<EOF;
-<table width="100%"><tbody><tr><td align="left" 
-></td><td align="center" ><td align="right" >
+      <table width="100%">
+         <tbody>
+            <tr>
+               <td align="left"/>
+               <td align="center" />
+               <td align="right" >
 EOF
   common_headers($LinkList, $BaseInfoFile);
   print <<EOF;
-</td></tr></tbody></table>
-<hr>
-<em>automatically generated by </em>
-<a href="$info2html::config::DOC_URL"><b>info2html</b></a>
-</body></html>
+               </td>
+            </tr>
+         </tbody>
+      </table>
+      <hr/>
+      <em>automatically generated by </em>
+      <a href="$info2html::config::DOC_URL">
+         <b>info2html</b>
+      </a>
+   </body>
+</html>
 EOF
 }
 
