@@ -1,4 +1,4 @@
-AC_MSG_CHECKING(wether to compile LDAP support)
+AC_MSG_CHECKING(whether to compile LDAP support)
 AC_ARG_WITH(ldap,
 [  --with-ldap[=PATH]      Compile in LDAP support.],
 [ case "$withval" in
@@ -19,7 +19,7 @@ no)
   LDAP_LIBS="-L${LDAP_ROOT}/lib -lldap -llber"
   kde_safe_LIBS="$LIBS"
   kde_safe_CFLAGS="$CFLAGS"
-  LIBS="$LIBS $all_libraries $LDAP_LIBS $KERBEROS_LIBS"
+  LIBS="$LIBS $all_libraries $LDAP_LIBS $KERBEROS_LIBS $X_EXTRA_LIBS"
   CFLAGS="$CFLAGS $all_includes $LDAP_INCS $KERBEROS_INCS"
   AC_LANG_SAVE
   AC_LANG_C
