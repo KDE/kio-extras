@@ -1,3 +1,5 @@
+// $Id$
+
 #ifdef HAVE_CONFIG_H
 #include <config.h>
 #endif
@@ -6,7 +8,6 @@
 #include <sys/socket.h>
 #include <sys/stat.h>
 #include <sys/time.h>
-#include <ctype.h>
 #ifdef HAVE_SYS_SELECT_H
 #include <sys/select.h>
 #endif
@@ -14,6 +15,7 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 
+#include <ctype.h>
 #include <errno.h>
 #include <netdb.h>
 #include <stdlib.h>
@@ -24,7 +26,6 @@
 #include <qstring.h>
 #include <qstringlist.h>
 #include <qcstring.h>
-#include <qglobal.h>
 
 #include <kprotocolmanager.h>
 #include <ksock.h>
@@ -40,15 +41,8 @@
 using namespace KIO;
 
 extern "C" { int kdemain (int argc, char **argv); }
-
-int GetVal(char *buf)
-{
-		int val;
-		val=100*(((int)buf[0])-48);
-		val+=(10*((((int)buf[1])-48)));
-		val+=((((int)buf[2])-48));
-		return val;
-}
+void GetAddresses(const QString &str, const QString &delim, QStringList &list);
+int GetVal(char *buf);
 
 int kdemain( int argc, char **argv )
 {
@@ -91,6 +85,14 @@ SMTPProtocol::~SMTPProtocol()
 	smtp_close();
 }
 
+void SMTPProtocol::HandleSMTPWriteError(const KURL&url)
+{
+	if (!command("RSET")) // Attempt to save face
+		error(ERR_SERVICE_NOT_AVAILABLE, url.path());
+	else
+		error(ERR_COULD_NOT_WRITE, url.path());
+}
+
 void SMTPProtocol::put( const KURL& url, int /*permissions*/, bool /*overwrite*/, bool /*resume*/)
 {
 /*
@@ -99,26 +101,12 @@ void SMTPProtocol::put( const KURL& url, int /*permissions*/, bool /*overwrite*/
 	QString query = url.query().mid(1, url.query().length());
 	QString subject="missing subject";
 	QStringList recip, cc;
-	int curpos=0;
 
-	while ( (curpos = query.find("to=", curpos) ) != -1) {
-		curpos+=3;
-		if (query.find("&", curpos) != -1)
-			recip+=query.mid(curpos, query.find("&", curpos)-curpos);
-		else
-			recip+=query.mid(curpos, query.length());
-	}
-
-	curpos=0;
-	while ( (curpos = query.find("cc=", curpos) ) != -1) {
-		curpos+=3;
-		if (query.find("&", curpos) != -1)
-			cc+=query.mid(curpos, query.find("&", curpos)-curpos);
-		else
-			cc+=query.mid(curpos, query.length());
-	}
+	GetAddresses(query, "to=", recip);
+	GetAddresses(query, "cc=", cc);
 
 	// find the subject
+	int curpos=0;
 	if ( (curpos = query.find("subject=")) != -1) {
 		curpos+=8;
                 if (query.find("&", curpos) != -1)
@@ -126,23 +114,28 @@ void SMTPProtocol::put( const KURL& url, int /*permissions*/, bool /*overwrite*/
                 else
                         subject=query.mid(curpos, query.length());
 	}
-	
-	if (!smtp_open())
-	        error( KIO::ERR_DOES_NOT_EXIST, url.path() );
 
-	if (! command("MAIL FROM: someuser@is.using.a.pre.release.kde.ioslave.compliments.of.kde.org", 0, 0)) {
+	if (!smtp_open())
+	        error(ERR_SERVICE_NOT_AVAILABLE, url.path());
+
+	if (! command("MAIL FROM: someuser@is.using.a.pre.release.kde.ioslave.compliments.of.kde.org")) {
+		HandleSMTPWriteError(url);
 		return;
 	}
 
 	QString formatted_recip="RCPT TO: %1";
 	for ( QStringList::Iterator it = recip.begin(); it != recip.end(); ++it ) {
-		command(formatted_recip.arg(*it).latin1(), 0, 0);
+		if (!command(formatted_recip.arg(*it).latin1()))
+			HandleSMTPWriteError(url);
 	}
 	for ( QStringList::Iterator it = cc.begin(); it != cc.end(); ++it ) {
-		command(formatted_recip.arg(*it).latin1(), 0, 0);
+		if (!command(formatted_recip.arg(*it).latin1()))
+			HandleSMTPWriteError(url);
 	}
 
-	command("DATA", 0, 0);
+	if (!command("DATA")) {
+		HandleSMTPWriteError(url);
+	}
 
 	formatted_recip="Subject: %1\r\n";
 	subject=formatted_recip.arg(subject);
@@ -169,10 +162,13 @@ void SMTPProtocol::put( const KURL& url, int /*permissions*/, bool /*overwrite*/
 		result = readData( buffer );
 		if (result > 0) {
 			Write( buffer.data(), buffer.size());
+		} else if (result < 0) {
+			error(ERR_COULD_NOT_WRITE, url.path());
 		}
 	}
 	while ( result > 0 );
 	Write("\r\n.\r\n", 5);
+	command("RSET");
 	finished();
 }
 
@@ -184,7 +180,6 @@ void SMTPProtocol::setHost( const QString& host, int port, const QString& /*user
 
 int SMTPProtocol::getResponse(char *r_buf, unsigned int r_len)
 {
-kdDebug() << "kio_smtp: GETRSP CALLED" << endl;
 	char *buf=0;
 	unsigned int recv_len=0;
 	fd_set FDs;
@@ -248,16 +243,17 @@ kdDebug() << "kio_smtp: GETRSP CALLED" << endl;
 
 
 bool SMTPProtocol::command(const char *cmd, char *recv_buf, unsigned int len) {
-  // Write the command
-  if (Write(cmd, strlen(cmd)) != static_cast<ssize_t>(strlen(cmd))) {
-    m_sError = i18n("Could not send to server.\n");
-    return false;
-  }
-  if (Write("\r\n", 2) != 2) {
-    m_sError = i18n("Could not send to server.\n");
-    return false;
-  }
-  return ( getResponse(recv_buf, len) < 400 );
+	// Write the command
+	if (Write(cmd, strlen(cmd)) != static_cast<ssize_t>(strlen(cmd))) {
+		m_sError = i18n("Could not send to server.\n");
+		return false;
+	}
+
+	if (Write("\r\n", 2) != 2) {
+		m_sError = i18n("Could not send to server.\n");
+		return false;
+	}
+	return ( getResponse(recv_buf, len) < 400 );
 }
 
 
@@ -266,12 +262,13 @@ bool SMTPProtocol::smtp_open()
 	if ( (m_iOldPort == GetPort(m_iPort)) && (m_sOldServer == m_sServer) ) {
 		return true;
 	} else {
+		smtp_close();
 		if( !ConnectToHost(m_sServer.latin1(), m_iPort))
 			return false; // ConnectToHost has already send an error message.
 		opened=true;
 	}
 
-	if (getResponse(0, 0) >= 400) {
+	if (getResponse() >= 400) {
 		return false;
 	}
 
@@ -282,7 +279,7 @@ bool SMTPProtocol::smtp_open()
 							// for now there's no real need
 							// to complicate things by
 							// determining our hostname
-		free(ehlobuf);
+		free(ehlobuf);	// We should parse the ESMTP extensions here... pipelining would be really cool
 		if (!command("HELO kio_smtp")) { // Let's just check to see if it speaks plain ol' SMTP
 			smtp_close();
 			return false;
@@ -300,15 +297,36 @@ bool SMTPProtocol::smtp_open()
 
 void SMTPProtocol::smtp_close()
 {
-  if (!opened)
-      return;
-  command("QUIT");
-  CloseDescriptor();
-  m_sOldServer = "";
-  opened = false;
+	if (!opened)
+		return;
+	command("QUIT");
+	CloseDescriptor();
+	m_sOldServer = "";
+	opened = false;
 }
 
 void SMTPProtocol::stat( const KURL & url )
 {
         error( KIO::ERR_DOES_NOT_EXIST, url.path() );
+}
+
+int GetVal(char *buf)
+{
+		int val;
+		val=100*(((int)buf[0])-48);
+		val+=(10*((((int)buf[1])-48)));
+		val+=((((int)buf[2])-48));
+		return val;
+}
+
+void GetAddresses(const QString &str, const QString &delim, QStringList &list)
+{
+	int curpos=0;
+	while ( (curpos = str.find(delim, curpos) ) != -1) {
+		curpos+=delim.length();
+		if (str.find("&", curpos) != -1)
+			list+=str.mid(curpos, str.find("&", curpos)-curpos);
+		else
+			list+=str.mid(curpos, str.length());
+	}
 }
