@@ -155,7 +155,7 @@ void SMBSlave::stat( const KURL& kurl )
     switch(m_current_url.getType())
     {
     case SMBURLTYPE_UNKNOWN:
-        error(ERR_MALFORMED_URL,m_current_url.url());
+        error(ERR_MALFORMED_URL,m_current_url.prettyURL());
         return;
 
     case SMBURLTYPE_ENTIRE_NETWORK:
@@ -174,7 +174,7 @@ void SMBSlave::stat( const KURL& kurl )
             return;
         }
     default:
-        kdDebug(KIO_SMB) << "SMBSlave::stat UNKNOWN " << url.url() << endl;
+        kdDebug(KIO_SMB) << "SMBSlave::stat UNKNOWN " << url << endl;
         finished();
         return;
     }
@@ -249,10 +249,10 @@ void SMBSlave::reportError(const SMBUrl &url)
         error( ERR_ACCESS_DENIED, url.prettyURL() );
         break;
     case EIO:
-        error( ERR_CONNECTION_BROKEN, url.url());
+        error( ERR_CONNECTION_BROKEN, url.prettyURL());
         break;
     case ENOMEM:
-        error( ERR_OUT_OF_MEMORY, url.url() );
+        error( ERR_OUT_OF_MEMORY, url.prettyURL() );
         break;
     case ENODEV:
         error( ERR_SLAVE_DEFINED, i18n("Share could not be found on given server"));
@@ -268,7 +268,7 @@ void SMBSlave::reportError(const SMBUrl &url)
 //===========================================================================
 void SMBSlave::listDir( const KURL& kurl )
 {
-   kdDebug(KIO_SMB) << "SMBSlave::listDir on " << kurl.url() << endl;
+   kdDebug(KIO_SMB) << "SMBSlave::listDir on " << kurl << endl;
 
    // check (correct) URL
    KURL url = checkURL(kurl);

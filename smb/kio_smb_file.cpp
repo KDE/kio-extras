@@ -48,7 +48,7 @@ void SMBSlave::get( const KURL& kurl )
     QByteArray  filedata;
     SMBUrl      url;
 
-    kdDebug(KIO_SMB) << "SMBSlave::get on " << kurl.url() << endl;
+    kdDebug(KIO_SMB) << "SMBSlave::get on " << kurl << endl;
 
     // check (correct) URL
     KURL kvurl = checkURL(kurl);
@@ -68,13 +68,13 @@ void SMBSlave::get( const KURL& kurl )
     if(cache_stat(url,&st) == -1 )
     {
         if ( errno == EACCES )
-           error( KIO::ERR_ACCESS_DENIED, url.url());
+           error( KIO::ERR_ACCESS_DENIED, url.prettyURL());
         else
-           error( KIO::ERR_DOES_NOT_EXIST, url.url());
+           error( KIO::ERR_DOES_NOT_EXIST, url.prettyURL());
         return;
     }
     if ( S_ISDIR( st.st_mode ) ) {
-        error( KIO::ERR_IS_DIRECTORY, url.url());
+        error( KIO::ERR_IS_DIRECTORY, url.prettyURL());
         return;
     }
 
@@ -99,7 +99,7 @@ void SMBSlave::get( const KURL& kurl )
                 }
                 else if(bytesread < 0)
                 {
-                    error( KIO::ERR_COULD_NOT_READ, url.url());
+                    error( KIO::ERR_COULD_NOT_READ, url.prettyURL());
                     return;
                 }
 
@@ -127,7 +127,7 @@ void SMBSlave::get( const KURL& kurl )
     }
     else
     {
-          error( KIO::ERR_CANNOT_OPEN_FOR_READING, url.url());
+          error( KIO::ERR_CANNOT_OPEN_FOR_READING, url.prettyURL());
 	  return;
     }
 
@@ -152,7 +152,7 @@ void SMBSlave::put( const KURL& kurl,
     mode_t      mode;
     QByteArray  filedata;
 
-    //    kdDebug(KIO_SMB) << "SMBSlave::put on " << kurl.url() << endl;
+    //    kdDebug(KIO_SMB) << "SMBSlave::put on " << kurl << endl;
 
 
     exists = (cache_stat(m_current_url, &st) != -1 );
@@ -160,13 +160,13 @@ void SMBSlave::put( const KURL& kurl,
     {
         if (S_ISDIR(st.st_mode))
         {
-	  kdDebug(KIO_SMB) << "SMBSlave::put on " << kurl.url() <<" already isdir !!"<< endl;
-            error( KIO::ERR_DIR_ALREADY_EXIST,  m_current_url.url());
+	  kdDebug(KIO_SMB) << "SMBSlave::put on " << kurl <<" already isdir !!"<< endl;
+            error( KIO::ERR_DIR_ALREADY_EXIST,  m_current_url.prettyURL());
         }
         else
         {
-	  kdDebug(KIO_SMB) << "SMBSlave::put on " << kurl.url() <<" already exist !!"<< endl;
-            error( KIO::ERR_FILE_ALREADY_EXIST, m_current_url.url());
+	  kdDebug(KIO_SMB) << "SMBSlave::put on " << kurl <<" already exist !!"<< endl;
+            error( KIO::ERR_FILE_ALREADY_EXIST, m_current_url.prettyURL());
         }
         return;
     }
@@ -204,13 +204,13 @@ void SMBSlave::put( const KURL& kurl,
     {
         if ( errno == EACCES )
         {
-	  kdDebug(KIO_SMB) << "SMBSlave::put error " << kurl.url() <<" access denied !!"<< endl;
-            error( KIO::ERR_WRITE_ACCESS_DENIED, m_current_url.url());
+	  kdDebug(KIO_SMB) << "SMBSlave::put error " << kurl <<" access denied !!"<< endl;
+            error( KIO::ERR_WRITE_ACCESS_DENIED, m_current_url.prettyURL());
         }
         else
         {
-	  kdDebug(KIO_SMB) << "SMBSlave::put error " << kurl.url() <<" can not open for writing !!"<< endl;
-            error( KIO::ERR_CANNOT_OPEN_FOR_WRITING, m_current_url.url());
+	  kdDebug(KIO_SMB) << "SMBSlave::put error " << kurl <<" can not open for writing !!"<< endl;
+            error( KIO::ERR_CANNOT_OPEN_FOR_WRITING, m_current_url.prettyURL());
         }
         return;
     }
@@ -231,8 +231,8 @@ void SMBSlave::put( const KURL& kurl,
 	bufsize = filedata.size();
         if(smbc_write(filefd, buf,bufsize) < 0)
         {
-	  kdDebug(KIO_SMB) << "SMBSlave::put error " << kurl.url() <<" could not write !!"<< endl;
-            error( KIO::ERR_COULD_NOT_WRITE, m_current_url.url());
+	  kdDebug(KIO_SMB) << "SMBSlave::put error " << kurl <<" could not write !!"<< endl;
+            error( KIO::ERR_COULD_NOT_WRITE, m_current_url.prettyURL());
             return;
         }
     }
@@ -240,8 +240,8 @@ void SMBSlave::put( const KURL& kurl,
 
     if(smbc_close(filefd))
     {
-      kdDebug(KIO_SMB) << "SMBSlave::put on " << kurl.url() <<" could not write !!"<< endl;
-        error( KIO::ERR_COULD_NOT_WRITE, m_current_url.url());
+      kdDebug(KIO_SMB) << "SMBSlave::put on " << kurl <<" could not write !!"<< endl;
+        error( KIO::ERR_COULD_NOT_WRITE, m_current_url.prettyURL());
         return;
     }
 
