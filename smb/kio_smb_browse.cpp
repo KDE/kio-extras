@@ -274,7 +274,7 @@ void SMBSlave::reportError(const SMBUrl &url)
     case ENOTUNIQ:
         error( ERR_SLAVE_DEFINED, i18n( "The given name could not be resolved to an unique server. "
                                         "Make sure your network is setup without any name conflicts "
-                                        "between names used by Windows and by Unix name resolution." ) );
+                                        "between names used by Windows and by UNIX name resolution." ) );
         break;
     case 0: // success
 	  error( ERR_INTERNAL, i18n("libsmbclient reported an error, but didn't specify "
