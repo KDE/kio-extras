@@ -169,7 +169,7 @@ void SMTPProtocol::put(const KURL & url, int /*permissions */ ,
   bool headers = true;
 
   // sort out our query string
-  for (QStringList::Iterator it = query.begin(); it != query.end(); ++it)
+  for (QStringList::const_iterator it = query.begin(); it != query.end(); ++it)
   {
     int equalsAt = (*it).find('=');
 
@@ -220,7 +220,7 @@ void SMTPProtocol::put(const KURL & url, int /*permissions */ ,
     //kdDebug() << "kio_smtp: Profile is null" << endl;
     QStringList profiles = mset.profiles();
     bool hasProfile = false;
-    for (QStringList::Iterator it = profiles.begin(); it != profiles.end(); ++it) {
+    for (QStringList::const_iterator it = profiles.begin(); it != profiles.end(); ++it) {
       if ((*it) == open_url.host()) {
         hasProfile = true;
         break;
@@ -337,13 +337,13 @@ void SMTPProtocol::put(const KURL & url, int /*permissions */ ,
     write(subject.latin1(), strlen(subject.latin1()));
 
     // Write out the To header for the benefit of the mail clients
-    for (QStringList::Iterator it = recip.begin(); it != recip.end(); ++it) {
+    for (QStringList::const_iterator it = recip.begin(); it != recip.end(); ++it) {
       QString header = QString::fromLatin1("To: %1\r\n").arg(*it);
       write(header.latin1(), strlen(header.latin1()));
     }
 
     // Write out the CC header for the benefit of the mail clients
-    for (QStringList::Iterator it = cc.begin(); it != cc.end(); ++it) {
+    for (QStringList::const_iterator it = cc.begin(); it != cc.end(); ++it) {
       QString header = QString::fromLatin1("CC: %1\r\n").arg(*it);
       write(header.latin1(), strlen(header.latin1()));
     }
@@ -381,7 +381,7 @@ void SMTPProtocol::put(const KURL & url, int /*permissions */ ,
 bool SMTPProtocol::PutRecipients(QStringList & list)
 {
   QString formatted_recip = QString::fromLatin1("RCPT TO: <%1>");
-  for (QStringList::Iterator it = list.begin(); it != list.end(); ++it) {
+  for (QStringList::const_iterator it = list.begin(); it != list.end(); ++it) {
     if (!command(formatted_recip.arg(*it), false)) {
       if (!m_errorSent)
       {
