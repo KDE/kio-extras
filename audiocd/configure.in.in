@@ -132,7 +132,7 @@ NOTFOUND) AC_MSG_RESULT(searched but not found) ;;
     ac_save_LIBS="$LIBS"
     CFLAGS="$CFLAGS $all_includes $LAME_INCS"
     LIBS="$LIBS $all_libraries $LAME_LIBS"
-    rm -f conf.lametest
+    rm -f conf.lametest conf.wrongver
     AC_TRY_RUN([
 #include <stdio.h>
 #include <stdlib.h>
@@ -146,15 +146,19 @@ int main ()
   if (v.major>3 || (v.major==3 && v.minor>88)) {
     system("touch conf.lametest");
     return 0;
-  } else
+  } else {
+    system("touch conf.wrongver");
     return 1;
+  }
 }
 ], , non_compile=yes , [echo $ac_n "cross compiling; assumed OK... $ac_c"])
     CFLAGS="$ac_save_CFLAGS"
     LIBS="$ac_save_LIBS"
     # bogus return value, but it _did_ run correctly
-    test -f conf.lametest && non_compile="no"
-    rm -f conf.lametest
+    test -f conf.lametest && non_compile=no
+    # Set the flag for configure.in.bot
+    test -f conf.wrongver && lame_wrong_version=yes
+    rm -f conf.lametest conf.wrongver
   fi
   if test "$non_compile" = no ; then
     AC_MSG_RESULT($msg)
@@ -162,10 +166,12 @@ int main ()
     KCM_AUDIOCD="kcmaudiocd"
   else
     AC_MSG_RESULT(no (but first try gave $msg))
-    echo "*** Could not run Lame test program, checking why..."
-    CFLAGS="$CFLAGS $all_includes $LAME_INCS"
-    LIBS="$LIBS $all_libraries $LAME_LIBS"
-    AC_TRY_LINK([
+    if test -z "$lame_wrong_version"; then
+      # only do this test, if it really didn't run
+      echo "*** Could not run Lame test program, checking why..."
+      CFLAGS="$CFLAGS $all_includes $LAME_INCS"
+      LIBS="$LIBS $all_libraries $LAME_LIBS"
+      AC_TRY_LINK([
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -187,8 +193,11 @@ echo "*** you may also be able to get things to work by modifying LD_LIBRARY_PAT
 echo "*** The test program failed to compile or link. See the file config.log for the"
 echo "*** exact error that occured. This usually means Lame was incorrectly installed"
 echo "*** or that you have moved Lame since it was installed." ])
-    CFLAGS="$ac_save_CFLAGS"
-    LIBS="$ac_save_LIBS"
+      # ac_save_* still set, because this else part is only entered if the
+      # enable_lametest was yes, in which case also ac_save_* was set.
+      CFLAGS="$ac_save_CFLAGS"
+      LIBS="$ac_save_LIBS"
+    fi
     LAME_INCS=
     LAME_LIBS=
     LAME_RPATH=
