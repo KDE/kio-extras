@@ -71,6 +71,8 @@
 #define NFSPROG ((u_long)100003)
 #define NFSVERS ((u_long)2)
 
+using namespace KIO;
+using namespace std;
 
 //this is taken from kdelibs/kdecore/fakes.cpp
 //#if !defined(HAVE_GETDOMAINNAME)
@@ -109,8 +111,6 @@ int x_getdomainname(char *name, size_t len)
 }
 //#endif
 
-
-using namespace KIO;
 
 extern "C" { int kdemain(int argc, char **argv); }
 
@@ -205,8 +205,8 @@ time_t NFSFileHandle::age() const
 ostream& operator<< (ostream& s, const NFSFileHandle& x)
 {
    for (int i =0; i<NFS_FHSIZE; i++)
-      s<<std::hex<<(unsigned int)x[i]<<" ";
-   s<<std::dec;
+      s<<hex<<(unsigned int)x[i]<<" ";
+   s<<dec;
    return s;
 }
 
