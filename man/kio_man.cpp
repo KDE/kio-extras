@@ -27,7 +27,7 @@
 #include <qtextstream.h>
 #include <qdict.h>
 #include <qcstring.h>
-
+#include <qlist.h>
 
 #include <kdebug.h>
 #include <kinstance.h>
@@ -499,6 +499,119 @@ void MANProtocol::checkManPaths()
 
 }
 
+
+//#define _USE_OLD_CODE
+
+#ifdef _USE_OLD_CODE
+#warning "using old code"
+#else
+
+// Define this, if you want to compile with qsort from stdlib.h
+// else the Qt Heapsort will be used.
+// Note, qsort seems to be a bit faster (~10%) on a large man section
+// eg. man section 3
+#define _USE_QSORT
+
+// Setup my own structure, with char pointers.
+// from now on only pointers are copied, no strings
+//
+// containing the whole path string,
+// the beginning of the man page name
+// and the length of the name
+struct man_index_t {
+    char *manpath;  // the full path including man file
+    char *manpage_begin;  // pointer to the begin of the man file name in the path
+    int manpage_len; // len of the man file name
+};
+
+
+#ifdef _USE_QSORT
+#warning using qsort
+int compare_man_index(const void *s1, const void *s2)
+{
+    struct man_index_t *m1 = *(struct man_index_t **)s1;
+    struct man_index_t *m2 = *(struct man_index_t **)s2;
+    int i;
+    // Compare the names of the pages
+    // with the shorter length.
+    // Man page names are not '\0' terminated, so 
+    // this is a bit tricky
+    if ( m1->manpage_len > m2->manpage_len)
+    {
+	i = qstrncmp( m1->manpage_begin,
+		      m2->manpage_begin,
+		      m2->manpage_len);
+	if (!i)
+	    return 1;
+	return i;
+    }
+
+    if ( m1->manpage_len < m2->manpage_len)
+    {
+	i = strncmp( m1->manpage_begin,
+		     m2->manpage_begin,
+		     m1->manpage_len);
+	if (!i)
+	    return -1;
+	return i;
+    }
+    
+    return strncmp( m1->manpage_begin,
+		    m2->manpage_begin,
+		    m1->manpage_len);
+}
+
+#else /* !_USE_QSORT */
+#warning using heapsort
+// Set up my own man page list,
+// with a special compare function to sort itself
+typedef QList<struct man_index_t> QManIndexListBase;
+typedef QListIterator<struct man_index_t> QManIndexListIterator;
+
+class QManIndexList : public QManIndexListBase
+{
+public:
+private:
+    int compareItems( QCollection::Item s1, QCollection::Item s2 ) 
+	{ 
+	    struct man_index_t *m1 = (struct man_index_t *)s1;
+	    struct man_index_t *m2 = (struct man_index_t *)s2;
+	    int i;
+	    // compare the names of the pages
+	    // with the shorter length
+	    if (m1->manpage_len > m2->manpage_len)
+	    {
+		i = qstrncmp(m1->manpage_begin,
+			     m2->manpage_begin,
+			     m2->manpage_len);
+		if (!i)
+		    return 1;
+		return i;
+	    }
+
+	    if (m1->manpage_len > m2->manpage_len)
+	    {
+	    
+		i = qstrncmp(m1->manpage_begin,
+			     m2->manpage_begin,
+			     m1->manpage_len);
+		if (!i)
+		    return -1;
+		return i;
+	    }
+
+	    return qstrncmp(m1->manpage_begin,
+			    m2->manpage_begin,
+			    m1->manpage_len);
+	}
+};
+
+#endif /* !_USE_QSORT */
+#endif /* !_USE_OLD_CODE */
+
+
+
+
 void MANProtocol::showIndex(const QString& section)
 {
     QCString output;
@@ -528,6 +641,8 @@ void MANProtocol::showIndex(const QString& section)
 
     // print out the list
     os << "<table>" << endl;
+
+#ifdef _USE_OLD_CODE
     pages.sort();
 
     QMap<QString, QString> pagemap;
@@ -535,7 +650,7 @@ void MANProtocol::showIndex(const QString& section)
     QStringList::ConstIterator page;
     for (page = pages.begin(); page != pages.end(); ++page)
     {
-        QString fileName = *page;
+	QString fileName = *page;
 
         // skip compress extension
         if (fileName.right(4) == ".bz2")
@@ -566,13 +681,185 @@ void MANProtocol::showIndex(const QString& section)
     }
 
     for (QMap<QString,QString>::ConstIterator it = pagemap.begin();
-         it != pagemap.end(); ++it)
+	 it != pagemap.end(); ++it)
     {
-        os << "<tr><td><a href=\"man:" << it.data() << "\">\n"
-           << it.key() << "</a></td><td>&nbsp;</td><td> "
-           << "no idea yet" << "</td></tr>"  << endl;
+	os << "<tr><td><a href=\"man:" << it.data() << "\">\n"
+	   << it.key() << "</a></td><td>&nbsp;</td><td> "
+	   << "no idea yet" << "</td></tr>"  << endl;
     }
 
+#else /* ! _USE_OLD_CODE */
+
+#ifdef _USE_QSORT
+
+    int listlen = pages.count();
+    struct man_index_t *indexlist[listlen];
+    listlen = 0;
+
+#else /* !_USE_QSORT */
+
+    QManIndexList manpages;
+    manpages.setAutoDelete(TRUE);
+
+#endif /* _USE_QSORT */
+
+    QStringList::ConstIterator page;
+    for (page = pages.begin(); page != pages.end(); ++page)
+    {
+	// I look for the beginning of the man page name
+	// i.e. "bla/pagename.3.gz" by looking for the last "/"
+	// Then look for the end of the name with the next "."
+	// If the len of the name is >0,
+	// store it in the list structure, to be sorted later
+
+        char *manpage_end;
+        struct man_index_t *manindex = new man_index_t;
+	manindex->manpath = (*page).latin1();
+
+	manindex->manpage_begin = rindex(manindex->manpath, '/');
+	if (manindex->manpage_begin)
+	{
+	    manindex->manpage_begin++;
+	    assert(manindex->manpage_begin >= manindex->manpath);
+	}
+	else
+	{
+	    manindex->manpage_begin = manindex->manpath;
+	    assert(manindex->manpage_begin >= manindex->manpath);
+	}
+	
+	manpage_end = index(manindex->manpage_begin, '.');
+	if (NULL == manpage_end) 
+	{
+	    // no '.' ending ???
+	    // set the pointer past the end of the filename
+	    manindex->manpage_len = (*page).length();
+	    manindex->manpage_len -= (manindex->manpage_begin - manindex->manpath);
+	    assert(manindex->manpage_len >= 0);
+	}
+	else
+	{
+	    manindex->manpage_len = (manpage_end - manindex->manpage_begin);
+	    assert(manindex->manpage_len >= 0);
+	}
+
+	if (0 < manindex->manpage_len)
+	{
+
+#ifdef _USE_QSORT
+
+	    indexlist[listlen] = manindex;
+	    listlen++;
+
+#else /* !_USE_QSORT */
+
+	    manpages.append(manindex);
+
+#endif /* _USE_QSORT */
+
+	}
+    }
+
+    // 
+    // Now do the sorting on the page names
+    // and the printout afterwards
+    // While printing avoid duplicate man page names
+    //
+
+    struct man_index_t dummy_index = {0l,0l,0};
+    struct man_index_t *last_index = &dummy_index;
+
+#ifdef _USE_QSORT
+
+    // sort and print
+    qsort(indexlist, listlen, sizeof(struct man_index_t *), compare_man_index);
+
+    for (int i=0; i<listlen; i++)
+    {
+	struct man_index_t *manindex = indexlist[i];
+
+	// qstrncmp():
+	// "last_man" has already a \0 string ending, but 
+	// "manindex->manpage_begin" has not,
+	// so do compare at most "manindex->manpage_len" of the strings.
+	if (last_index->manpage_len == manindex->manpage_len &&
+	    !qstrncmp(last_index->manpage_begin, 
+		      manindex->manpage_begin, 
+		      manindex->manpage_len)
+	    )
+	{
+	    continue;
+	}
+	os << "<tr><td><a href=\"man:" 
+	   << manindex->manpath << "\">\n";
+	// !!!!!!!!!!!!!!!!!!!!!!
+	// 
+	// WARNING
+	//
+	// here I do modify the const QString from "pages".
+	// I assume, they are not used afterwards anyways
+	//
+	// Maybe I could use a QTextStream::WriteRaw(const char *, uint len)
+	// too, but how about locale encoded Filenames ??
+	//
+	// !!!!!!!!!!!!!!!!!!!!!!
+	manindex->manpage_begin[manindex->manpage_len] = '\0';
+	os << manindex->manpage_begin
+	   << "</a></td><td>&nbsp;</td><td> "
+	   << "no idea yet"
+	   << "</td></tr>"  << endl;
+	last_index = manindex;
+    }
+
+    for (int i=0; i<listlen; i++)
+	delete indexlist[i];
+
+#else /* !_USE_QSORT */
+
+    manpages.sort(); // using
+
+    for (QManIndexListIterator mit(manpages);
+	 mit.current();
+	 ++mit )
+    {
+	struct man_index_t *manindex = mit.current();
+
+	// qstrncmp():
+	// "last_man" has already a \0 string ending, but 
+	// "manindex->manpage_begin" has not,
+	// so do compare at most "manindex->manpage_len" of the strings.
+	if (last_index->manpage_len == manindex->manpage_len &&
+	    !qstrncmp(last_index->manpage_begin, 
+		      manindex->manpage_begin, 
+		      manindex->manpage_len)
+	    )
+	{
+	    continue;
+	}
+	
+	os << "<tr><td><a href=\"man:" 
+	   << manindex->manpath << "\">\n";
+	// !!!!!!!!!!!!!!!!!!!!!!
+	// 
+	// WARNING
+	//
+	// here I do modify the const QString from "pages".
+	// I assume, they are not used afterwards anyways
+	//
+	// Maybe I could use a QTextStream::WriteRaw(const char *, uint len)
+	// too, but how about locale encoded Filenames ??
+	//
+	// !!!!!!!!!!!!!!!!!!!!!!
+	manindex->manpage_begin[manindex->manpage_len] = '\0';
+	os << manindex->manpage_begin
+	   << "</a></td><td>&nbsp;</td><td> "
+	   << "no idea yet"
+	   << "</td></tr>"  << endl;
+	last_index = manindex;
+    }
+
+#endif /* _USE_QSORT */
+#endif /* _USE_OLD_CODE */    
 
     os << "</table>" << endl;
 
