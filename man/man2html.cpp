@@ -2721,14 +2721,16 @@ static char *scan_request(char *c)
 	case V('N','x'):	/* BSD mandoc */
 	case V('O','x'):	/* BSD mandoc */
 	case V('B','x'):	/* BSD mandoc */
+	case V('U','x'):	/* BSD mandoc */
 	    trans_char(c,'"','\a');
 	    c=c+j;
 	    if (*c=='\n') c++;
-	    if (i==V('A','t'))      out_html("AT&amp;T Unix ");
+	    if (i==V('A','t'))      out_html("AT&amp;T UNIX ");
 	    else if (i==V('F','x')) out_html("FreeBSD ");
 	    else if (i==V('N','x')) out_html("NetBSD ");
 	    else if (i==V('O','x')) out_html("OpenBSD ");
 	    else if (i==V('B','x')) out_html("BSD ");
+	    else if (i==V('U','x')) out_html("UNIX ");
 	    c=scan_troff_mandoc(c, 1, NULL);
 	    if (fillout) curpos++; else curpos=0;
 	    break;
