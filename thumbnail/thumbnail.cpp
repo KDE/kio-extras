@@ -202,8 +202,8 @@ void ThumbnailProtocol::get(const KURL &url)
 		stream << img;
 	else
 	{
-		uchar *shmaddr = static_cast<uchar *>(shmat(shmid.toInt(), 0, 0));
-		if (shmaddr == (uchar *)-1)
+		void *shmaddr = shmat(shmid.toInt(), 0, 0);
+		if (shmaddr == (void *)-1)
 		{
 			error(KIO::ERR_INTERNAL, "Failed to attach to shared memory segment " + shmid);
 			return;
@@ -211,13 +211,13 @@ void ThumbnailProtocol::get(const KURL &url)
 		if (img.width() * img.height() > m_width * m_height)
 		{
 			error(KIO::ERR_INTERNAL, "Image is too big for the shared memory segment");
-			shmdt(shmaddr);
+			shmdt((char*)shmaddr);
 			return;
 		}
 		stream << img.width() << img.height() << img.depth()
                << img.hasAlphaBuffer();
 		memcpy(shmaddr, img.bits(), img.numBytes());
-		shmdt(shmaddr);
+		shmdt((char*)shmaddr);
 	}
     data(imgData);
     finished();
