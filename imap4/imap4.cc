@@ -1255,7 +1255,10 @@ bool IMAP4Protocol::makeLogin ()
 
     imapCommand *cmd;
 
+    unhandled.clear ();
     while (!parseLoop ());    //get greeting
+    QString greeting;
+    if (!unhandled.isEmpty()) greeting = unhandled.first().stripWhiteSpace();
     unhandled.clear ();       //get rid of it
     cmd = doCommand (new imapCommand ("CAPABILITY", ""));
 
@@ -1267,11 +1270,21 @@ bool IMAP4Protocol::makeLogin ()
     }
     completeQueue.removeRef (cmd);
 
+    if (!hasCapability("IMAP4") && !hasCapability("IMAP4rev1"))
+    {
+      error(ERR_COULD_NOT_LOGIN, i18n("Sorry, the server %1 does neither "
+        "support IMAP4 nor IMAP4rev1.\nIt identified itself with: %2")
+        .arg(myHost).arg(greeting));
+      closeConnection();
+      return false;
+    }
+
     if (metaData("nologin") == "on") return TRUE;
 
     if (myTLS == "on" && !hasCapability(QString("STARTTLS")))
     {
-      error(ERR_ABORTED, i18n("The server does not support TLS."));
+      error(ERR_COULD_NOT_LOGIN, i18n("The server does not support TLS.\n"
+        "Disable this security feature to connect unencrypted."));
       closeConnection();
       return false;
     }
@@ -1295,7 +1308,7 @@ bool IMAP4Protocol::makeLogin ()
           completeQueue.removeRef (cmd2);
         } else {
           kdDebug() << "TLS mode setup has failed.  Aborting." << endl;
-          error (ERR_ABORTED, i18n("Starting TLS failed."));
+          error (ERR_COULD_NOT_LOGIN, i18n("Starting TLS failed."));
           closeConnection();
           return false;
         }
