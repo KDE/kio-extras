@@ -205,7 +205,7 @@ namespace KioSMTP {
 
   bool AuthCommand::processResponse( const Response & r ) {
     if ( !r.isOk() ) {
-      if ( mFirstTime )
+      if ( mFirstTime && !mSASL.clientStarts() )
 	mSMTP->error( KIO::ERR_COULD_NOT_LOGIN,
 		      i18n("Your SMTP server doesn't support %1.\n"
 			   "Choose a different authentication method.\n"
