@@ -15,4 +15,5 @@ maxInstances=4
 #TODO DocPath=kioslave/file.html
 Class=:local
 deleteRecursive=true
-fileNameUsedForCopying=Name
+#TODO Waiting for a fix in kio...
+#fileNameUsedForCopying=Name
