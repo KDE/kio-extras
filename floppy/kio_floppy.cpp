@@ -208,7 +208,7 @@ bool FloppyProtocol::stopAfterError(const KURL& url, const QString& drive)
    kdDebug(7101)<<"line: -"<<line<<"-"<<endl;
    if (line.contains("resource busy"))
    {
-      error( KIO::ERR_COULD_NOT_STAT, i18n("drive %1.\nThe drive is still busy.\nWait until it has stopped working and the try again.").arg(drive));
+      error( KIO::ERR_COULD_NOT_STAT, i18n("drive %1.\nThe drive is still busy.\nWait until it has stopped working and then try again.").arg(drive));
    }
    else if ((line.contains("Disk full")) || (line.contains("No free cluster")))
    {
@@ -231,11 +231,11 @@ bool FloppyProtocol::stopAfterError(const KURL& url, const QString& drive)
    //not supported or no such drive
    else if (line.contains("Permission denied"))
    {
-      error( KIO::ERR_COULD_NOT_STAT, url.prettyURL()+i18n("\nMake sure the floppy in drive %1 is a DOS floppy disk \nand that the permissions of the device file (e.g. /dev/fd0) are set correctly (e.g. rwxrwxrwx).").arg(drive));
+      error( KIO::ERR_COULD_NOT_STAT, url.prettyURL()+i18n("\nMake sure the floppy in drive %1 is a DOS formatted floppy disk \nand that the permissions of the device file (e.g. /dev/fd0) are set correctly (e.g. rwxrwxrwx).").arg(drive));
    }
    else if (line.contains("non DOS media"))
    {
-      error( KIO::ERR_COULD_NOT_STAT, url.prettyURL()+i18n("\nThe disk in drive %1 is probably no DOS formatted floppy disk.").arg(drive));
+      error( KIO::ERR_COULD_NOT_STAT, url.prettyURL()+i18n("\nThe disk in drive %1 is probably not a DOS formatted floppy disk.").arg(drive));
    }
    else if (line.contains("Read-only"))
    {

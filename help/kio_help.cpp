@@ -130,7 +130,7 @@ QString HelpProtocol::lookupFile(const QString &fname,
 
 void HelpProtocol::notFound()
 {
-    data(QCString(i18n("<html>The requested help file could not be found. Check if "
+    data(QCString(i18n("<html>The requested help file could not be found. Check that "
                        "you have installed the documentation.</html>").local8Bit()));
     finished();
 }

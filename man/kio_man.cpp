@@ -180,7 +180,7 @@ void MANProtocol::get(const KURL& url )
     QStringList foundPages=findPages(section, title);
     if (foundPages.count()==0)
     {
-       outputError(i18n("no manpage matching to %1 found").arg(title));
+       outputError(i18n("No man page matching to %1 found.").arg(title));
     }
     else if (foundPages.count()>1)
     {
@@ -194,7 +194,7 @@ void MANProtocol::get(const KURL& url )
        char *buf = readManPage(filename);
        if (!buf)
        {
-          outputError(i18n("open of %1 failed").arg(title));
+          outputError(i18n("Open of %1 failed.").arg(title));
           finished();
           return;
        }
@@ -288,7 +288,7 @@ void MANProtocol::outputMatchingPages(const QStringList &matchingPages)
     os << "<html>\n<head><title>\n";
     os << i18n("Man output");
     os <<"</title></head>\n<body bgcolor=#ffffff><h1>";
-    os << i18n("There are more than one man page matching");
+    os << i18n("There is more than one matching man page.");
     os << "</h1>\n<ul>";
     for (QStringList::ConstIterator it = matchingPages.begin(); it != matchingPages.end(); ++it)
        os<<"<li><a href=man:"<<QFile::encodeName(*it)<<">"<< *it <<"</href><br>\n<br>\n";

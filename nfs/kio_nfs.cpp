@@ -983,7 +983,7 @@ bool NFSProtocol::checkForError(int clientStat, int nfsStat, const QString& text
    {
       kdDebug(7101)<<"rpc error: "<<clientStat<<endl;
       //does this mapping make sense ?
-      error(ERR_CONNECTION_BROKEN,i18n("A RPC error occured"));
+      error(ERR_CONNECTION_BROKEN,i18n("An RPC error occurred."));
       return FALSE;
    };
    if (nfsStat!=NFS_OK)
