@@ -2808,7 +2808,8 @@ static char *scan_request(char *c)
 	      c = c+j;
 	      if (*c == '\n') c++; /* Skip spaces */
 	      while (isspace(*c) && *c != '\n') c++;
-         while (isalnum(*c) || *c == '_' || *c == '-') { /* Copy the xyz part */
+         while (isalnum(*c) || *c == '.' || *c == ':' || 
+	    *c == '_' || *c == '-') { /* Copy the xyz part */
 		*bufptr = *c;
 		bufptr++; if (bufptr >= buff + MED_STR_MAX) break;
 		c++;
