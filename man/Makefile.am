@@ -20,7 +20,7 @@ kio_man_la_LIBADD = $(LIB_KSYCOCA)
 kio_man_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN)
 noinst_HEADERS = kio_man.h
 
-libkmanpart_la_SOURCES = kmanpart.cpp kmanpart_factory.cpp
+libkmanpart_la_SOURCES = kmanpart.cpp
 libkmanpart_la_LIBADD = -lkhtml $(LIB_KPARTS)
 libkmanpart_la_LDFLAGS = $(all_libraries) $(KDE_PLUGIN)
 

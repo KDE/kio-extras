@@ -23,6 +23,49 @@
 #include <kinstance.h>
 #include <kglobal.h>
 #include <kdebug.h>
+#include <klocale.h>
+#include <kstddirs.h>
+#include <kaboutdata.h>
+
+extern "C"
+{
+   void* init_libkmanpart()
+   {
+      return new KManPartFactory;
+   }
+};
+
+KInstance* KManPartFactory::s_instance = 0L;
+KAboutData* KManPartFactory::s_about = 0L;
+
+KManPartFactory::KManPartFactory( QObject* parent, const char* name )
+   : KParts::Factory( parent, name )
+{};
+
+KManPartFactory::~KManPartFactory()
+{
+   delete s_instance;
+   s_instance = 0L;
+   delete s_about;
+}
+
+KParts::Part* KManPartFactory::createPartObject( QWidget * parentWidget, const char* widgetName, QObject *,
+                                 const char* name, const char* className,const QStringList & )
+{
+   KManPart* part = new KManPart(parentWidget, name );
+   return part;
+}
+
+KInstance* KManPartFactory::instance()
+{
+   if( !s_instance )
+   {
+      s_about = new KAboutData( "kmanpart",
+                                I18N_NOOP( "KMan" ), "2.0pre" );
+      s_instance = new KInstance( s_about );
+   }
+   return s_instance;
+}
 
 
 KManPart::KManPart( QWidget * parent, const char * name )

@@ -21,6 +21,7 @@
 #ifndef KMANPART_H
 #define KMANPART_H
 
+#include <kparts/factory.h>
 #include <kparts/part.h>
 #include <kparts/browserextension.h>
 #include <khtml_part.h>
@@ -28,6 +29,28 @@
 #include <kio/jobclasses.h>
 
 #include <qcstring.h>
+
+class KInstance;
+class KAboutData;
+
+class KManPartFactory: public KParts::Factory
+{
+   Q_OBJECT
+   public:
+      KManPartFactory( QObject * parent = 0, const char * name = 0 );
+      virtual ~KManPartFactory();
+
+      virtual KParts::Part* createPartObject( QWidget * parentWidget, const char * widgetName ,
+                                QObject* parent, const char* name, const char * classname,
+                                const QStringList &args);
+
+      static KInstance * instance();
+
+   private:
+      static KInstance * s_instance;
+      static KAboutData * s_about;
+
+};
 
 class KManPart : public KHTMLPart
 {
