@@ -147,6 +147,10 @@ NOTFOUND) AC_MSG_RESULT(searched but not found) ;;
     CPPFLAGS="$CPPFLAGS $all_includes $LAME_INCS"
     LIBS="$LIBS $all_libraries $LAME_LIBS"
     rm -f conf.lametest conf.wrongver
+	AC_LANG_SAVE
+dnl lame headers use C++ style comments, which fails with the flags in
+dnl effect when compiling with --enable-debug
+	AC_LANG_CPLUSPLUS
     AC_TRY_RUN([
 #include <stdio.h>
 #include <stdlib.h>
@@ -166,6 +170,7 @@ int main ()
   }
 }
 ], , non_compile=yes , [echo $ac_n "cross compiling; assumed OK... $ac_c"])
+	AC_LANG_RESTORE
     CPPFLAGS="$ac_save_CPPFLAGS"
     LIBS="$ac_save_LIBS"
     # bogus return value, but it _did_ run correctly
