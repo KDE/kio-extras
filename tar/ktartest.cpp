@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <qfile.h>
 #include <kinstance.h>
+#include <kdebug.h>
 
 void recursive_print( const KTarDirectory * dir, const QString & path )
 {
@@ -37,6 +38,7 @@ int main( int argc, char** argv )
   KInstance instance("ktartest");
 
   QString command = argv[1];
+  kdDebug() << "main: command=" << command << endl;
   if ( command == "list" )
   {
     KTarGz tar( argv[2] );
@@ -102,6 +104,7 @@ int main( int argc, char** argv )
   }
   else if (command == "readwrite" )
   {
+    kdDebug() << " --- readwrite --- " << endl;
     KTarGz tar( argv[2] );
 
     if ( !tar.open( IO_WriteOnly ) )

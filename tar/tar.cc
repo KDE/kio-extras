@@ -89,10 +89,11 @@ bool TARProtocol::checkNewFile( QString fullPath, QString & path )
     if ( len != 0 && fullPath[ len - 1 ] != '/' )
         fullPath += '/';
 
+    kdDebug(7109) << "the full path is " << fullPath << endl;
     while ( (pos=fullPath.find( '/', pos+1 )) != -1 )
     {
         QString tryPath = fullPath.left( pos );
-        kdDebug() << tryPath << endl;
+        kdDebug(7109) << fullPath << "  trying " << tryPath << endl;
         struct stat statbuf;
         if ( ::stat( QFile::encodeName(tryPath), &statbuf ) == 0 && !S_ISDIR(statbuf.st_mode) )
         {

@@ -28,9 +28,11 @@
 #include <qdir.h>
 #include <qfile.h>
 #include <kdebug.h>
+#include <kurl.h>
+#include <kmimetype.h>
 
-#include "kfilterdev.h"
-#include "kfilterbase.h"
+#include <kfilterdev.h>
+#include <kfilterbase.h>
 
 #include "ktar.h"
 
@@ -517,41 +519,46 @@ class KTarGz::KTarGzPrivate
 {
 public:
     KTarGzPrivate() {}
-
-    QIODevice * fileDev;
-    KFilterBase * filter;
 };
 
+// BCI: remove and merge
 KTarGz::KTarGz( const QString& filename )
 {
   m_filename = filename;
   d = new KTarGzPrivate;
-  d->fileDev = new QFile( m_filename );
-  d->filter = KFilterBase::findFilterByFileName( m_filename );
-  if ( d->filter )
-  {
-      d->filter->setDevice( d->fileDev );
-      setDevice( new KFilterDev( d->filter ) );
-  }
-  else
-  {
-      setDevice( d->fileDev );
-  }
+  KURL url;
+  url.setPath( filename );
+  QString mimetype = KMimeType::findByURL( url )->name();
+kdDebug() << "KTarGz::KTarGz mimetype=" << mimetype << endl;
+  if (mimetype == "application/x-tgz" || mimetype == "application/x-targz") // the latter is deprecated but might still be around
+    // that's a gzipped tar file, so ask for gzip filter
+    mimetype = "application/x-gzip";
+  else if ( mimetype == "application/x-tbz" ) // that's a bzipped2 tar file, so ask for bz2 filter
+    mimetype = "application/x-bzip2";
+  QIODevice * dev = KFilterDev::deviceForFile( filename, mimetype );
+  if ( dev )
+    setDevice( dev );
+}
+
+KTarGz::KTarGz( const QString& filename, const QString & mimetype )
+{
+  m_filename = filename;
+  d = new KTarGzPrivate;
+  QIODevice * dev = KFilterDev::deviceForFile( filename, mimetype );
+  if ( dev )
+    setDevice( dev );
 }
 
 KTarGz::KTarGz( QIODevice * dev )
 {
   d = new KTarGzPrivate;
-  d->fileDev = 0L;
-  d->filter = 0L;
   setDevice( dev );
 }
 
 KTarGz::~KTarGz()
 {
   if ( !m_filename.isEmpty() )
-    delete device();
-  delete d->fileDev;
+    delete device(); // we created it ourselves
   delete d;
 }
 

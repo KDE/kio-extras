@@ -137,7 +137,7 @@ protected:
 /**
  * @short A class for reading/writing optionnally-gzipped tar balls.
  * Should be named KTar and be merged back with KTarBase - in KDE 3.0.
- * @author Torben Weis <weis@kde.org>
+ * @author Torben Weis <weis@kde.org>, David Faure <faure@kde.org>
  */
 class KTarGz : public KTarBase
 {
@@ -151,6 +151,17 @@ public:
    * @see #open
    */
   KTarGz( const QString& filename );
+
+  /**
+   * Creates an instance that operates on the given file,
+   * using the compression filter associated to given mimetype.
+   * @param filename path to the file
+   * @param mimetype "application/x-gzip" or "application/x-bzip2"
+   * Do not use application/x-tgz or so. Only the compression layer !
+   *
+   * @see #open
+   */
+  KTarGz( const QString& filename, const QString & mimetype );
 
   /**
    * Creates an instance that operates on the given device.
