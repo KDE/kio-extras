@@ -33,6 +33,8 @@
 #include "kio_smb.h"
 #include "kio_smb_internal.h"
 
+#include <kmimetype.h>
+
 //===========================================================================
 void SMBSlave::get( const KURL& kurl )
 {
@@ -88,6 +90,7 @@ void SMBSlave::get( const KURL& kurl )
     {
         if(buf)
         {
+	    bool isFirstPacket = true;
             lasttime = starttime = time(NULL);
             while(1)
             {
@@ -103,8 +106,13 @@ void SMBSlave::get( const KURL& kurl )
                     return;
                 }
     
-
                 filedata.setRawData(buf,bytesread);
+		if (isFirstPacket)
+		{
+		    KMimeType::Ptr p_mimeType = KMimeType::findByContent(filedata);
+		    mimeType(p_mimeType->name());
+		    isFirstPacket = false;
+		}
                 data( filedata );
                 filedata.resetRawData(buf,bytesread);
      
