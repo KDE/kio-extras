@@ -3,7 +3,7 @@ Encoding=UTF-8
 Icon=cdwriter_unmount
 Type=MimeType
 MimeType=kdedevice/cdwriter_unmounted
-Comment=Unmounted  CDWriter
+Comment=Unmounted CDWriter
 Patterns=
 
 X-KDE-AutoEmbed=true
