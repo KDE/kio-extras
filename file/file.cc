@@ -1020,8 +1020,8 @@ void FileProtocol::slotDel( QStringList& _source )
    * Delete empty directories
    *****/
 
-  QValueList<CopyDir>::Iterator dit = ds.begin();
-  for( ; dit != ds.end(); dit++ ) { 
+  QValueList<CopyDir>::Iterator dit = ds.fromLast();
+  for( ; dit != ds.end(); dit-- ) { 
 
     QString dirname = (*dit).m_strAbsSource;
     qDebug( "kio_file : Deleting directory %s", dirname.ascii() );
