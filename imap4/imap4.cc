@@ -343,38 +343,40 @@ IMAP4Protocol::listDir (const KURL & _url)
 
       kdDebug(7116) << "IMAP4Protocol::listDir - got " << listResponses.count () << endl;
 
-      // operate on a copy because the original will be overwritten
-      QValueList<imapList> listResponsesSave = listResponses;
-
-      for (QValueListIterator < imapList > it = listResponsesSave.begin ();
-           it != listResponsesSave.end (); ++it)
+      if (myLType == "LSUB")
       {
-        QString boxName = (*it).name();
-        bool boxOk = true;
-        if (myLType == "LSUB")
+        // fire the same command as LIST to check if the box really exists
+        QValueList<imapList> listResponsesSave = listResponses;
+        doCommand (imapCommand::clientList ("", listStr, false));
+        for (QValueListIterator < imapList > it = listResponsesSave.begin ();
+            it != listResponsesSave.end (); ++it)
         {
-          // check if this folder really exists (RFC 2060)
-          doCommand (imapCommand::clientList ("", boxName, false));
-          if (listResponses.count() == 0)
-            boxOk = false;
-          else
+          bool boxOk = false;
+          for (QValueListIterator < imapList > it2 = listResponses.begin ();
+              it2 != listResponses.end (); ++it2)
           {
-            for (QValueListIterator < imapList > it2 = listResponses.begin ();
-                it2 != listResponses.end (); ++it2)
+            if ((*it2).name() == (*it).name())
             {
-              // copy the flags from the list-command for uw-imap
-              if (boxName == (*it2).name())
-                (*it) = (*it2);
+              boxOk = true;
+              // copy the flags from the LIST-command
+              (*it) = (*it2);
             }
           }
+          if (boxOk)
+            doListEntry (aURL, myBox, (*it));
+          else
+            kdDebug(7116) << "IMAP4Protocol::listDir - suppress " << (*it).name() << endl;
         }
-        if (boxOk)
-          doListEntry (aURL, myBox, (*it));
-        else
-          kdDebug(7116) << "IMAP4Protocol::listDir - suppress " << (*it).name() << endl;
+        listResponses = listResponsesSave;
       }
-      // write back the copy to be save
-      listResponses = listResponsesSave;
+      else
+      {
+        for (QValueListIterator < imapList > it = listResponses.begin ();
+            it != listResponses.end (); ++it)
+        {
+          doListEntry (aURL, myBox, (*it));
+        }
+      }
       entry.clear ();
       listEntry (entry, true);
     }
