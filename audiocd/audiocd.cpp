@@ -2,6 +2,7 @@
   Copyright (C) 2000 Rik Hemsley (rikkus) <rik@kde.org>
   Copyright (C) 2000, 2001 Michael Matz <matz@kde.org>
   Copyright (C) 2001 Carsten Duvenhorst <duvenhorst@m2.uni-hannover.de>
+  Copyright (C) 2001 Adrian Schroeter <adrian@suse.de>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -77,6 +78,58 @@ extern "C"
 {
   int kdemain(int argc, char ** argv);
   int FixupTOC(cdrom_drive *d, int tracks);
+
+#ifdef HAVE_LAME
+//  static KLibrary (*_lamelib)(void) = NULL;
+  static lame_global_flags* (*_lamelib_lame_init)(void) = NULL;
+  static int (*_lamelib_lame_init_params) (lame_global_flags*) = NULL;
+  static void (*_lamelib_id3tag_init)(lame_global_flags*) = NULL;
+  static void (*_lamelib_id3tag_set_album)(lame_global_flags*, const char*) = NULL;
+  static void (*_lamelib_id3tag_set_artist)(lame_global_flags*, const char*) = NULL;
+  static void (*_lamelib_id3tag_set_title)(lame_global_flags*, const char*) = NULL;
+//  static void (*_lamelib_id3tag_set_params)(lame_global_flags*) = NULL;
+  static int  (*_lamelib_lame_encode_buffer_interleaved) (
+          lame_global_flags*, short int*, int, unsigned char*, int) = NULL;
+  static int  (*_lamelib_lame_encode_finish) (
+          lame_global_flags*, unsigned char*, int ) = NULL;
+  static int  (*_lamelib_lame_set_VBR) ( lame_global_flags*, vbr_mode ) = NULL;
+  static int  (*_lamelib_lame_get_VBR) ( lame_global_flags* ) = NULL;
+  static int  (*_lamelib_lame_set_brate) ( lame_global_flags*, int ) = NULL;
+  static int  (*_lamelib_lame_get_brate) ( lame_global_flags* ) = NULL;
+  static int  (*_lamelib_lame_set_quality) ( lame_global_flags*, int ) = NULL;
+  static int  (*_lamelib_lame_set_VBR_mean_bitrate_kbps) ( 
+          lame_global_flags*, int ) = NULL;
+  static int  (*_lamelib_lame_get_VBR_mean_bitrate_kbps) ( 
+          lame_global_flags* ) = NULL;
+  static int  (*_lamelib_lame_set_VBR_min_bitrate_kbps) ( 
+          lame_global_flags*, int ) = NULL;
+  static int  (*_lamelib_lame_set_VBR_hard_min) ( 
+          lame_global_flags*, int ) = NULL;
+  static int  (*_lamelib_lame_set_VBR_max_bitrate_kbps) ( 
+          lame_global_flags*, int ) = NULL;
+  static int  (*_lamelib_lame_set_VBR_q) ( 
+          lame_global_flags*, int ) = NULL;
+  static int  (*_lamelib_lame_set_bWriteVbrTag) ( 
+          lame_global_flags*, int ) = NULL;
+  static int  (*_lamelib_lame_set_mode) ( 
+          lame_global_flags*, int ) = NULL;
+  static int  (*_lamelib_lame_set_copyright) ( 
+          lame_global_flags*, int ) = NULL;
+  static int  (*_lamelib_lame_set_original) ( 
+          lame_global_flags*, int ) = NULL;
+  static int  (*_lamelib_lame_set_strict_ISO) ( 
+          lame_global_flags*, int ) = NULL;
+  static int  (*_lamelib_lame_set_error_protection) ( 
+          lame_global_flags*, int ) = NULL;
+  static int  (*_lamelib_lame_set_lowpassfreq) ( 
+          lame_global_flags*, int ) = NULL;
+  static int  (*_lamelib_lame_set_lowpasswidth) ( 
+          lame_global_flags*, int ) = NULL;
+  static int  (*_lamelib_lame_set_highpassfreq) ( 
+          lame_global_flags*, int ) = NULL;
+  static int  (*_lamelib_lame_set_highpasswidth) ( 
+          lame_global_flags*, int ) = NULL;
+#endif
 }
 
 int start_of_first_data_as_in_toc;
@@ -149,6 +202,8 @@ long my_last_sector(cdrom_drive *drive)
 {
   return cdda_track_lastsector(drive, drive->tracks);
 }
+
+using namespace AudioCD;
 
 int
 kdemain(int argc, char ** argv)
@@ -268,16 +323,182 @@ static QString determineFiletype(QString filename)
     return filename.right(len - pos - 1);
 }
 
+#ifdef HAVE_LAME
+bool AudioCDProtocol::initLameLib(){
+   if ( _lamelib_lame_init != NULL )
+      return true;
+
+   if ( _lamelib_lame_init == (void*) -1 )  // we tried already, do not try again
+      return false;
+
+   // load the lame lib, if not done already
+   KLibLoader *LameLib = KLibLoader::self();
+   QStringList libpaths, libnames;
+
+   libpaths << "/usr/lib/"
+            << "/usr/local/lib/"
+            << "";
+ 
+   libnames << "libmp3lame.so.0"
+            << "libmp3lame.so.0.0.0"
+            << "libmp3lame.so"
+            << "";
+ 
+   for (QStringList::Iterator it = libpaths.begin();
+                              it != libpaths.end();
+                              ++it) {
+      for (QStringList::Iterator lit = libnames.begin();
+                                 lit != libnames.end();
+                                 ++lit) {
+         QString alib = *it+*lit;
+         _lamelib = LameLib->globalLibrary(alib.latin1());
+         if (_lamelib) break;
+      }
+      if (_lamelib) break;
+   }
+
+  if ( _lamelib == NULL ){
+      _lamelib_lame_init = (void*) -1;
+      return false;
+  }else{
+    _lamelib_lame_init =
+           (lame_t (*) (void))
+           _lamelib->symbol("lame_init");
+    _lamelib_id3tag_init =
+           (void (*) (lame_global_flags*))
+           _lamelib->symbol("id3tag_init");
+    _lamelib_id3tag_set_album =
+           (void (*) (lame_global_flags*, const char*))
+           _lamelib->symbol("id3tag_set_album");
+     _lamelib_id3tag_set_artist =
+           (void (*) (lame_global_flags*, const char*))
+           _lamelib->symbol("id3tag_set_artist");
+     _lamelib_id3tag_set_title =
+           (void (*) (lame_global_flags*, const char*))
+           _lamelib->symbol("id3tag_set_title");
+     _lamelib_lame_init_params =
+           (int (*) (lame_global_flags*))
+           _lamelib->symbol("lame_init_params");
+     _lamelib_lame_encode_buffer_interleaved =
+           (int (*) (
+                  lame_global_flags*, short int*, int, unsigned char*, int))
+           _lamelib->symbol("lame_encode_buffer_interleaved");
+     _lamelib_lame_encode_finish =
+           (int (*) (lame_global_flags*, unsigned char*, int))
+           _lamelib->symbol("lame_encode_finish");
+     _lamelib_lame_set_VBR =
+           (int (*) (lame_global_flags*, vbr_mode))
+           _lamelib->symbol("lame_set_VBR");
+     _lamelib_lame_get_VBR =
+           (int (*) (lame_global_flags*))
+           _lamelib->symbol("lame_get_VBR");
+     _lamelib_lame_set_brate =
+           (int (*) (lame_global_flags*, int))
+           _lamelib->symbol("lame_set_brate");
+     _lamelib_lame_get_brate =
+           (int (*) (lame_global_flags*))
+           _lamelib->symbol("lame_get_brate");
+     _lamelib_lame_set_quality =
+           (int (*) (lame_global_flags*, int))
+           _lamelib->symbol("lame_set_quality");
+     _lamelib_lame_set_VBR_mean_bitrate_kbps =
+           (int (*) (lame_global_flags*, int))
+           _lamelib->symbol("lame_set_VBR_mean_bitrate_kbps");
+     _lamelib_lame_get_VBR_mean_bitrate_kbps =
+           (int (*) ( lame_global_flags*))
+           _lamelib->symbol("lame_get_VBR_mean_bitrate_kbps");
+     _lamelib_lame_set_VBR_min_bitrate_kbps =
+           (int (*) ( lame_global_flags*, int))
+           _lamelib->symbol("lame_set_VBR_min_bitrate_kbps");
+     _lamelib_lame_set_VBR_hard_min =
+           (int (*) (lame_global_flags*, int))
+           _lamelib->symbol("lame_set_VBR_hard_min");
+     _lamelib_lame_set_VBR_max_bitrate_kbps =
+           (int (*) (
+                  lame_global_flags*, int))
+           _lamelib->symbol("lame_set_VBR_max_bitrate_kbps");
+    _lamelib_lame_set_VBR_q =
+           (int (*) ( lame_global_flags*, int))
+           _lamelib->symbol("lame_set_VBR_q");
+    _lamelib_lame_set_mode =
+           (int (*) ( lame_global_flags*, int))
+           _lamelib->symbol("lame_set_mode");
+    _lamelib_lame_set_copyright =
+           (int (*) ( lame_global_flags*, int))
+           _lamelib->symbol("lame_set_copyright");
+    _lamelib_lame_set_original =
+           (int (*) ( lame_global_flags*, int))
+           _lamelib->symbol("lame_set_original");
+    _lamelib_lame_set_strict_ISO =
+           (int (*) ( lame_global_flags*, int))
+           _lamelib->symbol("lame_set_strict_ISO");
+    _lamelib_lame_set_error_protection =
+           (int (*) ( lame_global_flags*, int))
+           _lamelib->symbol("lame_set_error_protection");
+    _lamelib_lame_set_lowpassfreq =
+           (int (*) ( lame_global_flags*, int))
+           _lamelib->symbol("lame_set_lowpassfreq");
+    _lamelib_lame_set_lowpasswidth =
+           (int (*) ( lame_global_flags*, int))
+           _lamelib->symbol("lame_set_lowpasswidth");
+    _lamelib_lame_set_highpassfreq =
+           (int (*) ( lame_global_flags*, int))
+           _lamelib->symbol("lame_set_highpassfreq");
+    _lamelib_lame_set_highpasswidth =
+           (int (*) ( lame_global_flags*, int))
+           _lamelib->symbol("lame_set_highpasswidth");
+
+    // protecting for a crash in case of older lame lib
+       if ( _lamelib_lame_init == NULL || _lamelib_id3tag_init == NULL ||
+            _lamelib_id3tag_set_album == NULL ||
+            _lamelib_id3tag_set_artist == NULL ||
+            _lamelib_id3tag_set_title == NULL ||
+            _lamelib_lame_init_params == NULL ||
+            _lamelib_lame_encode_buffer_interleaved == NULL ||
+            _lamelib_lame_set_VBR == NULL ||
+            _lamelib_lame_get_VBR == NULL ||
+            _lamelib_lame_set_brate == NULL ||
+            _lamelib_lame_get_brate == NULL ||
+            _lamelib_lame_set_quality == NULL ||
+            _lamelib_lame_set_VBR_mean_bitrate_kbps == NULL ||
+            _lamelib_lame_get_VBR_mean_bitrate_kbps == NULL ||
+            _lamelib_lame_set_VBR_min_bitrate_kbps == NULL ||
+            _lamelib_lame_set_VBR_hard_min == NULL ||
+            _lamelib_lame_set_VBR_max_bitrate_kbps == NULL ||
+            _lamelib_lame_set_VBR_q == NULL ||
+            _lamelib_lame_set_mode == NULL ||
+            _lamelib_lame_set_copyright == NULL ||
+            _lamelib_lame_set_original == NULL ||
+            _lamelib_lame_set_strict_ISO == NULL ||
+            _lamelib_lame_set_error_protection == NULL ||
+            _lamelib_lame_set_lowpassfreq == NULL ||
+            _lamelib_lame_set_lowpasswidth == NULL ||
+            _lamelib_lame_set_highpassfreq == NULL ||
+            _lamelib_lame_set_highpasswidth == NULL
+           ){
+            error(KIO::ERR_DOES_NOT_EXIST, "A symbol in this library was not found");
+           _lamelib_lame_init = (void*) -1;
+           return false;
+       }
+       if ( NULL == (d->gf = (_lamelib_lame_init)()) )
+       { // init the lame_global_flags structure with defaults
+          error(KIO::ERR_DOES_NOT_EXIST, "" );
+          _lamelib_lame_init = (void*) -1;
+          return false;
+       }
+   }
+ 
+   (void) ((_lamelib_id3tag_init)(d->gf));
+   return true;
+}
+#endif
+
 struct cdrom_drive *
 AudioCDProtocol::initRequest(const KURL & url)
 {
 
 #ifdef HAVE_LAME
-  if (NULL == (d->gf = lame_init())) { // init the lame_global_flags structure with defaults
-    error(KIO::ERR_DOES_NOT_EXIST, url.path());
-    return 0;
-  }
-  id3tag_init (d->gf);
+  initLameLib();
 #endif
 
 #ifdef HAVE_VORBIS
@@ -429,19 +650,20 @@ AudioCDProtocol::get(const KURL & url)
  QString filetype = determineFiletype(d->fname);
 
 #ifdef HAVE_LAME
-  if (filetype == "mp3" && d->based_on_cddb && d->write_id3) {
-    /* If CDDB is used to determine the filenames, tell lame to append ID3v1 TAG to MP3 Files */
-    const char *tname =   d->titles[trackNumber-1].latin1();    // set trackname
-    id3tag_set_album(d->gf, d->cd_title.latin1());
-    id3tag_set_artist(d->gf, d->cd_artist.latin1());
-    id3tag_set_title(d->gf, tname+3); // since titles has preleading tracknumbers, start at position 3
-  }
-
-
-  if (lame_init_params(d->gf) < 0) { // tell lame the new parameters
-    kdDebug(7101) << "lame init params failed" << endl;
-    return;
-  }
+  if ( initLameLib() == true ){
+     if (filetype == "mp3" && d->based_on_cddb && d->write_id3) {
+       /* If CDDB is used to determine the filenames, tell lame to append ID3v1 TAG to MP3 Files */
+       const char *tname =   d->titles[trackNumber-1].latin1();    // set trackname
+       (_lamelib_id3tag_set_album)  (d->gf, d->cd_title.latin1());
+       (_lamelib_id3tag_set_artist) (d->gf, d->cd_artist.latin1());
+       (_lamelib_id3tag_set_title)  (d->gf, tname+3); // since titles has preleading tracknumbers, start at position 3
+     }
+    
+     if ( (_lamelib_lame_init_params) (d->gf) < 0) { // tell lame the new parameters
+       kdDebug(7101) << "lame init params failed" << endl;
+       return;
+     }
+  };
 #endif
 
 #ifdef HAVE_VORBIS
@@ -487,8 +709,10 @@ AudioCDProtocol::get(const KURL & url)
   long time_secs      = (8 * totalByteCount) / (44100 * 2 * 16);
 
 #ifdef HAVE_LAME
-  if (filetype == "mp3")
-    totalSize((time_secs * d->bitrate * 1000)/8);
+  if ( initLameLib() == true ){
+    if (filetype == "mp3")
+      totalSize((time_secs * d->bitrate * 1000)/8);
+  };
 #endif
 
 #ifdef HAVE_VORBIS
@@ -562,8 +786,8 @@ AudioCDProtocol::stat(const KURL & url)
 
       long length_seconds = (filesize) / 176400;
 #ifdef HAVE_LAME
-      if (filetype == "mp3")
-        atom.m_long = (length_seconds * d->bitrate*1000) / 8;
+      if ( initLameLib() == true && filetype == "mp3")
+          atom.m_long = (length_seconds * d->bitrate*1000) / 8;
 #endif
 
 #ifdef HAVE_VORBIS
@@ -746,8 +970,10 @@ AudioCDProtocol::listDir(const KURL & url)
       listEntry(entry, false);
 
 #ifdef HAVE_LAME
-      app_dir(entry, d->s_mp3, d->tracks);
-      listEntry(entry, false);
+      if ( initLameLib() == true ){
+         app_dir(entry, d->s_mp3, d->tracks);
+         listEntry(entry, false);
+      };
 #endif
 
 #ifdef HAVE_VORBIS
@@ -797,8 +1023,10 @@ AudioCDProtocol::listDir(const KURL & url)
             case ByTrack: name = d->s_track.arg(num2) + s; break;
 #ifdef HAVE_LAME
             case MP3:
-              name = d->titles[i - 1] + s2;
-              size = (length_seconds * d->bitrate*1000) / 8; // length * bitrate / 8;
+              if ( initLameLib() == true ){
+                name = d->titles[i - 1] + s2;
+                size = (length_seconds * d->bitrate*1000) / 8; // length * bitrate / 8;
+              };
               break;
 #endif
 
@@ -1075,9 +1303,10 @@ static char mp3buffer[mp3buffer_size];
       ++currentSector;
 
 #ifdef HAVE_LAME
-      if ( filetype == "mp3" ) {
+      if ( initLameLib() == true && filetype == "mp3" ){
          int mp3bytes =
-           lame_encode_buffer_interleaved(d->gf,buf,CD_FRAMESAMPLES,(unsigned char *)mp3buffer,(int)mp3buffer_size);
+           (_lamelib_lame_encode_buffer_interleaved) 
+            (d->gf,buf,CD_FRAMESAMPLES,(unsigned char *)mp3buffer,(int)mp3buffer_size) ;
 
          if (mp3bytes < 0 ) {
             kdDebug(7101) << "lame encoding failed" << endl;
@@ -1158,8 +1387,8 @@ static char mp3buffer[mp3buffer_size];
     }
   }
 #ifdef HAVE_LAME
-  if (filetype == "mp3") {
-     int mp3bytes = lame_encode_finish(d->gf,(unsigned char *)mp3buffer,(int)mp3buffer_size);
+  if ( initLameLib() == true && filetype == "mp3") {
+     int mp3bytes = _lamelib_lame_encode_finish(d->gf,(unsigned char *)mp3buffer,(int)mp3buffer_size);
 
      if (mp3bytes < 0 ) {
        kdDebug(7101) << "lame encoding failed" << endl;
@@ -1223,95 +1452,98 @@ void AudioCDProtocol::getParameters() {
   }
 
 #ifdef HAVE_LAME
+  if ( initLameLib() == true ){
 
-  config->setGroup("MP3");
-
-  int quality = config->readNumEntry("quality",2);
-
-  if (quality < 0 ) quality = 0;
-  if (quality > 9) quality = 9;
-
-  int method = config->readNumEntry("encmethod",0);
-
-  if (method == 0) { 
+     config->setGroup("MP3");
     
-    // Constant Bitrate Encoding
-    lame_set_VBR(d->gf, vbr_off);
-    lame_set_brate(d->gf,config->readNumEntry("cbrbitrate",160));
-    d->bitrate = lame_get_brate(d->gf);
-    lame_set_quality(d->gf, quality);
-
-  } else {
+     int quality = config->readNumEntry("quality",2);
     
-    // Variable Bitrate Encoding
+     if (quality < 0 ) quality = 0;
+     if (quality > 9) quality = 9;
     
-    if (config->readBoolEntry("set_vbr_avr",true)) {
-
-      lame_set_VBR(d->gf,vbr_abr);
-      lame_set_VBR_mean_bitrate_kbps(d->gf, config->readNumEntry("vbr_average_bitrate",0));
-
-      d->bitrate = lame_get_VBR_mean_bitrate_kbps(d->gf);
-
-    } else {
-
-      if (lame_get_VBR(d->gf) == vbr_off) lame_set_VBR(d->gf, vbr_default);
-
-      if (config->readBoolEntry("set_vbr_min",true)) 
-	lame_set_VBR_min_bitrate_kbps(d->gf, config->readNumEntry("vbr_min_bitrate",0));
-      if (config->readBoolEntry("vbr_min_hard",true))
-	lame_set_VBR_hard_min(d->gf, 1);
-      if (config->readBoolEntry("set_vbr_max",true)) 
-	lame_set_VBR_max_bitrate_kbps(d->gf, config->readNumEntry("vbr_max_bitrate",0));
-
-      d->bitrate = 128;
-      lame_set_VBR_q(d->gf, quality);
-      
-    }
-
-    if ( config->readBoolEntry("write_xing_tag",true) ) lame_set_bWriteVbrTag(d->gf, 1);
-
-  }
-
-  switch (   config->readNumEntry("mode",0) ) {
-
-    case 0: lame_set_mode(d->gf, STEREO);
-                break;
-    case 1: lame_set_mode(d->gf, JOINT_STEREO);
-                break;
-    case 2: lame_set_mode(d->gf,DUAL_CHANNEL);
-                break;
-    case 3: lame_set_mode(d->gf,MONO);
-                break;
-    default: lame_set_mode(d->gf,STEREO);
-                break;
-  }
-
-  lame_set_copyright(d->gf, config->readBoolEntry("copyright",false));
-  lame_set_original(d->gf, config->readBoolEntry("original",true));
-  lame_set_strict_ISO(d->gf, config->readBoolEntry("iso",false));
-  lame_set_error_protection(d->gf, config->readBoolEntry("crc",false));
-
-  d->write_id3 = config->readBoolEntry("id3",true);
-
-  if ( config->readBoolEntry("enable_lowpassfilter",false) ) {
-
-    lame_set_lowpassfreq(d->gf, config->readNumEntry("lowpassfilter_freq",0));
-
-    if (config->readBoolEntry("set_lowpassfilter_width",false)) {
-      lame_set_lowpasswidth(d->gf, config->readNumEntry("lowpassfilter_width",0));
-    }
-
-  }
-
-  if ( config->readBoolEntry("enable_highpassfilter",false) ) {
-
-    lame_set_highpassfreq(d->gf, config->readNumEntry("highpassfilter_freq",0));
-
-    if (config->readBoolEntry("set_highpassfilter_width",false)) {
-      lame_set_highpasswidth(d->gf, config->readNumEntry("highpassfilter_width",0));
-    }
-
-  }
+     int method = config->readNumEntry("encmethod",0);
+    
+     if (method == 0) { 
+       
+       // Constant Bitrate Encoding
+       (_lamelib_lame_set_VBR)(d->gf, vbr_off);
+       (_lamelib_lame_set_brate)(d->gf,config->readNumEntry("cbrbitrate",160));
+       d->bitrate = (_lamelib_lame_get_brate)(d->gf);
+       (_lamelib_lame_set_quality)(d->gf, quality);
+    
+     } else {
+       
+       // Variable Bitrate Encoding
+       
+       if (config->readBoolEntry("set_vbr_avr",true)) {
+    
+         (_lamelib_lame_set_VBR)(d->gf,vbr_abr);
+         (_lamelib_lame_set_VBR_mean_bitrate_kbps)(d->gf, config->readNumEntry("vbr_average_bitrate",0));
+    
+         d->bitrate = (_lamelib_lame_get_VBR_mean_bitrate_kbps)(d->gf);
+    
+       } else {
+    
+         if ((_lamelib_lame_get_VBR)(d->gf) == vbr_off) _lamelib_lame_set_VBR(d->gf, vbr_default);
+    
+         if (config->readBoolEntry("set_vbr_min",true)) 
+     (_lamelib_lame_set_VBR_min_bitrate_kbps)(d->gf, config->readNumEntry("vbr_min_bitrate",0));
+         if (config->readBoolEntry("vbr_min_hard",true))
+     (_lamelib_lame_set_VBR_hard_min)(d->gf, 1);
+         if (config->readBoolEntry("set_vbr_max",true)) 
+     (_lamelib_lame_set_VBR_max_bitrate_kbps)(d->gf, config->readNumEntry("vbr_max_bitrate",0));
+    
+         d->bitrate = 128;
+         (_lamelib_lame_set_VBR_q)(d->gf, quality);
+         
+       }
+    
+       if ( config->readBoolEntry("write_xing_tag",true) )
+            (_lamelib_lame_set_bWriteVbrTag)(d->gf, 1);
+    
+     }
+    
+     switch (   config->readNumEntry("mode",0) ) {
+    
+       case 0: (_lamelib_lame_set_mode)(d->gf, STEREO);
+                   break;
+       case 1: (_lamelib_lame_set_mode)(d->gf, JOINT_STEREO);
+                   break;
+       case 2: (_lamelib_lame_set_mode)(d->gf,DUAL_CHANNEL);
+                   break;
+       case 3: (_lamelib_lame_set_mode)(d->gf,MONO);
+                   break;
+       default: (_lamelib_lame_set_mode)(d->gf,STEREO);
+                   break;
+     }
+    
+     (_lamelib_lame_set_copyright)(d->gf, config->readBoolEntry("copyright",false));
+     (_lamelib_lame_set_original)(d->gf, config->readBoolEntry("original",true));
+     (_lamelib_lame_set_strict_ISO)(d->gf, config->readBoolEntry("iso",false));
+     (_lamelib_lame_set_error_protection)(d->gf, config->readBoolEntry("crc",false));
+    
+     d->write_id3 = config->readBoolEntry("id3",true);
+    
+     if ( config->readBoolEntry("enable_lowpassfilter",false) ) {
+    
+       (_lamelib_lame_set_lowpassfreq)(d->gf, config->readNumEntry("lowpassfilter_freq",0));
+    
+       if (config->readBoolEntry("set_lowpassfilter_width",false)) {
+         (_lamelib_lame_set_lowpasswidth)(d->gf, config->readNumEntry("lowpassfilter_width",0));
+       }
+    
+     }
+    
+     if ( config->readBoolEntry("enable_highpassfilter",false) ) {
+    
+       (_lamelib_lame_set_highpassfreq)(d->gf, config->readNumEntry("highpassfilter_freq",0));
+    
+       if (config->readBoolEntry("set_highpassfilter_width",false)) {
+         (_lamelib_lame_set_highpasswidth)(d->gf, config->readNumEntry("highpassfilter_width",0));
+       }
+    
+     }
+  };
 #endif // HAVE_LAME
 
 #ifdef HAVE_VORBIS

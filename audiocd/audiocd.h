@@ -1,6 +1,7 @@
 /*
   Copyright (C) 2000 Rik Hemsley (rikkus) <rik@kde.org>
   Copyright (C) 2001 Carsten Duvenhorst <duvenhorst@m2.uni-hannover.de>
+  Copyright (C) 2001 Adrian Schroeter <adrian@suse.de>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -24,8 +25,11 @@
 
 #include <kio/global.h>
 #include <kio/slavebase.h>
+#include <klibloader.h>
 
 struct cdrom_drive;
+
+namespace AudioCD {
 
 class AudioCDProtocol : public KIO::SlaveBase
 {
@@ -86,7 +90,13 @@ class AudioCDProtocol : public KIO::SlaveBase
   private:
     cdrom_drive * pickDrive();
     unsigned int get_discid(cdrom_drive *);
+#ifdef HAVE_LAME
+    KLibrary *_lamelib;
+    bool      initLameLib();
+#endif
 };
+
+}; // end namespace AudioCD
 
 #endif
 // vim:ts=2:sw=2:tw=78:et:
