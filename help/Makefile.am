@@ -16,8 +16,14 @@ kdelnk_DATA = help.protocol
 kdelnkdir = $(kde_servicesdir)
 
 bin_PROGRAMS = meinproc saxon checkXML
-meinproc_LDADD = $(LIB_KIO) libxslt/libxslt.la
-meinproc_SOURCES = meinproc.cpp xslt.cpp kio_help.cpp
+meinproc_LDADD = xslt_pure.o libxslt/libxslt.la $(LIB_KDECORE)
+meinproc_SOURCES = meinproc.cpp
+
+xslt_pure.o: xslt.cpp
+	-rm -f xslt_pure.cpp
+	$(LN_S) $(srcdir)/xslt.cpp xslt_pure.cpp
+	$(CXXCOMPILE) -DSIMPLE_XSLT -c xslt_pure.cpp
+	-rm -f xslt_pure.cpp
 
 saxon_LDADD = $(LIB_KIO) libxslt/libxslt.la
 saxon_SOURCES = saxon.cpp xslt.cpp kio_help.cpp

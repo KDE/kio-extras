@@ -12,7 +12,12 @@
 #include <klocale.h>
 #include <assert.h>
 
+#if !defined( SIMPLE_XSLT )
 extern HelpProtocol *slave;
+#define INFO( x ) if (slave) slave->infoMessage(x);
+#else
+#define INFO( x )
+#endif
 
 int writeToQString(void * context, const char * buffer, int len)
 {
@@ -28,7 +33,8 @@ void closeQString(void * context) {
 
 QString transform( const QString &pat, const QString& tss)
 {
-    if (slave) slave->infoMessage(i18n("Parsing stylesheet"));
+    INFO(i18n("Parsing stylesheet"));
+
     xsltStylesheetPtr style_sheet =
         xsltParseStylesheetFile((const xmlChar *)tss.latin1());
 
@@ -40,7 +46,7 @@ QString transform( const QString &pat, const QString& tss)
 	else
 	    xmlIndentTreeOutput = 0;
 
-        if (slave) slave->infoMessage(i18n("Reading document"));
+        INFO(i18n("Reading document"));
         QFile xmlFile( pat );
         xmlFile.open(IO_ReadOnly);
         QCString contents;
@@ -50,7 +56,7 @@ QString transform( const QString &pat, const QString& tss)
         QString tmp;
         if (contents.left(5) != "<?xml") {
             fprintf(stderr, "xmlizer\n");
-            if (slave) slave->infoMessage(i18n("XMLize document"));
+            INFO(i18n("XMLize document"));
             FILE *p = popen(QString::fromLatin1("xmlizer %1").arg(pat).latin1(), "r");
             xmlFile.open(IO_ReadOnly, p);
             char buffer[5001];
@@ -64,7 +70,7 @@ QString transform( const QString &pat, const QString& tss)
             pclose(p);
         }
 
-        if (slave) slave->infoMessage(i18n("Parsing document"));
+        INFO(i18n("Parsing document"));
         xmlParserCtxtPtr ctxt = xmlCreateMemoryParserCtxt(contents.data(),
                                                           contents.length());
         int directory = pat.findRev('/');
@@ -84,13 +90,13 @@ QString transform( const QString &pat, const QString& tss)
  	// the params can be used to customize it more flexible
 	const char *params[16 + 1];
 	params[0] = NULL;
-        if (slave) slave->infoMessage(i18n("Applying stylesheet"));
+        INFO(i18n("Applying stylesheet"));
 	xmlDocPtr res = xsltApplyStylesheet(style_sheet, doc, params);
 	xmlFreeDoc(doc);
 	if (res != NULL) {
             xmlOutputBufferPtr outp = xmlOutputBufferCreateIO(writeToQString, closeQString, &parsed, 0);
             outp->written = 0;
-            if (slave) slave->infoMessage(i18n("Writing document"));
+            INFO(i18n("Writing document"));
             xsltSaveResultTo ( outp, res, style_sheet );
             xmlOutputBufferFlush(outp);
             xmlFreeDoc(res);
