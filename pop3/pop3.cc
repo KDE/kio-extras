@@ -68,17 +68,24 @@ bool POP3Protocol::getResponse (char *r_buf, unsigned int r_len)
     r_len=512;
   }
 
-  // Wait for something to come from the server
-  FD_ZERO(&FDs);
-  FD_SET(m_iSock, &FDs);
-
   // And keep waiting if it timed out
-  unsigned int wait_time=1;
-  while (::select(m_iSock+1, &FDs, 0, 0, &m_tTimeout) ==0) {
-    // Yes, it's true, Linux sucks.
-    wait_time++;
-    m_tTimeout.tv_sec=wait_time;
+  unsigned int wait_time=60; // Wait 60sec. max.
+  do
+  {
+    // Wait for something to come from the server
+    FD_ZERO(&FDs);
+    FD_SET(m_iSock, &FDs);
+    // Yes, it's true, Linux sucks. (And you can't program --Waba)
+    wait_time--;
+    m_tTimeout.tv_sec=1;
     m_tTimeout.tv_usec=0;
+  }
+  while (wait_time && (::select(m_iSock+1, &FDs, 0, 0, &m_tTimeout) ==0));
+
+  if (wait_time == 0)
+  {
+    fprintf(stderr, "No response from POP3 server in 60 secs.\n");fflush(stderr);
+    return false;
   }
 
   // Clear out the buffer
