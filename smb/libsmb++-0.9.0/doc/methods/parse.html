@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+	<TITLE></TITLE>
+	<META NAME="GENERATOR" CONTENT="StarOffice/5.0 (Unix)">
+	<META NAME="AUTHOR" CONTENT="Brodu Nicolas">
+	<META NAME="CREATED" CONTENT="19990523;22460100">
+	<META NAME="CHANGEDBY" CONTENT="Brodu Nicolas">
+	<META NAME="CHANGED" CONTENT="20000214;11135800">
+	<STYLE>
+	<!--
+		A:link { color: #ee1100 }
+		A:visited { color: #aa0000 }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LINK="#ee1100" VLINK="#aa0000" BGCOLOR="#ffffff">
+<P ALIGN=CENTER><FONT COLOR="#000000"><IMG SRC="../onLineDoc.jpg" NAME="Graphic1" ALIGN=BOTTOM WIDTH=599 HEIGHT=40 BORDER=0></FONT></P>
+<HR>
+<P ALIGN=LEFT><FONT SIZE=5><FONT COLOR="#198a8a"><FONT COLOR="#198a8a">void</FONT><FONT COLOR="#000000">
+</FONT><A HREF="parse.html">parse</A><FONT COLOR="#000000">(</FONT><FONT COLOR="#198a8a">const
+char</FONT><FONT COLOR="#000000"> *name, </FONT><FONT COLOR="#198a8a">bool</FONT><FONT COLOR="#000000">
+interpretDirs = </FONT><FONT COLOR="#0000ff">true</FONT></FONT><FONT COLOR="#000000">)</FONT></FONT></P>
+<HR>
+<H2 ALIGN=LEFT><A NAME="method list"></A><FONT COLOR="#000080"><I><U>Method
+Description</U></I></FONT></H2>
+<P ALIGN=LEFT>Use this method to parse an URL. The advantage of using
+this instead of your own routine is that :<BR>&nbsp;&nbsp;&nbsp;&nbsp;.
+You don't have to reinvent the wheel<BR>&nbsp;&nbsp;&nbsp;&nbsp;.
+This function uses internal library variables so as to determine
+whether 'smb://foo' represents a host or a workgroup.</P>
+<P ALIGN=LEFT>The following format are accepted :<BR>&nbsp;&nbsp;&nbsp;&nbsp;.
+smb://user:password@workgroup/host/share/path<BR>&nbsp;&nbsp;&nbsp;&nbsp;.
+smb://user:password@host:IP/share/path<BR>&nbsp;&nbsp;&nbsp;&nbsp;.
+\\host\share\path</P>
+<P ALIGN=LEFT>You can omit any field, so long as there is no
+confusion. For example opendir(&quot;smb://&quot;) is a virtual
+directory that contains the list of workgroups, but
+&quot;smb://share/path&quot; is invalid (or rather, it will not do
+what you expect).</P>
+<P ALIGN=LEFT><I>name</I> should contain the URL to parse in ASCIIZ.</P>
+<P ALIGN=LEFT><I>interpretDirs</I> should be set to true (default) if
+you want the library to interpret &quot;.&quot; and &quot;..&quot; as
+special directories.</P>
+<P ALIGN=LEFT>You can get the parsed results using the corresponding
+functions. For example, user() will return the user component of the
+last parsed URL. Unlike the previous versions of libsmb, you should
+not delete those results.</P>
+<H2 ALIGN=LEFT><FONT COLOR="#000080"><I><U>See also :</U></I></FONT></H2>
+<P><FONT COLOR="#333333">Does the opposite of the parser<BR></FONT><FONT COLOR="#198a8a">char</FONT>
+*<A HREF="buildURL.html">buildURL</A>(<FONT COLOR="#198a8a">const
+char</FONT>* user=<FONT COLOR="#0000ff">0</FONT>, <FONT COLOR="#198a8a">const
+char</FONT>* password=<FONT COLOR="#0000ff">0</FONT>, <FONT COLOR="#198a8a">const
+char</FONT>* workgroup=<FONT COLOR="#0000ff">0</FONT>, <FONT COLOR="#198a8a">const
+char</FONT> *host=<FONT COLOR="#0000ff">0</FONT>, <FONT COLOR="#198a8a">const
+char</FONT>* share=<FONT COLOR="#0000ff">0</FONT>, <FONT COLOR="#198a8a">const
+char</FONT>* path=<FONT COLOR="#0000ff">0</FONT>, <FONT COLOR="#198a8a">const
+char</FONT>* ip=<FONT COLOR="#0000ff">0</FONT>)</P>
+<HR>
+<P ALIGN=RIGHT><FONT COLOR="#4c4c4c"><I>Copyright &copy; Nicolas
+Brodu, 1999 - 2000</I></FONT></P>
+</BODY>
+</HTML>

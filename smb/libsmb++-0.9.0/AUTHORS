@@ -1,0 +1,14 @@
+Nicolas Brodu <nicolas.brodu@free.fr>
+	Main coder.
+
+Erik Forsberg <forsberg@lysator.liu.se>
+	Charset, caching, and more, in native code.
+
+Artur Frysiak <wiget@t17.ds.pwr.wroc.pl>
+	Introduced Automake and libtool in libsmb. PLD CVS maintainer.
+
+All
+	Many suggestions, testing, support...
+	
+Also thanks to the KDE team for the modifications made in the KDE CVS.
+

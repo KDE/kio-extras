@@ -1,0 +1,53 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+	<TITLE></TITLE>
+	<META NAME="GENERATOR" CONTENT="StarOffice/5.0 (Unix)">
+	<META NAME="AUTHOR" CONTENT="Brodu Nicolas">
+	<META NAME="CREATED" CONTENT="19990523;22460100">
+	<META NAME="CHANGEDBY" CONTENT="Brodu Nicolas">
+	<META NAME="CHANGED" CONTENT="20000204;13090800">
+	<STYLE>
+	<!--
+		A:link { color: #ee1100 }
+		A:visited { color: #aa0000 }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LINK="#ee1100" VLINK="#aa0000" BGCOLOR="#ffffff">
+<P ALIGN=CENTER><FONT COLOR="#000000"><IMG SRC="../onLineDoc.jpg" NAME="Graphic1" ALIGN=BOTTOM WIDTH=599 HEIGHT=40 BORDER=0></FONT></P>
+<HR>
+<P ALIGN=LEFT><FONT SIZE=5><FONT COLOR="#198a8a">int</FONT>
+<A HREF="opendir.html">opendir</A>(<FONT COLOR="#198a8a">const char</FONT>
+*name)</FONT></P>
+<HR>
+<H2 ALIGN=LEFT><A NAME="method list"></A><FONT COLOR="#000080"><I><U>Method
+Description</U></I></FONT></H2>
+<P>This method is used to open a directory.<BR><U>Important note</U>:
+The library makes all browse operations transparent by using
+directories. So, 'smb://' or 'smb://workgroup' for example, are
+perfectly valid directories!</P>
+<P ALIGN=LEFT><I>name</I> is a full URL. It should correspond to a
+directory.</P>
+<P ALIGN=LEFT>This method returns a directory descriptor, which can
+be used only for this library functions. Do not use standard
+functions with these descriptors.</P>
+<P ALIGN=LEFT>On error, -1 is returned and error() will return the
+corresponding error code.</P>
+<H2 ALIGN=LEFT><FONT COLOR="#000080"><I><U>See also :</U></I></FONT></H2>
+<P><FONT COLOR="#333333">Reads from an &quot;opened&quot; directory
+descriptor. Does caching.<BR></FONT>SMBdirent *<A HREF="readdir.html">readdir</A>(<FONT COLOR="#198a8a">int</FONT>
+dirdesc)</P>
+<P><FONT COLOR="#333333">Close the directory associated with this
+file descriptor<BR></FONT><FONT COLOR="#198a8a">int</FONT>
+<A HREF="closedir.html">closedir</A>(<FONT COLOR="#198a8a">int</FONT>
+dirdesc)</P>
+<P><FONT COLOR="#333333">Position the position pointer for this
+directory descriptor. Returns -1 on error.<BR><FONT COLOR="#198a8a">int</FONT>
+<A HREF="rewinddir.html">rewinddir</A>(<FONT COLOR="#198a8a">int</FONT>
+dirdesc)Sets our NetBIOS name (ASCIIZ)</FONT></P>
+<HR>
+<P ALIGN=RIGHT><FONT COLOR="#4c4c4c"><I>Copyright &copy; Nicolas
+Brodu, 1999 - 2000</I></FONT></P>
+</BODY>
+</HTML>

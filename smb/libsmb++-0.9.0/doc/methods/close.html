@@ -1,0 +1,44 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+	<TITLE></TITLE>
+	<META NAME="GENERATOR" CONTENT="StarOffice/5.0 (Unix)">
+	<META NAME="AUTHOR" CONTENT="Brodu Nicolas">
+	<META NAME="CREATED" CONTENT="19990523;22460100">
+	<META NAME="CHANGEDBY" CONTENT="Brodu Nicolas">
+	<META NAME="CHANGED" CONTENT="20000204;12472900">
+	<STYLE>
+	<!--
+		A:link { color: #ee1100 }
+		A:visited { color: #aa0000 }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LINK="#ee1100" VLINK="#aa0000" BGCOLOR="#ffffff">
+<P ALIGN=CENTER><FONT COLOR="#000000"><IMG SRC="../onLineDoc.jpg" NAME="Graphic1" ALIGN=BOTTOM WIDTH=599 HEIGHT=40 BORDER=0></FONT></P>
+<HR>
+<P ALIGN=LEFT><FONT SIZE=5><FONT COLOR="#198a8a">int</FONT> <A HREF="close.html">close</A>(<FONT COLOR="#198a8a">int</FONT>
+fd)</FONT></P>
+<HR>
+<H2 ALIGN=LEFT><A NAME="method list"></A><FONT COLOR="#000080"><I><U>Method
+Description</U></I></FONT></H2>
+<P ALIGN=LEFT><SPAN STYLE="text-decoration: none"><I>fd</I></SPAN> is
+the file descriptor that must be closed.<BR>It should have previously
+been opened by a library function.</P>
+<P ALIGN=LEFT>This method flushes the unwritten data, and returns 0
+on success.<BR>On error, -1 is returned and error() will return the
+corresponding error code.</P>
+<H2 ALIGN=LEFT><FONT COLOR="#000080"><I><U>See also :</U></I></FONT></H2>
+<P><FONT COLOR="#333333">Opens a file. URLs are accepted. Works as
+its standard equivalent.<BR></FONT><FONT COLOR="#198a8a">int</FONT>
+<A HREF="open.html">open</A>(<FONT COLOR="#198a8a">const char</FONT>*
+file=&quot;&quot;, <FONT COLOR="#198a8a">int</FONT> flags=O_RDWR, <FONT COLOR="#198a8a">int</FONT>
+mode=<FONT COLOR="#0000ff">0644</FONT>)</P>
+<P><FONT COLOR="#333333">Flush forces a write of all buffered data
+for the given fd<BR></FONT><FONT COLOR="#198a8a">int</FONT> <A HREF="flush.html">flush</A>(<FONT COLOR="#198a8a">int</FONT>
+fd)</P>
+<HR>
+<P ALIGN=RIGHT><FONT COLOR="#4c4c4c"><I>Copyright &copy; Nicolas
+Brodu, 1999 - 2000</I></FONT></P>
+</BODY>
+</HTML>

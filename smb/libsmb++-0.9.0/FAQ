@@ -1,0 +1,74 @@
+Just a few more questions/answers.
+Read the README file if you didn't do it already.
+
+
+***********************
+Is it related to Samba?
+***********************
+
+Yes, but also no. The library has been written independantly from Samba, and
+the native code can run without Samba present on the system.
+However, it is strongly recommended to install Samba-TNG and compile this
+library to use it, as you'll have much better results.
+
+
+************
+Limitations.
+************
+
+Native Code:
+Nothing's perfect, and certainly not this library. First of all, the SMB
+protocol itself isn't perfect. Usually, this library works fine for LANs.
+However, as soon as the SMB network spans several subnets, problems appear
+(even in the presence of a WINS server, supported and necessary in this case).
+It is not possible to do domain logons though it is possible to log on a each
+server that requires it.
+Encryption is implemented for the protocol versions we use (according to the
+specifications...), some servers still refuse access or send unknown packets.
+There are also bugs, inevitably.
+
+Samba mode:
+It can more or less do what smbclient does. Anything related to SMB in Samba
+mode is done in the Samba libraries, so refer to Samba in that case.
+The library cannot do domain logons.
+
+
+************************
+Is there a mailing-list?
+************************
+
+The mailing list and cvs server have moved to SourceForge.
+See http://www.sourceforge.net for more information, and the project home page.
+
+
+**************************
+When will 1.0 be released?
+**************************
+
+When we have time! And anyway not before Samba-3.0 is out.
+
+
+***********************
+How can I report a bug?
+***********************
+
+You can report a missing feature or a bug by sending a mail to the mailing list
+describing your problem. If possible, try to use the CVS version first to see if
+it's not there already. Alternatively, you can complain directly to me or any
+author.
+
+
+***********************************************
+Personal Note (Well, I know, it's not a FAQ...)
+***********************************************
+
+I'm no longer on an LAN and don't use SMB anymore. The protocol changes
+constantly, and I certainly cannot/will not maintain the native code.
+Moreover, I'm bored of doing SMB and would like to move on to more interesting
+projects.
+Don't worry though, I'll try to maintain the link with Samba as their API is
+quite stable and it's quite fun to do a project like this, and hopefully more
+people will come to help.
+
+
+Nicolas Brodu, 20000207

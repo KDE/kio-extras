@@ -1,0 +1,51 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+	<TITLE></TITLE>
+	<META NAME="GENERATOR" CONTENT="StarOffice/5.0 (Unix)">
+	<META NAME="AUTHOR" CONTENT="Brodu Nicolas">
+	<META NAME="CREATED" CONTENT="19990523;22460100">
+	<META NAME="CHANGEDBY" CONTENT="Brodu Nicolas">
+	<META NAME="CHANGED" CONTENT="20000216;18541900">
+	<STYLE>
+	<!--
+		A:link { color: #ee1100 }
+		A:visited { color: #aa0000 }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LINK="#ee1100" VLINK="#aa0000" BGCOLOR="#ffffff">
+<P ALIGN=CENTER><FONT COLOR="#000000"><IMG SRC="../onLineDoc.jpg" NAME="Graphic1" ALIGN=BOTTOM WIDTH=599 HEIGHT=40 BORDER=0></FONT></P>
+<HR>
+<P ALIGN=LEFT><FONT SIZE=5><FONT COLOR="#198a8a">class
+</FONT><A HREF="SmbAnswerCallback.html">SmbAnswerCallback</A></FONT></P>
+<HR>
+<H2 ALIGN=LEFT><FONT COLOR="#000080"><I><U>Class Description</U></I></FONT></H2>
+<P ALIGN=LEFT><FONT COLOR="#198a8a">class</FONT>
+SmbAnswerCallback<BR>{<BR><FONT COLOR="#ff00ff">protected</FONT>:<BR>&nbsp;&nbsp;&nbsp;&nbsp;char
+*lastAnswer;<BR><FONT COLOR="#ff00ff">public</FONT>:<BR>&nbsp;&nbsp;&nbsp;&nbsp;SmbAnswerCallback();<BR>&nbsp;&nbsp;&nbsp;&nbsp;virtual
+~SmbAnswerCallback();<BR><FONT COLOR="#999999">// Overload this
+method to enable the library to have user feedback</FONT><BR>&nbsp;&nbsp;&nbsp;&nbsp;virtual
+char *getAnswer(int type, const char *optmessage);<BR>};</P>
+<P ALIGN=LEFT>This is a convenience class that you should overload.
+The getAnswer method is invoked when a answer is needed from the
+user. The arguments are:</P>
+<P ALIGN=LEFT><I>type</I>: One of the following types, that describe
+why this function was called.<BR>ANSWER_USER_NAME: a user name is
+requested for the server in <I>optmessage</I><BR>ANSWER_USER_PASSWORD:
+a password for the user name in <I>optmessage</I><BR>ANSWER_SERVICE_PASSWORD:
+a password for the service (SMB share) in <I>optmessage</I></P>
+<P ALIGN=LEFT><I>optmessage</I>: Additional data. It depends on <I>type</I>.</P>
+<P ALIGN=LEFT>Note: <I>lastAnswer</I> is a variable that you can use
+to store the information. It will be deleted in the destructor if non
+0.</P>
+<H2 ALIGN=LEFT><FONT COLOR="#000080"><I><U>See also :</U></I></FONT></H2>
+<P><FONT COLOR="#333333">Specify a callback for the library to get
+user answers (passwords, login names)</FONT><BR><FONT COLOR="#198a8a">void</FONT>
+<A HREF="setPasswordCallback.html">setPasswordCallback</A>(SmbAnswerCallback
+*getObject)</P>
+<HR>
+<P ALIGN=RIGHT><FONT COLOR="#4c4c4c"><I>Copyright &copy; Nicolas
+Brodu, 1999 - 2000</I></FONT></P>
+</BODY>
+</HTML>
