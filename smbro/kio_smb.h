@@ -77,6 +77,7 @@ class SmbProtocol : public KIO::SlaveBase
       int m_stdoutSize;
       QString m_currentHost;
       QCString m_nmbName;
+      QCString m_ip;
       QDict<ClientProcess> m_processes;
       QMap<QString,int> m_months;
 

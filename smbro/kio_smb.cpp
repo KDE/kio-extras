@@ -96,6 +96,9 @@ SmbProtocol::SmbProtocol (const QCString &pool, const QCString &app )
 :SlaveBase( "smb", pool, app )
 ,m_stdoutBuffer(0)
 ,m_stdoutSize(0)
+,m_currentHost("")
+,m_nmbName("")
+,m_ip("")
 ,m_processes(17,false)
 ,m_showHiddenShares(true)
 ,m_password("")
@@ -381,6 +384,8 @@ void SmbProtocol::listShares()
    args<<QCString("-L")+m_nmbName;
    if (!m_user.isEmpty())
       args<<QCString("-U")+m_user.latin1();
+   if (!m_ip.isEmpty())
+      args<<QCString("-I")+m_ip;
    if (!m_workgroup.isEmpty())
       args<<QCString("-W")+m_workgroup.latin1();
    if (!proc->start("smbclient",args))
@@ -409,6 +414,8 @@ void SmbProtocol::listShares()
          tmpArgs<<QCString("-L")+m_nmbName;
          if (!user.isEmpty())
             tmpArgs<<QCString("-U")+user.latin1();
+         if (!m_ip.isEmpty())
+            args<<QCString("-I")+m_ip;
          if (!m_workgroup.isEmpty())
             tmpArgs<<QCString("-W")+m_workgroup.latin1();
          if (!proc->start("smbclient",tmpArgs))
@@ -1038,6 +1045,7 @@ See the KDE Control Center under Network, LANBrowsing for more information."));
       return;
    };
    QCString nmbName=host.latin1();
+   QCString ipString("");
    //try to find the netbios name of this host
    //first try to get the ip address of the host
    struct hostent *hp=gethostbyname(host.latin1());
@@ -1051,7 +1059,7 @@ See the KDE Control Center under Network, LANBrowsing for more information."));
    {
       in_addr ip;
       memcpy(&ip, hp->h_addr, hp->h_length);
-      QCString ipString=inet_ntoa(ip);
+      ipString=inet_ntoa(ip);
       kdDebug(7101)<<"Smb::setHost: ip is -"<<ipString<<"-"<<endl;
       //if we have the ip address, do a nmblookup -A address
       //and use the name <00>
@@ -1109,6 +1117,7 @@ See the KDE Control Center under Network, LANBrowsing for more information."));
    kdDebug(7101)<<"Smb::setHost() nmbName is -"<<nmbName<<"-"<<endl;
 
    if (host==m_currentHost) return;
+   m_ip=ipString;
    m_currentHost=host;
    m_nmbName=nmbName;
    m_processes.clear();
@@ -1147,6 +1156,8 @@ ClientProcess* SmbProtocol::getProcess(const QString& host, const QString& share
       args<<QCString("-W")+m_workgroup.latin1();
    if (!m_user.isEmpty())
       args<<QCString("-U")+m_user.latin1();
+   if (!m_ip.isEmpty())
+      args<<QCString("-I")+m_ip;
 
    if (!proc->start("smbclient",args))
    {
@@ -1177,6 +1188,8 @@ ClientProcess* SmbProtocol::getProcess(const QString& host, const QString& share
             tmpArgs<<QCString("-W")+m_workgroup.latin1();
          if (!user.isEmpty())
             tmpArgs<<QCString("-U")+user.latin1();
+         if (!m_ip.isEmpty())
+            args<<QCString("-I")+m_ip;
          if (!proc->start("smbclient",tmpArgs))
          {
             error( KIO::ERR_CANNOT_LAUNCH_PROCESS, "smbclient"+i18n("\nMake sure that the samba package is installed properly on your system."));
