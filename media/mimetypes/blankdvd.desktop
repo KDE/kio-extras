@@ -2,7 +2,6 @@
 Encoding=UTF-8
 Type=MimeType
 MimeType=media/blankdvd
-Name=Blank DVD
-
+Comment=Blank DVD
 Icon=cdwriter_unmount
 

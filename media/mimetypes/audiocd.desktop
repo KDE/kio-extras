@@ -2,7 +2,7 @@
 Encoding=UTF-8
 Type=MimeType
 MimeType=media/audiocd
-Name=Audio CD
+Comment=Audio CD
 Icon=cdaudio_unmount
 
 X-KDE-AutoEmbed=true

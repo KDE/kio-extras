@@ -2,5 +2,5 @@
 Encoding=UTF-8
 Type=MimeType
 MimeType=media/svcd
-Name=Super Video CD
+Comment=Super Video CD
 Icon=cdrom_unmount

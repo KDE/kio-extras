@@ -2,7 +2,7 @@
 Encoding=UTF-8
 Type=MimeType
 MimeType=media/gphoto2camera
-Name=gphoto2 camera
+Comment=Camera
 Icon=camera_unmount
 
 X-KDE-AutoEmbed=true

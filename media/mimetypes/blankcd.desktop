@@ -2,7 +2,6 @@
 Encoding=UTF-8
 Type=MimeType
 MimeType=media/blankcd
-Name=Blank CD
-
+Comment=Blank CD
 Icon=cdwriter_unmount
 
