@@ -1027,6 +1027,48 @@ IMAP4Protocol::special (const QByteArray & aData)
     completeQueue.removeRef (cmd);
     finished();
   }
+  else if (tmp == 'U')
+  {
+    // unsubscribe
+    KURL _url;
+    stream >> _url;
+    QString aBox, aSequence, aLType, aSection, aValidity, aDelimiter;
+    parseURL (_url, aBox, aSection, aLType, aSequence, aValidity, aDelimiter);
+    if (assureBox (aBox, false))
+    {
+      imapCommand *cmd = doCommand(imapCommand::clientUnsubscribe(aBox));
+      if (cmd->result () != "OK")
+      {
+        error(ERR_NO_CONTENT, i18n("Unsubscribe of folder %1 "
+              "failed.").arg(hidePass(_url)));
+        return;
+      }
+      completeQueue.removeRef (cmd);
+      finished();
+    }
+    else error (ERR_CANNOT_OPEN_FOR_WRITING, hidePass(_url));
+  }
+  else if (tmp == 'u')
+  {
+    // subscribe
+    KURL _url;
+    stream >> _url;
+    QString aBox, aSequence, aLType, aSection, aValidity, aDelimiter;
+    parseURL (_url, aBox, aSection, aLType, aSequence, aValidity, aDelimiter);
+    if (assureBox (aBox, false))
+    {
+      imapCommand *cmd = doCommand(imapCommand::clientSubscribe(aBox));
+      if (cmd->result () != "OK")
+      {
+        error(ERR_NO_CONTENT, i18n("Subscribe of folder %1 "
+              "failed.").arg(hidePass(_url)));
+        return;
+      }
+      completeQueue.removeRef (cmd);
+      finished();
+    }
+    else error (ERR_CANNOT_OPEN_FOR_WRITING, hidePass(_url));
+  }
   else
   {
     // status ('S')
