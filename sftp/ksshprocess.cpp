@@ -22,9 +22,7 @@
 
 #include <kstddirs.h>
 
-using namespace KSSH;
-
-const char * const KSSHProcess::versionStrs[] = {
+const char * const KSshProcess::versionStrs[] = {
     "OpenSSH_2.9p1",
     "OpenSSH_2.9p2",
     "OpenSSH_2.9",
@@ -33,7 +31,7 @@ const char * const KSSHProcess::versionStrs[] = {
     "SSH Secure Shell"
 };
 
-const char * const KSSHProcess::passwdPrompt[] = {
+const char * const KSshProcess::passwdPrompt[] = {
     "password:", // OpenSSH_2.9p1
     "password:", // OpenSSH_2.9p2
     "password:", // OpenSSH_2.9
@@ -42,7 +40,7 @@ const char * const KSSHProcess::passwdPrompt[] = {
     "password:"  // SSH
 };
 
-const char* const KSSHProcess::authFailedPrompt[] = {
+const char* const KSshProcess::authFailedPrompt[] = {
     "Permission denied",
     "",
     "",
@@ -51,7 +49,7 @@ const char* const KSSHProcess::authFailedPrompt[] = {
     "Authentication failed."
 };
 
-const char* const KSSHProcess::hostKeyMissing[] = {
+const char* const KSshProcess::hostKeyMissing[] = {
     "The authenticity of host",
     "The authenticity of host",
     "The authenticity of host",
@@ -60,7 +58,7 @@ const char* const KSSHProcess::hostKeyMissing[] = {
     "Host key not found from database"
 };
 
-const char* const KSSHProcess::continuePrompt[] = {
+const char* const KSshProcess::continuePrompt[] = {
     "Are you sure you want to continue connecting (yes/no)?",
     "Are you sure you want to continue connecting (yes/no)?",
     "Are you sure you want to continue connecting (yes/no)?",
@@ -69,7 +67,7 @@ const char* const KSSHProcess::continuePrompt[] = {
     "Are you sure you want to continue connecting (yes/no)?"
 };
 
-const char* const KSSHProcess::hostKeyChanged[] = {
+const char* const KSshProcess::hostKeyChanged[] = {
     "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@",
     "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@",
     "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@",
@@ -78,41 +76,41 @@ const char* const KSSHProcess::hostKeyChanged[] = {
     "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
 };
 
-KSSHProcess::KSSHProcess() {
+KSshProcess::KSshProcess() {
     mSshPath = KStandardDirs::findExe(QString::fromLatin1("ssh"));
     if( mSshPath.isEmpty() ) {
-        kdDebug(KSSHPROC) << "KSSHProcess::KSSHProcess(): ssh path not found" << endl;
+        kdDebug(KSSHPROC) << "KSshProcess::KSshProcess(): ssh path not found" << endl;
     }
     init();
 }
 
-KSSHProcess::KSSHProcess(QString pathToSsh) {
+KSshProcess::KSshProcess(QString pathToSsh) {
     mSshPath = pathToSsh;
     init();
 }
 
-KSSHProcess::~KSSHProcess(){
+KSshProcess::~KSshProcess(){
 }
 
-void KSSHProcess::init() {
+void KSshProcess::init() {
     mVersion = -1;
     mConnected = false;
 }
 
-QString KSSHProcess::version() {
+QString KSshProcess::version() {
     QString cmd;
     cmd = mSshPath+" -V 2>&1";
 
     FILE *p;
     if( (p = popen(cmd.latin1(), "r")) == NULL ) {
-        kdDebug(KSSHPROC) << "KSSHProcess::version(): failed to start ssh: " << strerror(errno) << endl;
+        kdDebug(KSSHPROC) << "KSshProcess::version(): failed to start ssh: " << strerror(errno) << endl;
         return QString::null;
     }
 
     size_t len;
     char buf[128];
     if( (len = fread(buf, sizeof(char), sizeof(buf)-1, p)) == 0 ) {
-        kdDebug(KSSHPROC) << "KSSHProcess::version(): Read of ssh version string failed " << 
+        kdDebug(KSSHPROC) << "KSshProcess::version(): Read of ssh version string failed " << 
                              strerror(ferror(p)) << endl;
         return QString::null;
     }
@@ -120,7 +118,7 @@ QString KSSHProcess::version() {
     buf[len] = '\0';
     QString ver;
     ver = buf;
-    kdDebug(KSSHPROC) << "KSSHProcess::version(): got version string [" << ver << "]" << endl;
+    kdDebug(KSSHPROC) << "KSshProcess::version(): got version string [" << ver << "]" << endl;
 
     mVersion = -1;
     for(int i = 0; i < SSH_VER_MAX; i++) {
@@ -131,7 +129,7 @@ QString KSSHProcess::version() {
     }
 
     if( mVersion == -1 ) {
-        kdDebug(KSSHPROC) << "KSSHProcess::version(): Sorry, I don't know about this version of ssh" << endl;
+        kdDebug(KSSHPROC) << "KSshProcess::version(): Sorry, I don't know about this version of ssh" << endl;
         return QString::null;
     }
 
@@ -140,8 +138,8 @@ QString KSSHProcess::version() {
 }
 
 
-bool KSSHProcess::setArgs(const SshOptList& opts) {
-    kdDebug(KSSHPROC) << "KSSHProcess::setArgs()" << endl;
+bool KSshProcess::setArgs(const SshOptList& opts) {
+    kdDebug(KSSHPROC) << "KSshProcess::setArgs()" << endl;
     mArgs.clear();
     SshOptListConstIterator it;
     QString cmd, subsystem;
@@ -180,7 +178,7 @@ bool KSSHProcess::setArgs(const SshOptList& opts) {
 
         case SSH_PROTOCOL:
             if( mVersion <= OPENSSH ) {
-                tmp = "Protocol";
+                tmp = "Protocol ";
                 tmp += QString::number((*it).num).latin1();
                 mArgs.append("-o");
                 mArgs.append(tmp);
@@ -208,7 +206,7 @@ bool KSSHProcess::setArgs(const SshOptList& opts) {
             break;
 
         case SSH_ESCAPE_CHAR:
-            if( (*it).num == 0 )
+            if( (*it).num == -1 )
                 tmp = "none";
             else
                 tmp = (char)((*it).num);
@@ -235,24 +233,24 @@ bool KSSHProcess::setArgs(const SshOptList& opts) {
             break;
 
         default:
-            kdDebug(KSSHPROC) << "KSSHProcess::getArgs(): unrecognized ssh opt " << (*it).opt << endl;
+            kdDebug(KSSHPROC) << "KSshProcess::getArgs(): unrecognized ssh opt " << (*it).opt << endl;
         }
     }
 
     if( !subsystem.isEmpty() && !cmd.isEmpty() ) {
-        kdDebug(KSSHPROC) << "KSSHProcess::getArgs(): cannot use a subsystem and command at the same time" << endl;
+        kdDebug(KSSHPROC) << "KSshProcess::getArgs(): cannot use a subsystem and command at the same time" << endl;
         mError = ERR_CMD_SUBSYS_CONFLICT;
         return false;
     }
 
     if( mPassword.isEmpty() ) {
-        kdDebug(KSSHPROC) << "KSSHProcess::getArgs(): a password must be supplied" << endl;
+        kdDebug(KSSHPROC) << "KSshProcess::getArgs(): a password must be supplied" << endl;
         mError = ERR_NEED_PASSWD;
         return false;
     }
 
     if( mUsername.isEmpty() ) {
-        kdDebug(KSSHPROC) << "KSSHProcess::getArgs(): a username must be supplied" << endl;
+        kdDebug(KSSHPROC) << "KSshProcess::getArgs(): a username must be supplied" << endl;
         mError = ERR_NEED_USERNAME;
         return false;
     }
@@ -271,7 +269,7 @@ bool KSSHProcess::setArgs(const SshOptList& opts) {
     }
 
     if( mHost.isEmpty() ) {
-        kdDebug(KSSHPROC) << "KSSHProcess::getArgs(): a host name must be supplied" << endl;
+        kdDebug(KSSHPROC) << "KSshProcess::getArgs(): a host name must be supplied" << endl;
         return false;
     }
     else {
@@ -290,7 +288,7 @@ bool KSSHProcess::setArgs(const SshOptList& opts) {
     return true;
 }
 
-void KSSHProcess::printArgs() {
+void KSshProcess::printArgs() {
     QValueListIterator<QCString> it;
     for( it = mArgs.begin(); it != mArgs.end(); ++it) {
         kdDebug(KSSHPROC) << "arg: " << *it << endl;
@@ -298,34 +296,34 @@ void KSSHProcess::printArgs() {
 }
 
 
-int KSSHProcess::error(QString& msg) {
-    kdDebug(KSSHPROC) << "KSSHProcess::error()" << endl;
+int KSshProcess::error(QString& msg) {
+    kdDebug(KSSHPROC) << "KSshProcess::error()" << endl;
     kdDebug() << mErrorMsg << endl;
     msg = mErrorMsg;
     return mError;
 }
 
-void KSSHProcess::kill(int signal) {
+void KSshProcess::kill(int signal) {
     // expects the signal to kill the process. we should change this later
     ::kill(ssh.pid(), signal);
     ::waitpid(ssh.pid(), NULL, 0);
     mConnected = false;
 }
 
-bool KSSHProcess::connect(bool acceptHostKey) {
+bool KSshProcess::connect(bool acceptHostKey) {
     if( mVersion == -1 ) {
         // we don't know the ssh version yet, so find out
         version();
     }
 
     if( mArgs.isEmpty() ) {
-        kdDebug(KSSHPROC) << "KSSHProcess::connect(): ssh options need to be set first using setArgs()" << endl;
+        kdDebug(KSSHPROC) << "KSshProcess::connect(): ssh options need to be set first using setArgs()" << endl;
         mError = ERR_NO_OPTIONS;
         return false;
     }
 
     if( ssh.exec(mSshPath.latin1(), mArgs) ) {
-        kdDebug(KSSHPROC) << "KSSHProcess::connect(): ssh exec failed" << endl;
+        kdDebug(KSSHPROC) << "KSshProcess::connect(): ssh exec failed" << endl;
         mError = ERR_CANNOT_LAUNCH;
         return false;
     }
@@ -338,7 +336,7 @@ bool KSSHProcess::connect(bool acceptHostKey) {
     int maxfd = ptyfd > errfd ? ptyfd : errfd;  // find max file descriptor
     
     int tries = 100;
-    bool lookForContinuePrompt = false;
+    bool lookForContinuePrompt = false, gotPasswdPrompt = false;
     QCString ptyLine, errLine;
     QString message; // save any messages from SSH here so we can give them to the user
     do {
@@ -353,13 +351,13 @@ bool KSSHProcess::connect(bool acceptHostKey) {
             // Wait for a message from ssh on stderr or the pty.
             int ret = ::select(maxfd+1, &rfds, NULL, NULL, &tv);
             if( ret == 0 ) {
-                kdDebug(KSSHPROC) << "KSSHProcess::connect(): timed out waiting for a response" << endl;
+                kdDebug(KSSHPROC) << "KSshProcess::connect(): timed out waiting for a response" << endl;
                 kill();
                 mError = ERR_TIMED_OUT;
                 return false;
             }
             else if( ret == -1 ) {
-                kdDebug(KSSHPROC) << "KSSHProcess::connect(): select error: " << strerror(errno) << endl;
+                kdDebug(KSSHPROC) << "KSshProcess::connect(): select error: " << strerror(errno) << endl;
                 mError = ERR_INTERNAL;
                 return false;
             }
@@ -369,44 +367,45 @@ bool KSSHProcess::connect(bool acceptHostKey) {
         }
         
         if( !ptyLine.isEmpty() ) {
-            kdDebug(KSSHPROC) << "KSSHProcess::connect(): got line from pty [" << ptyLine << "]" << endl;
+            kdDebug(KSSHPROC) << "KSshProcess::connect(): got line from pty [" << ptyLine << "]" << endl;
             if( ptyLine.contains(passwdPrompt[mVersion]) ) {
-                kdDebug(KSSHPROC) << "KSSHProcess::connect(): found password prompt" << endl;
+                kdDebug(KSSHPROC) << "KSshProcess::connect(): found password prompt" << endl;
+                gotPasswdPrompt = true;
                 ssh.WaitSlave();
                 ssh.writeLine(mPassword.latin1());
                 break;
             }
             else {
-              // kdDebug(KSSHPROC) << "KSSHProcess::connect(): unrecognized message [" << ptyLine << "]" << endl;
+              // kdDebug(KSSHPROC) << "KSshProcess::connect(): unrecognized message [" << ptyLine << "]" << endl;
             }
         }
         
         if( !errLine.isEmpty() ) {
-            kdDebug(KSSHPROC) << "KSSHProcess::connect(): got from stderr [" << errLine << "]" << endl;
+            kdDebug(KSSHPROC) << "KSshProcess::connect(): got from stderr [" << errLine << "]" << endl;
                 
             if( errLine.contains(hostKeyMissing[mVersion]) ) {
-                kdDebug(KSSHPROC) << "KSSHProcess::connect(): found 'no host key' message" << endl;
+                kdDebug(KSSHPROC) << "KSshProcess::connect(): found 'no host key' message" << endl;
                 lookForContinuePrompt = true;
                 if( !acceptHostKey ) {
-                    kdDebug(KSSHPROC) << "KSSHProcess::connect(): Not accepting host key" << endl;
+                    kdDebug(KSSHPROC) << "KSshProcess::connect(): Not accepting host key" << endl;
                     mError = ERR_NEW_HOST_KEY;
                 }
             }
             else if( errLine.contains(hostKeyChanged[mVersion]) ) {
-                kdDebug(KSSHPROC) << "KSSHProcess::connect(): found 'changed host key' message" << endl;
+                kdDebug(KSSHPROC) << "KSshProcess::connect(): found 'changed host key' message" << endl;
                 lookForContinuePrompt = true;
                 if( !acceptHostKey ) {
-                    kdDebug(KSSHPROC) << "KSSHProcess::connect(): Not accepting host key" << endl;
+                    kdDebug(KSSHPROC) << "KSshProcess::connect(): Not accepting host key" << endl;
                     mError = ERR_DIFF_HOST_KEY;
                 }
             }
             else if( lookForContinuePrompt && errLine.contains(continuePrompt[mVersion]) ) {
                 if( acceptHostKey ) {
-                    kdDebug(KSSHPROC) << "KSSHProcess::connect(): Accepting host key" << endl;
+                    kdDebug(KSSHPROC) << "KSshProcess::connect(): Accepting host key" << endl;
                     ssh.writeLine("yes");
                 }
                 else {
-                    kdDebug(KSSHPROC) << "KSSHProcess::connect(): Not accepting host key" << endl;
+                    kdDebug(KSSHPROC) << "KSshProcess::connect(): Not accepting host key" << endl;
                     ssh.writeLine("no");
                     mErrorMsg = message;
                     kill();
@@ -414,7 +413,7 @@ bool KSSHProcess::connect(bool acceptHostKey) {
                 }
             }
             else {
-              // kdDebug(KSSHPROC) << "KSSHProcess::connect(): unrecognized message" << endl;
+              // kdDebug(KSSHPROC) << "KSshProcess::connect(): unrecognized message" << endl;
             }
             
             if( lookForContinuePrompt ) { message.append(errLine); message += "\n"; }
@@ -422,7 +421,7 @@ bool KSSHProcess::connect(bool acceptHostKey) {
     } while(tries--);
 
     if( !tries ) {
-        kdDebug(KSSHPROC) << "KSSHProcess::connect(): tries exceeded. connect failed" << endl;
+        kdDebug(KSSHPROC) << "KSshProcess::connect(): tries exceeded. connect failed" << endl;
         mError = ERR_DISCONNECTED;
         return false;
     }
@@ -441,10 +440,18 @@ bool KSSHProcess::connect(bool acceptHostKey) {
     if( ret == 0 || (ret == -1 && errno == EPERM) ) {
         // ssh process probably still exists so we
         // must have successfully connected.
-        kdDebug(KSSHPROC) << "KSSHProcess::connect(): ssh is still running -> auth successful!" << endl;
+        kdDebug(KSSHPROC) << "KSshProcess::connect(): ssh is still running -> auth successful!" << endl;
         return true;
     }
-    kdDebug(KSSHPROC) << "KSSHProcess::connect(): ssh process no longer running -> auth failed" << endl;
+    kdDebug(KSSHPROC) << "KSshProcess::connect(): ssh process no longer running -> auth failed" << endl;
+    if( gotPasswdPrompt ) {
+        // We got the password prompt but we failed to connect.
+        // Therefore authentication must have failed
+        mError = ERR_AUTH_FAILED;
+    }
+    else {
+        mError = ERR_UNKNOWN;
+    }
     return false;
 }
 
