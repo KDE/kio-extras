@@ -261,7 +261,8 @@ bool POP3Protocol::pop3_open()
     return true;
   } else {
     pop3_close();
-    ConnectToHost(m_sServer.ascii(), m_iPort);
+    if( !ConnectToHost(m_sServer.ascii(), m_iPort))
+       return false; // ConnectToHost has already send an error message.
 
     greeting_buf=static_cast<char *>(malloc(GREETING_BUF_LEN));
     memset(greeting_buf, 0, GREETING_BUF_LEN);
