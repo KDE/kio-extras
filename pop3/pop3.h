@@ -66,7 +66,7 @@ public:
 
   int m_cmd, m_iSock, m_iOldPort;
   struct timeval m_tTimeout;
-  QString m_sServerInfo, m_sOldServer, m_sOldPass, m_sOldUser;
+  QString m_sOldServer, m_sOldPass, m_sOldUser;
   FILE *fp;
   IOJob* m_pJob;
 };

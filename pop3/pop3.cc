@@ -74,7 +74,6 @@ POP3Protocol::POP3Protocol(Connection *_conn) : IOProtocol(_conn)
   m_cmd = CMD_NONE;
   m_pJob = 0L;
   m_iSock = m_iOldPort = 0;
-  m_sServerInfo="";
   m_tTimeout.tv_sec=10;
   m_tTimeout.tv_usec=0;
   fp = 0;
@@ -94,6 +93,18 @@ bool POP3Protocol::getResponse (char *r_buf, unsigned int r_len)
     return false;
   recv_len=strlen(buf);
   debug("Response was:%s:", buf);
+
+/*
+ *   From rfc1939:
+ *
+ *   Responses in the POP3 consist of a status indicator and a keyword
+ *   possibly followed by additional information.  All responses are
+ *   terminated by a CRLF pair.  Responses may be up to 512 characters
+ *   long, including the terminating CRLF.  There are currently two status
+ *   indicators: positive ("+OK") and negative ("-ERR").  Servers MUST
+ *   send the "+OK" and "-ERR" in upper case.
+ */
+
   if (strncmp(buf, "+OK ", 4)==0) {
     if (r_buf && r_len) {
       memcpy(r_buf, buf+4, MIN(r_len,recv_len-4));
@@ -115,6 +126,18 @@ bool POP3Protocol::getResponse (char *r_buf, unsigned int r_len)
 
 bool POP3Protocol::command (const char *cmd, char *recv_buf, unsigned int len)
 {
+
+/*
+ *   From rfc1939:
+ *
+ *   Commands in the POP3 consist of a case-insensitive keyword, possibly
+ *   followed by one or more arguments.  All commands are terminated by a
+ *   CRLF pair.  Keywords and arguments consist of printable ASCII
+ *   characters.  Keywords and arguments are each separated by a single
+ *   SPACE character.  Keywords are three or four characters long. Each
+ *   argument may be up to 40 characters long.
+ */
+
   // Write the command
   if (::write(m_iSock, cmd, strlen(cmd)) != (ssize_t)strlen(cmd))
     return false;
@@ -125,6 +148,12 @@ bool POP3Protocol::command (const char *cmd, char *recv_buf, unsigned int len)
 
 void POP3Protocol::pop3_close ()
 {
+  // If the file pointer exists, we can assume the socket is valid,
+  // and to make sure that the server doesn't magically undo any of
+  // our deletions and so-on, we should send a QUIT and wait for a
+  // response.  We don't care if it's positive or negative.  Also
+  // flush out any semblance of a persistant connection, i.e.: the
+  // old username and password are now invalid.
   if (fp) {
     (void)command("QUIT");
     fclose(fp);
@@ -210,7 +239,6 @@ bool POP3Protocol::pop3_open( KURL &_url )
 
 void POP3Protocol::slotGet(const char *_url)
 {
-  fprintf(stderr,"slotGet\n"); fflush(stderr);
   bool ok=true;
   char buf[512];
   QString path, cmd;
