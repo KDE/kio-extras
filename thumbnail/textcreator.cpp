@@ -91,7 +91,8 @@ bool TextCreator::create(const QString &path, int width, int height, QImage &img
     int numCharsPerLine = (int) (canvasWidth / chSize.width());
     int numLines = (int) (canvasHeight / chSize.height());
 
-    const int bytesToRead = numCharsPerLine * numLines;
+    // assumes an average line length of <= 120 chars
+    const int bytesToRead = 120 * numLines;
 
     // create text-preview
     QFile file( path );
