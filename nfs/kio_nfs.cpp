@@ -59,6 +59,12 @@
 
 #define MAXHOSTLEN 256
 
+#define MAXFHAGE 60*10   //10 minutes maximum age for file handles
+
+#define NFSPROG ((u_long)100003)
+#define NFSVERS ((u_long)2)
+
+
 using namespace KIO;
 
 extern "C" { int kdemain(int argc, char **argv); }
@@ -95,17 +101,17 @@ void getLastPart(const QString& path, QString& lastPart, QString& rest)
 NFSFileHandle::NFSFileHandle()
 :m_isInvalid(FALSE)
 {
-   m_handle=new char[33];
-   memset(m_handle,'\0',33);
+   m_handle=new char[NFS_FHSIZE+1];
+   memset(m_handle,'\0',NFS_FHSIZE+1);
    m_detectTime=time(0);
 };
 
 NFSFileHandle::NFSFileHandle(const NFSFileHandle & handle)
 :m_isInvalid(FALSE)
 {
-   m_handle=new char[33];
-   m_handle[32]='\0';
-   memcpy(m_handle,handle.m_handle,32);
+   m_handle=new char[NFS_FHSIZE+1];
+   m_handle[NFS_FHSIZE]='\0';
+   memcpy(m_handle,handle.m_handle,NFS_FHSIZE);
    m_isInvalid=handle.m_isInvalid;
    m_detectTime=handle.m_detectTime;
 };
@@ -117,7 +123,7 @@ NFSFileHandle::~NFSFileHandle()
 
 NFSFileHandle& NFSFileHandle::operator= (const NFSFileHandle& src)
 {
-   memcpy(m_handle,src.m_handle,32);
+   memcpy(m_handle,src.m_handle,NFS_FHSIZE);
    m_isInvalid=src.m_isInvalid;
    m_detectTime=src.m_detectTime;
    return *this;
@@ -130,7 +136,7 @@ NFSFileHandle& NFSFileHandle::operator= (const char* src)
       m_isInvalid=TRUE;
       return *this;
    };
-   memcpy(m_handle,src,32);
+   memcpy(m_handle,src,NFS_FHSIZE);
    m_isInvalid=FALSE;
    m_detectTime=time(0);
    return *this;
@@ -143,7 +149,7 @@ time_t NFSFileHandle::age() const
 
 ostream& operator<< (ostream& s, const NFSFileHandle& x)
 {
-   for (int i =0; i<32; i++)
+   for (int i =0; i<NFS_FHSIZE; i++)
       s<<hex<<(unsigned int)x[i]<<" ";
    s<<dec;
    return s;
@@ -178,8 +184,17 @@ NFSFileHandle NFSProtocol::getFileHandle(QString path)
    //the filehandles of the exported root dirs are always in the cache
    if (m_handleCache.find(path)!=m_handleCache.end())
    {
+/*      kdDebug(7101)<<"age: "<<m_handleCache[path].age()<<" max age: "<<MAXFHAGE<<endl;
+      if (m_handleCache[path].age()>MAXFHAGE)
+      {
+         kdDebug(7101)<<"path is in the cache but to old, deleting the FH -"<<m_handleCache[path]<<"-"<<endl;
+         m_handleCache.remove(m_handleCache.find(path));
+      }
+      else
+      {*/
       kdDebug(7101)<<"path is in the cache, returning the FH -"<<m_handleCache[path]<<"-"<<endl;
       return m_handleCache[path];
+      //};
    };
    QString rest, lastPart;
    getLastPart(path,lastPart,rest);
@@ -196,7 +211,7 @@ NFSFileHandle NFSProtocol::getFileHandle(QString path)
 
    diropargs dirargs;
    diropres dirres;
-   memcpy(dirargs.dir.data,(const char*)parentFH,32);
+   memcpy(dirargs.dir.data,(const char*)parentFH,NFS_FHSIZE);
    dirargs.name=(const char*)lastPart;
 
    kdDebug(7101)<<"calling rpc: FH: -"<<parentFH<<"- with name -"<<dirargs.name<<"-"<<endl;
@@ -289,7 +304,7 @@ void NFSProtocol::openConnection()
          fh=fhStatus.fhstatus_u.fhs_fhandle;
          //TODO remove this ugly hack
          m_handleCache.insert(QString("/")+KIO::encodeFileName(exportlist->ex_dir),fh);
-         m_handleCache.insert(KIO::encodeFileName(exportlist->ex_dir),fh);
+         //m_handleCache.insert(KIO::encodeFileName(exportlist->ex_dir),fh);
          m_exportedDirs.append(KIO::encodeFileName(exportlist->ex_dir));
          cerr<<"appending file -"<<KIO::encodeFileName(exportlist->ex_dir)<<"- with FH: -"<<fhStatus.fhstatus_u.fhs_fhandle<<"-"<<endl;
       }
@@ -306,14 +321,22 @@ void NFSProtocol::openConnection()
    {
       kdDebug(7101)<<"error occured in creating the client for NFS"<<endl;
    };
+   m_client->cl_auth = authunix_create("localhost",geteuid(),0,0,0);
    kdDebug(7101)<<"openConnection succeeded"<<endl;
+   connected();
 }
 
-void NFSProtocol::listDir( const KURL& url)
+void NFSProtocol::listDir( const KURL& _url)
 {
+   KURL url(_url);
    QString path( QFile::encodeName(url.path()));
    cerr<<"NFS::listDir: path: -"<<path<<"-"<<endl;
    
+   if (path.isEmpty())
+   {
+      url.setPath("/");
+      redirection(url);
+   };
    if (path.isEmpty() || (path=="/"))
    {
       if (m_client==0) openConnection();
@@ -353,7 +376,7 @@ void NFSProtocol::listDir( const KURL& url)
    readdirargs listargs;
    memset(&listargs,0,sizeof(listargs));
    listargs.count=1024*16;
-   memcpy(listargs.dir.data,fh,32);
+   memcpy(listargs.dir.data,fh,NFS_FHSIZE);
    readdirres listres;
    do
    {
@@ -376,7 +399,7 @@ void NFSProtocol::listDir( const KURL& url)
       UDSAtom atom;
       diropargs dirargs;
       diropres dirres;
-      memcpy(dirargs.dir.data,fh,32);
+      memcpy(dirargs.dir.data,fh,NFS_FHSIZE);
       dirargs.name=(const char*)(*it);
 
       kdDebug(7101)<<"calling rpc: FH: -"<<fh<<"- with name -"<<dirargs.name<<"-"<<endl;
@@ -395,6 +418,53 @@ void NFSProtocol::listDir( const KURL& url)
       atom.m_str = (*it);
       entry.append( atom );
       
+      kdDebug(7101)<<"checking for symlink"<<endl;
+      //it's a symlink
+      if (S_ISLNK(dirres.diropres_u.diropres.attributes.mode))
+      {
+         kdDebug(7101)<<"it's a symlink !"<<endl;
+         cerr<<"fh: "<<tmpFH<<endl;
+         nfs_fh nfsFH;
+         memcpy(nfsFH.data,dirres.diropres_u.diropres.file.data,NFS_FHSIZE);
+         //get the link dest
+         readlinkres readLinkRes;
+         char nameBuf[NFS_MAXPATHLEN];
+         readLinkRes.readlinkres_u.data=nameBuf;
+         int clnt_stat=clnt_call(m_client, NFSPROC_READLINK,
+                                 (xdrproc_t) xdr_nfs_fh, (char*)&nfsFH,
+                                 (xdrproc_t) xdr_readlinkres, (char*)&readLinkRes,total_timeout);
+         kdDebug(7101)<<dec<<"readLinkRes rpc status: "<<clnt_stat<<" nfs status: "<<int(readLinkRes.status)<<endl;
+         if (readLinkRes.status==NFS_OK)
+         {
+            kdDebug(7101)<<"link dest is -"<<readLinkRes.readlinkres_u.data<<"-"<<endl;
+            QString linkDest(readLinkRes.readlinkres_u.data);
+            atom.m_uds = KIO::UDS_LINK_DEST;
+            atom.m_str = linkDest;
+            entry.append( atom );
+            if (linkDest[0]=='/')
+            {
+               kdDebug(7101)<<"an absolute link, stating locally...."<<endl;
+            };
+         }
+         else
+         {
+            /*type = S_IFMT - 1;
+            access = S_IRWXU | S_IRWXG | S_IRWXO;
+
+            atom.m_uds = KIO::UDS_FILE_TYPE;
+            atom.m_long = type;
+            entry.append( atom );
+
+            atom.m_uds = KIO::UDS_ACCESS;
+            atom.m_long = access;
+            entry.append( atom );
+
+            atom.m_uds = KIO::UDS_SIZE;
+            atom.m_long = 0L;
+            entry.append( atom );*/
+         };
+      }
+
       atom.m_uds = KIO::UDS_SIZE;
       atom.m_long = dirres.diropres_u.diropres.attributes.size;
       entry.append( atom );
@@ -554,7 +624,7 @@ void NFSProtocol::stat( const KURL & url)
 
    diropargs dirargs;
    attrstat attrAndStat;
-   memcpy(dirargs.dir.data,fh,32);
+   memcpy(dirargs.dir.data,fh,NFS_FHSIZE);
    dirargs.name=(const char*)path;
 
    kdDebug(7101)<<"calling rpc: FH: -"<<fh<<"- with name -"<<dirargs.name<<"-"<<endl;
@@ -686,6 +756,11 @@ void NFSProtocol::stat( const KURL & url)
 void NFSProtocol::setHost(const QString& host, int /*port*/, const QString& /*user*/, const QString& /*pass*/)
 {
    kdDebug(7101)<<"NFS::setHost: -"<<host<<"-"<<endl;
+   if (host.isEmpty())
+   {
+      error(ERR_UNSUPPORTED_ACTION,"");
+      return;
+   };
    if (host==m_currentHost) return;
    m_currentHost=host;
    m_handleCache.clear();
@@ -711,7 +786,7 @@ void NFSProtocol::mkdir( const KURL& url, int permissions )
    };
 
    createargs createArgs;
-   memcpy(createArgs.where.dir.data,fh,32);
+   memcpy(createArgs.where.dir.data,fh,NFS_FHSIZE);
    createArgs.where.name=(const char*)dirName;
    createArgs.attributes.mode=permissions;
 
@@ -765,7 +840,7 @@ void NFSProtocol::del( const KURL& url, bool isfile)
    {
       kdDebug( 7101 ) <<  "Deleting file "<< thePath << endl;
       diropargs dirOpArgs;
-      memcpy(dirOpArgs.dir.data,fh,32);
+      memcpy(dirOpArgs.dir.data,fh,NFS_FHSIZE);
       dirOpArgs.name=(const char*)fileName;
 
       nfsstat nfsStat;
@@ -774,13 +849,16 @@ void NFSProtocol::del( const KURL& url, bool isfile)
                             (xdrproc_t) xdr_diropargs, (char*)&dirOpArgs,
                             (xdrproc_t) xdr_nfsstat, (char*)&nfsStat,total_timeout);
       if (!checkForError(clnt_stat,nfsStat,QString("del ")+thePath)) return;
+      kdDebug(7101)<<"removing "<<thePath<<" from cache"<<endl;
+      m_handleCache.remove(m_handleCache.find(thePath));
+      if (m_handleCache.find(thePath)!=m_handleCache.end()) kdDebug(7101)<<"fuck, it's still there"<<endl;
       finished();
    }
    else
    {
       kdDebug( 7101 ) <<  "Deleting directory "<< thePath << endl;
       diropargs dirOpArgs;
-      memcpy(dirOpArgs.dir.data,fh,32);
+      memcpy(dirOpArgs.dir.data,fh,NFS_FHSIZE);
       dirOpArgs.name=(const char*)fileName;
 
       nfsstat nfsStat;
@@ -789,8 +867,10 @@ void NFSProtocol::del( const KURL& url, bool isfile)
                             (xdrproc_t) xdr_diropargs, (char*)&dirOpArgs,
                             (xdrproc_t) xdr_nfsstat, (char*)&nfsStat,total_timeout);
       if (!checkForError(clnt_stat,nfsStat,QString("del ")+thePath)) return;
+      kdDebug(7101)<<"removing "<<thePath<<" from cache"<<endl;
+      m_handleCache.remove(m_handleCache.find(thePath));
+      if (m_handleCache.find(thePath)!=m_handleCache.end()) kdDebug(7101)<<"fuck, it's still there"<<endl;
       finished();
-      
    };
 };
 
@@ -806,7 +886,7 @@ void NFSProtocol::chmod( const KURL& url, int permissions )
    };
    
    sattrargs sAttrArgs;
-   memcpy(sAttrArgs.file.data,fh,32);
+   memcpy(sAttrArgs.file.data,fh,NFS_FHSIZE);
    sAttrArgs.attributes.uid=(unsigned int)-1;
    sAttrArgs.attributes.gid=(unsigned int)-1;
    sAttrArgs.attributes.size=(unsigned int)-1;
@@ -838,15 +918,15 @@ void NFSProtocol::get( const KURL& url, bool /* reload */)
       return;
    };
    readargs readArgs;
-   memcpy(readArgs.file.data,fh,32);
+   memcpy(readArgs.file.data,fh,NFS_FHSIZE);
    readArgs.offset=0;
-   readArgs.count=8*1024;
-   readArgs.totalcount=8*1024;
+   readArgs.count=NFS_MAXDATA;
+   readArgs.totalcount=NFS_MAXDATA;
    readres readRes;
    int offset(0);
    speed( 1000 );
    kdDebug(7101)<<"vor clnt_call"<<endl;
-   char buf[8*1024];
+   char buf[NFS_MAXDATA];
    readRes.readres_u.reply.data.data_val=buf;
 
    time_t t_start = time( 0L );
@@ -885,6 +965,7 @@ void NFSProtocol::get( const KURL& url, bool /* reload */)
    finished();
 };
 
+//this one already looks quite good, I think
 void NFSProtocol::put( const KURL& url, int _mode, bool _overwrite, bool /*_resume*/ )
 {
     QString destPath( QFile::encodeName(url.path()));
@@ -900,17 +981,17 @@ void NFSProtocol::put( const KURL& url, int _mode, bool _overwrite, bool /*_resu
     else kdDebug(7101)<<"file handle is valid :-)"<<endl;
     
     //the file exists and we don't want to overwrite
-    /*if ((!_overwrite) && (!destFH.isInvalid()))
+    if ((!_overwrite) && (!destFH.isInvalid()))
     {
-       error(ERR_COULD_NOT_WRITE,"");
+       error(ERR_FILE_ALREADY_EXIST,"");
        return;
-    };*/
+    };
     //TODO: is this correct ?
     //we have to "create" the file anyway, no matter if it already
     //exists or not
     //if we don't create it new, written text will be, hmm, "inserted"
     //in the existing file, i.e. a file could not become smaller, since
-    //write only overwrites or extends, but doesn't remove stuff from a file
+    //write only overwrites or extends, but doesn't remove stuff from a file (aleXXX)
     
     QString parentDir, fileName;
     getLastPart(destPath,fileName, parentDir);
@@ -926,12 +1007,19 @@ void NFSProtocol::put( const KURL& url, int _mode, bool _overwrite, bool /*_resu
        return;
     };
     createargs createArgs;
-    memcpy(createArgs.where.dir.data,(const char*)parentFH,32);
+    memcpy(createArgs.where.dir.data,(const char*)parentFH,NFS_FHSIZE);
     createArgs.where.name=(const char*)fileName;
-    createArgs.attributes.mode=0777;
-    createArgs.attributes.uid=(unsigned int)-1;
-    createArgs.attributes.gid=(unsigned int)-1;
+
+    //the mode is apparently ignored if the file already exists
+    if (_mode==-1) createArgs.attributes.mode=0644;
+    else createArgs.attributes.mode=_mode;
+    createArgs.attributes.uid=geteuid();
+    kdDebug(7101)<<"effective uid: "<<geteuid()<<endl;
+    kdDebug(7101)<<"effective gid: "<<getegid()<<endl;
+    createArgs.attributes.gid=getegid();
+    //this is required, otherwise we are not able to write shorter files
     createArgs.attributes.size=0;
+    //hmm, do we need something here ? I don't think so
     createArgs.attributes.atime.seconds=(unsigned int)-1;
     createArgs.attributes.atime.useconds=(unsigned int)-1;
     createArgs.attributes.mtime.seconds=(unsigned int)-1;
@@ -947,13 +1035,12 @@ void NFSProtocol::put( const KURL& url, int _mode, bool _overwrite, bool /*_resu
     destFH=dirOpRes.diropres_u.diropres.file.data;
     kdDebug(7101)<<"file -"<<fileName<<"- in dir -"<<parentDir<<"- created successfully"<<endl;
     cerr<<"with fh "<<destFH<<endl;
-    //};
+
     //now we can put
-    
     int result;
     // Loop until we got 0 (end of data)
     writeargs writeArgs;
-    memcpy(writeArgs.file.data,(const char*)destFH,32);
+    memcpy(writeArgs.file.data,(const char*)destFH,NFS_FHSIZE);
     writeArgs.beginoffset=0;
     writeArgs.totalcount=0;
     writeArgs.offset=0;
@@ -966,22 +1053,39 @@ void NFSProtocol::put( const KURL& url, int _mode, bool _overwrite, bool /*_resu
        dataReq(); // Request for data
        result = readData( buffer );
        kdDebug(7101)<<"received "<<result<<" bytes for putting"<<endl;
+       char * data=buffer.data();
+       int bytesToWrite=buffer.size();
+       int writeNow(0);
        if (result > 0)
        {
-          writeArgs.data.data_val=buffer.data();
-          writeArgs.data.data_len=buffer.size();
+          do
+          {
+             if (bytesToWrite>NFS_MAXDATA)
+             {
+                writeNow=NFS_MAXDATA;
+             }
+             else
+             {
+                writeNow=bytesToWrite;
+             };
+             writeArgs.data.data_val=data;
+             writeArgs.data.data_len=writeNow;
           
-          int clnt_stat = clnt_call(m_client, NFSPROC_WRITE,
-                                    (xdrproc_t) xdr_writeargs, (char*)&writeArgs,
-                                    (xdrproc_t) xdr_attrstat, (char*)&attrStat,total_timeout);
-          kdDebug(7101)<<"written"<<endl;
-          if (!checkForError(clnt_stat,attrStat.status,QString("put write ")+fileName)) return;
-          bytesWritten+=result;
-          writeArgs.offset=bytesWritten;
+             int clnt_stat = clnt_call(m_client, NFSPROC_WRITE,
+                                       (xdrproc_t) xdr_writeargs, (char*)&writeArgs,
+                                       (xdrproc_t) xdr_attrstat, (char*)&attrStat,total_timeout);
+             kdDebug(7101)<<"written"<<endl;
+             if (!checkForError(clnt_stat,attrStat.status,QString("put write ")+fileName)) return;
+             bytesWritten+=writeNow;
+             writeArgs.offset=bytesWritten;
+
+             //adjust the pointer
+             data=data+writeNow;
+             //decrease the rest
+             bytesToWrite-=writeNow;
+          } while (bytesToWrite>0);
        }
-    }
-    while ( result > 0 );
-    
+    } while ( result > 0 );
     finished();
 };
 
@@ -998,7 +1102,7 @@ void NFSProtocol::rename( const KURL &src, const KURL &dest, bool _overwrite )
       testFH=getFileHandle(destPath);
       if (!testFH.isInvalid())
       {
-         error(ERR_CANNOT_RENAME,"");
+         error(ERR_FILE_ALREADY_EXIST,"");
          return;
       };
    };
@@ -1018,7 +1122,7 @@ void NFSProtocol::rename( const KURL &src, const KURL &dest, bool _overwrite )
       return;
    };
    renameargs renameArgs;
-   memcpy(renameArgs.from.dir.data,srcFH,32);
+   memcpy(renameArgs.from.dir.data,srcFH,NFS_FHSIZE);
    renameArgs.from.name=(const char*)srcFileName;
 
    getLastPart(destPath, destFileName, destParentDir);
@@ -1028,7 +1132,7 @@ void NFSProtocol::rename( const KURL &src, const KURL &dest, bool _overwrite )
       error(ERR_DOES_NOT_EXIST,QString("rename ")+destParentDir);
       return;
    };
-   memcpy(renameArgs.to.dir.data,destFH,32);
+   memcpy(renameArgs.to.dir.data,destFH,NFS_FHSIZE);
    renameArgs.to.name=(const char*)destFileName;
    nfsstat nfsStat;
    
@@ -1050,14 +1154,6 @@ void NFSProtocol::copy( const KURL &src, const KURL &dest, int _mode, bool _over
       error(ERR_DOES_NOT_EXIST,QString("copy ")+thePath);
       return;
    };
-   readargs readArgs;
-   memcpy(readArgs.file.data,fh,32);
-   readArgs.offset=0;
-   readArgs.count=8*1024;
-   readArgs.totalcount=8*1024;
-   readres readRes;
-   char buf[8*1024];
-   readRes.readres_u.reply.data.data_val=buf;
 
    //create the destination
    QString destPath( QFile::encodeName(dest.path()));
@@ -1069,11 +1165,11 @@ void NFSProtocol::copy( const KURL &src, const KURL &dest, int _mode, bool _over
    else kdDebug(7101)<<"file handle is valid :-)"<<endl;
     
    //the file exists and we don't want to overwrite
-/*   if ((!_overwrite) && (!destFH.isInvalid()))
+   if ((!_overwrite) && (!destFH.isInvalid()))
    {
-      error(ERR_COULD_NOT_WRITE,"");
+      error(ERR_FILE_ALREADY_EXIST,"");
       return;
-   };*/
+   };
    //TODO: is this correct ?
    //we have to "create" the file anyway, no matter if it already
    //exists or not
@@ -1094,13 +1190,12 @@ void NFSProtocol::copy( const KURL &src, const KURL &dest, int _mode, bool _over
       return;
    };
    createargs createArgs;
-   memcpy(createArgs.where.dir.data,(const char*)parentFH,32);
+   memcpy(createArgs.where.dir.data,(const char*)parentFH,NFS_FHSIZE);
    createArgs.where.name=(const char*)fileName;
-   createArgs.attributes.mode=0777;
-   createArgs.attributes.uid=(unsigned int)-1;
-   createArgs.attributes.gid=(unsigned int)-1;
-   //       createArgs.attributes.uid=1002;
-   //       createArgs.attributes.gid=100;
+   if (_mode==-1) createArgs.attributes.mode=0644;
+   else createArgs.attributes.mode=_mode;
+   createArgs.attributes.uid=geteuid();
+   createArgs.attributes.gid=getegid();
    createArgs.attributes.size=0;
    createArgs.attributes.atime.seconds=(unsigned int)-1;
    createArgs.attributes.atime.useconds=(unsigned int)-1;
@@ -1116,19 +1211,27 @@ void NFSProtocol::copy( const KURL &src, const KURL &dest, int _mode, bool _over
    destFH=dirOpRes.diropres_u.diropres.file.data;
    kdDebug(7101)<<"file -"<<fileName<<"- in dir -"<<parentDir<<"- created successfully"<<endl;
 
+   char buf[NFS_MAXDATA];
    writeargs writeArgs;
-   memcpy(writeArgs.file.data,(const char*)destFH,32);
+   memcpy(writeArgs.file.data,(const char*)destFH,NFS_FHSIZE);
    writeArgs.beginoffset=0;
    writeArgs.totalcount=0;
    writeArgs.offset=0;
    writeArgs.data.data_val=buf;
    attrstat attrStat;
 
+   readargs readArgs;
+   memcpy(readArgs.file.data,fh,NFS_FHSIZE);
+   readArgs.offset=0;
+   readArgs.count=NFS_MAXDATA;
+   readArgs.totalcount=NFS_MAXDATA;
+   readres readRes;
+   readRes.readres_u.reply.data.data_val=buf;
+   
    int bytesRead(0);
    
    do
    {
-      
       //first read
       int clnt_stat = clnt_call(m_client, NFSPROC_READ,
                                 (xdrproc_t) xdr_readargs, (char*)&readArgs,
@@ -1157,4 +1260,3 @@ void NFSProtocol::copy( const KURL &src, const KURL &dest, int _mode, bool _over
 
    finished();
 }
-   
