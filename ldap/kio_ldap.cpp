@@ -643,7 +643,7 @@ void LDAPProtocol::openConnection()
     if ( ldap_set_option( mLDAP, LDAP_OPT_SIZELIMIT, &mSizeLimit ) != LDAP_SUCCESS ) {
       closeConnection();
       error( ERR_UNSUPPORTED_ACTION, 
-        i18n("Cannot set size limit.").arg(version) );
+        i18n("Cannot set size limit."));
       return;
     }
   }
@@ -653,7 +653,7 @@ void LDAPProtocol::openConnection()
     if ( ldap_set_option( mLDAP, LDAP_OPT_TIMELIMIT, &mTimeLimit ) != LDAP_SUCCESS ) {
       closeConnection();
       error( ERR_UNSUPPORTED_ACTION, 
-        i18n("Cannot set time limit.").arg(version) );
+        i18n("Cannot set time limit."));
       return;
     }
   }
