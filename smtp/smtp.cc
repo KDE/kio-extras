@@ -132,7 +132,7 @@ void SMTPProtocol::closeConnection()
   smtp_close();
 }
 
-void SMTPProtocol::special(const QByteArray & aData)
+void SMTPProtocol::special(const QByteArray & /* aData */)
 {
   QString result;
   if (m_haveTLS)
@@ -614,13 +614,29 @@ bool SMTPProtocol::smtp_open(const QString& fakeHostname)
         return false;
       }
 
+      /*
+       * we now have TLS going
+       * send our ehlo line
+       * reset our features, and reparse them
+       */
       //kdDebug() << "TLS has been enabled!" << endl;
-      
-      if (!command("EHLO " + m_hostname)) {
+      ehloByteArray.fill(0);
+      if (!command("EHLO " + m_hostname, ehloByteArray.data(), DEFAULT_EHLO_BUFFER - 1)) {
         error(KIO::ERR_COULD_NOT_LOGIN,
               i18n("The server said: %1").arg(m_lastError));
         smtp_close();
         return false;
+      }
+
+      m_sAuthConfig = QString::null;
+      ehlobuf.close();
+      ehlobuf.setBuffer(ehloByteArray);
+      if (ehlobuf.open(IO_ReadWrite)) 
+      {
+        while (ehlobuf.readLine(ehlo_line, DEFAULT_EHLO_BUFFER - 1) > 0)
+        {
+           ParseFeatures(const_cast < const char *>(ehlo_line));
+        }
       }
     } 
     else if (metaData("tls") == "on") {
@@ -677,7 +693,7 @@ bool SMTPProtocol::Authenticate()
   if (!metaData("sasl").isEmpty())
     strList.append(metaData("sasl").latin1());
   else
-    for (int i = 0; i < sl.count(); i++)
+    for (unsigned int i = 0; i < sl.count(); i++)
       strList.append(sl[i].latin1());
 
   auth_method = SASL.chooseMethod(strList);
