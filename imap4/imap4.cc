@@ -1160,7 +1160,8 @@ bool IMAP4Protocol::makeLogin ()
       if (cmd->result () == "OK")
       {
         completeQueue.removeRef(cmd);
-        if (startTLS())
+        int tlsrc = startTLS();
+        if (tlsrc == 1)
         {
           kdDebug() << "TLS mode has been enabled." << endl;
           imapCommand *cmd2 = doCommand (new imapCommand ("CAPABILITY", ""));
