@@ -1439,6 +1439,12 @@ IMAP4Protocol::doListEntry (const KURL & _url, const QString & myBox,
         atom.m_long = 0;
         entry.append (atom);
         mailboxName += "/";
+
+        // explicitly set this as a directory for KFileDialog
+        atom.m_uds = UDS_FILE_TYPE;
+        atom.m_str = "";
+        atom.m_long = S_IFDIR;
+        entry.append (atom);
       }
       else if (!item.noInferiors ())
       {
@@ -1447,6 +1453,12 @@ IMAP4Protocol::doListEntry (const KURL & _url, const QString & myBox,
         atom.m_long = 0;
         entry.append (atom);
         mailboxName += "/";
+
+        // explicitly set this as a directory for KFileDialog
+        atom.m_uds = UDS_FILE_TYPE;
+        atom.m_str = "";
+        atom.m_long = S_IFDIR;
+        entry.append (atom);
       }
       else
       {
