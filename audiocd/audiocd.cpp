@@ -449,6 +449,9 @@ bool AudioCDProtocol::initLameLib(){
     _lamelib_lame_set_VBR_q =
            (int (*) ( lame_global_flags*, int))
            _lamelib->symbol("lame_set_VBR_q");
+    _lamelib_lame_set_bWriteVbrTag =
+           (int (*) ( lame_global_flags*, int))
+           _lamelib->symbol("lame_set_bWriteVbrTag");
     _lamelib_lame_set_mode =
            (int (*) ( lame_global_flags*, int))
            _lamelib->symbol("lame_set_mode");
