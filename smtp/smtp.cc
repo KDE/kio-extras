@@ -504,7 +504,7 @@ bool SMTPProtocol::smtp_open(const QString& fakeHostname)
     KExtendedSocket::resolve(addr, m_hostname, tmpPort);
     delete addr;
 
-    if(m_hostname.isNull())
+    if(m_hostname.isEmpty())
     {
       m_hostname = "localhost.invalid";
     }
