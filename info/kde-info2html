@@ -33,6 +33,7 @@
 #                     by David Pashley <david@davidpashley.com>
 #   March 6 2003      Substitute use of absolute fixed file URLs to images with help:common URLs
 #                     for the images and style sheet. By Luis Pedro Coelho
+#   March 9 2003      Add support for browsing by file. by Luis Pedro Coelho
 #
 #-------------------------------------------------------
 
@@ -49,6 +50,8 @@ my $UP_URL = "<img src=\"$IMAGEDIR/up.png\" align=\"top\" border=\"0\" alt=\"Up\
 my $NEXT_URL = "<img src=\"$IMAGEDIR/forward.png\" align=\"top\" border=\"0\" alt=\"Next\"/>";
 my $PREV_URL = "<img src=\"$IMAGEDIR/back.png\" align=\"top\" border=\"0\" alt=\"Prev\"/>";
 
+# the use of a query should make sure it never conflicts with a "real" path
+my $BROWSE_BY_FILE_PATH = '/browse_by_file?special=yes';
 
 #-- patterns
 my $NODEBORDER    = '\037\014?';      #-- delimiter of an info node
@@ -147,10 +150,19 @@ sub Escape {
 
 sub infocat {
 # Collect them all into an array that can be sorted
-	my $dir;
-	
 	my %InfoFile;
-        foreach (@info2html::config::INFODIR) {
+	my @dirs;
+	
+        foreach my $dir (@info2html::config::INFODIR) {	
+		push @dirs, $dir;
+	}
+	if ($ENV{'INFOPATH'}) {
+        	foreach my $dir (split(/:/, $ENV{INFOPATH})) {
+			push @dirs, $dir;
+		}
+	}
+
+        foreach my $dir (@dirs) {
 		opendir DIR, $dir;
 		my ($collect,$infofile,$filedesc);
 		while ($infofile = readdir(DIR)) {
@@ -185,9 +197,6 @@ sub infocat {
 			$filedesc = $infofile if ($filedesc eq "");
 # Add to the hash
 			$InfoFile{$filedesc} = $infofile;
-
-#$filedesc =~ s/\n/\n/;
-# print "<li><a href=\"info2html?($infofile)Top\">$filedesc</a>\n";
 		}
 	}
 
@@ -195,9 +204,9 @@ sub infocat {
 	my @sorted =  sort { lc($a) cmp lc($b) } keys %InfoFile;
 	foreach my $name ( @sorted ) {
 		print "<LI>"
-			. "<A HREF=\"info2html?("
+			. "<A HREF=\"info:/"
 			. $InfoFile{$name}
-		. ")Top\">"
+			. "/Top\">"
 			. $name
 			. "</A>\n" ;
 	}
@@ -650,6 +659,35 @@ does not exist.
 </body>
 EOF
 }
+
+sub PrintByFileLink {
+	print <<EOF
+
+	<hr />
+	<p>If you did not find what you were looking for try <a href="info:$BROWSE_BY_FILE_PATH">browsing by file</a> to 
+	see files from packages which did not update the directory.
+EOF
+}
+
+#-----------------------------------------------------------
+#                   BrowseByFile
+#-----------------------------------------------------------
+# Shows a list of available files in the system with a short
+# description of them.
+#------------------------------------------------------------
+
+sub BrowseByFile {
+	my @LinkList = ('', '', '', '',
+			'dir', 'Top', '','',''); # set LinkList[4] & LinkList[5], of course ;)
+	my $BaseInfoFile = '';
+	&PrintHeader(\@LinkList, $BaseInfoFile);
+	print <<EOF;
+<h2>Available Files</h2>
+EOF
+	&infocat;
+	&PrintFooter(\@LinkList, $BaseInfoFile);
+}
+
 #-----------------------------------------------------------
 #                   InfoNode2HTML
 #-----------------------------------------------------------
@@ -818,6 +856,12 @@ sub InfoNode2HTML {
   }
   
   close(FH2);
+
+  if ($BaseInfoFile =~ m/dir/i
+	  && $Tag =~ m/Top/i) {
+	  &PrintByFileLink;
+  }
+
   &PrintFooter(\@LinkList, $BaseInfoFile);
 }
 
@@ -893,13 +937,20 @@ sub FindFile {
 #-------------------  MAIN -----------------------------
 #
 # called as
-# perl /path/kde-info2html config_file image_base_path page node
+# perl /path/kde-info2html config_file image_base_path BaseInfoFile NodeName
+#
+# BaseInfoFile eq '#special#' to pass special args through NodeName (yes, it is a hack).
 #
 
 my $PROGRAM = $0;			# determine our basename and version
 $PROGRAM =~ s!.*/!!;
 my ($BaseInfoFile, $NodeName) = ($ARGV[2], $ARGV[3]);
 #&DirnameCheck($BaseInfoFile) || &DieFileNotFound($BaseInfoFile);
+
+if ($BaseInfoFile eq '#special#' and $NodeName eq 'browse_by_file') {
+	&BrowseByFile;
+	exit 0;
+}
 
 $BaseInfoFile = "dir" if $BaseInfoFile =~ /^dir$/i;
 my $FileNameFull = &FindFile($BaseInfoFile) || &DieFileNotFound($BaseInfoFile);

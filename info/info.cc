@@ -168,6 +168,13 @@ void InfoProtocol::decodeURL( const KURL &url )
      * luis pedro
      */
 
+    if ( url == KURL( "info:/browse_by_file?special=yes" ) ) {
+	    m_page = "#special#";
+	    m_node = "browse_by_file";
+	    kdDebug( 7108 ) << "InfoProtocol::decodeURL - special - browse by file" << endl;
+	    return;
+    }
+
     decodePath( url.path() );
 
     kdDebug( 7108 ) << "InfoProtocol::decodeURL - done" << endl;
