@@ -242,6 +242,7 @@ QString DiskEntry::discType()
 	tmp=tmp.right(tmp.length()-5);
 	tmp=tmp.left(3);
 	tmp="/proc/ide/"+tmp+"/media";
+	kdDebug(7020)<<"Trying to read file"<<tmp<<endl;
 	QFile infoFile(tmp);
 	if (infoFile.open(IO_ReadOnly))
 	{
