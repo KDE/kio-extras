@@ -769,7 +769,7 @@ bool KSshProcess::connect() {
                     i18n("Error encountered while talking to ssh.");
                 mConnectState = STATE_FATAL;
             }
-            else if( line.find(passwordPrompt[mVersion]) != -1 ) {
+            else if( line.find(QString::fromLatin1(passwordPrompt[mVersion]), 0, false) != -1 ) {
                 mConnectState = STATE_TRY_PASSWD;
             }
             else if( line.find(passphrasePrompt[mVersion]) != -1 ) {
