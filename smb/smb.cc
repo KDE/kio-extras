@@ -1,35 +1,39 @@
 // smb.cc adapted from file.cc !!!
+// $Id$
 
-#include "smb.h"
-#include <config.h>
+#ifdef HAVE_CONFIG_H
+#include "config.h"
+#endif
 
-#include <kio_rename_dlg.h>
-#include <kio_skip_dlg.h>
-
-#include <stdio.h>
-#include <signal.h>
-#include <errno.h>
 #include <sys/types.h>
-#include <sys/wait.h>
-#include <sys/stat.h>
 #ifdef HAVE_SYS_TIME_H
 #include <sys/time.h>
 #endif
+#include <sys/wait.h>
+
+#include <assert.h>
 #include <dirent.h>
+#include <errno.h>
+#include <stdio.h>
+#include <signal.h>
 #include <time.h>
 #include <unistd.h>
-#include <assert.h>
 
+#include <kio_rename_dlg.h>
+#include <kio_skip_dlg.h>
 #include <kurl.h>
 #include <kprotocolmanager.h>
 #include <qvaluelist.h>
+
+#include "smb.h"
+#include <sys/stat.h>
 
 #include <iostream.h>
 
 // simple wrapper for KURL::decode
 QString decode( const char *url );
-int check( Connection *_con );
 
+int check( Connection *_con );
 void sig_handler( int );
 void sig_handler2( int );
 
@@ -953,7 +957,7 @@ int check( Connection *_con )
   FD_SET( _con->inFD(), &rfds );
 
 again:
-  if ( ( err = select( _con->inFD(), &rfds, 0L, 0L, &tv ) ) == -1 && errno == EINTR )
+  if ( ( err = ::select( _con->inFD(), &rfds, 0L, 0L, &tv ) ) == -1 && errno == EINTR )
     goto again;
 
   // No error and something to read ?

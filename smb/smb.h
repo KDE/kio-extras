@@ -11,9 +11,6 @@
 #include <string.h>
 #include <list>
 
-#include <stdio.h>
-#include <sys/stat.h>
-#include <unistd.h>
 #include <sys/types.h>
 
 class SmbProtocol : public IOProtocol
@@ -65,7 +62,7 @@ protected:
 		off_t m_size;
 	};
 
-	long SmbProtocol::listRecursive( const char *smbURL, const char *dest, list<Copy>& _files, list<CopyDir>& _dirs, bool dirChecked=false);
+	long listRecursive( const char *smbURL, const char *dest, list<Copy>& _files, list<CopyDir>& _dirs, bool dirChecked=false);
 	void doCopy( list<string>& _source, const char *_dest );
 };
 
