@@ -1357,7 +1357,8 @@ int imapParser::parseLoop ()
 
           sentQueue.removeRef (current);
           completeQueue.append (current);
-          parseResult (resultCode, result, current->command());
+          if (result.length())
+		parseResult (resultCode, result, current->command());
         }
         else
         {
