@@ -193,9 +193,9 @@ void MyPtyProcess::unreadLineFrom(QCString inbuf, QCString line, bool addnl)
 
 int MyPtyProcess::exec(QCString command, QCStringList args)
 {
-    kdDebug(PTYPROC) << "MyPtyProcess::exec()" << endl;
+    kdDebug(PTYPROC) << "MyPtyProcess::exec(): " << command << ", args= " << args << endl;
     if (init() < 0)
-	return -1;
+        return -1;
 
     // Open the pty slave before forking. See SetupTTY()
     int slave = open(m_TTY, O_RDWR);
