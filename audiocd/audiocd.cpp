@@ -1,5 +1,6 @@
 /*
   Copyright (C) 2000 Rik Hemsley (rikkus) <rik@kde.org>
+  Copyright (C) 2000 Michael Matz <matz@kde.org>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -45,6 +46,7 @@ void paranoiaCallback(long, int);
 #include <klocale.h>
 
 #include "audiocd.h"
+#include "cddb.h"
 
 using namespace KIO;
 
@@ -85,6 +87,8 @@ class AudioCDProtocol::Private
     Private()
     {
       clear();
+      discid = 0;
+      cddb = 0;
     }
 
     void clear()
@@ -101,16 +105,24 @@ class AudioCDProtocol::Private
     bool useCDDB;
     QString cddbServer;
     int cddbPort;
+    unsigned int discid;
+    int tracks;
+    QString cd_title;
+    QStringList titles;
+    bool is_audio[100];
+    CDDB *cddb;
 };
 
 AudioCDProtocol::AudioCDProtocol(const QCString & pool, const QCString & app)
   : SlaveBase("audiocd", pool, app)
 {
   d = new Private;
+  d->cddb = new CDDB;
 }
 
 AudioCDProtocol::~AudioCDProtocol()
 {
+  delete d->cddb;
   delete d;
 }
 
@@ -132,6 +144,8 @@ AudioCDProtocol::get(const KURL & url)
     error(KIO::ERR_DOES_NOT_EXIST, url.path());
     return;
   }
+
+  updateCD(drive);
 
   // Track name looks like this: trackNN.wav
   int trackNumber = url.filename().mid(5, 2).toInt();
@@ -180,6 +194,8 @@ AudioCDProtocol::stat(const KURL & url)
     return;
   }
 
+  updateCD(drive);
+
   QString filename(url.path());
 
   bool isFile = filename.length() > 1;
@@ -215,7 +231,7 @@ AudioCDProtocol::stat(const KURL & url)
   entry.append(atom);
 
   atom.m_uds = KIO::UDS_SIZE;
-  if (isFile)
+  if (!isFile)
   {
     atom.m_long = cdda_tracks(drive);
   }
@@ -234,6 +250,71 @@ AudioCDProtocol::stat(const KURL & url)
   cdda_close(drive);
 
   finished();
+}
+
+  unsigned int
+AudioCDProtocol::get_discid(struct cdrom_drive * drive)
+{
+  unsigned int id = 0;
+  for (int i = 1; i <= drive->tracks; i++)
+    {
+      unsigned int n = cdda_track_firstsector (drive, i) + 150;
+      n /= 75;
+      while (n > 0)
+        {
+          id += n % 10;
+          n /= 10;
+        }
+    }
+  unsigned int l = (cdda_track_lastsector(drive, drive->tracks));
+  l -= cdda_track_firstsector(drive, 1);
+  l /= 75;
+  id = ((id % 255) << 24) | (l << 8) | drive->tracks;
+  return id;
+}
+
+void
+AudioCDProtocol::updateCD(struct cdrom_drive * drive)
+{
+  unsigned int id = get_discid(drive);
+  if (id == d->discid)
+    return;
+  d->discid = id;
+  d->tracks = cdda_tracks(drive);
+  d->cd_title = i18n("No Title");
+  d->titles.clear();
+  QValueList<int> qvl;
+  for (int i = 0; i < d->tracks; i++)
+    {
+      d->is_audio[i] = IS_AUDIO (drive, i + 1);
+      qvl.append(cdda_track_firstsector(drive, i + 1) + 150);
+    }
+  qvl.append(cdda_track_lastsector(drive, d->tracks) + 150 + 1);
+
+  d->cddb->set_server("freedb.freedb.org", 888);
+
+  if (d->cddb->queryCD(qvl))
+    {
+      d->cd_title = d->cddb->title();
+      for (int i = 0; i < d->tracks; i++)
+        {
+          QString n;
+          n.sprintf("%02d ", i + 1);
+          d->titles.append (n + d->cddb->track(i));
+        }
+      return;
+    }
+
+  for (int i = 0; i < d->tracks; i++)
+    {
+      int ti = i + 1;
+      QString s;
+      if (IS_AUDIO(drive, ti))
+        s.sprintf("track%02d", ti);
+      else
+        s.sprintf("dataa%02d", ti);
+      d->titles.append( s );
+    }
 }
 
   void
@@ -255,24 +336,29 @@ AudioCDProtocol::listDir(const KURL & url)
     return;
   }
 
-  int trackCount = drive->tracks;
-
   QStrList entryNames;
 
   UDSEntry entry;
 
+  updateCD(drive);
+  
+  int trackCount = d->tracks;
+
   for (int i = 1; i <= trackCount; i++)
   {
-    if (IS_AUDIO(drive, i))
+    if (d->is_audio[i-1])
     {
-      QCString s;
-      s.sprintf("track%02d.wav", i);
+      QString s;
+      if (i==1)
+        s.sprintf("_%08x.wav", d->discid);
+      else
+        s.sprintf(".wav");
 
       entry.clear();
       UDSAtom atom;
 
       atom.m_uds = KIO::UDS_NAME;
-      atom.m_str = s;
+      atom.m_str = d->titles[i-1] + s;
       entry.append(atom);
 
       atom.m_uds = KIO::UDS_FILE_TYPE;

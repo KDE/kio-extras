@@ -55,6 +55,9 @@ class AudioCDProtocol : public KIO::SlaveBase
         KIO::UDSEntry & entry
     );
 
+    unsigned int get_discid(struct cdrom_drive *);
+    void updateCD(struct cdrom_drive *);
+
     class Private;
     Private * d;
 
