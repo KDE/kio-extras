@@ -207,15 +207,15 @@ SmbProtocol::SmbProtocol (const QCString &pool, const QCString &app )
 
    KConfig *cfg = new KConfig("kioslaverc", true);
    cfg->setGroup("Browser Settings/SMBro");
-   m_user=cfg->readEntry("User","");
-   m_defaultWorkgroup=cfg->readEntry("Workgroup","");
+   m_user=cfg->readEntry("User");
+   m_defaultWorkgroup=cfg->readEntry("Workgroup");
    m_currentWorkgroup=m_defaultWorkgroup;
    m_showHiddenShares=cfg->readBoolEntry("ShowHiddenShares",false);
 //   m_storePasswords=cfg->readBoolEntry("StorePasswords",false);  //default to false, it's dangerous !
 
    // unscramble, taken from Nicola Brodu's smb ioslave
    //not really secure, but better than storing the plain password
-   QString scrambled = cfg->readEntry( "Password","" );
+   QString scrambled = cfg->readEntry( "Password" );
    m_password=my_unscramble(scrambled);
    delete cfg;
 }

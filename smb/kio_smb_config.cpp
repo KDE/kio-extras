@@ -39,8 +39,8 @@ void SMBSlave::reparseConfiguration()
 {
   KConfig *cfg = new KConfig("kioslaverc", true);
   cfg->setGroup("Browser Settings/SMBro");
-  m_default_user=cfg->readEntry("User","");
-  m_default_workgroup=cfg->readEntry("Workgroup","");
+  m_default_user=cfg->readEntry("User");
+  m_default_workgroup=cfg->readEntry("Workgroup");
   m_showHiddenShares=cfg->readBoolEntry("ShowHiddenShares",false);
 
   QString m_encoding = QTextCodec::codecForLocale()->name();
@@ -48,7 +48,7 @@ void SMBSlave::reparseConfiguration()
 
   // unscramble, taken from Nicola Brodu's smb ioslave
   //not really secure, but better than storing the plain password
-  QString scrambled = cfg->readEntry( "Password","" );
+  QString scrambled = cfg->readEntry( "Password" );
   m_default_password = "";
   for (uint i=0; i<scrambled.length()/3; i++)
   {
