@@ -51,16 +51,16 @@ bool PictureCreator::create(const QString &path, int width, int height, QImage &
     if (width > 500 || height > 500 )
     {
         if (height > width)
-            pix.resize(width, width / aspect);
+            pix.resize(width, qRound(width / aspect));
         else
-            pix.resize(height * aspect, height);
+            pix.resize(qRound(height * aspect), height);
     }
     else
     {
         if (height > width)
-            pix.resize(500, 500 / aspect);
+            pix.resize(500, qRound(500 / aspect));
         else
-            pix.resize(500 * aspect, 500);
+            pix.resize(qRound(500 * aspect), 500);
     }
     // light-grey background, in case loadind the page failed
     pix.fill( QColor( 245, 245, 245 ) );

@@ -247,7 +247,7 @@ kdbgstream& operator<< (kdbgstream& s, sftpFileAttr& a) {
     return s;
 }
 /** Make sure it builds with NDEBUG */
-kndbgstream& operator<< (kndbgstream& s, sftpFileAttr& a) {
+kndbgstream& operator<< (kndbgstream& s, sftpFileAttr& ) {
     return s;
 }
 /** Clear all attributes and flags. */

@@ -15,7 +15,8 @@
  *                                                                         *
  ***************************************************************************/
 
-#include <iostream.h>
+#include <iostream>
+using namespace std;
 
 #include "mimeio.h"
 

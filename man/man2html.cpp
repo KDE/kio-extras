@@ -105,7 +105,7 @@
 
 
 #include <stdio.h>
-#include <iostream.h>
+#include <iostream>
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
@@ -121,6 +121,8 @@
 #include <qstring.h>
 #include <qptrlist.h>
 #include "man2html.h"
+
+using namespace std;
 
 #define NULL_TERMINATED(n) ((n) + 1)
 
