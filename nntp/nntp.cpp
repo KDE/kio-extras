@@ -278,7 +278,7 @@ void NNTPProtocol::listDir( const KURL& url ) {
       KURL newURL(url);
       newURL.setPath("/");
       DBG << "listDir redirecting to " << newURL.prettyURL() << endl;
-      redirection(newURL.url());
+      redirection(newURL);
       finished();
       return;
     }

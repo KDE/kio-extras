@@ -355,7 +355,7 @@ void ArchiveProtocol::get( const KURL & url )
       kdDebug(7109) << "Redirection to " << archiveEntry->symlink() << endl;
       KURL realURL( url, archiveEntry->symlink() );
       kdDebug(7109) << "realURL= " << realURL.url() << endl;
-      redirection( realURL.url() );
+      redirection( realURL );
       finished();
       return;
     }
