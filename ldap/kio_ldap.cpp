@@ -77,7 +77,7 @@ void LDAPProtocol::checkErr( const KURL &_url )
   int ret;
   
   if ( ldap_get_option( mLDAP, LDAP_OPT_ERROR_NUMBER, &ret ) == -1 ) {
-    error( KIO::ERR_UNKNOWN, _url.prettyURL() );
+    error( ERR_UNKNOWN, _url.prettyURL() );
   } else {
     if ( ret != LDAP_SUCCESS ) LDAPErr( ret, _url.prettyURL() );
   }
@@ -410,7 +410,7 @@ void LDAPProtocol::LDAPEntry2UDSEntry( const QString &dn, UDSEntry &entry,
     entry.append( atom );
   }
 
-  atom.m_uds = KIO::UDS_ACCESS;
+  atom.m_uds = UDS_ACCESS;
   atom.m_long = dir ? 0500 : 0400;
   entry.append( atom );
 
@@ -731,7 +731,7 @@ void LDAPProtocol::get( const KURL &_url )
   mimeType("text/plain");
   // collect the result
   QCString result;
-  KIO::filesize_t processed_size = 0;
+  filesize_t processed_size = 0;
   QByteArray array;
   
   while( true ) {
@@ -888,6 +888,7 @@ void LDAPProtocol::put( const KURL &_url, int, bool overwrite, bool )
     if ( ret == LDIF::MoreData ) {
       dataReq(); // Request for data
       result = readData( buffer );
+      ldif.setLDIF( buffer ); 
     }
     if ( result < 0 ) {
       //error
@@ -896,12 +897,8 @@ void LDAPProtocol::put( const KURL &_url, int, bool overwrite, bool )
     }
     if ( result == 0 ) {
       kdDebug(7125) << "EOF!" << endl;
-      buffer.resize( 3 );
-      buffer[ 0 ] = '\n';
-      buffer[ 1 ] = '\n';
-      buffer[ 2 ] = '\n';
+      ldif.endLDIF();
     }
-    ldif.setLDIF( buffer ); 
     do {
       
       ret = ldif.nextItem();
