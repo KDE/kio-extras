@@ -140,12 +140,10 @@ extern "C"
 }
 
 kio_sftpProtocol::kio_sftpProtocol(const QCString &pool_socket, const QCString &app_socket)
-  : QObject(), SlaveBase("kio_sftp", pool_socket, app_socket) {
+  : QObject(), SlaveBase("kio_sftp", pool_socket, app_socket), mConnected(false),
+    mPort(-1), mMsgId(0) {
     kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::kio_sftpProtocol()" << endl;
-    mConnected = false;
     setMultipleAuthCaching(true);
-    mMsgId = 0;
-    mPort = -1;
 //    ssh.setSshPath("/usr/local/ssh/bin/ssh");
 }
 
@@ -209,7 +207,7 @@ void kio_sftpProtocol::get(const KURL& url ) {
     // needed for determining mimetype
     // note: have to emit mimetype before emitting totalsize.
     QByteArray mimeBuffer;
-    unsigned int mimeBufferLen = 0, cpyLen, oldSize;
+    unsigned int oldSize;
     bool foundMimetype = false;
     
     // How big should each data packet be? Definitely not bigger than 64kb or
@@ -245,6 +243,16 @@ void kio_sftpProtocol::get(const KURL& url ) {
             else {        
                 data(mydata);
             }
+        }
+
+        /* Check if slave was killed.  According to slavebase.h we
+         * need to leave the slave methods as soon as possible if
+         * the slave is killed. This allows the slave to be cleaned
+         * up properly.
+         */
+        if( wasKilled() ) {
+            error(ERR_UNKNOWN, i18n("sftp slave unexpectedly killed"));
+            return;
         }
     }
 
@@ -287,21 +295,54 @@ void kio_sftpProtocol::setHost (const QString& h, int port, const QString& user,
 
 
 void kio_sftpProtocol::openConnection(){
-    kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::openConnection() to " << mUsername << "@" << mHost << ":" << mPort << endl;
+    kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::openConnection() to " << 
+        mUsername << "@" << mHost << ":" << mPort << endl;
 
     if(mConnected) return;
 
-    infoMessage(i18n("Opening connection to host <b>%1:%2</b>").arg(mHost).arg(mPort));
+    infoMessage(
+   i18n("Opening sftp connection to host <b>%1:%2</b>").arg(mHost).arg(mPort));
 
     if( mHost.isEmpty() ) {
-        kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::openConnection Need hostname" << endl;
-        error(ERR_UNKNOWN_HOST, QString::null);
+        kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::openConnection(): "
+            "Need hostname" << endl;
+        error(ERR_UNKNOWN_HOST, i18n("No hostname specified"));
         return;
     }
 
-    // Setup our ssh options
-    KSshProcess::SshOpt opt;
-    KSshProcess::SshOptList opts;
+    ////////////////////////////////////////////////////////////////////////////
+    // Setup AuthInfo for use with password caching and the
+    // password dialog box.  
+    AuthInfo info;
+    info.url.setProtocol("sftp");
+    info.url.setHost(mHost);
+    info.url.setPort(mPort);
+    info.caption = i18n("Sftp Login");
+    info.comment = "sftp://"+mHost;
+    info.commentLabel = i18n("site:");
+    info.username = mUsername;
+    info.keepPassword = true;
+
+    ///////////////////////////////////////////////////////////////////////////
+    // Check for cached authentication info if a username AND password were
+    // not specified in setHost(). 
+    bool gotCachedInfo;
+    if( mUsername.isEmpty() && mPassword.isEmpty() ) {
+        if( gotCachedInfo = checkCachedAuthentication(info) ) {
+            mUsername = info.username;
+            mPassword = info.password;
+        }
+    }
+    
+    ///////////////////////////////////////////////////////////////////////////
+    // Now setup our ssh options. If we found a cached username
+    // and password we set the SSH_PASSWORD and SSH_USERNAME
+    // options right away.  Otherwise we wait. The other options are
+    // necessary for running sftp over ssh.
+    KSshProcess::SshOpt opt;   // a ssh option, this can be reused
+    KSshProcess::SshOptList opts; // list of SshOpts
+    KSshProcess::SshOptListIterator passwdIt; // points to the opt in opts that specifies the password
+    KSshProcess::SshOptListIterator usernameIt;
 
 //    opt.opt = KSshProcess::SSH_VERBOSE;
 //    opts.append(opt);
@@ -337,133 +378,228 @@ void kio_sftpProtocol::openConnection(){
     opt.num = -1; // don't use any escape character
     opts.append(opt);
 
-    KSshProcess::SshOptListIterator usernameIt;
-    opt.opt = KSshProcess::SSH_USERNAME;
-    opt.str = mUsername;
-    usernameIt = opts.append(opt);
+    // set the username and password if we have them
+    if( !mUsername.isEmpty()  ) {
+        opt.opt = KSshProcess::SSH_USERNAME;
+        opt.str = mUsername;
+        usernameIt = opts.append(opt);
+    }
 
-    KSshProcess::SshOptListIterator passwdIt;
-    opt.opt = KSshProcess::SSH_PASSWD;
-    opt.str = mPassword;
-    passwdIt = opts.append(opt);
+    if( !mPassword.isEmpty() ) {
+        opt.opt = KSshProcess::SSH_PASSWD;
+        opt.str = mPassword;
+        passwdIt = opts.append(opt);
+    }
 
-    // setup AuthInfo
-    AuthInfo info;
-    info.url.setProtocol("sftp");
-    info.url.setHost(mHost);
-    info.url.setPort(mPort);
-    info.caption = i18n("Sftp Login");
-    info.comment = "sftp://"+mHost;
-    info.commentLabel = i18n("site:");
-    info.username = mUsername;
+    ssh.setOptions(opts);
+    ssh.printArgs();
+    
+    ///////////////////////////////////////////////////////////////////////////
+    // Start the ssh connection process.
+    //
 
-    QByteArray p;
-    bool gotFromCache = false;
-    int tries = 0;
-    while( tries++ < RETRIES ) {
-        kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::openConnection(): Auth try " << tries << endl;
-        kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::openConnection(): usename = " << mUsername << endl;
-
-        // If we tried and failed, set info message
-        if( tries > 1 )
-            infoMessage(i18n("Login failed. Retrying..."));
-
-        kdDebug(KIO_SFTP_DB) << "checkAuth = " <<
-         (checkCachedAuthentication(info) ? "true" : "false") << endl;
-
-        // XXX Check the cached auth info reveals a previously used username
-        // ask if the user wants to used that account.
+    int err;           // error code from KSshProcess
+    QString msg;       // msg for dialog box
+    QString caption;   // dialog box caption
+    
+    while( !(mConnected = ssh.connect()) ) {
+        err = ssh.error();
+        kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::openConnection(): "
+            "Got " << err << " from KSshProcess::connect()" << endl;
         
-        // Check for cached auth info if this is our first try
-//        if( tries == 1 && !mUsername.isEmpty() &&
-        if( tries == 1 &&
-              checkCachedAuthentication(info) ) {
-            kdDebug(KIO_SFTP_DB) << "Got auth info from cache" << endl;
-            gotFromCache = true;
-            mUsername = info.username;
-            mPassword = info.password;
-        }
-        // cache was dry or we don't have a username, so ask user
-        else {
-            gotFromCache = false;
-            if( tries == 1 ) // this is first try
+        switch(err) {
+        case KSshProcess::ERR_NEED_PASSWD:
+        case KSshProcess::ERR_NEED_PASSPHRASE:
+            // At this point we know that either we didn't set
+            // an username or password in the ssh options list,
+            // or what we did pass did not work. Therefore we
+            // must prompt the user.
+        
+            if( err == KSshProcess::ERR_NEED_PASSPHRASE ) {
                 info.prompt =
-                  i18n("Please enter your username and password.");
-            else // this is a retry
+                    i18n("Please enter your username and key passphrase.");
+            }
+            else {
                 info.prompt =
-                  i18n("Login failed.\nPlease confirm your username and password, and enter them again.");
-
+                    i18n("Please enter your username and password.");
+            }
+            
             if( openPassDlg(info) ) {
                if( info.username.isEmpty() || info.password.isEmpty() ) {
                     error(ERR_COULD_NOT_AUTHENTICATE,
                       i18n("Please enter a username and password"));
                     continue;
                 }
-                mUsername = info.username;
-                mPassword = info.password;
             }
             else {
                 // user canceled or dialog failed to open
                 error(ERR_USER_CANCELED, QString::null);
                 return;
             }
-        } // We have a username and password at this point
 
-        (*usernameIt).str = mUsername;
-        (*passwdIt).str = mPassword;
+            // Check if the username has changed. SSH only accepts
+            // the username at startup. If the username has changed
+            // we must disconnect ssh, change the SSH_USERNAME
+            // option, and reset the option list. We will also set
+            // the password option so the user is not prompted for
+            // it again.
+            if( mUsername != info.username ) {
+                kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::openConnection(): "
+                    "Username changed from " <<
+                    mUsername << " to " << info.username << endl;
+                
+                ssh.disconnect();
 
+                // if we haven't yet added the username 
+                // or password option to the ssh options list then 
+                // the iterators will be equal to the empty iterator. 
+                // Create the opts now and add them to the opt list.
+                if( usernameIt == KSshProcess::SshOptListIterator() ) {
+                    kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::openConnection(): " 
+                        "Adding username to options list" << endl;
+                    opt.opt = KSshProcess::SSH_USERNAME;
+                    usernameIt = opts.append(opt);
+                }
 
-        ssh.setOptions(opts);
-
-        if( !ssh.connect() ) {
-            infoMessage(i18n("Connection failed."));
-
-            QString msg, caption;
-            int err = ssh.error(msg);
-            switch( err ) {
-            case KSshProcess::ERR_NEW_HOST_KEY:
-                caption = i18n("Warning: Host key not found!");
-                break;
-
-            case KSshProcess::ERR_DIFF_HOST_KEY:
-                caption = i18n("Warning: Host key has changed!");
-                break;
-
-            case KSshProcess::ERR_AUTH_FAILED:
-                continue; // retry connection
-
-            default:
-                mConnected = false;
-                return;
+                if( passwdIt == KSshProcess::SshOptListIterator() ) {
+                    kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::openConnection(): " 
+                        "Adding password to options list" << endl;
+                    opt.opt = KSshProcess::SSH_PASSWD;
+                    passwdIt = opts.append(opt);
+                }
+                
+                (*usernameIt).str = info.username;
+                (*passwdIt).str = info.password;
+                ssh.setOptions(opts);
+                ssh.printArgs();
+            }
+            else { // just set the password
+                ssh.setPassword(info.password);
             }
 
+            mUsername = info.username;
+            mPassword = info.password;
+            
+            break;
+                
+        case KSshProcess::ERR_NEW_HOST_KEY:
+            caption = i18n("Warning: Unrecognized host key!");    
+            msg = ssh.errorMsg();
             msg += "\n"+i18n("Shall we continue connecting to %1?").arg(mHost);
             if( KMessageBox::Yes != messageBox(WarningYesNo, msg, caption) ) {
-                mConnected = false;
+                closeConnection();
+                error(ERR_USER_CANCELED, QString::null);
                 return;
             }
-
-            if( !ssh.connect(true) ) {
-                switch( ssh.error() ){
-                case KSshProcess::ERR_AUTH_FAILED:
-                    continue; // retry
-                default:
-                    mConnected = false;
-                    return;
-                }
+            ssh.acceptHostKey(true);
+            break;
+            
+        case KSshProcess::ERR_DIFF_HOST_KEY:
+            caption = i18n("Warning: Host key changed!");    
+            msg = ssh.errorMsg();
+            msg += "\n"+i18n("Shall we continue connecting to %1?").arg(mHost);
+            if( KMessageBox::Yes != messageBox(WarningYesNo, msg, caption) ) {
+                closeConnection();
+                error(ERR_USER_CANCELED, QString::null);
+                return;
             }
+            ssh.acceptHostKey(true);
+            break;
+            
+        case KSshProcess::ERR_AUTH_FAILED:
+            continue;
+            
+        case KSshProcess::ERR_AUTH_FAILED_NEW_KEY:
+            caption = i18n("Warning: Unrecognized host key!");
+            msg = ssh.errorMsg();
+            messageBox(Information, msg, caption);
+            error(ERR_COULD_NOT_LOGIN, msg);
+            return;
+            
+        case KSshProcess::ERR_AUTH_FAILED_DIFF_KEY:
+            caption = i18n("Warning: Host key changed!");
+            msg = ssh.errorMsg();
+            messageBox(Information, msg, caption);
+            error(ERR_COULD_NOT_LOGIN, msg);
+            return;
+        
+        case KSshProcess::ERR_CLOSED_BY_REMOTE_HOST:
+            infoMessage(i18n("Connection failed."));
+            caption = i18n("Connection closed by remote host.");
+            msg = ssh.errorMsg();
+            messageBox(Information, msg, caption);
+            closeConnection();
+            error(ERR_COULD_NOT_LOGIN, msg);
+            return;
+            
+        case KSshProcess::ERR_INTERACT:
+        case KSshProcess::ERR_INTERNAL:
+        case KSshProcess::ERR_UNKNOWN:
+        case KSshProcess::ERR_INVALID_STATE:
+        case KSshProcess::ERR_CANNOT_LAUNCH:
+        case KSshProcess::ERR_HOST_KEY_REJECTED:
+        default:
+            infoMessage(i18n("Connection failed."));
+            caption = i18n("Unexpected SFTP error: %1").arg(err);
+            msg = ssh.errorMsg();
+            messageBox(Information, msg, caption);
+            return;
         }
+    }
 
-        infoMessage(i18n("Connected to ")+mHost);
+    // catch all in case we did something wrong above
+    if( !mConnected ) {
+        error(ERR_INTERNAL, QString::null);
+        return;
+    }
 
-        // Now send init packet.
-        kdDebug(KIO_SFTP_DB) << "Sending SSH2_FXP_INIT packet." << endl;
-        QDataStream packet(p, IO_WriteOnly);
-        packet << (Q_UINT32)5;                     // packet length
-        packet << (Q_UINT8) SSH2_FXP_INIT;         // packet type
-        packet << (Q_UINT32)SSH2_FILEXFER_VERSION; // client version
-        putPacket(p);
+    // Now send init packet.
+    kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::openConnection(): "
+        "Sending SSH2_FXP_INIT packet." << endl;
+    QByteArray p;
+    QDataStream packet(p, IO_WriteOnly);
+    packet << (Q_UINT32)5;                     // packet length
+    packet << (Q_UINT8) SSH2_FXP_INIT;         // packet type
+    packet << (Q_UINT32)SSH2_FILEXFER_VERSION; // client version
+    
+    putPacket(p);
+    getPacket(p);
 
+    QDataStream s(p, IO_ReadOnly);
+    Q_UINT32 version;
+    Q_UINT8  type;
+    s >> type;
+    kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::openConnection(): "
+        "Got type " << type << endl;
+
+    if( type == SSH2_FXP_VERSION ) {
+        s >> version;
+        kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::openConnection(): "
+            "Got server version " << version << endl;
+        // XXX Get extensions here
+        if( version != SSH2_FILEXFER_VERSION ) {
+            error(ERR_UNSUPPORTED_PROTOCOL, 
+                "Server uses incompatible sftp version.");
+            closeConnection();
+            return;
+        }
+    }
+    else {
+        error(ERR_UNKNOWN, "Protocol error.");
+        closeConnection();
+        return;
+    }
+
+    // Login succeeded!
+    infoMessage(i18n("Successfully connected to %1").arg(mHost));
+    info.username = mUsername;
+    info.password = mPassword;
+    cacheAuthentication(info);
+    mConnected = true;
+    connected();
+    return;
+
+#if 0
         // Now we wait to see whether we get a response on the stdinout file descriptor
         // or on the pty file desciptor. If the former, we are successfully connected.
         // If the latter, authentication failed.
@@ -503,44 +639,13 @@ void kio_sftpProtocol::openConnection(){
           i18n("Could not login to %1.\nMaximum number of retries exceeded.").arg(mHost));
         return;
     }
-
-    getPacket(p);
-
-    QDataStream s(p, IO_ReadOnly);
-    Q_UINT32 version;
-    Q_UINT8  type;
-    s >> type;
-    kdDebug(KIO_SFTP_DB) << "Got type " << type << endl;
-    if( type == SSH2_FXP_VERSION ) {
-        s >> version;
-        kdDebug(KIO_SFTP_DB) << "Got server version " << version << endl;
-        // XXX Get extensions here
-        if( version != SSH2_FILEXFER_VERSION ) {
-            error(ERR_UNSUPPORTED_PROTOCOL, "Server uses incompatible sftp version.");
-            closeConnection();
-            return;
-        }
-    }
-    else {
-        error(ERR_UNKNOWN, "Protocol error.");
-        closeConnection();
-        return;
-    }
-
-    // Login succeeded!
-    infoMessage(i18n("Login OK"));
-    info.username = mUsername;
-    info.password = mPassword;
-    if( !gotFromCache ) cacheAuthentication(info);
-    mConnected = true;
-    connected();
-    return;
+#endif
 }
 
 
 void kio_sftpProtocol::closeConnection() {
     kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol::closeConnection()" << endl;
-    ssh.kill();
+    ssh.disconnect();
     mConnected = false;
 }
 
@@ -709,6 +814,16 @@ void kio_sftpProtocol::put ( const KURL& url, int permissions, bool overwrite, b
 
         dataReq();
         nbytes = readData(mydata);
+
+        /* Check if slave was killed.  According to slavebase.h we
+         * need to leave the slave methods as soon as possible if
+         * the slave is killed. This allows the slave to be cleaned
+         * up properly.
+         */
+        if( wasKilled() ) {
+            error(ERR_UNKNOWN, i18n("sftp slave unexpectedly killed"));
+            return;
+        }
     }
 
     if( nbytes != 0 ) {
