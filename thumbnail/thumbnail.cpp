@@ -163,9 +163,9 @@ void ThumbnailProtocol::get(const KURL &url)
     {
         double imgRatio = (double)img.height() / (double)img.width();
         if (imgRatio > (double)m_height / (double)m_width)
-            img = img.smoothScale((double)m_height / imgRatio, m_height);
+            img = img.smoothScale(QMAX((double)m_height / imgRatio, 1), m_height);
         else
-            img = img.smoothScale(m_width, (double)m_width * imgRatio);
+            img = img.smoothScale(m_width, QMAX((double)m_width * imgRatio, 1));
     }
     ThumbCreator::Flags flags = creator->flags();
 
