@@ -1,4 +1,4 @@
-/////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
 //                                                                         
 // Project:     SMB kioslave for KDE2
 //
@@ -36,7 +36,7 @@
 //===========================================================================
 void SMBSlave::get( const KURL& kurl )
 {
-    char buf[MAX_XFER_BUF_SIZE];
+    char        buf[MAX_XFER_BUF_SIZE];
     int         filefd          = 0;
     ssize_t     bytesread       = 0;
     time_t      curtime         = 0;
@@ -46,6 +46,7 @@ void SMBSlave::get( const KURL& kurl )
     struct stat st;
     QByteArray  filedata;
     SMBUrl      url;
+
     kdDebug(KIO_SMB) << "SMBSlave::get on " << kurl.url() << endl;
 
 
@@ -135,21 +136,14 @@ void SMBSlave::get( const KURL& kurl )
 
 
 //===========================================================================
-void SMBSlave::mimetype( const KURL& /*url*/ )
-{
-    error(KIO::ERR_UNSUPPORTED_ACTION, "SMB filesystem does not yet support mimetype()");
-    finished();
-}
-
-
-
-//===========================================================================
 void SMBSlave::put( const KURL& kurl,
                     int permissions, 
                     bool overwrite, 
                     bool resume )
 {
-    kdDebug(KIO_SMB) << "SMBSlave::put on " << kurl.url() << endl;
+  
+    void *buf;
+    size_t bufsize;
 
     m_current_url.fromKioUrl( kurl );
 
@@ -159,6 +153,7 @@ void SMBSlave::put( const KURL& kurl,
     struct stat st;
     QByteArray  filedata;
 
+    kdDebug(KIO_SMB) << "SMBSlave::put on " << kurl.url() << endl;
 
 
     exists = (cache_stat(m_current_url, &st) != -1 );
@@ -177,15 +172,17 @@ void SMBSlave::put( const KURL& kurl,
         return;
     }
  
-    if (exists && !resume)
+    if (exists && !resume && overwrite)
     {
-         remove(m_current_url.toKioUrl().local8Bit());
+         kdDebug(KIO_SMB) << "SMBSlave::put exists try to remove " << m_current_url.toSmbcUrl()<< endl;
+	 //   remove(m_current_url.toKioUrl().local8Bit());
     }
 
     
     if (resume) 
     {
         // append if resuming
+        kdDebug(KIO_SMB) << "SMBSlave::put resume " << m_current_url.toSmbcUrl()<< endl;
         filefd = smbc_open(m_current_url.toSmbcUrl(), O_RDWR, 0 );
         smbc_lseek(filefd, 0, SEEK_END);
     } 
@@ -199,6 +196,8 @@ void SMBSlave::put( const KURL& kurl,
         {
             mode = 600;//0666;
         }
+
+        kdDebug(KIO_SMB) << "SMBSlave::put NO resume " << m_current_url.toSmbcUrl()<< endl;
         filefd = smbc_open(m_current_url.toSmbcUrl(), O_CREAT | O_TRUNC | O_WRONLY, mode);
     }
  
@@ -206,12 +205,12 @@ void SMBSlave::put( const KURL& kurl,
     {
         if ( errno == EACCES ) 
         {
-	  kdDebug(KIO_SMB) << "SMBSlave::put on " << kurl.url() <<" access denied !!"<< endl;
+	  kdDebug(KIO_SMB) << "SMBSlave::put error " << kurl.url() <<" access denied !!"<< endl;
             error( KIO::ERR_WRITE_ACCESS_DENIED, m_current_url.toKioUrl());
         }
         else 
         {
-	  kdDebug(KIO_SMB) << "SMBSlave::put on " << kurl.url() <<" can not open for writing !!"<< endl;
+	  kdDebug(KIO_SMB) << "SMBSlave::put error " << kurl.url() <<" can not open for writing !!"<< endl;
             error( KIO::ERR_CANNOT_OPEN_FOR_WRITING, m_current_url.toKioUrl());
         }
         return;
@@ -220,18 +219,25 @@ void SMBSlave::put( const KURL& kurl,
     // Loop until we got 0 (end of data)
     while(1)
     {
+        kdDebug(KIO_SMB) << "SMBSlave::put request data "<< endl;
         dataReq(); // Request for data
+        kdDebug(KIO_SMB) << "SMBSlave::put write " << m_current_url.toSmbcUrl()<< endl;
+
         if (readData(filedata) <= 0)
         {
             break;
         }
-        if(smbc_write(filefd, filedata.data(), filedata.size()) < 0)
+        kdDebug(KIO_SMB) << "SMBSlave::put write " << m_current_url.toSmbcUrl()<< endl;
+	buf = filedata.data();
+	bufsize = filedata.size();
+        if(smbc_write(filefd, buf,bufsize) < 0)
         {
-	  kdDebug(KIO_SMB) << "SMBSlave::put on " << kurl.url() <<" could not write !!"<< endl;
+	  kdDebug(KIO_SMB) << "SMBSlave::put error " << kurl.url() <<" could not write !!"<< endl;
             error( KIO::ERR_COULD_NOT_WRITE, m_current_url.toKioUrl());
             break;
         }
     }
+    kdDebug(KIO_SMB) << "SMBSlave::put close " << m_current_url.toSmbcUrl()<< endl;
 
     if(smbc_close(filefd))
     {
@@ -253,12 +259,5 @@ void SMBSlave::put( const KURL& kurl,
 }               
 
 
-//===========================================================================
-// TODO: do we need this?
-void SMBSlave::setSubURL(const KURL&/*url*/)
-{
-    error(KIO::ERR_UNSUPPORTED_ACTION, "SMB filesystem does not yet support setSubURL()");
-    finished();
-}
 
 
