@@ -3,7 +3,7 @@ Encoding=UTF-8
 Icon=dvd_mount
 Type=MimeType
 MimeType=kdedevice/dvd_mounted
-Comment=Mounted DVD 
+Comment=Mounted DVD
 Patterns=
 
 X-KDE-AutoEmbed=true

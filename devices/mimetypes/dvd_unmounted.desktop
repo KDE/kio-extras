@@ -3,7 +3,7 @@ Encoding=UTF-8
 Icon=dvd_unmount
 Type=MimeType
 MimeType=kdedevice/dvd_unmounted
-Comment=Unmounted DVD 
+Comment=Unmounted DVD
 Patterns=
 
 X-KDE-AutoEmbed=true
