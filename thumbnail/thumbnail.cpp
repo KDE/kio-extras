@@ -125,7 +125,7 @@ void ThumbnailProtocol::get(const KURL &url)
     int iconSize = metaData("iconSize").toInt();
     if (!iconSize)
         iconSize = KGlobal::iconLoader()->currentSize(KIcon::Desktop);
-	if (iconSize != m_iconSize)
+    if (iconSize != m_iconSize)
         m_iconDict.clear();
     m_iconSize = iconSize;
 
@@ -157,7 +157,7 @@ void ThumbnailProtocol::get(const KURL &url)
             }
         }
     }
-   ThumbCreator::Flags flags = ThumbCreator::None;
+    ThumbCreator::Flags flags = ThumbCreator::None;
      
     if (!kfmiThumb)
     {
@@ -238,28 +238,28 @@ void ThumbnailProtocol::get(const KURL &url)
 
     QByteArray imgData;
     QDataStream stream( imgData, IO_WriteOnly );
-	QString shmid = metaData("shmid");
-	if (shmid.isEmpty())
-		stream << img;
-	else
-	{
-		void *shmaddr = shmat(shmid.toInt(), 0, 0);
-		if (shmaddr == (void *)-1)
-		{
-			error(KIO::ERR_INTERNAL, "Failed to attach to shared memory segment " + shmid);
-			return;
-		}
-		if (img.width() * img.height() > m_width * m_height)
-		{
-			error(KIO::ERR_INTERNAL, "Image is too big for the shared memory segment");
-			shmdt((char*)shmaddr);
-			return;
-		}
-		stream << img.width() << img.height() << img.depth()
+    QString shmid = metaData("shmid");
+    if (shmid.isEmpty())
+        stream << img;
+    else
+    {
+        void *shmaddr = shmat(shmid.toInt(), 0, 0);
+        if (shmaddr == (void *)-1)
+        {
+            error(KIO::ERR_INTERNAL, "Failed to attach to shared memory segment " + shmid);
+            return;
+        }
+        if (img.width() * img.height() > m_width * m_height)
+        {
+            error(KIO::ERR_INTERNAL, "Image is too big for the shared memory segment");
+            shmdt((char*)shmaddr);
+            return;
+        }
+        stream << img.width() << img.height() << img.depth()
                << img.hasAlphaBuffer();
-		memcpy(shmaddr, img.bits(), img.numBytes());
-		shmdt((char*)shmaddr);
-	}
+        memcpy(shmaddr, img.bits(), img.numBytes());
+        shmdt((char*)shmaddr);
+    }
     data(imgData);
     finished();
 }
@@ -278,7 +278,7 @@ const QImage& ThumbnailProtocol::getIcon()
         {
             QRgb *line = (QRgb *) icon->scanLine( y );
             for ( int x = 0; x < w; x++ )
-            line[x] &= m_iconAlpha; // transparency
+                line[x] &= m_iconAlpha; // transparency
         }
 
         m_iconDict.insert( m_mimeType, icon );
