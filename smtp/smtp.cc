@@ -218,7 +218,7 @@ bool SMTPProtocol::getResponse(char *r_buf, unsigned int r_len, const char *cmd)
 
   if (wait_time == 0)
   {
-    fprintf(stderr, "No response from SMTP server in 60 secs.\n");
+    kdDebug () << "No response from SMTP server in 60 secs." << endl;
     return false;
   }
 
@@ -280,7 +280,7 @@ bool SMTPProtocol::getResponse(char *r_buf, unsigned int r_len, const char *cmd)
     if (buf) free(buf);
     return false;
   default:
-    fprintf(stderr, "Invalid or unknown SMTP response received!\n");
+    kdDebug () << "Invalid or unknown SMTP response received!" << endl;
     if (r_buf && r_len) {
       memcpy(r_buf, buf, QMIN(r_len,recv_len));
     }

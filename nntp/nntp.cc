@@ -101,7 +101,7 @@ bool NNTPProtocol::getResponse (char *r_buf, unsigned int r_len)
 
   if (wait_time == 0)
   {
-    fprintf(stderr, "No response from NNTP server in 60 secs.\n");fflush(stderr);
+    kdDebug () << "No response from NNTP server in 60 secs." << endl;
     return false;
   }
 
@@ -140,7 +140,7 @@ bool NNTPProtocol::getResponse (char *r_buf, unsigned int r_len)
     if (buf) free(buf);
     return false;
   } else {
-    fprintf(stderr, "Invalid NNTP response received!\n");
+    kdDebug () << "Invalid NNTP response received!" << endl;
     if (r_buf && r_len) {
       memcpy(r_buf, buf, QMIN(r_len,recv_len));
     }
@@ -205,7 +205,7 @@ bool NNTPProtocol::nntp_open( const KURL &_url )
   // Why 0 wasn't chosen is beyond me.
   port = _url.port() ? _url.port() : 119;
   if ( (m_iOldPort == port) && (m_sOldServer == _url.host()) && (m_sOldUser == _url.user()) && (m_sOldPass == _url.pass())) {
-    fprintf(stderr,"Reusing old connection\n");
+    kdDebug () << "Reusing old connection" << endl;
     return true;
   } else {
     nntp_close();
@@ -252,7 +252,7 @@ bool NNTPProtocol::nntp_open( const KURL &_url )
     memset(buf, 0, sizeof(buf));
 
     if (!command(one_string.local8Bit(), buf, sizeof(buf))) {
-      fprintf(stderr, "Couldn't login. Bad username Sorry\n");
+      kdDebug () << "Couldn't login. Bad username Sorry" << endl;
       nntp_close();
       return false;
     }
@@ -266,7 +266,7 @@ bool NNTPProtocol::nntp_open( const KURL &_url )
       one_string.append(_url.pass());
     }
     if (!command(one_string.local8Bit(), buf, sizeof(buf))) {
-      fprintf(stderr, "Couldn't login. Bad password Sorry\n");
+      kdDebug () << "Couldn't login. Bad password Sorry" << endl;
       nntp_close();
       return false;
     }
@@ -338,7 +338,7 @@ void NNTPProtocol::get( const KURL& url )
   path.remove(0,path.find("/")+1);
 
   if (!nntp_open(url)) {
-    fprintf(stderr,"nntp_open failed\n");
+    kdDebug () << "nntp_open failed" << endl;
     error( ERR_COULD_NOT_CONNECT, url.host());
     nntp_close();
     return;
@@ -385,7 +385,7 @@ LIST
         array.resetRawData(buf, strlen(buf));
         totalSize(size);
       }
-      fprintf(stderr,"Finishing up list\n");
+      kdDebug () << "Finishing up list" << endl;
       data( QByteArray() );
       speed(0); finished();
     }
@@ -405,7 +405,7 @@ LIST
       mimeType("text/plain");
       memset(buf, 0, sizeof(buf));
       while (!feof(fp)) {
-        fprintf(stderr,"xxxxxxxxxxxFinishing up\n");
+        kdDebug () << "xxxxxxxxxxxFinishing up" << endl;
         memset(buf, 0, sizeof(buf));
         if (!fgets(buf, sizeof(buf)-1, fp))
           break;  // Error??
@@ -426,7 +426,7 @@ LIST
           array.resetRawData(buf, strlen(buf));
         }
       }
-      fprintf(stderr,"Finishing up\n");
+      kdDebug () << "Finishing up" << endl;
       data( QByteArray() );
       speed(0); finished();
     }
@@ -488,11 +488,11 @@ LIST
         p_size+=strlen(buf);
         processedSize(p_size);
       }
-      fprintf(stderr,"Finishing up\n");
+      kdDebug () << "Finishing up" << endl;
       data(QByteArray());
       speed(0); finished();
     } else {
-      fprintf(stderr, "Couldn't login. Bad RETR Sorry\n");
+      kdDebug () << "Couldn't login. Bad RETR Sorry" << endl;
       nntp_close();
       return;
     }
@@ -518,7 +518,7 @@ LIST
       array.resetRawData(buf, len);
       processedSize(len);
       kdDebug() << buf << endl;
-      fprintf(stderr,"Finishing up uid\n");
+      kdDebug () << "Finishing up uid" << endl;
       data(QByteArray());
       speed(0); finished();
     } else {
@@ -527,7 +527,7 @@ LIST
   }
 
   else if (cmd == "commit") {
-    fprintf(stderr,"Issued QUIT\n");
+    kdDebug () << "Issued QUIT" << endl;
     nntp_close();
     finished();
     m_cmd = CMD_NONE;
@@ -544,7 +544,7 @@ void NNTPProtocol::listDir( const KURL& url)
   KURL usrc( url );
   // Try and open a connection
   if (!nntp_open(usrc)) {
-    fprintf(stderr,"nntp_open failed\n");
+    kdDebug () << "nntp_open failed" << endl;
     error( ERR_COULD_NOT_CONNECT, usrc.host());
     nntp_close();
     return;
@@ -556,7 +556,7 @@ void NNTPProtocol::listDir( const KURL& url)
     error(ERR_INTERNAL, "??");
     return;
   }
-  fprintf(stderr,"The stat buf is :%s:\n", buf);
+  kdDebug () << "The stat buf is :"  << buf << endl;
   q_buf=buf;
   if (q_buf.find(" ")==-1) {
     error(ERR_INTERNAL, "Invalid NNTP response, we should have at least one space!");
@@ -586,7 +586,7 @@ void NNTPProtocol::listDir( const KURL& url)
     atom.m_long = 0;
     atom.m_str = "text/plain";
     entry.append(atom);
-    fprintf(stderr,"Mimetype is %s\n", atom.m_str.ascii());
+    kdDebug () << "Mimetype is " << atom.m_str.ascii() << endl;
 
     atom.m_uds = UDS_URL;
     QString uds_url;
@@ -599,7 +599,7 @@ void NNTPProtocol::listDir( const KURL& url)
     }
     atom.m_long = 0;
     entry.append(atom);
-    fprintf(stderr,"URL is %s\n", atom.m_str.ascii());
+    kdDebug () << "URL is " <<  atom.m_str.ascii() << endl;
 
     atom.m_uds = UDS_FILE_TYPE;
     atom.m_str = "";
@@ -643,7 +643,7 @@ void NNTPProtocol::del( const KURL& url, bool /*isfile*/ )
   bool isInt;
 
   if ( !nntp_open(url) ) {
-    fprintf(stderr,"nntp_open failed\n");
+    kdDebug () << "nntp_open failed" << endl;
     error( ERR_COULD_NOT_CONNECT, url.host());
     nntp_close();
     return;
