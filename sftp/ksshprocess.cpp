@@ -438,7 +438,7 @@ bool KSshProcess::connect(bool acceptHostKey) {
         }
         
         if( !errLine.isEmpty() ) {
-            kdDebug(KSSHPROC) << "KSshProcess::connect(): got from stderr [" << errLine << "]" << endl;
+            //kdDebug(KSSHPROC) << "KSshProcess::connect(): got from stderr [" << errLine << "]" << endl;
 
             // Commercial SSH prints password prompt to stderr
             if( errLine.contains(passwdPrompt[mVersion]) ) {
