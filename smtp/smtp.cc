@@ -457,11 +457,10 @@ bool SMTPProtocol::smtp_open()
 	QBuffer ehlobuf(QByteArray(DEFAULT_EHLO_BUFFER));
 	memset(ehlobuf.buffer().data(), 0, DEFAULT_EHLO_BUFFER);
 
-	// Yes, I *know* that this is not the way it should be done, but
-	// for now there's no real need to complicate things by
-	// determining our hostname.  AFAIK no servers really depend on this..
-	if (!command(ASCII("EHLO localhost.localhomain"), ehlobuf.buffer().data(), 5119)) {
-		if (!command(ASCII("HELO localhost.localhomain"))) { // Let's just check to see if it speaks plain ol' SMTP
+	char hostname[100];
+	gethostname(hostname, 100);
+	if (!command(ASCII("EHLO " + QCString(hostname, 100)), ehlobuf.buffer().data(), 5119)) {
+		if (!command(ASCII("HELO " + QCString(hostname, 100)))) { // Let's just check to see if it speaks plain ol' SMTP
 			smtp_close();
 			return false;
 		}
