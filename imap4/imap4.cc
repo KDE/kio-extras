@@ -912,7 +912,7 @@ IMAP4Protocol::del (const KURL & _url, bool isFile)
         {
           imapCommand *cmd =
             doCommand (imapCommand::
-                       clientStore (aSequence, "+FLAGS", "\\DELETED"));
+                       clientStore (aSequence, "+FLAGS.SILENT", "\\DELETED"));
           if (cmd->result () != "OK")
             error (ERR_CANNOT_DELETE, hidePass(_url));
           completeQueue.removeRef (cmd);
@@ -952,7 +952,7 @@ IMAP4Protocol::del (const KURL & _url, bool isFile)
       {
         imapCommand *cmd =
           doCommand (imapCommand::
-                     clientStore (aSequence, "+FLAGS", "\\DELETED"));
+                     clientStore (aSequence, "+FLAGS.SILENT", "\\DELETED"));
         if (cmd->result () != "OK")
           error (ERR_CANNOT_DELETE, hidePass(_url));
         completeQueue.removeRef (cmd);
@@ -997,7 +997,7 @@ IMAP4Protocol::special (const QByteArray & aData)
     if (assureBox (aBox, false))
     {
       imapCommand *cmd = doCommand (imapCommand::
-        clientStore (aSequence, "-FLAGS",
+        clientStore (aSequence, "-FLAGS.SILENT",
         "\\SEEN \\ANSWERED \\FLAGGED \\DRAFT \\DELETED"));
       if (cmd->result () != "OK")
       {
@@ -1010,7 +1010,7 @@ IMAP4Protocol::special (const QByteArray & aData)
       if (!newFlags.isEmpty())
       {
         cmd = doCommand (imapCommand::
-          clientStore (aSequence, "+FLAGS", newFlags));
+          clientStore (aSequence, "+FLAGS.SILENT", newFlags));
         if (cmd->result () != "OK")
         {
           error(ERR_NO_CONTENT, i18n("Changing the flags of message %1 "
