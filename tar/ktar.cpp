@@ -508,8 +508,15 @@ KTarGz::KTarGz( const QString& filename )
   d = new KTarGzPrivate;
   d->fileDev = new QFile( m_filename );
   d->filter = KFilterBase::findFilterByFileName( m_filename );
-  d->filter->setDevice( d->fileDev );
-  setDevice( new KFilterDev( d->filter ) );
+  if ( d->filter )
+  {
+      d->filter->setDevice( d->fileDev );
+      setDevice( new KFilterDev( d->filter ) );
+  }
+  else
+  {
+      setDevice( d->fileDev );
+  }
 }
 
 KTarGz::KTarGz( QIODevice * dev )
