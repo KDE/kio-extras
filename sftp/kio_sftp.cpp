@@ -545,13 +545,12 @@ void kio_sftpProtocol::openConnection() {
     ///////////////////////////////////////////////////////////////////////////
     // Check for cached authentication info if a username AND password were
     // not specified in setHost().
-    bool gotCachedInfo;
     if( mUsername.isEmpty() && mPassword.isEmpty() ) {
-      kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol(): checking cache " 
-                           << "info.username = " << info.username 
-                           << ", info.url = " << info.url.prettyURL() << endl;
+        kdDebug(KIO_SFTP_DB) << "kio_sftpProtocol(): checking cache " 
+                             << "info.username = " << info.username 
+                             << ", info.url = " << info.url.prettyURL() << endl;
 
-    if( gotCachedInfo = checkCachedAuthentication(info) ) {
+        if( checkCachedAuthentication(info) ) {
             mUsername = info.username;
             mPassword = info.password;
         }
@@ -900,13 +899,11 @@ void kio_sftpProtocol::sftpPut( const KURL& dest, int permissions, bool resume, 
         error(ERR_COULD_NOT_CONNECT, mHost);
         finished();
         return;
-    }
-    
-    bool markPartial = config()->readBoolEntry("MarkPartial", true);
-    
-    kdDebug(KIO_SFTP_DB) << "sftpPut: Mark partial = "
-                         << markPartial << ", Resume = " << resume 
-                         << ", Overwrite = " << overwrite << endl;
+    }    
+   
+    kdDebug(KIO_SFTP_DB) << "sftpPut(): " << dest
+                         << ", resume=" << resume
+                         << ", overwrite=" << overwrite << endl;
 
     KURL origUrl( dest );
     sftpFileAttr origAttr;
@@ -918,50 +915,36 @@ void kio_sftpProtocol::sftpPut( const KURL& dest, int permissions, bool resume, 
     if( code == SSH2_FX_OK ) {
         kdDebug(KIO_SFTP_DB) << "sftpPut(): <file> already exists" << endl;
         
-        // Do not waste time/resources with more remote stat calls if the file exists 
-        // and we weren't instructed to overwrite it...
-        if( !overwrite ) {
-            error(ERR_FILE_ALREADY_EXIST, origUrl.prettyURL());
-            return;
-        }
         // Delete remote file if its size is zero
         if( origAttr.fileSize() == 0 ) {
             if( sftpRemove(origUrl, true) != SSH2_FX_OK ) {
-                error(ERR_CANNOT_DELETE_PARTIAL, origUrl.prettyURL());
+                error(ERR_CANNOT_DELETE_ORIGINAL, origUrl.prettyURL());
                 return;
             }
         }
         else {        
-            // Find the real file if the file being copied to is a symlink...        
-            if( S_ISLNK(origAttr.permissions()) && isSupportedOperation(SSH2_FXP_READLINK) ) {
-                
-                QString target;
-                if ( (code=sftpReadLink( origUrl, target )) != SSH2_FX_OK ) {
-                    doProcessStatus( code, i18n("Could not copy file to '%1'").arg(origUrl.host()) );
-                    return;
-                }
-                
-                if( target[0] == '/' )
-                    origUrl.setPath( target );
-                else
-                    origUrl.addPath( target );
-                 
-                origUrl.cleanPath();
-            }
-        }
-        origExists = true;
-    }    
+            origExists = true;
+        }        
+    }
     else if( code != SSH2_FX_NO_SUCH_FILE ) {
         processStatus(code, origUrl.prettyURL());
         return;
     }
     
+    // Do not waste time/resources with more remote stat calls if the file exists 
+    // and we weren't instructed to overwrite it...
+    if( origExists && !overwrite ) {
+        error(ERR_FILE_ALREADY_EXIST, origUrl.prettyURL());
+        return;
+    }    
+    
     // Stat file with part ext to see if it already exists...
     KURL partUrl( origUrl );
     partUrl.setFileName( partUrl.filename() + ".part" );
     
+    Q_UINT64 offset = 0;    
     bool partExists = false;
-    Q_UINT64 offset = 0;
+    bool markPartial = config()->readBoolEntry("MarkPartial", true);
     
     if( markPartial ) {
                 
@@ -1948,28 +1931,16 @@ int kio_sftpProtocol::sftpReadDir(const QByteArray& handle, const KURL& url){
     while(count--) {
         r >> attr;
                 
-        if( S_ISLNK(attr.permissions()) && isSupportedOperation(SSH2_FXP_READLINK) ) {
-            KURL myurl ( url );
-            myurl.addPath(attr.filename());
-            QString target;
-            if( (code = sftpReadLink(myurl, target)) == SSH2_FX_OK ) {
-                kdDebug(KIO_SFTP_DB) << "sftpReadDir(): Got link dest " << target << endl;
-                               
-                myurl = url;
-                if( target[0] == '/' )
-                    myurl.setPath(target);                    
-                else
-                    myurl.addPath(target);
-                    
-                myurl.cleanPath();
-                
-                sftpFileAttr attr2;                                        
-                (void) sftpStat(myurl, attr2);                                
-                if (attr2.fileType() != 0)
-                    attr.setLinkType(attr2.fileType());
-                
-                attr.setLinkDestination(target);
-            }
+        if( S_ISLNK(attr.permissions()) ) {
+             KURL myurl ( url );
+             myurl.addPath(attr.filename());
+             
+             // Stat the symlink to find out its type...
+             sftpFileAttr attr2;
+             (void) sftpStat(myurl, attr2);
+             
+             attr.setLinkType(attr2.linkType());
+             attr.setLinkDestination(attr2.linkDestination());                         
         }
         
         listEntry(attr.entry(), false);
@@ -2110,7 +2081,43 @@ int kio_sftpProtocol::sftpStat(const KURL& url, sftpFileAttr& attr){
 
     r >> attr;
     attr.setFilename(url.filename());
-    kdDebug(KIO_SFTP_DB) << "sftpStat(): " << attr << endl;
+    kdDebug(KIO_SFTP_DB) << "sftpStat(): " << attr << endl;    
+    
+    // If the stat'ed resource is a symlink, perform a recursive stat
+    // to determine the actual destination's type (file/dir).
+    if( S_ISLNK(attr.permissions()) && isSupportedOperation(SSH2_FXP_READLINK) ) {
+        
+        QString target;
+        int code = sftpReadLink( url, target );
+        
+        if ( code != SSH2_FX_OK ) {
+            kdError(KIO_SFTP_DB) << "sftpStat(): Unable to stat symlink destination" << endl;
+            return -1;
+        }
+        
+        kdDebug(KIO_SFTP_DB) << "sftpStat(): Resource is a symlink to -> " << target << endl;
+        
+        KURL dest( url );
+        if( target[0] == '/' )
+            dest.setPath(target);                    
+        else
+            dest.setFileName(target);
+        
+        dest.cleanPath();
+        
+        sftpFileAttr attr2;
+        (void) sftpStat(dest, attr2);
+        
+        if (attr2.linkType() == 0)
+            attr.setLinkType(attr2.fileType());
+        else
+            attr.setLinkType(attr2.linkType());
+          
+        attr.setLinkDestination(target);
+        
+        kdDebug(KIO_SFTP_DB) << "sftpStat(): File type: " << attr.fileType() << endl;
+    }
+        
     return SSH2_FX_OK;
 }
 
