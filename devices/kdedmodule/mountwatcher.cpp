@@ -32,6 +32,7 @@
 #include <kstandarddirs.h>
 #include <kautomount.h>
 #include <kdirwatch.h>
+#include <qregexp.h>
 
 #include "mountwatcher.moc"
 #include "mountwatcher.h"
@@ -146,10 +147,13 @@ void MountWatcherModule::readDFDone()
 	mountList.clear();
 	for (DiskEntry *ent=mDiskList.first();ent;ent=mDiskList.next())
 	{
+		QString entryName="entries_";
+		entryName+=ent->deviceName().replace( QRegExp("/"), "" );
+		entryName+=ent->mountPoint().replace(QRegExp("/"),"");
        	        if (ent->mounted())
 		{
                  	mountList<<i18n("%1 mounted at %2").arg(ent->deviceName()).arg(ent->mountPoint());
-			mountList<<(QString("devices:/entries?dev=")+ent->deviceName()+
+			mountList<<(QString("devices:/")+entryName+QString("?dev=")+ent->deviceName()+
 			"&mp="+ent->mountPoint()+"&mounted=true");
 			mountList<< ent->discType()+"_mounted";
 			mountList<<"true";
@@ -157,7 +161,7 @@ void MountWatcherModule::readDFDone()
                	else
 		{
                  	mountList<<i18n("%1 (not mounted)").arg(ent->deviceName());
-			mountList<<QString("devices:/entries?dev=")+ent->deviceName()+
+			mountList<<QString("devices:/")+entryName+QString("?dev=")+ent->deviceName()+
 			"&mp="+ent->mountPoint()+"&mounted=false";
 			mountList<< ent->discType()+"_unmounted";
 			mountList<<"false";
