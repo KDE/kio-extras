@@ -58,7 +58,7 @@ catalog errors I'd rather stay away from (they're easy to fix though).
      NEEDS TO BE CHECKED ON CHANGES
  -->
 <!ENTITY % rdbpool	    PUBLIC
-  "-//KDE//ELEMENTS DocBook XML Pool Redeclarations V2.0//EN"	     
+  "-//KDE//ELEMENTS DocBook XML Pool Redeclarations V1.0//EN"	     
   "rdbpool.elements"                                           >
 <!ENTITY % dbpool.redecl.module "INCLUDE"			     >
 
@@ -67,7 +67,7 @@ catalog errors I'd rather stay away from (they're easy to fix though).
      NEEDS TO BE CHECKED ON CHANGES
  -->
 <!ENTITY % rdbhier2	    PUBLIC
-  "-//KDE//ELEMENTS DocBook XML Hierarchy Redeclarations 2 V2.0//EN"     
+  "-//KDE//ELEMENTS DocBook XML Hierarchy Redeclarations 2 V1.0//EN"     
   "rdbhier2.elements"                                          >
 <!ENTITY % dbhier.redecl2.module "INCLUDE"			     >
 
@@ -100,7 +100,7 @@ catalog errors I'd rather stay away from (they're easy to fix though).
      first "Modifications" section -->
 
 <!ENTITY % kde.modifications PUBLIC
-  "-//KDE//ELEMENTS DocBook XML Modifications V2.0//EN"
+  "-//KDE//ELEMENTS DocBook XML Modifications V1.0//EN"
   "modifications.elements">
 %kde.modifications;
 
@@ -111,11 +111,11 @@ catalog errors I'd rather stay away from (they're easy to fix though).
 <!-- Is empty, except for what could go in dbgenent.mod            -->
 
 <!ENTITY % kde.general.entities	PUBLIC
-  "-//KDE//ENTITIES DocBook XML General Entity Declarations V2.0//EN"    
+  "-//KDE//ENTITIES DocBook XML General Entity Declarations V1.0//EN"    
   "../entities/general.entities"                                     >
 %kde.general.entities;
 
 <!ENTITY % kde.i18n.entities PUBLIC
-  "-//KDE//ENTITIES DocBook XML Localisation Entity Declarations V2.0//EN"
+  "-//KDE//ENTITIES DocBook XML Localisation Entity Declarations V1.0//EN"
   "../entities/l10n.entities">
 %kde.i18n.entities;

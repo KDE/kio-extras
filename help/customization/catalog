@@ -43,7 +43,7 @@ PUBLIC "-//KDE//ELEMENTS DocBook XML Modifications V1.0//EN"
 
 		      -- General KDE Entities --
 
-PUBLIC "-//KDE//ENTITIES DocBook XML Localisation Entity Declarations V2.0//EN"
+PUBLIC "-//KDE//ENTITIES DocBook XML Localisation Entity Declarations V1.0//EN"
        "entities/l10n.entities"
 
 		     -- Various external files --
