@@ -68,6 +68,9 @@ class SmbProtocol : public KIO::SlaveBase
       void createUDSEntry(const StatInfo& info, KIO::UDSEntry& entry);
       StatInfo _stat(const KURL& _url);
       void listShares();
+      void listWorkgroups();
+      QCString getNmbName(QCString ipString);
+      QCString getMasterBrowser();
 
       bool stopAfterError(const KURL& url, bool notSureWhetherErrorOccurred);
 
@@ -80,6 +83,7 @@ class SmbProtocol : public KIO::SlaveBase
       QCString m_ip;
       QDict<ClientProcess> m_processes;
       QMap<QString,int> m_months;
+      QMap<QString, QString> m_workgroups;
 
       //configuration data
       bool m_showHiddenShares;
