@@ -17,7 +17,7 @@ fish.cpp: fish.h fishcode.h
 
 fishcode.h: fish.pl
 	if echo | md5sum > /dev/null 2>&1 ; then \
-	SUM=`md5sum -t $(srcdir)/fish.pl | cut -d ' ' -f 1`; else \
+	SUM=`md5sum $(srcdir)/fish.pl | cut -d ' ' -f 1`; else \
 	SUM=`md5 -q $(srcdir)/fish.pl` ; fi ; \
 	echo '#define CHECKSUM "'$$SUM'"' > $@; \
 	echo 'static const char *fishCode(' >> $@; \
