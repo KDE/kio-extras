@@ -685,6 +685,7 @@ mimeHeader::iconName ()
 {
   QString fileName;
 
+  // FIXME: bug?  Why throw away this data?
   fileName =
     KMimeType::mimeType (contentType.lower ())->icon (QString::null, false);
   fileName =

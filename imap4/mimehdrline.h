@@ -38,9 +38,9 @@ and report characters slurped */
   int setStr (const char *);
   int appendStr (const char *);
   /** return the value */
-  const QCString getValue ();
+  const QCString& getValue ();
   /** return the label */
-  const QCString getLabel ();
+  const QCString& getLabel ();
   static QCString truncateLine (QCString, unsigned int truncate = 80);
   static int parseSeparator (char, const char *);
   static int parseQuoted (char, char, const char *);

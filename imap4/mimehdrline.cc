@@ -465,46 +465,51 @@ mimeHdrLine::parseSeparator (char separator, const char *inCStr)
 
 /** return the label */
 
-const QCString
+const QCString&
 mimeHdrLine::getLabel ()
 {
   return mimeLabel;
 }
 
 /** return the value */
-const QCString
+const QCString&
 mimeHdrLine::getValue ()
 {
   return mimeValue;
 }
 
+
+// FIXME: very inefficient still
 QCString
-mimeHdrLine::truncateLine (QCString aLine, unsigned int truncate)
+mimeHdrLine::truncateLine(QCString aLine, unsigned int truncate)
 {
   int cutHere;
   QCString retVal;
+  uint len = aLine.length();
 
-  while (aLine.length () > truncate)
-  {
-    cutHere = aLine.findRev (' ', truncate);
-    if (cutHere < 1)
-      cutHere = aLine.findRev ('\t', truncate);
-    if (cutHere < 1)
-      cutHere = aLine.find (' ', 1);
-    if (cutHere < 1)
-      cutHere = aLine.find ('\t', 1);
-    if (cutHere < 1)
-    {
-      cerr << "cant truncate line" << endl;
-      break;
+  while (len > truncate) {
+    cutHere = aLine.findRev(' ', truncate);
+    if (cutHere < 1) {
+      cutHere = aLine.findRev('\t', truncate);
+      if (cutHere < 1) {
+        cutHere = aLine.find(' ', 1);
+        if (cutHere < 1) {
+          cutHere = aLine.find('\t', 1);
+          if (cutHere < 1) {
+            cerr << "cant truncate line" << endl;
+            break;
+          }
+        }
+      }
     }
-    else
-    {
-      retVal += aLine.left (cutHere) + '\n';
-      aLine = aLine.right (aLine.length () - cutHere);
-    }
+
+    retVal += aLine.left(cutHere) + '\n';
+    int chop = len - cutHere;
+    aLine = aLine.right(chop);
+    len -= chop;
   }
   retVal += aLine;
 
   return retVal;
 }
+

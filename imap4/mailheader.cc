@@ -109,51 +109,49 @@ mailHeader::addHdrLine (mimeHdrLine * inLine)
 void
 mailHeader::outputHeader (mimeIO & useIO)
 {
-  if (!returnpathAdr.isEmpty ())
-    useIO.outputMimeLine (QCString ("Return-Path: ") +
-                          returnpathAdr.getStr ());
-  if (!fromAdr.isEmpty ())
-    useIO.outputMimeLine (QCString ("From: ") + fromAdr.getStr ());
-  if (!senderAdr.isEmpty ())
-    useIO.outputMimeLine (QCString ("Sender: ") + senderAdr.getStr ());
-  if (!replytoAdr.isEmpty ())
-    useIO.outputMimeLine (QCString ("Reply-To: ") + replytoAdr.getStr ());
+  static const QCString __returnPath("Return-Path: ", 14);
+  static const QCString __from      ("From: ", 7);
+  static const QCString __sender    ("Sender: ", 9);
+  static const QCString __replyTo   ("Reply-To: ", 11);
+  static const QCString __to        ("To: ", 5);
+  static const QCString __cc        ("CC: ", 5);
+  static const QCString __bcc       ("BCC: ", 6);
+  static const QCString __subject   ("Subject: ", 10);
+  static const QCString __messageId ("Message-ID: ", 13);
+  static const QCString __inReplyTo ("In-Reply-To: ", 14);
+  static const QCString __references("References: ", 13);
+  static const QCString __date      ("Date: ", 7);
 
-  if (toAdr.count ())
-    useIO.
-      outputMimeLine (mimeHdrLine::
-                      truncateLine (QCString ("To: ") +
-                                    mailHeader::getAddressStr (&toAdr)));
-  if (ccAdr.count ())
-    useIO.
-      outputMimeLine (mimeHdrLine::
-                      truncateLine (QCString ("CC: ") +
-                                    mailHeader::getAddressStr (&ccAdr)));
-  if (bccAdr.count ())
-    useIO.
-      outputMimeLine (mimeHdrLine::
-                      truncateLine (QCString ("BCC: ") +
-                                    mailHeader::getAddressStr (&bccAdr)));
-  if (!_subject.isEmpty ())
-    useIO.
-      outputMimeLine (mimeHdrLine::
-                      truncateLine (QCString ("Subject: ") + _subject));
-  if (!messageID.isEmpty ())
-    useIO.
-      outputMimeLine (mimeHdrLine::
-                      truncateLine (QCString ("Message-ID: ") + messageID));
-  if (!inReplyTo.isEmpty ())
-    useIO.
-      outputMimeLine (mimeHdrLine::
-                      truncateLine (QCString ("In-Reply-To: ") + inReplyTo));
-  if (!references.isEmpty ())
-    useIO.
-      outputMimeLine (mimeHdrLine::
-                      truncateLine (QCString ("References: ") + references));
+  if (!returnpathAdr.isEmpty())
+    useIO.outputMimeLine(__returnPath + returnpathAdr.getStr());
+  if (!fromAdr.isEmpty())
+    useIO.outputMimeLine(__from + fromAdr.getStr());
+  if (!senderAdr.isEmpty())
+    useIO.outputMimeLine(__sender + senderAdr.getStr());
+  if (!replytoAdr.isEmpty())
+    useIO.outputMimeLine(__replyTo + replytoAdr.getStr());
+
+  if (toAdr.count())
+    useIO.outputMimeLine(mimeHdrLine::truncateLine(__to +
+                                    mailHeader::getAddressStr(&toAdr)));
+  if (ccAdr.count())
+    useIO.outputMimeLine(mimeHdrLine::truncateLine(__cc +
+                                    mailHeader::getAddressStr(&ccAdr)));
+  if (bccAdr.count())
+    useIO.outputMimeLine(mimeHdrLine::truncateLine(__bcc +
+                                    mailHeader::getAddressStr(&bccAdr)));
+  if (!_subject.isEmpty())
+    useIO.outputMimeLine(mimeHdrLine::truncateLine(__subject + _subject));
+  if (!messageID.isEmpty())
+    useIO.outputMimeLine(mimeHdrLine::truncateLine(__messageId + messageID));
+  if (!inReplyTo.isEmpty())
+    useIO.outputMimeLine(mimeHdrLine::truncateLine(__inReplyTo + inReplyTo));
+  if (!references.isEmpty())
+    useIO.outputMimeLine(mimeHdrLine::truncateLine(__references + references));
 
   if (!mDate.isEmpty())
-    useIO.outputMimeLine (QCString ("Date: ") + mDate);
-  mimeHeader::outputHeader (useIO);
+    useIO.outputMimeLine(__date + mDate);
+  mimeHeader::outputHeader(useIO);
 }
 
 int

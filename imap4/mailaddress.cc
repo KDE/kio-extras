@@ -101,12 +101,12 @@ mailAddress::parseAddress (char *aCStr)
       case '<':
         advance = mimeHdrLine::parseQuoted ('<', '>', aCStr);
         user = QCString (aCStr, advance + 1); // copy it
-        len = user.length();
+        len = advance;
         user = user.mid (1, len - 2);  // strip <>
         len -= 2;
         pt = user.find('@');
         host = user.right (len - pt - 1); // split it into host
-        user = user.left (pt); // and user
+        user.truncate(pt); // and user
         break;
       default:
         advance = mimeHdrLine::parseWord ((const char *) aCStr);
@@ -154,7 +154,7 @@ mailAddress::parseAddress (char *aCStr)
         if (host.isEmpty ())
         {
           rawFullName = user;
-          user = "";
+          user.truncate(0);
         }
       }
     }
@@ -165,8 +165,8 @@ mailAddress::parseAddress (char *aCStr)
       {
         user = rawFullName;
         host = user.right (user.length () - pt - 1);
-        user = user.left (pt);
-        rawFullName = "";
+        user.truncate(pt);
+        rawFullName.truncate(0);
       }
     }
 
@@ -198,22 +198,25 @@ mailAddress::parseAddress (char *aCStr)
 const QCString
 mailAddress::getStr ()
 {
-  QCString retVal;
+  QCString retVal(128); // Should be generally big enough
 
   if (!rawFullName.isEmpty ())
   {
-    retVal = getFullNameRaw () + " ";
+    retVal = rawFullName + " ";
   }
   if (!user.isEmpty ())
   {
-    retVal += "<" + user;
-    if (!host.isEmpty ())
-      retVal += "@" + host;
-    retVal += ">";
+    retVal += '<';
+    retVal += user;
+    if (!host.isEmpty ()) {
+      retVal += '@';
+      retVal += host;
+    }
+    retVal += '>';
   }
   if (!rawComment.isEmpty ())
   {
-    retVal = '(' + getCommentRaw () + ')';
+    retVal = '(' + rawComment + ')';
   }
 //  kdDebug(7116) << "mailAddress::getStr - '" << retVal << "'" << endl;
   return retVal;

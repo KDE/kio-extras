@@ -1514,10 +1514,10 @@ imapParser::parseURL (const KURL & _url, QString & _box, QString & _section,
 
 
 QCString imapParser::parseLiteralC(parseString & inWords, bool relay, bool stopAtBracket, int *outlen) {
-  QCString retVal;
 
   if (inWords[0] == '{')
   {
+    QCString retVal;
     ulong runLen = inWords.find ('}', 1);
     if (runLen > 0)
     {
@@ -1553,13 +1553,11 @@ QCString imapParser::parseLiteralC(parseString & inWords, bool relay, bool stopA
     if (outlen) {
       *outlen = retVal.length(); // optimize me
     }
+    skipWS (inWords);
+    return retVal;
   }
-  else
-  {
-    retVal = parseOneWordC(inWords, stopAtBracket, outlen);
-  }
-  skipWS (inWords);
-  return retVal;
+
+  return parseOneWordC(inWords, stopAtBracket, outlen);
 }
 
 // does not know about literals ( {7} literal )
