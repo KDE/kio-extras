@@ -194,7 +194,7 @@ imapCommand::clientList (const QString & reference, const QString & path,
 imapCommand *
 imapCommand::clientSelect (const QString & path, bool examine)
 {
-  return new imapCommand (examine ? "EXAMINE" : "SELECT",
+  return new imapCommand ((examine && path != "INBOX") ? "EXAMINE" : "SELECT",
                           QString ("\"") + rfcDecoder::toIMAP (path) + "\"");
 }
 
