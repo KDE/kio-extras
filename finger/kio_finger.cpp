@@ -170,7 +170,7 @@ void FingerProtocol::getProgramPath()
   myFingerPath = new QString();
   
   *myFingerPath = QString(KGlobal::dirs()->findExe("finger"));
-  if (!(myFingerPath->isEmpty()))
+  if ((myFingerPath->isEmpty()))
     {
       kdDebug() << "Finger command not found, using YAfinger instead" << endl;
       *myFingerPath = QString(KGlobal::dirs()->findExe("YAfinger"));  
