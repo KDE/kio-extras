@@ -425,7 +425,7 @@ void MANProtocol::showMainIndex()
 
     QStringList::ConstIterator it;
     for (it = sections.begin(); it != sections.end(); ++it)
-        os << "<tr><td><a href=\"man:(" << *it << ")\">Section " << *it << "</a></td><td>&nbsp;</td><td> " << sectionName(*it) << "</td></tr>" << endl;
+        os << "<tr><td><a href=\"man:(" << *it << ")\">" << i18n("Section ") << *it << "</a></td><td>&nbsp;</td><td> " << sectionName(*it) << "</td></tr>" << endl;
 
     os << "</table>" << endl;
 
@@ -692,7 +692,7 @@ void MANProtocol::showIndex(const QString& section)
     {
 	os << "<tr><td><a href=\"man:" << it.data() << "\">\n"
 	   << it.key() << "</a></td><td>&nbsp;</td><td> "
-	   << "no idea yet" << "</td></tr>"  << endl;
+	   << i18n("no idea yet") << "</td></tr>"  << endl;
     }
 
 #else /* ! _USE_OLD_CODE */
@@ -813,7 +813,7 @@ void MANProtocol::showIndex(const QString& section)
 	((char *)manindex->manpage_begin)[manindex->manpage_len] = '\0';
 	os << manindex->manpage_begin
 	   << "</a></td><td>&nbsp;</td><td> "
-	   << "no idea yet"
+	   << i18n("no idea yet")
 	   << "</td></tr>"  << endl;
 	last_index = manindex;
     }
@@ -862,7 +862,7 @@ void MANProtocol::showIndex(const QString& section)
 	manindex->manpage_begin[manindex->manpage_len] = '\0';
 	os << manindex->manpage_begin
 	   << "</a></td><td>&nbsp;</td><td> "
-	   << "no idea yet"
+	   << i18n("no idea yet")
 	   << "</td></tr>"  << endl;
 	last_index = manindex;
     }
