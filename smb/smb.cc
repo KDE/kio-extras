@@ -721,7 +721,7 @@ void SmbProtocol::stat( const QString & pathArg, const QString& /*query*/ )
 	}
 
 	// Extract filename out of path
-	QString filename = KURL( path ).filename();
+	QString filename = KURL( path ).fileName();
 
 	UDSEntry entry;
 	createUDSEntry( filename, path, entry );
