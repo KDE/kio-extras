@@ -29,11 +29,11 @@
    #include <time.h>
    #include <kprocess.h>
 
-   class HelloProtocol : public KIO::SlaveBase
+   class DevicesProtocol : public KIO::SlaveBase
    {
    public:
-      HelloProtocol( const QCString& protocol ,const QCString &pool, const QCString &app);
-      virtual ~HelloProtocol();
+      DevicesProtocol( const QCString& protocol ,const QCString &pool, const QCString &app);
+      virtual ~DevicesProtocol();
 #if 0
       virtual void get( const KURL& url );
 #endif
@@ -61,7 +61,7 @@
       {
           kdDebug()<<"kdemain for devices"<<endl;
           KInstance instance( "kio_devices" );
-          HelloProtocol slave(argv[1],argv[2], argv[3]);
+          DevicesProtocol slave(argv[1],argv[2], argv[3]);
           slave.dispatchLoop();
           return 0;
       }
@@ -72,10 +72,10 @@
 static void createFileEntry(KIO::UDSEntry& entry, const QString& name, const QString& url, const QString& mime);
 static void createDirEntry(KIO::UDSEntry& entry, const QString& name, const QString& url, const QString& mime);
 
-HelloProtocol::HelloProtocol( const QCString& protocol, const QCString &pool, const QCString &app): 
+DevicesProtocol::DevicesProtocol( const QCString& protocol, const QCString &pool, const QCString &app): 
 		SlaveBase(protocol,  pool, app )
 {
-	kdDebug()<<"HelloProtocol: Called with slavename:"<<protocol<<endl;
+	kdDebug()<<"DevicesProtocol: Called with slavename:"<<protocol<<endl;
 	if (protocol=="system") fullMode=true; else fullMode=false;
 	m_dcopClient=new DCOPClient();
 	if (!m_dcopClient->attach())
@@ -84,12 +84,12 @@ HelloProtocol::HelloProtocol( const QCString& protocol, const QCString &pool, co
 	}
 }
 
-HelloProtocol::~HelloProtocol()
+DevicesProtocol::~DevicesProtocol()
 {
 	delete m_dcopClient;
 }
 
-void HelloProtocol::stat(const KURL& url)
+void DevicesProtocol::stat(const KURL& url)
 {
         QStringList     path = QStringList::split('/', url.encodedPathAndQuery(-1), false);
         KIO::UDSEntry   entry;
@@ -169,9 +169,9 @@ void HelloProtocol::stat(const KURL& url)
 
 
 
-void HelloProtocol::listDir(const KURL& url)
+void DevicesProtocol::listDir(const KURL& url)
 {
-	kdDebug()<<"HELLO PROTOCOLL::listdir: "<<url.url()<<endl;
+	kdDebug()<<"DevicesProtocol::listdir: "<<url.url()<<endl;
 	if ((url==KURL("devices:/")) || (url==KURL("system:/")))
 		listRoot();
 	else
@@ -239,7 +239,7 @@ void HelloProtocol::listDir(const KURL& url)
 	}
 }
 
-uint HelloProtocol::mountpointMappingCount()
+uint DevicesProtocol::mountpointMappingCount()
 {
 	QByteArray data;
 	QByteArray param;
@@ -254,7 +254,7 @@ uint HelloProtocol::mountpointMappingCount()
       return count;
 }
 
-QString HelloProtocol::deviceNode(uint id)
+QString DevicesProtocol::deviceNode(uint id)
 {
 	QByteArray data;
 	QByteArray param;
@@ -272,7 +272,7 @@ QString HelloProtocol::deviceNode(uint id)
 
 }
 
-bool HelloProtocol::deviceMounted(const QString dev)
+bool DevicesProtocol::deviceMounted(const QString dev)
 {
         QByteArray data;
         QByteArray param;
@@ -290,7 +290,7 @@ bool HelloProtocol::deviceMounted(const QString dev)
 }
 
 
-QStringList HelloProtocol::kmobile_list(const QString deviceName)
+QStringList DevicesProtocol::kmobile_list(const QString deviceName)
 {
         QByteArray data;
         QByteArray param;
@@ -308,7 +308,7 @@ QStringList HelloProtocol::kmobile_list(const QString deviceName)
 }
 
 
-QStringList HelloProtocol::deviceInfo(QString name)
+QStringList DevicesProtocol::deviceInfo(QString name)
 {
         QByteArray data;
         QByteArray param;
@@ -330,7 +330,7 @@ QStringList HelloProtocol::deviceInfo(QString name)
 }
 
 
-bool HelloProtocol::deviceMounted(int id)
+bool DevicesProtocol::deviceMounted(int id)
 {
         QByteArray data;
         QByteArray param;
@@ -348,7 +348,7 @@ bool HelloProtocol::deviceMounted(int id)
 }
 
 
-QStringList HelloProtocol::deviceList()
+QStringList DevicesProtocol::deviceList()
 {
         QByteArray data;
         QByteArray param;
@@ -374,7 +374,7 @@ QStringList HelloProtocol::deviceList()
       return retVal;
 }
 
-QString HelloProtocol::mountPoint(const QString dev)
+QString DevicesProtocol::mountPoint(const QString dev)
 {
         QByteArray data;
         QByteArray param;
@@ -391,7 +391,7 @@ QString HelloProtocol::mountPoint(const QString dev)
       return retVal;
 }
 
-QString HelloProtocol::mountPoint(int id)
+QString DevicesProtocol::mountPoint(int id)
 {
         QByteArray data;
         QByteArray param;
@@ -410,7 +410,7 @@ QString HelloProtocol::mountPoint(int id)
 
 
 
-QString HelloProtocol::deviceType(int id)
+QString DevicesProtocol::deviceType(int id)
 {
         QByteArray data;
         QByteArray param;
@@ -429,7 +429,7 @@ QString HelloProtocol::deviceType(int id)
 
 
 
-void HelloProtocol::listRoot()
+void DevicesProtocol::listRoot()
 {
 	KIO::UDSEntry   entry;
 	uint count;
@@ -463,7 +463,7 @@ void HelloProtocol::listRoot()
 }
 
 #if 0
- void HelloProtocol::get( const KURL& url )
+ void DevicesProtocol::get( const KURL& url )
  {
 /*	mimeType("application/x-desktop");
 	QCString output;
