@@ -30,7 +30,7 @@ class NetBIOSPacket
 protected:
 	// Converts a name into its NetBIOS representation
 	// returned pointer is allocated with new
-	char* NBName(const char *);
+	char* NBName(const char *, bool groupFlag=false);
 	// modified is set when a modification has been made in
 	// the packet causes some internal data to be
 	// irrelevant. update check modified and then do the

@@ -22,7 +22,7 @@
 #ifndef __ORDER_H__
 #define __ORDER_H__
 
-// this header won't be installed -- can insclude config.h
+// this header won't be installed -- can include config.h
 #ifdef HAVE_CONFIG_H
 #include "config.h"
 #endif

@@ -23,6 +23,32 @@
 #include "NBHostCache.h"
 #include <sys/time.h>
 #include <string.h>
+#if DEBUG >=6
+#include <stdio.h>
+#endif
+
+NBHostEnt::NBHostEnt(const char *nbn=0, const char *n=0, uint32 i=0, NBHostEnt *ne=0, bool groupFlag=0)
+{
+	if (nbn) {
+		NBName=new char[strlen(nbn)+1];
+		strcpy(NBName,nbn);
+	} else NBName=0;
+	if (n) {
+		name=new char[strlen(n)+1];
+		strcpy(name,n);
+	} else name=0;
+	ip=i;
+	isGroup=groupFlag;
+	next=ne;
+}
+
+NBHostEnt::~NBHostEnt()
+{
+	if (name) delete (name); // not recursive of course !
+	if (NBName) delete (NBName); // not recursive of course !
+	if (next) delete (next); // recursively
+}
+
 
 NBHostCache *NBHostCache::base = 0;
 long NBHostCache::nrof_cache_entries = 0;
@@ -48,9 +74,9 @@ NBHostCache::~NBHostCache()
 }
 
 NBHostCache::NBHostCache(const char *nbn, const char *n, 
-			 uint32 ip, NBHostEnt *ne, uint32 time_out)
+			 uint32 ip, NBHostEnt *ne, bool groupFlag, uint32 time_out)
 {
-  host = new NBHostEnt(nbn, n, ip, ne);
+  host = new NBHostEnt(nbn, n, ip, ne, groupFlag);
   lastCheck = (uint32)time(0);
   timeout=time_out;
 
@@ -68,8 +94,11 @@ NBHostCache::NBHostCache(const char *nbn, const char *n,
     
 
 void NBHostCache::add(const char *nbn, const char *n, 
-		 uint32 ip, NBHostEnt *ne, uint32 time_out)
+		 uint32 ip, NBHostEnt *ne, bool groupFlag, uint32 time_out)
 {
+#if DEBUG >=6
+printf("NBHostCache::add: name=%s, groupflag=%d\n",n,groupFlag);
+#endif
   if(base!=0) {
     NBHostCache *cur = base;
     while(cur!=0) {
@@ -84,7 +113,7 @@ void NBHostCache::add(const char *nbn, const char *n,
       cur=cur->next;
     }
   }
-  new NBHostCache(nbn, n, ip, ne, time_out);
+  new NBHostCache(nbn, n, ip, ne, groupFlag, time_out);
   purgeOldEntries();
 }
 
@@ -115,17 +144,24 @@ void NBHostCache::remove(const char *n)
 
 }
 
-NBHostEnt *NBHostCache::find(const char *n)
+NBHostEnt *NBHostCache::find(const char *n, bool groupFlag=false)
 {
+#if DEBUG >=6
+printf("NBHostCache::find: name=%s, groupflag=%d\n",n,groupFlag);
+#endif
   purgeOldEntries();
   if(base!=0) {
     NBHostCache *cur=base;
     while(cur!=0) {
-      if(cur->host != 0 && !strcasecmp(cur->host->name, n)) {
+#if DEBUG >=6
+printf("found %s and %d\n",cur->host->name,cur->host->isGroup);
+#endif
+      if(cur->host != 0 && !strcasecmp(cur->host->name, n)
+	      && (cur->host->isGroup==groupFlag)) {
 	//	if(temp_ent == 0)
 	  NBHostEnt *temp_ent = 
 	    new NBHostEnt(cur->host->NBName, cur->host->name,
-				   cur->host->ip, cur->host->next);
+				   cur->host->ip, cur->host->next, cur->host->isGroup);
 	  //	else
 	  //	  *temp_ent=*cur->host;
 	return temp_ent;
@@ -137,17 +173,18 @@ NBHostEnt *NBHostCache::find(const char *n)
 }
     
     
-NBHostEnt *NBHostCache::find(uint32 ip)
+NBHostEnt *NBHostCache::find(uint32 ip, bool groupFlag=false)
 {
   purgeOldEntries();
   if(base!=0) {
     NBHostCache *cur=base;
     while(cur!=0) {
-      if(cur->host->ip == ip) {
+      if ((cur->host->ip == ip)
+	      && (cur->host->isGroup==groupFlag)) {
 	//	if(temp_ent == 0)
 	  NBHostEnt *temp_ent = 
 	    new NBHostEnt(cur->host->NBName, cur->host->name,
-				   cur->host->ip, cur->host->next);
+				   cur->host->ip, cur->host->next, cur->host->isGroup);
 	  //	else 
 	  //	  *temp_ent = *cur->host;
 	return temp_ent;

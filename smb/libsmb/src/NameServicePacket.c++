@@ -156,12 +156,13 @@ uint8* NameServicePacket::packet()
    |           NB (0x0020)         |        IN (0x0001)            |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+*/
 
-NameQueryPacket::NameQueryPacket(const char* name, uint8 broadcast, uint16 id)
+NameQueryPacket::NameQueryPacket(const char* name, uint8 broadcast, uint16 id, bool groupFlag)
 {
 	name_trn_id=id;
 	nmFlags=0x10+(broadcast&1); qdcount=1;
 	questionType=0x20; questionClass=1;
-	questionName=NBName(name);
+//	isGroup=groupFlag;
+	questionName=NBName(name, groupFlag);
 	questionNameLength=strlen(questionName)+1;
 }
 
@@ -172,15 +173,16 @@ char *NameQueryPacket::getQueryNBName()
 	strcpy(ret,questionName);
 	return ret;
 }
-
-void NameQueryPacket::setQueryNBName(const char *n)
+/*
+void NameQueryPacket::setQueryNBName(const char *n, bool groupFlag)
 {
 	if (questionName) delete questionName;
+	isGroup=groupFlag;
 	questionName=new char[strlen(n)+1];
 	questionNameLength=strlen(n)+1;
 	strcpy(questionName,n);
 }
-
+*/
 NameConflictDemand::NameConflictDemand(const char* name, uint16 id)
 {
 	name_trn_id=id; opcode=0x15; nmFlags=0x58; rcode=0x7;

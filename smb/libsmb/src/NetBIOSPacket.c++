@@ -37,7 +37,7 @@ void NetBIOSPacket::update()
 }
 
 // see RFC 1001/2 for this weird conversion
-char* NetBIOSPacket::NBName(const char *name)
+char* NetBIOSPacket::NBName(const char *name, bool groupFlag)
 {
 	uint8 len=strlen(name); // First label must be 32 bytes long
 	if (len>16) len=16;   // no pointers can't be used in SMB
@@ -65,6 +65,11 @@ char* NetBIOSPacket::NBName(const char *name)
 		if ((n>='a') && (n<='z')) n-=32;
 		ret[2*i+1]=((n>>4)&0xF)+0x41;
 		ret[2*i+2]=(n&0xF)+0x41;
+	}
+	// Name is a group name (not in RFC but added for SMB...)
+	if (groupFlag) {
+		ret[31]=((0x1B>>4)&0xF)+0x41;
+		ret[32]=(0x1B&0xF)+0x41;
 	}
 #if DEBUG >= 5
 	cout<<"name : "<<name<<"\nlen : "<<(int)len<<"\n";

@@ -154,11 +154,14 @@ public:
 
 class NameQueryPacket : public NameServicePacket
 {
+/*protected:
+	bool isGroup;*/
 public:
 	// Argument is a clear asciiz name
-	NameQueryPacket(const char *name, uint8 broadcast=0, uint16 id=0);
+	NameQueryPacket(const char *name, uint8 broadcast=0, uint16 id=0, bool groupFlag=false);
 	char *getQueryNBName();
-	void setQueryNBName(const char *n);
+	// argument is a mangled NetBIOS Name
+//	void setQueryNBName(const char *n, bool groupFlag=false);
 };
 
 class NameConflictDemand : public NameServicePacket

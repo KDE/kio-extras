@@ -31,13 +31,15 @@
 class NMBIO
 {
 protected:
-	char *decodeNBName(const char* NBName);
+	char *decodeNBName(const char* NBName, bool groupFlag=false);
 	char *ourName;
 	char *ourNBName;
 	NBHostCache *cache;
 	uint32 netaddr; // guess ?
 	struct sockaddr_in *socknetaddr; // parameters of the connection
 	uint32 NBNS; // IP of a NetBIOS name server
+	// name query to the NBNS
+	struct NBHostEnt *askNBNS(const char *name, bool groupFlag=false);
 public:
 	NMBIO(const char *us=0); // can specify our host name
 	~NMBIO();
@@ -55,16 +57,16 @@ public:
 	// sets the NBNS address !
 	int setNBNSAddress(uint32 addr);
 	int setNBNSAddress(const char *addr);
+	void addNameIpToCache(const char *name, uint32 ip, uint32 timeout, bool groupFlag=0);
 	// Works with DNS or NetBIOS names. In case of a conflict
 	// between NetBIOS and DNS, NetBIOS is used.
 	// At present, IP dot notation is not supported, and
 	// In case of a group name, only the members IP are valid
 	// In the future, the list of the member names will be
 	// returned as well (see NBHostEnt class)
-	struct NBHostEnt *gethostbyname(const char *name); //,int flag=0);
+	struct NBHostEnt *gethostbyname(const char *name, bool groupFlag=false);
 	// doesn't work !
-	struct NBHostEnt *gethostbyaddr(uint32 IP);
-        void addNameIpToCache(const char *name, uint32 ip, uint32 timeout);
+	struct NBHostEnt *gethostbyaddr(uint32 IP, bool groupFlag=false);
 };
 
 

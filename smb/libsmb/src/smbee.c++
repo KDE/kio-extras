@@ -199,15 +199,14 @@ main(int argc, char **argv)
 	if (defaultUser) io.setDefaultUser(defaultUser);
 	if (browseServer) io.setDefaultBrowseServer(browseServer);
 	char *tmp=getenv("SMB_BROADCAST_ADDRESS");
+	uint32 addr;
 	if (tmp) {
-		uint32 addr;
-		if (inet_aton(tmp, (in_addr*)&addr))
-			io.setNetworkBroadcastAddress(addr);
+		addr=inet_addr(tmp);
+		io.setNetworkBroadcastAddress(addr);
 	}
 	if (broadcast) {
-		uint32 addr;
-		if (inet_aton(broadcast, (in_addr*)&addr))
-			io.setNetworkBroadcastAddress(addr);
+		addr=inet_addr(broadcast);
+		io.setNetworkBroadcastAddress(addr);
 		delete broadcast;
 	}
 	
@@ -489,9 +488,8 @@ main(int argc, char **argv)
 				mvprintw(maxy-1,maxx-1," ");
 				move(maxy-1,maxx-1); // make cursor invisible
 				noecho();
-				uint32 addr;
-				if (inet_aton(tmpbuf, (in_addr*)&addr))
-					io.setNetworkBroadcastAddress(addr);
+				addr=inet_addr(tmp);
+				io.setNetworkBroadcastAddress(addr);
 				c=13;
 				strcpy(url,"smb://");
 				modified=1;

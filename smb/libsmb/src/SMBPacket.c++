@@ -111,7 +111,12 @@ int SMBPacket::parse(SessionPacket *p)
 		}
 		if (smb_vwv) delete smb_vwv;
 		smb_vwv=new uint16[((uint16)smb_wct)*2];
+#ifdef WORDS_BIGENDIAN
+		for (int i=0; i<(uint16)smb_wct; i++)
+			smb_vwv[i]=(uint16)(*(data+33+i*2)) | (uint16)((*(data+34+i*2))<<8);
+#else
 		memcpy(smb_vwv,data+33,((uint16)smb_wct)*2);
+#endif
 	}	
 	// little endian
 	smb_bcc=(uint16)(data[33+((uint16)smb_wct)*2]) | ((uint16)(data[34+((uint16)smb_wct)*2])<<8);
@@ -877,9 +882,15 @@ SMBsesssetupPacket::SMBsesssetupPacket(uint32 sessionKey, const char* account, u
 	smb_vwv[7]=passLen;	// Password length
 	smb_vwv[8]=0; smb_vwv[9]=0;	// CIFS : reserved, Lanman1 : encrypt
 
-	char *emptyAccount="";
-	if (!account) account=emptyAccount;
+/*	char *emptyString="";
+	if (!account) account=emptyString;
 	uint16 accLen=strlen(account)+1; //(account) ? strlen(account)+1 : 0;
+	if (passLen==0) {
+		pass=(uint8*)emptyString;
+		passLen=1;
+	}*/
+	uint16 accLen=(account)?strlen(account)+1:0;
+	if (!pass) passLen=0;
 	smb_bcc=accLen+passLen;
 	if (smb_bcc) smb_buf=new uint8[smb_bcc];
 	if (passLen) memcpy(smb_buf,pass,passLen);

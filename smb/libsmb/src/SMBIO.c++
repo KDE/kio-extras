@@ -223,6 +223,9 @@ uint8* SMBIO::crypt(const char* password, int& length)
 		return 0;
 	}
 	if (security & 2) { // bit 1==encrypt passwords
+#if DEBUG >= 6
+		cout<<"SMBIO::crypt: using encrypted password\n";
+#endif
 		// first pad password to 14 bytes with 0
 		unsigned char pass[14]={0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 		if (password) {
@@ -276,7 +279,8 @@ uint8* SMBIO::crypt(const char* password, int& length)
 int SMBIO::doLogin(const char* user, const char* password, int16 UID)
 {
 	int length=0;
-	uint8* pass=((password) && (password[0] != '\0'))?crypt(password,length):0;
+//	uint8* pass=((password) && (password[0] != '\0'))?crypt(password,length):0;
+	uint8* pass=((password) && (password[0] != '\0'))?crypt(password,length):crypt("",length);
 #if DEBUG >= 6
 		cout<<"doLogin : user="<<user<<", password="<<password<<", passlen="<<length<<"\n";
 		for (int i=0; i<length; i++) printf("%X ",pass[i]);
@@ -330,6 +334,14 @@ int SMBIO::login(const char* u, const char* p)
 	// We wanted anonymous access, so try another way right now
 	if (guestTried)
 	{
+#if DEBUG >= 6
+		cout<<"Trying anonymous login with null user and passwords\n";
+#endif
+		// try guest with null user and password
+		if (doLogin(0, 0, UID)!=-1) {delete user; delete password; return 1;}
+#if DEBUG >= 6
+		cout<<"Trying anonymous login with empty user and passwords\n";
+#endif
 		// try guest with empty user and password
 		if (doLogin("", "", UID)!=-1) {delete user; delete password; return 1;}
 	}
@@ -759,7 +771,7 @@ int SMBIO::createRemoteFile(const char* file)
 	
 #ifdef OVERKILL
 	closeSession();
-	if (openSession(host)==-1) {
+	if ((openSession(host)==-1) || (login(user)==-1)) {
 		if (workgroup) delete workgroup;
 		if (host) delete host;
 		if (share) delete share;
@@ -767,7 +779,6 @@ int SMBIO::createRemoteFile(const char* file)
 		if (dir) delete dir;
 		errno=ENOENT; return -1;
 	}
-	login(user);
 #else
 	if (!hostName) {
 		if (openSession(host)==-1) {
@@ -1071,7 +1082,7 @@ int SMBIO::readRaw(int fd, void *buf, uint32 count)
 	if ((!info) || (info->fid==-1) || (!(info->dir))) {
 		errno=EBADF; return -1;
 	}
-	if (info->pos>=info->st_size) {
+	if (info->pos>=(unsigned int)(info->st_size)) {
 #if DEBUG >= 5
 	cout<<"readRaw : cannot read after eof !\n";
 #endif
@@ -1144,7 +1155,7 @@ int SMBIO::readRaw(int fd, void *buf, uint32 count)
 #if DEBUG >= 3
 		cout<<"readRaw complete, file position : "<<info->pos<<"\n";
 #endif
-		if (info->pos>=info->st_size) { // end of file
+		if (info->pos>=(unsigned int)(info->st_size)) { // end of file
 			delete rawdata;
 			errno=0;
 			return cpt+ret;
@@ -1567,7 +1578,7 @@ cout<<"write : cache size : "<<info->clen<<"\n";
 			info->cmaxWrite=info->cpos-info->cache;
 		if (info->cmaxRead<info->cmaxWrite) info->cmaxRead=info->cmaxWrite;
 		info->pos++;
-		if (info->st_size<info->pos) info->st_size=info->pos;
+		if ((unsigned int)(info->st_size)<info->pos) info->st_size=info->pos;
 //		info->pos=info->cachePositionInFile+(info->cpos-info->cache);
 	}
 	errno=0;
@@ -1755,14 +1766,13 @@ int SMBIO::unlink(const char *file)
 	if (workgroup) delete workgroup;
 #ifdef OVERKILL
 	closeSession();
-	if (openSession(host)==-1) {
+	if ((openSession(host)==-1) || (login(user)==-1)) {
 		if (host) delete host;
 		if (share) delete share;
 		if (user) delete user;
 		if (dir) delete dir;
 		errno=ENOENT; return -1;
 	}
-	login(user);
 #else
 	if (!hostName) {
 		if (openSession(host)==-1) {
@@ -1882,14 +1892,13 @@ int SMBIO::rmdir(const char *pathname)
 	if (workgroup) delete workgroup;
 #ifdef OVERKILL
 	closeSession();
-	if (openSession(host)==-1) {
+	if ((openSession(host)==-1) || (login(user)==-1)) {
 		if (host) delete host;
 		if (share) delete share;
 		if (user) delete user;
 		if (dir) delete dir;
 		errno=ENOENT; return -1;
 	}
-	login(user);
 #else
 	if (!hostName) {
 		if (openSession(host)==-1) {
@@ -2030,14 +2039,13 @@ int SMBIO::mkdir(const char *pathname)
 	if (workgroup) delete workgroup;
 #ifdef OVERKILL
 	closeSession();
-	if (openSession(host)==-1) {
+	if ((openSession(host)==-1) || (login(user)==-1)) {
 		if (host) delete host;
 		if (share) delete share;
 		if (user) delete user;
 		if (dir) delete dir;
 		errno=ENOENT; return -1;
 	}
-	login(user);
 #else
 	if (!hostName) {
 		if (openSession(host)==-1) {
@@ -2161,14 +2169,13 @@ int SMBIO::rename(const char *fileURL, const char *newname)
 	if (workgroup) delete workgroup;
 #ifdef OVERKILL
 	closeSession();
-	if (openSession(host)==-1) {
+	if ((openSession(host)==-1) || (login(user)==-1)) {
 		if (host) delete host;
 		if (share) delete share;
 		if (user) delete user;
 		if (dir) delete dir;
 		errno=ENOENT; return -1;
 	}
-	login(user);
 #else
 	if (!hostName) {
 		if (openSession(host)==-1) {
@@ -2532,7 +2539,8 @@ SMBShareList* SMBIO::getShareList(const char *hostname, const char *user, const 
 #else
 	closeSession();
 	if (openSession(hostname)==-1) {errno=ENOENT; return 0;}
-	login(user, password);
+	if (login(user, password)==-1) {errno=ENOENT; return 0;}
+//	login(user, password);
 #endif
 	if (openService("IPC$",0,SMB_IPC)==-1) {errno=ENOENT; return 0;}
 	
@@ -2600,7 +2608,8 @@ SMBWorkgroupList *SMBIO::askWorkgroupList(const char *browser, const char *user)
 #ifdef OVERKILL
 	closeSession();
 	if (openSession(browser)==-1) {errno=ENOENT; return 0;}
-	login(user);
+	if (login(user)==-1) {errno=EACCES; return 0;}
+//	login(user);
 #else
 	if (!hostName) {
 		if (openSession(browser)==-1) {errno=ENOENT; return 0;}
@@ -2695,7 +2704,8 @@ SMBMemberList *SMBIO::askMemberList(const char *master, const char *workgroup, c
 #ifdef OVERKILL
 	closeSession();
 	if (openSession(master)==-1) {errno=ENOENT; return 0;}
-	login(user);
+	if (login(user)==-1) {errno=EACCES; return 0;}
+//	login(user);
 #else
 	if (!hostName) {
 		if (openSession(master)==-1) {errno=ENOENT; return 0;}

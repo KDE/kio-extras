@@ -39,28 +39,6 @@
 #include "NMBIO.h"
 #include "NameServicePacket.h"
 
-
-NBHostEnt::NBHostEnt(const char *nbn, const char *n, uint32 i, NBHostEnt *ne)
-{
-	if (nbn) {
-		NBName=new char[strlen(nbn)+1];
-		strcpy(NBName,nbn);
-	} else NBName=0;
-	if (n) {
-		name=new char[strlen(n)+1];
-		strcpy(name,n);
-	} else name=0;
-	ip=i;
-	next=ne;
-}
-
-NBHostEnt::~NBHostEnt()
-{
-	if (name) delete (name); // not recursive of course !
-	if (NBName) delete (NBName); // not recursive of course !
-	if (next) delete (next); // recursively
-}
-
 NMBIO::NMBIO(const char *name) // can specify our host name
 {
 	socknetaddr = new (struct sockaddr_in);
@@ -94,8 +72,11 @@ NMBIO::NMBIO(const char *name) // can specify our host name
 	}
 
 	netaddr=0xFFFFFFFF;
+	uint32 ourIP=0;
 	if ( (us) && (us->h_addr_list) && (us->h_addr_list[0]) ) {
 		memcpy(&netaddr,us->h_addr_list[0],4);
+		memcpy(&ourIP,us->h_addr_list[0],4);
+		ourIP=BIGEND32(ourIP);
 		uint8 net=(uint8)(us->h_addr_list[0][0]);
 		uint32 mask=0xFFFFFFFF;
 		if (net<=127) {mask=BIGEND32(0x00FFFFFF);}
@@ -107,17 +88,19 @@ NMBIO::NMBIO(const char *name) // can specify our host name
 	socknetaddr->sin_family = AF_INET;
 	socknetaddr->sin_port = htons(137);	// NameService port
 	memcpy(&(socknetaddr->sin_addr), &netaddr, 4);
-
+	
 	NameQueryPacket query(ourName);
 	ourNBName=query.getQueryNBName();
 #if DEBUG >= 6
-	cout<<"NMBIO : our name : "<<ourName<<", our NetBIOS Name : "<<ourNBName<<"\n";
+	cout<<"+NMBIO : our name : "<<ourName<<", our NetBIOS Name : "<<ourNBName<<"\n";
 #endif
+	// set our name in cache, if any, with 'infinite' timeout
+	if (ourIP) cache->add(ourNBName, ourName, ourIP, 0, false, 0x0FFFFFFF);
 }
 
 NMBIO::~NMBIO()
 {
-	delete cache; 
+	if (cache) delete cache;
 	if (ourName) delete ourName;
 	if (ourNBName) delete ourNBName;
 	if (socknetaddr) delete socknetaddr;
@@ -142,12 +125,37 @@ char *NMBIO::getOurNBName()
 void NMBIO::setOurName(const char *name)
 {
 	if (!name) return;
-	if (ourName) delete ourName;
+
+	uint32 ourIP=0;
+	if (ourName) {
+		// remove old name from cache but keep IP
+		NBHostEnt *cacheEntry = cache->find(ourName);
+		if (cacheEntry) {
+			ourIP=cacheEntry->ip;
+			delete cacheEntry;
+		}
+		cache->remove(ourName);
+		delete ourName;
+	}
+	if (!ourIP) { // then call system functions
+		struct hostent *us;
+		char DNSName[101];
+		::gethostname(DNSName,100); // and this is our DNS name
+		us=::gethostbyname(DNSName); // store our net info here
+		if ( (us) && (us->h_addr_list) && (us->h_addr_list[0]) ) {
+			memcpy(&ourIP,us->h_addr_list[0],4);
+			ourIP=BIGEND32(ourIP);
+		}
+	}
+	
 	ourName=new char[strlen(name)+1];
 	strcpy(ourName,name);
 	if (ourNBName) delete ourNBName;
 	NameQueryPacket query(ourName);
 	ourNBName=query.getQueryNBName();
+	
+	// Add our name to cache with 'infinite' timeout
+	cache->add(ourNBName, ourName, ourIP, 0, false, 0x0FFFFFFF);
 }
 	
 // sets the broadcast address !
@@ -162,12 +170,13 @@ int NMBIO::setNetworkBroadcastAddress(uint32 addr)
 
 int NMBIO::setNetworkBroadcastAddress(const char *addr)
 {
-	struct in_addr ip;
+/*	struct in_addr ip;
 	if (!(inet_aton(addr, &ip))) return -1;
-	memcpy(&netaddr, &ip, 4);
+	memcpy(&netaddr, &ip, 4);*/
+	netaddr=inet_addr(addr);
 	socknetaddr->sin_family = AF_INET;
 	socknetaddr->sin_port = htons(137);	// NameService port
-	memcpy(&(socknetaddr->sin_addr), &ip, sizeof(ip));
+	memcpy(&(socknetaddr->sin_addr), &netaddr, sizeof(netaddr));
 	return 0;
 }
 
@@ -185,13 +194,15 @@ int NMBIO::setNBNSAddress(uint32 addr)
 
 int NMBIO::setNBNSAddress(const char *addr)
 {
-	struct in_addr ip;
-	if (!(inet_aton(addr, &ip))) return -1;
+/*	struct in_addr ip;
+	if (!(inet_aton(addr, &ip))) return -1;*/
+	uint32 ip=inet_addr(addr);
+	if ((ip==0xFFFFFFFF) && strcmp(addr,"255.255.255.255")) return -1;
 	memcpy(&NBNS, &ip, 4);
 	return 0;
 }
 
-char *NMBIO::decodeNBName(const char* NBName)
+char *NMBIO::decodeNBName(const char* NBName, bool groupFlag)
 {
 	if (!NBName) return 0;
 	int len=strlen(NBName);
@@ -203,6 +214,11 @@ char *NMBIO::decodeNBName(const char* NBName)
 	for (int i=0; i<NBLen/2; i++)
 		ret[i]=(((NBName[1+i*2]-0x41)&0xF)<<4) | ((NBName[1+i*2+1]-0x41)&0xF);
 	ret[NBLen/2]=0;
+	// Take care of removing group flag if specified
+	if (groupFlag) {
+		ret[NBLen/2-1]=' ';
+		ret[NBLen/2-2]=' ';
+	}
 	// Now remove trailing spaces
 	for (int i=NBLen/2-1; i>=0; i--)
 		if (ret[i]==' ') ret[i]=0; else break;
@@ -210,7 +226,7 @@ char *NMBIO::decodeNBName(const char* NBName)
 	return ret;
 }
 
-struct NBHostEnt *NMBIO::gethostbyname(const char *name)//,int flag)
+struct NBHostEnt *NMBIO::gethostbyname(const char *name, bool groupFlag=false)
 {
 	struct in_addr ip;
 //	struct sockaddr_in connectParam; // parameters of the connection
@@ -220,7 +236,7 @@ struct NBHostEnt *NMBIO::gethostbyname(const char *name)//,int flag)
 	
 // 1. Look in the cache
 
-	NBHostEnt *cache_entry = cache->find(name);
+	NBHostEnt *cache_entry = cache->find(name, groupFlag);
 	if (cache_entry != 0) 
 	  if (cache_entry->ip) {
 	    return cache_entry;
@@ -228,12 +244,11 @@ struct NBHostEnt *NMBIO::gethostbyname(const char *name)//,int flag)
 	  else
 	    return 0; // The host doesn't exists.
 	
-	
-	
 
 // 2. Not in cache, have to lookup
 	// If it is a dot form => hope NetBIOS and DNS name are the same...
-	if (inet_aton(name, &ip))
+	uint32 ipDot=inet_addr(name);
+	if ((ipDot!=0xFFFFFFFF) || !strcmp(name,"255.255.255.255"))
 	{ // yes, dot form, do a standard call since it cannot be
 	  // a valid NetBIOS name
 #ifdef DNSQUERY
@@ -241,7 +256,7 @@ struct NBHostEnt *NMBIO::gethostbyname(const char *name)//,int flag)
 	  	if (server) { // h_name field contains a dot notation ! => do by addr
 			server=::gethostbyaddr(server->h_addr_list[0],server->h_length,AF_INET);
 		}
-	  	if ((!server) || (!(server->h_name)) || (inet_aton(server->h_name, &ip)))
+	  	if ((!server) || (!(server->h_name)) || (inet_addr(server->h_name)!=0xFFFFFFFF))
 			return 0; // still a dot notation
 		// not a dotted form now, search a "." so as to remove domain name
 		char *p=strchr(server->h_name,'.');
@@ -253,167 +268,13 @@ struct NBHostEnt *NMBIO::gethostbyname(const char *name)//,int flag)
 	}
 	else
 	{
-		int sock=0; // needed for NetBIOS name query
 
 // 3. Try NBNS, if any, before doing any UDP broadcast
-		if (NBNS) {
-#if DEBUG >= 4
-			cout<<"NMBIO::gethostbyname, trying NBNS\n";
-#endif
-			struct sockaddr_in connectParam; // parameters of the connection
-			if ((sock = socket (AF_INET, SOCK_DGRAM, 0)) == -1)
-			{
-#if DEBUG >= 1
-				cout<<"NMBIO::gethostbyname, cannot allocate socket.\n";
-#endif
-				errno=NO_RECOVERY;
-				return 0;
-			}
-
-			connectParam.sin_family = AF_INET;
-			connectParam.sin_port = htons(137);	// NameService port
-			memcpy(&connectParam.sin_addr, &NBNS, sizeof(NBNS));
-
-			// name, no broadcast, id=0 (important, see below)
-			NameQueryPacket query(name,0,0);
-
-			uint8* p=query.packet();
-#if DEBUG >= 6
-			for (int i=0; i<query.getLength(); i++) printf("%X ",p[i]);
-			cout<<"\n";
-#endif
-			if (sendto(sock, p, query.getLength(), 0, (sockaddr*)&connectParam, sizeof(connectParam))==-1)
-			{
-#if DEBUG >= 1
-				cout<<"NMBIO::gethostbyname, cannot send datagram.\n";
-#endif
-				errno=NO_RECOVERY;
-				if (sock) close(sock);
-				return 0;
-			}
-			delete p;
-
-			uint8 *rawdata=new uint8[1001]; // UDP doesn't use big packet
-			int32 queue=0;
-
-			struct timeval tv;
-			fd_set rfds;	// from man select...
-
-			// wait response
-			FD_ZERO(&rfds);
-			FD_SET(sock,&rfds);
-			tv.tv_sec = 1;	// wait max 1 sec
-			tv.tv_usec = 0;
-			// timeout=>exit
-			if (!select(sock+1, &rfds, 0, 0, &tv)) {errno=HOST_NOT_FOUND; delete rawdata; if (sock) close(sock); return 0;}
-			queue=recvfrom(sock, rawdata, 1000, 0, 0, 0);
-#if DEBUG >= 6
-			cout<<"queue : "<<queue<<"\n";
-			for (int i=0; i<queue; i++) {printf("%X ",rawdata[i]);}
-			cout<<"\n";
-#endif
-
-			if (queue<=0) {errno=NO_RECOVERY; delete rawdata; if (sock) close(sock); return 0;}
-			rawdata[queue]=0; // barrier, ok : rawdata size=1001
-			if (queue<4) {errno=NO_RECOVERY; delete rawdata; if (sock) close(sock); return 0;}
-			// we don't care here for the errcode
-			if ((rawdata[0]!=0) || (rawdata[1]!=0) || // id=0
-				((rawdata[2]&0xFD)!=0x85)) {errno=HOST_NOT_FOUND; delete rawdata; if (sock) close(sock); return 0;}
-			// ignore fixed bytes
-			if (queue<12) {errno=NO_RECOVERY; delete rawdata; if (sock) close(sock); return 0;}
-			int len=strlen((char*)(rawdata+12)); // barrier prevents cataclysm
-			NBHostEnt *ret=new NBHostEnt;
-			ret->NBName=new char[len+1];
-			strcpy(ret->NBName,(char*)(rawdata+12));
-			ret->name=decodeNBName(ret->NBName);
-			if (queue<12+len+1+8+2) {errno=NO_RECOVERY; delete rawdata; if (sock) close(sock); return 0;}
-			// skip more bytes
-			uint16 addrLen=(((uint16)rawdata[12+len+1+8]) << 8)
-						|(((uint16)rawdata[12+len+1+8+1]) &0xFF);
-			if (queue<12+len+1+8+2+addrLen) {errno=NO_RECOVERY; delete rawdata; if (sock) close(sock); return 0;}
-			uint8 *dat=rawdata+12+len+1+8+2+2;
-			addrLen/=6; // flags+ip
-			// we should seek here the member names
-			// instead of copying the group name if so
-			ret->ip=(((uint32)(*dat)&0xFF)<<24)
-						|(((uint32)(*(dat+1))&0xFF)<<16)
-						|(((uint32)(*(dat+2))&0xFF)<<8)
-						|((uint32)(*(dat+3))&0xFF);
-#if DEBUG>=5
-cout<<"NBNS answer: name="<<ret->name<<", ip=";
-cout<<(int)((*dat)&0xFF)<<"."<<(int)((*(dat+1))&0xFF)<<"."<<((int)(*(dat+2))&0xFF)<<"."<<(int)((*(dat+3))&0xFF)<<"\n";
-#endif
-
-// Do we trust our beloved NBNS ?
-// some servers like WINS can keep outdated info for days...
-#ifdef OVERKILL // common sense mode on
-			// copy IP directly from NBNS answer
-			memcpy(&connectParam.sin_addr, dat, 4);
-			// now we can free mem
-			delete rawdata;
-
-			// name, no broadcast, id=0, same packet than before
-			p=query.packet();
-#if DEBUG >= 6
-			for (int i=0; i<query.getLength(); i++) printf("%X ",p[i]);
-			cout<<"\n";
-#endif
-			if (sendto(sock, p, query.getLength(), 0, (sockaddr*)&connectParam, sizeof(connectParam))==-1)
-			{
-#if DEBUG >= 1
-				cout<<"NMBIO::gethostbyname, verification, cannot send datagram.\n";
-#endif
-				errno=NO_RECOVERY;
-				delete ret;
-				if (sock) close(sock);
-				return 0;
-			}
-			delete p;
-
-			rawdata=new uint8[1001]; // UDP doesn't use big packet
-			queue=0;
-
-			// wait response
-			FD_ZERO(&rfds);
-			FD_SET(sock,&rfds);
-			tv.tv_sec = 1;	// wait max 1 sec
-			tv.tv_usec = 0;
-			// timeout=>exit
-			if (!select(sock+1, &rfds, 0, 0, &tv)) {errno=HOST_NOT_FOUND; delete rawdata; delete ret; if (sock) close(sock); return 0;}
-			queue=recvfrom(sock, rawdata, 1000, 0, 0, 0);
-#if DEBUG >= 6
-			cout<<"queue : "<<queue<<"\n";
-			for (int i=0; i<queue; i++) {printf("%X ",rawdata[i]);}
-			cout<<"\n";
-#endif
-
-			if (queue<=0) {errno=NO_RECOVERY; delete rawdata; delete ret; if (sock) close(sock); return 0;}
-			rawdata[queue]=0; // barrier, ok : rawdata size=1001
-			if (queue<4) {errno=NO_RECOVERY; delete rawdata; delete ret; if (sock) close(sock); return 0;}
-			// we don't care here for the errcode
-			if ((rawdata[0]!=0) || (rawdata[1]!=0) || // id=0
-				((rawdata[2]&0xFD)!=0x85)) {errno=HOST_NOT_FOUND; delete rawdata; delete ret; if (sock) close(sock); return 0;}
-			// ignore fixed bytes
-			if (queue<12) {errno=NO_RECOVERY; delete rawdata; delete ret; if (sock) close(sock); return 0;}
-			len=strlen((char*)(rawdata+12)); // barrier prevents cataclysm
-			if (strcasecmp(ret->NBName,(char*)(rawdata+12))) {
-				// AARGL, NetBIOS Name Server sends invalid data !
-				if (sock) close(sock);
-				delete rawdata; delete ret; return 0;
-			}
-#if DEBUG>=5
-cout<<"NBNS answer: name="<<ret->name<<", ip=";
-cout<<(int)((*dat)&0xFF)<<"."<<(int)((*(dat+1))&0xFF)<<"."<<((int)(*(dat+2))&0xFF)<<"."<<(int)((*(dat+3))&0xFF)<<"\n";
-#endif
-#endif // OVERKILL
-			if (sock) close(sock);
-			delete rawdata;
-			if (ret)
-			  cache->add(ret->NBName, ret->name, ret->ip, 0, 120);
-			return ret;
-		}
+		ret=askNBNS(name,groupFlag);
+		if (ret) return ret;
 
 // 4. broadcast a NetBIOS name query (hosts limited to local subnet)
+		int sock=0; // needed for NetBIOS name query
 				
 		if ((sock = socket (AF_INET, SOCK_DGRAM, 0)) == -1)
 		{
@@ -437,7 +298,7 @@ cout<<(int)((*dat)&0xFF)<<"."<<(int)((*(dat+1))&0xFF)<<"."<<((int)(*(dat+2))&0xF
 		}
 		
 		// NB name, broadcast, id=0 (important, see below)
-		NameQueryPacket query(name,1,0);
+		NameQueryPacket query(name,1,0,groupFlag);
 //		NameQueryPacket query("*",1,0); // only samba servers answer with * !
 
 		uint8* p=query.packet();
@@ -481,7 +342,8 @@ cout<<(int)((*dat)&0xFF)<<"."<<(int)((*(dat+1))&0xFF)<<"."<<((int)(*(dat+2))&0xF
 			FD_SET(sock,&rfds);
 			tv.tv_sec = 1;	// wait max 1 sec
 			tv.tv_usec = 0;*/
-			queue=recvfrom(sock, rawdata, 1000, 0, 0, 0);
+//			queue=recvfrom(sock, rawdata, 1000, 0, 0, 0);
+			queue=read(sock, rawdata, 1000);
 #if DEBUG >= 6
 			cout<<"queue : "<<queue<<"\n";
 			for (int i=0; i<queue; i++)
@@ -515,7 +377,7 @@ cout<<(int)((*dat)&0xFF)<<"."<<(int)((*(dat+1))&0xFF)<<"."<<((int)(*(dat+2))&0xF
 				else {current->next=new NBHostEnt; current=current->next;}
 				current->NBName=new char[len+1];
 				strcpy(current->NBName,(char*)(rawdata+12));
-				current->name=decodeNBName(current->NBName);
+				current->name=decodeNBName(current->NBName,groupFlag);
 				current->ip=(((uint32)(*dat)&0xFF)<<24)
 							|(((uint32)(*(dat+1))&0xFF)<<16)
 							|(((uint32)(*(dat+2))&0xFF)<<8)
@@ -537,7 +399,8 @@ cout<<(int)((*dat)&0xFF)<<"."<<(int)((*(dat+1))&0xFF)<<"."<<((int)(*(dat+2))&0xF
 		  	if ((server) && (server->h_addr_list) && (server->h_addr_list[0])) { // that DNS and NetBIOS names are the same !
 				server=::gethostbyaddr(server->h_addr_list[0],server->h_length,AF_INET);
 			} // this was done to remove dot notations
-		  	if ((!server) || (!(server->h_name)) || (!(server->h_addr_list)) || (!(server->h_addr_list[0])) || (inet_aton(server->h_name, &ip)))
+//		  	if ((!server) || (!(server->h_name)) || (!(server->h_addr_list)) || (!(server->h_addr_list[0])) || (inet_aton(server->h_name, &ip)))
+		  	if ((!server) || (!(server->h_name)) || (!(server->h_addr_list)) || (!(server->h_addr_list[0])) || (inet_addr(server->h_name)!=0xFFFFFFFF))
 				return 0; // still a dot notation, or no server/name
 			// not a dotted form now, search a "." so as to remove domain name
 			char *p=strchr(server->h_name,'.');
@@ -547,12 +410,12 @@ cout<<(int)((*dat)&0xFF)<<"."<<(int)((*(dat+1))&0xFF)<<"."<<((int)(*(dat+2))&0xF
 			strcpy(ret->name,server->h_name);
 			memcpy(&ret->ip,server->h_addr_list[0],4);
 			ret->ip=BIGEND32(ret->ip); // htonl ...
-			NameQueryPacket query(ret->name);
+			NameQueryPacket query(ret->name,0,0,groupFlag);
 			ret->NBName=query.getQueryNBName();
 		}
 #endif // DNSQUERY
 		if (ret)
-		  cache->add(ret->NBName, ret->name, ret->ip, 0, 120);
+		  cache->add(ret->NBName, ret->name, ret->ip, 0, groupFlag, 120);
 		return ret;
 	}
 }
@@ -561,10 +424,10 @@ cout<<(int)((*dat)&0xFF)<<"."<<(int)((*(dat+1))&0xFF)<<"."<<((int)(*(dat+2))&0xF
 // This doesn't work ! server will not indicate its name whatever packet
 // we send it !
 
-struct NBHostEnt *NMBIO::gethostbyaddr(uint32 IP)
+struct NBHostEnt *NMBIO::gethostbyaddr(uint32 IP, bool groupFlag)
 {
         NBHostEnt *ret=new NBHostEnt; 
-	ret = cache->find(IP); // Check the cache
+	ret = cache->find(IP, groupFlag); // Check the cache
 	if (ret != 0) 
 	  return ret;
 	struct sockaddr_in connectParam; // parameters of the connection
@@ -585,7 +448,7 @@ struct NBHostEnt *NMBIO::gethostbyaddr(uint32 IP)
 	memcpy(&connectParam.sin_addr, &bigIP, sizeof(IP));
 	
 	// any name, no broadcast, id=0 (important, see below)
-	NameQueryPacket query("*",0,0);
+	NameQueryPacket query("*",0,0,groupFlag);
 //	NameConflictDemand query("*",0);
 
 	uint8* p=query.packet();
@@ -617,7 +480,8 @@ struct NBHostEnt *NMBIO::gethostbyaddr(uint32 IP)
 	tv.tv_usec = 0;
 	// timeout=>exit
 	if (!select(sock+1, &rfds, 0, 0, &tv)) {errno=HOST_NOT_FOUND; delete rawdata;  return 0;}
-	queue=recvfrom(sock, rawdata, 1000, 0, 0, 0);
+//		queue=recvfrom(sock, rawdata, 1000, 0, 0, 0);
+	queue=read(sock, rawdata, 1000);
 #if DEBUG >= 6
 	cout<<"queue : "<<queue<<"\n";
 	for (int i=0; i<queue; i++) {printf("%X ",rawdata[i]);}
@@ -637,7 +501,7 @@ struct NBHostEnt *NMBIO::gethostbyaddr(uint32 IP)
 	  ret = new NBHostEnt;
 	ret->NBName=new char[len+1];
 	strcpy(ret->NBName,(char*)(rawdata+12));
-	ret->name=decodeNBName(ret->NBName);
+	ret->name=decodeNBName(ret->NBName,groupFlag);
 #if DEBUG >= 6
 cout<<"Name found : "<<ret->name<<"\n";
 #endif
@@ -646,8 +510,174 @@ cout<<"Name found : "<<ret->name<<"\n";
 	return ret;
 }
 
-void NMBIO::addNameIpToCache(const char *hostname, uint32 ip, uint32 timeout)
+void NMBIO::addNameIpToCache(const char *hostname, uint32 ip, uint32 timeout, bool groupFlag=false)
 {
-  NameQueryPacket *nameQP = new NameQueryPacket(hostname, 0, 0);
-  cache->add(nameQP->getQueryNBName(), hostname, ip, 0, timeout);
+  NameQueryPacket *nameQP = new NameQueryPacket(hostname, 0, 0, groupFlag);
+  cache->add(nameQP->getQueryNBName(), hostname, ip, 0, groupFlag, timeout);
 }  
+
+
+struct NBHostEnt *NMBIO::askNBNS(const char *name, bool groupFlag=false)
+{
+	if (!NBNS) return 0;
+	
+	int sock=0; // needed for NetBIOS name query
+
+#if DEBUG >= 4
+	cout<<"NMBIO::askNBNS, trying NBNS\n";
+#endif
+	
+	struct sockaddr_in connectParam; // parameters of the connection
+	if ((sock = socket (AF_INET, SOCK_DGRAM, 0)) == -1)
+	{
+#if DEBUG >= 1
+		cout<<"NMBIO::askNBNS, cannot allocate socket.\n";
+#endif
+		errno=NO_RECOVERY;
+		return 0;
+	}
+
+	connectParam.sin_family = AF_INET;
+	connectParam.sin_port = htons(137);	// NameService port
+	memcpy(&connectParam.sin_addr, &NBNS, sizeof(NBNS));
+
+	// name, no broadcast, id=0 (important, see below)
+	NameQueryPacket query(name,0,0,groupFlag);
+
+	uint8* p=query.packet();
+#if DEBUG >= 6
+	for (int i=0; i<query.getLength(); i++) printf("%X ",p[i]);
+	cout<<"\n";
+#endif
+	if (sendto(sock, p, query.getLength(), 0, (sockaddr*)&connectParam, sizeof(connectParam))==-1)
+	{
+#if DEBUG >= 1
+		cout<<"NMBIO::askNBNS, cannot send datagram.\n";
+#endif
+		errno=NO_RECOVERY;
+		if (sock) close(sock);
+		return 0;
+	}
+	delete p;
+
+	uint8 *rawdata=new uint8[1001]; // UDP doesn't use big packet
+	int32 queue=0;
+
+	struct timeval tv;
+	fd_set rfds;	// from man select...
+
+	// wait response
+	FD_ZERO(&rfds);
+	FD_SET(sock,&rfds);
+	tv.tv_sec = 1;	// wait max 1 sec
+	tv.tv_usec = 0;
+	// timeout=>exit
+	if (!select(sock+1, &rfds, 0, 0, &tv)) {errno=HOST_NOT_FOUND; delete rawdata; if (sock) close(sock); return 0;}
+//	queue=recvfrom(sock, rawdata, 1000, 0, 0, 0);
+	queue=read(sock, rawdata, 1000);
+#if DEBUG >= 6
+	cout<<"queue : "<<queue<<"\n";
+	for (int i=0; i<queue; i++) {printf("%X ",rawdata[i]);}
+	cout<<"\n";
+#endif
+
+	if (queue<=0) {errno=NO_RECOVERY; delete rawdata; if (sock) close(sock); return 0;}
+	rawdata[queue]=0; // barrier, ok : rawdata size=1001
+	if (queue<4) {errno=NO_RECOVERY; delete rawdata; if (sock) close(sock); return 0;}
+	// we don't care here for the errcode
+	if ((rawdata[0]!=0) || (rawdata[1]!=0) || // id=0
+		((rawdata[2]&0xFD)!=0x85)) {errno=HOST_NOT_FOUND; delete rawdata; if (sock) close(sock); return 0;}
+	// ignore fixed bytes
+	if (queue<12) {errno=NO_RECOVERY; delete rawdata; if (sock) close(sock); return 0;}
+	int len=strlen((char*)(rawdata+12)); // barrier prevents cataclysm
+	NBHostEnt *ret=new NBHostEnt;
+	ret->NBName=new char[len+1];
+	strcpy(ret->NBName,(char*)(rawdata+12));
+	ret->name=decodeNBName(ret->NBName,groupFlag);
+	if (queue<12+len+1+8+2) {errno=NO_RECOVERY; delete rawdata; if (sock) close(sock); return 0;}
+	// skip more bytes
+	uint16 addrLen=(((uint16)rawdata[12+len+1+8]) << 8)
+				|(((uint16)rawdata[12+len+1+8+1]) &0xFF);
+	if (queue<12+len+1+8+2+addrLen) {errno=NO_RECOVERY; delete rawdata; if (sock) close(sock); return 0;}
+	uint8 *dat=rawdata+12+len+1+8+2+2;
+	addrLen/=6; // flags+ip
+	// we should seek here the member names
+	// instead of copying the group name if so
+	ret->ip=(((uint32)(*dat)&0xFF)<<24)
+				|(((uint32)(*(dat+1))&0xFF)<<16)
+				|(((uint32)(*(dat+2))&0xFF)<<8)
+				|((uint32)(*(dat+3))&0xFF);
+#if DEBUG>=5
+	cout<<"NBNS answer: name="<<ret->name<<", ip=";
+	cout<<(int)((*dat)&0xFF)<<"."<<(int)((*(dat+1))&0xFF)<<"."<<((int)(*(dat+2))&0xFF)<<"."<<(int)((*(dat+3))&0xFF)<<"\n";
+#endif
+
+// Do we trust our beloved NBNS ?
+// some servers like WINS can keep outdated info for days...
+#ifdef OVERKILL // common sense mode on
+	// copy IP directly from NBNS answer
+	memcpy(&connectParam.sin_addr, dat, 4);
+	// now we can free mem
+	delete rawdata;
+
+	// name, no broadcast, id=0, same packet than before
+	p=query.packet();
+#if DEBUG >= 6
+	for (int i=0; i<query.getLength(); i++) printf("%X ",p[i]);
+	cout<<"\n";
+#endif
+	if (sendto(sock, p, query.getLength(), 0, (sockaddr*)&connectParam, sizeof(connectParam))==-1)
+	{
+#if DEBUG >= 1
+			cout<<"NMBIO::askNBNS, verification, cannot send datagram.\n";
+#endif
+		errno=NO_RECOVERY;
+		delete ret;
+		if (sock) close(sock);
+		return 0;
+	}
+	delete p;
+
+	rawdata=new uint8[1001]; // UDP doesn't use big packet
+	queue=0;
+
+	// wait response
+	FD_ZERO(&rfds);
+	FD_SET(sock,&rfds);
+	tv.tv_sec = 1;	// wait max 1 sec
+	tv.tv_usec = 0;
+	// timeout=>exit
+	if (!select(sock+1, &rfds, 0, 0, &tv)) {errno=HOST_NOT_FOUND; delete rawdata; delete ret; if (sock) close(sock); return 0;}
+//	queue=recvfrom(sock, rawdata, 1000, 0, 0, 0);
+	queue=read(sock, rawdata, 1000);
+#if DEBUG >= 6
+	cout<<"queue : "<<queue<<"\n";
+	for (int i=0; i<queue; i++) {printf("%X ",rawdata[i]);}
+	cout<<"\n";
+#endif
+
+	if (queue<=0) {errno=NO_RECOVERY; delete rawdata; delete ret; if (sock) close(sock); return 0;}
+	rawdata[queue]=0; // barrier, ok : rawdata size=1001
+	if (queue<4) {errno=NO_RECOVERY; delete rawdata; delete ret; if (sock) close(sock); return 0;}
+	// we don't care here for the errcode
+	if ((rawdata[0]!=0) || (rawdata[1]!=0) || // id=0
+		((rawdata[2]&0xFD)!=0x85)) {errno=HOST_NOT_FOUND; delete rawdata; delete ret; if (sock) close(sock); return 0;}
+	// ignore fixed bytes
+	if (queue<12) {errno=NO_RECOVERY; delete rawdata; delete ret; if (sock) close(sock); return 0;}
+	len=strlen((char*)(rawdata+12)); // barrier prevents cataclysm
+	if (strcasecmp(ret->NBName,(char*)(rawdata+12))) {
+		// AARGL, NetBIOS Name Server sends invalid data !
+		if (sock) close(sock);
+		delete rawdata; delete ret; return 0;
+	}
+#if DEBUG>=5
+	cout<<"Check NBNS answer, host repy: name="<<ret->name<<", ip=";
+	cout<<(int)((*dat)&0xFF)<<"."<<(int)((*(dat+1))&0xFF)<<"."<<((int)(*(dat+2))&0xFF)<<"."<<(int)((*(dat+3))&0xFF)<<"\n";
+#endif
+#endif // OVERKILL
+	if (sock) close(sock);
+	delete rawdata;
+	if (ret)
+		cache->add(ret->NBName, ret->name, ret->ip, 0, groupFlag, 120);
+	return ret;
+}
