@@ -68,8 +68,10 @@
 
 #include "smtp.h"
 
-#define DEFAULT_EMAIL "someuser@is.using.a.pre.release.kde.ioslave.compliments.of.kde.org"
 #define ASCII(x) QString::fromLatin1(x)
+#define WRITE_STRING(x) Write (static_cast<const char *>(x.local8Bit()), x.local8Bit().length())
+
+#define DEFAULT_EMAIL "someuser@is.using.a.pre.release.kde.ioslave.compliments.of.kde.org"
 #define DEFAULT_RESPONSE_BUFFER 512
 #define DEFAULT_EHLO_BUFFER 5120
 
@@ -79,8 +81,8 @@ extern "C" {
 	int kdemain (int argc, char **argv);
 }
 
-void	GetAddresses(const QString &str, const QString &delim, QStringList &list);
-int	GetVal(char *buf);
+void	GetAddresses (const QString &str, const QString &delim, QStringList &list);
+int	GetVal (char *buf);
 
 int kdemain (int argc, char **argv)
 {
@@ -144,25 +146,22 @@ void SMTPProtocol::put (const KURL &url, int /*permissions*/, bool /*overwrite*/
 	QString profile = QString::null;
 	QStringList recip, bcc, cc, temp_list;
 
-	GetAddresses(query, "to=", recip);
-	GetAddresses(query, "cc=", cc);
-	GetAddresses(query, "bcc=", bcc);
+	GetAddresses(query, ASCII("to="), recip);
+	GetAddresses(query, ASCII("cc="), cc);
+	GetAddresses(query, ASCII("bcc="), bcc);
 
 	// find the subject
-	GetAddresses(query, "subject=", temp_list);
+	GetAddresses(query, ASCII("subject="), temp_list);
 	if (temp_list.count()) {
 		subject = temp_list.last();
 		temp_list.clear();
 	}
 
-	GetAddresses(query, "profile=", temp_list);
+	GetAddresses(query, ASCII("profile="), temp_list);
 	if (temp_list.count()) {
 		profile = temp_list.last();
 		temp_list.clear();
 	}
-
-	if (!smtp_open(url))
-	        error(ERR_SERVICE_NOT_AVAILABLE, i18n("SMTPProtocol::smtp_open failed (%1)").arg(url.path()));
 
 	KEMailSettings *mset = new KEMailSettings;
 	if (profile == QString::null) {
@@ -181,6 +180,10 @@ void SMTPProtocol::put (const KURL &url, int /*permissions*/, bool /*overwrite*/
 		from = ASCII(DEFAULT_EMAIL);
 	}
 	from.prepend(ASCII("MAIL FROM: "));
+
+	if (!smtp_open(url))
+	        error(ERR_SERVICE_NOT_AVAILABLE, i18n("SMTPProtocol::smtp_open failed (%1)").arg(url.path()));
+
 	if (!command(from)) {
 		HandleSMTPWriteError(url);
 		return;
@@ -188,53 +191,42 @@ void SMTPProtocol::put (const KURL &url, int /*permissions*/, bool /*overwrite*/
 
 	// Loop through our To and CC recipients, and send the proper
 	// SMTP commands, for the benefit of the server.
-	QString formatted_recip = ASCII("RCPT TO: %1");
-	for ( QStringList::Iterator it = recip.begin(); it != recip.end(); ++it ) {
-		if (!command(formatted_recip.arg(*it)))
-			HandleSMTPWriteError(url);
-	}
-	for ( QStringList::Iterator it = cc.begin(); it != cc.end(); ++it ) {
-		if (!command(formatted_recip.arg(*it)))
-			HandleSMTPWriteError(url);
-	}
-	for ( QStringList::Iterator it = bcc.begin(); it != bcc.end(); ++it ) {
-		if (!command(formatted_recip.arg(*it)))
-			HandleSMTPWriteError(url);
-	}
+	PutRecipients(recip, url);	// To
+	PutRecipients(cc, url);		// Carbon Copy (CC)
+	PutRecipients(bcc, url);	// Blind Carbon Copy (BCC)
 
 	// Begin sending the actual message contents (most headers+body)
 	if (!command(ASCII("DATA"))) {
 		HandleSMTPWriteError(url);
 	}
 
+	from = ASCII("From: %1\r\n");
 	if (mset->getSetting(KEMailSettings::EmailAddress) != QString::null) {
 		if (mset->getSetting(KEMailSettings::RealName) != QString::null) {
-			from = ASCII("%1 <%2>");
-			from = from.arg(mset->getSetting(KEMailSettings::RealName)).arg(mset->getSetting(KEMailSettings::EmailAddress));
+			from.arg(ASCII("%1 <%2>").arg(mset->getSetting(KEMailSettings::RealName)).arg(mset->getSetting(KEMailSettings::EmailAddress)));
 		} else {
-			from = mset->getSetting(KEMailSettings::EmailAddress);
+			from.arg(mset->getSetting(KEMailSettings::EmailAddress));
 		}
 	} else {
-		from = DEFAULT_EMAIL;
+		from.arg(DEFAULT_EMAIL);
 	}
-	from.prepend(ASCII("From: "));
-	from.append(ASCII("\r\n"));
-	Write(static_cast<const char *>(from.local8Bit()), from.local8Bit().length());
+	WRITE_STRING(from);
 
-	formatted_recip = ASCII("Subject: %1\r\n");
-	subject = formatted_recip.arg(subject);
-	Write(static_cast<const char *>(subject.local8Bit()), subject.local8Bit().length());
+	subject = ASCII("Subject: %1\r\n").arg(subject);
+	WRITE_STRING(subject);
 
-	formatted_recip = ASCII("To: %1\r\n");
+	// Write out the To header for the benefit of the mail clients
+	query = ASCII("To: %1\r\n");
 	for ( QStringList::Iterator it = recip.begin(); it != recip.end(); ++it ) {
-		subject = formatted_recip.arg(*it);
-		Write(static_cast<const char *>(subject.local8Bit()), subject.local8Bit().length());
+		query = query.arg(*it);
+		WRITE_STRING(query);
 	}
 
-	formatted_recip = ASCII("CC: %1\r\n");
+	// Write out the CC header for the benefit of the mail clients
+	query = ASCII("CC: %1\r\n");
 	for ( QStringList::Iterator it = cc.begin(); it != cc.end(); ++it ) {
-		subject = formatted_recip.arg(*it);
-		Write(static_cast<const char *>(subject.local8Bit()), subject.local8Bit().length());
+		query = query.arg(*it);
+		WRITE_STRING(query);
 	}
 
 	delete mset;
@@ -257,6 +249,15 @@ void SMTPProtocol::put (const KURL &url, int /*permissions*/, bool /*overwrite*/
 	Write("\r\n.\r\n", 5);
 	command(ASCII("RSET"));
 	finished();
+}
+
+void SMTPProtocol::PutRecipients (QStringList &list, const KURL &url)
+{
+	QString formatted_recip = ASCII("RCPT TO: %1");
+	for ( QStringList::Iterator it = list.begin(); it != list.end(); ++it ) {
+		if (!command(formatted_recip.arg(*it)))
+			HandleSMTPWriteError(url);
+	}
 }
 
 void SMTPProtocol::setHost (const QString &host, int port, const QString &user, const QString &pass)
@@ -373,7 +374,6 @@ bool SMTPProtocol::smtp_open (const KURL &url)
 	// Yes, I *know* that this is not the way it should be done, but
 	// for now there's no real need to complicate things by
 	// determining our hostname.  AFAIK no servers really depend on this..
-
 	if (!command(ASCII("EHLO kio_smtp"), ehlobuf.buffer().data(), 5119)) {
 		if (!command(ASCII("HELO kio_smtp"))) { // Let's just check to see if it speaks plain ol' SMTP
 			smtp_close();
@@ -406,7 +406,7 @@ bool SMTPProtocol::smtp_open (const KURL &url)
 			auth_url.setUser(m_sUser);
 		}
 		if (!Authenticate(auth_url)) {
-			error(ERR_ACCESS_DENIED, i18n("Authentication failed"));
+			error(ERR_COULD_NOT_LOGIN, i18n("Authentication failed"));
 			return false;
 		}
 	}

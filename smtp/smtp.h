@@ -54,6 +54,7 @@ protected:
 	bool Authenticate (const KURL &url);
 	void HandleSMTPWriteError (const KURL &url);
 	void ParseFeatures (const char *buf);
+	void PutRecipients (QStringList &list, const KURL &url);
 
 	unsigned short m_iOldPort;
 	bool opened, haveTLS;
