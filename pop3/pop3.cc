@@ -38,15 +38,8 @@
 #include <sys/select.h>
 #endif
 
-#include <netinet/in.h>
-#include <arpa/inet.h>
-
-#include <ctype.h>
 #include <errno.h>
-#include <netdb.h>
-#include <signal.h>
 #include <stdio.h>
-#include <unistd.h>
 
 #include <qcstring.h>
 #include <qglobal.h>
@@ -186,14 +179,18 @@ bool POP3Protocol::getResponse (char *r_buf, unsigned int r_len, const char *cmd
 			memcpy(r_buf, (buf[3] == ' ' ? buf+4 : buf+3),
 				QMIN(r_len, (buf[3] == ' ' ? recv_len-4 : recv_len-3)));
 		}
-		if (buf)
+
+		if (buf) {
 			delete [] buf;
+		}
+
 		return true;
 	} else if (strncmp(buf, "-ERR", 4) == 0) {
 		if (r_buf && r_len) {
 			memcpy(r_buf, (buf[4] == ' ' ? buf+5 : buf+4),
 				QMIN(r_len, (buf[4] == ' ' ? recv_len-5 : recv_len-4)));
 		}
+
 		QString command = QString::fromLatin1(cmd);
 		QString serverMsg = QString::fromLatin1(buf).stripWhiteSpace();
 
@@ -217,6 +214,7 @@ bool POP3Protocol::getResponse (char *r_buf, unsigned int r_len, const char *cmd
 		if (buf) {
 			delete [] buf;
 		}
+
 		return true;
 	} else {
 		POP3_DEBUG << "Invalid POP3 response received!" << endl;
