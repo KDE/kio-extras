@@ -231,7 +231,8 @@ QString DiskEntry::discType()
   QString typeName;
     // try to be intelligent
 #ifdef Q_OS_LINUX
-  char str[21];
+//  char str[21];
+  QString str;
   QString tmpInfo;
     if (deviceName().startsWith("/dev/hd"))
     {
@@ -244,10 +245,10 @@ QString DiskEntry::discType()
 	if (infoFile.open(IO_ReadOnly))
 	{
 		int len;
-		if (-1==(len=infoFile.readLine(str,20))) typeName="kdedevice/TESTONLY";
+		if (-1==(len=infoFile.readLine(tmpInfo,20))) typeName="kdedevice/TESTONLY";
 		else
 		{
-			tmpInfo.fromLatin1(str,len);
+//			tmpInfo.fromLatin1(str,len);
 			if (tmpInfo.contains("disk")) typeName="kdedevice/hdd";
 			else
 				if (tmpInfo.contains("cdrom")) typeName="kdedevice/cdrom"; 
