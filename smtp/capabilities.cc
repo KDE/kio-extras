@@ -72,8 +72,12 @@ namespace KioSMTP {
 
   QString Capabilities::asMetaDataString() const {
     QString result;
-    for ( QMap<QString,QStringList>::const_iterator it = mCapabilities.begin() ; it != mCapabilities.end() ; ++it )
-      result += it.key() + ' ' + it.data().join( " " ) + '\n';
+    for ( QMap<QString,QStringList>::const_iterator it = mCapabilities.begin() ; it != mCapabilities.end() ; ++it ) {
+      result += it.key();
+      if ( !it.data().empty() )
+	result += ' ' + it.data().join( " " );
+      result += '\n';
+    }
     return result;
   }
 
