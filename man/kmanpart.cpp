@@ -49,8 +49,8 @@ KManPartFactory::~KManPartFactory()
    delete s_about;
 }
 
-KParts::Part* KManPartFactory::createPartObject( QWidget * parentWidget, const char* widgetName, QObject *,
-                                 const char* name, const char* className,const QStringList & )
+KParts::Part* KManPartFactory::createPartObject( QWidget * parentWidget, const char* /*widgetName*/, QObject *,
+                                 const char* name, const char* /*className*/,const QStringList & )
 {
    KManPart* part = new KManPart(parentWidget, name );
    return part;

@@ -76,6 +76,7 @@ void stripExtension( QString *name )
         name->truncate( pos );
 }
 
+static
 bool parseUrl(const QString& _url, QString &title, QString &section)
 {
     section = "";
