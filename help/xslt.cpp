@@ -63,10 +63,27 @@ QString transform( const QString &pat )
         }
 
         if (slave) slave->infoMessage(i18n("Parsing document"));
-	xmlDocPtr doc = xmlParseMemory(contents.data(), contents.length());
-	if (doc == NULL) {
+        /*const char *data = contents.data();
+        int len = contents.length();
+        fprintf(stderr, "%x %x %x %x\n", data[len], data[len - 1],
+        data[len - 2], data[len - 3]); */
+
+        xmlParserCtxtPtr ctxt = xmlCreateMemoryParserCtxt(contents.data(),
+                                                          contents.length() - 1);
+        int directory = pat.findRev('/');
+        if (directory != -1)
+            ctxt->directory = strdup(pat.left(directory + 1).latin1());
+        xmlParseDocument(ctxt);
+        xmlDocPtr doc;
+        if (ctxt->wellFormed)
+            doc = ctxt->myDoc;
+        else {
+            xmlFreeDoc(ctxt->myDoc);
+            xmlFreeParserCtxt(ctxt);
             return parsed;
-	}
+        }
+        xmlFreeParserCtxt(ctxt);
+
  	// the params can be used to customize it more flexible
 	const char *params[16 + 1];
 	params[0] = NULL;
@@ -93,7 +110,7 @@ xmlParserInputPtr meinExternalEntityLoader(const char *URL, const char *ID,
 					   xmlParserCtxtPtr ctxt) {
     xmlParserInputPtr ret = NULL;
 
-    // fprintf(stderr, "loading %s %s\n", URL, ID);
+    // fprintf(stderr, "loading %s %s %s\n", URL, ID, ctxt->directory);
 
     if (URL == NULL) {
         if ((ctxt->sax != NULL) && (ctxt->sax->warning != NULL))
@@ -174,5 +191,4 @@ QString splitOut(const QString &parsed, int index)
 
 void fillInstance(KInstance &ins) {
     ins.dirs()->addResourceType("dtd", KStandardDirs::kde_default("data") + "ksgmltools2/");
-    ins.dirs()->addResourceDir("dtd", QDir::currentDirPath());
 }
