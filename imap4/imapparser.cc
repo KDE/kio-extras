@@ -858,7 +858,7 @@ mimeHeader * imapParser::parseSimplePart (parseString & inWords,
     localPart->setLength (size);
 
   // type specific extensions
-  if (localPart->getType() == "MESSAGE/RFC822")
+  if (localPart->getType().upper() == "MESSAGE/RFC822")
   {
     //envelope structure
     mailHeader *envelope = parseEnvelope (inWords);
