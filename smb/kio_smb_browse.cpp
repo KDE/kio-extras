@@ -141,6 +141,7 @@ void SMBSlave::stat( const KURL& kurl )
     {
         kdDebug() << "redirection " << url << endl;
         redirection(url);
+        finished();
         return;
     }
 
