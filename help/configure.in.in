@@ -35,6 +35,8 @@ AC_SUBST(HELP_SLAVE)
 
 WITH_MEM_DEBUG=0
 AC_SUBST(WITH_MEM_DEBUG)
+WITH_XSLT_DEBUG=0
+AC_SUBST(WITH_XSLT_DEBUG)
 
 AC_CHECK_HEADERS(ctype.h sys/types.h ieeefp.h nan.h math.h fp_class.h float.h ansidecl.h)
 AC_CHECK_FUNC(isnan, , AC_CHECK_LIB(m, isnan,
