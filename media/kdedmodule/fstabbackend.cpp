@@ -53,6 +53,25 @@ FstabBackend::FstabBackend(MediaList &list)
 	KDirWatch::self()->startScan();
 }
 
+FstabBackend::~FstabBackend()
+{
+	QStringList::iterator it = m_mtabIds.begin();
+	QStringList::iterator end = m_mtabIds.end();
+
+	for (; it!=end; ++it)
+	{
+		m_mediaList.removeMedium(*it);
+	}
+
+	it = m_fstabIds.begin();
+	end = m_fstabIds.end();
+
+	for (; it!=end; ++it)
+	{
+		m_mediaList.removeMedium(*it);
+	}
+}
+
 void FstabBackend::slotDirty(const QString &path)
 {
 	if (path==MTAB)

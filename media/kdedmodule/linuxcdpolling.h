@@ -53,7 +53,7 @@ Q_OBJECT
 public:
 
 	LinuxCDPolling(MediaList &list);
-	~LinuxCDPolling();
+	virtual ~LinuxCDPolling();
 
 	/**
 	 * Find the disc type of the medium inserted in a drive

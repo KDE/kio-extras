@@ -25,7 +25,10 @@ class BackendBase
 {
 protected:
 	BackendBase(MediaList &list);
-
+public:
+	virtual ~BackendBase() { }
+	
+protected:
 	MediaList &m_mediaList;
 };
 

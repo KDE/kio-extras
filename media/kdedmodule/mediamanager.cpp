@@ -49,7 +49,12 @@ MediaManager::MediaManager(const QCString &obj)
 	         SLOT(slotMediumChanged(const QString&, const QString&)) );
 
 	m_backends.setAutoDelete(true);
+	loadBackends();
+}
 
+void MediaManager::loadBackends()
+{
+	m_backends.clear();
 	mp_removableBackend = 0L;
 
 #ifdef COMPILE_HALBACKEND

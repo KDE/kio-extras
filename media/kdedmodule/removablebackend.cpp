@@ -42,6 +42,17 @@ RemovableBackend::RemovableBackend(MediaList &list)
 	KDirWatch::self()->startScan();
 }
 
+RemovableBackend::~RemovableBackend()
+{
+	QStringList::iterator it = m_removableIds.begin();
+	QStringList::iterator end = m_removableIds.end();
+
+	for (; it!=end; ++it)
+	{
+		m_mediaList.removeMedium(*it);
+	}
+}
+
 void RemovableBackend::plug(const QString &devNode, const QString &label)
 {
 	QString name = generateName(devNode);

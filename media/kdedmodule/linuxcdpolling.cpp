@@ -144,6 +144,7 @@ public:
 protected:
 	virtual void run()
 	{
+		kdDebug() << "PollingThread(" << m_dev << ") start" << endl;
 		while (!m_stop)
 		{
 			m_mutex.lock();
@@ -158,6 +159,7 @@ protected:
 
 			msleep(500);
 		}
+		kdDebug() << "PollingThread(" << m_dev << ") stop" << endl;
 	}
 
 private:

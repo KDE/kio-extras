@@ -30,6 +30,7 @@ Q_OBJECT
 
 public:
 	RemovableBackend(MediaList &list);
+	virtual ~RemovableBackend();
 
 	void plug(const QString &devNode, const QString &label);
 	void unplug(const QString &devNode);

@@ -30,6 +30,7 @@ Q_OBJECT
 
 public:
 	FstabBackend(MediaList &list);
+	virtual ~FstabBackend();
 
 	static void guess(const QString &devNode, const QString &mountPoint,
                           const QString &fsType, bool mounted,
