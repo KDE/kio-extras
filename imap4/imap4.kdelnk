@@ -1,0 +1,9 @@
+# KDE Config File
+[Protocol]
+exec=kio_imap4
+protocol=imap
+input=stream
+output=stream
+reading=true
+writing=false
+source=true
