@@ -36,6 +36,8 @@ public:
   static const QString fromIMAP (const QString & src);
   static const QString toIMAP (const QString & inSrc);
 
+  static QString rfcDecoder::decodeQuoting(const QString &aStr);
+
   static QTextCodec *codecForName (const QString &);
 
   // decoder for RFC2047 and RFC1522

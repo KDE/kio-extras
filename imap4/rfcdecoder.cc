@@ -274,7 +274,26 @@ rfcDecoder::toIMAP (const QString & inSrc)
     }
     dst += '-';
   }
-  return dst;
+  /* Quote " and \ characters */
+  QString result;
+  for (int i = 0; i < dst.length(); i++)
+  {
+    if (dst[i] == '"' || dst[i] == '\\') result += '\\';
+    result += dst[i];
+  }
+  return result;
+}
+
+//-----------------------------------------------------------------------------
+QString rfcDecoder::decodeQuoting(const QString &aStr)
+{
+  QString result;
+  for (int i = 0; i < aStr.length(); i++)
+  {
+    if (aStr[i] == "\\") i++;
+    result += aStr[i];
+  }
+  return result;
 }
 
 //-----------------------------------------------------------------------------

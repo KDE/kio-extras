@@ -83,7 +83,7 @@ imapParser::sendCommand (imapCommand * aCmd)
   if (aCmd->command () == "SELECT" || aCmd->command () == "EXAMINE")
   {
     currentBox = aCmd->parameter ();
-    currentBox = parseOneWord (currentBox);
+    currentBox = rfcDecoder::decodeQuoting(parseOneWord(currentBox));
     kdDebug(7116) << "imapParser::sendCommand - setting current box to " << currentBox << endl;
   }
   else if (aCmd->command ().find ("SEARCH") != -1)
@@ -609,7 +609,8 @@ imapParser::parseList (QString & result)
   result = result.right (result.length () - 1); // tie off )
   imapParser::skipWS (result);
 
-  this_one.setHierarchyDelimiter (imapParser::parseLiteral (result));
+  this_one.setHierarchyDelimiter(rfcDecoder::decodeQuoting(
+    imapParser::parseLiteral(result)));
   this_one.setName (rfcDecoder::fromIMAP (imapParser::parseLiteral (result)));  // decode modified UTF7
 
   listResponses.append (this_one);
@@ -1734,12 +1735,12 @@ imapParser::parseOneWord (QString & inWords)
 
   if (inWords[0] == '"')
   {
-    int i = inWords.find ('"', 1);
+    int i = inWords.find (QRegExp("[^\\\\]\""));
     if (i != -1)
     {
-      retVal = inWords.left (i);
+      retVal = inWords.left (i + 1);
       retVal = retVal.right (retVal.length () - 1);
-      inWords = inWords.right (inWords.length () - i - 1);
+      inWords = inWords.right (inWords.length () - i - 2);
     }
     else
     {
