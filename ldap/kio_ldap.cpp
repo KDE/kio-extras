@@ -224,7 +224,7 @@ int LDAPProtocol::asyncSearch( LDAPUrl &usrc )
   retval = ldap_search_ext( mLDAP, usrc.dn().utf8(), scope, 
     usrc.filter().isEmpty() ? QCString() : usrc.filter().utf8(), attrs, 0, 
     serverctrls, clientctrls,
-    0, 0, &msgid );
+    0, mSizeLimit, &msgid );
 
   ldap_controls_free( serverctrls );
   ldap_controls_free( clientctrls );
