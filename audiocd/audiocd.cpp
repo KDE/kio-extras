@@ -29,6 +29,7 @@
 #include <qfile.h>
 #include <qstrlist.h>
 #include <qdatetime.h>
+#include <qregexp.h>
 
 typedef Q_INT16 size16;
 typedef Q_INT32 size32;
@@ -534,7 +535,7 @@ AudioCDProtocol::stat(const KURL & url)
 
   UDSAtom atom;
   atom.m_uds = KIO::UDS_NAME;
-  atom.m_str = url.filename();
+  atom.m_str = url.filename().replace(QRegExp("/"), "%2F");
   entry.append(atom);
 
   atom.m_uds = KIO::UDS_FILE_TYPE;
@@ -816,7 +817,7 @@ AudioCDProtocol::listDir(const KURL & url)
               error(KIO::ERR_INTERNAL, url.path());
               return;
           }
-        app_file(entry, name, size);
+        app_file(entry, name.replace(QRegExp("/"), "%2F"), size);
         listEntry(entry, false);
       }
     }
