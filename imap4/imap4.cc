@@ -537,7 +537,7 @@ IMAP4Protocol::parseRelay (ulong len)
 
 bool IMAP4Protocol::parseRead(QByteArray & buffer, ulong len, ulong relay)
 {
-  char buf[4096];
+  char buf[8192];
   while (buffer.size() < len)
   {
     ssize_t readLen = myRead(buf, QMIN(len - buffer.size(), sizeof(buf) - 1));
