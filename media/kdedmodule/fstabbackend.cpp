@@ -92,6 +92,7 @@ bool inExclusionPattern(KMountPoint *mount)
 	  || mount->mountType() == "usbfs"
 	  || mount->mountType() == "proc"
 	  || mount->mountType() == "unknown"
+	  || mount->mountType() == "none"
 	  || mount->mountedFrom() == "none"
 	  || mount->mountedFrom() == "tmpfs"
 	  || mount->mountedFrom().find("shm") != -1
