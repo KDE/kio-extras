@@ -305,6 +305,15 @@ IMAP4Protocol::listDir (const KURL & _url)
 {
   kdDebug(7116) << "IMAP4::listDir - " << hidePass(_url) << endl;
 
+  if (_url.path().isEmpty())
+  {
+    KURL url = _url;
+    url.setPath("/");
+    redirection( url.url() );
+    finished();
+    return;
+  }
+
   QString myBox, mySequence, myLType, mySection, myValidity, myDelimiter;
   enum IMAP_TYPE myType =
     parseURL (_url, myBox, mySection, myLType, mySequence, myValidity,
