@@ -135,7 +135,8 @@ void HALBackend::AddDevice(const char *udi)
 		/* Query drive udi */
 		QString driveUdi = hal_device_get_property_QString(m_halContext, udi, "block.storage_device");
 		/* We don't list floppy volumes because we list floppy drives */
-		if (hal_device_get_property_QString(m_halContext, driveUdi.ascii(), "storage.drive_type") == "floppy" )
+		if ((hal_device_get_property_QString(m_halContext, driveUdi.ascii(), "storage.drive_type") == "floppy") ||
+		    (hal_device_get_property_QString(m_halContext, driveUdi.ascii(), "storage.drive_type") == "zip"))
 			return;
 
 		/** @todo check exclusion list **/
@@ -148,9 +149,10 @@ void HALBackend::AddDevice(const char *udi)
 		return;
 	}
 
-	/* Floppy drives */
+	/* Floppy & zip drives */
 	if (hal_device_query_capability(m_halContext, udi, "storage"))
-		if (hal_device_get_property_QString(m_halContext, udi, "storage.drive_type") == "floppy")
+		if ((hal_device_get_property_QString(m_halContext, udi, "storage.drive_type") == "floppy") ||
+		    (hal_device_get_property_QString(m_halContext, udi, "storage.drive_type") == "zip"))
 		{
 			/* Create medium */
 			Medium* medium = new Medium(udi, "");
@@ -369,6 +371,7 @@ void HALBackend::setVolumeProperties(Medium* medium)
 	hal_volume_free(halVolume);
 }
 
+// Handle floppies and zip drives
 void HALBackend::setFloppyProperties(Medium* medium)
 {
 	kdDebug() << "HALBackend::setFloppyProperties for " << medium->id() << endl;
@@ -406,11 +409,22 @@ void HALBackend::setFloppyProperties(Medium* medium)
 			false );									/* Mounted ? */
 	}
 
-	if (halVolume)
-		medium->setMimeType("media/floppy" + MOUNT_SUFFIX);
-	else
-		medium->setMimeType("media/floppy_unmounted");
-
+	if (hal_device_get_property_QString(m_halContext, udi, "storage.drive_type") == "floppy")
+	{
+		if (halVolume)
+			medium->setMimeType("media/floppy" + MOUNT_SUFFIX);
+		else
+			medium->setMimeType("media/floppy_unmounted");
+	}
+	
+	if (hal_device_get_property_QString(m_halContext, udi, "storage.drive_type") == "zip")
+	{
+		if (halVolume)
+			medium->setMimeType("media/zip" + MOUNT_SUFFIX);
+		else
+			medium->setMimeType("media/zip_unmounted");
+	}
+	
 	medium->setIconName(QString::null);
 
 	medium->setLabel(QString::fromUtf8( hal_drive_policy_compute_display_name(halDrive,
