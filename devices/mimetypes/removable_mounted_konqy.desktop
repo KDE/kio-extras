@@ -71,5 +71,5 @@ Name[zu]=Yehlisa
 Exec=kio_devices_mounthelper -u %u
 
 [Desktop Action used_by]
-Name=Mountpoint used by ...
+Name=Mountpoint Used By...
 Exec=kio_devices_list_mountpointusage.sh %u
