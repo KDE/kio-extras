@@ -17,17 +17,12 @@
 /* TODO:
 
   - test special post command
-  - chars_wanted -> max_chars in TCPWrapper.read()
-  - QCString -> QByteArray in TCPWrapper readData/writeData,
-    this should be more efficient
-  - use read instead of readline in get
   - progress information in get, and maybe post
-  - .. <-> . at line startings
   - better NNTP error handling, method returning all the strings for
     error numbers and decides, if disconnect or ignore the error
-  - second arg in error() somtimes is wrong, where it's documented,
+  - second arg in error() sometimes is wrong, where it's documented,
     for which errors this is add info, filename, a.s.o.?
-  - i18n, error handling should be ok before this to evite translating
+  - i18n, error handling should be ok before this to avoide translating
     the strings more than once
   - remove lot of debug stuff
 */
@@ -44,25 +39,26 @@ class TCPWrapper: public QObject {
     bool connected() { return tcpSocket >= 0; }; // socket exist
     bool disconnect();                           // close socket
 
-    int  read(QCString &data, int chars_wanted); // read from buffer
+    int  read(QByteArray &data, int max_chars);  // read from buffer
     bool readLine(QCString &line);               // read next line
-    bool write(const QCString &data) { return writeData(data); };  // write to socket
+    bool write(const QByteArray &data)   { return writeData(data); };  // write to socket
     bool writeLine(const QCString &line) { return writeData(line + "\r\n"); }; // write to socket
 
     void setTimeOut(int tm_out);                 // sets a new timeout value,
 
   protected:
-    bool readData(QCString &data);               // read data from socket
-    bool writeData(const QCString &data);        // write data to socket
+    bool readData();                             // read data from socket into buffer
+    bool writeData(const QByteArray &data);      // write data to socket
 
   signals:
     void error(KIO::Error errnum, const QString &errinfo);
 
   private:
-    int timeOut;        // socket timeout in sec
-    int tcpSocket;      // socket handle
-    int thisLine, nextLine; // line positions in the buffer
-    QCString buffer;    // buffer for accessing by readLine
+    int timeOut;          // socket timeout in sec
+    int tcpSocket;        // socket handle
+    char* thisLine; // line (unread data) position in the buffer
+    char* data_end; // end of data in the buffer
+    char* buffer;   // buffer for accessing by readLine
 
     bool readyForReading(); // waits until socket is ready for reading or error
     bool readyForWriting(); // waits until socket is ready for writing or error
@@ -108,14 +104,12 @@ class NNTPProtocol : public QObject, public KIO::SlaveBase
 
   /**
     * Attempt to initiate a NNTP connection via a TCP socket.  If no port
-    * is passed, port 119 is assumed, if no user || password is
-    * specified, the user is prompted for them.
+    * is passed, port 119 is assumed.
     */
   void nntp_open();
 
   /**
-    * Post article. Invoked by special
-    *
+    * Post article. Invoked by special()
     */
   bool post_article();
 
@@ -123,19 +117,20 @@ class NNTPProtocol : public QObject, public KIO::SlaveBase
    void socketError(KIO::Error errnum, const QString &errinfo);
 
  private:
-   // connection info for reusing it at next request
+   // connection info
    QString host, pass, user;
    short unsigned int port;
    QString resp_line;
    bool postingAllowed;
 
-   TCPWrapper socket;  // handles the socket stuff
-   int eval_resp();    // get server response and check it for general errors
+   TCPWrapper socket;   // handles the socket stuff
+   int eval_resp();     // get server response and check it for general errors
 
-   void fetchGroups();
-   bool fetchGroup(QString& group);
-   KIO::UDSEntry& makeUDSEntry(const QString& name, int size, bool posting_allowed,
-      bool is_article);
+   void fetchGroups();  // fetch all availabel news groups
+   bool fetchGroup(QString& group); // fetch all messages from one news group
+   void fillUDSEntry(KIO::UDSEntry& entry, const QString& name, int size, bool posting_allowed,
+      bool is_article); // makes an UDSEntry with file informations,
+                        // used in stat and listDir
 
 };
 

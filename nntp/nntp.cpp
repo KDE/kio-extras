@@ -29,10 +29,10 @@
 #define NNTP_PORT 119
 // set to 60 sec later, only for testing such a short time out
 #define DEFAULT_TIME_OUT 10
-#define SOCKET_CHUNK_SIZE 1024*2
-#define MAX_BUFFER_SIZE 1024*20
+#define SOCKET_BUFFER_SIZE 1024*10 // buffer size in TCPWrapper
+#define READ_CHUNK = 1024*2 // used to read article data or group list
 
-#define UDS_ENTRY_CHUNK 50
+#define UDS_ENTRY_CHUNK 50 // so much entries are sent at once in listDir
 
 #define DBG_AREA 7114
 #define DBG kdDebug(DBG_AREA)
@@ -127,9 +127,10 @@ void NNTPProtocol::get(const KURL& url) {
   // read and send data
   QCString line;
   QByteArray buffer;
-  //socket.read(buffer,MAX_BUFFER_SIZE);
+  //socket.read(buffer,MAX_BUFFER_SIZE); ??
   while (socket.readLine(line) && line != ".\r\n") {
     DBG << "data: [" << line << "]" << endl;
+    if (line.left(2) == "..") line.remove(0,1);
     // cannot use QCString, because it would send the 0-terminator too
     buffer.setRawData(line.data(),line.length());
     data(buffer);
@@ -172,13 +173,28 @@ bool NNTPProtocol::post_article() {
 
   // send article now
   int result;
+  bool last_chunk_had_line_ending = true;
   do {
     QByteArray buffer;
     QCString data;
     dataReq();
     result = readData(buffer);
+    // treat the buffer data
     if (result>0) {
-      data = QCString(buffer,buffer.size());
+      data = QCString(buffer.data(),buffer.size()+1);
+      // translate "\r\n." to "\r\n.."
+      int pos=0;
+      if (last_chunk_had_line_ending && data[0] == '.') {
+        data.insert(0,'.');
+        pos += 2;
+      }
+      last_chunk_had_line_ending = (data.right(2) == "\r\n");
+      while ((pos = data.find("\r\n.",pos)) > 0) {
+        data.insert(pos+2,'.');
+        pos += 4;
+      }
+
+      // send data to socket, write() doesn't send the terminating 0
       socket.write(data);
     }
   } while (result>0);
@@ -222,7 +238,7 @@ void NNTPProtocol::stat( const KURL& url ) {
   // / = group list
   if (path.isEmpty() || path == "/") {
     DBG << "stat root" << endl;
-    entry = makeUDSEntry(QString::null, -1, postingAllowed, false);
+    fillUDSEntry(entry, QString::null, 0, postingAllowed, false);
 
   // /group = message list
   } else if (regGroup.match(path) == 0) {
@@ -232,7 +248,7 @@ void NNTPProtocol::stat( const KURL& url ) {
     DBG << "stat group: " << group << endl;
     // postingAllowed should be ored here with "group not moderated" flag
     // as size the num of messages (GROUP cmd) could be given
-    entry = makeUDSEntry(group, -1, postingAllowed, false);
+    fillUDSEntry(entry, group, 0, postingAllowed, false);
 
   // /group/<msg_id> = message
   } else if (regMsgId.match(path) == 0) {
@@ -242,7 +258,7 @@ void NNTPProtocol::stat( const KURL& url ) {
     if (group.left(1) == "/") group.remove(0,1);
     if ((pos = group.find('/')) > 0) group = group.left(pos);
     DBG << "stat group: " << group << " msg: " << msg_id << endl;
-    entry = makeUDSEntry(msg_id, -1, false, true);
+    fillUDSEntry(entry, msg_id, 0, false, true);
 
   // invalid url
   } else {
@@ -317,7 +333,7 @@ void NNTPProtocol::fetchGroups() {
         moderated = false;
       }
 
-      entry = makeUDSEntry(group, msg_cnt, postingAllowed && !moderated, false);
+      fillUDSEntry(entry, group, msg_cnt, postingAllowed && !moderated, false);
       entryList.append(entry);
 
       if (entryList.count() >= UDS_ENTRY_CHUNK) {
@@ -374,7 +390,7 @@ bool NNTPProtocol::fetchGroup(QString& group) {
   QString msg_id;
   if ((pos = resp_line.find('<')) > 0 && (pos2 = resp_line.find('>',pos+1))) {
     msg_id = resp_line.mid(pos,pos2-pos+1);
-    entry = makeUDSEntry(msg_id, 0, false, true);
+    fillUDSEntry(entry, msg_id, 0, false, true);
     entryList.append(entry);
   } else {
     error(ERR_INTERNAL,"Could not extract first message id from server response: "+
@@ -398,7 +414,7 @@ bool NNTPProtocol::fetchGroup(QString& group) {
     //res_line: 223 nnn <msg_id> ...
     if ((pos = resp_line.find('<')) > 0 && (pos2 = resp_line.find('>',pos+1))) {
       msg_id = resp_line.mid(pos,pos2-pos+1);
-      entry = makeUDSEntry(msg_id, 0, false, true);
+      fillUDSEntry(entry, msg_id, 0, false, true);
       entryList.append(entry);
       if (entryList.count() >= UDS_ENTRY_CHUNK) {
         listEntries(entryList);
@@ -410,34 +426,33 @@ bool NNTPProtocol::fetchGroup(QString& group) {
       return false;
     }
   }
-  return true; // to keep the compiler happy
 }
 
-UDSEntry& NNTPProtocol::makeUDSEntry(const QString& name, int size,
+void NNTPProtocol::fillUDSEntry(UDSEntry& entry, const QString& name, int size,
   bool posting_allowed, bool is_article) {
 
   long posting=0;
 
   UDSAtom atom;
-  UDSEntry *entry = new UDSEntry();
+  entry.clear();
 
   // entry name
   atom.m_uds = UDS_NAME;
   atom.m_str = name;
   atom.m_long = 0;
-  entry->append(atom);
+  entry.append(atom);
 
   // entry size
   atom.m_uds = UDS_SIZE;
   atom.m_str = QString::null;
   atom.m_long = size;
-  entry->append(atom);
+  entry.append(atom);
 
   // file type
   atom.m_uds = UDS_FILE_TYPE;
   atom.m_long = is_article? S_IFREG : S_IFDIR;
   atom.m_str = QString::null;
-  entry->append(atom);
+  entry.append(atom);
 
   // access permissions
   atom.m_uds = UDS_ACCESS;
@@ -445,12 +460,12 @@ UDSEntry& NNTPProtocol::makeUDSEntry(const QString& name, int size,
   atom.m_long = (is_article)? (S_IRUSR | S_IRGRP | S_IROTH) :
     (S_IRUSR | S_IXUSR | S_IRGRP | S_IXGRP | S_IROTH | S_IXOTH | posting);
   atom.m_str = QString::null;
-  entry->append(atom);
+  entry.append(atom);
 
   atom.m_uds = UDS_USER;
   atom.m_str = user.isEmpty() ? user : "root";
   atom.m_long= 0;
-  entry->append(atom);
+  entry.append(atom);
 
   /*
   atom.m_uds = UDS_GROUP;
@@ -464,15 +479,14 @@ UDSEntry& NNTPProtocol::makeUDSEntry(const QString& name, int size,
     atom.m_uds = UDS_MIME_TYPE;
     atom.m_long= 0;
     atom.m_str = "text/plain";
-    entry->append(atom);
+    entry.append(atom);
   }
-
-  return *entry;
 }
 
 void NNTPProtocol::nntp_close () {
   if (socket.connected()) {
-    send_cmd("QUIT");
+    DBG << "closing connection, sending QUIT" << endl;
+    socket.writeLine("QUIT");
     socket.disconnect();
   }
 }
@@ -629,11 +643,17 @@ TCPWrapper::TCPWrapper()
 {
   timeOut = DEFAULT_TIME_OUT;
   tcpSocket = -1;
-  thisLine = 0;
+  // initialize buffer
+  buffer = new char[SOCKET_BUFFER_SIZE+1];
+  buffer[SOCKET_BUFFER_SIZE] = 0;
+  thisLine = buffer;
+  data_end = buffer;
 }
 
 
 TCPWrapper::~TCPWrapper() {
+  disconnect();
+  delete [] buffer;
 }
 
 bool TCPWrapper::connect(const QString &host, short unsigned int port) {
@@ -669,65 +689,62 @@ bool TCPWrapper::connect(const QString &host, short unsigned int port) {
 }
 
 bool TCPWrapper::disconnect() {
+
+  // close socket
   if (tcpSocket != -1) {
     close(tcpSocket);
     tcpSocket = -1;
   }
 
+  // reset buffer
+  thisLine = buffer;
+  data_end = buffer;
+
   return true;
 }
 
-int TCPWrapper::read(QCString &data, int chars_wanted) {
-  // FIXME: if there are less than chars_wanted available
-  //   on socket, a time out error is raised
-
-  int chars = QMIN(chars_wanted,buffer.length()-thisLine);
-
-  // is there something in the buffer still not read?
-  data = buffer.mid(thisLine,chars);
-  buffer.remove(0,thisLine+chars);
-  thisLine = 0;
+int TCPWrapper::read(QByteArray &data, int max_chars) {
+  if (max_chars <= 0) return 0;
 
   // read more from the socket if needed
-  if (chars != chars_wanted) {
-    QCString newdata(SOCKET_CHUNK_SIZE);
-    do {
-      if (!readData(newdata)) {
-          return chars;
-      }
-      data += newdata;
-      chars += newdata.length();
-    } while (chars < chars_wanted);
-
-    // if read too much, put the rest into the buffer
-    if (chars > chars_wanted) {
-      buffer += data.right(chars-chars_wanted);
-      data.truncate(chars_wanted);
-      chars = chars_wanted;
+  if (data_end - thisLine <= 0) {
+    if (!readData()) {
+      return -1;
     }
+  }
+
+  int chars = QMIN(max_chars,data_end-thisLine);
+  // get chars from the buffer
+  if (chars) {
+    data.duplicate(thisLine,chars);
+    thisLine += chars;
   }
 
   return chars;
 }
 
-bool TCPWrapper::readData(QCString &data) {
+bool TCPWrapper::readData() {
   ssize_t bytes = 0;
 
-  if (!data.size()) {
-    DBG << "readData: buffer data has size=0" << endl;
+  // buffer full?
+  if ((data_end - thisLine) >= SOCKET_BUFFER_SIZE) {
+    error(ERR_OUT_OF_MEMORY,"Socket buffer full, cannot read more data");
+    disconnect();
     return false;
-  }
-
-  if (data.size() > SSIZE_MAX) {
-    DBG << "readData: buffer size exceeded " << SSIZE_MAX << " bytes" << endl;
-    data.resize(SSIZE_MAX);
   }
 
   if (readyForReading()) {
     // DBG << "reading up to " << data.size()-1 << " bytes from socket" << endl;
 
+    // delete unneeded bytes from buffer
+    memmove(buffer,thisLine,data_end-thisLine);
+    data_end -= (thisLine - buffer);
+    *data_end = 0;
+    thisLine = buffer;
+
+    // read bytes from socket
     do {
-      bytes = ::read(tcpSocket, data.data(), data.size()-1);
+      bytes = ::read(tcpSocket, thisLine, (buffer+SOCKET_BUFFER_SIZE)-thisLine-1);
     } while (bytes<0 && errno==EINTR); // ignore signals
 
     if (bytes <= 0) { // there was an error
@@ -738,9 +755,8 @@ bool TCPWrapper::readData(QCString &data) {
     }
 
     DBG << bytes << " bytes read" << endl;
-
-    data.at(bytes) = '\0';
-    // data->resize(bytes+1);
+    data_end += bytes;
+    *data_end = 0;
     return true;
 
   // was not ready for reading
@@ -768,21 +784,17 @@ bool TCPWrapper::readyForReading(){
     DBG << "select (r): " << ret << " errno: " << errno << endl;
   } while ((ret<0) && (errno == EINTR)); // ignore signals
 
-  if (ret == -1) { // select failed
+  if (ret < 0) { // -1: select failed
     emit error(ERR_CONNECTION_BROKEN, strerror(errno));
     disconnect();
     return false;
-  }
-
-  if (ret == 0) { // timeout
+  } else if (ret == 0) { // timeout
     emit error(ERR_SERVER_TIMEOUT, QString::null);
     disconnect();
     return false;
-  }
-
-  if (ret > 0) {
+  } else { // select ok
     if (FD_ISSET(tcpSocket,&fdsE)) { // exception
-      emit error(ERR_CONNECTION_BROKEN, "");
+      emit error(ERR_CONNECTION_BROKEN, QString::null);
       disconnect();
       return false;
     }
@@ -790,24 +802,22 @@ bool TCPWrapper::readyForReading(){
       return true;
     }
   }
-
-  // shouldn't get here
-  emit error(ERR_INTERNAL, "");
-  disconnect();
-  return false;
 }
 
-bool TCPWrapper::writeData(const QCString &data) {
+bool TCPWrapper::writeData(const QByteArray &data) {
   ssize_t bytes;
   ssize_t byteCount = 0;
 
+  int chars = data.size();
+  if (data[chars-1] == 0) chars--; // dont write 0 terminator
+
   if (readyForWriting()) {
 
-     DBG << "writing " << data.length() << "bytes [" << data.data() << "]" << endl;
+     DBG << "writing " << chars << "bytes [" << data.data() << "]" << endl;
 
-     while (byteCount < data.length()) {
+     while (byteCount < chars) {
 
-       bytes = ::write(tcpSocket, &data.data()[byteCount], data.length()-byteCount);
+       bytes = ::write(tcpSocket, &data.data()[byteCount], chars-byteCount);
        if (bytes <= 0) {
          DBG << "error writing to socket" << endl;
          emit error(ERR_COULD_NOT_WRITE,strerror(errno));
@@ -843,19 +853,15 @@ bool TCPWrapper::readyForWriting() {
     DBG << "select (w): " << ret << " errno: " << errno << endl;
   } while ((ret<0) && (errno == EINTR)); // ignore signals
 
-  if (ret == -1) { // select failed
+  if (ret < 0) { // -1: select failed
     emit error(ERR_CONNECTION_BROKEN, strerror(errno));
     disconnect();
     return false;
-  }
-
-  if (ret == 0) { // timeout
+  } else if (ret == 0) { // timeout
     emit error(ERR_SERVER_TIMEOUT, "");
     disconnect();
     return false;
-  }
-
-  if (ret > 0) {
+  } else { // select ok
     if (FD_ISSET(tcpSocket,&fdsE)) { // exception
       emit error(ERR_CONNECTION_BROKEN, "");
       disconnect();
@@ -865,11 +871,6 @@ bool TCPWrapper::readyForWriting() {
       return true;
     }
   }
-
-  // shouldn't get here
-  emit error(ERR_INTERNAL, "");
-  disconnect();
-  return false;
 }
 
 void TCPWrapper::setTimeOut(int tm_out) {
@@ -877,38 +878,26 @@ void TCPWrapper::setTimeOut(int tm_out) {
 }
 
 bool TCPWrapper::readLine(QCString &line) {
+  char *nextLine;
+
   // if there is a complete line in buffer, return it
-  if ((nextLine=buffer.find("\r\n", thisLine)) >= 0) {
-    DBG << "there is a line in buffer at " << thisLine << "..." << nextLine << endl;
-    line = buffer.mid(thisLine,nextLine-thisLine+2);
+  if ((nextLine=strstr(thisLine,"\r\n"))) {
+    DBG << "there is a line in buffer at " << (thisLine-buffer) << "..." << (nextLine-buffer) << endl;
+    line = QCString(thisLine,nextLine-thisLine+2+1);
     thisLine=nextLine+2;
     return true;
   }
 
   DBG << "need to read more data from buffer" << endl;
-
-  // we need to read more data from socket...
-  buffer.remove(0,thisLine); // delete obsoleted lines from buffer
-  thisLine=0;
-
-  QCString newdata(SOCKET_CHUNK_SIZE);
   do {
-    if (!readData(newdata)) {
-        return false;
-    }
-    buffer += newdata;
-
-    // buffer shouldn't get too big
-    if (buffer.length() > MAX_BUFFER_SIZE - SOCKET_CHUNK_SIZE) {
-      error(ERR_OUT_OF_MEMORY,"line read from socket exceeds max buffer size");
-      disconnect();
+    if (!readData()) {
       return false;
     }
-  } while ((nextLine=buffer.find("\r\n", thisLine)) < 0);
+  } while (! ((nextLine=strstr(thisLine,"\r\n"))) );
 
   // now there is a complete line in the buffer, return it
-  DBG << "read line from socket, in buffer now at " << thisLine << "..." << nextLine << endl;
-  line = buffer.mid(thisLine,nextLine-thisLine+2);
+  DBG << "read line from socket, in buffer now at " << (thisLine-buffer) << "..." << (nextLine-buffer) << endl;
+  line = QCString(thisLine,nextLine-thisLine+2+1);
   thisLine=nextLine+2;
   return true;
 }
