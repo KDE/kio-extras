@@ -13,6 +13,7 @@ deleting=true
 Icon=ftp
 Description=A kioslave for sftp
 Description[da]=En kioslave for sftp
+Description[fy]=Een kioslave Foar sftp
 Description[ga]=kioslave le haghaidh sftp
 Description[hu]=KDE-protokoll az sftp-hez
 Description[nl]=Een kioslave voor sftp
