@@ -280,6 +280,7 @@ void MANProtocol::outputMatchingPages(const QStringList &matchingPages)
     QCString output;
 
     QTextStream os(output, IO_WriteOnly);
+    os.setEncoding(QTextStream::Locale);
 
     os << "<html>\n<head><title>\n";
     os << i18n("Man output");
