@@ -6,6 +6,7 @@ AC_CHECK_HEADER(linux/cdrom.h,
   LINUXCDPOLLING=yes
   AC_SUBST(LINUXCDPOLLING)
 ])
+AM_CONDITIONAL(include_media_linuxcdpolling, test "$LINUXCDPOLLING" = "yes")
 
 AM_CONDITIONAL(include_media_linuxcdpolling, test "$LINUXCDPOLLING" = "yes")
 
