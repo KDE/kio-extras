@@ -994,6 +994,7 @@ void fishProtocol::manageConnection(const QString &l) {
         switch (fishCommand) {
         case FISH_STOR:
         case FISH_WRITE:
+        case FISH_APPEND:
             error(ERR_COULD_NOT_WRITE,url.prettyURL());
             shutdownConnection();
             break;

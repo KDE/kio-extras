@@ -10,7 +10,8 @@ more reliable.
 =cut
 
 use Fcntl;
-
+$|++;
+#open(DEBUG,">/tmp/kio_fish.debug.$$.log");
 # save code in initial directory if just transferred
 if (defined $code) {
     unlink('.fishsrv.pl');
@@ -40,6 +41,7 @@ MAIN: while (<STDIN>) {
     chomp;
     chomp;
     next if !length($_) || substr($_,0,1) ne '#';
+#    print DEBUG "$_\n";
     s/^#//;
     /^VER / && do {
         print "VER 0.0.2 copy append lscount lslinks lsmime exec\n### 200\n";
@@ -76,7 +78,7 @@ MAIN: while (<STDIN>) {
                     print "### 500 $!\n";
                     next MAIN;
                 }
-                
+
             }
             while ($size > 0 && ($read = sysread(FH,$buffer,$size)) > 0) {
                 $size -= $read;
@@ -234,10 +236,12 @@ sub read_loop {
     my $buffer = '';
     my $read = 1;
     while ($size > 16384 && ($read = sysread(FH,$buffer,16384)) > 0) {
+#        print DEBUG "$size left, $read read\n";
         $size -= $read;
         print $buffer;
     }
     while ($size > 0 && ($read = sysread(FH,$buffer,$size)) > 0) {
+#        print DEBUG "$size left, $read read\n";
         $size -= $read;
         print $buffer;
     }
@@ -267,11 +271,12 @@ sub write_loop {
     my $buffer = '';
     my $read = 1;
     while ($size > 16384 && ($read = read(STDIN,$buffer,16384)) > 0) {
+#        print DEBUG "$size left, $read read\n";
         $size -= $read;
         $error ||= $! if (syswrite(FH,$buffer,$read) != $read);
-
     }
     while ($size > 0 && ($read = read(STDIN,$buffer,$size)) > 0) {
+#        print DEBUG "$size left, $read read\n";
         $size -= $read;
         $error ||= $! if (syswrite(FH,$buffer,$read) != $read);
     }
