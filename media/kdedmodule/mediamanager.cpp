@@ -46,6 +46,8 @@ MediaManager::MediaManager(const QCString &obj)
 
 	m_backends.setAutoDelete(true);
 
+	mp_removableBackend = 0L;
+
 #ifdef COMPILE_HALBACKEND
 	HALBackend* halBackend = new HALBackend(m_mediaList, this);
 	if (halBackend->InitHal())
@@ -54,9 +56,13 @@ MediaManager::MediaManager(const QCString &obj)
 	{
 		delete halBackend;
 		m_backends.append( new FstabBackend(m_mediaList) );
+		mp_removableBackend = new RemovableBackend(m_mediaList);
+		m_backends.append( mp_removableBackend );
 	}
 #else //COMPILE_HALBACKEND
 	m_backends.append( new FstabBackend(m_mediaList) );
+	mp_removableBackend = new RemovableBackend(m_mediaList);
+	m_backends.append( mp_removableBackend );
 #endif //COMPILE_HALBACKEND
 }
 
@@ -114,6 +120,22 @@ QString MediaManager::nameForLabel(const QString &label)
 ASYNC MediaManager::setUserLabel(const QString &name, const QString &label)
 {
 	m_mediaList.setUserLabel(name, label);
+}
+
+ASYNC MediaManager::removablePlug(const QString &devNode, const QString &label)
+{
+	if (mp_removableBackend)
+	{
+		mp_removableBackend->plug(devNode, label);
+	}
+}
+
+ASYNC MediaManager::removableUnplug(const QString &devNode)
+{
+	if (mp_removableBackend)
+	{
+		mp_removableBackend->unplug(devNode);
+	}
 }
 
 void MediaManager::slotMediumAdded(const QString &/*id*/, const QString &name)

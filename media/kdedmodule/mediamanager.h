@@ -25,6 +25,7 @@
 
 #include "medialist.h"
 #include "backendbase.h"
+#include "removablebackend.h"
 #include "mediadirnotify.h"
 
 
@@ -41,6 +42,10 @@ k_dcop:
 	QString nameForLabel(const QString &label);
 	ASYNC setUserLabel(const QString &name, const QString &label);
 
+	// Removable media handling (for people not having HAL)
+	ASYNC removablePlug(const QString &devNode, const QString &label);
+	ASYNC removableUnplug(const QString &devNode);
+
 k_dcop_signals:
 	void mediumAdded(const QString &name);
 	void mediumRemoved(const QString &name);
@@ -54,6 +59,7 @@ private slots:
 private:
 	MediaList m_mediaList;
 	QPtrList<BackendBase> m_backends;
+	RemovableBackend *mp_removableBackend;
 	MediaDirNotify m_dirNotify;
 };
 
