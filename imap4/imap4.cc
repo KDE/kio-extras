@@ -973,6 +973,7 @@ IMAP4Protocol::special (const QByteArray & data)
   {
     imapCommand *cmd = doCommand(imapCommand::clientNoop());
     completeQueue.removeRef (cmd);
+    finished();
   }
   else
   {
@@ -991,10 +992,10 @@ IMAP4Protocol::special (const QByteArray & data)
       if (cmd->result () != "OK")
         error (ERR_NO_CONTENT, hidePass(_url));
       completeQueue.removeRef (cmd);
+      finished();
     }
     else error (ERR_CANNOT_OPEN_FOR_WRITING, hidePass(_url));
   }
-  finished();
 }
 
 void
