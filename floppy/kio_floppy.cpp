@@ -201,7 +201,7 @@ bool FloppyProtocol::stopAfterError(const KURL& url, const QString& drive)
    }
    else if ((line.find("Disk full") > -1) || (line.find("No free cluster") > -1))
    {
-      error( KIO::ERR_COULD_NOT_WRITE, i18n("%1\nThe disk in drive %2 is probably full.").arg(url.prettyURL(),drive));
+      error( KIO::ERR_SLAVE_DEFINED, i18n("Could not write to file %1\nThe disk in drive %2 is probably full.").arg(url.prettyURL(),drive));
    }
    //file not found
    else if (line.find("not found") > -1)
@@ -232,7 +232,7 @@ bool FloppyProtocol::stopAfterError(const KURL& url, const QString& drive)
    }
    else if (line.find("Read-only") > -1)
    {
-      error( KIO::ERR_WRITE_ACCESS_DENIED, i18n("%1\nThe disk in drive %2 is probably write-protected.").arg(url.prettyURL(),drive));
+      error( KIO::ERR_SLAVE_DEFINED, i18n("Access denied.\nCould not write to %1\nThe disk in drive %2 is probably write-protected.").arg(url.prettyURL(),drive));
    }
    else if ((outputString.find("already exists") > -1) || (outputString.find("Skipping ") > -1))
    {
