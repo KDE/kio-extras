@@ -29,7 +29,7 @@ int main( int , char ** )
 
   GZipProtocol prot( &parent );
   prot.dispatchLoop();
-  
+
   while(1);
   return 0;
 }
@@ -79,7 +79,7 @@ void GZipProtocol::slotCopy( const char *_source, const char *_dest )
   // Put a protocol on top of it
   GZipIOJob dest_job( &dest_slave, this );
   m_pJob = &dest_job;
-  
+
   // Tell the "dest slave" that we want to write something
   dest_job.put( _dest, -1, false, false, 0 );
   while( !dest_job.isReady() && !dest_job.hasFinished() )
@@ -125,7 +125,7 @@ void GZipProtocol::slotCopy( const char *_source, const char *_dest )
     m_cmd = CMD_NONE;
     return;
   }
-  
+
   QString zip_cmd;
   QString path = usrc.path();
   if ( path == "/compress" ){
@@ -153,10 +153,10 @@ void GZipProtocol::slotCopy( const char *_source, const char *_dest )
     m_cmd = CMD_NONE;
     return;
   }
-     
+
   // Strip the gzip URL part
   source_lst.remove( source_lst.begin() );
-  
+
   // Find the new left most URL and a slave that can handle
   // this protocol
   QString source_exec = KProtocolManager::self().executable( (*source_lst.begin()).protocol() );
@@ -190,7 +190,7 @@ void GZipProtocol::slotCopy( const char *_source, const char *_dest )
   GZipIOJob source_job( &source_slave, this );
 
   QString src = KURL::join( source_lst );
-  
+
   source_job.get( src );
   while( !source_job.isReady() && !source_job.hasFinished() )
     source_job.dispatch();
@@ -208,7 +208,12 @@ void GZipProtocol::slotCopy( const char *_source, const char *_dest )
   m_cmd = CMD_NONE;
 }
 
-  
+void GZipProtocol::slotTestDir( const char *_url )
+{
+  isFile();
+  finished();
+}
+
 void GZipProtocol::slotGet( const char *_url )
 {
   assert( m_cmd == CMD_NONE );
@@ -231,14 +236,14 @@ void GZipProtocol::slotGet( const char *_url )
     m_cmd = CMD_NONE;
     return;
   }
-  
+
   if ( lst.count() < 2 )
   {
     error( ERR_NO_SOURCE_PROTOCOL, m_strProtocol );
     m_cmd = CMD_NONE;
     return;
   }
-  
+
   QString zip_cmd;
   QString path = (*lst.begin()).path();
   if ( path == "/compress" ){
@@ -263,7 +268,7 @@ void GZipProtocol::slotGet( const char *_url )
     m_cmd = CMD_NONE;
     return;
   }
-  
+
   if ( lst.count() < 2 ) {
     QString e = m_strProtocol;
     e += ":";
@@ -272,7 +277,7 @@ void GZipProtocol::slotGet( const char *_url )
     m_cmd = CMD_NONE;
     return;
   }
-   
+
   // Remove gzip portion of URL
   lst.remove( lst.begin() );
 
@@ -302,9 +307,9 @@ void GZipProtocol::slotGet( const char *_url )
   GZipIOJob job( &slave, this );
 
   QString src = KURL::join( lst );
-  
+
   qDebug( "kio_gzip : Nested fetching %s", src.ascii() );
-  
+
   job.get( src );
   while( !job.isReady() && !job.hasFinished() )
     job.dispatch();
@@ -328,7 +333,7 @@ void GZipProtocol::slotGet( const char *_url )
 void GZipProtocol::slotPut( const char *_url, int, bool _overwrite, bool /*_resume*/, unsigned int )
 {
   assert( m_cmd == CMD_NONE );
-  
+
   m_cmd = CMD_PUT;
 
   // Split up the URL
@@ -359,7 +364,7 @@ void GZipProtocol::slotPut( const char *_url, int, bool _overwrite, bool /*_resu
     m_cmd = CMD_NONE;
     return;
   }
-    
+
   // Find out what to do ( compres, decompress )
   QString zip_cmd;
   QString path = (*lst.begin()).path();
@@ -389,10 +394,10 @@ void GZipProtocol::slotPut( const char *_url, int, bool _overwrite, bool /*_resu
     m_cmd = CMD_NONE;
     return;
   }
-  
+
   // Strip the gzip url
   lst.remove( lst.begin() );
-  
+
   // Find someone who can handle the new left most protocol
   QString exec = KProtocolManager::self().executable( (*lst.begin()).protocol() );
 
@@ -424,7 +429,7 @@ void GZipProtocol::slotPut( const char *_url, int, bool _overwrite, bool /*_resu
   // Put a protocol on top of the connection
   GZipIOJob job( &slave, this );
   m_pJob = &job;
-  
+
   // Create what is left from the URL after stripping the
   // gzip part.
   QString src = KURL::join( lst );
@@ -438,7 +443,7 @@ void GZipProtocol::slotPut( const char *_url, int, bool _overwrite, bool /*_resu
     finished();
     return;
   }
-  
+
   // We are ready for receiving data
   ready();
 
@@ -469,7 +474,7 @@ void GZipProtocol::slotDataEnd()
 {
   switch( m_cmd )
     {
-    case CMD_PUT:  
+    case CMD_PUT:
       assert( m_pFilter && m_pJob );
       m_pFilter->finish();
       m_pJob->dataEnd();
@@ -486,11 +491,11 @@ void GZipProtocol::jobData( void *_p, int _len )
 {
   switch( m_cmd )
   {
-  case CMD_GET:  
+  case CMD_GET:
     assert( m_pFilter );
     m_pFilter->send( _p, _len );
     break;
-  case CMD_COPY:  
+  case CMD_COPY:
     assert( m_pFilter );
     m_pFilter->send( _p, _len );
     break;
@@ -504,12 +509,12 @@ void GZipProtocol::jobDataEnd()
 {
   switch( m_cmd )
   {
-  case CMD_GET:  
+  case CMD_GET:
     assert( m_pFilter );
     m_pFilter->finish();
     dataEnd();
     break;
-  case CMD_COPY:  
+  case CMD_COPY:
     assert( m_pFilter );
     m_pFilter->finish();
     m_pJob->dataEnd();
@@ -530,7 +535,7 @@ void GZipProtocol::filterData( void *_p, int _len )
 {
   switch( m_cmd )
   {
-  case CMD_GET:  
+  case CMD_GET:
     data( _p, _len );
     break;
   case CMD_PUT:
@@ -558,7 +563,7 @@ GZipIOJob::GZipIOJob( KIOConnection *_conn, GZipProtocol *_gzip ) : KIOJobBase( 
 {
   m_pGZip = _gzip;
 }
-  
+
 void GZipIOJob::slotData( void *_p, int _len )
 {
   m_pGZip->jobData( _p, _len );
@@ -580,7 +585,7 @@ void GZipIOJob::slotError( int _errid, const char *_txt )
 GZipFilter::GZipFilter( const char *_prg, GZipProtocol *_gzip ) : KIOFilter( _prg )
 {
   m_pGZip = _gzip;
-}  
+}
 
 void GZipFilter::emitData( void *_p, int _len )
 {
