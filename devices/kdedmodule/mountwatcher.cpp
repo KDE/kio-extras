@@ -31,16 +31,36 @@
 #include <ksimpleconfig.h>
 #include <kstandarddirs.h>
 #include <kautomount.h>
+#include <kdirwatch.h>
 
 #include "mountwatcher.moc"
 #include "mountwatcher.h"
-
+#include "kdirnotify_stub.h"
 
 MountWatcherModule::MountWatcherModule(const QCString &obj)
     : KDEDModule(obj),mDiskList(this)
 {
 	mDiskList.readFSTAB();
 	mDiskList.readDF();
+
+
+#ifdef MTAB
+	KDirWatch::self()->addFile(MTAB);
+#endif
+#ifdef FSTAB
+	KDirWatch::self()->addFile(FSTAB);
+#endif
+#ifdef FSTAB
+	connect(KDirWatch::self(),SIGNAL(dirty(const QString&)),this,SLOT(dirty(const QString&)));
+	KDirWatch::self()->startScan();
+#else
+#ifdef MTAB
+	connect(KDirWatch::self(),SIGNAL(dirty(const QString&)),this,SLOT(dirty(const QString&)));
+	KDirWatch::self()->startScan();
+#endif
+#endif
+
+connect(&mDiskList,SIGNAL(readDFDone()),this,SLOT(readDFDone()));
 }
 
 MountWatcherModule::~MountWatcherModule()
@@ -54,27 +74,7 @@ uint MountWatcherModule::mountpointMappingCount()
 
 QStringList MountWatcherModule::list()
 {
-	QStringList list;
-	for (DiskEntry *ent=mDiskList.first();ent;ent=mDiskList.next())
-	{
-                if (ent->mounted())
-		{
-                 	list<<i18n("%1 mounted at %2").arg(ent->deviceName()).arg(ent->mountPoint());
-			list<<(QString("devices:/entries?dev=")+ent->deviceName()+
-			"&mp="+ent->mountPoint()+"&mounted=true");
-			list<< ent->discType()+"_mounted";
-			list<<"true";
-		}
-                else
-		{
-                 	list<<i18n("%1 (not mounted)").arg(ent->deviceName());
-			list<<QString("devices:/entries?dev=")+ent->deviceName()+
-			"&mp="+ent->mountPoint()+"&mounted=false";
-			list<< ent->discType()+"_unmounted";
-			list<<"false";
-		}
-	}
-	return list;
+	return mountList;
 }
 
 QString  MountWatcherModule::mountpoint(int id)
@@ -116,6 +116,56 @@ mountpoint,
 
 	KAutoMount *m=new KAutoMount( readonly, format, device, mountpoint,
               desktopFile, show_filemanager_window);
+}
+
+
+void MountWatcherModule::dirty(const QString& str)
+{
+#ifdef MTAB
+	if (str==MTAB)
+	{
+	        mDiskList.readFSTAB();
+	        mDiskList.readDF();
+		return;
+
+	}
+#endif
+#ifdef FSTAB
+	if (str==FSTAB)
+	{
+	        mDiskList.readFSTAB();
+	        mDiskList.readDF();
+		return;
+	}
+#endif
+}
+
+
+void MountWatcherModule::readDFDone()
+{
+	mountList.clear();
+	for (DiskEntry *ent=mDiskList.first();ent;ent=mDiskList.next())
+	{
+       	        if (ent->mounted())
+		{
+                 	mountList<<i18n("%1 mounted at %2").arg(ent->deviceName()).arg(ent->mountPoint());
+			mountList<<(QString("devices:/entries?dev=")+ent->deviceName()+
+			"&mp="+ent->mountPoint()+"&mounted=true");
+			mountList<< ent->discType()+"_mounted";
+			mountList<<"true";
+		}
+               	else
+		{
+                 	mountList<<i18n("%1 (not mounted)").arg(ent->deviceName());
+			mountList<<QString("devices:/entries?dev=")+ent->deviceName()+
+			"&mp="+ent->mountPoint()+"&mounted=false";
+			mountList<< ent->discType()+"_unmounted";
+			mountList<<"false";
+		}
+	}
+
+        KDirNotify_stub allDirNotify("*", "KDirNotify*");
+        allDirNotify.FilesAdded( "devices:/" );
 }
 
 

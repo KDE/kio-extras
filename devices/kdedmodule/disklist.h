@@ -46,16 +46,20 @@
 #endif		
 
 #ifdef _OS_SOLARIS_
+
 #define CACHEFSTAB "/etc/cachefstab"
 #define FSTAB "/etc/vfstab"
 #define MTAB "/etc/mnttab"
+
 #else
+
 #define FSTAB "/etc/fstab"
-#ifdef _OS_LINUX_
+//#if defined(_OS_LINUX_)
 #define MTAB "/etc/mtab"
-#else
-#define MTABPOLLMOUNTCMD ":("
-#endif
+//#else
+//#define MTABPOLLMOUNTCMD ":("
+
+//#endif
 #endif
 
 #define SEPARATOR "|"

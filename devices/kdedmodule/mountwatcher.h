@@ -23,6 +23,7 @@
 #include <kdedmodule.h>
 #include <kurl.h>
 #include "disklist.h"
+#include <qstringlist.h>
 
 class MountWatcherModule : public KDEDModule
 {
@@ -34,6 +35,8 @@ public:
 
 private:
     DiskList mDiskList;
+    QStringList mountList;
+
 k_dcop:
     uint    mountpointMappingCount();
     QString mountpoint(int id);
@@ -49,6 +52,10 @@ k_dcop:
 k_dcop_signals:
     void mountSituationChaged();
 
+
+protected slots:
+	void dirty(const QString&);
+	void readDFDone();
 };
 
 #endif
