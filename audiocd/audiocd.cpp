@@ -191,7 +191,7 @@ AudioCDProtocol::stat(const KURL & url)
     // Track name looks like this: trackNN.wav
     trackNumber = url.filename().mid(5, 2).toInt();
 
-    if (trackNumber < 0 || trackNumber > cdda_tracks(drive))
+    if (trackNumber < 1 || trackNumber > cdda_tracks(drive))
     {
       error(KIO::ERR_DOES_NOT_EXIST, filename);
       return;
@@ -261,7 +261,7 @@ AudioCDProtocol::listDir(const KURL & url)
 
   UDSEntry entry;
 
-  for (int i = 0; i < trackCount; i++)
+  for (int i = 1; i <= trackCount; i++)
   {
     if (IS_AUDIO(drive, i))
     {
