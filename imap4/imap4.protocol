@@ -21,5 +21,9 @@ moving=false
 
 # Can be source protocol
 source=true
+
+# List of capabilities (e.g. special() commands)
+Capabilities=Subscription,ACL
+
 Icon=folder_inbox
 DocPath=kioslave/imap.html
