@@ -12,3 +12,6 @@ noinst_HEADERS = smtp.h
 
 kdelnk_DATA = smtp.protocol smtps.protocol
 kdelnkdir = $(kde_servicesdir)
+
+messages:
+	$(XGETTEXT) *.cpp -o $(podir)/kio_smtp.pot

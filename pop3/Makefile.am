@@ -13,3 +13,5 @@ noinst_HEADERS = pop3.h
 kdelnk_DATA = pop3.protocol pop3s.protocol
 kdelnkdir = $(kde_servicesdir)
 
+messages:
+	$(XGETTEXT) *.cc -o $(podir)/kio_pop3.pot

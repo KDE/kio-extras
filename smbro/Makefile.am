@@ -18,7 +18,6 @@ kdelnkdir = $(kde_servicesdir)
 data_DATA = smb.html
 datadir = $(kde_datadir)/kioslave
 
-
 messages:
 	$(XGETTEXT) *.cpp -o $(podir)/kio_smbro.pot
 

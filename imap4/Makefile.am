@@ -21,3 +21,6 @@ linktest.cpp:
 	echo "int main() {};" > linktest.cpp
 linktest_LDFLAGS  = $(all_libraries) $(KDE_RPATH)
 linktest_LDADD = $(kio_imap4_la_LIBADD)
+
+messages:
+	$(XGETTEXT) *.cc -o $(podir)/kio_imap4.pot

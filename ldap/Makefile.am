@@ -17,3 +17,5 @@ noinst_HEADERS = kio_ldap.h kldap.h kldapurl.h
 kdelnk_DATA = ldap.protocol
 kdelnkdir = $(kde_servicesdir)
 
+messages:
+	$(XGETTEXT) *.cpp -o $(podir)/kio_ldap.pot

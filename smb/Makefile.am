@@ -40,3 +40,6 @@ dirtree_DATA = smb-network.desktop
 dirtreedir = $(kde_datadir)/konqueror/dirtree/remote
 
 METASOURCES = AUTO
+
+messages:
+	$(XGETTEXT) *.cpp -o $(podir)/kio_smb.pot

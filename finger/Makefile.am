@@ -23,3 +23,5 @@ EXTRA_DIST=$(data_DATA)
 
 METASOURCES = AUTO
 
+messages:
+	$(XGETTEXT) *.cpp -o $(podir)/kio_finger.pot
