@@ -66,12 +66,11 @@ style="position : absolute;
   background-color : transparent;
   z-index : 5;">
 
-  <table width="100%">
+  <table width="100%" id="navtable">
    <tbody>
      <tr>
-       <td align="left">
-          <span style="color: #ffffff;">
-	   <xsl:if test="count($prev)>0">
+       <td align="left" class="left">
+          <xsl:if test="count($prev)>0">
               <a>
                 <xsl:attribute name="href">
                   <xsl:call-template name="href.target">
@@ -81,7 +80,6 @@ style="position : absolute;
                 <xsl:call-template name="gentext.nav.prev"/>
               </a>
             </xsl:if>
- 	  </span>
        </td>
  
        <td align="center" class="center">
@@ -127,8 +125,9 @@ style="position : absolute;
          style="position : relative;
                 width : 100%;
                 height : 59px;
-                left : 0;
-                top : 150px;
+                left : 0px;
+		right : 0px;
+                top : 100px;
                 background-image : url('common/bottom1.png');
                 background-repeat : repeat-x;
                 background-color : transparent;
