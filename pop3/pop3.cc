@@ -65,11 +65,13 @@ bool POP3Protocol::getResponse (char *r_buf, unsigned int r_len)
   FD_SET(m_iSock, &FDs);
 
   // And keep waiting if it timed out
+  unsigned int wait_time=1;
   while (::select(m_iSock+1, &FDs, 0, 0, &m_tTimeout) ==0) {
     // Yes, it's true, Linux sucks.
-    m_tTimeout.tv_sec=10;
+    wait_time++;
+    m_tTimeout.tv_sec=wait_time;
     m_tTimeout.tv_usec=0;
-   }
+  }
 
   // Clear out the buffer
   memset(buf, 0, r_len);
@@ -169,7 +171,7 @@ bool POP3Protocol::pop3_open( KURL &_url )
 
   // We want 110 as the default, but -1 means no port was specified.
   // Why 0 wasn't chosen is beyond me.
-  port = (_url.port() != -1) ? _url.port() : 110;
+  port = _url.port() ? _url.port() : 110;
   if ( (m_iOldPort == port) && (m_sOldServer == _url.host()) && (m_sOldUser == _url.user()) && (m_sOldPass == _url.pass())) {
     fprintf(stderr,"Reusing old connection\n");fflush(stderr);
     return true;
@@ -240,19 +242,21 @@ bool POP3Protocol::pop3_open( KURL &_url )
 
 size_t POP3Protocol::realGetSize(unsigned int msg_num)
 {
-  char buf[512];
+  char *buf;
   QCString cmd;
   size_t ret=0;
+  buf=(char *)malloc(512);
   memset(buf, 0, 512);
   cmd.sprintf("LIST %u", msg_num);
-  if (!command(cmd.data(), buf, 512))
+  if (!command(cmd.data(), buf, 512)) {
+    free(buf);
     return 0;
-  else {
+  } else {
     cmd=buf;
     cmd.remove(0, cmd.find(" "));
     ret=cmd.toLong();
   }
-  fprintf(stderr,"Attempting to return for %u\n", msg_num);
+  free(buf);
   return ret;
 }
 
@@ -289,7 +293,7 @@ void POP3Protocol::slotGetSize( const char * _url )
   bool isINT;
   int msg_num=path.toUInt(&isINT);
   if (!isINT) {
-    error(ERR_MALFORMED_URL, strdup(_url));
+    //error(ERR_MALFORMED_URL, strdup(_url));
     return;
   }
 
@@ -399,7 +403,7 @@ LIST
                          // TOP cmd isn't supported
       ready();
       gettingFile(_url);
-      mimeType("message/rfc822");
+      mimeType("text/plain");
       memset(buf, 0, sizeof(buf));
       while (!feof(fp)) {
 	memset(buf, 0, sizeof(buf));
@@ -502,15 +506,13 @@ void POP3Protocol::slotListDir (const char *_url)
 	// at least return +OK num_messages total_size
 	memset(buf, 0, 512);
 	if (!command("STAT", buf, 512)) {
-	  fprintf(stderr,"The stat command failed\n");
 	  error(ERR_INTERNAL, "??");
 	  return;
 	}
 	fprintf(stderr,"The stat buf is :%s:\n", buf);
 	q_buf=buf;
 	if (q_buf.find(" ")==-1) {
-	  fprintf(stderr,"The stat command is wonky\n");
-	  error(ERR_INTERNAL, "Invalid POP3 response!");
+	  error(ERR_INTERNAL, "Invalid POP3 response, we should have at least one space!");
 	  pop3_close();
 	  return;
 	}
@@ -518,7 +520,6 @@ void POP3Protocol::slotListDir (const char *_url)
 
 	num_messages=q_buf.toUInt(&isINT);
 	if (!isINT) {
-	  fprintf(stderr,"Something's not a number\n");
 	  error(ERR_INTERNAL, "Invalid POP3 STAT response!");
 	  pop3_close();
 	  return;
@@ -542,7 +543,6 @@ void POP3Protocol::slotListDir (const char *_url)
 	  atom.m_uds = UDS_SIZE;
 	  atom.m_str = "";
 	  atom.m_long = realGetSize(i+1);
-	  fprintf(stderr,"Real size is %ld\n", atom.m_long);
 	  entry.push_back(atom);
 
 	  listEntry(entry);
