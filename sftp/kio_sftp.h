@@ -1,10 +1,10 @@
-    /***************************************************************************
+/***************************************************************************
                           kio_sftpProtocol.h  -  description
                              -------------------
     begin                : Sat Jun 30 20:08:47 CDT 2001
     copyright            : (C) 2001 by Lucas Fisher
     email                : ljfisher@iastate.edu
- ***************************************************************************/
+***************************************************************************/
 
 /***************************************************************************
  *                                                                         *
@@ -35,7 +35,6 @@ class QCString;
 
 class kio_sftpProtocol : public QObject, public KIO::SlaveBase
 {
-    Q_OBJECT
 
 public:
   kio_sftpProtocol(const QCString &pool_socket, const QCString &app_socket);
@@ -102,6 +101,9 @@ private: // Private variables
 
   /** User's password */
   QString mPassword;
+
+  /* default port for ssh */
+  int defaultPort;
 
 private: // private methods
   /** Starts the ssh process and authenticates the user by waiting for the
