@@ -7,3 +7,5 @@ listing=Name,Type,Size
 reading=true
 writing=true
 deleting=false
+DocPath=kioslave/nntp.html
+Icon=news

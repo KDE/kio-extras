@@ -4,3 +4,4 @@ protocol=cgi
 input=none
 output=filesystem
 reading=true
+DocPath=kioslave/cgi.html

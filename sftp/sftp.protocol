@@ -10,3 +10,5 @@ makedir=true
 deleting=true
 Icon=ftp
 Description=A kioslave for sftp
+DocPath=kioslave/sftp.html
+Icon=ftp

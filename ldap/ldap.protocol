@@ -13,3 +13,4 @@ source=true
 #moving=true
 mimetype=text/plain
 determineMimetypeFromExtension=false
+DocPath=kioslave/ldap.html

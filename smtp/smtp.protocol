@@ -11,3 +11,5 @@ source=true
 makedir=false
 linking=false
 moving=false
+DocPath=kioslave/smtp.html
+Icon=folder_outbox

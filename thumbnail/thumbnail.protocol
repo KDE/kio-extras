@@ -5,3 +5,5 @@ input=stream
 output=stream
 reading=true
 source=false
+DocPath=kioslave/thumbnail.html
+Icon=thumbnail

@@ -5,3 +5,4 @@ input=none
 output=stream
 reading=true
 defaultMimetype=text/html
+DocPath=kioslave/finger.html
