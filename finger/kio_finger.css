@@ -1,4 +1,5 @@
 BODY {
+	color: #999999;
 	background: #000000;
 	padding: 2em;
 	margin: auto;
@@ -15,22 +16,23 @@ H1 {
 	font-size: 20px; 
 	font-weight: bold;
 	color: #999999;
+	background: #000000;	
 	margin: auto;
 	padding: 1em
 }
 	
 .mainTable {
-	background: black;
-	border: 1pt normal #444444;
+	color: #999999;	
+	background: #000000;
+	border: 1 solid #444444;
 	margin: auto;
-	padding: auto;
 }
 	
 .fingerTable {
-	background: black;
-	border: 0pt normal #444444;
+	color: #999999;	
+	background: #000000;
+	border: 0 solid #444444;
 	margin: auto;
-	padding: auto;
 }
 
 .niceText {
@@ -40,8 +42,7 @@ H1 {
 	font-size: 12px; 
 	font-weight: normal;
 	text-align: center;
-	color: #009999;     
-	margin: auto;
+	color: #009999;
 	padding: 0.5em;
 }
 
