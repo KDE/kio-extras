@@ -32,7 +32,7 @@
 #include <qstring.h>
 #include <kio/tcpslavebase.h>
 
-class KSASLContext;
+class KDESasl;
 
 class SMTPProtocol
 	: public KIO::TCPSlaveBase {
@@ -64,7 +64,7 @@ protected:
 	QString m_sPass, m_sOldPass;
 	QString m_sError;
 
-	KSASLContext *m_pSASL;
+	KDESasl *m_pSASL;
 	QString m_sAuthConfig;
 };
 

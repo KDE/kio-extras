@@ -63,7 +63,7 @@
 #include <kinstance.h>
 #include <kio/connection.h>
 #include <kio/slaveinterface.h>
-#include <kio/ksasl/saslcontext.h>
+#include <kio/kdesasl.h>
 #include <klocale.h>
 #include <iostream.h>
 
@@ -490,11 +490,14 @@ bool SMTPProtocol::Authenticate (const KURL &url)
 	// Generate a new context.. now this isn't the most efficient way of doing things, but for now this suffices
 	if (m_pSASL)
 		delete m_pSASL;
-	m_pSASL = new KSASLContext;
-	m_pSASL->setURL(url);
+	m_pSASL = new KDESasl(url);
 
 	// Choose available method from what the server has given us in  its greeting
-	auth_method = m_pSASL->chooseMethod(m_sAuthConfig);
+	QStringList sl = QStringList::split(' ', m_sAuthConfig);
+	QStrIList strList;
+	for (int i = 0; i < sl.count(); i++) strList.append(sl[i].latin1());
+
+	auth_method = m_pSASL->chooseMethod(strList);
 
 	// If none are available, set it up so we can start over again
 	if (auth_method == QString::null) {
@@ -521,12 +524,9 @@ bool SMTPProtocol::Authenticate (const KURL &url)
 		// it's easier than generating a byte array simply to pass
 		// around null characters.  Stupid stupid stupid.
 		QString cmd;
-		if (auth_method == "PLAIN") {
-			cmd = m_pSASL->generateResponse(challenge, false);
-		} else {
-			// Since SMTP does indeed needs its auth responses base64 encoded... for some reason
-			cmd = m_pSASL->generateResponse(challenge, true);
-		}
+		QByteArray ba;
+		ba.duplicate(challenge, strlen(challenge));
+		cmd = m_pSASL->getResponse(ba);
 		ret = command(cmd);
 		free(challenge);
 
