@@ -15,7 +15,7 @@ public:
     virtual ~InfoProtocol();
 
     virtual void get( const QString& path, const QString& query, bool reload );
-    virtual void mimetype( const QString& path );
+    virtual void mimetype( const QString& path, const QString& query );
 
 protected:
 

@@ -20,9 +20,9 @@ public:
   virtual void setHost (const QString& host, int port, const QString& user, const QString& pass );
  
   virtual void get( const QString& __url, const QString& query, bool reload );
-  virtual void stat( const QString & );
+  virtual void stat( const QString& path, const QString& query );
   virtual void del( const QString &path, bool isfile);
-  virtual void listDir( const QString& path );
+  virtual void listDir( const QString& path, const QString& query );
   
  protected:
 

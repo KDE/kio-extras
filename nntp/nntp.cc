@@ -563,7 +563,7 @@ LIST
 
 }
 
-void NNTPProtocol::listDir( const QString & _path )
+void NNTPProtocol::listDir( const QString & _path, const QString& /*query*/ )
 {
   bool isINT; int num_messages=0;
   char buf[512];
@@ -651,7 +651,7 @@ void NNTPProtocol::listDir( const QString & _path )
   finished();
 }
 
-void NNTPProtocol::stat( const QString & path )
+void NNTPProtocol::stat( const QString & path, const QString& /*query*/ )
 {
   QString _path = path;
   if (_path.at(0) == '/')

@@ -629,7 +629,7 @@ LIST
 
 }
 
-void POP3Protocol::listDir( const QString & _path )
+void POP3Protocol::listDir( const QString & _path, const QString& /*query*/ )
 {
   bool isINT; int num_messages=0;
   char buf[512];
@@ -717,7 +717,7 @@ void POP3Protocol::listDir( const QString & _path )
   finished();
 }
 
-void POP3Protocol::stat( const QString & path )
+void POP3Protocol::stat( const QString & path, const QString& /*query*/ )
 {
   QString _path = path;
   if (_path.at(0) == '/')

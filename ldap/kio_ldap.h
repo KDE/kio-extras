@@ -22,8 +22,8 @@ public:
 		       const QString& user, const QString& pass);
 
   virtual void get( const QString& __url, const QString& query, bool reload );
-  virtual void stat( const QString & );
-  virtual void listDir( const QString& path );
+  virtual void stat( const QString& path, const QString& query );
+  virtual void listDir( const QString& path, const QString& query );
 
 private:
   QString urlPrefix;

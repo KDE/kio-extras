@@ -79,7 +79,8 @@ void LDAPProtocol::setHost( const QString& _host, int _port,
 void LDAPProtocol::get(const QString &path, const QString& query,
 		       bool reload )
 {
-  QString _url = urlPrefix + path + query;
+  QString _url = urlPrefix + path;
+  if (!query.isEmpty()) { _url += "?" + query; }
   kDebugInfo(7110, "kio_ldap::get(%s)", debugString(_url));
   KLDAP::Url usrc(_url);
 
@@ -158,9 +159,10 @@ void LDAPProtocol::get(const QString &path, const QString& query,
 /**
  * Test if the url contains a directory or a file.
  */
-void LDAPProtocol::stat( const QString &path )
+void LDAPProtocol::stat( const QString &path, const QString& query )
 {
   QString _url = urlPrefix + path;
+  if (!query.isEmpty()) { _url += "?" + query; }
   kDebugInfo(7110, "kio_ldap: stat(%s)", debugString(_url));
   KLDAP::Url usrc(_url);
 
@@ -180,12 +182,24 @@ void LDAPProtocol::stat( const QString &path )
   QStrList att;
   att.append("dn");
   search.setAttributes(att);
-  search.setScope(LDAP_SCOPE_ONELEVEL);
+  if (query.isEmpty()) search.setScope(LDAP_SCOPE_ONELEVEL);
   search.execute();
   search.finish();
   int cnt=0;
   for (KLDAP::Entry e=search.first(); !search.end(); e=search.next())
     cnt++;
+  int isDir = 1;
+  if (query.isEmpty()) {
+    /* we searched for a subdir */
+    if (cnt == 0) isDir=0;
+  } else {
+    /* we searched for what the user specified */
+    if (usrc.scope() == LDAP_SCOPE_BASE) isDir = 0;    /* he only wanted base */
+    else {
+      /* he wanted more */
+      if (cnt == 0) isDir = 0;   /* but there isn't */
+    }
+  }
   UDSEntry entry;
   UDSAtom atom;
 
@@ -202,10 +216,10 @@ void LDAPProtocol::stat( const QString &path )
 
   atom.m_uds = UDS_FILE_TYPE;
   atom.m_str = "";
-  if (cnt == 0)
-    atom.m_long = S_IFREG;
-  else 
+  if (isDir)
     atom.m_long = S_IFDIR;
+  else 
+    atom.m_long = S_IFREG;
   entry.append(atom);
   
   atom.m_uds = UDS_URL;
@@ -215,7 +229,7 @@ void LDAPProtocol::stat( const QString &path )
   url.setHost(usrc.host());
   url.setPort(usrc.port());
   url.setPath("/"+usrc.dn());
-  if (cnt >= 1)
+  if (isDir)
     url.setScope(LDAP_SCOPE_ONELEVEL);
   else
     url.setScope(LDAP_SCOPE_BASE);
@@ -223,7 +237,7 @@ void LDAPProtocol::stat( const QString &path )
   kDebugInfo(7110, "kio_ldap:stat put url:%s", debugString(atom.m_str));
   entry.append(atom);
 
-  if (cnt == 0) {
+  if (!isDir) {
     atom.m_uds = UDS_MIME_TYPE;
     atom.m_long = 0;
     atom.m_str = "text/ldif";
@@ -238,9 +252,10 @@ void LDAPProtocol::stat( const QString &path )
 /**
  * List the contents of a directory.
  */
-void LDAPProtocol::listDir(const QString &path)
+void LDAPProtocol::listDir(const QString &path, const QString& query)
 {
   QString _url = urlPrefix + path;
+  if (!query.isEmpty()) { _url += "?" + query; }
   kDebugInfo(7110, "kio_ldap: listDir(%s)", debugString(_url));
   KLDAP::Url usrc(_url);
 

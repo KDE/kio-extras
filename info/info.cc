@@ -85,7 +85,7 @@ void InfoProtocol::get( const QString& path, const QString& /*query*/, bool /*re
     kDebugInfo( 7108, "InfoProtocol::get - done" );
 }
 
-void InfoProtocol::mimetype( const QString& /*path*/ )
+void InfoProtocol::mimetype( const QString& /*path*/, const QString& /*query*/ )
 {
     kDebugInfo( 7108, "InfoProtocol::mimetype" );
 

@@ -560,7 +560,7 @@ void SmbProtocol::createUDSEntry( const SMBdirent *dent, const QString & /*path*
 	entry.append( atom );
 }
 
-void SmbProtocol::stat( const QString & pathArg )
+void SmbProtocol::stat( const QString & pathArg, const QString& /*query*/ )
 {
 	QString path = buildFullLibURL(pathArg);
 	kDebugInfo( 7106, "entering stat %s", debugString(path));
@@ -614,7 +614,7 @@ void SmbProtocol::stat( const QString & pathArg )
 	finished();
 }
 
-void SmbProtocol::listDir( const QString& pathArg )
+void SmbProtocol::listDir( const QString& pathArg, const QString& /*query*/ )
 {
 	QString path = buildFullLibURL(pathArg);
 	kDebugInfo( 7106, "=============== LIST %s ===============", debugString(path) );

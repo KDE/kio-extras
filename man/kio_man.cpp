@@ -152,7 +152,7 @@ void MANProtocol::get(const QString& path, const QString& query, bool /*reload*/
 }
 
 
-void MANProtocol::shellStdout(KProcess */*proc*/, char *buffer, int buflen)
+void MANProtocol::shellStdout(KProcess * /*proc*/, char *buffer, int buflen)
 {
   _shellStdout += QCString(buffer).left(buflen);
 }
@@ -174,7 +174,7 @@ void MANProtocol::outputError(QString errmsg)
 }
 
 
-void MANProtocol::stat( const QString & path )
+void MANProtocol::stat( const QString & path, const QString& /*query*/ )
 {  
   kdDebug(7107) << "ENTERING STAT " << path;
 
@@ -249,7 +249,7 @@ extern "C"
 }
 
 
-void MANProtocol::mimetype(const QString & /*path*/)
+void MANProtocol::mimetype(const QString & /*path*/, const QString& /*query*/)
 {
   mimeType("text/html");
   finished();

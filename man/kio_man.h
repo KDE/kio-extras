@@ -23,9 +23,9 @@ public:
   virtual ~MANProtocol();
 
   virtual void get(const QString& path, const QString& query, bool reload);
-  virtual void stat(const QString& path);
+  virtual void stat(const QString& path, const QString& query);
 
-  virtual void mimetype(const QString &path);
+  virtual void mimetype(const QString &path, const QString& query);
 
   void outputError(QString errmsg);
 

@@ -114,7 +114,7 @@ void TARProtocol::get( const QString & path, const QString & /*query*/, bool /*r
   finished();
 }
 
-void TARProtocol::listDir( const QString & path )
+void TARProtocol::listDir( const QString & path, const QString& /*query*/ )
 {
   kdDebug( 7109 ) << "TarProtocol::listDir " << path << endl;
   SlaveBase::listDir( path ); // NOT IMPLEMENTED
@@ -235,7 +235,7 @@ void TARProtocol::listDir( const QString & path )
   kdDebug( 7109 ) << "TarProtocol::listDir done" << endl;
 }
 
-void TARProtocol::stat( const QString & path )
+void TARProtocol::stat( const QString & path, const QString& /*query*/ )
 {
     SlaveBase::stat( path ); // NOT IMPLEMENTED
 }

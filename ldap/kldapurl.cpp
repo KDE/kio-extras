@@ -112,8 +112,10 @@ void Url::update()
   q += "?";
   if (_scope == LDAP_SCOPE_SUBTREE)
     q += "sub";
-  if (_scope == LDAP_SCOPE_ONELEVEL)
+  else if (_scope == LDAP_SCOPE_ONELEVEL)
     q += "one";
+  else if (_scope == LDAP_SCOPE_BASE)
+    q += "base";
 
   q += "?";
   // set the filter
