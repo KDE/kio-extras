@@ -28,9 +28,9 @@ messages:
 	$(XGETTEXT) *.cpp -o $(podir)/kio_help.pot
 
 install-data-local:
-	-rm -rf $(kde_datadir)/ksgmltools2/docbook
-	cp -r $(srcdir)/docbook $(kde_datadir)/ksgmltools2
-	-rm -rf $(kde_datadir)/ksgmltools2/customization
-	cp -r $(srcdir)/customization $(kde_datadir)/ksgmltools2
-
+	$(mkinstalldirs) $(DESTDIR)$(kde_datadir)/ksgmltools2
+	-rm -rf $(DESTDIR)$(kde_datadir)/ksgmltools2/docbook
+	cp -r $(srcdir)/docbook $(DESTDIR)$(kde_datadir)/ksgmltools2
+	-rm -rf $(DESTDIR)$(kde_datadir)/ksgmltools2/customization
+	cp -r $(srcdir)/customization $(DESTDIR)$(kde_datadir)/ksgmltools2
 
