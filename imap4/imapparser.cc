@@ -31,21 +31,22 @@
 #include "mimeheader.h"
 #include "mailaddress.h"
 
-#include <stdlib.h>
-
 #include <sys/types.h>
-#include <unistd.h>
+
 #include <stdlib.h>
+#include <unistd.h>
 
 #include <qregexp.h>
 #include <qbuffer.h>
 #include <qstring.h>
 #include <qstringlist.h>
 
-#include <kurl.h>
-#include <kmdcodec.h>
-#include <kio/ksasl/saslcontext.h>
 #include <kdebug.h>
+#include <kmdcodec.h>
+#include <kurl.h>
+
+#include <kio/sasl/saslmodule.h>
+#include <kio/sasl/saslcontext.h>
 
 imapParser::imapParser ():
 uidCache (17, false)
