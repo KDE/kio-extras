@@ -33,6 +33,13 @@
 #include <qmap.h>
 #include <qcstring.h>
 
+/*struct MasterInfo
+{
+   MasterInfo(const QString& name, const QString& ipAddress):nmbName(name),ip(ipAddress) {};
+   QString nmbName;
+   QString ip;
+};*/
+
 struct StatInfo
 {
    StatInfo():name(""),time(0),size(0),mode(0),isDir(false),isValid(false) {;};
@@ -61,6 +68,7 @@ class SmbProtocol : public KIO::SlaveBase
       //bool waitUntilStarted(ClientProcess *proc,const QString& password);
       //bool getShareInfo(ClientProcess* shareLister,const QString& password);
       ClientProcess* getProcess(const QString& host, const QString& share);
+      void getShareAndPath(const KURL& url, QString& share, QString& rest);
 
       int readOutput(int fd);
 
@@ -69,6 +77,7 @@ class SmbProtocol : public KIO::SlaveBase
       StatInfo _stat(const KURL& _url);
       void listShares();
       void listWorkgroups();
+      void listHosts();
       QCString getNmbName(QCString ipString);
       QCString getMasterBrowser();
 
@@ -84,6 +93,7 @@ class SmbProtocol : public KIO::SlaveBase
       QDict<ClientProcess> m_processes;
       QMap<QString,int> m_months;
       QMap<QString, QString> m_workgroups;
+//      QDict<MasterInfo> m_workgroups;
 
       //configuration data
       bool m_showHiddenShares;
@@ -95,7 +105,8 @@ class SmbProtocol : public KIO::SlaveBase
       QString m_shareAccessingPassword;
       QString m_shareAccessingUser;*/
 
-      QString m_workgroup;
+      QString m_defaultWorkgroup;
+      QString m_currentWorkgroup;
 };
 
 #endif

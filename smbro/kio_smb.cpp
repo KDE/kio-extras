@@ -81,19 +81,43 @@ int kdemain( int argc, char **argv )
   return 0;
 }
 
-void getShareAndPath(const QString& path, QString& share, QString& rest)
+void SmbProtocol::getShareAndPath(const KURL& url, QString& share, QString& rest)
 {
+   QString path=url.path();
    share="";
    rest="";
+   m_currentWorkgroup=m_defaultWorkgroup;
+   int i=0;
+   QString tmpHost;
    QStringList list=QStringList::split("/",path);
    for (QStringList::Iterator it=list.begin(); it!=list.end(); it++)
    {
-      if (it==list.begin())
-         share=(*it);
+      if (url.host().isEmpty())  //smb:/wg/host/ - type url
+      {
+         if (i==0)
+            m_currentWorkgroup=(*it);
+         else if (i==1)
+         {
+            tmpHost=(*it);
+            setHost(tmpHost,42,"hallo","welt");
+         }
+         else if (i==2)
+            share=(*it);
+         else
+            rest=rest+"\\"+(*it);
+      }
       else
-         rest=rest+"\\"+(*it);
-         //rest=rest+"/"+(*it);
+      {
+         if (i==0)
+            share=(*it);
+         else
+            rest=rest+"\\"+(*it);
+      };
+      i++;
    };
+   if ((rest.isEmpty()) && (!share.isEmpty()) && (path[path.length()-1]=='/'))
+      rest="\\";
+
    kdDebug(7101)<<"getShareAndPath: path: -"<<path<<"-  share: -"<<share<<"-  rest: -"<<rest<<"-"<<endl;
 };
 
@@ -112,7 +136,8 @@ SmbProtocol::SmbProtocol (const QCString &pool, const QCString &app )
 ,m_shareListingUser("")
 ,m_shareAccessingPassword("")
 ,m_shareAccessingUser("")*/
-,m_workgroup("")
+,m_defaultWorkgroup("")
+,m_currentWorkgroup("")
 {
    kdDebug(7101)<<"Smb::Smb: -"<<pool<<"-"<<endl;
    m_processes.setAutoDelete(true);
@@ -132,7 +157,8 @@ SmbProtocol::SmbProtocol (const QCString &pool, const QCString &app )
   KConfig *cfg = new KConfig("kioslaverc", true);
   cfg->setGroup("Browser Settings/SMBro");
   m_user=cfg->readEntry("User","");
-  m_workgroup=cfg->readEntry("Workgroup","");
+  m_defaultWorkgroup=cfg->readEntry("Workgroup","");
+  m_currentWorkgroup=m_defaultWorkgroup;
   m_showHiddenShares=cfg->readBoolEntry("ShowHiddenShares",false);
 
   // unscramble, taken from Nicola Brodu's smb ioslave
@@ -401,8 +427,8 @@ void SmbProtocol::listShares()
       args<<QCString("-U")+m_user.local8Bit();
    if (!m_ip.isEmpty())
       args<<QCString("-I")+m_ip;
-   if (!m_workgroup.isEmpty())
-      args<<QCString("-W")+m_workgroup.local8Bit();
+   if (!m_currentWorkgroup.isEmpty())
+      args<<QCString("-W")+m_currentWorkgroup.local8Bit();
    if (!proc->start("smbclient",args))
    {
       error( KIO::ERR_CANNOT_LAUNCH_PROCESS, "smbclient"+i18n("\nMake sure that the samba package is installed properly on your system."));
@@ -434,8 +460,8 @@ void SmbProtocol::listShares()
             tmpArgs<<QCString("-U")+user.local8Bit();
          if (!m_ip.isEmpty())
             args<<QCString("-I")+m_ip;
-         if (!m_workgroup.isEmpty())
-            tmpArgs<<QCString("-W")+m_workgroup.local8Bit();
+         if (!m_currentWorkgroup.isEmpty())
+            tmpArgs<<QCString("-W")+m_currentWorkgroup.local8Bit();
          if (!proc->start("smbclient",tmpArgs))
          {
             error( KIO::ERR_CANNOT_LAUNCH_PROCESS, "smbclient"+i18n("\nMake sure that the samba package is installed properly on your system."));
@@ -557,30 +583,39 @@ void SmbProtocol::listDir( const KURL& _url)
    kdDebug(7101)<<"Smb::listDir() "<<_url.path()<<endl;
    QString path( _url.path());
 
-   if ((m_currentHost.isEmpty()) && ((path.isEmpty()) || (path=="/")))
+   if (_url.url()=="smb:/")
    {
       listWorkgroups();
       return;
    };
-   if (m_currentHost.isEmpty())
+   if (_url.url()=="smb://")
+//   if (m_currentHost.isEmpty())
    {
       error(ERR_UNKNOWN_HOST,i18n("To access the shares of a host, use smb://hostname\n\
 To get a list of all hosts use lan:/ or rlan:/ .\n\
 See the KDE Control Center under Network, LANBrowsing for more information."));
       return;
    };
-   if (path.isEmpty())
+
+   QString share;
+   QString smbPath;
+   QString wg;
+   getShareAndPath(_url,share,smbPath);
+   if ((smbPath.isEmpty()) && (!m_currentHost.isEmpty()) && (!share.isEmpty()))
    {
       KURL url(_url);
-      url.setPath("/");
+      url.setPath(_url.path()+"/");
       redirection(url);
       finished();
       return;
    };
 
-   QString share;
-   QString smbPath;
-   getShareAndPath(path,share,smbPath);
+   if (m_currentHost.isEmpty())
+   {
+      kdDebug(7101)<<"Smb::listDir() listHosts()"<<endl;
+      listHosts();
+      return;
+   };
 
    if (share.isEmpty())
    {
@@ -793,7 +828,7 @@ StatInfo SmbProtocol::_stat(const KURL& url)
    QString path( url.path());
    QString share;
    QString smbPath;
-   getShareAndPath(path,share,smbPath);
+   getShareAndPath(url,share,smbPath);
 
    //if share is empty, then smbPath is also empty
    if (smbPath.isEmpty())
@@ -889,14 +924,14 @@ void SmbProtocol::stat( const KURL & url)
 {
    kdDebug(7101)<<"Smb::stat(): path: -"<<url.path().local8Bit()<<"- url: "<<url.url()<<"-"<<endl;
 
-/*   if (m_currentHost.isEmpty())
+   if (url.url()=="smb://")
    {
       //kdDebug(7101)<<"Smb::stat(): host.isEmpty()"<<endl;
       error(ERR_UNKNOWN_HOST,i18n("\nTo access the shares of a host, use smb://hostname\n\
 To get a list of all hosts use lan:/ or rlan:/ .\n\
 See the KDE Control Center under Network, LANBrowsing for more information."));
       return;
-   };*/
+   };
    StatInfo info=this->_stat(url);
    if (!info.isValid)
       return;
@@ -1085,7 +1120,7 @@ QCString SmbProtocol::getMasterBrowser()
 
    if (!proc->start("nmblookup",args))
    {
-      kdDebug(7101)<<"Smb::setHost: starting nmblookup failed"<<endl;
+      kdDebug(7101)<<"Smb::getMasterBrowser: starting nmblookup failed"<<endl;
    }
    else
    {
@@ -1107,7 +1142,6 @@ QCString SmbProtocol::getMasterBrowser()
          };
       };
       //now parse the output
-      //kdDebug(7101)<<"Smb::setHost() received -"<<m_stdoutBuffer<<"-"<<endl;
       QString outputString = QString::fromLocal8Bit(m_stdoutBuffer);
       QTextIStream output(&outputString);
       QString line;
@@ -1118,7 +1152,7 @@ QCString SmbProtocol::getMasterBrowser()
          if ((line.contains("__MSBROWSE__")) && (line.contains("<")) && (line.contains(">")))
          {
             //this should be the line with the netbios name of the host
-            kdDebug(7101)<<"Smb::setHost() using name from line -"<<line<<"-"<<endl;
+            kdDebug(7101)<<"Smb::getMasterBrowser() using name from line -"<<line<<"-"<<endl;
             line=line.left(line.find("__MSBROWSE__")-1);
             line=line.stripWhiteSpace();
             masterBrowser="";
@@ -1148,8 +1182,8 @@ void SmbProtocol::listWorkgroups()
    if (!m_user.isEmpty())
       args<<QCString("-U")+m_user.local8Bit();
    args<<QCString("-I")+masterBrowser;
-   if (!m_workgroup.isEmpty())
-      args<<QCString("-W")+m_workgroup.local8Bit();
+//   if (!m_defaultWorkgroup.isEmpty())
+//      args<<QCString("-W")+m_defaultWorkgroup.local8Bit();
    if (!proc->start("smbclient",args))
    {
       kdDebug(7101)<<"Smb::searchWorkgroup() could not start smbclient"<<endl;
@@ -1179,8 +1213,8 @@ void SmbProtocol::listWorkgroups()
          if (!user.isEmpty())
             tmpArgs<<QCString("-U")+user.local8Bit();
          args<<QCString("-I")+masterBrowser;
-         if (!m_workgroup.isEmpty())
-            tmpArgs<<QCString("-W")+m_workgroup.local8Bit();
+//         if (!m_workgroup.isEmpty())
+//            tmpArgs<<QCString("-W")+m_workgroup.local8Bit();
          if (!proc->start("smbclient",tmpArgs))
          {
             error( KIO::ERR_CANNOT_LAUNCH_PROCESS, "smbclient"+i18n("\nMake sure that the samba package is installed properly on your system."));
@@ -1303,6 +1337,165 @@ void SmbProtocol::listWorkgroups()
 };
 
 
+void SmbProtocol::listHosts()
+{
+   kdDebug(7101)<<"Smb::listHosts() "<<endl;
+   //this is the nmb name
+   QCString wgMaster=m_workgroups[m_currentWorkgroup.upper()].latin1();
+
+   ClientProcess *proc=new ClientProcess();
+   QCStringList args;
+   args<<QCString("-L")+wgMaster;
+   if (!m_user.isEmpty())
+      args<<QCString("-U")+m_user.local8Bit();
+//   args<<QCString("-I")+masterBrowser;
+   if (!m_currentWorkgroup.isEmpty())
+      args<<QCString("-W")+m_currentWorkgroup.local8Bit();
+   if (!proc->start("smbclient",args))
+   {
+      kdDebug(7101)<<"Smb::listHosts() could not start smbclient"<<endl;
+      delete proc;
+      return;
+   };
+   QString password(m_password);
+   QString user(m_user);
+
+   SmbReturnCode result(SMB_NOTHING);
+   //repeat until user/password is ok or the user cancels
+   while (result=getShareInfo(proc,password), result==SMB_WRONGPASSWORD)
+   {
+      kdDebug(7101)<<"Smb::listHosts() failed with password"<<endl;
+      //it failed with the default password
+      delete proc;
+      proc=0;
+      KIO::AuthInfo authInfo;
+      authInfo.username = user;
+      if (openPassDlg(authInfo))
+      {
+         user = authInfo.username;
+         password = authInfo.password;
+         proc=new ClientProcess();
+         QCStringList tmpArgs;
+         tmpArgs<<QCString("-L")+wgMaster;
+         if (!user.isEmpty())
+            tmpArgs<<QCString("-U")+user.local8Bit();
+//         args<<QCString("-I")+masterBrowser;
+         if (!m_currentWorkgroup.isEmpty())
+            tmpArgs<<QCString("-W")+m_currentWorkgroup.local8Bit();
+         if (!proc->start("smbclient",tmpArgs))
+         {
+            error( KIO::ERR_CANNOT_LAUNCH_PROCESS, "smbclient"+i18n("\nMake sure that the samba package is installed properly on your system."));
+            delete proc;
+            return;
+         };
+      }
+      else break;
+   };
+   //here smbclient has already exited
+   if (proc!=0)
+   {
+      delete proc;
+      proc=0;
+   };
+
+   KURL url("smb:/");
+   //no error handling has happened up to now
+   if (result==SMB_ERROR)
+   {
+      stopAfterError(url,false);
+      return;
+   }
+   //this happens only if the user pressed cancel
+   else if (result==SMB_WRONGPASSWORD)
+   {
+      error(ERR_USER_CANCELED,"");
+      return;
+   };
+
+   if (stopAfterError(url,true))
+      return;
+
+   QString outputString = QString::fromLocal8Bit(m_stdoutBuffer);
+   QTextIStream output(&outputString);
+   QString line;
+
+   int totalNumber(0);
+   int mode(0);
+   UDSEntry entry;
+
+   int serverPos(0);
+   int commentPos(0);
+
+   while (!output.atEnd())
+   {
+      line=output.readLine();
+      if (mode==0)
+      {
+         if ((line.contains("Server")) && (line.contains("Comment")))
+         {
+            mode=1;
+            serverPos=line.find("Server");
+            commentPos=line.find("Comment");
+         };
+      }
+      else if (mode==1)
+      {
+         if (line.contains("-----"))
+         {
+            mode=2;
+         }
+         else
+         {
+            return;
+         };
+      }
+      else if (mode==2)
+      {
+         kdDebug(7101)<<"Smb::searchWorkgroups(): line: -"<<line.local8Bit()<<"-"<<endl;
+         if (line.isEmpty())
+            break;
+         else
+         {
+            QString name=line.mid(serverPos,commentPos-serverPos);
+            int end(name.length()-1);
+            while (name[end]==' ')
+               end--;
+            name=name.left(end+1);
+
+            entry.clear();
+            UDSAtom atom;
+
+            atom.m_uds = KIO::UDS_NAME;
+            atom.m_str =name;
+            entry.append( atom );
+
+            atom.m_uds = KIO::UDS_SIZE;
+            atom.m_long = 1024;
+            entry.append(atom);
+
+            atom.m_uds = KIO::UDS_MODIFICATION_TIME;
+            atom.m_long = time(0);
+            entry.append( atom );
+
+            atom.m_uds = KIO::UDS_ACCESS;
+            atom.m_long=S_IRUSR | S_IXUSR | S_IRGRP | S_IXGRP | S_IROTH | S_IXOTH;
+            entry.append( atom );
+
+            atom.m_uds = KIO::UDS_FILE_TYPE;
+            atom.m_long =S_IFDIR;
+            entry.append( atom );
+
+            listEntry( entry, false);
+            totalNumber++;
+         };
+      };
+   };
+   totalSize( totalNumber);
+   listEntry( entry, true ); // ready
+
+   finished();
+};
+
 QCString SmbProtocol::getNmbName(QCString ipString)
 {
    kdDebug(7101)<<"Smb::getNmbname: ip is -"<<ipString<<"-"<<endl;
@@ -1314,7 +1507,7 @@ QCString SmbProtocol::getNmbName(QCString ipString)
    QCString nmbName="";
    if (!proc->start("nmblookup",args))
    {
-      kdDebug(7101)<<"Smb::setHost: starting nmblookup failed"<<endl;
+      kdDebug(7101)<<"Smb::getMasterBrowser: starting nmblookup failed"<<endl;
    }
    else
    {
@@ -1329,7 +1522,7 @@ QCString SmbProtocol::getNmbName(QCString ipString)
          exitStatus=proc->exited();
          if (exitStatus!=-1)
          {
-            kdDebug(7101)<<"Smb::setHost() nmblookup exited with exitcode "<<exitStatus<<endl;
+            kdDebug(7101)<<"Smb::getNmbName() nmblookup exited with exitcode "<<exitStatus<<endl;
          };
          if (stdoutEvent)
          {
@@ -1337,7 +1530,6 @@ QCString SmbProtocol::getNmbName(QCString ipString)
          }
       };
       //now parse the output
-      //kdDebug(7101)<<"Smb::setHost() received -"<<m_stdoutBuffer<<"-"<<endl;
       QString outputString = QString::fromLocal8Bit(m_stdoutBuffer);
       QTextIStream output(&outputString);
       QString line;
@@ -1348,7 +1540,7 @@ QCString SmbProtocol::getNmbName(QCString ipString)
          if ((line.contains("<ACTIVE>")) && (line.contains("<20>")) && (!line.contains("<GROUP>")))
          {
             //this should be the line with the netbios name of the host
-            kdDebug(7101)<<"Smb::setHost() using name from line -"<<line<<"-"<<endl;
+            kdDebug(7101)<<"Smb::getNmbName() using name from line -"<<line<<"-"<<endl;
             line=line.left(line.find('<'));
             line=line.stripWhiteSpace();
             nmbName=line.local8Bit();
@@ -1363,7 +1555,7 @@ QCString SmbProtocol::getNmbName(QCString ipString)
 
 void SmbProtocol::setHost(const QString& host, int /*port*/, const QString& /*user*/, const QString& /*pass*/)
 {
-   kdDebug(7101)<<"Smb::setHost: -"<<host<<"-"<<endl;
+   kdDebug(7101)<<"Smb::setHost: -"<<host<<"- curr: -"<<m_currentHost<<"-"<<endl;
 /* if (host.isEmpty())
    {
       error(ERR_UNKNOWN_HOST,i18n("To access the shares of a host, use smb://hostname\n\
@@ -1371,6 +1563,8 @@ To get a list of all hosts use lan:/ or rlan:/ .\n\
 See the KDE Control Center under Network, LANBrowsing for more information."));
       return;
    };*/
+   if (host==m_currentHost)
+      return;
    QCString nmbName=host.local8Bit();
    QCString ipString("");
    //try to find the netbios name of this host
@@ -1429,8 +1623,8 @@ ClientProcess* SmbProtocol::getProcess(const QString& host, const QString& share
 
    QCStringList args;
    args<<QCString("//")+m_nmbName+QCString("/")+share.local8Bit();
-   if (!m_workgroup.isEmpty())
-      args<<QCString("-W")+m_workgroup.local8Bit();
+   if (!m_currentWorkgroup.isEmpty())
+      args<<QCString("-W")+m_currentWorkgroup.local8Bit();
    if (!m_user.isEmpty())
       args<<QCString("-U")+m_user.local8Bit();
    if (!m_ip.isEmpty())
@@ -1464,8 +1658,8 @@ ClientProcess* SmbProtocol::getProcess(const QString& host, const QString& share
          proc=new ClientProcess();
          QCStringList tmpArgs;
          tmpArgs<<QString("//"+host+"/"+share).local8Bit();
-         if (!m_workgroup.isEmpty())
-            tmpArgs<<QCString("-W")+m_workgroup.local8Bit();
+         if (!m_currentWorkgroup.isEmpty())
+            tmpArgs<<QCString("-W")+m_currentWorkgroup.local8Bit();
          if (!user.isEmpty())
             tmpArgs<<QCString("-U")+user.local8Bit();
          if (!m_ip.isEmpty())
