@@ -117,7 +117,7 @@ sigchld_handler (int signo)
     if (pid <= 0)
     {
       // Reinstall signal handler, since Linux resets to default after
-      // the signal occured ( BSD handles it different, but it should do
+      // the signal occurred ( BSD handles it different, but it should do
       // no harm ).
       signal (SIGCHLD, sigchld_handler);
       return;

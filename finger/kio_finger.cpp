@@ -246,7 +246,7 @@ void FingerProtocol::parseCommandLine(const KURL& url)
     }
 
   /*
-   * If no specifc port is specified, set it to 79.
+   * If no specific port is specified, set it to 79.
    */
 
   if(myURL->port() == 0) {

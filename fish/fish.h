@@ -37,7 +37,7 @@ public:
 
   /**
 Connects to a server and logs us in via SSH. Then starts FISH protocol.
-@ref isConnected is set to true if logging on was successfull.
+@ref isConnected is set to true if logging on was successful.
 It is set to false if the connection becomes closed.
 
  */

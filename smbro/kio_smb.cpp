@@ -846,7 +846,7 @@ See the KDE Control Center under Network, LANBrowsing for more information."));
    } while (!loopFinished);
    kdDebug(KIO_SMB)<<"Smb::listDir(): reading done: -"<<m_stdoutBuffer<<"-"<<endl;
 
-   //check the output from smbclient whether an error occured
+   //check the output from smbclient whether an error occurred
    if (stopAfterError(_url,true))
       return;
    kdDebug(KIO_SMB)<<"Smb::listDir(): no error detected"<<endl;

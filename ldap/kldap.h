@@ -181,7 +181,7 @@ namespace KLDAP
      * @param dn Distinguished name of the entity to authorize as.
      * @param cred The credentials (e.g. the password)
      * @param method The authentication method.
-     * @return TRUE, if authentication was successfull, else FALSE.
+     * @return TRUE, if authentication was successful, else FALSE.
      *
      */
     bool authenticate(const QString &dn="", const QString &cred="", int method=LDAP_AUTH_SIMPLE);

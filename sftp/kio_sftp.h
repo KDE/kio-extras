@@ -74,7 +74,7 @@ private: // Private variables
   /** Message id of the last sftp packet we sent. */
   unsigned int mMsgId;
 
-  /** Type of packet we are expecting to recieve next. */
+  /** Type of packet we are expecting to receive next. */
   unsigned char mExpected;
 
   /** Current url */
@@ -95,7 +95,7 @@ private: // private methods
    * Example: SSH2_FXP_READLINK, SSH2_FXP_RENAME, etc.
    *
    * Returns true if the type is supported by the sftp protocol
-   * version negociated by the client and server (sftpVersion).
+   * version negotiated by the client and server (sftpVersion).
    */
   bool isSupportedOperation(int type);
   

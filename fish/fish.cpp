@@ -546,7 +546,7 @@ int fishProtocol::establishConnection(char *buffer, int len) {
                 myDebug( << "sending cpass" << endl);
                 connectionAuth.password = connectionPassword+"\n";
                 connectionPassword = QString::null;
-                // su does not like receving a password directly after sending
+                // su does not like receiving a password directly after sending
                 // the password prompt so we wait a while.
                 if (local)
                     sleep(1);

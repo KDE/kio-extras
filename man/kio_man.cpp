@@ -1142,7 +1142,7 @@ void MANProtocol::showIndex(const QString& section)
 	    assert(manindex->manpage_begin >= manindex->manpath);
 	}
 
-	// Skip extention ".section[.gz]"
+	// Skip extension ".section[.gz]"
 
 	char *begin = (char*)(manindex->manpage_begin);
 	int len = strlen( begin );

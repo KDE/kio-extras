@@ -83,7 +83,7 @@ protected:
   /**
    *  All POP3 commands will generate a response.  Each response will
    *  either be prefixed with a "+OK " or a "-ERR ".  The getResponse
-   *  fucntion will wait until there's data to be read, and then read in
+   *  function will wait until there's data to be read, and then read in
    *  the first line (the response), and copy the response sans +OK/-ERR
    *  into a buffer (up to len bytes) if one was passed to it.  It will
    *  return true if the response was affirmitave, or false otherwise.

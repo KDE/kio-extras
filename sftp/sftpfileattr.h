@@ -173,7 +173,7 @@ public:
     void setExtendedCount(unsigned int c)
         { mExtendedCount = c; mFlags |= SSH2_FILEXFER_ATTR_EXTENDED; }
 
-    /** No extentions will be included when the file attribute is written
+    /** No extensions will be included when the file attribute is written
         to a sftp packet. */
     void clearExtensions()
         { mExtendedCount = 0; mFlags &= ~SSH2_FILEXFER_ATTR_EXTENDED; }

@@ -72,7 +72,7 @@
 9-15-2002 - stuff
 9-29-2002 - the last i18n string updates, fixed problem with uploading files to
             openssh server.
-5-8-2003  - check whether operation types are supported by the negociated sftp
+5-8-2003  - check whether operation types are supported by the negotiated sftp
             protocol version
 
 DEBUGGING
@@ -82,7 +82,7 @@ Ssh will detect this terminal and ask for a password there, but will just get ga
 So we can't connect.
 
 TODO
-- Password caching doesn't work. We get a new dialog box everytime a new
+- Password caching doesn't work. We get a new dialog box every time a new
 kio_sftp process starts. Very annoying.
 - Orphaned ssh processes are bad. Shame on me.
 

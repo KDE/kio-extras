@@ -198,7 +198,7 @@ bool NNTPProtocol::post_article() {
     }
   } while (result>0);
 
-  // error occured?
+  // error occurred?
   if (result<0) {
     ERR << "error while getting article data for posting" << endl;
     nntp_close();
