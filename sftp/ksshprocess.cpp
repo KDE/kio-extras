@@ -22,6 +22,8 @@
 
 #include <kstddirs.h>
 
+using namespace KSSH;
+
 const char * const KSSHProcess::versionStrs[] = {
     "OpenSSH_2.9p1",
     "OpenSSH_2.9p2",
@@ -297,6 +299,8 @@ void KSSHProcess::printArgs() {
 
 
 int KSSHProcess::error(QString& msg) {
+    kdDebug(KSSHPROC) << "KSSHProcess::error()" << endl;
+    kdDebug() << mErrorMsg << endl;
     msg = mErrorMsg;
     return mError;
 }
@@ -331,98 +335,89 @@ bool KSSHProcess::connect(bool acceptHostKey) {
     int stdiofd = ssh.stdio();
     fd_set rfds;
     struct timeval tv;
-    
     int maxfd = ptyfd > errfd ? ptyfd : errfd;  // find max file descriptor
     
     int tries = 100;
     bool lookForContinuePrompt = false;
+    QCString ptyLine, errLine;
     QString message; // save any messages from SSH here so we can give them to the user
     do {
-        FD_ZERO(&rfds);
-        FD_SET(ptyfd, &rfds);           // Add pty file descriptor
-        FD_SET(errfd, &rfds);           // Add std error file descriptor
-        tv.tv_sec = 60; tv.tv_usec = 0; // 60 second timeout
-        
-        int ret = select(maxfd+1, &rfds, NULL, NULL, &tv);
-        kdDebug(KSSHPROC) << "KSSHProcess::connect(): Select returned " << ret << endl;
-        
-        if( ret > 0 ) {
-            if( FD_ISSET(ptyfd, &rfds) ) {
-                QCString line = ssh.readLine();
-                kdDebug(KSSHPROC) << "KSSHProcess::connect(): got line from pty [" << line << "]" << endl;
-                if( line.contains(passwdPrompt[mVersion]) ) {
-                    kdDebug(KSSHPROC) << "KSSHProcess::connect(): found password prompt" << endl;
-                    ssh.WaitSlave();
-                    ssh.writeLine(mPassword.latin1());
-                    ssh.readLine();
-                    break;
-                }
-                else {
-                  //  kdDebug(KSSHPROC) << "KSSHProcess::connect(): unrecognized message [" << line << "]" << endl;
-                }
+        ptyLine = ssh.readLineFromPty(false);
+        errLine = ssh.readLineFromStderr(false);
+        if( ptyLine.isEmpty() && errLine.isEmpty() ) {
+            FD_ZERO(&rfds);
+            FD_SET(ptyfd, &rfds);           // Add pty file descriptor
+            FD_SET(errfd, &rfds);           // Add std error file descriptor
+            tv.tv_sec = 60; tv.tv_usec = 0; // 60 second timeout
+            
+            // Wait for a message from ssh on stderr or the pty.
+            int ret = ::select(maxfd+1, &rfds, NULL, NULL, &tv);
+            if( ret == 0 ) {
+                kdDebug(KSSHPROC) << "KSSHProcess::connect(): timed out waiting for a response" << endl;
+                kill();
+                mError = ERR_TIMED_OUT;
+                return false;
             }
-            if( FD_ISSET(errfd, &rfds) ) {
-                QCString line = ssh.readLineFromStderr(false);
-                kdDebug(KSSHPROC) << "KSSHProcess::connect(): got from stderr [" << line << "]" << endl;
-                    
-                if( line.contains(hostKeyMissing[mVersion]) ) {
-                    kdDebug(KSSHPROC) << "KSSHProcess::connect(): found 'no host key' message" << endl;
-                    if( !acceptHostKey ) {
-                        kdDebug(KSSHPROC) << "KSSHProcess::connect(): Not accepting host key" << endl;
-                        mError = ERR_NEW_HOST_KEY;
-                        mErrorMsg = message;
-//                        kill();
-//                        return false;
-                    }
-                    lookForContinuePrompt = true;
-                }
-                else if( line.contains(hostKeyChanged[mVersion]) ) {
-                    kdDebug(KSSHPROC) << "KSSHProcess::connect(): found 'changed host key' message" << endl;
-                    if( !acceptHostKey ) {
-                        kdDebug(KSSHPROC) << "KSSHProcess::connect(): Not accepting host key" << endl;
-                        mError = ERR_DIFF_HOST_KEY;
-                        mErrorMsg = message;
-//                        kill();
-//                        return false;
-                    }
-                    lookForContinuePrompt = true;
-                }
-                else if( lookForContinuePrompt && line.contains(continuePrompt[mVersion]) ) {
-                    if( acceptHostKey ) {
-                        kdDebug(KSSHPROC) << "KSSHProcess::connect(): Accepting host key" << endl;
-                        ::write(stdiofd, "yes\n", 4);
-                    }
-                    else {
-                        kdDebug(KSSHPROC) << "KSSHProcess::connect(): error we should never " <<
-                                             "get to continue prompt and not want to continue" << endl;
-                        ::write(stdiofd, "no\n", 3);
-                        kill();
-                        mError = ERR_INTERNAL;
-                        return false;
-                    }
-                }
-//                else if( line.contains("Pseudo-terminal") ) {
-//                    int a = ::read(ptyfd, line.data(), line.size()-1);
-//                    line[a] = '\0';
-//                    kdDebug(KSSHPROC) << " got line from terminal: " << line << endl;
-//                }
-                else {
-                   kdDebug(KSSHPROC) << "KSSHProcess::connect(): unrecognized message" << endl;
-                }
+            else if( ret == -1 ) {
+                kdDebug(KSSHPROC) << "KSSHProcess::connect(): select error: " << strerror(errno) << endl;
+                mError = ERR_INTERNAL;
+                return false;
+            }
+
+            ptyLine = ssh.readLineFromPty(false);
+            errLine = ssh.readLineFromStderr(false);
+        }
+        
+        if( !ptyLine.isEmpty() ) {
+            kdDebug(KSSHPROC) << "KSSHProcess::connect(): got line from pty [" << ptyLine << "]" << endl;
+            if( ptyLine.contains(passwdPrompt[mVersion]) ) {
+                kdDebug(KSSHPROC) << "KSSHProcess::connect(): found password prompt" << endl;
+                ssh.WaitSlave();
+                ssh.writeLine(mPassword.latin1());
+                break;
+            }
+            else {
+              // kdDebug(KSSHPROC) << "KSSHProcess::connect(): unrecognized message [" << ptyLine << "]" << endl;
+            }
+        }
+        
+        if( !errLine.isEmpty() ) {
+            kdDebug(KSSHPROC) << "KSSHProcess::connect(): got from stderr [" << errLine << "]" << endl;
                 
-                if( lookForContinuePrompt ) { message.append(line); }
+            if( errLine.contains(hostKeyMissing[mVersion]) ) {
+                kdDebug(KSSHPROC) << "KSSHProcess::connect(): found 'no host key' message" << endl;
+                lookForContinuePrompt = true;
+                if( !acceptHostKey ) {
+                    kdDebug(KSSHPROC) << "KSSHProcess::connect(): Not accepting host key" << endl;
+                    mError = ERR_NEW_HOST_KEY;
+                }
             }
-        }
-        else if( ret == 0 ) {
-            kdDebug(KSSHPROC) << "KSSHProcess::connect(): timed out waiting for a response" << endl;
-            kill();
-            mError = ERR_TIMED_OUT;
-            return false;
-        }
-        else {
-            kdDebug(KSSHPROC) << "KSSHProcess::connect(): select error: " << strerror(errno) << endl;
-            mError = ERR_INTERNAL;
-            return false;
+            else if( errLine.contains(hostKeyChanged[mVersion]) ) {
+                kdDebug(KSSHPROC) << "KSSHProcess::connect(): found 'changed host key' message" << endl;
+                lookForContinuePrompt = true;
+                if( !acceptHostKey ) {
+                    kdDebug(KSSHPROC) << "KSSHProcess::connect(): Not accepting host key" << endl;
+                    mError = ERR_DIFF_HOST_KEY;
+                }
+            }
+            else if( lookForContinuePrompt && errLine.contains(continuePrompt[mVersion]) ) {
+                if( acceptHostKey ) {
+                    kdDebug(KSSHPROC) << "KSSHProcess::connect(): Accepting host key" << endl;
+                    ssh.writeLine("yes");
+                }
+                else {
+                    kdDebug(KSSHPROC) << "KSSHProcess::connect(): Not accepting host key" << endl;
+                    ssh.writeLine("no");
+                    mErrorMsg = message;
+                    kill();
+                    return false;
+                }
+            }
+            else {
+              // kdDebug(KSSHPROC) << "KSSHProcess::connect(): unrecognized message" << endl;
+            }
+            
+            if( lookForContinuePrompt ) { message.append(errLine); message += "\n"; }
         }
     } while(tries--);
 
@@ -436,8 +431,10 @@ bool KSSHProcess::connect(bool acceptHostKey) {
     // we specified only one password prompt.
 
     // First make sure ssh isn't hanging around as a zombie if it has exited.
+    // But first give ssh time to exit. This sleep() call is a bad hack, but
+    // I haven't figured out a better way yet.
+    sleep(2);
     ::waitpid(ssh.pid(), NULL, WNOHANG);
-
     // Send signal 0. If it succeeds or fails with error EPERM the process
     // is still running. See the Unix Programming FAQ Q1.9 for an explanation
     int ret = ::kill(ssh.pid(), 0);
