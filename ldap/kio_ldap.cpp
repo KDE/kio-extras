@@ -4,6 +4,7 @@
 #include <config.h>
 #endif
 #include <signal.h>
+#include <errno.h>
 #include <sys/types.h>
 #include <sys/stat.h>
 #ifdef TIME_WITH_SYS_TIME
@@ -102,9 +103,45 @@ void LDAPProtocol::get(const KURL &url)
       }*/
   KLDAP::SearchRequest search(c, _url.latin1(), KLDAP::Request::Synchronous);
 
+  // Check for connection errors
+  if( c.handle() == 0 ) {
+    switch( errno ) {      
+    case ECONNREFUSED:
+      error( ERR_COULD_NOT_CONNECT, _url );
+      return;
+    default: 
+      error( ERR_UNKNOWN_HOST, _url );
+      return;
+    }
+  }
+
   // wait for the request
-  search.execute();
-  search.finish();
+  if( !search.execute() ) {
+    int res = search.result();
+    switch( res ) {
+    case LDAP_OPERATIONS_ERROR:
+    case LDAP_PROTOCOL_ERROR:
+      error( ERR_INTERNAL, _url );
+      return;
+    case LDAP_SERVER_DOWN:
+      error( ERR_COULD_NOT_BIND, _url );
+      return;
+    case LDAP_INVALID_SYNTAX:
+    case LDAP_INVALID_DN_SYNTAX:
+      error( ERR_MALFORMED_URL, _url );
+      return;
+    case LDAP_TIMELIMIT_EXCEEDED:
+    case LDAP_SIZELIMIT_EXCEEDED:
+      /* ... */
+      /* we try to ignore those */ 
+      break;
+    }
+  }
+  if( !search.finish() ) {
+    // Could not finish query
+    error( ERR_COULD_NOT_READ, _url );
+    return;
+  }
 
   // collect the result
   QCString result = search.asLDIF().utf8();
