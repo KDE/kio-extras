@@ -120,7 +120,7 @@ char *getPasswordCallBack(const char * c, bool echo)
 }
 
 
-int check( Connection *_con );
+int check( KIOConnection *_con );
 void sigchld_handler( int );
 void sigsegv_handler( int );
 
@@ -134,7 +134,7 @@ int main( int argc, char **argv )
 	QtApp = new QApplication( argc, argv );
 	qDebug( "kio_smb : main 1");
 
-	Connection parent( 0, 1 );
+	KIOConnection parent( 0, 1 );
 		
 	qDebug( "kio_smb : main 2");
 
@@ -170,7 +170,7 @@ void sigchld_handler( int )
 }
 
 
-SmbProtocol::SmbProtocol( Connection *_conn ) : IOProtocol( _conn )
+SmbProtocol::SmbProtocol( KIOConnection *_conn ) : KIOProtocol( _conn )
 {
 	smbio=new SMBIO(getPasswordCallBack);
 	smbio->setPasswordCallback(getPasswordCallBack);
@@ -468,7 +468,7 @@ void SmbProtocol::doCopy( QStringList& _source, const char *_dest, bool _rename,
 	m_cmd = CMD_GET;
 
 	// Start a server for the destination protocol
-	Slave slave( exec );
+	KIOSlave slave( exec );
 	if ( slave.pid() == -1 ) {
 		error( ERR_CANNOT_LAUNCH_PROCESS, exec );
 		m_cmd = CMD_NONE;
@@ -1322,8 +1322,8 @@ void SmbProtocol::slotListDir( const char *_url )
 
 		qDebug( "kio_smb : Listing %s", ep->d_name );
 
-		UDSEntry entry;
-		UDSAtom atom;
+		KUDSEntry entry;
+		KUDSAtom atom;
 		atom.m_uds = UDS_NAME;
 		atom.m_str = ep->d_name;
 		entry.append( atom );
@@ -1522,20 +1522,20 @@ void SmbProtocol::jobError( int _errid, const char *_txt )
  *
  *************************************/
 
-SmbIOJob::SmbIOJob( Connection *_conn, SmbProtocol *_Smb ) : IOJob( _conn )
+SmbIOJob::SmbIOJob( KIOConnection *_conn, SmbProtocol *_Smb ) : KIOJobBase( _conn )
 {
   m_pSmb = _Smb;
 }
   
 void SmbIOJob::slotError( int _errid, const char *_txt )
 {
-  IOJob::slotError( _errid, _txt );
+  KIOJobBase::slotError( _errid, _txt );
   m_pSmb->jobError( _errid, _txt );
 }
 
 // utility
 
-int check( Connection *_con )
+int check( KIOConnection *_con )
 {
   int err;
   struct timeval tv;

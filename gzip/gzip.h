@@ -8,7 +8,7 @@
 class GZipProtocol : public KIOProtocol
 {
 public:
-  GZipProtocol( Connection *_conn );
+  GZipProtocol( KIOConnection *_conn );
   
   virtual void slotGet( const char *_url );
   virtual void slotPut( const char *_url, int _mode, bool _overwrite,
@@ -23,19 +23,19 @@ public:
   void jobDataEnd();
   void filterData( void *_p, int _len );
   
-  Connection* connection() { return ConnectionSignals::m_pConnection; }
+  KIOConnection* connection() { return KIOConnectionSignals::m_pConnection; }
   
 protected:
 
   int m_cmd;
   KIOFilter* m_pFilter;
-  IOJob* m_pJob;
+  KIOJobBase* m_pJob;
 };
 
 class GZipIOJob : public KIOJobBase
 {
 public:
-  GZipIOJob( Connection *_conn, GZipProtocol *_gzip );
+  GZipIOJob( KIOConnection *_conn, GZipProtocol *_gzip );
   
   virtual void slotData( void *_p, int _len );
   virtual void slotDataEnd();

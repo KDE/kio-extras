@@ -31,18 +31,18 @@ bool open_PassDlg( const QString& _head, QString& _user, QString& _pass );
 
 int main(int , char **)
 {
-  signal(SIGCHLD, IOProtocol::sigchld_handler);
+  signal(SIGCHLD, KIOProtocol::sigchld_handler);
 #ifdef NDEBUG
-  signal(SIGSEGV, IOProtocol::sigsegv_handler);
+  signal(SIGSEGV, KIOProtocol::sigsegv_handler);
 #endif
 
-  Connection parent( 0, 1 );
+  KIOConnection parent( 0, 1 );
 
   GopherProtocol gopher( &parent );
   gopher.dispatchLoop();
 }
 
-GopherProtocol::GopherProtocol(Connection *_conn) : IOProtocol(_conn)
+GopherProtocol::GopherProtocol(KIOConnection *_conn) : KIOProtocol(_conn)
 {
   m_cmd = CMD_NONE;
   m_pJob = 0L;
@@ -156,8 +156,8 @@ void GopherProtocol::slotListDir( const char *_url )
   }
   if (path.at(0) == '/') path.remove(0,1);
 
-  UDSEntry entry;
-  UDSAtom atom;
+  KUDSEntry entry;
+  KUDSAtom atom;
   QString line;
   char buf[128];
   while (fgets(buf, 127, fp)) {
@@ -429,8 +429,8 @@ void GopherProtocol::jobDataEnd()
  *
  *************************************/
 
-GopherIOJob::GopherIOJob(Connection *_conn, GopherProtocol *_gopher) :
-	IOJob(_conn)
+GopherIOJob::GopherIOJob(KIOConnection *_conn, GopherProtocol *_gopher) :
+	KIOJobBase(_conn)
 {
   m_pGopher = _gopher;
 }
@@ -447,7 +447,7 @@ void GopherIOJob::slotDataEnd()
 
 void GopherIOJob::slotError(int _errid, const char *_txt)
 {
-  IOJob::slotError( _errid, _txt );
+  KIOJobBase::slotError( _errid, _txt );
   m_pGopher->jobError(_errid, _txt );
 }
 

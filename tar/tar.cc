@@ -16,10 +16,10 @@
 
 int main(int , char **)
 {
-  signal(SIGCHLD, IOProtocol::sigchld_handler);
-  signal(SIGSEGV, IOProtocol::sigsegv_handler);
+  signal(SIGCHLD, KIOProtocol::sigchld_handler);
+  signal(SIGSEGV, KIOProtocol::sigsegv_handler);
 
-  Connection parent( 0, 1 );
+  KIOConnection parent( 0, 1 );
 
   TARProtocol tar( &parent );
   tar.dispatchLoop();
@@ -218,8 +218,8 @@ void TARProtocol::filterData(void *_p, int _len)
  *
  *************************************/
 
-TARIOJob::TARIOJob(Connection *_conn, TARProtocol *_tar) :
-	IOJob(_conn)
+TARIOJob::TARIOJob(KIOConnection *_conn, TARProtocol *_tar) :
+	KIOJobBase(_conn)
 {
   m_pTAR = _tar;
 }

@@ -13,17 +13,17 @@
 #include <kio_interface.h>
 #include <kio_base.h>
 
-class LDAPProtocol : public IOProtocol
+class LDAPProtocol : public KIOProtocol
 {
 public:
-  LDAPProtocol( Connection *_conn );
+  LDAPProtocol( KIOConnection *_conn );
   
   virtual void slotGet( const char *_url );
 
   virtual void slotTestDir( const char *_url );
   virtual void slotListDir( const char *_url );
 
-  Connection* connection() { return ConnectionSignals::m_pConnection; }
+  KIOConnection* connection() { return KIOConnectionSignals::m_pConnection; }
 
   void jobError( int _errid, const char *_txt );
 
@@ -34,10 +34,10 @@ private:
 };
 
 
-class LDAPIOJob : public IOJob
+class LDAPIOJob : public KIOJobBase
 {
 public:
-  LDAPIOJob( Connection *_conn, LDAPProtocol *_File );
+  LDAPIOJob( KIOConnection *_conn, LDAPProtocol *_File );
   
   virtual void slotError( int _errid, const char *_txt );
 

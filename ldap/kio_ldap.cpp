@@ -19,13 +19,13 @@
 int main(int, char **)
 {
   // redirect the signals
-  signal(SIGCHLD, IOProtocol::sigchld_handler);
-  signal(SIGSEGV, IOProtocol::sigsegv_handler);
+  signal(SIGCHLD, KIOProtocol::sigchld_handler);
+  signal(SIGSEGV, KIOProtocol::sigsegv_handler);
 
   qDebug("kio_ldap : Starting");
 
   // create a connection between slave on parent
-  Connection parent(0, 1);
+  KIOConnection parent(0, 1);
   
   // let the protocol class do its work
   LDAPProtocol file(&parent);
@@ -38,8 +38,8 @@ int main(int, char **)
 /**
  * Initialize the protocol with a Connection.
  */
-LDAPProtocol::LDAPProtocol(Connection *_conn) 
-  : IOProtocol(_conn )
+LDAPProtocol::LDAPProtocol(KIOConnection *_conn) 
+  : KIOProtocol(_conn )
 {
   m_bIgnoreJobErrors = FALSE;
 }
@@ -178,8 +178,8 @@ void LDAPProtocol::slotListDir(const char *_url)
   search.finish();
 
   // publish the results
-  UDSEntry entry;
-  UDSAtom atom;
+  KUDSEntry entry;
+  KUDSAtom atom;
 
   // publish the directories
   for (KLDAP::Entry e=search.first(); !search.end(); e=search.next())
@@ -298,14 +298,14 @@ void LDAPProtocol::jobError(int _errid, const char *_txt)
  *
  *************************************/
 
-LDAPIOJob::LDAPIOJob( Connection *_conn, LDAPProtocol *_File ) : IOJob( _conn )
+LDAPIOJob::LDAPIOJob( KIOConnection *_conn, LDAPProtocol *_File ) : KIOJobBase( _conn )
 {
   m_pFile = _File;
 }
   
 void LDAPIOJob::slotError( int _errid, const char *_txt )
 {
-  IOJob::slotError( _errid, _txt );
+  KIOJobBase::slotError( _errid, _txt );
   m_pFile->jobError( _errid, _txt );
 }
 

@@ -13,10 +13,10 @@
 #include <kio_filter.h>
 #include <kurl.h>
 
-class POP3Protocol : public IOProtocol
+class POP3Protocol : public KIOProtocol
 {
 public:
-  POP3Protocol (Connection *_conn);
+  POP3Protocol (KIOConnection *_conn);
   
   virtual void slotGet (const char *_url);
   virtual void slotGetSize (const char *_url );
@@ -34,7 +34,7 @@ public:
   void jobError (int _errid, const char *_text);
   void jobDataEnd ();
   
-  Connection* connection () { return ConnectionSignals::m_pConnection; }
+  KIOConnection* connection () { return KIOConnectionSignals::m_pConnection; }
   
  protected:
 
@@ -81,13 +81,13 @@ public:
   struct timeval m_tTimeout;
   QString m_sOldServer, m_sOldPass, m_sOldUser;
   FILE *fp;
-  IOJob* m_pJob;
+  KIOJobBase* m_pJob;
 };
 
-class POP3IOJob : public IOJob
+class POP3IOJob : public KIOJobBase
 {
  public:
-  POP3IOJob (Connection *_conn, POP3Protocol *_pop3);
+  POP3IOJob (KIOConnection *_conn, POP3Protocol *_pop3);
   
   virtual void slotData (void *_p, int _len);
   virtual void slotDataEnd ();

@@ -22,10 +22,10 @@
 #endif
 
 
-class SmbProtocol : public IOProtocol
+class SmbProtocol : public KIOProtocol
 {
 public:
-	SmbProtocol( Connection *_conn );
+	SmbProtocol( KIOConnection *_conn );
 //	virtual ~SmbProtocol();
   
 	virtual void slotGet( const char *_url );
@@ -50,7 +50,7 @@ public:
 	virtual void slotData( void *_p, int _len );
 	virtual void slotDataEnd();
 
-	Connection* connection() { return ConnectionSignals::m_pConnection; }
+	KIOConnection* connection() { return KIOConnectionSignals::m_pConnection; }
 
 	void jobError( int _errid, const char *_txt );
   
@@ -91,10 +91,10 @@ protected:
 	int m_fPut;
 };
 
-class SmbIOJob : public IOJob
+class SmbIOJob : public KIOJobBase
 {
 public:
-	SmbIOJob( Connection *_conn, SmbProtocol *_Smb );
+	SmbIOJob( KIOConnection *_conn, SmbProtocol *_Smb );
 
 	virtual void slotError( int _errid, const char *_txt );
 

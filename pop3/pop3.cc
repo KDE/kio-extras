@@ -29,19 +29,19 @@ bool open_PassDlg( const QString& _head, QString& _user, QString& _pass );
 
 int main(int , char **)
 {
-  signal(SIGCHLD, IOProtocol::sigchld_handler);
+  signal(SIGCHLD, KIOProtocol::sigchld_handler);
 // Prevents coredumps (from SIGSEGV) if -DNDEBUG is used
 #ifdef NDEBUG
-  signal(SIGSEGV, IOProtocol::sigsegv_handler);
+  signal(SIGSEGV, KIOProtocol::sigsegv_handler);
 #endif
 
-  Connection parent( 0, 1 );
+  KIOConnection parent( 0, 1 );
 
   POP3Protocol pop3( &parent );
   pop3.dispatchLoop();
 }
 
-POP3Protocol::POP3Protocol(Connection *_conn) : IOProtocol(_conn)
+POP3Protocol::POP3Protocol(KIOConnection *_conn) : KIOProtocol(_conn)
 {
   m_cmd = CMD_NONE;
   m_pJob = 0L;
@@ -529,8 +529,8 @@ void POP3Protocol::slotListDir (const char *_url)
     pop3_close();
     return;
   }
-  UDSEntry entry;
-  UDSAtom atom;
+  KUDSEntry entry;
+  KUDSAtom atom;
   QString fname;
   for (int i=0; i < num_messages; i++) {
     fname="Message %1";
@@ -700,8 +700,8 @@ void POP3Protocol::slotDel( QStringList& _list )
  *
  *************************************/
 
-POP3IOJob::POP3IOJob(Connection *_conn, POP3Protocol *_pop3) :
-	IOJob(_conn)
+POP3IOJob::POP3IOJob(KIOConnection *_conn, POP3Protocol *_pop3) :
+	KIOJobBase(_conn)
 {
   m_pPOP3 = _pop3;
 }
@@ -718,6 +718,6 @@ void POP3IOJob::slotDataEnd()
 
 void POP3IOJob::slotError(int _errid, const char *_txt)
 {
-  IOJob::slotError( _errid, _txt );
+  KIOJobBase::slotError( _errid, _txt );
   m_pPOP3->jobError(_errid, _txt );
 }

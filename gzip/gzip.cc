@@ -20,9 +20,9 @@
 
 int main( int , char ** )
 {
-  signal (SIGCHLD, IOProtocol::sigchld_handler);
+  signal (SIGCHLD, KIOProtocol::sigchld_handler);
 
-  Connection parent( 0, 1 );
+  KIOConnection parent( 0, 1 );
 
   GZipProtocol prot( &parent );
   prot.dispatchLoop();
@@ -31,7 +31,7 @@ int main( int , char ** )
   return 0;
 }
 
-GZipProtocol::GZipProtocol( Connection *_conn ) : KIOProtocol( _conn )
+GZipProtocol::GZipProtocol( KIOConnection *_conn ) : KIOProtocol( _conn )
 {
   m_cmd = CMD_NONE;
   m_pFilter = 0L;
@@ -512,7 +512,7 @@ void GZipProtocol::filterData( void *_p, int _len )
  *
  *************************************/
 
-GZipIOJob::GZipIOJob( Connection *_conn, GZipProtocol *_gzip ) : KIOJobBase( _conn )
+GZipIOJob::GZipIOJob( KIOConnection *_conn, GZipProtocol *_gzip ) : KIOJobBase( _conn )
 {
   m_pGZip = _gzip;
 }

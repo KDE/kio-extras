@@ -32,10 +32,10 @@ enum GopherType
   GOPHER_NONE       = '*'
 };
 
-class GopherProtocol : public IOProtocol
+class GopherProtocol : public KIOProtocol
 {
 public:
-  GopherProtocol (Connection *_conn);
+  GopherProtocol (KIOConnection *_conn);
   
   virtual void slotGet (const char *_url);
   virtual void slotGetSize (const char *_url );
@@ -51,7 +51,7 @@ public:
   void jobError (int _errid, const char *_text);
   void jobDataEnd ();
   
-  Connection* connection () { return ConnectionSignals::m_pConnection; }
+  KIOConnection* connection () { return KIOConnectionSignals::m_pConnection; }
   
  protected:
 
@@ -71,15 +71,15 @@ public:
   int m_cmd, m_iSock;
   struct timeval m_tTimeout;
   FILE *fp;
-  IOJob* m_pJob;
+  KIOJobBase* m_pJob;
   GopherType current_type;
   static const char *abouttext;
 };
 
-class GopherIOJob : public IOJob
+class GopherIOJob : public KIOJobBase
 {
  public:
-  GopherIOJob (Connection *_conn, GopherProtocol *_gopher);
+  GopherIOJob (KIOConnection *_conn, GopherProtocol *_gopher);
   
   virtual void slotData (void *_p, int _len);
   virtual void slotDataEnd ();
