@@ -97,7 +97,7 @@ const char *CallbackDialog::answer() // the user answer
 char *getPasswordCallBack(const char * c)
 {
 	if (!c) return 0;
-	QString s("");
+	QString s;
 	bool echo=false;
 	if (!strcmp(c,"User")) {
 		s+=i18n("User");
@@ -302,8 +302,8 @@ void SmbProtocol::doCopy( QStringList& _source, const char *_dest )
 
 	bool overwrite_all = false;
 	bool auto_skip = false;
-	QStringList skip_list;
-	QStringList overwrite_list;
+	static QStringList skip_list, overwrite_list;
+	skip_list.clear(); overwrite_list.clear();
 	// Create all directories
 	dit = dirs.begin();
 	for( ; dit != dirs.end(); dit++ ) {
@@ -344,13 +344,13 @@ void SmbProtocol::doCopy( QStringList& _source, const char *_dest )
 			if ( job.hasError() ) {
 				// Can we prompt the user and ask for a solution ?
 				if ( job.errorId() == ERR_DOES_ALREADY_EXIST ) {
-					QString old_path = ud.path( 1 );
-					QString old_url = ud.url( 1 );
+					static QString old_path = ud.path( 1 );
+					static QString old_url = ud.url( 1 );
 					// Should we skip automatically ?
 					if ( auto_skip ) {
 						job.clearError();
 						// We dont want to copy files in this directory, so we put it on the skip list.
-						skip_list.append( old_url );
+						skip_list.append( ud.url(1) );
 						continue;
 					} else if ( overwrite_all ) {
 						job.clearError();
@@ -359,7 +359,7 @@ void SmbProtocol::doCopy( QStringList& _source, const char *_dest )
 
 					RenameDlg_Mode m = (RenameDlg_Mode)( M_MULTI | M_SKIP | M_OVERWRITE );
 					QString tmp2 = ud.url();
-					QString n;
+					static QString n;
 					RenameDlg_Result r = open_RenameDlg( dit->absSource, tmp2, m, n );
 					if ( r == R_CANCEL ) {
 						error( ERR_USER_CANCELED, "" );

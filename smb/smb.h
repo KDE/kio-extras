@@ -1,5 +1,5 @@
 #ifndef __smb_h__
-#define __smb_h__
+#define __smb_h__ "$Id"
 
 #include <qstring.h>
 
@@ -40,23 +40,20 @@ protected:
 
 	SMBIO smbio;
 
-	struct Copy
-	{
+	struct Copy {
 		QString absSource;
 		QString relDest;
 		mode_t mode;
 		off_t size;
 	};
 
-	struct CopyDir
-	{
+	struct CopyDir {
 		QString absSource;
 		QString relDest;
 		mode_t mode;
 	};
 
-	struct Del
-	{
+	struct Del {
 		QString m_strAbsSource;
 		QString m_strRelDest;
 		mode_t m_mode;
