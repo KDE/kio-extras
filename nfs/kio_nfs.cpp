@@ -47,8 +47,6 @@
 #include <time.h>
 #include <unistd.h>
 
-#include <iostream.h>
-
 #include <qfile.h>
 #include <qdir.h>
 
@@ -202,6 +200,7 @@ time_t NFSFileHandle::age() const
    return (time(0)-m_detectTime);
 };
 
+/*
 ostream& operator<< (ostream& s, const NFSFileHandle& x)
 {
    for (int i =0; i<NFS_FHSIZE; i++)
@@ -209,6 +208,7 @@ ostream& operator<< (ostream& s, const NFSFileHandle& x)
    s<<dec;
    return s;
 }
+*/
 
 NFSProtocol::NFSProtocol (const QCString &pool, const QCString &app )
 :SlaveBase( "nfs", pool, app )

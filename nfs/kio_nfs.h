@@ -35,8 +35,6 @@
 #include <netinet/in.h>
 #include <sys/time.h>
 
-#include <iostream.h>
-
 class NFSFileHandle
 {
    public:
@@ -55,7 +53,7 @@ class NFSFileHandle
       time_t m_detectTime;
 };
 
-ostream& operator<<(ostream&, const NFSFileHandle&);
+//ostream& operator<<(ostream&, const NFSFileHandle&);
 
 typedef QMap<QString,NFSFileHandle> NFSFileHandleMap;
 
