@@ -18,8 +18,6 @@
 #ifndef MAILHEADER_H
 #define MAILHEADER_H
 
-#include <time.h>
-
 #include "mimeheader.h"
 #include "mailaddress.h"
 #include "mimeio.h"

@@ -18,8 +18,6 @@
 #include "mailheader.h"
 #include "rfcdecoder.h"
 
-#include <iostream.h>
-
 mailHeader::mailHeader ()
 {
   toAdr.setAutoDelete (true);

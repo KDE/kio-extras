@@ -15,7 +15,6 @@
  *                                                                         *
  ***************************************************************************/
 
-#include <time.h>
 #include "mimeheader.h"
 #include "mimehdrline.h"
 #include "mailheader.h"

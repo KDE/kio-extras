@@ -15,13 +15,10 @@
  *                                                                         *
  ***************************************************************************/
 
-#include <time.h>
 #include <iostream.h>
 #include <ctype.h>
 #include <stdlib.h>
 #include <stdio.h>
-
-#include <qtextcodec.h>
 
 #include <config.h>
 #include "mimehdrline.h"
