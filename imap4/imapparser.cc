@@ -115,8 +115,8 @@ imapParser::clientLogin (const QString & aUser, const QString & aPass,
 
   cmd =
     doCommand (new
-               imapCommand ("LOGIN", "\"" + rfcDecoder::toIMAP(aUser)
-               + "\" \"" + rfcDecoder::toIMAP(aPass) + "\""));
+               imapCommand ("LOGIN", "\"" + rfcDecoder::quoteIMAP(aUser)
+               + "\" \"" + rfcDecoder::quoteIMAP(aPass) + "\""));
 
   if (cmd->result () == "OK")
   {

@@ -33,8 +33,9 @@ class rfcDecoder
 
 public:
 
-  static const QString fromIMAP (const QString & src);
-  static const QString toIMAP (const QString & inSrc);
+  static QString fromIMAP (const QString & src);
+  static QString toIMAP (const QString & inSrc);
+  static QString quoteIMAP (const QString & src);
 
   static QString decodeQuoting(const QString &aStr);
 

@@ -52,8 +52,7 @@ static char base64chars[] =
 
 /* Convert an IMAP mailbox to a Unicode path
  */
-const QString
-rfcDecoder::fromIMAP (const QString & inSrc)
+QString rfcDecoder::fromIMAP (const QString & inSrc)
 {
   unsigned char c, i, bitcount;
   unsigned long ucs4, utf16, bitbuf;
@@ -154,10 +153,21 @@ rfcDecoder::fromIMAP (const QString & inSrc)
   return QString::fromUtf8 (dst.data ());
 }
 
+/* Quote " and \ characters */
+QString rfcDecoder::quoteIMAP(const QString &src)
+{
+  QString result;
+  for (int i = 0; i < src.length(); i++)
+  {
+    if (src[i] == '"' || src[i] == '\\') result += '\\';
+    result += src[i];
+  }
+  return result;
+}
+
 /* Convert Unicode path to modified UTF-7 IMAP mailbox
  */
-const QString
-rfcDecoder::toIMAP (const QString & inSrc)
+QString rfcDecoder::toIMAP (const QString & inSrc)
 {
   unsigned int utf8pos, utf8total, c, utf7mode, bitstogo, utf16flag;
   unsigned long ucs4, bitbuf;
@@ -273,14 +283,7 @@ rfcDecoder::toIMAP (const QString & inSrc)
     }
     dst += '-';
   }
-  /* Quote " and \ characters */
-  QString result;
-  for (int i = 0; i < dst.length(); i++)
-  {
-    if (dst[i] == '"' || dst[i] == '\\') result += '\\';
-    result += dst[i];
-  }
-  return result;
+  return quoteIMAP(dst);
 }
 
 //-----------------------------------------------------------------------------
