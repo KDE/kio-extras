@@ -701,7 +701,7 @@ StatInfo SmbProtocol::createStatInfo(const QString line)
 
 //"      A   213123  Mon Mar 12"
    //the \\d+ is required for files bigger than 100.000.000 bytes
-   int startOfData=line.find(QRegExp("    [ADR ][ADR ][ADR ] [ \\d][ \\d][ \\d][ \\d][ \\d][ \\d][ \\d]\\d+  [A-Z][a-z][a-z] [A-Z][a-z][a-z] [ \\d]\\d"));
+   int startOfData=line.find(QRegExp("    [SADR ][SADR ][SADR ] [ \\d][ \\d][ \\d][ \\d][ \\d][ \\d][ \\d]\\d+  [A-Z][a-z][a-z] [A-Z][a-z][a-z] [ \\d]\\d"));
    //kdDebug(7101)<<"createStatInfo: regexp at: "<<startOfData<<endl;
    if (startOfData==-1)
    {
