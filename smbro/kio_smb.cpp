@@ -1487,7 +1487,7 @@ void SmbProtocol::get( const KURL& url )
             array.setRawData(buf, i);
             data( array );
             array.resetRawData(buf,i);
-
+	    processedSize(bytesRead);
          }
       }
       else if (result<0)
