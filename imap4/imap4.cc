@@ -57,6 +57,7 @@
 #include <stdio.h>
 #include <netdb.h>
 #include <unistd.h>
+#include <stdlib.h>
 
 #include <qregexp.h>
 
@@ -99,7 +100,7 @@ int kdemain(int argc, char **argv)
   KInstance instance( "kio_imap4" );
   if (argc != 4) {
     kdDebug() << " Usage: kio_imap4 protocol domain-socket1 domain-socket2" << endl;
-    exit(-1);
+    ::exit(-1);
   }
   IMAP4Protocol *slave = new IMAP4Protocol(argv[2], argv[3]);
   slave->dispatchLoop();
