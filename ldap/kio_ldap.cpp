@@ -31,25 +31,23 @@ extern "C" { int kdemain(int argc, char **argv); }
 /**
  * The main program.
  */
-int kdemain(int argc, char **argv)
+int kdemain( int argc, char **argv )
 {
-    KInstance instance( "kio_ldap" );
-    // redirect the signals
-    //signal(SIGCHLD, KIOProtocol::sigchld_handler);
-    //signal(SIGSEGV, KIOProtocol::sigsegv_handler);
+  KInstance instance( "kio_ldap" );
 
-    kdDebug(7125) << "kio_ldap : Starting " << getpid() << endl;
+  kdDebug(7125) << "kio_ldap : Starting " << getpid() << endl;
 
-    if (argc != 4) {
-	fprintf(stderr, "Usage kio_ldap protocol pool app\n");
-	return -1;
-    }
-    // let the protocol class do its work
-    LDAPProtocol slave(argv[2], argv[3]);
-    slave.dispatchLoop();
+  if ( argc != 4 ) {
+    kdError() << "Usage kio_ldap protocol pool app" << endl;
+    return -1;
+  }
 
-    kdDebug(7125) << "kio_ldap : Done" << endl;
-    return 0;
+  // let the protocol class do its work
+  LDAPProtocol slave( argv[ 2 ], argv[ 3 ] );
+  slave.dispatchLoop();
+
+  kdDebug( 7125 ) << "kio_ldap : Done" << endl;
+  return 0;
 }
 
 
@@ -59,23 +57,26 @@ int kdemain(int argc, char **argv)
 LDAPProtocol::LDAPProtocol(const QCString &pool, const QCString &app)
   : SlaveBase( "ldap", pool, app)
 {
-    kdDebug(7125) << "LDAPProtocol::LDAPProtocol" << endl;
+  kdDebug(7125) << "LDAPProtocol::LDAPProtocol" << endl;
 }
 
-void LDAPProtocol::setHost( const QString& _host, int _port,
-			    const QString& _user, const QString& _pass )
+void LDAPProtocol::setHost( const QString& host, int port,
+                            const QString& user, const QString& password )
 {
-  urlPrefix = "ldap://";
-  if (!_user.isEmpty()) {
-    urlPrefix += _user;
-    if (!_pass.isEmpty())
-      urlPrefix += ":" + _pass;
-    urlPrefix += "@";
+  mUser = user;
+  mPassword = password;
+
+  mUrlPrefix = "ldap://";
+  if (!user.isEmpty()) {
+    mUrlPrefix += user;
+    if (!password.isEmpty())
+      mUrlPrefix += ":" + password;
+    mUrlPrefix += "@";
   }
-  urlPrefix += _host;
-  if (_port)
-    urlPrefix += QString( ":%1" ).arg( _port );
-  kdDebug(7125) << "urlPrefix " << urlPrefix << endl;
+  mUrlPrefix += host;
+  if (port)
+    mUrlPrefix += QString( ":%1" ).arg( port );
+  kdDebug(7125) << "mUrlPrefix " << mUrlPrefix << endl;
 }
 
 /**
@@ -94,10 +95,13 @@ void LDAPProtocol::get(const KURL &_url)
 
   // initiate the search
   KLDAP::Connection c;
-  /*if (0 && !c.authenticate()) {    //FIX:user...
-      error(ERR_COULD_NOT_AUTHENTICATE, "bla");
+  if ( !mUser.isEmpty() ) {
+    if ( !c.authenticate( mUser, mPassword ) ) {
+      error( ERR_COULD_NOT_AUTHENTICATE, _url.prettyURL() );
       return;
-      }*/
+    }
+  }
+
   KLDAP::SearchRequest search(c, usrc, KLDAP::Request::Synchronous);
 
   // Check for connection errors
@@ -169,7 +173,7 @@ void LDAPProtocol::get(const KURL &_url)
  */
 void LDAPProtocol::stat( const KURL &_url )
 {
-  /*QString _url = urlPrefix + path;
+  /*QString _url = mUrlPrefix + path;
   if (!query.isEmpty()) { _url += "?" + query; }*/
   kdDebug(7125) << "kio_ldap: stat(" << _url << ")" << endl;
   KLDAP::Url usrc(_url);
@@ -243,7 +247,7 @@ void LDAPProtocol::stat( const KURL &_url )
 
   atom.m_uds = UDS_URL;
   atom.m_long = 0;
-  KLDAP::Url url(urlPrefix);
+  KLDAP::Url url(mUrlPrefix);
   url.setHost(usrc.host());
   url.setPort(usrc.port());
   url.setPath("/"+usrc.dn());
@@ -275,7 +279,7 @@ void LDAPProtocol::stat( const KURL &_url )
  */
 void LDAPProtocol::mimetype(const KURL &url)
 {
-  /*QString _url = urlPrefix + path;
+  /*QString _url = mUrlPrefix + path;
   if (!query.isEmpty()) { _url += "?" + query; }*/
   QString _url = url.prettyURL();
   kdDebug(7125) << "kio_ldap: mimetype(" << _url << ")" << endl;
@@ -379,7 +383,7 @@ void LDAPProtocol::listDir(const KURL &_url)
 	  // the url
 	  atom.m_uds = UDS_URL;
 	  atom.m_long = 0;
-	  KLDAP::Url url(urlPrefix);
+	  KLDAP::Url url(mUrlPrefix);
 	  url.setHost(usrc.host());
 	  url.setPort(usrc.port());
 	  url.setPath("/"+e.dn());
@@ -433,7 +437,7 @@ void LDAPProtocol::listDir(const KURL &_url)
       // the url
       atom.m_uds = UDS_URL;
       atom.m_long = 0;
-      KLDAP::Url url(urlPrefix);
+      KLDAP::Url url(mUrlPrefix);
       //url.setProtocol("ldap");
       url.setHost(usrc.host());
       url.setPort(usrc.port());

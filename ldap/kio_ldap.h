@@ -1,12 +1,6 @@
 #ifndef __LDAP_H__
 #define __LDAP_H__ "$Id$"
 
-//#include <sys/types.h>
-//#include <sys/stat.h>
-
-//#include <stdio.h>
-//#include <unistd.h>
-
 #include <qstring.h>
 #include <qvaluelist.h>
 
@@ -14,21 +8,20 @@
 
 class LDAPProtocol : public KIO::SlaveBase
 {
-public:
-  LDAPProtocol( const QCString &pool, const QCString &app );
-//  virtual ~LDAPProtocol();
+  public:
+    LDAPProtocol( const QCString &pool, const QCString &app );
 
-  virtual void setHost(const QString& host, int port,
-		       const QString& user, const QString& pass);
+    virtual void setHost( const QString& host, int port,
+                          const QString& user, const QString& pass );
 
-  virtual void get( const KURL& url );
-  virtual void stat( const KURL& url );
-//  virtual void mimetype( const KURL& url );
-  virtual void listDir( const KURL& url );
+    virtual void get( const KURL& url );
+    virtual void stat( const KURL& url );
+    virtual void listDir( const KURL& url );
 
-private:
-  QString urlPrefix;
+  private:
+    QString mUrlPrefix;
+    QString mUser;
+    QString mPassword;
 };
-
 
 #endif
