@@ -543,10 +543,9 @@ bool IMAP4Protocol::parseReadLine (QByteArray & buffer, ulong relay)
   while (1)
   {
     memset (&buf, sizeof (buf), 0);
-    if ((readLen = ReadLine (buf, sizeof (buf) - 1)) == 0)
-    {
+    if (!AtEOF()) readLen = ReadLine(buf, sizeof(buf) - 1);
+    else {
       int wait_time = 120;
-kdDebug(7116) << "Vor dem Warten" << endl;
       do {
         FD_ZERO (&FDs);
         FD_SET (m_iSock, &FDs);
@@ -555,7 +554,6 @@ kdDebug(7116) << "Vor dem Warten" << endl;
         wait_time--;
       }
       while (wait_time && select(m_iSock+1, &FDs, 0, 0, &m_tTimeout) == 0);
-kdDebug(7116) << "Nach dem Warten" << endl;
 
       if ((readLen = ReadLine (buf, sizeof (buf) - 1)) == 0)
       {
