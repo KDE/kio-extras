@@ -296,7 +296,7 @@ void GopherProtocol::listDir( const KURL &dest )
   return;
 }
 
-void GopherProtocol::get(const KURL &usrc, bool reload)
+void GopherProtocol::get(const KURL &usrc)
 {
   QByteArray array;
   QString path, cmd;

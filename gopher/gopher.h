@@ -36,7 +36,7 @@ public:
   GopherProtocol (const QCString &pool, const QCString &app );
   virtual ~GopherProtocol();
 
-  virtual void get( const KURL&, bool reload );
+  virtual void get( const KURL&);
   virtual void stat( const KURL& url );
   //virtual void del( const KURL& url, bool isfile);
   virtual void listDir( const KURL& url );
