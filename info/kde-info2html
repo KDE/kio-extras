@@ -145,6 +145,64 @@ sub Escape {
 #  $Tag;
 #}
 
+sub infocat {
+# Collect them all into an array that can be sorted
+	my $dir;
+	
+	my %InfoFile;
+        foreach (@info2html::config::INFODIR) {
+		opendir DIR, $dir;
+		my ($collect,$infofile,$filedesc);
+		while ($infofile = readdir(DIR)) {
+			if ($infofile =~ m/.info.bz2$/ ) {
+				open INFOFILE, "bzcat $dir/$infofile|";
+				$collect = 0;
+			}
+			elsif ($infofile =~ m/.info.gz$/ ) {
+				open INFOFILE, "gzip -dc $dir/$infofile|";
+				$collect = 0;
+			}
+			elsif ($infofile =~ m/.info$/) {
+				open INFOFILE, $dir."/".$infofile;
+				$collect = 0;
+			}
+			else {
+				next;
+			}
+			$filedesc = "";
+			while (<INFOFILE>) {
+				last if (m/END-INFO-DIR-ENTRY/);
+				s/^\* //;
+				if ($collect and not ($_ =~ m/^[\s\n]*$/)) {
+					$filedesc .= "<br>" if ($collect < 4);
+					$filedesc .= $_;
+					--$collect;
+					$filedesc .= " <b>...</b>\n" unless $collect;
+				}
+				$collect=4 if (m/START-INFO-DIR-ENTRY/);
+			}
+			close INFOFILE;
+			$filedesc = $infofile if ($filedesc eq "");
+# Add to the hash
+			$InfoFile{$filedesc} = $infofile;
+
+#$filedesc =~ s/\n/\n/;
+# print "<li><a href=\"info2html?($infofile)Top\">$filedesc</a>\n";
+		}
+	}
+
+# Now output the list
+	my @sorted =  sort { lc($a) cmp lc($b) } keys %InfoFile;
+	foreach my $name ( @sorted ) {
+		print "<LI>"
+			. "<A HREF=\"info2html?("
+			. $InfoFile{$name}
+		. ")Top\">"
+			. $name
+			. "</A>\n" ;
+	}
+}
+
 #----------------------------------------------------------
 #                   ParsHeaderToken
 #----------------------------------------------------------
