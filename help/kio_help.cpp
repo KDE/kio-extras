@@ -219,28 +219,9 @@ void HelpProtocol::get( const QString& path, const QString& query, bool /* reloa
 }
 
 
-void HelpProtocol::stat( const QString & path, const QString& query )
+void HelpProtocol::mimetype( const QString& path, const QString& query )
 {
-  kdDebug() << "stat: path=" << path << " query=" << query << endl;
-  QString doc = lookupFile(path, query);
-  if (doc.isEmpty())
-    {
-      error( KIO::ERR_DOES_NOT_EXIST, path );
-      return;
-    }
-
-  UDSEntry entry;
-  UDSAtom atom;
-
-  atom.m_uds = KIO::UDS_NAME;
-  atom.m_str = doc;
-  entry.append( atom );
-
-  atom.m_uds = KIO::UDS_URL;
-  atom.m_str = QString("help:") + doc;
-  entry.append( atom );
-
-  statEntry( entry );
+  mimeType("text/html");
   finished();
 }
 

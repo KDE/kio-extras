@@ -28,9 +28,7 @@ public:
 
   virtual void get( const QString& path, const QString& query, bool reload );
 
-  virtual void stat( const QString& path, const QString& query );
-
-  void createUDSEntry( const QString & filename, const QString & path, KIO::UDSEntry & entry );
+  virtual void mimetype( const QString& path, const QString& query );
 
 
 private:
