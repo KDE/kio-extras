@@ -11,7 +11,7 @@ class SmbProtocol : public KIO::SlaveBase
 {
 friend class MyCallback;
 public:
-	SmbProtocol( KIO::Connection *_conn = 0);
+	SmbProtocol( const QCString &pool, const QCString &app);
 	virtual ~SmbProtocol();
 
 	// Uses this function to get information in the url

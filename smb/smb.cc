@@ -85,7 +85,29 @@ public:
 	}
 };
 
-SmbProtocol::SmbProtocol( Connection *_conn ) : SlaveBase( "smb", _conn )
+extern "C" { int kdemain(int argc, char **argv); }
+
+int kdemain( int argc, char **argv )
+{
+  KInstance instance( "kio_smb" );
+
+  kDebugInfo(7106, "Starting %d", getpid());
+
+  if (argc != 4)
+  {
+     fprintf(stderr, "Usage: kio_smb protocol domain-socket1 domain-socket2\n");
+     exit(-1);
+  }
+
+  SmbProtocol slave(argv[2], argv[3]);
+  slave.dispatchLoop();
+
+  kDebugInfo(7106, "Done" );
+  return 0;
+}
+
+
+SmbProtocol::SmbProtocol( const QCString &pool, const QCString &app) : SlaveBase( "smb", pool, app )
 {
 	kDebugInfo( 7106, "Constructor");
 	currentHost=QString::null;
@@ -587,10 +609,3 @@ void SmbProtocol::listDir( const QString& pathArg )
 
 	kDebugInfo(7106, "=============== BYE ===========" );
 }
-
-extern "C" {
-	SlaveBase *init_smb() {
-		return new SmbProtocol();
-	}
-}
-
