@@ -163,7 +163,7 @@ void sigsegv_handler( int )
 void sigchld_handler( int )
 {
   int pid, status;
-    
+
   while( 1 ) {
     pid = waitpid( -1, &status, WNOHANG );
     if ( pid <= 0 ) {
@@ -476,7 +476,7 @@ void SmbProtocol::doCopy( QStringList& _source, const char *_dest, bool _rename,
 
 	// Start a server for the destination protocol
 	KIOSlave slave( exec );
-	if ( slave.pid() == -1 ) {
+	if ( !slave.isRunning() ) {
 		error( ERR_CANNOT_LAUNCH_PROCESS, exec );
 		m_cmd = CMD_NONE;
 		return;
@@ -654,7 +654,7 @@ void SmbProtocol::doCopy( QStringList& _source, const char *_dest, bool _rename,
 			}
 		}
     	while( job.hasError() );
-      
+
 		processedDirs( ++processed_dirs );
 		++dir_it;
 	}
@@ -691,7 +691,7 @@ void SmbProtocol::doCopy( QStringList& _source, const char *_dest, bool _rename,
 					skip = true;
 
 			if ( skip ) continue;
-    
+
 			// What we are doing
 			QString realpath = (*fit).m_strAbsSource;
 			copyingFile( realpath, d );
@@ -888,7 +888,7 @@ void SmbProtocol::doCopy( QStringList& _source, const char *_dest, bool _rename,
 	m_cmd = CMD_NONE;
 }
 
-  
+
 void SmbProtocol::slotGet( const char *_url )
 {
 	qDebug( "kio_smb : slotGet %s", _url );
@@ -973,7 +973,7 @@ void SmbProtocol::slotGet( const char *_url )
 	qDebug( "kio_smb : Get, checkpoint 4" );
 
 	dataEnd();
-  
+
 	smbio->close( fd );
 
 	processedSize( buff.st_size );
@@ -1036,7 +1036,7 @@ void SmbProtocol::slotGetSize( const char *_url )
 }
 
 
-void SmbProtocol::slotPut( const char *_url, int /*_mode*/, 
+void SmbProtocol::slotPut( const char *_url, int /*_mode*/,
 			   bool _overwrite, bool _resume, int _size )
 {
 	QString url_orig = _url;
@@ -1534,7 +1534,7 @@ SmbIOJob::SmbIOJob( KIOConnection *_conn, SmbProtocol *_Smb ) : KIOJobBase( _con
 {
   m_pSmb = _Smb;
 }
-  
+
 void SmbIOJob::slotError( int _errid, const char *_txt )
 {
   KIOJobBase::slotError( _errid, _txt );
