@@ -57,6 +57,7 @@
 #include <qstringlist.h>
 #include <qcstring.h>
 #include <qglobal.h>
+#include <qregexp.h>
 
 #include <kprotocolmanager.h>
 #include <kemailsettings.h>
@@ -806,6 +807,7 @@ void SMTPProtocol::ParseFeatures(const char* buf)
   if (strncmp(&buf[4], "AUTH", strlen("AUTH")) == 0) {  // Look for auth stuff
     if (m_sAuthConfig == QString::null)
       m_sAuthConfig = &buf[5 + strlen("AUTH")];
+    m_sAuthConfig.replace(QRegExp("[\r\n]"), "");
   } 
   else if (strncmp(&buf[4], "STARTTLS", strlen("STARTTLS")) == 0) {
     m_haveTLS = true;
