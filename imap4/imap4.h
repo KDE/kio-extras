@@ -42,11 +42,22 @@ class IMAP4Protocol : public KIOProtocol
 public:
   IMAP4Protocol( KIOConnection *_conn );
   
+  virtual void slotGetSize( const char *_url );
   virtual void slotGet( const char *_url );
   virtual void slotPut( const char *_url, int _mode, bool _overwrite,
 			bool _resume, unsigned int );
+  virtual void slotCopy( const char *_source, const char *_dest );
+  virtual void slotData( void *_p, int _len );
+  virtual void slotDataEnd();
+  virtual void slotDel( QStringList& _source );
 
+  virtual void slotListDir( const char *_url );
+  virtual void slotTestDir( const char *_url );
+
+  void jobData(void *_p, int _len);
+  void jobDataEnd();
   void jobError( int _errid, const char *_txt );
+
   void startLoop();
   
   KIOConnection* connection() { return KIOConnectionSignals::m_pConnection; }
@@ -59,8 +70,9 @@ public:
   bool imap4_open (KURL &_url);
   void imap4_login(); // handle loggin in
   void imap4_exec();  // executes the IMAP action
+  void processList(QString str);  // processes LIST/LSUB responses
 
-  int m_iSock;
+  int m_iSock, m_cmd;
   unsigned int m_uLastCmd;
   struct timeval m_tTimeout;
   FILE *fp;
@@ -70,7 +82,7 @@ public:
   QString authType, userName, passWord;
   QStringList capabilities, serverResponses;
   int authState;
-  QString authKey, urlPath;
+  QString authKey, urlPath, folderDelimiter;
 };
 
 class IMAP4IOJob : public KIOJobBase
@@ -78,6 +90,8 @@ class IMAP4IOJob : public KIOJobBase
  public:
   IMAP4IOJob( KIOConnection *_conn, IMAP4Protocol *_imap4 );
   virtual void slotError( int _errid, const char *_txt );
+  virtual void slotData(void *_p, int _len);
+  virtual void slotDataEnd();
   
  protected:
   IMAP4Protocol* m_pIMAP4;
