@@ -401,7 +401,6 @@ static const char *expand_string(int nr)
 }
 
 static char outbuffer[NULL_TERMINATED(HUGE_STR_MAX)];
-static int obp=0;
 static int no_newline_output=0;
 static int newline_for_fun=0;
 static int output_possible=0;
@@ -644,6 +643,8 @@ static void out_html(const char *c)
   // Added, probably due to the const?
   char *c2 = qstrdup(c);
   char *c3 = c2;
+
+  static int obp=0;
 
   if (no_newline_output) {
       int i=0;
@@ -2808,7 +2809,7 @@ static char *scan_request(char *c)
 	      c = c+j;
 	      if (*c == '\n') c++; /* Skip spaces */
 	      while (isspace(*c) && *c != '\n') c++;
-         while (isalnum(*c) || *c == '.' || *c == ':' || 
+         while (isalnum(*c) || *c == '.' || *c == ':' ||
 	    *c == '_' || *c == '-') { /* Copy the xyz part */
 		*bufptr = *c;
 		bufptr++; if (bufptr >= buff + MED_STR_MAX) break;
@@ -3395,7 +3396,7 @@ void scan_man_page(const char *man_page)
     // Unlike man2html, we actually call this several times, hence the need to
     // properly cleanup all those static vars
     s_ifelseval.clear();
-    section = false;
+    section = 0;
 
     output_possible = false;
     int strLength = strlen(man_page);
@@ -3417,10 +3418,12 @@ void scan_man_page(const char *man_page)
 	out_html("</PRE>");
     }
     out_html(NEWLINE);
+
     if (section) {
-        out_html("<div style=\"margin-left: 2cm\">\n");
+        output_real("<div style=\"margin-left: 2cm\">\n");
         section = 0;
     }
+
     if (output_possible) {
         output_real( "<div id=\"bottom-nav\" style=\"position : relative; width : 100%;\n");
         output_real( "height : 185px; left : 0px; right : 0px; top : 0px; margin-top: 100px;\n");
