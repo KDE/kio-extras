@@ -138,8 +138,10 @@ imapCommand::setParameter (const QString & parameter)
 const QString
 imapCommand::getStr ()
 {
-
-  return id () + " " + command () + " " + parameter () + "\r\n";
+  if (parameter().isEmpty())
+    return id() + " " + command() + "\r\n";
+  else
+    return id() + " " + command() + " " + parameter() + "\r\n";
 }
 
 imapCommand *
