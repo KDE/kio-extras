@@ -1,9 +1,0 @@
-This version of libsmb++ is used by kio_smb exclusively. This doesn't mean the
-library has suddenly become non-free, see http://libsmb.sourceforge.net for
-a full implementation. It just means that no header and doc will be installed
-in kde paths, so only kio_smb have access to it.
-If another KDE program does really not want to use kio_smb but the libsmb++
-directly, and justify the need, then we'll reconsider putting this lib elsewhere.
-Otherwise, the recommended way is to use kio_smb.
-
-Nicolas Brodu, brodu@kde.org, 2000 02 28
