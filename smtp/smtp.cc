@@ -173,8 +173,7 @@ void SMTPProtocol::put(const KURL & url, int /*permissions */ ,
   {
     int equalsAt = (*it).find('=');
 
-    if (equalsAt > 0 && 
-        equalsAt < (*it).length()) 
+    if (equalsAt > 0)
     {
       QString key = (*it).left(equalsAt);
       QString value = KURL::decode_string((*it).right((*it).length() - (equalsAt + 1)));
