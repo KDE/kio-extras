@@ -79,16 +79,16 @@ enum nfsstat {
 	NFSERR_NOTEMPTY = 66,
 	NFSERR_DQUOT = 69,
 	NFSERR_STALE = 70,
-	NFSERR_WFLUSH = 99,
+	NFSERR_WFLUSH = 99
 };
 typedef enum nfsstat nfsstat;
-#ifdef __cplusplus 
+#ifdef __cplusplus
 extern "C" bool_t xdr_nfsstat(XDR *, nfsstat*);
-#elif __STDC__ 
+#elif __STDC__
 extern  bool_t xdr_nfsstat(XDR *, nfsstat*);
-#else /* Old Style C */ 
+#else /* Old Style C */
 bool_t xdr_nfsstat();
-#endif /* Old Style C */ 
+#endif /* Old Style C */
 
 
 enum ftype {
@@ -100,29 +100,29 @@ enum ftype {
 	NFLNK = 5,
 	NFSOCK = 6,
 	NFBAD = 7,
-	NFFIFO = 8,
+	NFFIFO = 8
 };
 typedef enum ftype ftype;
-#ifdef __cplusplus 
+#ifdef __cplusplus
 extern "C" bool_t xdr_ftype(XDR *, ftype*);
-#elif __STDC__ 
+#elif __STDC__
 extern  bool_t xdr_ftype(XDR *, ftype*);
-#else /* Old Style C */ 
+#else /* Old Style C */
 bool_t xdr_ftype();
-#endif /* Old Style C */ 
+#endif /* Old Style C */
 
 
 struct nfs_fh {
 	char data[NFS_FHSIZE];
 };
 typedef struct nfs_fh nfs_fh;
-#ifdef __cplusplus 
+#ifdef __cplusplus
 extern "C" bool_t xdr_nfs_fh(XDR *, nfs_fh*);
-#elif __STDC__ 
+#elif __STDC__
 extern  bool_t xdr_nfs_fh(XDR *, nfs_fh*);
-#else /* Old Style C */ 
+#else /* Old Style C */
 bool_t xdr_nfs_fh();
-#endif /* Old Style C */ 
+#endif /* Old Style C */
 
 
 struct nfstime {
@@ -130,13 +130,13 @@ struct nfstime {
 	u_int useconds;
 };
 typedef struct nfstime nfstime;
-#ifdef __cplusplus 
+#ifdef __cplusplus
 extern "C" bool_t xdr_nfstime(XDR *, nfstime*);
-#elif __STDC__ 
+#elif __STDC__
 extern  bool_t xdr_nfstime(XDR *, nfstime*);
-#else /* Old Style C */ 
+#else /* Old Style C */
 bool_t xdr_nfstime();
-#endif /* Old Style C */ 
+#endif /* Old Style C */
 
 
 struct fattr {
@@ -156,13 +156,13 @@ struct fattr {
 	nfstime ctime;
 };
 typedef struct fattr fattr;
-#ifdef __cplusplus 
+#ifdef __cplusplus
 extern "C" bool_t xdr_fattr(XDR *, fattr*);
-#elif __STDC__ 
+#elif __STDC__
 extern  bool_t xdr_fattr(XDR *, fattr*);
-#else /* Old Style C */ 
+#else /* Old Style C */
 bool_t xdr_fattr();
-#endif /* Old Style C */ 
+#endif /* Old Style C */
 
 
 struct sattr {
@@ -174,33 +174,33 @@ struct sattr {
 	nfstime mtime;
 };
 typedef struct sattr sattr;
-#ifdef __cplusplus 
+#ifdef __cplusplus
 extern "C" bool_t xdr_sattr(XDR *, sattr*);
-#elif __STDC__ 
+#elif __STDC__
 extern  bool_t xdr_sattr(XDR *, sattr*);
-#else /* Old Style C */ 
+#else /* Old Style C */
 bool_t xdr_sattr();
-#endif /* Old Style C */ 
+#endif /* Old Style C */
 
 
 typedef char *filename;
-#ifdef __cplusplus 
+#ifdef __cplusplus
 extern "C" bool_t xdr_filename(XDR *, filename*);
-#elif __STDC__ 
+#elif __STDC__
 extern  bool_t xdr_filename(XDR *, filename*);
-#else /* Old Style C */ 
+#else /* Old Style C */
 bool_t xdr_filename();
-#endif /* Old Style C */ 
+#endif /* Old Style C */
 
 
 typedef char *nfspath;
-#ifdef __cplusplus 
+#ifdef __cplusplus
 extern "C" bool_t xdr_nfspath(XDR *, nfspath*);
-#elif __STDC__ 
+#elif __STDC__
 extern  bool_t xdr_nfspath(XDR *, nfspath*);
-#else /* Old Style C */ 
+#else /* Old Style C */
 bool_t xdr_nfspath();
-#endif /* Old Style C */ 
+#endif /* Old Style C */
 
 
 struct attrstat {
@@ -210,13 +210,13 @@ struct attrstat {
 	} attrstat_u;
 };
 typedef struct attrstat attrstat;
-#ifdef __cplusplus 
+#ifdef __cplusplus
 extern "C" bool_t xdr_attrstat(XDR *, attrstat*);
-#elif __STDC__ 
+#elif __STDC__
 extern  bool_t xdr_attrstat(XDR *, attrstat*);
-#else /* Old Style C */ 
+#else /* Old Style C */
 bool_t xdr_attrstat();
-#endif /* Old Style C */ 
+#endif /* Old Style C */
 
 
 struct sattrargs {
@@ -224,13 +224,13 @@ struct sattrargs {
 	sattr attributes;
 };
 typedef struct sattrargs sattrargs;
-#ifdef __cplusplus 
+#ifdef __cplusplus
 extern "C" bool_t xdr_sattrargs(XDR *, sattrargs*);
-#elif __STDC__ 
+#elif __STDC__
 extern  bool_t xdr_sattrargs(XDR *, sattrargs*);
-#else /* Old Style C */ 
+#else /* Old Style C */
 bool_t xdr_sattrargs();
-#endif /* Old Style C */ 
+#endif /* Old Style C */
 
 
 struct diropargs {
@@ -238,13 +238,13 @@ struct diropargs {
 	filename name;
 };
 typedef struct diropargs diropargs;
-#ifdef __cplusplus 
+#ifdef __cplusplus
 extern "C" bool_t xdr_diropargs(XDR *, diropargs*);
-#elif __STDC__ 
+#elif __STDC__
 extern  bool_t xdr_diropargs(XDR *, diropargs*);
-#else /* Old Style C */ 
+#else /* Old Style C */
 bool_t xdr_diropargs();
-#endif /* Old Style C */ 
+#endif /* Old Style C */
 
 
 struct diropokres {
@@ -252,13 +252,13 @@ struct diropokres {
 	fattr attributes;
 };
 typedef struct diropokres diropokres;
-#ifdef __cplusplus 
+#ifdef __cplusplus
 extern "C" bool_t xdr_diropokres(XDR *, diropokres*);
-#elif __STDC__ 
+#elif __STDC__
 extern  bool_t xdr_diropokres(XDR *, diropokres*);
-#else /* Old Style C */ 
+#else /* Old Style C */
 bool_t xdr_diropokres();
-#endif /* Old Style C */ 
+#endif /* Old Style C */
 
 
 struct diropres {
@@ -268,13 +268,13 @@ struct diropres {
 	} diropres_u;
 };
 typedef struct diropres diropres;
-#ifdef __cplusplus 
+#ifdef __cplusplus
 extern "C" bool_t xdr_diropres(XDR *, diropres*);
-#elif __STDC__ 
+#elif __STDC__
 extern  bool_t xdr_diropres(XDR *, diropres*);
-#else /* Old Style C */ 
+#else /* Old Style C */
 bool_t xdr_diropres();
-#endif /* Old Style C */ 
+#endif /* Old Style C */
 
 
 struct readlinkres {
@@ -284,13 +284,13 @@ struct readlinkres {
 	} readlinkres_u;
 };
 typedef struct readlinkres readlinkres;
-#ifdef __cplusplus 
+#ifdef __cplusplus
 extern "C" bool_t xdr_readlinkres(XDR *, readlinkres*);
-#elif __STDC__ 
+#elif __STDC__
 extern  bool_t xdr_readlinkres(XDR *, readlinkres*);
-#else /* Old Style C */ 
+#else /* Old Style C */
 bool_t xdr_readlinkres();
-#endif /* Old Style C */ 
+#endif /* Old Style C */
 
 
 struct readargs {
@@ -300,13 +300,13 @@ struct readargs {
 	u_int totalcount;
 };
 typedef struct readargs readargs;
-#ifdef __cplusplus 
+#ifdef __cplusplus
 extern "C" bool_t xdr_readargs(XDR *, readargs*);
-#elif __STDC__ 
+#elif __STDC__
 extern  bool_t xdr_readargs(XDR *, readargs*);
-#else /* Old Style C */ 
+#else /* Old Style C */
 bool_t xdr_readargs();
-#endif /* Old Style C */ 
+#endif /* Old Style C */
 
 
 struct readokres {
@@ -317,13 +317,13 @@ struct readokres {
 	} data;
 };
 typedef struct readokres readokres;
-#ifdef __cplusplus 
+#ifdef __cplusplus
 extern "C" bool_t xdr_readokres(XDR *, readokres*);
-#elif __STDC__ 
+#elif __STDC__
 extern  bool_t xdr_readokres(XDR *, readokres*);
-#else /* Old Style C */ 
+#else /* Old Style C */
 bool_t xdr_readokres();
-#endif /* Old Style C */ 
+#endif /* Old Style C */
 
 
 struct readres {
@@ -333,13 +333,13 @@ struct readres {
 	} readres_u;
 };
 typedef struct readres readres;
-#ifdef __cplusplus 
+#ifdef __cplusplus
 extern "C" bool_t xdr_readres(XDR *, readres*);
-#elif __STDC__ 
+#elif __STDC__
 extern  bool_t xdr_readres(XDR *, readres*);
-#else /* Old Style C */ 
+#else /* Old Style C */
 bool_t xdr_readres();
-#endif /* Old Style C */ 
+#endif /* Old Style C */
 
 
 struct writeargs {
@@ -353,13 +353,13 @@ struct writeargs {
 	} data;
 };
 typedef struct writeargs writeargs;
-#ifdef __cplusplus 
+#ifdef __cplusplus
 extern "C" bool_t xdr_writeargs(XDR *, writeargs*);
-#elif __STDC__ 
+#elif __STDC__
 extern  bool_t xdr_writeargs(XDR *, writeargs*);
-#else /* Old Style C */ 
+#else /* Old Style C */
 bool_t xdr_writeargs();
-#endif /* Old Style C */ 
+#endif /* Old Style C */
 
 
 struct createargs {
@@ -367,13 +367,13 @@ struct createargs {
 	sattr attributes;
 };
 typedef struct createargs createargs;
-#ifdef __cplusplus 
+#ifdef __cplusplus
 extern "C" bool_t xdr_createargs(XDR *, createargs*);
-#elif __STDC__ 
+#elif __STDC__
 extern  bool_t xdr_createargs(XDR *, createargs*);
-#else /* Old Style C */ 
+#else /* Old Style C */
 bool_t xdr_createargs();
-#endif /* Old Style C */ 
+#endif /* Old Style C */
 
 
 struct renameargs {
@@ -381,13 +381,13 @@ struct renameargs {
 	diropargs to;
 };
 typedef struct renameargs renameargs;
-#ifdef __cplusplus 
+#ifdef __cplusplus
 extern "C" bool_t xdr_renameargs(XDR *, renameargs*);
-#elif __STDC__ 
+#elif __STDC__
 extern  bool_t xdr_renameargs(XDR *, renameargs*);
-#else /* Old Style C */ 
+#else /* Old Style C */
 bool_t xdr_renameargs();
-#endif /* Old Style C */ 
+#endif /* Old Style C */
 
 
 struct linkargs {
@@ -395,13 +395,13 @@ struct linkargs {
 	diropargs to;
 };
 typedef struct linkargs linkargs;
-#ifdef __cplusplus 
+#ifdef __cplusplus
 extern "C" bool_t xdr_linkargs(XDR *, linkargs*);
-#elif __STDC__ 
+#elif __STDC__
 extern  bool_t xdr_linkargs(XDR *, linkargs*);
-#else /* Old Style C */ 
+#else /* Old Style C */
 bool_t xdr_linkargs();
-#endif /* Old Style C */ 
+#endif /* Old Style C */
 
 
 struct symlinkargs {
@@ -410,23 +410,23 @@ struct symlinkargs {
 	sattr attributes;
 };
 typedef struct symlinkargs symlinkargs;
-#ifdef __cplusplus 
+#ifdef __cplusplus
 extern "C" bool_t xdr_symlinkargs(XDR *, symlinkargs*);
-#elif __STDC__ 
+#elif __STDC__
 extern  bool_t xdr_symlinkargs(XDR *, symlinkargs*);
-#else /* Old Style C */ 
+#else /* Old Style C */
 bool_t xdr_symlinkargs();
-#endif /* Old Style C */ 
+#endif /* Old Style C */
 
 
 typedef char nfscookie[NFS_COOKIESIZE];
-#ifdef __cplusplus 
+#ifdef __cplusplus
 extern "C" bool_t xdr_nfscookie(XDR *, nfscookie);
-#elif __STDC__ 
+#elif __STDC__
 extern  bool_t xdr_nfscookie(XDR *, nfscookie);
-#else /* Old Style C */ 
+#else /* Old Style C */
 bool_t xdr_nfscookie();
-#endif /* Old Style C */ 
+#endif /* Old Style C */
 
 
 struct readdirargs {
@@ -435,13 +435,13 @@ struct readdirargs {
 	u_int count;
 };
 typedef struct readdirargs readdirargs;
-#ifdef __cplusplus 
+#ifdef __cplusplus
 extern "C" bool_t xdr_readdirargs(XDR *, readdirargs*);
-#elif __STDC__ 
+#elif __STDC__
 extern  bool_t xdr_readdirargs(XDR *, readdirargs*);
-#else /* Old Style C */ 
+#else /* Old Style C */
 bool_t xdr_readdirargs();
-#endif /* Old Style C */ 
+#endif /* Old Style C */
 
 
 struct entry {
@@ -451,13 +451,13 @@ struct entry {
 	struct entry *nextentry;
 };
 typedef struct entry entry;
-#ifdef __cplusplus 
+#ifdef __cplusplus
 extern "C" bool_t xdr_entry(XDR *, entry*);
-#elif __STDC__ 
+#elif __STDC__
 extern  bool_t xdr_entry(XDR *, entry*);
-#else /* Old Style C */ 
+#else /* Old Style C */
 bool_t xdr_entry();
-#endif /* Old Style C */ 
+#endif /* Old Style C */
 
 
 struct dirlist {
@@ -465,13 +465,13 @@ struct dirlist {
 	bool_t eof;
 };
 typedef struct dirlist dirlist;
-#ifdef __cplusplus 
+#ifdef __cplusplus
 extern "C" bool_t xdr_dirlist(XDR *, dirlist*);
-#elif __STDC__ 
+#elif __STDC__
 extern  bool_t xdr_dirlist(XDR *, dirlist*);
-#else /* Old Style C */ 
+#else /* Old Style C */
 bool_t xdr_dirlist();
-#endif /* Old Style C */ 
+#endif /* Old Style C */
 
 
 struct readdirres {
@@ -481,13 +481,13 @@ struct readdirres {
 	} readdirres_u;
 };
 typedef struct readdirres readdirres;
-#ifdef __cplusplus 
+#ifdef __cplusplus
 extern "C" bool_t xdr_readdirres(XDR *, readdirres*);
-#elif __STDC__ 
+#elif __STDC__
 extern  bool_t xdr_readdirres(XDR *, readdirres*);
-#else /* Old Style C */ 
+#else /* Old Style C */
 bool_t xdr_readdirres();
-#endif /* Old Style C */ 
+#endif /* Old Style C */
 
 
 struct statfsokres {
@@ -498,13 +498,13 @@ struct statfsokres {
 	u_int bavail;
 };
 typedef struct statfsokres statfsokres;
-#ifdef __cplusplus 
+#ifdef __cplusplus
 extern "C" bool_t xdr_statfsokres(XDR *, statfsokres*);
-#elif __STDC__ 
+#elif __STDC__
 extern  bool_t xdr_statfsokres(XDR *, statfsokres*);
-#else /* Old Style C */ 
+#else /* Old Style C */
 bool_t xdr_statfsokres();
-#endif /* Old Style C */ 
+#endif /* Old Style C */
 
 
 struct statfsres {
@@ -514,13 +514,13 @@ struct statfsres {
 	} statfsres_u;
 };
 typedef struct statfsres statfsres;
-#ifdef __cplusplus 
+#ifdef __cplusplus
 extern "C" bool_t xdr_statfsres(XDR *, statfsres*);
-#elif __STDC__ 
+#elif __STDC__
 extern  bool_t xdr_statfsres(XDR *, statfsres*);
-#else /* Old Style C */ 
+#else /* Old Style C */
 bool_t xdr_statfsres();
-#endif /* Old Style C */ 
+#endif /* Old Style C */
 
 #endif /*!_rpcsvc_nfs_prot_h*/
 
@@ -639,7 +639,7 @@ extern  readdirres * nfsproc_readdir_2_svc(readdirargs *, struct svc_req *);
 extern  statfsres * nfsproc_statfs_2(nfs_fh *, CLIENT *);
 extern  statfsres * nfsproc_statfs_2_svc(nfs_fh *, struct svc_req *);
 
-#else /* Old Style C */ 
+#else /* Old Style C */
 #define NFSPROC_NULL ((u_long)0)
 extern  void * nfsproc_null_2();
 extern  void * nfsproc_null_2_svc();
@@ -694,6 +694,6 @@ extern  readdirres * nfsproc_readdir_2_svc();
 #define NFSPROC_STATFS ((u_long)17)
 extern  statfsres * nfsproc_statfs_2();
 extern  statfsres * nfsproc_statfs_2_svc();
-#endif /* Old Style C */ 
+#endif /* Old Style C */
 
 #endif /* !_NFS_PROT_H_RPCGEN */
