@@ -157,6 +157,7 @@ KAudiocdModule::KAudiocdModule(QWidget *parent, const char *name)
 
     //MP3 CBR Settings
     connect(cbr_bitrate,SIGNAL(activated(int)),SLOT(slotConfigChanged()));
+    connect(vbr_mean_brate,SIGNAL(activated(int)),SLOT(slotConfigChanged()));
 
     //MP3 VBR Groupbox
     connect(vbr_average_br,SIGNAL(clicked()),this,SLOT(slotUpdateVBRWidgets()));
