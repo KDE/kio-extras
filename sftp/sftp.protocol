@@ -13,6 +13,7 @@ deleting=true
 Icon=ftp
 Description=A kioslave for sftp
 Description[bn]=এস.এফ.টি.পি-র জন্য একটি kioslave
+Description[ca]=Un kioslave per a sftp
 Description[da]=En kioslave for sftp
 Description[es]=Un kioslave para sftp
 Description[fr]=Un kioslave pour le sftp
