@@ -166,7 +166,7 @@ void SMTPProtocol::put(const KURL & url, int /*permissions */ ,
   QString profile;
   QString from;
   QString localHostname;
-  QStringList recip, bcc, cc, temp_list;
+  QStringList recip, bcc, cc;
   bool headers = true;
 
   // sort out our query string
