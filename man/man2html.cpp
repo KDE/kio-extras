@@ -2513,9 +2513,12 @@ static char *scan_request(char *c)
 	    {
 		STRDEF *de;
 		int olen=0;
+		char c2;
 		c=c+j;
 		sl=fill_words(c, wordlist, &words);
-		i=V(c[0],c[1]);j=2;
+		c2 = c[1];
+		if (c2 == '\n') c2 = ' ';
+		i=V(c[0],c2);j=2;
 		if (words==1) {
                     wordlist[1] = qstrdup("..");
                 } else {
