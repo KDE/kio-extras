@@ -33,7 +33,8 @@ public:
   Connection* connection() { return ConnectionSignals::m_pConnection; }
   
  protected:
-  bool command(const char *, char *, unsigned int);
+  bool command(const char *buf, char *r_buf=0, unsigned int r_len=0);
+  bool getResponse(char *buf=0, unsigned int len=0);
   void pop3_close ();
   bool pop3_open( KURL &_url );
 

@@ -20,6 +20,12 @@
 #include <kprotocolmanager.h>
 #include <ksock.h>
 
+#ifndef MAX
+#define MAX(a,b)	(((a) > (b)) ? (a) : (b))
+#define MIN(a,b)	(((a) < (b)) ? (a) : (b))
+#endif
+
+
 bool open_PassDlg( const QString& _head, QString& _user, QString& _pass );
 
 extern "C" {
@@ -73,45 +79,47 @@ POP3Protocol::POP3Protocol(Connection *_conn) : IOProtocol(_conn)
   m_tTimeout.tv_usec=0;
 }
 
-bool POP3Protocol::command (const char *cmd, char *recv_buf, unsigned int len)
+bool POP3Protocol::getResponse (char *r_buf, unsigned int r_len)
 {
-  char buf[len ? len : 1024];
+  char buf[r_len ? r_len : 1024];
   unsigned int recv_len=0;
   fd_set FDs;
+  // Wait for input
+  FD_ZERO(&FDs);
+  FD_SET(m_iSock, &FDs);
+  while (::select(m_iSock+1, &FDs, 0, 0, &m_tTimeout) ==0);
+  bzero(&buf, r_len);
+  if (fgets(buf, sizeof(buf)-1, fp) == 0)
+    return false;
+  recv_len=strlen(buf);
+  debug("I got:%s:", buf);
+  if (strncmp(buf, "+OK ", 4)==0) {
+    if (r_buf && r_len) {
+      memcpy(r_buf, buf+4, MIN(r_len,recv_len-4));
+    }
+    return true;
+  } else if (strncmp(buf, "-ERR ", 5)==0) {
+    if (r_buf && r_len) {
+      memcpy(r_buf, buf+5, MIN(r_len,recv_len-5));
+    }
+    return false;
+  } else {
+    fprintf(stderr, "Invalid POP3 response received!\n");fflush(stderr);
+    if (r_buf && r_len) {
+      memcpy(r_buf, buf, MIN(r_len,recv_len));
+    }
+    return false;
+  }
+}
 
-fprintf(stderr,"CMD is:%s\n", cmd);
-
+bool POP3Protocol::command (const char *cmd, char *recv_buf, unsigned int len)
+{
   // Write the command
   if (::write(m_iSock, cmd, strlen(cmd)) != strlen(cmd))
     return false;
   if (::write(m_iSock, "\r\n", 2) != 2)
     return false;
-
-  // Wait for input
-  FD_ZERO(&FDs);
-  FD_SET(m_iSock, &FDs);
-  while (::select(m_iSock+1, &FDs, 0, 0, &m_tTimeout) ==0);
-  bzero(&buf, len);
-  if (fgets(buf, sizeof(buf)-1, fp) == 0)
-    return false;
-  recv_len=strlen(buf);
-  if (strncmp(buf, "+OK ", 4)==0) {
-    if (recv_buf && len) {
-      memcpy(recv_buf, buf+4, recv_len-4);
-    }
-    return true;
-  } else if (strncmp(buf, "-ERR ", 5)==0) {
-    if (recv_buf && len) {
-      memcpy(recv_buf, buf+5, recv_len-5);
-    }
-    return false;
-  } else {
-    fprintf(stderr, "Invalid POP3 response received!\n");fflush(stderr);
-    if (recv_buf && len) {
-      memcpy(recv_buf, buf, recv_len);
-    }
-    return false;
-  }
+  return getResponse(recv_buf, len);
 }
 
 void POP3Protocol::pop3_close ()
@@ -137,13 +145,16 @@ bool POP3Protocol::pop3_open( KURL &_url )
   if (!KSocket::initSockaddr(&server_name, _url.host(), port))
     return false;
   if (::connect(m_iSock, (struct sockaddr*)(&server_name), sizeof(server_name))) {
-      error( ERR_COULD_NOT_CONNECT, _url.host());
+      error( ERR_COULD_NOT_CONNECT, strdup(_url.host()));
       return false;
   }
   if ((fp = fdopen(m_iSock, "w+")) == 0) {
     close(m_iSock);
     return false;
   }
+
+  if (!getResponse())  // If the server doesn't respond with a greeting
+    return false;
 
   char buf[1024];
 
@@ -178,9 +189,11 @@ bool POP3Protocol::pop3_open( KURL &_url )
 void POP3Protocol::slotGet(const char *_url)
 {
   fprintf(stderr,"slotGet\n"); fflush(stderr);
-  KURL usrc( _url );
+  bool ok;
+  QString path, cmd;
+  KURL usrc(_url);
   if ( usrc.isMalformed() ) {
-    error( ERR_MALFORMED_URL, _url );
+    error( ERR_MALFORMED_URL, strdup(_url) );
     m_cmd = CMD_NONE;
     return;
   }
@@ -191,43 +204,69 @@ void POP3Protocol::slotGet(const char *_url)
     return;
   }
 
+  path = usrc.path().copy();
+
+  if (path.left(1)=="/") path.remove(0,1);
+  if (path.isEmpty() || (path.find("/") == -1)) {
+    error( ERR_MALFORMED_URL, strdup(_url) );
+    m_cmd = CMD_NONE;
+    return; 
+  }
+
+  cmd = path.left(path.find("/"));
+  path.remove(0,path.find("/")+1);
+
   if (!pop3_open(usrc)) {
     fprintf(stderr,"pop3_open failed\n");fflush(stderr);
     pop3_close();
     return;
   }
 
+  if (cmd == "index") {
+  }
 
-  char buf[1024];
-  if (command("RETR 1", 0, 0)) {
-    ready();
-    gettingFile(_url);
-    time_t t_start = time( 0L );
-    time_t t_last = t_start;
-    bzero(&buf, 1024);
-    while (!feof(fp)) {
+  else if (cmd == "remove") {
+    int msg_num = path.toInt(&ok);
+    if (!ok) return; //  We fscking need a number!
+    path.prepend("DELE ");
+    command(path);
+  }
+  
+  else if (cmd == "download") {
+    int msg_num = path.toInt(&ok);
+    if (!ok) return; //  We fscking need a number!
+    path.prepend("RETR ");
+    char buf[1024];
+    if (command(path)) {
+      ready();
+      gettingFile(_url);
+      time_t t_start = time( 0L );
+      time_t t_last = t_start;
       bzero(&buf, 1024);
-      if (!fgets(buf, 1023, fp))
-        break;  // Error??
-      int b_len=strlen(buf)-1;
-      while (buf[b_len]=='\r' || buf[b_len]=='\n') {
-        if (buf[b_len] == '\r') buf[b_len]='\0';
-        if (buf[b_len] == '\n') buf[b_len]='\0';
-        b_len=strlen(buf)-1;
+      while (!feof(fp)) {
+	bzero(&buf, 1024);
+	if (!fgets(buf, 1023, fp))
+	  break;  // Error??
+	int b_len=strlen(buf)-1;
+	while (buf[b_len]=='\r' || buf[b_len]=='\n') {
+	  if (buf[b_len] == '\r') buf[b_len]='\0';
+	  if (buf[b_len] == '\n') buf[b_len]='\0';
+	  b_len=strlen(buf)-1;
+	}
+
+	if (strcmp(buf, ".")==0)  break; // End of data.
+	data(buf, strlen(buf));
       }
-      fprintf(stderr,"Datais:%s:\n",buf);fflush(stderr);
-      if (strcmp(buf, ".")==0)  break; // End of data.
-      data(buf, strlen(buf));
+      fprintf(stderr,"Finishing up\n");fflush(stderr);
+      pop3_close();
+      dataEnd();
+      speed(0); finished();
+    } else {
+      fprintf(stderr, "Couldn't login. Bad RETR Sorry\n");
+      fflush(stderr);
+      pop3_close();
+      return;
     }
-    fprintf(stderr,"Finishing up\n");fflush(stderr);
-    pop3_close();
-    dataEnd();
-    speed(0); finished();
-  } else {
-    fprintf(stderr, "Couldn't login. Bad RETR Sorry\n");
-    fflush(stderr);
-    pop3_close();
-    return;
   }
 }
 
