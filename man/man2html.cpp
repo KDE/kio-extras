@@ -2218,8 +2218,8 @@ static char *scan_request(char *c)
             } else if (i<words-1) out_html(", ");
          }
          if (mandoc_synopsis) {
-            if (!inFdMode) out_html(")");
-            out_html(";<br>");
+            if (!inFdMode) out_html(");");
+            out_html("<br>");
          };
          out_html(change_to_font('R'));
          out_html(NEWLINE);
@@ -2715,47 +2715,24 @@ static char *scan_request(char *c)
 	    out_html(" is currently in beta test.");
 	    if (fillout) curpos++; else curpos=0;
 	    break;
-	case V('A','t'):	/* BSD mandoc */
-	    trans_char(c,'"','\a');
-	    c=c+j;
-	    if (*c=='\n') c++;
-	    out_html("AT&amp;T Unix ");
-	    c=scan_troff_mandoc(c, 1, NULL);
-	    if (fillout) curpos++; else curpos=0;
-	    break;
+
+   case V('A','t'):	/* BSD mandoc */
 	case V('F','x'):	/* BSD mandoc */
-	    trans_char(c,'"','\a');
-	    c=c+j;
-	    if (*c=='\n') c++;
-	    out_html("FreeBSD ");
-	    c=scan_troff_mandoc(c, 1, NULL);
-	    if (fillout) curpos++; else curpos=0;
-	    break;
 	case V('N','x'):	/* BSD mandoc */
-	    trans_char(c,'"','\a');
-	    c=c+j;
-	    if (*c=='\n') c++;
-	    out_html("NetBSD ");
-	    c=scan_troff_mandoc(c, 1, NULL);
-	    if (fillout) curpos++; else curpos=0;
-	    break;
 	case V('O','x'):	/* BSD mandoc */
-	    trans_char(c,'"','\a');
-	    c=c+j;
-	    if (*c=='\n') c++;
-	    out_html("OpenBSD ");
-	    c=scan_troff_mandoc(c, 1, NULL);
-	    if (fillout) curpos++; else curpos=0;
-	    break;
 	case V('B','x'):	/* BSD mandoc */
 	    trans_char(c,'"','\a');
 	    c=c+j;
 	    if (*c=='\n') c++;
-	    out_html("BSD ");
+       if (i==V('A','t'))      out_html("AT&amp;T Unix ");
+       else if (i==V('F','x')) out_html("FreeBSD ");
+       else if (i==V('N','x')) out_html("NetBSD ");
+       else if (i==V('O','x')) out_html("OpenBSD ");
+       else if (i==V('B','x')) out_html("BSD ");
 	    c=scan_troff_mandoc(c, 1, NULL);
 	    if (fillout) curpos++; else curpos=0;
 	    break;
-	case V('D','l'):	/* BSD mandoc */
+   case V('D','l'):	/* BSD mandoc */
 	    c=c+j;
 	    out_html(NEWLINE);
 	    out_html("<BLOCKQUOTE>");
@@ -2829,7 +2806,7 @@ static char *scan_request(char *c)
 	      c = c+j;
 	      if (*c == '\n') c++; /* Skip spaces */
 	      while (isspace(*c) && *c != '\n') c++;
-	      while (isalnum(*c)) { /* Copy the xyz part */
+         while (isalnum(*c) || *c == '_' || *c == '-') { /* Copy the xyz part */
 		*bufptr = *c;
 		bufptr++; if (bufptr >= buff + MED_STR_MAX) break;
 		c++;
