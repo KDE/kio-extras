@@ -216,9 +216,9 @@ void ArchiveProtocol::listDir( const KURL & url )
     if ( path.isEmpty() )
     {
         KURL redir( url.protocol() + QString::fromLatin1( ":/") );
-        kdDebug() << "url.path()==" << url.path() << endl;
+        kdDebug( 7109 ) << "url.path()==" << url.path() << endl;
         redir.setPath( url.path() + QString::fromLatin1("/") );
-        kdDebug() << "ArchiveProtocol::listDir: redirection " << redir.url() << endl;
+        kdDebug( 7109 ) << "ArchiveProtocol::listDir: redirection " << redir.url() << endl;
         redirection( redir );
         finished();
         return;
@@ -280,7 +280,7 @@ void ArchiveProtocol::stat( const KURL & url )
         kdDebug( 7109 ) << "ArchiveProtocol::stat (stat) on " << _path << endl;
         struct stat buff;
         if ( ::stat( _path.data(), &buff ) == -1 || !S_ISDIR( buff.st_mode ) ) {
-            kdDebug() << "isdir=" << S_ISDIR( buff.st_mode ) << "  errno=" << strerror(errno) << endl;
+            kdDebug( 7109 ) << "isdir=" << S_ISDIR( buff.st_mode ) << "  errno=" << strerror(errno) << endl;
             error( KIO::ERR_DOES_NOT_EXIST, url.path() );
             return;
         }
@@ -353,9 +353,9 @@ void ArchiveProtocol::get( const KURL & url )
     const KArchiveFile* archiveFileEntry = static_cast<const KArchiveFile *>(archiveEntry);
     if ( !archiveEntry->symlink().isEmpty() )
     {
-      kdDebug(7102) << "Redirection to " << archiveEntry->symlink() << endl;
+      kdDebug(7109) << "Redirection to " << archiveEntry->symlink() << endl;
       KURL realURL( url, archiveEntry->symlink() );
-      kdDebug(7102) << "realURL= " << realURL.url() << endl;
+      kdDebug(7109) << "realURL= " << realURL.url() << endl;
       redirection( realURL.url() );
       finished();
       return;
@@ -366,7 +366,7 @@ void ArchiveProtocol::get( const KURL & url )
     QByteArray completeData = archiveFileEntry->data();
 
     KMimeMagicResult * result = KMimeMagic::self()->findBufferFileType( completeData, path );
-    kdDebug(7102) << "Emitting mimetype " << result->mimeType() << endl;
+    kdDebug(7109) << "Emitting mimetype " << result->mimeType() << endl;
     mimeType( result->mimeType() );
 
     data( completeData );
