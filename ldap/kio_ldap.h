@@ -37,9 +37,11 @@ class LDAPProtocol : public KIO::SlaveBase
     int mVer, mSizeLimit, mTimeLimit;
     bool mTLS;
     bool mAuthSASL;
-    QString mMech,mRealm,mBaseName;
+    QString mMech,mRealm,mBindName;
 
-    void LDAPProtocol::addModOp( LDAPMod ***pmods, int mod_type, 
+    void addControlOp( LDAPControl ***pctrls, const QString &oid,
+      const QByteArray &value, bool critical );
+    void addModOp( LDAPMod ***pmods, int mod_type, 
       const QString &attr, const QByteArray &value );
     void LDAPEntry2UDSEntry( const QString &dn, KIO::UDSEntry &entry, 
       const KABC::LDAPUrl &usrc, bool dir=false );

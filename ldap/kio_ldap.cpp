@@ -15,13 +15,10 @@
 #include <time.h>
 #include <stdlib.h>
 #include <netdb.h>
-#include <netinet/in.h>
 
-#include <qregexp.h>
 #include <kdebug.h>
 #include <kinstance.h>
 #include <klocale.h>
-#include <kmdcodec.h>
 
 #ifdef HAVE_SASL_H
 #include <sasl.h>
@@ -64,12 +61,13 @@ LDAPProtocol::LDAPProtocol( const QCString &protocol, const QCString &pool,
   const QCString &app ) : SlaveBase( protocol, pool, app )
 {
   mLDAP = 0; mTLS = 0; mVer = 3; mAuthSASL = false;
-  mRealm = ""; mBaseName = "";
+  mRealm = ""; mBindName = "";
   mTimeLimit = mSizeLimit = 0;
   kdDebug(7125) << "LDAPProtocol::LDAPProtocol (" << protocol << ")" << endl;
 }
 
-LDAPProtocol::~LDAPProtocol() {
+LDAPProtocol::~LDAPProtocol() 
+{
   closeConnection();
 }
 
@@ -201,7 +199,6 @@ int LDAPProtocol::asyncSearch( LDAPUrl &usrc )
 
 QCString LDAPProtocol::LDAPEntryAsLDIF( LDAPMessage *message )
 {
-
   QCString result;
   char *name;
   struct berval **bvals;
@@ -236,6 +233,43 @@ QCString LDAPProtocol::LDAPEntryAsLDIF( LDAPMessage *message )
     name = ldap_next_attribute(mLDAP, message, entry);
   }
   return result;
+}
+
+void LDAPProtocol::addControlOp( LDAPControl ***pctrls, const QString &oid,
+  const QByteArray &value, bool critical )
+{
+  LDAPControl **ctrls;
+  LDAPControl *ctrl = (LDAPControl *) malloc( sizeof( LDAPControl ) );
+    
+  ctrls = *pctrls;
+
+  kdDebug(7125) << "addControlOp: oid:'" << oid << "' val: '" << 
+    QString::fromUtf8(value, value.size()) << "'" << endl;
+  int vallen = value.size();
+  ctrl->ldctl_value.bv_len = vallen;
+  if ( vallen ) {
+    ctrl->ldctl_value.bv_val = (char*) malloc( vallen );
+    memcpy( ctrl->ldctl_value.bv_val, value.data(), vallen );
+  } else {
+    ctrl->ldctl_value.bv_val = 0;
+  }
+  ctrl->ldctl_iscritical = critical;
+  ctrl->ldctl_oid = strdup( oid.utf8() );
+  
+  uint i = 0;
+  
+  if ( ctrls == 0 ) {
+    ctrls = (LDAPControl **) malloc ( 2 * sizeof( LDAPControl* ) );
+    ctrls[ 0 ] = 0;
+    ctrls[ 1 ] = 0;
+  } else {
+    while ( ctrls[ i ] != 0 ) i++;  
+    ctrls[ i + 1 ] = 0;
+    ctrls = (LDAPControl **) realloc( ctrls, (i + 2) * sizeof( LDAPControl * ) );
+  }
+  ctrls[ i ] = ctrl;
+  
+  *pctrls = ctrls;
 }
 
 void LDAPProtocol::addModOp( LDAPMod ***pmods, int mod_type, const QString &attr, 
@@ -303,7 +337,6 @@ void LDAPProtocol::addModOp( LDAPMod ***pmods, int mod_type, const QString &attr
     mods[ i ]->mod_vals.modv_bvals[ j+1 ] = 0;     
     kdDebug(7125) << j << ". new bervalue " << endl;
   }
-  kdDebug(7125) << "mods: " << *pmods << endl;
 }
 
 void LDAPProtocol::LDAPEntry2UDSEntry( const QString &dn, UDSEntry &entry, 
@@ -369,9 +402,9 @@ void LDAPProtocol::changeCheck( const LDAPUrl &url )
   QString realm;
   if ( url.hasExtension( "x-realm" ) ) 
     mech = url.extension( "x-realm", critical).upper();
-  QString basename;
-  if ( url.hasExtension( "basename" ) ) 
-    basename = url.extension( "basename", critical).upper();
+  QString bindname;
+  if ( url.hasExtension( "bindname" ) ) 
+    bindname = url.extension( "bindname", critical).upper();
   int timelimit = 0;
   if ( url.hasExtension( "x-timelimit" ) )
     timelimit = url.extension( "x-timelimit", critical).toInt();
@@ -379,10 +412,10 @@ void LDAPProtocol::changeCheck( const LDAPUrl &url )
   if ( url.hasExtension( "x-sizelimit" ) )
     sizelimit = url.extension( "x-sizelimit", critical).toInt();
     
-  if ( !authSASL && basename.isEmpty() ) basename = mUser;
+  if ( !authSASL && bindname.isEmpty() ) bindname = mUser;
     
   if ( tls != mTLS || ver != mVer || authSASL != mAuthSASL || mech != mMech ||
-    mRealm != realm || mBaseName != basename || mTimeLimit != timelimit ||
+    mRealm != realm || mBindName != bindname || mTimeLimit != timelimit ||
     mSizeLimit != sizelimit ) {
     closeConnection();
     mTLS = tls;
@@ -390,7 +423,7 @@ void LDAPProtocol::changeCheck( const LDAPUrl &url )
     mAuthSASL = authSASL;
     mMech = mech;
     mRealm = realm;
-    mBaseName = basename;
+    mBindName = bindname;
     mTimeLimit = timelimit;
     mSizeLimit = sizelimit;
     kdDebug(7125) << "parameters changed: tls = " << mTLS << 
@@ -498,7 +531,7 @@ void LDAPProtocol::openConnection()
   info.comment = QString::fromLatin1( mProtocol ) + "://" + mHost + ":" + 
     QString::number( mPort );
   info.commentLabel = i18n("site:");
-  info.username = mUser;
+  info.username = mAuthSASL ? mUser : mBindName;
   info.keepPassword = true;
 
   ///////////////////////////////////////////////////////////////////////////
@@ -510,7 +543,7 @@ void LDAPProtocol::openConnection()
       if ( mAuthSASL )
         mUser = info.username;
       else
-        mBaseName = info.username;
+        mBindName = info.username;
       mPassword = info.password;
       kdDebug(7125) << "auth info from cache: " << mUser <<  endl;
     }
@@ -577,7 +610,7 @@ void LDAPProtocol::openConnection()
       defaults.realm = mRealm;
       defaults.authcid = mUser;
       defaults.passwd = mPassword;
-      defaults.authzid = mBaseName;
+      defaults.authzid = mBindName;
 #else
       closeConnection();
       error( ERR_SLAVE_DEFINED, 
@@ -585,14 +618,14 @@ void LDAPProtocol::openConnection()
       return;
 #endif      
     }
-    
-    if ( ( mPassword.isEmpty() && !mUser.isEmpty() ) || ( ret = ( 
+    kdDebug(7125) << "user: " << mUser << " bindname: " << mBindName << endl;
+    if ( ( !mAuthSASL && mPassword.isEmpty() && !mBindName.isEmpty() ) || ( ret = ( 
 #ifdef HAVE_SASL_H      
       mAuthSASL ? 
         ldap_sasl_interactive_bind_s( mLDAP, NULL, mechanism.utf8(), 
           NULL, NULL, LDAP_SASL_QUIET, &kldap_sasl_interact, &defaults ) :
 #endif          
-        ldap_simple_bind_s( mLDAP, mBaseName.utf8(), mPassword.utf8() )
+        ldap_simple_bind_s( mLDAP, mBindName.utf8(), mPassword.utf8() )
           == LDAP_INVALID_CREDENTIALS ) )) {
       
       kdDebug(7125) << "Auth error, open pass dlg! " << endl;
@@ -611,7 +644,7 @@ void LDAPProtocol::openConnection()
       if ( mAuthSASL )
         mUser = info.username;
       else
-        mBaseName = info.username;
+        mBindName = info.username;
       mPassword = info.password;
     } else {
       auth = true;
@@ -624,7 +657,7 @@ void LDAPProtocol::openConnection()
   }
   
   kdDebug(7125) << "connected!" << endl;
-  connected();  
+  connected();
 }
 
 void LDAPProtocol::closeConnection()
@@ -797,12 +830,14 @@ void LDAPProtocol::put( const KURL &_url, int, bool overwrite, bool )
   }
 
   LDAPMod **lmod = 0;
+  LDAPControl **serverctrls = 0, **clientctrls = 0;
   QByteArray buffer;
   int result = 0;
   LDIF::ParseVal ret;
   LDIF ldif;
   ret = LDIF::MoreData;
   int ldaperr;
+  
   
   do {
     if ( ret == LDIF::MoreData ) {
@@ -835,11 +870,15 @@ void LDAPProtocol::put( const KURL &_url, int, bool overwrite, bool )
           ldaperr = LDAP_SUCCESS;
           switch ( ldif.entryType() ) {
             case LDIF::Entry_None:
-              error( ERR_INTERNAL, _url.prettyURL() );
+              error( ERR_INTERNAL, i18n("The LDIF parser failed.") );
               return;
             case LDIF::Entry_Del:
               kdDebug(7125) << "kio_ldap_del" << endl;
-              ldaperr = ldap_delete_s( mLDAP, ldif.dn().utf8() );
+              ldaperr = ldap_delete_ext_s( mLDAP, ldif.dn().utf8(), 
+                serverctrls, clientctrls );
+              ldap_controls_free( serverctrls );
+              ldap_controls_free( clientctrls );
+              serverctrls = 0; clientctrls = 0;
               break;
             case LDIF::Entry_Modrdn:
               kdDebug(7125) << "kio_ldap_modrdn olddn:" << ldif.dn() << 
@@ -848,28 +887,39 @@ void LDAPProtocol::put( const KURL &_url, int, bool overwrite, bool )
                 " deloldrdn: " << ldif.delOldRdn() << endl;
               ldaperr = ldap_rename_s( mLDAP, ldif.dn().utf8(), ldif.newRdn().utf8(), 
                 ldif.newSuperior().isEmpty() ? 0 : ldif.newSuperior().utf8(), 
-                ldif.delOldRdn(), 0, 0 );
+                ldif.delOldRdn(), serverctrls, clientctrls );
+
+              ldap_controls_free( serverctrls );
+              ldap_controls_free( clientctrls );
+              serverctrls = 0; clientctrls = 0;
               break;
             case LDIF::Entry_Mod:
               kdDebug(7125) << "kio_ldap_mod"  << endl;
               if ( lmod ) {
-                ldaperr = ldap_modify_s( mLDAP, ldif.dn().utf8(), lmod );
+                ldaperr = ldap_modify_ext_s( mLDAP, ldif.dn().utf8(), lmod,
+                  serverctrls, clientctrls );
                 ldap_mods_free( lmod, 1 );
-                lmod = 0;
+                ldap_controls_free( serverctrls );
+                ldap_controls_free( clientctrls );
+                lmod = 0; serverctrls = 0; clientctrls = 0;
               }
               break;
             case LDIF::Entry_Add:
               kdDebug(7125) << "kio_ldap_add " << ldif.dn() << endl;
               if ( lmod ) {
-                ldaperr = ldap_add_s( mLDAP, ldif.dn().utf8(), lmod );
+                ldaperr = ldap_add_ext_s( mLDAP, ldif.dn().utf8(), lmod,
+                  serverctrls, clientctrls );
                 if ( ldaperr == LDAP_ALREADY_EXISTS && overwrite ) {
                   kdDebug(7125) << ldif.dn() << " already exists, delete first" << endl;
                   ldaperr = ldap_delete_s( mLDAP, ldif.dn().utf8() );
                   if ( ldaperr == LDAP_SUCCESS ) 
-                    ldaperr = ldap_add_s( mLDAP, ldif.dn().utf8(), lmod );
+                    ldaperr = ldap_add_ext_s( mLDAP, ldif.dn().utf8(), lmod,
+                      serverctrls, clientctrls );
                 }
                 ldap_mods_free( lmod, 1 );
-                lmod = 0;
+                ldap_controls_free( serverctrls );
+                ldap_controls_free( clientctrls );
+                lmod = 0; serverctrls = 0; clientctrls = 0;
               }
               break;
           }
@@ -907,16 +957,22 @@ void LDAPProtocol::put( const KURL &_url, int, bool overwrite, bool )
             default:
               error( ERR_INTERNAL, i18n("The LDIF parser failed.") );
               ldap_mods_free( lmod, 1 );
+              ldap_controls_free( serverctrls );
+              ldap_controls_free( clientctrls );
+              lmod = 0; serverctrls = 0; clientctrls = 0;
               return;  
           }
           break;
         case LDIF::Control:
-            //TODO
-            break;
+          addControlOp( &serverctrls, ldif.oid(), ldif.val(), ldif.critical() );
+          break;
         case LDIF::Err:
           error( ERR_SLAVE_DEFINED, 
             i18n( "Invalid LDIF file in line %1." ).arg( ldif.lineNo() ) );
           ldap_mods_free( lmod, 1 );
+          ldap_controls_free( serverctrls );
+          ldap_controls_free( clientctrls );
+          lmod = 0; serverctrls = 0; clientctrls = 0;
           return;
       }
     } while ( ret != LDIF::MoreData );
