@@ -2102,7 +2102,7 @@ static char *scan_request(char *c)
 	    break;
 	case V('s','p'):
 	    c=c+j;
-	    if (fillout) out_html("<P>"); else {
+	    if (fillout) out_html("<br><br>"); else {
 		out_html(NEWLINE);
 		NEWLINE[0]='\n';
 	    }
@@ -2307,7 +2307,7 @@ static char *scan_request(char *c)
 	    break;
 	case V('T','P'):
 	    if (!dl_set[itemdepth]) {
-		out_html("<P><DL COMPACT>\n");
+		out_html("<br><br><DL COMPACT>\n");
 		dl_set[itemdepth]=1;
 	    }
 	    out_html("<DT>");
@@ -2331,7 +2331,7 @@ static char *scan_request(char *c)
 		out_html("</DL>\n");
 		dl_set[itemdepth]=0;
 	    }
-	    if (fillout) out_html("<P>\n"); else {
+	    if (fillout) out_html("<br><br>\n"); else {
 		out_html(NEWLINE);
 		NEWLINE[0]='\n';
 	    }
@@ -2661,7 +2661,7 @@ static char *scan_request(char *c)
 	        dl_set[itemdepth] = BL_DESC_LIST;
 	        out_html("<DL COMPACT>\n");
 	    }
-	    if (fillout) out_html("<P>\n"); else {
+	    if (fillout) out_html("<br><br>\n"); else {
 		out_html(NEWLINE);
 		NEWLINE[0]='\n';
 	    }
@@ -2682,7 +2682,7 @@ static char *scan_request(char *c)
 	    }
 	    dl_set[itemdepth]=0;
 	    if (itemdepth > 0) itemdepth--;
-	    if (fillout) out_html("<P>\n"); else {
+	    if (fillout) out_html("<br><br>\n"); else {
 		out_html(NEWLINE);
 		NEWLINE[0]='\n';
 	    }
@@ -2806,7 +2806,7 @@ static char *scan_request(char *c)
 	    break;
 	case V('B','e'):	/* BSD mandoc */
 	    c=c+j;
-	    if (fillout) out_html("<P>"); else {
+	    if (fillout) out_html("<br><br>"); else {
 		out_html(NEWLINE);
 		NEWLINE[0]='\n';
 	    }
@@ -2885,7 +2885,7 @@ static char *scan_request(char *c)
 	    if (fillout) curpos++; else curpos=0;
 	    break;
 	case V('P','p'):	/* BSD mandoc */
-	    if (fillout) out_html("<P>\n"); else {
+	    if (fillout) out_html("<br><br>\n"); else {
 		out_html(NEWLINE);
 		NEWLINE[0]='\n';
 	    }
