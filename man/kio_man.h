@@ -44,6 +44,7 @@ public:
     virtual void stat(const KURL& url);
 
     virtual void mimetype(const KURL &url);
+    virtual void listDir(const KURL &url);
 
     void outputError(const QString& errmsg);
     void outputMatchingPages(const QStringList &matchingPages);
@@ -59,7 +60,9 @@ public:
 
 private:
     void checkManPaths();
-    QStringList findPages(const QString& section, const QString &title);
+    QStringList findPages(const QString& section, 
+                          const QString &title, 
+                          bool full_path = true);
 
     void addToBuffer(const char *buffer, int buflen);
     QString pageName(const QString& page) const;
@@ -69,6 +72,7 @@ private:
     QCString lastdir;
     QString common_dir;
 
+    QStringList m_manpath;
 };
 
 
