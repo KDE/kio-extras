@@ -97,6 +97,9 @@
 #define sendmimeType(x) mimeType(x)
 #endif
 
+static char *sshPath = NULL;
+static int isOpenSSH = 0;
+
 using namespace KIO;
 extern "C" {
 
@@ -197,6 +200,10 @@ fishProtocol::fishProtocol(const QCString &pool_socket, const QCString &app_sock
   : SlaveBase("fish", pool_socket, app_socket), mimeBuffer(1024)
 {
 	myDebug( << "fishProtocol::fishProtocol()" << endl);
+	if (sshPath == NULL) {
+		isOpenSSH = !system("ssh -V 2>&1 | grep OpenSSH > /dev/null");
+		sshPath = strdup(KStandardDirs::findExe("ssh").latin1());
+	}
 	childPid = 0;
 	connectionPort = 0;
 	isLoggedIn = false;
@@ -370,18 +377,17 @@ bool fishProtocol::connectionStart() {
 		if (dev) close(open(dev, O_WRONLY, 0));
 		setpgid(0,0);
 
-        QString ex;
-        if (connectionPort) {
-            ex = "exec ssh -l '%u' -x -C -e none -p %p -q %h '%c'; exec ssh -l '%u' -x +C -e none -p %p -q %h '%c'";
-        } else {
-            ex = "exec ssh -l '%u' -x -C -e none -q %h '%c'; exec ssh -l '%u' -x +C -e none -q %h '%c'";
-        }
+#define common_args "-l", connectionUser.latin1(), "-x", "-e", "none", \
+	(isOpenSSH?"-C":"+C"), "-q", connectionHost.latin1(), \
+	"echo FISH:;env TZ=UTC LANG=C LC_ALL=C LOCALE=C /bin/sh", NULL
 
-		ex.replace(QRegExp("%u"),connectionUser);
-		ex.replace(QRegExp("%p"),QString::number(connectionPort));
-		ex.replace(QRegExp("%h"),connectionHost);
-		ex.replace(QRegExp("%c"),"echo FISH:;env TZ=UTC LANG=C LC_ALL=C LOCALE=C /bin/sh");
-		execl("/bin/sh", "sh", "-c", ex.latin1(), NULL);
+		if (connectionPort) {
+		    execl(sshPath, "ssh", "-p", QString::number(connectionPort).latin1(), common_args);
+		} else {
+		    execl(sshPath, "ssh", common_args);
+		}
+#undef common_args
+
 		myDebug( << "could not exec " << ex << endl);
 		exit(-1);
 	}
