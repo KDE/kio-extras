@@ -18,6 +18,7 @@ class InfoProtocol : public KIO::SlaveBase
  private:
 
     KProcess *m_pProc;
+    QString   m_infoScript;
 };
 
 #endif // __info_h__
