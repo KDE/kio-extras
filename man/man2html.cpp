@@ -1775,7 +1775,20 @@ static void trans_char(char *c, char s, char t)
     }
 }
 
-static char *fill_words(char *c, char *words[], int *n, bool newline)
+// 2004-10-19, patched by Waldo Bastian <bastian@kde.org>:
+// Fix handling of lines like:
+// .TH FIND 1L \" -*- nroff -*-
+// Where \" indicates the start of comment.
+// 
+// The problem is the \" handling in fill_words() in man2html.cpp, the return value
+// indicates the end of the word as well as the end of the line, which makes it
+// basically impossible to express that the end of the last word is not the end of
+// the line.
+// 
+// I have corrected that by adding an extra parameter 'next_line' that returns a
+// pointer to the next line, while the function itself returns a pointer to the end
+// of the last word.
+static char *fill_words(char *c, char *words[], int *n, bool newline, char **next_line)
 {
     char *sl=c;
     int slash=0;
@@ -1805,16 +1818,22 @@ static char *fill_words(char *c, char *words[], int *n, bool newline)
 		sl--;
 		if (newline) *sl='\n';
 		if (words[*n]!=sl) (*n)++;
-		sl++;
-		while (*sl && *sl !='\n') sl++;
-		words[*n]=sl;
-		sl--;
+		if (next_line)
+		{
+		    char *eow = sl;
+		    sl++;
+		    while (*sl && *sl !='\n') sl++;
+		    *next_line = sl;
+		    return eow;
+		}
+		return sl;
 	    }
 	    slash=0;
 	}
 	sl++;
     }
     if (sl!=words[*n]) (*n)++;
+    if (next_line) *next_line = sl+1;
     return sl;
 }
 
@@ -2214,8 +2233,7 @@ static char *scan_request(char *c)
             char **oldargument;
             int deflen;
             int onff;
-            sl=fill_words(c+j, wordlist, &words, true);
-            c=sl+1;
+            sl=fill_words(c+j, wordlist, &words, true, &c);
             *sl='\0';
             for (i=1;i<words; i++) wordlist[i][-1]='\0';
             for (i=0; i<words; i++)
@@ -2659,7 +2677,7 @@ static char *scan_request(char *c)
 	case REQ_I:
             /* parse one line in a certain font */
 	    out_html(change_to_font(*c));
-	    fill_words(c, wordlist, &words, false);
+	    fill_words(c, wordlist, &words, false, 0);
 	    c=c+j;
 	    if (*c=='\n') c++;
 	    c=scan_troff(c, 1, NULL);
@@ -2685,8 +2703,7 @@ static char *scan_request(char *c)
          char *semicolon=strchr(c,';');
          if ((semicolon!=0) && (semicolon<eol)) *semicolon=' ';
 
-         sl=fill_words(c, wordlist, &words, true);
-         c=sl+1;
+         sl=fill_words(c, wordlist, &words, true, &c);
          /* .BR name (section)
           ** indicates a link. It will be added in the output routine.
           */
@@ -2745,8 +2762,7 @@ static char *scan_request(char *c)
          font[1] = c[1];
          c=c+j;
          if (*c=='\n') c++;
-         sl=fill_words(c, wordlist, &words, true);
-         c=sl+1;
+         sl=fill_words(c, wordlist, &words, true, &c);
          /* .BR name (section)
           ** indicates a link. It will be added in the output routine.
           */
@@ -2777,18 +2793,17 @@ static char *scan_request(char *c)
 	case REQ_DT:
 	    for (j=0;j<20; j++) tabstops[j]=(j+1)*8;
 	    maxtstop=20;
-                c=skip_till_newline(c);
-                break;
+            c=skip_till_newline(c);
+            break;
 	case REQ_IP:
-	    sl=fill_words(c+j, wordlist, &words, true);
-	    c=sl+1;
-                if (!dl_set[itemdepth])
-                {
+	    sl=fill_words(c+j, wordlist, &words, true, &c);
+            if (!dl_set[itemdepth])
+            {
 		out_html("<DL>\n");
 		dl_set[itemdepth]=1;
 	    }
 	    out_html("<DT>");
-                if (words)
+            if (words)
 		scan_troff(wordlist[0], 1,NULL);
 	    out_html("<DD>");
 	    curpos=0;
@@ -2849,7 +2864,7 @@ static char *scan_request(char *c)
 	    break;
 	case REQ_Rs:	/* BSD mandoc */
 	case REQ_RS:
-	    sl=fill_words(c+j, wordlist, &words, true);
+	    sl=fill_words(c+j, wordlist, &words, true, 0);
 	    j=1;
 	    if (words>0) scan_expression(wordlist[0], &j);
                 if (j>=0)
@@ -2955,7 +2970,7 @@ static char *scan_request(char *c)
 	case REQ_TH:
                 if (!output_possible)
                 {
-		sl = fill_words(c+j, wordlist, &words, true);
+		sl = fill_words(c+j, wordlist, &words, true, &c);
                     if (words>1)
                     {
 		    for (i=1; i<words; i++) wordlist[i][-1]='\0';
@@ -3012,7 +3027,6 @@ static char *scan_request(char *c)
 		    *sl='\n';
 		    if (mandoc_command) out_html("<BR>BSD mandoc<BR>");
 		}
-		c=sl+1;
                 }
                 else
                     c=skip_till_newline(c);
@@ -3020,7 +3034,7 @@ static char *scan_request(char *c)
 	    break;
             case REQ_TX:
                 {
-	    sl=fill_words(c+j, wordlist, &words, true);
+	    sl=fill_words(c+j, wordlist, &words, true, &c);
 	    *sl='\0';
 	    out_html(change_to_font('I'));
 	    if (words>1) wordlist[1][-1]='\0';
@@ -3031,7 +3045,6 @@ static char *scan_request(char *c)
 	    if (words>1)
 		out_html(wordlist[1]);
 	    *sl='\n';
-	    c=sl+1;
           }
           break;
 	case REQ_rm:
@@ -3108,8 +3121,8 @@ static char *scan_request(char *c)
 		int olen=0;
                 char endmacro[SMALL_STR_MAX];
 		c=c+j;
-
-                sl = fill_words(c, wordlist, &words, true);
+                char *next_line;
+                sl = fill_words(c, wordlist, &words, true, &next_line);
                 char *name = wordlist[0];
                 c = name;
                 while ((*c != ' ') && (*c != '\n')) c++;
@@ -3129,7 +3142,7 @@ static char *scan_request(char *c)
                    while ((*c != ' ') && (*c != '\n')) *p++ = *c++;
                    *p = '\0';
                 }
-                c = sl + 1;
+                c = next_line;
 		sl=c;
 		while (*c && strncmp(c,endmacro, strlen(endmacro))) c=skip_till_newline(c);
 
