@@ -7,6 +7,7 @@ reading=true
 listing=Name,Type,Size,Date
 defaultMimetype=application/octet-stream
 Description=A kioslave for MacOS HFS+ partitions
+Description[cs]=Pomocný protokol pro diskové oddíly MacOS HFS+
 Description[da]=En kioslave for MacOS HFS+ partitioner
 Description[fy]=In kioslave foar MacOS HFS+-partities
 Description[hu]=KDE-protokoll MacOS HFS+ partíciók kezeléséhez
