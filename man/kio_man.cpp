@@ -95,14 +95,34 @@ MANProtocol::~MANProtocol()
     _self = 0;
 }
 
-QStringList* MANProtocol::findPages(const QString &section, const QString &title)
+QStringList MANProtocol::findPages(const QString &section, const QString &title)
 {
     checkManPaths();
-    QStringList *list=new QStringList;
-    if (title.at(0) == '/')
-       list->append(title);
-    else
-       *list = KGlobal::dirs()->findAllResources("manpath", QString("man*/%1.*").arg(title));
+    QStringList list;
+    if (title.at(0) == '/') {
+       list.append(title);
+       return list;
+    }
+
+    QString mansection = "man*";
+    if (!section.isEmpty())
+        mansection = QString("man%1").arg(section);
+    QStringList languages = KGlobal::locale()->languageList();
+    for (QStringList::ConstIterator it = languages.begin(); it != languages.end(); ++it) {
+        list += KGlobal::dirs()->findAllResources("manpath", QString("%1/%2/%3.*").arg(*it).arg(mansection).arg(title));
+    }
+    list += KGlobal::dirs()->findAllResources("manpath", QString("%1/%2.*").arg(mansection).arg(title));
+    QStringList::Iterator it = list.begin();
+    while (it != list.end()) {
+        QString file = (*it).mid((*it).findRev('/') + 1);
+        kdDebug() << file << endl;
+        assert(file[title.length()] == '.');
+        file = file.mid(title.length() + 1);
+        if (!file[0].isNumber())
+            it = list.remove(it);
+        else
+            ++it;
+    }
     return list;
 }
 
@@ -154,26 +174,25 @@ void MANProtocol::get(const KURL& url )
     // tell the mimetype
     mimeType("text/html");
 
-    QStringList *foundPages=findPages(section, title);
-    if (foundPages->count()==0)
+    QStringList foundPages=findPages(section, title);
+    if (foundPages.count()==0)
     {
        outputError(i18n("no manpage matching to %1 found").arg(title));
     }
-    else if (foundPages->count()>1)
+    else if (foundPages.count()>1)
     {
        outputMatchingPages(foundPages);
     }
     //yes, we found exactly one man page
     else
     {
-       QCString filename=QFile::encodeName((*foundPages)[0]);
+       QCString filename=QFile::encodeName(foundPages[0]);
 
        char *buf = readManPage(filename);
        if (!buf)
        {
           outputError(i18n("open of %1 failed").arg(title));
           finished();
-          delete foundPages;
           return;
        }
        // will call output_real
@@ -186,7 +205,6 @@ void MANProtocol::get(const KURL& url )
        data(QByteArray());
     };
     finished();
-    delete foundPages;
 }
 
 char *MANProtocol::readManPage(const char *_filename)
@@ -257,7 +275,7 @@ void MANProtocol::outputError(const QString& errmsg)
     data(output);
 }
 
-void MANProtocol::outputMatchingPages(const QStringList* matchingPages)
+void MANProtocol::outputMatchingPages(const QStringList &matchingPages)
 {
     QCString output;
 
@@ -268,8 +286,8 @@ void MANProtocol::outputMatchingPages(const QStringList* matchingPages)
     os <<"</title></head>\n<body bgcolor=#ffffff><h1>";
     os << i18n("There are more than one man page matching");
     os << "</h1>\n<ul>";
-    for (unsigned int i=0; i<matchingPages->count(); i++)
-       os<<"<li><a href=man:"<<QFile::encodeName((*matchingPages)[i])<<">"<<(*matchingPages)[i]<<"</href><br>\n<br>\n";
+    for (QStringList::ConstIterator it = matchingPages.begin(); it != matchingPages.end(); ++it)
+       os<<"<li><a href=man:"<<QFile::encodeName(*it)<<">"<< *it <<"</href><br>\n<br>\n";
     os<< "</ul>\n</body>\n</html>"<<endl;
 
     data(output);
@@ -328,7 +346,6 @@ extern "C"
 
     int kdemain( int argc, char **argv ) {
 
-        KLocale::setMainCatalogue("kdelibs");
         KInstance instance("kio_man");
 
         kdDebug(7107) <<  "STARTING " << getpid() << endl;

@@ -1,6 +1,6 @@
 /*  This file is part of the KDE libraries
     Copyright (c) 2000 Matthias Hoelzer-Kluepfel <mhk@caldera.de>
- 
+
 
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Library General Public
@@ -46,7 +46,7 @@ public:
     virtual void mimetype(const KURL &url);
 
     void outputError(const QString& errmsg);
-    void outputMatchingPages(const QStringList* matchingPages);
+    void outputMatchingPages(const QStringList &matchingPages);
 
     void showMainIndex();
     void showIndex(const QString& section);
@@ -59,7 +59,7 @@ public:
 
 private:
     void checkManPaths();
-    QStringList *findPages(const QString& section, const QString &title);
+    QStringList findPages(const QString& section, const QString &title);
 
     void addToBuffer(const char *buffer, int buflen);
     QString pageName(const QString& page) const;
