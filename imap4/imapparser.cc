@@ -98,7 +98,7 @@ imapParser::sendCommand (imapCommand * aCmd)
     currentBox = QString::null;
   }
   else if (command.find ("SEARCH") != -1
-           || command == "ACL"
+           || command == "GETACL"
            || command == "LISTRIGHTS"
            || command == "MYRIGHTS")
   {
@@ -517,9 +517,9 @@ void imapParser::parseList (parseString & result)
       this_one.setMarked (true);
     else if (-1 != attribute.find ("\\unmarked"))
       this_one.setUnmarked (true);
-    else if (-1 != attribute.find ("\\haschildren")) 
+    else if (-1 != attribute.find ("\\haschildren"))
       this_one.setHasChildren (true);
-    else if (-1 != attribute.find ("\\hasnochildren")) 
+    else if (-1 != attribute.find ("\\hasnochildren"))
       this_one.setHasNoChildren (true);
     else
       kdDebug(7116) << "imapParser::parseList - unknown attribute " << attribute << endl;
