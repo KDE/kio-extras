@@ -78,6 +78,7 @@ class SmbProtocol : public KIO::SlaveBase
       void listShares();
       void listWorkgroups();
       void listHosts();
+      bool searchWorkgroups();
       QCString getNmbName(QCString ipString);
       QCString getMasterBrowser();
 

@@ -1169,7 +1169,7 @@ QCString SmbProtocol::getMasterBrowser()
    return masterBrowser;
 };
 
-void SmbProtocol::listWorkgroups()
+bool SmbProtocol::searchWorkgroups()
 {
    QCString masterBrowser=getMasterBrowser();
    QCString nmbName=getNmbName(masterBrowser);
@@ -1188,7 +1188,7 @@ void SmbProtocol::listWorkgroups()
    {
       kdDebug(7101)<<"Smb::searchWorkgroup() could not start smbclient"<<endl;
       delete proc;
-      return;
+      return false;
    };
    QString password(m_password);
    QString user(m_user);
@@ -1219,7 +1219,7 @@ void SmbProtocol::listWorkgroups()
          {
             error( KIO::ERR_CANNOT_LAUNCH_PROCESS, "smbclient"+i18n("\nMake sure that the samba package is installed properly on your system."));
             delete proc;
-            return;
+            return false;
          };
       }
       else break;
@@ -1236,26 +1236,23 @@ void SmbProtocol::listWorkgroups()
    if (result==SMB_ERROR)
    {
       stopAfterError(url,false);
-      return;
+      return false;
    }
    //this happens only if the user pressed cancel
    else if (result==SMB_WRONGPASSWORD)
    {
       error(ERR_USER_CANCELED,"");
-      return;
+      return false;
    };
 
    if (stopAfterError(url,true))
-      return;
+      return false;
 
    QString outputString = QString::fromLocal8Bit(m_stdoutBuffer);
    QTextIStream output(&outputString);
    QString line;
 
-   int totalNumber(0);
    int mode(0);
-   UDSEntry entry;
-
    int wgPos(0);
    int masterPos(0);
 
@@ -1279,7 +1276,7 @@ void SmbProtocol::listWorkgroups()
          }
          else
          {
-            return;
+            return false;
          };
       }
       else if (mode==2)
@@ -1301,35 +1298,55 @@ void SmbProtocol::listWorkgroups()
                end--;
             master=master.left(end+1);
             m_workgroups[name.upper()]=master.upper();
-
-            entry.clear();
-            UDSAtom atom;
-
-            atom.m_uds = KIO::UDS_NAME;
-            atom.m_str =name;
-            entry.append( atom );
-
-            atom.m_uds = KIO::UDS_SIZE;
-            atom.m_long = 1024;
-            entry.append(atom);
-
-            atom.m_uds = KIO::UDS_MODIFICATION_TIME;
-            atom.m_long = time(0);
-            entry.append( atom );
-
-            atom.m_uds = KIO::UDS_ACCESS;
-            atom.m_long=S_IRUSR | S_IXUSR | S_IRGRP | S_IXGRP | S_IROTH | S_IXOTH;
-            entry.append( atom );
-
-            atom.m_uds = KIO::UDS_FILE_TYPE;
-            atom.m_long =S_IFDIR;
-            entry.append( atom );
-
-            listEntry( entry, false);
-            totalNumber++;
          };
       };
    };
+   return true;
+};
+
+void SmbProtocol::listWorkgroups()
+{
+   if (!searchWorkgroups())
+      return;
+
+   int totalNumber(0);
+   UDSEntry entry;
+
+   for (QMap<QString, QString>::ConstIterator it = m_workgroups.begin(); it != m_workgroups.end(); ++it )
+   {
+/*      printf( "%s: %s, %s earns %d\n",
+              it.key().latin1(),
+              it.data().surname().latin1(),
+              it.data().forename().latin1(),
+              it.data().salary() );*/
+
+      entry.clear();
+      UDSAtom atom;
+
+      atom.m_uds = KIO::UDS_NAME;
+      atom.m_str =it.key();
+      entry.append( atom );
+
+      atom.m_uds = KIO::UDS_SIZE;
+      atom.m_long = 1024;
+      entry.append(atom);
+
+      atom.m_uds = KIO::UDS_MODIFICATION_TIME;
+      atom.m_long = time(0);
+      entry.append( atom );
+
+      atom.m_uds = KIO::UDS_ACCESS;
+      atom.m_long=S_IRUSR | S_IXUSR | S_IRGRP | S_IXGRP | S_IROTH | S_IXOTH;
+      entry.append( atom );
+
+      atom.m_uds = KIO::UDS_FILE_TYPE;
+      atom.m_long =S_IFDIR;
+      entry.append( atom );
+
+      listEntry( entry, false);
+      totalNumber++;
+   }
+
    totalSize( totalNumber);
    listEntry( entry, true ); // ready
 
