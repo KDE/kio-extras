@@ -629,7 +629,7 @@ static char *scan_escape(char *c)
 	if (argument) {
 	    c++;
 	    i=(*c -'1');
-	    if (i < 0 || i > strlen(*argument) || !(h=argument[i])) h="";
+	    if (i < 0 || i > (int)strlen(*argument) || !(h=argument[i])) h="";
 	}
 	break;
     case 'z':
@@ -3078,7 +3078,7 @@ static char *scan_troff(char *c, int san, char **result)
 		    }
 		    usenbsp=fillout;
 		    if (usenbsp) out_html("&nbsp;"); else intbuff[ibp++]=' ';
-		} else if (*h>31 && *h<1272) intbuff[ibp++]=*h;
+		} else if (*h>31 && *h<127) intbuff[ibp++]=*h;
 		else if (((unsigned char)(*h))>127) {
                     intbuff[ibp++]=*h;
 

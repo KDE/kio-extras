@@ -413,6 +413,7 @@ bool NNTPProtocol::fetchGroup(QString& group) {
       return false;
     }
   }
+return true; // Not reached  
 }
 
 void NNTPProtocol::fillUDSEntry(UDSEntry& entry, const QString& name, int size,
