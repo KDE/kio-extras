@@ -1,7 +1,0 @@
-		etc/kde2/applnk/Settings/LookNFeel/video_setting.desktop
-		etc/kde2/applnk/Settings/Network/knetconfig.desktop
-		etc/kde2/applnk/Settings/Information/kusbview.desktop
-		etc/kde2/applnk/Settings/Personalization/rscp.desktop \
-		etc/kde2/applnk/Settings/Network/hwcontrolpanel.desktop \
-		etc/kde2/applnk/Applications/System/corelupdate.desktop \
-		root/.kde/share/applnk/Applications/System/eventview.kdelnk
