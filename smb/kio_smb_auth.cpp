@@ -56,9 +56,6 @@ void SMBSlave::auth_smbc_get_data(const char *server,const char *share,
                                   char *password, int pwmaxlen)
 //--------------------------------------------------------------------------
 {
-    kdDebug(KIO_SMB) << "auth_smbc_get_data server = " << server <<
-                        ", share = " << share << ", workgroup = " << workgroup << endl;
-
     //check this to see if we "really" need to authenticate...
     SMBUrlType t = m_current_url.getType();
     if( t == SMBURLTYPE_ENTIRE_NETWORK )
@@ -96,33 +93,33 @@ void SMBSlave::auth_smbc_get_data(const char *server,const char *share,
         else
           strncpy(workgroup,auth.m_domain,64-1);
         strncpy(username,auth.m_username,unmaxlen - 1);
-        strncpy(password,auth.m_passwd,pwmaxlen - 1);
+	if (!auth.m_passwd.isEmpty())
+	  strncpy(password,auth.m_passwd,pwmaxlen - 1);
     }
 }
 
 //--------------------------------------------------------------------------
 bool SMBSlave::setAuthInfo(SMBAuthInfo &auth) {
     bool infocached = cache_get_AuthInfo(auth);
+
+    // local userinfo from KUrl ?
     if (!m_current_url.getUser().isEmpty()) {
-      //      kdDebug(KIO_SMB) << "setAuthInfo : local Userinfo password ="<< m_current_url.getPassword().local8Bit()<<";"<<auth.m_passwd << endl;
       
       QString domain = m_current_url.getUserDomain();
       QString user =  m_current_url.getUser();
 
-
-
       auth.m_domain = domain.local8Bit();
       auth.m_username = user.local8Bit();
+
       if (!m_current_url.getPassword().isEmpty())
-      auth.m_passwd = m_current_url.getPassword().local8Bit();
+	auth.m_passwd = m_current_url.getPassword().local8Bit();
       cache_set_AuthInfo(auth, true);
 
       infocached=true;
     }
+
     // user without password in kurl or
-    // no user in kurl and info not chached
-    if ( ((!m_current_url.getUser().isEmpty()) && (m_current_url.getPassword().isEmpty())) &&
-        (!infocached) ) {
+    if ( ((!m_current_url.getUser().isEmpty()) && (auth.m_passwd.isEmpty()))) {
         QString user_prompt = auth.m_username;
         QString passwd_prompt = auth.m_passwd;
 
