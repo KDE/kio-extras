@@ -164,6 +164,10 @@ void SMTPProtocol::put (const KURL &url, int /*permissions*/, bool /*overwrite*/
 		mset->setProfile(mset->defaultProfileName());
 	}
 
+	// Check KEMailSettings to see if we've specified an E-Mail address
+	// if that worked, check to see if we've specified a real name
+	// and then format accordingly (either: emailaddress@host.com or 
+	// Real Name <emailaddress@host.com>)
 	QString from;
 	if (mset->getSetting(KEMailSettings::EmailAddress) != QString::null) {
 		from = mset->getSetting(KEMailSettings::EmailAddress);
@@ -177,7 +181,7 @@ void SMTPProtocol::put (const KURL &url, int /*permissions*/, bool /*overwrite*/
 	}
 
 	// Loop through our To and CC recipients, and send the proper
-	// SMTP commands
+	// SMTP commands, for the benefit of the server.
 	QString formatted_recip = ASCII("RCPT TO: %1");
 	for ( QStringList::Iterator it = recip.begin(); it != recip.end(); ++it ) {
 		if (!command(formatted_recip.arg(*it)))
@@ -225,9 +229,10 @@ void SMTPProtocol::put (const KURL &url, int /*permissions*/, bool /*overwrite*/
 
 	delete mset;
 
-	int result;
 	// Loop until we got 0 (end of data)
+	int result;
 	QByteArray buffer;
+
 	do {
 		dataReq(); // Request for data
 		buffer.resize(0);
@@ -237,8 +242,8 @@ void SMTPProtocol::put (const KURL &url, int /*permissions*/, bool /*overwrite*/
 		} else if (result <= 0) {
 			error(ERR_COULD_NOT_WRITE, url.path());
 		}
-	}
-	while (result > 0);
+	} while (result > 0);
+
 	Write("\r\n.\r\n", 5);
 	command(ASCII("RSET"));
 	finished();
