@@ -21,22 +21,24 @@
 #include <kglobal.h>
 
 #include <qlayout.h>
-#include <qpushbutton.h>
 #include <qcheckbox.h>
 #include <qcombobox.h>
 #include <qgroupbox.h>
 #include <qslider.h>
 #include <qspinbox.h>
+#include <qlineedit.h>
+#include <qlistbox.h>
+#include <qpushbutton.h>
 
 #include "kcmaudiocd.h"
 
-#include "kcmaudiocd.moc"
+#define CDDB_DEFAULT_SERVER "freedb.freedb.org:8880"
 
 // MPEG Layer 3 Bitrates
 static int bitrates[] = { 32, 40, 48, 56, 64, 80, 96, 112, 128, 160, 192, 224, 256, 320 };
 
 // these are the approx. bitrates for the current 5 Vorbis modes
-static int vorbis_nominal_bitrates[] = { 128, 160, 192, 256, 350 }; 
+static int vorbis_nominal_bitrates[] = { 128, 160, 192, 256, 350 };
 static int vorbis_bitrates[] = { 32, 40, 48, 56, 64, 80, 96, 112, 128, 160, 192, 224, 256, 350 };
 
 KAudiocdModule::KAudiocdModule(QWidget *parent, const char *name)
@@ -46,12 +48,12 @@ KAudiocdModule::KAudiocdModule(QWidget *parent, const char *name)
     setButtons(Default|Apply);
 
     QVBoxLayout *layout = new QVBoxLayout(this, 10);
-    
+
     audiocdConfig = new AudiocdConfig(this);
-    
+
     layout->addWidget(audiocdConfig);
     layout->setMargin(0);
-    
+
     enc_method = audiocdConfig->enc_method;
     vbr_settings = audiocdConfig->vbr_settings;
     cbr_settings = audiocdConfig->cbr_settings;
@@ -63,7 +65,7 @@ KAudiocdModule::KAudiocdModule(QWidget *parent, const char *name)
     crc = audiocdConfig->crc;
 
     id3_tag = audiocdConfig->id3_tag;
-    
+
     cbr_bitrate = audiocdConfig->cbr_bitrate;
 
     vbr_average_br = audiocdConfig->vbr_average_br;
@@ -97,18 +99,38 @@ KAudiocdModule::KAudiocdModule(QWidget *parent, const char *name)
 
     vorbis_comments = audiocdConfig->vorbis_comments;
 
+    cd_autosearch_check = audiocdConfig->cd_autosearch_check;
+    cd_device_string = audiocdConfig->cd_device_string;
+
+    ec_disable_check = audiocdConfig->ec_disable_check;
+    ec_neverskip_check = audiocdConfig->ec_neverskip_check;
+
+    cddb_enable = audiocdConfig->cddb_enable;
+    cddb_server = audiocdConfig->cddb_server;
+    cddb_server_listbox = audiocdConfig->cddb_server_listbox;
+    cddbserver_add_push = audiocdConfig->cddbserver_add_push;
+    cddbserver_del_push = audiocdConfig->cddbserver_del_push;
+
     config = new KConfig("kcmaudiocdrc");
 
     load();
 
-    // "Advanced" Button
-    connect(audiocdConfig->advanced, SIGNAL(clicked()), SLOT(slotShowAdvanced()));
+    //CDDA Options
+    connect(cd_autosearch_check,SIGNAL(clicked()),this,SLOT(slotConfigChanged()));
+    connect(ec_disable_check,SIGNAL(clicked()),this,SLOT(slotEcDisable()));
+    connect(ec_neverskip_check,SIGNAL(clicked()),SLOT(slotConfigChanged()));
+
+    //CDDB Options
+    connect(cddb_enable, SIGNAL(clicked()), this, SLOT(slotConfigChanged()));
+    connect(cddbserver_add_push,SIGNAL(clicked()), this, SLOT(slotAddCDDBServer()));
+    connect(cddbserver_del_push,SIGNAL(clicked()), this, SLOT(slotDelCDDBServer()));
+    connect(cddb_server,SIGNAL(textChanged(const QString &)),this,SLOT(slotConfigChanged()));
 
     //MP3 Encoding Method
     connect(enc_method,SIGNAL(activated(int)),SLOT(slotSelectMethod(int)));
     connect(stereo,SIGNAL(activated(int)),SLOT(slotConfigChanged()));
     connect(quality,SIGNAL(valueChanged(int)),SLOT(slotConfigChanged()));
-    
+
     //MP3 Options
     connect(copyright,SIGNAL(clicked()),this,SLOT(slotConfigChanged()));
     connect(original,SIGNAL(clicked()),this,SLOT(slotConfigChanged()));
@@ -148,16 +170,22 @@ KAudiocdModule::KAudiocdModule(QWidget *parent, const char *name)
     connect(vorbis_max_br,SIGNAL(activated(int)),SLOT(slotConfigChanged()));
     connect(vorbis_nominal_br,SIGNAL(activated(int)),SLOT(slotConfigChanged()));
 
-    //init layout
-   audiocdConfig->cbr_settings->hide();
-   audiocdConfig->vbr_settings->hide();
-   audiocdConfig->filter_settings->hide();
-   audiocdConfig->advanced->setText(i18n("Advanced >>"));
-
-
 };
 
 void KAudiocdModule::defaults() {
+
+  cddbserverlist = CDDB_DEFAULT_SERVER;
+
+  cddb_enable->setChecked(true);
+  cddb_server->setText(CDDB_DEFAULT_SERVER);
+  cddb_server_listbox->clear();
+  cddb_server_listbox->insertStringList(cddbserverlist);
+
+  cd_autosearch_check->setChecked(true);
+  cd_device_string->setText("/dev/cdrom");
+
+  ec_disable_check->setChecked(false);
+  ec_neverskip_check->setChecked(true);
 
   enc_method->setCurrentItem(0);
   slotSelectMethod(0);
@@ -177,7 +205,7 @@ void KAudiocdModule::defaults() {
   vbr_min_hard->setChecked(false);
   vbr_max_br->setChecked(false);
   vbr_average_br->setChecked(false);
- 
+
   vbr_min_brate->setCurrentItem(7);
   vbr_max_brate->setCurrentItem(13);
   vbr_mean_brate->setCurrentItem(10);
@@ -243,14 +271,24 @@ void KAudiocdModule::save() {
 
   int vorbis_nominal_bitrate = vorbis_nominal_br->currentItem();
   vorbis_nominal_bitrate = vorbis_nominal_bitrates[vorbis_nominal_bitrate];
-  
+
+  config->setGroup("CDDA");
+  config->writeEntry("autosearch",cd_autosearch_check->isChecked());
+  config->writeEntry("device",cd_device_string->text());
+  config->writeEntry("disable_paranoia",ec_disable_check->isChecked());
+  config->writeEntry("never_skip",ec_neverskip_check->isChecked());
+
+  config->setGroup("CDDB");
+  config->writeEntry("enable_cddb",cddb_enable->isChecked());
+  config->writeEntry("cddb_server",cddb_server->text());
+  config->writeEntry("cddb_server_list",cddbserverlist);
 
   config->setGroup("MP3");
 
   config->writeEntry("mode",mode);
   config->writeEntry("quality",encquality);
   config->writeEntry("encmethod",encmethod);
- 
+
   config->writeEntry("copyright",copyright->isChecked());
   config->writeEntry("original",original->isChecked());
   config->writeEntry("iso",iso->isChecked());
@@ -267,7 +305,7 @@ void KAudiocdModule::save() {
   config->writeEntry("vbr_max_bitrate",vbrmaxbrate);
   config->writeEntry("vbr_average_bitrate",vbravrbrate);
   config->writeEntry("write_xing_tag",vbr_xing_tag->isChecked());
-  
+
   config->writeEntry("enable_lowpassfilter",enable_lowpass->isChecked());
   config->writeEntry("enable_highpassfilter",enable_highpass->isChecked());
   config->writeEntry("set_highpassfilter_width",set_hpf_width->isChecked());
@@ -278,7 +316,7 @@ void KAudiocdModule::save() {
   config->writeEntry("highpassfilter_width",hpf_width);
 
   config->setGroup("Vorbis");
-  
+
   config->writeEntry("set_vorbis_min_bitrate",set_vorbis_min_br->isChecked());
   config->writeEntry("set_vorbis_max_bitrate",set_vorbis_max_br->isChecked());
   config->writeEntry("set_vorbis_nominal_bitrate",set_vorbis_nominal_br->isChecked());
@@ -294,6 +332,21 @@ void KAudiocdModule::save() {
 }
 
 void KAudiocdModule::load() {
+
+  config->setGroup("CDDA");
+
+  cd_autosearch_check->setChecked(config->readBoolEntry("autosearch",true));
+  cd_device_string->setText(config->readEntry("device","/dev/cdrom"));
+  ec_disable_check->setChecked(config->readBoolEntry("disable_paranoia",false));
+  ec_neverskip_check->setChecked(config->readBoolEntry("never_skip",true));
+
+  config->setGroup("CDDB");
+
+  cddb_enable->setChecked(config->readBoolEntry("enable_cddb",true));
+  cddb_server->setText(config->readEntry("cddb_server",CDDB_DEFAULT_SERVER));
+  cddbserverlist = config->readListEntry("cddb_server_list",',');
+  cddb_server_listbox->clear();
+  cddb_server_listbox->insertStringList(cddbserverlist);
 
   config->setGroup("MP3");
 
@@ -375,7 +428,7 @@ int KAudiocdModule::getVorbisBitrateIndex(int value) {
   
   int i;
   for (i=0;i < sizeof(vorbis_bitrates);i++) 
-    if (value == vorbis_bitrates[i])
+    if (value == vorbis_bitrates[i]) 
       return i;
   return -1;
 }
@@ -396,11 +449,60 @@ void KAudiocdModule::slotConfigChanged() {
   return;
 }
 
+void KAudiocdModule::slotAddCDDBServer() {
+
+  if(cddbserverlist.find(cddb_server->text()) != cddbserverlist.end()) return;
+
+  cddbserverlist.append(cddb_server->text());
+  cddbserverlist.sort();
+
+  cddb_server_listbox->clear();
+  cddb_server_listbox->insertStringList(cddbserverlist);
+
+  slotConfigChanged();
+
+}
+
+void KAudiocdModule::slotDelCDDBServer() {
+
+  QStringList::Iterator it =  cddbserverlist.find(cddb_server->text());
+
+  if( it == cddbserverlist.end()) return;
+
+  cddbserverlist.remove(it);
+  cddbserverlist.sort();
+
+  cddb_server->clear();
+  cddb_server_listbox->clear();
+  cddb_server_listbox->insertStringList(cddbserverlist);
+
+  slotConfigChanged();
+
+}
+
+
+/*
+#    slot for the error correction settings
+*/
+void KAudiocdModule::slotEcDisable() {
+
+  if (ec_neverskip_check->isChecked()) {
+    ec_neverskip_check->setChecked(false);
+  } else {
+    if (ec_neverskip_check->isEnabled()) {
+      ec_neverskip_check->setChecked(true);
+    }
+  }
+
+  slotConfigChanged();
+
+}
+
 //
 // slot for the filter settings
 //
 void KAudiocdModule::slotChangeFilter() {
-  
+
   if (enable_lowpass->isChecked()) {
     lowfilterfreq->setEnabled(true);
     //lowfilterwidth->setEnabled(true);
@@ -466,7 +568,7 @@ void KAudiocdModule::slotSelectMethod(int index) {
 void KAudiocdModule::slotUpdateVBRWidgets() {
 
   if (vbr_average_br->isEnabled()) {
-
+    
     if(vbr_average_br->isChecked()) {
 
       vbr_min_br->setChecked(false);
@@ -475,7 +577,7 @@ void KAudiocdModule::slotUpdateVBRWidgets() {
       vbr_max_br->setChecked(false);
       vbr_max_br->setDisabled(true);
       vbr_mean_brate->setEnabled(true);
-
+     
     } else {
 
        vbr_min_br->setEnabled(true);
@@ -487,25 +589,6 @@ void KAudiocdModule::slotUpdateVBRWidgets() {
   slotConfigChanged();
 
   return;
-}
-
-void KAudiocdModule::slotShowAdvanced() {
-
- if (audiocdConfig->filter_settings->isHidden())
- {
-   audiocdConfig->cbr_settings->show();
-   audiocdConfig->vbr_settings->show();
-   audiocdConfig->filter_settings->show();
-   audiocdConfig->advanced->setText(i18n("<< Basic"));
- }
- else
- {
-   audiocdConfig->cbr_settings->hide();
-   audiocdConfig->vbr_settings->hide();
-   audiocdConfig->filter_settings->hide();
-   audiocdConfig->advanced->setText(i18n("Advanced >>"));
- }
-
 }
 
 extern "C"
