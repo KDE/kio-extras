@@ -58,6 +58,33 @@ Your standard get (read) only slave has three public methods:
 	Used by such progams as Caitoo, instead of gettingFile you'll want
 	to use copyingFile().	
 
+That's nice, but how can I use it?
+
+Any time you'd like to use non blocking IO over a high level protocol
+(such as HTTP or FTP) a kioslave is for you.
+
+That's nice, but how do I use it?
+
+Basically, you create "jobs" by constructing a KIOJob object (the correct
+prototypes, etc, etc, are in kio_job.h).  Once this is done, you connect
+the appropiate signals and slots (you can look in the appropiate headers
+for more available signals), and then call the appropiate function.
+
+In the following example, since the goal is to download a file, the
+sigData and sigFinished signals are connected, and the correct URL is
+passed to the ::get method.  Other possibilities would be put, delete,
+rename, move, and so-on.
+
+> KIOJob *job;
+> [..]
+> job = new KIOJob();
+> connect(job, SIGNAL( sigFinished( int ) ), this, SLOT(slotFinished(int)));
+> connect(job, SIGNAL(sigData( int, const char*, int ) ), this, SLOT(slotData((
+> int, const char*, int ) ));
+> job->get("pop://host/download/1");
+> job->get("pop://host/remove/1");
+
+
 IF YOU'RE STILL READING THIS AND ARE INTERESTED IN WORKING ON AN IOSLAVE,
 AS OF April 28th, THE FOLLOWING SLAVES ARE SEVERLY LACKING IN
 FUNCTIONALITY:
