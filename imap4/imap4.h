@@ -64,7 +64,7 @@ public:
   virtual void slave_status ();
   virtual void mimetype (const KURL & _url);
   virtual void del (const KURL & _url, bool isFile);
-  /** Change the status. data = 'S' + URL + '\0' + Flags + '\0' 
+  /** Change the status. data = 'S' + URL + '\0' + Flags + '\0'
    *  Copy a mail: data = 'C' + srcURL + '\0' + destURL + '\0' */
   virtual void special (const QByteArray & data);
   virtual void listDir (const KURL & _url);
@@ -114,13 +114,6 @@ protected:
 
   bool makeLogin ();
 
-  QString myHost, myUser, myPass, myAuth, myTLS;
-  int myPort;
-  bool mySSL;
-
-  bool relayEnabled, cacheOutput;
-  QByteArray outputCache;
-
   void outputLineStr (const QString & _str)
   {
     outputLine (_str.latin1 ());
@@ -129,6 +122,16 @@ protected:
     bool withFlags = FALSE, bool withSubject = FALSE);
   void doListEntry (const KURL & _url, const QString & myBox,
                     const imapList & item);
+
+private:
+
+  QString myHost, myUser, myPass, myAuth, myTLS;
+  int myPort;
+  bool mySSL;
+
+  bool relayEnabled, cacheOutput;
+  QByteArray outputCache;
+  KIO::filesize_t mProcessedSize;
 
   char readBuffer[IMAP_BUFFER];
   ssize_t readBufferLen;

@@ -45,7 +45,7 @@
   API notes:
     Not recieving the required write access for a folder means
         ERR_CANNOT_OPEN_FOR_WRITING.
-    ERR_DOES_NOT_EXIST is reserved for folders. 
+    ERR_DOES_NOT_EXIST is reserved for folders.
 */
 
 #ifdef HAVE_CONFIG_H
@@ -170,6 +170,7 @@ IMAP4Protocol::get (const KURL & _url)
     aSequence = "1:*";
   }
 
+  mProcessedSize = 0;
   imapCommand *cmd = NULL;
   if (!assureBox (aBox, true)) return;
 
@@ -338,7 +339,7 @@ IMAP4Protocol::listDir (const KURL & _url)
       UDSEntry entry;
       UDSAtom atom;
       KURL aURL = _url;
-      if (aURL.path().find(";") != -1) 
+      if (aURL.path().find(";") != -1)
         aURL.setPath(aURL.path().left(aURL.path().find(";")));
 
       kdDebug(7116) << "IMAP4Protocol::listDir - got " << listResponses.count () << endl;
@@ -479,7 +480,7 @@ IMAP4Protocol::listDir (const KURL & _url)
 
         bool withSubject = mySection.isEmpty();
         if (mySection.isEmpty()) mySection = "UID RFC822.SIZE ENVELOPE";
-        
+
         bool withFlags = mySection.upper().find("FLAGS") != -1;
         imapCommand *fetch =
           sendCommand (imapCommand::
@@ -523,8 +524,11 @@ IMAP4Protocol::setHost (const QString & _host, int _port,
 void
 IMAP4Protocol::parseRelay (const QByteArray & buffer)
 {
-  if (relayEnabled)
-    data (buffer);
+  if (relayEnabled)  {
+    data( buffer );
+    mProcessedSize += buffer.size();
+    processedSize( mProcessedSize );
+  }
 }
 
 void
@@ -942,7 +946,7 @@ IMAP4Protocol::del (const KURL & _url, bool isFile)
       }
       else
       {
-        // if open for read/write 
+        // if open for read/write
         if (!assureBox (aBox, false)) return;
         imapCommand *cmd =
           doCommand (imapCommand::
@@ -1012,7 +1016,7 @@ IMAP4Protocol::del (const KURL & _url, bool isFile)
 
   case ITYPE_MSG:
     {
-      // if open for read/write 
+      // if open for read/write
       if (!assureBox (aBox, false)) return;
       imapCommand *cmd =
         doCommand (imapCommand::
@@ -1036,11 +1040,11 @@ IMAP4Protocol::special (const QByteArray & aData)
   if (!makeLogin()) return;
 
   kdDebug(7116) << "IMAP4Protocol::special" << endl;
-  QDataStream stream(aData, IO_ReadOnly); 
+  QDataStream stream(aData, IO_ReadOnly);
 
   int tmp;
-  stream >> tmp;  
-    
+  stream >> tmp;
+
   if (tmp  == 'C')
   {
     KURL src;
@@ -1107,7 +1111,7 @@ IMAP4Protocol::special (const QByteArray & aData)
     KURL _url;
     QCString newFlags;
     stream >> _url >> newFlags;
-    
+
     QString aBox, aSequence, aLType, aSection, aValidity, aDelimiter;
     parseURL (_url, aBox, aSection, aLType, aSequence, aValidity, aDelimiter);
     if (!assureBox(aBox, false)) return;
@@ -1418,7 +1422,7 @@ bool IMAP4Protocol::makeLogin ()
       closeConnection();
       return false;
     }
-    if ((myTLS == "on" || (canUseTLS() && myTLS != "off")) && 
+    if ((myTLS == "on" || (canUseTLS() && myTLS != "off")) &&
       hasCapability(QString("STARTTLS")))
     {
       imapCommand *cmd = doCommand (imapCommand::clientStartTLS());
@@ -1830,8 +1834,11 @@ IMAP4Protocol::outputLine (const QCString & _str)
 
 void IMAP4Protocol::flushOutput()
 {
+  // send out cached data to the application
   if (outputCache.isEmpty()) return;
   data(outputCache);
+  mProcessedSize += outputCache.size();
+  processedSize( mProcessedSize );
   outputCache.resize(0);
 }
 
