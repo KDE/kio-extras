@@ -1,6 +1,6 @@
 bin_PROGRAMS = kio_media_mounthelper
 
-INCLUDES = $(all_includes) -I../libmediacommon
+INCLUDES = $(all_includes) -I$(srcdir)/../libmediacommon
 AM_LDFLAGS = $(all_libraries)
 
 kio_media_mounthelper_SOURCES = kio_media_mounthelper.cpp

@@ -1,6 +1,6 @@
 SUBDIRS = libmediacommon . kdedmodule mounthelper kfile-plugin mimetypes services
 
-INCLUDES = $(all_includes) -I./libmediacommon
+INCLUDES = $(all_includes) -I$(srcdir)/libmediacommon
 METASOURCES = AUTO
 
 kde_module_LTLIBRARIES = kio_media.la
