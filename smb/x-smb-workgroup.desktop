@@ -20,6 +20,5 @@ Comment[xx]=xxWindows Workgroupxx
 Icon=usb
 Type=MimeType
 MimeType=application/x-smb-workgroup
-X-KDE-Derived=inode/directory
 X-KDE-AutoEmbed=true
 X-KDE-IsAlso=inode/directory
