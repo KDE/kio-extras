@@ -1299,7 +1299,7 @@ bool IMAP4Protocol::makeLogin ()
 
     if (!hasCapability("IMAP4") && !hasCapability("IMAP4rev1"))
     {
-      error(ERR_COULD_NOT_LOGIN, i18n("Sorry, the server %1 supports neither "
+      error(ERR_COULD_NOT_LOGIN, i18n("The server %1 supports neither "
         "IMAP4 nor IMAP4rev1.\nIt identified itself with: %2")
         .arg(myHost).arg(greeting));
       closeConnection();
@@ -1370,23 +1370,23 @@ bool IMAP4Protocol::makeLogin ()
     if (myAuth.isEmpty () || myAuth == "*")
     {
       if (QString(myUser.utf8()) != myUser)
-        error(KIO::ERR_COULD_NOT_LOGIN, i18n("Sorry, in IMAP clear text login, "
+        error(KIO::ERR_COULD_NOT_LOGIN, i18n("In IMAP clear text login, "
           "only US-ASCII characters are possible. Please use a different "
           "authentication method that your server supports or try to get a "
           "different username."));
       else if (QString(myPass.utf8()) != myPass)
-        error(KIO::ERR_COULD_NOT_LOGIN, i18n("Sorry, in IMAP clear text login, "
+        error(KIO::ERR_COULD_NOT_LOGIN, i18n("In IMAP clear text login, "
           "only US-ASCII characters are possible. Please use a different "
           "authentication method that your server supports or change your "
           "password."));
       else if (!clientLogin (myUser, myPass, resultInfo))
-        error(KIO::ERR_COULD_NOT_LOGIN, i18n("Could not login. Probably the "
+        error(KIO::ERR_COULD_NOT_LOGIN, i18n("Unable to login. Probably the "
         "password is wrong.\nThe server replied:\n%1").arg(resultInfo));
     }
     else
     {
       if (!clientAuthenticate (myUser, myPass, myAuth, mySSL, resultInfo))
-        error(KIO::ERR_COULD_NOT_LOGIN, i18n("Could not authenticate via %1.\n"
+        error(KIO::ERR_COULD_NOT_LOGIN, i18n("Unable to authenticate via %1.\n"
         "The server replied:\n%2").arg(myAuth).arg(resultInfo));
     }
   }

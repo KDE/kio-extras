@@ -556,7 +556,7 @@ StatInfo FloppyProtocol::_stat(const KURL& url)
    if (m_stdoutSize==0)
    {
       info.isValid=false;
-      error( KIO::ERR_COULD_NOT_STAT, url.prettyURL()+i18n("Don't know why, sorry."));
+      error( KIO::ERR_COULD_NOT_STAT, url.prettyURL()+i18n("Reason unknown."));
       return info;
    }
 
@@ -572,13 +572,13 @@ StatInfo FloppyProtocol::_stat(const KURL& url)
       {
          StatInfo info=createStatInfo(line,true,url.fileName());
          if (info.isValid==false)
-            error( KIO::ERR_COULD_NOT_STAT, url.prettyURL()+i18n("Don't know why, sorry."));
+            error( KIO::ERR_COULD_NOT_STAT, url.prettyURL()+i18n("Reason unknown."));
          return info;
       };
       lineNumber++;
    };
    if (info.isValid==false)
-      error( KIO::ERR_COULD_NOT_STAT, url.prettyURL()+i18n("Don't know why, sorry."));
+      error( KIO::ERR_COULD_NOT_STAT, url.prettyURL()+i18n("Reason unknown."));
    return info;
 };
 
@@ -648,7 +648,7 @@ int FloppyProtocol::freeSpace(const KURL& url)
 
    if (m_stdoutSize==0)
    {
-      error( KIO::ERR_COULD_NOT_STAT, url.prettyURL()+i18n("Don't know why, sorry."));
+      error( KIO::ERR_COULD_NOT_STAT, url.prettyURL()+i18n("Reason unknown."));
       return -1;
    }
 
