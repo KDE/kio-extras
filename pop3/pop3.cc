@@ -79,59 +79,41 @@ return c+1;
 
 int kdemain( int argc, char **argv )
 {
-#ifdef SPOP3
-  KInstance instance( "kio_spop3" );
-#else
   KInstance instance( "kio_pop3" );
-#endif
 
   if (argc != 4)
   {
-#ifdef SPOP3
-     fprintf(stderr, "Usage: kio_spop3 protocol domain-socket1 domain-socket2\n");
-#else
      fprintf(stderr, "Usage: kio_pop3 protocol domain-socket1 domain-socket2\n");
-#endif
      exit(-1);
   }
 
-  POP3Protocol slave(argv[2], argv[3]);
-  slave.dispatchLoop();
+  POP3Protocol *slave;
+  if (strcasecmp(argv[1], "pop3s") == 0)
+	slave = new POP3Protocol(argv[2], argv[3], true);
+  else
+	slave = new POP3Protocol(argv[2], argv[3], false);
+  slave->dispatchLoop();
+  delete slave;
   return 0;
 }
 
 
-POP3Protocol::POP3Protocol(const QCString &pool, const QCString &app)
-#ifdef SPOP3
-  : SlaveBase( "spop3", pool, app)
-#else
-  : SlaveBase( "pop3", pool, app)
-#endif
+POP3Protocol::POP3Protocol(const QCString &pool, const QCString &app, bool isSSL)
+   : TCPSlaveBase((isSSL ? 995 : 110), (isSSL ? "pop3s" : "pop3"), pool, app)
 {
+  m_bIsSSL=isSSL;
   kdDebug() << "POP3Protocol()" << endl;
   m_cmd = CMD_NONE;
-  m_iSock = m_iOldPort = 0;
+  m_iOldPort = 0;
   m_tTimeout.tv_sec=10;
   m_tTimeout.tv_usec=0;
   m_try_apop = true;
-  fp = 0;
-
-#ifdef SPOP3
-  ssl = NULL;
-  SSLeay_add_ssl_algorithms();
-  meth = SSLv2_client_method();  // should we allow v2/v3??
-  SSL_load_error_strings();
-  ctx = SSL_CTX_new(meth);
-#endif
 }
 
 POP3Protocol::~POP3Protocol()
 {
   kdDebug() << "~POP3Protocol()" << endl;
   pop3_close();
-#ifdef SPOP3
-  SSL_CTX_free(ctx);
-#endif
 }
 
 void POP3Protocol::setHost( const QString& _host, int _port, const QString& _user, const QString& _pass )
@@ -178,20 +160,8 @@ bool POP3Protocol::getResponse (char *r_buf, unsigned int r_len)
 
   // Clear out the buffer
   memset(buf, 0, r_len);
-  // And grab the data
-#ifdef SPOP3
-  int rc = SSL_readline(ssl, buf, r_len-1);
-  if (rc <= 0) {
-    if (buf) free(buf);
-    return false;
-  }
-  buf[rc] = 0;
-#else
-  if (fgets(buf, r_len-1, fp) == 0) {
-    if (buf) free(buf);
-    return false;
-  }
-#endif
+  ReadLine(buf, r_len-1);
+
   // This is really a funky crash waiting to happen if something isn't
   // null terminated.
   recv_len=strlen(buf);
@@ -245,20 +215,11 @@ bool POP3Protocol::command (const char *cmd, char *recv_buf, unsigned int len)
  *   argument may be up to 40 characters long.
  */
 
-#ifdef SPOP3
   // Write the command
-  int rc = SSL_write(ssl, cmd, strlen(cmd));
-  if (rc <= 0) return false;
-
-  rc = SSL_write(ssl, "\r\n", 2);
-  if (rc <= 0) return false;
-#else
-  // Write the command
-  if (::write(m_iSock, cmd, strlen(cmd)) != (ssize_t)strlen(cmd))
+  if (Write(cmd, strlen(cmd)) != (ssize_t)strlen(cmd))
     return false;
-  if (::write(m_iSock, "\r\n", 2) != 2)
+  if (Write("\r\n", 2) != 2)
     return false;
-#endif
   return getResponse(recv_buf, len);
 }
 
@@ -270,118 +231,21 @@ void POP3Protocol::pop3_close ()
   // response.  We don't care if it's positive or negative.  Also
   // flush out any semblance of a persistant connection, i.e.: the
   // old username and password are now invalid.
-#ifdef SPOP3
-  if (ssl) {
-    (void)command("QUIT");
-    close(m_iSock);
-    SSL_shutdown(ssl);
-    SSL_free(ssl);
-    ssl = NULL;
-    m_iSock=0;
-    m_sOldUser = ""; m_sOldPass = ""; m_sOldServer = "";
-  }
-#else
-  if (fp) {
-    (void)command("QUIT");
-    fclose(fp);
-    m_iSock=0; fp=0;
-    m_sOldUser = ""; m_sOldPass = ""; m_sOldServer = "";
-  }
-#endif
+  (void)command("QUIT");
+  CloseDescriptor();
+  m_sOldUser = ""; m_sOldPass = ""; m_sOldServer = "";
 }
 
 bool POP3Protocol::pop3_open()
 {
-  // This function is simply a wrapper to establish the connection
-  // to the server.  It's a bit more complicated than ::connect
-  // because we first have to check to see if the user specified
-  // a port, and if so use it, otherwise we check to see if there
-  // is a port specified in /etc/services, and if so use that
-  // otherwise as a last resort use the "official" port of 110.
-  unsigned short int port;
-  ksockaddr_in server_name;
-  memset(&server_name, 0, sizeof(server_name));
   static char buf[512];
-
-  // We want 110 as the default, but -1 means no port was specified.
-  // Why 0 wasn't chosen is beyond me.
-
-#ifdef SPOP3
-  if (m_iPort) {
-    port = m_iPort;
-  } else {
-    struct servent *sent = getservbyname("spop3", "tcp");
-    if (sent) {
-       port = ntohs(sent->s_port);
-    } else {
-       port = 995;
-    }
-  }
-#else
-  if (m_iPort) {
-    port = m_iPort;
-  } else {
-    struct servent *sent = getservbyname("pop-3", "tcp");
-    if (sent) {
-       port = ntohs(sent->s_port);
-    } else {
-       port = 110;
-    }
-  }
-#endif
-  if ( (m_iOldPort == port) && (m_sOldServer == m_sServer) &&
+  if ( (m_iOldPort == GetPort(m_iPort)) && (m_sOldServer == m_sServer) &&
        (m_sOldUser == m_sUser) && (m_sOldPass == m_sPass)) {
     fprintf(stderr,"Reusing old connection\n");
     return true;
   } else {
     pop3_close();
-    m_iSock = ::socket(PF_INET, SOCK_STREAM, 0);
-    if (!KSocket::initSockaddr(&server_name, m_sServer, port))
-      return false;
-    if (::connect(m_iSock, (struct sockaddr*)(&server_name), sizeof(server_name))) {
-      error( ERR_COULD_NOT_CONNECT, m_sServer);
-      return false;
-    }
-
-#ifdef SPOP3
-    // do the SSL negotiation
-    ssl = SSL_new(ctx);
-    if (!ssl) {
-      error( ERR_COULD_NOT_CONNECT, m_sServer );
-      close(m_iSock);
-      return false;
-    }
-
-    SSL_set_fd(ssl, m_iSock);
-    if (-1 == SSL_connect(ssl)) {
-      error( ERR_COULD_NOT_CONNECT, m_sServer );
-      close(m_iSock);
-      SSL_shutdown(ssl);
-      SSL_free(ssl);
-      return false;
-    }
-
-    server_cert = SSL_get_peer_certificate(ssl);
-    if (!server_cert) {
-      error( ERR_COULD_NOT_CONNECT, m_sServer );
-      close(m_iSock);
-      SSL_shutdown(ssl);
-      SSL_free(ssl);
-      return false;
-    }
-
-    // we should verify the certificate here
-
-    X509_free(server_cert);
-#else
-    // Since we want to use stdio on the socket,
-    // we must fdopen it to get a file pointer,
-    // if it fails, close everything up
-    if ((fp = fdopen(m_iSock, "w+")) == 0) {
-      close(m_iSock);
-      return false;
-    }
-#endif
+    ConnectToHost(m_sServer.ascii(), m_iPort);
 
     QCString greeting( 1024 );
     // If the server doesn't respond with a greeting
@@ -401,7 +265,7 @@ bool POP3Protocol::pop3_open()
     bool apop = (bool)(apop_pos != -1);
 #endif
 
-    m_iOldPort = port;
+    m_iOldPort = m_iPort;
     m_sOldServer = m_sServer;
 
     QString usr, pass, one_string="USER ";
@@ -558,11 +422,7 @@ void POP3Protocol::get( const KURL& url )
   path.remove(0,path.find('/')+1);
 
   if (!pop3_open()) {
-#ifdef SPOP3
-    fprintf(stderr,"spop3_open failed\n");
-#else
     fprintf(stderr,"pop3_open failed\n");
-#endif
     error( ERR_COULD_NOT_CONNECT, m_sServer);
     pop3_close();
     return;
@@ -638,16 +498,10 @@ LIST
       gettingFile(url.url());
       mimeType("text/plain");
       memset(buf, 0, sizeof(buf));
-#ifdef SPOP3
-      while (SSL_pending(ssl)) {
+      while (AtEOF()) {
         memset(buf, 0, sizeof(buf));
-        SSL_readline(ssl, buf, sizeof(buf)-1);
-#else
-      while (!feof(fp)) {
-	memset(buf, 0, sizeof(buf));
-	if (!fgets(buf, sizeof(buf)-1, fp))
-	  break;  // Error??
-#endif
+	ReadLine(buf, sizeof(buf)-1);
+
 	// HACK: This assumes fread stops at the first \n and not \r
 	if (strcmp(buf, ".\r\n")==0) break; // End of data
 	// sanders, changed -2 to -1 below

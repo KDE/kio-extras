@@ -8,28 +8,12 @@
 
 #include <qstring.h>
 
-#include <kio/slavebase.h>
+#include <kio/tcpslavebase.h>
 
-#ifdef SPOP3
-#ifndef HAVE_SSL
-#undef SPOP3
-#endif
-#endif
-
-#ifdef SPOP3
-extern "C" {
-#include <openssl/crypto.h>
-#include <openssl/x509.h>
-#include <openssl/pem.h>
-#include <openssl/ssl.h>
-#include <openssl/err.h>                                                        
-};
-#endif
-
-class POP3Protocol : public KIO::SlaveBase
+class POP3Protocol : public KIO::TCPSlaveBase
 {
 public:
-  POP3Protocol (const QCString &pool, const QCString &app );
+  POP3Protocol (const QCString &pool, const QCString &app, bool SSL);
   virtual ~POP3Protocol();
 
   virtual void setHost( const QString& host, int port, const QString& user, const QString& pass );
@@ -87,12 +71,10 @@ public:
    */
   QString buildUrl(const QString &path);
 
-  int m_cmd, m_iSock;
+  int m_cmd;
   unsigned short int m_iOldPort;
   struct timeval m_tTimeout;
   QString m_sOldServer, m_sOldPass, m_sOldUser;
-  FILE *fp;
-  unsigned short int m_iPort;
   QString m_sServer, m_sPass, m_sUser;
   bool m_try_apop;
 #ifdef SPOP3
