@@ -44,6 +44,7 @@
 #include <kdebug.h>
 #include <kmdcodec.h>
 #include <kurl.h>
+#include <kio/kdesasl.h>
 
 imapParser::imapParser ():
 uidCache (17, false)
@@ -136,6 +137,8 @@ imapParser::clientAuthenticate (const QString & aUser, const QString & aPass,
 
   // then lets try it
   cmd = sendCommand (new imapCommand ("AUTHENTICATE", aAuth));
+  KDESasl sasl(aUser, aPass);
+  sasl.setMethod(aAuth.latin1());
   while (!cmd->isComplete ())
   {
     //read the next line
@@ -150,42 +153,19 @@ imapParser::clientAuthenticate (const QString & aUser, const QString & aPass,
 
       kdDebug(7116) << "IMAP4: authenticate key=" << challenge << endl;
 
-      if (aAuth.upper () == "LOGIN")
-      {
-        challenge = KCodecs::base64Decode(challenge);
-        if (challenge.find ("User", 0, false) != -1)
-        {
-          challenge = KCodecs::base64Encode(aUser.utf8());
-        }
-        else if (challenge.find ("Pass", 0, false) != -1)
-        {
-          challenge = KCodecs::base64Encode(aPass.utf8());
-        }
-      }
-      else if (aAuth.upper () == "ANONYMOUS")
+      if (aAuth.upper () == "ANONYMOUS")
       {
         // we should present the challenge to the user and ask
         // him for a mail-adress or what ever
         challenge = KCodecs::base64Encode(aUser.utf8());
-      }
-      else if (aAuth.upper () == "PLAIN")
-      {
-        challenge = KCodecs::base64Encode(aUser + '\0' + aUser + '\0' + aPass);
-      }
-      else if (aAuth.upper () == "CRAM-MD5")
-      {
-        QCString password = aPass.latin1 ();
-        QCString cchallenge = KCodecs::base64Decode(challenge).latin1();
-
-        challenge = rfcDecoder::encodeRFC2104 (cchallenge, password);
-        challenge = aUser + " " + challenge;
-        challenge = KCodecs::base64Encode(challenge.utf8());
+      } else {
+        QByteArray ba;
+        ba.duplicate(challenge.latin1(), challenge.length());
+        challenge = sasl.getResponse(ba);
       }
 
-      // we will ALWAYS write back a line to satisfiy the continuation
       parseWriteLine (challenge);
 
-//      kdDebug(7116) << "Wrote: '" << rfcDecoder::decodeBase64(challenge.utf8()) << "'" << endl;
       continuation = QString::null;
     }
   }

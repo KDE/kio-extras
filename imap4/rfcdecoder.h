@@ -58,10 +58,6 @@ public:
 
   static const QString encodeRFC2231String (const QString & _str);
   static const QString decodeRFC2231String (const QString & _str);
-
-  //for the authenticator cram-md5 (no decoder apparently)
-  static const QCString encodeRFC2104 (const QCString & text,
-                                       const QCString & key);
 };
 
 #endif
