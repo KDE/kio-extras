@@ -7,7 +7,13 @@
 
 #include <lber.h>
 #include <ldap.h>
+/* Hack for KDE 2.1 and shitty glibc 2.2.2 */
+#include "config.h"
+#ifndef HAVE_SYS_TIME_H
 #include <time.h>
+#else
+#include <sys/time.h>
+#endif
 
 
 namespace KLDAP
