@@ -157,7 +157,7 @@ QString HelpProtocol::lookupFile(QString fname, QString query, bool &redirect)
 	      return QString::null;
 	    }
           notFound();
-	  return QString::null();
+	  return QString::null;
 	}
     }
 
@@ -198,70 +198,9 @@ void HelpProtocol::get( const KURL& url )
       return;
     }
 
-    struct stat buff;
-    if ( ::stat( QFile::encodeName(doc), &buff ) == -1 ) {
-        if ( errno == EACCES )
-           error( KIO::ERR_ACCESS_DENIED, doc );
-        else
-           error( KIO::ERR_DOES_NOT_EXIST, doc );
-	return;
-    }
 
-    if ( S_ISDIR( buff.st_mode ) ) {
-	error( KIO::ERR_IS_DIRECTORY, doc );
-	return;
-    }
-
-    FILE *f = fopen( QFile::encodeName(doc), "rb" );
-    if ( f == 0L ) {
-	error( KIO::ERR_CANNOT_OPEN_FOR_READING, doc );
-	return;
-    }
-
-    totalSize( buff.st_size );
-    int processed_size = 0;
-    time_t t_start = time( 0L );
-    time_t t_last = t_start;
-
-    char buffer[ 4090 ];
-    QByteArray array;
-
-    mimeType("text/html");
-
-    while( !feof( f ) )
-	{
-	    int n = fread( buffer, 1, 2048, f );
-            if (n == -1)
-            {
-               error( KIO::ERR_COULD_NOT_READ, doc);
-               fclose(f);
-               return;
-            }
-
-	    array.setRawData(buffer, n);
-	    data( array );
-            array.resetRawData(buffer, n);
-
-	    processed_size += n;
-	    time_t t = time( 0L );
-	    if ( t - t_last >= 1 )
-		{
-		    processedSize( processed_size );
-		    speed( processed_size / ( t - t_start ) );
-		    t_last = t;
-		}
-	}
-
-    data( QByteArray() );
-
-    fclose( f );
-
-    processedSize( buff.st_size );
-    time_t t = time( 0L );
-    if ( t - t_start >= 1 )
-	speed( processed_size / ( t - t_start ) );
-
-    finished();
+  redirection(KURL(doc));
+  finished();
 }
 
 
