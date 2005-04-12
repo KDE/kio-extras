@@ -31,7 +31,7 @@
 #include <qeventloop.h>
 
 typedef KGenericFactory<KFileMediaPlugin> KFileMediaPluginFactory;
-K_EXPORT_COMPONENT_FACTORY(kfile_media, KFileMediaPluginFactory("kfile_media"))
+K_EXPORT_COMPONENT_FACTORY(kfile_media, KFileMediaPluginFactory("kio_media"))
 
 KFileMediaPlugin::KFileMediaPlugin(QObject *parent, const char *name,
 		                     const QStringList& args)
