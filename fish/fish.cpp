@@ -73,6 +73,7 @@
 #include <stdarg.h>
 #include <time.h>
 #include <sys/stat.h>
+#include <kmimetype.h>
 #include <kmimemagic.h>
 #include <fcntl.h>
 #include <sys/socket.h>
@@ -934,13 +935,20 @@ void fishProtocol::manageConnection(const QString &l) {
                     atom.m_str = thisFn = line.mid(pos < 0?1:pos+1);
                     if (fishCommand == FISH_LIST)
                         udsEntry.append(atom);
+                    // By default, the mimetype comes from the extension
+                    // We'll use the file(1) result only as fallback [like the rest of KDE does]
+                    {
+                      KMimeType::Ptr mime = KMimeType::findByURL( KURL("fish://host/" + thisFn) );
+                      if ( mime->name() != KMimeType::defaultMimeType() )
+                          mimeAtom.m_str = mime->name();
+                    }
                     errorCount--;
                     break;
 
                 case 'M':
                     // This is getting ugly. file(1) makes some uneducated
                     // guesses, so we must try to ignore them (#51274)
-                    if (line.right(8) != "/unknown" &&
+                    if (mimeAtom.m_str.isEmpty() && line.right(8) != "/unknown" &&
                             (thisFn.find('.') < 0 || (line.left(8) != "Mtext/x-"
                                                   && line != "Mtext/plain"))) {
                         mimeAtom.m_str = line.mid(1);
