@@ -42,10 +42,8 @@ private: // Private attributes
     /** Specifies which fields of the file attribute are available. */
     Q_UINT32 mFlags;
 
-    /** Size of the file in bytes.
-          Note: size should be a 64 bit integer but I have not yet determined the best way to declare
-          this in a portable manner. Q_UINT64 is not necessarily 64 bits. Argh! */
-    Q_UINT64 mSize;
+    /** Size of the file in bytes. */
+    Q_ULLONG mSize;
 
     /** User id of the owner of the file. */
     uid_t mUid;
@@ -76,25 +74,25 @@ private: // Private attributes
 
     /** If file is a link, contains the destination of the link */
     QString mLinkDestination;
-    
+
     /** If resource is a link, contains the type the link,e.g. file,dir... */
     mode_t mLinkType;
 
     /** Whether >> operator should read filename and longname from the stream. */
     bool mDirAttrs;
-    
+
     /** Holds the encoding of the remote host */
     QCString mEncoding;
 
 public:
     sftpFileAttr();
-    
+
     sftpFileAttr(const char* encoding);
 
     ~sftpFileAttr();
 
     /** Constructor to initialize the file attributes on declaration. */
-    sftpFileAttr(Q_UINT64 size_, uid_t uid_, gid_t gid_, mode_t permissions_,
+    sftpFileAttr(Q_ULLONG size_, uid_t uid_, gid_t gid_, mode_t permissions_,
                  time_t atime_, time_t mtime_, Q_UINT32 extendedCount_ = 0);
 
     /** Return the size of the sftp attribute not including filename or longname*/
@@ -104,7 +102,7 @@ public:
     void clear();
 
     /** Set the size of the file. */
-    void setFileSize(Q_UINT64 s)
+    void setFileSize(Q_ULLONG s)
         { mSize = s; mFlags |= SSH2_FILEXFER_ATTR_SIZE; }
 
     /** The size file attribute will not be included in the UDSEntry
@@ -113,7 +111,7 @@ public:
         { mSize = 0; mFlags &= ~SSH2_FILEXFER_ATTR_SIZE; };
 
     /** Returns the size of the file. */
-    Q_UINT64 fileSize() const { return mSize; }
+    Q_ULLONG fileSize() const { return mSize; }
 
     /** Sets the POSIX permissions of the file. */
     void setPermissions(mode_t p)
@@ -207,11 +205,11 @@ public:
 
     QString linkDestination()
         { return mLinkDestination; }
-    
+
     /** Sets the actual type a symbolic link points to. */
     void setLinkType (mode_t type) { mLinkType = type; }
-    
-    mode_t linkType() const { return mLinkType; }       
+
+    mode_t linkType() const { return mLinkType; }
 
     /** No descriptions */
     void setFilename(const QString& fn)
@@ -253,7 +251,7 @@ public:
 
     /** Returns the file type as determined from the file permissions */
     mode_t fileType() const;
-    
+
     /** Set the encoding of the remote file system */
     void setEncoding( const char* encoding );
 };

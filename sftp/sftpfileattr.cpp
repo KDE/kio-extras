@@ -45,7 +45,7 @@ sftpFileAttr::~sftpFileAttr(){
 }
 
 /** Constructor to initialize the file attributes on declaration. */
-sftpFileAttr::sftpFileAttr(Q_UINT64 size, uid_t uid, gid_t gid,
+sftpFileAttr::sftpFileAttr(Q_ULLONG size, uid_t uid, gid_t gid,
                     mode_t permissions, time_t atime,
                     time_t mtime, Q_UINT32 extendedCount) {
     clear();
@@ -64,7 +64,7 @@ The UDSEntry is generated from the sftp file attributes. */
 UDSEntry sftpFileAttr::entry() {
     UDSEntry entry;
     UDSAtom atom;
-   
+
     atom.m_uds = UDS_NAME;
     atom.m_str = mFilename;
     entry.append(atom);
@@ -104,14 +104,14 @@ UDSEntry sftpFileAttr::entry() {
         entry.append(atom);
 
         mode_t type = fileType();
-        
+
         // Set the type if we know what it is
         if( type != 0 ) {
             atom.m_uds = UDS_FILE_TYPE;
             atom.m_long = (mLinkType ? mLinkType:type);
             entry.append(atom);
         }
-        
+
         if( S_ISLNK(type) ) {
             atom.m_uds = UDS_LINK_DEST;
             atom.m_str = mLinkDestination;
@@ -127,7 +127,7 @@ QDataStream& operator<< (QDataStream& s, const sftpFileAttr& fa) {
     s << (Q_UINT32)fa.mFlags;
 
     if( fa.mFlags & SSH2_FILEXFER_ATTR_SIZE )
-        { s << (Q_UINT64)fa.mSize; }
+        { s << (Q_ULLONG)fa.mSize; }
 
     if( fa.mFlags & SSH2_FILEXFER_ATTR_UIDGID )
         { s << (Q_UINT32)fa.mUid << (Q_UINT32)fa.mGid; }
@@ -154,11 +154,11 @@ QDataStream& operator>> (QDataStream& s, sftpFileAttr& fa) {
     // XXX Add some error checking in here in case
     //     we get a bad sftp packet.
     fa.clear();
-    
+
     QByteArray fn;
-    Q_UINT64 size;
+    Q_ULLONG size;
     if( fa.mDirAttrs ) {
-        s >> fn; 
+        s >> fn;
 
         KRemoteEncoding encoder ( fa.mEncoding.data() );
         fa.mFilename = encoder.decode( QCString(fn.data(), fn.size()+1) );
@@ -214,12 +214,12 @@ void sftpFileAttr::getUserGroupNames(){
         int field = 0;
         int i = 0;
         int l = mLongname.length();
-        
+
         KRemoteEncoding encoder( mEncoding.data() );
         QString longName = encoder.decode( mLongname );
-        
+
         kdDebug(7120) << "Decoded:  " << longName << endl;
-        
+
         // Find the beginning of the third field which contains the user name.
         while( field != 2 ) {
             if( longName[i].isSpace() ) {
@@ -239,7 +239,7 @@ void sftpFileAttr::getUserGroupNames(){
         while( i < l && longName[i].isSpace() ) {
             i++;
         }
-        
+
         // i is the first character of the fourth field
         while( i < l && !longName[i].isSpace() ) {
             group.append(longName[i]);
@@ -247,7 +247,7 @@ void sftpFileAttr::getUserGroupNames(){
         }
         // group contains the name of the group.
     }
-    
+
     mUserName = user;
     mGroupName = group;
 }
@@ -255,21 +255,21 @@ void sftpFileAttr::getUserGroupNames(){
 /** No descriptions */
 kdbgstream& operator<< (kdbgstream& s, sftpFileAttr& a) {
     s << "Filename: " << a.mFilename
-      << ", Uid: " << a.mUid 
+      << ", Uid: " << a.mUid
       << ", Gid: " << a.mGid
-      << ", Username: " << a.mUserName 
+      << ", Username: " << a.mUserName
       << ", GroupName: " << a.mGroupName
-      << ", Permissions: " << a.mPermissions 
+      << ", Permissions: " << a.mPermissions
       << ", size: " << a.mSize
-      << ", atime: " << a.mAtime 
+      << ", atime: " << a.mAtime
       << ", mtime: " << a.mMtime
       << ", extended cnt: " << a.mExtendedCount;
-    
+
     if (S_ISLNK(a.mLinkType)) {
       s << ", Link Type: " << a.mLinkType;
       s << ", Link Destination: " << a.mLinkDestination;
     }
-      
+
     return s;
 }
 
@@ -290,10 +290,11 @@ void sftpFileAttr::clear(){
     mFilename = QString::null;
     mGroupName =  QString::null;
     mUserName = QString::null;
-    mLinkDestination = QString::null;    
+    mLinkDestination = QString::null;
     mFlags = 0;
     mLongname = "\0";
     mLinkType = 0;
+    mEncoding = "\0";
 }
 
 /** Return the size of the sftp attribute. */
@@ -321,10 +322,10 @@ Q_UINT32 sftpFileAttr::size() const{
 /** Returns the file type as determined from the file permissions */
 mode_t sftpFileAttr::fileType() const{
     mode_t type = 0;
-    
+
     if( S_ISLNK(mPermissions) )
       type |= S_IFLNK;
-      
+
     if( S_ISREG(mPermissions) )
       type |= S_IFREG;
     else if( S_ISDIR(mPermissions) )
@@ -337,7 +338,7 @@ mode_t sftpFileAttr::fileType() const{
       type |= S_IFIFO;
     else if( S_ISSOCK(mPermissions) )
       type |= S_IFSOCK;
-    
+
     return type;
 }
 
