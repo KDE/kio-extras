@@ -42,7 +42,7 @@ private: // Private attributes
     /** Specifies which fields of the file attribute are available. */
     Q_UINT32 mFlags;
 
-    /** Size of the file in bytes. */
+    /** Size of the file in bytes. Should be 64 bit safe. */
     Q_ULLONG mSize;
 
     /** User id of the owner of the file. */

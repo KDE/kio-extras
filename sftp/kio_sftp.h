@@ -92,8 +92,8 @@ private: // Private variables
 
 private: // private methods
   bool getPacket(QByteArray& msg);
-  /** 
-   * Type is a sftp packet type found in .sftp.h'.
+
+   /* Type is a sftp packet type found in .sftp.h'.
    * Example: SSH2_FXP_READLINK, SSH2_FXP_RENAME, etc.
    *
    * Returns true if the type is supported by the sftp protocol
@@ -133,9 +133,9 @@ private: // private methods
   /** No descriptions */
   int sftpOpen(const KURL& url, const Q_UINT32 pflags, const sftpFileAttr& attr, QByteArray& handle);
   /** No descriptions */
-  int sftpRead(const QByteArray& handle, Q_UINT64 offset, Q_UINT32 len, QByteArray& data);
+  int sftpRead(const QByteArray& handle, KIO::filesize_t offset, Q_UINT32 len, QByteArray& data);
   /** No descriptions */
-  int sftpWrite(const QByteArray& handle, Q_UINT64 offset, const QByteArray& data);
+  int sftpWrite(const QByteArray& handle, KIO::filesize_t offset, const QByteArray& data);
   
   /** Performs faster upload when the source is a local file... */
   void sftpCopyPut(const KURL& src, const KURL& dest, int mode, bool overwrite);

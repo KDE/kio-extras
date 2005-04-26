@@ -41,9 +41,6 @@ sftpFileAttr::sftpFileAttr(const char* encoding){
 }
 
 
-sftpFileAttr::~sftpFileAttr(){
-}
-
 /** Constructor to initialize the file attributes on declaration. */
 sftpFileAttr::sftpFileAttr(Q_ULLONG size, uid_t uid, gid_t gid,
                     mode_t permissions, time_t atime,
@@ -57,6 +54,9 @@ sftpFileAttr::sftpFileAttr(Q_ULLONG size, uid_t uid, gid_t gid,
     mMtime = mtime;
     mPermissions   = permissions;
     mExtendedCount = extendedCount;
+}
+
+sftpFileAttr::~sftpFileAttr(){
 }
 
 /** Returns a UDSEntry describing the file.
