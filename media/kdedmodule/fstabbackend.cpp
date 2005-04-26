@@ -1,5 +1,5 @@
 /* This file is part of the KDE Project
-   Copyright (c) 2004 Kévin Ottens <ervin ipsquad net>
+   Copyright (c) 2004 KÃ©vin Ottens <ervin ipsquad net>
 
    This library is free software; you can redistribute it and/or
    modify it under the terms of the GNU Library General Public
@@ -260,6 +260,7 @@ void FstabBackend::guess(const QString &devNode, const QString &mountPoint,
 	  || devNode.find("cdrecorder")!=-1 || mountPoint.find("cdrecorder")!=-1
 	  || devNode.find("cdburner")!=-1 || mountPoint.find("cdburner")!=-1
 	  || devNode.find("cdrw")!=-1 || mountPoint.find("cdrw")!=-1
+	  || devNode.find("graveur")!=-1
 	   )
 	{
 		mimeType = "media/cdwriter";
