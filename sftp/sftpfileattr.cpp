@@ -155,38 +155,36 @@ QDataStream& operator>> (QDataStream& s, sftpFileAttr& fa) {
     //     we get a bad sftp packet.
     fa.clear();
 
-    QByteArray fn;
-    Q_ULLONG size;
     if( fa.mDirAttrs ) {
+        QByteArray fn;
         s >> fn;
 
         KRemoteEncoding encoder ( fa.mEncoding.data() );
         fa.mFilename = encoder.decode( QCString(fn.data(), fn.size()+1) );
 
         s >> fa.mLongname;
-        size = fa.mLongname.size();
-        fa.mLongname.resize(size+1);
-        fa.mLongname[size] = 0;
-        //kdDebug() << ">> sftpfileattr filename (" << fa.mFilename.size() << ")= " << fa.mFilename <<  endl;
+        fa.mLongname.truncate( fa.mLongname.size() );
+        //kdDebug() << ">>: ftpfileattr long filename (" << fa.mLongname.size() << ")= " << fa.mLongname <<  endl;
     }
 
-    Q_UINT32 x;
     s >> fa.mFlags;  // get flags
 
     if( fa.mFlags & SSH2_FILEXFER_ATTR_SIZE ) {
-        // since we don't have a 64 bit int, ignore the top byte.
-        // Very bad if we get a > 2^32 size
-        s >> x;
-        s >> x; fa.setFileSize(x);
+        Q_ULLONG fileSize;
+        s >> fileSize;
+        fa.setFileSize(fileSize);
     }
+
+    Q_UINT32 x;
 
     if( fa.mFlags & SSH2_FILEXFER_ATTR_UIDGID ) {
         s >> x; fa.setUid(x);
         s >> x; fa.setGid(x);
     }
 
-    if( fa.mFlags & SSH2_FILEXFER_ATTR_PERMISSIONS )
-        { s >> x; fa.setPermissions(x); }
+    if( fa.mFlags & SSH2_FILEXFER_ATTR_PERMISSIONS ) {
+        s >> x; fa.setPermissions(x);
+    }
 
     if( fa.mFlags & SSH2_FILEXFER_ATTR_ACMODTIME ) {
         s >> x; fa.setAtime(x);
@@ -198,6 +196,7 @@ QDataStream& operator>> (QDataStream& s, sftpFileAttr& fa) {
         // XXX: Read in extensions from data stream here
         // s.readBytes(extendedtype).readBytes(extendeddata);
     }
+
     fa.getUserGroupNames();
     return s;
 }
