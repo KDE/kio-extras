@@ -69,7 +69,7 @@ static void addAtom(KIO::UDSEntry& entry, unsigned int ID, long l, const QString
 	entry.append(atom);
 }
 
-static void createFileEntry(KIO::UDSEntry& entry, const QString& name, const QString& url, const QString& mime,const QString& iconName)
+static void createFileEntry(KIO::UDSEntry& entry, const QString& name, const QString& url, const QString& mime, const QString& iconName, const QString& localPath)
 {
 	entry.clear();
 	addAtom(entry, KIO::UDS_NAME, 0, name);
@@ -78,7 +78,7 @@ static void createFileEntry(KIO::UDSEntry& entry, const QString& name, const QSt
 	addAtom(entry, KIO::UDS_ACCESS, 0500);
 	addAtom(entry, KIO::UDS_MIME_TYPE, 0, mime);
 	addAtom(entry, KIO::UDS_SIZE, 0);
-	addAtom(entry, KIO::UDS_GUESSED_MIME_TYPE, 0, "application/x-desktop");
+	addAtom(entry, KIO::UDS_LOCAL_PATH, 0, localPath);
 	addAtom(entry, KIO::UDS_CREATION_TIME, 1);
 	addAtom(entry, KIO::UDS_MODIFICATION_TIME, time(0));
 	addAtom(entry, KIO::UDS_ICON_NAME, 0, iconName);
@@ -93,7 +93,6 @@ static void createDirEntry(KIO::UDSEntry& entry, const QString& name, const QStr
 	addAtom(entry, KIO::UDS_MIME_TYPE, 0, mime);
 	addAtom(entry, KIO::UDS_URL, 0, url);
 	addAtom(entry, KIO::UDS_SIZE, 0);
-	addAtom(entry, KIO::UDS_GUESSED_MIME_TYPE, 0, "inode/directory");
 	addAtom(entry, KIO::UDS_ICON_NAME, 0, iconName);
 }
 
@@ -202,7 +201,7 @@ void SettingsProtocol::stat(const KURL& url)
 //			createFileEntry(entry, service->name(), newUrl, "application/x-desktop", service->icon());
 
 			createFileEntry(entry, service->name(), url.url(1)+service->desktopEntryName(),
-                            "application/x-desktop", service->icon());
+                            "application/x-desktop", service->icon(), locate("apps", service->desktopEntryPath()) );
 		} else {
 			error(KIO::ERR_SLAVE_DEFINED,i18n("Unknown settings folder"));
 			return;
@@ -284,7 +283,7 @@ void SettingsProtocol::listDir(const KURL& url)
 		} else {
 			KService::Ptr s(static_cast<KService *>(e));
 			kdDebug() << "SettingsProtocol: adding file entry " << url.url(1)+s->name() << endl;
-			createFileEntry(entry,s->name(),url.url(1)+s->desktopEntryName(), "application/x-desktop",s->icon());
+			createFileEntry(entry,s->name(),url.url(1)+s->desktopEntryName(), "application/x-desktop",s->icon(),locate("apps", s->desktopEntryPath()));
 		}
 
 		listEntry(entry, false);
