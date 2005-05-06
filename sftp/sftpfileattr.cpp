@@ -149,18 +149,22 @@ QDataStream& operator<< (QDataStream& s, const sftpFileAttr& fa) {
 
 /** Use to read a file attribute from a sftp packet */
 QDataStream& operator>> (QDataStream& s, sftpFileAttr& fa) {
-    // XXX set all member variable to defaults
 
     // XXX Add some error checking in here in case
     //     we get a bad sftp packet.
+
+    // Save the encoding info before clearing fa...
+    QCString encoding ( fa.mEncoding );
+
     fa.clear();
 
     if( fa.mDirAttrs ) {
-        QByteArray fn;
+        QCString fn;
         s >> fn;
+        fn.truncate( fn.size() );
 
-        KRemoteEncoding encoder ( fa.mEncoding.data() );
-        fa.mFilename = encoder.decode( QCString(fn.data(), fn.size()+1) );
+        KRemoteEncoding encoder ( encoding.data() );
+        fa.mFilename = encoder.decode( fn );
 
         s >> fa.mLongname;
         fa.mLongname.truncate( fa.mLongname.size() );
