@@ -987,8 +987,9 @@ void sftpProtocol::sftpPut( const KURL& dest, int permissions, bool resume, bool
     sftpFileAttr attr(remoteEncoding()->encoding());
     QByteArray handle;
 
-    // set the permissions of the file we write to if it didn't already exist
-    if( !partExists && !origExists )
+    // Set the permissions of the file we write to if it didn't already exist
+    // and the permission info is supplied, i.e it is not -1
+    if( !partExists && !origExists && permissions != -1)
         attr.setPermissions(permissions);
 
     code = sftpOpen( writeUrl, pflags, attr, handle );
@@ -1251,7 +1252,9 @@ void sftpProtocol::mkdir(const KURL&url, int permissions){
     uint len = path.length();
 
     sftpFileAttr attr(remoteEncoding()->encoding());
-    attr.setPermissions(permissions);
+
+    if (permissions != -1)
+      attr.setPermissions(permissions);
 
     Q_UINT32 id, expectedId;
     id = expectedId = mMsgId++;
@@ -1416,7 +1419,10 @@ void sftpProtocol::chmod(const KURL& url, int permissions){
         return;
 
     sftpFileAttr attr(remoteEncoding()->encoding());
-    attr.setPermissions(permissions);
+
+    if (permissions != -1)
+      attr.setPermissions(permissions);
+
     int code;
     if( (code = sftpSetStat(url, attr)) != SSH2_FX_OK ) {
         kdError(KIO_SFTP_DB) << "chmod(): sftpSetStat failed with error " << code << endl;
