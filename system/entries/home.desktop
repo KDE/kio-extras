@@ -4,6 +4,7 @@ Type=Link
 URL=$HOME
 Icon=kfm_home
 Name=Home Folder
+Name[af]=Tuis Gids
 Name[ar]=مجلدي
 Name[az]=Ev Qovluğu
 Name[be]=Хатняя тэчка

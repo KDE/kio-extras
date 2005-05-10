@@ -4,6 +4,7 @@ Type=Link
 URL=remote:/
 Icon=network
 Name=Remote Places
+Name[af]=Afgeleë Plekke
 Name[bg]=Отдалечени директории
 Name[bn]=দূরবর্তী অবস্থান
 Name[ca]=Llocs remots

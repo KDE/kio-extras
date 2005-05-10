@@ -4,6 +4,7 @@ Icon=kfm
 Type=MimeType
 MimeType=inode/system_directory
 Comment=System Folder
+Comment[af]=Stelsel Gids
 Comment[bg]=Системна директория
 Comment[bn]=সিস্টেম ফোল্ডার
 Comment[ca]=Carpeta del sistema
