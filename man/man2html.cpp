@@ -3006,11 +3006,11 @@ static char *scan_request(char *c)
                     out_html("<BODY BGCOLOR=\"#FFFFFF\">\n\n" );
                     out_html("<div style=\"background-image: url(KDE_COMMON_DIR/top-middle.png); width: 100%; height: 131pt;\">\n" );
 		    out_html("<div style=\"position: absolute; right: 0pt;\">\n");
-		    out_html("<img src=\"KDE_COMMON_DIR/top-right-konqueror.png\" style=\"margin: 0pt\" alt=\"\" />\n");
+		    out_html("<img src=\"KDE_COMMON_DIR/top-right-konqueror.png\" style=\"margin: 0pt\" alt=\"Top right\">\n");
 		    out_html("</div>\n");
 
 		    out_html("<div style=\"position: absolute; left: 0pt;\">\n");
-		    out_html("<img src=\"KDE_COMMON_DIR/top-left.png\" style=\"margin: 0pt\" alt=\"\" />\n");
+		    out_html("<img src=\"KDE_COMMON_DIR/top-left.png\" style=\"margin: 0pt\" alt=\"Top left\">\n");
 		    out_html("</div>\n");
 		    out_html("<div style=\"position: absolute; top: 25pt; right: 100pt; text-align: right; font-size: xx-large; font-weight: bold; text-shadow: #fff 0pt 0pt 5pt; color: #444\">\n");
 		    out_html( scan_troff(wordlist[0], 0, NULL ) );
@@ -4084,10 +4084,10 @@ void scan_man_page(const char *man_page)
       output_real("</div>\n");
       output_real("<div class=\"bannerBottom\" style=\"background-image: url(KDE_COMMON_DIR/bottom-middle.png); background-repeat: x-repeat; width: 100%; height: 100pt; bottom:0pt;\">\n");
       output_real("<div class=\"BannerBottomRight\">\n");
-      output_real("<img src=\"KDE_COMMON_DIR/bottom-right.png\" style=\"margin: 0pt\" alt=\"\"/>\n");
+      output_real("<img src=\"KDE_COMMON_DIR/bottom-right.png\" style=\"margin: 0pt\" alt=\"Bottom right of the banner\">\n");
       output_real("</div>\n");
       output_real("<div class=\"bannerBottomLeft\">\n");
-      output_real("<img src=\"KDE_COMMON_DIR/bottom-left.png\" style=\"margin: 0pt;\" alt=\"\"/>\n");
+      output_real("<img src=\"KDE_COMMON_DIR/bottom-left.png\" style=\"margin: 0pt;\" alt=\"Bottom left of the banner\">\n");
       output_real("</div>\n");
       output_real("</div>\n");
 
