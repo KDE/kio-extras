@@ -169,6 +169,7 @@ sub Escape {
   $Tag =~ s/ /%20/g;		#  space
   $Tag =~ s/\?$/%3f/g;		#  space
   $Tag =~ s/\"/%22/g;		#  space
+  $Tag =~ s/\#/%23/g;
 #  $Tag =~ s/\+/%AB/g;		#  +
   $Tag;
 }
