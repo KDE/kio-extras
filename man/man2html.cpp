@@ -309,13 +309,13 @@ static CSTRDEF standardchar[] = {
     { V('1','2'), 1, "&frac12;" },
     { V('1','4'), 1, "&frac14;" },
     { V('3','4'), 1, "&frac34;" },
-    { V('F','i'), 3, "ffi" }, // ### TODO: where in Unicode
-    { V('F','l'), 3, "ffl" }, // ### TODO: where in Unicode
+    { V('F','i'), 1, "&#xFB03;" }, // ffi ligature
+    { V('F','l'), 1, "&#xFB04;" }, // ffl ligature
     { V('a','p'), 1, "~" },
     { V('b','r'), 1, "|" },
     { V('b','u'), 1, "&bull;" },
     { V('b','v'), 1, "|" },
-    { V('c','i'), 1, "o" }, // ### circle TODO where in Unicode
+    { V('c','i'), 1, "&#x25CB;" }, // circle ### TODO verify
     { V('c','o'), 1, "&copy;" },
     { V('c','t'), 1, "&cent;" },
     { V('d','e'), 1, "&deg;" },
@@ -325,9 +325,9 @@ static CSTRDEF standardchar[] = {
     { V('e','n'), 1, "&endash;"},
     { V('e','q'), 1, "=" },
     { V('e','s'), 1, "&empty;" },
-    { V('f','f'), 2, "ff" }, // ### TODO: where in Unicode
-    { V('f','i'), 2, "fi" }, // ### TODO: where in Unicode
-    { V('f','l'), 2, "fl" }, // ### TODO: where in Unicode
+    { V('f','f'), 1, "&#0xFB00;" }, // ff ligature
+    { V('f','i'), 1, "&#0xFB01;" }, // fi ligature
+    { V('f','l'), 1, "&#0xFB02;" }, // fl ligature
     { V('f','m'), 1, "&prime;" },
     { V('g','a'), 1, "`" },
     { V('h','y'), 1, "-" },
@@ -347,8 +347,8 @@ static CSTRDEF standardchar[] = {
     { V('r','u'), 1, "_" },
     { V('s','c'), 1, "&sect;" },
     { V('s','l'), 1, "/" },
-    { V('s','q'), 2, "[]" }, // ### TODO: where in Unicode
-    { V('t','s'), 1, "&sigma;" }, // terminal sigma ### TODO: check if it is in Unicode
+    { V('s','q'), 2, "[]" }, // ### TODO verify
+    { V('t','s'), 1, "&#x03C2;" }, // terminal sigma
     { V('u','l'), 1, "_" },
     { V('-','D'), 1, "&ETH;" },
     { V('S','d'), 1, "&eth;" },
@@ -410,8 +410,8 @@ static CSTRDEF standardchar[] = {
     { V('~','o'), 1, "&otidle;" },
     { V(',','C'), 1, "&Ccedil;" },
     { V(',','c'), 1, "&ccedil;" },
-    { V('/','L'), 1, "L" }, // ### TODO: where in Unicode
-    { V('/','l'), 1, "l" }, // ### TODO: where in Unicode
+    { V('/','L'), 1, "&#x0141;" }, // ### TODO: verify: U+0141 is with stroke, not with slash
+    { V('/','l'), 1, "&#x0142;" }, // ### TODO: verify: U+0142 is with stroke, not with slash
     { V('/','O'), 1, "&Oslash;" },
     { V('/','o'), 1, "&oslash;" },
     { V('o','A'), 1, "&Aring;" },
@@ -419,18 +419,16 @@ static CSTRDEF standardchar[] = {
     { V('a','"'), 1, "\"" },
     { V('a','-'), 1, "&macr;" },
     { V('a','.'), 1, "." },
-    // ### TODO If those following are accents, there should perhaps have even other Unicode values, assuming that they are *after* the main character
     { V('a','^'), 1, "&circ;" },
     { V('a','a'), 1, "&acute;" },
     { V('a','b'), 1, "`" },
     { V('a','c'), 1, "&cedil;" },
     { V('a','d'), 1, "&uml;" },
-    { V('a','h'), 1, "v" }, // caron ### TODO: where in Unicode
-    { V('a','o'), 1, "&#176;" }, // ring ### TODO verify
+    { V('a','h'), 1, "&#x02C2;" }, // caron
+    { V('a','o'), 1, "&#x02DA;" }, // ring
     { V('a','~'), 1, "&tilde;" },
-    { V('h','o'), 1, "&#184;" }, // ogonek  ### TODO verify
-    // End of accents
-    { V('.','i'), 1, "i" }, // dotlessi  ### TODO: where in Unicode
+    { V('h','o'), 1, "&#x02DB;" }, // ogonek
+    { V('.','i'), 1, "&#x0131;" }, // dot less i
     { V('C','s'), 1, "&curren;" },
     { V('D','o'), 1, "$" },
     { V('P','o'), 1, "&pound;" },
@@ -438,8 +436,8 @@ static CSTRDEF standardchar[] = {
     { V('F','n'), 1, "&fnof;" },
     { V('F','o'), 1, "&laquo;" },
     { V('F','c'), 1, "&raquo;" },
-    { V('f','o'), 1, "&#171;" }, // single left guillemet ### TODO: where in Unicode
-    { V('f','c'), 1, "&#187;" }, // single right guillemet ### TODO: where in Unicode
+    { V('f','o'), 1, "&#x2039;" }, // single left guillemet
+    { V('f','c'), 1, "&#x203A;" }, // single right guillemet
     { V('r','!'), 1, "&iecl;" },
     { V('r','?'), 1, "&iquest;" },
     { V('O','f'), 1, "&ordf" },
@@ -504,7 +502,7 @@ static CSTRDEF standardchar[] = {
     { V('R','e'), 1, "&real;" },
     { V('i','f'), 1, "&infin;" },
     { V('m','d'), 1, "&sdot;" },
-    { V('m','o'), 1, "&#8711;" }, // ### TODO verify
+    { V('m','o'), 1, "&#x2206;" }, // element ### TODO verify
     { V('n','m'), 1, "&notin;" },
     { V('p','t'), 1, "&prop;" },
     { V('p','p'), 1, "&perp;" },
