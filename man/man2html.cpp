@@ -3004,15 +3004,15 @@ static char *scan_request(char *c)
                     out_html( "<link rel=\"stylesheet\" href=\"KDE_COMMON_DIR/kde-default.css\" type=\"text/css\">\n" );
                     out_html( "</HEAD>\n\n" );
                     out_html("<BODY BGCOLOR=\"#FFFFFF\">\n\n" );
-                    out_html("<div style=\"background-image: url(KDE_COMMON_DIR/top-middle.png); width: 100%; height: 131px;\">\n" );
-		    out_html("<div style=\"position: absolute; right: 0px;\">\n");
-		    out_html("<img src=\"KDE_COMMON_DIR/top-right-konqueror.png\" style=\"margin: 0px\" alt=\"\" />\n");
+                    out_html("<div style=\"background-image: url(KDE_COMMON_DIR/top-middle.png); width: 100%; height: 131pt;\">\n" );
+		    out_html("<div style=\"position: absolute; right: 0pt;\">\n");
+		    out_html("<img src=\"KDE_COMMON_DIR/top-right-konqueror.png\" style=\"margin: 0pt\" alt=\"\" />\n");
 		    out_html("</div>\n");
 
-		    out_html("<div style=\"position: absolute; left: 0px;\">\n");
-		    out_html("<img src=\"KDE_COMMON_DIR/top-left.png\" style=\"margin: 0px\" alt=\"\" />\n");
+		    out_html("<div style=\"position: absolute; left: 0pt;\">\n");
+		    out_html("<img src=\"KDE_COMMON_DIR/top-left.png\" style=\"margin: 0pt\" alt=\"\" />\n");
 		    out_html("</div>\n");
-		    out_html("<div style=\"position: absolute; top: 25px; right: 100px; text-align: right; font-size: xx-large; font-weight: bold; text-shadow: #fff 0px 0px 5px; color: #444\">\n");
+		    out_html("<div style=\"position: absolute; top: 25pt; right: 100pt; text-align: right; font-size: xx-large; font-weight: bold; text-shadow: #fff 0pt 0pt 5pt; color: #444\">\n");
 		    out_html( scan_troff(wordlist[0], 0, NULL ) );
 		    out_html("</div>\n");
 		    out_html("</div>\n");
@@ -4082,12 +4082,12 @@ void scan_man_page(const char *man_page)
 
     if (output_possible) {
       output_real("</div>\n");
-      output_real("<div class=\"bannerBottom\" style=\"background-image: url(KDE_COMMON_DIR/bottom-middle.png); background-repeat: x-repeat; width: 100%; height: 100px; bottom:0px;\">\n");
+      output_real("<div class=\"bannerBottom\" style=\"background-image: url(KDE_COMMON_DIR/bottom-middle.png); background-repeat: x-repeat; width: 100%; height: 100pt; bottom:0pt;\">\n");
       output_real("<div class=\"BannerBottomRight\">\n");
-      output_real("<img src=\"KDE_COMMON_DIR/bottom-right.png\" style=\"margin: 0px\" alt=\"\"/>\n");
+      output_real("<img src=\"KDE_COMMON_DIR/bottom-right.png\" style=\"margin: 0pt\" alt=\"\"/>\n");
       output_real("</div>\n");
       output_real("<div class=\"bannerBottomLeft\">\n");
-      output_real("<img src=\"KDE_COMMON_DIR/bottom-left.png\" style=\"margin: 0px;\" alt=\"\"/>\n");
+      output_real("<img src=\"KDE_COMMON_DIR/bottom-left.png\" style=\"margin: 0pt;\" alt=\"\"/>\n");
       output_real("</div>\n");
       output_real("</div>\n");
 
