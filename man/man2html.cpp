@@ -2178,6 +2178,8 @@ static char *skip_till_newline(char *c)
 #define REQ_perc_J   130
 #define REQ_perc_R   131
 #define REQ_perc_T   132
+#define REQ_An       133 // see FreeBSD's mdoc(7)
+#define REQ_Aq       134 // see FreeBSD's mdoc(7)
 
 static int get_request(char *req, int len)
 {
@@ -2193,7 +2195,7 @@ static int get_request(char *req, int len)
         "Oo", "Oc", "Pq", "Ql", "Sq", "Ar", "Ad", "Em", "Va", "Xc", "Nd", "Nm",
         "Cd", "Cm", "Ic", "Ms", "Or", "Sy", "Dv", "Ev", "Fr", "Li", "No", "Ns",
         "Tn", "nN", "%A", "%D", "%N", "%O", "%P", "%Q", "%V", "%B", "%J", "%R",
-        "%T", NULL};
+        "%T", "An", "Aq", 0 };
     int r = 0;
     while (requests[r] && strncmp(req, requests[r], len)) r++;
     return requests[r] ? r : REQ_UNKNOWN;
@@ -2290,6 +2292,18 @@ static char *scan_request(char *c)
 	    }
 	    /* fprintf(stderr, "%s\n", c+2); */
             return 0;
+	    break;
+	case REQ_An:
+	    c+=j;
+	    out_html("\n<!-- ");
+	    c=scan_troff(c,1,0);
+            out_html(" -->\n");
+	    break;
+	case REQ_Aq:
+	    c+=j;
+	    out_html("&#x2039;"); // left single guillemet
+	    c=scan_troff(c,1,0);
+            out_html("&#x203A;"); // right single guillemet
 	    break;
 	case REQ_di:
 	    {
