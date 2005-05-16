@@ -560,7 +560,7 @@ void MANProtocol::outputError(const QString& errmsg)
 
     os << "<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">" << endl;
     os << "<title>" << i18n("Man output") << "</title></head>" << endl;
-    os << i18n("<body bgcolor=#ffffff><h1>KDE Man Viewer Error</h1>") << errmsg << "</body>" << endl;
+    os << i18n("<body bgcolor=\"#ffffff\"><h1>KDE Man Viewer Error</h1>") << errmsg << "</body>" << endl;
     os << "</html>" << endl;
 
     data(array);
@@ -578,8 +578,14 @@ void MANProtocol::outputMatchingPages(const QStringList &matchingPages)
     os << i18n("There is more than one matching man page.");
     os << "</h1>\n<ul>\n";
     for (QStringList::ConstIterator it = matchingPages.begin(); it != matchingPages.end(); ++it)
-       os<<"<li><a href=man:"<< *it <<">"<< *it <<"</a></li>\n";
-    os<< "</ul>\n</body>\n</html>"<<endl;
+       os<<"<li><a href=\"man:"<< *it <<"\">"<< *it <<"</a></li>\n";
+    os << "</ul>\n";
+    os << "<hr>\n";
+    os << "<p>" << i18n("Note: if you read a man page in your language,"
+       " be aware it can contain some mistakes or be obsolete."
+       " In case of doubt, you should have a look at the the english version. ") << "</p>";
+
+    os << "</body>\n</html>"<<endl;
 
     data(array);
     finished();
