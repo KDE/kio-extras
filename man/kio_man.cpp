@@ -41,7 +41,6 @@
 
 #include "kio_man.h"
 #include "kio_man.moc"
-#include <zlib.h>
 #include "man2html.h"
 #include <assert.h>
 #include <kfilterbase.h>
@@ -434,8 +433,8 @@ void MANProtocol::get(const KURL& url )
     // tell the mimetype
     mimeType("text/html");
 
-    QStringList foundPages=findPages(section, title);
-    if (foundPages.count()==0)
+    const QStringList foundPages=findPages(section, title);
+    if (foundPages.isEmpty())
     {
        outputError(i18n("No man page matching to %1 found. You can extend the search path by setting the environment variable MANPATH before starting KDE.").arg(title));
     }
@@ -568,11 +567,11 @@ void MANProtocol::outputMatchingPages(const QStringList &matchingPages)
 
     os << "<html>\n<head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">";
     os << "<title>" << i18n("Man output");
-    os <<"</title></head>\n<body bgcolor=#ffffff><h1>";
+    os <<"</title></head>\n<body bgcolor=\"#ffffff\"><h1>";
     os << i18n("There is more than one matching man page.");
-    os << "</h1>\n<ul>";
+    os << "</h1>\n<ul>\n";
     for (QStringList::ConstIterator it = matchingPages.begin(); it != matchingPages.end(); ++it)
-       os<<"<li><a href=man:"<<QFile::encodeName(*it)<<">"<< *it <<"</a><br>\n<br>\n";
+       os<<"<li><a href=man:"<< *it <<">"<< *it <<"</a></li>\n";
     os<< "</ul>\n</body>\n</html>"<<endl;
 
     data(array);
