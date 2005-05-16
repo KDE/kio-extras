@@ -2044,6 +2044,10 @@ static char *skip_till_newline(char *c)
     return c;
 }
 
+// Some of the requests are from mdoc.
+// On Linux see the man pages mdoc(7) and mdoc-samples(7)
+// See also the online man pages of FreeBSD: mdoc(7)
+
 #define REQ_UNKNOWN   -1
 #define REQ_ab         0
 #define REQ_di         1
@@ -2178,8 +2182,8 @@ static char *skip_till_newline(char *c)
 #define REQ_perc_J   130
 #define REQ_perc_R   131
 #define REQ_perc_T   132
-#define REQ_An       133 // see FreeBSD's mdoc(7)
-#define REQ_Aq       134 // see FreeBSD's mdoc(7)
+#define REQ_An       133 // mdoc
+#define REQ_Aq       134 // mdoc
 
 static int get_request(char *req, int len)
 {
