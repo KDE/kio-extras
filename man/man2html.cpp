@@ -3042,7 +3042,7 @@ static char *scan_request(char *c)
                     }
 		    output_possible=1;
 		    out_html( DOCTYPE"<HTML>\n<HEAD>\n");
-		    out_html("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
+		    out_html("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=ISO-8859-1\">\n");
 		    out_html("<TITLE>");
 			out_html(scan_troff(wordlist[0], 0, NULL));
 		    out_html( " Manpage</TITLE>\n");

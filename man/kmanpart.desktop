@@ -1,6 +1,5 @@
 [Desktop Entry]
 Type=Service
-Exec=libkmanpart
 Comment=Embeddable Troff Viewer
 Comment[af]=Inlegbare Troff Aansig
 Comment[ar]=مستعرض Troff المدمج
