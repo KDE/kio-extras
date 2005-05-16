@@ -139,7 +139,12 @@ using namespace std;
 #define NROFF 1
 #endif
 
+#if 1
+// The output is current too horrible to be called HTML 4.01
+#define DOCTYPE "<!DOCTYPE HTML>"
+#else
 #define DOCTYPE "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">\n"
+#endif
 
 /* BSD mandoc Bl/El lists to HTML list types */
 #define BL_DESC_LIST   1
@@ -523,7 +528,20 @@ static CSTRDEF standardchar[] = {
     { V('/','_'), 1, "&ang;" },
     { V('w','p'), 1, "&weierp;" },
     { V('l','z'), 1, "&loz;" },
-    { V('a','n'), 1, "-" } // "horizontal arrow extension"  ### TODO Where in Unicode?
+    { V('a','n'), 1, "-" }, // "horizontal arrow extension"  ### TODO Where in Unicode?
+    // mdoc-only, see mdoc.samples(7)
+    // ### TODO: the same sequence can start by \*
+    { V('R','q'), 1, "&rdquo;" },
+    { V('L','q'), 1, "&ldquo;" },
+    { V('L','e'), 1, "&le;" },
+    { V('G','e'), 1, "&ge;" },
+    { V('L','t'), 1, "&lt;" },
+    { V('G','t'), 1, "&gt;" },
+    { V('P','m'), 1, "&plusmn;" },
+    { V('I','f'), 1, "&infin;" },
+    { V('N','a'), 3, "NaN" }, // Not a Number ### TODO: does it exist in Unicode?
+    { V('B','a'), 1, "|" }
+    // end mdoc-only
 };
 
 /* default: print code */
@@ -2045,7 +2063,7 @@ static char *skip_till_newline(char *c)
 }
 
 // Some of the requests are from mdoc.
-// On Linux see the man pages mdoc(7) and mdoc.samples(7)
+// On Linux see the man pages mdoc(7), mdoc.samples(7) and groff_mdoc(7)
 // See also the online man pages of FreeBSD: mdoc(7)
 
 #define REQ_UNKNOWN   -1
@@ -2120,26 +2138,26 @@ static char *skip_till_newline(char *c)
 #define REQ_nr        68
 #define REQ_am        69
 #define REQ_de        70
-#define REQ_Bl        71
-#define REQ_El        72
-#define REQ_It        73
+#define REQ_Bl        71 // mdoc
+#define REQ_El        72 // mdoc
+#define REQ_It        73 // mdoc
 #define REQ_Bk        74
 #define REQ_Ek        75
 #define REQ_Dd        76
-#define REQ_Os        77
+#define REQ_Os        77 // mdoc
 #define REQ_Bt        78
-#define REQ_At        79
-#define REQ_Fx        80
+#define REQ_At        79 // mdoc (not parsable, not callable)
+#define REQ_Fx        80 // mdoc (not parsable, not callable)
 #define REQ_Nx        81
 #define REQ_Ox        82
-#define REQ_Bx        83
-#define REQ_Ux        84
+#define REQ_Bx        83 // mdoc
+#define REQ_Ux        84 // mdoc
 #define REQ_Dl        85
 #define REQ_Bd        86
 #define REQ_Ed        87
 #define REQ_Be        88
-#define REQ_Xr        89
-#define REQ_Fl        90
+#define REQ_Xr        89 // mdoc
+#define REQ_Fl        90 // mdoc
 #define REQ_Pa        91
 #define REQ_Pf        92
 #define REQ_Pp        93
@@ -2152,7 +2170,7 @@ static char *skip_till_newline(char *c)
 #define REQ_Sq       100
 #define REQ_Ar       101
 #define REQ_Ad       102
-#define REQ_Em       103
+#define REQ_Em       103 // mdoc
 #define REQ_Va       104
 #define REQ_Xc       105
 #define REQ_Nd       106
@@ -2182,7 +2200,7 @@ static char *skip_till_newline(char *c)
 #define REQ_perc_J   130
 #define REQ_perc_R   131
 #define REQ_perc_T   132
-#define REQ_An       133 // mdoc (callable)
+#define REQ_An       133 // mdoc
 #define REQ_Aq       134 // mdoc
 
 static int get_request(char *req, int len)
@@ -3331,13 +3349,21 @@ static char *scan_request(char *c)
 	case REQ_Ox:	/* BSD mandoc */
 	case REQ_Bx:	/* BSD mandoc */
 	case REQ_Ux:	/* BSD mandoc */
+        {
+	    bool parsable=true;
 	    trans_char(c,'"','\a');
 	    c=c+j;
 	    if (*c=='\n') c++;
                 if (i==V('A','t'))
+		{
                     out_html("AT&amp;T UNIX ");
+		    parsable=false;
+		}
                 else if (i==V('F','x'))
+		{
                     out_html("FreeBSD ");
+		    parsable=false;
+		}
                 else if (i==V('N','x'))
                     out_html("NetBSD ");
                 else if (i==V('O','x'))
@@ -3346,12 +3372,16 @@ static char *scan_request(char *c)
                     out_html("BSD ");
                 else if (i==V('U','x'))
                     out_html("UNIX ");
-	    c=scan_troff_mandoc(c, 1, NULL);
+		if (parsable)
+        	    c=scan_troff_mandoc(c,1,0);
+		else
+		    c=scan_troff(c,1,0);
                 if (fillout)
                     curpos++;
                 else
                     curpos=0;
 	    break;
+	}
 	case REQ_Dl:	/* BSD mandoc */
 	    c=c+j;
 	    out_html(NEWLINE);
@@ -3648,8 +3678,20 @@ static char *scan_request(char *c)
                 else
                     curpos=0;
 	    break;
-	case REQ_Ad:	/* BSD mandoc */
 	case REQ_Em:	/* BSD mandoc */
+	    out_html("<em>");
+	    trans_char(c,'"','\a');
+	    c+=j;
+	    if (*c=='\n') c++;
+	    c=scan_troff_mandoc(c, 1, NULL);
+	    out_html("</em>");
+	    out_html(NEWLINE);
+                if (fillout)
+                    curpos++;
+                else
+                    curpos=0;
+	    break;
+	case REQ_Ad:	/* BSD mandoc */
 	case REQ_Va:	/* BSD mandoc */
 	case REQ_Xc:	/* BSD mandoc */
             /* parse one line in italics */
