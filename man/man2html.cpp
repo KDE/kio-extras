@@ -2045,7 +2045,7 @@ static char *skip_till_newline(char *c)
 }
 
 // Some of the requests are from mdoc.
-// On Linux see the man pages mdoc(7) and mdoc-samples(7)
+// On Linux see the man pages mdoc(7) and mdoc.samples(7)
 // See also the online man pages of FreeBSD: mdoc(7)
 
 #define REQ_UNKNOWN   -1
@@ -2182,7 +2182,7 @@ static char *skip_till_newline(char *c)
 #define REQ_perc_J   130
 #define REQ_perc_R   131
 #define REQ_perc_T   132
-#define REQ_An       133 // mdoc
+#define REQ_An       133 // mdoc (callable)
 #define REQ_Aq       134 // mdoc
 
 static int get_request(char *req, int len)
@@ -2299,15 +2299,13 @@ static char *scan_request(char *c)
 	    break;
 	case REQ_An:
 	    c+=j;
-	    out_html("\n<!-- ");
-	    c=scan_troff(c,1,0);
-            out_html(" -->\n");
+	    c=scan_troff_mandoc(c,1,0);
 	    break;
 	case REQ_Aq:
 	    c+=j;
-	    out_html("&#x2039;"); // left single guillemet
+	    out_html("&lt;");
 	    c=scan_troff(c,1,0);
-            out_html("&#x203A;"); // right single guillemet
+            out_html("&gt;");
 	    break;
 	case REQ_di:
 	    {
