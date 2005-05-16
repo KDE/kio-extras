@@ -74,7 +74,8 @@ private:
     void addToBuffer(const char *buffer, int buflen);
     QString pageName(const QString& page) const;
     QStringList buildSectionList(const QStringList& dirs) const;
-    QCString output_string;
+
+    QString output_string; // Buffer for the HTML code
 
     static MANProtocol *_self;
     QCString lastdir;

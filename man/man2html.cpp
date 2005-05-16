@@ -3042,7 +3042,13 @@ static char *scan_request(char *c)
                     }
 		    output_possible=1;
 		    out_html( DOCTYPE"<HTML>\n<HEAD>\n");
+#ifdef SIMPLE_MAN2HTML
+                    // Most English man pages are in ISO-8859-1
 		    out_html("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=ISO-8859-1\">\n");
+#else
+                    // kio_man transforms from local to UTF-8
+                    out_html("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
+#endif
 		    out_html("<TITLE>");
 			out_html(scan_troff(wordlist[0], 0, NULL));
 		    out_html( " Manpage</TITLE>\n");

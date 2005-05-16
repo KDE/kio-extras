@@ -385,16 +385,21 @@ void MANProtocol::findManPagesInSection(const QString &dir, const QString &title
 void MANProtocol::output(const char *insert)
 {
     if (insert)
-        output_string += insert;
-    if (!insert || output_string.length() > 2000) {
+    {
+        QString temp(QString::fromLocal8Bit(insert));
         // TODO find out the language of the man page and put the right common dir in
-	// TODO what if the path is not UTF-8?
-        output_string.replace( "KDE_COMMON_DIR", QString( "file:%1/en/common" ).arg( common_dir ).latin1());
+        temp.replace( "KDE_COMMON_DIR", QString( "file:%1/en/common" ).arg( common_dir ));
+        output_string+=temp;
+    }
+    if (!insert || output_string.length() > 2048)
+    {
         //kdDebug(7107) << "output " << output_string << endl;
-	// ### FIXME: data expects a QByteArray, not a QCString. So the NUL character must be removed or it will break HTML code
-        // ### Qt4: QByteArray can easily remove the last byte in Qt4
-        data(output_string);
-        output_string.truncate(0);
+        QByteArray array;
+        QTextStream stream(array,IO_WriteOnly);
+        stream.setEncoding(QTextStream::UnicodeUTF8);
+        stream << output_string;
+        data(array);
+        output_string=QString::null;
     }
 }
 
