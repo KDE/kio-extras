@@ -392,6 +392,7 @@ void MANProtocol::output(const char *insert)
         output_string.replace( "KDE_COMMON_DIR", QString( "file:%1/en/common" ).arg( common_dir ).latin1());
         //kdDebug(7107) << "output " << output_string << endl;
 	// ### FIXME: data expects a QByteArray, not a QCString. So the NUL character must be removed or it will break HTML code
+        // ### Qt4: QByteArray can easily remove the last byte in Qt4
         data(output_string);
         output_string.truncate(0);
     }

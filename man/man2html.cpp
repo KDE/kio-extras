@@ -4126,11 +4126,11 @@ void scan_man_page(const char *man_page)
     if (output_possible) {
       output_real("</div>\n");
       output_real("<div class=\"bannerBottom\" style=\"background-image: url(KDE_COMMON_DIR/bottom-middle.png); background-repeat: x-repeat; width: 100%; height: 100pt; bottom:0pt;\">\n");
-      output_real("<div class=\"BannerBottomRight\">\n");
-      output_real("<img src=\"KDE_COMMON_DIR/bottom-right.png\" style=\"margin: 0pt\" alt=\"Bottom right of the banner\">\n");
-      output_real("</div>\n");
       output_real("<div class=\"bannerBottomLeft\">\n");
       output_real("<img src=\"KDE_COMMON_DIR/bottom-left.png\" style=\"margin: 0pt;\" alt=\"Bottom left of the banner\">\n");
+      output_real("</div>\n");
+      output_real("<div class=\"bannerBottomRight\">\n");
+      output_real("<img src=\"KDE_COMMON_DIR/bottom-right.png\" style=\"margin: 0pt\" alt=\"Bottom right of the banner\">\n");
       output_real("</div>\n");
       output_real("</div>\n");
 
