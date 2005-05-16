@@ -3010,8 +3010,8 @@ static char *scan_request(char *c)
                             wordlist[i][strlen(wordlist[i])-1] = 0;
                     }
 		    output_possible=1;
-		    out_html( DOCTYPE"<HTML><HEAD>");
-		    out_html("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">");
+		    out_html( DOCTYPE"<HTML>\n<HEAD>\n");
+		    out_html("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
 		    out_html("<TITLE>");
 			out_html(scan_troff(wordlist[0], 0, NULL));
 		    out_html( " Manpage</TITLE>\n");
