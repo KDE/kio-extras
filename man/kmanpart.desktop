@@ -1,6 +1,6 @@
 [Desktop Entry]
 Type=Service
-Exec=foobar
+Exec=libkmanpart
 Comment=Embeddable Troff Viewer
 Comment[af]=Inlegbare Troff Aansig
 Comment[ar]=مستعرض Troff المدمج
@@ -65,7 +65,7 @@ Comment[xh]=Umboniseli we Troff Elungiselekayo
 Comment[xx]=xxEmbeddable Troff Viewerxx
 Comment[zh_TW]=可嵌入的 Troff 檢視元件
 Comment[zu]=Umbukisi we-Troff Oshuthekiwe
-MimeType=application/x-troff
+MimeType=application/x-troff,application/x-troff-man
 Name=KManPart
 Name[eo]=KMan-parto
 Name[hi]=के-मेन-पार्ट
