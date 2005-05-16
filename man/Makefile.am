@@ -19,6 +19,7 @@ kio_man_la_SOURCES = man2html.cpp kio_man.cpp
 kio_man_la_LIBADD = $(LIB_KSYCOCA)
 kio_man_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN)
 noinst_HEADERS = kio_man.h
+### TODO Why is man2htmk.h distributed?
 
 libkmanpart_la_SOURCES = kmanpart.cpp
 libkmanpart_la_LIBADD = -lkhtml $(LIB_KPARTS)
