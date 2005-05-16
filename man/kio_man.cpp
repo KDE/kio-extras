@@ -25,6 +25,7 @@
 #include <qdir.h>
 #include <qfile.h>
 #include <qtextstream.h>
+#include <qdatastream.h>
 #include <qcstring.h>
 #include <qptrlist.h>
 #include <qmap.h>
@@ -390,6 +391,7 @@ void MANProtocol::output(const char *insert)
         // TODO find out the language of the man page and put the right common dir in
         output_string.replace( "KDE_COMMON_DIR", QString( "file:%1/en/common" ).arg( common_dir ).local8Bit());
         //kdDebug(7107) << "output " << output_string << endl;
+	// ### FIXME: data expects a QByteArray, not a QCString. So the NUL character must be removed or it will break HTML code
         data(output_string);
         output_string.truncate(0);
     }
@@ -546,23 +548,23 @@ char *MANProtocol::readManPage(const char *_filename)
 
 void MANProtocol::outputError(const QString& errmsg)
 {
-    QString output;
-
-    QTextStream os(&output, IO_WriteOnly);
+    QByteArray array;
+    QTextStream os(array, IO_WriteOnly);
+    os.setEncoding(QTextStream::UnicodeUTF8);
 
     os << "<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">" << endl;
     os << "<title>" << i18n("Man output") << "</title></head>" << endl;
     os << i18n("<body bgcolor=#ffffff><h1>KDE Man Viewer Error</h1>") << errmsg << "</body>" << endl;
     os << "</html>" << endl;
 
-    data(output.utf8());
+    data(array);
 }
 
 void MANProtocol::outputMatchingPages(const QStringList &matchingPages)
 {
-    QString output;
-
-    QTextStream os(&output, IO_WriteOnly);
+    QByteArray array;
+    QTextStream os(array, IO_WriteOnly);
+    os.setEncoding(QTextStream::UnicodeUTF8);
 
     os << "<html>\n<head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">";
     os << "<title>" << i18n("Man output");
@@ -573,7 +575,7 @@ void MANProtocol::outputMatchingPages(const QStringList &matchingPages)
        os<<"<li><a href=man:"<<QFile::encodeName(*it)<<">"<< *it <<"</a><br>\n<br>\n";
     os<< "</ul>\n</body>\n</html>"<<endl;
 
-    data(output.utf8());
+    data(array);
     finished();
 }
 
@@ -709,9 +711,9 @@ QStringList MANProtocol::buildSectionList(const QStringList& dirs) const
 
 void MANProtocol::showMainIndex()
 {
-    QString output;
-
-    QTextStream os(&output, IO_WriteOnly);
+    QByteArray array;
+    QTextStream os(array, IO_WriteOnly);
+    os.setEncoding(QTextStream::UnicodeUTF8);
 
     // print header
     os << "<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">" << endl;
@@ -736,7 +738,7 @@ void MANProtocol::showMainIndex()
     // print footer
     os << "</body></html>" << endl;
 
-    data(output.utf8());
+    data(array);
     finished();
 }
 
@@ -1090,9 +1092,9 @@ private:
 
 void MANProtocol::showIndex(const QString& section)
 {
-    QString output;
-
-    QTextStream os(&output, IO_WriteOnly);
+    QByteArray array;
+    QTextStream os(array, IO_WriteOnly);
+    os.setEncoding(QTextStream::UnicodeUTF8);
 
     // print header
     os << "<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">" << endl;
@@ -1328,7 +1330,7 @@ void MANProtocol::showIndex(const QString& section)
 
     infoMessage(QString::null);
     mimeType("text/html");
-    data(output.utf8());
+    data(array);
     finished();
 }
 
