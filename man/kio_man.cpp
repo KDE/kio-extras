@@ -389,7 +389,7 @@ void MANProtocol::output(const char *insert)
         output_string += insert;
     if (!insert || output_string.length() > 2000) {
         // TODO find out the language of the man page and put the right common dir in
-        output_string.replace( "KDE_COMMON_DIR", QString( "file:%1/en/common" ).arg( common_dir ).local8Bit());
+        output_string.replace( "KDE_COMMON_DIR", QString( "file:%1/en/common" ).arg( common_dir ).utf8());
         //kdDebug(7107) << "output " << output_string << endl;
 	// ### FIXME: data expects a QByteArray, not a QCString. So the NUL character must be removed or it will break HTML code
         data(output_string);
