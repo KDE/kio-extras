@@ -169,6 +169,7 @@ static char *stralloc(int len)
   return news;
 }
 
+// ### TODO: replace by either qstrncpy or strlcpy
 static char *strmaxcpy(char *to, const char *from, int n)
 {				/* Assumes space for n plus a null */
   int len = strlen(from);
@@ -227,7 +228,7 @@ struct INTDEF {
     INTDEF *next;
 };
 
-static char NEWLINE[2]="\n";
+const char NEWLINE[2]="\n";
 
 static STRDEF *chardef, *strdef, *defdef;
 static INTDEF *intdef;
@@ -2138,39 +2139,39 @@ static char *skip_till_newline(char *c)
 #define REQ_nr        68
 #define REQ_am        69
 #define REQ_de        70
-#define REQ_Bl        71 // mdoc
-#define REQ_El        72 // mdoc
-#define REQ_It        73 // mdoc
+#define REQ_Bl        71 // mdoc "Begin List"
+#define REQ_El        72 // mdoc "End List"
+#define REQ_It        73 // mdoc "ITem"
 #define REQ_Bk        74
 #define REQ_Ek        75
 #define REQ_Dd        76
 #define REQ_Os        77 // mdoc
 #define REQ_Bt        78
-#define REQ_At        79 // mdoc (not parsable, not callable)
-#define REQ_Fx        80 // mdoc (not parsable, not callable)
+#define REQ_At        79 // mdoc "AT&t" (not parsable, not callable)
+#define REQ_Fx        80 // mdoc "Freebsd" (not parsable, not callable)
 #define REQ_Nx        81
 #define REQ_Ox        82
-#define REQ_Bx        83 // mdoc
-#define REQ_Ux        84 // mdoc
+#define REQ_Bx        83 // mdoc "Bsd"
+#define REQ_Ux        84 // mdoc "UniX"
 #define REQ_Dl        85
 #define REQ_Bd        86
 #define REQ_Ed        87
 #define REQ_Be        88
-#define REQ_Xr        89 // mdoc
-#define REQ_Fl        90 // mdoc
+#define REQ_Xr        89 // mdoc "eXternal Reference"
+#define REQ_Fl        90 // mdoc "FLag"
 #define REQ_Pa        91
 #define REQ_Pf        92
 #define REQ_Pp        93
-#define REQ_Dq        94
+#define REQ_Dq        94 // mdoc "Double Quote"
 #define REQ_Op        95
 #define REQ_Oo        96
 #define REQ_Oc        97
-#define REQ_Pq        98
+#define REQ_Pq        98 // mdoc "Parenthese Quote"
 #define REQ_Ql        99
-#define REQ_Sq       100
+#define REQ_Sq       100 // mdoc "Single Quote"
 #define REQ_Ar       101
 #define REQ_Ad       102
-#define REQ_Em       103 // mdoc
+#define REQ_Em       103 // mdoc "EMphasis"
 #define REQ_Va       104
 #define REQ_Xc       105
 #define REQ_Nd       106
@@ -2200,9 +2201,10 @@ static char *skip_till_newline(char *c)
 #define REQ_perc_J   130
 #define REQ_perc_R   131
 #define REQ_perc_T   132
-#define REQ_An       133 // mdoc
-#define REQ_Aq       134 // mdoc
-
+#define REQ_An       133 // mdoc "Author Name"
+#define REQ_Aq       134 // mdoc "Angle bracket Quote"
+#define REQ_Bq       135 // mdoc "Bracket Quote"
+#define REQ_Qq       136 // mdoc  "straight double Quote"
 static int get_request(char *req, int len)
 {
     static const char *requests[] = {
@@ -2217,7 +2219,7 @@ static int get_request(char *req, int len)
         "Oo", "Oc", "Pq", "Ql", "Sq", "Ar", "Ad", "Em", "Va", "Xc", "Nd", "Nm",
         "Cd", "Cm", "Ic", "Ms", "Or", "Sy", "Dv", "Ev", "Fr", "Li", "No", "Ns",
         "Tn", "nN", "%A", "%D", "%N", "%O", "%P", "%Q", "%V", "%B", "%J", "%R",
-        "%T", "An", "Aq", 0 };
+        "%T", "An", "Aq", "Bq", "Qq", 0 };
     int r = 0;
     while (requests[r] && strncmp(req, requests[r], len)) r++;
     return requests[r] ? r : REQ_UNKNOWN;
@@ -2227,6 +2229,23 @@ static int get_request(char *req, int len)
 //static int ifelseval=0;
 // If/else can be nested!
 static QValueStack<int> s_ifelseval;
+
+// Process a (mdoc) request involving quotes
+static char* process_quote(char* c, int j, const char* open, const char* close)
+{
+    trans_char(c,'"','\a');
+    c+=j;
+    if (*c=='\n') c++; // ### TODO: why? Quote requests cannot be empty!
+    out_html(open);
+    c=scan_troff_mandoc(c,1,0);
+    out_html(close);
+    out_html(NEWLINE);
+    if (fillout)
+      curpos++;
+    else
+      curpos=0;
+    return c;
+}
 
 static char *scan_request(char *c)
 {
@@ -2315,15 +2334,9 @@ static char *scan_request(char *c)
 	    /* fprintf(stderr, "%s\n", c+2); */
             return 0;
 	    break;
-	case REQ_An:
+	case REQ_An: // mdoc "Author Name"
 	    c+=j;
 	    c=scan_troff_mandoc(c,1,0);
-	    break;
-	case REQ_Aq:
-	    c+=j;
-	    out_html("&lt;");
-	    c=scan_troff(c,1,0);
-            out_html("&gt;");
 	    break;
 	case REQ_di:
 	    {
@@ -2640,7 +2653,6 @@ static char *scan_request(char *c)
                 else
                 {
 		out_html(NEWLINE);
-		NEWLINE[0]='\n';
 	    }
 	    curpos=0;
 	    c=skip_till_newline(c);
@@ -2891,7 +2903,6 @@ static char *scan_request(char *c)
                 else
                 {
 		out_html(NEWLINE);
-		NEWLINE[0]='\n';
 	    }
 	    curpos=0;
 	    c=skip_till_newline(c);
@@ -3260,7 +3271,6 @@ static char *scan_request(char *c)
                 else
                 {
 		out_html(NEWLINE);
-		NEWLINE[0]='\n';
 	    }
 	    curpos=0;
 	    c=skip_till_newline(c);
@@ -3281,7 +3291,6 @@ static char *scan_request(char *c)
                 else
                 {
 		out_html(NEWLINE);
-		NEWLINE[0]='\n';
 	    }
 	    curpos=0;
 	    c=skip_till_newline(c);
@@ -3448,7 +3457,6 @@ static char *scan_request(char *c)
                 else
                 {
 		out_html(NEWLINE);
-		NEWLINE[0]='\n';
 	    }
 	    curpos=0;
 	    c=skip_till_newline(c);
@@ -3550,23 +3558,27 @@ static char *scan_request(char *c)
                 else
                 {
 		out_html(NEWLINE);
-		NEWLINE[0]='\n';
 	    }
 	    curpos=0;
 	    c=skip_till_newline(c);
 	    break;
-	case REQ_Dq:	/* BSD mandoc */
-	    trans_char(c,'"','\a');
-	    c=c+j;
-	    if (*c=='\n') c++;
-	    out_html("``");
-	    c=scan_troff_mandoc(c, 1, NULL);
-	    out_html("''");
-	    out_html(NEWLINE);
-                if (fillout)
-                    curpos++;
-                else
-                    curpos=0;
+	case REQ_Aq: // mdoc "Angle bracket Quote"
+	    c=process_quote(c,j,"&lt;","&gt;");
+	    break;
+        case REQ_Bq: // mdoc "Bracket Quote"
+	    c=process_quote(c,j,"[","]");
+	    break;
+	case REQ_Dq:	// mdoc "Double Quote"
+	    c=process_quote(c,j,"&ldquo;","&rdquo;");
+	    break;
+	case REQ_Pq:	// mdoc: "Parenthese Quote"
+	    c=process_quote(c,j,"(",")");
+	    break;
+	case REQ_Qq:	// mdoc "straight double Quote"
+	    c=process_quote(c,j,"&quot;","&quot;");
+	    break;
+	case REQ_Sq:	// mdoc "Single Quote"
+	    c=process_quote(c,j,"&lsquo;","&rsquo;");
 	    break;
 	case REQ_Op:	/* BSD mandoc */
 	    trans_char(c,'"','\a');
@@ -3606,19 +3618,6 @@ static char *scan_request(char *c)
                 else
                     curpos=0;
 	    break;
-	case REQ_Pq:	/* BSD mandoc */
-	    trans_char(c,'"','\a');
-	    c=c+j;
-	    if (*c=='\n') c++;
-	    out_html("(");
-	    c=scan_troff_mandoc(c, 1, NULL);
-	    out_html(")");
-	    out_html(NEWLINE);
-                if (fillout)
-                    curpos++;
-                else
-                    curpos=0;
-	    break;
 	case REQ_Ql:	/* BSD mandoc */
 	  {			/* Single quote first word in the line */
 	    char *sp;
@@ -3648,19 +3647,6 @@ static char *scan_request(char *c)
                     curpos=0;
 	    break;
 	  }
-	case REQ_Sq:	/* BSD mandoc */
-	    trans_char(c,'"','\a');
-	    c=c+j;
-	    if (*c=='\n') c++;
-	    out_html("`");
-	    c=scan_troff_mandoc(c, 1, NULL);
-	    out_html("'");
-	    out_html(NEWLINE);
-                if (fillout)
-                    curpos++;
-                else
-                    curpos=0;
-	    break;
 	case REQ_Ar:	/* BSD mandoc */
             /* parse one line in italics */
 	    out_html(change_to_font('I'));
@@ -3871,7 +3857,6 @@ static char *scan_request(char *c)
         out_html(NEWLINE);
         curpos++;
     }
-    NEWLINE[0]='\n';
     return c;
 }
 /*
