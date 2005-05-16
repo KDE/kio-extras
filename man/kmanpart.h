@@ -69,7 +69,6 @@ class KManPart : public KHTMLPart
       KInstance *m_instance;
       KParts::BrowserExtension * m_extension;
       KIO::TransferJob *m_job;
-      QCString m_htmlData;
 };
 
 #endif

@@ -87,7 +87,7 @@ bool KManPart::openFile()
    if (m_job!=0)
       m_job->kill();
 
-   m_htmlData.truncate(0);
+   begin();
 
    m_job = KIO::get( KURL( QString("man:")+m_file ), true, false );
    connect( m_job, SIGNAL( data( KIO::Job *, const QByteArray &) ), SLOT( readData( KIO::Job *, const QByteArray &) ) );
@@ -97,14 +97,12 @@ bool KManPart::openFile()
 
 void KManPart::readData(KIO::Job * , const QByteArray & data)
 {
-    m_htmlData += data;
+   write(data,data.size());
 }
 
 void KManPart::jobDone( KIO::Job *)
 {
    m_job=0;
-   begin();
-   write(QString::fromLocal8Bit(m_htmlData));
    end();
 }
 
