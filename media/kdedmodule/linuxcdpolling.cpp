@@ -116,7 +116,7 @@ class PollingThread : public QThread
 public:
 	PollingThread(const QCString &devNode) : m_dev(devNode)
 	{
-		kdDebug() << "PollingThread::PollingThread("
+		kdDebug(1219) << "PollingThread::PollingThread("
 		          << devNode << ")" << endl;
 		m_stop = false;
 		m_currentType = DiscType::None;
@@ -146,7 +146,7 @@ public:
 protected:
 	virtual void run()
 	{
-		kdDebug() << "PollingThread(" << m_dev << ") start" << endl;
+		kdDebug(1219) << "PollingThread(" << m_dev << ") start" << endl;
 		while (!m_stop && m_lastPollType!=DiscType::Broken)
 		{
 			m_mutex.lock();
@@ -161,7 +161,7 @@ protected:
 
 			msleep(500);
 		}
-		kdDebug() << "PollingThread(" << m_dev << ") stop" << endl;
+		kdDebug(1219) << "PollingThread(" << m_dev << ") stop" << endl;
 	}
 
 private:
@@ -209,14 +209,14 @@ LinuxCDPolling::~LinuxCDPolling()
 
 void LinuxCDPolling::slotMediumAdded(const QString &id)
 {
-	kdDebug() << "LinuxCDPolling::slotMediumAdded(" << id << ")" << endl;
+	kdDebug(1219) << "LinuxCDPolling::slotMediumAdded(" << id << ")" << endl;
 
 	if (m_threads.contains(id)) return;
 
 	const Medium *medium = m_mediaList.findById(id);
 
 	QString mime = medium->mimeType();
-	kdDebug() << "mime == " << mime << endl;
+	kdDebug(1219) << "mime == " << mime << endl;
 
 	if (mime.find("dvd")==-1 && mime.find("cd")==-1) return;
 
@@ -231,7 +231,7 @@ void LinuxCDPolling::slotMediumAdded(const QString &id)
 
 void LinuxCDPolling::slotMediumRemoved(const QString &id)
 {
-	kdDebug() << "LinuxCDPolling::slotMediumRemoved(" << id << ")" << endl;
+	kdDebug(1219) << "LinuxCDPolling::slotMediumRemoved(" << id << ")" << endl;
 
 	if (!m_threads.contains(id)) return;
 
@@ -244,13 +244,13 @@ void LinuxCDPolling::slotMediumRemoved(const QString &id)
 
 void LinuxCDPolling::slotMediumStateChanged(const QString &id)
 {
-	kdDebug() << "LinuxCDPolling::slotMediumStateChanged("
+	kdDebug(1219) << "LinuxCDPolling::slotMediumStateChanged("
 	          << id << ")" << endl;
 
 	const Medium *medium = m_mediaList.findById(id);
 
 	QString mime = medium->mimeType();
-	kdDebug() << "mime == " << mime << endl;
+	kdDebug(1219) << "mime == " << mime << endl;
 
 	if (mime.find("dvd")==-1 && mime.find("cd")==-1) return;
 
@@ -273,7 +273,7 @@ void LinuxCDPolling::slotMediumStateChanged(const QString &id)
 
 void LinuxCDPolling::slotTimeout()
 {
-	//kdDebug() << "LinuxCDPolling::slotTimeout()" << endl;
+	//kdDebug(1219) << "LinuxCDPolling::slotTimeout()" << endl;
 
 	QMap<QString, PollingThread*>::iterator it = m_threads.begin();
 	QMap<QString, PollingThread*>::iterator end = m_threads.end();
@@ -294,7 +294,7 @@ void LinuxCDPolling::slotTimeout()
 
 static QString baseType(const Medium *medium)
 {
-	kdDebug() << "baseType(" << medium->id() << ")" << endl;
+	kdDebug(1219) << "baseType(" << medium->id() << ")" << endl;
 
 	QString devNode = medium->deviceNode();
 	QString mountPoint = medium->mountPoint();
@@ -308,19 +308,19 @@ static QString baseType(const Medium *medium)
 
 	if (devNode.find("dvd")!=-1)
 	{
-		kdDebug() << "=> dvd" << endl;
+		kdDebug(1219) << "=> dvd" << endl;
 		return "dvd";
 	}
 	else
 	{
-		kdDebug() << "=> cd" << endl;
+		kdDebug(1219) << "=> cd" << endl;
 		return "cd";
 	}
 }
 
 static void restoreEmptyState(MediaList &list, const Medium *medium)
 {
-	kdDebug() << "restoreEmptyState(" << medium->id() << ")" << endl;
+	kdDebug(1219) << "restoreEmptyState(" << medium->id() << ")" << endl;
 
 	QString id = medium->id();
 	QString devNode = medium->deviceNode();
@@ -340,7 +340,7 @@ static void restoreEmptyState(MediaList &list, const Medium *medium)
 
 void LinuxCDPolling::applyType(DiscType type, const Medium *medium)
 {
-	kdDebug() << "LinuxCDPolling::applyType(" << type << ", "
+	kdDebug(1219) << "LinuxCDPolling::applyType(" << type << ", "
 	          << medium->id() << ")" << endl;
 
 	QString id = medium->id();
@@ -388,7 +388,7 @@ void LinuxCDPolling::applyType(DiscType type, const Medium *medium)
 DiscType LinuxCDPolling::identifyDiscType(const QCString &devNode,
                                           const DiscType &current)
 {
-	//kdDebug() << "LinuxCDPolling::identifyDiscType("
+	//kdDebug(1219) << "LinuxCDPolling::identifyDiscType("
 	//          << devNode << ")" << endl;
 
 	int fd;

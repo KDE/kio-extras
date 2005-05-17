@@ -75,7 +75,7 @@ bool MediaImpl::realURL(const QString &name, const QString &path, KURL &url)
 
 bool MediaImpl::statMedium(const QString &name, KIO::UDSEntry &entry)
 {
-	kdDebug() << "MediaImpl::statMedium: " << name << endl;
+	kdDebug(1219) << "MediaImpl::statMedium: " << name << endl;
 
 	DCOPRef mediamanager("kded", "mediamanager");
 	DCOPReply reply = mediamanager.call( "properties", name );
@@ -102,7 +102,7 @@ bool MediaImpl::statMedium(const QString &name, KIO::UDSEntry &entry)
 
 bool MediaImpl::statMediumByLabel(const QString &label, KIO::UDSEntry &entry)
 {
-	kdDebug() << "MediaImpl::statMediumByLabel: " << label << endl;
+	kdDebug(1219) << "MediaImpl::statMediumByLabel: " << label << endl;
 
 	DCOPRef mediamanager("kded", "mediamanager");
 	DCOPReply reply = mediamanager.call( "nameForLabel", label );
@@ -128,7 +128,7 @@ bool MediaImpl::statMediumByLabel(const QString &label, KIO::UDSEntry &entry)
 
 bool MediaImpl::listMedia(QValueList<KIO::UDSEntry> &list)
 {
-	kdDebug() << "MediaImpl::listMedia" << endl;
+	kdDebug(1219) << "MediaImpl::listMedia" << endl;
 
 	DCOPRef mediamanager("kded", "mediamanager");
 	DCOPReply reply = mediamanager.call( "fullList" );
@@ -161,7 +161,7 @@ bool MediaImpl::listMedia(QValueList<KIO::UDSEntry> &list)
 
 bool MediaImpl::setUserLabel(const QString &name, const QString &label)
 {
-	kdDebug() << "MediaImpl::setUserLabel: " << name << ", " << label << endl;
+	kdDebug(1219) << "MediaImpl::setUserLabel: " << name << ", " << label << endl;
 
 
 	DCOPRef mediamanager("kded", "mediamanager");
@@ -257,7 +257,7 @@ bool MediaImpl::ensureMediumMounted(Medium &medium)
 
 void MediaImpl::slotMountResult(KIO::Job *job)
 {
-	kdDebug() << "MediaImpl::slotMountResult" << endl;
+	kdDebug(1219) << "MediaImpl::slotMountResult" << endl;
 	
 	if ( job->error() != 0)
 	{
@@ -269,11 +269,11 @@ void MediaImpl::slotMountResult(KIO::Job *job)
 
 void MediaImpl::slotMediumChanged(const QString &name)
 {
-	kdDebug() << "MediaImpl::slotMediumChanged:" << name << endl;
+	kdDebug(1219) << "MediaImpl::slotMediumChanged:" << name << endl;
 
 	if (mp_mounting->name()==name)
 	{
-		kdDebug() << "MediaImpl::slotMediumChanged: updating mp_mounting" << endl;
+		kdDebug(1219) << "MediaImpl::slotMediumChanged: updating mp_mounting" << endl;
 		bool ok;
 		*mp_mounting = findMediumByName(name, ok);
 		qApp->eventLoop()->exitLoop();
@@ -353,11 +353,11 @@ KIO::UDSEntry MediaImpl::extractUrlInfos(const KURL &url)
 void MediaImpl::createMediumEntry(KIO::UDSEntry& entry,
                                   const Medium &medium)
 {
-	kdDebug() << "MediaProtocol::createMedium" << endl;
+	kdDebug(1219) << "MediaProtocol::createMedium" << endl;
 
 	QString url = "media:/"+medium.name();
 
-	kdDebug() << "url = " << url << ", mime = " << medium.mimeType() << endl;
+	kdDebug(1219) << "url = " << url << ", mime = " << medium.mimeType() << endl;
 
 	entry.clear();
 

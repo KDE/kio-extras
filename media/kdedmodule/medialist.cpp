@@ -22,21 +22,21 @@
 
 MediaList::MediaList()
 {
-	kdDebug() << "MediaList::MediaList()" << endl;
+	kdDebug(1219) << "MediaList::MediaList()" << endl;
 
 	m_media.setAutoDelete(true);
 }
 
 const QPtrList<Medium> MediaList::list() const
 {
-	kdDebug() << "MediaList::list()" << endl;
+	kdDebug(1219) << "MediaList::list()" << endl;
 
 	return m_media;
 }
 
 const Medium *MediaList::findById(const QString &id) const
 {
-	kdDebug() << "MediaList::findById(" << id << ")" << endl;
+	kdDebug(1219) << "MediaList::findById(" << id << ")" << endl;
 
 	if ( !m_idMap.contains(id) ) return 0L;
 
@@ -45,7 +45,7 @@ const Medium *MediaList::findById(const QString &id) const
 
 const Medium *MediaList::findByName(const QString &name) const
 {
-	kdDebug() << "MediaList::findByName(" << name << ")" << endl;
+	kdDebug(1219) << "MediaList::findByName(" << name << ")" << endl;
 
 	if ( !m_nameMap.contains(name) ) return 0L;
 
@@ -55,7 +55,7 @@ const Medium *MediaList::findByName(const QString &name) const
 
 QString MediaList::addMedium(Medium *medium)
 {
-	kdDebug() << "MediaList::addMedium(@" << medium->id() << ")" << endl;
+	kdDebug(1219) << "MediaList::addMedium(@" << medium->id() << ")" << endl;
 
 	QString id = medium->id();
 	if ( m_idMap.contains(id) ) return QString::null;
@@ -68,7 +68,7 @@ QString MediaList::addMedium(Medium *medium)
 	{
 		m_nameMap[name] = medium;
 
-		kdDebug() << "MediaList emits mediumAdded(" << id << ", "
+		kdDebug(1219) << "MediaList emits mediumAdded(" << id << ", "
 		          << name << ")" << endl;
 		emit mediumAdded(id, name);
 
@@ -87,7 +87,7 @@ QString MediaList::addMedium(Medium *medium)
 	medium->setName(name);
 	m_nameMap[name] = medium;
 
-	kdDebug() << "MediaList emits mediumAdded(" << id << ", "
+	kdDebug(1219) << "MediaList emits mediumAdded(" << id << ", "
 	          << name << ")" << endl;
 	emit mediumAdded(id, name);
 	return name;
@@ -95,7 +95,7 @@ QString MediaList::addMedium(Medium *medium)
 
 bool MediaList::removeMedium(const QString &id)
 {
-	kdDebug() << "MediaList::removeMedium(" << id << ")" << endl;
+	kdDebug(1219) << "MediaList::removeMedium(" << id << ")" << endl;
 
 	if ( !m_idMap.contains(id) ) return false;
 
@@ -112,7 +112,7 @@ bool MediaList::removeMedium(const QString &id)
 
 bool MediaList::changeMediumState(const Medium &medium)
 {
-	kdDebug() << "MediaList::changeMediumState(const Medium &)" << endl;
+	kdDebug(1219) << "MediaList::changeMediumState(const Medium &)" << endl;
 
 	if ( !m_idMap.contains(medium.id()) ) return false;
 
@@ -159,7 +159,7 @@ bool MediaList::changeMediumState(const QString &id,
                                   const QString &iconName,
                                   const QString &label)
 {
-	kdDebug() << "MediaList::changeMediumState(" << id << ", "
+	kdDebug(1219) << "MediaList::changeMediumState(" << id << ", "
 	          << baseURL << ", " << mimeType << ", " << iconName << ")"
 	          << endl;
 
@@ -196,7 +196,7 @@ bool MediaList::changeMediumState(const QString &id,
                                   const QString &iconName,
                                   const QString &label)
 {
-	kdDebug() << "MediaList::changeMediumState(" << id << ", "
+	kdDebug(1219) << "MediaList::changeMediumState(" << id << ", "
 	          << deviceNode << ", " << mountPoint << ", " << fsType << ", "
 	          << mounted << ", " << mimeType << ", " << iconName << ")"
 	          << endl;
@@ -231,7 +231,7 @@ bool MediaList::changeMediumState(const QString &id, bool mounted,
                                   const QString &iconName,
                                   const QString &label)
 {
-	kdDebug() << "MediaList::changeMediumState(" << id << ", "
+	kdDebug(1219) << "MediaList::changeMediumState(" << id << ", "
 	          << mounted << ", " << mimeType << ", " << iconName << ")"
 	          << endl;
 
@@ -262,7 +262,7 @@ bool MediaList::changeMediumState(const QString &id, bool mounted,
 
 bool MediaList::setUserLabel(const QString &name, const QString &label)
 {
-	kdDebug() << "MediaList::setUserLabel(" << name << ", "
+	kdDebug(1219) << "MediaList::setUserLabel(" << name << ", "
 	          << label << ")" << endl;
 
 	if ( !m_nameMap.contains(name) ) return false;

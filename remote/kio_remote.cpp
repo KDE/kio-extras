@@ -68,7 +68,7 @@ RemoteProtocol::~RemoteProtocol()
 
 void RemoteProtocol::listDir(const KURL &url)
 {
-	kdDebug() << "RemoteProtocol::listDir: " << url << endl;
+	kdDebug(1220) << "RemoteProtocol::listDir: " << url << endl;
 
 	if ( url.path().length() <= 1 )
 	{
@@ -77,7 +77,7 @@ void RemoteProtocol::listDir(const KURL &url)
 	}
 
 	KURL target = m_impl.findBaseURL( url.fileName() );
-	kdDebug() << "possible redirection target : " << target << endl;
+	kdDebug(1220) << "possible redirection target : " << target << endl;
 	if( target.isValid() )
 	{
 		redirection(target);
@@ -119,7 +119,7 @@ void RemoteProtocol::listRoot()
 
 void RemoteProtocol::stat(const KURL &url)
 {
-	kdDebug() << "RemoteProtocol::stat: " << url << endl;
+	kdDebug(1220) << "RemoteProtocol::stat: " << url << endl;
  
 	QString path = url.path();
 	if ( path.isEmpty() || path == "/" )
@@ -160,7 +160,7 @@ void RemoteProtocol::stat(const KURL &url)
 
 void RemoteProtocol::del(const KURL &url, bool /*isFile*/)
 {
-	kdDebug() << "RemoteProtocol::del: " << url << endl;
+	kdDebug(1220) << "RemoteProtocol::del: " << url << endl;
 
 	if (!m_impl.isWizardURL(url)
 	 && m_impl.deleteNetworkFolder(url.fileName()))
@@ -174,10 +174,10 @@ void RemoteProtocol::del(const KURL &url, bool /*isFile*/)
 
 void RemoteProtocol::get(const KURL &url)
 {
-	kdDebug() << "RemoteProtocol::get: " << url << endl;
+	kdDebug(1220) << "RemoteProtocol::get: " << url << endl;
 
 	QString file = m_impl.findDesktopFile( url.fileName() );
-	kdDebug() << "desktop file : " << file << endl;
+	kdDebug(1220) << "desktop file : " << file << endl;
 	
 	if (!file.isEmpty())
 	{

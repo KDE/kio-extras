@@ -32,7 +32,7 @@ MediaDirNotify::MediaDirNotify(const MediaList &list)
 
 KURL MediaDirNotify::toMediaURL(const KURL &url)
 {
-	kdDebug() << "MediaDirNotify::toMediaURL(" << url << ")" << endl;
+	kdDebug(1219) << "MediaDirNotify::toMediaURL(" << url << ")" << endl;
 
 	const QPtrList<Medium> list = m_mediaList.list();
 
@@ -50,12 +50,12 @@ KURL MediaDirNotify::toMediaURL(const KURL &url)
 			                                  url.path());
 			KURL result("media:/"+m->name()+"/"+path );
 			result.cleanPath();
-			kdDebug() << result << endl;
+			kdDebug(1219) << result << endl;
 			return result;
 		}
 	}
 
-	kdDebug() << "KURL()" << endl;
+	kdDebug(1219) << "KURL()" << endl;
 	return KURL();
 }
 
