@@ -72,6 +72,6 @@ Name[zh_CN]=图像
 Name[zh_TW]=影像
 Name[zu]=Izithombe
 ServiceTypes=ThumbCreator
-MimeTypes=image/cgm;image/fax-g3;image/gif;image/jp2;image/jpeg;image/pjpeg;image/png;image/tiff;image/x-bmp;image/x-dds;image/x-eps;image/x-ico;image/x-jng;image/x-pcx;image/x-photo-cd;image/x-portable-bitmap;image/x-portable-greymap;image/x-portable-pixmap;image/x-rgb;image/x-targa;image/x-wmf;image/x-xbm;image/x-xcf-gimp;image/x-xfig;image/x-xpm;
+MimeTypes=image/cgm;image/fax-g3;image/gif;image/jp2;image/jpeg;image/pjpeg;image/png;image/tiff;image/x-bmp;image/x-dds;image/x-ico;image/x-jng;image/x-pcx;image/x-photo-cd;image/x-portable-bitmap;image/x-portable-greymap;image/x-portable-pixmap;image/x-rgb;image/x-targa;image/x-wmf;image/x-xbm;image/x-xcf-gimp;image/x-xfig;image/x-xpm
 X-KDE-Library=imagethumbnail
 CacheThumbnail=true

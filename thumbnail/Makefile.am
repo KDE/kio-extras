@@ -16,12 +16,16 @@ endif
 
 kde_module_LTLIBRARIES = kio_thumbnail.la imagethumbnail.la \
 	textthumbnail.la htmlthumbnail.la \
-	djvuthumbnail.la $(CURSOR_MODULE) \
+	djvuthumbnail.la epsthumbnail.la $(CURSOR_MODULE) \
 	$(EXR_MODULE)
 
 kio_thumbnail_la_SOURCES = thumbnail.cpp
 kio_thumbnail_la_LIBADD = $(LIB_KIO)
 kio_thumbnail_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN)
+
+epsthumbnail_la_SOURCES = epscreator.cpp
+epsthumbnail_la_LIBADD = $(LIB_KIO) # for kimageio
+epsthumbnail_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN)
 
 imagethumbnail_la_SOURCES = imagecreator.cpp
 imagethumbnail_la_LIBADD = $(LIB_KIO) # for kimageio
@@ -49,7 +53,7 @@ exrthumbnail_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN)
 
 noinst_HEADERS = thumbnail.h imagecreator.h textcreator.h htmlcreator.h \
                  djvucreator.h cursorcreator.h \
-		 exrcreator.h
+		 exrcreator.h epscreator.h
 
 kdelnk_DATA = thumbnail.protocol
 kdelnkdir = $(kde_servicesdir)
@@ -59,7 +63,7 @@ servicetypesdir = $(kde_servicetypesdir)
 
 services_DATA = imagethumbnail.desktop textthumbnail.desktop \
                 htmlthumbnail.desktop \
-                djvuthumbnail.desktop \
+                djvuthumbnail.desktop epsthumbnail.desktop \
                 $(CURSOR_DATAFILE) $(EXR_DATAFILE)
 
 servicesdir = $(kde_servicesdir)
