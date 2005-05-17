@@ -441,16 +441,26 @@ void MANProtocol::get(const KURL& url )
     mimeType("text/html");
 
     const QStringList foundPages=findPages(section, title);
+    bool pageFound=true;
     if (foundPages.isEmpty())
     {
        outputError(i18n("No man page matching to %1 found. You can extend the search path by setting the environment variable MANPATH before starting KDE.").arg(title));
+       pageFound=false;
     }
     else if (foundPages.count()>1)
     {
-       outputMatchingPages(foundPages);
+       pageFound=false;
+       //check for the case that there is foo.1 and foo.1.gz found:
+       if ((foundPages.count()==2) &&
+           (((foundPages[0]+".gz") == foundPages[1]) ||
+            (foundPages[0] == (foundPages[1]+".gz"))))
+          pageFound=true;
+       else
+          outputMatchingPages(foundPages);
     }
     //yes, we found exactly one man page
-    else
+
+    if (pageFound)
     {
        QCString filename=QFile::encodeName(foundPages[0]);
        char *buf = readManPage(filename);
