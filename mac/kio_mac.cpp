@@ -24,7 +24,6 @@
 #include <kconfig.h>
 #include <qstring.h>
 #include <qregexp.h>
-#include <qdatastream.h>
 
 #include <sys/stat.h>
 #include <stdlib.h>
@@ -70,7 +69,7 @@ void MacProtocol::get(const KURL& url) {
     QString path = prepareHP(url);  //mount and change to correct directory - return the filename
     QString query = url.query();
     QString mode("-");
-    QString mime = "";
+    QString mime;
     processedBytes = 0;
 
     //Find out the size and if it's a text file
@@ -237,10 +236,6 @@ QString MacProtocol::prepareHP(const KURL& url) {
         path = path.mid(1); // strip leading slash
     }
 
-    if (path == NULL) {
-        path = "";
-    }
-
     //find out if a device has been specified in the query e.g. ?dev=/dev/fd0
     //or in the config file (query device entries are saved to config file)
     QString device;
@@ -302,11 +297,11 @@ QString MacProtocol::prepareHP(const KURL& url) {
 
     //escape any funny characters
     //TODO are there any more characters to escape?
-    path.replace(QRegExp(" "), "\\ ");
-    path.replace(QRegExp("&"), "\\&");
-    path.replace(QRegExp("!"), "\\!");
-    path.replace(QRegExp("("), "\\(");
-    path.replace(QRegExp(")"), "\\)");
+    path.replace(" ", "\\ ");
+    path.replace("&", "\\&");
+    path.replace("!", "\\!");
+    path.replace("(", "\\(");
+    path.replace(")", "\\)");
 
     //then change to the right directory
     int s;  QString dir;
