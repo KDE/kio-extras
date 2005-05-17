@@ -583,7 +583,7 @@ void MANProtocol::outputMatchingPages(const QStringList &matchingPages)
     os << "<hr>\n";
     os << "<p>" << i18n("Note: if you read a man page in your language,"
        " be aware it can contain some mistakes or be obsolete."
-       " In case of doubt, you should have a look at the the english version. ") << "</p>";
+       " In case of doubt, you should have a look at the the English version.") << "</p>";
 
     os << "</body>\n</html>"<<endl;
 
