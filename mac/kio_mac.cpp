@@ -526,10 +526,12 @@ QString MacProtocol::getMimetype(QString type, QString app) {
         return QString("image/gif");
     } else if (type == QString("JPEG")) {
         return QString("image/jpeg");
+    } else if (type == QString("PNGf")) {
+        return QString("image/png");
     } else if (type == QString("XBMm")) {
         return QString("image/x-xbm");
     } else if (type == QString("EPSF")) {
-        return QString("application/postscript");
+        return QString("image/x-epsf");
     } else if (type == QString("TIFF")) {
         return QString("image/tiff");
     } else if (type == QString("PICT")) {
