@@ -247,17 +247,14 @@ static INTDEF standardint[] = {
     { V('.','T'), 1-NROFF,0, NULL },
     { V('.','V'), 1,0, NULL }, /* the me package tests for this */
     { 0, 0, 0, NULL } };
-
-static CSTRDEF standardstring[] = {
-    { V('R',' '), 1, "&#174;", NULL },
-    { V('l','q'), 2, "``", NULL },
-    { V('r','q'), 2, "''", NULL },
-    { 0, 0, NULL, NULL}
-};
 #endif
 
+// Missing characters from man(7):
+// \*R &reg;
+// \*S "Change to default font size"
+
 //used in expand_char, e.g. for "\(bu"
-// see man:/7/groff_char for list
+// see groff_char(7) for list
 static CSTRDEF standardchar[] = {
     { V('*','*'), 1, "*" },
     { V('*','A'), 1, "&Alpha;" },
@@ -496,8 +493,8 @@ static CSTRDEF standardchar[] = {
     { V('~','='), 1, "&asymp;" },
     { V('!','='), 1, "&ne;" },
     { V('<','='), 1, "&le;" },
-    { V('=','='), 2, "&equiv;" },
-    { V('=','~'), 2, "&cong;" }, // ### TODO: verify
+    { V('=','='), 1, "&equiv;" },
+    { V('=','~'), 1, "&cong;" }, // ### TODO: verify
     { V('>','='), 1, "&ge;" },
     { V('A','N'), 1, "&and;" },
     { V('O','R'), 1, "&or;" },
@@ -541,8 +538,11 @@ static CSTRDEF standardchar[] = {
     { V('P','m'), 1, "&plusmn;" },
     { V('I','f'), 1, "&infin;" },
     { V('N','a'), 3, "NaN" }, // Not a Number ### TODO: does it exist in Unicode?
-    { V('B','a'), 1, "|" }
+    { V('B','a'), 1, "|" },
     // end mdoc-only
+    // man(7)
+    { V('T','m'), 1, "&trade;" }
+    // end man(7)
 };
 
 /* default: print code */
@@ -620,6 +620,7 @@ static const char *includedirs[] = {
     0
 };
 
+static bool ignore_links=false;
 
 static void add_links(char *c)
 {
@@ -638,6 +639,13 @@ static void add_links(char *c)
     **
     ** /dir/dir/file  -> file:/dir/dir/file
     */
+    if (ignore_links)
+    {
+        out_length+=strlen(c);
+        output_real(c);
+        return;
+    }
+
     int i,j,nr;
     char *f, *g,*h;
     char *idtest[6]; /* url, mailto, www, ftp, manpage */
@@ -2067,6 +2075,13 @@ static char *skip_till_newline(char *c)
     return c;
 }
 
+// Some known missing requests from man(7):
+// - URL requests (.UR .UE .UN)
+// - see "safe subset"
+
+// Some known missing requests from mdoc(7):
+// - start or end of quotings
+
 // Some of the requests are from mdoc.
 // On Linux see the man pages mdoc(7), mdoc.samples(7) and groff_mdoc(7)
 // See also the online man pages of FreeBSD: mdoc(7)
@@ -2209,6 +2224,9 @@ static char *skip_till_newline(char *c)
 #define REQ_Aq       134 // mdoc "Angle bracket Quote"
 #define REQ_Bq       135 // mdoc "Bracket Quote"
 #define REQ_Qq       136 // mdoc  "straight double Quote"
+#define REQ_UR       137 // man(7) "URl"
+#define REQ_UE       138 // man(7) "Url End"
+#define REQ_UN       139 // man(7) "Url Name" (a.k.a. anchors)
 static int get_request(char *req, int len)
 {
     static const char *requests[] = {
@@ -2223,7 +2241,7 @@ static int get_request(char *req, int len)
         "Oo", "Oc", "Pq", "Ql", "Sq", "Ar", "Ad", "Em", "Va", "Xc", "Nd", "Nm",
         "Cd", "Cm", "Ic", "Ms", "Or", "Sy", "Dv", "Ev", "Fr", "Li", "No", "Ns",
         "Tn", "nN", "%A", "%D", "%N", "%O", "%P", "%Q", "%V", "%B", "%J", "%R",
-        "%T", "An", "Aq", "Bq", "Qq", 0 };
+        "%T", "An", "Aq", "Bq", "Qq", "UR", "UE", "UN", 0 };
     int r = 0;
     while (requests[r] && strncmp(req, requests[r], len)) r++;
     return requests[r] ? r : REQ_UNKNOWN;
@@ -2257,6 +2275,7 @@ static char *scan_request(char *c)
     static int mandoc_synopsis=0; /* True if we are in the synopsis section */
     static bool mandoc_command=false;  /* True if this is mandoc page */
     static int mandoc_bd_options; /* Only copes with non-nested Bd's */
+    static bool ur_ignore=false; // Has .UR a parameter : (for .UE to know if or not to write </a>)
 
     int i,mode=0;
     char *h;
@@ -3836,7 +3855,66 @@ static char *scan_request(char *c)
                 else
                     curpos=0;
 	    break;
-	default:
+        case REQ_UR: // ### FIXME
+        {
+            ignore_links=true;
+            c+=j;
+            char* newc;
+            h=fill_words(c, wordlist, &words, false, &newc);
+            *h=0;
+            if (words>0)
+            {
+                h=wordlist[0];
+                // A parameter : means that we do not want an URL, not here and not until .UE
+                ur_ignore=(!qstrcmp(h,":"));
+            }
+            else
+            {
+                // We cannot find the URL, assume :
+                ur_ignore=true;
+                h=0;
+            }
+            if (!ur_ignore && words>0)
+            {
+                out_html("<a href=\"");
+                out_html(h);
+                out_html("\">");
+            }
+            c=newc; // Go to next line
+            break;
+        }
+        case REQ_UE: // ### FIXME
+        {
+            c+=j;
+            c = skip_till_newline(c);
+            if (!ur_ignore)
+            {
+                out_html("</a>");
+            }
+            ur_ignore=false;
+            ignore_links=false;
+            break;
+        }
+        case REQ_UN: // ### FIXME
+        {
+            c+=j;
+            char* newc;
+            h=fill_words(c, wordlist, &words, false, &newc);
+            *h=0;
+            if (words>0)
+            {
+                h=wordlist[0];
+                out_html("<a name=\">");
+                out_html(h);
+                out_html("\" id=\"");
+                out_html(h);
+                out_html("\">");
+            }
+            c=newc;
+            break;
+        }
+        
+        default:
                 if (mandoc_command &&
 		     ((isupper(*c) && islower(*(c+1)))
                     || (islower(*c) && isupper(*(c+1)))) )
