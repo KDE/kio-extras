@@ -1926,43 +1926,8 @@ static const char *lookup_abbrev(char *c)
 }
 
 static const char *section_list[] = {
-    "1", "User Commands ",
-    "1C", "User Commands",
-    "1G", "User Commands",
-    "1S", "User Commands",
-    "1V", "User Commands ",
-    "2", "System Calls",
-    "2V", "System Calls",
-    "3", "C Library Functions",
-    "3C", "Compatibility Functions",
-    "3F", "Fortran Library Routines",
-    "3K", "Kernel VM Library Functions",
-    "3L", "Lightweight Processes Library",
-    "3M", "Mathematical Library",
-    "3N", "Network Functions",
-    "3R", "RPC Services Library",
-    "3S", "Standard I/O Functions",
-    "3V", "C Library Functions",
-    "3X", "Miscellaneous Library Functions",
-    "4", "Devices and Network Interfaces",
-    "4F", "Protocol Families",
-    "4I", "Devices and Network Interfaces",
-    "4M", "Devices and Network Interfaces",
-    "4N", "Devices and Network Interfaces",
-    "4P", "Protocols",
-    "4S", "Devices and Network Interfaces",
-    "4V", "Devices and Network Interfaces",
-    "5", "File Formats",
-    "5V", "File Formats",
-    "6", "Games and Demos",
-    "7", "Environments, Tables, and Troff Macros",
-    "7V", "Environments, Tables, and Troff Macros",
-    "8", "Maintenance Commands",
-    "8C", "Maintenance Commands",
-    "8S", "Maintenance Commands",
-    "8V", "Maintenance Commands",
-    "L", "Local Commands",
-/* for Solaris:
+#ifdef Q_OS_SOLARIS
+    // for Solaris
     "1", "User Commands",
     "1B", "SunOS/BSD Compatibility Package Commands",
     "1b", "SunOS/BSD Compatibility Package Commands",
@@ -2029,7 +1994,46 @@ static const char *section_list[] = {
     "9S", "DDI and DKI Data Structures",
     "9s", "DDI and DKI Data Structures",
     "L", "Local Commands",
-*/
+#else
+    // Other OS
+    "1", "User Commands ",
+    "1C", "User Commands",
+    "1G", "User Commands",
+    "1S", "User Commands",
+    "1V", "User Commands ",
+    "2", "System Calls",
+    "2V", "System Calls",
+    "3", "C Library Functions",
+    "3C", "Compatibility Functions",
+    "3F", "Fortran Library Routines",
+    "3K", "Kernel VM Library Functions",
+    "3L", "Lightweight Processes Library",
+    "3M", "Mathematical Library",
+    "3N", "Network Functions",
+    "3R", "RPC Services Library",
+    "3S", "Standard I/O Functions",
+    "3V", "C Library Functions",
+    "3X", "Miscellaneous Library Functions",
+    "4", "Devices and Network Interfaces",
+    "4F", "Protocol Families",
+    "4I", "Devices and Network Interfaces",
+    "4M", "Devices and Network Interfaces",
+    "4N", "Devices and Network Interfaces",
+    "4P", "Protocols",
+    "4S", "Devices and Network Interfaces",
+    "4V", "Devices and Network Interfaces",
+    "5", "File Formats",
+    "5V", "File Formats",
+    "6", "Games and Demos",
+    "7", "Environments, Tables, and Troff Macros",
+    "7V", "Environments, Tables, and Troff Macros",
+    "8", "Maintenance Commands",
+    "8C", "Maintenance Commands",
+    "8S", "Maintenance Commands",
+    "8V", "Maintenance Commands",
+    "L", "Local Commands",
+#endif
+    // The defaults
     NULL, "Misc. Reference Manual Pages",
     NULL, NULL
 };
@@ -2039,7 +2043,7 @@ static const char *section_name(char *c)
     int i=0;
 
     if (!c) return "";
-    while (section_list[i] && strcmp(c,section_list[i])) i=i+2;
+    while (section_list[i] && qstrcmp(c,section_list[i])) i=i+2;
     if (section_list[i+1]) return section_list[i+1];
     else return c;
 }
@@ -3072,10 +3076,10 @@ static char *scan_request(char *c)
                         out_html( scan_troff(wordlist[0], 0, NULL ) );
                     out_html( "</h1>\n" );
                     out_html("Section: " );
-                    if (words>4)
+                    if (!mandoc_command && words>4)
                             out_html(scan_troff(wordlist[4], 0, NULL) );
 		    else
-                            out_html(section_name(scan_troff(wordlist[1], 0, NULL)));
+                            out_html(section_name(wordlist[1]));
 		    out_html(" (");
                         out_html(scan_troff(wordlist[1], 0, NULL));
                     out_html(")\n");
