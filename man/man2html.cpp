@@ -2255,7 +2255,7 @@ static char *scan_request(char *c)
 {
 				  /* BSD Mandoc stuff */
     static int mandoc_synopsis=0; /* True if we are in the synopsis section */
-    static int mandoc_command=0;  /* True if this is mandoc page */
+    static bool mandoc_command=false;  /* True if this is mandoc page */
     static int mandoc_bd_options; /* Only copes with non-nested Bd's */
 
     int i,mode=0;
@@ -3029,7 +3029,7 @@ static char *scan_request(char *c)
 	    c=scan_table(c);
 	    break;
 	case REQ_Dt:	/* BSD mandoc */
-	    mandoc_command = 1;
+	    mandoc_command = true;
 	case REQ_TH:
                 if (!output_possible)
                 {
@@ -3057,6 +3057,12 @@ static char *scan_request(char *c)
 			out_html(scan_troff(wordlist[0], 0, NULL));
 		    out_html( " Manpage</TITLE>\n");
                     out_html( "<link rel=\"stylesheet\" href=\"KDE_COMMON_DIR/kde-default.css\" type=\"text/css\">\n" );
+                    out_html( "<meta name=\"Mandoc Type\" content=\"");
+                    if (mandoc_command)
+                        out_html("mdoc");
+                    else
+                        out_html("man");
+                    out_html("\">\n");
                     out_html( "</HEAD>\n\n" );
                     out_html("<BODY BGCOLOR=\"#FFFFFF\">\n\n" );
                     out_html("<div style=\"background-image: url(KDE_COMMON_DIR/top-middle.png); width: 100%; height: 131pt;\">\n" );
@@ -3084,7 +3090,6 @@ static char *scan_request(char *c)
                         out_html(scan_troff(wordlist[1], 0, NULL));
                     out_html(")\n");
 		    *sl='\n';
-		    if (mandoc_command) out_html("<BR>BSD mandoc<BR>");
 		}
                 }
                 else
