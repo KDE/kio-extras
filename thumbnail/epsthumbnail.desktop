@@ -1,8 +1,0 @@
-[Desktop Entry]
-Encoding=UTF-8
-Type=Service
-Name=EPS Files
-ServiceTypes=ThumbCreator
-MimeTypes=image/x-eps
-X-KDE-Library=epsthumbnail
-CacheThumbnail=true
