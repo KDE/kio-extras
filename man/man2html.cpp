@@ -3061,74 +3061,77 @@ static char *scan_request(char *c)
 	case REQ_TH:
                 if (!output_possible)
                 {
-		sl = fill_words(c+j, wordlist, &words, true, &c);
-                    if (words>1)
+                    sl = fill_words(c+j, wordlist, &words, true, &c);
+                    if (words>=1)
                     {
-		    for (i=1; i<words; i++) wordlist[i][-1]='\0';
-		    *sl='\0';
-                    for (i=0; i<words; i++) {
-                        if (wordlist[i][0] == '\007')
-                            wordlist[i]++;
-                        if (wordlist[i][strlen(wordlist[i])-1] == '\007')
-                            wordlist[i][strlen(wordlist[i])-1] = 0;
-                    }
-		    output_possible=1;
-		    out_html( DOCTYPE"<HTML>\n<HEAD>\n");
+                        for (i=1; i<words; i++) wordlist[i][-1]='\0';
+                        *sl='\0';
+                        for (i=0; i<words; i++) {
+                            if (wordlist[i][0] == '\007')
+                                wordlist[i]++;
+                            if (wordlist[i][strlen(wordlist[i])-1] == '\007')
+                                wordlist[i][strlen(wordlist[i])-1] = 0;
+                        }
+                        output_possible=1;
+                        out_html( DOCTYPE"<HTML>\n<HEAD>\n");
 #ifdef SIMPLE_MAN2HTML
-                    // Most English man pages are in ISO-8859-1
-		    out_html("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=ISO-8859-1\">\n");
+                        // Most English man pages are in ISO-8859-1
+                        out_html("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=ISO-8859-1\">\n");
 #else
-                    // kio_man transforms from local to UTF-8
-                    out_html("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
+                        // kio_man transforms from local to UTF-8
+                        out_html("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
 #endif
-		    out_html("<TITLE>");
-			out_html(scan_troff(wordlist[0], 0, NULL));
-		    out_html( " Manpage</TITLE>\n");
-                    out_html( "<link rel=\"stylesheet\" href=\"KDE_COMMON_DIR/kde-default.css\" type=\"text/css\">\n" );
-                    out_html( "<meta name=\"Mandoc Type\" content=\"");
-                    if (mandoc_command)
-                        out_html("mdoc");
-                    else
-                        out_html("man");
-                    out_html("\">\n");
-                    out_html( "</HEAD>\n\n" );
-                    out_html("<BODY BGCOLOR=\"#FFFFFF\">\n\n" );
-                    out_html("<div style=\"background-image: url(KDE_COMMON_DIR/top-middle.png); width: 100%; height: 131pt;\">\n" );
-		    out_html("<div style=\"position: absolute; right: 0pt;\">\n");
-		    out_html("<img src=\"KDE_COMMON_DIR/top-right-konqueror.png\" style=\"margin: 0pt\" alt=\"Top right\">\n");
-		    out_html("</div>\n");
-
-		    out_html("<div style=\"position: absolute; left: 0pt;\">\n");
-		    out_html("<img src=\"KDE_COMMON_DIR/top-left.png\" style=\"margin: 0pt\" alt=\"Top left\">\n");
-		    out_html("</div>\n");
-		    out_html("<div style=\"position: absolute; top: 25pt; right: 100pt; text-align: right; font-size: xx-large; font-weight: bold; text-shadow: #fff 0pt 0pt 5pt; color: #444\">\n");
-		    out_html( scan_troff(wordlist[0], 0, NULL ) );
-		    out_html("</div>\n");
-		    out_html("</div>\n");
-		    out_html("<div style=\"margin-left: 5em; margin-right: 5em;\">\n");
-                    out_html("<h1>" );
-                        out_html( scan_troff(wordlist[0], 0, NULL ) );
-                    out_html( "</h1>\n" );
-                    if (words>1)
-                    {
-                        out_html("Section: " );
-                        if (!mandoc_command && words>4)
-                                out_html(scan_troff(wordlist[4], 0, NULL) );
+                        out_html("<TITLE>");
+                            out_html(scan_troff(wordlist[0], 0, NULL));
+                        out_html( " Manpage</TITLE>\n");
+                        out_html( "<link rel=\"stylesheet\" href=\"KDE_COMMON_DIR/kde-default.css\" type=\"text/css\">\n" );
+                        out_html( "<meta name=\"Mandoc Type\" content=\"");
+                        if (mandoc_command)
+                            out_html("mdoc");
                         else
-                                out_html(section_name(wordlist[1]));
-                        out_html(" (");
-                        out_html(scan_troff(wordlist[1], 0, NULL));
+                            out_html("man");
+                        out_html("\">\n");
+                        out_html( "</HEAD>\n\n" );
+                        out_html("<BODY BGCOLOR=\"#FFFFFF\">\n\n" );
+                        out_html("<div style=\"background-image: url(KDE_COMMON_DIR/top-middle.png); width: 100%; height: 131pt;\">\n" );
+                        out_html("<div style=\"position: absolute; right: 0pt;\">\n");
+                        out_html("<img src=\"KDE_COMMON_DIR/top-right-konqueror.png\" style=\"margin: 0pt\" alt=\"Top right\">\n");
+                        out_html("</div>\n");
+    
+                        out_html("<div style=\"position: absolute; left: 0pt;\">\n");
+                        out_html("<img src=\"KDE_COMMON_DIR/top-left.png\" style=\"margin: 0pt\" alt=\"Top left\">\n");
+                        out_html("</div>\n");
+                        out_html("<div style=\"position: absolute; top: 25pt; right: 100pt; text-align: right; font-size: xx-large; font-weight: bold; text-shadow: #fff 0pt 0pt 5pt; color: #444\">\n");
+                        out_html( scan_troff(wordlist[0], 0, NULL ) );
+                        out_html("</div>\n");
+                        out_html("</div>\n");
+                        out_html("<div style=\"margin-left: 5em; margin-right: 5em;\">\n");
+                        out_html("<h1>" );
+                            out_html( scan_troff(wordlist[0], 0, NULL ) );
+                        out_html( "</h1>\n" );
+                        if (words>1)
+                        {
+                            out_html("Section: " );
+                            if (!mandoc_command && words>4)
+                                    out_html(scan_troff(wordlist[4], 0, NULL) );
+                            else
+                                    out_html(section_name(wordlist[1]));
+                            out_html(" (");
+                            out_html(scan_troff(wordlist[1], 0, NULL));
+                            out_html(")\n");
+                        }
+                        else
+                        {
+                            out_html("Section not specified");
+                        }
+                        *sl='\n';
                     }
-                    else
-                    {
-                        out_html("Section unknown");
-                    }
-                    out_html(")\n");
-		    *sl='\n';
-		}
                 }
                 else
+                {
+                    fprintf(stderr, "%s", ".TH found but output not possible");
                     c=skip_till_newline(c);
+                }
 	    curpos=0;
 	    break;
             case REQ_TX:
