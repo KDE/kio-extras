@@ -252,7 +252,7 @@ QStringList MANProtocol::findPages(const QString &_section,
        return list;
     }
 
-    QString star( "*" );
+    const QString star( "*" );
 
     //
     // Find man sections in this directory
@@ -337,7 +337,7 @@ QStringList MANProtocol::findPages(const QString &_section,
         }
     }
 
-//    kdDebug() << "finished " << list << " " << sect_list << endl;
+//    kdDebug(7107) << "finished " << list << " " << sect_list << endl;
 
     return list;
 }
@@ -507,8 +507,8 @@ char *MANProtocol::readManPage(const char *_filename)
      * convert it to roff format (used on Solaris). */
     //QString file_mimetype = KMimeType::findByPath(QString(filename), 0, false)->name();
     if (filename.contains("sman", false)) //file_mimetype == "text/html" || )
-      {
-	myStdStream = "";
+    {
+        myStdStream =QString::null;
 	KProcess proc;
 
 	/* Determine path to sgml2roff, if not already done. */
@@ -519,51 +519,44 @@ char *MANProtocol::readManPage(const char *_filename)
 			      this, SLOT(slotGetStdOutput(KProcess *, char *, int)));
 	proc.start(KProcess::Block, KProcess::All);
 
-	buf = (char*)myStdStream.latin1();
-	// ### FIXME Does not work (return string is empty): buf = QCString(myStdStream->local8Bit());
-      }
+        buf = qstrdup(myStdStream.latin1());
+    }
     else
-      {
-    if (QDir::isRelativePath(filename)) {
-        kdDebug(7107) << "relative " << filename << endl;
-        filename = QDir::cleanDirPath(lastdir + "/" + filename).utf8();
-        if (!KStandardDirs::exists(filename)) { // exists perhaps with suffix
-            lastdir = filename.left(filename.findRev('/'));
-            QDir mandir(lastdir);
-            mandir.setNameFilter(filename.mid(filename.findRev('/') + 1) + ".*");
-            filename = lastdir + "/" + QFile::encodeName(mandir.entryList().first());
+    {
+        if (QDir::isRelativePath(filename)) {
+            kdDebug(7107) << "relative " << filename << endl;
+            filename = QDir::cleanDirPath(lastdir + "/" + filename).utf8();
+            if (!KStandardDirs::exists(filename)) { // exists perhaps with suffix
+                lastdir = filename.left(filename.findRev('/'));
+                QDir mandir(lastdir);
+                mandir.setNameFilter(filename.mid(filename.findRev('/') + 1) + ".*");
+                filename = lastdir + "/" + QFile::encodeName(mandir.entryList().first());
+            }
+            kdDebug(7107) << "resolved to " << filename << endl;
         }
-        kdDebug(7107) << "resolved to " << filename << endl;
+        lastdir = filename.left(filename.findRev('/'));
+    
+        QIODevice *fd= KFilterDev::deviceForFile(filename);
+    
+        if ( !fd || !fd->open(IO_ReadOnly))
+        {
+           delete fd;
+           return 0;
+        }
+        QByteArray array(fd->readAll());
+        kdDebug(7107) << "read " << array.size() << endl;
+        fd->close();
+        delete fd;
+        
+        if (array.isEmpty())
+            return 0;
+    
+        const int len = array.size();
+        buf = new char[len + 4];
+        qmemmove(buf + 1, array.data(), len);
+        buf[0]=buf[len]='\n'; // Start and end with a end of line
+        buf[len+1]=buf[len+2]='\0'; // Two NUL characters at end
     }
-    lastdir = filename.left(filename.findRev('/'));
-
-    QIODevice *fd= KFilterDev::deviceForFile(filename);
-
-    if (!fd->open(IO_ReadOnly))
-    {
-       delete fd;
-       return 0;
-    }
-    char buffer[1025];
-    int n;
-    QCString text;
-    while ( ( n = fd->readBlock(buffer, 1024) ) )
-    {
-        buffer[n] = 0;
-        text += buffer;
-    }
-    kdDebug(7107) << "read " << text.length() << endl;
-    fd->close();
-
-    delete fd;
-
-    int l = text.length();
-	buf = new char[l + 4];
-    memcpy(buf + 1, text.data(), l);
-    buf[0]=buf[l]='\n';
-    buf[l+1]=buf[l+2]='\0';
-      }
-
     return buf;
 }
 
