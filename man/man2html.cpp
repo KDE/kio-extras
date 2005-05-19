@@ -1033,17 +1033,8 @@ static char *scan_escape(char *c)
     case 'r':
     case 'u':
     case '\n':
+    case '&':
         h=""; break;
-    case '&': // ### FIXME
-    {
-        // We need to print the next character, to skip its special meaning
-        c++;
-        // As we need a zero-terminated string we use the array b
-        b[0]=*c;
-        b[1]=0;
-        h=b;
-        break;
-    }
     case '(':
        c++;
        i= c[0]*256+c[1];
@@ -3976,7 +3967,7 @@ static void flush(void)
 }
 */
 static int contained_tab=0;
-static int mandoc_line=0;	/* Signals whether to look for embedded mandoc
+static bool mandoc_line=false;	/* Signals whether to look for embedded mandoc
 				 * commands.
 				 */
 
@@ -4024,11 +4015,12 @@ static char *scan_troff(char *c, int san, char **result)
 	    FLUSHIBP;
 	    h = scan_request(h);
 	    if (h && san && h[-1]=='\n') h--;
-	} else if (mandoc_line
+	} else if (mandoc_line // ### FIXME: a mdoc request must directly start after a space
+	           && *(h-1) && isspace(*(h-1)) // We can always go back, as there is at least the sequence at the start of line
 		   && *(h) && isupper(*(h))
 		   && *(h+1) && islower(*(h+1))
 		   && *(h+2) && isspace(*(h+2))) {
-	    /* BSD imbedded command eg ".It Fl Ar arg1 Fl Ar arg2" */
+	    // mdoc(7) embedded command eg ".It Fl Ar arg1 Fl Ar arg2"
 	    FLUSHIBP;
 	    h = scan_request(h);
 	    if (san && h[-1]=='\n') h--;
@@ -4172,8 +4164,8 @@ static char *scan_troff_mandoc(char *c, int san, char **result)
 {
     char *ret;
     char *end = c;
-    int oldval = mandoc_line;
-    mandoc_line = 1;
+    bool oldval = mandoc_line;
+    mandoc_line = true;
     while (*end && *end != '\n') {
         end++;
     }
