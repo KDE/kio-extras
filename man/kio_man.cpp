@@ -79,7 +79,7 @@ void stripExtension( QString *name )
 static
 bool parseUrl(const QString& _url, QString &title, QString &section)
 {
-    section = "";
+    section = QString::null;
 
     QString url = _url;
     if (url.at(0) == '/') {
@@ -164,7 +164,7 @@ QMap<QString, QString> MANProtocol::buildIndexMap(const QString &section)
     QMap<QString, QString> i;
     QStringList man_dirs = manDirectories();
     // Supplementary places for whatis databases
-    man_dirs << "/var/cache/man" << "/var/catman";
+    man_dirs << "/var/cache/man" << "/var/catman"; // ### TODO make a list out of /etc/manconfig
     QStringList names;
     names << "whatis.db" << "whatis";
     QString mark = "\\s+\\(" + section + "[a-z]*\\)\\s+-\\s+";
@@ -304,11 +304,11 @@ QStringList MANProtocol::findPages(const QString &_section,
 
             struct dirent *ep;
 
-            QString man = QString("man");
-            QString sman = QString("sman");
+            const QString man = QString("man");
+            const QString sman = QString("sman");
 
             while ( (ep = ::readdir( dp )) != 0L ) {
-                QString file = QFile::decodeName( ep->d_name );
+                const QString file = QFile::decodeName( ep->d_name );
                 QString sect = QString::null;
 
                 if ( file.startsWith( man ) )
@@ -328,8 +328,8 @@ QStringList MANProtocol::findPages(const QString &_section,
             ::closedir( dp );
 
             if ( *it_sect != star ) { // in that case we only look around for sections
-                QString dir = man_dir + QString("/man") + (it_real) + '/';
-                QString sdir = man_dir + QString("/sman") + (it_real) + '/';
+                const QString dir = man_dir + QString("/man") + (it_real) + '/';
+                const QString sdir = man_dir + QString("/sman") + (it_real) + '/';
 
                 findManPagesInSection(dir, title, full_path, list);
                 findManPagesInSection(sdir, title, full_path, list);
@@ -456,6 +456,7 @@ void MANProtocol::get(const KURL& url )
     {
        pageFound=false;
        //check for the case that there is foo.1 and foo.1.gz found:
+       // ### TODO make it more generic (other extensions)
        if ((foundPages.count()==2) &&
            (((foundPages[0]+".gz") == foundPages[1]) ||
             (foundPages[0] == (foundPages[1]+".gz"))))
@@ -467,7 +468,7 @@ void MANProtocol::get(const KURL& url )
 
     if (pageFound)
     {
-       QCString filename=QFile::encodeName(foundPages[0]);
+       const QCString filename=QFile::encodeName(foundPages[0]);
        char *buf = readManPage(filename);
 
        if (!buf)
@@ -519,7 +520,7 @@ char *MANProtocol::readManPage(const char *_filename)
 	proc.start(KProcess::Block, KProcess::All);
 
 	buf = (char*)myStdStream.latin1();
-	// Does not work (return string is empty): buf = QCString(myStdStream->local8Bit());
+	// ### FIXME Does not work (return string is empty): buf = QCString(myStdStream->local8Bit());
       }
     else
       {
