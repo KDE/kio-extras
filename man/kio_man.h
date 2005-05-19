@@ -74,15 +74,16 @@ private:
     void addToBuffer(const char *buffer, int buflen);
     QString pageName(const QString& page) const;
     QStringList buildSectionList(const QStringList& dirs) const;
-
-    QString output_string; // Buffer for the HTML code
-
+    void constructPath(QStringList& constr_path, QStringList constr_catmanpath);
+private:
+    QString output_string;
     static MANProtocol *_self;
     QCString lastdir;
     QString common_dir;
 
     void findManPagesInSection(const QString &dir, const QString &title, bool full_path, QStringList &list);
-    QStringList m_manpath;
+    QStringList m_manpath; ///< Path of man directories
+    QStringList m_mandbpath; ///< Path of catman directories
     QStringList section_names;
 
     QString myStdStream;  

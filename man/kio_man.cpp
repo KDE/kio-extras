@@ -164,14 +164,19 @@ QMap<QString, QString> MANProtocol::buildIndexMap(const QString &section)
     QMap<QString, QString> i;
     QStringList man_dirs = manDirectories();
     // Supplementary places for whatis databases
-    man_dirs << "/var/cache/man" << "/var/catman"; // ### TODO make a list out of /etc/manconfig
+    man_dirs += m_mandbpath;
+    if (man_dirs.find("/var/cache/man")==man_dirs.end())
+        man_dirs << "/var/cache/man";
+    if (man_dirs.find("/var/catman")==man_dirs.end())
+        man_dirs << "/var/catman";
+    
     QStringList names;
     names << "whatis.db" << "whatis";
     QString mark = "\\s+\\(" + section + "[a-z]*\\)\\s+-\\s+";
 
     for ( QStringList::ConstIterator it_dir = man_dirs.begin();
           it_dir != man_dirs.end();
-          it_dir++ )
+          ++it_dir )
     {
         if ( QFile::exists( *it_dir ) ) {
     	    QStringList::ConstIterator it_name;
@@ -768,6 +773,173 @@ void MANProtocol::showMainIndex()
     finished();
 }
 
+void MANProtocol::constructPath(QStringList& constr_path, QStringList constr_catmanpath)
+{
+    QMap<QString, QString> manpath_map;
+    QMap<QString, QString> mandb_map;
+
+    // Add paths from /etc/man.conf
+    //
+    // Explicit manpaths may be given by lines starting with "MANPATH" or
+    // "MANDATORY_MANPATH" (depending on system ?).
+    // Mappings from $PATH to manpath are given by lines starting with
+    // "MANPATH_MAP"
+
+    QRegExp manpath_regex( "^MANPATH\\s" );
+    QRegExp mandatory_regex( "^MANDATORY_MANPATH\\s" );
+    QRegExp manpath_map_regex( "^MANPATH_MAP\\s" );
+    QRegExp mandb_map_regex( "^MANDB_MAP\\s" );
+    //QRegExp section_regex( "^SECTION\\s" );
+    QRegExp space_regex( "\\s+" ); // for parsing manpath map
+
+    QFile mc("/etc/man.conf");             // Caldera
+    if (!mc.exists())
+        mc.setName("/etc/manpath.config"); // SuSE, Debian
+    if (!mc.exists())
+        mc.setName("/etc/man.config");  // Mandrake
+
+    if (mc.open(IO_ReadOnly))
+    {
+        QTextStream is(&mc);
+        is.setEncoding(QTextStream::Locale);
+    
+        while (!is.eof())
+        {
+            QString line = is.readLine();
+            if ( manpath_regex.search(line, 0) == 0 )
+            {
+                QString path = line.mid(8).stripWhiteSpace();
+                constr_path += path;
+            }
+            else if ( mandatory_regex.search(line, 0) == 0 )
+            {
+                QString path = line.mid(18).stripWhiteSpace();
+                constr_path += path;
+            }
+            else if ( manpath_map_regex.search(line, 0) == 0 )
+            {
+                        // The entry is "MANPATH_MAP  <path>  <manpath>"
+                const QStringList mapping =
+                        QStringList::split(space_regex, line);
+    
+                if ( mapping.count() == 3 )
+                {
+                    const QString dir = QDir::cleanDirPath( mapping[1] );
+                    const QString mandir = QDir::cleanDirPath( mapping[2] );
+    
+                    manpath_map[ dir ] = mandir;
+                }
+            }
+            else if ( mandb_map_regex.search(line, 0) == 0 )
+            {
+                        // The entry is "MANDB_MAP  <manpath>  <catmanpath>"
+                const QStringList mapping =
+                        QStringList::split(space_regex, line);
+    
+                if ( mapping.count() == 3 )
+                {
+                    const QString mandir = QDir::cleanDirPath( mapping[1] );
+                    const QString catmandir = QDir::cleanDirPath( mapping[2] );
+    
+                    mandb_map[ mandir ] = catmandir;
+                }
+            }
+    /* sections are not used
+            else if ( section_regex.find(line, 0) == 0 )
+            {
+            if ( !conf_section.isEmpty() )
+            conf_section += ':';
+            conf_section += line.mid(8).stripWhiteSpace();
+        }
+    */
+        }
+        mc.close();
+    }
+
+    // Default paths
+    static const char *manpaths[] = {
+        "/usr/X11/man",
+        "/usr/X11R6/man",
+        "/usr/man",
+        "/usr/local/man",
+        "/usr/exp/man",
+        "/usr/openwin/man",
+        "/usr/dt/man",
+        "/opt/freetool/man",
+        "/opt/local/man",
+        "/usr/tex/man",
+        "/usr/www/man",
+        "/usr/lang/man",
+        "/usr/gnu/man",
+        "/usr/share/man",
+        "/usr/motif/man",
+        "/usr/titools/man",
+        "/usr/sunpc/man",
+        "/usr/ncd/man",
+        "/usr/newsprint/man",
+        NULL };
+
+
+    int i = 0;
+    while (manpaths[i]) {
+        if ( constr_path.findIndex( QString( manpaths[i] ) ) == -1 )
+            constr_path += QString( manpaths[i] );
+        i++;
+    }
+
+    // Directories in $PATH
+    // - if a manpath mapping exists, use that mapping
+    // - if a directory "<path>/man" or "<path>/../man" exists, add it
+    //   to the man path (the actual existence check is done further down)
+
+    if ( ::getenv("PATH") ) {
+        QStringList path =
+                QStringList::split( ":",
+                                    QString::fromLocal8Bit( ::getenv("PATH") ) );
+
+        for ( QStringList::Iterator it = path.begin();
+              it != path.end();
+              it++ )
+        {
+            const QString dir = QDir::cleanDirPath( *it );
+            QString mandir = manpath_map[ dir ];
+
+            if ( !mandir.isEmpty() ) {
+                                // a path mapping exists
+                if ( constr_path.findIndex( mandir ) == -1 )
+                    constr_path += mandir;
+            }
+            else {
+                                // no manpath mapping, use "<path>/man" and "<path>/../man"
+
+                mandir = dir + QString( "/man" );
+                if ( constr_path.findIndex( mandir ) == -1 )
+                    constr_path += mandir;
+
+                int pos = dir.findRev( '/' );
+                if ( pos > 0 ) {
+                    mandir = dir.left( pos ) + QString("/man");
+                    if ( constr_path.findIndex( mandir ) == -1 )
+                        constr_path += mandir;
+                }
+            }
+            QString catmandir = mandb_map[ mandir ];
+            if ( !mandir.isEmpty() )
+            {
+                if ( constr_catmanpath.findIndex( catmandir ) == -1 )
+                    constr_catmanpath += catmandir;
+            }
+            else
+            {
+            // What is the default mapping?
+                catmandir = mandir;
+                catmandir.replace("/usr/share/","/var/cache/");
+                if ( constr_catmanpath.findIndex( catmandir ) == -1 )
+                    constr_catmanpath += catmandir;
+            }
+        }
+    }
+}
 
 void MANProtocol::checkManPaths()
 {
@@ -801,145 +973,17 @@ void MANProtocol::checkManPaths()
     //   default dirs
     //   $PATH
     QStringList constr_path;
+    QStringList constr_catmanpath; // catmanpath
 
     QString conf_section;
 
-    if ( construct_path ) {
-        QMap<QString, QString> manpath_map;
+    if ( construct_path )
+    {
+        constructPath(constr_path, constr_catmanpath);
+    }
 
-        // Add paths from /etc/man.conf
-        //
-        // Explicit manpaths may be given by lines starting with "MANPATH" or
-        // "MANDATORY_MANPATH" (depending on system ?).
-        // Mappings from $PATH to manpath are given by lines starting with
-        // "MANPATH_MAP"
-
-        QRegExp manpath_regex( "^MANPATH\\s" );
-        QRegExp mandatory_regex( "^MANDATORY_MANPATH\\s" );
-        QRegExp manpath_map_regex( "^MANPATH_MAP\\s" );
-        //QRegExp section_regex( "^SECTION\\s" );
-        QRegExp space_regex( "\\s+" ); // for parsing manpath map
-
-        QFile mc("/etc/man.conf");             // Caldera
-        if (!mc.exists())
-            mc.setName("/etc/manpath.config"); // SuSE, Debian
-        if (!mc.exists())
-            mc.setName("/etc/man.config");  // Mandrake
-
-        if (mc.open(IO_ReadOnly))
-        {
-            QTextStream is(&mc);
-	    is.setEncoding(QTextStream::Locale);
-
-            while (!is.eof())
-            {
-                QString line = is.readLine();
-                if ( manpath_regex.search(line, 0) == 0 )
-                {
-                    QString path = line.mid(8).stripWhiteSpace();
-                    constr_path += path;
-                }
-                else if ( mandatory_regex.search(line, 0) == 0 )
-                {
-                    QString path = line.mid(18).stripWhiteSpace();
-                    constr_path += path;
-                }
-                else if ( manpath_map_regex.search(line, 0) == 0 )
-                {
-                    // The entry is "MANPATH_MAP  <path>  <manpath>"
-                    QStringList mapping =
-                        QStringList::split(space_regex, line);
-
-                    if ( mapping.count() == 3 ) {
-                        QString dir = QDir::cleanDirPath( mapping[1] );
-                        QString mandir = QDir::cleanDirPath( mapping[2] );
-
-                        manpath_map[ dir ] = mandir;
-                    }
-                }
-/* sections are not used
-                else if ( section_regex.find(line, 0) == 0 )
-                {
-                    if ( !conf_section.isEmpty() )
-                        conf_section += ':';
-                    conf_section += line.mid(8).stripWhiteSpace();
-                }
-*/
-            }
-            mc.close();
-        }
-
-        // Default paths
-        static const char *manpaths[] = {
-                        "/usr/X11/man",
-                        "/usr/X11R6/man",
-                        "/usr/man",
-                        "/usr/local/man",
-                        "/usr/exp/man",
-                        "/usr/openwin/man",
-                        "/usr/dt/man",
-                        "/opt/freetool/man",
-                        "/opt/local/man",
-                        "/usr/tex/man",
-                        "/usr/www/man",
-                        "/usr/lang/man",
-                        "/usr/gnu/man",
-                        "/usr/share/man",
-                        "/usr/motif/man",
-                        "/usr/titools/man",
-                        "/usr/sunpc/man",
-                        "/usr/ncd/man",
-                        "/usr/newsprint/man",
-                        NULL };
-
-
-        int i = 0;
-        while (manpaths[i]) {
-            if ( constr_path.findIndex( QString( manpaths[i] ) ) == -1 )
-                 constr_path += QString( manpaths[i] );
-            i++;
-        }
-
-        // Directories in $PATH
-        // - if a manpath mapping exists, use that mapping
-        // - if a directory "<path>/man" or "<path>/../man" exists, add it
-        //   to the man path (the actual existence check is done further down)
-
-        if ( ::getenv("PATH") ) {
-            QStringList path =
-                QStringList::split( ":",
-                    QString::fromLocal8Bit( ::getenv("PATH") ) );
-
-            for ( QStringList::Iterator it = path.begin();
-                  it != path.end();
-                  it++ )
-            {
-                QString dir = QDir::cleanDirPath( *it );
-                QString mandir = manpath_map[ dir ];
-
-                if ( !mandir.isEmpty() ) {
-					// a path mapping exists
-                    if ( constr_path.findIndex( mandir ) == -1 )
-                        constr_path += mandir;
-                }
-                else {
-					// no manpath mapping, use "<path>/man" and "<path>/../man"
-
-                    mandir = dir + QString( "/man" );
-                    if ( constr_path.findIndex( mandir ) == -1 )
-                        constr_path += mandir;
-
-                    int pos = dir.findRev( '/' );
-                    if ( pos > 0 ) {
-                        mandir = dir.left( pos ) + QString("/man");
-                        if ( constr_path.findIndex( mandir ) == -1 )
-                            constr_path += mandir;
-                    }
-                }
-            }
-        }
-    } // construct_path
-
+    m_mandbpath=constr_catmanpath;
+    
     // Merge $MANPATH with the constructed path to form the
     // actual manpath.
     //
