@@ -444,7 +444,12 @@ void MANProtocol::get(const KURL& url )
     bool pageFound=true;
     if (foundPages.isEmpty())
     {
-       outputError(i18n("No man page matching to %1 found. You can extend the search path by setting the environment variable MANPATH before starting KDE.").arg(title));
+       outputError(i18n("No man page matching to %1 found.<br><br>"
+           "Check that you have not mistyped the name of the page that you want.\n"
+           "Be careful that you must take care about upper case and lower case characters!<br>"
+           "If everything looks correct, then perhaps you need to set better the search path "
+           "for man pages, be it by the environment variable MANPATH or a matching file "
+           "in the directory /etc .").arg(title));
        pageFound=false;
     }
     else if (foundPages.count()>1)
