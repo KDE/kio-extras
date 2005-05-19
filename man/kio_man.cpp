@@ -519,7 +519,12 @@ char *MANProtocol::readManPage(const char *_filename)
 			      this, SLOT(slotGetStdOutput(KProcess *, char *, int)));
 	proc.start(KProcess::Block, KProcess::All);
 
-        buf = qstrdup(myStdStream.latin1());
+        const QCString cstr=myStdStream.latin1();
+        const int len = cstr.size()-1;
+        buf = new char[len + 4];
+        qmemmove(buf + 1, cstr.data(), len);
+        buf[0]=buf[len]='\n'; // Start and end with a end of line
+        buf[len+1]=buf[len+2]='\0'; // Two additional NUL characters at end
     }
     else
     {
