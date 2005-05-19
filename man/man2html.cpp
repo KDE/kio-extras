@@ -250,7 +250,6 @@ static INTDEF standardint[] = {
 #endif
 
 // Missing characters from man(7):
-// \*R &reg;
 // \*S "Change to default font size"
 
 //used in expand_char, e.g. for "\(bu"
@@ -522,13 +521,12 @@ static CSTRDEF standardchar[] = {
     { V('c','u'), 1, "&cup;" },
     { V('g','r'), 1, "V" }, // gradient ### TODO Where in Unicode?
     { V('C','R'), 1, "&crarr;" },
-    { V('s','t'), 1, "-)" }, // "such that" ### TODO Where in Unicode?
+    { V('s','t'), 2, "-)" }, // "such that" ### TODO Where in Unicode?
     { V('/','_'), 1, "&ang;" },
     { V('w','p'), 1, "&weierp;" },
     { V('l','z'), 1, "&loz;" },
     { V('a','n'), 1, "-" }, // "horizontal arrow extension"  ### TODO Where in Unicode?
     // mdoc-only, see mdoc.samples(7)
-    // ### TODO: the same sequence can start by \*
     { V('R','q'), 1, "&rdquo;" },
     { V('L','q'), 1, "&ldquo;" },
     { V('L','e'), 1, "&le;" },
@@ -539,9 +537,11 @@ static CSTRDEF standardchar[] = {
     { V('I','f'), 1, "&infin;" },
     { V('N','a'), 3, "NaN" }, // Not a Number ### TODO: does it exist in Unicode?
     { V('B','a'), 1, "|" },
+    { V('q',' '), 1, "&quot;" },
     // end mdoc-only
     // man(7)
-    { V('T','m'), 1, "&trade;" }
+    { V('T','m'), 1, "&trade;" }, // \*(TM
+    { V('R',' '), 1, "&reg;" }  // \*R
     // end man(7)
 };
 
@@ -987,10 +987,13 @@ static int intresult=0;
 static int skip_escape=0;
 static int single_escape=0;
 
+// ### TODO known missing escapes from groff(7):
+// ### TODO \& \! \) \:
+
 static char *scan_escape(char *c)
 {
-    const char *h=NULL;
-    char b[32];
+    const char *h=NULL; // help pointer
+    char b[32]; // help array
     INTDEF *intd;
     int exoutputp,exskipescape;
     int i,j;
@@ -1005,6 +1008,7 @@ static char *scan_escape(char *c)
     case ' ':
 	h="&nbsp;";curpos++; break;
     case '"': SKIPEOL; c--; h=""; break;
+    // ### TODO \# like \" but does not ignore the end of line (groff(7))
     case '$':
 	if (argument) {
 	    c++;
@@ -1029,7 +1033,17 @@ static char *scan_escape(char *c)
     case 'r':
     case 'u':
     case '\n':
-    case '&': h=""; break;
+        h=""; break;
+    case '&': // ### FIXME
+    {
+        // We need to print the next character, to skip its special meaning
+        c++;
+        // As we need a zero-terminated string we use the array b
+        b[0]=*c;
+        b[1]=0;
+        h=b;
+        break;
+    }
     case '(':
        c++;
        i= c[0]*256+c[1];
@@ -1044,7 +1058,7 @@ static char *scan_escape(char *c)
 	    c++;
 	} else
 	    i= *c *256+' ';
-	h = expand_string(i);
+        h = expand_string(i);  // ### TODO \*S has probably to done in another way, man(7)
 	break;
     case 'f':
 	c++;
@@ -1161,7 +1175,11 @@ static char *scan_escape(char *c)
 		default: b[0]=i; b[1]=0; h=b; curpos++; break;
 	}
 	break;
-    default: b[0]=*c; b[1]=0; h=b; curpos++; break;
+     case '\'': h="&acute;";curpos++; break; // groff(7) ### TODO verify
+     case '`': h="&grave;";curpos++; break; // groff(7)
+     case '-': h="-";curpos++; break; // groff(7)
+     case '.': h=".";curpos++; break; // groff(7)
+     default: b[0]=*c; b[1]=0; h=b; curpos++; break;
     }
     c++;
     if (!skip_escape) out_html(h);
