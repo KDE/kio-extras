@@ -3109,13 +3109,20 @@ static char *scan_request(char *c)
                     out_html("<h1>" );
                         out_html( scan_troff(wordlist[0], 0, NULL ) );
                     out_html( "</h1>\n" );
-                    out_html("Section: " );
-                    if (!mandoc_command && words>4)
-                            out_html(scan_troff(wordlist[4], 0, NULL) );
-		    else
-                            out_html(section_name(wordlist[1]));
-		    out_html(" (");
+                    if (words>1)
+                    {
+                        out_html("Section: " );
+                        if (!mandoc_command && words>4)
+                                out_html(scan_troff(wordlist[4], 0, NULL) );
+                        else
+                                out_html(section_name(wordlist[1]));
+                        out_html(" (");
                         out_html(scan_troff(wordlist[1], 0, NULL));
+                    }
+                    else
+                    {
+                        out_html("Section unknown");
+                    }
                     out_html(")\n");
 		    *sl='\n';
 		}
@@ -3504,7 +3511,7 @@ static char *scan_request(char *c)
 	    curpos=0;
 	    c=skip_till_newline(c);
 	    break;
-	case REQ_Xr:	/* BSD mandoc */
+            case REQ_Xr:	/* BSD mandoc */ // ### FIXME: it should issue a <a href="man:somewhere(x)"> directly
 	    {
 	      /* Translate xyz 1 to xyz(1)
 	       * Allow for multiple spaces.  Allow the section to be missing.
