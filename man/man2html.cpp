@@ -2090,169 +2090,17 @@ static char *skip_till_newline(char *c)
 // Some known missing requests from mdoc(7):
 // - start or end of quotings
 
-// Some of the requests are from mdoc.
-// On Linux see the man pages mdoc(7), mdoc.samples(7) and groff_mdoc(7)
-// See also the online man pages of FreeBSD: mdoc(7)
-
-#define REQ_UNKNOWN   -1
-#define REQ_ab         0
-#define REQ_di         1
-#define REQ_ds         2
-#define REQ_as         3
-#define REQ_br         4
-#define REQ_c2         5
-#define REQ_cc         6
-#define REQ_ce         7
-#define REQ_ec         8
-#define REQ_eo         9
-#define REQ_ex        10
-#define REQ_fc        11
-#define REQ_fi        12
-#define REQ_ft        13
-#define REQ_el        14
-#define REQ_ie        15
-#define REQ_if        16
-#define REQ_ig        17
-#define REQ_nf        18
-#define REQ_ps        19
-#define REQ_sp        20
-#define REQ_so        21
-#define REQ_ta        22
-#define REQ_ti        23
-#define REQ_tm        24
-#define REQ_B         25
-#define REQ_I         26
-#define REQ_Fd        27
-#define REQ_Fn        28
-#define REQ_Fo        29
-#define REQ_Fc        30
-#define REQ_OP        31
-#define REQ_Ft        32
-#define REQ_Fa        33
-#define REQ_BR        34
-#define REQ_BI        35
-#define REQ_IB        36
-#define REQ_IR        37
-#define REQ_RB        38
-#define REQ_RI        39
-#define REQ_DT        40
-#define REQ_IP        41
-#define REQ_TP        42
-#define REQ_IX        43
-#define REQ_P         44
-#define REQ_LP        45
-#define REQ_PP        46
-#define REQ_HP        47
-#define REQ_PD        48
-#define REQ_Rs        49
-#define REQ_RS        50
-#define REQ_Re        51
-#define REQ_RE        52
-#define REQ_SB        53
-#define REQ_SM        54
-#define REQ_Ss        55
-#define REQ_SS        56
-#define REQ_Sh        57
-#define REQ_SH        58 // man(7) "Sub Header"
-#define REQ_Sx        59
-#define REQ_TS        60
-#define REQ_Dt        61
-#define REQ_TH        62
-#define REQ_TX        63
-#define REQ_rm        64
-#define REQ_rn        65
-#define REQ_nx        66
-#define REQ_in        67
-#define REQ_nr        68
-#define REQ_am        69
-#define REQ_de        70
-#define REQ_Bl        71 // mdoc(7) "Begin List"
-#define REQ_El        72 // mdoc(7) "End List"
-#define REQ_It        73 // mdoc(7) "ITem"
-#define REQ_Bk        74
-#define REQ_Ek        75
-#define REQ_Dd        76
-#define REQ_Os        77 // mdoc(7)
-#define REQ_Bt        78
-#define REQ_At        79 // mdoc(7) "AT&t" (not parsable, not callable)
-#define REQ_Fx        80 // mdoc(7) "Freebsd" (not parsable, not callable)
-#define REQ_Nx        81
-#define REQ_Ox        82
-#define REQ_Bx        83 // mdoc(7) "Bsd"
-#define REQ_Ux        84 // mdoc(7) "UniX"
-#define REQ_Dl        85
-#define REQ_Bd        86
-#define REQ_Ed        87
-#define REQ_Be        88
-#define REQ_Xr        89 // mdoc(7) "eXternal Reference"
-#define REQ_Fl        90 // mdoc(7) "FLag"
-#define REQ_Pa        91
-#define REQ_Pf        92
-#define REQ_Pp        93
-#define REQ_Dq        94 // mdoc(7) "Double Quote"
-#define REQ_Op        95
-#define REQ_Oo        96
-#define REQ_Oc        97
-#define REQ_Pq        98 // mdoc(7) "Parenthese Quote"
-#define REQ_Ql        99
-#define REQ_Sq       100 // mdoc(7) "Single Quote"
-#define REQ_Ar       101
-#define REQ_Ad       102
-#define REQ_Em       103 // mdoc(7) "EMphasis"
-#define REQ_Va       104
-#define REQ_Xc       105
-#define REQ_Nd       106
-#define REQ_Nm       107
-#define REQ_Cd       108
-#define REQ_Cm       109
-#define REQ_Ic       110
-#define REQ_Ms       111
-#define REQ_Or       112
-#define REQ_Sy       113
-#define REQ_Dv       114
-#define REQ_Ev       115
-#define REQ_Fr       116
-#define REQ_Li       117
-#define REQ_No       118
-#define REQ_Ns       119
-#define REQ_Tn       120
-#define REQ_nN       121
-#define REQ_perc_A   122
-#define REQ_perc_D   123
-#define REQ_perc_N   124
-#define REQ_perc_O   125
-#define REQ_perc_P   126
-#define REQ_perc_Q   127
-#define REQ_perc_V   128
-#define REQ_perc_B   129
-#define REQ_perc_J   130
-#define REQ_perc_R   131
-#define REQ_perc_T   132
-#define REQ_An       133 // mdoc(7) "Author Name"
-#define REQ_Aq       134 // mdoc(7) "Angle bracket Quote"
-#define REQ_Bq       135 // mdoc(7) "Bracket Quote"
-#define REQ_Qq       136 // mdoc(7)  "straight double Quote"
-#define REQ_UR       137 // man(7) "URl"
-#define REQ_UE       138 // man(7) "Url End"
-#define REQ_UN       139 // man(7) "Url Name" (a.k.a. anchors)
-static int get_request(char *req, int len)
+inline int get_request(char *req, int len)
 {
-    static const char *requests[] = {
-        "ab", "di", "ds", "as", "br", "c2", "cc", "ce", "ec", "eo", "ex", "fc",
-        "fi", "ft", "el", "ie", "if", "ig", "nf", "ps", "sp", "so", "ta", "ti",
-        "tm", "B",  "I",  "Fd", "Fn", "Fo", "Fc", "OP", "Ft", "Fa", "BR", "BI",
-        "IB", "IR", "RB", "RI", "DT", "IP", "TP", "IX", "P",  "LP", "PP", "HP",
-        "PD", "Rs", "RS", "Re", "RE", "SB", "SM", "Ss", "SS", "Sh", "SH", "Sx",
-        "TS", "Dt", "TH", "TX", "rm", "rn", "nx", "in", "nr", "am", "de", "Bl",
-        "El", "It", "Bk", "Ek", "Dd", "Os", "Bt", "At", "Fx", "Nx", "Ox", "Bx",
-        "Ux", "Dl", "Bd", "Ed", "Be", "Xr", "Fl", "Pa", "Pf", "Pp", "Dq", "Op",
-        "Oo", "Oc", "Pq", "Ql", "Sq", "Ar", "Ad", "Em", "Va", "Xc", "Nd", "Nm",
-        "Cd", "Cm", "Ic", "Ms", "Or", "Sy", "Dv", "Ev", "Fr", "Li", "No", "Ns",
-        "Tn", "nN", "%A", "%D", "%N", "%O", "%P", "%Q", "%V", "%B", "%J", "%R",
-        "%T", "An", "Aq", "Bq", "Qq", "UR", "UE", "UN", 0 };
-    int r = 0;
-    while (requests[r] && strncmp(req, requests[r], len)) r++;
-    return requests[r] ? r : REQ_UNKNOWN;
+    if (len==2)
+    {
+        return req[0]*256+req[1];
+    }
+    if (len==1)
+    {
+        return req[0]*256+' ';
+    }
+    return 0;
 }
 
 // &%(#@ c programs !!!
@@ -2351,9 +2199,12 @@ static char *scan_request(char *c)
         }
         else
         {
-            switch (int request = get_request(c, nlen))
+            // request will be 0 if the request has a long name
+            // (but only some extensions of groff have them and we do not support those extensions)
+            const int request = get_request(c, nlen);
+            switch (request)
             {
-	case REQ_ab:
+    case V('a','b'): 
 	    h=c+j;
 	    while (*h && *h !='\n') h++;
 	    *h='\0';
@@ -2365,11 +2216,11 @@ static char *scan_request(char *c)
 	    /* fprintf(stderr, "%s\n", c+2); */
             return 0;
 	    break;
-	case REQ_An: // mdoc(7) "Author Name"
+    case V('A','n'):  // mdoc(7) "Author Name"
 	    c+=j;
 	    c=scan_troff_mandoc(c,1,0);
 	    break;
-	case REQ_di:
+    case V('d','i'): 
 	    {
 		STRDEF *de;
 		/* int oldcurpos=curpos; */
@@ -2407,9 +2258,9 @@ static char *scan_request(char *c)
 		while (*c && *c++!='\n');
 		break;
 	    }
-	case REQ_ds:
+    case V('d','s'): 
 	    mode=1;
-	case REQ_as:
+    case V('a','s'): 
 	    {
 		STRDEF *de;
 		int oldcurpos=curpos;
@@ -2465,7 +2316,7 @@ static char *scan_request(char *c)
 		curpos=oldcurpos;
 	    }
 	    break;
-	case REQ_br:
+    case V('b','r'): 
                 if (still_dd)
                     out_html("<DD>");
                 else
@@ -2475,7 +2326,7 @@ static char *scan_request(char *c)
                 if (c[0]==escapesym) c=scan_escape(c+1);
                 c=skip_till_newline(c);
                 break;
-	case REQ_c2:
+    case V('c','2'): 
 	    c=c+j;
                 if (*c!='\n')
                     nobreaksym=*c;
@@ -2483,7 +2334,7 @@ static char *scan_request(char *c)
                     nobreaksym='\'';
 	    c=skip_till_newline(c);
 	    break;
-	case REQ_cc:
+    case V('c','c'): 
 	    c=c+j;
                 if (*c!='\n')
                     controlsym=*c;
@@ -2491,7 +2342,7 @@ static char *scan_request(char *c)
                     controlsym='.';
 	    c=skip_till_newline(c);
 	    break;
-	case REQ_ce:
+    case V('c','e'): 
 	    c=c+j;
                 if (*c=='\n')
                     i=1;
@@ -2525,7 +2376,7 @@ static char *scan_request(char *c)
 		curpos=0;
 	    }
 	    break;
-	case REQ_ec:
+    case V('e','c'): 
 	    c=c+j;
                 if (*c!='\n')
                     escapesym=*c;
@@ -2533,14 +2384,14 @@ static char *scan_request(char *c)
                     escapesym='\\';
 	    break;
 	    c=skip_till_newline(c);
-	case REQ_eo:
+    case V('e','o'): 
 	    escapesym='\0';
 	    c=skip_till_newline(c);
 	    break;
-	case REQ_ex:
+    case V('e','x'): 
 	    return 0;
 	    break;
-	case REQ_fc:
+    case V('f','c'): 
 	    c=c+j;
                 if  (*c=='\n')
 		fieldsym=padsym='\0';
@@ -2551,7 +2402,7 @@ static char *scan_request(char *c)
 	    }
 	    c=skip_till_newline(c);
 	    break;
-	case REQ_fi:
+    case V('f','i'): 
                 if (!fillout)
                 {
 		out_html(change_to_font(0));
@@ -2562,7 +2413,7 @@ static char *scan_request(char *c)
 	    fillout=1;
 	    c=skip_till_newline(c);
 	    break;
-	case REQ_ft:
+    case V('f','t'): 
 	    c=c+j;
                 if (*c=='\n')
 		out_html(change_to_font(0));
@@ -2583,7 +2434,7 @@ static char *scan_request(char *c)
 	    }
 	    c=skip_till_newline(c);
 	    break;
-        case REQ_el:
+    case V('e','l'): 
         {
             int ifelseval = s_ifelseval.pop();
 	    /* .el anything : else part of if else */
@@ -2597,9 +2448,9 @@ static char *scan_request(char *c)
 		c=skip_till_newline(c+j);
 	    break;
         }
-	case REQ_ie:
+    case V('i','e'): 
 	    /* .ie c anything : then part of if else */
-        case REQ_if:
+    case V('i','f'): 
         {
 	    /* .if c anything
 	     * .if !c anything
@@ -2610,7 +2461,7 @@ static char *scan_request(char *c)
 	     */
 	    c=c+j;
 	    c=scan_expression(c, &i);
-            if (request == REQ_ie)
+            if (request == V('i','e'))
             {
 	        int ifelseval=!i;
                 s_ifelseval.push( ifelseval );
@@ -2625,7 +2476,7 @@ static char *scan_request(char *c)
 		c=skip_till_newline(c);
 	    break;
         }
-	case REQ_ig:
+    case V('i','g'): 
 	    {
 		const char *endwith="..\n";
 		i=3;
@@ -2642,7 +2493,7 @@ static char *scan_request(char *c)
 		while (*c && *c++!='\n');
 		break;
 	    }
-	case REQ_nf:
+    case V('n','f'): 
                 if (fillout)
                 {
 		out_html(change_to_font(0));
@@ -2653,7 +2504,7 @@ static char *scan_request(char *c)
 	    fillout=0;
 	    c=skip_till_newline(c);
 	    break;
-	case REQ_ps:
+    case V('p','s'): 
 	    c=c+j;
                 if (*c=='\n')
 		out_html(change_to_size('0'));
@@ -2677,7 +2528,7 @@ static char *scan_request(char *c)
 	    }
 	    c=skip_till_newline(c);
 	    break;
-	case REQ_sp:
+    case V('s','p'): 
 	    c=c+j;
                 if (fillout)
                     out_html("<br><br>");
@@ -2688,7 +2539,7 @@ static char *scan_request(char *c)
 	    curpos=0;
 	    c=skip_till_newline(c);
 	    break;
-	case REQ_so:
+    case V('s','o'): 
 	    {
 		/* FILE *f; */
 		char *buf;
@@ -2729,7 +2580,7 @@ static char *scan_request(char *c)
 		*c++='\n';
 		break;
 	    }
-	case REQ_ta:
+    case V('t','a'): 
 	    c=c+j;
 	    j=0;
                 while (*c!='\n')
@@ -2743,7 +2594,7 @@ static char *scan_request(char *c)
 	    maxtstop=j;
 	    curpos=0;
 	    break;
-	case REQ_ti:
+    case V('t','i'): 
 	    /*while (itemdepth || dl_set[itemdepth]) {
 		out_html("</DL>\n");
 		if (dl_set[itemdepth]) dl_set[itemdepth]=0;
@@ -2756,7 +2607,7 @@ static char *scan_request(char *c)
 	    curpos=j;
 	    c=skip_till_newline(c);
 	    break;
-	case REQ_tm:
+    case V('t','m'): 
 	    c=c+j;
 	    h=c;
 	    while (*c!='\n') c++;
@@ -2764,8 +2615,8 @@ static char *scan_request(char *c)
 	    /* fprintf(stderr,"%s\n", h); */
 	    *c='\n';
 	    break;
-	case REQ_B:
-	case REQ_I:
+    case V('B',' '): 
+    case V('I',' '): 
             /* parse one line in a certain font */
 	    out_html(change_to_font(*c));
 	    fill_words(c, wordlist, &words, false, 0);
@@ -2779,10 +2630,10 @@ static char *scan_request(char *c)
                 else
                     curpos=0;
 	    break;
-   case REQ_Fd:                //for "Function definitions", mdoc(7) package
-   case REQ_Fn:                //for "Function calls": brackets and commas have to be inserted automatically
-   case REQ_Fo:
-   case REQ_Fc:
+    case V('F','d'):                 //for "Function definitions", mdoc(7) package
+    case V('F','n'):                 //for "Function calls": brackets and commas have to be inserted automatically
+    case V('F','o'): 
+    case V('F','c'): 
       {
          bool inFdMode=(c[1]=='d');
          char font[2] ;
@@ -2833,14 +2684,14 @@ static char *scan_request(char *c)
 	    out_html(change_to_font('R'));
 	    out_html("[");
 	    curpos++;
-        case REQ_Ft:       //perhaps "Function return type"
-        case REQ_Fa:       //"Function argument"
-        case REQ_BR:
-        case REQ_BI:
-	case REQ_IB:
-	case REQ_IR:
-	case REQ_RB:
-	case REQ_RI:
+    case V('F','t'):        //perhaps "Function return type"
+    case V('F','a'):        //"Function argument"
+    case V('B','R'): 
+    case V('B','I'): 
+    case V('I','B'): 
+    case V('I','R'): 
+    case V('R','B'): 
+    case V('R','I'): 
       {
          bool inFMode=(c[0]=='F');
          if (inFMode)
@@ -2881,12 +2732,12 @@ static char *scan_request(char *c)
                     curpos++;
       }
       break;
-	case REQ_DT:
+    case V('D','T'): 
 	    for (j=0;j<20; j++) tabstops[j]=(j+1)*8;
 	    maxtstop=20;
             c=skip_till_newline(c);
             break;
-	case REQ_IP:
+    case V('I','P'): 
 	    sl=fill_words(c+j, wordlist, &words, true, &c);
             if (!dl_set[itemdepth])
             {
@@ -2899,7 +2750,7 @@ static char *scan_request(char *c)
 	    out_html("<DD>");
 	    curpos=0;
 	    break;
-	case REQ_TP:
+    case V('T','P'): 
                 if (!dl_set[itemdepth])
                 {
 		out_html("<br><br><DL>\n");
@@ -2917,13 +2768,13 @@ static char *scan_request(char *c)
 	    }
 	    curpos=0;
 	    break;
-	case REQ_IX:
+    case V('I','X'): 
             /* general index */
             c=skip_till_newline(c);
 	    break;
-        case REQ_P:
-	case REQ_LP:
-	case REQ_PP:
+    case V('P',' '): 
+    case V('L','P'): 
+    case V('P','P'): 
                 if (dl_set[itemdepth])
                 {
 		out_html("</DL>\n");
@@ -2938,7 +2789,7 @@ static char *scan_request(char *c)
 	    curpos=0;
 	    c=skip_till_newline(c);
 	    break;
-	case REQ_HP:
+    case V('H','P'): 
                 if (!dl_set[itemdepth])
                 {
 		out_html("<DL>");
@@ -2949,11 +2800,11 @@ static char *scan_request(char *c)
 	    c=skip_till_newline(c);
 	    curpos=0;
 	    break;
-	case REQ_PD:
+    case V('P','D'): 
 	    c=skip_till_newline(c);
 	    break;
-	case REQ_Rs:	/* mdoc(7) */
-	case REQ_RS:
+    case V('R','s'): 	/* mdoc(7) */
+    case V('R','S'): 
 	    sl=fill_words(c+j, wordlist, &words, true, 0);
 	    j=1;
 	    if (words>0) scan_expression(wordlist[0], &j);
@@ -2966,8 +2817,8 @@ static char *scan_request(char *c)
 		curpos=0;
 		break;
 	    }
-	case REQ_Re:	/* mdoc(7) */
-	case REQ_RE:
+    case V('R','e'): 	/* mdoc(7) */
+    case V('R','E'): 
                 if (itemdepth > 0)
                 {
 		if (dl_set[itemdepth]) out_html("</DL>");
@@ -2977,14 +2828,14 @@ static char *scan_request(char *c)
 	    c=skip_till_newline(c);
 	    curpos=0;
 	    break;
-	case REQ_SB:
+    case V('S','B'): 
 	    out_html(change_to_size(-1));
 	    out_html(change_to_font('B'));
 	    c=scan_troff(c+j, 1, NULL);
 	    out_html(change_to_font('R'));
 	    out_html(change_to_size('0'));
 	    break;
-	case REQ_SM:
+    case V('S','M'): 
 	    c=c+j;
 	    if (*c=='\n') c++;
 	    out_html(change_to_size(-1));
@@ -2992,14 +2843,14 @@ static char *scan_request(char *c)
 	    c=scan_troff(c,1,NULL);
 	    out_html(change_to_size('0'));
 	    break;
-	case REQ_Ss:	/* mdoc(7) */
+    case V('S','s'): 	/* mdoc(7) */
 	    mandoc_command = 1;
-	case REQ_SS:
+    case V('S','S'): 
 	    mode=1;
-	case REQ_Sh:	/* mdoc(7) */
+    case V('S','h'): 	/* mdoc(7) */
 				/* hack for fallthru from above */
 	    mandoc_command = !mode || mandoc_command;
-        case REQ_SH: // man(7) "Sub Header"
+    case V('S','H'):  // man(7) "Sub Header"
 	    c=c+j;
 	    if (*c=='\n') c++;
                 while (itemdepth || dl_set[itemdepth])
@@ -3039,7 +2890,7 @@ static char *scan_request(char *c)
             section=1;
 	    curpos=0;
 	    break;
-        case REQ_Sx: // reference to a section header
+    case V('S','x'):  // reference to a section header
 	    out_html(change_to_font('B'));
 	    trans_char(c,'"','\a');
 	    c=c+j;
@@ -3052,12 +2903,12 @@ static char *scan_request(char *c)
                 else
                     curpos=0;
             break;
-	case REQ_TS:
+    case V('T','S'): 
 	    c=scan_table(c);
 	    break;
-	case REQ_Dt:	/* mdoc(7) */
+    case V('D','t'): 	/* mdoc(7) */
 	    mandoc_command = true;
-	case REQ_TH:
+    case V('T','H'): 
                 if (!output_possible)
                 {
                     sl = fill_words(c+j, wordlist, &words, true, &c);
@@ -3133,7 +2984,7 @@ static char *scan_request(char *c)
                 }
 	    curpos=0;
 	    break;
-            case REQ_TX:
+    case V('T','X'): 
                 {
 	    sl=fill_words(c+j, wordlist, &words, true, &c);
 	    *sl='\0';
@@ -3148,9 +2999,9 @@ static char *scan_request(char *c)
 	    *sl='\n';
           }
           break;
-	case REQ_rm:
+    case V('r','m'): 
             /* .rm xx : Remove request, macro or string */
-	case REQ_rn:
+    case V('r','n'): 
             /* .rn xx yy : Rename request, macro or string xx to yy */
 	    {
 		STRDEF *de;
@@ -3174,13 +3025,13 @@ static char *scan_request(char *c)
 		if (de) de->nr=j;
 		break;
 	    }
-	case REQ_nx:
+    case V('n','x'): 
             /* .nx filename : next file. */
-	case REQ_in:
+    case V('i','n'): 
             /* .in +-N : Indent */
 	    c=skip_till_newline(c);
 	    break;
-	case REQ_nr:
+    case V('n','r'): 
             /* .nr R +-N M: define and set number register R by +-N;
 	    **  auto-increment by M
 	    */
@@ -3210,11 +3061,11 @@ static char *scan_request(char *c)
 		c=skip_till_newline(c);
 		break;
 	    }
-	case REQ_am:
+    case V('a','m'): 
             /* .am xx yy : append to a macro. */
             /* define or handle as .ig yy */
 	    mode=1;
-	case REQ_de:
+    case V('d','e'): 
             /* .de xx yy : define or redefine macro xx; end at .yy (..) */
             /* define or handle as .ig yy */
 	    {
@@ -3289,7 +3140,7 @@ static char *scan_request(char *c)
                 }
 	    c=skip_till_newline(c);
 	    break;
-	case REQ_Bl:	/* mdoc(7) */
+     case V('B','l'): // mdoc(7) "Begin List"
 	  {
 	    char list_options[NULL_TERMINATED(MED_STR_MAX)];
 	    char *nl = strchr(c,'\n');
@@ -3328,7 +3179,7 @@ static char *scan_request(char *c)
 	    c=skip_till_newline(c);
 	    break;
 	  }
-	case REQ_El:	/* mdoc(7) */
+   case V('E','l'): // mdoc(7) "End List"
 	    c=c+j;
                 if (dl_set[itemdepth] & BL_DESC_LIST)
 		out_html("</DL>\n");
@@ -3347,7 +3198,7 @@ static char *scan_request(char *c)
 	    curpos=0;
 	    c=skip_till_newline(c);
 	    break;
-	case REQ_It:	/* mdoc(7) */
+     case V('I','t'): // mdoc(7) "ITem"
 	    c=c+j;
                 if (strncmp(c, "Xo", 2) == 0 && isspace(*(c+2)))
 	        c = skip_till_newline(c);
@@ -3381,10 +3232,10 @@ static char *scan_request(char *c)
                 else
                     curpos=0;
 	    break;
-	case REQ_Bk:	/* mdoc(7) */
-	case REQ_Ek:	/* mdoc(7) */
-	case REQ_Dd:	/* mdoc(7) */
-	case REQ_Os:	/* mdoc(7) */
+    case V('B','k'): 	/* mdoc(7) */
+    case V('E','k'): 	/* mdoc(7) */
+    case V('D','d'): 	/* mdoc(7) */
+    case V('O','s'): 	/* mdoc(7) */
 	    trans_char(c,'"','\a');
 	    c=c+j;
 	    if (*c=='\n') c++;
@@ -3395,7 +3246,7 @@ static char *scan_request(char *c)
                 else
                     curpos=0;
 	    break;
-	case REQ_Bt:	/* mdoc(7) */
+    case V('B','t'): 	/* mdoc(7) */
 	    trans_char(c,'"','\a');
 	    c=c+j;
 	    out_html(" is currently in beta test.");
@@ -3404,12 +3255,12 @@ static char *scan_request(char *c)
                 else
                     curpos=0;
 	    break;
-	case REQ_At:	/* mdoc(7) */
-	case REQ_Fx:	/* mdoc(7) */
-	case REQ_Nx:	/* mdoc(7) */
-	case REQ_Ox:	/* mdoc(7) */
-	case REQ_Bx:	/* mdoc(7) */
-	case REQ_Ux:	/* mdoc(7) */
+    case V('A','t'): // mdoc(7) "AT&t" (not parsable, not callable)
+    case V('F','x'): // mdoc(7) "Freebsd" (not parsable, not callable)
+    case V('N','x'): 	/* mdoc(7) */
+    case V('O','x'): 	/* mdoc(7) */
+    case V('B','x'): // mdoc(7) "Bsd"
+    case V('U','x'): // mdoc(7) "UniX"
         {
 	    bool parsable=true;
 	    trans_char(c,'"','\a');
@@ -3443,7 +3294,7 @@ static char *scan_request(char *c)
                     curpos=0;
 	    break;
 	}
-	case REQ_Dl:	/* mdoc(7) */
+    case V('D','l'): 	/* mdoc(7) */
 	    c=c+j;
 	    out_html(NEWLINE);
 	    out_html("<BLOCKQUOTE>");
@@ -3457,7 +3308,7 @@ static char *scan_request(char *c)
                 else
                     curpos=0;
 	    break;
-	case REQ_Bd:	/* mdoc(7) */
+    case V('B','d'): 	/* mdoc(7) */
 	  {			/* Seems like a kind of example/literal mode */
 	    char bd_options[NULL_TERMINATED(MED_STR_MAX)];
 	    char *nl = strchr(c,'\n');
@@ -3486,7 +3337,7 @@ static char *scan_request(char *c)
 	    c=skip_till_newline(c);
 	    break;
 	  }
-	case REQ_Ed:	/* mdoc(7) */
+    case V('E','d'): 	/* mdoc(7) */
                 if (mandoc_bd_options & BD_LITERAL)
                 {
                     if (!fillout)
@@ -3502,7 +3353,7 @@ static char *scan_request(char *c)
 	    fillout=1;
 	    c=skip_till_newline(c);
 	    break;
-	case REQ_Be:	/* mdoc(7) */
+    case V('B','e'): 	/* mdoc(7) */
 	    c=c+j;
                 if (fillout)
                     out_html("<br><br>");
@@ -3513,7 +3364,7 @@ static char *scan_request(char *c)
 	    curpos=0;
 	    c=skip_till_newline(c);
 	    break;
-            case REQ_Xr:	/* mdoc(7) */ // ### FIXME: it should issue a <a href="man:somewhere(x)"> directly
+     case V('X','r'): 	// mdoc(7) "eXternal Reference" ### FIXME: it should issue a <a href="man:somewhere(x)"> directly
 	    {
 	      /* Translate xyz 1 to xyz(1)
 	       * Allow for multiple spaces.  Allow the section to be missing.
@@ -3576,7 +3427,7 @@ static char *scan_request(char *c)
                     curpos=0;
 	    }
 	    break;
-	case REQ_Fl:	/* mdoc(7) */
+    case V('F','l'): // mdoc(7) "FLag"
 	    trans_char(c,'"','\a');
 	    c=c+j;
 	    out_html("-");
@@ -3592,8 +3443,8 @@ static char *scan_request(char *c)
                 else
                     curpos=0;
 	    break;
-	case REQ_Pa:	/* mdoc(7) */
-	case REQ_Pf:	/* mdoc(7) */
+    case V('P','a'): 	/* mdoc(7) */
+    case V('P','f'): 	/* mdoc(7) */
 	    trans_char(c,'"','\a');
 	    c=c+j;
 	    if (*c=='\n') c++;
@@ -3604,7 +3455,7 @@ static char *scan_request(char *c)
                 else
                     curpos=0;
 	    break;
-	case REQ_Pp:	/* mdoc(7) */
+    case V('P','p'): 	/* mdoc(7) */
                 if (fillout)
                     out_html("<br><br>\n");
                 else
@@ -3614,25 +3465,25 @@ static char *scan_request(char *c)
 	    curpos=0;
 	    c=skip_till_newline(c);
 	    break;
-	case REQ_Aq: // mdoc(7) "Angle bracket Quote"
+    case V('A','q'):  // mdoc(7) "Angle bracket Quote"
 	    c=process_quote(c,j,"&lt;","&gt;");
 	    break;
-        case REQ_Bq: // mdoc(7) "Bracket Quote"
+    case V('B','q'):  // mdoc(7) "Bracket Quote"
 	    c=process_quote(c,j,"[","]");
 	    break;
-	case REQ_Dq:	// mdoc(7) "Double Quote"
+    case V('D','q'): 	// mdoc(7) "Double Quote"
 	    c=process_quote(c,j,"&ldquo;","&rdquo;");
 	    break;
-	case REQ_Pq:	// mdoc(7) "Parenthese Quote"
+    case V('P','q'): 	// mdoc(7) "Parenthese Quote"
 	    c=process_quote(c,j,"(",")");
 	    break;
-	case REQ_Qq:	// mdoc(7) "straight double Quote"
+    case V('Q','q'): 	// mdoc(7) "straight double Quote"
 	    c=process_quote(c,j,"&quot;","&quot;");
 	    break;
-	case REQ_Sq:	// mdoc(7) "Single Quote"
+    case V('S','q'): 	// mdoc(7) "Single Quote"
 	    c=process_quote(c,j,"&lsquo;","&rsquo;");
 	    break;
-	case REQ_Op:	/* mdoc(7) */
+    case V('O','p'): 	/* mdoc(7) */
 	    trans_char(c,'"','\a');
 	    c=c+j;
 	    if (*c=='\n') c++;
@@ -3647,7 +3498,7 @@ static char *scan_request(char *c)
                 else
                     curpos=0;
 	    break;
-	case REQ_Oo:	/* mdoc(7) */
+    case V('O','o'): 	/* mdoc(7) */
 	    trans_char(c,'"','\a');
 	    c=c+j;
 	    if (*c=='\n') c++;
@@ -3659,7 +3510,7 @@ static char *scan_request(char *c)
                 else
                     curpos=0;
 	    break;
-	case REQ_Oc:	/* mdoc(7) */
+    case V('O','c'): 	/* mdoc(7) */
 	    trans_char(c,'"','\a');
 	    c=c+j;
 	    c=scan_troff_mandoc(c, 1, NULL);
@@ -3670,7 +3521,7 @@ static char *scan_request(char *c)
                 else
                     curpos=0;
 	    break;
-	case REQ_Ql:	/* mdoc(7) */
+    case V('Q','l'): 	/* mdoc(7) */
 	  {			/* Single quote first word in the line */
 	    char *sp;
 	    trans_char(c,'"','\a');
@@ -3699,7 +3550,7 @@ static char *scan_request(char *c)
                     curpos=0;
 	    break;
 	  }
-	case REQ_Ar:	/* mdoc(7) */
+    case V('A','r'): 	/* mdoc(7) */
             /* parse one line in italics */
 	    out_html(change_to_font('I'));
 	    trans_char(c,'"','\a');
@@ -3716,7 +3567,7 @@ static char *scan_request(char *c)
                 else
                     curpos=0;
 	    break;
-	case REQ_Em:	/* mdoc(7) */
+     case V('E','m'): 	// mdoc(7) "EMphasis"
 	    out_html("<em>");
 	    trans_char(c,'"','\a');
 	    c+=j;
@@ -3729,9 +3580,9 @@ static char *scan_request(char *c)
                 else
                     curpos=0;
 	    break;
-	case REQ_Ad:	/* mdoc(7) */
-	case REQ_Va:	/* mdoc(7) */
-	case REQ_Xc:	/* mdoc(7) */
+    case V('A','d'): 	/* mdoc(7) */
+    case V('V','a'): 	/* mdoc(7) */
+    case V('X','c'): 	/* mdoc(7) */
             /* parse one line in italics */
 	    out_html(change_to_font('I'));
 	    trans_char(c,'"','\a');
@@ -3745,7 +3596,7 @@ static char *scan_request(char *c)
                 else
                     curpos=0;
 	    break;
-	case REQ_Nd:	/* mdoc(7) */
+    case V('N','d'): 	/* mdoc(7) */
 	    trans_char(c,'"','\a');
 	    c=c+j;
 	    if (*c=='\n') c++;
@@ -3757,7 +3608,7 @@ static char *scan_request(char *c)
                 else
                     curpos=0;
 	    break;
-	case REQ_Nm:	/* mdoc(7) */
+    case V('N','m'): 	/* mdoc(7) */
 	  {
 	    static char mandoc_name[NULL_TERMINATED(SMALL_STR_MAX)] = "";
 	    trans_char(c,'"','\a');
@@ -3805,12 +3656,12 @@ static char *scan_request(char *c)
                     curpos=0;
 	    break;
 	  }
-	case REQ_Cd:	/* mdoc(7) */
-	case REQ_Cm:	/* mdoc(7) */
-	case REQ_Ic:	/* mdoc(7) */
-	case REQ_Ms:	/* mdoc(7) */
-	case REQ_Or:	/* mdoc(7) */
-	case REQ_Sy:	/* mdoc(7) */
+    case V('C','d'): 	/* mdoc(7) */
+    case V('C','m'): 	/* mdoc(7) */
+    case V('I','c'): 	/* mdoc(7) */
+    case V('M','s'): 	/* mdoc(7) */
+    case V('O','r'): 	/* mdoc(7) */
+    case V('S','y'): 	/* mdoc(7) */
             /* parse one line in bold */
 	    out_html(change_to_font('B'));
 	    trans_char(c,'"','\a');
@@ -3824,14 +3675,14 @@ static char *scan_request(char *c)
                 else
                     curpos=0;
 	    break;
-	case REQ_Dv:	/* mdoc(7) */
-	case REQ_Ev:	/* mdoc(7) */
-	case REQ_Fr:	/* mdoc(7) */
-	case REQ_Li:	/* mdoc(7) */
-	case REQ_No:	/* mdoc(7) */
-	case REQ_Ns:	/* mdoc(7) */
-	case REQ_Tn:	/* mdoc(7) */
-	case REQ_nN:	/* mdoc(7) */
+    case V('D','v'): 	/* mdoc(7) */
+    case V('E','v'): 	/* mdoc(7) */
+    case V('F','r'): 	/* mdoc(7) */
+    case V('L','i'): 	/* mdoc(7) */
+    case V('N','o'): 	/* mdoc(7) */
+    case V('N','s'): 	/* mdoc(7) */
+    case V('T','n'): 	/* mdoc(7) */
+    case V('n','N'): 	/* mdoc(7) */
 	    trans_char(c,'"','\a');
 	    c=c+j;
 	    if (*c=='\n') c++;
@@ -3844,13 +3695,13 @@ static char *scan_request(char *c)
                 else
                     curpos=0;
 	    break;
-	case REQ_perc_A:	/* mdoc(7) biblio stuff */
-	case REQ_perc_D:
-	case REQ_perc_N:
-	case REQ_perc_O:
-	case REQ_perc_P:
-	case REQ_perc_Q:
-	case REQ_perc_V:
+    case V('%','A'):	/* mdoc(7) biblio stuff */
+    case V('%','D'):
+    case V('%','N'):
+    case V('%','O'):
+    case V('%','P'):
+    case V('%','Q'):
+    case V('%','V'):
 	    c=c+j;
 	    if (*c=='\n') c++;
 	    c=scan_troff(c, 1, NULL); /* Don't allow embedded mandoc coms */
@@ -3859,10 +3710,10 @@ static char *scan_request(char *c)
                 else
                     curpos=0;
 	    break;
-	case REQ_perc_B:
-	case REQ_perc_J:
-	case REQ_perc_R:
-	case REQ_perc_T:
+    case V('%','B'):
+    case V('%','J'):
+    case V('%','R'):
+    case V('%','T'):
 	    c=c+j;
 	    out_html(change_to_font('I'));
 	    if (*c=='\n') c++;
@@ -3873,7 +3724,7 @@ static char *scan_request(char *c)
                 else
                     curpos=0;
 	    break;
-        case REQ_UR: // ### FIXME
+    case V('U','R'):  // man(7) "URl" ### FIXME
         {
             ignore_links=true;
             c+=j;
@@ -3901,7 +3752,7 @@ static char *scan_request(char *c)
             c=newc; // Go to next line
             break;
         }
-        case REQ_UE: // ### FIXME
+    case V('U','E'):  // man(7) "Url End" ### FIXME
         {
             c+=j;
             c = skip_till_newline(c);
@@ -3913,7 +3764,7 @@ static char *scan_request(char *c)
             ignore_links=false;
             break;
         }
-        case REQ_UN: // ### FIXME
+    case V('U','N'): // man(7) "Url Name" (a.k.a. anchors) ### FIXME
         {
             c+=j;
             char* newc;
@@ -3970,11 +3821,7 @@ static char *scan_request(char *c)
     }
     return c;
 }
-/*
-static void flush(void)
-{
-}
-*/
+
 static int contained_tab=0;
 static bool mandoc_line=false;	/* Signals whether to look for embedded mandoc
 				 * commands.
