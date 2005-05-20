@@ -132,7 +132,6 @@ using namespace std;
 #define SMALL_STR_MAX 100
 #define TINY_STR_MAX  10
 
-#define MAX_ZCATS     10	/* Max number of zcat style programs */
 #define MAX_WORDLIST  100
 
 #ifndef NROFF
@@ -648,7 +647,8 @@ static void add_links(char *c)
 
     int i,j,nr;
     char *f, *g,*h;
-    char *idtest[6]; /* url, mailto, www, ftp, manpage */
+    const int numtests=6; // Nmber of tests
+    char *idtest[numtests]; // url, mailto, www, ftp, manpage, C header file
     bool ok;
     out_length+=strlen(c);
     /* search for (section) */
@@ -659,10 +659,10 @@ static void add_links(char *c)
     idtest[3]=strstr(c,"ftp.");
     idtest[4]=strchr(c+1,'(');
     idtest[5]=strstr(c+1,".h&gt;");
-    for (i=0; i<6; i++) nr += (idtest[i]!=NULL);
+    for (i=0; i<numtests; ++i) nr += (idtest[i]!=NULL);
     while (nr) {
 	j=-1;
-	for (i=0; i<6; i++)
+	for (i=0; i<numtests; i++)
 	    if (idtest[i] && (j<0 || idtest[i]<idtest[j])) j=i;
 	switch (j) {
 	case 5: { /* <name.h> */
@@ -849,7 +849,7 @@ static void add_links(char *c)
 		c=f+1;
 	    }
 	    break;
-	default:
+     default:
 	    break;
 	}
 	nr=0;
@@ -859,7 +859,7 @@ static void add_links(char *c)
 	if (idtest[3] && idtest[3]<c) idtest[3]=strstr(c,"ftp.");
 	if (idtest[4] && idtest[4]<c) idtest[4]=strchr(c+1,'(');
 	if (idtest[5] && idtest[5]<c) idtest[5]=strstr(c+1,".h&gt;");
-	for (i=0; i<6; i++) nr += (idtest[i]!=NULL);
+        for (i=0; i<numtests; i++) nr += (idtest[i]!=NULL);
     }
     output_real(c);
 }
@@ -2085,7 +2085,6 @@ static char *skip_till_newline(char *c)
 }
 
 // Some known missing requests from man(7):
-// - URL requests (.UR .UE .UN)
 // - see "safe subset"
 
 // Some known missing requests from mdoc(7):
@@ -2154,7 +2153,7 @@ static char *skip_till_newline(char *c)
 #define REQ_Ss        55
 #define REQ_SS        56
 #define REQ_Sh        57
-#define REQ_SH        58
+#define REQ_SH        58 // man(7) "Sub Header"
 #define REQ_Sx        59
 #define REQ_TS        60
 #define REQ_Dt        61
@@ -3000,7 +2999,7 @@ static char *scan_request(char *c)
 	case REQ_Sh:	/* mdoc(7) */
 				/* hack for fallthru from above */
 	    mandoc_command = !mode || mandoc_command;
-	case REQ_SH:
+        case REQ_SH: // man(7) "Sub Header"
 	    c=c+j;
 	    if (*c=='\n') c++;
                 while (itemdepth || dl_set[itemdepth])
