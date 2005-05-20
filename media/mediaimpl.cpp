@@ -346,6 +346,11 @@ KIO::UDSEntry MediaImpl::extractUrlInfos(const KURL &url)
 		}
 	}
 
+	if (url.isLocalFile())
+	{
+		addAtom(infos, KIO::UDS_LOCAL_PATH, 0, url.path());
+	}
+	
 	return infos;
 }
 
