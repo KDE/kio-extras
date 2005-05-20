@@ -26,6 +26,7 @@
 #include <klocale.h>
 #include <kstandarddirs.h>
 #include <kaboutdata.h>
+#include <kdeversion.h>
 
 extern "C"
 {
@@ -61,7 +62,7 @@ KInstance* KManPartFactory::instance()
    if( !s_instance )
    {
       s_about = new KAboutData( "kmanpart",
-                                I18N_NOOP( "KMan" ), "2.0pre" );
+                                I18N_NOOP( "KMan" ), KDE_VERSION_STRING );
       s_instance = new KInstance( s_about );
    }
    return s_instance;
