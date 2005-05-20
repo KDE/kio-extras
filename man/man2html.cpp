@@ -776,9 +776,9 @@ static void add_links(char *c)
 		    *e='\0';
                     QCString str;
 		    if (subsec.isEmpty())
-                        str.sprintf("<A HREF=\"man:/%s(%c)\">%s</A>", h, sec, h);
+                        str.sprintf("<A HREF=\"man:%s(%c)\">%s</A>", h, sec, h);
 		    else
-                        str.sprintf("<A HREF=\"man:/%s(%c%s)\">%s</A>", h, sec, subsec.lower().latin1(), h);
+                        str.sprintf("<A HREF=\"man:%s(%c%s)\">%s</A>", h, sec, subsec.lower().latin1(), h);
                     output_real(str.data());
 		    *e=t;
 		    c=e;
