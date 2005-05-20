@@ -6,6 +6,8 @@
 ** as this comment is not removed or changed.
 */
 
+// kate: space-indent on; indent-width 4; replace-tabs on;
+
 /*
  * man2html-linux-1.0/1.1
  * This version modified for Redhat/Caldera linux - March 1996.
@@ -2297,6 +2299,7 @@ static char *scan_request(char *c)
     static bool mandoc_command=false;  /* True if this is mandoc page */
     static int mandoc_bd_options; /* Only copes with non-nested Bd's */
     static bool ur_ignore=false; // Has .UR a parameter : (for .UE to know if or not to write </a>)
+    static int function_argument=0; // Number of function argument (.Fo, .Fa, .Fc)
 
     int i,mode=0;
     char *h;
@@ -2792,62 +2795,146 @@ static char *scan_request(char *c)
                 else
                     curpos=0;
 	    break;
-   case REQ_Fd:                //for "Function definitions", mdoc(7) package
-   case REQ_Fn:                //for "Function calls": brackets and commas have to be inserted automatically
-   case REQ_Fo:
-   case REQ_Fc:
-      {
-         bool inFdMode=(c[1]=='d');
-         char font[2] ;
-         font[0] = 'B';
-         font[1] = 'B';
-         c=c+j;
-         if (*c=='\n') c++;
-         char *eol=strchr(c,'\n');
-         char *semicolon=strchr(c,';');
-         if ((semicolon!=0) && (semicolon<eol)) *semicolon=' ';
-
-         sl=fill_words(c, wordlist, &words, true, &c);
-         /* .BR name (section)
-          ** indicates a link. It will be added in the output routine.
-          */
-                for (i=0; i<words; i++)
-                {
-            wordlist[i][-1]=' ';
-            out_html(change_to_font(font[i&1]));
-            scan_troff(wordlist[i],1,NULL);
-            if (inFdMode) continue;
+   case REQ_Fd: // mdoc(7) "Function Definition" ### VERIFY
+   case REQ_Fn: // mdoc(7)  for "Function calls"
+           {
+                 // brackets and commas have to be inserted automatically
+                 bool inFdMode=(c[1]=='d');
+                 char font[2];
+                 font[0] = 'B';
+                 font[1] = 'B';
+                 c+=j;
+                 if (*c=='\n') c++;
+                 char *eol=strchr(c,'\n');
+                 char *semicolon=strchr(c,';');
+                 if ((semicolon!=0) && (semicolon<eol)) *semicolon=' ';
+    
+                 sl=fill_words(c, wordlist, &words, true, &c);
+                 /* .BR name (section)
+                  ** indicates a link. It will be added in the output routine.
+                  */
+                 for (i=0; i<words; i++)
+                 {
+                    wordlist[i][-1]=' ';
+                    out_html(change_to_font(font[i&1]));
+                    scan_troff(wordlist[i],1,NULL);
+                    if (inFdMode) continue;
                     if (i==0)
                     {
-               out_html(" (");
-               if (!mandoc_synopsis)
-                  out_html(") ");
-         }
-                    else
-                        if (i<words-1) out_html(", ");
-                }
-                if (mandoc_synopsis)
+                       out_html(" (");
+                     }
+                     else
+                         if (i<words-1) out_html(", ");
+                  }
+                  if (mandoc_synopsis)
+                  {
+                    if (!inFdMode) out_html(");");
+                    out_html("<br>");
+                  };
+                  out_html(change_to_font('R'));
+                  out_html(NEWLINE);
+                  if (!fillout)
+                      curpos=0;
+                  else
+                      curpos++;
+                  break;
+           }
+       case REQ_Fo: // mdoc(7) "Function definitionOpening"
+           {
+               char font[2];
+               font[0] = 'B';
+               font[1] = 'B';
+               c+=j;
+               if (*c=='\n') c++;
+               char *eol=strchr(c,'\n');
+               char *semicolon=strchr(c,';');
+               if ((semicolon!=0) && (semicolon<eol)) *semicolon=' ';
+
+               sl=fill_words(c, wordlist, &words, true, &c);
+             /* .BR name (section)
+               ** indicates a link. It will be added in the output routine. ### TODO
+             */
+               // Normally a .Fc has only one parameter
+               for (i=0; i<words; i++)
+               {
+                   wordlist[i][-1]=' ';
+                   out_html(change_to_font(font[i&1]));
+                   scan_troff(wordlist[i],1,NULL);
+                   if (i==0)
+                   {
+                       out_html(" (");
+                   }
+                   else
+                       if (i<words-1) out_html(", ");
+               }
+               function_argument=words-1;
+               out_html(change_to_font('R'));
+               out_html(NEWLINE);
+               if (!fillout)
+                   curpos=0;
+               else
+                   curpos++;
+               break;
+           }
+           case REQ_Fc:// mdoc(7) "Function definition Close"
+           {
+               // .Fc has no parameter
+               c+=j;
+               c=skip_till_newline(c);
+               char font[2];
+               font[0] = 'B';
+               font[1] = 'B';
+               out_html(change_to_font(font[i&1]));
+               out_html(")");
+               out_html(change_to_font('R'));
+               out_html(NEWLINE);
+               if (!fillout)
+                   curpos=0;
+               else
+                   curpos++;
+               function_argument=0; // Reset the count variable
+               break;
+           }
+           case REQ_Fa: // mdoc(7) "Function argument"
+            {
+                char font[2] ;
+                font[0] = 'B';
+                font[1] = 'B';
+                c+=j;
+                if (*c=='\n') c++;
+                sl=fill_words(c, wordlist, &words, true, &c);
+     /* .BR name (section)
+                ** indicates a link. It will be added in the output routine. ### TODO
+     */
+                out_html(change_to_font(font[i&1]));
+                for (i=0; i<words; i++)
                 {
-            if (!inFdMode) out_html(");");
-            out_html("<br>");
-         };
-         out_html(change_to_font('R'));
-         out_html(NEWLINE);
+                    if (function_argument++ > 0)
+                    {
+                        out_html(", ");
+                        curpos+=2;
+                    }
+                    wordlist[i][-1]=' ';
+                    scan_troff(wordlist[i],1,NULL);
+                }
+                out_html(change_to_font('R'));
+                out_html(NEWLINE);
                 if (!fillout)
                     curpos=0;
                 else
                     curpos++;
-                }
-      break;
-	case V('O','P'):  /* groff manpages use this construction */
+                break;
+            }
+                
+         case REQ_OP:  /* groff manpages use this construction */
             /* .OP a b : [ <B>a</B> <I>b</I> ] */
 	    mode=1;
 	    c[0]='B'; c[1]='I';
 	    out_html(change_to_font('R'));
 	    out_html("[");
 	    curpos++;
+            // Do not break!
         case REQ_Ft:       //perhaps "Function return type"
-        case REQ_Fa:       //"Function argument"
         case REQ_BR:
         case REQ_BI:
 	case REQ_IB:
@@ -2855,6 +2942,7 @@ static char *scan_request(char *c)
 	case REQ_RB:
 	case REQ_RI:
       {
+          // ### VERIFY
          bool inFMode=(c[0]=='F');
          if (inFMode)
          {
