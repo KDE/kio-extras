@@ -25,6 +25,7 @@
 #include <qcstring.h>
 #include <qstringlist.h>
 #include <qdict.h>
+#include <qbuffer.h>
 
 
 #include <kio/global.h>
@@ -76,10 +77,8 @@ private:
     QStringList buildSectionList(const QStringList& dirs) const;
     void constructPath(QStringList& constr_path, QStringList constr_catmanpath);
 private:
-    QString output_string;
     static MANProtocol *_self;
     QCString lastdir;
-    QString common_dir;
 
     void findManPagesInSection(const QString &dir, const QString &title, bool full_path, QStringList &list);
     QStringList m_manpath; ///< Path of man directories
@@ -89,6 +88,10 @@ private:
     QString myStdStream;  
     QString mySgml2RoffPath;
     void getProgramPath();
+
+    QCString m_htmlPath; ///< Path to KDE resources, encoded for HTML
+    QCString m_cssPath; ///< Path to KDE resources, encoded for CSS
+    QBuffer m_outputBuffer; ///< Buffer for the output
 };
 
 

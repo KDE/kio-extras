@@ -87,7 +87,10 @@ bool parseUrl(const QString& _url, QString &title, QString &section)
             title = url;
             return true;
         } else
+        {
             kdDebug(7107) << url << " does not exist" << endl;
+            return false;
+        }
     }
 
     while (url.at(0) == '/')
@@ -113,7 +116,10 @@ MANProtocol::MANProtocol(const QCString &pool_socket, const QCString &app_socket
 {
     assert(!_self);
     _self = this;
-    common_dir = KGlobal::dirs()->findResourceDir( "html", "en/common/kde-common.css" );
+    const QString common_dir = KGlobal::dirs()->findResourceDir( "html", "en/common/kde-common.css" );
+    const QString strPath=QString( "file:%1/en/common" ).arg( common_dir );
+    m_htmlPath=strPath.local8Bit(); // ### TODO encode for HTML
+    m_cssPath=strPath.local8Bit(); // ### TODO encode for CSS
     section_names << "1" << "2" << "3" << "3n" << "3p" << "4" << "5" << "6" << "7"
                   << "8" << "9" << "l" << "n";
 }
@@ -391,20 +397,14 @@ void MANProtocol::output(const char *insert)
 {
     if (insert)
     {
-        QString temp(QString::fromLocal8Bit(insert));
-        // TODO find out the language of the man page and put the right common dir in
-        temp.replace( "KDE_COMMON_DIR", QString( "file:%1/en/common" ).arg( common_dir ));
-        output_string+=temp;
+        m_outputBuffer.writeBlock(insert,strlen(insert));
     }
-    if (!insert || output_string.length() > 2048)
+    if (!insert || m_outputBuffer.at() >= 4096)
     {
-        //kdDebug(7107) << "output " << output_string << endl;
-        QByteArray array;
-        QTextStream stream(array,IO_WriteOnly);
-        stream.setEncoding(QTextStream::UnicodeUTF8);
-        stream << output_string;
-        data(array);
-        output_string=QString::null;
+        m_outputBuffer.close();
+        data(m_outputBuffer.buffer());
+        m_outputBuffer.setBuffer(QByteArray());
+        m_outputBuffer.open(IO_WriteOnly);
     }
 }
 
@@ -473,6 +473,8 @@ void MANProtocol::get(const KURL& url )
 
     if (pageFound)
     {
+       setResourcePath(m_htmlPath,m_cssPath);
+       m_outputBuffer.open(IO_WriteOnly);
        const QCString filename=QFile::encodeName(foundPages[0]);
        char *buf = readManPage(filename);
 
@@ -488,6 +490,9 @@ void MANProtocol::get(const KURL& url )
 
        output(0); // flush
 
+       m_outputBuffer.close();
+       data(m_outputBuffer.buffer());
+       m_outputBuffer.setBuffer(QByteArray());
        // tell we are done
        data(QByteArray());
     };
@@ -751,6 +756,7 @@ void MANProtocol::showMainIndex()
     os << "<head><title>" << i18n("UNIX Manual Index") << "</title></head>" << endl;
     os << i18n("<body bgcolor=#ffffff><h1>UNIX Manual Index</h1>") << endl;
 
+    // ### TODO: why still the environment variable
     QString sectList = getenv("MANSECT");
     QStringList sections;
     if (sectList.isEmpty())

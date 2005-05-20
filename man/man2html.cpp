@@ -120,6 +120,11 @@
 #include <qvaluestack.h>
 #include <qstring.h>
 #include <qptrlist.h>
+
+#ifndef SIMPLE_MAN2HTML
+# include <qtextcodec.h>
+#endif
+
 #include "man2html.h"
 
 using namespace std;
@@ -567,6 +572,14 @@ static char *scan_troff_mandoc(char *c, int san, char **result);
 static char **argument=NULL;
 
 static char charb[TINY_STR_MAX];
+
+static QCString htmlPath, cssPath;
+
+void setResourcePath(const QCString& _htmlPath, const QCString& _cssPath)
+{
+    htmlPath=_htmlPath;
+    cssPath=_cssPath;
+}
 
 static const char *expand_char(int nr)
 {
@@ -3077,12 +3090,16 @@ static char *scan_request(char *c)
                         out_html("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=ISO-8859-1\">\n");
 #else
                         // kio_man transforms from local to UTF-8
-                        out_html("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
+                        out_html("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=");
+                        out_html(QTextCodec::codecForLocale()->mimeName());
+                        out_html("\">\n");
 #endif
                         out_html("<TITLE>");
                             out_html(scan_troff(wordlist[0], 0, NULL));
                         out_html( " Manpage</TITLE>\n");
-                        out_html( "<link rel=\"stylesheet\" href=\"KDE_COMMON_DIR/kde-default.css\" type=\"text/css\">\n" );
+                        out_html( "<link rel=\"stylesheet\" href=\"");
+                        out_html(htmlPath);
+                        out_html("/kde-default.css\" type=\"text/css\">\n" );
                         out_html( "<meta name=\"Mandoc Type\" content=\"");
                         if (mandoc_command)
                             out_html("mdoc");
@@ -3091,13 +3108,19 @@ static char *scan_request(char *c)
                         out_html("\">\n");
                         out_html( "</HEAD>\n\n" );
                         out_html("<BODY BGCOLOR=\"#FFFFFF\">\n\n" );
-                        out_html("<div style=\"background-image: url(KDE_COMMON_DIR/top-middle.png); width: 100%; height: 131pt;\">\n" );
+                        out_html("<div style=\"background-image: url(");
+                        out_html(cssPath);
+                        out_html("/top-middle.png); width: 100%; height: 131pt;\">\n" );
                         out_html("<div style=\"position: absolute; right: 0pt;\">\n");
-                        out_html("<img src=\"KDE_COMMON_DIR/top-right-konqueror.png\" style=\"margin: 0pt\" alt=\"Top right\">\n");
+                        out_html("<img src=\"");
+                        out_html(htmlPath);
+                        out_html("/top-right-konqueror.png\" style=\"margin: 0pt\" alt=\"Top right\">\n");
                         out_html("</div>\n");
     
                         out_html("<div style=\"position: absolute; left: 0pt;\">\n");
-                        out_html("<img src=\"KDE_COMMON_DIR/top-left.png\" style=\"margin: 0pt\" alt=\"Top left\">\n");
+                        out_html("<img src=\"");
+                        out_html(htmlPath);
+                        out_html("/top-left.png\" style=\"margin: 0pt\" alt=\"Top left\">\n");
                         out_html("</div>\n");
                         out_html("<div style=\"position: absolute; top: 25pt; right: 100pt; text-align: right; font-size: xx-large; font-weight: bold; text-shadow: #fff 0pt 0pt 5pt; color: #444\">\n");
                         out_html( scan_troff(wordlist[0], 0, NULL ) );
@@ -4236,12 +4259,18 @@ void scan_man_page(const char *man_page)
 
     if (output_possible) {
       output_real("</div>\n");
-      output_real("<div class=\"bannerBottom\" style=\"background-image: url(KDE_COMMON_DIR/bottom-middle.png); background-repeat: x-repeat; width: 100%; height: 100pt; bottom:0pt;\">\n");
+      output_real("<div class=\"bannerBottom\" style=\"background-image: url(");
+      output_real(cssPath);
+      output_real("/bottom-middle.png); background-repeat: x-repeat; width: 100%; height: 100pt; bottom:0pt;\">\n");
       output_real("<div class=\"bannerBottomLeft\">\n");
-      output_real("<img src=\"KDE_COMMON_DIR/bottom-left.png\" style=\"margin: 0pt;\" alt=\"Bottom left of the banner\">\n");
+      output_real("<img src=\"");
+      output_real(cssPath);
+      output_real("/bottom-left.png\" style=\"margin: 0pt;\" alt=\"Bottom left of the banner\">\n");
       output_real("</div>\n");
       output_real("<div class=\"bannerBottomRight\">\n");
-      output_real("<img src=\"KDE_COMMON_DIR/bottom-right.png\" style=\"margin: 0pt\" alt=\"Bottom right of the banner\">\n");
+      output_real("<img src=\"");
+      output_real(cssPath);
+      output_real("/bottom-right.png\" style=\"margin: 0pt\" alt=\"Bottom right of the banner\">\n");
       output_real("</div>\n");
       output_real("</div>\n");
 
