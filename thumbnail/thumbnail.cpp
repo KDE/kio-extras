@@ -56,8 +56,6 @@
 #undef USE_KINSTANCE
 // Fix thumbnail: protocol
 #define THUMBNAIL_HACK (1)
-// An image needs to be raw in stream and not as QDataStream
-#define IMAGE_RAW_IN_STREAM (1)
 
 #ifdef THUMBNAIL_HACK
 # include <ktrader.h>
@@ -92,7 +90,7 @@ extern "C"
 int kdemain(int argc, char **argv)
 {
     nice( 5 );
-#if USE_KINSTANCE
+#ifdef USE_KINSTANCE
     KInstance instance("kio_thumbnail");
 #else
     // creating KApplication in a slave in not a very good idea,
@@ -135,12 +133,14 @@ void ThumbnailProtocol::get(const KURL &url)
 {
     m_mimeType = metaData("mimeType");
     kdDebug(7115) << "Wanting MIME Type:" << m_mimeType << endl;
-#if THUMBNAIL_HACK
+#ifdef THUMBNAIL_HACK
     // ### HACK
+    bool direct=false;
     if (m_mimeType.isEmpty())
     {
         m_mimeType = KMimeType::findByURL(url)->name();
         kdDebug(7115) << "Guessing MIME Type:" << m_mimeType << endl;
+        direct=true; // thumbnail: was probably called from Konqueror
     }
 #endif
 
@@ -159,7 +159,7 @@ void ThumbnailProtocol::get(const KURL &url)
         error(KIO::ERR_INTERNAL, i18n("No or invalid size specified."));
         return;
     }
-#if THUMBNAIL_HACK
+#ifdef THUMBNAIL_HACK
     else if (!m_width || !m_height)
     {
         kdDebug(7115) << "Guessing height, width, icon sizre!" << endl;
@@ -337,29 +337,36 @@ void ThumbnailProtocol::get(const KURL &url)
     const QString shmid = metaData("shmid");
     if (shmid.isEmpty())
     {
-#ifdef IMAGE_RAW_IN_STREAM
-        QBuffer buf;
-        if (!buf.open(IO_WriteOnly))
+#ifdef THUMBNAIL_HACK
+        if (direct)
         {
-            error(KIO::ERR_INTERNAL, i18n("Could not write image."));
-            return;
+            // If thumbnail was called directly from Konqueror, then the image needs to be raw
+            //kdDebug(7115) << "RAW IMAGE TO STREAM" << endl;
+            QBuffer buf;
+            if (!buf.open(IO_WriteOnly))
+            {
+                error(KIO::ERR_INTERNAL, i18n("Could not write image."));
+                return;
+            }
+            img.save(&buf,"PNG");
+            buf.close();
+            data(buf.buffer());
         }
-        img.save(&buf,"PNG");
-        buf.close();
-        data(buf.buffer());
-#else
-        QByteArray imgData;
-        QDataStream stream( imgData, IO_WriteOnly );
-        kdDebug(7115) << "IMAGE TO STREAM" << endl;
-        stream << img;
-        data(imgData);
+        else
 #endif
+        {
+            QByteArray imgData;
+            QDataStream stream( imgData, IO_WriteOnly );
+            //kdDebug(7115) << "IMAGE TO STREAM" << endl;
+            stream << img;
+            data(imgData);
+        }
     }
     else
     {
         QByteArray imgData;
         QDataStream stream( imgData, IO_WriteOnly );
-        kdDebug(7115) << "IMAGE TO SHMID" << endl;
+        //kdDebug(7115) << "IMAGE TO SHMID" << endl;
         void *shmaddr = shmat(shmid.toInt(), 0, 0);
         if (shmaddr == (void *)-1)
         {
