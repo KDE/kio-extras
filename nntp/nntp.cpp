@@ -1,40 +1,29 @@
 /* This file is part of KDE
    Copyright (C) 2000 by Wolfram Diestel <wolfram@steloj.de>
+   Copyright (C) 2005 by Tim Way <tim@way.hrcoxmail.com>
+   Copyright (C) 2005 by Volker Krause <volker.krause@rwth-aachen.de>
 
    This is free software; you can redistribute it and/or
    modify it under the terms of the GNU Library General Public
    License version 2 as published by the Free Software Foundation.
 */
 
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
-
-#include <sys/types.h>
-#include <sys/time.h>
 #include <sys/stat.h>
 #include <stdlib.h>
 #include <stdio.h>
-#include <unistd.h>
-#include <errno.h>
 
 #include <qdir.h>
 #include <qregexp.h>
 
-#include <kextsock.h>
-#include <ksocks.h>
-#include <kapplication.h>
+#include <kinstance.h>
 #include <kdebug.h>
 #include <klocale.h>
 
 #include "nntp.h"
 
 #define NNTP_PORT 119
-// set to 60 sec later, only for testing such a short time out
-#define DEFAULT_TIME_OUT 10
+#define NNTPS_PORT 563
 
-#define SOCKET_BUFFER_SIZE 1024*10 // buffer size in TCPWrapper
-//#define READ_CHUNK = 1024*2 // used to read article data or group list
 #define UDS_ENTRY_CHUNK 50 // so much entries are sent at once in listDir
 
 #define DBG_AREA 7114
@@ -55,22 +44,33 @@ int kdemain(int argc, char **argv) {
     exit(-1);
   }
 
-  NNTPProtocol slave(argv[2],argv[3]);
-  slave.dispatchLoop();
+  NNTPProtocol *slave;
+
+  // Are we going to use SSL?
+  if (strcasecmp(argv[1], "nntps") == 0) {
+    slave = new NNTPProtocol(argv[2], argv[3], true);
+  } else {
+    slave = new NNTPProtocol(argv[2], argv[3], false);
+  }
+
+  slave->dispatchLoop();
+  delete slave;
 
   return 0;
 }
 
 /****************** NNTPProtocol ************************/
 
-NNTPProtocol::NNTPProtocol (const QCString &pool, const QCString &app)
-  : QObject(), SlaveBase("nntp", pool, app)
+NNTPProtocol::NNTPProtocol ( const QCString & pool, const QCString & app, bool isSSL )
+  : TCPSlaveBase( (isSSL ? NNTPS_PORT : NNTP_PORT), (isSSL ? "nntps" : "nntp"), pool,
+                  app, isSSL )
 {
   DBG << "=============> NNTPProtocol::NNTPProtocol" << endl;
-  if (!QObject::connect(&socket, SIGNAL(error(KIO::Error,const QString&)),
-        this, SLOT(socketError(KIO::Error,const QString&)))) {
-        ERR << "ERROR connecting socket.error() with socketError()" << endl;
-  }
+
+  m_bIsSSL = isSSL;
+  readBufferLen = 0;
+  m_iDefaultPort = m_bIsSSL ? NNTPS_PORT : NNTP_PORT;
+  m_iPort = m_iDefaultPort;
 }
 
 NNTPProtocol::~NNTPProtocol() {
@@ -78,7 +78,22 @@ NNTPProtocol::~NNTPProtocol() {
 
   // close connection
   nntp_close();
-  //delete socket;
+}
+
+void NNTPProtocol::setHost ( const QString & host, int port, const QString & user,
+                             const QString & pass )
+{
+  DBG << "setHost: " << ( ! user.isEmpty() ? (user+"@") : QString(""))
+      << host << ":" << ( ( port == 0 ) ? m_iDefaultPort : port  ) << endl;
+
+  if ( isConnectionValid() && (mHost != host || m_iPort != port ||
+       mUser != user || mPass != pass) )
+    nntp_close();
+
+  mHost = host;
+  m_iPort = ( ( port == 0 ) ? m_iDefaultPort : port );
+  mUser = user;
+  mPass = pass;
 }
 
 void NNTPProtocol::get(const KURL& url) {
@@ -102,10 +117,11 @@ void NNTPProtocol::get(const KURL& url) {
   if ((pos = group.find('/')) > 0) group = group.left(pos);
   DBG << "get group: " << group << " msg: " << msg_id << endl;
 
-  nntp_open(); // opens only if necessary
+  if ( !nntp_open() )
+    return;
 
   // select group
-  int res_code = send_cmd("GROUP "+group);
+  int res_code = sendCommand( "GROUP " + group );
   if (res_code == 411){
     error(ERR_DOES_NOT_EXIST, path);
     return;
@@ -115,7 +131,7 @@ void NNTPProtocol::get(const KURL& url) {
   }
 
   // get article
-  res_code = send_cmd("ARTICLE "+msg_id);
+  res_code = sendCommand( "ARTICLE " + msg_id );
   if (res_code == 430) {
     error(ERR_DOES_NOT_EXIST,path);
     return;
@@ -127,14 +143,26 @@ void NNTPProtocol::get(const KURL& url) {
   // read and send data
   QCString line;
   QByteArray buffer;
-  //socket.read(buffer,MAX_BUFFER_SIZE); ??
-  while (socket.readLine(line) && line != ".\r\n") {
-    // DBG << "data: [" << line << "]" << endl;
-    if (line.left(2) == "..") line.remove(0,1);
-    // cannot use QCString, because it would send the 0-terminator too
-    buffer.setRawData(line.data(),line.length());
-    data(buffer);
-    buffer.resetRawData(line.data(),line.length());
+  char tmp[MAX_PACKET_LEN];
+  int len = 0;
+  while ( true ) {
+    if ( !waitForResponse( readTimeout() ) ) {
+      error( ERR_SERVER_TIMEOUT, mHost );
+      return;
+    }
+    memset( tmp, 0, MAX_PACKET_LEN );
+    len = readLine( tmp, MAX_PACKET_LEN );
+    line = tmp;
+    if ( len <= 0 )
+      break;
+    if ( line == ".\r\n" )
+      break;
+    if ( line.left(2) == ".." )
+      line.remove( 0, 1 );
+    // cannot use QCString, it would send the 0-terminator too
+    buffer.setRawData( line.data(), line.length() );
+    data( buffer );
+    buffer.resetRawData( line.data(), line.length() );
   }
   // end of data
   buffer.resize(0);
@@ -149,6 +177,9 @@ void NNTPProtocol::special(const QByteArray& data) {
   int cmd;
   QDataStream stream(data, IO_ReadOnly);
 
+  if ( !nntp_open() )
+    return;
+
   stream >> cmd;
   if (cmd == 1) {
     if (post_article()) finished();
@@ -161,9 +192,9 @@ bool NNTPProtocol::post_article() {
   DBG << "post article " << endl;
 
   // send post command
-  int res_code = send_cmd("POST");
+  int res_code = sendCommand( "POST" );
   if (res_code == 440) { // posting not allowed
-    error(ERR_WRITE_ACCESS_DENIED,host);
+    error(ERR_WRITE_ACCESS_DENIED, mHost);
     return false;
   } else if (res_code != 340) { // 340: ok, send article
     unexpected_response(res_code,"POST");
@@ -194,7 +225,7 @@ bool NNTPProtocol::post_article() {
       }
 
       // send data to socket, write() doesn't send the terminating 0
-      socket.write(data);
+      write( data.data(), data.length() );
     }
   } while (result>0);
 
@@ -206,12 +237,12 @@ bool NNTPProtocol::post_article() {
   }
 
   // send end mark
-  socket.write(QCString("\r\n.\r\n"));
+  write( "\r\n.\r\n", 5 );
 
   // get answer
-  res_code = eval_resp();
+  res_code = evalResponse( readBuffer, readBufferLen );
   if (res_code == 441) { // posting failed
-    error(ERR_COULD_NOT_WRITE,host);
+    error(ERR_COULD_NOT_WRITE, mHost);
     return false;
   } else if (res_code != 240) {
     unexpected_response(res_code,"POST");
@@ -269,20 +300,21 @@ void NNTPProtocol::stat( const KURL& url ) {
 
 void NNTPProtocol::listDir( const KURL& url ) {
   DBG << "listDir " << url.prettyURL() << endl;
-  nntp_open(); // opens only if necessary
+  if ( !nntp_open() )
+    return;
 
   QString path = QDir::cleanDirPath(url.path());
 
   if (path.isEmpty())
-    {
-      KURL newURL(url);
-      newURL.setPath("/");
-      DBG << "listDir redirecting to " << newURL.prettyURL() << endl;
-      redirection(newURL);
-      finished();
-      return;
-    }
- else if(path == "/") {
+  {
+    KURL newURL(url);
+    newURL.setPath("/");
+    DBG << "listDir redirecting to " << newURL.prettyURL() << endl;
+    redirection(newURL);
+    finished();
+    return;
+  }
+  else if ( path == "/" ) {
     fetchGroups();
     finished();
   } else {
@@ -299,7 +331,7 @@ void NNTPProtocol::listDir( const KURL& url ) {
 void NNTPProtocol::fetchGroups() {
 
   // send LIST command
-  int res_code = send_cmd("LIST");
+  int res_code = sendCommand("LIST");
   if (res_code != 215) {
     unexpected_response(res_code,"LIST");
     return;
@@ -312,14 +344,25 @@ void NNTPProtocol::fetchGroups() {
   UDSEntry entry;
   UDSEntryList entryList;
 
-  // int n=1; // debug
+  // read in data and process each group. one line at a time
+  while ( true ) {
+    if ( ! waitForResponse( readTimeout() ) ) {
+      error( ERR_SERVER_TIMEOUT, mHost );
+      return;
+    }
+    memset( readBuffer, 0, MAX_PACKET_LEN );
+    readBufferLen = readLine ( readBuffer, MAX_PACKET_LEN );
+    line = readBuffer;
+    if ( line == ".\r\n" )
+      break;
 
-  while (socket.readLine(line) && line != ".\r\n") {
+    // update DBG with current place in input
+    DBG << "  fetchGroups -- data: " << line << endl;
+
     // group name
     if ((pos = line.find(' ')) > 0) {
 
       group = line.left(pos);
-      // DBG << n++ << " group: " << group << endl;
 
       // number of messages
       line.remove(0,pos+1);
@@ -351,9 +394,10 @@ void NNTPProtocol::fetchGroups() {
 
 bool NNTPProtocol::fetchGroup(QString& group) {
   int res_code;
+  QString resp_line;
 
   // select group
-  res_code = send_cmd("GROUP "+group);
+  res_code = sendCommand( "GROUP " + group );
   if (res_code == 411){
     error(ERR_DOES_NOT_EXIST,group);
     return false;
@@ -362,9 +406,11 @@ bool NNTPProtocol::fetchGroup(QString& group) {
     return false;
   }
 
-  //GROUP res_line: 211 cnt first last group ...
+  // repsonse to "GROUP <requested-group>" command is 211 then find the message count (cnt)
+  // and the first and last message followed by the group name
   int pos, pos2;
   QString first;
+  resp_line = readBuffer;
   if (((pos = resp_line.find(' ',4)) > 0 || (pos = resp_line.find('\t',4)) > 0) &&
       ((pos2 = resp_line.find(' ',pos+1)) > 0 || (pos = resp_line.find('\t',pos+1)) > 0))
   {
@@ -381,8 +427,9 @@ bool NNTPProtocol::fetchGroup(QString& group) {
   UDSEntry entry;
   UDSEntryList entryList;
 
-  // set art pointer to first article and get msg-id of it
-  res_code = send_cmd("STAT "+first);
+  // set article pointer to first article and get msg-id of it
+  res_code = sendCommand( "STAT " + first );
+  resp_line = readBuffer;
   if (res_code != 223) {
     unexpected_response(res_code,"STAT");
     return false;
@@ -402,7 +449,7 @@ bool NNTPProtocol::fetchGroup(QString& group) {
 
   // go through all articles
   while (true) {
-    res_code = send_cmd("NEXT");
+    res_code = sendCommand("NEXT");
     if (res_code == 421) {
       // last article reached
       if (entryList.count()) listEntries(entryList);
@@ -413,6 +460,7 @@ bool NNTPProtocol::fetchGroup(QString& group) {
     }
 
     //res_line: 223 nnn <msg_id> ...
+    resp_line = readBuffer;
     if ((pos = resp_line.find('<')) > 0 && (pos2 = resp_line.find('>',pos+1))) {
       msg_id = resp_line.mid(pos,pos2-pos+1);
       fillUDSEntry(entry, msg_id, 0, false, true);
@@ -427,7 +475,7 @@ bool NNTPProtocol::fetchGroup(QString& group) {
       return false;
     }
   }
-return true; // Not reached  
+  return true; // Not reached
 }
 
 void NNTPProtocol::fillUDSEntry(UDSEntry& entry, const QString& name, int size,
@@ -465,7 +513,7 @@ void NNTPProtocol::fillUDSEntry(UDSEntry& entry, const QString& name, int size,
   entry.append(atom);
 
   atom.m_uds = UDS_USER;
-  atom.m_str = user.isEmpty() ? QString("root") : user;
+  atom.m_str = mUser.isEmpty() ? QString("root") : mUser;
   atom.m_long= 0;
   entry.append(atom);
 
@@ -486,85 +534,92 @@ void NNTPProtocol::fillUDSEntry(UDSEntry& entry, const QString& name, int size,
 }
 
 void NNTPProtocol::nntp_close () {
-  if (socket.connected()) {
-    DBG << "closing connection, sending QUIT" << endl;
-    socket.writeLine("QUIT");
-    socket.disconnect();
+  if ( isConnectionValid() ) {
+    write( "QUIT\r\n", 6 );
+    closeDescriptor();
+    opened = false;
   }
 }
 
-void NNTPProtocol::nntp_open() {
-
-  if (!port) port = NNTP_PORT;
-
+bool NNTPProtocol::nntp_open()
+{
   // if still connected reuse connection
-  if (socket.connected())
+  if ( isConnectionValid() ) {
+    DBG << "reusing old connection" << endl;
+    return true;
+  }
+
+  DBG << "  nntp_open -- creating a new connection to " << mHost << ":" << m_iPort << endl;
+  // create a new connection
+  if ( connectToHost( mHost.latin1(), m_iPort, true ) )
+  {
+    DBG << "  nntp_open -- connection is open " << endl;
+
+    // read greeting
+    int res_code = evalResponse( readBuffer, readBufferLen );
+
+    /* expect one of
+         200 server ready - posting allowed
+         201 server ready - no posting allowed
+    */
+    if ( ! ( res_code == 200 || res_code == 201 ) )
     {
-      DBG << "reusing old connection" << endl;
-      return;
+      unexpected_response(res_code,"CONNECT");
+      return false;
     }
+
+    DBG << "  nntp_open -- greating was read res_code : " << res_code << endl;
+    // let local class know that we are connected
+    opened = true;
+
+    res_code = sendCommand("MODE READER");
+
+    // TODO: not in RFC 977, so we should not abort here
+    if ( !(res_code == 200 || res_code == 201) ) {
+      unexpected_response( res_code, "MODE READER" );
+      return false;
+    }
+
+    // let local class know whether posting is allowed or not
+    postingAllowed = (res_code == 200);
+
+    return true;
+  }
+  // connection attempt failed
   else
-    {
-      DBG << "connecting to " << host << ":" << port << endl;
-      if (socket.connect(host,port)) {
-        DBG << "socket connection succeeded" << endl;
-        // read greeting
-        int res_code = eval_resp();
-
-        /* expect one of
-             200 server ready - posting allowed
-             201 server ready - no posting allowed
-        */
-        if ( !(res_code == 200 || res_code == 201) ) {
-          unexpected_response(res_code,"CONNECT");
-          return;
-        }
-
-        res_code = send_cmd("MODE READER");
-
-        if ( !(res_code == 200 || res_code == 201) ) {
-          unexpected_response(res_code, "MODE READER");
-          return;
-        }
-
-        postingAllowed = (res_code == 200);
-      }
-
-      connected();
-      return;
-    }
+  {
+    DBG << "  nntp_open -- connection attempt failed" << endl;
+    error( ERR_COULD_NOT_CONNECT, mHost );
+    return false;
+  }
 }
 
-int NNTPProtocol::eval_resp() {
-  QCString line;
-  socket.readLine(line);
-  int res_code = line.left(3).toInt();
-  resp_line = QString::fromUtf8(line);
+int NNTPProtocol::sendCommand( const QString &cmd )
+{
+  int res_code = 0;
 
-  DBG << "eval_resp:" << resp_line << endl;
-  return res_code;
-}
-
-int NNTPProtocol::send_cmd(const QString &cmd) {
-  int res_code;
-  QCString _cmd = cmd.utf8();
-
-  if (!socket.connected()) {
+  if ( !opened ) {
     ERR << "NOT CONNECTED, cannot send cmd " << cmd << endl;
     return 0;
   }
 
   DBG << "sending cmd " << cmd << endl;
 
-  socket.writeLine(_cmd);
-  res_code = eval_resp();
+  write( cmd.latin1(), cmd.length() );
+  // check the command for proper termination
+  if ( !cmd.endsWith( "\r\n" ) )
+    write( "\r\n", 2 );
+  res_code =  evalResponse( readBuffer, readBufferLen );
 
   // if authorization needed send user info
   if (res_code == 480) {
     DBG << "auth needed, sending user info" << endl;
-    _cmd = "AUTHINFO USER "; _cmd += user.utf8();
-    socket.writeLine(_cmd);
-    res_code = eval_resp();
+
+    // send username to server and confirm response
+    write( "AUTHINFO USER ", 14 );
+    write( mUser.latin1(), mUser.length() );
+    write( "\r\n", 2 );
+    res_code = evalResponse( readBuffer, readBufferLen );
 
     if (res_code != 381) {
       // error should be handled by invoking function
@@ -572,10 +627,10 @@ int NNTPProtocol::send_cmd(const QString &cmd) {
     }
 
     // send password
-    DBG << "sending password" << endl;
-    _cmd = "AUTHINFO PASS "; _cmd += pass.utf8();
-    socket.writeLine(_cmd);
-    res_code = eval_resp();
+    write( "AUTHINFO PASS ", 14 );
+    write( mPass.latin1(), mPass.length() );
+    write( "\r\n", 2 );
+    res_code = evalResponse( readBuffer, readBufferLen );
 
     if (res_code != 281) {
       // error should be handled by invoking function
@@ -583,49 +638,43 @@ int NNTPProtocol::send_cmd(const QString &cmd) {
     }
 
     // ok now, resend command
-    DBG << "resending cmd " << cmd << endl;
-    _cmd = cmd.utf8();
-    socket.writeLine(_cmd);
-    res_code = eval_resp();
+    write( cmd.latin1(), cmd.length() );
+    if ( !cmd.endsWith( "\r\n" ) )
+      write( "\r\n", 2 );
+    res_code = evalResponse( readBuffer, readBufferLen );
   }
 
   return res_code;
 }
 
-void NNTPProtocol::socketError(Error errnum, const QString& errinfo) {
-  ERR << "ERROR (socket): " << errnum << " " << errinfo << endl;
-  error(errnum, errinfo);
-}
-
-void NNTPProtocol::slave_status() {
-  DBG << "slave_status " << host << (socket.connected()? " conn": " no conn") << endl;
-  slaveStatus(host,socket.connected());
-}
-
-void NNTPProtocol::setHost(const QString& _host, int _port,
-        const QString& _user, const QString& _pass) {
-  DBG << "setHost: " << (_user.isEmpty()? (_user+"@") : QString(" "))
-      << _host << ":" << _port << endl;
-
-  unsigned short int prt =  _port? _port : NNTP_PORT;
-
-  if (socket.connected() && (host != _host || port != prt ||
-    user != _user || pass != _pass)) nntp_close();
-
-  host = _host;
-  port = prt;
-  user = _user;
-  pass = _pass;
-}
-
-void NNTPProtocol::unexpected_response(int res_code, const QString& command) {
+void NNTPProtocol::unexpected_response( int res_code, const QString & command) {
   ERR << "Unexpected response to " << command << " command: (" << res_code << ") "
-      << resp_line << endl;
+      << readBuffer << endl;
   error(ERR_INTERNAL,i18n("Unexpected server response to %1 command:\n%2").
-    arg(command).arg(resp_line));
-  
+    arg(command).arg(readBuffer));
+
   // close connection
   nntp_close();
+}
+
+int NNTPProtocol::evalResponse ( char *data, ssize_t &len )
+{
+  if ( !waitForResponse( responseTimeout() ) ) {
+    error( ERR_SERVER_TIMEOUT , mHost );
+    return -1;
+  }
+  memset( data, 0, MAX_PACKET_LEN );
+  len = readLine( data, MAX_PACKET_LEN );
+
+  if ( len < 3 )
+    return -1;
+
+  // get the first three characters. should be the response code
+  int respCode = ( ( data[0] - 48 ) * 100 ) + ( ( data[1] - 48 ) * 10 ) + ( ( data[2] - 48 ) );
+
+  DBG << "evalResponse - got: " << respCode << endl;
+
+  return respCode;
 }
 
 /* not really necessary, because the slave has to
@@ -681,321 +730,3 @@ QString& NNTPProtocol::errorStr(int resp_code) {
   return ret;
 }
 */
-
-
-/***************** class TCPWrapper ******************/
-
-// FIXME!
-// There is a whole lot of duplicated code from here and
-// KExtendedSocket. Someone should clean this up one day.
-//
-// The TCPWrapper class in here could be almost entirely replaced
-// by KExtendedSocket without buffering (we cannot use buffering in
-// ioslaves because there is no Qt event loop). The read timeout 
-// behaviour can be obtained with waitForMore, but the write timeout
-// requires more coding. 
-// As of now, we're using KExtendedSocket to connect and
-// KSocks for the I/O.
-// -thiago
-
-TCPWrapper::TCPWrapper()
-{
-  timeOut = DEFAULT_TIME_OUT;
-  tcpSocket = -1;
-  // initialize buffer
-  buffer = new char[SOCKET_BUFFER_SIZE+1];
-  buffer[SOCKET_BUFFER_SIZE] = 0;
-  thisLine = buffer;
-  data_end = buffer;
-}
-
-
-TCPWrapper::~TCPWrapper() {
-  disconnect();
-  delete [] buffer;
-}
-
-bool TCPWrapper::connect(const QString &host, short unsigned int port) {
-
-  DBG << "socket connecting to " << host << ":" << port << endl;
-
-#if 0
-  ksockaddr_in server_name;
-
-  // init socket
-  tcpSocket = socket(PF_INET, SOCK_STREAM, 0);
-  if (tcpSocket == -1) {
-    emit error(ERR_COULD_NOT_CREATE_SOCKET, NULL);
-    return false;
-  }
-
-  // find server
-  memset(&server_name, 0, sizeof(server_name));
-  if (!KSocket::initSockaddr(&server_name, host.latin1(), port)) {
-    emit error(ERR_UNKNOWN_HOST, host);
-    return false;
-  }
-
-  // connect to server
-  if (::connect(tcpSocket, (struct sockaddr*)(&server_name),
-      sizeof(server_name)) != 0)
-  {
-    error(ERR_COULD_NOT_CONNECT, host);
-    return false;
-  }
-#endif
-
-  KExtendedSocket ks(host, port);
-  if (ks.lookup() < 0)
-    {
-      emit error(ERR_UNKNOWN_HOST, host); // untrue
-      return false;
-    }
-
-  if (ks.connect() < 0)
-    {
-      // code above doesn't use emit, but this is a signal
-      emit error(ERR_COULD_NOT_CONNECT, host);
-      return false;
-    }
-
-  tcpSocket = ks.fd();
-  ks.release();			// we're free of KExtendedSocket
-
-  return true;
-
-}
-
-bool TCPWrapper::disconnect() {
-
-  // close socket
-  if (tcpSocket != -1) {
-    ::close(tcpSocket);
-    tcpSocket = -1;
-  }
-
-  // reset buffer
-  thisLine = buffer;
-  data_end = buffer;
-
-  return true;
-}
-
-int TCPWrapper::read(QByteArray &data, int max_chars) {
-  if (max_chars <= 0) return 0;
-
-  // read more from the socket if needed
-  if (data_end - thisLine <= 0) {
-    if (!readData()) {
-      return -1;
-    }
-  }
-
-  int chars = QMIN(max_chars,data_end-thisLine);
-  // get chars from the buffer
-  if (chars) {
-    data.duplicate(thisLine,chars);
-    thisLine += chars;
-  }
-
-  return chars;
-}
-
-bool TCPWrapper::readData() {
-  ssize_t bytes = 0;
-
-  // buffer full?
-  if ((data_end - thisLine) >= SOCKET_BUFFER_SIZE) {
-    error(ERR_OUT_OF_MEMORY,"Socket buffer full, cannot read more data");
-    disconnect();
-    return false;
-  }
-
-  if (readyForReading()) {
-    // delete unneeded bytes from buffer
-    //DBG << "buffer move before: thisLine: " << (thisLine-buffer) << " data_end: "
-    //    << (data_end - buffer) << endl;
-    memmove(buffer,thisLine,data_end-thisLine);
-    data_end -= (thisLine - buffer);
-    //*data_end = 0;
-    thisLine = buffer;
-
-    //DBG << "buffer move after: thisLine: " << (thisLine-buffer) << " data_end: "
-    //    << (data_end - buffer) << endl;
-
-    // read bytes from socket
-    do {
-      bytes = KSocks::self()->read(tcpSocket, data_end, (buffer+SOCKET_BUFFER_SIZE)-data_end);
-    } while (bytes<0 && errno==EINTR); // ignore signals
-
-    if (bytes <= 0) { // there was an error
-      ERR << "error reading from socket" << endl;
-      emit error(ERR_COULD_NOT_READ,strerror(errno));
-      disconnect();
-      return false;
-    }
-
-    // DBG << bytes << " bytes read" << endl;
-    data_end += bytes;
-    *data_end = 0;
-
-    //DBG << "buffer filled after: thisLine: " << (thisLine-buffer) << " data_end: "
-    //    << (data_end - buffer) << endl;
-
-    return true;
-
-  // was not ready for reading
-  } else {
-    return false;
-  }
-}
-
-bool TCPWrapper::readyForReading(){
-  fd_set fdsR, fdsE;
-  timeval tv;
-
-  // DBG << "waiting until socket is ready for reading" << endl;
-
-  // wait until we can read or exception or timeout
-  int ret;
-  do {
-    FD_ZERO(&fdsR);
-    FD_SET(tcpSocket, &fdsR);
-    FD_ZERO(&fdsE);
-    FD_SET(tcpSocket, &fdsE);
-    tv.tv_sec = timeOut;
-    tv.tv_usec = 0;
-    ret = KSocks::self()->select(FD_SETSIZE, &fdsR, NULL, &fdsE, &tv);
-    // DBG << "select (r): " << ret << " errno: " << errno << endl;
-  } while ((ret<0) && (errno == EINTR)); // ignore signals
-
-  if (ret < 0) { // -1: select failed
-    emit error(ERR_CONNECTION_BROKEN, strerror(errno));
-    disconnect();
-    return false;
-  } else if (ret == 0) { // timeout
-    emit error(ERR_SERVER_TIMEOUT, QString::null);
-    disconnect();
-    return false;
-  } else { // select ok
-    if (FD_ISSET(tcpSocket,&fdsE)) { // exception
-      emit error(ERR_CONNECTION_BROKEN, QString::null);
-      disconnect();
-      return false;
-    }
-    if (FD_ISSET(tcpSocket,&fdsR)) { // we can read
-      return true;
-    }
-  }
-  // We should never get here.
-  emit error(ERR_INTERNAL, QString::null);
-  disconnect();
-  return false;
-}
-
-bool TCPWrapper::writeData(const QByteArray &data) {
-  ssize_t bytes;
-  ssize_t byteCount = 0;
-
-  int chars = data.size();
-  if (data[chars-1] == 0) chars--; // dont write 0 terminator
-
-  if (readyForWriting()) {
-
-     // DBG << "writing " << chars << "bytes [" << data.data() << "]" << endl;
-
-     while (byteCount < chars) {
-
-       bytes = KSocks::self()->write(tcpSocket, &data.data()[byteCount], chars-byteCount);
-       if (bytes <= 0) {
-         ERR << "error writing to socket" << endl;
-         emit error(ERR_COULD_NOT_WRITE,strerror(errno));
-         disconnect();
-         return false;
-       } else {
-          byteCount += bytes;
-       }
-     }
-
-     // DBG << bytes << " bytes written" << endl;
-
-     return true;
-  }
-
-  return false;
-}
-
-bool TCPWrapper::readyForWriting() {
-  fd_set fdsW, fdsE;
-  timeval tv;
-
-  // wait until we can read or exception or timeout
-  int ret;
-  do {
-    FD_ZERO(&fdsW);
-    FD_SET(tcpSocket, &fdsW);
-    FD_ZERO(&fdsE);
-    FD_SET(tcpSocket, &fdsE);
-    tv.tv_sec = timeOut;
-    tv.tv_usec = 0;
-    ret = KSocks::self()->select(FD_SETSIZE, NULL, &fdsW, &fdsE, &tv);
-    // DBG << "select (w): " << ret << " errno: " << errno << endl;
-  } while ((ret<0) && (errno == EINTR)); // ignore signals
-
-  if (ret < 0) { // -1: select failed
-    emit error(ERR_CONNECTION_BROKEN, strerror(errno));
-    disconnect();
-    return false;
-  } else if (ret == 0) { // timeout
-    emit error(ERR_SERVER_TIMEOUT, "");
-    disconnect();
-    return false;
-  } else { // select ok
-    if (FD_ISSET(tcpSocket,&fdsE)) { // exception
-      emit error(ERR_CONNECTION_BROKEN, "");
-      disconnect();
-      return false;
-    }
-    if (FD_ISSET(tcpSocket,&fdsW)) { // we can write
-      return true;
-    }
-  }
-  // We should never get here.
-  emit error(ERR_INTERNAL, QString::null);
-  disconnect();
-  return false;
-}
-
-void TCPWrapper::setTimeOut(int tm_out) {
-  timeOut = tm_out;
-}
-
-bool TCPWrapper::readLine(QCString &line) {
-  char *nextLine;
-
-  // if there is a complete line in buffer, return it
-  if ((nextLine=strstr(thisLine,"\r\n"))) {
-    //DBG << "there is a line in buffer at " << (thisLine-buffer) << "..." << (nextLine-buffer) << endl;
-    line = QCString(thisLine,nextLine-thisLine+2+1);
-    thisLine=nextLine+2;
-    return true;
-  }
-
-  //DBG << "need to read more data from buffer" << endl;
-  //DBG << "thisLine: [" << thisLine << "]" << endl;
-
-  do {
-    if (!readData()) {
-      return false;
-    }
-  } while (! ((nextLine=strstr(thisLine,"\r\n"))) );
-
-  // now there is a complete line in the buffer, return it
-  //DBG << "read line from socket, in buffer now at " << (thisLine-buffer) << "..." << (nextLine-buffer) << endl;
-  //DBG << "buffer: [" << buffer << "]" << endl;
-  line = QCString(thisLine,nextLine-thisLine+2+1);
-  thisLine=nextLine+2;
-  return true;
-}
-
-#include "nntp.moc"

@@ -1,5 +1,7 @@
 /* This file is part of KDE
    Copyright (C) 2000 by Wolfram Diestel <wolfram@steloj.de>
+   Copyright (C) 2005 by Tim Way <tim@way.hrcoxmail.com>
+   Copyright (C) 2005 by Volker Krause <volker.krause@rwth-aachen.de>
 
    This is free software; you can redistribute it and/or
    modify it under the terms of the GNU Library General Public
@@ -9,10 +11,11 @@
 #ifndef _NNTP_H
 #define _NNTP_H
 
-#include <qobject.h>
 #include <qstring.h>
 #include <kio/global.h>
-#include <kio/slavebase.h>
+#include <kio/tcpslavebase.h>
+
+#define MAX_PACKET_LEN 4096
 
 /* TODO:
   - test special post command
@@ -20,56 +23,19 @@
   - remove unnecessary debug stuff
 */
 
-class TCPWrapper: public QObject {
-
-  Q_OBJECT
-
-  public:
-    TCPWrapper();
-    virtual ~TCPWrapper();
-
-    bool connect(const QString &host, short unsigned int port); // connect to host
-    bool connected() { return tcpSocket >= 0; }; // socket exist
-    bool disconnect();                           // close socket
-
-    int  read(QByteArray &data, int max_chars);  // read from buffer
-    bool readLine(QCString &line);               // read next line
-    bool write(const QByteArray &data)   { return writeData(data); };  // write to socket
-    bool writeLine(const QCString &line) { return writeData(line + "\r\n"); }; // write to socket
-
-    void setTimeOut(int tm_out);                 // sets a new timeout value,
-
-  protected:
-    bool readData();                             // read data from socket into buffer
-    bool writeData(const QByteArray &data);      // write data to socket
-
-  signals:
-    void error(KIO::Error errnum, const QString &errinfo);
-
-  private:
-    int timeOut;          // socket timeout in sec
-    int tcpSocket;        // socket handle
-    char* thisLine; // line (unread data) position in the buffer
-    char* data_end; // end of data in the buffer
-    char* buffer;   // buffer for accessing by readLine
-
-    bool readyForReading(); // waits until socket is ready for reading or error
-    bool readyForWriting(); // waits until socket is ready for writing or error
-};
-
-class NNTPProtocol : public QObject, public KIO::SlaveBase
+class NNTPProtocol:public KIO::TCPSlaveBase
 {
 
- Q_OBJECT
-
  public:
-  NNTPProtocol (const QCString &pool, const QCString &app );
+  /** Default Constructor
+   * @param isSSL is a true or false to indicate whether ssl is to be used
+   */
+  NNTPProtocol ( const QCString & pool, const QCString & app, bool isSSL );
   virtual ~NNTPProtocol();
 
   virtual void get(const KURL& url );
   virtual void stat(const KURL& url );
   virtual void listDir(const KURL& url );
-  virtual void slave_status();
   virtual void setHost(const QString& host, int port,
         const QString& user, const QString& pass);
 
@@ -87,7 +53,7 @@ class NNTPProtocol : public QObject, public KIO::SlaveBase
     *  Send a command to the server. Returns the response code and
     *  the response line
     */
-  int send_cmd (const QString &cmd);
+  int sendCommand( const QString &cmd );
 
   /**
     *  Attempt to properly shut down the NNTP connection by sending
@@ -96,47 +62,38 @@ class NNTPProtocol : public QObject, public KIO::SlaveBase
   void nntp_close ();
 
   /**
-    * Attempt to initiate a NNTP connection via a TCP socket.  If no port
-    * is passed, port 119 is assumed.
+    * Attempt to initiate a NNTP connection via a TCP socket, if no existing
+    * connection could be reused.
     */
-  void nntp_open();
+  bool nntp_open();
 
   /**
     * Post article. Invoked by special()
     */
   bool post_article();
 
- protected slots:
-   void socketError(KIO::Error errnum, const QString &errinfo);
 
  private:
-   // connection info
-   QString host, pass, user;
-   short unsigned int port;
-   QString resp_line;
-   bool postingAllowed;
+   QString mHost, mUser, mPass;
+   bool postingAllowed, opened;
+   char readBuffer[MAX_PACKET_LEN];
+   ssize_t readBufferLen;
 
-   TCPWrapper socket;   // handles the socket stuff
-   int eval_resp();     // get server response and check it for general errors
-
-   void fetchGroups();  // fetch all availabel news groups
-   bool fetchGroup(QString& group); // fetch all messages from one news group
-   void fillUDSEntry(KIO::UDSEntry& entry, const QString& name, int size, bool posting_allowed,
-      bool is_article); // makes an UDSEntry with file informations,
-                        // used in stat and listDir
-   // QString& errorStr(int resp_code); // gives the NNTP error message for a server response code
-   void unexpected_response(int res_code, const QString& command); // error handling for unexpected responses
+   /// fetch all available news groups
+   void fetchGroups ();
+   /// fetch all messages from one news group
+   bool fetchGroup ( QString & group );
+   /// creates an UDSEntry with file information used in stat and listDir
+   void fillUDSEntry ( KIO::UDSEntry & entry, const QString & name, int size,
+                       bool postingAllowed, bool is_article );
+   /// error  handling for unexpected responses
+   void unexpected_response ( int res_code, const QString & command );
+   /**
+     * grabs the response line from the server. used after most send_cmd calls. max
+     * length for the returned string ( char *data ) is 4096 characters including
+     * the "\r\n" terminator.
+     */
+   int evalResponse ( char *data, ssize_t &len );
 };
 
-
 #endif
-
-
-
-
-
-
-
-
-
-
