@@ -495,7 +495,7 @@ void MANProtocol::get(const KURL& url )
        m_outputBuffer.setBuffer(QByteArray());
        // tell we are done
        data(QByteArray());
-    };
+    }
     finished();
 }
 
