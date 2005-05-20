@@ -146,12 +146,12 @@ using namespace std;
 #define DOCTYPE "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">\n"
 #endif
 
-/* BSD mandoc Bl/El lists to HTML list types */
+/* mdoc(7) Bl/El lists to HTML list types */
 #define BL_DESC_LIST   1
 #define BL_BULLET_LIST 2
 #define BL_ENUM_LIST   4
 
-/* BSD mandoc Bd/Ed example(?) blocks */
+/* mdoc(7) Bd/Ed example(?) blocks */
 #define BD_LITERAL  1
 #define BD_INDENT   2
 
@@ -2167,39 +2167,39 @@ static char *skip_till_newline(char *c)
 #define REQ_nr        68
 #define REQ_am        69
 #define REQ_de        70
-#define REQ_Bl        71 // mdoc "Begin List"
-#define REQ_El        72 // mdoc "End List"
-#define REQ_It        73 // mdoc "ITem"
+#define REQ_Bl        71 // mdoc(7) "Begin List"
+#define REQ_El        72 // mdoc(7) "End List"
+#define REQ_It        73 // mdoc(7) "ITem"
 #define REQ_Bk        74
 #define REQ_Ek        75
 #define REQ_Dd        76
-#define REQ_Os        77 // mdoc
+#define REQ_Os        77 // mdoc(7)
 #define REQ_Bt        78
-#define REQ_At        79 // mdoc "AT&t" (not parsable, not callable)
-#define REQ_Fx        80 // mdoc "Freebsd" (not parsable, not callable)
+#define REQ_At        79 // mdoc(7) "AT&t" (not parsable, not callable)
+#define REQ_Fx        80 // mdoc(7) "Freebsd" (not parsable, not callable)
 #define REQ_Nx        81
 #define REQ_Ox        82
-#define REQ_Bx        83 // mdoc "Bsd"
-#define REQ_Ux        84 // mdoc "UniX"
+#define REQ_Bx        83 // mdoc(7) "Bsd"
+#define REQ_Ux        84 // mdoc(7) "UniX"
 #define REQ_Dl        85
 #define REQ_Bd        86
 #define REQ_Ed        87
 #define REQ_Be        88
-#define REQ_Xr        89 // mdoc "eXternal Reference"
-#define REQ_Fl        90 // mdoc "FLag"
+#define REQ_Xr        89 // mdoc(7) "eXternal Reference"
+#define REQ_Fl        90 // mdoc(7) "FLag"
 #define REQ_Pa        91
 #define REQ_Pf        92
 #define REQ_Pp        93
-#define REQ_Dq        94 // mdoc "Double Quote"
+#define REQ_Dq        94 // mdoc(7) "Double Quote"
 #define REQ_Op        95
 #define REQ_Oo        96
 #define REQ_Oc        97
-#define REQ_Pq        98 // mdoc "Parenthese Quote"
+#define REQ_Pq        98 // mdoc(7) "Parenthese Quote"
 #define REQ_Ql        99
-#define REQ_Sq       100 // mdoc "Single Quote"
+#define REQ_Sq       100 // mdoc(7) "Single Quote"
 #define REQ_Ar       101
 #define REQ_Ad       102
-#define REQ_Em       103 // mdoc "EMphasis"
+#define REQ_Em       103 // mdoc(7) "EMphasis"
 #define REQ_Va       104
 #define REQ_Xc       105
 #define REQ_Nd       106
@@ -2229,10 +2229,10 @@ static char *skip_till_newline(char *c)
 #define REQ_perc_J   130
 #define REQ_perc_R   131
 #define REQ_perc_T   132
-#define REQ_An       133 // mdoc "Author Name"
-#define REQ_Aq       134 // mdoc "Angle bracket Quote"
-#define REQ_Bq       135 // mdoc "Bracket Quote"
-#define REQ_Qq       136 // mdoc  "straight double Quote"
+#define REQ_An       133 // mdoc(7) "Author Name"
+#define REQ_Aq       134 // mdoc(7) "Angle bracket Quote"
+#define REQ_Bq       135 // mdoc(7) "Bracket Quote"
+#define REQ_Qq       136 // mdoc(7)  "straight double Quote"
 #define REQ_UR       137 // man(7) "URl"
 #define REQ_UE       138 // man(7) "Url End"
 #define REQ_UN       139 // man(7) "Url Name" (a.k.a. anchors)
@@ -2280,8 +2280,8 @@ static char* process_quote(char* c, int j, const char* open, const char* close)
 
 static char *scan_request(char *c)
 {
-				  /* BSD Mandoc stuff */
-    static int mandoc_synopsis=0; /* True if we are in the synopsis section */
+				  /* mdoc(7) stuff */
+    static bool mandoc_synopsis=false; /* True if we are in the synopsis section */
     static bool mandoc_command=false;  /* True if this is mandoc page */
     static int mandoc_bd_options; /* Only copes with non-nested Bd's */
     static bool ur_ignore=false; // Has .UR a parameter : (for .UE to know if or not to write </a>)
@@ -2366,7 +2366,7 @@ static char *scan_request(char *c)
 	    /* fprintf(stderr, "%s\n", c+2); */
             return 0;
 	    break;
-	case REQ_An: // mdoc "Author Name"
+	case REQ_An: // mdoc(7) "Author Name"
 	    c+=j;
 	    c=scan_troff_mandoc(c,1,0);
 	    break;
@@ -2780,7 +2780,7 @@ static char *scan_request(char *c)
                 else
                     curpos=0;
 	    break;
-   case REQ_Fd:                //for "Function definitions", mdoc package
+   case REQ_Fd:                //for "Function definitions", mdoc(7) package
    case REQ_Fn:                //for "Function calls": brackets and commas have to be inserted automatically
    case REQ_Fo:
    case REQ_Fc:
@@ -2953,7 +2953,7 @@ static char *scan_request(char *c)
 	case REQ_PD:
 	    c=skip_till_newline(c);
 	    break;
-	case REQ_Rs:	/* BSD mandoc */
+	case REQ_Rs:	/* mdoc(7) */
 	case REQ_RS:
 	    sl=fill_words(c+j, wordlist, &words, true, 0);
 	    j=1;
@@ -2967,7 +2967,7 @@ static char *scan_request(char *c)
 		curpos=0;
 		break;
 	    }
-	case REQ_Re:	/* BSD mandoc */
+	case REQ_Re:	/* mdoc(7) */
 	case REQ_RE:
                 if (itemdepth > 0)
                 {
@@ -2993,11 +2993,11 @@ static char *scan_request(char *c)
 	    c=scan_troff(c,1,NULL);
 	    out_html(change_to_size('0'));
 	    break;
-	case REQ_Ss:	/* BSD mandoc */
+	case REQ_Ss:	/* mdoc(7) */
 	    mandoc_command = 1;
 	case REQ_SS:
 	    mode=1;
-	case REQ_Sh:	/* BSD mandoc */
+	case REQ_Sh:	/* mdoc(7) */
 				/* hack for fallthru from above */
 	    mandoc_command = !mode || mandoc_command;
 	case REQ_SH:
@@ -3056,7 +3056,7 @@ static char *scan_request(char *c)
 	case REQ_TS:
 	    c=scan_table(c);
 	    break;
-	case REQ_Dt:	/* BSD mandoc */
+	case REQ_Dt:	/* mdoc(7) */
 	    mandoc_command = true;
 	case REQ_TH:
                 if (!output_possible)
@@ -3290,7 +3290,7 @@ static char *scan_request(char *c)
                 }
 	    c=skip_till_newline(c);
 	    break;
-	case REQ_Bl:	/* BSD mandoc */
+	case REQ_Bl:	/* mdoc(7) */
 	  {
 	    char list_options[NULL_TERMINATED(MED_STR_MAX)];
 	    char *nl = strchr(c,'\n');
@@ -3329,7 +3329,7 @@ static char *scan_request(char *c)
 	    c=skip_till_newline(c);
 	    break;
 	  }
-	case REQ_El:	/* BSD mandoc */
+	case REQ_El:	/* mdoc(7) */
 	    c=c+j;
                 if (dl_set[itemdepth] & BL_DESC_LIST)
 		out_html("</DL>\n");
@@ -3348,7 +3348,7 @@ static char *scan_request(char *c)
 	    curpos=0;
 	    c=skip_till_newline(c);
 	    break;
-	case REQ_It:	/* BSD mandoc */
+	case REQ_It:	/* mdoc(7) */
 	    c=c+j;
                 if (strncmp(c, "Xo", 2) == 0 && isspace(*(c+2)))
 	        c = skip_till_newline(c);
@@ -3382,10 +3382,10 @@ static char *scan_request(char *c)
                 else
                     curpos=0;
 	    break;
-	case REQ_Bk:	/* BSD mandoc */
-	case REQ_Ek:	/* BSD mandoc */
-	case REQ_Dd:	/* BSD mandoc */
-	case REQ_Os:	/* BSD mandoc */
+	case REQ_Bk:	/* mdoc(7) */
+	case REQ_Ek:	/* mdoc(7) */
+	case REQ_Dd:	/* mdoc(7) */
+	case REQ_Os:	/* mdoc(7) */
 	    trans_char(c,'"','\a');
 	    c=c+j;
 	    if (*c=='\n') c++;
@@ -3396,7 +3396,7 @@ static char *scan_request(char *c)
                 else
                     curpos=0;
 	    break;
-	case REQ_Bt:	/* BSD mandoc */
+	case REQ_Bt:	/* mdoc(7) */
 	    trans_char(c,'"','\a');
 	    c=c+j;
 	    out_html(" is currently in beta test.");
@@ -3405,12 +3405,12 @@ static char *scan_request(char *c)
                 else
                     curpos=0;
 	    break;
-	case REQ_At:	/* BSD mandoc */
-	case REQ_Fx:	/* BSD mandoc */
-	case REQ_Nx:	/* BSD mandoc */
-	case REQ_Ox:	/* BSD mandoc */
-	case REQ_Bx:	/* BSD mandoc */
-	case REQ_Ux:	/* BSD mandoc */
+	case REQ_At:	/* mdoc(7) */
+	case REQ_Fx:	/* mdoc(7) */
+	case REQ_Nx:	/* mdoc(7) */
+	case REQ_Ox:	/* mdoc(7) */
+	case REQ_Bx:	/* mdoc(7) */
+	case REQ_Ux:	/* mdoc(7) */
         {
 	    bool parsable=true;
 	    trans_char(c,'"','\a');
@@ -3444,7 +3444,7 @@ static char *scan_request(char *c)
                     curpos=0;
 	    break;
 	}
-	case REQ_Dl:	/* BSD mandoc */
+	case REQ_Dl:	/* mdoc(7) */
 	    c=c+j;
 	    out_html(NEWLINE);
 	    out_html("<BLOCKQUOTE>");
@@ -3458,7 +3458,7 @@ static char *scan_request(char *c)
                 else
                     curpos=0;
 	    break;
-	case REQ_Bd:	/* BSD mandoc */
+	case REQ_Bd:	/* mdoc(7) */
 	  {			/* Seems like a kind of example/literal mode */
 	    char bd_options[NULL_TERMINATED(MED_STR_MAX)];
 	    char *nl = strchr(c,'\n');
@@ -3487,7 +3487,7 @@ static char *scan_request(char *c)
 	    c=skip_till_newline(c);
 	    break;
 	  }
-	case REQ_Ed:	/* BSD mandoc */
+	case REQ_Ed:	/* mdoc(7) */
                 if (mandoc_bd_options & BD_LITERAL)
                 {
                     if (!fillout)
@@ -3503,7 +3503,7 @@ static char *scan_request(char *c)
 	    fillout=1;
 	    c=skip_till_newline(c);
 	    break;
-	case REQ_Be:	/* BSD mandoc */
+	case REQ_Be:	/* mdoc(7) */
 	    c=c+j;
                 if (fillout)
                     out_html("<br><br>");
@@ -3514,7 +3514,7 @@ static char *scan_request(char *c)
 	    curpos=0;
 	    c=skip_till_newline(c);
 	    break;
-            case REQ_Xr:	/* BSD mandoc */ // ### FIXME: it should issue a <a href="man:somewhere(x)"> directly
+            case REQ_Xr:	/* mdoc(7) */ // ### FIXME: it should issue a <a href="man:somewhere(x)"> directly
 	    {
 	      /* Translate xyz 1 to xyz(1)
 	       * Allow for multiple spaces.  Allow the section to be missing.
@@ -3577,7 +3577,7 @@ static char *scan_request(char *c)
                     curpos=0;
 	    }
 	    break;
-	case REQ_Fl:	/* BSD mandoc */
+	case REQ_Fl:	/* mdoc(7) */
 	    trans_char(c,'"','\a');
 	    c=c+j;
 	    out_html("-");
@@ -3593,8 +3593,8 @@ static char *scan_request(char *c)
                 else
                     curpos=0;
 	    break;
-	case REQ_Pa:	/* BSD mandoc */
-	case REQ_Pf:	/* BSD mandoc */
+	case REQ_Pa:	/* mdoc(7) */
+	case REQ_Pf:	/* mdoc(7) */
 	    trans_char(c,'"','\a');
 	    c=c+j;
 	    if (*c=='\n') c++;
@@ -3605,7 +3605,7 @@ static char *scan_request(char *c)
                 else
                     curpos=0;
 	    break;
-	case REQ_Pp:	/* BSD mandoc */
+	case REQ_Pp:	/* mdoc(7) */
                 if (fillout)
                     out_html("<br><br>\n");
                 else
@@ -3615,25 +3615,25 @@ static char *scan_request(char *c)
 	    curpos=0;
 	    c=skip_till_newline(c);
 	    break;
-	case REQ_Aq: // mdoc "Angle bracket Quote"
+	case REQ_Aq: // mdoc(7) "Angle bracket Quote"
 	    c=process_quote(c,j,"&lt;","&gt;");
 	    break;
-        case REQ_Bq: // mdoc "Bracket Quote"
+        case REQ_Bq: // mdoc(7) "Bracket Quote"
 	    c=process_quote(c,j,"[","]");
 	    break;
-	case REQ_Dq:	// mdoc "Double Quote"
+	case REQ_Dq:	// mdoc(7) "Double Quote"
 	    c=process_quote(c,j,"&ldquo;","&rdquo;");
 	    break;
-	case REQ_Pq:	// mdoc: "Parenthese Quote"
+	case REQ_Pq:	// mdoc(7) "Parenthese Quote"
 	    c=process_quote(c,j,"(",")");
 	    break;
-	case REQ_Qq:	// mdoc "straight double Quote"
+	case REQ_Qq:	// mdoc(7) "straight double Quote"
 	    c=process_quote(c,j,"&quot;","&quot;");
 	    break;
-	case REQ_Sq:	// mdoc "Single Quote"
+	case REQ_Sq:	// mdoc(7) "Single Quote"
 	    c=process_quote(c,j,"&lsquo;","&rsquo;");
 	    break;
-	case REQ_Op:	/* BSD mandoc */
+	case REQ_Op:	/* mdoc(7) */
 	    trans_char(c,'"','\a');
 	    c=c+j;
 	    if (*c=='\n') c++;
@@ -3648,7 +3648,7 @@ static char *scan_request(char *c)
                 else
                     curpos=0;
 	    break;
-	case REQ_Oo:	/* BSD mandoc */
+	case REQ_Oo:	/* mdoc(7) */
 	    trans_char(c,'"','\a');
 	    c=c+j;
 	    if (*c=='\n') c++;
@@ -3660,7 +3660,7 @@ static char *scan_request(char *c)
                 else
                     curpos=0;
 	    break;
-	case REQ_Oc:	/* BSD mandoc */
+	case REQ_Oc:	/* mdoc(7) */
 	    trans_char(c,'"','\a');
 	    c=c+j;
 	    c=scan_troff_mandoc(c, 1, NULL);
@@ -3671,7 +3671,7 @@ static char *scan_request(char *c)
                 else
                     curpos=0;
 	    break;
-	case REQ_Ql:	/* BSD mandoc */
+	case REQ_Ql:	/* mdoc(7) */
 	  {			/* Single quote first word in the line */
 	    char *sp;
 	    trans_char(c,'"','\a');
@@ -3700,7 +3700,7 @@ static char *scan_request(char *c)
                     curpos=0;
 	    break;
 	  }
-	case REQ_Ar:	/* BSD mandoc */
+	case REQ_Ar:	/* mdoc(7) */
             /* parse one line in italics */
 	    out_html(change_to_font('I'));
 	    trans_char(c,'"','\a');
@@ -3717,7 +3717,7 @@ static char *scan_request(char *c)
                 else
                     curpos=0;
 	    break;
-	case REQ_Em:	/* BSD mandoc */
+	case REQ_Em:	/* mdoc(7) */
 	    out_html("<em>");
 	    trans_char(c,'"','\a');
 	    c+=j;
@@ -3730,9 +3730,9 @@ static char *scan_request(char *c)
                 else
                     curpos=0;
 	    break;
-	case REQ_Ad:	/* BSD mandoc */
-	case REQ_Va:	/* BSD mandoc */
-	case REQ_Xc:	/* BSD mandoc */
+	case REQ_Ad:	/* mdoc(7) */
+	case REQ_Va:	/* mdoc(7) */
+	case REQ_Xc:	/* mdoc(7) */
             /* parse one line in italics */
 	    out_html(change_to_font('I'));
 	    trans_char(c,'"','\a');
@@ -3746,7 +3746,7 @@ static char *scan_request(char *c)
                 else
                     curpos=0;
 	    break;
-	case REQ_Nd:	/* BSD mandoc */
+	case REQ_Nd:	/* mdoc(7) */
 	    trans_char(c,'"','\a');
 	    c=c+j;
 	    if (*c=='\n') c++;
@@ -3758,7 +3758,7 @@ static char *scan_request(char *c)
                 else
                     curpos=0;
 	    break;
-	case REQ_Nm:	/* BSD mandoc */
+	case REQ_Nm:	/* mdoc(7) */
 	  {
 	    static char mandoc_name[NULL_TERMINATED(SMALL_STR_MAX)] = "";
 	    trans_char(c,'"','\a');
@@ -3806,12 +3806,12 @@ static char *scan_request(char *c)
                     curpos=0;
 	    break;
 	  }
-	case REQ_Cd:	/* BSD mandoc */
-	case REQ_Cm:	/* BSD mandoc */
-	case REQ_Ic:	/* BSD mandoc */
-	case REQ_Ms:	/* BSD mandoc */
-	case REQ_Or:	/* BSD mandoc */
-	case REQ_Sy:	/* BSD mandoc */
+	case REQ_Cd:	/* mdoc(7) */
+	case REQ_Cm:	/* mdoc(7) */
+	case REQ_Ic:	/* mdoc(7) */
+	case REQ_Ms:	/* mdoc(7) */
+	case REQ_Or:	/* mdoc(7) */
+	case REQ_Sy:	/* mdoc(7) */
             /* parse one line in bold */
 	    out_html(change_to_font('B'));
 	    trans_char(c,'"','\a');
@@ -3825,14 +3825,14 @@ static char *scan_request(char *c)
                 else
                     curpos=0;
 	    break;
-	case REQ_Dv:	/* BSD mandoc */
-	case REQ_Ev:	/* BSD mandoc */
-	case REQ_Fr:	/* BSD mandoc */
-	case REQ_Li:	/* BSD mandoc */
-	case REQ_No:	/* BSD mandoc */
-	case REQ_Ns:	/* BSD mandoc */
-	case REQ_Tn:	/* BSD mandoc */
-	case REQ_nN:	/* BSD mandoc */
+	case REQ_Dv:	/* mdoc(7) */
+	case REQ_Ev:	/* mdoc(7) */
+	case REQ_Fr:	/* mdoc(7) */
+	case REQ_Li:	/* mdoc(7) */
+	case REQ_No:	/* mdoc(7) */
+	case REQ_Ns:	/* mdoc(7) */
+	case REQ_Tn:	/* mdoc(7) */
+	case REQ_nN:	/* mdoc(7) */
 	    trans_char(c,'"','\a');
 	    c=c+j;
 	    if (*c=='\n') c++;
@@ -3845,7 +3845,7 @@ static char *scan_request(char *c)
                 else
                     curpos=0;
 	    break;
-	case REQ_perc_A:	/* BSD mandoc biblio stuff */
+	case REQ_perc_A:	/* mdoc(7) biblio stuff */
 	case REQ_perc_D:
 	case REQ_perc_N:
 	case REQ_perc_O:
@@ -3938,7 +3938,7 @@ static char *scan_request(char *c)
 		     ((isupper(*c) && islower(*(c+1)))
                     || (islower(*c) && isupper(*(c+1)))) )
                 {
-                    /* Let through any BSD mandoc commands that haven't
+                    /* Let through any mdoc(7) commands that haven't
 				 * been delt with.
 				 * I don't want to miss anything out of the text.
 				 */
@@ -4025,7 +4025,7 @@ static char *scan_troff(char *c, int san, char **result)
 	    FLUSHIBP;
 	    h = scan_request(h);
 	    if (h && san && h[-1]=='\n') h--;
-	} else if (mandoc_line // ### FIXME: a mdoc request must directly start after a space
+	} else if (mandoc_line // ### FIXME: a mdoc(7) request must directly start after a space
 	           && *(h-1) && isspace(*(h-1)) // We can always go back, as there is at least the sequence at the start of line
 		   && *(h) && isupper(*(h))
 		   && *(h+1) && islower(*(h+1))
