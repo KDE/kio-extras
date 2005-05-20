@@ -52,6 +52,17 @@
 #include "thumbnail.h"
 #include <kio/thumbcreator.h>
 
+// Use correctly KInstance instead of KApplication (but then no QPixmap)
+#undef USE_KINSTANCE
+// Fix thumbnail: protocol
+#define THUMBNAIL_HACK (1)
+// An image needs to be raw in stream and not as QDataStream
+#define IMAGE_RAW_IN_STREAM (1)
+
+#ifdef THUMBNAIL_HACK
+# include <ktrader.h>
+#endif
+
 // Recognized metadata entries:
 // mimeType     - the mime type of the file, used for the overlay icon if any
 // width        - maximum width for the thumbnail
@@ -77,9 +88,13 @@ extern "C"
     KDE_EXPORT int kdemain(int argc, char **argv);
 }
 
+
 int kdemain(int argc, char **argv)
 {
     nice( 5 );
+#if USE_KINSTANCE
+    KInstance instance("kio_thumbnail");
+#else
     // creating KApplication in a slave in not a very good idea,
     // as dispatchLoop() doesn't allow it to process its messages,
     // so it for example wouldn't reply to ksmserver - on the other
@@ -90,6 +105,7 @@ int kdemain(int argc, char **argv)
     KApplication::disableAutoDcopRegistration();
 
     KApplication app(argc, argv, "kio_thumbnail", false, true);
+#endif
 
     if (argc != 4)
     {
@@ -118,6 +134,16 @@ ThumbnailProtocol::~ThumbnailProtocol()
 void ThumbnailProtocol::get(const KURL &url)
 {
     m_mimeType = metaData("mimeType");
+    kdDebug(7115) << "Wanting MIME Type:" << m_mimeType << endl;
+#if THUMBNAIL_HACK
+    // ### HACK
+    if (m_mimeType.isEmpty())
+    {
+        m_mimeType = KMimeType::findByURL(url)->name();
+        kdDebug(7115) << "Guessing MIME Type:" << m_mimeType << endl;
+    }
+#endif
+
     if (m_mimeType.isEmpty())
     {
         error(KIO::ERR_INTERNAL, i18n("No MIME Type specified."));
@@ -126,13 +152,23 @@ void ThumbnailProtocol::get(const KURL &url)
 
     m_width = metaData("width").toInt();
     m_height = metaData("height").toInt();
-    if (m_width <= 0 || m_height <= 0)
+    int iconSize = metaData("iconSize").toInt();
+
+    if (m_width < 0 || m_height < 0)
     {
         error(KIO::ERR_INTERNAL, i18n("No or invalid size specified."));
         return;
     }
+#if THUMBNAIL_HACK
+    else if (!m_width || !m_height)
+    {
+        kdDebug(7115) << "Guessing height, width, icon sizre!" << endl;
+        m_width=128;
+        m_height=128;
+        iconSize=128;
+    }
+#endif
 
-    int iconSize = metaData("iconSize").toInt();
     if (!iconSize)
         iconSize = KGlobal::iconLoader()->currentSize(KIcon::Desktop);
     if (iconSize != m_iconSize)
@@ -176,11 +212,35 @@ void ThumbnailProtocol::get(const KURL &url)
     {
         kdDebug(7115) << "using thumb creator for the thumbnail\n";
         QString plugin = metaData("plugin");
+#ifdef THUMBNAIL_HACK
+        if (plugin.isEmpty())
+        {
+            KTrader::OfferList plugins = KTrader::self()->query("ThumbCreator");
+            QMap<QString, KService::Ptr> mimeMap;
+    
+            for (KTrader::OfferList::ConstIterator it = plugins.begin(); it != plugins.end(); ++it)
+            {
+                QStringList mimeTypes = (*it)->property("MimeTypes").toStringList();
+                for (QStringList::ConstIterator mt = mimeTypes.begin(); mt != mimeTypes.end(); ++mt)
+                {
+                    if  ((*mt)==m_mimeType)
+                    {
+                        plugin=(*it)->library();
+                        break;
+                    }
+                }
+                if (!plugin.isEmpty())
+                    break;
+            }
+        }
+        kdDebug(7115) << "Guess plugin: " << plugin << endl;
+#endif
         if (plugin.isEmpty())
         {
             error(KIO::ERR_INTERNAL, i18n("No plugin specified."));
             return;
         }
+        
         ThumbCreator *creator = m_creators[plugin];
         if (!creator)
         {
@@ -218,6 +278,8 @@ void ThumbnailProtocol::get(const KURL &url)
             img = img.smoothScale(m_width, int(QMAX((double)m_width * imgRatio, 1)));
     }
 
+// ### FIXME
+#ifndef USE_KINSTANCE
     if (flags & ThumbCreator::DrawFrame)
     {
         QPixmap pix;
@@ -252,6 +314,7 @@ void ThumbnailProtocol::get(const KURL &url)
 
         img = pix.convertToImage();
     }
+#endif
 
     if ((flags & ThumbCreator::BlendIcon) && KGlobal::iconLoader()->alphaBlending(KIcon::Desktop))
     {
@@ -265,13 +328,38 @@ void ThumbnailProtocol::get(const KURL &url)
         KImageEffect::blendOnLower( x, y, icon, img );
     }
 
-    QByteArray imgData;
-    QDataStream stream( imgData, IO_WriteOnly );
-    QString shmid = metaData("shmid");
+    if (img.isNull())
+    {
+        error(KIO::ERR_INTERNAL, i18n("Failed to create a thumbnail."));
+        return;
+    }
+
+    const QString shmid = metaData("shmid");
     if (shmid.isEmpty())
+    {
+#ifdef IMAGE_RAW_IN_STREAM
+        QBuffer buf;
+        if (!buf.open(IO_WriteOnly))
+        {
+            error(KIO::ERR_INTERNAL, i18n("Could not write image."));
+            return;
+        }
+        img.save(&buf,"PNG");
+        buf.close();
+        data(buf.buffer());
+#else
+        QByteArray imgData;
+        QDataStream stream( imgData, IO_WriteOnly );
+        kdDebug(7115) << "IMAGE TO STREAM" << endl;
         stream << img;
+        data(imgData);
+#endif
+    }
     else
     {
+        QByteArray imgData;
+        QDataStream stream( imgData, IO_WriteOnly );
+        kdDebug(7115) << "IMAGE TO SHMID" << endl;
         void *shmaddr = shmat(shmid.toInt(), 0, 0);
         if (shmaddr == (void *)-1)
         {
@@ -288,8 +376,8 @@ void ThumbnailProtocol::get(const KURL &url)
                << img.hasAlphaBuffer();
         memcpy(shmaddr, img.bits(), img.numBytes());
         shmdt((char*)shmaddr);
+        data(imgData);
     }
-    data(imgData);
     finished();
 }
 
