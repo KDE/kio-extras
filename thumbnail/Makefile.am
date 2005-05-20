@@ -63,3 +63,7 @@ services_DATA = imagethumbnail.desktop textthumbnail.desktop \
                 $(CURSOR_DATAFILE) $(EXR_DATAFILE)
 
 servicesdir = $(kde_servicesdir)
+
+messages:
+	$(XGETTEXT) *.cpp -o $(podir)/kio_thumbnail.pot
+

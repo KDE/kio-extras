@@ -47,6 +47,7 @@
 #include <kservicetype.h>
 #include <kuserprofile.h>
 #include <kfilemetainfo.h>
+#include <klocale.h>
 
 #include "thumbnail.h"
 #include <kio/thumbcreator.h>
@@ -92,7 +93,7 @@ int kdemain(int argc, char **argv)
 
     if (argc != 4)
     {
-        kdError() << "Usage: kio_thumbnail protocol domain-socket1 domain-socket2" << endl;
+        kdError(7115) << "Usage: kio_thumbnail protocol domain-socket1 domain-socket2" << endl;
         exit(-1);
     }
 
@@ -119,7 +120,7 @@ void ThumbnailProtocol::get(const KURL &url)
     m_mimeType = metaData("mimeType");
     if (m_mimeType.isEmpty())
     {
-        error(KIO::ERR_INTERNAL, "No MIME Type specified.");
+        error(KIO::ERR_INTERNAL, i18n("No MIME Type specified."));
         return;
     }
 
@@ -127,7 +128,7 @@ void ThumbnailProtocol::get(const KURL &url)
     m_height = metaData("height").toInt();
     if (m_width <= 0 || m_height <= 0)
     {
-        error(KIO::ERR_INTERNAL, "No or invalid size specified.");
+        error(KIO::ERR_INTERNAL, i18n("No or invalid size specified."));
         return;
     }
 
@@ -177,7 +178,7 @@ void ThumbnailProtocol::get(const KURL &url)
         QString plugin = metaData("plugin");
         if (plugin.isEmpty())
         {
-            error(KIO::ERR_INTERNAL, "No plugin specified.");
+            error(KIO::ERR_INTERNAL, i18n("No plugin specified."));
             return;
         }
         ThumbCreator *creator = m_creators[plugin];
@@ -194,7 +195,7 @@ void ThumbnailProtocol::get(const KURL &url)
             }
             if (!creator)
             {
-                error(KIO::ERR_INTERNAL, "Cannot load ThumbCreator " + plugin);
+                error(KIO::ERR_INTERNAL, i18n("Cannot load ThumbCreator %1").arg(plugin));
                 return;
             }
             m_creators.insert(plugin, creator);
@@ -202,7 +203,7 @@ void ThumbnailProtocol::get(const KURL &url)
 
         if (!creator->create(url.path(), m_width, m_height, img))
         {
-            error(KIO::ERR_INTERNAL, "Cannot create thumbnail for " + url.path());
+            error(KIO::ERR_INTERNAL, i18n("Cannot create thumbnail for %1").arg(url.path()));
             return;
         }
         flags = creator->flags();
@@ -274,12 +275,12 @@ void ThumbnailProtocol::get(const KURL &url)
         void *shmaddr = shmat(shmid.toInt(), 0, 0);
         if (shmaddr == (void *)-1)
         {
-            error(KIO::ERR_INTERNAL, "Failed to attach to shared memory segment " + shmid);
+            error(KIO::ERR_INTERNAL, i18n("Failed to attach to shared memory segment %1").arg(shmid));
             return;
         }
         if (img.width() * img.height() > m_width * m_height)
         {
-            error(KIO::ERR_INTERNAL, "Image is too big for the shared memory segment");
+            error(KIO::ERR_INTERNAL, i18n("Image is too big for the shared memory segment"));
             shmdt((char*)shmaddr);
             return;
         }
