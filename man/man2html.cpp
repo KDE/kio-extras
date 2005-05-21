@@ -3558,23 +3558,23 @@ static char *scan_request(char *c)
 	    trans_char(c,'"','\a');
 	    c=c+j;
 	    if (*c=='\n') c++;
-                if (i==V('A','t'))
+                if (request==REQ_At)
 		{
                     out_html("AT&amp;T UNIX ");
 		    parsable=false;
 		}
-                else if (i==V('F','x'))
+                else if (request==REQ_Fx)
 		{
                     out_html("FreeBSD ");
 		    parsable=false;
 		}
-                else if (i==V('N','x'))
+                else if (request==REQ_Nx))
                     out_html("NetBSD ");
-                else if (i==V('O','x'))
+                else if (request==REQ_Ox)
                     out_html("OpenBSD ");
-                else if (i==V('B','x'))
+                else if (request==REQ_Bx)
                     out_html("BSD ");
-                else if (i==V('U','x'))
+                else if (request==REQ_Ux)
                     out_html("UNIX ");
 		if (parsable)
         	    c=scan_troff_mandoc(c,1,0);
@@ -3919,9 +3919,9 @@ static char *scan_request(char *c)
                 else
                     curpos=0;
 	    break;
-	case REQ_Nm:	/* mdoc(7) */
+     case REQ_Nm:	// mdoc(7) "Name Macro" ### FIXME
 	  {
-	    static char mandoc_name[NULL_TERMINATED(SMALL_STR_MAX)] = "";
+            static char mandoc_name[NULL_TERMINATED(SMALL_STR_MAX)] = ""; // ### TODO Use QCString
 	    trans_char(c,'"','\a');
 	    c=c+j;
 
@@ -3943,6 +3943,7 @@ static char *scan_request(char *c)
             mandoc_name_count++;
 
 	    out_html(change_to_font('B'));
+            // ### FIXME: fill_words must be used
 	    while (*c == ' '|| *c == '\t') c++;
                 if ((tolower(*c) >= 'a' && tolower(*c) <= 'z' ) || (*c >= '0' && *c <= '9'))
                 {
@@ -3972,7 +3973,7 @@ static char *scan_request(char *c)
 	case REQ_Ic:	/* mdoc(7) */
 	case REQ_Ms:	/* mdoc(7) */
 	case REQ_Or:	/* mdoc(7) */
-	case REQ_Sy:	/* mdoc(7) */
+        case REQ_Sy:    /* mdoc(7) */
             /* parse one line in bold */
 	    out_html(change_to_font('B'));
 	    trans_char(c,'"','\a');
