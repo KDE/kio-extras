@@ -583,6 +583,19 @@ bool NNTPProtocol::nntp_open()
     // let local class know whether posting is allowed or not
     postingAllowed = (res_code == 200);
 
+    // activate TLS if requiested
+    if ( metaData("tls") == "on" ) {
+      if ( sendCommand( "STARTTLS" ) != 382 ) {
+        error( ERR_COULD_NOT_CONNECT, i18n("This server does not support TLS") );
+        return false;
+      }
+      int tlsrc = startTLS();
+      if ( tlsrc != 1 ) {
+        error( ERR_COULD_NOT_CONNECT, i18n("TLS negotiation failed") );
+        return false;
+      }
+    }
+
     return true;
   }
   // connection attempt failed
