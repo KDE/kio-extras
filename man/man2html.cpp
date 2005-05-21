@@ -2294,12 +2294,13 @@ static char* process_quote(char* c, int j, const char* open, const char* close)
 
 static char *scan_request(char *c)
 {
-				  /* mdoc(7) stuff */
+    // mdoc(7) stuff
     static bool mandoc_synopsis=false; /* True if we are in the synopsis section */
     static bool mandoc_command=false;  /* True if this is mandoc page */
     static int mandoc_bd_options; /* Only copes with non-nested Bd's */
-    static bool ur_ignore=false; // Has .UR a parameter : (for .UE to know if or not to write </a>)
     static int function_argument=0; // Number of function argument (.Fo, .Fa, .Fc)
+    // man(7) stuff
+    static bool ur_ignore=false; // Has .UR a parameter : (for .UE to know if or not to write </a>)
 
     int i,mode=0;
     char *h;
@@ -2311,7 +2312,7 @@ static char *scan_request(char *c)
     if (c[0]=='\n') return c+1;
     if (c[0]==escapesym)
     {
-	/* some pages use .\" .\$1 .\} */
+        /* some pages use .\" .\$1 .\} */
 	/* .\$1 is too difficult/stuppid */
         if (c[1]=='$')
             c=skip_till_newline(c);
@@ -2324,14 +2325,14 @@ static char *scan_request(char *c)
         if (c[1]=='\n') j=1; else j=2;
         nlen = 0;
         while ((c[nlen] != ' ') && (c[nlen] != '\t') &&
-                (c[nlen] != '\n') && (c[nlen] != escapesym)) nlen++;
+            (c[nlen] != '\n') && (c[nlen] != escapesym)) nlen++;
         j = nlen;
         while (c[j]==' ' || c[j]=='\t') j++;
 	i=V(c[0],c[1]);
         /* search macro database of self-defined macros */
         owndef = defdef;
         while (owndef && strncmp(c, owndef->name, strlen(owndef->name)))
-             owndef=owndef->next;
+            owndef=owndef->next;
         if (owndef)
         {
             char **oldargument;
@@ -2369,485 +2370,565 @@ static char *scan_request(char *c)
         {
             switch (int request = get_request(c, nlen))
             {
-	case REQ_ab:
-	    h=c+j;
-	    while (*h && *h !='\n') h++;
-	    *h='\0';
-                if (scaninbuff && buffpos)
+                case REQ_ab: // groff(7) "ABort"
                 {
-		buffer[buffpos]='\0';
-		puts(buffer);
-	    }
-	    /* fprintf(stderr, "%s\n", c+2); */
-            return 0;
-	    break;
-	case REQ_An: // mdoc(7) "Author Name"
-	    c+=j;
-	    c=scan_troff_mandoc(c,1,0);
-	    break;
-	case REQ_di:
-	    {
-		STRDEF *de;
-		/* int oldcurpos=curpos; */
-		c=c+j;
-		i=V(c[0],c[1]);
-                if (*c=='\n')
-                {
-                    c++;
+                    h=c+j;
+                    while (*h && *h !='\n') h++;
+                    *h='\0';
+                    if (scaninbuff && buffpos)
+                    {
+                        buffer[buffpos]='\0';
+                        puts(buffer);
+                    }
+                    /* fprintf(stderr, "%s\n", c+2); */
+                    return 0;
                     break;
                 }
-		while (*c && *c!='\n') c++;
-		c++;
-		h=c;
-		while (*c && strncmp(c,".di",3)) while (*c && *c++!='\n');
-		*c='\0';
-		de=strdef;
-		while (de && de->nr !=i) de=de->next;
-                if (!de)
+        	case REQ_An: // mdoc(7) "Author Name"
                 {
-		    de=new STRDEF();
-		    de->nr=i;
-		    de->slen=0;
-		    de->next=strdef;
-		    de->st=NULL;
-		    strdef=de;
+                    c+=j;
+                    c=scan_troff_mandoc(c,1,0);
+                    break;
                 }
-                else
+                case REQ_di: // groff(7) "end current DIversion"
+	       {
+                    STRDEF *de;
+                    /* int oldcurpos=curpos; */
+                    c=c+j;
+                    i=V(c[0],c[1]);
+                    if (*c=='\n')
+                    {
+                        c++;
+                        break;
+                    }
+                    while (*c && *c!='\n') c++;
+                    c++;
+                    h=c;
+                    while (*c && strncmp(c,".di",3)) while (*c && *c++!='\n');
+                    *c='\0';
+                    de=strdef;
+                    while (de && de->nr !=i) de=de->next;
+                    if (!de)
+                    {
+                        de=new STRDEF();
+                        de->nr=i;
+                        de->slen=0;
+                        de->next=strdef;
+                        de->st=NULL;
+                        strdef=de;
+                    }
+                    else
+                    {
+                        delete [] de->st;
+                        de->slen=0;
+                        de->st=NULL;
+                    }
+                    scan_troff(h,0,&de->st);
+                    if (*c) *c='.';
+                    while (*c && *c++!='\n');
+                    break;
+                }
+                case REQ_ds: // groff(7) "Define String variable"
+                    mode=1;
+                case REQ_as: // groff (7) "Append String variable"
                 {
-		    delete [] de->st;
-		    de->slen=0;
-		    de->st=NULL;
-		}
-		scan_troff(h,0,&de->st);
-		if (*c) *c='.';
-		while (*c && *c++!='\n');
-		break;
-	    }
-	case REQ_ds:
-	    mode=1;
-	case REQ_as:
-	    {
-		STRDEF *de;
-		int oldcurpos=curpos;
-
-		c=c+j;
-		i=V(c[0],c[1]);
-		j=0;
-		while (c[j] && c[j]!='\n') j++;
-                if (j<3)
+                    STRDEF *de;
+                    int oldcurpos=curpos;
+    
+                    c=c+j;
+                    i=V(c[0],c[1]);
+                    j=0;
+                    while (c[j] && c[j]!='\n') j++;
+                    if (j<3)
+                    {
+                        c=c+j;
+                        break;
+                    }
+                    if (c[1]==' ')
+                        c=c+1;
+                    else
+                        c=c+2;
+                    while (isspace(*c)) c++;
+                    if (*c=='"') c++;
+                    de=strdef;
+                    while (de && de->nr != i) de=de->next;
+                    single_escape=1;
+                    curpos=0;
+                    if (!de)
+                    {
+                        char *h;
+                        de=new STRDEF();
+                        de->nr=i;
+                        de->slen=0;
+                        de->next=strdef;
+                        de->st=NULL;
+                        strdef=de;
+                        h=NULL;
+                        c=scan_troff(c, 1, &h);
+                        de->st=h;
+                        de->slen=curpos;
+                    }
+                    else
+                    {
+                        if (mode)
+                        {
+                            char *h=NULL;
+                            c=scan_troff(c, 1, &h);
+                            delete [] de->st;
+                            de->slen=0;
+                            de->st=h;
+                        }
+                        else
+                            c=scan_troff(c,1,&de->st);
+                        de->slen+=curpos;
+                    }
+                    single_escape=0;
+                    curpos=oldcurpos;
+                    break;
+                }
+                case REQ_br: // groff(7) "line BReak"
+                {
+                    if (still_dd) 
+                        out_html("<DD>"); // ### VERIFY (does not look like generating good HTML)
+                    else
+                        out_html("<BR>\n");
+                    curpos=0;
+                    c=c+j;
+                    if (c[0]==escapesym) c=scan_escape(c+1);
+                    c=skip_till_newline(c);
+                    break;
+                }
+                case REQ_c2: // groff(7) "reset non-break Control character" (2 means non-break)
                 {
                     c=c+j;
+                    if (*c!='\n')
+                        nobreaksym=*c;
+                    else
+                        nobreaksym='\'';
+                    c=skip_till_newline(c);
                     break;
                 }
-                if (c[1]==' ')
-                    c=c+1;
-                else
-                    c=c+2;
-		while (isspace(*c)) c++;
-		if (*c=='"') c++;
-		de=strdef;
-		while (de && de->nr != i) de=de->next;
-		single_escape=1;
-		curpos=0;
-                if (!de)
+                case REQ_cc: // groff(7) "reset Control Character"
                 {
-		    char *h;
-		    de=new STRDEF();
-		    de->nr=i;
-		    de->slen=0;
-		    de->next=strdef;
-		    de->st=NULL;
-		    strdef=de;
-		    h=NULL;
-		    c=scan_troff(c, 1, &h);
-		    de->st=h;
-		    de->slen=curpos;
-                }
-                else
-                {
-                    if (mode)
-                    {
-			char *h=NULL;
-			c=scan_troff(c, 1, &h);
-			delete [] de->st;
-			de->slen=0;
-			de->st=h;
-                    }
+                    c=c+j;
+                    if (*c!='\n')
+                        controlsym=*c;
                     else
-			c=scan_troff(c,1,&de->st);
-		    de->slen+=curpos;
-		}
-		single_escape=0;
-		curpos=oldcurpos;
-	    }
-	    break;
-	case REQ_br:
-                if (still_dd)
-                    out_html("<DD>");
-                else
-                    out_html("<BR>\n");
-	    curpos=0;
-	    c=c+j;
-                if (c[0]==escapesym) c=scan_escape(c+1);
-                c=skip_till_newline(c);
-                break;
-	case REQ_c2:
-	    c=c+j;
-                if (*c!='\n')
-                    nobreaksym=*c;
-                else
-                    nobreaksym='\'';
-	    c=skip_till_newline(c);
-	    break;
-	case REQ_cc:
-	    c=c+j;
-                if (*c!='\n')
-                    controlsym=*c;
-                else
-                    controlsym='.';
-	    c=skip_till_newline(c);
-	    break;
-	case REQ_ce:
-	    c=c+j;
-                if (*c=='\n')
-                    i=1;
-                else
+                        controlsym='.';
+                    c=skip_till_newline(c);
+                    break;
+                }
+                case REQ_ce: // groff (7) "CEnter"
                 {
-		i=0;
-                    while ('0'<=*c && *c<='9')
+                    c=c+j;
+                    if (*c=='\n')
+                        i=1;
+                    else
                     {
-		    i=i*10+*c-'0';
-		    c++;
-		}
-	    }
-	    c=skip_till_newline(c);
-	    /* center next i lines */
-                if (i>0)
-                {
-		out_html("<CENTER>\n");
-                    while (i && *c)
-                    {
-		    char *line=NULL;
-		    c=scan_troff(c,1, &line);
-                        if (line && strncmp(line, "<BR>", 4))
+                        i=0;
+                        while ('0'<=*c && *c<='9')
                         {
-			out_html(line);
-			out_html("<BR>\n");
-                        delete [] line;
-			i--;
-		    }
-		}
-		out_html("</CENTER>\n");
-		curpos=0;
-	    }
-	    break;
-	case REQ_ec:
-	    c=c+j;
-                if (*c!='\n')
-                    escapesym=*c;
-                else
-                    escapesym='\\';
-	    break;
-	    c=skip_till_newline(c);
-	case REQ_eo:
-	    escapesym='\0';
-	    c=skip_till_newline(c);
-	    break;
-	case REQ_ex:
-	    return 0;
-	    break;
-	case REQ_fc:
-	    c=c+j;
-                if  (*c=='\n')
-		fieldsym=padsym='\0';
-                else
-                {
-		fieldsym=c[0];
-		padsym=c[1];
-	    }
-	    c=skip_till_newline(c);
-	    break;
-	case REQ_fi:
-                if (!fillout)
-                {
-		out_html(change_to_font(0));
-		out_html(change_to_size('0'));
-		out_html("</PRE>\n");
-	    }
-	    curpos=0;
-	    fillout=1;
-	    c=skip_till_newline(c);
-	    break;
-	case REQ_ft:
-	    c=c+j;
-                if (*c=='\n')
-		out_html(change_to_font(0));
-                else
-                {
-                    if (*c==escapesym)
+                            i=i*10+*c-'0';
+                            c++;
+                        }
+                    }
+                    c=skip_till_newline(c);
+                    /* center next i lines */
+                    if (i>0)
                     {
-		    int fn;
-		    c=scan_expression(c, &fn);
-		    c--;
-		    out_html(change_to_font(fn));
+                        out_html("<CENTER>\n");
+                        while (i && *c)
+                        {
+                            char *line=NULL;
+                            c=scan_troff(c,1, &line);
+                            if (line && strncmp(line, "<BR>", 4))
+                            {
+                                out_html(line);
+                                out_html("<BR>\n");
+                                delete [] line;
+                                i--;
+                            }
+                        }
+                        out_html("</CENTER>\n");
+                        curpos=0;
+                    }
+                    break;
+                }
+                case REQ_ec: // groff(7) "reset Escape Character"
+                {
+                    c=c+j;
+                    if (*c!='\n')
+                        escapesym=*c;
+                    else
+                        escapesym='\\';
+                    break;
+                    c=skip_till_newline(c);
+                }
+                case REQ_eo: // groff(7) "turn Escape character Off"
+                {
+                    escapesym='\0';
+                    c=skip_till_newline(c);
+                    break;
+                }
+                case REQ_ex: // groff(7) "EXit"
+                {
+                    return 0;
+                    break;
+                }
+                case REQ_fc: // groff(7) "set Field and pad Character"
+                {
+                    c=c+j;
+                    if  (*c=='\n')
+                        fieldsym=padsym='\0';
+                    else
+                    {
+                        fieldsym=c[0];
+                        padsym=c[1];
+                    }
+                    c=skip_till_newline(c);
+                    break;
+                }
+                case REQ_fi: // groff(7) "FIll"
+                {
+                    if (!fillout)
+                    {
+                        out_html(change_to_font(0));
+                        out_html(change_to_size('0'));
+                        out_html("</PRE>\n");
+                    }
+                    curpos=0;
+                    fillout=1;
+                    c=skip_till_newline(c);
+                    break;
+                }
+                case REQ_ft: // groff(7) "previous FonT"
+                {
+                    c=c+j;
+                    if (*c=='\n')
+                        out_html(change_to_font(0));
+                    else
+                    {
+                        if (*c==escapesym)
+                        {
+                            int fn;
+                            c=scan_expression(c, &fn);
+                            c--;
+                            out_html(change_to_font(fn));
+                        }
+                        else
+                        {
+                            out_html(change_to_font(*c));
+                            c++;
+                        }
+                    }
+                    c=skip_till_newline(c);
+                    break;
+                }
+                case REQ_el: // groff(7) "ELse"
+                {
+                    int ifelseval = s_ifelseval.pop();
+                    /* .el anything : else part of if else */
+                    if (ifelseval)
+                    {
+                        c=c+j;
+                        c[-1]='\n';
+                        c=scan_troff(c,1,NULL);
+                    }
+                    else
+                        c=skip_till_newline(c+j);
+                    break;
+                }
+                case REQ_ie: // groff(7) "If with Else"
+                /* .ie c anything : then part of if else */
+                case REQ_if: // groff(7) "IF"
+                {
+                    /* .if c anything
+                     * .if !c anything
+                     * .if N anything
+                     * .if !N anything
+                     * .if 'string1'string2' anything
+                     * .if !'string1'string2' anything
+                     */
+                    c=c+j;
+                    c=scan_expression(c, &i);
+                    if (request == REQ_ie)
+                    {
+                        int ifelseval=!i;
+                        s_ifelseval.push( ifelseval );
+                    }
+                    if (i)
+                    {
+                        *c='\n';
+                        c++;
+                        c=scan_troff(c,1,NULL);
+                    }
+                    else
+                        c=skip_till_newline(c);
+                    break;
+                }
+                case REQ_ig: // groff(7) "IGnore"
+                {
+                    const char *endwith="..\n";
+                    i=3;
+                    c=c+j;
+                    if (*c!='\n' && *c != '\\')
+                    {
+                        /* Not newline or comment */
+                        endwith=c-1;i=1;
+                        c[-1]='.';
+                        while (*c && *c!='\n') c++,i++;
+                    }
+                    c++;
+                    while (*c && strncmp(c,endwith,i)) while (*c++!='\n');
+                    while (*c && *c++!='\n');
+                    break;
+                }
+                case REQ_nf: // groff(7) "No Filling"
+                {
+                    if (fillout)
+                    {
+                        out_html(change_to_font(0));
+                        out_html(change_to_size('0'));
+                        out_html("<PRE>\n");
+                    }
+                    curpos=0;
+                    fillout=0;
+                    c=skip_till_newline(c);
+                    break;
+                }
+                case REQ_ps: // groff(7) "previous Point Size"
+                {
+                    c=c+j;
+                    if (*c=='\n')
+                        out_html(change_to_size('0'));
+                    else
+                    {
+                        j=0; i=0;
+                        if (*c=='-')
+                        {
+                            j= -1;
+                            c++;
+                        }
+                        else if (*c=='+')
+                            j=1;c++;
+                        c=scan_expression(c, &i);
+                        if (!j)
+                        {
+                            j=1;
+                            if (i>5) i=i-10;
+                        }
+                        out_html(change_to_size(i*j));
+                    }
+                    c=skip_till_newline(c);
+                    break;
+                }
+                case REQ_sp: // groff(7) "SKip one line"
+                {
+                    c=c+j;
+                    if (fillout)
+                        out_html("<br><br>");
+                    else
+                    {
+                        out_html(NEWLINE);
+                    }
+                    curpos=0;
+                    c=skip_till_newline(c);
+                    break;
+                }
+                case REQ_so: // groff(7) "Include SOurce file"
+                {
+                    char *buf;
+                    char *name=NULL;
+                    curpos=0;
+                    c=c+j;
+                    if (*c=='/')
+                        h=c;
+                    else
+                    {
+                        h=c-3;
+                        h[0]='.';
+                        h[1]='.';
+                        h[2]='/';
+                    }
+                    while (*c!='\n') c++;
+                    *c='\0';
+                    scan_troff(h,1, &name);
+                    if (name[3]=='/')
+                        h=name+3;
+                    else
+                        h=name;
+                    /* this works alright, except for section 3 */
+                    buf=read_man_page(h);
+                    if (!buf)
+                    {
+                        fprintf(stderr, "man2html: unable to open or read file %s.\n", h);
+                        out_html("<BLOCKQUOTE>"
+                                "man2html: unable to open or read file.\n");
+                        out_html(h);
+                        out_html("</BLOCKQUOTE>\n");
+                    }
+                    else
+                        scan_troff(buf+1,0,NULL);
+                    delete [] buf;
+                    delete [] name;
+    
+                    *c++='\n';
+                    break;
+                }
+                case REQ_ta: // gorff(7) "set TAbulators"
+                {
+                    c=c+j;
+                    j=0;
+                    while (*c!='\n')
+                    {
+                        sl=scan_expression(c, &tabstops[j]);
+                        if (j>0 && (*c=='-' || *c=='+')) tabstops[j]+=tabstops[j-1];
+                        c=sl;
+                        while (*c==' ' || *c=='\t') c++;
+                        j++;
+                    }
+                    maxtstop=j;
+                    curpos=0;
+                    break;
+                }
+                case REQ_ti: // groff(7) "Temporary Indent"
+                {
+                    /*while (itemdepth || dl_set[itemdepth]) {
+                        out_html("</DL>\n");
+                        if (dl_set[itemdepth]) dl_set[itemdepth]=0;
+                        else itemdepth--;
+                    }*/
+                    out_html("<BR>\n");
+                    c=c+j;
+                    c=scan_expression(c, &j);
+                    for (i=0; i<j; i++) out_html("&nbsp;");
+                    curpos=j;
+                    c=skip_till_newline(c);
+                    break;
+                }
+                case REQ_tm: // groff(7) "TerMinal" ### TODO: what are useful uses for it
+                {
+                    c=c+j;
+                    h=c;
+                    while (*c!='\n') c++;
+                    *c='\0';
+#if 1
+                    out_html("<-- STDOUT: ");
+                    out_html(h);
+                    out_html("-->");
+#else
+                    fprintf(stderr,"%s\n", h);
+#endif
+                    *c='\n';
+                    break;
+                }
+                case REQ_B: // man(7) "Bold"
+                case REQ_I: // man(7) "Italic"
+                {
+                    /* parse one line in a certain font */
+                    out_html(change_to_font(*c));
+                    fill_words(c, wordlist, &words, false, 0);
+                    c=c+j;
+                    if (*c=='\n') c++;
+                    c=scan_troff(c, 1, NULL);
+                    out_html(change_to_font('R'));
+                    out_html(NEWLINE);
+                    if (fillout)
+                        curpos++;
+                    else
+                        curpos=0;
+                    break;
+                }
+                case REQ_Fd: // mdoc(7) "Function Definition" ### FIXME
+                {
+                    // brackets and commas have to be inserted automatically
+                    char font[2];
+                    font[0] = 'B';
+                    font[1] = 'B';
+                    c+=j;
+                    if (*c=='\n') c++;
+                    char *eol=strchr(c,'\n');
+                    char *semicolon=strchr(c,';');
+                    if ((semicolon!=0) && (semicolon<eol)) *semicolon=' ';
+                    
+                    sl=fill_words(c, wordlist, &words, true, &c);
+                    for (i=0; i<words; i++)
+                    {
+                        wordlist[i][-1]=' ';
+                        out_html(change_to_font(font[i&1]));
+                        scan_troff(wordlist[i],1,NULL);
+                    }
+                    if (mandoc_synopsis)
+                    {
+                        out_html(");");
+                        out_html("<br>");
+                    };
+                    out_html(change_to_font('R'));
+                    out_html(NEWLINE);
+                    if (!fillout)
+                        curpos=0;
+                    else
+                        curpos++;
+                    break;
+                }
+                case REQ_Fn: // mdoc(7)  for "Function calls" ### FIXME
+                {
+                    // brackets and commas have to be inserted automatically
+                    char font[2];
+                    font[0] = 'B';
+                    font[1] = 'B';
+                    c+=j;
+                    if (*c=='\n') c++;
+                    char *eol=strchr(c,'\n');
+                    char *semicolon=strchr(c,';');
+                    if ((semicolon!=0) && (semicolon<eol)) *semicolon=' ';
+        
+                    sl=fill_words(c, wordlist, &words, true, &c);
+                    if (!words)
+                    {
+                        out_html(" ()");
                     }
                     else
                     {
-		    out_html(change_to_font(*c));
-		    c++;
-		}
-	    }
-	    c=skip_till_newline(c);
-	    break;
-        case REQ_el:
-        {
-            int ifelseval = s_ifelseval.pop();
-	    /* .el anything : else part of if else */
-            if (ifelseval)
-            {
-		c=c+j;
-		c[-1]='\n';
-		c=scan_troff(c,1,NULL);
-            }
-            else
-		c=skip_till_newline(c+j);
-	    break;
-        }
-	case REQ_ie:
-	    /* .ie c anything : then part of if else */
-        case REQ_if:
-        {
-	    /* .if c anything
-	     * .if !c anything
-	     * .if N anything
-	     * .if !N anything
-	     * .if 'string1'string2' anything
-	     * .if !'string1'string2' anything
-	     */
-	    c=c+j;
-	    c=scan_expression(c, &i);
-            if (request == REQ_ie)
-            {
-	        int ifelseval=!i;
-                s_ifelseval.push( ifelseval );
-            }
-            if (i)
-            {
-		*c='\n';
-		c++;
-		c=scan_troff(c,1,NULL);
-            }
-            else
-		c=skip_till_newline(c);
-	    break;
-        }
-	case REQ_ig:
-	    {
-		const char *endwith="..\n";
-		i=3;
-		c=c+j;
-                if (*c!='\n' && *c != '\\')
-                {
-                    /* Not newline or comment */
-		    endwith=c-1;i=1;
-		    c[-1]='.';
-		    while (*c && *c!='\n') c++,i++;
-		}
-		c++;
-		while (*c && strncmp(c,endwith,i)) while (*c++!='\n');
-		while (*c && *c++!='\n');
-		break;
-	    }
-	case REQ_nf:
-                if (fillout)
-                {
-		out_html(change_to_font(0));
-		out_html(change_to_size('0'));
-		out_html("<PRE>\n");
-	    }
-	    curpos=0;
-	    fillout=0;
-	    c=skip_till_newline(c);
-	    break;
-	case REQ_ps:
-	    c=c+j;
-                if (*c=='\n')
-		out_html(change_to_size('0'));
-                else
-                {
-		j=0;i=0;
-                    if (*c=='-')
-                    {
-                        j= -1;
-                        c++;
+                        for (i=0; i<words; i++)
+                        {
+                            wordlist[i][-1]=' ';
+                            out_html(change_to_font(font[i&1]));
+                            scan_troff(wordlist[i],1,NULL);
+                            if (i==0)
+                            {
+                                out_html(" (");
+                            }
+                            else if (i<words-1)
+                                out_html(", ");
+                        }
+                        out_html(")");
                     }
-                    else if (*c=='+')
-                        j=1;c++;
-		c=scan_expression(c, &i);
-                    if (!j)
-                    {
-                        j=1;
-                        if (i>5) i=i-10;
-                    }
-		out_html(change_to_size(i*j));
-	    }
-	    c=skip_till_newline(c);
-	    break;
-	case REQ_sp:
-	    c=c+j;
-                if (fillout)
-                    out_html("<br><br>");
-                else
-                {
-		out_html(NEWLINE);
-	    }
-	    curpos=0;
-	    c=skip_till_newline(c);
-	    break;
-	case REQ_so:
-	    {
-		/* FILE *f; */
-		char *buf;
-		char *name=NULL;
-		curpos=0;
-		c=c+j;
-                if (*c=='/')
-		    h=c;
-                else
-                {
-		    h=c-3;
-		    h[0]='.';
-		    h[1]='.';
-		    h[2]='/';
-		}
-		while (*c!='\n') c++;
-		*c='\0';
-		scan_troff(h,1, &name);
-                if (name[3]=='/')
-                    h=name+3;
-                else
-                    h=name;
-                /* this works alright, except for section 3 */
-                buf=read_man_page(h);
-                if (!buf)
-                {
-                    fprintf(stderr, "man2html: unable to open or read file %s.\n", h);
-                    out_html("<BLOCKQUOTE>"
-                             "man2html: unable to open or read file.\n");
-                    out_html(h);
-                    out_html("</BLOCKQUOTE>\n");
+                    out_html(change_to_font('R'));
+                    if (mandoc_synopsis)
+                        out_html("<br>");
+                    out_html(NEWLINE);
+                    if (!fillout)
+                        curpos=0;
+                    else
+                        curpos++;
+                    break;
                 }
-                else
-                    scan_troff(buf+1,0,NULL);
-                delete [] buf;
-                delete [] name;
-
-		*c++='\n';
-		break;
-	    }
-	case REQ_ta:
-	    c=c+j;
-	    j=0;
-                while (*c!='\n')
+                case REQ_Fo: // mdoc(7) "Function definition Opening"
                 {
-		sl=scan_expression(c, &tabstops[j]);
-		if (j>0 && (*c=='-' || *c=='+')) tabstops[j]+=tabstops[j-1];
-		c=sl;
-		while (*c==' ' || *c=='\t') c++;
-		j++;
-	    }
-	    maxtstop=j;
-	    curpos=0;
-	    break;
-	case REQ_ti:
-	    /*while (itemdepth || dl_set[itemdepth]) {
-		out_html("</DL>\n");
-		if (dl_set[itemdepth]) dl_set[itemdepth]=0;
-		else itemdepth--;
-	    }*/
-	    out_html("<BR>\n");
-	    c=c+j;
-	    c=scan_expression(c, &j);
-	    for (i=0; i<j; i++) out_html("&nbsp;");
-	    curpos=j;
-	    c=skip_till_newline(c);
-	    break;
-	case REQ_tm:
-	    c=c+j;
-	    h=c;
-	    while (*c!='\n') c++;
-	    *c='\0';
-	    /* fprintf(stderr,"%s\n", h); */
-	    *c='\n';
-	    break;
-	case REQ_B:
-	case REQ_I:
-            /* parse one line in a certain font */
-	    out_html(change_to_font(*c));
-	    fill_words(c, wordlist, &words, false, 0);
-	    c=c+j;
-	    if (*c=='\n') c++;
-	    c=scan_troff(c, 1, NULL);
-	    out_html(change_to_font('R'));
-	    out_html(NEWLINE);
-                if (fillout)
-                    curpos++;
-                else
-                    curpos=0;
-	    break;
-   case REQ_Fd: // mdoc(7) "Function Definition" ### FIXME
-           {
-                         // brackets and commas have to be inserted automatically
-               char font[2];
-               font[0] = 'B';
-               font[1] = 'B';
-               c+=j;
-               if (*c=='\n') c++;
-               char *eol=strchr(c,'\n');
-               char *semicolon=strchr(c,';');
-               if ((semicolon!=0) && (semicolon<eol)) *semicolon=' ';
-            
-               sl=fill_words(c, wordlist, &words, true, &c);
-               for (i=0; i<words; i++)
-               {
-                   wordlist[i][-1]=' ';
-                   out_html(change_to_font(font[i&1]));
-                   scan_troff(wordlist[i],1,NULL);
-               }
-               if (mandoc_synopsis)
-               {
-                   out_html(");");
-                   out_html("<br>");
-               };
-               out_html(change_to_font('R'));
-               out_html(NEWLINE);
-               if (!fillout)
-                   curpos=0;
-               else
-                   curpos++;
-               break;
-           }
-   case REQ_Fn: // mdoc(7)  for "Function calls" ### FIXME
-           {
-                 // brackets and commas have to be inserted automatically
-                 char font[2];
-                 font[0] = 'B';
-                 font[1] = 'B';
-                 c+=j;
-                 if (*c=='\n') c++;
-                 char *eol=strchr(c,'\n');
-                 char *semicolon=strchr(c,';');
-                 if ((semicolon!=0) && (semicolon<eol)) *semicolon=' ';
-    
-                 sl=fill_words(c, wordlist, &words, true, &c);
-                 if (!words)
-                 {
-                     out_html(" ()");
-                 }
-                 else
-                 {
-                     for (i=0; i<words; i++)
-                     {
+                    char font[2];
+                    font[0] = 'B';
+                    font[1] = 'B';
+                    c+=j;
+                    if (*c=='\n') c++;
+                    char *eol=strchr(c,'\n');
+                    char *semicolon=strchr(c,';');
+                    if ((semicolon!=0) && (semicolon<eol)) *semicolon=' ';
+        
+                    sl=fill_words(c, wordlist, &words, true, &c);
+                    // Normally a .Fo has only one parameter
+                    for (i=0; i<words; i++)
+                    {
                         wordlist[i][-1]=' ';
                         out_html(change_to_font(font[i&1]));
                         scan_troff(wordlist[i],1,NULL);
@@ -2855,675 +2936,678 @@ static char *scan_request(char *c)
                         {
                             out_html(" (");
                         }
-                        else if (i<words-1)
-                            out_html(", ");
-                     }
-                     out_html(")");
-                 }
-                 out_html(change_to_font('R'));
-                 if (mandoc_synopsis)
-                     out_html("<br>");
-                 out_html(NEWLINE);
-                 if (!fillout)
-                     curpos=0;
-                 else
-                     curpos++;
-                 break;
-           }
-       case REQ_Fo: // mdoc(7) "Function definition Opening"
-           {
-               char font[2];
-               font[0] = 'B';
-               font[1] = 'B';
-               c+=j;
-               if (*c=='\n') c++;
-               char *eol=strchr(c,'\n');
-               char *semicolon=strchr(c,';');
-               if ((semicolon!=0) && (semicolon<eol)) *semicolon=' ';
-
-               sl=fill_words(c, wordlist, &words, true, &c);
-               // Normally a .Fo has only one parameter
-               for (i=0; i<words; i++)
-               {
-                   wordlist[i][-1]=' ';
-                   out_html(change_to_font(font[i&1]));
-                   scan_troff(wordlist[i],1,NULL);
-                   if (i==0)
-                   {
-                       out_html(" (");
-                   }
-                   // ### TODO What should happen if there is more than one argument
-                   // else if (i<words-1) out_html(", ");
-               }
-               function_argument=1; // Must be > 0
-               out_html(change_to_font('R'));
-               out_html(NEWLINE);
-               if (!fillout)
-                   curpos=0;
-               else
-                   curpos++;
-               break;
-           }
-           case REQ_Fc:// mdoc(7) "Function definition Close"
-           {
-               // .Fc has no parameter
-               c+=j;
-               c=skip_till_newline(c);
-               char font[2];
-               font[0] = 'B';
-               font[1] = 'B';
-               out_html(change_to_font(font[i&1]));
-               out_html(")");
-               out_html(change_to_font('R'));
-               if (mandoc_synopsis)
-                   out_html("<br>");
-               out_html(NEWLINE);
-               if (!fillout)
-                   curpos=0;
-               else
-                   curpos++;
-               function_argument=0; // Reset the count variable
-               break;
-           }
-           case REQ_Fa: // mdoc(7) "Function definition argument"
-            {
-                char font[2] ;
-                font[0] = 'B';
-                font[1] = 'B';
-                c+=j;
-                if (*c=='\n') c++;
-                sl=fill_words(c, wordlist, &words, true, &c);
-                out_html(change_to_font(font[i&1]));
-                // function_argument==0 means that we had no .Fo  before, e.g. in mdoc.samples(7)
-                if (function_argument > 1)
-                {
-                    out_html(", ");
-                    curpos+=2;
-                    function_argument++;
+                        // ### TODO What should happen if there is more than one argument
+                        // else if (i<words-1) out_html(", ");
+                    }
+                    function_argument=1; // Must be > 0
+                    out_html(change_to_font('R'));
+                    out_html(NEWLINE);
+                    if (!fillout)
+                        curpos=0;
+                    else
+                        curpos++;
+                    break;
                 }
-                else if (function_argument==1)
+                case REQ_Fc:// mdoc(7) "Function definition Close"
                 {
-                    // We are only at the first parameter
-                    function_argument++;
+                    // .Fc has no parameter
+                    c+=j;
+                    c=skip_till_newline(c);
+                    char font[2];
+                    font[0] = 'B';
+                    font[1] = 'B';
+                    out_html(change_to_font(font[i&1]));
+                    out_html(")");
+                    out_html(change_to_font('R'));
+                    if (mandoc_synopsis)
+                        out_html("<br>");
+                    out_html(NEWLINE);
+                    if (!fillout)
+                        curpos=0;
+                    else
+                        curpos++;
+                    function_argument=0; // Reset the count variable
+                    break;
                 }
-                for (i=0; i<words; i++)
+                case REQ_Fa: // mdoc(7) "Function definition argument"
                 {
-                    wordlist[i][-1]=' ';
-                    scan_troff(wordlist[i],1,NULL);
+                    char font[2] ;
+                    font[0] = 'B';
+                    font[1] = 'B';
+                    c+=j;
+                    if (*c=='\n') c++;
+                    sl=fill_words(c, wordlist, &words, true, &c);
+                    out_html(change_to_font(font[i&1]));
+                    // function_argument==0 means that we had no .Fo  before, e.g. in mdoc.samples(7)
+                    if (function_argument > 1)
+                    {
+                        out_html(", ");
+                        curpos+=2;
+                        function_argument++;
+                    }
+                    else if (function_argument==1)
+                    {
+                        // We are only at the first parameter
+                        function_argument++;
+                    }
+                    for (i=0; i<words; i++)
+                    {
+                        wordlist[i][-1]=' ';
+                        scan_troff(wordlist[i],1,NULL);
+                    }
+                    out_html(change_to_font('R'));
+                    if (!fillout)
+                        curpos=0;
+                    else
+                        curpos++;
+                    break;
                 }
-                out_html(change_to_font('R'));
-                if (!fillout)
-                    curpos=0;
-                else
-                    curpos++;
-                break;
-            }
                 
-         case REQ_OP:  /* groff manpages use this construction */
-            /* .OP a b : [ <B>a</B> <I>b</I> ] */
-	    mode=1;
-	    c[0]='B'; c[1]='I';
-	    out_html(change_to_font('R'));
-	    out_html("[");
-	    curpos++;
-            // Do not break!
-        case REQ_Ft:       //perhaps "Function return type"
-        case REQ_BR:
-        case REQ_BI:
-	case REQ_IB:
-	case REQ_IR:
-	case REQ_RB:
-	case REQ_RI:
-      {
-          // ### VERIFY
-         bool inFMode=(c[0]=='F');
-         if (inFMode)
-         {
-            c[0]='B';
-            c[1]='I';
-         };
-         char font[2] ;
-         font[0] = c[0];
-         font[1] = c[1];
-         c=c+j;
-         if (*c=='\n') c++;
-         sl=fill_words(c, wordlist, &words, true, &c);
-         /* .BR name (section)
-          ** indicates a link. It will be added in the output routine.
-          */
-                for (i=0; i<words; i++)
-                {
-                    if ((mode) || (inFMode))
-                    {
-               out_html(" ");
-               curpos++;
-            }
-            wordlist[i][-1]=' ';
-            out_html(change_to_font(font[i&1]));
-            scan_troff(wordlist[i],1,NULL);
-         }
-         out_html(change_to_font('R'));
-                if (mode)
-                {
-            out_html(" ]");
-            curpos++;
-         }
-         out_html(NEWLINE);
-                if (!fillout)
-                    curpos=0;
-                else
+                case REQ_OP:  /* groff manpages use this construction */
+                    /* .OP a b : [ <B>a</B> <I>b</I> ] */
+                    mode=1;
+                    c[0]='B'; c[1]='I';
+                    out_html(change_to_font('R'));
+                    out_html("[");
                     curpos++;
-      }
-      break;
-	case REQ_DT:
-	    for (j=0;j<20; j++) tabstops[j]=(j+1)*8;
-	    maxtstop=20;
-            c=skip_till_newline(c);
-            break;
-	case REQ_IP:
-	    sl=fill_words(c+j, wordlist, &words, true, &c);
-            if (!dl_set[itemdepth])
-            {
-		out_html("<DL>\n");
-		dl_set[itemdepth]=1;
-	    }
-	    out_html("<DT>");
-            if (words)
-		scan_troff(wordlist[0], 1,NULL);
-	    out_html("<DD>");
-	    curpos=0;
-	    break;
-	case REQ_TP:
-                if (!dl_set[itemdepth])
+                    // Do not break!
+                case REQ_Ft:       //perhaps "Function return type"
+                case REQ_BR:
+                case REQ_BI:
+                case REQ_IB:
+                case REQ_IR:
+                case REQ_RB:
+                case REQ_RI:
                 {
-		out_html("<br><br><DL>\n");
-		dl_set[itemdepth]=1;
-	    }
-	    out_html("<DT>");
-	    c=skip_till_newline(c);
-	    /* somewhere a definition ends with '.TP' */
-                if (!*c)
-                    still_dd=1;
-                else
+                    // ### VERIFY
+                    bool inFMode=(c[0]=='F');
+                    if (inFMode)
+                    {
+                        c[0]='B';
+                        c[1]='I';
+                    };
+                    char font[2] ;
+                    font[0] = c[0];
+                    font[1] = c[1];
+                    c=c+j;
+                    if (*c=='\n') c++;
+                    sl=fill_words(c, wordlist, &words, true, &c);
+                    /* .BR name (section)
+                     * indicates a link. It will be added in the output routine.
+                     */
+                    for (i=0; i<words; i++)
+                    {
+                        if ((mode) || (inFMode))
+                        {
+                            out_html(" ");
+                            curpos++;
+                        }
+                        wordlist[i][-1]=' ';
+                        out_html(change_to_font(font[i&1]));
+                        scan_troff(wordlist[i],1,NULL);
+                    }
+                    out_html(change_to_font('R'));
+                    if (mode)
+                    {
+                        out_html(" ]");
+                        curpos++;
+                    }
+                    out_html(NEWLINE);
+                    if (!fillout)
+                        curpos=0;
+                    else
+                        curpos++;
+                    break;
+                }
+                case REQ_DT: // man(7) "Default Tabulators"
                 {
-		c=scan_troff(c,1,NULL);
-		out_html("<DD>");
-	    }
-	    curpos=0;
-	    break;
-	case REQ_IX:
-            /* general index */
-            c=skip_till_newline(c);
-	    break;
-        case REQ_P:
-	case REQ_LP:
-	case REQ_PP:
-                if (dl_set[itemdepth])
+                    for (j=0;j<20; j++) tabstops[j]=(j+1)*8;
+                    maxtstop=20;
+                    c=skip_till_newline(c);
+                    break;
+                }
+                case REQ_IP: // man(7) "Ident Paragraph"
                 {
-		out_html("</DL>\n");
-		dl_set[itemdepth]=0;
-	    }
-                if (fillout)
-                    out_html("<br><br>\n");
-                else
+                    sl=fill_words(c+j, wordlist, &words, true, &c);
+                    if (!dl_set[itemdepth])
+                    {
+                        out_html("<DL>\n");
+                        dl_set[itemdepth]=1;
+                    }
+                    out_html("<DT>");
+                    if (words)
+                        scan_troff(wordlist[0], 1,NULL);
+                    out_html("<DD>");
+                    curpos=0;
+                    break;
+                }
+                case REQ_TP: // man(7) "hanging Tag Paragraph"
                 {
-		out_html(NEWLINE);
-	    }
-	    curpos=0;
-	    c=skip_till_newline(c);
-	    break;
-	case REQ_HP:
-                if (!dl_set[itemdepth])
+                    if (!dl_set[itemdepth])
+                    {
+                        out_html("<br><br><DL>\n");
+                        dl_set[itemdepth]=1;
+                    }
+                    out_html("<DT>");
+                    c=skip_till_newline(c);
+                    /* somewhere a definition ends with '.TP' */
+                    if (!*c)
+                        still_dd=1;
+                    else
+                    {
+                        c=scan_troff(c,1,NULL);
+                        out_html("<DD>");
+                    }
+                    curpos=0;
+                    break;
+                }
+                case REQ_IX: // "INdex" ### TODO: where is it defined?
                 {
-		out_html("<DL>");
-		dl_set[itemdepth]=1;
-	    }
-	    out_html("<DT>\n");
-	    still_dd=1;
-	    c=skip_till_newline(c);
-	    curpos=0;
-	    break;
-	case REQ_PD:
-	    c=skip_till_newline(c);
-	    break;
-	case REQ_Rs:	/* mdoc(7) */
-	case REQ_RS:
-	    sl=fill_words(c+j, wordlist, &words, true, 0);
-	    j=1;
-	    if (words>0) scan_expression(wordlist[0], &j);
-                if (j>=0)
+                    /* general index */
+                    c=skip_till_newline(c);
+                    break;
+                }
+                case REQ_P: // man(7) "Paragraph"
+                case REQ_LP:// man(7) "Paragraph"
+                case REQ_PP:// man(7) "Paragraph; reset Prevailing indent"
                 {
-		itemdepth++;
-		dl_set[itemdepth]=0;
-		out_html("<DL><DT><DD>");
-		c=skip_till_newline(c);
-		curpos=0;
-		break;
-	    }
-	case REQ_Re:	/* mdoc(7) */
-	case REQ_RE:
-                if (itemdepth > 0)
-                {
-		if (dl_set[itemdepth]) out_html("</DL>");
-		out_html("</DL>\n");
-		itemdepth--;
-	    }
-	    c=skip_till_newline(c);
-	    curpos=0;
-	    break;
-	case REQ_SB:
-	    out_html(change_to_size(-1));
-	    out_html(change_to_font('B'));
-	    c=scan_troff(c+j, 1, NULL);
-	    out_html(change_to_font('R'));
-	    out_html(change_to_size('0'));
-	    break;
-	case REQ_SM:
-	    c=c+j;
-	    if (*c=='\n') c++;
-	    out_html(change_to_size(-1));
-	    trans_char(c,'"','\a');
-	    c=scan_troff(c,1,NULL);
-	    out_html(change_to_size('0'));
-	    break;
-	case REQ_Ss:	/* mdoc(7) */
-	    mandoc_command = 1;
-	case REQ_SS:
-	    mode=1;
-	case REQ_Sh:	/* mdoc(7) */
-				/* hack for fallthru from above */
-	    mandoc_command = !mode || mandoc_command;
-        case REQ_SH: // man(7) "Sub Header"
-	    c=c+j;
-	    if (*c=='\n') c++;
-                while (itemdepth || dl_set[itemdepth])
-                {
-		out_html("</DL>\n");
                     if (dl_set[itemdepth])
-                        dl_set[itemdepth]=0;
-                    else if (itemdepth > 0)
-                        itemdepth--;
-	    }
-	    out_html(change_to_font(0));
-	    out_html(change_to_size(0));
-                if (!fillout)
-                {
-		fillout=1;
-		out_html("</PRE>");
-	    }
-	    trans_char(c,'"', '\a');
-                if (section)
-                {
-                out_html("</div>\n");
-                section=0;
-            }
-                if (mode)
-                    out_html("\n<H3>");
-                else
-                    out_html("\n<H2>");
-	    mandoc_synopsis = strncmp(c, "SYNOPSIS", 8) == 0;
-	    c = mandoc_command ? scan_troff_mandoc(c,1,NULL) : scan_troff(c,1,NULL);
-                if (mode)
-                    out_html("</H3>\n");
-                else
-                    out_html("</H2>\n");
-            out_html("<div>\n");
-
-            section=1;
-	    curpos=0;
-	    break;
-        case REQ_Sx: // reference to a section header
-	    out_html(change_to_font('B'));
-	    trans_char(c,'"','\a');
-	    c=c+j;
-	    if (*c=='\n') c++;
-	    c=scan_troff(c, 1, NULL);
-	    out_html(change_to_font('R'));
-	    out_html(NEWLINE);
-                if (fillout)
-                    curpos++;
-                else
-                    curpos=0;
-            break;
-	case REQ_TS:
-	    c=scan_table(c);
-	    break;
-	case REQ_Dt:	/* mdoc(7) */
-	    mandoc_command = true;
-	case REQ_TH:
-                if (!output_possible)
-                {
-                    sl = fill_words(c+j, wordlist, &words, true, &c);
-                    if (words>=1)
                     {
-                        for (i=1; i<words; i++) wordlist[i][-1]='\0';
-                        *sl='\0';
-                        for (i=0; i<words; i++) {
-                            if (wordlist[i][0] == '\007')
-                                wordlist[i]++;
-                            if (wordlist[i][strlen(wordlist[i])-1] == '\007')
-                                wordlist[i][strlen(wordlist[i])-1] = 0;
-                        }
-                        output_possible=1;
-                        out_html( DOCTYPE"<HTML>\n<HEAD>\n");
-#ifdef SIMPLE_MAN2HTML
-                        // Most English man pages are in ISO-8859-1
-                        out_html("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=ISO-8859-1\">\n");
-#else
-                        // kio_man transforms from local to UTF-8
-                        out_html("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=");
-                        out_html(QTextCodec::codecForLocale()->mimeName());
-                        out_html("\">\n");
-#endif
-                        out_html("<TITLE>");
-                            out_html(scan_troff(wordlist[0], 0, NULL));
-                        out_html( " Manpage</TITLE>\n");
-                        out_html( "<link rel=\"stylesheet\" href=\"");
-                        out_html(htmlPath);
-                        out_html("/kde-default.css\" type=\"text/css\">\n" );
-                        out_html( "<meta name=\"Mandoc Type\" content=\"");
-                        if (mandoc_command)
-                            out_html("mdoc");
-                        else
-                            out_html("man");
-                        out_html("\">\n");
-                        out_html( "</HEAD>\n\n" );
-                        out_html("<BODY BGCOLOR=\"#FFFFFF\">\n\n" );
-                        out_html("<div style=\"background-image: url(");
-                        out_html(cssPath);
-                        out_html("/top-middle.png); width: 100%; height: 131pt;\">\n" );
-                        out_html("<div style=\"position: absolute; right: 0pt;\">\n");
-                        out_html("<img src=\"");
-                        out_html(htmlPath);
-                        out_html("/top-right-konqueror.png\" style=\"margin: 0pt\" alt=\"Top right\">\n");
-                        out_html("</div>\n");
-    
-                        out_html("<div style=\"position: absolute; left: 0pt;\">\n");
-                        out_html("<img src=\"");
-                        out_html(htmlPath);
-                        out_html("/top-left.png\" style=\"margin: 0pt\" alt=\"Top left\">\n");
-                        out_html("</div>\n");
-                        out_html("<div style=\"position: absolute; top: 25pt; right: 100pt; text-align: right; font-size: xx-large; font-weight: bold; text-shadow: #fff 0pt 0pt 5pt; color: #444\">\n");
-                        out_html( scan_troff(wordlist[0], 0, NULL ) );
-                        out_html("</div>\n");
-                        out_html("</div>\n");
-                        out_html("<div style=\"margin-left: 5em; margin-right: 5em;\">\n");
-                        out_html("<h1>" );
-                            out_html( scan_troff(wordlist[0], 0, NULL ) );
-                        out_html( "</h1>\n" );
-                        if (words>1)
-                        {
-                            out_html("Section: " );
-                            if (!mandoc_command && words>4)
-                                    out_html(scan_troff(wordlist[4], 0, NULL) );
-                            else
-                                    out_html(section_name(wordlist[1]));
-                            out_html(" (");
-                            out_html(scan_troff(wordlist[1], 0, NULL));
-                            out_html(")\n");
-                        }
-                        else
-                        {
-                            out_html("Section not specified");
-                        }
-                        *sl='\n';
+                        out_html("</DL>\n");
+                        dl_set[itemdepth]=0;
+                    }
+                    if (fillout)
+                        out_html("<br><br>\n");
+                    else
+                    {
+                        out_html(NEWLINE);
+                    }
+                    curpos=0;
+                    c=skip_till_newline(c);
+                    break;
+                }
+                case REQ_HP: // man(7) "Hanging indent Paragraph"
+                {
+                    if (!dl_set[itemdepth])
+                    {
+                        out_html("<DL>");
+                        dl_set[itemdepth]=1;
+                    }
+                    out_html("<DT>\n");
+                    still_dd=1;
+                    c=skip_till_newline(c);
+                    curpos=0;
+                    break;
+                }
+                case REQ_PD: // man(7) "Paragraph Distance"
+                {
+                    c=skip_till_newline(c);
+                    break;
+                }
+                case REQ_Rs: // mdoc(7) "Relative margin Start"
+                case REQ_RS: // man(7) "Relative margin Start"
+                {
+                    sl=fill_words(c+j, wordlist, &words, true, 0);
+                    j=1;
+                    if (words>0) scan_expression(wordlist[0], &j);
+                    if (j>=0)
+                    {
+                        itemdepth++;
+                        dl_set[itemdepth]=0;
+                        out_html("<DL><DT><DD>");
+                        c=skip_till_newline(c);
+                        curpos=0;
+                        break;
                     }
                 }
-                else
+                case REQ_Re: // mdoc(7) "Relative margin End"
+                case REQ_RE: // man(7) "Relative margin End"
                 {
-                    fprintf(stderr, "%s", ".TH found but output not possible");
-                    c=skip_till_newline(c);
-                }
-	    curpos=0;
-	    break;
-            case REQ_TX:
-                {
-	    sl=fill_words(c+j, wordlist, &words, true, &c);
-	    *sl='\0';
-	    out_html(change_to_font('I'));
-	    if (words>1) wordlist[1][-1]='\0';
-	    const char *c2=lookup_abbrev(wordlist[0]);
-	    curpos+=strlen(c2);
-	    out_html(c2);
-	    out_html(change_to_font('R'));
-	    if (words>1)
-		out_html(wordlist[1]);
-	    *sl='\n';
-          }
-          break;
-	case REQ_rm:
-            /* .rm xx : Remove request, macro or string */
-	case REQ_rn:
-            /* .rn xx yy : Rename request, macro or string xx to yy */
-	    {
-		STRDEF *de;
-		c=c+j;
-		i=V(c[0],c[1]);
-		c=c+2;
-		while (isspace(*c) && *c!='\n') c++;
-		j=V(c[0],c[1]);
-		while (*c && *c!='\n') c++;
-		c++;
-		de=strdef;
-		while (de && de->nr!=j) de=de->next;
-                if (de)
-                {
-		    delete [] de->st;
-                    de->st=0;
-		    de->nr=0;
-		}
-		de=strdef;
-		while (de && de->nr!=i) de=de->next;
-		if (de) de->nr=j;
-		break;
-	    }
-	case REQ_nx:
-            /* .nx filename : next file. */
-	case REQ_in:
-            /* .in +-N : Indent */
-	    c=skip_till_newline(c);
-	    break;
-	case REQ_nr:
-            /* .nr R +-N M: define and set number register R by +-N;
-	    **  auto-increment by M
-	    */
-	    {
-		INTDEF *intd;
-		c=c+j;
-		i=V(c[0],c[1]);
-		c=c+2;
-		intd=intdef;
-		while (intd && intd->nr!=i) intd=intd->next;
-                if (!intd)
-                {
-		    intd = new INTDEF();
-		    intd->nr=i;
-		    intd->val=0;
-		    intd->incr=0;
-		    intd->next=intdef;
-		    intdef=intd;
-		}
-		while (*c==' ' || *c=='\t') c++;
-		c=scan_expression(c,&intd->val);
-                if (*c!='\n')
-                {
-		    while (*c==' ' || *c=='\t') c++;
-		    c=scan_expression(c,&intd->incr);
-		}
-		c=skip_till_newline(c);
-		break;
-	    }
-	case REQ_am:
-            /* .am xx yy : append to a macro. */
-            /* define or handle as .ig yy */
-	    mode=1;
-	case REQ_de:
-            /* .de xx yy : define or redefine macro xx; end at .yy (..) */
-            /* define or handle as .ig yy */
-	    {
-		STRDEF *de;
-		int olen=0;
-                char endmacro[SMALL_STR_MAX];
-		c=c+j;
-                char *next_line;
-                sl = fill_words(c, wordlist, &words, true, &next_line);
-                char *name = wordlist[0];
-                c = name;
-                while ((*c != ' ') && (*c != '\n')) c++;
-                *c = '\0';
-
-                if (words == 1)
-                {
-                   endmacro[0] = '.';
-                   endmacro[1] = '.';
-                   endmacro[2] = '\0';
-                }
-                else
-                {
-                   char *p = endmacro;
-                   *p++ = '.';
-                   c = wordlist[1];
-                   while ((*c != ' ') && (*c != '\n')) *p++ = *c++;
-                   *p = '\0';
-                }
-                c = next_line;
-		sl=c;
-		while (*c && strncmp(c,endmacro, strlen(endmacro))) c=skip_till_newline(c);
-
-		de=defdef;
-                while (de && strncmp(name, de->name, strlen(de->name)))
-                    de=de->next;
-		if (mode && de) olen=strlen(de->st);
-		j=olen+c-sl;
-		h = stralloc(j*2+4);
-                if (h)
-                {
-		    for (j=0; j<olen; j++)
-			h[j]=de->st[j];
-		    if (!j || h[j-1]!='\n')
-			h[j++]='\n';
-                    while (sl!=c)
+                    if (itemdepth > 0)
                     {
-                        if (sl[0]=='\\' && sl[1]=='\\')
+                        if (dl_set[itemdepth]) out_html("</DL>");
+                        out_html("</DL>\n");
+                        itemdepth--;
+                    }
+                    c=skip_till_newline(c);
+                    curpos=0;
+                    break;
+                }
+                case REQ_SB: // man(7) "Small; Bold"
+                {
+                    out_html(change_to_size(-1));
+                    out_html(change_to_font('B'));
+                    c=scan_troff(c+j, 1, NULL);
+                    out_html(change_to_font('R'));
+                    out_html(change_to_size('0'));
+                    break;
+                }
+                case REQ_SM: // man(7) "SMall"
+                {
+                    c=c+j;
+                    if (*c=='\n') c++;
+                    out_html(change_to_size(-1));
+                    trans_char(c,'"','\a');
+                    c=scan_troff(c,1,NULL);
+                    out_html(change_to_size('0'));
+                    break;
+                }
+                case REQ_Ss: // mdoc(7) "Sub Section"
+                    mandoc_command = 1;
+                case REQ_SS: // mdoc(7) "Sub Section"
+                    mode=1;
+                case REQ_Sh: // mdoc(7) "Sub Header"
+                                        /* hack for fallthru from above */
+                    mandoc_command = !mode || mandoc_command;
+                case REQ_SH: // man(7) "Sub Header"
+                {
+                    c=c+j;
+                    if (*c=='\n') c++;
+                    while (itemdepth || dl_set[itemdepth])
+                    {
+                        out_html("</DL>\n");
+                        if (dl_set[itemdepth])
+                            dl_set[itemdepth]=0;
+                        else if (itemdepth > 0)
+                            itemdepth--;
+                    }
+                    out_html(change_to_font(0));
+                    out_html(change_to_size(0));
+                    if (!fillout)
+                    {
+                        fillout=1;
+                        out_html("</PRE>");
+                    }
+                    trans_char(c,'"', '\a');
+                    if (section)
+                    {
+                        out_html("</div>\n");
+                        section=0;
+                    }
+                    if (mode)
+                        out_html("\n<H3>");
+                    else
+                        out_html("\n<H2>");
+                    mandoc_synopsis = strncmp(c, "SYNOPSIS", 8) == 0;
+                    c = mandoc_command ? scan_troff_mandoc(c,1,NULL) : scan_troff(c,1,NULL);
+                    if (mode)
+                        out_html("</H3>\n");
+                    else
+                        out_html("</H2>\n");
+                    out_html("<div>\n");
+        
+                    section=1;
+                    curpos=0;
+                    break;
+                }
+                case REQ_Sx: // mdoc(7)
+                {
+                    // reference to a section header
+                    out_html(change_to_font('B'));
+                    trans_char(c,'"','\a');
+                    c=c+j;
+                    if (*c=='\n') c++;
+                    c=scan_troff(c, 1, NULL);
+                    out_html(change_to_font('R'));
+                    out_html(NEWLINE);
+                    if (fillout)
+                        curpos++;
+                    else
+                        curpos=0;
+                    break;
+                }
+                case REQ_TS: // ### TODO where is it defined? (tbl?)
+                {
+                    c=scan_table(c);
+                    break;
+                }
+                case REQ_Dt:	/* mdoc(7) */
+                    mandoc_command = true;
+                case REQ_TH: // man(7) "Title Header"
+                {
+                    if (!output_possible)
+                    {
+                        sl = fill_words(c+j, wordlist, &words, true, &c);
+                        if (words>=1)
                         {
-                            h[j++]='\\';
-                            sl++;
+                            for (i=1; i<words; i++) wordlist[i][-1]='\0';
+                            *sl='\0';
+                            for (i=0; i<words; i++)
+                            {
+                                if (wordlist[i][0] == '\007')
+                                    wordlist[i]++;
+                                if (wordlist[i][strlen(wordlist[i])-1] == '\007')
+                                    wordlist[i][strlen(wordlist[i])-1] = 0;
+                            }
+                            output_possible=1;
+                            out_html( DOCTYPE"<HTML>\n<HEAD>\n");
+#ifdef SIMPLE_MAN2HTML
+                            // Most English man pages are in ISO-8859-1
+                            out_html("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=ISO-8859-1\">\n");
+#else
+                            // kio_man transforms from local to UTF-8
+                            out_html("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=");
+                            out_html(QTextCodec::codecForLocale()->mimeName());
+                            out_html("\">\n");
+#endif
+                            out_html("<TITLE>");
+                                out_html(scan_troff(wordlist[0], 0, NULL));
+                            out_html( " Manpage</TITLE>\n");
+                            out_html( "<link rel=\"stylesheet\" href=\"");
+                            out_html(htmlPath);
+                            out_html("/kde-default.css\" type=\"text/css\">\n" );
+                            out_html( "<meta name=\"Mandoc Type\" content=\"");
+                            if (mandoc_command)
+                                out_html("mdoc");
+                            else
+                                out_html("man");
+                            out_html("\">\n");
+                            out_html( "</HEAD>\n\n" );
+                            out_html("<BODY BGCOLOR=\"#FFFFFF\">\n\n" );
+                            out_html("<div style=\"background-image: url(");
+                            out_html(cssPath);
+                            out_html("/top-middle.png); width: 100%; height: 131pt;\">\n" );
+                            out_html("<div style=\"position: absolute; right: 0pt;\">\n");
+                            out_html("<img src=\"");
+                            out_html(htmlPath);
+                            out_html("/top-right-konqueror.png\" style=\"margin: 0pt\" alt=\"Top right\">\n");
+                            out_html("</div>\n");
+        
+                            out_html("<div style=\"position: absolute; left: 0pt;\">\n");
+                            out_html("<img src=\"");
+                            out_html(htmlPath);
+                            out_html("/top-left.png\" style=\"margin: 0pt\" alt=\"Top left\">\n");
+                            out_html("</div>\n");
+                            out_html("<div style=\"position: absolute; top: 25pt; right: 100pt; text-align: right; font-size: xx-large; font-weight: bold; text-shadow: #fff 0pt 0pt 5pt; color: #444\">\n");
+                            out_html( scan_troff(wordlist[0], 0, NULL ) );
+                            out_html("</div>\n");
+                            out_html("</div>\n");
+                            out_html("<div style=\"margin-left: 5em; margin-right: 5em;\">\n");
+                            out_html("<h1>" );
+                                out_html( scan_troff(wordlist[0], 0, NULL ) );
+                            out_html( "</h1>\n" );
+                            if (words>1)
+                            {
+                                out_html("Section: " );
+                                if (!mandoc_command && words>4)
+                                    out_html(scan_troff(wordlist[4], 0, NULL) );
+                                else
+                                    out_html(section_name(wordlist[1]));
+                                out_html(" (");
+                                out_html(scan_troff(wordlist[1], 0, NULL));
+                                out_html(")\n");
+                            }
+                            else
+                            {
+                                out_html("Section not specified");
+                            }
+                            *sl='\n';
                         }
-                        else
-			    h[j++]=*sl;
-			sl++;
-		    }
-		    h[j]=0;
+                    }
+                    else
+                    {
+                        fprintf(stderr, "%s", ".TH found but output not possible");
+                        c=skip_till_newline(c);
+                    }
+                    curpos=0;
+                    break;
+                }
+                case REQ_TX: // mdoc(7)
+                {
+                    sl=fill_words(c+j, wordlist, &words, true, &c);
+                    *sl='\0';
+                    out_html(change_to_font('I'));
+                    if (words>1) wordlist[1][-1]='\0';
+                    const char *c2=lookup_abbrev(wordlist[0]);
+                    curpos+=strlen(c2);
+                    out_html(c2);
+                    out_html(change_to_font('R'));
+                    if (words>1)
+                        out_html(wordlist[1]);
+                    *sl='\n';
+                    break;
+                }
+                case REQ_rm: // groff(7) "ReMove"
+                /* .rm xx : Remove request, macro or string */
+                case REQ_rn: // groff(7) "ReName"
+                /* .rn xx yy : Rename request, macro or string xx to yy */
+                {
+                    STRDEF *de;
+                    c=c+j;
+                    i=V(c[0],c[1]);
+                    c=c+2;
+                    while (isspace(*c) && *c!='\n') c++;
+                    j=V(c[0],c[1]);
+                    while (*c && *c!='\n') c++;
+                    c++;
+                    de=strdef;
+                    while (de && de->nr!=j) de=de->next;
                     if (de)
                     {
                         delete [] de->st;
-			de->st=h;
+                        de->st=0;
+                        de->nr=0;
+                    }
+                    de=strdef;
+                    while (de && de->nr!=i) de=de->next;
+                    if (de) de->nr=j;
+                    break;
+                }
+                case REQ_nx: // ### TODO in man(7) it is "No filling", not "next file"
+                /* .nx filename : next file. */
+                case REQ_in: // groff(7) "INdent"
+                {
+                    /* .in +-N : Indent */
+                    c=skip_till_newline(c);
+                    break;
+                }
+                case REQ_nr: // groff(7) "Number Register"
+                /* .nr R +-N M: define and set number register R by +-N;
+                 *  auto-increment by M
+                 */
+                {
+                    INTDEF *intd;
+                    c=c+j;
+                    i=V(c[0],c[1]);
+                    c=c+2;
+                    intd=intdef;
+                    while (intd && intd->nr!=i) intd=intd->next;
+                    if (!intd)
+                    {
+                        intd = new INTDEF();
+                        intd->nr=i;
+                        intd->val=0;
+                        intd->incr=0;
+                        intd->next=intdef;
+                        intdef=intd;
+                    }
+                    while (*c==' ' || *c=='\t') c++;
+                    c=scan_expression(c,&intd->val);
+                    if (*c!='\n')
+                    {
+                        while (*c==' ' || *c=='\t') c++;
+                        c=scan_expression(c,&intd->incr);
+                    }
+                    c=skip_till_newline(c);
+                    break;
+                }
+                case REQ_am: // groff(7) "Append Macro"
+                /* .am xx yy : append to a macro. */
+                /* define or handle as .ig yy */
+                mode=1;
+                case REQ_de: // groff(7) "DEfine macro"
+                /* .de xx yy : define or redefine macro xx; end at .yy (..) */
+                /* define or handle as .ig yy */
+                {
+                    STRDEF *de;
+                    int olen=0;
+                    char endmacro[SMALL_STR_MAX];
+                    c=c+j;
+                    char *next_line;
+                    sl = fill_words(c, wordlist, &words, true, &next_line);
+                    char *name = wordlist[0];
+                    c = name;
+                    while ((*c != ' ') && (*c != '\n')) c++;
+                    *c = '\0';
+    
+                    if (words == 1)
+                    {
+                        endmacro[0] = '.';
+                        endmacro[1] = '.';
+                        endmacro[2] = '\0';
                     }
                     else
                     {
-			de = new STRDEF();
-			de->nr=0; // not used for macro's.
-                        de->name = name;
-			de->next=defdef;
-			de->st=h;
-			defdef=de;
-		    }
-		}
-                }
-	    c=skip_till_newline(c);
-	    break;
-	case REQ_Bl:	/* mdoc(7) */
-	  {
-	    char list_options[NULL_TERMINATED(MED_STR_MAX)];
-	    char *nl = strchr(c,'\n');
-	    c=c+j;
-                if (dl_set[itemdepth])
-                    /* These things can nest. */
-	        itemdepth++;
-                if (nl)
-                    /* Parse list options */
-	        strlimitcpy(list_options, c, nl - c, MED_STR_MAX);
-                if (strstr(list_options, "-bullet"))
-                {
-                    /* HTML Unnumbered List */
-	        dl_set[itemdepth] = BL_BULLET_LIST;
-	        out_html("<UL>\n");
-	    }
-                else if (strstr(list_options, "-enum"))
-                {
-                    /* HTML Ordered List */
-	        dl_set[itemdepth] = BL_ENUM_LIST;
-	        out_html("<OL>\n");
-	    }
-                else
-                {
-                    /* HTML Descriptive List */
-	        dl_set[itemdepth] = BL_DESC_LIST;
-	        out_html("<DL>\n");
-	    }
-                if (fillout)
-                    out_html("<br><br>\n");
-                else
-                {
-		out_html(NEWLINE);
-	    }
-	    curpos=0;
-	    c=skip_till_newline(c);
-	    break;
-	  }
-	case REQ_El:	/* mdoc(7) */
-	    c=c+j;
-                if (dl_set[itemdepth] & BL_DESC_LIST)
-		out_html("</DL>\n");
-                else if (dl_set[itemdepth] & BL_BULLET_LIST)
-		out_html("</UL>\n");
-                else if (dl_set[itemdepth] & BL_ENUM_LIST)
-		out_html("</OL>\n");
-	    dl_set[itemdepth]=0;
-	    if (itemdepth > 0) itemdepth--;
-                if (fillout)
-                    out_html("<br><br>\n");
-                else
-                {
-		out_html(NEWLINE);
-	    }
-	    curpos=0;
-	    c=skip_till_newline(c);
-	    break;
-	case REQ_It:	/* mdoc(7) */
-	    c=c+j;
-                if (strncmp(c, "Xo", 2) == 0 && isspace(*(c+2)))
-	        c = skip_till_newline(c);
-                if (dl_set[itemdepth] & BL_DESC_LIST)
-                {
-	        out_html("<DT>");
-		out_html(change_to_font('B'));
-                    if (*c=='\n')
+                        char *p = endmacro;
+                        *p++ = '.';
+                        c = wordlist[1];
+                        while ((*c != ' ') && (*c != '\n')) *p++ = *c++;
+                        *p = '\0';
+                    }
+                    c = next_line;
+                    sl=c;
+                    while (*c && strncmp(c,endmacro, strlen(endmacro))) c=skip_till_newline(c);
+
+                    de=defdef;
+                    while (de && strncmp(name, de->name, strlen(de->name)))
+                        de=de->next;
+                    if (mode && de) olen=strlen(de->st);
+                    j=olen+c-sl;
+                    h = stralloc(j*2+4);
+                    if (h)
                     {
-                        /* Don't allow embedded comms after a newline */
-		    c++;
-		    c=scan_troff(c,1,NULL);
-		}
+                        for (j=0; j<olen; j++)
+                            h[j]=de->st[j];
+                        if (!j || h[j-1]!='\n')
+                            h[j++]='\n';
+                        while (sl!=c)
+                        {
+                            if (sl[0]=='\\' && sl[1]=='\\')
+                            {
+                                h[j++]='\\';
+                                sl++;
+                            }
+                            else
+                                h[j++]=*sl;
+                            sl++;
+                        }
+                        h[j]=0;
+                        if (de)
+                        {
+                            delete [] de->st;
+                            de->st=h;
+                        }
+                        else
+                        {
+                            de = new STRDEF();
+                            de->nr=0; // not used for macro's.
+                            de->name = name;
+                            de->next=defdef;
+                            de->st=h;
+                            defdef=de;
+                        }
+                    }
+                    c=skip_till_newline(c);
+                    break;
+                }
+                case REQ_Bl: // mdoc(7) "Begin List"
+                {
+                    char list_options[NULL_TERMINATED(MED_STR_MAX)];
+                    char *nl = strchr(c,'\n');
+                    c=c+j;
+                    if (dl_set[itemdepth])
+                    /* These things can nest. */
+                    itemdepth++;
+                    if (nl)
+                    {
+                        /* Parse list options */
+                        strlimitcpy(list_options, c, nl - c, MED_STR_MAX);
+                    }
+                    if (strstr(list_options, "-bullet"))
+                    {
+                        /* HTML Unnumbered List */
+                        dl_set[itemdepth] = BL_BULLET_LIST;
+                        out_html("<UL>\n");
+                    }
+                    else if (strstr(list_options, "-enum"))
+                    {
+                        /* HTML Ordered List */
+                        dl_set[itemdepth] = BL_ENUM_LIST;
+                        out_html("<OL>\n");
+                    }
                     else
                     {
-                        /* Do allow embedded comms on the same line. */
-		    c=scan_troff_mandoc(c,1,NULL);
-		}
-		out_html(change_to_font('R'));
-		out_html(NEWLINE);
-		out_html("<DD>");
-	    }
-                else if (dl_set[itemdepth] & (BL_BULLET_LIST | BL_ENUM_LIST))
-                {
-	        out_html("<LI>");
-		c=scan_troff_mandoc(c,1,NULL);
-		out_html(NEWLINE);
-	    }
-                if (fillout)
-                    curpos++;
-                else
+                        /* HTML Descriptive List */
+                        dl_set[itemdepth] = BL_DESC_LIST;
+                        out_html("<DL>\n");
+                    }
+                    if (fillout)
+                        out_html("<br><br>\n");
+                    else
+                    {
+                        out_html(NEWLINE);
+                    }
                     curpos=0;
-	    break;
+                    c=skip_till_newline(c);
+                    break;
+                }
+                case REQ_El: // mdoc(7) "End List"
+                {
+                    c=c+j;
+                    if (dl_set[itemdepth] & BL_DESC_LIST)
+                        out_html("</DL>\n");
+                    else if (dl_set[itemdepth] & BL_BULLET_LIST)
+                        out_html("</UL>\n");
+                    else if (dl_set[itemdepth] & BL_ENUM_LIST)
+                        out_html("</OL>\n");
+                    dl_set[itemdepth]=0;
+                    if (itemdepth > 0) itemdepth--;
+                    if (fillout)
+                        out_html("<br><br>\n");
+                    else
+                    {
+                        out_html(NEWLINE);
+                    }
+                    curpos=0;
+                    c=skip_till_newline(c);
+                    break;
+                }
+                case REQ_It: // mdoc(7) "list ITem"
+                {
+                    c=c+j;
+                    if (strncmp(c, "Xo", 2) == 0 && isspace(*(c+2)))
+                    c = skip_till_newline(c);
+                    if (dl_set[itemdepth] & BL_DESC_LIST)
+                    {
+                        out_html("<DT>");
+                        out_html(change_to_font('B'));
+                        if (*c=='\n')
+                        {
+                            /* Don't allow embedded comms after a newline */
+                            c++;
+                            c=scan_troff(c,1,NULL);
+                        }
+                        else
+                        {
+                            /* Do allow embedded comms on the same line. */
+                            c=scan_troff_mandoc(c,1,NULL);
+                        }
+                        out_html(change_to_font('R'));
+                        out_html(NEWLINE);
+                        out_html("<DD>");
+                    }
+                    else if (dl_set[itemdepth] & (BL_BULLET_LIST | BL_ENUM_LIST))
+                    {
+                        out_html("<LI>");
+                        c=scan_troff_mandoc(c,1,NULL);
+                        out_html(NEWLINE);
+                    }
+                    if (fillout)
+                        curpos++;
+                    else
+                        curpos=0;
+                    break;
+                }
 	case REQ_Bk:	/* mdoc(7) */
 	case REQ_Ek:	/* mdoc(7) */
 	case REQ_Dd:	/* mdoc(7) */
@@ -3568,7 +3652,7 @@ static char *scan_request(char *c)
                     out_html("FreeBSD ");
 		    parsable=false;
 		}
-                else if (request==REQ_Nx))
+                else if (request==REQ_Nx)
                     out_html("NetBSD ");
                 else if (request==REQ_Ox)
                     out_html("OpenBSD ");
