@@ -3608,607 +3608,657 @@ static char *scan_request(char *c)
                         curpos=0;
                     break;
                 }
-	case REQ_Bk:	/* mdoc(7) */
-	case REQ_Ek:	/* mdoc(7) */
-	case REQ_Dd:	/* mdoc(7) */
-	case REQ_Os:	/* mdoc(7) */
-	    trans_char(c,'"','\a');
-	    c=c+j;
-	    if (*c=='\n') c++;
-	    c=scan_troff_mandoc(c, 1, NULL);
-	    out_html(NEWLINE);
-                if (fillout)
-                    curpos++;
-                else
-                    curpos=0;
-	    break;
-	case REQ_Bt:	/* mdoc(7) */
-	    trans_char(c,'"','\a');
-	    c=c+j;
-	    out_html(" is currently in beta test.");
-                if (fillout)
-                    curpos++;
-                else
-                    curpos=0;
-	    break;
-	case REQ_At:	/* mdoc(7) */
-	case REQ_Fx:	/* mdoc(7) */
-	case REQ_Nx:	/* mdoc(7) */
-	case REQ_Ox:	/* mdoc(7) */
-	case REQ_Bx:	/* mdoc(7) */
-	case REQ_Ux:	/* mdoc(7) */
-        {
-	    bool parsable=true;
-	    trans_char(c,'"','\a');
-	    c=c+j;
-	    if (*c=='\n') c++;
-                if (request==REQ_At)
-		{
-                    out_html("AT&amp;T UNIX ");
-		    parsable=false;
-		}
-                else if (request==REQ_Fx)
-		{
-                    out_html("FreeBSD ");
-		    parsable=false;
-		}
-                else if (request==REQ_Nx)
-                    out_html("NetBSD ");
-                else if (request==REQ_Ox)
-                    out_html("OpenBSD ");
-                else if (request==REQ_Bx)
-                    out_html("BSD ");
-                else if (request==REQ_Ux)
-                    out_html("UNIX ");
-		if (parsable)
-        	    c=scan_troff_mandoc(c,1,0);
-		else
-		    c=scan_troff(c,1,0);
-                if (fillout)
-                    curpos++;
-                else
-                    curpos=0;
-	    break;
-	}
-	case REQ_Dl:	/* mdoc(7) */
-	    c=c+j;
-	    out_html(NEWLINE);
-	    out_html("<BLOCKQUOTE>");
-	    out_html(change_to_font('L'));
-	    if (*c=='\n') c++;
-	    c=scan_troff_mandoc(c, 1, NULL);
-	    out_html(change_to_font('R'));
-	    out_html("</BLOCKQUOTE>");
-                if (fillout)
-                    curpos++;
-                else
-                    curpos=0;
-	    break;
-	case REQ_Bd:	/* mdoc(7) */
-	  {			/* Seems like a kind of example/literal mode */
-	    char bd_options[NULL_TERMINATED(MED_STR_MAX)];
-	    char *nl = strchr(c,'\n');
-	    c=c+j;
-                if (nl)
-	      strlimitcpy(bd_options, c, nl - c, MED_STR_MAX);
-	    out_html(NEWLINE);
-	    mandoc_bd_options = 0; /* Remember options for terminating Bl */
-                if (strstr(bd_options, "-offset indent"))
+                case REQ_Bk:	/* mdoc(7) */
+                case REQ_Ek:	/* mdoc(7) */
+                case REQ_Dd:	/* mdoc(7) */
+                case REQ_Os: // mdoc(7) "Operating System"
                 {
-	        mandoc_bd_options |= BD_INDENT;
-	        out_html("<BLOCKQUOTE>\n");
-	    }
-                if ( strstr(bd_options, "-literal") || strstr(bd_options, "-unfilled"))
-                {
-                    if (fillout)
-                    {
-		    mandoc_bd_options |= BD_LITERAL;
-		    out_html(change_to_font(0));
-		    out_html(change_to_size('0'));
-		    out_html("<PRE>\n");
-		}
-		curpos=0;
-		fillout=0;
-	    }
-	    c=skip_till_newline(c);
-	    break;
-	  }
-	case REQ_Ed:	/* mdoc(7) */
-                if (mandoc_bd_options & BD_LITERAL)
-                {
-                    if (!fillout)
-                    {
-		    out_html(change_to_font(0));
-		    out_html(change_to_size('0'));
-		    out_html("</PRE>\n");
-		}
-	    }
-	    if (mandoc_bd_options & BD_INDENT)
-	        out_html("</BLOCKQUOTE>\n");
-	    curpos=0;
-	    fillout=1;
-	    c=skip_till_newline(c);
-	    break;
-	case REQ_Be:	/* mdoc(7) */
-	    c=c+j;
-                if (fillout)
-                    out_html("<br><br>");
-                else
-                {
-		out_html(NEWLINE);
-	    }
-	    curpos=0;
-	    c=skip_till_newline(c);
-	    break;
-            case REQ_Xr:	/* mdoc(7) */ // ### FIXME: it should issue a <a href="man:somewhere(x)"> directly
-	    {
-	      /* Translate xyz 1 to xyz(1)
-	       * Allow for multiple spaces.  Allow the section to be missing.
-	       */
-	      char buff[NULL_TERMINATED(MED_STR_MAX)];
-	      char *bufptr;
-	      trans_char(c,'"','\a');
-	      bufptr = buff;
-	      c = c+j;
-	      if (*c == '\n') c++; /* Skip spaces */
-	      while (isspace(*c) && *c != '\n') c++;
-                while (isalnum(*c) || *c == '.' || *c == ':' || *c == '_' || *c == '-')
-                {
-                    /* Copy the xyz part */
-		*bufptr = *c;
-                    bufptr++;
-                    if (bufptr >= buff + MED_STR_MAX) break;
-		c++;
-	      }
-	      while (isspace(*c) && *c != '\n') c++;	/* Skip spaces */
-                if (isdigit(*c))
-                {
-                    /* Convert the number if there is one */
-		*bufptr = '(';
-		bufptr++;
-                    if (bufptr < buff + MED_STR_MAX)
-                    {
-                        while (isalnum(*c))
-                        {
-		    *bufptr = *c;
-                            bufptr++;
-                            if (bufptr >= buff + MED_STR_MAX) break;
-		    c++;
-		  }
-                        if (bufptr < buff + MED_STR_MAX)
-                        {
-		    *bufptr = ')';
-		    bufptr++;
-		  }
-		}
-	      }
-                while (*c != '\n')
-                {
-                    /* Copy the remainder */
-                    if (!isspace(*c))
-                    {
-		  *bufptr = *c;
-                        bufptr++;
-                        if (bufptr >= buff + MED_STR_MAX) break;
-		}
-		c++;
-	      }
-	      *bufptr = '\n';
-              bufptr[1] = 0;
-	      scan_troff_mandoc(buff, 1, NULL);
-	      out_html(NEWLINE);
-                if (fillout)
-                    curpos++;
-                else
-                    curpos=0;
-	    }
-	    break;
-        case REQ_Fl:	// mdoc(7) "FLags"
-        {
-	     trans_char(c,'"','\a');
-	     c+=j;
-             sl=fill_words(c, wordlist, &words, true, &c);
-             out_html(change_to_font('B'));
-             if (!words)
-             {
-                 out_html("-"); // stdin or stdout
-             }
-             else
-             {
-                 for (i=0;i<words;++i)
-                 {
-                    if (ispunct(wordlist[i][0]) && wordlist[i][0]!='-')
-                    {
-                        scan_troff_mandoc(wordlist[i], 1, NULL);
-                    }
-                    else
-                    {
-                        if (i>0)
-                            out_html(" "); // Put a space between flags
-                        out_html("-");
-                        scan_troff_mandoc(wordlist[i], 1, NULL);
-                    }
-                 }
-             }
-             out_html(change_to_font('R'));
-             out_html(NEWLINE);
-             if (fillout)
-                 curpos++;
-             else
-                 curpos=0;
-	     break;
-        }
-	case REQ_Pa:	/* mdoc(7) */
-	case REQ_Pf:	/* mdoc(7) */
-	    trans_char(c,'"','\a');
-	    c=c+j;
-	    if (*c=='\n') c++;
-	    c=scan_troff_mandoc(c, 1, NULL);
-	    out_html(NEWLINE);
-                if (fillout)
-                    curpos++;
-                else
-                    curpos=0;
-	    break;
-	case REQ_Pp:	/* mdoc(7) */
-                if (fillout)
-                    out_html("<br><br>\n");
-                else
-                {
-		out_html(NEWLINE);
-	    }
-	    curpos=0;
-	    c=skip_till_newline(c);
-	    break;
-	case REQ_Aq: // mdoc(7) "Angle bracket Quote"
-	    c=process_quote(c,j,"&lt;","&gt;");
-	    break;
-        case REQ_Bq: // mdoc(7) "Bracket Quote"
-	    c=process_quote(c,j,"[","]");
-	    break;
-	case REQ_Dq:	// mdoc(7) "Double Quote"
-	    c=process_quote(c,j,"&ldquo;","&rdquo;");
-	    break;
-	case REQ_Pq:	// mdoc(7) "Parenthese Quote"
-	    c=process_quote(c,j,"(",")");
-	    break;
-	case REQ_Qq:	// mdoc(7) "straight double Quote"
-	    c=process_quote(c,j,"&quot;","&quot;");
-	    break;
-	case REQ_Sq:	// mdoc(7) "Single Quote"
-	    c=process_quote(c,j,"&lsquo;","&rsquo;");
-	    break;
-	case REQ_Op:	/* mdoc(7) */
-	    trans_char(c,'"','\a');
-	    c=c+j;
-	    if (*c=='\n') c++;
-	    out_html(change_to_font('R'));
-	    out_html("[");
-	    c=scan_troff_mandoc(c, 1, NULL);
-	    out_html(change_to_font('R'));
-	    out_html("]");
-	    out_html(NEWLINE);
-                if (fillout)
-                    curpos++;
-                else
-                    curpos=0;
-	    break;
-	case REQ_Oo:	/* mdoc(7) */
-	    trans_char(c,'"','\a');
-	    c=c+j;
-	    if (*c=='\n') c++;
-	    out_html(change_to_font('R'));
-	    out_html("[");
-	    c=scan_troff_mandoc(c, 1, NULL);
-                if (fillout)
-                    curpos++;
-                else
-                    curpos=0;
-	    break;
-	case REQ_Oc:	/* mdoc(7) */
-	    trans_char(c,'"','\a');
-	    c=c+j;
-	    c=scan_troff_mandoc(c, 1, NULL);
-	    out_html(change_to_font('R'));
-	    out_html("]");
-                if (fillout)
-                    curpos++;
-                else
-                    curpos=0;
-	    break;
-	case REQ_Ql:	/* mdoc(7) */
-	  {			/* Single quote first word in the line */
-	    char *sp;
-	    trans_char(c,'"','\a');
-	    c=c+j;
-	    if (*c=='\n') c++;
-	    sp = c;
-                do
-                {        /* Find first whitespace after the
-				 * first word that isn't a mandoc macro
-				 */
-	      while (*sp && isspace(*sp)) sp++;
-	      while (*sp && !isspace(*sp)) sp++;
-	    } while (*sp && isupper(*(sp-2)) && islower(*(sp-1)));
-
-				/* Use a newline to mark the end of text to
-				 * be quoted
-				 */
-	    if (*sp) *sp = '\n';
-	    out_html("`");	/* Quote the text */
-	    c=scan_troff_mandoc(c, 1, NULL);
-	    out_html("'");
-	    out_html(NEWLINE);
-                if (fillout)
-                    curpos++;
-                else
-                    curpos=0;
-	    break;
-	  }
-	case REQ_Ar:	/* mdoc(7) */
-            /* parse one line in italics */
-	    out_html(change_to_font('I'));
-	    trans_char(c,'"','\a');
-	    c=c+j;
-                if (*c=='\n')
-                    /* An empty Ar means "file ..." */
-	        out_html("file ...");
-                else
-	        c=scan_troff_mandoc(c, 1, NULL);
-	    out_html(change_to_font('R'));
-	    out_html(NEWLINE);
-                if (fillout)
-                    curpos++;
-                else
-                    curpos=0;
-	    break;
-	case REQ_Em:	/* mdoc(7) */
-	    out_html("<em>");
-	    trans_char(c,'"','\a');
-	    c+=j;
-	    if (*c=='\n') c++;
-	    c=scan_troff_mandoc(c, 1, NULL);
-	    out_html("</em>");
-	    out_html(NEWLINE);
-                if (fillout)
-                    curpos++;
-                else
-                    curpos=0;
-	    break;
-	case REQ_Ad:	/* mdoc(7) */
-	case REQ_Va:	/* mdoc(7) */
-	case REQ_Xc:	/* mdoc(7) */
-            /* parse one line in italics */
-	    out_html(change_to_font('I'));
-	    trans_char(c,'"','\a');
-	    c=c+j;
-	    if (*c=='\n') c++;
-	    c=scan_troff_mandoc(c, 1, NULL);
-	    out_html(change_to_font('R'));
-	    out_html(NEWLINE);
-                if (fillout)
-                    curpos++;
-                else
-                    curpos=0;
-	    break;
-	case REQ_Nd:	/* mdoc(7) */
-	    trans_char(c,'"','\a');
-	    c=c+j;
-	    if (*c=='\n') c++;
-	    out_html(" - ");
-	    c=scan_troff_mandoc(c, 1, NULL);
-	    out_html(NEWLINE);
-                if (fillout)
-                    curpos++;
-                else
-                    curpos=0;
-	    break;
-     case REQ_Nm:	// mdoc(7) "Name Macro" ### FIXME
-	  {
-            static char mandoc_name[NULL_TERMINATED(SMALL_STR_MAX)] = ""; // ### TODO Use QCString
-	    trans_char(c,'"','\a');
-	    c=c+j;
-
-	    if (mandoc_synopsis && mandoc_name_count) {    /* Break lines only in the Synopsis.
-                                                * The Synopsis section seems to be treated
-                                                * as a special case - Bummer!
-                                                */
-                out_html("<BR>");
-            } else if (!mandoc_name_count) {
-                const char *nextbreak = strchr(c, '\n');
-                const char *nextspace = strchr(c, ' ');
-                if (nextspace < nextbreak)
-                    nextbreak = nextspace;
-
-                if (nextbreak) {	/* Remember the name for later. */
-                    strlimitcpy(mandoc_name, c, nextbreak - c, SMALL_STR_MAX);
-                }
-            }
-            mandoc_name_count++;
-
-	    out_html(change_to_font('B'));
-            // ### FIXME: fill_words must be used
-	    while (*c == ' '|| *c == '\t') c++;
-                if ((tolower(*c) >= 'a' && tolower(*c) <= 'z' ) || (*c >= '0' && *c <= '9'))
-                {
-                // alphanumeric argument
-                c=scan_troff_mandoc(c, 1, NULL);
-                out_html(change_to_font('R'));
-                out_html(NEWLINE);
-                }
-                else
-                {
-                /* If Nm has no argument, use one from an earlier
-                 * Nm command that did have one.  Hope there aren't
-                 * too many commands that do this.
-                 */
-	        out_html(mandoc_name);
-                out_html(change_to_font('R'));
-	    }
-
-                if (fillout)
-                    curpos++;
-                else
-                    curpos=0;
-	    break;
-	  }
-	case REQ_Cd:	/* mdoc(7) */
-	case REQ_Cm:	/* mdoc(7) */
-	case REQ_Ic:	/* mdoc(7) */
-	case REQ_Ms:	/* mdoc(7) */
-	case REQ_Or:	/* mdoc(7) */
-        case REQ_Sy:    /* mdoc(7) */
-            /* parse one line in bold */
-	    out_html(change_to_font('B'));
-	    trans_char(c,'"','\a');
-	    c=c+j;
-	    if (*c=='\n') c++;
-	    c=scan_troff_mandoc(c, 1, NULL);
-	    out_html(change_to_font('R'));
-	    out_html(NEWLINE);
-                if (fillout)
-                    curpos++;
-                else
-                    curpos=0;
-	    break;
-	case REQ_Dv:	/* mdoc(7) */
-	case REQ_Ev:	/* mdoc(7) */
-	case REQ_Fr:	/* mdoc(7) */
-	case REQ_Li:	/* mdoc(7) */
-	case REQ_No:	/* mdoc(7) */
-	case REQ_Ns:	/* mdoc(7) */
-	case REQ_Tn:	/* mdoc(7) */
-	case REQ_nN:	/* mdoc(7) */
-	    trans_char(c,'"','\a');
-	    c=c+j;
-	    if (*c=='\n') c++;
-	    out_html(change_to_font('B'));
-	    c=scan_troff_mandoc(c, 1, NULL);
-	    out_html(change_to_font('R'));
-	    out_html(NEWLINE);
-                if (fillout)
-                    curpos++;
-                else
-                    curpos=0;
-	    break;
-	case REQ_perc_A:	/* mdoc(7) biblio stuff */
-	case REQ_perc_D:
-	case REQ_perc_N:
-	case REQ_perc_O:
-	case REQ_perc_P:
-	case REQ_perc_Q:
-	case REQ_perc_V:
-	    c=c+j;
-	    if (*c=='\n') c++;
-	    c=scan_troff(c, 1, NULL); /* Don't allow embedded mandoc coms */
-                if (fillout)
-                    curpos++;
-                else
-                    curpos=0;
-	    break;
-	case REQ_perc_B:
-	case REQ_perc_J:
-	case REQ_perc_R:
-	case REQ_perc_T:
-	    c=c+j;
-	    out_html(change_to_font('I'));
-	    if (*c=='\n') c++;
-	    c=scan_troff(c, 1, NULL); /* Don't allow embedded mandoc coms */
-	    out_html(change_to_font('R'));
-                if (fillout)
-                    curpos++;
-                else
-                    curpos=0;
-	    break;
-        case REQ_UR: // ### FIXME
-        {
-            ignore_links=true;
-            c+=j;
-            char* newc;
-            h=fill_words(c, wordlist, &words, false, &newc);
-            *h=0;
-            if (words>0)
-            {
-                h=wordlist[0];
-                // A parameter : means that we do not want an URL, not here and not until .UE
-                ur_ignore=(!qstrcmp(h,":"));
-            }
-            else
-            {
-                // We cannot find the URL, assume :
-                ur_ignore=true;
-                h=0;
-            }
-            if (!ur_ignore && words>0)
-            {
-                out_html("<a href=\"");
-                out_html(h);
-                out_html("\">");
-            }
-            c=newc; // Go to next line
-            break;
-        }
-        case REQ_UE: // ### FIXME
-        {
-            c+=j;
-            c = skip_till_newline(c);
-            if (!ur_ignore)
-            {
-                out_html("</a>");
-            }
-            ur_ignore=false;
-            ignore_links=false;
-            break;
-        }
-        case REQ_UN: // ### FIXME
-        {
-            c+=j;
-            char* newc;
-            h=fill_words(c, wordlist, &words, false, &newc);
-            *h=0;
-            if (words>0)
-            {
-                h=wordlist[0];
-                out_html("<a name=\">");
-                out_html(h);
-                out_html("\" id=\"");
-                out_html(h);
-                out_html("\">");
-            }
-            c=newc;
-            break;
-        }
-        
-        default:
-                if (mandoc_command &&
-		     ((isupper(*c) && islower(*(c+1)))
-                    || (islower(*c) && isupper(*(c+1)))) )
-                {
-                    /* Let through any mdoc(7) commands that haven't
-				 * been delt with.
-				 * I don't want to miss anything out of the text.
-				 */
-	        char buf[4];
-		strncpy(buf,c,2);
-		buf[2] = ' ';
-		buf[3] = '\0';
-		out_html(buf);	/* Print the command (it might just be text). */
-	        c=c+j;
-	        trans_char(c,'"','\a');
-		if (*c=='\n') c++;
-		out_html(change_to_font('R'));
-		c=scan_troff(c, 1, NULL);
-		out_html(NEWLINE);
+                    trans_char(c,'"','\a');
+                    c=c+j;
+                    if (*c=='\n') c++;
+                    c=scan_troff_mandoc(c, 1, NULL);
+                    out_html(NEWLINE);
                     if (fillout)
                         curpos++;
                     else
                         curpos=0;
-	    }
-                else
-		c=skip_till_newline(c);
-	    break;
-	}
-    }
+                    break;
+                }
+                case REQ_Bt: // mdoc(7) "Beta Test"
+                {
+                    trans_char(c,'"','\a');
+                    c=c+j;
+                    out_html(" is currently in beta test.");
+                    if (fillout)
+                        curpos++;
+                    else
+                        curpos=0;
+                    break;
+                }
+                case REQ_At:	/* mdoc(7) */
+                case REQ_Fx:	/* mdoc(7) */
+                case REQ_Nx:	/* mdoc(7) */
+                case REQ_Ox:	/* mdoc(7) */
+                case REQ_Bx:	/* mdoc(7) */
+                case REQ_Ux:	/* mdoc(7) */
+                {
+                    bool parsable=true;
+                    trans_char(c,'"','\a');
+                    c=c+j;
+                    if (*c=='\n') c++;
+                    if (request==REQ_At)
+                    {
+                        out_html("AT&amp;T UNIX ");
+                        parsable=false;
+                    }
+                    else if (request==REQ_Fx)
+                    {
+                        out_html("FreeBSD ");
+                        parsable=false;
+                    }
+                    else if (request==REQ_Nx)
+                        out_html("NetBSD ");
+                    else if (request==REQ_Ox)
+                        out_html("OpenBSD ");
+                    else if (request==REQ_Bx)
+                        out_html("BSD ");
+                    else if (request==REQ_Ux)
+                        out_html("UNIX ");
+                    if (parsable)
+                        c=scan_troff_mandoc(c,1,0);
+                    else
+                        c=scan_troff(c,1,0);
+                    if (fillout)
+                        curpos++;
+                    else
+                        curpos=0;
+                    break;
+                }
+                case REQ_Dl:	/* mdoc(7) */
+                {
+                    c=c+j;
+                    out_html(NEWLINE);
+                    out_html("<BLOCKQUOTE>");
+                    out_html(change_to_font('L'));
+                    if (*c=='\n') c++;
+                    c=scan_troff_mandoc(c, 1, NULL);
+                    out_html(change_to_font('R'));
+                    out_html("</BLOCKQUOTE>");
+                    if (fillout)
+                        curpos++;
+                    else
+                        curpos=0;
+                    break;
+                }
+	       case REQ_Bd:	/* mdoc(7) */
+	       {			/* Seems like a kind of example/literal mode */
+                    char bd_options[NULL_TERMINATED(MED_STR_MAX)];
+                    char *nl = strchr(c,'\n');
+                    c=c+j;
+                    if (nl)
+                        strlimitcpy(bd_options, c, nl - c, MED_STR_MAX);
+                    out_html(NEWLINE);
+                    mandoc_bd_options = 0; /* Remember options for terminating Bl */
+                    if (strstr(bd_options, "-offset indent"))
+                    {
+                        mandoc_bd_options |= BD_INDENT;
+                        out_html("<BLOCKQUOTE>\n");
+                    }
+                    if ( strstr(bd_options, "-literal") || strstr(bd_options, "-unfilled"))
+                    {
+                        if (fillout)
+                        {
+                            mandoc_bd_options |= BD_LITERAL;
+                            out_html(change_to_font(0));
+                            out_html(change_to_size('0'));
+                            out_html("<PRE>\n");
+                        }
+                        curpos=0;
+                        fillout=0;
+                    }
+                    c=skip_till_newline(c);
+                    break;
+                }
+                case REQ_Ed:	/* mdoc(7) */
+                {
+                    if (mandoc_bd_options & BD_LITERAL)
+                    {
+                        if (!fillout)
+                        {
+                            out_html(change_to_font(0));
+                            out_html(change_to_size('0'));
+                            out_html("</PRE>\n");
+                        }
+                    }
+                    if (mandoc_bd_options & BD_INDENT)
+                        out_html("</BLOCKQUOTE>\n");
+                    curpos=0;
+                    fillout=1;
+                    c=skip_till_newline(c);
+                    break;
+                }
+                case REQ_Be:	/* mdoc(7) */
+                {
+                    c=c+j;
+                    if (fillout)
+                        out_html("<br><br>");
+                    else
+                    {
+                        out_html(NEWLINE);
+                    }
+                    curpos=0;
+                    c=skip_till_newline(c);
+                    break;
+                }
+                case REQ_Xr:	/* mdoc(7) */ // ### FIXME: it should issue a <a href="man:somewhere(x)"> directly
+                {
+                    /* Translate xyz 1 to xyz(1)
+                     * Allow for multiple spaces.  Allow the section to be missing.
+                     */
+                    char buff[NULL_TERMINATED(MED_STR_MAX)];
+                    char *bufptr;
+                    trans_char(c,'"','\a');
+                    bufptr = buff;
+                    c = c+j;
+                    if (*c == '\n') c++; /* Skip spaces */
+                    while (isspace(*c) && *c != '\n') c++;
+                    while (isalnum(*c) || *c == '.' || *c == ':' || *c == '_' || *c == '-')
+                    {
+                        /* Copy the xyz part */
+                        *bufptr = *c;
+                        bufptr++;
+                        if (bufptr >= buff + MED_STR_MAX) break;
+                        c++;
+                    }
+                    while (isspace(*c) && *c != '\n') c++;	/* Skip spaces */
+                    if (isdigit(*c))
+                    {
+                        /* Convert the number if there is one */
+                        *bufptr = '(';
+                        bufptr++;
+                        if (bufptr < buff + MED_STR_MAX)
+                        {
+                            while (isalnum(*c))
+                            {
+                                *bufptr = *c;
+                                bufptr++;
+                                if (bufptr >= buff + MED_STR_MAX) break;
+                                c++;
+                            }
+                            if (bufptr < buff + MED_STR_MAX)
+                            {
+                                *bufptr = ')';
+                                bufptr++;
+                            }
+                        }
+                    }
+                    while (*c != '\n')
+                    {
+                        /* Copy the remainder */
+                        if (!isspace(*c))
+                        {
+                            *bufptr = *c;
+                            bufptr++;
+                            if (bufptr >= buff + MED_STR_MAX) break;
+                        }
+                        c++;
+                    }
+                    *bufptr = '\n';
+                    bufptr[1] = 0;
+                    scan_troff_mandoc(buff, 1, NULL);
+                    out_html(NEWLINE);
+                    if (fillout)
+                        curpos++;
+                    else
+                        curpos=0;
+                    break;
+                }
+                case REQ_Fl:	// mdoc(7) "FLags"
+                {
+                    trans_char(c,'"','\a');
+                    c+=j;
+                    sl=fill_words(c, wordlist, &words, true, &c);
+                    out_html(change_to_font('B'));
+                    if (!words)
+                    {
+                        out_html("-"); // stdin or stdout
+                    }
+                    else
+                    {
+                        for (i=0;i<words;++i)
+                        {
+                            if (ispunct(wordlist[i][0]) && wordlist[i][0]!='-')
+                            {
+                                scan_troff_mandoc(wordlist[i], 1, NULL);
+                            }
+                            else
+                            {
+                                if (i>0)
+                                    out_html(" "); // Put a space between flags
+                                out_html("-");
+                                scan_troff_mandoc(wordlist[i], 1, NULL);
+                            }
+                        }
+                    }
+                    out_html(change_to_font('R'));
+                    out_html(NEWLINE);
+                    if (fillout)
+                        curpos++;
+                    else
+                        curpos=0;
+                    break;
+                }
+                case REQ_Pa:	/* mdoc(7) */
+                case REQ_Pf:	/* mdoc(7) */
+                {
+                    trans_char(c,'"','\a');
+                    c=c+j;
+                    if (*c=='\n') c++;
+                    c=scan_troff_mandoc(c, 1, NULL);
+                    out_html(NEWLINE);
+                    if (fillout)
+                        curpos++;
+                    else
+                        curpos=0;
+                    break;
+                }
+                case REQ_Pp:	/* mdoc(7) */
+                {
+                    if (fillout)
+                        out_html("<br><br>\n");
+                    else
+                    {
+                        out_html(NEWLINE);
+                    }
+                    curpos=0;
+                    c=skip_till_newline(c);
+                    break;
+                }
+                case REQ_Aq: // mdoc(7) "Angle bracket Quote"
+                    c=process_quote(c,j,"&lt;","&gt;");
+                    break;
+                case REQ_Bq: // mdoc(7) "Bracket Quote"
+                    c=process_quote(c,j,"[","]");
+                    break;
+                case REQ_Dq:	// mdoc(7) "Double Quote"
+                    c=process_quote(c,j,"&ldquo;","&rdquo;");
+                    break;
+                case REQ_Pq:	// mdoc(7) "Parenthese Quote"
+                    c=process_quote(c,j,"(",")");
+                    break;
+                case REQ_Qq:	// mdoc(7) "straight double Quote"
+                    c=process_quote(c,j,"&quot;","&quot;");
+                    break;
+                case REQ_Sq:	// mdoc(7) "Single Quote"
+                    c=process_quote(c,j,"&lsquo;","&rsquo;");
+                    break;
+                case REQ_Op:	/* mdoc(7) */
+                {
+                    trans_char(c,'"','\a');
+                    c=c+j;
+                    if (*c=='\n') c++;
+                    out_html(change_to_font('R'));
+                    out_html("[");
+                    c=scan_troff_mandoc(c, 1, NULL);
+                    out_html(change_to_font('R'));
+                    out_html("]");
+                    out_html(NEWLINE);
+                    if (fillout)
+                        curpos++;
+                    else
+                        curpos=0;
+                    break;
+                }
+                case REQ_Oo:	/* mdoc(7) */
+                {
+                    trans_char(c,'"','\a');
+                    c=c+j;
+                    if (*c=='\n') c++;
+                    out_html(change_to_font('R'));
+                    out_html("[");
+                    c=scan_troff_mandoc(c, 1, NULL);
+                    if (fillout)
+                        curpos++;
+                    else
+                        curpos=0;
+        	    break;
+                }
+                case REQ_Oc:	/* mdoc(7) */
+                {
+                    trans_char(c,'"','\a');
+                    c=c+j;
+                    c=scan_troff_mandoc(c, 1, NULL);
+                    out_html(change_to_font('R'));
+                    out_html("]");
+                    if (fillout)
+                        curpos++;
+                    else
+                        curpos=0;
+                    break;
+                }
+                case REQ_Ql:	/* mdoc(7) */
+                {
+                    /* Single quote first word in the line */
+                    char *sp;
+                    trans_char(c,'"','\a');
+                    c=c+j;
+                    if (*c=='\n') c++;
+                    sp = c;
+                    do
+                    {
+                        /* Find first whitespace after the
+                         * first word that isn't a mandoc macro
+                         */
+                        while (*sp && isspace(*sp)) sp++;
+                        while (*sp && !isspace(*sp)) sp++;
+                    } while (*sp && isupper(*(sp-2)) && islower(*(sp-1)));
+
+                    /* Use a newline to mark the end of text to
+                     * be quoted
+                     */
+                    if (*sp) *sp = '\n';
+                    out_html("`");	/* Quote the text */
+                    c=scan_troff_mandoc(c, 1, NULL);
+                    out_html("'");
+                    out_html(NEWLINE);
+                    if (fillout)
+                        curpos++;
+                    else
+                        curpos=0;
+                    break;
+                }
+                case REQ_Ar:	/* mdoc(7) */
+                {
+                    /* parse one line in italics */
+                    out_html(change_to_font('I'));
+                    trans_char(c,'"','\a');
+                    c=c+j;
+                    if (*c=='\n')
+                    {
+                        /* An empty Ar means "file ..." */
+                        out_html("file ...");
+                    }
+                    else
+                        c=scan_troff_mandoc(c, 1, NULL);
+                    out_html(change_to_font('R'));
+                    out_html(NEWLINE);
+                    if (fillout)
+                        curpos++;
+                    else
+                        curpos=0;
+                    break;
+                }
+                case REQ_Em:	/* mdoc(7) */
+                {
+                    out_html("<em>");
+                    trans_char(c,'"','\a');
+                    c+=j;
+                    if (*c=='\n') c++;
+                    c=scan_troff_mandoc(c, 1, NULL);
+                    out_html("</em>");
+                    out_html(NEWLINE);
+                    if (fillout)
+                        curpos++;
+                    else
+                        curpos=0;
+                    break;
+                }
+                case REQ_Ad:	/* mdoc(7) */
+                case REQ_Va:	/* mdoc(7) */
+                case REQ_Xc:	/* mdoc(7) */
+                {
+                    /* parse one line in italics */
+                    out_html(change_to_font('I'));
+                    trans_char(c,'"','\a');
+                    c=c+j;
+                    if (*c=='\n') c++;
+                    c=scan_troff_mandoc(c, 1, NULL);
+                    out_html(change_to_font('R'));
+                    out_html(NEWLINE);
+                    if (fillout)
+                        curpos++;
+                    else
+                        curpos=0;
+                    break;
+                }
+                case REQ_Nd:	/* mdoc(7) */
+                {
+                    trans_char(c,'"','\a');
+                    c=c+j;
+                    if (*c=='\n') c++;
+                    out_html(" - ");
+                    c=scan_troff_mandoc(c, 1, NULL);
+                    out_html(NEWLINE);
+                    if (fillout)
+                        curpos++;
+                    else
+                        curpos=0;
+                    break;
+                }
+                case REQ_Nm:	// mdoc(7) "Name Macro" ### FIXME
+                {
+                    static char mandoc_name[NULL_TERMINATED(SMALL_STR_MAX)] = ""; // ### TODO Use QCString
+                    trans_char(c,'"','\a');
+                    c=c+j;
+
+                    if (mandoc_synopsis && mandoc_name_count)
+                    {
+                        /* Break lines only in the Synopsis.
+                         * The Synopsis section seems to be treated
+                         * as a special case - Bummer!
+                         */
+                        out_html("<BR>");
+                    }
+                    else if (!mandoc_name_count)
+                    {
+                        const char *nextbreak = strchr(c, '\n');
+                        const char *nextspace = strchr(c, ' ');
+                        if (nextspace < nextbreak)
+                            nextbreak = nextspace;
+
+                        if (nextbreak)
+                        {
+                            /* Remember the name for later. */
+                            strlimitcpy(mandoc_name, c, nextbreak - c, SMALL_STR_MAX);
+                        }
+                    }
+                    mandoc_name_count++;
+        
+                    out_html(change_to_font('B'));
+                    // ### FIXME: fill_words must be used
+                    while (*c == ' '|| *c == '\t') c++;
+                    if ((tolower(*c) >= 'a' && tolower(*c) <= 'z' ) || (*c >= '0' && *c <= '9'))
+                    {
+                        // alphanumeric argument
+                        c=scan_troff_mandoc(c, 1, NULL);
+                        out_html(change_to_font('R'));
+                        out_html(NEWLINE);
+                    }
+                    else
+                    {
+                        /* If Nm has no argument, use one from an earlier
+                        * Nm command that did have one.  Hope there aren't
+                        * too many commands that do this.
+                        */
+                        out_html(mandoc_name);
+                        out_html(change_to_font('R'));
+                    }
+
+                    if (fillout)
+                        curpos++;
+                    else
+                        curpos=0;
+                    break;
+                }
+                case REQ_Cd:	/* mdoc(7) */
+                case REQ_Cm:	/* mdoc(7) */
+                case REQ_Ic:	/* mdoc(7) */
+                case REQ_Ms:	/* mdoc(7) */
+                case REQ_Or:	/* mdoc(7) */
+                case REQ_Sy:    /* mdoc(7) */
+                {
+                    /* parse one line in bold */
+                    out_html(change_to_font('B'));
+                    trans_char(c,'"','\a');
+                    c=c+j;
+                    if (*c=='\n') c++;
+                    c=scan_troff_mandoc(c, 1, NULL);
+                    out_html(change_to_font('R'));
+                    out_html(NEWLINE);
+                    if (fillout)
+                        curpos++;
+                    else
+                        curpos=0;
+                    break;
+                }
+                case REQ_Dv:	/* mdoc(7) */
+                case REQ_Ev:	/* mdoc(7) */
+                case REQ_Fr:	/* mdoc(7) */
+                case REQ_Li:	/* mdoc(7) */
+                case REQ_No:	/* mdoc(7) */
+                case REQ_Ns:	/* mdoc(7) */
+                case REQ_Tn:	/* mdoc(7) */
+                case REQ_nN:	/* mdoc(7) */
+                {
+                    trans_char(c,'"','\a');
+                    c=c+j;
+                    if (*c=='\n') c++;
+                    out_html(change_to_font('B'));
+                    c=scan_troff_mandoc(c, 1, NULL);
+                    out_html(change_to_font('R'));
+                    out_html(NEWLINE);
+                    if (fillout)
+                        curpos++;
+                    else
+                        curpos=0;
+                    break;
+                }
+                case REQ_perc_A:	/* mdoc(7) biblio stuff */
+                case REQ_perc_D:
+                case REQ_perc_N:
+                case REQ_perc_O:
+                case REQ_perc_P:
+                case REQ_perc_Q:
+                case REQ_perc_V:
+                {
+                    // ### TODO: check if HTML 4 has some of these markups
+                    c=c+j;
+                    if (*c=='\n') c++;
+                    c=scan_troff(c, 1, NULL); /* Don't allow embedded mandoc coms */
+                    if (fillout)
+                        curpos++;
+                    else
+                        curpos=0;
+                    break;
+                }
+                case REQ_perc_B:
+                case REQ_perc_J:
+                case REQ_perc_R:
+                case REQ_perc_T:
+                {
+                    // ### TODO: check if HTML 4 has some of these markups
+                    c=c+j;
+                    out_html(change_to_font('I'));
+                    if (*c=='\n') c++;
+                    c=scan_troff(c, 1, NULL); /* Don't allow embedded mandoc coms */
+                    out_html(change_to_font('R'));
+                    if (fillout)
+                        curpos++;
+                    else
+                        curpos=0;
+                    break;
+                }
+                case REQ_UR: // ### FIXME man(7) "URl"
+                {
+                    ignore_links=true;
+                    c+=j;
+                    char* newc;
+                    h=fill_words(c, wordlist, &words, false, &newc);
+                    *h=0;
+                    if (words>0)
+                    {
+                        h=wordlist[0];
+                        // A parameter : means that we do not want an URL, not here and not until .UE
+                        ur_ignore=(!qstrcmp(h,":"));
+                    }
+                    else
+                    {
+                        // We cannot find the URL, assume :
+                        ur_ignore=true;
+                        h=0;
+                    }
+                    if (!ur_ignore && words>0)
+                    {
+                        out_html("<a href=\"");
+                        out_html(h);
+                        out_html("\">");
+                    }
+                    c=newc; // Go to next line
+                    break;
+                }
+                case REQ_UE: // ### FIXME man(7) "Url End"
+                {
+                    c+=j;
+                    c = skip_till_newline(c);
+                    if (!ur_ignore)
+                    {
+                        out_html("</a>");
+                    }
+                    ur_ignore=false;
+                    ignore_links=false;
+                    break;
+                }
+                case REQ_UN: // ### FIXME man(7) "Url Named anchor"
+                {
+                    c+=j;
+                    char* newc;
+                    h=fill_words(c, wordlist, &words, false, &newc);
+                    *h=0;
+                    if (words>0)
+                    {
+                        h=wordlist[0];
+                        out_html("<a name=\">");
+                        out_html(h);
+                        out_html("\" id=\"");
+                        out_html(h);
+                        out_html("\">");
+                    }
+                    c=newc;
+                    break;
+                }
+            
+                default:
+                {
+                    if (mandoc_command &&
+                        ((isupper(*c) && islower(*(c+1)))
+                        || (islower(*c) && isupper(*(c+1)))) )
+                    {
+                        /* Let through any mdoc(7) commands that haven't
+                         * been delt with.
+                         * I don't want to miss anything out of the text.
+                         */
+                        char buf[4];
+                        strncpy(buf,c,2);
+                        buf[2] = ' ';
+                        buf[3] = '\0';
+                        out_html(buf);	/* Print the command (it might just be text). */
+                        c=c+j;
+                        trans_char(c,'"','\a');
+                        if (*c=='\n') c++;
+                        out_html(change_to_font('R'));
+                        c=scan_troff(c, 1, NULL);
+                        out_html(NEWLINE);
+                        if (fillout)
+                            curpos++;
+                        else
+                            curpos=0;
+                    }
+                    else
+                        c=skip_till_newline(c);
+                    break;
+                }
+            }
+        }
     }
     if (fillout)
     {
@@ -4217,11 +4267,7 @@ static char *scan_request(char *c)
     }
     return c;
 }
-/*
-static void flush(void)
-{
-}
-*/
+
 static int contained_tab=0;
 static bool mandoc_line=false;	/* Signals whether to look for embedded mandoc
 				 * commands.
