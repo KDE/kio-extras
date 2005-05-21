@@ -125,6 +125,7 @@
 
 #ifndef SIMPLE_MAN2HTML
 # include <qtextcodec.h>
+# include <kdebug.h>
 #endif
 
 #include "man2html.h"
@@ -168,10 +169,15 @@ static char *stralloc(int len)
 {
   /* allocate enough for len + NULL */
   char *news = new char [len+1];
-  if (!news) {
+#ifdef SIMPLE_MAN2HTML
+  if (!news)
+  {
     fprintf(stderr, "man2html: out of memory\n");
-    exit(EXIT_FAILURE);
+    exit(EXIT_FAILURE); // ### TODO: not too good for a KIO, it should be an error instead!
   }
+#else
+// modern compiler do not return a NULL pointer for a new
+#endif
   return news;
 }
 
@@ -907,7 +913,16 @@ static void out_html(const char *c)
       while (*c2) {
 	  if (buffpos>=buffmax) {
 	      char *h = new char[buffmax*2];
-	      if (!h) exit(1);
+       
+#ifdef SIMPLE_MAN2HTML
+	      if (!h)
+              {
+                  fprintf(stderr,"Memory full, cannout output!");
+                  exit(1);
+              }
+#else
+// modern compiler do not return a NULL for a new
+#endif       
               memcpy(h, buffer, buffmax);
               delete [] buffer;
 	      buffer=h;
@@ -1172,7 +1187,7 @@ static char *scan_escape(char *c)
     case '\\': if (single_escape) { c--; break;}
     case 'N':
 	if (*++c) c++; // c += 2
-	if (sscanf(c, "%d", &i) != 1)
+        if (sscanf(c, "%d", &i) != 1)
 		break;
 	c+=sprintf(b, "%d", i); // Skip over number
 	switch(i) {
@@ -1814,7 +1829,14 @@ static char *scan_expression(char *c, int *result)
 		case '=': case '='+16: value=(value==value2); break;
 		case '&': value = (value && value2); break;
 		case ':': value = (value || value2); break;
-		default: fprintf(stderr, "man2html: unknown operator %c.\n", oper);
+		default:
+                    {
+#ifdef SIMPLE_MAN2HTML
+                        fprintf(stderr, "man2html: unknown operator %c.\n", oper);
+#else
+                        kdDebug(7107) << "Unknown operator " << char(oper) << endl;
+#endif
+                    }
 		}
 		oper=0;
 	    }
@@ -2380,7 +2402,12 @@ static char *scan_request(char *c)
                         buffer[buffpos]='\0';
                         puts(buffer);
                     }
-                    /* fprintf(stderr, "%s\n", c+2); */
+#ifdef SIMPLE_MAN2HTML
+                    fprintf(stderr, "%s\n", c+2);
+#else
+                    // ### TODO find a way to disply it to the user
+                    kdDebug(7107) << "Aborting: .ab " << (c+2) << endl;
+#endif
                     return 0;
                     break;
                 }
@@ -2761,7 +2788,11 @@ static char *scan_request(char *c)
                     buf=read_man_page(h);
                     if (!buf)
                     {
+#ifdef SIMPLE_MAN2HTML
                         fprintf(stderr, "man2html: unable to open or read file %s.\n", h);
+#else
+                        kdDebug(7107) << "Unable to open or read file: .so " << (h) << endl;
+#endif
                         out_html("<BLOCKQUOTE>"
                                 "man2html: unable to open or read file.\n");
                         out_html(h);
@@ -2812,12 +2843,10 @@ static char *scan_request(char *c)
                     h=c;
                     while (*c!='\n') c++;
                     *c='\0';
-#if 1
-                    out_html("<-- STDOUT: ");
-                    out_html(h);
-                    out_html("-->");
-#else
+#ifdef SIMPLE_MAN2HTML
                     fprintf(stderr,"%s\n", h);
+#else
+                    kdDebug(7107) << ".tm " << (h) << endl;
 #endif
                     *c='\n';
                     break;
@@ -3346,7 +3375,11 @@ static char *scan_request(char *c)
                     }
                     else
                     {
+#ifdef SIMPLE_MAN2HTML
                         fprintf(stderr, "%s", ".TH found but output not possible");
+#else
+                        kdWarning(7101) << ".TH found but output not possible" << endl;
+#endif
                         c=skip_till_newline(c);
                     }
                     curpos=0;
@@ -4613,7 +4646,6 @@ void scan_man_page(const char *man_page)
 #ifdef SIMPLE_MAN2HTML
 void output_real(const char *insert)
 {
-    (void)insert;
     printf("%s", insert);
 }
 
