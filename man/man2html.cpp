@@ -212,19 +212,18 @@ static char *strlimitcpy(char *to, char *from, int n, int limit)
   return to;
 }
 
-// Usage, pipe stuff for gzip -> removed
-
 /* below this you should not change anything unless you know a lot
 ** about this program or about troff.
 */
 
 
-//typedef struct STRDEF STRDEF;
+/// Structure for character definitions
 struct CSTRDEF {
     int nr, slen;
     const char *st;
 };
 
+/// Structure for definitions of string, macro...
 struct STRDEF {
     char *name;
     int nr,slen;
@@ -1017,6 +1016,32 @@ static int intresult=0;
 static int skip_escape=0;
 static int single_escape=0;
 
+static char* scan_named_character(char* c)
+{
+    c++;
+            // Named character groff(7)
+            // We must find the ] to get a name
+    QCString name;
+    while (*c!=']' && *c!='\n')
+    {
+        name+=*c;
+        c++;
+    }
+    if (*c=='\n')
+    {
+#ifndef SIMPLE_MAN2HTML
+        kdDebug(7107) << "Found linefeed! Could not parse chactater name: " << name << endl;
+#endif
+        return c;
+    }
+    // Now we have the name, let us find it between the string names
+    // The problem is that currently the code cannot define a string with a long name. :-( ### TODO
+    out_html("<span style=\"color:red\">");
+    out_html(name);
+    out_html("</span>");
+    return c+1;
+}
+
 // ### TODO known missing escapes from groff(7):
 // ### TODO \& \! \) \:
 
@@ -1072,14 +1097,23 @@ static char *scan_escape(char *c)
        h = expand_char(i);
        break;
     case '*':
-    c++;
-	if (*c=='(') {
+        c++;
+	if (*c=='(')
+        {
 	    c++;
 	    i= c[0]*256+c[1];
 	    c++;
-	} else
+            h = expand_string(i);
+	}
+        else if (*c=='[')
+        {
+            c=scan_named_character(c);
+        }
+        else
+        {
 	    i= *c *256+' ';
-        h = expand_string(i);  // ### TODO \*S has probably to done in another way, man(7)
+            h = expand_string(i);  // ### TODO \*S has probably to done in another way, man(7)
+        }
 	break;
     case 'f':
 	c++;
@@ -2318,7 +2352,7 @@ static char *scan_request(char *c)
 {
     // mdoc(7) stuff
     static bool mandoc_synopsis=false; /* True if we are in the synopsis section */
-    static bool mandoc_command=false;  /* True if this is mandoc page */
+    static bool mandoc_command=false;  /* True if this is mdoc(7) page */
     static int mandoc_bd_options; /* Only copes with non-nested Bd's */
     static int function_argument=0; // Number of function argument (.Fo, .Fa, .Fc)
     // man(7) stuff
@@ -2330,7 +2364,7 @@ static char *scan_request(char *c)
     int words;
     char *sl;
     STRDEF *owndef;
-    while (*c==' ' || *c=='\t') c++;
+    while (*c==' ' || *c=='\t') c++; // Spaces or tabs allowed between control character and request
     if (c[0]=='\n') return c+1;
     if (c[0]==escapesym)
     {
@@ -2350,7 +2384,7 @@ static char *scan_request(char *c)
             (c[nlen] != '\n') && (c[nlen] != escapesym)) nlen++;
         j = nlen;
         while (c[j]==' ' || c[j]=='\t') j++;
-	i=V(c[0],c[1]);
+        i=V(c[0],c[1]); // ### TODO still needed?
         /* search macro database of self-defined macros */
         owndef = defdef;
         while (owndef && strncmp(c, owndef->name, strlen(owndef->name)))
@@ -2360,8 +2394,14 @@ static char *scan_request(char *c)
             char **oldargument;
             int deflen;
             int onff;
+#ifndef SIMPLE_MAN2HTML
+            const char* debug=c; // ### DEBUG
+#endif
             sl=fill_words(c+j, wordlist, &words, true, &c);
             *sl='\0';
+#ifndef SIMPLE_MAN2HTML
+            kdDebug(7107) << "CALLING MACRO: " << (debug) << endl;
+#endif
             for (i=1;i<words; i++) wordlist[i][-1]='\0';
             for (i=0; i<words; i++)
             {
@@ -2385,6 +2425,9 @@ static char *scan_request(char *c)
                 scan_troff(owndef->st+deflen+2, 0, NULL);
             newline_for_fun=onff;
             argument=oldargument;
+#ifndef SIMPLE_MAN2HTML
+            kdDebug(7107) << "ENDING MACRO: " << (debug) << endl;
+#endif
             for (i=0; i<words; i++) delete [] wordlist[i];
             *sl='\n';
         }
@@ -4174,7 +4217,6 @@ static char *scan_request(char *c)
                 case REQ_perc_Q:
                 case REQ_perc_V:
                 {
-                    // ### TODO: check if HTML 4 has some of these markups
                     c=c+j;
                     if (*c=='\n') c++;
                     c=scan_troff(c, 1, NULL); /* Don't allow embedded mandoc coms */
@@ -4189,7 +4231,6 @@ static char *scan_request(char *c)
                 case REQ_perc_R:
                 case REQ_perc_T:
                 {
-                    // ### TODO: check if HTML 4 has some of these markups
                     c=c+j;
                     out_html(change_to_font('I'));
                     if (*c=='\n') c++;
@@ -4339,6 +4380,7 @@ static char *scan_troff(char *c, int san, char **result)
     /* start scanning */
 
     while (*h == ' ') *h++ = '\n';
+
     while (h && *h && (!san || newline_for_fun || *h!='\n')) {
 
 	if (*h==escapesym) {
@@ -4350,7 +4392,7 @@ static char *scan_troff(char *c, int san, char **result)
 	    FLUSHIBP;
 	    h = scan_request(h);
 	    if (h && san && h[-1]=='\n') h--;
-	} else if (mandoc_line // ### FIXME: a mdoc(7) request must directly start after a space
+	} else if (mandoc_line
 	           && *(h-1) && isspace(*(h-1)) // We can always go back, as there is at least the sequence at the start of line
 		   && *(h) && isupper(*(h))
 		   && *(h+1) && islower(*(h+1))
