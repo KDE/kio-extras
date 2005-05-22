@@ -796,7 +796,7 @@ static void add_links(char *c)
 	case 2: /* www */
 	    g=f=idtest[j];
 	    while (*g && (isalnum(*g) || *g=='_' || *g=='-' || *g=='+' ||
-			  *g=='.')) g++;
+                *g=='.' || *g=='/')) g++;
 	    if (g[-1]=='.') g--;
 	    if (g-f>4) {
 		char t;
@@ -819,6 +819,12 @@ static void add_links(char *c)
 	    g=f=idtest[1];
 	    while (g>c && (isalnum(g[-1]) || g[-1]=='_' || g[-1]=='-' ||
 			   g[-1]=='+' || g[-1]=='.' || g[-1]=='%')) g--;
+            if (g-7>=c && g[-1]==':')
+            {
+                // We have perhaps an email address starting with mailto:
+                if (!qstrncmp("mailto:",g-7,7))
+                    g-=7;
+            }
 	    h=f+1;
 	    while (*h && (isalnum(*h) || *h=='_' || *h=='-' || *h=='+' ||
 			  *h=='.')) h++;
@@ -833,7 +839,7 @@ static void add_links(char *c)
                 str.sprintf("<A HREF=\"mailto:%s\">%s</A>", g, g);
                 output_real(str.data());
 		*h=t;
-		c=h;
+                c=h;
 	    } else {
 		*f='\0';
                 output_real(c);
@@ -4292,7 +4298,7 @@ static char *scan_request(char *c)
                         out_html(h);
                         out_html("\" id=\"");
                         out_html(h);
-                        out_html("\">");
+                        out_html("\"></a>");
                     }
                     c=newc;
                     break;
