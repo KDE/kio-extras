@@ -162,7 +162,6 @@ using namespace std;
 #define BD_LITERAL  1
 #define BD_INDENT   2
 
-//static char *sections = "123456789nl";
 static int mandoc_name_count = 0; /* Don't break on the first Nm */
 
 static char *stralloc(int len)
@@ -173,7 +172,7 @@ static char *stralloc(int len)
   if (!news)
   {
     fprintf(stderr, "man2html: out of memory\n");
-    exit(EXIT_FAILURE); // ### TODO: not too good for a KIO, it should be an error instead!
+    exit(EXIT_FAILURE);
   }
 #else
 // modern compiler do not return a NULL pointer for a new
@@ -231,7 +230,6 @@ struct STRDEF {
     STRDEF *next;
 };
 
-//typedef struct INTDEF INTDEF;
 struct INTDEF {
     int nr;
     int val;
@@ -568,7 +566,7 @@ static bool scaninbuff=false;
 static int itemdepth=0;
 static int section=0;
 static int dl_set[20]= { 0 };
-static int still_dd=0;
+static bool still_dd=0;
 static int tabstops[20] = { 8, 16, 24, 32, 40, 48, 56, 64, 72, 80, 88, 96 };
 static int maxtstop=12;
 static int curpos=0;
@@ -625,7 +623,7 @@ static const char *expand_string(int nr)
 static char outbuffer[NULL_TERMINATED(HUGE_STR_MAX)];
 static int no_newline_output=0;
 static int newline_for_fun=0;
-static int output_possible=0;
+static bool output_possible=false;
 
 static const char *includedirs[] = {
     "/usr/include",
@@ -1053,7 +1051,8 @@ static char *scan_escape(char *c)
     const char *h=NULL; // help pointer
     char b[32]; // help array
     INTDEF *intd;
-    int exoutputp,exskipescape;
+    bool exoutputp;
+    int exskipescape;
     int i,j;
 
     intresult=0;
@@ -1183,7 +1182,7 @@ static char *scan_escape(char *c)
 	c++;
 	exoutputp=output_possible;
 	exskipescape=skip_escape;
-	output_possible=0;
+	output_possible=false;
 	skip_escape=1;
 	j=0;
 	while (*c!=i) {
@@ -3167,7 +3166,7 @@ static char *scan_request(char *c)
                     c=skip_till_newline(c);
                     /* somewhere a definition ends with '.TP' */
                     if (!*c)
-                        still_dd=1;
+                        still_dd=true;
                     else
                     {
                         c=scan_troff(c,1,NULL);
@@ -3209,7 +3208,7 @@ static char *scan_request(char *c)
                         dl_set[itemdepth]=1;
                     }
                     out_html("<DT>\n");
-                    still_dd=1;
+                    still_dd=true;
                     c=skip_till_newline(c);
                     curpos=0;
                     break;
@@ -3354,7 +3353,7 @@ static char *scan_request(char *c)
                                 if (wordlist[i][strlen(wordlist[i])-1] == '\007')
                                     wordlist[i][strlen(wordlist[i])-1] = 0;
                             }
-                            output_possible=1;
+                            output_possible=true;
                             out_html( DOCTYPE"<HTML>\n<HEAD>\n");
 #ifdef SIMPLE_MAN2HTML
                             // Most English man pages are in ISO-8859-1
@@ -4417,7 +4416,7 @@ static char *scan_troff(char *c, int san, char **result)
 		FLUSHIBP;
 		out_html("<DD>");
 		curpos=0;
-		still_dd=0;
+		still_dd=false;
 	    }
 	    switch (*h) {
 	    case '&':
@@ -4679,7 +4678,7 @@ void scan_man_page(const char *man_page)
     itemdepth=0;
     for (int i = 0; i < 20; i++)
         dl_set[i] = 0;
-    still_dd=0;
+    still_dd=false;
     for (int i = 0; i < 12; i++)
         tabstops[i] = (i+1)*8;
     maxtstop=12;
