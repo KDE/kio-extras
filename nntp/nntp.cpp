@@ -583,7 +583,7 @@ bool NNTPProtocol::nntp_open()
     // let local class know whether posting is allowed or not
     postingAllowed = (res_code == 200);
 
-    // activate TLS if requiested
+    // activate TLS if requested
     if ( metaData("tls") == "on" ) {
       if ( sendCommand( "STARTTLS" ) != 382 ) {
         error( ERR_COULD_NOT_CONNECT, i18n("This server does not support TLS") );
@@ -627,6 +627,18 @@ int NNTPProtocol::sendCommand( const QString &cmd )
   // if authorization needed send user info
   if (res_code == 480) {
     DBG << "auth needed, sending user info" << endl;
+
+    if ( mUser.isEmpty() || mPass.isEmpty() ) {
+      KIO::AuthInfo authInfo;
+      authInfo.username = mUser;
+      authInfo.password = mPass;
+      if ( openPassDlg( authInfo ) ) {
+        mUser = authInfo.username;
+        mPass = authInfo.password;
+      }
+    }
+    if ( mUser.isEmpty() || mPass.isEmpty() )
+      return res_code;
 
     // send username to server and confirm response
     write( "AUTHINFO USER ", 14 );
