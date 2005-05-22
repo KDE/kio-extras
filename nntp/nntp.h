@@ -34,6 +34,7 @@ class NNTPProtocol:public KIO::TCPSlaveBase
   virtual ~NNTPProtocol();
 
   virtual void get(const KURL& url );
+  virtual void put( const KURL& url, int permissions, bool overwrite, bool resume );
   virtual void stat(const KURL& url );
   virtual void listDir(const KURL& url );
   virtual void setHost(const QString& host, int port,
@@ -44,6 +45,7 @@ class NNTPProtocol:public KIO::TCPSlaveBase
     *  it takes no other args, the article data are
     *  requested by dataReq() and should be valid
     *  as in RFC850. It's not checked for correctness here.
+    *  @deprecated use put() for posting
     */
   virtual void special(const QByteArray& data);
 
@@ -68,7 +70,7 @@ class NNTPProtocol:public KIO::TCPSlaveBase
   bool nntp_open();
 
   /**
-    * Post article. Invoked by special()
+    * Post article. Invoked by special() and put()
     */
   bool post_article();
 

@@ -172,6 +172,14 @@ void NNTPProtocol::get(const KURL& url) {
   finished();
 }
 
+void NNTPProtocol::put( const KURL &/*url*/, int /*permissions*/, bool /*overwrite*/, bool /*resume*/ )
+{
+  if ( !nntp_open() )
+    return;
+  if ( post_article() )
+    finished();
+}
+
 void NNTPProtocol::special(const QByteArray& data) {
   // 1 = post article
   int cmd;
