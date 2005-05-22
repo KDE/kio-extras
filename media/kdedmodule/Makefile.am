@@ -8,10 +8,10 @@ METASOURCES = AUTO
 INCLUDES = $(all_includes) -I$(srcdir)/../libmediacommon $(HALBACKEND_INCS)
 
 if include_media_halbackend
-HALBACKEND_LIB = halbackend.la
-halbackend_la_SOURCES = halbackend.cpp
-halbackend_la_LIBADD = $(LIB_KDEUI) $(HAL_LIBS) $(DBUS_LIBS) $(DBUSQT_LIBS)
-halbackend_la_LDFLAGS = -module -avoid-version $(all_libraries) -no-undefined
+HALBACKEND_LIB = libhalbackend.la
+libhalbackend_la_SOURCES = halbackend.cpp
+libhalbackend_la_LDFLAGS = -avoid-version $(all_libraries) -no-undefined
+libhalbackend_la_LIBADD = $(HAL_LIBS) $(DBUS_LIBS) $(DBUSQT_LIBS)
 endif
 
 if include_media_linuxcdpolling
