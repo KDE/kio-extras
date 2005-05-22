@@ -564,7 +564,7 @@ static char escapesym='\\', nobreaksym='\'', controlsym='.', fieldsym=0, padsym=
 
 static char *buffer=NULL;
 static int buffpos=0, buffmax=0;
-static int scaninbuff=0;
+static bool scaninbuff=false;
 static int itemdepth=0;
 static int section=0;
 static int dl_set[20]= { 0 };
@@ -4358,7 +4358,8 @@ static char *scan_troff(char *c, int san, char **result)
     /* int i; */
 #define FLUSHIBP  if (ibp) { intbuff[ibp]=0; out_html(intbuff); ibp=0; }
     char *exbuffer;
-    int exbuffpos, exbuffmax, exscaninbuff, exnewline_for_fun;
+    int exbuffpos, exbuffmax, exnewline_for_fun;
+    bool exscaninbuff;
     int usenbsp=0;
 
     exbuffer=buffer;
@@ -4377,7 +4378,7 @@ static char *scan_troff(char *c, int san, char **result)
             buffpos=0;
             buffmax=LARGE_STR_MAX;
 	}
-	scaninbuff=1;
+	scaninbuff=true;
     }
     h=c;
     /* start scanning */
@@ -4674,7 +4675,7 @@ void scan_man_page(const char *man_page)
 
     buffpos=0;
     buffmax=0;
-    scaninbuff=0;
+    scaninbuff=false;
     itemdepth=0;
     for (int i = 0; i < 20; i++)
         dl_set[i] = 0;
