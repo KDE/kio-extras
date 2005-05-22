@@ -626,7 +626,6 @@ static char outbuffer[NULL_TERMINATED(HUGE_STR_MAX)];
 static int no_newline_output=0;
 static int newline_for_fun=0;
 static int output_possible=0;
-static int out_length=0;
 
 static const char *includedirs[] = {
     "/usr/include",
@@ -660,7 +659,6 @@ static void add_links(char *c)
     */
     if (ignore_links)
     {
-        out_length+=strlen(c);
         output_real(c);
         return;
     }
@@ -670,7 +668,6 @@ static void add_links(char *c)
     const int numtests=6; // Nmber of tests
     char *idtest[numtests]; // url, mailto, www, ftp, manpage, C header file
     bool ok;
-    out_length+=strlen(c);
     /* search for (section) */
     nr=0;
     idtest[0]=strstr(c+1,"://");
