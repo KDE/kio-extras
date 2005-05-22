@@ -1,3 +1,10 @@
+/**
+ * \file man2html.h
+ *
+ * \note Despite that this file is installed publically, it should not be included
+ * \todo ### KDE4: make this file private
+ *
+ */
 
 #include <qcstring.h>
 
