@@ -65,6 +65,8 @@ HALBackend::~HALBackend()
 	}
 	if (m_halStoragePolicy)
 		libhal_storage_policy_free(m_halStoragePolicy);
+
+	/** @todo empty media list ? */
 }
 
 /* Connect to the HAL */
@@ -84,15 +86,6 @@ bool HALBackend::InitHal()
 	if (!m_halContext)
 	{
 		kdDebug(1219) << "Failed to initialize HAL!" << endl;
-		return false;
-	}
-
-	/** @todo customize watch policy */
-	/* NOTICE: this code chunk doesn't seem necessary for the .05 API... still, it should */
-	kdDebug(1219) << "Watch properties" << endl;
-	if (libhal_device_property_watch_all(m_halContext, NULL))
-	{
-		kdDebug(1219) << "Failed to watch HAL properties!" << endl;
 		return false;
 	}
 
@@ -131,6 +124,14 @@ bool HALBackend::InitHal()
 		return false;
 	}
 #endif
+
+	/** @todo customize watch policy */
+	kdDebug(1219) << "Watch properties" << endl;
+	if (libhal_device_property_watch_all(m_halContext, NULL))
+	{
+		kdDebug(1219) << "Failed to watch HAL properties!" << endl;
+		return false;
+	}
 
 	/* libhal-storage initialization */
 	kdDebug(1219) << "Storage Policy" << endl;

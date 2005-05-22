@@ -198,12 +198,14 @@ private:
 
 /* Hal call-backs -- from gvm*/
 public:
+#ifdef HAL_0_4
 	/** Invoked by libhal for integration with our mainloop.
 	*
 	*  @param  ctx                 LibHal context
 	*  @param  dbus_connection     D-BUS connection to integrate
 	*/
 	static void hal_main_loop_integration(LibHalContext *ctx, DBusConnection *dbus_connection);
+#endif
 
 	/** Invoked when a device is added to the Global Device List.
 	*
