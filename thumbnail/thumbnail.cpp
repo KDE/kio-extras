@@ -49,6 +49,7 @@
 #include <kfilemetainfo.h>
 #include <klocale.h>
 
+#include <config.h> // For HAVE_NICE
 #include "thumbnail.h"
 #include <kio/thumbcreator.h>
 
@@ -89,7 +90,10 @@ extern "C"
 
 int kdemain(int argc, char **argv)
 {
+#ifdef HAVE_NICE
     nice( 5 );
+#endif
+
 #ifdef USE_KINSTANCE
     KInstance instance("kio_thumbnail");
 #else
