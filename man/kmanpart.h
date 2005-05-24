@@ -33,6 +33,10 @@
 class KInstance;
 class KAboutData;
 
+/**
+ * Man Page Viewer
+ * \todo: Why is it needed? Why is KHTML alone not possible?
+ */
 class KManPartFactory: public KParts::Factory
 {
    Q_OBJECT
