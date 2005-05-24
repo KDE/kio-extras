@@ -186,7 +186,7 @@ static char *stralloc(int len)
     exit(EXIT_FAILURE);
   }
 #else
-// modern compiler do not return a NULL pointer for a new
+// modern compilers do not return a NULL pointer for a new
 #endif
   return news;
 }
@@ -233,17 +233,6 @@ struct CSTRDEF {
     const char *st;
 };
 
-/**
- * Old structure for definitions of string, macro...
- * \deprecated
- * */
-struct STRDEF {
-    char *name;
-    int nr,slen;
-    char *st;
-    STRDEF *next;
-};
-
 struct INTDEF {
     int nr;
     int val;
@@ -263,7 +252,6 @@ public:
 
 const char NEWLINE[2]="\n";
 
-static STRDEF *defdef;
 static INTDEF *intdef;
 
 static QMap<QCString,StringDefinition> s_stringDefinitionMap;
@@ -2404,7 +2392,6 @@ static char *scan_request(char *c)
     char *wordlist[MAX_WORDLIST];
     int words;
     char *sl;
-    STRDEF *owndef;
     while (*c==' ' || *c=='\t') c++; // Spaces or tabs allowed between control character and request
     if (c[0]=='\n') return c+1;
     if (c[0]==escapesym)
@@ -2421,28 +2408,24 @@ static char *scan_request(char *c)
         int j, nlen;
         if (c[1]=='\n') j=1; else j=2;
         nlen = 0;
-        while ((c[nlen] != ' ') && (c[nlen] != '\t') &&
-            (c[nlen] != '\n') && (c[nlen] != escapesym)) nlen++;
+        QCString macroName;
+        while (c[nlen] && (c[nlen] != ' ') && (c[nlen] != '\t') && (c[nlen] != '\n') && (c[nlen] != escapesym))
+        {
+            macroName+=c[nlen];
+            nlen++;
+        }
         j = nlen;
-        while (c[j]==' ' || c[j]=='\t') j++;
+        while (c[j] && c[j]==' ' || c[j]=='\t') j++;
         i=V(c[0],c[1]); // ### TODO still needed?
         /* search macro database of self-defined macros */
-        owndef = defdef;
-        while (owndef && qstrncmp(c, owndef->name, qstrlen(owndef->name)))
-            owndef=owndef->next;
-        if (owndef)
+        QMap<QCString,StringDefinition>::iterator it=s_stringDefinitionMap.find(macroName);
+        if (it!=s_stringDefinitionMap.end())
         {
-            char **oldargument;
-            int deflen;
-            int onff;
 #ifndef SIMPLE_MAN2HTML
-            const char* debug=c; // ### DEBUG
+            kdDebug(7107) << "CALLING MACRO: " << macroName << endl;
 #endif
             sl=fill_words(c+j, wordlist, &words, true, &c);
             *sl='\0';
-#ifndef SIMPLE_MAN2HTML
-            kdDebug(7107) << "CALLING MACRO: " << (debug) << endl;
-#endif
             for (i=1;i<words; i++) wordlist[i][-1]='\0';
             for (i=0; i<words; i++)
             {
@@ -2455,28 +2438,36 @@ static char *scan_request(char *c)
                 delete [] h;
             }
             for (i=words;i<20; i++) wordlist[i]=NULL;
-            deflen = qstrlen(owndef->st);
-            for (i=0; (owndef->st[deflen+2+i]=owndef->st[i]); i++);
-            oldargument=argument;
-            argument=wordlist;
-            onff=newline_for_fun;
-            if (mandoc_command)
-                scan_troff_mandoc(owndef->st+deflen+2, 0, NULL);
-            else
-                scan_troff(owndef->st+deflen+2, 0, NULL);
-            newline_for_fun=onff;
-            argument=oldargument;
+            if ((*it).m_output.isEmpty())
+            {
 #ifndef SIMPLE_MAN2HTML
-            kdDebug(7107) << "ENDING MACRO: " << (debug) << endl;
+                kdDebug(7107) << "Macro is empty: " << macroName << endl;
 #endif
+            }
+            else
+            {
+                char* work=qstrdup((*it).m_output);
+                char** oldargument=argument;
+                argument=wordlist;
+                const int onff=newline_for_fun;
+                if (mandoc_command)
+                    scan_troff_mandoc(work, 0, NULL);
+                else
+                    scan_troff(work, 0, NULL);
+                delete[] work;
+                newline_for_fun=onff;
+                argument=oldargument;
+            }
             for (i=0; i<words; i++) delete [] wordlist[i];
             *sl='\n';
+#ifndef SIMPLE_MAN2HTML
+            kdDebug(7107) << "ENDING MACRO: " << macroName << endl;
+#endif
         }
         else
         {
 #ifndef SIMPLE_MAN2HTML
-            const QCString cstrDebug(c, nlen+1); // Debug
-            kdDebug(7107) << "MACRO: " << (cstrDebug) << endl;
+            kdDebug(7107) << "REQUEST: " << macroName << endl;
 #endif
             switch (int request = get_request(c, nlen))
             {
@@ -2507,7 +2498,9 @@ static char *scan_request(char *c)
                 }
                 case REQ_di: // groff(7) "end current DIversion"
                 {
+#ifndef SIMPLE_MAN2HTML
                     kdDebug(7101) << "Start .di" << endl;
+#endif
                     c+=j;
                     if (*c=='\n')
                     {
@@ -2543,14 +2536,18 @@ static char *scan_request(char *c)
                     delete[] result;
                     if (*c) *c='.';
                     while (*c && *c++!='\n');
+#ifndef SIMPLE_MAN2HTML
                     kdDebug(7101) << "end .di" << endl;
+#endif
                     break;
                 }
                 case REQ_ds: // groff(7) "Define String variable"
                     mode=1;
                 case REQ_as: // groff (7) "Append String variable"
                 {
+#ifndef SIMPLE_MAN2HTML
                     kdDebug(7101) << "start .ds/.as" << endl;
+#endif
                     int oldcurpos=curpos;
                     c+=j;
                     h=c;
@@ -2559,27 +2556,15 @@ static char *scan_request(char *c)
                         *h=0;
                     const QCString name(c);
                     c=h+1;
+#ifndef SIMPLE_MAN2HTML
                     kdDebug(7101) << "Define/append string " << name << endl;
+#endif
                     while (*c && isspace(*c)) c++;
                     if (*c && *c=='"') c++;
                     single_escape=1;
                     curpos=0;
                     char* result=0;
-#if 0
-                    // ### HACK start
-                    if (c[0]=='\\' && c[1]=='t' && c[2]=='\n')
-                    {
-                        // We are in groff(7)
-                        kdWarning(7107) << "groff(7) hack applied!" << endl;
-                        result=new char[3];
-                        result[0]='\\';
-                        result[1]='t';
-                        result[2]=0;
-                    }
-                    else
-                        // ### HACK end
-#endif
-                        c=scan_troff(c,1,&result);
+                    c=scan_troff(c,1,&result);
                     QMap<QCString,StringDefinition>::iterator it=s_stringDefinitionMap.find(name);
                     if (it==s_stringDefinitionMap.end())
                     {
@@ -2604,7 +2589,9 @@ static char *scan_request(char *c)
                     delete[] result;
                     single_escape=0;
                     curpos=oldcurpos;
+#ifndef SIMPLE_MAN2HTML
                     kdDebug(7101) << "end .ds/.as" << endl;
+#endif
                     break;
                 }
                 case REQ_br: // groff(7) "line BReak"
@@ -3500,7 +3487,9 @@ static char *scan_request(char *c)
                 case REQ_rn: // groff(7) "ReName"
                 /* .rn xx yy : Rename request, macro or string xx to yy */
                 {
+#ifndef SIMPLE_MAN2HTML
                     kdDebug(7101) << "start .rm/.rn" << endl;
+#endif
                     c+=j;
                     h=c;
                     while (*h && *h!='\n' && (isalnum(*h) || *h=='@')) ++h;
@@ -3541,7 +3530,9 @@ static char *scan_request(char *c)
                             s_stringDefinitionMap.insert(name2,def);
                         }
                     }
+#ifndef SIMPLE_MAN2HTML
                     kdDebug(7101) << "end .rm/.rn" << endl;
+#endif
                     break;
                 }
                 case REQ_nx: // ### TODO in man(7) it is "No filling", not "next file"
@@ -3590,77 +3581,75 @@ static char *scan_request(char *c)
                 /* .de xx yy : define or redefine macro xx; end at .yy (..) */
                 /* define or handle as .ig yy */
                 {
-                    kdDebug(7107) << "Start .de" << endl;
-                    STRDEF *de;
-                    int olen=0;
-                    char endmacro[SMALL_STR_MAX];
-                    c=c+j;
+#ifndef SIMPLE_MAN2HTML
+                    kdDebug(7107) << "Start .am/.de" << endl;
+#endif
+                    c+=j;
                     char *next_line;
                     sl = fill_words(c, wordlist, &words, true, &next_line);
-                    char *name = wordlist[0];
-                    c = name;
-                    while ((*c != ' ') && (*c != '\n')) c++;
+                    char *nameStart = wordlist[0];
+                    c = nameStart;
+                    while (*c && (*c != ' ') && (*c != '\n')) c++;
                     *c = '\0';
+                    const QCString name(nameStart);
     
+                    QCString endmacro;
                     if (words == 1)
                     {
-                        endmacro[0] = '.';
-                        endmacro[1] = '.';
-                        endmacro[2] = '\0';
+                        endmacro="..";
                     }
                     else
                     {
-                        char *p = endmacro;
-                        *p++ = '.';
+                        endmacro='.';
                         c = wordlist[1];
-                        while ((*c != ' ') && (*c != '\n')) *p++ = *c++;
-                        *p = '\0';
+                        while ((*c != ' ') && (*c != '\n'))
+                            endmacro+=*c++;
                     }
                     c = next_line;
                     sl=c;
-                    while (*c && qstrncmp(c,endmacro, qstrlen(endmacro))) c=skip_till_newline(c);
+                    const int length=qstrlen(endmacro);
+                    while (*c && qstrncmp(c,endmacro,length))
+                        c=skip_till_newline(c);
 
-                    de=defdef;
-                    while (de && qstrncmp(name, de->name, qstrlen(de->name)))
-                        de=de->next;
-                    if (mode && de) olen=qstrlen(de->st);
-                    j=olen+c-sl;
-                    h = stralloc(j*2+4);
-                    if (h)
+                    QCString macro;
+                    while (sl!=c)
                     {
-                        for (j=0; j<olen; j++)
-                            h[j]=de->st[j];
-                        if (!j || h[j-1]!='\n')
-                            h[j++]='\n';
-                        while (sl!=c)
+                        if (sl[0]=='\\' && sl[1]=='\\')
                         {
-                            if (sl[0]=='\\' && sl[1]=='\\')
-                            {
-                                h[j++]='\\';
-                                sl++;
-                            }
-                            else
-                                h[j++]=*sl;
+                            macro+='\\';
                             sl++;
                         }
-                        h[j]=0;
-                        if (de)
-                        {
-                            delete [] de->st;
-                            de->st=h;
-                        }
                         else
-                        {
-                            de = new STRDEF();
-                            de->nr=0; // not used for macro's.
-                            de->name = name;
-                            de->next=defdef;
-                            de->st=h;
-                            defdef=de;
-                        }
+                            macro+=*sl;
+                        sl++;
+                    }
+
+                    QMap<QCString,StringDefinition>::iterator it=s_stringDefinitionMap.find(name);
+                    if (it==s_stringDefinitionMap.end())
+                    {
+                        StringDefinition def;
+                        def.m_length=0;
+                        def.m_output=macro;
+                        s_stringDefinitionMap.insert(name,def);
+                    }
+                    else if (mode)
+                    {
+                        // .am Append Macro
+                        (*it).m_length=0; // It could be formerly a string
+                        if ((*it).m_output.right(1)!='\n')
+                            (*it).m_output+='\n';
+                        (*it).m_output+=macro;
+                    }
+                    else
+                    {
+                        // .de DEfine macro
+                        (*it).m_length=0; // It could be formerly a string
+                        (*it).m_output=macro;
                     }
                     c=skip_till_newline(c);
-                    kdDebug(7107) << "End .de" << endl;
+#ifndef SIMPLE_MAN2HTML
+                    kdDebug(7107) << "End .am/.de" << endl;
+#endif
                     break;
                 }
                 case REQ_Bl: // mdoc(7) "Begin List"
@@ -4720,15 +4709,6 @@ void scan_man_page(const char *man_page)
     s_stringDefinitionMap.clear();
     
     // reinit static variables for reuse
-    STRDEF *cursor = defdef;
-    while (cursor) {
-        defdef = cursor->next;
-        delete [] cursor->st;
-        delete cursor;
-        cursor = defdef;
-    }
-    defdef = 0;
-
     INTDEF *cursor2 = intdef;
     while (cursor2) {
         intdef = cursor2->next;
