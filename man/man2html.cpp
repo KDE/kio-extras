@@ -1047,9 +1047,6 @@ static char* scan_named_character(char* c)
         name+=*c;
         c++;
     }
-#ifndef SIMPLE_MAN2HTML
-        kdDebug(7107) << "Long character name: " << name << endl;
-#endif
     if (*c=='\n')
     {
 #ifndef SIMPLE_MAN2HTML
@@ -1060,13 +1057,23 @@ static char* scan_named_character(char* c)
     if (skip_escape)
         return c+1;
     // Now we have the name, let us find it between the string names
-    out_html("<span style=\"color:red\">");
     QMap<QCString,StringDefinition>::iterator it=s_stringDefinitionMap.find(name);
     if (it==s_stringDefinitionMap.end())
+    {
+#ifndef SIMPLE_MAN2HTML
+        kdDebug(7107) << "EXCEPTION: cannot find string with long name: " << name << endl;
+#endif
+        out_html("<span style=\"color:red\">");
         out_html(name);
+        out_html("</span>");
+    }
     else
+    {
+#ifndef SIMPLE_MAN2HTML
+        kdDebug(7107) << "String with long name: " << name << endl;
+#endif
         out_html((*it).m_output);
-    out_html("</span>");
+    }
     return c+1;
 }
 
@@ -2446,7 +2453,11 @@ static char *scan_request(char *c)
             }
             else
             {
-                char* work=qstrdup((*it).m_output);
+                //kdDebug(7107) << "Macro content is: " << endl << (*it).m_output << endl;
+                const uint length = (*it).m_output.length();
+                char* work = new char [length+2];
+                work[0] = '\n'; // The macro must start after an end of line to allow a request on first line
+                qstrncpy(work+1,(*it).m_output.data(),length+1);
                 char** oldargument=argument;
                 argument=wordlist;
                 const int onff=newline_for_fun;
@@ -2479,13 +2490,13 @@ static char *scan_request(char *c)
                     if (scaninbuff && buffpos)
                     {
                         buffer[buffpos]='\0';
-                        puts(buffer);
+                        puts(buffer); // ### FIXME we should not write to stdout for a KIO
                     }
 #ifdef SIMPLE_MAN2HTML
-                    fprintf(stderr, "%s\n", c+2);
+                    fprintf(stderr, "%s\n", c+j);
 #else
                     // ### TODO find a way to disply it to the user
-                    kdDebug(7107) << "Aborting: .ab " << (c+2) << endl;
+                    kdDebug(7107) << "Aborting: .ab " << (c+j) << endl;
 #endif
                     return 0;
                     break;
@@ -3516,7 +3527,13 @@ static char *scan_request(char *c)
                     while (*c && *c!='\n') c++;
                     c++;
                     QMap<QCString,StringDefinition>::iterator it=s_stringDefinitionMap.find(name);
-                    if (it!=s_stringDefinitionMap.end())
+                    if (it==s_stringDefinitionMap.end())
+                    {
+#ifndef SIMPLE_MAN2HTML
+                        kdDebug(7101) << "EXCEPTION: cannot find string to rename or remove: " << name << endl;
+#endif
+                    }
+                    else
                     {
                         if (mode)
                         {
@@ -4419,7 +4436,6 @@ static char *scan_troff(char *c, bool san, char **result)
     char *h;
     char intbuff[NULL_TERMINATED(MED_STR_MAX)];
     int ibp=0;
-    /* int i; */
 #define FLUSHIBP  if (ibp) { intbuff[ibp]=0; out_html(intbuff); ibp=0; }
     char *exbuffer;
     int exbuffpos, exbuffmax, exnewline_for_fun;
@@ -4444,10 +4460,18 @@ static char *scan_troff(char *c, bool san, char **result)
 	}
 	scaninbuff=true;
     }
-    h=c;
+    h=c; // ### FIXME below are too many tests that may go before the posiiton of c
     /* start scanning */
 
-    while (*h == ' ') *h++ = '\n';
+    // ### VERIFY: a dot must be at first position, we cannot add newlines or it would allow spaces before a dot
+    while (*h == ' ')
+    {
+#if 1
+        ++h;
+#else
+        *h++ = '\n';
+#endif
+    }
 
     while (h && *h && (!san || newline_for_fun || *h!='\n')) {
 
@@ -4455,28 +4479,28 @@ static char *scan_troff(char *c, bool san, char **result)
 	    h++;
 	    FLUSHIBP;
 	    h = scan_escape(h);
-	} else if (*h==controlsym && h[-1]=='\n') {
+        } else if (*h==controlsym && h[-1]=='\n') {
 	    h++;
 	    FLUSHIBP;
 	    h = scan_request(h);
 	    if (h && san && h[-1]=='\n') h--;
 	} else if (mandoc_line
-                   && *(h-1) && isspace(*(h-1)) // We can always go back, as there is at least the sequence at the start of line ### FIXME: wrong, it could be a wordlist in a buffer!
+            && ((*(h-1)) && (isspace(*(h-1)) || (*(h-1))=='\n'))
 		   && *(h) && isupper(*(h))
 		   && *(h+1) && islower(*(h+1))
-		   && *(h+2) && isspace(*(h+2))) {
+                   && *(h+2) && isspace(*(h+2))) {
 	    // mdoc(7) embedded command eg ".It Fl Ar arg1 Fl Ar arg2"
 	    FLUSHIBP;
 	    h = scan_request(h);
 	    if (san && h[-1]=='\n') h--;
-	} else if (*h==nobreaksym && h[-1]=='\n') {
+        } else if (*h==nobreaksym && h[-1]=='\n') {
 	    h++;
 	    FLUSHIBP;
 	    h = scan_request(h);
 	    if (san && h[-1]=='\n') h--;
 	} else {
 	    /* int mx; */
-	    if (still_dd && isalnum(*h) && h[-1]=='\n') {
+            if (still_dd && isalnum(*h) && h[-1]=='\n') {
 		/* sometimes a .HP request is not followed by a .br request */
 		FLUSHIBP;
 		out_html("<DD>");
@@ -4571,16 +4595,6 @@ static char *scan_troff(char *c, bool san, char **result)
 		} else if (*h>31 && *h<127) intbuff[ibp++]=*h;
 		else if (((unsigned char)(*h))>127) {
                     intbuff[ibp++]=*h;
-
-#if 0
-		    intbuff[ibp++]='&';
-		    intbuff[ibp++]='#';
-		    intbuff[ibp++]='0'+((unsigned char)(*h))/100;
-		    intbuff[ibp++]='0'+(((unsigned char)(*h))%100)/10;
-		    intbuff[ibp++]='0'+((unsigned char)(*h))%10;
-		    intbuff[ibp++]=';';
-#endif
-
 		}
 		curpos++;
 		break;
