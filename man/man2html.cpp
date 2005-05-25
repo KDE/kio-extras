@@ -585,8 +585,8 @@ static int tabstops[20] = { 8, 16, 24, 32, 40, 48, 56, 64, 72, 80, 88, 96 };
 static int maxtstop=12;
 static int curpos=0;
 
-static char *scan_troff(char *c, int san, char **result);
-static char *scan_troff_mandoc(char *c, int san, char **result);
+static char *scan_troff(char *c, bool san, char **result);
+static char *scan_troff_mandoc(char *c, bool san, char **result);
 
 static char **argument=NULL;
 
@@ -935,7 +935,7 @@ static void out_html(const char *c)
 #ifdef SIMPLE_MAN2HTML
 	      if (!h)
               {
-                  fprintf(stderr,"Memory full, cannout output!");
+                  fprintf(stderr,"Memory full, cannot output!");
                   exit(1);
               }
 #else
@@ -1032,8 +1032,8 @@ static int intresult=0;
 
 #define SKIPEOL while (*c && *c++!='\n')
 
-static int skip_escape=0; // ### TODO: bool
-static int single_escape=0; // ### TODO: bool
+static bool skip_escape=false;
+static bool single_escape=false;
 
 static char* scan_named_character(char* c)
 {
@@ -1079,7 +1079,7 @@ static char *scan_escape(char *c)
     char b[32]; // help array
     INTDEF *intd;
     bool exoutputp;
-    int exskipescape;
+    bool exskipescape;
     int i,j;
 
     intresult=0;
@@ -1210,7 +1210,7 @@ static char *scan_escape(char *c)
 	exoutputp=output_possible;
 	exskipescape=skip_escape;
 	output_possible=false;
-	skip_escape=1;
+	skip_escape=true;
 	j=0;
 	while (*c!=i) {
 	    j++;
@@ -1233,7 +1233,7 @@ static char *scan_escape(char *c)
 	exoutputp=output_possible;
 	exskipescape=skip_escape;
 	output_possible=0;
-	skip_escape=1;
+	skip_escape=true;
 	while (*c != i)
 	    if (*c==escapesym) c=scan_escape(c+1);
 	    else c++;
@@ -2387,7 +2387,8 @@ static char *scan_request(char *c)
     // man(7) stuff
     static bool ur_ignore=false; // Has .UR a parameter : (for .UE to know if or not to write </a>)
 
-    int i,mode=0;
+    int i=0;
+    bool mode=false;
     char *h=0;
     char *wordlist[MAX_WORDLIST];
     int words;
@@ -2405,9 +2406,9 @@ static char *scan_request(char *c)
     }
     else
     {
-        int j, nlen;
-        if (c[1]=='\n') j=1; else j=2;
-        nlen = 0;
+        int j;
+        if (c[1]=='\n') j=1; else j=2; // ### TODO: remove, as i is over-written later
+        int nlen = 0;
         QCString macroName;
         while (c[nlen] && (c[nlen] != ' ') && (c[nlen] != '\t') && (c[nlen] != '\n') && (c[nlen] != escapesym))
         {
@@ -2416,7 +2417,6 @@ static char *scan_request(char *c)
         }
         j = nlen;
         while (c[j] && c[j]==' ' || c[j]=='\t') j++;
-        i=V(c[0],c[1]); // ### TODO still needed?
         /* search macro database of self-defined macros */
         QMap<QCString,StringDefinition>::iterator it=s_stringDefinitionMap.find(macroName);
         if (it!=s_stringDefinitionMap.end())
@@ -2542,7 +2542,7 @@ static char *scan_request(char *c)
                     break;
                 }
                 case REQ_ds: // groff(7) "Define String variable"
-                    mode=1;
+                    mode=true;
                 case REQ_as: // groff (7) "Append String variable"
                 {
 #ifndef SIMPLE_MAN2HTML
@@ -2561,7 +2561,7 @@ static char *scan_request(char *c)
 #endif
                     while (*c && isspace(*c)) c++;
                     if (*c && *c=='"') c++;
-                    single_escape=1;
+                    single_escape=true;
                     curpos=0;
                     char* result=0;
                     c=scan_troff(c,1,&result);
@@ -2587,7 +2587,7 @@ static char *scan_request(char *c)
                         }
                     }
                     delete[] result;
-                    single_escape=0;
+                    single_escape=false;
                     curpos=oldcurpos;
 #ifndef SIMPLE_MAN2HTML
                     kdDebug(7101) << "end .ds/.as" << endl;
@@ -3115,7 +3115,7 @@ static char *scan_request(char *c)
                 
                 case REQ_OP:  /* groff manpages use this construction */
                     /* .OP a b : [ <B>a</B> <I>b</I> ] */
-                    mode=1;
+                    mode=true;
                     c[0]='B'; c[1]='I';
                     out_html(change_to_font('R'));
                     out_html("[");
@@ -3305,7 +3305,7 @@ static char *scan_request(char *c)
                 case REQ_Ss: // mdoc(7) "Sub Section"
                     mandoc_command = 1;
                 case REQ_SS: // mdoc(7) "Sub Section"
-                    mode=1;
+                    mode=true;
                 case REQ_Sh: // mdoc(7) "Sub Header"
                                         /* hack for fallthru from above */
                     mandoc_command = !mode || mandoc_command;
@@ -3378,6 +3378,7 @@ static char *scan_request(char *c)
                     if (!output_possible)
                     {
                         sl = fill_words(c+j, wordlist, &words, true, &c);
+                        // ### TODO: the page should be displayed even if it is "anonymous" (words==0)
                         if (words>=1)
                         {
                             for (i=1; i<words; i++) wordlist[i][-1]='\0';
@@ -3483,7 +3484,7 @@ static char *scan_request(char *c)
                 }
                 case REQ_rm: // groff(7) "ReMove"
                 /* .rm xx : Remove request, macro or string */
-                    mode=1;
+                    mode=true;
                 case REQ_rn: // groff(7) "ReName"
                 /* .rn xx yy : Rename request, macro or string xx to yy */
                 {
@@ -3576,7 +3577,7 @@ static char *scan_request(char *c)
                 case REQ_am: // groff(7) "Append Macro"
                 /* .am xx yy : append to a macro. */
                 /* define or handle as .ig yy */
-                mode=1;
+                mode=true;
                 case REQ_de: // groff(7) "DEfine macro"
                 /* .de xx yy : define or redefine macro xx; end at .yy (..) */
                 /* define or handle as .ig yy */
@@ -3602,7 +3603,7 @@ static char *scan_request(char *c)
                     {
                         endmacro='.';
                         c = wordlist[1];
-                        while ((*c != ' ') && (*c != '\n'))
+                        while (*c && (*c != ' ') && (*c != '\n'))
                             endmacro+=*c++;
                     }
                     c = next_line;
@@ -4413,7 +4414,7 @@ static bool mandoc_line=false;	/* Signals whether to look for embedded mandoc
 				 * commands.
 				 */
 
-static char *scan_troff(char *c, int san, char **result)
+static char *scan_troff(char *c, bool san, char **result)
 {   /* san : stop at newline */
     char *h;
     char intbuff[NULL_TERMINATED(MED_STR_MAX)];
@@ -4460,7 +4461,7 @@ static char *scan_troff(char *c, int san, char **result)
 	    h = scan_request(h);
 	    if (h && san && h[-1]=='\n') h--;
 	} else if (mandoc_line
-	           && *(h-1) && isspace(*(h-1)) // We can always go back, as there is at least the sequence at the start of line
+                   && *(h-1) && isspace(*(h-1)) // We can always go back, as there is at least the sequence at the start of line ### FIXME: wrong, it could be a wordlist in a buffer!
 		   && *(h) && isupper(*(h))
 		   && *(h+1) && islower(*(h+1))
 		   && *(h+2) && isspace(*(h+2))) {
@@ -4604,7 +4605,7 @@ static char *scan_troff(char *c, int san, char **result)
 }
 
 
-static char *scan_troff_mandoc(char *c, int san, char **result)
+static char *scan_troff_mandoc(char *c, bool san, char **result)
 {
     char *ret;
     char *end = c;
