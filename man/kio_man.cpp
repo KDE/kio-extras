@@ -88,8 +88,8 @@ bool parseUrl(const QString& _url, QString &title, QString &section)
             return true;
         } else
         {
+            // If the directory does not exist, then it is perhaps a normal man page
             kdDebug(7107) << url << " does not exist" << endl;
-            return false;
         }
     }
 
