@@ -120,6 +120,7 @@
 #include <qstring.h>
 #include <qptrlist.h>
 #include <qmap.h>
+#include <qdatetime.h>
 
 #ifdef SIMPLE_MAN2HTML
 # include <stdlib.h>
@@ -130,6 +131,7 @@
 #else
 # include <qtextcodec.h>
 # include <kdebug.h>
+# include <kdeversion.h>
 #endif
 
 #include "man2html.h"
@@ -144,7 +146,6 @@ using namespace std;
 #define SMALL_STR_MAX 100
 #define TINY_STR_MAX  10
 
-#define MAX_WORDLIST  100
 
 #if 1
 // The output is current too horrible to be called HTML 4.01
@@ -258,8 +259,8 @@ class NumberDefinition
 };
 
 /**
- * Map of string and macro definitions
- * \note Strings and macros are the same thing!
+ * Map of string variable and macro definitions
+ * \note String variables and macros are the same thing!
  */
 static QMap<QCString,StringDefinition> s_stringDefinitionMap;
 
@@ -269,6 +270,9 @@ static QMap<QCString,StringDefinition> s_stringDefinitionMap;
  */
 static QMap<QCString,NumberDefinition> s_numberDefinitionMap;
 
+/**
+ * Initialize string variables
+ */
 static void InitStringDefinitions( void )
 {
     // mdoc-only, see mdoc.samples(7)
@@ -297,6 +301,27 @@ static void InitStringDefinitions( void )
     // end man(7)
     // Missing characters from man(7):
     // \*S "Change to default font size"
+#ifndef SIMPLE_MAN2HTML
+    // Special KDE KIO man:
+    const QCString kdeversion(KDE_VERSION_STRING);
+    s_stringDefinitionMap.insert( ".KDE_VERSION_STRING", StringDefinition( kdeversion.length(), kdeversion ) );
+#endif
+}
+
+/**
+ * Initialize number registers
+ * \note Internal read-only registers are not handled here
+ */
+static void InitNumberDefinitions( void )
+{
+    // As the date number registers are more for end-users, better choose local time.
+    // Groff seems to support Gregorian dates only
+    QDate today( QDate::currentDate( Qt::LocalTime ) );
+    s_numberDefinitionMap.insert( "year", today.year() ); // Y2K-correct year
+    s_numberDefinitionMap.insert( "yr", today.year() -1900 ); // Y2K-incorrect year
+    s_numberDefinitionMap.insert( "mo", today.month() );
+    s_numberDefinitionMap.insert( "dy", today.day() );
+    s_numberDefinitionMap.insert( "dw", today.dayOfWeek() );
 }
 
 
@@ -613,7 +638,7 @@ static int curpos=0;
 static char *scan_troff(char *c, bool san, char **result);
 static char *scan_troff_mandoc(char *c, bool san, char **result);
 
-static char **argument=NULL;
+static QValueList<char*> s_argumentList;
 
 static char charb[TINY_STR_MAX];
 
@@ -1071,7 +1096,7 @@ static char* scan_named_character(char* c)
         if ( !*c || *c == '\n' )
         {
 #ifndef SIMPLE_MAN2HTML
-            kdDebug(7107) << "Found linefeed! Could not parse character name: " << name << endl;
+            kdDebug(7107) << "Found linefeed! Could not parse string name: " << name << endl;
 #endif
             return c-1;
         }
@@ -1105,7 +1130,7 @@ static char* scan_named_character(char* c)
 
 static char* scan_dollar_parameter(char*& c)
 {
-    int argno = 0; // No dollar argument number yet!
+    uint argno = 0; // No dollar argument number yet!
     char* h = ""; // Not NULL !
     if ( *c == '0' )
     {
@@ -1153,18 +1178,41 @@ static char* scan_dollar_parameter(char*& c)
             return "";
         }
     }
+    else if ( ( *c == '*' ) || ( *c == '@' ) )
+    {
+        if (!skip_escape)
+        {
+            const bool quote = ( *c == '@' );
+            QValueList<char*>::const_iterator it = s_argumentList.begin();
+            QCString param;
+            bool space = false;
+            for ( ; it != s_argumentList.end(); ++it )
+            {
+                if (space)
+                    param = " ";
+                else
+                    param = "";
+                if (quote)
+                    param += '\"'; // Not as HTML, as it could be used by macros !
+                param += (*it);
+                if (quote)
+                    param += '\"'; // Not as HTML, as it could be used by macros!
+                out_html(param);
+                space = true;
+            }
+        }
+    }
     else
     {
         //kdDebug(7107) << "$ char: " << *c << endl;
     }
-    // ### TODO $* $@
     //kdDebug(7107) << "ARG $" << argno << endl;
-    if (argument && argno > 0 )
+    if ( !s_argumentList.isEmpty() && argno > 0 )
     {
         //kdDebug(7107) << "ARG $" << argno << " OK!" << endl;
         argno--;
         // ### TODO support more than 20 arguments
-        if (argno < 0 || argno > (int)qstrlen(*argument))
+        if ( argno >= s_argumentList.size() )
         {
 #ifndef SIMPLE_MAN2HTML
             kdDebug(7107) << "EXCEPTION: cannot find parameter number: " << (argno+1) << endl;
@@ -1172,15 +1220,132 @@ static char* scan_dollar_parameter(char*& c)
             return "";
         }
 
-        h=argument[argno];
+        h = s_argumentList[argno];
         if (!h)
             h="";
     }
     return h;
 }
 
+/// return the value of read-only number registers
+static int read_only_number_register( const QCString& name )
+{
+    // Internal read-only variables
+    if ( name == ".$" )
+        return s_argumentList.size();
+    else if ( name == ".g" )
+        return 0; // We are not groff(1)
+    else if ( name == ".s" )
+        return current_size;
+    else if ( name == ".f" )
+        return current_font;
+    else if ( name == ".P" )
+        return 0; // We are not printing
+    else if ( name == ".A" )
+        return s_nroff;
+#ifndef SIMPLE_MAN2HTML
+    // Special KDE KIO man:
+    else if ( name == ".KDE_VERSION_MAJOR" )
+        return KDE_VERSION_MAJOR;
+    else if ( name == ".KDE_VERSION_MINOR" )
+        return KDE_VERSION_MINOR;
+    else if ( name == ".KDE_VERSION_RELEASE" )
+        return KDE_VERSION_RELEASE;
+    else if ( name == ".KDE_VERSION" )
+        return KDE_VERSION;
+#endif
+    // ### TODO: should .T be set to "html"? But we are not the HTML post-processor. :-(
+
+    // ### TODO: groff defines much more read-only number registers
+#ifndef SIMPLE_MAN2HTML
+            kdDebug(7107) << "EXCEPTION: unknown read-only number register: " << name << endl;
+#endif
+    
+    return 0; // Undefined variable
+
+}
+
+/// get the value of a number register and auto-increment if asked
+static int scan_number_register( char*& c)
+{
+    int sign = 0; // Sign for auto-increment (if any)
+    switch (*c)
+    {
+        case '+': sign = 1; c++; break;
+        case '-': sign = -1; c++; break;
+        default: break;
+    }
+    QCString name;
+    if ( *c == '[' )
+    {
+        c++;
+        if ( *c == '+' )
+        {
+            sign = 1;
+            c++;
+        }
+        else if ( *c == '-' )
+        {
+            sign = -1;
+            c++;
+        }
+        while ( *c && *c != ']' && *c != '\n' )
+        {
+            // ### TODO: a \*[string could be inside and should be processed
+            name+=*c;
+            c++;
+        }
+        if ( !*c || *c == '\n' )
+        {
+#ifndef SIMPLE_MAN2HTML
+            kdDebug(7107) << "Found linefeed! Could not parse number register name: " << name << endl;
+#endif
+            return 0;
+        }
+        
+    }
+    else if ( *c == '(' )
+    {
+        c++;
+        if ( *c == '+' )
+        {
+            sign = 1;
+            c++;
+        }
+        else if ( *c == '-' )
+        {
+            sign = -1;
+            c++;
+        }
+        name=c[0];
+        name+=c[1];
+        c++;
+    }
+    else
+    {
+        name=c[0];
+    }
+    if ( name[0] == '.' )
+    {
+        return read_only_number_register( name );
+    }
+    else
+    {
+        QMap< QCString, NumberDefinition >::iterator it = s_numberDefinitionMap.find( name );
+        if ( it == s_numberDefinitionMap.end() )
+        {
+            return 0; // Undefined variable
+        }
+        else
+        {
+            (*it).m_value += sign * (*it).m_increment;
+            return (*it).m_value;
+        }
+    }
+}
+
 // ### TODO known missing escapes from groff(7):
-// ### TODO \& \! \) \:
+// ### TODO \& \! \) \: \R
 
 static char *scan_escape(char *c)
 {
@@ -1274,47 +1439,10 @@ static char *scan_escape(char *c)
 	break;
     case 'n':
     {
-	c++;
-	j=0;
-	switch (*c) {
-	case '+': j=1; c++; break;
-	case '-': j=-1; c++; break;
-	default: break;
-	}
-        QCString name;
-	if (*c=='(') {
-	    c++;
-            name=c[0];
-            name+=c[1];
-	    c=c+1;
-	} else {
-            name=c[0];
-	}
-        if ( name[0] == '.' )
-        {
-            // Internal read-only variable
-            if ( name == ".s" )
-                intresult = current_size;
-            else if ( name == ".f" )
-                intresult = current_font;
-            else
-                intresult = 0; // Undefined variable
-        }
-        else
-        {
-            QMap< QCString, NumberDefinition >::iterator it = s_numberDefinitionMap.find( name );
-            if ( it == s_numberDefinitionMap.end() )
-            {
-                intresult = 0; // Undefined variable
-            }
-            else
-            {
-                (*it).m_value += j * (*it).m_increment;
-                intresult = (*it).m_value;
-            }
-        }
-	h="";
-	break;
+        c++;
+        intresult = scan_number_register( c );
+        h = "";
+        break;
     }
     case 'w':
 	c++;
@@ -1361,7 +1489,7 @@ static char *scan_escape(char *c)
     case '<': h="&lt;";curpos++; break;
     case '>': h="&gt;";curpos++; break;
     case '\\': if (single_escape) { c--; break;}
-    case 'N':
+    case 'N': // ### FIXME
 	if (*++c) c++; // c += 2
         if (sscanf(c, "%d", &i) != 1)
 		break;
@@ -2376,7 +2504,7 @@ static char *skip_till_newline(char *c)
 #define REQ_rn        65
 #define REQ_nx        66
 #define REQ_in        67
-#define REQ_nr        68
+#define REQ_nr        68 // groff(7) "Number Register"
 #define REQ_am        69
 #define REQ_de        70
 #define REQ_Bl        71 // mdoc(7) "Begin List"
@@ -2451,6 +2579,10 @@ static char *skip_till_newline(char *c)
 #define REQ_troff    140 // groff(7) "TROFF mode"
 #define REQ_nroff    141 // groff(7) "NROFF mode"
 #define REQ_als      142 // groff(7) "ALias String"
+#define REQ_rr       143 // groff(7) "Remove number Register"
+#define REQ_rnn      144 // groff(7) "ReName Number register"
+#define REQ_aln      145 // groff(7) "ALias Number register"
+#define REQ_shift    146 // groff(7) "SHIFT parameter"
 
 static int get_request(char *req, int len)
 {
@@ -2467,7 +2599,7 @@ static int get_request(char *req, int len)
         "Cd", "Cm", "Ic", "Ms", "Or", "Sy", "Dv", "Ev", "Fr", "Li", "No", "Ns",
         "Tn", "nN", "%A", "%D", "%N", "%O", "%P", "%Q", "%V", "%B", "%J", "%R",
         "%T", "An", "Aq", "Bq", "Qq", "UR", "UE", "UN", "troff", "nroff", "als",
-        0 };
+        "rr", "rnn", "aln", "shift", 0 };
     int r = 0;
     while (requests[r] && qstrncmp(req, requests[r], len)) r++;
     return requests[r] ? r : REQ_UNKNOWN;
@@ -2508,7 +2640,8 @@ static char *scan_request(char *c)
     int i=0;
     bool mode=false;
     char *h=0;
-    char *wordlist[MAX_WORDLIST];
+    const int max_wordlist=100;
+    char *wordlist[max_wordlist];
     int words;
     char *sl;
     while (*c==' ' || *c=='\t') c++; // Spaces or tabs allowed between control character and request
@@ -2557,7 +2690,7 @@ static char *scan_request(char *c)
                 wordlist[i] = qstrdup(h);
                 delete [] h;
             }
-            for (i=words;i<20; i++) wordlist[i]=NULL;
+            for ( i=words; i<max_wordlist; i++ ) wordlist[i]=NULL;
             if ((*it).m_output.isEmpty())
             {
 #ifndef SIMPLE_MAN2HTML
@@ -2571,8 +2704,14 @@ static char *scan_request(char *c)
                 char* work = new char [length+2];
                 work[0] = '\n'; // The macro must start after an end of line to allow a request on first line
                 qstrncpy(work+1,(*it).m_output.data(),length+1);
-                char** oldargument=argument;
-                argument=wordlist;
+                const QValueList<char*> oldArgumentList( s_argumentList );
+                s_argumentList.clear();
+                for ( i = 0 ; i < max_wordlist; i++ )
+                {
+                    if (!wordlist[i])
+                        break;
+                    s_argumentList.push_back( wordlist[i] );
+                }
                 const int onff=newline_for_fun;
                 if (mandoc_command)
                     scan_troff_mandoc(work, 0, NULL);
@@ -2580,7 +2719,7 @@ static char *scan_request(char *c)
                     scan_troff(work, 0, NULL);
                 delete[] work;
                 newline_for_fun=onff;
-                argument=oldargument;
+                s_argumentList = oldArgumentList;
             }
             for (i=0; i<words; i++) delete [] wordlist[i];
             *sl='\n';
@@ -3707,13 +3846,21 @@ static char *scan_request(char *c)
                     if ( name.isEmpty() )
                     {
 #ifndef SIMPLE_MAN2HTML
-                            kdDebug(7107) << "EXCEPTION: empty origin string to remove/rename: " << endl;
+                            kdDebug(7107) << "EXCEPTION: empty name for register variable" << endl;
 #endif
                             c=h;
                             break;
                     }
                     c = h + 1;
                     while ( *c && ( *c==' ' || *c=='\t' ) ) c++;
+                    int sign = 0;
+                    if ( *c && ( *c == '+' || *c == '-' ) )
+                    {
+                        if ( *c == '+' )
+                            sign = 1;
+                        else if ( *c == '-' )
+                            sign = -1;
+                    }
                     int value = 0;
                     int increment = 0;
                     c=scan_expression( c, &value );
@@ -3726,12 +3873,19 @@ static char *scan_request(char *c)
                     QMap <QCString, NumberDefinition>::iterator it = s_numberDefinitionMap.find( name );
                     if ( it == s_numberDefinitionMap.end() )
                     {
+                        if ( sign < 1 )
+                            value = -value;
                         NumberDefinition def( value, increment );
                         s_numberDefinitionMap.insert( name, def );
                     }
                     else
                     {
-                        (*it).m_value = value;
+                        if ( sign > 0 )
+                            (*it).m_value += value;
+                        else if ( sign < 0 )
+                            (*it).m_value += - value;
+                        else
+                            (*it).m_value = value;
                         (*it).m_increment = increment;
                     }
 #ifndef SIMPLE_MAN2HTML
@@ -4546,7 +4700,7 @@ static char *scan_request(char *c)
                      * Note an alias is supposed to be something like a hard link
                      * However to make it simplier, we only copy the string.
                      */
-                    // Be careful: unlike .rm, the destination is first, origin is second
+                    // Be careful: unlike .rn, the destination is first, origin is second
 #ifndef SIMPLE_MAN2HTML
                     kdDebug(7107) << "start .als" << endl;
 #endif
@@ -4592,7 +4746,7 @@ static char *scan_request(char *c)
 #endif
                         break;
                     }
-                    // Second parametr is origin (unlike in .rm)
+                    // Second parametr is origin (unlike in .rn)
                     QMap<QCString,StringDefinition>::iterator it=s_stringDefinitionMap.find(name2);
                     if (it==s_stringDefinitionMap.end())
                     {
@@ -4608,6 +4762,197 @@ static char *scan_request(char *c)
 #ifndef SIMPLE_MAN2HTML
                     kdDebug(7107) << "end .als" << endl;
 #endif
+                    break;
+                }
+                case REQ_rr: // groff(7) "Remove number Register"
+                {
+#ifndef SIMPLE_MAN2HTML
+                    kdDebug(7107) << "start .rr" << endl;
+#endif
+                    c += j;
+                    h = c;
+                    while ( *h && *h!='\n' && (isalnum(*h) || *h=='@')) ++h;
+                    if (*h)
+                        *h=0;
+                    const QCString name=c;
+                    if ( name.isEmpty() )
+                    {
+#ifndef SIMPLE_MAN2HTML
+                            kdDebug(7107) << "EXCEPTION: empty origin string to remove/rename: " << endl;
+#endif
+                            c=h;
+                            break;
+                    }
+                    c = skip_till_newline( h + 1 );
+                    QMap <QCString, NumberDefinition>::iterator it = s_numberDefinitionMap.find( name );
+                    if ( it == s_numberDefinitionMap.end() )
+                    {
+#ifndef SIMPLE_MAN2HTML
+                            kdDebug(7107) << "EXCEPTION: trying to remove inexistant number register: " << endl;
+#endif
+                    }
+                    else
+                    {
+                        s_numberDefinitionMap.remove( name );
+                    }
+#ifndef SIMPLE_MAN2HTML
+                    kdDebug(7107) << "end .rr" << endl;
+#endif
+                    break;
+                }
+                case REQ_rnn: // groff(7) "ReName Number register"
+                {
+#ifndef SIMPLE_MAN2HTML
+                    kdDebug(7107) << "start .rnn" << endl;
+#endif
+                    c+=j;
+                    h=c;
+                    while (*h && *h!='\n' && (isalnum(*h) || *h=='@')) ++h;
+                    if (*h)
+                        *h=0;
+                    const QCString name=c;
+                    if ( name.isEmpty() )
+                    {
+#ifndef SIMPLE_MAN2HTML
+                            kdDebug(7107) << "EXCEPTION: empty origin to remove/rename number register" << endl;
+#endif
+                            c=h;
+                            break;
+                    }
+                    QCString name2;
+                    if (!mode)
+                    {
+                        c=h+1;
+                        while (*c && isspace(*c) && *c!='\n') ++c;
+                        h=c;
+                        while (*h && *h!='\n' && (isalnum(*h) || *h=='@')) ++h;
+                        if (*h)
+                            *h=0;
+                        name2=c;
+                        if ( name2.isEmpty() )
+                        {
+#ifndef SIMPLE_MAN2HTML
+                            kdDebug(7107) << "EXCEPTION: empty destination to rename number register " << endl;
+#endif
+                            c=h;
+                            break;
+                        }
+                    }
+                    c=h+1;
+#ifndef SIMPLE_MAN2HTML
+                    kdDebug(7107) << "Rename number register " << name << " to " << name2 << endl;
+#endif
+                    while (*c && *c!='\n') c++;
+                    c++;
+                    QMap<QCString,NumberDefinition>::iterator it=s_numberDefinitionMap.find(name);
+                    if (it==s_numberDefinitionMap.end())
+                    {
+#ifndef SIMPLE_MAN2HTML
+                        kdDebug(7107) << "EXCEPTION: cannot find number register to rename: " << name << endl;
+#endif
+                    }
+                    else
+                    {
+                        NumberDefinition def=(*it);
+                        s_numberDefinitionMap.remove(name); // ### QT4: removeAll
+                        s_numberDefinitionMap.insert(name2,def);
+                    }
+#ifndef SIMPLE_MAN2HTML
+                    kdDebug(7107) << "end .rnn" << endl;
+#endif
+                    break;
+                }
+                case REQ_aln: // groff(7) "ALias Number Register"
+                {
+                    /*
+                    * Note an alias is supposed to be something like a hard link
+                    * However to make it simplier, we only copy the string.
+                    */
+                    // Be careful: unlike .rnn, the destination is first, origin is second
+#ifndef SIMPLE_MAN2HTML
+                    kdDebug(7107) << "start .aln" << endl;
+#endif
+                    c+=j;
+                    h=c;
+                    while (*h && *h!='\n' && (isalnum(*h) || *h=='@')) ++h;
+                    if (*h)
+                        *h=0;
+                    const QCString name=c;
+                    if ( name.isEmpty() )
+                    {
+#ifndef SIMPLE_MAN2HTML
+                            kdDebug(7107) << "EXCEPTION: empty destination number register to alias" << endl;
+#endif
+                            c=h;
+                            break;
+                    }
+                    c=h+1;
+                    while (*c && isspace(*c) && *c!='\n') ++c;
+                    h=c;
+                    while (*h && *h!='\n' && (isalnum(*h) || *h=='@')) ++h;
+                    if (*h)
+                        *h=0;
+                    const QCString name2=c;
+                    if ( name2.isEmpty() )
+                    {
+#ifndef SIMPLE_MAN2HTML
+                            kdDebug(7107) << "EXCEPTION: empty origin number register to alias" << endl;
+#endif
+                            c=h;
+                            break;
+                    }
+                    c=h+1;
+#ifndef SIMPLE_MAN2HTML
+                    kdDebug(7107) << "Alias " << name2 << " to " << name << endl;
+#endif
+                    while (*c && *c!='\n') c++;
+                    c++;
+                    if ( name == name2 )
+                    {
+#ifndef SIMPLE_MAN2HTML
+                        kdDebug(7107) << "EXCEPTION: same origin and destination number register to alias" << endl;
+#endif
+                        break;
+                    }
+                    // Second parametr is origin (unlike in .rnn)
+                    QMap<QCString,NumberDefinition>::iterator it=s_numberDefinitionMap.find(name2);
+                    if (it==s_numberDefinitionMap.end())
+                    {
+#ifndef SIMPLE_MAN2HTML
+                        kdDebug(7107) << "EXCEPTION: cannot find string to make alias: " << name2 << endl;
+#endif
+                    }
+                    else
+                    {
+                        NumberDefinition def=(*it);
+                        s_numberDefinitionMap.insert(name,def);
+                    }
+#ifndef SIMPLE_MAN2HTML
+                    kdDebug(7107) << "end .aln" << endl;
+#endif
+                    break;
+                }
+                case REQ_shift: // groff(7) "SHIFT parameter"
+                {
+                    c+=j;
+                    h=c;
+                    while (*h && *h!='\n' && isdigit(*h) ) ++h;
+                    if (*h)
+                        *h=0;
+                    const QCString name=c;
+                    uint result = 1; // Numbers of shifts to do
+                    if ( !name.isEmpty() )
+                    {
+                        bool ok = false;
+                        result = name.toUInt(&ok);
+                        if ( !ok || result < 1 )
+                            result = 1;
+                    }
+                    for ( uint num = 0; num < result; ++num )
+                    {
+                        s_argumentList.pop_front();
+                    }
+                    c = skip_till_newline( h + 1 );
                     break;
                 }
                 default:
@@ -4891,8 +5236,10 @@ void scan_man_page(const char *man_page)
     InitStringDefinitions();
     
     s_numberDefinitionMap.clear();
-    // ### TODO: initialoze default variables
+    InitNumberDefinitions();
     
+    s_argumentList.clear();
+
     section = 0;
 
     s_dollarZero = ""; // No macro called yet!
@@ -4955,10 +5302,10 @@ void scan_man_page(const char *man_page)
 
     // Release memory
     s_stringDefinitionMap.clear();
-    
-    // reinit static variables for reuse
     s_numberDefinitionMap.clear();
+    s_argumentList.clear();
 
+    // reinit static variables for reuse
     delete [] buffer;
     buffer = 0;
 
@@ -4980,7 +5327,6 @@ void scan_man_page(const char *man_page)
     maxtstop=12;
     curpos=0;
 
-    argument = 0;
     mandoc_name_count = 0;
 }
 
