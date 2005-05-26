@@ -224,12 +224,9 @@ struct CSTRDEF {
     const char *st;
 };
 
-struct INTDEF {
-    int nr;
-    int val;
-    int incr;
-    INTDEF *next;
-};
+
+
+const char NEWLINE[2]="\n";
 
 /**
  * Class for defining strings and macros
@@ -244,12 +241,33 @@ public:
     QCString m_output; ///< Defined string
 };
 
+/**
+ * Class for defining number registers
+ * \note Not for internal read-only registers
+ */
+class NumberDefinition
+{
+    public:
+        NumberDefinition( void ) : m_value(0), m_increment(0) {}
+        NumberDefinition( int value ) : m_value( value ), m_increment(0) {}
+        NumberDefinition( int value, int incr) : m_value( value ), m_increment( incr ) {}
+    public:
+        int m_value; ///< value of number register
+        int m_increment; ///< Increment of number register
+        // ### TODO: display form (.af)
+};
 
-const char NEWLINE[2]="\n";
-
-static INTDEF *intdef;
-
+/**
+ * Map of string and macro definitions
+ * \note Strings and macros are the same thing!
+ */
 static QMap<QCString,StringDefinition> s_stringDefinitionMap;
+
+/**
+ * Map of number registers
+ * \note Intern number registers (starting with a dot are not handled here)
+ */
+static QMap<QCString,NumberDefinition> s_numberDefinitionMap;
 
 static void InitStringDefinitions( void )
 {
@@ -1168,7 +1186,6 @@ static char *scan_escape(char *c)
 {
     const char *h=NULL; // help pointer
     char b[32]; // help array
-    INTDEF *intd;
     bool exoutputp;
     bool exskipescape;
     int i,j;
@@ -1176,12 +1193,14 @@ static char *scan_escape(char *c)
     intresult=0;
     switch (*c) {
     case 'e': h="\\"; curpos++;break;
-    case '0':
+    case '0': // ### TODO Where in Unicode? (space of digit width)
     case '~': // non-breakable-space (resizeable!)
-    case '|': // half-non-breakable-space
-    case '^': // quarter-non-breakable-space
     case ' ':
 	h="&nbsp;";curpos++; break;
+    case '|': // half-non-breakable-space
+    	h = "&#x2002;"; curpos++; break; // EN SPACE (### TODO: what is U+202F (NARROW NO-BREAK SPACE)
+    case '^': // quarter-non-breakable-space
+    	h = "&#x2005;"; break; // FOUR-PER-EM SPACE
     case '"': SKIPEOL; c--; h=""; break;
     // ### TODO \# like \" but does not ignore the end of line (groff(7))
     case '$':
@@ -1254,6 +1273,7 @@ static char *scan_escape(char *c)
 	c--;
 	break;
     case 'n':
+    {
 	c++;
 	j=0;
 	switch (*c) {
@@ -1261,27 +1281,41 @@ static char *scan_escape(char *c)
 	case '-': j=-1; c++; break;
 	default: break;
 	}
+        QCString name;
 	if (*c=='(') {
 	    c++;
-	    i=V(c[0],c[1]);
+            name=c[0];
+            name+=c[1];
 	    c=c+1;
 	} else {
-	    i=V(c[0],' ');
+            name=c[0];
 	}
-	intd=intdef;
-	while (intd && intd->nr!=i) intd=intd->next;
-	if (intd) {
-	    intd->val=intd->val+j*intd->incr;
-	    intresult=intd->val;
-	} else {
-	    switch (i) {
-	    case V('.','s'): intresult=current_size; break;
-	    case V('.','f'): intresult=current_font; break;
-	    default: intresult=0; break;
-	    }
-	}
+        if ( name[0] == '.' )
+        {
+            // Internal read-only variable
+            if ( name == ".s" )
+                intresult = current_size;
+            else if ( name == ".f" )
+                intresult = current_font;
+            else
+                intresult = 0; // Undefined variable
+        }
+        else
+        {
+            QMap< QCString, NumberDefinition >::iterator it = s_numberDefinitionMap.find( name );
+            if ( it == s_numberDefinitionMap.end() )
+            {
+                intresult = 0; // Undefined variable
+            }
+            else
+            {
+                (*it).m_value += j * (*it).m_increment;
+                intresult = (*it).m_value;
+            }
+        }
 	h="";
 	break;
+    }
     case 'w':
 	c++;
 	i=*c;
@@ -3660,33 +3694,49 @@ static char *scan_request(char *c)
                     break;
                 }
                 case REQ_nr: // groff(7) "Number Register"
-                /* .nr R +-N M: define and set number register R by +-N;
-                 *  auto-increment by M
-                 */
                 {
-                    INTDEF *intd;
-                    c=c+j;
-                    i=V(c[0],c[1]);
-                    c=c+2;
-                    intd=intdef;
-                    while (intd && intd->nr!=i) intd=intd->next;
-                    if (!intd)
+#ifndef SIMPLE_MAN2HTML
+                    kdDebug(7107) << "start .nr" << endl;
+#endif
+                    c += j;
+                    h = c;
+                    while ( *h && *h!='\n' && (isalnum(*h) || *h=='@')) ++h;
+                    if (*h)
+                        *h=0;
+                    const QCString name=c;
+                    if ( name.isEmpty() )
                     {
-                        intd = new INTDEF();
-                        intd->nr=i;
-                        intd->val=0;
-                        intd->incr=0;
-                        intd->next=intdef;
-                        intdef=intd;
+#ifndef SIMPLE_MAN2HTML
+                            kdDebug(7107) << "EXCEPTION: empty origin string to remove/rename: " << endl;
+#endif
+                            c=h;
+                            break;
                     }
-                    while (*c==' ' || *c=='\t') c++;
-                    c=scan_expression(c,&intd->val);
-                    if (*c!='\n')
+                    c = h + 1;
+                    while ( *c && ( *c==' ' || *c=='\t' ) ) c++;
+                    int value = 0;
+                    int increment = 0;
+                    c=scan_expression( c, &value );
+                    if ( *c && *c!='\n')
                     {
-                        while (*c==' ' || *c=='\t') c++;
-                        c=scan_expression(c,&intd->incr);
+                        while ( *c && ( *c==' ' || *c=='\t' ) ) c++;
+                        c=scan_expression( c, &increment );
                     }
-                    c=skip_till_newline(c);
+                    c = skip_till_newline( c );
+                    QMap <QCString, NumberDefinition>::iterator it = s_numberDefinitionMap.find( name );
+                    if ( it == s_numberDefinitionMap.end() )
+                    {
+                        NumberDefinition def( value, increment );
+                        s_numberDefinitionMap.insert( name, def );
+                    }
+                    else
+                    {
+                        (*it).m_value = value;
+                        (*it).m_increment = increment;
+                    }
+#ifndef SIMPLE_MAN2HTML
+                    kdDebug(7107) << "end .nr" << endl;
+#endif
                     break;
                 }
                 case REQ_am: // groff(7) "Append Macro"
@@ -4839,6 +4889,10 @@ void scan_man_page(const char *man_page)
     
     s_stringDefinitionMap.clear();
     InitStringDefinitions();
+    
+    s_numberDefinitionMap.clear();
+    // ### TODO: initialoze default variables
+    
     section = 0;
 
     s_dollarZero = ""; // No macro called yet!
@@ -4903,13 +4957,7 @@ void scan_man_page(const char *man_page)
     s_stringDefinitionMap.clear();
     
     // reinit static variables for reuse
-    INTDEF *cursor2 = intdef;
-    while (cursor2) {
-        intdef = cursor2->next;
-        delete cursor2;
-        cursor2 = intdef;
-    }
-    intdef = 0;
+    s_numberDefinitionMap.clear();
 
     delete [] buffer;
     buffer = 0;
