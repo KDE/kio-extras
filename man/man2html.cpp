@@ -257,6 +257,11 @@ class NumberDefinition
 };
 
 /**
+ * Map of character definitions
+ */
+static QMap<QCString,StringDefinition> s_characterDefinitionMap;
+
+/**
  * Map of string variable and macro definitions
  * \note String variables and macros are the same thing!
  */
@@ -267,6 +272,16 @@ static QMap<QCString,StringDefinition> s_stringDefinitionMap;
  * \note Intern number registers (starting with a dot are not handled here)
  */
 static QMap<QCString,NumberDefinition> s_numberDefinitionMap;
+
+static void fill_old_character_definitions( void );
+
+/**
+ * Initialize character variables
+ */
+static void InitCharacterDefinitions( void )
+{
+    fill_old_character_definitions();
+}
 
 /**
  * Initialize string variables
@@ -638,8 +653,6 @@ static char *scan_troff_mandoc(char *c, bool san, char **result);
 
 static QValueList<char*> s_argumentList;
 
-static char charb[TINY_STR_MAX];
-
 static QCString htmlPath, cssPath;
 
 static QCString s_dollarZero; // Value of $0
@@ -650,26 +663,15 @@ void setResourcePath(const QCString& _htmlPath, const QCString& _cssPath)
     cssPath=_cssPath;
 }
 
-// ### TODO: a char can also have long names
-static const char *expand_char(int nr)
+static void fill_old_character_definitions( void )
 {
-  if (!nr) return NULL;
-  for (size_t i = 0; i < sizeof(standardchar)/sizeof(CSTRDEF); i++) {
-      if (standardchar[i].nr==nr) {
-          curpos+=standardchar[i].slen;
-          return standardchar[i].st;
-      }
-  }
-  charb[0]=nr/256;
-  charb[1]=nr%256;
-  charb[2]='\0';
-  if (charb[0] == '<') {	/* Fix up <= */
-    charb[4] = charb[1];
-    qstrncpy(charb, "&lt;", 4);
-    charb[5] = '\0';
-  }
-  curpos+=2;
-  return charb;
+    for (size_t i = 0; i < sizeof(standardchar)/sizeof(CSTRDEF); i++)
+    {
+        const int nr = standardchar[i].nr;
+        const char temp[3] = { nr / 256, nr % 256, 0 };
+        QCString name( temp );
+        s_characterDefinitionMap.insert( name, StringDefinition( standardchar[i].slen, standardchar[i].st ) );
+    }
 }
 
 static char outbuffer[NULL_TERMINATED(HUGE_STR_MAX)];
@@ -1012,54 +1014,57 @@ static const char *switchfont[16] = { ""     , FC0 FO1, FC0 FO2, FC0 FO3,
 			 FC2 FO0, FC2 FO1, ""     , FC2 FO3,
 			 FC3 FO0, FC3 FO1, FC3 FO2, ""      };
 
-static const char *change_to_font(int nr)
+static QCString change_to_font(int nr)
 {
-  int i;
-  switch (nr) {
-  case '0': nr++;
-  case '1': case '2': case '3': case '4': nr=nr-'1'; break;
-  case V('C','W'): nr=3; break;
-  case 'L': nr=3; break;
-  case 'B': nr=2; break;
-  case 'I': nr=1; break;
-  case 'P': case 'R': nr=0; break;
-  case 0: case 1: case 2: case 3: break;
-  default: nr=0; break;
-  }
-  i= current_font*4+nr%4;
-  current_font=nr%4;
-  return switchfont[i];
+    switch (nr)
+    {
+        case '0': nr = 0; break;
+        case '1': case '2': case '3': case '4': nr=nr-'1'; break;
+        case V('C','W'): nr=3; break;
+        case 'L': nr=3; break;
+        case 'B': nr=2; break;
+        case 'I': nr=1; break;
+        case 'P': case 'R': nr=0; break;
+        case 0: case 1: case 2: case 3: break;
+        default: nr=0; break;
+    }
+    const int i= current_font*4+nr%4;
+    current_font=nr%4;
+    return switchfont[i];
 }
 
-static char sizebuf[200];
-
-static const char *change_to_size(int nr)
+static QCString change_to_size(int nr)
 {
-  int i;
-  switch (nr) {
-  case '0': case '1': case '2': case '3': case '4': case '5': case '6':
-  case '7': case '8': case '9': nr=nr-'0'; break;
-  case '\0': break;
-  default: nr=current_size+nr; if (nr>9) nr=9; if (nr< -9) nr=-9; break;
-  }
-  if (nr==current_size) return "";
-  i=current_font;
-  sizebuf[0]='\0';
-  strcat(sizebuf, change_to_font(0));
-  if (current_size) strcat(sizebuf, "</FONT>");
-  current_size=nr;
-  if (nr) {
-    int l;
-    strcat(sizebuf, "<FONT SIZE=\"");
-    l=qstrlen(sizebuf);
-    if (nr>0) sizebuf[l++]='+'; else sizebuf[l++]='-',nr=-nr;
-    sizebuf[l++]=nr+'0';
-    sizebuf[l++]='"';
-    sizebuf[l++]='>';
-    sizebuf[l]='\0';
-  }
-  strcat(sizebuf, change_to_font(i));
-  return sizebuf;
+    switch (nr)
+    {
+        case '0': case '1': case '2': case '3': case '4': case '5': case '6':
+        case '7': case '8': case '9': nr=nr-'0'; break;
+        case '\0': break;
+        default: nr=current_size+nr; if (nr>9) nr=9; if (nr< -9) nr=-9; break;
+    }
+    if ( nr == current_size )
+        return "";
+    const int i = current_font;
+    QCString markup;
+    markup = change_to_font(0);
+    if (current_size)
+        markup += "</FONT>";
+    current_size=nr;
+    if (nr)
+    {
+        markup += "<FONT SIZE=\"";
+        if (nr>0)
+            markup += '+';
+        else
+        {
+            markup += '-';
+            nr=-nr;
+        }
+        markup += char( nr + '0' );
+        markup += "\">";
+    }
+    markup += change_to_font( i );
+    return markup;
 }
 
 /* static int asint=0; */
@@ -1070,15 +1075,31 @@ static int intresult=0;
 static bool skip_escape=false;
 static bool single_escape=false;
 
-static char* scan_named_character(char* c)
+static char *scan_escape_direct( char *c, QCString& cstr );
+
+/**
+ * scan a named character
+ * param c position
+*/
+static QCString scan_named_character( char*& c )
 {
     QCString name;
     if ( *c == '(' )
     {
         // \*(ab  Name of two characters
-        name=c[1];
-        name+=c[2];
-        c+=2;
+        if ( c[1] == escapesym )
+        {
+            QCString cstr;
+            c = scan_escape_direct( c+2, cstr );
+            // ### FIXME: check if we have really 2 characters (and only 2, not more either)
+            name = cstr.left(2);
+        }
+        else
+        {
+            name=c[1];
+            name+=c[2];
+            c+=2;
+        }
     }
     else if ( *c == '[' )
     {
@@ -1088,15 +1109,66 @@ static char* scan_named_character(char* c)
         c++;
         while ( *c && *c != ']' && *c != '\n' )
         {
-            name+=*c;
-            c++;
+            if ( *c == escapesym )
+            {
+                QCString cstr;
+                c = scan_escape_direct( c+1, cstr );
+                const int result = cstr.find(']');
+                if ( result == -1 )
+                    name += cstr;
+                else
+                {
+                    // Note: we drop the characters after the ]
+                    name += cstr.left( result );
+                }
+            }
+            else
+            {
+                name+=*c;
+                c++;
+            }
         }
         if ( !*c || *c == '\n' )
         {
 #ifndef SIMPLE_MAN2HTML
-            kdDebug(7107) << "Found linefeed! Could not parse string name: " << name << endl;
+            kdDebug(7107) << "Found linefeed! Could not parse character name: " << name << endl;
 #endif
-            return c-1;
+            c--;
+            return "";
+        }
+    }
+    else if ( *c =='C' || c[1]== '\'' )
+    {
+        // \C'name'
+        c+=2;
+        while ( *c && *c != '\'' && *c != '\n' )
+        {
+            if ( *c == escapesym )
+            {
+                QCString cstr;
+                c = scan_escape_direct( c+1, cstr );
+                const int result = cstr.find('\'');
+                if ( result == -1 )
+                    name += cstr;
+                else
+                {
+                    // Note: we drop the characters after the ]
+                    name += cstr.left( result );
+                }
+            }
+            else
+            {
+                name+=*c;
+                c++;
+            }
+        }
+        if ( !*c || *c == '\n' )
+        {
+#ifndef SIMPLE_MAN2HTML
+            kdDebug(7107) << "Found linefeed! Could not parse (\\C mode) character name: " << name << endl;
+#endif
+            c--;
+            return "";
         }
     }
     else
@@ -1105,36 +1177,113 @@ static char* scan_named_character(char* c)
         name=c[1];
         ++c;
     }
-    if ( skip_escape )
-        return c;
+    // Now we have the name, let us find it between the string names
+    QMap<QCString,StringDefinition>::iterator it=s_characterDefinitionMap.find(name);
+    if (it==s_characterDefinitionMap.end())
+    {
+#ifndef SIMPLE_MAN2HTML
+        kdDebug(7107) << "EXCEPTION: cannot find character with name: " << name << endl;
+#endif
+        // No output, as an undefined string is empty by default
+        return "";
+    }
+    else
+    {
+#ifndef SIMPLE_MAN2HTML
+        kdDebug(7107) << "Character with name: \"" << name << "\" => " << (*it).m_output << endl;
+#endif
+        return (*it).m_output;
+    }
+}
+
+static QCString scan_named_string(char*& c)
+{
+    QCString name;
+    if ( *c == '(' )
+    {
+        // \*(ab  Name of two characters
+        if ( c[1] == escapesym )
+        {
+            QCString cstr;
+            c = scan_escape_direct( c+2, cstr );
+            kdDebug(7107) << "\(" << cstr << endl;
+            // ### FIXME: check if we have really 2 characters (and only 2, not more either)
+            name = cstr.left(2);
+        }
+        else
+        {
+            name=c[1];
+            name+=c[2];
+            c+=2;
+        }
+    }
+    else if ( *c == '[' )
+    {
+        // \*[long_name]  Long name
+        // Named character groff(7)
+        // We must find the ] to get a name
+        c++;
+        while ( *c && *c != ']' && *c != '\n' )
+        {
+            if ( *c == escapesym )
+            {
+                QCString cstr;
+                c = scan_escape_direct( c+1, cstr );
+                const int result = cstr.find(']');
+                if ( result == -1 )
+                    name += cstr;
+                else
+                {
+                    // Note: we drop the characters after the ]
+                    name += cstr.left( result );
+                }
+            }
+            else
+            {
+                name+=*c;
+                c++;
+            }
+        }
+        if ( !*c || *c == '\n' )
+        {
+#ifndef SIMPLE_MAN2HTML
+            kdDebug(7107) << "Found linefeed! Could not parse string name: " << name << endl;
+#endif
+            c--;
+            return "";
+        }
+    }
+    else
+    {
+        // \*a Name of one character
+        name=c[1];
+        ++c;
+    }
     // Now we have the name, let us find it between the string names
     QMap<QCString,StringDefinition>::iterator it=s_stringDefinitionMap.find(name);
     if (it==s_stringDefinitionMap.end())
     {
 #ifndef SIMPLE_MAN2HTML
-        kdDebug(7107) << "EXCEPTION: cannot find string with long name: " << name << endl;
+        kdDebug(7107) << "EXCEPTION: cannot find string with name: " << name << endl;
 #endif
         // No output, as an undefined string is empty by default
+        return "";
     }
     else
     {
 #ifndef SIMPLE_MAN2HTML
-        kdDebug(7107) << "String with long name: " << name << endl;
+        kdDebug(7107) << "String with name: \"" << name << "\" => " << (*it).m_output << endl;
 #endif
-        out_html((*it).m_output);
+        return (*it).m_output;
     }
-    return c;
 }
-
-static char* scan_dollar_parameter(char*& c)
+static QCString scan_dollar_parameter(char*& c)
 {
     uint argno = 0; // No dollar argument number yet!
-    char* h = ""; // Not NULL !
     if ( *c == '0' )
     {
         //kdDebug(7107) << "$0" << endl;
-        h = s_dollarZero.data();
-        return h;
+        return s_dollarZero;
     }
     else if ( *c >= '1' && *c <= '9' )
     {
@@ -1178,27 +1327,22 @@ static char* scan_dollar_parameter(char*& c)
     }
     else if ( ( *c == '*' ) || ( *c == '@' ) )
     {
-        if (!skip_escape)
+        const bool quote = ( *c == '@' );
+        QValueList<char*>::const_iterator it = s_argumentList.begin();
+        QCString param;
+        bool space = false;
+        for ( ; it != s_argumentList.end(); ++it )
         {
-            const bool quote = ( *c == '@' );
-            QValueList<char*>::const_iterator it = s_argumentList.begin();
-            QCString param;
-            bool space = false;
-            for ( ; it != s_argumentList.end(); ++it )
-            {
-                if (space)
-                    param = " ";
-                else
-                    param = "";
-                if (quote)
-                    param += '\"'; // Not as HTML, as it could be used by macros !
-                param += (*it);
-                if (quote)
-                    param += '\"'; // Not as HTML, as it could be used by macros!
-                out_html(param);
-                space = true;
-            }
+            if (space)
+                param += " ";
+            if (quote)
+                param += '\"'; // Not as HTML, as it could be used by macros !
+            param += (*it);
+            if (quote)
+                param += '\"'; // Not as HTML, as it could be used by macros!
+            space = true;
         }
+        return param;
     }
     else
     {
@@ -1209,20 +1353,17 @@ static char* scan_dollar_parameter(char*& c)
     {
         //kdDebug(7107) << "ARG $" << argno << " OK!" << endl;
         argno--;
-        // ### TODO support more than 20 arguments
         if ( argno >= s_argumentList.size() )
         {
 #ifndef SIMPLE_MAN2HTML
-            kdDebug(7107) << "EXCEPTION: cannot find parameter number: " << (argno+1) << endl;
+            kdDebug(7107) << "EXCEPTION: cannot find parameter $" << (argno+1) << endl;
 #endif
             return "";
         }
 
-        h = s_argumentList[argno];
-        if (!h)
-            h="";
+        return s_argumentList[argno];
     }
-    return h;
+    return "";
 }
 
 /// return the value of read-only number registers
@@ -1350,43 +1491,43 @@ static int scan_number_register( char*& c)
 // ### TODO known missing escapes from groff(7):
 // ### TODO \& \! \) \: \R
 
-static char *scan_escape(char *c)
+static char *scan_escape_direct( char *c, QCString& cstr )
 {
-    const char *h=NULL; // help pointer
-    char b[32]; // help array
     bool exoutputp;
     bool exskipescape;
     int i,j;
 
+    cstr = "";
     intresult=0;
     switch (*c) {
-    case 'e': h="\\"; curpos++;break;
+    case 'e': cstr = "\\"; curpos++;break;
     case '0': // ### TODO Where in Unicode? (space of digit width)
     case '~': // non-breakable-space (resizeable!)
     case ' ':
-	h="&nbsp;";curpos++; break;
     case '|': // half-non-breakable-space
-    	h = "&nbsp;"; curpos++; break;
     case '^': // quarter-non-breakable-space
-        h = "&nbsp;"; curpos++; break;
-    case '"': SKIPEOL; c--; h=""; break;
+        cstr = "&nbsp;"; curpos++; break;
+    case '"': SKIPEOL; c--; break;
     // ### TODO \# like \" but does not ignore the end of line (groff(7))
     case '$':
     {
         c++;
-        h = scan_dollar_parameter( c );
+        cstr = scan_dollar_parameter( c );
         break;
     }
     case 'z':
-	c++;
-	if (*c=='\\') { c=scan_escape(c+1); c--;h=""; }
-	else {
-	    b[0]=*c;
-	    b[1]='\0';
-	    h="";
-	}
-	break;
-    case 'k': c++; if (*c=='(') c+=2;
+    {
+        c++;
+        if (*c=='\\')
+        {
+            c=scan_escape_direct( c+1, cstr );
+            c--;
+        }
+        else
+            cstr = *c;
+        break;
+    }
+    case 'k': c++; if (*c=='(') c+=2; // ### FIXME \k[REG] exists too
     case '!':
     case '%':
     case 'a':
@@ -1395,25 +1536,26 @@ static char *scan_escape(char *c)
     case 'u':
     case '\n':
     case '&':
-        h=""; break;
+        cstr = ""; break;
     case '(':
-       c++;
-       i= c[0]*256+c[1];
-       c++;
-       h = expand_char(i);
-       break;
+    case '[':
+    case 'C':
+    {
+        // Do not go forward as scan_named_character needs the leading symbol
+        cstr = scan_named_character( c );
+        break;
+    }
     case '*':
     {
         c++;
-        c = scan_named_character( c );
-        h = "";
+        cstr = scan_named_string( c );
         break;
     }
     case 'f':
 	c++;
 	if (*c=='\\') {
 	    c++;
-	    c=scan_escape(c);
+	    c=scan_escape_direct( c, cstr );
 	    c--;
 	    i=intresult;
 	} else 	if (*c != '(')
@@ -1422,29 +1564,28 @@ static char *scan_escape(char *c)
 	else {
 	    c++;
 	    i=c[0]*256+c[1];
-	    c++;
+            c++;
 	}
-	if (!skip_escape) h=change_to_font(i); else h="";
+	if (!skip_escape) cstr=change_to_font(i);
 	break;
-    case 's':
+    case 's': // ### FIXME: many forms are missing
 	c++;
 	j=0;i=0;
 	if (*c=='-') {j= -1; c++;} else if (*c=='+') {j=1; c++;}
 	if (*c=='0') c++; else if (*c=='\\') {
 	    c++;
-	    c=scan_escape(c);
+	    c=scan_escape_direct( c, cstr );
 	    i=intresult; if (!j) j=1;
 	} else
 	    while (isdigit(*c) && (!i || (!j && i<4))) i=i*10+(*c++)-'0';
 	if (!j) { j=1; if (i) i=i-10; }
-	if (!skip_escape) h=change_to_size(i*j); else h="";
+	if (!skip_escape) cstr=change_to_size(i*j);
 	c--;
 	break;
     case 'n':
     {
         c++;
         intresult = scan_number_register( c );
-        h = "";
         break;
     }
     case 'w':
@@ -1456,15 +1597,19 @@ static char *scan_escape(char *c)
 	output_possible=false;
 	skip_escape=true;
 	j=0;
-	while (*c!=i) {
+	while (*c!=i)
+        {
 	    j++;
-	    if (*c==escapesym) c=scan_escape(c+1); else c++;
+            if ( *c == escapesym )
+                c = scan_escape_direct( c+1, cstr);
+            else
+                c++;
 	}
 	output_possible=exoutputp;
 	skip_escape=exskipescape;
 	intresult=j;
 	break;
-    case 'l': h="<HR>"; curpos=0;
+    case 'l': cstr = "<HR>"; curpos=0;
     case 'b':
     case 'v':
     case 'x':
@@ -1479,39 +1624,51 @@ static char *scan_escape(char *c)
 	output_possible=0;
 	skip_escape=true;
 	while (*c != i)
-	    if (*c==escapesym) c=scan_escape(c+1);
+	    if (*c==escapesym) c=scan_escape_direct( c+1, cstr );
 	    else c++;
 	output_possible=exoutputp;
 	skip_escape=exskipescape;
 	break;
     case 'c': no_newline_output=1; break;
-    case '{': newline_for_fun++; h="";break; // Start conditional block
-    case '}': if (newline_for_fun) newline_for_fun--; h="";break; // End conditional block
-    case 'p': h="<BR>\n";curpos=0; break;
-    case 't': h="\t";curpos=(curpos+8)&0xfff8; break;
-    case '<': h="&lt;";curpos++; break;
-    case '>': h="&gt;";curpos++; break;
+    case '{': newline_for_fun++; break; // Start conditional block
+    case '}': if (newline_for_fun) newline_for_fun--; break; // End conditional block
+    case 'p': cstr = "<BR>\n";curpos=0; break;
+    case 't': cstr = "\t";curpos=(curpos+8)&0xfff8; break;
+    case '<': cstr = "&lt;";curpos++; break;
+    case '>': cstr = "&gt;";curpos++; break;
     case '\\': if (single_escape) { c--; break;}
-    case 'N': // ### FIXME
+    case 'N': // ### FIXME should give an Unicode character &#9999;
+    {
 	if (*++c) c++; // c += 2
-        if (sscanf(c, "%d", &i) != 1)
+        if (sscanf(c, "%d", &i) != 1) // (### FIXME ugly!)
 		break;
-	c+=sprintf(b, "%d", i); // Skip over number
+        QCString temp;
+        temp.sprintf( "%d", i ); // Skip over number (### FIXME ugly!)
+        c += temp.length();
 	switch(i) {
-		case 8: h="\t";curpos=(curpos+8)&0xfff8; break;
-		case 34: h="&quot;"; curpos++; break;
-		default: b[0]=i; b[1]=0; h=b; curpos++; break;
+		case 8: cstr = "\t"; curpos=(curpos+8)&0xfff8; break;
+		case 34: cstr = "&quot;"; curpos++; break;
+		default: cstr = char( i ); curpos++; break;
 	}
 	break;
-     case '\'': h="&acute;";curpos++; break; // groff(7) ### TODO verify
-     case '`': h="&grave;";curpos++; break; // groff(7)
-     case '-': h="-";curpos++; break; // groff(7)
-     case '.': h=".";curpos++; break; // groff(7)
-     default: b[0]=*c; b[1]=0; h=b; curpos++; break;
+    }
+     case '\'': cstr = "&acute;";curpos++; break; // groff(7) ### TODO verify
+     case '`': cstr = "&grave;";curpos++; break; // groff(7)
+     case '-': cstr = "-";curpos++; break; // groff(7)
+     case '.': cstr = ".";curpos++; break; // groff(7)
+     default: cstr = *c; curpos++; break;
     }
     c++;
-    if (!skip_escape) out_html(h);
     return c;
+}
+
+static char *scan_escape(char *c)
+{
+    QCString cstr;
+    char* result = scan_escape_direct( c, cstr );
+    if ( !skip_escape )
+        out_html(cstr);
+    return result;
 }
 
 class TABLEROW;
@@ -2442,7 +2599,7 @@ static void request_while( char*& c, int j, bool mdoc )
     const char oldchar = *newline;
     *newline = 0;
     // We store the full .while stuff into a QCString as if it would be a macro
-    const QCString macro = c;
+    const QCString macro = c ;
 #ifndef SIMPLE_MAN2HTML
     kdDebug(7107) << "'Macro' of .while" << endl << macro << endl;
 #endif
@@ -2457,6 +2614,9 @@ static void request_while( char*& c, int j, bool mdoc )
     {
         // Unlike for a normal macro, we have the condition at start, so we do not need to prepend extra bytes
         char* liveloop = qstrdup( macro.data() );
+#ifndef SIMPLE_MAN2HTML
+            kdDebug(7107) << "Scanning .while condition" << endl;
+#endif
         char* end_expression = scan_expression( liveloop, &result );
         if ( result )
         {
@@ -5247,6 +5407,9 @@ void scan_man_page(const char *man_page)
     // properly cleanup all those static vars
     s_ifelseval.clear();
     
+    s_characterDefinitionMap.clear();
+    InitCharacterDefinitions();
+
     s_stringDefinitionMap.clear();
     InitStringDefinitions();
     
@@ -5316,6 +5479,7 @@ void scan_man_page(const char *man_page)
     delete [] buf;
 
     // Release memory
+    s_characterDefinitionMap.clear();
     s_stringDefinitionMap.clear();
     s_numberDefinitionMap.clear();
     s_argumentList.clear();
