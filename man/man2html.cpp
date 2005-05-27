@@ -6,7 +6,7 @@
     ### TODO: who else?
 */
 
-// Start of berbatim comment
+// Start of verbatim comment
 
 /*
 ** This program was written by Richard Verhoeven (NL:5482ZX35)
@@ -1366,9 +1366,9 @@ static char *scan_escape(char *c)
     case ' ':
 	h="&nbsp;";curpos++; break;
     case '|': // half-non-breakable-space
-    	h = "&#x2002;"; curpos++; break; // EN SPACE (### TODO: what is U+202F (NARROW NO-BREAK SPACE)
+    	h = "&nbsp;"; curpos++; break;
     case '^': // quarter-non-breakable-space
-    	h = "&#x2005;"; break; // FOUR-PER-EM SPACE
+        h = "&nbsp;"; curpos++; break;
     case '"': SKIPEOL; c--; h=""; break;
     // ### TODO \# like \" but does not ignore the end of line (groff(7))
     case '$':
@@ -5298,7 +5298,7 @@ void scan_man_page(const char *man_page)
       output_real("</div>\n");
       output_real("<div class=\"bannerBottom\" style=\"background-image: url(");
       output_real(cssPath);
-      output_real("/bottom-middle.png); background-repeat: x-repeat; width: 100%; height: 100pt; bottom:0pt;\">\n");
+      output_real("/bottom-middle.png); background-repeat: x-repeat; width: 100%; height: 100px; bottom:0pt;\">\n");
       output_real("<div class=\"bannerBottomLeft\">\n");
       output_real("<img src=\"");
       output_real(cssPath);
