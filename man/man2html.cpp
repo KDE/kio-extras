@@ -1,10 +1,22 @@
 /*
+    This file is part of the KDE libraries
+
+    Copyright (C) 2005 Nicolas GOUTTE <goutte@kde.org>
+
+    ### TODO: who else?
+*/
+
+// Start of berbatim comment
+
+/*
 ** This program was written by Richard Verhoeven (NL:5482ZX35)
 ** at the Eindhoven University of Technology. Email: rcb5@win.tue.nl
 **
 ** Permission is granted to distribute, modify and use this program as long
 ** as this comment is not removed or changed.
 */
+
+// End of verbatim comment
 
 // kate: space-indent on; indent-width 4; replace-tabs on;
 
@@ -191,20 +203,6 @@ static char *strmaxcpy(char *to, const char *from, int n)
   to[(len <= n) ? len : n] = '\0';
   return to;
 }
-
-#if 0 // unused
-static char *strmaxcat(char *to, char *from, int n)
-{				/* Assumes space for n plus a null */
-  int to_len = qstrlen(to);
-  if (to_len < n) {
-    int from_len = qstrlen(from);
-    int cp = (to_len + from_len <= n) ? from_len : n - to_len;
-    strncpy(to + to_len, from, cp);
-    to[to_len + cp] = '\0';
-  }
-  return to;
-}
-#endif
 
 static char *strlimitcpy(char *to, char *from, int n, int limit)
 {                               /* Assumes space for limit plus a null */
@@ -1232,7 +1230,12 @@ static int read_only_number_register( const QCString& name )
 {
     // Internal read-only variables
     if ( name == ".$" )
+    {
+#ifndef SIMPLE_MAN2HTML
+        kdDebug(7107) << "\n[.$] == " << s_argumentList.size() << endl;
+#endif
         return s_argumentList.size();
+    }
     else if ( name == ".g" )
         return 0; // We are not groff(1)
     else if ( name == ".s" )
@@ -1291,7 +1294,7 @@ static int scan_number_register( char*& c)
         }
         while ( *c && *c != ']' && *c != '\n' )
         {
-            // ### TODO: a \*[string could be inside and should be processed
+            // ### TODO: a \*[string] could be inside and should be processed
             name+=*c;
             c++;
         }
@@ -2425,6 +2428,66 @@ static char *skip_till_newline(char *c)
     return c;
 }
 
+static bool s_whileloop = false;
+
+/// Processing the .while request
+static void request_while( char*& c, int j, bool mdoc )
+{
+    // ### TODO: .break and .continue
+#ifndef SIMPLE_MAN2HTML
+    kdDebug(7107) << "Entering .while" << endl;
+#endif
+    c += j;
+    char* newline = skip_till_newline( c );
+    const char oldchar = *newline;
+    *newline = 0;
+    // We store the full .while stuff into a QCString as if it would be a macro
+    const QCString macro = c;
+#ifndef SIMPLE_MAN2HTML
+    kdDebug(7107) << "'Macro' of .while" << endl << macro << endl;
+#endif
+    // Prepare for continuing after .while loop end
+    *newline = oldchar;
+    c = newline;
+    // Process -while loop
+    const bool oldwhileloop = s_whileloop;
+    s_whileloop = true;
+    int result = true; // It must be an int due to the call to scan_expression
+    while ( result )
+    {
+        // Unlike for a normal macro, we have the condition at start, so we do not need to prepend extra bytes
+        char* liveloop = qstrdup( macro.data() );
+        char* end_expression = scan_expression( liveloop, &result );
+        if ( result )
+        {
+#ifndef SIMPLE_MAN2HTML
+            kdDebug(7107) << "New .while iteration" << endl;
+#endif
+            // The condition is true, so call the .while's content
+            char* help = end_expression + 1;
+            while ( *help && ( *help == ' '  || *help == '\t' ) )
+                ++help;
+            if ( ! *help )
+            {
+                // We have a problem, so stop .while
+                result = false;
+                break;
+            }
+            if ( mdoc )
+                scan_troff_mandoc( help, false, 0 );
+            else
+                scan_troff( help, false, 0 );
+        }
+        delete[] liveloop;
+    }
+
+    //
+    s_whileloop = oldwhileloop;
+#ifndef SIMPLE_MAN2HTML
+    kdDebug(7107) << "Ending .while" << endl;
+#endif
+}
+
 // Some known missing requests from man(7):
 // - see "safe subset"
 
@@ -2477,7 +2540,7 @@ static char *skip_till_newline(char *c)
 #define REQ_RB        38
 #define REQ_RI        39
 #define REQ_DT        40
-#define REQ_IP        41
+#define REQ_IP        41 // man(7) "Indent Paragraph"
 #define REQ_TP        42
 #define REQ_IX        43
 #define REQ_P         44
@@ -2583,6 +2646,7 @@ static char *skip_till_newline(char *c)
 #define REQ_rnn      144 // groff(7) "ReName Number register"
 #define REQ_aln      145 // groff(7) "ALias Number register"
 #define REQ_shift    146 // groff(7) "SHIFT parameter"
+#define REQ_while    147 // groff(7) "WHILE loop"
 
 static int get_request(char *req, int len)
 {
@@ -2599,7 +2663,7 @@ static int get_request(char *req, int len)
         "Cd", "Cm", "Ic", "Ms", "Or", "Sy", "Dv", "Ev", "Fr", "Li", "No", "Ns",
         "Tn", "nN", "%A", "%D", "%N", "%O", "%P", "%Q", "%V", "%B", "%J", "%R",
         "%T", "An", "Aq", "Bq", "Qq", "UR", "UE", "UN", "troff", "nroff", "als",
-        "rr", "rnn", "aln", "shift", 0 };
+        "rr", "rnn", "aln", "shift", "while", 0 };
     int r = 0;
     while (requests[r] && qstrncmp(req, requests[r], len)) r++;
     return requests[r] ? r : REQ_UNKNOWN;
@@ -2627,6 +2691,39 @@ static char* process_quote(char* c, int j, const char* open, const char* close)
     return c;
 }
 
+static bool is_identifier_char( char c )
+{
+    // For groff, an identifier can consist of nearly all ASCII printable non-white-space characters
+    // See info:/groff/Identifiers
+    if ( c >= '!' && c <= '[' ) // Include digits and upper case
+        return true;
+    else if ( c >= ']' && c <= '~' ) // Include lower case
+        return true;
+    else if ( c== '\\' )
+        return false; // ### TODO: it should be treated as escape instead!
+    return false;
+}
+
+static QCString scan_identifier( char*& c )
+{
+    char* h = c; // help pointer
+    // ### TODO Groff seems to eat nearly evrything as identifier name (info:/groff/Identifiers)
+    while ( *h && *h != '\a' && *h != '\n' && is_identifier_char( *h ) )
+        ++h;
+    const char tempchar = *h;
+    *h = 0;
+    const QCString name = c;
+    *h = tempchar;
+    if ( name.isEmpty() )
+    {
+#ifndef SIMPLE_MAN2HTML
+        kdDebug(7107) << "EXCEPTION: identifier empty!" << endl;
+#endif
+    }
+    c = h;
+    return name;
+}
+
 static char *scan_request(char *c)
 {
     // mdoc(7) stuff
@@ -2651,7 +2748,7 @@ static char *scan_request(char *c)
         /* some pages use .\" .\$1 .\} */
 	/* .\$1 is too difficult/stuppid */
         if (c[1]=='$')
-            c=skip_till_newline(c);
+            c=skip_till_newline(c); // ### TODO
 	else
 	    c = scan_escape(c+1);
     }
@@ -2691,13 +2788,7 @@ static char *scan_request(char *c)
                 delete [] h;
             }
             for ( i=words; i<max_wordlist; i++ ) wordlist[i]=NULL;
-            if ((*it).m_output.isEmpty())
-            {
-#ifndef SIMPLE_MAN2HTML
-                kdDebug(7107) << "Macro is empty: " << macroName << endl;
-#endif
-            }
-            else
+            if ( !(*it).m_output.isEmpty() )
             {
                 //kdDebug(7107) << "Macro content is: " << endl << (*it).m_output << endl;
                 const uint length = (*it).m_output.length();
@@ -2714,9 +2805,9 @@ static char *scan_request(char *c)
                 }
                 const int onff=newline_for_fun;
                 if (mandoc_command)
-                    scan_troff_mandoc(work, 0, NULL);
+                    scan_troff_mandoc( work + 1, 0, NULL );
                 else
-                    scan_troff(work, 0, NULL);
+                    scan_troff( work + 1, 0, NULL);
                 delete[] work;
                 newline_for_fun=onff;
                 s_argumentList = oldArgumentList;
@@ -2743,12 +2834,16 @@ static char *scan_request(char *c)
                     if (scaninbuff && buffpos)
                     {
                         buffer[buffpos]='\0';
-                        puts(buffer); // ### FIXME we should not write to stdout for a KIO
+#ifdef SIMPLE_MAN2HTML
+                        fprintf( stderr, "%s\n", buffer );
+#else
+                        kdDebug(7107) << "ABORT: " << buffer << endl;
+#endif
                     }
 #ifdef SIMPLE_MAN2HTML
                     fprintf(stderr, "%s\n", c+j);
 #else
-                    // ### TODO find a way to disply it to the user
+                    // ### TODO find a way to display it to the user
                     kdDebug(7107) << "Aborting: .ab " << (c+j) << endl;
 #endif
                     return 0;
@@ -2771,12 +2866,7 @@ static char *scan_request(char *c)
                         ++c;
                         break;
                     }
-                    h=c;
-                    while (*h && *h!='\n' && (isalnum(*h) || *h=='@')) ++h;
-                    if (*h)
-                        *h=0;
-                    const QCString name=c;
-                    c=h+1;
+                    const QCString name ( scan_identifier( c ) );
                     while (*c && *c!='\n') c++;
                     c++;
                     h=c;
@@ -2799,7 +2889,7 @@ static char *scan_request(char *c)
                     }
                     delete[] result;
                     if (*c) *c='.';
-                    while (*c && *c++!='\n');
+                    c=skip_till_newline(c);
 #ifndef SIMPLE_MAN2HTML
                     kdDebug(7107) << "end .di" << endl;
 #endif
@@ -2814,15 +2904,9 @@ static char *scan_request(char *c)
 #endif
                     int oldcurpos=curpos;
                     c+=j;
-                    h=c;
-                    while (*h && *h!='\n' && (isalnum(*h) || (*h=='@'))) ++h;
-                    if (*h)
-                        *h=0;
-                    const QCString name(c);
-                    c=h+1;
-#ifndef SIMPLE_MAN2HTML
-                    kdDebug(7107) << "Define/append string " << name << endl;
-#endif
+                    const QCString name( scan_identifier( c) );
+                    if ( name.isEmpty() )
+                        break;
                     while (*c && isspace(*c)) c++;
                     if (*c && *c=='"') c++;
                     single_escape=true;
@@ -3756,47 +3840,28 @@ static char *scan_request(char *c)
                     kdDebug(7107) << "start .rm/.rn" << endl;
 #endif
                     c+=j;
-                    h=c;
-                    while (*h && *h!='\n' && (isalnum(*h) || *h=='@')) ++h;
-                    if (*h)
-                        *h=0;
-                    const QCString name=c;
+                    const QCString name( scan_identifier( c ) );
                     if ( name.isEmpty() )
                     {
 #ifndef SIMPLE_MAN2HTML
                             kdDebug(7107) << "EXCEPTION: empty origin string to remove/rename: " << endl;
 #endif
-                            c=h;
                             break;
                     }
                     QCString name2;
-                    if (!mode)
+                    if ( !mode )
                     {
-                        c=h+1;
                         while (*c && isspace(*c) && *c!='\n') ++c;
-                        h=c;
-                        while (*h && *h!='\n' && (isalnum(*h) || *h=='@')) ++h;
-                        if (*h)
-                            *h=0;
-                        name2=c;
+                        name2 = scan_identifier( c );
                         if ( name2.isEmpty() )
                         {
 #ifndef SIMPLE_MAN2HTML
                             kdDebug(7107) << "EXCEPTION: empty destination string to rename: " << endl;
 #endif
-                            c=h;
                             break;
                         }
                     }
-                    c=h+1;
-#ifndef SIMPLE_MAN2HTML
-                    if (mode)
-                        kdDebug(7107) << "Remove " << name << endl;
-                    else
-                        kdDebug(7107) << "Rename " << name << " to " << name2 << endl;
-#endif
-                    while (*c && *c!='\n') c++;
-                    c++;
+                    c=skip_till_newline(c);
                     QMap<QCString,StringDefinition>::iterator it=s_stringDefinitionMap.find(name);
                     if (it==s_stringDefinitionMap.end())
                     {
@@ -3838,20 +3903,14 @@ static char *scan_request(char *c)
                     kdDebug(7107) << "start .nr" << endl;
 #endif
                     c += j;
-                    h = c;
-                    while ( *h && *h!='\n' && (isalnum(*h) || *h=='@')) ++h;
-                    if (*h)
-                        *h=0;
-                    const QCString name=c;
+                    const QCString name( scan_identifier( c ) );
                     if ( name.isEmpty() )
                     {
 #ifndef SIMPLE_MAN2HTML
                             kdDebug(7107) << "EXCEPTION: empty name for register variable" << endl;
 #endif
-                            c=h;
                             break;
                     }
-                    c = h + 1;
                     while ( *c && ( *c==' ' || *c=='\t' ) ) c++;
                     int sign = 0;
                     if ( *c && ( *c == '+' || *c == '-' ) )
@@ -4705,44 +4764,31 @@ static char *scan_request(char *c)
                     kdDebug(7107) << "start .als" << endl;
 #endif
                     c+=j;
-                    h=c;
-                    while (*h && *h!='\n' && (isalnum(*h) || *h=='@')) ++h;
-                    if (*h)
-                        *h=0;
-                    const QCString name=c;
+                    const QCString name ( scan_identifier( c ) );
                     if ( name.isEmpty() )
                     {
 #ifndef SIMPLE_MAN2HTML
                             kdDebug(7107) << "EXCEPTION: empty destination string to alias" << endl;
 #endif
-                            c=h;
                             break;
                     }
-                    c=h+1;
                     while (*c && isspace(*c) && *c!='\n') ++c;
-                    h=c;
-                    while (*h && *h!='\n' && (isalnum(*h) || *h=='@')) ++h;
-                    if (*h)
-                        *h=0;
-                    const QCString name2=c;
+                    const QCString name2 ( scan_identifier ( c ) );
                     if ( name2.isEmpty() )
                     {
 #ifndef SIMPLE_MAN2HTML
                             kdDebug(7107) << "EXCEPTION: empty origin string to alias" << endl;
 #endif
-                            c=h;
                             break;
                     }
-                    c=h+1;
 #ifndef SIMPLE_MAN2HTML
                     kdDebug(7107) << "Alias " << name2 << " to " << name << endl;
 #endif
-                    while (*c && *c!='\n') c++;
-                    c++;
+                    c=skip_till_newline(c);
                     if ( name == name2 )
                     {
 #ifndef SIMPLE_MAN2HTML
-                        kdDebug(7107) << "EXCEPTION: same origin and destination string to alias" << endl;
+                        kdDebug(7107) << "EXCEPTION: same origin and destination string to alias: " << name << endl;
 #endif
                         break;
                     }
@@ -4770,20 +4816,15 @@ static char *scan_request(char *c)
                     kdDebug(7107) << "start .rr" << endl;
 #endif
                     c += j;
-                    h = c;
-                    while ( *h && *h!='\n' && (isalnum(*h) || *h=='@')) ++h;
-                    if (*h)
-                        *h=0;
-                    const QCString name=c;
+                    const QCString name ( scan_identifier( c ) );
                     if ( name.isEmpty() )
                     {
 #ifndef SIMPLE_MAN2HTML
                             kdDebug(7107) << "EXCEPTION: empty origin string to remove/rename: " << endl;
 #endif
-                            c=h;
                             break;
                     }
-                    c = skip_till_newline( h + 1 );
+                    c = skip_till_newline( c );
                     QMap <QCString, NumberDefinition>::iterator it = s_numberDefinitionMap.find( name );
                     if ( it == s_numberDefinitionMap.end() )
                     {
@@ -4806,44 +4847,24 @@ static char *scan_request(char *c)
                     kdDebug(7107) << "start .rnn" << endl;
 #endif
                     c+=j;
-                    h=c;
-                    while (*h && *h!='\n' && (isalnum(*h) || *h=='@')) ++h;
-                    if (*h)
-                        *h=0;
-                    const QCString name=c;
+                    const QCString name ( scan_identifier ( c ) );
                     if ( name.isEmpty() )
                     {
 #ifndef SIMPLE_MAN2HTML
                             kdDebug(7107) << "EXCEPTION: empty origin to remove/rename number register" << endl;
 #endif
-                            c=h;
                             break;
                     }
-                    QCString name2;
-                    if (!mode)
+                    while (*c && isspace(*c) && *c!='\n') ++c;
+                    const QCString name2 ( scan_identifier ( c ) );
+                    if ( name2.isEmpty() )
                     {
-                        c=h+1;
-                        while (*c && isspace(*c) && *c!='\n') ++c;
-                        h=c;
-                        while (*h && *h!='\n' && (isalnum(*h) || *h=='@')) ++h;
-                        if (*h)
-                            *h=0;
-                        name2=c;
-                        if ( name2.isEmpty() )
-                        {
 #ifndef SIMPLE_MAN2HTML
-                            kdDebug(7107) << "EXCEPTION: empty destination to rename number register " << endl;
+                        kdDebug(7107) << "EXCEPTION: empty destination to rename number register " << endl;
 #endif
-                            c=h;
-                            break;
-                        }
+                        break;
                     }
-                    c=h+1;
-#ifndef SIMPLE_MAN2HTML
-                    kdDebug(7107) << "Rename number register " << name << " to " << name2 << endl;
-#endif
-                    while (*c && *c!='\n') c++;
-                    c++;
+                    c = skip_till_newline( c );
                     QMap<QCString,NumberDefinition>::iterator it=s_numberDefinitionMap.find(name);
                     if (it==s_numberDefinitionMap.end())
                     {
@@ -4873,44 +4894,31 @@ static char *scan_request(char *c)
                     kdDebug(7107) << "start .aln" << endl;
 #endif
                     c+=j;
-                    h=c;
-                    while (*h && *h!='\n' && (isalnum(*h) || *h=='@')) ++h;
-                    if (*h)
-                        *h=0;
-                    const QCString name=c;
+                    const QCString name ( scan_identifier( c ) );
                     if ( name.isEmpty() )
                     {
 #ifndef SIMPLE_MAN2HTML
                             kdDebug(7107) << "EXCEPTION: empty destination number register to alias" << endl;
 #endif
-                            c=h;
                             break;
                     }
-                    c=h+1;
                     while (*c && isspace(*c) && *c!='\n') ++c;
-                    h=c;
-                    while (*h && *h!='\n' && (isalnum(*h) || *h=='@')) ++h;
-                    if (*h)
-                        *h=0;
-                    const QCString name2=c;
+                    const QCString name2 ( scan_identifier( c ) );
                     if ( name2.isEmpty() )
                     {
 #ifndef SIMPLE_MAN2HTML
                             kdDebug(7107) << "EXCEPTION: empty origin number register to alias" << endl;
 #endif
-                            c=h;
                             break;
                     }
-                    c=h+1;
 #ifndef SIMPLE_MAN2HTML
                     kdDebug(7107) << "Alias " << name2 << " to " << name << endl;
 #endif
-                    while (*c && *c!='\n') c++;
-                    c++;
+                    c = skip_till_newline( c );
                     if ( name == name2 )
                     {
 #ifndef SIMPLE_MAN2HTML
-                        kdDebug(7107) << "EXCEPTION: same origin and destination number register to alias" << endl;
+                        kdDebug(7107) << "EXCEPTION: same origin and destination number register to alias: " << name << endl;
 #endif
                         break;
                     }
@@ -4937,22 +4945,29 @@ static char *scan_request(char *c)
                     c+=j;
                     h=c;
                     while (*h && *h!='\n' && isdigit(*h) ) ++h;
-                    if (*h)
-                        *h=0;
-                    const QCString name=c;
+                    const char tempchar = *h;
+                    *h = 0;
+                    const QCString number = c;
+                    *h = tempchar;
+                    c = skip_till_newline( h );
                     uint result = 1; // Numbers of shifts to do
-                    if ( !name.isEmpty() )
+                    if ( !number.isEmpty() )
                     {
                         bool ok = false;
-                        result = name.toUInt(&ok);
+                        result = number.toUInt(&ok);
                         if ( !ok || result < 1 )
                             result = 1;
                     }
                     for ( uint num = 0; num < result; ++num )
                     {
-                        s_argumentList.pop_front();
+                        if ( !s_argumentList.isEmpty() )
+                            s_argumentList.pop_front();
                     }
-                    c = skip_till_newline( h + 1 );
+                    break;
+                }
+                case REQ_while: // groff(7) "WHILE loop"
+                {
+                    request_while( c, j, mandoc_command );
                     break;
                 }
                 default:
