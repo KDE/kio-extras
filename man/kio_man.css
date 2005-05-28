@@ -1,0 +1,21 @@
+body {background-color:#fffff}
+
+/*for the list of one manpage section*/
+.secidxshort {
+  display:block;
+  position:absolute;overflow:auto;
+  top:0px;bottom:95%;left:0;right:0;
+}
+.secidxmain {
+/*misfortunately accessing anchors in a scrollview
+  doesn't seem to work yet with konqi, so:*/
+/*
+  position:absolute;overflow:auto;
+  top:5%;bottom:0;left:0;right:0;
+*/
+}
+.secidxnextletter {
+  font-size:larger;
+	border-bottom:1px solid black;
+	text-align:center
+}

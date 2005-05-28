@@ -28,6 +28,10 @@ libkmanpart_la_LDFLAGS = $(all_libraries) $(KDE_PLUGIN)
 kdelnk_DATA = man.protocol kmanpart.desktop
 kdelnkdir = $(kde_servicesdir)
 
+kio_man_data_DATA = kio_man.css
+kio_man_datadir = $(kde_datadir)/kio_man
+EXTRA_DIST=$(kio_man_data_DATA)
+
 METASOURCES = AUTO
 
 messages:
