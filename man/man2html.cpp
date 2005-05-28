@@ -452,8 +452,8 @@ static CSTRDEF standardchar[] = {
     { V('r','u'), 1, "_" },
     { V('s','c'), 1, "&sect;" },
     { V('s','l'), 1, "/" },
-    { V('s','q'), 2, "[]" }, // ### TODO verify
-    { V('t','s'), 1, "&#x03C2;" }, // terminal sigma
+    { V('s','q'), 2, "&#x25A1" }, // WHITE SQUARE
+    { V('t','s'), 1, "&#x03C2;" }, // FINAL SIGMA
     { V('u','l'), 1, "_" },
     { V('-','D'), 1, "&ETH;" },
     { V('S','d'), 1, "&eth;" },
@@ -515,8 +515,8 @@ static CSTRDEF standardchar[] = {
     { V('~','o'), 1, "&otidle;" },
     { V(',','C'), 1, "&Ccedil;" },
     { V(',','c'), 1, "&ccedil;" },
-    { V('/','L'), 1, "&#x0141;" }, // ### TODO: verify: U+0141 is with stroke, not with slash
-    { V('/','l'), 1, "&#x0142;" }, // ### TODO: verify: U+0142 is with stroke, not with slash
+    { V('/','L'), 1, "&#x0141;" },
+    { V('/','l'), 1, "&#x0142;" },
     { V('/','O'), 1, "&Oslash;" },
     { V('/','o'), 1, "&oslash;" },
     { V('o','A'), 1, "&Aring;" },
@@ -940,7 +940,7 @@ static void add_links(char *c)
     output_real(c);
 }
 
-static int current_font=0;
+static QCString current_font;
 static int current_size=0;
 static int fillout=1;
 
@@ -1000,37 +1000,71 @@ static void out_html(const char *c)
   delete [] c3;
 }
 
-#define FO0 ""
-#define FC0 ""
-#define FO1 "<span class=\"parameter\">"
-#define FC1 "</span>"
-#define FO2 "<span class=\"option\">"
-#define FC2 "</span>"
-#define FO3 "<TT>"
-#define FC3 "</TT>"
-
-static const char *switchfont[16] = { ""     , FC0 FO1, FC0 FO2, FC0 FO3,
-			 FC1 FO0, ""     , FC1 FO2, FC1 FO3,
-			 FC2 FO0, FC2 FO1, ""     , FC2 FO3,
-			 FC3 FO0, FC3 FO1, FC3 FO2, ""      };
-
-static QCString change_to_font(int nr)
+static QCString set_font( const QCString& name )
 {
-    switch (nr)
+    // Every font but R (Regular) creates <span> elements
+    QCString markup;
+    if ( current_font != "R" && !current_font.isEmpty() )
+        markup += "</span>";
+    const uint len = name.length();
+    bool fontok = true;
+    if ( len == 1 )
     {
-        case '0': nr = 0; break;
-        case '1': case '2': case '3': case '4': nr=nr-'1'; break;
-        case V('C','W'): nr=3; break;
-        case 'L': nr=3; break;
-        case 'B': nr=2; break;
-        case 'I': nr=1; break;
-        case 'P': case 'R': nr=0; break;
-        case 0: case 1: case 2: case 3: break;
-        default: nr=0; break;
+        const char lead = name[0];
+        switch (lead)
+        {
+            case 'P': // Palatino?
+            case 'R': break; // regular, do nothing
+            case 'I': markup += "<span style=\"font-style:italic\">"; break;
+            case 'B': markup += "<span style=\"font-weight:bold\">"; break;
+            case 'L': markup += "<span style=\"font-family:monospace\">"; break; // ### What's L?
+            default: fontok = false;
+        }
     }
-    const int i= current_font*4+nr%4;
-    current_font=nr%4;
-    return switchfont[i];
+    else if ( len == 2 )
+    {
+        if ( name == "BI" )
+            markup += "<span style=\"font-style:italic;font-weight:bold\">";
+        // Courier
+        else if ( name == "CR" )
+            markup += "<span style=\"font-family:monospace\">";
+        else if ( name == "CW" )
+            markup += "<span style=\"font-family:monospace\">";
+        else if ( name == "CI" )
+            markup += "<span style=\"font-family:monospace;font-style:italic\">";
+        else if ( name == "CB" )
+            markup += "<span style=\"font-family:monospace;font-weight:bold\">";
+        // Times
+        else if ( name == "TR" )
+            markup += "<span style=\"font-family:serif\">";
+        else if ( name == "TI" )
+            markup += "<span style=\"font-family:serif;font-style:italic\">";
+        else if ( name == "TB" )
+            markup += "<span style=\"font-family:serif;font-weight:bold\">";
+        // Helvetica
+        else if ( name == "HR" )
+            markup += "<span style=\"font-family:sans-serif\">";
+        else if ( name == "HI" )
+            markup += "<span style=\"font-family:sans-serif;font-style:italic\">";
+        else if ( name == "HB" )
+            markup += "<span style=\"font-family:sans-serif;font-weight:bold\">";
+        else
+            fontok = false;
+    }
+    else if ( len == 3 )
+    {
+        if ( name == "CBI" )
+            markup += "<span style=\"font-family:monospace;font-style:italic;font-weight:bold\">";
+        else if ( name == "TBI" )
+            markup += "<span style=\"font-family:serif;font-style:italic;font-weight:bold\">";
+        else if ( name == "HBI" )
+            markup += "<span style=\"font-family:sans-serif;font-style:italic;font-weight:bold\">";
+    }
+    if (fontok)
+        current_font = name;
+    else
+        current_font = "R"; // Still nothing, then it is 'R' (Regular)
+    return markup;
 }
 
 static QCString change_to_size(int nr)
@@ -1044,9 +1078,9 @@ static QCString change_to_size(int nr)
     }
     if ( nr == current_size )
         return "";
-    const int i = current_font;
+    const QCString font ( current_font );
     QCString markup;
-    markup = change_to_font(0);
+    markup = set_font("R");
     if (current_size)
         markup += "</FONT>";
     current_size=nr;
@@ -1063,7 +1097,7 @@ static QCString change_to_size(int nr)
         markup += char( nr + '0' );
         markup += "\">";
     }
-    markup += change_to_font( i );
+    markup += set_font( font );
     return markup;
 }
 
@@ -1098,7 +1132,7 @@ static QCString scan_named_character( char*& c )
         {
             name=c[1];
             name+=c[2];
-            c+=2;
+            c+=3;
         }
     }
     else if ( *c == '[' )
@@ -1133,9 +1167,9 @@ static QCString scan_named_character( char*& c )
 #ifndef SIMPLE_MAN2HTML
             kdDebug(7107) << "Found linefeed! Could not parse character name: " << name << endl;
 #endif
-            c--;
             return "";
         }
+        c++;
     }
     else if ( *c =='C' || c[1]== '\'' )
     {
@@ -1167,16 +1201,12 @@ static QCString scan_named_character( char*& c )
 #ifndef SIMPLE_MAN2HTML
             kdDebug(7107) << "Found linefeed! Could not parse (\\C mode) character name: " << name << endl;
 #endif
-            c--;
             return "";
         }
+        c++;
     }
-    else
-    {
-        // \*a Name of one character
-        name=c[1];
-        ++c;
-    }
+    // Note: characters with a one character length name doe not exist, as they would collide with other escapes
+    
     // Now we have the name, let us find it between the string names
     QMap<QCString,StringDefinition>::iterator it=s_characterDefinitionMap.find(name);
     if (it==s_characterDefinitionMap.end())
@@ -1206,7 +1236,9 @@ static QCString scan_named_string(char*& c)
         {
             QCString cstr;
             c = scan_escape_direct( c+2, cstr );
+#ifndef SIMPLE_MAN2HTML
             kdDebug(7107) << "\(" << cstr << endl;
+#endif
             // ### FIXME: check if we have really 2 characters (and only 2, not more either)
             name = cstr.left(2);
         }
@@ -1214,7 +1246,7 @@ static QCString scan_named_string(char*& c)
         {
             name=c[1];
             name+=c[2];
-            c+=2;
+            c+=3;
         }
     }
     else if ( *c == '[' )
@@ -1249,15 +1281,15 @@ static QCString scan_named_string(char*& c)
 #ifndef SIMPLE_MAN2HTML
             kdDebug(7107) << "Found linefeed! Could not parse string name: " << name << endl;
 #endif
-            c--;
             return "";
         }
+        c++;
     }
     else
     {
         // \*a Name of one character
-        name=c[1];
-        ++c;
+        name=c[0];
+        c++;
     }
     // Now we have the name, let us find it between the string names
     QMap<QCString,StringDefinition>::iterator it=s_stringDefinitionMap.find(name);
@@ -1277,18 +1309,21 @@ static QCString scan_named_string(char*& c)
         return (*it).m_output;
     }
 }
+
 static QCString scan_dollar_parameter(char*& c)
 {
-    uint argno = 0; // No dollar argument number yet!
+    unsigned int argno = 0; // No dollar argument number yet!
     if ( *c == '0' )
     {
         //kdDebug(7107) << "$0" << endl;
+        c++;
         return s_dollarZero;
     }
     else if ( *c >= '1' && *c <= '9' )
     {
         //kdDebug(7107) << "$ direct" << endl;
         argno = ( *c - '0' );
+        c++;
     }
     else if ( *c == '(' )
     {
@@ -1301,11 +1336,11 @@ static QCString scan_dollar_parameter(char*& c)
         else
         {
             if ( !c[1] )
-                ;
+                c++;
             else if ( !c[2] )
-                c ++;
+                c+=2;
             else
-                c += 2;
+                c += 3;
             return "";
         }
     }
@@ -1324,6 +1359,7 @@ static QCString scan_dollar_parameter(char*& c)
         {
             return "";
         }
+        c++;
     }
     else if ( ( *c == '*' ) || ( *c == '@' ) )
     {
@@ -1342,11 +1378,15 @@ static QCString scan_dollar_parameter(char*& c)
                 param += '\"'; // Not as HTML, as it could be used by macros!
             space = true;
         }
+        c++;
         return param;
     }
     else
     {
-        //kdDebug(7107) << "$ char: " << *c << endl;
+#ifndef SIMPLE_MAN2HTML
+            kdDebug(7107) << "EXCEPTION: unknown parameter $" << *c << endl;
+#endif
+        return "";
     }
     //kdDebug(7107) << "ARG $" << argno << endl;
     if ( !s_argumentList.isEmpty() && argno > 0 )
@@ -1381,8 +1421,11 @@ static int read_only_number_register( const QCString& name )
         return 0; // We are not groff(1)
     else if ( name == ".s" )
         return current_size;
+#if 0
+    // ### TODO: map the fonts to a number
     else if ( name == ".f" )
         return current_font;
+#endif
     else if ( name == ".P" )
         return 0; // We are not printing
     else if ( name == ".A" )
@@ -1446,7 +1489,7 @@ static int scan_number_register( char*& c)
 #endif
             return 0;
         }
-        
+        c++;
     }
     else if ( *c == '(' )
     {
@@ -1463,11 +1506,12 @@ static int scan_number_register( char*& c)
         }
         name=c[0];
         name+=c[1];
-        c++;
+        c+=2;
     }
     else
     {
         name=c[0];
+        c++;
     }
     if ( name[0] == '.' )
     {
@@ -1488,6 +1532,92 @@ static int scan_number_register( char*& c)
     }
 }
 
+/// get and set font
+static QCString scan_named_font( char*& c )
+{
+    QCString name;
+    if ( *c == '(' )
+    {
+        // \f(ab  Name of two characters
+        if ( c[1] == escapesym )
+        {
+            QCString cstr;
+            c = scan_escape_direct( c+2, cstr );
+#ifndef SIMPLE_MAN2HTML
+            kdDebug(7107) << "\(" << cstr << endl;
+#endif
+            // ### FIXME: check if we have really 2 characters (and only 2, not more either)
+            name = cstr.left(2);
+        }
+        else
+        {
+            name=c[1];
+            name+=c[2];
+            c+=3;
+        }
+    }
+    else if ( *c == '[' )
+    {
+        // \f[long_name]  Long name
+        // We must find the ] to get a name
+        c++;
+        while ( *c && *c != ']' && *c != '\n' )
+        {
+            if ( *c == escapesym )
+            {
+                QCString cstr;
+                c = scan_escape_direct( c+1, cstr );
+                const int result = cstr.find(']');
+                if ( result == -1 )
+                    name += cstr;
+                else
+                {
+                    // Note: we drop the characters after the ]
+                    name += cstr.left( result );
+                }
+            }
+            else
+            {
+                name+=*c;
+                c++;
+            }
+        }
+        if ( !*c || *c == '\n' )
+        {
+#ifndef SIMPLE_MAN2HTML
+            kdDebug(7107) << "Found linefeed! Could not parse font name: " << name << endl;
+#endif
+            return "";
+        }
+        c++;
+    }
+    else
+    {
+        // \fa Font name with one character or one digit
+        name=c[0];
+        c++;
+    }
+    // Now we have the name, let us find the font
+    bool ok = false;
+    const unsigned int number = name.toUInt( &ok );
+    if ( ok & number < 5 )
+    {
+        const char* fonts[] = { "R", "I", "B", "BI", "CR" }; // Regular, Italic, Bold, Bold Italic, Courier regular
+        name = fonts[ number ];
+    }
+    if ( name.isEmpty() || number > 4 )
+    {
+#ifndef SIMPLE_MAN2HTML
+        kdDebug(7107) << "EXCEPTION: font has no name: " << name << endl;
+#endif
+        name = "R"; // Let assume Regular
+    }
+    if ( !skip_escape )
+        return set_font( name );
+    else
+        return "";
+}
+
 // ### TODO known missing escapes from groff(7):
 // ### TODO \& \! \) \: \R
 
@@ -1496,11 +1626,12 @@ static char *scan_escape_direct( char *c, QCString& cstr )
     bool exoutputp;
     bool exskipescape;
     int i,j;
+    bool cplusplus = true; // Should the c++ be done at the end of the function
 
     cstr = "";
     intresult=0;
     switch (*c) {
-    case 'e': cstr = "\\"; curpos++;break;
+    case 'e': cstr = "\\"; curpos++;break; // ### FIXME: it should be the current escape symbol
     case '0': // ### TODO Where in Unicode? (space of digit width)
     case '~': // non-breakable-space (resizeable!)
     case ' ':
@@ -1513,6 +1644,7 @@ static char *scan_escape_direct( char *c, QCString& cstr )
     {
         c++;
         cstr = scan_dollar_parameter( c );
+        cplusplus = false;
         break;
     }
     case 'z':
@@ -1543,31 +1675,23 @@ static char *scan_escape_direct( char *c, QCString& cstr )
     {
         // Do not go forward as scan_named_character needs the leading symbol
         cstr = scan_named_character( c );
+        cplusplus = false;
         break;
     }
     case '*':
     {
         c++;
         cstr = scan_named_string( c );
+        cplusplus = false;
         break;
     }
     case 'f':
-	c++;
-	if (*c=='\\') {
-	    c++;
-	    c=scan_escape_direct( c, cstr );
-	    c--;
-	    i=intresult;
-	} else 	if (*c != '(')
-	    i=*c;
-     // ### TODO f[]
-	else {
-	    c++;
-	    i=c[0]*256+c[1];
-            c++;
-	}
-	if (!skip_escape) cstr=change_to_font(i);
-	break;
+    {
+        c++;
+        cstr = scan_named_font( c );
+        cplusplus = false;
+        break;
+    }
     case 's': // ### FIXME: many forms are missing
 	c++;
 	j=0;i=0;
@@ -1586,6 +1710,7 @@ static char *scan_escape_direct( char *c, QCString& cstr )
     {
         c++;
         intresult = scan_number_register( c );
+        cplusplus = false;
         break;
     }
     case 'w':
@@ -1636,7 +1761,14 @@ static char *scan_escape_direct( char *c, QCString& cstr )
     case 't': cstr = "\t";curpos=(curpos+8)&0xfff8; break;
     case '<': cstr = "&lt;";curpos++; break;
     case '>': cstr = "&gt;";curpos++; break;
-    case '\\': if (single_escape) { c--; break;}
+    case '\\':
+    {
+        if (single_escape)
+            c--;
+        else
+            cstr="\\";
+        break;
+    }
     case 'N': // ### FIXME should give an Unicode character &#9999;
     {
 	if (*++c) c++; // c += 2
@@ -1658,7 +1790,8 @@ static char *scan_escape_direct( char *c, QCString& cstr )
      case '.': cstr = ".";curpos++; break; // groff(7)
      default: cstr = *c; curpos++; break;
     }
-    c++;
+    if (cplusplus)
+        c++;
     return c;
 }
 
@@ -1896,7 +2029,8 @@ static char *scan_table(char *c)
     char *g;
     int center=0, expand=0, box=0, border=0, linesize=1;
     int i,j,maxcol=0, finished=0;
-    int oldfont, oldsize,oldfillout;
+    QCString oldfont;
+    int oldsize,oldfillout;
     char itemsep='\t';
     TABLEROW *layout=NULL, *currow;
     int curfield = -1;
@@ -1906,7 +2040,7 @@ static char *scan_table(char *c)
     oldfont=current_font;
     oldsize=current_size;
     oldfillout=fillout;
-    out_html(change_to_font(0));
+    out_html(set_font("R"));
     out_html(change_to_size(0));
     if (!fillout) {
 	fillout=1;
@@ -2128,7 +2262,7 @@ static char *scan_table(char *c)
 		j=j+currow->at(curfield).colspan;
 		out_html(">");
 		if (currow->at(curfield).size) out_html(change_to_size(currow->at(curfield).size));
-		if (currow->at(curfield).font) out_html(change_to_font(currow->at(curfield).font));
+		if (currow->at(curfield).font) out_html(set_font(currow->at(curfield).font));
 		switch (currow->at(curfield).align) {
 		case '=': out_html("<HR><HR>"); break;
 		case '_': out_html("<HR>"); break;
@@ -2138,7 +2272,7 @@ static char *scan_table(char *c)
 		}
 		if (currow->at(curfield).space)
 		    for (i=0; i<currow->at(curfield).space;i++) out_html("&nbsp;");
-		if (currow->at(curfield).font) out_html(change_to_font(0));
+		if (currow->at(curfield).font) out_html(set_font("R"));
 		if (currow->at(curfield).size) out_html(change_to_size(0));
 		if (j>=maxcol && currow->at(curfield).align>'@' && currow->at(curfield).align!='_')
 		    out_html("<BR>");
@@ -2160,7 +2294,7 @@ static char *scan_table(char *c)
     if (!oldfillout) out_html("<PRE>");
     fillout=oldfillout;
     out_html(change_to_size(oldsize));
-    out_html(change_to_font(oldfont));
+    out_html(set_font(oldfont));
     return c;
 }
 
@@ -2908,8 +3042,14 @@ static char *scan_request(char *c)
         /* some pages use .\" .\$1 .\} */
 	/* .\$1 is too difficult/stuppid */
         if (c[1]=='$')
+        {
+#ifndef SIMPLE_MAN2HTML
+            kdDebug(7107) << "Found .\\$" << endl;
+#endif
             c=skip_till_newline(c); // ### TODO
+        }
 	else
+
 	    c = scan_escape(c+1);
     }
     else
@@ -2951,7 +3091,7 @@ static char *scan_request(char *c)
             if ( !(*it).m_output.isEmpty() )
             {
                 //kdDebug(7107) << "Macro content is: " << endl << (*it).m_output << endl;
-                const uint length = (*it).m_output.length();
+                const unsigned int length = (*it).m_output.length();
                 char* work = new char [length+2];
                 work[0] = '\n'; // The macro must start after an end of line to allow a request on first line
                 qstrncpy(work+1,(*it).m_output.data(),length+1);
@@ -3208,7 +3348,7 @@ static char *scan_request(char *c)
                 {
                     if (!fillout)
                     {
-                        out_html(change_to_font(0));
+                        out_html(set_font("R"));
                         out_html(change_to_size('0'));
                         out_html("</PRE>\n");
                     }
@@ -3221,22 +3361,25 @@ static char *scan_request(char *c)
                 {
                     c=c+j;
                     if (*c=='\n')
-                        out_html(change_to_font(0));
+                        out_html(set_font("R"));
+#if 0
                     else
                     {
+                        // ### FIXME
                         if (*c==escapesym)
                         {
                             int fn;
                             c=scan_expression(c, &fn);
                             c--;
-                            out_html(change_to_font(fn));
+                            out_html(set_font(fn));
                         }
                         else
                         {
-                            out_html(change_to_font(*c));
+                            out_html(set_font(*c));
                             c++;
                         }
                     }
+#endif
                     c=skip_till_newline(c);
                     break;
                 }
@@ -3303,7 +3446,7 @@ static char *scan_request(char *c)
                 {
                     if (fillout)
                     {
-                        out_html(change_to_font(0));
+                        out_html(set_font("R"));
                         out_html(change_to_size('0'));
                         out_html("<PRE>\n");
                     }
@@ -3441,15 +3584,16 @@ static char *scan_request(char *c)
                     break;
                 }
                 case REQ_B: // man(7) "Bold"
+                    mode=1;
                 case REQ_I: // man(7) "Italic"
                 {
                     /* parse one line in a certain font */
-                    out_html(change_to_font(*c));
+                    out_html( set_font( mode?"B":"I" ) );
                     fill_words(c, wordlist, &words, false, 0);
                     c=c+j;
                     if (*c=='\n') c++;
                     c=scan_troff(c, 1, NULL);
-                    out_html(change_to_font('R'));
+                    out_html(set_font("R"));
                     out_html(NEWLINE);
                     if (fillout)
                         curpos++;
@@ -3462,7 +3606,7 @@ static char *scan_request(char *c)
                     // brackets and commas have to be inserted automatically
                     char font[2];
                     font[0] = 'B';
-                    font[1] = 'B';
+                    font[1] = 'R'; // ### FIXME
                     c+=j;
                     if (*c=='\n') c++;
                     char *eol=strchr(c,'\n');
@@ -3473,7 +3617,7 @@ static char *scan_request(char *c)
                     for (i=0; i<words; i++)
                     {
                         wordlist[i][-1]=' ';
-                        out_html(change_to_font(font[i&1]));
+                        out_html(set_font(font[i&1]));
                         scan_troff(wordlist[i],1,NULL);
                     }
                     if (mandoc_synopsis)
@@ -3481,7 +3625,7 @@ static char *scan_request(char *c)
                         out_html(");");
                         out_html("<br>");
                     };
-                    out_html(change_to_font('R'));
+                    out_html(set_font('R'));
                     out_html(NEWLINE);
                     if (!fillout)
                         curpos=0;
@@ -3494,7 +3638,7 @@ static char *scan_request(char *c)
                     // brackets and commas have to be inserted automatically
                     char font[2];
                     font[0] = 'B';
-                    font[1] = 'B';
+                    font[1] = 'R'; // ### FIXME
                     c+=j;
                     if (*c=='\n') c++;
                     char *eol=strchr(c,'\n');
@@ -3511,7 +3655,7 @@ static char *scan_request(char *c)
                         for (i=0; i<words; i++)
                         {
                             wordlist[i][-1]=' ';
-                            out_html(change_to_font(font[i&1]));
+                            out_html(set_font(font[i&1]));
                             scan_troff(wordlist[i],1,NULL);
                             if (i==0)
                             {
@@ -3522,7 +3666,7 @@ static char *scan_request(char *c)
                         }
                         out_html(")");
                     }
-                    out_html(change_to_font('R'));
+                    out_html(set_font("R"));
                     if (mandoc_synopsis)
                         out_html("<br>");
                     out_html(NEWLINE);
@@ -3536,7 +3680,7 @@ static char *scan_request(char *c)
                 {
                     char font[2];
                     font[0] = 'B';
-                    font[1] = 'B';
+                    font[1] = 'R'; // ### FIXME
                     c+=j;
                     if (*c=='\n') c++;
                     char *eol=strchr(c,'\n');
@@ -3548,7 +3692,7 @@ static char *scan_request(char *c)
                     for (i=0; i<words; i++)
                     {
                         wordlist[i][-1]=' ';
-                        out_html(change_to_font(font[i&1]));
+                        out_html(set_font(font[i&1]));
                         scan_troff(wordlist[i],1,NULL);
                         if (i==0)
                         {
@@ -3558,7 +3702,7 @@ static char *scan_request(char *c)
                         // else if (i<words-1) out_html(", ");
                     }
                     function_argument=1; // Must be > 0
-                    out_html(change_to_font('R'));
+                    out_html(set_font('R'));
                     out_html(NEWLINE);
                     if (!fillout)
                         curpos=0;
@@ -3573,10 +3717,10 @@ static char *scan_request(char *c)
                     c=skip_till_newline(c);
                     char font[2];
                     font[0] = 'B';
-                    font[1] = 'B';
-                    out_html(change_to_font(font[i&1]));
+                    font[1] = 'R'; // ### FIXME
+                    out_html(set_font(font[i&1]));
                     out_html(")");
-                    out_html(change_to_font('R'));
+                    out_html(set_font('R'));
                     if (mandoc_synopsis)
                         out_html("<br>");
                     out_html(NEWLINE);
@@ -3591,11 +3735,11 @@ static char *scan_request(char *c)
                 {
                     char font[2] ;
                     font[0] = 'B';
-                    font[1] = 'B';
+                    font[1] = 'R'; // ### FIXME
                     c+=j;
                     if (*c=='\n') c++;
                     sl=fill_words(c, wordlist, &words, true, &c);
-                    out_html(change_to_font(font[i&1]));
+                    out_html(set_font(font[i&1]));
                     // function_argument==0 means that we had no .Fo  before, e.g. in mdoc.samples(7)
                     if (function_argument > 1)
                     {
@@ -3613,7 +3757,7 @@ static char *scan_request(char *c)
                         wordlist[i][-1]=' ';
                         scan_troff(wordlist[i],1,NULL);
                     }
-                    out_html(change_to_font('R'));
+                    out_html(set_font('R'));
                     if (!fillout)
                         curpos=0;
                     else
@@ -3625,7 +3769,7 @@ static char *scan_request(char *c)
                     /* .OP a b : [ <B>a</B> <I>b</I> ] */
                     mode=true;
                     c[0]='B'; c[1]='I';
-                    out_html(change_to_font('R'));
+                    out_html(set_font("R"));
                     out_html("[");
                     curpos++;
                     // Do not break!
@@ -3661,10 +3805,10 @@ static char *scan_request(char *c)
                             curpos++;
                         }
                         wordlist[i][-1]=' ';
-                        out_html(change_to_font(font[i&1]));
+                        out_html(set_font(font[i&1]));
                         scan_troff(wordlist[i],1,NULL);
                     }
-                    out_html(change_to_font('R'));
+                    out_html(set_font("R"));
                     if (mode)
                     {
                         out_html(" ]");
@@ -3793,21 +3937,22 @@ static char *scan_request(char *c)
                 }
                 case REQ_SB: // man(7) "Small; Bold"
                 {
-                    out_html(change_to_size(-1));
-                    out_html(change_to_font('B'));
+                    out_html(set_font('B'));
+                    out_html("<small>");
+                    trans_char(c,'"','\a'); // ### VERIFY
                     c=scan_troff(c+j, 1, NULL);
-                    out_html(change_to_font('R'));
-                    out_html(change_to_size('0'));
+                    out_html("</small>");
+                    out_html(set_font('R'));
                     break;
                 }
                 case REQ_SM: // man(7) "SMall"
                 {
                     c=c+j;
                     if (*c=='\n') c++;
-                    out_html(change_to_size(-1));
-                    trans_char(c,'"','\a');
+                    out_html("<small>");
+                    trans_char(c,'"','\a'); // ### VERIFY
                     c=scan_troff(c,1,NULL);
-                    out_html(change_to_size('0'));
+                    out_html("</small>");
                     break;
                 }
                 case REQ_Ss: // mdoc(7) "Sub Section"
@@ -3829,7 +3974,7 @@ static char *scan_request(char *c)
                         else if (itemdepth > 0)
                             itemdepth--;
                     }
-                    out_html(change_to_font(0));
+                    out_html(set_font("R"));
                     out_html(change_to_size(0));
                     if (!fillout)
                     {
@@ -3861,12 +4006,12 @@ static char *scan_request(char *c)
                 case REQ_Sx: // mdoc(7)
                 {
                     // reference to a section header
-                    out_html(change_to_font('B'));
+                    out_html(set_font('B'));
                     trans_char(c,'"','\a');
                     c=c+j;
                     if (*c=='\n') c++;
                     c=scan_troff(c, 1, NULL);
-                    out_html(change_to_font('R'));
+                    out_html(set_font('R'));
                     out_html(NEWLINE);
                     if (fillout)
                         curpos++;
@@ -3979,12 +4124,12 @@ static char *scan_request(char *c)
                 {
                     sl=fill_words(c+j, wordlist, &words, true, &c);
                     *sl='\0';
-                    out_html(change_to_font('I'));
+                    out_html(set_font('I'));
                     if (words>1) wordlist[1][-1]='\0';
                     const char *c2=lookup_abbrev(wordlist[0]);
                     curpos+=qstrlen(c2);
                     out_html(c2);
-                    out_html(change_to_font('R'));
+                    out_html(set_font('R'));
                     if (words>1)
                         out_html(wordlist[1]);
                     *sl='\n';
@@ -4261,7 +4406,7 @@ static char *scan_request(char *c)
                     if (dl_set[itemdepth] & BL_DESC_LIST)
                     {
                         out_html("<DT>");
-                        out_html(change_to_font('B'));
+                        out_html(set_font('B'));
                         if (*c=='\n')
                         {
                             /* Don't allow embedded comms after a newline */
@@ -4273,7 +4418,7 @@ static char *scan_request(char *c)
                             /* Do allow embedded comms on the same line. */
                             c=scan_troff_mandoc(c,1,NULL);
                         }
-                        out_html(change_to_font('R'));
+                        out_html(set_font('R'));
                         out_html(NEWLINE);
                         out_html("<DD>");
                     }
@@ -4360,10 +4505,8 @@ static char *scan_request(char *c)
                     c=c+j;
                     out_html(NEWLINE);
                     out_html("<BLOCKQUOTE>");
-                    out_html(change_to_font('L'));
                     if (*c=='\n') c++;
                     c=scan_troff_mandoc(c, 1, NULL);
-                    out_html(change_to_font('R'));
                     out_html("</BLOCKQUOTE>");
                     if (fillout)
                         curpos++;
@@ -4390,7 +4533,7 @@ static char *scan_request(char *c)
                         if (fillout)
                         {
                             mandoc_bd_options |= BD_LITERAL;
-                            out_html(change_to_font(0));
+                            out_html(set_font("R"));
                             out_html(change_to_size('0'));
                             out_html("<PRE>\n");
                         }
@@ -4406,7 +4549,7 @@ static char *scan_request(char *c)
                     {
                         if (!fillout)
                         {
-                            out_html(change_to_font(0));
+                            out_html(set_font("R"));
                             out_html(change_to_size('0'));
                             out_html("</PRE>\n");
                         }
@@ -4499,7 +4642,7 @@ static char *scan_request(char *c)
                     trans_char(c,'"','\a');
                     c+=j;
                     sl=fill_words(c, wordlist, &words, true, &c);
-                    out_html(change_to_font('B'));
+                    out_html(set_font('B'));
                     if (!words)
                     {
                         out_html("-"); // stdin or stdout
@@ -4521,7 +4664,7 @@ static char *scan_request(char *c)
                             }
                         }
                     }
-                    out_html(change_to_font('R'));
+                    out_html(set_font('R'));
                     out_html(NEWLINE);
                     if (fillout)
                         curpos++;
@@ -4578,10 +4721,10 @@ static char *scan_request(char *c)
                     trans_char(c,'"','\a');
                     c=c+j;
                     if (*c=='\n') c++;
-                    out_html(change_to_font('R'));
+                    out_html(set_font('R'));
                     out_html("[");
                     c=scan_troff_mandoc(c, 1, NULL);
-                    out_html(change_to_font('R'));
+                    out_html(set_font('R'));
                     out_html("]");
                     out_html(NEWLINE);
                     if (fillout)
@@ -4595,7 +4738,7 @@ static char *scan_request(char *c)
                     trans_char(c,'"','\a');
                     c=c+j;
                     if (*c=='\n') c++;
-                    out_html(change_to_font('R'));
+                    out_html(set_font('R'));
                     out_html("[");
                     c=scan_troff_mandoc(c, 1, NULL);
                     if (fillout)
@@ -4609,7 +4752,7 @@ static char *scan_request(char *c)
                     trans_char(c,'"','\a');
                     c=c+j;
                     c=scan_troff_mandoc(c, 1, NULL);
-                    out_html(change_to_font('R'));
+                    out_html(set_font('R'));
                     out_html("]");
                     if (fillout)
                         curpos++;
@@ -4651,7 +4794,7 @@ static char *scan_request(char *c)
                 case REQ_Ar:	/* mdoc(7) */
                 {
                     /* parse one line in italics */
-                    out_html(change_to_font('I'));
+                    out_html(set_font('I'));
                     trans_char(c,'"','\a');
                     c=c+j;
                     if (*c=='\n')
@@ -4661,7 +4804,7 @@ static char *scan_request(char *c)
                     }
                     else
                         c=scan_troff_mandoc(c, 1, NULL);
-                    out_html(change_to_font('R'));
+                    out_html(set_font('R'));
                     out_html(NEWLINE);
                     if (fillout)
                         curpos++;
@@ -4689,12 +4832,12 @@ static char *scan_request(char *c)
                 case REQ_Xc:	/* mdoc(7) */
                 {
                     /* parse one line in italics */
-                    out_html(change_to_font('I'));
+                    out_html(set_font('I'));
                     trans_char(c,'"','\a');
                     c=c+j;
                     if (*c=='\n') c++;
                     c=scan_troff_mandoc(c, 1, NULL);
-                    out_html(change_to_font('R'));
+                    out_html(set_font('R'));
                     out_html(NEWLINE);
                     if (fillout)
                         curpos++;
@@ -4745,14 +4888,14 @@ static char *scan_request(char *c)
                     }
                     mandoc_name_count++;
         
-                    out_html(change_to_font('B'));
+                    out_html(set_font('B'));
                     // ### FIXME: fill_words must be used
                     while (*c == ' '|| *c == '\t') c++;
                     if ((tolower(*c) >= 'a' && tolower(*c) <= 'z' ) || (*c >= '0' && *c <= '9'))
                     {
                         // alphanumeric argument
                         c=scan_troff_mandoc(c, 1, NULL);
-                        out_html(change_to_font('R'));
+                        out_html(set_font('R'));
                         out_html(NEWLINE);
                     }
                     else
@@ -4762,7 +4905,7 @@ static char *scan_request(char *c)
                         * too many commands that do this.
                         */
                         out_html(mandoc_name);
-                        out_html(change_to_font('R'));
+                        out_html(set_font('R'));
                     }
 
                     if (fillout)
@@ -4779,12 +4922,12 @@ static char *scan_request(char *c)
                 case REQ_Sy:    /* mdoc(7) */
                 {
                     /* parse one line in bold */
-                    out_html(change_to_font('B'));
+                    out_html(set_font('B'));
                     trans_char(c,'"','\a');
                     c=c+j;
                     if (*c=='\n') c++;
                     c=scan_troff_mandoc(c, 1, NULL);
-                    out_html(change_to_font('R'));
+                    out_html(set_font('R'));
                     out_html(NEWLINE);
                     if (fillout)
                         curpos++;
@@ -4804,9 +4947,9 @@ static char *scan_request(char *c)
                     trans_char(c,'"','\a');
                     c=c+j;
                     if (*c=='\n') c++;
-                    out_html(change_to_font('B'));
+                    out_html(set_font('B'));
                     c=scan_troff_mandoc(c, 1, NULL);
-                    out_html(change_to_font('R'));
+                    out_html(set_font('R'));
                     out_html(NEWLINE);
                     if (fillout)
                         curpos++;
@@ -4837,10 +4980,10 @@ static char *scan_request(char *c)
                 case REQ_perc_T:
                 {
                     c=c+j;
-                    out_html(change_to_font('I'));
+                    out_html(set_font('I'));
                     if (*c=='\n') c++;
                     c=scan_troff(c, 1, NULL); /* Don't allow embedded mandoc coms */
-                    out_html(change_to_font('R'));
+                    out_html(set_font('R'));
                     if (fillout)
                         curpos++;
                     else
@@ -5110,7 +5253,7 @@ static char *scan_request(char *c)
                     const QCString number = c;
                     *h = tempchar;
                     c = skip_till_newline( h );
-                    uint result = 1; // Numbers of shifts to do
+                    unsigned int result = 1; // Numbers of shifts to do
                     if ( !number.isEmpty() )
                     {
                         bool ok = false;
@@ -5118,7 +5261,7 @@ static char *scan_request(char *c)
                         if ( !ok || result < 1 )
                             result = 1;
                     }
-                    for ( uint num = 0; num < result; ++num )
+                    for ( unsigned int num = 0; num < result; ++num )
                     {
                         if ( !s_argumentList.isEmpty() )
                             s_argumentList.pop_front();
@@ -5148,7 +5291,7 @@ static char *scan_request(char *c)
                         c=c+j;
                         trans_char(c,'"','\a');
                         if (*c=='\n') c++;
-                        out_html(change_to_font('R'));
+                        out_html(set_font('R'));
                         c=scan_troff(c, 1, NULL);
                         out_html(NEWLINE);
                         if (fillout)
@@ -5444,7 +5587,7 @@ void scan_man_page(const char *man_page)
         else if (itemdepth > 0) itemdepth--;
     }
 
-    out_html(change_to_font(0));
+    out_html(set_font("R"));
     out_html(change_to_size(0));
     if (!fillout) {
 	fillout=1;
@@ -5551,6 +5694,8 @@ char *read_man_page(const char *filename)
 
 int main(int argc, char **argv)
 {
+    htmlPath = ".";
+    cssPath = ".";
     if (argc < 2) {
         std::cerr << "call: " << argv[0] << " <filename>\n";
         return 1;
