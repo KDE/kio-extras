@@ -122,6 +122,7 @@ MANProtocol::MANProtocol(const QCString &pool_socket, const QCString &app_socket
     m_cssPath=strPath.local8Bit(); // ### TODO encode for CSS
     section_names << "1" << "2" << "3" << "3n" << "3p" << "4" << "5" << "6" << "7"
                   << "8" << "9" << "l" << "n";
+    m_manCSSFile = locate( "data", "kio_man/kio_man.css" );
 }
 
 MANProtocol *MANProtocol::self() { return _self; }
@@ -581,17 +582,13 @@ void MANProtocol::outputError(const QString& errmsg)
     QByteArray array;
     QTextStream os(array, IO_WriteOnly);
     os.setEncoding(QTextStream::UnicodeUTF8);
-    QString manCSSFile=locate("data","kio_man/kio_man.css");
-    if (!manCSSFile.isEmpty())
-	manCSSFile = QString(
-	    "<link href=\"file://%1\" type=\"text/css\" rel=\"stylesheet\">"
-	).arg(manCSSFile);
-    else
-        manCSSFile = "";
 
     os << "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Strict//EN\">" << endl;
     os << "<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">" << endl;
-    os << "<title>" << i18n("Man output") << "</title>" << manCSSFile << "</head>" << endl;
+    os << "<title>" << i18n("Man output") << "</title>\n" << endl;
+    if ( !m_manCSSFile.isEmpty() )
+        os << "<link href=\"file:///" << m_manCSSFile << "\" type=\"text/css\" rel=\"stylesheet\">" << endl;
+    os << "</head>" << endl;
     os << i18n("<body><h1>KDE Man Viewer Error</h1>") << errmsg << "</body>" << endl;
     os << "</html>" << endl;
 
@@ -603,24 +600,20 @@ void MANProtocol::outputMatchingPages(const QStringList &matchingPages)
     QByteArray array;
     QTextStream os(array, IO_WriteOnly);
     os.setEncoding(QTextStream::UnicodeUTF8);
-    QString manCSSFile= locate("data","kio_man/kio_man.css");
-    if (!manCSSFile.isEmpty())
-	manCSSFile = QString(
-	    "<link href=\"file://%1\" type=\"text/css\" rel=\"stylesheet\">"
-	).arg(manCSSFile);
-    else
-        manCSSFile = "";
 
     os << "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Strict//EN\">" << endl;
     os << "<html>\n<head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">"<<endl;
-    os << "<title>" << i18n("Man output") <<"</title>"<<manCSSFile<<"</head>"<<endl;
+    os << "<title>" << i18n("Man output") <<"</title>" << endl;
+    if ( !m_manCSSFile.isEmpty() )
+        os << "<link href=\"file:///" << m_manCSSFile << "\" type=\"text/css\" rel=\"stylesheet\">" << endl;
+    os << "</head>" <<endl;
     os << "<body><h1>" << i18n("There is more than one matching man page.");
     os << "</h1>\n<ul>\n";
     
     int acckey=1;
     for (QStringList::ConstIterator it = matchingPages.begin(); it != matchingPages.end(); ++it)
     {
-      os<<"<li><a href='man:"<<QFile::encodeName(*it)<<"' accesskey='"<< acckey <<"'>"<< *it <<"</a><br>\n<br>\n";
+      os<<"<li><a href='man:"<<(*it)<<"' accesskey='"<< acckey <<"'>"<< *it <<"</a><br>\n<br>\n";
       acckey++;
     }
     os << "</ul>\n";
@@ -712,7 +705,7 @@ void MANProtocol::mimetype(const KURL & /*url*/)
     finished();
 }
 
-QString sectionName(const QString& section)
+static QString sectionName(const QString& section)
 {
     if (section == "1")
         return i18n("User Commands");
@@ -770,22 +763,18 @@ void MANProtocol::showMainIndex()
     QByteArray array;
     QTextStream os(array, IO_WriteOnly);
     os.setEncoding(QTextStream::UnicodeUTF8);
-    QString manCSSFile= locate("data","kio_man/kio_man.css");
-    if (!manCSSFile.isEmpty())
-	manCSSFile = QString(
-	    "<link href=\"file://%1\" type=\"text/css\" rel=\"stylesheet\">"
-	).arg(manCSSFile);
-    else
-        manCSSFile = "";
 
     // print header
     os << "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Strict//EN\">" << endl;
     os << "<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">" << endl;
-    os << "<title>" << i18n("UNIX Manual Index") << "</title>"<<manCSSFile<<"</head>" << endl;
-    os << i18n("<body><h1>UNIX Manual Index</h1>") << endl;
+    os << "<title>" << i18n("UNIX Manual Index") << "</title>" << endl;
+    if (!m_manCSSFile.isEmpty())
+        os << "<link href=\"file:///" << m_manCSSFile << "\" type=\"text/css\" rel=\"stylesheet\">" << endl;
+    os << "</head>" << endl;
+    os << "<body><h1>" << i18n("UNIX Manual Index") << "</h1>" << endl;
 
     // ### TODO: why still the environment variable
-    QString sectList = getenv("MANSECT");
+    const QString sectList = getenv("MANSECT");
     QStringList sections;
     if (sectList.isEmpty())
     	sections = buildSectionList(manDirectories());
@@ -841,15 +830,15 @@ void MANProtocol::constructPath(QStringList& constr_path, QStringList constr_cat
     
         while (!is.eof())
         {
-            QString line = is.readLine();
+            const QString line = is.readLine();
             if ( manpath_regex.search(line, 0) == 0 )
             {
-                QString path = line.mid(8).stripWhiteSpace();
+                const QString path = line.mid(8).stripWhiteSpace();
                 constr_path += path;
             }
             else if ( mandatory_regex.search(line, 0) == 0 )
             {
-                QString path = line.mid(18).stripWhiteSpace();
+                const QString path = line.mid(18).stripWhiteSpace();
                 constr_path += path;
             }
             else if ( manpath_map_regex.search(line, 0) == 0 )
@@ -929,13 +918,13 @@ void MANProtocol::constructPath(QStringList& constr_path, QStringList constr_cat
     //   to the man path (the actual existence check is done further down)
 
     if ( ::getenv("PATH") ) {
-        QStringList path =
+        const QStringList path =
                 QStringList::split( ":",
                                     QString::fromLocal8Bit( ::getenv("PATH") ) );
 
-        for ( QStringList::Iterator it = path.begin();
+        for ( QStringList::const_iterator it = path.begin();
               it != path.end();
-              it++ )
+              ++it )
         {
             const QString dir = QDir::cleanDirPath( *it );
             QString mandir = manpath_map[ dir ];
@@ -986,7 +975,7 @@ void MANProtocol::checkManPaths()
 
     inited = true;
 
-    QString manpath_env = QString::fromLocal8Bit( ::getenv("MANPATH") );
+    const QString manpath_env = QString::fromLocal8Bit( ::getenv("MANPATH") );
     //QString mansect_env = QString::fromLocal8Bit( ::getenv("MANSECT") );
 
     // Decide if $MANPATH is enough on its own or if it should be merged
@@ -999,7 +988,7 @@ void MANProtocol::checkManPaths()
     if ( manpath_env.isEmpty()
         || manpath_env[0] == ':'
         || manpath_env[manpath_env.length()-1] == ':'
-        || manpath_env.contains( QString("::") ) )
+        || manpath_env.contains( "::" ) )
     {
         construct_path = true; // need to read config file
     }
@@ -1027,11 +1016,11 @@ void MANProtocol::checkManPaths()
     // satisfied if any empty string in path_list_env (there
     // should be 1 or 0) is replaced by the constructed path.
 
-    QStringList path_list_env = QStringList::split( ':', manpath_env , true );
+    const QStringList path_list_env = QStringList::split( ':', manpath_env , true );
 
-    for ( QStringList::Iterator it = path_list_env.begin();
+    for ( QStringList::const_iterator it = path_list_env.begin();
           it != path_list_env.end();
-          it++ )
+          ++it )
     {
         struct stat sbuf;
 
@@ -1201,19 +1190,16 @@ void MANProtocol::showIndex(const QString& section)
     QByteArray array;
     QTextStream os(array, IO_WriteOnly);
     os.setEncoding(QTextStream::UnicodeUTF8);
-    QString manCSSFile= locate("data","kio_man/kio_man.css");
-    if (!manCSSFile.isEmpty())
-	manCSSFile = QString(
-	    "<link href=\"file://%1\" type=\"text/css\" rel=\"stylesheet\">"
-	).arg(manCSSFile);
-    else
-        manCSSFile = "";
 
     // print header
     os << "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Strict//EN\">" << endl;
     os << "<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">" << endl;
-    os << "<title>" << i18n("UNIX Manual Index") << "</title>"<<manCSSFile<<"</head>" << endl;
-    os << i18n("<body><div class=\"secidxmain\"><h1>Index for Section %1: %2</h1>").arg(section).arg(sectionName(section)) << endl;
+    os << "<title>" << i18n("UNIX Manual Index") << "</title>" << endl;
+    if ( !m_manCSSFile.isEmpty() )
+        os << "<link href=\"file:///" << m_manCSSFile << "\" type=\"text/css\" rel=\"stylesheet\">" << endl;
+    os << "</head>" << endl;
+    os << "<body><div class=\"secidxmain\">" << endl;
+    os << "<h1>" << i18n( "Index for Section %1: %2").arg(section).arg(sectionName(section)) << "</h1>" << endl;
 
     // compose list of search paths -------------------------------------------------------------
 
@@ -1273,7 +1259,7 @@ void MANProtocol::showIndex(const QString& section)
 
 #endif /* _USE_QSORT */
 
-    QStringList::ConstIterator page;
+    QStringList::const_iterator page;
     for (page = pages.begin(); page != pages.end(); ++page)
     {
 	// I look for the beginning of the man page name
@@ -1373,7 +1359,7 @@ void MANProtocol::showIndex(const QString& section)
     {
 	firstchar=QChar((indexlist[0]->manpage_begin)[0]).lower();
 
-	QString appendixstr = QString(
+	const QString appendixstr = QString(
 	    " [<a href=\"#%1\" accesskey=\"%2\">%3</a>]\n"
 	).arg(firstchar).arg(firstchar).arg(firstchar);
 	indexLine.append(appendixstr);
@@ -1405,7 +1391,7 @@ void MANProtocol::showIndex(const QString& section)
 	    os << "<tr><td class=\"secidxnextletter\"" << " colspan=\"3\">\n  <a name=\"" 
 	       << firstchar << "\">" << firstchar << "</a>\n</td></tr>" << endl;
 
-    	    QString appendixstr = QString(
+    	    const QString appendixstr = QString(
     		" [<a href=\"#%1\" accesskey=\"%2\">%3</a>]\n"
 	    ).arg(firstchar).arg(firstchar).arg(firstchar);
 	    indexLine.append(appendixstr);
@@ -1502,7 +1488,7 @@ void MANProtocol::listDir(const KURL &url)
     QStringList::Iterator it = list.begin();
     QStringList::Iterator end = list.end();
 
-    for ( ; it != end; it++ ) {
+    for ( ; it != end; ++it ) {
         stripExtension( &(*it) );
 
         uds_entry[0].m_str = *it;

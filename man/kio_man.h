@@ -92,6 +92,7 @@ private:
     QCString m_htmlPath; ///< Path to KDE resources, encoded for HTML
     QCString m_cssPath; ///< Path to KDE resources, encoded for CSS
     QBuffer m_outputBuffer; ///< Buffer for the output
+    QString m_manCSSFile; ///< Path to kio_man.css
 };
 
 
