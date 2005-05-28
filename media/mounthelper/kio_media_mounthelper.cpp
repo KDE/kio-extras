@@ -72,6 +72,9 @@ MountHelper::MountHelper() : KApplication()
 	QString device = medium.deviceNode();
 	QString mount_point = medium.mountPoint();
 
+	m_isCdrom = medium.mimeType().find("dvd")!=-1
+	         || medium.mimeType().find("cd")!=-1;
+
 	if (args->isSet("u"))
 	{
 		KIO::Job * job = KIO::unmount( mount_point );
@@ -125,7 +128,18 @@ void MountHelper::slotResultSafe(KIO::Job* job)
 	if (job->error())
 	{
 		m_errorStr = job->errorText();
-		m_errorStr+= i18n("\nPlease check that the disk is entered correctly.");
+		
+		if (m_isCdrom)
+		{
+			m_errorStr+= i18n("\nPlease check that the disk is"
+			                  " entered correctly.");
+		}
+		else
+		{
+			m_errorStr+= i18n("\nPlease check that the device is"
+			                  " plugged correctly.");
+		}
+		
 		QTimer::singleShot(0, this, SLOT(error()) );
 	}
 	else
@@ -139,7 +153,18 @@ void MountHelper::slotResult(KIO::Job* job)
 	if (job->error())
 	{
 		m_errorStr = job->errorText();
-		m_errorStr+= i18n("\nPlease check that the disk is entered correctly.");
+		
+		if (m_isCdrom)
+		{
+			m_errorStr+= i18n("\nPlease check that the disk is"
+			                  " entered correctly.");
+		}
+		else
+		{
+			m_errorStr+= i18n("\nPlease check that the device is"
+			                  " plugged correctly.");
+		}
+				
 		QTimer::singleShot(0, this, SLOT(error()) );
 	}
 	else
