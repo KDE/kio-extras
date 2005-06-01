@@ -56,22 +56,87 @@ bool SystemImpl::listRoot(QValueList<KIO::UDSEntry> &list)
 
 		KIO::UDSEntry entry;
 
-		QStringList::ConstIterator name = filenames.begin();
+		QStringList::ConstIterator filename = filenames.begin();
 		QStringList::ConstIterator endf = filenames.end();
 
-		for(; name!=endf; ++name)
+		for(; filename!=endf; ++filename)
 		{
-			if (!names_found.contains(*name))
+			if (!names_found.contains(*filename))
 			{
 				entry.clear();
-				createEntry(entry, *dirpath, *name);
+				createEntry(entry, *dirpath, *filename);
 				list.append(entry);
-				names_found.append(*name);
+				names_found.append(*filename);
 			}
 		}
 	}
 
 	return true;
+}
+
+bool SystemImpl::parseURL(const KURL &url, QString &name, QString &path) const
+{
+	QString url_path = url.path();
+
+	int i = url_path.find('/', 1);
+	if (i > 0)
+	{
+		name = url_path.mid(1, i-1);
+		path = url_path.mid(i+1);
+	}
+	else
+	{
+		name = url_path.mid(1);
+		path = QString::null;
+	}
+
+	return name != QString::null;
+}
+
+bool SystemImpl::realURL(const QString &name, const QString &path,
+                         KURL &url) const
+{
+	url = findBaseURL(name);
+	if (!url.isValid())
+	{
+		return false;
+	}
+
+	url.addPath(path);
+	return true;
+}
+
+bool SystemImpl::statByName(const QString &filename, KIO::UDSEntry& entry)
+{
+	kdDebug() << "SystemImpl::statByName" << endl;
+
+	QStringList dirList = KGlobal::dirs()->resourceDirs("system_entries");
+
+	QStringList::ConstIterator dirpath = dirList.begin();
+	QStringList::ConstIterator end = dirList.end();
+	for(; dirpath!=end; ++dirpath)
+	{
+		QDir dir = *dirpath;
+		if (!dir.exists()) continue;
+
+		QStringList filenames
+			= dir.entryList( QDir::Files | QDir::Readable );
+
+
+		QStringList::ConstIterator name = filenames.begin();
+		QStringList::ConstIterator endf = filenames.end();
+
+		for(; name!=endf; ++name)
+		{
+			if (*name==filename+".desktop")
+			{
+				createEntry(entry, *dirpath, *name);
+				return true;
+			}
+		}
+	}
+
+	return false;
 }
 
 KURL SystemImpl::findBaseURL(const QString &filename) const
@@ -98,9 +163,9 @@ KURL SystemImpl::findBaseURL(const QString &filename) const
 
 		for(; name!=endf; ++name)
 		{
-			if (*name==filename)
+			if (*name==filename+".desktop")
 			{
-				KDesktopFile desktop(*dirpath+filename, true);
+				KDesktopFile desktop(*dirpath+filename+".desktop", true);
 				return desktop.readURL();
 			}
 		}
@@ -146,7 +211,10 @@ void SystemImpl::createEntry(KIO::UDSEntry &entry,
 	entry.clear();
 
 	addAtom(entry, KIO::UDS_NAME, 0, desktop.readName());
-	addAtom(entry, KIO::UDS_URL, 0, "system:/"+file);
+	
+	QString new_filename = file;
+	new_filename.truncate(file.length()-8);
+	addAtom(entry, KIO::UDS_URL, 0, "system:/"+new_filename);
 
 	addAtom(entry, KIO::UDS_FILE_TYPE, S_IFDIR);
 	addAtom(entry, KIO::UDS_MIME_TYPE, 0, "inode/directory");
