@@ -137,10 +137,10 @@
 #ifdef SIMPLE_MAN2HTML
 # include <stdlib.h>
 # include <iostream>
-# include <stdio.h>
 # include <dirent.h>
 # include <sys/stat.h>
 # define kdDebug(x) cerr
+# define kdWarning(x) cerr << "WARNING "
 #else
 # include <qtextcodec.h>
 # include <kdebug.h>
@@ -189,7 +189,7 @@ static char *stralloc(int len)
 #ifdef SIMPLE_MAN2HTML
   if (!news)
   {
-    fprintf(stderr, "man2html: out of memory\n");
+    cerr << "man2html: out of memory" << endl;
     exit(EXIT_FAILURE);
   }
 #else
@@ -970,7 +970,7 @@ static void out_html(const char *c)
 #ifdef SIMPLE_MAN2HTML
 	      if (!h)
               {
-                  fprintf(stderr,"Memory full, cannot output!");
+                  cerr << "Memory full, cannot output!" << endl;
                   exit(1);
               }
 #else
@@ -1067,6 +1067,11 @@ static QCString set_font( const QCString& name )
 
 /// \deprecated
 static QCString set_font( const char ch )
+#ifndef SIMPLE_MAN2HTML
+        KDE_DEPRECATED;
+
+static QCString set_font( const char ch )
+#endif
 {
     const QCString name = &ch;
     return set_font( name );
@@ -1169,9 +1174,7 @@ static QCString scan_named_character( char*& c )
         }
         if ( !*c || *c == '\n' )
         {
-#ifndef SIMPLE_MAN2HTML
             kdDebug(7107) << "Found linefeed! Could not parse character name: " << name << endl;
-#endif
             return "";
         }
         c++;
@@ -1203,9 +1206,7 @@ static QCString scan_named_character( char*& c )
         }
         if ( !*c || *c == '\n' )
         {
-#ifndef SIMPLE_MAN2HTML
             kdDebug(7107) << "Found linefeed! Could not parse (\\C mode) character name: " << name << endl;
-#endif
             return "";
         }
         c++;
@@ -1216,17 +1217,13 @@ static QCString scan_named_character( char*& c )
     QMap<QCString,StringDefinition>::iterator it=s_characterDefinitionMap.find(name);
     if (it==s_characterDefinitionMap.end())
     {
-#ifndef SIMPLE_MAN2HTML
         kdDebug(7107) << "EXCEPTION: cannot find character with name: " << name << endl;
-#endif
         // No output, as an undefined string is empty by default
         return "";
     }
     else
     {
-#ifndef SIMPLE_MAN2HTML
         kdDebug(7107) << "Character with name: \"" << name << "\" => " << (*it).m_output << endl;
-#endif
         return (*it).m_output;
     }
 }
@@ -1241,9 +1238,7 @@ static QCString scan_named_string(char*& c)
         {
             QCString cstr;
             c = scan_escape_direct( c+2, cstr );
-#ifndef SIMPLE_MAN2HTML
             kdDebug(7107) << "\(" << cstr << endl;
-#endif
             // ### FIXME: check if we have really 2 characters (and only 2, not more either)
             name = cstr.left(2);
         }
@@ -1283,9 +1278,7 @@ static QCString scan_named_string(char*& c)
         }
         if ( !*c || *c == '\n' )
         {
-#ifndef SIMPLE_MAN2HTML
             kdDebug(7107) << "Found linefeed! Could not parse string name: " << name << endl;
-#endif
             return "";
         }
         c++;
@@ -1300,17 +1293,13 @@ static QCString scan_named_string(char*& c)
     QMap<QCString,StringDefinition>::iterator it=s_stringDefinitionMap.find(name);
     if (it==s_stringDefinitionMap.end())
     {
-#ifndef SIMPLE_MAN2HTML
         kdDebug(7107) << "EXCEPTION: cannot find string with name: " << name << endl;
-#endif
         // No output, as an undefined string is empty by default
         return "";
     }
     else
     {
-#ifndef SIMPLE_MAN2HTML
         kdDebug(7107) << "String with name: \"" << name << "\" => " << (*it).m_output << endl;
-#endif
         return (*it).m_output;
     }
 }
@@ -1388,9 +1377,7 @@ static QCString scan_dollar_parameter(char*& c)
     }
     else
     {
-#ifndef SIMPLE_MAN2HTML
             kdDebug(7107) << "EXCEPTION: unknown parameter $" << *c << endl;
-#endif
         return "";
     }
     //kdDebug(7107) << "ARG $" << argno << endl;
@@ -1400,9 +1387,7 @@ static QCString scan_dollar_parameter(char*& c)
         argno--;
         if ( argno >= s_argumentList.size() )
         {
-#ifndef SIMPLE_MAN2HTML
             kdDebug(7107) << "EXCEPTION: cannot find parameter $" << (argno+1) << endl;
-#endif
             return "";
         }
 
@@ -1417,9 +1402,7 @@ static int read_only_number_register( const QCString& name )
     // Internal read-only variables
     if ( name == ".$" )
     {
-#ifndef SIMPLE_MAN2HTML
-        kdDebug(7107) << "\n[.$] == " << s_argumentList.size() << endl;
-#endif
+        kdDebug(7107) << "\\n[.$] == " << s_argumentList.size() << endl;
         return s_argumentList.size();
     }
     else if ( name == ".g" )
@@ -1489,9 +1472,7 @@ static int scan_number_register( char*& c)
         }
         if ( !*c || *c == '\n' )
         {
-#ifndef SIMPLE_MAN2HTML
             kdDebug(7107) << "Found linefeed! Could not parse number register name: " << name << endl;
-#endif
             return 0;
         }
         c++;
@@ -1515,7 +1496,7 @@ static int scan_number_register( char*& c)
     }
     else
     {
-        name = *c;
+        name += *c;
         c++;
     }
     if ( name[0] == '.' )
@@ -1548,9 +1529,7 @@ static QCString scan_named_font( char*& c )
         {
             QCString cstr;
             c = scan_escape_direct( c+2, cstr );
-#ifndef SIMPLE_MAN2HTML
             kdDebug(7107) << "\(" << cstr << endl;
-#endif
             // ### FIXME: check if we have really 2 characters (and only 2, not more either)
             name = cstr.left(2);
         }
@@ -1589,9 +1568,7 @@ static QCString scan_named_font( char*& c )
         }
         if ( !*c || *c == '\n' )
         {
-#ifndef SIMPLE_MAN2HTML
             kdDebug(7107) << "Found linefeed! Could not parse font name: " << name << endl;
-#endif
             return "";
         }
         c++;
@@ -1603,7 +1580,7 @@ static QCString scan_named_font( char*& c )
         name += *c;
         c++;
     }
-    kdDebug(7107) << "FONT NAME: " << name << endl;
+    //kdDebug(7107) << "FONT NAME: " << name << endl;
     // Now we have the name, let us find the font
     bool ok = false;
     const unsigned int number = name.toUInt( &ok );
@@ -2442,11 +2419,7 @@ static char *scan_expression(char *c, int *result)
 		case ':': value = (value || value2); break;
 		default:
                     {
-#ifdef SIMPLE_MAN2HTML
-                        fprintf(stderr, "man2html: unknown operator %c.\n", oper);
-#else
                         kdDebug(7107) << "Unknown operator " << char(oper) << endl;
-#endif
                     }
 		}
 		oper=0;
@@ -2738,18 +2711,14 @@ static bool s_whileloop = false;
 static void request_while( char*& c, int j, bool mdoc )
 {
     // ### TODO: .break and .continue
-#ifndef SIMPLE_MAN2HTML
     kdDebug(7107) << "Entering .while" << endl;
-#endif
     c += j;
     char* newline = skip_till_newline( c );
     const char oldchar = *newline;
     *newline = 0;
     // We store the full .while stuff into a QCString as if it would be a macro
     const QCString macro = c ;
-#ifndef SIMPLE_MAN2HTML
     kdDebug(7107) << "'Macro' of .while" << endl << macro << endl;
-#endif
     // Prepare for continuing after .while loop end
     *newline = oldchar;
     c = newline;
@@ -2761,15 +2730,11 @@ static void request_while( char*& c, int j, bool mdoc )
     {
         // Unlike for a normal macro, we have the condition at start, so we do not need to prepend extra bytes
         char* liveloop = qstrdup( macro.data() );
-#ifndef SIMPLE_MAN2HTML
             kdDebug(7107) << "Scanning .while condition" << endl;
-#endif
         char* end_expression = scan_expression( liveloop, &result );
         if ( result )
         {
-#ifndef SIMPLE_MAN2HTML
             kdDebug(7107) << "New .while iteration" << endl;
-#endif
             // The condition is true, so call the .while's content
             char* help = end_expression + 1;
             while ( *help && ( *help == ' '  || *help == '\t' ) )
@@ -2790,9 +2755,7 @@ static void request_while( char*& c, int j, bool mdoc )
 
     //
     s_whileloop = oldwhileloop;
-#ifndef SIMPLE_MAN2HTML
     kdDebug(7107) << "Ending .while" << endl;
-#endif
 }
 
 // Some known missing requests from man(7):
@@ -3023,9 +2986,7 @@ static QCString scan_identifier( char*& c )
     *h = tempchar;
     if ( name.isEmpty() )
     {
-#ifndef SIMPLE_MAN2HTML
         kdDebug(7107) << "EXCEPTION: identifier empty!" << endl;
-#endif
     }
     c = h;
     return name;
@@ -3056,9 +3017,7 @@ static char *scan_request(char *c)
 	/* .\$1 is too difficult/stuppid */
         if (c[1]=='$')
         {
-#ifndef SIMPLE_MAN2HTML
             kdDebug(7107) << "Found .\\$" << endl;
-#endif
             c=skip_till_newline(c); // ### TODO
         }
 	else
@@ -3082,9 +3041,7 @@ static char *scan_request(char *c)
         QMap<QCString,StringDefinition>::iterator it=s_stringDefinitionMap.find(macroName);
         if (it!=s_stringDefinitionMap.end())
         {
-#ifndef SIMPLE_MAN2HTML
             kdDebug(7107) << "CALLING MACRO: " << macroName << endl;
-#endif
             const QCString oldDollarZero = s_dollarZero; // Previous value of $0
             s_dollarZero = macroName;
             sl=fill_words(c+j, wordlist, &words, true, &c);
@@ -3128,15 +3085,11 @@ static char *scan_request(char *c)
             for (i=0; i<words; i++) delete [] wordlist[i];
             *sl='\n';
             s_dollarZero = oldDollarZero;
-#ifndef SIMPLE_MAN2HTML
             kdDebug(7107) << "ENDING MACRO: " << macroName << endl;
-#endif
         }
         else
         {
-#ifndef SIMPLE_MAN2HTML
             kdDebug(7107) << "REQUEST: " << macroName << endl;
-#endif
             switch (int request = get_request(c, nlen))
             {
                 case REQ_ab: // groff(7) "ABort"
@@ -3147,18 +3100,10 @@ static char *scan_request(char *c)
                     if (scaninbuff && buffpos)
                     {
                         buffer[buffpos]='\0';
-#ifdef SIMPLE_MAN2HTML
-                        fprintf( stderr, "%s\n", buffer );
-#else
                         kdDebug(7107) << "ABORT: " << buffer << endl;
-#endif
                     }
-#ifdef SIMPLE_MAN2HTML
-                    fprintf(stderr, "%s\n", c+j);
-#else
                     // ### TODO find a way to display it to the user
                     kdDebug(7107) << "Aborting: .ab " << (c+j) << endl;
-#endif
                     return 0;
                     break;
                 }
@@ -3170,9 +3115,7 @@ static char *scan_request(char *c)
                 }
                 case REQ_di: // groff(7) "end current DIversion"
                 {
-#ifndef SIMPLE_MAN2HTML
                     kdDebug(7107) << "Start .di" << endl;
-#endif
                     c+=j;
                     if (*c=='\n')
                     {
@@ -3203,18 +3146,14 @@ static char *scan_request(char *c)
                     delete[] result;
                     if (*c) *c='.';
                     c=skip_till_newline(c);
-#ifndef SIMPLE_MAN2HTML
                     kdDebug(7107) << "end .di" << endl;
-#endif
                     break;
                 }
                 case REQ_ds: // groff(7) "Define String variable"
                     mode=true;
                 case REQ_as: // groff (7) "Append String variable"
                 {
-#ifndef SIMPLE_MAN2HTML
                     kdDebug(7107) << "start .ds/.as" << endl;
-#endif
                     int oldcurpos=curpos;
                     c+=j;
                     const QCString name( scan_identifier( c) );
@@ -3250,9 +3189,7 @@ static char *scan_request(char *c)
                     delete[] result;
                     single_escape=false;
                     curpos=oldcurpos;
-#ifndef SIMPLE_MAN2HTML
                     kdDebug(7107) << "end .ds/.as" << endl;
-#endif
                     break;
                 }
                 case REQ_br: // groff(7) "line BReak"
@@ -3533,11 +3470,7 @@ static char *scan_request(char *c)
                     buf=read_man_page(h);
                     if (!buf)
                     {
-#ifdef SIMPLE_MAN2HTML
-                        fprintf(stderr, "man2html: unable to open or read file %s.\n", h);
-#else
                         kdDebug(7107) << "Unable to open or read file: .so " << (h) << endl;
-#endif
                         out_html("<BLOCKQUOTE>"
                                 "man2html: unable to open or read file.\n");
                         out_html(h);
@@ -3588,11 +3521,7 @@ static char *scan_request(char *c)
                     h=c;
                     while (*c!='\n') c++;
                     *c='\0';
-#ifdef SIMPLE_MAN2HTML
-                    fprintf(stderr,"%s\n", h);
-#else
                     kdDebug(7107) << ".tm " << (h) << endl;
-#endif
                     *c='\n';
                     break;
                 }
@@ -3638,7 +3567,7 @@ static char *scan_request(char *c)
                         out_html(");");
                         out_html("<br>");
                     };
-                    out_html(set_font('R'));
+                    out_html(set_font("R"));
                     out_html(NEWLINE);
                     if (!fillout)
                         curpos=0;
@@ -3715,7 +3644,7 @@ static char *scan_request(char *c)
                         // else if (i<words-1) out_html(", ");
                     }
                     function_argument=1; // Must be > 0
-                    out_html(set_font('R'));
+                    out_html(set_font("R"));
                     out_html(NEWLINE);
                     if (!fillout)
                         curpos=0;
@@ -3733,7 +3662,7 @@ static char *scan_request(char *c)
                     font[1] = 'R'; // ### FIXME
                     out_html(set_font(font[i&1]));
                     out_html(")");
-                    out_html(set_font('R'));
+                    out_html(set_font("R"));
                     if (mandoc_synopsis)
                         out_html("<br>");
                     out_html(NEWLINE);
@@ -3770,7 +3699,7 @@ static char *scan_request(char *c)
                         wordlist[i][-1]=' ';
                         scan_troff(wordlist[i],1,NULL);
                     }
-                    out_html(set_font('R'));
+                    out_html(set_font("R"));
                     if (!fillout)
                         curpos=0;
                     else
@@ -3950,12 +3879,12 @@ static char *scan_request(char *c)
                 }
                 case REQ_SB: // man(7) "Small; Bold"
                 {
-                    out_html(set_font('B'));
+                    out_html(set_font("B"));
                     out_html("<small>");
                     trans_char(c,'"','\a'); // ### VERIFY
                     c=scan_troff(c+j, 1, NULL);
                     out_html("</small>");
-                    out_html(set_font('R'));
+                    out_html(set_font("R"));
                     break;
                 }
                 case REQ_SM: // man(7) "SMall"
@@ -4019,12 +3948,12 @@ static char *scan_request(char *c)
                 case REQ_Sx: // mdoc(7)
                 {
                     // reference to a section header
-                    out_html(set_font('B'));
+                    out_html(set_font("B"));
                     trans_char(c,'"','\a');
                     c=c+j;
                     if (*c=='\n') c++;
                     c=scan_troff(c, 1, NULL);
-                    out_html(set_font('R'));
+                    out_html(set_font("R"));
                     out_html(NEWLINE);
                     if (fillout)
                         curpos++;
@@ -4123,11 +4052,7 @@ static char *scan_request(char *c)
                     }
                     else
                     {
-#ifdef SIMPLE_MAN2HTML
-                        fprintf(stderr, "%s", ".TH found but output not possible");
-#else
                         kdWarning(7107) << ".TH found but output not possible" << endl;
-#endif
                         c=skip_till_newline(c);
                     }
                     curpos=0;
@@ -4137,12 +4062,12 @@ static char *scan_request(char *c)
                 {
                     sl=fill_words(c+j, wordlist, &words, true, &c);
                     *sl='\0';
-                    out_html(set_font('I'));
+                    out_html(set_font("I"));
                     if (words>1) wordlist[1][-1]='\0';
                     const char *c2=lookup_abbrev(wordlist[0]);
                     curpos+=qstrlen(c2);
                     out_html(c2);
-                    out_html(set_font('R'));
+                    out_html(set_font("R"));
                     if (words>1)
                         out_html(wordlist[1]);
                     *sl='\n';
@@ -4154,16 +4079,12 @@ static char *scan_request(char *c)
                 case REQ_rn: // groff(7) "ReName"
                 /* .rn xx yy : Rename request, macro or string xx to yy */
                 {
-#ifndef SIMPLE_MAN2HTML
                     kdDebug(7107) << "start .rm/.rn" << endl;
-#endif
                     c+=j;
                     const QCString name( scan_identifier( c ) );
                     if ( name.isEmpty() )
                     {
-#ifndef SIMPLE_MAN2HTML
                             kdDebug(7107) << "EXCEPTION: empty origin string to remove/rename: " << endl;
-#endif
                             break;
                     }
                     QCString name2;
@@ -4173,9 +4094,7 @@ static char *scan_request(char *c)
                         name2 = scan_identifier( c );
                         if ( name2.isEmpty() )
                         {
-#ifndef SIMPLE_MAN2HTML
                             kdDebug(7107) << "EXCEPTION: empty destination string to rename: " << endl;
-#endif
                             break;
                         }
                     }
@@ -4183,9 +4102,7 @@ static char *scan_request(char *c)
                     QMap<QCString,StringDefinition>::iterator it=s_stringDefinitionMap.find(name);
                     if (it==s_stringDefinitionMap.end())
                     {
-#ifndef SIMPLE_MAN2HTML
                         kdDebug(7107) << "EXCEPTION: cannot find string to rename or remove: " << name << endl;
-#endif
                     }
                     else
                     {
@@ -4202,9 +4119,7 @@ static char *scan_request(char *c)
                             s_stringDefinitionMap.insert(name2,def);
                         }
                     }
-#ifndef SIMPLE_MAN2HTML
                     kdDebug(7107) << "end .rm/.rn" << endl;
-#endif
                     break;
                 }
                 case REQ_nx: // ### TODO in man(7) it is "No filling", not "next file"
@@ -4217,16 +4132,12 @@ static char *scan_request(char *c)
                 }
                 case REQ_nr: // groff(7) "Number Register"
                 {
-#ifndef SIMPLE_MAN2HTML
                     kdDebug(7107) << "start .nr" << endl;
-#endif
                     c += j;
                     const QCString name( scan_identifier( c ) );
                     if ( name.isEmpty() )
                     {
-#ifndef SIMPLE_MAN2HTML
                             kdDebug(7107) << "EXCEPTION: empty name for register variable" << endl;
-#endif
                             break;
                     }
                     while ( *c && ( *c==' ' || *c=='\t' ) ) c++;
@@ -4265,9 +4176,7 @@ static char *scan_request(char *c)
                             (*it).m_value = value;
                         (*it).m_increment = increment;
                     }
-#ifndef SIMPLE_MAN2HTML
                     kdDebug(7107) << "end .nr" << endl;
-#endif
                     break;
                 }
                 case REQ_am: // groff(7) "Append Macro"
@@ -4278,9 +4187,7 @@ static char *scan_request(char *c)
                 /* .de xx yy : define or redefine macro xx; end at .yy (..) */
                 /* define or handle as .ig yy */
                 {
-#ifndef SIMPLE_MAN2HTML
                     kdDebug(7107) << "Start .am/.de" << endl;
-#endif
                     c+=j;
                     char *next_line;
                     sl = fill_words(c, wordlist, &words, true, &next_line);
@@ -4344,9 +4251,7 @@ static char *scan_request(char *c)
                         (*it).m_output=macro;
                     }
                     c=skip_till_newline(c);
-#ifndef SIMPLE_MAN2HTML
                     kdDebug(7107) << "End .am/.de" << endl;
-#endif
                     break;
                 }
                 case REQ_Bl: // mdoc(7) "Begin List"
@@ -4419,7 +4324,7 @@ static char *scan_request(char *c)
                     if (dl_set[itemdepth] & BL_DESC_LIST)
                     {
                         out_html("<DT>");
-                        out_html(set_font('B'));
+                        out_html(set_font("B"));
                         if (*c=='\n')
                         {
                             /* Don't allow embedded comms after a newline */
@@ -4431,7 +4336,7 @@ static char *scan_request(char *c)
                             /* Do allow embedded comms on the same line. */
                             c=scan_troff_mandoc(c,1,NULL);
                         }
-                        out_html(set_font('R'));
+                        out_html(set_font("R"));
                         out_html(NEWLINE);
                         out_html("<DD>");
                     }
@@ -4655,7 +4560,7 @@ static char *scan_request(char *c)
                     trans_char(c,'"','\a');
                     c+=j;
                     sl=fill_words(c, wordlist, &words, true, &c);
-                    out_html(set_font('B'));
+                    out_html(set_font("B"));
                     if (!words)
                     {
                         out_html("-"); // stdin or stdout
@@ -4677,7 +4582,7 @@ static char *scan_request(char *c)
                             }
                         }
                     }
-                    out_html(set_font('R'));
+                    out_html(set_font("R"));
                     out_html(NEWLINE);
                     if (fillout)
                         curpos++;
@@ -4734,10 +4639,10 @@ static char *scan_request(char *c)
                     trans_char(c,'"','\a');
                     c=c+j;
                     if (*c=='\n') c++;
-                    out_html(set_font('R'));
+                    out_html(set_font("R"));
                     out_html("[");
                     c=scan_troff_mandoc(c, 1, NULL);
-                    out_html(set_font('R'));
+                    out_html(set_font("R"));
                     out_html("]");
                     out_html(NEWLINE);
                     if (fillout)
@@ -4751,7 +4656,7 @@ static char *scan_request(char *c)
                     trans_char(c,'"','\a');
                     c=c+j;
                     if (*c=='\n') c++;
-                    out_html(set_font('R'));
+                    out_html(set_font("R"));
                     out_html("[");
                     c=scan_troff_mandoc(c, 1, NULL);
                     if (fillout)
@@ -4765,7 +4670,7 @@ static char *scan_request(char *c)
                     trans_char(c,'"','\a');
                     c=c+j;
                     c=scan_troff_mandoc(c, 1, NULL);
-                    out_html(set_font('R'));
+                    out_html(set_font("R"));
                     out_html("]");
                     if (fillout)
                         curpos++;
@@ -4807,7 +4712,7 @@ static char *scan_request(char *c)
                 case REQ_Ar:	/* mdoc(7) */
                 {
                     /* parse one line in italics */
-                    out_html(set_font('I'));
+                    out_html(set_font("I"));
                     trans_char(c,'"','\a');
                     c=c+j;
                     if (*c=='\n')
@@ -4817,7 +4722,7 @@ static char *scan_request(char *c)
                     }
                     else
                         c=scan_troff_mandoc(c, 1, NULL);
-                    out_html(set_font('R'));
+                    out_html(set_font("R"));
                     out_html(NEWLINE);
                     if (fillout)
                         curpos++;
@@ -4845,12 +4750,12 @@ static char *scan_request(char *c)
                 case REQ_Xc:	/* mdoc(7) */
                 {
                     /* parse one line in italics */
-                    out_html(set_font('I'));
+                    out_html(set_font("I"));
                     trans_char(c,'"','\a');
                     c=c+j;
                     if (*c=='\n') c++;
                     c=scan_troff_mandoc(c, 1, NULL);
-                    out_html(set_font('R'));
+                    out_html(set_font("R"));
                     out_html(NEWLINE);
                     if (fillout)
                         curpos++;
@@ -4901,14 +4806,14 @@ static char *scan_request(char *c)
                     }
                     mandoc_name_count++;
         
-                    out_html(set_font('B'));
+                    out_html(set_font("B"));
                     // ### FIXME: fill_words must be used
                     while (*c == ' '|| *c == '\t') c++;
                     if ((tolower(*c) >= 'a' && tolower(*c) <= 'z' ) || (*c >= '0' && *c <= '9'))
                     {
                         // alphanumeric argument
                         c=scan_troff_mandoc(c, 1, NULL);
-                        out_html(set_font('R'));
+                        out_html(set_font("R"));
                         out_html(NEWLINE);
                     }
                     else
@@ -4918,7 +4823,7 @@ static char *scan_request(char *c)
                         * too many commands that do this.
                         */
                         out_html(mandoc_name);
-                        out_html(set_font('R'));
+                        out_html(set_font("R"));
                     }
 
                     if (fillout)
@@ -4935,12 +4840,12 @@ static char *scan_request(char *c)
                 case REQ_Sy:    /* mdoc(7) */
                 {
                     /* parse one line in bold */
-                    out_html(set_font('B'));
+                    out_html(set_font("B"));
                     trans_char(c,'"','\a');
                     c=c+j;
                     if (*c=='\n') c++;
                     c=scan_troff_mandoc(c, 1, NULL);
-                    out_html(set_font('R'));
+                    out_html(set_font("R"));
                     out_html(NEWLINE);
                     if (fillout)
                         curpos++;
@@ -4960,9 +4865,9 @@ static char *scan_request(char *c)
                     trans_char(c,'"','\a');
                     c=c+j;
                     if (*c=='\n') c++;
-                    out_html(set_font('B'));
+                    out_html(set_font("B"));
                     c=scan_troff_mandoc(c, 1, NULL);
-                    out_html(set_font('R'));
+                    out_html(set_font("R"));
                     out_html(NEWLINE);
                     if (fillout)
                         curpos++;
@@ -4993,10 +4898,10 @@ static char *scan_request(char *c)
                 case REQ_perc_T:
                 {
                     c=c+j;
-                    out_html(set_font('I'));
+                    out_html(set_font("I"));
                     if (*c=='\n') c++;
                     c=scan_troff(c, 1, NULL); /* Don't allow embedded mandoc coms */
-                    out_html(set_font('R'));
+                    out_html(set_font("R"));
                     if (fillout)
                         curpos++;
                     else
@@ -5076,117 +4981,87 @@ static char *scan_request(char *c)
                      * However to make it simplier, we only copy the string.
                      */
                     // Be careful: unlike .rn, the destination is first, origin is second
-#ifndef SIMPLE_MAN2HTML
                     kdDebug(7107) << "start .als" << endl;
-#endif
                     c+=j;
                     const QCString name ( scan_identifier( c ) );
                     if ( name.isEmpty() )
                     {
-#ifndef SIMPLE_MAN2HTML
                             kdDebug(7107) << "EXCEPTION: empty destination string to alias" << endl;
-#endif
                             break;
                     }
                     while (*c && isspace(*c) && *c!='\n') ++c;
                     const QCString name2 ( scan_identifier ( c ) );
                     if ( name2.isEmpty() )
                     {
-#ifndef SIMPLE_MAN2HTML
                             kdDebug(7107) << "EXCEPTION: empty origin string to alias" << endl;
-#endif
                             break;
                     }
-#ifndef SIMPLE_MAN2HTML
                     kdDebug(7107) << "Alias " << name2 << " to " << name << endl;
-#endif
                     c=skip_till_newline(c);
                     if ( name == name2 )
                     {
-#ifndef SIMPLE_MAN2HTML
                         kdDebug(7107) << "EXCEPTION: same origin and destination string to alias: " << name << endl;
-#endif
                         break;
                     }
                     // Second parametr is origin (unlike in .rn)
                     QMap<QCString,StringDefinition>::iterator it=s_stringDefinitionMap.find(name2);
                     if (it==s_stringDefinitionMap.end())
                     {
-#ifndef SIMPLE_MAN2HTML
                         kdDebug(7107) << "EXCEPTION: cannot find string to make alias: " << name2 << endl;
-#endif
                     }
                     else
                     {
                         StringDefinition def=(*it);
                         s_stringDefinitionMap.insert(name,def);
                     }
-#ifndef SIMPLE_MAN2HTML
                     kdDebug(7107) << "end .als" << endl;
-#endif
                     break;
                 }
                 case REQ_rr: // groff(7) "Remove number Register"
                 {
-#ifndef SIMPLE_MAN2HTML
                     kdDebug(7107) << "start .rr" << endl;
-#endif
                     c += j;
                     const QCString name ( scan_identifier( c ) );
                     if ( name.isEmpty() )
                     {
-#ifndef SIMPLE_MAN2HTML
                             kdDebug(7107) << "EXCEPTION: empty origin string to remove/rename: " << endl;
-#endif
                             break;
                     }
                     c = skip_till_newline( c );
                     QMap <QCString, NumberDefinition>::iterator it = s_numberDefinitionMap.find( name );
                     if ( it == s_numberDefinitionMap.end() )
                     {
-#ifndef SIMPLE_MAN2HTML
                             kdDebug(7107) << "EXCEPTION: trying to remove inexistant number register: " << endl;
-#endif
                     }
                     else
                     {
                         s_numberDefinitionMap.remove( name );
                     }
-#ifndef SIMPLE_MAN2HTML
                     kdDebug(7107) << "end .rr" << endl;
-#endif
                     break;
                 }
                 case REQ_rnn: // groff(7) "ReName Number register"
                 {
-#ifndef SIMPLE_MAN2HTML
                     kdDebug(7107) << "start .rnn" << endl;
-#endif
                     c+=j;
                     const QCString name ( scan_identifier ( c ) );
                     if ( name.isEmpty() )
                     {
-#ifndef SIMPLE_MAN2HTML
                             kdDebug(7107) << "EXCEPTION: empty origin to remove/rename number register" << endl;
-#endif
                             break;
                     }
                     while (*c && isspace(*c) && *c!='\n') ++c;
                     const QCString name2 ( scan_identifier ( c ) );
                     if ( name2.isEmpty() )
                     {
-#ifndef SIMPLE_MAN2HTML
                         kdDebug(7107) << "EXCEPTION: empty destination to rename number register " << endl;
-#endif
                         break;
                     }
                     c = skip_till_newline( c );
                     QMap<QCString,NumberDefinition>::iterator it=s_numberDefinitionMap.find(name);
                     if (it==s_numberDefinitionMap.end())
                     {
-#ifndef SIMPLE_MAN2HTML
                         kdDebug(7107) << "EXCEPTION: cannot find number register to rename: " << name << endl;
-#endif
                     }
                     else
                     {
@@ -5194,9 +5069,7 @@ static char *scan_request(char *c)
                         s_numberDefinitionMap.remove(name); // ### QT4: removeAll
                         s_numberDefinitionMap.insert(name2,def);
                     }
-#ifndef SIMPLE_MAN2HTML
                     kdDebug(7107) << "end .rnn" << endl;
-#endif
                     break;
                 }
                 case REQ_aln: // groff(7) "ALias Number Register"
@@ -5206,54 +5079,40 @@ static char *scan_request(char *c)
                     * However to make it simplier, we only copy the string.
                     */
                     // Be careful: unlike .rnn, the destination is first, origin is second
-#ifndef SIMPLE_MAN2HTML
                     kdDebug(7107) << "start .aln" << endl;
-#endif
                     c+=j;
                     const QCString name ( scan_identifier( c ) );
                     if ( name.isEmpty() )
                     {
-#ifndef SIMPLE_MAN2HTML
                             kdDebug(7107) << "EXCEPTION: empty destination number register to alias" << endl;
-#endif
                             break;
                     }
                     while (*c && isspace(*c) && *c!='\n') ++c;
                     const QCString name2 ( scan_identifier( c ) );
                     if ( name2.isEmpty() )
                     {
-#ifndef SIMPLE_MAN2HTML
                             kdDebug(7107) << "EXCEPTION: empty origin number register to alias" << endl;
-#endif
                             break;
                     }
-#ifndef SIMPLE_MAN2HTML
                     kdDebug(7107) << "Alias " << name2 << " to " << name << endl;
-#endif
                     c = skip_till_newline( c );
                     if ( name == name2 )
                     {
-#ifndef SIMPLE_MAN2HTML
                         kdDebug(7107) << "EXCEPTION: same origin and destination number register to alias: " << name << endl;
-#endif
                         break;
                     }
                     // Second parametr is origin (unlike in .rnn)
                     QMap<QCString,NumberDefinition>::iterator it=s_numberDefinitionMap.find(name2);
                     if (it==s_numberDefinitionMap.end())
                     {
-#ifndef SIMPLE_MAN2HTML
                         kdDebug(7107) << "EXCEPTION: cannot find string to make alias: " << name2 << endl;
-#endif
                     }
                     else
                     {
                         NumberDefinition def=(*it);
                         s_numberDefinitionMap.insert(name,def);
                     }
-#ifndef SIMPLE_MAN2HTML
                     kdDebug(7107) << "end .aln" << endl;
-#endif
                     break;
                 }
                 case REQ_shift: // groff(7) "SHIFT parameter"
@@ -5304,7 +5163,7 @@ static char *scan_request(char *c)
                         c=c+j;
                         trans_char(c,'"','\a');
                         if (*c=='\n') c++;
-                        out_html(set_font('R'));
+                        out_html(set_font("R"));
                         c=scan_troff(c, 1, NULL);
                         out_html(NEWLINE);
                         if (fillout)
@@ -5554,9 +5413,7 @@ void scan_man_page(const char *man_page)
     if (!man_page)
         return;
 
-#ifndef SIMPLE_MAN2HTML
     kdDebug(7107) << "Start scanning man page" << endl;
-#endif
 
     // ## Do more init
     // Unlike man2html, we actually call this several times, hence the need to
@@ -5584,15 +5441,11 @@ void scan_man_page(const char *man_page)
     qstrcpy(buf+1, man_page);
     buf[0] = '\n';
 
-#ifndef SIMPLE_MAN2HTML
     kdDebug(7107) << "Parse man page" << endl;
-#endif
 
     scan_troff(buf+1,0,NULL);
 
-#ifndef SIMPLE_MAN2HTML
     kdDebug(7107) << "Man page parsed!" << endl;
-#endif
 
     while (itemdepth || dl_set[itemdepth]) {
         out_html("</DL>\n");
@@ -5668,7 +5521,7 @@ void scan_man_page(const char *man_page)
 #ifdef SIMPLE_MAN2HTML
 void output_real(const char *insert)
 {
-    printf("%s", insert);
+    cout << insert << endl;
 }
 
 char *read_man_page(const char *filename)
@@ -5723,7 +5576,7 @@ int main(int argc, char **argv)
         DIR *dir = opendir(".");
         struct dirent *ent;
         while ((ent = readdir(dir)) != NULL) {
-            fprintf(stderr, "converting %s\n", ent->d_name);
+            cerr << "converting " << ent->d_name << endl;
             char *buf = read_man_page(ent->d_name);
             if (buf) {
                 scan_man_page(buf);
