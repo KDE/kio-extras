@@ -1623,6 +1623,33 @@ static QCString scan_named_font( char*& c )
         return "";
 }
 
+static QCString scan_number_code( char*& c )
+{
+    QCString number;
+    if ( *c != '\'' )
+        return "";
+    while ( *c && ( *c != '\n' ) && ( *c != '\'' ) )
+    {
+        number += *c;
+        c++;
+    }
+    bool ok = false;
+    unsigned int result = number.toUInt( &ok );
+    if ( ( result < ' ' ) || ( result > 65535 ) )
+        return "";
+    else if ( result == '\t' )
+    {
+        curpos += 8;
+        curpos &= 0xfff8;
+        return "\t";
+    }
+    number.setNum( result );
+    number.prepend( "&#" );
+    number.append( ";" );
+    curpos ++;
+    return number;
+}
+
 // ### TODO known missing escapes from groff(7):
 // ### TODO \& \! \) \: \R
 
@@ -1774,7 +1801,14 @@ static char *scan_escape_direct( char *c, QCString& cstr )
             cstr="\\";
         break;
     }
-    case 'N': // ### FIXME should give an Unicode character &#9999;
+    case 'N':
+    {
+        c++;
+        cstr = scan_number_code( c );
+        cplusplus = false;
+        break;
+    }
+#if 0
     {
 	if (*++c) c++; // c += 2
         if (sscanf(c, "%d", &i) != 1) // (### FIXME ugly!)
@@ -1789,6 +1823,7 @@ static char *scan_escape_direct( char *c, QCString& cstr )
 	}
 	break;
     }
+#endif
      case '\'': cstr = "&acute;";curpos++; break; // groff(7) ### TODO verify
      case '`': cstr = "`";curpos++; break; // groff(7)
      case '-': cstr = "-";curpos++; break; // groff(7)
@@ -2780,8 +2815,42 @@ static void request_while( char*& c, int j, bool mdoc )
     kdDebug(7107) << "Ending .while" << endl;
 }
 
+const int max_wordlist = 100;
+
+/// Processing mixed fonts reqiests like .BI
+static void request_mixed_fonts( char*& c, int j, const char* font1, const char* font2, const bool mode, const bool inFMode )
+{
+    c += j;
+    if (*c=='\n') c++;
+    int words;
+    char *wordlist[max_wordlist];
+    fill_words(c, wordlist, &words, true, &c);
+    for (int i=0; i<words; i++)
+    {
+        if ((mode) || (inFMode))
+        {
+            out_html(" ");
+            curpos++;
+        }
+        wordlist[i][-1]=' ';
+        out_html( set_font( (i&1) ? font2 : font1 ) );
+        scan_troff(wordlist[i],1,NULL);
+    }
+    out_html(set_font("R"));
+    if (mode)
+    {
+        out_html(" ]");
+        curpos++;
+    }
+    out_html(NEWLINE);
+    if (!fillout)
+        curpos=0;
+    else
+        curpos++;
+}
+
 // Some known missing requests from man(7):
-// - see "safe subset"
+// - see "safe subset": .ft (broken), .tr
 
 // Some known missing requests from mdoc(7):
 // - start or end of quotings
@@ -2939,6 +3008,7 @@ static void request_while( char*& c, int j, bool mdoc )
 #define REQ_aln      145 // groff(7) "ALias Number register"
 #define REQ_shift    146 // groff(7) "SHIFT parameter"
 #define REQ_while    147 // groff(7) "WHILE loop"
+#define REQ_do       148 // groff(7) "DO command"
 
 static int get_request(char *req, int len)
 {
@@ -2955,7 +3025,7 @@ static int get_request(char *req, int len)
         "Cd", "Cm", "Ic", "Ms", "Or", "Sy", "Dv", "Ev", "Fr", "Li", "No", "Ns",
         "Tn", "nN", "%A", "%D", "%N", "%O", "%P", "%Q", "%V", "%B", "%J", "%R",
         "%T", "An", "Aq", "Bq", "Qq", "UR", "UE", "UN", "troff", "nroff", "als",
-        "rr", "rnn", "aln", "shift", "while", 0 };
+        "rr", "rnn", "aln", "shift", "while", "do", 0 };
     int r = 0;
     while (requests[r] && qstrncmp(req, requests[r], len)) r++;
     return requests[r] ? r : REQ_UNKNOWN;
@@ -3027,7 +3097,6 @@ static char *scan_request(char *c)
     int i=0;
     bool mode=false;
     char *h=0;
-    const int max_wordlist=100;
     char *wordlist[max_wordlist];
     int words;
     char *sl;
@@ -3048,8 +3117,6 @@ static char *scan_request(char *c)
     }
     else
     {
-        int j;
-        if (c[1]=='\n') j=1; else j=2; // ### TODO: remove, as i is over-written later
         int nlen = 0;
         QCString macroName;
         while (c[nlen] && (c[nlen] != ' ') && (c[nlen] != '\t') && (c[nlen] != '\n') && (c[nlen] != escapesym))
@@ -3057,7 +3124,7 @@ static char *scan_request(char *c)
             macroName+=c[nlen];
             nlen++;
         }
-        j = nlen;
+        int j = nlen;
         while (c[j] && c[j]==' ' || c[j]=='\t') j++;
         /* search macro database of self-defined macros */
         QMap<QCString,StringDefinition>::iterator it=s_stringDefinitionMap.find(macroName);
@@ -3273,7 +3340,7 @@ static char *scan_request(char *c)
                             {
                                 out_html(line);
                                 out_html("<BR>\n");
-                                delete [] line;
+                                delete [] line; // ### FIXME: memory leak!
                                 i--;
                             }
                         }
@@ -3333,7 +3400,8 @@ static char *scan_request(char *c)
                 {
                     c=c+j;
                     if (*c=='\n')
-                        out_html(set_font("R"));
+                        out_html(set_font("P"));
+                    // ### FIXME
 #if 0
                     else
                     {
@@ -3730,59 +3798,49 @@ static char *scan_request(char *c)
                 }
                 
                 case REQ_OP:  /* groff manpages use this construction */
+                {
                     /* .OP a b : [ <B>a</B> <I>b</I> ] */
                     mode=true;
-                    c[0]='B'; c[1]='I';
                     out_html(set_font("R"));
                     out_html("[");
                     curpos++;
+                    request_mixed_fonts( c, j, "B", "I", true, false );
+                    break;
                     // Do not break!
+                }
                 case REQ_Ft:       //perhaps "Function return type"
+                {
+                    request_mixed_fonts( c, j, "B", "I", false, true );
+                    break;
+                }
                 case REQ_BR:
+                {
+                    request_mixed_fonts( c, j, "B", "R", false, false );
+                    break;
+                }
                 case REQ_BI:
+                {
+                    request_mixed_fonts( c, j, "B", "I", false, false );
+                    break;
+                }
                 case REQ_IB:
+                {
+                    request_mixed_fonts( c, j, "I", "B", false, false );
+                    break;
+                }
                 case REQ_IR:
+                {
+                    request_mixed_fonts( c, j, "I", "R", false, false );
+                    break;
+                }
                 case REQ_RB:
+                {
+                    request_mixed_fonts( c, j, "R", "B", false, false );
+                    break;
+                }
                 case REQ_RI:
                 {
-                    // ### VERIFY
-                    bool inFMode=(c[0]=='F');
-                    if (inFMode)
-                    {
-                        c[0]='B';
-                        c[1]='I';
-                    };
-                    char font[2] ;
-                    font[0] = c[0];
-                    font[1] = c[1];
-                    c=c+j;
-                    if (*c=='\n') c++;
-                    sl=fill_words(c, wordlist, &words, true, &c);
-                    /* .BR name (section)
-                     * indicates a link. It will be added in the output routine.
-                     */
-                    for (i=0; i<words; i++)
-                    {
-                        if ((mode) || (inFMode))
-                        {
-                            out_html(" ");
-                            curpos++;
-                        }
-                        wordlist[i][-1]=' ';
-                        out_html(set_font(font[i&1]));
-                        scan_troff(wordlist[i],1,NULL);
-                    }
-                    out_html(set_font("R"));
-                    if (mode)
-                    {
-                        out_html(" ]");
-                        curpos++;
-                    }
-                    out_html(NEWLINE);
-                    if (!fillout)
-                        curpos=0;
-                    else
-                        curpos++;
+                    request_mixed_fonts( c, j, "R", "I", false, false );
                     break;
                 }
                 case REQ_DT: // man(7) "Default Tabulators"
@@ -5165,6 +5223,15 @@ static char *scan_request(char *c)
                 case REQ_while: // groff(7) "WHILE loop"
                 {
                     request_while( c, j, mandoc_command );
+                    break;
+                }
+                case REQ_do: // groff(7) "DO command"
+                {
+                    // HACK: we just replace do by a \n and a .
+                    *c = '\n';
+                    c++;
+                    *c = '.';
+                    // The . will be treated as next character
                     break;
                 }
                 default:
