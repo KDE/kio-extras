@@ -315,7 +315,7 @@ static void InitStringDefinitions( void )
     s_stringDefinitionMap.insert( "Gt", StringDefinition( 1, "&gt;" ) );
     s_stringDefinitionMap.insert( "Pm", StringDefinition( 1, "&plusmn;" ) );
     s_stringDefinitionMap.insert( "If", StringDefinition( 1, "&infin;" ) );
-    s_stringDefinitionMap.insert( "Na", StringDefinition( 3, "NaN" ) ); // Not a Number ### TODO: does it exist in Unicode?
+    s_stringDefinitionMap.insert( "Na", StringDefinition( 3, "NaN" ) );
     s_stringDefinitionMap.insert( "Ba", StringDefinition( 1, "|" ) );
     // end mdoc-only
     // man(7)
@@ -778,7 +778,8 @@ static void add_links(char *c)
 	    f=idtest[j];
 	    /* check section */
 	    g=strchr(f,')');
-	    if (g!=NULL && (g-f)<12 && (isalnum(f[-1]) || f[-1]=='>') &&
+            // The character before f must alphanumeric, the end of a HTML tag or the end of a &nbsp;
+            if (g!=NULL && f>c && (g-f)<12 && (isalnum(f[-1]) || f[-1]=='>' || ( f[-1] == ';' ) ) &&
 		isdigit(f[1]) && f[1]!='0' && ((g-f)<=2 || isalpha(f[2])))
 	    {
 		ok = TRUE;
@@ -792,14 +793,12 @@ static void add_links(char *c)
 		    }
 		}
 	    }
-	    else ok = FALSE;
+            else
+                ok = false;
 
-	    if (ok)
-	    {
-		/* this might be a link */
-		h=f-1;
-  // ### TODO
-#if 0
+            h = f - 1;
+            if ( ok )
+            {
                 // Skip &nbsp;
                 kdDebug(7107) << "BEFORE SECTION:" <<  *h << endl;
                 if ( ( h > c + 5 ) && ( ! memcmp( h-5, "&nbsp;", 6 ) ) )
@@ -807,7 +806,16 @@ static void add_links(char *c)
                     h -= 6;
                     kdDebug(7107) << "Skip &nbsp;" << endl;
                 }
-#endif
+                else if ( *h == ';' )
+                {
+                    // Not a non-breaking space, so probably not ok
+                    ok = false;
+                }
+            }
+            
+	    if (ok)
+	    {
+		/* this might be a link */
 		/* skip html makeup */
 		while (h>c && *h=='>') {
 		    while (h!=c && *h!='<') h--;
