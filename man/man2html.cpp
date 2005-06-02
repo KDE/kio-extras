@@ -2303,7 +2303,7 @@ static char *scan_table(char *c)
     return c;
 }
 
-static char *scan_expression(char *c, int *result)
+static char *scan_expression( char *c, int *result, const unsigned int numLoop )
 {
     int value=0,value2,sign=1,opex=0;
     char oper='c';
@@ -2350,11 +2350,11 @@ static char *scan_expression(char *c, int *result)
 	if (tcmp) c=c+3;
 	c++;
     } else {
-	while (*c && !isspace(*c) && *c!=')' && opex >= 0) {
+        while (*c && ( !isspace(*c) || ( numLoop > 0 ) ) && *c!=')' && opex >= 0) {
 	    opex=0;
 	    switch (*c) {
 	    case '(':
-		c=scan_expression(c+1, &value2);
+                c = scan_expression( c + 1, &value2, numLoop + 1 );
 		value2=sign*value2;
 		opex=1;
 		break;
@@ -2444,6 +2444,11 @@ static char *scan_expression(char *c, int *result)
     }
     *result=value;
     return c;
+}
+
+static char *scan_expression(char *c, int *result)
+{
+    return scan_expression( c, result, 0 );
 }
 
 static void trans_char(char *c, char s, char t)
@@ -2745,8 +2750,10 @@ static void request_while( char*& c, int j, bool mdoc )
     {
         // Unlike for a normal macro, we have the condition at start, so we do not need to prepend extra bytes
         char* liveloop = qstrdup( macro.data() );
-            kdDebug(7107) << "Scanning .while condition" << endl;
+        kdDebug(7107) << "Scanning .while condition" << endl;
+        kdDebug(7101) << "Loop macro " << liveloop << endl;
         char* end_expression = scan_expression( liveloop, &result );
+        kdDebug(7101) << "After " << end_expression << endl;
         if ( result )
         {
             kdDebug(7107) << "New .while iteration" << endl;
