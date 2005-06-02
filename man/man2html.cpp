@@ -284,6 +284,13 @@ static void fill_old_character_definitions( void );
 static void InitCharacterDefinitions( void )
 {
     fill_old_character_definitions();
+    // ### HACK: as we are converting to HTML too early, define characters with HTML references
+    s_characterDefinitionMap.insert( "&lt;-", StringDefinition( 1, "&larr;" ) ); // <-
+    s_characterDefinitionMap.insert( "-&gt;", StringDefinition( 1, "&rarr;" ) ); // ->
+    s_characterDefinitionMap.insert( "&lt;&gt;", StringDefinition( 1, "&harr;" ) ); // <>
+    s_characterDefinitionMap.insert( "&lt;=", StringDefinition( 1, "&le;" ) ); // <=
+    s_characterDefinitionMap.insert( "&gt;=", StringDefinition( 1, "&ge;" ) ); // >=
+    // End HACK
 }
 
 /**
@@ -1135,8 +1142,8 @@ static QCString scan_named_character( char*& c )
         {
             QCString cstr;
             c = scan_escape_direct( c+2, cstr );
-            // ### FIXME: check if we have really 2 characters (and only 2, not more either)
-            name = cstr.left(2);
+            // ### HACK: as we convert characters too early to HTML, we need to support more than 2 characters here and assume that all characters passed by the variable are to be used.
+            name = cstr;
         }
         else
         {
@@ -1239,8 +1246,8 @@ static QCString scan_named_string(char*& c)
             QCString cstr;
             c = scan_escape_direct( c+2, cstr );
             kdDebug(7107) << "\(" << cstr << endl;
-            // ### FIXME: check if we have really 2 characters (and only 2, not more either)
-            name = cstr.left(2);
+            // ### HACK: as we convert characters too early to HTML, we need to support more than 2 characters here and assume that all characters passed by the variable are to be used.
+            name = cstr;
         }
         else
         {
@@ -1530,8 +1537,8 @@ static QCString scan_named_font( char*& c )
             QCString cstr;
             c = scan_escape_direct( c+2, cstr );
             kdDebug(7107) << "\(" << cstr << endl;
-            // ### FIXME: check if we have really 2 characters (and only 2, not more either)
-            name = cstr.left(2);
+            // ### HACK: as we convert characters too early to HTML, we need to support more than 2 characters here and assume that all characters passed by the variable are to be used.
+            name = cstr;
         }
         else
         {
@@ -5521,7 +5528,7 @@ void scan_man_page(const char *man_page)
 #ifdef SIMPLE_MAN2HTML
 void output_real(const char *insert)
 {
-    cout << insert << endl;
+    cout << insert;
 }
 
 char *read_man_page(const char *filename)
