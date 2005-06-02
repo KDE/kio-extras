@@ -59,6 +59,7 @@
 #define THUMBNAIL_HACK (1)
 
 #ifdef THUMBNAIL_HACK
+# include <qfileinfo.h>
 # include <ktrader.h>
 #endif
 
@@ -142,6 +143,26 @@ void ThumbnailProtocol::get(const KURL &url)
     bool direct=false;
     if (m_mimeType.isEmpty())
     {
+        kdDebug(7115) << "PATH: " << url.path() << endl;
+        QFileInfo info(url.path());
+        if (info.isDir())
+        {
+            // We cannot process a directory
+            error(KIO::ERR_IS_DIRECTORY,url.path());
+            return;
+        }
+        else if (!info.exists())
+        {
+            // The file does not exist
+            error(KIO::ERR_DOES_NOT_EXIST,url.path());
+            return;
+        }
+        else if (!info.isReadable())
+        {
+            // The file is not readable!
+            error(KIO::ERR_COULD_NOT_READ,url.path());
+            return;
+        }
         m_mimeType = KMimeType::findByURL(url)->name();
         kdDebug(7115) << "Guessing MIME Type:" << m_mimeType << endl;
         direct=true; // thumbnail: was probably called from Konqueror
