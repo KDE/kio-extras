@@ -140,11 +140,14 @@
 # include <stdio.h>
 # include <dirent.h>
 # include <sys/stat.h>
+# define kdDebug(x) cerr
 #else
 # include <qtextcodec.h>
 # include <kdebug.h>
 # include <kdeversion.h>
 #endif
+
+
 
 #include "man2html.h"
 
@@ -295,7 +298,7 @@ static void InitStringDefinitions( void )
     s_stringDefinitionMap.insert( "Lq", StringDefinition( 1, "&ldquo;" ) );
     s_stringDefinitionMap.insert( "ua", StringDefinition( 1, "&circ" ) ); // Note this is different from \(ua
     s_stringDefinitionMap.insert( "aa", StringDefinition( 1, "&acute;" ) );
-    s_stringDefinitionMap.insert( "ga", StringDefinition( 1, "&grave;" ) );
+    s_stringDefinitionMap.insert( "ga", StringDefinition( 1, "`" ) );
     s_stringDefinitionMap.insert( "q",  StringDefinition( 1, "&quot;" ) );
     s_stringDefinitionMap.insert( "Pi", StringDefinition( 1, "&pi;" ) );
     s_stringDefinitionMap.insert( "Ne", StringDefinition( 1, "&ne;" ) );
@@ -331,7 +334,7 @@ static void InitNumberDefinitions( void )
     // Groff seems to support Gregorian dates only
     QDate today( QDate::currentDate( Qt::LocalTime ) );
     s_numberDefinitionMap.insert( "year", today.year() ); // Y2K-correct year
-    s_numberDefinitionMap.insert( "yr", today.year() -1900 ); // Y2K-incorrect year
+    s_numberDefinitionMap.insert( "yr", today.year() - 1900 ); // Y2K-incorrect year
     s_numberDefinitionMap.insert( "mo", today.month() );
     s_numberDefinitionMap.insert( "dy", today.day() );
     s_numberDefinitionMap.insert( "dw", today.dayOfWeek() );
@@ -339,21 +342,6 @@ static void InitNumberDefinitions( void )
 
 
 #define V(A,B) ((A)*256+(B))
-
-#if 0 // unused, seems to be for index stuff
-static INTDEF standardint[] = {
-    { V('n',' '), s_nroff,0, NULL },
-    { V('t',' '), 1-s_nroff,0, NULL },
-    { V('o',' '), 1,0, NULL },
-    { V('e',' '), 0,0, NULL },
-    { V('.','l'), 70,0,NULL },
-    { V('.','$'), 0,0, NULL },
-    { V('.','A'), s_nroff,0, NULL },
-    { V('.','T'), 1-s_nroff,0, NULL },
-    { V('.','V'), 1,0, NULL }, /* the me package tests for this */
-    { 0, 0, 0, NULL } };
-#endif
-
 
 //used in expand_char, e.g. for "\(bu"
 // see groff_char(7) for list
@@ -803,6 +791,16 @@ static void add_links(char *c)
 	    {
 		/* this might be a link */
 		h=f-1;
+  // ### TODO
+#if 0
+                // Skip &nbsp;
+                kdDebug(7107) << "BEFORE SECTION:" <<  *h << endl;
+                if ( ( h > c + 5 ) && ( ! memcmp( h-5, "&nbsp;", 6 ) ) )
+                {
+                    h -= 6;
+                    kdDebug(7107) << "Skip &nbsp;" << endl;
+                }
+#endif
 		/* skip html makeup */
 		while (h>c && *h=='>') {
 		    while (h!=c && *h!='<') h--;
@@ -1028,7 +1026,7 @@ static QCString set_font( const QCString& name )
         // Courier
         else if ( name == "CR" )
             markup += "<span style=\"font-family:monospace\">";
-        else if ( name == "CW" )
+        else if ( name == "CW" ) // CW is used by pod2man(1) (alias PerlDoc)
             markup += "<span style=\"font-family:monospace\">";
         else if ( name == "CI" )
             markup += "<span style=\"font-family:monospace;font-style:italic\">";
@@ -1065,6 +1063,13 @@ static QCString set_font( const QCString& name )
     else
         current_font = "R"; // Still nothing, then it is 'R' (Regular)
     return markup;
+}
+
+/// \deprecated
+static QCString set_font( const char ch )
+{
+    const QCString name = &ch;
+    return set_font( name );
 }
 
 static QCString change_to_size(int nr)
@@ -1130,7 +1135,7 @@ static QCString scan_named_character( char*& c )
         }
         else
         {
-            name=c[1];
+            name+=c[1];
             name+=c[2];
             c+=3;
         }
@@ -1244,7 +1249,7 @@ static QCString scan_named_string(char*& c)
         }
         else
         {
-            name=c[1];
+            name+=c[1];
             name+=c[2];
             c+=3;
         }
@@ -1288,7 +1293,7 @@ static QCString scan_named_string(char*& c)
     else
     {
         // \*a Name of one character
-        name=c[0];
+        name+=*c;
         c++;
     }
     // Now we have the name, let us find it between the string names
@@ -1504,13 +1509,13 @@ static int scan_number_register( char*& c)
             sign = -1;
             c++;
         }
-        name=c[0];
+        name+=c[0];
         name+=c[1];
         c+=2;
     }
     else
     {
-        name=c[0];
+        name = *c;
         c++;
     }
     if ( name[0] == '.' )
@@ -1551,7 +1556,7 @@ static QCString scan_named_font( char*& c )
         }
         else
         {
-            name=c[1];
+            name+=c[1];
             name+=c[2];
             c+=3;
         }
@@ -1594,22 +1599,30 @@ static QCString scan_named_font( char*& c )
     else
     {
         // \fa Font name with one character or one digit
-        name=c[0];
+        // ### HACK do *not* use:  name = *c;  or name would be empty
+        name += *c;
         c++;
     }
+    kdDebug(7107) << "FONT NAME: " << name << endl;
     // Now we have the name, let us find the font
     bool ok = false;
     const unsigned int number = name.toUInt( &ok );
-    if ( ok & number < 5 )
+    if ( ok )
     {
-        const char* fonts[] = { "R", "I", "B", "BI", "CR" }; // Regular, Italic, Bold, Bold Italic, Courier regular
-        name = fonts[ number ];
+        if ( number < 5 )
+        {
+            const char* fonts[] = { "R", "I", "B", "BI", "CR" }; // Regular, Italic, Bold, Bold Italic, Courier regular
+            name = fonts[ number ];
+        }
+        else
+        {
+            kdDebug(7107) << "EXCEPTION: font has too big number: " << name << " => " << number << endl;
+            name = "R"; // Let assume Regular
+        }
     }
-    if ( name.isEmpty() || number > 4 )
+    else if ( name.isEmpty() )
     {
-#ifndef SIMPLE_MAN2HTML
         kdDebug(7107) << "EXCEPTION: font has no name: " << name << endl;
-#endif
         name = "R"; // Let assume Regular
     }
     if ( !skip_escape )
@@ -1656,7 +1669,7 @@ static char *scan_escape_direct( char *c, QCString& cstr )
             c--;
         }
         else
-            cstr = *c;
+            cstr = QCString( c, 1 );
         break;
     }
     case 'k': c++; if (*c=='(') c+=2; // ### FIXME \k[REG] exists too
@@ -1785,7 +1798,7 @@ static char *scan_escape_direct( char *c, QCString& cstr )
 	break;
     }
      case '\'': cstr = "&acute;";curpos++; break; // groff(7) ### TODO verify
-     case '`': cstr = "&grave;";curpos++; break; // groff(7)
+     case '`': cstr = "`";curpos++; break; // groff(7)
      case '-': cstr = "-";curpos++; break; // groff(7)
      case '.': cstr = ".";curpos++; break; // groff(7)
      default: cstr = *c; curpos++; break;
@@ -3001,7 +3014,7 @@ static bool is_identifier_char( char c )
 static QCString scan_identifier( char*& c )
 {
     char* h = c; // help pointer
-    // ### TODO Groff seems to eat nearly evrything as identifier name (info:/groff/Identifiers)
+    // ### TODO Groff seems to eat nearly everything as identifier name (info:/groff/Identifiers)
     while ( *h && *h != '\a' && *h != '\n' && is_identifier_char( *h ) )
         ++h;
     const char tempchar = *h;
@@ -4060,7 +4073,7 @@ static char *scan_request(char *c)
                             out_html( "<link rel=\"stylesheet\" href=\"");
                             out_html(htmlPath);
                             out_html("/kde-default.css\" type=\"text/css\">\n" );
-                            out_html( "<meta name=\"Mandoc Type\" content=\"");
+                            out_html( "<meta name=\"ROFF Type\" content=\"");
                             if (mandoc_command)
                                 out_html("mdoc");
                             else
