@@ -2850,7 +2850,7 @@ static void request_mixed_fonts( char*& c, int j, const char* font1, const char*
 }
 
 // Some known missing requests from man(7):
-// - see "safe subset": .ft (broken), .tr
+// - see "safe subset": .tr
 
 // Some known missing requests from mdoc(7):
 // - start or end of quotings
@@ -2873,7 +2873,7 @@ static void request_mixed_fonts( char*& c, int j, const char* font1, const char*
 #define REQ_ex        10
 #define REQ_fc        11
 #define REQ_fi        12
-#define REQ_ft        13
+#define REQ_ft        13  // groff(7) "FonT"
 #define REQ_el        14
 #define REQ_ie        15
 #define REQ_if        16
@@ -3396,31 +3396,20 @@ static char *scan_request(char *c)
                     c=skip_till_newline(c);
                     break;
                 }
-                case REQ_ft: // groff(7) "previous FonT"
+                case REQ_ft: // groff(7) "FonT"
                 {
-                    c=c+j;
-                    if (*c=='\n')
-                        out_html(set_font("P"));
-                    // ### FIXME
-#if 0
+                    c += j;
+                    h = skip_till_newline( c );
+                    const char oldChar = *h;
+                    *h = 0;
+                    const QCString name = c;
+                    // ### TODO: name might contain a variable
+                    if ( name.isEmpty() )
+                        out_html( set_font( "P" ) ); // Previous font
                     else
-                    {
-                        // ### FIXME
-                        if (*c==escapesym)
-                        {
-                            int fn;
-                            c=scan_expression(c, &fn);
-                            c--;
-                            out_html(set_font(fn));
-                        }
-                        else
-                        {
-                            out_html(set_font(*c));
-                            c++;
-                        }
-                    }
-#endif
-                    c=skip_till_newline(c);
+                        out_html( set_font( name ) );
+                    *h = oldChar;
+                    c = h;
                     break;
                 }
                 case REQ_el: // groff(7) "ELse"
@@ -3636,9 +3625,7 @@ static char *scan_request(char *c)
                 case REQ_Fd: // mdoc(7) "Function Definition" ### FIXME
                 {
                     // brackets and commas have to be inserted automatically
-                    char font[2];
-                    font[0] = 'B';
-                    font[1] = 'R'; // ### FIXME
+                    char* font[2] = { "B", "R" };
                     c+=j;
                     if (*c=='\n') c++;
                     char *eol=strchr(c,'\n');
@@ -3668,9 +3655,7 @@ static char *scan_request(char *c)
                 case REQ_Fn: // mdoc(7)  for "Function calls" ### FIXME
                 {
                     // brackets and commas have to be inserted automatically
-                    char font[2];
-                    font[0] = 'B';
-                    font[1] = 'R'; // ### FIXME
+                    char* font[2] = { "B", "R" };
                     c+=j;
                     if (*c=='\n') c++;
                     char *eol=strchr(c,'\n');
@@ -3710,9 +3695,7 @@ static char *scan_request(char *c)
                 }
                 case REQ_Fo: // mdoc(7) "Function definition Opening"
                 {
-                    char font[2];
-                    font[0] = 'B';
-                    font[1] = 'R'; // ### FIXME
+                    char* font[2] = { "B", "R" };
                     c+=j;
                     if (*c=='\n') c++;
                     char *eol=strchr(c,'\n');
@@ -3747,9 +3730,7 @@ static char *scan_request(char *c)
                     // .Fc has no parameter
                     c+=j;
                     c=skip_till_newline(c);
-                    char font[2];
-                    font[0] = 'B';
-                    font[1] = 'R'; // ### FIXME
+                    char* font[2] = { "B", "R" };
                     out_html(set_font(font[i&1]));
                     out_html(")");
                     out_html(set_font("R"));
@@ -3765,9 +3746,7 @@ static char *scan_request(char *c)
                 }
                 case REQ_Fa: // mdoc(7) "Function definition argument"
                 {
-                    char font[2] ;
-                    font[0] = 'B';
-                    font[1] = 'R'; // ### FIXME
+                    char* font[2] = { "B", "R" };
                     c+=j;
                     if (*c=='\n') c++;
                     sl=fill_words(c, wordlist, &words, true, &c);
