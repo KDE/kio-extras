@@ -3053,10 +3053,27 @@ static char* process_quote(char* c, int j, const char* open, const char* close)
     return c;
 }
 
-static bool is_identifier_char( char c )
+/**
+ * Is the char \p ch a puntuaction in sence of mdoc(7)
+ */
+static bool is_mdoc_punctuation( const char ch )
 {
-    // For groff, an identifier can consist of nearly all ASCII printable non-white-space characters
-    // See info:/groff/Identifiers
+    if ( ( ch >= '0' &&  ch <= '9' ) || ( ch >='A' && ch <='Z' ) || ( ch >= 'a' && ch <= 'z' ) )
+        return false;
+    else if ( ch == '.' || ch == ',' || ch == ';' || ch == ':' || ch == '(' || ch == ')'
+        || ch == '[' || ch == ']' )
+        return true;
+    else
+        return false;
+}
+
+/**
+ * Can the char \p c be part of an identifier
+ * \note For groff, an identifier can consist of nearly all ASCII printable non-white-space characters
+ * See info:/groff/Identifiers
+ */
+static bool is_identifier_char( const char c )
+{
     if ( c >= '!' && c <= '[' ) // Include digits and upper case
         return true;
     else if ( c >= ']' && c <= '~' ) // Include lower case
@@ -3622,26 +3639,26 @@ static char *scan_request(char *c)
                         curpos=0;
                     break;
                 }
-                case REQ_Fd: // mdoc(7) "Function Definition" ### FIXME
+                case REQ_Fd: // mdoc(7) "Function Definition"
                 {
-                    // brackets and commas have to be inserted automatically
-                    char* font[2] = { "B", "R" };
+                    // Normal text must be printed in bold, punctuation in regular font
                     c+=j;
-                    if (*c=='\n') c++;
-                    char *eol=strchr(c,'\n');
-                    char *semicolon=strchr(c,';');
-                    if ((semicolon!=0) && (semicolon<eol)) *semicolon=' ';
-                    
+                    if (*c=='\n') c++; // ### TODO: verify
                     sl=fill_words(c, wordlist, &words, true, &c);
                     for (i=0; i<words; i++)
                     {
                         wordlist[i][-1]=' ';
-                        out_html(set_font(font[i&1]));
+                        // ### FIXME In theory, only a single punctuation character is recognized as punctuation
+                        if ( is_mdoc_punctuation ( *wordlist[i] ) )
+                            out_html( set_font ( "R" ) );
+                        else
+                            out_html( set_font ( "B" ) );
                         scan_troff(wordlist[i],1,NULL);
+                        out_html(" ");
                     }
+                    // In the mdoc synopsis, there are automatical line breaks (### TODO: before or after?)
                     if (mandoc_synopsis)
                     {
-                        out_html(");");
                         out_html("<br>");
                     };
                     out_html(set_font("R"));
@@ -3652,28 +3669,23 @@ static char *scan_request(char *c)
                         curpos++;
                     break;
                 }
-                case REQ_Fn: // mdoc(7)  for "Function calls" ### FIXME
+                case REQ_Fn: // mdoc(7)  for "Function calls"
                 {
                     // brackets and commas have to be inserted automatically
-                    char* font[2] = { "B", "R" };
                     c+=j;
                     if (*c=='\n') c++;
-                    char *eol=strchr(c,'\n');
-                    char *semicolon=strchr(c,';');
-                    if ((semicolon!=0) && (semicolon<eol)) *semicolon=' ';
-        
                     sl=fill_words(c, wordlist, &words, true, &c);
-                    if (!words)
-                    {
-                        out_html(" ()");
-                    }
-                    else
+                    if ( words )
                     {
                         for (i=0; i<words; i++)
                         {
                             wordlist[i][-1]=' ';
-                            out_html(set_font(font[i&1]));
+                            if ( i )
+                                out_html( set_font( "I" ) );
+                            else
+                                out_html( set_font( "B" ) );
                             scan_troff(wordlist[i],1,NULL);
+                            out_html( set_font( "R" ) );
                             if (i==0)
                             {
                                 out_html(" (");
@@ -4912,6 +4924,7 @@ static char *scan_request(char *c)
                         curpos=0;
                     break;
                 }
+                // ### FIXME: punctuation is handled badly!
                 case REQ_Dv:	/* mdoc(7) */
                 case REQ_Ev:	/* mdoc(7) */
                 case REQ_Fr:	/* mdoc(7) */
@@ -5223,10 +5236,7 @@ static char *scan_request(char *c)
                          * been delt with.
                          * I don't want to miss anything out of the text.
                          */
-                        char buf[4];
-                        qstrncpy(buf,c,2);
-                        buf[2] = ' ';
-                        buf[3] = '\0';
+                        char buf[4] = { c[0], c[1], ' ', 0 };
                         out_html(buf);	/* Print the command (it might just be text). */
                         c=c+j;
                         trans_char(c,'"','\a');
