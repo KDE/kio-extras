@@ -4,6 +4,7 @@ Type=Service
 Name=KDED System Base URL Notifier
 Name[ca]=Notificador d'URL de base al sistema KDED
 Name[da]=KDED Systembais-url påmindelser
+Name[el]=Ειδοποιητής KDED για URL του συστήματος
 Name[es]=Notificador de URL de base sistema de KDED
 Name[et]=KDED süsteemsete URL-ide teadustaja
 Name[fi]=KDED:in järjestelmä-urlien ilmoittaja
