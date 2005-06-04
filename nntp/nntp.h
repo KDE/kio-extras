@@ -83,8 +83,32 @@ class NNTPProtocol:public KIO::TCPSlaveBase
 
    /// fetch all available news groups
    void fetchGroups ();
-   /// fetch all messages from one news group
+   /**
+    * Fetch message listing from the given newsgroup.
+    * This will use RFC2980 XOVER if available, plain RFC977 STAT/NEXT
+    * otherwise.
+    * @param group The newsgroup name
+    * @return true on sucess, false otherwise.
+    */
    bool fetchGroup ( QString & group );
+   /**
+    * Fetch message listing from the current group using RFC977 STAT/NEXT
+    * commands.
+    * @param first message number of the first article
+    * @return true on sucess, false otherwise.
+    */
+   bool fetchGroupRFC977( unsigned long first );
+   /**
+    * Fetch message listing from the current group using the RFC2980 XOVER
+    * command.
+    * Additional headers provided by XOVER are added as UDS_EXTRA entries
+    * to the listing.
+    * @param first message number of the first article
+    * @param notSupported boolean reference to indicate if command failed
+    * due to missing XOVER support on the server.
+    * @return true on sucess, false otherwise
+    */
+   bool fetchGroupXOVER( unsigned long first, bool &notSupported );
    /// creates an UDSEntry with file information used in stat and listDir
    void fillUDSEntry ( KIO::UDSEntry & entry, const QString & name, int size,
                        bool postingAllowed, bool is_article );

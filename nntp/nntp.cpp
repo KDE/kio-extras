@@ -432,12 +432,23 @@ bool NNTPProtocol::fetchGroup(QString& group) {
   if (first.toLong() == 0L)
     return true;
 
+  bool notSupported = true;
+  if ( fetchGroupXOVER( first.toLong(), notSupported ) )
+    return true;
+  else if ( notSupported )
+    return fetchGroupRFC977( first.toLong() );
+  return false;
+}
+
+
+bool NNTPProtocol::fetchGroupRFC977( unsigned long first )
+{
   UDSEntry entry;
   UDSEntryList entryList;
 
   // set article pointer to first article and get msg-id of it
-  res_code = sendCommand( "STAT " + first );
-  resp_line = readBuffer;
+  int res_code = sendCommand( "STAT " + QString::number( first ) );
+  QString resp_line = readBuffer;
   if (res_code != 223) {
     unexpected_response(res_code,"STAT");
     return false;
@@ -445,6 +456,7 @@ bool NNTPProtocol::fetchGroup(QString& group) {
 
   //STAT res_line: 223 nnn <msg_id> ...
   QString msg_id;
+  int pos, pos2;
   if ((pos = resp_line.find('<')) > 0 && (pos2 = resp_line.find('>',pos+1))) {
     msg_id = resp_line.mid(pos,pos2-pos+1);
     fillUDSEntry(entry, msg_id, 0, false, true);
@@ -460,7 +472,8 @@ bool NNTPProtocol::fetchGroup(QString& group) {
     res_code = sendCommand("NEXT");
     if (res_code == 421) {
       // last article reached
-      if (entryList.count()) listEntries(entryList);
+      if ( !entryList.isEmpty() )
+        listEntries( entryList );
       return true;
     } else if (res_code != 223) {
       unexpected_response(res_code,"NEXT");
@@ -485,6 +498,52 @@ bool NNTPProtocol::fetchGroup(QString& group) {
   }
   return true; // Not reached
 }
+
+
+bool NNTPProtocol::fetchGroupXOVER( unsigned long first, bool &notSupported )
+{
+  notSupported = false;
+
+  int res = sendCommand( "XOVER " + QString::number( first ) + "-" );
+
+  if ( res == 420 )
+    return true; // no articles selected
+  if ( res == 500 )
+    notSupported = true; // unknwon command
+  if ( res != 224 )
+    return false;
+
+  UDSEntry entry;
+  UDSEntryList entryList;
+
+  QString line;
+  QStringList fields;
+  while ( true ) {
+    if ( ! waitForResponse( readTimeout() ) ) {
+      error( ERR_SERVER_TIMEOUT, mHost );
+      return false;
+    }
+    memset( readBuffer, 0, MAX_PACKET_LEN );
+    readBufferLen = readLine ( readBuffer, MAX_PACKET_LEN );
+    line = readBuffer;
+    if ( line == ".\r\n" ) {
+      // last article reached
+      if ( !entryList.isEmpty() )
+        listEntries( entryList );
+      return true;
+    }
+
+    fields = QStringList::split( "\t", line, true );
+    fillUDSEntry(entry, fields[4] /* message-id */, 0, false, true);
+    entryList.append(entry);
+    if (entryList.count() >= UDS_ENTRY_CHUNK) {
+      listEntries(entryList);
+      entryList.clear();
+    }
+  }
+  return true;
+}
+
 
 void NNTPProtocol::fillUDSEntry(UDSEntry& entry, const QString& name, int size,
   bool posting_allowed, bool is_article) {
