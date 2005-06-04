@@ -20,18 +20,16 @@
 #ifndef _KIO_MEDIA_H_
 #define _KIO_MEDIA_H_
 
-#include <kio/forwardingslavebase.h>
+#include <kio/slavebase.h>
 
 #include "systemimpl.h"
 
-class SystemProtocol : public KIO::ForwardingSlaveBase
+class SystemProtocol : public KIO::SlaveBase
 {
 public:
 	SystemProtocol(const QCString &protocol, const QCString &pool,
 	               const QCString &app);
 	virtual ~SystemProtocol();
-	
-	virtual bool rewriteURL(const KURL &url, KURL &newUrl);
 	
 	virtual void stat(const KURL &url);
 	virtual void listDir(const KURL &url);

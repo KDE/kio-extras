@@ -54,13 +54,11 @@ SystemDirNotify::SystemDirNotify()
 			if (!names_found.contains(*name))
 			{
 				KDesktopFile desktop(*dirpath+*name, true);
-
-				QString system_name = *name;
-				system_name.truncate(system_name.length()-8);
-
-				KURL system_url("system:/"+system_name);
 				
-				m_urlMap[desktop.readURL()] = system_url;
+				if (!desktop.readEntry("EmptyIcon").isNull())
+				{
+					m_urlList.append(desktop.readURL());
+				}
 				
 				names_found.append(*name);
 			}
@@ -68,98 +66,60 @@ SystemDirNotify::SystemDirNotify()
 	}
 }
 
-KURL SystemDirNotify::toSystemURL(const KURL &url)
+bool SystemDirNotify::isInsideList(const KURL &url)
 {
-	kdDebug() << "SystemDirNotify::toSystemURL(" << url << ")" << endl;
+	KURL::List::ConstIterator it = m_urlList.begin();
+	KURL::List::ConstIterator end = m_urlList.end();
 
-	QMap<KURL,KURL>::const_iterator it = m_urlMap.begin();
-	QMap<KURL,KURL>::const_iterator end = m_urlMap.end();
-
-	for (; it!=end; ++it)
+	for(; it!=end; ++it)
 	{
-		KURL base = it.key();
-
-		if ( base.isParentOf(url) )
+		if ((*it).isParentOf(url))
 		{
-			QString path = KURL::relativePath(base.path(),
-			                                  url.path());
-			KURL result = it.data();
-			result.addPath(path);
-			result.cleanPath();
-			kdDebug() << result << endl;
-			return result;
+			return true;
 		}
 	}
 
-	kdDebug() << "KURL()" << endl;
-	return KURL();
-}
-
-KURL::List SystemDirNotify::toSystemURLList(const KURL::List &list)
-{
-	KURL::List new_list;
-
-	KURL::List::const_iterator it = list.begin();
-	KURL::List::const_iterator end = list.end();
-
-	for (; it!=end; ++it)
-	{
-		KURL url = toSystemURL(*it);
-
-		if (url.isValid())
-		{
-			new_list.append(url);
-		}
-	}
-
-	return new_list;
+	return false;
 }
 
 ASYNC SystemDirNotify::FilesAdded(const KURL &directory)
 {
-	KURL new_dir = toSystemURL(directory);
-
-	if (new_dir.isValid())
+	if (isInsideList(directory))
 	{
 		KDirNotify_stub notifier("*", "*");
-		notifier.FilesAdded( new_dir );
-		if (new_dir.upURL().upURL()==KURL("system:/"))
-		{
-			notifier.FilesChanged( new_dir.upURL() );
-		}
+		notifier.FilesAdded( "system:/" );
 	}
 }
 
 ASYNC SystemDirNotify::FilesRemoved(const KURL::List &fileList)
 {
-	KURL::List new_list = toSystemURLList(fileList);
+	KURL::List::ConstIterator it = fileList.begin();
+	KURL::List::ConstIterator end = fileList.end();
 
-	if (!new_list.isEmpty())
+	for(; it!=end; ++it)
 	{
-		KDirNotify_stub notifier("*", "*");
-		notifier.FilesRemoved( new_list );
-		
-		KURL::List::const_iterator it = new_list.begin();
-		KURL::List::const_iterator end = new_list.end();
-
-		for (; it!=end; ++it)
+		if (isInsideList(*it))
 		{
-			if ((*it).upURL().upURL()==KURL("system:/"))
-			{
-				notifier.FilesChanged( (*it).upURL() );
-			}
+			KDirNotify_stub notifier("*", "*");
+			notifier.FilesAdded( "system:/" );
+			return;
 		}
 	}
 }
 
 ASYNC SystemDirNotify::FilesChanged(const KURL::List &fileList)
 {
-	KURL::List new_list = toSystemURLList(fileList);
+	KURL::List::ConstIterator it = fileList.begin();
+	KURL::List::ConstIterator end = fileList.end();
 
-	if (!new_list.isEmpty())
+	for(; it!=end; ++it)
 	{
-		KDirNotify_stub notifier("*", "*");
-		notifier.FilesChanged( new_list );
+		if (isInsideList(*it))
+		{
+			KDirNotify_stub notifier("*", "*");
+			notifier.FilesAdded( "system:/" );
+			return;
+		}
 	}
 }
 

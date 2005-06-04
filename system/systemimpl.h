@@ -39,14 +39,12 @@ public:
 
 	bool listRoot(QValueList<KIO::UDSEntry> &list);
 
-	bool parseURL(const KURL &url, QString &name, QString &path) const;
-	bool realURL(const QString &name, const QString &path, KURL &url) const;
+	KURL findBaseURL(const QString &filename) const;
 
 	int lastErrorCode() const { return m_lastErrorCode; }
 	QString lastErrorMessage() const { return m_lastErrorMessage; }
 
 private slots:
-	KURL findBaseURL(const QString &filename) const;
 	void slotEntries(KIO::Job *job, const KIO::UDSEntryList &list);
 	void slotResult(KIO::Job *job);
 
