@@ -17,6 +17,7 @@
 
 #include <kinstance.h>
 #include <kdebug.h>
+#include <kglobal.h>
 #include <klocale.h>
 
 #include "nntp.h"
@@ -329,10 +330,15 @@ void NNTPProtocol::listDir( const KURL& url ) {
     // if path = /group
     int pos;
     QString group;
-    if (path.left(1) == "/") path.remove(0,1);
-    if ((pos = path.find('/')) > 0) group = path.left(pos);
-    else group = path;
-    if (fetchGroup(group)) finished();
+    if (path.left(1) == "/")
+      path.remove(0,1);
+    if ((pos = path.find('/')) > 0)
+      group = path.left(pos);
+    else
+      group = path;
+    QString first = url.queryItem( "first" );
+    if ( fetchGroup( group, first.toULong() ) )
+      finished();
   }
 }
 
@@ -400,7 +406,7 @@ void NNTPProtocol::fetchGroups() {
   if (entryList.count() > 0) listEntries(entryList);
 }
 
-bool NNTPProtocol::fetchGroup(QString& group) {
+bool NNTPProtocol::fetchGroup( QString &group, unsigned long first ) {
   int res_code;
   QString resp_line;
 
@@ -417,26 +423,28 @@ bool NNTPProtocol::fetchGroup(QString& group) {
   // repsonse to "GROUP <requested-group>" command is 211 then find the message count (cnt)
   // and the first and last message followed by the group name
   int pos, pos2;
-  QString first;
+  unsigned long firstSerNum;
   resp_line = readBuffer;
   if (((pos = resp_line.find(' ',4)) > 0 || (pos = resp_line.find('\t',4)) > 0) &&
       ((pos2 = resp_line.find(' ',pos+1)) > 0 || (pos = resp_line.find('\t',pos+1)) > 0))
   {
-    first = resp_line.mid(pos+1,pos2-pos-1);
+    firstSerNum = resp_line.mid(pos+1,pos2-pos-1).toLong();
   } else {
     error(ERR_INTERNAL,i18n("Could not extract first message number from server response:\n%1").
       arg(resp_line));
     return false;
   }
 
-  if (first.toLong() == 0L)
+  if (firstSerNum == 0L)
     return true;
+  first = kMax( first, firstSerNum );
+  DBG << "Starting from serial number: " << first << " of " << firstSerNum << endl;
 
   bool notSupported = true;
-  if ( fetchGroupXOVER( first.toLong(), notSupported ) )
+  if ( fetchGroupXOVER( first, notSupported ) )
     return true;
   else if ( notSupported )
-    return fetchGroupRFC977( first.toLong() );
+    return fetchGroupRFC977( first );
   return false;
 }
 

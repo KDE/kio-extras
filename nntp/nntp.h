@@ -88,9 +88,10 @@ class NNTPProtocol:public KIO::TCPSlaveBase
     * This will use RFC2980 XOVER if available, plain RFC977 STAT/NEXT
     * otherwise.
     * @param group The newsgroup name
+    * @param first Serial number of the first message, 0 lists all messages.
     * @return true on sucess, false otherwise.
     */
-   bool fetchGroup ( QString & group );
+   bool fetchGroup ( QString &group, unsigned long first = 0 );
    /**
     * Fetch message listing from the current group using RFC977 STAT/NEXT
     * commands.
