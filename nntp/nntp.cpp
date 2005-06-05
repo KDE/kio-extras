@@ -504,8 +504,31 @@ bool NNTPProtocol::fetchGroupXOVER( unsigned long first, bool &notSupported )
 {
   notSupported = false;
 
-  int res = sendCommand( "XOVER " + QString::number( first ) + "-" );
+  QString line;
+  QStringList headers;
 
+  int res = sendCommand( "LIST OVERVIEW.FMT" );
+  if ( res == 215 ) {
+    while ( true ) {
+      if ( ! waitForResponse( readTimeout() ) ) {
+        error( ERR_SERVER_TIMEOUT, mHost );
+        return false;
+      }
+      memset( readBuffer, 0, MAX_PACKET_LEN );
+      readBufferLen = readLine ( readBuffer, MAX_PACKET_LEN );
+      line = readBuffer;
+      if ( line == ".\r\n" )
+        break;
+      headers << line.stripWhiteSpace();
+      DBG << "OVERVIEW.FMT: " << line.stripWhiteSpace() << endl;
+    }
+  } else {
+    // fallback to defaults
+    headers << "Subject:" << "From:" << "Date:" << "Message-ID:"
+        << "References:" << "Bytes:" << "Lines:";
+  }
+
+  res = sendCommand( "XOVER " + QString::number( first ) + "-" );
   if ( res == 420 )
     return true; // no articles selected
   if ( res == 500 )
@@ -513,10 +536,12 @@ bool NNTPProtocol::fetchGroupXOVER( unsigned long first, bool &notSupported )
   if ( res != 224 )
     return false;
 
+  long msgSize;
+  QString msgId;
+  UDSAtom atom;
   UDSEntry entry;
   UDSEntryList entryList;
 
-  QString line;
   QStringList fields;
   while ( true ) {
     if ( ! waitForResponse( readTimeout() ) ) {
@@ -534,8 +559,31 @@ bool NNTPProtocol::fetchGroupXOVER( unsigned long first, bool &notSupported )
     }
 
     fields = QStringList::split( "\t", line, true );
-    fillUDSEntry(entry, fields[4] /* message-id */, 0, false, true);
-    entryList.append(entry);
+    msgId = QString::null;
+    msgSize = 0;
+    QStringList::ConstIterator it = headers.constBegin();
+    QStringList::ConstIterator it2 = fields.constBegin();
+    ++it2; // first entry is the serial number
+    for ( ; it != headers.constEnd() && it2 != fields.constEnd(); ++it, ++it2 ) {
+      if ( (*it).contains( "Message-ID:", false ) ) {
+        msgId = (*it2);
+        continue;
+      }
+      if ( (*it) == "Bytes:" ) {
+        msgSize = (*it2).toLong();
+        continue;
+      }
+      atom.m_uds = UDS_EXTRA;
+      if ( (*it).endsWith( "full" ) )
+        atom.m_str = (*it2).stripWhiteSpace();
+      else
+        atom.m_str = (*it) + " " + (*it2).stripWhiteSpace();
+      entry.append( atom );
+    }
+    if ( msgId.isEmpty() )
+      msgId = fields[0]; // fallback to serial number
+    fillUDSEntry( entry, msgId, msgSize, false, true );
+    entryList.append( entry );
     if (entryList.count() >= UDS_ENTRY_CHUNK) {
       listEntries(entryList);
       entryList.clear();
@@ -545,7 +593,7 @@ bool NNTPProtocol::fetchGroupXOVER( unsigned long first, bool &notSupported )
 }
 
 
-void NNTPProtocol::fillUDSEntry(UDSEntry& entry, const QString& name, int size,
+void NNTPProtocol::fillUDSEntry(UDSEntry& entry, const QString& name, long size,
   bool posting_allowed, bool is_article) {
 
   long posting=0;

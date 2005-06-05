@@ -110,7 +110,7 @@ class NNTPProtocol:public KIO::TCPSlaveBase
     */
    bool fetchGroupXOVER( unsigned long first, bool &notSupported );
    /// creates an UDSEntry with file information used in stat and listDir
-   void fillUDSEntry ( KIO::UDSEntry & entry, const QString & name, int size,
+   void fillUDSEntry ( KIO::UDSEntry & entry, const QString & name, long size,
                        bool postingAllowed, bool is_article );
    /// error  handling for unexpected responses
    void unexpected_response ( int res_code, const QString & command );
