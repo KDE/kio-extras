@@ -14,5 +14,6 @@ Icon=system
 maxInstances=4
 #TODO DocPath=kioslave/file.html
 Class=:local
+Parent=system:/
 deleteRecursive=true
 fileNameUsedForCopying=Name

@@ -13,3 +13,4 @@ moving=false
 Icon=kcontrol
 maxInstances=2
 Class=:local
+Parent=system:/
