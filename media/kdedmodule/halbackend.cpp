@@ -19,6 +19,8 @@
 #include "halbackend.h"
 #include "linuxcdpolling.h"
 
+#include <stdlib.h>
+
 #include <klocale.h>
 #include <kurl.h>
 #include <kdebug.h>
@@ -418,10 +420,12 @@ void HALBackend::setVolumeProperties(Medium* medium)
 	}
 	medium->setMimeType(mimeType);
 
-	QString volume_name = QString::fromUtf8(libhal_volume_policy_compute_display_name(halDrive, halVolume, m_halStoragePolicy));
-	//QString drive_name =  QString::fromUtf8(libhal_drive_policy_compute_display_name(halDrive, halVolume, m_halStoragePolicy));
+	char* name = libhal_volume_policy_compute_display_name(halDrive, halVolume, m_halStoragePolicy);
+	//char* name = libhal_drive_policy_compute_display_name(halDrive, halVolume, m_halStoragePolicy);
+	QString volume_name = QString::fromUtf8(name);
 	QString media_name = volume_name;
 	medium->setLabel(media_name);
+	free(name);
 
 	libhal_drive_free(halDrive);
 	libhal_volume_free(halVolume);
@@ -488,16 +492,21 @@ void HALBackend::setFloppyProperties(Medium* medium)
 	QString media_name;
 	if (halVolume)
 	{
-		QString volume_name = QString::fromUtf8(libhal_drive_policy_compute_display_name(halDrive, halVolume, m_halStoragePolicy));
+		char* name = libhal_drive_policy_compute_display_name(halDrive, halVolume, m_halStoragePolicy);
+		QString volume_name = QString::fromUtf8(name);
 		media_name = volume_name;
+		free(name);
 	}
 	else
 	{
-		QString drive_name =  QString::fromUtf8(libhal_drive_policy_compute_display_name(halDrive, halVolume, m_halStoragePolicy));
+		char* name = libhal_drive_policy_compute_display_name(halDrive, halVolume, m_halStoragePolicy);
+		QString drive_name =  QString::fromUtf8(name);
 		media_name = drive_name;
+		free(name);
 	}
 	medium->setLabel(media_name);
 
+	free(volumes);
 	libhal_drive_free(halDrive);
 	libhal_volume_free(halVolume);
 }
