@@ -465,9 +465,9 @@ bool LinuxCDPolling::hasDirectory(const QCString &devNode, const QCString &dir)
 	unsigned short bs; // the discs block size
 	unsigned short ts; // the path table size
 	unsigned int tl; // the path table location (in blocks)
-	unsigned int len_di = 0; // length of the directory name in current path table entry
+	unsigned char len_di = 0; // length of the directory name in current path table entry
 	unsigned int parent = 0; // the number of the parent directory's path table entry
-	char *dirname = 0; // filename for the current path table entry
+	char dirname[256]; // filename for the current path table entry
 	int pos = 0; // our position into the path table
 	int curr_record = 1; // the path table record we're on
 	QCString fixed_directory = dir.upper(); // the uppercase version of the "directory" parameter
@@ -478,36 +478,66 @@ bool LinuxCDPolling::hasDirectory(const QCString &devNode, const QCString &dir)
 
 	// read the block size
 	lseek(fd, 0x8080, SEEK_CUR);
-	read(fd, &bs, 2);
+	if (read(fd, &bs, 2) != 2)
+	{
+		close(fd);
+		return false;
+	}
+	if (Q_BYTE_ORDER != Q_LITTLE_ENDIAN)
+		bs = ((bs << 8) & 0xFF00) | ((bs >> 8) & 0xFF);
 
 	// read in size of path table
 	lseek(fd, 2, SEEK_CUR);
-	read(fd, &ts, 2);
+	if (read(fd, &ts, 2) != 2)
+	{
+		close(fd);
+		return false;
+	}
+	if (Q_BYTE_ORDER != Q_LITTLE_ENDIAN)
+		ts = ((ts << 8) & 0xFF00) | ((ts >> 8) & 0xFF);
 
 	// read in which block path table is in
 	lseek(fd, 6, SEEK_CUR);
-	read(fd, &tl, 4);
+	if (read(fd, &tl, 4) != 4)
+	{
+		close(fd);
+		return false;
+	}
+	if (Q_BYTE_ORDER != Q_LITTLE_ENDIAN)
+		tl = ((tl << 24) & 0xFF000000) | ((tl << 8) & 0xFF0000) |
+		     ((tl >> 8) & 0xFF00) | ((tl >> 24) & 0xFF);
 
 	// seek to the path table
-	lseek(fd, ((int)(bs) * tl), SEEK_SET);
+	lseek(fd, bs * tl, SEEK_SET);
 
 	// loop through the path table entries
 	while (pos < ts)
 	{
 		// get the length of the filename of the current entry
-		read(fd, &len_di, 1);
+		if (read(fd, &len_di, 1) != 1)
+		{
+			ret = false;
+			break;
+		}
 
 		// get the record number of this entry's parent
 		// i'm pretty sure that the 1st entry is always the top directory
 		lseek(fd, 5, SEEK_CUR);
-		read(fd, &parent, 2);
-
-		// allocate and zero a string for the filename
-		dirname = (char *)malloc(len_di+1);
-		for (unsigned i=0; i<len_di+1; i++) dirname[i] = '\0';
+		if (read(fd, &parent, 2) != 2)
+		{
+			ret = false;
+			break;
+		}
+		if (Q_BYTE_ORDER != Q_LITTLE_ENDIAN)
+			parent = ((parent << 8) & 0xFF00) | ((parent >> 8) & 0xFF);
 
 		// read the name
-		read(fd, dirname, len_di);
+		if (read(fd, dirname, len_di) != len_di)
+		{
+			ret = false;
+			break;
+		}
+		dirname[len_di] = 0;
 		qstrcpy(dirname, QCString(dirname).upper());
 
 		// if we found a folder that has the root as a parent, and the directory name matches
@@ -515,10 +545,8 @@ bool LinuxCDPolling::hasDirectory(const QCString &devNode, const QCString &dir)
 		if ((parent == 1) && (dirname == fixed_directory))
 		{
 			ret = true;
-			free(dirname);
 			break;
 		}
-		free(dirname);
 
 		// all path table entries are padded to be even, so if this is an odd-length table, seek a byte to fix it
 		if (len_di%2 == 1)
