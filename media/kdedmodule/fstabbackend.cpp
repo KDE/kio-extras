@@ -306,6 +306,7 @@ void FstabBackend::guess(const QString &devNode, const QString &mountPoint,
 	       || mountPoint.find("usb")!=-1
 	       || mountPoint.find("firewire")!=-1
 	       || mountPoint.find("ieee1394")!=-1
+	       || devNode.find("/usb/")!= -1
 	        )
 	{
 		mimeType = "media/removable";
