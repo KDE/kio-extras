@@ -46,11 +46,11 @@ class NFSFileHandle
       operator const char* () const {return m_handle;};
       bool isInvalid() const {return m_isInvalid;}
       void setInvalid() {m_isInvalid=TRUE;};
-      time_t age() const;
+//      time_t age() const;
    protected:
-      char *m_handle;
+      char m_handle[NFS_FHSIZE+1];
       bool m_isInvalid;
-      time_t m_detectTime;
+//      time_t m_detectTime;
 };
 
 //ostream& operator<<(ostream&, const NFSFileHandle&);
@@ -80,21 +80,20 @@ class NFSProtocol : public KIO::SlaveBase
       virtual void rename(const KURL &src, const KURL &dest, bool overwrite);
       virtual void copy( const KURL& src, const KURL &dest, int mode, bool overwrite );
    protected:
-      void createVirtualDirEntry(KIO::UDSEntry & entry);
+//      void createVirtualDirEntry(KIO::UDSEntry & entry);
       bool checkForError(int clientStat, int nfsStat, const QString& text);
       bool isExportedDir(const QString& path);
-      bool isRoot(const QString& path);
       void completeUDSEntry(KIO::UDSEntry& entry, fattr& attributes);
       void completeBadLinkUDSEntry(KIO::UDSEntry& entry, fattr& attributes);
       void completeAbsoluteLinkUDSEntry(KIO::UDSEntry& entry, const QCString& path);
       bool isValidLink(const QString& parentDir, const QString& linkDest);
-      bool isAbsoluteLink(const QString& path);
+//      bool isAbsoluteLink(const QString& path);
       
       NFSFileHandle getFileHandle(QString path);
 
       NFSFileHandleMap m_handleCache;
-      QIntDict<QString> usercache;      // maps long ==> QString *
-      QIntDict<QString> groupcache;
+      QIntDict<QString> m_usercache;      // maps long ==> QString *
+      QIntDict<QString> m_groupcache;
 
       QStringList m_exportedDirs;
       QString m_currentHost;
