@@ -128,6 +128,8 @@
 # include <string.h>
 #endif
 
+#include <stdio.h>
+
 #include <qvaluestack.h>
 #include <qstring.h>
 #include <qptrlist.h>
