@@ -200,19 +200,10 @@ static char *stralloc(int len)
   return news;
 }
 
-// ### TODO: replace by either qstrncpy or strlcpy
-static char *strmaxcpy(char *to, const char *from, int n)
-{				/* Assumes space for n plus a null */
-  int len = qstrlen(from);
-  qstrncpy(to, from, n);
-  to[(len <= n) ? len : n] = '\0';
-  return to;
-}
-
 static char *strlimitcpy(char *to, char *from, int n, int limit)
 {                               /* Assumes space for limit plus a null */
-  int len = n > limit ? limit : n;
-  strmaxcpy(to, from, len);
+  const int len = n > limit ? limit : n;
+  qstrncpy(to, from, len + 1);
   to[len] = '\0';
   return to;
 }
