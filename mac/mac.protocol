@@ -43,5 +43,6 @@ Description[ta]=MacOS HFS+ partitionsக்கு ஒரு க்யோஸ்�
 Description[tr]=MacOS HFS+ bölümleri için kioslave
 Description[uk]=Підлеглий B/В для розділів MacOS HFS+
 Description[xx]=xxA kioslave for MacOS HFS+ partitionsxx
+Description[zh_CN]=MacOS HFS+ 分区的 KIO 仆人
 Icon=mac
 DocPath=kioslave/mac.html

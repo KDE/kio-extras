@@ -48,4 +48,5 @@ Description[ta]=FISH நெறிமுறைக்கான ஒரு க்ய
 Description[tr]=FISH protokolü için kioslave
 Description[uk]=Підлеглий B/В для протоколу FISH
 Description[xx]=xxA kioslave for the FISH protocolxx
+Description[zh_CN]=FISH 协议的 KIO 仆人
 DocPath=kioslave/fish.html

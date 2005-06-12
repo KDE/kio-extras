@@ -83,6 +83,7 @@ Comment[ta]=இடைக்காலத்திற்குரிய நடவ�
 Comment[tr]=Ortam işlemlerini takip et ve bağlanma işlemlerine izin ver(media:/)
 Comment[uk]=Спостерігає за змінами серед носіїв інформації та дозволяє (роз)монтування (media:/)
 Comment[xx]=xxKeep track of media activities and allow to (un)mount (media:/)xx
+Comment[zh_CN]=跟踪介质活动并允许挂载或卸载(media:/)
 ServiceTypes=KDEDModule
 X-KDE-ModuleType=Library
 X-KDE-Library=mediamanager

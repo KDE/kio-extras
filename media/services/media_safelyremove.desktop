@@ -38,5 +38,6 @@ Name[ta]=பாதுகாப்பாக நீக்கு
 Name[tr]=Güvenli Kaldır
 Name[uk]=Безпечно вилучити
 Name[xx]=xxSafely Removexx
+Name[zh_CN]=安全删除
 Exec=kio_media_mounthelper -s %u
 
