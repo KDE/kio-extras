@@ -79,7 +79,7 @@ LDAPProtocol::~LDAPProtocol()
 void LDAPProtocol::checkErr( const KURL &_url )
 {
   int ret;
-  
+
   if ( ldap_get_option( mLDAP, LDAP_OPT_ERROR_NUMBER, &ret ) == -1 ) {
     error( ERR_UNKNOWN, _url.prettyURL() );
   } else {
@@ -218,8 +218,8 @@ int LDAPProtocol::asyncSearch( LDAPUrl &usrc )
 
   controlsFromMetaData( &serverctrls, &clientctrls );
 
-  kdDebug(7125) << "asyncSearch() dn=" << usrc.dn() << " scope=" << 
-    usrc.scope() << " filter=" << usrc.filter() << "attrs=" << usrc.attributes() << 
+  kdDebug(7125) << "asyncSearch() dn=\"" << usrc.dn() << "\" scope=" << 
+    usrc.scope() << " filter=\"" << usrc.filter() << "\" attrs=" << usrc.attributes() << 
     endl;
   retval = ldap_search_ext( mLDAP, usrc.dn().utf8(), scope, 
     usrc.filter().isEmpty() ? QCString() : usrc.filter().utf8(), attrs, 0, 
