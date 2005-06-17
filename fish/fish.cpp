@@ -83,7 +83,7 @@
 #include "fish.h"
 #include "fishcode.h"
 
-#ifndef NDEBUG 
+#ifndef NDEBUG
 #define myDebug(x) kdDebug(7127) << __LINE__ << ": " x
 #define connected() do{myDebug( << "_______ emitting connected()" << endl); connected();}while(0)
 #define dataReq() do{myDebug( << "_______ emitting dataReq()" << endl); dataReq();}while(0)
@@ -272,9 +272,9 @@ fishProtocol::fishProtocol(const QCString &pool_socket, const QCString &app_sock
     mimeAtom.m_uds = UDS_MIME_TYPE;
     mimeAtom.m_long = 0;
     mimeAtom.m_str = QString::null;
-    
+
     hasAppend = false;
-    
+
     isStat = false; // FIXME: just a workaround for konq deficiencies
     redirectUser = ""; // FIXME: just a workaround for konq deficiencies
     redirectPass = ""; // FIXME: just a workaround for konq deficiencies
@@ -588,10 +588,13 @@ int fishProtocol::establishConnection(char *buffer, int len) {
                     connectionAuth.caption = i18n("Local Login");
                 else
                     connectionAuth.caption = i18n("SSH Authorization");
-                if ((!firstLogin || !checkCachedAuthentication(connectionAuth)) && !openPassDlg(connectionAuth)) {
-                    error(ERR_USER_CANCELED,connectionHost);
-                    shutdownConnection();
-                    return -1;
+                if ((!firstLogin || !checkCachedAuthentication(connectionAuth))) {
+                    connectionAuth.password = QString::null; // don't prefill
+                    if ( !openPassDlg(connectionAuth)) {
+                        error(ERR_USER_CANCELED,connectionHost);
+                        shutdownConnection();
+                        return -1;
+                    }
                 }
                 firstLogin = false;
                 connectionAuth.password += "\n";
@@ -1234,7 +1237,7 @@ int fishProtocol::received(const char *buffer, int buflen)
             QByteArray bdata;
             bdata.duplicate(buffer,dataSize);
             data(bdata);
-            
+
             dataRead += dataSize;
             rawRead -= dataSize;
             time_t t = time(NULL);
@@ -1257,16 +1260,16 @@ int fishProtocol::received(const char *buffer, int buflen)
         // Find newline
         while((pos < buflen) && (buffer[pos] != '\n'))
             ++pos;
-        
+
         if (pos < buflen)
         {
            QString s = remoteEncoding()->decode(QCString(buffer,pos+1));
-        
+
            buffer += pos+1;
            buflen -= pos+1;
 
            manageConnection(s);
-           
+
            pos = 0;
            // Find next newline
            while((pos < buflen) && (buffer[pos] != '\n'))
