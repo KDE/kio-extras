@@ -362,7 +362,8 @@ void NNTPProtocol::fetchGroups( const QString &since )
 
   // read newsgroups line by line
   QCString line, group;
-  int pos, pos2, msg_cnt;
+  int pos, pos2;
+  long msg_cnt;
   bool moderated;
   UDSEntry entry;
   UDSEntryList entryList;
@@ -388,10 +389,11 @@ void NNTPProtocol::fetchGroups( const QString &since )
 
       // number of messages
       line.remove(0,pos+1);
+      long last = 0;
       if (((pos = line.find(' ')) > 0 || (pos = line.find('\t')) > 0) &&
           ((pos2 = line.find(' ',pos+1)) > 0 || (pos2 = line.find('\t',pos+1)) > 0)) {
-        int last = line.left(pos).toInt();
-        int first = line.mid(pos+1,pos2-pos-1).toInt();
+        last = line.left(pos).toLong();
+        long first = line.mid(pos+1,pos2-pos-1).toLong();
         msg_cnt = abs(last-first+1);
         // moderated group?
         moderated = (line[pos2+1] == 'n');
@@ -401,6 +403,12 @@ void NNTPProtocol::fetchGroups( const QString &since )
       }
 
       fillUDSEntry(entry, group, msg_cnt, postingAllowed && !moderated, false);
+      // add the last serial number as UDS_EXTRA atom, this is needed for
+      // incremental article listing
+      UDSAtom atom;
+      atom.m_uds = UDS_EXTRA;
+      atom.m_str = QString::number( last );
+      entry.append( atom );
       entryList.append(entry);
 
       if (entryList.count() >= UDS_ENTRY_CHUNK) {
