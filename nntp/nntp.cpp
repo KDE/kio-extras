@@ -324,7 +324,7 @@ void NNTPProtocol::listDir( const KURL& url ) {
     return;
   }
   else if ( path == "/" ) {
-    fetchGroups();
+    fetchGroups( url.queryItem( "since" ) );
     finished();
   } else {
     // if path = /group
@@ -342,12 +342,21 @@ void NNTPProtocol::listDir( const KURL& url ) {
   }
 }
 
-void NNTPProtocol::fetchGroups() {
-
-  // send LIST command
-  int res_code = sendCommand("LIST");
-  if (res_code != 215) {
-    unexpected_response(res_code,"LIST");
+void NNTPProtocol::fetchGroups( const QString &since )
+{
+  int expected;
+  int res;
+  if ( since.isEmpty() ) {
+    // full listing
+    res = sendCommand( "LIST" );
+    expected = 215;
+  } else {
+    // incremental listing
+    res = sendCommand( "NEWGROUPS " + since );
+    expected = 231;
+  }
+  if ( res != expected ) {
+    unexpected_response( res, "LIST" );
     return;
   }
 
@@ -370,8 +379,7 @@ void NNTPProtocol::fetchGroups() {
     if ( line == ".\r\n" )
       break;
 
-    // update DBG with current place in input
-    DBG << "  fetchGroups -- data: " << line << endl;
+    DBG << "  fetchGroups -- data: " << line.stripWhiteSpace() << endl;
 
     // group name
     if ((pos = line.find(' ')) > 0) {

@@ -81,8 +81,12 @@ class NNTPProtocol:public KIO::TCPSlaveBase
    char readBuffer[MAX_PACKET_LEN];
    ssize_t readBufferLen;
 
-   /// fetch all available news groups
-   void fetchGroups ();
+   /**
+    * Fetch all new groups since the given date or (if the date is empty)
+    * all available groups.
+    * @param since Date as specified in RFC 977 for the NEWGROUPS command
+    */
+   void fetchGroups( const QString &since );
    /**
     * Fetch message listing from the given newsgroup.
     * This will use RFC2980 XOVER if available, plain RFC977 STAT/NEXT
