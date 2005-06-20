@@ -1,5 +1,5 @@
 /* This file is part of the KDE Project
-   Copyright (c) 2004 Jérôme Lodewyck <lodewyck@clipper.ens.fr>
+   Copyright (c) 2004 Jï¿½ï¿½e Lodewyck <lodewyck@clipper.ens.fr>
 
    This library is free software; you can redistribute it and/or
    modify it under the terms of the GNU Library General Public
@@ -91,6 +91,13 @@ bool HALBackend::InitHal()
 		return false;
 	}
 
+	/** @todo customize watch policy */
+	kdDebug(1219) << "Watch properties" << endl;
+	if (libhal_device_property_watch_all(m_halContext, NULL))
+	{
+		kdDebug(1219) << "Failed to watch HAL properties!" << endl;
+		return false;
+	}
 #else /* HAL API >= 0.5 */
 	kdDebug(1219) << "Context new" << endl;
 	m_halContext = libhal_ctx_new();
@@ -125,15 +132,15 @@ bool HALBackend::InitHal()
 		kdDebug(1219) << "Failed to init HAL context!" << endl;
 		return false;
 	}
-#endif
 
 	/** @todo customize watch policy */
 	kdDebug(1219) << "Watch properties" << endl;
-	if (libhal_device_property_watch_all(m_halContext, NULL))
+	if (!libhal_device_property_watch_all(m_halContext, &error))
 	{
 		kdDebug(1219) << "Failed to watch HAL properties!" << endl;
 		return false;
 	}
+#endif
 
 	/* libhal-storage initialization */
 	kdDebug(1219) << "Storage Policy" << endl;
