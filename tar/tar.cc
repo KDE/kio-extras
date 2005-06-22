@@ -14,6 +14,7 @@
 #include <kzip.h>
 #include <kar.h>
 #include <kmimemagic.h>
+#include <klocale.h>
 
 #include <errno.h> // to be removed
 
@@ -210,8 +211,9 @@ void ArchiveProtocol::listDir( const KURL & url )
         else if ( !info.isDir() )
         {
             // The file is probably not supported by tar/zip/... (e.g. wrong header)
-            // ### FIXME: there should be a better error than this one!
-            error( KIO::ERR_UNSUPPORTED_PROTOCOL, url.prettyURL() );
+            error( KIO::ERR_SLAVE_DEFINED,
+                i18n( "Could not process the file, probably due to an unsupported file format.\n%1")
+                .arg( url.prettyURL() ) );
             return;
         }
         // It's a real dir -> redirect
@@ -304,8 +306,9 @@ void ArchiveProtocol::stat( const KURL & url )
         else if ( !info.isDir() )
         {
             // The file is probably not supported by tar/zip/... (e.g. wrong header)
-            // ### FIXME: there should be a better error than this one!
-            error( KIO::ERR_UNSUPPORTED_PROTOCOL, url.prettyURL() );
+            error( KIO::ERR_SLAVE_DEFINED,
+                i18n( "Could not process the file, probably due to an unsupported file format.\n%1")
+                .arg( url.prettyURL() ) );
             return;
         }
         // Real directory. Return just enough information for KRun to work
@@ -318,7 +321,7 @@ void ArchiveProtocol::stat( const KURL & url )
         struct stat buff;
         if ( ::stat( QFile::encodeName( url.path() ), &buff ) == -1 )
         {
-            // Should not happen, as the QFileInfo::exist check should have caught it before.
+            // Should not happen, as the QFileInfo::exist check should have catched it before.
             error( KIO::ERR_COULD_NOT_STAT, url.prettyURL() );
             return;
         }
@@ -378,8 +381,9 @@ void ArchiveProtocol::get( const KURL & url )
             return;
         }
         // The file is probably not supported by tar/zip/... (e.g. wrong header)
-        // ### FIXME: there should be a better error than this one!
-        error( KIO::ERR_UNSUPPORTED_PROTOCOL, url.prettyURL() );
+        error( KIO::ERR_SLAVE_DEFINED,
+            i18n( "Could not process the file, probably due to an unsupported file format.\n%1")
+            .arg( url.prettyURL() ) );
         return;
     }
 
