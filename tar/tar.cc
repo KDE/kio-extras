@@ -319,7 +319,7 @@ void ArchiveProtocol::stat( const KURL & url )
         if ( ::stat( QFile::encodeName( url.path() ), &buff ) == -1 )
         {
             // Should not happen, as the QFileInfo::exist check should have caught it before.
-            error( KIO::ERR_UNKNOWN, url.prettyURL() );
+            error( KIO::ERR_COULD_NOT_STAT, url.prettyURL() );
             return;
         }
 
