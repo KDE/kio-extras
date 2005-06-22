@@ -5,6 +5,8 @@
 #include <unistd.h>
 
 #include <qfile.h>
+#include <qfileinfo.h>
+
 #include <kurl.h>
 #include <kdebug.h>
 #include <kinstance.h>
@@ -193,11 +195,23 @@ void ArchiveProtocol::listDir( const KURL & url )
     QString path;
     if ( !checkNewFile( url, path ) )
     {
-        QCString _path( QFile::encodeName(url.path()));
-        kdDebug( 7109 ) << "Checking (stat) on " << _path << endl;
-        struct stat buff;
-        if ( ::stat( _path.data(), &buff ) == -1 || !S_ISDIR( buff.st_mode ) ) {
+        const QFileInfo info( url.path() );
+        kdDebug( 7109 ) << "Checking on " << info.filePath() << endl;
+        if ( !info.exists() )
+        {
             error( KIO::ERR_DOES_NOT_EXIST, url.prettyURL() );
+            return;
+        }
+        else if ( !info.isReadable() )
+        {
+            error( KIO::ERR_CANNOT_OPEN_FOR_READING, url.prettyURL() );
+            return;
+        }
+        else if ( !info.isDir() )
+        {
+            // The file is probably not supported by tar/zip/... (e.g. wrong header)
+            // ### FIXME: there should be a better error than this one!
+            error( KIO::ERR_UNSUPPORTED_PROTOCOL, url.prettyURL() );
             return;
         }
         // It's a real dir -> redirect
@@ -275,12 +289,23 @@ void ArchiveProtocol::stat( const KURL & url )
     {
         // We may be looking at a real directory - this happens
         // when pressing up after being in the root of an archive
-        QCString _path( QFile::encodeName(url.path()));
-        kdDebug( 7109 ) << "ArchiveProtocol::stat (stat) on " << _path << endl;
-        struct stat buff;
-        if ( ::stat( _path.data(), &buff ) == -1 || !S_ISDIR( buff.st_mode ) ) {
-            kdDebug( 7109 ) << "isdir=" << S_ISDIR( buff.st_mode ) << "  errno=" << strerror(errno) << endl;
-            error( KIO::ERR_DOES_NOT_EXIST, url.path() );
+        const QFileInfo info( url.path() );
+        kdDebug( 7109 ) << "Checking on " << info.filePath() << endl;
+        if ( !info.exists() )
+        {
+            error( KIO::ERR_DOES_NOT_EXIST, url.prettyURL() );
+            return;
+        }
+        else if ( !info.isReadable() )
+        {
+            error( KIO::ERR_CANNOT_OPEN_FOR_READING, url.prettyURL() );
+            return;
+        }
+        else if ( !info.isDir() )
+        {
+            // The file is probably not supported by tar/zip/... (e.g. wrong header)
+            // ### FIXME: there should be a better error than this one!
+            error( KIO::ERR_UNSUPPORTED_PROTOCOL, url.prettyURL() );
             return;
         }
         // Real directory. Return just enough information for KRun to work
@@ -289,6 +314,14 @@ void ArchiveProtocol::stat( const KURL & url )
         atom.m_str = url.fileName();
         entry.append( atom );
         kdDebug( 7109 ) << "ArchiveProtocol::stat returning name=" << url.fileName() << endl;
+
+        struct stat buff;
+        if ( ::stat( QFile::encodeName( url.path() ), &buff ) == -1 )
+        {
+            // Should not happen, as the QFileInfo::exist check should have caught it before.
+            error( KIO::ERR_UNKNOWN, url.prettyURL() );
+            return;
+        }
 
         atom.m_uds = KIO::UDS_FILE_TYPE;
         atom.m_long = buff.st_mode & S_IFMT;
@@ -332,7 +365,21 @@ void ArchiveProtocol::get( const KURL & url )
     QString path;
     if ( !checkNewFile( url, path ) )
     {
-        error( KIO::ERR_DOES_NOT_EXIST, url.prettyURL() );
+        const QFileInfo info( url.path() );
+        kdDebug( 7109 ) << "Checking on " << info.filePath() << endl;
+        if ( !info.exists() )
+        {
+            error( KIO::ERR_DOES_NOT_EXIST, url.prettyURL() );
+            return;
+        }
+        else if ( !info.isReadable() )
+        {
+            error( KIO::ERR_CANNOT_OPEN_FOR_READING, url.prettyURL() );
+            return;
+        }
+        // The file is probably not supported by tar/zip/... (e.g. wrong header)
+        // ### FIXME: there should be a better error than this one!
+        error( KIO::ERR_UNSUPPORTED_PROTOCOL, url.prettyURL() );
         return;
     }
 
@@ -475,3 +522,4 @@ debug("void TARProtocol::filterData");
 }
 */
 
+// kate: space-indent on; indent-width 4; replace-tabs on;
