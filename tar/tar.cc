@@ -419,7 +419,49 @@ void ArchiveProtocol::get( const KURL & url )
 
     totalSize( archiveFileEntry->size() );
 
-    QByteArray completeData = archiveFileEntry->data();
+    //kdDebug(7109) << "Preparing to get the archive data" << endl;
+    
+    /*
+     * The easy way would be to get the data by calling archiveFileEntry->data()
+     * However this has drawbacks:
+     * - the complete file must be read into the memory
+     * - errors are skipped, resulting in an empty file
+     */
+
+    QIODevice* io = 0;
+    // Getting the device is hard, as archiveFileEntry->device() is not virtual!
+    if ( url.protocol() == "tar" )
+    {
+        io = archiveFileEntry->device();
+    }
+    else if ( url.protocol() == "ar" )
+    {
+        io = archiveFileEntry->device();
+    }
+    else if ( url.protocol() == "zip" )
+    {
+        io = ((KZipFileEntry*) archiveFileEntry)->device();
+    }
+    else
+    {
+        // Wrong protocol? Why was this not catched by checkNewFile?
+        kdWarning(7109) << "Protocol " << url.protocol() << " not supported by this IOSlave; " << k_funcinfo << endl;
+        error( KIO::ERR_UNSUPPORTED_PROTOCOL, url.protocol() );
+        return;
+    }
+
+    if (!io)
+    {
+        error( KIO::ERR_SLAVE_DEFINED,
+            i18n( "The archive file could not be opened, perhaps because the format is unsupported.\n%1" )
+                    .arg( url.prettyURL() ) );
+        return;
+    }
+    
+    QByteArray completeData = io->readAll();
+    delete io;
+
+    //kdDebug(7109) << "Archive data read!" << endl;
 
     KMimeMagicResult * result = KMimeMagic::self()->findBufferFileType( completeData, path );
     kdDebug(7109) << "Emitting mimetype " << result->mimeType() << endl;
