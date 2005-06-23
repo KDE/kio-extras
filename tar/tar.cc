@@ -5,7 +5,6 @@
 #include <unistd.h>
 
 #include <qfile.h>
-#include <qfileinfo.h>
 
 #include <kurl.h>
 #include <kdebug.h>
@@ -54,7 +53,7 @@ ArchiveProtocol::~ArchiveProtocol()
     delete m_archiveFile;
 }
 
-bool ArchiveProtocol::checkNewFile( const KURL & url, QString & path )
+bool ArchiveProtocol::checkNewFile( const KURL & url, QString & path, KIO::Error& errorNum )
 {
     QString fullPath = url.path();
     kdDebug(7109) << "ArchiveProtocol::checkNewFile " << fullPath << endl;
@@ -95,12 +94,18 @@ bool ArchiveProtocol::checkNewFile( const KURL & url, QString & path )
         fullPath += '/';
 
     kdDebug(7109) << "the full path is " << fullPath << endl;
+    struct stat statbuf;
+    statbuf.st_mode = 0; // be sure to clear the directory bit
     while ( (pos=fullPath.find( '/', pos+1 )) != -1 )
     {
         QString tryPath = fullPath.left( pos );
         kdDebug(7109) << fullPath << "  trying " << tryPath << endl;
-        struct stat statbuf;
-        if ( ::stat( QFile::encodeName(tryPath), &statbuf ) == 0 && !S_ISDIR(statbuf.st_mode) )
+        if ( ::stat( QFile::encodeName(tryPath), &statbuf ) == -1 )
+        {
+            // We are not in the file system anymore, either we have already enough data or we will never get any useful data anymore
+            break;
+        }
+        if ( !S_ISDIR(statbuf.st_mode) )
         {
             archiveFile = tryPath;
             m_mtime = statbuf.st_mtime;
@@ -121,6 +126,14 @@ bool ArchiveProtocol::checkNewFile( const KURL & url, QString & path )
     if ( archiveFile.isEmpty() )
     {
         kdDebug(7109) << "ArchiveProtocol::checkNewFile: not found" << endl;
+        if ( S_ISDIR(statbuf.st_mode) ) // Was the last stat about a directory?
+        {
+            // Too bad, it is a directory, not an archive.
+            kdDebug(7109) << "Path is a directory, not an archive." << endl;
+            errorNum = KIO::ERR_IS_DIRECTORY;
+        }
+        else
+            errorNum = KIO::ERR_DOES_NOT_EXIST;
         return false;
     }
 
@@ -136,6 +149,7 @@ bool ArchiveProtocol::checkNewFile( const KURL & url, QString & path )
         m_archiveFile = new KZip( archiveFile );
     } else {
         kdWarning(7109) << "Protocol " << url.protocol() << " not supported by this IOSlave" << endl;
+        errorNum = KIO::ERR_UNSUPPORTED_PROTOCOL;
         return false;
     }
 
@@ -144,6 +158,7 @@ bool ArchiveProtocol::checkNewFile( const KURL & url, QString & path )
         kdDebug(7109) << "Opening " << archiveFile << "failed." << endl;
         delete m_archiveFile;
         m_archiveFile = 0L;
+        errorNum = KIO::ERR_CANNOT_OPEN_FOR_READING;
         return false;
     }
 
@@ -194,26 +209,22 @@ void ArchiveProtocol::listDir( const KURL & url )
     kdDebug( 7109 ) << "ArchiveProtocol::listDir " << url.url() << endl;
 
     QString path;
-    if ( !checkNewFile( url, path ) )
+    KIO::Error errorNum;
+    if ( !checkNewFile( url, path, errorNum ) )
     {
-        const QFileInfo info( url.path() );
-        kdDebug( 7109 ) << "Checking on " << info.filePath() << endl;
-        if ( !info.exists() )
+        if ( errorNum == KIO::ERR_CANNOT_OPEN_FOR_READING )
         {
-            error( KIO::ERR_DOES_NOT_EXIST, url.prettyURL() );
-            return;
-        }
-        else if ( !info.isReadable() )
-        {
-            error( KIO::ERR_CANNOT_OPEN_FOR_READING, url.prettyURL() );
-            return;
-        }
-        else if ( !info.isDir() )
-        {
-            // The file is probably not supported by tar/zip/... (e.g. wrong header)
+            // If we cannot open, it might be a problem with the archive header (e.g. unsupported format)
+            // Therefore give a more specific error message
             error( KIO::ERR_SLAVE_DEFINED,
-                i18n( "Could not process the file, probably due to an unsupported file format.\n%1")
-                .arg( url.prettyURL() ) );
+                   i18n( "Could not open the file, probably due to an unsupported file format.\n%1")
+                           .arg( url.prettyURL() ) );
+            return;
+        }
+        else if ( errorNum != ERR_IS_DIRECTORY )
+        {
+            // We have any other error
+            error( errorNum, url.prettyURL() );
             return;
         }
         // It's a real dir -> redirect
@@ -287,28 +298,24 @@ void ArchiveProtocol::stat( const KURL & url )
 {
     QString path;
     UDSEntry entry;
-    if ( !checkNewFile( url, path ) )
+    KIO::Error errorNum;
+    if ( !checkNewFile( url, path, errorNum ) )
     {
         // We may be looking at a real directory - this happens
         // when pressing up after being in the root of an archive
-        const QFileInfo info( url.path() );
-        kdDebug( 7109 ) << "Checking on " << info.filePath() << endl;
-        if ( !info.exists() )
+        if ( errorNum == KIO::ERR_CANNOT_OPEN_FOR_READING )
         {
-            error( KIO::ERR_DOES_NOT_EXIST, url.prettyURL() );
-            return;
-        }
-        else if ( !info.isReadable() )
-        {
-            error( KIO::ERR_CANNOT_OPEN_FOR_READING, url.prettyURL() );
-            return;
-        }
-        else if ( !info.isDir() )
-        {
-            // The file is probably not supported by tar/zip/... (e.g. wrong header)
+            // If we cannot open, it might be a problem with the archive header (e.g. unsupported format)
+            // Therefore give a more specific error message
             error( KIO::ERR_SLAVE_DEFINED,
-                i18n( "Could not process the file, probably due to an unsupported file format.\n%1")
-                .arg( url.prettyURL() ) );
+                   i18n( "Could not open the file, probably due to an unsupported file format.\n%1")
+                           .arg( url.prettyURL() ) );
+            return;
+        }
+        else if ( errorNum != ERR_IS_DIRECTORY )
+        {
+            // We have any other error
+            error( errorNum, url.prettyURL() );
             return;
         }
         // Real directory. Return just enough information for KRun to work
@@ -321,7 +328,7 @@ void ArchiveProtocol::stat( const KURL & url )
         struct stat buff;
         if ( ::stat( QFile::encodeName( url.path() ), &buff ) == -1 )
         {
-            // Should not happen, as the QFileInfo::exist check should have catched it before.
+            // Should not happen, as the file was already stated by checkNewFile
             error( KIO::ERR_COULD_NOT_STAT, url.prettyURL() );
             return;
         }
@@ -366,25 +373,24 @@ void ArchiveProtocol::get( const KURL & url )
     kdDebug( 7109 ) << "ArchiveProtocol::get" << url.url() << endl;
 
     QString path;
-    if ( !checkNewFile( url, path ) )
+    KIO::Error errorNum;
+    if ( !checkNewFile( url, path, errorNum ) )
     {
-        const QFileInfo info( url.path() );
-        kdDebug( 7109 ) << "Checking on " << info.filePath() << endl;
-        if ( !info.exists() )
+        if ( errorNum == KIO::ERR_CANNOT_OPEN_FOR_READING )
         {
-            error( KIO::ERR_DOES_NOT_EXIST, url.prettyURL() );
+            // If we cannot open, it might be a problem with the archive header (e.g. unsupported format)
+            // Therefore give a more specific error message
+            error( KIO::ERR_SLAVE_DEFINED,
+                   i18n( "Could not open the file, probably due to an unsupported file format.\n%1")
+                           .arg( url.prettyURL() ) );
             return;
         }
-        else if ( !info.isReadable() )
+        else
         {
-            error( KIO::ERR_CANNOT_OPEN_FOR_READING, url.prettyURL() );
+            // We have any other error
+            error( errorNum, url.prettyURL() );
             return;
         }
-        // The file is probably not supported by tar/zip/... (e.g. wrong header)
-        error( KIO::ERR_SLAVE_DEFINED,
-            i18n( "Could not process the file, probably due to an unsupported file format.\n%1")
-            .arg( url.prettyURL() ) );
-        return;
     }
 
     const KArchiveDirectory* root = m_archiveFile->directory();

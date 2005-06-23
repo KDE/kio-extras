@@ -20,8 +20,10 @@
 #ifndef _TAR_H
 #define _TAR_H
 
-#include <kio/slavebase.h>
 #include <sys/types.h>
+
+#include <kio/global.h>
+#include <kio/slavebase.h>
 
 class ArchiveProtocol : public KIO::SlaveBase
 {
@@ -35,7 +37,15 @@ public:
 
 protected:
     void createUDSEntry( const KArchiveEntry * tarEntry, KIO::UDSEntry & entry );
-    bool checkNewFile( const KURL & url, QString & path );
+
+    /**
+     * \brief find, check and open the archive file
+     * \param url The URL of the archive
+     * \param path Path where the archive really is (returned value)
+     * \param errNum KIO error number (undefined if the function returns true)
+     * \return true if file was found, false if there was an error
+     */
+    bool checkNewFile( const KURL & url, QString & path, KIO::Error& errorNum );
 
     KArchive * m_archiveFile;
     QString m_archiveName;
