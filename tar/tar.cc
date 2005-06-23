@@ -6,6 +6,7 @@
 
 #include <qfile.h>
 
+#include <kglobal.h>
 #include <kurl.h>
 #include <kdebug.h>
 #include <kinstance.h>
@@ -458,31 +459,57 @@ void ArchiveProtocol::get( const KURL & url )
         return;
     }
     
-    QByteArray completeData = io->readAll();
-    delete io;
-
-    //kdDebug(7109) << "Archive data read!" << endl;
-
-    KMimeMagicResult * result = KMimeMagic::self()->findBufferFileType( completeData, path );
-    kdDebug(7109) << "Emitting mimetype " << result->mimeType() << endl;
-    mimeType( result->mimeType() );
-
-    QByteArray partialData;
-    int offset = 0;
-    const int inc = 0x800000; // 8MB
-
-    while ( offset + inc < archiveFileEntry->size() ) {
-        partialData.setRawData( completeData.data() + offset, inc );
-        data( partialData );
-        partialData.resetRawData( completeData.data() + offset, inc );
-        processedSize( offset + inc );
-	offset += inc;
+    if ( !io->open( IO_ReadOnly ) )
+    {
+        error( KIO::ERR_CANNOT_OPEN_FOR_READING, url.prettyURL() );
+        return;
+    }
+    
+    // Size of a QIODevice read. It must be large enough so that the mime type check will not fail
+    const int maxSize = 0x100000; // 1MB
+    
+    int bufferSize = kMin( maxSize, archiveFileEntry->size() );
+    QByteArray buffer ( bufferSize );
+    if ( buffer.isEmpty() )
+    {
+        // Something went wrong
+        error( KIO::ERR_OUT_OF_MEMORY, url.prettyURL() );
+        return;
     }
 
-    partialData.setRawData( completeData.data() + offset, archiveFileEntry->size() - offset );
-    data( partialData );
-    partialData.resetRawData( completeData.data() + offset, archiveFileEntry->size() - offset );
-    processedSize( archiveFileEntry->size() );
+    bool firstRead = true;
+
+    // How much file do we still have to process?
+    int fileSize = archiveFileEntry->size();
+
+    while ( !io->atEnd() && fileSize > 0 )
+    {
+        if ( !firstRead )
+        {
+            bufferSize = kMin( maxSize, fileSize );
+            buffer.resize( bufferSize, QGArray::SpeedOptim );
+        }
+        const Q_LONG read = io->readBlock( buffer.data(), buffer.size() ); // Avoid to use bufferSize here, in case something went wrong.
+        if ( read != bufferSize )
+        {
+            kdWarning(7109) << "Read " << read << " bytes but expected " << bufferSize << endl;
+            error( KIO::ERR_COULD_NOT_READ, url.prettyURL() );
+            return;
+        }
+        if ( firstRead )
+        {
+            // We use the magic one the first data read
+            // (As magic detection is about fixed positions, we can be sure that it is enough data.)
+            KMimeMagicResult * result = KMimeMagic::self()->findBufferFileType( buffer, path );
+            kdDebug(7109) << "Emitting mimetype " << result->mimeType() << endl;
+            mimeType( result->mimeType() );
+            firstRead = false;
+        }
+        data( buffer );
+        fileSize -= bufferSize;
+    }
+    io->close();
+    delete io;
 
     data( QByteArray() );
 
