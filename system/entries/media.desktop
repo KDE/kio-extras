@@ -44,6 +44,3 @@ Name[tr]=Depolama Ortamı
 Name[uk]=Пристрої зберігання інформації
 Name[xx]=xxStorage Mediaxx
 Name[zh_CN]=存储介质
-Open=true
-X-KDE-TreeModule=Directory
-X-KDE-KonqSidebarModule=konqsidebar_tree
