@@ -1,6 +1,9 @@
+#include <config.h>
 
 #include <sys/types.h>
+#ifdef HAVE_SYS_STAT_H
 #include <sys/stat.h>
+#endif
 #include <stdlib.h>
 #include <unistd.h>
 
@@ -15,6 +18,7 @@
 #include <kar.h>
 #include <kmimemagic.h>
 #include <klocale.h>
+#include <kde_file.h>
 
 #include <errno.h> // to be removed
 
@@ -64,8 +68,8 @@ bool ArchiveProtocol::checkNewFile( const KURL & url, QString & path, KIO::Error
     if ( m_archiveFile && m_archiveName == fullPath.left(m_archiveName.length()) )
     {
         // Has it changed ?
-        struct stat statbuf;
-        if ( ::stat( QFile::encodeName( m_archiveName ), &statbuf ) == 0 )
+        KDE_struct_stat statbuf;
+        if ( KDE_stat( QFile::encodeName( m_archiveName ), &statbuf ) == 0 )
         {
             if ( m_mtime == statbuf.st_mtime )
             {
@@ -95,13 +99,13 @@ bool ArchiveProtocol::checkNewFile( const KURL & url, QString & path, KIO::Error
         fullPath += '/';
 
     kdDebug(7109) << "the full path is " << fullPath << endl;
-    struct stat statbuf;
+    KDE_struct_stat statbuf;
     statbuf.st_mode = 0; // be sure to clear the directory bit
     while ( (pos=fullPath.find( '/', pos+1 )) != -1 )
     {
         QString tryPath = fullPath.left( pos );
         kdDebug(7109) << fullPath << "  trying " << tryPath << endl;
-        if ( ::stat( QFile::encodeName(tryPath), &statbuf ) == -1 )
+        if ( KDE_stat( QFile::encodeName(tryPath), &statbuf ) == -1 )
         {
             // We are not in the file system anymore, either we have already enough data or we will never get any useful data anymore
             break;
@@ -326,8 +330,8 @@ void ArchiveProtocol::stat( const KURL & url )
         entry.append( atom );
         kdDebug( 7109 ) << "ArchiveProtocol::stat returning name=" << url.fileName() << endl;
 
-        struct stat buff;
-        if ( ::stat( QFile::encodeName( url.path() ), &buff ) == -1 )
+        KDE_struct_stat buff;
+        if ( KDE_stat( QFile::encodeName( url.path() ), &buff ) == -1 )
         {
             // Should not happen, as the file was already stated by checkNewFile
             error( KIO::ERR_COULD_NOT_STAT, url.prettyURL() );
