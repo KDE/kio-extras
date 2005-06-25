@@ -327,7 +327,7 @@ void sftpProtocol::sftpCopyGet(const KURL& dest, const KURL& src, int mode, bool
 sftpProtocol::Status sftpProtocol::sftpGet( const KURL& src, KIO::filesize_t offset, int fd )
 {
     int code;
-    sftpFileAttr attr(remoteEncoding()->encoding());
+    sftpFileAttr attr(remoteEncoding());
 
     Status res;
     res.code = 0;
@@ -874,7 +874,7 @@ void sftpProtocol::sftpPut( const KURL& dest, int permissions, bool resume, bool
                          << ", overwrite=" << overwrite << endl;
 
     KURL origUrl( dest );
-    sftpFileAttr origAttr(remoteEncoding()->encoding());
+    sftpFileAttr origAttr(remoteEncoding());
     bool origExists = false;
 
     // Stat original (without part ext)  to see if it already exists
@@ -916,7 +916,7 @@ void sftpProtocol::sftpPut( const KURL& dest, int permissions, bool resume, bool
 
     if( markPartial ) {
 
-        sftpFileAttr partAttr(remoteEncoding()->encoding());
+        sftpFileAttr partAttr(remoteEncoding());
         code = sftpStat(partUrl, partAttr);
 
         if( code == SSH2_FX_OK ) {
@@ -984,7 +984,7 @@ void sftpProtocol::sftpPut( const KURL& dest, int permissions, bool resume, bool
     else if( !overwrite && resume )
         pflags = SSH2_FXF_WRITE | SSH2_FXF_CREAT | SSH2_FXF_APPEND;
 
-    sftpFileAttr attr(remoteEncoding()->encoding());
+    sftpFileAttr attr(remoteEncoding());
     QByteArray handle;
 
     // Set the permissions of the file we write to if it didn't already exist
@@ -1132,7 +1132,7 @@ void sftpProtocol::stat ( const KURL& url ){
     }
 
     int code;
-    sftpFileAttr attr(remoteEncoding()->encoding());
+    sftpFileAttr attr(remoteEncoding());
     if( (code = sftpStat(url, attr)) != SSH2_FX_OK ) {
         processStatus(code, url.prettyURL());
         return;
@@ -1159,7 +1159,7 @@ void sftpProtocol::mimetype ( const KURL& url ){
 
     Q_UINT32 pflags = SSH2_FXF_READ;
     QByteArray handle, mydata;
-    sftpFileAttr attr(remoteEncoding()->encoding());
+    sftpFileAttr attr(remoteEncoding());
     int code;
     if( (code = sftpOpen(url, pflags, attr, handle)) != SSH2_FX_OK ) {
         error(ERR_CANNOT_OPEN_FOR_READING, url.prettyURL());
@@ -1251,7 +1251,7 @@ void sftpProtocol::mkdir(const KURL&url, int permissions){
     QCString path = remoteEncoding()->encode(url.path());
     uint len = path.length();
 
-    sftpFileAttr attr(remoteEncoding()->encoding());
+    sftpFileAttr attr(remoteEncoding());
 
     if (permissions != -1)
       attr.setPermissions(permissions);
@@ -1297,7 +1297,7 @@ void sftpProtocol::mkdir(const KURL&url, int permissions){
 
         // Check if mkdir failed because the directory already exists so that
         // we can return the appropriate message...
-        sftpFileAttr dirAttr(remoteEncoding()->encoding());
+        sftpFileAttr dirAttr(remoteEncoding());
         if ( sftpStat(url, dirAttr) == SSH2_FX_OK )
         {
           error( ERR_DIR_ALREADY_EXIST, url.prettyURL() );
@@ -1325,7 +1325,7 @@ void sftpProtocol::rename(const KURL& src, const KURL& dest, bool overwrite){
 
     // Always stat the destination before attempting to rename
     // a file or a directory...
-    sftpFileAttr attr(remoteEncoding()->encoding());
+    sftpFileAttr attr(remoteEncoding());
     int code = sftpStat(dest, attr);
 
     // If the destination directory, exists tell it to the job
@@ -1376,7 +1376,7 @@ void sftpProtocol::symlink(const QString& target, const KURL& dest, bool overwri
     bool failed = false;
     if( (code = sftpSymLink(target, dest)) != SSH2_FX_OK ) {
         if( overwrite ) { // try to delete the destination
-            sftpFileAttr attr(remoteEncoding()->encoding());
+            sftpFileAttr attr(remoteEncoding());
             if( (code = sftpStat(dest, attr)) != SSH2_FX_OK ) {
                 failed = true;
             }
@@ -1418,7 +1418,7 @@ void sftpProtocol::chmod(const KURL& url, int permissions){
     if( !mConnected )
         return;
 
-    sftpFileAttr attr(remoteEncoding()->encoding());
+    sftpFileAttr attr(remoteEncoding());
 
     if (permissions != -1)
       attr.setPermissions(permissions);
@@ -1874,7 +1874,7 @@ int sftpProtocol::sftpReadDir(const QByteArray& handle, const KURL& url){
     Q_UINT32 id, expectedId, count;
     Q_UINT8 type;
 
-    sftpFileAttr attr (remoteEncoding()->encoding());
+    sftpFileAttr attr (remoteEncoding());
     attr.setDirAttrsFlag(true);
 
     QByteArray p;
@@ -1918,7 +1918,7 @@ int sftpProtocol::sftpReadDir(const QByteArray& handle, const KURL& url){
              myurl.addPath(attr.filename());
 
              // Stat the symlink to find out its type...
-             sftpFileAttr attr2 (remoteEncoding()->encoding());
+             sftpFileAttr attr2 (remoteEncoding());
              (void) sftpStat(myurl, attr2);
 
              attr.setLinkType(attr2.linkType());
@@ -2112,7 +2112,7 @@ int sftpProtocol::sftpStat(const KURL& url, sftpFileAttr& attr) {
 
         dest.cleanPath();
 
-        sftpFileAttr attr2 (remoteEncoding()->encoding());
+        sftpFileAttr attr2 (remoteEncoding());
         (void) sftpStat(dest, attr2);
 
         if (attr2.linkType() == 0)

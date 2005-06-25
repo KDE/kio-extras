@@ -34,7 +34,7 @@ sftpFileAttr::sftpFileAttr(){
     mDirAttrs = false;
 }
 
-sftpFileAttr::sftpFileAttr(const char* encoding){
+sftpFileAttr::sftpFileAttr(KRemoteEncoding* encoding){
     clear();
     mDirAttrs = false;
     mEncoding = encoding;
@@ -153,9 +153,6 @@ QDataStream& operator>> (QDataStream& s, sftpFileAttr& fa) {
     // XXX Add some error checking in here in case
     //     we get a bad sftp packet.
 
-    // Save the encoding info before clearing fa...
-    QCString encoding ( fa.mEncoding );
-
     fa.clear();
 
     if( fa.mDirAttrs ) {
@@ -163,8 +160,7 @@ QDataStream& operator>> (QDataStream& s, sftpFileAttr& fa) {
         s >> fn;
         fn.truncate( fn.size() );
 
-        KRemoteEncoding encoder ( encoding.data() );
-        fa.mFilename = encoder.decode( fn );
+        fa.mFilename = fa.mEncoding->decode( fn );
 
         s >> fa.mLongname;
         fa.mLongname.truncate( fa.mLongname.size() );
@@ -218,8 +214,7 @@ void sftpFileAttr::getUserGroupNames(){
         int i = 0;
         int l = mLongname.length();
 
-        KRemoteEncoding encoder( mEncoding.data() );
-        QString longName = encoder.decode( mLongname );
+        QString longName = mEncoding->decode( mLongname );
 
         kdDebug(7120) << "Decoded:  " << longName << endl;
 
@@ -297,7 +292,6 @@ void sftpFileAttr::clear(){
     mFlags = 0;
     mLongname = "\0";
     mLinkType = 0;
-    mEncoding = "\0";
 }
 
 /** Return the size of the sftp attribute. */
@@ -345,7 +339,7 @@ mode_t sftpFileAttr::fileType() const{
     return type;
 }
 
-void sftpFileAttr::setEncoding( const char* encoding )
+void sftpFileAttr::setEncoding( KRemoteEncoding* encoding )
 {
     mEncoding = encoding;
 }

@@ -33,6 +33,8 @@
   *@author Lucas Fisher
   */
 
+class KRemoteEncoding;
+
 class sftpFileAttr {
 
 private: // Private attributes
@@ -82,12 +84,12 @@ private: // Private attributes
     bool mDirAttrs;
 
     /** Holds the encoding of the remote host */
-    QCString mEncoding;
+    KRemoteEncoding* mEncoding;
 
 public:
     sftpFileAttr();
 
-    sftpFileAttr(const char* encoding);
+    sftpFileAttr(KRemoteEncoding* encoding);
 
     ~sftpFileAttr();
 
@@ -253,7 +255,7 @@ public:
     mode_t fileType() const;
 
     /** Set the encoding of the remote file system */
-    void setEncoding( const char* encoding );
+    void setEncoding( KRemoteEncoding* encoding );
 };
 
 #endif
