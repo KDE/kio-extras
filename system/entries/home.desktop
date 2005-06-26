@@ -4,3 +4,6 @@ Type=Link
 URL=home:/
 Icon=kfm_home
 Name=Home Folders
+Name[da]=Hjemmemapper
+Name[es]=Carpetas personales
+Name[ga]=Fillteáin Bhaile
