@@ -33,6 +33,7 @@ Description[pa]=MacOS HFS+ ਭਾਗਾਂ ਲਈ kioslave
 Description[pl]=Wtyczka protokołu dla partycji HFS+ systemu MacOS
 Description[pt]=Um kioslave para partições MacOS HFS+
 Description[pt_BR]=Um protocolo para as partições HFS+ do MacOS 
+Description[ro]=Un dispozitiv de I/E pentru partiţii HFS+ MacOS
 Description[ru]=Модуль ввода-вывода для файловой системы MacOS HFS+
 Description[se]=SO-šláva MacOS HFS+-partišuvnnaid várás
 Description[sl]=kioslave za razdelke MacOS HFS+
