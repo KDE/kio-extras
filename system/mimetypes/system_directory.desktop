@@ -31,7 +31,6 @@ Comment[pa]=ਸਿਸਟਮ ਫੋਲਡਰ
 Comment[pl]=Katalog systemowy
 Comment[pt]=Pasta de Sistema
 Comment[pt_BR]=Pasta do Sistema
-Comment[ro]=Folder de sistem
 Comment[ru]=Системная папка
 Comment[se]=Vuogádatmáhpa
 Comment[sl]=Sistemska mapa
@@ -41,7 +40,6 @@ Comment[sv]=Systemkatalog
 Comment[ta]=அமைப்பு அடைவு
 Comment[tr]=Sistem Klasörü
 Comment[uk]=Системна тека
-Comment[zh_CN]=系统文件夹
 Patterns=
 
 X-KDE-AutoEmbed=true

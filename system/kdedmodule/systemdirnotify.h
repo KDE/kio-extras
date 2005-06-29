@@ -21,6 +21,7 @@
 
 #include <kurl.h>
 #include <kdirnotify.h>
+#include <qmap.h>
 
 class SystemDirNotify : public KDirNotify
 {
@@ -35,9 +36,10 @@ k_dcop:
 	virtual ASYNC FilesChanged (const KURL::List &fileList);
 
 private:
-	bool isInsideList(const KURL &url);
+	KURL toSystemURL(const KURL &url);
+	KURL::List toSystemURLList(const KURL::List &list);
 
-	KURL::List m_urlList;
+	QMap<KURL,KURL> m_urlMap;
 };
 
 #endif

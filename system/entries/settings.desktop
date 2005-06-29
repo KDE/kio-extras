@@ -67,3 +67,6 @@ Name[vi]=Thiết lập
 Name[wa]=Apontiaedjes
 Name[xx]=xxSettingsxx
 Name[zh_CN]=设置
+Open=false
+X-KDE-TreeModule=Directory
+X-KDE-KonqSidebarModule=konqsidebar_tree

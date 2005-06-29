@@ -59,13 +59,33 @@ extern "C" {
 
 SystemProtocol::SystemProtocol(const QCString &protocol,
                                const QCString &pool, const QCString &app)
-	: SlaveBase(protocol, pool, app)
+	: ForwardingSlaveBase(protocol, pool, app)
 {
 }
 
 SystemProtocol::~SystemProtocol()
 {
 }
+
+bool SystemProtocol::rewriteURL(const KURL &url, KURL &newUrl)
+{
+	QString name, path;
+
+	if ( !m_impl.parseURL(url, name, path) )
+	{
+		error(KIO::ERR_MALFORMED_URL, url.prettyURL());
+		return false;
+	}
+
+	if ( !m_impl.realURL(name, path, newUrl) )
+	{
+		error( m_impl.lastErrorCode(), m_impl.lastErrorMessage() );
+		return false;
+	}
+
+	return true;
+}
+
 
 void SystemProtocol::stat(const KURL &url)
 {
@@ -82,17 +102,33 @@ void SystemProtocol::stat(const KURL &url)
 		return;
 	}
 
-	KURL target = m_impl.findBaseURL( url.fileName() );
-	kdDebug() << "possible redirection target : " << target << endl;
-	
-	if( target.isValid() )
+	QString name;
+	bool ok = m_impl.parseURL(url, name, path);
+
+	if ( !ok )
 	{
-		redirection(target);
-		finished();
+		error(KIO::ERR_MALFORMED_URL, url.prettyURL());
 		return;
 	}
 
-	error(KIO::ERR_MALFORMED_URL, url.prettyURL());
+	if( path.isEmpty() )
+	{
+		KIO::UDSEntry entry;
+
+		if ( m_impl.statByName(name, entry) )
+		{
+			statEntry(entry);
+			finished();
+		}
+		else
+		{
+			error(KIO::ERR_DOES_NOT_EXIST, url.prettyURL());
+		}
+	}
+	else
+	{
+		ForwardingSlaveBase::stat(url);
+	}
 }
 
 void SystemProtocol::listDir(const KURL &url)
@@ -105,17 +141,16 @@ void SystemProtocol::listDir(const KURL &url)
 		return;
 	}
 
-	KURL target = m_impl.findBaseURL( url.fileName() );
-	kdDebug() << "possible redirection target : " << target << endl;
+	QString name, path;
+	bool ok = m_impl.parseURL(url, name, path);
 
-	if( target.isValid() )
+	if ( !ok )
 	{
-		redirection(target);
-		finished();
+		error(KIO::ERR_MALFORMED_URL, url.prettyURL());
 		return;
 	}
 
-	error(KIO::ERR_MALFORMED_URL, url.prettyURL());
+	ForwardingSlaveBase::listDir(url);
 }
 
 void SystemProtocol::listRoot()
