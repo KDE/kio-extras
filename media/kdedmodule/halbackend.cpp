@@ -112,8 +112,12 @@ bool HALBackend::InitHal()
 	DBusError error;
 	dbus_error_init(&error);
 	DBusConnection *dbus_connection = dbus_bus_get(DBUS_BUS_SYSTEM, &error);
-	if (dbus_error_is_set(&error))
+	if (dbus_error_is_set(&error)) {
+		dbus_error_free(&error);
+		libhal_ctx_free(m_halContext);
+		m_halContext = NULL;
 		return false;
+	}
 	MainLoopIntegration(dbus_connection);
 	libhal_ctx_set_dbus_connection(m_halContext, dbus_connection);
 
@@ -127,8 +131,12 @@ bool HALBackend::InitHal()
 	libhal_ctx_set_device_condition(m_halContext, HALBackend::hal_device_condition);
 
 	kdDebug(1219) << "Context Init" << endl;
-	if (!libhal_ctx_init(m_halContext, NULL))
+	if (!libhal_ctx_init(m_halContext, &error))
 	{
+		if (dbus_error_is_set(&error))
+			dbus_error_free(&error);
+		libhal_ctx_free(m_halContext);
+		m_halContext = NULL;
 		kdDebug(1219) << "Failed to init HAL context!" << endl;
 		return false;
 	}
@@ -239,9 +247,13 @@ void HALBackend::RemoveDevice(const char *udi)
 
 void HALBackend::ModifyDevice(const char *udi, const char* key)
 {
-	Q_UNUSED(udi);
+	const char* mediumUdi = findMediumUdiFromUdi(udi);
+	if (!mediumUdi)
+		return;
+	ResetProperties(mediumUdi);
 	Q_UNUSED(key);
 /*
+	Q_UNUSED(udi);
 	TODO: enable this when the watch policy is written
 */
 }
