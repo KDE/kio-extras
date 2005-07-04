@@ -203,7 +203,8 @@ void HALBackend::AddDevice(const char *udi)
 		QString driveUdi = hal_device_get_property_QString(m_halContext, udi, "block.storage_device");
 		/* We don't list floppy volumes because we list floppy drives */
 		if ((hal_device_get_property_QString(m_halContext, driveUdi.ascii(), "storage.drive_type") == "floppy") ||
-		    (hal_device_get_property_QString(m_halContext, driveUdi.ascii(), "storage.drive_type") == "zip"))
+		    (hal_device_get_property_QString(m_halContext, driveUdi.ascii(), "storage.drive_type") == "zip") ||
+		    (hal_device_get_property_QString(m_halContext, driveUdi.ascii(), "storage.drive_type") == "jaz"))
 			return;
 
 		/** @todo check exclusion list **/
@@ -219,7 +220,8 @@ void HALBackend::AddDevice(const char *udi)
 	/* Floppy & zip drives */
 	if (libhal_device_query_capability(m_halContext, udi, "storage", NULL))
 		if ((hal_device_get_property_QString(m_halContext, udi, "storage.drive_type") == "floppy") ||
-		    (hal_device_get_property_QString(m_halContext, udi, "storage.drive_type") == "zip"))
+		    (hal_device_get_property_QString(m_halContext, udi, "storage.drive_type") == "zip") ||
+		    (hal_device_get_property_QString(m_halContext, udi, "storage.drive_type") == "jaz"))
 		{
 			/* Create medium */
 			Medium* medium = new Medium(udi, "");
@@ -247,15 +249,11 @@ void HALBackend::RemoveDevice(const char *udi)
 
 void HALBackend::ModifyDevice(const char *udi, const char* key)
 {
+	Q_UNUSED(key);
 	const char* mediumUdi = findMediumUdiFromUdi(udi);
 	if (!mediumUdi)
 		return;
 	ResetProperties(mediumUdi);
-	Q_UNUSED(key);
-/*
-	Q_UNUSED(udi);
-	TODO: enable this when the watch policy is written
-*/
 }
 
 void HALBackend::DeviceCondition(const char* udi, const char* condition)
@@ -505,6 +503,8 @@ void HALBackend::setFloppyProperties(Medium* medium)
 		else
 			medium->setMimeType("media/zip_unmounted");
 	}
+
+	/** @todo And mimtype for JAZ drives ? */
 
 	medium->setIconName(QString::null);
 
