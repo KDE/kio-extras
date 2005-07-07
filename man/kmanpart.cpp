@@ -90,7 +90,11 @@ bool KManPart::openFile()
 
    begin();
 
-   m_job = KIO::get( KURL( QString("man:")+m_file ), true, false );
+   KURL url;
+   url.setProtocol( "man" );
+   url.setPath( m_file );
+
+   m_job = KIO::get( url, true, false );
    connect( m_job, SIGNAL( data( KIO::Job *, const QByteArray &) ), SLOT( readData( KIO::Job *, const QByteArray &) ) );
    connect( m_job, SIGNAL( result( KIO::Job * ) ), SLOT( jobDone( KIO::Job * ) ) );
    return true;
