@@ -185,10 +185,10 @@
                                 </sizepolicy>
                             </property>
                             <property name="availableLabel">
-                                <string>Available &amp;Medium Types:</string>
+                                <string>Available &amp;medium types:</string>
                             </property>
                             <property name="selectedLabel">
-                                <string>Displa&amp;y Service For:</string>
+                                <string>Displa&amp;y service for:</string>
                             </property>
                             <property name="showUpDownButtons">
                                 <bool>false</bool>

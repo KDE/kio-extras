@@ -120,7 +120,7 @@
                                         <cstring>toggleAutoButton</cstring>
                                     </property>
                                     <property name="text">
-                                        <string>&amp;Toggle As Auto Action</string>
+                                        <string>&amp;Toggle as Auto Action</string>
                                     </property>
                                     <property name="accel">
                                         <string>Alt+T</string>
