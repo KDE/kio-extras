@@ -19,6 +19,7 @@
 #include <kmimemagic.h>
 #include <klocale.h>
 #include <kde_file.h>
+#include <kio/global.h>
 
 #include <errno.h> // to be removed
 
@@ -485,6 +486,7 @@ void ArchiveProtocol::get( const KURL & url )
 
     // How much file do we still have to process?
     int fileSize = archiveFileEntry->size();
+    KIO::filesize_t processed = 0;
 
     while ( !io->atEnd() && fileSize > 0 )
     {
@@ -510,6 +512,8 @@ void ArchiveProtocol::get( const KURL & url )
             firstRead = false;
         }
         data( buffer );
+        processed += read;
+        processedSize( processed );
         fileSize -= bufferSize;
     }
     io->close();
