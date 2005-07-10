@@ -474,7 +474,7 @@ void ArchiveProtocol::get( const KURL & url )
     
     int bufferSize = kMin( maxSize, archiveFileEntry->size() );
     QByteArray buffer ( bufferSize );
-    if ( buffer.isEmpty() )
+    if ( buffer.isEmpty() && bufferSize > 0 )
     {
         // Something went wrong
         error( KIO::ERR_OUT_OF_MEMORY, url.prettyURL() );
