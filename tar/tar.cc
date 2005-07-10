@@ -423,8 +423,6 @@ void ArchiveProtocol::get( const KURL & url )
       return;
     }
 
-    totalSize( archiveFileEntry->size() );
-
     //kdDebug(7109) << "Preparing to get the archive data" << endl;
     
     /*
@@ -470,6 +468,8 @@ void ArchiveProtocol::get( const KURL & url )
         return;
     }
     
+    totalSize( archiveFileEntry->size() );
+
     // Size of a QIODevice read. It must be large enough so that the mime type check will not fail
     const int maxSize = 0x100000; // 1MB
     
