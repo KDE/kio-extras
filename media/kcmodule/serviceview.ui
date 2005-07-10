@@ -46,7 +46,7 @@
                 </sizepolicy>
             </property>
             <property name="title">
-                <string>Edit service</string>
+                <string>Edit Service</string>
             </property>
             <grid>
                 <property name="name">
@@ -185,10 +185,10 @@
                                 </sizepolicy>
                             </property>
                             <property name="availableLabel">
-                                <string>Available &amp;medium types:</string>
+                                <string>Available &amp;Medium Types:</string>
                             </property>
                             <property name="selectedLabel">
-                                <string>Displa&amp;y service for:</string>
+                                <string>Displa&amp;y Service For:</string>
                             </property>
                             <property name="showUpDownButtons">
                                 <bool>false</bool>

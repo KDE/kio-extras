@@ -30,7 +30,7 @@
 ServiceConfigDialog::ServiceConfigDialog(NotifierServiceAction *action,
                                          const QStringList &mimetypesList,
                                          QWidget* parent, const char* name)
-	: KDialogBase(parent, name, true, i18n("Edit service"), Ok|Cancel, Ok, true),
+	: KDialogBase(parent, name, true, i18n("Edit Service"), Ok|Cancel, Ok, true),
 	  m_action(action)
 {
 	m_view = new ServiceView(this);

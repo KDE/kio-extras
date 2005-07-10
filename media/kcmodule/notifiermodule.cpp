@@ -43,7 +43,7 @@ NotifierModule::NotifierModule(QWidget *parent, const char *name)
 	m_view->editButton->setGuiItem( KStdGuiItem::properties() );
 	m_view->deleteButton->setGuiItem( KStdGuiItem::del() );
 	
-	m_view->mimetypesCombo->insertItem( i18n("All mime types") );
+	m_view->mimetypesCombo->insertItem( i18n("All Mime Types") );
 
 	QStringList mimetypes = m_settings.supportedMimetypes();
 
