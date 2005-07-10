@@ -266,6 +266,11 @@ void FstabBackend::guess(const QString &devNode, const QString &mountPoint,
 		mimeType = "media/cdwriter";
 		label = i18n("CD Recorder");
 	}
+	else if ( devNode.find("dvd")!=-1 || mountPoint.find("dvd")!=-1 )
+	{
+		mimeType = "media/dvd";
+		label = i18n("DVD");
+	}
 	else if ( devNode.find("cdrom")!=-1 || mountPoint.find("cdrom")!=-1
 	       // LINUX SPECIFIC
 	       || devNode.find("/dev/scd")!=-1 || devNode.find("/dev/sr")!=-1
@@ -276,12 +281,8 @@ void FstabBackend::guess(const QString &devNode, const QString &mountPoint,
 		mimeType = "media/cdrom";
 		label = i18n("CD-ROM");
 	}
-	else if ( devNode.find("dvd")!=-1 || mountPoint.find("dvd")!=-1 )
-	{
-		mimeType = "media/dvd";
-		label = i18n("DVD");
-	}
-	else if ( devNode.find("fd")!=-1 )
+	else if ( devNode.find("fd")!=-1 || mountPoint.find("fd")!=-1
+	       || devNode.find("floppy")!=-1 || mountPoint.find("floppy")!=-1 )
 	{
 		if ( devNode.find("360")!=-1 || devNode.find("1200")!=-1 )
 		{
