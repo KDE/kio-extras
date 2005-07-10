@@ -2,6 +2,7 @@
 ServiceTypes=media/cdrom_unmounted,media/cdwriter_unmounted,media/dvd_unmounted,media/floppy5_unmounted,media/floppy_unmounted,media/hdd_unmounted,media/nfs_unmounted,media/removable_unmounted,media/smb_unmounted,media/zip_unmounted
 Actions=MediaMount;
 X-KDE-Priority=TopLevel
+X-KDE-MediaNotifierHide=true
 
 [Desktop Action MediaMount]
 Name=Mount

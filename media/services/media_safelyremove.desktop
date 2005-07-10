@@ -2,6 +2,7 @@
 ServiceTypes=media/removable_mounted,media/removable_unmounted
 Actions=MediaSafelyRemove;
 X-KDE-Priority=TopLevel
+X-KDE-MediaNotifierHide=true
 
 [Desktop Action MediaSafelyRemove]
 Name=Safely Remove

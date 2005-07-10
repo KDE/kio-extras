@@ -1,0 +1,165 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>NotifierModuleView</class>
+<widget class="QWidget">
+    <property name="name">
+        <cstring>NotifierModuleView</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>600</width>
+            <height>480</height>
+        </rect>
+    </property>
+    <property name="caption">
+        <string>NotifierModuleView</string>
+    </property>
+    <grid>
+        <property name="name">
+            <cstring>unnamed</cstring>
+        </property>
+        <widget class="QLayoutWidget" row="0" column="0">
+            <property name="name">
+                <cstring>layout4</cstring>
+            </property>
+            <vbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <widget class="QLayoutWidget">
+                    <property name="name">
+                        <cstring>layout2</cstring>
+                    </property>
+                    <hbox>
+                        <property name="name">
+                            <cstring>unnamed</cstring>
+                        </property>
+                        <widget class="QLabel">
+                            <property name="name">
+                                <cstring>mediumType</cstring>
+                            </property>
+                            <property name="sizePolicy">
+                                <sizepolicy>
+                                    <hsizetype>5</hsizetype>
+                                    <vsizetype>5</vsizetype>
+                                    <horstretch>0</horstretch>
+                                    <verstretch>0</verstretch>
+                                </sizepolicy>
+                            </property>
+                            <property name="text">
+                                <string>Medium Types:</string>
+                            </property>
+                        </widget>
+                        <widget class="KComboBox">
+                            <property name="name">
+                                <cstring>mimetypesCombo</cstring>
+                            </property>
+                            <property name="sizePolicy">
+                                <sizepolicy>
+                                    <hsizetype>3</hsizetype>
+                                    <vsizetype>0</vsizetype>
+                                    <horstretch>0</horstretch>
+                                    <verstretch>0</verstretch>
+                                </sizepolicy>
+                            </property>
+                        </widget>
+                    </hbox>
+                </widget>
+                <widget class="QLayoutWidget">
+                    <property name="name">
+                        <cstring>layout3</cstring>
+                    </property>
+                    <grid>
+                        <property name="name">
+                            <cstring>unnamed</cstring>
+                        </property>
+                        <widget class="QLayoutWidget" row="0" column="1">
+                            <property name="name">
+                                <cstring>layout1</cstring>
+                            </property>
+                            <vbox>
+                                <property name="name">
+                                    <cstring>unnamed</cstring>
+                                </property>
+                                <widget class="KPushButton">
+                                    <property name="name">
+                                        <cstring>addButton</cstring>
+                                    </property>
+                                    <property name="text">
+                                        <string>&amp;Add...</string>
+                                    </property>
+                                    <property name="accel">
+                                        <string>Alt+A</string>
+                                    </property>
+                                </widget>
+                                <widget class="KPushButton">
+                                    <property name="name">
+                                        <cstring>deleteButton</cstring>
+                                    </property>
+                                    <property name="text">
+                                        <string>&amp;Delete</string>
+                                    </property>
+                                    <property name="accel">
+                                        <string>Alt+D</string>
+                                    </property>
+                                </widget>
+                                <widget class="KPushButton">
+                                    <property name="name">
+                                        <cstring>editButton</cstring>
+                                    </property>
+                                    <property name="text">
+                                        <string>&amp;Edit...</string>
+                                    </property>
+                                    <property name="accel">
+                                        <string>Alt+E</string>
+                                    </property>
+                                </widget>
+                                <widget class="KPushButton">
+                                    <property name="name">
+                                        <cstring>toggleAutoButton</cstring>
+                                    </property>
+                                    <property name="text">
+                                        <string>&amp;Toggle as Auto Action</string>
+                                    </property>
+                                    <property name="accel">
+                                        <string>Alt+T</string>
+                                    </property>
+                                </widget>
+                            </vbox>
+                        </widget>
+                        <spacer row="1" column="1">
+                            <property name="name">
+                                <cstring>buttonSpacer</cstring>
+                            </property>
+                            <property name="orientation">
+                                <enum>Vertical</enum>
+                            </property>
+                            <property name="sizeType">
+                                <enum>Expanding</enum>
+                            </property>
+                            <property name="sizeHint">
+                                <size>
+                                    <width>70</width>
+                                    <height>101</height>
+                                </size>
+                            </property>
+                        </spacer>
+                        <widget class="KListBox" row="0" column="0" rowspan="2" colspan="1">
+                            <property name="name">
+                                <cstring>actionsList</cstring>
+                            </property>
+                        </widget>
+                    </grid>
+                </widget>
+            </vbox>
+        </widget>
+    </grid>
+</widget>
+<layoutdefaults spacing="6" margin="11"/>
+<includehints>
+    <includehint>kcombobox.h</includehint>
+    <includehint>kpushbutton.h</includehint>
+    <includehint>klistbox.h</includehint>
+</includehints>
+</UI>
