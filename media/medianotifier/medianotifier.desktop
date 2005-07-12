@@ -8,4 +8,6 @@ X-KDE-FactoryName=medianotifier
 X-KDE-Kded-autoload=true
 X-KDE-Kded-load-on-demand=false
 Name=Media Notifier Deamon
+Name[et]=Andmekandjate märguannete deemon
 Comment=A media plugged notifier
+Comment[et]=Andmekandja ühendamisest märkuandev deemon
