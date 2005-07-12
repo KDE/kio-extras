@@ -1,20 +1,34 @@
 AC_DEFUN([SMB_CHECK],
 [
 AC_REQUIRE([KDE_CHECK_LARGEFILE])
-have_libsmbclient=yes
-KDE_CHECK_HEADER(libsmbclient.h, ,[have_libsmbclient=no] )
-KDE_CHECK_LIB(smbclient, smbc_new_context, [] ,[have_libsmbclient=no])
 
-AM_CONDITIONAL(include_kioslave_smb, test "$have_libsmbclient" = yes)
+AC_ARG_WITH(samba,
+  [AS_HELP_STRING(--with-samba,
+    [enable the samba ioslave @<:@default=check@:>@])],
+  [], with_samba=check)
 
-SMBCLIENT_EXTRA_LIBS=""
-AC_CHECK_FUNC(yp_get_default_domain, [],
+have_libsmbclient=no
+if test "x$with_samba" != xno; then
+  have_libsmbclient=yes
+  KDE_CHECK_HEADER(libsmbclient.h, [], [have_libsmbclient=no])
+  KDE_CHECK_LIB(smbclient, smbc_new_context, [], [have_libsmbclient=no])
+
+  SMBCLIENT_EXTRA_LIBS=""
+  AC_CHECK_FUNC(yp_get_default_domain, [],
   [
      KDE_CHECK_LIB(nsl, yp_get_default_domain, 
            [SMBCLIENT_EXTRA_LIBS="-lnsl"] )
   ])
 
-AC_SUBST(SMBCLIENT_EXTRA_LIBS)
+  AC_SUBST(SMBCLIENT_EXTRA_LIBS)
+
+  if test "x$with_samba" != xcheck && test "x$have_libsmbclient" = xno; then
+    AC_MSG_FAILURE([--with-samba was given, but test for libsmbclient failed])
+  fi
+fi
+
+AM_CONDITIONAL(include_kioslave_smb, test "x$have_libsmbclient" = xyes)
+
 ])
 
 SMB_CHECK
