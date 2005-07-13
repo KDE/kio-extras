@@ -95,6 +95,7 @@ bool inExclusionPattern(KMountPoint *mount)
 	  || mount->mountType().contains( "proc" )
 	  || mount->mountType() == "unknown"
 	  || mount->mountType() == "none"
+	  || mount->mountType() == "sunrpc"
 	  || mount->mountedFrom() == "none"
 	  || mount->mountedFrom() == "tmpfs"
 	  || mount->mountedFrom().find("shm") != -1
