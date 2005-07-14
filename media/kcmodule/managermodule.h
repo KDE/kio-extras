@@ -1,5 +1,4 @@
 /* This file is part of the KDE Project
-   Copyright (c) 2005 Jean-Remy Falleri <jr.falleri@laposte.net>
    Copyright (c) 2005 Kévin Ottens <ervin ipsquad net>
 
    This library is free software; you can redistribute it and/or
@@ -17,29 +16,19 @@
    Boston, MA 02110-1301, USA.
 */
 
-#ifndef _MAIN_H_
-#define _MAIN_H_
+#ifndef _MANAGERMODULE_H_
+#define _MANAGERMODULE_H_
 
 #include <kcmodule.h>
 
-class MediaModule : public KCModule
+class ManagerModule : public KCModule
 {
 	Q_OBJECT
 
 public:
-	MediaModule( QWidget *parent, const char *name, const QStringList& );
+	ManagerModule( QWidget* parent = 0, const char* name = 0);
 
-	virtual void load();
-	virtual void save();
-	virtual void defaults();
-	virtual QString quickHelp() const;
-
-protected slots:
-	void moduleChanged( bool state );
-	
-private:
-	KCModule *m_notifierModule;
-	KCModule *m_managerModule;
+	void save();
 };
 
 #endif

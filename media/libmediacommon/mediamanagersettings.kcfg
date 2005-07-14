@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE kcfg SYSTEM "http://www.kde.org/standards/kcfg/1.0/kcfg.dtd">
+
+<kcfg>
+  <kcfgfile name="mediamanagerrc"/>
+  <group name="Global">
+    <entry name="HalBackendEnabled" type="Bool">
+      <label>Enable HAL backend</label>
+      <whatsthis>When HAL (Hardware Abstraction Layer) support is enabled, KDE will use it to gather information on the storage media available in your system.</whatsthis>
+      <default>true</default>
+    </entry>
+    <entry name="CdPollingEnabled" type="Bool">
+      <label>Enable CD polling</label>
+      <whatsthis>Allows KDE to poll CD-Rom or DVD-Rom drives itself in order to detect medium insert.</whatsthis>
+      <default>true</default>
+    </entry>
+  </group>
+</kcfg>

@@ -1,0 +1,4 @@
+File=mediamanagersettings.kcfg
+ClassName=MediaManagerSettings
+Singleton=true
+Mutators=true

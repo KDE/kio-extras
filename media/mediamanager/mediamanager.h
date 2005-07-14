@@ -35,12 +35,15 @@ Q_OBJECT
 K_DCOP
 public:
 	MediaManager(const QCString &obj);
+	~MediaManager();
 
 k_dcop:
 	QStringList fullList();
 	QStringList properties(const QString &name);
 	QString nameForLabel(const QString &label);
 	ASYNC setUserLabel(const QString &name, const QString &label);
+
+	ASYNC reloadBackends();
 
 	// Removable media handling (for people not having HAL)
 	bool removablePlug(const QString &devNode, const QString &label);
@@ -62,7 +65,7 @@ private slots:
 
 private:
 	MediaList m_mediaList;
-	QPtrList<BackendBase> m_backends;
+	QValueList<BackendBase*> m_backends;
 	RemovableBackend *mp_removableBackend;
 	MediaDirNotify m_dirNotify;
 };

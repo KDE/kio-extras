@@ -137,7 +137,7 @@ fi
 
 ########### Check if media HAL backend sould be compiled
 
-AC_MSG_CHECKING(if the HAL backend for media:/ sould be compiled)
+AC_MSG_CHECKING(if the HAL backend for media:/ should be compiled)
 
 HALBACKEND=no
 if [test "x$hal" = "xFOUND"] && [test "x$dbus" = "xFOUND"] && [test "x$dbusqt" = "xFOUND"] ; then

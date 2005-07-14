@@ -27,6 +27,8 @@
 
 #include <kdirnotify_stub.h>
 
+#include "mediamanagersettings.h"
+
 #include "fstabbackend.h"
 
 #ifdef COMPILE_HALBACKEND
@@ -49,37 +51,58 @@ MediaManager::MediaManager(const QCString &obj)
 	         SIGNAL(mediumStateChanged(const QString&, const QString&, bool)),
 	         SLOT(slotMediumChanged(const QString&, const QString&, bool)) );
 
-	m_backends.setAutoDelete(true);
 	QTimer::singleShot( 10, this, SLOT( loadBackends() ) );
+}
+
+MediaManager::~MediaManager()
+{
+	while ( !m_backends.isEmpty() )
+	{
+		BackendBase *b = m_backends.first();
+		m_backends.remove( b );
+		delete b;
+	}
 }
 
 void MediaManager::loadBackends()
 {
-	m_backends.clear();
+	while ( !m_backends.isEmpty() )
+	{
+		BackendBase *b = m_backends.first();
+		m_backends.remove( b );
+		delete b;
+	}
+
 	mp_removableBackend = 0L;
 
 #ifdef COMPILE_HALBACKEND
-	HALBackend* halBackend = new HALBackend(m_mediaList, this);
-	if (halBackend->InitHal())
-		m_backends.append( halBackend );
-	else
+	if ( MediaManagerSettings::self()->halBackendEnabled() )
 	{
-		delete halBackend;
-		mp_removableBackend = new RemovableBackend(m_mediaList);
-		m_backends.append( mp_removableBackend );
-#ifdef COMPILE_LINUXCDPOLLING
-		m_backends.append( new LinuxCDPolling(m_mediaList) );
-#endif //COMPILE_LINUXCDPOLLING
-		m_backends.append( new FstabBackend(m_mediaList) );
+		HALBackend* hal_backend = new HALBackend(m_mediaList, this);
+		if (hal_backend->InitHal())
+		{
+			m_backends.append( hal_backend );
+			// No need to load something else...
+			return;
+		}
+		else
+		{
+			delete hal_backend;
+		}
 	}
-#else //COMPILE_HALBACKEND
+#endif // COMPILE_HALBACKEND
+
 	mp_removableBackend = new RemovableBackend(m_mediaList);
 	m_backends.append( mp_removableBackend );
+	
 #ifdef COMPILE_LINUXCDPOLLING
-	m_backends.append( new LinuxCDPolling(m_mediaList) );
+	if ( MediaManagerSettings::self()->cdPollingEnabled() )
+	{
+		m_backends.append( new LinuxCDPolling(m_mediaList) );
+	}
 #endif //COMPILE_LINUXCDPOLLING
+
 	m_backends.append( new FstabBackend(m_mediaList) );
-#endif //COMPILE_HALBACKEND
 }
 
 
@@ -136,6 +159,12 @@ QString MediaManager::nameForLabel(const QString &label)
 ASYNC MediaManager::setUserLabel(const QString &name, const QString &label)
 {
 	m_mediaList.setUserLabel(name, label);
+}
+
+ASYNC MediaManager::reloadBackends()
+{
+	MediaManagerSettings::self()->readConfig();
+	loadBackends();
 }
 
 bool MediaManager::removablePlug(const QString &devNode, const QString &label)

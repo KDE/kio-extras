@@ -29,6 +29,7 @@
 #include <kgenericfactory.h>
 
 #include "notifiermodule.h"
+#include "managermodule.h"
 
 
 typedef KGenericFactory<MediaModule, QWidget> MediaFactory;
@@ -42,14 +43,21 @@ MediaModule::MediaModule( QWidget *parent, const char *name, const QStringList& 
 	QTabWidget *tab = new QTabWidget( this );
 	
 	layout->addWidget( tab );
+
+
 	
 	m_notifierModule = new NotifierModule( this, "notifier" );
 	tab->addTab( m_notifierModule, i18n( "&Notifications" ) );
 	connect( m_notifierModule, SIGNAL( changed( bool ) ),
 	         this, SLOT( moduleChanged( bool ) ) );
 
+	m_managerModule = new ManagerModule( this, "manager" );
+	tab->addTab( m_managerModule, i18n( "&Advanced" ) );
+	connect( m_managerModule, SIGNAL( changed( bool ) ),
+	         this, SLOT( moduleChanged( bool ) ) );
 
-	
+
+
 	KAboutData * about = new KAboutData("kcmmedia",
 	                                    I18N_NOOP("Storage Media"),
 	                                    "0.6",
@@ -66,16 +74,19 @@ MediaModule::MediaModule( QWidget *parent, const char *name, const QStringList& 
 void MediaModule::load()
 {
 	m_notifierModule->load();
+	m_managerModule->load();
 }
 
 void MediaModule::save()
 {
 	m_notifierModule->save();
+	m_managerModule->save();
 }
 
 void MediaModule::defaults()
 {
 	m_notifierModule->defaults();
+	m_managerModule->defaults();
 }
 
 void MediaModule::moduleChanged( bool state )

@@ -1,0 +1,58 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>ManagerModuleView</class>
+<widget class="QWidget">
+    <property name="name">
+        <cstring>ManagerModuleView</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>600</width>
+            <height>480</height>
+        </rect>
+    </property>
+    <property name="caption">
+        <string>ManagerModuleView</string>
+    </property>
+    <vbox>
+        <property name="name">
+            <cstring>unnamed</cstring>
+        </property>
+        <widget class="QCheckBox">
+            <property name="name">
+                <cstring>kcfg_HalBackendEnabled</cstring>
+            </property>
+            <property name="text">
+                <string>Enable HAL backend</string>
+            </property>
+        </widget>
+        <widget class="QCheckBox">
+            <property name="name">
+                <cstring>kcfg_CdPollingEnabled</cstring>
+            </property>
+            <property name="text">
+                <string>Enable CD polling</string>
+            </property>
+        </widget>
+        <spacer>
+            <property name="name">
+                <cstring>spacer1</cstring>
+            </property>
+            <property name="orientation">
+                <enum>Vertical</enum>
+            </property>
+            <property name="sizeType">
+                <enum>Expanding</enum>
+            </property>
+            <property name="sizeHint">
+                <size>
+                    <width>21</width>
+                    <height>51</height>
+                </size>
+            </property>
+        </spacer>
+    </vbox>
+</widget>
+<layoutdefaults spacing="6" margin="11"/>
+</UI>
