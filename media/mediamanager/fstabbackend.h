@@ -33,7 +33,7 @@ class FstabBackend : public QObject, public BackendBase
 Q_OBJECT
 
 public:
-	FstabBackend(MediaList &list);
+	FstabBackend(MediaList &list, bool networkSharesOnly = false);
 	virtual ~FstabBackend();
 
 	static void guess(const QString &devNode, const QString &mountPoint,
@@ -51,6 +51,7 @@ private:
 	static QString generateName(const QString &devNode,
 	                            const QString &fsType);
 
+	bool m_networkSharesOnly;
 	QStringList m_mtabIds;
 	QStringList m_fstabIds;
 #ifdef Q_OS_FREEBSD

@@ -82,6 +82,7 @@ void MediaManager::loadBackends()
 		if (hal_backend->InitHal())
 		{
 			m_backends.append( hal_backend );
+			m_backends.append( new FstabBackend(m_mediaList, true) );
 			// No need to load something else...
 			return;
 		}

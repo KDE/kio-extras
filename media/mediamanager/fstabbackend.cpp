@@ -34,8 +34,8 @@
 
 
 
-FstabBackend::FstabBackend(MediaList &list)
-	: QObject(), BackendBase(list)
+FstabBackend::FstabBackend(MediaList &list, bool networkSharesOnly)
+	: QObject(), BackendBase(list), m_networkSharesOnly(networkSharesOnly)
 {
 	KDirWatch::self()->addFile(MTAB);
 	KDirWatch::self()->addFile(FSTAB);
@@ -86,7 +86,7 @@ void FstabBackend::slotDirty(const QString &path)
 	}
 }
 
-bool inExclusionPattern(KMountPoint *mount)
+bool inExclusionPattern(KMountPoint *mount, bool networkSharesOnly)
 {
 	if ( mount->mountType() == "swap"
 	  || mount->mountType() == "tmpfs"
@@ -102,6 +102,14 @@ bool inExclusionPattern(KMountPoint *mount)
 	  || mount->mountPoint() == "/dev/swap"
 	  || mount->mountPoint() == "/dev/pts"
 	  || mount->mountPoint().find("/proc") == 0
+
+	  // We might want to display only network shares
+	  // since HAL doesn't handle them
+	  || ( networkSharesOnly
+	    && mount->mountType().find( "smb" ) == -1
+	    && mount->mountType().find( "cifs" ) == -1
+	    && mount->mountType().find( "nfs" ) == -1
+	     )
 	   )
 	{
 		return true;
@@ -127,7 +135,7 @@ void FstabBackend::handleMtabChange()
 		QString mp = (*it)->mountPoint();
 		QString fs = (*it)->mountType();
 
-		if ( ::inExclusionPattern(*it) ) continue;
+		if ( ::inExclusionPattern(*it, m_networkSharesOnly) ) continue;
 
 		QString id = generateId(dev, mp);
 		new_mtabIds+=id;
@@ -205,7 +213,7 @@ void FstabBackend::handleFstabChange()
 		QString mp = (*it)->mountPoint();
 		QString fs = (*it)->mountType();
 
-		if ( ::inExclusionPattern(*it) ) continue;
+		if ( ::inExclusionPattern(*it, m_networkSharesOnly) ) continue;
 
 		QString id = generateId(dev, mp);
 		new_fstabIds+=id;
