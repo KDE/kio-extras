@@ -1,4 +1,4 @@
-INCLUDES = -I$(srcdir)/../libmediacommon $(all_includes)
+INCLUDES = -I$(srcdir)/../libmediacommon -I../libmediacommon $(all_includes)
 METASOURCES = AUTO
 
 CXXFLAGS=

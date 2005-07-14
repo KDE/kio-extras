@@ -5,7 +5,7 @@ HALBACKEND_INCS = $(HAL_INCS) $(DBUS_INCS) $(DBUSQT_INCS)
 endif
 
 METASOURCES = AUTO
-INCLUDES = $(all_includes) -I$(srcdir)/../libmediacommon $(HALBACKEND_INCS)
+INCLUDES = -I$(srcdir)/../libmediacommon -I../libmediacommon $(HALBACKEND_INCS) $(all_includes)
 
 if include_media_halbackend
 HALBACKEND_LIB = libhalbackend.la
