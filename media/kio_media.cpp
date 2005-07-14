@@ -61,6 +61,8 @@ MediaProtocol::MediaProtocol(const QCString &protocol,
                              const QCString &pool, const QCString &app)
 	: ForwardingSlaveBase(protocol, pool, app)
 {
+	connect( &m_impl, SIGNAL( warning( const QString & ) ),
+	         this, SLOT( slotWarning( const QString & ) ) );
 }
 
 MediaProtocol::~MediaProtocol()
@@ -265,5 +267,9 @@ void MediaProtocol::listRoot()
 	finished();
 }
 
+void MediaProtocol::slotWarning( const QString &msg )
+{
+	warning( msg );
+}
 
 #include "kio_media.moc"

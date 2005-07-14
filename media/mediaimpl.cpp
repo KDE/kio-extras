@@ -229,9 +229,11 @@ bool MediaImpl::ensureMediumMounted(Medium &medium)
 		KIO::Job* job = KIO::mount(false, 0,
 		                           medium.deviceNode(),
 		                           medium.mountPoint());
-		job->setInteractive(false);
+		job->setAutoWarningHandlingEnabled(false);
 		connect( job, SIGNAL( result( KIO::Job * ) ),
 		         this, SLOT( slotMountResult( KIO::Job * ) ) );
+		connect( job, SIGNAL( warning( KIO::Job *, const QString & ) ),
+		         this, SLOT( slotWarning( KIO::Job *, const QString & ) ) );
 		kapp->dcopClient()
 		->connectDCOPSignal("kded", "mediamanager",
 		                    "mediumChanged(QString)",
@@ -253,6 +255,11 @@ bool MediaImpl::ensureMediumMounted(Medium &medium)
 	}
 
 	return true;
+}
+
+void MediaImpl::slotWarning( KIO::Job * /*job*/, const QString &msg )
+{
+	emit warning( msg );
 }
 
 void MediaImpl::slotMountResult(KIO::Job *job)
@@ -320,8 +327,11 @@ KIO::UDSEntry MediaImpl::extractUrlInfos(const KURL &url)
 	m_entryBuffer.clear();
 
 	KIO::StatJob *job = KIO::stat(url, false);
+	job->setAutoWarningHandlingEnabled( false );
 	connect( job, SIGNAL( result(KIO::Job *) ),
 	         this, SLOT( slotStatResult(KIO::Job *) ) );
+	connect( job, SIGNAL( warning( KIO::Job *, const QString & ) ),
+	         this, SLOT( slotWarning( KIO::Job *, const QString & ) ) );
 	qApp->eventLoop()->enterLoop();
 
 	KIO::UDSEntry::iterator it = m_entryBuffer.begin();

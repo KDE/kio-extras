@@ -51,8 +51,12 @@ public:
 
 k_dcop:
 	void slotMediumChanged(const QString &name);
-	
+
+signals:
+	void warning(const QString &msg);
+
 private slots:
+	void slotWarning(KIO::Job *job, const QString &msg);
 	void slotMountResult(KIO::Job *job);
 	void slotStatResult(KIO::Job *job);
 
