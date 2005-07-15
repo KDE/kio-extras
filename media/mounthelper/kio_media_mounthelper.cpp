@@ -82,7 +82,7 @@ MountHelper::MountHelper() : KApplication()
 		connect( job, SIGNAL( result( KIO::Job * ) ),
 		         this, SLOT( slotResult( KIO::Job * ) ) );
 	}
-	else if (args->isSet("s"))
+	else if (args->isSet("s") || args->isSet("e"))
 	{
 		if (medium.isMounted())
 		{
@@ -96,10 +96,6 @@ MountHelper::MountHelper() : KApplication()
 		{
 			invokeEject(device, true);
 		}
-	}
-	else if (args->isSet("e"))
-	{
-		invokeEject(device);
 	}
 	else
 	{
