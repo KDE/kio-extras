@@ -2112,17 +2112,21 @@ int sftpProtocol::sftpStat(const KURL& url, sftpFileAttr& attr) {
 
         dest.cleanPath();
 
-        sftpFileAttr attr2 (remoteEncoding());
-        (void) sftpStat(dest, attr2);
+        // Ignore symlinks that point to themselves...
+        if ( dest != url ) {
 
-        if (attr2.linkType() == 0)
-            attr.setLinkType(attr2.fileType());
-        else
-            attr.setLinkType(attr2.linkType());
+            sftpFileAttr attr2 (remoteEncoding());
+            (void) sftpStat(dest, attr2);
 
-        attr.setLinkDestination(target);
+            if (attr2.linkType() == 0)
+                attr.setLinkType(attr2.fileType());
+            else
+                attr.setLinkType(attr2.linkType());
 
-        kdDebug(KIO_SFTP_DB) << "sftpStat(): File type: " << attr.fileType() << endl;
+            attr.setLinkDestination(target);
+
+            kdDebug(KIO_SFTP_DB) << "sftpStat(): File type: " << attr.fileType() << endl;
+        }
     }
 
     return SSH2_FX_OK;
