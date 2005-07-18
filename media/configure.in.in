@@ -150,4 +150,3 @@ else
 fi
 
 AM_CONDITIONAL(include_media_halbackend, test "$HALBACKEND" = yes)
-

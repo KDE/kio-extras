@@ -97,4 +97,3 @@ AC_CACHE_VAL(ac_cv_libexr,
 
 AC_FIND_LIBEXR
 AM_CONDITIONAL(include_EXR_MODULES, test -n "$LIB_EXR")
-
