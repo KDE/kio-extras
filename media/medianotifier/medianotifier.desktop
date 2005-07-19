@@ -9,5 +9,7 @@ X-KDE-Kded-autoload=true
 X-KDE-Kded-load-on-demand=false
 Name=Media Notifier Deamon
 Name[et]=Andmekandjate märguannete deemon
+Name[ru]=Уведомления от подключаемых устройств
 Comment=A media plugged notifier
 Comment[et]=Andmekandja ühendamisest märkuandev deemon
+Comment[ru]=Система обработки уведомлений от подключаемых устройств

@@ -56,8 +56,10 @@ Name[zh_CN]=存储介质
 
 Comment=Configure Storage Media
 Comment[et]=Salvestusandmekandjate seadistused
+Comment[ru]=Настройка подключаемых устройств хранения
 
 Keywords=storage,media,usb,cdrom,device
 Keywords[et]=salvestamine,andmekandja,usb,cd,seade
+Keywords[ru]=storage,media,usb,cdrom,device,устройство хранения
 
 Categories=Qt;KDE;X-KDE-settings-peripherals
