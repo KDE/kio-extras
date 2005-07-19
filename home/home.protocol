@@ -1,0 +1,19 @@
+[Protocol]
+exec=kio_home
+protocol=home
+input=none
+output=filesystem
+listing=Name,Type,Size,Date,AccessDate,Access,Owner,Group,Link
+reading=true
+writing=true
+makedir=true
+deleting=true
+linking=true
+moving=true
+Icon=folder_home
+maxInstances=4
+#TODO DocPath=kioslave/file.html
+Class=:local
+Parent=system:/
+deleteRecursive=true
+fileNameUsedForCopying=Name

@@ -1,0 +1,13 @@
+[Desktop Entry]
+Encoding=UTF-8
+Type=Service
+Name=KDED Home Base URL Notifier
+Name[da]=KDED Hjemmebasis-URL påmindelser
+Name[es]=Notificador de URL de KDED
+Name[sv]=KDED-meddelande om hembaswebbadresser
+ServiceTypes=KDEDModule
+X-KDE-ModuleType=Library
+X-KDE-Library=homedirnotify
+X-KDE-FactoryName=homedirnotify
+X-KDE-Kded-autoload=true
+X-KDE-Kded-load-on-demand=true
