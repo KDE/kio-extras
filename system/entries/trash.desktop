@@ -76,6 +76,3 @@ Name[xx]=xxTrashxx
 Name[zh_CN]=回收站
 Name[zh_TW]=垃圾桶
 Name[zu]=Izibi
-Open=false
-X-KDE-TreeModule=Directory
-X-KDE-KonqSidebarModule=konqsidebar_tree

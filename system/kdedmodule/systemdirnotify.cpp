@@ -60,9 +60,18 @@ SystemDirNotify::SystemDirNotify()
 
 				KURL system_url("system:/"+system_name);
 				
-				m_urlMap[desktop.readURL()] = system_url;
-				
-				names_found.append(*name);
+				if ( !desktop.readURL().isEmpty() )
+				{
+					m_urlMap[desktop.readURL()] = system_url;
+					names_found.append( *name );
+				}
+				else if ( !desktop.readPath().isEmpty() )
+				{
+					KURL url;
+					url.setPath( desktop.readPath() );
+					m_urlMap[url] = system_url;
+					names_found.append( *name );
+				}
 			}
 		}
 	}

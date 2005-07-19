@@ -65,8 +65,11 @@ bool SystemImpl::listRoot(QValueList<KIO::UDSEntry> &list)
 			{
 				entry.clear();
 				createEntry(entry, *dirpath, *filename);
-				list.append(entry);
-				names_found.append(*filename);
+				if ( !entry.isEmpty() )
+				{
+					list.append(entry);
+					names_found.append(*filename);
+				}
 			}
 		}
 	}
@@ -166,6 +169,13 @@ KURL SystemImpl::findBaseURL(const QString &filename) const
 			if (*name==filename+".desktop")
 			{
 				KDesktopFile desktop(*dirpath+filename+".desktop", true);
+				if ( desktop.readURL().isEmpty() )
+				{
+					KURL url;
+					url.setPath( desktop.readPath() );
+					return url;
+				}
+				
 				return desktop.readURL();
 			}
 		}
@@ -210,6 +220,12 @@ void SystemImpl::createEntry(KIO::UDSEntry &entry,
 
 	entry.clear();
 
+	// Ensure that we really want this entry to be displayed
+	if ( desktop.readURL().isEmpty() && desktop.readPath().isEmpty() )
+	{
+		return;
+	}
+	
 	addAtom(entry, KIO::UDS_NAME, 0, desktop.readName());
 	
 	QString new_filename = file;

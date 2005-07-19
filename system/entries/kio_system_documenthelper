@@ -1,0 +1,14 @@
+#!/bin/sh
+# Script used by by the document.desktop entry to determine if it must be
+# shown or not
+#
+# Copyright GPL v2 by Kevin Ottens <ervin ipsquad net>
+#
+
+document_path=`kde-config --userpath document | sed "s/\/\$//"`
+home_path=`echo $HOME | sed "s/\/\$//"`
+
+if test "$document_path" != "$home_path" ; then
+  echo $document_path
+fi
+

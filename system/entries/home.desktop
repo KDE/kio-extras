@@ -1,8 +1,8 @@
 [Desktop Entry]
 Encoding=UTF-8
 Type=Link
-URL=$HOME
-Icon=kfm_home
+Path=$HOME
+Icon=folder_home
 Name=Home Folder
 Name[af]=Tuis Gids
 Name[ar]=مجلدي
@@ -65,6 +65,3 @@ Name[vi]=Thư mục nhà
 Name[wa]=Ridant måjhon
 Name[xx]=xxHome Folderxx
 Name[zh_CN]=主文件夹
-Open=false
-X-KDE-TreeModule=Directory
-X-KDE-KonqSidebarModule=konqsidebar_tree
