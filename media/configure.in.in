@@ -6,7 +6,6 @@ AC_CHECK_HEADER(linux/cdrom.h,
   LINUXCDPOLLING=yes
   AC_SUBST(LINUXCDPOLLING)
 ])
-AM_CONDITIONAL(include_media_linuxcdpolling, test "$LINUXCDPOLLING" = "yes")
 
 
 AC_ARG_WITH(hal,AC_HELP_STRING([--with-hal],[Enable HAL support  [default=check]]),[hal_test="$withval"],[hal_test="yes"])
@@ -149,4 +148,16 @@ else
   AC_MSG_RESULT(no)
 fi
 
+AM_CONDITIONAL(include_media_linuxcdpolling, test "$LINUXCDPOLLING" = "yes")
 AM_CONDITIONAL(include_media_halbackend, test "$HALBACKEND" = yes)
+
+MEDIA_CPPFLAGS=
+if test "$LINUXCDPOLLING" = "yes"; then
+MEDIA_CPPFLAGS="$MEDIA_CPPFLAGS -DCOMPILE_LINUXCDPOLLING"
+fi
+if test "$HALBACKEND" = yes; then
+MEDIA_CPPFLAGS="$MEDIA_CPPFLAGS -DCOMPILE_HALBACKEND"
+fi
+
+AC_SUBST(MEDIA_CPPFLAGS)
+

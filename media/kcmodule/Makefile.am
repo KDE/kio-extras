@@ -1,13 +1,7 @@
 INCLUDES = -I$(srcdir)/../libmediacommon -I../libmediacommon $(all_includes)
 METASOURCES = AUTO
 
-CXXFLAGS=
-if include_media_linuxcdpolling
-CXXFLAGS+=-DCOMPILE_LINUXCDPOLLING
-endif
-if include_media_halbackend
-CXXFLAGS+=-DCOMPILE_HALBACKEND
-endif
+AM_CPPFLAGS = $(MEDIA_CPPFLAGS)
 
 kde_module_LTLIBRARIES = kcm_media.la
 kcm_media_la_SOURCES = notifiermodule.cpp notifiermoduleview.ui \
