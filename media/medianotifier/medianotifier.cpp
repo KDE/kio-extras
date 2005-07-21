@@ -87,7 +87,7 @@ void MediaNotifier::mediumDetected(KFileItem &medium)
 
 extern "C"
 {
-	KDEDModule *create_medianotifier(const QCString &name)
+	KDE_EXPORT KDEDModule *create_medianotifier(const QCString &name)
 	{
 		return new MediaNotifier(name);
 	}
