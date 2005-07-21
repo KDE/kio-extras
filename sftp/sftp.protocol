@@ -10,6 +10,7 @@ reading=true
 writing=true
 makedir=true
 deleting=true
+moving=true
 Icon=ftp
 Description=A kioslave for sftp
 Description[bn]=এস.এফ.টি.পি-র জন্য একটি kioslave
