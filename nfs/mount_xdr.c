@@ -219,7 +219,7 @@ xdr_ppathcnf(XDR *xdrs, ppathcnf *objp)
 
 	  }
 	  else {
-		 IXDR_PUT_LONG(buf,objp->pc_link_max);
+		 IXDR_PUT_U_INT32(buf,objp->pc_link_max);
 		 IXDR_PUT_SHORT(buf,objp->pc_max_canon);
 		 IXDR_PUT_SHORT(buf,objp->pc_max_input);
 		 IXDR_PUT_SHORT(buf,objp->pc_name_max);
@@ -273,7 +273,7 @@ xdr_ppathcnf(XDR *xdrs, ppathcnf *objp)
 
 	  }
 	  else {
-		 objp->pc_link_max = IXDR_GET_LONG(buf);
+		 objp->pc_link_max = IXDR_GET_U_INT32(buf);
 		 objp->pc_max_canon = IXDR_GET_SHORT(buf);
 		 objp->pc_max_input = IXDR_GET_SHORT(buf);
 		 objp->pc_name_max = IXDR_GET_SHORT(buf);
