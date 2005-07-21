@@ -16,7 +16,7 @@ mimetype_DATA = floppy_mounted.desktop floppy_unmounted.desktop \
                 blankdvd.desktop \
                 svcd.desktop \
                 vcd.desktop\
-                gphoto2camera.desktop
+                gphoto2camera.desktop camera_mounted.desktop camera_unmounted.desktop
 
 
 EXTRA_DIST = $(mimetype_DATA)

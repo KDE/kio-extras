@@ -1,5 +1,5 @@
 [Desktop Entry]
-ServiceTypes=media/removable_mounted,media/removable_unmounted
+ServiceTypes=media/removable_mounted,media/removable_unmounted,media/camera_mounted,media/camera_unmounted
 Actions=MediaSafelyRemove;
 X-KDE-Priority=TopLevel
 X-KDE-MediaNotifierHide=true

@@ -231,8 +231,9 @@ void HALBackend::AddDevice(const char *udi)
 		}
 
 	/* Camera handled by gphoto2*/
-	if (libhal_device_query_capability(m_halContext, udi, "camera", NULL))
-
+	if (libhal_device_query_capability(m_halContext, udi, "camera", NULL) &&
+		libhal_device_property_exists(m_halContext, udi, "camera.libgphoto2_support", NULL) &&
+		hal_device_get_property_bool(m_halContext, udi, "camera.libgphoto2_support"))
 		{
 			/* Create medium */
 			Medium* medium = new Medium(udi, "");
@@ -350,6 +351,12 @@ void HALBackend::setVolumeProperties(Medium* medium)
 		libhal_volume_get_fstype(halVolume),			/* Filesystem type */
 		libhal_volume_is_mounted(halVolume) );			/* Mounted ? */
 
+	char* name = libhal_volume_policy_compute_display_name(halDrive, halVolume, m_halStoragePolicy);
+	QString volume_name = QString::fromUtf8(name);
+	QString media_name = volume_name;
+	medium->setLabel(media_name);
+	free(name);
+
 	QString mimeType;
 	if (libhal_volume_is_disc(halVolume))
 	{
@@ -404,6 +411,7 @@ void HALBackend::setVolumeProperties(Medium* medium)
 	else
 	{
 		mimeType = "media/hdd" + MOUNT_SUFFIX;
+		const char *physdev = hal_drive_get_physical_device_udi(halDrive);
 		if (libhal_drive_is_hotpluggable(halDrive))
 		{
 			mimeType = "media/removable" + MOUNT_SUFFIX;
@@ -425,7 +433,16 @@ void HALBackend::setVolumeProperties(Medium* medium)
 				medium->setIconName(QString::null); //FIXME need icon
 				break;
 			case LIBHAL_DRIVE_TYPE_CAMERA:
+				mimeType = "media/camera" + MOUNT_SUFFIX;
 				medium->setIconName("camera" + MOUNT_SUFFIX);
+				// get model from camera
+				if (physdev && libhal_device_query_capability(m_halContext, physdev, "camera", NULL)) 
+				{
+					if (libhal_device_property_exists(m_halContext, physdev, "usb_device.product", NULL))
+						medium->setLabel(hal_device_get_property_QString(m_halContext, physdev, "usb_device.product"));
+					else if (libhal_device_property_exists(m_halContext, physdev, "usb.product", NULL))
+						medium->setLabel(hal_device_get_property_QString(m_halContext, physdev, "usb.product"));
+				}
 				break;
 			case LIBHAL_DRIVE_TYPE_TAPE:
 				medium->setIconName(QString::null); //FIXME need icon
@@ -436,13 +453,6 @@ void HALBackend::setVolumeProperties(Medium* medium)
 		};
 	}
 	medium->setMimeType(mimeType);
-
-	char* name = libhal_volume_policy_compute_display_name(halDrive, halVolume, m_halStoragePolicy);
-	//char* name = libhal_drive_policy_compute_display_name(halDrive, halVolume, m_halStoragePolicy);
-	QString volume_name = QString::fromUtf8(name);
-	QString media_name = volume_name;
-	medium->setLabel(media_name);
-	free(name);
 
 	libhal_drive_free(halDrive);
 	libhal_volume_free(halVolume);
@@ -545,8 +555,12 @@ void HALBackend::setCameraProperties(Medium* medium)
 	medium->unmountableState("camera:/");
 	medium->setMimeType("media/gphoto2camera");
 	medium->setIconName(QString::null);
-	/** @todo find label */
-	medium->setLabel("Camera");
+	if (libhal_device_property_exists(m_halContext, udi, "usb_device.product", NULL))
+		medium->setLabel(hal_device_get_property_QString(m_halContext, udi, "usb_device.product"));
+	else if (libhal_device_property_exists(m_halContext, udi, "usb.product", NULL))
+		medium->setLabel(hal_device_get_property_QString(m_halContext, udi, "usb.product"));
+	else 
+		medium->setLabel(i18n("Camera"));
 }
 
 QString HALBackend::generateName(const QString &devNode)

@@ -22,6 +22,7 @@
 #include <krun.h>
 #include <klocale.h>
 #include <kstandarddirs.h>
+#include <kio/global.h>
 #include <klistbox.h>
 #include <qlabel.h>
 #include <qcheckbox.h>
@@ -34,7 +35,7 @@ NotificationDialog::NotificationDialog( KFileItem &medium, NotifierSettings &set
 	: KDialogBase( parent, name, false, i18n( "Medium Detected" ), Ok|Cancel|User1, Ok, true),
 	  m_medium(medium), m_settings( settings )
 {
-	setCaption( m_medium.name() );
+	setCaption( KIO::decodeFileName(m_medium.name()) );
 	clearWState( WState_Polished );
 
 	m_view = new NotificationDialogView( this );

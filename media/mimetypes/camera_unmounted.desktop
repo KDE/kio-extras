@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Type=MimeType
+MimeType=media/camera_unmounted
+Comment=Unmounted camera
+Icon=camera_ummount
+
+X-KDE-AutoEmbed=true
+X-KDE-IsAlso=inode/directory
+
