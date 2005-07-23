@@ -2,7 +2,7 @@
 
 AC_CHECK_HEADER(linux/cdrom.h,
 [
-  AC_DEFINE_UNQUITED([COMPILE_LINUXCDPOLLING], 1, [media linux cd polling compilation])
+  AC_DEFINE_UNQUOTED([COMPILE_LINUXCDPOLLING], 1, [media linux cd polling compilation])
   LINUXCDPOLLING=yes
   AC_SUBST(LINUXCDPOLLING)
 ])
