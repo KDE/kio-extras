@@ -2,17 +2,9 @@
 #ifdef HAVE_CONFIG_H
 #include <config.h>
 #endif
-#include <signal.h>
-#include <errno.h>
-#include <sys/types.h>
 #include <sys/stat.h>
-#ifdef TIME_WITH_SYS_TIME
-#include <sys/time.h>
-#endif
 
-#include <stdio.h>
 #include <unistd.h>
-#include <time.h>
 #include <stdlib.h>
 #include <netdb.h>
 #include <netinet/in.h>
