@@ -2,7 +2,7 @@
 
 AC_CHECK_HEADER(linux/cdrom.h,
 [
-  AC_DEFINE(COMPILE_LINUXCDPOLLING, , [media linux cd polling compilation])
+  AC_DEFINE_UNQUITED([COMPILE_LINUXCDPOLLING], 1, [media linux cd polling compilation])
   LINUXCDPOLLING=yes
   AC_SUBST(LINUXCDPOLLING)
 ])
@@ -140,7 +140,7 @@ AC_MSG_CHECKING(if the HAL backend for media:/ should be compiled)
 
 HALBACKEND=no
 if [test "x$hal" = "xFOUND"] && [test "x$dbus" = "xFOUND"] && [test "x$dbusqt" = "xFOUND"] ; then
-  AC_DEFINE(COMPILE_HALBACKEND, , [media HAL backend compilation])
+  AC_DEFINE_UNQUOTED([COMPILE_HALBACKEND],1, [media HAL backend compilation])
   HALBACKEND=yes
   AC_SUBST(HALBACKEND)
   AC_MSG_RESULT(yes)
@@ -150,14 +150,3 @@ fi
 
 AM_CONDITIONAL(include_media_linuxcdpolling, test "$LINUXCDPOLLING" = "yes")
 AM_CONDITIONAL(include_media_halbackend, test "$HALBACKEND" = yes)
-
-MEDIA_CPPFLAGS=
-if test "$LINUXCDPOLLING" = "yes"; then
-MEDIA_CPPFLAGS="$MEDIA_CPPFLAGS -DCOMPILE_LINUXCDPOLLING"
-fi
-if test "$HALBACKEND" = yes; then
-MEDIA_CPPFLAGS="$MEDIA_CPPFLAGS -DCOMPILE_HALBACKEND"
-fi
-
-AC_SUBST(MEDIA_CPPFLAGS)
-
