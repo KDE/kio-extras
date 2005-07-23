@@ -55,8 +55,7 @@ class LDAPProtocol : public KIO::SlaveBase
     int asyncSearch( KABC::LDAPUrl &usrc );
     
     QCString LDAPEntryAsLDIF( LDAPMessage *msg );
-    void checkErr( const KURL &_url );
-    void LDAPErr( int error, const QString &msg );
+    void LDAPErr( const KURL &url, int err = LDAP_SUCCESS );
     void changeCheck( KABC::LDAPUrl &url );
 
     void fillAuthInfo( KIO::AuthInfo &info );

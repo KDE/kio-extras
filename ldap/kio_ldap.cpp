@@ -76,21 +76,27 @@ LDAPProtocol::~LDAPProtocol()
   closeConnection();
 }
 
-void LDAPProtocol::checkErr( const KURL &_url )
+void LDAPProtocol::LDAPErr( const KURL &url, int err )
 {
-  int ret;
 
-  if ( ldap_get_option( mLDAP, LDAP_OPT_ERROR_NUMBER, &ret ) == -1 ) {
-    error( ERR_UNKNOWN, _url.prettyURL() );
-  } else {
-    if ( ret != LDAP_SUCCESS ) LDAPErr( ret, _url.prettyURL() );
+  char *errmsg = 0;
+  if ( mLDAP ) {
+    if ( err == LDAP_SUCCESS ) ldap_get_option( mLDAP, LDAP_OPT_ERROR_NUMBER, &err );
+    if ( err != LDAP_SUCCESS ) ldap_get_option( mLDAP, LDAP_OPT_ERROR_STRING, &errmsg );
   }
-}
+  if ( err == LDAP_SUCCESS ) return;
+  kdDebug(7125) << "error code: " << err << " msg: " << ldap_err2string(err) <<
+    " Additonal error message: '" << errmsg << "'" << endl;
+  QString msg;
+  QString extraMsg;
+  if ( errmsg ) {
+    if ( errmsg[0] )
+      extraMsg = i18n("\nAdditional info: ") + QString::fromUtf8( errmsg );
+    free( errmsg );
+  }
+  msg = url.prettyURL();
+  if ( !extraMsg.isEmpty() ) msg += extraMsg;
 
-void LDAPProtocol::LDAPErr( int err, const QString &msg )
-{
-  kdDebug(7125) << "error: " << err << " " << ldap_err2string(err) << endl;
-  
   /* FIXME: No need to close on all errors */
   closeConnection();
   
@@ -158,8 +164,8 @@ void LDAPProtocol::LDAPErr( int err, const QString &msg )
     
     default:
       error( ERR_SLAVE_DEFINED,
-        i18n( "LDAP server returned the following error: %1" ). 
-        arg( ldap_err2string(err)) );
+        i18n( "LDAP server returned the error: %1 %2\nThe LDAP URL was: %3" ). 
+        arg( ldap_err2string(err)).arg( extraMsg ).arg( url.prettyURL() ) );
   }
 }
 
@@ -618,8 +624,7 @@ void LDAPProtocol::openConnection()
 
   ret = ldap_initialize( &mLDAP, Url.htmlURL().utf8() );
   if ( ret != LDAP_SUCCESS ) {
-    LDAPErr( ret, Url.prettyURL() );
-    closeConnection();
+    LDAPErr( Url, ret );
     return;
   }
 
@@ -635,8 +640,7 @@ void LDAPProtocol::openConnection()
   if ( mTLS ) {
     kdDebug(7125) << "start TLS" << endl;
     if ( ( ret = ldap_start_tls_s( mLDAP, NULL, NULL ) ) != LDAP_SUCCESS ) {
-      closeConnection();
-      LDAPErr( ret, Url.prettyURL() );
+      LDAPErr( Url );
       return;
     }
   }
@@ -716,7 +720,7 @@ void LDAPProtocol::openConnection()
         if ( mCancel )
           error( ERR_USER_CANCELED, QString::null );
         else
-          LDAPErr( ret, Url.prettyURL() );
+          LDAPErr( Url );
         closeConnection();
         return;
       }
@@ -752,7 +756,7 @@ void LDAPProtocol::get( const KURL &_url )
   }
   
   if ( (id = asyncSearch( usrc )) == -1 ) {
-    checkErr( _url );
+    LDAPErr( _url );
     return;
   }
 
@@ -766,7 +770,7 @@ void LDAPProtocol::get( const KURL &_url )
   while( true ) {
     ret = ldap_result( mLDAP, id, 0, NULL, &msg );
     if ( ret == -1 ) {
-      checkErr( _url );
+      LDAPErr( _url );
       return;
     }
     kdDebug(7125) << " ldap_result: " << ret << endl;
@@ -786,7 +790,7 @@ void LDAPProtocol::get( const KURL &_url )
     
       entry = ldap_next_entry( mLDAP, entry );
     }
-    checkErr( _url );
+    LDAPErr( _url );
       
     ldap_msgfree(msg);
   // tell the length
@@ -827,7 +831,7 @@ void LDAPProtocol::stat( const KURL &_url )
   if ( _url.query().isEmpty() ) usrc.setScope( LDAPUrl::One );
   
   if ( (id = asyncSearch( usrc )) == -1 ) {
-    checkErr( _url );
+    LDAPErr( _url );
     return;
   }
   
@@ -835,7 +839,7 @@ void LDAPProtocol::stat( const KURL &_url )
   do {
     ret = ldap_result( mLDAP, id, 0, NULL, &msg );
     if ( ret == -1 ) {
-      checkErr( _url );
+      LDAPErr( _url );
       return;
     }
     if ( ret == LDAP_RES_SEARCH_RESULT ) {
@@ -878,7 +882,7 @@ void LDAPProtocol::del( const KURL &_url, bool )
   kdDebug(7125) << " del: " << usrc.dn().utf8() << endl ;
   
   if ( (ret = ldap_delete_s( mLDAP,usrc.dn().utf8() )) != LDAP_SUCCESS ) {
-    LDAPErr(ret,_url.prettyURL());
+    LDAPErr( _url );
     return;
   }
   finished();
@@ -992,7 +996,7 @@ void LDAPProtocol::put( const KURL &_url, int, bool overwrite, bool )
           }
           if ( ldaperr != LDAP_SUCCESS ) {
             kdDebug(7125) << "put ldap error: " << ldap_err2string(ldaperr) << endl;
-            LDAPErr( ldaperr, _url.prettyURL() );
+            LDAPErr( _url );
             FREELDAPMEM;
             return;
           }
@@ -1076,7 +1080,7 @@ void LDAPProtocol::listDir( const KURL &_url )
   if ( _url.query().isEmpty() ) usrc.setScope( LDAPUrl::One );
   
   if ( (id = asyncSearch( usrc )) == -1 ) {
-    checkErr( _url );
+    LDAPErr( _url );
     return;
   }
 
@@ -1088,7 +1092,7 @@ void LDAPProtocol::listDir( const KURL &_url )
   while( true ) {
     ret = ldap_result( mLDAP, id, 0, NULL, &msg );
     if ( ret == -1 ) {
-      checkErr( _url );
+      LDAPErr( _url );
       return;
     }
     if ( ret == LDAP_RES_SEARCH_RESULT ) break;
@@ -1144,7 +1148,7 @@ void LDAPProtocol::listDir( const KURL &_url )
     
       entry = ldap_next_entry( mLDAP, entry );
     }
-    checkErr( _url );
+    LDAPErr( _url );
     ldap_msgfree( msg );
   }
   
