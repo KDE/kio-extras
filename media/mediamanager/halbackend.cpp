@@ -233,7 +233,7 @@ void HALBackend::AddDevice(const char *udi, bool allowNotification)
 	/* Camera handled by gphoto2*/
 	if (libhal_device_query_capability(m_halContext, udi, "camera", NULL) &&
 		libhal_device_property_exists(m_halContext, udi, "camera.libgphoto2_support", NULL) &&
-		hal_device_get_property_bool(m_halContext, udi, "camera.libgphoto2_support"))
+		libhal_device_get_property_bool(m_halContext, udi, "camera.libgphoto2_support", NULL))
 		{
 			/* Create medium */
 			Medium* medium = new Medium(udi, "");
@@ -412,7 +412,7 @@ void HALBackend::setVolumeProperties(Medium* medium)
 	else
 	{
 		mimeType = "media/hdd" + MOUNT_SUFFIX;
-		const char *physdev = hal_drive_get_physical_device_udi(halDrive);
+		const char *physdev = libhal_drive_get_physical_device_udi(halDrive);
 		if (libhal_drive_is_hotpluggable(halDrive))
 		{
 			mimeType = "media/removable" + MOUNT_SUFFIX;

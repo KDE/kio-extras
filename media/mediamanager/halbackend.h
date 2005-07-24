@@ -62,6 +62,7 @@ These defines enable backward compatibility */
 	#define libhal_drive_free				hal_drive_free
 	#define libhal_drive_policy_compute_display_name	hal_drive_policy_compute_display_name
 	#define libhal_drive_is_hotpluggable	hal_drive_is_hotpluggable
+	#define libhal_drive_get_physical_device_udi hal_drive_get_physical_device_udi
 	#define libhal_volume_from_udi			hal_volume_from_udi
 	#define libhal_volume_get_device_file	hal_volume_get_device_file
 	#define libhal_volume_get_mount_point	hal_volume_get_mount_point
