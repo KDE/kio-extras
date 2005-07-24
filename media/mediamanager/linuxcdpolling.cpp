@@ -133,6 +133,7 @@ public:
 	bool hasChanged()
 	{
 		QMutexLocker locker(&m_mutex);
+
 		return m_currentType!=m_lastPollType;
 	}
 
@@ -177,15 +178,15 @@ LinuxCDPolling::LinuxCDPolling(MediaList &list)
 	: QObject(), BackendBase(list)
 {
 	connect(&m_mediaList, SIGNAL(mediumAdded(const QString &,
-	                                        const QString &)),
+	                                        const QString &, bool)),
 	        this, SLOT(slotMediumAdded(const QString &)) );
 
 	connect(&m_mediaList, SIGNAL(mediumRemoved(const QString &,
-	                                          const QString &)),
+	                                          const QString &, bool)),
 	        this, SLOT(slotMediumRemoved(const QString &)) );
 
 	connect(&m_mediaList, SIGNAL(mediumStateChanged(const QString &,
-	                                               const QString &, bool)),
+	                                               const QString &, bool, bool)),
 	        this, SLOT(slotMediumStateChanged(const QString &)) );
 
 	QTimer *timer = new QTimer(this);
@@ -222,6 +223,8 @@ void LinuxCDPolling::slotMediumAdded(const QString &id)
 
 	if (!medium->isMounted())
 	{
+		m_excludeNotification.append( id );
+		
 		QCString dev = QFile::encodeName( medium->deviceNode() ).data();
 		PollingThread *thread = new PollingThread(dev);
 		m_threads[id] = thread;
@@ -240,6 +243,8 @@ void LinuxCDPolling::slotMediumRemoved(const QString &id)
 	thread->stop();
 	thread->wait();
 	delete thread;
+
+	m_excludeNotification.remove(id);
 }
 
 void LinuxCDPolling::slotMediumStateChanged(const QString &id)
@@ -318,7 +323,8 @@ static QString baseType(const Medium *medium)
 	}
 }
 
-static void restoreEmptyState(MediaList &list, const Medium *medium)
+static void restoreEmptyState(MediaList &list, const Medium *medium,
+                              bool allowNotification)
 {
 	kdDebug(1219) << "restoreEmptyState(" << medium->id() << ")" << endl;
 
@@ -334,7 +340,7 @@ static void restoreEmptyState(MediaList &list, const Medium *medium)
 	                    mimeType, iconName, label);
 
 	list.changeMediumState(id, devNode, mountPoint, fsType, mounted,
-	                       mimeType, iconName, label);
+	                       allowNotification, mimeType, iconName, label);
 }
 
 
@@ -345,42 +351,45 @@ void LinuxCDPolling::applyType(DiscType type, const Medium *medium)
 
 	QString id = medium->id();
 	QString dev = medium->deviceNode();
-
+	
+	bool notify = !m_excludeNotification.contains(id);
+	m_excludeNotification.remove(id);
+	
 	switch (type)
 	{
 	case DiscType::Data:
-		restoreEmptyState(m_mediaList, medium);
+		restoreEmptyState(m_mediaList, medium, notify);
 		break;
 	case DiscType::Audio:
 	case DiscType::Mixed:
 		m_mediaList.changeMediumState(id, "audiocd:/?device="+dev,
-		                              "media/audiocd");
+		                              notify, "media/audiocd");
 		break;
 	case DiscType::VCD:
-		m_mediaList.changeMediumState(id, false, "media/vcd");
+		m_mediaList.changeMediumState(id, false, notify, "media/vcd");
 		break;
 	case DiscType::SVCD:
-		m_mediaList.changeMediumState(id, false, "media/svcd");
+		m_mediaList.changeMediumState(id, false, notify, "media/svcd");
 		break;
 	case DiscType::DVD:
-		m_mediaList.changeMediumState(id, false, "media/dvdvideo");
+		m_mediaList.changeMediumState(id, false, notify, "media/dvdvideo");
 		break;
 	case DiscType::Blank:
 		if (baseType(medium)=="dvd")
 		{
 			m_mediaList.changeMediumState(id, false,
-			                              "media/blankdvd");
+			                              notify, "media/blankdvd");
 		}
 		else
 		{
 			m_mediaList.changeMediumState(id, false,
-			                              "media/blankcd");
+			                              notify, "media/blankcd");
 		}
 		break;
 	case DiscType::None:
 	case DiscType::Unknown:
 	case DiscType::UnknownType:
-		restoreEmptyState(m_mediaList, medium);
+		restoreEmptyState(m_mediaList, medium, false);
 		break;
 	}
 }

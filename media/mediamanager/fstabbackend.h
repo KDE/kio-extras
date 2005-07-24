@@ -42,8 +42,8 @@ public:
 	                  QString &label);
 private slots:
 	void slotDirty(const QString &path);
-	void handleFstabChange();
-	void handleMtabChange();
+	void handleFstabChange(bool allowNotification = true);
+	void handleMtabChange(bool allowNotification = true);
 
 private:
 	static QString generateId(const QString &devNode,

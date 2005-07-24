@@ -20,6 +20,8 @@
 #include "medianotifier.h"
 
 #include <kdebug.h>
+#include <kio/netaccess.h>
+#include <kfileitem.h>
 
 #include "notificationdialog.h"
 #include "notifiersettings.h"
@@ -27,50 +29,45 @@
 
 MediaNotifier::MediaNotifier(const QCString &name) : KDEDModule(name)
 {
-	kdDebug() << "Starting new service... " << endl;
+	connectDCOPSignal( "kded", "mediamanager", "mediumAdded(QString, bool)",
+	                   "onMediumAdded(QString, bool)", true );
 	
-	m_firstNewItems = true;
-	m_mediaWatcher = new KDirLister();
-	m_mediaWatcher->openURL(KURL("media:/"));
-	
-	connect( m_mediaWatcher, SIGNAL( newItems( const KFileItemList & ) ),
-	         this, SLOT( slotMediaAdded( const KFileItemList& ) ) );
-	connect( m_mediaWatcher, SIGNAL( completed() ),
-	         this, SLOT( slotFirstListingDone() ) );
+	connectDCOPSignal( "kded", "mediamanager", "mediumChanged(QString, bool)",
+	                   "onMediumChanged(QString, bool)", true );
 }
 
 MediaNotifier::~MediaNotifier()
 {
-	kdDebug() << "Going away... " << endl;
-	
-	delete m_mediaWatcher;
 }
 
-void MediaNotifier::slotMediaAdded(const KFileItemList& medias)
+void MediaNotifier::onMediumAdded( const QString &name, bool allowNotification )
 {
-	kdDebug() << "Media directory has changed." << endl;
+	kdDebug() << "MediaNotifier::onMediumAdded( " << name << ", "
+	          << allowNotification << ")" << endl;
 	
-	if ( m_firstNewItems == true )
-	{
-		return;
-	}
-	
-	for ( KFileItemListIterator it(medias); it.current(); ++it )
-	{
-		kdDebug() << "Detected: " << it.current()->url() << endl;
-		mediumDetected( **it );
-	}
+	if (  allowNotification ) notify(  name );
 }
 
-void MediaNotifier::slotFirstListingDone()
+void MediaNotifier::onMediumChanged( const QString &name, bool allowNotification )
 {
-	m_firstNewItems = false;
+	kdDebug() << "MediaNotifier::onMediumChanged( " << name << ", "
+	          << allowNotification << ")" << endl;
+
+	if ( allowNotification ) notify( name );
 }
 
-void MediaNotifier::mediumDetected(KFileItem &medium)
+void MediaNotifier::notify( const QString &name )
 {
-	kdDebug() << "Notification received." << endl;
+	kdDebug() << "Notification triggered." << endl;
 
+	KURL url( "system:/media/"+name );
+	
+	KIO::UDSEntry entry;
+	bool res = KIO::NetAccess::stat( url, entry, 0L );
+	if ( !res ) return;
+	
+	KFileItem medium( entry, url );
+	
 	NotifierSettings settings;
 	
 	if ( settings.autoActionForMimetype( medium.mimetype() )==0L )

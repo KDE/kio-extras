@@ -43,13 +43,13 @@
 MediaManager::MediaManager(const QCString &obj)
     : KDEDModule(obj), m_dirNotify(m_mediaList)
 {
-	connect( &m_mediaList, SIGNAL(mediumAdded(const QString&, const QString&)),
-	         SLOT(slotMediumAdded(const QString&, const QString&)) );
-	connect( &m_mediaList, SIGNAL(mediumRemoved(const QString&, const QString&)),
-	         SLOT(slotMediumRemoved(const QString&, const QString&)) );
+	connect( &m_mediaList, SIGNAL(mediumAdded(const QString&, const QString&, bool)),
+	         SLOT(slotMediumAdded(const QString&, const QString&, bool)) );
+	connect( &m_mediaList, SIGNAL(mediumRemoved(const QString&, const QString&, bool)),
+	         SLOT(slotMediumRemoved(const QString&, const QString&, bool)) );
 	connect( &m_mediaList,
-	         SIGNAL(mediumStateChanged(const QString&, const QString&, bool)),
-	         SLOT(slotMediumChanged(const QString&, const QString&, bool)) );
+	         SIGNAL(mediumStateChanged(const QString&, const QString&, bool, bool)),
+	         SLOT(slotMediumChanged(const QString&, const QString&, bool, bool)) );
 
 	QTimer::singleShot( 10, this, SLOT( loadBackends() ) );
 }
@@ -196,28 +196,30 @@ bool MediaManager::removableCamera(const QString &devNode)
 }
 	
 
-void MediaManager::slotMediumAdded(const QString &/*id*/, const QString &name)
+void MediaManager::slotMediumAdded(const QString &/*id*/, const QString &name,
+                                   bool allowNotification)
 {
 	kdDebug(1219) << "MediaManager::slotMediumAdded: " << name << endl;
 
 	KDirNotify_stub notifier("*", "*");
 	notifier.FilesAdded( KURL("media:/") );
 
-	emit mediumAdded(name);
+	emit mediumAdded(name, allowNotification);
 }
 
-void MediaManager::slotMediumRemoved(const QString &/*id*/, const QString &name)
+void MediaManager::slotMediumRemoved(const QString &/*id*/, const QString &name,
+                                     bool allowNotification)
 {
 	kdDebug(1219) << "MediaManager::slotMediumRemoved: " << name << endl;
 
 	KDirNotify_stub notifier("*", "*");
 	notifier.FilesRemoved( KURL("media:/"+name) );
 
-	emit mediumRemoved(name);
+	emit mediumRemoved(name, allowNotification);
 }
 
 void MediaManager::slotMediumChanged(const QString &/*id*/, const QString &name,
-                                     bool mounted)
+                                     bool mounted, bool allowNotification)
 {
 	kdDebug(1219) << "MediaManager::slotMediumChanged: " << name << endl;
 
@@ -228,7 +230,7 @@ void MediaManager::slotMediumChanged(const QString &/*id*/, const QString &name,
 	}
 	notifier.FilesChanged( KURL("media:/"+name) );
 
-	emit mediumChanged(name);
+	emit mediumChanged(name, allowNotification);
 }
 
 

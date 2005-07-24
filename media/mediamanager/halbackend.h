@@ -149,8 +149,9 @@ private:
 	* is worth listing.
 	*
 	*  @param udi                 Universal Device Id
+	*  @param allowNotification   Indicates if this event will be notified to the user
 	*/
-	void AddDevice(const char* udi);
+	void AddDevice(const char* udi, bool allowNotification=true);
 
 	/**
 	* Remove a device from the device list

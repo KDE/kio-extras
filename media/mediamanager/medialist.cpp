@@ -53,7 +53,7 @@ const Medium *MediaList::findByName(const QString &name) const
 }
 
 
-QString MediaList::addMedium(Medium *medium)
+QString MediaList::addMedium(Medium *medium, bool allowNotification)
 {
 	kdDebug(1219) << "MediaList::addMedium(@" << medium->id() << ")" << endl;
 
@@ -70,7 +70,7 @@ QString MediaList::addMedium(Medium *medium)
 
 		kdDebug(1219) << "MediaList emits mediumAdded(" << id << ", "
 		          << name << ")" << endl;
-		emit mediumAdded(id, name);
+		emit mediumAdded(id, name, allowNotification);
 
 		return name;
 	}
@@ -89,11 +89,11 @@ QString MediaList::addMedium(Medium *medium)
 
 	kdDebug(1219) << "MediaList emits mediumAdded(" << id << ", "
 	          << name << ")" << endl;
-	emit mediumAdded(id, name);
+	emit mediumAdded(id, name, allowNotification);
 	return name;
 }
 
-bool MediaList::removeMedium(const QString &id)
+bool MediaList::removeMedium(const QString &id, bool allowNotification)
 {
 	kdDebug(1219) << "MediaList::removeMedium(" << id << ")" << endl;
 
@@ -106,11 +106,11 @@ bool MediaList::removeMedium(const QString &id)
 	m_nameMap.remove( medium->name() );
 	m_media.remove( medium );
 
-	emit mediumRemoved(id, name);
+	emit mediumRemoved(id, name, allowNotification);
 	return true;
 }
 
-bool MediaList::changeMediumState(const Medium &medium)
+bool MediaList::changeMediumState(const Medium &medium, bool allowNotification)
 {
 	kdDebug(1219) << "MediaList::changeMediumState(const Medium &)" << endl;
 
@@ -149,12 +149,13 @@ bool MediaList::changeMediumState(const Medium &medium)
 		m->setLabel( medium.label() );
 	}
 
-	emit mediumStateChanged(m->id(), m->name(), !m->needMounting());
+	emit mediumStateChanged(m->id(), m->name(), !m->needMounting(), allowNotification);
 	return true;
 }
 
 bool MediaList::changeMediumState(const QString &id,
                                   const QString &baseURL,
+                                  bool allowNotification,
                                   const QString &mimeType,
                                   const QString &iconName,
                                   const QString &label)
@@ -184,7 +185,9 @@ bool MediaList::changeMediumState(const QString &id,
 		medium->setLabel( label );
 	}
 
-	emit mediumStateChanged(id, medium->name(), !medium->needMounting());
+	emit mediumStateChanged(id, medium->name(),
+	                        !medium->needMounting(),
+	                        allowNotification);
 	return true;
 }
 
@@ -192,6 +195,7 @@ bool MediaList::changeMediumState(const QString &id,
                                   const QString &deviceNode,
                                   const QString &mountPoint,
                                   const QString &fsType, bool mounted,
+                                  bool allowNotification,
                                   const QString &mimeType,
                                   const QString &iconName,
                                   const QString &label)
@@ -222,11 +226,14 @@ bool MediaList::changeMediumState(const QString &id,
 		medium->setLabel( label );
 	}
 
-	emit mediumStateChanged(id, medium->name(), !medium->needMounting());
+	emit mediumStateChanged(id, medium->name(),
+	                        !medium->needMounting(),
+	                        allowNotification);
 	return true;
 }
 
 bool MediaList::changeMediumState(const QString &id, bool mounted,
+                                  bool allowNotification,
                                   const QString &mimeType,
                                   const QString &iconName,
                                   const QString &label)
@@ -256,7 +263,9 @@ bool MediaList::changeMediumState(const QString &id, bool mounted,
 		medium->setLabel( label );
 	}
 
-	emit mediumStateChanged(id, medium->name(), !medium->needMounting());
+	emit mediumStateChanged(id, medium->name(),
+	                        !medium->needMounting(),
+	                        allowNotification);
 	return true;
 }
 
@@ -270,7 +279,9 @@ bool MediaList::setUserLabel(const QString &name, const QString &label)
 	Medium *medium = m_nameMap[name];
 	medium->setUserLabel(label);
 
-	emit mediumStateChanged(medium->id(), name, !medium->needMounting());
+	emit mediumStateChanged(medium->id(), name,
+	                        !medium->needMounting(),
+	                        false);
 	return true;
 }
 

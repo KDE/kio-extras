@@ -43,8 +43,8 @@ FstabBackend::FstabBackend(MediaList &list, bool networkSharesOnly)
 	connect( KDirWatch::self(), SIGNAL( dirty(const QString&) ),
 	         this, SLOT( slotDirty(const QString&) ) );
 
-	handleFstabChange();
-	handleMtabChange();
+	handleFstabChange(false);
+	handleMtabChange(false);
 
 	KDirWatch::self()->startScan();
 
@@ -62,7 +62,7 @@ FstabBackend::~FstabBackend()
 
 	for (; it!=end; ++it)
 	{
-		m_mediaList.removeMedium(*it);
+		m_mediaList.removeMedium(*it, false);
 	}
 
 	it = m_fstabIds.begin();
@@ -70,7 +70,7 @@ FstabBackend::~FstabBackend()
 
 	for (; it!=end; ++it)
 	{
-		m_mediaList.removeMedium(*it);
+		m_mediaList.removeMedium(*it, false);
 	}
 }
 
@@ -121,7 +121,7 @@ bool inExclusionPattern(KMountPoint *mount, bool networkSharesOnly)
 }
 
 
-void FstabBackend::handleMtabChange()
+void FstabBackend::handleMtabChange(bool allowNotification)
 {
 	QStringList new_mtabIds;
 	KMountPoint::List mtab = KMountPoint::currentMountPoints();
@@ -145,8 +145,8 @@ void FstabBackend::handleMtabChange()
 			QString mime, icon, label;
 			guess(dev, mp, fs, true, mime, icon, label);
 
-			m_mediaList.changeMediumState(id, true, mime,
-			                              icon, label);
+			m_mediaList.changeMediumState(id, true, false,
+			                              mime, icon, label);
 		}
 #if 0
 		else if ( !m_mtabIds.contains(id) )
@@ -164,7 +164,7 @@ void FstabBackend::handleMtabChange()
 			m->setIconName(icon);
 			m->setLabel(label);
 
-			m_mediaList.addMedium(m);
+			m_mediaList.addMedium(m, notificationAllowed);
 		}
 #endif
 	}
@@ -185,13 +185,13 @@ void FstabBackend::handleMtabChange()
 			QString mime, icon, label;
 			guess(dev, mp, fs, false, mime, icon, label);
 
-			m_mediaList.changeMediumState(*it2, false, mime,
-			                              icon, label);
+			m_mediaList.changeMediumState(*it2, false, false,
+			                              mime, icon, label);
 		}
 #if 0
 		else if ( !new_mtabIds.contains(*it2) )
 		{
-			m_mediaList.removeMedium(*it2);
+			m_mediaList.removeMedium(*it2, allowNotification);
 		}
 #endif
 	}
@@ -199,7 +199,7 @@ void FstabBackend::handleMtabChange()
 	m_mtabIds = new_mtabIds;
 }
 
-void FstabBackend::handleFstabChange()
+void FstabBackend::handleFstabChange(bool allowNotification)
 {
 	QStringList new_fstabIds;
 	KMountPoint::List fstab = KMountPoint::possibleMountPoints();
@@ -233,7 +233,7 @@ void FstabBackend::handleFstabChange()
 			m->setIconName(icon);
 			m->setLabel(label);
 
-			m_mediaList.addMedium(m);
+			m_mediaList.addMedium(m, allowNotification);
 		}
 	}
 
@@ -244,7 +244,7 @@ void FstabBackend::handleFstabChange()
 	{
 		if ( !new_fstabIds.contains(*it2) )
 		{
-			m_mediaList.removeMedium(*it2);
+			m_mediaList.removeMedium(*it2, allowNotification);
 		}
 	}
 

@@ -32,11 +32,16 @@
 NotifierSettings::NotifierSettings()
 {
 	m_supportedMimetypes.append( "media/removable_unmounted" );
+	m_supportedMimetypes.append( "media/removable_mounted" );
+	m_supportedMimetypes.append( "media/camera_unmounted" );
+	m_supportedMimetypes.append( "media/camera_mounted" );
 	m_supportedMimetypes.append( "media/gphoto2camera" );
 	m_supportedMimetypes.append( "media/cdrom_unmounted" );
+	m_supportedMimetypes.append( "media/cdrom_mounted" );
 	m_supportedMimetypes.append( "media/dvd_unmounted" );
+	m_supportedMimetypes.append( "media/dvd_mounted" );
 	m_supportedMimetypes.append( "media/cdwriter_unmounted" );
-	m_supportedMimetypes.append( "media/zip_unmounted" );
+	m_supportedMimetypes.append( "media/cdwriter_mounted" );
 	m_supportedMimetypes.append( "media/blankcd" );
 	m_supportedMimetypes.append( "media/blankdvd" );
 	m_supportedMimetypes.append( "media/audiocd" );

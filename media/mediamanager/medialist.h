@@ -36,12 +36,13 @@ public:
 	const Medium *findByName(const QString &name) const;
 
 public:
-	QString addMedium(Medium *medium);
-	bool removeMedium(const QString &id);
+	QString addMedium(Medium *medium, bool allowNotification = true);
+	bool removeMedium(const QString &id, bool allowNotification = true);
 
-	bool changeMediumState(const Medium &medium);
+	bool changeMediumState(const Medium &medium, bool allowNotification);
 	bool changeMediumState(const QString &id,
 	                       const QString &baseURL,
+	                       bool allowNotification = true,
 	                       const QString &mimeType = QString::null,
 	                       const QString &iconName = QString::null,
 	                       const QString &label = QString::null);
@@ -49,10 +50,12 @@ public:
 	                       const QString &deviceNode,
 	                       const QString &mountPoint,
 	                       const QString &fsType, bool mounted,
+	                       bool allowNotification = true,
 	                       const QString &mimeType = QString::null,
 	                       const QString &iconName = QString::null,
 	                       const QString &label = QString::null);
 	bool changeMediumState(const QString &id, bool mounted,
+	                       bool allowNotification = true,
 	                       const QString &mimeType = QString::null,
 	                       const QString &iconName = QString::null,
 	                       const QString &label = QString::null);
@@ -60,10 +63,12 @@ public:
 	bool setUserLabel(const QString &name, const QString &label);
 
 signals:
-	void mediumAdded(const QString &id, const QString &name);
-	void mediumRemoved(const QString &id, const QString &name);
+	void mediumAdded(const QString &id, const QString &name,
+	                 bool allowNotification);
+	void mediumRemoved(const QString &id, const QString &name,
+	                   bool allowNotification);
 	void mediumStateChanged(const QString &id, const QString &name,
-	                        bool mounted);
+	                        bool mounted, bool allowNotification);
 
 private:
 	QPtrList<Medium> m_media;

@@ -49,7 +49,7 @@ RemovableBackend::~RemovableBackend()
 
 	for (; it!=end; ++it)
 	{
-		m_mediaList.removeMedium(*it);
+		m_mediaList.removeMedium(*it, false);
 	}
 }
 
@@ -107,7 +107,7 @@ bool RemovableBackend::camera(const QString &devNode)
 	if (m_removableIds.contains(id))
 	{
 		return m_mediaList.changeMediumState(id,
-			QString("camera:/"), "media/gphoto2camera");
+			QString("camera:/"), false, "media/gphoto2camera");
 	}
 	return false;
 }
@@ -142,7 +142,7 @@ void RemovableBackend::handleMtabChange()
 		  && m_removableIds.contains(id) )
 		{
 			m_mediaList.changeMediumState(id, dev, mp, fs, true,
-				"media/removable_mounted");
+				false, "media/removable_mounted");
 		}
 	}
 
@@ -155,7 +155,7 @@ void RemovableBackend::handleMtabChange()
 		  && m_removableIds.contains(*it2) )
 		{
 			m_mediaList.changeMediumState(*it2, false,
-				"media/removable_unmounted");
+				false, "media/removable_unmounted");
 		}
 	}
 

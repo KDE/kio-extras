@@ -172,14 +172,14 @@ bool HALBackend::ListDevices()
 
 	kdDebug(1219) << "HALBackend::ListDevices : " << numDevices << " devices found" << endl;
 	for (int i = 0; i < numDevices; i++)
-		AddDevice(halDeviceList[i]);
+		AddDevice(halDeviceList[i], false);
 
 	return true;
 }
 
 /* Create a media instance for the HAL device "udi".
 This functions checks whether the device is worth listing */
-void HALBackend::AddDevice(const char *udi)
+void HALBackend::AddDevice(const char *udi, bool allowNotification)
 {
 	/* We don't deal with devices that do not expose their capabilities.
 	If we don't check this, we will get a lot of warning messages from libhal */
@@ -212,7 +212,7 @@ void HALBackend::AddDevice(const char *udi)
 		/* Create medium */
 		Medium* medium = new Medium(udi, "");
 		setVolumeProperties(medium);
-		m_mediaList.addMedium(medium);
+		m_mediaList.addMedium(medium, allowNotification);
 
 		return;
 	}
@@ -226,7 +226,7 @@ void HALBackend::AddDevice(const char *udi)
 			/* Create medium */
 			Medium* medium = new Medium(udi, "");
 			setFloppyProperties(medium);
-			m_mediaList.addMedium(medium);
+			m_mediaList.addMedium(medium, allowNotification);
 			return;
 		}
 
@@ -238,14 +238,14 @@ void HALBackend::AddDevice(const char *udi)
 			/* Create medium */
 			Medium* medium = new Medium(udi, "");
 			setCameraProperties(medium);
-			m_mediaList.addMedium(medium);
+			m_mediaList.addMedium(medium, allowNotification);
 			return;
 		}
 }
 
 void HALBackend::RemoveDevice(const char *udi)
 {
-	m_mediaList.removeMedium(udi);
+	m_mediaList.removeMedium(udi, true);
 }
 
 void HALBackend::ModifyDevice(const char *udi, const char* key)
@@ -314,6 +314,7 @@ void HALBackend::ResetProperties(const char* mediumUdi)
 	kdDebug(1219) << "HALBackend::setProperties" << endl;
 
 	Medium* m = new Medium(mediumUdi, "");
+	
 	if (libhal_device_query_capability(m_halContext, mediumUdi, "volume", NULL))
 		setVolumeProperties(m);
 	if (libhal_device_query_capability(m_halContext, mediumUdi, "storage", NULL))
@@ -321,7 +322,7 @@ void HALBackend::ResetProperties(const char* mediumUdi)
 	if (libhal_device_query_capability(m_halContext, mediumUdi, "camera", NULL))
 		setCameraProperties(m);
 
-	m_mediaList.changeMediumState(*m);
+	m_mediaList.changeMediumState(*m, false);
 
 	delete m;
 }

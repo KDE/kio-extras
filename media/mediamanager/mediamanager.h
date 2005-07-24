@@ -51,17 +51,19 @@ k_dcop:
 	bool removableCamera(const QString &devNode);
 
 k_dcop_signals:
-	void mediumAdded(const QString &name);
-	void mediumRemoved(const QString &name);
-	void mediumChanged(const QString &name);
+	void mediumAdded(const QString &name, bool allowNotification);
+	void mediumRemoved(const QString &name, bool allowNotification);
+	void mediumChanged(const QString &name, bool allowNotification);
 
 private slots:
 	void loadBackends();
 	
-	void slotMediumAdded(const QString &id, const QString &name);
-	void slotMediumRemoved(const QString &id, const QString &name);
+	void slotMediumAdded(const QString &id, const QString &name,
+	                     bool allowNotification);
+	void slotMediumRemoved(const QString &id, const QString &name,
+	                       bool allowNotification);
 	void slotMediumChanged(const QString &id, const QString &name,
-	                       bool mounted);
+	                       bool mounted, bool allowNotification);
 
 private:
 	MediaList m_mediaList;

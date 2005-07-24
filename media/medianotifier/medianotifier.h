@@ -21,8 +21,6 @@
 #define _MEDIANOTIFIER_H_
 
 #include <kdedmodule.h>
-#include <kfileitem.h>
-#include <kdirlister.h>
 
 #include <qstring.h>
 
@@ -35,17 +33,12 @@ public:
 	MediaNotifier(const QCString &name);
 	virtual ~MediaNotifier();
 
+k_dcop:
+	void onMediumAdded(const QString &name, bool allowNotification);
+	void onMediumChanged(const QString &name, bool allowNotification);
+	
 private:
-	void mediumDetected(KFileItem &medium);
-
-private slots:
-	void slotMediaAdded(const KFileItemList&);
-	void slotFirstListingDone();
-
-private:
-	KDirLister * m_mediaWatcher;
-	bool m_firstNewItems;
-
+	void notify(const QString &name);
 };
 #endif
 

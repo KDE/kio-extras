@@ -78,6 +78,7 @@ private:
 	static bool hasDirectory(const QCString &devNode, const QCString &dir);
 
 	QMap<QString, PollingThread*> m_threads;
+	QStringList m_excludeNotification;
 };
 
 #endif
