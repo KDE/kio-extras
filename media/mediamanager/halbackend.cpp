@@ -55,6 +55,18 @@ HALBackend::HALBackend(MediaList &list, QObject* parent)
 /* Destructor */
 HALBackend::~HALBackend()
 {
+	/* Remove all the registered media */
+	int numDevices;
+	char** halDeviceList = libhal_get_all_devices( m_halContext, &numDevices, NULL );
+
+	if ( halDeviceList )
+	{
+		for ( int i = 0; i < numDevices; i++ )
+		{
+			m_mediaList.removeMedium( halDeviceList[i], false );
+		}
+	}
+	
 	/* Close HAL connection */
 	if (m_halContext)
 	{
