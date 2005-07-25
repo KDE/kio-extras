@@ -1,7 +1,7 @@
 SUBDIRS = libmediacommon . mediamanager medianotifier mounthelper \
           kfile-plugin kcmodule mimetypes services
 
-INCLUDES = $(all_includes) -I$(srcdir)/libmediacommon
+INCLUDES = -I$(srcdir)/libmediacommon $(all_includes)
 METASOURCES = AUTO
 
 kde_module_LTLIBRARIES = kio_media.la
