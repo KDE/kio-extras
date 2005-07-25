@@ -35,6 +35,14 @@
                 <string>Enable CD polling</string>
             </property>
         </widget>
+        <widget class="QCheckBox">
+            <property name="name">
+                <cstring>kcfg_AutostartEnabled</cstring>
+            </property>
+            <property name="text">
+                <string>Enable medium application autostart after mount</string>
+            </property>
+        </widget>
         <spacer>
             <property name="name">
                 <cstring>spacer1</cstring>
@@ -48,7 +56,7 @@
             <property name="sizeHint">
                 <size>
                     <width>21</width>
-                    <height>51</height>
+                    <height>360</height>
                 </size>
             </property>
         </spacer>

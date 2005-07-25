@@ -14,5 +14,10 @@
       <whatsthis>Allows KDE to poll CD-Rom or DVD-Rom drives itself in order to detect medium insert.</whatsthis>
       <default>true</default>
     </entry>
+    <entry name="AutostartEnabled" type="Bool">
+      <label>Enable medium application autostart after mount</label>
+      <whatsthis>Allows KDE to autostart application after a medium mount if it contains an Autostart or an Autoopen file.</whatsthis>
+      <default>true</default>
+    </entry>
   </group>
 </kcfg>

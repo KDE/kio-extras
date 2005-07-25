@@ -21,6 +21,7 @@
 #define _MEDIANOTIFIER_H_
 
 #include <kdedmodule.h>
+#include <kfileitem.h>
 
 #include <qstring.h>
 
@@ -30,15 +31,20 @@ class MediaNotifier:  public KDEDModule
 	K_DCOP
 
 public:
-	MediaNotifier(const QCString &name);
+	MediaNotifier( const QCString &name );
 	virtual ~MediaNotifier();
 
 k_dcop:
-	void onMediumAdded(const QString &name, bool allowNotification);
-	void onMediumChanged(const QString &name, bool allowNotification);
+	void onMediumChange( const QString &name, bool allowNotification );
 	
 private:
-	void notify(const QString &name);
+	bool autostart( const KFileItem &medium );
+	void notify( KFileItem &medium );
+	
+	bool execAutorun( const KFileItem &medium, const QString &path,
+	                  const QString &autorunFile );
+	bool execAutoopen( const KFileItem &medium, const QString &path,
+	                   const QString &autoopenFile );
 };
 #endif
 
