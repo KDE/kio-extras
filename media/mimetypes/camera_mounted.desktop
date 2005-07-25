@@ -4,6 +4,7 @@ Type=MimeType
 MimeType=media/camera_mounted
 Comment=Mounted camera
 Comment[et]=Ühendatud kaamera
+Comment[ga]=Ceamara feistithe
 Icon=camera_mount
 
 X-KDE-AutoEmbed=true
