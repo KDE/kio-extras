@@ -236,7 +236,7 @@ bool MediaImpl::ensureMediumMounted(Medium &medium)
 		         this, SLOT( slotWarning( KIO::Job *, const QString & ) ) );
 		kapp->dcopClient()
 		->connectDCOPSignal("kded", "mediamanager",
-		                    "mediumChanged(QString)",
+		                    "mediumChanged(QString, bool)",
 		                    "mediaimpl",
 		                    "slotMediumChanged(QString)",
 		                    false);
@@ -247,7 +247,7 @@ bool MediaImpl::ensureMediumMounted(Medium &medium)
 		
 		kapp->dcopClient()
 		->disconnectDCOPSignal("kded", "mediamanager",
-		                       "mediumChanged(QString)",
+		                       "mediumChanged(QString, bool)",
 		                       "mediaimpl",
 		                       "slotMediumChanged(QString)");
 		
