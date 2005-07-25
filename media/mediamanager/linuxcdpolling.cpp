@@ -261,6 +261,9 @@ void LinuxCDPolling::slotMediumStateChanged(const QString &id)
 
 	if (!m_threads.contains(id) && !medium->isMounted())
 	{
+		// It is just a mount state change, no need to notify
+		m_excludeNotification.append( id );
+		
 		QCString dev = QFile::encodeName( medium->deviceNode() ).data();
 		PollingThread *thread = new PollingThread(dev);
 		m_threads[id] = thread;
