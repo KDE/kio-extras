@@ -1,4 +1,4 @@
-INCLUDES = $(all_includes) -I$(srcdir)/../libmediacommon
+INCLUDES = -I$(srcdir)/../libmediacommon -I../libmediacommon $(all_includes)
 
 kde_module_LTLIBRARIES = kded_medianotifier.la
 kded_medianotifier_la_LDFLAGS = -module -avoid-version $(all_libraries)
