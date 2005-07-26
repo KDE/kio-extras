@@ -223,13 +223,10 @@
                                         <cstring>commandEdit</cstring>
                                     </property>
                                 </widget>
-				<widget class="KPushButton">
-					<property name="name">
-						<cstring>setButton</cstring>
-					</property>
-					<property name="text">
-						<string>&amp;Set</string>
-					</property>
+                                <widget class="KPushButton">
+                                    <property name="name">
+                                        <cstring>commandButton</cstring>
+                                    </property>
                                 </widget>
                             </hbox>
                         </widget>
@@ -246,5 +243,6 @@
     <includehint>kactionselector.h</includehint>
     <includehint>kactivelabel.h</includehint>
     <includehint>klineedit.h</includehint>
+    <includehint>kpushbutton.h</includehint>
 </includehints>
 </UI>

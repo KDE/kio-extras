@@ -37,7 +37,7 @@ public:
 public slots:
 	void slotOk();
 	void slotIconChanged();
-	void slotSet();
+	void slotCommand();
 
 private:
 	ServiceView *m_view;

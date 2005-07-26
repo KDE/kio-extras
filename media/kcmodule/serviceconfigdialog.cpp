@@ -27,6 +27,10 @@
 #include <kservice.h>
 #include <kopenwith.h>
 #include <kpushbutton.h>
+#include <kiconloader.h>
+#include <qpixmap.h>
+#include <qiconset.h>
+
 
 #include "mimetypelistboxitem.h"
 
@@ -42,6 +46,11 @@ ServiceConfigDialog::ServiceConfigDialog(NotifierServiceAction *action,
 	m_view->labelEdit->setText( m_action->label() );
 	m_view->commandEdit->setText( m_action->service().m_strExec );
 
+	QIconSet iconSet = SmallIconSet("configure");
+	QPixmap pixMap = iconSet.pixmap( QIconSet::Small, QIconSet::Normal );
+	m_view->commandButton->setIconSet( iconSet );
+	m_view->commandButton->setFixedSize( pixMap.width()+8, pixMap.height()+8 );
+	
 	m_iconChanged = false;
 
 	QStringList all_mimetypes = mimetypesList;
@@ -71,8 +80,8 @@ ServiceConfigDialog::ServiceConfigDialog(NotifierServiceAction *action,
 
 	connect( m_view->iconButton, SIGNAL( iconChanged(QString) ),
 	         this, SLOT( slotIconChanged() ) );
-	connect( m_view->setButton, SIGNAL( clicked() ),
-	         this, SLOT( slotSet() ) );
+	connect( m_view->commandButton, SIGNAL( clicked() ),
+	         this, SLOT( slotCommand() ) );
 }
 
 bool operator==( KDEDesktopMimeType::Service s1, KDEDesktopMimeType::Service s2 )
@@ -121,7 +130,7 @@ void ServiceConfigDialog::slotIconChanged()
 	m_iconChanged = true;
 }
 
-void ServiceConfigDialog::slotSet()
+void ServiceConfigDialog::slotCommand()
 {
 	KOpenWithDlg d(this);
 	int value = d.exec();
