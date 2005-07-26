@@ -12,9 +12,6 @@
             <height>480</height>
         </rect>
     </property>
-    <property name="caption">
-        <string>NotifierModuleView</string>
-    </property>
     <grid>
         <property name="name">
             <cstring>unnamed</cstring>
@@ -89,9 +86,6 @@
                                     <property name="text">
                                         <string>&amp;Add...</string>
                                     </property>
-                                    <property name="accel">
-                                        <string>Alt+A</string>
-                                    </property>
                                 </widget>
                                 <widget class="KPushButton">
                                     <property name="name">
@@ -99,9 +93,6 @@
                                     </property>
                                     <property name="text">
                                         <string>&amp;Delete</string>
-                                    </property>
-                                    <property name="accel">
-                                        <string>Alt+D</string>
                                     </property>
                                 </widget>
                                 <widget class="KPushButton">
@@ -111,9 +102,6 @@
                                     <property name="text">
                                         <string>&amp;Edit...</string>
                                     </property>
-                                    <property name="accel">
-                                        <string>Alt+E</string>
-                                    </property>
                                 </widget>
                                 <widget class="KPushButton">
                                     <property name="name">
@@ -121,9 +109,6 @@
                                     </property>
                                     <property name="text">
                                         <string>&amp;Toggle as Auto Action</string>
-                                    </property>
-                                    <property name="accel">
-                                        <string>Alt+T</string>
                                     </property>
                                 </widget>
                             </vbox>
