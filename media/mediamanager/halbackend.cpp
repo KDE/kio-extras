@@ -209,7 +209,8 @@ void HALBackend::AddDevice(const char *udi, bool allowNotification)
 	{
 		/* We only list volume that have a filesystem or volume that have an audio track*/
 		if ( (hal_device_get_property_QString(m_halContext, udi, "volume.fsusage") != "filesystem") &&
-		     (!libhal_device_get_property_bool(m_halContext, udi, "volume.disc.has_audio", NULL)) )
+		     (!libhal_device_get_property_bool(m_halContext, udi, "volume.disc.has_audio", NULL)) &&
+		     (!libhal_device_get_property_bool(m_halContext, udi, "volume.disc.is_blank", NULL)) )
 			return;
 		/* Query drive udi */
 		QString driveUdi = hal_device_get_property_QString(m_halContext, udi, "block.storage_device");
