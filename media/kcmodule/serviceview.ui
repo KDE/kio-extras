@@ -230,9 +230,6 @@
 					<property name="text">
 						<string>&amp;Set</string>
 					</property>
-					<property name="accel">
-						<string>Alt+S</string>
-					</property>
                                 </widget>
                             </hbox>
                         </widget>
