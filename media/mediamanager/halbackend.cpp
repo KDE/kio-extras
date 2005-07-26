@@ -443,7 +443,7 @@ void HALBackend::setVolumeProperties(Medium* medium)
 				medium->setIconName("sd_mmc" + MOUNT_SUFFIX);
 				break;
 			case LIBHAL_DRIVE_TYPE_PORTABLE_AUDIO_PLAYER:
-				medium->setIconName(QString::null); //FIXME need icon
+				medium->setIconName("ipod" + MOUNT_SUFFIX);
 				break;
 			case LIBHAL_DRIVE_TYPE_CAMERA:
 				mimeType = "media/camera" + MOUNT_SUFFIX;
