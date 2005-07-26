@@ -223,6 +223,17 @@
                                         <cstring>commandEdit</cstring>
                                     </property>
                                 </widget>
+				<widget class="KPushButton">
+					<property name="name">
+						<cstring>setButton</cstring>
+					</property>
+					<property name="text">
+						<string>&amp;Set</string>
+					</property>
+					<property name="accel">
+						<string>Alt+S</string>
+					</property>
+                                </widget>
                             </hbox>
                         </widget>
                     </vbox>
