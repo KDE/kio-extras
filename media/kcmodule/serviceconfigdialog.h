@@ -36,10 +36,13 @@ public:
 	
 public slots:
 	void slotOk();
+	void slotIconChanged();
+	void slotSet();
 
 private:
 	ServiceView *m_view;
 	NotifierServiceAction *m_action;
+	bool m_iconChanged;
 };
 
 #endif
