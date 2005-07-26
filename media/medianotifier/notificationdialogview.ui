@@ -12,9 +12,6 @@
             <height>480</height>
         </rect>
     </property>
-    <property name="caption">
-        <string>NotificationDialogView</string>
-    </property>
     <vbox>
         <property name="name">
             <cstring>unnamed</cstring>
@@ -104,9 +101,6 @@
             </property>
             <property name="text">
                 <string>&amp;Always do that for this type of media</string>
-            </property>
-            <property name="accel">
-                <string>Alt+A</string>
             </property>
         </widget>
     </vbox>
