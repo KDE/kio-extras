@@ -24,6 +24,9 @@
 #include <kactionselector.h>
 #include <kicondialog.h>
 #include <qlistbox.h>
+#include <kservice.h>
+#include <kopenwith.h>
+#include <kpushbutton.h>
 
 #include "mimetypelistboxitem.h"
 
@@ -38,6 +41,8 @@ ServiceConfigDialog::ServiceConfigDialog(NotifierServiceAction *action,
 	m_view->iconButton->setIcon( m_action->iconName() );
 	m_view->labelEdit->setText( m_action->label() );
 	m_view->commandEdit->setText( m_action->service().m_strExec );
+
+	m_iconChanged = false;
 
 	QStringList all_mimetypes = mimetypesList;
 	QStringList action_mimetypes = action->mimetypes();
@@ -63,6 +68,11 @@ ServiceConfigDialog::ServiceConfigDialog(NotifierServiceAction *action,
 	
 	setMainWidget(m_view);
 	setCaption( m_action->label() );
+
+	connect( m_view->iconButton, SIGNAL( iconChanged(QString) ),
+	         this, SLOT( slotIconChanged() ) );
+	connect( m_view->setButton, SIGNAL( clicked() ),
+	         this, SLOT( slotSet() ) );
 }
 
 bool operator==( KDEDesktopMimeType::Service s1, KDEDesktopMimeType::Service s2 )
@@ -103,6 +113,29 @@ void ServiceConfigDialog::slotOk()
 	else
 	{
 		reject();
+	}
+}
+
+void ServiceConfigDialog::slotIconChanged()
+{
+	m_iconChanged = true;
+}
+
+void ServiceConfigDialog::slotSet()
+{
+	KOpenWithDlg d(this);
+	int value = d.exec();
+	if ( value == QDialog::Accepted )
+	{
+		KService::Ptr service = d.service();
+		if ( service != 0L )
+		{			
+			m_view->commandEdit->setText( service->exec() );
+			if ( m_iconChanged == false )
+			{
+				m_view->iconButton->setIcon( service->icon() );
+			}
+		}
 	}
 }
 
