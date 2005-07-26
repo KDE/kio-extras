@@ -145,7 +145,7 @@ void NotifierSettings::resetAutoAction( const QString &mimetype )
 	{
 		NotifierAction *action = m_autoMimetypesMap[mimetype];
 		action->removeAutoMimetype( mimetype );
-		m_autoMimetypesMap[mimetype] = 0L;
+		m_autoMimetypesMap.remove(mimetype);
 	}
 }
 
