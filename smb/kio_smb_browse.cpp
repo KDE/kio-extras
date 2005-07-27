@@ -239,7 +239,7 @@ void SMBSlave::reportError(const SMBUrl &url)
     {
     case ENOENT:
         if (url.getType() == SMBURLTYPE_ENTIRE_NETWORK)
-            error( ERR_SLAVE_DEFINED, i18n("Unable to find any workgroups in your local network."));
+            error( ERR_SLAVE_DEFINED, i18n("Unable to find any workgroups in your local network. This might be caused by an enabled firewall."));
         else
             error( ERR_DOES_NOT_EXIST, url.prettyURL());
         break;
