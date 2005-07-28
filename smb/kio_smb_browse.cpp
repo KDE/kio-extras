@@ -257,7 +257,10 @@ void SMBSlave::reportError(const SMBUrl &url)
                 i18n( "Could not connect to host for %1" ).arg( url.prettyURL() ) );
         break;
     case ENOTDIR:
+        error( ERR_CANNOT_ENTER_DIRECTORY, url.prettyURL());
+        break;
     case EFAULT:
+    case EINVAL:
         error( ERR_DOES_NOT_EXIST, url.prettyURL());
         break;
     case EPERM:
