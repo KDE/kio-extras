@@ -27,6 +27,8 @@
 #include <qapplication.h>
 #include <qeventloop.h>
 #include <qdir.h>
+//Added by qt3to4:
+#include <Q3ValueList>
 
 #include <sys/stat.h>
 
@@ -36,7 +38,7 @@ SystemImpl::SystemImpl() : QObject()
 		KStandardDirs::kde_default("data") + "systemview");
 }
 
-bool SystemImpl::listRoot(QValueList<KIO::UDSEntry> &list)
+bool SystemImpl::listRoot(Q3ValueList<KIO::UDSEntry> &list)
 {
 	kdDebug() << "SystemImpl::listRoot" << endl;
 
@@ -251,12 +253,20 @@ void SystemImpl::createEntry(KIO::UDSEntry &entry,
 			             const KIO::UDSEntryList &) ) );
 		connect( job, SIGNAL( result(KIO::Job *) ),
 		         this, SLOT( slotResult(KIO::Job *) ) );
-		qApp->eventLoop()->enterLoop();
+		enterLoop();
 
 		if (m_lastListingEmpty) icon = empty_icon;
 	}
 
 	addAtom(entry, KIO::UDS_ICON_NAME, 0, icon);
+}
+
+void SystemImpl::enterLoop()
+{
+    QEventLoop eventLoop;
+    connect(this, SIGNAL(leaveModality()),
+        &eventLoop, SLOT(quit()));
+    eventLoop.exec(QEventLoop::ExcludeUserInputEvents);
 }
 
 void SystemImpl::slotEntries(KIO::Job *job, const KIO::UDSEntryList &list)
@@ -265,13 +275,13 @@ void SystemImpl::slotEntries(KIO::Job *job, const KIO::UDSEntryList &list)
 	{
 		job->kill(true);
 		m_lastListingEmpty = false;
-		qApp->eventLoop()->exitLoop();
+		emit leaveModality();
 	}
 }
 
 void SystemImpl::slotResult(KIO::Job *)
 {
-	qApp->eventLoop()->exitLoop();
+	emit leaveModality();
 }
 
 

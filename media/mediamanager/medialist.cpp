@@ -19,6 +19,8 @@
 #include "medialist.h"
 
 #include <kdebug.h>
+//Added by qt3to4:
+#include <Q3PtrList>
 
 MediaList::MediaList()
 {
@@ -27,7 +29,7 @@ MediaList::MediaList()
 	m_media.setAutoDelete(true);
 }
 
-const QPtrList<Medium> MediaList::list() const
+const Q3PtrList<Medium> MediaList::list() const
 {
 	kdDebug(1219) << "MediaList::list()" << endl;
 

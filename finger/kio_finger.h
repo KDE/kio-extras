@@ -21,7 +21,7 @@
 #define __kio_finger_h__
 
 #include <qstring.h>
-#include <qcstring.h>
+#include <q3cstring.h>
 
 #include <kurl.h>
 #include <kprocess.h>
@@ -34,7 +34,7 @@ class FingerProtocol : public QObject, public KIO::SlaveBase
 
 public:
 
-  FingerProtocol(const QCString &pool_socket, const QCString &app_socket);
+  FingerProtocol(const Q3CString &pool_socket, const Q3CString &app_socket);
   virtual ~FingerProtocol();
 
   virtual void mimetype(const KURL& url);

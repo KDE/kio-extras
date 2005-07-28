@@ -33,11 +33,11 @@
 #define __KIOSMTP_CAPABILITIES_H__
 
 #include <qmap.h>
-#include <qcstring.h>
+#include <q3cstring.h>
 #include <qstring.h>
 #include <qstringlist.h>
 
-class QStrIList;
+class Q3StrIList;
 
 namespace KioSMTP {
 
@@ -56,13 +56,13 @@ namespace KioSMTP {
     bool have( const QString & cap ) const {
       return mCapabilities.find( cap.upper() ) != mCapabilities.end();
     }
-    bool have( const QCString & cap ) const { return have( QString( cap.data() ) ); }
+    bool have( const Q3CString & cap ) const { return have( QString( cap.data() ) ); }
     bool have( const char * cap ) const { return have( QString::fromLatin1( cap ) ); }
 
     QString asMetaDataString() const;
 
     QString authMethodMetaData() const;
-    QStrIList saslMethods() const;
+    Q3StrIList saslMethods() const;
 
     QString createSpecialResponse( bool tls ) const;
 

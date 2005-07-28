@@ -31,6 +31,8 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #include <kfilterbase.h>
 
 #include "filter.h"
+//Added by qt3to4:
+#include <Q3CString>
 
 extern "C" { KDE_EXPORT int kdemain(int argc, char **argv); }
 
@@ -53,7 +55,7 @@ int kdemain( int argc, char ** argv)
   return 0;
 }
 
-FilterProtocol::FilterProtocol( const QCString & protocol, const QCString &pool, const QCString &app )
+FilterProtocol::FilterProtocol( const Q3CString & protocol, const Q3CString &pool, const Q3CString &app )
  : KIO::SlaveBase( protocol, pool, app )
 {
     QString mimetype = QString::fromLatin1("application/x-") + QString::fromLatin1(protocol);
@@ -75,7 +77,7 @@ void FilterProtocol::get( const KURL & )
   }
   needSubURLData();
 
-  filter->init(IO_ReadOnly);
+  filter->init(QIODevice::ReadOnly);
 
   bool bNeedHeader = true;
   bool bNeedMimetype = true;

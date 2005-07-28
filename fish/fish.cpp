@@ -26,9 +26,9 @@
 
 #include "config.h"
 
-#include <qcstring.h>
+#include <q3cstring.h>
 #include <qfile.h>
-#include <qsocket.h>
+#include <q3socket.h>
 #include <qdatetime.h>
 #include <qbitarray.h>
 #include <qregexp.h>
@@ -69,7 +69,6 @@
 #include <klocale.h>
 #include <kremoteencoding.h>
 #include <kurl.h>
-#include <ksock.h>
 #include <stdarg.h>
 #include <time.h>
 #include <sys/stat.h>
@@ -236,7 +235,7 @@ const struct fishProtocol::fish_info fishProtocol::fishInfo[] = {
       0 }
 };
 
-fishProtocol::fishProtocol(const QCString &pool_socket, const QCString &app_socket)
+fishProtocol::fishProtocol(const Q3CString &pool_socket, const Q3CString &app_socket)
   : SlaveBase("fish", pool_socket, app_socket), mimeBuffer(1024),
     mimeTypeSent(false)
 {
@@ -536,7 +535,7 @@ manages initial communication setup including password queries
 int fishProtocol::establishConnection(char *buffer, int len) {
     QString buf;
     buf.setLatin1(buffer,len);
-    int pos;
+    int pos=0;
     // Strip trailing whitespace
     while (buf.length() && (buf[buf.length()-1] == ' '))
        buf.truncate(buf.length()-1);
@@ -1170,7 +1169,7 @@ void fishProtocol::sent()
 {
     if (rawWrite > 0) {
         myDebug( << "writing raw: " << rawData.size() << "/" << rawWrite << endl);
-        writeChild(rawData.data(),((unsigned int)rawWrite > rawData.size()?rawData.size():rawWrite));
+        writeChild(rawData.data(),((int)rawWrite > rawData.size()?rawData.size():rawWrite));
         rawWrite -= rawData.size();
         if (rawWrite > 0) {
             dataReq();
@@ -1263,7 +1262,7 @@ int fishProtocol::received(const char *buffer, int buflen)
 
         if (pos < buflen)
         {
-           QString s = remoteEncoding()->decode(QCString(buffer,pos+1));
+           QString s = remoteEncoding()->decode(Q3CString(buffer,pos+1));
 
            buffer += pos+1;
            buflen -= pos+1;
@@ -1582,7 +1581,7 @@ void fishProtocol::del(const KURL &u, bool isFile){
 void fishProtocol::special( const QByteArray &data ){
     int tmp;
 
-    QDataStream stream(data, IO_ReadOnly);
+    QDataStream stream(data);
 
     stream >> tmp;
     switch (tmp) {

@@ -21,14 +21,16 @@
 #include <kdebug.h>
 #include <klocale.h>
 #include <kglobal.h>
+//Added by qt3to4:
+#include <Q3CString>
 
-SystemDirNotifyModule::SystemDirNotifyModule(const QCString &obj)
+SystemDirNotifyModule::SystemDirNotifyModule(const Q3CString &obj)
 	: KDEDModule(obj)
 {
 }
 
 extern "C" {
-	KDE_EXPORT KDEDModule *create_systemdirnotify(const QCString &obj)
+	KDE_EXPORT KDEDModule *create_systemdirnotify(const Q3CString &obj)
 	{
 		KGlobal::locale()->insertCatalogue("kio_system");
 		return new SystemDirNotifyModule(obj);

@@ -37,7 +37,7 @@
 #include <sys/types.h>
 
 #include <qtextstream.h>
-#include <qcstring.h>
+#include <q3cstring.h>
 #include <qfile.h>
 
 #include "kio_floppy.h"
@@ -81,7 +81,7 @@ void getDriveAndPath(const QString& path, QString& drive, QString& rest)
    }
 }
 
-FloppyProtocol::FloppyProtocol (const QCString &pool, const QCString &app )
+FloppyProtocol::FloppyProtocol (const Q3CString &pool, const Q3CString &app )
 :SlaveBase( "floppy", pool, app )
 ,m_mtool(0)
 ,m_stdoutBuffer(0)

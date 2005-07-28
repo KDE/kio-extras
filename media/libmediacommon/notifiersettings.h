@@ -20,7 +20,7 @@
 #ifndef _NOTIFIERSETTINGS_H_
 #define _NOTIFIERSETTINGS_H_
 
-#include <qvaluelist.h>
+#include <q3valuelist.h>
 #include <qmap.h>
 
 #include "notifieraction.h"
@@ -33,8 +33,8 @@ public:
 	NotifierSettings();
 	~NotifierSettings();
 
-	QValueList<NotifierAction*> actions();
-	QValueList<NotifierAction*> actionsForMimetype( const QString &mimetype );
+	Q3ValueList<NotifierAction*> actions();
+	Q3ValueList<NotifierAction*> actionsForMimetype( const QString &mimetype );
 	
 	bool addAction( NotifierServiceAction *action );
 	bool deleteAction( NotifierServiceAction *action );
@@ -50,13 +50,13 @@ public:
 	void save();
 	
 private:
-	QValueList<NotifierServiceAction*> listServices( const QString &mimetype = QString() ) const;
+	Q3ValueList<NotifierServiceAction*> listServices( const QString &mimetype = QString() ) const;
 	bool shouldLoadActions( KDesktopFile &desktop, const QString &mimetype ) const;
-	QValueList<NotifierServiceAction*> loadActions( KDesktopFile &desktop ) const;
+	Q3ValueList<NotifierServiceAction*> loadActions( KDesktopFile &desktop ) const;
 
 	QStringList m_supportedMimetypes;
-	QValueList<NotifierAction*> m_actions;
-	QValueList<NotifierServiceAction*> m_deletedActions;
+	Q3ValueList<NotifierAction*> m_actions;
+	Q3ValueList<NotifierServiceAction*> m_deletedActions;
 	QMap<QString,NotifierAction*> m_idMap;
 	QMap<QString,NotifierAction*> m_autoMimetypesMap;
 };

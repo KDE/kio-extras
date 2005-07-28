@@ -26,6 +26,8 @@
 #include <dcopclient.h>
 
 #include <qeventloop.h>
+//Added by qt3to4:
+#include <Q3CString>
 
 #include "kio_system.h"
 
@@ -57,8 +59,8 @@ extern "C" {
 }
 
 
-SystemProtocol::SystemProtocol(const QCString &protocol,
-                               const QCString &pool, const QCString &app)
+SystemProtocol::SystemProtocol(const Q3CString &protocol,
+                               const Q3CString &pool, const Q3CString &app)
 	: ForwardingSlaveBase(protocol, pool, app)
 {
 }

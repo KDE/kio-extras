@@ -28,6 +28,8 @@
 
 #include <qdir.h>
 #include <qfile.h>
+//Added by qt3to4:
+#include <Q3ValueList>
 
 #include <sys/stat.h>
 
@@ -49,7 +51,7 @@ RemoteImpl::RemoteImpl()
 	}
 }
 
-void RemoteImpl::listRoot(QValueList<KIO::UDSEntry> &list) const
+void RemoteImpl::listRoot(Q3ValueList<KIO::UDSEntry> &list) const
 {
 	kdDebug(1220) << "RemoteImpl::listRoot" << endl;
 

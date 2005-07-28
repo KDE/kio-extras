@@ -6,6 +6,8 @@
 #include <qfile.h>
 #include <qtextstream.h>
 #include <qregexp.h>
+//Added by qt3to4:
+#include <Q3CString>
 
 #include <kdebug.h>
 #include <kprocess.h>
@@ -18,7 +20,7 @@
 
 using namespace KIO;
 
-InfoProtocol::InfoProtocol( const QCString &pool, const QCString &app )
+InfoProtocol::InfoProtocol( const Q3CString &pool, const Q3CString &app )
     : SlaveBase( "info", pool, app )
     , m_page( "" )
     , m_node( "" )

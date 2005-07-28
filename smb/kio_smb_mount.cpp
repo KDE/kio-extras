@@ -20,7 +20,7 @@
 
 #include "kio_smb.h"
 #include <kstandarddirs.h>
-#include <qcstring.h>
+#include <q3cstring.h>
 #include <unistd.h>
 #include <qdir.h>
 #include <kprocess.h>
@@ -39,7 +39,7 @@ void SMBSlave::special( const QByteArray & data)
 {
    kdDebug(KIO_SMB)<<"Smb::special()"<<endl;
    int tmp;
-   QDataStream stream(data, IO_ReadOnly);
+   QDataStream stream(data);
    stream >> tmp;
    //mounting and umounting are both blocking, "guarded" by a SIGALARM in the future
    switch (tmp)
@@ -54,8 +54,8 @@ void SMBSlave::special( const QByteArray & data)
          QString share,host;
          if (sl.count()>=2)
          {
-            host=(*sl.at(0)).mid(2);
-            share=(*sl.at(1));
+            host=sl.at(0).mid(2);
+            share=sl.at(1);
             kdDebug(KIO_SMB)<<"special() host -"<< host <<"- share -" << share <<"-"<<endl;
          }
 

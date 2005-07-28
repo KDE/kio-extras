@@ -34,6 +34,8 @@
 
 #include <qstring.h>
 #include <qstringlist.h>
+//Added by qt3to4:
+#include <Q3CString>
 
 class KURL;
 
@@ -69,7 +71,7 @@ namespace KioSMTP {
     void addBcc( const QString & bcc ) { mBcc.push_back( bcc ); }
 
     QString heloHostname() const { return mHeloHostname; }
-    QCString heloHostnameCString() const;
+    Q3CString heloHostnameCString() const;
     void setHeloHostname( const QString & hostname ) { mHeloHostname = hostname; }
 
     bool emitHeaders() const { return mEmitHeaders; }
@@ -85,7 +87,7 @@ namespace KioSMTP {
 	serialization of the header fields "To", "Cc", "Subject" and
 	"From", as determined by the respective settings. If @ref
 	#emitHeaders() is false, returns a null string. */
-    QCString headerFields( const QString & fromRealName=QString::null ) const;
+    Q3CString headerFields( const QString & fromRealName=QString::null ) const;
 
   private:
     QStringList mTo, mCc, mBcc;

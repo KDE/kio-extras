@@ -21,6 +21,8 @@
 #include <kinstance.h>
 #include <kdebug.h>
 #include <qtextstream.h>
+//Added by qt3to4:
+#include <Q3CString>
 #include <klocale.h>
 #include <sys/stat.h>
 #include <dcopclient.h>
@@ -35,7 +37,7 @@ class SettingsProtocol : public KIO::SlaveBase
 {
 public:
 	enum RunMode { SettingsMode, ProgramsMode, ApplicationsMode };
-	SettingsProtocol(const QCString &protocol, const QCString &pool, const QCString &app);
+	SettingsProtocol(const Q3CString &protocol, const Q3CString &pool, const Q3CString &app);
 	virtual ~SettingsProtocol();
 	virtual void get( const KURL& url );
 	virtual void stat(const KURL& url);
@@ -96,7 +98,7 @@ static void createDirEntry(KIO::UDSEntry& entry, const QString& name, const QStr
 	addAtom(entry, KIO::UDS_ICON_NAME, 0, iconName);
 }
 
-SettingsProtocol::SettingsProtocol( const QCString &protocol, const QCString &pool, const QCString &app): SlaveBase( protocol, pool, app )
+SettingsProtocol::SettingsProtocol( const Q3CString &protocol, const Q3CString &pool, const Q3CString &app): SlaveBase( protocol, pool, app )
 {
 	// Adjusts which part of the K Menu to virtualize.
 	if ( protocol == "programs" )
@@ -126,8 +128,8 @@ KServiceGroup::Ptr SettingsProtocol::findGroup(const QString &relPath)
 	QStringList rest = QStringList::split('/', relPath);
 
 	kdDebug() << "Trying harder to find group " << relPath << endl;
-	for (unsigned int i=0; i<rest.count(); i++)
-		kdDebug() << "Item (" << *rest.at(i) << ")" << endl;
+	for ( int i=0; i<rest.count(); i++)
+		kdDebug() << "Item (" << rest.at(i) << ")" << endl;
 
 	while (!rest.isEmpty()) {
 		KServiceGroup::Ptr tmp = KServiceGroup::group(alreadyFound);

@@ -29,6 +29,8 @@
 
 #include <kapplication.h>
 #include <qeventloop.h>
+//Added by qt3to4:
+#include <Q3ValueList>
 
 #include <sys/stat.h>
 
@@ -126,7 +128,7 @@ bool MediaImpl::statMediumByLabel(const QString &label, KIO::UDSEntry &entry)
 }
 
 
-bool MediaImpl::listMedia(QValueList<KIO::UDSEntry> &list)
+bool MediaImpl::listMedia(Q3ValueList<KIO::UDSEntry> &list)
 {
 	kdDebug(1219) << "MediaImpl::listMedia" << endl;
 
@@ -241,7 +243,7 @@ bool MediaImpl::ensureMediumMounted(Medium &medium)
 		                    "slotMediumChanged(QString)",
 		                    false);
 
-		qApp->eventLoop()->enterLoop();
+		enterLoop();
 
 		mp_mounting = 0L;
 		
@@ -270,7 +272,7 @@ void MediaImpl::slotMountResult(KIO::Job *job)
 	{
 		m_lastErrorCode = job->error();
 		m_lastErrorMessage = job->errorText();
-		qApp->eventLoop()->exitLoop();
+		emit leaveModality();
 	}
 }
 
@@ -283,7 +285,7 @@ void MediaImpl::slotMediumChanged(const QString &name)
 		kdDebug(1219) << "MediaImpl::slotMediumChanged: updating mp_mounting" << endl;
 		bool ok;
 		*mp_mounting = findMediumByName(name, ok);
-		qApp->eventLoop()->exitLoop();
+		emit leaveModality();
 	}
 }
 
@@ -319,7 +321,7 @@ void MediaImpl::slotStatResult(KIO::Job *job)
 		m_entryBuffer = stat_job->statResult();
 	}
 
-	qApp->eventLoop()->exitLoop();
+	emit leaveModality();
 }
 
 KIO::UDSEntry MediaImpl::extractUrlInfos(const KURL &url)
@@ -332,7 +334,7 @@ KIO::UDSEntry MediaImpl::extractUrlInfos(const KURL &url)
 	         this, SLOT( slotStatResult(KIO::Job *) ) );
 	connect( job, SIGNAL( warning( KIO::Job *, const QString & ) ),
 	         this, SLOT( slotWarning( KIO::Job *, const QString & ) ) );
-	qApp->eventLoop()->enterLoop();
+	enterLoop();
 
 	KIO::UDSEntry::iterator it = m_entryBuffer.begin();
 	KIO::UDSEntry::iterator end = m_entryBuffer.end();
@@ -406,6 +408,14 @@ void MediaImpl::createMediumEntry(KIO::UDSEntry& entry,
 		KURL url = medium.prettyBaseURL();
 		entry+= extractUrlInfos(url);
 	}
+}
+
+void MediaImpl::enterLoop()
+{
+    QEventLoop eventLoop;
+    connect(this, SIGNAL(leaveModality()),
+        &eventLoop, SLOT(quit()));
+    eventLoop.exec(QEventLoop::ExcludeUserInputEvents);
 }
 
 #include "mediaimpl.moc"

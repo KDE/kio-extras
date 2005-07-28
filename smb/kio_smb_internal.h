@@ -32,6 +32,8 @@
 #define KIO_SMB_INTERNAL_H_INCLUDED
 
 #include <kio/authinfo.h>
+//Added by qt3to4:
+#include <Q3CString>
 
 /**
  *   Types of a SMBURL :
@@ -95,16 +97,16 @@ public:
      /**
      * Return a URL that is suitable for libsmbclient
      */
-    QCString toSmbcUrl() const { return m_surl; }
+    Q3CString toSmbcUrl() const { return m_surl; }
 
 private:
     /**
      * Change from QString to QCString (MS Windows's character encoding)
      */
-    QCString fromUnicode( const QString &_str ) const;
+    Q3CString fromUnicode( const QString &_str ) const;
 
     void updateCache();
-    QCString m_surl;
+    Q3CString m_surl;
 
     /**
      * Type of URL

@@ -28,6 +28,8 @@
 
 
 #include "kio_remote.h"
+//Added by qt3to4:
+#include <Q3CString>
 
 static const KCmdLineOptions options[] =
 {
@@ -56,8 +58,8 @@ extern "C" {
 }
 
 
-RemoteProtocol::RemoteProtocol(const QCString &protocol,
-                               const QCString &pool, const QCString &app)
+RemoteProtocol::RemoteProtocol(const Q3CString &protocol,
+                               const Q3CString &pool, const Q3CString &app)
 	: SlaveBase(protocol, pool, app)
 {
 }

@@ -22,7 +22,9 @@
 #include <qpixmap.h>
 #include <qimage.h>
 #include <qpainter.h>
-
+//Added by qt3to4:
+#include <QTimerEvent>
+#include <QAbstractEventDispatcher>
 #include <kapplication.h>
 #include <khtml_part.h>
 
@@ -65,7 +67,7 @@ bool HTMLCreator::create(const QString &path, int width, int height, QImage &img
     startTimer(5000);
     while (!m_completed)
         kapp->processOneEvent();
-    killTimers();
+	QAbstractEventDispatcher::instance()->unregisterTimers(this);
         
     // render the HTML page on a bigger pixmap and use smoothScale,
     // looks better than directly scaling with the QPainter (malte)

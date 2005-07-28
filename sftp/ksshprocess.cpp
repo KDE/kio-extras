@@ -68,6 +68,8 @@
 #include <kstandarddirs.h>
 #include <klocale.h>
 #include <qregexp.h>
+//Added by qt3to4:
+#include <Q3CString>
 
 /*
  * The following are tables of string and regexps we match
@@ -302,7 +304,7 @@ bool KSshProcess::setOptions(const SshOptList& opts) {
     SshOptListConstIterator it;
     QString cmd, subsystem;
     mPassword = mUsername = mHost = QString::null;
-    QCString tmp;
+    Q3CString tmp;
     for(it = opts.begin(); it != opts.end(); ++it) {
         //kdDebug(KSSHPROC) << "opt.opt = " << (*it).opt << endl;
         //kdDebug(KSSHPROC) << "opt.str = " << (*it).str << endl;
@@ -445,7 +447,7 @@ bool KSshProcess::setOptions(const SshOptList& opts) {
 }
 
 void KSshProcess::printArgs() {
-    QValueListIterator<QCString> it;
+    Q3ValueListIterator<Q3CString> it;
     for( it = mArgs.begin(); it != mArgs.end(); ++it) {
         kdDebug(KSSHPROC) << "arg: " << *it << endl;
     }
@@ -547,7 +549,7 @@ void KSshProcess::setPassword(QString password) {
 QString KSshProcess::getLine() {
     static QStringList buffer;
     QString line = QString::null;
-    QCString ptyLine, errLine;
+    Q3CString ptyLine, errLine;
 
     if( buffer.empty() ) {
         // PtyProcess buffers lines.  First check that there

@@ -32,9 +32,9 @@
 #ifndef __KIOSMTP_RESPONSE_H__
 #define __KIOSMTP_RESPONSE_H__
 
-#include <qcstring.h>
-#include <qvaluelist.h>
-typedef QValueList<QCString> QCStringList;
+#include <q3cstring.h>
+#include <q3valuelist.h>
+typedef Q3ValueList<Q3CString> QCStringList;
 
 class QString;
 

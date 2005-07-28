@@ -22,7 +22,7 @@
 #include "backendbase.h"
 
 #include <qobject.h>
-#include <qcstring.h>
+#include <q3cstring.h>
 #include <qmap.h>
 
 class DiscType
@@ -63,7 +63,7 @@ public:
 	 * @param current the current known state of the drive
 	 * @return the disc type
 	 */
-	static DiscType identifyDiscType(const QCString &devNode,
+	static DiscType identifyDiscType(const Q3CString &devNode,
 		 const DiscType &current = DiscType::Unknown);
 
 private slots:
@@ -75,7 +75,7 @@ private slots:
 private:
 	void applyType(DiscType type, const Medium *medium);
 
-	static bool hasDirectory(const QCString &devNode, const QCString &dir);
+	static bool hasDirectory(const Q3CString &devNode, const Q3CString &dir);
 
 	QMap<QString, PollingThread*> m_threads;
 	QStringList m_excludeNotification;

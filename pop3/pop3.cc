@@ -47,16 +47,15 @@ extern "C" {
 }
 #endif
 
-#include <qcstring.h>
+#include <q3cstring.h>
 #include <qglobal.h>
 #include <qregexp.h>
 
 #include <kdebug.h>
 #include <kinstance.h>
 #include <klocale.h>
-#include <kmdcodec.h>
+#include <kcodecs.h>
 #include <kprotocolmanager.h>
-#include <ksock.h>
 
 #include <kio/connection.h>
 #include <kio/slaveinterface.h>
@@ -125,7 +124,7 @@ int kdemain(int argc, char **argv)
   return 0;
 }
 
-POP3Protocol::POP3Protocol(const QCString & pool, const QCString & app,
+POP3Protocol::POP3Protocol(const Q3CString & pool, const Q3CString & app,
                            bool isSSL)
 :  TCPSlaveBase((isSSL ? 995 : 110), (isSSL ? "pop3s" : "pop3"), pool, app,
              isSSL)
@@ -169,7 +168,7 @@ ssize_t POP3Protocol::myRead(void *data, ssize_t len)
     return copyLen;
   }
   waitForResponse(600);
-  return read(data, len);
+  return read((char*)data, len);
 }
 
 ssize_t POP3Protocol::myReadLine(char *data, ssize_t len)
@@ -538,7 +537,7 @@ int POP3Protocol::loginSASL( KIO::AuthInfo &ai )
     challenge.resize( 2049 );
     resp = command( firstCommand.latin1(), challenge.data(), 2049 );
     while( resp == Cont ) {
-      challenge.resize(challenge.find(0));
+      challenge.resize(challenge.indexOf((char)0));
 //      POP3_DEBUG << "S: " << QCString(challenge.data(),challenge.size()+1) << endl;
       KCodecs::base64Decode( challenge, tmp );
       do {
@@ -660,7 +659,7 @@ bool POP3Protocol::pop3_open()
 {
   POP3_DEBUG << "pop3_open()" << endl;
   char  *greeting_buf;
-  if ((m_iOldPort == port(m_iPort)) && (m_sOldServer == m_sServer) &&
+  if ((m_iOldPort == port(QString::number(m_iPort)).toInt()) && (m_sOldServer == m_sServer) &&
       (m_sOldUser == m_sUser) && (m_sOldPass == m_sPass)) {
     POP3_DEBUG << "Reusing old connection" << endl;
     return true;
@@ -668,7 +667,7 @@ bool POP3Protocol::pop3_open()
   do {
     closeConnection();
 
-    if (!connectToHost(m_sServer.ascii(), m_iPort)) {
+    if (!connectToHost(m_sServer.ascii(), QString::number(m_iPort))) {
       // error(ERR_COULD_NOT_CONNECT, m_sServer);
       // ConnectToHost has already send an error message.
       return false;
@@ -693,7 +692,7 @@ bool POP3Protocol::pop3_open()
       return false;             // we've got major problems, and possibly the
       // wrong port
     }
-    QCString greeting(greeting_buf);
+    QString greeting(greeting_buf);
     delete[]greeting_buf;
 
     if (greeting.length() > 0) {
@@ -757,7 +756,7 @@ bool POP3Protocol::pop3_open()
 
     if ( supports_apop && m_try_apop ) {
       POP3_DEBUG << "Trying APOP" << endl;
-      int retval = loginAPOP( greeting.data() + apop_pos, authInfo );
+      int retval = loginAPOP( greeting.toLatin1().data() + apop_pos, authInfo );
       switch ( retval ) {
         case 0: return true;
         case -1: return false;
@@ -784,7 +783,7 @@ bool POP3Protocol::pop3_open()
 size_t POP3Protocol::realGetSize(unsigned int msg_num)
 {
   char *buf;
-  QCString cmd;
+  Q3CString cmd;
   size_t ret = 0;
 
   buf = new char[MAX_RESPONSE_LEN];
@@ -806,7 +805,7 @@ void POP3Protocol::special(const QByteArray & aData)
 {
   QString result;
   char buf[MAX_PACKET_LEN];
-  QDataStream stream(aData, IO_ReadOnly);
+  QDataStream stream(aData);
   int tmp;
   stream >> tmp;
 
@@ -814,7 +813,7 @@ void POP3Protocol::special(const QByteArray & aData)
     return;
 
   for (int i = 0; i < 2; i++) {
-    QCString cmd = (i) ? "AUTH" : "CAPA";
+    Q3CString cmd = (i) ? "AUTH" : "CAPA";
     if ( command(cmd) != Ok )
       continue;
     while (true) {
@@ -1118,7 +1117,7 @@ void POP3Protocol::listDir(const KURL &)
   bool isINT;
   int num_messages = 0;
   char buf[MAX_RESPONSE_LEN];
-  QCString q_buf;
+  Q3CString q_buf;
 
   // Try and open a connection
   if (!pop3_open()) {

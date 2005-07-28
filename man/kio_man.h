@@ -22,10 +22,12 @@
 
 
 #include <qstring.h>
-#include <qcstring.h>
+#include <q3cstring.h>
 #include <qstringlist.h>
-#include <qdict.h>
+#include <q3dict.h>
 #include <qbuffer.h>
+//Added by qt3to4:
+#include <QTextStream>
 
 
 #include <kio/global.h>
@@ -38,7 +40,7 @@ class MANProtocol : public QObject, public KIO::SlaveBase
 
 public:
 
-    MANProtocol(const QCString &pool_socket, const QCString &app_socket);
+    MANProtocol(const Q3CString &pool_socket, const Q3CString &app_socket);
     virtual ~MANProtocol();
 
     virtual void get(const KURL& url);
@@ -78,7 +80,7 @@ private:
     void constructPath(QStringList& constr_path, QStringList constr_catmanpath);
 private:
     static MANProtocol *_self;
-    QCString lastdir;
+    Q3CString lastdir;
 
     void findManPagesInSection(const QString &dir, const QString &title, bool full_path, QStringList &list);
     QStringList m_manpath; ///< Path of man directories
@@ -89,8 +91,8 @@ private:
     QString mySgml2RoffPath;
     void getProgramPath();
 
-    QCString m_htmlPath; ///< Path to KDE resources, encoded for HTML
-    QCString m_cssPath; ///< Path to KDE resources, encoded for CSS
+    Q3CString m_htmlPath; ///< Path to KDE resources, encoded for HTML
+    Q3CString m_cssPath; ///< Path to KDE resources, encoded for CSS
     QBuffer m_outputBuffer; ///< Buffer for the output
     QString m_manCSSFile; ///< Path to kio_man.css
 };

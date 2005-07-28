@@ -69,7 +69,7 @@ NotifierSettings::~NotifierSettings()
 	}
 }
 
-QValueList<NotifierAction*> NotifierSettings::actions()
+Q3ValueList<NotifierAction*> NotifierSettings::actions()
 {
 	return m_actions;
 }
@@ -79,12 +79,12 @@ const QStringList &NotifierSettings::supportedMimetypes()
 	return m_supportedMimetypes;
 }
 
-QValueList<NotifierAction*> NotifierSettings::actionsForMimetype( const QString &mimetype )
+Q3ValueList<NotifierAction*> NotifierSettings::actionsForMimetype( const QString &mimetype )
 {
-	QValueList<NotifierAction*> result;
+	Q3ValueList<NotifierAction*> result;
 
-	QValueList<NotifierAction*>::iterator it = m_actions.begin();
-	QValueList<NotifierAction*>::iterator end = m_actions.end();
+	Q3ValueList<NotifierAction*>::iterator it = m_actions.begin();
+	Q3ValueList<NotifierAction*>::iterator end = m_actions.end();
 
 	for ( ; it!=end; ++it )
 	{
@@ -199,10 +199,10 @@ void NotifierSettings::reload()
 	m_actions.append( open );
 	m_idMap[ open->id() ] = open;
 
-	QValueList<NotifierServiceAction*> services = listServices();
+	Q3ValueList<NotifierServiceAction*> services = listServices();
 
-	QValueList<NotifierServiceAction*>::iterator serv_it = services.begin();
-	QValueList<NotifierServiceAction*>::iterator serv_end = services.end();
+	Q3ValueList<NotifierServiceAction*>::iterator serv_it = services.begin();
+	Q3ValueList<NotifierServiceAction*>::iterator serv_end = services.end();
 	
 	for ( ; serv_it!=serv_end; ++serv_it )
 	{
@@ -237,8 +237,8 @@ void NotifierSettings::reload()
 }
 void NotifierSettings::save()
 {
-	QValueList<NotifierAction*>::iterator act_it = m_actions.begin();
-	QValueList<NotifierAction*>::iterator act_end = m_actions.end();
+	Q3ValueList<NotifierAction*>::iterator act_it = m_actions.begin();
+	Q3ValueList<NotifierAction*>::iterator act_end = m_actions.end();
 
 	for ( ; act_it!=act_end; ++act_it )
 	{
@@ -277,20 +277,20 @@ void NotifierSettings::save()
 	}
 }
 
-QValueList<NotifierServiceAction*> NotifierSettings::loadActions( KDesktopFile &desktop ) const
+Q3ValueList<NotifierServiceAction*> NotifierSettings::loadActions( KDesktopFile &desktop ) const
 {
 	desktop.setDesktopGroup();
 
-	QValueList<NotifierServiceAction*> services;
+	Q3ValueList<NotifierServiceAction*> services;
 	
 	const QString filename = desktop.fileName();
 	const QStringList mimetypes = desktop.readListEntry( "ServiceTypes" );
 
-	QValueList<KDEDesktopMimeType::Service> type_services
+	Q3ValueList<KDEDesktopMimeType::Service> type_services
 		= KDEDesktopMimeType::userDefinedServices(filename, true);
 
-	QValueList<KDEDesktopMimeType::Service>::iterator service_it = type_services.begin();
-	QValueList<KDEDesktopMimeType::Service>::iterator service_end = type_services.end();
+	Q3ValueList<KDEDesktopMimeType::Service>::iterator service_it = type_services.begin();
+	Q3ValueList<KDEDesktopMimeType::Service>::iterator service_end = type_services.end();
 	for (; service_it!=service_end; ++service_it)
 	{
 		NotifierServiceAction *service_action
@@ -345,9 +345,9 @@ bool NotifierSettings::shouldLoadActions( KDesktopFile &desktop, const QString &
 	return false;
 }
 
-QValueList<NotifierServiceAction*> NotifierSettings::listServices( const QString &mimetype ) const
+Q3ValueList<NotifierServiceAction*> NotifierSettings::listServices( const QString &mimetype ) const
 {
-	QValueList<NotifierServiceAction*> services;
+	Q3ValueList<NotifierServiceAction*> services;
 	QStringList dirs = KGlobal::dirs()->findDirs("data", "konqueror/servicemenus/");
 	
 	QStringList::ConstIterator dir_it = dirs.begin();

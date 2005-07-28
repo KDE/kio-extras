@@ -24,6 +24,10 @@
 #include <kconfig.h>
 #include <qstring.h>
 #include <qregexp.h>
+//Added by qt3to4:
+#include <Q3ValueList>
+#include <QTextStream>
+#include <Q3CString>
 
 #include <sys/stat.h>
 #include <stdlib.h>
@@ -43,7 +47,7 @@ extern "C" {
     }
 }
 
-MacProtocol::MacProtocol(const QCString &pool, const QCString &app)
+MacProtocol::MacProtocol(const Q3CString &pool, const Q3CString &app)
                                              : QObject(), SlaveBase("mac", pool, app) {
 /*  logFile = new QFile("/home/jr/logfile");
     logFile->open(IO_ReadWrite | IO_Append);
@@ -151,11 +155,12 @@ void MacProtocol::listDir(const KURL& url) {
 
         UDSEntry entry;
         if (!standardOutputStream.isEmpty()) {
-            QTextStream in(&standardOutputStream, IO_ReadOnly);
+            QTextStream in(&standardOutputStream, QIODevice::ReadOnly);
             QString line = in.readLine(); //throw away top file which shows current directory
             line = in.readLine();
 
-            while (line != NULL) {
+#warning another QString != NULL -->> !QString.isEmpty()
+            while (!line.isEmpty()) {
                 //1.0.4 puts this funny line in sometimes, we don't want it
                 if (line.contains("Thread               ") == 0) {
                     entry = makeUDS(line);
@@ -180,7 +185,7 @@ void MacProtocol::stat(const KURL& url) {
 //doStat(), does all the work that stat() needs
 //it's been separated out so it can be called from get() which
 //also need information
-QValueList<KIO::UDSAtom> MacProtocol::doStat(const KURL& url) {
+Q3ValueList<KIO::UDSAtom> MacProtocol::doStat(const KURL& url) {
     QString filename = prepareHP(url);
 
     if (filename.isNull()) {
@@ -225,7 +230,7 @@ QValueList<KIO::UDSAtom> MacProtocol::doStat(const KURL& url) {
             return entry;
     }//if filename == null
 
-    return QValueList<KIO::UDSAtom>();
+    return Q3ValueList<KIO::UDSAtom>();
 }
 
 //prepareHP() called from get() listDir() and stat()
@@ -333,7 +338,7 @@ QString MacProtocol::prepareHP(const KURL& url) {
 //makeUDS()  takes a line of output from hpls -l and converts it into
 // one of these UDSEntrys to return
 //called from listDir() and stat()
-QValueList<KIO::UDSAtom> MacProtocol::makeUDS(const QString& _line) {
+Q3ValueList<KIO::UDSAtom> MacProtocol::makeUDS(const QString& _line) {
     QString line(_line);
     UDSEntry entry;
 

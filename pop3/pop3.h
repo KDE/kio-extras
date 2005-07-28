@@ -41,7 +41,7 @@
 
 class POP3Protocol:public KIO::TCPSlaveBase {
 public:
-  POP3Protocol(const QCString & pool, const QCString & app, bool SSL);
+  POP3Protocol(const Q3CString & pool, const Q3CString & app, bool SSL);
   virtual ~ POP3Protocol();
 
   virtual void setHost(const QString & host, int port,
@@ -121,6 +121,7 @@ protected:
 
   int m_cmd;
   unsigned short int m_iOldPort;
+  unsigned short int m_iPort;
   struct timeval m_tTimeout;
   QString m_sOldServer, m_sOldPass, m_sOldUser;
   QString m_sServer, m_sPass, m_sUser;

@@ -35,7 +35,7 @@
 
 #include "response.h"
 
-#include <qstrlist.h>
+#include <q3strlist.h>
 
 namespace KioSMTP {
 
@@ -90,8 +90,8 @@ namespace KioSMTP {
     return result;
   }
 
-  QStrIList Capabilities::saslMethods() const {
-    QStrIList result( true ); // deep copies to be safe
+  Q3StrIList Capabilities::saslMethods() const {
+    Q3StrIList result( true ); // deep copies to be safe
     QStringList sl = saslMethodsQSL();
     for ( QStringList::const_iterator it = sl.begin() ; it != sl.end() ; ++it )
       result.append( (*it).latin1() );

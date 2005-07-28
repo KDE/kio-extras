@@ -35,7 +35,7 @@
 #include "response.h"
 
 #include <qstring.h>
-#include <qvaluelist.h>
+#include <q3valuelist.h>
 
 namespace KioSMTP {
 
@@ -74,7 +74,7 @@ namespace KioSMTP {
       }
 #endif
     };
-    typedef QValueList<RecipientRejection> RejectedRecipientList;
+    typedef Q3ValueList<RecipientRejection> RejectedRecipientList;
 
     TransactionState( bool rcptToDenyIsFailure=true )
       : mErrorCode( 0 ),

@@ -22,8 +22,8 @@
 #include <string.h>
 
 #include <qtextstream.h>
-#include <qdict.h>
-#include <qcstring.h>
+#include <q3dict.h>
+#include <q3cstring.h>
 #include <qfile.h>
 #include <qregexp.h>
 
@@ -67,7 +67,7 @@ extern "C"
 /* ---------------------------------------------------------------------------------- */
 
 
-FingerProtocol::FingerProtocol(const QCString &pool_socket, const QCString &app_socket)
+FingerProtocol::FingerProtocol(const Q3CString &pool_socket, const Q3CString &app_socket)
   : QObject(), SlaveBase("finger", pool_socket, app_socket)
 {
   myStdStream = new QString();
@@ -133,7 +133,7 @@ void FingerProtocol::get(const KURL& url )
 
   myKProcess->start(KProcess::Block, KProcess::All);
 
-  data(QCString(myStdStream->local8Bit()));
+  data(Q3CString(myStdStream->local8Bit()));
 
   data(QByteArray());
   finished();

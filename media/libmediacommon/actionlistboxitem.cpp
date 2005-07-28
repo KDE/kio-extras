@@ -23,8 +23,8 @@
 
 #include <qpixmap.h>
 
-ActionListBoxItem::ActionListBoxItem(NotifierAction *action, QString mimetype, QListBox *parent)
-	: QListBoxPixmap(parent, action->pixmap()),
+ActionListBoxItem::ActionListBoxItem(NotifierAction *action, QString mimetype, Q3ListBox *parent)
+	: Q3ListBoxPixmap(parent, action->pixmap()),
 	  m_action(action)
 {
 	QString text = m_action->label();

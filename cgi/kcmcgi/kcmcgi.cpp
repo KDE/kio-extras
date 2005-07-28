@@ -23,10 +23,12 @@
 #include <kfiledialog.h>
 
 #include <qlayout.h>
-#include <qlistbox.h>
+#include <q3listbox.h>
 #include <qpushbutton.h>
-#include <qgroupbox.h>
-#include <qhbox.h>
+#include <q3groupbox.h>
+#include <q3hbox.h>
+//Added by qt3to4:
+#include <QVBoxLayout>
 
 #include "kcmcgi.h"
 #include "kcmcgi.moc"
@@ -48,12 +50,12 @@ KCMCgi::KCMCgi(QWidget *parent, const char *name)
 
   QVBoxLayout *topLayout = new QVBoxLayout(this, 0, KDialog::spacingHint());
 
-  QGroupBox *topBox = new QGroupBox( 1, Horizontal, i18n("Paths to Local CGI Programs"), this );
+  Q3GroupBox *topBox = new Q3GroupBox( 1, Qt::Horizontal, i18n("Paths to Local CGI Programs"), this );
   topLayout->addWidget( topBox );
 
-  mListBox = new QListBox( topBox );
+  mListBox = new Q3ListBox( topBox );
 
-  QHBox *buttonBox = new QHBox( topBox );
+  Q3HBox *buttonBox = new Q3HBox( topBox );
   buttonBox->setSpacing( KDialog::spacingHint() );
 
   mAddButton = new QPushButton( i18n("Add..."), buttonBox );
@@ -61,7 +63,7 @@ KCMCgi::KCMCgi(QWidget *parent, const char *name)
 
   mRemoveButton = new QPushButton( i18n("Remove"), buttonBox );
   connect( mRemoveButton, SIGNAL( clicked() ), SLOT( removePath() ) );
-  connect( mListBox, SIGNAL( clicked ( QListBoxItem * )),this, SLOT( slotItemSelected( QListBoxItem *)));
+  connect( mListBox, SIGNAL( clicked ( Q3ListBoxItem * )),this, SLOT( slotItemSelected( Q3ListBoxItem *)));
 
   mConfig = new KConfig("kcmcgirc");
 
@@ -82,7 +84,7 @@ KCMCgi::~KCMCgi()
   delete mConfig;
 }
 
-void KCMCgi::slotItemSelected( QListBoxItem * )
+void KCMCgi::slotItemSelected( Q3ListBoxItem * )
 {
     updateButton();
 }

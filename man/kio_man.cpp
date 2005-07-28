@@ -26,8 +26,8 @@
 #include <qfile.h>
 #include <qtextstream.h>
 #include <qdatastream.h>
-#include <qcstring.h>
-#include <qptrlist.h>
+#include <q3cstring.h>
+#include <q3ptrlist.h>
 #include <qmap.h>
 #include <qregexp.h>
 
@@ -111,7 +111,7 @@ bool parseUrl(const QString& _url, QString &title, QString &section)
 }
 
 
-MANProtocol::MANProtocol(const QCString &pool_socket, const QCString &app_socket)
+MANProtocol::MANProtocol(const Q3CString &pool_socket, const Q3CString &app_socket)
     : QObject(), SlaveBase("man", pool_socket, app_socket)
 {
     assert(!_self);
@@ -159,7 +159,7 @@ void MANProtocol::parseWhatIs( QMap<QString, QString> &i, QTextStream &t, const 
 bool MANProtocol::addWhatIs(QMap<QString, QString> &i, const QString &name, const QString &mark)
 {
     QFile f(name);
-    if (!f.open(IO_ReadOnly))
+    if (!f.open(QIODevice::ReadOnly))
         return false;
     QTextStream t(&f);
     parseWhatIs( i, t, mark );
@@ -201,7 +201,7 @@ QMap<QString, QString> MANProtocol::buildIndexMap(const QString &section)
                 connect( &proc, SIGNAL( receivedStdout(KProcess *, char *, int ) ),
                          SLOT( slotGetStdOutput( KProcess *, char *, int ) ) );
                 proc.start( KProcess::Block, KProcess::Stdout );
-                QTextStream t( &myStdStream, IO_ReadOnly );
+                QTextStream t( &myStdStream, QIODevice::ReadOnly );
                 parseWhatIs( i, t, mark );
             }
         }
@@ -259,7 +259,7 @@ QStringList MANProtocol::findPages(const QString &_section,
     QStringList list;
 
     // kdDebug() << "findPages '" << section << "' '" << title << "'\n";
-    if (title.at(0) == '/') {
+    if ( (!title.isEmpty()) && (title.at(0) == '/') ) {
        list.append(title);
        return list;
     }
@@ -279,7 +279,7 @@ QStringList MANProtocol::findPages(const QString &_section,
         // Section given as argument
         //
         sect_list += section;
-        while (section.at(section.length() - 1).isLetter())  {
+        while ( (!section.isEmpty()) && (section.at(section.length() - 1).isLetter()) ) {
             section.truncate(section.length() - 1);
             sect_list += section;
         }
@@ -292,20 +292,19 @@ QStringList MANProtocol::findPages(const QString &_section,
     //
     // Find man pages in the sections listed above
     //
-    for ( QStringList::ConstIterator it_sect = sect_list.begin();
-          it_sect != sect_list.end();
-          it_sect++ )
+    for ( int i=0;i<sect_list.count(); i++) 
     {
-	    QString it_real = (*it_sect).lower();
+            QString it_s=sect_list.at(i);
+	    QString it_real = it_s.lower();
         //
         // Find pages
         //
-        for ( QStringList::ConstIterator it_dir = man_dirs.begin();
+        //kdDebug(7107)<<"Before inner loop"<<endl;
+        for ( QStringList::const_iterator it_dir = man_dirs.begin();
               it_dir != man_dirs.end();
               it_dir++ )
         {
             QString man_dir = (*it_dir);
-
             //
             // Sections = all sub directories "man*" and "sman*"
             //
@@ -320,6 +319,7 @@ QStringList MANProtocol::findPages(const QString &_section,
             const QString sman = QString("sman");
 
             while ( (ep = ::readdir( dp )) != 0L ) {
+
                 const QString file = QFile::decodeName( ep->d_name );
                 QString sect = QString::null;
 
@@ -332,24 +332,33 @@ QStringList MANProtocol::findPages(const QString &_section,
 
                 // Only add sect if not already contained, avoid duplicates
                 if (!sect_list.contains(sect) && _section.isEmpty())  {
-                    kdDebug() << "another section " << sect << endl;
+                    //kdDebug() << "another section " << sect << endl;
                     sect_list += sect;
                 }
             }
 
+            //kdDebug(7107) <<" after while loop"<<endl;
             ::closedir( dp );
-
-            if ( *it_sect != star ) { // in that case we only look around for sections
+#if 0
+            kdDebug(7107)<<"================-"<<endl;
+            kdDebug(7107)<<"star=="<<star<<endl;
+            kdDebug(7107)<<"it_s=="<<it_s<<endl;
+            kdDebug(7107)<<"================+"<<endl;
+#endif
+            if ( it_s != star ) { // in that case we only look around for sections
+                //kdDebug(7107)<<"Within if ( it_s != star )"<<endl;
                 const QString dir = man_dir + QString("/man") + (it_real) + '/';
                 const QString sdir = man_dir + QString("/sman") + (it_real) + '/';
 
+                //kdDebug(7107)<<"calling findManPagesInSection"<<endl;
                 findManPagesInSection(dir, title, full_path, list);
                 findManPagesInSection(sdir, title, full_path, list);
             }
+            kdDebug(7107)<<"After if"<<endl;
         }
     }
 
-//    kdDebug(7107) << "finished " << list << " " << sect_list << endl;
+    //kdDebug(7107) << "finished " << list << " " << sect_list << endl;
 
     return list;
 }
@@ -404,8 +413,8 @@ void MANProtocol::output(const char *insert)
     {
         m_outputBuffer.close();
         data(m_outputBuffer.buffer());
-        m_outputBuffer.setBuffer(QByteArray());
-        m_outputBuffer.open(IO_WriteOnly);
+        m_outputBuffer.setData(QByteArray());
+        m_outputBuffer.open(QIODevice::WriteOnly);
     }
 }
 
@@ -475,8 +484,8 @@ void MANProtocol::get(const KURL& url )
     if (pageFound)
     {
        setResourcePath(m_htmlPath,m_cssPath);
-       m_outputBuffer.open(IO_WriteOnly);
-       const QCString filename=QFile::encodeName(foundPages[0]);
+       m_outputBuffer.open(QIODevice::WriteOnly);
+       const Q3CString filename=QFile::encodeName(foundPages[0]);
        char *buf = readManPage(filename);
 
        if (!buf)
@@ -493,7 +502,7 @@ void MANProtocol::get(const KURL& url )
 
        m_outputBuffer.close();
        data(m_outputBuffer.buffer());
-       m_outputBuffer.setBuffer(QByteArray());
+       m_outputBuffer.setData(QByteArray());
        // tell we are done
        data(QByteArray());
     }
@@ -507,7 +516,7 @@ void MANProtocol::slotGetStdOutput(KProcess* /* p */, char *s, int len)
 
 char *MANProtocol::readManPage(const char *_filename)
 {
-    QCString filename = _filename;
+    Q3CString filename = _filename;
 
     char *buf = NULL;
 
@@ -517,7 +526,7 @@ char *MANProtocol::readManPage(const char *_filename)
      * If the path name constains the string sman, assume that it's SGML and
      * convert it to roff format (used on Solaris). */
     //QString file_mimetype = KMimeType::findByPath(QString(filename), 0, false)->name();
-    if (filename.contains("sman", false)) //file_mimetype == "text/html" || )
+    if (QString(filename).contains("sman", Qt::CaseInsensitive)) //file_mimetype == "text/html" || )
     {
         myStdStream =QString::null;
 	KProcess proc;
@@ -526,11 +535,11 @@ char *MANProtocol::readManPage(const char *_filename)
 	getProgramPath();
 	proc << mySgml2RoffPath << filename;
 
-	QApplication::connect(&proc, SIGNAL(receivedStdout (KProcess *, char *, int)),
-			      this, SLOT(slotGetStdOutput(KProcess *, char *, int)));
+	connect(&proc, SIGNAL(receivedStdout (KProcess *, char *, int)),
+	        this, SLOT(slotGetStdOutput(KProcess *, char *, int)));
 	proc.start(KProcess::Block, KProcess::All);
 
-        const QCString cstr=myStdStream.latin1();
+        const Q3CString cstr=myStdStream.latin1();
         const int len = cstr.size()-1;
         buf = new char[len + 4];
         qmemmove(buf + 1, cstr.data(), len);
@@ -554,7 +563,7 @@ char *MANProtocol::readManPage(const char *_filename)
     
         QIODevice *fd= KFilterDev::deviceForFile(filename);
     
-        if ( !fd || !fd->open(IO_ReadOnly))
+        if ( !fd || !fd->open(QIODevice::ReadOnly))
         {
            delete fd;
            return 0;
@@ -580,7 +589,7 @@ char *MANProtocol::readManPage(const char *_filename)
 void MANProtocol::outputError(const QString& errmsg)
 {
     QByteArray array;
-    QTextStream os(array, IO_WriteOnly);
+    QTextStream os(array, QIODevice::WriteOnly);
     os.setEncoding(QTextStream::UnicodeUTF8);
 
     os << "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Strict//EN\">" << endl;
@@ -598,7 +607,7 @@ void MANProtocol::outputError(const QString& errmsg)
 void MANProtocol::outputMatchingPages(const QStringList &matchingPages)
 {
     QByteArray array;
-    QTextStream os(array, IO_WriteOnly);
+    QTextStream os(array, QIODevice::WriteOnly);
     os.setEncoding(QTextStream::UnicodeUTF8);
 
     os << "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Strict//EN\">" << endl;
@@ -761,7 +770,7 @@ QStringList MANProtocol::buildSectionList(const QStringList& dirs) const
 void MANProtocol::showMainIndex()
 {
     QByteArray array;
-    QTextStream os(array, IO_WriteOnly);
+    QTextStream os(array, QIODevice::WriteOnly);
     os.setEncoding(QTextStream::UnicodeUTF8);
 
     // print header
@@ -823,12 +832,12 @@ void MANProtocol::constructPath(QStringList& constr_path, QStringList constr_cat
     if (!mc.exists())
         mc.setName("/etc/man.config");  // Mandrake
 
-    if (mc.open(IO_ReadOnly))
+    if (mc.open(QIODevice::ReadOnly))
     {
         QTextStream is(&mc);
         is.setEncoding(QTextStream::Locale);
     
-        while (!is.eof())
+        while (!is.atEnd())
         {
             const QString line = is.readLine();
             if ( manpath_regex.search(line, 0) == 0 )
@@ -1138,14 +1147,14 @@ int compare_man_index(const void *s1, const void *s2)
 #warning using heapsort
 // Set up my own man page list,
 // with a special compare function to sort itself
-typedef QPtrList<struct man_index_t> QManIndexListBase;
-typedef QPtrListIterator<struct man_index_t> QManIndexListIterator;
+typedef Q3PtrList<struct man_index_t> QManIndexListBase;
+typedef Q3PtrListIterator<struct man_index_t> QManIndexListIterator;
 
 class QManIndexList : public QManIndexListBase
 {
 public:
 private:
-    int compareItems( QPtrCollection::Item s1, QPtrCollection::Item s2 )
+    int compareItems( Q3PtrCollection::Item s1, Q3PtrCollection::Item s2 )
 	{
 	    struct man_index_t *m1 = (struct man_index_t *)s1;
 	    struct man_index_t *m2 = (struct man_index_t *)s2;
@@ -1188,7 +1197,7 @@ private:
 void MANProtocol::showIndex(const QString& section)
 {
     QByteArray array;
-    QTextStream os(array, IO_WriteOnly);
+    QTextStream os(array, QIODevice::WriteOnly);
     os.setEncoding(QTextStream::UnicodeUTF8);
 
     // print header

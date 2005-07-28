@@ -20,7 +20,7 @@
 
 #include <kcmodule.h>
 
-class QListBox;
+class Q3ListBox;
 class QPushButton;
 
 class KConfig;
@@ -42,10 +42,10 @@ class KCMCgi : public KCModule
   protected slots:
     void addPath();
     void removePath();
-    void slotItemSelected( QListBoxItem * item );
+    void slotItemSelected( Q3ListBoxItem * item );
   private:
     void updateButton();
-    QListBox *mListBox;
+    Q3ListBox *mListBox;
     QPushButton *mAddButton;
     QPushButton *mRemoveButton;
 

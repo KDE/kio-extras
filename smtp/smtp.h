@@ -34,12 +34,15 @@
 #include "capabilities.h"
 
 #include <qstring.h>
-#include <qptrqueue.h>
+#include <q3ptrqueue.h>
+//Added by qt3to4:
+#include <Q3CString>
+#include <Q3MemArray>
 
 class KURL;
-class QCString;
-template <typename T> class QMemArray;
-typedef QMemArray<char> QByteArray;
+class Q3CString;
+template <typename T> class Q3MemArray;
+typedef Q3MemArray<char> QByteArray;
 
 namespace KioSMTP {
   class Response;
@@ -50,7 +53,7 @@ namespace KioSMTP {
 class SMTPProtocol : public KIO::TCPSlaveBase {
   friend class KioSMTP::Command;
 public:
-  SMTPProtocol(const QCString & pool, const QCString & app, bool useSSL);
+  SMTPProtocol(const Q3CString & pool, const Q3CString & app, bool useSSL);
   virtual ~ SMTPProtocol();
 
   virtual void setHost(const QString & host, int port,
@@ -100,8 +103,8 @@ protected:
   bool authenticate();
   void parseFeatures( const KioSMTP::Response & ehloResponse );
 
-  bool sendCommandLine( const QCString & cmd );
-  QCString collectPipelineCommands( KioSMTP::TransactionState * ts );
+  bool sendCommandLine( const Q3CString & cmd );
+  Q3CString collectPipelineCommands( KioSMTP::TransactionState * ts );
   bool batchProcessResponses( KioSMTP::TransactionState * ts );
 
   /** This is a pure convenience wrapper around
@@ -138,7 +141,7 @@ protected:
 
   KioSMTP::Capabilities mCapabilities;
 
-  typedef QPtrQueue<KioSMTP::Command> CommandQueue;
+  typedef Q3PtrQueue<KioSMTP::Command> CommandQueue;
   CommandQueue mPendingCommandQueue;
   CommandQueue mSentCommandQueue;
 };

@@ -107,7 +107,7 @@ bool KFileMediaPlugin::readInfo(KFileMetaInfo &info, uint /*what*/)
 
 		df->readDF(mount_point);
 
-		qApp->eventLoop()->enterLoop();
+		enterLoop();
 
 		int percent = 0;
 		int length = 0;
@@ -133,11 +133,12 @@ bool KFileMediaPlugin::readInfo(KFileMetaInfo &info, uint /*what*/)
 		p.fillRect(length, 0, 150-length, 20, Qt::green);
 
 		QColorGroup cg = QApplication::palette().active();
-
-		QApplication::style().drawPrimitive(QStyle::PE_Panel, &p,
-		                                    QRect(0, 0, 150, 20), cg,
-		                                    QStyle::Style_Sunken);
-
+#warning "Port to new QStyle API"
+#if 0
+		QApplication::style()->drawPrimitive(QStyle::PE_Frame, &p,
+		                                     QRect(0, 0, 150, 20), cg,
+		                                     QStyle::State_Sunken);
+#endif		
 		appendItem( group, "thumbnail", bar );
 	}
 
@@ -155,7 +156,16 @@ void KFileMediaPlugin::slotFoundMountPoint(const QString &/*mountPoint*/,
 
 void KFileMediaPlugin::slotDfDone()
 {
-	qApp->eventLoop()->exitLoop();
+	emit leaveModality();
+}
+
+
+void KFileMediaPlugin::enterLoop()
+{
+    QEventLoop eventLoop;
+    connect(this, SIGNAL(leaveModality()),
+        &eventLoop, SLOT(quit()));
+    eventLoop.exec(QEventLoop::ExcludeUserInputEvents);
 }
 
 const Medium KFileMediaPlugin::askMedium(KFileMetaInfo &info)

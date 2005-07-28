@@ -42,11 +42,15 @@ private:
 	unsigned long m_used;
 	unsigned long m_free;
 
+signals:
+    void leaveModality();
+	
 private slots:
 	void slotFoundMountPoint(const QString &mountPoint,
 	                         unsigned long total, unsigned long used,
 	                         unsigned long available);
 	void slotDfDone();
+	void enterLoop();
 };
 
 #endif

@@ -23,7 +23,7 @@
 #include <signal.h>
 #include <unistd.h>
 
-#include <qvaluelist.h>
+#include <q3valuelist.h>
 
 #include <kdebug.h>
 
@@ -125,9 +125,9 @@ public:
     /**
      * List of SshOptions and associated iterators
      */
-    typedef QValueList<SshOpt> SshOptList;
-    typedef QValueListIterator<SshOpt> SshOptListIterator;
-    typedef QValueListConstIterator<SshOpt> SshOptListConstIterator;
+    typedef Q3ValueList<SshOpt> SshOptList;
+    typedef Q3ValueListIterator<SshOpt> SshOptListIterator;
+    typedef Q3ValueListConstIterator<SshOpt> SshOptListConstIterator;
 
     /**
      * Ssh versions supported by KSshProcess. Subject to change

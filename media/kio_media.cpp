@@ -26,6 +26,8 @@
 #include <kcmdlineargs.h>
 
 #include <qeventloop.h>
+//Added by qt3to4:
+#include <Q3CString>
 
 #include "kio_media.h"
 
@@ -57,8 +59,8 @@ extern "C" {
 }
 
 
-MediaProtocol::MediaProtocol(const QCString &protocol,
-                             const QCString &pool, const QCString &app)
+MediaProtocol::MediaProtocol(const Q3CString &protocol,
+                             const Q3CString &pool, const Q3CString &app)
 	: ForwardingSlaveBase(protocol, pool, app)
 {
 	connect( &m_impl, SIGNAL( warning( const QString & ) ),

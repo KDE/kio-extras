@@ -26,8 +26,10 @@
 #include <qmap.h>
 #include <qstring.h>
 #include <qstringlist.h>
-#include <qintdict.h>
+#include <q3intdict.h>
 #include <qtimer.h>
+//Added by qt3to4:
+#include <Q3CString>
 
 #define PORTMAP  //this seems to be required to compile on Solaris
 #include <rpc/rpc.h>
@@ -61,7 +63,7 @@ typedef QMap<QString,NFSFileHandle> NFSFileHandleMap;
 class NFSProtocol : public KIO::SlaveBase
 {
    public:
-      NFSProtocol (const QCString &pool, const QCString &app );
+      NFSProtocol (const Q3CString &pool, const Q3CString &app );
       virtual ~NFSProtocol();
 
       virtual void openConnection();
@@ -85,15 +87,15 @@ class NFSProtocol : public KIO::SlaveBase
       bool isExportedDir(const QString& path);
       void completeUDSEntry(KIO::UDSEntry& entry, fattr& attributes);
       void completeBadLinkUDSEntry(KIO::UDSEntry& entry, fattr& attributes);
-      void completeAbsoluteLinkUDSEntry(KIO::UDSEntry& entry, const QCString& path);
+      void completeAbsoluteLinkUDSEntry(KIO::UDSEntry& entry, const Q3CString& path);
       bool isValidLink(const QString& parentDir, const QString& linkDest);
 //      bool isAbsoluteLink(const QString& path);
       
       NFSFileHandle getFileHandle(QString path);
 
       NFSFileHandleMap m_handleCache;
-      QIntDict<QString> m_usercache;      // maps long ==> QString *
-      QIntDict<QString> m_groupcache;
+      Q3IntDict<QString> m_usercache;      // maps long ==> QString *
+      Q3IntDict<QString> m_groupcache;
 
       QStringList m_exportedDirs;
       QString m_currentHost;

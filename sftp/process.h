@@ -12,15 +12,15 @@
 #ifndef __Process_h_Included__
 #define __Process_h_Included__
 
-#include <qcstring.h>
+#include <q3cstring.h>
 #include <qstring.h>
 #include <qstringlist.h>
-#include <qvaluelist.h>
+#include <q3valuelist.h>
 
 #define PTYPROC 7120
 
 class PTY;
-typedef QValueList<QCString> QCStringList;
+typedef Q3ValueList<Q3CString> QCStringList;
 
 /**
  * Synchronous communication with tty programs.
@@ -43,7 +43,7 @@ public:
      * @param command The command to execute.
      * @param args The arguments to the command.
      */
-    int exec(QCString command, QCStringList args);
+    int exec(Q3CString command, QCStringList args);
 
     /**
      * Read a line from the program's standard out. Depending on the @em block 
@@ -51,16 +51,16 @@ public:
      * @param block Block until a full line is read?
      * @return The output string.
      */
-    QCString readLine(bool block = true)
+    Q3CString readLine(bool block = true)
         { return readLineFrom(m_Fd, m_ptyBuf, block); }
 
-    QCString readLineFromPty(bool block = true)
+    Q3CString readLineFromPty(bool block = true)
         { return readLineFrom(m_Fd, m_ptyBuf, block); }
 
-    QCString readLineFromStdout(bool block = true)
+    Q3CString readLineFromStdout(bool block = true)
         { return readLineFrom(m_stdinout, m_stdoutBuf, block); }
 
-    QCString readLineFromStderr(bool block = true)
+    Q3CString readLineFromStderr(bool block = true)
         { return readLineFrom(m_err, m_stderrBuf, block); }
 
     /**
@@ -68,7 +68,7 @@ public:
      * @param line The text to write.
      * @param addNewline Adds a '\n' to the line.
      */
-    void writeLine(QCString line, bool addNewline=true);
+    void writeLine(Q3CString line, bool addNewline=true);
 
     /**
      * Put back a line of input.
@@ -76,23 +76,23 @@ public:
      * @param addNewline Adds a '\n' to the line.
      */
 
-    void unreadLine(QCString line, bool addNewline = true)
+    void unreadLine(Q3CString line, bool addNewline = true)
         { unreadLineFrom(m_ptyBuf, line, addNewline); }
 
-    void unreadLineFromPty(QCString line, bool addNewline = true)
+    void unreadLineFromPty(Q3CString line, bool addNewline = true)
         { unreadLineFrom(m_ptyBuf, line, addNewline); }
 
-    void unreadLineFromStderr(QCString line, bool addNewline = true)
+    void unreadLineFromStderr(Q3CString line, bool addNewline = true)
         { unreadLineFrom(m_stderrBuf, line, addNewline); }
 
-    void unreadLineFromStdout(QCString line, bool addNewline = true)
+    void unreadLineFromStdout(Q3CString line, bool addNewline = true)
         { unreadLineFrom(m_stdoutBuf, line, addNewline); }
 
     /**
      * Set exit string. If a line of program output matches this,
      * @ref #waitForChild() will terminate the program and return.
      */
-    void setExitString(QCString exit) { m_Exit = exit; }
+    void setExitString(Q3CString exit) { m_Exit = exit; }
 
     /**
      * Wait for the child to exit. See also @ref #setExitString.
@@ -129,18 +129,18 @@ public:
 protected:
     bool m_bErase, m_bTerminal;
     int m_Pid, m_Fd, m_stdinout, m_err;
-    QCString m_Command, m_Exit;
+    Q3CString m_Command, m_Exit;
 
 private:
     int init();
     int SetupTTY(int fd);
 
     PTY *m_pPTY;
-    QCString m_TTY;
-    QCString m_ptyBuf, m_stderrBuf, m_stdoutBuf;
+    Q3CString m_TTY;
+    Q3CString m_ptyBuf, m_stderrBuf, m_stdoutBuf;
 
-    QCString readLineFrom(int fd, QCString& inbuf, bool block);
-    void unreadLineFrom(QCString inbuf, QCString line, bool addnl);
+    Q3CString readLineFrom(int fd, Q3CString& inbuf, bool block);
+    void unreadLineFrom(Q3CString inbuf, Q3CString line, bool addnl);
     class PtyProcessPrivate;
     PtyProcessPrivate *d;
 };

@@ -23,12 +23,14 @@
 #include <kio/forwardingslavebase.h>
 
 #include "systemimpl.h"
+//Added by qt3to4:
+#include <Q3CString>
 
 class SystemProtocol : public KIO::ForwardingSlaveBase
 {
 public:
-	SystemProtocol(const QCString &protocol, const QCString &pool,
-	               const QCString &app);
+	SystemProtocol(const Q3CString &protocol, const Q3CString &pool,
+	               const Q3CString &app);
 	virtual ~SystemProtocol();
 	
 	virtual bool rewriteURL(const KURL &url, KURL &newUrl);

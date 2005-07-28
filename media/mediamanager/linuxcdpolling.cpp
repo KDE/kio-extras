@@ -25,6 +25,8 @@
 #include <qmutex.h>
 #include <qtimer.h>
 #include <qfile.h>
+//Added by qt3to4:
+#include <Q3CString>
 
 #include <kdebug.h>
 
@@ -114,7 +116,7 @@ DiscType::operator int() const
 class PollingThread : public QThread
 {
 public:
-	PollingThread(const QCString &devNode) : m_dev(devNode)
+	PollingThread(const Q3CString &devNode) : m_dev(devNode)
 	{
 		kdDebug(1219) << "PollingThread::PollingThread("
 		          << devNode << ")" << endl;
@@ -168,7 +170,7 @@ protected:
 private:
 	QMutex m_mutex;
 	bool m_stop;
-	const QCString m_dev;
+	const Q3CString m_dev;
 	DiscType m_currentType;
 	DiscType m_lastPollType;
 };
@@ -225,7 +227,7 @@ void LinuxCDPolling::slotMediumAdded(const QString &id)
 	{
 		m_excludeNotification.append( id );
 		
-		QCString dev = QFile::encodeName( medium->deviceNode() ).data();
+		Q3CString dev = QFile::encodeName( medium->deviceNode() ).data();
 		PollingThread *thread = new PollingThread(dev);
 		m_threads[id] = thread;
 		thread->start();
@@ -264,7 +266,7 @@ void LinuxCDPolling::slotMediumStateChanged(const QString &id)
 		// It is just a mount state change, no need to notify
 		m_excludeNotification.append( id );
 		
-		QCString dev = QFile::encodeName( medium->deviceNode() ).data();
+		Q3CString dev = QFile::encodeName( medium->deviceNode() ).data();
 		PollingThread *thread = new PollingThread(dev);
 		m_threads[id] = thread;
 		thread->start();
@@ -397,7 +399,7 @@ void LinuxCDPolling::applyType(DiscType type, const Medium *medium)
 	}
 }
 
-DiscType LinuxCDPolling::identifyDiscType(const QCString &devNode,
+DiscType LinuxCDPolling::identifyDiscType(const Q3CString &devNode,
                                           const DiscType &current)
 {
 	//kdDebug(1219) << "LinuxCDPolling::identifyDiscType("
@@ -470,7 +472,7 @@ DiscType LinuxCDPolling::identifyDiscType(const QCString &devNode,
 	}
 }
 
-bool LinuxCDPolling::hasDirectory(const QCString &devNode, const QCString &dir)
+bool LinuxCDPolling::hasDirectory(const Q3CString &devNode, const Q3CString &dir)
 {
 	bool ret = false; // return value
 	int fd = 0; // file descriptor for drive
@@ -482,7 +484,7 @@ bool LinuxCDPolling::hasDirectory(const QCString &devNode, const QCString &dir)
 	char dirname[256]; // filename for the current path table entry
 	int pos = 0; // our position into the path table
 	int curr_record = 1; // the path table record we're on
-	QCString fixed_directory = dir.upper(); // the uppercase version of the "directory" parameter
+	Q3CString fixed_directory = dir.upper(); // the uppercase version of the "directory" parameter
 
 	// open the drive
 	fd = open(devNode, O_RDONLY | O_NONBLOCK);
@@ -550,7 +552,7 @@ bool LinuxCDPolling::hasDirectory(const QCString &devNode, const QCString &dir)
 			break;
 		}
 		dirname[len_di] = 0;
-		qstrcpy(dirname, QCString(dirname).upper());
+		qstrcpy(dirname, Q3CString(dirname).upper());
 
 		// if we found a folder that has the root as a parent, and the directory name matches
 		// then return success

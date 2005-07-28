@@ -14,6 +14,8 @@
 
 #include <qdir.h>
 #include <qregexp.h>
+//Added by qt3to4:
+#include <Q3CString>
 
 #include <kinstance.h>
 #include <kdebug.h>
@@ -62,7 +64,7 @@ int kdemain(int argc, char **argv) {
 
 /****************** NNTPProtocol ************************/
 
-NNTPProtocol::NNTPProtocol ( const QCString & pool, const QCString & app, bool isSSL )
+NNTPProtocol::NNTPProtocol ( const Q3CString & pool, const Q3CString & app, bool isSSL )
   : TCPSlaveBase( (isSSL ? NNTPS_PORT : NNTP_PORT), (isSSL ? "nntps" : "nntp"), pool,
                   app, isSSL )
 {
@@ -71,7 +73,7 @@ NNTPProtocol::NNTPProtocol ( const QCString & pool, const QCString & app, bool i
   m_bIsSSL = isSSL;
   readBufferLen = 0;
   m_iDefaultPort = m_bIsSSL ? NNTPS_PORT : NNTP_PORT;
-  m_iPort = m_iDefaultPort;
+  m_port = QString::number(m_iDefaultPort);
 }
 
 NNTPProtocol::~NNTPProtocol() {
@@ -87,12 +89,12 @@ void NNTPProtocol::setHost ( const QString & host, int port, const QString & use
   DBG << "setHost: " << ( ! user.isEmpty() ? (user+"@") : QString(""))
       << host << ":" << ( ( port == 0 ) ? m_iDefaultPort : port  ) << endl;
 
-  if ( isConnectionValid() && (mHost != host || m_iPort != port ||
+  if ( isConnectionValid() && (mHost != host || m_port.toInt() != port ||
        mUser != user || mPass != pass) )
     nntp_close();
 
   mHost = host;
-  m_iPort = ( ( port == 0 ) ? m_iDefaultPort : port );
+  m_port = ( ( port == 0 ) ? QString::number(m_iDefaultPort) : QString::number(port) );
   mUser = user;
   mPass = pass;
 }
@@ -142,7 +144,7 @@ void NNTPProtocol::get(const KURL& url) {
   }
 
   // read and send data
-  QCString line;
+  Q3CString line;
   QByteArray buffer;
   char tmp[MAX_PACKET_LEN];
   int len = 0;
@@ -184,7 +186,7 @@ void NNTPProtocol::put( const KURL &/*url*/, int /*permissions*/, bool /*overwri
 void NNTPProtocol::special(const QByteArray& data) {
   // 1 = post article
   int cmd;
-  QDataStream stream(data, IO_ReadOnly);
+  QDataStream stream(data);
 
   if ( !nntp_open() )
     return;
@@ -215,12 +217,12 @@ bool NNTPProtocol::post_article() {
   bool last_chunk_had_line_ending = true;
   do {
     QByteArray buffer;
-    QCString data;
+    Q3CString data;
     dataReq();
     result = readData(buffer);
     // treat the buffer data
     if (result>0) {
-      data = QCString(buffer.data(),buffer.size()+1);
+      data = Q3CString(buffer.data(),buffer.size()+1);
       // translate "\r\n." to "\r\n.."
       int pos=0;
       if (last_chunk_had_line_ending && data[0] == '.') {
@@ -361,7 +363,7 @@ void NNTPProtocol::fetchGroups( const QString &since )
   }
 
   // read newsgroups line by line
-  QCString line, group;
+  Q3CString line, group;
   int pos, pos2;
   long msg_cnt;
   bool moderated;
@@ -688,9 +690,9 @@ bool NNTPProtocol::nntp_open()
     return true;
   }
 
-  DBG << "  nntp_open -- creating a new connection to " << mHost << ":" << m_iPort << endl;
+  DBG << "  nntp_open -- creating a new connection to " << mHost << ":" << m_port << endl;
   // create a new connection
-  if ( connectToHost( mHost.latin1(), m_iPort, true ) )
+  if ( connectToHost( mHost.latin1(), m_port, true ) )
   {
     DBG << "  nntp_open -- connection is open " << endl;
 

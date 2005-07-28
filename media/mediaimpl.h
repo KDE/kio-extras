@@ -27,6 +27,8 @@
 
 #include <qobject.h>
 #include <qstring.h>
+//Added by qt3to4:
+#include <Q3ValueList>
 
 #include "medium.h"
 
@@ -41,7 +43,7 @@ public:
 
 	bool statMedium(const QString &name, KIO::UDSEntry &entry);
 	bool statMediumByLabel(const QString &label, KIO::UDSEntry &entry);
-	bool listMedia(QValueList<KIO::UDSEntry> &list);
+	bool listMedia(Q3ValueList<KIO::UDSEntry> &list);
 	bool setUserLabel(const QString &name, const QString &label);
 
 	void createTopLevelEntry(KIO::UDSEntry& entry) const;
@@ -69,6 +71,7 @@ private:
 
 	void createMediumEntry(KIO::UDSEntry& entry,
 	                       const Medium &medium);
+	void enterLoop();
 
 	Medium *mp_mounting;
 	

@@ -39,6 +39,8 @@
 #include <kdebug.h>
 
 #include <assert.h>
+//Added by qt3to4:
+#include <Q3CString>
 
 namespace KioSMTP {
 
@@ -87,7 +89,7 @@ namespace KioSMTP {
     return request;
   }
 
-  QCString Request::heloHostnameCString() const {
+  Q3CString Request::heloHostnameCString() const {
     return KIDNA::toAsciiCString( heloHostname() );
   }
 
@@ -100,7 +102,7 @@ namespace KioSMTP {
 
 
   static inline bool isSpecial( char ch ) {
-    static const QCString specials = "()<>[]:;@\\,.\"";
+    static const Q3CString specials = "()<>[]:;@\\,.\"";
     return specials.find( ch ) >= 0;
   }
 
@@ -112,17 +114,17 @@ namespace KioSMTP {
 
 
 
-  static inline QCString rfc2047Encode( const QString & s ) {
-    QCString r = KCodecs::base64Encode( s.stripWhiteSpace().utf8(), false );
+  static inline Q3CString rfc2047Encode( const QString & s ) {
+    Q3CString r = KCodecs::base64Encode( s.stripWhiteSpace().utf8(), false );
     return "=?utf-8?b?" + r + "?=" ; // use base64 since that always gives a valid encoded-word
   }
 
 
 
-  static QCString quote( const QString & s ) {
+  static Q3CString quote( const QString & s ) {
     assert( isUsAscii( s ) );
 
-    QCString r( s.length() * 2 );
+    Q3CString r( s.length() * 2 );
     bool needsQuotes = false;
 
     unsigned int j = 0;
@@ -145,19 +147,19 @@ namespace KioSMTP {
 
 
 
-  static QCString formatFromAddress( const QString & fromRealName, const QString & fromAddress ) {
+  static Q3CString formatFromAddress( const QString & fromRealName, const QString & fromAddress ) {
     if ( fromRealName.isEmpty() )
       return fromAddress.latin1(); // no real name: return "joe@user.org"
 
     // return "Joe User <joe@user.org>", "\"User, Joe\" <joe@user.org>"
     // or "=?utf-8?q?Joe_User?= <joe@user.org>", depending on real name's nature.
-    QCString r = isUsAscii( fromRealName ) ? quote( fromRealName ) : rfc2047Encode( fromRealName );
+    Q3CString r = isUsAscii( fromRealName ) ? quote( fromRealName ) : rfc2047Encode( fromRealName );
     return r + " <" + fromAddress.latin1() + '>';
   }
 
 
 
-  static QCString formatSubject( QString s ) {
+  static Q3CString formatSubject( QString s ) {
     if ( isUsAscii( s ) )
       return s.remove( '\n' ).latin1(); // don't break header folding,
 					// so remove any line break
@@ -168,21 +170,21 @@ namespace KioSMTP {
 
 
 
-  QCString Request::headerFields( const QString & fromRealName ) const {
+  Q3CString Request::headerFields( const QString & fromRealName ) const {
     if ( !emitHeaders() )
       return 0;
 
     assert( hasFromAddress() ); // should have been checked for by
 				// caller (MAIL FROM comes before DATA)
 
-    QCString result = "From: " + formatFromAddress( fromRealName, fromAddress() ) + "\r\n";
+    Q3CString result = "From: " + formatFromAddress( fromRealName, fromAddress() ) + "\r\n";
 
     if ( !subject().isEmpty() )
       result += "Subject: " + formatSubject( subject() ) + "\r\n";
     if ( !to().empty() )
-      result += QCString( "To: " ) + to().join( ",\r\n\t" /* line folding */ ).latin1() + "\r\n";
+      result += Q3CString( "To: " ) + to().join( ",\r\n\t" /* line folding */ ).latin1() + "\r\n";
     if ( !cc().empty() )
-      result += QCString( "Cc: " ) + cc().join( ",\r\n\t" /* line folding */ ).latin1() + "\r\n";
+      result += Q3CString( "Cc: " ) + cc().join( ",\r\n\t" /* line folding */ ).latin1() + "\r\n";
     return result;
   }
 

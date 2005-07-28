@@ -23,6 +23,8 @@
 #include <qglobal.h>
 #include <qstring.h>
 #include <qdatastream.h>
+//Added by qt3to4:
+#include <Q3CString>
 
 #include <kio/global.h>
 #include <kdebug.h>
@@ -45,7 +47,7 @@ private: // Private attributes
     Q_UINT32 mFlags;
 
     /** Size of the file in bytes. Should be 64 bit safe. */
-    Q_ULLONG mSize;
+    quint64 mSize;
 
     /** User id of the owner of the file. */
     uid_t mUid;
@@ -69,7 +71,7 @@ private: // Private attributes
      /** Longname of the file as found in a SSH_FXP_NAME sftp packet.
           These contents are parse to return the file's owner name and
           gr oup name. */
-    QCString mLongname;
+    Q3CString mLongname;
 
     QString mUserName;
     QString mGroupName;
@@ -94,7 +96,7 @@ public:
     ~sftpFileAttr();
 
     /** Constructor to initialize the file attributes on declaration. */
-    sftpFileAttr(Q_ULLONG size_, uid_t uid_, gid_t gid_, mode_t permissions_,
+    sftpFileAttr(quint64 size_, uid_t uid_, gid_t gid_, mode_t permissions_,
                  time_t atime_, time_t mtime_, Q_UINT32 extendedCount_ = 0);
 
     /** Return the size of the sftp attribute not including filename or longname*/
@@ -104,7 +106,7 @@ public:
     void clear();
 
     /** Set the size of the file. */
-    void setFileSize(Q_ULLONG s)
+    void setFileSize(quint64 s)
         { mSize = s; mFlags |= SSH2_FILEXFER_ATTR_SIZE; }
 
     /** The size file attribute will not be included in the UDSEntry
@@ -113,7 +115,7 @@ public:
         { mSize = 0; mFlags &= ~SSH2_FILEXFER_ATTR_SIZE; };
 
     /** Returns the size of the file. */
-    Q_ULLONG fileSize() const { return mSize; }
+    quint64 fileSize() const { return mSize; }
 
     /** Sets the POSIX permissions of the file. */
     void setPermissions(mode_t p)

@@ -94,7 +94,7 @@ bool TextCreator::create(const QString &path, int width, int height, QImage &img
 
     // create text-preview
     QFile file( path );
-    if ( file.open( IO_ReadOnly ))
+    if ( file.open( QIODevice::ReadOnly ))
     {
         if ( !m_data || m_dataSize < bytesToRead + 1 )
         {
@@ -128,7 +128,7 @@ bool TextCreator::create(const QString &path, int width, int height, QImage &img
             Q_ASSERT( posNewLine > 0 );
             const QPixmap *fontPixmap = &(m_splitter->pixmap());
 
-            for ( uint i = 0; i < text.length(); i++ )
+            for ( int i = 0; i < text.length(); i++ )
             {
                 if ( x > posNewLine || newLine ) // start a new line?
                 {
@@ -151,6 +151,7 @@ bool TextCreator::create(const QString &path, int width, int height, QImage &img
                     newLine = false;
                 }
 
+		if (i>=text.length()) continue;
                 // check for newlines in the text (unix,dos)
                 QChar ch = text.at( i );
                 if ( ch == '\n' )
@@ -168,7 +169,7 @@ bool TextCreator::create(const QString &path, int width, int height, QImage &img
                 rect = m_splitter->coordinates( ch );
                 if ( !rect.isEmpty() )
                 {
-                    bitBlt( &m_pixmap, QPoint(x,y), fontPixmap, rect, Qt::CopyROP );
+                    bitBlt( &m_pixmap, QPoint(x,y), fontPixmap, rect );
                 }
 
                 x += xOffset; // next character

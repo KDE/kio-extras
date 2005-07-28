@@ -20,6 +20,8 @@
 
 #include <qdir.h>
 #include <qregexp.h>
+//Added by qt3to4:
+#include <Q3CString>
 
 #include <kdebug.h>
 #include <kprocess.h>
@@ -32,7 +34,7 @@
 
 using namespace KIO;
 
-CgiProtocol::CgiProtocol( const QCString &pool, const QCString &app )
+CgiProtocol::CgiProtocol( const Q3CString &pool, const Q3CString &app )
     : SlaveBase( "cgi", pool, app )
 {
   kdDebug(7124) << "CgiProtocol::CgiProtocol" << endl;
@@ -57,13 +59,13 @@ void CgiProtocol::get( const KURL& url )
   kdDebug(7124) << " Protocol: " << url.protocol() << endl;
   kdDebug(7124) << " Filename: " << url.filename() << endl;
 #endif
-  QCString protocol = "SERVER_PROTOCOL=HTTP";
+  Q3CString protocol = "SERVER_PROTOCOL=HTTP";
   putenv( protocol.data() );
 
-  QCString requestMethod = "REQUEST_METHOD=GET";
+  Q3CString requestMethod = "REQUEST_METHOD=GET";
   putenv( requestMethod.data() );
 
-  QCString query = url.query().mid( 1 ).local8Bit();
+  Q3CString query = url.query().mid( 1 ).local8Bit();
   query.prepend( "QUERY_STRING=" );
   putenv( query.data() );
 
@@ -98,7 +100,7 @@ void CgiProtocol::get( const KURL& url )
   if ( forwardFile ) {
     kdDebug(7124) << "Forwarding to '" << path << "'" << endl;
 
-    QCString filepath = QFile::encodeName( path );
+    Q3CString filepath = QFile::encodeName( path );
 
     fd = fopen( filepath.data(), "r" );
 
@@ -139,7 +141,7 @@ void CgiProtocol::get( const KURL& url )
     buffer[n] = 0;
 
     if ( stripHeader ) {
-      QCString output = buffer; // this assumes buffer is text and not binary
+      Q3CString output = buffer; // this assumes buffer is text and not binary
       int colon = output.find( ':' );
       int newline = output.find( '\n' );
       int semicolon = output.findRev( ';', newline );
@@ -154,7 +156,7 @@ void CgiProtocol::get( const KURL& url )
       kdDebug(7124) << "  end: " << end << endl;
 #endif
 
-      QCString contentType = output.mid( colon + 1, end - colon - 1 );
+      Q3CString contentType = output.mid( colon + 1, end - colon - 1 );
 
       contentType = contentType.stripWhiteSpace();
 

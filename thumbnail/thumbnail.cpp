@@ -33,10 +33,14 @@
 #include <qpainter.h>
 #include <qimage.h>
 #include <qbuffer.h>
+//Added by qt3to4:
+#include <Q3CString>
 
 #include <kdatastream.h> // Do not remove, needed for correct bool serialization
 #include <kurl.h>
 #include <kapplication.h>
+#include <kcmdlineargs.h>
+#include <kaboutdata.h>
 #include <kglobal.h>
 #include <kiconloader.h>
 #include <kimageeffect.h>
@@ -106,8 +110,10 @@ int kdemain(int argc, char **argv)
     // and HTML previews need even KApplication :(
     putenv(strdup("SESSION_MANAGER="));
     KApplication::disableAutoDcopRegistration();
+    KAboutData about("kio_thumbnail", "kio_thumbmail", "KDE 4.x.x");
+    KCmdLineArgs::init(&about);
 
-    KApplication app(argc, argv, "kio_thumbnail", false, true);
+    KApplication app( false, true);
 #endif
 
     if (argc != 4)
@@ -122,7 +128,7 @@ int kdemain(int argc, char **argv)
     return 0;
 }
 
-ThumbnailProtocol::ThumbnailProtocol(const QCString &pool, const QCString &app)
+ThumbnailProtocol::ThumbnailProtocol(const Q3CString &pool, const Q3CString &app)
     : SlaveBase("thumbnail", pool, app)
 {
     m_creators.setAutoDelete(true);
@@ -224,7 +230,7 @@ void ThumbnailProtocol::get(const KURL &url)
                 KFileMetaInfoItem item = info.item(KFileMimeTypeInfo::Thumbnail);
                 if (item.isValid() && item.value().type() == QVariant::Image)
                 {
-                    img = item.value().toImage();
+                    img = item.value().value<QImage>();
                     kdDebug(7115) << "using KFMI for the thumbnail\n";
                     kfmiThumb = true;
                 }
@@ -298,9 +304,9 @@ void ThumbnailProtocol::get(const KURL &url)
     {
         double imgRatio = (double)img.height() / (double)img.width();
         if (imgRatio > (double)m_height / (double)m_width)
-            img = img.smoothScale( int(QMAX((double)m_height / imgRatio, 1)), m_height);
+            img = img.smoothScale( int(qMax((double)m_height / imgRatio, 1.0)), m_height);
         else
-            img = img.smoothScale(m_width, int(QMAX((double)m_width * imgRatio, 1)));
+            img = img.smoothScale(m_width, int(qMax((double)m_width * imgRatio, 1.0)));
     }
 
 // ### FIXME
@@ -322,10 +328,10 @@ void ThumbnailProtocol::get(const KURL &url)
         p.drawLine( 0, 0, 0, y2 );
         p.end();
 
-        const QBitmap *mask = pix.mask();
-        if ( mask ) // need to update it so we can see the frame
+        const QBitmap& mask = pix.mask();
+        if ( !mask.isNull() ) // need to update it so we can see the frame
         {
-            QBitmap bitmap( *mask );
+            QBitmap bitmap( mask );
             QPainter painter;
             painter.begin( &bitmap );
             painter.drawLine( x2, 0, x2, y2 );
@@ -368,7 +374,7 @@ void ThumbnailProtocol::get(const KURL &url)
             // If thumbnail was called directly from Konqueror, then the image needs to be raw
             //kdDebug(7115) << "RAW IMAGE TO STREAM" << endl;
             QBuffer buf;
-            if (!buf.open(IO_WriteOnly))
+            if (!buf.open(QIODevice::WriteOnly))
             {
                 error(KIO::ERR_INTERNAL, i18n("Could not write image."));
                 return;
@@ -381,7 +387,7 @@ void ThumbnailProtocol::get(const KURL &url)
 #endif
         {
             QByteArray imgData;
-            QDataStream stream( imgData, IO_WriteOnly );
+            QDataStream stream( &imgData, QIODevice::WriteOnly );
             //kdDebug(7115) << "IMAGE TO STREAM" << endl;
             stream << img;
             data(imgData);
@@ -390,7 +396,7 @@ void ThumbnailProtocol::get(const KURL &url)
     else
     {
         QByteArray imgData;
-        QDataStream stream( imgData, IO_WriteOnly );
+        QDataStream stream( &imgData, QIODevice::WriteOnly );
         //kdDebug(7115) << "IMAGE TO SHMID" << endl;
         void *shmaddr = shmat(shmid.toInt(), 0, 0);
         if (shmaddr == (void *)-1)

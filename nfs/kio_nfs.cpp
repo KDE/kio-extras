@@ -47,6 +47,8 @@
 
 #include <qfile.h>
 #include <qdir.h>
+//Added by qt3to4:
+#include <Q3CString>
 
 #include <kdebug.h>
 #include <kinstance.h>
@@ -235,7 +237,7 @@ NFSFileHandle& NFSFileHandle::operator= (const char* src)
 }*/
 
 
-NFSProtocol::NFSProtocol (const QCString &pool, const QCString &app )
+NFSProtocol::NFSProtocol (const Q3CString &pool, const Q3CString &app )
 :SlaveBase( "nfs", pool, app )
 ,m_client(0)
 ,m_sock(-1)
@@ -341,7 +343,7 @@ NFSFileHandle NFSProtocol::getFileHandle(QString path)
    diropargs dirargs;
    diropres dirres;
    memcpy(dirargs.dir.data,(const char*)parentFH,NFS_FHSIZE);
-   QCString tmpStr=QFile::encodeName(lastPart);
+   Q3CString tmpStr=QFile::encodeName(lastPart);
    dirargs.name=tmpStr.data();
 
    //cerr<<"calling rpc: FH: -"<<parentFH<<"- with name -"<<dirargs.name<<"-"<<endl;
@@ -416,7 +418,7 @@ void NFSProtocol::openConnection()
          return;
       }
    }
-   QCString hostName("localhost");
+   Q3CString hostName("localhost");
    char nameBuffer[1024];
    nameBuffer[0] = '\0';
    if (gethostname(nameBuffer, 1024)==0)
@@ -583,7 +585,7 @@ void NFSProtocol::listDir( const KURL& _url)
       diropargs dirargs;
       diropres dirres;
       memcpy(dirargs.dir.data,fh,NFS_FHSIZE);
-      QCString tmpStr=QFile::encodeName(*it);
+      Q3CString tmpStr=QFile::encodeName(*it);
       dirargs.name=tmpStr.data();
 
       kdDebug(7121)<<"calling rpc: FH: -"<<fh<<"- with name -"<<dirargs.name<<"-"<<endl;
@@ -619,7 +621,7 @@ void NFSProtocol::listDir( const KURL& _url)
                                  (xdrproc_t) xdr_readlinkres, (char*)&readLinkRes,total_timeout);
          if (!checkForError(clnt_stat,readLinkRes.status,(*it))) return;
          kdDebug(7121)<<"link dest is -"<<readLinkRes.readlinkres_u.data<<"-"<<endl;
-         QCString linkDest(readLinkRes.readlinkres_u.data);
+         Q3CString linkDest(readLinkRes.readlinkres_u.data);
          atom.m_uds = KIO::UDS_LINK_DEST;
          atom.m_str = linkDest;
          entry.append( atom );
@@ -696,7 +698,7 @@ void NFSProtocol::stat( const KURL & url)
    diropargs dirargs;
    attrstat attrAndStat;
    memcpy(dirargs.dir.data,fh,NFS_FHSIZE);
-   QCString tmpStr=QFile::encodeName(path);
+   Q3CString tmpStr=QFile::encodeName(path);
    dirargs.name=tmpStr.data();
 
    kdDebug(7121)<<"calling rpc: FH: -"<<fh<<"- with name -"<<dirargs.name<<"-"<<endl;
@@ -734,7 +736,7 @@ void NFSProtocol::stat( const KURL & url)
                               (xdrproc_t) xdr_readlinkres, (char*)&readLinkRes,total_timeout);
       if (!checkForError(clnt_stat,readLinkRes.status,path)) return;
       kdDebug(7121)<<"link dest is -"<<readLinkRes.readlinkres_u.data<<"-"<<endl;
-      QCString linkDest(readLinkRes.readlinkres_u.data);
+      Q3CString linkDest(readLinkRes.readlinkres_u.data);
       atom.m_uds = KIO::UDS_LINK_DEST;
       atom.m_str = linkDest;
       entry.append( atom );
@@ -775,7 +777,7 @@ void NFSProtocol::stat( const KURL & url)
    finished();
 }
 
-void NFSProtocol::completeAbsoluteLinkUDSEntry(UDSEntry& entry, const QCString& path)
+void NFSProtocol::completeAbsoluteLinkUDSEntry(UDSEntry& entry, const Q3CString& path)
 {
    //taken from file.cc
    struct stat buff;
@@ -997,7 +999,7 @@ void NFSProtocol::mkdir( const KURL& url, int permissions )
 
    createargs createArgs;
    memcpy(createArgs.where.dir.data,fh,NFS_FHSIZE);
-   QCString tmpName=QFile::encodeName(dirName);
+   Q3CString tmpName=QFile::encodeName(dirName);
    createArgs.where.name=tmpName.data();
    if (permissions==-1) createArgs.attributes.mode=0755;
    else createArgs.attributes.mode=permissions;
@@ -1115,7 +1117,7 @@ void NFSProtocol::del( const KURL& url, bool isfile)
       kdDebug(7121)<<"Deleting file "<<thePath<<endl;
       diropargs dirOpArgs;
       memcpy(dirOpArgs.dir.data,fh,NFS_FHSIZE);
-      QCString tmpName=QFile::encodeName(fileName);
+      Q3CString tmpName=QFile::encodeName(fileName);
       dirOpArgs.name=tmpName.data();
 
       nfsstat nfsStat;
@@ -1133,7 +1135,7 @@ void NFSProtocol::del( const KURL& url, bool isfile)
       kdDebug(7121)<<"Deleting directory "<<thePath<<endl;
       diropargs dirOpArgs;
       memcpy(dirOpArgs.dir.data,fh,NFS_FHSIZE);
-      QCString tmpName=QFile::encodeName(fileName);
+      Q3CString tmpName=QFile::encodeName(fileName);
       dirOpArgs.name=tmpName.data();
 
       nfsstat nfsStat;
@@ -1282,7 +1284,7 @@ void NFSProtocol::put( const KURL& url, int _mode, bool _overwrite, bool /*_resu
     }
     createargs createArgs;
     memcpy(createArgs.where.dir.data,(const char*)parentFH,NFS_FHSIZE);
-    QCString tmpName=QFile::encodeName(fileName);
+    Q3CString tmpName=QFile::encodeName(fileName);
     createArgs.where.name=tmpName.data();
 
     //the mode is apparently ignored if the file already exists
@@ -1398,7 +1400,7 @@ void NFSProtocol::rename( const KURL &src, const KURL &dest, bool _overwrite )
    }
    renameargs renameArgs;
    memcpy(renameArgs.from.dir.data,srcFH,NFS_FHSIZE);
-   QCString tmpName=QFile::encodeName(srcFileName);
+   Q3CString tmpName=QFile::encodeName(srcFileName);
    renameArgs.from.name=tmpName.data();
 
    getLastPart(destPath, destFileName, destParentDir);
@@ -1409,7 +1411,7 @@ void NFSProtocol::rename( const KURL &src, const KURL &dest, bool _overwrite )
       return;
    }
    memcpy(renameArgs.to.dir.data,destFH,NFS_FHSIZE);
-   QCString tmpName2=QFile::encodeName(destFileName);
+   Q3CString tmpName2=QFile::encodeName(destFileName);
    renameArgs.to.name=tmpName2.data();
    nfsstat nfsStat;
 
@@ -1472,7 +1474,7 @@ void NFSProtocol::copy( const KURL &src, const KURL &dest, int _mode, bool _over
    };
    createargs createArgs;
    memcpy(createArgs.where.dir.data,(const char*)parentFH,NFS_FHSIZE);
-   QCString tmpName=QFile::encodeName(fileName);
+   Q3CString tmpName=QFile::encodeName(fileName);
    createArgs.where.name=tmpName.data();
    if (_mode==-1) createArgs.attributes.mode=0644;
    else createArgs.attributes.mode=_mode;
@@ -1565,11 +1567,11 @@ void NFSProtocol::symlink( const QString &target, const KURL &dest, bool )
    }
 
    kdDebug(7121)<<"tach"<<endl;
-   QCString tmpStr=target.latin1();
+   Q3CString tmpStr=target.latin1();
    symlinkargs symLinkArgs;
    symLinkArgs.to=tmpStr.data();
    memcpy(symLinkArgs.from.dir.data,(const char*)fh,NFS_FHSIZE);
-   QCString tmpStr2=QFile::encodeName(destPath);
+   Q3CString tmpStr2=QFile::encodeName(destPath);
    symLinkArgs.from.name=tmpStr2.data();
 
    nfsstat nfsStat;

@@ -8,6 +8,8 @@
 #include <unistd.h>
 
 #include <qfile.h>
+//Added by qt3to4:
+#include <Q3CString>
 
 #include <kglobal.h>
 #include <kurl.h>
@@ -48,7 +50,7 @@ int kdemain( int argc, char **argv )
   return 0;
 }
 
-ArchiveProtocol::ArchiveProtocol( const QCString &pool, const QCString &app ) : SlaveBase( "tar", pool, app )
+ArchiveProtocol::ArchiveProtocol( const Q3CString &pool, const Q3CString &app ) : SlaveBase( "tar", pool, app )
 {
   kdDebug( 7109 ) << "ArchiveProtocol::ArchiveProtocol" << endl;
   m_archiveFile = 0L;
@@ -159,7 +161,7 @@ bool ArchiveProtocol::checkNewFile( const KURL & url, QString & path, KIO::Error
         return false;
     }
 
-    if ( !m_archiveFile->open( IO_ReadOnly ) )
+    if ( !m_archiveFile->open( QIODevice::ReadOnly ) )
     {
         kdDebug(7109) << "Opening " << archiveFile << "failed." << endl;
         delete m_archiveFile;
@@ -493,7 +495,7 @@ void ArchiveProtocol::get( const KURL & url )
         if ( !firstRead )
         {
             bufferSize = kMin( maxSize, fileSize );
-            buffer.resize( bufferSize, QGArray::SpeedOptim );
+            buffer.resize( bufferSize );
         }
         const Q_LONG read = io->readBlock( buffer.data(), buffer.size() ); // Avoid to use bufferSize here, in case something went wrong.
         if ( read != bufferSize )

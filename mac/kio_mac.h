@@ -22,15 +22,17 @@
 #include <kprocess.h>
 
 #include <qstring.h>
-#include <qcstring.h>
+#include <q3cstring.h>
 #include <qfile.h>
 #include <qtextstream.h>
+//Added by qt3to4:
+#include <Q3ValueList>
 
 class MacProtocol : public QObject, public KIO::SlaveBase
 {
     Q_OBJECT
 public:
-    MacProtocol(const QCString &pool, const QCString &app);
+    MacProtocol(const Q3CString &pool, const Q3CString &app);
     ~MacProtocol();
     virtual void get(const KURL& url );
     virtual void listDir(const KURL& url);
@@ -40,10 +42,10 @@ protected slots:
     void slotSetDataStdOutput(KProcess*, char *s, int len);
 protected:
     QString prepareHP(const KURL& _url);
-    QValueList<KIO::UDSAtom> makeUDS(const QString& _line);
+    Q3ValueList<KIO::UDSAtom> makeUDS(const QString& _line);
     int makeTime(QString mday, QString mon, QString third);
     QString getMimetype(QString type, QString app);
-    QValueList<KIO::UDSAtom> doStat(const KURL& url);
+    Q3ValueList<KIO::UDSAtom> doStat(const KURL& url);
 
     long processedBytes;
     QString standardOutputStream;

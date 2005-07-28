@@ -25,6 +25,8 @@
 #include <kurl.h>
 
 #include <qstring.h>
+//Added by qt3to4:
+#include <Q3ValueList>
 
 class RemoteImpl
 {
@@ -36,7 +38,7 @@ public:
 	bool isWizardURL(const KURL &url) const;
 	bool statNetworkFolder(KIO::UDSEntry &entry, const QString &filename) const;
 
-	void listRoot(QValueList<KIO::UDSEntry> &list) const;
+	void listRoot(Q3ValueList<KIO::UDSEntry> &list) const;
 
 	KURL findBaseURL(const QString &filename) const;
 	QString findDesktopFile(const QString &filename) const;

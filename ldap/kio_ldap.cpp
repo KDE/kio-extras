@@ -23,6 +23,8 @@
 #include <kabc/ldif.h>
 
 #include "kio_ldap.h"
+//Added by qt3to4:
+#include <Q3CString>
 
 using namespace KIO;
 using namespace KABC;
@@ -54,8 +56,8 @@ int kdemain( int argc, char **argv )
 /**
  * Initialize the ldap slave
  */
-LDAPProtocol::LDAPProtocol( const QCString &protocol, const QCString &pool, 
-  const QCString &app ) : SlaveBase( protocol, pool, app )
+LDAPProtocol::LDAPProtocol( const Q3CString &protocol, const Q3CString &pool, 
+  const Q3CString &app ) : SlaveBase( protocol, pool, app )
 {
   mLDAP = 0; mTLS = 0; mVer = 3; mAuthSASL = false;
   mRealm = ""; mBindName = "";
@@ -167,7 +169,7 @@ void LDAPProtocol::controlsFromMetaData( LDAPControl ***serverctrls,
   QString oid; bool critical; QByteArray value;
   int i = 0;
   while ( hasMetaData( QString::fromLatin1("SERVER_CTRL%1").arg(i) ) ) {
-    QCString val = metaData( QString::fromLatin1("SERVER_CTRL%1").arg(i) ).utf8();
+    Q3CString val = metaData( QString::fromLatin1("SERVER_CTRL%1").arg(i) ).utf8();
     LDIF::splitControl( val, oid, critical, value );
     kdDebug(7125) << "server ctrl #" << i << " value: " << val << 
       " oid: " << oid << " critical: " << critical << " value: " << 
@@ -177,7 +179,7 @@ void LDAPProtocol::controlsFromMetaData( LDAPControl ***serverctrls,
   }
   i = 0;
   while ( hasMetaData( QString::fromLatin1("CLIENT_CTRL%1").arg(i) ) ) {
-    QCString val = metaData( QString::fromLatin1("CLIENT_CTRL%1").arg(i) ).utf8();
+    Q3CString val = metaData( QString::fromLatin1("CLIENT_CTRL%1").arg(i) ).utf8();
     LDIF::splitControl( val, oid, critical, value );
     kdDebug(7125) << "client ctrl #" << i << " value: " << val << 
       " oid: " << oid << " critical: " << critical << " value: " << 
@@ -220,7 +222,7 @@ int LDAPProtocol::asyncSearch( LDAPUrl &usrc )
     usrc.scope() << " filter=\"" << usrc.filter() << "\" attrs=" << usrc.attributes() << 
     endl;
   retval = ldap_search_ext( mLDAP, usrc.dn().utf8(), scope, 
-    usrc.filter().isEmpty() ? QCString() : usrc.filter().utf8(), attrs, 0, 
+    usrc.filter().isEmpty() ? Q3CString() : usrc.filter().utf8(), attrs, 0, 
     serverctrls, clientctrls,
     0, mSizeLimit, &msgid );
 
@@ -237,16 +239,16 @@ int LDAPProtocol::asyncSearch( LDAPUrl &usrc )
   return retval;
 }
 
-QCString LDAPProtocol::LDAPEntryAsLDIF( LDAPMessage *message )
+Q3CString LDAPProtocol::LDAPEntryAsLDIF( LDAPMessage *message )
 {
-  QCString result;
+  Q3CString result;
   char *name;
   struct berval **bvals;
   BerElement     *entry;
   QByteArray tmp;
   
   char *dn = ldap_get_dn( mLDAP, message );
-  if ( dn == NULL ) return QCString( "" );
+  if ( dn == NULL ) return Q3CString( "" );
   tmp.setRawData( dn, strlen( dn ) );
   result += LDIF::assembleLine( "dn", tmp ) + '\n';
   tmp.resetRawData( dn, strlen( dn ) );
@@ -755,7 +757,7 @@ void LDAPProtocol::get( const KURL &_url )
   // tell the mimetype
   mimeType("text/plain");
   // collect the result
-  QCString result;
+  Q3CString result;
   filesize_t processed_size = 0;
   QByteArray array;
   
@@ -955,7 +957,7 @@ void LDAPProtocol::put( const KURL &_url, int, bool overwrite, bool )
                 " deloldrdn: " << ldif.delOldRdn() << endl;
               controlsFromMetaData( &serverctrls, &clientctrls );
               ldaperr = ldap_rename_s( mLDAP, ldif.dn().utf8(), ldif.newRdn().utf8(), 
-                ldif.newSuperior().isEmpty() ? QCString() : ldif.newSuperior().utf8(), 
+                ldif.newSuperior().isEmpty() ? Q3CString() : ldif.newSuperior().utf8(), 
                 ldif.delOldRdn(), serverctrls, clientctrls );
 
               FREELDAPMEM;

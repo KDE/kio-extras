@@ -22,13 +22,15 @@
 #include <kdedmodule.h>
 
 #include "remotedirnotify.h"
+//Added by qt3to4:
+#include <Q3CString>
 
 class RemoteDirNotifyModule : public KDEDModule
 {
 K_DCOP
 
 public:
-	RemoteDirNotifyModule(const QCString &obj);
+	RemoteDirNotifyModule(const Q3CString &obj);
 private:
 	RemoteDirNotify notifier;
 };

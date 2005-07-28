@@ -38,6 +38,8 @@
 
 #include <qfile.h>
 #include <qimage.h>
+//Added by qt3to4:
+#include <Q3CString>
 
 #include <kdemacros.h>
 
@@ -63,7 +65,7 @@ bool DjVuCreator::create(const QString &path, int width, int height, QImage &img
     return false;
   
   const char* argv[8];
-  QCString sizearg, fnamearg;
+  Q3CString sizearg, fnamearg;
   sizearg.sprintf("%dx%d", width, height);
   fnamearg = QFile::encodeName( path );
   argv[0] = "ddjvu";

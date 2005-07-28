@@ -21,12 +21,14 @@
 
 #include <qstring.h>
 #include <qstringlist.h>
+//Added by qt3to4:
+#include <Q3ValueList>
 #include <kurl.h>
 
 class Medium
 {
 public:
-	typedef QValueList<const Medium> List;
+	typedef Q3ValueList<const Medium> List;
 
 	static const uint ID = 0;
 	static const uint NAME = 1;
@@ -84,8 +86,6 @@ private:
 	void loadUserLabel();
 
 	QStringList m_properties;
-
-friend class QValueListNode<const Medium>;
 };
 
 #endif

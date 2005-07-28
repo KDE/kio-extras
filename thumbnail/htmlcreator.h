@@ -21,6 +21,8 @@
 #define _HTMLCREATOR_H_
 
 #include <kio/thumbcreator.h>
+//Added by qt3to4:
+#include <QTimerEvent>
 
 class KHTMLPart;
 

@@ -40,10 +40,12 @@
 // QT includes
 //-------------
 #include <qstring.h>
-#include <qptrlist.h>
+#include <q3ptrlist.h>
 #include <qstringlist.h>
 #include <qtextstream.h>
-#include <qstrlist.h>
+#include <q3strlist.h>
+//Added by qt3to4:
+#include <Q3CString>
 
 //--------------
 // KDE includes
@@ -234,7 +236,7 @@ public:
     //-----------------------------------------------------------------------
 
     // Functions overwritten in kio_smb.cpp
-    SMBSlave(const QCString& pool, const QCString& app);
+    SMBSlave(const Q3CString& pool, const Q3CString& app);
     virtual ~SMBSlave();
 
     // Functions overwritten in kio_smb_browse.cpp

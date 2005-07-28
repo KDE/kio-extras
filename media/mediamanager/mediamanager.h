@@ -22,6 +22,9 @@
 #include <kdedmodule.h>
 #include <qstring.h>
 #include <qstringlist.h>
+//Added by qt3to4:
+#include <Q3CString>
+#include <Q3PtrList>
 
 #include "medialist.h"
 #include "backendbase.h"
@@ -34,7 +37,7 @@ class MediaManager : public KDEDModule
 Q_OBJECT
 K_DCOP
 public:
-	MediaManager(const QCString &obj);
+	MediaManager(const Q3CString &obj);
 	~MediaManager();
 
 k_dcop:
@@ -67,7 +70,7 @@ private slots:
 
 private:
 	MediaList m_mediaList;
-	QValueList<BackendBase*> m_backends;
+	Q3ValueList<BackendBase*> m_backends;
 	RemovableBackend *mp_removableBackend;
 	MediaDirNotify m_dirNotify;
 };

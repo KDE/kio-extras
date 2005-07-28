@@ -27,6 +27,8 @@
 
 #include <qobject.h>
 #include <qstring.h>
+//Added by qt3to4:
+#include <Q3ValueList>
 
 class SystemImpl : public QObject
 {
@@ -37,13 +39,16 @@ public:
 	void createTopLevelEntry(KIO::UDSEntry& entry) const;
 	bool statByName(const QString &filename, KIO::UDSEntry& entry);
 
-	bool listRoot(QValueList<KIO::UDSEntry> &list);
+	bool listRoot(Q3ValueList<KIO::UDSEntry> &list);
 
 	bool parseURL(const KURL &url, QString &name, QString &path) const;
 	bool realURL(const QString &name, const QString &path, KURL &url) const;
 
 	int lastErrorCode() const { return m_lastErrorCode; }
 	QString lastErrorMessage() const { return m_lastErrorMessage; }
+
+signals:
+    void leaveModality();
 
 private slots:
 	KURL findBaseURL(const QString &filename) const;
@@ -53,6 +58,7 @@ private slots:
 private:
 	void createEntry(KIO::UDSEntry& entry, const QString &directory,
 	                 const QString &file);
+	void enterLoop();
 
 	bool m_lastListingEmpty;
 

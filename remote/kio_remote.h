@@ -22,12 +22,14 @@
 
 #include <kio/slavebase.h>
 #include "remoteimpl.h"
+//Added by qt3to4:
+#include <Q3CString>
 
 class RemoteProtocol : public KIO::SlaveBase
 {
 public:
-	RemoteProtocol(const QCString &protocol, const QCString &pool,
-	               const QCString &app);
+	RemoteProtocol(const Q3CString &protocol, const Q3CString &pool,
+	               const Q3CString &app);
 	virtual ~RemoteProtocol();
 
 	virtual void listDir(const KURL &url);

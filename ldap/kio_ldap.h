@@ -2,7 +2,9 @@
 #define __LDAP_H__
 
 #include <qstring.h>
-#include <qvaluelist.h>
+#include <q3valuelist.h>
+//Added by qt3to4:
+#include <Q3CString>
 
 #include <kio/slavebase.h>
 #include <kio/authinfo.h>
@@ -14,7 +16,7 @@
 class LDAPProtocol : public KIO::SlaveBase
 {
   public:
-    LDAPProtocol( const QCString &protocol, const QCString &pool, const QCString &app );
+    LDAPProtocol( const Q3CString &protocol, const Q3CString &pool, const Q3CString &app );
     virtual ~LDAPProtocol();
     
     virtual void setHost( const QString& host, int port,
@@ -54,7 +56,7 @@ class LDAPProtocol : public KIO::SlaveBase
       const KABC::LDAPUrl &usrc, bool dir=false );
     int asyncSearch( KABC::LDAPUrl &usrc );
     
-    QCString LDAPEntryAsLDIF( LDAPMessage *msg );
+    Q3CString LDAPEntryAsLDIF( LDAPMessage *msg );
     void LDAPErr( const KURL &url, int err = LDAP_SUCCESS );
     void changeCheck( KABC::LDAPUrl &url );
 
