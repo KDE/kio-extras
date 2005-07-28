@@ -34,7 +34,7 @@ class NotificationDialog : public KDialogBase
 	Q_OBJECT
 
 public:
-	NotificationDialog( KFileItem &medium, NotifierSettings &settings,
+	NotificationDialog( KFileItem medium, NotifierSettings *settings,
 	                    QWidget* parent = 0, const char* name = 0 );
 	~NotificationDialog();
 
@@ -47,8 +47,8 @@ private:
 	void launchAction( NotifierAction *action );
 	void updateActionsListBox();
 
-	KFileItem &m_medium;
-	NotifierSettings &m_settings;
+	KFileItem m_medium;
+	NotifierSettings *m_settings;
 	KDirWatch * m_actionWatcher;
 	NotificationDialogView *m_view;
 };

@@ -26,7 +26,6 @@
 #include <klocale.h>
 #include <kprocess.h>
 #include <krun.h>
-#include <kio/netaccess.h>
 #include <kmessagebox.h>
 #include <kstdguiitem.h>
 #include <kstandarddirs.h>
@@ -56,12 +55,29 @@ void MediaNotifier::onMediumChange( const QString &name, bool allowNotification 
 	
 	KURL url(  "system:/media/"+name );
 
-	KIO::UDSEntry entry;
-	bool res = KIO::NetAccess::stat(  url, entry, 0L );
-	if ( !res ) return;
+	KIO::SimpleJob *job = KIO::stat( url, false );
+	job->setInteractive( false );
+
+	m_allowNotificationMap[job] = allowNotification;
+	
+	connect( job, SIGNAL( result( KIO::Job * ) ),
+	         this, SLOT( slotStatResult( KIO::Job * ) ) );
+}
+
+void MediaNotifier::slotStatResult( KIO::Job *job )
+{
+	bool allowNotification = m_allowNotificationMap[job];
+	m_allowNotificationMap.remove( job );
+	
+	if ( job->error() != 0 ) return;
+	
+	KIO::StatJob *stat_job = static_cast<KIO::StatJob *>( job );
+	
+	KIO::UDSEntry entry = stat_job->statResult();
+	KURL url = stat_job->url();
 	
 	KFileItem medium( entry, url );
-	
+
 	if ( autostart( medium ) ) return;
 	
 	if ( allowNotification ) notify( medium );
@@ -244,17 +260,19 @@ void MediaNotifier::notify( KFileItem &medium )
 {
 	kdDebug() << "Notification triggered." << endl;
 
-	NotifierSettings settings;
+	NotifierSettings *settings = new NotifierSettings();
 	
-	if ( settings.autoActionForMimetype( medium.mimetype() )==0L )
+	if ( settings->autoActionForMimetype( medium.mimetype() )==0L )
 	{
-		NotificationDialog dialog( medium, settings );
-		dialog.exec();
+		NotificationDialog *dialog
+			= new NotificationDialog( medium, settings );
+		dialog->show();
 	}
 	else
 	{
-		NotifierAction *action = settings.autoActionForMimetype( medium.mimetype() );
+		NotifierAction *action = settings->autoActionForMimetype( medium.mimetype() );
 		action->execute( medium );
+		delete settings;
 	}
 }
 

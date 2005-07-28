@@ -22,8 +22,10 @@
 
 #include <kdedmodule.h>
 #include <kfileitem.h>
+#include <kio/job.h>
 
 #include <qstring.h>
+#include <qmap.h>
 
 class MediaNotifier:  public KDEDModule
 {
@@ -36,6 +38,9 @@ public:
 
 k_dcop:
 	void onMediumChange( const QString &name, bool allowNotification );
+
+private slots:
+	void slotStatResult( KIO::Job *job );
 	
 private:
 	bool autostart( const KFileItem &medium );
@@ -45,6 +50,8 @@ private:
 	                  const QString &autorunFile );
 	bool execAutoopen( const KFileItem &medium, const QString &path,
 	                   const QString &autoopenFile );
+
+	QMap<KIO::Job*,bool> m_allowNotificationMap;
 };
 #endif
 

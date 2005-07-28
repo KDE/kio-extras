@@ -30,7 +30,7 @@
 #include "actionlistboxitem.h"
 #include "notificationdialogview.h"
 
-NotificationDialog::NotificationDialog( KFileItem &medium, NotifierSettings &settings,
+NotificationDialog::NotificationDialog( KFileItem medium, NotifierSettings *settings,
                                         QWidget* parent, const char* name )
 	: KDialogBase( parent, name, false, i18n( "Medium Detected" ), Ok|Cancel|User1, Ok, true),
 	  m_medium(medium), m_settings( settings )
@@ -66,12 +66,16 @@ NotificationDialog::NotificationDialog( KFileItem &medium, NotifierSettings &set
 	connect( m_view->actionsList, SIGNAL( doubleClicked ( QListBoxItem*, const QPoint & ) ),
 	         this, SLOT( slotOk() ) );
 
+	connect( this, SIGNAL( finished() ),
+	         this, SLOT( delayedDestruct() ) );
+	
 	m_actionWatcher->startScan();
 }
 
 NotificationDialog::~NotificationDialog()
 {
 	delete m_actionWatcher;
+	delete m_settings;
 }
 
 void NotificationDialog::updateActionsListBox()
@@ -79,7 +83,7 @@ void NotificationDialog::updateActionsListBox()
 	m_view->actionsList->clear();
 
 	QValueList<NotifierAction*> actions
-		= m_settings.actionsForMimetype( m_medium.mimetype() );
+		= m_settings->actionsForMimetype( m_medium.mimetype() );
 	
 	QValueList<NotifierAction*>::iterator it = actions.begin();
 	QValueList<NotifierAction*>::iterator end = actions.end();
@@ -96,7 +100,7 @@ void NotificationDialog::updateActionsListBox()
 
 void NotificationDialog::slotActionsChanged(const QString &/*dir*/)
 {
-	m_settings.reload();
+	m_settings->reload();
 	updateActionsListBox();
 }
 
@@ -118,8 +122,8 @@ void NotificationDialog::launchAction( NotifierAction *action )
 {
 	if ( m_view->autoActionCheck->isChecked() )
 	{
-		m_settings.setAutoAction(  m_medium.mimetype(), action );
-		m_settings.save();
+		m_settings->setAutoAction(  m_medium.mimetype(), action );
+		m_settings->save();
 	}
 	
 	action->execute(m_medium);
