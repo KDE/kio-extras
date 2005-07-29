@@ -237,6 +237,13 @@
     </grid>
 </widget>
 <layoutdefaults spacing="6" margin="11"/>
+<customwidgets>
+    <customwidget>
+        <class>KIconButton</class>
+        <header location="global">kicondialog.h</header>
+        <container>0</container>
+    </customwidget>
+</customwidgets>
 <includehints>
     <includehint>kicondialog.h</includehint>
     <includehint>klineedit.h</includehint>
