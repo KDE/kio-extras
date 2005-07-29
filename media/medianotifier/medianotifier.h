@@ -26,6 +26,8 @@
 
 #include <qstring.h>
 #include <qmap.h>
+//Added by qt3to4:
+#include <Q3CString>
 
 class MediaNotifier:  public KDEDModule
 {
@@ -33,7 +35,7 @@ class MediaNotifier:  public KDEDModule
 	K_DCOP
 
 public:
-	MediaNotifier( const QCString &name );
+	MediaNotifier( const Q3CString &name );
 	virtual ~MediaNotifier();
 
 k_dcop:

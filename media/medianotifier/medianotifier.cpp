@@ -21,6 +21,9 @@
 
 #include <qfile.h>
 #include <qfileinfo.h>
+//Added by qt3to4:
+#include <QTextStream>
+#include <Q3CString>
 
 #include <kdebug.h>
 #include <klocale.h>
@@ -35,7 +38,7 @@
 #include "notifieraction.h"
 #include "mediamanagersettings.h"
 
-MediaNotifier::MediaNotifier(const QCString &name) : KDEDModule(name)
+MediaNotifier::MediaNotifier(const Q3CString &name) : KDEDModule(name)
 {
 	connectDCOPSignal( "kded", "mediamanager", "mediumAdded(QString, bool)",
 	                   "onMediumChange(QString, bool)", true );
@@ -190,7 +193,7 @@ bool MediaNotifier::execAutoopen( const KFileItem &medium, const QString &path,
 	// An Autoopen file MUST contain a single relative path that points
 	// to a non-executable file contained on the medium. [...]
 	QFile file( path+"/"+autoopenFile );
-	file.open( IO_ReadOnly );
+	file.open( QIODevice::ReadOnly );
 	QTextStream stream( &file );
 
 	QString relative_path = stream.readLine().stripWhiteSpace();
@@ -278,7 +281,7 @@ void MediaNotifier::notify( KFileItem &medium )
 
 extern "C"
 {
-	KDE_EXPORT KDEDModule *create_medianotifier(const QCString &name)
+	KDE_EXPORT KDEDModule *create_medianotifier(const Q3CString &name)
 	{
 		return new MediaNotifier(name);
 	}

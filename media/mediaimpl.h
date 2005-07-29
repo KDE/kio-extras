@@ -56,6 +56,7 @@ k_dcop:
 
 signals:
 	void warning(const QString &msg);
+	void leaveModality();
 
 private slots:
 	void slotWarning(KIO::Job *job, const QString &msg);

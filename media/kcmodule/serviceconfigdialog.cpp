@@ -23,13 +23,13 @@
 #include <klineedit.h>
 #include <kactionselector.h>
 #include <kicondialog.h>
-#include <qlistbox.h>
+#include <q3listbox.h>
 #include <kservice.h>
 #include <kopenwith.h>
 #include <kpushbutton.h>
 #include <kiconloader.h>
 #include <qpixmap.h>
-#include <qiconset.h>
+#include <qicon.h>
 
 
 #include "mimetypelistboxitem.h"
@@ -46,8 +46,8 @@ ServiceConfigDialog::ServiceConfigDialog(NotifierServiceAction *action,
 	m_view->labelEdit->setText( m_action->label() );
 	m_view->commandEdit->setText( m_action->service().m_strExec );
 
-	QIconSet iconSet = SmallIconSet("configure");
-	QPixmap pixMap = iconSet.pixmap( QIconSet::Small, QIconSet::Normal );
+	QIcon iconSet = SmallIconSet("configure");
+	QPixmap pixMap = iconSet.pixmap( QIcon::Small, QIcon::Normal );
 	m_view->commandButton->setIconSet( iconSet );
 	m_view->commandButton->setFixedSize( pixMap.width()+8, pixMap.height()+8 );
 	
@@ -61,7 +61,7 @@ ServiceConfigDialog::ServiceConfigDialog(NotifierServiceAction *action,
 
 	for (  ; it!=end; ++it )
 	{
-		QListBox *list;
+		Q3ListBox *list;
 		
 		if ( action_mimetypes.contains( *it ) )
 		{
@@ -108,7 +108,7 @@ void ServiceConfigDialog::slotOk()
 	uint list_count = m_view->mimetypesSelector->selectedListBox()->count();
 	for( uint i=0; i < list_count; ++i )
 	{
-		QListBoxItem *item = m_view->mimetypesSelector->selectedListBox()->item(i);
+		Q3ListBoxItem *item = m_view->mimetypesSelector->selectedListBox()->item(i);
 		MimetypeListBoxItem *mime_item = static_cast<MimetypeListBoxItem*>( item );
 		mimetypes.append( mime_item->mimetype() );
 	}

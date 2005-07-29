@@ -26,6 +26,8 @@
 #include <klistbox.h>
 #include <qlabel.h>
 #include <qcheckbox.h>
+//Added by qt3to4:
+#include <Q3ValueList>
 
 #include "actionlistboxitem.h"
 #include "notificationdialogview.h"
@@ -36,7 +38,7 @@ NotificationDialog::NotificationDialog( KFileItem medium, NotifierSettings *sett
 	  m_medium(medium), m_settings( settings )
 {
 	setCaption( KIO::decodeFileName(m_medium.name()) );
-	clearWState( WState_Polished );
+	//clearWState(  WState_Polished );
 
 	m_view = new NotificationDialogView( this );
 	
@@ -63,7 +65,7 @@ NotificationDialog::NotificationDialog( KFileItem medium, NotifierSettings *sett
 	         this, SLOT( slotOk() ) );
 	connect( this, SIGNAL( user1Clicked() ),
 	         this, SLOT( slotConfigure() ) );
-	connect( m_view->actionsList, SIGNAL( doubleClicked ( QListBoxItem*, const QPoint & ) ),
+	connect( m_view->actionsList, SIGNAL( doubleClicked ( Q3ListBoxItem*, const QPoint & ) ),
 	         this, SLOT( slotOk() ) );
 
 	connect( this, SIGNAL( finished() ),
@@ -82,11 +84,11 @@ void NotificationDialog::updateActionsListBox()
 {
 	m_view->actionsList->clear();
 
-	QValueList<NotifierAction*> actions
+	Q3ValueList<NotifierAction*> actions
 		= m_settings->actionsForMimetype( m_medium.mimetype() );
 	
-	QValueList<NotifierAction*>::iterator it = actions.begin();
-	QValueList<NotifierAction*>::iterator end = actions.end();
+	Q3ValueList<NotifierAction*>::iterator it = actions.begin();
+	Q3ValueList<NotifierAction*>::iterator end = actions.end();
 	
 	for ( ; it!=end; ++it )
 	{
@@ -106,7 +108,7 @@ void NotificationDialog::slotActionsChanged(const QString &/*dir*/)
 
 void NotificationDialog::slotOk()
 {
-	QListBoxItem *item = m_view->actionsList->selectedItem();
+	Q3ListBoxItem *item = m_view->actionsList->selectedItem();
 	
 	if ( item != 0L )
 	{

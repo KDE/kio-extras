@@ -22,6 +22,10 @@
 #include <klocale.h>
 
 #include <qlayout.h>
+//Added by qt3to4:
+#include <QVBoxLayout>
+#include <Q3ValueList>
+#include <QBoxLayout>
 #include <kcombobox.h>
 #include <kpushbutton.h>
 #include <kstdguiitem.h>
@@ -59,8 +63,8 @@ NotifierModule::NotifierModule(QWidget *parent, const char *name)
 
 	connect( m_view->mimetypesCombo, SIGNAL( activated(int) ),
 	         this, SLOT( slotMimeTypeChanged(int) ) );
-	connect( m_view->actionsList, SIGNAL( selectionChanged(QListBoxItem*) ),
-	         this, SLOT( slotActionSelected(QListBoxItem*) ) );
+	connect( m_view->actionsList, SIGNAL( selectionChanged(Q3ListBoxItem*) ),
+	         this, SLOT( slotActionSelected(Q3ListBoxItem*) ) );
 	connect( m_view->addButton, SIGNAL( clicked() ),
 	         this, SLOT( slotAdd() ) );
 	connect( m_view->editButton, SIGNAL( clicked() ),
@@ -97,7 +101,7 @@ void NotifierModule::updateListBox()
 	m_view->actionsList->clear();
 	slotActionSelected( 0L );
 
-	QValueList<NotifierAction*> services;
+	Q3ValueList<NotifierAction*> services;
 	if ( m_mimetype.isEmpty() )
 	{
 		services = m_settings.actions();
@@ -107,7 +111,7 @@ void NotifierModule::updateListBox()
 		services = m_settings.actionsForMimetype( m_mimetype );
 	}
 
-	QValueList<NotifierAction*>::iterator it;
+	Q3ValueList<NotifierAction*>::iterator it;
 	
 	for ( it = services.begin(); it != services.end(); ++it )
 	{
@@ -115,7 +119,7 @@ void NotifierModule::updateListBox()
 	}
 }
 
-void NotifierModule::slotActionSelected(QListBoxItem *item)
+void NotifierModule::slotActionSelected(Q3ListBoxItem *item)
 {
 	NotifierAction *action = 0L;
 
@@ -141,7 +145,7 @@ void NotifierModule::slotMimeTypeChanged(int index)
 	}
 	else
 	{
-		QListBoxItem *item = m_view->mimetypesCombo->listBox()->item( index );
+		Q3ListBoxItem *item = m_view->mimetypesCombo->listBox()->item( index );
 		MimetypeListBoxItem *mime_item
 			= static_cast<MimetypeListBoxItem*>( item );
 		m_mimetype = mime_item->mimetype();
