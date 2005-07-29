@@ -22,12 +22,14 @@
 
 #include <kio/forwardingslavebase.h>
 #include "homeimpl.h"
+//Added by qt3to4:
+#include <Q3CString>
 
 class HomeProtocol : public KIO::ForwardingSlaveBase
 {
 public:
-	HomeProtocol(const QCString &protocol, const QCString &pool,
-	             const QCString &app);
+	HomeProtocol(const Q3CString &protocol, const Q3CString &pool,
+	             const Q3CString &app);
 	virtual ~HomeProtocol();
 
 	virtual bool rewriteURL(const KURL &url, KURL &newUrl);

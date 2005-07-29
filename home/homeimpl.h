@@ -26,6 +26,8 @@
 #include <kuser.h>
 
 #include <qstring.h>
+//Added by qt3to4:
+#include <Q3ValueList>
 
 class HomeImpl : public QObject
 {
@@ -37,7 +39,7 @@ public:
 	bool realURL(const QString &name, const QString &path, KURL &url);
 		
 	bool statHome(const QString &name, KIO::UDSEntry &entry);
-	bool listHomes(QValueList<KIO::UDSEntry> &list);
+	bool listHomes(Q3ValueList<KIO::UDSEntry> &list);
 	
 	void createTopLevelEntry(KIO::UDSEntry &entry) const;
 	
@@ -46,7 +48,11 @@ public:
 
 private slots:
 	void slotStatResult(KIO::Job *job);
-	
+       void enterLoop();
+
+signals:
+           void leaveModality();
+
 private:
 	void createHomeEntry(KIO::UDSEntry& entry, const KUser &user);
 

@@ -22,24 +22,26 @@
 #include <kuser.h>
 
 #include <kdirnotify_stub.h>
+//Added by qt3to4:
+#include <Q3ValueList>
 
 #define MINIMUM_UID 500
 
 HomeDirNotify::HomeDirNotify()
 {
 	KUser current_user;
-	QValueList<KUserGroup> groups = current_user.groups();
-	QValueList<int> uid_list;
+	Q3ValueList<KUserGroup> groups = current_user.groups();
+	Q3ValueList<int> uid_list;
 
-	QValueList<KUserGroup>::iterator groups_it = groups.begin();
-	QValueList<KUserGroup>::iterator groups_end = groups.end();
+	Q3ValueList<KUserGroup>::iterator groups_it = groups.begin();
+	Q3ValueList<KUserGroup>::iterator groups_end = groups.end();
 
 	for(; groups_it!=groups_end; ++groups_it)
 	{
-		QValueList<KUser> users = (*groups_it).users();
+		Q3ValueList<KUser> users = (*groups_it).users();
 
-		QValueList<KUser>::iterator it = users.begin();
-		QValueList<KUser>::iterator users_end = users.end();
+		Q3ValueList<KUser>::iterator it = users.begin();
+		Q3ValueList<KUser>::iterator users_end = users.end();
 
 		for(; it!=users_end; ++it)
 		{

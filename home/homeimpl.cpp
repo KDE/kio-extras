@@ -22,6 +22,8 @@
 #include <kdebug.h>
 #include <qapplication.h>
 #include <qeventloop.h>
+//Added by qt3to4:
+#include <Q3ValueList>
 
 #include <sys/stat.h>
 
@@ -69,23 +71,23 @@ bool HomeImpl::realURL(const QString &name, const QString &path, KURL &url)
 }
 
 
-bool HomeImpl::listHomes(QValueList<KIO::UDSEntry> &list)
+bool HomeImpl::listHomes(Q3ValueList<KIO::UDSEntry> &list)
 {
 	kdDebug() << "HomeImpl::listHomes" << endl;
 
 	KUser current_user;
-	QValueList<KUserGroup> groups = current_user.groups();
-	QValueList<int> uid_list;
+	Q3ValueList<KUserGroup> groups = current_user.groups();
+	Q3ValueList<int> uid_list;
 	
-	QValueList<KUserGroup>::iterator groups_it = groups.begin();
-	QValueList<KUserGroup>::iterator groups_end = groups.end();
+	Q3ValueList<KUserGroup>::iterator groups_it = groups.begin();
+	Q3ValueList<KUserGroup>::iterator groups_end = groups.end();
 
 	for(; groups_it!=groups_end; ++groups_it)
 	{
-		QValueList<KUser> users = (*groups_it).users();
+		Q3ValueList<KUser> users = (*groups_it).users();
 
-		QValueList<KUser>::iterator it = users.begin();
-		QValueList<KUser>::iterator users_end = users.end();
+		Q3ValueList<KUser>::iterator it = users.begin();
+		Q3ValueList<KUser>::iterator users_end = users.end();
 		
 		for(; it!=users_end; ++it)
 		{
@@ -184,8 +186,15 @@ void HomeImpl::slotStatResult(KIO::Job *job)
 		KIO::StatJob *stat_job = static_cast<KIO::StatJob *>(job);
 		m_entryBuffer = stat_job->statResult();
 	}
+	emit leaveModality();
+}
 
-	qApp->eventLoop()->exitLoop();
+void HomeImpl::enterLoop()
+{
+    QEventLoop eventLoop;
+    connect(this, SIGNAL(leaveModality()),
+        &eventLoop, SLOT(quit()));
+    eventLoop.exec(QEventLoop::ExcludeUserInputEvents);
 }
 
 KIO::UDSEntry HomeImpl::extractUrlInfos(const KURL &url)
@@ -195,7 +204,7 @@ KIO::UDSEntry HomeImpl::extractUrlInfos(const KURL &url)
 	KIO::StatJob *job = KIO::stat(url, false);
 	connect( job, SIGNAL( result(KIO::Job *) ),
 	         this, SLOT( slotStatResult(KIO::Job *) ) );
-	qApp->eventLoop()->enterLoop();
+	enterLoop();
 
 	KIO::UDSEntry::iterator it = m_entryBuffer.begin();
 	KIO::UDSEntry::iterator end = m_entryBuffer.end();
