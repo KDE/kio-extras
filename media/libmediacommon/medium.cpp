@@ -63,7 +63,7 @@ const Medium Medium::create(const QStringList &properties)
 {
 	Medium m;
 
-	if ( properties.size() >= PROPERTIES_COUNT )
+	if ( (uint)properties.size() >= PROPERTIES_COUNT )
 	{
 		m.m_properties[ID] = properties[ID];
 		m.m_properties[NAME] = properties[NAME];
