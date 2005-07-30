@@ -19,6 +19,7 @@
 #include <config.h>
 
 #include "managermodule.h"
+#include "managermodule.moc"
 
 #include <klocale.h>
 #include <dcopref.h>
