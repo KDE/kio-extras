@@ -4033,7 +4033,7 @@ static char *scan_request(char *c)
                         curpos=0;
                     break;
                 }
-                case REQ_TS: // ### TODO where is it defined? (tbl?)
+                case REQ_TS: // Table Start tbl(1)
                 {
                     c=scan_table(c);
                     break;
@@ -5299,7 +5299,7 @@ static char *scan_troff(char *c, bool san, char **result)
 	}
 	scaninbuff=true;
     }
-    h=c; // ### FIXME below are too many tests that may go before the posiiton of c
+    h=c; // ### FIXME below are too many tests that may go before the position of c
     /* start scanning */
 
     // ### VERIFY: a dot must be at first position, we cannot add newlines or it would allow spaces before a dot
