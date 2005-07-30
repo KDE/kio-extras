@@ -821,13 +821,12 @@ static void add_links(char *c)
 		}
 		if (isalnum(*h)) {
 		    char t,sec, *e;
-                    QString subsec; // ### TODO avoid using QString, as we do not know the encoding
-                    QString fstr(f); // ### TODO avoid using QString, as we do not know the encoding
+                    QByteArray fstr(f);
 		    e=h+1;
 		    sec=f[1];
-		    subsec=f[2];
-		    int index = fstr.find(')', 2);
-		    if (index != -1)
+		    const int index = fstr.find(')', 2);
+                    QByteArray subsec;
+                    if (index != -1)
 		      subsec = fstr.mid(2, index - 2);
 		    else // No closing ')' found, take first character as subsection.
 		      subsec = fstr.mid(2, 1);
@@ -840,11 +839,15 @@ static void add_links(char *c)
 		    *h=t;
 		    t=*e;
 		    *e='\0';
-                    Q3CString str;
-		    if (subsec.isEmpty())
-                        str.sprintf("<A HREF=\"man:%s(%c)\">%s</A>", h, sec, h);
-		    else
-                        str.sprintf("<A HREF=\"man:%s(%c%s)\">%s</A>", h, sec, subsec.lower().latin1(), h);
+                    QByteArray str("<a href=\"man:");
+                    str += h;
+                    str += "(";
+                    str += char( sec );
+                    if ( !subsec.isEmpty() )
+                        str += subsec.lower();
+                    str += ")\">";
+                    str += h;
+                    str += "</a>";
                     output_real(str.data());
 		    *e=t;
 		    c=e;
