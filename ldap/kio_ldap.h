@@ -9,6 +9,7 @@
 #include <kio/slavebase.h>
 #include <kio/authinfo.h>
 
+#define LDAP_DEPRECATED 1 /* Needed for ldap_simple_bind_s with openldap >= 2.3.x */
 #include <lber.h>
 #include <ldap.h>
 #include <kabc/ldapurl.h>
