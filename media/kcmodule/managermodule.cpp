@@ -19,7 +19,8 @@
 #include <config.h>
 
 #include "managermodule.h"
-#include "managermodule.moc"
+//The following line was preventing compilation with unsermake.
+//#include "managermodule.moc"
 
 #include <klocale.h>
 #include <dcopref.h>

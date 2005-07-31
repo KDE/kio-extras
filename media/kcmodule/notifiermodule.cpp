@@ -54,11 +54,13 @@ NotifierModule::NotifierModule(QWidget *parent, const char *name)
 	QStringList::iterator it = mimetypes.begin();
 	QStringList::iterator end = mimetypes.end();
 
+#warning "Needs porting. listBox() is no longer supplied in Qt4 QComboBox." 
+#if 0
 	for ( ; it!=end; ++it )
 	{
 		new MimetypeListBoxItem( *it, m_view->mimetypesCombo->listBox() );
 	}
-	
+#endif
 	updateListBox();
 
 	connect( m_view->mimetypesCombo, SIGNAL( activated(int) ),
@@ -145,10 +147,13 @@ void NotifierModule::slotMimeTypeChanged(int index)
 	}
 	else
 	{
+#warning "Needs porting. listBox() is no longer supplied in Qt4 QComboBox." 
+#if 0
 		Q3ListBoxItem *item = m_view->mimetypesCombo->listBox()->item( index );
 		MimetypeListBoxItem *mime_item
 			= static_cast<MimetypeListBoxItem*>( item );
 		m_mimetype = mime_item->mimetype();
+#endif
 	}
 
 	updateListBox();
