@@ -18,8 +18,6 @@
 
 // End of verbatim comment
 
-// kate: space-indent on; indent-width 4; replace-tabs on;
-
 /*
  * man2html-linux-1.0/1.1
  * This version modified for Redhat/Caldera linux - March 1996.
@@ -1027,7 +1025,7 @@ static Q3CString set_font( const Q3CString& name )
         const char lead = name[0];
         switch (lead)
         {
-            case 'P': // Palatino?
+            case 'P': // ### TODO: this seems to mean "precedent font"
             case 'R': break; // regular, do nothing
             case 'I': markup += "<span style=\"font-style:italic\">"; break;
             case 'B': markup += "<span style=\"font-weight:bold\">"; break;
@@ -1042,7 +1040,7 @@ static Q3CString set_font( const Q3CString& name )
         // Courier
         else if ( name == "CR" )
             markup += "<span style=\"font-family:monospace\">";
-        else if ( name == "CW" ) // CW is used by pod2man(1) (alias PerlDoc)
+        else if ( name == "CW" ) // CW is used by pod2man(1) (part of perldoc(1))
             markup += "<span style=\"font-family:monospace\">";
         else if ( name == "CI" )
             markup += "<span style=\"font-family:monospace;font-style:italic\">";
@@ -1140,7 +1138,7 @@ static char *scan_escape_direct( char *c, Q3CString& cstr );
 /**
  * scan a named character
  * param c position
-*/
+ */
 static Q3CString scan_named_character( char*& c )
 {
     Q3CString name;
@@ -1230,7 +1228,7 @@ static Q3CString scan_named_character( char*& c )
     // Note: characters with a one character length name doe not exist, as they would collide with other escapes
     
     // Now we have the name, let us find it between the string names
-    QMap<Q3CString,StringDefinition>::iterator it=s_characterDefinitionMap.find(name);
+    QMap<Q3CString,StringDefinition>::const_iterator it=s_characterDefinitionMap.find(name);
     if (it==s_characterDefinitionMap.end())
     {
         kdDebug(7107) << "EXCEPTION: cannot find character with name: " << BYTEARRAY( name ) << endl;
@@ -1306,7 +1304,7 @@ static Q3CString scan_named_string(char*& c)
         c++;
     }
     // Now we have the name, let us find it between the string names
-    QMap<Q3CString,StringDefinition>::iterator it=s_stringDefinitionMap.find(name);
+    QMap<Q3CString,StringDefinition>::const_iterator it=s_stringDefinitionMap.find(name);
     if (it==s_stringDefinitionMap.end())
     {
         kdDebug(7107) << "EXCEPTION: cannot find string with name: " << BYTEARRAY( name ) << endl;
@@ -1447,10 +1445,8 @@ static int read_only_number_register( const Q3CString& name )
 #endif
     // ### TODO: should .T be set to "html"? But we are not the HTML post-processor. :-(
 
-    // ### TODO: groff defines much more read-only number registers
-#ifndef SIMPLE_MAN2HTML
-            kdDebug(7107) << "EXCEPTION: unknown read-only number register: " << BYTEARRAY( name ) << endl;
-#endif
+    // ### TODO: groff defines many more read-only number registers
+    kdDebug(7107) << "EXCEPTION: unknown read-only number register: " << BYTEARRAY( name ) << endl;
     
     return 0; // Undefined variable
 
@@ -1659,7 +1655,7 @@ static char *scan_escape_direct( char *c, Q3CString& cstr )
     bool exoutputp;
     bool exskipescape;
     int i,j;
-    bool cplusplus = true; // Should the c++ be done at the end of the function
+    bool cplusplus = true; // Should the c++ call be executed at the end of the function
 
     cstr = "";
     intresult=0;
@@ -1809,22 +1805,6 @@ static char *scan_escape_direct( char *c, Q3CString& cstr )
         cplusplus = false;
         break;
     }
-#if 0
-    {
-	if (*++c) c++; // c += 2
-        if (sscanf(c, "%d", &i) != 1) // (### FIXME ugly!)
-		break;
-        Q3CString temp;
-        temp.sprintf( "%d", i ); // Skip over number (### FIXME ugly!)
-        c += temp.length();
-	switch(i) {
-		case 8: cstr = "\t"; curpos=(curpos+8)&0xfff8; break;
-		case 34: cstr = "&quot;"; curpos++; break;
-		default: cstr = char( i ); curpos++; break;
-	}
-	break;
-    }
-#endif
      case '\'': cstr = "&acute;";curpos++; break; // groff(7) ### TODO verify
      case '`': cstr = "`";curpos++; break; // groff(7)
      case '-': cstr = "-";curpos++; break; // groff(7)
@@ -3145,7 +3125,7 @@ static char *scan_request(char *c)
         int j = nlen;
         while (c[j] && c[j]==' ' || c[j]=='\t') j++;
         /* search macro database of self-defined macros */
-        QMap<Q3CString,StringDefinition>::iterator it=s_stringDefinitionMap.find(macroName);
+        QMap<Q3CString,StringDefinition>::const_iterator it=s_stringDefinitionMap.find(macroName);
         if (it!=s_stringDefinitionMap.end())
         {
             kdDebug(7107) << "CALLING MACRO: " << BYTEARRAY( macroName ) << endl;
@@ -4194,8 +4174,7 @@ static char *scan_request(char *c)
                     kdDebug(7107) << "end .rm/.rn" << endl;
                     break;
                 }
-                case REQ_nx: // ### TODO in man(7) it is "No filling", not "next file"
-                /* .nx filename : next file. */
+                case REQ_nx:
                 case REQ_in: // groff(7) "INdent"
                 {
                     /* .in +-N : Indent */
@@ -4851,7 +4830,7 @@ static char *scan_request(char *c)
                 }
                 case REQ_Nm:	// mdoc(7) "Name Macro" ### FIXME
                 {
-                    static char mandoc_name[NULL_TERMINATED(SMALL_STR_MAX)] = ""; // ### TODO Use QCString
+                    static char mandoc_name[NULL_TERMINATED(SMALL_STR_MAX)] = ""; // ### TODO Use QByteArray
                     trans_char(c,'"','\a');
                     c=c+j;
 
@@ -5076,7 +5055,7 @@ static char *scan_request(char *c)
                         kdDebug(7107) << "EXCEPTION: same origin and destination string to alias: " << BYTEARRAY( name ) << endl;
                         break;
                     }
-                    // Second parametr is origin (unlike in .rn)
+                    // Second parameter is origin (unlike in .rn)
                     QMap<Q3CString,StringDefinition>::iterator it=s_stringDefinitionMap.find(name2);
                     if (it==s_stringDefinitionMap.end())
                     {
@@ -5174,7 +5153,7 @@ static char *scan_request(char *c)
                         kdDebug(7107) << "EXCEPTION: same origin and destination number register to alias: " << BYTEARRAY( name ) << endl;
                         break;
                     }
-                    // Second parametr is origin (unlike in .rnn)
+                    // Second parameter is origin (unlike in .rnn)
                     QMap<Q3CString,NumberDefinition>::iterator it=s_numberDefinitionMap.find(name2);
                     if (it==s_numberDefinitionMap.end())
                     {
@@ -5220,7 +5199,7 @@ static char *scan_request(char *c)
                 }
                 case REQ_do: // groff(7) "DO command"
                 {
-                    // HACK: we just replace do by a \n and a .
+                    // ### HACK: we just replace do by a \n and a .
                     *c = '\n';
                     c++;
                     *c = '.';
@@ -5494,7 +5473,7 @@ void scan_man_page(const char *man_page)
 
     kdDebug(7107) << "Start scanning man page" << endl;
 
-    // ## Do more init
+    // ### Do more init
     // Unlike man2html, we actually call this several times, hence the need to
     // properly cleanup all those static vars
     s_ifelseval.clear();
@@ -5669,3 +5648,5 @@ int main(int argc, char **argv)
 
 
 #endif
+
+// kate: space-indent on; indent-width 4; replace-tabs on;
