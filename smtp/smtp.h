@@ -1,6 +1,6 @@
 /* -*- c++ -*-
  * Copyright (c) 2000, 2001 Alex Zepeda <zipzippy@sonic.net>
- * Copyright (c) 2001 Michael Häckel <Michael@Haeckel.Net>
+ * Copyright (c) 2001 Michael Hï¿½kel <Michael@Haeckel.Net>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -41,8 +41,8 @@
 
 class KURL;
 class Q3CString;
-template <typename T> class Q3MemArray;
-typedef Q3MemArray<char> QByteArray;
+/*template <typename T> class Q3MemArray;
+typedef Q3MemArray<char> QByteArray;*/
 
 namespace KioSMTP {
   class Response;
@@ -133,6 +133,7 @@ protected:
   void queueCommand( int type );
 
   unsigned short m_iOldPort;
+  unsigned short m_iPort;
   bool m_opened;
   QString m_sServer, m_sOldServer;
   QString m_sUser, m_sOldUser;

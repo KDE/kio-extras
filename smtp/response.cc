@@ -37,6 +37,8 @@
 #include <kio/global.h>
 
 #include <qstring.h>
+//Added by qt3to4:
+#include <Q3CString>
 
 namespace KioSMTP {
 
@@ -59,7 +61,7 @@ namespace KioSMTP {
     }
 
     bool ok = false;
-    unsigned int code = QCString( line, 3+1 ).toUInt( &ok );
+    unsigned int code = Q3CString( line, 3+1 ).toUInt( &ok );
     if ( !ok || code < 100 || code > 559 ) {
       // not a number or number out of range
       mValid = false;
@@ -85,15 +87,15 @@ namespace KioSMTP {
       return;
     }
 
-    mLines.push_back( len > 4 ? QCString( line+4, len-4+1 ).stripWhiteSpace() : QCString() );
+    mLines.push_back( len > 4 ? Q3CString( line+4, len-4+1 ).stripWhiteSpace() : Q3CString() );
   }
 
 
   // hackishly fixing QCStringList flaws...
-  static QCString join( char sep, const QCStringList & list ) {
+  static Q3CString join( char sep, const QCStringList & list ) {
     if ( list.empty() )
-      return QCString();
-    QCString result = list.front();
+      return Q3CString();
+    Q3CString result = list.front();
     for ( QCStringList::const_iterator it = ++list.begin() ; it != list.end() ; ++it )
       result += sep + *it;
     return result;
@@ -103,10 +105,10 @@ namespace KioSMTP {
     QString msg;
     if ( lines().count() > 1 )
       msg = i18n("The server responded:\n%1")
-	.arg( join( '\n', lines() ) );
+	.arg( QString(join( '\n', lines() )) );
     else
       msg = i18n("The server responded: \"%1\"")
-	.arg( lines().front() );
+	.arg( QString(lines().front()) );
     if ( first() == 4 )
       msg += '\n' + i18n("This is a temporary failure. "
 			 "You may try again later.");

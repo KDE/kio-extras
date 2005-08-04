@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2000, 2001 Alex Zepeda <zipzippy@sonic.net>
- * Copyright (c) 2001 Michael Häckel <Michael@Haeckel.Net>
+ * Copyright (c) 2001 Michael Hï¿½kel <Michael@Haeckel.Net>
  * Copyright (c) 2002 Aaron J. Seigo <aseigo@olympusproject.org>
  * Copyright (c) 2003 Marc Mutz <mutz@kde.org>
  * All rights reserved.
@@ -54,7 +54,12 @@ using KioSMTP::Response;
 using KioSMTP::TransactionState;
 
 #include <kemailsettings.h>
+
+#warning Port to KNetwork
+#if 0
 #include <ksock.h>
+#endif
+
 #include <kdebug.h>
 #include <kinstance.h>
 #include <kio/connection.h>
@@ -146,7 +151,8 @@ SMTPProtocol::SMTPProtocol(const Q3CString & pool, const Q3CString & app,
 
 unsigned int SMTPProtocol::sendBufferSize() const {
   // ### how much is eaten by SSL/TLS overhead?
-  const int fd = fileno( fp );
+#warning Port to KNetwork
+  const int fd = 0L; //fileno( fp );
   int value = -1;
   kde_socklen_t len = sizeof(value);
   if ( fd < 0 || ::getsockopt( fd, SOL_SOCKET, SO_SNDBUF, (char*)&value, &len ) )
@@ -508,16 +514,20 @@ bool SMTPProtocol::execute( Command * cmd, TransactionState * ts ) {
 
 bool SMTPProtocol::smtp_open(const QString& fakeHostname)
 {
+#if 0
   if (m_opened && 
       m_iOldPort == port(m_iPort) &&
       m_sOldServer == m_sServer && 
       m_sOldUser == m_sUser &&
       (fakeHostname.isNull() || m_hostname == fakeHostname)) 
     return true;
+#endif
 
   smtp_close();
+#if 0
   if (!connectToHost(m_sServer, m_iPort))
     return false;             // connectToHost has already send an error message.
+#endif
   m_opened = true;
 
   bool ok = false;
@@ -539,6 +549,8 @@ bool SMTPProtocol::smtp_open(const QString& fakeHostname)
   else
   { 
     QString tmpPort;
+#warning Port to KNetwork
+#if 0
     KSocketAddress* addr = KExtendedSocket::localAddress(m_iSock);
     // perform name lookup. NI_NAMEREQD means: don't return a numeric
     // value (we need to know when we get have the IP address, so we
@@ -549,7 +561,7 @@ bool SMTPProtocol::smtp_open(const QString& fakeHostname)
       // use the IP address as domain-literal
       m_hostname = '[' + addr->nodeName() + ']';
     delete addr;
-
+#endif
     if(m_hostname.isEmpty())
     {
       m_hostname = "localhost.invalid";
