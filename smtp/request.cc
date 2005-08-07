@@ -35,7 +35,7 @@
 
 #include <kurl.h>
 #include <kidna.h>
-#include <kmdcodec.h>
+#include <kcodecs.h>
 #include <kdebug.h>
 
 #include <assert.h>

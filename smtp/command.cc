@@ -40,7 +40,7 @@
 #include <kidna.h>
 #include <klocale.h>
 #include <kdebug.h>
-#include <kmdcodec.h>
+#include <kcodecs.h>
 #include <kio/slavebase.h> // for test_commands, where SMTPProtocol is not derived from TCPSlaveBase
 
 #include <assert.h>
