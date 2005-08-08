@@ -184,7 +184,7 @@ void NotifierModule::slotEdit()
 		= static_cast<ActionListBoxItem*>(m_view->actionsList->selectedItem());
 	
 	NotifierServiceAction * action;
-	if ( action = dynamic_cast<NotifierServiceAction*>( action_item->action() ) )
+	if ( (action = dynamic_cast<NotifierServiceAction*>( action_item->action() )) )
 	{
 		ServiceConfigDialog dialog(action, m_settings.supportedMimetypes(), this);
 		
@@ -204,7 +204,7 @@ void NotifierModule::slotDelete()
 		= static_cast<ActionListBoxItem*>(m_view->actionsList->selectedItem());
 	
 	NotifierServiceAction *action;
-	if ( action = dynamic_cast<NotifierServiceAction*>( action_item->action() ) )
+	if ( (action = dynamic_cast<NotifierServiceAction*>( action_item->action() ) ))
 	{
 		m_settings.deleteAction( action );
 		updateListBox();
