@@ -50,7 +50,7 @@ void SMBSlave::reparseConfiguration()
   //not really secure, but better than storing the plain password
   QString scrambled = cfg->readEntry( "Password" );
   m_default_password = "";
-  for (uint i=0; i<scrambled.length()/3; i++)
+  for (int i=0; i<scrambled.length()/3; i++)
   {
      QChar qc1 = scrambled[i*3];
      QChar qc2 = scrambled[i*3+1];
