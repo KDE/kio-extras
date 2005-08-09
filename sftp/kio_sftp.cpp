@@ -64,7 +64,7 @@ So we can't connect.
 #include <kio/ioslave_defaults.h>
 #include <kmimetype.h>
 #include <kmimemagic.h>
-#include <klargefile.h>
+#include <kde_file.h>
 #include <kremoteencoding.h>
 
 #include "sftp.h"
