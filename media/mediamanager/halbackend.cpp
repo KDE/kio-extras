@@ -26,6 +26,7 @@
 #include <kdebug.h>
 
 #define MOUNT_SUFFIX	(libhal_volume_is_mounted(halVolume) ? QString("_mounted") : QString("_unmounted"))
+#define MOUNT_ICON_SUFFIX	(libhal_volume_is_mounted(halVolume) ? QString("_mount") : QString("_unmount"))
 
 /* Static instance of this class, for static HAL callbacks */
 static HALBackend* s_HALBackend;
@@ -432,23 +433,23 @@ void HALBackend::setVolumeProperties(Medium* medium)
 			medium->needMounting();
 			switch (libhal_drive_get_type(halDrive)) {
 			case LIBHAL_DRIVE_TYPE_COMPACT_FLASH:
-				medium->setIconName("compact_flash" + MOUNT_SUFFIX);
+				medium->setIconName("compact_flash" + MOUNT_ICON_SUFFIX);
 				break;
 			case LIBHAL_DRIVE_TYPE_MEMORY_STICK:
-				medium->setIconName("memory_stick" + MOUNT_SUFFIX);
+				medium->setIconName("memory_stick" + MOUNT_ICON_SUFFIX);
 				break;
 			case LIBHAL_DRIVE_TYPE_SMART_MEDIA:
-				medium->setIconName("smart_media" + MOUNT_SUFFIX);
+				medium->setIconName("smart_media" + MOUNT_ICON_SUFFIX);
 				break;
 			case LIBHAL_DRIVE_TYPE_SD_MMC:
-				medium->setIconName("sd_mmc" + MOUNT_SUFFIX);
+				medium->setIconName("sd_mmc" + MOUNT_ICON_SUFFIX);
 				break;
 			case LIBHAL_DRIVE_TYPE_PORTABLE_AUDIO_PLAYER:
-				medium->setIconName("ipod" + MOUNT_SUFFIX);
+				medium->setIconName("ipod" + MOUNT_ICON_SUFFIX);
 				break;
 			case LIBHAL_DRIVE_TYPE_CAMERA:
 				mimeType = "media/camera" + MOUNT_SUFFIX;
-				medium->setIconName("camera" + MOUNT_SUFFIX);
+				medium->setIconName("camera" + MOUNT_ICON_SUFFIX);
 				// get model from camera
 				if (physdev && libhal_device_query_capability(m_halContext, physdev, "camera", NULL)) 
 				{
