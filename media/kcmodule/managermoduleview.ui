@@ -23,6 +23,9 @@
             <property name="text">
                 <string>Enable HAL backend</string>
             </property>
+            <property name="whatsThis" stdset="0">
+                <string>Select this if you want to enable the Hardware Abstraction Layer (http://hal.freedesktop.org/wiki/Software/hal) support.</string>
+            </property>
         </widget>
         <widget class="QCheckBox">
             <property name="name">
@@ -31,6 +34,9 @@
             <property name="text">
                 <string>Enable CD polling</string>
             </property>
+            <property name="whatsThis" stdset="0">
+                <string>Select this to enable the CD polling.</string>
+            </property>
         </widget>
         <widget class="QCheckBox">
             <property name="name">
@@ -38,6 +44,9 @@
             </property>
             <property name="text">
                 <string>Enable medium application autostart after mount</string>
+            </property>
+            <property name="whatsThis" stdset="0">
+                <string>Select this if you want to enable application autostart after mounting a device.</string>
             </property>
         </widget>
         <spacer>

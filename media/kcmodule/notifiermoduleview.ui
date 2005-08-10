@@ -60,6 +60,9 @@
                                     <verstretch>0</verstretch>
                                 </sizepolicy>
                             </property>
+                            <property name="whatsThis" stdset="0">
+                                <string>Here is the list of the availables type of medium which can be monitored. You can filter the availables action by selecting a kind of medium. If you want to see all the actions, select "All Mime Types".</string>
+                            </property>
                         </widget>
                     </hbox>
                 </widget>
@@ -86,6 +89,9 @@
                                     <property name="text">
                                         <string>&amp;Add...</string>
                                     </property>
+                                    <property name="whatsThis" stdset="0">
+                                        <string>Click here to add an action.</string>
+                                    </property>
                                 </widget>
                                 <widget class="KPushButton">
                                     <property name="name">
@@ -93,6 +99,9 @@
                                     </property>
                                     <property name="text">
                                         <string>&amp;Delete</string>
+                                    </property>
+                                    <property name="whatsThis" stdset="0">
+                                        <string>Click here to delete the selected action if possible.</string>
                                     </property>
                                 </widget>
                                 <widget class="KPushButton">
@@ -102,6 +111,9 @@
                                     <property name="text">
                                         <string>&amp;Edit...</string>
                                     </property>
+                                    <property name="whatsThis" stdset="0">
+                                        <string>Click here to edit the selected action if possible.</string>
+                                    </property>
                                 </widget>
                                 <widget class="KPushButton">
                                     <property name="name">
@@ -109,6 +121,9 @@
                                     </property>
                                     <property name="text">
                                         <string>&amp;Toggle as Auto Action</string>
+                                    </property>
+                                    <property name="whatsThis" stdset="0">
+                                        <string>Click here to perform automaticly this action on detection of the selected medium type (this option is disabled when "All Mime Types" is selected).</string>
                                     </property>
                                 </widget>
                             </vbox>
@@ -134,6 +149,9 @@
                             <property name="name">
                                 <cstring>actionsList</cstring>
                             </property>
+                            <property name="whatsThis" stdset="0">
+                                <string>Here is the list of the available actions. You can modify them by using the buttons on your right.</string>
+                            </property>
                         </widget>
                     </grid>
                 </widget>
@@ -144,6 +162,9 @@
 <layoutdefaults spacing="6" margin="11"/>
 <includehints>
     <includehint>kcombobox.h</includehint>
+    <includehint>kpushbutton.h</includehint>
+    <includehint>kpushbutton.h</includehint>
+    <includehint>kpushbutton.h</includehint>
     <includehint>kpushbutton.h</includehint>
     <includehint>klistbox.h</includehint>
 </includehints>
