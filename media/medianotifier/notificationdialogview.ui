@@ -100,7 +100,7 @@
                 <cstring>autoActionCheck</cstring>
             </property>
             <property name="text">
-                <string>&amp;Always do that for this type of media</string>
+                <string>&amp;Always do this for this type of media</string>
             </property>
         </widget>
     </vbox>
