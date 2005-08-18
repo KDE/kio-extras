@@ -199,7 +199,7 @@ int LDAPProtocol::asyncSearch( LDAPUrl &usrc )
   if ( count > 0 ) {
     attrs = static_cast<char**>( malloc((count+1) * sizeof(char*)) );
     for (int i=0; i<count; i++)
-      attrs[i] = strdup( (*usrc.attributes().at(i)).utf8() );
+      attrs[i] = strdup( usrc.attributes().at(i).utf8() );
     attrs[count] = 0;
   }  
   
@@ -1078,7 +1078,7 @@ void LDAPProtocol::listDir( const KURL &_url )
     return;
   }
 
-  usrc.setAttributes( "" );
+  usrc.setAttributes( QStringList() << "" );
   usrc.setExtension( "x-dir", "base" );
   // publish the results
   UDSEntry uds;
