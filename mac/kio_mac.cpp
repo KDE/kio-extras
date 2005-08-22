@@ -541,6 +541,8 @@ QString MacProtocol::getMimetype(QString type, QString app) {
         return QString("image/tiff");
     } else if (type == QString("PICT")) {
         return QString("image/pict");
+    } else if (type == QString("TPIC")) {
+        return QString("image/x-targa");
     } else if (type == QString("ULAW")) {
         return QString("audio/basic");
     } else if (type == QString("AIFF")) {
