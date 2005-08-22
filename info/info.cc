@@ -78,6 +78,18 @@ void InfoProtocol::get( const KURL& url )
         return;
     }
 
+    if ( url.path().right(1) == "/" )
+    {
+        // Trailing / are not supported, so we need to remove them.
+        KURL newUrl( url );
+        QString newPath( url.path() );
+        newPath.chop( 1 );
+        newUrl.setPath( newPath );
+        redirection( newUrl );
+        finished();
+        return;
+    }
+
     mimeType("text/html");
     // extract the path and node from url
     decodeURL( url );
