@@ -29,6 +29,8 @@ AC_SUBST(LIBART_LIBS)
 AC_SUBST(LIBART_CFLAGS)
 AC_SUBST(LIBART_RPATH)
 
+AC_ARG_WITH(openexr,AC_HELP_STRING([--with-openexr],[Enable openexr support [default=check]]),[openexr_test="$withval"],[openexr_test="yes"])
+
 if test "x$openexr_test" = "xyes" ; then
 KDE_FIND_LIBEXR
 fi
