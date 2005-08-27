@@ -164,9 +164,8 @@ bool SMBSlave::auth_initialize_smbc()
 
         cfg.setGroup( "SMB" );
         int debug_level = cfg.readNumEntry( "DebugLevel", 0 );
-        int flags = (SMB_CTX_FLAG_USE_KERBEROS | SMB_CTX_FLAG_FALLBACK_AFTER_KERBEROS); 
 
-        if(smbc_init(::auth_smbc_get_data,debug_level,flags) == -1)
+        if(smbc_init(::auth_smbc_get_data,debug_level) == -1)
         {
             SlaveBase::error(ERR_INTERNAL, i18n("libsmbclient failed to initialize"));
             return false;
