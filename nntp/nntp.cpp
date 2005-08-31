@@ -404,6 +404,7 @@ void NNTPProtocol::fetchGroups( const QString &since )
         moderated = false;
       }
 
+      entry.clear();
       fillUDSEntry(entry, group, msg_cnt, postingAllowed && !moderated, false);
       // add the last serial number as UDS_EXTRA atom, this is needed for
       // incremental article listing
@@ -510,6 +511,7 @@ bool NNTPProtocol::fetchGroupRFC977( unsigned long first )
     resp_line = readBuffer;
     if ((pos = resp_line.find('<')) > 0 && (pos2 = resp_line.find('>',pos+1))) {
       msg_id = resp_line.mid(pos,pos2-pos+1);
+      entry.clear();
       fillUDSEntry(entry, msg_id, 0, false, true);
       entryList.append(entry);
       if (entryList.count() >= UDS_ENTRY_CHUNK) {
@@ -542,7 +544,7 @@ bool NNTPProtocol::fetchGroupXOVER( unsigned long first, bool &notSupported )
       }
       memset( readBuffer, 0, MAX_PACKET_LEN );
       readBufferLen = readLine ( readBuffer, MAX_PACKET_LEN );
-      line = readBuffer;
+      line = QString::fromLatin1( readBuffer, readBufferLen );
       if ( line == ".\r\n" )
         break;
       headers << line.stripWhiteSpace();
@@ -576,7 +578,7 @@ bool NNTPProtocol::fetchGroupXOVER( unsigned long first, bool &notSupported )
     }
     memset( readBuffer, 0, MAX_PACKET_LEN );
     readBufferLen = readLine ( readBuffer, MAX_PACKET_LEN );
-    line = readBuffer;
+    line = QString::fromLatin1( readBuffer, readBufferLen );
     if ( line == ".\r\n" ) {
       // last article reached
       if ( !entryList.isEmpty() )
@@ -587,10 +589,12 @@ bool NNTPProtocol::fetchGroupXOVER( unsigned long first, bool &notSupported )
     fields = QStringList::split( "\t", line, true );
     msgId = QString::null;
     msgSize = 0;
+    entry.clear();
     QStringList::ConstIterator it = headers.constBegin();
     QStringList::ConstIterator it2 = fields.constBegin();
     ++it2; // first entry is the serial number
     for ( ; it != headers.constEnd() && it2 != fields.constEnd(); ++it, ++it2 ) {
+      DBG << "Processing header: " << *it << " with content: " << *it2 << endl;
       if ( (*it).contains( "Message-ID:", false ) ) {
         msgId = (*it2);
         continue;
@@ -625,7 +629,6 @@ void NNTPProtocol::fillUDSEntry(UDSEntry& entry, const QString& name, long size,
   long posting=0;
 
   UDSAtom atom;
-  entry.clear();
 
   // entry name
   atom.m_uds = UDS_NAME;
