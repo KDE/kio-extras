@@ -116,7 +116,8 @@ void NNTPProtocol::get(const KURL& url) {
   pos = path.find('<');
   group = path.left(pos);
   msg_id = KURL::decode_string( path.right(path.length()-pos) );
-  if (group.left(1) == "/") group.remove(0,1);
+  if ( group.startsWith( "/" ) )
+    group.remove( 0, 1 );
   if ((pos = group.find('/')) > 0) group = group.left(pos);
   DBG << "get group: " << group << " msg: " << msg_id << endl;
 
@@ -159,7 +160,7 @@ void NNTPProtocol::get(const KURL& url) {
       break;
     if ( buffer == ".\r\n" )
       break;
-    if ( buffer.left( 2 ) == ".." )
+    if ( buffer.startsWith( ".." ) )
       buffer.remove( 0, 1 );
     data( buffer );
   }
@@ -213,28 +214,28 @@ bool NNTPProtocol::post_article() {
   bool last_chunk_had_line_ending = true;
   do {
     QByteArray buffer;
-    Q3CString data;
     dataReq();
-    result = readData(buffer);
+    result = readData( buffer );
+    DBG << "receiving data: " << QString(buffer) << endl;
     // treat the buffer data
-    if (result>0) {
-      data = Q3CString(buffer.data(),buffer.size()+1);
+    if ( result > 0 ) {
       // translate "\r\n." to "\r\n.."
-      int pos=0;
-      if (last_chunk_had_line_ending && data[0] == '.') {
-        data.insert(0,'.');
+      int pos = 0;
+      if ( last_chunk_had_line_ending && buffer[0] == '.' ) {
+        buffer.insert( 0, '.' );
         pos += 2;
       }
-      last_chunk_had_line_ending = (data.right(2) == "\r\n");
-      while ((pos = data.find("\r\n.",pos)) > 0) {
-        data.insert(pos+2,'.');
+      last_chunk_had_line_ending = ( buffer.endsWith( "\r\n" ) );
+      while ( (pos = buffer.find( "\r\n.", pos )) > 0) {
+        buffer.insert( pos + 2, '.' );
         pos += 4;
       }
 
       // send data to socket, write() doesn't send the terminating 0
-      write( data.data(), data.length() );
+      write( buffer, buffer.length() );
+      DBG << "writing: " << QString( buffer ) << endl;
     }
-  } while (result>0);
+  } while ( result > 0 );
 
   // error occurred?
   if (result<0) {
@@ -277,7 +278,7 @@ void NNTPProtocol::stat( const KURL& url ) {
 
   // /group = message list
   } else if (regGroup.search(path) == 0) {
-    if (path.left(1) == "/") path.remove(0,1);
+    if ( path.startsWith( "/" ) ) path.remove(0,1);
     if ((pos = path.find('/')) > 0) group = path.left(pos);
     else group = path;
     DBG << "stat group: " << group << endl;
@@ -290,7 +291,8 @@ void NNTPProtocol::stat( const KURL& url ) {
     pos = path.find('<');
     group = path.left(pos);
     msg_id = KURL::decode_string( path.right(path.length()-pos) );
-    if (group.left(1) == "/") group.remove(0,1);
+    if ( group.startsWith( "/" ) )
+      group.remove( 0, 1 );
     if ((pos = group.find('/')) > 0) group = group.left(pos);
     DBG << "stat group: " << group << " msg: " << msg_id << endl;
     fillUDSEntry(entry, msg_id, 0, false, true);
@@ -328,8 +330,8 @@ void NNTPProtocol::listDir( const KURL& url ) {
     // if path = /group
     int pos;
     QString group;
-    if (path.left(1) == "/")
-      path.remove(0,1);
+    if ( path.startsWith( "/" ) )
+      path.remove( 0, 1 );
     if ((pos = path.find('/')) > 0)
       group = path.left(pos);
     else
