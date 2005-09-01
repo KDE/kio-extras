@@ -361,7 +361,8 @@ void NNTPProtocol::fetchGroups( const QString &since )
   }
 
   // read newsgroups line by line
-  Q3CString line, group;
+  QByteArray line;
+  QString group;
   int pos, pos2;
   long msg_cnt;
   bool moderated;
@@ -376,11 +377,11 @@ void NNTPProtocol::fetchGroups( const QString &since )
     }
     memset( readBuffer, 0, MAX_PACKET_LEN );
     readBufferLen = readLine ( readBuffer, MAX_PACKET_LEN );
-    line = readBuffer;
+    line = QByteArray( readBuffer, readBufferLen );
     if ( line == ".\r\n" )
       break;
 
-    DBG << "  fetchGroups -- data: " << line.stripWhiteSpace() << endl;
+    DBG << "  fetchGroups -- data: " << QString( line ).stripWhiteSpace() << endl;
 
     // group name
     if ((pos = line.find(' ')) > 0) {
@@ -392,8 +393,8 @@ void NNTPProtocol::fetchGroups( const QString &since )
       long last = 0;
       if (((pos = line.find(' ')) > 0 || (pos = line.find('\t')) > 0) &&
           ((pos2 = line.find(' ',pos+1)) > 0 || (pos2 = line.find('\t',pos+1)) > 0)) {
-        last = line.left(pos).toLong();
-        long first = line.mid(pos+1,pos2-pos-1).toLong();
+        last = line.left(pos).toLongLong();
+        long first = line.mid(pos+1,pos2-pos-1).toLongLong();
         msg_cnt = abs(last-first+1);
         // moderated group?
         moderated = (line[pos2+1] == 'n');
