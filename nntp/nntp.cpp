@@ -144,7 +144,6 @@ void NNTPProtocol::get(const KURL& url) {
   }
 
   // read and send data
-  Q3CString line;
   QByteArray buffer;
   char tmp[MAX_PACKET_LEN];
   int len = 0;
@@ -155,17 +154,14 @@ void NNTPProtocol::get(const KURL& url) {
     }
     memset( tmp, 0, MAX_PACKET_LEN );
     len = readLine( tmp, MAX_PACKET_LEN );
-    line = tmp;
+    buffer = QByteArray( tmp, len );
     if ( len <= 0 )
       break;
-    if ( line == ".\r\n" )
+    if ( buffer == ".\r\n" )
       break;
-    if ( line.left(2) == ".." )
-      line.remove( 0, 1 );
-    // cannot use QCString, it would send the 0-terminator too
-    buffer.setRawData( line.data(), line.length() );
+    if ( buffer.left( 2 ) == ".." )
+      buffer.remove( 0, 1 );
     data( buffer );
-    buffer.resetRawData( line.data(), line.length() );
   }
   // end of data
   buffer.resize(0);
