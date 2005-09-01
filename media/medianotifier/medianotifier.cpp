@@ -232,7 +232,7 @@ bool MediaNotifier::execAutoopen( const KFileItem &medium, const QString &path,
 	// The desktop environment MUST prompt the user for confirmation
 	// before opening the file.
 	QString mediumType = medium.mimeTypePtr()->name();
-	QString filename = url.filename();
+	QString filename = url.fileName();
 	QString text = i18n( "An autoopen file as been found on your '%1'."
 	                     " Do you want to open '%2'?\n"
 	                     "Note that opening a file on a medium may compromise"
