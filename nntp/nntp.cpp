@@ -425,45 +425,59 @@ void NNTPProtocol::fetchGroups( const QString &since, bool desc )
     }
   }
 
-  // request (all) group descriptions
-  if ( desc ) {
-    res = sendCommand( "LIST NEWSGROUPS" );
+  // handle group descriptions
+  QMap<QString, UDSEntry>::Iterator it = entryMap.begin();
+  while ( desc ) {
+    // request all group descriptions
+    if ( since.isEmpty() )
+      res = sendCommand( "LIST NEWSGROUPS" );
+    else {
+      // request only descriptions for new groups
+      if ( it == entryMap.end() )
+        break;
+      res = sendCommand( "LIST NEWSGROUPS " + it.key() );
+      ++it;
+    }
     if ( res != 215 ) {
       unexpected_response( res, "LIST NEWSGROUPS" );
       return;
     }
-  }
-  // download group descriptions
-  while ( desc ) {
-    if ( ! waitForResponse( readTimeout() ) ) {
-      error( ERR_SERVER_TIMEOUT, mHost );
-      return;
+
+    // download group descriptions
+    while ( true ) {
+      if ( ! waitForResponse( readTimeout() ) ) {
+        error( ERR_SERVER_TIMEOUT, mHost );
+        return;
+      }
+      memset( readBuffer, 0, MAX_PACKET_LEN );
+      readBufferLen = readLine ( readBuffer, MAX_PACKET_LEN );
+      line = QByteArray( readBuffer, readBufferLen );
+      if ( line == ".\r\n" )
+        break;
+
+      DBG << "  fetching group description: " << QString( line ).stripWhiteSpace() << endl;
+      int pos = line.indexOf( ' ' );
+      pos = pos < 0 ? line.indexOf( '\t' ) : kMin( pos, line.indexOf( '\t' ) );
+      group = line.left( pos );
+      QString groupDesc = line.right( line.length() - pos ).trimmed();
+
+      if ( entryMap.contains( group ) ) {
+        entry = entryMap.take( group );
+        UDSAtom atom;
+        atom.m_uds = UDS_EXTRA;
+        atom.m_str = groupDesc;
+        entry.append( atom );
+        entryList.append( entry );
+      }
+
+      if (entryList.count() >= UDS_ENTRY_CHUNK) {
+        listEntries(entryList);
+        entryList.clear();
+      }
     }
-    memset( readBuffer, 0, MAX_PACKET_LEN );
-    readBufferLen = readLine ( readBuffer, MAX_PACKET_LEN );
-    line = QByteArray( readBuffer, readBufferLen );
-    if ( line == ".\r\n" )
+
+    if ( since.isEmpty() )
       break;
-
-    DBG << "  fetching group description: " << QString( line ).stripWhiteSpace() << endl;
-    int pos = line.indexOf( ' ' );
-    pos = pos < 0 ? line.indexOf( '\t' ) : kMin( pos, line.indexOf( '\t' ) );
-    group = line.left( pos );
-    QString groupDesc = line.right( line.length() - pos ).trimmed();
-
-    if ( entryMap.contains( group ) ) {
-      entry = entryMap.take( group );
-      UDSAtom atom;
-      atom.m_uds = UDS_EXTRA;
-      atom.m_str = groupDesc;
-      entry.append( atom );
-      entryList.append( entry );
-    }
-
-    if (entryList.count() >= UDS_ENTRY_CHUNK) {
-      listEntries(entryList);
-      entryList.clear();
-    }
   }
   // take care of groups without descriptions
   for ( QMap<QString, UDSEntry>::Iterator it = entryMap.begin(); it != entryMap.end(); ++it )
