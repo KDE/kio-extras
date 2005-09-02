@@ -85,8 +85,9 @@ class NNTPProtocol:public KIO::TCPSlaveBase
     * Fetch all new groups since the given date or (if the date is empty)
     * all available groups.
     * @param since Date as specified in RFC 977 for the NEWGROUPS command
+    * @param desc Fetch group description (needs more memory)
     */
-   void fetchGroups( const QString &since );
+   void fetchGroups( const QString &since, bool desc );
    /**
     * Fetch message listing from the given newsgroup.
     * This will use RFC2980 XOVER if available, plain RFC977 STAT/NEXT

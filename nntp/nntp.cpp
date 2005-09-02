@@ -13,6 +13,7 @@
 #include <stdio.h>
 
 #include <qdir.h>
+#include <qmap.h>
 #include <qregexp.h>
 //Added by qt3to4:
 #include <Q3CString>
@@ -324,7 +325,7 @@ void NNTPProtocol::listDir( const KURL& url ) {
     return;
   }
   else if ( path == "/" ) {
-    fetchGroups( url.queryItem( "since" ) );
+    fetchGroups( url.queryItem( "since" ), url.queryItem( "desc" ) == "true" );
     finished();
   } else {
     // if path = /group
@@ -342,7 +343,7 @@ void NNTPProtocol::listDir( const KURL& url ) {
   }
 }
 
-void NNTPProtocol::fetchGroups( const QString &since )
+void NNTPProtocol::fetchGroups( const QString &since, bool desc )
 {
   int expected;
   int res;
@@ -368,6 +369,7 @@ void NNTPProtocol::fetchGroups( const QString &since )
   bool moderated;
   UDSEntry entry;
   UDSEntryList entryList;
+  QMap<QString, UDSEntry> entryMap;
 
   // read in data and process each group. one line at a time
   while ( true ) {
@@ -411,7 +413,10 @@ void NNTPProtocol::fetchGroups( const QString &since )
       atom.m_uds = UDS_EXTRA;
       atom.m_str = QString::number( last );
       entry.append( atom );
-      entryList.append(entry);
+      if ( !desc )
+        entryList.append(entry);
+      else
+        entryMap[group] = entry;
 
       if (entryList.count() >= UDS_ENTRY_CHUNK) {
         listEntries(entryList);
@@ -420,8 +425,53 @@ void NNTPProtocol::fetchGroups( const QString &since )
     }
   }
 
+  // request (all) group descriptions
+  if ( desc ) {
+    res = sendCommand( "LIST NEWSGROUPS" );
+    if ( res != 215 ) {
+      unexpected_response( res, "LIST NEWSGROUPS" );
+      return;
+    }
+  }
+  // download group descriptions
+  while ( desc ) {
+    if ( ! waitForResponse( readTimeout() ) ) {
+      error( ERR_SERVER_TIMEOUT, mHost );
+      return;
+    }
+    memset( readBuffer, 0, MAX_PACKET_LEN );
+    readBufferLen = readLine ( readBuffer, MAX_PACKET_LEN );
+    line = QByteArray( readBuffer, readBufferLen );
+    if ( line == ".\r\n" )
+      break;
+
+    DBG << "  fetching group description: " << QString( line ).stripWhiteSpace() << endl;
+    int pos = line.indexOf( ' ' );
+    pos = pos < 0 ? line.indexOf( '\t' ) : kMin( pos, line.indexOf( '\t' ) );
+    group = line.left( pos );
+    QString groupDesc = line.right( line.length() - pos ).trimmed();
+
+    if ( entryMap.contains( group ) ) {
+      entry = entryMap.take( group );
+      UDSAtom atom;
+      atom.m_uds = UDS_EXTRA;
+      atom.m_str = groupDesc;
+      entry.append( atom );
+      entryList.append( entry );
+    }
+
+    if (entryList.count() >= UDS_ENTRY_CHUNK) {
+      listEntries(entryList);
+      entryList.clear();
+    }
+  }
+  // take care of groups without descriptions
+  for ( QMap<QString, UDSEntry>::Iterator it = entryMap.begin(); it != entryMap.end(); ++it )
+    entryList.append( it.value() );
+
   // send rest of entryList
-  if (entryList.count() > 0) listEntries(entryList);
+  if ( entryList.count() > 0 )
+    listEntries(entryList);
 }
 
 bool NNTPProtocol::fetchGroup( QString &group, unsigned long first ) {
