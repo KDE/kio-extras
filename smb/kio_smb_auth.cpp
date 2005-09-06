@@ -156,6 +156,8 @@ bool SMBSlave::checkPassword(SMBUrl &url)
 // Returns: 0 on success -1 with errno set on error
 bool SMBSlave::auth_initialize_smbc()
 {
+    SMBCCTX *smb_context = NULL;
+
     kdDebug(KIO_SMB) << "auth_initialize_smbc " << endl;
     if(m_initialized_smbc == false)
     {
@@ -165,11 +167,36 @@ bool SMBSlave::auth_initialize_smbc()
         cfg.setGroup( "SMB" );
         int debug_level = cfg.readNumEntry( "DebugLevel", 0 );
 
+#if 0
+	/* old API initialisation routine does not allow to set flags */
+
         if(smbc_init(::auth_smbc_get_data,debug_level) == -1)
         {
             SlaveBase::error(ERR_INTERNAL, i18n("libsmbclient failed to initialize"));
             return false;
         }
+#endif
+	smb_context = smbc_new_context();
+	if (smb_context == NULL) {
+            SlaveBase::error(ERR_INTERNAL, i18n("libsmbclient failed to create context"));
+	    return false;
+	}
+
+	smb_context->debug = debug_level;
+	smb_context->callbacks.auth_fn = ::auth_smbc_get_data;
+
+	if (!smbc_init_context(smb_context)) {
+		smbc_free_context(smb_context, false);
+		smb_context = NULL;
+            	SlaveBase::error(ERR_INTERNAL, i18n("libsmbclient failed to initialize context"));
+	    	return false;
+	}
+
+#if defined(SMB_CTX_FLAG_USE_KERBEROS) && defined(SMB_CTX_FLAG_FALLBACK_AFTER_KERBEROS)
+	smb_context->flags |= SMB_CTX_FLAG_USE_KERBEROS | SMB_CTX_FLAG_FALLBACK_AFTER_KERBEROS;
+#endif
+
+	smbc_set_context(smb_context);
 
         m_initialized_smbc = true;
     }
