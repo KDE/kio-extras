@@ -341,7 +341,9 @@ void SMBSlave::listDir( const KURL& kurl )
            // Set name
            atom.m_uds = KIO::UDS_NAME;
            QString dirpName = QString::fromUtf8( dirp->name );
-           QString comment = QString::fromUtf8( dirp->comment, dirp->commentlen - 1);
+           // We cannot trust dirp->commentlen has it might be with or without the NUL character
+           // See KDE bug #111430 and Samba bug #3030
+           QString comment = QString::fromUtf8( dirp->comment );
            if ( dirp->smbc_type == SMBC_SERVER || dirp->smbc_type == SMBC_WORKGROUP ) {
                atom.m_str = dirpName.lower();
                atom.m_str[0] = dirpName.at( 0 ).upper();
