@@ -1,5 +1,5 @@
 /* This file is part of the KDE Project
-   Copyright (c) 2004 - 2005 Jérôme Lodewyck <lodewyck@clipper.ens.fr>
+   Copyright (c) 2004-2005 Jérôme Lodewyck <jerome dot lodewyck at normalesup dot org>
 
    This library is free software; you can redistribute it and/or
    modify it under the terms of the GNU Library General Public
@@ -97,7 +97,7 @@ bool HALBackend::InitHal()
 	m_halFunctions.device_property_modified	= HALBackend::hal_device_property_modified;
 	m_halFunctions.device_condition			= HALBackend::hal_device_condition;
 
-	m_halContext = hal_initialize(&m_halFunctions, FALSE);
+	m_halContext = hal_initialize(&m_halFunctions, false);
 	if (!m_halContext)
 	{
 		kdDebug(1219) << "Failed to initialize HAL!" << endl;

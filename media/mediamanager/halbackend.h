@@ -1,5 +1,5 @@
 /* This file is part of the KDE Project
-   Copyright (c) 2004 J�r�me Lodewyck <lodewyck@clipper.ens.fr>
+   Copyright (c) 2004-2005 Jérôme Lodewyck <jerome dot lodewyck at normalesup dot org>
 
    This library is free software; you can redistribute it and/or
    modify it under the terms of the GNU Library General Public
@@ -22,7 +22,7 @@
 * result from the later function means that something went wrong and that
 * the backend shall not be used.
 *
-* @author Jerome Lodewyck <lodewyck@clipper.ens.fr>
+* @author Jérôme Lodewyck <jerome dot lodewyck at normalesup dot org>
 * @short media:/ backend for the HAL
 */
 
