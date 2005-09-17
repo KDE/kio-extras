@@ -262,7 +262,6 @@ fishProtocol::fishProtocol(const Q3CString &pool_socket, const Q3CString &app_so
     setMultipleAuthCaching( true );
     connectionAuth.keepPassword = true;
     connectionAuth.url.setProtocol("fish");
-    epoch.setTime_t(0, Qt::UTC);
     outBufPos = -1;
     outBuf = NULL;
     outBufLen = 0;
@@ -753,9 +752,7 @@ int fishProtocol::handleResponse(const QString &str){
 
 int fishProtocol::makeTimeFromLs(const QString &monthStr, const QString &dayStr, const QString &timeyearStr)
 {
-    QDateTime dt;
-    dt.setTime_t(time(0));
-    dt.setTime(QTime());
+    QDateTime dt(QDate::currentDate(Qt::UTC));
     int year = dt.date().year();
     int month = dt.date().month();
     int currentMonth = month;
@@ -782,7 +779,7 @@ int fishProtocol::makeTimeFromLs(const QString &monthStr, const QString &dayStr,
     }
     dt.date().setYMD(year,month,day);
 
-    return epoch.secsTo(dt);
+    return dt.toTime_t();
 }
 
 /**
@@ -914,7 +911,7 @@ void fishProtocol::manageConnection(const QString &l) {
                     if (pos < 0 || pos2 < 0 || pos3 < 0) break;
                     dt.setTime(QTime(line.mid(pos+1,pos2-pos-1).toInt(),line.mid(pos2+1,pos3-pos2-1).toInt(),line.mid(pos3+1).toInt()));
                     errorCount--;
-                    atom.m_long = epoch.secsTo(dt);
+                    atom.m_long = dt.toTime_t();
                     udsEntry.append(atom);
                     break;
 

@@ -173,8 +173,6 @@ protected: // Protected attributes
   /** number of bytes read so far */
   int dataRead;
   time_t t_last, t_start;
-  /** unix timestamp "0" as QDateTime */
-  QDateTime epoch;
   /** details about each fishCommand */
   static const struct fish_info {
       const char *command;
