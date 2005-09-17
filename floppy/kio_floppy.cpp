@@ -402,8 +402,6 @@ StatInfo FloppyProtocol::createStatInfo(const QString line, bool makeStat, const
    QString hour, minute;
    StatInfo info;
 
-   static QDateTime beginningOfTimes(QDate(1970,1,1),QTime(1,0));
-
    if (line.length()==41)
    {
       int nameLength=line.find(' ');
@@ -473,7 +471,7 @@ StatInfo FloppyProtocol::createStatInfo(const QString line, bool makeStat, const
    info.size=size.toInt();
 
    QDateTime date(QDate(year.toInt(),month.toInt(),day.toInt()),QTime(hour.toInt(),minute.toInt()));
-   info.time=beginningOfTimes.secsTo(date);
+   info.time=date.toTime_t();
 
    if (isDir)
       info.mode = S_IRUSR | S_IXUSR | S_IRGRP | S_IXGRP | S_IROTH | S_IXOTH| S_IWOTH|S_IWGRP|S_IWUSR  ;
