@@ -47,7 +47,7 @@ protected:
     QString getMimetype(QString type, QString app);
     Q3ValueList<KIO::UDSAtom> doStat(const KURL& url);
 
-    long processedBytes;
+    KIO::filesize_t processedBytes;
     QString standardOutputStream;
     KProcess* myKProcess;
 
