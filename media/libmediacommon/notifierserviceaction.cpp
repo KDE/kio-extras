@@ -22,7 +22,7 @@
 #include <qdir.h>
 #include <qfile.h>
 #include <qfileinfo.h>
-#include <kstddirs.h>
+#include <kstandarddirs.h>
 #include <kdesktopfile.h>
 #include <klocale.h>
 
