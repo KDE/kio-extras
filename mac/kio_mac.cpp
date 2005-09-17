@@ -95,7 +95,7 @@ void MacProtocol::get(const KURL& url) {
     if (modepos != -1) {
         mode += query.mid(modepos + 5, 1);
         if (mode != "-r" && mode != "-b" && mode != "-m" && mode != "-t" && mode != "-a") {
-            error(ERR_MALFORMED_URL, i18n("Unknown mode"));
+            error(ERR_SLAVE_DEFINED, i18n("Unknown mode"));
         }
     } else if (textpos != -1) {
         mode += "t";
@@ -115,7 +115,7 @@ void MacProtocol::get(const KURL& url) {
     myKProcess->start(KProcess::Block, KProcess::All);
 
     if (!myKProcess->normalExit() || !(myKProcess->exitStatus() == 0)) {
-        error(ERR_CANNOT_LAUNCH_PROCESS,
+        error(ERR_SLAVE_DEFINED,
               i18n("There was an error with hpcopy - please ensure it is installed"));
         return;
     }
@@ -144,7 +144,7 @@ void MacProtocol::listDir(const KURL& url) {
         myKProcess->start(KProcess::Block, KProcess::All);
 
         if ((!myKProcess->normalExit()) || (!myKProcess->exitStatus() == 0)) {
-            error(ERR_CANNOT_LAUNCH_PROCESS,
+            error(ERR_SLAVE_DEFINED,
                   i18n("There was an error with hpls - please ensure it is installed"));
         }
 
@@ -189,7 +189,7 @@ Q3ValueList<KIO::UDSAtom> MacProtocol::doStat(const KURL& url) {
     QString filename = prepareHP(url);
 
     if (filename.isNull()) {
-        error(ERR_DOES_NOT_EXIST, i18n("No filename was found in the URL"));
+        error(ERR_SLAVE_DEFINED, i18n("No filename was found in the URL"));
     } else if (! filename.isEmpty()) {
         myKProcess = new KShellProcess();
 
@@ -202,7 +202,7 @@ Q3ValueList<KIO::UDSAtom> MacProtocol::doStat(const KURL& url) {
         myKProcess->start(KProcess::Block, KProcess::All);
 
         if ((!myKProcess->normalExit()) || (!myKProcess->exitStatus() == 0)) {
-            error(ERR_CANNOT_LAUNCH_PROCESS,
+            error(ERR_SLAVE_DEFINED,
                   i18n("hpls did not exit normally - please ensure you have installed the hfsplus tools"));
         }
 
@@ -289,7 +289,7 @@ QString MacProtocol::prepareHP(const KURL& url) {
 
     if ((!myKProcess->normalExit()) || (!myKProcess->exitStatus() == 0)) {
         //TODO this error interrupts the user when typing ?dev=foo on each letter of foo
-        error(ERR_CANNOT_LAUNCH_PROCESS,
+        error(ERR_SLAVE_DEFINED,
               i18n("hpmount did not exit normally - please ensure that hfsplus utils are installed,\n"
                    "that you have permission to read the partition (ls -l /dev/hdaX)\n"
                    "and that you have specified the correct partition.\n"
@@ -321,7 +321,7 @@ QString MacProtocol::prepareHP(const KURL& url) {
         myKProcess->start(KProcess::Block, KProcess::All);
 
         if ((!myKProcess->normalExit()) || (!myKProcess->exitStatus() == 0)) {
-            error(ERR_CANNOT_LAUNCH_PROCESS,
+            error(ERR_SLAVE_DEFINED,
                   i18n("hpcd did not exit normally - please ensure it is installed"));
             return NULL;
         }
@@ -409,7 +409,7 @@ Q3ValueList<KIO::UDSAtom> MacProtocol::makeUDS(const QString& _line) {
             entry.append(atom);
         }
     } else {
-        error(ERR_INTERNAL, "hpls output was not matched");
+        error(ERR_INTERNAL, i18n("hpls output was not matched"));
     } //if match dirRE or fileRE
 
     return entry;
@@ -452,8 +452,7 @@ int MacProtocol::makeTime(QString mday, QString mon, QString third) {
     else if (mon == "Nov") { month = 11; }
     else if (mon == "Dec") { month = 12; }
     else {
-        error(ERR_CANNOT_LAUNCH_PROCESS,
-              "Month output from hpls -l not matched, e-mail jr@jriddell.org");
+        error(ERR_INTERNAL, i18n("Month output from hpls -l not matched"));
         month = 13;
     }
 
@@ -482,8 +481,7 @@ int MacProtocol::makeTime(QString mday, QString mon, QString third) {
 
     //check it's valid
     if ( (!QDate::isValid(year, month, day)) || (!QTime::isValid(hour, minute, 0) ) ) {
-        error(ERR_CANNOT_LAUNCH_PROCESS,
-              "Could not parse a valid date from hpls, e-mail jr@jriddell.org");
+        error(ERR_INTERNAL, i18n("Could not parse a valid date from hpls"));
     }
 
     //put it together and work it out
