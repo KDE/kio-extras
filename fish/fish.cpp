@@ -790,7 +790,7 @@ void fishProtocol::manageConnection(const QString &l) {
     int rc = handleResponse(line);
     UDSAtom atom;
     QDateTime dt;
-    int pos, pos2, pos3;
+    KIO::filesize_t pos, pos2, pos3;
     bool isOk = false;
     if (!rc) {
         switch (fishCommand) {
@@ -823,7 +823,7 @@ void fishProtocol::manageConnection(const QString &l) {
                 case '7':
                 case '8':
                 case '9':
-                    pos = line.toInt(&isOk);
+                    pos = line.toULongLong(&isOk);
                     if (pos > 0 && isOk) errorCount--;
                     if ((fishCommand == FISH_LIST) && (listReason == LIST))
                         totalSize(pos);
@@ -917,7 +917,7 @@ void fishProtocol::manageConnection(const QString &l) {
 
                 case 'S':
                     atom.m_uds = UDS_SIZE;
-                    atom.m_long = line.mid(1).toLongLong(&isOk);
+                    atom.m_long = line.mid(1).toULongLong(&isOk);
                     if (!isOk) break;
                     errorCount--;
                     udsEntry.append(atom);
