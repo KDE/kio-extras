@@ -172,7 +172,6 @@ protected: // Protected attributes
   bool mimeTypeSent;
   /** number of bytes read so far */
   int dataRead;
-  time_t t_last, t_start;
   /** details about each fishCommand */
   static const struct fish_info {
       const char *command;

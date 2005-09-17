@@ -1015,7 +1015,6 @@ void fishProtocol::manageConnection(const QString &l) {
                 shutdownConnection();
             } else {
                 rawRead = recvLen;
-                t_start = t_last = time(NULL);
                 dataRead = 0;
                 mimeTypeSent = false;
                 if (recvLen == 0)
@@ -1236,12 +1235,7 @@ int fishProtocol::received(const char *buffer, int buflen)
 
             dataRead += dataSize;
             rawRead -= dataSize;
-            time_t t = time(NULL);
-            if (t-t_last >= 1) {
-                processedSize(dataRead);
-                //speed(dataRead/(t-t_start));
-                t_last = t;
-            }
+            processedSize(dataRead);
             if (rawRead <= 0) {
                 buffer += dataSize;
                 buflen -= dataSize;
