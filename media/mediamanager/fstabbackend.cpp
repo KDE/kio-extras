@@ -91,6 +91,7 @@ bool inExclusionPattern(KMountPoint *mount, bool networkSharesOnly)
 	if ( mount->mountType() == "swap"
 	  || mount->mountType() == "tmpfs"
 	  || mount->mountType() == "sysfs"
+	  || mount->mountType() == "kernfs"
 	  || mount->mountType() == "usbfs"
 	  || mount->mountType().contains( "proc" )
 	  || mount->mountType() == "unknown"
