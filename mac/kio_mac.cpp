@@ -490,10 +490,8 @@ int MacProtocol::makeTime(QString mday, QString mon, QString third) {
     QDate fileDate(year, month, day);
     QTime fileTime(hour, minute);
     QDateTime fileDateTime(fileDate, fileTime);
-    QDateTime epoc(QDate(1970, 1, 1));
 
-    int timestamp = epoc.secsTo(fileDateTime);
-    return timestamp;
+    return fileDateTime.toTime_t();
 }
 
 QString MacProtocol::getMimetype(QString type, QString app) {
