@@ -338,7 +338,8 @@ void NNTPProtocol::listDir( const KURL& url ) {
     else
       group = path;
     QString first = url.queryItem( "first" );
-    if ( fetchGroup( group, first.toULong() ) )
+    QString max = url.queryItem( "max" );
+    if ( fetchGroup( group, first.toULong(), max.toULong() ) )
       finished();
   }
 }
@@ -383,7 +384,7 @@ void NNTPProtocol::fetchGroups( const QString &since, bool desc )
     if ( line == ".\r\n" )
       break;
 
-    DBG << "  fetchGroups -- data: " << QString( line ).stripWhiteSpace() << endl;
+//    DBG << "  fetchGroups -- data: " << QString( line ).stripWhiteSpace() << endl;
 
     // group name
     if ((pos = line.find(' ')) > 0) {
@@ -407,12 +408,6 @@ void NNTPProtocol::fetchGroups( const QString &since, bool desc )
 
       entry.clear();
       fillUDSEntry(entry, group, msg_cnt, postingAllowed && !moderated, false);
-      // add the last serial number as UDS_EXTRA atom, this is needed for
-      // incremental article listing
-      UDSAtom atom;
-      atom.m_uds = UDS_EXTRA;
-      atom.m_str = QString::number( last );
-      entry.append( atom );
       if ( !desc )
         entryList.append(entry);
       else
@@ -488,7 +483,7 @@ void NNTPProtocol::fetchGroups( const QString &since, bool desc )
     listEntries(entryList);
 }
 
-bool NNTPProtocol::fetchGroup( QString &group, unsigned long first ) {
+bool NNTPProtocol::fetchGroup( QString &group, unsigned long first, unsigned long max ) {
   int res_code;
   QString resp_line;
 
@@ -504,23 +499,24 @@ bool NNTPProtocol::fetchGroup( QString &group, unsigned long first ) {
 
   // repsonse to "GROUP <requested-group>" command is 211 then find the message count (cnt)
   // and the first and last message followed by the group name
-  int pos, pos2;
-  unsigned long firstSerNum;
-  resp_line = readBuffer;
-  if (((pos = resp_line.find(' ',4)) > 0 || (pos = resp_line.find('\t',4)) > 0) &&
-      ((pos2 = resp_line.find(' ',pos+1)) > 0 || (pos = resp_line.find('\t',pos+1)) > 0))
-  {
-    firstSerNum = resp_line.mid(pos+1,pos2-pos-1).toLong();
+  unsigned long firstSerNum, lastSerNum;
+  resp_line = QString::fromLatin1( readBuffer );
+  QRegExp re ( "211\\s+(\\d+)\\s+(\\d+)\\s+(\\d+)");
+  if ( re.indexIn( resp_line ) != -1 ) {
+    firstSerNum = re.cap( 2 ).toLong();
+    lastSerNum = re.cap( 3 ).toLong();
   } else {
-    error(ERR_INTERNAL,i18n("Could not extract first message number from server response:\n%1").
-      arg(resp_line));
+    error( ERR_INTERNAL, i18n("Could not extract message serial numbers from server response:\n%1").
+      arg( resp_line ) );
     return false;
   }
 
-  if (firstSerNum == 0L)
+  if (firstSerNum == 0)
     return true;
   first = kMax( first, firstSerNum );
-  DBG << "Starting from serial number: " << first << " of " << firstSerNum << endl;
+  if ( max > 0 && lastSerNum - first > max )
+    first = lastSerNum - max + 1;
+  DBG << "Starting from serial number: " << first << " of " << firstSerNum << " - " << lastSerNum << endl;
 
   bool notSupported = true;
   if ( fetchGroupXOVER( first, notSupported ) )

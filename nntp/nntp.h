@@ -94,9 +94,10 @@ class NNTPProtocol:public KIO::TCPSlaveBase
     * otherwise.
     * @param group The newsgroup name
     * @param first Serial number of the first message, 0 lists all messages.
+    * @param max Maximal number of returned messages, 0 means unlimited.
     * @return true on sucess, false otherwise.
     */
-   bool fetchGroup ( QString &group, unsigned long first = 0 );
+   bool fetchGroup ( QString &group, unsigned long first = 0, unsigned long max = 0 );
    /**
     * Fetch message listing from the current group using RFC977 STAT/NEXT
     * commands.
