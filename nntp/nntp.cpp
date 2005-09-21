@@ -275,7 +275,7 @@ void NNTPProtocol::stat( const KURL& url ) {
   // / = group list
   if (path.isEmpty() || path == "/") {
     DBG << "stat root" << endl;
-    fillUDSEntry(entry, QString::null, 0, postingAllowed, false);
+    fillUDSEntry( entry, QString::null, 0, false, ( S_IWUSR | S_IWGRP | S_IWOTH ) );
 
   // /group = message list
   } else if (regGroup.search(path) == 0) {
@@ -285,7 +285,7 @@ void NNTPProtocol::stat( const KURL& url ) {
     DBG << "stat group: " << group << endl;
     // postingAllowed should be ored here with "group not moderated" flag
     // as size the num of messages (GROUP cmd) could be given
-    fillUDSEntry(entry, group, 0, postingAllowed, false);
+    fillUDSEntry( entry, group, 0, false, ( S_IWUSR | S_IWGRP | S_IWOTH ) );
 
   // /group/<msg_id> = message
   } else if (regMsgId.search(path) == 0) {
@@ -296,7 +296,7 @@ void NNTPProtocol::stat( const KURL& url ) {
       group.remove( 0, 1 );
     if ((pos = group.find('/')) > 0) group = group.left(pos);
     DBG << "stat group: " << group << " msg: " << msg_id << endl;
-    fillUDSEntry(entry, msg_id, 0, false, true);
+    fillUDSEntry( entry, msg_id, 0, true );
 
   // invalid url
   } else {
@@ -367,7 +367,7 @@ void NNTPProtocol::fetchGroups( const QString &since, bool desc )
   QString group;
   int pos, pos2;
   long msg_cnt;
-  bool moderated;
+  long access;
   UDSEntry entry;
   UDSEntryList entryList;
   QMap<QString, UDSEntry> entryMap;
@@ -394,20 +394,24 @@ void NNTPProtocol::fetchGroups( const QString &since, bool desc )
       // number of messages
       line.remove(0,pos+1);
       long last = 0;
+      access = 0;
       if (((pos = line.find(' ')) > 0 || (pos = line.find('\t')) > 0) &&
           ((pos2 = line.find(' ',pos+1)) > 0 || (pos2 = line.find('\t',pos+1)) > 0)) {
         last = line.left(pos).toLongLong();
         long first = line.mid(pos+1,pos2-pos-1).toLongLong();
         msg_cnt = abs(last-first+1);
-        // moderated group?
-        moderated = (line[pos2+1] == 'n');
+        // group access rights
+        switch ( line[pos2 + 1] ) {
+          case 'n': access = 0; break;
+          case 'm': access = S_IWUSR | S_IWGRP; break;
+          case 'y': access = S_IWUSR | S_IWGRP | S_IWOTH; break;
+        }
       } else {
         msg_cnt = 0;
-        moderated = false;
       }
 
       entry.clear();
-      fillUDSEntry(entry, group, msg_cnt, postingAllowed && !moderated, false);
+      fillUDSEntry( entry, group, msg_cnt, false, access );
       if ( !desc )
         entryList.append(entry);
       else
@@ -450,7 +454,7 @@ void NNTPProtocol::fetchGroups( const QString &since, bool desc )
       if ( line == ".\r\n" )
         break;
 
-      DBG << "  fetching group description: " << QString( line ).stripWhiteSpace() << endl;
+      //DBG << "  fetching group description: " << QString( line ).stripWhiteSpace() << endl;
       int pos = line.indexOf( ' ' );
       pos = pos < 0 ? line.indexOf( '\t' ) : kMin( pos, line.indexOf( '\t' ) );
       group = line.left( pos );
@@ -516,7 +520,10 @@ bool NNTPProtocol::fetchGroup( QString &group, unsigned long first, unsigned lon
   first = kMax( first, firstSerNum );
   if ( max > 0 && lastSerNum - first > max )
     first = lastSerNum - max + 1;
+
   DBG << "Starting from serial number: " << first << " of " << firstSerNum << " - " << lastSerNum << endl;
+  setMetaData( "FirstSerialNumber", QString::number( first ) );
+  setMetaData( "LastSerialNumber", QString::number( lastSerNum ) );
 
   bool notSupported = true;
   if ( fetchGroupXOVER( first, notSupported ) )
@@ -545,7 +552,7 @@ bool NNTPProtocol::fetchGroupRFC977( unsigned long first )
   int pos, pos2;
   if ((pos = resp_line.find('<')) > 0 && (pos2 = resp_line.find('>',pos+1))) {
     msg_id = resp_line.mid(pos,pos2-pos+1);
-    fillUDSEntry(entry, msg_id, 0, false, true);
+    fillUDSEntry( entry, msg_id, 0, true );
     entryList.append(entry);
   } else {
     error(ERR_INTERNAL,i18n("Could not extract first message id from server response:\n%1").
@@ -571,7 +578,7 @@ bool NNTPProtocol::fetchGroupRFC977( unsigned long first )
     if ((pos = resp_line.find('<')) > 0 && (pos2 = resp_line.find('>',pos+1))) {
       msg_id = resp_line.mid(pos,pos2-pos+1);
       entry.clear();
-      fillUDSEntry(entry, msg_id, 0, false, true);
+      fillUDSEntry( entry, msg_id, 0, true );
       entryList.append(entry);
       if (entryList.count() >= UDS_ENTRY_CHUNK) {
         listEntries(entryList);
@@ -624,7 +631,7 @@ bool NNTPProtocol::fetchGroupXOVER( unsigned long first, bool &notSupported )
     return false;
 
   long msgSize;
-  QString msgId;
+  QString name;
   UDSAtom atom;
   UDSEntry entry;
   UDSEntryList entryList;
@@ -646,18 +653,14 @@ bool NNTPProtocol::fetchGroupXOVER( unsigned long first, bool &notSupported )
     }
 
     fields = QStringList::split( "\t", line, true );
-    msgId = QString::null;
     msgSize = 0;
     entry.clear();
     QStringList::ConstIterator it = headers.constBegin();
     QStringList::ConstIterator it2 = fields.constBegin();
-    ++it2; // first entry is the serial number
+    // first entry is the serial number
+    name = (*it2);
+    ++it2;
     for ( ; it != headers.constEnd() && it2 != fields.constEnd(); ++it, ++it2 ) {
-      DBG << "Processing header: " << *it << " with content: " << *it2 << endl;
-      if ( (*it).contains( "Message-ID:", false ) ) {
-        msgId = (*it2);
-        continue;
-      }
       if ( (*it) == "Bytes:" ) {
         msgSize = (*it2).toLong();
         continue;
@@ -669,9 +672,7 @@ bool NNTPProtocol::fetchGroupXOVER( unsigned long first, bool &notSupported )
         atom.m_str = (*it) + " " + (*it2).stripWhiteSpace();
       entry.append( atom );
     }
-    if ( msgId.isEmpty() )
-      msgId = fields[0]; // fallback to serial number
-    fillUDSEntry( entry, msgId, msgSize, false, true );
+    fillUDSEntry( entry, name, msgSize, true );
     entryList.append( entry );
     if (entryList.count() >= UDS_ENTRY_CHUNK) {
       listEntries(entryList);
@@ -682,8 +683,8 @@ bool NNTPProtocol::fetchGroupXOVER( unsigned long first, bool &notSupported )
 }
 
 
-void NNTPProtocol::fillUDSEntry(UDSEntry& entry, const QString& name, long size,
-  bool posting_allowed, bool is_article) {
+void NNTPProtocol::fillUDSEntry( UDSEntry& entry, const QString& name, long size,
+  bool is_article, long access ) {
 
   long posting=0;
 
@@ -709,7 +710,7 @@ void NNTPProtocol::fillUDSEntry(UDSEntry& entry, const QString& name, long size,
 
   // access permissions
   atom.m_uds = UDS_ACCESS;
-  posting = posting_allowed? (S_IWUSR | S_IWGRP | S_IWOTH) : 0;
+  posting = postingAllowed? access : 0;
   atom.m_long = (is_article)? (S_IRUSR | S_IRGRP | S_IROTH) :
     (S_IRUSR | S_IXUSR | S_IRGRP | S_IXGRP | S_IROTH | S_IXOTH | posting);
   atom.m_str = QString::null;
