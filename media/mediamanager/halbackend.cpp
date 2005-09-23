@@ -246,8 +246,14 @@ void HALBackend::AddDevice(const char *udi, bool allowNotification)
 
 	/* Camera handled by gphoto2*/
 	if (libhal_device_query_capability(m_halContext, udi, "camera", NULL) &&
+#ifdef HAL_0_4
 		libhal_device_property_exists(m_halContext, udi, "camera.libgphoto2_support", NULL) &&
-		libhal_device_get_property_bool(m_halContext, udi, "camera.libgphoto2_support", NULL))
+		libhal_device_get_property_bool(m_halContext, udi, "camera.libgphoto2_support", NULL)
+#else
+		libhal_device_property_exists(m_halContext, udi, "camera.libgphoto2.support", NULL) &&
+		libhal_device_get_property_bool(m_halContext, udi, "camera.libgphoto2.support", NULL)
+#endif
+	   )
 		{
 			/* Create medium */
 			Medium* medium = new Medium(udi, "");
