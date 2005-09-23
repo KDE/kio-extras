@@ -136,6 +136,7 @@ void NNTPProtocol::get(const KURL& url) {
   }
 
   // get article
+  infoMessage( i18n("Downloading article...") );
   res_code = sendCommand( "ARTICLE " + msg_id );
   if (res_code == 430) {
     error(ERR_DOES_NOT_EXIST,path);
@@ -201,6 +202,7 @@ bool NNTPProtocol::post_article() {
   DBG << "post article " << endl;
 
   // send post command
+  infoMessage( i18n("Sending article...") );
   int res_code = sendCommand( "POST" );
   if (res_code == 440) { // posting not allowed
     error(ERR_WRITE_ACCESS_DENIED, mHost);
@@ -350,10 +352,12 @@ void NNTPProtocol::fetchGroups( const QString &since, bool desc )
   int res;
   if ( since.isEmpty() ) {
     // full listing
+    infoMessage( i18n("Downloading group list...") );
     res = sendCommand( "LIST" );
     expected = 215;
   } else {
     // incremental listing
+    infoMessage( i18n("Looking for new groups...") );
     res = sendCommand( "NEWGROUPS " + since );
     expected = 231;
   }
@@ -426,6 +430,8 @@ void NNTPProtocol::fetchGroups( const QString &since, bool desc )
 
   // handle group descriptions
   QMap<QString, UDSEntry>::Iterator it = entryMap.begin();
+  if ( desc )
+    infoMessage( i18n("Downloading group descriptions...") );
   while ( desc ) {
     // request all group descriptions
     if ( since.isEmpty() )
@@ -492,6 +498,7 @@ bool NNTPProtocol::fetchGroup( QString &group, unsigned long first, unsigned lon
   QString resp_line;
 
   // select group
+  infoMessage( i18n("Selecting group %1...").arg( group ) );
   res_code = sendCommand( "GROUP " + group );
   if (res_code == 411){
     error(ERR_DOES_NOT_EXIST,group);
@@ -525,6 +532,8 @@ bool NNTPProtocol::fetchGroup( QString &group, unsigned long first, unsigned lon
   setMetaData( "FirstSerialNumber", QString::number( first ) );
   setMetaData( "LastSerialNumber", QString::number( lastSerNum ) );
 
+  infoMessage( i18n("Downloading new headers...") );
+  totalSize( lastSerNum - first );
   bool notSupported = true;
   if ( fetchGroupXOVER( first, notSupported ) )
     return true;
@@ -755,6 +764,7 @@ bool NNTPProtocol::nntp_open()
 
   DBG << "  nntp_open -- creating a new connection to " << mHost << ":" << m_port << endl;
   // create a new connection
+  infoMessage( i18n("Connecting to server...") );
   if ( connectToHost( mHost.latin1(), m_port, true ) )
   {
     DBG << "  nntp_open -- connection is open " << endl;
