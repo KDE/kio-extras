@@ -141,7 +141,7 @@ SMTPProtocol::SMTPProtocol(const Q3CString & pool, const Q3CString & app,
 :  TCPSlaveBase(useSSL ? 465 : 25, 
                 useSSL ? "smtps" : "smtp", 
                 pool, app, useSSL),
-   m_iOldPort(0),
+   m_sOldPort( "0" ),
    m_opened(false)
 {
   //kdDebug(7112) << "SMTPProtocol::SMTPProtocol" << endl;
@@ -234,7 +234,7 @@ void SMTPProtocol::put(const KURL & url, int /*permissions */ ,
       open_url.setUser(m_sUser);
       open_url.setPass(m_sPass);
       m_sServer = open_url.host();
-      m_iPort = open_url.port();
+      m_port = open_url.port();
     }
     else {
       mset.setProfile(mset.defaultProfileName());
@@ -299,7 +299,7 @@ void SMTPProtocol::setHost(const QString & host, int port,
                            const QString & user, const QString & pass)
 {
   m_sServer = host;
-  m_iPort = port;
+  m_port = QString::number( port );
   m_sUser = user;
   m_sPass = pass;
 }
@@ -514,20 +514,16 @@ bool SMTPProtocol::execute( Command * cmd, TransactionState * ts ) {
 
 bool SMTPProtocol::smtp_open(const QString& fakeHostname)
 {
-#if 0
   if (m_opened && 
-      m_iOldPort == port(m_iPort) &&
+      m_sOldPort == port(m_port) &&
       m_sOldServer == m_sServer && 
       m_sOldUser == m_sUser &&
       (fakeHostname.isNull() || m_hostname == fakeHostname)) 
     return true;
-#endif
 
   smtp_close();
-#if 0
-  if (!connectToHost(m_sServer, m_iPort))
+  if (!connectToHost(m_sServer, m_port))
     return false;             // connectToHost has already send an error message.
-#endif
   m_opened = true;
 
   bool ok = false;
@@ -595,7 +591,7 @@ bool SMTPProtocol::smtp_open(const QString& fakeHostname)
     return false;
   }
 
-  m_iOldPort = m_iPort;
+  m_sOldPort = m_port;
   m_sOldServer = m_sServer;
   m_sOldUser = m_sUser;
   m_sOldPass = m_sPass;
