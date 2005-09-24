@@ -125,7 +125,7 @@ KServiceGroup::Ptr SettingsProtocol::findGroup(const QString &relPath)
 {
 	QString nextPart;
 	QString alreadyFound("Settings/");
-	QStringList rest = QStringList::split('/', relPath);
+	QStringList rest = relPath.split( '/');
 
 	kdDebug() << "Trying harder to find group " << relPath << endl;
 	for ( int i=0; i<rest.count(); i++)

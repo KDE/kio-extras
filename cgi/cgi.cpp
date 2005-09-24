@@ -65,7 +65,7 @@ void CgiProtocol::get( const KURL& url )
   Q3CString requestMethod = "REQUEST_METHOD=GET";
   putenv( requestMethod.data() );
 
-  Q3CString query = url.query().mid( 1 ).local8Bit();
+  Q3CString query = url.query().mid( 1 ).toLocal8Bit();
   query.prepend( "QUERY_STRING=" );
   putenv( query.data() );
 
@@ -73,7 +73,7 @@ void CgiProtocol::get( const KURL& url )
 
   QString file;
 
-  int pos = path.findRev('/');
+  int pos = path.lastIndexOf('/');
   if ( pos >= 0 ) file = path.mid( pos + 1 );
   else file = path;
 
@@ -144,7 +144,7 @@ void CgiProtocol::get( const KURL& url )
       Q3CString output = buffer; // this assumes buffer is text and not binary
       int colon = output.find( ':' );
       int newline = output.find( '\n' );
-      int semicolon = output.findRev( ';', newline );
+      int semicolon = output.lastIndexOf( ';', newline );
       int end;
       if ( semicolon < 0 ) end = newline;
       else end = semicolon;
@@ -158,7 +158,7 @@ void CgiProtocol::get( const KURL& url )
 
       Q3CString contentType = output.mid( colon + 1, end - colon - 1 );
 
-      contentType = contentType.stripWhiteSpace();
+      contentType = contentType.trimmed();
 
       kdDebug(7124) << "ContentType: '" << contentType << "'" << endl;
 

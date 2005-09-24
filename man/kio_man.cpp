@@ -70,7 +70,7 @@ void stripExtension( QString *name )
         pos -= 3;
 
     if ( pos > 0 )
-        pos = name->findRev('.', pos-1);
+        pos = name->lastIndexOf('.', pos-1);
 
     if ( pos > 0 )
         name->truncate( pos );
@@ -118,8 +118,8 @@ MANProtocol::MANProtocol(const Q3CString &pool_socket, const Q3CString &app_sock
     _self = this;
     const QString common_dir = KGlobal::dirs()->findResourceDir( "html", "en/common/kde-common.css" );
     const QString strPath=QString( "file:%1/en/common" ).arg( common_dir );
-    m_htmlPath=strPath.local8Bit(); // ### TODO encode for HTML
-    m_cssPath=strPath.local8Bit(); // ### TODO encode for CSS
+    m_htmlPath=strPath.toLocal8Bit(); // ### TODO encode for HTML
+    m_cssPath=strPath.toLocal8Bit(); // ### TODO encode for CSS
     section_names << "1" << "2" << "3" << "3n" << "3p" << "4" << "5" << "6" << "7"
                   << "8" << "9" << "l" << "n";
     m_manCSSFile = locate( "data", "kio_man/kio_man.css" );
@@ -550,16 +550,16 @@ char *MANProtocol::readManPage(const char *_filename)
     {
         if (QDir::isRelativePath(filename)) {
             kdDebug(7107) << "relative " << filename << endl;
-            filename = QDir::cleanDirPath(lastdir + "/" + filename).utf8();
+            filename = QDir::cleanPath(lastdir + "/" + filename).toUtf8();
             if (!KStandardDirs::exists(filename)) { // exists perhaps with suffix
-                lastdir = filename.left(filename.findRev('/'));
+                lastdir = filename.left(filename.lastIndexOf('/'));
                 QDir mandir(lastdir);
-                mandir.setNameFilter(filename.mid(filename.findRev('/') + 1) + ".*");
+                mandir.setNameFilter(filename.mid(filename.lastIndexOf('/') + 1) + ".*");
                 filename = lastdir + "/" + QFile::encodeName(mandir.entryList().first());
             }
             kdDebug(7107) << "resolved to " << filename << endl;
         }
-        lastdir = filename.left(filename.findRev('/'));
+        lastdir = filename.left(filename.lastIndexOf('/'));
     
         QIODevice *fd= KFilterDev::deviceForFile(filename);
     
@@ -788,7 +788,7 @@ void MANProtocol::showMainIndex()
     if (sectList.isEmpty())
     	sections = buildSectionList(manDirectories());
     else
-	sections = QStringList::split(':', sectList);
+	sections = sectList.split( ':');
 
     os << "<table>" << endl;
 
@@ -842,24 +842,24 @@ void MANProtocol::constructPath(QStringList& constr_path, QStringList constr_cat
             const QString line = is.readLine();
             if ( manpath_regex.search(line, 0) == 0 )
             {
-                const QString path = line.mid(8).stripWhiteSpace();
+                const QString path = line.mid(8).trimmed();
                 constr_path += path;
             }
             else if ( mandatory_regex.search(line, 0) == 0 )
             {
-                const QString path = line.mid(18).stripWhiteSpace();
+                const QString path = line.mid(18).trimmed();
                 constr_path += path;
             }
             else if ( manpath_map_regex.search(line, 0) == 0 )
             {
                         // The entry is "MANPATH_MAP  <path>  <manpath>"
                 const QStringList mapping =
-                        QStringList::split(space_regex, line);
+                        line.split( space_regex);
     
                 if ( mapping.count() == 3 )
                 {
-                    const QString dir = QDir::cleanDirPath( mapping[1] );
-                    const QString mandir = QDir::cleanDirPath( mapping[2] );
+                    const QString dir = QDir::cleanPath( mapping[1] );
+                    const QString mandir = QDir::cleanPath( mapping[2] );
     
                     manpath_map[ dir ] = mandir;
                 }
@@ -868,12 +868,12 @@ void MANProtocol::constructPath(QStringList& constr_path, QStringList constr_cat
             {
                         // The entry is "MANDB_MAP  <manpath>  <catmanpath>"
                 const QStringList mapping =
-                        QStringList::split(space_regex, line);
+                        line.split( space_regex);
     
                 if ( mapping.count() == 3 )
                 {
-                    const QString mandir = QDir::cleanDirPath( mapping[1] );
-                    const QString catmandir = QDir::cleanDirPath( mapping[2] );
+                    const QString mandir = QDir::cleanPath( mapping[1] );
+                    const QString catmandir = QDir::cleanPath( mapping[2] );
     
                     mandb_map[ mandir ] = catmandir;
                 }
@@ -883,7 +883,7 @@ void MANProtocol::constructPath(QStringList& constr_path, QStringList constr_cat
             {
             if ( !conf_section.isEmpty() )
             conf_section += ':';
-            conf_section += line.mid(8).stripWhiteSpace();
+            conf_section += line.mid(8).trimmed();
         }
     */
         }
@@ -935,7 +935,7 @@ void MANProtocol::constructPath(QStringList& constr_path, QStringList constr_cat
               it != path.end();
               ++it )
         {
-            const QString dir = QDir::cleanDirPath( *it );
+            const QString dir = QDir::cleanPath( *it );
             QString mandir = manpath_map[ dir ];
 
             if ( !mandir.isEmpty() ) {
@@ -950,7 +950,7 @@ void MANProtocol::constructPath(QStringList& constr_path, QStringList constr_cat
                 if ( constr_path.findIndex( mandir ) == -1 )
                     constr_path += mandir;
 
-                int pos = dir.findRev( '/' );
+                int pos = dir.lastIndexOf( '/' );
                 if ( pos > 0 ) {
                     mandir = dir.left( pos ) + QString("/man");
                     if ( constr_path.findIndex( mandir ) == -1 )
@@ -1025,7 +1025,7 @@ void MANProtocol::checkManPaths()
     // satisfied if any empty string in path_list_env (there
     // should be 1 or 0) is replaced by the constructed path.
 
-    const QStringList path_list_env = QStringList::split( ':', manpath_env , true );
+    const QStringList path_list_env = manpath_env.split( ':', QString::KeepEmptyParts);
 
     for ( QStringList::const_iterator it = path_list_env.begin();
           it != path_list_env.end();
@@ -1070,7 +1070,7 @@ void MANProtocol::checkManPaths()
 
 /* sections are not used
     // Sections
-    QStringList m_mansect = QStringList::split( ':', mansect_env, true );
+    QStringList m_mansect = mansect_env.split( ':', QString::KeepEmptyParts);
 
     const char* default_sect[] =
         { "1", "2", "3", "4", "5", "6", "7", "8", "9", "n", 0L };
@@ -1235,7 +1235,7 @@ void MANProtocol::showIndex(const QString& section)
 
         stripExtension( &fileName );
 
-        pos = fileName.findRev('/');
+        pos = fileName.lastIndexOf('/');
         if (pos > 0)
             fileName = fileName.mid(pos+1);
 
@@ -1280,7 +1280,7 @@ void MANProtocol::showIndex(const QString& section)
 
         char *manpage_end;
         struct man_index_t *manindex = new man_index_t;
-	manindex->manpath = strdup((*page).utf8());
+	manindex->manpath = strdup((*page).toUtf8());
 
 	manindex->manpage_begin = strrchr(manindex->manpath, '/');
 	if (manindex->manpage_begin)

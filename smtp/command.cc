@@ -269,12 +269,12 @@ namespace KioSMTP {
         case SASL_CB_USER:
         case SASL_CB_AUTHNAME:
           kdDebug(7112) << "SASL_CB_[USER|AUTHNAME]: " << mAi->username << endl;
-          interact->result = strdup( mAi->username.utf8() );
+          interact->result = strdup( mAi->username.toUtf8() );
           interact->len = strlen( (const char *) interact->result );
           break;
         case SASL_CB_PASS:
           kdDebug(7112) << "SASL_CB_PASS: [HIDDEN]" << endl;
-          interact->result = strdup( mAi->password.utf8() );
+          interact->result = strdup( mAi->password.toUtf8() );
           interact->len = strlen( (const char *) interact->result );
           break;
         default:

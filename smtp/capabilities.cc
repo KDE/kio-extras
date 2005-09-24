@@ -57,7 +57,7 @@ namespace KioSMTP {
   }
 
   void Capabilities::add( const QString & cap, bool replace ) {
-    QStringList tokens = QStringList::split( ' ', cap.upper() );
+    QStringList tokens = cap.upper().split( ' ');
     if ( tokens.empty() )
       return;
     QString name = tokens.front(); tokens.pop_front();

@@ -71,7 +71,7 @@ void getDriveAndPath(const QString& path, QString& drive, QString& rest)
 {
    drive=QString::null;
    rest=QString::null;
-   QStringList list=QStringList::split("/",path);
+   QStringList list=path.split( "/");
    for (QStringList::Iterator it=list.begin(); it!=list.end(); it++)
    {
       if (it==list.begin())
@@ -410,7 +410,7 @@ StatInfo FloppyProtocol::createStatInfo(const QString line, bool makeStat, const
       {
          name=line.mid(0,nameLength);
          QString ext=line.mid(9,3);
-         ext=ext.stripWhiteSpace();
+         ext=ext.trimmed();
          if (!ext.isEmpty())
             name+="."+ext;
       }
@@ -672,11 +672,11 @@ int FloppyProtocol::freeSpace(const KURL& url)
       if (line.find("bytes free")==36)
       {
          QString tmp=line.mid(24,3);
-         tmp=tmp.stripWhiteSpace();
+         tmp=tmp.trimmed();
          tmp+=line.mid(28,3);
-         tmp=tmp.stripWhiteSpace();
+         tmp=tmp.trimmed();
          tmp+=line.mid(32,3);
-         tmp=tmp.stripWhiteSpace();
+         tmp=tmp.trimmed();
 
          return tmp.toInt();
       }

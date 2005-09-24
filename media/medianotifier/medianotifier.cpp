@@ -196,7 +196,7 @@ bool MediaNotifier::execAutoopen( const KFileItem &medium, const QString &path,
 	file.open( QIODevice::ReadOnly );
 	QTextStream stream( &file );
 
-	QString relative_path = stream.readLine().stripWhiteSpace();
+	QString relative_path = stream.readLine().trimmed();
 
 	// The relative path MUST NOT contain path components that
 	// refer to a parent directory ( ../ )

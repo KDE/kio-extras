@@ -133,7 +133,7 @@ void FingerProtocol::get(const KURL& url )
 
   myKProcess->start(KProcess::Block, KProcess::All);
 
-  data(Q3CString(myStdStream->local8Bit()));
+  data(Q3CString(myStdStream->toLocal8Bit()));
 
   data(QByteArray());
   finished();

@@ -103,12 +103,12 @@ void NotifierServiceAction::updateFilePath()
 	
 	QDir actions_dir( locateLocal( "data", "konqueror/servicemenus/", true ) );
 
-	QString filename = actions_dir.absFilePath( action_name + ".desktop" );
+	QString filename = actions_dir.absoluteFilePath( action_name + ".desktop" );
 	
 	int counter = 1;
 	while ( QFile::exists( filename ) )
 	{
-		filename = actions_dir.absFilePath( action_name
+		filename = actions_dir.absoluteFilePath( action_name
 		                                  + QString::number( counter )
 		                                  + ".desktop" );
 		counter++;
@@ -137,7 +137,7 @@ bool NotifierServiceAction::isWritable() const
 	}
 	else
 	{
-		info = QFileInfo( info.dirPath() );
+		info = QFileInfo( info.path() );
 		return info.isWritable();
 	}
 }

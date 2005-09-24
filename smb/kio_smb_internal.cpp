@@ -93,7 +93,7 @@ void SMBUrl::updateCache()
         }
         surl += KURL::encode_string(KURL::host().upper(), 106);
         surl += KURL::encode_string(KURL::path(), 106);
-        m_surl = surl.utf8();
+        m_surl = surl.toUtf8();
     }
     m_type = SMBURLTYPE_UNKNOWN;
     // update m_type

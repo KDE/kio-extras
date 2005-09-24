@@ -737,7 +737,7 @@ static void add_links(char *c)
 
                 Q3CString dir;
                 Q3CString file(g, h - g + 1);
-                file = file.stripWhiteSpace();
+                file = file.trimmed();
                 for (int index = 0; includedirs[index]; index++) {
                     Q3CString str = Q3CString(includedirs[index]) + "/" + file;
                     if (!access(str, R_OK)) {

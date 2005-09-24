@@ -169,7 +169,7 @@ void LDAPProtocol::controlsFromMetaData( LDAPControl ***serverctrls,
   QString oid; bool critical; QByteArray value;
   int i = 0;
   while ( hasMetaData( QString::fromLatin1("SERVER_CTRL%1").arg(i) ) ) {
-    Q3CString val = metaData( QString::fromLatin1("SERVER_CTRL%1").arg(i) ).utf8();
+    Q3CString val = metaData( QString::fromLatin1("SERVER_CTRL%1").arg(i) ).toUtf8();
     LDIF::splitControl( val, oid, critical, value );
     kdDebug(7125) << "server ctrl #" << i << " value: " << val << 
       " oid: " << oid << " critical: " << critical << " value: " << 
@@ -179,7 +179,7 @@ void LDAPProtocol::controlsFromMetaData( LDAPControl ***serverctrls,
   }
   i = 0;
   while ( hasMetaData( QString::fromLatin1("CLIENT_CTRL%1").arg(i) ) ) {
-    Q3CString val = metaData( QString::fromLatin1("CLIENT_CTRL%1").arg(i) ).utf8();
+    Q3CString val = metaData( QString::fromLatin1("CLIENT_CTRL%1").arg(i) ).toUtf8();
     LDIF::splitControl( val, oid, critical, value );
     kdDebug(7125) << "client ctrl #" << i << " value: " << val << 
       " oid: " << oid << " critical: " << critical << " value: " << 
@@ -199,7 +199,7 @@ int LDAPProtocol::asyncSearch( LDAPUrl &usrc )
   if ( count > 0 ) {
     attrs = static_cast<char**>( malloc((count+1) * sizeof(char*)) );
     for (int i=0; i<count; i++)
-      attrs[i] = strdup( usrc.attributes().at(i).utf8() );
+      attrs[i] = strdup( usrc.attributes().at(i).toUtf8() );
     attrs[count] = 0;
   }  
   
@@ -221,8 +221,8 @@ int LDAPProtocol::asyncSearch( LDAPUrl &usrc )
   kdDebug(7125) << "asyncSearch() dn=\"" << usrc.dn() << "\" scope=" << 
     usrc.scope() << " filter=\"" << usrc.filter() << "\" attrs=" << usrc.attributes() << 
     endl;
-  retval = ldap_search_ext( mLDAP, usrc.dn().utf8(), scope, 
-    usrc.filter().isEmpty() ? Q3CString() : usrc.filter().utf8(), attrs, 0, 
+  retval = ldap_search_ext( mLDAP, usrc.dn().toUtf8(), scope, 
+    usrc.filter().isEmpty() ? Q3CString() : usrc.filter().toUtf8(), attrs, 0, 
     serverctrls, clientctrls,
     0, mSizeLimit, &msgid );
 
@@ -296,7 +296,7 @@ void LDAPProtocol::addControlOp( LDAPControl ***pctrls, const QString &oid,
     ctrl->ldctl_value.bv_val = 0;
   }
   ctrl->ldctl_iscritical = critical;
-  ctrl->ldctl_oid = strdup( oid.utf8() );
+  ctrl->ldctl_oid = strdup( oid.toUtf8() );
   
   uint i = 0;
   
@@ -333,7 +333,7 @@ void LDAPProtocol::addModOp( LDAPMod ***pmods, int mod_type, const QString &attr
     memset( mods[ 0 ], 0, sizeof( LDAPMod ) );
   } else {
     while( mods[ i ] != 0 && 
-      ( strcmp( attr.utf8(),mods[i]->mod_type ) != 0 ||
+      ( strcmp( attr.toUtf8(),mods[i]->mod_type ) != 0 ||
       ( mods[ i ]->mod_op & ~LDAP_MOD_BVALUES ) != mod_type ) ) i++;
     
     if ( mods[ i ] == 0 ) {
@@ -349,7 +349,7 @@ void LDAPProtocol::addModOp( LDAPMod ***pmods, int mod_type, const QString &attr
   }
 
   mods[ i ]->mod_op = mod_type | LDAP_MOD_BVALUES;
-  if ( mods[ i ]->mod_type == 0 ) mods[ i ]->mod_type = strdup( attr.utf8() );
+  if ( mods[ i ]->mod_type == 0 ) mods[ i ]->mod_type = strdup( attr.toUtf8() );
   
   *pmods = mods;
   
@@ -588,7 +588,7 @@ int LDAPProtocol::saslInteract( void *in )
       interact->result = NULL;
       interact->len = 0;
     } else {
-      interact->result = strdup( value.utf8() );
+      interact->result = strdup( value.toUtf8() );
       interact->len = strlen( (const char *) interact->result );
     }
     interact++;
@@ -616,7 +616,7 @@ void LDAPProtocol::openConnection()
 ///////////////////////////////////////////////////////////////////////////
   kdDebug(7125) << "OpenConnection to " << mHost << ":" << mPort << endl;
 
-  ret = ldap_initialize( &mLDAP, Url.htmlURL().utf8() );
+  ret = ldap_initialize( &mLDAP, Url.htmlURL().toUtf8() );
   if ( ret != LDAP_SUCCESS ) {
     LDAPErr( Url, ret );
     return;
@@ -699,10 +699,10 @@ void LDAPProtocol::openConnection()
     ret = 
 #if defined HAVE_SASL_H || defined HAVE_SASL_SASL_H
       mAuthSASL ? 
-        ldap_sasl_interactive_bind_s( mLDAP, NULL, mechanism.utf8(), 
+        ldap_sasl_interactive_bind_s( mLDAP, NULL, mechanism.toUtf8(), 
           NULL, NULL, LDAP_SASL_INTERACTIVE, &kldap_sasl_interact, this ) :
 #endif          
-        ldap_simple_bind_s( mLDAP, mBindName.utf8(), mPassword.utf8() );
+        ldap_simple_bind_s( mLDAP, mBindName.toUtf8(), mPassword.toUtf8() );
     
     mFirstAuth = false;
     if ( ret != LDAP_INVALID_CREDENTIALS && 
@@ -873,9 +873,9 @@ void LDAPProtocol::del( const KURL &_url, bool )
     return;
   }
   
-  kdDebug(7125) << " del: " << usrc.dn().utf8() << endl ;
+  kdDebug(7125) << " del: " << usrc.dn().toUtf8() << endl ;
   
-  if ( (ret = ldap_delete_s( mLDAP,usrc.dn().utf8() )) != LDAP_SUCCESS ) {
+  if ( (ret = ldap_delete_s( mLDAP,usrc.dn().toUtf8() )) != LDAP_SUCCESS ) {
     LDAPErr( _url );
     return;
   }
@@ -946,7 +946,7 @@ void LDAPProtocol::put( const KURL &_url, int, bool overwrite, bool )
             case LDIF::Entry_Del:
               kdDebug(7125) << "kio_ldap_del" << endl;
               controlsFromMetaData( &serverctrls, &clientctrls );
-              ldaperr = ldap_delete_ext_s( mLDAP, ldif.dn().utf8(), 
+              ldaperr = ldap_delete_ext_s( mLDAP, ldif.dn().toUtf8(), 
                 serverctrls, clientctrls );
               FREELDAPMEM;
               break;
@@ -956,8 +956,8 @@ void LDAPProtocol::put( const KURL &_url, int, bool overwrite, bool )
                 " newSuperior: " << ldif.newSuperior() << 
                 " deloldrdn: " << ldif.delOldRdn() << endl;
               controlsFromMetaData( &serverctrls, &clientctrls );
-              ldaperr = ldap_rename_s( mLDAP, ldif.dn().utf8(), ldif.newRdn().utf8(), 
-                ldif.newSuperior().isEmpty() ? Q3CString() : ldif.newSuperior().utf8(), 
+              ldaperr = ldap_rename_s( mLDAP, ldif.dn().toUtf8(), ldif.newRdn().toUtf8(), 
+                ldif.newSuperior().isEmpty() ? Q3CString() : ldif.newSuperior().toUtf8(), 
                 ldif.delOldRdn(), serverctrls, clientctrls );
 
               FREELDAPMEM;
@@ -966,7 +966,7 @@ void LDAPProtocol::put( const KURL &_url, int, bool overwrite, bool )
               kdDebug(7125) << "kio_ldap_mod"  << endl;
               if ( lmod ) {
                 controlsFromMetaData( &serverctrls, &clientctrls );
-                ldaperr = ldap_modify_ext_s( mLDAP, ldif.dn().utf8(), lmod,
+                ldaperr = ldap_modify_ext_s( mLDAP, ldif.dn().toUtf8(), lmod,
                   serverctrls, clientctrls );
                 FREELDAPMEM;
               }
@@ -975,13 +975,13 @@ void LDAPProtocol::put( const KURL &_url, int, bool overwrite, bool )
               kdDebug(7125) << "kio_ldap_add " << ldif.dn() << endl;
               if ( lmod ) {
                 controlsFromMetaData( &serverctrls, &clientctrls );
-                ldaperr = ldap_add_ext_s( mLDAP, ldif.dn().utf8(), lmod,
+                ldaperr = ldap_add_ext_s( mLDAP, ldif.dn().toUtf8(), lmod,
                   serverctrls, clientctrls );
                 if ( ldaperr == LDAP_ALREADY_EXISTS && overwrite ) {
                   kdDebug(7125) << ldif.dn() << " already exists, delete first" << endl;
-                  ldaperr = ldap_delete_s( mLDAP, ldif.dn().utf8() );
+                  ldaperr = ldap_delete_s( mLDAP, ldif.dn().toUtf8() );
                   if ( ldaperr == LDAP_SUCCESS ) 
-                    ldaperr = ldap_add_ext_s( mLDAP, ldif.dn().utf8(), lmod,
+                    ldaperr = ldap_add_ext_s( mLDAP, ldif.dn().toUtf8(), lmod,
                       serverctrls, clientctrls );
                 }
                 FREELDAPMEM;

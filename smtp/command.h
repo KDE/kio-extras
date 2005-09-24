@@ -155,7 +155,7 @@ namespace KioSMTP {
     EHLOCommand( SMTPProtocol * smtp, const QString & hostname )
       : Command( smtp, CloseConnectionOnError|OnlyLastInPipeline ),
 	mEHLONotSupported( false ),
-	mHostname( hostname.stripWhiteSpace() ) {}
+	mHostname( hostname.trimmed() ) {}
 
     Q3CString nextCommandLine( TransactionState * );
     bool processResponse( const Response & response, TransactionState * );

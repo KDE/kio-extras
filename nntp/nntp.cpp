@@ -102,7 +102,7 @@ void NNTPProtocol::setHost ( const QString & host, int port, const QString & use
 
 void NNTPProtocol::get(const KURL& url) {
   DBG << "get " << url.prettyURL() << endl;
-  QString path = QDir::cleanDirPath(url.path());
+  QString path = QDir::cleanPath(url.path());
   QRegExp regMsgId = QRegExp("^\\/?[a-z0-9\\.\\-_]+\\/<\\S+>$", false);
   int pos;
   QString group;
@@ -267,7 +267,7 @@ bool NNTPProtocol::post_article() {
 void NNTPProtocol::stat( const KURL& url ) {
   DBG << "stat " << url.prettyURL() << endl;
   UDSEntry entry;
-  QString path = QDir::cleanDirPath(url.path());
+  QString path = QDir::cleanPath(url.path());
   QRegExp regGroup = QRegExp("^\\/?[a-z0-9\\.\\-_]+\\/?$",false);
   QRegExp regMsgId = QRegExp("^\\/?[a-z0-9\\.\\-_]+\\/<\\S+>$", false);
   int pos;
@@ -315,7 +315,7 @@ void NNTPProtocol::listDir( const KURL& url ) {
   if ( !nntp_open() )
     return;
 
-  QString path = QDir::cleanDirPath(url.path());
+  QString path = QDir::cleanPath(url.path());
 
   if (path.isEmpty())
   {
@@ -388,7 +388,7 @@ void NNTPProtocol::fetchGroups( const QString &since, bool desc )
     if ( line == ".\r\n" )
       break;
 
-//    DBG << "  fetchGroups -- data: " << QString( line ).stripWhiteSpace() << endl;
+//    DBG << "  fetchGroups -- data: " << QString( line ).trimmed() << endl;
 
     // group name
     if ((pos = line.find(' ')) > 0) {
@@ -460,7 +460,7 @@ void NNTPProtocol::fetchGroups( const QString &since, bool desc )
       if ( line == ".\r\n" )
         break;
 
-      //DBG << "  fetching group description: " << QString( line ).stripWhiteSpace() << endl;
+      //DBG << "  fetching group description: " << QString( line ).trimmed() << endl;
       int pos = line.indexOf( ' ' );
       pos = pos < 0 ? line.indexOf( '\t' ) : kMin( pos, line.indexOf( '\t' ) );
       group = line.left( pos );
@@ -622,8 +622,8 @@ bool NNTPProtocol::fetchGroupXOVER( unsigned long first, bool &notSupported )
       line = QString::fromLatin1( readBuffer, readBufferLen );
       if ( line == ".\r\n" )
         break;
-      headers << line.stripWhiteSpace();
-      DBG << "OVERVIEW.FMT: " << line.stripWhiteSpace() << endl;
+      headers << line.trimmed();
+      DBG << "OVERVIEW.FMT: " << line.trimmed() << endl;
     }
   } else {
     // fallback to defaults
@@ -661,7 +661,7 @@ bool NNTPProtocol::fetchGroupXOVER( unsigned long first, bool &notSupported )
       return true;
     }
 
-    fields = QStringList::split( "\t", line, true );
+    fields = line.split( "\t", QString::KeepEmptyParts);
     msgSize = 0;
     entry.clear();
     QStringList::ConstIterator it = headers.constBegin();
@@ -676,9 +676,9 @@ bool NNTPProtocol::fetchGroupXOVER( unsigned long first, bool &notSupported )
       }
       atom.m_uds = UDS_EXTRA;
       if ( (*it).endsWith( "full" ) )
-        atom.m_str = (*it2).stripWhiteSpace();
+        atom.m_str = (*it2).trimmed();
       else
-        atom.m_str = (*it) + " " + (*it2).stripWhiteSpace();
+        atom.m_str = (*it) + " " + (*it2).trimmed();
       entry.append( atom );
     }
     fillUDSEntry( entry, name, msgSize, true );

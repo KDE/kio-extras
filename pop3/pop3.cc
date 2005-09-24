@@ -243,7 +243,7 @@ POP3Protocol::Resp POP3Protocol::getResponse(char *r_buf, unsigned int r_len,
     }
 
     QString command = QString::fromLatin1(cmd);
-    QString serverMsg = QString::fromLatin1(buf).mid(5).stripWhiteSpace();
+    QString serverMsg = QString::fromLatin1(buf).mid(5).trimmed();
 
     if (command.left(4) == "PASS") {
       command = i18n("PASS <your password>");
@@ -384,7 +384,7 @@ int POP3Protocol::loginAPOP( char *challenge, KIO::AuthInfo &ai )
   apop_string.append(" ");
   apop_string.append(ctx.hexDigest());
 
-  if (command(apop_string.local8Bit(), buf, sizeof(buf)) == Ok) {
+  if (command(apop_string.toLocal8Bit(), buf, sizeof(buf)) == Ok) {
     return 0;
   }
 
@@ -433,12 +433,12 @@ bool POP3Protocol::saslInteract( void *in, AuthInfo &ai )
       case SASL_CB_USER:
       case SASL_CB_AUTHNAME:
         POP3_DEBUG << "SASL_CB_[USER|AUTHNAME]: " << m_sUser << endl;
-        interact->result = strdup( m_sUser.utf8() );
+        interact->result = strdup( m_sUser.toUtf8() );
         interact->len = strlen( (const char *) interact->result );
         break;
       case SASL_CB_PASS:
         POP3_DEBUG << "SASL_CB_PASS: [hidden] " << endl;
-        interact->result = strdup( m_sPass.utf8() );
+        interact->result = strdup( m_sPass.toUtf8() );
         interact->len = strlen( (const char *) interact->result );
         break;
       default:
@@ -483,7 +483,7 @@ int POP3Protocol::loginSASL( KIO::AuthInfo &ai )
 
   // We need to check what methods the server supports...
   // This is based on RFC 1734's wisdom
-  if ( hasMetaData("sasl") || command(sasl_buffer.local8Bit()) == Ok  ) {
+  if ( hasMetaData("sasl") || command(sasl_buffer.toLocal8Bit()) == Ok  ) {
 
     QStringList sasl_list;
     if (hasMetaData("sasl")) {
@@ -627,7 +627,7 @@ bool POP3Protocol::loginPASS( KIO::AuthInfo &ai )
   QString one_string = QString::fromLatin1("USER ");
   one_string.append( m_sUser );
 
-  if ( command(one_string.local8Bit(), buf, sizeof(buf)) != Ok ) {
+  if ( command(one_string.toLocal8Bit(), buf, sizeof(buf)) != Ok ) {
     POP3_DEBUG << "Couldn't login. Bad username Sorry" << endl;
 
     m_sError =
@@ -641,7 +641,7 @@ bool POP3Protocol::loginPASS( KIO::AuthInfo &ai )
   one_string = QString::fromLatin1("PASS ");
   one_string.append(m_sPass);
 
-  if ( command(one_string.local8Bit(), buf, sizeof(buf)) != Ok ) {
+  if ( command(one_string.toLocal8Bit(), buf, sizeof(buf)) != Ok ) {
     POP3_DEBUG << "Couldn't login. Bad password Sorry." << endl;
     m_sError =
         i18n

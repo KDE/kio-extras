@@ -95,7 +95,7 @@ void InfoProtocol::get( const KURL& url )
     decodeURL( url );
 
     QString path = KGlobal::iconLoader()->iconPath("up", KIcon::Toolbar, true);
-    int revindex = path.findRev('/');
+    int revindex = path.lastIndexOf('/');
     path = path.left(revindex);
 
     QString cmd = KProcess::quote(m_perl);
@@ -219,7 +219,7 @@ void InfoProtocol::decodePath( QString path )
     m_page = path.left( slashPos );
 
     // remove leading+trailing whitespace
-    m_node = path.right( path.length() - slashPos - 1).stripWhiteSpace ();
+    m_node = path.right( path.length() - slashPos - 1).trimmed ();
 
     kdDebug( 7108 ) << "InfoProtocol::decodePath - done" << endl;
 }

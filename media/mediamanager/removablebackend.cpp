@@ -64,7 +64,7 @@ bool RemovableBackend::plug(const QString &devNode, const QString &label)
 		medium->mountableState(devNode, QString::null,
 		                       QString::null, false);
 
-		QStringList words = QStringList::split(" ", label);
+		QStringList words = label.split( " ");
 		
 		QStringList::iterator it = words.begin();
 		QStringList::iterator end = words.end();

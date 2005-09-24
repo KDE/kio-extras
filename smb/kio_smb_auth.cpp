@@ -105,8 +105,8 @@ void SMBSlave::auth_smbc_get_data(const char *server,const char *share,
     } else
         kdDebug(KIO_SMB) << "got password through cache" << endl;
 
-    strncpy(username, info.username.utf8(), unmaxlen - 1);
-    strncpy(password, info.password.utf8(), pwmaxlen - 1);
+    strncpy(username, info.username.toUtf8(), unmaxlen - 1);
+    strncpy(password, info.password.toUtf8(), pwmaxlen - 1);
 }
 
 bool SMBSlave::checkPassword(SMBUrl &url)

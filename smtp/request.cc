@@ -47,7 +47,7 @@ namespace KioSMTP {
   Request Request::fromURL( const KURL & url ) {
     Request request;
 
-    const QStringList query = QStringList::split( '&', url.query().mid(1) );
+    const QStringList query = url.query().mid(1).split( '&');
 #ifndef NDEBUG
     kdDebug(7112) << "Parsing request from query:\n" + query.join("\n" ) << endl;
 #endif
@@ -115,7 +115,7 @@ namespace KioSMTP {
 
 
   static inline Q3CString rfc2047Encode( const QString & s ) {
-    Q3CString r = KCodecs::base64Encode( s.stripWhiteSpace().utf8(), false );
+    Q3CString r = KCodecs::base64Encode( s.trimmed().toUtf8(), false );
     return "=?utf-8?b?" + r + "?=" ; // use base64 since that always gives a valid encoded-word
   }
 

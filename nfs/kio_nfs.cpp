@@ -177,7 +177,7 @@ static void stripTrailingSlash(QString& path)
 
 static void getLastPart(const QString& path, QString& lastPart, QString& rest)
 {
-   int slashPos=path.findRev("/");
+   int slashPos=path.lastIndexOf("/");
    lastPart=path.mid(slashPos+1);
    rest=path.left(slashPos+1);
 }
@@ -639,7 +639,7 @@ void NFSProtocol::listDir( const KURL& _url)
             }
             else
             {
-               tmpStr=QDir::cleanDirPath(path+QString("/")+QString(linkDest)).latin1();
+               tmpStr=QDir::cleanPath(path+QString("/")+QString(linkDest)).latin1();
                dirargs.name=tmpStr.data();
                tmpFH=getFileHandle(tmpStr);
                memcpy(dirargs.dir.data,tmpFH,NFS_FHSIZE);
@@ -755,7 +755,7 @@ void NFSProtocol::stat( const KURL & url)
          else
          {
 
-            tmpStr=QDir::cleanDirPath(parentDir+QString("/")+QString(linkDest)).latin1();
+            tmpStr=QDir::cleanPath(parentDir+QString("/")+QString(linkDest)).latin1();
             diropargs dirargs;
             dirargs.name=tmpStr.data();
             NFSFileHandle tmpFH;
@@ -1600,14 +1600,14 @@ bool NFSProtocol::isValidLink(const QString& parentDir, const QString& linkDest)
       kdDebug(7121)<<"pointing abs to "<<absDest<<endl;
       absDest=removeFirstPart(absDest);
       kdDebug(7121)<<"removed first part "<<absDest<<endl;
-      absDest=QDir::cleanDirPath(absDest);
+      absDest=QDir::cleanPath(absDest);
       kdDebug(7121)<<"simplified to "<<absDest<<endl;
       if (absDest.find("../")==0)
          return FALSE;
 
       kdDebug(7121)<<"is inside the nfs tree"<<endl;
       absDest=parentDir+"/"+linkDest;
-      absDest=QDir::cleanDirPath(absDest);
+      absDest=QDir::cleanPath(absDest);
       kdDebug(7121)<<"getting file handle of "<<absDest<<endl;
       NFSFileHandle fh=getFileHandle(absDest);
       return (!fh.isInvalid());

@@ -388,7 +388,7 @@ Q3ValueList<KIO::UDSAtom> MacProtocol::makeUDS(const QString& _line) {
 
         atom.m_uds = KIO::UDS_MIME_TYPE;
         QString mimetype = getMimetype(fileRE.cap(2),fileRE.cap(3));
-        atom.m_str = mimetype.local8Bit();
+        atom.m_str = mimetype.toLocal8Bit();
         entry.append(atom);
 
         // Is it a file or a link/alias, just make aliases link to themselves

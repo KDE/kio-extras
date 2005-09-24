@@ -174,7 +174,7 @@ void SMBSlave::put( const KURL& kurl,
     if (exists && !resume && overwrite)
     {
         kdDebug(KIO_SMB) << "SMBSlave::put exists try to remove " << m_current_url.toSmbcUrl()<< endl;
-        //   remove(m_current_url.url().local8Bit());
+        //   remove(m_current_url.url().toLocal8Bit());
     }
 
 

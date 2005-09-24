@@ -50,7 +50,7 @@ void SMBSlave::special( const QByteArray & data)
          QString remotePath, mountPoint, user;
          stream >> remotePath >> mountPoint;
 
-         QStringList sl=QStringList::split("/",remotePath);
+         QStringList sl=remotePath.split( "/");
          QString share,host;
          if (sl.count()>=2)
          {
@@ -61,7 +61,7 @@ void SMBSlave::special( const QByteArray & data)
 
          remotePath.replace('\\', '/');  // smbmounterplugin sends \\host/share
 
-         kdDebug(KIO_SMB) << "mounting: " << remotePath.local8Bit() << " to " << mountPoint.local8Bit() << endl;
+         kdDebug(KIO_SMB) << "mounting: " << remotePath.toLocal8Bit() << " to " << mountPoint.toLocal8Bit() << endl;
 
          if (tmp==3) {
              if (!KStandardDirs::makeDir(mountPoint)) {
@@ -109,8 +109,8 @@ void SMBSlave::special( const QByteArray & data)
          //if ( ! m_default_encoding.isEmpty() )
            //options += ",codepage=" + KProcess::quote(m_default_encoding);
 
-         proc << KProcess::quote(remotePath.local8Bit());
-         proc << KProcess::quote(mountPoint.local8Bit());
+         proc << KProcess::quote(remotePath.toLocal8Bit());
+         proc << KProcess::quote(mountPoint.toLocal8Bit());
          proc << options;
 
          connect(&proc, SIGNAL( receivedStdout(KProcess *, char *, int )),

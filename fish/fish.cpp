@@ -930,7 +930,7 @@ void fishProtocol::manageConnection(const QString &l) {
                 case ':':
                     atom.m_uds = UDS_NAME;
                     atom.m_long = 0;
-                    pos = line.findRev('/');
+                    pos = line.lastIndexOf('/');
                     atom.m_str = thisFn = line.mid(pos < 0?1:pos+1);
                     if (fishCommand == FISH_LIST)
                         udsEntry.append(atom);
