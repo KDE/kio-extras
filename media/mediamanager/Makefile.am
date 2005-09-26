@@ -1,7 +1,7 @@
 kde_module_LTLIBRARIES = kded_mediamanager.la
 
 if include_media_halbackend
-HALBACKEND_INCS = $(HAL_INCS) $(DBUS_INCS) $(DBUSQT_INCS)
+HALBACKEND_INCS = $(HAL_CFLAGS) $(DBUS_CFLAGS) $(QTDBUS_CFLAGS)
 endif
 
 METASOURCES = AUTO
@@ -11,7 +11,7 @@ if include_media_halbackend
 HALBACKEND_LIB = libhalbackend.la
 libhalbackend_la_SOURCES = halbackend.cpp
 libhalbackend_la_LDFLAGS = -avoid-version $(all_libraries) -no-undefined
-libhalbackend_la_LIBADD = $(HAL_LIBS) $(DBUS_LIBS) $(DBUSQT_LIBS)
+libhalbackend_la_LIBADD = $(HAL_LIBS) $(DBUS_LIBS) $(QTDBUS_LIBS)
 endif
 
 if include_media_linuxcdpolling
