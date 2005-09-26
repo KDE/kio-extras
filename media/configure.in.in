@@ -13,14 +13,13 @@ AC_ARG_WITH(hal,AC_HELP_STRING([--with-hal],[Enable HAL support  [default=check]
 if test "x$hal_test" = "xyes" ; then
 
 ########### Check for the HAL
-
   AC_MSG_CHECKING(for the HAL)
 
   hal_inc=NOTFOUND
   hal_lib=NOTFOUND
   hal=NOTFOUND
 
-  search_incs="$kde_includes /usr/include /usr/include/hal /usr/local/include /usr/local/include/hal"
+  search_incs="$kde_includes $kde_extra_includes /usr/include /usr/include/hal /usr/local/include /usr/local/include/hal"
   AC_FIND_FILE(libhal.h libhal-storage.h, $search_incs, hal_incdir)
 
   if [test -r $hal_incdir/libhal.h] && [test -r $hal_incdir/libhal-storage.h] ; then
@@ -37,7 +36,7 @@ if test "x$hal_test" = "xyes" ; then
     fi
   fi
 
-  search_libs="$kde_libraries /usr/lib$kdelibsuff /usr/local/lib$kdelibsuff"
+  search_libs="$kde_libraries $kde_extra_libs /usr/lib$kdelibsuff /usr/local/lib$kdelibsuff"
   AC_FIND_FILE(libhal.so libhal-storage.so, $search_libs, hal_libdir)
 
   if [test -r $hal_libdir/libhal.so] && [test -r $hal_libdir/libhal-storage.so] ; then
@@ -45,13 +44,17 @@ if test "x$hal_test" = "xyes" ; then
     hal_lib=FOUND
   fi
 
+  if [ test $hal_inc != FOUND ] || [ test $hal_lib != FOUND ]; then 
+    PKG_CHECK_MODULES( HAL, hal, [ HAL_INCS=$HAL_CFLAGS; hal_inc=FOUND; hal_lib=FOUND; ] , )
+  fi
 
   if [test $hal_inc = FOUND] && [test $hal_lib = FOUND] ; then
-      AC_MSG_RESULT(headers $hal_incdir  libraries $hal_libdir)
+      AC_MSG_RESULT(headers $HAL_INCS  libraries $HAL_LIBS)
   	hal=FOUND
   else
       AC_MSG_RESULT(searched but not found)
   fi
+
 
   AC_SUBST(HAL_INCS)
   AC_SUBST(HAL_LIBS)
@@ -65,10 +68,10 @@ if test "x$hal_test" = "xyes" ; then
   dbus_lib=NOTFOUND
   dbus=NOTFOUND
 
-  search_incs="$kde_includes /usr/include /usr/include/dbus-1.0 /usr/local/include /usr/local/include/dbus-1.0"
+  search_incs="$kde_includes $kde_extra_includes /usr/include /usr/include/dbus-1.0 /usr/local/include /usr/local/include/dbus-1.0"
   AC_FIND_FILE(dbus/dbus.h, $search_incs, dbus_incdir)
 
-  search_incs_arch_deps="$kde_includes /usr/lib$kdelibsuff/dbus-1.0/include /usr/local/lib$kdelibsuff/dbus-1.0/include"
+  search_incs_arch_deps="$kde_includes $kde_extra_includes /usr/lib$kdelibsuff/dbus-1.0/include /usr/local/lib$kdelibsuff/dbus-1.0/include"
   AC_FIND_FILE(dbus/dbus-arch-deps.h, $search_incs_arch_deps, dbus_incdir_arch_deps)
 
   if [test -r $dbus_incdir/dbus/dbus.h] && [test -r $dbus_incdir_arch_deps/dbus/dbus-arch-deps.h] ; then
@@ -76,7 +79,7 @@ if test "x$hal_test" = "xyes" ; then
     dbus_inc=FOUND
   fi
 
-  search_libs="$kde_libraries /usr/lib$kdelibsuff /usr/local/lib$kdelibsuff"
+  search_libs="$kde_libraries $kde_extra_libs /usr/lib$kdelibsuff /usr/local/lib$kdelibsuff"
   AC_FIND_FILE(libdbus-1.so, $search_libs, dbus_libdir)
 
   if test -r $dbus_libdir/libdbus-1.so ; then
@@ -84,8 +87,11 @@ if test "x$hal_test" = "xyes" ; then
     dbus_lib=FOUND
   fi
 
+  if [ test $dbus_inc != FOUND ] || [ test $dbus_lib != FOUND ]; then 
+    PKG_CHECK_MODULES( DBUS, "dbus-1", [ DBUS_INCS=$DBUS_CFLAGS; dbus_inc=FOUND; dbus_lib=FOUND; ] , )
+  fi
   if [test $dbus_inc = FOUND] && [test $dbus_lib = FOUND] ; then
-    AC_MSG_RESULT(headers $dbus_incdir $dbus_incdir_arch_deps  libraries $dbus_libdir)
+    AC_MSG_RESULT(headers $DBUS_INCS libraries $DBUS_LIBS)
     dbus=FOUND
   else
     AC_MSG_RESULT(searched but not found)
@@ -102,7 +108,7 @@ if test "x$hal_test" = "xyes" ; then
   dbusqt_lib=NOTFOUND
   dbusqt=NOTFOUND
 
-  search_incs="$kde_includes /usr/include /usr/include/dbus-1.0 /usr/local/include /usr/local/include/dbus-1.0"
+  search_incs="$kde_includes $kde_extra_includes /usr/include /usr/include/dbus-1.0 /usr/local/include /usr/local/include/dbus-1.0"
   AC_FIND_FILE(dbus/connection.h, $search_incs, dbusqt_incdir)
 
   if test -r $dbusqt_incdir/dbus/connection.h ; then
@@ -122,6 +128,31 @@ if test "x$hal_test" = "xyes" ; then
     DBUSQT_LIBS="-L$dbusqt_libdir -ldbus-qt-1"
     dbusqt_lib=FOUND
   fi
+
+  if [ test $dbusqt_inc != FOUND ] || [ test $dbusqt_lib != FOUND ]; then 
+
+    search_incs="`pkg-config --cflags dbus-1  |sed 's/-I//g'`"
+    AC_FIND_FILE(dbus/connection.h, $search_incs, dbusqt_incdir)
+    if test -r $dbusqt_incdir/dbus/connection.h ; then
+      have_qt_patch=0
+      grep dbus_connection_setup_with_qt_main $dbusqt_incdir/dbus/connection.h \
+      > /dev/null 2>&1 && have_qt_patch=1
+      if test $have_qt_patch = 1 ; then
+        DBUSQT_INCS="-I$dbusqt_incdir"
+        dbusqt_inc=FOUND
+      fi
+    fi
+
+    search_libs="`pkg-config --libs dbus-1 --libs-only-L | sed 's/-L//g'`"
+    AC_FIND_FILE(libdbus-qt-1.so, $search_libs, dbusqt_libdir)
+
+    if test -r $dbusqt_libdir/libdbus-qt-1.so ; then
+      DBUSQT_LIBS="-L$dbusqt_libdir -ldbus-qt-1"
+      dbusqt_lib=FOUND
+    fi
+
+  fi
+
 
   if [test $dbusqt_inc = FOUND] && [test $dbusqt_lib = FOUND] ; then
     AC_MSG_RESULT(headers $dbusqt_incdir libraries $dbusqt_libdir)
