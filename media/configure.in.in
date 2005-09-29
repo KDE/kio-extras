@@ -30,7 +30,7 @@ fi
 AC_MSG_CHECKING(if the HAL backend for media:/ should be compiled)
 
 HALBACKEND=no
-if [test "x$have_hal" = "xyes"] && [test "x$have_hal_storage" = "xyes"] && [test "x$have_dbus" = "xyes"] && [test "x$have_qtdbus" = "xyes"] ; then
+if test "x$have_hal" = "xyes" && test "x$have_hal_storage" = "xyes" && test "x$have_dbus" = "xyes" && test "x$have_qtdbus" = "xyes" ; then
   AC_DEFINE_UNQUOTED([COMPILE_HALBACKEND],1, [media HAL backend compilation])
   HALBACKEND=yes
   AC_SUBST(HALBACKEND)
