@@ -80,6 +80,8 @@ class NNTPProtocol:public KIO::TCPSlaveBase
    bool postingAllowed, opened;
    char readBuffer[MAX_PACKET_LEN];
    ssize_t readBufferLen;
+   /// Current selected newsgroup
+   QString mCurrentGroup;
 
    /**
     * Fetch all new groups since the given date or (if the date is empty)

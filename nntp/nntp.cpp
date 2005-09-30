@@ -13,7 +13,7 @@
 #include <stdio.h>
 
 #include <qdir.h>
-#include <qmap.h>
+#include <qhash.h>
 #include <qregexp.h>
 //Added by qt3to4:
 #include <Q3CString>
@@ -28,13 +28,9 @@
 #define NNTP_PORT 119
 #define NNTPS_PORT 563
 
-#define UDS_ENTRY_CHUNK 50 // so much entries are sent at once in listDir
-
 #define DBG_AREA 7114
 #define DBG kdDebug(DBG_AREA)
 #define ERR kdError(DBG_AREA)
-#define WRN kdWarning(DBG_AREA)
-#define FAT kdFatal(DBG_AREA)
 
 using namespace KIO;
 
@@ -100,13 +96,15 @@ void NNTPProtocol::setHost ( const QString & host, int port, const QString & use
   mPass = pass;
 }
 
-void NNTPProtocol::get(const KURL& url) {
+void NNTPProtocol::get( const KURL& url )
+{
   DBG << "get " << url.prettyURL() << endl;
   QString path = QDir::cleanPath(url.path());
   QRegExp regMsgId = QRegExp("^\\/?[a-z0-9\\.\\-_]+\\/<\\S+>$", false);
   int pos;
   QString group;
   QString msg_id;
+  int res_code;
 
   // path should be like: /group/<msg_id>
   if (regMsgId.search(path) != 0) {
@@ -125,21 +123,27 @@ void NNTPProtocol::get(const KURL& url) {
   if ( !nntp_open() )
     return;
 
-  // select group
-  int res_code = sendCommand( "GROUP " + group );
-  if (res_code == 411){
-    error(ERR_DOES_NOT_EXIST, path);
-    return;
-  } else if (res_code != 211) {
-    unexpected_response(res_code,"GROUP");
-    return;
+  // select group if necessary
+  if ( mCurrentGroup != group && !group.isEmpty() ) {
+    infoMessage( i18n("Selecting group %1...").arg( group ) );
+    res_code = sendCommand( "GROUP " + group );
+    if ( res_code == 411 ){
+      error( ERR_DOES_NOT_EXIST, path );
+      mCurrentGroup = QString::null;
+      return;
+    } else if ( res_code != 211 ) {
+      unexpected_response( res_code, "GROUP" );
+      mCurrentGroup = QString::null;
+      return;
+    }
+    mCurrentGroup = group;
   }
 
   // get article
   infoMessage( i18n("Downloading article...") );
   res_code = sendCommand( "ARTICLE " + msg_id );
-  if (res_code == 430) {
-    error(ERR_DOES_NOT_EXIST,path);
+  if ( res_code == 423 || res_code == 430 ) {
+    error( ERR_DOES_NOT_EXIST, path );
     return;
   } else if (res_code != 220) {
     unexpected_response(res_code,"ARTICLE");
@@ -373,8 +377,7 @@ void NNTPProtocol::fetchGroups( const QString &since, bool desc )
   long msg_cnt;
   long access;
   UDSEntry entry;
-  UDSEntryList entryList;
-  QMap<QString, UDSEntry> entryMap;
+  QHash<QString, UDSEntry> entryMap;
 
   // read in data and process each group. one line at a time
   while ( true ) {
@@ -387,8 +390,6 @@ void NNTPProtocol::fetchGroups( const QString &since, bool desc )
     line = QByteArray( readBuffer, readBufferLen );
     if ( line == ".\r\n" )
       break;
-
-//    DBG << "  fetchGroups -- data: " << QString( line ).trimmed() << endl;
 
     // group name
     if ((pos = line.find(' ')) > 0) {
@@ -417,21 +418,18 @@ void NNTPProtocol::fetchGroups( const QString &since, bool desc )
       entry.clear();
       fillUDSEntry( entry, group, msg_cnt, false, access );
       if ( !desc )
-        entryList.append(entry);
+        listEntry( entry, false );
       else
-        entryMap[group] = entry;
-
-      if (entryList.count() >= UDS_ENTRY_CHUNK) {
-        listEntries(entryList);
-        entryList.clear();
-      }
+        entryMap.insert( group, entry );
     }
   }
 
   // handle group descriptions
-  QMap<QString, UDSEntry>::Iterator it = entryMap.begin();
-  if ( desc )
+  QHash<QString, UDSEntry>::Iterator it = entryMap.begin();
+  if ( desc ) {
     infoMessage( i18n("Downloading group descriptions...") );
+    totalSize( entryMap.size() );
+  }
   while ( desc ) {
     // request all group descriptions
     if ( since.isEmpty() )
@@ -472,12 +470,7 @@ void NNTPProtocol::fetchGroups( const QString &since, bool desc )
         atom.m_uds = UDS_EXTRA;
         atom.m_str = groupDesc;
         entry.append( atom );
-        entryList.append( entry );
-      }
-
-      if (entryList.count() >= UDS_ENTRY_CHUNK) {
-        listEntries(entryList);
-        entryList.clear();
+        listEntry( entry, false );
       }
     }
 
@@ -485,12 +478,11 @@ void NNTPProtocol::fetchGroups( const QString &since, bool desc )
       break;
   }
   // take care of groups without descriptions
-  for ( QMap<QString, UDSEntry>::Iterator it = entryMap.begin(); it != entryMap.end(); ++it )
-    entryList.append( it.value() );
+  for ( QHash<QString, UDSEntry>::Iterator it = entryMap.begin(); it != entryMap.end(); ++it )
+    listEntry( it.value(), false );
 
-  // send rest of entryList
-  if ( entryList.count() > 0 )
-    listEntries(entryList);
+  entry.clear();
+  listEntry( entry, true );
 }
 
 bool NNTPProtocol::fetchGroup( QString &group, unsigned long first, unsigned long max ) {
@@ -500,13 +492,16 @@ bool NNTPProtocol::fetchGroup( QString &group, unsigned long first, unsigned lon
   // select group
   infoMessage( i18n("Selecting group %1...").arg( group ) );
   res_code = sendCommand( "GROUP " + group );
-  if (res_code == 411){
-    error(ERR_DOES_NOT_EXIST,group);
+  if ( res_code == 411 ) {
+    error( ERR_DOES_NOT_EXIST, group );
+    mCurrentGroup = QString::null;
     return false;
-  } else if (res_code != 211) {
-    unexpected_response(res_code,"GROUP");
+  } else if ( res_code != 211 ) {
+    unexpected_response( res_code, "GROUP" );
+    mCurrentGroup = QString::null;
     return false;
   }
+  mCurrentGroup = group;
 
   // repsonse to "GROUP <requested-group>" command is 211 then find the message count (cnt)
   // and the first and last message followed by the group name
@@ -546,7 +541,6 @@ bool NNTPProtocol::fetchGroup( QString &group, unsigned long first, unsigned lon
 bool NNTPProtocol::fetchGroupRFC977( unsigned long first )
 {
   UDSEntry entry;
-  UDSEntryList entryList;
 
   // set article pointer to first article and get msg-id of it
   int res_code = sendCommand( "STAT " + QString::number( first ) );
@@ -562,7 +556,7 @@ bool NNTPProtocol::fetchGroupRFC977( unsigned long first )
   if ((pos = resp_line.find('<')) > 0 && (pos2 = resp_line.find('>',pos+1))) {
     msg_id = resp_line.mid(pos,pos2-pos+1);
     fillUDSEntry( entry, msg_id, 0, true );
-    entryList.append(entry);
+    listEntry( entry, false );
   } else {
     error(ERR_INTERNAL,i18n("Could not extract first message id from server response:\n%1").
       arg(resp_line));
@@ -573,9 +567,9 @@ bool NNTPProtocol::fetchGroupRFC977( unsigned long first )
   while (true) {
     res_code = sendCommand("NEXT");
     if (res_code == 421) {
-      // last article reached
-      if ( !entryList.isEmpty() )
-        listEntries( entryList );
+      // last artice reached
+      entry.clear();
+      listEntry( entry, true );
       return true;
     } else if (res_code != 223) {
       unexpected_response(res_code,"NEXT");
@@ -588,11 +582,7 @@ bool NNTPProtocol::fetchGroupRFC977( unsigned long first )
       msg_id = resp_line.mid(pos,pos2-pos+1);
       entry.clear();
       fillUDSEntry( entry, msg_id, 0, true );
-      entryList.append(entry);
-      if (entryList.count() >= UDS_ENTRY_CHUNK) {
-        listEntries(entryList);
-        entryList.clear();
-      }
+      listEntry( entry, false );
     } else {
       error(ERR_INTERNAL,i18n("Could not extract message id from server response:\n%1").
         arg(resp_line));
@@ -643,7 +633,6 @@ bool NNTPProtocol::fetchGroupXOVER( unsigned long first, bool &notSupported )
   QString name;
   UDSAtom atom;
   UDSEntry entry;
-  UDSEntryList entryList;
 
   QStringList fields;
   while ( true ) {
@@ -655,9 +644,8 @@ bool NNTPProtocol::fetchGroupXOVER( unsigned long first, bool &notSupported )
     readBufferLen = readLine ( readBuffer, MAX_PACKET_LEN );
     line = QString::fromLatin1( readBuffer, readBufferLen );
     if ( line == ".\r\n" ) {
-      // last article reached
-      if ( !entryList.isEmpty() )
-        listEntries( entryList );
+      entry.clear();
+      listEntry( entry, true );
       return true;
     }
 
@@ -682,13 +670,9 @@ bool NNTPProtocol::fetchGroupXOVER( unsigned long first, bool &notSupported )
       entry.append( atom );
     }
     fillUDSEntry( entry, name, msgSize, true );
-    entryList.append( entry );
-    if (entryList.count() >= UDS_ENTRY_CHUNK) {
-      listEntries(entryList);
-      entryList.clear();
-    }
+    listEntry( entry, false );
   }
-  return true;
+  return true; // not reached
 }
 
 
@@ -752,6 +736,7 @@ void NNTPProtocol::nntp_close () {
     closeDescriptor();
     opened = false;
   }
+  mCurrentGroup = QString::null;
 }
 
 bool NNTPProtocol::nntp_open()
@@ -763,7 +748,7 @@ bool NNTPProtocol::nntp_open()
   }
 
   DBG << "  nntp_open -- creating a new connection to " << mHost << ":" << m_port << endl;
-  // create a new connection
+  // create a new connection (connectToHost() includes error handling)
   infoMessage( i18n("Connecting to server...") );
   if ( connectToHost( mHost.latin1(), m_port, true ) )
   {
@@ -812,13 +797,8 @@ bool NNTPProtocol::nntp_open()
 
     return true;
   }
-  // connection attempt failed
-  else
-  {
-    DBG << "  nntp_open -- connection attempt failed" << endl;
-    error( ERR_COULD_NOT_CONNECT, mHost );
-    return false;
-  }
+
+  return false;
 }
 
 int NNTPProtocol::sendCommand( const QString &cmd )
@@ -886,13 +866,20 @@ int NNTPProtocol::sendCommand( const QString &cmd )
   return res_code;
 }
 
-void NNTPProtocol::unexpected_response( int res_code, const QString & command) {
+void NNTPProtocol::unexpected_response( int res_code, const QString &command )
+{
   ERR << "Unexpected response to " << command << " command: (" << res_code << ") "
       << readBuffer << endl;
-  error(ERR_INTERNAL,i18n("Unexpected server response to %1 command:\n%2").
-    arg(command).arg(readBuffer));
 
-  // close connection
+  KIO::Error errCode;
+  switch ( res_code ) {
+    case 480: errCode = ERR_COULD_NOT_LOGIN; break;
+    default: errCode = ERR_INTERNAL;
+  }
+
+  error( errCode, i18n("Unexpected server response to %1 command:\n%2").
+    arg( command ).arg( readBuffer ) );
+
   nntp_close();
 }
 
