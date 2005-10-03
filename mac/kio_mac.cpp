@@ -28,6 +28,7 @@
 #include <Q3ValueList>
 #include <QTextStream>
 #include <Q3CString>
+#include <QDateTime>
 
 #include <sys/stat.h>
 #include <stdlib.h>

@@ -253,7 +253,7 @@ bool MediaNotifier::execAutoopen( const KFileItem &medium, const QString &path,
 	// UNLESS the user instructed otherwise.
 	if ( answer == KMessageBox::Yes )
 	{
-		( void ) new KRun( url );
+		( void ) new KRun( url, 0L );
 	}
 	
 	return true;

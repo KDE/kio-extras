@@ -35,7 +35,7 @@ K_EXPORT_COMPONENT_FACTORY(kfile_media, KFileMediaPluginFactory("kio_media"))
 
 KFileMediaPlugin::KFileMediaPlugin(QObject *parent, const char *name,
 		                     const QStringList& args)
-	: KFilePlugin(parent, name, args)
+	: KFilePlugin(parent, args)
 {
 	addMimeType( "media/audiocd" );
 	addMimeType( "media/hdd_mounted" );

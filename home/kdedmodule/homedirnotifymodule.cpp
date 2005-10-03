@@ -32,7 +32,7 @@ HomeDirNotifyModule::HomeDirNotifyModule(const Q3CString &obj)
 extern "C" {
 	KDE_EXPORT KDEDModule *create_homedirnotify(const Q3CString &obj)
 	{
-		KGlobal::locale()->insertCatalogue("kio_home");
+		KGlobal::locale()->insertCatalog("kio_home");
 		return new HomeDirNotifyModule(obj);
 	}
 }

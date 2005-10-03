@@ -123,7 +123,7 @@ static void ripper(int)
 
 int KDE_EXPORT kdemain( int argc, char **argv )
 {
-    KLocale::setMainCatalogue("kio_fish");
+    KLocale::setMainCatalog("kio_fish");
     KInstance instance("fish");
 
     myDebug( << "*** Starting fish " << endl);

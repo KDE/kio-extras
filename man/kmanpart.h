@@ -41,7 +41,7 @@ class KManPartFactory: public KParts::Factory
 {
    Q_OBJECT
    public:
-      KManPartFactory( QObject * parent = 0, const char * name = 0 );
+      KManPartFactory( QObject * parent = 0 );
       virtual ~KManPartFactory();
 
       virtual KParts::Part* createPartObject( QWidget * parentWidget, const char * widgetName ,

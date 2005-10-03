@@ -198,8 +198,7 @@ int main(int argc, char **argv)
 	                   "0.1");
 
 	KCmdLineArgs::addCmdLineOptions( options );
-	KGlobal::locale()->setMainCatalogue("kio_media");
-	KApplication::addCmdLineOptions();
+	KGlobal::locale()->setMainCatalog("kio_media");
 
 	if (KCmdLineArgs::parsedArgs()->count()==0) KCmdLineArgs::usage();
 	KApplication *app = new  MountHelper();

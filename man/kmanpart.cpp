@@ -39,8 +39,8 @@ extern "C"
 KInstance* KManPartFactory::s_instance = 0L;
 KAboutData* KManPartFactory::s_about = 0L;
 
-KManPartFactory::KManPartFactory( QObject* parent, const char* name )
-   : KParts::Factory( parent, name )
+KManPartFactory::KManPartFactory( QObject* parent )
+   : KParts::Factory( parent )
 {}
 
 KManPartFactory::~KManPartFactory()

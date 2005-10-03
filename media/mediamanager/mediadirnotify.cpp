@@ -25,6 +25,7 @@
 #include "medium.h"
 //Added by qt3to4:
 #include <Q3PtrList>
+#include <Q3CString>
 
 MediaDirNotify::MediaDirNotify(const MediaList &list)
 	: m_mediaList(list)
@@ -87,7 +88,7 @@ ASYNC MediaDirNotify::FilesAdded(const KURL &directory)
 
 	if (new_dir.isValid())
 	{
-		KDirNotify_stub notifier("*", "*");
+		KDirNotify_stub notifier(Q3CString("*"), Q3CString("*"));
 		notifier.FilesAdded( new_dir );
 	}
 }

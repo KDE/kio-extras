@@ -32,7 +32,7 @@ RemoteDirNotifyModule::RemoteDirNotifyModule(const Q3CString &obj)
 extern "C" {
 	KDE_EXPORT KDEDModule *create_remotedirnotify(const Q3CString &obj)
 	{
-		KGlobal::locale()->insertCatalogue("kio_remote");
+		KGlobal::locale()->insertCatalog("kio_remote");
 		return new RemoteDirNotifyModule(obj);
 	}
 }

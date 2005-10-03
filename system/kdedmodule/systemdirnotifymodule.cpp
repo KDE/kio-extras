@@ -32,7 +32,7 @@ SystemDirNotifyModule::SystemDirNotifyModule(const Q3CString &obj)
 extern "C" {
 	KDE_EXPORT KDEDModule *create_systemdirnotify(const Q3CString &obj)
 	{
-		KGlobal::locale()->insertCatalogue("kio_system");
+		KGlobal::locale()->insertCatalog("kio_system");
 		return new SystemDirNotifyModule(obj);
 	}
 }
