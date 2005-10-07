@@ -524,7 +524,7 @@ bool NNTPProtocol::fetchGroup( QString &group, unsigned long first, unsigned lon
     first = lastSerNum - max + 1;
 
   DBG << "Starting from serial number: " << first << " of " << firstSerNum << " - " << lastSerNum << endl;
-  setMetaData( "FirstSerialNumber", QString::number( first ) );
+  setMetaData( "FirstSerialNumber", QString::number( firstSerNum ) );
   setMetaData( "LastSerialNumber", QString::number( lastSerNum ) );
 
   infoMessage( i18n("Downloading new headers...") );
@@ -664,7 +664,10 @@ bool NNTPProtocol::fetchGroupXOVER( unsigned long first, bool &notSupported )
       }
       atom.m_uds = UDS_EXTRA;
       if ( (*it).endsWith( "full" ) )
-        atom.m_str = (*it2).trimmed();
+        if ( (*it2).trimmed().isEmpty() )
+          atom.m_str = (*it).left( (*it).indexOf( ':' ) + 1 ); // strip of the 'full' suffix
+        else
+          atom.m_str = (*it2).trimmed();
       else
         atom.m_str = (*it) + " " + (*it2).trimmed();
       entry.append( atom );
