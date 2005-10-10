@@ -348,7 +348,7 @@ sftpProtocol::Status sftpProtocol::sftpGet( const KURL& src, KIO::filesize_t off
     }
 
     KIO::filesize_t fileSize = attr.fileSize();
-    Q_UINT32 pflags = SSH2_FXF_READ;
+    quint32 pflags = SSH2_FXF_READ;
     attr.clear();
 
     QByteArray handle;
@@ -368,7 +368,7 @@ sftpProtocol::Status sftpProtocol::sftpGet( const KURL& src, KIO::filesize_t off
 
     // How big should each data packet be? Definitely not bigger than 64kb or
     // you will overflow the 2 byte size variable in a sftp packet.
-    Q_UINT32 len = 60*1024;
+    quint32 len = 60*1024;
     code = SSH2_FX_OK;
 
     kdDebug(KIO_SFTP_DB) << "sftpGet(): offset = " << offset << endl;
@@ -449,7 +449,7 @@ void sftpProtocol::get(const KURL& url) {
         return;
 
     // Get resume offset
-    Q_UINT64 offset = config()->readUnsignedLongNumEntry("resume");
+    quint64 offset = config()->readUnsignedLongNumEntry("resume");
     if( offset > 0 ) {
         canResume();
         kdDebug(KIO_SFTP_DB) << "get(): canResume(), offset = " << offset << endl;
@@ -772,16 +772,16 @@ void sftpProtocol::openConnection() {
     kdDebug(KIO_SFTP_DB) << "openConnection(): Sending SSH2_FXP_INIT packet." << endl;
     QByteArray p;
     QDataStream packet(&p, QIODevice::WriteOnly);
-    packet << (Q_UINT32)5;                     // packet length
-    packet << (Q_UINT8) SSH2_FXP_INIT;         // packet type
-    packet << (Q_UINT32)SSH2_FILEXFER_VERSION; // client version
+    packet << (quint32)5;                     // packet length
+    packet << (quint8) SSH2_FXP_INIT;         // packet type
+    packet << (quint32)SSH2_FILEXFER_VERSION; // client version
 
     putPacket(p);
     getPacket(p);
 
     QDataStream s(p);
-    Q_UINT32 version;
-    Q_UINT8  type;
+    quint32 version;
+    quint8  type;
     s >> type;
     kdDebug(KIO_SFTP_DB) << "openConnection(): Got type " << type << endl;
 
@@ -910,7 +910,7 @@ void sftpProtocol::sftpPut( const KURL& dest, int permissions, bool resume, bool
     KURL partUrl( origUrl );
     partUrl.setFileName( partUrl.fileName() + ".part" );
 
-    Q_UINT64 offset = 0;
+    quint64 offset = 0;
     bool partExists = false;
     bool markPartial = config()->readBoolEntry("MarkPartial", true);
 
@@ -974,7 +974,7 @@ void sftpProtocol::sftpPut( const KURL& dest, int permissions, bool resume, bool
     // Determine the url we will actually write to...
     KURL writeUrl (markPartial ? partUrl:origUrl);
 
-    Q_UINT32 pflags = 0;
+    quint32 pflags = 0;
     if( overwrite && !resume )
         pflags = SSH2_FXF_WRITE | SSH2_FXF_CREAT | SSH2_FXF_TRUNC;
     else if( !overwrite && !resume )
@@ -1157,7 +1157,7 @@ void sftpProtocol::mimetype ( const KURL& url ){
     if( !mConnected )
         return;
 
-    Q_UINT32 pflags = SSH2_FXF_READ;
+    quint32 pflags = SSH2_FXF_READ;
     QByteArray handle, mydata;
     sftpFileAttr attr(remoteEncoding());
     int code;
@@ -1166,8 +1166,8 @@ void sftpProtocol::mimetype ( const KURL& url ){
         return;
     }
 
-    Q_UINT32 len = 1024; // Get first 1k for determining mimetype
-    Q_UINT64 offset = 0;
+    quint32 len = 1024; // Get first 1k for determining mimetype
+    quint64 offset = 0;
     code = SSH2_FX_OK;
     while( offset < len && code == SSH2_FX_OK ) {
         if( (code = sftpRead(handle, offset, len, mydata)) == SSH2_FX_OK ) {
@@ -1256,13 +1256,13 @@ void sftpProtocol::mkdir(const KURL&url, int permissions){
     if (permissions != -1)
       attr.setPermissions(permissions);
 
-    Q_UINT32 id, expectedId;
+    quint32 id, expectedId;
     id = expectedId = mMsgId++;
 
     QByteArray p;
     QDataStream s(&p, QIODevice::WriteOnly);
-    s << Q_UINT32(1 /*type*/ + 4 /*id*/ + 4 /*str length*/ + len + attr.size());
-    s << (Q_UINT8)SSH2_FXP_MKDIR;
+    s << quint32(1 /*type*/ + 4 /*id*/ + 4 /*str length*/ + len + attr.size());
+    s << (quint8)SSH2_FXP_MKDIR;
     s << id;
     s.writeBytes(path.data(), len);
     s << attr;
@@ -1272,7 +1272,7 @@ void sftpProtocol::mkdir(const KURL&url, int permissions){
     putPacket(p);
     getPacket(p);
 
-    Q_UINT8 type;
+    quint8 type;
     QDataStream r(p);
 
     r >> type >> id;
@@ -1538,20 +1538,20 @@ int sftpProtocol::sftpRealPath(const KURL& url, KURL& newUrl){
     Q3CString path = remoteEncoding()->encode(url.path());
     uint len = path.length();
 
-    Q_UINT32 id, expectedId;
+    quint32 id, expectedId;
     id = expectedId = mMsgId++;
 
     QByteArray p;
     QDataStream s(&p, QIODevice::WriteOnly);
-    s << Q_UINT32(1 /*type*/ + 4 /*id*/ + 4 /*str length*/ + len);
-    s << (Q_UINT8)SSH2_FXP_REALPATH;
+    s << quint32(1 /*type*/ + 4 /*id*/ + 4 /*str length*/ + len);
+    s << (quint8)SSH2_FXP_REALPATH;
     s << id;
     s.writeBytes(path.data(), len);
 
     putPacket(p);
     getPacket(p);
 
-    Q_UINT8 type;
+    quint8 type;
     QDataStream r(p);
 
     r >> type >> id;
@@ -1561,7 +1561,7 @@ int sftpProtocol::sftpRealPath(const KURL& url, KURL& newUrl){
     }
 
     if( type == SSH2_FXP_STATUS ) {
-        Q_UINT32 code;
+        quint32 code;
         r >> code;
         return code;
     }
@@ -1571,7 +1571,7 @@ int sftpProtocol::sftpRealPath(const KURL& url, KURL& newUrl){
         return -1;
     }
 
-    Q_UINT32 count;
+    quint32 count;
     r >> count;
     if( count != 1 ) {
         kdError(KIO_SFTP_DB) << "sftpRealPath(): Bad number of file attributes for realpath command" << endl;
@@ -1589,7 +1589,7 @@ int sftpProtocol::sftpRealPath(const KURL& url, KURL& newUrl){
     return SSH2_FX_OK;
 }
 
-sftpProtocol::Status sftpProtocol::doProcessStatus(Q_UINT8 code, const QString& message)
+sftpProtocol::Status sftpProtocol::doProcessStatus(quint8 code, const QString& message)
 {
     Status res;
     res.code = 0;
@@ -1628,7 +1628,7 @@ sftpProtocol::Status sftpProtocol::doProcessStatus(Q_UINT8 code, const QString& 
 }
 
 /** Process SSH_FXP_STATUS packets. */
-void sftpProtocol::processStatus(Q_UINT8 code, const QString& message){
+void sftpProtocol::processStatus(quint8 code, const QString& message){
     Status st = doProcessStatus( code, message );
     if( st.code != 0 )
         error( st.code, st.text );
@@ -1642,21 +1642,21 @@ int sftpProtocol::sftpOpenDirectory(const KURL& url, QByteArray& handle){
     Q3CString path = remoteEncoding()->encode(url.path());
     uint len = path.length();
 
-    Q_UINT32 id, expectedId;
+    quint32 id, expectedId;
     id = expectedId = mMsgId++;
 
     QByteArray p;
     QDataStream s(&p, QIODevice::WriteOnly);
-    s << (Q_UINT32)(1 /*type*/ + 4 /*id*/ + 4 /*str length*/ + len);
-    s << (Q_UINT8)SSH2_FXP_OPENDIR;
-    s << (Q_UINT32)id;
+    s << (quint32)(1 /*type*/ + 4 /*id*/ + 4 /*str length*/ + len);
+    s << (quint8)SSH2_FXP_OPENDIR;
+    s << (quint32)id;
     s.writeBytes(path.data(), len);
 
     putPacket(p);
     getPacket(p);
 
     QDataStream r(p);
-    Q_UINT8 type;
+    quint8 type;
 
     r >> type >> id;
     if( id != expectedId ) {
@@ -1666,7 +1666,7 @@ int sftpProtocol::sftpOpenDirectory(const KURL& url, QByteArray& handle){
     }
 
     if( type == SSH2_FXP_STATUS ) {
-        Q_UINT32 errCode;
+        quint32 errCode;
         r >> errCode;
         return errCode;
     }
@@ -1691,21 +1691,21 @@ int sftpProtocol::sftpClose(const QByteArray& handle){
 
     kdDebug(KIO_SFTP_DB) << "sftpClose()" << endl;
 
-    Q_UINT32 id, expectedId;
+    quint32 id, expectedId;
     id = expectedId = mMsgId++;
 
     QByteArray p;
     QDataStream s(&p, QIODevice::WriteOnly);
-    s << (Q_UINT32)(1 /*type*/ + 4 /*id*/ + 4 /*str length*/ + handle.size());
-    s << (Q_UINT8)SSH2_FXP_CLOSE;
-    s << (Q_UINT32)id;
+    s << (quint32)(1 /*type*/ + 4 /*id*/ + 4 /*str length*/ + handle.size());
+    s << (quint8)SSH2_FXP_CLOSE;
+    s << (quint32)id;
     s << handle;
 
     putPacket(p);
     getPacket(p);
 
     QDataStream r(p);
-    Q_UINT8 type;
+    quint8 type;
 
     r >> type >> id;
     if( id != expectedId ) {
@@ -1718,7 +1718,7 @@ int sftpProtocol::sftpClose(const QByteArray& handle){
         return -1;
     }
 
-    Q_UINT32 code;
+    quint32 code;
     r >> code;
     if( code != SSH2_FX_OK ) {
         kdError(KIO_SFTP_DB) << "sftpClose: close failed with err code " << code << endl;
@@ -1735,14 +1735,14 @@ int sftpProtocol::sftpSetStat(const KURL& url, const sftpFileAttr& attr){
     Q3CString path = remoteEncoding()->encode(url.path());
     uint len = path.length();
 
-    Q_UINT32 id, expectedId;
+    quint32 id, expectedId;
     id = expectedId = mMsgId++;
 
     QByteArray p;
     QDataStream s(&p, QIODevice::WriteOnly);
-    s << (Q_UINT32)(1 /*type*/ + 4 /*id*/ + 4 /*str length*/ + len + attr.size());
-    s << (Q_UINT8)SSH2_FXP_SETSTAT;
-    s << (Q_UINT32)id;
+    s << (quint32)(1 /*type*/ + 4 /*id*/ + 4 /*str length*/ + len + attr.size());
+    s << (quint8)SSH2_FXP_SETSTAT;
+    s << (quint32)id;
     s.writeBytes(path.data(), len);
     s << attr;
 
@@ -1750,7 +1750,7 @@ int sftpProtocol::sftpSetStat(const KURL& url, const sftpFileAttr& attr){
     getPacket(p);
 
     QDataStream r(p);
-    Q_UINT8 type;
+    quint8 type;
 
     r >> type >> id;
     if( id != expectedId ) {
@@ -1764,7 +1764,7 @@ int sftpProtocol::sftpSetStat(const KURL& url, const sftpFileAttr& attr){
         return -1;
     }
 
-    Q_UINT32 code;
+    quint32 code;
     r >> code;
     if( code != SSH2_FX_OK ) {
         kdError(KIO_SFTP_DB) << "sftpSetStat(): set stat failed with err code " << code << endl;
@@ -1781,21 +1781,21 @@ int sftpProtocol::sftpRemove(const KURL& url, bool isfile){
     Q3CString path = remoteEncoding()->encode(url.path());
     uint len = path.length();
 
-    Q_UINT32 id, expectedId;
+    quint32 id, expectedId;
     id = expectedId = mMsgId++;
 
     QByteArray p;
     QDataStream s(&p, QIODevice::WriteOnly);
-    s << (Q_UINT32)(1 /*type*/ + 4 /*id*/ + 4 /*str length*/ + len);
-    s << (Q_UINT8)(isfile ? SSH2_FXP_REMOVE : SSH2_FXP_RMDIR);
-    s << (Q_UINT32)id;
+    s << (quint32)(1 /*type*/ + 4 /*id*/ + 4 /*str length*/ + len);
+    s << (quint8)(isfile ? SSH2_FXP_REMOVE : SSH2_FXP_RMDIR);
+    s << (quint32)id;
     s.writeBytes(path.data(), len);
 
     putPacket(p);
     getPacket(p);
 
     QDataStream r(p);
-    Q_UINT8 type;
+    quint8 type;
 
     r >> type >> id;
     if( id != expectedId ) {
@@ -1808,7 +1808,7 @@ int sftpProtocol::sftpRemove(const KURL& url, bool isfile){
         return -1;
     }
 
-    Q_UINT32 code;
+    quint32 code;
     r >> code;
     if( code != SSH2_FX_OK ) {
         kdError(KIO_SFTP_DB) << "del(): del failed with err code " << code << endl;
@@ -1828,16 +1828,16 @@ int sftpProtocol::sftpRename(const KURL& src, const KURL& dest){
     uint slen = srcPath.length();
     uint dlen = destPath.length();
 
-    Q_UINT32 id, expectedId;
+    quint32 id, expectedId;
     id = expectedId = mMsgId++;
 
     QByteArray p;
     QDataStream s(&p, QIODevice::WriteOnly);
-    s << (Q_UINT32)(1 /*type*/ + 4 /*id*/ +
+    s << (quint32)(1 /*type*/ + 4 /*id*/ +
                     4 /*str length*/ + slen +
                     4 /*str length*/ + dlen);
-    s << (Q_UINT8)SSH2_FXP_RENAME;
-    s << (Q_UINT32)id;
+    s << (quint8)SSH2_FXP_RENAME;
+    s << (quint32)id;
     s.writeBytes(srcPath.data(), slen);
     s.writeBytes(destPath.data(), dlen);
 
@@ -1845,7 +1845,7 @@ int sftpProtocol::sftpRename(const KURL& src, const KURL& dest){
     getPacket(p);
 
     QDataStream r(p);
-    Q_UINT8 type;
+    quint8 type;
 
     r >> type >> id;
     if( id != expectedId ) {
@@ -1871,8 +1871,8 @@ int sftpProtocol::sftpReadDir(const QByteArray& handle, const KURL& url){
     // url is needed so we can lookup the link destination
     kdDebug(KIO_SFTP_DB) << "sftpReadDir(): " << url << endl;
 
-    Q_UINT32 id, expectedId, count;
-    Q_UINT8 type;
+    quint32 id, expectedId, count;
+    quint8 type;
 
     sftpFileAttr attr (remoteEncoding());
     attr.setDirAttrsFlag(true);
@@ -1880,9 +1880,9 @@ int sftpProtocol::sftpReadDir(const QByteArray& handle, const KURL& url){
     QByteArray p;
     QDataStream s(&p, QIODevice::WriteOnly);
     id = expectedId = mMsgId++;
-    s << (Q_UINT32)(1 /*type*/ + 4 /*id*/ + 4 /*str length*/ + handle.size());
-    s << (Q_UINT8)SSH2_FXP_READDIR;
-    s << (Q_UINT32)id;
+    s << (quint32)(1 /*type*/ + 4 /*id*/ + 4 /*str length*/ + handle.size());
+    s << (quint8)SSH2_FXP_READDIR;
+    s << (quint32)id;
     s << handle;
 
     putPacket(p);
@@ -1943,13 +1943,13 @@ int sftpProtocol::sftpReadLink(const KURL& url, QString& target){
     //kdDebug(KIO_SFTP_DB) << "sftpReadLink(): Encoded Path: " << path << endl;
     //kdDebug(KIO_SFTP_DB) << "sftpReadLink(): Encoded Size: " << len << endl;
 
-    Q_UINT32 id, expectedId;
+    quint32 id, expectedId;
     id = expectedId = mMsgId++;
 
     QByteArray p;
     QDataStream s(&p, QIODevice::WriteOnly);
-    s << (Q_UINT32)(1 /*type*/ + 4 /*id*/ + 4 /*str length*/ + len);
-    s << (Q_UINT8)SSH2_FXP_READLINK;
+    s << (quint32)(1 /*type*/ + 4 /*id*/ + 4 /*str length*/ + len);
+    s << (quint8)SSH2_FXP_READLINK;
     s << id;
     s.writeBytes(path.data(), len);
 
@@ -1957,7 +1957,7 @@ int sftpProtocol::sftpReadLink(const KURL& url, QString& target){
     putPacket(p);
     getPacket(p);
 
-    Q_UINT8 type;
+    quint8 type;
     QDataStream r(p);
 
     r >> type >> id;
@@ -1967,7 +1967,7 @@ int sftpProtocol::sftpReadLink(const KURL& url, QString& target){
     }
 
     if( type == SSH2_FXP_STATUS ) {
-        Q_UINT32 code;
+        quint32 code;
         r >> code;
         kdDebug(KIO_SFTP_DB) << "sftpReadLink(): read link failed with code " << code << endl;
         return code;
@@ -1978,7 +1978,7 @@ int sftpProtocol::sftpReadLink(const KURL& url, QString& target){
         return -1;
     }
 
-    Q_UINT32 count;
+    quint32 count;
     r >> count;
     if( count != 1 ) {
         kdError(KIO_SFTP_DB) << "sftpReadLink(): Bad number of file attributes for realpath command" << endl;
@@ -2005,16 +2005,16 @@ int sftpProtocol::sftpSymLink(const QString& _target, const KURL& dest){
 
     kdDebug(KIO_SFTP_DB) << "sftpSymLink(" << target << " -> " << destPath << ")" << endl;
 
-    Q_UINT32 id, expectedId;
+    quint32 id, expectedId;
     id = expectedId = mMsgId++;
 
     QByteArray p;
     QDataStream s(&p, QIODevice::WriteOnly);
-    s << (Q_UINT32)(1 /*type*/ + 4 /*id*/ +
+    s << (quint32)(1 /*type*/ + 4 /*id*/ +
                     4 /*str length*/ + tlen +
                     4 /*str length*/ + dlen);
-    s << (Q_UINT8)SSH2_FXP_SYMLINK;
-    s << (Q_UINT32)id;
+    s << (quint8)SSH2_FXP_SYMLINK;
+    s << (quint32)id;
     s.writeBytes(target.data(), tlen);
     s.writeBytes(destPath.data(), dlen);
 
@@ -2022,7 +2022,7 @@ int sftpProtocol::sftpSymLink(const QString& _target, const KURL& dest){
     getPacket(p);
 
     QDataStream r(p);
-    Q_UINT8 type;
+    quint8 type;
 
     r >> type >> id;
     if( id != expectedId ) {
@@ -2035,7 +2035,7 @@ int sftpProtocol::sftpSymLink(const QString& _target, const KURL& dest){
         return -1;
     }
 
-    Q_UINT32 code;
+    quint32 code;
     r >> code;
     if( code != SSH2_FX_OK ) {
         kdError(KIO_SFTP_DB) << "sftpSymLink(): rename failed with err code " << code << endl;
@@ -2052,21 +2052,21 @@ int sftpProtocol::sftpStat(const KURL& url, sftpFileAttr& attr) {
     Q3CString path = remoteEncoding()->encode(url.path());
     uint len = path.length();
 
-    Q_UINT32 id, expectedId;
+    quint32 id, expectedId;
     id = expectedId = mMsgId++;
 
     QByteArray p;
     QDataStream s(&p, QIODevice::WriteOnly);
-    s << (Q_UINT32)(1 /*type*/ + 4 /*id*/ + 4 /*str length*/ + len);
-    s << (Q_UINT8)SSH2_FXP_LSTAT;
-    s << (Q_UINT32)id;
+    s << (quint32)(1 /*type*/ + 4 /*id*/ + 4 /*str length*/ + len);
+    s << (quint8)SSH2_FXP_LSTAT;
+    s << (quint32)id;
     s.writeBytes(path.data(), len);
 
     putPacket(p);
     getPacket(p);
 
     QDataStream r(p);
-    Q_UINT8 type;
+    quint8 type;
 
     r >> type >> id;
     if( id != expectedId ) {
@@ -2075,7 +2075,7 @@ int sftpProtocol::sftpStat(const KURL& url, sftpFileAttr& attr) {
     }
 
     if( type == SSH2_FXP_STATUS ) {
-        Q_UINT32 errCode;
+        quint32 errCode;
         r >> errCode;
         kdError(KIO_SFTP_DB) << "sftpStat(): stat failed with code " << errCode << endl;
         return errCode;
@@ -2133,23 +2133,23 @@ int sftpProtocol::sftpStat(const KURL& url, sftpFileAttr& attr) {
 }
 
 
-int sftpProtocol::sftpOpen(const KURL& url, const Q_UINT32 pflags,
+int sftpProtocol::sftpOpen(const KURL& url, const quint32 pflags,
                            const sftpFileAttr& attr, QByteArray& handle) {
     kdDebug(KIO_SFTP_DB) << "sftpOpen(" << url << ", handle" << endl;
 
     Q3CString path = remoteEncoding()->encode(url.path());
     uint len = path.length();
 
-    Q_UINT32 id, expectedId;
+    quint32 id, expectedId;
     id = expectedId = mMsgId++;
 
     QByteArray p;
     QDataStream s(&p, QIODevice::WriteOnly);
-    s << (Q_UINT32)(1 /*type*/ + 4 /*id*/ +
+    s << (quint32)(1 /*type*/ + 4 /*id*/ +
                     4 /*str length*/ + len +
                     4 /*pflags*/ + attr.size());
-    s << (Q_UINT8)SSH2_FXP_OPEN;
-    s << (Q_UINT32)id;
+    s << (quint8)SSH2_FXP_OPEN;
+    s << (quint32)id;
     s.writeBytes(path.data(), len);
     s << pflags;
     s << attr;
@@ -2158,7 +2158,7 @@ int sftpProtocol::sftpOpen(const KURL& url, const Q_UINT32 pflags,
     getPacket(p);
 
     QDataStream r(p);
-    Q_UINT8 type;
+    quint8 type;
 
     r >> type >> id;
     if( id != expectedId ) {
@@ -2167,7 +2167,7 @@ int sftpProtocol::sftpOpen(const KURL& url, const Q_UINT32 pflags,
     }
 
     if( type == SSH2_FXP_STATUS ) {
-        Q_UINT32 errCode;
+        quint32 errCode;
         r >> errCode;
         return errCode;
     }
@@ -2188,19 +2188,19 @@ int sftpProtocol::sftpOpen(const KURL& url, const Q_UINT32 pflags,
 }
 
 
-int sftpProtocol::sftpRead(const QByteArray& handle, KIO::filesize_t offset, Q_UINT32 len, QByteArray& data)
+int sftpProtocol::sftpRead(const QByteArray& handle, KIO::filesize_t offset, quint32 len, QByteArray& data)
 {
  //   kdDebug(KIO_SFTP_DB) << "sftpRead( offset = " << offset << ", len = " << len << ")" << endl;
     QByteArray p;
     QDataStream s(&p, QIODevice::WriteOnly);
 
-    Q_UINT32 id, expectedId;
+    quint32 id, expectedId;
     id = expectedId = mMsgId++;
-    s << (Q_UINT32)(1 /*type*/ + 4 /*id*/ +
+    s << (quint32)(1 /*type*/ + 4 /*id*/ +
                     4 /*str length*/ + handle.size() +
                     8 /*offset*/ + 4 /*length*/);
-    s << (Q_UINT8)SSH2_FXP_READ;
-    s << (Q_UINT32)id;
+    s << (quint8)SSH2_FXP_READ;
+    s << (quint32)id;
     s << handle;
     s << offset; // we don't have a convienient 64 bit int so set upper int to zero
     s << len;
@@ -2209,7 +2209,7 @@ int sftpProtocol::sftpRead(const QByteArray& handle, KIO::filesize_t offset, Q_U
     getPacket(p);
 
     QDataStream r(p);
-    Q_UINT8 type;
+    quint8 type;
 
     r >> type >> id;
     if( id != expectedId ) {
@@ -2218,7 +2218,7 @@ int sftpProtocol::sftpRead(const QByteArray& handle, KIO::filesize_t offset, Q_U
     }
 
     if( type == SSH2_FXP_STATUS ) {
-        Q_UINT32 errCode;
+        quint32 errCode;
         r >> errCode;
         kdError(KIO_SFTP_DB) << "sftpRead: read failed with code " << errCode << endl;
         return errCode;
@@ -2241,14 +2241,14 @@ int sftpProtocol::sftpWrite(const QByteArray& handle, KIO::filesize_t offset, co
     QByteArray p;
     QDataStream s(&p, QIODevice::WriteOnly);
 
-    Q_UINT32 id, expectedId;
+    quint32 id, expectedId;
     id = expectedId = mMsgId++;
-    s << (Q_UINT32)(1 /*type*/ + 4 /*id*/ +
+    s << (quint32)(1 /*type*/ + 4 /*id*/ +
                     4 /*str length*/ + handle.size() +
                     8 /*offset*/ +
                     4 /* data size */ + data.size());
-    s << (Q_UINT8)SSH2_FXP_WRITE;
-    s << (Q_UINT32)id;
+    s << (quint8)SSH2_FXP_WRITE;
+    s << (quint32)id;
     s << handle;
     s << offset; // we don't have a convienient 64 bit int so set upper int to zero
     s << data;
@@ -2264,7 +2264,7 @@ int sftpProtocol::sftpWrite(const QByteArray& handle, KIO::filesize_t offset, co
 //    kdDebug(KIO_SFTP_DB) << "sftpWrite(): received packet [" << p << "]" << endl;
 
     QDataStream r(p);
-    Q_UINT8 type;
+    quint8 type;
 
     r >> type >> id;
     if( id != expectedId ) {
@@ -2278,7 +2278,7 @@ int sftpProtocol::sftpWrite(const QByteArray& handle, KIO::filesize_t offset, co
         return -1;
     }
 
-    Q_UINT32 code;
+    quint32 code;
     r >> code;
     return code;
 }

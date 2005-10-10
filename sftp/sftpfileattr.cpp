@@ -46,7 +46,7 @@ sftpFileAttr::sftpFileAttr(KRemoteEncoding* encoding){
 /** Constructor to initialize the file attributes on declaration. */
 sftpFileAttr::sftpFileAttr(quint64 size, uid_t uid, gid_t gid,
                     mode_t permissions, time_t atime,
-                    time_t mtime, Q_UINT32 extendedCount) {
+                    time_t mtime, quint32 extendedCount) {
     clear();
     mDirAttrs = false;
     mSize  = size;
@@ -126,22 +126,22 @@ UDSEntry sftpFileAttr::entry() {
 
 /** Use to output the file attributes to a sftp packet */
 QDataStream& operator<< (QDataStream& s, const sftpFileAttr& fa) {
-    s << (Q_UINT32)fa.mFlags;
+    s << (quint32)fa.mFlags;
 
     if( fa.mFlags & SSH2_FILEXFER_ATTR_SIZE )
         { s << (quint64)fa.mSize; }
 
     if( fa.mFlags & SSH2_FILEXFER_ATTR_UIDGID )
-        { s << (Q_UINT32)fa.mUid << (Q_UINT32)fa.mGid; }
+        { s << (quint32)fa.mUid << (quint32)fa.mGid; }
 
     if( fa.mFlags & SSH2_FILEXFER_ATTR_PERMISSIONS )
-        { s << (Q_UINT32)fa.mPermissions; }
+        { s << (quint32)fa.mPermissions; }
 
     if( fa.mFlags & SSH2_FILEXFER_ATTR_ACMODTIME )
-        { s << (Q_UINT32)fa.mAtime << (Q_UINT32)fa.mMtime; }
+        { s << (quint32)fa.mAtime << (quint32)fa.mMtime; }
 
     if( fa.mFlags & SSH2_FILEXFER_ATTR_EXTENDED ) {
-        s << (Q_UINT32)fa.mExtendedCount;
+        s << (quint32)fa.mExtendedCount;
         // XXX: Write extensions to data stream here
         // s.writeBytes(extendedtype).writeBytes(extendeddata);
     }
@@ -177,7 +177,7 @@ QDataStream& operator>> (QDataStream& s, sftpFileAttr& fa) {
         fa.setFileSize(fileSize);
     }
 
-    Q_UINT32 x;
+    quint32 x;
 
     if( fa.mFlags & SSH2_FILEXFER_ATTR_UIDGID ) {
         s >> x; fa.setUid(x);
@@ -297,8 +297,8 @@ void sftpFileAttr::clear(){
 }
 
 /** Return the size of the sftp attribute. */
-Q_UINT32 sftpFileAttr::size() const{
-    Q_UINT32 size = 4; // for the attr flag
+quint32 sftpFileAttr::size() const{
+    quint32 size = 4; // for the attr flag
     if( mFlags & SSH2_FILEXFER_ATTR_SIZE )
         size += 8;
 

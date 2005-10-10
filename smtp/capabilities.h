@@ -54,7 +54,7 @@ namespace KioSMTP {
     void clear() { mCapabilities.clear(); }
 
     bool have( const QString & cap ) const {
-      return mCapabilities.find( cap.upper() ) != mCapabilities.end();
+      return mCapabilities.find( cap.toUpper() ) != mCapabilities.end();
     }
     bool have( const Q3CString & cap ) const { return have( QString( cap.data() ) ); }
     bool have( const char * cap ) const { return have( QString::fromLatin1( cap ) ); }

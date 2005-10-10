@@ -842,7 +842,7 @@ static void add_links(char *c)
                     str += "(";
                     str += char( sec );
                     if ( !subsec.isEmpty() )
-                        str += subsec.lower();
+                        str += subsec.toLower();
                     str += ")\">";
                     str += h;
                     str += "</a>";

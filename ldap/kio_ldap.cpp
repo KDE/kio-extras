@@ -440,13 +440,13 @@ void LDAPProtocol::changeCheck( LDAPUrl &url )
   bool authSASL = url.hasExtension( "x-sasl" );
   QString mech;
   if ( url.hasExtension( "x-mech" ) ) 
-    mech = url.extension( "x-mech", critical).upper();
+    mech = url.extension( "x-mech", critical).toUpper();
   QString realm;
   if ( url.hasExtension( "x-realm" ) ) 
-    mech = url.extension( "x-realm", critical).upper();
+    mech = url.extension( "x-realm", critical).toUpper();
   QString bindname;
   if ( url.hasExtension( "bindname" ) ) 
-    bindname = url.extension( "bindname", critical).upper();
+    bindname = url.extension( "bindname", critical).toUpper();
   int timelimit = 0;
   if ( url.hasExtension( "x-timelimit" ) )
     timelimit = url.extension( "x-timelimit", critical).toInt();

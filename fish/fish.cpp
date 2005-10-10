@@ -1204,7 +1204,7 @@ int fishProtocol::received(const char *buffer, int buflen)
             int dataSize = (rawRead > buflen?buflen:rawRead);
             if (!mimeTypeSent)
             {
-                int mimeSize = QMIN(dataSize, (int)mimeBuffer.size()-dataRead);
+                int mimeSize = qMin(dataSize, (int)mimeBuffer.size()-dataRead);
                 memcpy(mimeBuffer.data()+dataRead,buffer,mimeSize);
                 dataRead += mimeSize;
                 rawRead -= mimeSize;

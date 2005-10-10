@@ -484,7 +484,7 @@ bool LinuxCDPolling::hasDirectory(const Q3CString &devNode, const Q3CString &dir
 	char dirname[256]; // filename for the current path table entry
 	int pos = 0; // our position into the path table
 	int curr_record = 1; // the path table record we're on
-	Q3CString fixed_directory = dir.upper(); // the uppercase version of the "directory" parameter
+	Q3CString fixed_directory = dir.toUpper(); // the uppercase version of the "directory" parameter
 
 	// open the drive
 	fd = open(devNode, O_RDONLY | O_NONBLOCK);
@@ -552,7 +552,7 @@ bool LinuxCDPolling::hasDirectory(const Q3CString &devNode, const Q3CString &dir
 			break;
 		}
 		dirname[len_di] = 0;
-		qstrcpy(dirname, Q3CString(dirname).upper());
+		qstrcpy(dirname, Q3CString(dirname).toUpper());
 
 		// if we found a folder that has the root as a parent, and the directory name matches
 		// then return success

@@ -91,7 +91,7 @@ void SMBUrl::updateCache()
             }
             surl += "@";
         }
-        surl += KURL::encode_string(KURL::host().upper(), 106);
+        surl += KURL::encode_string(KURL::host().toUpper(), 106);
         surl += KURL::encode_string(KURL::path(), 106);
         m_surl = surl.toUtf8();
     }

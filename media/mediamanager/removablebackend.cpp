@@ -69,15 +69,15 @@ bool RemovableBackend::plug(const QString &devNode, const QString &label)
 		QStringList::iterator it = words.begin();
 		QStringList::iterator end = words.end();
 
-		QString tmp = (*it).lower();
-		tmp[0] = tmp[0].upper();
+		QString tmp = (*it).toLower();
+		tmp[0] = tmp[0].toUpper();
 		QString new_label = tmp;
 		
 		++it;
 		for (; it!=end; ++it)
 		{
-			tmp = (*it).lower();
-			tmp[0] = tmp[0].upper();
+			tmp = (*it).toLower();
+			tmp[0] = tmp[0].toUpper();
 			new_label+= " "+tmp;
 		}
 		

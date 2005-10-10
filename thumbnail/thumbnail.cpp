@@ -353,9 +353,9 @@ void ThumbnailProtocol::get(const KURL &url)
         QImage icon = getIcon();
 
         int x = img.width() - icon.width() - 4;
-        x = QMAX( x, 0 );
+        x = qMax( x, 0 );
         int y = img.height() - icon.height() - 6;
-        y = QMAX( y, 0 );
+        y = qMax( y, 0 );
         KImageEffect::blendOnLower( x, y, icon, img );
     }
 

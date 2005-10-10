@@ -56,7 +56,7 @@ namespace KioSMTP {
       if ( equalsPos <= 0 )
 	continue;
 
-      const QString key = (*it).left( equalsPos ).lower();
+      const QString key = (*it).left( equalsPos ).toLower();
       const QString value = KURL::decode_string( (*it).mid( equalsPos + 1 ) );
 
       if ( key == "to" )
@@ -78,7 +78,7 @@ namespace KioSMTP {
       else if ( key == "hostname" )
 	request.setHeloHostname( value );
       else if ( key == "body" )
-	request.set8BitBody( value.upper() == "8BIT" );
+	request.set8BitBody( value.toUpper() == "8BIT" );
       else if ( key == "size" )
 	request.setSize( value.toUInt() );
       else

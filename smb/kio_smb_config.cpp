@@ -44,7 +44,7 @@ void SMBSlave::reparseConfiguration()
 //  m_showHiddenShares=cfg->readBoolEntry("ShowHiddenShares",false);
 
   QString m_encoding = QTextCodec::codecForLocale()->name();
-  m_default_encoding = cfg->readEntry( "Encoding", m_encoding.lower() );
+  m_default_encoding = cfg->readEntry( "Encoding", m_encoding.toLower() );
 
   // unscramble, taken from Nicola Brodu's smb ioslave
   //not really secure, but better than storing the plain password

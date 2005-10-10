@@ -345,8 +345,8 @@ void SMBSlave::listDir( const KURL& kurl )
            // See KDE bug #111430 and Samba bug #3030
            QString comment = QString::fromUtf8( dirp->comment );
            if ( dirp->smbc_type == SMBC_SERVER || dirp->smbc_type == SMBC_WORKGROUP ) {
-               atom.m_str = dirpName.lower();
-               atom.m_str[0] = dirpName.at( 0 ).upper();
+               atom.m_str = dirpName.toLower();
+               atom.m_str[0] = dirpName.at( 0 ).toUpper();
                if ( !comment.isEmpty() && dirp->smbc_type == SMBC_SERVER )
                    atom.m_str += " (" + comment + ")";
            } else
@@ -355,8 +355,8 @@ void SMBSlave::listDir( const KURL& kurl )
            kdDebug(KIO_SMB) << "dirp->name " <<  dirp->name  << " " << dirpName << " '" << comment << "'" << " " << dirp->smbc_type << endl;
 
            udsentry.append( atom );
-           if (atom.m_str.upper()=="IPC$" || atom.m_str=="." || atom.m_str == ".." ||
-               atom.m_str.upper() == "ADMIN$" || atom.m_str.lower() == "printer$" || atom.m_str.lower() == "print$" )
+           if (atom.m_str.toUpper()=="IPC$" || atom.m_str=="." || atom.m_str == ".." ||
+               atom.m_str.toUpper() == "ADMIN$" || atom.m_str.toLower() == "printer$" || atom.m_str.toLower() == "print$" )
            {
 //            fprintf(stderr,"----------- hide: -%s-\n",dirp->name);
                // do nothing and hide the hidden shares
@@ -395,13 +395,13 @@ void SMBSlave::listDir( const KURL& kurl )
 
                if (dirp->smbc_type == SMBC_SERVER) {
                    atom.m_uds = KIO::UDS_URL;
-                   // QString workgroup = m_current_url.host().upper();
+                   // QString workgroup = m_current_url.host().toUpper();
                    KURL u("smb:/");
                    u.setHost(dirpName);
                    atom.m_str = u.url();
 
                    // when libsmbclient knows
-                   // atom.m_str = QString("smb://%1?WORKGROUP=%2").arg(dirpName).arg(workgroup.upper());
+                   // atom.m_str = QString("smb://%1?WORKGROUP=%2").arg(dirpName).arg(workgroup.toUpper());
                    kdDebug(KIO_SMB) << "list item " << atom.m_str << endl;
                    udsentry.append(atom);
 
@@ -430,7 +430,7 @@ void SMBSlave::listDir( const KURL& kurl )
                udsentry.append(atom);
 
                atom.m_uds = KIO::UDS_URL;
-               // QString workgroup = m_current_url.host().upper();
+               // QString workgroup = m_current_url.host().toUpper();
                KURL u("smb:/");
                u.setHost(dirpName);
                atom.m_str = u.url();

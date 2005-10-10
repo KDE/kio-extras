@@ -230,7 +230,7 @@ POP3Protocol::Resp POP3Protocol::getResponse(char *r_buf, unsigned int r_len,
   if (strncmp(buf, "+OK", 3) == 0) {
     if (r_buf && r_len) {
       memcpy(r_buf, (buf[3] == ' ' ? buf + 4 : buf + 3),
-             QMIN(r_len, (buf[3] == ' ' ? recv_len - 4 : recv_len - 3)));
+             qMin(r_len, (buf[3] == ' ' ? recv_len - 4 : recv_len - 3)));
     }
 
     delete[]buf;
@@ -239,7 +239,7 @@ POP3Protocol::Resp POP3Protocol::getResponse(char *r_buf, unsigned int r_len,
   } else if (strncmp(buf, "-ERR", 4) == 0) {
     if (r_buf && r_len) {
       memcpy(r_buf, (buf[4] == ' ' ? buf + 5 : buf + 4),
-             QMIN(r_len, (buf[4] == ' ' ? recv_len - 5 : recv_len - 4)));
+             qMin(r_len, (buf[4] == ' ' ? recv_len - 5 : recv_len - 4)));
     }
 
     QString command = QString::fromLatin1(cmd);
@@ -256,8 +256,8 @@ POP3Protocol::Resp POP3Protocol::getResponse(char *r_buf, unsigned int r_len,
     return Err;
   } else if (strncmp(buf, "+ ", 2) == 0) {
     if (r_buf && r_len) {
-      memcpy(r_buf, buf + 2, QMIN(r_len, recv_len - 4));
-      r_buf[QMIN(r_len - 1, recv_len - 4)] = '\0';
+      memcpy(r_buf, buf + 2, qMin(r_len, recv_len - 4));
+      r_buf[qMin(r_len - 1, recv_len - 4)] = '\0';
     }
 
     delete[]buf;
@@ -267,7 +267,7 @@ POP3Protocol::Resp POP3Protocol::getResponse(char *r_buf, unsigned int r_len,
     POP3_DEBUG << "Invalid POP3 response received!" << endl;
 
     if (r_buf && r_len) {
-      memcpy(r_buf, buf, QMIN(r_len, recv_len));
+      memcpy(r_buf, buf, qMin(r_len, recv_len));
     }
 
     if (!buf || !*buf) {

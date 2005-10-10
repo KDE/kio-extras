@@ -295,7 +295,7 @@ QStringList MANProtocol::findPages(const QString &_section,
     for ( int i=0;i<sect_list.count(); i++) 
     {
             QString it_s=sect_list.at(i);
-	    QString it_real = it_s.lower();
+	    QString it_real = it_s.toLower();
         //
         // Find pages
         //
@@ -328,7 +328,7 @@ QStringList MANProtocol::findPages(const QString &_section,
                 else if (file.startsWith(sman))
                     sect = file.mid(4);
 
-		if (sect.lower()==it_real) it_real = sect;
+		if (sect.toLower()==it_real) it_real = sect;
 
                 // Only add sect if not already contained, avoid duplicates
                 if (!sect_list.contains(sect) && _section.isEmpty())  {
@@ -1366,7 +1366,7 @@ void MANProtocol::showIndex(const QString& section)
     QString indexLine="<div class=\"secidxshort\">\n";
     if (indexlist[0]->manpage_len>0)
     {
-	firstchar=QChar((indexlist[0]->manpage_begin)[0]).lower();
+	firstchar=QChar((indexlist[0]->manpage_begin)[0]).toLower();
 
 	const QString appendixstr = QString(
 	    " [<a href=\"#%1\" accesskey=\"%2\">%3</a>]\n"
@@ -1393,7 +1393,7 @@ void MANProtocol::showIndex(const QString& section)
 	    continue;
 	}
 	
-	tmp=QChar((manindex->manpage_begin)[0]).lower();
+	tmp=QChar((manindex->manpage_begin)[0]).toLower();
 	if (firstchar != tmp)
 	{
 	    firstchar = tmp;

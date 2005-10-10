@@ -44,7 +44,7 @@ private: // Private attributes
     QString mFilename;
 
     /** Specifies which fields of the file attribute are available. */
-    Q_UINT32 mFlags;
+    quint32 mFlags;
 
     /** Size of the file in bytes. Should be 64 bit safe. */
     quint64 mSize;
@@ -66,7 +66,7 @@ private: // Private attributes
 
     /** Number of file attribute extensions.
         Not currently implemented */
-    Q_UINT32 mExtendedCount;
+    quint32 mExtendedCount;
 
      /** Longname of the file as found in a SSH_FXP_NAME sftp packet.
           These contents are parse to return the file's owner name and
@@ -97,10 +97,10 @@ public:
 
     /** Constructor to initialize the file attributes on declaration. */
     sftpFileAttr(quint64 size_, uid_t uid_, gid_t gid_, mode_t permissions_,
-                 time_t atime_, time_t mtime_, Q_UINT32 extendedCount_ = 0);
+                 time_t atime_, time_t mtime_, quint32 extendedCount_ = 0);
 
     /** Return the size of the sftp attribute not including filename or longname*/
-    Q_UINT32 size() const;
+    quint32 size() const;
 
     /** Clear all attributes and flags. */
     void clear();

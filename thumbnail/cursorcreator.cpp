@@ -48,7 +48,7 @@ bool CursorCreator::create( const QString &path, int width, int height, QImage &
 	img.setAlphaBuffer( true );
 
 	// Convert the image to non-premultiplied alpha
-	Q_UINT32 *pixels = reinterpret_cast<Q_UINT32 *>( img.bits() );
+	quint32 *pixels = reinterpret_cast<quint32 *>( img.bits() );
 	for ( int i = 0; i < (img.width() * img.height()); i++ ) {
 		float alpha = qAlpha( pixels[i] ) / 255.0;
 		if ( alpha > 0.0 && alpha < 1.0 )

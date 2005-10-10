@@ -116,9 +116,9 @@ bool TextCreator::create(const QString &path, int width, int height, QImage &img
             QRect rect;
 
             int rest = m_pixmap.width() - (numCharsPerLine * chSize.width());
-            xborder = QMAX( xborder, rest/2); // center horizontally
+            xborder = qMax( xborder, rest/2); // center horizontally
             rest = m_pixmap.height() - (numLines * chSize.height());
-            yborder = QMAX( yborder, rest/2); // center vertically
+            yborder = qMax( yborder, rest/2); // center vertically
             // end centering
 
             int x = xborder, y = yborder; // where to paint the characters
