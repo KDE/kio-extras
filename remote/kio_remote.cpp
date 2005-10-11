@@ -23,6 +23,7 @@
 #include <klocale.h>
 #include <kapplication.h>
 #include <dcopclient.h>
+#include <dcopref.h>
 #include <kcmdlineargs.h>
 #include <kglobal.h>
 
@@ -49,6 +50,8 @@ extern "C" {
 		KApplication app( false, false );
 		// We want to be anonymous even if we use DCOP
 		app.dcopClient()->attach();
+		DCOPRef ref( "kded", "kded" );
+		ref.call( "loadModule", "remotedirnotify" );
 
 		KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
 		RemoteProtocol slave( args->arg(0), args->arg(1), args->arg(2) );

@@ -38,5 +38,4 @@ ServiceTypes=KDEDModule
 X-KDE-ModuleType=Library
 X-KDE-Library=remotedirnotify
 X-KDE-FactoryName=remotedirnotify
-X-KDE-Kded-autoload=true
 X-KDE-Kded-load-on-demand=true

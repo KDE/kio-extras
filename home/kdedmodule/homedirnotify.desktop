@@ -10,5 +10,4 @@ ServiceTypes=KDEDModule
 X-KDE-ModuleType=Library
 X-KDE-Library=homedirnotify
 X-KDE-FactoryName=homedirnotify
-X-KDE-Kded-autoload=true
 X-KDE-Kded-load-on-demand=true

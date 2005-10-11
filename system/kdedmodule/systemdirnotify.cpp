@@ -29,7 +29,15 @@
 #include <qdir.h>
 
 SystemDirNotify::SystemDirNotify()
+: mInited( false )
 {
+}
+
+void SystemDirNotify::init()
+{
+	if( mInited )
+		return;
+	mInited = true;
 	KGlobal::dirs()->addResourceType("system_entries",
 		KStandardDirs::kde_default("data") + "systemview");
 
@@ -81,6 +89,7 @@ KURL SystemDirNotify::toSystemURL(const KURL &url)
 {
 	kdDebug() << "SystemDirNotify::toSystemURL(" << url << ")" << endl;
 
+	init();
 	QMap<KURL,KURL>::const_iterator it = m_urlMap.begin();
 	QMap<KURL,KURL>::const_iterator end = m_urlMap.end();
 
@@ -106,6 +115,7 @@ KURL SystemDirNotify::toSystemURL(const KURL &url)
 
 KURL::List SystemDirNotify::toSystemURLList(const KURL::List &list)
 {
+	init();
 	KURL::List new_list;
 
 	KURL::List::const_iterator it = list.begin();

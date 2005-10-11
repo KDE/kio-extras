@@ -29,7 +29,16 @@
 #define MINIMUM_UID 500
 
 HomeDirNotify::HomeDirNotify()
+: mInited( false )
 {
+}
+
+void HomeDirNotify::init()
+{
+	if( mInited )
+		return;
+	mInited = true;
+
 	KUser current_user;
 	Q3ValueList<KUserGroup> groups = current_user.groups();
 	Q3ValueList<int> uid_list;
@@ -65,6 +74,7 @@ KURL HomeDirNotify::toHomeURL(const KURL &url)
 {
 	kdDebug() << "HomeDirNotify::toHomeURL(" << url << ")" << endl;
 	
+	init();
 	QMap<QString,KURL>::iterator it = m_homeFoldersMap.begin();
 	QMap<QString,KURL>::iterator end = m_homeFoldersMap.end();
 	
@@ -90,6 +100,7 @@ KURL HomeDirNotify::toHomeURL(const KURL &url)
 
 KURL::List HomeDirNotify::toHomeURLList(const KURL::List &list)
 {
+	init();
 	KURL::List new_list;
 
 	KURL::List::const_iterator it = list.begin();

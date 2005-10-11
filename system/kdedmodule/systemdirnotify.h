@@ -36,10 +36,12 @@ k_dcop:
 	virtual ASYNC FilesChanged (const KURL::List &fileList);
 
 private:
+	void init();
 	KURL toSystemURL(const KURL &url);
 	KURL::List toSystemURLList(const KURL::List &list);
 
 	QMap<KURL,KURL> m_urlMap;
+	bool mInited;
 };
 
 #endif

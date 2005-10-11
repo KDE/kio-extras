@@ -37,10 +37,12 @@ k_dcop:
 	virtual ASYNC FilesChanged (const KURL::List &fileList);
 
 private:
+	void init();
 	KURL toHomeURL(const KURL &url);
 	KURL::List toHomeURLList(const KURL::List &list);
 	
 	QMap<QString,KURL> m_homeFoldersMap;
+	bool mInited;
 };
 
 #endif
