@@ -371,26 +371,11 @@ void FloppyProtocol::errorMissingMToolsProgram(const QString& name)
 
 void FloppyProtocol::createUDSEntry(const StatInfo& info, UDSEntry& entry)
 {
-   UDSAtom atom;
-   atom.m_uds = KIO::UDS_NAME;
-   atom.m_str = info.name;
-   entry.append( atom );
-
-   atom.m_uds = KIO::UDS_SIZE;
-   atom.m_long = info.size;
-   entry.append(atom);
-
-   atom.m_uds = KIO::UDS_MODIFICATION_TIME;
-   atom.m_long = info.time;
-   entry.append( atom );
-
-   atom.m_uds = KIO::UDS_ACCESS;
-   atom.m_long=info.mode;
-   entry.append( atom );
-
-   atom.m_uds = KIO::UDS_FILE_TYPE;
-   atom.m_long =(info.isDir?S_IFDIR:S_IFREG);
-   entry.append( atom );
+   entry.insert( KIO::UDS_NAME, info.name );
+   entry.insert( KIO::UDS_SIZE, info.size );
+   entry.insert( KIO::UDS_MODIFICATION_TIME, info.time );
+   entry.insert( KIO::UDS_ACCESS, info.mode );
+   entry.insert( KIO::UDS_FILE_TYPE, info.isDir?S_IFDIR:S_IFREG );
 }
 
 StatInfo FloppyProtocol::createStatInfo(const QString line, bool makeStat, const QString& dirName)
@@ -810,7 +795,7 @@ void FloppyProtocol::del( const KURL& url, bool isfile)
       delete m_mtool;
    //kdDebug(7101)<<"Floppy::stat(): create args"<<endl;
    QStringList args;
-   
+
    bool usingmdel;
 
    if (isfile)

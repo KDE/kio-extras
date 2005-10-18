@@ -65,59 +65,40 @@ sftpFileAttr::~sftpFileAttr(){
 The UDSEntry is generated from the sftp file attributes. */
 UDSEntry sftpFileAttr::entry() {
     UDSEntry entry;
-    UDSAtom atom;
 
-    atom.m_uds = UDS_NAME;
-    atom.m_str = mFilename;
-    entry.append(atom);
+    entry.insert(KIO::UDS_NAME, mFilename );
 
     if( mFlags & SSH2_FILEXFER_ATTR_SIZE ) {
-        atom.m_uds = UDS_SIZE;
-        atom.m_long = mSize;
-        entry.append(atom);
+        entry.insert(KIO::UDS_SIZE, mSize );
     }
 
     if( mFlags & SSH2_FILEXFER_ATTR_ACMODTIME ) {
-        atom.m_uds = UDS_ACCESS_TIME;
-        atom.m_long = mAtime;
-        entry.append(atom);
+        entry.insert(KIO::UDS_ACCESS_TIME, mAtime );
 
-        atom.m_uds = UDS_MODIFICATION_TIME;
-        atom.m_long = mMtime;
-        entry.append(atom);
+        entry.insert(KIO::UDS_MODIFICATION_TIME, mMtime );
     }
 
     if( mFlags & SSH2_FILEXFER_ATTR_UIDGID ) {
         if( mUserName.isEmpty() || mGroupName.isEmpty() )
             getUserGroupNames();
 
-        atom.m_uds = UDS_USER;
-        atom.m_str = mUserName;
-        entry.append(atom);
+        entry.insert(UDS_USER, mUserName );
 
-        atom.m_uds = UDS_GROUP;
-        atom.m_str = mGroupName;
-        entry.append(atom);
+        entry.insert(UDS_GROUP, mGroupName );
     }
 
     if( mFlags & SSH2_FILEXFER_ATTR_PERMISSIONS ) {
-        atom.m_uds = UDS_ACCESS;
-        atom.m_long = mPermissions;
-        entry.append(atom);
+        entry.insert(UDS_ACCESS, mPermissions );
 
         mode_t type = fileType();
 
         // Set the type if we know what it is
         if( type != 0 ) {
-            atom.m_uds = UDS_FILE_TYPE;
-            atom.m_long = (mLinkType ? mLinkType:type);
-            entry.append(atom);
+            entry.insert(UDS_FILE_TYPE, (mLinkType ? mLinkType:type) );
         }
 
         if( S_ISLNK(type) ) {
-            atom.m_uds = UDS_LINK_DEST;
-            atom.m_str = mLinkDestination;
-            entry.append(atom);
+            entry.insert(UDS_LINK_DEST, mLinkDestination );
         }
     }
 

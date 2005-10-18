@@ -144,27 +144,12 @@ static bool isAbsoluteLink(const QString& path)
 
 static void createVirtualDirEntry(UDSEntry & entry)
 {
-   UDSAtom atom;
-
-   atom.m_uds = KIO::UDS_FILE_TYPE;
-   atom.m_long = S_IFDIR;
-   entry.append( atom );
-
-   atom.m_uds = KIO::UDS_ACCESS;
-   atom.m_long = S_IRUSR | S_IXUSR | S_IRGRP | S_IXGRP | S_IROTH | S_IXOTH;
-   entry.append( atom );
-
-   atom.m_uds = KIO::UDS_USER;
-   atom.m_str = "root";
-   entry.append( atom );
-   atom.m_uds = KIO::UDS_GROUP;
-   atom.m_str = "root";
-   entry.append( atom );
-
+   entry.insert( KIO::UDS_FILE_TYPE, S_IFDIR );
+   entry.insert( KIO::UDS_ACCESS, S_IRUSR | S_IXUSR | S_IRGRP | S_IXGRP | S_IROTH | S_IXOTH );
+   entry.insert( KIO::UDS_USER, QString::fromLatin1("root") );
+   entry.insert( KIO::UDS_GROUP, QString::fromLatin1("root") );
    //a dummy size
-   atom.m_uds = KIO::UDS_SIZE;
-   atom.m_long = 1024;
-   entry.append( atom );
+   entry.insert( KIO::UDS_SIZE, 1024 );
 }
 
 
@@ -534,12 +519,9 @@ void NFSProtocol::listDir( const KURL& _url)
       UDSEntry entry;
       for (QStringList::Iterator it=m_exportedDirs.begin(); it!=m_exportedDirs.end(); it++)
       {
-         UDSAtom atom;
          entry.clear();
-         atom.m_uds = KIO::UDS_NAME;
-         atom.m_str = (*it);
+         entry.insert( KIO::UDS_NAME, (*it) );
          kdDebug(7121)<<"listing "<<(*it)<<endl;
-         entry.append( atom );
          createVirtualDirEntry(entry);
          listEntry( entry, false);
       }
@@ -581,7 +563,6 @@ void NFSProtocol::listDir( const KURL& _url)
    //stat all files in filesToList
    for (QStringList::Iterator it=filesToList.begin(); it!=filesToList.end(); it++)
    {
-      UDSAtom atom;
       diropargs dirargs;
       diropres dirres;
       memcpy(dirargs.dir.data,fh,NFS_FHSIZE);
@@ -601,9 +582,7 @@ void NFSProtocol::listDir( const KURL& _url)
 
       entry.clear();
 
-      atom.m_uds = KIO::UDS_NAME;
-      atom.m_str = (*it);
-      entry.append( atom );
+      entry.insert( KIO::UDS_NAME, (*it) );
 
       //is it a symlink ?
       if (S_ISLNK(dirres.diropres_u.diropres.attributes.mode))
@@ -622,9 +601,7 @@ void NFSProtocol::listDir( const KURL& _url)
          if (!checkForError(clnt_stat,readLinkRes.status,(*it))) return;
          kdDebug(7121)<<"link dest is -"<<readLinkRes.readlinkres_u.data<<"-"<<endl;
          Q3CString linkDest(readLinkRes.readlinkres_u.data);
-         atom.m_uds = KIO::UDS_LINK_DEST;
-         atom.m_str = linkDest;
-         entry.append( atom );
+         entry.insert( KIO::UDS_LINK_DEST, QString::fromLocal8Bit( linkDest ) );
 
          bool isValid=isValidLink(path,linkDest);
          if (!isValid)
@@ -675,11 +652,8 @@ void NFSProtocol::stat( const KURL & url)
    if (isRoot(path) || isExportedDir(path))
    {
       UDSEntry entry;
-      UDSAtom atom;
 
-      atom.m_uds = KIO::UDS_NAME;
-      atom.m_str = path;
-      entry.append( atom );
+      entry.insert( KIO::UDS_NAME, path );
       createVirtualDirEntry(entry);
       // no size
       statEntry( entry );
@@ -710,15 +684,11 @@ void NFSProtocol::stat( const KURL & url)
    UDSEntry entry;
    entry.clear();
 
-   UDSAtom atom;
-
    QString fileName, parentDir;
    getLastPart(path, fileName, parentDir);
    stripTrailingSlash(parentDir);
 
-   atom.m_uds = KIO::UDS_NAME;
-   atom.m_str = fileName;
-   entry.append( atom );
+   entry.insert( KIO::UDS_NAME, fileName );
 
    //is it a symlink ?
    if (S_ISLNK(attrAndStat.attrstat_u.attributes.mode))
@@ -737,9 +707,7 @@ void NFSProtocol::stat( const KURL & url)
       if (!checkForError(clnt_stat,readLinkRes.status,path)) return;
       kdDebug(7121)<<"link dest is -"<<readLinkRes.readlinkres_u.data<<"-"<<endl;
       Q3CString linkDest(readLinkRes.readlinkres_u.data);
-      atom.m_uds = KIO::UDS_LINK_DEST;
-      atom.m_str = linkDest;
-      entry.append( atom );
+      entry.insert( KIO::UDS_LINK_DEST, QString::fromLocal8Bit( linkDest ) );
 
       bool isValid=isValidLink(parentDir,linkDest);
       if (!isValid)
@@ -783,43 +751,29 @@ void NFSProtocol::completeAbsoluteLinkUDSEntry(UDSEntry& entry, const Q3CString&
    struct stat buff;
    if ( ::stat( path.data(), &buff ) == -1 ) return;
 
-   UDSAtom atom;
-	atom.m_uds = KIO::UDS_FILE_TYPE;
-	atom.m_long = buff.st_mode & S_IFMT; // extract file type
-	entry.append( atom );
+   entry.insert( KIO::UDS_FILE_TYPE, buff.st_mode & S_IFMT ); // extract file type
+   entry.insert( KIO::UDS_ACCESS, buff.st_mode & 07777 ); // extract permissions
+   entry.insert( KIO::UDS_SIZE, buff.st_size );
+   entry.insert( KIO::UDS_MODIFICATION_TIME, buff.st_mtime );
 
-	atom.m_uds = KIO::UDS_ACCESS;
-	atom.m_long = buff.st_mode & 07777; // extract permissions
-	entry.append( atom );
-
-	atom.m_uds = KIO::UDS_SIZE;
-	atom.m_long = buff.st_size;
-	entry.append( atom );
-
-   atom.m_uds = KIO::UDS_MODIFICATION_TIME;
-   atom.m_long = buff.st_mtime;
-   entry.append( atom );
-
-   atom.m_uds = KIO::UDS_USER;
    uid_t uid = buff.st_uid;
    QString *temp = m_usercache.find( uid );
-
+   QString str;
    if ( !temp )
    {
       struct passwd *user = getpwuid( uid );
       if ( user )
       {
          m_usercache.insert( uid, new QString(QString::fromLatin1(user->pw_name)) );
-         atom.m_str = user->pw_name;
+         str = user->pw_name;
       }
       else
-         atom.m_str = "???";
+         str = "???";
    }
    else
-      atom.m_str = *temp;
-   entry.append( atom );
+      str = *temp;
+   entry.insert( UDS_USER, str );
 
-   atom.m_uds = KIO::UDS_GROUP;
    gid_t gid = buff.st_gid;
    temp = m_groupcache.find( gid );
    if ( !temp )
@@ -828,22 +782,17 @@ void NFSProtocol::completeAbsoluteLinkUDSEntry(UDSEntry& entry, const Q3CString&
       if ( grp )
       {
          m_groupcache.insert( gid, new QString(QString::fromLatin1(grp->gr_name)) );
-         atom.m_str = grp->gr_name;
+         str = grp->gr_name;
       }
       else
-         atom.m_str = "???";
+         str = "???";
    }
    else
-      atom.m_str = *temp;
-   entry.append( atom );
+      str = *temp;
+   entry.insert( KIO::UDS_GROUP, str );
 
-   atom.m_uds = KIO::UDS_ACCESS_TIME;
-   atom.m_long = buff.st_atime;
-   entry.append( atom );
-
-   atom.m_uds = KIO::UDS_CREATION_TIME;
-   atom.m_long = buff.st_ctime;
-   entry.append( atom );
+   entry.insert( KIO::UDS_ACCESS_TIME, buff.st_atime );
+   entry.insert( KIO::UDS_CREATION_TIME, buff.st_ctime );
 }
 
 void NFSProtocol::completeBadLinkUDSEntry(UDSEntry& entry, fattr& attributes)
@@ -851,50 +800,22 @@ void NFSProtocol::completeBadLinkUDSEntry(UDSEntry& entry, fattr& attributes)
    // It is a link pointing to nowhere
    completeUDSEntry(entry,attributes);
 
-   UDSAtom atom;
-   atom.m_uds = KIO::UDS_FILE_TYPE;
-   atom.m_long = S_IFMT - 1;
-   entry.append( atom );
-
-   atom.m_uds = KIO::UDS_ACCESS;
-   atom.m_long = S_IRWXU | S_IRWXG | S_IRWXO;
-   entry.append( atom );
-
-   atom.m_uds = KIO::UDS_SIZE;
-   atom.m_long = 0L;
-   entry.append( atom );
+   entry.insert( KIO::UDS_FILE_TYPE, S_IFMT - 1 );
+   entry.insert( KIO::UDS_ACCESS, S_IRWXU | S_IRWXG | S_IRWXO );
+   entry.insert( KIO::UDS_SIZE, 0L );
 }
 
 void NFSProtocol::completeUDSEntry(UDSEntry& entry, fattr& attributes)
 {
-   UDSAtom atom;
+   entry.insert( KIO::UDS_SIZE, attributes.size );
+   entry.insert( KIO::UDS_MODIFICATION_TIME, attributes.mtime.seconds );
+   entry.insert( KIO::UDS_ACCESS_TIME, attributes.atime.seconds );
+   entry.insert( KIO::UDS_CREATION_TIME, attributes.ctime.seconds );
+   entry.insert( KIO::UDS_ACCESS, (attributes.mode & 07777) );
+   entry.insert( KIO::UDS_FILE_TYPE, attributes.mode & S_IFMT ); // extract file type
 
-   atom.m_uds = KIO::UDS_SIZE;
-   atom.m_long = attributes.size;
-   entry.append(atom);
-
-   atom.m_uds = KIO::UDS_MODIFICATION_TIME;
-   atom.m_long = attributes.mtime.seconds;
-   entry.append( atom );
-
-   atom.m_uds = KIO::UDS_ACCESS_TIME;
-   atom.m_long = attributes.atime.seconds;
-   entry.append( atom );
-
-   atom.m_uds = KIO::UDS_CREATION_TIME;
-   atom.m_long = attributes.ctime.seconds;
-   entry.append( atom );
-
-   atom.m_uds = KIO::UDS_ACCESS;
-   atom.m_long = (attributes.mode & 07777);
-   entry.append( atom );
-
-   atom.m_uds = KIO::UDS_FILE_TYPE;
-   atom.m_long =attributes.mode & S_IFMT; // extract file type
-   entry.append( atom );
-
-   atom.m_uds = KIO::UDS_USER;
    uid_t uid = attributes.uid;
+   QString str;
    QString *temp = m_usercache.find( uid );
    if ( !temp )
    {
@@ -902,16 +823,15 @@ void NFSProtocol::completeUDSEntry(UDSEntry& entry, fattr& attributes)
       if ( user )
       {
          m_usercache.insert( uid, new QString(user->pw_name) );
-         atom.m_str = user->pw_name;
+         str = user->pw_name;
       }
       else
-         atom.m_str = "???";
+         str = "???";
    }
    else
-      atom.m_str = *temp;
-   entry.append( atom );
+      str = *temp;
+   entry.insert( KIO::UDS_USER, str );
 
-   atom.m_uds = KIO::UDS_GROUP;
    gid_t gid = attributes.gid;
    temp = m_groupcache.find( gid );
    if ( !temp )
@@ -920,18 +840,18 @@ void NFSProtocol::completeUDSEntry(UDSEntry& entry, fattr& attributes)
       if ( grp )
       {
          m_groupcache.insert( gid, new QString(grp->gr_name) );
-         atom.m_str = grp->gr_name;
+         str = grp->gr_name;
       }
       else
-         atom.m_str = "???";
+         str = "???";
    }
    else
-      atom.m_str = *temp;
-   entry.append( atom );
+      str = *temp;
+   entry.insert( KIO::UDS_GROUP, str );
 
 /*   KIO::UDSEntry::ConstIterator it = entry.begin();
    for( ; it != entry.end(); it++ ) {
-      switch ((*it).m_uds) {
+      switch (it.key()) {
       case KIO::UDS_FILE_TYPE:
          kdDebug(7121) << "File Type : " << (mode_t)((*it).m_long) << endl;
          break;

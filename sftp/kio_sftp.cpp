@@ -1105,25 +1105,12 @@ void sftpProtocol::stat ( const KURL& url ){
     // Instead, simply return the mime-type as a directory...
     if( !url.hasPath() ) {
         UDSEntry entry;
-        UDSAtom atom;
 
-        atom.m_uds = KIO::UDS_NAME;
-        atom.m_str = QString::null;
-        entry.append( atom );
-
-        atom.m_uds = KIO::UDS_FILE_TYPE;
-        atom.m_long = S_IFDIR;
-        entry.append( atom );
-
-        atom.m_uds = KIO::UDS_ACCESS;
-        atom.m_long = S_IRUSR | S_IXUSR | S_IRGRP | S_IXGRP | S_IROTH | S_IXOTH;
-        entry.append( atom );
-
-        atom.m_uds = KIO::UDS_USER;
-        atom.m_str = mUsername;
-        entry.append( atom );
-        atom.m_uds = KIO::UDS_GROUP;
-        entry.append( atom );
+        entry.insert( KIO::UDS_NAME, QString::fromLatin1(".") );
+        entry.insert( KIO::UDS_FILE_TYPE, S_IFDIR );
+        entry.insert( KIO::UDS_ACCESS, S_IRUSR | S_IXUSR | S_IRGRP | S_IXGRP | S_IROTH | S_IXOTH );
+        entry.insert( KIO::UDS_USER, mUsername );
+        entry.insert( KIO::UDS_GROUP, mUsername );
 
         // no size
         statEntry( entry );
