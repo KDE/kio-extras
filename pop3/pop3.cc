@@ -450,7 +450,7 @@ bool POP3Protocol::saslInteract( void *in, AuthInfo &ai )
   return true;
 #else
   return false;
-#endif  
+#endif
 }
 
 #define SASLERROR  closeConnection(); \
@@ -504,7 +504,7 @@ int POP3Protocol::loginSASL( KIO::AuthInfo &ai )
       }
 
     do {
-      result = sasl_client_start(conn, sasl_list.join(" ").latin1(), 
+      result = sasl_client_start(conn, sasl_list.join(" ").latin1(),
         &client_interact, &out, &outlen, &mechusing);
 
       if (result == SASL_INTERACT)
@@ -520,9 +520,9 @@ int POP3Protocol::loginSASL( KIO::AuthInfo &ai )
       sasl_dispose( &conn );
       return -1;
     }
-    
+
     POP3_DEBUG << "Preferred authentication method is " << mechusing << "." << endl;
-    
+
     QByteArray challenge, tmp;
 
     QString firstCommand = "AUTH " + QString::fromLatin1( mechusing );
@@ -533,7 +533,7 @@ int POP3Protocol::loginSASL( KIO::AuthInfo &ai )
       firstCommand += " ";
       firstCommand += QString::fromLatin1( tmp.data(), tmp.size() );
     }
-    
+
     challenge.resize( 2049 );
     resp = command( firstCommand.latin1(), challenge.data(), 2049 );
     while( resp == Cont ) {
@@ -609,7 +609,7 @@ int POP3Protocol::loginSASL( KIO::AuthInfo &ai )
 bool POP3Protocol::loginPASS( KIO::AuthInfo &ai )
 {
   char buf[512];
-  
+
   if (m_sUser.isEmpty() || m_sPass.isEmpty()) {
     // Prompt for usernames
     if (!openPassDlg(ai)) {
@@ -760,7 +760,7 @@ bool POP3Protocol::pop3_open()
       switch ( retval ) {
         case 0: return true;
         case -1: return false;
-        default: 
+        default:
           m_try_apop = false;
       }
     } else if ( m_try_sasl ) {
@@ -769,7 +769,7 @@ bool POP3Protocol::pop3_open()
       switch ( retval ) {
         case 0: return true;
         case -1: return false;
-        default: 
+        default:
           m_try_sasl = false;
       }
     } else {
@@ -1149,23 +1149,13 @@ void POP3Protocol::listDir(const KURL &)
     return;
   }
   UDSEntry entry;
-  UDSAtom atom;
   QString fname;
   for (int i = 0; i < num_messages; i++) {
     fname = "Message %1";
 
-    atom.m_uds = UDS_NAME;
-    atom.m_long = 0;
-    atom.m_str = fname.arg(i + 1);
-    entry.append(atom);
+    entry.insert(UDS_NAME, fname.arg(i + 1));
+    entry.insert(UDS_MIME_TYPE, QString::fromLatin1("text/plain"));
 
-    atom.m_uds = UDS_MIME_TYPE;
-    atom.m_long = 0;
-    atom.m_str = "text/plain";
-    entry.append(atom);
-    POP3_DEBUG << "Mimetype is " << atom.m_str.ascii() << endl;
-
-    atom.m_uds = UDS_URL;
     KURL uds_url;
     if (m_bIsSSL) {
       uds_url.setProtocol("pop3s");
@@ -1177,23 +1167,11 @@ void POP3Protocol::listDir(const KURL &)
     uds_url.setPass(m_sPass);
     uds_url.setHost(m_sServer);
     uds_url.setPath(QString::fromLatin1("/download/%1").arg(i + 1));
-    atom.m_str = uds_url.url();
-    atom.m_long = 0;
-    entry.append(atom);
+    entry.insert(UDS_URL, uds_url.url());
 
-    atom.m_uds = UDS_FILE_TYPE;
-    atom.m_str = "";
-    atom.m_long = S_IFREG;
-    entry.append(atom);
-
-    atom.m_uds = UDS_SIZE;
-    atom.m_str = "";
-    atom.m_long = realGetSize(i + 1);
-    entry.append(atom);
-
-    atom.m_uds = KIO::UDS_ACCESS;
-    atom.m_long = S_IRUSR | S_IXUSR | S_IWUSR;
-    entry.append (atom);
+    entry.insert(UDS_FILE_TYPE, S_IFREG);
+    entry.insert(UDS_SIZE, realGetSize(i + 1));
+    entry.insert(UDS_ACCESS, S_IRUSR | S_IXUSR | S_IWUSR);
 
     listEntry(entry, false);
     entry.clear();
@@ -1211,20 +1189,9 @@ void POP3Protocol::stat(const KURL & url)
     _path.remove(0, 1);
 
   UDSEntry entry;
-  UDSAtom atom;
-
-  atom.m_uds = UDS_NAME;
-  atom.m_str = _path;
-  entry.append(atom);
-
-  atom.m_uds = UDS_FILE_TYPE;
-  atom.m_str = "";
-  atom.m_long = S_IFREG;
-  entry.append(atom);
-
-  atom.m_uds = UDS_MIME_TYPE;
-  atom.m_str = "message/rfc822";
-  entry.append(atom);
+  entry.insert(UDS_NAME, _path);
+  entry.insert(UDS_FILE_TYPE, S_IFREG);
+  entry.insert(UDS_MIME_TYPE, QString::fromLatin1("message/rfc822"));
 
   // TODO: maybe get the size of the message?
   statEntry(entry);

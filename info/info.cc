@@ -169,7 +169,7 @@ void InfoProtocol::decodeURL( const KURL &url )
     kdDebug( 7108 ) << "InfoProtocol::decodeURL" << endl;
 
     /* Notes:
-     * 
+     *
      * I cleaned up the URL decoding and chose not to support URLs in the
      * form "info:/usr/local/share/info/libc.info.gz" or similar which the
      * older code attempted (and failed, maybe it had worked once) to do.
@@ -229,13 +229,9 @@ void InfoProtocol::decodePath( QString path )
 void InfoProtocol::stat( const KURL & )
 {
 	UDSEntry uds_entry;
-	UDSAtom  uds_atom;
 
 	// Regular file with rwx permission for all
-	uds_atom.m_uds = KIO::UDS_FILE_TYPE;
-	uds_atom.m_long = S_IFREG | S_IRWXU | S_IRWXG | S_IRWXO;
-
-	uds_entry.append( uds_atom );
+	uds_entry.insert( KIO::UDS_FILE_TYPE, S_IFREG | S_IRWXU | S_IRWXG | S_IRWXO );
 
 	statEntry( uds_entry );
 

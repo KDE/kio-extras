@@ -42,10 +42,10 @@ protected slots:
     void slotSetDataStdOutput(KProcess*, char *s, int len);
 protected:
     QString prepareHP(const KURL& _url);
-    Q3ValueList<KIO::UDSAtom> makeUDS(const QString& _line);
+    KIO::UDSEntry makeUDS(const QString& _line);
     int makeTime(QString mday, QString mon, QString third);
     QString getMimetype(QString type, QString app);
-    Q3ValueList<KIO::UDSAtom> doStat(const KURL& url);
+    KIO::UDSEntry doStat(const KURL& url);
 
     KIO::filesize_t processedBytes;
     QString standardOutputStream;

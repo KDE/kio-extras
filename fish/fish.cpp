@@ -265,11 +265,8 @@ fishProtocol::fishProtocol(const Q3CString &pool_socket, const Q3CString &app_so
     outBufPos = -1;
     outBuf = NULL;
     outBufLen = 0;
-    typeAtom.m_uds = UDS_FILE_TYPE;
-    typeAtom.m_long = 0;
-    mimeAtom.m_uds = UDS_MIME_TYPE;
-    mimeAtom.m_long = 0;
-    mimeAtom.m_str = QString::null;
+
+    udsType = 0;
 
     hasAppend = false;
 
@@ -788,9 +785,8 @@ parses response from server and acts accordingly
 void fishProtocol::manageConnection(const QString &l) {
     QString line(l);
     int rc = handleResponse(line);
-    UDSAtom atom;
     QDateTime dt;
-    KIO::filesize_t pos, pos2, pos3;
+    long pos, pos2, pos3;
     bool isOk = false;
     if (!rc) {
         switch (fishCommand) {
@@ -823,83 +819,76 @@ void fishProtocol::manageConnection(const QString &l) {
                 case '7':
                 case '8':
                 case '9':
-                    pos = line.toULongLong(&isOk);
-                    if (pos > 0 && isOk) errorCount--;
+                {
+                    long long val = line.toLongLong(&isOk);
+                    if (val > 0 && isOk) errorCount--;
                     if ((fishCommand == FISH_LIST) && (listReason == LIST))
-                        totalSize(pos);
-                    break;
+                        totalSize(val);
+                }
+                break;
 
                 case 'P':
+                {
                     errorCount--;
                     if (line[1] == 'd') {
-                        mimeAtom.m_str = "inode/directory";
-                        typeAtom.m_long = S_IFDIR;
+                        udsMime = "inode/directory";
+                        udsType = S_IFDIR;
                     } else {
                         if (line[1] == '-') {
-                            typeAtom.m_long = S_IFREG;
+                            udsType = S_IFREG;
                         } else if (line[1] == 'l') {
-                            typeAtom.m_long = S_IFLNK;
+                            udsType = S_IFLNK;
                         } else if (line[1] == 'c') {
-                            typeAtom.m_long = S_IFCHR;
+                            udsType = S_IFCHR;
                         } else if (line[1] == 'b') {
-                            typeAtom.m_long = S_IFBLK;
+                            udsType = S_IFBLK;
                         } else if (line[1] == 's') {
-                            typeAtom.m_long = S_IFSOCK;
+                            udsType = S_IFSOCK;
                         } else if (line[1] == 'p') {
-                            typeAtom.m_long = S_IFIFO;
+                            udsType = S_IFIFO;
                         } else {
                             myDebug( << "unknown file type: " << line[1].cell() << endl);
                             errorCount++;
                             break;
                         }
                     }
-                    //myDebug( << "file type: " << atom.m_long << endl);
-                    //udsEntry.append(atom);
+                    //myDebug( << "file type: " << udsType << endl);
 
-                    atom.m_uds = UDS_ACCESS;
-                    atom.m_long = 0;
-                    if (line[2] == 'r') atom.m_long |= S_IRUSR;
-                    if (line[3] == 'w') atom.m_long |= S_IWUSR;
-                    if (line[4] == 'x' || line[4] == 's') atom.m_long |= S_IXUSR;
-                    if (line[4] == 'S' || line[4] == 's') atom.m_long |= S_ISUID;
-                    if (line[5] == 'r') atom.m_long |= S_IRGRP;
-                    if (line[6] == 'w') atom.m_long |= S_IWGRP;
-                    if (line[7] == 'x' || line[7] == 's') atom.m_long |= S_IXGRP;
-                    if (line[7] == 'S' || line[7] == 's') atom.m_long |= S_ISGID;
-                    if (line[8] == 'r') atom.m_long |= S_IROTH;
-                    if (line[9] == 'w') atom.m_long |= S_IWOTH;
-                    if (line[10] == 'x' || line[10] == 't') atom.m_long |= S_IXOTH;
-                    if (line[10] == 'T' || line[10] == 't') atom.m_long |= S_ISVTX;
-                    udsEntry.append(atom);
+                    long long accessVal = 0;
+                    if (line[2] == 'r') accessVal |= S_IRUSR;
+                    if (line[3] == 'w') accessVal |= S_IWUSR;
+                    if (line[4] == 'x' || line[4] == 's') accessVal |= S_IXUSR;
+                    if (line[4] == 'S' || line[4] == 's') accessVal |= S_ISUID;
+                    if (line[5] == 'r') accessVal |= S_IRGRP;
+                    if (line[6] == 'w') accessVal |= S_IWGRP;
+                    if (line[7] == 'x' || line[7] == 's') accessVal |= S_IXGRP;
+                    if (line[7] == 'S' || line[7] == 's') accessVal |= S_ISGID;
+                    if (line[8] == 'r') accessVal |= S_IROTH;
+                    if (line[9] == 'w') accessVal |= S_IWOTH;
+                    if (line[10] == 'x' || line[10] == 't') accessVal |= S_IXOTH;
+                    if (line[10] == 'T' || line[10] == 't') accessVal |= S_ISVTX;
+                    udsEntry.insert(UDS_ACCESS, accessVal);
 
-                    atom.m_uds = UDS_USER;
-                    atom.m_long = 0;
                     pos = line.find('.',12);
                     if (pos < 0) {
                         errorCount++;
                         break;
                     }
-                    atom.m_str = line.mid(12,pos-12);
-                    udsEntry.append(atom);
-
-                    atom.m_uds = UDS_GROUP;
-                    atom.m_long = 0;
-                    atom.m_str = line.mid(pos+1);
-                    udsEntry.append(atom);
-                    break;
+                    udsEntry.insert(UDS_USER, line.mid(12,pos-12));
+                    udsEntry.insert(UDS_GROUP, line.mid(pos+1));
+                }
+                break;
 
                 case 'd':
-                    atom.m_uds = UDS_MODIFICATION_TIME;
                     pos = line.find(' ');
                     pos2 = line.find(' ',pos+1);
                     if (pos < 0 || pos2 < 0) break;
                     errorCount--;
-                    atom.m_long = makeTimeFromLs(line.mid(1,pos-1), line.mid(pos+1,pos2-pos), line.mid(pos2+1));
-                    udsEntry.append(atom);
+                    udsEntry.insert(UDS_MODIFICATION_TIME,
+                                    makeTimeFromLs(line.mid(1,pos-1), line.mid(pos+1,pos2-pos), line.mid(pos2+1)));
                     break;
 
                 case 'D':
-                    atom.m_uds = UDS_MODIFICATION_TIME;
                     pos = line.find(' ');
                     pos2 = line.find(' ',pos+1);
                     pos3 = line.find(' ',pos2+1);
@@ -911,35 +900,34 @@ void fishProtocol::manageConnection(const QString &l) {
                     if (pos < 0 || pos2 < 0 || pos3 < 0) break;
                     dt.setTime(QTime(line.mid(pos+1,pos2-pos-1).toInt(),line.mid(pos2+1,pos3-pos2-1).toInt(),line.mid(pos3+1).toInt()));
                     errorCount--;
-                    atom.m_long = dt.toTime_t();
-                    udsEntry.append(atom);
+                    udsEntry.insert(UDS_MODIFICATION_TIME, dt.toTime_t());
                     break;
 
                 case 'S':
-                    atom.m_uds = UDS_SIZE;
-                    atom.m_long = line.mid(1).toULongLong(&isOk);
+                {
+                    long long sizeVal = line.mid(1).toLongLong(&isOk);
                     if (!isOk) break;
                     errorCount--;
-                    udsEntry.append(atom);
-                    break;
+                    udsEntry.insert(UDS_SIZE, sizeVal);
+                }
+                break;
 
                 case 'E':
                     errorCount--;
                     break;
 
                 case ':':
-                    atom.m_uds = UDS_NAME;
-                    atom.m_long = 0;
                     pos = line.lastIndexOf('/');
-                    atom.m_str = thisFn = line.mid(pos < 0?1:pos+1);
-                    if (fishCommand == FISH_LIST)
-                        udsEntry.append(atom);
+                    thisFn = line.mid(pos < 0?1:pos+1);
+                    if (fishCommand == FISH_LIST) {
+                        udsEntry.insert(UDS_NAME, thisFn);
+                    }
                     // By default, the mimetype comes from the extension
                     // We'll use the file(1) result only as fallback [like the rest of KDE does]
                     {
                       KMimeType::Ptr mime = KMimeType::findByURL( KURL("fish://host/" + thisFn) );
                       if ( mime->name() != KMimeType::defaultMimeType() )
-                          mimeAtom.m_str = mime->name();
+                          udsMime = mime->name();
                     }
                     errorCount--;
                     break;
@@ -947,32 +935,29 @@ void fishProtocol::manageConnection(const QString &l) {
                 case 'M':
                     // This is getting ugly. file(1) makes some uneducated
                     // guesses, so we must try to ignore them (#51274)
-                    if (mimeAtom.m_str.isEmpty() && line.right(8) != "/unknown" &&
+                    if (udsMime.isEmpty() && line.right(8) != "/unknown" &&
                             (thisFn.find('.') < 0 || (line.left(8) != "Mtext/x-"
                                                   && line != "Mtext/plain"))) {
-                        mimeAtom.m_str = line.mid(1);
-                        if ( mimeAtom.m_str == "inode/directory" ) // a symlink to a dir is a dir
-                          typeAtom.m_long = S_IFDIR;
+                        udsMime = line.mid(1);
+                        if ( udsMime == "inode/directory" ) // a symlink to a dir is a dir
+                          udsType = S_IFDIR;
                     }
                     errorCount--;
                     break;
 
                 case 'L':
-                    atom.m_uds = UDS_LINK_DEST;
-                    atom.m_long = 0;
-                    atom.m_str = line.mid(1);
-                    udsEntry.append(atom);
-                    if (!typeAtom.m_long) typeAtom.m_long = S_IFLNK;
+                    udsEntry.insert(UDS_LINK_DEST, line.mid(1));
+                    if (!udsType) udsType = S_IFLNK;
                     errorCount--;
                     break;
                 }
             } else {
-                if (!mimeAtom.m_str.isNull())
-                    udsEntry.append(mimeAtom);
-                mimeAtom.m_str = QString::null;
+                if (!udsMime.isNull())
+                    udsEntry.insert(UDS_MIME_TYPE, udsMime);
+                udsMime = QString::null;
 
-                udsEntry.append(typeAtom);
-                typeAtom.m_long = 0;
+                udsEntry.insert( UDS_FILE_TYPE, udsType );
+                udsType = 0;
 
                 if (fishCommand == FISH_STAT)
                     udsStatEntry = udsEntry;
@@ -1124,11 +1109,7 @@ void fishProtocol::manageConnection(const QString &l) {
                 }
             }
         } else if (fishCommand == FISH_STAT) {
-            UDSAtom atom;
-
-            atom.m_uds = KIO::UDS_NAME;
-            atom.m_str = url.fileName();
-            udsStatEntry.append( atom );
+            udsStatEntry.insert( KIO::UDS_NAME, url.fileName() );
             statEntry(udsStatEntry);
         } else if (fishCommand == FISH_APPEND) {
             dataReq();

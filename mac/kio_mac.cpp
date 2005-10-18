@@ -24,8 +24,6 @@
 #include <kconfig.h>
 #include <qstring.h>
 #include <qregexp.h>
-//Added by qt3to4:
-#include <Q3ValueList>
 #include <QTextStream>
 #include <Q3CString>
 #include <QDateTime>
@@ -74,20 +72,14 @@ void MacProtocol::get(const KURL& url) {
     QString path = prepareHP(url);  //mount and change to correct directory - return the filename
     QString query = url.query();
     QString mode("-");
-    QString mime;
     processedBytes = 0;
 
     //Find out the size and if it's a text file
     UDSEntry entry = doStat(url);
-    UDSEntry::Iterator it;
-    for(it = entry.begin(); it != entry.end(); ++it) {
-        if ((*it).m_uds == KIO::UDS_MIME_TYPE) {
-            mime = (*it).m_str;
-        }
-        if ((*it).m_uds == KIO::UDS_SIZE) {
-            totalSize((*it).m_long);
-        }
-    }
+    QString mime = entry.stringValue( KIO::UDS_MIME_TYPE );
+    long long totSize = entry.numberValue( KIO::UDS_SIZE, -1 );
+    if ( totSize != -1 )
+        totalSize( totSize );
 
     //find out if a mode has been specified in the query e.g. ?mode=t
     //or if it's a text file then set the mode to text
@@ -160,7 +152,6 @@ void MacProtocol::listDir(const KURL& url) {
             QString line = in.readLine(); //throw away top file which shows current directory
             line = in.readLine();
 
-#warning another QString != NULL -->> !QString.isEmpty()
             while (!line.isEmpty()) {
                 //1.0.4 puts this funny line in sometimes, we don't want it
                 if (line.contains("Thread               ") == 0) {
@@ -186,7 +177,7 @@ void MacProtocol::stat(const KURL& url) {
 //doStat(), does all the work that stat() needs
 //it's been separated out so it can be called from get() which
 //also need information
-Q3ValueList<KIO::UDSAtom> MacProtocol::doStat(const KURL& url) {
+KIO::UDSEntry MacProtocol::doStat(const KURL& url) {
     QString filename = prepareHP(url);
 
     if (filename.isNull()) {
@@ -230,8 +221,7 @@ Q3ValueList<KIO::UDSAtom> MacProtocol::doStat(const KURL& url) {
             UDSEntry entry = makeUDS("d         0 item               Jan 01  2000 /");
             return entry;
     }//if filename == null
-
-    return Q3ValueList<KIO::UDSAtom>();
+    return UDSEntry();
 }
 
 //prepareHP() called from get() listDir() and stat()
@@ -339,7 +329,7 @@ QString MacProtocol::prepareHP(const KURL& url) {
 //makeUDS()  takes a line of output from hpls -l and converts it into
 // one of these UDSEntrys to return
 //called from listDir() and stat()
-Q3ValueList<KIO::UDSAtom> MacProtocol::makeUDS(const QString& _line) {
+KIO::UDSEntry MacProtocol::makeUDS(const QString& _line) {
     QString line(_line);
     UDSEntry entry;
 
@@ -347,67 +337,37 @@ Q3ValueList<KIO::UDSAtom> MacProtocol::makeUDS(const QString& _line) {
     QRegExp dirRE("^d. +([^ ]+) +([^ ]+) +([^ ]+) +([^ ]+) +([^ ]+) +(.*)");
     QRegExp fileRE("^([f|F]). +(....)/(....) +([^ ]+) +([^ ]+) +([^ ]+) +([^ ]+) +([^ ]+) +(.*)");
     if (dirRE.exactMatch(line)) {
-        UDSAtom atom;
-        atom.m_uds = KIO::UDS_NAME;
-        atom.m_str = dirRE.cap(6);
-        entry.append(atom);
-
-        atom.m_uds = KIO::UDS_MODIFICATION_TIME;
-        atom.m_long = makeTime(dirRE.cap(4), dirRE.cap(3), dirRE.cap(5));
-        entry.append(atom);
-
-        atom.m_uds = KIO::UDS_FILE_TYPE;
-        atom.m_long = S_IFDIR;
-        entry.append(atom);
-
-        atom.m_uds = KIO::UDS_ACCESS;
-        atom.m_long = 0755;
-        entry.append(atom);
+        entry.insert(KIO::UDS_NAME, dirRE.cap(6));
+        entry.insert(KIO::UDS_MODIFICATION_TIME, makeTime(dirRE.cap(4), dirRE.cap(3), dirRE.cap(5)));
+        entry.insert(KIO::UDS_FILE_TYPE, S_IFDIR);
+        entry.insert(KIO::UDS_ACCESS, 0755);
 
     } else if (fileRE.exactMatch(line)) {
-        UDSAtom atom;
-        atom.m_uds = KIO::UDS_NAME;
-        atom.m_str = fileRE.cap(9);
-        entry.append(atom);
-
-        atom.m_uds = KIO::UDS_SIZE;
+        entry.insert(KIO::UDS_NAME, fileRE.cap(9));
         QString theSize(fileRE.cap(4)); //TODO: this is data size, what about  resource size?
-        atom.m_long = theSize.toLong();
-        entry.append(atom);
+        entry.insert(KIO::UDS_SIZE, theSize.toLong());
+        entry.insert(KIO::UDS_MODIFICATION_TIME, makeTime(fileRE.cap(7), fileRE.cap(6), fileRE.cap(8)));
 
-        atom.m_uds = KIO::UDS_MODIFICATION_TIME;
-        atom.m_long = makeTime(fileRE.cap(7), fileRE.cap(6), fileRE.cap(8));
-        entry.append(atom);
-
-        atom.m_uds = KIO::UDS_ACCESS;
         if (QString(fileRE.cap(1)) == QString("F")) { //if locked then read only
-            atom.m_long = 0444;
+            entry.insert(KIO::UDS_ACCESS, 0444);
         } else {
-            atom.m_long = 0644;
+            entry.insert(KIO::UDS_ACCESS, 0644);
         }
-        entry.append(atom);
 
-        atom.m_uds = KIO::UDS_MIME_TYPE;
         QString mimetype = getMimetype(fileRE.cap(2),fileRE.cap(3));
-        atom.m_str = mimetype.toLocal8Bit();
-        entry.append(atom);
+        entry.insert(KIO::UDS_MIME_TYPE, mimetype);
 
         // Is it a file or a link/alias, just make aliases link to themselves
         if (QString(fileRE.cap(2)) == QString("adrp") ||
             QString(fileRE.cap(2)) == QString("fdrp")) {
-            atom.m_uds = KIO::UDS_FILE_TYPE;
-            atom.m_long = S_IFREG;
-            entry.append(atom);
+            entry.insert(KIO::UDS_FILE_TYPE, S_IFREG);
 
-            atom.m_uds = KIO::UDS_LINK_DEST;
-            atom.m_str = fileRE.cap(9); //I have a file called "Mozilla alias" the name
-                                          // of which displays funny because of this.
-                                          // No idea why.  Same for other kioslaves. A font thing?
-            entry.append(atom);
-            } else {
-            atom.m_uds = KIO::UDS_FILE_TYPE;
-            atom.m_long = S_IFREG;
-            entry.append(atom);
+            QString str = fileRE.cap(9); //I have a file called "Mozilla alias" the name
+                                         // of which displays funny because of this.
+                                         // No idea why.  Same for other kioslaves. A font thing?
+            entry.insert(KIO::UDS_LINK_DEST, str);
+        } else {
+            entry.insert(KIO::UDS_FILE_TYPE, S_IFREG);
         }
     } else {
         error(ERR_INTERNAL, i18n("hpls output was not matched"));

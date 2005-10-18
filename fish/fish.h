@@ -108,9 +108,9 @@ protected: // Protected attributes
   /** for LIST/STAT */
   KIO::UDSEntry udsStatEntry;
   /** for LIST/STAT */
-  KIO::UDSAtom typeAtom;
+  long long udsType;
   /** for LIST/STAT */
-  KIO::UDSAtom mimeAtom;
+  QString udsMime;
   /** for LIST/STAT */
   QString thisFn;
   /** for STAT */

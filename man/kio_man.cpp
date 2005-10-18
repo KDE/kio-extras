@@ -176,7 +176,7 @@ QMap<QString, QString> MANProtocol::buildIndexMap(const QString &section)
         man_dirs << "/var/cache/man";
     if (man_dirs.find("/var/catman")==man_dirs.end())
         man_dirs << "/var/catman";
-    
+
     QStringList names;
     names << "whatis.db" << "whatis";
     QString mark = "\\s+\\(" + section + "[a-z]*\\)\\s+-\\s+";
@@ -238,7 +238,7 @@ QStringList MANProtocol::manDirectories()
                     && S_ISDIR( sbuf.st_mode ) )
                 {
                     const QString p = QDir(dir).canonicalPath();
-                    if (!man_dirs.contains(p)) man_dirs += p;	
+                    if (!man_dirs.contains(p)) man_dirs += p;
                 }
             }
         }
@@ -292,7 +292,7 @@ QStringList MANProtocol::findPages(const QString &_section,
     //
     // Find man pages in the sections listed above
     //
-    for ( int i=0;i<sect_list.count(); i++) 
+    for ( int i=0;i<sect_list.count(); i++)
     {
             QString it_s=sect_list.at(i);
 	    QString it_real = it_s.toLower();
@@ -560,9 +560,9 @@ char *MANProtocol::readManPage(const char *_filename)
             kdDebug(7107) << "resolved to " << filename << endl;
         }
         lastdir = filename.left(filename.lastIndexOf('/'));
-    
+
         QIODevice *fd= KFilterDev::deviceForFile(filename);
-    
+
         if ( !fd || !fd->open(QIODevice::ReadOnly))
         {
            delete fd;
@@ -572,10 +572,10 @@ char *MANProtocol::readManPage(const char *_filename)
         kdDebug(7107) << "read " << array.size() << endl;
         fd->close();
         delete fd;
-        
+
         if (array.isEmpty())
             return 0;
-    
+
         const int len = array.size();
         buf = new char[len + 4];
         qmemmove(buf + 1, array.data(), len);
@@ -618,7 +618,7 @@ void MANProtocol::outputMatchingPages(const QStringList &matchingPages)
     os << "</head>" <<endl;
     os << "<body><h1>" << i18n("There is more than one matching man page.");
     os << "</h1>\n<ul>\n";
-    
+
     int acckey=1;
     for (QStringList::ConstIterator it = matchingPages.begin(); it != matchingPages.end(); ++it)
     {
@@ -652,30 +652,15 @@ void MANProtocol::stat( const KURL& url)
     kdDebug(7107) << "URL " << url.url() << " parsed to title='" << title << "' section=" << section << endl;
 
     UDSEntry entry;
-    UDSAtom atom;
+    entry.insert(UDS_NAME, title);
+    entry.insert(UDS_FILE_TYPE, S_IFREG);
 
-    atom.m_uds = UDS_NAME;
-    atom.m_long = 0;
-    atom.m_str = title;
-    entry.append(atom);
-
-    atom.m_uds = UDS_FILE_TYPE;
-    atom.m_str = "";
-    atom.m_long = S_IFREG;
-    entry.append(atom);
-
-    atom.m_uds = UDS_URL;
-    atom.m_long = 0;
     QString newUrl = "man:"+title;
     if (!section.isEmpty())
         newUrl += QString("(%1)").arg(section);
-    atom.m_str = newUrl;
-    entry.append(atom);
+    entry.insert(UDS_URL, newUrl);
 
-    atom.m_uds = UDS_MIME_TYPE;
-    atom.m_long = 0;
-    atom.m_str = "text/html";
-    entry.append(atom);
+    entry.insert(UDS_MIME_TYPE, QString::fromLatin1("text/html"));
 
     statEntry(entry);
 
@@ -794,8 +779,8 @@ void MANProtocol::showMainIndex()
 
     QStringList::ConstIterator it;
     for (it = sections.begin(); it != sections.end(); ++it)
-        os << "<tr><td><a href=\"man:(" << *it << ")\" accesskey=\"" << 
-	(((*it).length()==1)?(*it):(*it).right(1))<<"\">" << i18n("Section ") 
+        os << "<tr><td><a href=\"man:(" << *it << ")\" accesskey=\"" <<
+	(((*it).length()==1)?(*it):(*it).right(1))<<"\">" << i18n("Section ")
 	<< *it << "</a></td><td>&nbsp;</td><td> " << sectionName(*it) << "</td></tr>" << endl;
 
     os << "</table>" << endl;
@@ -836,7 +821,7 @@ void MANProtocol::constructPath(QStringList& constr_path, QStringList constr_cat
     {
         QTextStream is(&mc);
         is.setEncoding(QTextStream::Locale);
-    
+
         while (!is.atEnd())
         {
             const QString line = is.readLine();
@@ -855,12 +840,12 @@ void MANProtocol::constructPath(QStringList& constr_path, QStringList constr_cat
                         // The entry is "MANPATH_MAP  <path>  <manpath>"
                 const QStringList mapping =
                         line.split( space_regex);
-    
+
                 if ( mapping.count() == 3 )
                 {
                     const QString dir = QDir::cleanPath( mapping[1] );
                     const QString mandir = QDir::cleanPath( mapping[2] );
-    
+
                     manpath_map[ dir ] = mandir;
                 }
             }
@@ -869,12 +854,12 @@ void MANProtocol::constructPath(QStringList& constr_path, QStringList constr_cat
                         // The entry is "MANDB_MAP  <manpath>  <catmanpath>"
                 const QStringList mapping =
                         line.split( space_regex);
-    
+
                 if ( mapping.count() == 3 )
                 {
                     const QString mandir = QDir::cleanPath( mapping[1] );
                     const QString catmandir = QDir::cleanPath( mapping[2] );
-    
+
                     mandb_map[ mandir ] = catmandir;
                 }
             }
@@ -1017,7 +1002,7 @@ void MANProtocol::checkManPaths()
     }
 
     m_mandbpath=constr_catmanpath;
-    
+
     // Merge $MANPATH with the constructed path to form the
     // actual manpath.
     //
@@ -1373,7 +1358,7 @@ void MANProtocol::showIndex(const QString& section)
 	).arg(firstchar).arg(firstchar).arg(firstchar);
 	indexLine.append(appendixstr);
     }
-    os << "<tr><td class=\"secidxnextletter\"" << " colspan=\"3\">\n  <a name=\"" 
+    os << "<tr><td class=\"secidxnextletter\"" << " colspan=\"3\">\n  <a name=\""
        << firstchar << "\">" << firstchar <<"</a>\n</td></tr>" << endl;
 
     for (int i=0; i<listlen; i++)
@@ -1392,12 +1377,12 @@ void MANProtocol::showIndex(const QString& section)
 	{
 	    continue;
 	}
-	
+
 	tmp=QChar((manindex->manpage_begin)[0]).toLower();
 	if (firstchar != tmp)
 	{
 	    firstchar = tmp;
-	    os << "<tr><td class=\"secidxnextletter\"" << " colspan=\"3\">\n  <a name=\"" 
+	    os << "<tr><td class=\"secidxnextletter\"" << " colspan=\"3\">\n  <a name=\""
 	       << firstchar << "\">" << firstchar << "</a>\n</td></tr>" << endl;
 
     	    const QString appendixstr = QString(
@@ -1461,7 +1446,7 @@ void MANProtocol::showIndex(const QString& section)
 #endif /* _USE_OLD_CODE */
 
     os << "</table></div>" << endl;
-    
+
     os << indexLine << endl;
 
     // print footer
@@ -1488,19 +1473,15 @@ void MANProtocol::listDir(const KURL &url)
     QStringList list = findPages( section, QString::null, false );
 
     UDSEntryList uds_entry_list;
-    UDSEntry     uds_entry;
-    UDSAtom      uds_atom;
-
-    uds_atom.m_uds = KIO::UDS_NAME; // we only do names...
-    uds_entry.append( uds_atom );
 
     QStringList::Iterator it = list.begin();
-    QStringList::Iterator end = list.end();
+    const QStringList::Iterator end = list.end();
 
     for ( ; it != end; ++it ) {
         stripExtension( &(*it) );
 
-        uds_entry[0].m_str = *it;
+        UDSEntry     uds_entry;
+        uds_entry.insert( KIO::UDS_NAME, *it );
         uds_entry_list.append( uds_entry );
     }
 

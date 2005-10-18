@@ -177,39 +177,15 @@ bool ArchiveProtocol::checkNewFile( const KURL & url, QString & path, KIO::Error
 
 void ArchiveProtocol::createUDSEntry( const KArchiveEntry * archiveEntry, UDSEntry & entry )
 {
-    UDSAtom atom;
     entry.clear();
-    atom.m_uds = UDS_NAME;
-    atom.m_str = archiveEntry->name();
-    entry.append(atom);
-
-    atom.m_uds = UDS_FILE_TYPE;
-    atom.m_long = archiveEntry->permissions() & S_IFMT; // keep file type only
-    entry.append( atom );
-
-    atom.m_uds = UDS_SIZE;
-    atom.m_long = archiveEntry->isFile() ? ((KArchiveFile *)archiveEntry)->size() : 0L ;
-    entry.append( atom );
-
-    atom.m_uds = UDS_MODIFICATION_TIME;
-    atom.m_long = archiveEntry->date();
-    entry.append( atom );
-
-    atom.m_uds = UDS_ACCESS;
-    atom.m_long = archiveEntry->permissions() & 07777; // keep permissions only
-    entry.append( atom );
-
-    atom.m_uds = UDS_USER;
-    atom.m_str = archiveEntry->user();
-    entry.append( atom );
-
-    atom.m_uds = UDS_GROUP;
-    atom.m_str = archiveEntry->group();
-    entry.append( atom );
-
-    atom.m_uds = UDS_LINK_DEST;
-    atom.m_str = archiveEntry->symlink();
-    entry.append( atom );
+    entry.insert( UDS_NAME, archiveEntry->name() );
+    entry.insert( UDS_FILE_TYPE, archiveEntry->permissions() & S_IFMT ); // keep file type only
+    entry.insert( UDS_SIZE, archiveEntry->isFile() ? ((KArchiveFile *)archiveEntry)->size() : 0L );
+    entry.insert( UDS_MODIFICATION_TIME, archiveEntry->date());
+    entry.insert( UDS_ACCESS, archiveEntry->permissions() & 07777 ); // keep permissions only
+    entry.insert( UDS_USER, archiveEntry->user());
+    entry.insert( UDS_GROUP, archiveEntry->group());
+    entry.insert( UDS_LINK_DEST, archiveEntry->symlink());
 }
 
 void ArchiveProtocol::listDir( const KURL & url )
@@ -327,10 +303,7 @@ void ArchiveProtocol::stat( const KURL & url )
             return;
         }
         // Real directory. Return just enough information for KRun to work
-        UDSAtom atom;
-        atom.m_uds = KIO::UDS_NAME;
-        atom.m_str = url.fileName();
-        entry.append( atom );
+        entry.insert( KIO::UDS_NAME, url.fileName());
         kdDebug( 7109 ) << "ArchiveProtocol::stat returning name=" << url.fileName() << endl;
 
         KDE_struct_stat buff;
@@ -341,9 +314,7 @@ void ArchiveProtocol::stat( const KURL & url )
             return;
         }
 
-        atom.m_uds = KIO::UDS_FILE_TYPE;
-        atom.m_long = buff.st_mode & S_IFMT;
-        entry.append( atom );
+        entry.insert( KIO::UDS_FILE_TYPE, buff.st_mode & S_IFMT);
 
         statEntry( entry );
 
@@ -426,7 +397,7 @@ void ArchiveProtocol::get( const KURL & url )
     }
 
     //kdDebug(7109) << "Preparing to get the archive data" << endl;
-    
+
     /*
      * The easy way would be to get the data by calling archiveFileEntry->data()
      * However this has drawbacks:
@@ -463,18 +434,18 @@ void ArchiveProtocol::get( const KURL & url )
                     .arg( url.prettyURL() ) );
         return;
     }
-    
+
     if ( !io->open( IO_ReadOnly ) )
     {
         error( KIO::ERR_CANNOT_OPEN_FOR_READING, url.prettyURL() );
         return;
     }
-    
+
     totalSize( archiveFileEntry->size() );
 
     // Size of a QIODevice read. It must be large enough so that the mime type check will not fail
     const int maxSize = 0x100000; // 1MB
-    
+
     int bufferSize = kMin( maxSize, archiveFileEntry->size() );
     QByteArray buffer ( bufferSize );
     if ( buffer.isEmpty() && bufferSize > 0 )
