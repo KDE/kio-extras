@@ -28,8 +28,8 @@
 #include "managermoduleview.h"
 #include "mediamanagersettings.h"
 
-ManagerModule::ManagerModule( QWidget* parent, const char* name )
-	: KCModule( parent, name )
+ManagerModule::ManagerModule( KInstance *inst, QWidget* parent )
+	: KCModule( inst, parent )
 {
 	ManagerModuleView *view = new ManagerModuleView( this );
 

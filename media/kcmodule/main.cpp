@@ -43,17 +43,18 @@ MediaModule::MediaModule( QWidget *parent, const char *name, const QStringList& 
 {
 	QVBoxLayout *layout = new QVBoxLayout( this, 0, KDialog::spacingHint() );
 	QTabWidget *tab = new QTabWidget( this );
-	
+
 	layout->addWidget( tab );
 
 
-	
-	m_notifierModule = new NotifierModule( this, "notifier" );
+        m_notifierModule = new NotifierModule( MediaFactory::instance(), this );
+        m_notifierModule->setObjectName( "notifier" );
 	tab->addTab( m_notifierModule, i18n( "&Notifications" ) );
 	connect( m_notifierModule, SIGNAL( changed( bool ) ),
 	         this, SLOT( moduleChanged( bool ) ) );
 
-	m_managerModule = new ManagerModule( this, "manager" );
+	m_managerModule = new ManagerModule( MediaFactory::instance(), this );
+        m_managerModule->setObjectName( "manager" );
 	tab->addTab( m_managerModule, i18n( "&Advanced" ) );
 	connect( m_managerModule, SIGNAL( changed( bool ) ),
 	         this, SLOT( moduleChanged( bool ) ) );
