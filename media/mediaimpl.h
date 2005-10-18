@@ -27,8 +27,6 @@
 
 #include <qobject.h>
 #include <qstring.h>
-//Added by qt3to4:
-#include <Q3ValueList>
 
 #include "medium.h"
 
@@ -43,7 +41,7 @@ public:
 
 	bool statMedium(const QString &name, KIO::UDSEntry &entry);
 	bool statMediumByLabel(const QString &label, KIO::UDSEntry &entry);
-	bool listMedia(Q3ValueList<KIO::UDSEntry> &list);
+	bool listMedia(KIO::UDSEntryList &list);
 	bool setUserLabel(const QString &name, const QString &label);
 
 	void createTopLevelEntry(KIO::UDSEntry& entry) const;
@@ -67,7 +65,7 @@ private:
 	const Medium findMediumByName(const QString &name, bool &ok);
 	bool ensureMediumMounted(Medium &medium);
 
-	KIO::UDSEntry extractUrlInfos(const KURL &url);
+	void extractUrlInfos(const KURL &url, KIO::UDSEntry& infos);
 	KIO::UDSEntry m_entryBuffer;
 
 	void createMediumEntry(KIO::UDSEntry& entry,
@@ -75,7 +73,7 @@ private:
 	void enterLoop();
 
 	Medium *mp_mounting;
-	
+
 	/// Last error code stored in class to simplify API.
 	/// Note that this means almost no method can be const.
 	int m_lastErrorCode;

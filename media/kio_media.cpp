@@ -255,8 +255,8 @@ void MediaProtocol::listRoot()
 	m_impl.createTopLevelEntry(entry);
 	listEntry(entry, false);
 
-	KIO::UDSEntryListIterator it = media_entries.begin();
-	KIO::UDSEntryListIterator end = media_entries.end();
+	KIO::UDSEntryList::ConstIterator it = media_entries.begin();
+	const KIO::UDSEntryList::ConstIterator end = media_entries.end();
 
 	for(; it!=end; ++it)
 	{

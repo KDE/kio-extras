@@ -71,7 +71,7 @@ bool KFileMediaPlugin::readInfo(KFileMetaInfo &info, uint /*what*/)
 	const Medium medium = askMedium(info);
 
 	if (medium.id().isNull()) return false;
-	
+
 	QString mount_point = medium.mountPoint();
 	KURL base_url = medium.prettyBaseURL();
 	QString device_node = medium.deviceNode();
@@ -89,9 +89,9 @@ bool KFileMediaPlugin::readInfo(KFileMetaInfo &info, uint /*what*/)
 	}
 
 	if (!mount_point.isEmpty() && medium.isMounted())
-	{	
+	{
 		KDiskFreeSp *df = new KDiskFreeSp();
-		
+
 		m_total = 0;
 		m_used = 0;
 		m_free = 0;
@@ -138,7 +138,7 @@ bool KFileMediaPlugin::readInfo(KFileMetaInfo &info, uint /*what*/)
 		QApplication::style()->drawPrimitive(QStyle::PE_Frame, &p,
 		                                     QRect(0, 0, 150, 20), cg,
 		                                     QStyle::State_Sunken);
-#endif		
+#endif
 		appendItem( group, "thumbnail", bar );
 	}
 
@@ -190,13 +190,13 @@ void KFileMediaPlugin::addMimeType(const char *mimeType)
 
 	KFileMimeTypeInfo::ItemInfo *item
 		= addItemInfo(group, "free", i18n("Free"), QVariant::Int);
-	setUnit(item, KFileMimeTypeInfo::KiloBytes);
+	setUnit(item, KFileMimeTypeInfo::KibiBytes);
 
 	item = addItemInfo(group, "used", i18n("Used"), QVariant::Int);
-	setUnit(item, KFileMimeTypeInfo::KiloBytes);
+	setUnit(item, KFileMimeTypeInfo::KibiBytes);
 
 	item = addItemInfo(group, "total", i18n("Total"), QVariant::Int);
-	setUnit(item, KFileMimeTypeInfo::KiloBytes);
+	setUnit(item, KFileMimeTypeInfo::KibiBytes);
 
 	item = addItemInfo(group, "baseURL", i18n("Base URL"), QVariant::String);
 	item = addItemInfo(group, "mountPoint", i18n("Mount Point"), QVariant::String);

@@ -128,7 +128,7 @@ bool MediaImpl::statMediumByLabel(const QString &label, KIO::UDSEntry &entry)
 }
 
 
-bool MediaImpl::listMedia(Q3ValueList<KIO::UDSEntry> &list)
+bool MediaImpl::listMedia(KIO::UDSEntryList& list)
 {
 	kdDebug(1219) << "MediaImpl::listMedia" << endl;
 
@@ -227,7 +227,7 @@ bool MediaImpl::ensureMediumMounted(Medium &medium)
 		m_lastErrorCode = 0;
 
 		mp_mounting = &medium;
-		
+
 		KIO::Job* job = KIO::mount(false, 0,
 		                           medium.deviceNode(),
 		                           medium.mountPoint());
@@ -246,13 +246,13 @@ bool MediaImpl::ensureMediumMounted(Medium &medium)
 		enterLoop();
 
 		mp_mounting = 0L;
-		
+
 		kapp->dcopClient()
 		->disconnectDCOPSignal("kded", "mediamanager",
 		                       "mediumChanged(QString, bool)",
 		                       "mediaimpl",
 		                       "slotMediumChanged(QString)");
-		
+
 		return m_lastErrorCode==0;
 	}
 
@@ -267,7 +267,7 @@ void MediaImpl::slotWarning( KIO::Job * /*job*/, const QString &msg )
 void MediaImpl::slotMountResult(KIO::Job *job)
 {
 	kdDebug(1219) << "MediaImpl::slotMountResult" << endl;
-	
+
 	if ( job->error() != 0)
 	{
 		m_lastErrorCode = job->error();
@@ -289,28 +289,17 @@ void MediaImpl::slotMediumChanged(const QString &name)
 	}
 }
 
-static void addAtom(KIO::UDSEntry &entry, unsigned int ID, long l,
-                    const QString &s = QString::null)
-{
-	KIO::UDSAtom atom;
-	atom.m_uds = ID;
-	atom.m_long = l;
-	atom.m_str = s;
-	entry.append(atom);
-}
-
-
 void MediaImpl::createTopLevelEntry(KIO::UDSEntry& entry) const
 {
 	entry.clear();
-	addAtom(entry, KIO::UDS_URL, 0, "media:/");
-	addAtom(entry, KIO::UDS_NAME, 0, ".");
-	addAtom(entry, KIO::UDS_FILE_TYPE, S_IFDIR);
-	addAtom(entry, KIO::UDS_ACCESS, 0555);
-	addAtom(entry, KIO::UDS_MIME_TYPE, 0, "inode/directory");
-	addAtom(entry, KIO::UDS_ICON_NAME, 0, "blockdevice");
-	addAtom(entry, KIO::UDS_USER, 0, "root");
-	addAtom(entry, KIO::UDS_GROUP, 0, "root");
+	entry.insert(KIO::UDS_URL, QString::fromLatin1("media:/"));
+	entry.insert(KIO::UDS_NAME, QString::fromLatin1("."));
+	entry.insert(KIO::UDS_FILE_TYPE, S_IFDIR);
+	entry.insert(KIO::UDS_ACCESS, 0555);
+	entry.insert(KIO::UDS_MIME_TYPE, QString::fromLatin1("inode/directory"));
+	entry.insert(KIO::UDS_ICON_NAME, QString::fromLatin1("blockdevice"));
+	entry.insert(KIO::UDS_USER, QString::fromLatin1("root"));
+	entry.insert(KIO::UDS_GROUP, QString::fromLatin1("root"));
 }
 
 void MediaImpl::slotStatResult(KIO::Job *job)
@@ -324,7 +313,7 @@ void MediaImpl::slotStatResult(KIO::Job *job)
 	emit leaveModality();
 }
 
-KIO::UDSEntry MediaImpl::extractUrlInfos(const KURL &url)
+void MediaImpl::extractUrlInfos(const KURL &url, KIO::UDSEntry& infos)
 {
 	m_entryBuffer.clear();
 
@@ -336,34 +325,17 @@ KIO::UDSEntry MediaImpl::extractUrlInfos(const KURL &url)
 	         this, SLOT( slotWarning( KIO::Job *, const QString & ) ) );
 	enterLoop();
 
-	KIO::UDSEntry::iterator it = m_entryBuffer.begin();
-	KIO::UDSEntry::iterator end = m_entryBuffer.end();
+        infos.insert( KIO::UDS_ACCESS, m_entryBuffer.value( KIO::UDS_ACCESS ) );
+        infos.insert( KIO::UDS_USER, m_entryBuffer.value( KIO::UDS_USER ) );
+        infos.insert( KIO::UDS_GROUP, m_entryBuffer.value( KIO::UDS_GROUP ) );
+        infos.insert( KIO::UDS_CREATION_TIME, m_entryBuffer.value( KIO::UDS_CREATION_TIME ) );
+        infos.insert( KIO::UDS_MODIFICATION_TIME, m_entryBuffer.value( KIO::UDS_MODIFICATION_TIME ) );
+        infos.insert( KIO::UDS_ACCESS_TIME, m_entryBuffer.value( KIO::UDS_ACCESS_TIME ) );
 
-	KIO::UDSEntry infos;
-
-	for(; it!=end; ++it)
+        if (url.isLocalFile())
 	{
-		switch( (*it).m_uds )
-		{
-		case KIO::UDS_ACCESS:
-		case KIO::UDS_USER:
-		case KIO::UDS_GROUP:
-		case KIO::UDS_CREATION_TIME:
-		case KIO::UDS_MODIFICATION_TIME:
-		case KIO::UDS_ACCESS_TIME:
-			infos.append(*it);
-			break;
-		default:
-			break;
-		}
+		infos.insert( KIO::UDS_LOCAL_PATH, url.path() );
 	}
-
-	if (url.isLocalFile())
-	{
-		addAtom(infos, KIO::UDS_LOCAL_PATH, 0, url.path());
-	}
-	
-	return infos;
 }
 
 
@@ -378,35 +350,35 @@ void MediaImpl::createMediumEntry(KIO::UDSEntry& entry,
 
 	entry.clear();
 
-	addAtom(entry, KIO::UDS_URL, 0, url);
+	entry.insert( KIO::UDS_URL, url );
 
 	QString label = KIO::encodeFileName( medium.prettyLabel() );
-	addAtom(entry, KIO::UDS_NAME, 0, label);
+	entry.insert( KIO::UDS_NAME, label );
 
-	addAtom(entry, KIO::UDS_FILE_TYPE, S_IFDIR);
+	entry.insert( KIO::UDS_FILE_TYPE, S_IFDIR);
 
-	addAtom(entry, KIO::UDS_MIME_TYPE, 0, medium.mimeType());
-	addAtom(entry, KIO::UDS_GUESSED_MIME_TYPE, 0, "inode/directory");
+	entry.insert( KIO::UDS_MIME_TYPE, medium.mimeType()  );
+	entry.insert( KIO::UDS_GUESSED_MIME_TYPE, QString::fromLatin1("inode/directory") );
 
 	if (!medium.iconName().isEmpty())
 	{
-		addAtom(entry, KIO::UDS_ICON_NAME, 0, medium.iconName());
+		entry.insert( KIO::UDS_ICON_NAME, medium.iconName() );
 	}
 	else
 	{
 		QString mime = medium.mimeType();
 		QString icon = KMimeType::mimeType(mime)->icon(mime, false);
-		addAtom(entry, KIO::UDS_ICON_NAME, 0, icon);
+		entry.insert( KIO::UDS_ICON_NAME, icon );
 	}
 
 	if (medium.needMounting())
 	{
-		addAtom(entry, KIO::UDS_ACCESS, 0400);
+		entry.insert( KIO::UDS_ACCESS, 0400 );
 	}
 	else
 	{
 		KURL url = medium.prettyBaseURL();
-		entry+= extractUrlInfos(url);
+		extractUrlInfos(url, entry);
 	}
 }
 

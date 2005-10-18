@@ -44,7 +44,7 @@ private:
 
 signals:
     void leaveModality();
-	
+
 private slots:
 	void slotFoundMountPoint(const QString &mountPoint,
 	                         unsigned long total, unsigned long used,
