@@ -26,8 +26,6 @@
 #include <kuser.h>
 
 #include <qstring.h>
-//Added by qt3to4:
-#include <Q3ValueList>
 
 class HomeImpl : public QObject
 {
@@ -37,12 +35,12 @@ public:
 	HomeImpl();
 	bool parseURL(const KURL &url, QString &name, QString &path) const;
 	bool realURL(const QString &name, const QString &path, KURL &url);
-		
+
 	bool statHome(const QString &name, KIO::UDSEntry &entry);
-	bool listHomes(Q3ValueList<KIO::UDSEntry> &list);
-	
+	bool listHomes(KIO::UDSEntryList &list);
+
 	void createTopLevelEntry(KIO::UDSEntry &entry) const;
-	
+
 	int lastErrorCode() const { return m_lastErrorCode; }
 	QString lastErrorMessage() const { return m_lastErrorMessage; }
 
@@ -56,16 +54,16 @@ signals:
 private:
 	void createHomeEntry(KIO::UDSEntry& entry, const KUser &user);
 
-	KIO::UDSEntry extractUrlInfos(const KURL &url);
+	void extractUrlInfos(const KURL &url, KIO::UDSEntry& infos);
 	KIO::UDSEntry m_entryBuffer;
-		
-	
+
+
 	/// Last error code stored in class to simplify API.
 	/// Note that this means almost no method can be const.
 	int m_lastErrorCode;
 	QString m_lastErrorMessage;
 
-	long m_effectiveUid;
+	uint m_effectiveUid;
 };
 
 #endif

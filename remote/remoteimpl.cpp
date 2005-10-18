@@ -51,7 +51,7 @@ RemoteImpl::RemoteImpl()
 	}
 }
 
-void RemoteImpl::listRoot(Q3ValueList<KIO::UDSEntry> &list) const
+void RemoteImpl::listRoot(KIO::UDSEntryList &list) const
 {
 	kdDebug(1220) << "RemoteImpl::listRoot" << endl;
 
@@ -59,7 +59,7 @@ void RemoteImpl::listRoot(Q3ValueList<KIO::UDSEntry> &list) const
 	QStringList dirList = KGlobal::dirs()->resourceDirs("remote_entries");
 
 	QStringList::ConstIterator dirpath = dirList.begin();
-	QStringList::ConstIterator end = dirList.end();
+	const QStringList::ConstIterator end = dirList.end();
 	for(; dirpath!=end; ++dirpath)
 	{
 		QDir dir = *dirpath;
@@ -125,13 +125,13 @@ bool RemoteImpl::findDirectory(const QString &filename, QString &directory) cons
 QString RemoteImpl::findDesktopFile(const QString &filename) const
 {
 	kdDebug(1220) << "RemoteImpl::findDesktopFile" << endl;
-	
+
 	QString directory;
 	if (findDirectory(filename+".desktop", directory))
 	{
 		return directory+filename+".desktop";
 	}
-	
+
 	return QString::null;
 }
 
@@ -145,32 +145,21 @@ KURL RemoteImpl::findBaseURL(const QString &filename) const
 		KDesktopFile desktop(file, true);
 		return desktop.readURL();
 	}
-	
+
 	return KURL();
-}
-
-
-static void addAtom(KIO::UDSEntry &entry, unsigned int ID, long l,
-                    const QString &s = QString::null)
-{
-	KIO::UDSAtom atom;
-	atom.m_uds = ID;
-	atom.m_long = l;
-	atom.m_str = s;
-	entry.append(atom);
 }
 
 
 void RemoteImpl::createTopLevelEntry(KIO::UDSEntry &entry) const
 {
 	entry.clear();
-	addAtom(entry, KIO::UDS_NAME, 0, ".");
-	addAtom(entry, KIO::UDS_FILE_TYPE, S_IFDIR);
-	addAtom(entry, KIO::UDS_ACCESS, 0777);
-	addAtom(entry, KIO::UDS_MIME_TYPE, 0, "inode/directory");
-	addAtom(entry, KIO::UDS_ICON_NAME, 0, "network");
-	addAtom(entry, KIO::UDS_USER, 0, "root");
-	addAtom(entry, KIO::UDS_GROUP, 0, "root");
+	entry.insert( KIO::UDS_NAME, QString::fromLatin1("."));
+	entry.insert( KIO::UDS_FILE_TYPE, S_IFDIR);
+	entry.insert( KIO::UDS_ACCESS, 0777);
+	entry.insert( KIO::UDS_MIME_TYPE, QString::fromLatin1("inode/directory"));
+	entry.insert( KIO::UDS_ICON_NAME, QString::fromLatin1("network"));
+	entry.insert( KIO::UDS_USER, QString::fromLatin1("root"));
+	entry.insert( KIO::UDS_GROUP, QString::fromLatin1("root"));
 }
 
 static KURL findWizardRealURL()
@@ -199,13 +188,13 @@ bool RemoteImpl::createWizardEntry(KIO::UDSEntry &entry) const
 		return false;
 	}
 
-	addAtom(entry, KIO::UDS_NAME, 0, i18n("Add a Network Folder"));
-	addAtom(entry, KIO::UDS_FILE_TYPE, S_IFREG);
-	addAtom(entry, KIO::UDS_URL, 0, WIZARD_URL);
-	addAtom(entry, KIO::UDS_LOCAL_PATH, 0, url.path());
-	addAtom(entry, KIO::UDS_ACCESS, 0500);
-	addAtom(entry, KIO::UDS_MIME_TYPE, 0, "application/x-desktop");
-	addAtom(entry, KIO::UDS_ICON_NAME, 0, "wizard");
+	entry.insert( KIO::UDS_NAME, i18n("Add a Network Folder"));
+	entry.insert( KIO::UDS_FILE_TYPE, S_IFREG);
+	entry.insert( KIO::UDS_URL, QString::fromLatin1(WIZARD_URL) );
+	entry.insert( KIO::UDS_LOCAL_PATH, url.path());
+	entry.insert( KIO::UDS_ACCESS, 0500);
+	entry.insert( KIO::UDS_MIME_TYPE, QString::fromLatin1("application/x-desktop"));
+	entry.insert( KIO::UDS_ICON_NAME, QString::fromLatin1("wizard"));
 
 	return true;
 }
@@ -230,17 +219,16 @@ void RemoteImpl::createEntry(KIO::UDSEntry &entry,
 
 	QString new_filename = file;
 	new_filename.truncate( file.length()-8);
-	
-	addAtom(entry, KIO::UDS_NAME, 0, desktop.readName());
-	addAtom(entry, KIO::UDS_URL, 0, "remote:/"+new_filename);
 
-	addAtom(entry, KIO::UDS_FILE_TYPE, S_IFDIR);
-	addAtom(entry, KIO::UDS_MIME_TYPE, 0, "inode/directory");
+	entry.insert( KIO::UDS_NAME, desktop.readName());
+	entry.insert( KIO::UDS_URL, "remote:/"+new_filename);
 
-	QString icon = desktop.readIcon();
+	entry.insert( KIO::UDS_FILE_TYPE, S_IFDIR);
+	entry.insert( KIO::UDS_MIME_TYPE, QString::fromLatin1("inode/directory"));
 
-	addAtom(entry, KIO::UDS_ICON_NAME, 0, icon);
-	addAtom(entry, KIO::UDS_LINK_DEST, 0, desktop.readURL());
+	const QString icon = desktop.readIcon();
+	entry.insert( KIO::UDS_ICON_NAME, icon);
+	entry.insert( KIO::UDS_LINK_DEST, desktop.readURL());
 }
 
 bool RemoteImpl::statNetworkFolder(KIO::UDSEntry &entry, const QString &filename) const
@@ -253,7 +241,7 @@ bool RemoteImpl::statNetworkFolder(KIO::UDSEntry &entry, const QString &filename
 		createEntry(entry, directory, filename+".desktop");
 		return true;
 	}
-	
+
 	return false;
 }
 
@@ -267,7 +255,7 @@ bool RemoteImpl::deleteNetworkFolder(const QString &filename) const
 		kdDebug(1220) << "Removing " << directory << filename << ".desktop" << endl;
 		return QFile::remove(directory+filename+".desktop");
 	}
-	
+
 	return false;
 }
 
@@ -284,7 +272,7 @@ bool RemoteImpl::renameFolders(const QString &src, const QString &dest,
 		{
 			return false;
 		}
-		
+
 		kdDebug(1220) << "Renaming " << directory << src << ".desktop"<< endl;
 		QDir dir(directory);
 		bool res = dir.rename(src+".desktop", dest+".desktop");

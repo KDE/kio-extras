@@ -39,7 +39,7 @@ public:
 	void createTopLevelEntry(KIO::UDSEntry& entry) const;
 	bool statByName(const QString &filename, KIO::UDSEntry& entry);
 
-	bool listRoot(Q3ValueList<KIO::UDSEntry> &list);
+	bool listRoot(KIO::UDSEntryList &list);
 
 	bool parseURL(const KURL &url, QString &name, QString &path) const;
 	bool realURL(const QString &name, const QString &path, KURL &url) const;

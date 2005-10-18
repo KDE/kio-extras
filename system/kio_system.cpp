@@ -176,8 +176,8 @@ void SystemProtocol::listRoot()
 	m_impl.createTopLevelEntry(entry);
 	listEntry(entry, false);
 
-	KIO::UDSEntryListIterator it = system_entries.begin();
-	KIO::UDSEntryListIterator end = system_entries.end();
+	KIO::UDSEntryList::ConstIterator it = system_entries.begin();
+	const KIO::UDSEntryList::ConstIterator end = system_entries.end();
 
 	for(; it!=end; ++it)
 	{

@@ -104,13 +104,12 @@ void RemoteProtocol::listRoot()
 
 	m_impl.createTopLevelEntry(entry);
 	listEntry(entry, false);
-	
+
 	m_impl.createWizardEntry(entry);
 	listEntry(entry, false);
 
-	KIO::UDSEntryListIterator it = remote_entries.begin();
-	KIO::UDSEntryListIterator end = remote_entries.end();
-
+	KIO::UDSEntryList::ConstIterator it = remote_entries.begin();
+	const KIO::UDSEntryList::ConstIterator end = remote_entries.end();
 	for(; it!=end; ++it)
 	{
 		listEntry(*it, false);
@@ -125,7 +124,7 @@ void RemoteProtocol::listRoot()
 void RemoteProtocol::stat(const KURL &url)
 {
 	kdDebug(1220) << "RemoteProtocol::stat: " << url << endl;
- 
+
 	QString path = url.path();
 	if ( path.isEmpty() || path == "/" )
 	{
@@ -183,12 +182,12 @@ void RemoteProtocol::get(const KURL &url)
 
 	QString file = m_impl.findDesktopFile( url.fileName() );
 	kdDebug(1220) << "desktop file : " << file << endl;
-	
+
 	if (!file.isEmpty())
 	{
 		KURL desktop;
 		desktop.setPath(file);
-		
+
 		redirection(desktop);
 		finished();
 		return;

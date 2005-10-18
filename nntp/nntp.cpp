@@ -466,10 +466,7 @@ void NNTPProtocol::fetchGroups( const QString &since, bool desc )
 
       if ( entryMap.contains( group ) ) {
         entry = entryMap.take( group );
-        UDSAtom atom;
-        atom.m_uds = UDS_EXTRA;
-        atom.m_str = groupDesc;
-        entry.append( atom );
+        entry.insert( UDS_EXTRA, groupDesc );
         listEntry( entry, false );
       }
     }
@@ -631,7 +628,6 @@ bool NNTPProtocol::fetchGroupXOVER( unsigned long first, bool &notSupported )
 
   long msgSize;
   QString name;
-  UDSAtom atom;
   UDSEntry entry;
 
   QStringList fields;
@@ -662,15 +658,15 @@ bool NNTPProtocol::fetchGroupXOVER( unsigned long first, bool &notSupported )
         msgSize = (*it2).toLong();
         continue;
       }
-      atom.m_uds = UDS_EXTRA;
+      QString atomStr;
       if ( (*it).endsWith( "full" ) )
         if ( (*it2).trimmed().isEmpty() )
-          atom.m_str = (*it).left( (*it).indexOf( ':' ) + 1 ); // strip of the 'full' suffix
+          atomStr = (*it).left( (*it).indexOf( ':' ) + 1 ); // strip of the 'full' suffix
         else
-          atom.m_str = (*it2).trimmed();
+          atomStr = (*it2).trimmed();
       else
-        atom.m_str = (*it) + " " + (*it2).trimmed();
-      entry.append( atom );
+        atomStr = (*it) + " " + (*it2).trimmed();
+      entry.insert( UDS_EXTRA, atomStr );
     }
     fillUDSEntry( entry, name, msgSize, true );
     listEntry( entry, false );
@@ -684,52 +680,30 @@ void NNTPProtocol::fillUDSEntry( UDSEntry& entry, const QString& name, long size
 
   long posting=0;
 
-  UDSAtom atom;
-
   // entry name
-  atom.m_uds = UDS_NAME;
-  atom.m_str = name;
-  atom.m_long = 0;
-  entry.append(atom);
+  entry.insert(UDS_NAME, name);
 
   // entry size
-  atom.m_uds = UDS_SIZE;
-  atom.m_str = QString::null;
-  atom.m_long = size;
-  entry.append(atom);
+  entry.insert(UDS_SIZE, size);
 
   // file type
-  atom.m_uds = UDS_FILE_TYPE;
-  atom.m_long = is_article? S_IFREG : S_IFDIR;
-  atom.m_str = QString::null;
-  entry.append(atom);
+  entry.insert(UDS_FILE_TYPE, is_article? S_IFREG : S_IFDIR);
 
   // access permissions
-  atom.m_uds = UDS_ACCESS;
   posting = postingAllowed? access : 0;
-  atom.m_long = (is_article)? (S_IRUSR | S_IRGRP | S_IROTH) :
+  long long accessVal = (is_article)? (S_IRUSR | S_IRGRP | S_IROTH) :
     (S_IRUSR | S_IXUSR | S_IRGRP | S_IXGRP | S_IROTH | S_IXOTH | posting);
-  atom.m_str = QString::null;
-  entry.append(atom);
+  entry.insert(UDS_ACCESS, accessVal);
 
-  atom.m_uds = UDS_USER;
-  atom.m_str = mUser.isEmpty() ? QString("root") : mUser;
-  atom.m_long= 0;
-  entry.append(atom);
+  entry.insert(UDS_USER, mUser.isEmpty() ? QString::fromLatin1("root") : mUser);
 
   /*
-  atom.m_uds = UDS_GROUP;
-  atom.m_str = "root";
-  atom.m_long=0;
-  entry->append(atom);
+  entry->insert(UDS_GROUP, QString::fromLatin1("root"));
   */
 
   // MIME type
   if (is_article) {
-    atom.m_uds = UDS_MIME_TYPE;
-    atom.m_long= 0;
-    atom.m_str = "message/news";
-    entry.append(atom);
+    entry.insert( UDS_MIME_TYPE, QString::fromLatin1("message/news") );
   }
 }
 

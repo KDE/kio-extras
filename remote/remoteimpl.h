@@ -38,11 +38,11 @@ public:
 	bool isWizardURL(const KURL &url) const;
 	bool statNetworkFolder(KIO::UDSEntry &entry, const QString &filename) const;
 
-	void listRoot(Q3ValueList<KIO::UDSEntry> &list) const;
+	void listRoot(KIO::UDSEntryList& list) const;
 
 	KURL findBaseURL(const QString &filename) const;
 	QString findDesktopFile(const QString &filename) const;
-	
+
 	bool deleteNetworkFolder(const QString &filename) const;
 	bool renameFolders(const QString &src, const QString &dest,
 	                   bool overwrite) const;

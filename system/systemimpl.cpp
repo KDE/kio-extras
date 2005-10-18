@@ -38,7 +38,7 @@ SystemImpl::SystemImpl() : QObject()
 		KStandardDirs::kde_default("data") + "systemview");
 }
 
-bool SystemImpl::listRoot(Q3ValueList<KIO::UDSEntry> &list)
+bool SystemImpl::listRoot(KIO::UDSEntryList &list)
 {
 	kdDebug() << "SystemImpl::listRoot" << endl;
 
@@ -59,7 +59,7 @@ bool SystemImpl::listRoot(Q3ValueList<KIO::UDSEntry> &list)
 		KIO::UDSEntry entry;
 
 		QStringList::ConstIterator filename = filenames.begin();
-		QStringList::ConstIterator endf = filenames.end();
+		const QStringList::ConstIterator endf = filenames.end();
 
 		for(; filename!=endf; ++filename)
 		{
@@ -177,7 +177,7 @@ KURL SystemImpl::findBaseURL(const QString &filename) const
 					url.setPath( desktop.readPath() );
 					return url;
 				}
-				
+
 				return desktop.readURL();
 			}
 		}
@@ -187,27 +187,16 @@ KURL SystemImpl::findBaseURL(const QString &filename) const
 }
 
 
-static void addAtom(KIO::UDSEntry &entry, unsigned int ID, long l,
-                    const QString &s = QString::null)
-{
-	KIO::UDSAtom atom;
-	atom.m_uds = ID;
-	atom.m_long = l;
-	atom.m_str = s;
-	entry.append(atom);
-}
-
-
 void SystemImpl::createTopLevelEntry(KIO::UDSEntry &entry) const
 {
 	entry.clear();
-	addAtom(entry, KIO::UDS_NAME, 0, ".");
-	addAtom(entry, KIO::UDS_FILE_TYPE, S_IFDIR);
-	addAtom(entry, KIO::UDS_ACCESS, 0555);
-	addAtom(entry, KIO::UDS_MIME_TYPE, 0, "inode/system_directory");
-	addAtom(entry, KIO::UDS_ICON_NAME, 0, "system");
-	addAtom(entry, KIO::UDS_USER, 0, "root");
-	addAtom(entry, KIO::UDS_GROUP, 0, "root");
+	entry.insert( KIO::UDS_NAME, QString::fromLatin1("."));
+	entry.insert( KIO::UDS_FILE_TYPE, S_IFDIR);
+	entry.insert( KIO::UDS_ACCESS, 0555);
+	entry.insert( KIO::UDS_MIME_TYPE, QString::fromLatin1("inode/system_directory"));
+	entry.insert( KIO::UDS_ICON_NAME, QString::fromLatin1("system"));
+	entry.insert( KIO::UDS_USER, QString::fromLatin1("root"));
+	entry.insert( KIO::UDS_GROUP, QString::fromLatin1("root"));
 }
 
 void SystemImpl::createEntry(KIO::UDSEntry &entry,
@@ -227,15 +216,15 @@ void SystemImpl::createEntry(KIO::UDSEntry &entry,
 	{
 		return;
 	}
-	
-	addAtom(entry, KIO::UDS_NAME, 0, desktop.readName());
-	
+
+	entry.insert( KIO::UDS_NAME, desktop.readName());
+
 	QString new_filename = file;
 	new_filename.truncate(file.length()-8);
-	addAtom(entry, KIO::UDS_URL, 0, "system:/"+new_filename);
+	entry.insert( KIO::UDS_URL, "system:/"+new_filename);
 
-	addAtom(entry, KIO::UDS_FILE_TYPE, S_IFDIR);
-	addAtom(entry, KIO::UDS_MIME_TYPE, 0, "inode/directory");
+	entry.insert( KIO::UDS_FILE_TYPE, S_IFDIR);
+	entry.insert( KIO::UDS_MIME_TYPE, QString::fromLatin1("inode/directory"));
 
 	QString icon = desktop.readIcon();
 	QString empty_icon = desktop.readEntry("EmptyIcon");
@@ -258,7 +247,7 @@ void SystemImpl::createEntry(KIO::UDSEntry &entry,
 		if (m_lastListingEmpty) icon = empty_icon;
 	}
 
-	addAtom(entry, KIO::UDS_ICON_NAME, 0, icon);
+	entry.insert( KIO::UDS_ICON_NAME, icon);
 }
 
 void SystemImpl::enterLoop()

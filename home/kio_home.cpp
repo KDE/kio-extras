@@ -110,7 +110,7 @@ void HomeProtocol::listDir(const KURL &url)
 		error(KIO::ERR_MALFORMED_URL, url.prettyURL());
 		return;
 	}
-	
+
 	ForwardingSlaveBase::listDir(url);
 }
 
@@ -132,9 +132,8 @@ void HomeProtocol::listRoot()
 	m_impl.createTopLevelEntry(entry);
 	listEntry(entry, false);
 
-	KIO::UDSEntryListIterator it = home_entries.begin();
-	KIO::UDSEntryListIterator end = home_entries.end();
-
+	KIO::UDSEntryList::ConstIterator it = home_entries.begin();
+	const KIO::UDSEntryList::ConstIterator end = home_entries.end();
 	for(; it!=end; ++it)
 	{
 		listEntry(*it, false);
@@ -149,7 +148,7 @@ void HomeProtocol::listRoot()
 void HomeProtocol::stat(const KURL &url)
 {
 	kdDebug() << "HomeProtocol::stat: " << url << endl;
- 
+
 	QString path = url.path();
 	if ( path.isEmpty() || path == "/" )
 	{

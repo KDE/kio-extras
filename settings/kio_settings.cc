@@ -32,7 +32,7 @@
 #include <kservice.h>
 #include <kservicegroup.h>
 #include <kstandarddirs.h>
-   
+
 class SettingsProtocol : public KIO::SlaveBase
 {
 public:
@@ -62,40 +62,31 @@ extern "C" {
 }
 
 
-static void addAtom(KIO::UDSEntry& entry, unsigned int ID, long l, const QString& s = QString::null)
-{
-	KIO::UDSAtom atom;
-	atom.m_uds = ID;
-	atom.m_long = l;
-	atom.m_str = s;
-	entry.append(atom);
-}
-
 static void createFileEntry(KIO::UDSEntry& entry, const QString& name, const QString& url, const QString& mime, const QString& iconName, const QString& localPath)
 {
 	entry.clear();
-	addAtom(entry, KIO::UDS_NAME, 0, name);
-	addAtom(entry, KIO::UDS_FILE_TYPE, S_IFREG);
-	addAtom(entry, KIO::UDS_URL, 0, url);
-	addAtom(entry, KIO::UDS_ACCESS, 0500);
-	addAtom(entry, KIO::UDS_MIME_TYPE, 0, mime);
-	addAtom(entry, KIO::UDS_SIZE, 0);
-	addAtom(entry, KIO::UDS_LOCAL_PATH, 0, localPath);
-	addAtom(entry, KIO::UDS_CREATION_TIME, 1);
-	addAtom(entry, KIO::UDS_MODIFICATION_TIME, time(0));
-	addAtom(entry, KIO::UDS_ICON_NAME, 0, iconName);
+	entry.insert( KIO::UDS_NAME, name );
+	entry.insert( KIO::UDS_FILE_TYPE, S_IFREG);
+	entry.insert( KIO::UDS_URL, url );
+	entry.insert( KIO::UDS_ACCESS, 0500);
+	entry.insert( KIO::UDS_MIME_TYPE, mime );
+	entry.insert( KIO::UDS_SIZE, 0);
+	entry.insert( KIO::UDS_LOCAL_PATH, localPath );
+	entry.insert( KIO::UDS_CREATION_TIME, 1);
+	entry.insert( KIO::UDS_MODIFICATION_TIME, time(0) );
+	entry.insert( KIO::UDS_ICON_NAME, iconName  );
 }
 
 static void createDirEntry(KIO::UDSEntry& entry, const QString& name, const QString& url, const QString& mime,const QString& iconName)
 {
 	entry.clear();
-	addAtom(entry, KIO::UDS_NAME, 0, name);
-	addAtom(entry, KIO::UDS_FILE_TYPE, S_IFDIR);
-	addAtom(entry, KIO::UDS_ACCESS, 0500);
-	addAtom(entry, KIO::UDS_MIME_TYPE, 0, mime);
-	addAtom(entry, KIO::UDS_URL, 0, url);
-	addAtom(entry, KIO::UDS_SIZE, 0);
-	addAtom(entry, KIO::UDS_ICON_NAME, 0, iconName);
+	entry.insert( KIO::UDS_NAME, name );
+	entry.insert( KIO::UDS_FILE_TYPE, S_IFDIR );
+	entry.insert( KIO::UDS_ACCESS, 0500 );
+	entry.insert( KIO::UDS_MIME_TYPE, mime );
+	entry.insert( KIO::UDS_URL, url );
+	//entry.insert( KIO::UDS_SIZE, 0 );
+	entry.insert( KIO::UDS_ICON_NAME, iconName );
 }
 
 SettingsProtocol::SettingsProtocol( const Q3CString &protocol, const Q3CString &pool, const Q3CString &app): SlaveBase( protocol, pool, app )
@@ -157,7 +148,7 @@ KServiceGroup::Ptr SettingsProtocol::findGroup(const QString &relPath)
 		}
 
 		if (!found) {
-			kdDebug() << "Group with caption " << rest.front() << " not found within " 
+			kdDebug() << "Group with caption " << rest.front() << " not found within "
 				  << alreadyFound << endl;
 			return 0;
 		}
@@ -176,7 +167,7 @@ void SettingsProtocol::get( const KURL & url )
 		finished();
 	} else {
 		error( KIO::ERR_IS_DIRECTORY, url.prettyURL() );
-	}        
+	}
 }
 
 
@@ -208,7 +199,7 @@ void SettingsProtocol::stat(const KURL& url)
 			error(KIO::ERR_SLAVE_DEFINED,i18n("Unknown settings folder"));
 			return;
 		}
-	}     
+	}
 
 	statEntry(entry);
 	finished();
