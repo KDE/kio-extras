@@ -47,7 +47,7 @@ static bool check(const QString& txt, QString a, QString b)
 int main(int argc, char *argv[])
 {
     KApplication::disableAutoDcopRegistration();
-    KCmdLineArgs::init(argc,argv,"testremote", 0, 0, 0, 0);
+    KCmdLineArgs::init(argc,argv,"testremote", 0, 0, 0);
     KApplication app;
 
     TestRemote test;

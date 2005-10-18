@@ -45,7 +45,7 @@ extern "C" {
 	{
 		// KApplication is necessary to use other ioslaves
 		putenv(strdup("SESSION_MANAGER="));
-		KCmdLineArgs::init(argc, argv, "kio_home", 0, 0, 0, 0);
+		KCmdLineArgs::init(argc, argv, "kio_home", 0, 0, 0);
 		KCmdLineArgs::addCmdLineOptions( options );
 		KApplication app( false, false );
 		// We want to be anonymous even if we use DCOP
