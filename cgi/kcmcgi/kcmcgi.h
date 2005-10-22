@@ -29,7 +29,7 @@ class KCMCgi : public KCModule
 {
     Q_OBJECT
   public:
-    KCMCgi( QWidget *parent = 0, const char *name = 0 );
+    KCMCgi( QWidget *parent );
     ~KCMCgi();
 
     void load();

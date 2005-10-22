@@ -37,14 +37,13 @@ extern "C"
 {
   KDE_EXPORT KCModule *create_cgi( QWidget *parent, const char * )
   {
-    KGlobal::locale()->insertCatalog("kcmcgi");
-    return new KCMCgi( parent, "kcmcgi" );
+    return new KCMCgi( parent );
   }
 }
 
 
-KCMCgi::KCMCgi(QWidget *parent, const char *name)
-  : KCModule(parent, name)
+KCMCgi::KCMCgi(QWidget *parent)
+  : KCModule(new KInstance("kcmcgi"), name)
 {
   setButtons(Default|Apply);
 
