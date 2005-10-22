@@ -19,6 +19,7 @@
 #include <kconfig.h>
 #include <klocale.h>
 #include <kglobal.h>
+#include <kinstance.h>
 #include <kaboutdata.h>
 #include <kfiledialog.h>
 
