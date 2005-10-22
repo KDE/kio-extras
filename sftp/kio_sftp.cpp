@@ -1471,7 +1471,7 @@ bool sftpProtocol::getPacket(QByteArray& msg) {
     b.open( QIODevice::WriteOnly );
 
     while( msgLen ) {
-        len = atomicio(ssh.stdioFd(), buf.data(), kMin(buf.size(), msgLen), true /*read*/);
+        len = atomicio(ssh.stdioFd(), buf.data(), qMin(buf.size(), msgLen), true /*read*/);
 
         if( len == 0 || len == -1) {
             QString errmsg;

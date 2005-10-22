@@ -460,7 +460,7 @@ void NNTPProtocol::fetchGroups( const QString &since, bool desc )
 
       //DBG << "  fetching group description: " << QString( line ).trimmed() << endl;
       int pos = line.indexOf( ' ' );
-      pos = pos < 0 ? line.indexOf( '\t' ) : kMin( pos, line.indexOf( '\t' ) );
+      pos = pos < 0 ? line.indexOf( '\t' ) : qMin( pos, line.indexOf( '\t' ) );
       group = line.left( pos );
       QString groupDesc = line.right( line.length() - pos ).trimmed();
 
@@ -516,7 +516,7 @@ bool NNTPProtocol::fetchGroup( QString &group, unsigned long first, unsigned lon
 
   if (firstSerNum == 0)
     return true;
-  first = kMax( first, firstSerNum );
+  first = qMax( first, firstSerNum );
   if ( max > 0 && lastSerNum - first > max )
     first = lastSerNum - max + 1;
 
