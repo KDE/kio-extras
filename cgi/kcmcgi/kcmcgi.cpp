@@ -44,7 +44,7 @@ extern "C"
 
 
 KCMCgi::KCMCgi(QWidget *parent)
-  : KCModule(new KInstance("kcmcgi"), name)
+  : KCModule(new KInstance("kcmcgi"), parent)
 {
   setButtons(Default|Apply);
 
