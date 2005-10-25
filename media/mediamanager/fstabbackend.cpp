@@ -1,5 +1,7 @@
 /* This file is part of the KDE Project
    Copyright (c) 2004 Kévin Ottens <ervin ipsquad net>
+   Linux CD/DVD detection
+   Copyright (c) 2005 Bernhard Rosenkraenzer <bero arklinux org>
 
    This library is free software; you can redistribute it and/or
    modify it under the terms of the GNU Library General Public
@@ -17,6 +19,18 @@
 */
 
 #include "fstabbackend.h"
+
+#ifdef __linux__
+// For CD/DVD drive detection
+#include <fcntl.h>
+#include <sys/ioctl.h>
+#include <unistd.h>
+#include <stdint.h>
+typedef uint64_t __le64; // workaround for some versions of kernel headers
+typedef uint64_t __be64; // workaround for some versions of kernel headers
+#include <linux/cdrom.h>
+#include <qfile.h>
+#endif
 
 #include <klocale.h>
 #include <kdirwatch.h>
@@ -281,7 +295,55 @@ void FstabBackend::guess(const QString &devNode, const QString &mountPoint,
                          const QString &fsType, bool mounted,
                          QString &mimeType, QString &iconName, QString &label)
 {
-	if ( devNode.find("cdwriter")!=-1 || mountPoint.find("cdwriter")!=-1
+	enum { UNKNOWN, CD, CDWRITER, DVD, DVDWRITER } devType = UNKNOWN;
+#ifdef __linux__
+	// Guessing device types by mount point is not exactly accurate...
+	// Do something accurate first, and fall back if necessary.
+	int device=open(QFile::encodeName(devNode).data(), O_RDONLY|O_NONBLOCK);
+	if(device>=0)
+	{
+		bool isCd=false;
+		QString devname=devNode.section('/', -1);
+		if(devname.startsWith("scd") || devname.startsWith("sr"))
+		{
+			// SCSI CD/DVD drive
+			isCd=true;
+		}
+		else if(devname.startsWith("hd"))
+		{
+			// IDE device -- we can't tell if this is a
+			// CD/DVD drive or harddisk by just looking at the
+			// filename
+			QFile m(QString("/proc/ide/") + devname + "/media");
+			if(m.open(QIODevice::ReadOnly))
+			{
+				QTextStream in(&m);
+				QString buf=in.readLine();
+				if(buf.contains("cdrom"))
+					isCd=true;
+				m.close();
+			}
+		}
+		if(isCd)
+		{
+			int drv=ioctl(device, CDROM_GET_CAPABILITY, CDSL_CURRENT);
+			if(drv>=0)
+			{
+				if((drv & CDC_DVD_R) || (drv & CDC_DVD_RAM))
+					devType = DVDWRITER;
+				else if((drv & CDC_CD_R) || (drv & CDC_CD_RW))
+					devType = CDWRITER;
+				else if(drv & CDC_DVD)
+					devType = DVD;
+				else
+					devType = CD;
+			}
+		}
+		close(device);
+	}
+#endif
+	if ( devType == CDWRITER
+	  || devNode.find("cdwriter")!=-1 || mountPoint.find("cdwriter")!=-1
 	  || devNode.find("cdrecorder")!=-1 || mountPoint.find("cdrecorder")!=-1
 	  || devNode.find("cdburner")!=-1 || mountPoint.find("cdburner")!=-1
 	  || devNode.find("cdrw")!=-1 || mountPoint.find("cdrw")!=-1
@@ -291,12 +353,14 @@ void FstabBackend::guess(const QString &devNode, const QString &mountPoint,
 		mimeType = "media/cdwriter";
 		label = i18n("CD Recorder");
 	}
-	else if ( devNode.find("dvd")!=-1 || mountPoint.find("dvd")!=-1 )
+	else if ( devType == DVD || devType == DVDWRITER
+	       || devNode.find("dvd")!=-1 || mountPoint.find("dvd")!=-1 )
 	{
 		mimeType = "media/dvd";
 		label = i18n("DVD");
 	}
-	else if ( devNode.find("cdrom")!=-1 || mountPoint.find("cdrom")!=-1
+	else if ( devType == CD
+	       || devNode.find("cdrom")!=-1 || mountPoint.find("cdrom")!=-1
 	       // LINUX SPECIFIC
 	       || devNode.find("/dev/scd")!=-1 || devNode.find("/dev/sr")!=-1
 	       // FREEBSD SPECIFIC
