@@ -56,21 +56,21 @@ HALBackend::HALBackend(MediaList &list, QObject* parent)
 /* Destructor */
 HALBackend::~HALBackend()
 {
-	/* Remove all the registered media */
-	int numDevices;
-	char** halDeviceList = libhal_get_all_devices( m_halContext, &numDevices, NULL );
-
-	if ( halDeviceList )
-	{
-		for ( int i = 0; i < numDevices; i++ )
-		{
-			m_mediaList.removeMedium( halDeviceList[i], false );
-		}
-	}
-	
 	/* Close HAL connection */
 	if (m_halContext)
 	{
+		/* Remove all the registered media first */
+		int numDevices;
+		char** halDeviceList = libhal_get_all_devices( m_halContext, &numDevices, NULL );
+
+		if ( halDeviceList )
+		{
+			for ( int i = 0; i < numDevices; i++ )
+			{
+				m_mediaList.removeMedium( halDeviceList[i], false );
+			}
+		}
+	
 		#ifdef HAL_0_4
 		hal_shutdown(m_halContext);
 		#else
@@ -78,10 +78,9 @@ HALBackend::~HALBackend()
 		libhal_ctx_free(m_halContext);
 		#endif
 	}
+	
 	if (m_halStoragePolicy)
 		libhal_storage_policy_free(m_halStoragePolicy);
-
-	/** @todo empty media list ? */
 }
 
 /* Connect to the HAL */
