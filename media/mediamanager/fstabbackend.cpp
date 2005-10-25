@@ -46,6 +46,7 @@ typedef uint64_t __be64; // workaround for some versions of kernel headers
 #define MTAB "/etc/mtab"
 #endif
 
+#include <QTextStream>
 
 
 FstabBackend::FstabBackend(MediaList &list, bool networkSharesOnly)
@@ -100,7 +101,7 @@ void FstabBackend::slotDirty(const QString &path)
 	}
 }
 
-bool inExclusionPattern(KMountPoint *mount, bool networkSharesOnly)
+static bool inExclusionPattern(const KMountPoint::Ptr& mount, bool networkSharesOnly)
 {
 	if ( mount->mountType() == "swap"
 	  || mount->mountType() == "tmpfs"
