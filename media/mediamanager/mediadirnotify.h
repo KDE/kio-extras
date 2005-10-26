@@ -38,7 +38,7 @@ k_dcop:
 	virtual ASYNC FilesChanged (const KURL::List &fileList);
 
 private:
-	KURL toMediaURL(const KURL &url);
+	KURL::List toMediaURL(const KURL &url);
 	KURL::List toMediaURLList(const KURL::List &list);
 
 	const MediaList &m_mediaList;

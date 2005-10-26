@@ -33,10 +33,12 @@ MediaDirNotify::MediaDirNotify(const MediaList &list)
 
 }
 
-KURL MediaDirNotify::toMediaURL(const KURL &url)
+KURL::List MediaDirNotify::toMediaURL(const KURL &url)
 {
 	kdDebug(1219) << "MediaDirNotify::toMediaURL(" << url << ")" << endl;
 
+	KURL::List result;
+	
 	const Q3PtrList<Medium> list = m_mediaList.list();
 
 	Q3PtrList<Medium>::const_iterator it = list.begin();
@@ -51,15 +53,16 @@ KURL MediaDirNotify::toMediaURL(const KURL &url)
 		{
 			QString path = KURL::relativePath(base.path(),
 			                                  url.path());
-			KURL result("media:/"+m->name()+"/"+path );
-			result.cleanPath();
-			kdDebug(1219) << result << endl;
-			return result;
+
+			KURL new_url("media:/"+m->name()+"/"+path );
+			new_url.cleanPath();
+		
+			result.append(new_url);
 		}
 	}
 
-	kdDebug(1219) << "KURL()" << endl;
-	return KURL();
+	kdDebug(1219) << result << endl;
+	return result;
 }
 
 KURL::List MediaDirNotify::toMediaURLList(const KURL::List &list)
@@ -71,11 +74,11 @@ KURL::List MediaDirNotify::toMediaURLList(const KURL::List &list)
 
 	for (; it!=end; ++it)
 	{
-		KURL url = toMediaURL(*it);
+		KURL::List urls = toMediaURL(*it);
 
-		if (url.isValid())
+		if (!urls.isEmpty())
 		{
-			new_list.append(url);
+			new_list += urls;
 		}
 	}
 
@@ -84,12 +87,19 @@ KURL::List MediaDirNotify::toMediaURLList(const KURL::List &list)
 
 ASYNC MediaDirNotify::FilesAdded(const KURL &directory)
 {
-	KURL new_dir = toMediaURL(directory);
+	KURL::List new_urls = toMediaURL(directory);
 
-	if (new_dir.isValid())
+	if (!new_urls.isEmpty())
 	{
 		KDirNotify_stub notifier(Q3CString("*"), Q3CString("*"));
-		notifier.FilesAdded( new_dir );
+
+		KURL::List::const_iterator it = new_urls.begin();
+		KURL::List::const_iterator end = new_urls.end();
+
+		for ( ; it!=end; ++it )
+		{
+			notifier.FilesAdded(*it);
+		}
 	}
 }
 
