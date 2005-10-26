@@ -28,6 +28,7 @@ public:
 	NotifierOpenAction();
 	virtual QString id() const;
 	virtual void execute(KFileItem &medium);
+	bool supportsMimetype( const QString &mimetype ) const;
 };
 
 #endif

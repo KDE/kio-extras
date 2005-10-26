@@ -37,3 +37,9 @@ void NotifierOpenAction::execute(KFileItem &medium)
 {
 	medium.run();
 }
+
+bool NotifierOpenAction::supportsMimetype( const QString &mimetype ) const
+{
+	return !mimetype.contains( "blank" );
+}
+

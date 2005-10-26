@@ -267,9 +267,17 @@ void MediaNotifier::notify( KFileItem &medium )
 	
 	if ( settings->autoActionForMimetype( medium.mimetype() )==0L )
 	{
-		NotificationDialog *dialog
-			= new NotificationDialog( medium, settings );
-		dialog->show();
+		QValueList<NotifierAction*> actions
+			= settings->actionsForMimetype( medium.mimetype() );
+		
+		// If only one action remains, it's the "do nothing" action
+		// no need to popup in this case.
+		if ( actions.size()>1 )
+		{
+			NotificationDialog *dialog
+				= new NotificationDialog( medium, settings );
+			dialog->show();
+		}
 	}
 	else
 	{
