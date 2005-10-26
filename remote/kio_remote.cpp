@@ -45,7 +45,7 @@ extern "C" {
 	{
 		// KApplication is necessary to use other ioslaves
 		putenv(strdup("SESSION_MANAGER="));
-		KCmdLineArgs::init(argc, argv, "kio_remote", 0, 0, 0);
+		KCmdLineArgs::init(argc, argv, "kio_remote", 0L, 0L, false);
 		KCmdLineArgs::addCmdLineOptions( options );
 		KApplication app( false, false );
 		// We want to be anonymous even if we use DCOP
@@ -81,10 +81,14 @@ void RemoteProtocol::listDir(const KURL &url)
 		return;
 	}
 
-	KURL target = m_impl.findBaseURL( url.fileName() );
+	int second_slash_idx = url.path().find( '/', 1 );
+	QString root_dirname = url.path().mid( 1, second_slash_idx-1 );
+	
+	KURL target = m_impl.findBaseURL( root_dirname );
 	kdDebug(1220) << "possible redirection target : " << target << endl;
 	if( target.isValid() )
 	{
+		target.addPath( url.path().remove(0, second_slash_idx) );
 		redirection(target);
 		finished();
 		return;
@@ -151,14 +155,32 @@ void RemoteProtocol::stat(const KURL &url)
 		return;
 	}
 
-	KIO::UDSEntry entry;
-	if (m_impl.statNetworkFolder(entry, url.fileName()))
+	int second_slash_idx = url.path().find( '/', 1 );
+	QString root_dirname = url.path().mid( 1, second_slash_idx-1 );
+	
+	if ( second_slash_idx==-1 || ( (int)url.path().length() )==second_slash_idx+1 )
 	{
-		statEntry(entry);
-		finished();
-		return;
+		KIO::UDSEntry entry;
+		if (m_impl.statNetworkFolder(entry, root_dirname))
+		{
+			statEntry(entry);
+			finished();
+			return;
+		}
 	}
-
+	else
+	{
+		KURL target = m_impl.findBaseURL(  root_dirname );
+		kdDebug( 1220 ) << "possible redirection target : " << target << endl;
+		if (  target.isValid() )
+		{
+			target.addPath( url.path().remove( 0, second_slash_idx ) );
+			redirection( target );
+			finished();
+			return;
+		}
+	}
+	
 	error(KIO::ERR_MALFORMED_URL, url.prettyURL());
 }
 
