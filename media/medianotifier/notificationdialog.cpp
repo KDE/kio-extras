@@ -26,8 +26,7 @@
 #include <klistbox.h>
 #include <qlabel.h>
 #include <qcheckbox.h>
-//Added by qt3to4:
-#include <Q3ValueList>
+#include <QLinkedList>
 
 #include "actionlistboxitem.h"
 #include "notificationdialogview.h"
@@ -84,11 +83,11 @@ void NotificationDialog::updateActionsListBox()
 {
 	m_view->actionsList->clear();
 
-	Q3ValueList<NotifierAction*> actions
+	QLinkedList<NotifierAction*> actions
 		= m_settings->actionsForMimetype( m_medium.mimetype() );
 	
-	Q3ValueList<NotifierAction*>::iterator it = actions.begin();
-	Q3ValueList<NotifierAction*>::iterator end = actions.end();
+	QLinkedList<NotifierAction*>::iterator it = actions.begin();
+	QLinkedList<NotifierAction*>::iterator end = actions.end();
 	
 	for ( ; it!=end; ++it )
 	{

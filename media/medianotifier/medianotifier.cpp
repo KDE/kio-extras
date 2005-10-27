@@ -21,9 +21,9 @@
 
 #include <qfile.h>
 #include <qfileinfo.h>
-//Added by qt3to4:
 #include <QTextStream>
-#include <Q3CString>
+#include <QByteArray>
+#include <QLinkedList>
 
 #include <kdebug.h>
 #include <klocale.h>
@@ -38,7 +38,7 @@
 #include "notifieraction.h"
 #include "mediamanagersettings.h"
 
-MediaNotifier::MediaNotifier(const Q3CString &name) : KDEDModule(name)
+MediaNotifier::MediaNotifier(const QByteArray &name) : KDEDModule(name)
 {
 	connectDCOPSignal( "kded", "mediamanager", "mediumAdded(QString, bool)",
 	                   "onMediumChange(QString, bool)", true );
@@ -267,7 +267,7 @@ void MediaNotifier::notify( KFileItem &medium )
 	
 	if ( settings->autoActionForMimetype( medium.mimetype() )==0L )
 	{
-		QValueList<NotifierAction*> actions
+		QLinkedList<NotifierAction*> actions
 			= settings->actionsForMimetype( medium.mimetype() );
 		
 		// If only one action remains, it's the "do nothing" action
@@ -289,7 +289,7 @@ void MediaNotifier::notify( KFileItem &medium )
 
 extern "C"
 {
-	KDE_EXPORT KDEDModule *create_medianotifier(const Q3CString &name)
+	KDE_EXPORT KDEDModule *create_medianotifier(const QByteArray &name)
 	{
 		return new MediaNotifier(name);
 	}

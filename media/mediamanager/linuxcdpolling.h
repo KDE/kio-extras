@@ -1,5 +1,5 @@
 /* This file is part of the KDE Project
-   Copyright (c) 2004 Kévin Ottens <ervin ipsquad net>
+   Copyright (c) 2004 Kevin Ottens <ervin ipsquad net>
 
    This library is free software; you can redistribute it and/or
    modify it under the terms of the GNU Library General Public
@@ -22,7 +22,7 @@
 #include "backendbase.h"
 
 #include <qobject.h>
-#include <q3cstring.h>
+#include <qbytearray.h>
 #include <qmap.h>
 
 class DiscType
@@ -63,7 +63,7 @@ public:
 	 * @param current the current known state of the drive
 	 * @return the disc type
 	 */
-	static DiscType identifyDiscType(const Q3CString &devNode,
+	static DiscType identifyDiscType(const QByteArray &devNode,
 		 const DiscType &current = DiscType::Unknown);
 
 private slots:
@@ -75,7 +75,7 @@ private slots:
 private:
 	void applyType(DiscType type, const Medium *medium);
 
-	static bool hasDirectory(const Q3CString &devNode, const Q3CString &dir);
+	static bool hasDirectory(const QByteArray &devNode, const QByteArray &dir);
 
 	QMap<QString, PollingThread*> m_threads;
 	QStringList m_excludeNotification;

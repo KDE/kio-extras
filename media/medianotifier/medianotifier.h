@@ -1,6 +1,6 @@
 /* This file is part of the KDE Project
    Copyright (c) 2005 Jean-Remy Falleri <jr.falleri@laposte.net>
-   Copyright (c) 2005 Kévin Ottens <ervin ipsquad net>
+   Copyright (c) 2005 Kevin Ottens <ervin ipsquad net>
 
    This library is free software; you can redistribute it and/or
    modify it under the terms of the GNU Library General Public
@@ -26,8 +26,7 @@
 
 #include <qstring.h>
 #include <qmap.h>
-//Added by qt3to4:
-#include <Q3CString>
+#include <QByteArray>
 
 class MediaNotifier:  public KDEDModule
 {
@@ -35,7 +34,7 @@ class MediaNotifier:  public KDEDModule
 	K_DCOP
 
 public:
-	MediaNotifier( const Q3CString &name );
+	MediaNotifier( const QByteArray &name );
 	virtual ~MediaNotifier();
 
 k_dcop:
