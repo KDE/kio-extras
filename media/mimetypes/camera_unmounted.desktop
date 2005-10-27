@@ -5,7 +5,7 @@ MimeType=media/camera_unmounted
 Comment=Unmounted Camera
 Comment[et]=Lahutatud kaamera
 Comment[ga]=Ceamara neamhfheistithe
-Icon=camera_ummount
+Icon=camera_unmount
 
 X-KDE-AutoEmbed=true
 X-KDE-IsAlso=inode/directory
