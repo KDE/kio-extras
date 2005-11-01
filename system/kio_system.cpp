@@ -62,8 +62,8 @@ extern "C" {
 }
 
 
-SystemProtocol::SystemProtocol(const Q3CString &protocol,
-                               const Q3CString &pool, const Q3CString &app)
+SystemProtocol::SystemProtocol(const QByteArray &protocol,
+                               const QByteArray &pool, const QByteArray &app)
 	: ForwardingSlaveBase(protocol, pool, app)
 {
 }

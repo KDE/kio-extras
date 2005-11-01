@@ -29,8 +29,6 @@
 
 
 #include "kio_home.h"
-//Added by qt3to4:
-#include <Q3CString>
 
 static const KCmdLineOptions options[] =
 {
@@ -61,8 +59,8 @@ extern "C" {
 }
 
 
-HomeProtocol::HomeProtocol(const Q3CString &protocol,
-                               const Q3CString &pool, const Q3CString &app)
+HomeProtocol::HomeProtocol(const QByteArray &protocol,
+                               const QByteArray &pool, const QByteArray &app)
 	: ForwardingSlaveBase(protocol, pool, app)
 {
 }
