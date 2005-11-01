@@ -30,7 +30,7 @@ class NNTPProtocol:public KIO::TCPSlaveBase
   /** Default Constructor
    * @param isSSL is a true or false to indicate whether ssl is to be used
    */
-  NNTPProtocol ( const Q3CString & pool, const Q3CString & app, bool isSSL );
+  NNTPProtocol ( const QByteArray & pool, const QByteArray & app, bool isSSL );
   virtual ~NNTPProtocol();
 
   virtual void get(const KURL& url );

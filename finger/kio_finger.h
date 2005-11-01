@@ -34,7 +34,7 @@ class FingerProtocol : public QObject, public KIO::SlaveBase
 
 public:
 
-  FingerProtocol(const Q3CString &pool_socket, const Q3CString &app_socket);
+  FingerProtocol(const QByteArray &pool_socket, const QByteArray &app_socket);
   virtual ~FingerProtocol();
 
   virtual void mimetype(const KURL& url);

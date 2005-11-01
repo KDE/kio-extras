@@ -124,7 +124,7 @@ int kdemain(int argc, char **argv)
   return 0;
 }
 
-POP3Protocol::POP3Protocol(const Q3CString & pool, const Q3CString & app,
+POP3Protocol::POP3Protocol(const QByteArray & pool, const QByteArray & app,
                            bool isSSL)
 :  TCPSlaveBase((isSSL ? 995 : 110), (isSSL ? "pop3s" : "pop3"), pool, app,
              isSSL)

@@ -222,7 +222,7 @@ NFSFileHandle& NFSFileHandle::operator= (const char* src)
 }*/
 
 
-NFSProtocol::NFSProtocol (const Q3CString &pool, const Q3CString &app )
+NFSProtocol::NFSProtocol (const QByteArray &pool, const QByteArray &app )
 :SlaveBase( "nfs", pool, app )
 ,m_client(0)
 ,m_sock(-1)

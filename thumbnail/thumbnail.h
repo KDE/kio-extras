@@ -21,8 +21,6 @@
 #define _THUMBNAIL_H_
 
 #include <q3dict.h>
-//Added by qt3to4:
-#include <Q3CString>
 
 #include <kio/slavebase.h>
 
@@ -32,7 +30,7 @@ class QImage;
 class ThumbnailProtocol : public KIO::SlaveBase
 {
 public:
-    ThumbnailProtocol(const Q3CString &pool, const Q3CString &app);
+    ThumbnailProtocol(const QByteArray &pool, const QByteArray &app);
     virtual ~ThumbnailProtocol();
 
     virtual void get(const KURL &url);

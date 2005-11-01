@@ -82,7 +82,7 @@ void getDriveAndPath(const QString& path, QString& drive, QString& rest)
    }
 }
 
-FloppyProtocol::FloppyProtocol (const Q3CString &pool, const Q3CString &app )
+FloppyProtocol::FloppyProtocol (const QByteArray &pool, const QByteArray &app )
 :SlaveBase( "floppy", pool, app )
 ,m_mtool(0)
 ,m_stdoutBuffer(0)

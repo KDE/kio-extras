@@ -18,7 +18,6 @@
 #define __kio_sftp_h__
 
 #include <qstring.h>
-#include <q3cstring.h>
 #include <qobject.h>
 
 #include <kurl.h>
@@ -37,7 +36,7 @@ class sftpProtocol : public KIO::SlaveBase
 {
 
 public:
-  sftpProtocol(const Q3CString &pool_socket, const Q3CString &app_socket);
+  sftpProtocol(const QByteArray &pool_socket, const QByteArray &app_socket);
   virtual ~sftpProtocol();
   virtual void setHost(const QString& h, int port, const QString& user, const QString& pass);
   virtual void get(const KURL& url);

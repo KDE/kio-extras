@@ -55,7 +55,7 @@ int kdemain( int argc, char ** argv)
   return 0;
 }
 
-FilterProtocol::FilterProtocol( const Q3CString & protocol, const Q3CString &pool, const Q3CString &app )
+FilterProtocol::FilterProtocol( const QByteArray & protocol, const QByteArray &pool, const QByteArray &app )
  : KIO::SlaveBase( protocol, pool, app )
 {
     QString mimetype = QString::fromLatin1("application/x-") + QString::fromLatin1(protocol);

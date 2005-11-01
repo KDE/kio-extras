@@ -33,7 +33,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 class FilterProtocol : public QObject, public KIO::SlaveBase
 {
 public:
-  FilterProtocol( const Q3CString & protocol, const Q3CString &pool, const Q3CString &app );
+  FilterProtocol( const QByteArray & protocol, const QByteArray &pool, const QByteArray &app );
 
   virtual void get( const KURL &url );
   virtual void put( const KURL &url, int _mode, bool _overwrite,

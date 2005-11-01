@@ -63,7 +63,7 @@ typedef QMap<QString,NFSFileHandle> NFSFileHandleMap;
 class NFSProtocol : public KIO::SlaveBase
 {
    public:
-      NFSProtocol (const Q3CString &pool, const Q3CString &app );
+      NFSProtocol (const QByteArray &pool, const QByteArray &app );
       virtual ~NFSProtocol();
 
       virtual void openConnection();

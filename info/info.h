@@ -2,8 +2,6 @@
 #define __info_h__
 
 #include <qobject.h>
-//Added by qt3to4:
-#include <Q3CString>
 
 #include <kio/slavebase.h>
 
@@ -13,7 +11,7 @@ class InfoProtocol : public KIO::SlaveBase
 {
 public:
 
-    InfoProtocol( const Q3CString &pool, const Q3CString &app );
+    InfoProtocol( const QByteArray &pool, const QByteArray &app );
     virtual ~InfoProtocol();
 
     virtual void get( const KURL& url );

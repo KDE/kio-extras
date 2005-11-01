@@ -21,8 +21,6 @@
 #define _TAR_H
 
 #include <sys/types.h>
-//Added by qt3to4:
-#include <Q3CString>
 
 #include <kio/global.h>
 #include <kio/slavebase.h>
@@ -30,7 +28,7 @@
 class ArchiveProtocol : public KIO::SlaveBase
 {
 public:
-    ArchiveProtocol( const Q3CString &pool, const Q3CString &app );
+    ArchiveProtocol( const QByteArray &pool, const QByteArray &app );
     virtual ~ArchiveProtocol();
 
     virtual void listDir( const KURL & url );

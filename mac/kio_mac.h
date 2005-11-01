@@ -22,7 +22,6 @@
 #include <kprocess.h>
 
 #include <qstring.h>
-#include <q3cstring.h>
 #include <qfile.h>
 #include <qtextstream.h>
 //Added by qt3to4:
@@ -32,7 +31,7 @@ class MacProtocol : public QObject, public KIO::SlaveBase
 {
     Q_OBJECT
 public:
-    MacProtocol(const Q3CString &pool, const Q3CString &app);
+    MacProtocol(const QByteArray &pool, const QByteArray &app);
     ~MacProtocol();
     virtual void get(const KURL& url );
     virtual void listDir(const KURL& url);

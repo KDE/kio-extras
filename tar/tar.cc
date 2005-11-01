@@ -50,7 +50,7 @@ int kdemain( int argc, char **argv )
   return 0;
 }
 
-ArchiveProtocol::ArchiveProtocol( const Q3CString &pool, const Q3CString &app ) : SlaveBase( "tar", pool, app )
+ArchiveProtocol::ArchiveProtocol( const QByteArray &pool, const QByteArray &app ) : SlaveBase( "tar", pool, app )
 {
   kdDebug( 7109 ) << "ArchiveProtocol::ArchiveProtocol" << endl;
   m_archiveFile = 0L;

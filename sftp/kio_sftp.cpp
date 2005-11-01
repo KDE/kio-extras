@@ -131,7 +131,7 @@ static int writeToFile (int fd, const char *buf, size_t len)
   return 0;
 }
 
-sftpProtocol::sftpProtocol(const Q3CString &pool_socket, const Q3CString &app_socket)
+sftpProtocol::sftpProtocol(const QByteArray &pool_socket, const QByteArray &app_socket)
              : SlaveBase("kio_sftp", pool_socket, app_socket),
                   mConnected(false), mPort(-1), mMsgId(0) {
   kdDebug(KIO_SFTP_DB) << "sftpProtocol(): pid = " << getpid() << endl;

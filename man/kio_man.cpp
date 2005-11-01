@@ -111,7 +111,7 @@ bool parseUrl(const QString& _url, QString &title, QString &section)
 }
 
 
-MANProtocol::MANProtocol(const Q3CString &pool_socket, const Q3CString &app_socket)
+MANProtocol::MANProtocol(const QByteArray &pool_socket, const QByteArray &app_socket)
     : QObject(), SlaveBase("man", pool_socket, app_socket)
 {
     assert(!_self);

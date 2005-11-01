@@ -46,7 +46,7 @@ extern "C" {
     }
 }
 
-MacProtocol::MacProtocol(const Q3CString &pool, const Q3CString &app)
+MacProtocol::MacProtocol(const QByteArray &pool, const QByteArray &app)
                                              : QObject(), SlaveBase("mac", pool, app) {
 /*  logFile = new QFile("/home/jr/logfile");
     logFile->open(IO_ReadWrite | IO_Append);

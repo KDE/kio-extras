@@ -23,8 +23,6 @@
 #include <kabc/ldif.h>
 
 #include "kio_ldap.h"
-//Added by qt3to4:
-#include <Q3CString>
 
 using namespace KIO;
 using namespace KABC;
@@ -56,8 +54,8 @@ int kdemain( int argc, char **argv )
 /**
  * Initialize the ldap slave
  */
-LDAPProtocol::LDAPProtocol( const Q3CString &protocol, const Q3CString &pool,
-  const Q3CString &app ) : SlaveBase( protocol, pool, app )
+LDAPProtocol::LDAPProtocol( const QByteArray &protocol, const QByteArray &pool,
+  const QByteArray &app ) : SlaveBase( protocol, pool, app )
 {
   mLDAP = 0; mTLS = 0; mVer = 3; mAuthSASL = false;
   mRealm = ""; mBindName = "";

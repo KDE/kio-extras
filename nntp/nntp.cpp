@@ -15,8 +15,6 @@
 #include <qdir.h>
 #include <qhash.h>
 #include <qregexp.h>
-//Added by qt3to4:
-#include <Q3CString>
 
 #include <kinstance.h>
 #include <kdebug.h>
@@ -61,7 +59,7 @@ int kdemain(int argc, char **argv) {
 
 /****************** NNTPProtocol ************************/
 
-NNTPProtocol::NNTPProtocol ( const Q3CString & pool, const Q3CString & app, bool isSSL )
+NNTPProtocol::NNTPProtocol ( const QByteArray & pool, const QByteArray & app, bool isSSL )
   : TCPSlaveBase( (isSSL ? NNTPS_PORT : NNTP_PORT), (isSSL ? "nntps" : "nntp"), pool,
                   app, isSSL )
 {

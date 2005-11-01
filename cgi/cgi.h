@@ -19,8 +19,6 @@
 #define KIO_CGI_H
 
 #include <qobject.h>
-//Added by qt3to4:
-#include <Q3CString>
 
 #include <kio/slavebase.h>
 
@@ -33,7 +31,7 @@ class KProcess;
 class CgiProtocol : public KIO::SlaveBase
 {
   public:
-    CgiProtocol( const Q3CString &pool, const Q3CString &app );
+    CgiProtocol( const QByteArray &pool, const QByteArray &app );
     virtual ~CgiProtocol();
 
     virtual void get( const KURL& url );

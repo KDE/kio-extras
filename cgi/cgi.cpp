@@ -20,8 +20,6 @@
 
 #include <qdir.h>
 #include <qregexp.h>
-//Added by qt3to4:
-#include <Q3CString>
 
 #include <kdebug.h>
 #include <kprocess.h>
@@ -34,7 +32,7 @@
 
 using namespace KIO;
 
-CgiProtocol::CgiProtocol( const Q3CString &pool, const Q3CString &app )
+CgiProtocol::CgiProtocol( const QByteArray &pool, const QByteArray &app )
     : SlaveBase( "cgi", pool, app )
 {
   kdDebug(7124) << "CgiProtocol::CgiProtocol" << endl;
@@ -59,13 +57,13 @@ void CgiProtocol::get( const KURL& url )
   kdDebug(7124) << " Protocol: " << url.protocol() << endl;
   kdDebug(7124) << " Filename: " << url.filename() << endl;
 #endif
-  Q3CString protocol = "SERVER_PROTOCOL=HTTP";
+  QByteArray protocol = "SERVER_PROTOCOL=HTTP";
   putenv( protocol.data() );
 
-  Q3CString requestMethod = "REQUEST_METHOD=GET";
+  QByteArray requestMethod = "REQUEST_METHOD=GET";
   putenv( requestMethod.data() );
 
-  Q3CString query = url.query().mid( 1 ).toLocal8Bit();
+  QByteArray query = url.query().mid( 1 ).toLocal8Bit();
   query.prepend( "QUERY_STRING=" );
   putenv( query.data() );
 
@@ -100,7 +98,7 @@ void CgiProtocol::get( const KURL& url )
   if ( forwardFile ) {
     kdDebug(7124) << "Forwarding to '" << path << "'" << endl;
 
-    Q3CString filepath = QFile::encodeName( path );
+    QByteArray filepath = QFile::encodeName( path );
 
     fd = fopen( filepath.data(), "r" );
 
@@ -141,7 +139,7 @@ void CgiProtocol::get( const KURL& url )
     buffer[n] = 0;
 
     if ( stripHeader ) {
-      Q3CString output = buffer; // this assumes buffer is text and not binary
+      QByteArray output = buffer; // this assumes buffer is text and not binary
       int colon = output.find( ':' );
       int newline = output.find( '\n' );
       int semicolon = output.lastIndexOf( ';', newline );
@@ -156,7 +154,7 @@ void CgiProtocol::get( const KURL& url )
       kdDebug(7124) << "  end: " << end << endl;
 #endif
 
-      Q3CString contentType = output.mid( colon + 1, end - colon - 1 );
+      QByteArray contentType = output.mid( colon + 1, end - colon - 1 );
 
       contentType = contentType.trimmed();
 

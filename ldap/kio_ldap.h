@@ -3,8 +3,6 @@
 
 #include <qstring.h>
 #include <q3valuelist.h>
-//Added by qt3to4:
-#include <Q3CString>
 
 #include <kio/slavebase.h>
 #include <kio/authinfo.h>
@@ -17,7 +15,7 @@
 class LDAPProtocol : public KIO::SlaveBase
 {
   public:
-    LDAPProtocol( const Q3CString &protocol, const Q3CString &pool, const Q3CString &app );
+    LDAPProtocol( const QByteArray &protocol, const QByteArray &pool, const QByteArray &app );
     virtual ~LDAPProtocol();
     
     virtual void setHost( const QString& host, int port,

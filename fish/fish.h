@@ -17,7 +17,6 @@
 #define __fish_h__
 
 #include <qstring.h>
-#include <q3cstring.h>
 //Added by qt3to4:
 #include <Q3ValueList>
 
@@ -34,7 +33,7 @@
 class fishProtocol : public KIO::SlaveBase
 {
 public:
-  fishProtocol(const Q3CString &pool_socket, const Q3CString &app_socket);
+  fishProtocol(const QByteArray &pool_socket, const QByteArray &app_socket);
   virtual ~fishProtocol();
 
   /**

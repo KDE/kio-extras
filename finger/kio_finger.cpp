@@ -67,7 +67,7 @@ extern "C"
 /* ---------------------------------------------------------------------------------- */
 
 
-FingerProtocol::FingerProtocol(const Q3CString &pool_socket, const Q3CString &app_socket)
+FingerProtocol::FingerProtocol(const QByteArray &pool_socket, const QByteArray &app_socket)
   : QObject(), SlaveBase("finger", pool_socket, app_socket)
 {
   myStdStream = new QString();

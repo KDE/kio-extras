@@ -22,7 +22,6 @@
 
 
 #include <qstring.h>
-#include <q3cstring.h>
 #include <qstringlist.h>
 #include <q3dict.h>
 #include <qbuffer.h>
@@ -40,7 +39,7 @@ class MANProtocol : public QObject, public KIO::SlaveBase
 
 public:
 
-    MANProtocol(const Q3CString &pool_socket, const Q3CString &app_socket);
+    MANProtocol(const QByteArray &pool_socket, const QByteArray &app_socket);
     virtual ~MANProtocol();
 
     virtual void get(const KURL& url);

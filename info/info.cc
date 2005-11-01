@@ -20,7 +20,7 @@
 
 using namespace KIO;
 
-InfoProtocol::InfoProtocol( const Q3CString &pool, const Q3CString &app )
+InfoProtocol::InfoProtocol( const QByteArray &pool, const QByteArray &app )
     : SlaveBase( "info", pool, app )
     , m_page( "" )
     , m_node( "" )

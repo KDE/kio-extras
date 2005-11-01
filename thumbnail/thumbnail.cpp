@@ -128,7 +128,7 @@ int kdemain(int argc, char **argv)
     return 0;
 }
 
-ThumbnailProtocol::ThumbnailProtocol(const Q3CString &pool, const Q3CString &app)
+ThumbnailProtocol::ThumbnailProtocol(const QByteArray &pool, const QByteArray &app)
     : SlaveBase("thumbnail", pool, app)
 {
     m_creators.setAutoDelete(true);

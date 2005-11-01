@@ -30,11 +30,9 @@
 
 #include "kio_smb.h"
 #include "kio_smb_internal.h"
-//Added by qt3to4:
-#include <Q3CString>
 
 //===========================================================================
-SMBSlave::SMBSlave(const Q3CString& pool, const Q3CString& app)
+SMBSlave::SMBSlave(const QByteArray& pool, const QByteArray& app)
     : SlaveBase( "smb", pool, app )
 {
     m_initialized_smbc = false;

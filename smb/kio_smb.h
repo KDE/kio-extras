@@ -236,7 +236,7 @@ public:
     //-----------------------------------------------------------------------
 
     // Functions overwritten in kio_smb.cpp
-    SMBSlave(const Q3CString& pool, const Q3CString& app);
+    SMBSlave(const QByteArray& pool, const QByteArray& app);
     virtual ~SMBSlave();
 
     // Functions overwritten in kio_smb_browse.cpp

@@ -61,8 +61,8 @@ extern "C" {
 }
 
 
-RemoteProtocol::RemoteProtocol(const Q3CString &protocol,
-                               const Q3CString &pool, const Q3CString &app)
+RemoteProtocol::RemoteProtocol(const QByteArray &protocol,
+                               const QByteArray &pool, const QByteArray &app)
 	: SlaveBase(protocol, pool, app)
 {
 }

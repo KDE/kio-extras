@@ -28,8 +28,8 @@
 class RemoteProtocol : public KIO::SlaveBase
 {
 public:
-	RemoteProtocol(const Q3CString &protocol, const Q3CString &pool,
-	               const Q3CString &app);
+	RemoteProtocol(const QByteArray &protocol, const QByteArray &pool,
+	               const QByteArray &app);
 	virtual ~RemoteProtocol();
 
 	virtual void listDir(const KURL &url);

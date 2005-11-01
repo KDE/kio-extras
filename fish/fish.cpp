@@ -235,7 +235,7 @@ const struct fishProtocol::fish_info fishProtocol::fishInfo[] = {
       0 }
 };
 
-fishProtocol::fishProtocol(const Q3CString &pool_socket, const Q3CString &app_socket)
+fishProtocol::fishProtocol(const QByteArray &pool_socket, const QByteArray &app_socket)
   : SlaveBase("fish", pool_socket, app_socket), mimeBuffer(1024),
     mimeTypeSent(false)
 {
