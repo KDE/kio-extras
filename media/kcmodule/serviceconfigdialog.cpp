@@ -137,7 +137,7 @@ void ServiceConfigDialog::slotCommand()
 	if ( value == QDialog::Accepted )
 	{
 		KService::Ptr service = d.service();
-		if ( service != 0L )
+		if ( service )
 		{			
 			m_view->commandEdit->setText( service->exec() );
 			if ( m_iconChanged == false )

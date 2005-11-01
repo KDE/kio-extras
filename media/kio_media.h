@@ -28,8 +28,8 @@ class MediaProtocol : public KIO::ForwardingSlaveBase
 {
 Q_OBJECT
 public:
-	MediaProtocol(const Q3CString &protocol, const Q3CString &pool,
-	              const Q3CString &app);
+	MediaProtocol(const QByteArray &protocol, const QByteArray &pool,
+	              const QByteArray &app);
 	virtual ~MediaProtocol();
 
 	virtual bool rewriteURL(const KURL &url, KURL &newUrl);

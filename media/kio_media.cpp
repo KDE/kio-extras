@@ -58,8 +58,8 @@ extern "C" {
 }
 
 
-MediaProtocol::MediaProtocol(const Q3CString &protocol, const Q3CString &pool,
-				                  const Q3CString &app)
+MediaProtocol::MediaProtocol(const QByteArray &protocol, const QByteArray &pool,
+				                  const QByteArray &app)
 	: ForwardingSlaveBase(protocol, pool, app)
 {
 	connect( &m_impl, SIGNAL( warning( const QString & ) ),
