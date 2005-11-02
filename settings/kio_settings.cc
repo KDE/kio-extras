@@ -127,14 +127,10 @@ KServiceGroup::Ptr SettingsProtocol::findGroup(const QString &relPath)
 		if (!tmp || !tmp->isValid())
 			return 0;
 
-		KServiceGroup::List list = tmp->entries(true, true);
-		KServiceGroup::List::ConstIterator it = list.begin();
-
 		bool found = false;
-		for (; it != list.end(); ++it) {
-			KSycocaEntry *e = *it;
+		foreach (const KSycocaEntry::Ptr &e, tmp->entries(true, true)) {
 			if (e->isType(KST_KServiceGroup)) {
-			    KServiceGroup::Ptr g(static_cast<KServiceGroup *>(e));
+			    KServiceGroup::Ptr g(KServiceGroup::Ptr::staticCast(e));
 			    if ((g->caption()==rest.front()) || (g->name()==alreadyFound+rest.front())) {
 				kdDebug() << "Found group with caption " << g->caption()
 					  << " with real name: " << g->name() << endl;
@@ -228,14 +224,9 @@ void SettingsProtocol::listDir(const KURL& url)
 	unsigned int count = 0;
 	KIO::UDSEntry entry;
 
-	KServiceGroup::List list = grp->entries(true, true);
-	KServiceGroup::List::ConstIterator it;
-
-	for (it = list.begin(); it != list.end(); ++it) {
-		KSycocaEntry * e = *it;
-
+	foreach (const KSycocaEntry::Ptr &e, grp->entries(true, true)) {
 		if (e->isType(KST_KServiceGroup)) {
-			KServiceGroup::Ptr g(static_cast<KServiceGroup *>(e));
+			KServiceGroup::Ptr g(KServiceGroup::Ptr::staticCast(e));
 			QString groupCaption = g->caption();
 
 			// Avoid adding empty groups.
@@ -274,7 +265,7 @@ void SettingsProtocol::listDir(const KURL& url)
 		    }
 
 		} else {
-			KService::Ptr s(static_cast<KService *>(e));
+			KService::Ptr s(KService::Ptr::staticCast(e));
 			kdDebug() << "SettingsProtocol: adding file entry " << url.url(1)+s->name() << endl;
 			createFileEntry(entry,s->name(),url.url(1)+s->desktopEntryName(), "application/x-desktop",s->icon(),locate("apps", s->desktopEntryPath()));
 		}
