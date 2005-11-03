@@ -28,6 +28,7 @@
 #include <stdint.h>
 typedef uint64_t __le64; // workaround for some versions of kernel headers
 typedef uint64_t __be64; // workaround for some versions of kernel headers
+#undef __STRICT_ANSI__ // workaround for some version of kernel headers
 #include <linux/cdrom.h>
 #include <qfile.h>
 #endif
