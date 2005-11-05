@@ -627,6 +627,7 @@ bool NNTPProtocol::fetchGroupXOVER( unsigned long first, bool &notSupported )
   long msgSize;
   QString name;
   UDSEntry entry;
+  int udsType;
 
   QStringList fields;
   while ( true ) {
@@ -646,6 +647,7 @@ bool NNTPProtocol::fetchGroupXOVER( unsigned long first, bool &notSupported )
     fields = line.split( "\t", QString::KeepEmptyParts);
     msgSize = 0;
     entry.clear();
+    udsType = UDS_EXTRA;
     QStringList::ConstIterator it = headers.constBegin();
     QStringList::ConstIterator it2 = fields.constBegin();
     // first entry is the serial number
@@ -664,7 +666,9 @@ bool NNTPProtocol::fetchGroupXOVER( unsigned long first, bool &notSupported )
           atomStr = (*it2).trimmed();
       else
         atomStr = (*it) + " " + (*it2).trimmed();
-      entry.insert( UDS_EXTRA, atomStr );
+      entry.insert( udsType++, atomStr );
+      if ( udsType >= UDS_EXTRA_END )
+        break;
     }
     fillUDSEntry( entry, name, msgSize, true );
     listEntry( entry, false );
