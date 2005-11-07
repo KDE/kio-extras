@@ -258,6 +258,9 @@ void SMBSlave::reportError(const SMBUrl &url)
     case EBADF:
         error( ERR_INTERNAL, i18n("BAD File descriptor"));
         break;
+    case ETIMEDOUT:
+        error( ERR_SERVER_TIMEOUT, url.host() );
+        break;
 #ifdef ENOTUNIQ
     case ENOTUNIQ:
         error( ERR_SLAVE_DEFINED, i18n( "The given name could not be resolved to a unique server. "
