@@ -1252,7 +1252,7 @@ static Q3CString scan_named_string(char*& c)
         {
             Q3CString cstr;
             c = scan_escape_direct( c+2, cstr );
-            kdDebug(7107) << "\(" << BYTEARRAY( cstr ) << endl;
+            kdDebug(7107) << "\\(" << BYTEARRAY( cstr ) << endl;
             // ### HACK: as we convert characters too early to HTML, we need to support more than 2 characters here and assume that all characters passed by the variable are to be used.
             name = cstr;
         }
@@ -1541,7 +1541,7 @@ static Q3CString scan_named_font( char*& c )
         {
             Q3CString cstr;
             c = scan_escape_direct( c+2, cstr );
-            kdDebug(7107) << "\(" << BYTEARRAY( cstr ) << endl;
+            kdDebug(7107) << "\\(" << BYTEARRAY( cstr ) << endl;
             // ### HACK: as we convert characters too early to HTML, we need to support more than 2 characters here and assume that all characters passed by the variable are to be used.
             name = cstr;
         }
