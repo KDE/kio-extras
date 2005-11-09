@@ -435,7 +435,7 @@ void ArchiveProtocol::get( const KURL & url )
         return;
     }
 
-    if ( !io->open( IO_ReadOnly ) )
+    if ( !io->open( QIODevice::ReadOnly ) )
     {
         error( KIO::ERR_CANNOT_OPEN_FOR_READING, url.prettyURL() );
         return;

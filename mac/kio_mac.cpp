@@ -49,7 +49,7 @@ extern "C" {
 MacProtocol::MacProtocol(const QByteArray &pool, const QByteArray &app)
                                              : QObject(), SlaveBase("mac", pool, app) {
 /*  logFile = new QFile("/home/jr/logfile");
-    logFile->open(IO_ReadWrite | IO_Append);
+    logFile->open(QIODevice::ReadWrite | QIODevice::Append);
     logStream = new QTextStream(logFile);
     *logStream << "Start Macprotocol()" << endl;
     */
