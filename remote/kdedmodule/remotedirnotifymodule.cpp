@@ -21,16 +21,14 @@
 #include <kdebug.h>
 #include <klocale.h>
 #include <kglobal.h>
-//Added by qt3to4:
-#include <Q3CString>
 
-RemoteDirNotifyModule::RemoteDirNotifyModule(const Q3CString &obj)
+RemoteDirNotifyModule::RemoteDirNotifyModule(const DCOPCString &obj)
 	: KDEDModule(obj)
 {
 }
 
 extern "C" {
-	KDE_EXPORT KDEDModule *create_remotedirnotify(const Q3CString &obj)
+	KDE_EXPORT KDEDModule *create_remotedirnotify(const DCOPCString &obj)
 	{
 		KGlobal::locale()->insertCatalog("kio_remote");
 		return new RemoteDirNotifyModule(obj);

@@ -25,7 +25,6 @@
 #include <kdesktopfile.h>
 
 #include <kdirnotify_stub.h>
-#include <Q3CString>
 #include <qdir.h>
 
 RemoteDirNotify::RemoteDirNotify()
