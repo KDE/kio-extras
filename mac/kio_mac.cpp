@@ -83,8 +83,8 @@ void MacProtocol::get(const KURL& url) {
 
     //find out if a mode has been specified in the query e.g. ?mode=t
     //or if it's a text file then set the mode to text
-    int modepos = query.find("mode=");
-    int textpos = mime.find("text");
+    int modepos = query.indexOf("mode=");
+    int textpos = mime.indexOf("text");
     if (modepos != -1) {
         mode += query.mid(modepos + 5, 1);
         if (mode != "-r" && mode != "-b" && mode != "-m" && mode != "-t" && mode != "-a") {
@@ -238,7 +238,7 @@ QString MacProtocol::prepareHP(const KURL& url) {
     KConfig* config = new KConfig("macrc");
 
     QString query = url.query();
-    int modepos = query.find("dev=");
+    int modepos = query.indexOf("dev=");
     if (modepos == -1) {
         //no device specified, read from config or go with #define PARTITION
         device = config->readEntry("device",PARTITION);
@@ -301,7 +301,7 @@ QString MacProtocol::prepareHP(const KURL& url) {
 
     //then change to the right directory
     int s;  QString dir;
-    s = path.find('/');
+    s = path.indexOf('/');
     while (s != -1) {
         dir = path.left(s);
         path = path.mid(s+1);
@@ -320,7 +320,7 @@ QString MacProtocol::prepareHP(const KURL& url) {
         //clean up
         delete myKProcess; myKProcess = 0;
 
-        s = path.find('/');
+        s = path.indexOf('/');
     }
 
     return path;

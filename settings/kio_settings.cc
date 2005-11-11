@@ -135,7 +135,7 @@ KServiceGroup::Ptr SettingsProtocol::findGroup(const QString &relPath)
 				kdDebug() << "Found group with caption " << g->caption()
 					  << " with real name: " << g->name() << endl;
 				found = true;
-				rest.remove(rest.begin());
+				rest.erase(rest.begin());
 				alreadyFound = g->name();
 				kdDebug() << "ALREADY FOUND: " << alreadyFound << endl;
 				break;

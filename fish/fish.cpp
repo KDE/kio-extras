@@ -537,7 +537,7 @@ int fishProtocol::establishConnection(char *buffer, int len) {
        buf.truncate(buf.length()-1);
 
     myDebug( << "establishing: got " << buf << endl);
-    while (childPid && ((pos = buf.find('\n')) >= 0 ||
+    while (childPid && ((pos = buf.indexOf('\n')) >= 0 ||
             buf.endsWith(":") || buf.endsWith("?"))) {
         pos++;
         QString str = buf.left(pos);
@@ -575,7 +575,7 @@ int fishProtocol::establishConnection(char *buffer, int len) {
                 // the password prompt so we wait a while.
                 if (local)
                     sleep(1);
-                writeChild(connectionAuth.password.latin1(),connectionAuth.password.length());
+                writeChild(connectionAuth.password.toLatin1(),connectionAuth.password.length());
             } else {
                 myDebug( << "sending mpass" << endl);
                 connectionAuth.prompt = thisFn+buf;
@@ -610,7 +610,7 @@ int fishProtocol::establishConnection(char *buffer, int len) {
                 myDebug( << "sending pass" << endl);
                 if (local)
                     sleep(1);
-                writeChild(connectionAuth.password.latin1(),connectionAuth.password.length());
+                writeChild(connectionAuth.password.toLatin1(),connectionAuth.password.length());
             }
             thisFn = QString::null;
             return 0;
@@ -765,7 +765,7 @@ int fishProtocol::makeTimeFromLs(const QString &monthStr, const QString &dayStr,
         break;
     }
 
-    int pos = timeyearStr.find(':');
+    int pos = timeyearStr.indexOf(':');
     if (timeyearStr.length() == 4 && pos == -1) {
         year = timeyearStr.toInt();
     } else if (pos == -1) {
@@ -869,7 +869,7 @@ void fishProtocol::manageConnection(const QString &l) {
                     if (line[10] == 'T' || line[10] == 't') accessVal |= S_ISVTX;
                     udsEntry.insert(UDS_ACCESS, accessVal);
 
-                    pos = line.find('.',12);
+                    pos = line.indexOf('.',12);
                     if (pos < 0) {
                         errorCount++;
                         break;
@@ -880,8 +880,8 @@ void fishProtocol::manageConnection(const QString &l) {
                 break;
 
                 case 'd':
-                    pos = line.find(' ');
-                    pos2 = line.find(' ',pos+1);
+                    pos = line.indexOf(' ');
+                    pos2 = line.indexOf(' ',pos+1);
                     if (pos < 0 || pos2 < 0) break;
                     errorCount--;
                     udsEntry.insert(UDS_MODIFICATION_TIME,
@@ -889,14 +889,14 @@ void fishProtocol::manageConnection(const QString &l) {
                     break;
 
                 case 'D':
-                    pos = line.find(' ');
-                    pos2 = line.find(' ',pos+1);
-                    pos3 = line.find(' ',pos2+1);
+                    pos = line.indexOf(' ');
+                    pos2 = line.indexOf(' ',pos+1);
+                    pos3 = line.indexOf(' ',pos2+1);
                     if (pos < 0 || pos2 < 0 || pos3 < 0) break;
                     dt.setDate(QDate(line.mid(1,pos-1).toInt(),line.mid(pos+1,pos2-pos-1).toInt(),line.mid(pos2+1,pos3-pos2-1).toInt()));
                     pos = pos3;
-                    pos2 = line.find(' ',pos+1);
-                    pos3 = line.find(' ',pos2+1);
+                    pos2 = line.indexOf(' ',pos+1);
+                    pos3 = line.indexOf(' ',pos2+1);
                     if (pos < 0 || pos2 < 0 || pos3 < 0) break;
                     dt.setTime(QTime(line.mid(pos+1,pos2-pos-1).toInt(),line.mid(pos2+1,pos3-pos2-1).toInt(),line.mid(pos3+1).toInt()));
                     errorCount--;
@@ -936,7 +936,7 @@ void fishProtocol::manageConnection(const QString &l) {
                     // This is getting ugly. file(1) makes some uneducated
                     // guesses, so we must try to ignore them (#51274)
                     if (udsMime.isEmpty() && line.right(8) != "/unknown" &&
-                            (thisFn.find('.') < 0 || (line.left(8) != "Mtext/x-"
+                            (thisFn.indexOf('.') < 0 || (line.left(8) != "Mtext/x-"
                                                   && line != "Mtext/plain"))) {
                         udsMime = line.mid(1);
                         if ( udsMime == "inode/directory" ) // a symlink to a dir is a dir
@@ -1135,10 +1135,10 @@ void fishProtocol::writeStdin(const QString &line)
 
     if (writeReady) {
         writeReady = false;
-        //myDebug( << "Writing: " << qlist.first().mid(0,qlist.first().find('\n')) << endl);
+        //myDebug( << "Writing: " << qlist.first().mid(0,qlist.first().indexOf('\n')) << endl);
         myDebug( << "Writing: " << qlist.first() << endl);
         myDebug( << "---------" << endl);
-        writeChild((const char *)qlist.first().latin1(), qlist.first().length());
+        writeChild((const char *)qlist.first().toLatin1(), qlist.first().length());
     }
 }
 
@@ -1167,10 +1167,10 @@ void fishProtocol::sent()
     if (qlist.count() == 0) {
         writeReady = true;
     } else {
-        //myDebug( << "Writing: " << qlist.first().mid(0,qlist.first().find('\n')) << endl);
+        //myDebug( << "Writing: " << qlist.first().mid(0,qlist.first().indexOf('\n')) << endl);
         myDebug( << "Writing: " << qlist.first() << endl);
         myDebug( << "---------" << endl);
-        writeChild((const char *)qlist.first().latin1(),qlist.first().length());
+        writeChild((const char *)qlist.first().toLatin1(),qlist.first().length());
     }
 }
 
@@ -1297,7 +1297,7 @@ void fishProtocol::finished() {
         udsEntry.clear();
         udsStatEntry.clear();
         writeStdin(commandList.first());
-        //if (fishCommand != FISH_APPEND && fishCommand != FISH_WRITE) infoMessage("Sending "+(commandList.first().mid(1,commandList.first().find("\n")-1))+"...");
+        //if (fishCommand != FISH_APPEND && fishCommand != FISH_WRITE) infoMessage("Sending "+(commandList.first().mid(1,commandList.first().indexOf("\n")-1))+"...");
         commandList.remove(commandList.begin());
         commandCodes.remove(commandCodes.begin());
     } else {

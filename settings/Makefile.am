@@ -1,5 +1,5 @@
 INCLUDES= $(all_includes)
-
+KDE_CXXFLAGS = -UQT3_SUPPORT
 ####### Files
 
 kde_module_LTLIBRARIES = kio_settings.la

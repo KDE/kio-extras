@@ -196,51 +196,51 @@ bool FloppyProtocol::stopAfterError(const KURL& url, const QString& drive)
    QTextIStream output(&outputString);
    QString line=output.readLine();
    kdDebug(7101)<<"line: -"<<line<<"-"<<endl;
-   if (line.find("resource busy") > -1)
+   if (line.indexOf("resource busy") > -1)
    {
       error( KIO::ERR_SLAVE_DEFINED, i18n("Could not access drive %1.\nThe drive is still busy.\nWait until it is inactive and then try again.").arg(drive));
    }
-   else if ((line.find("Disk full") > -1) || (line.find("No free cluster") > -1))
+   else if ((line.indexOf("Disk full") > -1) || (line.indexOf("No free cluster") > -1))
    {
       error( KIO::ERR_SLAVE_DEFINED, i18n("Could not write to file %1.\nThe disk in drive %2 is probably full.").arg(url.prettyURL(),drive));
    }
    //file not found
-   else if (line.find("not found") > -1)
+   else if (line.indexOf("not found") > -1)
    {
       error( KIO::ERR_DOES_NOT_EXIST, url.prettyURL());
    }
    //no disk
-   else if (line.find("not configured") > -1)
+   else if (line.indexOf("not configured") > -1)
    {
       error( KIO::ERR_SLAVE_DEFINED, i18n("Could not access %1.\nThere is probably no disk in the drive %2").arg(url.prettyURL(),drive));
    }
-   else if (line.find("No such device") > -1)
+   else if (line.indexOf("No such device") > -1)
    {
       error( KIO::ERR_SLAVE_DEFINED, i18n("Could not access %1.\nThere is probably no disk in the drive %2 or you do not have enough permissions to access the drive.").arg(url.prettyURL(),drive));
    }
-   else if (line.find("not supported") > -1)
+   else if (line.indexOf("not supported") > -1)
    {
       error( KIO::ERR_SLAVE_DEFINED, i18n("Could not access %1.\nThe drive %2 is not supported.").arg(url.prettyURL(),drive));
    }
    //not supported or no such drive
-   else if (line.find("Permission denied") > -1)
+   else if (line.indexOf("Permission denied") > -1)
    {
       error( KIO::ERR_SLAVE_DEFINED, i18n("Could not access %1.\nMake sure the floppy in drive %2 is a DOS-formatted floppy disk \nand that the permissions of the device file (e.g. /dev/fd0) are set correctly (e.g. rwxrwxrwx).").arg(url.prettyURL(),drive));
    }
-   else if (line.find("non DOS media") > -1)
+   else if (line.indexOf("non DOS media") > -1)
    {
       error( KIO::ERR_SLAVE_DEFINED, i18n("Could not access %1.\nThe disk in drive %2 is probably not a DOS-formatted floppy disk.").arg(url.prettyURL(),drive));
    }
-   else if (line.find("Read-only") > -1)
+   else if (line.indexOf("Read-only") > -1)
    {
       error( KIO::ERR_SLAVE_DEFINED, i18n("Access denied.\nCould not write to %1.\nThe disk in drive %2 is probably write-protected.").arg(url.prettyURL(),drive));
    }
-   else if ((outputString.find("already exists") > -1) || (outputString.find("Skipping ") > -1))
+   else if ((outputString.indexOf("already exists") > -1) || (outputString.indexOf("Skipping ") > -1))
    {
       error( KIO::ERR_FILE_ALREADY_EXIST,url.prettyURL());
       //return false;
    }
-   else if (outputString.find("could not read boot sector") > -1)
+   else if (outputString.indexOf("could not read boot sector") > -1)
    {
       error( KIO::ERR_SLAVE_DEFINED, i18n("Could not read boot sector for %1.\nThere is probably not any disk in drive %2.").arg(url.prettyURL(),drive));
       //return false;
@@ -390,7 +390,7 @@ StatInfo FloppyProtocol::createStatInfo(const QString line, bool makeStat, const
 
    if (line.length()==41)
    {
-      int nameLength=line.find(' ');
+      int nameLength=line.indexOf(' ');
       kdDebug(7101)<<"Floppy::createStatInfo: line find: "<<nameLength <<"= -"<<line<<"-"<<endl;
       if (nameLength>0)
       {
@@ -655,7 +655,7 @@ int FloppyProtocol::freeSpace(const KURL& url)
    while (!output.atEnd())
    {
       line=output.readLine();
-      if (line.find("bytes free")==36)
+      if (line.indexOf("bytes free")==36)
       {
          QString tmp=line.mid(24,3);
          tmp=tmp.trimmed();

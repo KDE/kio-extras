@@ -18,7 +18,6 @@
 
 #include <qstring.h>
 //Added by qt3to4:
-#include <Q3ValueList>
 
 
 #include <kurl.h>
@@ -136,7 +135,7 @@ protected: // Protected attributes
   /** queue for commands to be sent */
   QStringList commandList;
   /** queue for commands to be sent */
-  Q3ValueList<int> commandCodes;
+  QList<int> commandCodes;
   /** bytes still to be read in raw mode */
   int rawRead;
   /** bytes still to be written in raw mode */

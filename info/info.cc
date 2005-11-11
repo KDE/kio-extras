@@ -207,7 +207,7 @@ void InfoProtocol::decodePath( QString path )
     }
     //kdDebug( 7108 ) << "Path: " << path << endl;
 
-    int slashPos = path.find( "/" );
+    int slashPos = path.indexOf( "/" );
 
     if( slashPos < 0 )
     {
