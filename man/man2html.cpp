@@ -4045,7 +4045,7 @@ static char *scan_request(char *c)
 #else
                             // kio_man transforms from local to UTF-8
                             out_html("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=");
-                            out_html(QTextCodec::codecForLocale()->mimeName());
+                            out_html(QTextCodec::codecForLocale()->name());
                             out_html("\">\n");
 #endif
                             out_html("<TITLE>");
