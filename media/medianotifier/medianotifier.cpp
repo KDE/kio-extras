@@ -38,7 +38,7 @@
 #include "notifieraction.h"
 #include "mediamanagersettings.h"
 
-MediaNotifier::MediaNotifier(const QByteArray &name) : KDEDModule(name)
+MediaNotifier::MediaNotifier(const DCOPCString &name) : KDEDModule(name)
 {
 	connectDCOPSignal( "kded", "mediamanager", "mediumAdded(QString, bool)",
 	                   "onMediumChange(QString, bool)", true );
@@ -289,7 +289,7 @@ void MediaNotifier::notify( KFileItem &medium )
 
 extern "C"
 {
-	KDE_EXPORT KDEDModule *create_medianotifier(const QByteArray &name)
+	KDE_EXPORT KDEDModule *create_medianotifier(const DCOPCString &name)
 	{
 		return new MediaNotifier(name);
 	}

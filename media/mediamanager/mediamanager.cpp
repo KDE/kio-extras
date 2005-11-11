@@ -20,8 +20,6 @@
 
 #include <config.h>
 #include <qtimer.h>
-//Added by qt3to4:
-#include <Q3CString>
 #include <Q3PtrList>
 
 #include <kdebug.h>
@@ -43,7 +41,7 @@
 #endif //COMPILE_LINUXCDPOLLING
 
 
-MediaManager::MediaManager(const Q3CString &obj)
+MediaManager::MediaManager(const DCOPCString &obj)
     : KDEDModule(obj), m_dirNotify(m_mediaList)
 {
 	connect( &m_mediaList, SIGNAL(mediumAdded(const QString&, const QString&, bool)),
@@ -238,7 +236,7 @@ void MediaManager::slotMediumChanged(const QString &/*id*/, const QString &name,
 
 
 extern "C" {
-    KDE_EXPORT KDEDModule *create_mediamanager(const Q3CString &obj)
+    KDE_EXPORT KDEDModule *create_mediamanager(const DCOPCString &obj)
     {
         KGlobal::locale()->insertCatalog("kio_media");
         return new MediaManager(obj);

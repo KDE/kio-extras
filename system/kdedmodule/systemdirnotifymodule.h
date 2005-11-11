@@ -22,15 +22,13 @@
 #include <kdedmodule.h>
 
 #include "systemdirnotify.h"
-//Added by qt3to4:
-#include <Q3CString>
 
 class SystemDirNotifyModule : public KDEDModule
 {
 K_DCOP
 
 public:
-	SystemDirNotifyModule(const Q3CString &obj);
+	SystemDirNotifyModule(const DCOPCString &obj);
 private:
 	SystemDirNotify notifier;
 };

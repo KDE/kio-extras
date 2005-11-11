@@ -23,7 +23,6 @@
 #include <qstring.h>
 #include <qstringlist.h>
 //Added by qt3to4:
-#include <Q3CString>
 #include <Q3PtrList>
 
 #include "medialist.h"
@@ -37,7 +36,7 @@ class MediaManager : public KDEDModule
 Q_OBJECT
 K_DCOP
 public:
-	MediaManager(const Q3CString &obj);
+	MediaManager(const DCOPCString &obj);
 	~MediaManager();
 
 k_dcop:

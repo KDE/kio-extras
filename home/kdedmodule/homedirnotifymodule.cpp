@@ -21,16 +21,14 @@
 #include <kdebug.h>
 #include <klocale.h>
 #include <kglobal.h>
-//Added by qt3to4:
-#include <Q3CString>
 
-HomeDirNotifyModule::HomeDirNotifyModule(const Q3CString &obj)
+HomeDirNotifyModule::HomeDirNotifyModule(const DCOPCString &obj)
 	: KDEDModule(obj)
 {
 }
 
 extern "C" {
-	KDE_EXPORT KDEDModule *create_homedirnotify(const Q3CString &obj)
+	KDE_EXPORT KDEDModule *create_homedirnotify(const DCOPCString &obj)
 	{
 		KGlobal::locale()->insertCatalog("kio_home");
 		return new HomeDirNotifyModule(obj);

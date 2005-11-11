@@ -34,7 +34,7 @@ class MediaNotifier:  public KDEDModule
 	K_DCOP
 
 public:
-	MediaNotifier( const QByteArray &name );
+	MediaNotifier( const DCOPCString &name );
 	virtual ~MediaNotifier();
 
 k_dcop:
