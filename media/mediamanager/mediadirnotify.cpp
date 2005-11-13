@@ -91,7 +91,7 @@ ASYNC MediaDirNotify::FilesAdded(const KURL &directory)
 
 	if (!new_urls.isEmpty())
 	{
-		KDirNotify_stub notifier(Q3CString("*"), Q3CString("*"));
+		KDirNotify_stub notifier("*", "*");
 
 		KURL::List::const_iterator it = new_urls.begin();
 		KURL::List::const_iterator end = new_urls.end();
