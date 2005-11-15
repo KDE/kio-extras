@@ -34,7 +34,7 @@
 
 #include <q3cstring.h>
 #include <q3valuelist.h>
-typedef Q3ValueList<Q3CString> QCStringList;
+typedef QList<Q3CString> QCStringList;
 
 class QString;
 

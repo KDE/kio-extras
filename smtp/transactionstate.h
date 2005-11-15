@@ -74,7 +74,7 @@ namespace KioSMTP {
       }
 #endif
     };
-    typedef Q3ValueList<RecipientRejection> RejectedRecipientList;
+    typedef QList<RecipientRejection> RejectedRecipientList;
 
     TransactionState( bool rcptToDenyIsFailure=true )
       : mErrorCode( 0 ),
