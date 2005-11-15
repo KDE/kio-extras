@@ -103,7 +103,7 @@ void NotifierModule::updateListBox()
 	m_view->actionsList->clear();
 	slotActionSelected( 0L );
 
-	Q3ValueList<NotifierAction*> services;
+	QList<NotifierAction*> services;
 	if ( m_mimetype.isEmpty() )
 	{
 		services = m_settings.actions();
@@ -113,7 +113,7 @@ void NotifierModule::updateListBox()
 		services = m_settings.actionsForMimetype( m_mimetype );
 	}
 
-	Q3ValueList<NotifierAction*>::iterator it;
+	QList<NotifierAction*>::iterator it;
 
 	for ( it = services.begin(); it != services.end(); ++it )
 	{
