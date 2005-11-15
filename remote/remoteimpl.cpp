@@ -28,8 +28,6 @@
 
 #include <qdir.h>
 #include <qfile.h>
-//Added by qt3to4:
-#include <Q3ValueList>
 
 #include <sys/stat.h>
 
