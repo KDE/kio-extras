@@ -46,7 +46,7 @@ extern "C" {
 		putenv(strdup("SESSION_MANAGER="));
 		KCmdLineArgs::init(argc, argv, "kio_media", 0, 0, 0);
 		KCmdLineArgs::addCmdLineOptions( options );
-		KApplication app( false, false );
+		KApplication app(  false );
 		// We want to be anonymous even if we use DCOP
 		app.dcopClient()->attach();
 
