@@ -124,7 +124,7 @@ bool KFileMediaPlugin::readInfo(KFileMetaInfo &info, uint /*what*/)
 
 		group = appendGroup(info, "mediumSummary");
 
-		appendItem(group, "percent", QString("%1\%").arg(percent));
+		appendItem(group, "percent", QString("%1%").arg(percent));
 
 		QPixmap bar(150, 20);
 		QPainter p(&bar);
