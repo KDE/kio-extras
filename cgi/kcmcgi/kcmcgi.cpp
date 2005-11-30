@@ -22,12 +22,12 @@
 #include <kinstance.h>
 #include <kaboutdata.h>
 #include <kfiledialog.h>
+#include <khbox.h>
 
 #include <qlayout.h>
 #include <q3listbox.h>
 #include <qpushbutton.h>
 #include <q3groupbox.h>
-#include <q3hbox.h>
 //Added by qt3to4:
 #include <QVBoxLayout>
 
@@ -55,7 +55,7 @@ KCMCgi::KCMCgi(QWidget *parent)
 
   mListBox = new Q3ListBox( topBox );
 
-  Q3HBox *buttonBox = new Q3HBox( topBox );
+  KHBox *buttonBox = new KHBox( topBox );
   buttonBox->setSpacing( KDialog::spacingHint() );
 
   mAddButton = new QPushButton( i18n("Add..."), buttonBox );
