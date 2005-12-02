@@ -1320,7 +1320,7 @@ static Q3CString scan_named_string(char*& c)
 
 static Q3CString scan_dollar_parameter(char*& c)
 {
-    unsigned int argno = 0; // No dollar argument number yet!
+    int argno = 0; // No dollar argument number yet!
     if ( *c == '0' )
     {
         //kdDebug(7107) << "$0" << endl;

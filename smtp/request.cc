@@ -94,7 +94,7 @@ namespace KioSMTP {
   }
 
   static bool isUsAscii( const QString & s ) {
-    for ( uint i = 0 ; i < s.length() ; ++i )
+    for ( int i = 0 ; i < s.length() ; ++i )
       if ( s[i].unicode() > 127 ) return false;
     return true;
   }
@@ -128,7 +128,7 @@ namespace KioSMTP {
     bool needsQuotes = false;
 
     unsigned int j = 0;
-    for ( unsigned int i = 0 ; i < s.length() ; ++i ) {
+    for ( int i = 0 ; i < s.length() ; ++i ) {
       char ch = s[i].latin1();
       if ( isSpecial( ch ) ) {
 	if ( needsQuoting( ch ) )
