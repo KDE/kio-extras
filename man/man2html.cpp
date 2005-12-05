@@ -128,13 +128,11 @@
 
 #include <stdio.h>
 
-#include <q3valuestack.h>
 #include <qstring.h>
 #include <q3ptrlist.h>
+#include <QStack>
 #include <qmap.h>
 #include <qdatetime.h>
-//Added by qt3to4:
-#include <Q3ValueList>
 #include <Q3CString>
 
 #ifdef SIMPLE_MAN2HTML
@@ -642,7 +640,7 @@ static int curpos=0;
 static char *scan_troff(char *c, bool san, char **result);
 static char *scan_troff_mandoc(char *c, bool san, char **result);
 
-static Q3ValueList<char*> s_argumentList;
+static QList<char*> s_argumentList;
 
 static Q3CString htmlPath, cssPath;
 
@@ -1372,7 +1370,7 @@ static Q3CString scan_dollar_parameter(char*& c)
     else if ( ( *c == '*' ) || ( *c == '@' ) )
     {
         const bool quote = ( *c == '@' );
-        Q3ValueList<char*>::const_iterator it = s_argumentList.begin();
+        QList<char*>::const_iterator it = s_argumentList.begin();
         Q3CString param;
         bool space = false;
         for ( ; it != s_argumentList.end(); ++it )
@@ -3015,7 +3013,7 @@ static int get_request(char *req, int len)
 // &%(#@ c programs !!!
 //static int ifelseval=0;
 // If/else can be nested!
-static Q3ValueStack<int> s_ifelseval;
+static QStack<int> s_ifelseval;
 
 // Process a (mdoc) request involving quotes
 static char* process_quote(char* c, int j, const char* open, const char* close)
@@ -3152,7 +3150,7 @@ static char *scan_request(char *c)
                 char* work = new char [length+2];
                 work[0] = '\n'; // The macro must start after an end of line to allow a request on first line
                 qstrncpy(work+1,(*it).m_output.data(),length+1);
-                const Q3ValueList<char*> oldArgumentList( s_argumentList );
+                const QList<char*> oldArgumentList( s_argumentList );
                 s_argumentList.clear();
                 for ( i = 0 ; i < max_wordlist; i++ )
                 {
