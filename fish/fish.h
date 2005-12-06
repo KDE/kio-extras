@@ -2,7 +2,7 @@
                           fish.h  -  a FISH kioslave
                              -------------------
     begin                : Thu Oct  4 17:09:14 CEST 2001
-    copyright            : (C) 2001 by Jörg Walter
+    copyright            : (C) 2001 by JÃ¶rg Walter
     email                : trouble@garni.ch
  ***************************************************************************/
 

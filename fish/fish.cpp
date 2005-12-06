@@ -2,7 +2,7 @@
                           fish.cpp  -  a FISH kioslave
                              -------------------
     begin                : Thu Oct  4 17:09:14 CEST 2001
-    copyright            : (C) 2001-2003 by Jörg Walter
+    copyright            : (C) 2001-2003 by JÃ¶rg Walter
     email                : jwalt-kde@garni.ch
  ***************************************************************************/
 

@@ -68,14 +68,14 @@ int main( int , char ** ) {
   result += request.headerFields() + '\n';
   result += request.headerFields( "Marc Mutz" ) + '\n';
   result += request.headerFields( "Mutz, Marc" ) + '\n';
-  result += request.headerFields( "Marc Mötz" ) + '\n';
+  result += request.headerFields( "Marc MÃ¶tz" ) + '\n';
 
-  request.setSubject( "Blödes Subject" );
+  request.setSubject( "BlÃ¶des Subject" );
 
   result += request.headerFields() + '\n';
   result += request.headerFields( "Marc Mutz" ) + '\n';
   result += request.headerFields( "Mutz, Marc" ) + '\n';
-  result += request.headerFields( "Marc Mötz" ) + '\n';
+  result += request.headerFields( "Marc MÃ¶tz" ) + '\n';
 
   //cout << "Result:\n" << result.data() << endl;
 

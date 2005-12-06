@@ -1,5 +1,5 @@
 /* This file is part of the KDE project
-   Copyright (c) 2004 Kévin Ottens <ervin ipsquad net>
+   Copyright (c) 2004 KÃ©vin Ottens <ervin ipsquad net>
    Parts of this file are
    Copyright 2003 Waldo Bastian <bastian@kde.org>
 
