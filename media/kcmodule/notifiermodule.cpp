@@ -24,7 +24,7 @@
 #include <qlayout.h>
 //Added by qt3to4:
 #include <QVBoxLayout>
-#include <Q3ValueList>
+#include <QList>
 #include <QBoxLayout>
 #include <kcombobox.h>
 #include <kpushbutton.h>

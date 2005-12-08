@@ -267,7 +267,7 @@ void MediaNotifier::notify( KFileItem &medium )
 	
 	if ( settings->autoActionForMimetype( medium.mimetype() )==0L )
 	{
-		QLinkedList<NotifierAction*> actions
+		QList<NotifierAction*> actions
 			= settings->actionsForMimetype( medium.mimetype() );
 		
 		// If only one action remains, it's the "do nothing" action

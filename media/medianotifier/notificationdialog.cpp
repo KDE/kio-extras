@@ -83,11 +83,11 @@ void NotificationDialog::updateActionsListBox()
 {
 	m_view->actionsList->clear();
 
-	QLinkedList<NotifierAction*> actions
+	QList<NotifierAction*> actions
 		= m_settings->actionsForMimetype( m_medium.mimetype() );
 	
-	QLinkedList<NotifierAction*>::iterator it = actions.begin();
-	QLinkedList<NotifierAction*>::iterator end = actions.end();
+	QList<NotifierAction*>::iterator it = actions.begin();
+	QList<NotifierAction*>::iterator end = actions.end();
 	
 	for ( ; it!=end; ++it )
 	{

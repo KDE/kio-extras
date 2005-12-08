@@ -22,13 +22,13 @@
 #include <qstring.h>
 #include <qstringlist.h>
 //Added by qt3to4:
-#include <Q3ValueList>
+#include <QList>
 #include <kurl.h>
 
 class Medium
 {
 public:
-	typedef Q3ValueList<const Medium> List;
+	typedef QList<Medium> List;
 
 	static const uint ID = 0;
 	static const uint NAME = 1;

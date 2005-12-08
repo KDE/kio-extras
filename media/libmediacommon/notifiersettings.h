@@ -33,8 +33,8 @@ public:
 	NotifierSettings();
 	~NotifierSettings();
 
-	Q3ValueList<NotifierAction*> actions();
-	Q3ValueList<NotifierAction*> actionsForMimetype( const QString &mimetype );
+	QList<NotifierAction*> actions();
+	QList<NotifierAction*> actionsForMimetype( const QString &mimetype );
 	
 	bool addAction( NotifierServiceAction *action );
 	bool deleteAction( NotifierServiceAction *action );
@@ -50,13 +50,13 @@ public:
 	void save();
 	
 private:
-	Q3ValueList<NotifierServiceAction*> listServices( const QString &mimetype = QString() ) const;
+	QList<NotifierServiceAction*> listServices( const QString &mimetype = QString() ) const;
 	bool shouldLoadActions( KDesktopFile &desktop, const QString &mimetype ) const;
-	Q3ValueList<NotifierServiceAction*> loadActions( KDesktopFile &desktop ) const;
+	QList<NotifierServiceAction*> loadActions( KDesktopFile &desktop ) const;
 
 	QStringList m_supportedMimetypes;
-	Q3ValueList<NotifierAction*> m_actions;
-	Q3ValueList<NotifierServiceAction*> m_deletedActions;
+	QList<NotifierAction*> m_actions;
+	QList<NotifierServiceAction*> m_deletedActions;
 	QMap<QString,NotifierAction*> m_idMap;
 	QMap<QString,NotifierAction*> m_autoMimetypesMap;
 };

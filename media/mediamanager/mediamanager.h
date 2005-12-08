@@ -69,7 +69,7 @@ private slots:
 
 private:
 	MediaList m_mediaList;
-	Q3ValueList<BackendBase*> m_backends;
+	QList<BackendBase*> m_backends;
 	RemovableBackend *mp_removableBackend;
 	MediaDirNotify m_dirNotify;
 };
