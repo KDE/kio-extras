@@ -591,13 +591,15 @@ void sftpProtocol::openConnection() {
     if( !mUsername.isEmpty()  ) {
         opt.opt = KSshProcess::SSH_USERNAME;
         opt.str = mUsername;
-        usernameIt = opts.append(opt);
+		opts.append(opt);
+        usernameIt = opts.end()-1;
     }
 
     if( !mPassword.isEmpty() ) {
         opt.opt = KSshProcess::SSH_PASSWD;
         opt.str = mPassword;
-        passwdIt = opts.append(opt);
+		opts.append(opt);
+        passwdIt = opts.end()-1;
     }
 
     ssh.setOptions(opts);
@@ -675,14 +677,16 @@ void sftpProtocol::openConnection() {
                     kdDebug(KIO_SFTP_DB) << "openConnection(): "
                         "Adding username to options list" << endl;
                     opt.opt = KSshProcess::SSH_USERNAME;
-                    usernameIt = opts.append(opt);
+					opts.append(opt);
+                    usernameIt = opts.end()-1;
                 }
 
                 if( passwdIt == KSshProcess::SshOptListIterator() ) {
                     kdDebug(KIO_SFTP_DB) << "openConnection(): "
                         "Adding password to options list" << endl;
                     opt.opt = KSshProcess::SSH_PASSWD;
-                    passwdIt = opts.append(opt);
+					opts.append(opt);
+                    passwdIt = opts.end()-1;
                 }
 
                 (*usernameIt).str = info.username;

@@ -447,7 +447,7 @@ bool KSshProcess::setOptions(const SshOptList& opts) {
 }
 
 void KSshProcess::printArgs() {
-    Q3ValueListIterator<Q3CString> it;
+    QList<Q3CString>::Iterator it;
     for( it = mArgs.begin(); it != mArgs.end(); ++it) {
         kdDebug(KSSHPROC) << "arg: " << *it << endl;
     }

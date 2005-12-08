@@ -20,7 +20,7 @@
 #define PTYPROC 7120
 
 class PTY;
-typedef Q3ValueList<Q3CString> QCStringList;
+typedef QList<Q3CString> QCStringList;
 
 /**
  * Synchronous communication with tty programs.

@@ -125,9 +125,9 @@ public:
     /**
      * List of SshOptions and associated iterators
      */
-    typedef Q3ValueList<SshOpt> SshOptList;
-    typedef Q3ValueListIterator<SshOpt> SshOptListIterator;
-    typedef Q3ValueListConstIterator<SshOpt> SshOptListConstIterator;
+    typedef QList<SshOpt> SshOptList;
+    typedef QList<SshOpt>::Iterator SshOptListIterator;
+    typedef QList<SshOpt>::ConstIterator SshOptListConstIterator;
 
     /**
      * Ssh versions supported by KSshProcess. Subject to change
