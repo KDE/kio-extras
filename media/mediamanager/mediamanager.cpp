@@ -67,6 +67,8 @@ MediaManager::~MediaManager()
 
 void MediaManager::loadBackends()
 {
+    m_mediaList.blockSignals(true);
+
 	while ( !m_backends.isEmpty() )
 	{
 		BackendBase *b = m_backends.first();
@@ -85,6 +87,7 @@ void MediaManager::loadBackends()
 			m_backends.append( hal_backend );
 			m_backends.append( new FstabBackend(m_mediaList, true) );
 			// No need to load something else...
+                        m_mediaList.blockSignals(false);
 			return;
 		}
 		else
@@ -96,7 +99,7 @@ void MediaManager::loadBackends()
 
 	mp_removableBackend = new RemovableBackend(m_mediaList);
 	m_backends.append( mp_removableBackend );
-	
+
 #ifdef COMPILE_LINUXCDPOLLING
 	if ( MediaManagerSettings::self()->cdPollingEnabled() )
 	{
@@ -105,6 +108,7 @@ void MediaManager::loadBackends()
 #endif //COMPILE_LINUXCDPOLLING
 
 	m_backends.append( new FstabBackend(m_mediaList) );
+        m_mediaList.blockSignals(false);
 }
 
 
@@ -195,7 +199,7 @@ bool MediaManager::removableCamera(const QString &devNode)
 	}
 	return false;
 }
-	
+
 
 void MediaManager::slotMediumAdded(const QString &/*id*/, const QString &name,
                                    bool allowNotification)
