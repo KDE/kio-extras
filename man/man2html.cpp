@@ -939,12 +939,12 @@ static void add_links(char *c)
 	    break;
 	}
 	nr=0;
-	if (idtest[0] && idtest[0]<c) idtest[0]=strstr(c+1,"://");
-	if (idtest[1] && idtest[1]<c) idtest[1]=strchr(c+1,'@');
+	if (idtest[0] && idtest[0]<=c) idtest[0]=strstr(c+1,"://");
+	if (idtest[1] && idtest[1]<=c) idtest[1]=strchr(c+1,'@');
 	if (idtest[2] && idtest[2]<c) idtest[2]=strstr(c,"www.");
 	if (idtest[3] && idtest[3]<c) idtest[3]=strstr(c,"ftp.");
-	if (idtest[4] && idtest[4]<c) idtest[4]=strchr(c+1,'(');
-	if (idtest[5] && idtest[5]<c) idtest[5]=strstr(c+1,".h&gt;");
+	if (idtest[4] && idtest[4]<=c) idtest[4]=strchr(c+1,'(');
+	if (idtest[5] && idtest[5]<=c) idtest[5]=strstr(c+1,".h&gt;");
         for (i=0; i<numtests; i++) nr += (idtest[i]!=NULL);
     }
     output_real(c);
