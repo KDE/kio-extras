@@ -23,7 +23,6 @@
 #include <kglobal.h>
 #include <kstandarddirs.h>
 #include <kdesktopfile.h>
-#include <Q3CString>
 #include <kdirnotify_stub.h>
 
 #include <qdir.h>
