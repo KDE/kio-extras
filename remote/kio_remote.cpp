@@ -29,8 +29,6 @@
 
 
 #include "kio_remote.h"
-//Added by qt3to4:
-#include <Q3CString>
 
 static const KCmdLineOptions options[] =
 {

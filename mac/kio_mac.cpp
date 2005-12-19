@@ -25,7 +25,6 @@
 #include <qstring.h>
 #include <qregexp.h>
 #include <QTextStream>
-#include <Q3CString>
 #include <QDateTime>
 
 #include <sys/stat.h>

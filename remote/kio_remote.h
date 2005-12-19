@@ -22,8 +22,6 @@
 
 #include <kio/slavebase.h>
 #include "remoteimpl.h"
-//Added by qt3to4:
-#include <Q3CString>
 
 class RemoteProtocol : public KIO::SlaveBase
 {

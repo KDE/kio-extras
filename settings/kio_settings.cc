@@ -21,8 +21,6 @@
 #include <kinstance.h>
 #include <kdebug.h>
 #include <qtextstream.h>
-//Added by qt3to4:
-#include <Q3CString>
 #include <klocale.h>
 #include <sys/stat.h>
 #include <dcopclient.h>
@@ -37,7 +35,7 @@ class SettingsProtocol : public KIO::SlaveBase
 {
 public:
 	enum RunMode { SettingsMode, ProgramsMode, ApplicationsMode };
-	SettingsProtocol(const Q3CString &protocol, const Q3CString &pool, const Q3CString &app);
+	SettingsProtocol(const QByteArray &protocol, const QByteArray &pool, const QByteArray &app);
 	virtual ~SettingsProtocol();
 	virtual void get( const KURL& url );
 	virtual void stat(const KURL& url);
@@ -89,7 +87,7 @@ static void createDirEntry(KIO::UDSEntry& entry, const QString& name, const QStr
 	entry.insert( KIO::UDS_ICON_NAME, iconName );
 }
 
-SettingsProtocol::SettingsProtocol( const Q3CString &protocol, const Q3CString &pool, const Q3CString &app): SlaveBase( protocol, pool, app )
+SettingsProtocol::SettingsProtocol( const QByteArray &protocol, const QByteArray &pool, const QByteArray &app): SlaveBase( protocol, pool, app )
 {
 	// Adjusts which part of the K Menu to virtualize.
 	if ( protocol == "programs" )
