@@ -68,7 +68,6 @@ using KioSMTP::TransactionState;
 
 #include <qstring.h>
 #include <qstringlist.h>
-#include <q3cstring.h>
 
 #include <memory>
 using std::auto_ptr;
@@ -136,7 +135,7 @@ int kdemain(int argc, char **argv)
   return 0;
 }
 
-SMTPProtocol::SMTPProtocol(const Q3CString & pool, const Q3CString & app,
+SMTPProtocol::SMTPProtocol(const QByteArray & pool, const QByteArray & app,
                            bool useSSL)
 :  TCPSlaveBase(useSSL ? 465 : 25, 
                 useSSL ? "smtps" : "smtp", 
@@ -304,7 +303,7 @@ void SMTPProtocol::setHost(const QString & host, int port,
   m_sPass = pass;
 }
 
-bool SMTPProtocol::sendCommandLine( const Q3CString & cmdline ) {
+bool SMTPProtocol::sendCommandLine( const QByteArray & cmdline ) {
   //kdDebug( cmdline.length() < 4096, 7112) << "C: " << cmdline.data();
   //kdDebug( cmdline.length() >= 4096, 7112) << "C: <" << cmdline.length() << " bytes>" << endl;
   kdDebug( 7112) << "C: <" << cmdline.length() << " bytes>" << endl;
@@ -339,7 +338,7 @@ Response SMTPProtocol::getResponse( bool * ok ) {
       return response;
     }
 
-    kdDebug(7112) << "S: " << Q3CString( buf, recv_len + 1 ).data();
+    kdDebug(7112) << "S: " << QByteArray( buf, recv_len + 1 ).data();
     // ...and parse lines...
     response.parseLine( buf, recv_len );
 
@@ -364,7 +363,7 @@ bool SMTPProtocol::executeQueuedCommands( TransactionState * ts ) {
   kdDebug( canPipelineCommands(), 7112 ) << "using pipelining" << endl;
 
   while( !mPendingCommandQueue.isEmpty() ) {
-    Q3CString cmdline = collectPipelineCommands( ts );
+    QByteArray cmdline = collectPipelineCommands( ts );
     if ( ts->failedFatally() ) {
       smtp_close( false ); // _hard_ shutdown
       return false;
@@ -389,10 +388,10 @@ bool SMTPProtocol::executeQueuedCommands( TransactionState * ts ) {
   return true;
 }
 
-Q3CString SMTPProtocol::collectPipelineCommands( TransactionState * ts ) {
+QByteArray SMTPProtocol::collectPipelineCommands( TransactionState * ts ) {
   assert( ts );
 
-  Q3CString cmdLine;
+  QByteArray cmdLine;
   unsigned int cmdLine_len = 0;
 
   while ( mPendingCommandQueue.head() ) {
@@ -414,7 +413,7 @@ Q3CString SMTPProtocol::collectPipelineCommands( TransactionState * ts ) {
       break;
 
     while ( !cmd->isComplete() && !cmd->needsResponse() ) {
-      const Q3CString currentCmdLine = cmd->nextCommandLine( ts );
+      const QByteArray currentCmdLine = cmd->nextCommandLine( ts );
       if ( ts->failedFatally() )
 	return cmdLine;
       const unsigned int currentCmdLine_len = currentCmdLine.length();
@@ -481,7 +480,7 @@ bool SMTPProtocol::execute( Command * cmd, TransactionState * ts ) {
 
   do {
     while ( !cmd->isComplete() && !cmd->needsResponse() ) {
-      const Q3CString cmdLine = cmd->nextCommandLine( ts );
+      const QByteArray cmdLine = cmd->nextCommandLine( ts );
       if ( ts && ts->failedFatally() ) {
 	smtp_close( false );
 	return false;

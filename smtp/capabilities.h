@@ -33,7 +33,6 @@
 #define __KIOSMTP_CAPABILITIES_H__
 
 #include <qmap.h>
-#include <q3cstring.h>
 #include <qstring.h>
 #include <qstringlist.h>
 
@@ -56,7 +55,7 @@ namespace KioSMTP {
     bool have( const QString & cap ) const {
       return mCapabilities.find( cap.toUpper() ) != mCapabilities.end();
     }
-    bool have( const Q3CString & cap ) const { return have( QString( cap.data() ) ); }
+    bool have( const QByteArray & cap ) const { return have( QString( cap.data() ) ); }
     bool have( const char * cap ) const { return have( QString::fromLatin1( cap ) ); }
 
     QString asMetaDataString() const;

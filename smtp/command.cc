@@ -66,7 +66,7 @@ namespace KioSMTP {
     return r.isOk();
   }
 
-  void Command::ungetCommandLine( const Q3CString &, TransactionState * ) {
+  void Command::ungetCommandLine( const QByteArray &, TransactionState * ) {
     mComplete = false;
   }
 
@@ -109,7 +109,7 @@ namespace KioSMTP {
   // EHLO / HELO
   //
 
-  Q3CString EHLOCommand::nextCommandLine( TransactionState * ) {
+  QByteArray EHLOCommand::nextCommandLine( TransactionState * ) {
     mNeedResponse = true;
     mComplete = mEHLONotSupported;
     const char * cmd = mEHLONotSupported ? "HELO " : "EHLO " ;
@@ -146,7 +146,7 @@ namespace KioSMTP {
   // STARTTLS - rfc 3207
   //      
 
-  Q3CString StartTLSCommand::nextCommandLine( TransactionState * ) {
+  QByteArray StartTLSCommand::nextCommandLine( TransactionState * ) {
     mComplete = true;
     mNeedResponse = true;
     return "STARTTLS\r\n";
@@ -293,14 +293,14 @@ namespace KioSMTP {
     return !mMechusing;
   }
 
-  void AuthCommand::ungetCommandLine( const Q3CString & s, TransactionState * ) {
+  void AuthCommand::ungetCommandLine( const QByteArray & s, TransactionState * ) {
     mUngetSASLResponse = s;
     mComplete = false;
   }
 
-  Q3CString AuthCommand::nextCommandLine( TransactionState * ) {
+  QByteArray AuthCommand::nextCommandLine( TransactionState * ) {
     mNeedResponse = true;
-    Q3CString cmd;
+    QByteArray cmd;
 #ifdef HAVE_LIBSASL2
     QByteArray tmp, challenge;
     if ( !mUngetSASLResponse.isNull() ) {
@@ -381,14 +381,14 @@ namespace KioSMTP {
   // MAIL FROM:
   //
 
-  Q3CString MailFromCommand::nextCommandLine( TransactionState * ) {
+  QByteArray MailFromCommand::nextCommandLine( TransactionState * ) {
     mComplete = true;
     mNeedResponse = true;
-    Q3CString cmdLine = "MAIL FROM:<" + mAddr + '>';
+    QByteArray cmdLine = "MAIL FROM:<" + mAddr + '>';
     if ( m8Bit && haveCapability("8BITMIME") )
       cmdLine += " BODY=8BITMIME";
     if ( mSize && haveCapability("SIZE") )
-      cmdLine += " SIZE=" + Q3CString().setNum( mSize );
+      cmdLine += " SIZE=" + QByteArray().setNum( mSize );
     return cmdLine + "\r\n";
   }
 
@@ -407,7 +407,7 @@ namespace KioSMTP {
   // RCPT TO:
   //
 
-  Q3CString RcptToCommand::nextCommandLine( TransactionState * ) {
+  QByteArray RcptToCommand::nextCommandLine( TransactionState * ) {
     mComplete = true;
     mNeedResponse = true;
     return "RCPT TO:<" + mAddr + ">\r\n";
@@ -430,7 +430,7 @@ namespace KioSMTP {
   // DATA (only initial processing!)
   //
 
-  Q3CString DataCommand::nextCommandLine( TransactionState * ts ) {
+  QByteArray DataCommand::nextCommandLine( TransactionState * ts ) {
     assert( ts );
     mComplete = true;
     mNeedResponse = true;
@@ -438,7 +438,7 @@ namespace KioSMTP {
     return "DATA\r\n";
   }
 
-  void DataCommand::ungetCommandLine( const Q3CString &, TransactionState * ts ) {
+  void DataCommand::ungetCommandLine( const QByteArray &, TransactionState * ts ) {
     assert( ts );
     mComplete = false;
     ts->setDataCommandIssued( false );
@@ -460,7 +460,7 @@ namespace KioSMTP {
   //
   // DATA (data transfer)
   //
-  void TransferCommand::ungetCommandLine( const Q3CString & cmd, TransactionState * ) {
+  void TransferCommand::ungetCommandLine( const QByteArray & cmd, TransactionState * ) {
     if ( cmd.isEmpty() )
       return; // don't change state when we can't detect the unget in
 	      // the next nextCommandLine !!
@@ -475,16 +475,16 @@ namespace KioSMTP {
     return ts->failed();
   }
 
-  Q3CString TransferCommand::nextCommandLine( TransactionState * ts ) {
+  QByteArray TransferCommand::nextCommandLine( TransactionState * ts ) {
     assert( ts ); // let's rely on it ( at least for the moment )
     assert( !isComplete() );
     assert( !ts->failed() );
 
-    static const Q3CString dotCRLF = ".\r\n";
-    static const Q3CString CRLFdotCRLF = "\r\n.\r\n";
+    static const QByteArray dotCRLF = ".\r\n";
+    static const QByteArray CRLFdotCRLF = "\r\n.\r\n";
 
     if ( !mUngetBuffer.isEmpty() ) {
-      const Q3CString ret = mUngetBuffer;
+      const QByteArray ret = mUngetBuffer;
       mUngetBuffer = 0;
       if ( mWasComplete ) {
 	mComplete = true;
@@ -528,8 +528,8 @@ namespace KioSMTP {
     return true;
   }
 
-  static Q3CString dotstuff_lf2crlf( const QByteArray & ba, char & last ) {
-    Q3CString result( ba.size() * 2 + 1 ); // worst case: repeated "[.]\n"
+  static QByteArray dotstuff_lf2crlf( const QByteArray & ba, char & last ) {
+    QByteArray result( ba.size() * 2 + 1 ); // worst case: repeated "[.]\n"
     const char * s = ba.data();
     const char * const send = ba.data() + ba.size();
     char * d = result.data();
@@ -547,7 +547,7 @@ namespace KioSMTP {
     return result;
   }
 
-  Q3CString TransferCommand::prepare( const QByteArray & ba ) {
+  QByteArray TransferCommand::prepare( const QByteArray & ba ) {
     if ( ba.isEmpty() )
       return 0;
     if ( mSMTP->metaData("lf2crlf+dotstuff") == "slave" ) {
@@ -555,7 +555,7 @@ namespace KioSMTP {
       return dotstuff_lf2crlf( ba, mLastChar );
     } else {
       mLastChar = ba[ ba.size() - 1 ];
-      return Q3CString( ba.data(), ba.size() + 1 );
+      return QByteArray( ba.data(), ba.size() + 1 );
     }
   }
 
@@ -563,7 +563,7 @@ namespace KioSMTP {
   // NOOP
   //
 
-  Q3CString NoopCommand::nextCommandLine( TransactionState * ) {
+  QByteArray NoopCommand::nextCommandLine( TransactionState * ) {
     mComplete = true;
     mNeedResponse = true;
     return "NOOP\r\n";
@@ -573,7 +573,7 @@ namespace KioSMTP {
   // RSET
   //
 
-  Q3CString RsetCommand::nextCommandLine( TransactionState * ) {
+  QByteArray RsetCommand::nextCommandLine( TransactionState * ) {
     mComplete = true;
     mNeedResponse = true;
     return "RSET\r\n";
@@ -583,7 +583,7 @@ namespace KioSMTP {
   // QUIT
   //
 
-  Q3CString QuitCommand::nextCommandLine( TransactionState * ) {
+  QByteArray QuitCommand::nextCommandLine( TransactionState * ) {
     mComplete = true;
     mNeedResponse = true;
     return "QUIT\r\n";

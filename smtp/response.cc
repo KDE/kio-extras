@@ -37,8 +37,9 @@
 #include <kio/global.h>
 
 #include <qstring.h>
+#include <QStringList>
 //Added by qt3to4:
-#include <Q3CString>
+#include <QByteArray>
 
 namespace KioSMTP {
 
@@ -61,7 +62,7 @@ namespace KioSMTP {
     }
 
     bool ok = false;
-    unsigned int code = Q3CString( line, 3+1 ).toUInt( &ok );
+    unsigned int code = QByteArray( line, 3+1 ).toUInt( &ok );
     if ( !ok || code < 100 || code > 559 ) {
       // not a number or number out of range
       mValid = false;
@@ -87,15 +88,15 @@ namespace KioSMTP {
       return;
     }
 
-    mLines.push_back( len > 4 ? Q3CString( line+4, len-4+1 ).trimmed() : Q3CString() );
+    mLines.push_back( len > 4 ? QByteArray( line+4, len-4+1 ).trimmed() : QByteArray() );
   }
 
 
   // hackishly fixing QCStringList flaws...
-  static Q3CString join( char sep, const QCStringList & list ) {
+  static QByteArray join( char sep, const QCStringList & list ) {
     if ( list.empty() )
-      return Q3CString();
-    Q3CString result = list.front();
+      return QByteArray();
+    QByteArray result = list.front();
     for ( QCStringList::const_iterator it = ++list.begin() ; it != list.end() ; ++it )
       result += sep + *it;
     return result;

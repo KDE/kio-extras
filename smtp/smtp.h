@@ -36,11 +36,11 @@
 #include <qstring.h>
 #include <q3ptrqueue.h>
 //Added by qt3to4:
-#include <Q3CString>
+#include <QByteArray>
 #include <Q3MemArray>
 
 class KURL;
-class Q3CString;
+class QByteArray;
 /*template <typename T> class Q3MemArray;
 typedef Q3MemArray<char> QByteArray;*/
 
@@ -53,7 +53,7 @@ namespace KioSMTP {
 class SMTPProtocol : public KIO::TCPSlaveBase {
   friend class KioSMTP::Command;
 public:
-  SMTPProtocol(const Q3CString & pool, const Q3CString & app, bool useSSL);
+  SMTPProtocol(const QByteArray & pool, const QByteArray & app, bool useSSL);
   virtual ~ SMTPProtocol();
 
   virtual void setHost(const QString & host, int port,
@@ -103,8 +103,8 @@ protected:
   bool authenticate();
   void parseFeatures( const KioSMTP::Response & ehloResponse );
 
-  bool sendCommandLine( const Q3CString & cmd );
-  Q3CString collectPipelineCommands( KioSMTP::TransactionState * ts );
+  bool sendCommandLine( const QByteArray & cmd );
+  QByteArray collectPipelineCommands( KioSMTP::TransactionState * ts );
   bool batchProcessResponses( KioSMTP::TransactionState * ts );
 
   /** This is a pure convenience wrapper around
