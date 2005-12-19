@@ -403,27 +403,7 @@ void ArchiveProtocol::get( const KURL & url )
      * - errors are skipped, resulting in an empty file
      */
 
-    QIODevice* io = 0;
-    // Getting the device is hard, as archiveFileEntry->device() is not virtual!
-    if ( url.protocol() == "tar" )
-    {
-        io = archiveFileEntry->device();
-    }
-    else if ( url.protocol() == "ar" )
-    {
-        io = archiveFileEntry->device();
-    }
-    else if ( url.protocol() == "zip" )
-    {
-        io = ((KZipFileEntry*) archiveFileEntry)->device();
-    }
-    else
-    {
-        // Wrong protocol? Why was this not catched by checkNewFile?
-        kdWarning(7109) << "Protocol " << url.protocol() << " not supported by this IOSlave; " << k_funcinfo << endl;
-        error( KIO::ERR_UNSUPPORTED_PROTOCOL, url.protocol() );
-        return;
-    }
+    QIODevice* io = archiveFileEntry->device();
 
     if (!io)
     {
@@ -442,10 +422,10 @@ void ArchiveProtocol::get( const KURL & url )
     totalSize( archiveFileEntry->size() );
 
     // Size of a QIODevice read. It must be large enough so that the mime type check will not fail
-    const int maxSize = 0x100000; // 1MB
+    const qint64 maxSize = 0x100000; // 1MB
 
-    int bufferSize = qMin( maxSize, archiveFileEntry->size() );
-    QByteArray buffer ( bufferSize );
+    qint64 bufferSize = qMin( maxSize, archiveFileEntry->size() );
+    QByteArray buffer( bufferSize );
     if ( buffer.isEmpty() && bufferSize > 0 )
     {
         // Something went wrong
@@ -456,7 +436,7 @@ void ArchiveProtocol::get( const KURL & url )
     bool firstRead = true;
 
     // How much file do we still have to process?
-    int fileSize = archiveFileEntry->size();
+    qint64 fileSize = archiveFileEntry->size();
     KIO::filesize_t processed = 0;
 
     while ( !io->atEnd() && fileSize > 0 )
@@ -466,7 +446,7 @@ void ArchiveProtocol::get( const KURL & url )
             bufferSize = qMin( maxSize, fileSize );
             buffer.resize( bufferSize );
         }
-        const Q_LONG read = io->readBlock( buffer.data(), buffer.size() ); // Avoid to use bufferSize here, in case something went wrong.
+        const qint64 read = io->readBlock( buffer.data(), buffer.size() ); // Avoid to use bufferSize here, in case something went wrong.
         if ( read != bufferSize )
         {
             kdWarning(7109) << "Read " << read << " bytes but expected " << bufferSize << endl;
