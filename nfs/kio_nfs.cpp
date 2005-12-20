@@ -745,7 +745,7 @@ void NFSProtocol::stat( const KURL & url)
    finished();
 }
 
-void NFSProtocol::completeAbsoluteLinkUDSEntry(UDSEntry& entry, const Q3CString& path)
+void NFSProtocol::completeAbsoluteLinkUDSEntry(UDSEntry& entry, const QByteArray& path)
 {
    //taken from file.cc
    struct stat buff;

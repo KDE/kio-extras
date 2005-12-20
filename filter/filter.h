@@ -25,8 +25,6 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #define __filter_h__
 
 #include <qobject.h>
-//Added by qt3to4:
-#include <Q3CString>
 #include <kio/global.h>
 #include <kio/slavebase.h>
 

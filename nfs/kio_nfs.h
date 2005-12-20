@@ -28,8 +28,6 @@
 #include <qstringlist.h>
 #include <q3intdict.h>
 #include <qtimer.h>
-//Added by qt3to4:
-#include <Q3CString>
 
 #define PORTMAP  //this seems to be required to compile on Solaris
 #include <rpc/rpc.h>
@@ -87,7 +85,7 @@ class NFSProtocol : public KIO::SlaveBase
       bool isExportedDir(const QString& path);
       void completeUDSEntry(KIO::UDSEntry& entry, fattr& attributes);
       void completeBadLinkUDSEntry(KIO::UDSEntry& entry, fattr& attributes);
-      void completeAbsoluteLinkUDSEntry(KIO::UDSEntry& entry, const Q3CString& path);
+      void completeAbsoluteLinkUDSEntry(KIO::UDSEntry& entry, const QByteArray& path);
       bool isValidLink(const QString& parentDir, const QString& linkDest);
 //      bool isAbsoluteLink(const QString& path);
       
