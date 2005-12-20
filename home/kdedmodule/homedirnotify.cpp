@@ -24,7 +24,6 @@
 #include <kdirnotify_stub.h>
 //Added by qt3to4:
 #include <QList>
-#include <Q3CString>
 
 #define MINIMUM_UID 500
 
