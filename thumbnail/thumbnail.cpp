@@ -33,8 +33,6 @@
 #include <qpainter.h>
 #include <qimage.h>
 #include <qbuffer.h>
-//Added by qt3to4:
-#include <Q3CString>
 
 #include <kdatastream.h> // Do not remove, needed for correct bool serialization
 #include <kurl.h>
