@@ -25,7 +25,6 @@
 #include "medium.h"
 //Added by qt3to4:
 #include <Q3PtrList>
-#include <Q3CString>
 
 MediaDirNotify::MediaDirNotify(const MediaList &list)
 	: m_mediaList(list)
