@@ -1878,10 +1878,11 @@ class TABLEROW {
 public:
     TABLEROW() {
         test = new char;
-        items.setAutoDelete(true);
         prev = 0; next = 0;
     }
     ~TABLEROW() {
+		qDeleteAll(items);
+		items.clear();
         delete test;
 
     }
@@ -1901,7 +1902,7 @@ public:
     TABLEROW *prev, *next;
 
 private:
-    Q3PtrList<TABLEITEM> items;
+    QList<TABLEITEM*> items;
 };
 
 TABLEITEM::TABLEITEM(TABLEROW *row) : contents(0), _parent(row) {
@@ -1912,10 +1913,10 @@ TABLEITEM::TABLEITEM(TABLEROW *row) : contents(0), _parent(row) {
 TABLEROW *TABLEROW::copyLayout() const {
     TABLEROW *newrow = new TABLEROW();
 
-    Q3PtrListIterator<TABLEITEM> it(items);
-    for ( ; it.current(); ++it) {
+    QListIterator<TABLEITEM *> it(items);
+	while (it.hasNext()){
         TABLEITEM *newitem = new TABLEITEM(newrow);
-        newitem->copyLayout(it.current());
+        newitem->copyLayout(it.next());
     }
     return newrow;
 }

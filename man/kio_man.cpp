@@ -1132,8 +1132,8 @@ int compare_man_index(const void *s1, const void *s2)
 #warning using heapsort
 // Set up my own man page list,
 // with a special compare function to sort itself
-typedef Q3PtrList<struct man_index_t> QManIndexListBase;
-typedef Q3PtrListIterator<struct man_index_t> QManIndexListIterator;
+typedef QList<struct man_index_t*> QManIndexListBase;
+typedef QList<struct man_index_t*>::Iterator QManIndexListIterator;
 
 class QManIndexList : public QManIndexListBase
 {
