@@ -485,7 +485,7 @@ void MANProtocol::get(const KURL& url )
     {
        setResourcePath(m_htmlPath,m_cssPath);
        m_outputBuffer.open(QIODevice::WriteOnly);
-       const Q3CString filename=QFile::encodeName(foundPages[0]);
+       const QByteArray filename=QFile::encodeName(foundPages[0]);
        char *buf = readManPage(filename);
 
        if (!buf)
@@ -516,7 +516,7 @@ void MANProtocol::slotGetStdOutput(KProcess* /* p */, char *s, int len)
 
 char *MANProtocol::readManPage(const char *_filename)
 {
-    Q3CString filename = _filename;
+    QByteArray filename = _filename;
 
     char *buf = NULL;
 
@@ -539,7 +539,7 @@ char *MANProtocol::readManPage(const char *_filename)
 	        this, SLOT(slotGetStdOutput(KProcess *, char *, int)));
 	proc.start(KProcess::Block, KProcess::All);
 
-        const Q3CString cstr=myStdStream.latin1();
+        const QByteArray cstr=myStdStream.latin1();
         const int len = cstr.size()-1;
         buf = new char[len + 4];
         qmemmove(buf + 1, cstr.data(), len);

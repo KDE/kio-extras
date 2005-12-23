@@ -33,7 +33,7 @@
 
 #include <kio/authinfo.h>
 //Added by qt3to4:
-#include <Q3CString>
+#include <QByteArray>
 
 /**
  *   Types of a SMBURL :
@@ -97,16 +97,16 @@ public:
      /**
      * Return a URL that is suitable for libsmbclient
      */
-    Q3CString toSmbcUrl() const { return m_surl; }
+    QByteArray toSmbcUrl() const { return m_surl; }
 
 private:
     /**
      * Change from QString to QCString (MS Windows's character encoding)
      */
-    Q3CString fromUnicode( const QString &_str ) const;
+    QByteArray fromUnicode( const QString &_str ) const;
 
     void updateCache();
-    Q3CString m_surl;
+    QByteArray m_surl;
 
     /**
      * Type of URL

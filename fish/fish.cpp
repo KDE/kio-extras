@@ -1234,7 +1234,7 @@ int fishProtocol::received(const char *buffer, int buflen)
 
         if (pos < buflen)
         {
-           QString s = remoteEncoding()->decode(Q3CString(buffer,pos+1));
+           QString s = remoteEncoding()->decode(QByteArray(buffer,pos+1));
 
            buffer += pos+1;
            buflen -= pos+1;

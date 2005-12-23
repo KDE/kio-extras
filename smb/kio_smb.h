@@ -45,7 +45,7 @@
 #include <qtextstream.h>
 #include <q3strlist.h>
 //Added by qt3to4:
-#include <Q3CString>
+#include <QByteArray>
 
 //--------------
 // KDE includes

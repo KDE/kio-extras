@@ -79,7 +79,7 @@ private:
     void constructPath(QStringList& constr_path, QStringList constr_catmanpath);
 private:
     static MANProtocol *_self;
-    Q3CString lastdir;
+    QByteArray lastdir;
 
     void findManPagesInSection(const QString &dir, const QString &title, bool full_path, QStringList &list);
     QStringList m_manpath; ///< Path of man directories
@@ -90,8 +90,8 @@ private:
     QString mySgml2RoffPath;
     void getProgramPath();
 
-    Q3CString m_htmlPath; ///< Path to KDE resources, encoded for HTML
-    Q3CString m_cssPath; ///< Path to KDE resources, encoded for CSS
+    QByteArray m_htmlPath; ///< Path to KDE resources, encoded for HTML
+    QByteArray m_cssPath; ///< Path to KDE resources, encoded for CSS
     QBuffer m_outputBuffer; ///< Buffer for the output
     QString m_manCSSFile; ///< Path to kio_man.css
 };

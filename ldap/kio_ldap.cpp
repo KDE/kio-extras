@@ -167,7 +167,7 @@ void LDAPProtocol::controlsFromMetaData( LDAPControl ***serverctrls,
   QString oid; bool critical; QByteArray value;
   int i = 0;
   while ( hasMetaData( QString::fromLatin1("SERVER_CTRL%1").arg(i) ) ) {
-    Q3CString val = metaData( QString::fromLatin1("SERVER_CTRL%1").arg(i) ).toUtf8();
+    QByteArray val = metaData( QString::fromLatin1("SERVER_CTRL%1").arg(i) ).toUtf8();
     LDIF::splitControl( val, oid, critical, value );
     kdDebug(7125) << "server ctrl #" << i << " value: " << val <<
       " oid: " << oid << " critical: " << critical << " value: " <<
@@ -177,7 +177,7 @@ void LDAPProtocol::controlsFromMetaData( LDAPControl ***serverctrls,
   }
   i = 0;
   while ( hasMetaData( QString::fromLatin1("CLIENT_CTRL%1").arg(i) ) ) {
-    Q3CString val = metaData( QString::fromLatin1("CLIENT_CTRL%1").arg(i) ).toUtf8();
+    QByteArray val = metaData( QString::fromLatin1("CLIENT_CTRL%1").arg(i) ).toUtf8();
     LDIF::splitControl( val, oid, critical, value );
     kdDebug(7125) << "client ctrl #" << i << " value: " << val <<
       " oid: " << oid << " critical: " << critical << " value: " <<
@@ -220,7 +220,7 @@ int LDAPProtocol::asyncSearch( LDAPUrl &usrc )
     usrc.scope() << " filter=\"" << usrc.filter() << "\" attrs=" << usrc.attributes() <<
     endl;
   retval = ldap_search_ext( mLDAP, usrc.dn().toUtf8(), scope,
-    usrc.filter().isEmpty() ? Q3CString() : usrc.filter().toUtf8(), attrs, 0,
+    usrc.filter().isEmpty() ? QByteArray() : usrc.filter().toUtf8(), attrs, 0,
     serverctrls, clientctrls,
     0, mSizeLimit, &msgid );
 
@@ -237,16 +237,16 @@ int LDAPProtocol::asyncSearch( LDAPUrl &usrc )
   return retval;
 }
 
-Q3CString LDAPProtocol::LDAPEntryAsLDIF( LDAPMessage *message )
+QByteArray LDAPProtocol::LDAPEntryAsLDIF( LDAPMessage *message )
 {
-  Q3CString result;
+  QByteArray result;
   char *name;
   struct berval **bvals;
   BerElement     *entry;
   QByteArray tmp;
 
   char *dn = ldap_get_dn( mLDAP, message );
-  if ( dn == NULL ) return Q3CString( "" );
+  if ( dn == NULL ) return QByteArray( "" );
   tmp.setRawData( dn, strlen( dn ) );
   result += LDIF::assembleLine( "dn", tmp ) + '\n';
   tmp.resetRawData( dn, strlen( dn ) );
@@ -737,7 +737,7 @@ void LDAPProtocol::get( const KURL &_url )
   // tell the mimetype
   mimeType("text/plain");
   // collect the result
-  Q3CString result;
+  QByteArray result;
   filesize_t processed_size = 0;
   QByteArray array;
 
@@ -937,7 +937,7 @@ void LDAPProtocol::put( const KURL &_url, int, bool overwrite, bool )
                 " deloldrdn: " << ldif.delOldRdn() << endl;
               controlsFromMetaData( &serverctrls, &clientctrls );
               ldaperr = ldap_rename_s( mLDAP, ldif.dn().toUtf8(), ldif.newRdn().toUtf8(),
-                ldif.newSuperior().isEmpty() ? Q3CString() : ldif.newSuperior().toUtf8(),
+                ldif.newSuperior().isEmpty() ? QByteArray() : ldif.newSuperior().toUtf8(),
                 ldif.delOldRdn(), serverctrls, clientctrls );
 
               FREELDAPMEM;
