@@ -35,7 +35,7 @@
 #include "response.h"
 
 #include <qstring.h>
-#include <q3valuelist.h>
+
 
 namespace KioSMTP {
 

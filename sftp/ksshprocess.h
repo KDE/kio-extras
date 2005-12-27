@@ -23,7 +23,7 @@
 #include <signal.h>
 #include <unistd.h>
 
-#include <q3valuelist.h>
+
 
 #include <kdebug.h>
 

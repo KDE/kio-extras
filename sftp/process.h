@@ -15,7 +15,7 @@
 #include <q3cstring.h>
 #include <qstring.h>
 #include <qstringlist.h>
-#include <q3valuelist.h>
+
 
 #define PTYPROC 7120
 

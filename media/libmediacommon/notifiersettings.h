@@ -20,7 +20,7 @@
 #ifndef _NOTIFIERSETTINGS_H_
 #define _NOTIFIERSETTINGS_H_
 
-#include <q3valuelist.h>
+
 #include <qmap.h>
 
 #include "notifieraction.h"

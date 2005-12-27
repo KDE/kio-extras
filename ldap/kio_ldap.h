@@ -2,7 +2,7 @@
 #define __LDAP_H__
 
 #include <qstring.h>
-#include <q3valuelist.h>
+
 
 #include <kio/slavebase.h>
 #include <kio/authinfo.h>
