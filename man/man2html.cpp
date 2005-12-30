@@ -3848,8 +3848,14 @@ static char *scan_request(char *c)
                     /* somewhere a definition ends with '.TP' */
                     if (!*c)
                         still_dd=true;
-                    else
+                    else 
                     {
+                        // HACK for proc(5)
+                        while (c[0]=='.' && c[1]=='\\' && c[2]=='\"')
+                        {
+                            // We have a comment, so skip the line
+                            c=skip_till_newline(c);
+                        }
                         c=scan_troff(c,1,NULL);
                         out_html("<DD>");
                     }
