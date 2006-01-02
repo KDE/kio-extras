@@ -169,7 +169,7 @@ bool MediaNotifier::execAutorun( const KFileItem &medium, const QString &path,
 	int options = KMessageBox::Notify | KMessageBox::Dangerous;
 
 	int answer = KMessageBox::warningYesNo( 0L, text, caption, yes, no,
-	                                        QString::null, options );
+	                                        QString(), options );
 
 	if ( answer == KMessageBox::Yes )
 	{
@@ -243,7 +243,7 @@ bool MediaNotifier::execAutoopen( const KFileItem &medium, const QString &path,
 	int options = KMessageBox::Notify | KMessageBox::Dangerous;
 
 	int answer = KMessageBox::warningYesNo( 0L, text, caption, yes, no,
-	                                        QString::null, options );
+	                                        QString(), options );
 
 	// TODO: Take case of the "UNLESS" part?
 	// When an Autoopen file has been detected and the user has confirmed

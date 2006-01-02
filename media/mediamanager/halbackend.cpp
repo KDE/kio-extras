@@ -411,7 +411,7 @@ void HALBackend::setVolumeProperties(Medium* medium)
 			medium->unmountableState( "audiocd:/?device=" + QString(libhal_volume_get_device_file(halVolume)) );
 		}
 
-		medium->setIconName(QString::null);
+		medium->setIconName(QString());
 
 		/* check if the disc id a vcd or a video dvd */
 		DiscType type = LinuxCDPolling::identifyDiscType(libhal_volume_get_device_file(halVolume));
@@ -465,10 +465,10 @@ void HALBackend::setVolumeProperties(Medium* medium)
 				}
 				break;
 			case LIBHAL_DRIVE_TYPE_TAPE:
-				medium->setIconName(QString::null); //FIXME need icon
+				medium->setIconName(QString()); //FIXME need icon
 				break;
 			default:
-				medium->setIconName(QString::null);
+				medium->setIconName(QString());
 			};
 		};
 	}
@@ -536,7 +536,7 @@ void HALBackend::setFloppyProperties(Medium* medium)
 
 	/** @todo And mimtype for JAZ drives ? */
 
-	medium->setIconName(QString::null);
+	medium->setIconName(QString());
 
 	QString media_name;
 	if (halVolume)
@@ -574,7 +574,7 @@ void HALBackend::setCameraProperties(Medium* medium)
 	/** @todo find the rest of this URL */
 	medium->unmountableState("camera:/");
 	medium->setMimeType("media/gphoto2camera");
-	medium->setIconName(QString::null);
+	medium->setIconName(QString());
 	if (libhal_device_property_exists(m_halContext, udi, "usb_device.product", NULL))
 		medium->setLabel(hal_device_get_property_QString(m_halContext, udi, "usb_device.product"));
 	else if (libhal_device_property_exists(m_halContext, udi, "usb.product", NULL))

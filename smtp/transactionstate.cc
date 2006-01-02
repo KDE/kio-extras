@@ -88,7 +88,7 @@ namespace KioSMTP {
 
   QString TransactionState::errorMessage() const {
     if ( !failed() )
-      return QString::null;
+      return QString();
 
     if ( !mErrorMessage.isEmpty() )
       return mErrorMessage;

@@ -159,7 +159,7 @@ QString MediaManager::nameForLabel(const QString &label)
 		}
 	}
 
-	return QString::null;
+	return QString();
 }
 
 ASYNC MediaManager::setUserLabel(const QString &name, const QString &label)

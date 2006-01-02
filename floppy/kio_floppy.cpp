@@ -70,8 +70,8 @@ int kdemain( int argc, char **argv )
 
 void getDriveAndPath(const QString& path, QString& drive, QString& rest)
 {
-   drive=QString::null;
-   rest=QString::null;
+   drive=QString();
+   rest=QString();
    QStringList list=path.split( "/");
    for (QStringList::Iterator it=list.begin(); it!=list.end(); it++)
    {

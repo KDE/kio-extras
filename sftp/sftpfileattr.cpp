@@ -268,10 +268,10 @@ void sftpFileAttr::clear(){
     clearFileSize();
     clearPermissions();
     clearExtensions();
-    mFilename = QString::null;
-    mGroupName =  QString::null;
-    mUserName = QString::null;
-    mLinkDestination = QString::null;
+    mFilename.clear();
+    mGroupName =  QString();
+    mUserName.clear();
+    mLinkDestination.clear();
     mFlags = 0;
     mLongname = "\0";
     mLinkType = 0;

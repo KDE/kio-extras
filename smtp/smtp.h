@@ -68,7 +68,7 @@ public:
 
 protected:
 
-  bool smtp_open(const QString& fakeHostname = QString::null);
+  bool smtp_open(const QString& fakeHostname = QString());
 
   /** Closes the connection. If @p nice is true (default), then QUIT
       is sent and it's reponse waited for. */

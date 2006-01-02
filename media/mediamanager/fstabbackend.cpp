@@ -435,7 +435,7 @@ void FstabBackend::guess(const QString &devNode, const QString &mountPoint,
 		label+= " (" + tmp + ")";
 	}
 	mimeType+= (mounted ? "_mounted" : "_unmounted");
-	iconName = QString::null;
+	iconName.clear();
 }
 
 #include "fstabbackend.moc"

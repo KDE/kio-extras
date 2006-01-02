@@ -61,8 +61,8 @@ bool RemovableBackend::plug(const QString &devNode, const QString &label)
 	if (!m_removableIds.contains(id))
 	{
 		Medium *medium = new Medium(id, name);
-		medium->mountableState(devNode, QString::null,
-		                       QString::null, false);
+		medium->mountableState(devNode, QString(),
+		                       QString(), false);
 
 		QStringList words = label.split( " ");
 		

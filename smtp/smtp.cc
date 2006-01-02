@@ -227,9 +227,9 @@ void SMTPProtocol::put(const KURL & url, int /*permissions */ ,
       m_sPass = mset.getSetting(KEMailSettings::OutServerPass);
 
       if (m_sUser.isEmpty())
-        m_sUser = QString::null;
+        m_sUser.clear();
       if (m_sPass.isEmpty())
-        m_sPass = QString::null;
+        m_sPass.clear();
       open_url.setUser(m_sUser);
       open_url.setPass(m_sPass);
       m_sServer = open_url.host();
@@ -646,9 +646,9 @@ void SMTPProtocol::smtp_close( bool nice ) {
     execute( Command::QUIT );
   kdDebug( 7112 ) << "closing connection" << endl;
   closeDescriptor();
-  m_sOldServer = QString::null;
-  m_sOldUser = QString::null;
-  m_sOldPass = QString::null;
+  m_sOldServer.clear();
+  m_sOldUser.clear();
+  m_sOldPass.clear();
   
   mCapabilities.clear();
   mPendingCommandQueue.clear();

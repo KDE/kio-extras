@@ -52,10 +52,10 @@ bool MediaImpl::parseURL(const KURL &url, QString &name, QString &path) const
         else
         {
                 name = url_path.mid(1);
-                path = QString::null;
+                path.clear();
         }
 
-	return name != QString::null;
+	return name != QString();
 }
 
 bool MediaImpl::realURL(const QString &name, const QString &path, KURL &url)

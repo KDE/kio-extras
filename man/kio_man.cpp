@@ -79,7 +79,7 @@ void stripExtension( QString *name )
 static
 bool parseUrl(const QString& _url, QString &title, QString &section)
 {
-    section = QString::null;
+    section.clear();
 
     QString url = _url;
     if (url.at(0) == '/') {
@@ -197,7 +197,7 @@ QMap<QString, QString> MANProtocol::buildIndexMap(const QString &section)
             if ( it_name == names.end() ) {
                 KProcess proc;
                 proc << "whatis" << "-M" << (*it_dir) << "-w" << "*";
-                myStdStream = QString::null;
+                myStdStream.clear();
                 connect( &proc, SIGNAL( receivedStdout(KProcess *, char *, int ) ),
                          SLOT( slotGetStdOutput( KProcess *, char *, int ) ) );
                 proc.start( KProcess::Block, KProcess::Stdout );
@@ -321,7 +321,7 @@ QStringList MANProtocol::findPages(const QString &_section,
             while ( (ep = ::readdir( dp )) != 0L ) {
 
                 const QString file = QFile::decodeName( ep->d_name );
-                QString sect = QString::null;
+                QString sect = QString();
 
                 if ( file.startsWith( man ) )
                     sect = file.mid(3);
@@ -528,7 +528,7 @@ char *MANProtocol::readManPage(const char *_filename)
     //QString file_mimetype = KMimeType::findByPath(QString(filename), 0, false)->name();
     if (QString(filename).contains("sman", Qt::CaseInsensitive)) //file_mimetype == "text/html" || )
     {
-        myStdStream =QString::null;
+        myStdStream =QString();
 	KProcess proc;
 
 	/* Determine path to sgml2roff, if not already done. */
@@ -728,7 +728,7 @@ static QString sectionName(const QString& section)
     else if (section == "n")
         return i18n("New");
 
-    return QString::null;
+    return QString();
 }
 
 QStringList MANProtocol::buildSectionList(const QStringList& dirs) const
@@ -1201,7 +1201,7 @@ void MANProtocol::showIndex(const QString& section)
     infoMessage(i18n("Generating Index"));
 
     // search for the man pages
-	QStringList pages = findPages( section, QString::null );
+	QStringList pages = findPages( section, QString() );
 
 	QMap<QString, QString> indexmap = buildIndexMap(section);
 
@@ -1452,7 +1452,7 @@ void MANProtocol::showIndex(const QString& section)
     // print footer
     os << "</body></html>" << endl;
 
-    infoMessage(QString::null);
+    infoMessage(QString());
     mimeType("text/html");
     data(array);
     finished();
@@ -1470,7 +1470,7 @@ void MANProtocol::listDir(const KURL &url)
         return;
     }
 
-    QStringList list = findPages( section, QString::null, false );
+    QStringList list = findPages( section, QString(), false );
 
     UDSEntryList uds_entry_list;
 

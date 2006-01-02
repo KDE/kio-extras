@@ -46,22 +46,22 @@ public:
 	bool changeMediumState(const QString &id,
 	                       const QString &baseURL,
 	                       bool allowNotification = true,
-	                       const QString &mimeType = QString::null,
-	                       const QString &iconName = QString::null,
-	                       const QString &label = QString::null);
+	                       const QString &mimeType = QString(),
+	                       const QString &iconName = QString(),
+	                       const QString &label = QString());
 	bool changeMediumState(const QString &id,
 	                       const QString &deviceNode,
 	                       const QString &mountPoint,
 	                       const QString &fsType, bool mounted,
 	                       bool allowNotification = true,
-	                       const QString &mimeType = QString::null,
-	                       const QString &iconName = QString::null,
-	                       const QString &label = QString::null);
+	                       const QString &mimeType = QString(),
+	                       const QString &iconName = QString(),
+	                       const QString &label = QString());
 	bool changeMediumState(const QString &id, bool mounted,
 	                       bool allowNotification = true,
-	                       const QString &mimeType = QString::null,
-	                       const QString &iconName = QString::null,
-	                       const QString &label = QString::null);
+	                       const QString &mimeType = QString(),
+	                       const QString &iconName = QString(),
+	                       const QString &label = QString());
 
 	bool setUserLabel(const QString &name, const QString &label);
 

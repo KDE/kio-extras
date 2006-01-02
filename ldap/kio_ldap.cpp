@@ -669,7 +669,7 @@ void LDAPProtocol::openConnection()
         mPassword = info.password;
       } else {
         kdDebug(7125) << "Dialog cancelled!" << endl;
-        error( ERR_USER_CANCELED, QString::null );
+        error( ERR_USER_CANCELED, QString() );
         closeConnection();
         return;
       }
@@ -691,7 +691,7 @@ void LDAPProtocol::openConnection()
       auth = true;
       if ( ret != LDAP_SUCCESS ) {
         if ( mCancel )
-          error( ERR_USER_CANCELED, QString::null );
+          error( ERR_USER_CANCELED, QString() );
         else
           LDAPErr( Url );
         closeConnection();
@@ -1090,7 +1090,7 @@ void LDAPProtocol::listDir( const KURL &_url )
         usrc2.setDn( QString::fromUtf8( dn ) );
         usrc2.setScope( LDAPUrl::One );
         usrc2.setAttributes( att );
-        usrc2.setFilter( QString::null );
+        usrc2.setFilter( QString() );
         kdDebug(7125) << "search2 " << dn << endl;
         if ( (id2 = asyncSearch( usrc2 )) != -1 ) {
           while ( true ) {

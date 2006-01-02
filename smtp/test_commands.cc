@@ -37,7 +37,7 @@ public:
     startTLSReturnCode = 1;
     usesSSL = usesTLS = false;
     lastErrorCode = lastMessageBoxCode = 0;
-    lastErrorMessage = lastMessageBoxText = QString::null;
+    lastErrorMessage = lastMessageBoxText.clear();
     nextData.resize( 0 );
     nextDataReturnCode = -1;
     caps.clear();

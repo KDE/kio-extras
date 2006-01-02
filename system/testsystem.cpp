@@ -31,9 +31,9 @@
 static bool check(const QString& txt, QString a, QString b)
 {
     if (a.isEmpty())
-        a = QString::null;
+        a.clear();
     if (b.isEmpty())
-        b = QString::null;
+        b.clear();
     if (a == b) {
         kdDebug() << txt << " : checking '" << a << "' against expected value '" << b << "'... " << "ok" << endl;
     }

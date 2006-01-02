@@ -125,7 +125,7 @@ void KCMCgi::load()
 
 void KCMCgi::addPath()
 {
-  QString path = KFileDialog::getExistingDirectory( QString::null, this );
+  QString path = KFileDialog::getExistingDirectory( QString(), this );
 
   if ( !path.isEmpty() ) {
     mListBox->insertItem( path );

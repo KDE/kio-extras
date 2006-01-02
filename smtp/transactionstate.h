@@ -63,8 +63,8 @@ namespace KioSMTP {
   class TransactionState {
   public:
     struct RecipientRejection {
-      RecipientRejection( const QString & who=QString::null,
-			  const QString & why=QString::null )
+      RecipientRejection( const QString & who=QString(),
+			  const QString & why=QString() )
 	: recipient( who ), reason( why ) {}
       QString recipient;
       QString reason;
@@ -96,7 +96,7 @@ namespace KioSMTP {
 	untidy connection shutdown is in order (ie. @ref
 	smtp_close(false)). Fatal failure is handled immediately */
     bool failedFatally() const { return mFailedFatally; }
-    void setFailedFatally( int code=0, const QString & msg=QString::null );
+    void setFailedFatally( int code=0, const QString & msg=QString() );
 
     /** @return whether the transaction was completed successfully */
     bool complete() const { return mComplete; }
@@ -106,7 +106,7 @@ namespace KioSMTP {
 	failed, or 0 otherwise */
     int errorCode() const;
     /** @return an appropriate error message in case the transaction
-	failed or QString::null otherwise */
+	failed or QString() otherwise */
     QString errorMessage() const;
 
     void setMailFromFailed( const QString & addr, const Response & r );

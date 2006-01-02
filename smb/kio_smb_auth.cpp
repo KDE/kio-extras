@@ -93,7 +93,7 @@ void SMBSlave::auth_smbc_get_data(const char *server,const char *share,
         {
             // ok, we do not know the password. Let's try anonymous before we try for real
             info.username = "anonymous";
-            info.password = QString::null;
+            info.password.clear();
         }
         else
         {

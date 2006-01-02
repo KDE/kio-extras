@@ -175,7 +175,7 @@ const Medium KFileMediaPlugin::askMedium(KFileMetaInfo &info)
 
 	if ( !reply.isValid() )
 	{
-		return Medium(QString::null, QString::null);
+		return Medium(QString(), QString());
 	}
 
 	return Medium::create(reply);

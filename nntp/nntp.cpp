@@ -127,11 +127,11 @@ void NNTPProtocol::get( const KURL& url )
     res_code = sendCommand( "GROUP " + group );
     if ( res_code == 411 ){
       error( ERR_DOES_NOT_EXIST, path );
-      mCurrentGroup = QString::null;
+      mCurrentGroup.clear();
       return;
     } else if ( res_code != 211 ) {
       unexpected_response( res_code, "GROUP" );
-      mCurrentGroup = QString::null;
+      mCurrentGroup.clear();
       return;
     }
     mCurrentGroup = group;
@@ -279,7 +279,7 @@ void NNTPProtocol::stat( const KURL& url ) {
   // / = group list
   if (path.isEmpty() || path == "/") {
     DBG << "stat root" << endl;
-    fillUDSEntry( entry, QString::null, 0, false, ( S_IWUSR | S_IWGRP | S_IWOTH ) );
+    fillUDSEntry( entry, QString(), 0, false, ( S_IWUSR | S_IWGRP | S_IWOTH ) );
 
   // /group = message list
   } else if (regGroup.search(path) == 0) {
@@ -489,11 +489,11 @@ bool NNTPProtocol::fetchGroup( QString &group, unsigned long first, unsigned lon
   res_code = sendCommand( "GROUP " + group );
   if ( res_code == 411 ) {
     error( ERR_DOES_NOT_EXIST, group );
-    mCurrentGroup = QString::null;
+    mCurrentGroup.clear();
     return false;
   } else if ( res_code != 211 ) {
     unexpected_response( res_code, "GROUP" );
-    mCurrentGroup = QString::null;
+    mCurrentGroup.clear();
     return false;
   }
   mCurrentGroup = group;
@@ -715,7 +715,7 @@ void NNTPProtocol::nntp_close () {
     closeDescriptor();
     opened = false;
   }
-  mCurrentGroup = QString::null;
+  mCurrentGroup.clear();
 }
 
 bool NNTPProtocol::nntp_open()

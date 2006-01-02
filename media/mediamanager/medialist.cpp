@@ -60,7 +60,7 @@ QString MediaList::addMedium(Medium *medium, bool allowNotification)
 	kdDebug(1219) << "MediaList::addMedium(@" << medium->id() << ")" << endl;
 
 	QString id = medium->id();
-	if ( m_idMap.contains(id) ) return QString::null;
+	if ( m_idMap.contains(id) ) return QString();
 
 	m_media.append( medium );
 	m_idMap[id] = medium;

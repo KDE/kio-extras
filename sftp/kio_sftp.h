@@ -108,9 +108,9 @@ private: // private methods
   /** Send an sftp packet to stdin of the ssh process. */
   bool putPacket(QByteArray& p);
   /** Process SSH_FXP_STATUS packets. */
-  void processStatus(quint8, const QString& message = QString::null);
+  void processStatus(quint8, const QString& message = QString());
   /** Process SSH_FXP_STATUS packes and return the result. */
-  Status doProcessStatus(quint8, const QString& message = QString::null);
+  Status doProcessStatus(quint8, const QString& message = QString());
   /** Opens a directory handle for url.path. Returns true if succeeds. */
   int sftpOpenDirectory(const KURL& url, QByteArray& handle);
   /** Closes a directory or file handle. */

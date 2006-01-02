@@ -70,7 +70,7 @@ void InfoProtocol::get( const KURL& url )
     if (!url.host().isEmpty()) {
         KURL newURl(url);
         newURl.setPath(url.host()+url.path());
-        newURl.setHost(QString::null);
+        newURl.setHost(QString());
         redirection(newURl);
         finished();
         return;

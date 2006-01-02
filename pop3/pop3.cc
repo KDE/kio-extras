@@ -1201,7 +1201,7 @@ void POP3Protocol::stat(const KURL & url)
 
 void POP3Protocol::del(const KURL & url, bool /*isfile */ )
 {
-  QString invalidURI = QString::null;
+  QString invalidURI = QString();
   bool isInt;
 
   if (!pop3_open()) {

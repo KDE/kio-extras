@@ -294,7 +294,7 @@ void fishProtocol::openConnection() {
 
     if (connectionHost.isEmpty())
     {
-       error( KIO::ERR_UNKNOWN_HOST, QString::null );
+       error( KIO::ERR_UNKNOWN_HOST, QString() );
        return;
     }
 
@@ -382,7 +382,7 @@ creates the subprocess
 bool fishProtocol::connectionStart() {
     int fd[2];
     int rc, flags;
-    thisFn = QString::null;
+    thisFn.clear();
 
     rc = open_pty_pair(fd);
     if (rc == -1) {
@@ -547,7 +547,7 @@ int fishProtocol::establishConnection(char *buffer, int len) {
         if (str == "\n")
             continue;
         if (str == "FISH:\n") {
-            thisFn = QString::null;
+            thisFn.clear();
             infoMessage(i18n("Initiating protocol..."));
             if (!connectionAuth.password.isEmpty()) {
                 connectionAuth.password = connectionAuth.password.left(connectionAuth.password.length()-1);
@@ -572,7 +572,7 @@ int fishProtocol::establishConnection(char *buffer, int len) {
             } else if (!connectionPassword.isEmpty()) {
                 myDebug( << "sending cpass" << endl);
                 connectionAuth.password = connectionPassword+"\n";
-                connectionPassword = QString::null;
+                connectionPassword.clear();
                 // su does not like receiving a password directly after sending
                 // the password prompt so we wait a while.
                 if (local)
@@ -586,7 +586,7 @@ int fishProtocol::establishConnection(char *buffer, int len) {
                 else
                     connectionAuth.caption = i18n("SSH Authorization");
                 if ((!firstLogin || !checkCachedAuthentication(connectionAuth))) {
-                    connectionAuth.password = QString::null; // don't prefill
+                    connectionAuth.password.clear(); // don't prefill
                     if ( !openPassDlg(connectionAuth)) {
                         error(ERR_USER_CANCELED,connectionHost);
                         shutdownConnection();
@@ -614,7 +614,7 @@ int fishProtocol::establishConnection(char *buffer, int len) {
                     sleep(1);
                 writeChild(connectionAuth.password.toLatin1(),connectionAuth.password.length());
             }
-            thisFn = QString::null;
+            thisFn.clear();
             return 0;
         } else if (buf.endsWith("?")) {
             int rc = messageBox(QuestionYesNo,thisFn+buf);
@@ -623,7 +623,7 @@ int fishProtocol::establishConnection(char *buffer, int len) {
             } else {
                 writeChild("no\n",3);
             }
-            thisFn = QString::null;
+            thisFn.clear();
             return 0;
         } else {
             myDebug( << "unmatched case in initial handling! shouldn't happen!" << endl);
@@ -956,7 +956,7 @@ void fishProtocol::manageConnection(const QString &l) {
             } else {
                 if (!udsMime.isNull())
                     udsEntry.insert(UDS_MIME_TYPE, udsMime);
-                udsMime = QString::null;
+                udsMime.clear();
 
                 udsEntry.insert( UDS_FILE_TYPE, udsType );
                 udsType = 0;
@@ -1589,5 +1589,5 @@ void fishProtocol::slave_status() {
     if (childPid > 0)
         slaveStatus(connectionHost,isLoggedIn);
     else
-        slaveStatus(QString::null,false);
+        slaveStatus(QString(),false);
 }

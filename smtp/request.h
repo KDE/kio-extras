@@ -87,7 +87,7 @@ namespace KioSMTP {
 	serialization of the header fields "To", "Cc", "Subject" and
 	"From", as determined by the respective settings. If @ref
 	#emitHeaders() is false, returns a null string. */
-    QByteArray headerFields( const QString & fromRealName=QString::null ) const;
+    QByteArray headerFields( const QString & fromRealName=QString() ) const;
 
   private:
     QStringList mTo, mCc, mBcc;

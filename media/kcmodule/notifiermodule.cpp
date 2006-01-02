@@ -143,7 +143,7 @@ void NotifierModule::slotMimeTypeChanged(int index)
 {
 	if ( index == 0 )
 	{
-		m_mimetype = QString();
+		m_mimetype.clear();
 	}
 	else
 	{

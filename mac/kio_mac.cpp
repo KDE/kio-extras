@@ -129,7 +129,7 @@ void MacProtocol::listDir(const KURL& url) {
         myKProcess = new KProcess();
         *myKProcess << "hpls" << "-la" << filename;
 
-        standardOutputStream = QString::null;
+        standardOutputStream.clear();
         connect(myKProcess, SIGNAL(receivedStdout(KProcess *, char *, int)),
                 this, SLOT(slotGetStdOutput(KProcess *, char *, int)));
 
@@ -186,7 +186,7 @@ KIO::UDSEntry MacProtocol::doStat(const KURL& url) {
 
         *myKProcess << "hpls" << "-ld" << filename;
 
-        standardOutputStream = QString::null;
+        standardOutputStream.clear();
         connect(myKProcess, SIGNAL(receivedStdout(KProcess *, char *, int)),
                 this, SLOT(slotGetStdOutput(KProcess *, char *, int)));
 
@@ -251,7 +251,7 @@ QString MacProtocol::prepareHP(const KURL& url) {
     //first we run just hpmount and check the output to see if it's version 1.0.2 or 1.0.4
     myKProcess = new KProcess();
     *myKProcess << "hpmount";
-    standardOutputStream = QString::null;
+    standardOutputStream.clear();
     connect(myKProcess, SIGNAL(receivedStderr(KProcess *, char *, int)),
             this, SLOT(slotGetStdOutput(KProcess *, char *, int)));
 

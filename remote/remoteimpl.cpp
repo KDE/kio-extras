@@ -130,7 +130,7 @@ QString RemoteImpl::findDesktopFile(const QString &filename) const
 		return directory+filename+".desktop";
 	}
 
-	return QString::null;
+	return QString();
 }
 
 KURL RemoteImpl::findBaseURL(const QString &filename) const

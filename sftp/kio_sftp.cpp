@@ -203,7 +203,7 @@ void sftpProtocol::copy(const KURL &src, const KURL &dest, int permissions, bool
     else if ( destLocal && !srcLocal ) // Copy sftp -> file
       sftpCopyGet(dest, src, permissions, overwrite);
     else
-      error(ERR_UNSUPPORTED_ACTION, QString::null);
+      error(ERR_UNSUPPORTED_ACTION, QString());
 }
 
 void sftpProtocol::sftpCopyGet(const KURL& dest, const KURL& src, int mode, bool overwrite)
@@ -649,7 +649,7 @@ void sftpProtocol::openConnection() {
             }
             else {
                 // user canceled or dialog failed to open
-                error(ERR_USER_CANCELED, QString::null);
+                error(ERR_USER_CANCELED, QString());
                 kdDebug(KIO_SFTP_DB) << "openConnection(): user canceled, dlgResult = " << dlgResult << endl;
                 closeConnection();
                 return;
@@ -708,7 +708,7 @@ void sftpProtocol::openConnection() {
             msg = ssh.errorMsg();
             if( KMessageBox::Yes != messageBox(WarningYesNo, msg, caption) ) {
                 closeConnection();
-                error(ERR_USER_CANCELED, QString::null);
+                error(ERR_USER_CANCELED, QString());
                 return;
             }
             ssh.acceptHostKey(true);
@@ -719,7 +719,7 @@ void sftpProtocol::openConnection() {
             msg = ssh.errorMsg();
             if( KMessageBox::Yes != messageBox(WarningYesNo, msg, caption) ) {
                 closeConnection();
-                error(ERR_USER_CANCELED, QString::null);
+                error(ERR_USER_CANCELED, QString());
                 return;
             }
             ssh.acceptHostKey(true);
@@ -768,7 +768,7 @@ void sftpProtocol::openConnection() {
 
     // catch all in case we did something wrong above
     if( !mConnected ) {
-        error(ERR_INTERNAL, QString::null);
+        error(ERR_INTERNAL, QString());
         return;
     }
 
@@ -1418,7 +1418,7 @@ void sftpProtocol::chmod(const KURL& url, int permissions){
     if( (code = sftpSetStat(url, attr)) != SSH2_FX_OK ) {
         kdError(KIO_SFTP_DB) << "chmod(): sftpSetStat failed with error " << code << endl;
         if( code == SSH2_FX_FAILURE )
-            error(ERR_CANNOT_CHMOD, QString::null);
+            error(ERR_CANNOT_CHMOD, QString());
         else
             processStatus(code, url.prettyURL());
     }
@@ -1445,7 +1445,7 @@ void sftpProtocol::slave_status() {
     kdDebug(KIO_SFTP_DB) << "slave_status(): connected to "
                          <<  mHost << "? " << mConnected << endl;
 
-    slaveStatus ((mConnected ? mHost : QString::null), mConnected);
+    slaveStatus ((mConnected ? mHost : QString()), mConnected);
 }
 
 bool sftpProtocol::getPacket(QByteArray& msg) {

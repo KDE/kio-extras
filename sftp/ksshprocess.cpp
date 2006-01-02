@@ -291,7 +291,7 @@ QString KSshProcess::versionStr() {
     if( mVersion == UNKNOWN_VER ) {
         version();
         if( mVersion == UNKNOWN_VER )
-            return QString::null;
+            return QString();
     }
 
     return QString::fromLatin1(versionStrs[mVersion]);
@@ -303,7 +303,7 @@ bool KSshProcess::setOptions(const SshOptList& opts) {
     mArgs.clear();
     SshOptListConstIterator it;
     QString cmd, subsystem;
-    mPassword = mUsername = mHost = QString::null;
+    mPassword = mUsername = mHost = QString();
     Q3CString tmp;
     for(it = opts.begin(); it != opts.end(); ++it) {
         //kdDebug(KSSHPROC) << "opt.opt = " << (*it).opt << endl;
@@ -548,7 +548,7 @@ void KSshProcess::setPassword(QString password) {
 
 QString KSshProcess::getLine() {
     static QStringList buffer;
-    QString line = QString::null;
+    QString line = QString();
     Q3CString ptyLine, errLine;
 
     if( buffer.empty() ) {
@@ -604,13 +604,13 @@ QString KSshProcess::getLine() {
                 kdDebug(KSSHPROC) << "KSshProcess::connect(): " <<
                     "timed out waiting for a response" << endl;
                 mError = ERR_TIMED_OUT;
-                return QString::null;
+                return QString();
             }
             else if( ret == -1 ) {
                 kdDebug(KSSHPROC) << "KSshProcess::connect(): "
                     << "select error: " << strerror(errno) << endl;
                 mError = ERR_INTERNAL;
-                return QString::null;
+                return QString();
             }
     
             // We are not respecting any type of order in which the
@@ -735,8 +735,8 @@ bool KSshProcess::connect() {
         case STATE_START:
             // reset some key values to safe values
             mAcceptHostKey = false;
-            mKeyFingerprint = QString::null;
-            mKnownHostsFile = QString::null;
+            mKeyFingerprint.clear();
+            mKnownHostsFile.clear();
             
             if( mArgs.isEmpty() ) {
                 kdDebug(KSSHPROC) << "KSshProcess::connect(): ssh options "
@@ -845,7 +845,7 @@ bool KSshProcess::connect() {
                 
                 // Set the password to null so we will request another
                 // password if this one fails.
-                mPassword = QString::null;
+                mPassword.clear();
                 
                 mConnectState = STATE_WAIT_PROMPT;
             }
@@ -884,7 +884,7 @@ bool KSshProcess::connect() {
                 
                 // Set the password to null so we will request another
                 // password if this one fails.
-                mPassword = QString::null;
+                mPassword.clear();
                 
                 mConnectState = STATE_WAIT_PROMPT;
             }
