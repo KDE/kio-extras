@@ -13,6 +13,8 @@
 #include <kinstance.h>
 #include <klocale.h>
 
+#include <QTextDocument>
+
 #ifdef HAVE_SASL_SASL_H //prefer libsasl2
 #include <sasl/sasl.h>
 #else
@@ -595,7 +597,7 @@ void LDAPProtocol::openConnection()
 ///////////////////////////////////////////////////////////////////////////
   kdDebug(7125) << "OpenConnection to " << mHost << ":" << mPort << endl;
 
-  ret = ldap_initialize( &mLDAP, Url.htmlURL().toUtf8() );
+  ret = ldap_initialize( &mLDAP, Qt::escape(Url.prettyURL()).toUtf8() );
   if ( ret != LDAP_SUCCESS ) {
     LDAPErr( Url, ret );
     return;
