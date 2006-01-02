@@ -21,8 +21,8 @@
 
 #include <kmimetype.h>
 
-MimetypeListBoxItem::MimetypeListBoxItem(const QString &mimetype, Q3ListBox *parent)
-	: Q3ListBoxText(parent), m_mimetype(mimetype)
+MimetypeListBoxItem::MimetypeListBoxItem(const QString &mimetype, QListWidget *parent)
+	: QListWidgetItem(parent), m_mimetype(mimetype)
 {
 	KMimeType::Ptr mime = KMimeType::mimeType( mimetype );
 	setText( mime->comment() );

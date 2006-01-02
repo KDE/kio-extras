@@ -20,13 +20,13 @@
 #ifndef _MIMETYPELISTBOXITEM_H_
 #define _MIMETYPELISTBOXITEM_H_
 
-#include <q3listbox.h>
-#include <qstring.h>
+#include <QListWidget>
+#include <QString>
 
-class MimetypeListBoxItem : public Q3ListBoxText
+class MimetypeListBoxItem : public QListWidgetItem
 {
 public:
-	MimetypeListBoxItem(const QString &mimetype, Q3ListBox *parent);
+	MimetypeListBoxItem(const QString &mimetype, QListWidget *parent);
 
 	const QString &mimetype() const;
 

@@ -23,7 +23,7 @@
 #include <klineedit.h>
 #include <kactionselector.h>
 #include <kicondialog.h>
-#include <q3listbox.h>
+#include <QListWidget>
 #include <kservice.h>
 #include <kopenwith.h>
 #include <kpushbutton.h>
@@ -61,15 +61,15 @@ ServiceConfigDialog::ServiceConfigDialog(NotifierServiceAction *action,
 
 	for (  ; it!=end; ++it )
 	{
-		Q3ListBox *list;
+		QListWidget *list;
 		
 		if ( action_mimetypes.contains( *it ) )
 		{
-			list = m_view->mimetypesSelector->selectedListBox();
+			list = m_view->mimetypesSelector->selectedListWidget();
 		}
 		else
 		{
-			list = m_view->mimetypesSelector->availableListBox();
+			list = m_view->mimetypesSelector->availableListWidget();
 		}
 		
 		new MimetypeListBoxItem(  *it, list );
@@ -105,10 +105,10 @@ void ServiceConfigDialog::slotOk()
 
 	QStringList mimetypes;
 	
-	uint list_count = m_view->mimetypesSelector->selectedListBox()->count();
+	uint list_count = m_view->mimetypesSelector->selectedListWidget()->count();
 	for( uint i=0; i < list_count; ++i )
 	{
-		Q3ListBoxItem *item = m_view->mimetypesSelector->selectedListBox()->item(i);
+		QListWidgetItem *item = m_view->mimetypesSelector->selectedListWidget()->item(i);
 		MimetypeListBoxItem *mime_item = static_cast<MimetypeListBoxItem*>( item );
 		mimetypes.append( mime_item->mimetype() );
 	}
