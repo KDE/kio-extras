@@ -220,9 +220,8 @@ int LDAPProtocol::asyncSearch( LDAPUrl &usrc )
     usrc.scope() << " filter=\"" << usrc.filter() << "\" attrs=" << usrc.attributes() <<
     endl;
   retval = ldap_search_ext( mLDAP, usrc.dn().toUtf8(), scope,
-    usrc.filter().isEmpty() ? QByteArray() : usrc.filter().toUtf8(), attrs, 0,
-    serverctrls, clientctrls,
-    0, mSizeLimit, &msgid );
+    usrc.filter().isEmpty() ? QByteArray("objectClass=*") : usrc.filter().toUtf8(), 
+    attrs, 0, serverctrls, clientctrls, 0, mSizeLimit, &msgid );
 
   ldap_controls_free( serverctrls );
   ldap_controls_free( clientctrls );
