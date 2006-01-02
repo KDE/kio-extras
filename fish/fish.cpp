@@ -515,9 +515,11 @@ writes one chunk of data to stdin of child process
 */
 void fishProtocol::writeChild(const char *buf, int len) {
     if (outBufPos >= 0 && outBuf) {
+#if 0
         QString debug;
         debug.setLatin1(outBuf,outBufLen);
         if (len > 0) myDebug( << "write request while old one is pending, throwing away input (" << outBufLen << "," << outBufPos << "," << debug.left(10) << "...)" << endl);
+#endif
         return;
     }
     outBuf = buf;
@@ -1338,9 +1340,11 @@ void fishProtocol::run() {
                 return;
             }
             if (FD_ISSET(childFd,&wfds) && outBufPos >= 0) {
+#if 0
                 QString debug;
                 debug.setLatin1(outBuf+outBufPos,outBufLen-outBufPos);
                 myDebug( << "now writing " << (outBufLen-outBufPos) << " " << debug.left(40) << "..." << endl);
+#endif
                 if (outBufLen-outBufPos > 0) rc = write(childFd,outBuf+outBufPos,outBufLen-outBufPos);
                 else rc = 0;
                 if (rc >= 0) outBufPos += rc;
