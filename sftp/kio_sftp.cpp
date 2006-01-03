@@ -239,7 +239,7 @@ void sftpProtocol::sftpCopyGet(const KURL& dest, const KURL& src, int mode, bool
 
     int fd = -1;
     bool partExists = false;
-    bool markPartial = config()->readBoolEntry("MarkPartial", true);
+    bool markPartial = config()->readEntry("MarkPartial", QVariant(true)).toBool();
 
     if (markPartial)
     {
@@ -916,7 +916,7 @@ void sftpProtocol::sftpPut( const KURL& dest, int permissions, bool resume, bool
 
     quint64 offset = 0;
     bool partExists = false;
-    bool markPartial = config()->readBoolEntry("MarkPartial", true);
+    bool markPartial = config()->readEntry("MarkPartial", QVariant(true)).toBool();
 
     if( markPartial ) {
 

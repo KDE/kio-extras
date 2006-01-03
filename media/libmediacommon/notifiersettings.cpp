@@ -313,7 +313,7 @@ bool NotifierSettings::shouldLoadActions( KDesktopFile &desktop, const QString &
 
 	if ( desktop.hasKey( "Actions" )
 	  && desktop.hasKey( "ServiceTypes" )
-	  && !desktop.readBoolEntry( "X-KDE-MediaNotifierHide", false )  )
+	  && !desktop.readEntry( "X-KDE-MediaNotifierHide", QVariant(false )).toBool()  )
 	{
 		const QStringList actions = desktop.readListEntry( "Actions" );
 

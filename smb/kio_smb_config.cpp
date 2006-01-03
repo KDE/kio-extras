@@ -41,7 +41,7 @@ void SMBSlave::reparseConfiguration()
   cfg->setGroup("Browser Settings/SMBro");
   m_default_user=cfg->readEntry("User");
 //  m_default_workgroup=cfg->readEntry("Workgroup");
-//  m_showHiddenShares=cfg->readBoolEntry("ShowHiddenShares",false);
+//  m_showHiddenShares=cfg->readEntry("ShowHiddenShares", QVariant(false)).toBool();
 
   QString m_encoding = QTextCodec::codecForLocale()->name();
   m_default_encoding = cfg->readEntry( "Encoding", m_encoding.toLower() );
