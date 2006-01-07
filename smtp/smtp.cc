@@ -451,7 +451,7 @@ bool SMTPProtocol::batchProcessResponses( TransactionState * ts ) {
     if ( ts->failedFatally() )
       return false;
 
-    mSentCommandQueue.dequeue();
+    delete mSentCommandQueue.dequeue();
   }
 
   return true;
