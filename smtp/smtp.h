@@ -35,9 +35,7 @@
 
 #include <qstring.h>
 #include <q3ptrqueue.h>
-//Added by qt3to4:
 #include <QByteArray>
-#include <Q3MemArray>
 
 class KURL;
 class QByteArray;

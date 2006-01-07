@@ -44,7 +44,6 @@ extern "C" {
 #include <kio/authinfo.h>
 
 class SMTPProtocol;
-class Q3StrIList;
 
 namespace KioSMTP {
 

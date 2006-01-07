@@ -36,8 +36,6 @@
 #include <qstring.h>
 #include <qstringlist.h>
 
-class Q3StrIList;
-
 namespace KioSMTP {
 
   class Response;
