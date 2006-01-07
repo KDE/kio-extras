@@ -504,7 +504,7 @@ int POP3Protocol::loginSASL( KIO::AuthInfo &ai )
       }
 
     do {
-      result = sasl_client_start(conn, sasl_list.join(" ").latin1(),
+      result = sasl_client_start(conn, sasl_list.join(" ").toLatin1(),
         &client_interact, &out, &outlen, &mechusing);
 
       if (result == SASL_INTERACT)
@@ -523,26 +523,24 @@ int POP3Protocol::loginSASL( KIO::AuthInfo &ai )
 
     POP3_DEBUG << "Preferred authentication method is " << mechusing << "." << endl;
 
-    QByteArray challenge, tmp;
+    QByteArray msg,tmp;
 
     QString firstCommand = "AUTH " + QString::fromLatin1( mechusing );
-    challenge.setRawData( out, outlen );
-    KCodecs::base64Encode( challenge, tmp );
-    challenge.resetRawData( out, outlen );
-    if ( !tmp.isEmpty() ) {
+    msg = QByteArray::fromRawData( out, outlen ).toBase64();
+    if ( !msg.isEmpty() ) {
       firstCommand += " ";
-      firstCommand += QString::fromLatin1( tmp.data(), tmp.size() );
+      firstCommand += QString::fromLatin1( msg.data(), msg.size() );
     }
 
-    challenge.resize( 2049 );
-    resp = command( firstCommand.latin1(), challenge.data(), 2049 );
+    tmp.resize( 2049 );
+    resp = command( firstCommand.toLatin1(), tmp.data(), 2049 );
     while( resp == Cont ) {
-      challenge.resize(challenge.indexOf((char)0));
+      tmp.resize(msg.indexOf((char)0));
 //      POP3_DEBUG << "S: " << QCString(challenge.data(),challenge.size()+1) << endl;
-      KCodecs::base64Decode( challenge, tmp );
+      msg = QByteArray::fromBase64( tmp );
       do {
-        result = sasl_client_step(conn, tmp.isEmpty() ? 0 : tmp.data(),
-                                tmp.size(),
+        result = sasl_client_step(conn, msg.isEmpty() ? 0 : msg.data(),
+                                msg.size(),
                                 &client_interact,
                                 &out, &outlen);
 
@@ -560,14 +558,10 @@ int POP3Protocol::loginSASL( KIO::AuthInfo &ai )
         return -1;
       }
 
-      challenge.setRawData( out, outlen );
-      KCodecs::base64Encode( challenge, tmp );
-      challenge.resetRawData( out, outlen );
+      msg = QByteArray::fromRawData( out, outlen ).toBase64();
 //        POP3_DEBUG << "C: " << QCString(tmp.data(),tmp.size()+1) << endl;
-      tmp.resize(tmp.size()+1);
-      tmp[tmp.size()-1] = '\0';
-      challenge.resize(2049);
-      resp = command( tmp.data(), challenge.data(), 2049 );
+      tmp.resize(2049);
+      resp = command( msg.data(), tmp.data(), 2049 );
     }
 
     sasl_dispose( &conn );
