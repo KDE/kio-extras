@@ -3,8 +3,7 @@ Encoding=UTF-8
 Type=MimeType
 MimeType=media/camera_mounted
 Comment=Mounted Camera
-Comment[et]=Ühendatud kaamera
-Comment[ga]=Ceamara feistithe
+Comment[x-test]=xxMounted Cameraxx
 Icon=camera_mount
 
 X-KDE-AutoEmbed=true

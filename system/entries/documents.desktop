@@ -4,5 +4,4 @@ Type=Link
 Path[$e]=$( kio_system_documenthelper )
 Icon=folder_important
 Name=Documents Folder
-Name[et]=Dokumentide kataloog
-Name[ga]=Fillteán na gCáipéisí
+Name[x-test]=xxDocuments Folderxx
