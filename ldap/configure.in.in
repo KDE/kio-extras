@@ -20,7 +20,7 @@ if test "x$with_ldap" = "xCHECK" ; then
   if test $with_ldap = FOUND ; then
     with_ldap=NOTFOUND
     for ext in la so sl a dylib ; do
-      AC_FIND_FILE(libldap.$ext, $kde_libraries /usr/lib /usr/local/lib,
+      AC_FIND_FILE(libldap.$ext, $kde_libraries /usr/lib /usr/local/lib /usr/lib64,
         ldap_libdir)
       if test -r $ldap_libdir/libldap.$ext ; then
         if test "x$ldap_libdir" != "x/usr/lib" ; then
