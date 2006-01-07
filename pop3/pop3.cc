@@ -47,9 +47,9 @@ extern "C" {
 }
 #endif
 
-#include <q3cstring.h>
 #include <qglobal.h>
-#include <qregexp.h>
+#include <QByteArray>
+#include <QRegExp>
 
 #include <kdebug.h>
 #include <kinstance.h>
@@ -777,12 +777,12 @@ bool POP3Protocol::pop3_open()
 size_t POP3Protocol::realGetSize(unsigned int msg_num)
 {
   char *buf;
-  Q3CString cmd;
+  QByteArray cmd;
   size_t ret = 0;
 
   buf = new char[MAX_RESPONSE_LEN];
   memset(buf, 0, MAX_RESPONSE_LEN);
-  cmd.sprintf("LIST %u", msg_num);
+  cmd = "LIST " + QByteArray::number( msg_num );
   if ( command(cmd.data(), buf, MAX_RESPONSE_LEN) != Ok ) {
     delete[]buf;
     return 0;
@@ -807,7 +807,7 @@ void POP3Protocol::special(const QByteArray & aData)
     return;
 
   for (int i = 0; i < 2; i++) {
-    Q3CString cmd = (i) ? "AUTH" : "CAPA";
+    QByteArray cmd = (i) ? "AUTH" : "CAPA";
     if ( command(cmd) != Ok )
       continue;
     while (true) {
@@ -1110,8 +1110,7 @@ void POP3Protocol::listDir(const KURL &)
 {
   bool isINT;
   int num_messages = 0;
-  char buf[MAX_RESPONSE_LEN];
-  Q3CString q_buf;
+  QByteArray q_buf(MAX_RESPONSE_LEN, 0);
 
   // Try and open a connection
   if (!pop3_open()) {
@@ -1121,13 +1120,11 @@ void POP3Protocol::listDir(const KURL &)
   }
   // Check how many messages we have. STAT is by law required to
   // at least return +OK num_messages total_size
-  memset(buf, 0, MAX_RESPONSE_LEN);
-  if ( command("STAT", buf, MAX_RESPONSE_LEN) != Ok ) {
+  if ( command("STAT", q_buf.data(), MAX_RESPONSE_LEN) != Ok ) {
     error(ERR_INTERNAL, "??");
     return;
   }
-  POP3_DEBUG << "The stat buf is :" << buf << ":" << endl;
-  q_buf = buf;
+  POP3_DEBUG << "The stat buf is :" << q_buf << ":" << endl;
   if (q_buf.find(" ") == -1) {
     error(ERR_INTERNAL,
           "Invalid POP3 response, we should have at least one space!");
