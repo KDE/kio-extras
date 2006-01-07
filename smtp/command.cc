@@ -203,7 +203,7 @@ namespace KioSMTP {
     mOut = 0; mOutlen = 0;
     mOneStep = false;
     
-    result = sasl_client_new( "smtp", aFQDN.latin1(),
+    result = sasl_client_new( "smtp", aFQDN.toLatin1(),
       0, 0, NULL, 0, &conn );
     if ( result != SASL_OK ) {
       SASLERROR
@@ -302,7 +302,7 @@ namespace KioSMTP {
     mNeedResponse = true;
     QByteArray cmd;
 #ifdef HAVE_LIBSASL2
-    QByteArray tmp, challenge;
+    QByteArray challenge;
     if ( !mUngetSASLResponse.isNull() ) {
       // implement un-ungetCommandLine
       cmd = mUngetSASLResponse;
@@ -310,21 +310,17 @@ namespace KioSMTP {
     } else if ( mFirstTime ) {
       QString firstCommand = "AUTH " + QString::fromLatin1( mMechusing );
       
-      tmp.setRawData( mOut, mOutlen );
-      KCodecs::base64Encode( tmp, challenge );
-      tmp.resetRawData( mOut, mOutlen );
+      challenge = QByteArray::fromRawData( mOut, mOutlen ).toBase64();
       if ( !challenge.isEmpty() ) {
         firstCommand += " ";
         firstCommand += QString::fromLatin1( challenge.data(), challenge.size() );
       }
-      cmd = firstCommand.latin1();
+      cmd = firstCommand.toLatin1();
       
       if ( mOneStep ) mComplete = true;
     } else {
 //      kdDebug(7112) << "SS: '" << mLastChallenge << "'" << endl;
-      tmp.setRawData( mLastChallenge.data(), mLastChallenge.length() );
-      KCodecs::base64Decode( tmp, challenge );
-      tmp.resetRawData( mLastChallenge.data(), mLastChallenge.length() );
+      challenge = QByteArray::fromBase64( mLastChallenge );
       int result;
       do {
         result = sasl_client_step(conn, challenge.isEmpty() ? 0 : challenge.data(),
@@ -341,9 +337,7 @@ namespace KioSMTP {
         SASLERROR
         return "";
       }
-      tmp.setRawData( mOut, mOutlen );
-      cmd = KCodecs::base64Encode( tmp );
-      tmp.resetRawData( mOut, mOutlen );
+      cmd = QByteArray::fromRawData( mOut, mOutlen ).toBase64();
       
 //      kdDebug(7112) << "CC: '" << cmd << "'" << endl;
       mComplete = ( result == SASL_OK );

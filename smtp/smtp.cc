@@ -613,11 +613,11 @@ bool SMTPProtocol::authenticate()
   QStringList strList;
 
   if (!metaData("sasl").isEmpty())
-    strList.append(metaData("sasl").latin1());
+    strList.append(metaData("sasl").toLatin1());
   else
     strList = mCapabilities.saslMethodsQSL();
 
-  AuthCommand authCmd( this, strList.join(" ").latin1(), m_sServer, authInfo );
+  AuthCommand authCmd( this, strList.join(" ").toLatin1(), m_sServer, authInfo );
   bool ret = execute( &authCmd );
   m_sUser = authInfo.username;
   m_sPass = authInfo.password;

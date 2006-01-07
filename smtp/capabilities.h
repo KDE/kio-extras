@@ -61,7 +61,6 @@ namespace KioSMTP {
     QString asMetaDataString() const;
 
     QString authMethodMetaData() const;
-    Q3StrIList saslMethods() const;
 
     QString createSpecialResponse( bool tls ) const;
 

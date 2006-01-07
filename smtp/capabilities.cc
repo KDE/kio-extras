@@ -35,8 +35,6 @@
 
 #include "response.h"
 
-#include <q3strlist.h>
-
 namespace KioSMTP {
 
   Capabilities Capabilities::fromResponse( const Response & ehlo ) {
@@ -87,14 +85,6 @@ namespace KioSMTP {
     QString result;
     for ( QStringList::const_iterator it = sl.begin() ; it != sl.end() ; ++it )
       result += "SASL/" + *it + '\n';
-    return result;
-  }
-
-  Q3StrIList Capabilities::saslMethods() const {
-    Q3StrIList result( true ); // deep copies to be safe
-    QStringList sl = saslMethodsQSL();
-    for ( QStringList::const_iterator it = sl.begin() ; it != sl.end() ; ++it )
-      result.append( (*it).latin1() );
     return result;
   }
 
