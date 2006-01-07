@@ -244,13 +244,10 @@ QByteArray LDAPProtocol::LDAPEntryAsLDIF( LDAPMessage *message )
   char *name;
   struct berval **bvals;
   BerElement     *entry;
-  QByteArray tmp;
 
   char *dn = ldap_get_dn( mLDAP, message );
   if ( dn == NULL ) return QByteArray( "" );
-  tmp.setRawData( dn, strlen( dn ) );
-  result += LDIF::assembleLine( "dn", tmp ) + '\n';
-  tmp.resetRawData( dn, strlen( dn ) );
+  result += LDIF::assembleLine( "dn", QByteArray::fromRawData( dn, qstrlen( dn ) ) ) + '\n';
   ldap_memfree( dn );
 
   // iterate over the attributes
@@ -264,9 +261,7 @@ QByteArray LDAPProtocol::LDAPEntryAsLDIF( LDAPMessage *message )
       for ( int i = 0; bvals[i] != 0; i++ ) {
         char* val = bvals[i]->bv_val;
         unsigned long len = bvals[i]->bv_len;
-        tmp.setRawData( val, len );
-        result += LDIF::assembleLine( QString::fromUtf8( name ), tmp, 76 ) + '\n';
-        tmp.resetRawData( val, len );
+        result += LDIF::assembleLine( QString::fromUtf8( name ), QByteArray::fromRawData( val, len ), 76 ) + '\n';
       }
       ldap_value_free_len(bvals);
     }
@@ -740,7 +735,6 @@ void LDAPProtocol::get( const KURL &_url )
   // collect the result
   QByteArray result;
   filesize_t processed_size = 0;
-  QByteArray array;
 
   while( true ) {
     ret = ldap_result( mLDAP, id, 0, NULL, &msg );
@@ -758,10 +752,8 @@ void LDAPProtocol::get( const KURL &_url )
       result += '\n';
       uint len = result.length();
       processed_size += len;
-      array.setRawData( result.data(), len );
-      data(array);
+      data(result);
       processedSize( processed_size );
-      array.resetRawData( result.data(), len );
 
       entry = ldap_next_entry( mLDAP, entry );
     }
@@ -773,9 +765,8 @@ void LDAPProtocol::get( const KURL &_url )
 
   totalSize(processed_size);
 
-  array.resize(0);
   // tell we are finished
-  data(array);
+  data( QByteArray() );
 
   // tell we are finished
   finished();
