@@ -33,14 +33,11 @@
 
 #include "capabilities.h"
 
-#include <qstring.h>
-#include <q3ptrqueue.h>
+#include <QString>
+#include <QQueue>
 #include <QByteArray>
 
 class KURL;
-class QByteArray;
-/*template <typename T> class Q3MemArray;
-typedef Q3MemArray<char> QByteArray;*/
 
 namespace KioSMTP {
   class Response;
@@ -139,7 +136,7 @@ protected:
 
   KioSMTP::Capabilities mCapabilities;
 
-  typedef Q3PtrQueue<KioSMTP::Command> CommandQueue;
+  typedef QQueue<KioSMTP::Command*> CommandQueue;
   CommandQueue mPendingCommandQueue;
   CommandQueue mSentCommandQueue;
 };

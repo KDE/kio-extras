@@ -144,8 +144,6 @@ SMTPProtocol::SMTPProtocol(const QByteArray & pool, const QByteArray & app,
    m_opened(false)
 {
   //kdDebug(7112) << "SMTPProtocol::SMTPProtocol" << endl;
-  mPendingCommandQueue.setAutoDelete( true );
-  mSentCommandQueue.setAutoDelete( true );
 }
 
 unsigned int SMTPProtocol::sendBufferSize() const {
@@ -394,7 +392,7 @@ QByteArray SMTPProtocol::collectPipelineCommands( TransactionState * ts ) {
   QByteArray cmdLine;
   unsigned int cmdLine_len = 0;
 
-  while ( mPendingCommandQueue.head() ) {
+  while ( !mPendingCommandQueue.isEmpty() ) {
 
     Command * cmd = mPendingCommandQueue.head();
 
@@ -453,7 +451,7 @@ bool SMTPProtocol::batchProcessResponses( TransactionState * ts ) {
     if ( ts->failedFatally() )
       return false;
 
-    mSentCommandQueue.remove();
+    mSentCommandQueue.dequeue();
   }
 
   return true;
@@ -651,7 +649,9 @@ void SMTPProtocol::smtp_close( bool nice ) {
   m_sOldPass.clear();
   
   mCapabilities.clear();
+  qDeleteAll( mPendingCommandQueue );
   mPendingCommandQueue.clear();
+  qDeleteAll( mSentCommandQueue );
   mSentCommandQueue.clear();
 
   m_opened = false;
