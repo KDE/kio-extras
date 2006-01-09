@@ -1,5 +1,3 @@
-#undef QT3_SUPPORT
-
 #ifdef HAVE_CONFIG_H
 #include <config.h>
 #endif
