@@ -523,7 +523,7 @@ namespace KioSMTP {
   }
 
   static QByteArray dotstuff_lf2crlf( const QByteArray & ba, char & last ) {
-    QByteArray result( ba.size() * 2 + 1 ); // worst case: repeated "[.]\n"
+    QByteArray result( ba.size() * 2 + 1, 0 ); // worst case: repeated "[.]\n"
     const char * s = ba.data();
     const char * const send = ba.data() + ba.size();
     char * d = result.data();

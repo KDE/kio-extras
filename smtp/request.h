@@ -32,9 +32,8 @@
 #ifndef __KIOSMTP_REQUEST_H__
 #define __KIOSMTP_REQUEST_H__
 
-#include <qstring.h>
-#include <qstringlist.h>
-//Added by qt3to4:
+#include <QString>
+#include <QStringList>
 #include <QByteArray>
 
 class KURL;

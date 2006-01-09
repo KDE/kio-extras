@@ -271,14 +271,14 @@ void SMTPProtocol::put(const KURL & url, int /*permissions */ ,
     return;
   }
 
-  queueCommand( new MailFromCommand( this, request.fromAddress().latin1(),
+  queueCommand( new MailFromCommand( this, request.fromAddress().toLatin1(),
 				     request.is8BitBody(), request.size() ) );
 
   // Loop through our To and CC recipients, and send the proper
   // SMTP commands, for the benefit of the server.
   QStringList recipients = request.recipients();
   for ( QStringList::const_iterator it = recipients.begin() ; it != recipients.end() ; ++it )
-    queueCommand( new RcptToCommand( this, (*it).latin1() ) );
+    queueCommand( new RcptToCommand( this, (*it).toLatin1() ) );
 
   queueCommand( Command::DATA );
   queueCommand( new TransferCommand( this, request.headerFields( mset.getSetting( KEMailSettings::RealName ) ) ) );

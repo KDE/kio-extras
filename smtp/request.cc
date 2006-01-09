@@ -39,8 +39,6 @@
 #include <kdebug.h>
 
 #include <assert.h>
-//Added by qt3to4:
-#include <QByteArray>
 
 namespace KioSMTP {
 
@@ -52,7 +50,7 @@ namespace KioSMTP {
     kdDebug(7112) << "Parsing request from query:\n" + query.join("\n" ) << endl;
 #endif
     for ( QStringList::const_iterator it = query.begin() ; it != query.end() ; ++it ) {
-      int equalsPos = (*it).find( '=' );
+      int equalsPos = (*it).indexOf( '=' );
       if ( equalsPos <= 0 )
 	continue;
 
@@ -103,7 +101,7 @@ namespace KioSMTP {
 
   static inline bool isSpecial( char ch ) {
     static const QByteArray specials = "()<>[]:;@\\,.\"";
-    return specials.find( ch ) >= 0;
+    return specials.indexOf( ch ) >= 0;
   }
 
 
@@ -124,12 +122,12 @@ namespace KioSMTP {
   static QByteArray quote( const QString & s ) {
     assert( isUsAscii( s ) );
 
-    QByteArray r( s.length() * 2 );
+    QByteArray r( s.length() * 2, 0 );
     bool needsQuotes = false;
 
     unsigned int j = 0;
     for ( int i = 0 ; i < s.length() ; ++i ) {
-      char ch = s[i].latin1();
+      char ch = s[i].toLatin1();
       if ( isSpecial( ch ) ) {
 	if ( needsQuoting( ch ) )
 	  r[j++] = '\\';
@@ -149,19 +147,19 @@ namespace KioSMTP {
 
   static QByteArray formatFromAddress( const QString & fromRealName, const QString & fromAddress ) {
     if ( fromRealName.isEmpty() )
-      return fromAddress.latin1(); // no real name: return "joe@user.org"
+      return fromAddress.toLatin1(); // no real name: return "joe@user.org"
 
     // return "Joe User <joe@user.org>", "\"User, Joe\" <joe@user.org>"
     // or "=?utf-8?q?Joe_User?= <joe@user.org>", depending on real name's nature.
     QByteArray r = isUsAscii( fromRealName ) ? quote( fromRealName ) : rfc2047Encode( fromRealName );
-    return r + " <" + fromAddress.latin1() + '>';
+    return r + " <" + fromAddress.toLatin1() + '>';
   }
 
 
 
   static QByteArray formatSubject( QString s ) {
     if ( isUsAscii( s ) )
-      return s.remove( '\n' ).latin1(); // don't break header folding,
+      return s.remove( '\n' ).toLatin1(); // don't break header folding,
 					// so remove any line break
 					// that happen to be around
     else
@@ -182,9 +180,9 @@ namespace KioSMTP {
     if ( !subject().isEmpty() )
       result += "Subject: " + formatSubject( subject() ) + "\r\n";
     if ( !to().empty() )
-      result += QByteArray( "To: " ) + to().join( ",\r\n\t" /* line folding */ ).latin1() + "\r\n";
+      result += QByteArray( "To: " ) + to().join( ",\r\n\t" /* line folding */ ).toLatin1() + "\r\n";
     if ( !cc().empty() )
-      result += QByteArray( "Cc: " ) + cc().join( ",\r\n\t" /* line folding */ ).latin1() + "\r\n";
+      result += QByteArray( "Cc: " ) + cc().join( ",\r\n\t" /* line folding */ ).toLatin1() + "\r\n";
     return result;
   }
 
