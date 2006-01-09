@@ -1,3 +1,4 @@
+#undef QT3_SUPPORT
 
 #ifdef HAVE_CONFIG_H
 #include <config.h>
@@ -381,9 +382,9 @@ void LDAPProtocol::LDAPEntry2UDSEntry( const QString &dn, UDSEntry &entry,
   int pos;
   entry.clear();
   QString name = dn;
-  if ( (pos = name.find(",")) > 0 )
+  if ( (pos = name.indexOf(',')) > 0 )
     name = name.left( pos );
-  if ( (pos = name.find("=")) > 0 )
+  if ( (pos = name.indexOf('=')) > 0 )
     name.remove( 0, pos+1 );
   name.replace(' ', "_");
   if ( !dir ) name += ".ldif";
