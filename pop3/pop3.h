@@ -70,7 +70,7 @@ protected:
    *  Send a command to the server. Using this function, getResponse
    *  has to be called separately.
    */
-  bool sendCommand(const char *cmd);
+  bool sendCommand(const QByteArray &cmd);
 
   enum Resp{Err, Ok, Cont, Invalid};
   /**
@@ -78,7 +78,7 @@ protected:
    *  reply via getResponse.  Similar rules apply.  If no buffer is
    *  specified, no data is passed back.
    */
-  Resp command(const char *buf, char *r_buf = 0, unsigned int r_len = 0);
+  Resp command(const QByteArray &buf, char *r_buf = 0, unsigned int r_len = 0);
 
   /**
    *  All POP3 commands will generate a response.  Each response will
@@ -87,7 +87,7 @@ protected:
    *  the first line (the response), and copy the response sans +OK/-ERR
    *  into a buffer (up to len bytes) if one was passed to it.
    */
-  Resp getResponse(char *buf, unsigned int len, const char *command);
+  Resp getResponse(char *buf, unsigned int len);
 
   /** Call int pop3_open() and report an error, if if fails */
   void openConnection();
