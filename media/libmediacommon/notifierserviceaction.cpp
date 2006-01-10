@@ -159,8 +159,8 @@ void NotifierServiceAction::save() const
 
 	desktopFile.setDesktopGroup();
 
-	desktopFile.writeEntry(QString("ServiceTypes"), m_mimetypes, ",");
+	desktopFile.writeEntry(QString("ServiceTypes"), m_mimetypes, ',');
 	desktopFile.writeEntry(QString("Actions"),
-	                       QStringList(m_service.m_strName),";");
+	                       QStringList(m_service.m_strName),';');
 }
 
