@@ -1,5 +1,6 @@
 /*  This file is part of the KDE libraries
     Copyright (C) 2000 Malte Starostik <malte@kde.org>
+    Copyright (C) 2006 Roberto Cappuccio <roberto.cappuccio@gmail.com>
 
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Library General Public
@@ -24,7 +25,7 @@
 #include <qpainter.h>
 //Added by qt3to4:
 #include <QTimerEvent>
-#include <QAbstractEventDispatcher>
+
 #include <kapplication.h>
 #include <khtml_part.h>
 
@@ -63,12 +64,13 @@ bool HTMLCreator::create(const QString &path, int width, int height, QImage &img
     KURL url;
     url.setPath(path);
     m_html->openURL(url);
-    m_completed = false;
-    startTimer(5000);
-    while (!m_completed)
-        kapp->processOneEvent();
-	QAbstractEventDispatcher::instance()->unregisterTimers(this);
-        
+
+    int t = startTimer(5000);
+
+    qApp->enter_loop();
+
+    killTimer(t);
+
     // render the HTML page on a bigger pixmap and use smoothScale,
     // looks better than directly scaling with the QPainter (malte)
     QPixmap pix;
@@ -81,6 +83,7 @@ bool HTMLCreator::create(const QString &path, int width, int height, QImage &img
     }
     else
         pix.resize(400, 600);
+
     // light-grey background, in case loadind the page failed
     pix.fill( QColor( 245, 245, 245 ) );
 
@@ -92,20 +95,22 @@ bool HTMLCreator::create(const QString &path, int width, int height, QImage &img
     p.begin(&pix);
     m_html->paint(&p, rc);
     p.end();
- 
+
     img = pix.convertToImage();
+
+    m_html->closeURL();
+
     return true;
 }
 
 void HTMLCreator::timerEvent(QTimerEvent *)
 {
-    m_html->closeURL();
-    m_completed = true;
+    qApp->exit_loop();
 }
 
 void HTMLCreator::slotCompleted()
 {
-    m_completed = true;
+    qApp->exit_loop();
 }
 
 ThumbCreator::Flags HTMLCreator::flags() const

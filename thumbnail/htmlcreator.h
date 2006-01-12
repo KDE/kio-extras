@@ -1,5 +1,6 @@
 /*  This file is part of the KDE libraries
     Copyright (C) 2000 Malte Starostik <malte@kde.org>
+    Copyright (C) 2006 Roberto Cappuccio <roberto.cappuccio@gmail.com>
 
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Library General Public
@@ -43,7 +44,6 @@ private slots:
 
 private:
     KHTMLPart *m_html;
-    bool m_completed;
 };
 
 #endif
