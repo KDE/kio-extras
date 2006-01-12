@@ -295,7 +295,7 @@ void sftpProtocol::sftpCopyGet(const KURL& dest, const KURL& src, int mode, bool
     if ( info.code != 0 )
     {
       // Should we keep the partially downloaded file ??
-      KIO::filesize_t size = config()->readNumEntry("MinimumKeepSize", DEFAULT_MINIMUM_KEEP_SIZE);
+      KIO::filesize_t size = config()->readEntry("MinimumKeepSize", DEFAULT_MINIMUM_KEEP_SIZE);
       if (info.size < size)
         ::remove(dest_part.data());
 
@@ -1060,7 +1060,7 @@ void sftpProtocol::sftpPut( const KURL& dest, int permissions, bool resume, bool
 
         if( markPartial ) {
             // Remove remote file if it smaller than our keep size
-            uint minKeepSize = config()->readNumEntry("MinimumKeepSize", DEFAULT_MINIMUM_KEEP_SIZE);
+            uint minKeepSize = config()->readEntry("MinimumKeepSize", DEFAULT_MINIMUM_KEEP_SIZE);
 
             if( sftpStat(writeUrl, attr) == SSH2_FX_OK ) {
                 if( attr.fileSize() < minKeepSize ) {

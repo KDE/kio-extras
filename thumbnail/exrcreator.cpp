@@ -64,7 +64,7 @@ bool EXRCreator::create(const QString &path, int, int, QImage &img)
 	kdDebug() << "EXRcreator - using original image" << endl;
 	KConfig * config = KGlobal::config();
 	KConfigGroup configGroup( config, "PreviewSettings" );
-	unsigned long long maxSize = configGroup.readNumEntry( "MaximumSize", 1024*1024 /* 1MB */ );
+	unsigned long long maxSize = configGroup.readEntry( "MaximumSize", 1024*1024 /* 1MB */ );
 	unsigned long long fileSize = QFile( path ).size();
 	if ( (fileSize > 0) && (fileSize < maxSize) ) {
 	    if (!img.load( path )) {

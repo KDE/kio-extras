@@ -165,7 +165,7 @@ bool SMBSlave::auth_initialize_smbc()
         KSimpleConfig cfg( "kioslaverc", true );
 
         cfg.setGroup( "SMB" );
-        int debug_level = cfg.readNumEntry( "DebugLevel", 0 );
+        int debug_level = cfg.readEntry( "DebugLevel", 0 );
 
 #if 0
 	/* old API initialisation routine does not allow to set flags */
