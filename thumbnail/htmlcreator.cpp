@@ -25,6 +25,7 @@
 #include <qpainter.h>
 //Added by qt3to4:
 #include <QTimerEvent>
+#include <QEventLoop>
 
 #include <kapplication.h>
 #include <khtml_part.h>
@@ -67,7 +68,7 @@ bool HTMLCreator::create(const QString &path, int width, int height, QImage &img
 
     int t = startTimer(5000);
 
-    qApp->enter_loop();
+    m_eventLoop.exec(QEventLoop::ExcludeUserInputEvents);
 
     killTimer(t);
 
@@ -105,12 +106,12 @@ bool HTMLCreator::create(const QString &path, int width, int height, QImage &img
 
 void HTMLCreator::timerEvent(QTimerEvent *)
 {
-    qApp->exit_loop();
+    m_eventLoop.quit()
 }
 
 void HTMLCreator::slotCompleted()
 {
-    qApp->exit_loop();
+    m_eventLoop.quit()
 }
 
 ThumbCreator::Flags HTMLCreator::flags() const

@@ -24,6 +24,7 @@
 #include <kio/thumbcreator.h>
 //Added by qt3to4:
 #include <QTimerEvent>
+#include <QEventLoop>
 
 class KHTMLPart;
 
@@ -44,6 +45,7 @@ private slots:
 
 private:
     KHTMLPart *m_html;
+    QEventLoop m_eventLoop;
 };
 
 #endif
