@@ -106,12 +106,12 @@ bool HTMLCreator::create(const QString &path, int width, int height, QImage &img
 
 void HTMLCreator::timerEvent(QTimerEvent *)
 {
-    m_eventLoop.quit()
+    m_eventLoop.quit();
 }
 
 void HTMLCreator::slotCompleted()
 {
-    m_eventLoop.quit()
+    m_eventLoop.quit();
 }
 
 ThumbCreator::Flags HTMLCreator::flags() const
