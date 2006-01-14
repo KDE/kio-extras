@@ -22,15 +22,12 @@
 
 #include <qimage.h>
 
-#include <kimageio.h>
-
 #include "imagecreator.h"
 
 extern "C"
 {
     KDE_EXPORT ThumbCreator *new_creator()
     {
-        KImageIO::registerFormats();
         return new ImageCreator;
     }
 }

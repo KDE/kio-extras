@@ -19,7 +19,6 @@
 
 #include <qimage.h>
 
-#include <kimageio.h>
 #include <kdebug.h>
 #include <kconfig.h>
 #include <kglobal.h>
