@@ -22,6 +22,8 @@
 
 #include <qimage.h>
 
+#include <kdemacros.h>
+
 #include "imagecreator.h"
 
 extern "C"
