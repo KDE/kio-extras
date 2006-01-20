@@ -57,7 +57,7 @@ k_dcop_signals:
 	void mediumRemoved(const QString &name, bool allowNotification);
 	void mediumChanged(const QString &name, bool allowNotification);
 
-private slots:
+private Q_SLOTS:
 	void loadBackends();
 	
 	void slotMediumAdded(const QString &id, const QString &name,

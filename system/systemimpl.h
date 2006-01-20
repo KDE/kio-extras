@@ -45,10 +45,10 @@ public:
 	int lastErrorCode() const { return m_lastErrorCode; }
 	QString lastErrorMessage() const { return m_lastErrorMessage; }
 
-signals:
+Q_SIGNALS:
     void leaveModality();
 
-private slots:
+private Q_SLOTS:
 	KURL findBaseURL(const QString &filename) const;
 	void slotEntries(KIO::Job *job, const KIO::UDSEntryList &list);
 	void slotResult(KIO::Job *job);

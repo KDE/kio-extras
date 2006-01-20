@@ -36,7 +36,7 @@ public:
 	bool unplug(const QString &devNode);
 	bool camera(const QString &devNode);
 
-private slots:
+private Q_SLOTS:
 	void slotDirty(const QString &path);
 
 private:

@@ -34,7 +34,7 @@ public:
 	                    const QStringList &mimetypesList,
 	                    QWidget* parent = 0, const char* name = 0);
 	
-public slots:
+public Q_SLOTS:
 	void slotOk();
 	void slotIconChanged();
 	void slotCommand();

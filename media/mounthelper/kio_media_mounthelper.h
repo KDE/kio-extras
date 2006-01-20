@@ -41,7 +41,7 @@ private:
 	QString m_device;
 	bool m_isCdrom;
 
-private slots:
+private Q_SLOTS:
 	void slotResult(KIO::Job* job);
 	void slotResultSafe(KIO::Job* job);
 	void finished();

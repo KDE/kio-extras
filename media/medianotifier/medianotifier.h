@@ -40,7 +40,7 @@ public:
 k_dcop:
 	void onMediumChange( const QString &name, bool allowNotification );
 
-private slots:
+private Q_SLOTS:
 	void slotStatResult( KIO::Job *job );
 	
 private:

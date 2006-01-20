@@ -63,9 +63,9 @@ class KManPart : public KHTMLPart
       KManPart( QWidget * parent, const char * name = 0L );
       KParts::BrowserExtension * extension() {return m_extension;};
 
-   public slots:
+   public Q_SLOTS:
       virtual bool openURL( const KURL &url );
-   protected slots:
+   protected Q_SLOTS:
       void readData(KIO::Job * , const QByteArray & data);
       void jobDone( KIO::Job *);
    protected:

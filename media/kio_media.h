@@ -42,7 +42,7 @@ public:
 	virtual void stat(const KURL &url);
 	virtual void listDir(const KURL &url);
 
-private slots:
+private Q_SLOTS:
 	void slotWarning( const QString &msg );
 	
 private:

@@ -40,7 +40,7 @@ public:
   virtual void mimetype(const KURL& url);
   virtual void get(const KURL& url);
 
-private slots:
+private Q_SLOTS:
   void       slotGetStdOutput(KProcess*, char*, int);
 
 private:

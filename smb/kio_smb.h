@@ -263,7 +263,7 @@ public:
     //virtual void slave_status();
     virtual void special( const QByteArray & );
 
-private slots:
+private Q_SLOTS:
     void readOutput(KProcess *proc, char *buffer, int buflen);
     void readStdErr(KProcess *proc, char *buffer, int buflen);
 

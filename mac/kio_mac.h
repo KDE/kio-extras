@@ -34,7 +34,7 @@ public:
     virtual void get(const KURL& url );
     virtual void listDir(const KURL& url);
     virtual void stat(const KURL& url);
-protected slots:
+protected Q_SLOTS:
     void slotGetStdOutput(KProcess*, char*, int);
     void slotSetDataStdOutput(KProcess*, char *s, int len);
 protected:

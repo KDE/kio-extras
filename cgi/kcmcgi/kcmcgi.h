@@ -37,9 +37,9 @@ class KCMCgi : public KCModule
     void defaults();
     QString quickHelp() const;
 
-  public slots:
+  public Q_SLOTS:
 
-  protected slots:
+  protected Q_SLOTS:
     void addPath();
     void removePath();
     void slotItemSelected( Q3ListBoxItem * item );

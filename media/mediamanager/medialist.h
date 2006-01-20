@@ -65,7 +65,7 @@ public:
 
 	bool setUserLabel(const QString &name, const QString &label);
 
-signals:
+Q_SIGNALS:
 	void mediumAdded(const QString &id, const QString &name,
 	                 bool allowNotification);
 	void mediumRemoved(const QString &id, const QString &name,

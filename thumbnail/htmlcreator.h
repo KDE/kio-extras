@@ -40,7 +40,7 @@ public:
 protected:
     virtual void timerEvent(QTimerEvent *);
 
-private slots:
+private Q_SLOTS:
     void slotCompleted();
 
 private:

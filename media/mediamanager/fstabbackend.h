@@ -40,7 +40,7 @@ public:
                           const QString &fsType, bool mounted,
                           QString &mimeType, QString &iconName,
 	                  QString &label);
-private slots:
+private Q_SLOTS:
 	void slotDirty(const QString &path);
 	void handleFstabChange(bool allowNotification = true);
 	void handleMtabChange(bool allowNotification = true);

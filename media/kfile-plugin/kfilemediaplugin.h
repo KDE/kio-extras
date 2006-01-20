@@ -42,10 +42,10 @@ private:
 	unsigned long m_used;
 	unsigned long m_free;
 
-signals:
+Q_SIGNALS:
     void leaveModality();
 
-private slots:
+private Q_SLOTS:
 	void slotFoundMountPoint(const QString &mountPoint,
 	                         unsigned long total, unsigned long used,
 	                         unsigned long available);

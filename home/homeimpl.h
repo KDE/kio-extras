@@ -44,11 +44,11 @@ public:
 	int lastErrorCode() const { return m_lastErrorCode; }
 	QString lastErrorMessage() const { return m_lastErrorMessage; }
 
-private slots:
+private Q_SLOTS:
 	void slotStatResult(KIO::Job *job);
        void enterLoop();
 
-signals:
+Q_SIGNALS:
            void leaveModality();
 
 private:

@@ -72,7 +72,7 @@ public:
   InteractiveSMTPServerWindow( QSocket * socket, QWidget * parent=0, const char * name=0, WFlags f=0 );
   ~InteractiveSMTPServerWindow();
 
-public slots:
+public Q_SLOTS:
   void slotSendResponse();
   void slotDisplayClient( const QString & s ) {
     mTextEdit->append( "C:" + escape(s) );

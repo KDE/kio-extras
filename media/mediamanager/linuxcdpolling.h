@@ -66,7 +66,7 @@ public:
 	static DiscType identifyDiscType(const QByteArray &devNode,
 		 const DiscType &current = DiscType::Unknown);
 
-private slots:
+private Q_SLOTS:
 	void slotMediumAdded(const QString &id);
 	void slotMediumRemoved(const QString &id);
 	void slotMediumStateChanged(const QString &id);

@@ -38,7 +38,7 @@ public:
 	                    QWidget* parent = 0, const char* name = 0 );
 	~NotificationDialog();
 
-private slots:
+private Q_SLOTS:
 	void slotOk();
 	void slotConfigure();
 	void slotActionsChanged(const QString& dir);
