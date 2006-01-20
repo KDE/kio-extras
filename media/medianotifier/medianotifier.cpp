@@ -25,6 +25,7 @@
 #include <QByteArray>
 #include <QLinkedList>
 
+#include <kapplication.h>
 #include <kdebug.h>
 #include <klocale.h>
 #include <kprocess.h>
@@ -56,6 +57,12 @@ void MediaNotifier::onMediumChange( const QString &name, bool allowNotification 
 	kdDebug() << "MediaNotifier::onMediumChange( " << name << ", "
 	          << allowNotification << ")" << endl;
 	
+// Update user activity timestamp, otherwise the notification dialog will be shown
+// in the background due to focus stealing prevention. Entering a new media can
+// be seen as a kind of user activity after all. It'd be better to update the timestamp
+// as soon as the media is entered, but it apparently takes some time to get here.
+	kapp->updateUserTimestamp();
+
 	KURL url(  "system:/media/"+name );
 
 	KIO::SimpleJob *job = KIO::stat( url, false );
