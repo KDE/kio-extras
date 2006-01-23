@@ -36,7 +36,7 @@
 #include <QStringList>
 #include <QByteArray>
 
-class KURL;
+class KUrl;
 
 namespace KioSMTP {
 

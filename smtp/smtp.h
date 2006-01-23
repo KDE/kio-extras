@@ -37,7 +37,7 @@
 #include <QQueue>
 #include <QByteArray>
 
-class KURL;
+class KUrl;
 
 namespace KioSMTP {
   class Response;
