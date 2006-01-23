@@ -46,7 +46,7 @@ namespace KioSMTP {
       : mSubject( "missing subject" ), mEmitHeaders( true ),
 	m8Bit( false ), mSize( 0 ) {}
 
-    static Request fromURL( const KURL & url );
+    static Request fromURL( const KUrl & url );
 
     QString profileName() const { return mProfileName; }
     void setProfileName( const QString & profileName ) { mProfileName = profileName; }
