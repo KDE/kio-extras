@@ -39,19 +39,19 @@ public:
   sftpProtocol(const QByteArray &pool_socket, const QByteArray &app_socket);
   virtual ~sftpProtocol();
   virtual void setHost(const QString& h, int port, const QString& user, const QString& pass);
-  virtual void get(const KURL& url);
-  virtual void listDir(const KURL& url) ;
-  virtual void mimetype(const KURL& url);
-  virtual void stat(const KURL& url);
-  virtual void copy(const KURL &src, const KURL &dest, int permissions, bool overwrite);
-  virtual void put(const KURL& url, int permissions, bool overwrite, bool resume);
+  virtual void get(const KUrl& url);
+  virtual void listDir(const KUrl& url) ;
+  virtual void mimetype(const KUrl& url);
+  virtual void stat(const KUrl& url);
+  virtual void copy(const KUrl &src, const KUrl &dest, int permissions, bool overwrite);
+  virtual void put(const KUrl& url, int permissions, bool overwrite, bool resume);
   virtual void closeConnection();
   virtual void slave_status();
-  virtual void del(const KURL &url, bool isfile);
-  virtual void chmod(const KURL& url, int permissions);
-  virtual void symlink(const QString& target, const KURL& dest, bool overwrite);
-  virtual void rename(const KURL& src, const KURL& dest, bool overwrite);
-  virtual void mkdir(const KURL&url, int permissions);
+  virtual void del(const KUrl &url, bool isfile);
+  virtual void chmod(const KUrl& url, int permissions);
+  virtual void symlink(const QString& target, const KUrl& dest, bool overwrite);
+  virtual void rename(const KUrl& src, const KUrl& dest, bool overwrite);
+  virtual void mkdir(const KUrl&url, int permissions);
   virtual void openConnection();
 
 private: // Private variables
@@ -103,7 +103,7 @@ private: // private methods
       This is useful for converting path names containing ".." components or relative
       pathnames without a leading slash into absolute paths.
       Returns the canonicalized url. */
-  int sftpRealPath(const KURL& url, KURL& newUrl);
+  int sftpRealPath(const KUrl& url, KUrl& newUrl);
 
   /** Send an sftp packet to stdin of the ssh process. */
   bool putPacket(QByteArray& p);
@@ -112,37 +112,37 @@ private: // private methods
   /** Process SSH_FXP_STATUS packes and return the result. */
   Status doProcessStatus(quint8, const QString& message = QString());
   /** Opens a directory handle for url.path. Returns true if succeeds. */
-  int sftpOpenDirectory(const KURL& url, QByteArray& handle);
+  int sftpOpenDirectory(const KUrl& url, QByteArray& handle);
   /** Closes a directory or file handle. */
   int sftpClose(const QByteArray& handle);
   /** Send a sftp command to rename a file or directoy. */
-  int sftpRename(const KURL& src, const KURL& dest);
+  int sftpRename(const KUrl& src, const KUrl& dest);
   /** Set a files attributes. */
-  int sftpSetStat(const KURL& url, const sftpFileAttr& attr);
+  int sftpSetStat(const KUrl& url, const sftpFileAttr& attr);
   /** Sends a sftp command to remove a file or directory. */
-  int sftpRemove(const KURL& url, bool isfile);
+  int sftpRemove(const KUrl& url, bool isfile);
   /** Creates a symlink named dest to target. */
-  int sftpSymLink(const QString& target, const KURL& dest);
+  int sftpSymLink(const QString& target, const KUrl& dest);
   /** Get directory listings. */
-  int sftpReadDir(const QByteArray& handle, const KURL& url);
+  int sftpReadDir(const QByteArray& handle, const KUrl& url);
   /** Retrieves the destination of a link. */
-  int sftpReadLink(const KURL& url, QString& target);
+  int sftpReadLink(const KUrl& url, QString& target);
   /** Stats a file. */
-  int sftpStat(const KURL& url, sftpFileAttr& attr);
+  int sftpStat(const KUrl& url, sftpFileAttr& attr);
   /** No descriptions */
-  int sftpOpen(const KURL& url, const quint32 pflags, const sftpFileAttr& attr, QByteArray& handle);
+  int sftpOpen(const KUrl& url, const quint32 pflags, const sftpFileAttr& attr, QByteArray& handle);
   /** No descriptions */
   int sftpRead(const QByteArray& handle, KIO::filesize_t offset, quint32 len, QByteArray& data);
   /** No descriptions */
   int sftpWrite(const QByteArray& handle, KIO::filesize_t offset, const QByteArray& data);
   
   /** Performs faster upload when the source is a local file... */
-  void sftpCopyPut(const KURL& src, const KURL& dest, int mode, bool overwrite);
+  void sftpCopyPut(const KUrl& src, const KUrl& dest, int mode, bool overwrite);
   /** Performs faster download when the destination is a local file... */
-  void sftpCopyGet(const KURL& dest, const KURL& src, int mode, bool overwrite);
+  void sftpCopyGet(const KUrl& dest, const KUrl& src, int mode, bool overwrite);
   
   /** */
-  Status sftpGet( const KURL& src, KIO::filesize_t offset = 0, int fd = -1);
-  void sftpPut( const KURL& dest, int permissions, bool resume, bool overwrite, int fd = -1);
+  Status sftpGet( const KUrl& src, KIO::filesize_t offset = 0, int fd = -1);
+  void sftpPut( const KUrl& dest, int permissions, bool resume, bool overwrite, int fd = -1);
 };
 #endif

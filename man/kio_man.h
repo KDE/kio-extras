@@ -42,11 +42,11 @@ public:
     MANProtocol(const QByteArray &pool_socket, const QByteArray &app_socket);
     virtual ~MANProtocol();
 
-    virtual void get(const KURL& url);
-    virtual void stat(const KURL& url);
+    virtual void get(const KUrl& url);
+    virtual void stat(const KUrl& url);
 
-    virtual void mimetype(const KURL &url);
-    virtual void listDir(const KURL &url);
+    virtual void mimetype(const KUrl &url);
+    virtual void listDir(const KUrl &url);
 
     void outputError(const QString& errmsg);
     void outputMatchingPages(const QStringList &matchingPages);

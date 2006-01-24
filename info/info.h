@@ -14,13 +14,13 @@ public:
     InfoProtocol( const QByteArray &pool, const QByteArray &app );
     virtual ~InfoProtocol();
 
-    virtual void get( const KURL& url );
-    virtual void stat( const KURL& url );
-    virtual void mimetype( const KURL& url );
+    virtual void get( const KUrl& url );
+    virtual void stat( const KUrl& url );
+    virtual void mimetype( const KUrl& url );
 
 protected:
 
-    void decodeURL( const KURL &url );
+    void decodeURL( const KUrl &url );
     void decodePath( QString path );
 
 private:

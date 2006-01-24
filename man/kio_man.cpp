@@ -430,7 +430,7 @@ void output_real(const char *insert)
     MANProtocol::self()->output(insert);
 }
 
-void MANProtocol::get(const KURL& url )
+void MANProtocol::get(const KUrl& url )
 {
     kdDebug(7107) << "GET " << url.url() << endl;
 
@@ -637,7 +637,7 @@ void MANProtocol::outputMatchingPages(const QStringList &matchingPages)
     finished();
 }
 
-void MANProtocol::stat( const KURL& url)
+void MANProtocol::stat( const KUrl& url)
 {
     kdDebug(7107) << "ENTERING STAT " << url.url() << endl;
 
@@ -693,7 +693,7 @@ extern "C"
 
 }
 
-void MANProtocol::mimetype(const KURL & /*url*/)
+void MANProtocol::mimetype(const KUrl & /*url*/)
 {
     mimeType("text/html");
     finished();
@@ -1458,7 +1458,7 @@ void MANProtocol::showIndex(const QString& section)
     finished();
 }
 
-void MANProtocol::listDir(const KURL &url)
+void MANProtocol::listDir(const KUrl &url)
 {
     kdDebug( 7107 ) << "ENTER listDir: " << url.prettyURL() << endl;
 

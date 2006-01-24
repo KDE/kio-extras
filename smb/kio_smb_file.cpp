@@ -36,7 +36,7 @@
 #include <kmimetype.h>
 
 //===========================================================================
-void SMBSlave::get( const KURL& kurl )
+void SMBSlave::get( const KUrl& kurl )
 {
     char        buf[MAX_XFER_BUF_SIZE];
     int         filefd          = 0;
@@ -51,7 +51,7 @@ void SMBSlave::get( const KURL& kurl )
     kdDebug(KIO_SMB) << "SMBSlave::get on " << kurl << endl;
 
     // check (correct) URL
-    KURL kvurl = checkURL(kurl);
+    KUrl kvurl = checkURL(kurl);
     // if URL is not valid we have to redirect to correct URL
     if (kvurl != kurl) {
         redirection(kvurl);
@@ -136,7 +136,7 @@ void SMBSlave::get( const KURL& kurl )
 
 
 //===========================================================================
-void SMBSlave::put( const KURL& kurl,
+void SMBSlave::put( const KUrl& kurl,
                     int permissions,
                     bool overwrite,
                     bool resume )

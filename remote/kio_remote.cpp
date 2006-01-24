@@ -69,7 +69,7 @@ RemoteProtocol::~RemoteProtocol()
 {
 }
 
-void RemoteProtocol::listDir(const KURL &url)
+void RemoteProtocol::listDir(const KUrl &url)
 {
 	kdDebug(1220) << "RemoteProtocol::listDir: " << url << endl;
 
@@ -82,7 +82,7 @@ void RemoteProtocol::listDir(const KURL &url)
 	int second_slash_idx = url.path().find( '/', 1 );
 	QString root_dirname = url.path().mid( 1, second_slash_idx-1 );
 	
-	KURL target = m_impl.findBaseURL( root_dirname );
+	KUrl target = m_impl.findBaseURL( root_dirname );
 	kdDebug(1220) << "possible redirection target : " << target << endl;
 	if( target.isValid() )
 	{
@@ -123,7 +123,7 @@ void RemoteProtocol::listRoot()
 	finished();
 }
 
-void RemoteProtocol::stat(const KURL &url)
+void RemoteProtocol::stat(const KUrl &url)
 {
 	kdDebug(1220) << "RemoteProtocol::stat: " << url << endl;
 
@@ -168,7 +168,7 @@ void RemoteProtocol::stat(const KURL &url)
 	}
 	else
 	{
-		KURL target = m_impl.findBaseURL(  root_dirname );
+		KUrl target = m_impl.findBaseURL(  root_dirname );
 		kdDebug( 1220 ) << "possible redirection target : " << target << endl;
 		if (  target.isValid() )
 		{
@@ -182,7 +182,7 @@ void RemoteProtocol::stat(const KURL &url)
 	error(KIO::ERR_MALFORMED_URL, url.prettyURL());
 }
 
-void RemoteProtocol::del(const KURL &url, bool /*isFile*/)
+void RemoteProtocol::del(const KUrl &url, bool /*isFile*/)
 {
 	kdDebug(1220) << "RemoteProtocol::del: " << url << endl;
 
@@ -196,7 +196,7 @@ void RemoteProtocol::del(const KURL &url, bool /*isFile*/)
 	error(KIO::ERR_CANNOT_DELETE, url.prettyURL());
 }
 
-void RemoteProtocol::get(const KURL &url)
+void RemoteProtocol::get(const KUrl &url)
 {
 	kdDebug(1220) << "RemoteProtocol::get: " << url << endl;
 
@@ -205,7 +205,7 @@ void RemoteProtocol::get(const KURL &url)
 
 	if (!file.isEmpty())
 	{
-		KURL desktop;
+		KUrl desktop;
 		desktop.setPath(file);
 
 		redirection(desktop);
@@ -216,7 +216,7 @@ void RemoteProtocol::get(const KURL &url)
 	error(KIO::ERR_MALFORMED_URL, url.prettyURL());
 }
 
-void RemoteProtocol::rename(const KURL &src, const KURL &dest,
+void RemoteProtocol::rename(const KUrl &src, const KUrl &dest,
                             bool overwrite)
 {
 	if (src.protocol()!="remote" || dest.protocol()!="remote"

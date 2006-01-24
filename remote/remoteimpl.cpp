@@ -133,7 +133,7 @@ QString RemoteImpl::findDesktopFile(const QString &filename) const
 	return QString();
 }
 
-KURL RemoteImpl::findBaseURL(const QString &filename) const
+KUrl RemoteImpl::findBaseURL(const QString &filename) const
 {
 	kdDebug(1220) << "RemoteImpl::findBaseURL" << endl;
 
@@ -160,9 +160,9 @@ void RemoteImpl::createTopLevelEntry(KIO::UDSEntry &entry) const
 	entry.insert( KIO::UDS_GROUP, QString::fromLatin1("root"));
 }
 
-static KURL findWizardRealURL()
+static KUrl findWizardRealURL()
 {
-	KURL url;
+	KUrl url;
 	KService::Ptr service = KService::serviceByDesktopName(WIZARD_SERVICE);
 
 	if (service && service->isValid())
@@ -179,7 +179,7 @@ bool RemoteImpl::createWizardEntry(KIO::UDSEntry &entry) const
 {
 	entry.clear();
 
-	KURL url = findWizardRealURL();
+	KUrl url = findWizardRealURL();
 
 	if (!url.isValid())
 	{
@@ -197,7 +197,7 @@ bool RemoteImpl::createWizardEntry(KIO::UDSEntry &entry) const
 	return true;
 }
 
-bool RemoteImpl::isWizardURL(const KURL &url) const
+bool RemoteImpl::isWizardURL(const KUrl &url) const
 {
 	return url==KURL(WIZARD_URL);
 }

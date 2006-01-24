@@ -208,13 +208,13 @@ void SMTPProtocol::special( const QByteArray & aData ) {
 // profile=text (this will override the "host" setting)
 // hostname=text (used in the HELO)
 // body={7bit,8bit} (default: 7bit; 8bit activates the use of the 8BITMIME SMTP extension)
-void SMTPProtocol::put(const KURL & url, int /*permissions */ ,
+void SMTPProtocol::put(const KUrl & url, int /*permissions */ ,
                        bool /*overwrite */ , bool /*resume */ )
 {
   Request request = Request::fromURL( url ); // parse settings from URL's query
 
   KEMailSettings mset;
-  KURL open_url = url;
+  KUrl open_url = url;
   if ( !request.hasProfile() ) {
     //kdDebug(7112) << "kio_smtp: Profile is null" << endl;
     bool hasProfile = mset.profiles().contains( open_url.host() );
@@ -657,7 +657,7 @@ void SMTPProtocol::smtp_close( bool nice ) {
   m_opened = false;
 }
 
-void SMTPProtocol::stat(const KURL & url)
+void SMTPProtocol::stat(const KUrl & url)
 {
   QString path = url.path();
   error(KIO::ERR_DOES_NOT_EXIST, url.path());

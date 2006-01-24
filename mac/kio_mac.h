@@ -31,18 +31,18 @@ class MacProtocol : public QObject, public KIO::SlaveBase
 public:
     MacProtocol(const QByteArray &pool, const QByteArray &app);
     ~MacProtocol();
-    virtual void get(const KURL& url );
-    virtual void listDir(const KURL& url);
-    virtual void stat(const KURL& url);
+    virtual void get(const KUrl& url );
+    virtual void listDir(const KUrl& url);
+    virtual void stat(const KUrl& url);
 protected Q_SLOTS:
     void slotGetStdOutput(KProcess*, char*, int);
     void slotSetDataStdOutput(KProcess*, char *s, int len);
 protected:
-    QString prepareHP(const KURL& _url);
+    QString prepareHP(const KUrl& _url);
     KIO::UDSEntry makeUDS(const QString& _line);
     int makeTime(QString mday, QString mon, QString third);
     QString getMimetype(QString type, QString app);
-    KIO::UDSEntry doStat(const KURL& url);
+    KIO::UDSEntry doStat(const KUrl& url);
 
     KIO::filesize_t processedBytes;
     QString standardOutputStream;

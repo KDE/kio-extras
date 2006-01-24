@@ -191,7 +191,7 @@ bool sftpProtocol::isSupportedOperation(int type) {
   return false;
 }
 
-void sftpProtocol::copy(const KURL &src, const KURL &dest, int permissions, bool overwrite)
+void sftpProtocol::copy(const KUrl &src, const KUrl &dest, int permissions, bool overwrite)
 {
     kdDebug(KIO_SFTP_DB) << "copy(): " << src << " -> " << dest << endl;
 
@@ -206,7 +206,7 @@ void sftpProtocol::copy(const KURL &src, const KURL &dest, int permissions, bool
       error(ERR_UNSUPPORTED_ACTION, QString());
 }
 
-void sftpProtocol::sftpCopyGet(const KURL& dest, const KURL& src, int mode, bool overwrite)
+void sftpProtocol::sftpCopyGet(const KUrl& dest, const KUrl& src, int mode, bool overwrite)
 {
     kdDebug(KIO_SFTP_DB) << "sftpCopyGet(): " << src << " -> " << dest << endl;
 
@@ -324,7 +324,7 @@ void sftpProtocol::sftpCopyGet(const KURL& dest, const KURL& src, int mode, bool
     finished();
 }
 
-sftpProtocol::Status sftpProtocol::sftpGet( const KURL& src, KIO::filesize_t offset, int fd )
+sftpProtocol::Status sftpProtocol::sftpGet( const KUrl& src, KIO::filesize_t offset, int fd )
 {
     int code;
     sftpFileAttr attr(remoteEncoding());
@@ -441,7 +441,7 @@ sftpProtocol::Status sftpProtocol::sftpGet( const KURL& src, KIO::filesize_t off
     return res;
 }
 
-void sftpProtocol::get(const KURL& url) {
+void sftpProtocol::get(const KUrl& url) {
     kdDebug(KIO_SFTP_DB) << "get(): " << url << endl ;
 
     openConnection();
@@ -838,7 +838,7 @@ void sftpProtocol::closeConnection() {
     mConnected = false;
 }
 
-void sftpProtocol::sftpCopyPut(const KURL& src, const KURL& dest, int permissions, bool overwrite) {
+void sftpProtocol::sftpCopyPut(const KUrl& src, const KUrl& dest, int permissions, bool overwrite) {
 
     KDE_struct_stat buff;
     Q3CString file (QFile::encodeName(src.path()));
@@ -867,7 +867,7 @@ void sftpProtocol::sftpCopyPut(const KURL& src, const KURL& dest, int permission
     ::close( fd );
 }
 
-void sftpProtocol::sftpPut( const KURL& dest, int permissions, bool resume, bool overwrite, int fd ) {
+void sftpProtocol::sftpPut( const KUrl& dest, int permissions, bool resume, bool overwrite, int fd ) {
 
     openConnection();
     if( !mConnected )
@@ -877,7 +877,7 @@ void sftpProtocol::sftpPut( const KURL& dest, int permissions, bool resume, bool
                          << ", resume=" << resume
                          << ", overwrite=" << overwrite << endl;
 
-    KURL origUrl( dest );
+    KUrl origUrl( dest );
     sftpFileAttr origAttr(remoteEncoding());
     bool origExists = false;
 
@@ -911,7 +911,7 @@ void sftpProtocol::sftpPut( const KURL& dest, int permissions, bool resume, bool
     }
 
     // Stat file with part ext to see if it already exists...
-    KURL partUrl( origUrl );
+    KUrl partUrl( origUrl );
     partUrl.setFileName( partUrl.fileName() + ".part" );
 
     quint64 offset = 0;
@@ -976,7 +976,7 @@ void sftpProtocol::sftpPut( const KURL& dest, int permissions, bool resume, bool
     }
 
     // Determine the url we will actually write to...
-    KURL writeUrl (markPartial ? partUrl:origUrl);
+    KUrl writeUrl (markPartial ? partUrl:origUrl);
 
     quint32 pflags = 0;
     if( overwrite && !resume )
@@ -1090,14 +1090,14 @@ void sftpProtocol::sftpPut( const KURL& dest, int permissions, bool resume, bool
     finished();
 }
 
-void sftpProtocol::put ( const KURL& url, int permissions, bool overwrite, bool resume ){
+void sftpProtocol::put ( const KUrl& url, int permissions, bool overwrite, bool resume ){
     kdDebug(KIO_SFTP_DB) << "put(): " << url << ", overwrite = " << overwrite
                          << ", resume = " << resume << endl;
 
     sftpPut( url, permissions, resume, overwrite );
 }
 
-void sftpProtocol::stat ( const KURL& url ){
+void sftpProtocol::stat ( const KUrl& url ){
     kdDebug(KIO_SFTP_DB) << "stat(): " << url << endl;
 
     openConnection();
@@ -1141,7 +1141,7 @@ void sftpProtocol::stat ( const KURL& url ){
 }
 
 
-void sftpProtocol::mimetype ( const KURL& url ){
+void sftpProtocol::mimetype ( const KUrl& url ){
     kdDebug(KIO_SFTP_DB) << "mimetype(): " << url << endl;
 
     openConnection();
@@ -1179,7 +1179,7 @@ void sftpProtocol::mimetype ( const KURL& url ){
 }
 
 
-void sftpProtocol::listDir(const KURL& url) {
+void sftpProtocol::listDir(const KUrl& url) {
     kdDebug(KIO_SFTP_DB) << "listDir(): " << url << endl;
 
     openConnection();
@@ -1187,7 +1187,7 @@ void sftpProtocol::listDir(const KURL& url) {
         return;
 
     if( !url.hasPath() ) {
-        KURL newUrl ( url );
+        KUrl newUrl ( url );
         if( sftpRealPath(url, newUrl) == SSH2_FX_OK ) {
             kdDebug(KIO_SFTP_DB) << "listDir: Redirecting to " << newUrl << endl;
             redirection(newUrl);
@@ -1231,7 +1231,7 @@ void sftpProtocol::listDir(const KURL& url) {
         string path
         ATTR   attr
  */
-void sftpProtocol::mkdir(const KURL&url, int permissions){
+void sftpProtocol::mkdir(const KUrl&url, int permissions){
 
     kdDebug(KIO_SFTP_DB) << "mkdir() creating dir: " << url.path() << endl;
 
@@ -1301,7 +1301,7 @@ void sftpProtocol::mkdir(const KURL&url, int permissions){
     finished();
 }
 
-void sftpProtocol::rename(const KURL& src, const KURL& dest, bool overwrite){
+void sftpProtocol::rename(const KUrl& src, const KUrl& dest, bool overwrite){
     kdDebug(KIO_SFTP_DB) << "rename(" << src << " -> " << dest << ")" << endl;
 
     if (!isSupportedOperation(SSH2_FXP_RENAME)) {
@@ -1350,7 +1350,7 @@ void sftpProtocol::rename(const KURL& src, const KURL& dest, bool overwrite){
     kdDebug(KIO_SFTP_DB) << "rename(): END" << endl;
 }
 
-void sftpProtocol::symlink(const QString& target, const KURL& dest, bool overwrite){
+void sftpProtocol::symlink(const QString& target, const KUrl& dest, bool overwrite){
     kdDebug(KIO_SFTP_DB) << "symlink()" << endl;
 
     if (!isSupportedOperation(SSH2_FXP_SYMLINK)) {
@@ -1400,7 +1400,7 @@ void sftpProtocol::symlink(const QString& target, const KURL& dest, bool overwri
     finished();
 }
 
-void sftpProtocol::chmod(const KURL& url, int permissions){
+void sftpProtocol::chmod(const KUrl& url, int permissions){
     QString perms;
     perms.setNum(permissions, 8);
     kdDebug(KIO_SFTP_DB) << "chmod(" << url << ", " << perms << ")" << endl;
@@ -1426,7 +1426,7 @@ void sftpProtocol::chmod(const KURL& url, int permissions){
 }
 
 
-void sftpProtocol::del(const KURL &url, bool isfile){
+void sftpProtocol::del(const KUrl &url, bool isfile){
     kdDebug(KIO_SFTP_DB) << "del(" << url << ", " << (isfile?"file":"dir") << ")" << endl;
 
     openConnection();
@@ -1522,7 +1522,7 @@ bool sftpProtocol::putPacket(QByteArray& p){
 This is useful for converting path names containing ".." components or relative
 pathnames without a leading slash into absolute paths.
 Returns the canonicalized url. */
-int sftpProtocol::sftpRealPath(const KURL& url, KURL& newUrl){
+int sftpProtocol::sftpRealPath(const KUrl& url, KUrl& newUrl){
 
     kdDebug(KIO_SFTP_DB) << "sftpRealPath(" << url << ", newUrl)" << endl;
 
@@ -1626,7 +1626,7 @@ void sftpProtocol::processStatus(quint8 code, const QString& message){
 }
 
 /** Opens a directory handle for url.path. Returns true if succeeds. */
-int sftpProtocol::sftpOpenDirectory(const KURL& url, QByteArray& handle){
+int sftpProtocol::sftpOpenDirectory(const KUrl& url, QByteArray& handle){
 
     kdDebug(KIO_SFTP_DB) << "sftpOpenDirectory(" << url << ", handle)" << endl;
 
@@ -1719,7 +1719,7 @@ int sftpProtocol::sftpClose(const QByteArray& handle){
 }
 
 /** Set a files attributes. */
-int sftpProtocol::sftpSetStat(const KURL& url, const sftpFileAttr& attr){
+int sftpProtocol::sftpSetStat(const KUrl& url, const sftpFileAttr& attr){
 
     kdDebug(KIO_SFTP_DB) << "sftpSetStat(" << url << ", attr)" << endl;
 
@@ -1765,7 +1765,7 @@ int sftpProtocol::sftpSetStat(const KURL& url, const sftpFileAttr& attr){
 }
 
 /** Sends a sftp command to remove a file or directory. */
-int sftpProtocol::sftpRemove(const KURL& url, bool isfile){
+int sftpProtocol::sftpRemove(const KUrl& url, bool isfile){
 
     kdDebug(KIO_SFTP_DB) << "sftpRemove(): " << url << ", isFile ? " << isfile << endl;
 
@@ -1809,7 +1809,7 @@ int sftpProtocol::sftpRemove(const KURL& url, bool isfile){
 }
 
 /** Send a sftp command to rename a file or directoy. */
-int sftpProtocol::sftpRename(const KURL& src, const KURL& dest){
+int sftpProtocol::sftpRename(const KUrl& src, const KUrl& dest){
 
     kdDebug(KIO_SFTP_DB) << "sftpRename(" << src << " -> " << dest << ")" << endl;
 
@@ -1858,7 +1858,7 @@ int sftpProtocol::sftpRename(const KURL& src, const KURL& dest){
     return code;
 }
 /** Get directory listings. */
-int sftpProtocol::sftpReadDir(const QByteArray& handle, const KURL& url){
+int sftpProtocol::sftpReadDir(const QByteArray& handle, const KUrl& url){
     // url is needed so we can lookup the link destination
     kdDebug(KIO_SFTP_DB) << "sftpReadDir(): " << url << endl;
 
@@ -1905,7 +1905,7 @@ int sftpProtocol::sftpReadDir(const QByteArray& handle, const KURL& url){
         r >> attr;
 
         if( S_ISLNK(attr.permissions()) ) {
-             KURL myurl ( url );
+             KUrl myurl ( url );
              myurl.addPath(attr.filename());
 
              // Stat the symlink to find out its type...
@@ -1924,7 +1924,7 @@ int sftpProtocol::sftpReadDir(const QByteArray& handle, const KURL& url){
     return SSH2_FX_OK;
 }
 
-int sftpProtocol::sftpReadLink(const KURL& url, QString& target){
+int sftpProtocol::sftpReadLink(const KUrl& url, QString& target){
 
     kdDebug(KIO_SFTP_DB) << "sftpReadLink(): " << url << endl;
 
@@ -1987,7 +1987,7 @@ int sftpProtocol::sftpReadLink(const KURL& url, QString& target){
     return SSH2_FX_OK;
 }
 
-int sftpProtocol::sftpSymLink(const QString& _target, const KURL& dest){
+int sftpProtocol::sftpSymLink(const QString& _target, const KUrl& dest){
 
     Q3CString destPath = remoteEncoding()->encode(dest.path());
     Q3CString target = remoteEncoding()->encode(_target);
@@ -2036,7 +2036,7 @@ int sftpProtocol::sftpSymLink(const QString& _target, const KURL& dest){
 }
 
 /** Stats a file. */
-int sftpProtocol::sftpStat(const KURL& url, sftpFileAttr& attr) {
+int sftpProtocol::sftpStat(const KUrl& url, sftpFileAttr& attr) {
 
     kdDebug(KIO_SFTP_DB) << "sftpStat(): " << url << endl;
 
@@ -2095,7 +2095,7 @@ int sftpProtocol::sftpStat(const KURL& url, sftpFileAttr& attr) {
 
         kdDebug(KIO_SFTP_DB) << "sftpStat(): Resource is a symlink to -> " << target << endl;
 
-        KURL dest( url );
+        KUrl dest( url );
         if( target[0] == '/' )
             dest.setPath(target);
         else
@@ -2124,7 +2124,7 @@ int sftpProtocol::sftpStat(const KURL& url, sftpFileAttr& attr) {
 }
 
 
-int sftpProtocol::sftpOpen(const KURL& url, const quint32 pflags,
+int sftpProtocol::sftpOpen(const KUrl& url, const quint32 pflags,
                            const sftpFileAttr& attr, QByteArray& handle) {
     kdDebug(KIO_SFTP_DB) << "sftpOpen(" << url << ", handle" << endl;
 

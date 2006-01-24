@@ -94,7 +94,7 @@ void NNTPProtocol::setHost ( const QString & host, int port, const QString & use
   mPass = pass;
 }
 
-void NNTPProtocol::get( const KURL& url )
+void NNTPProtocol::get( const KUrl& url )
 {
   DBG << "get " << url.prettyURL() << endl;
   QString path = QDir::cleanPath(url.path());
@@ -112,7 +112,7 @@ void NNTPProtocol::get( const KURL& url )
 
   pos = path.find('<');
   group = path.left(pos);
-  msg_id = KURL::decode_string( path.right(path.length()-pos) );
+  msg_id = KUrl::decode_string( path.right(path.length()-pos) );
   if ( group.startsWith( "/" ) )
     group.remove( 0, 1 );
   if ((pos = group.find('/')) > 0) group = group.left(pos);
@@ -176,7 +176,7 @@ void NNTPProtocol::get( const KURL& url )
   finished();
 }
 
-void NNTPProtocol::put( const KURL &/*url*/, int /*permissions*/, bool /*overwrite*/, bool /*resume*/ )
+void NNTPProtocol::put( const KUrl &/*url*/, int /*permissions*/, bool /*overwrite*/, bool /*resume*/ )
 {
   if ( !nntp_open() )
     return;
@@ -266,7 +266,7 @@ bool NNTPProtocol::post_article() {
 }
 
 
-void NNTPProtocol::stat( const KURL& url ) {
+void NNTPProtocol::stat( const KUrl& url ) {
   DBG << "stat " << url.prettyURL() << endl;
   UDSEntry entry;
   QString path = QDir::cleanPath(url.path());
@@ -295,7 +295,7 @@ void NNTPProtocol::stat( const KURL& url ) {
   } else if (regMsgId.search(path) == 0) {
     pos = path.find('<');
     group = path.left(pos);
-    msg_id = KURL::decode_string( path.right(path.length()-pos) );
+    msg_id = KUrl::decode_string( path.right(path.length()-pos) );
     if ( group.startsWith( "/" ) )
       group.remove( 0, 1 );
     if ((pos = group.find('/')) > 0) group = group.left(pos);
@@ -312,7 +312,7 @@ void NNTPProtocol::stat( const KURL& url ) {
   finished();
 }
 
-void NNTPProtocol::listDir( const KURL& url ) {
+void NNTPProtocol::listDir( const KUrl& url ) {
   DBG << "listDir " << url.prettyURL() << endl;
   if ( !nntp_open() )
     return;
@@ -321,7 +321,7 @@ void NNTPProtocol::listDir( const KURL& url ) {
 
   if (path.isEmpty())
   {
-    KURL newURL(url);
+    KUrl newURL(url);
     newURL.setPath("/");
     DBG << "listDir redirecting to " << newURL.prettyURL() << endl;
     redirection(newURL);

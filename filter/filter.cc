@@ -60,7 +60,7 @@ FilterProtocol::FilterProtocol( const QByteArray & protocol, const QByteArray &p
     Q_ASSERT(filter);
 }
 
-void FilterProtocol::get( const KURL & )
+void FilterProtocol::get( const KUrl & )
 {
   if (subURL.isEmpty())
   {
@@ -154,12 +154,12 @@ void FilterProtocol::get( const KURL & )
   finished();
 }
 
-void FilterProtocol::put( const KURL &/*url*/, int, bool /*_overwrite*/, bool /*_resume*/ )
+void FilterProtocol::put( const KUrl &/*url*/, int, bool /*_overwrite*/, bool /*_resume*/ )
 {
   error( KIO::ERR_UNSUPPORTED_ACTION, QString::fromLatin1("put"));
 }
 
-void FilterProtocol::setSubURL(const KURL &url)
+void FilterProtocol::setSubURL(const KUrl &url)
 {
    subURL = url;
 }

@@ -35,7 +35,7 @@ HomeImpl::HomeImpl()
 	m_effectiveUid = user.uid();
 }
 
-bool HomeImpl::parseURL(const KURL &url, QString &name, QString &path) const
+bool HomeImpl::parseURL(const KUrl &url, QString &name, QString &path) const
 {
 	QString url_path = url.path();
 
@@ -54,13 +54,13 @@ bool HomeImpl::parseURL(const KURL &url, QString &name, QString &path) const
 	return name != QString();
 }
 
-bool HomeImpl::realURL(const QString &name, const QString &path, KURL &url)
+bool HomeImpl::realURL(const QString &name, const QString &path, KUrl &url)
 {
 	KUser user(name);
 
 	if ( user.isValid() )
 	{
-		KURL res;
+		KUrl res;
 		res.setPath( user.homeDir() );
 		res.addPath(path);
 		url = res;
@@ -148,7 +148,7 @@ void HomeImpl::createHomeEntry(KIO::UDSEntry &entry,
 
 	entry.insert( KIO::UDS_ICON_NAME, icon_name);
 
-	KURL url;
+	KUrl url;
 	url.setPath(user.homeDir());
 	extractUrlInfos(url, entry);
 }
@@ -186,7 +186,7 @@ void HomeImpl::enterLoop()
     eventLoop.exec(QEventLoop::ExcludeUserInputEvents);
 }
 
-void HomeImpl::extractUrlInfos(const KURL &url, KIO::UDSEntry& infos)
+void HomeImpl::extractUrlInfos(const KUrl &url, KIO::UDSEntry& infos)
 {
 	m_entryBuffer.clear();
 

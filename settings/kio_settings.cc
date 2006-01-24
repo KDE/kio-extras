@@ -37,9 +37,9 @@ public:
 	enum RunMode { SettingsMode, ProgramsMode, ApplicationsMode };
 	SettingsProtocol(const QByteArray &protocol, const QByteArray &pool, const QByteArray &app);
 	virtual ~SettingsProtocol();
-	virtual void get( const KURL& url );
-	virtual void stat(const KURL& url);
-	virtual void listDir(const KURL& url);
+	virtual void get( const KUrl& url );
+	virtual void stat(const KUrl& url);
+	virtual void listDir(const KUrl& url);
 	void listRoot();
 	KServiceGroup::Ptr findGroup(const QString &relPath);
 
@@ -151,11 +151,11 @@ KServiceGroup::Ptr SettingsProtocol::findGroup(const QString &relPath)
 	return KServiceGroup::group(alreadyFound);
 }
 
-void SettingsProtocol::get( const KURL & url )
+void SettingsProtocol::get( const KUrl & url )
 {
 	KService::Ptr service = KService::serviceByDesktopName(url.fileName());
 	if (service && service->isValid()) {
-		KURL redirUrl;
+		KUrl redirUrl;
 		redirUrl.setPath(locate("apps", service->desktopEntryPath()));
 		redirection(redirUrl);
 		finished();
@@ -165,7 +165,7 @@ void SettingsProtocol::get( const KURL & url )
 }
 
 
-void SettingsProtocol::stat(const KURL& url)
+void SettingsProtocol::stat(const KUrl& url)
 {
 	KIO::UDSEntry entry;
 
@@ -183,7 +183,7 @@ void SettingsProtocol::stat(const KURL& url)
 	} else {
 		KService::Ptr service = KService::serviceByDesktopName( url.fileName() );
 		if (service && service->isValid()) {
-//			KURL newUrl;
+//			KUrl newUrl;
 //			newUrl.setPath(locate("apps", service->desktopEntryPath()));
 //			createFileEntry(entry, service->name(), newUrl, "application/x-desktop", service->icon());
 
@@ -201,7 +201,7 @@ void SettingsProtocol::stat(const KURL& url)
 }
 
 
-void SettingsProtocol::listDir(const KURL& url)
+void SettingsProtocol::listDir(const KUrl& url)
 {
 	QString groupPath = url.path(1);
 	groupPath.remove(0, 1); // remove starting '/'

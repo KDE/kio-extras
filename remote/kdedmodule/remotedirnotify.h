@@ -30,14 +30,14 @@ public:
 	RemoteDirNotify();
 
 k_dcop:
-	virtual ASYNC FilesAdded (const KURL &directory);
-	virtual ASYNC FilesRemoved (const KURL::List &fileList);
-	virtual ASYNC FilesChanged (const KURL::List &fileList);
+	virtual ASYNC FilesAdded (const KUrl &directory);
+	virtual ASYNC FilesRemoved (const KUrl::List &fileList);
+	virtual ASYNC FilesChanged (const KUrl::List &fileList);
 
 private:
-	KURL toRemoteURL(const KURL &url);
-	KURL::List toRemoteURLList(const KURL::List &list);
-	KURL m_baseURL;
+	KUrl toRemoteURL(const KUrl &url);
+	KUrl::List toRemoteURLList(const KUrl::List &list);
+	KUrl m_baseURL;
 };
 
 #endif

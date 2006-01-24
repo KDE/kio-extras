@@ -70,7 +70,7 @@ SystemProtocol::~SystemProtocol()
 {
 }
 
-bool SystemProtocol::rewriteURL(const KURL &url, KURL &newUrl)
+bool SystemProtocol::rewriteURL(const KUrl &url, KUrl &newUrl)
 {
 	QString name, path;
 
@@ -90,7 +90,7 @@ bool SystemProtocol::rewriteURL(const KURL &url, KURL &newUrl)
 }
 
 
-void SystemProtocol::stat(const KURL &url)
+void SystemProtocol::stat(const KUrl &url)
 {
 	kdDebug() << "SystemProtocol::stat: " << url << endl;
 
@@ -134,7 +134,7 @@ void SystemProtocol::stat(const KURL &url)
 	}
 }
 
-void SystemProtocol::listDir(const KURL &url)
+void SystemProtocol::listDir(const KUrl &url)
 {
 	kdDebug() << "SystemProtocol::listDir: " << url << endl;
 

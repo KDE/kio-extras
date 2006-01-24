@@ -35,8 +35,8 @@
 
 //===========================================================================
 // TODO: add when libsmbclient supports it
-void SMBSlave::copy( const KURL& ksrc,
-                     const KURL& kdst,
+void SMBSlave::copy( const KUrl& ksrc,
+                     const KUrl& kdst,
                      int permissions,
                      bool overwrite)
 {
@@ -197,7 +197,7 @@ void SMBSlave::copy( const KURL& ksrc,
 }
 
 //===========================================================================
-void SMBSlave::del( const KURL &kurl, bool isfile)
+void SMBSlave::del( const KUrl &kurl, bool isfile)
 {
     kdDebug(KIO_SMB) << "SMBSlave::del on " << kurl << endl;
     m_current_url = kurl;
@@ -232,7 +232,7 @@ void SMBSlave::del( const KURL &kurl, bool isfile)
 }
 
 //===========================================================================
-void SMBSlave::mkdir( const KURL &kurl, int permissions )
+void SMBSlave::mkdir( const KUrl &kurl, int permissions )
 {
     kdDebug(KIO_SMB) << "SMBSlave::mkdir on " << kurl << endl;
     m_current_url = kurl;
@@ -269,7 +269,7 @@ void SMBSlave::mkdir( const KURL &kurl, int permissions )
 
 
 //===========================================================================
-void SMBSlave::rename( const KURL& ksrc, const KURL& kdest, bool overwrite )
+void SMBSlave::rename( const KUrl& ksrc, const KUrl& kdest, bool overwrite )
 {
 
     SMBUrl      src;

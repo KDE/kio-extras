@@ -559,7 +559,7 @@ int fishProtocol::establishConnection(char *buffer, int len) {
             thisFn += str;
         } else if (buf.endsWith(":")) {
             if (!redirectUser.isEmpty() && connectionUser != redirectUser) {
-                KURL dest = url;
+                KUrl dest = url;
                 dest.setUser(redirectUser);
                 dest.setPass(redirectPass);
                 redirection(dest);
@@ -596,7 +596,7 @@ int fishProtocol::establishConnection(char *buffer, int len) {
                 firstLogin = false;
                 connectionAuth.password += "\n";
                 if (connectionAuth.username != connectionUser) {
-                    KURL dest = url;
+                    KUrl dest = url;
                     dest.setUser(connectionAuth.username);
                     dest.setPass(connectionAuth.password);
                     redirection(dest);
@@ -1252,7 +1252,7 @@ int fishProtocol::received(const char *buffer, int buflen)
     return buflen;
 }
 /** get a file */
-void fishProtocol::get(const KURL& u){
+void fishProtocol::get(const KUrl& u){
     myDebug( << "@@@@@@@@@ get " << u << endl);
     setHost(u.host(),u.port(),u.user(),u.pass());
     url = u;
@@ -1269,7 +1269,7 @@ void fishProtocol::get(const KURL& u){
 }
 
 /** put a file */
-void fishProtocol::put(const KURL& u, int permissions, bool overwrite, bool /*resume*/){
+void fishProtocol::put(const KUrl& u, int permissions, bool overwrite, bool /*resume*/){
     myDebug( << "@@@@@@@@@ put " << u << " " << permissions << " " << overwrite << " " /* << resume */ << endl);
     setHost(u.host(),u.port(),u.user(),u.pass());
     url = u;
@@ -1385,7 +1385,7 @@ void fishProtocol::run() {
     }
 }
 /** stat a file */
-void fishProtocol::stat(const KURL& u){
+void fishProtocol::stat(const KUrl& u){
     myDebug( << "@@@@@@@@@ stat " << u << endl);
     setHost(u.host(),u.port(),u.user(),u.pass());
     url = u;
@@ -1402,7 +1402,7 @@ void fishProtocol::stat(const KURL& u){
     run();
 }
 /** find mimetype for a file */
-void fishProtocol::mimetype(const KURL& u){
+void fishProtocol::mimetype(const KUrl& u){
     myDebug( << "@@@@@@@@@ mimetype " << u << endl);
     setHost(u.host(),u.port(),u.user(),u.pass());
     url = u;
@@ -1418,7 +1418,7 @@ void fishProtocol::mimetype(const KURL& u){
     run();
 }
 /** list a directory */
-void fishProtocol::listDir(const KURL& u){
+void fishProtocol::listDir(const KUrl& u){
     myDebug( << "@@@@@@@@@ listDir " << u << endl);
     setHost(u.host(),u.port(),u.user(),u.pass());
     url = u;
@@ -1434,7 +1434,7 @@ void fishProtocol::listDir(const KURL& u){
     run();
 }
 /** create a directory */
-void fishProtocol::mkdir(const KURL& u, int permissions) {
+void fishProtocol::mkdir(const KUrl& u, int permissions) {
     myDebug( << "@@@@@@@@@ mkdir " << u << " " << permissions << endl);
     setHost(u.host(),u.port(),u.user(),u.pass());
     url = u;
@@ -1450,7 +1450,7 @@ void fishProtocol::mkdir(const KURL& u, int permissions) {
     run();
 }
 /** rename a file */
-void fishProtocol::rename(const KURL& s, const KURL& d, bool overwrite) {
+void fishProtocol::rename(const KUrl& s, const KUrl& d, bool overwrite) {
     myDebug( << "@@@@@@@@@ rename " << s << " " << d << " " << overwrite << endl);
     if (s.host() != d.host() || s.port() != d.port() || s.user() != d.user()) {
         error(ERR_UNSUPPORTED_ACTION,s.prettyURL());
@@ -1460,7 +1460,7 @@ void fishProtocol::rename(const KURL& s, const KURL& d, bool overwrite) {
     url = d;
     openConnection();
     if (!isLoggedIn) return;
-    KURL src = s;
+    KUrl src = s;
     url.cleanPath();
     src.cleanPath();
     if (!url.hasPath()) {
@@ -1476,7 +1476,7 @@ void fishProtocol::rename(const KURL& s, const KURL& d, bool overwrite) {
     run();
 }
 /** create a symlink */
-void fishProtocol::symlink(const QString& target, const KURL& u, bool overwrite) {
+void fishProtocol::symlink(const QString& target, const KUrl& u, bool overwrite) {
     myDebug( << "@@@@@@@@@ symlink " << target << " " << u << " " << overwrite << endl);
     setHost(u.host(),u.port(),u.user(),u.pass());
     url = u;
@@ -1496,7 +1496,7 @@ void fishProtocol::symlink(const QString& target, const KURL& u, bool overwrite)
     run();
 }
 /** change file permissions */
-void fishProtocol::chmod(const KURL& u, int permissions){
+void fishProtocol::chmod(const KUrl& u, int permissions){
     myDebug( << "@@@@@@@@@ chmod " << u << " " << permissions << endl);
     setHost(u.host(),u.port(),u.user(),u.pass());
     url = u;
@@ -1511,7 +1511,7 @@ void fishProtocol::chmod(const KURL& u, int permissions){
     run();
 }
 /** copies a file */
-void fishProtocol::copy(const KURL &s, const KURL &d, int permissions, bool overwrite) {
+void fishProtocol::copy(const KUrl &s, const KUrl &d, int permissions, bool overwrite) {
     myDebug( << "@@@@@@@@@ copy " << s << " " << d << " " << permissions << " " << overwrite << endl);
     if (s.host() != d.host() || s.port() != d.port() || s.user() != d.user()) {
         error(ERR_UNSUPPORTED_ACTION,s.prettyURL());
@@ -1522,7 +1522,7 @@ void fishProtocol::copy(const KURL &s, const KURL &d, int permissions, bool over
     url = d;
     openConnection();
     if (!isLoggedIn) return;
-    KURL src = s;
+    KUrl src = s;
     url.cleanPath();
     src.cleanPath();
     if (!src.hasPath()) {
@@ -1539,7 +1539,7 @@ void fishProtocol::copy(const KURL &s, const KURL &d, int permissions, bool over
     run();
 }
 /** removes a file or directory */
-void fishProtocol::del(const KURL &u, bool isFile){
+void fishProtocol::del(const KUrl &u, bool isFile){
     myDebug( << "@@@@@@@@@ del " << u << " " << isFile << endl);
     setHost(u.host(),u.port(),u.user(),u.pass());
     url = u;
@@ -1563,7 +1563,7 @@ void fishProtocol::special( const QByteArray &data ){
     switch (tmp) {
         case FISH_EXEC_CMD: // SSH EXEC
         {
-            KURL u;
+            KUrl u;
             QString command;
             QString tempfile;
             stream >> u;

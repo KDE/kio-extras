@@ -59,7 +59,7 @@ ArchiveProtocol::~ArchiveProtocol()
     delete m_archiveFile;
 }
 
-bool ArchiveProtocol::checkNewFile( const KURL & url, QString & path, KIO::Error& errorNum )
+bool ArchiveProtocol::checkNewFile( const KUrl & url, QString & path, KIO::Error& errorNum )
 {
     QString fullPath = url.path();
     kdDebug(7109) << "ArchiveProtocol::checkNewFile " << fullPath << endl;
@@ -186,7 +186,7 @@ void ArchiveProtocol::createUDSEntry( const KArchiveEntry * archiveEntry, UDSEnt
     entry.insert( UDS_LINK_DEST, archiveEntry->symlink());
 }
 
-void ArchiveProtocol::listDir( const KURL & url )
+void ArchiveProtocol::listDir( const KUrl & url )
 {
     kdDebug( 7109 ) << "ArchiveProtocol::listDir " << url.url() << endl;
 
@@ -210,7 +210,7 @@ void ArchiveProtocol::listDir( const KURL & url )
             return;
         }
         // It's a real dir -> redirect
-        KURL redir;
+        KUrl redir;
         redir.setPath( url.path() );
         kdDebug( 7109 ) << "Ok, redirection to " << redir.url() << endl;
         redirection( redir );
@@ -223,7 +223,7 @@ void ArchiveProtocol::listDir( const KURL & url )
 
     if ( path.isEmpty() )
     {
-        KURL redir( url.protocol() + QString::fromLatin1( ":/") );
+        KUrl redir( url.protocol() + QString::fromLatin1( ":/") );
         kdDebug( 7109 ) << "url.path()==" << url.path() << endl;
         redir.setPath( url.path() + QString::fromLatin1("/") );
         kdDebug( 7109 ) << "ArchiveProtocol::listDir: redirection " << redir.url() << endl;
@@ -276,7 +276,7 @@ void ArchiveProtocol::listDir( const KURL & url )
     kdDebug( 7109 ) << "ArchiveProtocol::listDir done" << endl;
 }
 
-void ArchiveProtocol::stat( const KURL & url )
+void ArchiveProtocol::stat( const KUrl & url )
 {
     QString path;
     UDSEntry entry;
@@ -345,7 +345,7 @@ void ArchiveProtocol::stat( const KURL & url )
     finished();
 }
 
-void ArchiveProtocol::get( const KURL & url )
+void ArchiveProtocol::get( const KUrl & url )
 {
     kdDebug( 7109 ) << "ArchiveProtocol::get" << url.url() << endl;
 
@@ -387,7 +387,7 @@ void ArchiveProtocol::get( const KURL & url )
     if ( !archiveEntry->symlink().isEmpty() )
     {
       kdDebug(7109) << "Redirection to " << archiveEntry->symlink() << endl;
-      KURL realURL( url, archiveEntry->symlink() );
+      KUrl realURL( url, archiveEntry->symlink() );
       kdDebug(7109) << "realURL= " << realURL.url() << endl;
       redirection( realURL );
       finished();

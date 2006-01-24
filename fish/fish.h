@@ -52,33 +52,33 @@ It is set to false if the connection becomes closed.
   /** Forced close of the connection */
   void closeConnection();
   /** get a file */
-  void get(const KURL& url);
+  void get(const KUrl& url);
   /** put a file */
-  void put(const KURL& url, int permissions, bool overwrite, bool resume);
+  void put(const KUrl& url, int permissions, bool overwrite, bool resume);
   /** aborts command sequence and calls error() */
   void error(int type, const QString &detail);
   /** executes next command in sequence or calls finished() if all is done */
   void finished();
   /** stat a file */
-  void stat(const KURL& url);
+  void stat(const KUrl& url);
   /** find mimetype for a file */
-  void mimetype(const KURL& url);
+  void mimetype(const KUrl& url);
   /** list a directory */
-  void listDir(const KURL& url);
+  void listDir(const KUrl& url);
   /** create a directory */
-  void mkdir(const KURL&url, int permissions);
+  void mkdir(const KUrl&url, int permissions);
   /** rename a file */
-  void rename(const KURL& src, const KURL& dest, bool overwrite);
+  void rename(const KUrl& src, const KUrl& dest, bool overwrite);
   /** create a symlink */
-  void symlink(const QString& target, const KURL& dest, bool overwrite);
+  void symlink(const QString& target, const KUrl& dest, bool overwrite);
   /** change file permissions */
-  void chmod(const KURL& url, int permissions);
+  void chmod(const KUrl& url, int permissions);
   /** copies a file */
-  void copy(const KURL &src, const KURL &dest, int permissions, bool overwrite);
+  void copy(const KUrl &src, const KUrl &dest, int permissions, bool overwrite);
   /** report status */
   void slave_status();
   /** removes a file or directory */
-  void del(const KURL &u, bool isfile);
+  void del(const KUrl &u, bool isfile);
   /** special like background execute */
   void special( const QByteArray &data );
 
@@ -115,7 +115,7 @@ protected: // Protected attributes
   QString wantedFn;
   QString statPath;
   /** url of current request */
-  KURL url;
+  KUrl url;
   /** true if connection is logged in successfully */
   bool isLoggedIn;
   /** host name of current connection */

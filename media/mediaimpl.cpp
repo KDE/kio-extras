@@ -39,7 +39,7 @@ MediaImpl::MediaImpl() : QObject(), DCOPObject("mediaimpl"), mp_mounting(0L)
 
 }
 
-bool MediaImpl::parseURL(const KURL &url, QString &name, QString &path) const
+bool MediaImpl::parseURL(const KUrl &url, QString &name, QString &path) const
 {
 	QString url_path = url.path();
 
@@ -58,7 +58,7 @@ bool MediaImpl::parseURL(const KURL &url, QString &name, QString &path) const
 	return name != QString();
 }
 
-bool MediaImpl::realURL(const QString &name, const QString &path, KURL &url)
+bool MediaImpl::realURL(const QString &name, const QString &path, KUrl &url)
 {
 	bool ok;
 	Medium m = findMediumByName(name, ok);
@@ -311,7 +311,7 @@ void MediaImpl::slotStatResult(KIO::Job *job)
 	emit leaveModality();
 }
 
-void MediaImpl::extractUrlInfos(const KURL &url, KIO::UDSEntry& infos)
+void MediaImpl::extractUrlInfos(const KUrl &url, KIO::UDSEntry& infos)
 {
 	m_entryBuffer.clear();
 
@@ -375,7 +375,7 @@ void MediaImpl::createMediumEntry(KIO::UDSEntry& entry,
 	}
 	else
 	{
-		KURL url = medium.prettyBaseURL();
+		KUrl url = medium.prettyBaseURL();
 		extractUrlInfos(url, entry);
 	}
 }

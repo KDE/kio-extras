@@ -33,10 +33,10 @@ class NNTPProtocol:public KIO::TCPSlaveBase
   NNTPProtocol ( const QByteArray & pool, const QByteArray & app, bool isSSL );
   virtual ~NNTPProtocol();
 
-  virtual void get(const KURL& url );
-  virtual void put( const KURL& url, int permissions, bool overwrite, bool resume );
-  virtual void stat(const KURL& url );
-  virtual void listDir(const KURL& url );
+  virtual void get(const KUrl& url );
+  virtual void put( const KUrl& url, int permissions, bool overwrite, bool resume );
+  virtual void stat(const KUrl& url );
+  virtual void listDir(const KUrl& url );
   virtual void setHost(const QString& host, int port,
         const QString& user, const QString& pass);
 

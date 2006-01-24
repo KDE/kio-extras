@@ -113,11 +113,11 @@ bool SMBSlave::browse_stat_path(const SMBUrl& _url, UDSEntry& udsentry, bool ign
 }
 
 //===========================================================================
-void SMBSlave::stat( const KURL& kurl )
+void SMBSlave::stat( const KUrl& kurl )
 {
     kdDebug(KIO_SMB) << "SMBSlave::stat on "<< kurl << endl;
     // make a valid URL
-    KURL url = checkURL(kurl);
+    KUrl url = checkURL(kurl);
 
     // if URL is not valid we have to redirect to correct URL
     if (url != kurl)
@@ -166,7 +166,7 @@ void SMBSlave::stat( const KURL& kurl )
 
 //===========================================================================
 // TODO: complete checking
-KURL SMBSlave::checkURL(const KURL& kurl) const
+KUrl SMBSlave::checkURL(const KUrl& kurl) const
 {
     kdDebug(KIO_SMB) << "checkURL " << kurl << endl;
     QString surl = kurl.url();
@@ -184,7 +184,7 @@ KURL SMBSlave::checkURL(const KURL& kurl) const
     // smb:/ normaly have no userinfo
     // we must redirect ourself to remove the username and password
     if (surl.contains('@') && !surl.contains("smb://")) {
-        KURL url(kurl);
+        KUrl url(kurl);
         url.setPath("/"+kurl.url().right( kurl.url().length()-kurl.url().find('@') -1));
         QString userinfo = kurl.url().mid(5, kurl.url().find('@')-5);
         if(userinfo.contains(':'))  {
@@ -198,7 +198,7 @@ KURL SMBSlave::checkURL(const KURL& kurl) const
     }
 
     // no emtpy path
-    KURL url(kurl);
+    KUrl url(kurl);
 
     if (url.path().isEmpty())
         url.setPath("/");
@@ -285,12 +285,12 @@ void SMBSlave::reportError(const SMBUrl &url)
 }
 
 //===========================================================================
-void SMBSlave::listDir( const KURL& kurl )
+void SMBSlave::listDir( const KUrl& kurl )
 {
    kdDebug(KIO_SMB) << "SMBSlave::listDir on " << kurl << endl;
 
    // check (correct) URL
-   KURL url = checkURL(kurl);
+   KUrl url = checkURL(kurl);
    // if URL is not valid we have to redirect to correct URL
    if (url != kurl)
    {
@@ -369,7 +369,7 @@ void SMBSlave::listDir( const KURL& kurl )
 
                if (dirp->smbc_type == SMBC_SERVER) {
                    // QString workgroup = m_current_url.host().toUpper();
-                   KURL u("smb:/");
+                   KUrl u("smb:/");
                    u.setHost(dirpName);
 
                    // when libsmbclient knows
@@ -394,7 +394,7 @@ void SMBSlave::listDir( const KURL& kurl )
                udsentry.insert(KIO::UDS_MIME_TYPE, QString::fromLatin1("application/x-smb-workgroup"));
 
                // QString workgroup = m_current_url.host().toUpper();
-               KURL u("smb:/");
+               KUrl u("smb:/");
                u.setHost(dirpName);
                udsentry.insert(KIO::UDS_URL, u.url());
 

@@ -495,9 +495,9 @@ void NFSProtocol::openConnection()
    kdDebug(7121)<<"openConnection succeeded"<<endl;
 }
 
-void NFSProtocol::listDir( const KURL& _url)
+void NFSProtocol::listDir( const KUrl& _url)
 {
-   KURL url(_url);
+   KUrl url(_url);
    QString path( QFile::encodeName(url.path()));
 
    if (path.isEmpty())
@@ -641,7 +641,7 @@ void NFSProtocol::listDir( const KURL& _url)
    finished();
 }
 
-void NFSProtocol::stat( const KURL & url)
+void NFSProtocol::stat( const KUrl & url)
 {
    QString path( QFile::encodeName(url.path()));
    stripTrailingSlash(path);
@@ -896,7 +896,7 @@ void NFSProtocol::setHost(const QString& host, int /*port*/, const QString& /*us
    closeConnection();
 }
 
-void NFSProtocol::mkdir( const KURL& url, int permissions )
+void NFSProtocol::mkdir( const KUrl& url, int permissions )
 {
    kdDebug(7121)<<"mkdir"<<endl;
    QString thePath( QFile::encodeName(url.path()));
@@ -1010,7 +1010,7 @@ bool NFSProtocol::checkForError(int clientStat, int nfsStat, const QString& text
    return TRUE;
 }
 
-void NFSProtocol::del( const KURL& url, bool isfile)
+void NFSProtocol::del( const KUrl& url, bool isfile)
 {
    QString thePath( QFile::encodeName(url.path()));
    stripTrailingSlash(thePath);
@@ -1070,7 +1070,7 @@ void NFSProtocol::del( const KURL& url, bool isfile)
    }
 }
 
-void NFSProtocol::chmod( const KURL& url, int permissions )
+void NFSProtocol::chmod( const KUrl& url, int permissions )
 {
    QString thePath( QFile::encodeName(url.path()));
    stripTrailingSlash(thePath);
@@ -1110,7 +1110,7 @@ void NFSProtocol::chmod( const KURL& url, int permissions )
    finished();
 }
 
-void NFSProtocol::get( const KURL& url )
+void NFSProtocol::get( const KUrl& url )
 {
    QString thePath( QFile::encodeName(url.path()));
    kdDebug(7121)<<"get() -"<<thePath<<"-"<<endl;
@@ -1158,7 +1158,7 @@ void NFSProtocol::get( const KURL& url )
 }
 
 //TODO the partial putting thing is not yet implemented
-void NFSProtocol::put( const KURL& url, int _mode, bool _overwrite, bool /*_resume*/ )
+void NFSProtocol::put( const KUrl& url, int _mode, bool _overwrite, bool /*_resume*/ )
 {
     QString destPath( QFile::encodeName(url.path()));
     kdDebug( 7121 ) << "Put -" << destPath <<"-"<<endl;
@@ -1284,7 +1284,7 @@ void NFSProtocol::put( const KURL& url, int _mode, bool _overwrite, bool /*_resu
     finished();
 }
 
-void NFSProtocol::rename( const KURL &src, const KURL &dest, bool _overwrite )
+void NFSProtocol::rename( const KUrl &src, const KUrl &dest, bool _overwrite )
 {
    QString srcPath( QFile::encodeName(src.path()));
    QString destPath( QFile::encodeName(dest.path()));
@@ -1342,7 +1342,7 @@ void NFSProtocol::rename( const KURL &src, const KURL &dest, bool _overwrite )
    finished();
 }
 
-void NFSProtocol::copy( const KURL &src, const KURL &dest, int _mode, bool _overwrite )
+void NFSProtocol::copy( const KUrl &src, const KUrl &dest, int _mode, bool _overwrite )
 {
    //prepare the source
    QString thePath( QFile::encodeName(src.path()));
@@ -1465,7 +1465,7 @@ void NFSProtocol::copy( const KURL &src, const KURL &dest, int _mode, bool _over
 }
 
 //TODO why isn't this even called ?
-void NFSProtocol::symlink( const QString &target, const KURL &dest, bool )
+void NFSProtocol::symlink( const QString &target, const KUrl &dest, bool )
 {
    kdDebug(7121)<<"symlinking "<<endl;
    QString destPath=dest.path();

@@ -77,7 +77,7 @@ bool SystemImpl::listRoot(KIO::UDSEntryList &list)
 	return true;
 }
 
-bool SystemImpl::parseURL(const KURL &url, QString &name, QString &path) const
+bool SystemImpl::parseURL(const KUrl &url, QString &name, QString &path) const
 {
 	QString url_path = url.path();
 
@@ -97,7 +97,7 @@ bool SystemImpl::parseURL(const KURL &url, QString &name, QString &path) const
 }
 
 bool SystemImpl::realURL(const QString &name, const QString &path,
-                         KURL &url) const
+                         KUrl &url) const
 {
 	url = findBaseURL(name);
 	if (!url.isValid())
@@ -142,7 +142,7 @@ bool SystemImpl::statByName(const QString &filename, KIO::UDSEntry& entry)
 	return false;
 }
 
-KURL SystemImpl::findBaseURL(const QString &filename) const
+KUrl SystemImpl::findBaseURL(const QString &filename) const
 {
 	kdDebug() << "SystemImpl::findBaseURL" << endl;
 
@@ -171,7 +171,7 @@ KURL SystemImpl::findBaseURL(const QString &filename) const
 				KDesktopFile desktop(*dirpath+filename+".desktop", true);
 				if ( desktop.readURL().isEmpty() )
 				{
-					KURL url;
+					KUrl url;
 					url.setPath( desktop.readPath() );
 					return url;
 				}
@@ -229,7 +229,7 @@ void SystemImpl::createEntry(KIO::UDSEntry &entry,
 
 	if (!empty_icon.isEmpty())
 	{
-		KURL url = desktop.readURL();
+		KUrl url = desktop.readURL();
 
 		m_lastListingEmpty = true;
 

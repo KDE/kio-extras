@@ -62,7 +62,7 @@ bool HTMLCreator::create(const QString &path, int width, int height, QImage &img
         m_html->setMetaRefreshEnabled(false);
         m_html->setOnlyLocalReferences(true);
     }
-    KURL url;
+    KUrl url;
     url.setPath(path);
     m_html->openURL(url);
 

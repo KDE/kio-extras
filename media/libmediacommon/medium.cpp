@@ -202,7 +202,7 @@ bool Medium::needMounting() const
 	return isMountable() && !isMounted();
 }
 
-KURL Medium::prettyBaseURL() const
+KUrl Medium::prettyBaseURL() const
 {
 	if ( isMountable() )
 	{

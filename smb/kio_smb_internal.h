@@ -51,7 +51,7 @@ enum SMBUrlType {
 //===========================================================================
 /**
  * Class to handle URL's
- * it can convert KURL to smbUrl
+ * it can convert KUrl to smbUrl
  * and Handle UserInfo
  * it also check the correctness of the URL
  */
@@ -61,7 +61,7 @@ class SMBUrl : public KURL
 
 public:
     SMBUrl();
-    SMBUrl(const KURL & kurl);
+    SMBUrl(const KUrl & kurl);
 
     /**
      * Appends the specified file and dir to this SMBUrl
@@ -80,9 +80,9 @@ public:
      */
     SMBUrlType getType() const;
 
-    void setPass( const QString& _txt ) { KURL::setPass(_txt); updateCache(); }
-    void setUser( const QString& _txt ) { KURL::setUser(_txt); updateCache(); }
-    void setHost( const QString& _txt ) { KURL::setHost(_txt); updateCache(); }
+    void setPass( const QString& _txt ) { KUrl::setPass(_txt); updateCache(); }
+    void setUser( const QString& _txt ) { KUrl::setUser(_txt); updateCache(); }
+    void setHost( const QString& _txt ) { KUrl::setHost(_txt); updateCache(); }
 
     /**
      * Returns the workgroup if it given in url

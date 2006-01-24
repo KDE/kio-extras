@@ -53,14 +53,14 @@ InfoProtocol::~InfoProtocol()
     kdDebug( 7108 ) << "InfoProtocol::~InfoProtocol - done" << endl;
 }
 
-void InfoProtocol::get( const KURL& url )
+void InfoProtocol::get( const KUrl& url )
 {
     kdDebug( 7108 ) << "InfoProtocol::get" << endl;
     kdDebug( 7108 ) << "URL: " << url.prettyURL() << " , Path :" << url.path() << endl;
 
     if (url.path()=="/")
     {
-       KURL newUrl("info:/dir");
+       KUrl newUrl("info:/dir");
        redirection(newUrl);
        finished();
        return;
@@ -68,7 +68,7 @@ void InfoProtocol::get( const KURL& url )
 
     // some people write info://autoconf instead of info:/autoconf
     if (!url.host().isEmpty()) {
-        KURL newURl(url);
+        KUrl newURl(url);
         newURl.setPath(url.host()+url.path());
         newURl.setHost(QString());
         redirection(newURl);
@@ -79,7 +79,7 @@ void InfoProtocol::get( const KURL& url )
     if ( url.path().right(1) == "/" )
     {
         // Trailing / are not supported, so we need to remove them.
-        KURL newUrl( url );
+        KUrl newUrl( url );
         QString newPath( url.path() );
         newPath.chop( 1 );
         newUrl.setPath( newPath );
@@ -149,7 +149,7 @@ void InfoProtocol::get( const KURL& url )
     kdDebug( 7108 ) << "InfoProtocol::get - done" << endl;
 }
 
-void InfoProtocol::mimetype( const KURL& /* url */ )
+void InfoProtocol::mimetype( const KUrl& /* url */ )
 {
     kdDebug( 7108 ) << "InfoProtocol::mimetype" << endl;
 
@@ -162,7 +162,7 @@ void InfoProtocol::mimetype( const KURL& /* url */ )
     kdDebug( 7108 ) << "InfoProtocol::mimetype - done" << endl;
 }
 
-void InfoProtocol::decodeURL( const KURL &url )
+void InfoProtocol::decodeURL( const KUrl &url )
 {
     kdDebug( 7108 ) << "InfoProtocol::decodeURL" << endl;
 
@@ -224,7 +224,7 @@ void InfoProtocol::decodePath( QString path )
 
 // A minimalistic stat with only the file type
 // This seems to be enough for konqueror
-void InfoProtocol::stat( const KURL & )
+void InfoProtocol::stat( const KUrl & )
 {
 	UDSEntry uds_entry;
 

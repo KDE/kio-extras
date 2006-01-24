@@ -48,10 +48,10 @@ public:
                        const QString & user, const QString & pass);
 
   virtual void special(const QByteArray & aData);
-  virtual void get(const KURL & url);
-  virtual void stat(const KURL & url);
-  virtual void del(const KURL & url, bool isfile);
-  virtual void listDir(const KURL & url);
+  virtual void get(const KUrl & url);
+  virtual void stat(const KUrl & url);
+  virtual void del(const KUrl & url, bool isfile);
+  virtual void listDir(const KUrl & url);
 
 protected:
 

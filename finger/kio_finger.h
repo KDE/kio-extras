@@ -37,14 +37,14 @@ public:
   FingerProtocol(const QByteArray &pool_socket, const QByteArray &app_socket);
   virtual ~FingerProtocol();
 
-  virtual void mimetype(const KURL& url);
-  virtual void get(const KURL& url);
+  virtual void mimetype(const KUrl& url);
+  virtual void get(const KUrl& url);
 
 private Q_SLOTS:
   void       slotGetStdOutput(KProcess*, char*, int);
 
 private:
-  KURL                  *myURL;
+  KUrl                  *myURL;
 
   QString	        *myPerlPath;
   QString               *myFingerPath;
@@ -57,7 +57,7 @@ private:
   KProcess	        *myKProcess;
 
   void       getProgramPath();
-  void       parseCommandLine(const KURL& url);
+  void       parseCommandLine(const KUrl& url);
 };
 
 

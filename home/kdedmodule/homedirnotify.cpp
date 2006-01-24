@@ -60,7 +60,7 @@ void HomeDirNotify::init()
 				uid_list.append( (*it).uid() );
 				
 				QString name = (*it).loginName();
-				KURL url;
+				KUrl url;
 				url.setPath( (*it).homeDir() );
 
 				m_homeFoldersMap[name] = url;
@@ -69,7 +69,7 @@ void HomeDirNotify::init()
 	}
 }
 
-KURL HomeDirNotify::toHomeURL(const KURL &url)
+KUrl HomeDirNotify::toHomeURL(const KUrl &url)
 {
 	kdDebug() << "HomeDirNotify::toHomeURL(" << url << ")" << endl;
 	
@@ -80,13 +80,13 @@ KURL HomeDirNotify::toHomeURL(const KURL &url)
 	for (; it!=end; ++it)
 	{
 		QString name = it.key();
-		KURL base = it.data();
+		KUrl base = it.data();
 		
 		if ( base.isParentOf(url) )
 		{
-			QString path = KURL::relativePath(base.path(),
+			QString path = KUrl::relativePath(base.path(),
 			                                  url.path());
-			KURL result("home:/"+name+"/"+path);
+			KUrl result("home:/"+name+"/"+path);
 			result.cleanPath();
 			kdDebug() << "result => " << result << endl;
 			return result;
@@ -97,17 +97,17 @@ KURL HomeDirNotify::toHomeURL(const KURL &url)
 	return KURL();
 }
 
-KURL::List HomeDirNotify::toHomeURLList(const KURL::List &list)
+KUrl::List HomeDirNotify::toHomeURLList(const KUrl::List &list)
 {
 	init();
-	KURL::List new_list;
+	KUrl::List new_list;
 
-	KURL::List::const_iterator it = list.begin();
-	KURL::List::const_iterator end = list.end();
+	KUrl::List::const_iterator it = list.begin();
+	KUrl::List::const_iterator end = list.end();
 
 	for (; it!=end; ++it)
 	{
-		KURL url = toHomeURL(*it);
+		KUrl url = toHomeURL(*it);
 
 		if (url.isValid())
 		{
@@ -118,11 +118,11 @@ KURL::List HomeDirNotify::toHomeURLList(const KURL::List &list)
 	return new_list;
 }
 
-ASYNC HomeDirNotify::FilesAdded(const KURL &directory)
+ASYNC HomeDirNotify::FilesAdded(const KUrl &directory)
 {
 	kdDebug() << "HomeDirNotify::FilesAdded" << endl;
 	
-	KURL new_dir = toHomeURL(directory);
+	KUrl new_dir = toHomeURL(directory);
 
 	if (new_dir.isValid())
 	{
@@ -136,18 +136,18 @@ ASYNC HomeDirNotify::FilesAdded(const KURL &directory)
 // have a file:/ based UDS_URL so that they are executed correctly.
 // Hence, FilesRemoved and FilesChanged does nothing... We're forced to use
 // FilesAdded to re-list the modified directory.
-inline void evil_hack(const KURL::List &list)
+inline void evil_hack(const KUrl::List &list)
 {
 	KDirNotify_stub notifier("*", "*");
 	
-	KURL::List notified;
+	KUrl::List notified;
 	
-	KURL::List::const_iterator it = list.begin();
-	KURL::List::const_iterator end = list.end();
+	KUrl::List::const_iterator it = list.begin();
+	KUrl::List::const_iterator end = list.end();
 
 	for (; it!=end; ++it)
 	{
-		KURL url = (*it).upURL();
+		KUrl url = (*it).upURL();
 
 		if (!notified.contains(url))
 		{
@@ -158,11 +158,11 @@ inline void evil_hack(const KURL::List &list)
 }
 
 
-ASYNC HomeDirNotify::FilesRemoved(const KURL::List &fileList)
+ASYNC HomeDirNotify::FilesRemoved(const KUrl::List &fileList)
 {
 	kdDebug() << "HomeDirNotify::FilesRemoved" << endl;
 	
-	KURL::List new_list = toHomeURLList(fileList);
+	KUrl::List new_list = toHomeURLList(fileList);
 
 	if (!new_list.isEmpty())
 	{
@@ -172,11 +172,11 @@ ASYNC HomeDirNotify::FilesRemoved(const KURL::List &fileList)
 	}
 }
 
-ASYNC HomeDirNotify::FilesChanged(const KURL::List &fileList)
+ASYNC HomeDirNotify::FilesChanged(const KUrl::List &fileList)
 {
 	kdDebug() << "HomeDirNotify::FilesChanged" << endl;
 	
-	KURL::List new_list = toHomeURLList(fileList);
+	KUrl::List new_list = toHomeURLList(fileList);
 
 	if (!new_list.isEmpty())
 	{

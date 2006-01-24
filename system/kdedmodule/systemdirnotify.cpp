@@ -65,7 +65,7 @@ void SystemDirNotify::init()
 				QString system_name = *name;
 				system_name.truncate(system_name.length()-8);
 
-				KURL system_url("system:/"+system_name);
+				KUrl system_url("system:/"+system_name);
 				
 				if ( !desktop.readURL().isEmpty() )
 				{
@@ -74,7 +74,7 @@ void SystemDirNotify::init()
 				}
 				else if ( !desktop.readPath().isEmpty() )
 				{
-					KURL url;
+					KUrl url;
 					url.setPath( desktop.readPath() );
 					m_urlMap[url] = system_url;
 					names_found.append( *name );
@@ -84,7 +84,7 @@ void SystemDirNotify::init()
 	}
 }
 
-KURL SystemDirNotify::toSystemURL(const KURL &url)
+KUrl SystemDirNotify::toSystemURL(const KUrl &url)
 {
 	kdDebug() << "SystemDirNotify::toSystemURL(" << url << ")" << endl;
 
@@ -94,13 +94,13 @@ KURL SystemDirNotify::toSystemURL(const KURL &url)
 
 	for (; it!=end; ++it)
 	{
-		KURL base = it.key();
+		KUrl base = it.key();
 
 		if ( base.isParentOf(url) )
 		{
-			QString path = KURL::relativePath(base.path(),
+			QString path = KUrl::relativePath(base.path(),
 			                                  url.path());
-			KURL result = it.data();
+			KUrl result = it.data();
 			result.addPath(path);
 			result.cleanPath();
 			kdDebug() << result << endl;
@@ -112,17 +112,17 @@ KURL SystemDirNotify::toSystemURL(const KURL &url)
 	return KURL();
 }
 
-KURL::List SystemDirNotify::toSystemURLList(const KURL::List &list)
+KUrl::List SystemDirNotify::toSystemURLList(const KUrl::List &list)
 {
 	init();
-	KURL::List new_list;
+	KUrl::List new_list;
 
-	KURL::List::const_iterator it = list.begin();
-	KURL::List::const_iterator end = list.end();
+	KUrl::List::const_iterator it = list.begin();
+	KUrl::List::const_iterator end = list.end();
 
 	for (; it!=end; ++it)
 	{
-		KURL url = toSystemURL(*it);
+		KUrl url = toSystemURL(*it);
 
 		if (url.isValid())
 		{
@@ -133,9 +133,9 @@ KURL::List SystemDirNotify::toSystemURLList(const KURL::List &list)
 	return new_list;
 }
 
-ASYNC SystemDirNotify::FilesAdded(const KURL &directory)
+ASYNC SystemDirNotify::FilesAdded(const KUrl &directory)
 {
-	KURL new_dir = toSystemURL(directory);
+	KUrl new_dir = toSystemURL(directory);
 
 	if (new_dir.isValid())
 	{
@@ -148,17 +148,17 @@ ASYNC SystemDirNotify::FilesAdded(const KURL &directory)
 	}
 }
 
-ASYNC SystemDirNotify::FilesRemoved(const KURL::List &fileList)
+ASYNC SystemDirNotify::FilesRemoved(const KUrl::List &fileList)
 {
-	KURL::List new_list = toSystemURLList(fileList);
+	KUrl::List new_list = toSystemURLList(fileList);
 
 	if (!new_list.isEmpty())
 	{
 		KDirNotify_stub notifier("*", "*");
 		notifier.FilesRemoved( new_list );
 		
-		KURL::List::const_iterator it = new_list.begin();
-		KURL::List::const_iterator end = new_list.end();
+		KUrl::List::const_iterator it = new_list.begin();
+		KUrl::List::const_iterator end = new_list.end();
 
 		for (; it!=end; ++it)
 		{
@@ -170,9 +170,9 @@ ASYNC SystemDirNotify::FilesRemoved(const KURL::List &fileList)
 	}
 }
 
-ASYNC SystemDirNotify::FilesChanged(const KURL::List &fileList)
+ASYNC SystemDirNotify::FilesChanged(const KUrl::List &fileList)
 {
-	KURL::List new_list = toSystemURLList(fileList);
+	KUrl::List new_list = toSystemURLList(fileList);
 
 	if (!new_list.isEmpty())
 	{

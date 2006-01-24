@@ -33,8 +33,8 @@ Q_OBJECT
 
 public:
 	HomeImpl();
-	bool parseURL(const KURL &url, QString &name, QString &path) const;
-	bool realURL(const QString &name, const QString &path, KURL &url);
+	bool parseURL(const KUrl &url, QString &name, QString &path) const;
+	bool realURL(const QString &name, const QString &path, KUrl &url);
 
 	bool statHome(const QString &name, KIO::UDSEntry &entry);
 	bool listHomes(KIO::UDSEntryList &list);
@@ -54,7 +54,7 @@ Q_SIGNALS:
 private:
 	void createHomeEntry(KIO::UDSEntry& entry, const KUser &user);
 
-	void extractUrlInfos(const KURL &url, KIO::UDSEntry& infos);
+	void extractUrlInfos(const KUrl &url, KIO::UDSEntry& infos);
 	KIO::UDSEntry m_entryBuffer;
 
 

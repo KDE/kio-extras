@@ -70,7 +70,7 @@ MediaProtocol::~MediaProtocol()
 {
 }
 
-bool MediaProtocol::rewriteURL(const KURL &url, KURL &newUrl)
+bool MediaProtocol::rewriteURL(const KUrl &url, KUrl &newUrl)
 {
 	QString name, path;
 
@@ -90,7 +90,7 @@ bool MediaProtocol::rewriteURL(const KURL &url, KURL &newUrl)
 	return true;
 }
 
-void MediaProtocol::put(const KURL &url, int permissions,
+void MediaProtocol::put(const KUrl &url, int permissions,
                         bool overwrite, bool resume)
 {
 	kdDebug(1219) << "MediaProtocol::put: " << url << endl;
@@ -108,7 +108,7 @@ void MediaProtocol::put(const KURL &url, int permissions,
 	}
 }
 
-void MediaProtocol::rename(const KURL &src, const KURL &dest, bool overwrite)
+void MediaProtocol::rename(const KUrl &src, const KUrl &dest, bool overwrite)
 {
 	kdDebug(1219) << "MediaProtocol::rename: " << src << ", " << dest << ", "
 	          << overwrite << endl;
@@ -136,7 +136,7 @@ void MediaProtocol::rename(const KURL &src, const KURL &dest, bool overwrite)
 	}
 }
 
-void MediaProtocol::mkdir(const KURL &url, int permissions)
+void MediaProtocol::mkdir(const KUrl &url, int permissions)
 {
 	kdDebug(1219) << "MediaProtocol::mkdir: " << url << endl;
 
@@ -153,7 +153,7 @@ void MediaProtocol::mkdir(const KURL &url, int permissions)
 	}
 }
 
-void MediaProtocol::del(const KURL &url, bool isFile)
+void MediaProtocol::del(const KUrl &url, bool isFile)
 {
 	kdDebug(1219) << "MediaProtocol::del: " << url << endl;
 
@@ -170,7 +170,7 @@ void MediaProtocol::del(const KURL &url, bool isFile)
 	}
 }
 
-void MediaProtocol::stat(const KURL &url)
+void MediaProtocol::stat(const KUrl &url)
 {
 	kdDebug(1219) << "MediaProtocol::stat: " << url << endl;
 	QString path = url.path();
@@ -214,7 +214,7 @@ void MediaProtocol::stat(const KURL &url)
 	}
 }
 
-void MediaProtocol::listDir(const KURL &url)
+void MediaProtocol::listDir(const KUrl &url)
 {
 	kdDebug(1219) << "MediaProtocol::listDir: " << url << endl;
 

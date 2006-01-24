@@ -69,7 +69,7 @@ HomeProtocol::~HomeProtocol()
 {
 }
 
-bool HomeProtocol::rewriteURL(const KURL &url, KURL &newUrl)
+bool HomeProtocol::rewriteURL(const KUrl &url, KUrl &newUrl)
 {
 	QString name, path;
 
@@ -90,7 +90,7 @@ bool HomeProtocol::rewriteURL(const KURL &url, KURL &newUrl)
 }
 
 
-void HomeProtocol::listDir(const KURL &url)
+void HomeProtocol::listDir(const KUrl &url)
 {
 	kdDebug() << "HomeProtocol::listDir: " << url << endl;
 
@@ -143,7 +143,7 @@ void HomeProtocol::listRoot()
 	finished();
 }
 
-void HomeProtocol::stat(const KURL &url)
+void HomeProtocol::stat(const KUrl &url)
 {
 	kdDebug() << "HomeProtocol::stat: " << url << endl;
 

@@ -93,9 +93,9 @@ FingerProtocol::~FingerProtocol()
 /* ---------------------------------------------------------------------------------- */
 
 
-void FingerProtocol::get(const KURL& url )
+void FingerProtocol::get(const KUrl& url )
 {
-  //kdDebug() << "kio_finger::get(const KURL& url)" << endl ;
+  //kdDebug() << "kio_finger::get(const KUrl& url)" << endl ;
 
   this->parseCommandLine(url);
 
@@ -157,7 +157,7 @@ void FingerProtocol::slotGetStdOutput(KProcess* /* p */, char *s, int len)
 /* ---------------------------------------------------------------------------------- */
 
 
-void FingerProtocol::mimetype(const KURL & /*url*/)
+void FingerProtocol::mimetype(const KUrl & /*url*/)
 {
   mimeType("text/html");
   finished();
@@ -227,7 +227,7 @@ void FingerProtocol::getProgramPath()
 /* --------------------------------------------------------------------------- */
 
 
-void FingerProtocol::parseCommandLine(const KURL& url)
+void FingerProtocol::parseCommandLine(const KUrl& url)
 {
   myURL = new KURL(url);
 

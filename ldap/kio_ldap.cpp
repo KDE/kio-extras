@@ -69,7 +69,7 @@ LDAPProtocol::~LDAPProtocol()
   closeConnection();
 }
 
-void LDAPProtocol::LDAPErr( const KURL &url, int err )
+void LDAPProtocol::LDAPErr( const KUrl &url, int err )
 {
 
   char *errmsg = 0;
@@ -581,7 +581,7 @@ void LDAPProtocol::openConnection()
 
   version = ( mVer == 2 ) ? LDAP_VERSION2 : LDAP_VERSION3;
 
-  KURL Url;
+  KUrl Url;
   Url.setProtocol( mProtocol );
   Url.setHost( mHost );
   Url.setPort( mPort );
@@ -710,7 +710,7 @@ void LDAPProtocol::closeConnection()
 /**
  * Get the information contained in the URL.
  */
-void LDAPProtocol::get( const KURL &_url )
+void LDAPProtocol::get( const KUrl &_url )
 {
   kdDebug(7125) << "get(" << _url << ")" << endl;
 
@@ -774,7 +774,7 @@ void LDAPProtocol::get( const KURL &_url )
 /**
  * Test if the url contains a directory or a file.
  */
-void LDAPProtocol::stat( const KURL &_url )
+void LDAPProtocol::stat( const KUrl &_url )
 {
   kdDebug(7125) << "stat(" << _url << ")" << endl;
 
@@ -831,7 +831,7 @@ void LDAPProtocol::stat( const KURL &_url )
 /**
  * Deletes one entry;
  */
-void LDAPProtocol::del( const KURL &_url, bool )
+void LDAPProtocol::del( const KUrl &_url, bool )
 {
   kdDebug(7125) << "del(" << _url << ")" << endl;
 
@@ -860,7 +860,7 @@ void LDAPProtocol::del( const KURL &_url, bool )
                 lmod = 0; serverctrls = 0; clientctrls = 0; \
                 }
 
-void LDAPProtocol::put( const KURL &_url, int, bool overwrite, bool )
+void LDAPProtocol::put( const KUrl &_url, int, bool overwrite, bool )
 {
   kdDebug(7125) << "put(" << _url << ")" << endl;
 
@@ -1016,7 +1016,7 @@ void LDAPProtocol::put( const KURL &_url, int, bool overwrite, bool )
 /**
  * List the contents of a directory.
  */
-void LDAPProtocol::listDir( const KURL &_url )
+void LDAPProtocol::listDir( const KUrl &_url )
 {
   int ret, ret2, id, id2;
   unsigned long total=0;

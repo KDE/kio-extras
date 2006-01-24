@@ -36,8 +36,8 @@ Q_OBJECT
 K_DCOP
 public:
 	MediaImpl();
-	bool parseURL(const KURL &url, QString &name, QString &path) const;
-	bool realURL(const QString &name, const QString &path, KURL &url);
+	bool parseURL(const KUrl &url, QString &name, QString &path) const;
+	bool realURL(const QString &name, const QString &path, KUrl &url);
 
 	bool statMedium(const QString &name, KIO::UDSEntry &entry);
 	bool statMediumByLabel(const QString &label, KIO::UDSEntry &entry);
@@ -65,7 +65,7 @@ private:
 	const Medium findMediumByName(const QString &name, bool &ok);
 	bool ensureMediumMounted(Medium &medium);
 
-	void extractUrlInfos(const KURL &url, KIO::UDSEntry& infos);
+	void extractUrlInfos(const KUrl &url, KIO::UDSEntry& infos);
 	KIO::UDSEntry m_entryBuffer;
 
 	void createMediumEntry(KIO::UDSEntry& entry,

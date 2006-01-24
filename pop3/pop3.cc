@@ -814,7 +814,7 @@ void POP3Protocol::special(const QByteArray & aData)
   finished();
 }
 
-void POP3Protocol::get(const KURL & url)
+void POP3Protocol::get(const KUrl & url)
 {
 // List of supported commands
 //
@@ -1088,7 +1088,7 @@ void POP3Protocol::get(const KURL & url)
   }
 }
 
-void POP3Protocol::listDir(const KURL &)
+void POP3Protocol::listDir(const KUrl &)
 {
   bool isINT;
   int num_messages = 0;
@@ -1129,7 +1129,7 @@ void POP3Protocol::listDir(const KURL &)
     entry.insert(UDS_NAME, fname.arg(i + 1));
     entry.insert(UDS_MIME_TYPE, QString::fromLatin1("text/plain"));
 
-    KURL uds_url;
+    KUrl uds_url;
     if (m_bIsSSL) {
       uds_url.setProtocol("pop3s");
     } else {
@@ -1154,7 +1154,7 @@ void POP3Protocol::listDir(const KURL &)
   finished();
 }
 
-void POP3Protocol::stat(const KURL & url)
+void POP3Protocol::stat(const KUrl & url)
 {
   QString _path = url.path();
 
@@ -1172,7 +1172,7 @@ void POP3Protocol::stat(const KURL & url)
   finished();
 }
 
-void POP3Protocol::del(const KURL & url, bool /*isfile */ )
+void POP3Protocol::del(const KUrl & url, bool /*isfile */ )
 {
   QString invalidURI = QString();
   bool isInt;

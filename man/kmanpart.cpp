@@ -78,7 +78,7 @@ KManPart::KManPart( QWidget * parent, const char * name )
    m_extension=new KParts::BrowserExtension(this);
 }
 
-bool KManPart::openURL( const KURL &url )
+bool KManPart::openURL( const KUrl &url )
 {
    return KParts::ReadOnlyPart::openURL(url);
 }
@@ -90,7 +90,7 @@ bool KManPart::openFile()
 
    begin();
 
-   KURL url;
+   KUrl url;
    url.setProtocol( "man" );
    url.setPath( m_file );
 

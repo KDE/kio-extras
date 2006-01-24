@@ -211,10 +211,10 @@ protected:
      *                server   = host to connect
      *                share    = a share of the server (host)
      *                path     = a path of the share
-     * Parameter :    KURL the url to check
-     * Return :       new KURL if its corrected. else the same KURL
+     * Parameter :    KUrl the url to check
+     * Return :       new KUrl if its corrected. else the same KURL
      */
-    KURL checkURL(const KURL& kurl) const;
+    KUrl checkURL(const KUrl& kurl) const;
 
     void reportError(const SMBUrl &kurl);
 
@@ -240,21 +240,21 @@ public:
     virtual ~SMBSlave();
 
     // Functions overwritten in kio_smb_browse.cpp
-    virtual void listDir( const KURL& url );
-    virtual void stat( const KURL& url );
+    virtual void listDir( const KUrl& url );
+    virtual void stat( const KUrl& url );
 
     // Functions overwritten in kio_smb_config.cpp
     virtual void reparseConfiguration();
 
     // Functions overwritten in kio_smb_dir.cpp
-    virtual void copy( const KURL& src, const KURL &dest, int permissions, bool overwrite );
-    virtual void del( const KURL& kurl, bool isfile);
-    virtual void mkdir( const KURL& kurl, int permissions );
-    virtual void rename( const KURL& src, const KURL& dest, bool overwrite );
+    virtual void copy( const KUrl& src, const KUrl &dest, int permissions, bool overwrite );
+    virtual void del( const KUrl& kurl, bool isfile);
+    virtual void mkdir( const KUrl& kurl, int permissions );
+    virtual void rename( const KUrl& src, const KUrl& dest, bool overwrite );
 
     // Functions overwritten in kio_smb_file.cpp
-    virtual void get( const KURL& kurl );
-    virtual void put( const KURL& kurl, int permissions, bool overwrite, bool resume );
+    virtual void get( const KUrl& kurl );
+    virtual void put( const KUrl& kurl, int permissions, bool overwrite, bool resume );
 
     // Functions not implemented  (yet)
     //virtual void setHost(const QString& host, int port, const QString& user, const QString& pass);

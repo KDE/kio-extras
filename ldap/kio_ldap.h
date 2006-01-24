@@ -24,11 +24,11 @@ class LDAPProtocol : public KIO::SlaveBase
     virtual void openConnection();
     virtual void closeConnection();
     
-    virtual void get( const KURL& url );
-    virtual void stat( const KURL& url );
-    virtual void listDir( const KURL& url );
-    virtual void del( const KURL& url, bool isfile );
-    virtual void put( const KURL& url, int permissions, bool overwrite, bool resume );
+    virtual void get( const KUrl& url );
+    virtual void stat( const KUrl& url );
+    virtual void listDir( const KUrl& url );
+    virtual void del( const KUrl& url, bool isfile );
+    virtual void put( const KUrl& url, int permissions, bool overwrite, bool resume );
 
     int saslInteract( void *in );
 
@@ -56,7 +56,7 @@ class LDAPProtocol : public KIO::SlaveBase
     int asyncSearch( KABC::LDAPUrl &usrc );
     
     QByteArray LDAPEntryAsLDIF( LDAPMessage *msg );
-    void LDAPErr( const KURL &url, int err = LDAP_SUCCESS );
+    void LDAPErr( const KUrl &url, int err = LDAP_SUCCESS );
     void changeCheck( KABC::LDAPUrl &url );
 
     void fillAuthInfo( KIO::AuthInfo &info );

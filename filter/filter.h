@@ -33,13 +33,13 @@ class FilterProtocol : public QObject, public KIO::SlaveBase
 public:
   FilterProtocol( const QByteArray & protocol, const QByteArray &pool, const QByteArray &app );
 
-  virtual void get( const KURL &url );
-  virtual void put( const KURL &url, int _mode, bool _overwrite,
+  virtual void get( const KUrl &url );
+  virtual void put( const KUrl &url, int _mode, bool _overwrite,
                     bool _resume );
-  virtual void setSubURL(const KURL &url);
+  virtual void setSubURL(const KUrl &url);
 
 private:
-  KURL subURL;
+  KUrl subURL;
   KFilterBase * filter;
 };
 

@@ -30,11 +30,11 @@ public:
 	               const QByteArray &app);
 	virtual ~RemoteProtocol();
 
-	virtual void listDir(const KURL &url);
-	virtual void stat(const KURL &url);
-	virtual void del(const KURL &url, bool isFile);
-	virtual void get(const KURL &url);
-	virtual void rename(const KURL &src, const KURL &dest, bool overwrite);
+	virtual void listDir(const KUrl &url);
+	virtual void stat(const KUrl &url);
+	virtual void del(const KUrl &url, bool isFile);
+	virtual void get(const KUrl &url);
+	virtual void rename(const KUrl &src, const KUrl &dest, bool overwrite);
 
 private:
 	void listRoot();

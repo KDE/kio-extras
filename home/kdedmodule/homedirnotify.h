@@ -32,14 +32,14 @@ public:
 	HomeDirNotify();
 
 k_dcop:
-	virtual ASYNC FilesAdded (const KURL &directory);
-	virtual ASYNC FilesRemoved (const KURL::List &fileList);
-	virtual ASYNC FilesChanged (const KURL::List &fileList);
+	virtual ASYNC FilesAdded (const KUrl &directory);
+	virtual ASYNC FilesRemoved (const KUrl::List &fileList);
+	virtual ASYNC FilesChanged (const KUrl::List &fileList);
 
 private:
 	void init();
-	KURL toHomeURL(const KURL &url);
-	KURL::List toHomeURLList(const KURL::List &list);
+	KUrl toHomeURL(const KUrl &url);
+	KUrl::List toHomeURLList(const KUrl::List &list);
 	
 	QMap<QString,KURL> m_homeFoldersMap;
 	bool mInited;

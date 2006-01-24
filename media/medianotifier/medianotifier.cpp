@@ -63,7 +63,7 @@ void MediaNotifier::onMediumChange( const QString &name, bool allowNotification 
 // as soon as the media is entered, but it apparently takes some time to get here.
 	kapp->updateUserTimestamp();
 
-	KURL url(  "system:/media/"+name );
+	KUrl url(  "system:/media/"+name );
 
 	KIO::SimpleJob *job = KIO::stat( url, false );
 	job->setInteractive( false );
@@ -84,7 +84,7 @@ void MediaNotifier::slotStatResult( KIO::Job *job )
 	KIO::StatJob *stat_job = static_cast<KIO::StatJob *>( job );
 	
 	KIO::UDSEntry entry = stat_job->statResult();
-	KURL url = stat_job->url();
+	KUrl url = stat_job->url();
 	
 	KFileItem medium( entry, url );
 
@@ -233,7 +233,7 @@ bool MediaNotifier::execAutoopen( const KFileItem &medium, const QString &path,
 		return false;
 	}
 
-	KURL url = medium.url();
+	KUrl url = medium.url();
 	url.addPath( relative_path );
 	
 	// The desktop environment MUST prompt the user for confirmation

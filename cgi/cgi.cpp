@@ -47,7 +47,7 @@ CgiProtocol::~CgiProtocol()
   kdDebug(7124) << "CgiProtocol::~CgiProtocol" << endl;
 }
 
-void CgiProtocol::get( const KURL& url )
+void CgiProtocol::get( const KUrl& url )
 {
   kdDebug(7124) << "CgiProtocol::get()" << endl;
   kdDebug(7124) << " URL: " << url.url() << endl;

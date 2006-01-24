@@ -65,7 +65,7 @@ void NotifierServiceAction::setLabel( const QString &label )
 
 void NotifierServiceAction::execute(KFileItem &medium)
 {
-	KURL::List urls = KURL::List( medium.url() );
+	KUrl::List urls = KUrl::List( medium.url() );
 	KDEDesktopMimeType::executeService( urls, m_service );
 }
 

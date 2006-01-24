@@ -65,7 +65,7 @@ public:
 	QString iconName() const { return m_properties[ICON_NAME]; };
 
 	bool needMounting() const;
-	KURL prettyBaseURL() const;
+	KUrl prettyBaseURL() const;
 	QString prettyLabel() const;
 
 	void setName(const QString &name);

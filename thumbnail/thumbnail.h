@@ -33,7 +33,7 @@ public:
     ThumbnailProtocol(const QByteArray &pool, const QByteArray &app);
     virtual ~ThumbnailProtocol();
 
-    virtual void get(const KURL &url);
+    virtual void get(const KUrl &url);
 
 protected:
     const QImage& getIcon();

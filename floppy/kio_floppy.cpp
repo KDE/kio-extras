@@ -186,7 +186,7 @@ void FloppyProtocol::terminateBuffers()
    //kdDebug(7101)<<"Floppy::terminateBuffers() ends"<<endl;
 }
 
-bool FloppyProtocol::stopAfterError(const KURL& url, const QString& drive)
+bool FloppyProtocol::stopAfterError(const KUrl& url, const QString& drive)
 {
    if (m_stderrSize==0)
       return true;
@@ -252,10 +252,10 @@ bool FloppyProtocol::stopAfterError(const KURL& url, const QString& drive)
    return true;
 }
 
-void FloppyProtocol::listDir( const KURL& _url)
+void FloppyProtocol::listDir( const KUrl& _url)
 {
    kdDebug(7101)<<"Floppy::listDir() "<<_url.path()<<endl;
-   KURL url(_url);
+   KUrl url(_url);
    QString path(url.path());
 
    if ((path.isEmpty()) || (path=="/"))
@@ -471,7 +471,7 @@ StatInfo FloppyProtocol::createStatInfo(const QString line, bool makeStat, const
    return info;
 }
 
-StatInfo FloppyProtocol::_stat(const KURL& url)
+StatInfo FloppyProtocol::_stat(const KUrl& url)
 {
    StatInfo info;
 
@@ -577,7 +577,7 @@ StatInfo FloppyProtocol::_stat(const KURL& url)
    return info;
 }
 
-int FloppyProtocol::freeSpace(const KURL& url)
+int FloppyProtocol::freeSpace(const KUrl& url)
 {
    QString path(url.path());
    QString drive;
@@ -671,10 +671,10 @@ int FloppyProtocol::freeSpace(const KURL& url)
    return -1;
 }
 
-void FloppyProtocol::stat( const KURL & _url)
+void FloppyProtocol::stat( const KUrl & _url)
 {
    kdDebug(7101)<<"Floppy::stat() "<<_url.path()<<endl;
-   KURL url(_url);
+   KUrl url(_url);
    QString path(url.path());
 
    if ((path.isEmpty()) || (path=="/"))
@@ -697,14 +697,14 @@ void FloppyProtocol::stat( const KURL & _url)
    //otherwise the error() was already reported in _stat()
 }
 
-void FloppyProtocol::mkdir( const KURL& url, int)
+void FloppyProtocol::mkdir( const KUrl& url, int)
 {
    kdDebug(7101)<<"FloppyProtocol::mkdir()"<<endl;
    QString path(url.path());
 
    if ((path.isEmpty()) || (path=="/"))
    {
-      KURL newUrl(url);
+      KUrl newUrl(url);
       newUrl.setPath("/a/");
       redirection(newUrl);
       finished();
@@ -769,14 +769,14 @@ void FloppyProtocol::mkdir( const KURL& url, int)
    finished();
 }
 
-void FloppyProtocol::del( const KURL& url, bool isfile)
+void FloppyProtocol::del( const KUrl& url, bool isfile)
 {
    kdDebug(7101)<<"FloppyProtocol::del()"<<endl;
    QString path(url.path());
 
    if ((path.isEmpty()) || (path=="/"))
    {
-      KURL newUrl(url);
+      KUrl newUrl(url);
       newUrl.setPath("/a/");
       redirection(newUrl);
       finished();
@@ -854,7 +854,7 @@ void FloppyProtocol::del( const KURL& url, bool isfile)
    finished();
 }
 
-void FloppyProtocol::rename( const KURL &src, const KURL &dest, bool _overwrite )
+void FloppyProtocol::rename( const KUrl &src, const KUrl &dest, bool _overwrite )
 {
    QString srcPath(src.path());
    QString destPath(dest.path());
@@ -940,14 +940,14 @@ void FloppyProtocol::rename( const KURL &src, const KURL &dest, bool _overwrite 
    finished();
 }
 
-void FloppyProtocol::get( const KURL& url )
+void FloppyProtocol::get( const KUrl& url )
 {
    QString path(url.path());
    kdDebug(7101)<<"Floppy::get() -"<<path<<"-"<<endl;
 
    if ((path.isEmpty()) || (path=="/"))
    {
-      KURL newUrl(url);
+      KUrl newUrl(url);
       newUrl.setPath("/a/");
       redirection(newUrl);
       finished();
@@ -1040,14 +1040,14 @@ void FloppyProtocol::get( const KURL& url )
    finished();
 }
 
-void FloppyProtocol::put( const KURL& url, int , bool overwrite, bool )
+void FloppyProtocol::put( const KUrl& url, int , bool overwrite, bool )
 {
    QString path(url.path());
    kdDebug(7101)<<"Floppy::put() -"<<path<<"-"<<endl;
 
    if ((path.isEmpty()) || (path=="/"))
    {
-      KURL newUrl(url);
+      KUrl newUrl(url);
       newUrl.setPath("/a/");
       redirection(newUrl);
       finished();

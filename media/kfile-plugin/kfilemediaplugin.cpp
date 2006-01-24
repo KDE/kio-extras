@@ -73,7 +73,7 @@ bool KFileMediaPlugin::readInfo(KFileMetaInfo &info, uint /*what*/)
 	if (medium.id().isNull()) return false;
 
 	QString mount_point = medium.mountPoint();
-	KURL base_url = medium.prettyBaseURL();
+	KUrl base_url = medium.prettyBaseURL();
 	QString device_node = medium.deviceNode();
 
 	KFileMetaInfoGroup group = appendGroup(info, "mediumInfo");

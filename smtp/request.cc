@@ -42,7 +42,7 @@
 
 namespace KioSMTP {
 
-  Request Request::fromURL( const KURL & url ) {
+  Request Request::fromURL( const KUrl & url ) {
     Request request;
 
     const QStringList query = url.query().mid(1).split( '&');
@@ -55,7 +55,7 @@ namespace KioSMTP {
 	continue;
 
       const QString key = (*it).left( equalsPos ).toLower();
-      const QString value = KURL::decode_string( (*it).mid( equalsPos + 1 ) );
+      const QString value = KUrl::decode_string( (*it).mid( equalsPos + 1 ) );
 
       if ( key == "to" )
 	request.addTo( value );

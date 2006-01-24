@@ -46,14 +46,14 @@ class FloppyProtocol : public KIO::SlaveBase
       FloppyProtocol (const QByteArray &pool, const QByteArray &app );
       virtual ~FloppyProtocol();
 
-      virtual void listDir( const KURL& url);
-      virtual void stat( const KURL & url);
-      virtual void mkdir( const KURL& url, int);
-      virtual void del( const KURL& url, bool isfile);
-      virtual void rename(const KURL &src, const KURL &dest, bool overwrite);
-      virtual void get( const KURL& url );
-      virtual void put( const KURL& url, int _mode,bool overwrite, bool _resume );
-      //virtual void copy( const KURL& src, const KURL &dest, int, bool overwrite );
+      virtual void listDir( const KUrl& url);
+      virtual void stat( const KUrl & url);
+      virtual void mkdir( const KUrl& url, int);
+      virtual void del( const KUrl& url, bool isfile);
+      virtual void rename(const KUrl &src, const KUrl &dest, bool overwrite);
+      virtual void get( const KUrl& url );
+      virtual void put( const KUrl& url, int _mode,bool overwrite, bool _resume );
+      //virtual void copy( const KUrl& src, const KUrl &dest, int, bool overwrite );
    protected:
       Program *m_mtool;
       int readStdout();
@@ -61,10 +61,10 @@ class FloppyProtocol : public KIO::SlaveBase
 
       StatInfo createStatInfo(const QString line, bool makeStat=false, const QString& dirName="");
       void createUDSEntry(const StatInfo& info, KIO::UDSEntry& entry);
-      StatInfo _stat(const KURL& _url);
-      int freeSpace(const KURL& url);
+      StatInfo _stat(const KUrl& _url);
+      int freeSpace(const KUrl& url);
 
-      bool stopAfterError(const KURL& url, const QString& drive);
+      bool stopAfterError(const KUrl& url, const QString& drive);
       void errorMissingMToolsProgram(const QString& name);
 
       void clearBuffers();

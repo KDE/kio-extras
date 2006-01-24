@@ -138,7 +138,7 @@ ThumbnailProtocol::~ThumbnailProtocol()
 {
 }
 
-void ThumbnailProtocol::get(const KURL &url)
+void ThumbnailProtocol::get(const KUrl &url)
 {
     m_mimeType = metaData("mimeType");
     kdDebug(7115) << "Wanting MIME Type:" << m_mimeType << endl;

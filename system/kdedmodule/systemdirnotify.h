@@ -31,14 +31,14 @@ public:
 	SystemDirNotify();
 
 k_dcop:
-	virtual ASYNC FilesAdded (const KURL &directory);
-	virtual ASYNC FilesRemoved (const KURL::List &fileList);
-	virtual ASYNC FilesChanged (const KURL::List &fileList);
+	virtual ASYNC FilesAdded (const KUrl &directory);
+	virtual ASYNC FilesRemoved (const KUrl::List &fileList);
+	virtual ASYNC FilesChanged (const KUrl::List &fileList);
 
 private:
 	void init();
-	KURL toSystemURL(const KURL &url);
-	KURL::List toSystemURLList(const KURL::List &list);
+	KUrl toSystemURL(const KUrl &url);
+	KUrl::List toSystemURLList(const KUrl::List &list);
 
 	QMap<KURL,KURL> m_urlMap;
 	bool mInited;

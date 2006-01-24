@@ -52,7 +52,7 @@ MountHelper::MountHelper() : KApplication()
 
 	m_errorStr = "";
 
-	KURL url(args->url(0));
+	KUrl url(args->url(0));
 	const Medium medium = findMedium(url.fileName());
 
 	if ( medium.id().isEmpty() )

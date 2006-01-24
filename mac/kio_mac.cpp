@@ -67,7 +67,7 @@ MacProtocol::~MacProtocol() {
 }
 
 //get() called when a file is to be read
-void MacProtocol::get(const KURL& url) {
+void MacProtocol::get(const KUrl& url) {
     QString path = prepareHP(url);  //mount and change to correct directory - return the filename
     QString query = url.query();
     QString mode("-");
@@ -120,7 +120,7 @@ void MacProtocol::get(const KURL& url) {
 }
 
 //listDir() called when the user is looking at a directory
-void MacProtocol::listDir(const KURL& url) {
+void MacProtocol::listDir(const KUrl& url) {
     QString filename = prepareHP(url);
 
     if (filename.isNull()) {
@@ -168,7 +168,7 @@ void MacProtocol::listDir(const KURL& url) {
 }
 
 //stat() called to see if it's a file or directory, called before listDir() or get()
-void MacProtocol::stat(const KURL& url) {
+void MacProtocol::stat(const KUrl& url) {
     statEntry(doStat(url));
     finished();
 }
@@ -176,7 +176,7 @@ void MacProtocol::stat(const KURL& url) {
 //doStat(), does all the work that stat() needs
 //it's been separated out so it can be called from get() which
 //also need information
-KIO::UDSEntry MacProtocol::doStat(const KURL& url) {
+KIO::UDSEntry MacProtocol::doStat(const KUrl& url) {
     QString filename = prepareHP(url);
 
     if (filename.isNull()) {
@@ -225,7 +225,7 @@ KIO::UDSEntry MacProtocol::doStat(const KURL& url) {
 
 //prepareHP() called from get() listDir() and stat()
 //(re)mounts the partition and changes to the appropriate directory
-QString MacProtocol::prepareHP(const KURL& url) {
+QString MacProtocol::prepareHP(const KUrl& url) {
     QString path = url.path(-1);
     if (path.left(1) == "/") {
         path = path.mid(1); // strip leading slash

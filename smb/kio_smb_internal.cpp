@@ -48,7 +48,7 @@ SMBUrl::SMBUrl()
 }
 
 //-----------------------------------------------------------------------
-SMBUrl::SMBUrl(const KURL& kurl)
+SMBUrl::SMBUrl(const KUrl& kurl)
     : KURL(kurl)
   //-----------------------------------------------------------------------
 {
@@ -59,14 +59,14 @@ SMBUrl::SMBUrl(const KURL& kurl)
 //-----------------------------------------------------------------------
 void SMBUrl::addPath(const QString &filedir)
 {
-    KURL::addPath(filedir);
+    KUrl::addPath(filedir);
     updateCache();
 }
 
 //-----------------------------------------------------------------------
 bool SMBUrl::cd(const QString &filedir)
 {
-    if (!KURL::cd(filedir))
+    if (!KUrl::cd(filedir))
         return false;
     updateCache();
     return true;
@@ -79,20 +79,20 @@ void SMBUrl::updateCache()
     cleanPath();
 
     // SMB URLs are UTF-8 encoded
-    kdDebug(KIO_SMB) << "updateCache " << KURL::path() << endl;
-    if (KURL::url() == "smb:/")
+    kdDebug(KIO_SMB) << "updateCache " << KUrl::path() << endl;
+    if (KUrl::url() == "smb:/")
         m_surl = "smb://";
     else {
         QString surl = "smb://";
-        if (KURL::hasUser()) {
-            surl += KURL::encode_string(KURL::user(), 106);
-            if (KURL::hasPass()) {
-                surl += ":" + KURL::encode_string(KURL::pass(), 106);
+        if (KUrl::hasUser()) {
+            surl += KUrl::encode_string(KUrl::user(), 106);
+            if (KUrl::hasPass()) {
+                surl += ":" + KUrl::encode_string(KUrl::pass(), 106);
             }
             surl += "@";
         }
-        surl += KURL::encode_string(KURL::host().toUpper(), 106);
-        surl += KURL::encode_string(KURL::path(), 106);
+        surl += KUrl::encode_string(KUrl::host().toUpper(), 106);
+        surl += KUrl::encode_string(KUrl::path(), 106);
         m_surl = surl.toUtf8();
     }
     m_type = SMBURLTYPE_UNKNOWN;

@@ -33,13 +33,13 @@ public:
 	MediaDirNotify(const MediaList &list);
 
 k_dcop:
-	virtual ASYNC FilesAdded (const KURL &directory);
-	virtual ASYNC FilesRemoved (const KURL::List &fileList);
-	virtual ASYNC FilesChanged (const KURL::List &fileList);
+	virtual ASYNC FilesAdded (const KUrl &directory);
+	virtual ASYNC FilesRemoved (const KUrl::List &fileList);
+	virtual ASYNC FilesChanged (const KUrl::List &fileList);
 
 private:
-	KURL::List toMediaURL(const KURL &url);
-	KURL::List toMediaURLList(const KURL::List &list);
+	KUrl::List toMediaURL(const KUrl &url);
+	KUrl::List toMediaURLList(const KUrl::List &list);
 
 	const MediaList &m_mediaList;
 };
