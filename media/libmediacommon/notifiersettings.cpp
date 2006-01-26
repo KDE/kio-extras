@@ -284,7 +284,7 @@ QList<NotifierServiceAction*> NotifierSettings::loadActions( KDesktopFile &deskt
 	QList<NotifierServiceAction*> services;
 	
 	const QString filename = desktop.fileName();
-	const QStringList mimetypes = desktop.readListEntry( "ServiceTypes" );
+	const QStringList mimetypes = desktop.readEntry( "ServiceTypes" , QStringList() );
 
 	QList<KDEDesktopMimeType::Service> type_services
 		= KDEDesktopMimeType::userDefinedServices(filename, true);
@@ -315,14 +315,14 @@ bool NotifierSettings::shouldLoadActions( KDesktopFile &desktop, const QString &
 	  && desktop.hasKey( "ServiceTypes" )
 	  && !desktop.readEntry( "X-KDE-MediaNotifierHide", QVariant(false )).toBool()  )
 	{
-		const QStringList actions = desktop.readListEntry( "Actions" );
+		const QStringList actions = desktop.readEntry( "Actions" , QStringList() );
 
 		if ( actions.size()!=1 )
 		{
 			return false;
 		}
 		
-		const QStringList types = desktop.readListEntry( "ServiceTypes" );
+		const QStringList types = desktop.readEntry( "ServiceTypes" , QStringList() );
 
 		if ( mimetype.isEmpty() )
 		{

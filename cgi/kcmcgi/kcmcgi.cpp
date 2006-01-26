@@ -118,7 +118,7 @@ void KCMCgi::save()
 void KCMCgi::load()
 {
   mConfig->setGroup( "General" );
-  QStringList paths = mConfig->readListEntry( "Paths" );
+  QStringList paths = mConfig->readEntry( "Paths" , QStringList() );
 
   mListBox->insertStringList( paths );
 }
