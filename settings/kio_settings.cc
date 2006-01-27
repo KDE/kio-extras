@@ -123,7 +123,7 @@ KServiceGroup::Ptr SettingsProtocol::findGroup(const QString &relPath)
 	while (!rest.isEmpty()) {
 		KServiceGroup::Ptr tmp = KServiceGroup::group(alreadyFound);
 		if (!tmp || !tmp->isValid())
-			return 0;
+			return KServiceGroup::Ptr();
 
 		bool found = false;
 		foreach (const KSycocaEntry::Ptr &e, tmp->entries(true, true)) {
@@ -144,7 +144,7 @@ KServiceGroup::Ptr SettingsProtocol::findGroup(const QString &relPath)
 		if (!found) {
 			kdDebug() << "Group with caption " << rest.front() << " not found within "
 				  << alreadyFound << endl;
-			return 0;
+			return KServiceGroup::Ptr();
 		}
 
 	}
