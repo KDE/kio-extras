@@ -341,7 +341,7 @@ bool KSshProcess::setOptions(const SshOptList& opts) {
 
         case SSH_PROTOCOL:
             if( mVersion <= OPENSSH ) {
-                tmp = "Protocol ";
+                tmp = "Protocol=";
                 tmp += QString::number((*it).num).latin1();
                 mArgs.append("-o");
                 mArgs.append(tmp);
@@ -355,14 +355,14 @@ bool KSshProcess::setOptions(const SshOptList& opts) {
             break;
 
         case SSH_FORWARDX11:
-            tmp = "ForwardX11 ";
+            tmp = "ForwardX11=";
             tmp += (*it).boolean ? "yes" : "no";
             mArgs.append("-o");
             mArgs.append(tmp);
             break;
 
         case SSH_FORWARDAGENT:
-            tmp = "ForwardAgent ";
+            tmp = "ForwardAgent=";
             tmp += (*it).boolean ? "yes" : "no";
             mArgs.append("-o");
             mArgs.append(tmp);
@@ -414,7 +414,7 @@ bool KSshProcess::setOptions(const SshOptList& opts) {
     // These options govern the behavior of ssh and 
     // cannot be defined by the user
     //mArgs.append("-o");
-    //mArgs.append("StrictHostKeyChecking ask");
+    //mArgs.append("StrictHostKeyChecking=ask");
     mArgs.append("-v"); // So we get a message that the 
                         // connection was successful
     if( mVersion <= OPENSSH ) {
@@ -422,7 +422,7 @@ bool KSshProcess::setOptions(const SshOptList& opts) {
     }
     else if( mVersion <= SSH ) {
         mArgs.append("-o"); // So we can check if the connection was successful
-        mArgs.append("AuthenticationSuccessMsg yes");
+        mArgs.append("AuthenticationSuccessMsg=yes");
     }
 
     if( mHost.isEmpty() ) {
