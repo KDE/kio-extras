@@ -824,16 +824,18 @@ void LDAPProtocol::get( const KUrl &_url )
     kdDebug(7125) << " ldap_result: " << ret << endl;
     if ( ret == LDAP_RES_SEARCH_RESULT ) {
       QByteArray cookie;
-      if ( parsePageControl( msg, cookie ) != LDAP_SUCCESS ) {
-        LDAPErr( _url );
-        return;
-      }
-      if ( !cookie.isEmpty() ) {
-        if ( (id = asyncSearch( usrc, cookie )) == -1 ) {
+      if ( mPageSize ) {
+        if ( parsePageControl( msg, cookie ) != LDAP_SUCCESS ) {
           LDAPErr( _url );
           return;
         }
-	continue;
+        if ( !cookie.isEmpty() ) {
+          if ( (id = asyncSearch( usrc, cookie )) == -1 ) {
+            LDAPErr( _url );
+            return;
+          }
+	  continue;
+        }
       }
       break;
     }
