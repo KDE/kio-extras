@@ -823,8 +823,8 @@ void LDAPProtocol::get( const KUrl &_url )
     }
     kdDebug(7125) << " ldap_result: " << ret << endl;
     if ( ret == LDAP_RES_SEARCH_RESULT ) {
-      QByteArray cookie;
       if ( mPageSize ) {
+        QByteArray cookie;
         if ( parsePageControl( msg, cookie ) != LDAP_SUCCESS ) {
           LDAPErr( _url );
           return;
