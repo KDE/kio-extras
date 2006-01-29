@@ -39,7 +39,7 @@ class LDAPProtocol : public KIO::SlaveBase
     QString mUser;
     QString mPassword;
     LDAP *mLDAP;
-    int mVer, mSizeLimit, mTimeLimit;
+    int mVer, mSizeLimit, mTimeLimit, mPageSize;
     bool mTLS;
     bool mAuthSASL;
     QString mMech,mRealm,mBindName;
@@ -53,8 +53,9 @@ class LDAPProtocol : public KIO::SlaveBase
       const QString &attr, const QByteArray &value );
     void LDAPEntry2UDSEntry( const QString &dn, KIO::UDSEntry &entry, 
       const KABC::LDAPUrl &usrc, bool dir=false );
-    int asyncSearch( KABC::LDAPUrl &usrc );
+    int asyncSearch( KABC::LDAPUrl &usrc, const QByteArray &cookie = "" );
     
+    int parsePageControl( LDAPMessage *result, QByteArray &cookie );
     QByteArray LDAPEntryAsLDIF( LDAPMessage *msg );
     void LDAPErr( const KUrl &url, int err = LDAP_SUCCESS );
     void changeCheck( KABC::LDAPUrl &url );

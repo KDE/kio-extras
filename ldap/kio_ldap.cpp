@@ -186,7 +186,7 @@ void LDAPProtocol::controlsFromMetaData( LDAPControl ***serverctrls,
   }
 }
 
-int LDAPProtocol::asyncSearch( LDAPUrl &usrc )
+int LDAPProtocol::asyncSearch( LDAPUrl &usrc, const QByteArray &cookie )
 {
   char **attrs = 0;
   int msgid;
@@ -214,6 +214,23 @@ int LDAPProtocol::asyncSearch( LDAPUrl &usrc )
   }
 
   controlsFromMetaData( &serverctrls, &clientctrls );
+
+  if ( mPageSize ) {
+    BerElement *prber;
+    if (( prber = ber_alloc_t(LBER_USE_DER)) == NULL ) {
+      return -1;
+    }
+    struct berval c;
+    c.bv_len = cookie.size();
+    c.bv_val = (char *)cookie.data();
+    ber_printf( prber, "{iO}", mPageSize, &c );
+    struct berval bv;
+    ber_flatten2( prber, &bv, 1 );
+    addControlOp( &serverctrls, LDAP_CONTROL_PAGEDRESULTS, QByteArray::fromRawData(bv.bv_val,bv.bv_len), false );
+    ber_memfree( bv.bv_val );
+    ber_free( prber, 1 );
+  }
+		       
 
   kdDebug(7125) << "asyncSearch() dn=\"" << usrc.dn() << "\" scope=" <<
     usrc.scope() << " filter=\"" << usrc.filter() << "\" attrs=" << usrc.attributes() <<
@@ -268,6 +285,67 @@ QByteArray LDAPProtocol::LDAPEntryAsLDIF( LDAPMessage *message )
   return result;
 }
 
+int LDAPProtocol::parsePageControl( LDAPMessage *result, QByteArray &cookie )
+{
+  int rc;
+  int err;
+  LDAPControl **ctrl = NULL;
+  LDAPControl *ctrlp = NULL;
+  BerElement *ber;
+  ber_tag_t tag;
+
+  rc = ldap_parse_result( mLDAP, result, &err, NULL, NULL, NULL, &ctrl, 0 );
+
+  if( rc != LDAP_SUCCESS ) {
+    kdDebug(7125) << "ldap_parse_result" << endl;
+    return -1;
+  }
+
+  if ( err != LDAP_SUCCESS ) {
+    kdDebug(7125) << "parse_page_control error: " << ldap_err2string(err) << " " << err << endl;
+    return -1;
+  }
+
+  if( ctrl ) {
+    /* Parse the control value
+     * searchResult ::= SEQUENCE {
+     *		size	INTEGER (0..maxInt),
+     *				-- result set size estimate from server - unused
+     *		cookie	OCTET STRING
+     * }
+     */
+    ctrlp = *ctrl;
+    ber = ber_init( &ctrlp->ldctl_value );
+    if ( ber == 0 ) {
+      kdDebug(7125) << "Internal error." << endl;
+      return -1;
+    }
+
+    int entriesLeft;
+    struct berval bv;
+    tag = ber_scanf( ber, "{io}", &entriesLeft, &bv );
+    kdDebug(7125) << "entriesleft: " << entriesLeft << " cookie len: " << bv.bv_len << " cookie: " << bv.bv_val << endl;
+    (void) ber_free( ber, 1 );
+    cookie.resize(bv.bv_len);
+    memcpy(cookie.data(),bv.bv_val,bv.bv_len);
+    ber_memfree(bv.bv_val);
+		
+    if( tag == LBER_ERROR ) {
+      kdDebug(7125) << "Paged results response control could not be decoded." << endl;
+      return -1;
+    }
+
+    if( entriesLeft < 0 ) {
+      kdDebug(7125) << "Invalid entries estimate in paged results response." << endl;
+      return -1;
+    }
+
+    ldap_controls_free( ctrl );
+
+  }
+  return err;
+}
+
 void LDAPProtocol::addControlOp( LDAPControl ***pctrls, const QString &oid,
   const QByteArray &value, bool critical )
 {
@@ -276,8 +354,7 @@ void LDAPProtocol::addControlOp( LDAPControl ***pctrls, const QString &oid,
 
   ctrls = *pctrls;
 
-  kdDebug(7125) << "addControlOp: oid:'" << oid << "' val: '" <<
-    QString::fromUtf8(value, value.size()) << "'" << endl;
+  kdDebug(7125) << "addControlOp: oid:'" << oid << "' val: '" << value << "'" << endl;
   int vallen = value.size();
   ctrl->ldctl_value.bv_len = vallen;
   if ( vallen ) {
@@ -403,6 +480,7 @@ void LDAPProtocol::LDAPEntry2UDSEntry( const QString &dn, UDSEntry &entry,
   entry.insert( UDS_URL, url.prettyURL() );
 }
 
+
 void LDAPProtocol::changeCheck( LDAPUrl &url )
 {
   bool critical;
@@ -426,6 +504,10 @@ void LDAPProtocol::changeCheck( LDAPUrl &url )
   int sizelimit = 0;
   if ( url.hasExtension( "x-sizelimit" ) )
     sizelimit = url.extension( "x-sizelimit", critical).toInt();
+  if ( url.hasExtension( "x-pagesize" ) )
+    mPageSize = url.extension( "x-pagesize", critical).toInt();
+  else
+    mPageSize = 0;
 
   if ( !authSASL && bindname.isEmpty() ) bindname = mUser;
 
@@ -740,7 +822,21 @@ void LDAPProtocol::get( const KUrl &_url )
       return;
     }
     kdDebug(7125) << " ldap_result: " << ret << endl;
-    if ( ret == LDAP_RES_SEARCH_RESULT ) break;
+    if ( ret == LDAP_RES_SEARCH_RESULT ) {
+      QByteArray cookie;
+      if ( parsePageControl( msg, cookie ) != LDAP_SUCCESS ) {
+        LDAPErr( _url );
+        return;
+      }
+      if ( !cookie.isEmpty() ) {
+        if ( (id = asyncSearch( usrc, cookie )) == -1 ) {
+          LDAPErr( _url );
+          return;
+        }
+	continue;
+      }
+      break;
+    }
     if ( ret != LDAP_RES_SEARCH_ENTRY ) continue;
 
     entry = ldap_first_entry( mLDAP, msg );
