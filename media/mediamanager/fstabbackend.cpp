@@ -88,6 +88,8 @@ FstabBackend::~FstabBackend()
 	{
 		m_mediaList.removeMedium(*it, false);
 	}
+        KDirWatch::self()->removeFile(FSTAB);
+        KDirWatch::self()->removeFile(MTAB);
 }
 
 void FstabBackend::slotDirty(const QString &path)

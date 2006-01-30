@@ -51,6 +51,8 @@ RemovableBackend::~RemovableBackend()
 	{
 		m_mediaList.removeMedium(*it, false);
 	}
+
+        KDirWatch::self()->removeFile(MTAB);
 }
 
 bool RemovableBackend::plug(const QString &devNode, const QString &label)
