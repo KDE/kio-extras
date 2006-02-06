@@ -216,6 +216,7 @@ int LDAPProtocol::asyncSearch( LDAPUrl &usrc, const QByteArray &cookie )
   controlsFromMetaData( &serverctrls, &clientctrls );
 
   if ( mPageSize ) {
+#ifdef LDAP_CONTROL_PAGEDRESULTS
     BerElement *prber;
     if (( prber = ber_alloc_t(LBER_USE_DER)) == NULL ) {
       return -1;
@@ -229,6 +230,9 @@ int LDAPProtocol::asyncSearch( LDAPUrl &usrc, const QByteArray &cookie )
     addControlOp( &serverctrls, LDAP_CONTROL_PAGEDRESULTS, QByteArray::fromRawData(bv.bv_val,bv.bv_len), false );
     ber_memfree( bv.bv_val );
     ber_free( prber, 1 );
+#else
+    return -1;
+#endif
   }
 		       
 
