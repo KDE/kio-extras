@@ -43,7 +43,7 @@ bool EXRCreator::create(const QString &path, int, int, QImage &img)
     const Imf::Header &h = in.header();
 
     if ( h.hasPreviewImage() ) {
-	kdDebug() << "EXRcreator - using preview" << endl;
+	kDebug() << "EXRcreator - using preview" << endl;
 	const Imf::PreviewImage &preview = in.header().previewImage();
 	QImage qpreview(preview.width(), preview.height(), 32, 0, QImage::BigEndian);
 	for ( unsigned int y=0; y < preview.height(); y++ ) {
@@ -60,7 +60,7 @@ bool EXRCreator::create(const QString &path, int, int, QImage &img)
 	// from the header, but it is very expensive to render large
 	// EXR images just to turn it into an icon, so we go back
 	// to honouring it in here.
-	kdDebug() << "EXRcreator - using original image" << endl;
+	kDebug() << "EXRcreator - using original image" << endl;
 	KConfig * config = KGlobal::config();
 	KConfigGroup configGroup( config, "PreviewSettings" );
 	unsigned long long maxSize = configGroup.readEntry( "MaximumSize", 1024*1024 /* 1MB */ );

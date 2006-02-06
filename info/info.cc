@@ -23,14 +23,14 @@ InfoProtocol::InfoProtocol( const QByteArray &pool, const QByteArray &app )
     , m_page( "" )
     , m_node( "" )
 {
-    kdDebug( 7108 ) << "InfoProtocol::InfoProtocol" << endl;
+    kDebug( 7108 ) << "InfoProtocol::InfoProtocol" << endl;
 
     m_perl = KGlobal::dirs()->findExe( "perl" );
     m_infoScript = locate( "data", "kio_info/kde-info2html" );
     m_infoConf = locate("data", "kio_info/kde-info2html.conf");
 
     if( m_perl.isNull() || m_infoScript.isNull() || m_infoConf.isNull() ) {
-	kdError( 7108 ) << "Critical error: Cannot locate files for HTML-conversion" << endl;
+	kError( 7108 ) << "Critical error: Cannot locate files for HTML-conversion" << endl;
 	QString errorStr;
 	if ( m_perl.isNull() ) {
 		errorStr = "perl.";
@@ -43,20 +43,20 @@ InfoProtocol::InfoProtocol( const QByteArray &pool, const QByteArray &app )
 	exit();
     }
 
-    kdDebug( 7108 ) << "InfoProtocol::InfoProtocol - done" << endl;
+    kDebug( 7108 ) << "InfoProtocol::InfoProtocol - done" << endl;
 }
 
 InfoProtocol::~InfoProtocol()
 {
-    kdDebug( 7108 ) << "InfoProtocol::~InfoProtocol" << endl;
+    kDebug( 7108 ) << "InfoProtocol::~InfoProtocol" << endl;
 
-    kdDebug( 7108 ) << "InfoProtocol::~InfoProtocol - done" << endl;
+    kDebug( 7108 ) << "InfoProtocol::~InfoProtocol - done" << endl;
 }
 
 void InfoProtocol::get( const KUrl& url )
 {
-    kdDebug( 7108 ) << "InfoProtocol::get" << endl;
-    kdDebug( 7108 ) << "URL: " << url.prettyURL() << " , Path :" << url.path() << endl;
+    kDebug( 7108 ) << "InfoProtocol::get" << endl;
+    kDebug( 7108 ) << "URL: " << url.prettyURL() << " , Path :" << url.path() << endl;
 
     if (url.path()=="/")
     {
@@ -108,11 +108,11 @@ void InfoProtocol::get( const KUrl& url )
     cmd += " ";
     cmd += KProcess::quote(m_node);
 
-    kdDebug( 7108 ) << "cmd: " << cmd << endl;
+    kDebug( 7108 ) << "cmd: " << cmd << endl;
 
     FILE *file = popen( QFile::encodeName(cmd), "r" );
     if ( !file ) {
-        kdDebug( 7108 ) << "InfoProtocol::get popen failed" << endl;
+        kDebug( 7108 ) << "InfoProtocol::get popen failed" << endl;
         error( ERR_CANNOT_LAUNCH_PROCESS, cmd );
         return;
     }
@@ -131,7 +131,7 @@ void InfoProtocol::get( const KUrl& url )
       if ( n < 0 )
       {
         // ERROR
-	kdDebug( 7108 ) << "InfoProtocol::get ERROR!" << endl;
+	kDebug( 7108 ) << "InfoProtocol::get ERROR!" << endl;
         pclose( file );
 	return;
       }
@@ -146,12 +146,12 @@ void InfoProtocol::get( const KUrl& url )
 
     finished();
 
-    kdDebug( 7108 ) << "InfoProtocol::get - done" << endl;
+    kDebug( 7108 ) << "InfoProtocol::get - done" << endl;
 }
 
 void InfoProtocol::mimetype( const KUrl& /* url */ )
 {
-    kdDebug( 7108 ) << "InfoProtocol::mimetype" << endl;
+    kDebug( 7108 ) << "InfoProtocol::mimetype" << endl;
 
     // to get rid of those "Open with" dialogs...
     mimeType( "text/html" );
@@ -159,12 +159,12 @@ void InfoProtocol::mimetype( const KUrl& /* url */ )
     // finish action
     finished();
 
-    kdDebug( 7108 ) << "InfoProtocol::mimetype - done" << endl;
+    kDebug( 7108 ) << "InfoProtocol::mimetype - done" << endl;
 }
 
 void InfoProtocol::decodeURL( const KUrl &url )
 {
-    kdDebug( 7108 ) << "InfoProtocol::decodeURL" << endl;
+    kDebug( 7108 ) << "InfoProtocol::decodeURL" << endl;
 
     /* Notes:
      *
@@ -183,18 +183,18 @@ void InfoProtocol::decodeURL( const KUrl &url )
     if ( url == KURL( "info:/browse_by_file?special=yes" ) ) {
 	    m_page = "#special#";
 	    m_node = "browse_by_file";
-	    kdDebug( 7108 ) << "InfoProtocol::decodeURL - special - browse by file" << endl;
+	    kDebug( 7108 ) << "InfoProtocol::decodeURL - special - browse by file" << endl;
 	    return;
     }
 
     decodePath( url.path() );
 
-    kdDebug( 7108 ) << "InfoProtocol::decodeURL - done" << endl;
+    kDebug( 7108 ) << "InfoProtocol::decodeURL - done" << endl;
 }
 
 void InfoProtocol::decodePath( QString path )
 {
-    kdDebug( 7108 ) << "InfoProtocol::decodePath(-" <<path<<"-)"<< endl;
+    kDebug( 7108 ) << "InfoProtocol::decodePath(-" <<path<<"-)"<< endl;
 
     m_page = "dir";  //default
     m_node = "";
@@ -203,7 +203,7 @@ void InfoProtocol::decodePath( QString path )
     if ('/' == path[0]) {
       path = path.mid( 1 );
     }
-    //kdDebug( 7108 ) << "Path: " << path << endl;
+    //kDebug( 7108 ) << "Path: " << path << endl;
 
     int slashPos = path.indexOf( "/" );
 
@@ -219,7 +219,7 @@ void InfoProtocol::decodePath( QString path )
     // remove leading+trailing whitespace
     m_node = path.right( path.length() - slashPos - 1).trimmed ();
 
-    kdDebug( 7108 ) << "InfoProtocol::decodePath - done" << endl;
+    kDebug( 7108 ) << "InfoProtocol::decodePath - done" << endl;
 }
 
 // A minimalistic stat with only the file type
@@ -242,7 +242,7 @@ int kdemain( int argc, char **argv )
 {
   KInstance instance( "kio_info" );
 
-  kdDebug() << "kio_info starting " << getpid() << endl;
+  kDebug() << "kio_info starting " << getpid() << endl;
 
   if (argc != 4)
   {

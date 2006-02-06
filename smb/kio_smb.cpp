@@ -62,7 +62,7 @@ int KDE_EXPORT kdemain( int argc, char **argv )
     KInstance instance( "kio_smb" );
     if( argc != 4 )
     {
-        kdDebug(KIO_SMB) << "Usage: kio_smb protocol domain-socket1 domain-socket2"
+        kDebug(KIO_SMB) << "Usage: kio_smb protocol domain-socket1 domain-socket2"
                   << endl;
         return -1;
     }

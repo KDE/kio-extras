@@ -34,7 +34,7 @@ MediaDirNotify::MediaDirNotify(const MediaList &list)
 
 KUrl::List MediaDirNotify::toMediaURL(const KUrl &url)
 {
-	kdDebug(1219) << "MediaDirNotify::toMediaURL(" << url << ")" << endl;
+	kDebug(1219) << "MediaDirNotify::toMediaURL(" << url << ")" << endl;
 
 	KUrl::List result;
 	
@@ -60,7 +60,7 @@ KUrl::List MediaDirNotify::toMediaURL(const KUrl &url)
 		}
 	}
 
-	kdDebug(1219) << result << endl;
+	kDebug(1219) << result << endl;
 	return result;
 }
 

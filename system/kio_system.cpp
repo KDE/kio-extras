@@ -92,7 +92,7 @@ bool SystemProtocol::rewriteURL(const KUrl &url, KUrl &newUrl)
 
 void SystemProtocol::stat(const KUrl &url)
 {
-	kdDebug() << "SystemProtocol::stat: " << url << endl;
+	kDebug() << "SystemProtocol::stat: " << url << endl;
 
 	QString path = url.path();
 	if ( path.isEmpty() || path == "/" )
@@ -136,7 +136,7 @@ void SystemProtocol::stat(const KUrl &url)
 
 void SystemProtocol::listDir(const KUrl &url)
 {
-	kdDebug() << "SystemProtocol::listDir: " << url << endl;
+	kDebug() << "SystemProtocol::listDir: " << url << endl;
 
 	if ( url.path().length() <= 1 )
 	{

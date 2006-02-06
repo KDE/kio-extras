@@ -637,7 +637,7 @@ int main( int, char** ) {
 
 void checkSuccessfulTransferCommand( bool error, bool preload, bool ungetLast,
 				     bool slaveDotStuff, bool mailEndsInNewline ) {
-  kdDebug() << "   ===== checkTransferCommand( "
+  kDebug() << "   ===== checkTransferCommand( "
 	    << error << ", "
 	    << preload << ", "
 	    << ungetLast << ", "

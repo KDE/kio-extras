@@ -116,7 +116,7 @@ int kdemain(int argc, char **argv)
 
     if (argc != 4)
     {
-        kdError(7115) << "Usage: kio_thumbnail protocol domain-socket1 domain-socket2" << endl;
+        kError(7115) << "Usage: kio_thumbnail protocol domain-socket1 domain-socket2" << endl;
         exit(-1);
     }
 
@@ -141,13 +141,13 @@ ThumbnailProtocol::~ThumbnailProtocol()
 void ThumbnailProtocol::get(const KUrl &url)
 {
     m_mimeType = metaData("mimeType");
-    kdDebug(7115) << "Wanting MIME Type:" << m_mimeType << endl;
+    kDebug(7115) << "Wanting MIME Type:" << m_mimeType << endl;
 #ifdef THUMBNAIL_HACK
     // ### HACK
     bool direct=false;
     if (m_mimeType.isEmpty())
     {
-        kdDebug(7115) << "PATH: " << url.path() << endl;
+        kDebug(7115) << "PATH: " << url.path() << endl;
         QFileInfo info(url.path());
         if (info.isDir())
         {
@@ -168,7 +168,7 @@ void ThumbnailProtocol::get(const KUrl &url)
             return;
         }
         m_mimeType = KMimeType::findByURL(url)->name();
-        kdDebug(7115) << "Guessing MIME Type:" << m_mimeType << endl;
+        kDebug(7115) << "Guessing MIME Type:" << m_mimeType << endl;
         direct=true; // thumbnail: was probably called from Konqueror
     }
 #endif
@@ -191,7 +191,7 @@ void ThumbnailProtocol::get(const KUrl &url)
 #ifdef THUMBNAIL_HACK
     else if (!m_width || !m_height)
     {
-        kdDebug(7115) << "Guessing height, width, icon sizre!" << endl;
+        kDebug(7115) << "Guessing height, width, icon sizre!" << endl;
         m_width=128;
         m_height=128;
         iconSize=128;
@@ -229,7 +229,7 @@ void ThumbnailProtocol::get(const KUrl &url)
                 if (item.isValid() && item.value().type() == QVariant::Image)
                 {
                     img = item.value().value<QImage>();
-                    kdDebug(7115) << "using KFMI for the thumbnail\n";
+                    kDebug(7115) << "using KFMI for the thumbnail\n";
                     kfmiThumb = true;
                 }
             }
@@ -239,7 +239,7 @@ void ThumbnailProtocol::get(const KUrl &url)
      
     if (!kfmiThumb)
     {
-        kdDebug(7115) << "using thumb creator for the thumbnail\n";
+        kDebug(7115) << "using thumb creator for the thumbnail\n";
         QString plugin = metaData("plugin");
 #ifdef THUMBNAIL_HACK
         if (plugin.isEmpty())
@@ -262,7 +262,7 @@ void ThumbnailProtocol::get(const KUrl &url)
                     break;
             }
         }
-        kdDebug(7115) << "Guess plugin: " << plugin << endl;
+        kDebug(7115) << "Guess plugin: " << plugin << endl;
 #endif
         if (plugin.isEmpty())
         {
@@ -370,7 +370,7 @@ void ThumbnailProtocol::get(const KUrl &url)
         if (direct)
         {
             // If thumbnail was called directly from Konqueror, then the image needs to be raw
-            //kdDebug(7115) << "RAW IMAGE TO STREAM" << endl;
+            //kDebug(7115) << "RAW IMAGE TO STREAM" << endl;
             QBuffer buf;
             if (!buf.open(QIODevice::WriteOnly))
             {
@@ -386,7 +386,7 @@ void ThumbnailProtocol::get(const KUrl &url)
         {
             QByteArray imgData;
             QDataStream stream( &imgData, QIODevice::WriteOnly );
-            //kdDebug(7115) << "IMAGE TO STREAM" << endl;
+            //kDebug(7115) << "IMAGE TO STREAM" << endl;
             stream << img;
             data(imgData);
         }
@@ -395,7 +395,7 @@ void ThumbnailProtocol::get(const KUrl &url)
     {
         QByteArray imgData;
         QDataStream stream( &imgData, QIODevice::WriteOnly );
-        //kdDebug(7115) << "IMAGE TO SHMID" << endl;
+        //kDebug(7115) << "IMAGE TO SHMID" << endl;
         void *shmaddr = shmat(shmid.toInt(), 0, 0);
         if (shmaddr == (void *)-1)
         {

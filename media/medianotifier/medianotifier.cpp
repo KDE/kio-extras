@@ -54,7 +54,7 @@ MediaNotifier::~MediaNotifier()
 
 void MediaNotifier::onMediumChange( const QString &name, bool allowNotification )
 {
-	kdDebug() << "MediaNotifier::onMediumChange( " << name << ", "
+	kDebug() << "MediaNotifier::onMediumChange( " << name << ", "
 	          << allowNotification << ")" << endl;
 	
 // Update user activity timestamp, otherwise the notification dialog will be shown
@@ -268,7 +268,7 @@ bool MediaNotifier::execAutoopen( const KFileItem &medium, const QString &path,
 
 void MediaNotifier::notify( KFileItem &medium )
 {
-	kdDebug() << "Notification triggered." << endl;
+	kDebug() << "Notification triggered." << endl;
 
 	NotifierSettings *settings = new NotifierSettings();
 	

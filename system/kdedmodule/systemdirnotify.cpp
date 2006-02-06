@@ -86,7 +86,7 @@ void SystemDirNotify::init()
 
 KUrl SystemDirNotify::toSystemURL(const KUrl &url)
 {
-	kdDebug() << "SystemDirNotify::toSystemURL(" << url << ")" << endl;
+	kDebug() << "SystemDirNotify::toSystemURL(" << url << ")" << endl;
 
 	init();
 	QMap<KURL,KURL>::const_iterator it = m_urlMap.begin();
@@ -103,12 +103,12 @@ KUrl SystemDirNotify::toSystemURL(const KUrl &url)
 			KUrl result = it.data();
 			result.addPath(path);
 			result.cleanPath();
-			kdDebug() << result << endl;
+			kDebug() << result << endl;
 			return result;
 		}
 	}
 
-	kdDebug() << "KURL()" << endl;
+	kDebug() << "KURL()" << endl;
 	return KURL();
 }
 

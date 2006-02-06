@@ -83,7 +83,7 @@
 #include "fishcode.h"
 
 #ifndef NDEBUG
-#define myDebug(x) kdDebug(7127) << __LINE__ << ": " x
+#define myDebug(x) kDebug(7127) << __LINE__ << ": " x
 #define connected() do{myDebug( << "_______ emitting connected()" << endl); connected();}while(0)
 #define dataReq() do{myDebug( << "_______ emitting dataReq()" << endl); dataReq();}while(0)
 #define needSubURLData() do{myDebug( << "_______ emitting needSubURLData()" << endl); needSubURLData();}while(0)

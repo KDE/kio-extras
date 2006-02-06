@@ -71,7 +71,7 @@ void HomeDirNotify::init()
 
 KUrl HomeDirNotify::toHomeURL(const KUrl &url)
 {
-	kdDebug() << "HomeDirNotify::toHomeURL(" << url << ")" << endl;
+	kDebug() << "HomeDirNotify::toHomeURL(" << url << ")" << endl;
 	
 	init();
 	QMap<QString,KURL>::iterator it = m_homeFoldersMap.begin();
@@ -88,12 +88,12 @@ KUrl HomeDirNotify::toHomeURL(const KUrl &url)
 			                                  url.path());
 			KUrl result("home:/"+name+"/"+path);
 			result.cleanPath();
-			kdDebug() << "result => " << result << endl;
+			kDebug() << "result => " << result << endl;
 			return result;
 		}
 	}
 
-	kdDebug() << "result => KURL()" << endl;
+	kDebug() << "result => KURL()" << endl;
 	return KURL();
 }
 
@@ -120,7 +120,7 @@ KUrl::List HomeDirNotify::toHomeURLList(const KUrl::List &list)
 
 ASYNC HomeDirNotify::FilesAdded(const KUrl &directory)
 {
-	kdDebug() << "HomeDirNotify::FilesAdded" << endl;
+	kDebug() << "HomeDirNotify::FilesAdded" << endl;
 	
 	KUrl new_dir = toHomeURL(directory);
 
@@ -160,7 +160,7 @@ inline void evil_hack(const KUrl::List &list)
 
 ASYNC HomeDirNotify::FilesRemoved(const KUrl::List &fileList)
 {
-	kdDebug() << "HomeDirNotify::FilesRemoved" << endl;
+	kDebug() << "HomeDirNotify::FilesRemoved" << endl;
 	
 	KUrl::List new_list = toHomeURLList(fileList);
 
@@ -174,7 +174,7 @@ ASYNC HomeDirNotify::FilesRemoved(const KUrl::List &fileList)
 
 ASYNC HomeDirNotify::FilesChanged(const KUrl::List &fileList)
 {
-	kdDebug() << "HomeDirNotify::FilesChanged" << endl;
+	kDebug() << "HomeDirNotify::FilesChanged" << endl;
 	
 	KUrl::List new_list = toHomeURLList(fileList);
 

@@ -51,7 +51,7 @@ private:
 extern "C" {
 	KDE_EXPORT int kdemain( int, char **argv )
 	{
-	  kdDebug() << "kdemain for settings kioslave" << endl;
+	  kDebug() << "kdemain for settings kioslave" << endl;
 	  KInstance instance( "kio_settings" );
 	  SettingsProtocol slave(argv[1], argv[2], argv[3]);
 	  slave.dispatchLoop();
@@ -101,7 +101,7 @@ SettingsProtocol::SettingsProtocol( const QByteArray &protocol, const QByteArray
 	m_dcopClient = new DCOPClient();
 	if (!m_dcopClient->attach())
 	{
-		kdDebug() << "ERROR WHILE CONNECTING TO DCOPSERVER" << endl;
+		kDebug() << "ERROR WHILE CONNECTING TO DCOPSERVER" << endl;
 	}
 }
 
@@ -116,9 +116,9 @@ KServiceGroup::Ptr SettingsProtocol::findGroup(const QString &relPath)
 	QString alreadyFound("Settings/");
 	QStringList rest = relPath.split( '/');
 
-	kdDebug() << "Trying harder to find group " << relPath << endl;
+	kDebug() << "Trying harder to find group " << relPath << endl;
 	for ( int i=0; i<rest.count(); i++)
-		kdDebug() << "Item (" << rest.at(i) << ")" << endl;
+		kDebug() << "Item (" << rest.at(i) << ")" << endl;
 
 	while (!rest.isEmpty()) {
 		KServiceGroup::Ptr tmp = KServiceGroup::group(alreadyFound);
@@ -130,19 +130,19 @@ KServiceGroup::Ptr SettingsProtocol::findGroup(const QString &relPath)
 			if (e->isType(KST_KServiceGroup)) {
 			    KServiceGroup::Ptr g(KServiceGroup::Ptr::staticCast(e));
 			    if ((g->caption()==rest.front()) || (g->name()==alreadyFound+rest.front())) {
-				kdDebug() << "Found group with caption " << g->caption()
+				kDebug() << "Found group with caption " << g->caption()
 					  << " with real name: " << g->name() << endl;
 				found = true;
 				rest.erase(rest.begin());
 				alreadyFound = g->name();
-				kdDebug() << "ALREADY FOUND: " << alreadyFound << endl;
+				kDebug() << "ALREADY FOUND: " << alreadyFound << endl;
 				break;
 			    }
 			}
 		}
 
 		if (!found) {
-			kdDebug() << "Group with caption " << rest.front() << " not found within "
+			kDebug() << "Group with caption " << rest.front() << " not found within "
 				  << alreadyFound << endl;
 			return KServiceGroup::Ptr();
 		}
@@ -241,7 +241,7 @@ void SettingsProtocol::listDir(const KUrl& url)
 			// Do not display the "Settings" menu group in Programs Mode.
 			if( (m_runMode == ProgramsMode) && relPath.startsWith( "Settings" ) )
 			{
-				kdDebug() << "SettingsProtocol: SKIPPING entry programs:/" << relPath << endl;
+				kDebug() << "SettingsProtocol: SKIPPING entry programs:/" << relPath << endl;
 				continue;
 			}
 
@@ -249,22 +249,22 @@ void SettingsProtocol::listDir(const KUrl& url)
 			{
 			  case( SettingsMode ):
 				relPath.remove(0, 9); // length("Settings/") ==9
-				kdDebug() << "SettingsProtocol: adding entry settings:/" << relPath << endl;
+				kDebug() << "SettingsProtocol: adding entry settings:/" << relPath << endl;
 				createDirEntry(entry, groupCaption, "settings:/"+relPath, "inode/directory",g->icon());
 				break;
 			  case( ProgramsMode ):
-				kdDebug() << "SettingsProtocol: adding entry programs:/" << relPath << endl;
+				kDebug() << "SettingsProtocol: adding entry programs:/" << relPath << endl;
 				createDirEntry(entry, groupCaption, "programs:/"+relPath, "inode/directory",g->icon());
 				break;
 			  case( ApplicationsMode ):
-				kdDebug() << "SettingsProtocol: adding entry applications:/" << relPath << endl;
+				kDebug() << "SettingsProtocol: adding entry applications:/" << relPath << endl;
 				createDirEntry(entry, groupCaption, "applications:/"+relPath, "inode/directory",g->icon());
 				break;
 		    }
 
 		} else {
 			KService::Ptr s(KService::Ptr::staticCast(e));
-			kdDebug() << "SettingsProtocol: adding file entry " << url.url(1)+s->name() << endl;
+			kDebug() << "SettingsProtocol: adding file entry " << url.url(1)+s->name() << endl;
 			createFileEntry(entry,s->name(),url.url(1)+s->desktopEntryName(), "application/x-desktop",s->icon(),locate("apps", s->desktopEntryPath()));
 		}
 

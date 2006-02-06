@@ -24,21 +24,21 @@
 
 MediaList::MediaList()
 {
-	kdDebug(1219) << "MediaList::MediaList()" << endl;
+	kDebug(1219) << "MediaList::MediaList()" << endl;
 
 	m_media.setAutoDelete(true);
 }
 
 const Q3PtrList<Medium> MediaList::list() const
 {
-	kdDebug(1219) << "MediaList::list()" << endl;
+	kDebug(1219) << "MediaList::list()" << endl;
 
 	return m_media;
 }
 
 const Medium *MediaList::findById(const QString &id) const
 {
-	kdDebug(1219) << "MediaList::findById(" << id << ")" << endl;
+	kDebug(1219) << "MediaList::findById(" << id << ")" << endl;
 
 	if ( !m_idMap.contains(id) ) return 0L;
 
@@ -47,7 +47,7 @@ const Medium *MediaList::findById(const QString &id) const
 
 const Medium *MediaList::findByName(const QString &name) const
 {
-	kdDebug(1219) << "MediaList::findByName(" << name << ")" << endl;
+	kDebug(1219) << "MediaList::findByName(" << name << ")" << endl;
 
 	if ( !m_nameMap.contains(name) ) return 0L;
 
@@ -57,7 +57,7 @@ const Medium *MediaList::findByName(const QString &name) const
 
 QString MediaList::addMedium(Medium *medium, bool allowNotification)
 {
-	kdDebug(1219) << "MediaList::addMedium(@" << medium->id() << ")" << endl;
+	kDebug(1219) << "MediaList::addMedium(@" << medium->id() << ")" << endl;
 
 	QString id = medium->id();
 	if ( m_idMap.contains(id) ) return QString();
@@ -70,7 +70,7 @@ QString MediaList::addMedium(Medium *medium, bool allowNotification)
 	{
 		m_nameMap[name] = medium;
 
-		kdDebug(1219) << "MediaList emits mediumAdded(" << id << ", "
+		kDebug(1219) << "MediaList emits mediumAdded(" << id << ", "
 		          << name << ")" << endl;
 		emit mediumAdded(id, name, allowNotification);
 
@@ -89,7 +89,7 @@ QString MediaList::addMedium(Medium *medium, bool allowNotification)
 	medium->setName(name);
 	m_nameMap[name] = medium;
 
-	kdDebug(1219) << "MediaList emits mediumAdded(" << id << ", "
+	kDebug(1219) << "MediaList emits mediumAdded(" << id << ", "
 	          << name << ")" << endl;
 	emit mediumAdded(id, name, allowNotification);
 	return name;
@@ -97,7 +97,7 @@ QString MediaList::addMedium(Medium *medium, bool allowNotification)
 
 bool MediaList::removeMedium(const QString &id, bool allowNotification)
 {
-	kdDebug(1219) << "MediaList::removeMedium(" << id << ")" << endl;
+	kDebug(1219) << "MediaList::removeMedium(" << id << ")" << endl;
 
 	if ( !m_idMap.contains(id) ) return false;
 
@@ -114,7 +114,7 @@ bool MediaList::removeMedium(const QString &id, bool allowNotification)
 
 bool MediaList::changeMediumState(const Medium &medium, bool allowNotification)
 {
-	kdDebug(1219) << "MediaList::changeMediumState(const Medium &)" << endl;
+	kDebug(1219) << "MediaList::changeMediumState(const Medium &)" << endl;
 
 	if ( !m_idMap.contains(medium.id()) ) return false;
 
@@ -162,7 +162,7 @@ bool MediaList::changeMediumState(const QString &id,
                                   const QString &iconName,
                                   const QString &label)
 {
-	kdDebug(1219) << "MediaList::changeMediumState(" << id << ", "
+	kDebug(1219) << "MediaList::changeMediumState(" << id << ", "
 	          << baseURL << ", " << mimeType << ", " << iconName << ")"
 	          << endl;
 
@@ -202,7 +202,7 @@ bool MediaList::changeMediumState(const QString &id,
                                   const QString &iconName,
                                   const QString &label)
 {
-	kdDebug(1219) << "MediaList::changeMediumState(" << id << ", "
+	kDebug(1219) << "MediaList::changeMediumState(" << id << ", "
 	          << deviceNode << ", " << mountPoint << ", " << fsType << ", "
 	          << mounted << ", " << mimeType << ", " << iconName << ")"
 	          << endl;
@@ -240,7 +240,7 @@ bool MediaList::changeMediumState(const QString &id, bool mounted,
                                   const QString &iconName,
                                   const QString &label)
 {
-	kdDebug(1219) << "MediaList::changeMediumState(" << id << ", "
+	kDebug(1219) << "MediaList::changeMediumState(" << id << ", "
 	          << mounted << ", " << mimeType << ", " << iconName << ")"
 	          << endl;
 
@@ -273,7 +273,7 @@ bool MediaList::changeMediumState(const QString &id, bool mounted,
 
 bool MediaList::setUserLabel(const QString &name, const QString &label)
 {
-	kdDebug(1219) << "MediaList::setUserLabel(" << name << ", "
+	kDebug(1219) << "MediaList::setUserLabel(" << name << ", "
 	          << label << ")" << endl;
 
 	if ( !m_nameMap.contains(name) ) return false;

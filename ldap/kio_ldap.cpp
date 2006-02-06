@@ -35,10 +35,10 @@ int kdemain( int argc, char **argv )
 {
   KInstance instance( "kio_ldap" );
 
-  kdDebug(7125) << "Starting " << getpid() << endl;
+  kDebug(7125) << "Starting " << getpid() << endl;
 
   if ( argc != 4 ) {
-    kdError() << "Usage kio_ldap protocol pool app" << endl;
+    kError() << "Usage kio_ldap protocol pool app" << endl;
     return -1;
   }
 
@@ -46,7 +46,7 @@ int kdemain( int argc, char **argv )
   LDAPProtocol slave( argv[1], argv[ 2 ], argv[ 3 ] );
   slave.dispatchLoop();
 
-  kdDebug( 7125 ) << "Done" << endl;
+  kDebug( 7125 ) << "Done" << endl;
   return 0;
 }
 
@@ -59,7 +59,7 @@ LDAPProtocol::LDAPProtocol( const QByteArray &protocol, const QByteArray &pool,
   mLDAP = 0; mTLS = 0; mVer = 3; mAuthSASL = false;
   mRealm = ""; mBindName = "";
   mTimeLimit = mSizeLimit = 0;
-  kdDebug(7125) << "LDAPProtocol::LDAPProtocol (" << protocol << ")" << endl;
+  kDebug(7125) << "LDAPProtocol::LDAPProtocol (" << protocol << ")" << endl;
 }
 
 LDAPProtocol::~LDAPProtocol()
@@ -76,7 +76,7 @@ void LDAPProtocol::LDAPErr( const KUrl &url, int err )
     if ( err != LDAP_SUCCESS ) ldap_get_option( mLDAP, LDAP_OPT_ERROR_STRING, &errmsg );
   }
   if ( err == LDAP_SUCCESS ) return;
-  kdDebug(7125) << "error code: " << err << " msg: " << ldap_err2string(err) <<
+  kDebug(7125) << "error code: " << err << " msg: " << ldap_err2string(err) <<
     " Additonal error message: '" << errmsg << "'" << endl;
   QString msg;
   QString extraMsg;
@@ -168,7 +168,7 @@ void LDAPProtocol::controlsFromMetaData( LDAPControl ***serverctrls,
   while ( hasMetaData( QString::fromLatin1("SERVER_CTRL%1").arg(i) ) ) {
     QByteArray val = metaData( QString::fromLatin1("SERVER_CTRL%1").arg(i) ).toUtf8();
     LDIF::splitControl( val, oid, critical, value );
-    kdDebug(7125) << "server ctrl #" << i << " value: " << val <<
+    kDebug(7125) << "server ctrl #" << i << " value: " << val <<
       " oid: " << oid << " critical: " << critical << " value: " <<
       QString::fromUtf8( value, value.size() ) << endl;
     addControlOp( serverctrls, oid, value, critical );
@@ -178,7 +178,7 @@ void LDAPProtocol::controlsFromMetaData( LDAPControl ***serverctrls,
   while ( hasMetaData( QString::fromLatin1("CLIENT_CTRL%1").arg(i) ) ) {
     QByteArray val = metaData( QString::fromLatin1("CLIENT_CTRL%1").arg(i) ).toUtf8();
     LDIF::splitControl( val, oid, critical, value );
-    kdDebug(7125) << "client ctrl #" << i << " value: " << val <<
+    kDebug(7125) << "client ctrl #" << i << " value: " << val <<
       " oid: " << oid << " critical: " << critical << " value: " <<
       QString::fromUtf8( value, value.size() ) << endl;
     addControlOp( clientctrls, oid, value, critical );
@@ -236,7 +236,7 @@ int LDAPProtocol::asyncSearch( LDAPUrl &usrc, const QByteArray &cookie )
   }
 		       
 
-  kdDebug(7125) << "asyncSearch() dn=\"" << usrc.dn() << "\" scope=" <<
+  kDebug(7125) << "asyncSearch() dn=\"" << usrc.dn() << "\" scope=" <<
     usrc.scope() << " filter=\"" << usrc.filter() << "\" attrs=" << usrc.attributes() <<
     endl;
   retval = ldap_search_ext( mLDAP, usrc.dn().toUtf8(), scope,
@@ -301,12 +301,12 @@ int LDAPProtocol::parsePageControl( LDAPMessage *result, QByteArray &cookie )
   rc = ldap_parse_result( mLDAP, result, &err, NULL, NULL, NULL, &ctrl, 0 );
 
   if( rc != LDAP_SUCCESS ) {
-    kdDebug(7125) << "ldap_parse_result" << endl;
+    kDebug(7125) << "ldap_parse_result" << endl;
     return -1;
   }
 
   if ( err != LDAP_SUCCESS ) {
-    kdDebug(7125) << "parse_page_control error: " << ldap_err2string(err) << " " << err << endl;
+    kDebug(7125) << "parse_page_control error: " << ldap_err2string(err) << " " << err << endl;
     return -1;
   }
 
@@ -321,26 +321,26 @@ int LDAPProtocol::parsePageControl( LDAPMessage *result, QByteArray &cookie )
     ctrlp = *ctrl;
     ber = ber_init( &ctrlp->ldctl_value );
     if ( ber == 0 ) {
-      kdDebug(7125) << "Internal error." << endl;
+      kDebug(7125) << "Internal error." << endl;
       return -1;
     }
 
     int entriesLeft;
     struct berval bv;
     tag = ber_scanf( ber, "{io}", &entriesLeft, &bv );
-    kdDebug(7125) << "entriesleft: " << entriesLeft << " cookie len: " << bv.bv_len << " cookie: " << bv.bv_val << endl;
+    kDebug(7125) << "entriesleft: " << entriesLeft << " cookie len: " << bv.bv_len << " cookie: " << bv.bv_val << endl;
     (void) ber_free( ber, 1 );
     cookie.resize(bv.bv_len);
     memcpy(cookie.data(),bv.bv_val,bv.bv_len);
     ber_memfree(bv.bv_val);
 		
     if( tag == LBER_ERROR ) {
-      kdDebug(7125) << "Paged results response control could not be decoded." << endl;
+      kDebug(7125) << "Paged results response control could not be decoded." << endl;
       return -1;
     }
 
     if( entriesLeft < 0 ) {
-      kdDebug(7125) << "Invalid entries estimate in paged results response." << endl;
+      kDebug(7125) << "Invalid entries estimate in paged results response." << endl;
       return -1;
     }
 
@@ -358,7 +358,7 @@ void LDAPProtocol::addControlOp( LDAPControl ***pctrls, const QString &oid,
 
   ctrls = *pctrls;
 
-  kdDebug(7125) << "addControlOp: oid:'" << oid << "' val: '" << value << "'" << endl;
+  kDebug(7125) << "addControlOp: oid:'" << oid << "' val: '" << value << "'" << endl;
   int vallen = value.size();
   ctrl->ldctl_value.bv_len = vallen;
   if ( vallen ) {
@@ -389,7 +389,7 @@ void LDAPProtocol::addControlOp( LDAPControl ***pctrls, const QString &oid,
 void LDAPProtocol::addModOp( LDAPMod ***pmods, int mod_type, const QString &attr,
   const QByteArray &value )
 {
-//  kdDebug(7125) << "type: " << mod_type << " attr: " << attr <<
+//  kDebug(7125) << "type: " << mod_type << " attr: " << attr <<
 //    " value: " << QString::fromUtf8(value,value.size()) <<
 //    " size: " << value.size() << endl;
   LDAPMod **mods;
@@ -411,7 +411,7 @@ void LDAPProtocol::addModOp( LDAPMod ***pmods, int mod_type, const QString &attr
     if ( mods[ i ] == 0 ) {
       mods = ( LDAPMod ** )realloc( mods, (i + 2) * sizeof( LDAPMod * ) );
       if ( mods == 0 ) {
-        kdError() << "addModOp: realloc" << endl;
+        kError() << "addModOp: realloc" << endl;
         return;
       }
       mods[ i + 1 ] = 0;
@@ -437,19 +437,19 @@ void LDAPProtocol::addModOp( LDAPMod ***pmods, int mod_type, const QString &attr
     mods[ i ]->mod_vals.modv_bvals = ( BerValue** ) malloc( sizeof( BerValue* ) * 2 );
     mods[ i ]->mod_vals.modv_bvals[ 0 ] = berval;
     mods[ i ]->mod_vals.modv_bvals[ 1 ] = 0;
-    kdDebug(7125) << "addModOp: new bervalue struct " << endl;
+    kDebug(7125) << "addModOp: new bervalue struct " << endl;
   } else {
     uint j = 0;
     while ( mods[ i ]->mod_vals.modv_bvals[ j ] != 0 ) j++;
     mods[ i ]->mod_vals.modv_bvals = ( BerValue ** )
       realloc( mods[ i ]->mod_vals.modv_bvals, (j + 2) * sizeof( BerValue* ) );
     if ( mods[ i ]->mod_vals.modv_bvals == 0 ) {
-      kdError() << "addModOp: realloc" << endl;
+      kError() << "addModOp: realloc" << endl;
       return;
     }
     mods[ i ]->mod_vals.modv_bvals[ j ] = berval;
     mods[ i ]->mod_vals.modv_bvals[ j+1 ] = 0;
-    kdDebug(7125) << j << ". new bervalue " << endl;
+    kDebug(7125) << j << ". new bervalue " << endl;
   }
 }
 
@@ -527,7 +527,7 @@ void LDAPProtocol::changeCheck( LDAPUrl &url )
     mBindName = bindname;
     mTimeLimit = timelimit;
     mSizeLimit = sizelimit;
-    kdDebug(7125) << "parameters changed: tls = " << mTLS <<
+    kDebug(7125) << "parameters changed: tls = " << mTLS <<
       " version: " << mVer << "SASLauth: " << mAuthSASL << endl;
     openConnection();
     if ( mAuthSASL ) {
@@ -563,7 +563,7 @@ void LDAPProtocol::setHost( const QString& host, int port,
   mUser = user;
   mPassword = password;
 
-  kdDebug(7125) << "setHost: " << host << " port: " << port << " user: " <<
+  kDebug(7125) << "setHost: " << host << " port: " << port << " user: " <<
     mUser << " pass: [protected]" << endl;
 }
 
@@ -609,7 +609,7 @@ int LDAPProtocol::saslInteract( void *in )
                  ( mFirstAuth ?
                    openPassDlg( info ) :
                    openPassDlg( info, i18n("Invalid authorization information.") ) ) ) ) {
-          kdDebug(7125) << "Dialog cancelled!" << endl;
+          kDebug(7125) << "Dialog cancelled!" << endl;
           mCancel = true;
           return LDAP_USER_CANCELLED;
         }
@@ -628,19 +628,19 @@ int LDAPProtocol::saslInteract( void *in )
     switch( interact->id ) {
       case SASL_CB_GETREALM:
         value = mRealm;
-        kdDebug(7125) << "SASL_REALM=" << mRealm << endl;
+        kDebug(7125) << "SASL_REALM=" << mRealm << endl;
         break;
       case SASL_CB_AUTHNAME:
         value = mUser;
-        kdDebug(7125) << "SASL_AUTHNAME=" << mUser << endl;
+        kDebug(7125) << "SASL_AUTHNAME=" << mUser << endl;
         break;
       case SASL_CB_PASS:
         value = mPassword;
-        kdDebug(7125) << "SASL_PASSWD=[hidden]" << endl;
+        kDebug(7125) << "SASL_PASSWD=[hidden]" << endl;
         break;
       case SASL_CB_USER:
         value = mBindName;
-        kdDebug(7125) << "SASL_AUTHZID=" << mBindName << endl;
+        kDebug(7125) << "SASL_AUTHZID=" << mBindName << endl;
         break;
     }
     if ( value.isEmpty() ) {
@@ -673,7 +673,7 @@ void LDAPProtocol::openConnection()
   AuthInfo info;
   fillAuthInfo( info );
 ///////////////////////////////////////////////////////////////////////////
-  kdDebug(7125) << "OpenConnection to " << mHost << ":" << mPort << endl;
+  kDebug(7125) << "OpenConnection to " << mHost << ":" << mPort << endl;
 
   ret = ldap_initialize( &mLDAP, Url.url().toLatin1() );
   if ( ret != LDAP_SUCCESS ) {
@@ -691,7 +691,7 @@ void LDAPProtocol::openConnection()
   }
 
   if ( mTLS ) {
-    kdDebug(7125) << "start TLS" << endl;
+    kDebug(7125) << "start TLS" << endl;
     if ( ( ret = ldap_start_tls_s( mLDAP, NULL, NULL ) ) != LDAP_SUCCESS ) {
       LDAPErr( Url );
       return;
@@ -699,7 +699,7 @@ void LDAPProtocol::openConnection()
   }
 
   if ( mSizeLimit ) {
-    kdDebug(7125) << "sizelimit: " << mSizeLimit << endl;
+    kDebug(7125) << "sizelimit: " << mSizeLimit << endl;
     if ( ldap_set_option( mLDAP, LDAP_OPT_SIZELIMIT, &mSizeLimit ) != LDAP_SUCCESS ) {
       closeConnection();
       error( ERR_UNSUPPORTED_ACTION,
@@ -709,7 +709,7 @@ void LDAPProtocol::openConnection()
   }
 
   if ( mTimeLimit ) {
-    kdDebug(7125) << "timelimit: " << mTimeLimit << endl;
+    kDebug(7125) << "timelimit: " << mTimeLimit << endl;
     if ( ldap_set_option( mLDAP, LDAP_OPT_TIMELIMIT, &mTimeLimit ) != LDAP_SUCCESS ) {
       closeConnection();
       error( ERR_UNSUPPORTED_ACTION,
@@ -748,13 +748,13 @@ void LDAPProtocol::openConnection()
         mBindName = info.username;
         mPassword = info.password;
       } else {
-        kdDebug(7125) << "Dialog cancelled!" << endl;
+        kDebug(7125) << "Dialog cancelled!" << endl;
         error( ERR_USER_CANCELED, QString() );
         closeConnection();
         return;
       }
     }
-    kdDebug(7125) << "user: " << mUser << " bindname: " << mBindName << endl;
+    kDebug(7125) << "user: " << mUser << " bindname: " << mBindName << endl;
     ret =
 #if defined HAVE_SASL_H || defined HAVE_SASL_SASL_H
       mAuthSASL ?
@@ -767,7 +767,7 @@ void LDAPProtocol::openConnection()
     if ( ret != LDAP_INVALID_CREDENTIALS &&
          ret != LDAP_INSUFFICIENT_ACCESS &&
          ret != LDAP_INAPPROPRIATE_AUTH ) {
-      kdDebug(7125) << "ldap_bind retval: " << ret << endl;
+      kDebug(7125) << "ldap_bind retval: " << ret << endl;
       auth = true;
       if ( ret != LDAP_SUCCESS ) {
         if ( mCancel )
@@ -780,7 +780,7 @@ void LDAPProtocol::openConnection()
     }
   }
 
-  kdDebug(7125) << "connected!" << endl;
+  kDebug(7125) << "connected!" << endl;
   connected();
 }
 
@@ -788,7 +788,7 @@ void LDAPProtocol::closeConnection()
 {
   if (mLDAP) ldap_unbind(mLDAP);
   mLDAP = 0;
-  kdDebug(7125) << "connection closed!" << endl;
+  kDebug(7125) << "connection closed!" << endl;
 }
 
 /**
@@ -796,7 +796,7 @@ void LDAPProtocol::closeConnection()
  */
 void LDAPProtocol::get( const KUrl &_url )
 {
-  kdDebug(7125) << "get(" << _url << ")" << endl;
+  kDebug(7125) << "get(" << _url << ")" << endl;
 
   LDAPUrl usrc(_url);
   int ret, id;
@@ -825,7 +825,7 @@ void LDAPProtocol::get( const KUrl &_url )
       LDAPErr( _url );
       return;
     }
-    kdDebug(7125) << " ldap_result: " << ret << endl;
+    kDebug(7125) << " ldap_result: " << ret << endl;
     if ( ret == LDAP_RES_SEARCH_RESULT ) {
       if ( mPageSize ) {
         QByteArray cookie;
@@ -876,7 +876,7 @@ void LDAPProtocol::get( const KUrl &_url )
  */
 void LDAPProtocol::stat( const KUrl &_url )
 {
-  kdDebug(7125) << "stat(" << _url << ")" << endl;
+  kDebug(7125) << "stat(" << _url << ")" << endl;
 
   QStringList att,saveatt;
   LDAPUrl usrc(_url);
@@ -900,7 +900,7 @@ void LDAPProtocol::stat( const KUrl &_url )
     return;
   }
 
-  kdDebug(7125) << "stat() getting result" << endl;
+  kDebug(7125) << "stat() getting result" << endl;
   do {
     ret = ldap_result( mLDAP, id, 0, NULL, &msg );
     if ( ret == -1 ) {
@@ -933,7 +933,7 @@ void LDAPProtocol::stat( const KUrl &_url )
  */
 void LDAPProtocol::del( const KUrl &_url, bool )
 {
-  kdDebug(7125) << "del(" << _url << ")" << endl;
+  kDebug(7125) << "del(" << _url << ")" << endl;
 
   LDAPUrl usrc(_url);
   int ret;
@@ -944,7 +944,7 @@ void LDAPProtocol::del( const KUrl &_url, bool )
     return;
   }
 
-  kdDebug(7125) << " del: " << usrc.dn().toUtf8() << endl ;
+  kDebug(7125) << " del: " << usrc.dn().toUtf8() << endl ;
 
   if ( (ret = ldap_delete_s( mLDAP,usrc.dn().toUtf8() )) != LDAP_SUCCESS ) {
     LDAPErr( _url );
@@ -962,7 +962,7 @@ void LDAPProtocol::del( const KUrl &_url, bool )
 
 void LDAPProtocol::put( const KUrl &_url, int, bool overwrite, bool )
 {
-  kdDebug(7125) << "put(" << _url << ")" << endl;
+  kDebug(7125) << "put(" << _url << ")" << endl;
 
   LDAPUrl usrc(_url);
 
@@ -994,13 +994,13 @@ void LDAPProtocol::put( const KUrl &_url, int, bool overwrite, bool )
       return;
     }
     if ( result == 0 ) {
-      kdDebug(7125) << "EOF!" << endl;
+      kDebug(7125) << "EOF!" << endl;
       ldif.endLDIF();
     }
     do {
 
       ret = ldif.nextItem();
-      kdDebug(7125) << "nextitem: " << ret << endl;
+      kDebug(7125) << "nextitem: " << ret << endl;
 
       switch ( ret ) {
         case LDIF::None:
@@ -1015,14 +1015,14 @@ void LDAPProtocol::put( const KUrl &_url, int, bool overwrite, bool )
               FREELDAPMEM;
               return;
             case LDIF::Entry_Del:
-              kdDebug(7125) << "kio_ldap_del" << endl;
+              kDebug(7125) << "kio_ldap_del" << endl;
               controlsFromMetaData( &serverctrls, &clientctrls );
               ldaperr = ldap_delete_ext_s( mLDAP, ldif.dn().toUtf8(),
                 serverctrls, clientctrls );
               FREELDAPMEM;
               break;
             case LDIF::Entry_Modrdn:
-              kdDebug(7125) << "kio_ldap_modrdn olddn:" << ldif.dn() <<
+              kDebug(7125) << "kio_ldap_modrdn olddn:" << ldif.dn() <<
                 " newRdn: " <<  ldif.newRdn() <<
                 " newSuperior: " << ldif.newSuperior() <<
                 " deloldrdn: " << ldif.delOldRdn() << endl;
@@ -1034,7 +1034,7 @@ void LDAPProtocol::put( const KUrl &_url, int, bool overwrite, bool )
               FREELDAPMEM;
               break;
             case LDIF::Entry_Mod:
-              kdDebug(7125) << "kio_ldap_mod"  << endl;
+              kDebug(7125) << "kio_ldap_mod"  << endl;
               if ( lmod ) {
                 controlsFromMetaData( &serverctrls, &clientctrls );
                 ldaperr = ldap_modify_ext_s( mLDAP, ldif.dn().toUtf8(), lmod,
@@ -1043,13 +1043,13 @@ void LDAPProtocol::put( const KUrl &_url, int, bool overwrite, bool )
               }
               break;
             case LDIF::Entry_Add:
-              kdDebug(7125) << "kio_ldap_add " << ldif.dn() << endl;
+              kDebug(7125) << "kio_ldap_add " << ldif.dn() << endl;
               if ( lmod ) {
                 controlsFromMetaData( &serverctrls, &clientctrls );
                 ldaperr = ldap_add_ext_s( mLDAP, ldif.dn().toUtf8(), lmod,
                   serverctrls, clientctrls );
                 if ( ldaperr == LDAP_ALREADY_EXISTS && overwrite ) {
-                  kdDebug(7125) << ldif.dn() << " already exists, delete first" << endl;
+                  kDebug(7125) << ldif.dn() << " already exists, delete first" << endl;
                   ldaperr = ldap_delete_s( mLDAP, ldif.dn().toUtf8() );
                   if ( ldaperr == LDAP_SUCCESS )
                     ldaperr = ldap_add_ext_s( mLDAP, ldif.dn().toUtf8(), lmod,
@@ -1060,7 +1060,7 @@ void LDAPProtocol::put( const KUrl &_url, int, bool overwrite, bool )
               break;
           }
           if ( ldaperr != LDAP_SUCCESS ) {
-            kdDebug(7125) << "put ldap error: " << ldap_err2string(ldaperr) << endl;
+            kDebug(7125) << "put ldap error: " << ldap_err2string(ldaperr) << endl;
             LDAPErr( _url );
             FREELDAPMEM;
             return;
@@ -1127,7 +1127,7 @@ void LDAPProtocol::listDir( const KUrl &_url )
   bool critical;
   bool isSub = ( usrc.extension( "x-dir", critical ) == "sub" );
 
-  kdDebug(7125) << "listDir(" << _url << ")" << endl;
+  kDebug(7125) << "listDir(" << _url << ")" << endl;
 
   changeCheck( usrc );
   if ( !mLDAP ) {
@@ -1162,7 +1162,7 @@ void LDAPProtocol::listDir( const KUrl &_url )
     }
     if ( ret == LDAP_RES_SEARCH_RESULT ) break;
     if ( ret != LDAP_RES_SEARCH_ENTRY ) continue;
-    kdDebug(7125) << " ldap_result: " << ret << endl;
+    kDebug(7125) << " ldap_result: " << ret << endl;
 
     entry = ldap_first_entry( mLDAP, msg );
     while( entry ) {
@@ -1171,11 +1171,11 @@ void LDAPProtocol::listDir( const KUrl &_url )
       uds.clear();
 
       dn = ldap_get_dn( mLDAP, entry );
-      kdDebug(7125) << "dn: " << dn  << endl;
+      kDebug(7125) << "dn: " << dn  << endl;
       LDAPEntry2UDSEntry( QString::fromUtf8(dn), uds, usrc );
       listEntry( uds, false );
 //      processedSize( total );
-      kdDebug(7125) << " total: " << total << " " << usrc.prettyURL() << endl;
+      kDebug(7125) << " total: " << total << " " << usrc.prettyURL() << endl;
 
     // publish the sub-directories (if dirmode==sub)
       if ( isSub ) {
@@ -1183,10 +1183,10 @@ void LDAPProtocol::listDir( const KUrl &_url )
         usrc2.setScope( LDAPUrl::One );
         usrc2.setAttributes( att );
         usrc2.setFilter( QString() );
-        kdDebug(7125) << "search2 " << dn << endl;
+        kDebug(7125) << "search2 " << dn << endl;
         if ( (id2 = asyncSearch( usrc2 )) != -1 ) {
           while ( true ) {
-            kdDebug(7125) << " next result " << endl;
+            kDebug(7125) << " next result " << endl;
             ret2 = ldap_result( mLDAP, id2, 0, NULL, &msg2 );
             if ( ret2 == -1 ) break;
             if ( ret2 == LDAP_RES_SEARCH_RESULT ) {

@@ -38,7 +38,7 @@ SystemImpl::SystemImpl() : QObject()
 
 bool SystemImpl::listRoot(KIO::UDSEntryList &list)
 {
-	kdDebug() << "SystemImpl::listRoot" << endl;
+	kDebug() << "SystemImpl::listRoot" << endl;
 
 	QStringList names_found;
 	QStringList dirList = KGlobal::dirs()->resourceDirs("system_entries");
@@ -111,7 +111,7 @@ bool SystemImpl::realURL(const QString &name, const QString &path,
 
 bool SystemImpl::statByName(const QString &filename, KIO::UDSEntry& entry)
 {
-	kdDebug() << "SystemImpl::statByName" << endl;
+	kDebug() << "SystemImpl::statByName" << endl;
 
 	QStringList dirList = KGlobal::dirs()->resourceDirs("system_entries");
 
@@ -144,7 +144,7 @@ bool SystemImpl::statByName(const QString &filename, KIO::UDSEntry& entry)
 
 KUrl SystemImpl::findBaseURL(const QString &filename) const
 {
-	kdDebug() << "SystemImpl::findBaseURL" << endl;
+	kDebug() << "SystemImpl::findBaseURL" << endl;
 
 	QStringList dirList = KGlobal::dirs()->resourceDirs("system_entries");
 
@@ -201,11 +201,11 @@ void SystemImpl::createEntry(KIO::UDSEntry &entry,
                              const QString &directory,
                              const QString &file)
 {
-	kdDebug() << "SystemImpl::createEntry" << endl;
+	kDebug() << "SystemImpl::createEntry" << endl;
 
 	KDesktopFile desktop(directory+file, true);
 
-	kdDebug() << "path = " << directory << file << endl;
+	kDebug() << "path = " << directory << file << endl;
 
 	entry.clear();
 

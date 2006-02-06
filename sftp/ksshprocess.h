@@ -413,7 +413,7 @@ public:
     bool running() { return mRunning; }
     
     /**
-     * Print the command line arguments ssh is run with using kdDebug.
+     * Print the command line arguments ssh is run with using kDebug.
      */
     void printArgs();
 

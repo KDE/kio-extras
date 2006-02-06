@@ -168,7 +168,7 @@ namespace KioSMTP {
       return true;
 
     if ( tlsrc != -3 )
-      //kdDebug(7112) << "TLS negotiation failed!" << endl;
+      //kDebug(7112) << "TLS negotiation failed!" << endl;
       mSMTP->messageBox(KIO::SlaveBase::Information,
 			i18n("Your SMTP server claims to "
 			     "support TLS, but negotiation "
@@ -223,7 +223,7 @@ namespace KioSMTP {
       return;
     }
     if ( result == SASL_OK ) mOneStep = true;
-    kdDebug(7112) << "Mechanism: " << mMechusing << " one step: " << mOneStep << endl;
+    kDebug(7112) << "Mechanism: " << mMechusing << " one step: " << mOneStep << endl;
 #else
   mSMTP->error(KIO::ERR_COULD_NOT_AUTHENTICATE,
       i18n("Authentication support is not compiled into kio_smtp."));
@@ -234,7 +234,7 @@ namespace KioSMTP {
   {
 #ifdef HAVE_LIBSASL2  
     if ( conn ) {
-      kdDebug(7112) << "dispose sasl connection" << endl;
+      kDebug(7112) << "dispose sasl connection" << endl;
       sasl_dispose( &conn );
       conn = 0;
     }
@@ -244,7 +244,7 @@ namespace KioSMTP {
   bool AuthCommand::saslInteract( void *in )
   {
 #ifdef HAVE_LIBSASL2
-    kdDebug(7112) << "saslInteract: " << endl;
+    kDebug(7112) << "saslInteract: " << endl;
     sasl_interact_t *interact = ( sasl_interact_t * ) in;
 
     //some mechanisms do not require username && pass, so don't need a popup
@@ -268,12 +268,12 @@ namespace KioSMTP {
       switch( interact->id ) {
         case SASL_CB_USER:
         case SASL_CB_AUTHNAME:
-          kdDebug(7112) << "SASL_CB_[USER|AUTHNAME]: " << mAi->username << endl;
+          kDebug(7112) << "SASL_CB_[USER|AUTHNAME]: " << mAi->username << endl;
           interact->result = strdup( mAi->username.toUtf8() );
           interact->len = strlen( (const char *) interact->result );
           break;
         case SASL_CB_PASS:
-          kdDebug(7112) << "SASL_CB_PASS: [HIDDEN]" << endl;
+          kDebug(7112) << "SASL_CB_PASS: [HIDDEN]" << endl;
           interact->result = strdup( mAi->password.toUtf8() );
           interact->len = strlen( (const char *) interact->result );
           break;
@@ -319,7 +319,7 @@ namespace KioSMTP {
       
       if ( mOneStep ) mComplete = true;
     } else {
-//      kdDebug(7112) << "SS: '" << mLastChallenge << "'" << endl;
+//      kDebug(7112) << "SS: '" << mLastChallenge << "'" << endl;
       challenge = QByteArray::fromBase64( mLastChallenge );
       int result;
       do {
@@ -333,13 +333,13 @@ namespace KioSMTP {
           };
       } while ( result == SASL_INTERACT );
       if ( result != SASL_CONTINUE && result != SASL_OK ) {
-        kdDebug(7112) << "sasl_client_step failed with: " << result << endl;
+        kDebug(7112) << "sasl_client_step failed with: " << result << endl;
         SASLERROR
         return "";
       }
       cmd = QByteArray::fromRawData( mOut, mOutlen ).toBase64();
       
-//      kdDebug(7112) << "CC: '" << cmd << "'" << endl;
+//      kDebug(7112) << "CC: '" << cmd << "'" << endl;
       mComplete = ( result == SASL_OK );
     }
 #endif //HAVE_LIBSASL2
@@ -489,11 +489,11 @@ namespace KioSMTP {
 
     // normal processing:
 
-    kdDebug(7112) << "requesting data" << endl;
+    kDebug(7112) << "requesting data" << endl;
     mSMTP->dataReq();
     QByteArray ba;
     int result = mSMTP->readData( ba );
-    kdDebug(7112) << "got " << result << " bytes" << endl;
+    kDebug(7112) << "got " << result << " bytes" << endl;
     if ( result > 0 )
       return prepare( ba );
     else if ( result < 0 ) {
@@ -545,7 +545,7 @@ namespace KioSMTP {
     if ( ba.isEmpty() )
       return 0;
     if ( mSMTP->metaData("lf2crlf+dotstuff") == "slave" ) {
-      kdDebug(7112) << "performing dotstuffing and LF->CRLF transformation" << endl;
+      kDebug(7112) << "performing dotstuffing and LF->CRLF transformation" << endl;
       return dotstuff_lf2crlf( ba, mLastChar );
     } else {
       mLastChar = ba[ ba.size() - 1 ];

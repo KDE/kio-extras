@@ -73,7 +73,7 @@ bool HomeImpl::realURL(const QString &name, const QString &path, KUrl &url)
 
 bool HomeImpl::listHomes(KIO::UDSEntryList &list)
 {
-	kdDebug() << "HomeImpl::listHomes" << endl;
+	kDebug() << "HomeImpl::listHomes" << endl;
 
 	KUser current_user;
 	QList<KUserGroup> groups = current_user.groups();
@@ -120,7 +120,7 @@ void HomeImpl::createTopLevelEntry(KIO::UDSEntry &entry) const
 void HomeImpl::createHomeEntry(KIO::UDSEntry &entry,
                                const KUser &user)
 {
-	kdDebug() << "HomeImpl::createHomeEntry" << endl;
+	kDebug() << "HomeImpl::createHomeEntry" << endl;
 
 	entry.clear();
 
@@ -155,7 +155,7 @@ void HomeImpl::createHomeEntry(KIO::UDSEntry &entry,
 
 bool HomeImpl::statHome(const QString &name, KIO::UDSEntry &entry)
 {
-	kdDebug() << "HomeImpl::statHome: " << name << endl;
+	kDebug() << "HomeImpl::statHome: " << name << endl;
 
 	KUser user(name);
 

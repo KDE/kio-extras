@@ -47,7 +47,7 @@ extern "C"
   {
     KInstance instance( "kio_finger" );
 
-    //kdDebug() << "*** Starting kio_finger " << getpid() << endl;
+    //kDebug() << "*** Starting kio_finger " << getpid() << endl;
 
     if (argc != 4)
       {
@@ -58,7 +58,7 @@ extern "C"
     FingerProtocol slave(argv[2], argv[3]);
     slave.dispatchLoop();
 
-    //kdDebug() << "*** kio_finger Done" << endl;
+    //kDebug() << "*** kio_finger Done" << endl;
     return 0;
   }
 }
@@ -80,7 +80,7 @@ FingerProtocol::FingerProtocol(const QByteArray &pool_socket, const QByteArray &
 
 FingerProtocol::~FingerProtocol()
 {
-  //kdDebug() << "FingerProtocol::~FingerProtocol()" << endl;
+  //kDebug() << "FingerProtocol::~FingerProtocol()" << endl;
   delete myURL;
   delete myPerlPath;
   delete myFingerPath;
@@ -95,11 +95,11 @@ FingerProtocol::~FingerProtocol()
 
 void FingerProtocol::get(const KUrl& url )
 {
-  //kdDebug() << "kio_finger::get(const KUrl& url)" << endl ;
+  //kDebug() << "kio_finger::get(const KUrl& url)" << endl ;
 
   this->parseCommandLine(url);
 
-  //kdDebug() << "myURL: " << myURL->prettyURL() << endl;
+  //kDebug() << "myURL: " << myURL->prettyURL() << endl;
 
   // Reset the stream
   *myStdStream="";
@@ -107,19 +107,19 @@ void FingerProtocol::get(const KUrl& url )
   QString query = myURL->query();
   QString refreshRate = defaultRefreshRate;
 
-  //kdDebug() << "query: " << query << endl;
+  //kDebug() << "query: " << query << endl;
 
   // Check the validity of the query
 
   QRegExp regExp("?refreshRate=[0-9][0-9]*", true, true);
   if (query.contains(regExp)) {
-    //kdDebug() << "looks like a valid query" << endl;
+    //kDebug() << "looks like a valid query" << endl;
     QRegExp regExp( "([0-9]+)" );
     regExp.search(query);
     refreshRate = regExp.cap(0);
   }
 
-  //kdDebug() << "Refresh rate: " << refreshRate << endl;
+  //kDebug() << "Refresh rate: " << refreshRate << endl;
 
   myKProcess = new KProcess();
   *myKProcess << *myPerlPath << *myFingerPerlScript
@@ -149,7 +149,7 @@ void FingerProtocol::get(const KUrl& url )
 
 void FingerProtocol::slotGetStdOutput(KProcess* /* p */, char *s, int len)
 {
-  //kdDebug() <<  "void FingerProtocol::slotGetStdoutOutput()" << endl;
+  //kDebug() <<  "void FingerProtocol::slotGetStdoutOutput()" << endl;
   *myStdStream += QString::fromLocal8Bit(s, len);
 }
 
@@ -169,57 +169,57 @@ void FingerProtocol::mimetype(const KUrl & /*url*/)
 
 void FingerProtocol::getProgramPath()
 {
-  //kdDebug() << "kfingerMainWindow::getProgramPath()" << endl;
+  //kDebug() << "kfingerMainWindow::getProgramPath()" << endl;
   // Not to sure wether I'm using the right error number here. - schlpbch -
 
   myPerlPath = new QString(KGlobal::dirs()->findExe("perl"));
   if (myPerlPath->isEmpty())
     {
-      //kdDebug() << "Perl command not found" << endl;
+      //kDebug() << "Perl command not found" << endl;
       this->error(ERR_CANNOT_LAUNCH_PROCESS,
 		  i18n("Could not find the Perl program on your system, please install."));
       exit();
     }
   else
     {
-      //kdDebug() << "Perl command found:" << *myPerlPath << endl;
+      //kDebug() << "Perl command found:" << *myPerlPath << endl;
     }
 
   myFingerPath = new QString(KGlobal::dirs()->findExe("finger"));
   if ((myFingerPath->isEmpty()))
     {
-      //kdDebug() << "Finger command not found" << endl;
+      //kDebug() << "Finger command not found" << endl;
       this->error(ERR_CANNOT_LAUNCH_PROCESS,
 		  i18n("Could not find the Finger program on your system, please install."));
       exit();
     }
   else
     {
-      //kdDebug() << "Finger command found:" << *myFingerPath << endl;
+      //kDebug() << "Finger command found:" << *myFingerPath << endl;
     }
 
   myFingerPerlScript = new QString(locate("data","kio_finger/kio_finger.pl"));
   if (myFingerPerlScript->isEmpty())
     {
-      //kdDebug() << "kio_finger.pl script not found" << endl;
+      //kDebug() << "kio_finger.pl script not found" << endl;
       this->error(ERR_CANNOT_LAUNCH_PROCESS,
 		  i18n("kio_finger Perl script not found."));
       exit();
     }
   else
     {
-      //kdDebug() << "kio_finger perl script found: " << *myFingerPerlScript << endl;
+      //kDebug() << "kio_finger perl script found: " << *myFingerPerlScript << endl;
     }
 
   myFingerCSSFile = new QString(locate("data","kio_finger/kio_finger.css"));
   if (myFingerCSSFile->isEmpty())
     {
-      //kdDebug() << "kio_finger.css file not found" << endl;
+      //kDebug() << "kio_finger.css file not found" << endl;
       this->warning(i18n("kio_finger CSS script not found. Output will look ugly."));
     }
   else
     {
-      //kdDebug() << "kio_finger CSS file found: " << *myFingerCSSFile << endl;
+      //kDebug() << "kio_finger CSS file found: " << *myFingerCSSFile << endl;
     }
 }
 

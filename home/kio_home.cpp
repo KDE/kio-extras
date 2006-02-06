@@ -92,7 +92,7 @@ bool HomeProtocol::rewriteURL(const KUrl &url, KUrl &newUrl)
 
 void HomeProtocol::listDir(const KUrl &url)
 {
-	kdDebug() << "HomeProtocol::listDir: " << url << endl;
+	kDebug() << "HomeProtocol::listDir: " << url << endl;
 
 	if ( url.path().length() <= 1 )
 	{
@@ -145,7 +145,7 @@ void HomeProtocol::listRoot()
 
 void HomeProtocol::stat(const KUrl &url)
 {
-	kdDebug() << "HomeProtocol::stat: " << url << endl;
+	kDebug() << "HomeProtocol::stat: " << url << endl;
 
 	QString path = url.path();
 	if ( path.isEmpty() || path == "/" )

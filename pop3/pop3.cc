@@ -65,7 +65,7 @@ extern "C" {
 #define MAX_RESPONSE_LEN 512
 #define MAX_COMMANDS 10
 
-#define POP3_DEBUG kdDebug(7105)
+#define POP3_DEBUG kDebug(7105)
 
 extern "C" {
   int KDE_EXPORT kdemain(int argc, char **argv);

@@ -147,7 +147,7 @@ QDataStream& operator>> (QDataStream& s, sftpFileAttr& fa) {
 
         s >> fa.mLongname;
         fa.mLongname.truncate( fa.mLongname.size() );
-        //kdDebug() << ">>: ftpfileattr long filename (" << fa.mLongname.size() << ")= " << fa.mLongname <<  endl;
+        //kDebug() << ">>: ftpfileattr long filename (" << fa.mLongname.size() << ")= " << fa.mLongname <<  endl;
     }
 
     s >> fa.mFlags;  // get flags
@@ -199,7 +199,7 @@ void sftpFileAttr::getUserGroupNames(){
 
         QString longName = mEncoding->decode( mLongname );
 
-        kdDebug(7120) << "Decoded:  " << longName << endl;
+        kDebug(7120) << "Decoded:  " << longName << endl;
 
         // Find the beginning of the third field which contains the user name.
         while( field != 2 ) {

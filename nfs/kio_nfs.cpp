@@ -122,7 +122,7 @@ int kdemain( int argc, char **argv )
      fprintf(stderr, "Usage: kio_nfs protocol domain-socket1 domain-socket2\n");
      exit(-1);
   }
-  kdDebug(7121) << "NFS: kdemain: starting" << endl;
+  kDebug(7121) << "NFS: kdemain: starting" << endl;
 
   NFSProtocol slave(argv[2], argv[3]);
   slave.dispatchLoop();
@@ -228,7 +228,7 @@ NFSProtocol::NFSProtocol (const QByteArray &pool, const QByteArray &app )
 ,m_sock(-1)
 ,m_lastCheck(time(0))
 {
-   kdDebug(7121)<<"NFS::NFS: -"<<pool<<"-"<<endl;
+   kDebug(7121)<<"NFS::NFS: -"<<pool<<"-"<<endl;
 }
 
 NFSProtocol::~NFSProtocol()
@@ -242,16 +242,16 @@ NFSProtocol::~NFSProtocol()
  */
 /*void NFSProtocol::checkForOldFHs()
 {
-   kdDebug(7121)<<"checking for fhs older than "<<MAXFHAGE<<endl;
-   kdDebug(7121)<<"current items: "<<m_handleCache.count()<<endl;
+   kDebug(7121)<<"checking for fhs older than "<<MAXFHAGE<<endl;
+   kDebug(7121)<<"current items: "<<m_handleCache.count()<<endl;
    NFSFileHandleMap::Iterator it=m_handleCache.begin();
    NFSFileHandleMap::Iterator lastIt=it;
    while (it!=m_handleCache.end())
    {
-      kdDebug(7121)<<it.data().age()<<flush;
+      kDebug(7121)<<it.data().age()<<flush;
       if (it.data().age()>MAXFHAGE)
       {
-         kdDebug(7121)<<"removing"<<endl;
+         kDebug(7121)<<"removing"<<endl;
          m_handleCache.remove(it);
          if (it==lastIt)
          {
@@ -264,7 +264,7 @@ NFSProtocol::~NFSProtocol()
       lastIt=it;
       it++;
    };
-   kdDebug(7121)<<"left items: "<<m_handleCache.count()<<endl;
+   kDebug(7121)<<"left items: "<<m_handleCache.count()<<endl;
    m_lastCheck=time(0);
 }*/
 
@@ -296,13 +296,13 @@ NFSFileHandle NFSProtocol::getFileHandle(QString path)
    //if ((time(0)-m_lastCheck)>MAXFHAGE) checkForOldFHs();
 
    stripTrailingSlash(path);
-   kdDebug(7121)<<"getting FH for -"<<path<<"-"<<endl;
+   kDebug(7121)<<"getting FH for -"<<path<<"-"<<endl;
    //now the path looks like "/root/some/dir" or "" if it was "/"
    NFSFileHandle parentFH;
    //we didn't find it
    if (path.isEmpty())
    {
-      kdDebug(7121)<<"path is empty, invalidating the FH"<<endl;
+      kDebug(7121)<<"path is empty, invalidating the FH"<<endl;
       parentFH.setInvalid();
       return parentFH;
    }
@@ -310,18 +310,18 @@ NFSFileHandle NFSProtocol::getFileHandle(QString path)
    //the filehandles of the exported root dirs are always in the cache
    if (m_handleCache.find(path)!=m_handleCache.end())
    {
-      kdDebug(7121)<<"path is in the cache, returning the FH -"<<m_handleCache[path]<<"-"<<endl;
+      kDebug(7121)<<"path is in the cache, returning the FH -"<<m_handleCache[path]<<"-"<<endl;
       return m_handleCache[path];
    }
    QString rest, lastPart;
    getLastPart(path,lastPart,rest);
-   kdDebug(7121)<<"splitting path into rest -"<<rest<<"- and lastPart -"<<lastPart<<"-"<<endl;
+   kDebug(7121)<<"splitting path into rest -"<<rest<<"- and lastPart -"<<lastPart<<"-"<<endl;
 
    parentFH=getFileHandle(rest);
    //f*ck, it's invalid
    if (parentFH.isInvalid())
    {
-      kdDebug(7121)<<"the parent FH is invalid"<<endl;
+      kDebug(7121)<<"the parent FH is invalid"<<endl;
       return parentFH;
    }
    // do the rpc call
@@ -340,15 +340,15 @@ NFSFileHandle NFSProtocol::getFileHandle(QString path)
    if ((clnt_stat!=RPC_SUCCESS) || (dirres.status!=NFS_OK))
    {
       //we failed
-      kdDebug(7121)<<"lookup of filehandle failed"<<endl;
+      kDebug(7121)<<"lookup of filehandle failed"<<endl;
       parentFH.setInvalid();
       return parentFH;
    }
    //everything went fine up to now :-)
    parentFH=dirres.diropres_u.diropres.file.data;
-   //kdDebug(7121)<<"filesize: "<<dirres.diropres_u.diropres.attributes.size<<endl;
+   //kDebug(7121)<<"filesize: "<<dirres.diropres_u.diropres.attributes.size<<endl;
    m_handleCache.insert(path,parentFH);
-   kdDebug(7121)<<"return FH -"<<parentFH<<"-"<<endl;
+   kDebug(7121)<<"return FH -"<<parentFH<<"-"<<endl;
    return parentFH;
 }
 
@@ -360,7 +360,7 @@ NFSFileHandle NFSProtocol::getFileHandle(QString path)
  */
 void NFSProtocol::openConnection()
 {
-   kdDebug(7121)<<"NFS::openConnection for -" << m_currentHost.latin1() << "-" << endl;
+   kDebug(7121)<<"NFS::openConnection for -" << m_currentHost.latin1() << "-" << endl;
    if (m_currentHost.isEmpty())
    {
       error(ERR_UNKNOWN_HOST,"");
@@ -428,7 +428,7 @@ void NFSProtocol::openConnection()
          }
       }
    }
-   kdDebug(7121) << "hostname is -" << hostName << "-" << endl;
+   kDebug(7121) << "hostname is -" << hostName << "-" << endl;
    m_client->cl_auth = authunix_create(hostName.data(), geteuid(), getegid(), 0, 0);
    total_timeout.tv_sec = 20;
    total_timeout.tv_usec = 0;
@@ -444,7 +444,7 @@ void NFSProtocol::openConnection()
    fhstatus fhStatus;
    bool atLeastOnceSucceeded(FALSE);
    for(; exportlist!=0;exportlist = exportlist->ex_next) {
-      kdDebug(7121) << "found export: " << exportlist->ex_dir << endl;
+      kDebug(7121) << "found export: " << exportlist->ex_dir << endl;
 
       memset(&fhStatus, 0, sizeof(fhStatus));
       clnt_stat = clnt_call(m_client, MOUNTPROC_MNT,(xdrproc_t) xdr_dirpath, (char*)(&(exportlist->ex_dir)),
@@ -460,7 +460,7 @@ void NFSProtocol::openConnection()
             fname = KIO::encodeFileName(exportlist->ex_dir);
          m_handleCache.insert(QString("/")+fname,fh);
          m_exportedDirs.append(fname);
-         // kdDebug() <<"appending file -"<<fname<<"- with FH: -"<<fhStatus.fhstatus_u.fhs_fhandle<<"-"<<endl;
+         // kDebug() <<"appending file -"<<fname<<"- with FH: -"<<fhStatus.fhstatus_u.fhs_fhandle<<"-"<<endl;
       }
    }
    if (!atLeastOnceSucceeded)
@@ -492,7 +492,7 @@ void NFSProtocol::openConnection()
    }
    m_client->cl_auth = authunix_create(hostName.data(),geteuid(),getegid(),0,0);
    connected();
-   kdDebug(7121)<<"openConnection succeeded"<<endl;
+   kDebug(7121)<<"openConnection succeeded"<<endl;
 }
 
 void NFSProtocol::listDir( const KUrl& _url)
@@ -513,7 +513,7 @@ void NFSProtocol::listDir( const KUrl& _url)
    if (m_client==0) return;
    if (isRoot(path))
    {
-      kdDebug(7121)<<"listing root"<<endl;
+      kDebug(7121)<<"listing root"<<endl;
       totalSize( m_exportedDirs.count());
       //in this case we don't need to do a real listdir
       UDSEntry entry;
@@ -521,7 +521,7 @@ void NFSProtocol::listDir( const KUrl& _url)
       {
          entry.clear();
          entry.insert( KIO::UDS_NAME, (*it) );
-         kdDebug(7121)<<"listing "<<(*it)<<endl;
+         kDebug(7121)<<"listing "<<(*it)<<endl;
          createVirtualDirEntry(entry);
          listEntry( entry, false);
       }
@@ -531,7 +531,7 @@ void NFSProtocol::listDir( const KUrl& _url)
    }
 
    QStringList filesToList;
-   kdDebug(7121)<<"getting subdir -"<<path<<"-"<<endl;
+   kDebug(7121)<<"getting subdir -"<<path<<"-"<<endl;
    stripTrailingSlash(path);
    NFSFileHandle fh=getFileHandle(path);
    //cerr<<"this is the fh: -"<<fh<<"-"<<endl;
@@ -569,7 +569,7 @@ void NFSProtocol::listDir( const KUrl& _url)
       QByteArray tmpStr=QFile::encodeName(*it);
       dirargs.name=tmpStr.data();
 
-      kdDebug(7121)<<"calling rpc: FH: -"<<fh<<"- with name -"<<dirargs.name<<"-"<<endl;
+      kDebug(7121)<<"calling rpc: FH: -"<<fh<<"- with name -"<<dirargs.name<<"-"<<endl;
 
       int clnt_stat= clnt_call(m_client, NFSPROC_LOOKUP,
                          (xdrproc_t) xdr_diropargs, (char*)&dirargs,
@@ -587,7 +587,7 @@ void NFSProtocol::listDir( const KUrl& _url)
       //is it a symlink ?
       if (S_ISLNK(dirres.diropres_u.diropres.attributes.mode))
       {
-         kdDebug(7121)<<"it's a symlink !"<<endl;
+         kDebug(7121)<<"it's a symlink !"<<endl;
          //cerr<<"fh: "<<tmpFH<<endl;
          nfs_fh nfsFH;
          memcpy(nfsFH.data,dirres.diropres_u.diropres.file.data,NFS_FHSIZE);
@@ -599,7 +599,7 @@ void NFSProtocol::listDir( const KUrl& _url)
                                  (xdrproc_t) xdr_nfs_fh, (char*)&nfsFH,
                                  (xdrproc_t) xdr_readlinkres, (char*)&readLinkRes,total_timeout);
          if (!checkForError(clnt_stat,readLinkRes.status,(*it))) return;
-         kdDebug(7121)<<"link dest is -"<<readLinkRes.readlinkres_u.data<<"-"<<endl;
+         kDebug(7121)<<"link dest is -"<<readLinkRes.readlinkres_u.data<<"-"<<endl;
          QByteArray linkDest(readLinkRes.readlinkres_u.data);
          entry.insert( KIO::UDS_LINK_DEST, QString::fromLocal8Bit( linkDest ) );
 
@@ -623,7 +623,7 @@ void NFSProtocol::listDir( const KUrl& _url)
 
                attrstat attrAndStat;
 
-               kdDebug(7121)<<"calling rpc: FH: -"<<fh<<"- with name -"<<dirargs.name<<"-"<<endl;
+               kDebug(7121)<<"calling rpc: FH: -"<<fh<<"- with name -"<<dirargs.name<<"-"<<endl;
 
                clnt_stat = clnt_call(m_client, NFSPROC_GETATTR,
                                          (xdrproc_t) xdr_diropargs, (char*)&dirargs,
@@ -645,7 +645,7 @@ void NFSProtocol::stat( const KUrl & url)
 {
    QString path( QFile::encodeName(url.path()));
    stripTrailingSlash(path);
-   kdDebug(7121)<<"NFS::stat for -"<<path<<"-"<<endl;
+   kDebug(7121)<<"NFS::stat for -"<<path<<"-"<<endl;
    QString tmpPath=path;
    if ((tmpPath.length()>1) && (tmpPath[0]=='/')) tmpPath=tmpPath.mid(1);
    // We can't stat root, but we know it's a dir
@@ -658,7 +658,7 @@ void NFSProtocol::stat( const KUrl & url)
       // no size
       statEntry( entry );
       finished();
-      kdDebug(7121)<<"succeeded"<<endl;
+      kDebug(7121)<<"succeeded"<<endl;
       return;
    }
 
@@ -675,7 +675,7 @@ void NFSProtocol::stat( const KUrl & url)
    QByteArray tmpStr=QFile::encodeName(path);
    dirargs.name=tmpStr.data();
 
-   kdDebug(7121)<<"calling rpc: FH: -"<<fh<<"- with name -"<<dirargs.name<<"-"<<endl;
+   kDebug(7121)<<"calling rpc: FH: -"<<fh<<"- with name -"<<dirargs.name<<"-"<<endl;
 
    int clnt_stat = clnt_call(m_client, NFSPROC_GETATTR,
                          (xdrproc_t) xdr_diropargs, (char*)&dirargs,
@@ -693,7 +693,7 @@ void NFSProtocol::stat( const KUrl & url)
    //is it a symlink ?
    if (S_ISLNK(attrAndStat.attrstat_u.attributes.mode))
    {
-      kdDebug(7121)<<"it's a symlink !"<<endl;
+      kDebug(7121)<<"it's a symlink !"<<endl;
       nfs_fh nfsFH;
       memcpy(nfsFH.data,fh,NFS_FHSIZE);
       //get the link dest
@@ -705,7 +705,7 @@ void NFSProtocol::stat( const KUrl & url)
                               (xdrproc_t) xdr_nfs_fh, (char*)&nfsFH,
                               (xdrproc_t) xdr_readlinkres, (char*)&readLinkRes,total_timeout);
       if (!checkForError(clnt_stat,readLinkRes.status,path)) return;
-      kdDebug(7121)<<"link dest is -"<<readLinkRes.readlinkres_u.data<<"-"<<endl;
+      kDebug(7121)<<"link dest is -"<<readLinkRes.readlinkres_u.data<<"-"<<endl;
       QByteArray linkDest(readLinkRes.readlinkres_u.data);
       entry.insert( KIO::UDS_LINK_DEST, QString::fromLocal8Bit( linkDest ) );
 
@@ -730,7 +730,7 @@ void NFSProtocol::stat( const KUrl & url)
             tmpFH=getFileHandle(tmpStr);
             memcpy(dirargs.dir.data,tmpFH,NFS_FHSIZE);
 
-            kdDebug(7121)<<"calling rpc: FH: -"<<fh<<"- with name -"<<dirargs.name<<"-"<<endl;
+            kDebug(7121)<<"calling rpc: FH: -"<<fh<<"- with name -"<<dirargs.name<<"-"<<endl;
             clnt_stat = clnt_call(m_client, NFSPROC_GETATTR,
                                   (xdrproc_t) xdr_diropargs, (char*)&dirargs,
                                   (xdrproc_t) xdr_attrstat, (char*)&attrAndStat,total_timeout);
@@ -853,29 +853,29 @@ void NFSProtocol::completeUDSEntry(UDSEntry& entry, fattr& attributes)
    for( ; it != entry.end(); it++ ) {
       switch (it.key()) {
       case KIO::UDS_FILE_TYPE:
-         kdDebug(7121) << "File Type : " << (mode_t)((*it).m_long) << endl;
+         kDebug(7121) << "File Type : " << (mode_t)((*it).m_long) << endl;
          break;
       case KIO::UDS_ACCESS:
-         kdDebug(7121) << "Access permissions : " << (mode_t)((*it).m_long) << endl;
+         kDebug(7121) << "Access permissions : " << (mode_t)((*it).m_long) << endl;
          break;
       case KIO::UDS_USER:
-         kdDebug(7121) << "User : " << ((*it).m_str.ascii() ) << endl;
+         kDebug(7121) << "User : " << ((*it).m_str.ascii() ) << endl;
          break;
       case KIO::UDS_GROUP:
-         kdDebug(7121) << "Group : " << ((*it).m_str.ascii() ) << endl;
+         kDebug(7121) << "Group : " << ((*it).m_str.ascii() ) << endl;
          break;
       case KIO::UDS_NAME:
-         kdDebug(7121) << "Name : " << ((*it).m_str.ascii() ) << endl;
+         kDebug(7121) << "Name : " << ((*it).m_str.ascii() ) << endl;
          //m_strText = decodeFileName( (*it).m_str );
          break;
       case KIO::UDS_URL:
-         kdDebug(7121) << "URL : " << ((*it).m_str.ascii() ) << endl;
+         kDebug(7121) << "URL : " << ((*it).m_str.ascii() ) << endl;
          break;
       case KIO::UDS_MIME_TYPE:
-         kdDebug(7121) << "MimeType : " << ((*it).m_str.ascii() ) << endl;
+         kDebug(7121) << "MimeType : " << ((*it).m_str.ascii() ) << endl;
          break;
       case KIO::UDS_LINK_DEST:
-         kdDebug(7121) << "LinkDest : " << ((*it).m_str.ascii() ) << endl;
+         kDebug(7121) << "LinkDest : " << ((*it).m_str.ascii() ) << endl;
          break;
       }
    }*/
@@ -883,7 +883,7 @@ void NFSProtocol::completeUDSEntry(UDSEntry& entry, fattr& attributes)
 
 void NFSProtocol::setHost(const QString& host, int /*port*/, const QString& /*user*/, const QString& /*pass*/)
 {
-   kdDebug(7121)<<"setHost: -"<<host<<"-"<<endl;
+   kDebug(7121)<<"setHost: -"<<host<<"-"<<endl;
    if (host.isEmpty())
    {
       error(ERR_UNKNOWN_HOST,"");
@@ -898,13 +898,13 @@ void NFSProtocol::setHost(const QString& host, int /*port*/, const QString& /*us
 
 void NFSProtocol::mkdir( const KUrl& url, int permissions )
 {
-   kdDebug(7121)<<"mkdir"<<endl;
+   kDebug(7121)<<"mkdir"<<endl;
    QString thePath( QFile::encodeName(url.path()));
    stripTrailingSlash(thePath);
    QString dirName, parentDir;
    getLastPart(thePath, dirName, parentDir);
    stripTrailingSlash(parentDir);
-   kdDebug(7121)<<"path: -"<<thePath<<"- dir: -"<<dirName<<"- parentDir: -"<<parentDir<<"-"<<endl;
+   kDebug(7121)<<"path: -"<<thePath<<"- dir: -"<<dirName<<"- parentDir: -"<<parentDir<<"-"<<endl;
    if (isRoot(parentDir))
    {
       error(ERR_WRITE_ACCESS_DENIED,thePath);
@@ -937,14 +937,14 @@ bool NFSProtocol::checkForError(int clientStat, int nfsStat, const QString& text
 {
    if (clientStat!=RPC_SUCCESS)
    {
-      kdDebug(7121)<<"rpc error: "<<clientStat<<endl;
+      kDebug(7121)<<"rpc error: "<<clientStat<<endl;
       //does this mapping make sense ?
       error(ERR_CONNECTION_BROKEN,i18n("An RPC error occurred."));
       return FALSE;
    }
    if (nfsStat!=NFS_OK)
    {
-      kdDebug(7121)<<"nfs error: "<<nfsStat<<endl;
+      kDebug(7121)<<"nfs error: "<<nfsStat<<endl;
       switch (nfsStat)
       {
       case NFSERR_PERM:
@@ -1018,7 +1018,7 @@ void NFSProtocol::del( const KUrl& url, bool isfile)
    QString fileName, parentDir;
    getLastPart(thePath, fileName, parentDir);
    stripTrailingSlash(parentDir);
-   kdDebug(7121)<<"del(): path: -"<<thePath<<"- file -"<<fileName<<"- parentDir: -"<<parentDir<<"-"<<endl;
+   kDebug(7121)<<"del(): path: -"<<thePath<<"- file -"<<fileName<<"- parentDir: -"<<parentDir<<"-"<<endl;
    if (isRoot(parentDir))
    {
       error(ERR_ACCESS_DENIED,thePath);
@@ -1034,7 +1034,7 @@ void NFSProtocol::del( const KUrl& url, bool isfile)
 
    if (isfile)
    {
-      kdDebug(7121)<<"Deleting file "<<thePath<<endl;
+      kDebug(7121)<<"Deleting file "<<thePath<<endl;
       diropargs dirOpArgs;
       memcpy(dirOpArgs.dir.data,fh,NFS_FHSIZE);
       QByteArray tmpName=QFile::encodeName(fileName);
@@ -1046,13 +1046,13 @@ void NFSProtocol::del( const KUrl& url, bool isfile)
                             (xdrproc_t) xdr_diropargs, (char*)&dirOpArgs,
                             (xdrproc_t) xdr_nfsstat, (char*)&nfsStat,total_timeout);
       if (!checkForError(clnt_stat,nfsStat,thePath)) return;
-      kdDebug(7121)<<"removing "<<thePath<<" from cache"<<endl;
+      kDebug(7121)<<"removing "<<thePath<<" from cache"<<endl;
       m_handleCache.remove(m_handleCache.find(thePath));
       finished();
    }
    else
    {
-      kdDebug(7121)<<"Deleting directory "<<thePath<<endl;
+      kDebug(7121)<<"Deleting directory "<<thePath<<endl;
       diropargs dirOpArgs;
       memcpy(dirOpArgs.dir.data,fh,NFS_FHSIZE);
       QByteArray tmpName=QFile::encodeName(fileName);
@@ -1064,7 +1064,7 @@ void NFSProtocol::del( const KUrl& url, bool isfile)
                             (xdrproc_t) xdr_diropargs, (char*)&dirOpArgs,
                             (xdrproc_t) xdr_nfsstat, (char*)&nfsStat,total_timeout);
       if (!checkForError(clnt_stat,nfsStat,thePath)) return;
-      kdDebug(7121)<<"removing "<<thePath<<" from cache"<<endl;
+      kDebug(7121)<<"removing "<<thePath<<" from cache"<<endl;
       m_handleCache.remove(m_handleCache.find(thePath));
       finished();
    }
@@ -1074,7 +1074,7 @@ void NFSProtocol::chmod( const KUrl& url, int permissions )
 {
    QString thePath( QFile::encodeName(url.path()));
    stripTrailingSlash(thePath);
-   kdDebug( 7121 ) <<  "chmod -"<< thePath << "-"<<endl;
+   kDebug( 7121 ) <<  "chmod -"<< thePath << "-"<<endl;
    if (isRoot(thePath) || isExportedDir(thePath))
    {
       error(ERR_ACCESS_DENIED,thePath);
@@ -1113,7 +1113,7 @@ void NFSProtocol::chmod( const KUrl& url, int permissions )
 void NFSProtocol::get( const KUrl& url )
 {
    QString thePath( QFile::encodeName(url.path()));
-   kdDebug(7121)<<"get() -"<<thePath<<"-"<<endl;
+   kDebug(7121)<<"get() -"<<thePath<<"-"<<endl;
    NFSFileHandle fh=getFileHandle(thePath);
    if (fh.isInvalid())
    {
@@ -1141,7 +1141,7 @@ void NFSProtocol::get( const KUrl& url )
          totalSize(readRes.readres_u.reply.attributes.size);
 
       offset=readRes.readres_u.reply.data.data_len;
-      //kdDebug(7121)<<"read "<<offset<<" bytes"<<endl;
+      //kDebug(7121)<<"read "<<offset<<" bytes"<<endl;
       readArgs.offset+=offset;
       if (offset>0)
       {
@@ -1161,7 +1161,7 @@ void NFSProtocol::get( const KUrl& url )
 void NFSProtocol::put( const KUrl& url, int _mode, bool _overwrite, bool /*_resume*/ )
 {
     QString destPath( QFile::encodeName(url.path()));
-    kdDebug( 7121 ) << "Put -" << destPath <<"-"<<endl;
+    kDebug( 7121 ) << "Put -" << destPath <<"-"<<endl;
     /*QString dest_part( dest_orig );
     dest_part += ".part";*/
 
@@ -1176,7 +1176,7 @@ void NFSProtocol::put( const KUrl& url, int _mode, bool _overwrite, bool /*_resu
 
     NFSFileHandle destFH;
     destFH=getFileHandle(destPath);
-    kdDebug(7121)<<"file handle for -"<<destPath<<"- is "<<destFH<<endl;
+    kDebug(7121)<<"file handle for -"<<destPath<<"- is "<<destFH<<endl;
 
     //the file exists and we don't want to overwrite
     if ((!_overwrite) && (!destFH.isInvalid()))
@@ -1191,14 +1191,14 @@ void NFSProtocol::put( const KUrl& url, int _mode, bool _overwrite, bool /*_resu
     //in the existing file, i.e. a file could not become smaller, since
     //write only overwrites or extends, but doesn't remove stuff from a file (aleXXX)
 
-    kdDebug(7121)<<"creating the file -"<<fileName<<"-"<<endl;
+    kDebug(7121)<<"creating the file -"<<fileName<<"-"<<endl;
     NFSFileHandle parentFH;
     parentFH=getFileHandle(parentDir);
     //cerr<<"fh for parent dir: "<<parentFH<<endl;
     //the directory doesn't exist
     if (parentFH.isInvalid())
     {
-       kdDebug(7121)<<"parent directory -"<<parentDir<<"- does not exist"<<endl;
+       kDebug(7121)<<"parent directory -"<<parentDir<<"- does not exist"<<endl;
        error(ERR_DOES_NOT_EXIST,parentDir);
        return;
     }
@@ -1228,7 +1228,7 @@ void NFSProtocol::put( const KUrl& url, int _mode, bool _overwrite, bool /*_resu
     //we created the file successfully
     //destFH=getFileHandle(destPath);
     destFH=dirOpRes.diropres_u.diropres.file.data;
-    kdDebug(7121)<<"file -"<<fileName<<"- in dir -"<<parentDir<<"- created successfully"<<endl;
+    kDebug(7121)<<"file -"<<fileName<<"- in dir -"<<parentDir<<"- created successfully"<<endl;
     //cerr<<"with fh "<<destFH<<endl;
 
     //now we can put
@@ -1241,13 +1241,13 @@ void NFSProtocol::put( const KUrl& url, int _mode, bool _overwrite, bool /*_resu
     writeArgs.offset=0;
     attrstat attrStat;
     int bytesWritten(0);
-    kdDebug(7121)<<"starting to put"<<endl;
+    kDebug(7121)<<"starting to put"<<endl;
     do
     {
        QByteArray buffer;
        dataReq(); // Request for data
        result = readData( buffer );
-       //kdDebug(7121)<<"received "<<result<<" bytes for putting"<<endl;
+       //kDebug(7121)<<"received "<<result<<" bytes for putting"<<endl;
        char * data=buffer.data();
        int bytesToWrite=buffer.size();
        int writeNow(0);
@@ -1269,7 +1269,7 @@ void NFSProtocol::put( const KUrl& url, int _mode, bool _overwrite, bool /*_resu
              int clnt_stat = clnt_call(m_client, NFSPROC_WRITE,
                                        (xdrproc_t) xdr_writeargs, (char*)&writeArgs,
                                        (xdrproc_t) xdr_attrstat, (char*)&attrStat,total_timeout);
-             //kdDebug(7121)<<"written"<<endl;
+             //kDebug(7121)<<"written"<<endl;
              if (!checkForError(clnt_stat,attrStat.status,fileName)) return;
              bytesWritten+=writeNow;
              writeArgs.offset=bytesWritten;
@@ -1290,7 +1290,7 @@ void NFSProtocol::rename( const KUrl &src, const KUrl &dest, bool _overwrite )
    QString destPath( QFile::encodeName(dest.path()));
    stripTrailingSlash(srcPath);
    stripTrailingSlash(destPath);
-   kdDebug(7121)<<"renaming -"<<srcPath<<"- to -"<<destPath<<"-"<<endl;
+   kDebug(7121)<<"renaming -"<<srcPath<<"- to -"<<destPath<<"-"<<endl;
 
    if (isRoot(srcPath) || isExportedDir(srcPath))
    {
@@ -1347,7 +1347,7 @@ void NFSProtocol::copy( const KUrl &src, const KUrl &dest, int _mode, bool _over
    //prepare the source
    QString thePath( QFile::encodeName(src.path()));
    stripTrailingSlash(thePath);
-   kdDebug( 7121 ) << "Copy to -" << thePath <<"-"<<endl;
+   kDebug( 7121 ) << "Copy to -" << thePath <<"-"<<endl;
    NFSFileHandle fh=getFileHandle(thePath);
    if (fh.isInvalid())
    {
@@ -1367,7 +1367,7 @@ void NFSProtocol::copy( const KUrl &src, const KUrl &dest, int _mode, bool _over
    }
    NFSFileHandle destFH;
    destFH=getFileHandle(destPath);
-   kdDebug(7121)<<"file handle for -"<<destPath<<"- is "<<destFH<<endl;
+   kDebug(7121)<<"file handle for -"<<destPath<<"- is "<<destFH<<endl;
 
    //the file exists and we don't want to overwrite
    if ((!_overwrite) && (!destFH.isInvalid()))
@@ -1382,13 +1382,13 @@ void NFSProtocol::copy( const KUrl &src, const KUrl &dest, int _mode, bool _over
    //in the existing file, i.e. a file could not become smaller, since
    //write only overwrites or extends, but doesn't remove stuff from a file
 
-   kdDebug(7121)<<"creating the file -"<<fileName<<"-"<<endl;
+   kDebug(7121)<<"creating the file -"<<fileName<<"-"<<endl;
    NFSFileHandle parentFH;
    parentFH=getFileHandle(parentDir);
    //the directory doesn't exist
    if (parentFH.isInvalid())
    {
-      kdDebug(7121)<<"parent directory -"<<parentDir<<"- does not exist"<<endl;
+      kDebug(7121)<<"parent directory -"<<parentDir<<"- does not exist"<<endl;
       error(ERR_DOES_NOT_EXIST,parentDir);
       return;
    };
@@ -1413,7 +1413,7 @@ void NFSProtocol::copy( const KUrl &src, const KUrl &dest, int _mode, bool _over
    if (!checkForError(clnt_stat,dirOpRes.status,destPath)) return;
    //we created the file successfully
    destFH=dirOpRes.diropres_u.diropres.file.data;
-   kdDebug(7121)<<"file -"<<fileName<<"- in dir -"<<parentDir<<"- created successfully"<<endl;
+   kDebug(7121)<<"file -"<<fileName<<"- in dir -"<<parentDir<<"- created successfully"<<endl;
 
    char buf[NFS_MAXDATA];
    writeargs writeArgs;
@@ -1444,7 +1444,7 @@ void NFSProtocol::copy( const KUrl &src, const KUrl &dest, int _mode, bool _over
          totalSize(readRes.readres_u.reply.attributes.size);
 
       bytesRead=readRes.readres_u.reply.data.data_len;
-      //kdDebug(7121)<<"read "<<bytesRead<<" bytes"<<endl;
+      //kDebug(7121)<<"read "<<bytesRead<<" bytes"<<endl;
       //then write
       if (bytesRead>0)
       {
@@ -1455,7 +1455,7 @@ void NFSProtocol::copy( const KUrl &src, const KUrl &dest, int _mode, bool _over
          clnt_stat = clnt_call(m_client, NFSPROC_WRITE,
                                (xdrproc_t) xdr_writeargs, (char*)&writeArgs,
                                (xdrproc_t) xdr_attrstat, (char*)&attrStat,total_timeout);
-         //kdDebug(7121)<<"written"<<endl;
+         //kDebug(7121)<<"written"<<endl;
          if (!checkForError(clnt_stat,attrStat.status,destPath)) return;
          writeArgs.offset+=bytesRead;
       }
@@ -1467,13 +1467,13 @@ void NFSProtocol::copy( const KUrl &src, const KUrl &dest, int _mode, bool _over
 //TODO why isn't this even called ?
 void NFSProtocol::symlink( const QString &target, const KUrl &dest, bool )
 {
-   kdDebug(7121)<<"symlinking "<<endl;
+   kDebug(7121)<<"symlinking "<<endl;
    QString destPath=dest.path();
    stripTrailingSlash(destPath);
 
    QString parentDir, fileName;
    getLastPart(destPath,fileName, parentDir);
-   kdDebug(7121)<<"symlinking "<<parentDir<<" "<<fileName<<" to "<<target<<endl;
+   kDebug(7121)<<"symlinking "<<parentDir<<" "<<fileName<<" to "<<target<<endl;
    NFSFileHandle fh=getFileHandle(parentDir);
    if (fh.isInvalid())
    {
@@ -1486,7 +1486,7 @@ void NFSProtocol::symlink( const QString &target, const KUrl &dest, bool )
       return;
    }
 
-   kdDebug(7121)<<"tach"<<endl;
+   kDebug(7121)<<"tach"<<endl;
    QByteArray tmpStr=target.latin1();
    symlinkargs symLinkArgs;
    symLinkArgs.to=tmpStr.data();
@@ -1506,29 +1506,29 @@ void NFSProtocol::symlink( const QString &target, const KUrl &dest, bool )
 
 bool NFSProtocol::isValidLink(const QString& parentDir, const QString& linkDest)
 {
-   kdDebug(7121)<<"isValidLink: parent: "<<parentDir<<" link: "<<linkDest<<endl;
+   kDebug(7121)<<"isValidLink: parent: "<<parentDir<<" link: "<<linkDest<<endl;
    if (linkDest.isEmpty()) return FALSE;
    if (isAbsoluteLink(linkDest))
    {
-      kdDebug(7121)<<"is an absolute link"<<endl;
+      kDebug(7121)<<"is an absolute link"<<endl;
       return QFile::exists(linkDest);
    }
    else
    {
-      kdDebug(7121)<<"is a relative link"<<endl;
+      kDebug(7121)<<"is a relative link"<<endl;
       QString absDest=parentDir+"/"+linkDest;
-      kdDebug(7121)<<"pointing abs to "<<absDest<<endl;
+      kDebug(7121)<<"pointing abs to "<<absDest<<endl;
       absDest=removeFirstPart(absDest);
-      kdDebug(7121)<<"removed first part "<<absDest<<endl;
+      kDebug(7121)<<"removed first part "<<absDest<<endl;
       absDest=QDir::cleanPath(absDest);
-      kdDebug(7121)<<"simplified to "<<absDest<<endl;
+      kDebug(7121)<<"simplified to "<<absDest<<endl;
       if (absDest.find("../")==0)
          return FALSE;
 
-      kdDebug(7121)<<"is inside the nfs tree"<<endl;
+      kDebug(7121)<<"is inside the nfs tree"<<endl;
       absDest=parentDir+"/"+linkDest;
       absDest=QDir::cleanPath(absDest);
-      kdDebug(7121)<<"getting file handle of "<<absDest<<endl;
+      kDebug(7121)<<"getting file handle of "<<absDest<<endl;
       NFSFileHandle fh=getFileHandle(absDest);
       return (!fh.isInvalid());
    }

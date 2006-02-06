@@ -27,8 +27,8 @@
 #define NNTPS_PORT 563
 
 #define DBG_AREA 7114
-#define DBG kdDebug(DBG_AREA)
-#define ERR kdError(DBG_AREA)
+#define DBG kDebug(DBG_AREA)
+#define ERR kError(DBG_AREA)
 
 using namespace KIO;
 

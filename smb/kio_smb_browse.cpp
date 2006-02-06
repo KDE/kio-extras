@@ -46,8 +46,8 @@ using namespace KIO;
 int SMBSlave::cache_stat(const SMBUrl &url, struct stat* st )
 {
     int result = smbc_stat( url.toSmbcUrl(), st);
-    kdDebug(KIO_SMB) << "smbc_stat " << url << " " << errno << " " << result << endl;
-    kdDebug(KIO_SMB) << "size " << (long)st->st_size << endl;
+    kDebug(KIO_SMB) << "smbc_stat " << url << " " << errno << " " << result << endl;
+    kDebug(KIO_SMB) << "size " << (long)st->st_size << endl;
     return result;
 }
 
@@ -61,7 +61,7 @@ bool SMBSlave::browse_stat_path(const SMBUrl& _url, UDSEntry& udsentry, bool ign
    {
       if(!S_ISDIR(st.st_mode) && !S_ISREG(st.st_mode))
       {
-         kdDebug(KIO_SMB)<<"SMBSlave::browse_stat_path mode: "<<st.st_mode<<endl;
+         kDebug(KIO_SMB)<<"SMBSlave::browse_stat_path mode: "<<st.st_mode<<endl;
          warning(i18n("%1:\n"
                       "Unknown file type, neither directory or file.").arg(url.prettyURL()));
          return false;
@@ -105,7 +105,7 @@ bool SMBSlave::browse_stat_path(const SMBUrl& _url, UDSEntry& udsentry, bool ign
        } else if (errno == ENOENT || errno == ENOTDIR) {
            warning(i18n("File does not exist: %1").arg(url.url()));
        }
-       kdDebug(KIO_SMB) << "SMBSlave::browse_stat_path ERROR!!"<< endl;
+       kDebug(KIO_SMB) << "SMBSlave::browse_stat_path ERROR!!"<< endl;
        return false;
    }
 
@@ -115,14 +115,14 @@ bool SMBSlave::browse_stat_path(const SMBUrl& _url, UDSEntry& udsentry, bool ign
 //===========================================================================
 void SMBSlave::stat( const KUrl& kurl )
 {
-    kdDebug(KIO_SMB) << "SMBSlave::stat on "<< kurl << endl;
+    kDebug(KIO_SMB) << "SMBSlave::stat on "<< kurl << endl;
     // make a valid URL
     KUrl url = checkURL(kurl);
 
     // if URL is not valid we have to redirect to correct URL
     if (url != kurl)
     {
-        kdDebug() << "redirection " << url << endl;
+        kDebug() << "redirection " << url << endl;
         redirection(url);
         finished();
         return;
@@ -150,12 +150,12 @@ void SMBSlave::stat( const KUrl& kurl )
         if (browse_stat_path(m_current_url, udsentry, false))
             break;
         else {
-            kdDebug(KIO_SMB) << "SMBSlave::stat ERROR!!"<< endl;
+            kDebug(KIO_SMB) << "SMBSlave::stat ERROR!!"<< endl;
             finished();
             return;
         }
     default:
-        kdDebug(KIO_SMB) << "SMBSlave::stat UNKNOWN " << url << endl;
+        kDebug(KIO_SMB) << "SMBSlave::stat UNKNOWN " << url << endl;
         finished();
         return;
     }
@@ -168,7 +168,7 @@ void SMBSlave::stat( const KUrl& kurl )
 // TODO: complete checking
 KUrl SMBSlave::checkURL(const KUrl& kurl) const
 {
-    kdDebug(KIO_SMB) << "checkURL " << kurl << endl;
+    kDebug(KIO_SMB) << "checkURL " << kurl << endl;
     QString surl = kurl.url();
     if (surl.startsWith("smb:/")) {
         if (surl.length() == 5) // just the above
@@ -176,7 +176,7 @@ KUrl SMBSlave::checkURL(const KUrl& kurl) const
 
         if (surl.at(5) != '/') {
             surl = "smb://" + surl.mid(5);
-            kdDebug(KIO_SMB) << "checkURL return1 " << surl << " " << KURL(surl) << endl;
+            kDebug(KIO_SMB) << "checkURL return1 " << surl << " " << KURL(surl) << endl;
             return KURL(surl);
         }
     }
@@ -193,7 +193,7 @@ KUrl SMBSlave::checkURL(const KUrl& kurl) const
         } else {
             url.setUser(userinfo);
         }
-        kdDebug(KIO_SMB) << "checkURL return2 " << url << endl;
+        kDebug(KIO_SMB) << "checkURL return2 " << url << endl;
         return url;
     }
 
@@ -203,13 +203,13 @@ KUrl SMBSlave::checkURL(const KUrl& kurl) const
     if (url.path().isEmpty())
         url.setPath("/");
 
-    kdDebug(KIO_SMB) << "checkURL return3 " << url << endl;
+    kDebug(KIO_SMB) << "checkURL return3 " << url << endl;
     return url;
 }
 
 void SMBSlave::reportError(const SMBUrl &url)
 {
-    kdDebug(KIO_SMB) << "reportError " << url << " " << perror << endl;
+    kDebug(KIO_SMB) << "reportError " << url << " " << perror << endl;
     switch(errno)
     {
     case ENOENT:
@@ -287,7 +287,7 @@ void SMBSlave::reportError(const SMBUrl &url)
 //===========================================================================
 void SMBSlave::listDir( const KUrl& kurl )
 {
-   kdDebug(KIO_SMB) << "SMBSlave::listDir on " << kurl << endl;
+   kDebug(KIO_SMB) << "SMBSlave::listDir on " << kurl << endl;
 
    // check (correct) URL
    KUrl url = checkURL(kurl);
@@ -306,11 +306,11 @@ void SMBSlave::listDir( const KUrl& kurl )
    UDSEntry    udsentry;
 
    dirfd = smbc_opendir( m_current_url.toSmbcUrl() );
-   kdDebug(KIO_SMB) << "SMBSlave::listDir open " << m_current_url.toSmbcUrl() << " " << m_current_url.getType() << " " << dirfd << endl;
+   kDebug(KIO_SMB) << "SMBSlave::listDir open " << m_current_url.toSmbcUrl() << " " << m_current_url.getType() << " " << dirfd << endl;
    if(dirfd >= 0)
    {
        do {
-           kdDebug(KIO_SMB) << "smbc_readdir " << endl;
+           kDebug(KIO_SMB) << "smbc_readdir " << endl;
            dirp = smbc_readdir(dirfd);
            if(dirp == 0)
                break;
@@ -329,7 +329,7 @@ void SMBSlave::listDir( const KUrl& kurl )
            } else
                udsName = dirpName;
 
-           kdDebug(KIO_SMB) << "dirp->name " <<  dirp->name  << " " << dirpName << " '" << comment << "'" << " " << dirp->smbc_type << endl;
+           kDebug(KIO_SMB) << "dirp->name " <<  dirp->name  << " " << dirpName << " '" << comment << "'" << " " << dirp->smbc_type << endl;
 
            udsentry.insert( KIO::UDS_NAME, udsName );
 
@@ -374,7 +374,7 @@ void SMBSlave::listDir( const KUrl& kurl )
 
                    // when libsmbclient knows
                    // u = QString("smb://%1?WORKGROUP=%2").arg(dirpName).arg(workgroup.toUpper());
-                   kdDebug(KIO_SMB) << "list item " << u << endl;
+                   kDebug(KIO_SMB) << "list item " << u << endl;
                    udsentry.insert( KIO::UDS_URL, u.url());
 
                    udsentry.insert(KIO::UDS_MIME_TYPE, QString::fromLatin1("application/x-smb-server"));
@@ -403,7 +403,7 @@ void SMBSlave::listDir( const KUrl& kurl )
            }
            else
            {
-               kdDebug(KIO_SMB) << "SMBSlave::listDir SMBC_UNKNOWN :" << dirpName << endl;
+               kDebug(KIO_SMB) << "SMBSlave::listDir SMBC_UNKNOWN :" << dirpName << endl;
                // TODO: we don't handle SMBC_IPC_SHARE, SMBC_PRINTER_SHARE
                //       SMBC_LINK, SMBC_COMMS_SHARE
                //SlaveBase::error(ERR_INTERNAL, TEXT_UNSUPPORTED_FILE_TYPE);
