@@ -1491,7 +1491,7 @@ bool sftpProtocol::getPacket(QByteArray& msg) {
             return false;
         }
 
-        b.writeBlock(buf.data(), len);
+        b.write(buf.data(), len);
 
         //kDebug(KIO_SFTP_DB) << "getPacket(): Read Message size = " << len << endl;
         //kDebug(KIO_SFTP_DB) << "getPacket(): Copy Message size = " << msg.size() << endl;

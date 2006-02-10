@@ -407,7 +407,7 @@ void MANProtocol::output(const char *insert)
 {
     if (insert)
     {
-        m_outputBuffer.writeBlock(insert,strlen(insert));
+        m_outputBuffer.write(insert,strlen(insert));
     }
     if (!insert || m_outputBuffer.at() >= 2048)
     {
