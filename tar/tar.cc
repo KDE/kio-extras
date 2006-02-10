@@ -446,7 +446,7 @@ void ArchiveProtocol::get( const KUrl & url )
             bufferSize = qMin( maxSize, fileSize );
             buffer.resize( bufferSize );
         }
-        const qint64 read = io->readBlock( buffer.data(), buffer.size() ); // Avoid to use bufferSize here, in case something went wrong.
+        const qint64 read = io->read( buffer.data(), buffer.size() ); // Avoid to use bufferSize here, in case something went wrong.
         if ( read != bufferSize )
         {
             kWarning(7109) << "Read " << read << " bytes but expected " << bufferSize << endl;

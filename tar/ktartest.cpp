@@ -90,9 +90,9 @@ int main( int argc, char** argv )
     // This is what KGzipDev::readAll could do, if QIODevice::readAll was virtual....
     QByteArray array(1024);
     int n;
-    while ( ( n = dev.readBlock( array.data(), array.size() ) ) )
+    while ( ( n = dev.read( array.data(), array.size() ) ) )
     {
-        kDebug() << "readBlock returned " << n << endl << endl;
+        kDebug() << "read returned " << n << endl << endl;
         QCString s(array,n+1); // Terminate with 0 before printing
         printf("%s", s.data());
     }

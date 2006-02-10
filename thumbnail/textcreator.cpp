@@ -103,7 +103,7 @@ bool TextCreator::create(const QString &path, int width, int height, QImage &img
             m_dataSize = bytesToRead + 1;
         }
 
-        int read = file.readBlock( m_data, bytesToRead );
+        int read = file.read( m_data, bytesToRead );
         if ( read > 0 )
         {
             ok = true;
