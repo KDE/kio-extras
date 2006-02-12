@@ -93,8 +93,8 @@ KUrl HomeDirNotify::toHomeURL(const KUrl &url)
 		}
 	}
 
-	kDebug() << "result => KURL()" << endl;
-	return KURL();
+	kDebug() << "result => KUrl()" << endl;
+	return KUrl();
 }
 
 KUrl::List HomeDirNotify::toHomeURLList(const KUrl::List &list)

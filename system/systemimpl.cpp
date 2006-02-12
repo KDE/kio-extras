@@ -181,7 +181,7 @@ KUrl SystemImpl::findBaseURL(const QString &filename) const
 		}
 	}
 
-	return KURL();
+	return KUrl();
 }
 
 

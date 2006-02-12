@@ -144,7 +144,7 @@ KUrl RemoteImpl::findBaseURL(const QString &filename) const
 		return desktop.readURL();
 	}
 
-	return KURL();
+	return KUrl();
 }
 
 
@@ -199,7 +199,7 @@ bool RemoteImpl::createWizardEntry(KIO::UDSEntry &entry) const
 
 bool RemoteImpl::isWizardURL(const KUrl &url) const
 {
-	return url==KURL(WIZARD_URL);
+	return url==KUrl(WIZARD_URL);
 }
 
 

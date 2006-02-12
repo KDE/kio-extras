@@ -229,7 +229,7 @@ void FingerProtocol::getProgramPath()
 
 void FingerProtocol::parseCommandLine(const KUrl& url)
 {
-  myURL = new KURL(url);
+  myURL = new KUrl(url);
 
   /*
    * Generate a valid finger url

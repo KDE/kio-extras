@@ -108,8 +108,8 @@ KUrl SystemDirNotify::toSystemURL(const KUrl &url)
 		}
 	}
 
-	kDebug() << "KURL()" << endl;
-	return KURL();
+	kDebug() << "KUrl()" << endl;
+	return KUrl();
 }
 
 KUrl::List SystemDirNotify::toSystemURLList(const KUrl::List &list)
@@ -141,7 +141,7 @@ ASYNC SystemDirNotify::FilesAdded(const KUrl &directory)
 	{
 		KDirNotify_stub notifier("*", "*");
 		notifier.FilesAdded( new_dir );
-		if (new_dir.upURL().upURL()==KURL("system:/"))
+		if (new_dir.upURL().upURL()==KUrl("system:/"))
 		{
 			notifier.FilesChanged( new_dir.upURL() );
 		}
@@ -162,7 +162,7 @@ ASYNC SystemDirNotify::FilesRemoved(const KUrl::List &fileList)
 
 		for (; it!=end; ++it)
 		{
-			if ((*it).upURL().upURL()==KURL("system:/"))
+			if ((*it).upURL().upURL()==KUrl("system:/"))
 			{
 				notifier.FilesChanged( (*it).upURL() );
 			}

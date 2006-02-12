@@ -207,7 +207,7 @@ void MediaManager::slotMediumAdded(const QString &/*id*/, const QString &name,
 	kDebug(1219) << "MediaManager::slotMediumAdded: " << name << endl;
 
 	KDirNotify_stub notifier("*", "*");
-	notifier.FilesAdded( KURL("media:/") );
+	notifier.FilesAdded( KUrl("media:/") );
 
 	emit mediumAdded(name, allowNotification);
 }
@@ -218,7 +218,7 @@ void MediaManager::slotMediumRemoved(const QString &/*id*/, const QString &name,
 	kDebug(1219) << "MediaManager::slotMediumRemoved: " << name << endl;
 
 	KDirNotify_stub notifier("*", "*");
-	notifier.FilesRemoved( KURL("media:/"+name) );
+	notifier.FilesRemoved( KUrl("media:/"+name) );
 
 	emit mediumRemoved(name, allowNotification);
 }
@@ -231,9 +231,9 @@ void MediaManager::slotMediumChanged(const QString &/*id*/, const QString &name,
 	KDirNotify_stub notifier("*", "*");
 	if (!mounted)
 	{
-		notifier.FilesRemoved( KURL("media:/"+name) );
+		notifier.FilesRemoved( KUrl("media:/"+name) );
 	}
-	notifier.FilesChanged( KURL("media:/"+name) );
+	notifier.FilesChanged( KUrl("media:/"+name) );
 
 	emit mediumChanged(name, allowNotification);
 }

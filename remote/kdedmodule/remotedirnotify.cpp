@@ -49,8 +49,8 @@ KUrl RemoteDirNotify::toRemoteURL(const KUrl &url)
 		return result;
 	}
 
-	kDebug(1220) << "result => KURL()" << endl;
-	return KURL();
+	kDebug(1220) << "result => KUrl()" << endl;
+	return KUrl();
 }
 
 KUrl::List RemoteDirNotify::toRemoteURLList(const KUrl::List &list)

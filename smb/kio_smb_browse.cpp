@@ -176,8 +176,8 @@ KUrl SMBSlave::checkURL(const KUrl& kurl) const
 
         if (surl.at(5) != '/') {
             surl = "smb://" + surl.mid(5);
-            kDebug(KIO_SMB) << "checkURL return1 " << surl << " " << KURL(surl) << endl;
-            return KURL(surl);
+            kDebug(KIO_SMB) << "checkURL return1 " << surl << " " << KUrl(surl) << endl;
+            return KUrl(surl);
         }
     }
 

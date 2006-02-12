@@ -180,7 +180,7 @@ void InfoProtocol::decodeURL( const KUrl &url )
      * luis pedro
      */
 
-    if ( url == KURL( "info:/browse_by_file?special=yes" ) ) {
+    if ( url == KUrl( "info:/browse_by_file?special=yes" ) ) {
 	    m_page = "#special#";
 	    m_node = "browse_by_file";
 	    kDebug( 7108 ) << "InfoProtocol::decodeURL - special - browse by file" << endl;

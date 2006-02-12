@@ -174,7 +174,7 @@ QString RemovableBackend::generateId(const QString &devNode)
 
 QString RemovableBackend::generateName(const QString &devNode)
 {
-	return KURL(devNode).fileName();
+	return KUrl(devNode).fileName();
 }
 
 #include "removablebackend.moc"

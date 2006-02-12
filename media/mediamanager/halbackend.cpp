@@ -585,7 +585,7 @@ void HALBackend::setCameraProperties(Medium* medium)
 
 QString HALBackend::generateName(const QString &devNode)
 {
-	return KURL(devNode).fileName();
+	return KUrl(devNode).fileName();
 }
 
 /******************************************

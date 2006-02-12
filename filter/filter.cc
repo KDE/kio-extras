@@ -146,11 +146,11 @@ void FilterProtocol::get( const KUrl & )
   if (bError)
   {
      error(KIO::ERR_COULD_NOT_READ, subURL.url());
-     subURL = KURL(); // Clear subURL
+     subURL = KUrl(); // Clear subURL
      return;
   }
 
-  subURL = KURL(); // Clear subURL
+  subURL = KUrl(); // Clear subURL
   finished();
 }
 
