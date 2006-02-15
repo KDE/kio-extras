@@ -26,7 +26,7 @@
             <height>480</height>
         </size>
     </property>
-    <property name="caption">
+    <property name="windowTitle">
         <string>Edit Service</string>
     </property>
     <grid>
