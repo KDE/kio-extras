@@ -26,10 +26,13 @@
 #include <sys/ioctl.h>
 #include <unistd.h>
 #include <stdint.h>
-typedef uint64_t __le64; // workaround for some versions of kernel headers
-typedef uint64_t __be64; // workaround for some versions of kernel headers
-#undef __STRICT_ANSI__ // workaround for some version of kernel headers
-#include <linux/cdrom.h>
+#define CDROM_GET_CAPABILITY    0x5331
+#define CDSL_CURRENT            ((int) (~0U>>1))
+#define CDC_DVD_R               0x10000 /* drive can write DVD-R */
+#define CDC_DVD_RAM             0x20000 /* drive can write DVD-RAM */
+#define CDC_CD_R                0x2000  /* drive is a CD-R */
+#define CDC_CD_RW               0x4000  /* drive is a CD-RW */
+#define CDC_DVD                 0x8000  /* drive is a DVD */
 #include <qfile.h>
 #endif
 
