@@ -35,7 +35,7 @@ EXTRA_DIST=$(kio_man_data_DATA)
 METASOURCES = AUTO
 
 messages:
-	$(XGETTEXT) -C *.cpp *.h -o $(podir)/kio_man.pot
+	$(XGETTEXT) *.cpp *.h -o $(podir)/kio_man.pot
 
 man2html_SOURCES = dummy.cpp
 man2html_LDADD = man2html_simple.o $(LIB_QT)
