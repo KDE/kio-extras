@@ -4,6 +4,7 @@ Icon=cdrom_mount
 Type=MimeType
 MimeType=media/cdrom_mounted
 Comment=Mounted CD-ROM
+Comment[fr]=CD-ROM monté
 Comment[x-test]=xxMounted CD-ROMxx
 Patterns=
 

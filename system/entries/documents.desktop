@@ -4,4 +4,5 @@ Type=Link
 Path[$e]=$( kio_system_documenthelper )
 Icon=folder_important
 Name=Documents Folder
+Name[fr]=Dossier des documents
 Name[x-test]=xxDocuments Folderxx

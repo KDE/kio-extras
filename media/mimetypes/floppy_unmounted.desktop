@@ -4,6 +4,7 @@ Icon=3floppy_unmount
 Type=MimeType
 MimeType=media/floppy_unmounted
 Comment=Unmounted Floppy
+Comment[fr]=Disquette non montée
 Comment[x-test]=xxUnmounted Floppyxx
 Patterns=
 

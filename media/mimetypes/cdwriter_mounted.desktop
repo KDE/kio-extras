@@ -4,6 +4,7 @@ Icon=cdwriter_mount
 Type=MimeType
 MimeType=media/cdwriter_mounted
 Comment=Mounted CD Writer
+Comment[fr]=Graveur de CD monté
 Comment[x-test]=xxMounted CD Writerxx
 Patterns=
 

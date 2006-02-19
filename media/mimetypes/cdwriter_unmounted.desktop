@@ -4,6 +4,7 @@ Icon=cdwriter_unmount
 Type=MimeType
 MimeType=media/cdwriter_unmounted
 Comment=Unmounted CD Writer
+Comment[fr]=Graveur de CD non monté
 Comment[x-test]=xxUnmounted CD Writerxx
 Patterns=
 

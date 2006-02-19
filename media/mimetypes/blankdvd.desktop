@@ -3,6 +3,7 @@ Encoding=UTF-8
 Type=MimeType
 MimeType=media/blankdvd
 Comment=Blank DVD
+Comment[fr]=DVD vierge
 Comment[x-test]=xxBlank DVDxx
 Icon=cdwriter_unmount
 

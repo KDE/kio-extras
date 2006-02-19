@@ -2,6 +2,7 @@
 Encoding=UTF-8
 Type=Service
 Name=Cursor Files
+Name[fr]=Fichiers de curseurs
 Name[x-test]=xxCursor Filesxx
 ServiceTypes=ThumbCreator
 MimeTypes=image/x-xcursor

@@ -6,6 +6,7 @@ X-KDE-MediaNotifierHide=true
 
 [Desktop Action MediaUnmount]
 Name=Unmount
+Name[fr]=Démonter (enlever de l'arborescence Linux)
 Name[x-test]=xxUnmountxx
 Exec=kio_media_mounthelper -u %u
 

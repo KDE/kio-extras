@@ -5,4 +5,5 @@ URL=trash:/
 Icon=trashcan_full
 EmptyIcon=trashcan_empty
 Name=Trash
+Name[fr]=Corbeille
 Name[x-test]=xxTrashxx

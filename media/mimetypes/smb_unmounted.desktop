@@ -4,6 +4,7 @@ Icon=nfs_unmount
 Type=MimeType
 MimeType=media/smb_unmounted
 Comment=Unmounted Samba (Microsoft Network) Share
+Comment[fr]=Partage Samba (réseau Microsoft) non monté
 Comment[x-test]=xxUnmounted Samba (Microsoft Network) Sharexx
 Patterns=
 

@@ -4,6 +4,7 @@ Icon=usbpendrive_mount
 Type=MimeType
 MimeType=media/removable_mounted
 Comment=Mounted Removable Medium
+Comment[fr]=Média amovible monté
 Comment[x-test]=xxMounted Removable Mediumxx
 Patterns=
 

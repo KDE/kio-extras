@@ -7,11 +7,14 @@ X-KDE-ModuleType=Library
 X-KDE-Library=cgi
 
 Name=CGI Scripts
+Name[fr]=Scripts CGI
 Name[x-test]=xxCGI Scriptsxx
 Comment=Configure the CGI KIO slave
+Comment[fr]=Configuration du CGI KIO slave
 Comment[x-test]=xxConfigure the CGI KIO slavexx
 
 Keywords=CGI,KIO,Slave,Paths
+Keywords[fr]=CGI,KIO,Slave,Paths,Chemins
 Keywords[x-test]=xxCGI,KIO,Slave,Pathsxx
 Categories=Qt;KDE;X-KDE-settings-webbrowsing;
 Encoding=UTF-8

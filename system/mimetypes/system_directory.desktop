@@ -4,6 +4,7 @@ Icon=kfm
 Type=MimeType
 MimeType=inode/system_directory
 Comment=System Folder
+Comment[fr]=Dossier système
 Comment[x-test]=xxSystem Folderxx
 Patterns=
 

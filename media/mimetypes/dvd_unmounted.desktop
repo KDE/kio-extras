@@ -4,6 +4,7 @@ Icon=dvd_unmount
 Type=MimeType
 MimeType=media/dvd_unmounted
 Comment=Unmounted DVD
+Comment[fr]=DVD-ROM non monté(s)
 Comment[x-test]=xxUnmounted DVDxx
 Patterns=
 

@@ -1,6 +1,7 @@
 [Desktop Entry]
 Type=Service
 Comment=Embeddable Troff Viewer
+Comment[fr]=Afficheur troff incorporé
 Comment[x-test]=xxEmbeddable Troff Viewerxx
 MimeType=application/x-troff;application/x-troff-man;
 Name=KManPart

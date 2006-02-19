@@ -3,6 +3,7 @@ Encoding=UTF-8
 Type=MimeType
 MimeType=media/camera_mounted
 Comment=Mounted Camera
+Comment[fr]=Appareil photo monté
 Comment[x-test]=xxMounted Cameraxx
 Icon=camera_mount
 

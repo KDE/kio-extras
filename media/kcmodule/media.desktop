@@ -11,12 +11,15 @@ X-KDE-FactoryName=media
 X-KDE-ParentApp=kcontrol
 
 Name=Storage Media
+Name[fr]=Support de stockage
 Name[x-test]=xxStorage Mediaxx
 
 Comment=Configure Storage Media
+Comment[fr]=Configurer le média de stockage
 Comment[x-test]=xxConfigure Storage Mediaxx
 
 Keywords=storage,media,usb,cdrom,device
+Keywords[fr]=stockage,media,medium,usb,cdrom,périphérique
 Keywords[x-test]=xxstorage,media,usb,cdrom,devicexx
 
 Categories=Qt;KDE;X-KDE-settings-peripherals

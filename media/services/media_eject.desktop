@@ -6,6 +6,7 @@ X-KDE-MediaNotifierHide=true
 
 [Desktop Action MediaEject]
 Name=Eject
+Name[fr]=Éjecter
 Name[x-test]=xxEjectxx
 Exec=kio_media_mounthelper -e %u
 

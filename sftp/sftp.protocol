@@ -13,6 +13,7 @@ deleting=true
 moving=true
 Icon=ftp
 Description=A kioslave for sftp
+Description[fr]=Un kioslave pour le sftp
 Description[x-test]=xxA kioslave for sftpxx
 DocPath=kioslave/sftp.html
 Icon=ftp

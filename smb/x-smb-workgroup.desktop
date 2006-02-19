@@ -1,6 +1,7 @@
 [Desktop Entry]
 Encoding=UTF-8
 Comment=Windows Workgroup
+Comment[fr]=Groupe de travail Windows
 Comment[x-test]=xxWindows Workgroupxx
 Icon=network_local
 Type=MimeType

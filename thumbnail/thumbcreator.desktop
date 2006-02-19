@@ -3,6 +3,7 @@ Encoding=UTF-8
 Type=ServiceType
 X-KDE-ServiceType=ThumbCreator
 Comment=Thumbnail Handler
+Comment[fr]=Gestionnaire d'aperçu des images
 Comment[x-test]=xxThumbnail Handlerxx
 
 [PropertyDef::MimeTypes]

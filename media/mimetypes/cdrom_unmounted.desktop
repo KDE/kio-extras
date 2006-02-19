@@ -4,6 +4,7 @@ Icon=cdrom_unmount
 Type=MimeType
 MimeType=media/cdrom_unmounted
 Comment=Unmounted CD-ROM
+Comment[fr]=CD-ROM non monté
 Comment[x-test]=xxUnmounted CD-ROMxx
 Patterns=
 

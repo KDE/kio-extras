@@ -4,6 +4,7 @@ Icon=dvd_mount
 Type=MimeType
 MimeType=media/dvd_mounted
 Comment=Mounted DVD
+Comment[fr]=DVD-ROM monté(s)
 Comment[x-test]=xxMounted DVDxx
 Patterns=
 

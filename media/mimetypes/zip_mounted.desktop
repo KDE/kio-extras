@@ -4,6 +4,7 @@ Icon=zip_mount
 Type=MimeType
 MimeType=media/zip_mounted
 Comment=Mounted Zip Disk
+Comment[fr]=Disque Zip monté
 Comment[x-test]=xxMounted Zip Diskxx
 Patterns=
 

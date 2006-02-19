@@ -3,6 +3,7 @@ Encoding=UTF-8
 Type=MimeType
 MimeType=media/blankcd
 Comment=Blank CD
+Comment[fr]=CD vierge
 Comment[x-test]=xxBlank CDxx
 Icon=cdwriter_unmount
 

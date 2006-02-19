@@ -1,6 +1,7 @@
 [Desktop Entry]
 Encoding=UTF-8
 Comment=Windows Server
+Comment[fr]=Serveur Windows
 Comment[x-test]=xxWindows Serverxx
 Icon=server
 Type=MimeType

@@ -4,6 +4,7 @@ Icon=hdd_unmount
 Type=MimeType
 MimeType=media/hdd_unmounted
 Comment=Unmounted Hard Disk Volume
+Comment[fr]=Partition de disque dur non montée
 Comment[x-test]=xxUnmounted Hard Disk Volumexx
 Patterns=
 

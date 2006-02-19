@@ -3,6 +3,7 @@ Encoding=UTF-8
 Type=MimeType
 MimeType=media/gphoto2camera
 Comment=Camera
+Comment[fr]=Nouvel appareil photo
 Comment[x-test]=xxCameraxx
 Icon=camera_unmount
 
