@@ -137,9 +137,9 @@ static bool isRoot(const QString& path)
 static bool isAbsoluteLink(const QString& path)
 {
    //hmm, don't know
-   if (path.isEmpty()) return TRUE;
-   if (path[0]=='/') return TRUE;
-   return FALSE;
+   if (path.isEmpty()) return true;
+   if (path[0]=='/') return true;
+   return false;
 }
 
 static void createVirtualDirEntry(UDSEntry & entry)
@@ -177,14 +177,14 @@ static QString removeFirstPart(const QString& path)
 }
 
 NFSFileHandle::NFSFileHandle()
-:m_isInvalid(FALSE)
+:m_isInvalid(false)
 {
    memset(m_handle,'\0',NFS_FHSIZE+1);
 //   m_detectTime=time(0);
 }
 
 NFSFileHandle::NFSFileHandle(const NFSFileHandle & handle)
-:m_isInvalid(FALSE)
+:m_isInvalid(false)
 {
    m_handle[NFS_FHSIZE]='\0';
    memcpy(m_handle,handle.m_handle,NFS_FHSIZE);
@@ -207,11 +207,11 @@ NFSFileHandle& NFSFileHandle::operator= (const char* src)
 {
    if (src==0)
    {
-      m_isInvalid=TRUE;
+      m_isInvalid=true;
       return *this;
    };
    memcpy(m_handle,src,NFS_FHSIZE);
-   m_isInvalid=FALSE;
+   m_isInvalid=false;
 //   m_detectTime=time(0);
    return *this;
 }
@@ -442,7 +442,7 @@ void NFSProtocol::openConnection()
    if (!checkForError(clnt_stat, 0, m_currentHost.latin1())) return;
 
    fhstatus fhStatus;
-   bool atLeastOnceSucceeded(FALSE);
+   bool atLeastOnceSucceeded(false);
    for(; exportlist!=0;exportlist = exportlist->ex_next) {
       kDebug(7121) << "found export: " << exportlist->ex_dir << endl;
 
@@ -450,7 +450,7 @@ void NFSProtocol::openConnection()
       clnt_stat = clnt_call(m_client, MOUNTPROC_MNT,(xdrproc_t) xdr_dirpath, (char*)(&(exportlist->ex_dir)),
                             (xdrproc_t) xdr_fhstatus,(char*) &fhStatus,total_timeout);
       if (fhStatus.fhs_status==0) {
-         atLeastOnceSucceeded=TRUE;
+         atLeastOnceSucceeded=true;
          NFSFileHandle fh;
          fh=fhStatus.fhstatus_u.fhs_fhandle;
          QString fname;
@@ -940,7 +940,7 @@ bool NFSProtocol::checkForError(int clientStat, int nfsStat, const QString& text
       kDebug(7121)<<"rpc error: "<<clientStat<<endl;
       //does this mapping make sense ?
       error(ERR_CONNECTION_BROKEN,i18n("An RPC error occurred."));
-      return FALSE;
+      return false;
    }
    if (nfsStat!=NFS_OK)
    {
@@ -1005,9 +1005,9 @@ bool NFSProtocol::checkForError(int clientStat, int nfsStat, const QString& text
          error(ERR_UNKNOWN,text);
          break;
       }
-      return FALSE;
+      return false;
    }
-   return TRUE;
+   return true;
 }
 
 void NFSProtocol::del( const KUrl& url, bool isfile)
@@ -1507,7 +1507,7 @@ void NFSProtocol::symlink( const QString &target, const KUrl &dest, bool )
 bool NFSProtocol::isValidLink(const QString& parentDir, const QString& linkDest)
 {
    kDebug(7121)<<"isValidLink: parent: "<<parentDir<<" link: "<<linkDest<<endl;
-   if (linkDest.isEmpty()) return FALSE;
+   if (linkDest.isEmpty()) return false;
    if (isAbsoluteLink(linkDest))
    {
       kDebug(7121)<<"is an absolute link"<<endl;
@@ -1523,7 +1523,7 @@ bool NFSProtocol::isValidLink(const QString& parentDir, const QString& linkDest)
       absDest=QDir::cleanPath(absDest);
       kDebug(7121)<<"simplified to "<<absDest<<endl;
       if (absDest.find("../")==0)
-         return FALSE;
+         return false;
 
       kDebug(7121)<<"is inside the nfs tree"<<endl;
       absDest=parentDir+"/"+linkDest;
@@ -1532,6 +1532,6 @@ bool NFSProtocol::isValidLink(const QString& parentDir, const QString& linkDest)
       NFSFileHandle fh=getFileHandle(absDest);
       return (!fh.isInvalid());
    }
-   return FALSE;
+   return false;
 }
 

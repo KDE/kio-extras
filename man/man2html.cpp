@@ -776,13 +776,13 @@ static void add_links(char *c)
             if (g!=NULL && f>c && (g-f)<12 && (isalnum(f[-1]) || f[-1]=='>' || ( f[-1] == ';' ) ) &&
 		isdigit(f[1]) && f[1]!='0' && ((g-f)<=2 || isalpha(f[2])))
 	    {
-		ok = TRUE;
+		ok = true;
 		h = f+2;
 		while (h<g)
 		{
 		    if (!isalnum(*h++))
 		    {
-			ok = FALSE;
+			ok = false;
 			break;
 		    }
 		}

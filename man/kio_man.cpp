@@ -1249,7 +1249,7 @@ void MANProtocol::showIndex(const QString& section)
 #else /* !_USE_QSORT */
 
     QManIndexList manpages;
-    manpages.setAutoDelete(TRUE);
+    manpages.setAutoDelete(true);
 
 #endif /* _USE_QSORT */
 
