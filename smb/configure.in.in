@@ -3,7 +3,7 @@ AC_DEFUN([SMB_CHECK],
 AC_REQUIRE([KDE_CHECK_LARGEFILE])
 
 AC_ARG_WITH(samba,
-  [AS_HELP_STRING(--with-samba,
+  [AC_HELP_STRING(--with-samba,
     [enable the samba ioslave @<:@default=check@:>@])],
   [], with_samba=check)
 
