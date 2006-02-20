@@ -89,8 +89,8 @@ KUrl SystemDirNotify::toSystemURL(const KUrl &url)
 	kDebug() << "SystemDirNotify::toSystemURL(" << url << ")" << endl;
 
 	init();
-	QMap<KURL,KURL>::const_iterator it = m_urlMap.begin();
-	QMap<KURL,KURL>::const_iterator end = m_urlMap.end();
+	QMap<KURL,KUrl>::const_iterator it = m_urlMap.begin();
+	QMap<KURL,KUrl>::const_iterator end = m_urlMap.end();
 
 	for (; it!=end; ++it)
 	{

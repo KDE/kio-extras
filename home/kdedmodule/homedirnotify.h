@@ -41,7 +41,7 @@ private:
 	KUrl toHomeURL(const KUrl &url);
 	KUrl::List toHomeURLList(const KUrl::List &list);
 	
-	QMap<QString,KURL> m_homeFoldersMap;
+	QMap<QString,KUrl> m_homeFoldersMap;
 	bool mInited;
 };
 

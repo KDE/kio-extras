@@ -74,8 +74,8 @@ KUrl HomeDirNotify::toHomeURL(const KUrl &url)
 	kDebug() << "HomeDirNotify::toHomeURL(" << url << ")" << endl;
 	
 	init();
-	QMap<QString,KURL>::iterator it = m_homeFoldersMap.begin();
-	QMap<QString,KURL>::iterator end = m_homeFoldersMap.end();
+	QMap<QString,KUrl>::iterator it = m_homeFoldersMap.begin();
+	QMap<QString,KUrl>::iterator end = m_homeFoldersMap.end();
 	
 	for (; it!=end; ++it)
 	{
