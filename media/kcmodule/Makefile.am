@@ -18,4 +18,4 @@ noinst_HEADERS = notifiermodule.h managermodule.h \
 xdg_apps_DATA = media.desktop
 
 messages: rc.cpp
-	$(XGETTEXT) -kni18n $(kcm_media_la_SOURCES) -o $(podir)/kcmmedia.pot
+	$(XGETTEXT) *.cpp -o $(podir)/kcmmedia.pot
