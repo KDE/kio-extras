@@ -40,7 +40,7 @@ private:
 	KUrl toSystemURL(const KUrl &url);
 	KUrl::List toSystemURLList(const KUrl::List &list);
 
-	QMap<KURL,KUrl> m_urlMap;
+	QMap<KUrl,KUrl> m_urlMap;
 	bool mInited;
 };
 

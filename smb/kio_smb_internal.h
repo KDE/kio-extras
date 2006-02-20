@@ -55,7 +55,7 @@ enum SMBUrlType {
  * and Handle UserInfo
  * it also check the correctness of the URL
  */
-class SMBUrl : public KURL
+class SMBUrl : public KUrl
 {
 
 
