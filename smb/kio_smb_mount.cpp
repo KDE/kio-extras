@@ -72,7 +72,7 @@ void SMBSlave::special( const QByteArray & data)
          mybuf.truncate(0);
          mystderr.truncate(0);
 
-         SMBUrl smburl("smb:///");
+         SMBUrl smburl(KUrl("smb:///"));
          smburl.setHost(host);
          smburl.setPath("/" + share);
 
