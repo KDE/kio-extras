@@ -73,8 +73,8 @@ namespace KioSMTP {
     QString result;
     for ( QMap<QString,QStringList>::const_iterator it = mCapabilities.begin() ; it != mCapabilities.end() ; ++it ) {
       result += it.key();
-      if ( !it.data().empty() )
-	result += ' ' + it.data().join( " " );
+      if ( !it.value().empty() )
+	result += ' ' + it.value().join( " " );
       result += '\n';
     }
     return result;
@@ -114,10 +114,10 @@ namespace KioSMTP {
     QStringList result;
     for ( QMap<QString,QStringList>::const_iterator it = mCapabilities.begin() ; it != mCapabilities.end() ; ++it ) {
       if ( it.key() == "AUTH" )
-	result += it.data();
+	result += it.value();
       else if ( it.key().startsWith( "AUTH=" ) ) {
 	result.push_back( it.key().mid( qstrlen("AUTH=") ) );
-	result += it.data();
+	result += it.value();
       }
     }
     result.sort();

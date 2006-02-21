@@ -100,7 +100,7 @@ KUrl SystemDirNotify::toSystemURL(const KUrl &url)
 		{
 			QString path = KUrl::relativePath(base.path(),
 			                                  url.path());
-			KUrl result = it.data();
+			KUrl result = it.value();
 			result.addPath(path);
 			result.cleanPath();
 			kDebug() << result << endl;
