@@ -286,7 +286,7 @@ QString FstabBackend::generateId(const QString &devNode,
 
 QString FstabBackend::generateName(const QString &devNode, const QString &fsType)
 {
-	KUrl url( devNode );
+	const KUrl url( KUrl::fromPath( devNode ) );
 
 	if ( url.isValid() )
 	{
