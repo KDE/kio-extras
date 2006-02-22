@@ -901,7 +901,7 @@ void MANProtocol::constructPath(QStringList& constr_path, QStringList constr_cat
 
     int i = 0;
     while (manpaths[i]) {
-        if ( constr_path.findIndex( QString( manpaths[i] ) ) == -1 )
+        if ( constr_path.indexOf( QString( manpaths[i] ) ) == -1 )
             constr_path += QString( manpaths[i] );
         i++;
     }
@@ -925,27 +925,27 @@ void MANProtocol::constructPath(QStringList& constr_path, QStringList constr_cat
 
             if ( !mandir.isEmpty() ) {
                                 // a path mapping exists
-                if ( constr_path.findIndex( mandir ) == -1 )
+                if ( constr_path.indexOf( mandir ) == -1 )
                     constr_path += mandir;
             }
             else {
                                 // no manpath mapping, use "<path>/man" and "<path>/../man"
 
                 mandir = dir + QString( "/man" );
-                if ( constr_path.findIndex( mandir ) == -1 )
+                if ( constr_path.indexOf( mandir ) == -1 )
                     constr_path += mandir;
 
                 int pos = dir.lastIndexOf( '/' );
                 if ( pos > 0 ) {
                     mandir = dir.left( pos ) + QString("/man");
-                    if ( constr_path.findIndex( mandir ) == -1 )
+                    if ( constr_path.indexOf( mandir ) == -1 )
                         constr_path += mandir;
                 }
             }
             QString catmandir = mandb_map[ mandir ];
             if ( !mandir.isEmpty() )
             {
-                if ( constr_catmanpath.findIndex( catmandir ) == -1 )
+                if ( constr_catmanpath.indexOf( catmandir ) == -1 )
                     constr_catmanpath += catmandir;
             }
             else
@@ -953,7 +953,7 @@ void MANProtocol::constructPath(QStringList& constr_path, QStringList constr_cat
             // What is the default mapping?
                 catmandir = mandir;
                 catmandir.replace("/usr/share/","/var/cache/");
-                if ( constr_catmanpath.findIndex( catmandir ) == -1 )
+                if ( constr_catmanpath.indexOf( catmandir ) == -1 )
                     constr_catmanpath += catmandir;
             }
         }
@@ -1022,7 +1022,7 @@ void MANProtocol::checkManPaths()
 
         if ( !dir.isEmpty() ) {
             // Add dir to the man path if it exists
-            if ( m_manpath.findIndex( dir ) == -1 ) {
+            if ( m_manpath.indexOf( dir ) == -1 ) {
                 if ( ::stat( QFile::encodeName( dir ), &sbuf ) == 0
                     && S_ISDIR( sbuf.st_mode ) )
                 {
@@ -1041,7 +1041,7 @@ void MANProtocol::checkManPaths()
                 dir = (*it2);
 
                 if ( !dir.isEmpty() ) {
-                    if ( m_manpath.findIndex( dir ) == -1 ) {
+                    if ( m_manpath.indexOf( dir ) == -1 ) {
                         if ( ::stat( QFile::encodeName( dir ), &sbuf ) == 0
                             && S_ISDIR( sbuf.st_mode ) )
                         {
@@ -1061,7 +1061,7 @@ void MANProtocol::checkManPaths()
         { "1", "2", "3", "4", "5", "6", "7", "8", "9", "n", 0L };
 
     for ( int i = 0; default_sect[i] != 0L; i++ )
-        if ( m_mansect.findIndex( QString( default_sect[i] ) ) == -1 )
+        if ( m_mansect.indexOf( QString( default_sect[i] ) ) == -1 )
             m_mansect += QString( default_sect[i] );
 */
 
