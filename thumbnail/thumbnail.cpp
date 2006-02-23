@@ -408,8 +408,8 @@ void ThumbnailProtocol::get(const KUrl &url)
             shmdt((char*)shmaddr);
             return;
         }
-        stream << img.width() << img.height() << img.depth()
-               << img.hasAlphaBuffer();
+        // Keep in sync with kdelibs/kio/kio/previewjob.cpp
+        stream << img.width() << img.height() << quint8(img.format());
         memcpy(shmaddr, img.bits(), img.numBytes());
         shmdt((char*)shmaddr);
         data(imgData);
