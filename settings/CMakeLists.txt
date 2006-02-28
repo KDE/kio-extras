@@ -13,7 +13,7 @@ kde4_add_plugin(kio_settings ${kio_settings_PART_SRCS})
 
 kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kio_settings )
 
-target_link_libraries(kio_settings  ${QT_AND_KDECORE_LIBS} )
+target_link_libraries(kio_settings  ${QT_AND_KDECORE_LIBS} kio DCOP)
 
 install_targets(${LIB_INSTALL_DIR}/kde4 kio_settings )
 
