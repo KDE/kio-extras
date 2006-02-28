@@ -13,7 +13,7 @@ kde4_add_plugin(kio_thumbnail ${kio_thumbnail_PART_SRCS})
 
 kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kio_thumbnail )
 
-target_link_libraries(kio_thumbnail  ${QT_AND_KDECORE_LIBS} kio )
+target_link_libraries(kio_thumbnail  ${QT_AND_KDECORE_LIBS} kio ${QT_QTGUI_LIBRARY} ${QT_QT3SUPPORT_LIBRARY} kdefx)
 
 install_targets(${LIB_INSTALL_DIR}/kde4 kio_thumbnail )
 
@@ -28,7 +28,7 @@ kde4_add_plugin(imagethumbnail ${imagethumbnail_PART_SRCS})
 
 kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} imagethumbnail )
 
-target_link_libraries(imagethumbnail  ${QT_AND_KDECORE_LIBS} kio )
+target_link_libraries(imagethumbnail  ${QT_AND_KDECORE_LIBS} kio ${QT_QTGUI_LIBRARY} ${QT_QT3SUPPORT_LIBRARY})
 
 install_targets(${LIB_INSTALL_DIR}/kde4 imagethumbnail )
 
@@ -43,7 +43,7 @@ kde4_add_plugin(textthumbnail ${textthumbnail_PART_SRCS})
 
 kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} textthumbnail )
 
-target_link_libraries(textthumbnail  ${QT_AND_KDECORE_LIBS} kdefx )
+target_link_libraries(textthumbnail  ${QT_AND_KDECORE_LIBS} kdefx ${QT_QTGUI_LIBRARY} )
 
 install_targets(${LIB_INSTALL_DIR}/kde4 textthumbnail )
 
@@ -58,7 +58,7 @@ kde4_add_plugin(htmlthumbnail ${htmlthumbnail_PART_SRCS})
 
 kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} htmlthumbnail )
 
-target_link_libraries(htmlthumbnail  ${QT_AND_KDECORE_LIBS} khtml )
+target_link_libraries(htmlthumbnail  ${QT_AND_KDECORE_LIBS} khtml ${QT_QTGUI_LIBRARY})
 
 install_targets(${LIB_INSTALL_DIR}/kde4 htmlthumbnail )
 
@@ -73,7 +73,7 @@ kde4_add_plugin(djvuthumbnail ${djvuthumbnail_PART_SRCS})
 
 kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} djvuthumbnail )
 
-target_link_libraries(djvuthumbnail  ${QT_AND_KDECORE_LIBS} )
+target_link_libraries(djvuthumbnail  ${QT_AND_KDECORE_LIBS} ${QT_QT3SUPPORT_LIBRARY} ${QT_QTGUI_LIBRARY})
 
 install_targets(${LIB_INSTALL_DIR}/kde4 djvuthumbnail )
 
