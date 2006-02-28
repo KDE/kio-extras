@@ -259,7 +259,6 @@ fishProtocol::fishProtocol(const QByteArray &pool_socket, const QByteArray &app_
     rawWrite = -1;
     recvLen = -1;
     sendLen = -1;
-    setMultipleAuthCaching( true );
     connectionAuth.keepPassword = true;
     connectionAuth.url.setProtocol("fish");
     outBufPos = -1;
