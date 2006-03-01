@@ -1,5 +1,7 @@
 kde4_header()
 
+macro_optional_find_package(Samba)
+
 add_subdirectory( about ) 
 add_subdirectory( cgi ) 
 add_subdirectory( floppy ) 
@@ -25,10 +27,13 @@ add_subdirectory( trash )
 add_subdirectory( media ) 
 add_subdirectory( remote ) 
 add_subdirectory( home ) 
-add_subdirectory( system ) 
+add_subdirectory( system )
+# Test better (see configure.in.in)
+if(SAMBA_FOUND)
+	add_subdirectory(smb)
+endif(SAMBA_FOUND)
 
 message(STATUS "${CMAKE_CURRENT_SOURCE_DIR}: skipped subdir $(LDAP_SUBDIR)")
-message(STATUS "${CMAKE_CURRENT_SOURCE_DIR}: skipped subdir $(SMB_SUBDIR)")
 include_directories( ${KDE4_INCLUDE_DIR} ${QT_INCLUDES} ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR}  )
 
 
