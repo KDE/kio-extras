@@ -1,6 +1,6 @@
 kde4_header()
 
-include_directories( ${KDE4_INCLUDE_DIR} ${QT_INCLUDES} ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR}  )
+include_directories( ${KDE4_INCLUDE_DIR} ${QT_INCLUDES} ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR}  ${CMAKE_SOURCE_DIR}/kioslave/media/libmediacommon/)
 
 
 ########### next target ###############
@@ -10,7 +10,7 @@ set(kcm_media_PART_SRCS
    serviceconfigdialog.cpp 
    mimetypelistboxitem.cpp 
    managermodule.cpp 
-   main.cpp )
+   main.cpp ${libmediacommon_SRCS})
 
 kde4_automoc(${kcm_media_PART_SRCS})
 
