@@ -21,7 +21,7 @@ kde4_add_plugin(kio_smb ${kio_smb_PART_SRCS})
 
 kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kio_smb )
 
-target_link_libraries(kio_smb  ${QT_AND_KDECORE_LIBS} kio smbclient )
+target_link_libraries(kio_smb  ${LIB_KDE3SUPPORT} smbclient )
 
 install_targets(${LIB_INSTALL_DIR}/kde4 kio_smb )
 
