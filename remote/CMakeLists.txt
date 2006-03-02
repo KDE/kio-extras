@@ -5,9 +5,10 @@ add_subdirectory( kdedmodule )
 include_directories( ${KDE4_INCLUDE_DIR} ${QT_INCLUDES} ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR}  )
 
 
+set(libkioremote_SRCS kio_remote.cpp remoteimpl.cpp )
 ########### next target ###############
 
-set(kio_remote_PART_SRCS dummy.cpp )
+set(kio_remote_PART_SRCS dummy.cpp ${libkioremote_SRCS})
 
 kde4_automoc(${kio_remote_PART_SRCS})
 
@@ -15,7 +16,7 @@ kde4_add_plugin(kio_remote ${kio_remote_PART_SRCS})
 
 kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kio_remote )
 
-target_link_libraries(kio_remote  ${QT_AND_KDECORE_LIBS} kioremote kio )
+target_link_libraries(kio_remote  ${QT_AND_KDECORE_LIBS} kio DCOP)
 
 install_targets(${LIB_INSTALL_DIR}/kde4 kio_remote )
 
@@ -25,7 +26,7 @@ install_targets(${LIB_INSTALL_DIR}/kde4 kio_remote )
 
 ########### next target ###############
 
-set(testremote_SRCS testremote.cpp )
+set(testremote_SRCS testremote.cpp ${libkioremote_SRCS} )
 
 kde4_automoc(${testremote_SRCS})
 
@@ -33,7 +34,7 @@ if(KDE4_BUILD_TESTS)
 
 kde4_add_executable(testremote ${testremote_SRCS})
 
-target_link_libraries(testremote  ${QT_AND_KDECORE_LIBS} kioremote kio )
+target_link_libraries(testremote  ${QT_AND_KDECORE_LIBS} kio )
 
 endif(KDE4_BUILD_TESTS)
 
