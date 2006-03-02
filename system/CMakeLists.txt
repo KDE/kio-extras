@@ -8,8 +8,8 @@ include_directories( ${KDE4_INCLUDE_DIR} ${QT_INCLUDES} ${CMAKE_CURRENT_SOURCE_D
 
 
 ########### next target ###############
-
-set(kio_system_PART_SRCS dummy.cpp )
+set(libkiosystem_SRCS kio_system.cpp systemimpl.cpp)
+set(kio_system_PART_SRCS dummy.cpp ${libkiosystem_SRCS})
 
 kde4_automoc(${kio_system_PART_SRCS})
 
@@ -17,7 +17,7 @@ kde4_add_plugin(kio_system ${kio_system_PART_SRCS})
 
 kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kio_system )
 
-target_link_libraries(kio_system  ${QT_AND_KDECORE_LIBS} kiosystem kio )
+target_link_libraries(kio_system  ${QT_AND_KDECORE_LIBS} kio DCOP)
 
 install_targets(${LIB_INSTALL_DIR}/kde4 kio_system )
 
@@ -33,9 +33,9 @@ kde4_automoc(${testsystem_SRCS})
 
 if(KDE4_BUILD_TESTS)
 
-kde4_add_executable(testsystem ${testsystem_SRCS})
+kde4_add_executable(testsystem ${testsystem_SRCS} ${libkiosystem_SRCS})
 
-target_link_libraries(testsystem  ${QT_AND_KDECORE_LIBS} kiosystem kio )
+target_link_libraries(testsystem  ${QT_AND_KDECORE_LIBS} kio DCOP)
 
 endif(KDE4_BUILD_TESTS)
 

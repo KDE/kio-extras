@@ -33,7 +33,7 @@ kde4_add_plugin(kio_media ${kio_media_PART_SRCS})
 
 kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kio_media )
 
-target_link_libraries(kio_media  ${QT_AND_KDECORE_LIBS} kiomedia mediacommon kio )
+target_link_libraries(kio_media  ${QT_AND_KDECORE_LIBS} kio )
 
 install_targets(${LIB_INSTALL_DIR}/kde4 kio_media )
 

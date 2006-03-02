@@ -15,7 +15,7 @@ kde4_add_plugin(kded_homedirnotify ${kded_homedirnotify_PART_SRCS})
 
 kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kded_homedirnotify )
 
-target_link_libraries(kded_homedirnotify  ${QT_AND_KDECORE_LIBS} )
+target_link_libraries(kded_homedirnotify  ${QT_AND_KDECORE_LIBS} DCOP kio)
 
 install_targets(${LIB_INSTALL_DIR}/kde4 kded_homedirnotify )
 

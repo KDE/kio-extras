@@ -5,7 +5,6 @@ include_directories( ${KDE4_INCLUDE_DIR} ${QT_INCLUDES} ${CMAKE_CURRENT_SOURCE_D
 
 ########### next target ###############
 
-
 ########### install files ###############
 
 install_files( ${KCFG_INSTALL_DIR} FILES mediamanagersettings.kcfg )

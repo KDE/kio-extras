@@ -1,11 +1,11 @@
 kde4_header()
 
-include_directories( ${KDE4_INCLUDE_DIR} ${QT_INCLUDES} ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR}  )
+include_directories( ${KDE4_INCLUDE_DIR} ${QT_INCLUDES} ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR}   ${CMAKE_SOURCE_DIR}/kioslave/media/libmediacommon/ )
 
 
 ########### next target ###############
 
-set(kded_mediamanager_PART_SRCS 
+set(kded_mediamanager_PART_SRCS ${libmediacommon_SRCS}
    mediamanager.cpp 
    medialist.cpp 
    backendbase.cpp 
