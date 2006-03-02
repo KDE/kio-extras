@@ -25,18 +25,45 @@ target_link_libraries(kio_smtp  ${QT_AND_KDECORE_LIBS} kio ${SASL2_LIBRARIES})
 
 install_targets(${LIB_INSTALL_DIR}/kde4 kio_smtp )
 
-
 ########### next target ###############
 
-set($(TESTS)_SRCS dummy.cpp )
+set(test_responseparser_SRCS test_responseparser.cc )
 
-kde4_automoc(${$(TESTS)_SRCS})
+kde4_automoc(test_responseparser_SRCS})
 
 if(KDE4_BUILD_TESTS)
 
-kde4_add_executable($(TESTS) ${$(TESTS)_SRCS})
+kde4_add_executable(test_responseparser ${test_responseparser_SRCS})
 
-target_link_libraries($(TESTS)  ${QT_AND_KDECORE_LIBS} )
+target_link_libraries(test_responseparser  ${QT_AND_KDECORE_LIBS} )
+
+endif(KDE4_BUILD_TESTS)
+
+########### next target ###############
+set(test_headergeneration_SRCS test_headergeneration.cc )
+
+kde4_automoc(test_headergeneration_SRCS})
+
+if(KDE4_BUILD_TESTS)
+
+kde4_add_executable(test_headergeneration ${test_headergeneration_SRCS})
+
+target_link_libraries(test_headergeneration  ${QT_AND_KDECORE_LIBS} )
+
+endif(KDE4_BUILD_TESTS)
+
+
+
+########### next target ###############
+set(test_commands_SRCS test_commands.cc )
+
+kde4_automoc(test_commands_SRCS})
+
+if(KDE4_BUILD_TESTS)
+
+kde4_add_executable(test_commands ${test_commands_SRCS})
+
+target_link_libraries(test_commands  ${QT_AND_KDECORE_LIBS} )
 
 endif(KDE4_BUILD_TESTS)
 
