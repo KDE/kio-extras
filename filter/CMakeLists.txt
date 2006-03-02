@@ -2,6 +2,7 @@ kde4_header()
 
 include_directories( ${KDE4_INCLUDE_DIR} ${QT_INCLUDES} ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR}  )
 
+macro_optional_find_package(BZip2)
 
 ########### next target ###############
 
@@ -20,7 +21,10 @@ install_targets(${LIB_INSTALL_DIR}/kde4 kio_filter )
 
 ########### install files ###############
 
-install_files( ${SERVICES_INSTALL_DIR} FILES gzip.protocol $(BZIP2FILES) )
+install_files( ${SERVICES_INSTALL_DIR} FILES gzip.protocol )
+if(BZIP2_FOUND)
+	install_files( ${SERVICES_INSTALL_DIR} FILES bzip.protocol bzip2.protocol )
+endif(BZIP2_FOUND)
 
 kde4_footer()
 
