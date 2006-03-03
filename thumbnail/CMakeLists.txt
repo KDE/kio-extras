@@ -2,7 +2,7 @@ kde4_header()
 
 include_directories( ${KDE4_INCLUDE_DIR} ${QT_INCLUDES} ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR}  )
 
-
+macro_optional_find_package(OpenEXR)
 ########### next target ###############
 
 set(kio_thumbnail_PART_SRCS thumbnail.cpp )
@@ -78,11 +78,50 @@ target_link_libraries(djvuthumbnail  ${QT_AND_KDECORE_LIBS} ${QT_QT3SUPPORT_LIBR
 install_targets(${LIB_INSTALL_DIR}/kde4 djvuthumbnail )
 
 
+########### next target ###############
+
+if(OPENEXR_FOUND)
+include_directories(${KDE4_INCLUDE_DIR} ${QT_INCLUDES} ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR} ${OPENEXR_INCLUDE_DIR})
+
+set(exrthumbnail_PART_SRCS exrcreator.cpp)
+
+kde4_automoc(${exrthumbnail_PART_SRCS})
+
+kde4_add_plugin(exrthumbnail ${exrthumbnail_PART_SRCS})
+
+kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} exrthumbnail )
+
+target_link_libraries(exrthumbnail  ${QT_AND_KDECORE_LIBS} ${QT_QT3SUPPORT_LIBRARY} ${QT_QTGUI_LIBRARY} ${OPENEXR_LIBRARIES})
+
+install_targets(${LIB_INSTALL_DIR}/kde4 exrthumbnail )
+install_files( ${SERVICES_INSTALL_DIR} FILES exrthumbnail.desktop )
+endif(OPENEXR_FOUND)
+
+########### next target ###############
+
+if(X11_Xcursor_FOUND)
+include_directories(${KDE4_INCLUDE_DIR} ${QT_INCLUDES} ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR} ${OPENEXR_INCLUDE_DIR})
+
+set(cursorthumbnail_PART_SRCS cursorcreator.cpp)
+
+kde4_automoc(${cursorthumbnail_PART_SRCS})
+
+kde4_add_plugin(cursorthumbnail ${cursorthumbnail_PART_SRCS})
+
+kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} cursorthumbnail )
+
+target_link_libraries(cursorthumbnail  ${QT_AND_KDECORE_LIBS} ${QT_QT3SUPPORT_LIBRARY} ${QT_QTGUI_LIBRARY} ${X11_Xcursor_LIB})
+
+install_targets(${LIB_INSTALL_DIR}/kde4 cursorthumbnail )
+install_files( ${SERVICES_INSTALL_DIR} FILES cursorthumbnail.desktop )
+endif(X11_Xcursor_FOUND)
+
+
 ########### install files ###############
 
 install_files( ${SERVICETYPES_INSTALL_DIR} FILES thumbcreator.desktop )
 install_files( ${SERVICES_INSTALL_DIR} FILES thumbnail.protocol )
-install_files( ${SERVICES_INSTALL_DIR} FILES imagethumbnail.desktop textthumbnail.desktop                  htmlthumbnail.desktop                  djvuthumbnail.desktop                  $(CURSOR_DATAFILE) $(EXR_DATAFILE) )
+install_files( ${SERVICES_INSTALL_DIR} FILES imagethumbnail.desktop textthumbnail.desktop                  htmlthumbnail.desktop                  djvuthumbnail.desktop)
 
 kde4_footer()
 
