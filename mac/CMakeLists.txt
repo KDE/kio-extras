@@ -22,7 +22,7 @@ install_targets(${LIB_INSTALL_DIR}/kde4 kio_mac )
 
 install_files( ${SERVICES_INSTALL_DIR} FILES mac.protocol )
 
-kde4_install_icons( hicolor crystalsvg )
+kde4_install_icons( ${ICON_INSTALL_DIR} crystalsvg )
 
 kde4_footer()
 
