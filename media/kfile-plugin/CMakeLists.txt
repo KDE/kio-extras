@@ -1,11 +1,11 @@
 kde4_header()
 
-include_directories( ${KDE4_INCLUDE_DIR} ${QT_INCLUDES} ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR}  )
+include_directories( ${CMAKE_SOURCE_DIR}/kioslave/media/libmediacommon/ ${KDE4_INCLUDE_DIR} ${QT_INCLUDES} ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR}  )
 
 
 ########### next target ###############
 
-set(kfile_media_PART_SRCS kfilemediaplugin.cpp )
+set(kfile_media_PART_SRCS kfilemediaplugin.cpp ${libmediacommon_SRCS})
 
 kde4_automoc(${kfile_media_PART_SRCS})
 
@@ -13,7 +13,7 @@ kde4_add_plugin(kfile_media ${kfile_media_PART_SRCS})
 
 kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kfile_media )
 
-target_link_libraries(kfile_media  ${QT_AND_KDECORE_LIBS} kio mediacommon )
+target_link_libraries(kfile_media  ${LIB_KIO} )
 
 install_targets(${LIB_INSTALL_DIR}/kde4 kfile_media )
 

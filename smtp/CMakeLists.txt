@@ -21,7 +21,7 @@ kde4_add_plugin(kio_smtp ${kio_smtp_PART_SRCS})
 
 kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kio_smtp )
 
-target_link_libraries(kio_smtp  ${QT_AND_KDECORE_LIBS} kio ${SASL2_LIBRARIES})
+target_link_libraries(kio_smtp  ${LIB_KIO} ${SASL2_LIBRARIES})
 
 install_targets(${LIB_INSTALL_DIR}/kde4 kio_smtp )
 

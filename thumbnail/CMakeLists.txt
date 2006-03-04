@@ -13,7 +13,7 @@ kde4_add_plugin(kio_thumbnail ${kio_thumbnail_PART_SRCS})
 
 kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kio_thumbnail )
 
-target_link_libraries(kio_thumbnail  ${QT_AND_KDECORE_LIBS} kio ${QT_QTGUI_LIBRARY} ${QT_QT3SUPPORT_LIBRARY} kdefx)
+target_link_libraries(kio_thumbnail  ${LIB_KDE3SUPPORT}  kdefx)
 
 install_targets(${LIB_INSTALL_DIR}/kde4 kio_thumbnail )
 
@@ -28,7 +28,7 @@ kde4_add_plugin(imagethumbnail ${imagethumbnail_PART_SRCS})
 
 kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} imagethumbnail )
 
-target_link_libraries(imagethumbnail  ${QT_AND_KDECORE_LIBS} kio ${QT_QTGUI_LIBRARY} ${QT_QT3SUPPORT_LIBRARY})
+target_link_libraries(imagethumbnail  ${LIB_KDE3SUPPORT})
 
 install_targets(${LIB_INSTALL_DIR}/kde4 imagethumbnail )
 
@@ -73,7 +73,7 @@ kde4_add_plugin(djvuthumbnail ${djvuthumbnail_PART_SRCS})
 
 kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} djvuthumbnail )
 
-target_link_libraries(djvuthumbnail  ${QT_AND_KDECORE_LIBS} ${QT_QT3SUPPORT_LIBRARY} ${QT_QTGUI_LIBRARY})
+target_link_libraries(djvuthumbnail  ${LIB_KDE3SUPPORT})
 
 install_targets(${LIB_INSTALL_DIR}/kde4 djvuthumbnail )
 
@@ -91,7 +91,7 @@ kde4_add_plugin(exrthumbnail ${exrthumbnail_PART_SRCS})
 
 kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} exrthumbnail )
 
-target_link_libraries(exrthumbnail  ${QT_AND_KDECORE_LIBS} ${QT_QT3SUPPORT_LIBRARY} ${QT_QTGUI_LIBRARY} ${OPENEXR_LIBRARIES})
+target_link_libraries(exrthumbnail  ${LIB_KDE3SUPPORT} ${OPENEXR_LIBRARIES})
 
 install_targets(${LIB_INSTALL_DIR}/kde4 exrthumbnail )
 install_files( ${SERVICES_INSTALL_DIR} FILES exrthumbnail.desktop )
@@ -110,7 +110,7 @@ kde4_add_plugin(cursorthumbnail ${cursorthumbnail_PART_SRCS})
 
 kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} cursorthumbnail )
 
-target_link_libraries(cursorthumbnail  ${QT_AND_KDECORE_LIBS} ${QT_QT3SUPPORT_LIBRARY} ${QT_QTGUI_LIBRARY} ${X11_Xcursor_LIB})
+target_link_libraries(cursorthumbnail  ${LIB_KDE3SUPPORT} ${X11_Xcursor_LIB})
 
 install_targets(${LIB_INSTALL_DIR}/kde4 cursorthumbnail )
 install_files( ${SERVICES_INSTALL_DIR} FILES cursorthumbnail.desktop )

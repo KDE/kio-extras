@@ -13,7 +13,7 @@ kde4_add_plugin(kio_tar ${kio_tar_PART_SRCS})
 
 kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kio_tar )
 
-target_link_libraries(kio_tar  ${QT_AND_KDECORE_LIBS} kio)
+target_link_libraries(kio_tar  ${LIB_KIO} )
 
 install_targets(${LIB_INSTALL_DIR}/kde4 kio_tar )
 

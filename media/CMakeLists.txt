@@ -33,7 +33,7 @@ kde4_add_plugin(kio_media ${kio_media_PART_SRCS})
 
 kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kio_media )
 
-target_link_libraries(kio_media  ${QT_AND_KDECORE_LIBS} kio )
+target_link_libraries(kio_media  ${LIB_KIO}  )
 
 install_targets(${LIB_INSTALL_DIR}/kde4 kio_media )
 
@@ -51,7 +51,7 @@ if(KDE4_BUILD_TESTS)
 
 kde4_add_executable(testmedia ${testmedia_SRCS})
 
-target_link_libraries(testmedia  ${QT_AND_KDECORE_LIBS} kiomedia kio )
+target_link_libraries(testmedia  ${LIB_KIO} kiomedia  )
 
 endif(KDE4_BUILD_TESTS)
 

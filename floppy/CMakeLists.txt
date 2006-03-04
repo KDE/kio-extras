@@ -13,7 +13,7 @@ kde4_add_plugin(kio_floppy ${kio_floppy_PART_SRCS})
 
 kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kio_floppy )
 
-target_link_libraries(kio_floppy  ${QT_AND_KDECORE_LIBS} kio )
+target_link_libraries(kio_floppy  ${LIB_KIO} )
 
 install_targets(${LIB_INSTALL_DIR}/kde4 kio_floppy )
 

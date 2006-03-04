@@ -15,7 +15,7 @@ kde4_add_plugin(kio_cgi ${kio_cgi_PART_SRCS})
 
 kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kio_cgi )
 
-target_link_libraries(kio_cgi  ${QT_AND_KDECORE_LIBS} kio )
+target_link_libraries(kio_cgi  ${LIB_KIO} )
 
 install_targets(${LIB_INSTALL_DIR}/kde4 kio_cgi )
 

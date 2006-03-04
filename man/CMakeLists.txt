@@ -13,7 +13,7 @@ if(KDE4_BUILD_TESTS)
 
 kde4_add_executable(kio_man_test ${kio_man_test_SRCS})
 
-target_link_libraries(kio_man_test  ${QT_AND_KDECORE_LIBS} kio kdeui )
+target_link_libraries(kio_man_test  ${LIB_KIO} )
 
 endif(KDE4_BUILD_TESTS)
 
@@ -41,7 +41,7 @@ kde4_add_plugin(kio_man ${kio_man_PART_SRCS})
 
 kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kio_man )
 
-target_link_libraries(kio_man  ${QT_AND_KDECORE_LIBS} kio ${QT_QT3SUPPORT_LIBRARY})
+target_link_libraries(kio_man  ${LIB_KDE3SUPPORT})
 
 install_targets(${LIB_INSTALL_DIR}/kde4 kio_man )
 
@@ -56,7 +56,7 @@ kde4_add_plugin(kmanpart WITH_PREFIX ${kmanpart_PART_SRCS})
 
 kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kmanpart )
 
-target_link_libraries(kmanpart  ${QT_AND_KDECORE_LIBS} khtml kparts kdeui kio)
+target_link_libraries(kmanpart  ${LIB_KPARTS} khtml )
 
 install_targets(${LIB_INSTALL_DIR}/kde4 kmanpart )
 
