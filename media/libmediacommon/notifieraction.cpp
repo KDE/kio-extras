@@ -77,7 +77,7 @@ void NotifierAction::addAutoMimetype( const QString &mimetype )
 
 void NotifierAction::removeAutoMimetype( const QString &mimetype )
 {
-	m_autoMimetypes.remove( mimetype );
+	m_autoMimetypes.removeAll( mimetype );
 }
 
 QStringList NotifierAction::autoMimetypes()

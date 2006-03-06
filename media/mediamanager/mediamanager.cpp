@@ -60,7 +60,7 @@ MediaManager::~MediaManager()
 	while ( !m_backends.isEmpty() )
 	{
 		BackendBase *b = m_backends.first();
-		m_backends.remove( b );
+		m_backends.removeAll( b );
 		delete b;
 	}
 }
@@ -72,7 +72,7 @@ void MediaManager::loadBackends()
 	while ( !m_backends.isEmpty() )
 	{
 		BackendBase *b = m_backends.first();
-		m_backends.remove( b );
+		m_backends.removeAll( b );
 		delete b;
 	}
 

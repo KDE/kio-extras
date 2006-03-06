@@ -97,7 +97,7 @@ bool RemovableBackend::unplug(const QString &devNode)
 	QString id = generateId(devNode);
 	if (m_removableIds.contains(id))
 	{
-		m_removableIds.remove(id);
+		m_removableIds.removeAll(id);
 		return m_mediaList.removeMedium(id);
 	}
 	return false;
