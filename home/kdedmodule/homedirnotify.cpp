@@ -80,7 +80,7 @@ KUrl HomeDirNotify::toHomeURL(const KUrl &url)
 	for (; it!=end; ++it)
 	{
 		QString name = it.key();
-		KUrl base = it.data();
+		KUrl base = it.value();
 		
 		if ( base.isParentOf(url) )
 		{

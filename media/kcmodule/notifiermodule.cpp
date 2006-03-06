@@ -84,7 +84,7 @@ NotifierModule::~NotifierModule()
 void NotifierModule::load()
 {
 	m_settings.reload();
-	slotMimeTypeChanged( m_view->mimetypesCombo->currentItem() );
+	slotMimeTypeChanged( m_view->mimetypesCombo->currentIndex() );
 }
 
 void NotifierModule::save()
@@ -95,7 +95,7 @@ void NotifierModule::save()
 void NotifierModule::defaults()
 {
 	m_settings.clearAutoActions();
-	slotMimeTypeChanged( m_view->mimetypesCombo->currentItem() );
+	slotMimeTypeChanged( m_view->mimetypesCombo->currentIndex() );
 }
 
 void NotifierModule::updateListBox()

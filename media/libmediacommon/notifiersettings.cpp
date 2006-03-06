@@ -156,7 +156,7 @@ void NotifierSettings::clearAutoActions()
 
 	for ( ; it!=end; ++it )
 	{
-		NotifierAction *action = it.data();
+		NotifierAction *action = it.value();
 		QString mimetype = it.key();
 
 		action->removeAutoMimetype( mimetype );
@@ -223,7 +223,7 @@ void NotifierSettings::reload()
 	for ( ; auto_it!=auto_end; ++auto_it )
 	{
 		QString mime = auto_it.key();
-		QString action_id = auto_it.data();
+		QString action_id = auto_it.value();
 
 		if ( m_idMap.contains( action_id ) )
 		{
@@ -266,9 +266,9 @@ void NotifierSettings::save()
 
 	for ( ; auto_it!=auto_end; ++auto_it )
 	{
-		if ( auto_it.data()!=0L )
+		if ( auto_it.value()!=0L )
 		{
-			config.writeEntry( auto_it.key(), auto_it.data()->id() );
+			config.writeEntry( auto_it.key(), auto_it.value()->id() );
 		}
 		else
 		{
