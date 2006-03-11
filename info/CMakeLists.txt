@@ -20,7 +20,7 @@ install_targets(${LIB_INSTALL_DIR}/kde4 kio_info )
 
 ########### install files ###############
 
-install_files( ${DATA_INSTALL_DIR}/kio_info FILES kde-info2html.conf )
+install_files( ${DATA_INSTALL_DIR}/kio_info FILES kde-info2html.conf kde-info2html )
 install_files( ${SERVICES_INSTALL_DIR} FILES info.protocol )
 
 kde4_footer()
