@@ -2,7 +2,14 @@ kde4_header()
 
 macro_optional_find_package(Sasl2)
 
-include_directories( ${KDE4_INCLUDE_DIR} ${QT_INCLUDES} ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR} ${SASL2_INCLUDE_DIR} )
+set(pop3_optional_includes)
+set(pop3_optional_libs)
+IF(SASL2_FOUND)
+  set(pop3_optional_includes ${pop3_optional_includes} ${SASL2_INCLUDE_DIR})
+  set(pop3_optional_libs     ${pop3_optional_libs}     ${SASL2_LIBRARIES})
+ENDIF(SASL2_FOUND)
+
+include_directories( ${KDE4_INCLUDE_DIR} ${QT_INCLUDES} ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR} ${pop3_optional_includes} )
 
 ########### next target ###############
 
@@ -14,7 +21,7 @@ kde4_add_plugin(kio_pop3 ${kio_pop3_PART_SRCS})
 
 kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kio_pop3 )
 
-target_link_libraries(kio_pop3  ${LIB_KIO} ${SASL2_LIBRARIES})
+target_link_libraries(kio_pop3  ${LIB_KIO} ${pop3_optional_libs})
 
 install_targets(${LIB_INSTALL_DIR}/kde4 kio_pop3 )
 
