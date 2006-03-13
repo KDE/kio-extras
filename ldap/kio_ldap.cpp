@@ -976,6 +976,8 @@ void LDAPProtocol::put( const KUrl &_url, int, bool overwrite, bool )
   LDAPControl **serverctrls = 0, **clientctrls = 0;
   QByteArray buffer;
   int result = 0;
+#warning "kde4: port it"
+#if 0
   LDIF::ParseVal ret;
   LDIF ldif;
   ret = LDIF::MoreData;
@@ -1110,6 +1112,7 @@ void LDAPProtocol::put( const KUrl &_url, int, bool overwrite, bool )
   } while ( result > 0 );
 
   FREELDAPMEM;
+#endif  
   finished();
 }
 
