@@ -1,5 +1,16 @@
 kde4_header()
 
+set(libmediacommon_SRCS
+    ${CMAKE_SOURCE_DIR}/kioslave/media/libmediacommon/medium.cpp
+    ${CMAKE_SOURCE_DIR}/kioslave/media/libmediacommon/actionlistboxitem.cpp
+    ${CMAKE_SOURCE_DIR}/kioslave/media/libmediacommon/notifieraction.cpp
+    ${CMAKE_SOURCE_DIR}/kioslave/media/libmediacommon/notifierserviceaction.cpp
+    ${CMAKE_SOURCE_DIR}/kioslave/media/libmediacommon/notifiernothingaction.cpp
+    ${CMAKE_SOURCE_DIR}/kioslave/media/libmediacommon/notifieropenaction.cpp
+    ${CMAKE_SOURCE_DIR}/kioslave/media/libmediacommon/notifiersettings.cpp
+    )
+#kde4_add_kcfg_files(libmediacommon_SRCS ${CMAKE_SOURCE_DIR}/kioslave/media/libmediacommon/mediamanagersettings.kcfgc )
+
 add_subdirectory( libmediacommon ) 
 add_subdirectory( mediamanager ) 
 add_subdirectory( medianotifier ) 
@@ -13,18 +24,6 @@ include_directories( ${KDE4_INCLUDE_DIR} ${QT_INCLUDES} ${CMAKE_CURRENT_SOURCE_D
 
 
 ########### next target ###############
-
-set(libmediacommon_SRCS 
-	${CMAKE_SOURCE_DIR}/kioslave/media/libmediacommon/medium.cpp
-	${CMAKE_SOURCE_DIR}/kioslave/media/libmediacommon/actionlistboxitem.cpp
-	${CMAKE_SOURCE_DIR}/kioslave/media/libmediacommon/notifieraction.cpp
-	${CMAKE_SOURCE_DIR}/kioslave/media/libmediacommon/notifierserviceaction.cpp
-	${CMAKE_SOURCE_DIR}/kioslave/media/libmediacommon/notifiernothingaction.cpp
-	${CMAKE_SOURCE_DIR}/kioslave/media/libmediacommon/notifieropenaction.cpp
-	${CMAKE_SOURCE_DIR}/kioslave/media/libmediacommon/notifiersettings.cpp
-	)
-kde4_add_kcfg_files(libmediacommon_SRCS ${CMAKE_SOURCE_DIR}/kioslave/media/libmediacommon/mediamanagersettings.kcfgc )
-
 set(kio_media_PART_SRCS dummy.cpp )
 
 kde4_automoc(${kio_media_PART_SRCS})
