@@ -1,5 +1,7 @@
 kde4_header()
 
+project(kioslave-smtp)
+
 macro_optional_find_package(Sasl2)
 
 set(smtp_optional_includes)

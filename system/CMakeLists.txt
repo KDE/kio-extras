@@ -1,5 +1,7 @@
 kde4_header()
 
+project(kioslave-system)
+
 add_subdirectory( kdedmodule ) 
 add_subdirectory( entries ) 
 add_subdirectory( mimetypes ) 

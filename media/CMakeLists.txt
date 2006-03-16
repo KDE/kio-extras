@@ -1,5 +1,7 @@
 kde4_header()
 
+project(kioslave-media)
+
 set(libmediacommon_SRCS
     ${CMAKE_SOURCE_DIR}/kioslave/media/libmediacommon/medium.cpp
     ${CMAKE_SOURCE_DIR}/kioslave/media/libmediacommon/actionlistboxitem.cpp

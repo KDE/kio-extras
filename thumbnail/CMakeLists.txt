@@ -1,5 +1,7 @@
 kde4_header()
 
+project(kioslave-thumbnail)
+
 include_directories( ${KDE4_INCLUDE_DIR} ${QT_INCLUDES} ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR}  )
 
 macro_optional_find_package(OpenEXR)
@@ -81,39 +83,43 @@ install_targets(${LIB_INSTALL_DIR}/kde4 djvuthumbnail )
 ########### next target ###############
 
 if(OPENEXR_FOUND)
-include_directories(${KDE4_INCLUDE_DIR} ${QT_INCLUDES} ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR} ${OPENEXR_INCLUDE_DIR})
 
-set(exrthumbnail_PART_SRCS exrcreator.cpp)
+   include_directories(${KDE4_INCLUDE_DIR} ${QT_INCLUDES} ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR} ${OPENEXR_INCLUDE_DIR})
 
-kde4_automoc(${exrthumbnail_PART_SRCS})
+   set(exrthumbnail_PART_SRCS exrcreator.cpp)
 
-kde4_add_plugin(exrthumbnail ${exrthumbnail_PART_SRCS})
+   kde4_automoc(${exrthumbnail_PART_SRCS})
 
-kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} exrthumbnail )
+   kde4_add_plugin(exrthumbnail ${exrthumbnail_PART_SRCS})
 
-target_link_libraries(exrthumbnail  ${LIB_KDE3SUPPORT} ${OPENEXR_LIBRARIES})
+   kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} exrthumbnail )
 
-install_targets(${LIB_INSTALL_DIR}/kde4 exrthumbnail )
-install_files( ${SERVICES_INSTALL_DIR} FILES exrthumbnail.desktop )
+   target_link_libraries(exrthumbnail  ${LIB_KDE3SUPPORT} ${OPENEXR_LIBRARIES})
+
+   install_targets(${LIB_INSTALL_DIR}/kde4 exrthumbnail )
+   install_files( ${SERVICES_INSTALL_DIR} FILES exrthumbnail.desktop )
+
 endif(OPENEXR_FOUND)
 
 ########### next target ###############
 
 if(X11_Xcursor_FOUND)
-include_directories(${KDE4_INCLUDE_DIR} ${QT_INCLUDES} ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR} ${OPENEXR_INCLUDE_DIR})
 
-set(cursorthumbnail_PART_SRCS cursorcreator.cpp)
+   include_directories(${KDE4_INCLUDE_DIR} ${QT_INCLUDES} ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR})
 
-kde4_automoc(${cursorthumbnail_PART_SRCS})
+   set(cursorthumbnail_PART_SRCS cursorcreator.cpp)
 
-kde4_add_plugin(cursorthumbnail ${cursorthumbnail_PART_SRCS})
+   kde4_automoc(${cursorthumbnail_PART_SRCS})
 
-kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} cursorthumbnail )
+   kde4_add_plugin(cursorthumbnail ${cursorthumbnail_PART_SRCS})
 
-target_link_libraries(cursorthumbnail  ${LIB_KDE3SUPPORT} ${X11_Xcursor_LIB})
+   kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} cursorthumbnail )
 
-install_targets(${LIB_INSTALL_DIR}/kde4 cursorthumbnail )
-install_files( ${SERVICES_INSTALL_DIR} FILES cursorthumbnail.desktop )
+   target_link_libraries(cursorthumbnail  ${LIB_KDE3SUPPORT} ${X11_Xcursor_LIB})
+
+   install_targets(${LIB_INSTALL_DIR}/kde4 cursorthumbnail )
+   install_files( ${SERVICES_INSTALL_DIR} FILES cursorthumbnail.desktop )
+
 endif(X11_Xcursor_FOUND)
 
 

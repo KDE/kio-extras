@@ -1,5 +1,7 @@
 kde4_header()
 
+project(kioslave-pop3)
+
 macro_optional_find_package(Sasl2)
 
 set(pop3_optional_includes)
