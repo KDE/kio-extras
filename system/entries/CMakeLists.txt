@@ -6,6 +6,7 @@ include_directories( ${KDE4_INCLUDE_DIR} ${QT_INCLUDES} ${CMAKE_CURRENT_SOURCE_D
 ########### install files ###############
 
 install_files( ${DATA_INSTALL_DIR}/systemview FILES home.desktop documents.desktop users.desktop media.desktop remote.desktop trash.desktop )
+install_files( /bin FILES kio_system_documenthelper)
 
 kde4_footer()
 
