@@ -48,7 +48,8 @@ KCMCgi::KCMCgi(QWidget *parent)
 {
   setButtons(Default|Apply);
 
-  QVBoxLayout *topLayout = new QVBoxLayout(this, 0, KDialog::spacingHint());
+  QVBoxLayout *topLayout = new QVBoxLayout(this);
+  topLayout->setSpacing(KDialog::spacingHint());
 
   Q3GroupBox *topBox = new Q3GroupBox( 1, Qt::Horizontal, i18n("Paths to Local CGI Programs"), this );
   topLayout->addWidget( topBox );
