@@ -976,9 +976,7 @@ void LDAPProtocol::put( const KUrl &_url, int, bool overwrite, bool )
   LDAPControl **serverctrls = 0, **clientctrls = 0;
   QByteArray buffer;
   int result = 0;
-#warning "kde4: port it"
-#if 0
-  LDIF::ParseVal ret;
+  LDIF::ParseValue ret;
   LDIF ldif;
   ret = LDIF::MoreData;
   int ldaperr;
@@ -1086,12 +1084,12 @@ void LDAPProtocol::put( const KUrl &_url, int, bool overwrite, bool )
                   modtype = LDAP_MOD_DELETE;
                   break;
               }
-              addModOp( &lmod, modtype, ldif.attr(), ldif.val() );
+              addModOp( &lmod, modtype, ldif.attr(), ldif.value() );
               break;
             }
             case LDIF::Entry_Add:
-              if ( ldif.val().size() > 0 )
-                addModOp( &lmod, 0, ldif.attr(), ldif.val() );
+              if ( ldif.value().size() > 0 )
+                addModOp( &lmod, 0, ldif.attr(), ldif.value() );
               break;
             default:
               error( ERR_INTERNAL, i18n("The LDIF parser failed.") );
@@ -1100,11 +1098,11 @@ void LDAPProtocol::put( const KUrl &_url, int, bool overwrite, bool )
           }
           break;
         case LDIF::Control:
-          addControlOp( &serverctrls, ldif.oid(), ldif.val(), ldif.critical() );
+          addControlOp( &serverctrls, ldif.oid(), ldif.value(), ldif.isCritical() );
           break;
         case LDIF::Err:
           error( ERR_SLAVE_DEFINED,
-            i18n( "Invalid LDIF file in line %1." ).arg( ldif.lineNo() ) );
+            i18n( "Invalid LDIF file in line %1." ).arg( ldif.lineNumber() ) );
           FREELDAPMEM;
           return;
       }
@@ -1112,7 +1110,6 @@ void LDAPProtocol::put( const KUrl &_url, int, bool overwrite, bool )
   } while ( result > 0 );
 
   FREELDAPMEM;
-#endif  
   finished();
 }
 
