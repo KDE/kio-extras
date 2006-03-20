@@ -1,6 +1,7 @@
 kde4_header()
 
 macro_optional_find_package(Samba)
+macro_optional_find_package(Ldap)
 
 add_subdirectory( about ) 
 add_subdirectory( cgi ) 
@@ -33,7 +34,10 @@ if(SAMBA_FOUND)
 	add_subdirectory(smb)
 endif(SAMBA_FOUND)
 
-message(STATUS "${CMAKE_CURRENT_SOURCE_DIR}: skipped subdir $(LDAP_SUBDIR)")
+if(LDAP_FOUND)
+	add_subdirectory(ldap)
+endif(LDAP_FOUND)
+
 include_directories( ${KDE4_INCLUDE_DIR} ${QT_INCLUDES} ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR}  )
 
 
