@@ -92,7 +92,7 @@ void InfoProtocol::get( const KUrl& url )
     // extract the path and node from url
     decodeURL( url );
 
-    QString path = KGlobal::iconLoader()->iconPath("up", KIcon::Toolbar, true);
+    QString path = KGlobal::iconLoader()->iconPath("up", K3Icon::Toolbar, true);
     int revindex = path.lastIndexOf('/');
     path = path.left(revindex);
 
