@@ -58,7 +58,7 @@ kde4_add_plugin(kmanpart WITH_PREFIX ${kmanpart_PART_SRCS})
 
 kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kmanpart )
 
-target_link_libraries(kmanpart  ${LIB_KPARTS} khtml )
+target_link_libraries(kmanpart  ${KDE4_KPARTS_LIBS} khtml )
 
 install_targets(${LIB_INSTALL_DIR}/kde4 kmanpart )
 
