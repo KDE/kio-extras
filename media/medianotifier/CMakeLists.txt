@@ -17,7 +17,7 @@ kde4_add_plugin(kded_medianotifier ${kded_medianotifier_PART_SRCS})
 
 kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kded_medianotifier )
 
-target_link_libraries(kded_medianotifier  ${QT_AND_KDECORE_LIBS} mediacommon kdeui kio )
+target_link_libraries(kded_medianotifier  ${KDE4_KDECORE_LIBS} mediacommon kdeui kio )
 
 install_targets(${LIB_INSTALL_DIR}/kde4 kded_medianotifier )
 

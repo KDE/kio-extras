@@ -19,7 +19,7 @@ kde4_add_plugin(kio_system ${kio_system_PART_SRCS})
 
 kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kio_system )
 
-target_link_libraries(kio_system  ${QT_AND_KDECORE_LIBS} kio DCOP)
+target_link_libraries(kio_system  ${KDE4_KDECORE_LIBS} kio DCOP)
 
 install_targets(${LIB_INSTALL_DIR}/kde4 kio_system )
 
@@ -37,7 +37,7 @@ if(KDE4_BUILD_TESTS)
 
 kde4_add_executable(testsystem ${testsystem_SRCS} ${libkiosystem_SRCS})
 
-target_link_libraries(testsystem  ${QT_AND_KDECORE_LIBS} kio DCOP)
+target_link_libraries(testsystem  ${KDE4_KDECORE_LIBS} kio DCOP)
 
 endif(KDE4_BUILD_TESTS)
 

@@ -44,7 +44,7 @@ if(KDE4_BUILD_TESTS)
 
 kde4_add_executable(test_responseparser ${test_responseparser_SRCS})
 
-target_link_libraries(test_responseparser  ${QT_AND_KDECORE_LIBS} )
+target_link_libraries(test_responseparser  ${KDE4_KDECORE_LIBS} )
 
 endif(KDE4_BUILD_TESTS)
 
@@ -57,7 +57,7 @@ if(KDE4_BUILD_TESTS)
 
 kde4_add_executable(test_headergeneration ${test_headergeneration_SRCS})
 
-target_link_libraries(test_headergeneration  ${QT_AND_KDECORE_LIBS} )
+target_link_libraries(test_headergeneration  ${KDE4_KDECORE_LIBS} )
 
 endif(KDE4_BUILD_TESTS)
 
@@ -72,7 +72,7 @@ if(KDE4_BUILD_TESTS)
 
 kde4_add_executable(test_commands ${test_commands_SRCS})
 
-target_link_libraries(test_commands  ${QT_AND_KDECORE_LIBS} )
+target_link_libraries(test_commands  ${KDE4_KDECORE_LIBS} )
 
 endif(KDE4_BUILD_TESTS)
 
@@ -86,7 +86,7 @@ if(KDE4_BUILD_TESTS)
 
 kde4_add_executable(interactivesmtpserver ${interactivesmtpserver_SRCS})
 
-target_link_libraries(interactivesmtpserver  ${QT_AND_KDECORE_LIBS} )
+target_link_libraries(interactivesmtpserver  ${KDE4_KDECORE_LIBS} )
 
 endif(KDE4_BUILD_TESTS)
 

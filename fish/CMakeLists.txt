@@ -15,7 +15,7 @@ kde4_add_plugin(kio_fish ${kio_fish_PART_SRCS})
 
 kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kio_fish )
 
-target_link_libraries(kio_fish  ${QT_AND_KDECORE_LIBS} )
+target_link_libraries(kio_fish  ${KDE4_KDECORE_LIBS} )
 
 install_targets(${LIB_INSTALL_DIR}/kde4 kio_fish )
 

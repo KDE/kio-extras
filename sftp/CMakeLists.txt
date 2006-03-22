@@ -15,7 +15,7 @@ if(KDE4_BUILD_TESTS)
 
 kde4_add_executable(ksshprocesstest ${ksshprocesstest_SRCS})
 
-target_link_libraries(ksshprocesstest  ${QT_AND_KDECORE_LIBS} kdesu )
+target_link_libraries(ksshprocesstest  ${KDE4_KDECORE_LIBS} kdesu )
 
 endif(KDE4_BUILD_TESTS)
 

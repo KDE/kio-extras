@@ -20,7 +20,7 @@ kde4_add_plugin(kcm_media ${kcm_media_PART_SRCS})
 
 kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kcm_media )
 
-target_link_libraries(kcm_media  ${QT_AND_KDECORE_LIBS} mediacommon kio )
+target_link_libraries(kcm_media  ${KDE4_KDECORE_LIBS} mediacommon kio )
 
 install_targets(${LIB_INSTALL_DIR}/kde4 kcm_media )
 

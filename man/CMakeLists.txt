@@ -29,7 +29,7 @@ if(KDE4_BUILD_TESTS)
 
 kde4_add_executable(man2html ${man2html_SRCS})
 
-target_link_libraries(man2html  ${QT_AND_KDECORE_LIBS} )
+target_link_libraries(man2html  ${KDE4_KDECORE_LIBS} )
 
 endif(KDE4_BUILD_TESTS)
 
