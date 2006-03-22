@@ -15,7 +15,7 @@ if(KDE4_BUILD_TESTS)
 
 kde4_add_executable(kio_man_test ${kio_man_test_SRCS})
 
-target_link_libraries(kio_man_test  ${LIB_KIO} )
+target_link_libraries(kio_man_test  ${KDE4_KIO_LIBS} )
 
 endif(KDE4_BUILD_TESTS)
 

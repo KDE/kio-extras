@@ -13,7 +13,7 @@ kde4_add_plugin(kio_mac ${kio_mac_PART_SRCS})
 
 kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kio_mac )
 
-target_link_libraries(kio_mac  ${LIB_KIO} )
+target_link_libraries(kio_mac  ${KDE4_KIO_LIBS} )
 
 install_targets(${LIB_INSTALL_DIR}/kde4 kio_mac )
 
