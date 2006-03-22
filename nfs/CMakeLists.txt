@@ -15,7 +15,7 @@ kde4_add_plugin(kio_nfs ${kio_nfs_PART_SRCS})
 
 kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kio_nfs )
 
-target_link_libraries(kio_nfs  ${LIB_KDE3SUPPORT})
+target_link_libraries(kio_nfs  ${KDE4_KDE3SUPPORT_LIBS})
 
 install_targets(${LIB_INSTALL_DIR}/kde4 kio_nfs )
 

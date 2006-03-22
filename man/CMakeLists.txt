@@ -43,7 +43,7 @@ kde4_add_plugin(kio_man ${kio_man_PART_SRCS})
 
 kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kio_man )
 
-target_link_libraries(kio_man  ${LIB_KDE3SUPPORT})
+target_link_libraries(kio_man  ${KDE4_KDE3SUPPORT_LIBS})
 
 install_targets(${LIB_INSTALL_DIR}/kde4 kio_man )
 

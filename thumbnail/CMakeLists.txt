@@ -15,7 +15,7 @@ kde4_add_plugin(kio_thumbnail ${kio_thumbnail_PART_SRCS})
 
 kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kio_thumbnail )
 
-target_link_libraries(kio_thumbnail  ${LIB_KDE3SUPPORT}  kdefx)
+target_link_libraries(kio_thumbnail  ${KDE4_KDE3SUPPORT_LIBS}  kdefx)
 
 install_targets(${LIB_INSTALL_DIR}/kde4 kio_thumbnail )
 
@@ -30,7 +30,7 @@ kde4_add_plugin(imagethumbnail ${imagethumbnail_PART_SRCS})
 
 kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} imagethumbnail )
 
-target_link_libraries(imagethumbnail  ${LIB_KDE3SUPPORT})
+target_link_libraries(imagethumbnail  ${KDE4_KDE3SUPPORT_LIBS})
 
 install_targets(${LIB_INSTALL_DIR}/kde4 imagethumbnail )
 
@@ -75,7 +75,7 @@ kde4_add_plugin(djvuthumbnail ${djvuthumbnail_PART_SRCS})
 
 kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} djvuthumbnail )
 
-target_link_libraries(djvuthumbnail  ${LIB_KDE3SUPPORT})
+target_link_libraries(djvuthumbnail  ${KDE4_KDE3SUPPORT_LIBS})
 
 install_targets(${LIB_INSTALL_DIR}/kde4 djvuthumbnail )
 
@@ -94,7 +94,7 @@ if(OPENEXR_FOUND)
 
    kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} exrthumbnail )
 
-   target_link_libraries(exrthumbnail  ${LIB_KDE3SUPPORT} ${OPENEXR_LIBRARIES})
+   target_link_libraries(exrthumbnail  ${KDE4_KDE3SUPPORT_LIBS} ${OPENEXR_LIBRARIES})
 
    install_targets(${LIB_INSTALL_DIR}/kde4 exrthumbnail )
    install_files( ${SERVICES_INSTALL_DIR} FILES exrthumbnail.desktop )
@@ -115,7 +115,7 @@ if(X11_Xcursor_FOUND)
 
    kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} cursorthumbnail )
 
-   target_link_libraries(cursorthumbnail  ${LIB_KDE3SUPPORT} ${X11_Xcursor_LIB})
+   target_link_libraries(cursorthumbnail  ${KDE4_KDE3SUPPORT_LIBS} ${X11_Xcursor_LIB})
 
    install_targets(${LIB_INSTALL_DIR}/kde4 cursorthumbnail )
    install_files( ${SERVICES_INSTALL_DIR} FILES cursorthumbnail.desktop )
