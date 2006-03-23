@@ -2,7 +2,7 @@ kde4_header()
 
 project(kioslave-thumbnail)
 
-include_directories( ${KDE4_INCLUDE_DIR} ${QT_INCLUDES} ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR}  )
+include_directories( ${KDE4_INCLUDE_DIR} ${QT_INCLUDES} )
 
 macro_optional_find_package(OpenEXR)
 ########### next target ###############
@@ -84,7 +84,7 @@ install_targets(${LIB_INSTALL_DIR}/kde4 djvuthumbnail )
 
 if(OPENEXR_FOUND)
 
-   include_directories(${KDE4_INCLUDE_DIR} ${QT_INCLUDES} ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR} ${OPENEXR_INCLUDE_DIR})
+   include_directories( ${OPENEXR_INCLUDE_DIR} )
 
    set(exrthumbnail_PART_SRCS exrcreator.cpp)
 
@@ -104,8 +104,6 @@ endif(OPENEXR_FOUND)
 ########### next target ###############
 
 if(X11_Xcursor_FOUND)
-
-   include_directories(${KDE4_INCLUDE_DIR} ${QT_INCLUDES} ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR})
 
    set(cursorthumbnail_PART_SRCS cursorcreator.cpp)
 

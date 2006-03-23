@@ -10,8 +10,7 @@ IF(SASL2_FOUND)
   set(smtp_optional_includes ${smtp_optional_includes} ${SASL2_INCLUDE_DIR})
   set(smtp_optional_libs     ${smtp_optional_libs}     ${SASL2_LIBRARIES})
 ENDIF(SASL2_FOUND)
-
-include_directories( ${KDE4_INCLUDE_DIR} ${QT_INCLUDES} ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR} ${smtp_optional_includes} )
+include_directories(  ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR} ${smtp_optional_includes} ${KDE4_INCLUDE_DIR} ${QT_INCLUDES} )
 
 
 ########### next target ###############
