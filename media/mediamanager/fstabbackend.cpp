@@ -145,7 +145,7 @@ static bool inExclusionPattern(const KMountPoint::Ptr& mount, bool networkShares
 
 void FstabBackend::handleMtabChange(bool allowNotification)
 {
-	QStringList new_mtabIds;
+	QStringList new_mtabIds, new_mtabEntries;
 	KMountPoint::List mtab = KMountPoint::currentMountPoints();
 
 	KMountPoint::List::iterator it = mtab.begin();
@@ -158,6 +158,14 @@ void FstabBackend::handleMtabChange(bool allowNotification)
 		QString fs = (*it)->mountType();
 
 		if ( ::inExclusionPattern(*it, m_networkSharesOnly) ) continue;
+
+		/* Did we know this already before ? If yes, then
+		   nothing has changed, do not stat the mount point. Avoids
+		   hang if network shares are stalling */
+		QString mtabEntry = dev + "*" + mp + "*" + fs;
+		bool isOldEntry = m_mtabEntries.contains(mtabEntry);
+		new_mtabEntries+=mtabEntry;
+		if (isOldEntry) continue;
 
 		QString id = generateId(dev, mp);
 		new_mtabIds+=id;
@@ -219,6 +227,7 @@ void FstabBackend::handleMtabChange(bool allowNotification)
 	}
 
 	m_mtabIds = new_mtabIds;
+        m_mtabEntries = new_mtabEntries;
 }
 
 void FstabBackend::handleFstabChange(bool allowNotification)
