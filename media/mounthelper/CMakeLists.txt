@@ -10,7 +10,7 @@ kde4_automoc(${kio_media_mounthelper_SRCS})
 
 kde4_add_executable(kio_media_mounthelper ${kio_media_mounthelper_SRCS})
 
-target_link_libraries(kio_media_mounthelper  ${KDE4_KDECORE_LIBS} kio mediacommon )
+target_link_libraries(kio_media_mounthelper  ${KDE4_KIO_LIBS} mediacommon )
 
 install_targets(/bin kio_media_mounthelper )
 

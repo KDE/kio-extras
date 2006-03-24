@@ -17,7 +17,7 @@ kde4_add_plugin(kio_remote ${kio_remote_PART_SRCS})
 
 kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kio_remote )
 
-target_link_libraries(kio_remote  ${KDE4_KDECORE_LIBS} kio DCOP)
+target_link_libraries(kio_remote  ${KDE4_KIO_LIBS} DCOP)
 
 install_targets(${LIB_INSTALL_DIR}/kde4 kio_remote )
 
@@ -35,7 +35,7 @@ if(KDE4_BUILD_TESTS)
 
 kde4_add_executable(testremote ${testremote_SRCS})
 
-target_link_libraries(testremote  ${KDE4_KDECORE_LIBS} kio )
+target_link_libraries(testremote  ${KDE4_KIO_LIBS} )
 
 endif(KDE4_BUILD_TESTS)
 
