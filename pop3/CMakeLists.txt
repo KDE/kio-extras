@@ -10,7 +10,7 @@ IF(SASL2_FOUND)
   set(pop3_optional_includes ${pop3_optional_includes} ${SASL2_INCLUDE_DIR})
   set(pop3_optional_libs     ${pop3_optional_libs}     ${SASL2_LIBRARIES})
 ENDIF(SASL2_FOUND)
-include_directories(  ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR} ${pop3_optional_includes} ${KDE4_INCLUDE_DIR} ${QT_INCLUDES} )
+include_directories(  ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR} ${pop3_optional_includes} ${KDE4_INCLUDES} )
 
 ########### next target ###############
 
