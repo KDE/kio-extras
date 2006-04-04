@@ -29,6 +29,7 @@
  */
 
 #include <config.h>
+#include <smtp-config.h>
 
 #ifdef HAVE_LIBSASL2
 extern "C" {

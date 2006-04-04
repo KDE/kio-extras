@@ -2,14 +2,21 @@ kde4_header()
 
 project(kioslave-pop3)
 
-macro_optional_find_package(Sasl2)
-
 set(pop3_optional_includes)
 set(pop3_optional_libs)
-IF(SASL2_FOUND)
-  set(pop3_optional_includes ${pop3_optional_includes} ${SASL2_INCLUDE_DIR})
-  set(pop3_optional_libs     ${pop3_optional_libs}     ${SASL2_LIBRARIES})
-ENDIF(SASL2_FOUND)
+
+macro_optional_find_package(Sasl2)
+
+if(SASL2_FOUND)
+   set(pop3_optional_includes ${pop3_optional_includes} ${SASL2_INCLUDE_DIR})
+   set(pop3_optional_libs     ${pop3_optional_libs}     ${SASL2_LIBRARIES})
+   set(HAVE_LIBSASL2 1)
+else(SASL2_FOUND)
+   set(HAVE_LIBSASL2 0)
+endif(SASL2_FOUND)
+
+configure_file(pop3-config.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/pop3-config.h )
+
 include_directories(  ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR} ${pop3_optional_includes} ${KDE4_INCLUDES} )
 
 ########### next target ###############

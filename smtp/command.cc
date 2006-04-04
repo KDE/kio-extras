@@ -30,6 +30,7 @@
 */
 
 #include <config.h>
+#include <smtp-config.h>
 
 #include "command.h"
 
