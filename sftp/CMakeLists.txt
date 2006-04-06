@@ -14,7 +14,7 @@ if(KDE4_BUILD_TESTS)
 
 kde4_add_executable(ksshprocesstest ${ksshprocesstest_SRCS})
 
-target_link_libraries(ksshprocesstest  ${KDE4_KDECORE_LIBS} kdesu )
+target_link_libraries(ksshprocesstest  ${KDE4_KDECORE_LIBS} ${KDE4_KDESU_LIBS} )
 
 endif(KDE4_BUILD_TESTS)
 
@@ -33,7 +33,7 @@ kde4_add_plugin(kio_sftp ${kio_sftp_PART_SRCS})
 
 kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kio_sftp )
 
-target_link_libraries(kio_sftp  ${KDE4_KDE3SUPPORT_LIBS}  kdesu)
+target_link_libraries(kio_sftp  ${KDE4_KDE3SUPPORT_LIBS} ${KDE4_KDESU_LIBS} )
 
 install_targets(${LIB_INSTALL_DIR}/kde4 kio_sftp )
 
