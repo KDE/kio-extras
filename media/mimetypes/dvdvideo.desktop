@@ -7,3 +7,4 @@ Comment[fr]=DVD vidéo
 Comment[x-test]=xxDVD Video Diskxx
 Icon=dvd_unmount
 
+X-KDE-IsAlso=inode/directory
