@@ -72,8 +72,8 @@ MountHelper::MountHelper() : KApplication()
 	QString device = medium.deviceNode();
 	QString mount_point = medium.mountPoint();
 
-	m_isCdrom = medium.mimeType().find("dvd")!=-1
-	         || medium.mimeType().find("cd")!=-1;
+	m_isCdrom = medium.mimeType().indexOf("dvd")!=-1
+	         || medium.mimeType().indexOf("cd")!=-1;
 
 	if (args->isSet("u"))
 	{

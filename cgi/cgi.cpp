@@ -140,8 +140,8 @@ void CgiProtocol::get( const KUrl& url )
 
     if ( stripHeader ) {
       QByteArray output = buffer; // this assumes buffer is text and not binary
-      int colon = output.find( ':' );
-      int newline = output.find( '\n' );
+      int colon = output.indexOf( ':' );
+      int newline = output.indexOf( '\n' );
       int semicolon = output.lastIndexOf( ';', newline );
       int end;
       if ( semicolon < 0 ) end = newline;
@@ -162,10 +162,10 @@ void CgiProtocol::get( const KUrl& url )
 
       mimeType( contentType );
 
-      int start = output.find( "\r\n\r\n" );
+      int start = output.indexOf( "\r\n\r\n" );
       if ( start >= 0 ) start += 4;
       else {
-        start = output.find( "\n\n" );
+        start = output.indexOf( "\n\n" );
         if ( start >= 0 ) start += 2;
       }
 

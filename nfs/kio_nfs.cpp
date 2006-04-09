@@ -172,7 +172,7 @@ static QString removeFirstPart(const QString& path)
    QString result("");
    if (path.isEmpty()) return result;
    result=path.mid(1);
-   int slashPos=result.find("/");
+   int slashPos=result.indexOf("/");
    return result.mid(slashPos+1);
 }
 
@@ -1522,7 +1522,7 @@ bool NFSProtocol::isValidLink(const QString& parentDir, const QString& linkDest)
       kDebug(7121)<<"removed first part "<<absDest<<endl;
       absDest=QDir::cleanPath(absDest);
       kDebug(7121)<<"simplified to "<<absDest<<endl;
-      if (absDest.find("../")==0)
+      if (absDest.indexOf("../")==0)
          return false;
 
       kDebug(7121)<<"is inside the nfs tree"<<endl;

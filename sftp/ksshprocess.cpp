@@ -268,7 +268,7 @@ KSshProcess::SshVersion KSshProcess::version() {
 
     mVersion = UNKNOWN_VER;
     for(int i = 0; i < SSH_VER_MAX; i++) {
-        if( ver.find(versionStrs[i]) != -1 ) {
+        if( ver.indexOf(versionStrs[i]) != -1 ) {
              mVersion = (SshVersion)i;
              break;
         }
@@ -778,26 +778,26 @@ bool KSshProcess::connect() {
                     i18n("Error encountered while talking to ssh.");
                 mConnectState = STATE_FATAL;
             }
-            else if( line.find(QString::fromLatin1(passwordPrompt[mVersion]), 0, false) != -1 ) {
+            else if( line.indexOf(QString::fromLatin1(passwordPrompt[mVersion]), 0, Qt::CaseInsensitive) != -1 ) {
                 mConnectState = STATE_TRY_PASSWD;
             }
-            else if( line.find(passphrasePrompt[mVersion]) != -1 ) {
+            else if( line.indexOf(passphrasePrompt[mVersion]) != -1 ) {
                 mConnectState = STATE_TRY_PASSPHRASE;
             }
-            else if( line.find(authSuccessMsg[mVersion]) != -1 ) {
+            else if( line.indexOf(authSuccessMsg[mVersion]) != -1 ) {
                 return true;
             }
-            else if( line.find(authFailedMsg[mVersion]) != -1
-                    && line.find(tryAgainMsg[mVersion]) == -1 ) {
+            else if( (line.indexOf(authFailedMsg[mVersion]) != -1)
+                    && (line.indexOf(tryAgainMsg[mVersion]) == -1) ) {
                 mConnectState = STATE_AUTH_FAILED;
             }
-            else if( line.find(hostKeyMissingMsg[mVersion]) != -1 ) {
+            else if( line.indexOf(hostKeyMissingMsg[mVersion]) != -1 ) {
                 mConnectState = STATE_NEW_KEY_WAIT_CONTINUE;
             }
-            else if( line.find(hostKeyChangedMsg[mVersion]) != -1 ) {
+            else if( line.indexOf(hostKeyChangedMsg[mVersion]) != -1 ) {
                 mConnectState = STATE_DIFF_KEY_WAIT_CONTINUE;
             }
-            else if( line.find(continuePrompt[mVersion]) != -1 ) {
+            else if( line.indexOf(continuePrompt[mVersion]) != -1 ) {
                 //mConnectState = STATE_SEND_CONTINUE;
                 kDebug(KSSHPROC) << "KSshProcess:connect(): "
                     "Got continue prompt where we shouldn't (STATE_WAIT_PROMPT)"
@@ -806,12 +806,12 @@ bool KSshProcess::connect() {
                 mErrorMsg =
                     i18n("Error encountered while talking to ssh.");
             }
-            else if( line.find(connectionClosedMsg[mVersion]) != -1 ) {
+            else if( line.indexOf(connectionClosedMsg[mVersion]) != -1 ) {
                 mConnectState = STATE_FATAL;
                 mError = ERR_CLOSED_BY_REMOTE_HOST;
                 mErrorMsg = i18n("Connection closed by remote host.");
             }
-            else if( line.find(changeHostKeyOnDiskPrompt[mVersion]) != -1 ) {
+            else if( line.indexOf(changeHostKeyOnDiskPrompt[mVersion]) != -1 ) {
                 // always say yes to this.  It always comes after commerical ssh
                 // prints a "continue to connect prompt". We assume that if the
                 // user choose to continue, then they also want to save the
@@ -926,9 +926,9 @@ bool KSshProcess::connect() {
                     i18n("Error encountered while talking to ssh.");
                 mConnectState = STATE_FATAL;
             }
-            else if( (line.find(authFailedMsg[mVersion]) != -1
-                           && line.find(tryAgainMsg[mVersion]) == -1)
-                    || line.find(hostKeyVerifyFailedMsg[mVersion]) != -1 ) {
+            else if( ((line.indexOf(authFailedMsg[mVersion]) != -1)
+                           && (line.indexOf(tryAgainMsg[mVersion]) == -1))
+                    || (line.indexOf(hostKeyVerifyFailedMsg[mVersion]) != -1) ) {
                 mError = ERR_AUTH_FAILED_NEW_KEY;
                 mErrorMsg = i18n(
                     "The identity of the remote host '%1' could not be verified "
@@ -950,15 +950,15 @@ bool KSshProcess::connect() {
 
                 mConnectState = STATE_FATAL;
             }
-            else if( line.find(continuePrompt[mVersion]) != -1 ) {
+            else if( line.indexOf(continuePrompt[mVersion]) != -1 ) {
                 mConnectState = STATE_NEW_KEY_CONTINUE;
             }
-            else if( line.find(connectionClosedMsg[mVersion]) != -1 ) {
+            else if( line.indexOf(connectionClosedMsg[mVersion]) != -1 ) {
                 mConnectState = STATE_FATAL;
                 mError = ERR_CLOSED_BY_REMOTE_HOST;
                 mErrorMsg = i18n("Connection closed by remote host.");
             }
-            else if( line.find(keyFingerprintMsg[mVersion]) != -1 ) {
+            else if( line.indexOf(keyFingerprintMsg[mVersion]) != -1 ) {
                 mKeyFingerprint = keyFingerprintMsg[mVersion].cap();
                 kDebug(KSSHPROC) << "Found key fingerprint: " << mKeyFingerprint << endl;
                 mConnectState = STATE_NEW_KEY_WAIT_CONTINUE;
@@ -998,9 +998,9 @@ bool KSshProcess::connect() {
                     i18n("Error encountered while talking to ssh.");
                 mConnectState = STATE_FATAL;
             }
-            else if( (line.find(authFailedMsg[mVersion]) != -1
-                           && line.find(tryAgainMsg[mVersion]) == -1)
-                    || line.find(hostKeyVerifyFailedMsg[mVersion]) != -1 ) {
+            else if( ((line.indexOf(authFailedMsg[mVersion]) != -1)
+                           && (line.indexOf(tryAgainMsg[mVersion]) == -1))
+                    || (line.indexOf(hostKeyVerifyFailedMsg[mVersion]) != -1) ) {
                 mError = ERR_AUTH_FAILED_DIFF_KEY;
                 mErrorMsg = i18n(
                     "WARNING: The identity of the remote host '%1' has changed!\n\n"
@@ -1013,15 +1013,15 @@ bool KSshProcess::connect() {
                 ).arg(mHost).arg(mKeyFingerprint).arg(mKnownHostsFile);
                 mConnectState = STATE_FATAL;
             }
-            else if( line.find(continuePrompt[mVersion]) != -1 ) {
+            else if( line.indexOf(continuePrompt[mVersion]) != -1 ) {
                 mConnectState = STATE_DIFF_KEY_CONTINUE;
             }
-            else if( line.find(keyFingerprintMsg[mVersion]) != -1 ) {
+            else if( line.indexOf(keyFingerprintMsg[mVersion]) != -1 ) {
                 mKeyFingerprint = keyFingerprintMsg[mVersion].cap();
                 kDebug(KSSHPROC) << "Found key fingerprint: " << mKeyFingerprint << endl;
                 mConnectState = STATE_DIFF_KEY_WAIT_CONTINUE;
             }
-            else if( line.find(knownHostsFileMsg[mVersion]) != -1 ) {
+            else if( line.indexOf(knownHostsFileMsg[mVersion]) != -1 ) {
                 mKnownHostsFile = (knownHostsFileMsg[mVersion]).cap(1);
                 kDebug(KSSHPROC) << "Found known hosts file name: " << mKnownHostsFile << endl;
                 mConnectState = STATE_DIFF_KEY_WAIT_CONTINUE;

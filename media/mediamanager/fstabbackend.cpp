@@ -120,17 +120,17 @@ static bool inExclusionPattern(const KMountPoint::Ptr& mount, bool networkShares
 	  || mount->mountType() == "sunrpc"
 	  || mount->mountedFrom() == "none"
 	  || mount->mountedFrom() == "tmpfs"
-	  || mount->mountedFrom().find("shm") != -1
+	  || mount->mountedFrom().indexOf("shm") != -1
 	  || mount->mountPoint() == "/dev/swap"
 	  || mount->mountPoint() == "/dev/pts"
-	  || mount->mountPoint().find("/proc") == 0
+	  || mount->mountPoint().indexOf("/proc") == 0
 
 	  // We might want to display only network shares
 	  // since HAL doesn't handle them
 	  || ( networkSharesOnly
-	    && mount->mountType().find( "smb" ) == -1
-	    && mount->mountType().find( "cifs" ) == -1
-	    && mount->mountType().find( "nfs" ) == -1
+	    && mount->mountType().indexOf( "smb" ) == -1
+	    && mount->mountType().indexOf( "cifs" ) == -1
+	    && mount->mountType().indexOf( "nfs" ) == -1
 	     )
 	   )
 	{
@@ -359,37 +359,37 @@ void FstabBackend::guess(const QString &devNode, const QString &mountPoint,
 	}
 #endif
 	if ( devType == CDWRITER
-	  || devNode.find("cdwriter")!=-1 || mountPoint.find("cdwriter")!=-1
-	  || devNode.find("cdrecorder")!=-1 || mountPoint.find("cdrecorder")!=-1
-	  || devNode.find("cdburner")!=-1 || mountPoint.find("cdburner")!=-1
-	  || devNode.find("cdrw")!=-1 || mountPoint.find("cdrw")!=-1
-	  || devNode.find("graveur")!=-1
+	  || devNode.indexOf("cdwriter")!=-1 || mountPoint.indexOf("cdwriter")!=-1
+	  || devNode.indexOf("cdrecorder")!=-1 || mountPoint.indexOf("cdrecorder")!=-1
+	  || devNode.indexOf("cdburner")!=-1 || mountPoint.indexOf("cdburner")!=-1
+	  || devNode.indexOf("cdrw")!=-1 || mountPoint.indexOf("cdrw")!=-1
+	  || devNode.indexOf("graveur")!=-1
 	   )
 	{
 		mimeType = "media/cdwriter";
 		label = i18n("CD Recorder");
 	}
 	else if ( devType == DVD || devType == DVDWRITER
-	       || devNode.find("dvd")!=-1 || mountPoint.find("dvd")!=-1 )
+	       || devNode.indexOf("dvd")!=-1 || mountPoint.indexOf("dvd")!=-1 )
 	{
 		mimeType = "media/dvd";
 		label = i18n("DVD");
 	}
 	else if ( devType == CD
-	       || devNode.find("cdrom")!=-1 || mountPoint.find("cdrom")!=-1
+	       || devNode.indexOf("cdrom")!=-1 || mountPoint.indexOf("cdrom")!=-1
 	       // LINUX SPECIFIC
-	       || devNode.find("/dev/scd")!=-1 || devNode.find("/dev/sr")!=-1
+	       || devNode.indexOf("/dev/scd")!=-1 || devNode.indexOf("/dev/sr")!=-1
 	       // FREEBSD SPECIFIC
-	       || devNode.find("/acd")!=-1 || devNode.find("/scd")!=-1
+	       || devNode.indexOf("/acd")!=-1 || devNode.indexOf("/scd")!=-1
 	        )
 	{
 		mimeType = "media/cdrom";
 		label = i18n("CD-ROM");
 	}
-	else if ( devNode.find("fd")!=-1 || mountPoint.find("fd")!=-1
-	       || devNode.find("floppy")!=-1 || mountPoint.find("floppy")!=-1 )
+	else if ( devNode.indexOf("fd")!=-1 || mountPoint.indexOf("fd")!=-1
+	       || devNode.indexOf("floppy")!=-1 || mountPoint.indexOf("floppy")!=-1 )
 	{
-		if ( devNode.find("360")!=-1 || devNode.find("1200")!=-1 )
+		if ( devNode.indexOf("360")!=-1 || devNode.indexOf("1200")!=-1 )
 		{
 			mimeType = "media/floppy5";
 		}
@@ -399,32 +399,32 @@ void FstabBackend::guess(const QString &devNode, const QString &mountPoint,
 		}
 		label = i18n("Floppy");
 	}
-	else if ( mountPoint.find("zip")!=-1
+	else if ( mountPoint.indexOf("zip")!=-1
 	       // FREEBSD SPECIFIC
-	       || devNode.find("/afd")!=-1
+	       || devNode.indexOf("/afd")!=-1
 	        )
 	{
 		mimeType = "media/zip";
 		label = i18n("Zip Disk");
 	}
-	else if ( mountPoint.find("removable")!=-1
-	       || mountPoint.find("hotplug")!=-1
-	       || mountPoint.find("usb")!=-1
-	       || mountPoint.find("firewire")!=-1
-	       || mountPoint.find("ieee1394")!=-1
-	       || devNode.find("/usb/")!= -1
+	else if ( mountPoint.indexOf("removable")!=-1
+	       || mountPoint.indexOf("hotplug")!=-1
+	       || mountPoint.indexOf("usb")!=-1
+	       || mountPoint.indexOf("firewire")!=-1
+	       || mountPoint.indexOf("ieee1394")!=-1
+	       || devNode.indexOf("/usb/")!= -1
 	        )
 	{
 		mimeType = "media/removable";
 		label = i18n("Removable Device");
 	}
-	else if ( fsType.find("nfs")!=-1 )
+	else if ( fsType.indexOf("nfs")!=-1 )
 	{
 		mimeType = "media/nfs";
 		label = i18n("Remote Share");
 	}
-	else if ( fsType.find("smb")!=-1 || fsType.find("cifs")!=-1
-	       || devNode.find("//")!=-1 )
+	else if ( fsType.indexOf("smb")!=-1 || fsType.indexOf("cifs")!=-1
+	       || devNode.indexOf("//")!=-1 )
 	{
 		mimeType = "media/smb";
 		label = i18n("Remote Share");

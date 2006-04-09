@@ -105,17 +105,17 @@ void NNTPProtocol::get( const KUrl& url )
   int res_code;
 
   // path should be like: /group/<msg_id>
-  if (regMsgId.search(path) != 0) {
+  if (regMsgId.indexIn(path) != 0) {
     error(ERR_DOES_NOT_EXIST,path);
     return;
   }
 
-  pos = path.find('<');
+  pos = path.indexOf('<');
   group = path.left(pos);
   msg_id = KUrl::decode_string( path.right(path.length()-pos) );
   if ( group.startsWith( "/" ) )
     group.remove( 0, 1 );
-  if ((pos = group.find('/')) > 0) group = group.left(pos);
+  if ((pos = group.indexOf('/')) > 0) group = group.left(pos);
   DBG << "get group: " << group << " msg: " << msg_id << endl;
 
   if ( !nntp_open() )
@@ -231,7 +231,7 @@ bool NNTPProtocol::post_article() {
         pos += 2;
       }
       last_chunk_had_line_ending = ( buffer.endsWith( "\r\n" ) );
-      while ( (pos = buffer.find( "\r\n.", pos )) > 0) {
+      while ( (pos = buffer.indexOf( "\r\n.", pos )) > 0) {
         buffer.insert( pos + 2, '.' );
         pos += 4;
       }
@@ -282,9 +282,9 @@ void NNTPProtocol::stat( const KUrl& url ) {
     fillUDSEntry( entry, QString(), 0, false, ( S_IWUSR | S_IWGRP | S_IWOTH ) );
 
   // /group = message list
-  } else if (regGroup.search(path) == 0) {
+  } else if (regGroup.indexIn(path) == 0) {
     if ( path.startsWith( "/" ) ) path.remove(0,1);
-    if ((pos = path.find('/')) > 0) group = path.left(pos);
+    if ((pos = path.indexOf('/')) > 0) group = path.left(pos);
     else group = path;
     DBG << "stat group: " << group << endl;
     // postingAllowed should be ored here with "group not moderated" flag
@@ -292,13 +292,13 @@ void NNTPProtocol::stat( const KUrl& url ) {
     fillUDSEntry( entry, group, 0, false, ( S_IWUSR | S_IWGRP | S_IWOTH ) );
 
   // /group/<msg_id> = message
-  } else if (regMsgId.search(path) == 0) {
-    pos = path.find('<');
+  } else if (regMsgId.indexIn(path) == 0) {
+    pos = path.indexOf('<');
     group = path.left(pos);
     msg_id = KUrl::decode_string( path.right(path.length()-pos) );
     if ( group.startsWith( "/" ) )
       group.remove( 0, 1 );
-    if ((pos = group.find('/')) > 0) group = group.left(pos);
+    if ((pos = group.indexOf('/')) > 0) group = group.left(pos);
     DBG << "stat group: " << group << " msg: " << msg_id << endl;
     fillUDSEntry( entry, msg_id, 0, true );
 
@@ -337,7 +337,7 @@ void NNTPProtocol::listDir( const KUrl& url ) {
     QString group;
     if ( path.startsWith( "/" ) )
       path.remove( 0, 1 );
-    if ((pos = path.find('/')) > 0)
+    if ((pos = path.indexOf('/')) > 0)
       group = path.left(pos);
     else
       group = path;
@@ -390,7 +390,7 @@ void NNTPProtocol::fetchGroups( const QString &since, bool desc )
       break;
 
     // group name
-    if ((pos = line.find(' ')) > 0) {
+    if ((pos = line.indexOf(' ')) > 0) {
 
       group = line.left(pos);
 
@@ -398,8 +398,8 @@ void NNTPProtocol::fetchGroups( const QString &since, bool desc )
       line.remove(0,pos+1);
       long last = 0;
       access = 0;
-      if (((pos = line.find(' ')) > 0 || (pos = line.find('\t')) > 0) &&
-          ((pos2 = line.find(' ',pos+1)) > 0 || (pos2 = line.find('\t',pos+1)) > 0)) {
+      if (((pos = line.indexOf(' ')) > 0 || (pos = line.indexOf('\t')) > 0) &&
+          ((pos2 = line.indexOf(' ',pos+1)) > 0 || (pos2 = line.indexOf('\t',pos+1)) > 0)) {
         last = line.left(pos).toLongLong();
         long first = line.mid(pos+1,pos2-pos-1).toLongLong();
         msg_cnt = abs(last-first+1);
@@ -548,7 +548,7 @@ bool NNTPProtocol::fetchGroupRFC977( unsigned long first )
   //STAT res_line: 223 nnn <msg_id> ...
   QString msg_id;
   int pos, pos2;
-  if ((pos = resp_line.find('<')) > 0 && (pos2 = resp_line.find('>',pos+1))) {
+  if ((pos = resp_line.indexOf('<')) > 0 && (pos2 = resp_line.indexOf('>',pos+1))) {
     msg_id = resp_line.mid(pos,pos2-pos+1);
     fillUDSEntry( entry, msg_id, 0, true );
     listEntry( entry, false );
@@ -573,7 +573,7 @@ bool NNTPProtocol::fetchGroupRFC977( unsigned long first )
 
     //res_line: 223 nnn <msg_id> ...
     resp_line = readBuffer;
-    if ((pos = resp_line.find('<')) > 0 && (pos2 = resp_line.find('>',pos+1))) {
+    if ((pos = resp_line.indexOf('<')) > 0 && (pos2 = resp_line.indexOf('>',pos+1))) {
       msg_id = resp_line.mid(pos,pos2-pos+1);
       entry.clear();
       fillUDSEntry( entry, msg_id, 0, true );

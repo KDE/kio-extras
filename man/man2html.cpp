@@ -820,7 +820,7 @@ static void add_links(char *c)
                     QByteArray fstr(f);
 		    e=h+1;
 		    sec=f[1];
-		    const int index = fstr.find(')', 2);
+		    const int index = fstr.indexOf(')', 2);
                     QByteArray subsec;
                     if (index != -1)
 		      subsec = fstr.mid(2, index - 2);
@@ -1169,7 +1169,7 @@ static Q3CString scan_named_character( char*& c )
             {
                 Q3CString cstr;
                 c = scan_escape_direct( c+1, cstr );
-                const int result = cstr.find(']');
+                const int result = cstr.indexOf(']');
                 if ( result == -1 )
                     name += cstr;
                 else
@@ -1201,7 +1201,7 @@ static Q3CString scan_named_character( char*& c )
             {
                 Q3CString cstr;
                 c = scan_escape_direct( c+1, cstr );
-                const int result = cstr.find('\'');
+                const int result = cstr.indexOf('\'');
                 if ( result == -1 )
                     name += cstr;
                 else
@@ -1273,7 +1273,7 @@ static Q3CString scan_named_string(char*& c)
             {
                 Q3CString cstr;
                 c = scan_escape_direct( c+1, cstr );
-                const int result = cstr.find(']');
+                const int result = cstr.indexOf(']');
                 if ( result == -1 )
                     name += cstr;
                 else
@@ -1561,7 +1561,7 @@ static Q3CString scan_named_font( char*& c )
             {
                 Q3CString cstr;
                 c = scan_escape_direct( c+1, cstr );
-                const int result = cstr.find(']');
+                const int result = cstr.indexOf(']');
                 if ( result == -1 )
                     name += cstr;
                 else

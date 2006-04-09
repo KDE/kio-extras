@@ -142,7 +142,7 @@ bool TextCreator::create(const QString &path, int width, int height, QImage &img
                     // physical newline in the file if we don't come from one
                     if ( !newLine )
                     {
-                        int pos = text.find( '\n', i );
+                        int pos = text.indexOf( '\n', i );
                         if ( pos == -1 )
 			    break;
                         i = pos + 1;

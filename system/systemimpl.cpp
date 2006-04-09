@@ -81,7 +81,7 @@ bool SystemImpl::parseURL(const KUrl &url, QString &name, QString &path) const
 {
 	QString url_path = url.path();
 
-	int i = url_path.find('/', 1);
+	int i = url_path.indexOf('/', 1);
 	if (i > 0)
 	{
 		name = url_path.mid(1, i-1);

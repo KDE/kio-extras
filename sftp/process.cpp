@@ -107,7 +107,7 @@ Q3CString MyPtyProcess::readLineFrom(int fd, Q3CString& inbuf, bool block)
     if (!inbuf.isEmpty())
     {
 
-        pos = inbuf.find('\n');
+        pos = inbuf.indexOf('\n');
         
         if (pos == -1) 
 	{
@@ -155,7 +155,7 @@ Q3CString MyPtyProcess::readLineFrom(int fd, Q3CString& inbuf, bool block)
 	buf[nbytes] = '\000';
 	inbuf += buf;
 
-	pos = inbuf.find('\n');
+	pos = inbuf.indexOf('\n');
         if (pos == -1) 
 	{
 	    ret = inbuf;

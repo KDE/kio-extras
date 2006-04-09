@@ -60,13 +60,13 @@ void stripExtension( QString *name )
 {
     int pos = name->length();
 
-    if ( name->find(".gz", -3) != -1 )
+    if ( name->indexOf(".gz", -3) != -1 )
         pos -= 3;
-    else if ( name->find(".z", -2, false) != -1 )
+    else if ( name->indexOf(".z", -2, Qt::CaseInsensitive) != -1 )
         pos -= 2;
-    else if ( name->find(".bz2", -4) != -1 )
+    else if ( name->indexOf(".bz2", -4) != -1 )
         pos -= 4;
-    else if ( name->find(".bz", -3) != -1 )
+    else if ( name->indexOf(".bz", -3) != -1 )
         pos -= 3;
 
     if ( pos > 0 )
@@ -98,7 +98,7 @@ bool parseUrl(const QString& _url, QString &title, QString &section)
 
     title = url;
 
-    int pos = url.find('(');
+    int pos = url.indexOf('(');
     if (pos < 0)
         return true;
 
@@ -139,12 +139,12 @@ void MANProtocol::parseWhatIs( QMap<QString, QString> &i, QTextStream &t, const 
     while ( !t.atEnd() )
     {
 	l = t.readLine();
-	int pos = re.search( l );
+	int pos = re.indexIn( l );
 	if (pos != -1)
 	{
 	    QString names = l.left(pos);
 	    QString descr = l.mid(pos + re.matchedLength());
-	    while ((pos = names.find(",")) != -1)
+	    while ((pos = names.indexOf(",")) != -1)
 	    {
 		i[names.left(pos++)] = descr;
 		while (names[pos] == ' ')
@@ -825,17 +825,17 @@ void MANProtocol::constructPath(QStringList& constr_path, QStringList constr_cat
         while (!is.atEnd())
         {
             const QString line = is.readLine();
-            if ( manpath_regex.search(line, 0) == 0 )
+            if ( manpath_regex.indexIn(line) == 0 )
             {
                 const QString path = line.mid(8).trimmed();
                 constr_path += path;
             }
-            else if ( mandatory_regex.search(line, 0) == 0 )
+            else if ( mandatory_regex.indexIn(line) == 0 )
             {
                 const QString path = line.mid(18).trimmed();
                 constr_path += path;
             }
-            else if ( manpath_map_regex.search(line, 0) == 0 )
+            else if ( manpath_map_regex.indexIn(line) == 0 )
             {
                         // The entry is "MANPATH_MAP  <path>  <manpath>"
                 const QStringList mapping =
@@ -849,7 +849,7 @@ void MANProtocol::constructPath(QStringList& constr_path, QStringList constr_cat
                     manpath_map[ dir ] = mandir;
                 }
             }
-            else if ( mandb_map_regex.search(line, 0) == 0 )
+            else if ( mandb_map_regex.indexIn(line) == 0 )
             {
                         // The entry is "MANDB_MAP  <manpath>  <catmanpath>"
                 const QStringList mapping =

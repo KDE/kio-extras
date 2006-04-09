@@ -220,7 +220,7 @@ void LinuxCDPolling::slotMediumAdded(const QString &id)
 	QString mime = medium->mimeType();
 	kDebug(1219) << "mime == " << mime << endl;
 
-	if (mime.find("dvd")==-1 && mime.find("cd")==-1) return;
+	if (mime.indexOf("dvd")==-1 && mime.indexOf("cd")==-1) return;
 
 	if (!medium->isMounted())
 	{
@@ -258,7 +258,7 @@ void LinuxCDPolling::slotMediumStateChanged(const QString &id)
 	QString mime = medium->mimeType();
 	kDebug(1219) << "mime == " << mime << endl;
 
-	if (mime.find("dvd")==-1 && mime.find("cd")==-1) return;
+	if (mime.indexOf("dvd")==-1 && mime.indexOf("cd")==-1) return;
 
 	if (!m_threads.contains(id) && !medium->isMounted())
 	{
@@ -315,7 +315,7 @@ static QString baseType(const Medium *medium)
 	FstabBackend::guess(devNode, mountPoint, fsType, mounted,
 	                    mimeType, iconName, label);
 
-	if (devNode.find("dvd")!=-1)
+	if (devNode.indexOf("dvd")!=-1)
 	{
 		kDebug(1219) << "=> dvd" << endl;
 		return "dvd";
