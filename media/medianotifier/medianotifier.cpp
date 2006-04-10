@@ -169,8 +169,8 @@ bool MediaNotifier::execAutorun( const KFileItem &medium, const QString &path,
 	QString text = i18n( "An autorun file as been found on your '%1'."
 	                     " Do you want to execute it?\n"
 	                     "Note that executing a file on a medium may compromise"
-	                     " your system's security").arg( mediumType );
-	QString caption = i18n( "Autorun - %1" ).arg( medium.url().prettyURL() );
+	                     " your system's security", mediumType );
+	QString caption = i18n( "Autorun - %1", medium.url().prettyURL() );
 	KGuiItem yes = KStdGuiItem::yes();
 	KGuiItem no = KStdGuiItem::no();
 
@@ -242,8 +242,8 @@ bool MediaNotifier::execAutoopen( const KFileItem &medium, const QString &path,
 	QString text = i18n( "An autoopen file as been found on your '%1'."
 	                     " Do you want to open '%2'?\n"
 	                     "Note that opening a file on a medium may compromise"
-	                     " your system's security").arg( mediumType ).arg( filename );
-	QString caption = i18n( "Autoopen - %1" ).arg( medium.url().prettyURL() );
+	                     " your system's security", mediumType, filename );
+	QString caption = i18n( "Autoopen - %1", medium.url().prettyURL() );
 	KGuiItem yes = KStdGuiItem::yes();
 	KGuiItem no = KStdGuiItem::no();
 

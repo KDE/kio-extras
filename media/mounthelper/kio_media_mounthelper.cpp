@@ -57,14 +57,14 @@ MountHelper::MountHelper() : KApplication()
 
 	if ( medium.id().isEmpty() )
 	{
-		m_errorStr+= i18n("%1 cannot be found.").arg(url.prettyURL());
+		m_errorStr+= i18n("%1 cannot be found.", url.prettyURL());
 		QTimer::singleShot(0, this, SLOT(error()) );
 		return;
 	}
 
 	if ( !medium.isMountable() && !args->isSet("e") && !args->isSet("s"))
 	{
-		m_errorStr = i18n("%1 is not a mountable media.").arg(url.prettyURL());
+		m_errorStr = i18n("%1 is not a mountable media.", url.prettyURL());
 		QTimer::singleShot(0, this, SLOT(error()) );
 		return;
 	}
@@ -186,7 +186,7 @@ static KCmdLineOptions options[] =
 	{ "m", I18N_NOOP("Mount given URL (default)"), 0 },
 	{ "e", I18N_NOOP("Eject given URL via kdeeject"), 0},
 	{ "s", I18N_NOOP("Unmount and Eject given URL (necessary for some USB devices)"), 0},
-	{"!+URL",   I18N_NOOP("media:/ URL to mount/unmount/eject/remove"), 0 },
+	{"!+URL",  I18N_NOOP("media:/ URL to mount/unmount/eject/remove"), 0 },
 	KCmdLineLastOption
 };
 

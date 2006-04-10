@@ -155,8 +155,8 @@ void LDAPProtocol::LDAPErr( const KUrl &url, int err )
 
     default:
       error( ERR_SLAVE_DEFINED,
-        i18n( "LDAP server returned the error: %1 %2\nThe LDAP URL was: %3" ).
-        arg( ldap_err2string(err)).arg( extraMsg ).arg( url.prettyURL() ) );
+        i18n( "LDAP server returned the error: %1 %2\nThe LDAP URL was: %3" , 
+         ldap_err2string(err), extraMsg, url.prettyURL() ) );
   }
 }
 
@@ -686,7 +686,7 @@ void LDAPProtocol::openConnection()
 
     closeConnection();
     error( ERR_UNSUPPORTED_ACTION,
-      i18n("Cannot set LDAP protocol version %1").arg(version) );
+      i18n("Cannot set LDAP protocol version %1", version) );
     return;
   }
 
@@ -1102,7 +1102,7 @@ void LDAPProtocol::put( const KUrl &_url, int, bool overwrite, bool )
           break;
         case LDIF::Err:
           error( ERR_SLAVE_DEFINED,
-            i18n( "Invalid LDIF file in line %1." ).arg( ldif.lineNumber() ) );
+            i18n( "Invalid LDIF file in line %1.", ldif.lineNumber() ) );
           FREELDAPMEM;
           return;
       }

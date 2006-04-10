@@ -137,9 +137,9 @@ namespace KioSMTP {
       return true;
     }
     mSMTP->error( KIO::ERR_UNKNOWN,
-		  i18n("Unexpected server response to %1 command.\n%2")
-		  .arg( mEHLONotSupported ? "HELO" : "EHLO" )
-		  .arg( r.errorMessage() ) );
+		  i18n("Unexpected server response to %1 command.\n%2",
+		    QString::fromLatin1(mEHLONotSupported ? "HELO" : "EHLO") ,
+		    r.errorMessage() ) );
     return false;
   }
 
@@ -182,8 +182,8 @@ namespace KioSMTP {
 
 
 #define SASLERROR mSMTP->error(KIO::ERR_COULD_NOT_AUTHENTICATE, \
-  i18n("An error occured during authentication: %1").arg \
-  ( QString::fromUtf8( sasl_errdetail( conn ) )));
+  i18n("An error occured during authentication: %1",  \
+   QString::fromUtf8( sasl_errdetail( conn ) )));
 
   //
   // AUTH - rfc 2554
@@ -353,17 +353,17 @@ namespace KioSMTP {
       if ( mFirstTime )
 	      if ( haveCapability( "AUTH" ) )
           mSMTP->error( KIO::ERR_COULD_NOT_LOGIN,
-            i18n("Your SMTP server does not support %1.\nChoose a different authentication method.\n%2")
-              .arg( mMechusing ).arg( r.errorMessage() ) );
+            i18n("Your SMTP server does not support %1.\nChoose a different authentication method.\n%2",
+                mMechusing ,  r.errorMessage() ) );
 	      else
 	        mSMTP->error( KIO::ERR_COULD_NOT_LOGIN,
 			      i18n("Your SMTP server does not support authentication.\n"
-			     "  %2").arg( r.errorMessage() ) );
+			     "  %2",  r.errorMessage() ) );
       else
 	      mSMTP->error( KIO::ERR_COULD_NOT_LOGIN,
 		      i18n("Authentication failed.\n"
 			   "Most likely the password is wrong.\n"
-			   "%1").arg( r.errorMessage() ) );
+			   "%1",  r.errorMessage() ) );
       return false;
     }
     mFirstTime = false;
@@ -517,7 +517,7 @@ namespace KioSMTP {
       ts->setFailed();
       mSMTP->error( r.errorCode(),
 		    i18n("The message content was not accepted.\n"
-			 "%1").arg( r.errorMessage() ) );
+			 "%1",  r.errorMessage() ) );
       return false;
     }
     return true;

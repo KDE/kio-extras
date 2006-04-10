@@ -243,7 +243,7 @@ POP3Protocol::Resp POP3Protocol::getResponse(char *r_buf, unsigned int r_len)
 
     QString serverMsg = QString::fromLatin1(buf).mid(5).trimmed();
 
-    m_sError = i18n("The server said: \"%1\"").arg(serverMsg);
+    m_sError = i18n("The server said: \"%1\"", serverMsg);
 
     delete[]buf;
 
@@ -267,7 +267,7 @@ POP3Protocol::Resp POP3Protocol::getResponse(char *r_buf, unsigned int r_len)
     if (!buf || !*buf) {
       m_sError = i18n("The server terminated the connection.");
     } else {
-      m_sError = i18n("Invalid response from server:\n\"%1\"").arg(buf);
+      m_sError = i18n("Invalid response from server:\n\"%1\"", buf);
     }
 
     delete[]buf;
@@ -384,9 +384,9 @@ int POP3Protocol::loginAPOP( char *challenge, KIO::AuthInfo &ai )
   if (metaData("auth") == "APOP") {
     error(ERR_COULD_NOT_LOGIN,
           i18n
-          ("Login via APOP failed. The server %1 may not support APOP, although it claims to support it, or the password may be wrong.\n\n%2").
-          arg(m_sServer).
-          arg(m_sError));
+          ("Login via APOP failed. The server %1 may not support APOP, although it claims to support it, or the password may be wrong.\n\n%2", 
+          m_sServer, 
+          m_sError));
     return -1;
   }
   return 1;
@@ -444,8 +444,8 @@ bool POP3Protocol::saslInteract( void *in, AuthInfo &ai )
 }
 
 #define SASLERROR  closeConnection(); \
-error(ERR_COULD_NOT_AUTHENTICATE, i18n("An error occured during authentication: %1").arg \
-( QString::fromUtf8( sasl_errdetail( conn ) ))); \
+error(ERR_COULD_NOT_AUTHENTICATE, i18n("An error occured during authentication: %1",  \
+ QString::fromUtf8( sasl_errdetail( conn ) ))); \
 
 int POP3Protocol::loginSASL( KIO::AuthInfo &ai )
 {
@@ -566,8 +566,8 @@ int POP3Protocol::loginSASL( KIO::AuthInfo &ai )
       closeConnection();
       error(ERR_COULD_NOT_LOGIN,
             i18n
-            ("Login via SASL (%1) failed. The server may not support %2, or the password may be wrong.\n\n%3").
-            arg(mechusing).arg(mechusing).arg(m_sError));
+            ("Login via SASL (%1) failed. The server may not support %2, or the password may be wrong.\n\n%3", 
+            mechusing, mechusing, m_sError));
       return -1;
     }
   }
@@ -615,7 +615,7 @@ bool POP3Protocol::loginPASS( KIO::AuthInfo &ai )
     POP3_DEBUG << "Couldn't login. Bad username Sorry" << endl;
 
     m_sError =
-        i18n("Could not login to %1.\n\n").arg(m_sServer) + m_sError;
+        i18n("Could not login to %1.\n\n", m_sServer) + m_sError;
     error(ERR_COULD_NOT_LOGIN, m_sError);
     closeConnection();
 
@@ -629,8 +629,8 @@ bool POP3Protocol::loginPASS( KIO::AuthInfo &ai )
     POP3_DEBUG << "Couldn't login. Bad password Sorry." << endl;
     m_sError =
         i18n
-        ("Could not login to %1. The password may be wrong.\n\n%2").
-        arg(m_sServer).arg(m_sError);
+        ("Could not login to %1. The password may be wrong.\n\n%2", 
+        m_sServer, m_sError);
     error(ERR_COULD_NOT_LOGIN, m_sError);
     closeConnection();
     return false;
@@ -664,12 +664,12 @@ bool POP3Protocol::pop3_open()
     // If the server doesn't respond with a greeting
     if (getResponse(greeting_buf, GREETING_BUF_LEN) != Ok) {
       m_sError =
-          i18n("Could not login to %1.\n\n").arg(m_sServer) +
+          i18n("Could not login to %1.\n\n", m_sServer) +
           ((!greeting_buf
             || !*greeting_buf) ?
            i18n("The server terminated the connection immediately.") :
-           i18n("Server does not respond properly:\n%1\n").
-           arg(greeting_buf));
+           i18n("Server does not respond properly:\n%1\n", 
+           greeting_buf));
       error(ERR_COULD_NOT_LOGIN, m_sError);
       delete[]greeting_buf;
       closeConnection();

@@ -464,7 +464,7 @@ void MANProtocol::get(const KUrl& url )
            "Be careful that you must take care about upper case and lower case characters!<br>"
            "If everything looks correct, then perhaps you need to set a better search path "
            "for man pages, be it by the environment variable MANPATH or a matching file "
-           "in the directory /etc .").arg(title));
+           "in the directory /etc .", title));
        pageFound=false;
     }
     else if (foundPages.count()>1)
@@ -490,7 +490,7 @@ void MANProtocol::get(const KUrl& url )
 
        if (!buf)
        {
-          outputError(i18n("Open of %1 failed.").arg(title));
+          outputError(i18n("Open of %1 failed.", title));
           finished();
           return;
        }
@@ -1193,7 +1193,7 @@ void MANProtocol::showIndex(const QString& section)
         os << "<link href=\"file:///" << m_manCSSFile << "\" type=\"text/css\" rel=\"stylesheet\">" << endl;
     os << "</head>" << endl;
     os << "<body><div class=\"secidxmain\">" << endl;
-    os << "<h1>" << i18n( "Index for Section %1: %2").arg(section).arg(sectionName(section)) << "</h1>" << endl;
+    os << "<h1>" << i18n( "Index for Section %1: %2", section, sectionName(section)) << "</h1>" << endl;
 
     // compose list of search paths -------------------------------------------------------------
 

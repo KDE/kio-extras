@@ -300,7 +300,7 @@ static void InitStringDefinitions( void )
     s_stringDefinitionMap.insert( "ua", StringDefinition( 1, "&circ" ) ); // Note this is different from \(ua
     s_stringDefinitionMap.insert( "aa", StringDefinition( 1, "&acute;" ) );
     s_stringDefinitionMap.insert( "ga", StringDefinition( 1, "`" ) );
-    s_stringDefinitionMap.insert( "q",  StringDefinition( 1, "&quot;" ) );
+    s_stringDefinitionMap.insert( "q", StringDefinition( 1, "&quot;" ) );
     s_stringDefinitionMap.insert( "Pi", StringDefinition( 1, "&pi;" ) );
     s_stringDefinitionMap.insert( "Ne", StringDefinition( 1, "&ne;" ) );
     s_stringDefinitionMap.insert( "Le", StringDefinition( 1, "&le;" ) );
@@ -434,7 +434,7 @@ static CSTRDEF standardchar[] = {
     { V('o','r'), 1, "|" },
     { V('p','l'), 1, "+" },
     { V('r','c'), 2, "&#175;|" }, // ### TODO: not in groff_char(7)
-    { V('r','f'), 2, "_|" },  // ### TODO: not in groff_char(7)
+    { V('r','f'), 2, "_|" }, // ### TODO: not in groff_char(7)
     { V('r','g'), 1, "&reg;" },
     { V('r','k'), 1, "<FONT SIZE=+2>}</FONT>" }, // ### TODO: not in groff_char(7)
     { V('r','n'), 1, "&oline;" },
@@ -2995,8 +2995,8 @@ static int get_request(char *req, int len)
     static const char *requests[] = {
         "ab", "di", "ds", "as", "br", "c2", "cc", "ce", "ec", "eo", "ex", "fc",
         "fi", "ft", "el", "ie", "if", "ig", "nf", "ps", "sp", "so", "ta", "ti",
-        "tm", "B",  "I",  "Fd", "Fn", "Fo", "Fc", "OP", "Ft", "Fa", "BR", "BI",
-        "IB", "IR", "RB", "RI", "DT", "IP", "TP", "IX", "P",  "LP", "PP", "HP",
+        "tm", "B", "I", "Fd", "Fn", "Fo", "Fc", "OP", "Ft", "Fa", "BR", "BI",
+        "IB", "IR", "RB", "RI", "DT", "IP", "TP", "IX", "P", "LP", "PP", "HP",
         "PD", "Rs", "RS", "Re", "RE", "SB", "SM", "Ss", "SS", "Sh", "SH", "Sx",
         "TS", "Dt", "TH", "TX", "rm", "rn", "nx", "in", "nr", "am", "de", "Bl",
         "El", "It", "Bk", "Ek", "Dd", "Os", "Bt", "At", "Fx", "Nx", "Ox", "Bx",

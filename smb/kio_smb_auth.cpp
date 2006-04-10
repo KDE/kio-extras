@@ -128,15 +128,15 @@ bool SMBSlave::checkPassword(SMBUrl &url)
 
     if ( share.isEmpty() )
         info.prompt = i18n(
-            "<qt>Please enter authentication information for <b>%1</b></qt>" )
-                      .arg( url.host() );
+            "<qt>Please enter authentication information for <b>%1</b></qt>" ,
+                        url.host() );
     else
         info.prompt = i18n(
             "Please enter authentication information for:\n"
             "Server = %1\n"
-            "Share = %2" )
-                      .arg( url.host() )
-                      .arg( share );
+            "Share = %2" ,
+                        url.host() ,
+                        share );
 
     info.username = url.user();
     kDebug(KIO_SMB) << "call openPassDlg for " << info.url << endl;

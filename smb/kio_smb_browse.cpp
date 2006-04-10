@@ -63,7 +63,7 @@ bool SMBSlave::browse_stat_path(const SMBUrl& _url, UDSEntry& udsentry, bool ign
       {
          kDebug(KIO_SMB)<<"SMBSlave::browse_stat_path mode: "<<st.st_mode<<endl;
          warning(i18n("%1:\n"
-                      "Unknown file type, neither directory or file.").arg(url.prettyURL()));
+                      "Unknown file type, neither directory or file.", url.prettyURL()));
          return false;
       }
 
@@ -103,7 +103,7 @@ bool SMBSlave::browse_stat_path(const SMBUrl& _url, UDSEntry& udsentry, bool ign
 
            reportError(url);
        } else if (errno == ENOENT || errno == ENOTDIR) {
-           warning(i18n("File does not exist: %1").arg(url.url()));
+           warning(i18n("File does not exist: %1", url.url()));
        }
        kDebug(KIO_SMB) << "SMBSlave::browse_stat_path ERROR!!"<< endl;
        return false;
@@ -221,7 +221,7 @@ void SMBSlave::reportError(const SMBUrl &url)
 #ifdef ENOMEDIUM
     case ENOMEDIUM:
         error( ERR_SLAVE_DEFINED,
-               i18n( "No media in device for %1" ).arg( url.prettyURL() ) );
+               i18n( "No media in device for %1", url.prettyURL() ) );
         break;
 #endif
 #ifdef EHOSTDOWN
@@ -229,7 +229,7 @@ void SMBSlave::reportError(const SMBUrl &url)
 #endif
     case ECONNREFUSED:
         error(  ERR_SLAVE_DEFINED,
-                i18n( "Could not connect to host for %1" ).arg( url.prettyURL() ) );
+                i18n( "Could not connect to host for %1", url.prettyURL() ) );
         break;
     case ENOTDIR:
         error( ERR_CANNOT_ENTER_DIRECTORY, url.prettyURL());
@@ -245,7 +245,7 @@ void SMBSlave::reportError(const SMBUrl &url)
     case EIO:
     case ENETUNREACH:
         if ( url.getType() == SMBURLTYPE_ENTIRE_NETWORK || url.getType() == SMBURLTYPE_WORKGROUP_OR_SERVER )
-            error( ERR_SLAVE_DEFINED, i18n( "Error while connecting to server responsible for %1" ).arg( url.prettyURL() ) );
+            error( ERR_SLAVE_DEFINED, i18n( "Error while connecting to server responsible for %1", url.prettyURL() ) );
         else
             error( ERR_CONNECTION_BROKEN, url.prettyURL());
         break;
@@ -280,7 +280,7 @@ void SMBSlave::reportError(const SMBUrl &url)
 								"if they ask for it)") );
 	  break;
     default:
-        error( ERR_INTERNAL, i18n("Unknown error condition in stat: %1").arg(QString::fromLocal8Bit( strerror(errno))) );
+        error( ERR_INTERNAL, i18n("Unknown error condition in stat: %1", QString::fromLocal8Bit( strerror(errno))) );
     }
 }
 

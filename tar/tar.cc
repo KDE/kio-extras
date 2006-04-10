@@ -199,8 +199,8 @@ void ArchiveProtocol::listDir( const KUrl & url )
             // If we cannot open, it might be a problem with the archive header (e.g. unsupported format)
             // Therefore give a more specific error message
             error( KIO::ERR_SLAVE_DEFINED,
-                   i18n( "Could not open the file, probably due to an unsupported file format.\n%1")
-                           .arg( url.prettyURL() ) );
+                   i18n( "Could not open the file, probably due to an unsupported file format.\n%1",
+                             url.prettyURL() ) );
             return;
         }
         else if ( errorNum != ERR_IS_DIRECTORY )
@@ -290,8 +290,8 @@ void ArchiveProtocol::stat( const KUrl & url )
             // If we cannot open, it might be a problem with the archive header (e.g. unsupported format)
             // Therefore give a more specific error message
             error( KIO::ERR_SLAVE_DEFINED,
-                   i18n( "Could not open the file, probably due to an unsupported file format.\n%1")
-                           .arg( url.prettyURL() ) );
+                   i18n( "Could not open the file, probably due to an unsupported file format.\n%1",
+                             url.prettyURL() ) );
             return;
         }
         else if ( errorNum != ERR_IS_DIRECTORY )
@@ -358,8 +358,8 @@ void ArchiveProtocol::get( const KUrl & url )
             // If we cannot open, it might be a problem with the archive header (e.g. unsupported format)
             // Therefore give a more specific error message
             error( KIO::ERR_SLAVE_DEFINED,
-                   i18n( "Could not open the file, probably due to an unsupported file format.\n%1")
-                           .arg( url.prettyURL() ) );
+                   i18n( "Could not open the file, probably due to an unsupported file format.\n%1",
+                             url.prettyURL() ) );
             return;
         }
         else
@@ -408,8 +408,8 @@ void ArchiveProtocol::get( const KUrl & url )
     if (!io)
     {
         error( KIO::ERR_SLAVE_DEFINED,
-            i18n( "The archive file could not be opened, perhaps because the format is unsupported.\n%1" )
-                    .arg( url.prettyURL() ) );
+            i18n( "The archive file could not be opened, perhaps because the format is unsupported.\n%1" ,
+                      url.prettyURL() ) );
         return;
     }
 

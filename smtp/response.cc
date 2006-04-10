@@ -103,11 +103,11 @@ namespace KioSMTP {
   QString Response::errorMessage() const {
     QString msg;
     if ( lines().count() > 1 )
-      msg = i18n("The server responded:\n%1")
-	.arg( QString(join( '\n', lines() )) );
+      msg = i18n("The server responded:\n%1",
+	  QString(join( '\n', lines() )) );
     else
-      msg = i18n("The server responded: \"%1\"")
-	.arg( QString(lines().front()) );
+      msg = i18n("The server responded: \"%1\"",
+	  QString(lines().front()) );
     if ( first() == 4 )
       msg += '\n' + i18n("This is a temporary failure. "
 			 "You may try again later.");

@@ -132,8 +132,8 @@ void SMBSlave::special( const QByteArray & data)
          if (proc.exitStatus() != 0)
          {
            error( KIO::ERR_COULD_NOT_MOUNT,
-               i18n("Mounting of share \"%1\" from host \"%2\" by user \"%3\" failed.\n%4")
-               .arg(share).arg(host).arg(user).arg(mybuf + "\n" + mystderr));
+               i18n("Mounting of share \"%1\" from host \"%2\" by user \"%3\" failed.\n%4",
+                share, host, user, mybuf + "\n" + mystderr));
            return;
          }
 
@@ -173,8 +173,8 @@ void SMBSlave::special( const QByteArray & data)
          if (proc.exitStatus() != 0)
          {
            error(KIO::ERR_COULD_NOT_UNMOUNT,
-               i18n("Unmounting of mountpoint \"%1\" failed.\n%2")
-               .arg(mountPoint).arg(mybuf + "\n" + mystderr));
+               i18n("Unmounting of mountpoint \"%1\" failed.\n%2",
+                mountPoint, mybuf + "\n" + mystderr));
            return;
          }
 

@@ -37,7 +37,7 @@ InfoProtocol::InfoProtocol( const QByteArray &pool, const QByteArray &app )
 	} else {
 		QString missing =m_infoScript.isNull() ?  "kio_info/kde-info2html" : "kio_info/kde-info2html.conf";
 		errorStr = "kde-info2html" + i18n( "\nUnable to locate file %1 which is necessary to run this service. "
-				"Please check your software installation" ).arg( missing );
+				"Please check your software installation" ,  missing );
 	}
 	error( KIO::ERR_CANNOT_LAUNCH_PROCESS, errorStr );
 	exit();

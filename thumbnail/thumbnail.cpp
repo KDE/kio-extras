@@ -284,7 +284,7 @@ void ThumbnailProtocol::get(const KUrl &url)
             }
             if (!creator)
             {
-                error(KIO::ERR_INTERNAL, i18n("Cannot load ThumbCreator %1").arg(plugin));
+                error(KIO::ERR_INTERNAL, i18n("Cannot load ThumbCreator %1", plugin));
                 return;
             }
             m_creators.insert(plugin, creator);
@@ -292,7 +292,7 @@ void ThumbnailProtocol::get(const KUrl &url)
 
         if (!creator->create(url.path(), m_width, m_height, img))
         {
-            error(KIO::ERR_INTERNAL, i18n("Cannot create thumbnail for %1").arg(url.path()));
+            error(KIO::ERR_INTERNAL, i18n("Cannot create thumbnail for %1", url.path()));
             return;
         }
         flags = creator->flags();
@@ -399,7 +399,7 @@ void ThumbnailProtocol::get(const KUrl &url)
         void *shmaddr = shmat(shmid.toInt(), 0, 0);
         if (shmaddr == (void *)-1)
         {
-            error(KIO::ERR_INTERNAL, i18n("Failed to attach to shared memory segment %1").arg(shmid));
+            error(KIO::ERR_INTERNAL, i18n("Failed to attach to shared memory segment %1", shmid));
             return;
         }
         if (img.width() * img.height() > m_width * m_height)

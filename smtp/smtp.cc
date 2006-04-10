@@ -259,8 +259,8 @@ void SMTPProtocol::put(const KUrl & url, int /*permissions */ ,
   if ( !smtp_open( request.heloHostname() ) )
   {
     error(KIO::ERR_SERVICE_NOT_AVAILABLE,
-          i18n("SMTPProtocol::smtp_open failed (%1)") // ### better error message?
-              .arg(open_url.path()));
+          i18n("SMTPProtocol::smtp_open failed (%1)", // ### better error message?
+               open_url.path()));
     return;
   }
 
@@ -346,7 +346,7 @@ Response SMTPProtocol::getResponse( bool * ok ) {
   } while ( !response.isComplete() && response.isWellFormed() );
 
   if ( !response.isValid() ) {
-    error( KIO::ERR_NO_CONTENT, i18n("Invalid SMTP response (%1) received.").arg(response.code()) );
+    error( KIO::ERR_NO_CONTENT, i18n("Invalid SMTP response (%1) received.", response.code()) );
     return response;
   }
 
@@ -531,7 +531,7 @@ bool SMTPProtocol::smtp_open(const QString& fakeHostname)
     if ( ok )
       error( KIO::ERR_COULD_NOT_LOGIN, 
              i18n("The server did not accept the connection.\n"
-		  "%1").arg( greeting.errorMessage() ) );
+		  "%1",  greeting.errorMessage() ) );
     smtp_close();
     return false;
   }

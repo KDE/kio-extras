@@ -908,7 +908,7 @@ bool KSshProcess::connect() {
         // we will kill it to make sure. 
         case STATE_AUTH_FAILED:
             mError = ERR_AUTH_FAILED;
-            mErrorMsg = i18n("Authentication to %1 failed").arg(mHost);
+            mErrorMsg = i18n("Authentication to %1 failed", mHost);
             mConnectState = STATE_FATAL;
             break; 
         
@@ -933,7 +933,7 @@ bool KSshProcess::connect() {
                 mErrorMsg = i18n(
                     "The identity of the remote host '%1' could not be verified "
                     "because the host's key is not in the \"known hosts\" file."
-                ).arg(mHost);
+                , mHost);
                 
                 if( mKnownHostsFile.isEmpty() ) {
                     mErrorMsg += i18n(
@@ -945,7 +945,7 @@ bool KSshProcess::connect() {
                     mErrorMsg += i18n(
                         " Manually, add the host's key to %1 "
                         "or contact your administrator."
-                    ).arg(mKnownHostsFile);
+                    , mKnownHostsFile);
                 }
 
                 mConnectState = STATE_FATAL;
@@ -980,7 +980,7 @@ bool KSshProcess::connect() {
                 "verify the fingerprint with the host's administrator before "
                 "connecting.\n\n"
                 "Would you like to accept the host's key and connect anyway? "
-            ).arg(mHost).arg(mKeyFingerprint);
+            , mHost, mKeyFingerprint);
             mConnectState = STATE_SEND_CONTINUE;
             return false;
 
@@ -1010,7 +1010,7 @@ bool KSshProcess::connect() {
                     "administrator. The key fingerprint is:\n%2\n"
                     "Add the correct host key to \"%3\" to "
                     "get rid of this message."
-                ).arg(mHost).arg(mKeyFingerprint).arg(mKnownHostsFile);
+                , mHost, mKeyFingerprint, mKnownHostsFile);
                 mConnectState = STATE_FATAL;
             }
             else if( line.indexOf(continuePrompt[mVersion]) != -1 ) {
@@ -1044,7 +1044,7 @@ bool KSshProcess::connect() {
                 "Either way, you should verify the host's key fingerprint with the host's "
                 "administrator before connecting. The key fingerprint is:\n%2\n\n"
                 "Would you like to accept the host's new key and connect anyway?"
-            ).arg(mHost).arg(mKeyFingerprint);
+            , mHost, mKeyFingerprint);
             mConnectState = STATE_SEND_CONTINUE;
             return false;
 

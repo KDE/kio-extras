@@ -507,7 +507,7 @@ void sftpProtocol::openConnection() {
     kDebug(KIO_SFTP_DB) << "openConnection(): " << mUsername << "@"
                          << mHost << ":" << mPort << endl;
 
-    infoMessage( i18n("Opening SFTP connection to host <b>%1:%2</b>").arg(mHost).arg(mPort));
+    infoMessage( i18n("Opening SFTP connection to host <b>%1:%2</b>", mHost, mPort));
 
     if( mHost.isEmpty() ) {
         kDebug(KIO_SFTP_DB) << "openConnection(): Need hostname..." << endl;
@@ -757,7 +757,7 @@ void sftpProtocol::openConnection() {
         case KSshProcess::ERR_HOST_KEY_REJECTED:
         default:
             infoMessage(i18n("Connection failed."));
-            caption = i18n("Unexpected SFTP error: %1").arg(err);
+            caption = i18n("Unexpected SFTP error: %1", err);
             msg = ssh.errorMsg();
             messageBox(Information, msg, caption);
             closeConnection();
@@ -801,7 +801,7 @@ void sftpProtocol::openConnection() {
          */
         if( sftpVersion > SSH2_FILEXFER_VERSION ) {
             error(ERR_UNSUPPORTED_PROTOCOL,
-                i18n("SFTP version %1").arg(version));
+                i18n("SFTP version %1", version));
             closeConnection();
             return;
         }
@@ -813,7 +813,7 @@ void sftpProtocol::openConnection() {
     }
 
     // Login succeeded!
-    infoMessage(i18n("Successfully connected to %1").arg(mHost));
+    infoMessage(i18n("Successfully connected to %1", mHost));
     info.url.setProtocol("sftp");
     info.url.setHost(mHost);
     info.url.setPort(mPort);
@@ -1070,7 +1070,7 @@ void sftpProtocol::sftpPut( const KUrl& dest, int permissions, bool resume, bool
         }
 
         error( ERR_UNKNOWN, i18n("Unknown error was encountered while copying the file "
-                                 "to '%1'. Please try again.").arg(dest.host()) );
+                                 "to '%1'. Please try again.", dest.host()) );
         return;
     }
 
@@ -1611,7 +1611,7 @@ sftpProtocol::Status sftpProtocol::doProcessStatus(quint8 code, const QString& m
           res.code = ERR_UNKNOWN;
           break;
       default:
-          res.text = i18n("Error code: %1").arg(code);
+          res.text = i18n("Error code: %1", code);
           res.code = ERR_UNKNOWN;
     }
 

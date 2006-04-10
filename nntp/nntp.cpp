@@ -123,7 +123,7 @@ void NNTPProtocol::get( const KUrl& url )
 
   // select group if necessary
   if ( mCurrentGroup != group && !group.isEmpty() ) {
-    infoMessage( i18n("Selecting group %1...").arg( group ) );
+    infoMessage( i18n("Selecting group %1...", group ) );
     res_code = sendCommand( "GROUP " + group );
     if ( res_code == 411 ){
       error( ERR_DOES_NOT_EXIST, path );
@@ -196,7 +196,7 @@ void NNTPProtocol::special(const QByteArray& data) {
   if (cmd == 1) {
     if (post_article()) finished();
   } else {
-    error(ERR_UNSUPPORTED_ACTION,i18n("Invalid special command %1").arg(cmd));
+    error(ERR_UNSUPPORTED_ACTION,i18n("Invalid special command %1", cmd));
   }
 }
 
@@ -485,7 +485,7 @@ bool NNTPProtocol::fetchGroup( QString &group, unsigned long first, unsigned lon
   QString resp_line;
 
   // select group
-  infoMessage( i18n("Selecting group %1...").arg( group ) );
+  infoMessage( i18n("Selecting group %1...", group ) );
   res_code = sendCommand( "GROUP " + group );
   if ( res_code == 411 ) {
     error( ERR_DOES_NOT_EXIST, group );
@@ -507,8 +507,8 @@ bool NNTPProtocol::fetchGroup( QString &group, unsigned long first, unsigned lon
     firstSerNum = re.cap( 2 ).toLong();
     lastSerNum = re.cap( 3 ).toLong();
   } else {
-    error( ERR_INTERNAL, i18n("Could not extract message serial numbers from server response:\n%1").
-      arg( resp_line ) );
+    error( ERR_INTERNAL, i18n("Could not extract message serial numbers from server response:\n%1", 
+       resp_line ) );
     return false;
   }
 
@@ -553,8 +553,8 @@ bool NNTPProtocol::fetchGroupRFC977( unsigned long first )
     fillUDSEntry( entry, msg_id, 0, true );
     listEntry( entry, false );
   } else {
-    error(ERR_INTERNAL,i18n("Could not extract first message id from server response:\n%1").
-      arg(resp_line));
+    error(ERR_INTERNAL,i18n("Could not extract first message id from server response:\n%1", 
+      resp_line));
     return false;
   }
 
@@ -579,8 +579,8 @@ bool NNTPProtocol::fetchGroupRFC977( unsigned long first )
       fillUDSEntry( entry, msg_id, 0, true );
       listEntry( entry, false );
     } else {
-      error(ERR_INTERNAL,i18n("Could not extract message id from server response:\n%1").
-        arg(resp_line));
+      error(ERR_INTERNAL,i18n("Could not extract message id from server response:\n%1", 
+        resp_line));
       return false;
     }
   }
@@ -856,8 +856,8 @@ void NNTPProtocol::unexpected_response( int res_code, const QString &command )
     default: errCode = ERR_INTERNAL;
   }
 
-  error( errCode, i18n("Unexpected server response to %1 command:\n%2").
-    arg( command ).arg( readBuffer ) );
+  error( errCode, i18n("Unexpected server response to %1 command:\n%2", 
+     command, readBuffer ) );
 
   nntp_close();
 }

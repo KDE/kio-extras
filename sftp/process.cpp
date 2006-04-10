@@ -242,7 +242,7 @@ int MyPtyProcess::exec(Q3CString command, QCStringList args)
     ok = 1;
     ok &= dup2(inout[1], STDIN_FILENO)  >= 0;
     ok &= dup2(inout[1], STDOUT_FILENO) >= 0;
-    ok &= dup2(err[1],   STDERR_FILENO) >= 0;
+    ok &= dup2(err[1],  STDERR_FILENO) >= 0;
 
     if( !ok )
     {
