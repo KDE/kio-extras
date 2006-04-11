@@ -123,7 +123,7 @@ namespace KioSMTP {
     result.sort();
     QStringList::iterator it = result.begin();
     for (QStringList::iterator ot = it++; it != result.end(); ot = it++)
-        if (*ot == *it) result.remove(ot);
+        if (*ot == *it) result.erase(ot);
     return result;
   }
 

@@ -57,14 +57,14 @@ NotifierSettings::~NotifierSettings()
 	while ( !m_actions.isEmpty() )
 	{
 		NotifierAction *a = m_actions.first();
-		m_actions.remove( a );
+		m_actions.removeAll( a );
 		delete a;
 	}
 
 	while ( !m_deletedActions.isEmpty() )
 	{
 		NotifierServiceAction *a = m_deletedActions.first();
-		m_deletedActions.remove( a );
+		m_deletedActions.removeAll( a );
 		delete a;
 	}
 }
@@ -112,7 +112,7 @@ bool NotifierSettings::deleteAction( NotifierServiceAction *action )
 {
 	if ( action->isWritable() )
 	{
-		m_actions.remove( action );
+		m_actions.removeAll( action );
 		m_idMap.remove( action->id() );
 		m_deletedActions.append( action );
 
@@ -181,14 +181,14 @@ void NotifierSettings::reload()
 	while ( !m_actions.isEmpty() )
 	{
 		NotifierAction *a = m_actions.first();
-		m_actions.remove( a );
+		m_actions.removeAll( a );
 		delete a;
 	}
 
 	while ( !m_deletedActions.isEmpty() )
 	{
 		NotifierServiceAction *a = m_deletedActions.first();
-		m_deletedActions.remove( a );
+		m_deletedActions.removeAll( a );
 		delete a;
 	}
 
@@ -253,7 +253,7 @@ void NotifierSettings::save()
 	while ( !m_deletedActions.isEmpty() )
 	{
 		NotifierServiceAction *a = m_deletedActions.first();
-		m_deletedActions.remove( a );
+		m_deletedActions.removeAll( a );
 		QFile::remove( a->filePath() );
 		delete a;
 	}

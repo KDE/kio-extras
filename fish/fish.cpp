@@ -713,7 +713,7 @@ bool fishProtocol::sendCommand(fish_command_type cmd, ...) {
     for (int i = 0; i < info.params; i++) {
         QString arg(va_arg(list, const char *));
         int pos = -2;
-        while ((pos = rx.search(arg,pos+2)) >= 0) {
+        while ((pos = rx.indexIn(arg,pos+2)) >= 0) {
             arg.replace(pos,0,QString("\\"));
         }
         //myDebug( << "arg " << i << ": " << arg << endl);
@@ -1164,7 +1164,7 @@ void fishProtocol::sent()
         rawWrite = -1;
         return;
     }
-    if (qlist.count() > 0) qlist.remove(qlist.begin());
+    if (qlist.count() > 0) qlist.erase(qlist.begin());
     if (qlist.count() == 0) {
         writeReady = true;
     } else {
@@ -1299,8 +1299,8 @@ void fishProtocol::finished() {
         udsStatEntry.clear();
         writeStdin(commandList.first());
         //if (fishCommand != FISH_APPEND && fishCommand != FISH_WRITE) infoMessage("Sending "+(commandList.first().mid(1,commandList.first().indexOf("\n")-1))+"...");
-        commandList.remove(commandList.begin());
-        commandCodes.remove(commandCodes.begin());
+        commandList.erase(commandList.begin());
+        commandCodes.erase(commandCodes.begin());
     } else {
         myDebug( << "_______ emitting finished()" << endl);
         SlaveBase::finished();

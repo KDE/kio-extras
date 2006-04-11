@@ -115,7 +115,7 @@ void FingerProtocol::get(const KUrl& url )
   if (query.contains(regExp)) {
     //kDebug() << "looks like a valid query" << endl;
     QRegExp regExp( "([0-9]+)" );
-    regExp.search(query);
+    regExp.indexIn(query);
     refreshRate = regExp.cap(0);
   }
 

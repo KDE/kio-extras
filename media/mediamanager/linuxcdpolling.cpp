@@ -245,7 +245,7 @@ void LinuxCDPolling::slotMediumRemoved(const QString &id)
 	thread->wait();
 	delete thread;
 
-	m_excludeNotification.remove(id);
+	m_excludeNotification.removeAll(id);
 }
 
 void LinuxCDPolling::slotMediumStateChanged(const QString &id)
@@ -357,7 +357,7 @@ void LinuxCDPolling::applyType(DiscType type, const Medium *medium)
 	QString dev = medium->deviceNode();
 	
 	bool notify = !m_excludeNotification.contains(id);
-	m_excludeNotification.remove(id);
+	m_excludeNotification.removeAll(id);
 	
 	switch (type)
 	{
