@@ -1047,7 +1047,7 @@ void NFSProtocol::del( const KUrl& url, bool isfile)
                             (xdrproc_t) xdr_nfsstat, (char*)&nfsStat,total_timeout);
       if (!checkForError(clnt_stat,nfsStat,thePath)) return;
       kDebug(7121)<<"removing "<<thePath<<" from cache"<<endl;
-      m_handleCache.remove(m_handleCache.find(thePath));
+      m_handleCache.erase(m_handleCache.find(thePath));
       finished();
    }
    else
@@ -1065,7 +1065,7 @@ void NFSProtocol::del( const KUrl& url, bool isfile)
                             (xdrproc_t) xdr_nfsstat, (char*)&nfsStat,total_timeout);
       if (!checkForError(clnt_stat,nfsStat,thePath)) return;
       kDebug(7121)<<"removing "<<thePath<<" from cache"<<endl;
-      m_handleCache.remove(m_handleCache.find(thePath));
+      m_handleCache.erase(m_handleCache.find(thePath));
       finished();
    }
 }
