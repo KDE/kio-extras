@@ -9,3 +9,4 @@ X-KDE-ModuleType=Library
 X-KDE-Library=homedirnotify
 X-KDE-FactoryName=homedirnotify
 X-KDE-Kded-load-on-demand=true
+X-KDE-Kded-autoload=true
