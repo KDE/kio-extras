@@ -1,16 +1,16 @@
 kde4_header()
-include_directories(  ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR} ${KDE4_INCLUDES} )
+include_directories( ${CMAKE_SOURCE_DIR}/kioslave/media/libmediacommon/ ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR} ${KDE4_INCLUDES} )
 
 
 ########### next target ###############
 
-set(kio_media_mounthelper_SRCS kio_media_mounthelper.cpp )
+set(kio_media_mounthelper_SRCS kio_media_mounthelper.cpp ${libmediacommon_SRCS} )
 
 kde4_automoc(${kio_media_mounthelper_SRCS})
 
 kde4_add_executable(kio_media_mounthelper ${kio_media_mounthelper_SRCS})
 
-target_link_libraries(kio_media_mounthelper  ${KDE4_KIO_LIBS} mediacommon )
+target_link_libraries(kio_media_mounthelper  ${KDE4_KIO_LIBS} )
 
 install_targets(/bin kio_media_mounthelper )
 

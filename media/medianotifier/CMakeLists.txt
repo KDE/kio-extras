@@ -1,10 +1,13 @@
 kde4_header()
-include_directories(  ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR} ${KDE4_INCLUDES} )
+include_directories( ${CMAKE_SOURCE_DIR}/kioslave/media/libmediacommon/ ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR} ${KDE4_INCLUDES} )
 
 
 ########### next target ###############
 
-set(kded_medianotifier_PART_SRCS medianotifier.cpp notificationdialog.cpp )
+set(kded_medianotifier_PART_SRCS medianotifier.cpp notificationdialog.cpp ${libmediacommon_SRCS} )
+
+kde4_add_kcfg_files(kded_medianotifier_PART_SRCS ${CMAKE_SOURCE_DIR}/kioslave/media/libmediacommon/mediamanagersettings.kcfgc )
+
 
 kde4_automoc(${kded_medianotifier_PART_SRCS})
 
@@ -16,7 +19,7 @@ kde4_add_plugin(kded_medianotifier ${kded_medianotifier_PART_SRCS})
 
 kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kded_medianotifier )
 
-target_link_libraries(kded_medianotifier  ${KDE4_KDECORE_LIBS} mediacommon kdeui kio )
+target_link_libraries(kded_medianotifier  ${KDE4_KIO_LIBS}  )
 
 install_targets(${LIB_INSTALL_DIR}/kde4 kded_medianotifier )
 
