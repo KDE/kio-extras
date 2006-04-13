@@ -13,6 +13,12 @@ set(kded_mediamanager_PART_SRCS ${libmediacommon_SRCS}
    removablebackend.cpp 
    mediadirnotify.cpp )
 
+if(COMPILE_LINUXCDPOLLING)
+   set(kded_mediamanager_PART_SRCS
+      ${kded_mediamanager_PART_SRCS}
+      linuxcdpolling.cpp)
+endif(COMPILE_LINUXCDPOLLING)
+
 kde4_automoc(${kded_mediamanager_PART_SRCS})
 
 kde4_add_dcop_skels(kded_mediamanager_PART_SRCS mediamanager.h mediadirnotify.h )
