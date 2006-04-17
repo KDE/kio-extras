@@ -11,6 +11,7 @@ set(libmediacommon_SRCS
     ${CMAKE_SOURCE_DIR}/kioslave/media/libmediacommon/notifieropenaction.cpp
     ${CMAKE_SOURCE_DIR}/kioslave/media/libmediacommon/notifiersettings.cpp
     )
+    
 #kde4_add_kcfg_files(libmediacommon_SRCS ${CMAKE_SOURCE_DIR}/kioslave/media/libmediacommon/mediamanagersettings.kcfgc )
 
 add_subdirectory( libmediacommon ) 
@@ -21,21 +22,27 @@ add_subdirectory( kfile-plugin )
 add_subdirectory( kcmodule ) 
 add_subdirectory( mimetypes ) 
 add_subdirectory( services ) 
-include_directories(  ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR} ${KDE4_INCLUDES} )
+
+include_directories( ${CMAKE_SOURCE_DIR}/kioslave/media/libmediacommon ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR} ${KDE4_INCLUDES} )
 
 
 ########### next target ###############
-set(kio_media_PART_SRCS dummy.cpp )
+set(kio_media_PART_SRCS ${libmediacommon_SRCS} 
+    kio_media.cpp
+    mediaimpl.cpp)
+
 
 kde4_automoc(${kio_media_PART_SRCS})
+
+kde4_add_dcop_skels(kio_media_PART_SRCS mediaimpl.h )
 
 kde4_add_plugin(kio_media ${kio_media_PART_SRCS})
 
 kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kio_media )
 
-target_link_libraries(kio_media  ${KDE4_KIO_LIBS}  )
+target_link_libraries(kio_media ${KDE4_KIO_LIBS} )
 
-install_targets(${LIB_INSTALL_DIR}/kde4 kio_media )
+install_targets(${PLUGIN_INSTALL_DIR} kio_media )
 
 
 ########### next target ###############
