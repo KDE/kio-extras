@@ -913,8 +913,7 @@ void MANProtocol::constructPath(QStringList& constr_path, QStringList constr_cat
 
     if ( ::getenv("PATH") ) {
         const QStringList path =
-                QStringList::split( ":",
-                                    QString::fromLocal8Bit( ::getenv("PATH") ) );
+              QString::fromLocal8Bit( ::getenv("PATH") ).split( ":", QString::SkipEmptyParts );
 
         for ( QStringList::const_iterator it = path.begin();
               it != path.end();
