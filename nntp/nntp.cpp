@@ -98,7 +98,7 @@ void NNTPProtocol::get( const KUrl& url )
 {
   DBG << "get " << url.prettyURL() << endl;
   QString path = QDir::cleanPath(url.path());
-  QRegExp regMsgId = QRegExp("^\\/?[a-z0-9\\.\\-_]+\\/<\\S+>$", false);
+  QRegExp regMsgId = QRegExp("^\\/?[a-z0-9\\.\\-_]+\\/<\\S+>$", Qt::CaseInsensitive);
   int pos;
   QString group;
   QString msg_id;
@@ -270,8 +270,8 @@ void NNTPProtocol::stat( const KUrl& url ) {
   DBG << "stat " << url.prettyURL() << endl;
   UDSEntry entry;
   QString path = QDir::cleanPath(url.path());
-  QRegExp regGroup = QRegExp("^\\/?[a-z0-9\\.\\-_]+\\/?$",false);
-  QRegExp regMsgId = QRegExp("^\\/?[a-z0-9\\.\\-_]+\\/<\\S+>$", false);
+  QRegExp regGroup = QRegExp("^\\/?[a-z0-9\\.\\-_]+\\/?$",Qt::CaseInsensitive);
+  QRegExp regMsgId = QRegExp("^\\/?[a-z0-9\\.\\-_]+\\/<\\S+>$", Qt::CaseInsensitive);
   int pos;
   QString group;
   QString msg_id;

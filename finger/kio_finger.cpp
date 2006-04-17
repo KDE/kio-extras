@@ -111,7 +111,7 @@ void FingerProtocol::get(const KUrl& url )
 
   // Check the validity of the query
 
-  QRegExp regExp("?refreshRate=[0-9][0-9]*", true, true);
+  QRegExp regExp("?refreshRate=[0-9][0-9]*", Qt::CaseSensitive, QRegExp::Wildcard);
   if (query.contains(regExp)) {
     //kDebug() << "looks like a valid query" << endl;
     QRegExp regExp( "([0-9]+)" );
