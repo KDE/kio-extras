@@ -19,7 +19,7 @@ kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kio_remote )
 
 target_link_libraries(kio_remote  ${KDE4_KIO_LIBS} DCOP)
 
-install_targets(${LIB_INSTALL_DIR}/kde4 kio_remote )
+install_targets(${PLUGIN_INSTALL_DIR} kio_remote )
 
 
 ########### next target ###############

@@ -14,7 +14,7 @@ kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kfile_media )
 
 target_link_libraries(kfile_media  ${KDE4_KIO_LIBS} )
 
-install_targets(${LIB_INSTALL_DIR}/kde4 kfile_media )
+install_targets(${PLUGIN_INSTALL_DIR} kfile_media )
 
 
 ########### install files ###############

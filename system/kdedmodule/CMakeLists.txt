@@ -16,7 +16,7 @@ kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kded_systemdirnotify )
 
 target_link_libraries(kded_systemdirnotify  ${KDE4_KIO_LIBS} DCOP)
 
-install_targets(${LIB_INSTALL_DIR}/kde4 kded_systemdirnotify )
+install_targets(${PLUGIN_INSTALL_DIR} kded_systemdirnotify )
 
 
 ########### install files ###############

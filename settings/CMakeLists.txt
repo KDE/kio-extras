@@ -16,7 +16,7 @@ kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kio_settings )
 
 target_link_libraries(kio_settings  ${KDE4_KIO_LIBS} )
 
-install_targets(${LIB_INSTALL_DIR}/kde4 kio_settings )
+install_targets(${PLUGIN_INSTALL_DIR} kio_settings )
 
 
 ########### install files ###############

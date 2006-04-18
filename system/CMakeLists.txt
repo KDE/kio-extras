@@ -20,7 +20,7 @@ kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kio_system )
 
 target_link_libraries(kio_system  ${KDE4_KIO_LIBS} DCOP)
 
-install_targets(${LIB_INSTALL_DIR}/kde4 kio_system )
+install_targets(${PLUGIN_INSTALL_DIR} kio_system )
 
 
 ########### next target ###############

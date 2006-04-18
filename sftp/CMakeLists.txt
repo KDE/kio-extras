@@ -35,7 +35,7 @@ kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kio_sftp )
 
 target_link_libraries(kio_sftp  ${KDE4_KDE3SUPPORT_LIBS} ${KDE4_KDESU_LIBS} )
 
-install_targets(${LIB_INSTALL_DIR}/kde4 kio_sftp )
+install_targets(${PLUGIN_INSTALL_DIR} kio_sftp )
 
 
 ########### install files ###############

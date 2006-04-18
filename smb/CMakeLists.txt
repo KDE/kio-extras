@@ -24,7 +24,7 @@ kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kio_smb )
 
 target_link_libraries(kio_smb  ${KDE4_KDE3SUPPORT_LIBS} smbclient )
 
-install_targets(${LIB_INSTALL_DIR}/kde4 kio_smb )
+install_targets(${PLUGIN_INSTALL_DIR} kio_smb )
 
 
 ########### install files ###############

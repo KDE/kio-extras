@@ -14,7 +14,7 @@ kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kio_mac )
 
 target_link_libraries(kio_mac  ${KDE4_KIO_LIBS} )
 
-install_targets(${LIB_INSTALL_DIR}/kde4 kio_mac )
+install_targets(${PLUGIN_INSTALL_DIR} kio_mac )
 
 
 ########### install files ###############

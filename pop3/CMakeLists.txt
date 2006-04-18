@@ -31,7 +31,7 @@ kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kio_pop3 )
 
 target_link_libraries(kio_pop3  ${KDE4_KIO_LIBS} ${pop3_optional_libs})
 
-install_targets(${LIB_INSTALL_DIR}/kde4 kio_pop3 )
+install_targets(${PLUGIN_INSTALL_DIR} kio_pop3 )
 
 
 ########### install files ###############

@@ -16,7 +16,7 @@ kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kded_homedirnotify )
 
 target_link_libraries(kded_homedirnotify  ${KDE4_KDECORE_LIBS} DCOP kio)
 
-install_targets(${LIB_INSTALL_DIR}/kde4 kded_homedirnotify )
+install_targets(${PLUGIN_INSTALL_DIR} kded_homedirnotify )
 
 
 ########### install files ###############
