@@ -557,11 +557,12 @@ void sftpProtocol::openConnection() {
 //    opts.append(opt);
 //    opts.append(opt);
 
-    if( mPort != -1 ) {
-        opt.opt = KSshProcess::SSH_PORT;
-        opt.num = mPort;
-        opts.append(opt);
-    }
+    // setHost will set a port in any case
+    assert( mPort != -1 );
+
+    opt.opt = KSshProcess::SSH_PORT;
+    opt.num = mPort;
+    opts.append(opt);
 
     opt.opt = KSshProcess::SSH_SUBSYSTEM;
     opt.str = "sftp";
