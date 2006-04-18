@@ -264,7 +264,7 @@ POP3Protocol::Resp POP3Protocol::getResponse(char *r_buf, unsigned int r_len)
       memcpy(r_buf, buf, qMin(r_len, recv_len));
     }
 
-    if (!buf || !*buf) {
+    if (!*buf) {
       m_sError = i18n("The server terminated the connection.");
     } else {
       m_sError = i18n("Invalid response from server:\n\"%1\"", buf);
