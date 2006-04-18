@@ -709,7 +709,7 @@ bool KSshProcess::connect() {
     if( mVersion == UNKNOWN_VER ) {
         // we don't know the ssh version yet, so find out
         version();
-        if( mVersion == -1 ) {
+        if( mVersion == UNKNOWN_VER ) {
             return false;
         }
     }
