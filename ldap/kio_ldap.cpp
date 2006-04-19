@@ -219,6 +219,8 @@ int LDAPProtocol::asyncSearch( LDAPUrl &usrc, const QByteArray &cookie )
 #ifdef LDAP_CONTROL_PAGEDRESULTS
     BerElement *prber;
     if (( prber = ber_alloc_t(LBER_USE_DER)) == NULL ) {
+      if (attrs)
+	 free(attrs);
       return -1;
     }
     struct berval c;
