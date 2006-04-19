@@ -729,7 +729,7 @@ bool NNTPProtocol::nntp_open()
   DBG << "  nntp_open -- creating a new connection to " << mHost << ":" << m_port << endl;
   // create a new connection (connectToHost() includes error handling)
   infoMessage( i18n("Connecting to server...") );
-  if ( connectToHost( mHost.latin1(), m_port, true ) )
+  if ( connectToHost( mHost.toLatin1(), m_port, true ) )
   {
     DBG << "  nntp_open -- connection is open " << endl;
 
@@ -791,7 +791,7 @@ int NNTPProtocol::sendCommand( const QString &cmd )
 
   DBG << "sending cmd " << cmd << endl;
 
-  write( cmd.latin1(), cmd.length() );
+  write( cmd.toLatin1(), cmd.length() );
   // check the command for proper termination
   if ( !cmd.endsWith( "\r\n" ) )
     write( "\r\n", 2 );
@@ -815,7 +815,7 @@ int NNTPProtocol::sendCommand( const QString &cmd )
 
     // send username to server and confirm response
     write( "AUTHINFO USER ", 14 );
-    write( mUser.latin1(), mUser.length() );
+    write( mUser.toLatin1(), mUser.length() );
     write( "\r\n", 2 );
     res_code = evalResponse( readBuffer, readBufferLen );
 
@@ -826,7 +826,7 @@ int NNTPProtocol::sendCommand( const QString &cmd )
 
     // send password
     write( "AUTHINFO PASS ", 14 );
-    write( mPass.latin1(), mPass.length() );
+    write( mPass.toLatin1(), mPass.length() );
     write( "\r\n", 2 );
     res_code = evalResponse( readBuffer, readBufferLen );
 
@@ -836,7 +836,7 @@ int NNTPProtocol::sendCommand( const QString &cmd )
     }
 
     // ok now, resend command
-    write( cmd.latin1(), cmd.length() );
+    write( cmd.toLatin1(), cmd.length() );
     if ( !cmd.endsWith( "\r\n" ) )
       write( "\r\n", 2 );
     res_code = evalResponse( readBuffer, readBufferLen );

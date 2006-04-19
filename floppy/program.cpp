@@ -138,7 +138,7 @@ bool Program::start()
       for (QStringList::Iterator it=mArgs.begin(); it!=mArgs.end(); ++it)
       {
          arglist[c]=(char*)malloc((*it).length()+1);
-         strcpy(arglist[c], (*it).latin1());
+         strcpy(arglist[c], (*it).toLatin1());
          c++;
       }
       arglist[mArgs.count()]=0;

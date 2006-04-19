@@ -360,7 +360,7 @@ NFSFileHandle NFSProtocol::getFileHandle(QString path)
  */
 void NFSProtocol::openConnection()
 {
-   kDebug(7121)<<"NFS::openConnection for -" << m_currentHost.latin1() << "-" << endl;
+   kDebug(7121)<<"NFS::openConnection for -" << m_currentHost.toLatin1() << "-" << endl;
    if (m_currentHost.isEmpty())
    {
       error(ERR_UNKNOWN_HOST,"");
@@ -370,14 +370,14 @@ void NFSProtocol::openConnection()
    if (m_currentHost[0] >= '0' && m_currentHost[0] <= '9')
    {
       server_addr.sin_family = AF_INET;
-      server_addr.sin_addr.s_addr = inet_addr(m_currentHost.latin1());
+      server_addr.sin_addr.s_addr = inet_addr(m_currentHost.toLatin1());
    }
    else
    {
-      struct hostent *hp=gethostbyname(m_currentHost.latin1());
+      struct hostent *hp=gethostbyname(m_currentHost.toLatin1());
       if (hp==0)
       {
-         error( ERR_UNKNOWN_HOST, m_currentHost.latin1() );
+         error( ERR_UNKNOWN_HOST, m_currentHost.toLatin1() );
          return;
       }
       server_addr.sin_family = AF_INET;
@@ -399,7 +399,7 @@ void NFSProtocol::openConnection()
       if (m_client==0)
       {
          clnt_pcreateerror(const_cast<char *>("mount clntudp_create"));
-         error(ERR_COULD_NOT_CONNECT, m_currentHost.latin1());
+         error(ERR_COULD_NOT_CONNECT, m_currentHost.toLatin1());
          return;
       }
    }
@@ -439,7 +439,7 @@ void NFSProtocol::openConnection()
 
    int clnt_stat = clnt_call(m_client, MOUNTPROC_EXPORT,(xdrproc_t) xdr_void, NULL,
                          (xdrproc_t) xdr_exports, (char*)&exportlist,total_timeout);
-   if (!checkForError(clnt_stat, 0, m_currentHost.latin1())) return;
+   if (!checkForError(clnt_stat, 0, m_currentHost.toLatin1())) return;
 
    fhstatus fhStatus;
    bool atLeastOnceSucceeded(false);
@@ -466,7 +466,7 @@ void NFSProtocol::openConnection()
    if (!atLeastOnceSucceeded)
    {
       closeConnection();
-      error( ERR_COULD_NOT_AUTHENTICATE, m_currentHost.latin1());
+      error( ERR_COULD_NOT_AUTHENTICATE, m_currentHost.toLatin1());
       return;
    }
    server_addr.sin_port = 0;
@@ -486,7 +486,7 @@ void NFSProtocol::openConnection()
       if (m_client==0)
       {
          clnt_pcreateerror(const_cast<char *>("NFS clntudp_create"));
-         error(ERR_COULD_NOT_CONNECT, m_currentHost.latin1());
+         error(ERR_COULD_NOT_CONNECT, m_currentHost.toLatin1());
          return;
       }
    }
@@ -616,7 +616,7 @@ void NFSProtocol::listDir( const KUrl& _url)
             }
             else
             {
-               tmpStr=QDir::cleanPath(path+QString("/")+QString(linkDest)).latin1();
+               tmpStr=QDir::cleanPath(path+QString("/")+QString(linkDest)).toLatin1();
                dirargs.name=tmpStr.data();
                tmpFH=getFileHandle(tmpStr);
                memcpy(dirargs.dir.data,tmpFH,NFS_FHSIZE);
@@ -723,7 +723,7 @@ void NFSProtocol::stat( const KUrl & url)
          else
          {
 
-            tmpStr=QDir::cleanPath(parentDir+QString("/")+QString(linkDest)).latin1();
+            tmpStr=QDir::cleanPath(parentDir+QString("/")+QString(linkDest)).toLatin1();
             diropargs dirargs;
             dirargs.name=tmpStr.data();
             NFSFileHandle tmpFH;
@@ -859,23 +859,23 @@ void NFSProtocol::completeUDSEntry(UDSEntry& entry, fattr& attributes)
          kDebug(7121) << "Access permissions : " << (mode_t)((*it).m_long) << endl;
          break;
       case KIO::UDS_USER:
-         kDebug(7121) << "User : " << ((*it).m_str.ascii() ) << endl;
+         kDebug(7121) << "User : " << ((*it).m_str.toAscii() ) << endl;
          break;
       case KIO::UDS_GROUP:
-         kDebug(7121) << "Group : " << ((*it).m_str.ascii() ) << endl;
+         kDebug(7121) << "Group : " << ((*it).m_str.toAscii() ) << endl;
          break;
       case KIO::UDS_NAME:
-         kDebug(7121) << "Name : " << ((*it).m_str.ascii() ) << endl;
+         kDebug(7121) << "Name : " << ((*it).m_str.toAscii() ) << endl;
          //m_strText = decodeFileName( (*it).m_str );
          break;
       case KIO::UDS_URL:
-         kDebug(7121) << "URL : " << ((*it).m_str.ascii() ) << endl;
+         kDebug(7121) << "URL : " << ((*it).m_str.toAscii() ) << endl;
          break;
       case KIO::UDS_MIME_TYPE:
-         kDebug(7121) << "MimeType : " << ((*it).m_str.ascii() ) << endl;
+         kDebug(7121) << "MimeType : " << ((*it).m_str.toAscii() ) << endl;
          break;
       case KIO::UDS_LINK_DEST:
-         kDebug(7121) << "LinkDest : " << ((*it).m_str.ascii() ) << endl;
+         kDebug(7121) << "LinkDest : " << ((*it).m_str.toAscii() ) << endl;
          break;
       }
    }*/
@@ -1487,7 +1487,7 @@ void NFSProtocol::symlink( const QString &target, const KUrl &dest, bool )
    }
 
    kDebug(7121)<<"tach"<<endl;
-   QByteArray tmpStr=target.latin1();
+   QByteArray tmpStr=target.toLatin1();
    symlinkargs symLinkArgs;
    symLinkArgs.to=tmpStr.data();
    memcpy(symLinkArgs.from.dir.data,(const char*)fh,NFS_FHSIZE);

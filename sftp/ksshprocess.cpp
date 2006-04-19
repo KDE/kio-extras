@@ -242,7 +242,7 @@ KSshProcess::SshVersion KSshProcess::version() {
 
     // Get version string from ssh client.
     FILE *p;
-    if( (p = popen(cmd.latin1(), "r")) == NULL ) {
+    if( (p = popen(cmd.toLatin1(), "r")) == NULL ) {
         kDebug(KSSHPROC) << "KSshProcess::version(): "
             "failed to start ssh: " << strerror(errno) << endl;
         return UNKNOWN_VER;
@@ -331,7 +331,7 @@ bool KSshProcess::setOptions(const SshOptList& opts) {
 
         case SSH_USERNAME:
             mArgs.append("-l");
-            mArgs.append((*it).str.latin1());
+            mArgs.append((*it).str.toLatin1());
             mUsername = (*it).str;
             break;
 
@@ -342,7 +342,7 @@ bool KSshProcess::setOptions(const SshOptList& opts) {
         case SSH_PROTOCOL:
             if( mVersion <= OPENSSH ) {
                 tmp = "Protocol=";
-                tmp += QString::number((*it).num).latin1();
+                tmp += QString::number((*it).num).toLatin1();
                 mArgs.append("-o");
                 mArgs.append(tmp);
             }
@@ -381,7 +381,7 @@ bool KSshProcess::setOptions(const SshOptList& opts) {
             // don't allow NumberOfPasswordPrompts or StrictHostKeyChecking
             // since KSshProcess depends on specific setting of these for 
             // preforming authentication correctly.
-            tmp = (*it).str.latin1();
+            tmp = (*it).str.toLatin1();
             if( tmp.contains("NumberOfPasswordPrompts") ||
                 tmp.contains("StrictHostKeyChecking") ) {
                 mError = ERR_INVALID_OPT;
@@ -431,16 +431,16 @@ bool KSshProcess::setOptions(const SshOptList& opts) {
         return false;
     }
     else {
-        mArgs.append(mHost.latin1());
+        mArgs.append(mHost.toLatin1());
     }
 
     if( !subsystem.isEmpty() ) {
         mArgs.append("-s");
-        mArgs.append(subsystem.latin1());
+        mArgs.append(subsystem.toLatin1());
     }
 
     if( !cmd.isEmpty() ) {
-        mArgs.append(cmd.latin1());
+        mArgs.append(cmd.toLatin1());
     }
 
     return true;
@@ -746,7 +746,7 @@ bool KSshProcess::connect() {
                 return false;
             }
 
-            if( ssh.exec(mSshPath.latin1(), mArgs) ) {
+            if( ssh.exec(mSshPath.toLatin1(), mArgs) ) {
                 kDebug(KSSHPROC) << 
                     "KSshProcess::connect(): ssh exec failed" << endl;
                 mError = ERR_CANNOT_LAUNCH;
@@ -838,7 +838,7 @@ bool KSshProcess::connect() {
             // again.
             if( !mPassword.isEmpty() ) {
 //                ssh.WaitSlave();
-                ssh.writeLine(mPassword.latin1());
+                ssh.writeLine(mPassword.toLatin1());
                 
                 // Overwrite the password so it isn't in memory.
                 mPassword.fill(QChar('X'));
@@ -877,7 +877,7 @@ bool KSshProcess::connect() {
             // again.
             if( !mPassword.isEmpty() ) {
 //                ssh.WaitSlave();
-                ssh.writeLine(mPassword.latin1());
+                ssh.writeLine(mPassword.toLatin1());
                 
                 // Overwrite the password so it isn't in memory.
                 mPassword.fill(QChar('X'));

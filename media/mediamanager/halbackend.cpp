@@ -215,9 +215,9 @@ void HALBackend::AddDevice(const char *udi, bool allowNotification)
 		/* Query drive udi */
 		QString driveUdi = hal_device_get_property_QString(m_halContext, udi, "block.storage_device");
 		/* We don't list floppy volumes because we list floppy drives */
-		if ((hal_device_get_property_QString(m_halContext, driveUdi.ascii(), "storage.drive_type") == "floppy") ||
-		    (hal_device_get_property_QString(m_halContext, driveUdi.ascii(), "storage.drive_type") == "zip") ||
-		    (hal_device_get_property_QString(m_halContext, driveUdi.ascii(), "storage.drive_type") == "jaz"))
+		if ((hal_device_get_property_QString(m_halContext, driveUdi.toAscii(), "storage.drive_type") == "floppy") ||
+		    (hal_device_get_property_QString(m_halContext, driveUdi.toAscii(), "storage.drive_type") == "zip") ||
+		    (hal_device_get_property_QString(m_halContext, driveUdi.toAscii(), "storage.drive_type") == "jaz"))
 			return;
 
 		/** @todo check exclusion list **/
@@ -315,14 +315,14 @@ const char* HALBackend::findMediumUdiFromUdi(const char* udi)
 	/* Easy part : this Udi is already registered as a device */
 	const Medium* medium = m_mediaList.findById(udi);
 	if (medium)
-		return medium->id().ascii();
+		return medium->id().toAscii();
 
 	/* Hard part : this is a volume whose drive is registered */
 	if (libhal_device_property_exists(m_halContext, udi, "info.capabilities", NULL))
 		if (libhal_device_query_capability(m_halContext, udi, "volume", NULL))
 		{
 			QString driveUdi = hal_device_get_property_QString(m_halContext, udi, "block.storage_device");
-			return findMediumUdiFromUdi(driveUdi.ascii());
+			return findMediumUdiFromUdi(driveUdi.toAscii());
 		}
 
 	return NULL;
@@ -350,7 +350,7 @@ void HALBackend::setVolumeProperties(Medium* medium)
 {
 	kDebug(1219) << "HALBackend::setVolumeProperties for " << medium->id() << endl;
 
-	const char* udi = medium->id().ascii();
+	const char* udi = medium->id().toAscii();
 	/* Check if the device still exists */
 	if (!libhal_device_exists(m_halContext, udi, NULL))
 			return;
@@ -360,7 +360,7 @@ void HALBackend::setVolumeProperties(Medium* medium)
 	if (!halVolume)
 		return;
 	QString driveUdi = libhal_volume_get_storage_device_udi(halVolume);
-	LibHalDrive*  halDrive  = libhal_drive_from_udi(m_halContext, driveUdi.ascii());
+	LibHalDrive*  halDrive  = libhal_drive_from_udi(m_halContext, driveUdi.toAscii());
 
 	medium->setName(
 		generateName(libhal_volume_get_device_file(halVolume)) );
@@ -483,7 +483,7 @@ void HALBackend::setFloppyProperties(Medium* medium)
 {
 	kDebug(1219) << "HALBackend::setFloppyProperties for " << medium->id() << endl;
 
-	const char* udi = medium->id().ascii();
+	const char* udi = medium->id().toAscii();
 	/* Check if the device still exists */
 	if (!libhal_device_exists(m_halContext, udi, NULL))
 		return;
@@ -564,7 +564,7 @@ void HALBackend::setCameraProperties(Medium* medium)
 {
 	kDebug(1219) << "HALBackend::setCameraProperties for " << medium->id() << endl;
 
-	const char* udi = medium->id().ascii();
+	const char* udi = medium->id().toAscii();
 	/* Check if the device still exists */
 	if (!libhal_device_exists(m_halContext, udi, NULL))
 		return;

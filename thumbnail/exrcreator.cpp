@@ -39,7 +39,7 @@ extern "C"
 
 bool EXRCreator::create(const QString &path, int, int, QImage &img)
 {
-    Imf::InputFile in ( path.ascii() );
+    Imf::InputFile in ( path.toAscii() );
     const Imf::Header &h = in.header();
 
     if ( h.hasPreviewImage() ) {

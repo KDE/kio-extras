@@ -539,7 +539,7 @@ char *MANProtocol::readManPage(const char *_filename)
 	        this, SLOT(slotGetStdOutput(KProcess *, char *, int)));
 	proc.start(KProcess::Block, KProcess::All);
 
-        const QByteArray cstr=myStdStream.latin1();
+        const QByteArray cstr=myStdStream.toLatin1();
         const int len = cstr.size()-1;
         buf = new char[len + 4];
         qmemmove(buf + 1, cstr.data(), len);

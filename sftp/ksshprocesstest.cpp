@@ -46,7 +46,7 @@ int main(int argc, char *argv[]) {
     char c;
     while( !stop && !(connected = ssh.connect()) ) {
         cout << "ksshprocesstest: Error num - " << ssh.error() << endl;
-        cout << "ksshprocesstest: Error msg - " << ssh.errorMsg().latin1() << endl;
+        cout << "ksshprocesstest: Error msg - " << ssh.errorMsg().toLatin1() << endl;
         switch( ssh.error() ) {
             case KSshProcess::ERR_NEED_PASSWD:
             case KSshProcess::ERR_NEED_PASSPHRASE:

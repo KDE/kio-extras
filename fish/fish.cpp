@@ -436,16 +436,16 @@ bool fishProtocol::connectionStart() {
         setpgid(0,0);
 
         if (local) {
-            execl(suPath, "su", "-", connectionUser.latin1(), "-c", "cd ~;echo FISH:;exec /bin/sh -c \"if env true 2>/dev/null; then env PS1= PS2= TZ=UTC LANG=C LC_ALL=C LOCALE=C /bin/sh; else PS1= PS2= TZ=UTC LANG=C LC_ALL=C LOCALE=C /bin/sh; fi\"", (void *)0);
+            execl(suPath, "su", "-", connectionUser.toLatin1(), "-c", "cd ~;echo FISH:;exec /bin/sh -c \"if env true 2>/dev/null; then env PS1= PS2= TZ=UTC LANG=C LC_ALL=C LOCALE=C /bin/sh; else PS1= PS2= TZ=UTC LANG=C LC_ALL=C LOCALE=C /bin/sh; fi\"", (void *)0);
         } else {
-            #define common_args "-l", connectionUser.latin1(), "-x", "-e", "none", \
-                "-q", connectionHost.latin1(), \
+            #define common_args "-l", connectionUser.toLatin1(), "-x", "-e", "none", \
+                "-q", connectionHost.toLatin1(), \
                 "echo FISH:;exec /bin/sh -c \"if env true 2>/dev/null; then env PS1= PS2= TZ=UTC LANG=C LC_ALL=C LOCALE=C /bin/sh; else PS1= PS2= TZ=UTC LANG=C LC_ALL=C LOCALE=C /bin/sh; fi\"", (void *)0
             // disabled: leave compression up to the client.
             // (isOpenSSH?"-C":"+C"),
 
             if (connectionPort)
-                execl(sshPath, "ssh", "-p", QString::number(connectionPort).latin1(), common_args);
+                execl(sshPath, "ssh", "-p", QString::number(connectionPort).toLatin1(), common_args);
             else
                 execl(sshPath, "ssh", common_args);
             #undef common_args
