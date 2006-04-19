@@ -445,6 +445,7 @@ void LDAPProtocol::addModOp( LDAPMod ***pmods, int mod_type, const QString &attr
       realloc( mods[ i ]->mod_vals.modv_bvals, (j + 2) * sizeof( BerValue* ) );
     if ( mods[ i ]->mod_vals.modv_bvals == 0 ) {
       kError() << "addModOp: realloc" << endl;
+      free(berval);
       return;
     }
     mods[ i ]->mod_vals.modv_bvals[ j ] = berval;
