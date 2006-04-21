@@ -302,9 +302,9 @@ void ThumbnailProtocol::get(const KUrl &url)
     {
         double imgRatio = (double)img.height() / (double)img.width();
         if (imgRatio > (double)m_height / (double)m_width)
-            img = img.smoothScale( int(qMax((double)m_height / imgRatio, 1.0)), m_height);
+            img = img.scaled( int(qMax((double)m_height / imgRatio, 1.0)), m_height, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
         else
-            img = img.smoothScale(m_width, int(qMax((double)m_width * imgRatio, 1.0)));
+            img = img.scaled(m_width, int(qMax((double)m_width * imgRatio, 1.0)), Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
     }
 
 // ### FIXME
