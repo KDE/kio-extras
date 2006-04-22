@@ -341,7 +341,7 @@ void ThumbnailProtocol::get(const KUrl &url)
             pix.setMask( bitmap );
         }
 
-        img = pix.convertToImage();
+        img = pix.toImage();
     }
 #endif
 
@@ -422,7 +422,7 @@ const QImage& ThumbnailProtocol::getIcon()
     QImage* icon = m_iconDict.find(m_mimeType);
     if ( !icon ) // generate it!
     {
-        icon = new QImage( KMimeType::mimeType(m_mimeType)->pixmap( K3Icon::Desktop, m_iconSize ).convertToImage() );
+        icon = new QImage( KMimeType::mimeType(m_mimeType)->pixmap( K3Icon::Desktop, m_iconSize ).toImage() );
         icon->setAlphaBuffer( true );
 
         int w = icon->width();

@@ -97,7 +97,7 @@ bool HTMLCreator::create(const QString &path, int width, int height, QImage &img
     m_html->paint(&p, rc);
     p.end();
 
-    img = pix.convertToImage();
+    img = pix.toImage();
 
     m_html->closeURL();
 

@@ -175,7 +175,7 @@ bool TextCreator::create(const QString &path, int width, int height, QImage &img
                 x += xOffset; // next character
             }
             if (ok)
-                img = m_pixmap.convertToImage();
+                img = m_pixmap.toImage();
         }
 
         file.close();
