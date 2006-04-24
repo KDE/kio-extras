@@ -22,6 +22,7 @@
 
 #include <kmimetype.h>
 #include <qstring.h>
+#include <kdedesktopmimetype.h>
 
 #include "notifieraction.h"
 
