@@ -230,10 +230,10 @@ bool MediaImpl::ensureMediumMounted(Medium &medium)
 		                           medium.deviceNode(),
 		                           medium.mountPoint());
 		job->setAutoWarningHandlingEnabled(false);
-		connect( job, SIGNAL( result( KIO::Job * ) ),
-		         this, SLOT( slotMountResult( KIO::Job * ) ) );
-		connect( job, SIGNAL( warning( KIO::Job *, const QString & ) ),
-		         this, SLOT( slotWarning( KIO::Job *, const QString & ) ) );
+		connect( job, SIGNAL( result(KJob*) ),
+		         this, SLOT( slotMountResult(KJob*) ) );
+		connect( job, SIGNAL( warning(KJob*,const QString&) ),
+		         this, SLOT( slotWarning(KJob*,const QString&) ) );
 		kapp->dcopClient()
 		->connectDCOPSignal("kded", "mediamanager",
 		                    "mediumChanged(QString, bool)",
@@ -257,12 +257,12 @@ bool MediaImpl::ensureMediumMounted(Medium &medium)
 	return true;
 }
 
-void MediaImpl::slotWarning( KIO::Job * /*job*/, const QString &msg )
+void MediaImpl::slotWarning( KJob * /*job*/, const QString &msg )
 {
 	emit warning( msg );
 }
 
-void MediaImpl::slotMountResult(KIO::Job *job)
+void MediaImpl::slotMountResult(KJob *job)
 {
 	kDebug(1219) << "MediaImpl::slotMountResult" << endl;
 
@@ -300,7 +300,7 @@ void MediaImpl::createTopLevelEntry(KIO::UDSEntry& entry) const
 	entry.insert(KIO::UDS_GROUP, QString::fromLatin1("root"));
 }
 
-void MediaImpl::slotStatResult(KIO::Job *job)
+void MediaImpl::slotStatResult(KJob *job)
 {
 	if ( job->error() == 0)
 	{
@@ -317,10 +317,10 @@ void MediaImpl::extractUrlInfos(const KUrl &url, KIO::UDSEntry& infos)
 
 	KIO::StatJob *job = KIO::stat(url, false);
 	job->setAutoWarningHandlingEnabled( false );
-	connect( job, SIGNAL( result(KIO::Job *) ),
-	         this, SLOT( slotStatResult(KIO::Job *) ) );
-	connect( job, SIGNAL( warning( KIO::Job *, const QString & ) ),
-	         this, SLOT( slotWarning( KIO::Job *, const QString & ) ) );
+	connect( job, SIGNAL( result(KJob*) ),
+	         this, SLOT( slotStatResult(KJob*) ) );
+	connect( job, SIGNAL( warning(KJob*,const QString&) ),
+	         this, SLOT( slotWarning(KJob*,const QString&) ) );
 	enterLoop();
 
         infos.insert( KIO::UDS_ACCESS, m_entryBuffer.value( KIO::UDS_ACCESS ) );

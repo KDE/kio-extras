@@ -79,8 +79,8 @@ MountHelper::MountHelper() : KApplication()
 	{
 		KIO::Job * job = KIO::unmount( mount_point );
 
-		connect( job, SIGNAL( result( KIO::Job * ) ),
-		         this, SLOT( slotResult( KIO::Job * ) ) );
+		connect( job, SIGNAL( result(KJob*) ),
+		         this, SLOT( slotResult(KJob*) ) );
 	}
 	else if (args->isSet("s") || args->isSet("e"))
 	{
@@ -89,8 +89,8 @@ MountHelper::MountHelper() : KApplication()
 			KIO::Job * job = KIO::unmount( mount_point );
 
 			m_device = device;
-			connect( job, SIGNAL( result( KIO::Job * ) ),
-			         this, SLOT( slotResultSafe( KIO::Job * ) ) );
+			connect( job, SIGNAL( result(KJob*) ),
+			         this, SLOT( slotResultSafe(KJob*) ) );
 		}
 		else
 		{
@@ -100,8 +100,8 @@ MountHelper::MountHelper() : KApplication()
 	else
 	{
 		 KIO::Job* job = KIO::mount( false, 0, device, mount_point);
-		 connect( job, SIGNAL( result( KIO::Job * ) ),
-		          this, SLOT( slotResult( KIO::Job * ) ) );
+		 connect( job, SIGNAL( result(KJob*) ),
+		          this, SLOT( slotResult(KJob*) ) );
 	}
 }
 
@@ -119,7 +119,7 @@ void MountHelper::invokeEject(const QString &device, bool quiet)
 	         this, SLOT( finished() ) );
 }
 
-void MountHelper::slotResultSafe(KIO::Job* job)
+void MountHelper::slotResultSafe(KJob* job)
 {
 	if (job->error())
 	{
@@ -144,7 +144,7 @@ void MountHelper::slotResultSafe(KIO::Job* job)
 	}
 }
 
-void MountHelper::slotResult(KIO::Job* job)
+void MountHelper::slotResult(KJob* job)
 {
 	if (job->error())
 	{

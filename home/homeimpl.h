@@ -45,7 +45,7 @@ public:
 	QString lastErrorMessage() const { return m_lastErrorMessage; }
 
 private Q_SLOTS:
-	void slotStatResult(KIO::Job *job);
+	void slotStatResult(KJob *job);
        void enterLoop();
 
 Q_SIGNALS:

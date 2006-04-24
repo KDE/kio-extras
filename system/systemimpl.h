@@ -51,7 +51,7 @@ Q_SIGNALS:
 private Q_SLOTS:
 	KUrl findBaseURL(const QString &filename) const;
 	void slotEntries(KIO::Job *job, const KIO::UDSEntryList &list);
-	void slotResult(KIO::Job *job);
+	void slotResult(KJob *job);
 
 private:
 	void createEntry(KIO::UDSEntry& entry, const QString &directory,

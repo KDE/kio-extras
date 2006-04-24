@@ -168,7 +168,7 @@ bool HomeImpl::statHome(const QString &name, KIO::UDSEntry &entry)
 	return false;
 }
 
-void HomeImpl::slotStatResult(KIO::Job *job)
+void HomeImpl::slotStatResult(KJob *job)
 {
 	if ( job->error() == 0)
 	{
@@ -191,8 +191,8 @@ void HomeImpl::extractUrlInfos(const KUrl &url, KIO::UDSEntry& infos)
 	m_entryBuffer.clear();
 
 	KIO::StatJob *job = KIO::stat(url, false);
-	connect( job, SIGNAL( result(KIO::Job *) ),
-	         this, SLOT( slotStatResult(KIO::Job *) ) );
+	connect( job, SIGNAL( result(KJob*) ),
+	         this, SLOT( slotStatResult(KJob*) ) );
 	enterLoop();
 
 	KIO::UDSEntry::iterator it = m_entryBuffer.begin();

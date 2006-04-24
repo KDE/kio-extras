@@ -5,6 +5,6 @@ Name=Text Files
 Name[fr]=Fichiers de texte
 Name[x-test]=xxText Filesxx
 ServiceTypes=ThumbCreator
-MimeTypes=text/*
+MimeTypes=text/plain
 X-KDE-Library=textthumbnail
 CacheThumbnail=false

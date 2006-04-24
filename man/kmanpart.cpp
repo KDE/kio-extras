@@ -96,7 +96,7 @@ bool KManPart::openFile()
 
    m_job = KIO::get( url, true, false );
    connect( m_job, SIGNAL( data( KIO::Job *, const QByteArray &) ), SLOT( readData( KIO::Job *, const QByteArray &) ) );
-   connect( m_job, SIGNAL( result( KIO::Job * ) ), SLOT( jobDone( KIO::Job * ) ) );
+   connect( m_job, SIGNAL( result(KJob*) ), SLOT( jobDone(KJob*) ) );
    return true;
 }
 
@@ -105,7 +105,7 @@ void KManPart::readData(KIO::Job * , const QByteArray & data)
    write(data,data.size());
 }
 
-void KManPart::jobDone( KIO::Job *)
+void KManPart::jobDone( KJob *)
 {
    m_job=0;
    end();

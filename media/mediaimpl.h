@@ -57,9 +57,9 @@ signals:
 	void leaveModality();
 
 private slots:
-	void slotWarning(KIO::Job *job, const QString &msg);
-	void slotMountResult(KIO::Job *job);
-	void slotStatResult(KIO::Job *job);
+	void slotWarning(KJob *job, const QString &msg);
+	void slotMountResult(KJob *job);
+	void slotStatResult(KJob *job);
 
 private:
 	const Medium findMediumByName(const QString &name, bool &ok);

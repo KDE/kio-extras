@@ -70,11 +70,11 @@ void MediaNotifier::onMediumChange( const QString &name, bool allowNotification 
 
 	m_allowNotificationMap[job] = allowNotification;
 	
-	connect( job, SIGNAL( result( KIO::Job * ) ),
-	         this, SLOT( slotStatResult( KIO::Job * ) ) );
+	connect( job, SIGNAL( result(KJob*) ),
+	         this, SLOT( slotStatResult(KJob*) ) );
 }
 
-void MediaNotifier::slotStatResult( KIO::Job *job )
+void MediaNotifier::slotStatResult( KJob *job )
 {
 	bool allowNotification = m_allowNotificationMap[job];
 	m_allowNotificationMap.remove( job );

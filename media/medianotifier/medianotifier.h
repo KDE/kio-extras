@@ -41,7 +41,7 @@ k_dcop:
 	void onMediumChange( const QString &name, bool allowNotification );
 
 private Q_SLOTS:
-	void slotStatResult( KIO::Job *job );
+	void slotStatResult( KJob *job );
 	
 private:
 	bool autostart( const KFileItem &medium );
@@ -52,7 +52,7 @@ private:
 	bool execAutoopen( const KFileItem &medium, const QString &path,
 	                   const QString &autoopenFile );
 
-	QMap<KIO::Job*,bool> m_allowNotificationMap;
+	QMap<KJob*,bool> m_allowNotificationMap;
 };
 #endif
 

@@ -67,7 +67,7 @@ class KManPart : public KHTMLPart
       virtual bool openURL( const KUrl &url );
    protected Q_SLOTS:
       void readData(KIO::Job * , const QByteArray & data);
-      void jobDone( KIO::Job *);
+      void jobDone( KJob *);
    protected:
       virtual bool openFile();
       KInstance *m_instance;

@@ -238,8 +238,8 @@ void SystemImpl::createEntry(KIO::UDSEntry &entry,
 		                      const KIO::UDSEntryList &) ),
 		         this, SLOT( slotEntries(KIO::Job *,
 			             const KIO::UDSEntryList &) ) );
-		connect( job, SIGNAL( result(KIO::Job *) ),
-		         this, SLOT( slotResult(KIO::Job *) ) );
+		connect( job, SIGNAL( result(KJob*) ),
+		         this, SLOT( slotResult(KJob*) ) );
 		enterLoop();
 
 		if (m_lastListingEmpty) icon = empty_icon;
@@ -266,7 +266,7 @@ void SystemImpl::slotEntries(KIO::Job *job, const KIO::UDSEntryList &list)
 	}
 }
 
-void SystemImpl::slotResult(KIO::Job *)
+void SystemImpl::slotResult(KJob *)
 {
 	emit leaveModality();
 }

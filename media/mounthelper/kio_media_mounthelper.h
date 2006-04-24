@@ -42,8 +42,8 @@ private:
 	bool m_isCdrom;
 
 private Q_SLOTS:
-	void slotResult(KIO::Job* job);
-	void slotResultSafe(KIO::Job* job);
+	void slotResult(KJob* job);
+	void slotResultSafe(KJob* job);
 	void finished();
 	void error();
 };
