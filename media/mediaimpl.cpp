@@ -232,7 +232,7 @@ bool MediaImpl::ensureMediumMounted(Medium &medium)
 		job->setAutoWarningHandlingEnabled(false);
 		connect( job, SIGNAL( result(KJob*) ),
 		         this, SLOT( slotMountResult(KJob*) ) );
-		connect( job, SIGNAL( warning(KJob*,const QString&) ),
+		connect( job, SIGNAL( warning(KJob*,const QString&,const QString&) ),
 		         this, SLOT( slotWarning(KJob*,const QString&) ) );
 		kapp->dcopClient()
 		->connectDCOPSignal("kded", "mediamanager",
@@ -319,7 +319,7 @@ void MediaImpl::extractUrlInfos(const KUrl &url, KIO::UDSEntry& infos)
 	job->setAutoWarningHandlingEnabled( false );
 	connect( job, SIGNAL( result(KJob*) ),
 	         this, SLOT( slotStatResult(KJob*) ) );
-	connect( job, SIGNAL( warning(KJob*,const QString&) ),
+	connect( job, SIGNAL( warning(KJob*,const QString&,const QString&) ),
 	         this, SLOT( slotWarning(KJob*,const QString&) ) );
 	enterLoop();
 
