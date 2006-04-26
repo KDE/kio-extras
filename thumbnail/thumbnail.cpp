@@ -82,7 +82,7 @@
 //                    int height
 //                    int depth
 //                Otherwise, the data returned is the image in PNG format.
- 
+
 using namespace KIO;
 
 extern "C"
@@ -212,7 +212,7 @@ void ThumbnailProtocol::get(const KUrl &url)
 
     KConfigGroup group( KGlobal::config(), "PreviewSettings" );
 
-    
+
     // ### KFMI
     bool kfmiThumb = false;
     if (group.readEntry( "UseFileThumbnails", QVariant(true )).toBool()) {
@@ -236,7 +236,7 @@ void ThumbnailProtocol::get(const KUrl &url)
         }
     }
     ThumbCreator::Flags flags = ThumbCreator::None;
-     
+
     if (!kfmiThumb)
     {
         kDebug(7115) << "using thumb creator for the thumbnail\n";
@@ -246,7 +246,7 @@ void ThumbnailProtocol::get(const KUrl &url)
         {
             KTrader::OfferList plugins = KTrader::self()->query("ThumbCreator");
             QMap<QString, KService::Ptr> mimeMap;
-    
+
             for (KTrader::OfferList::ConstIterator it = plugins.begin(); it != plugins.end(); ++it)
             {
                 QStringList mimeTypes = (*it)->property("MimeTypes").toStringList();
@@ -269,7 +269,7 @@ void ThumbnailProtocol::get(const KUrl &url)
             error(KIO::ERR_INTERNAL, i18n("No plugin specified."));
             return;
         }
-        
+
         ThumbCreator *creator = m_creators[plugin];
         if (!creator)
         {
@@ -311,8 +311,7 @@ void ThumbnailProtocol::get(const KUrl &url)
 #ifndef USE_KINSTANCE
     if (flags & ThumbCreator::DrawFrame)
     {
-        QPixmap pix;
-        pix.convertFromImage(img);
+        QPixmap pix = QPixmap::fromImage( img );
         int x2 = pix.width() - 1;
         int y2 = pix.height() - 1;
         // paint a black rectangle around the "page"

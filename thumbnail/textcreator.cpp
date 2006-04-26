@@ -73,8 +73,8 @@ bool TextCreator::create(const QString &path, int width, int height, QImage &img
         pixmapSize.setWidth( height * 3 / 4 );
 
     if ( pixmapSize != m_pixmap.size() )
-        m_pixmap.resize( pixmapSize );
-    
+        m_pixmap = QPixmap( pixmapSize );
+
     // one pixel for the rectangle, the rest. whitespace
     int xborder = 1 + pixmapSize.width()/16;  // minimum x-border
     int yborder = 1 + pixmapSize.height()/16; // minimum y-border

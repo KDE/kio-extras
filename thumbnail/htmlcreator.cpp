@@ -78,12 +78,12 @@ bool HTMLCreator::create(const QString &path, int width, int height, QImage &img
     if (width > 400 || height > 600)
     {
         if (height * 3 > width * 4)
-            pix.resize(width, width * 4 / 3);
+            pix = QPixmap(width, width * 4 / 3);
         else
-            pix.resize(height * 3 / 4, height);
+            pix = QPixmap(height * 3 / 4, height);
     }
     else
-        pix.resize(400, 600);
+        pix = QPixmap(400, 600);
 
     // light-grey background, in case loadind the page failed
     pix.fill( QColor( 245, 245, 245 ) );
