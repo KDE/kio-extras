@@ -144,7 +144,7 @@ int FloppyProtocol::readStderr()
    char buffer[16*1024];
    int length=::read(m_mtool->stderrFD(),buffer,16*1024);
    kDebug(7101)<<"Floppy::readStderr(): read "<<length<<" bytes"<<endl;
-   if (length==0) return 0;
+   if (length<=0) return 0;
 
    //+1 gives us room for a terminating 0
    char *newBuffer=new char[length+m_stderrSize+1];
