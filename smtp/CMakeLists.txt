@@ -47,13 +47,13 @@ set(test_responseparser_SRCS test_responseparser.cc )
 
 kde4_automoc(test_responseparser_SRCS})
 
-if(KDE4_BUILD_TESTS)
+if(DOES_NOT_COMPILE_KDE4_BUILD_TESTS)
 
 kde4_add_executable(test_responseparser ${test_responseparser_SRCS})
 
 target_link_libraries(test_responseparser  ${KDE4_KDECORE_LIBS} )
 
-endif(KDE4_BUILD_TESTS)
+endif(DOES_NOT_COMPILE_KDE4_BUILD_TESTS)
 
 ########### next target ###############
 set(test_headergeneration_SRCS test_headergeneration.cc )
@@ -75,13 +75,13 @@ set(test_commands_SRCS test_commands.cc )
 
 kde4_automoc(test_commands_SRCS})
 
-if(KDE4_BUILD_TESTS)
+if(DOES_NOT_COMPILE_KDE4_BUILD_TESTS)
 
 kde4_add_executable(test_commands ${test_commands_SRCS})
 
 target_link_libraries(test_commands  ${KDE4_KDECORE_LIBS} )
 
-endif(KDE4_BUILD_TESTS)
+endif(DOES_NOT_COMPILE_KDE4_BUILD_TESTS)
 
 ########### next target ###############
 

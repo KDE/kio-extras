@@ -33,8 +33,10 @@
 
 #include <config.h>
 
-#include <qserversocket.h>
-#include <qsocket.h>
+#include <q3serversocket.h>
+#include <q3socket.h>
+#include <q3textedit.h>
+#include <qtextstream.h>
 #include <qwidget.h>
 #include <qapplication.h>
 #include <qhostaddress.h>
@@ -54,7 +56,7 @@ static const QHostAddress localhost( 0x7f000001 ); // 127.0.0.1
 InteractiveSMTPServerWindow::~InteractiveSMTPServerWindow() {
     if ( mSocket ) {
         mSocket->close();
-        if ( mSocket->state() == QSocket::Closing )
+        if ( mSocket->state() == Q3Socket::Closing )
             connect( mSocket, SIGNAL(delayedCloseFinished()),
                      mSocket, SLOT(deleteLater()) );
         else
@@ -73,7 +75,7 @@ void InteractiveSMTPServerWindow::slotSendResponse()
 }
 
 InteractiveSMTPServer::InteractiveSMTPServer( QObject* parent )
-    : QServerSocket( localhost, 2525, 1, parent )
+    : Q3ServerSocket( localhost, 2525, 1, parent )
 {
 }
 
@@ -88,16 +90,15 @@ int main( int argc, char * argv[] ) {
 };
 
 
-InteractiveSMTPServerWindow::InteractiveSMTPServerWindow( QSocket * socket, QWidget * parent, const char * name, WFlags f )
-  : QWidget( parent, name, f ), mSocket( socket )
+InteractiveSMTPServerWindow::InteractiveSMTPServerWindow( Q3Socket * socket, QWidget * parent )
+  : QWidget( parent ), mSocket( socket )
 {
   QPushButton * but;
   assert( socket );
 
   QVBoxLayout * vlay = new QVBoxLayout( this, 6 );
 
-  mTextEdit = new QTextEdit( this );
-  mTextEdit->setTextFormat( QTextEdit::LogText );
+  mTextEdit = new Q3TextEdit( this );
   vlay->addWidget( mTextEdit, 1 );
 
   QHBoxLayout * hlay = new QHBoxLayout( vlay );

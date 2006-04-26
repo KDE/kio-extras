@@ -2,7 +2,6 @@
 #include <kdebug.h>
 
 #include <qstring.h>
-#include <qcstring.h>
 #include <qstringlist.h>
 
 //#include <iostream>
@@ -37,7 +36,8 @@ public:
     startTLSReturnCode = 1;
     usesSSL = usesTLS = false;
     lastErrorCode = lastMessageBoxCode = 0;
-    lastErrorMessage = lastMessageBoxText.clear();
+    lastErrorMessage = QString::null ;
+    lastMessageBoxText.clear();
     nextData.resize( 0 );
     nextDataReturnCode = -1;
     caps.clear();
@@ -234,10 +234,11 @@ int main( int, char** ) {
   //
 
   smtp.clear();
-  QStrIList mechs;
+  QStringList mechs;
   mechs.append( "PLAIN" );
   smtp.metadata["sasl"] = "PLAIN";
-  AuthCommand auth( &smtp, mechs, "user", "pass" );
+  KIO::AuthInfo authInfo;
+  AuthCommand auth( &smtp, "PLAIN", QString("user"), &authInfo );
   // flags
   assert( auth.closeConnectionOnError() );
   assert( auth.mustBeLastInPipeline() );

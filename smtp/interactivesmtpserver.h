@@ -39,9 +39,9 @@
 
 static QString err2str( int err ) {
   switch ( err ) {
-  case QSocket::ErrConnectionRefused: return "Connection refused";
-  case QSocket::ErrHostNotFound: return "Host not found";
-  case QSocket::ErrSocketRead: return "Failed to read from socket";
+  case Q3Socket::ErrConnectionRefused: return "Connection refused";
+  case Q3Socket::ErrHostNotFound: return "Host not found";
+  case Q3Socket::ErrSocketRead: return "Failed to read from socket";
   default: return "Unknown error";
   }
 }
@@ -69,7 +69,7 @@ static QString trim( const QString & s ) {
 class InteractiveSMTPServerWindow : public QWidget {
   Q_OBJECT
 public:
-  InteractiveSMTPServerWindow( QSocket * socket, QWidget * parent=0, const char * name=0, WFlags f=0 );
+  InteractiveSMTPServerWindow( Q3Socket * socket, QWidget * parent=0);
   ~InteractiveSMTPServerWindow();
 
 public Q_SLOTS:
@@ -97,12 +97,12 @@ public Q_SLOTS:
     mSocket->close();
   }
 private:
-  QSocket * mSocket;
-  QTextEdit * mTextEdit;
+  Q3Socket * mSocket;
+  Q3TextEdit * mTextEdit;
   QLineEdit * mLineEdit;
 };
 
-class InteractiveSMTPServer : public QServerSocket {
+class InteractiveSMTPServer : public Q3ServerSocket {
   Q_OBJECT
 public:
   InteractiveSMTPServer( QObject * parent=0 );
@@ -110,7 +110,7 @@ public:
 
   /*! \reimp */
   void newConnection( int fd ) {
-    QSocket * socket = new QSocket();
+    Q3Socket * socket = new Q3Socket();
     socket->setSocket( fd );
     InteractiveSMTPServerWindow * w = new InteractiveSMTPServerWindow( socket );
     w->show();

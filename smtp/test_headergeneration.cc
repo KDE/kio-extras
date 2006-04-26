@@ -6,7 +6,7 @@
 //using std::endl;
 
 int main( int , char ** ) {
-  static QCString expected =
+  static QByteArray expected =
     "From: mutz@kde.org\r\n"
     "Subject: missing subject\r\n"
     "To: joe@user.org,\r\n"
