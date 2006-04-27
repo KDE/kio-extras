@@ -6,7 +6,7 @@ include_directories(  ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR} ${
 
 ########### next target ###############
 
-set(ksshprocesstest_SRCS ksshprocesstest.cpp )
+set(ksshprocesstest_SRCS ksshprocesstest.cpp ksshprocess.cpp process.cpp atomicio.cpp )
 
 kde4_automoc(${ksshprocesstest_SRCS})
 
@@ -37,14 +37,8 @@ target_link_libraries(kio_sftp  ${KDE4_KDE3SUPPORT_LIBS} ${KDE4_KDESU_LIBS} )
 
 install_targets(${PLUGIN_INSTALL_DIR} kio_sftp )
 
-
-########### install files ###############
-
 install_files( ${SERVICES_INSTALL_DIR} FILES sftp.protocol )
-
 kde4_footer()
-
-
 
 #original Makefile.am contents follow:
 
