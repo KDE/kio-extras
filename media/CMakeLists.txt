@@ -56,9 +56,9 @@ kde4_automoc(${testmedia_SRCS})
 
 if(KDE4_BUILD_TESTS)
 
-kde4_add_executable(testmedia ${testmedia_SRCS})
+kde4_add_executable(testmedia ${testmedia_SRCS} ${libmediacommon_SRCS} )
 
-target_link_libraries(testmedia  ${KDE4_KIO_LIBS} kiomedia  )
+target_link_libraries(testmedia  ${KDE4_KIO_LIBS} )
 
 endif(KDE4_BUILD_TESTS)
 
