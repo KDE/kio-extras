@@ -6,28 +6,28 @@ include_directories(  ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR} ${
 
 ########### next target ###############
 
-set(kio_man_test_SRCS kio_man_test.cpp )
+set(kio_man_test_SRCS kio_man_test.cpp man2html.cpp kio_man.cpp )
 
 kde4_automoc(${kio_man_test_SRCS})
 
 if(KDE4_BUILD_TESTS)
 
 kde4_add_executable(kio_man_test ${kio_man_test_SRCS})
-
+set_target_properties(kio_man_test PROPERTIES COMPILE_FLAGS "-DSIMPLE_MAN2HTML -DKIO_MAN_TEST")
 target_link_libraries(kio_man_test  ${KDE4_KIO_LIBS} )
 
 endif(KDE4_BUILD_TESTS)
 
 ########### next target ###############
 
-set(man2html_SRCS dummy.cpp )
+set(man2html_SRCS man2html.cpp )
 
 kde4_automoc(${man2html_SRCS})
 
 if(KDE4_BUILD_TESTS)
 
 kde4_add_executable(man2html ${man2html_SRCS})
-
+set_target_properties(man2html PROPERTIES COMPILE_FLAGS -DSIMPLE_MAN2HTML)
 target_link_libraries(man2html  ${KDE4_KDECORE_LIBS} )
 
 endif(KDE4_BUILD_TESTS)
@@ -112,7 +112,7 @@ kde4_footer()
 #messages:
 #	$(XGETTEXT) *.cpp *.h -o $(podir)/kio_man.pot
 #
-#man2html_SOURCES = dummy.cpp
+#man2html_SOURCES = man2html.cpp
 #man2html_LDADD = man2html_simple.o $(LIB_QT)
 #man2html_LDFLAGS = $(all_libraries) $(KDE_RPATH)
 #

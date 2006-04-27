@@ -28,10 +28,10 @@
 //Added by qt3to4:
 #include <QTextStream>
 
-
 #include <kio/global.h>
 #include <kio/slavebase.h>
 
+class KProcess;
 
 class MANProtocol : public QObject, public KIO::SlaveBase
 {

@@ -5621,6 +5621,7 @@ char *read_man_page(const char *filename)
     return man_buf;
 }
 
+#ifndef KIO_MAN_TEST
 int main(int argc, char **argv)
 {
     htmlPath = ".";
@@ -5650,6 +5651,7 @@ int main(int argc, char **argv)
     }
     return 0;
 }
+#endif
 
 
 #endif

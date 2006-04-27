@@ -418,17 +418,19 @@ void MANProtocol::output(const char *insert)
     }
 }
 
+#ifndef SIMPLE_MAN2HTML
 // called by man2html
-char *read_man_page(const char *filename)
+extern char *read_man_page(const char *filename)
 {
     return MANProtocol::self()->readManPage(filename);
 }
 
 // called by man2html
-void output_real(const char *insert)
+extern void output_real(const char *insert)
 {
     MANProtocol::self()->output(insert);
 }
+#endif
 
 void MANProtocol::get(const KUrl& url )
 {
