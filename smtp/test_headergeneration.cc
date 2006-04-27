@@ -57,7 +57,7 @@ int main( int , char ** ) {
     "\n";
 
   KioSMTP::Request request;
-  QCString result;
+  QByteArray result;
 
   request.setEmitHeaders( true );
   request.setFromAddress( "mutz@kde.org" );
