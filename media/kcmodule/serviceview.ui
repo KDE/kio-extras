@@ -214,7 +214,7 @@
                                             <verstretch>0</verstretch>
                                         </sizepolicy>
                                     </property>
-                                    <property name="text">
+                                    <property name="html">
                                         <string>Command:</string>
                                     </property>
                                 </widget>
