@@ -6,22 +6,39 @@ include_directories(  ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR} ${
 
 ########### next target ###############
 
-set(kio_fish_PART_SRCS fish.cpp )
+find_program(MD5SUM_EXECUTABLE md5sum )
 
-kde4_automoc(${kio_fish_PART_SRCS})
+# TODO: 2.4.1 check md5 e.g. for FreeBSD
+#find_program(MD5SUM_EXECUTABLE NAMES md5sum md5 )
 
-kde4_add_plugin(kio_fish ${kio_fish_PART_SRCS})
+if (MD5SUM_EXECUTABLE)
+ 
 
-kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kio_fish )
+   add_custom_command(OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/fishcode.h 
+      COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/generate_fishcode.sh ARGS ${CMAKE_CURRENT_SOURCE_DIR}/fish.pl ${MD5SUM_EXECUTABLE} ${CMAKE_CURRENT_BINARY_DIR}/fishcode.h "-f 1"
+      DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/fish.pl )
+   
+   
+   set(kio_fish_PART_SRCS fish.cpp ${CMAKE_CURRENT_BINARY_DIR}/fishcode.h)
+   
+   kde4_automoc(${kio_fish_PART_SRCS})
+   
+   kde4_add_plugin(kio_fish ${kio_fish_PART_SRCS})
+   
+   kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kio_fish )
+   
+   target_link_libraries(kio_fish ${KDE4_KIO_LIBS})
+   
+   install_targets(${PLUGIN_INSTALL_DIR} kio_fish )
+   
+   
+   ########### install files ###############
+   
+   install_files( ${SERVICES_INSTALL_DIR} FILES fish.protocol )
+   
 
-target_link_libraries(kio_fish  ${KDE4_KDECORE_LIBS} )
+endif (MD5SUM_EXECUTABLE)
 
-install_targets(${PLUGIN_INSTALL_DIR} kio_fish )
-
-
-########### install files ###############
-
-install_files( ${SERVICES_INSTALL_DIR} FILES fish.protocol )
 
 kde4_footer()
 
