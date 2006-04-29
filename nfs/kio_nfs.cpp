@@ -280,7 +280,7 @@ void NFSProtocol::closeConnection()
 
 bool NFSProtocol::isExportedDir(const QString& path)
 {
-   return (m_exportedDirs.find(path.mid(1))!=m_exportedDirs.end());
+   return m_exportedDirs.contains(path.mid(1));
 }
 
 /* This one works recursive.

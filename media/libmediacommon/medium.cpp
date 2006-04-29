@@ -99,8 +99,7 @@ Medium::List Medium::createList(const QStringList &properties)
 			l.append(m);
 
 			QStringList::iterator first = props.begin();
-			QStringList::iterator last = props.find(SEPARATOR);
-			++last;
+			QStringList::iterator last = props.begin() + props.indexOf(SEPARATOR) + 1;
 			props.erase(first, last);
 		}
 	}

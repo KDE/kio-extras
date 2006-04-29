@@ -172,9 +172,9 @@ QMap<QString, QString> MANProtocol::buildIndexMap(const QString &section)
     QStringList man_dirs = manDirectories();
     // Supplementary places for whatis databases
     man_dirs += m_mandbpath;
-    if (man_dirs.find("/var/cache/man")==man_dirs.end())
+    if (!man_dirs.contains("/var/cache/man"))
         man_dirs << "/var/cache/man";
-    if (man_dirs.find("/var/catman")==man_dirs.end())
+    if (!man_dirs.contains("/var/catman"))
         man_dirs << "/var/catman";
 
     QStringList names;
