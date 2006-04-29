@@ -193,7 +193,7 @@ bool FloppyProtocol::stopAfterError(const KUrl& url, const QString& drive)
    //m_stderrBuffer[m_stderrSize]='\0';
 
    QString outputString(m_stderrBuffer);
-   QTextIStream output(&outputString);
+   QTextStream output(&outputString, QIODevice::ReadOnly);
    QString line=output.readLine();
    kDebug(7101)<<"line: -"<<line<<"-"<<endl;
    if (line.indexOf("resource busy") > -1)
@@ -320,7 +320,7 @@ void FloppyProtocol::listDir( const KUrl& _url)
       return;
 
    QString outputString(m_stdoutBuffer);
-   QTextIStream output(&outputString);
+   QTextStream output(&outputString, QIODevice::ReadOnly);
    QString line;
 
    int totalNumber(0);
@@ -560,7 +560,7 @@ StatInfo FloppyProtocol::_stat(const KUrl& url)
 
    kDebug(7101)<<"Floppy::_stat(): parse stuff"<<endl;
    QString outputString(m_stdoutBuffer);
-   QTextIStream output(&outputString);
+   QTextStream output(&outputString, QIODevice::ReadOnly);
    QString line;
    for (int lineNumber=0; !output.atEnd(); lineNumber++)
    {
@@ -649,7 +649,7 @@ int FloppyProtocol::freeSpace(const KUrl& url)
 
    kDebug(7101)<<"Floppy::freeSpace(): parse stuff"<<endl;
    QString outputString(m_stdoutBuffer);
-   QTextIStream output(&outputString);
+   QTextStream output(&outputString, QIODevice::ReadOnly);
    QString line;
    int lineNumber(0);
    while (!output.atEnd())
