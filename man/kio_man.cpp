@@ -592,7 +592,7 @@ void MANProtocol::outputError(const QString& errmsg)
 {
     QByteArray array;
     QTextStream os(array, QIODevice::WriteOnly);
-    os.setEncoding(QTextStream::UnicodeUTF8);
+    os.setCodec( "UTF-8" );
 
     os << "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Strict//EN\">" << endl;
     os << "<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">" << endl;
@@ -610,7 +610,7 @@ void MANProtocol::outputMatchingPages(const QStringList &matchingPages)
 {
     QByteArray array;
     QTextStream os(array, QIODevice::WriteOnly);
-    os.setEncoding(QTextStream::UnicodeUTF8);
+    os.setCodec( "UTF-8" );
 
     os << "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Strict//EN\">" << endl;
     os << "<html>\n<head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">"<<endl;
@@ -758,7 +758,7 @@ void MANProtocol::showMainIndex()
 {
     QByteArray array;
     QTextStream os(array, QIODevice::WriteOnly);
-    os.setEncoding(QTextStream::UnicodeUTF8);
+    os.setCodec( "UTF-8" );
 
     // print header
     os << "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Strict//EN\">" << endl;
@@ -822,7 +822,7 @@ void MANProtocol::constructPath(QStringList& constr_path, QStringList constr_cat
     if (mc.open(QIODevice::ReadOnly))
     {
         QTextStream is(&mc);
-        is.setEncoding(QTextStream::Locale);
+        is.setCodec( QTextCodec::codecForLocale () );
 
         while (!is.atEnd())
         {
@@ -1184,7 +1184,7 @@ void MANProtocol::showIndex(const QString& section)
 {
     QByteArray array;
     QTextStream os(array, QIODevice::WriteOnly);
-    os.setEncoding(QTextStream::UnicodeUTF8);
+    os.setCodec( "UTF-8" );
 
     // print header
     os << "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Strict//EN\">" << endl;
