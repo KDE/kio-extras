@@ -7,9 +7,10 @@ include_directories(  ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR} ${
 
 
 set(libkioremote_SRCS kio_remote.cpp remoteimpl.cpp )
+
 ########### next target ###############
 
-set(kio_remote_PART_SRCS dummy.cpp ${libkioremote_SRCS})
+set(kio_remote_PART_SRCS ${libkioremote_SRCS})
 
 kde4_automoc(${kio_remote_PART_SRCS})
 
@@ -20,9 +21,6 @@ kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kio_remote )
 target_link_libraries(kio_remote  ${KDE4_KIO_LIBS} DCOP)
 
 install_targets(${PLUGIN_INSTALL_DIR} kio_remote )
-
-
-########### next target ###############
 
 
 ########### next target ###############

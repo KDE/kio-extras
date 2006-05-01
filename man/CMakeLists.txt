@@ -116,9 +116,6 @@ kde4_footer()
 #man2html_LDADD = man2html_simple.o $(LIB_QT)
 #man2html_LDFLAGS = $(all_libraries) $(KDE_RPATH)
 #
-#dummy.cpp:
-#	echo > $@
-#
 #man2html_simple.o: $(srcdir)/man2html.cpp
 #	-rm -f man2html_simple.cpp
 #	$(LN_S) $(srcdir)/man2html.cpp man2html_simple.cpp

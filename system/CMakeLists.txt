@@ -10,7 +10,7 @@ include_directories(  ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR} ${
 
 ########### next target ###############
 set(libkiosystem_SRCS kio_system.cpp systemimpl.cpp)
-set(kio_system_PART_SRCS dummy.cpp ${libkiosystem_SRCS})
+set(kio_system_PART_SRCS ${libkiosystem_SRCS})
 
 kde4_automoc(${kio_system_PART_SRCS})
 
