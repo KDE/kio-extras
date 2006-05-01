@@ -13,5 +13,3 @@ noinst_HEADERS = kcmcgi.h
 
 xdg_apps_DATA = kcmcgi.desktop
 
-messages: rc.cpp
-	$(XGETTEXT) *.cpp -o $(podir)/kcmcgi.pot

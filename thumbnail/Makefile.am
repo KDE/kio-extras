@@ -64,6 +64,4 @@ services_DATA = imagethumbnail.desktop textthumbnail.desktop \
 
 servicesdir = $(kde_servicesdir)
 
-messages:
-	$(XGETTEXT) *.cpp -o $(podir)/kio_thumbnail.pot
 

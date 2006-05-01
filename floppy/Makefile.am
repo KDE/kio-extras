@@ -16,5 +16,3 @@ kdelnkdir = $(kde_servicesdir)
 
 METASOURCES = AUTO
 
-messages:
-	$(XGETTEXT) *.cpp -o $(podir)/kio_floppy.pot

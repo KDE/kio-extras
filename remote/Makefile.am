@@ -27,6 +27,4 @@ testremote_LDFLAGS = $(all_libraries)
 check: testremote
 	./testremote
 
-messages:
-	$(XGETTEXT) `find . -name "*.cc" -o -name "*.cpp" -o -name "*.h"` -o $(podir)/kio_remote.pot
 

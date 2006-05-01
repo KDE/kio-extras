@@ -21,5 +21,3 @@ noinst_HEADERS = atomicio.h kio_sftp.h ksshprocess.h process.h sftpfileattr.h sf
 kdelnk_DATA = sftp.protocol
 kdelnkdir = $(kde_servicesdir)
 
-messages:
-	$(XGETTEXT) *.cpp -o $(podir)/kio_sftp.pot

@@ -27,6 +27,4 @@ testmedia_LDFLAGS = $(all_libraries)
 check: testmedia
 	./testmedia
 
-messages:
-	$(XGETTEXT) `find . -name "*.cc" -o -name "*.cpp" -o -name "*.h"` -o $(podir)/kio_media.pot
 

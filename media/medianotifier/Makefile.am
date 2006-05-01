@@ -14,5 +14,3 @@ METASOURCES = AUTO
 services_DATA = medianotifier.desktop
 servicesdir = $(kde_servicesdir)/kded
 
-messages: rc.cpp
-	$(XGETTEXT) *.cpp -o $(podir)/kay.pot

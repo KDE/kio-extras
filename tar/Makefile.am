@@ -15,5 +15,3 @@ noinst_HEADERS = tar.h
 kdelnk_DATA = tar.protocol ar.protocol zip.protocol
 kdelnkdir = $(kde_servicesdir)
 
-messages:
-	$(XGETTEXT) *.cc -o $(podir)/kio_tar.pot

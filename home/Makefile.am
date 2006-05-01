@@ -27,6 +27,4 @@ testhome_LDFLAGS = $(all_libraries)
 check: testhome
 	./testhome
 
-messages:
-	$(XGETTEXT) `find . -name "*.cc" -o -name "*.cpp" -o -name "*.h"` -o $(podir)/kio_home.pot
 

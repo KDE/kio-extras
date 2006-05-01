@@ -24,5 +24,3 @@ $(srcdir)/mount_xdr.c: $(srcdir)/mount.x
 $(srcdir)/nfs_prot_xdr.c: $(srcdir)/nfs_prot.x
 	cd $(srcdir) && rpcgen ./nfs_prot.x
 
-messages:
-	$(XGETTEXT) *.cpp -o $(podir)/kio_nfs.pot

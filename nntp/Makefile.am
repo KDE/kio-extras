@@ -15,5 +15,3 @@ noinst_HEADERS = nntp.h
 kdelnk_DATA = nntp.protocol nntps.protocol
 kdelnkdir = $(kde_servicesdir)
 
-messages:
-	$(XGETTEXT) *.cpp -o $(podir)/kio_nntp.pot

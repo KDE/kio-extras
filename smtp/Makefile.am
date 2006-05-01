@@ -33,5 +33,3 @@ interactivesmtpserver_LDADD = $(LIB_QT)
 interactivesmtpserver_LDFLAGS = $(all_libraries)
 interactivesmtpserver_METASOURCES = AUTO
 
-messages:
-	$(XGETTEXT) *.cc -o $(podir)/kio_smtp.pot
