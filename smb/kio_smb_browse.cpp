@@ -185,11 +185,11 @@ KUrl SMBSlave::checkURL(const KUrl& kurl) const
     // we must redirect ourself to remove the username and password
     if (surl.contains('@') && !surl.contains("smb://")) {
         KUrl url(kurl);
-        url.setPath("/"+kurl.url().right( kurl.url().length()-kurl.url().find('@') -1));
-        QString userinfo = kurl.url().mid(5, kurl.url().find('@')-5);
+        url.setPath("/"+kurl.url().right( kurl.url().length()-kurl.url().indexOf('@') -1));
+        QString userinfo = kurl.url().mid(5, kurl.url().indexOf('@')-5);
         if(userinfo.contains(':'))  {
-            url.setUser(userinfo.left(userinfo.find(':')));
-            url.setPass(userinfo.right(userinfo.length()-userinfo.find(':')-1));
+            url.setUser(userinfo.left(userinfo.indexOf(':')));
+            url.setPass(userinfo.right(userinfo.length()-userinfo.indexOf(':')-1));
         } else {
             url.setUser(userinfo);
         }

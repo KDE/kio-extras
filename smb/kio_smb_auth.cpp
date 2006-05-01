@@ -118,7 +118,7 @@ bool SMBSlave::checkPassword(SMBUrl &url)
     info.url.setHost(url.host());
 
     QString share = url.path();
-    int index = share.find('/', 1);
+    int index = share.indexOf('/', 1);
     if (index > 1)
         share = share.left(index);
     if (share.at(0) == '/')
