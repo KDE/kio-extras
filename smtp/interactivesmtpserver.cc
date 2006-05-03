@@ -96,7 +96,8 @@ InteractiveSMTPServerWindow::InteractiveSMTPServerWindow( Q3Socket * socket, QWi
   QPushButton * but;
   assert( socket );
 
-  QVBoxLayout * vlay = new QVBoxLayout( this, 6 );
+  QVBoxLayout * vlay = new QVBoxLayout( this );
+  vlay->setSpacing( 6 );
 
   mTextEdit = new Q3TextEdit( this );
   vlay->addWidget( mTextEdit, 1 );

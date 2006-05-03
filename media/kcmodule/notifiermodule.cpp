@@ -38,7 +38,9 @@
 NotifierModule::NotifierModule(KInstance *inst, QWidget *parent)
 	: KCModule(inst, parent)
 {
-	QBoxLayout *layout = new QVBoxLayout( this, 0, KDialog::spacingHint() );
+	QBoxLayout *layout = new QVBoxLayout( this );
+	layout->setSpacing( KDialog::spacingHint() );
+	layout->setMargin( 0 );
 
 	m_view = new NotifierModuleView( this );
 	layout->addWidget( m_view );

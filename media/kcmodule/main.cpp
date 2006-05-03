@@ -41,7 +41,9 @@ K_EXPORT_COMPONENT_FACTORY( kcm_media, MediaFactory( "kcmmedia" ) )
 MediaModule::MediaModule( QWidget *parent, const char *name, const QStringList& )
 	: KCModule(MediaFactory::instance(), parent/*, name*/ )
 {
-	QVBoxLayout *layout = new QVBoxLayout( this, 0, KDialog::spacingHint() );
+	QVBoxLayout *layout = new QVBoxLayout( this );
+	layout->setSpacing( KDialog::spacingHint() );
+	layout->setMargin( 0 );
 	QTabWidget *tab = new QTabWidget( this );
 
 	layout->addWidget( tab );
