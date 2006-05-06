@@ -12,7 +12,7 @@ kde4_add_executable(kio_media_mounthelper ${kio_media_mounthelper_SRCS})
 
 target_link_libraries(kio_media_mounthelper  ${KDE4_KIO_LIBS} )
 
-install_targets(/bin kio_media_mounthelper )
+install(TARGETS kio_media_mounthelper DESTINATION bin)
 
 
 ########### install files ###############
