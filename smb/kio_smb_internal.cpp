@@ -118,7 +118,7 @@ SMBUrlType SMBUrl::getType() const
         return m_type;
     }
 
-    if (path(1) == "/")
+    if (path(KUrl::AddTrailingSlash) == "/")
     {
         if (host().isEmpty())
             m_type = SMBURLTYPE_ENTIRE_NETWORK;
