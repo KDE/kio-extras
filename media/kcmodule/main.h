@@ -27,7 +27,7 @@ class MediaModule : public KCModule
 	Q_OBJECT
 
 public:
-	MediaModule( QWidget *parent, const char *name, const QStringList& );
+	MediaModule( QWidget *parent, const QStringList& );
 
 	virtual void load();
 	virtual void save();

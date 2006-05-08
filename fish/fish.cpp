@@ -1396,7 +1396,7 @@ void fishProtocol::stat(const KUrl& u){
     if (!url.hasPath()) {
         sendCommand(FISH_PWD);
     } else {
-        sendCommand(FISH_STAT,E(url.path(-1)));
+        sendCommand(FISH_STAT,E(url.path(KUrl::RemoveTrailingSlash)));
     }
     run();
 }

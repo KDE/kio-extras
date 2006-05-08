@@ -29,8 +29,7 @@ class KFileMediaPlugin : public KFilePlugin
 {
 Q_OBJECT
 public:
-	KFileMediaPlugin(QObject *parent, const char *name,
-	                 const QStringList &args);
+	KFileMediaPlugin(QObject *parent, const QStringList &args);
 
 	bool readInfo(KFileMetaInfo &info, uint what = KFileMetaInfo::Fastest);
 

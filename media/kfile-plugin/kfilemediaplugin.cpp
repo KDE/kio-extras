@@ -33,8 +33,7 @@
 typedef KGenericFactory<KFileMediaPlugin> KFileMediaPluginFactory;
 K_EXPORT_COMPONENT_FACTORY(kfile_media, KFileMediaPluginFactory("kio_media"))
 
-KFileMediaPlugin::KFileMediaPlugin(QObject *parent, const char *name,
-		                     const QStringList& args)
+KFileMediaPlugin::KFileMediaPlugin(QObject *parent, const QStringList& args)
 	: KFilePlugin(parent, args)
 {
 	addMimeType( "media/audiocd" );

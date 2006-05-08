@@ -38,8 +38,8 @@ typedef KGenericFactory<MediaModule, QWidget> MediaFactory;
 K_EXPORT_COMPONENT_FACTORY( kcm_media, MediaFactory( "kcmmedia" ) )
 
 
-MediaModule::MediaModule( QWidget *parent, const char *name, const QStringList& )
-	: KCModule(MediaFactory::instance(), parent/*, name*/ )
+MediaModule::MediaModule( QWidget *parent, const QStringList& )
+	: KCModule(MediaFactory::instance(), parent )
 {
 	QVBoxLayout *layout = new QVBoxLayout( this );
 	layout->setSpacing( KDialog::spacingHint() );

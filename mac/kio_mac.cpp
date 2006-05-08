@@ -226,7 +226,7 @@ KIO::UDSEntry MacProtocol::doStat(const KUrl& url) {
 //prepareHP() called from get() listDir() and stat()
 //(re)mounts the partition and changes to the appropriate directory
 QString MacProtocol::prepareHP(const KUrl& url) {
-    QString path = url.path(-1);
+    QString path = url.path(KUrl::RemoveTrailingSlash);
     if (path.left(1) == "/") {
         path = path.mid(1); // strip leading slash
     }

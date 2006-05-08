@@ -50,10 +50,10 @@ KManPartFactory::~KManPartFactory()
    delete s_about;
 }
 
-KParts::Part* KManPartFactory::createPartObject( QWidget * parentWidget, const char* /*widgetName*/, QObject *,
-                                 const char* name, const char* /*className*/,const QStringList & )
+KParts::Part* KManPartFactory::createPartObject( QWidget * parentWidget, QObject *,
+                                 const char* /*className*/,const QStringList & )
 {
-   KManPart* part = new KManPart(parentWidget, name );
+   KManPart* part = new KManPart(parentWidget);
    return part;
 }
 
@@ -69,8 +69,8 @@ KInstance* KManPartFactory::instance()
 }
 
 
-KManPart::KManPart( QWidget * parent, const char * name )
-: KHTMLPart( parent, name )
+KManPart::KManPart( QWidget * parent )
+: KHTMLPart( parent )
 ,m_job(0)
 {
    KInstance * instance = new KInstance( "kmanpart" );

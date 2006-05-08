@@ -44,8 +44,8 @@ class KManPartFactory: public KParts::Factory
       KManPartFactory( QObject * parent = 0 );
       virtual ~KManPartFactory();
 
-      virtual KParts::Part* createPartObject( QWidget * parentWidget, const char * widgetName ,
-                                QObject* parent, const char* name, const char * classname,
+      virtual KParts::Part* createPartObject( QWidget * parentWidget,
+                                QObject* parent, const char * classname,
                                 const QStringList &args);
 
       static KInstance * instance();
@@ -60,7 +60,7 @@ class KManPart : public KHTMLPart
 {
    Q_OBJECT
    public:
-      KManPart( QWidget * parent, const char * name = 0L );
+      KManPart( QWidget * parent );
       KParts::BrowserExtension * extension() {return m_extension;};
 
    public Q_SLOTS:

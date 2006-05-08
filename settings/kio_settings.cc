@@ -169,7 +169,7 @@ void SettingsProtocol::stat(const KUrl& url)
 {
 	KIO::UDSEntry entry;
 
-	QString servicePath( url.path(1) );
+	QString servicePath( url.path( KUrl::AddTrailingSlash ) );
 	servicePath.remove(0, 1); // remove starting '/'
 
 	if ( m_runMode == SettingsMode)
@@ -187,7 +187,7 @@ void SettingsProtocol::stat(const KUrl& url)
 //			newUrl.setPath(locate("apps", service->desktopEntryPath()));
 //			createFileEntry(entry, service->name(), newUrl, "application/x-desktop", service->icon());
 
-			createFileEntry(entry, service->name(), url.url(1)+service->desktopEntryName(),
+			createFileEntry(entry, service->name(), url.url( KUrl::AddTrailingSlash )+service->desktopEntryName(),
                             "application/x-desktop", service->icon(), locate("apps", service->desktopEntryPath()) );
 		} else {
 			error(KIO::ERR_SLAVE_DEFINED,i18n("Unknown settings folder"));
@@ -203,7 +203,7 @@ void SettingsProtocol::stat(const KUrl& url)
 
 void SettingsProtocol::listDir(const KUrl& url)
 {
-	QString groupPath = url.path(1);
+	QString groupPath = url.path( KUrl::AddTrailingSlash );
 	groupPath.remove(0, 1); // remove starting '/'
 
 	if ( m_runMode == SettingsMode)
@@ -264,8 +264,8 @@ void SettingsProtocol::listDir(const KUrl& url)
 
 		} else {
 			KService::Ptr s(KService::Ptr::staticCast(e));
-			kDebug() << "SettingsProtocol: adding file entry " << url.url(1)+s->name() << endl;
-			createFileEntry(entry,s->name(),url.url(1)+s->desktopEntryName(), "application/x-desktop",s->icon(),locate("apps", s->desktopEntryPath()));
+			kDebug() << "SettingsProtocol: adding file entry " << url.url( KUrl::AddTrailingSlash )+s->name() << endl;
+			createFileEntry(entry,s->name(),url.url( KUrl::AddTrailingSlash )+s->desktopEntryName(), "application/x-desktop",s->icon(),locate("apps", s->desktopEntryPath()));
 		}
 
 		listEntry(entry, false);
