@@ -34,7 +34,7 @@
     your version.
 */
 
-#include <qwidget.h>
+#include <QWidget>
 
 
 static QString err2str( int err ) {

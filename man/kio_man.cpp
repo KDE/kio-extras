@@ -22,14 +22,14 @@
 #include <string.h>
 #include <dirent.h>
 
-#include <qdir.h>
-#include <qfile.h>
+#include <QDir>
+#include <QFile>
 #include <qtextstream.h>
-#include <qdatastream.h>
+#include <QDataStream>
 #include <q3cstring.h>
 #include <q3ptrlist.h>
-#include <qmap.h>
-#include <qregexp.h>
+#include <QMap>
+#include <QRegExp>
 
 #include <kdebug.h>
 #include <kinstance.h>

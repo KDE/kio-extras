@@ -24,7 +24,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #ifndef __filter_h__
 #define __filter_h__
 
-#include <qobject.h>
+#include <QObject>
 #include <kio/global.h>
 #include <kio/slavebase.h>
 

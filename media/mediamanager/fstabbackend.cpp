@@ -33,7 +33,7 @@
 #define CDC_CD_R                0x2000  /* drive is a CD-R */
 #define CDC_CD_RW               0x4000  /* drive is a CD-RW */
 #define CDC_DVD                 0x8000  /* drive is a DVD */
-#include <qfile.h>
+#include <QFile>
 #endif
 
 #include <klocale.h>

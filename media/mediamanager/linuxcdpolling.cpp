@@ -23,8 +23,8 @@
 
 #include <qthread.h>
 #include <qmutex.h>
-#include <qtimer.h>
-#include <qfile.h>
+#include <QTimer>
+#include <QFile>
 #include <QByteArray>
 
 #include <kdebug.h>

@@ -22,7 +22,7 @@
 #include <kurl.h>
 #include <kdirnotify.h>
 
-#include <qmap.h>
+#include <QMap>
 
 class HomeDirNotify : public KDirNotify
 {

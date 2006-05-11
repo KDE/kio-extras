@@ -22,8 +22,8 @@
 #include <kglobal.h>
 #include <kdesktopfile.h>
 #include <kstandarddirs.h>
-#include <qdir.h>
-#include <qfile.h>
+#include <QDir>
+#include <QFile>
 
 #include "notifieropenaction.h"
 #include "notifiernothingaction.h"

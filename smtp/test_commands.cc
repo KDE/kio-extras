@@ -1,7 +1,7 @@
 #include <kio/global.h>
 #include <kdebug.h>
 
-#include <qstring.h>
+#include <QString>
 #include <qstringlist.h>
 
 //#include <iostream>

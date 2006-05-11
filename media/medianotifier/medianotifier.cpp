@@ -19,7 +19,7 @@
 
 #include "medianotifier.h"
 
-#include <qfile.h>
+#include <QFile>
 #include <qfileinfo.h>
 #include <QTextStream>
 #include <QByteArray>

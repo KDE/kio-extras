@@ -13,7 +13,7 @@
 #define __Process_h_Included__
 
 #include <q3cstring.h>
-#include <qstring.h>
+#include <QString>
 #include <qstringlist.h>
 
 

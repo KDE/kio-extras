@@ -17,8 +17,8 @@
 #ifndef __kio_sftp_h__
 #define __kio_sftp_h__
 
-#include <qstring.h>
-#include <qobject.h>
+#include <QString>
+#include <QObject>
 
 #include <kurl.h>
 #include <kio/global.h>

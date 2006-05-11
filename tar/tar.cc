@@ -7,7 +7,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-#include <qfile.h>
+#include <QFile>
 
 #include <kglobal.h>
 #include <kurl.h>

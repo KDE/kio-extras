@@ -19,8 +19,8 @@
 #ifndef _MEDIALIST_H_
 #define _MEDIALIST_H_
 
-#include <qobject.h>
-#include <qmap.h>
+#include <QObject>
+#include <QMap>
 //Added by qt3to4:
 #include <Q3PtrList>
 

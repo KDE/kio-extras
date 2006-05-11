@@ -26,8 +26,8 @@
 #include <kservice.h>
 #include <klocale.h>
 
-#include <qdir.h>
-#include <qfile.h>
+#include <QDir>
+#include <QFile>
 
 #include <sys/stat.h>
 

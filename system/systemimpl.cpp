@@ -26,7 +26,7 @@
 
 #include <qapplication.h>
 #include <qeventloop.h>
-#include <qdir.h>
+#include <QDir>
 
 #include <sys/stat.h>
 

@@ -25,8 +25,8 @@
 #include <kurl.h>
 #include <dcopobject.h>
 
-#include <qobject.h>
-#include <qstring.h>
+#include <QObject>
+#include <QString>
 
 #include "medium.h"
 

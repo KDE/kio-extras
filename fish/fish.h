@@ -16,7 +16,7 @@
 #ifndef __fish_h__
 #define __fish_h__
 
-#include <qstring.h>
+#include <QString>
 //Added by qt3to4:
 
 

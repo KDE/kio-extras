@@ -18,7 +18,7 @@
 #ifndef KIO_CGI_H
 #define KIO_CGI_H
 
-#include <qobject.h>
+#include <QObject>
 
 #include <kio/slavebase.h>
 

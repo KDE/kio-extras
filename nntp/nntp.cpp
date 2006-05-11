@@ -12,9 +12,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#include <qdir.h>
+#include <QDir>
 #include <qhash.h>
-#include <qregexp.h>
+#include <QRegExp>
 
 #include <kinstance.h>
 #include <kdebug.h>

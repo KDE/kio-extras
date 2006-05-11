@@ -22,7 +22,7 @@
 #include <kdebug.h>
 #include <kconfig.h>
 #include <kglobal.h>
-#include <qfile.h>
+#include <QFile>
 
 #include <ImfInputFile.h>
 #include <ImfPreviewImage.h>

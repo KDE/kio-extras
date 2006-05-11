@@ -37,15 +37,15 @@
 #include <q3socket.h>
 #include <q3textedit.h>
 #include <qtextstream.h>
-#include <qwidget.h>
+#include <QWidget>
 #include <qapplication.h>
 #include <qhostaddress.h>
 #include <qtextedit.h>
-#include <qlineedit.h>
-#include <qlabel.h>
-#include <qstring.h>
-#include <qlayout.h>
-#include <qpushbutton.h>
+#include <QLineEdit>
+#include <QLabel>
+#include <QString>
+#include <QLayout>
+#include <QPushButton>
 
 #include <cassert>
 

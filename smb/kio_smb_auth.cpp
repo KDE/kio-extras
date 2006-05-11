@@ -33,7 +33,7 @@
 #include "kio_smb_internal.h"
 
 #include <ksimpleconfig.h>
-#include <qdir.h>
+#include <QDir>
 #include <stdlib.h>
 
 // call for libsmbclient

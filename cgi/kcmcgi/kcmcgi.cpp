@@ -24,9 +24,9 @@
 #include <kfiledialog.h>
 #include <khbox.h>
 
-#include <qlayout.h>
+#include <QLayout>
 #include <q3listbox.h>
-#include <qpushbutton.h>
+#include <QPushButton>
 #include <q3groupbox.h>
 //Added by qt3to4:
 #include <QVBoxLayout>

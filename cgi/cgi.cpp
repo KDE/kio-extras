@@ -18,8 +18,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include <qdir.h>
-#include <qregexp.h>
+#include <QDir>
+#include <QRegExp>
 
 #include <kdebug.h>
 #include <kprocess.h>

@@ -23,11 +23,11 @@
 #include <kio/slavebase.h>
 #include <kio/global.h>
 
-#include <qmap.h>
-#include <qstring.h>
+#include <QMap>
+#include <QString>
 #include <qstringlist.h>
 #include <q3intdict.h>
-#include <qtimer.h>
+#include <QTimer>
 
 #define PORTMAP  //this seems to be required to compile on Solaris
 #include <rpc/rpc.h>

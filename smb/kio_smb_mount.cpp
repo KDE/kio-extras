@@ -22,7 +22,7 @@
 #include <kstandarddirs.h>
 #include <q3cstring.h>
 #include <unistd.h>
-#include <qdir.h>
+#include <QDir>
 #include <kprocess.h>
 
 void SMBSlave::readOutput(KProcess *, char *buffer, int buflen)

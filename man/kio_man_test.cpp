@@ -1,6 +1,6 @@
 
 
-#include <qobject.h>
+#include <QObject>
 
 #include "kio_man.h"
 

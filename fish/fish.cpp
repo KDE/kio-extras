@@ -27,11 +27,11 @@
 #include "config.h"
 
 #include <q3cstring.h>
-#include <qfile.h>
+#include <QFile>
 #include <q3socket.h>
-#include <qdatetime.h>
+#include <QDateTime>
 #include <qbitarray.h>
-#include <qregexp.h>
+#include <QRegExp>
 
 #include <stdlib.h>
 #ifdef HAVE_PTY_H

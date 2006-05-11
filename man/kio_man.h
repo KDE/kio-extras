@@ -21,7 +21,7 @@
 #define __kio_man_h__
 
 
-#include <qstring.h>
+#include <QString>
 #include <qstringlist.h>
 #include <q3dict.h>
 #include <qbuffer.h>

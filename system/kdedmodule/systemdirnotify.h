@@ -21,7 +21,7 @@
 
 #include <kurl.h>
 #include <kdirnotify.h>
-#include <qmap.h>
+#include <QMap>
 
 class SystemDirNotify : public KDirNotify
 {

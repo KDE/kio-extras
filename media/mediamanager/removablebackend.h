@@ -21,7 +21,7 @@
 
 #include "backendbase.h"
 
-#include <qobject.h>
+#include <QObject>
 #include <qstringlist.h>
 
 class RemovableBackend : public QObject, public BackendBase

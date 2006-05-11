@@ -21,11 +21,11 @@
 
 #include "backendbase.h"
 
-#include <qobject.h>
+#include <QObject>
 #include <qstringlist.h>
 
 #ifdef Q_OS_FREEBSD
-#include <qtimer.h>
+#include <QTimer>
 #endif
 
 class FstabBackend : public QObject, public BackendBase

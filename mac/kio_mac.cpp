@@ -22,8 +22,8 @@
 #include <kdebug.h>
 #include <klocale.h>
 #include <kconfig.h>
-#include <qstring.h>
-#include <qregexp.h>
+#include <QString>
+#include <QRegExp>
 #include <QTextStream>
 #include <QDateTime>
 

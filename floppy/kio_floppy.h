@@ -25,7 +25,7 @@
 
 #include "program.h"
 
-#include <qstring.h>
+#include <QString>
 
 struct StatInfo
 {

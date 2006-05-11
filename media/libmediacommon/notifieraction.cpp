@@ -19,7 +19,7 @@
 
 #include "notifieraction.h"
 
-#include <qfile.h>
+#include <QFile>
 #include <kglobal.h>
 #include <kiconloader.h>
 #include <kicontheme.h>

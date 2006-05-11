@@ -32,8 +32,8 @@
 #ifndef __KIOSMTP_CAPABILITIES_H__
 #define __KIOSMTP_CAPABILITIES_H__
 
-#include <qmap.h>
-#include <qstring.h>
+#include <QMap>
+#include <QString>
 #include <qstringlist.h>
 
 namespace KioSMTP {

@@ -20,7 +20,7 @@
 #define _MEDIAMANAGER_H_
 
 #include <kdedmodule.h>
-#include <qstring.h>
+#include <QString>
 #include <qstringlist.h>
 //Added by qt3to4:
 #include <Q3PtrList>

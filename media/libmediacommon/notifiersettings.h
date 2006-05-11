@@ -21,7 +21,7 @@
 #define _NOTIFIERSETTINGS_H_
 
 
-#include <qmap.h>
+#include <QMap>
 
 #include "notifieraction.h"
 #include "notifierserviceaction.h"

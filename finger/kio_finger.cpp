@@ -24,8 +24,8 @@
 #include <qtextstream.h>
 #include <q3dict.h>
 #include <q3cstring.h>
-#include <qfile.h>
-#include <qregexp.h>
+#include <QFile>
+#include <QRegExp>
 
 #include <kdebug.h>
 #include <kinstance.h>

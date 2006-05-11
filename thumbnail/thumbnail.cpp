@@ -27,7 +27,7 @@
 #include <sys/ipc.h>
 #include <sys/shm.h>
 
-#include <qfile.h>
+#include <QFile>
 #include <qbitmap.h>
 #include <qpixmap.h>
 #include <qpainter.h>

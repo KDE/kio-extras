@@ -24,8 +24,8 @@
 #include <kstandarddirs.h>
 #include <kio/global.h>
 #include <klistbox.h>
-#include <qlabel.h>
-#include <qcheckbox.h>
+#include <QLabel>
+#include <QCheckBox>
 #include <QLinkedList>
 
 #include "actionlistboxitem.h"

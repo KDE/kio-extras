@@ -39,7 +39,7 @@
 //-------------
 // QT includes
 //-------------
-#include <qstring.h>
+#include <QString>
 #include <q3ptrlist.h>
 #include <qstringlist.h>
 #include <qtextstream.h>
@@ -70,7 +70,7 @@
 #include <stdio.h>
 #include <errno.h>
 #include <time.h>
-#include <qobject.h>
+#include <QObject>
 
 //-------------------------------
 // Samba client library includes

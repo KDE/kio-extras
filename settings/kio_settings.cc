@@ -24,7 +24,7 @@
 #include <klocale.h>
 #include <sys/stat.h>
 #include <dcopclient.h>
-#include <qdatastream.h>
+#include <QDataStream>
 #include <time.h>
 #include <kprocess.h>
 #include <kservice.h>

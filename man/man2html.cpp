@@ -128,11 +128,11 @@
 
 #include <stdio.h>
 
-#include <qstring.h>
+#include <QString>
 #include <q3ptrlist.h>
 #include <QStack>
-#include <qmap.h>
-#include <qdatetime.h>
+#include <QMap>
+#include <QDateTime>
 #include <Q3CString>
 
 #ifdef SIMPLE_MAN2HTML

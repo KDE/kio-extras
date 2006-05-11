@@ -18,7 +18,7 @@
 */
 
 #include "kmanpart.h"
-#include <qstring.h>
+#include <QString>
 
 #include <kinstance.h>
 #include <kglobal.h>

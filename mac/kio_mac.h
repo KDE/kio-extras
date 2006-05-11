@@ -21,8 +21,8 @@
 #include <kurl.h>
 #include <kprocess.h>
 
-#include <qstring.h>
-#include <qfile.h>
+#include <QString>
+#include <QFile>
 #include <qtextstream.h>
 
 class MacProtocol : public QObject, public KIO::SlaveBase

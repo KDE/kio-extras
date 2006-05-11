@@ -24,8 +24,8 @@
 #include <kfileitem.h>
 #include <kio/job.h>
 
-#include <qstring.h>
-#include <qmap.h>
+#include <QString>
+#include <QMap>
 #include <QByteArray>
 
 class MediaNotifier:  public KDEDModule

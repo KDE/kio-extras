@@ -18,7 +18,7 @@
 */
 
 #include <qimage.h>
-#include <qfile.h>
+#include <QFile>
 
 #include <kdemacros.h>
 

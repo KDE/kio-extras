@@ -25,7 +25,7 @@
 #include <kurl.h>
 #include <kuser.h>
 
-#include <qstring.h>
+#include <QString>
 
 class HomeImpl : public QObject
 {

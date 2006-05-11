@@ -26,7 +26,7 @@
 #include <kmessagebox.h>
 #include <dcopclient.h>
 #include <dcopref.h>
-#include <qtimer.h>
+#include <QTimer>
 #include <kdebug.h>
 #include <kglobal.h>
 #include <kprocess.h>

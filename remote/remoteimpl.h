@@ -24,7 +24,7 @@
 #include <kio/job.h>
 #include <kurl.h>
 
-#include <qstring.h>
+#include <QString>
 
 class RemoteImpl
 {

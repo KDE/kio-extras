@@ -45,7 +45,7 @@
 
 #include <qglobal.h>
 #include <q3cstring.h>
-#include <qfile.h>
+#include <QFile>
 
 #include <kdebug.h>
 #include <kstandarddirs.h>

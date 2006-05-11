@@ -19,7 +19,7 @@
 #include "mediamanager.h"
 
 #include <config.h>
-#include <qtimer.h>
+#include <QTimer>
 #include <Q3PtrList>
 
 #include <kdebug.h>

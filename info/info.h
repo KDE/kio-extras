@@ -1,7 +1,7 @@
 #ifndef __info_h__
 #define __info_h__
 
-#include <qobject.h>
+#include <QObject>
 
 #include <kio/slavebase.h>
 

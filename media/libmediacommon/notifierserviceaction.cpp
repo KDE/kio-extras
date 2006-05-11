@@ -19,8 +19,8 @@
 
 #include "notifierserviceaction.h"
 
-#include <qdir.h>
-#include <qfile.h>
+#include <QDir>
+#include <QFile>
 #include <qfileinfo.h>
 #include <kstandarddirs.h>
 #include <kdesktopfile.h>

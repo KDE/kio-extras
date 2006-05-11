@@ -19,7 +19,7 @@
 #ifndef _MEDIUM_H_
 #define _MEDIUM_H_
 
-#include <qstring.h>
+#include <QString>
 #include <qstringlist.h>
 //Added by qt3to4:
 #include <QList>

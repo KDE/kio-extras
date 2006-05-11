@@ -39,7 +39,7 @@
 #include <qtextstream.h>
 #include <QDateTime>
 #include <q3cstring.h>
-#include <qfile.h>
+#include <QFile>
 
 #include "kio_floppy.h"
 

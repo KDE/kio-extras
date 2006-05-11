@@ -30,10 +30,10 @@ So we can't connect.
 #include <fcntl.h>
 
 #include <q3cstring.h>
-#include <qstring.h>
-#include <qobject.h>
+#include <QString>
+#include <QObject>
 #include <q3strlist.h>
-#include <qfile.h>
+#include <QFile>
 #include <qbuffer.h>
 
 #include <stdlib.h>

@@ -31,9 +31,9 @@
 
 #include "backendbase.h"
 
-#include <qobject.h>
+#include <QObject>
 #include <qstringlist.h>
-#include <qstring.h>
+#include <QString>
 
 #include <config.h>
 

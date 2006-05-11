@@ -21,9 +21,9 @@
 
 #include "backendbase.h"
 
-#include <qobject.h>
+#include <QObject>
 #include <qbytearray.h>
-#include <qmap.h>
+#include <QMap>
 
 class DiscType
 {

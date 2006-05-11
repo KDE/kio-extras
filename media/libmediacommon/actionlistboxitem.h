@@ -21,7 +21,7 @@
 #define _ACTIONLISTBOXITEM_H_
 
 #include <q3listbox.h>
-#include <qstring.h>
+#include <QString>
 
 #include "notifieraction.h"
 

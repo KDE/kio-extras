@@ -2,10 +2,10 @@
 #include <stdlib.h>
 #include <sys/stat.h>
 
-#include <qdir.h>
-#include <qfile.h>
+#include <QDir>
+#include <QFile>
 #include <qtextstream.h>
-#include <qregexp.h>
+#include <QRegExp>
 
 #include <kdebug.h>
 #include <kprocess.h>

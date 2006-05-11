@@ -21,8 +21,8 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 
-#include <qstring.h>
-#include <qdatastream.h>
+#include <QString>
+#include <QDataStream>
 //Added by qt3to4:
 #include <Q3CString>
 

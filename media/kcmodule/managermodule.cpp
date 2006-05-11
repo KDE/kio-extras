@@ -23,7 +23,7 @@
 
 #include <klocale.h>
 #include <dcopref.h>
-#include <qcheckbox.h>
+#include <QCheckBox>
 
 #include "managermoduleview.h"
 #include "mediamanagersettings.h"

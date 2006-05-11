@@ -1,7 +1,7 @@
 #ifndef __LDAP_H__
 #define __LDAP_H__
 
-#include <qstring.h>
+#include <QString>
 
 
 #include <kio/slavebase.h>

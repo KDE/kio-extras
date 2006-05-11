@@ -21,7 +21,7 @@
 #define _NOTIFIERSERVICEACTION_H_
 
 #include <kmimetype.h>
-#include <qstring.h>
+#include <QString>
 #include <kdedesktopmimetype.h>
 
 #include "notifieraction.h"
