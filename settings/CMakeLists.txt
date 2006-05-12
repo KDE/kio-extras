@@ -1,4 +1,3 @@
-kde4_header()
 
 project(kioslave-settings)
 
@@ -23,7 +22,6 @@ install_targets(${PLUGIN_INSTALL_DIR} kio_settings )
 
 install_files( ${SERVICES_INSTALL_DIR} FILES settings.protocol programs.protocol applications.protocol )
 
-kde4_footer()
 
 
 

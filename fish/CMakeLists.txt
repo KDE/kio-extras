@@ -1,4 +1,3 @@
-kde4_header()
 
 project(kioslave-fish)
 
@@ -43,7 +42,6 @@ if (MD5SUM_EXECUTABLE)
 endif (MD5SUM_EXECUTABLE)
 
 
-kde4_footer()
 
 
 

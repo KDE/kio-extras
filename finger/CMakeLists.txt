@@ -1,4 +1,3 @@
-kde4_header()
 
 project(kioslave-finger)
 
@@ -24,7 +23,6 @@ install_targets(${PLUGIN_INSTALL_DIR} kio_finger )
 install_files( ${DATA_INSTALL_DIR}/kio_finger FILES kio_finger.pl kio_finger.css )
 install_files( ${SERVICES_INSTALL_DIR} FILES finger.protocol )
 
-kde4_footer()
 
 
 

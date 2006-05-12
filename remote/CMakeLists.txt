@@ -1,4 +1,3 @@
-kde4_header()
 
 project(kioslave-remote)
 
@@ -41,7 +40,6 @@ endif(KDE4_BUILD_TESTS)
 
 install_files( ${SERVICES_INSTALL_DIR} FILES remote.protocol )
 
-kde4_footer()
 
 
 

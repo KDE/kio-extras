@@ -1,4 +1,3 @@
-kde4_header()
 
 project(kioslave-sftp)
 
@@ -38,7 +37,6 @@ target_link_libraries(kio_sftp  ${KDE4_KDE3SUPPORT_LIBS} ${KDE4_KDESU_LIBS} )
 install_targets(${PLUGIN_INSTALL_DIR} kio_sftp )
 
 install_files( ${SERVICES_INSTALL_DIR} FILES sftp.protocol )
-kde4_footer()
 
 #original Makefile.am contents follow:
 

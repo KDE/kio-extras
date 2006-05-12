@@ -1,4 +1,3 @@
-kde4_header()
 
 
 
@@ -23,7 +22,6 @@ install_targets(${PLUGIN_INSTALL_DIR} kded_remotedirnotify )
 
 install_files( ${SERVICES_INSTALL_DIR}/kded FILES remotedirnotify.desktop )
 
-kde4_footer()
 
 
 

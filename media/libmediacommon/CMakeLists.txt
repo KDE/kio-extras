@@ -1,4 +1,3 @@
-kde4_header()
 
 
 
@@ -8,7 +7,6 @@ kde4_header()
 
 install_files( ${KCFG_INSTALL_DIR} FILES mediamanagersettings.kcfg )
 
-kde4_footer()
 
 
 

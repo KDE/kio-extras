@@ -1,4 +1,3 @@
-kde4_header()
 
 project(kioslave-smtp)
 
@@ -101,7 +100,6 @@ endif(KDE4_BUILD_TESTS)
 
 install_files( ${SERVICES_INSTALL_DIR} FILES smtp.protocol smtps.protocol )
 
-kde4_footer()
 
 
 

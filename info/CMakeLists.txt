@@ -1,4 +1,3 @@
-kde4_header()
 
 project(kioslave-info)
 
@@ -24,7 +23,6 @@ install_targets(${PLUGIN_INSTALL_DIR} kio_info )
 install_files( ${DATA_INSTALL_DIR}/kio_info FILES kde-info2html.conf kde-info2html )
 install_files( ${SERVICES_INSTALL_DIR} FILES info.protocol )
 
-kde4_footer()
 
 
 

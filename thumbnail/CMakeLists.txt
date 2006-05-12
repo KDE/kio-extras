@@ -1,4 +1,3 @@
-kde4_header()
 
 project(kioslave-thumbnail)
 
@@ -127,7 +126,6 @@ install_files( ${SERVICETYPES_INSTALL_DIR} FILES thumbcreator.desktop )
 install_files( ${SERVICES_INSTALL_DIR} FILES thumbnail.protocol )
 install_files( ${SERVICES_INSTALL_DIR} FILES imagethumbnail.desktop textthumbnail.desktop                  htmlthumbnail.desktop                  djvuthumbnail.desktop)
 
-kde4_footer()
 
 
 

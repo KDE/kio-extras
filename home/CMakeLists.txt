@@ -1,4 +1,3 @@
-kde4_header()
 
 project(kioslave-home)
 
@@ -44,7 +43,6 @@ endif(KDE4_BUILD_TESTS)
 
 install_files( ${SERVICES_INSTALL_DIR} FILES home.protocol )
 
-kde4_footer()
 
 
 

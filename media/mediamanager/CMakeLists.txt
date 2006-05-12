@@ -1,4 +1,3 @@
-kde4_header()
 include_directories(  ${CMAKE_SOURCE_DIR}/kioslave/media/libmediacommon/  )
 
 
@@ -36,7 +35,6 @@ install_targets(${PLUGIN_INSTALL_DIR} kded_mediamanager )
 
 install_files( ${SERVICES_INSTALL_DIR}/kded FILES mediamanager.desktop )
 
-kde4_footer()
 
 
 

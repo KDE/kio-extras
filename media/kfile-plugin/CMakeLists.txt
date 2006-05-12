@@ -1,4 +1,3 @@
-kde4_header()
 include_directories( ${CMAKE_SOURCE_DIR}/kioslave/media/libmediacommon/ )
 
 
@@ -22,7 +21,6 @@ install_targets(${PLUGIN_INSTALL_DIR} kfile_media )
 install_files( ${SERVICES_INSTALL_DIR} FILES kfile_media.desktop )
 install_files( ${SERVICES_INSTALL_DIR} FILES  )
 
-kde4_footer()
 
 
 

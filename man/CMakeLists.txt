@@ -1,4 +1,3 @@
-kde4_header()
 
 project(kioslave-man)
 
@@ -67,7 +66,6 @@ install_targets(${PLUGIN_INSTALL_DIR} kmanpart )
 install_files( ${DATA_INSTALL_DIR}/kio_man FILES kio_man.css )
 install_files( ${SERVICES_INSTALL_DIR} FILES man.protocol kmanpart.desktop )
 
-kde4_footer()
 
 
 

@@ -1,4 +1,3 @@
-kde4_header()
 
 project(kioslave-smb)
 
@@ -34,7 +33,6 @@ install_files( ${MIME_INSTALL_DIR}/application FILES x-smb-workgroup.desktop x-s
 install_files( ${SERVICES_INSTALL_DIR} FILES smb.protocol )
 install_files( ${DATA_INSTALL_DIR}/remoteview FILES smb-network.desktop )
 
-kde4_footer()
 
 
 

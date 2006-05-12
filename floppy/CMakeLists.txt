@@ -1,4 +1,3 @@
-kde4_header()
 
 project(kioslave-floppy)
 
@@ -23,7 +22,6 @@ install_targets(${PLUGIN_INSTALL_DIR} kio_floppy )
 
 install_files( ${SERVICES_INSTALL_DIR} FILES floppy.protocol )
 
-kde4_footer()
 
 
 

@@ -1,4 +1,3 @@
-kde4_header()
 include_directories( ${CMAKE_SOURCE_DIR}/kioslave/media/libmediacommon/ )
 
 
@@ -18,7 +17,6 @@ install(TARGETS kio_media_mounthelper DESTINATION bin)
 ########### install files ###############
 
 
-kde4_footer()
 
 
 

@@ -1,4 +1,3 @@
-kde4_header()
 
 project(kioslave-media)
 
@@ -66,7 +65,6 @@ endif(KDE4_BUILD_TESTS)
 
 install_files( ${SERVICES_INSTALL_DIR} FILES media.protocol )
 
-kde4_footer()
 
 
 

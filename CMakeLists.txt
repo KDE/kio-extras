@@ -1,4 +1,3 @@
-kde4_header()
 
 macro_optional_find_package(Samba)
 macro_optional_find_package(Ldap)
@@ -30,9 +29,9 @@ add_subdirectory( home )
 add_subdirectory( system )
 
 # Test better (see configure.in.in)
-if(SAMBA_FOUND)
-   add_subdirectory(smb)
-endif(SAMBA_FOUND)
+#if(SAMBA_FOUND)
+#   add_subdirectory(smb)
+#endif(SAMBA_FOUND)
 
 if(LDAP_FOUND)
    add_subdirectory(ldap)
@@ -43,7 +42,6 @@ endif(LDAP_FOUND)
 ########### install files ###############
 
 
-kde4_footer()
 
 
 

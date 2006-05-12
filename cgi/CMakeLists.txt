@@ -1,4 +1,3 @@
-kde4_header()
 
 project(kioslave-cgi)
 
@@ -25,7 +24,6 @@ install_targets(${PLUGIN_INSTALL_DIR} kio_cgi )
 
 install_files( ${SERVICES_INSTALL_DIR} FILES cgi.protocol )
 
-kde4_footer()
 
 
 

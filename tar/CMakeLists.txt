@@ -1,4 +1,3 @@
-kde4_header()
 
 project(kioslave-tar)
 
@@ -23,7 +22,6 @@ install_targets(${PLUGIN_INSTALL_DIR} kio_tar )
 
 install_files( ${SERVICES_INSTALL_DIR} FILES tar.protocol ar.protocol zip.protocol )
 
-kde4_footer()
 
 
 

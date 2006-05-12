@@ -1,4 +1,3 @@
-kde4_header()
 
 project(kioslave-filter)
 
@@ -27,7 +26,6 @@ if(BZIP2_FOUND)
 	install_files( ${SERVICES_INSTALL_DIR} FILES bzip.protocol bzip2.protocol )
 endif(BZIP2_FOUND)
 
-kde4_footer()
 
 
 
