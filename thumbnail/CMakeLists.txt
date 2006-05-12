@@ -2,7 +2,7 @@ kde4_header()
 
 project(kioslave-thumbnail)
 
-include_directories( ${KDE4_INCLUDES} )
+
 
 macro_optional_find_package(OpenEXR)
 ########### next target ###############

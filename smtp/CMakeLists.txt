@@ -18,7 +18,7 @@ endif (SASL2_FOUND)
 
 configure_file(smtp-config.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/smtp-config.h )
 
-include_directories(  ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR} ${smtp_optional_includes} ${KDE4_INCLUDES} )
+include_directories(  ${smtp_optional_includes}  )
 
 
 ########### next target ###############

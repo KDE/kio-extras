@@ -17,7 +17,7 @@ endif(SASL2_FOUND)
 
 configure_file(pop3-config.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/pop3-config.h )
 
-include_directories(  ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR} ${pop3_optional_includes} ${KDE4_INCLUDES} )
+include_directories(  ${pop3_optional_includes}  )
 
 ########### next target ###############
 
