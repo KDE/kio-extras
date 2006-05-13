@@ -36,7 +36,7 @@
 #include <sys/time.h>
 #include <sys/types.h>
 
-#include <qtextstream.h>
+#include <QTextStream>
 #include <QDateTime>
 #include <q3cstring.h>
 #include <QFile>

@@ -34,7 +34,7 @@
 #include <pwd.h>
 #include <grp.h>
 
-#include <qtextcodec.h>
+#include <QTextCodec>
 
 #include <kglobal.h>
 

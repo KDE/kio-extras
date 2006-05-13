@@ -25,7 +25,7 @@
 #include <dcopclient.h>
 #include <kcmdlineargs.h>
 
-#include <qeventloop.h>
+#include <QEventLoop>
 #include <QByteArray>
 
 #include "kio_media.h"

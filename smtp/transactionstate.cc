@@ -36,7 +36,7 @@
 #include <kio/global.h>
 #include <klocale.h>
 
-#include <qstringlist.h>
+#include <QStringList>
 
 namespace KioSMTP {
 

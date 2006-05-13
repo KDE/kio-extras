@@ -22,9 +22,9 @@
 
 
 #include <QString>
-#include <qstringlist.h>
+#include <QStringList>
 #include <q3dict.h>
-#include <qbuffer.h>
+#include <QBuffer>
 //Added by qt3to4:
 #include <QTextStream>
 

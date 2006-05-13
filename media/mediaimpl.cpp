@@ -28,7 +28,7 @@
 #include <kmimetype.h>
 
 #include <kapplication.h>
-#include <qeventloop.h>
+#include <QEventLoop>
 
 #include <sys/stat.h>
 

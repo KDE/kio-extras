@@ -13,7 +13,7 @@
 #include <stdio.h>
 
 #include <QDir>
-#include <qhash.h>
+#include <QHash>
 #include <QRegExp>
 
 #include <kinstance.h>

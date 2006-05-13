@@ -20,8 +20,8 @@
 #include "homeimpl.h"
 
 #include <kdebug.h>
-#include <qapplication.h>
-#include <qeventloop.h>
+#include <QApplication>
+#include <QEventLoop>
 //Added by qt3to4:
 #include <QList>
 

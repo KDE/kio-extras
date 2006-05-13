@@ -22,7 +22,7 @@
 
 #include <kfileitem.h>
 #include <QString>
-#include <qpixmap.h>
+#include <QPixmap>
 
 class NotifierSettings;
 

@@ -34,7 +34,7 @@ So we can't connect.
 #include <QObject>
 #include <q3strlist.h>
 #include <QFile>
-#include <qbuffer.h>
+#include <QBuffer>
 
 #include <stdlib.h>
 #include <unistd.h>

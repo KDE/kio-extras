@@ -21,7 +21,7 @@
 #include <sys/stat.h>
 #include <string.h>
 
-#include <qtextstream.h>
+#include <QTextStream>
 #include <q3dict.h>
 #include <q3cstring.h>
 #include <QFile>

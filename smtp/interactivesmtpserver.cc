@@ -36,11 +36,11 @@
 #include <q3serversocket.h>
 #include <q3socket.h>
 #include <q3textedit.h>
-#include <qtextstream.h>
+#include <QTextStream>
 #include <QWidget>
-#include <qapplication.h>
+#include <QApplication>
 #include <qhostaddress.h>
-#include <qtextedit.h>
+#include <QTextEdit>
 #include <QLineEdit>
 #include <QLabel>
 #include <QString>

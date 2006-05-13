@@ -19,8 +19,8 @@
 */
 
 #include <QFile>
-#include <qpixmap.h>
-#include <qimage.h>
+#include <QPixmap>
+#include <QImage>
 
 #include <kstandarddirs.h>
 #include <kpixmapsplitter.h>

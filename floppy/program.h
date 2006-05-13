@@ -20,7 +20,7 @@
 #ifndef PROGRAM_H
 #define PROGRAM_H
 
-#include <qstringlist.h>
+#include <QStringList>
 
 /**
  * start programs and write to thieir stdin, stderr,

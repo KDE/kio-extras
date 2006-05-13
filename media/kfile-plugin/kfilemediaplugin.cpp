@@ -24,11 +24,11 @@
 
 #include <dcopref.h>
 
-#include <qpixmap.h>
-#include <qpainter.h>
-#include <qstyle.h>
-#include <qapplication.h>
-#include <qeventloop.h>
+#include <QPixmap>
+#include <QPainter>
+#include <QStyle>
+#include <QApplication>
+#include <QEventLoop>
 
 typedef KGenericFactory<KFileMediaPlugin> KFileMediaPluginFactory;
 K_EXPORT_COMPONENT_FACTORY(kfile_media, KFileMediaPluginFactory("kio_media"))

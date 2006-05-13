@@ -24,8 +24,8 @@
 #include <kstandarddirs.h>
 #include <kdesktopfile.h>
 
-#include <qapplication.h>
-#include <qeventloop.h>
+#include <QApplication>
+#include <QEventLoop>
 #include <QDir>
 
 #include <sys/stat.h>

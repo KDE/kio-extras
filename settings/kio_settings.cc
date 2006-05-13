@@ -20,7 +20,7 @@
 #include <kio/slavebase.h>
 #include <kinstance.h>
 #include <kdebug.h>
-#include <qtextstream.h>
+#include <QTextStream>
 #include <klocale.h>
 #include <sys/stat.h>
 #include <dcopclient.h>

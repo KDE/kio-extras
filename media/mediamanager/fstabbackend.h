@@ -22,7 +22,7 @@
 #include "backendbase.h"
 
 #include <QObject>
-#include <qstringlist.h>
+#include <QStringList>
 
 #ifdef Q_OS_FREEBSD
 #include <QTimer>

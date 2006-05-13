@@ -21,7 +21,7 @@
 
 #include <klocale.h>
 
-#include <qpixmap.h>
+#include <QPixmap>
 
 ActionListBoxItem::ActionListBoxItem(NotifierAction *action, QString mimetype, Q3ListBox *parent)
 	: Q3ListBoxPixmap(parent, action->pixmap()),

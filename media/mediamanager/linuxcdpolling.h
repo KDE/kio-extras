@@ -22,7 +22,7 @@
 #include "backendbase.h"
 
 #include <QObject>
-#include <qbytearray.h>
+#include <QByteArray>
 #include <QMap>
 
 class DiscType

@@ -19,7 +19,7 @@
 
 #include "main.h"
 
-#include <qtabwidget.h>
+#include <QTabWidget>
 #include <QLayout>
 //Added by qt3to4:
 #include <QVBoxLayout>

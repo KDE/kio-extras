@@ -30,7 +30,7 @@
 #include <QFile>
 #include <q3socket.h>
 #include <QDateTime>
-#include <qbitarray.h>
+#include <QBitArray>
 #include <QRegExp>
 
 #include <stdlib.h>

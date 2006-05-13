@@ -20,7 +20,7 @@
 #define _MEDIUM_H_
 
 #include <QString>
-#include <qstringlist.h>
+#include <QStringList>
 //Added by qt3to4:
 #include <QList>
 #include <kurl.h>

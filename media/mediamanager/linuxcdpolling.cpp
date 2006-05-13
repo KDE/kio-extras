@@ -21,8 +21,8 @@
 
 #include "linuxcdpolling.h"
 
-#include <qthread.h>
-#include <qmutex.h>
+#include <QThread>
+#include <QMutex>
 #include <QTimer>
 #include <QFile>
 #include <QByteArray>

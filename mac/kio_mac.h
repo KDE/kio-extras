@@ -23,7 +23,7 @@
 
 #include <QString>
 #include <QFile>
-#include <qtextstream.h>
+#include <QTextStream>
 
 class MacProtocol : public QObject, public KIO::SlaveBase
 {

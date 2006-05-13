@@ -20,7 +20,7 @@
 #ifndef _TEXTCREATOR_H_
 #define _TEXTCREATOR_H_
 
-#include <qpixmap.h>
+#include <QPixmap>
 #include <kio/thumbcreator.h>
 
 class KPixmapSplitter;

@@ -28,8 +28,8 @@
 #include <kopenwith.h>
 #include <kpushbutton.h>
 #include <kiconloader.h>
-#include <qpixmap.h>
-#include <qicon.h>
+#include <QPixmap>
+#include <QIcon>
 
 
 #include "mimetypelistboxitem.h"

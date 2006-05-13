@@ -37,7 +37,7 @@
 #include <errno.h>
 
 #include <QFile>
-#include <qimage.h>
+#include <QImage>
 //Added by qt3to4:
 #include <Q3CString>
 

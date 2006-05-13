@@ -24,7 +24,7 @@
 
 #include <QDir>
 #include <QFile>
-#include <qtextstream.h>
+#include <QTextStream>
 #include <QDataStream>
 #include <q3cstring.h>
 #include <q3ptrlist.h>

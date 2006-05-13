@@ -20,9 +20,9 @@
 
 #include <time.h>
 
-#include <qpixmap.h>
-#include <qimage.h>
-#include <qpainter.h>
+#include <QPixmap>
+#include <QImage>
+#include <QPainter>
 //Added by qt3to4:
 #include <QTimerEvent>
 #include <QEventLoop>

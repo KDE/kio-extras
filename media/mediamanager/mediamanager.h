@@ -21,7 +21,7 @@
 
 #include <kdedmodule.h>
 #include <QString>
-#include <qstringlist.h>
+#include <QStringList>
 //Added by qt3to4:
 #include <Q3PtrList>
 

@@ -68,7 +68,7 @@ using KioSMTP::TransactionState;
 #include <klocale.h>
 
 #include <QString>
-#include <qstringlist.h>
+#include <QStringList>
 
 #include <memory>
 using std::auto_ptr;

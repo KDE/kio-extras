@@ -20,7 +20,7 @@
 
 #include <assert.h>
 
-#include <qimage.h>
+#include <QImage>
 
 #include <kdemacros.h>
 

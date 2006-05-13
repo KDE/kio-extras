@@ -25,7 +25,7 @@
 #include <kcmdlineargs.h>
 #include <dcopclient.h>
 
-#include <qeventloop.h>
+#include <QEventLoop>
 
 #include "kio_system.h"
 

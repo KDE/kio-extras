@@ -28,11 +28,11 @@
 #include <sys/shm.h>
 
 #include <QFile>
-#include <qbitmap.h>
-#include <qpixmap.h>
-#include <qpainter.h>
-#include <qimage.h>
-#include <qbuffer.h>
+#include <QBitmap>
+#include <QPixmap>
+#include <QPainter>
+#include <QImage>
+#include <QBuffer>
 
 #include <kdatastream.h> // Do not remove, needed for correct bool serialization
 #include <kurl.h>
