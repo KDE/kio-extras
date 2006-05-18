@@ -23,6 +23,7 @@
 
 #include <QObject>
 #include <QStringList>
+#include <QByteArray>
 
 class KUriFilterTest : public QObject
 {
@@ -36,6 +37,9 @@ private slots:
 
 private:
     QStringList minicliFilters;
+    QByteArray qtdir;
+    QByteArray home;
+    QByteArray kdehome;
 
 };
 

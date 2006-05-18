@@ -144,6 +144,9 @@ static char s_delimiter = ':'; // the alternative is ' '
 KUriFilterTest::KUriFilterTest()
 {
     minicliFilters << "kshorturifilter" << "kurisearchfilter" << "localdomainurifilter";
+    qtdir = getenv("QTDIR");
+    home = getenv("HOME");
+    kdehome = getenv("KDEHOME");
 }
 
 void KUriFilterTest::init()
@@ -174,6 +177,8 @@ void KUriFilterTest::init()
       cfg.writeEntry( "Verbose", true );
       cfg.sync();
     }
+
+    KStandardDirs::makeDir( kdehome+"/urifilter" );
 }
 
 void KUriFilterTest::tests()
@@ -181,13 +186,13 @@ void KUriFilterTest::tests()
     // URI that should require no filtering
     filter( "http://www.kde.org", "http://www.kde.org", KURIFilterData::NET_PROTOCOL );
     filter( "http://www.kde.org/developer//index.html", "http://www.kde.org/developer//index.html", KURIFilterData::NET_PROTOCOL );
-        // URL with reference
+    // URL with reference
     filter( "http://www.kde.org/index.html#q8", "http://www.kde.org/index.html#q8", KURIFilterData::NET_PROTOCOL );
-        // local file with reference
+    // local file with reference
     filter( "file:/etc/passwd#q8", "file:///etc/passwd#q8", KURIFilterData::LOCAL_FILE );
     filter( "file:///etc/passwd#q8", "file:///etc/passwd#q8", KURIFilterData::LOCAL_FILE );
     filter( "/etc/passwd#q8", "file:///etc/passwd#q8", KURIFilterData::LOCAL_FILE );
-        // local file with query (can be used by javascript)
+    // local file with query (can be used by javascript)
     filter( "file:/etc/passwd?foo=bar", "file:///etc/passwd?foo=bar", KURIFilterData::LOCAL_FILE );
     testLocalFile( "/tmp/kurifiltertest?foo" ); // local file with ? in the name (#58990)
     testLocalFile( "/tmp/kurlfiltertest#foo" ); // local file with '#' in the name
@@ -269,25 +274,14 @@ void KUriFilterTest::tests()
     setenv( "SOMEVAR", "/somevar", 0 );
     setenv( "ETC", "/etc", 0 );
 
-    QByteArray qtdir=getenv("QTDIR");
-    QByteArray home = getenv("HOME");
-    QByteArray kdehome = getenv("KDEHOME");
-
     filter( "$SOMEVAR/kdelibs/kio", 0, KURIFilterData::ERROR ); // note: this dir doesn't exist...
     filter( "$ETC/passwd", "/etc/passwd", KURIFilterData::LOCAL_FILE );
     filter( "$QTDIR/doc/html/functions.html#s", QByteArray("file://")+qtdir+"/doc/html/functions.html#s", KURIFilterData::LOCAL_FILE );
     filter( "http://www.kde.org/$USER", "http://www.kde.org/$USER", KURIFilterData::NET_PROTOCOL ); // no expansion
 
-    // Assume the default (~/.kde) if kdehome is not set - not needed anymore with qtest_kde.h
-    //if (kdehome.isEmpty())
-    //{
-    //  kdehome += "$HOME/.kde";
-    //  setenv("KDEHOME", kdehome.data(), 0);
-    //}
-
     filter( "$KDEHOME/share", kdehome+"/share", KURIFilterData::LOCAL_DIR );
-    KStandardDirs::makeDir( kdehome+"/a+plus" );
-    filter( "$KDEHOME/a+plus", kdehome+"/a+plus", KURIFilterData::LOCAL_DIR );
+    KStandardDirs::makeDir( kdehome+"/urifilter/a+plus" );
+    filter( "$KDEHOME/urifilter/a+plus", kdehome+"/urifilter/a+plus", KURIFilterData::LOCAL_DIR );
 
     // BR 27788
     KStandardDirs::makeDir( kdehome+"/share/Dir With Space" );

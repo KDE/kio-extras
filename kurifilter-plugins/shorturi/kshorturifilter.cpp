@@ -226,11 +226,10 @@ bool KShortURIFilter::filterURI( KURIFilterData& data ) const
   {
     if (url.isLocalFile())
     {
-      // Split path from ref/query if the path exists
+      // Split path from ref/query
       // but not for "/tmp/a#b", if "a#b" is an existing file,
       // or for "/tmp/a?b" (#58990)
-      if ( ( url.hasRef() || !url.query().isEmpty() ) // avoid the calling exists() when not needed
-           && QFile::exists(url.path())
+      if ( ( url.hasRef() || !url.query().isEmpty() )
            && !url.path().endsWith(QFL1("/")) ) // /tmp/?foo is a namefilter, not a query
       {
         path = url.path();
@@ -290,16 +289,20 @@ bool KShortURIFilter::filterURI( KURIFilterData& data ) const
     }
   }
 
-  if ( expanded )
+  if ( expanded || cmd.startsWith( '/' ) )
   {
     // Look for #ref again, after $ and ~ expansion (testcase: $QTDIR/doc/html/functions.html#s)
     // Can't use KUrl here, setPath would escape it...
-    int pos = path.indexOf('#');
+    const int pos = path.indexOf('#');
     if ( pos > -1 )
     {
-      ref = path.mid( pos + 1 );
-      path = path.left( pos );
-      //kDebug() << "Extracted ref: path=" << path << " ref=" << ref << endl;
+      const QString newPath = path.left( pos );
+      if ( QFile::exists( newPath ) )
+      {
+        ref = path.mid( pos + 1 );
+        path = newPath;
+        //kDebug() << "Extracted ref: path=" << path << " ref=" << ref << endl;
+      }
     }
   }
 
