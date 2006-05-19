@@ -26,7 +26,6 @@
 
 #include "config.h"
 
-#include <q3cstring.h>
 #include <QFile>
 #include <q3socket.h>
 #include <QDateTime>

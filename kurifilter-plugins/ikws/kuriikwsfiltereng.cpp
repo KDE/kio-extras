@@ -189,7 +189,7 @@ QStringList KURISearchFilterEngine::modifySubstitutionMap(SubstMap& map,
       v = v.replace(j, 3, " ");
 
     // Insert partial queries (referenced by \1 ... \n) to map:
-    map.replace(QString::number(i), v);
+    map.insert(QString::number(i), v);
     PDVAR ("  map['" + nr + "']", map[nr]);
 
     // Insert named references (referenced by \name) to map:
@@ -201,7 +201,7 @@ QStringList KURISearchFilterEngine::modifySubstitutionMap(SubstMap& map,
 
       // Back-substitute references contained in references (e.g. '\refname' substitutes to 'thisquery=\0')
       while ((j = s.indexOf("%5C")) != -1) s = s.replace(j, 3, "\\");
-      map.replace(k, s);
+      map.insert(k, s);
       PDVAR ("  map['" + k + "']", map[k]);
     }
   }
@@ -426,13 +426,13 @@ QString KURISearchFilterEngine::formatResult( const QString& url,
   PDVAR ("query definition", url);
 
   // Add charset indicator for the query to substitution map:
-  map.replace("ikw_charset", cseta);
+  map.insert("ikw_charset", cseta);
 
   // Add charset indicator for the fallback query to substitution map:
   QString csetb = cset2;
   if (csetb.isEmpty())
     csetb = "iso-8859-1";
-  map.replace("wsc_charset", csetb);
+  map.insert("wsc_charset", csetb);
 
   QString newurl = substituteQuery (url, map, userquery, csetacodec->mibEnum());
 

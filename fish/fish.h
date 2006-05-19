@@ -17,8 +17,6 @@
 #define __fish_h__
 
 #include <QString>
-//Added by qt3to4:
-
 
 #include <kurl.h>
 #include <kio/global.h>
