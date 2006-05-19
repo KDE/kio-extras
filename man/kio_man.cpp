@@ -815,9 +815,9 @@ void MANProtocol::constructPath(QStringList& constr_path, QStringList constr_cat
 
     QFile mc("/etc/man.conf");             // Caldera
     if (!mc.exists())
-        mc.setName("/etc/manpath.config"); // SuSE, Debian
+        mc.setFileName("/etc/manpath.config"); // SuSE, Debian
     if (!mc.exists())
-        mc.setName("/etc/man.config");  // Mandrake
+        mc.setFileName("/etc/man.config");  // Mandrake
 
     if (mc.open(QIODevice::ReadOnly))
     {
