@@ -21,14 +21,14 @@
 #ifndef KMANPART_H
 #define KMANPART_H
 
+#include <QByteArray>
+
 #include <kparts/factory.h>
 #include <kparts/part.h>
 #include <kparts/browserextension.h>
 #include <khtml_part.h>
 #include <kio/job.h>
 #include <kio/jobclasses.h>
-
-#include <q3cstring.h>
 
 class KInstance;
 class KAboutData;

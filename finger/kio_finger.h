@@ -21,7 +21,6 @@
 #define __kio_finger_h__
 
 #include <QString>
-#include <q3cstring.h>
 
 #include <kurl.h>
 #include <kprocess.h>

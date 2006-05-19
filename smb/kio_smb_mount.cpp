@@ -20,8 +20,8 @@
 
 #include "kio_smb.h"
 #include <kstandarddirs.h>
-#include <q3cstring.h>
 #include <unistd.h>
+#include <QByteArray>
 #include <QDir>
 #include <kprocess.h>
 

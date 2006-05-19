@@ -22,11 +22,11 @@
 #include <string.h>
 #include <dirent.h>
 
+#include <QByteArray>
 #include <QDir>
 #include <QFile>
 #include <QTextStream>
 #include <QDataStream>
-#include <q3cstring.h>
 #include <q3ptrlist.h>
 #include <QMap>
 #include <QRegExp>
@@ -544,7 +544,7 @@ char *MANProtocol::readManPage(const char *_filename)
         const QByteArray cstr=myStdStream.toLatin1();
         const int len = cstr.size()-1;
         buf = new char[len + 4];
-        qmemmove(buf + 1, cstr.data(), len);
+        memmove(buf + 1, cstr.data(), len);
         buf[0]=buf[len]='\n'; // Start and end with a end of line
         buf[len+1]=buf[len+2]='\0'; // Two additional NUL characters at end
     }
@@ -580,7 +580,7 @@ char *MANProtocol::readManPage(const char *_filename)
 
         const int len = array.size();
         buf = new char[len + 4];
-        qmemmove(buf + 1, array.data(), len);
+        memmove(buf + 1, array.data(), len);
         buf[0]=buf[len]='\n'; // Start and end with a end of line
         buf[len+1]=buf[len+2]='\0'; // Two NUL characters at end
     }

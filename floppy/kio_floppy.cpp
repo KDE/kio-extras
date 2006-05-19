@@ -36,9 +36,9 @@
 #include <sys/time.h>
 #include <sys/types.h>
 
+#include <QByteArray>
 #include <QTextStream>
 #include <QDateTime>
-#include <q3cstring.h>
 #include <QFile>
 
 #include "kio_floppy.h"
@@ -72,7 +72,7 @@ void getDriveAndPath(const QString& path, QString& drive, QString& rest)
 {
    drive=QString();
    rest=QString();
-   QStringList list=path.split( "/");
+   QStringList list=path.split("/");
    for (QStringList::Iterator it=list.begin(); it!=list.end(); it++)
    {
       if (it==list.begin())
