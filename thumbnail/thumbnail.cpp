@@ -47,7 +47,8 @@
 #include <kdebug.h>
 #include <kservice.h>
 #include <kservicetype.h>
-#include <kuserprofile.h>
+#include <kservicetypetrader.h>
+#include <kmimetypetrader.h>
 #include <kfilemetainfo.h>
 #include <klocale.h>
 
@@ -62,7 +63,6 @@
 
 #ifdef THUMBNAIL_HACK
 # include <qfileinfo.h>
-# include <ktrader.h>
 #endif
 
 // Recognized metadata entries:
@@ -217,7 +217,7 @@ void ThumbnailProtocol::get(const KUrl &url)
     bool kfmiThumb = false;
     if (group.readEntry( "UseFileThumbnails", QVariant(true )).toBool()) {
         KService::Ptr service =
-            KServiceTypeProfile::preferredService( m_mimeType, "KFilePlugin");
+            KMimeTypeTrader::self()->preferredService( m_mimeType, "KFilePlugin");
 
         if ( service && service->isValid() && /*url.isLocalFile() && */
             service->property("SupportsThumbnail").toBool())
@@ -244,10 +244,10 @@ void ThumbnailProtocol::get(const KUrl &url)
 #ifdef THUMBNAIL_HACK
         if (plugin.isEmpty())
         {
-            KTrader::OfferList plugins = KTrader::self()->query("ThumbCreator");
+            KService::List plugins = KServiceTypeTrader::self()->query("ThumbCreator");
             QMap<QString, KService::Ptr> mimeMap;
 
-            for (KTrader::OfferList::ConstIterator it = plugins.begin(); it != plugins.end(); ++it)
+            for (KService::List::ConstIterator it = plugins.begin(); it != plugins.end(); ++it)
             {
                 QStringList mimeTypes = (*it)->property("MimeTypes").toStringList();
                 for (QStringList::ConstIterator mt = mimeTypes.begin(); mt != mimeTypes.end(); ++mt)

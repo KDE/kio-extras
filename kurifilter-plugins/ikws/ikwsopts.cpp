@@ -38,7 +38,7 @@
 #include <kservice.h>
 #include <ksimpleconfig.h>
 #include <kstandarddirs.h>
-#include <ktrader.h>
+#include <kservicetypetrader.h>
 
 #include "ikwsopts.h"
 #include "ikwsopts_ui.h"
@@ -117,9 +117,9 @@ void FilterOptions::load()
     m_favoriteEngines << "google" << "google_groups" << "google_news" << "webster" << "dmoz" << "wikipedia";
     m_favoriteEngines = config.readEntry("FavoriteSearchEngines", m_favoriteEngines );
 
-    const KTrader::OfferList services = KTrader::self()->query("SearchProvider");
+    const KService::List services = KServiceTypeTrader::self()->query("SearchProvider");
 
-    for (KTrader::OfferList::ConstIterator it = services.begin();
+    for (KService::List::ConstIterator it = services.begin();
          it != services.end(); ++it)
     {
       displaySearchProvider(new SearchProvider(*it),

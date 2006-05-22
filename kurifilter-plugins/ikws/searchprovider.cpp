@@ -16,8 +16,7 @@
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include <ktrader.h>
-
+#include <kservicetypetrader.h>
 
 #include "searchprovider.h"
 
@@ -72,8 +71,8 @@ SearchProvider *SearchProvider::findByDesktopName(const QString &name)
 
 SearchProvider *SearchProvider::findByKey(const QString &key)
 {
-    KTrader::OfferList providers =
-        KTrader::self()->query("SearchProvider", QString("'%1' in Keys").arg(key));
+    KService::List providers =
+        KServiceTypeTrader::self()->query("SearchProvider", QString("'%1' in Keys").arg(key));
     return providers.count() ? new SearchProvider(providers[0]) : 0;
 }
 
