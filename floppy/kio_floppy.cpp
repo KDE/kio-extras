@@ -202,47 +202,47 @@ bool FloppyProtocol::stopAfterError(const KUrl& url, const QString& drive)
    }
    else if ((line.indexOf("Disk full") > -1) || (line.indexOf("No free cluster") > -1))
    {
-      error( KIO::ERR_SLAVE_DEFINED, i18n("Could not write to file %1.\nThe disk in drive %2 is probably full.", url.prettyURL(), drive));
+      error( KIO::ERR_SLAVE_DEFINED, i18n("Could not write to file %1.\nThe disk in drive %2 is probably full.", url.prettyUrl(), drive));
    }
    //file not found
    else if (line.indexOf("not found") > -1)
    {
-      error( KIO::ERR_DOES_NOT_EXIST, url.prettyURL());
+      error( KIO::ERR_DOES_NOT_EXIST, url.prettyUrl());
    }
    //no disk
    else if (line.indexOf("not configured") > -1)
    {
-      error( KIO::ERR_SLAVE_DEFINED, i18n("Could not access %1.\nThere is probably no disk in the drive %2", url.prettyURL(), drive));
+      error( KIO::ERR_SLAVE_DEFINED, i18n("Could not access %1.\nThere is probably no disk in the drive %2", url.prettyUrl(), drive));
    }
    else if (line.indexOf("No such device") > -1)
    {
-      error( KIO::ERR_SLAVE_DEFINED, i18n("Could not access %1.\nThere is probably no disk in the drive %2 or you do not have enough permissions to access the drive.", url.prettyURL(), drive));
+      error( KIO::ERR_SLAVE_DEFINED, i18n("Could not access %1.\nThere is probably no disk in the drive %2 or you do not have enough permissions to access the drive.", url.prettyUrl(), drive));
    }
    else if (line.indexOf("not supported") > -1)
    {
-      error( KIO::ERR_SLAVE_DEFINED, i18n("Could not access %1.\nThe drive %2 is not supported.", url.prettyURL(), drive));
+      error( KIO::ERR_SLAVE_DEFINED, i18n("Could not access %1.\nThe drive %2 is not supported.", url.prettyUrl(), drive));
    }
    //not supported or no such drive
    else if (line.indexOf("Permission denied") > -1)
    {
-      error( KIO::ERR_SLAVE_DEFINED, i18n("Could not access %1.\nMake sure the floppy in drive %2 is a DOS-formatted floppy disk \nand that the permissions of the device file (e.g. /dev/fd0) are set correctly (e.g. rwxrwxrwx).", url.prettyURL(), drive));
+      error( KIO::ERR_SLAVE_DEFINED, i18n("Could not access %1.\nMake sure the floppy in drive %2 is a DOS-formatted floppy disk \nand that the permissions of the device file (e.g. /dev/fd0) are set correctly (e.g. rwxrwxrwx).", url.prettyUrl(), drive));
    }
    else if (line.indexOf("non DOS media") > -1)
    {
-      error( KIO::ERR_SLAVE_DEFINED, i18n("Could not access %1.\nThe disk in drive %2 is probably not a DOS-formatted floppy disk.", url.prettyURL(), drive));
+      error( KIO::ERR_SLAVE_DEFINED, i18n("Could not access %1.\nThe disk in drive %2 is probably not a DOS-formatted floppy disk.", url.prettyUrl(), drive));
    }
    else if (line.indexOf("Read-only") > -1)
    {
-      error( KIO::ERR_SLAVE_DEFINED, i18n("Access denied.\nCould not write to %1.\nThe disk in drive %2 is probably write-protected.", url.prettyURL(), drive));
+      error( KIO::ERR_SLAVE_DEFINED, i18n("Access denied.\nCould not write to %1.\nThe disk in drive %2 is probably write-protected.", url.prettyUrl(), drive));
    }
    else if ((outputString.indexOf("already exists") > -1) || (outputString.indexOf("Skipping ") > -1))
    {
-      error( KIO::ERR_FILE_ALREADY_EXIST,url.prettyURL());
+      error( KIO::ERR_FILE_ALREADY_EXIST,url.prettyUrl());
       //return false;
    }
    else if (outputString.indexOf("could not read boot sector") > -1)
    {
-      error( KIO::ERR_SLAVE_DEFINED, i18n("Could not read boot sector for %1.\nThere is probably not any disk in drive %2.", url.prettyURL(), drive));
+      error( KIO::ERR_SLAVE_DEFINED, i18n("Could not read boot sector for %1.\nThere is probably not any disk in drive %2.", url.prettyUrl(), drive));
       //return false;
    }
    else
@@ -554,7 +554,7 @@ StatInfo FloppyProtocol::_stat(const KUrl& url)
    if (m_stdoutSize==0)
    {
       info.isValid=false;
-      error( KIO::ERR_COULD_NOT_STAT, url.prettyURL());
+      error( KIO::ERR_COULD_NOT_STAT, url.prettyUrl());
       return info;
    }
 
@@ -569,11 +569,11 @@ StatInfo FloppyProtocol::_stat(const KUrl& url)
          continue;
       StatInfo info=createStatInfo(line,true,url.fileName());
       if (info.isValid==false)
-         error( KIO::ERR_COULD_NOT_STAT, url.prettyURL());
+         error( KIO::ERR_COULD_NOT_STAT, url.prettyUrl());
       return info;
    }
    if (info.isValid==false)
-      error( KIO::ERR_COULD_NOT_STAT, url.prettyURL());
+      error( KIO::ERR_COULD_NOT_STAT, url.prettyUrl());
    return info;
 }
 
@@ -643,7 +643,7 @@ int FloppyProtocol::freeSpace(const KUrl& url)
 
    if (m_stdoutSize==0)
    {
-      error( KIO::ERR_COULD_NOT_STAT, url.prettyURL());
+      error( KIO::ERR_COULD_NOT_STAT, url.prettyUrl());
       return -1;
    }
 
@@ -1127,7 +1127,7 @@ void FloppyProtocol::put( const KUrl& url, int , bool overwrite, bool )
             if (bytesRead>freeSpaceLeft)
             {
                result=0;
-               error( KIO::ERR_SLAVE_DEFINED, i18n("Could not write to file %1.\nThe disk in drive %2 is probably full.", url.prettyURL(), drive));
+               error( KIO::ERR_SLAVE_DEFINED, i18n("Could not write to file %1.\nThe disk in drive %2 is probably full.", url.prettyUrl(), drive));
             }
             else
             {
@@ -1143,7 +1143,7 @@ void FloppyProtocol::put( const KUrl& url, int , bool overwrite, bool )
    if (result<0)
    {
       perror("writing to stdin");
-      error( KIO::ERR_CANNOT_OPEN_FOR_WRITING, url.prettyURL());
+      error( KIO::ERR_CANNOT_OPEN_FOR_WRITING, url.prettyUrl());
       return;
    }
 

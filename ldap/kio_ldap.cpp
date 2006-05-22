@@ -85,7 +85,7 @@ void LDAPProtocol::LDAPErr( const KUrl &url, int err )
       extraMsg = i18n("\nAdditional info: ") + QString::fromUtf8( errmsg );
     free( errmsg );
   }
-  msg = url.prettyURL();
+  msg = url.prettyUrl();
   if ( !extraMsg.isEmpty() ) msg += extraMsg;
 
   /* FIXME: No need to close on all errors */
@@ -156,7 +156,7 @@ void LDAPProtocol::LDAPErr( const KUrl &url, int err )
     default:
       error( ERR_SLAVE_DEFINED,
         i18n( "LDAP server returned the error: %1 %2\nThe LDAP URL was: %3" , 
-         ldap_err2string(err), extraMsg, url.prettyURL() ) );
+         ldap_err2string(err), extraMsg, url.prettyUrl() ) );
   }
 }
 
@@ -484,7 +484,7 @@ void LDAPProtocol::LDAPEntry2UDSEntry( const QString &dn, UDSEntry &entry,
   LDAPUrl url=usrc;
   url.setPath("/"+dn);
   url.setScope( dir ? LDAPUrl::One : LDAPUrl::Base );
-  entry.insert( UDS_URL, url.prettyURL() );
+  entry.insert( UDS_URL, url.prettyUrl() );
 }
 
 
@@ -912,7 +912,7 @@ void LDAPProtocol::stat( const KUrl &_url )
     }
     if ( ret == LDAP_RES_SEARCH_RESULT ) {
       ldap_msgfree( msg );
-      error( ERR_DOES_NOT_EXIST, _url.prettyURL() );
+      error( ERR_DOES_NOT_EXIST, _url.prettyUrl() );
       return;
     }
   } while ( ret != LDAP_RES_SEARCH_ENTRY );
@@ -1178,7 +1178,7 @@ void LDAPProtocol::listDir( const KUrl &_url )
       LDAPEntry2UDSEntry( QString::fromUtf8(dn), uds, usrc );
       listEntry( uds, false );
 //      processedSize( total );
-      kDebug(7125) << " total: " << total << " " << usrc.prettyURL() << endl;
+      kDebug(7125) << " total: " << total << " " << usrc.prettyUrl() << endl;
 
     // publish the sub-directories (if dirmode==sub)
       if ( isSub ) {

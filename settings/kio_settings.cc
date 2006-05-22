@@ -160,7 +160,7 @@ void SettingsProtocol::get( const KUrl & url )
 		redirection(redirUrl);
 		finished();
 	} else {
-		error( KIO::ERR_IS_DIRECTORY, url.prettyURL() );
+		error( KIO::ERR_IS_DIRECTORY, url.prettyUrl() );
 	}
 }
 

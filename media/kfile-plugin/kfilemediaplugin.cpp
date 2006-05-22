@@ -79,7 +79,7 @@ bool KFileMediaPlugin::readInfo(KFileMetaInfo &info, uint /*what*/)
 
 	if (base_url.isValid())
 	{
-		appendItem(group, "baseURL", base_url.prettyURL());
+		appendItem(group, "baseURL", base_url.prettyUrl());
 	}
 
 	if (!device_node.isEmpty())

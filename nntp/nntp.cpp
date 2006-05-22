@@ -96,7 +96,7 @@ void NNTPProtocol::setHost ( const QString & host, int port, const QString & use
 
 void NNTPProtocol::get( const KUrl& url )
 {
-  DBG << "get " << url.prettyURL() << endl;
+  DBG << "get " << url.prettyUrl() << endl;
   QString path = QDir::cleanPath(url.path());
   QRegExp regMsgId = QRegExp("^\\/?[a-z0-9\\.\\-_]+\\/<\\S+>$", Qt::CaseInsensitive);
   int pos;
@@ -267,7 +267,7 @@ bool NNTPProtocol::post_article() {
 
 
 void NNTPProtocol::stat( const KUrl& url ) {
-  DBG << "stat " << url.prettyURL() << endl;
+  DBG << "stat " << url.prettyUrl() << endl;
   UDSEntry entry;
   QString path = QDir::cleanPath(url.path());
   QRegExp regGroup = QRegExp("^\\/?[a-z0-9\\.\\-_]+\\/?$",Qt::CaseInsensitive);
@@ -313,7 +313,7 @@ void NNTPProtocol::stat( const KUrl& url ) {
 }
 
 void NNTPProtocol::listDir( const KUrl& url ) {
-  DBG << "listDir " << url.prettyURL() << endl;
+  DBG << "listDir " << url.prettyUrl() << endl;
   if ( !nntp_open() )
     return;
 
@@ -323,7 +323,7 @@ void NNTPProtocol::listDir( const KUrl& url ) {
   {
     KUrl newURL(url);
     newURL.setPath("/");
-    DBG << "listDir redirecting to " << newURL.prettyURL() << endl;
+    DBG << "listDir redirecting to " << newURL.prettyUrl() << endl;
     redirection(newURL);
     finished();
     return;

@@ -63,7 +63,7 @@ bool SMBSlave::browse_stat_path(const SMBUrl& _url, UDSEntry& udsentry, bool ign
       {
          kDebug(KIO_SMB)<<"SMBSlave::browse_stat_path mode: "<<st.st_mode<<endl;
          warning(i18n("%1:\n"
-                      "Unknown file type, neither directory or file.", url.prettyURL()));
+                      "Unknown file type, neither directory or file.", url.prettyUrl()));
          return false;
       }
 
@@ -137,7 +137,7 @@ void SMBSlave::stat( const KUrl& kurl )
     switch(m_current_url.getType())
     {
     case SMBURLTYPE_UNKNOWN:
-        error(ERR_MALFORMED_URL,m_current_url.prettyURL());
+        error(ERR_MALFORMED_URL,m_current_url.prettyUrl());
         finished();
         return;
 
@@ -216,12 +216,12 @@ void SMBSlave::reportError(const SMBUrl &url)
         if (url.getType() == SMBURLTYPE_ENTIRE_NETWORK)
             error( ERR_SLAVE_DEFINED, i18n("Unable to find any workgroups in your local network. This might be caused by an enabled firewall."));
         else
-            error( ERR_DOES_NOT_EXIST, url.prettyURL());
+            error( ERR_DOES_NOT_EXIST, url.prettyUrl());
         break;
 #ifdef ENOMEDIUM
     case ENOMEDIUM:
         error( ERR_SLAVE_DEFINED,
-               i18n( "No media in device for %1", url.prettyURL() ) );
+               i18n( "No media in device for %1", url.prettyUrl() ) );
         break;
 #endif
 #ifdef EHOSTDOWN
@@ -229,28 +229,28 @@ void SMBSlave::reportError(const SMBUrl &url)
 #endif
     case ECONNREFUSED:
         error(  ERR_SLAVE_DEFINED,
-                i18n( "Could not connect to host for %1", url.prettyURL() ) );
+                i18n( "Could not connect to host for %1", url.prettyUrl() ) );
         break;
     case ENOTDIR:
-        error( ERR_CANNOT_ENTER_DIRECTORY, url.prettyURL());
+        error( ERR_CANNOT_ENTER_DIRECTORY, url.prettyUrl());
         break;
     case EFAULT:
     case EINVAL:
-        error( ERR_DOES_NOT_EXIST, url.prettyURL());
+        error( ERR_DOES_NOT_EXIST, url.prettyUrl());
         break;
     case EPERM:
     case EACCES:
-        error( ERR_ACCESS_DENIED, url.prettyURL() );
+        error( ERR_ACCESS_DENIED, url.prettyUrl() );
         break;
     case EIO:
     case ENETUNREACH:
         if ( url.getType() == SMBURLTYPE_ENTIRE_NETWORK || url.getType() == SMBURLTYPE_WORKGROUP_OR_SERVER )
-            error( ERR_SLAVE_DEFINED, i18n( "Error while connecting to server responsible for %1", url.prettyURL() ) );
+            error( ERR_SLAVE_DEFINED, i18n( "Error while connecting to server responsible for %1", url.prettyUrl() ) );
         else
-            error( ERR_CONNECTION_BROKEN, url.prettyURL());
+            error( ERR_CONNECTION_BROKEN, url.prettyUrl());
         break;
     case ENOMEM:
-        error( ERR_OUT_OF_MEMORY, url.prettyURL() );
+        error( ERR_OUT_OF_MEMORY, url.prettyUrl() );
         break;
     case ENODEV:
         error( ERR_SLAVE_DEFINED, i18n("Share could not be found on given server"));

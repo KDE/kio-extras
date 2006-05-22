@@ -57,14 +57,14 @@ MountHelper::MountHelper() : KApplication()
 
 	if ( medium.id().isEmpty() )
 	{
-		m_errorStr+= i18n("%1 cannot be found.", url.prettyURL());
+		m_errorStr+= i18n("%1 cannot be found.", url.prettyUrl());
 		QTimer::singleShot(0, this, SLOT(error()) );
 		return;
 	}
 
 	if ( !medium.isMountable() && !args->isSet("e") && !args->isSet("s"))
 	{
-		m_errorStr = i18n("%1 is not a mountable media.", url.prettyURL());
+		m_errorStr = i18n("%1 is not a mountable media.", url.prettyUrl());
 		QTimer::singleShot(0, this, SLOT(error()) );
 		return;
 	}

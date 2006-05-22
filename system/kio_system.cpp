@@ -73,7 +73,7 @@ bool SystemProtocol::rewriteURL(const KUrl &url, KUrl &newUrl)
 
 	if ( !m_impl.parseURL(url, name, path) )
 	{
-		error(KIO::ERR_MALFORMED_URL, url.prettyURL());
+		error(KIO::ERR_MALFORMED_URL, url.prettyUrl());
 		return false;
 	}
 
@@ -107,7 +107,7 @@ void SystemProtocol::stat(const KUrl &url)
 
 	if ( !ok )
 	{
-		error(KIO::ERR_MALFORMED_URL, url.prettyURL());
+		error(KIO::ERR_MALFORMED_URL, url.prettyUrl());
 		return;
 	}
 
@@ -122,7 +122,7 @@ void SystemProtocol::stat(const KUrl &url)
 		}
 		else
 		{
-			error(KIO::ERR_DOES_NOT_EXIST, url.prettyURL());
+			error(KIO::ERR_DOES_NOT_EXIST, url.prettyUrl());
 		}
 	}
 	else
@@ -146,7 +146,7 @@ void SystemProtocol::listDir(const KUrl &url)
 
 	if ( !ok )
 	{
-		error(KIO::ERR_MALFORMED_URL, url.prettyURL());
+		error(KIO::ERR_MALFORMED_URL, url.prettyUrl());
 		return;
 	}
 

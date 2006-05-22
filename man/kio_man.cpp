@@ -1461,7 +1461,7 @@ void MANProtocol::showIndex(const QString& section)
 
 void MANProtocol::listDir(const KUrl &url)
 {
-    kDebug( 7107 ) << "ENTER listDir: " << url.prettyURL() << endl;
+    kDebug( 7107 ) << "ENTER listDir: " << url.prettyUrl() << endl;
 
     QString title;
     QString section;

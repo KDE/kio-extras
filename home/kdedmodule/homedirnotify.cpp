@@ -147,7 +147,7 @@ inline void evil_hack(const KUrl::List &list)
 
 	for (; it!=end; ++it)
 	{
-		KUrl url = (*it).upURL();
+		KUrl url = (*it).upUrl();
 
 		if (!notified.contains(url))
 		{

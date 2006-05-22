@@ -76,7 +76,7 @@ bool MediaProtocol::rewriteURL(const KUrl &url, KUrl &newUrl)
 
 	if ( !m_impl.parseURL(url, name, path) )
 	{
-		error(KIO::ERR_MALFORMED_URL, url.prettyURL());
+		error(KIO::ERR_MALFORMED_URL, url.prettyUrl());
 		return false;
 	}
 
@@ -100,7 +100,7 @@ void MediaProtocol::put(const KUrl &url, int permissions,
 
 	if ( ok && path.isEmpty() )
 	{
-		error(KIO::ERR_CANNOT_OPEN_FOR_WRITING, url.prettyURL());
+		error(KIO::ERR_CANNOT_OPEN_FOR_WRITING, url.prettyUrl());
 	}
 	else
 	{
@@ -145,7 +145,7 @@ void MediaProtocol::mkdir(const KUrl &url, int permissions)
 
 	if ( ok && path.isEmpty() )
 	{
-		error(KIO::ERR_COULD_NOT_MKDIR, url.prettyURL());
+		error(KIO::ERR_COULD_NOT_MKDIR, url.prettyUrl());
 	}
 	else
 	{
@@ -162,7 +162,7 @@ void MediaProtocol::del(const KUrl &url, bool isFile)
 
 	if ( ok && path.isEmpty() )
 	{
-		error(KIO::ERR_CANNOT_DELETE, url.prettyURL());
+		error(KIO::ERR_CANNOT_DELETE, url.prettyUrl());
 	}
 	else
 	{
@@ -189,7 +189,7 @@ void MediaProtocol::stat(const KUrl &url)
 
 	if ( !ok )
 	{
-		error(KIO::ERR_MALFORMED_URL, url.prettyURL());
+		error(KIO::ERR_MALFORMED_URL, url.prettyUrl());
 		return;
 	}
 
@@ -205,7 +205,7 @@ void MediaProtocol::stat(const KUrl &url)
 		}
 		else
 		{
-			error(KIO::ERR_DOES_NOT_EXIST, url.prettyURL());
+			error(KIO::ERR_DOES_NOT_EXIST, url.prettyUrl());
 		}
 	}
 	else
@@ -229,7 +229,7 @@ void MediaProtocol::listDir(const KUrl &url)
 
 	if ( !ok )
 	{
-		error(KIO::ERR_MALFORMED_URL, url.prettyURL());
+		error(KIO::ERR_MALFORMED_URL, url.prettyUrl());
 		return;
 	}
 

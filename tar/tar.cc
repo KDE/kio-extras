@@ -200,13 +200,13 @@ void ArchiveProtocol::listDir( const KUrl & url )
             // Therefore give a more specific error message
             error( KIO::ERR_SLAVE_DEFINED,
                    i18n( "Could not open the file, probably due to an unsupported file format.\n%1",
-                             url.prettyURL() ) );
+                             url.prettyUrl() ) );
             return;
         }
         else if ( errorNum != ERR_IS_DIRECTORY )
         {
             // We have any other error
-            error( errorNum, url.prettyURL() );
+            error( errorNum, url.prettyUrl() );
             return;
         }
         // It's a real dir -> redirect
@@ -241,12 +241,12 @@ void ArchiveProtocol::listDir( const KUrl & url )
         const KArchiveEntry* e = root->entry( path );
         if ( !e )
         {
-            error( KIO::ERR_DOES_NOT_EXIST, url.prettyURL() );
+            error( KIO::ERR_DOES_NOT_EXIST, url.prettyUrl() );
             return;
         }
         if ( ! e->isDirectory() )
         {
-            error( KIO::ERR_IS_FILE, url.prettyURL() );
+            error( KIO::ERR_IS_FILE, url.prettyUrl() );
             return;
         }
         dir = (KArchiveDirectory*)e;
@@ -291,13 +291,13 @@ void ArchiveProtocol::stat( const KUrl & url )
             // Therefore give a more specific error message
             error( KIO::ERR_SLAVE_DEFINED,
                    i18n( "Could not open the file, probably due to an unsupported file format.\n%1",
-                             url.prettyURL() ) );
+                             url.prettyUrl() ) );
             return;
         }
         else if ( errorNum != ERR_IS_DIRECTORY )
         {
             // We have any other error
-            error( errorNum, url.prettyURL() );
+            error( errorNum, url.prettyUrl() );
             return;
         }
         // Real directory. Return just enough information for KRun to work
@@ -308,7 +308,7 @@ void ArchiveProtocol::stat( const KUrl & url )
         if ( KDE_stat( QFile::encodeName( url.path() ), &buff ) == -1 )
         {
             // Should not happen, as the file was already stated by checkNewFile
-            error( KIO::ERR_COULD_NOT_STAT, url.prettyURL() );
+            error( KIO::ERR_COULD_NOT_STAT, url.prettyUrl() );
             return;
         }
 
@@ -335,7 +335,7 @@ void ArchiveProtocol::stat( const KUrl & url )
     }
     if ( !archiveEntry )
     {
-        error( KIO::ERR_DOES_NOT_EXIST, url.prettyURL() );
+        error( KIO::ERR_DOES_NOT_EXIST, url.prettyUrl() );
         return;
     }
 
@@ -359,13 +359,13 @@ void ArchiveProtocol::get( const KUrl & url )
             // Therefore give a more specific error message
             error( KIO::ERR_SLAVE_DEFINED,
                    i18n( "Could not open the file, probably due to an unsupported file format.\n%1",
-                             url.prettyURL() ) );
+                             url.prettyUrl() ) );
             return;
         }
         else
         {
             // We have any other error
-            error( errorNum, url.prettyURL() );
+            error( errorNum, url.prettyUrl() );
             return;
         }
     }
@@ -375,12 +375,12 @@ void ArchiveProtocol::get( const KUrl & url )
 
     if ( !archiveEntry )
     {
-        error( KIO::ERR_DOES_NOT_EXIST, url.prettyURL() );
+        error( KIO::ERR_DOES_NOT_EXIST, url.prettyUrl() );
         return;
     }
     if ( archiveEntry->isDirectory() )
     {
-        error( KIO::ERR_IS_DIRECTORY, url.prettyURL() );
+        error( KIO::ERR_IS_DIRECTORY, url.prettyUrl() );
         return;
     }
     const KArchiveFile* archiveFileEntry = static_cast<const KArchiveFile *>(archiveEntry);
@@ -409,13 +409,13 @@ void ArchiveProtocol::get( const KUrl & url )
     {
         error( KIO::ERR_SLAVE_DEFINED,
             i18n( "The archive file could not be opened, perhaps because the format is unsupported.\n%1" ,
-                      url.prettyURL() ) );
+                      url.prettyUrl() ) );
         return;
     }
 
     if ( !io->open( QIODevice::ReadOnly ) )
     {
-        error( KIO::ERR_CANNOT_OPEN_FOR_READING, url.prettyURL() );
+        error( KIO::ERR_CANNOT_OPEN_FOR_READING, url.prettyUrl() );
         return;
     }
 
@@ -429,7 +429,7 @@ void ArchiveProtocol::get( const KUrl & url )
     if ( buffer.isEmpty() && bufferSize > 0 )
     {
         // Something went wrong
-        error( KIO::ERR_OUT_OF_MEMORY, url.prettyURL() );
+        error( KIO::ERR_OUT_OF_MEMORY, url.prettyUrl() );
         return;
     }
 
@@ -450,7 +450,7 @@ void ArchiveProtocol::get( const KUrl & url )
         if ( read != bufferSize )
         {
             kWarning(7109) << "Read " << read << " bytes but expected " << bufferSize << endl;
-            error( KIO::ERR_COULD_NOT_READ, url.prettyURL() );
+            error( KIO::ERR_COULD_NOT_READ, url.prettyUrl() );
             return;
         }
         if ( firstRead )

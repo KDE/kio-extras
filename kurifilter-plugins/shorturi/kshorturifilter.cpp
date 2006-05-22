@@ -219,7 +219,7 @@ bool KShortURIFilter::filterURI( KURIFilterData& data ) const
   QString query;
   QString nameFilter;
 
-  if (KUrl::isRelativeURL(cmd) && QDir::isRelativePath(cmd)) {
+  if (KUrl::isRelativeUrl(cmd) && QDir::isRelativePath(cmd)) {
      path = cmd;
   }
   else
@@ -494,7 +494,7 @@ bool KShortURIFilter::filterURI( KURIFilterData& data ) const
       return true;
     }
     //kDebug() << "fileNotFound -> ERROR" << endl;
-    setErrorMsg( data, i18n( "<qt>The file or folder <b>%1</b> does not exist.", data.uri().prettyURL() ) );
+    setErrorMsg( data, i18n( "<qt>The file or folder <b>%1</b> does not exist.", data.uri().prettyUrl() ) );
     setURIType( data, KURIFilterData::ERROR );
     return true;
   }

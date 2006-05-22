@@ -56,7 +56,7 @@ InfoProtocol::~InfoProtocol()
 void InfoProtocol::get( const KUrl& url )
 {
     kDebug( 7108 ) << "InfoProtocol::get" << endl;
-    kDebug( 7108 ) << "URL: " << url.prettyURL() << " , Path :" << url.path() << endl;
+    kDebug( 7108 ) << "URL: " << url.prettyUrl() << " , Path :" << url.path() << endl;
 
     if (url.path()=="/")
     {

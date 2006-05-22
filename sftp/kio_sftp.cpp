@@ -223,13 +223,13 @@ void sftpProtocol::sftpCopyGet(const KUrl& dest, const KUrl& src, int mode, bool
     {
         if (S_ISDIR(buff_orig.st_mode))
         {
-          error(ERR_IS_DIRECTORY, dest.prettyURL());
+          error(ERR_IS_DIRECTORY, dest.prettyUrl());
           return;
         }
 
         if (!overwrite)
         {
-          error(ERR_FILE_ALREADY_EXIST, dest.prettyURL());
+          error(ERR_FILE_ALREADY_EXIST, dest.prettyUrl());
           return;
         }
     }
@@ -261,7 +261,7 @@ void sftpProtocol::sftpCopyGet(const KUrl& dest, const KUrl& src, int mode, bool
             offset = KDE_lseek(fd, 0, SEEK_END);
             if (offset == 0)
             {
-              error(ERR_CANNOT_RESUME, dest.prettyURL());
+              error(ERR_CANNOT_RESUME, dest.prettyUrl());
               return;
             }
         }
@@ -285,9 +285,9 @@ void sftpProtocol::sftpCopyGet(const KUrl& dest, const KUrl& src, int mode, bool
     {
       kDebug(KIO_SFTP_DB) << "sftpCopyGet: Unable to open (" << fd << ") for writting." << endl;
       if (errno == EACCES)
-        error (ERR_WRITE_ACCESS_DENIED, dest.prettyURL());
+        error (ERR_WRITE_ACCESS_DENIED, dest.prettyUrl());
       else
-        error (ERR_CANNOT_OPEN_FOR_WRITING, dest.prettyURL());
+        error (ERR_CANNOT_OPEN_FOR_WRITING, dest.prettyUrl());
       return;
     }
 
@@ -305,7 +305,7 @@ void sftpProtocol::sftpCopyGet(const KUrl& dest, const KUrl& src, int mode, bool
 
     if (::close(fd) != 0)
     {
-      error(ERR_COULD_NOT_WRITE, dest.prettyURL());
+      error(ERR_COULD_NOT_WRITE, dest.prettyUrl());
       return;
     }
 
@@ -337,12 +337,12 @@ sftpProtocol::Status sftpProtocol::sftpGet( const KUrl& src, KIO::filesize_t off
 
     // stat the file first to get its size
     if( (code = sftpStat(src, attr)) != SSH2_FX_OK ) {
-        return doProcessStatus(code, src.prettyURL());
+        return doProcessStatus(code, src.prettyUrl());
     }
 
     // We cannot get file if it is a directory
     if( attr.fileType() == S_IFDIR ) {
-        res.text = src.prettyURL();
+        res.text = src.prettyUrl();
         res.code = ERR_IS_DIRECTORY;
         return res;
     }
@@ -353,7 +353,7 @@ sftpProtocol::Status sftpProtocol::sftpGet( const KUrl& src, KIO::filesize_t off
 
     QByteArray handle;
     if( (code = sftpOpen(src, pflags, attr, handle)) != SSH2_FX_OK ) {
-        res.text = src.prettyURL();
+        res.text = src.prettyUrl();
         res.code = ERR_CANNOT_OPEN_FOR_READING;
         return res;
     }
@@ -431,7 +431,7 @@ sftpProtocol::Status sftpProtocol::sftpGet( const KUrl& src, KIO::filesize_t off
     }
 
     if( code != SSH2_FX_EOF ) {
-        res.text = src.prettyURL();
+        res.text = src.prettyUrl();
         res.code = ERR_COULD_NOT_READ; // return here or still send empty array to indicate end of read?
     }
 
@@ -535,7 +535,7 @@ void sftpProtocol::openConnection() {
     if( mUsername.isEmpty() && mPassword.isEmpty() ) {
         kDebug(KIO_SFTP_DB) << "openConnection(): checking cache "
                              << "info.username = " << info.username
-                             << ", info.url = " << info.url.prettyURL() << endl;
+                             << ", info.url = " << info.url.prettyUrl() << endl;
 
         if( checkCachedAuthentication(info) ) {
             mUsername = info.username;
@@ -634,7 +634,7 @@ void sftpProtocol::openConnection() {
                 info.prompt = i18n("Please enter your username and password.");
 
             kDebug(KIO_SFTP_DB) << "openConnection(): info.username = " << info.username
-                                 << ", info.url = " << info.url.prettyURL() << endl;
+                                 << ", info.url = " << info.url.prettyUrl() << endl;
 
             if( firstTime )
                 dlgResult = openPassDlg(info);
@@ -822,7 +822,7 @@ void sftpProtocol::openConnection() {
     info.username = mUsername;
     info.password = mPassword;
     kDebug(KIO_SFTP_DB) << "sftpProtocol(): caching info.username = " << info.username <<
-        ", info.url = " << info.url.prettyURL() << endl;
+        ", info.url = " << info.url.prettyUrl() << endl;
     cacheAuthentication(info);
     mConnected = true;
     connected();
@@ -845,18 +845,18 @@ void sftpProtocol::sftpCopyPut(const KUrl& src, const KUrl& dest, int permission
     Q3CString file (QFile::encodeName(src.path()));
 
     if (KDE_lstat(file.data(), &buff) == -1) {
-        error (ERR_DOES_NOT_EXIST, src.prettyURL());
+        error (ERR_DOES_NOT_EXIST, src.prettyUrl());
         return;
     }
 
     if (S_ISDIR (buff.st_mode)) {
-        error (ERR_IS_DIRECTORY, src.prettyURL());
+        error (ERR_IS_DIRECTORY, src.prettyUrl());
         return;
     }
 
     int fd = KDE_open (file.data(), O_RDONLY);
     if (fd == -1) {
-        error (ERR_CANNOT_OPEN_FOR_READING, src.prettyURL());
+        error (ERR_CANNOT_OPEN_FOR_READING, src.prettyUrl());
         return;
     }
 
@@ -891,7 +891,7 @@ void sftpProtocol::sftpPut( const KUrl& dest, int permissions, bool resume, bool
         // Delete remote file if its size is zero
         if( origAttr.fileSize() == 0 ) {
             if( sftpRemove(origUrl, true) != SSH2_FX_OK ) {
-                error(ERR_CANNOT_DELETE_ORIGINAL, origUrl.prettyURL());
+                error(ERR_CANNOT_DELETE_ORIGINAL, origUrl.prettyUrl());
                 return;
             }
         }
@@ -900,14 +900,14 @@ void sftpProtocol::sftpPut( const KUrl& dest, int permissions, bool resume, bool
         }
     }
     else if( code != SSH2_FX_NO_SUCH_FILE ) {
-        processStatus(code, origUrl.prettyURL());
+        processStatus(code, origUrl.prettyUrl());
         return;
     }
 
     // Do not waste time/resources with more remote stat calls if the file exists
     // and we weren't instructed to overwrite it...
     if( origExists && !overwrite ) {
-        error(ERR_FILE_ALREADY_EXIST, origUrl.prettyURL());
+        error(ERR_FILE_ALREADY_EXIST, origUrl.prettyUrl());
         return;
     }
 
@@ -935,12 +935,12 @@ void sftpProtocol::sftpPut( const KUrl& dest, int permissions, bool resume, bool
             if( origExists || offset == 0 )
             {
                 if( sftpRemove(partUrl, true) != SSH2_FX_OK ) {
-                    error(ERR_CANNOT_DELETE_PARTIAL, partUrl.prettyURL());
+                    error(ERR_CANNOT_DELETE_PARTIAL, partUrl.prettyUrl());
                     return;
                 }
 
                 if( sftpRename(origUrl, partUrl) != SSH2_FX_OK ) {
-                    error(ERR_CANNOT_RENAME_ORIGINAL, origUrl.prettyURL());
+                    error(ERR_CANNOT_RENAME_ORIGINAL, origUrl.prettyUrl());
                     return;
                 }
 
@@ -956,7 +956,7 @@ void sftpProtocol::sftpPut( const KUrl& dest, int permissions, bool resume, bool
                                          << ", offset = " << offset;
 
                     if( !resume ) {
-                      error(ERR_FILE_ALREADY_EXIST, partUrl.prettyURL());
+                      error(ERR_FILE_ALREADY_EXIST, partUrl.prettyUrl());
                       return;
                     }
             }
@@ -966,12 +966,12 @@ void sftpProtocol::sftpPut( const KUrl& dest, int permissions, bool resume, bool
         }
         else if( code == SSH2_FX_NO_SUCH_FILE ) {
             if( origExists && sftpRename(origUrl, partUrl) != SSH2_FX_OK ) {
-              error(ERR_CANNOT_RENAME_ORIGINAL, origUrl.prettyURL());
+              error(ERR_CANNOT_RENAME_ORIGINAL, origUrl.prettyUrl());
               return;
             }
         }
         else {
-            processStatus(code, partUrl.prettyURL());
+            processStatus(code, partUrl.prettyUrl());
             return;
         }
     }
@@ -1008,11 +1008,11 @@ void sftpProtocol::sftpPut( const KUrl& dest, int permissions, bool resume, bool
         }
 
         if( code == SSH2_FX_FAILURE ) { // assume failure means file exists
-            error(ERR_FILE_ALREADY_EXIST, writeUrl.prettyURL());
+            error(ERR_FILE_ALREADY_EXIST, writeUrl.prettyUrl());
             return;
         }
         else {
-            processStatus(code, writeUrl.prettyURL());
+            processStatus(code, writeUrl.prettyUrl());
             return;
         }
     }
@@ -1034,7 +1034,7 @@ void sftpProtocol::sftpPut( const KUrl& dest, int permissions, bool resume, bool
 
         if( nbytes >= 0 ) {
             if( (code = sftpWrite(handle, offset, buff)) != SSH2_FX_OK ) {
-                error(ERR_COULD_NOT_WRITE, dest.prettyURL());
+                error(ERR_COULD_NOT_WRITE, dest.prettyUrl());
                 return;
             }
 
@@ -1076,14 +1076,14 @@ void sftpProtocol::sftpPut( const KUrl& dest, int permissions, bool resume, bool
     }
 
     if( (code = sftpClose(handle)) != SSH2_FX_OK ) {
-        error(ERR_COULD_NOT_WRITE, writeUrl.prettyURL());
+        error(ERR_COULD_NOT_WRITE, writeUrl.prettyUrl());
         return;
     }
 
     // If wrote to a partial file, then remove the part ext
     if( markPartial ) {
         if( sftpRename(partUrl, origUrl) != SSH2_FX_OK ) {
-            error(ERR_CANNOT_RENAME_PARTIAL, origUrl.prettyURL());
+            error(ERR_CANNOT_RENAME_PARTIAL, origUrl.prettyUrl());
             return;
         }
     }
@@ -1126,7 +1126,7 @@ void sftpProtocol::stat ( const KUrl& url ){
     int code;
     sftpFileAttr attr(remoteEncoding());
     if( (code = sftpStat(url, attr)) != SSH2_FX_OK ) {
-        processStatus(code, url.prettyURL());
+        processStatus(code, url.prettyUrl());
         return;
     }
     else {
@@ -1154,7 +1154,7 @@ void sftpProtocol::mimetype ( const KUrl& url ){
     sftpFileAttr attr(remoteEncoding());
     int code;
     if( (code = sftpOpen(url, pflags, attr, handle)) != SSH2_FX_OK ) {
-        error(ERR_CANNOT_OPEN_FOR_READING, url.prettyURL());
+        error(ERR_CANNOT_OPEN_FOR_READING, url.prettyUrl());
         return;
     }
 
@@ -1202,7 +1202,7 @@ void sftpProtocol::listDir(const KUrl& url) {
 
     if( (code = sftpOpenDirectory(url, handle)) != SSH2_FX_OK ) {
         kError(KIO_SFTP_DB) << "listDir(): open directory failed" << endl;
-        processStatus(code, url.prettyURL());
+        processStatus(code, url.prettyUrl());
         return;
     }
 
@@ -1211,13 +1211,13 @@ void sftpProtocol::listDir(const KUrl& url) {
     while( code == SSH2_FX_OK ) {
         code = sftpReadDir(handle, url);
         if( code != SSH2_FX_OK && code != SSH2_FX_EOF )
-            processStatus(code, url.prettyURL());
+            processStatus(code, url.prettyUrl());
         kDebug(KIO_SFTP_DB) << "listDir(): return code = " << code << endl;
     }
 
     if( (code = sftpClose(handle)) != SSH2_FX_OK ) {
         kError(KIO_SFTP_DB) << "listdir(): closing of directory failed" << endl;
-        processStatus(code, url.prettyURL());
+        processStatus(code, url.prettyUrl());
         return;
     }
 
@@ -1292,7 +1292,7 @@ void sftpProtocol::mkdir(const KUrl&url, int permissions){
         sftpFileAttr dirAttr(remoteEncoding());
         if ( sftpStat(url, dirAttr) == SSH2_FX_OK )
         {
-          error( ERR_DIR_ALREADY_EXIST, url.prettyURL() );
+          error( ERR_DIR_ALREADY_EXIST, url.prettyUrl() );
           return;
         }
 
@@ -1386,7 +1386,7 @@ void sftpProtocol::symlink(const QString& target, const KUrl& dest, bool overwri
             }
         }
         else if( code == SSH2_FX_FAILURE ) {
-            error(ERR_FILE_ALREADY_EXIST, dest.prettyURL());
+            error(ERR_FILE_ALREADY_EXIST, dest.prettyUrl());
             return;
         }
         else
@@ -1421,7 +1421,7 @@ void sftpProtocol::chmod(const KUrl& url, int permissions){
         if( code == SSH2_FX_FAILURE )
             error(ERR_CANNOT_CHMOD, QString());
         else
-            processStatus(code, url.prettyURL());
+            processStatus(code, url.prettyUrl());
     }
     finished();
 }
@@ -1437,7 +1437,7 @@ void sftpProtocol::del(const KUrl &url, bool isfile){
     int code;
     if( (code = sftpRemove(url, isfile)) != SSH2_FX_OK ) {
         kError(KIO_SFTP_DB) << "del(): sftpRemove failed with error code " << code << endl;
-        processStatus(code, url.prettyURL());
+        processStatus(code, url.prettyUrl());
     }
     finished();
 }

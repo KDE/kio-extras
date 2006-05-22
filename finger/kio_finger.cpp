@@ -99,7 +99,7 @@ void FingerProtocol::get(const KUrl& url )
 
   this->parseCommandLine(url);
 
-  //kDebug() << "myURL: " << myURL->prettyURL() << endl;
+  //kDebug() << "myURL: " << myURL->prettyUrl() << endl;
 
   // Reset the stream
   *myStdStream="";

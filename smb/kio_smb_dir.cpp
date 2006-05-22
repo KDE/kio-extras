@@ -62,17 +62,17 @@ void SMBSlave::copy( const KUrl& ksrc,
     {
         if ( errno == EACCES )
         {
-            error( KIO::ERR_ACCESS_DENIED, src.prettyURL());
+            error( KIO::ERR_ACCESS_DENIED, src.prettyUrl());
         }
         else
         {
-             error( KIO::ERR_DOES_NOT_EXIST, src.prettyURL());
+             error( KIO::ERR_DOES_NOT_EXIST, src.prettyUrl());
         }
         return;
     }
     if ( S_ISDIR( st.st_mode ) )
     {
-        error( KIO::ERR_IS_DIRECTORY, src.prettyURL() );
+        error( KIO::ERR_IS_DIRECTORY, src.prettyUrl() );
         return;
     }
     totalSize(st.st_size);
@@ -82,12 +82,12 @@ void SMBSlave::copy( const KUrl& ksrc,
     {
         if(S_ISDIR(st.st_mode))
         {
-            error( KIO::ERR_DIR_ALREADY_EXIST, dst.prettyURL());
+            error( KIO::ERR_DIR_ALREADY_EXIST, dst.prettyUrl());
 	    return;
         }
         if(!overwrite)
         {
-            error( KIO::ERR_FILE_ALREADY_EXIST, dst.prettyURL());
+            error( KIO::ERR_FILE_ALREADY_EXIST, dst.prettyUrl());
 	    return;
 	}
     }
@@ -98,11 +98,11 @@ void SMBSlave::copy( const KUrl& ksrc,
     {
         if(errno == EACCES)
         {
-            error( KIO::ERR_ACCESS_DENIED, src.prettyURL() );
+            error( KIO::ERR_ACCESS_DENIED, src.prettyUrl() );
         }
         else
         {
-            error( KIO::ERR_DOES_NOT_EXIST, src.prettyURL() );
+            error( KIO::ERR_DOES_NOT_EXIST, src.prettyUrl() );
         }
 	return;
     }
@@ -129,11 +129,11 @@ void SMBSlave::copy( const KUrl& ksrc,
     {
         if(errno == EACCES)
         {
-            error(KIO::ERR_WRITE_ACCESS_DENIED, dst.prettyURL());
+            error(KIO::ERR_WRITE_ACCESS_DENIED, dst.prettyUrl());
         }
         else
         {
-            error(KIO::ERR_CANNOT_OPEN_FOR_READING, dst.prettyURL());
+            error(KIO::ERR_CANNOT_OPEN_FOR_READING, dst.prettyUrl());
         }
 	if(srcfd >= 0 )
 	{
@@ -153,7 +153,7 @@ void SMBSlave::copy( const KUrl& ksrc,
             if(n == -1)
             {
 	        kDebug(KIO_SMB) << "SMBSlave::copy copy now KIO::ERR_COULD_NOT_WRITE" << endl;
-                error( KIO::ERR_COULD_NOT_WRITE, dst.prettyURL());
+                error( KIO::ERR_COULD_NOT_WRITE, dst.prettyUrl());
                 break;
             }
 
@@ -166,7 +166,7 @@ void SMBSlave::copy( const KUrl& ksrc,
 	}
 	else
 	{
-            error( KIO::ERR_COULD_NOT_READ, src.prettyURL());
+            error( KIO::ERR_COULD_NOT_READ, src.prettyUrl());
 	    break;
         }
     }
@@ -188,7 +188,7 @@ void SMBSlave::copy( const KUrl& ksrc,
         }
         else
         {
-            error( KIO::ERR_COULD_NOT_WRITE, dst.prettyURL());
+            error( KIO::ERR_COULD_NOT_WRITE, dst.prettyUrl());
 	    return;
         }
     }
@@ -211,7 +211,7 @@ void SMBSlave::del( const KUrl &kurl, bool isfile)
             switch(errno)
             {
             case EISDIR:
-                error( KIO::ERR_IS_DIRECTORY, m_current_url.prettyURL());
+                error( KIO::ERR_IS_DIRECTORY, m_current_url.prettyUrl());
                 break;
             default:
                 reportError(kurl);
@@ -244,12 +244,12 @@ void SMBSlave::mkdir( const KUrl &kurl, int permissions )
             {
                 if(S_ISDIR(st.st_mode ))
                 {
-                    error( KIO::ERR_DIR_ALREADY_EXIST, m_current_url.prettyURL());
+                    error( KIO::ERR_DIR_ALREADY_EXIST, m_current_url.prettyUrl());
                 }
             }
             else
             {
-                error( KIO::ERR_FILE_ALREADY_EXIST, m_current_url.prettyURL());
+                error( KIO::ERR_FILE_ALREADY_EXIST, m_current_url.prettyUrl());
             }
         } else
             reportError(kurl);
@@ -288,14 +288,14 @@ void SMBSlave::rename( const KUrl& ksrc, const KUrl& kdest, bool overwrite )
         if(S_ISDIR(st.st_mode))
         {
 	    kDebug(KIO_SMB) << "SMBSlave::rename KIO::ERR_DIR_ALREADY_EXIST" << endl;
-            error( KIO::ERR_DIR_ALREADY_EXIST, dst.prettyURL());
+            error( KIO::ERR_DIR_ALREADY_EXIST, dst.prettyUrl());
 	    finished();
 	    return;
         }
         if(!overwrite)
         {
 	    kDebug(KIO_SMB) << "SMBSlave::rename KIO::ERR_FILE_ALREADY_EXIST" << endl;
-            error( KIO::ERR_FILE_ALREADY_EXIST, dst.prettyURL());
+            error( KIO::ERR_FILE_ALREADY_EXIST, dst.prettyUrl());
 	    finished();
 	    return;
 	}
@@ -312,12 +312,12 @@ void SMBSlave::rename( const KUrl& ksrc, const KUrl& kdest, bool overwrite )
               if(errno == EACCES)
 	      {
 	        kDebug(KIO_SMB) << "SMBSlave::rename KIO::ERR_ACCESS_DENIED" << endl;
-                error(KIO::ERR_ACCESS_DENIED, src.prettyURL());
+                error(KIO::ERR_ACCESS_DENIED, src.prettyUrl());
               }
               else
               {
 		kDebug(KIO_SMB) << "SMBSlave::rename KIO::ERR_DOES_NOT_EXIST" << endl;
-                error(KIO::ERR_DOES_NOT_EXIST, src.prettyURL());
+                error(KIO::ERR_DOES_NOT_EXIST, src.prettyUrl());
               }
           }
           break;
@@ -325,12 +325,12 @@ void SMBSlave::rename( const KUrl& ksrc, const KUrl& kdest, bool overwrite )
         case EACCES:
         case EPERM:
   	  kDebug(KIO_SMB) << "SMBSlave::rename KIO::ERR_ACCESS_DENIED" << endl;
-          error( KIO::ERR_ACCESS_DENIED, dst.prettyURL() );
+          error( KIO::ERR_ACCESS_DENIED, dst.prettyUrl() );
           break;
 
         default:
   	  kDebug(KIO_SMB) << "SMBSlave::rename KIO::ERR_CANNOT_RENAME" << endl;
-          error( KIO::ERR_CANNOT_RENAME, src.prettyURL() );
+          error( KIO::ERR_CANNOT_RENAME, src.prettyUrl() );
 
       }
 
