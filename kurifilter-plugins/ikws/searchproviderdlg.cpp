@@ -34,9 +34,12 @@
 
 SearchProviderDialog::SearchProviderDialog(SearchProvider *provider,
                                            QWidget *parent, const char *name)
-                     :KDialogBase(parent, name, true, QString(), Ok|Cancel),
+                     :KDialog(parent, QString(), KDialog::Ok|KDialog::Cancel),
                       m_provider(provider)
 {
+    setObjectName(name);
+    setModal(true);
+
     m_dlg = new SearchProviderDlgUI (this);
     setMainWidget(m_dlg);
 

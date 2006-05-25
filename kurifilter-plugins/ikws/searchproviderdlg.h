@@ -20,12 +20,12 @@
 #ifndef __SEARCHPROVIDERDLG_H___
 #define __SEARCHPROVIDERDLG_H___
 
-#include <kdialogbase.h>
+#include <kdialog.h>
 
 class SearchProvider;
 class SearchProviderDlgUI;
 
-class SearchProviderDialog : public KDialogBase
+class SearchProviderDialog : public KDialog
 {
     Q_OBJECT
 
