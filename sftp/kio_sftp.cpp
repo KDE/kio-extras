@@ -283,7 +283,7 @@ void sftpProtocol::sftpCopyGet(const KUrl& dest, const KUrl& src, int mode, bool
 
     if(fd == -1)
     {
-      kDebug(KIO_SFTP_DB) << "sftpCopyGet: Unable to open (" << fd << ") for writting." << endl;
+      kDebug(KIO_SFTP_DB) << "sftpCopyGet: Unable to open (" << fd << ") for writing." << endl;
       if (errno == EACCES)
         error (ERR_WRITE_ACCESS_DENIED, dest.prettyUrl());
       else
@@ -1809,7 +1809,7 @@ int sftpProtocol::sftpRemove(const KUrl& url, bool isfile){
     return code;
 }
 
-/** Send a sftp command to rename a file or directoy. */
+/** Send a sftp command to rename a file or directory. */
 int sftpProtocol::sftpRename(const KUrl& src, const KUrl& dest){
 
     kDebug(KIO_SFTP_DB) << "sftpRename(" << src << " -> " << dest << ")" << endl;

@@ -97,14 +97,14 @@ class NNTPProtocol:public KIO::TCPSlaveBase
     * @param group The newsgroup name
     * @param first Serial number of the first message, 0 lists all messages.
     * @param max Maximal number of returned messages, 0 means unlimited.
-    * @return true on sucess, false otherwise.
+    * @return true on success, false otherwise.
     */
    bool fetchGroup ( QString &group, unsigned long first = 0, unsigned long max = 0 );
    /**
     * Fetch message listing from the current group using RFC977 STAT/NEXT
     * commands.
     * @param first message number of the first article
-    * @return true on sucess, false otherwise.
+    * @return true on success, false otherwise.
     */
    bool fetchGroupRFC977( unsigned long first );
    /**
@@ -115,7 +115,7 @@ class NNTPProtocol:public KIO::TCPSlaveBase
     * @param first message number of the first article
     * @param notSupported boolean reference to indicate if command failed
     * due to missing XOVER support on the server.
-    * @return true on sucess, false otherwise
+    * @return true on success, false otherwise
     */
    bool fetchGroupXOVER( unsigned long first, bool &notSupported );
    /// creates an UDSEntry with file information used in stat and listDir

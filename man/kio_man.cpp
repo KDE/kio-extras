@@ -1504,7 +1504,7 @@ void MANProtocol::getProgramPath()
   if (!mySgml2RoffPath.isEmpty())
     return;
 
-  /* Cannot find sgml2roff programm: */
+  /* Cannot find sgml2roff program: */
   outputError(i18n("Could not find the sgml2roff program on your system. Please install it, if necessary, and extend the search path by adjusting the environment variable PATH before starting KDE."));
   finished();
   exit();

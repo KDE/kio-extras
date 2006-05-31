@@ -612,7 +612,7 @@ int LDAPProtocol::saslInteract( void *in )
                  ( mFirstAuth ?
                    openPassDlg( info ) :
                    openPassDlg( info, i18n("Invalid authorization information.") ) ) ) ) {
-          kDebug(7125) << "Dialog cancelled!" << endl;
+          kDebug(7125) << "Dialog canceled!" << endl;
           mCancel = true;
           return LDAP_USER_CANCELLED;
         }
@@ -751,7 +751,7 @@ void LDAPProtocol::openConnection()
         mBindName = info.username;
         mPassword = info.password;
       } else {
-        kDebug(7125) << "Dialog cancelled!" << endl;
+        kDebug(7125) << "Dialog canceled!" << endl;
         error( ERR_USER_CANCELED, QString() );
         closeConnection();
         return;

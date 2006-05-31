@@ -59,7 +59,7 @@ bool EXRCreator::create(const QString &path, int, int, QImage &img)
 	// We ignore maximum size when just extracting the thumnail
 	// from the header, but it is very expensive to render large
 	// EXR images just to turn it into an icon, so we go back
-	// to honouring it in here.
+	// to honoring it in here.
 	kDebug() << "EXRcreator - using original image" << endl;
 	KConfig * config = KGlobal::config();
 	KConfigGroup configGroup( config, "PreviewSettings" );

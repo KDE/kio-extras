@@ -182,7 +182,7 @@ namespace KioSMTP {
 
 
 #define SASLERROR mSMTP->error(KIO::ERR_COULD_NOT_AUTHENTICATE, \
-  i18n("An error occured during authentication: %1",  \
+  i18n("An error occurred during authentication: %1",  \
    QString::fromUtf8( sasl_errdetail( conn ) )));
 
   //

@@ -534,7 +534,7 @@ bool LinuxCDPolling::hasDirectory(const QByteArray &devNode, const QByteArray &d
 		}
 
 		// get the record number of this entry's parent
-		// i'm pretty sure that the 1st entry is always the top directory
+		// I'm pretty sure that the 1st entry is always the top directory
 		lseek(fd, 5, SEEK_CUR);
 		if (read(fd, &parent, 2) != 2)
 		{

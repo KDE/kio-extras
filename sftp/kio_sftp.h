@@ -115,7 +115,7 @@ private: // private methods
   int sftpOpenDirectory(const KUrl& url, QByteArray& handle);
   /** Closes a directory or file handle. */
   int sftpClose(const QByteArray& handle);
-  /** Send a sftp command to rename a file or directoy. */
+  /** Send a sftp command to rename a file or directory. */
   int sftpRename(const KUrl& src, const KUrl& dest);
   /** Set a files attributes. */
   int sftpSetStat(const KUrl& url, const sftpFileAttr& attr);

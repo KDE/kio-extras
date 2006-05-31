@@ -161,7 +161,7 @@ protected:
      *                pack it in UDSEntry. UDSEntry will not be cleared
      * Parameter :    SMBUrl the url to stat
      *                ignore_errors do not call error(), but warning()
-     * Return :       false if any error occoured (errno), else true
+     * Return :       false if any error occurred (errno), else true
      */
     bool browse_stat_path(const SMBUrl& url, UDSEntry& udsentry, bool ignore_errors);
 

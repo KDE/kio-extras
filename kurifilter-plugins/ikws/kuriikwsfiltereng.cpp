@@ -286,7 +286,7 @@ QString KURISearchFilterEngine::substituteQuery(const QString& url, SubstMap &ma
 
           for (int i=first; i<=last; i++)
           {
-            v += map[QString::number(i)] + " ";
+            v += map[QString::number(i)] + ' ';
             // Remove used value from ql (needed for \{@}):
             ql[i-1] = "";
           }
@@ -295,7 +295,7 @@ QString KURISearchFilterEngine::substituteQuery(const QString& url, SubstMap &ma
           if (!v.isEmpty())
             found = true;
 
-          PDVAR ("    range", QString::number(first) + "-" + QString::number(last) + " => '" + v + "'");
+          PDVAR ("    range", QString::number(first) + '-' + QString::number(last) + " => '" + v + '\'');
           v = encodeString(v, encodingMib);
         }
         else if ( rlitem.startsWith("\"") && rlitem.endsWith("\"") )
@@ -331,9 +331,9 @@ QString KURISearchFilterEngine::substituteQuery(const QString& url, SubstMap &ma
           {
             // It's a alphanumeric reference
             QStringList::Iterator it = ql.begin();
-            while ((it != ql.end()) && ((rlitem + "=") != (*it).left(rlitem.length()+1)))
+            while ((it != ql.end()) && ((rlitem + '=') != (*it).left(rlitem.length()+1)))
               ++it;
-            if ((rlitem + "=") == (*it).left(rlitem.length()+1))
+            if ((rlitem + '=') == (*it).left(rlitem.length()+1))
               (*it) = "";
           }
 
@@ -361,7 +361,7 @@ QString KURISearchFilterEngine::substituteQuery(const QString& url, SubstMap &ma
       // Generate list of unmatched strings:
       QString v = "";
       for (int i=0; i<ql.count(); i++) {
-        v += " " + ql[i];
+        v += ' ' + ql[i];
       }
       v = v.simplified();
       PDVAR ("    rest", v);

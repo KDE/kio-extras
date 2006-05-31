@@ -151,7 +151,7 @@ QRegExp KSshProcess::knownHostsFileMsg[] = {
 };
 
 
-// This prompt only applies to commerical ssh.
+// This prompt only applies to commercial ssh.
 const char* const KSshProcess::changeHostKeyOnDiskPrompt[] = {
     "as;jf;sajkfdslkfjas;dfjdsa;fj;dsajfdsajf",
     "as;jf;sajkfdslkfjas;dfjdsa;fj;dsajfdsajf",
@@ -812,7 +812,7 @@ bool KSshProcess::connect() {
                 mErrorMsg = i18n("Connection closed by remote host.");
             }
             else if( line.indexOf(changeHostKeyOnDiskPrompt[mVersion]) != -1 ) {
-                // always say yes to this.  It always comes after commerical ssh
+                // always say yes to this.  It always comes after commercial ssh
                 // prints a "continue to connect prompt". We assume that if the
                 // user choose to continue, then they also want to save the
                 // host key to disk.

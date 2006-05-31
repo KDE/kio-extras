@@ -39,7 +39,7 @@
  *   OpenSSH 3.0
  *   OpenSSH 3.1
  *   Commercial SSH 3.0.0
- * Other versions of OpenSSH and commerical SSH will probably work also.
+ * Other versions of OpenSSH and commercial SSH will probably work also.
  *
  * To setup a SSH connection first create a list of options to use and tell
  * KSshProcess about your options. Then start the ssh connection. Once the

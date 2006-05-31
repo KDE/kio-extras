@@ -133,14 +133,14 @@ public:
 	/**
 	* Perform HAL initialization.
 	*
-	* @return true if succeded. If not, rely on some other backend
+	* @return true if succeeded. If not, rely on some other backend
 	*/
 	bool InitHal();
 
 	/**
 	* List all devices and append them to the media device list (called only once, at startup).
 	*
-	* @return true if succeded, false otherwise
+	* @return true if succeeded, false otherwise
 	*/
 	bool ListDevices();
 
@@ -169,7 +169,7 @@ private:
 	void ModifyDevice(const char *udi, const char* key);
 
 	/**
-	* HAL informed that a special action has occured
+	* HAL informed that a special action has occurred
 	* (e.g. device unplugged without unmounting)
 	*
 	*  @param udi                 Universal Device Id
