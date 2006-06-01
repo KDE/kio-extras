@@ -13,7 +13,7 @@ kde4_add_plugin(localdomainurifilter WITH_PREFIX ${localdomainurifilter_PART_SRC
 
 kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} localdomainurifilter )
 
-target_link_libraries(localdomainurifilter  ${KDE4_KIO_LIBS} kdeui DCOP ${QT_QT3SUPPORT_LIBRARY})
+target_link_libraries(localdomainurifilter  ${KDE4_KIO_LIBS} kdeui ${QT_QT3SUPPORT_LIBRARY})
 
 install_targets(${PLUGIN_INSTALL_DIR} localdomainurifilter )
 
