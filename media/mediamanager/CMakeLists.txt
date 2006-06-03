@@ -1,5 +1,4 @@
-include_directories( ../libmediacommon )
-
+include_directories( ${CMAKE_SOURCE_DIR}/runtime/kioslave/media/libmediacommon/ )
 
 ########### next target ###############
 kde4_add_kcfg_files(libmediacommon_SRCS ../libmediacommon/mediamanagersettings.kcfgc )
