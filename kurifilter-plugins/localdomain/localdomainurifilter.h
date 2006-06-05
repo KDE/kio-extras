@@ -23,7 +23,6 @@
 
 #include <time.h>
 
-#include <dcopobject.h>
 #include <kgenericfactory.h>
 #include <kurifilter.h>
 #include <QRegExp>
@@ -38,17 +37,16 @@ class KProcess;
  intranet.domain.org and if yes, it's a network URI.
 */
 
-class LocalDomainURIFilter : public KURIFilterPlugin, public DCOPObject
+class LocalDomainURIFilter : public KURIFilterPlugin
 {
-  K_DCOP
   Q_OBJECT
 
   public:
     LocalDomainURIFilter( QObject* parent, const QStringList& args );
     virtual bool filterURI( KURIFilterData &data ) const;
 
-  k_dcop:
-    virtual void configure();
+  public Q_SLOTS:
+    void configure();
 
   private:
     bool isLocalDomainHost( QString& cmd ) const;

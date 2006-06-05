@@ -25,10 +25,10 @@
 
 class SystemDirNotifyModule : public KDEDModule
 {
-K_DCOP
+Q_OBJECT
 
 public:
-	SystemDirNotifyModule(const DCOPCString &obj);
+	SystemDirNotifyModule(const QString &obj);
 private:
 	SystemDirNotify notifier;
 };

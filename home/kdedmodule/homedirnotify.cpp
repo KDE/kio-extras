@@ -21,7 +21,7 @@
 #include <kdebug.h>
 #include <kuser.h>
 
-#include <kdirnotify_stub.h>
+#include <kdirnotify.h>
 //Added by qt3to4:
 #include <QList>
 
@@ -30,6 +30,12 @@
 HomeDirNotify::HomeDirNotify()
 : mInited( false )
 {
+	QDBus::sessionBus().connect(QString(), QString(), "org.kde.KDirNotify",
+				    "FilesAdded", this, SLOT(FilesAdded(QString)));
+	QDBus::sessionBus().connect(QString(), QString(), "org.kde.KDirNotify",
+				    "FilesRemoved", this, SLOT(FilesRemoved(QStringList)));
+	QDBus::sessionBus().connect(QString(), QString(), "org.kde.KDirNotify",
+				    "FilesChanged", this, SLOT(FilesChanged(QStringList)));
 }
 
 void HomeDirNotify::init()
@@ -118,7 +124,7 @@ KUrl::List HomeDirNotify::toHomeURLList(const KUrl::List &list)
 	return new_list;
 }
 
-ASYNC HomeDirNotify::FilesAdded(const KUrl &directory)
+void HomeDirNotify::FilesAdded(const QString &directory)
 {
 	kDebug() << "HomeDirNotify::FilesAdded" << endl;
 	
@@ -126,8 +132,7 @@ ASYNC HomeDirNotify::FilesAdded(const KUrl &directory)
 
 	if (new_dir.isValid())
 	{
-		KDirNotify_stub notifier("*", "*");
-		notifier.FilesAdded( new_dir );
+		org::kde::KDirNotify::emitFilesAdded( new_dir.url() );
 	}
 }
 
@@ -138,8 +143,6 @@ ASYNC HomeDirNotify::FilesAdded(const KUrl &directory)
 // FilesAdded to re-list the modified directory.
 inline void evil_hack(const KUrl::List &list)
 {
-	KDirNotify_stub notifier("*", "*");
-	
 	KUrl::List notified;
 	
 	KUrl::List::const_iterator it = list.begin();
@@ -151,14 +154,14 @@ inline void evil_hack(const KUrl::List &list)
 
 		if (!notified.contains(url))
 		{
-			notifier.FilesAdded(url);
+			org::kde::KDirNotify::emitFilesAdded(url.url());
 			notified.append(url);
 		}
 	}
 }
 
 
-ASYNC HomeDirNotify::FilesRemoved(const KUrl::List &fileList)
+void HomeDirNotify::FilesRemoved(const QStringList &fileList)
 {
 	kDebug() << "HomeDirNotify::FilesRemoved" << endl;
 	
@@ -172,7 +175,7 @@ ASYNC HomeDirNotify::FilesRemoved(const KUrl::List &fileList)
 	}
 }
 
-ASYNC HomeDirNotify::FilesChanged(const KUrl::List &fileList)
+void HomeDirNotify::FilesChanged(const QStringList &fileList)
 {
 	kDebug() << "HomeDirNotify::FilesChanged" << endl;
 	
@@ -185,3 +188,5 @@ ASYNC HomeDirNotify::FilesChanged(const KUrl::List &fileList)
 		evil_hack(new_list);
 	}
 }
+
+#include "homedirnotify.moc"

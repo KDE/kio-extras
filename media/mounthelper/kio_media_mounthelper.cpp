@@ -24,21 +24,20 @@
 #include <kapplication.h>
 #include <kurl.h>
 #include <kmessagebox.h>
-#include <dcopclient.h>
-#include <dcopref.h>
 #include <QTimer>
 #include <kdebug.h>
 #include <kglobal.h>
 #include <kprocess.h>
+#include <dbus/qdbus.h>
 
 #include "kio_media_mounthelper.h"
 
 const Medium MountHelper::findMedium(const QString &name)
 {
-	DCOPRef mediamanager("kded", "mediamanager");
-	DCOPReply reply = mediamanager.call( "properties", name );
+	QDBusInterfacePtr mediamanager("org.kde.kded", "/modules/mediamanager", "org.kde.MediaManager");
+	QDBusReply<QStringList> reply = mediamanager->call( "properties", name );
 
-	if ( !reply.isValid() )
+	if ( !reply.isSuccess() )
 	{
 		m_errorStr = i18n("The KDE mediamanager is not running.")+"\n";
 	}
@@ -203,7 +202,6 @@ int main(int argc, char **argv)
 	if (KCmdLineArgs::parsedArgs()->count()==0) KCmdLineArgs::usage();
 	KApplication *app = new  MountHelper();
 
-	app->dcopClient()->attach();
 	app->exec();
 }
 

@@ -28,19 +28,18 @@
 #include <QMap>
 #include <QByteArray>
 
+class OrgKdeMediaManagerInterface;
+
 class MediaNotifier:  public KDEDModule
 {
 	Q_OBJECT
-	K_DCOP
 
 public:
-	MediaNotifier( const DCOPCString &name );
+	MediaNotifier( const QString &name );
 	virtual ~MediaNotifier();
 
-k_dcop:
-	void onMediumChange( const QString &name, bool allowNotification );
-
 private Q_SLOTS:
+	void onMediumChange( const QString &name, bool allowNotification );
 	void slotStatResult( KJob *job );
 	
 private:
@@ -53,6 +52,7 @@ private:
 	                   const QString &autoopenFile );
 
 	QMap<KJob*,bool> m_allowNotificationMap;
+        OrgKdeMediaManagerInterface *m_mediamanager;
 };
 #endif
 

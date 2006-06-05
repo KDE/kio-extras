@@ -23,7 +23,6 @@
 #include <QTextStream>
 #include <klocale.h>
 #include <sys/stat.h>
-#include <dcopclient.h>
 #include <QDataStream>
 #include <time.h>
 #include <kprocess.h>
@@ -44,7 +43,6 @@ public:
 	KServiceGroup::Ptr findGroup(const QString &relPath);
 
 private:
-	DCOPClient *m_dcopClient;
 	RunMode m_runMode;
 };
 
@@ -97,17 +95,10 @@ SettingsProtocol::SettingsProtocol( const QByteArray &protocol, const QByteArray
 			m_runMode = ApplicationsMode;
 		else
 			m_runMode = SettingsMode;
-
-	m_dcopClient = new DCOPClient();
-	if (!m_dcopClient->attach())
-	{
-		kDebug() << "ERROR WHILE CONNECTING TO DCOPSERVER" << endl;
-	}
 }
 
 SettingsProtocol::~SettingsProtocol()
 {
-	delete m_dcopClient;
 }
 
 KServiceGroup::Ptr SettingsProtocol::findGroup(const QString &relPath)

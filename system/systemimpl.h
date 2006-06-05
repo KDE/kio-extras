@@ -23,7 +23,6 @@
 #include <kio/global.h>
 #include <kio/job.h>
 #include <kurl.h>
-#include <dcopobject.h>
 
 #include <QObject>
 #include <QString>

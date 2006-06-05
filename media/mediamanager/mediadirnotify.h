@@ -20,22 +20,20 @@
 #define _MEDIADIRNOTIFY_H_
 
 #include <kurl.h>
-#include <kdirnotify.h>
 
 #include "medialist.h"
 
 
-class MediaDirNotify : public KDirNotify
+class MediaDirNotify : public QObject
 {
-K_DCOP
-
+Q_OBJECT
 public:
 	MediaDirNotify(const MediaList &list);
 
-k_dcop:
-	virtual ASYNC FilesAdded (const KUrl &directory);
-	virtual ASYNC FilesRemoved (const KUrl::List &fileList);
-	virtual ASYNC FilesChanged (const KUrl::List &fileList);
+private slots:
+	void filesAdded(const QString &directory);
+	void filesRemoved(const QStringList &fileList);
+	void filesChanged(const QStringList &fileList);
 
 private:
 	KUrl::List toMediaURL(const KUrl &url);

@@ -20,21 +20,20 @@
 #define HOMEDIRNOTIFY_H
 
 #include <kurl.h>
-#include <kdirnotify.h>
 
 #include <QMap>
 
-class HomeDirNotify : public KDirNotify
+class HomeDirNotify : public QObject
 {
-K_DCOP
+Q_OBJECT
 
 public:
 	HomeDirNotify();
 
-k_dcop:
-	virtual ASYNC FilesAdded (const KUrl &directory);
-	virtual ASYNC FilesRemoved (const KUrl::List &fileList);
-	virtual ASYNC FilesChanged (const KUrl::List &fileList);
+private slots:
+	void FilesAdded (const QString &directory);
+	void FilesRemoved (const QStringList &fileList);
+	void FilesChanged (const QStringList &fileList);
 
 private:
 	void init();

@@ -1,0 +1,49 @@
+<!DOCTYPE node PUBLIC "-//freedesktop//DTD D-BUS Object Introspection 1.0//EN" "http://www.freedesktop.org/standards/dbus/1.0/introspect.dtd">
+<node>
+  <interface name="org.kde.MediaManager">
+    <signal name="mediumAdded">
+      <arg name="name" type="s" direction="out"/>
+      <arg name="allowNotification" type="b" direction="out"/>
+    </signal>
+    <signal name="mediumRemoved">
+      <arg name="name" type="s" direction="out"/>
+      <arg name="allowNotification" type="b" direction="out"/>
+    </signal>
+    <signal name="mediumChanged">
+      <arg name="name" type="s" direction="out"/>
+      <arg name="allowNotification" type="b" direction="out"/>
+    </signal>
+    <method name="fullList">
+      <arg type="as" direction="out"/>
+    </method>
+    <method name="properties">
+      <arg type="as" direction="out"/>
+      <arg name="name" type="s" direction="in"/>
+    </method>
+    <method name="nameForLabel">
+      <arg type="s" direction="out"/>
+      <arg name="label" type="s" direction="in"/>
+    </method>
+    <method name="setUserLabel">
+      <arg name="name" type="s" direction="in"/>
+      <arg name="label" type="s" direction="in"/>
+      <annotation name="org.freedesktop.DBus.Method.NoReply" value="true"/>
+    </method>
+    <method name="reloadBackends">
+      <annotation name="org.freedesktop.DBus.Method.NoReply" value="true"/>
+    </method>
+    <method name="removablePlug">
+      <arg type="b" direction="out"/>
+      <arg name="devNode" type="s" direction="in"/>
+      <arg name="label" type="s" direction="in"/>
+    </method>
+    <method name="removableUnplug">
+      <arg type="b" direction="out"/>
+      <arg name="devNode" type="s" direction="in"/>
+    </method>
+    <method name="removableCamera">
+      <arg type="b" direction="out"/>
+      <arg name="devNode" type="s" direction="in"/>
+    </method>
+  </interface>
+</node>

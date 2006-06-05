@@ -7,13 +7,11 @@ set(kded_homedirnotify_PART_SRCS homedirnotify.cpp homedirnotifymodule.cpp )
 
 kde4_automoc(${kded_homedirnotify_PART_SRCS})
 
-kde4_add_dcop_skels(kded_homedirnotify_PART_SRCS homedirnotify.h homedirnotifymodule.h )
-
 kde4_add_plugin(kded_homedirnotify ${kded_homedirnotify_PART_SRCS})
 
 kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kded_homedirnotify )
 
-target_link_libraries(kded_homedirnotify  ${KDE4_KDECORE_LIBS} DCOP kio)
+target_link_libraries(kded_homedirnotify  ${KDE4_KDECORE_LIBS} kio)
 
 install_targets(${PLUGIN_INSTALL_DIR} kded_homedirnotify )
 

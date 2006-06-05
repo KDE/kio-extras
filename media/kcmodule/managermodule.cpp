@@ -22,8 +22,8 @@
 #include "managermodule.moc"
 
 #include <klocale.h>
-#include <dcopref.h>
 #include <QCheckBox>
+#include <dbus/qdbus.h>
 
 #include "managermoduleview.h"
 #include "mediamanagersettings.h"
@@ -56,7 +56,7 @@ void ManagerModule::save()
 {
 	KCModule::save();
 
-	DCOPRef mediamanager( "kded", "mediamanager" );
-	DCOPReply reply = mediamanager.call( "reloadBackends" );
+	QDBusInterfacePtr mediamanager( "org.kde.kded", "/modules/mediamanager", "org.kde.MediaManager" );
+	mediamanager->call( "reloadBackends" );
 }
 

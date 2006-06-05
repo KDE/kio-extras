@@ -30,29 +30,27 @@
 #include "removablebackend.h"
 #include "mediadirnotify.h"
 
-
 class MediaManager : public KDEDModule
 {
 Q_OBJECT
-K_DCOP
 public:
-	MediaManager(const DCOPCString &obj);
+	MediaManager(const QString &obj);
 	~MediaManager();
 
-k_dcop:
+public Q_SLOTS:
 	QStringList fullList();
 	QStringList properties(const QString &name);
 	QString nameForLabel(const QString &label);
-	ASYNC setUserLabel(const QString &name, const QString &label);
+	void setUserLabel(const QString &name, const QString &label);
 
-	ASYNC reloadBackends();
+	void reloadBackends();
 
 	// Removable media handling (for people not having HAL)
 	bool removablePlug(const QString &devNode, const QString &label);
 	bool removableUnplug(const QString &devNode);
 	bool removableCamera(const QString &devNode);
 
-k_dcop_signals:
+Q_SIGNALS:
 	void mediumAdded(const QString &name, bool allowNotification);
 	void mediumRemoved(const QString &name, bool allowNotification);
 	void mediumChanged(const QString &name, bool allowNotification);

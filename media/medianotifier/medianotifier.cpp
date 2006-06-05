@@ -38,14 +38,18 @@
 #include "notifiersettings.h"
 #include "notifieraction.h"
 #include "mediamanagersettings.h"
+#include "../mediamanageriface.h"
 
-MediaNotifier::MediaNotifier(const DCOPCString &name) : KDEDModule(name)
+MediaNotifier::MediaNotifier(const QString &name) : KDEDModule(name)
 {
-	connectDCOPSignal( "kded", "mediamanager", "mediumAdded(QString, bool)",
-	                   "onMediumChange(QString, bool)", true );
-	
-	connectDCOPSignal( "kded", "mediamanager", "mediumChanged(QString, bool)",
-	                   "onMediumChange(QString, bool)", true );
+	m_mediamanager = QDBus::sessionBus().findInterface<org::kde::MediaManager>
+			 ( "org.kde.kded", "/modules/mediamanager" );
+	m_mediamanager->setParent( this );
+
+	connect( m_mediamanager, SIGNAL(mediumAdded(QString,bool)),
+		 SLOT(onMediumChange(QString,bool)));
+	connect( m_mediamanager, SIGNAL(mediumChanged(QString,bool)),
+		 SLOT(onMediumChange(QString,bool)));
 }
 
 MediaNotifier::~MediaNotifier()
@@ -294,7 +298,7 @@ void MediaNotifier::notify( KFileItem &medium )
 
 extern "C"
 {
-	KDE_EXPORT KDEDModule *create_medianotifier(const DCOPCString &name)
+	KDE_EXPORT KDEDModule *create_medianotifier(const QString &name)
 	{
 		return new MediaNotifier(name);
 	}

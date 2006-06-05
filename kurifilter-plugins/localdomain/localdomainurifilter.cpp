@@ -26,6 +26,8 @@
 #include <kstandarddirs.h>
 #include <kdebug.h>
 
+#include <dbus/qdbus.h>
+
 #include <QRegExp>
 #include <QFile>
 
@@ -38,10 +40,11 @@
  
 LocalDomainURIFilter::LocalDomainURIFilter( QObject *parent, const QStringList & /*args*/ )
     : KURIFilterPlugin( "localdomainurifilter", parent, 1.0 ),
-      DCOPObject( "LocalDomainURIFilterIface" ),
       last_time( 0 ),
       m_hostPortPattern( QLatin1String(HOSTPORT_PATTERN) )
 {
+    QDBus::sessionBus().connect(QString(), QString(), "org.kde.KUriFilterPlugin",
+                                "configure", this, SLOT(configure()));
     configure();
 }
 

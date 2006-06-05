@@ -21,8 +21,6 @@
 
 #include <klocale.h>
 #include <kdebug.h>
-#include <dcopclient.h>
-#include <dcopref.h>
 #include <kio/netaccess.h>
 
 #include <kmimetype.h>
@@ -30,13 +28,17 @@
 #include <kapplication.h>
 #include <QEventLoop>
 
+#include <dbus/qdbus.h>
+#include "mediamanageriface.h"
+
 #include <sys/stat.h>
 
 #include "medium.h"
 
-MediaImpl::MediaImpl() : QObject(), DCOPObject("mediaimpl"), mp_mounting(0L)
+MediaImpl::MediaImpl() : QObject(), mp_mounting(0L),
+			 m_mediamanager(QDBus::sessionBus().findInterface<org::kde::MediaManager>("org.kde.kded", "/modules/mediamanager"))
 {
-
+	m_mediamanager->setParent(this);
 }
 
 bool MediaImpl::parseURL(const KUrl &url, QString &name, QString &path) const
@@ -77,10 +79,9 @@ bool MediaImpl::statMedium(const QString &name, KIO::UDSEntry &entry)
 {
 	kDebug(1219) << "MediaImpl::statMedium: " << name << endl;
 
-	DCOPRef mediamanager("kded", "mediamanager");
-	DCOPReply reply = mediamanager.call( "properties", name );
+	QDBusReply<QStringList> reply = m_mediamanager->properties( name );
 
-	if ( !reply.isValid() )
+	if ( !reply.isSuccess() )
 	{
 		m_lastErrorCode = KIO::ERR_SLAVE_DEFINED;
 		m_lastErrorMessage = i18n("The KDE mediamanager is not running.");
@@ -104,10 +105,9 @@ bool MediaImpl::statMediumByLabel(const QString &label, KIO::UDSEntry &entry)
 {
 	kDebug(1219) << "MediaImpl::statMediumByLabel: " << label << endl;
 
-	DCOPRef mediamanager("kded", "mediamanager");
-	DCOPReply reply = mediamanager.call( "nameForLabel", label );
+	QDBusReply<QString> reply = m_mediamanager->nameForLabel( label );
 
-	if ( !reply.isValid() )
+	if ( !reply.isSuccess() )
 	{
 		m_lastErrorCode = KIO::ERR_SLAVE_DEFINED;
 		m_lastErrorMessage = i18n("The KDE mediamanager is not running.");
@@ -130,10 +130,9 @@ bool MediaImpl::listMedia(KIO::UDSEntryList& list)
 {
 	kDebug(1219) << "MediaImpl::listMedia" << endl;
 
-	DCOPRef mediamanager("kded", "mediamanager");
-	DCOPReply reply = mediamanager.call( "fullList" );
+	QDBusReply<QStringList> reply = m_mediamanager->fullList();
 
-	if ( !reply.isValid() )
+	if ( !reply.isSuccess() )
 	{
 		m_lastErrorCode = KIO::ERR_SLAVE_DEFINED;
 		m_lastErrorMessage = i18n("The KDE mediamanager is not running.");
@@ -163,11 +162,9 @@ bool MediaImpl::setUserLabel(const QString &name, const QString &label)
 {
 	kDebug(1219) << "MediaImpl::setUserLabel: " << name << ", " << label << endl;
 
+	QDBusReply<QString> reply = m_mediamanager->nameForLabel( label );
 
-	DCOPRef mediamanager("kded", "mediamanager");
-	DCOPReply reply = mediamanager.call( "nameForLabel", label );
-
-	if ( !reply.isValid() )
+	if ( !reply.isSuccess() )
 	{
 		m_lastErrorCode = KIO::ERR_SLAVE_DEFINED;
 		m_lastErrorMessage = i18n("The KDE mediamanager is not running.");
@@ -185,26 +182,15 @@ bool MediaImpl::setUserLabel(const QString &name, const QString &label)
 		}
 	}
 
-	reply = mediamanager.call( "setUserLabel", name, label );
-
-	if ( !reply.isValid() )
-	{
-		m_lastErrorCode = KIO::ERR_SLAVE_DEFINED;
-		m_lastErrorMessage = i18n("The KDE mediamanager is not running.");
-		return false;
-	}
-	else
-	{
-		return true;
-	}
+	m_mediamanager->setUserLabel( name, label );
+	return true;
 }
 
 const Medium MediaImpl::findMediumByName(const QString &name, bool &ok)
 {
-	DCOPRef mediamanager("kded", "mediamanager");
-	DCOPReply reply = mediamanager.call( "properties", name );
+	QDBusReply<QStringList> reply = m_mediamanager->properties( name );
 
-	if ( reply.isValid() )
+	if ( reply.isSuccess() )
 	{
 		ok = true;
 	}
@@ -234,22 +220,15 @@ bool MediaImpl::ensureMediumMounted(Medium &medium)
 		         this, SLOT( slotMountResult(KJob*) ) );
 		connect( job, SIGNAL( warning(KJob*,const QString&,const QString&) ),
 		         this, SLOT( slotWarning(KJob*,const QString&) ) );
-		kapp->dcopClient()
-		->connectDCOPSignal("kded", "mediamanager",
-		                    "mediumChanged(QString, bool)",
-		                    "mediaimpl",
-		                    "slotMediumChanged(QString)",
-		                    false);
+		connect( m_mediamanager, SIGNAL(mediumChanged(QString,bool)),
+			 this, SLOT(slotMediumChanged(QString)) );
 
 		enterLoop();
 
 		mp_mounting = 0L;
 
-		kapp->dcopClient()
-		->disconnectDCOPSignal("kded", "mediamanager",
-		                       "mediumChanged(QString, bool)",
-		                       "mediaimpl",
-		                       "slotMediumChanged(QString)");
+		disconnect( m_mediamanager, SIGNAL(mediumChanged(QString,bool)),
+			    this, 0);
 
 		return m_lastErrorCode==0;
 	}

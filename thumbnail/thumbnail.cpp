@@ -34,7 +34,6 @@
 #include <QImage>
 #include <QBuffer>
 
-#include <kdatastream.h> // Do not remove, needed for correct bool serialization
 #include <kurl.h>
 #include <kapplication.h>
 #include <kcmdlineargs.h>
@@ -107,7 +106,7 @@ int kdemain(int argc, char **argv)
     // need QApplication
     // and HTML previews need even KApplication :(
     putenv(strdup("SESSION_MANAGER="));
-    KApplication::disableAutoDcopRegistration();
+    //KApplication::disableAutoDcopRegistration();
     KAboutData about("kio_thumbnail", "kio_thumbmail", "KDE 4.x.x");
     KCmdLineArgs::init(&about);
 

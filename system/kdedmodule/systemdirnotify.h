@@ -23,17 +23,17 @@
 #include <kdirnotify.h>
 #include <QMap>
 
-class SystemDirNotify : public KDirNotify
+class SystemDirNotify : public QObject
 {
-K_DCOP
+Q_OBJECT
 
 public:
 	SystemDirNotify();
 
-k_dcop:
-	virtual ASYNC FilesAdded (const KUrl &directory);
-	virtual ASYNC FilesRemoved (const KUrl::List &fileList);
-	virtual ASYNC FilesChanged (const KUrl::List &fileList);
+private slots:
+	void FilesAdded (const QString &directory);
+	void FilesRemoved (const QStringList &fileList);
+	void FilesChanged (const QStringList &fileList);
 
 private:
 	void init();

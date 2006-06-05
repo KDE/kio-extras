@@ -28,12 +28,11 @@ include_directories( ${CMAKE_CURRENT_SOURCE_DIR}/libmediacommon )
 ########### next target ###############
 set(kio_media_PART_SRCS ${libmediacommon_SRCS} 
     kio_media.cpp
-    mediaimpl.cpp)
+    mediaimpl.cpp
+    mediamanageriface.cpp)
 
 
 kde4_automoc(${kio_media_PART_SRCS})
-
-kde4_add_dcop_skels(kio_media_PART_SRCS mediaimpl.h )
 
 kde4_add_plugin(kio_media ${kio_media_PART_SRCS})
 

@@ -23,17 +23,17 @@
 #include <kio/global.h>
 #include <kio/job.h>
 #include <kurl.h>
-#include <dcopobject.h>
 
 #include <QObject>
 #include <QString>
 
 #include "medium.h"
 
-class MediaImpl : public QObject, public DCOPObject
+class OrgKdeMediaManagerInterface;
+
+class MediaImpl : public QObject
 {
 Q_OBJECT
-K_DCOP
 public:
 	MediaImpl();
 	bool parseURL(const KUrl &url, QString &name, QString &path) const;
@@ -49,7 +49,7 @@ public:
 	int lastErrorCode() const { return m_lastErrorCode; }
 	QString lastErrorMessage() const { return m_lastErrorMessage; }
 
-k_dcop:
+public slots:
 	void slotMediumChanged(const QString &name);
 
 signals:
@@ -78,6 +78,9 @@ private:
 	/// Note that this means almost no method can be const.
 	int m_lastErrorCode;
 	QString m_lastErrorMessage;
+
+	// a reference to the media manager
+	OrgKdeMediaManagerInterface *m_mediamanager;
 };
 
 #endif

@@ -26,7 +26,7 @@
 #include <kglobal.h>
 #include <klocale.h>
 
-#include <kdirnotify_stub.h>
+#include <kdirnotify.h>
 
 #include "mediamanagersettings.h"
 
@@ -41,7 +41,7 @@
 #endif //COMPILE_LINUXCDPOLLING
 
 
-MediaManager::MediaManager(const DCOPCString &obj)
+MediaManager::MediaManager(const QString &obj)
     : KDEDModule(obj), m_dirNotify(m_mediaList)
 {
 	connect( &m_mediaList, SIGNAL(mediumAdded(const QString&, const QString&, bool)),
@@ -162,12 +162,12 @@ QString MediaManager::nameForLabel(const QString &label)
 	return QString();
 }
 
-ASYNC MediaManager::setUserLabel(const QString &name, const QString &label)
+void MediaManager::setUserLabel(const QString &name, const QString &label)
 {
 	m_mediaList.setUserLabel(name, label);
 }
 
-ASYNC MediaManager::reloadBackends()
+void MediaManager::reloadBackends()
 {
 	MediaManagerSettings::self()->readConfig();
 	loadBackends();
@@ -206,8 +206,7 @@ void MediaManager::slotMediumAdded(const QString &/*id*/, const QString &name,
 {
 	kDebug(1219) << "MediaManager::slotMediumAdded: " << name << endl;
 
-	KDirNotify_stub notifier("*", "*");
-	notifier.FilesAdded( KUrl("media:/") );
+        org::kde::KDirNotify::emitFilesAdded( "media:/" );
 
 	emit mediumAdded(name, allowNotification);
 }
@@ -217,8 +216,7 @@ void MediaManager::slotMediumRemoved(const QString &/*id*/, const QString &name,
 {
 	kDebug(1219) << "MediaManager::slotMediumRemoved: " << name << endl;
 
-	KDirNotify_stub notifier("*", "*");
-	notifier.FilesRemoved( KUrl("media:/"+name) );
+        org::kde::KDirNotify::emitFilesRemoved( QStringList() << "media:/"+name );
 
 	emit mediumRemoved(name, allowNotification);
 }
@@ -228,19 +226,18 @@ void MediaManager::slotMediumChanged(const QString &/*id*/, const QString &name,
 {
 	kDebug(1219) << "MediaManager::slotMediumChanged: " << name << endl;
 
-	KDirNotify_stub notifier("*", "*");
 	if (!mounted)
 	{
-		notifier.FilesRemoved( KUrl("media:/"+name) );
+            org::kde::KDirNotify::emitFilesRemoved( QStringList() << "media:/"+name );
 	}
-	notifier.FilesChanged( KUrl("media:/"+name) );
+        org::kde::KDirNotify::emitFilesChanged( QStringList() << "media:/"+name );
 
 	emit mediumChanged(name, allowNotification);
 }
 
 
 extern "C" {
-    KDE_EXPORT KDEDModule *create_mediamanager(const DCOPCString &obj)
+    KDE_EXPORT KDEDModule *create_mediamanager(const QString &obj)
     {
         KGlobal::locale()->insertCatalog("kio_media");
         return new MediaManager(obj);

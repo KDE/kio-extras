@@ -20,7 +20,7 @@
 
 #include <kdebug.h>
 
-#include <kdirnotify_stub.h>
+#include <kdirnotify.h>
 
 #include "medium.h"
 //Added by qt3to4:
@@ -29,7 +29,12 @@
 MediaDirNotify::MediaDirNotify(const MediaList &list)
 	: m_mediaList(list)
 {
-
+	QDBus::sessionBus().connect(QString(), QString(), "org.kde.KDirNotify",
+				    "FilesAdded", this, SLOT(filesAdded(QString)));
+	QDBus::sessionBus().connect(QString(), QString(), "org.kde.KDirNotify",
+				    "FilesRemoved", this, SLOT(filesRemoved(QStringList)));
+	QDBus::sessionBus().connect(QString(), QString(), "org.kde.KDirNotify",
+				    "FilesChanged", this, SLOT(filesChanged(QStringList)));
 }
 
 KUrl::List MediaDirNotify::toMediaURL(const KUrl &url)
@@ -84,43 +89,40 @@ KUrl::List MediaDirNotify::toMediaURLList(const KUrl::List &list)
 	return new_list;
 }
 
-ASYNC MediaDirNotify::FilesAdded(const KUrl &directory)
+void MediaDirNotify::filesAdded(const QString &directory)
 {
-	KUrl::List new_urls = toMediaURL(directory);
+	KUrl::List new_urls = toMediaURL(KUrl(directory));
 
 	if (!new_urls.isEmpty())
 	{
-		KDirNotify_stub notifier("*", "*");
-
-		KUrl::List::const_iterator it = new_urls.begin();
-		KUrl::List::const_iterator end = new_urls.end();
+		KUrl::List::const_iterator it = new_urls.constBegin();
+		KUrl::List::const_iterator end = new_urls.constEnd();
 
 		for ( ; it!=end; ++it )
 		{
-			notifier.FilesAdded(*it);
+			org::kde::KDirNotify::emitFilesAdded( it->url() );
 		}
 	}
 }
 
-ASYNC MediaDirNotify::FilesRemoved(const KUrl::List &fileList)
+void MediaDirNotify::filesRemoved(const QStringList &fileList)
 {
 	KUrl::List new_list = toMediaURLList(fileList);
 
 	if (!new_list.isEmpty())
 	{
-		KDirNotify_stub notifier("*", "*");
-		notifier.FilesRemoved( new_list );
+		org::kde::KDirNotify::emitFilesRemoved( new_list.toStringList() );
 	}
 }
 
-ASYNC MediaDirNotify::FilesChanged(const KUrl::List &fileList)
+void MediaDirNotify::filesChanged(const QStringList &fileList)
 {
 	KUrl::List new_list = toMediaURLList(fileList);
 
 	if (!new_list.isEmpty())
 	{
-		KDirNotify_stub notifier("*", "*");
-		notifier.FilesChanged( new_list );
+		org::kde::KDirNotify::emitFilesChanged( new_list.toStringList() );
 	}
 }
 
+#include "mediadirnotify.moc"

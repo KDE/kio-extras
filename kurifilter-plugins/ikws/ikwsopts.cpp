@@ -25,10 +25,12 @@
 //Added by qt3to4:
 #include <QVBoxLayout>
 
+#include <dbus/qdbus.h>
+
 #include <kdebug.h>
 
-#include <dcopref.h>
 #include <kapplication.h>
+#include <kbuildsycocaprogressdialog.h>
 #include <kcombobox.h>
 #include <kconfig.h>
 #include <kiconloader.h>
@@ -299,12 +301,12 @@ void FilterOptions::save()
   emit changed(false);
 
   // Update filters in running applications...
-  (void) DCOPRef("*", "KURIIKWSFilterIface").send("configure");
-  (void) DCOPRef("*", "KURISearchFilterIface").send("configure");
+  QDBusMessage msg = QDBusMessage::signal("/", "org.kde.KUriFilterPlugin", "configure");
+  QDBus::sessionBus().send(msg);
 
   // If the providers changed, tell sycoca to rebuild its database...
   if (changedProviderCount)
-    KService::rebuildKSycoca(this);
+      KBuildSycocaProgressDialog::rebuildKSycoca(this);
 }
 
 void FilterOptions::defaults()

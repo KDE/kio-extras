@@ -5,6 +5,7 @@ kde4_add_kcfg_files(libmediacommon_SRCS ../libmediacommon/mediamanagersettings.k
 
 set(kded_mediamanager_PART_SRCS ${libmediacommon_SRCS}
    mediamanager.cpp 
+   mediamanageradaptor.cpp
    medialist.cpp 
    backendbase.cpp 
    fstabbackend.cpp 
@@ -18,8 +19,6 @@ if(COMPILE_LINUXCDPOLLING)
 endif(COMPILE_LINUXCDPOLLING)
 
 kde4_automoc(${kded_mediamanager_PART_SRCS})
-
-kde4_add_dcop_skels(kded_mediamanager_PART_SRCS mediamanager.h mediadirnotify.h )
 
 kde4_add_plugin(kded_mediamanager ${kded_mediamanager_PART_SRCS})
 

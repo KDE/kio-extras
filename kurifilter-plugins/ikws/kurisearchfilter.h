@@ -22,17 +22,15 @@
 #ifndef __KURISEARCHFILTER_H__
 #define __KURISEARCHFILTER_H__
 
-#include <dcopobject.h>
 #include <kgenericfactory.h>
 
 #include <kurifilter.h>
 
 class KInstance;
 
-class KURISearchFilter : public KURIFilterPlugin, public DCOPObject
+class KURISearchFilter : public KURIFilterPlugin
 {
     Q_OBJECT
-    K_DCOP
 public:
     KURISearchFilter(QObject *parent = 0, const QStringList &args = QStringList() );
     ~KURISearchFilter();
@@ -41,8 +39,8 @@ public:
     virtual KCModule *configModule(QWidget *parent = 0, const char *name = 0) const;
     virtual QString configName() const;
 
-k_dcop:
-    virtual void configure();
+public Q_SLOTS:
+    void configure(); // maybe move to KURIFilterPlugin?
 };
 
 #endif

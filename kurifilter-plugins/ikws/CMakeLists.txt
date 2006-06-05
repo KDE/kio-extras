@@ -9,8 +9,6 @@ set(kuriikwsfilter_PART_SRCS kuriikwsfiltereng.cpp kuriikwsfilter.cpp searchprov
 
 kde4_automoc(${kuriikwsfilter_PART_SRCS})
 
-kde4_add_dcop_skels(kuriikwsfilter_PART_SRCS kuriikwsfilter.h )
-
 kde4_add_plugin(kuriikwsfilter WITH_PREFIX ${kuriikwsfilter_PART_SRCS})
 
 kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kuriikwsfilter )
@@ -32,8 +30,6 @@ set(kurisearchfilter_PART_SRCS
 kde4_automoc(${kurisearchfilter_PART_SRCS})
 
 kde4_add_ui3_files(kurisearchfilter_PART_SRCS searchproviderdlg_ui.ui ikwsopts_ui.ui )
-
-kde4_add_dcop_skels(kurisearchfilter_PART_SRCS kurisearchfilter.h )
 
 kde4_add_plugin(kurisearchfilter WITH_PREFIX ${kurisearchfilter_PART_SRCS})
 

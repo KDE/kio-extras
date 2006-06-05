@@ -20,19 +20,19 @@
 #define REMOTEDIRNOTIFY_H
 
 #include <kurl.h>
-#include <kdirnotify.h>
+#include <qobject.h>
 
-class RemoteDirNotify : public KDirNotify
+class RemoteDirNotify : public QObject
 {
-K_DCOP
+Q_OBJECT
 
 public:
 	RemoteDirNotify();
 
-k_dcop:
-	virtual ASYNC FilesAdded (const KUrl &directory);
-	virtual ASYNC FilesRemoved (const KUrl::List &fileList);
-	virtual ASYNC FilesChanged (const KUrl::List &fileList);
+private slots:
+	void FilesAdded (const QString &directory);
+	void FilesRemoved (const QStringList &fileList);
+	void FilesChanged (const QStringList &fileList);
 
 private:
 	KUrl toRemoteURL(const KUrl &url);

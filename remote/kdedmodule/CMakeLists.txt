@@ -7,13 +7,11 @@ set(kded_remotedirnotify_PART_SRCS remotedirnotify.cpp remotedirnotifymodule.cpp
 
 kde4_automoc(${kded_remotedirnotify_PART_SRCS})
 
-kde4_add_dcop_skels(kded_remotedirnotify_PART_SRCS remotedirnotify.h remotedirnotifymodule.h )
-
 kde4_add_plugin(kded_remotedirnotify ${kded_remotedirnotify_PART_SRCS})
 
 kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kded_remotedirnotify )
 
-target_link_libraries(kded_remotedirnotify  ${KDE4_KDECORE_LIBS} DCOP kio)
+target_link_libraries(kded_remotedirnotify  ${KDE4_KDECORE_LIBS} kio)
 
 install_targets(${PLUGIN_INSTALL_DIR} kded_remotedirnotify )
 

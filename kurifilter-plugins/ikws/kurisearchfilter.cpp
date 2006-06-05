@@ -30,6 +30,8 @@
 #include "kuriikwsfiltereng.h"
 #include "kurisearchfilter.h"
 
+#include <dbus/qdbus.h>
+
 /**
  * IMPORTANT: If you change anything here, please run the regression test
  * kdelibs/kio/tests/kurifiltertest
@@ -40,9 +42,10 @@ K_EXPORT_COMPONENT_FACTORY(libkurisearchfilter, KURISearchFilterFactory("kcmkuri
 
 KURISearchFilter::KURISearchFilter(QObject *parent,
                                    const QStringList &)
-                 :KURIFilterPlugin( "KURISearchFilter", parent, 1.0),
-                  DCOPObject("KURISearchFilterIface")
+                 :KURIFilterPlugin( "KURISearchFilter", parent, 1.0)
 {
+  QDBus::sessionBus().connect(QString(), QString(), "org.kde.KUriFilterPlugin",
+                              "configure", this, SLOT(configure()));
 }
 
 KURISearchFilter::~KURISearchFilter()

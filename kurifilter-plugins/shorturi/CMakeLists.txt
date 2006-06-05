@@ -7,8 +7,6 @@ set(kshorturifilter_PART_SRCS kshorturifilter.cpp )
 
 kde4_automoc(${kshorturifilter_PART_SRCS})
 
-kde4_add_dcop_skels(kshorturifilter_PART_SRCS kshorturifilter.h )
-
 kde4_add_plugin(kshorturifilter WITH_PREFIX ${kshorturifilter_PART_SRCS})
 
 kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kshorturifilter )

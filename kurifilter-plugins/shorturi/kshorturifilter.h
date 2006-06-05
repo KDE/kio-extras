@@ -23,7 +23,6 @@
 #ifndef _KSHORTURIFILTER_H_
 #define _KSHORTURIFILTER_H_
 
-#include <dcopobject.h>
 #include <kgenericfactory.h>
 #include <kurifilter.h>
 //Added by qt3to4:
@@ -39,9 +38,8 @@ class KInstance;
 * @author Dawit Alemayehu <adawit@kde.org>
 * @author Malte Starostik <starosti@zedat.fu-berlin.de>
 */
-class KShortURIFilter : public KURIFilterPlugin , public DCOPObject
+class KShortURIFilter : public KURIFilterPlugin
 {
-    K_DCOP
     Q_OBJECT
 public:
 
@@ -87,9 +85,8 @@ public:
          */
     virtual KCModule* configModule( QWidget*, const char* ) const;
 
-public:
-k_dcop:
-    virtual void configure();
+public Q_SLOTS:
+    void configure();
 
 private:
 

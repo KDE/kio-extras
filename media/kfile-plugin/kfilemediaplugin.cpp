@@ -22,7 +22,7 @@
 #include <kgenericfactory.h>
 #include <kdiskfreesp.h>
 
-#include <dcopref.h>
+#include <dbus/qdbus.h>
 
 #include <QPixmap>
 #include <QPainter>
@@ -169,10 +169,10 @@ void KFileMediaPlugin::enterLoop()
 
 const Medium KFileMediaPlugin::askMedium(KFileMetaInfo &info)
 {
-	DCOPRef mediamanager("kded", "mediamanager");
-	DCOPReply reply = mediamanager.call( "properties", info.url().fileName() );
+        QDBusInterfacePtr mediamanager("org.kde.kded", "/modules/mediamanager", "org.kde.MediaManager");
+	QDBusReply<QStringList> reply = mediamanager->call( "properties", info.url().fileName() );
 
-	if ( !reply.isValid() )
+	if ( !reply.isSuccess() )
 	{
 		return Medium(QString(), QString());
 	}

@@ -7,8 +7,6 @@ set(localdomainurifilter_PART_SRCS localdomainurifilter.cpp )
 
 kde4_automoc(${localdomainurifilter_PART_SRCS})
 
-kde4_add_dcop_skels(localdomainurifilter_PART_SRCS localdomainurifilter.h )
-
 kde4_add_plugin(localdomainurifilter WITH_PREFIX ${localdomainurifilter_PART_SRCS})
 
 kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} localdomainurifilter )

@@ -30,6 +30,8 @@
 #include "kuriikwsfiltereng.h"
 #include "kuriikwsfilter.h"
 
+#include <dbus/qdbus.h>
+
 /**
  * IMPORTANT: If you change anything here, please run the regression test
  * kdelibs/kio/tests/kurifiltertest
@@ -39,9 +41,10 @@ typedef KGenericFactory<KAutoWebSearch> KAutoWebSearchFactory;
 K_EXPORT_COMPONENT_FACTORY (libkuriikwsfilter, KAutoWebSearchFactory("kcmkurifilt"))
 
 KAutoWebSearch::KAutoWebSearch(QObject *parent, const QStringList&)
-               :KURIFilterPlugin( "KURIIKWSFilterIface", parent, 1.0),
-                DCOPObject("KURIIKWSFilterIface")
+               :KURIFilterPlugin( "KURIIKWSFilterIface", parent, 1.0)
 {
+  QDBus::sessionBus().connect(QString(), QString(), "org.kde.KUriFilterPlugin",
+                              "configure", this, SLOT(configure()));
 }
 
 KAutoWebSearch::~KAutoWebSearch()

@@ -30,6 +30,8 @@
 #include <QRegExp>
 #include <QList>
 
+#include <dbus/qdbus.h>
+
 #include <kdebug.h>
 #include <kprotocolinfo.h>
 #include <kstandarddirs.h>
@@ -126,9 +128,10 @@ static QString removeArgs( const QString& _cmd )
 }
 
 KShortURIFilter::KShortURIFilter( QObject *parent, const QStringList & /*args*/ )
-                :KURIFilterPlugin( "kshorturifilter", parent, 1.0),
-                 DCOPObject("KShortURIFilterIface")
+                :KURIFilterPlugin( "kshorturifilter", parent, 1.0)
 {
+    QDBus::sessionBus().connect(QString(), QString(), "org.kde.KUriFilterPlugin",
+                                "configure", this, SLOT(configure()));
     configure();
 }
 

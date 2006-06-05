@@ -23,8 +23,9 @@
 #include <kglobal.h>
 #include <kstandarddirs.h>
 #include <kdesktopfile.h>
+#include <kdirnotify.h>
 
-#include <kdirnotify_stub.h>
+#include <dbus/qdbus.h>
 #include <QDir>
 
 RemoteDirNotify::RemoteDirNotify()
@@ -34,6 +35,13 @@ RemoteDirNotify::RemoteDirNotify()
 
 	QString path = KGlobal::dirs()->saveLocation("remote_entries");
 	m_baseURL.setPath(path);
+
+	QDBus::sessionBus().connect(QString(), QString(), "org.kde.KDirNotify",
+				    "FilesAdded", this, SLOT(FilesAdded(QString)));
+	QDBus::sessionBus().connect(QString(), QString(), "org.kde.KDirNotify",
+				    "FilesRemoved", this, SLOT(FilesRemoved(QStringList)));
+	QDBus::sessionBus().connect(QString(), QString(), "org.kde.KDirNotify",
+				    "FilesChanged", this, SLOT(FilesChanged(QStringList)));
 }
 
 KUrl RemoteDirNotify::toRemoteURL(const KUrl &url)
@@ -73,7 +81,7 @@ KUrl::List RemoteDirNotify::toRemoteURLList(const KUrl::List &list)
 	return new_list;
 }
 
-ASYNC RemoteDirNotify::FilesAdded(const KUrl &directory)
+void RemoteDirNotify::FilesAdded(const QString &directory)
 {
 	kDebug(1220) << "RemoteDirNotify::FilesAdded" << endl;
 	
@@ -81,8 +89,7 @@ ASYNC RemoteDirNotify::FilesAdded(const KUrl &directory)
 
 	if (new_dir.isValid())
 	{
-		KDirNotify_stub notifier("*", "*");
-		notifier.FilesAdded( new_dir );
+		org::kde::KDirNotify::emitFilesAdded( new_dir.url() );
 	}
 }
 
@@ -93,8 +100,6 @@ ASYNC RemoteDirNotify::FilesAdded(const KUrl &directory)
 // FilesAdded to re-list the modified directory.
 inline void evil_hack(const KUrl::List &list)
 {
-	KDirNotify_stub notifier("*", "*");
-	
 	KUrl::List notified;
 	
 	KUrl::List::const_iterator it = list.begin();
@@ -106,14 +111,14 @@ inline void evil_hack(const KUrl::List &list)
 
 		if (!notified.contains(url))
 		{
-			notifier.FilesAdded(url);
+			org::kde::KDirNotify::emitFilesAdded(url.toString());
 			notified.append(url);
 		}
 	}
 }
 
 
-ASYNC RemoteDirNotify::FilesRemoved(const KUrl::List &fileList)
+void RemoteDirNotify::FilesRemoved(const QStringList &fileList)
 {
 	kDebug(1220) << "RemoteDirNotify::FilesRemoved" << endl;
 	
@@ -127,7 +132,7 @@ ASYNC RemoteDirNotify::FilesRemoved(const KUrl::List &fileList)
 	}
 }
 
-ASYNC RemoteDirNotify::FilesChanged(const KUrl::List &fileList)
+void RemoteDirNotify::FilesChanged(const QStringList &fileList)
 {
 	kDebug(1220) << "RemoteDirNotify::FilesChanged" << endl;
 	
@@ -140,3 +145,5 @@ ASYNC RemoteDirNotify::FilesChanged(const KUrl::List &fileList)
 		evil_hack(new_list);
 	}
 }
+
+#include "remotedirnotify.moc"

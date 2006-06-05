@@ -23,13 +23,19 @@
 #include <kglobal.h>
 #include <kstandarddirs.h>
 #include <kdesktopfile.h>
-#include <kdirnotify_stub.h>
+#include <kdirnotify.h>
 
 #include <QDir>
 
 SystemDirNotify::SystemDirNotify()
 : mInited( false )
 {
+	QDBus::sessionBus().connect(QString(), QString(), "org.kde.KDirNotify",
+				    "FilesAdded", this, SLOT(FilesAdded(QString)));
+	QDBus::sessionBus().connect(QString(), QString(), "org.kde.KDirNotify",
+				    "FilesRemoved", this, SLOT(FilesRemoved(QStringList)));
+	QDBus::sessionBus().connect(QString(), QString(), "org.kde.KDirNotify",
+				    "FilesChanged", this, SLOT(FilesChanged(QStringList)));
 }
 
 void SystemDirNotify::init()
@@ -133,29 +139,27 @@ KUrl::List SystemDirNotify::toSystemURLList(const KUrl::List &list)
 	return new_list;
 }
 
-ASYNC SystemDirNotify::FilesAdded(const KUrl &directory)
+void SystemDirNotify::FilesAdded(const QString &directory)
 {
 	KUrl new_dir = toSystemURL(directory);
 
 	if (new_dir.isValid())
 	{
-		KDirNotify_stub notifier("*", "*");
-		notifier.FilesAdded( new_dir );
+		org::kde::KDirNotify::emitFilesAdded( new_dir.url() );
 		if (new_dir.upUrl().upUrl()==KUrl("system:/"))
 		{
-			notifier.FilesChanged( new_dir.upUrl() );
+			org::kde::KDirNotify::emitFilesChanged( QStringList() << new_dir.upUrl().url() );
 		}
 	}
 }
 
-ASYNC SystemDirNotify::FilesRemoved(const KUrl::List &fileList)
+void SystemDirNotify::FilesRemoved(const QStringList &fileList)
 {
 	KUrl::List new_list = toSystemURLList(fileList);
 
 	if (!new_list.isEmpty())
 	{
-		KDirNotify_stub notifier("*", "*");
-		notifier.FilesRemoved( new_list );
+		org::kde::KDirNotify::emitFilesRemoved( new_list.toStringList() );
 		
 		KUrl::List::const_iterator it = new_list.begin();
 		KUrl::List::const_iterator end = new_list.end();
@@ -164,20 +168,20 @@ ASYNC SystemDirNotify::FilesRemoved(const KUrl::List &fileList)
 		{
 			if ((*it).upUrl().upUrl()==KUrl("system:/"))
 			{
-				notifier.FilesChanged( (*it).upUrl() );
+				org::kde::KDirNotify::emitFilesChanged( QStringList() << (*it).upUrl().url() );
 			}
 		}
 	}
 }
 
-ASYNC SystemDirNotify::FilesChanged(const KUrl::List &fileList)
+void SystemDirNotify::FilesChanged(const QStringList &fileList)
 {
 	KUrl::List new_list = toSystemURLList(fileList);
 
 	if (!new_list.isEmpty())
 	{
-		KDirNotify_stub notifier("*", "*");
-		notifier.FilesChanged( new_list );
+		org::kde::KDirNotify::emitFilesChanged( new_list.toStringList() );
 	}
 }
 
+#include "systemdirnotify.moc"

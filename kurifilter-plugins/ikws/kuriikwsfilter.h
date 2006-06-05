@@ -22,16 +22,14 @@
 #ifndef __KURIIKWSFILTER_H__
 #define __KURIIKWSFILTER_H__
 
-#include <dcopobject.h>
 #include <kgenericfactory.h>
 
 #include <kurifilter.h>
 
 class KInstance;
 
-class KAutoWebSearch : public KURIFilterPlugin, public DCOPObject
+class KAutoWebSearch : public KURIFilterPlugin
 {
-    K_DCOP
     Q_OBJECT
 public:
     KAutoWebSearch(QObject *parent = 0, const QStringList &args = QStringList() );
@@ -39,8 +37,8 @@ public:
 
     virtual bool filterURI( KURIFilterData& ) const;
 
-k_dcop:
-    virtual void configure();
+public Q_SLOTS:
+    void configure();
 };
 
 #endif
