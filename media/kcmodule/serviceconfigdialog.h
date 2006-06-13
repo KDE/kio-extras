@@ -20,19 +20,19 @@
 #ifndef _SERVICECONFIGDIALOG_H_
 #define _SERVICECONFIGDIALOG_H_
 
-#include <kdialogbase.h>
+#include <kdialog.h>
 
 #include "notifierserviceaction.h"
 #include "serviceview.h"
 
-class ServiceConfigDialog : public KDialogBase
+class ServiceConfigDialog : public KDialog
 {
 	Q_OBJECT
 
 public:
 	ServiceConfigDialog(NotifierServiceAction *action,
 	                    const QStringList &mimetypesList,
-	                    QWidget* parent = 0, const char* name = 0);
+	                    QWidget* parent = 0);
 	
 public Q_SLOTS:
 	void slotOk();
