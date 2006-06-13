@@ -33,10 +33,15 @@
 
 NotificationDialog::NotificationDialog( KFileItem medium, NotifierSettings *settings,
                                         QWidget* parent, const char* name )
-	: KDialogBase( parent, name, false, i18n( "Medium Detected" ), Ok|Cancel|User1, Ok, true),
+	: KDialog( parent ),
 	  m_medium(medium), m_settings( settings )
 {
 	setCaption( KIO::decodeFileName(m_medium.name()) );
+  setObjectName( name );
+  setModal( false );
+  setButtons( Ok|Cancel|User1 );
+  setDefaultButton( Ok );
+  enableButtonSeparator( true );
 	//clearWState(  WState_Polished );
 
 	m_view = new NotificationDialogView( this );

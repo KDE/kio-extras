@@ -20,7 +20,7 @@
 #ifndef _NOTIFICATIONDIALOG_H_
 #define _NOTIFICATIONDIALOG_H_
 
-#include <kdialogbase.h>
+#include <kdialog.h>
 #include <klistbox.h>
 #include <kdirwatch.h>
 #include <kfileitem.h>
@@ -29,7 +29,7 @@
 #include "notifieraction.h"
 #include "notificationdialogview.h"
 
-class NotificationDialog : public KDialogBase
+class NotificationDialog : public KDialog
 {
 	Q_OBJECT
 

@@ -34,11 +34,12 @@
 
 SearchProviderDialog::SearchProviderDialog(SearchProvider *provider,
                                            QWidget *parent, const char *name)
-                     :KDialog(parent, QString(), KDialog::Ok|KDialog::Cancel),
+                     :KDialog( parent ),
                       m_provider(provider)
 {
     setObjectName(name);
     setModal(true);
+    setButtons( Ok | Cancel );
 
     m_dlg = new SearchProviderDlgUI (this);
     setMainWidget(m_dlg);

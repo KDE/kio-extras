@@ -36,10 +36,16 @@
 
 ServiceConfigDialog::ServiceConfigDialog(NotifierServiceAction *action,
                                          const QStringList &mimetypesList,
-                                         QWidget* parent, const char* name)
-	: KDialogBase(parent, name, true, i18n("Edit Service"), Ok|Cancel, Ok, true),
+                                         QWidget* parent)
+	: KDialog(parent),
 	  m_action(action)
 {
+  setModal( true );
+  setCaption( i18n("Edit Service") );
+  setButtons( Ok|Cancel );
+  setDefaultButton( Ok );
+  enableButtonSeparator( true );
+
 	m_view = new ServiceView(this);
 	
 	m_view->iconButton->setIcon( m_action->iconName() );
