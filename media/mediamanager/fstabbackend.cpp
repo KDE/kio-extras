@@ -145,7 +145,7 @@ static bool inExclusionPattern(const KMountPoint::Ptr& mount, bool networkShares
 
 void FstabBackend::handleMtabChange(bool allowNotification)
 {
-	QStringList new_mtabIds, new_mtabEntries;
+	QStringList new_mtabIds;
 	KMountPoint::List mtab = KMountPoint::currentMountPoints();
 
 	KMountPoint::List::iterator it = mtab.begin();
@@ -163,18 +163,19 @@ void FstabBackend::handleMtabChange(bool allowNotification)
 		   nothing has changed, do not stat the mount point. Avoids
 		   hang if network shares are stalling */
 		QString mtabEntry = dev + "*" + mp + "*" + fs;
-		bool isOldEntry = m_mtabEntries.contains(mtabEntry);
-		new_mtabEntries+=mtabEntry;
-		if (isOldEntry) continue;
+		if(m_mtabEntries.contains(mtabEntry)) {
+		        new_mtabIds += m_mtabEntries[mtabEntry];
+			continue;
+		}
 
 		QString id = generateId(dev, mp);
 		new_mtabIds+=id;
+		m_mtabEntries[mtabEntry] = id;
 
 		if ( !m_mtabIds.contains(id) && m_fstabIds.contains(id) )
 		{
 			QString mime, icon, label;
 			guess(dev, mp, fs, true, mime, icon, label);
-
 			m_mediaList.changeMediumState(id, true, false,
 			                              mime, icon, label);
 		}
@@ -212,6 +213,10 @@ void FstabBackend::handleMtabChange(bool allowNotification)
 			QString mp = medium->mountPoint();
 			QString fs = medium->fsType();
 
+
+			QString mtabEntry = dev + "*" + mp + "*" + fs;
+			m_mtabEntries.remove(mtabEntry);
+
 			QString mime, icon, label;
 			guess(dev, mp, fs, false, mime, icon, label);
 
@@ -227,7 +232,6 @@ void FstabBackend::handleMtabChange(bool allowNotification)
 	}
 
 	m_mtabIds = new_mtabIds;
-        m_mtabEntries = new_mtabEntries;
 }
 
 void FstabBackend::handleFstabChange(bool allowNotification)

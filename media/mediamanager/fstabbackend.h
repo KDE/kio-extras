@@ -53,7 +53,7 @@ private:
 
 	bool m_networkSharesOnly;
 	QStringList m_mtabIds;
-        QStringList m_mtabEntries;
+        QMap<QString, QString> m_mtabEntries;
 	QStringList m_fstabIds;
 #ifdef Q_OS_FREEBSD
 	QTimer m_mtabTimer;
