@@ -702,7 +702,7 @@ builds each FISH request and sets the error counter
 */
 bool fishProtocol::sendCommand(fish_command_type cmd, ...) {
     const fish_info &info = fishInfo[cmd];
-    myDebug( << "queueing: cmd="<< cmd << "['" << info.command << "'](" << info.params <<"), alt=['" << info.alt << "'], lines=" << info.lines << endl);
+    myDebug( << "queuing: cmd="<< cmd << "['" << info.command << "'](" << info.params <<"), alt=['" << info.alt << "'], lines=" << info.lines << endl);
 
     va_list list;
     va_start(list, cmd);
