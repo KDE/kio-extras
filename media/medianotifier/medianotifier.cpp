@@ -40,7 +40,7 @@
 #include "mediamanagersettings.h"
 #include "../mediamanageriface.h"
 
-MediaNotifier::MediaNotifier(const QString &name) : KDEDModule(name)
+MediaNotifier::MediaNotifier() : KDEDModule()
 {
 	m_mediamanager = QDBus::sessionBus().findInterface<org::kde::MediaManager>
 			 ( "org.kde.kded", "/modules/mediamanager" );
@@ -298,9 +298,9 @@ void MediaNotifier::notify( KFileItem &medium )
 
 extern "C"
 {
-	KDE_EXPORT KDEDModule *create_medianotifier(const QString &name)
+	KDE_EXPORT KDEDModule *create_medianotifier()
 	{
-		return new MediaNotifier(name);
+		return new MediaNotifier();
 	}
 }
 

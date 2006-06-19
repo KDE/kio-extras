@@ -27,7 +27,7 @@ class RemoteDirNotifyModule : public KDEDModule
 {
 Q_OBJECT
 public:
-	RemoteDirNotifyModule(const QString &obj);
+	RemoteDirNotifyModule();
 private:
 	RemoteDirNotify notifier;
 };

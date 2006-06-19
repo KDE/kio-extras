@@ -41,8 +41,8 @@
 #endif //COMPILE_LINUXCDPOLLING
 
 
-MediaManager::MediaManager(const QString &obj)
-    : KDEDModule(obj), m_dirNotify(m_mediaList)
+MediaManager::MediaManager()
+    : KDEDModule(), m_dirNotify(m_mediaList)
 {
 	connect( &m_mediaList, SIGNAL(mediumAdded(const QString&, const QString&, bool)),
 	         SLOT(slotMediumAdded(const QString&, const QString&, bool)) );
@@ -237,10 +237,10 @@ void MediaManager::slotMediumChanged(const QString &/*id*/, const QString &name,
 
 
 extern "C" {
-    KDE_EXPORT KDEDModule *create_mediamanager(const QString &obj)
+    KDE_EXPORT KDEDModule *create_mediamanager()
     {
         KGlobal::locale()->insertCatalog("kio_media");
-        return new MediaManager(obj);
+        return new MediaManager();
     }
 }
 

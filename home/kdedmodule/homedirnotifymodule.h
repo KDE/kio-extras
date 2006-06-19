@@ -28,7 +28,7 @@ class HomeDirNotifyModule : public KDEDModule
 Q_OBJECT
 
 public:
-	HomeDirNotifyModule(const QString &obj);
+	HomeDirNotifyModule();
 private:
 	HomeDirNotify notifier;
 };

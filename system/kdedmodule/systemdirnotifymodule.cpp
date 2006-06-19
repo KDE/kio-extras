@@ -22,16 +22,16 @@
 #include <klocale.h>
 #include <kglobal.h>
 
-SystemDirNotifyModule::SystemDirNotifyModule(const QString &obj)
-	: KDEDModule(obj)
+SystemDirNotifyModule::SystemDirNotifyModule()
+	: KDEDModule()
 {
 }
 
 extern "C" {
-	KDE_EXPORT KDEDModule *create_systemdirnotify(const QString &obj)
+	KDE_EXPORT KDEDModule *create_systemdirnotify()
 	{
 		KGlobal::locale()->insertCatalog("kio_system");
-		return new SystemDirNotifyModule(obj);
+		return new SystemDirNotifyModule();
 	}
 }
 

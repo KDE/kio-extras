@@ -34,7 +34,7 @@ class MediaManager : public KDEDModule
 {
 Q_OBJECT
 public:
-	MediaManager(const QString &obj);
+	MediaManager();
 	~MediaManager();
 
 public Q_SLOTS:

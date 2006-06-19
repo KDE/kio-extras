@@ -35,7 +35,7 @@ class MediaNotifier:  public KDEDModule
 	Q_OBJECT
 
 public:
-	MediaNotifier( const QString &name );
+	MediaNotifier();
 	virtual ~MediaNotifier();
 
 private Q_SLOTS:
