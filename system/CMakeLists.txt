@@ -35,7 +35,7 @@ if(KDE4_BUILD_TESTS)
 
 kde4_add_executable(testsystem ${testsystem_SRCS} ${libkiosystem_SRCS})
 
-target_link_libraries(testsystem  ${KDE4_KIO_LIBS} DCOP)
+target_link_libraries(testsystem  ${KDE4_KIO_LIBS} )
 
 endif(KDE4_BUILD_TESTS)
 
