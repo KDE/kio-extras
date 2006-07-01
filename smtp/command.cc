@@ -313,7 +313,7 @@ namespace KioSMTP {
       
       challenge = QByteArray::fromRawData( mOut, mOutlen ).toBase64();
       if ( !challenge.isEmpty() ) {
-        firstCommand += " ";
+        firstCommand += ' ';
         firstCommand += QString::fromLatin1( challenge.data(), challenge.size() );
       }
       cmd = firstCommand.toLatin1();

@@ -39,7 +39,7 @@ const Medium MountHelper::findMedium(const QString &name)
 
 	if ( !reply.isSuccess() )
 	{
-		m_errorStr = i18n("The KDE mediamanager is not running.")+"\n";
+		m_errorStr = i18n("The KDE mediamanager is not running.") + '\n';
 	}
 
 	return Medium::create(reply);

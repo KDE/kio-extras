@@ -737,7 +737,7 @@ static void add_links(char *c)
                 Q3CString file(g, h - g + 1);
                 file = file.trimmed();
                 for (int index = 0; includedirs[index]; index++) {
-                    Q3CString str = Q3CString(includedirs[index]) + "/" + file;
+                    Q3CString str = Q3CString(includedirs[index]) + '/' + file;
                     if (!access(str, R_OK)) {
                         dir = includedirs[index];
                         break;
@@ -837,7 +837,7 @@ static void add_links(char *c)
 		    *e='\0';
                     QByteArray str("<a href=\"man:");
                     str += h;
-                    str += "(";
+                    str += '(';
                     str += char( sec );
                     if ( !subsec.isEmpty() )
                         str += subsec.toLower();
@@ -1376,7 +1376,7 @@ static Q3CString scan_dollar_parameter(char*& c)
         for ( ; it != s_argumentList.end(); ++it )
         {
             if (space)
-                param += " ";
+                param += ' ';
             if (quote)
                 param += '\"'; // Not as HTML, as it could be used by macros !
             param += (*it);

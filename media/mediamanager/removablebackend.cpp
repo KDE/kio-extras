@@ -80,7 +80,7 @@ bool RemovableBackend::plug(const QString &devNode, const QString &label)
 		{
 			tmp = (*it).toLower();
 			tmp[0] = tmp[0].toUpper();
-			new_label+= " "+tmp;
+			new_label+= ' '+tmp;
 		}
 		
 		medium->setLabel(new_label);

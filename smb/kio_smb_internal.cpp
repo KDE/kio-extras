@@ -87,9 +87,9 @@ void SMBUrl::updateCache()
         if (KUrl::hasUser()) {
             surl += KUrl::encode_string(KUrl::user());
             if (KUrl::hasPass()) {
-                surl += ":" + KUrl::encode_string(KUrl::pass());
+                surl += ':' + KUrl::encode_string(KUrl::pass());
             }
-            surl += "@";
+            surl += '@';
         }
         surl += KUrl::encode_string(KUrl::host().toUpper());
         surl += KUrl::encode_string(KUrl::path());

@@ -77,7 +77,7 @@ QString MediaList::addMedium(Medium *medium, bool allowNotification)
 		return name;
 	}
 
-	QString base_name = name+"_";
+	QString base_name = name+'_';
 	int i = 1;
 
 	while ( m_nameMap.contains(base_name+QString::number(i)) )

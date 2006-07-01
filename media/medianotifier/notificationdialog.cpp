@@ -47,7 +47,7 @@ NotificationDialog::NotificationDialog( KFileItem medium, NotifierSettings *sett
 	m_view = new NotificationDialogView( this );
 	
 	m_view->iconLabel->setPixmap( m_medium.pixmap(64) );
-	m_view->mimetypeLabel->setText( i18n( "<b>Medium Type:</b>" ) + " "
+	m_view->mimetypeLabel->setText( i18n( "<b>Medium Type:</b>" ) + ' '
 	                              + m_medium.mimeTypePtr()->comment() );
 	
 	updateActionsListBox();

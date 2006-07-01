@@ -128,7 +128,7 @@ void HomeImpl::createHomeEntry(KIO::UDSEntry &entry,
 
 	if (!user.fullName().isEmpty())
 	{
-		full_name = user.fullName()+" ("+user.loginName()+")";
+		full_name = user.fullName()+" ("+user.loginName()+')';
 	}
 
 	full_name = KIO::encodeFileName( full_name );

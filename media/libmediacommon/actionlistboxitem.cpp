@@ -31,7 +31,7 @@ ActionListBoxItem::ActionListBoxItem(NotifierAction *action, QString mimetype, Q
 	
 	if ( m_action->autoMimetypes().contains( mimetype ) )
 	{
-		text += " (" + i18n( "Auto Action" ) + ")";
+		text += " (" + i18n( "Auto Action" ) + ')';
 	}
 	
 	setText( text );

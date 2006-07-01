@@ -97,15 +97,15 @@ void InfoProtocol::get( const KUrl& url )
     path = path.left(revindex);
 
     QString cmd = KProcess::quote(m_perl);
-    cmd += " ";
+    cmd += ' ';
     cmd += KProcess::quote(m_infoScript);
-    cmd += " ";
+    cmd += ' ';
     cmd += KProcess::quote(m_infoConf);
-    cmd += " ";
+    cmd += ' ';
     cmd += KProcess::quote(path);
-    cmd += " ";
+    cmd += ' ';
     cmd += KProcess::quote(m_page);
-    cmd += " ";
+    cmd += ' ';
     cmd += KProcess::quote(m_node);
 
     kDebug( 7108 ) << "cmd: " << cmd << endl;

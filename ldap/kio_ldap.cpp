@@ -482,7 +482,7 @@ void LDAPProtocol::LDAPEntry2UDSEntry( const QString &dn, UDSEntry &entry,
 
   // the url
   LDAPUrl url=usrc;
-  url.setPath("/"+dn);
+  url.setPath('/'+dn);
   url.setScope( dir ? LDAPUrl::One : LDAPUrl::Base );
   entry.insert( UDS_URL, url.prettyUrl() );
 }
@@ -582,7 +582,7 @@ void LDAPProtocol::fillAuthInfo( AuthInfo &info )
   info.url.setPort( mPort );
   info.url.setUser( mUser );
   info.caption = i18n("LDAP Login");
-  info.comment = QString::fromLatin1( mProtocol ) + "://" + mHost + ":" +
+  info.comment = QString::fromLatin1( mProtocol ) + "://" + mHost + ':' +
     QString::number( mPort );
   info.commentLabel = i18n("site:");
   info.username = mAuthSASL ? mUser : mBindName;

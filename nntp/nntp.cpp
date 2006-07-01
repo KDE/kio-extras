@@ -81,7 +81,7 @@ NNTPProtocol::~NNTPProtocol() {
 void NNTPProtocol::setHost ( const QString & host, int port, const QString & user,
                              const QString & pass )
 {
-  DBG << "setHost: " << ( ! user.isEmpty() ? (user+"@") : QString(""))
+  DBG << "setHost: " << ( ! user.isEmpty() ? (user+'@') : QString(""))
       << host << ":" << ( ( port == 0 ) ? m_iDefaultPort : port  ) << endl;
 
   if ( isConnectionValid() && (mHost != host || m_port.toInt() != port ||
@@ -616,7 +616,7 @@ bool NNTPProtocol::fetchGroupXOVER( unsigned long first, bool &notSupported )
         << "References:" << "Bytes:" << "Lines:";
   }
 
-  res = sendCommand( "XOVER " + QString::number( first ) + "-" );
+  res = sendCommand( "XOVER " + QString::number( first ) + '-' );
   if ( res == 420 )
     return true; // no articles selected
   if ( res == 500 )
@@ -665,7 +665,7 @@ bool NNTPProtocol::fetchGroupXOVER( unsigned long first, bool &notSupported )
         else
           atomStr = (*it2).trimmed();
       else
-        atomStr = (*it) + " " + (*it2).trimmed();
+        atomStr = (*it) + ' ' + (*it2).trimmed();
       entry.insert( udsType++, atomStr );
       if ( udsType >= UDS_EXTRA_END )
         break;

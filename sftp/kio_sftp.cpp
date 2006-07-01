@@ -524,7 +524,7 @@ void sftpProtocol::openConnection() {
     info.url.setPort(mPort);
     info.url.setUser(mUsername);
     info.caption = i18n("SFTP Login");
-    info.comment = "sftp://" + mHost + ":" + QString::number(mPort);
+    info.comment = "sftp://" + mHost + ':' + QString::number(mPort);
     info.commentLabel = i18n("site:");
     info.username = mUsername;
     info.keepPassword = true;

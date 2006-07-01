@@ -37,14 +37,14 @@ ManagerModule::ManagerModule( KInstance *inst, QWidget* parent )
 
 #ifndef COMPILE_HALBACKEND
 	QString hal_text = view->kcfg_HalBackendEnabled->text();
-	hal_text += " ("+i18n("No support for HAL on this system")+")";
+	hal_text += " ("+i18n("No support for HAL on this system")+')';
 	view->kcfg_HalBackendEnabled->setText( hal_text );
 	view->kcfg_HalBackendEnabled->setEnabled( false );
 #endif
 
 #ifndef COMPILE_LINUXCDPOLLING
 	QString poll_text = view->kcfg_CdPollingEnabled->text();
-	poll_text += " ("+i18n("No support for CD polling on this system")+")";
+	poll_text += " ("+i18n("No support for CD polling on this system")+')';
 	view->kcfg_CdPollingEnabled->setText( poll_text );
 	view->kcfg_CdPollingEnabled->setEnabled( false );
 #endif

@@ -423,7 +423,7 @@ void NFSProtocol::openConnection()
           * domainname
           */
          if(strcmp(nameBuffer,"(none)") != 0) {
-            hostName += ".";
+            hostName += '.';
             hostName += nameBuffer;
          }
       }
@@ -578,7 +578,7 @@ void NFSProtocol::listDir( const KUrl& _url)
 
       NFSFileHandle tmpFH;
       tmpFH=dirres.diropres_u.diropres.file.data;
-      m_handleCache.insert(path+"/"+(*it),tmpFH);
+      m_handleCache.insert(path+'/'+(*it),tmpFH);
 
       entry.clear();
 
@@ -1516,7 +1516,7 @@ bool NFSProtocol::isValidLink(const QString& parentDir, const QString& linkDest)
    else
    {
       kDebug(7121)<<"is a relative link"<<endl;
-      QString absDest=parentDir+"/"+linkDest;
+      QString absDest=parentDir+'/'+linkDest;
       kDebug(7121)<<"pointing abs to "<<absDest<<endl;
       absDest=removeFirstPart(absDest);
       kDebug(7121)<<"removed first part "<<absDest<<endl;
@@ -1526,7 +1526,7 @@ bool NFSProtocol::isValidLink(const QString& parentDir, const QString& linkDest)
          return false;
 
       kDebug(7121)<<"is inside the nfs tree"<<endl;
-      absDest=parentDir+"/"+linkDest;
+      absDest=parentDir+'/'+linkDest;
       absDest=QDir::cleanPath(absDest);
       kDebug(7121)<<"getting file handle of "<<absDest<<endl;
       NFSFileHandle fh=getFileHandle(absDest);

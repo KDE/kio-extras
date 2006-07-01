@@ -191,7 +191,7 @@ QMap<QString, QString> MANProtocol::buildIndexMap(const QString &section)
 	          it_name != names.end();
 	          it_name++ )
             {
-	        if (addWhatIs(i, (*it_dir) + "/" + (*it_name), mark))
+	        if (addWhatIs(i, (*it_dir) + '/' + (*it_name), mark))
 		    break;
 	    }
             if ( it_name == names.end() ) {
@@ -552,12 +552,12 @@ char *MANProtocol::readManPage(const char *_filename)
     {
         if (QDir::isRelativePath(filename)) {
             kDebug(7107) << "relative " << filename << endl;
-            filename = QDir::cleanPath(lastdir + "/" + filename).toUtf8();
+            filename = QDir::cleanPath(lastdir + '/' + filename).toUtf8();
             if (!KStandardDirs::exists(filename)) { // exists perhaps with suffix
                 lastdir = filename.left(filename.lastIndexOf('/'));
                 QDir mandir(lastdir);
                 mandir.setNameFilter(filename.mid(filename.lastIndexOf('/') + 1) + ".*");
-                filename = lastdir + "/" + QFile::encodeName(mandir.entryList().first());
+                filename = lastdir + '/' + QFile::encodeName(mandir.entryList().first());
             }
             kDebug(7107) << "resolved to " << filename << endl;
         }

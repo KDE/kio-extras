@@ -138,7 +138,7 @@ bool MediaNotifier::autostart( const KFileItem &medium )
 
 	for ( ; it!=end; ++it )
 	{
-		if ( QFile::exists( path + "/" + *it ) )
+		if ( QFile::exists( path + '/' + *it ) )
 		{
 			return execAutorun( medium, path, *it );
 		}
@@ -155,7 +155,7 @@ bool MediaNotifier::autostart( const KFileItem &medium )
 	
 	for ( ; it!=end; ++it )
 	{
-		if ( QFile::exists( path + "/" + *it ) )
+		if ( QFile::exists( path + '/' + *it ) )
 		{
 			return execAutoopen( medium, path, *it );
 		}
@@ -202,7 +202,7 @@ bool MediaNotifier::execAutoopen( const KFileItem &medium, const QString &path,
 {
 	// An Autoopen file MUST contain a single relative path that points
 	// to a non-executable file contained on the medium. [...]
-	QFile file( path+"/"+autoopenFile );
+	QFile file( path + '/' + autoopenFile );
 	file.open( QIODevice::ReadOnly );
 	QTextStream stream( &file );
 
@@ -218,7 +218,7 @@ bool MediaNotifier::execAutoopen( const KFileItem &medium, const QString &path,
 	// The desktop environment MUST verify that the relative path points
 	// to a file that is actually located on the medium [...]
 	QString resolved_path
-		= KStandardDirs::realFilePath( path+"/"+relative_path );
+		= KStandardDirs::realFilePath( path + '/' + relative_path );
 
 	if ( !resolved_path.startsWith( path ) )
 	{

@@ -518,7 +518,7 @@ int POP3Protocol::loginSASL( KIO::AuthInfo &ai )
     QString firstCommand = "AUTH " + QString::fromLatin1( mechusing );
     msg = QByteArray::fromRawData( out, outlen ).toBase64();
     if ( !msg.isEmpty() ) {
-      firstCommand += " ";
+      firstCommand += ' ';
       firstCommand += QString::fromLatin1( msg.data(), msg.size() );
     }
 
@@ -804,7 +804,7 @@ void POP3Protocol::special(const QByteArray & aData)
       myReadLine(buf, MAX_PACKET_LEN - 1);
       if (qstrcmp(buf, ".\r\n") == 0)
         break;
-      result += " " + QString(buf).left(strlen(buf) - 2)
+      result += ' ' + QString(buf).left(strlen(buf) - 2)
           .replace(" ", "-");
     }
   }

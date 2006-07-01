@@ -84,7 +84,7 @@ void CgiProtocol::get( const KUrl& url )
   for( it = mCgiPaths.begin(); it != mCgiPaths.end(); ++it ) {
     cmd = *it;
     if ( !(*it).endsWith("/") )
-        cmd += "/";
+        cmd += '/';
     cmd += file;
     if ( KStandardDirs::exists( cmd ) ) {
       forwardFile = false;

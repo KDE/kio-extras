@@ -185,7 +185,7 @@ KUrl SMBSlave::checkURL(const KUrl& kurl) const
     // we must redirect ourself to remove the username and password
     if (surl.contains('@') && !surl.contains("smb://")) {
         KUrl url(kurl);
-        url.setPath("/"+kurl.url().right( kurl.url().length()-kurl.url().indexOf('@') -1));
+        url.setPath('/'+kurl.url().right( kurl.url().length()-kurl.url().indexOf('@') -1));
         QString userinfo = kurl.url().mid(5, kurl.url().indexOf('@')-5);
         if(userinfo.contains(':'))  {
             url.setUser(userinfo.left(userinfo.indexOf(':')));
@@ -325,7 +325,7 @@ void SMBSlave::listDir( const KUrl& kurl )
                udsName = dirpName.toLower();
                udsName[0] = dirpName.at( 0 ).toUpper();
                if ( !comment.isEmpty() && dirp->smbc_type == SMBC_SERVER )
-                   udsName += " (" + comment + ")";
+                   udsName += " (" + comment + ')';
            } else
                udsName = dirpName;
 

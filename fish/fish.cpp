@@ -569,7 +569,7 @@ int fishProtocol::establishConnection(char *buffer, int len) {
                 return -1;
             } else if (!connectionPassword.isEmpty()) {
                 myDebug( << "sending cpass" << endl);
-                connectionAuth.password = connectionPassword+"\n";
+                connectionAuth.password = connectionPassword+'\n';
                 connectionPassword.clear();
                 // su does not like receiving a password directly after sending
                 // the password prompt so we wait a while.
@@ -592,7 +592,7 @@ int fishProtocol::establishConnection(char *buffer, int len) {
                     }
                 }
                 firstLogin = false;
-                connectionAuth.password += "\n";
+                connectionAuth.password += '\n';
                 if (connectionAuth.username != connectionUser) {
                     KUrl dest = url;
                     dest.setUser(connectionAuth.username);
@@ -717,7 +717,7 @@ bool fishProtocol::sendCommand(fish_command_type cmd, ...) {
         }
         //myDebug( << "arg " << i << ": " << arg << endl);
         realCmd.append(" ").append(arg);
-        realAlt.replace(QRegExp("%"+QString::number(i+1)),arg);
+        realAlt.replace(QRegExp('%'+QString::number(i+1)),arg);
     }
     QString s("#");
     s.append(realCmd).append("\n ").append(realAlt).append(" 2>&1;echo '### 000'\n");

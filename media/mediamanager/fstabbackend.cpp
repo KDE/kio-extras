@@ -162,7 +162,7 @@ void FstabBackend::handleMtabChange(bool allowNotification)
 		/* Did we know this already before ? If yes, then
 		   nothing has changed, do not stat the mount point. Avoids
 		   hang if network shares are stalling */
-		QString mtabEntry = dev + "*" + mp + "*" + fs;
+		QString mtabEntry = dev + '*' + mp + '*' + fs;
 		if(m_mtabEntries.contains(mtabEntry)) {
 		        new_mtabIds += m_mtabEntries[mtabEntry];
 			continue;
@@ -214,7 +214,7 @@ void FstabBackend::handleMtabChange(bool allowNotification)
 			QString fs = medium->fsType();
 
 
-			QString mtabEntry = dev + "*" + mp + "*" + fs;
+			QString mtabEntry = dev + '*' + mp + '*' + fs;
 			m_mtabEntries.remove(mtabEntry);
 
 			QString mime, icon, label;
@@ -441,7 +441,7 @@ void FstabBackend::guess(const QString &devNode, const QString &mountPoint,
 
 	if ( mimeType=="media/nfs" || mimeType=="media/smb" )
 	{
-		label+= " (" + devNode + ")";
+		label+= " (" + devNode + ')';
 	}
 	else
 	{
@@ -450,7 +450,7 @@ void FstabBackend::guess(const QString &devNode, const QString &mountPoint,
 		{
 			tmp = tmp.mid(5);
 		}
-		label+= " (" + tmp + ")";
+		label+= " (" + tmp + ')';
 	}
 	mimeType+= (mounted ? "_mounted" : "_unmounted");
 	iconName.clear();

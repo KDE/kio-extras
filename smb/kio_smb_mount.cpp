@@ -74,7 +74,7 @@ void SMBSlave::special( const QByteArray & data)
 
          SMBUrl smburl(KUrl("smb:///"));
          smburl.setHost(host);
-         smburl.setPath("/" + share);
+         smburl.setPath('/' + share);
 
          if ( !checkPassword(smburl) )
          {
@@ -133,7 +133,7 @@ void SMBSlave::special( const QByteArray & data)
          {
            error( KIO::ERR_COULD_NOT_MOUNT,
                i18n("Mounting of share \"%1\" from host \"%2\" by user \"%3\" failed.\n%4",
-                share, host, user, mybuf + "\n" + mystderr));
+                share, host, user, mybuf + '\n' + mystderr));
            return;
          }
 
@@ -174,7 +174,7 @@ void SMBSlave::special( const QByteArray & data)
          {
            error(KIO::ERR_COULD_NOT_UNMOUNT,
                i18n("Unmounting of mountpoint \"%1\" failed.\n%2",
-                mountPoint, mybuf + "\n" + mystderr));
+                mountPoint, mybuf + '\n' + mystderr));
            return;
          }
 

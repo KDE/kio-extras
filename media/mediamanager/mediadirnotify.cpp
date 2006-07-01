@@ -58,7 +58,7 @@ KUrl::List MediaDirNotify::toMediaURL(const KUrl &url)
 			QString path = KUrl::relativePath(base.path(),
 			                                  url.path());
 
-			KUrl new_url("media:/"+m->name()+"/"+path );
+			KUrl new_url("media:/"+m->name()+'/'+path );
 			new_url.cleanPath();
 		
 			result.append(new_url);

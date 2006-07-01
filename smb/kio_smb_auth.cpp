@@ -79,7 +79,7 @@ void SMBSlave::auth_smbc_get_data(const char *server,const char *share,
     KIO::AuthInfo info;
     info.url = KUrl("smb:///");
     info.url.setHost(s_server);
-    info.url.setPath("/" + s_share);
+    info.url.setPath('/' + s_share);
 
     info.username = s_username;
     info.password = s_password;
@@ -123,7 +123,7 @@ bool SMBSlave::checkPassword(SMBUrl &url)
         share = share.left(index);
     if (share.at(0) == '/')
         share = share.mid(1);
-    info.url.setPath("/" + share);
+    info.url.setPath('/' + share);
     info.verifyPath = true;
 
     if ( share.isEmpty() )

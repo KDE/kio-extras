@@ -76,9 +76,9 @@ void getDriveAndPath(const QString& path, QString& drive, QString& rest)
    for (QStringList::Iterator it=list.begin(); it!=list.end(); it++)
    {
       if (it==list.begin())
-         drive=(*it)+":";
+         drive=(*it)+':';
       else
-         rest=rest+"/"+(*it);
+         rest=rest+'/'+(*it);
    }
 }
 
@@ -398,7 +398,7 @@ StatInfo FloppyProtocol::createStatInfo(const QString line, bool makeStat, const
          QString ext=line.mid(9,3);
          ext=ext.trimmed();
          if (!ext.isEmpty())
-            name+="."+ext;
+            name+='.'+ext;
       }
       kDebug(7101)<<"Floppy::createStatInfo() name 8.3= -"<<name<<"-"<<endl;
    }

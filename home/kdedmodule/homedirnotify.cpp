@@ -92,7 +92,7 @@ KUrl HomeDirNotify::toHomeURL(const KUrl &url)
 		{
 			QString path = KUrl::relativePath(base.path(),
 			                                  url.path());
-			KUrl result("home:/"+name+"/"+path);
+			KUrl result("home:/"+name+'/'+path);
 			result.cleanPath();
 			kDebug() << "result => " << result << endl;
 			return result;
