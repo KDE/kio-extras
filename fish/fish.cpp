@@ -749,7 +749,7 @@ int fishProtocol::handleResponse(const QString &str){
 
 int fishProtocol::makeTimeFromLs(const QString &monthStr, const QString &dayStr, const QString &timeyearStr)
 {
-    QDateTime dt(QDate::currentDate(Qt::UTC));
+    QDateTime dt(QDateTime::currentDateTime().toUTC());
     int year = dt.date().year();
     int month = dt.date().month();
     int currentMonth = month;
