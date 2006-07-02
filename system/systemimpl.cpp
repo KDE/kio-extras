@@ -260,7 +260,7 @@ void SystemImpl::slotEntries(KIO::Job *job, const KIO::UDSEntryList &list)
 {
 	if (list.size()>0)
 	{
-		job->kill(true);
+		job->kill(KJob::Quietly);
 		m_lastListingEmpty = false;
 		emit leaveModality();
 	}

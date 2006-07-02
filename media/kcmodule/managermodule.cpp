@@ -23,7 +23,7 @@
 
 #include <klocale.h>
 #include <QCheckBox>
-#include <dbus/qdbus.h>
+#include <QtDBus/QtDBus>
 
 #include "managermoduleview.h"
 #include "mediamanagersettings.h"
@@ -56,7 +56,7 @@ void ManagerModule::save()
 {
 	KCModule::save();
 
-	QDBusInterfacePtr mediamanager( "org.kde.kded", "/modules/mediamanager", "org.kde.MediaManager" );
-	mediamanager->call( "reloadBackends" );
+	QDBusInterface mediamanager( "org.kde.kded", "/modules/mediamanager", "org.kde.MediaManager" );
+	mediamanager.call( "reloadBackends" );
 }
 

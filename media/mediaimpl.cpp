@@ -28,7 +28,7 @@
 #include <kapplication.h>
 #include <QEventLoop>
 
-#include <dbus/qdbus.h>
+#include <QtDBus/QtDBus>
 #include "mediamanageriface.h"
 
 #include <sys/stat.h>
@@ -36,7 +36,7 @@
 #include "medium.h"
 
 MediaImpl::MediaImpl() : QObject(), mp_mounting(0L),
-			 m_mediamanager(QDBus::sessionBus().findInterface<org::kde::MediaManager>("org.kde.kded", "/modules/mediamanager"))
+			 m_mediamanager( new OrgKdeMediaManagerInterface("org.kde.kded", "/modules/mediamanager", QDBus::sessionBus() ) )
 {
 	m_mediamanager->setParent(this);
 }
@@ -81,7 +81,7 @@ bool MediaImpl::statMedium(const QString &name, KIO::UDSEntry &entry)
 
 	QDBusReply<QStringList> reply = m_mediamanager->properties( name );
 
-	if ( !reply.isSuccess() )
+	if ( !reply.isValid() )
 	{
 		m_lastErrorCode = KIO::ERR_SLAVE_DEFINED;
 		m_lastErrorMessage = i18n("The KDE mediamanager is not running.");
@@ -107,7 +107,7 @@ bool MediaImpl::statMediumByLabel(const QString &label, KIO::UDSEntry &entry)
 
 	QDBusReply<QString> reply = m_mediamanager->nameForLabel( label );
 
-	if ( !reply.isSuccess() )
+	if ( !reply.isValid() )
 	{
 		m_lastErrorCode = KIO::ERR_SLAVE_DEFINED;
 		m_lastErrorMessage = i18n("The KDE mediamanager is not running.");
@@ -132,7 +132,7 @@ bool MediaImpl::listMedia(KIO::UDSEntryList& list)
 
 	QDBusReply<QStringList> reply = m_mediamanager->fullList();
 
-	if ( !reply.isSuccess() )
+	if ( !reply.isValid() )
 	{
 		m_lastErrorCode = KIO::ERR_SLAVE_DEFINED;
 		m_lastErrorMessage = i18n("The KDE mediamanager is not running.");
@@ -164,7 +164,7 @@ bool MediaImpl::setUserLabel(const QString &name, const QString &label)
 
 	QDBusReply<QString> reply = m_mediamanager->nameForLabel( label );
 
-	if ( !reply.isSuccess() )
+	if ( !reply.isValid() )
 	{
 		m_lastErrorCode = KIO::ERR_SLAVE_DEFINED;
 		m_lastErrorMessage = i18n("The KDE mediamanager is not running.");
@@ -190,7 +190,7 @@ const Medium MediaImpl::findMediumByName(const QString &name, bool &ok)
 {
 	QDBusReply<QStringList> reply = m_mediamanager->properties( name );
 
-	if ( reply.isSuccess() )
+	if ( reply.isValid() )
 	{
 		ok = true;
 	}

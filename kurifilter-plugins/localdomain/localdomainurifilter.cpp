@@ -26,7 +26,7 @@
 #include <kstandarddirs.h>
 #include <kdebug.h>
 
-#include <dbus/qdbus.h>
+#include <QtDBus/QtDBus>
 
 #include <QRegExp>
 #include <QFile>

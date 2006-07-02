@@ -44,7 +44,7 @@ SearchProviderDialog::SearchProviderDialog(SearchProvider *provider,
     m_dlg = new SearchProviderDlgUI (this);
     setMainWidget(m_dlg);
 
-    enableButtonSeparator(true);
+    showButtonSeparator(true);
 
     m_dlg->leQuery->setMinimumWidth(kapp->fontMetrics().maxWidth() * 40);
 

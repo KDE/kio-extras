@@ -30,7 +30,7 @@
 #include "kuriikwsfiltereng.h"
 #include "kuriikwsfilter.h"
 
-#include <dbus/qdbus.h>
+#include <QtDBus/QtDBus>
 
 /**
  * IMPORTANT: If you change anything here, please run the regression test

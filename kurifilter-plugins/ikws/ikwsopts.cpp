@@ -25,7 +25,7 @@
 //Added by qt3to4:
 #include <QVBoxLayout>
 
-#include <dbus/qdbus.h>
+#include <QtDBus/QtDBus>
 
 #include <kdebug.h>
 

@@ -11,7 +11,7 @@
 #define MEDIAMANAGERADAPTOR_H_89541149448352
 
 #include <QtCore/QObject>
-#include <dbus/qdbus.h>
+#include <QtDBus/QtDBus>
 class QByteArray;
 template<class T> class QList;
 template<class Key, class Value> class QMap;
@@ -83,11 +83,11 @@ public Q_SLOTS: // METHODS
     QStringList fullList();
     QString nameForLabel(const QString &label);
     QStringList properties(const QString &name);
-    Q_ASYNC void reloadBackends();
+    Q_NOREPLY void reloadBackends();
     bool removableCamera(const QString &devNode);
     bool removablePlug(const QString &devNode, const QString &label);
     bool removableUnplug(const QString &devNode);
-    Q_ASYNC void setUserLabel(const QString &name, const QString &label);
+    Q_NOREPLY void setUserLabel(const QString &name, const QString &label);
 Q_SIGNALS: // SIGNALS
     void mediumAdded(const QString &name, bool allowNotification);
     void mediumChanged(const QString &name, bool allowNotification);

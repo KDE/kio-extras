@@ -41,7 +41,7 @@ NotificationDialog::NotificationDialog( KFileItem medium, NotifierSettings *sett
   setModal( false );
   setButtons( Ok|Cancel|User1 );
   setDefaultButton( Ok );
-  enableButtonSeparator( true );
+  showButtonSeparator( true );
 	//clearWState(  WState_Polished );
 
 	m_view = new NotificationDialogView( this );

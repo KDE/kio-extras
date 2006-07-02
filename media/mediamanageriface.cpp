@@ -13,8 +13,8 @@
  * Implementation of interface class OrgKdeMediaManagerInterface
  */
 
-OrgKdeMediaManagerInterface::OrgKdeMediaManagerInterface(QDBusAbstractInterfacePrivate *p)
-    : QDBusAbstractInterface(p)
+OrgKdeMediaManagerInterface::OrgKdeMediaManagerInterface(const QString &service, const QString &path, const QDBusConnection &connection, QObject *parent)
+    : QDBusAbstractInterface(service, path, staticInterfaceName(), connection, parent)
 {
 }
 

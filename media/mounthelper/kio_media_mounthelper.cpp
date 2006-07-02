@@ -28,16 +28,16 @@
 #include <kdebug.h>
 #include <kglobal.h>
 #include <kprocess.h>
-#include <dbus/qdbus.h>
+#include <QtDBus/QtDBus>
 
 #include "kio_media_mounthelper.h"
 
 const Medium MountHelper::findMedium(const QString &name)
 {
-	QDBusInterfacePtr mediamanager("org.kde.kded", "/modules/mediamanager", "org.kde.MediaManager");
-	QDBusReply<QStringList> reply = mediamanager->call( "properties", name );
+	QDBusInterface mediamanager("org.kde.kded", "/modules/mediamanager", "org.kde.MediaManager");
+	QDBusReply<QStringList> reply = mediamanager.call( "properties", name );
 
-	if ( !reply.isSuccess() )
+	if ( !reply.isValid() )
 	{
 		m_errorStr = i18n("The KDE mediamanager is not running.") + '\n';
 	}

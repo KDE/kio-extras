@@ -44,7 +44,7 @@ ServiceConfigDialog::ServiceConfigDialog(NotifierServiceAction *action,
   setCaption( i18n("Edit Service") );
   setButtons( Ok|Cancel );
   setDefaultButton( Ok );
-  enableButtonSeparator( true );
+  showButtonSeparator( true );
 
 	m_view = new ServiceView(this);
 	

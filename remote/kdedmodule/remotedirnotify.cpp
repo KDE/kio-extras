@@ -25,7 +25,7 @@
 #include <kdesktopfile.h>
 #include <kdirnotify.h>
 
-#include <dbus/qdbus.h>
+#include <QtDBus/QtDBus>
 #include <QDir>
 
 RemoteDirNotify::RemoteDirNotify()

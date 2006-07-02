@@ -30,7 +30,7 @@
 #include <QRegExp>
 #include <QList>
 
-#include <dbus/qdbus.h>
+#include <QtDBus/QtDBus>
 
 #include <kdebug.h>
 #include <kprotocolinfo.h>
