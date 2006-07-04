@@ -19,7 +19,7 @@ kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kio_remote )
 
 target_link_libraries(kio_remote  ${KDE4_KIO_LIBS})
 
-install_targets(${PLUGIN_INSTALL_DIR} kio_remote )
+install(TARGETS kio_remote  DESTINATION ${PLUGIN_INSTALL_DIR} )
 
 
 ########### next target ###############
@@ -38,7 +38,7 @@ endif(KDE4_BUILD_TESTS)
 
 ########### install files ###############
 
-install_files( ${SERVICES_INSTALL_DIR} FILES remote.protocol )
+install( FILES remote.protocol  DESTINATION  ${SERVICES_INSTALL_DIR} )
 
 
 

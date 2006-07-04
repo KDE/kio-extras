@@ -43,7 +43,7 @@ kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kio_man )
 
 target_link_libraries(kio_man  ${KDE4_KDE3SUPPORT_LIBS})
 
-install_targets(${PLUGIN_INSTALL_DIR} kio_man )
+install(TARGETS kio_man  DESTINATION ${PLUGIN_INSTALL_DIR} )
 
 
 ########### next target ###############
@@ -58,13 +58,13 @@ kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kmanpart )
 
 target_link_libraries(kmanpart  ${KDE4_KPARTS_LIBS} khtml )
 
-install_targets(${PLUGIN_INSTALL_DIR} kmanpart )
+install(TARGETS kmanpart  DESTINATION ${PLUGIN_INSTALL_DIR} )
 
 
 ########### install files ###############
 
-install_files( ${DATA_INSTALL_DIR}/kio_man FILES kio_man.css )
-install_files( ${SERVICES_INSTALL_DIR} FILES man.protocol kmanpart.desktop )
+install( FILES kio_man.css  DESTINATION  ${DATA_INSTALL_DIR}/kio_man )
+install( FILES man.protocol kmanpart.desktop  DESTINATION  ${SERVICES_INSTALL_DIR} )
 
 
 

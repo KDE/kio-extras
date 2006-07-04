@@ -1404,7 +1404,7 @@ void MANProtocol::showIndex(const QString& section)
     indexLine.append("</div>");
 
     for (int i=0; i<listlen; i++) {
-	::free(indexlist[i]->manpath);   // alKStandardDirs::located by strdup
+	::free(indexlist[i]->manpath);   // allocated by strdup
 	delete indexlist[i];
     }
 

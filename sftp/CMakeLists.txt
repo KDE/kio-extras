@@ -34,9 +34,9 @@ kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kio_sftp )
 
 target_link_libraries(kio_sftp  ${KDE4_KDE3SUPPORT_LIBS} ${KDE4_KDESU_LIBS} )
 
-install_targets(${PLUGIN_INSTALL_DIR} kio_sftp )
+install(TARGETS kio_sftp  DESTINATION ${PLUGIN_INSTALL_DIR} )
 
-install_files( ${SERVICES_INSTALL_DIR} FILES sftp.protocol )
+install( FILES sftp.protocol  DESTINATION  ${SERVICES_INSTALL_DIR} )
 
 #original Makefile.am contents follow:
 

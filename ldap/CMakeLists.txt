@@ -15,12 +15,12 @@ kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kio_ldap )
 
 target_link_libraries(kio_ldap  ${KDE4_KIO_LIBS} kabc ${LDAP_LIBRARIES} ${LBER_LIBRARIES} )
 
-install_targets(${PLUGIN_INSTALL_DIR} kio_ldap )
+install(TARGETS kio_ldap  DESTINATION ${PLUGIN_INSTALL_DIR} )
 
 
 ########### install files ###############
 
-install_files( ${SERVICES_INSTALL_DIR} FILES ldap.protocol ldaps.protocol )
+install( FILES ldap.protocol ldaps.protocol  DESTINATION  ${SERVICES_INSTALL_DIR} )
 
 
 

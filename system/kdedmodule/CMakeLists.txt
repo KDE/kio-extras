@@ -13,12 +13,12 @@ kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kded_systemdirnotify )
 
 target_link_libraries(kded_systemdirnotify  ${KDE4_KIO_LIBS})
 
-install_targets(${PLUGIN_INSTALL_DIR} kded_systemdirnotify )
+install(TARGETS kded_systemdirnotify  DESTINATION ${PLUGIN_INSTALL_DIR} )
 
 
 ########### install files ###############
 
-install_files( ${SERVICES_INSTALL_DIR}/kded FILES systemdirnotify.desktop )
+install( FILES systemdirnotify.desktop  DESTINATION  ${SERVICES_INSTALL_DIR}/kded )
 
 
 

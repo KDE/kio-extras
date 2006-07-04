@@ -3,7 +3,7 @@
 
 ########### install files ###############
 
-install_files( ${MIME_INSTALL_DIR}/inode FILES system_directory.desktop )
+install( FILES system_directory.desktop  DESTINATION  ${MIME_INSTALL_DIR}/inode )
 
 
 

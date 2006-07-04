@@ -38,7 +38,7 @@ kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kio_smtp )
 
 target_link_libraries(kio_smtp  ${KDE4_KIO_LIBS} ${smtp_optional_libs})
 
-install_targets(${PLUGIN_INSTALL_DIR} kio_smtp )
+install(TARGETS kio_smtp  DESTINATION ${PLUGIN_INSTALL_DIR} )
 
 ########### next target ###############
 
@@ -98,7 +98,7 @@ endif(KDE4_BUILD_TESTS)
 
 ########### install files ###############
 
-install_files( ${SERVICES_INSTALL_DIR} FILES smtp.protocol smtps.protocol )
+install( FILES smtp.protocol smtps.protocol  DESTINATION  ${SERVICES_INSTALL_DIR} )
 
 
 

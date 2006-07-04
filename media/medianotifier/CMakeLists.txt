@@ -17,12 +17,12 @@ kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kded_medianotifier )
 
 target_link_libraries(kded_medianotifier  ${KDE4_KIO_LIBS}  )
 
-install_targets(${PLUGIN_INSTALL_DIR} kded_medianotifier )
+install(TARGETS kded_medianotifier  DESTINATION ${PLUGIN_INSTALL_DIR} )
 
 
 ########### install files ###############
 
-install_files( ${SERVICES_INSTALL_DIR}/kded FILES medianotifier.desktop )
+install( FILES medianotifier.desktop  DESTINATION  ${SERVICES_INSTALL_DIR}/kded )
 
 
 

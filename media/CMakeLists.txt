@@ -40,7 +40,7 @@ kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kio_media )
 
 target_link_libraries(kio_media ${KDE4_KIO_LIBS} )
 
-install_targets(${PLUGIN_INSTALL_DIR} kio_media )
+install(TARGETS kio_media  DESTINATION ${PLUGIN_INSTALL_DIR} )
 
 
 ########### next target ###############
@@ -62,7 +62,7 @@ endif(KDE4_BUILD_TESTS)
 
 ########### install files ###############
 
-install_files( ${SERVICES_INSTALL_DIR} FILES media.protocol )
+install( FILES media.protocol  DESTINATION  ${SERVICES_INSTALL_DIR} )
 
 
 

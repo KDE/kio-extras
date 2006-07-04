@@ -15,12 +15,12 @@ kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kio_nfs )
 
 target_link_libraries(kio_nfs  ${KDE4_KDE3SUPPORT_LIBS})
 
-install_targets(${PLUGIN_INSTALL_DIR} kio_nfs )
+install(TARGETS kio_nfs  DESTINATION ${PLUGIN_INSTALL_DIR} )
 
 
 ########### install files ###############
 
-install_files( ${SERVICES_INSTALL_DIR} FILES nfs.protocol )
+install( FILES nfs.protocol  DESTINATION  ${SERVICES_INSTALL_DIR} )
 
 
 

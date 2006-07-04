@@ -19,7 +19,7 @@ kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kio_home )
 
 target_link_libraries(kio_home  ${KDE4_KIO_LIBS})
 
-install_targets(${PLUGIN_INSTALL_DIR} kio_home )
+install(TARGETS kio_home  DESTINATION ${PLUGIN_INSTALL_DIR} )
 
 
 ########### next target ###############
@@ -41,7 +41,7 @@ endif(KDE4_BUILD_TESTS)
 
 ########### install files ###############
 
-install_files( ${SERVICES_INSTALL_DIR} FILES home.protocol )
+install( FILES home.protocol  DESTINATION  ${SERVICES_INSTALL_DIR} )
 
 
 

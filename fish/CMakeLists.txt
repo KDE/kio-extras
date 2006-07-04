@@ -31,12 +31,12 @@ if (MD5SUM_EXECUTABLE)
    
    target_link_libraries(kio_fish ${KDE4_KIO_LIBS})
    
-   install_targets(${PLUGIN_INSTALL_DIR} kio_fish )
+install(TARGETS kio_fish  DESTINATION ${PLUGIN_INSTALL_DIR} )
    
    
    ########### install files ###############
    
-   install_files( ${SERVICES_INSTALL_DIR} FILES fish.protocol )
+install( FILES fish.protocol  DESTINATION  ${SERVICES_INSTALL_DIR} )
    
 
 endif (MD5SUM_EXECUTABLE)

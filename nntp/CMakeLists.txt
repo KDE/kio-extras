@@ -15,12 +15,12 @@ kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kio_nntp )
 
 target_link_libraries(kio_nntp  ${KDE4_KIO_LIBS}  )
 
-install_targets(${PLUGIN_INSTALL_DIR} kio_nntp )
+install(TARGETS kio_nntp  DESTINATION ${PLUGIN_INSTALL_DIR} )
 
 
 ########### install files ###############
 
-install_files( ${SERVICES_INSTALL_DIR} FILES nntp.protocol nntps.protocol )
+install( FILES nntp.protocol nntps.protocol  DESTINATION  ${SERVICES_INSTALL_DIR} )
 
 
 

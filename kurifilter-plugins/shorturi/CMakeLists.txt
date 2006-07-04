@@ -13,13 +13,13 @@ kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kshorturifilter )
 
 target_link_libraries(kshorturifilter  ${KDE4_KDEUI_LIBS} kio ${QT_QT3SUPPORT_LIBRARY})
 
-install_targets(${PLUGIN_INSTALL_DIR} kshorturifilter )
+install(TARGETS kshorturifilter  DESTINATION ${PLUGIN_INSTALL_DIR} )
 
 
 ########### install files ###############
 
-install_files( ${SERVICES_INSTALL_DIR} FILES kshorturifilter.desktop )
-install_files( ${CONFIG_INSTALL_DIR} FILES kshorturifilterrc )
+install( FILES kshorturifilter.desktop  DESTINATION  ${SERVICES_INSTALL_DIR} )
+install( FILES kshorturifilterrc  DESTINATION  ${CONFIG_INSTALL_DIR} )
 
 
 

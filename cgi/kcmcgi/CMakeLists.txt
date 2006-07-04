@@ -13,12 +13,12 @@ kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kcm_cgi )
 
 target_link_libraries(kcm_cgi  ${KDE4_KIO_LIBS} ${QT_QTGUI_LIBRARY} ${QT_QT3SUPPORT_LIBRARY})
 
-install_targets(${PLUGIN_INSTALL_DIR} kcm_cgi )
+install(TARGETS kcm_cgi  DESTINATION ${PLUGIN_INSTALL_DIR} )
 
 
 ########### install files ###############
 
-install_files( ${XDG_APPS_DIR} FILES kcmcgi.desktop )
+install( FILES kcmcgi.desktop  DESTINATION  ${XDG_APPS_DIR} )
 
 
 

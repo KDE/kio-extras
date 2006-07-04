@@ -13,7 +13,7 @@ kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} localdomainurifilter )
 
 target_link_libraries(localdomainurifilter  ${KDE4_KIO_LIBS} kdeui ${QT_QT3SUPPORT_LIBRARY})
 
-install_targets(${PLUGIN_INSTALL_DIR} localdomainurifilter )
+install(TARGETS localdomainurifilter  DESTINATION ${PLUGIN_INSTALL_DIR} )
 
 
 ########### next target ###############
@@ -31,7 +31,7 @@ install(TARGETS klocaldomainurifilterhelper DESTINATION bin)
 
 ########### install files ###############
 
-install_files( ${SERVICES_INSTALL_DIR} FILES localdomainurifilter.desktop )
+install( FILES localdomainurifilter.desktop  DESTINATION  ${SERVICES_INSTALL_DIR} )
 
 
 

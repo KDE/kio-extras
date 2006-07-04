@@ -15,13 +15,13 @@ kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kio_info )
 
 target_link_libraries(kio_info  ${KDE4_KIO_LIBS} )
 
-install_targets(${PLUGIN_INSTALL_DIR} kio_info )
+install(TARGETS kio_info  DESTINATION ${PLUGIN_INSTALL_DIR} )
 
 
 ########### install files ###############
 
-install_files( ${DATA_INSTALL_DIR}/kio_info FILES kde-info2html.conf kde-info2html )
-install_files( ${SERVICES_INSTALL_DIR} FILES info.protocol )
+install( FILES kde-info2html.conf kde-info2html  DESTINATION  ${DATA_INSTALL_DIR}/kio_info )
+install( FILES info.protocol  DESTINATION  ${SERVICES_INSTALL_DIR} )
 
 
 

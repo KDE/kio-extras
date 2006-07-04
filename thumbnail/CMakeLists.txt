@@ -16,7 +16,7 @@ kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kio_thumbnail )
 
 target_link_libraries(kio_thumbnail  ${KDE4_KDE3SUPPORT_LIBS}  kdefx)
 
-install_targets(${PLUGIN_INSTALL_DIR} kio_thumbnail )
+install(TARGETS kio_thumbnail  DESTINATION ${PLUGIN_INSTALL_DIR} )
 
 
 ########### next target ###############
@@ -31,7 +31,7 @@ kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} imagethumbnail )
 
 target_link_libraries(imagethumbnail  ${KDE4_KDE3SUPPORT_LIBS})
 
-install_targets(${PLUGIN_INSTALL_DIR} imagethumbnail )
+install(TARGETS imagethumbnail  DESTINATION ${PLUGIN_INSTALL_DIR} )
 
 
 ########### next target ###############
@@ -46,7 +46,7 @@ kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} textthumbnail )
 
 target_link_libraries(textthumbnail  ${KDE4_KDECORE_LIBS} kdefx ${QT_QTGUI_LIBRARY} )
 
-install_targets(${PLUGIN_INSTALL_DIR} textthumbnail )
+install(TARGETS textthumbnail  DESTINATION ${PLUGIN_INSTALL_DIR} )
 
 
 ########### next target ###############
@@ -61,7 +61,7 @@ kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} htmlthumbnail )
 
 target_link_libraries(htmlthumbnail  ${KDE4_KDECORE_LIBS} khtml ${QT_QTGUI_LIBRARY})
 
-install_targets(${PLUGIN_INSTALL_DIR} htmlthumbnail )
+install(TARGETS htmlthumbnail  DESTINATION ${PLUGIN_INSTALL_DIR} )
 
 
 ########### next target ###############
@@ -76,7 +76,7 @@ kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} djvuthumbnail )
 
 target_link_libraries(djvuthumbnail  ${KDE4_KDE3SUPPORT_LIBS})
 
-install_targets(${PLUGIN_INSTALL_DIR} djvuthumbnail )
+install(TARGETS djvuthumbnail  DESTINATION ${PLUGIN_INSTALL_DIR} )
 
 
 ########### next target ###############
@@ -95,8 +95,8 @@ if(OPENEXR_FOUND)
 
    target_link_libraries(exrthumbnail  ${KDE4_KDE3SUPPORT_LIBS} ${OPENEXR_LIBRARIES})
 
-   install_targets(${PLUGIN_INSTALL_DIR} exrthumbnail )
-   install_files( ${SERVICES_INSTALL_DIR} FILES exrthumbnail.desktop )
+install(TARGETS exrthumbnail  DESTINATION ${PLUGIN_INSTALL_DIR} )
+install( FILES exrthumbnail.desktop  DESTINATION  ${SERVICES_INSTALL_DIR} )
 
 endif(OPENEXR_FOUND)
 
@@ -114,17 +114,17 @@ if(X11_Xcursor_FOUND)
 
    target_link_libraries(cursorthumbnail  ${KDE4_KDE3SUPPORT_LIBS} ${X11_Xcursor_LIB})
 
-   install_targets(${PLUGIN_INSTALL_DIR} cursorthumbnail )
-   install_files( ${SERVICES_INSTALL_DIR} FILES cursorthumbnail.desktop )
+install(TARGETS cursorthumbnail  DESTINATION ${PLUGIN_INSTALL_DIR} )
+install( FILES cursorthumbnail.desktop  DESTINATION  ${SERVICES_INSTALL_DIR} )
 
 endif(X11_Xcursor_FOUND)
 
 
 ########### install files ###############
 
-install_files( ${SERVICETYPES_INSTALL_DIR} FILES thumbcreator.desktop )
-install_files( ${SERVICES_INSTALL_DIR} FILES thumbnail.protocol )
-install_files( ${SERVICES_INSTALL_DIR} FILES imagethumbnail.desktop textthumbnail.desktop                  htmlthumbnail.desktop                  djvuthumbnail.desktop)
+install( FILES thumbcreator.desktop  DESTINATION  ${SERVICETYPES_INSTALL_DIR} )
+install( FILES thumbnail.protocol  DESTINATION  ${SERVICES_INSTALL_DIR} )
+install( FILES imagethumbnail.desktop textthumbnail.desktop                  htmlthumbnail.desktop                  djvuthumbnail.desktop DESTINATION  ${SERVICES_INSTALL_DIR} )
 
 
 

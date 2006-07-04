@@ -13,12 +13,12 @@ kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kded_remotedirnotify )
 
 target_link_libraries(kded_remotedirnotify  ${KDE4_KDECORE_LIBS} kio)
 
-install_targets(${PLUGIN_INSTALL_DIR} kded_remotedirnotify )
+install(TARGETS kded_remotedirnotify  DESTINATION ${PLUGIN_INSTALL_DIR} )
 
 
 ########### install files ###############
 
-install_files( ${SERVICES_INSTALL_DIR}/kded FILES remotedirnotify.desktop )
+install( FILES remotedirnotify.desktop  DESTINATION  ${SERVICES_INSTALL_DIR}/kded )
 
 
 

@@ -5,7 +5,7 @@
 
 ########### install files ###############
 
-install_files( ${KCFG_INSTALL_DIR} FILES mediamanagersettings.kcfg )
+install( FILES mediamanagersettings.kcfg  DESTINATION  ${KCFG_INSTALL_DIR} )
 
 
 

@@ -24,12 +24,12 @@ kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kcm_media )
 
 target_link_libraries(kcm_media  ${KDE4_KIO_LIBS}  )
 
-install_targets(${PLUGIN_INSTALL_DIR} kcm_media )
+install(TARGETS kcm_media  DESTINATION ${PLUGIN_INSTALL_DIR} )
 
 
 ########### install files ###############
 
-install_files( ${XDG_APPS_DIR} FILES media.desktop )
+install( FILES media.desktop  DESTINATION  ${XDG_APPS_DIR} )
 
 
 

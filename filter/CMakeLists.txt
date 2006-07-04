@@ -16,14 +16,14 @@ kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kio_filter )
 
 target_link_libraries(kio_filter  ${KDE4_KIO_LIBS})
 
-install_targets(${PLUGIN_INSTALL_DIR} kio_filter )
+install(TARGETS kio_filter  DESTINATION ${PLUGIN_INSTALL_DIR} )
 
 
 ########### install files ###############
 
-install_files( ${SERVICES_INSTALL_DIR} FILES gzip.protocol )
+install( FILES gzip.protocol  DESTINATION  ${SERVICES_INSTALL_DIR} )
 if(BZIP2_FOUND)
-	install_files( ${SERVICES_INSTALL_DIR} FILES bzip.protocol bzip2.protocol )
+install( FILES bzip.protocol bzip2.protocol  DESTINATION  ${SERVICES_INSTALL_DIR} )
 endif(BZIP2_FOUND)
 
 

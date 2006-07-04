@@ -15,12 +15,12 @@ kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kio_floppy )
 
 target_link_libraries(kio_floppy  ${KDE4_KIO_LIBS} )
 
-install_targets(${PLUGIN_INSTALL_DIR} kio_floppy )
+install(TARGETS kio_floppy  DESTINATION ${PLUGIN_INSTALL_DIR} )
 
 
 ########### install files ###############
 
-install_files( ${SERVICES_INSTALL_DIR} FILES floppy.protocol )
+install( FILES floppy.protocol  DESTINATION  ${SERVICES_INSTALL_DIR} )
 
 
 

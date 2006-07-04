@@ -15,13 +15,13 @@ kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kio_finger )
 
 target_link_libraries(kio_finger  ${KDE4_KIO_LIBS} )
 
-install_targets(${PLUGIN_INSTALL_DIR} kio_finger )
+install(TARGETS kio_finger  DESTINATION ${PLUGIN_INSTALL_DIR} )
 
 
 ########### install files ###############
 
-install_files( ${DATA_INSTALL_DIR}/kio_finger FILES kio_finger.pl kio_finger.css )
-install_files( ${SERVICES_INSTALL_DIR} FILES finger.protocol )
+install( FILES kio_finger.pl kio_finger.css  DESTINATION  ${DATA_INSTALL_DIR}/kio_finger )
+install( FILES finger.protocol  DESTINATION  ${SERVICES_INSTALL_DIR} )
 
 
 
