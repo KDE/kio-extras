@@ -87,7 +87,7 @@ int main( int argc, char * argv[] ) {
   qDebug( "Server should now listen on localhost:2525" );
   qDebug( "Hit CTRL-C to quit." );
   return app.exec();
-};
+}
 
 
 InteractiveSMTPServerWindow::InteractiveSMTPServerWindow( Q3Socket * socket, QWidget * parent )
