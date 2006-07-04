@@ -26,17 +26,17 @@ InfoProtocol::InfoProtocol( const QByteArray &pool, const QByteArray &app )
     kDebug( 7108 ) << "InfoProtocol::InfoProtocol" << endl;
 
     m_perl = KGlobal::dirs()->findExe( "perl" );
-    m_infoScript = locate( "data", "kio_info/kde-info2html" );
-    m_infoConf = locate("data", "kio_info/kde-info2html.conf");
+    m_infoScript = KStandardDirs::locate( "data", "kio_info/kde-info2html" );
+    m_infoConf = KStandardDirs::locate("data", "kio_info/kde-info2html.conf");
 
     if( m_perl.isNull() || m_infoScript.isNull() || m_infoConf.isNull() ) {
-	kError( 7108 ) << "Critical error: Cannot locate files for HTML-conversion" << endl;
+	kError( 7108 ) << "Critical error: Cannot KStandardDirs::locate files for HTML-conversion" << endl;
 	QString errorStr;
 	if ( m_perl.isNull() ) {
 		errorStr = "perl.";
 	} else {
 		QString missing =m_infoScript.isNull() ?  "kio_info/kde-info2html" : "kio_info/kde-info2html.conf";
-		errorStr = "kde-info2html" + i18n( "\nUnable to locate file %1 which is necessary to run this service. "
+		errorStr = "kde-info2html" + i18n( "\nUnable to KStandardDirs::locate file %1 which is necessary to run this service. "
 				"Please check your software installation" ,  missing );
 	}
 	error( KIO::ERR_CANNOT_LAUNCH_PROCESS, errorStr );

@@ -122,7 +122,7 @@ MANProtocol::MANProtocol(const QByteArray &pool_socket, const QByteArray &app_so
     m_cssPath=strPath.toLocal8Bit(); // ### TODO encode for CSS
     section_names << "1" << "2" << "3" << "3n" << "3p" << "4" << "5" << "6" << "7"
                   << "8" << "9" << "l" << "n";
-    m_manCSSFile = locate( "data", "kio_man/kio_man.css" );
+    m_manCSSFile = KStandardDirs::locate( "data", "kio_man/kio_man.css" );
 }
 
 MANProtocol *MANProtocol::self() { return _self; }
@@ -1404,7 +1404,7 @@ void MANProtocol::showIndex(const QString& section)
     indexLine.append("</div>");
 
     for (int i=0; i<listlen; i++) {
-	::free(indexlist[i]->manpath);   // allocated by strdup
+	::free(indexlist[i]->manpath);   // alKStandardDirs::located by strdup
 	delete indexlist[i];
     }
 

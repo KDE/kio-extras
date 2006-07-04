@@ -198,7 +198,7 @@ void FingerProtocol::getProgramPath()
       //kDebug() << "Finger command found:" << *myFingerPath << endl;
     }
 
-  myFingerPerlScript = new QString(locate("data","kio_finger/kio_finger.pl"));
+  myFingerPerlScript = new QString(KStandardDirs::locate("data","kio_finger/kio_finger.pl"));
   if (myFingerPerlScript->isEmpty())
     {
       //kDebug() << "kio_finger.pl script not found" << endl;
@@ -211,7 +211,7 @@ void FingerProtocol::getProgramPath()
       //kDebug() << "kio_finger perl script found: " << *myFingerPerlScript << endl;
     }
 
-  myFingerCSSFile = new QString(locate("data","kio_finger/kio_finger.css"));
+  myFingerCSSFile = new QString(KStandardDirs::locate("data","kio_finger/kio_finger.css"));
   if (myFingerCSSFile->isEmpty())
     {
       //kDebug() << "kio_finger.css file not found" << endl;

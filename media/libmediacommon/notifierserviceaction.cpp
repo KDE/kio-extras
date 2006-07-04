@@ -59,7 +59,7 @@ void NotifierServiceAction::setLabel( const QString &label )
 {
 	m_service.m_strName = label;
 	NotifierAction::setLabel( label );
-	
+
 	updateFilePath();
 }
 
@@ -75,7 +75,7 @@ void NotifierServiceAction::setService(KDEDesktopMimeType::Service service)
 	NotifierAction::setLabel( service.m_strName );
 
 	m_service = service;
-	
+
 	updateFilePath();
 }
 
@@ -97,14 +97,14 @@ QString NotifierServiceAction::filePath() const
 void NotifierServiceAction::updateFilePath()
 {
 	if ( !m_filePath.isEmpty() ) return;
-	
+
 	QString action_name = m_service.m_strName;
 	action_name.replace(   " ", "_" );
-	
-	QDir actions_dir( locateLocal( "data", "konqueror/servicemenus/", true ) );
+
+	QDir actions_dir( KStandardDirs::KStandardDirs::locateLocal( "data", "konqueror/servicemenus/", true ) );
 
 	QString filename = actions_dir.absoluteFilePath( action_name + ".desktop" );
-	
+
 	int counter = 1;
 	while ( QFile::exists( filename ) )
 	{
@@ -113,7 +113,7 @@ void NotifierServiceAction::updateFilePath()
 		                                  + ".desktop" );
 		counter++;
 	}
-	
+
 	m_filePath = filename;
 }
 

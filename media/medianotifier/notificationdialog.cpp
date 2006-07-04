@@ -45,20 +45,20 @@ NotificationDialog::NotificationDialog( KFileItem medium, NotifierSettings *sett
 	//clearWState(  WState_Polished );
 
 	m_view = new NotificationDialogView( this );
-	
+
 	m_view->iconLabel->setPixmap( m_medium.pixmap(64) );
 	m_view->mimetypeLabel->setText( i18n( "<b>Medium Type:</b>" ) + ' '
 	                              + m_medium.mimeTypePtr()->comment() );
-	
+
 	updateActionsListBox();
 
 	resize( QSize(400,400).expandedTo( minimumSizeHint() ) );
 
 	setMainWidget( m_view );
-	
+
 	m_actionWatcher = new KDirWatch();
 	QString services_dir
-		= locateLocal( "data", "konqueror/servicemenus", true );
+		= KStandardDirs::locateLocal( "data", "konqueror/servicemenus", true );
 	m_actionWatcher->addDir( services_dir );
 
 	setButtonText( User1, i18n("Configure") );
@@ -74,7 +74,7 @@ NotificationDialog::NotificationDialog( KFileItem medium, NotifierSettings *sett
 
 	connect( this, SIGNAL( finished() ),
 	         this, SLOT( delayedDestruct() ) );
-	
+
 	m_actionWatcher->startScan();
 }
 
@@ -90,10 +90,10 @@ void NotificationDialog::updateActionsListBox()
 
 	QList<NotifierAction*> actions
 		= m_settings->actionsForMimetype( m_medium.mimetype() );
-	
+
 	QList<NotifierAction*>::iterator it = actions.begin();
 	QList<NotifierAction*>::iterator end = actions.end();
-	
+
 	for ( ; it!=end; ++it )
 	{
 		new ActionListBoxItem( *it, m_medium.mimetype(),
@@ -113,13 +113,13 @@ void NotificationDialog::slotActionsChanged(const QString &/*dir*/)
 void NotificationDialog::slotOk()
 {
 	Q3ListBoxItem *item = m_view->actionsList->selectedItem();
-	
+
 	if ( item != 0L )
 	{
 		ActionListBoxItem *action_item
 			= static_cast<ActionListBoxItem*>( item );
 		NotifierAction *action = action_item->action();
-		
+
 		launchAction( action );
 	}
 }
@@ -131,9 +131,9 @@ void NotificationDialog::launchAction( NotifierAction *action )
 		m_settings->setAutoAction(  m_medium.mimetype(), action );
 		m_settings->save();
 	}
-	
+
 	action->execute(m_medium);
-	
+
 	close();
 }
 

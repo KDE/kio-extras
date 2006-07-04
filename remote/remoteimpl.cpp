@@ -167,7 +167,7 @@ static KUrl findWizardRealURL()
 
 	if (service && service->isValid())
 	{
-		url.setPath( locate("apps",
+		url.setPath( KStandardDirs::locate("apps",
 				    service->desktopEntryPath())
 				);
 	}

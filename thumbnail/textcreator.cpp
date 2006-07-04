@@ -53,7 +53,7 @@ bool TextCreator::create(const QString &path, int width, int height, QImage &img
     if ( !m_splitter )
     {
         m_splitter = new KPixmapSplitter;
-        QString pixmap = locate( "data", "konqueror/pics/thumbnailfont_7x4.png" );
+        QString pixmap = KStandardDirs::locate( "data", "konqueror/pics/thumbnailfont_7x4.png" );
         if ( !pixmap.isEmpty() )
         {
             // FIXME: make font/glyphsize configurable...

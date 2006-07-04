@@ -244,7 +244,7 @@ void FilterOptions::save()
             QString located, check = name;
             if (suffix)
                 check += QString().setNum(suffix);
-            if ((located = locate("services", "searchproviders/" + check + ".desktop")).isEmpty())
+            if ((located = KStandardDirs::locate("services", "searchproviders/" + check + ".desktop")).isEmpty())
             {
                 name = check;
                 break;
