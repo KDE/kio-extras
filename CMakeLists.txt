@@ -32,8 +32,9 @@ if(SAMBA_FOUND)
    add_subdirectory(smb)
 endif(SAMBA_FOUND)
 
+MESSAGE(STATUS "ldap kioslave has kabc dependency. disabled.")
 if(LDAP_FOUND)
-   add_subdirectory(ldap)
+   #add_subdirectory(ldap)
 endif(LDAP_FOUND)
 
 
