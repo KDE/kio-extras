@@ -24,6 +24,7 @@
 #include <QTextStream>
 #include <QByteArray>
 #include <QLinkedList>
+#include <kjobuidelegate.h>
 
 #include <kapplication.h>
 #include <kdebug.h>
@@ -59,7 +60,7 @@ void MediaNotifier::onMediumChange( const QString &name, bool allowNotification 
 {
 	kDebug() << "MediaNotifier::onMediumChange( " << name << ", "
 	          << allowNotification << ")" << endl;
-	
+
 // Update user activity timestamp, otherwise the notification dialog will be shown
 // in the background due to focus stealing prevention. Entering a new media can
 // be seen as a kind of user activity after all. It'd be better to update the timestamp
@@ -69,10 +70,10 @@ void MediaNotifier::onMediumChange( const QString &name, bool allowNotification 
 	KUrl url(  "system:/media/"+name );
 
 	KIO::SimpleJob *job = KIO::stat( url, false );
-	job->setInteractive( false );
+	job->setUiDelegate(0);
 
 	m_allowNotificationMap[job] = allowNotification;
-	
+
 	connect( job, SIGNAL( result(KJob*) ),
 	         this, SLOT( slotStatResult(KJob*) ) );
 }
@@ -81,18 +82,18 @@ void MediaNotifier::slotStatResult( KJob *job )
 {
 	bool allowNotification = m_allowNotificationMap[job];
 	m_allowNotificationMap.remove( job );
-	
+
 	if ( job->error() != 0 ) return;
-	
+
 	KIO::StatJob *stat_job = static_cast<KIO::StatJob *>( job );
-	
+
 	KIO::UDSEntry entry = stat_job->statResult();
 	KUrl url = stat_job->url();
-	
+
 	KFileItem medium( entry, url );
 
 	if ( autostart( medium ) ) return;
-	
+
 	if ( allowNotification ) notify( medium );
 }
 
@@ -102,7 +103,7 @@ bool MediaNotifier::autostart( const KFileItem &medium )
 
 	bool is_cdrom = mimetype.contains( "cd" ) || mimetype.contains( "dvd" );
 	bool is_mounted = mimetype.endsWith( "_mounted" );
-	
+
 	// We autorun only on CD/DVD or removable disks (USB, Firewire)
 	if ( !( is_cdrom && is_mounted )
 	  && mimetype!="media/removable_mounted" )
@@ -112,7 +113,7 @@ bool MediaNotifier::autostart( const KFileItem &medium )
 
 
 	// Here starts the 'Autostart Of Applications After Mount' implementation
-	
+
 	// The desktop environment MAY ignore Autostart files altogether
 	// based on policy set by the user, system administrator or vendor.
 	MediaManagerSettings::self()->readConfig();
@@ -120,7 +121,7 @@ bool MediaNotifier::autostart( const KFileItem &medium )
 	{
 		return false;
 	}
-	
+
 	// From now we're sure the medium is already mounted.
 	// We can use the local path for stating, no need to use KIO here.
 	bool local;
@@ -142,7 +143,7 @@ bool MediaNotifier::autostart( const KFileItem &medium )
 			return execAutorun( medium, path, *it );
 		}
 	}
-	
+
 	// When a new medium is mounted the root directory of the medium should
 	// be checked for the following Autoopen files in order of precedence:
 	// .autoopen, autoopen
@@ -151,7 +152,7 @@ bool MediaNotifier::autostart( const KFileItem &medium )
 
 	it = autoopen_list.begin();
 	end = autoopen_list.end();
-	
+
 	for ( ; it!=end; ++it )
 	{
 		if ( QFile::exists( path + '/' + *it ) )
@@ -192,7 +193,7 @@ bool MediaNotifier::execAutorun( const KFileItem &medium, const QString &path,
 		proc.start();
 		proc.detach();
 	}
-	
+
 	return true;
 }
 
@@ -213,7 +214,7 @@ bool MediaNotifier::execAutoopen( const KFileItem &medium, const QString &path,
 	{
 		return false;
 	}
-	
+
 	// The desktop environment MUST verify that the relative path points
 	// to a file that is actually located on the medium [...]
 	QString resolved_path
@@ -223,8 +224,8 @@ bool MediaNotifier::execAutoopen( const KFileItem &medium, const QString &path,
 	{
 		return false;
 	}
-	
-	
+
+
 	QFile document( resolved_path );
 
 	// TODO: What about FAT all files are executable...
@@ -237,7 +238,7 @@ bool MediaNotifier::execAutoopen( const KFileItem &medium, const QString &path,
 
 	KUrl url = medium.url();
 	url.addPath( relative_path );
-	
+
 	// The desktop environment MUST prompt the user for confirmation
 	// before opening the file.
 	QString mediumType = medium.mimeTypePtr()->name();
@@ -263,7 +264,7 @@ bool MediaNotifier::execAutoopen( const KFileItem &medium, const QString &path,
 	{
 		( void ) new KRun( url, 0L );
 	}
-	
+
 	return true;
 }
 
@@ -272,12 +273,12 @@ void MediaNotifier::notify( KFileItem &medium )
 	kDebug() << "Notification triggered." << endl;
 
 	NotifierSettings *settings = new NotifierSettings();
-	
+
 	if ( settings->autoActionForMimetype( medium.mimetype() )==0L )
 	{
 		QList<NotifierAction*> actions
 			= settings->actionsForMimetype( medium.mimetype() );
-		
+
 		// If only one action remains, it's the "do nothing" action
 		// no need to popup in this case.
 		if ( actions.size()>1 )

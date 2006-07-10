@@ -5,7 +5,6 @@ Name=KDED System Base URL Notifier
 Name[fr]=Notificateur d'URL système KDED
 Name[x-test]=xxKDED System Base URL Notifierxx
 ServiceTypes=KDEDModule
-X-KDE-ModuleType=Library
 X-KDE-Library=systemdirnotify
 X-KDE-FactoryName=systemdirnotify
 X-KDE-Kded-load-on-demand=true

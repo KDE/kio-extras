@@ -2,7 +2,6 @@
 Encoding=UTF-8
 Type=Service
 ServiceTypes=KDEDModule
-X-KDE-ModuleType=Library
 X-KDE-Library=medianotifier
 X-KDE-FactoryName=medianotifier
 X-KDE-Kded-autoload=true

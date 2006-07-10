@@ -5,7 +5,6 @@ Name=KDED Home Base URL Notifier
 Name[fr]=Notification de l'URL de base KDED
 Name[x-test]=xxKDED Home Base URL Notifierxx
 ServiceTypes=KDEDModule
-X-KDE-ModuleType=Library
 X-KDE-Library=homedirnotify
 X-KDE-FactoryName=homedirnotify
 X-KDE-Kded-load-on-demand=true

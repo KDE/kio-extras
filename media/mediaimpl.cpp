@@ -29,6 +29,7 @@
 #include <QEventLoop>
 
 #include <QtDBus/QtDBus>
+#include <kjobuidelegate.h>
 #include "mediamanageriface.h"
 
 #include <sys/stat.h>
@@ -215,7 +216,7 @@ bool MediaImpl::ensureMediumMounted(Medium &medium)
 		KIO::Job* job = KIO::mount(false, 0,
 		                           medium.deviceNode(),
 		                           medium.mountPoint());
-		job->setAutoWarningHandlingEnabled(false);
+		job->uiDelegate()->setAutoWarningHandlingEnabled(false);
 		connect( job, SIGNAL( result(KJob*) ),
 		         this, SLOT( slotMountResult(KJob*) ) );
 		connect( job, SIGNAL( warning(KJob*,const QString&,const QString&) ),
@@ -295,7 +296,7 @@ void MediaImpl::extractUrlInfos(const KUrl &url, KIO::UDSEntry& infos)
 	m_entryBuffer.clear();
 
 	KIO::StatJob *job = KIO::stat(url, false);
-	job->setAutoWarningHandlingEnabled( false );
+	job->uiDelegate()->setAutoWarningHandlingEnabled( false );
 	connect( job, SIGNAL( result(KJob*) ),
 	         this, SLOT( slotStatResult(KJob*) ) );
 	connect( job, SIGNAL( warning(KJob*,const QString&,const QString&) ),

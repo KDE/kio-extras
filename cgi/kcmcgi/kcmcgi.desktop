@@ -3,7 +3,6 @@ Icon=run
 Type=Application
 Exec=kcmshell kcmcgi
 DocPath=
-X-KDE-ModuleType=Library
 X-KDE-Library=cgi
 
 Name=CGI Scripts

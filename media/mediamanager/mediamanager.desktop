@@ -8,7 +8,6 @@ Comment=Keep track of media activities and allow to (un)mount (media:/)
 Comment[fr]=Gardez une trace des montages et permettre le (dé)montage (media:/)
 Comment[x-test]=xxKeep track of media activities and allow to (un)mount (media:/)xx
 ServiceTypes=KDEDModule
-X-KDE-ModuleType=Library
 X-KDE-Library=mediamanager
 X-KDE-FactoryName=mediamanager
 X-KDE-Kded-autoload=true
