@@ -642,11 +642,11 @@ static char *scan_troff_mandoc(char *c, bool san, char **result);
 
 static QList<char*> s_argumentList;
 
-static Q3CString htmlPath, cssPath;
+static QByteArray htmlPath, cssPath;
 
-static Q3CString s_dollarZero; // Value of $0
+static QByteArray s_dollarZero; // Value of $0
 
-void setResourcePath(const Q3CString& _htmlPath, const Q3CString& _cssPath)
+void setResourcePath(const QByteArray& _htmlPath, const QByteArray& _cssPath)
 {
     htmlPath=_htmlPath;
     cssPath=_cssPath;
@@ -1316,7 +1316,7 @@ static Q3CString scan_named_string(char*& c)
     }
 }
 
-static Q3CString scan_dollar_parameter(char*& c)
+static QByteArray scan_dollar_parameter(char*& c)
 {
     int argno = 0; // No dollar argument number yet!
     if ( *c == '0' )
@@ -3128,7 +3128,7 @@ static char *scan_request(char *c)
         if (it!=s_stringDefinitionMap.end())
         {
             kDebug(7107) << "CALLING MACRO: " << BYTEARRAY( macroName ) << endl;
-            const Q3CString oldDollarZero = s_dollarZero; // Previous value of $0
+            const QByteArray oldDollarZero = s_dollarZero; // Previous value of $0
             s_dollarZero = macroName;
             sl=fill_words(c+j, wordlist, &words, true, &c);
             *sl='\0';
