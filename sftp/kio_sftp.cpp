@@ -449,7 +449,7 @@ void sftpProtocol::get(const KUrl& url) {
         return;
 
     // Get resume offset
-    quint64 offset = config()->readUnsignedLongNumEntry("resume");
+    quint64 offset = config()->readEntry("resume",0);
     if( offset > 0 ) {
         canResume();
         kDebug(KIO_SFTP_DB) << "get(): canResume(), offset = " << offset << endl;
