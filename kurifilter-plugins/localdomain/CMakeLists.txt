@@ -26,7 +26,7 @@ kde4_add_executable(klocaldomainurifilterhelper ${klocaldomainurifilterhelper_SR
 
 target_link_libraries(klocaldomainurifilterhelper  ${KDE4_KDECORE_LIBS} )
 
-install(TARGETS klocaldomainurifilterhelper DESTINATION bin)
+install(TARGETS klocaldomainurifilterhelper DESTINATION ${BIN_INSTALL_DIR})
 
 
 ########### install files ###############
