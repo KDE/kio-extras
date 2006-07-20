@@ -18,7 +18,7 @@ install(TARGETS kcm_cgi  DESTINATION ${PLUGIN_INSTALL_DIR} )
 
 ########### install files ###############
 
-install( FILES kcmcgi.desktop  DESTINATION  ${XDG_APPS_DIR} )
+install( FILES kcmcgi.desktop  DESTINATION  ${SERVICES_INSTALL_DIR} )
 
 
 

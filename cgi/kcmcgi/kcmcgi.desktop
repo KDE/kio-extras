@@ -1,9 +1,11 @@
 [Desktop Entry]
+Encoding=UTF-8
 Icon=run
-Type=Application
+Type=Service
+SericeTypes=KCModule
 Exec=kcmshell kcmcgi
-DocPath=
-X-KDE-Library=cgi
+
+X-KDE-Library=kcm_cgi
 
 Name=CGI Scripts
 Name[fr]=Scripts CGI
@@ -15,5 +17,3 @@ Comment[x-test]=xxConfigure the CGI KIO slavexx
 Keywords=CGI,KIO,Slave,Paths
 Keywords[fr]=CGI,KIO,Slave,Paths,Chemins
 Keywords[x-test]=xxCGI,KIO,Slave,Pathsxx
-Categories=Qt;KDE;X-KDE-settings-webbrowsing;
-Encoding=UTF-8

@@ -32,19 +32,14 @@
 #include <QVBoxLayout>
 
 #include "kcmcgi.h"
+#include <kgenericfactory.h>
 #include "kcmcgi.moc"
 
-extern "C"
-{
-  KDE_EXPORT KCModule *create_cgi( QWidget *parent, const char * )
-  {
-    return new KCMCgi( parent );
-  }
-}
+typedef KGenericFactory<KCMCgi> KCMCgiFactory;
+K_EXPORT_COMPONENT_FACTORY(cgi, KCMCgiFactory("kcmcgi"))
 
-
-KCMCgi::KCMCgi(QWidget *parent)
-  : KCModule(new KInstance("kcmcgi"), parent)
+KCMCgi::KCMCgi(QWidget *parent, const QStringList &)
+  : KCModule(KCMCgiFactory::instance(), parent)
 {
   setButtons(Default|Apply);
 
