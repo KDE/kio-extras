@@ -197,7 +197,7 @@ public:
     unsigned int flags() const { return mFlags; }
 
     /** Sets file's longname. See sftpFileAttr::longname. */
-    void setLongname(QString l) { mLongname = l.latin1(); }
+    void setLongname(QString l) { mLongname = l.toLatin1(); }
 
     /** Returns a string describing the file attributes. The format is specific
         to the implementation of the sftp server.  In most cases (ie OpenSSH)

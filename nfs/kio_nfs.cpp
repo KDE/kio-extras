@@ -1147,7 +1147,7 @@ void NFSProtocol::get( const KUrl& url )
       {
          array.setRawData(readRes.readres_u.reply.data.data_val, offset);
          data( array );
-         array.resetRawData(readRes.readres_u.reply.data.data_val, offset);
+         array.clear();
 
          processedSize(readArgs.offset);
       }

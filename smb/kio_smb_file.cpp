@@ -111,7 +111,7 @@ void SMBSlave::get( const KUrl& kurl )
 		    isFirstPacket = false;
 		}
                 data( filedata );
-                filedata.resetRawData(buf,bytesread);
+                filedata.clear();
 
                 // increment total bytes read
                 totalbytesread += bytesread;

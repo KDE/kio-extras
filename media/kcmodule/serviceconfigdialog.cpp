@@ -54,7 +54,7 @@ ServiceConfigDialog::ServiceConfigDialog(NotifierServiceAction *action,
 
 	QIcon iconSet = SmallIconSet("configure");
 	QPixmap pixMap = iconSet.pixmap( QIcon::Small, QIcon::Normal );
-	m_view->commandButton->setIconSet( iconSet );
+	m_view->commandButton->setIcon( iconSet );
 	m_view->commandButton->setFixedSize( pixMap.width()+8, pixMap.height()+8 );
 	
 	m_iconChanged = false;

@@ -139,7 +139,7 @@ void InfoProtocol::get( const KUrl& url )
       empty = false;
       array.setRawData( buffer, n );
       data( array );
-      array.resetRawData( buffer, n );
+      array.clear();
     }
 
     pclose( file );

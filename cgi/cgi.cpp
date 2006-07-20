@@ -177,7 +177,7 @@ void CgiProtocol::get( const KUrl& url )
       QByteArray array;
       array.setRawData( buffer, n );
       data( array );
-      array.resetRawData( buffer, n );
+      array.clear();
     }
   }
 
