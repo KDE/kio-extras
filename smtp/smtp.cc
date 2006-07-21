@@ -56,7 +56,9 @@ using KioSMTP::TransactionState;
 
 #include <kemailsettings.h>
 
+#ifdef __GNUC__
 #warning Port to KNetwork
+#endif
 #if 0
 #include <ksock.h>
 #endif
@@ -149,7 +151,9 @@ SMTPProtocol::SMTPProtocol(const QByteArray & pool, const QByteArray & app,
 
 unsigned int SMTPProtocol::sendBufferSize() const {
   // ### how much is eaten by SSL/TLS overhead?
+#ifdef __GNUC__
 #warning Port to KNetwork
+#endif
   const int fd = 0L; //fileno( fp );
   int value = -1;
   kde_socklen_t len = sizeof(value);
@@ -543,7 +547,9 @@ bool SMTPProtocol::smtp_open(const QString& fakeHostname)
   else
   { 
     QString tmpPort;
+#ifdef __GNUC__
 #warning Port to KNetwork
+#endif
 #if 0
     KSocketAddress* addr = KExtendedSocket::localAddress(m_iSock);
     // perform name lookup. NI_NAMEREQD means: don't return a numeric

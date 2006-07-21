@@ -1078,10 +1078,9 @@ static Q3CString set_font( const Q3CString& name )
 }
 
 /// \deprecated
-static Q3CString set_font( const char ch )
 #ifndef SIMPLE_MAN2HTML
-        KDE_DEPRECATED;
-
+static KDE_DEPRECATED Q3CString set_font( const char ch )
+#else
 static Q3CString set_font( const char ch )
 #endif
 {

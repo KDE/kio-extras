@@ -56,7 +56,9 @@ NotifierModule::NotifierModule(KInstance *inst, QWidget *parent)
 	QStringList::iterator it = mimetypes.begin();
 	QStringList::iterator end = mimetypes.end();
 
+#ifdef __GNUC__
 #warning "Needs porting. listBox() is no longer supplied in Qt4 QComboBox."
+#endif
 #if 0
 	for ( ; it!=end; ++it )
 	{
@@ -149,7 +151,9 @@ void NotifierModule::slotMimeTypeChanged(int index)
 	}
 	else
 	{
+#ifdef __GNUC__
 #warning "Needs porting. listBox() is no longer supplied in Qt4 QComboBox."
+#endif
 #if 0
 		Q3ListBoxItem *item = m_view->mimetypesCombo->listBox()->item( index );
 		MimetypeListBoxItem *mime_item

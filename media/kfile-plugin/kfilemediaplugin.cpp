@@ -132,7 +132,9 @@ bool KFileMediaPlugin::readInfo(KFileMetaInfo &info, uint /*what*/)
 		p.fillRect(length, 0, 150-length, 20, Qt::green);
 
 		QColorGroup cg = QApplication::palette().active();
+#ifdef __GNUC__
 #warning "Port to new QStyle API"
+#endif
 #if 0
 		QApplication::style()->drawPrimitive(QStyle::PE_Frame, &p,
 		                                     QRect(0, 0, 150, 20), cg,

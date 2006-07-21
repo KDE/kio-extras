@@ -101,7 +101,7 @@ void NotifierServiceAction::updateFilePath()
 	QString action_name = m_service.m_strName;
 	action_name.replace(   " ", "_" );
 
-	QDir actions_dir( KStandardDirs::KStandardDirs::locateLocal( "data", "konqueror/servicemenus/", true ) );
+	QDir actions_dir( KStandardDirs::locateLocal( "data", "konqueror/servicemenus/", true ) );
 
 	QString filename = actions_dir.absoluteFilePath( action_name + ".desktop" );
 
