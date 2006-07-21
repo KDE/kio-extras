@@ -112,7 +112,7 @@ void NNTPProtocol::get( const KUrl& url )
 
   pos = path.indexOf('<');
   group = path.left(pos);
-  msg_id = KUrl::decode_string( path.right(path.length()-pos) );
+  msg_id = QUrl::fromPercentEncoding( path.right(path.length()-pos).toLatin1() );
   if ( group.startsWith( "/" ) )
     group.remove( 0, 1 );
   if ((pos = group.indexOf('/')) > 0) group = group.left(pos);
@@ -295,7 +295,7 @@ void NNTPProtocol::stat( const KUrl& url ) {
   } else if (regMsgId.indexIn(path) == 0) {
     pos = path.indexOf('<');
     group = path.left(pos);
-    msg_id = KUrl::decode_string( path.right(path.length()-pos) );
+    msg_id = QUrl::fromPercentEncoding( path.right(path.length()-pos).toLatin1() );
     if ( group.startsWith( "/" ) )
       group.remove( 0, 1 );
     if ((pos = group.indexOf('/')) > 0) group = group.left(pos);

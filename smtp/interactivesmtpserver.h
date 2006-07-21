@@ -100,6 +100,7 @@ private:
   Q3Socket * mSocket;
   Q3TextEdit * mTextEdit;
   QLineEdit * mLineEdit;
+  QLabel * mLabel;
 };
 
 class InteractiveSMTPServer : public Q3ServerSocket {

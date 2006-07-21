@@ -55,7 +55,7 @@ namespace KioSMTP {
 	continue;
 
       const QString key = (*it).left( equalsPos ).toLower();
-      const QString value = KUrl::decode_string( (*it).mid( equalsPos + 1 ) );
+      const QString value = QUrl::fromPercentEncoding( (*it).mid( equalsPos + 1 ).toLatin1() );
 
       if ( key == "to" )
 	request.addTo( value );

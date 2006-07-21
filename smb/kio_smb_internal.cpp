@@ -85,14 +85,14 @@ void SMBUrl::updateCache()
     else {
         QString surl = "smb://";
         if (KUrl::hasUser()) {
-            surl += KUrl::encode_string(KUrl::user());
+            surl += QUrl::fromPercentEncoding(KUrl::user().toLatin1());
             if (KUrl::hasPass()) {
-                surl += ':' + KUrl::encode_string(KUrl::pass());
+                surl += ':' + QUrl::fromPercentEncoding(KUrl::pass().toLatin1());
             }
             surl += '@';
         }
-        surl += KUrl::encode_string(KUrl::host().toUpper());
-        surl += KUrl::encode_string(KUrl::path());
+        surl += QUrl::fromPercentEncoding(KUrl::host().toUpper().toLatin1());
+        surl += QUrl::fromPercentEncoding(KUrl::path().toLatin1());
         m_surl = surl.toUtf8();
     }
     m_type = SMBURLTYPE_UNKNOWN;

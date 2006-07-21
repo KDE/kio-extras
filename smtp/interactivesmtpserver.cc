@@ -105,8 +105,10 @@ InteractiveSMTPServerWindow::InteractiveSMTPServerWindow( Q3Socket * socket, QWi
   QHBoxLayout * hlay = new QHBoxLayout( vlay );
 
   mLineEdit = new QLineEdit( this );
+  mLabel = new QLabel( "&Response:", this );
+  mLabel->setBuddy( mLineEdit );
   but = new QPushButton( "&Send", this );
-  hlay->addWidget( new QLabel( mLineEdit, "&Response:", this ) );
+  hlay->addWidget( mLabel );
   hlay->addWidget( mLineEdit, 1 );
   hlay->addWidget( but );
 
