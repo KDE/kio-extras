@@ -44,7 +44,7 @@ kde4_add_plugin(textthumbnail ${textthumbnail_PART_SRCS})
 
 kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} textthumbnail )
 
-target_link_libraries(textthumbnail  ${KDE4_KDECORE_LIBS} kdefx ${QT_QTGUI_LIBRARY} )
+target_link_libraries(textthumbnail  ${KDE4_KDECORE_LIBS} ${KDE4_KDEFX_LIBS} ${QT_QTGUI_LIBRARY} )
 
 install(TARGETS textthumbnail  DESTINATION ${PLUGIN_INSTALL_DIR} )
 
