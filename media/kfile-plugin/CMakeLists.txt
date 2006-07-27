@@ -19,7 +19,6 @@ install(TARGETS kfile_media  DESTINATION ${PLUGIN_INSTALL_DIR} )
 ########### install files ###############
 
 install( FILES kfile_media.desktop  DESTINATION  ${SERVICES_INSTALL_DIR} )
-install( FILES   DESTINATION  ${SERVICES_INSTALL_DIR} )
 
 
 
