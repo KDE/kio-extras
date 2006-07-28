@@ -59,7 +59,7 @@ kde4_add_plugin(htmlthumbnail ${htmlthumbnail_PART_SRCS})
 
 kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} htmlthumbnail )
 
-target_link_libraries(htmlthumbnail  ${KDE4_KDECORE_LIBS} khtml ${QT_QTGUI_LIBRARY})
+target_link_libraries(htmlthumbnail  ${KDE4_KDECORE_LIBS} ${KDE4_KHTML_LIBS} ${QT_QTGUI_LIBRARY})
 
 install(TARGETS htmlthumbnail  DESTINATION ${PLUGIN_INSTALL_DIR} )
 
