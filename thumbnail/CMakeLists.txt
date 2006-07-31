@@ -36,6 +36,21 @@ install(TARGETS imagethumbnail  DESTINATION ${PLUGIN_INSTALL_DIR} )
 
 ########### next target ###############
 
+set(svgthumbnail_PART_SRCS svgcreator.cpp )
+
+kde4_automoc(${svgthumbnail_PART_SRCS})
+
+kde4_add_plugin(svgthumbnail ${svgthumbnail_PART_SRCS})
+
+kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} svgthumbnail )
+
+target_link_libraries(svgthumbnail ${KDE4_KDECORE_LIBS})
+
+install(TARGETS svgthumbnail  DESTINATION ${PLUGIN_INSTALL_DIR} )
+
+
+########### next target ###############
+
 set(textthumbnail_PART_SRCS textcreator.cpp )
 
 kde4_automoc(${textthumbnail_PART_SRCS})
@@ -125,7 +140,7 @@ endif(X11_Xcursor_FOUND)
 install( FILES thumbcreator.desktop  DESTINATION  ${SERVICETYPES_INSTALL_DIR} )
 install( FILES thumbnail.protocol  DESTINATION  ${SERVICES_INSTALL_DIR} )
 install( FILES imagethumbnail.desktop textthumbnail.desktop                  htmlthumbnail.desktop                  djvuthumbnail.desktop DESTINATION  ${SERVICES_INSTALL_DIR} )
-
+install( FILES svgthumbnail.desktop DESTINATION  ${SERVICES_INSTALL_DIR} )
 
 
 

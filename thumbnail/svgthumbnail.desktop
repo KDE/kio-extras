@@ -1,0 +1,8 @@
+[Desktop Entry]
+Encoding=UTF-8
+Type=Service
+Name=Svg
+ServiceTypes=ThumbCreator
+MimeTypes=image/svg+xml
+X-KDE-Library=svgthumbnail
+CacheThumbnail=true
