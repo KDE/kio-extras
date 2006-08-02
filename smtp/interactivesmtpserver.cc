@@ -35,7 +35,7 @@
 
 #include <q3serversocket.h>
 #include <q3socket.h>
-#include <q3textedit.h>
+#include <QTextEdit>
 #include <QTextStream>
 #include <QWidget>
 #include <QApplication>
@@ -99,7 +99,7 @@ InteractiveSMTPServerWindow::InteractiveSMTPServerWindow( Q3Socket * socket, QWi
   QVBoxLayout * vlay = new QVBoxLayout( this );
   vlay->setSpacing( 6 );
 
-  mTextEdit = new Q3TextEdit( this );
+  mTextEdit = new QTextEdit( this );
   vlay->addWidget( mTextEdit, 1 );
 
   QHBoxLayout * hlay = new QHBoxLayout( vlay );

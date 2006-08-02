@@ -98,7 +98,7 @@ public Q_SLOTS:
   }
 private:
   Q3Socket * mSocket;
-  Q3TextEdit * mTextEdit;
+  QTextEdit * mTextEdit;
   QLineEdit * mLineEdit;
   QLabel * mLabel;
 };
