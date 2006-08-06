@@ -6,3 +6,4 @@ Name[x-test]=xxVoilaxx
 ServiceTypes=SearchProvider
 Keys=voila
 Query=http://www.voila.com/S/geek?an=1&kw=\\{@}&dt=*
+Query[x-test]=xxhttp://www.voila.com/S/geek?an=1&kw=\\{@}&dt=*xx

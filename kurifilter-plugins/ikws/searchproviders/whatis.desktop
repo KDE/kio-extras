@@ -7,3 +7,4 @@ Name[x-test]=xxWhatis Queryxx
 ServiceTypes=SearchProvider
 Keys=wi,whatis
 Query= http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
+Query[x-test]=xx http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}xx

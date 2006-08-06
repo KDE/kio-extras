@@ -7,3 +7,4 @@ Name[x-test]=xxRuby Application Archivexx
 ServiceTypes=SearchProvider
 Keys=raa
 Query=http://www.ruby-lang.org/en/raa-list.rhtml?name=\\{@}
+Query[x-test]=xxhttp://www.ruby-lang.org/en/raa-list.rhtml?name=\\{@}xx
