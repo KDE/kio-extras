@@ -1,9 +1,0 @@
-if test "x$with_samba" = xcheck && test "x$have_libsmbclient" = xno; then
-  echo ""
-  echo "You're missing libsmbclient from samba 3.0"
-  echo "KDE will not be able to browse windows shares without it,"
-  echo "consider installing it."
-  echo "Look at kioslave/smb/libsmbclient-HOWTO.txt"
-  echo ""
-  all_tests=bad
-fi

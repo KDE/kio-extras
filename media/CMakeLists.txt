@@ -1,6 +1,8 @@
 
 project(kioslave-media)
 
+configure_file(config-media.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-media.h)
+
 set(libmediacommon_SRCS
     ${CMAKE_CURRENT_SOURCE_DIR}/libmediacommon/medium.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/libmediacommon/actionlistboxitem.cpp
@@ -47,12 +49,11 @@ install(TARGETS kio_media  DESTINATION ${PLUGIN_INSTALL_DIR} )
 
 
 ########### next target ###############
-
+if(KDE4_BUILD_TESTS)
 set(testmedia_SRCS testmedia.cpp )
 
 kde4_automoc(${testmedia_SRCS})
 
-if(KDE4_BUILD_TESTS)
 
 kde4_add_executable(testmedia ${testmedia_SRCS} ${libmediacommon_SRCS} )
 

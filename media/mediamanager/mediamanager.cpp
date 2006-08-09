@@ -17,7 +17,7 @@
 */
 
 #include "mediamanager.h"
-
+#include <config-media.h>
 #include <config.h>
 #include <QTimer>
 #include <Q3PtrList>

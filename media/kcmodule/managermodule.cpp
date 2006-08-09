@@ -17,7 +17,7 @@
 */
 
 #include <config.h>
-
+#include <config-media.h>
 #include "managermodule.h"
 #include "managermodule.moc"
 
