@@ -1,6 +1,5 @@
 
 macro_optional_find_package(Samba)
-macro_optional_find_package(Ldap)
 
 add_subdirectory( about ) 
 add_subdirectory( cgi ) 
@@ -36,7 +35,4 @@ if(SAMBA_FOUND)
    add_subdirectory(smb)
 endif(SAMBA_FOUND)
 
-if(LDAP_FOUND)
-   add_subdirectory(ldap)
-endif(LDAP_FOUND)
-
+add_subdirectory(ldap)

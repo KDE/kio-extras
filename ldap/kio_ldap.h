@@ -7,10 +7,10 @@
 #include <kio/slavebase.h>
 #include <kio/authinfo.h>
 
-#define LDAP_DEPRECATED 1 /* Needed for ldap_simple_bind_s with openldap >= 2.3.x */
-#include <lber.h>
-#include <ldap.h>
-#include <kabc/ldapurl.h>
+#include <kldap/ldapurl.h>
+#include <kldap/ldapcontrol.h>
+#include <kldap/ldapconnection.h>
+#include <kldap/ldapoperation.h>
 
 class LDAPProtocol : public KIO::SlaveBase
 {
@@ -30,37 +30,24 @@ class LDAPProtocol : public KIO::SlaveBase
     virtual void del( const KUrl& url, bool isfile );
     virtual void put( const KUrl& url, int permissions, bool overwrite, bool resume );
 
-    int saslInteract( void *in );
-
   private:
 
-    QString mHost;
-    int mPort;
-    QString mUser;
-    QString mPassword;
-    LDAP *mLDAP;
-    int mVer, mSizeLimit, mTimeLimit, mPageSize;
-    bool mTLS;
-    bool mAuthSASL;
-    QString mMech,mRealm,mBindName;
+    KLDAP::LdapConnection mConn;
+    KLDAP::LdapOperation mOp;
+    KLDAP::LdapServer mServer;
+    bool mConnected;
+    
     bool mCancel, mFirstAuth;
     
-    void controlsFromMetaData( LDAPControl ***serverctrls, 
-      LDAPControl ***clientctrls );
-    void addControlOp( LDAPControl ***pctrls, const QString &oid,
-      const QByteArray &value, bool critical );
-    void addModOp( LDAPMod ***pmods, int mod_type, 
-      const QString &attr, const QByteArray &value );
+    void controlsFromMetaData( KLDAP::LdapControls &serverctrls,
+      KLDAP::LdapControls &clientctrls );
     void LDAPEntry2UDSEntry( const QString &dn, KIO::UDSEntry &entry, 
-      const KABC::LDAPUrl &usrc, bool dir=false );
-    int asyncSearch( KABC::LDAPUrl &usrc, const QByteArray &cookie = "" );
+      const KLDAP::LdapUrl &usrc, bool dir=false );
+    int asyncSearch( KLDAP::LdapUrl &usrc, const QByteArray &cookie = "" );
     
-    int parsePageControl( LDAPMessage *result, QByteArray &cookie );
-    QByteArray LDAPEntryAsLDIF( LDAPMessage *msg );
-    void LDAPErr( const KUrl &url, int err = LDAP_SUCCESS );
-    void changeCheck( KABC::LDAPUrl &url );
-
-    void fillAuthInfo( KIO::AuthInfo &info );
+//    int parsePageControl( LDAPMessage *result, QByteArray &cookie );
+    void LDAPErr( int err = KLDAP_SUCCESS );
+    void changeCheck( KLDAP::LdapUrl &url );
 };
 
 #endif
