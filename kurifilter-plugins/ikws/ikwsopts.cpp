@@ -153,6 +153,8 @@ void FilterOptions::load()
            this, SLOT(changeSearchProvider()));
     connect(m_dlg->lvSearchProviders, SIGNAL(executed(Q3ListViewItem *)),
            this, SLOT(checkFavoritesChanged()));
+    connect(m_dlg->lvSearchProviders, SIGNAL(pressed(Q3ListViewItem *)),
+           this, SLOT(checkFavoritesChanged()));
 
     connect(m_dlg->cmbDefaultEngine, SIGNAL(activated(const QString &)), this,
             SLOT(configChanged()));
