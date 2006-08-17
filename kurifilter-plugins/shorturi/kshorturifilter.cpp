@@ -37,6 +37,7 @@
 #include <kstandarddirs.h>
 #include <kconfig.h>
 #include <kauthorized.h>
+#include <kmimetype.h>
 
 #include "kshorturifilter.h"
 
@@ -73,6 +74,12 @@ static bool isValidShortURL( const QString& cmd, bool verbose = false )
     if (verbose)
       kDebug() << "KShortURIFilter::isValidShortURL: " << cmd
                 << " matches FQDN_PATTERN" << endl;
+
+    // something like wallpaper.png also matches a the FQDN pattern
+    // but is very unlikely to be meant as such
+    if (KMimeType::findByPath(cmd) != KMimeType::defaultMimeTypePtr())
+        return false;
+
     return true;
   }
 
