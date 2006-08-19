@@ -431,7 +431,7 @@ bool fishProtocol::connectionStart() {
 
         const char *dev = ttyname(0);
         setpgid(0,0);
-        if (dev) close(open(dev, O_WRONLY, 0));
+        if (dev) close(::open(dev, O_WRONLY, 0));
         setpgid(0,0);
 
         if (local) {
