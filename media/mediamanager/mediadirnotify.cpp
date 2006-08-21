@@ -29,11 +29,9 @@
 MediaDirNotify::MediaDirNotify(const MediaList &list)
 	: m_mediaList(list)
 {
-	QDBus::sessionBus().connect(QString(), QString(), "org.kde.KDirNotify",
-				    "FilesAdded", this, SLOT(filesAdded(QString)));
-	QDBus::sessionBus().connect(QString(), QString(), "org.kde.KDirNotify",
-				    "FilesRemoved", this, SLOT(filesRemoved(QStringList)));
-	QDBus::sessionBus().connect(QString(), QString(), "org.kde.KDirNotify",
+	QDBusConnection::sessionBus().connect(QString(), QString(), "org.kde.KDirNotify",
+				    "FilesAdded", this, SLOT(filesAdded(QString))); QDBusConnection::sessionBus().connect(QString(), QString(), "org.kde.KDirNotify",
+				    "FilesRemoved", this, SLOT(filesRemoved(QStringList))); QDBusConnection::sessionBus().connect(QString(), QString(), "org.kde.KDirNotify",
 				    "FilesChanged", this, SLOT(filesChanged(QStringList)));
 }
 
@@ -42,7 +40,7 @@ KUrl::List MediaDirNotify::toMediaURL(const KUrl &url)
 	kDebug(1219) << "MediaDirNotify::toMediaURL(" << url << ")" << endl;
 
 	KUrl::List result;
-	
+
 	const Q3PtrList<Medium> list = m_mediaList.list();
 
 	Q3PtrList<Medium>::const_iterator it = list.begin();
@@ -60,7 +58,7 @@ KUrl::List MediaDirNotify::toMediaURL(const KUrl &url)
 
 			KUrl new_url("media:/"+m->name()+'/'+path );
 			new_url.cleanPath();
-		
+
 			result.append(new_url);
 		}
 	}

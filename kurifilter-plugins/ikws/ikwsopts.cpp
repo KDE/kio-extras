@@ -303,8 +303,8 @@ void FilterOptions::save()
   emit changed(false);
 
   // Update filters in running applications...
-  QDBusMessage msg = QDBusMessage::signal("/", "org.kde.KUriFilterPlugin", "configure", QDBus::sessionBus());
-  QDBus::sessionBus().send(msg);
+  QDBusMessage msg = QDBusMessage::createSignal("/", "org.kde.KUriFilterPlugin", "configure");
+  QDBusConnection::sessionBus().send(msg);
 
   // If the providers changed, tell sycoca to rebuild its database...
   if (changedProviderCount)

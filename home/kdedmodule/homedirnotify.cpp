@@ -30,11 +30,9 @@
 HomeDirNotify::HomeDirNotify()
 : mInited( false )
 {
-	QDBus::sessionBus().connect(QString(), QString(), "org.kde.KDirNotify",
-				    "FilesAdded", this, SLOT(FilesAdded(QString)));
-	QDBus::sessionBus().connect(QString(), QString(), "org.kde.KDirNotify",
-				    "FilesRemoved", this, SLOT(FilesRemoved(QStringList)));
-	QDBus::sessionBus().connect(QString(), QString(), "org.kde.KDirNotify",
+	QDBusConnection::sessionBus().connect(QString(), QString(), "org.kde.KDirNotify",
+				    "FilesAdded", this, SLOT(FilesAdded(QString))); QDBusConnection::sessionBus().connect(QString(), QString(), "org.kde.KDirNotify",
+				    "FilesRemoved", this, SLOT(FilesRemoved(QStringList))); QDBusConnection::sessionBus().connect(QString(), QString(), "org.kde.KDirNotify",
 				    "FilesChanged", this, SLOT(FilesChanged(QStringList)));
 }
 
@@ -64,7 +62,7 @@ void HomeDirNotify::init()
 			 && !uid_list.contains( (*it).uid() ) )
 			{
 				uid_list.append( (*it).uid() );
-				
+
 				QString name = (*it).loginName();
 				KUrl url;
 				url.setPath( (*it).homeDir() );
@@ -78,16 +76,16 @@ void HomeDirNotify::init()
 KUrl HomeDirNotify::toHomeURL(const KUrl &url)
 {
 	kDebug() << "HomeDirNotify::toHomeURL(" << url << ")" << endl;
-	
+
 	init();
 	QMap<QString,KUrl>::iterator it = m_homeFoldersMap.begin();
 	QMap<QString,KUrl>::iterator end = m_homeFoldersMap.end();
-	
+
 	for (; it!=end; ++it)
 	{
 		QString name = it.key();
 		KUrl base = it.value();
-		
+
 		if ( base.isParentOf(url) )
 		{
 			QString path = KUrl::relativePath(base.path(),
@@ -127,7 +125,7 @@ KUrl::List HomeDirNotify::toHomeURLList(const KUrl::List &list)
 void HomeDirNotify::FilesAdded(const QString &directory)
 {
 	kDebug() << "HomeDirNotify::FilesAdded" << endl;
-	
+
 	KUrl new_dir = toHomeURL(directory);
 
 	if (new_dir.isValid())
@@ -144,7 +142,7 @@ void HomeDirNotify::FilesAdded(const QString &directory)
 inline void evil_hack(const KUrl::List &list)
 {
 	KUrl::List notified;
-	
+
 	KUrl::List::const_iterator it = list.begin();
 	KUrl::List::const_iterator end = list.end();
 
@@ -164,7 +162,7 @@ inline void evil_hack(const KUrl::List &list)
 void HomeDirNotify::FilesRemoved(const QStringList &fileList)
 {
 	kDebug() << "HomeDirNotify::FilesRemoved" << endl;
-	
+
 	KUrl::List new_list = toHomeURLList(fileList);
 
 	if (!new_list.isEmpty())
@@ -178,7 +176,7 @@ void HomeDirNotify::FilesRemoved(const QStringList &fileList)
 void HomeDirNotify::FilesChanged(const QStringList &fileList)
 {
 	kDebug() << "HomeDirNotify::FilesChanged" << endl;
-	
+
 	KUrl::List new_list = toHomeURLList(fileList);
 
 	if (!new_list.isEmpty())

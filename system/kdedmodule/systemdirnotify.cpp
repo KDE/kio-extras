@@ -30,11 +30,9 @@
 SystemDirNotify::SystemDirNotify()
 : mInited( false )
 {
-	QDBus::sessionBus().connect(QString(), QString(), "org.kde.KDirNotify",
-				    "FilesAdded", this, SLOT(FilesAdded(QString)));
-	QDBus::sessionBus().connect(QString(), QString(), "org.kde.KDirNotify",
-				    "FilesRemoved", this, SLOT(FilesRemoved(QStringList)));
-	QDBus::sessionBus().connect(QString(), QString(), "org.kde.KDirNotify",
+	QDBusConnection::sessionBus().connect(QString(), QString(), "org.kde.KDirNotify",
+				    "FilesAdded", this, SLOT(FilesAdded(QString))); QDBusConnection::sessionBus().connect(QString(), QString(), "org.kde.KDirNotify",
+				    "FilesRemoved", this, SLOT(FilesRemoved(QStringList))); QDBusConnection::sessionBus().connect(QString(), QString(), "org.kde.KDirNotify",
 				    "FilesChanged", this, SLOT(FilesChanged(QStringList)));
 }
 
@@ -72,7 +70,7 @@ void SystemDirNotify::init()
 				system_name.truncate(system_name.length()-8);
 
 				KUrl system_url("system:/"+system_name);
-				
+
 				if ( !desktop.readURL().isEmpty() )
 				{
 					m_urlMap[desktop.readURL()] = system_url;
@@ -160,7 +158,7 @@ void SystemDirNotify::FilesRemoved(const QStringList &fileList)
 	if (!new_list.isEmpty())
 	{
 		org::kde::KDirNotify::emitFilesRemoved( new_list.toStringList() );
-		
+
 		KUrl::List::const_iterator it = new_list.begin();
 		KUrl::List::const_iterator end = new_list.end();
 

@@ -43,7 +43,7 @@
 
 MediaNotifier::MediaNotifier() : KDEDModule()
 {
-	m_mediamanager = new OrgKdeMediaManagerInterface( "org.kde.kded", "/modules/mediamanager", QDBus::sessionBus() );
+	m_mediamanager = new OrgKdeMediaManagerInterface( "org.kde.kded", "/modules/mediamanager", QDBusConnection::sessionBus() );
 	m_mediamanager->setParent( this );
 
 	connect( m_mediamanager, SIGNAL(mediumAdded(QString,bool)),

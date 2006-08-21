@@ -36,11 +36,9 @@ RemoteDirNotify::RemoteDirNotify()
 	QString path = KGlobal::dirs()->saveLocation("remote_entries");
 	m_baseURL.setPath(path);
 
-	QDBus::sessionBus().connect(QString(), QString(), "org.kde.KDirNotify",
-				    "FilesAdded", this, SLOT(FilesAdded(QString)));
-	QDBus::sessionBus().connect(QString(), QString(), "org.kde.KDirNotify",
-				    "FilesRemoved", this, SLOT(FilesRemoved(QStringList)));
-	QDBus::sessionBus().connect(QString(), QString(), "org.kde.KDirNotify",
+	QDBusConnection::sessionBus().connect(QString(), QString(), "org.kde.KDirNotify",
+				    "FilesAdded", this, SLOT(FilesAdded(QString))); QDBusConnection::sessionBus().connect(QString(), QString(), "org.kde.KDirNotify",
+				    "FilesRemoved", this, SLOT(FilesRemoved(QStringList))); QDBusConnection::sessionBus().connect(QString(), QString(), "org.kde.KDirNotify",
 				    "FilesChanged", this, SLOT(FilesChanged(QStringList)));
 }
 
@@ -84,7 +82,7 @@ KUrl::List RemoteDirNotify::toRemoteURLList(const KUrl::List &list)
 void RemoteDirNotify::FilesAdded(const QString &directory)
 {
 	kDebug(1220) << "RemoteDirNotify::FilesAdded" << endl;
-	
+
 	KUrl new_dir = toRemoteURL(directory);
 
 	if (new_dir.isValid())
@@ -101,7 +99,7 @@ void RemoteDirNotify::FilesAdded(const QString &directory)
 inline void evil_hack(const KUrl::List &list)
 {
 	KUrl::List notified;
-	
+
 	KUrl::List::const_iterator it = list.begin();
 	KUrl::List::const_iterator end = list.end();
 
@@ -121,7 +119,7 @@ inline void evil_hack(const KUrl::List &list)
 void RemoteDirNotify::FilesRemoved(const QStringList &fileList)
 {
 	kDebug(1220) << "RemoteDirNotify::FilesRemoved" << endl;
-	
+
 	KUrl::List new_list = toRemoteURLList(fileList);
 
 	if (!new_list.isEmpty())
@@ -135,7 +133,7 @@ void RemoteDirNotify::FilesRemoved(const QStringList &fileList)
 void RemoteDirNotify::FilesChanged(const QStringList &fileList)
 {
 	kDebug(1220) << "RemoteDirNotify::FilesChanged" << endl;
-	
+
 	KUrl::List new_list = toRemoteURLList(fileList);
 
 	if (!new_list.isEmpty())

@@ -44,7 +44,7 @@ KURISearchFilter::KURISearchFilter(QObject *parent,
                                    const QStringList &)
                  :KURIFilterPlugin( "KURISearchFilter", parent, 1.0)
 {
-  QDBus::sessionBus().connect(QString(), QString(), "org.kde.KUriFilterPlugin",
+  QDBusConnection::sessionBus().connect(QString(), QString(), "org.kde.KUriFilterPlugin",
                               "configure", this, SLOT(configure()));
 }
 

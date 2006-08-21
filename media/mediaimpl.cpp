@@ -37,7 +37,7 @@
 #include "medium.h"
 
 MediaImpl::MediaImpl() : QObject(), mp_mounting(0L),
-			 m_mediamanager( new OrgKdeMediaManagerInterface("org.kde.kded", "/modules/mediamanager", QDBus::sessionBus() ) )
+			 m_mediamanager( new OrgKdeMediaManagerInterface("org.kde.kded", "/modules/mediamanager", QDBusConnection::sessionBus() ) )
 {
 	m_mediamanager->setParent(this);
 }

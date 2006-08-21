@@ -37,13 +37,13 @@
  * IMPORTANT: If you change anything here, please run the regression test
  * kdelibs/kio/tests/kurifiltertest
  */
- 
+
 LocalDomainURIFilter::LocalDomainURIFilter( QObject *parent, const QStringList & /*args*/ )
     : KURIFilterPlugin( "localdomainurifilter", parent, 1.0 ),
       last_time( 0 ),
       m_hostPortPattern( QLatin1String(HOSTPORT_PATTERN) )
 {
-    QDBus::sessionBus().connect(QString(), QString(), "org.kde.KUriFilterPlugin",
+    QDBusConnection::sessionBus().connect(QString(), QString(), "org.kde.KUriFilterPlugin",
                                 "configure", this, SLOT(configure()));
     configure();
 }
@@ -52,16 +52,16 @@ bool LocalDomainURIFilter::filterURI( KURIFilterData& data ) const
 {
     KUrl url = data.uri();
     QString cmd = url.url();
-    
+
     kDebug() << "LocalDomainURIFilter::filterURI: " << url << endl;
-    
-    if( m_hostPortPattern.exactMatch( cmd ) && 
+
+    if( m_hostPortPattern.exactMatch( cmd ) &&
         isLocalDomainHost( cmd ) )
     {
         cmd.prepend( QLatin1String("http://") );
         setFilteredURI( data, KUrl( cmd ) );
         setURIType( data, KURIFilterData::NET_PROTOCOL );
-        
+
         kDebug() << "FilteredURI: " << data.uri() << endl;
         return true;
     }
