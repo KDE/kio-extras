@@ -5,5 +5,5 @@ Name=InternetKeywordsFilter
 Name[fr]=Mots-clefs internet
 Name[x-test]=xxInternetKeywordsFilterxx
 X-KDE-Library=libkuriikwsfilter
-ServiceTypes=KURIFilter/Plugin
+ServiceTypes=KUriFilter/Plugin
 InitialPreference=1

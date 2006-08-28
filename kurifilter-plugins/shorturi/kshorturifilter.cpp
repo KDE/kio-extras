@@ -321,7 +321,7 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
 
   // Checking for local resource match...
   // Determine if "uri" is an absolute path to a local resource  OR
-  // A local resource with a supplied absolute path in KURIFilterData
+  // A local resource with a supplied absolute path in KUriFilterData
   const QString abs_path = data.absolutePath();
 
   const bool canBeAbsolute = (protocol.isEmpty() && !abs_path.isEmpty());

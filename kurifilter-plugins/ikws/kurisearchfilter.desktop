@@ -5,5 +5,5 @@ Name=SearchKeywordsFilter
 Name[fr]=Filtre de mots-clefs de recherche
 Name[x-test]=xxSearchKeywordsFilterxx
 X-KDE-Library=libkurisearchfilter
-ServiceTypes=KURIFilter/Plugin
+ServiceTypes=KUriFilter/Plugin
 InitialPreference=4
