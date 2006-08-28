@@ -169,14 +169,14 @@ KUrl SystemImpl::findBaseURL(const QString &filename) const
 			if (*name==filename+".desktop")
 			{
 				KDesktopFile desktop(*dirpath+filename+".desktop", true);
-				if ( desktop.readURL().isEmpty() )
+				if ( desktop.readUrl().isEmpty() )
 				{
 					KUrl url;
 					url.setPath( desktop.readPath() );
 					return url;
 				}
 
-				return desktop.readURL();
+				return desktop.readUrl();
 			}
 		}
 	}
@@ -210,7 +210,7 @@ void SystemImpl::createEntry(KIO::UDSEntry &entry,
 	entry.clear();
 
 	// Ensure that we really want this entry to be displayed
-	if ( desktop.readURL().isEmpty() && desktop.readPath().isEmpty() )
+	if ( desktop.readUrl().isEmpty() && desktop.readPath().isEmpty() )
 	{
 		return;
 	}
@@ -229,7 +229,7 @@ void SystemImpl::createEntry(KIO::UDSEntry &entry,
 
 	if (!empty_icon.isEmpty())
 	{
-		KUrl url = desktop.readURL();
+		KUrl url = desktop.readUrl();
 
 		m_lastListingEmpty = true;
 

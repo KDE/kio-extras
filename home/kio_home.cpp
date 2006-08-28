@@ -63,7 +63,7 @@ HomeProtocol::~HomeProtocol()
 {
 }
 
-bool HomeProtocol::rewriteURL(const KUrl &url, KUrl &newUrl)
+bool HomeProtocol::rewriteUrl(const KUrl &url, KUrl &newUrl)
 {
 	QString name, path;
 

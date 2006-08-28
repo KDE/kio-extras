@@ -345,7 +345,7 @@ void MediaImpl::createMediumEntry(KIO::UDSEntry& entry,
 	else
 	{
 		QString mime = medium.mimeType();
-		QString icon = KMimeType::mimeType(mime)->icon(mime);
+		QString icon = KMimeType::mimeType(mime)->iconName(mime);
 		entry.insert( KIO::UDS_ICON_NAME, icon );
 	}
 

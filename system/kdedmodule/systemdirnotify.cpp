@@ -71,9 +71,9 @@ void SystemDirNotify::init()
 
 				KUrl system_url("system:/"+system_name);
 
-				if ( !desktop.readURL().isEmpty() )
+				if ( !desktop.readUrl().isEmpty() )
 				{
-					m_urlMap[desktop.readURL()] = system_url;
+					m_urlMap[desktop.readUrl()] = system_url;
 					names_found.append( *name );
 				}
 				else if ( !desktop.readPath().isEmpty() )

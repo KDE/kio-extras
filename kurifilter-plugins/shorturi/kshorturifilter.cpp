@@ -134,15 +134,15 @@ static QString removeArgs( const QString& _cmd )
   return cmd;
 }
 
-KShortURIFilter::KShortURIFilter( QObject *parent, const QStringList & /*args*/ )
-                :KURIFilterPlugin( "kshorturifilter", parent, 1.0)
+KShortUriFilter::KShortUriFilter( QObject *parent, const QStringList & /*args*/ )
+                :KUriFilterPlugin( "kshorturifilter", parent, 1.0)
 {
     QDBusConnection::sessionBus().connect(QString(), QString(), "org.kde.KUriFilterPlugin",
                                 "configure", this, SLOT(configure()));
     configure();
 }
 
-bool KShortURIFilter::filterURI( KURIFilterData& data ) const
+bool KShortUriFilter::filterUri( KUriFilterData& data ) const
 {
  /*
   * Here is a description of how the shortURI deals with the supplied
@@ -172,8 +172,8 @@ bool KShortURIFilter::filterURI( KURIFilterData& data ) const
   {
      // Handle "encrypted" URLs like: h++p://www.kde.org
      url.setProtocol( QLatin1String("http"));
-     setFilteredURI( data, url);
-     setURIType( data, KURIFilterData::NET_PROTOCOL );
+     setFilteredUri( data, url);
+     setUriType( data, KUriFilterData::NET_PROTOCOL );
      return true;
   }
 
@@ -185,8 +185,8 @@ bool KShortURIFilter::filterURI( KURIFilterData& data ) const
   const QString starthere_proto = QFL1("start-here:");
   if (cmd.indexOf(starthere_proto) == 0 )
   {
-    setFilteredURI( data, KUrl("system:/") );
-    setURIType( data, KURIFilterData::LOCAL_DIR );
+    setFilteredUri( data, KUrl("system:/") );
+    setUriType( data, KUriFilterData::LOCAL_DIR );
     return true;
   }
 
@@ -205,8 +205,8 @@ bool KShortURIFilter::filterURI( KURIFilterData& data ) const
     else if ((cmd==info_proto) || (cmd==man_proto))
       cmd+='/';
 
-    setFilteredURI( data, KUrl( cmd ));
-    setURIType( data, KURIFilterData::HELP );
+    setFilteredUri( data, KUrl( cmd ));
+    setUriType( data, KUriFilterData::HELP );
     return true;
   }
 
@@ -216,8 +216,8 @@ bool KShortURIFilter::filterURI( KURIFilterData& data ) const
     // make sure path is unix style
     cmd.replace('\\', '/');
     cmd.prepend( QLatin1String( "smb:" ) );
-    setFilteredURI( data, KUrl( cmd ));
-    setURIType( data, KURIFilterData::NET_PROTOCOL );
+    setFilteredUri( data, KUrl( cmd ));
+    setUriType( data, KUriFilterData::NET_PROTOCOL );
     return true;
   }
 
@@ -277,7 +277,7 @@ bool KShortURIFilter::filterURI( KURIFilterData& data ) const
         QString msg = dir ? i18n("<qt><b>%1</b> does not have a home folder.</qt>", user) :
                             i18n("<qt>There is no user called <b>%1</b>.</qt>", user);
         setErrorMsg( data, msg );
-        setURIType( data, KURIFilterData::ERROR );
+        setUriType( data, KUriFilterData::ERROR );
         // Always return true for error conditions so
         // that other filters will not be invoked !!
         return true;
@@ -385,12 +385,12 @@ bool KShortURIFilter::filterURI( KURIFilterData& data ) const
     u.setRef(ref);
     u.setQuery(query);
 
-    if (!KAuthorized::authorizeURLAction( QLatin1String("open"), KUrl(), u))
+    if (!KAuthorized::authorizeUrlAction( QLatin1String("open"), KUrl(), u))
     {
       // No authorisation, we pretend it's a file will get
       // an access denied error later on.
-      setFilteredURI( data, u );
-      setURIType( data, KURIFilterData::LOCAL_FILE );
+      setFilteredUri( data, u );
+      setUriType( data, KUriFilterData::LOCAL_FILE );
       return true;
     }
 
@@ -399,8 +399,8 @@ bool KShortURIFilter::filterURI( KURIFilterData& data ) const
     if( !isDir && access ( QFile::encodeName(path).data(), X_OK) == 0 )
     {
       //kDebug() << "Abs path to EXECUTABLE" << endl;
-      setFilteredURI( data, u );
-      setURIType( data, KURIFilterData::EXECUTABLE );
+      setFilteredUri( data, u );
+      setUriType( data, KUriFilterData::EXECUTABLE );
       return true;
     }
 
@@ -410,8 +410,8 @@ bool KShortURIFilter::filterURI( KURIFilterData& data ) const
       //kDebug() << "Abs path as local file or directory" << endl;
       if ( !nameFilter.isEmpty() )
         u.setFileName( nameFilter );
-      setFilteredURI( data, u );
-      setURIType( data, ( isDir ) ? KURIFilterData::LOCAL_DIR : KURIFilterData::LOCAL_FILE );
+      setFilteredUri( data, u );
+      setUriType( data, ( isDir ) ? KUriFilterData::LOCAL_DIR : KUriFilterData::LOCAL_FILE );
       return true;
     }
 
@@ -428,11 +428,11 @@ bool KShortURIFilter::filterURI( KURIFilterData& data ) const
   if( data.checkForExecutables() && !KStandardDirs::findExe( exe ).isNull() )
   {
     //kDebug() << "EXECUTABLE  exe=" << exe << endl;
-    setFilteredURI( data, KUrl::fromPath( exe ));
+    setFilteredUri( data, KUrl::fromPath( exe ));
     // check if we have command line arguments
     if( exe != cmd )
         setArguments(data, cmd.right(cmd.length() - exe.length()));
-    setURIType( data, KURIFilterData::EXECUTABLE );
+    setUriType( data, KUriFilterData::EXECUTABLE );
     return true;
   }
 
@@ -444,11 +444,11 @@ bool KShortURIFilter::filterURI( KURIFilterData& data ) const
     //kDebug() << "looking for protocol " << protocol << endl;
     if ( KProtocolInfo::protocols().contains( protocol ) )
     {
-      setFilteredURI( data, url );
+      setFilteredUri( data, url );
       if ( protocol == QFL1("man") || protocol == QFL1("help") )
-        setURIType( data, KURIFilterData::HELP );
+        setUriType( data, KUriFilterData::HELP );
       else
-        setURIType( data, KURIFilterData::NET_PROTOCOL );
+        setUriType( data, KUriFilterData::NET_PROTOCOL );
       return true;
     }
   }
@@ -466,8 +466,8 @@ bool KShortURIFilter::filterURI( KURIFilterData& data ) const
       {
         //kDebug() << "match - prepending " << (*it).prepend << endl;
         cmd.prepend( (*it).prepend );
-        setFilteredURI( data, KUrl( cmd ) );
-        setURIType( data, (*it).type );
+        setFilteredUri( data, KUrl( cmd ) );
+        setUriType( data, (*it).type );
         return true;
       }
     }
@@ -481,8 +481,8 @@ bool KShortURIFilter::filterURI( KURIFilterData& data ) const
                   << m_strDefaultProtocol << endl;
 
       cmd.insert( 0, m_strDefaultProtocol );
-      setFilteredURI( data, KUrl( cmd ));
-      setURIType( data, KURIFilterData::NET_PROTOCOL );
+      setFilteredUri( data, KUrl( cmd ));
+      setUriType( data, KUriFilterData::NET_PROTOCOL );
       return true;
     }
   }
@@ -495,17 +495,17 @@ bool KShortURIFilter::filterURI( KURIFilterData& data ) const
     u.setPath(path);
     u.setRef(ref);
 
-    if (!KAuthorized::authorizeURLAction( QLatin1String("open"), KUrl(), u))
+    if (!KAuthorized::authorizeUrlAction( QLatin1String("open"), KUrl(), u))
     {
       // No authorisation, we pretend it exists and will get
       // an access denied error later on.
-      setFilteredURI( data, u );
-      setURIType( data, KURIFilterData::LOCAL_FILE );
+      setFilteredUri( data, u );
+      setUriType( data, KUriFilterData::LOCAL_FILE );
       return true;
     }
     //kDebug() << "fileNotFound -> ERROR" << endl;
     setErrorMsg( data, i18n( "<qt>The file or folder <b>%1</b> does not exist.", data.uri().prettyUrl() ) );
-    setURIType( data, KURIFilterData::ERROR );
+    setUriType( data, KUriFilterData::ERROR );
     return true;
   }
 
@@ -514,23 +514,23 @@ bool KShortURIFilter::filterURI( KURIFilterData& data ) const
   return false;
 }
 
-KCModule* KShortURIFilter::configModule( QWidget*, const char* ) const
+KCModule* KShortUriFilter::configModule( QWidget*, const char* ) const
 {
-    return 0; //new KShortURIOptions( parent, name );
+    return 0; //new KShortUriOptions( parent, name );
 }
 
-QString KShortURIFilter::configName() const
+QString KShortUriFilter::configName() const
 {
     return i18n("&ShortURLs");
 }
 
-void KShortURIFilter::configure()
+void KShortUriFilter::configure()
 {
   KConfig config( name() + QFL1("rc"), false, false );
   m_bVerbose = config.readEntry( "Verbose", false );
 
   if ( m_bVerbose )
-    kDebug() << "KShortURIFilter::configure: Config reload request..." << endl;
+    kDebug() << "KShortUriFilter::configure: Config reload request..." << endl;
 
   m_strDefaultProtocol = config.readEntry( "DefaultProtocol", QString("http://") );
   EntryMap patterns = config.entryMap( QFL1("Pattern") );
@@ -543,8 +543,8 @@ void KShortURIFilter::configure()
     if (!protocol.isEmpty())
     {
       int type = config.readEntry(it.key(), -1);
-      if (type > -1 && type <= KURIFilterData::UNKNOWN)
-        m_urlHints.append( URLHint(it.value(), protocol, static_cast<KURIFilterData::URITypes>(type) ) );
+      if (type > -1 && type <= KUriFilterData::UNKNOWN)
+        m_urlHints.append( URLHint(it.value(), protocol, static_cast<KUriFilterData::UriTypes>(type) ) );
       else
         m_urlHints.append( URLHint(it.value(), protocol) );
     }
@@ -552,6 +552,6 @@ void KShortURIFilter::configure()
 }
 
 K_EXPORT_COMPONENT_FACTORY( libkshorturifilter,
-                            KGenericFactory<KShortURIFilter>( "kcmkurifilt" ) )
+                            KGenericFactory<KShortUriFilter>( "kcmkurifilt" ) )
 
 #include "kshorturifilter.moc"

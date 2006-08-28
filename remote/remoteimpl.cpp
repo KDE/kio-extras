@@ -141,7 +141,7 @@ KUrl RemoteImpl::findBaseURL(const QString &filename) const
 	if (!file.isEmpty())
 	{
 		KDesktopFile desktop(file, true);
-		return desktop.readURL();
+		return desktop.readUrl();
 	}
 
 	return KUrl();
@@ -226,7 +226,7 @@ void RemoteImpl::createEntry(KIO::UDSEntry &entry,
 
 	const QString icon = desktop.readIcon();
 	entry.insert( KIO::UDS_ICON_NAME, icon);
-	entry.insert( KIO::UDS_LINK_DEST, desktop.readURL());
+	entry.insert( KIO::UDS_LINK_DEST, desktop.readUrl());
 }
 
 bool RemoteImpl::statNetworkFolder(KIO::UDSEntry &entry, const QString &filename) const

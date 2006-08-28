@@ -32,7 +32,7 @@ public:
 	              const QByteArray &app);
 	virtual ~MediaProtocol();
 
-	virtual bool rewriteURL(const KUrl &url, KUrl &newUrl);
+	virtual bool rewriteUrl(const KUrl &url, KUrl &newUrl);
 
 	virtual void put(const KUrl &url, int permissions,
 	                 bool overwrite, bool resume);

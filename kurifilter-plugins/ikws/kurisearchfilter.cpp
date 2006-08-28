@@ -37,33 +37,33 @@
  * kdelibs/kio/tests/kurifiltertest
  */
 
-typedef KGenericFactory<KURISearchFilter> KURISearchFilterFactory;
-K_EXPORT_COMPONENT_FACTORY(libkurisearchfilter, KURISearchFilterFactory("kcmkurifilt"))
+typedef KGenericFactory<KUriSearchFilter> KUriSearchFilterFactory;
+K_EXPORT_COMPONENT_FACTORY(libkurisearchfilter, KUriSearchFilterFactory("kcmkurifilt"))
 
-KURISearchFilter::KURISearchFilter(QObject *parent,
+KUriSearchFilter::KUriSearchFilter(QObject *parent,
                                    const QStringList &)
-                 :KURIFilterPlugin( "KURISearchFilter", parent, 1.0)
+                 :KUriFilterPlugin( "KUriSearchFilter", parent, 1.0)
 {
   QDBusConnection::sessionBus().connect(QString(), QString(), "org.kde.KUriFilterPlugin",
                               "configure", this, SLOT(configure()));
 }
 
-KURISearchFilter::~KURISearchFilter()
+KUriSearchFilter::~KUriSearchFilter()
 {
 }
 
-void KURISearchFilter::configure()
+void KUriSearchFilter::configure()
 {
   if ( KURISearchFilterEngine::self()->verbose() )
-    kDebug() << "KURISearchFilter::configure: Config reload request..." << endl;
+    kDebug() << "KUriSearchFilter::configure: Config reload request..." << endl;
 
   KURISearchFilterEngine::self()->loadConfig();
 }
 
-bool KURISearchFilter::filterURI( KURIFilterData &data ) const
+bool KUriSearchFilter::filterUri( KUriFilterData &data ) const
 {
   if ( KURISearchFilterEngine::self()->verbose() )
-    kDebug() << "KURISearchFilter::filterURI: '" << data.typedString() << "'" << endl;
+    kDebug() << "KUriSearchFilter::filterUri: '" << data.typedString() << "'" << endl;
 
   QString result = KURISearchFilterEngine::self()->webShortcutQuery( data.typedString() );
 
@@ -72,20 +72,20 @@ bool KURISearchFilter::filterURI( KURIFilterData &data ) const
     if ( KURISearchFilterEngine::self()->verbose() )
       kDebug() << "Filtered URL: " << result << endl;
 
-    setFilteredURI( data, KUrl( result ) );
-    setURIType( data, KURIFilterData::NET_PROTOCOL );
+    setFilteredUri( data, KUrl( result ) );
+    setUriType( data, KUriFilterData::NET_PROTOCOL );
     return true;
   }
 
   return false;
 }
 
-KCModule *KURISearchFilter::configModule(QWidget *parent, const char *) const
+KCModule *KUriSearchFilter::configModule(QWidget *parent, const char *) const
 {
-  return new FilterOptions( KURISearchFilterFactory::instance(), parent);
+  return new FilterOptions( KUriSearchFilterFactory::instance(), parent);
 }
 
-QString KURISearchFilter::configName() const
+QString KUriSearchFilter::configName() const
 {
   return i18n("Search F&ilters");
 }

@@ -80,7 +80,7 @@ KManPart::KManPart( QWidget * parent )
 
 bool KManPart::openURL( const KUrl &url )
 {
-   return KParts::ReadOnlyPart::openURL(url);
+   return KParts::ReadOnlyPart::openUrl(url);
 }
 
 bool KManPart::openFile()

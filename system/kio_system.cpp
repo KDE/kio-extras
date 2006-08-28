@@ -64,7 +64,7 @@ SystemProtocol::~SystemProtocol()
 {
 }
 
-bool SystemProtocol::rewriteURL(const KUrl &url, KUrl &newUrl)
+bool SystemProtocol::rewriteUrl(const KUrl &url, KUrl &newUrl)
 {
 	QString name, path;
 

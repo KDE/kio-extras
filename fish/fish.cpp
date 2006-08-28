@@ -925,7 +925,7 @@ void fishProtocol::manageConnection(const QString &l) {
                     // By default, the mimetype comes from the extension
                     // We'll use the file(1) result only as fallback [like the rest of KDE does]
                     {
-                      KMimeType::Ptr mime = KMimeType::findByURL( KUrl("fish://host/" + thisFn) );
+                      KMimeType::Ptr mime = KMimeType::findByUrl( KUrl("fish://host/" + thisFn) );
                       if ( mime->name() != KMimeType::defaultMimeType() )
                           udsMime = mime->name();
                     }

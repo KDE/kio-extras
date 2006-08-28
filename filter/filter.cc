@@ -72,7 +72,7 @@ void FilterProtocol::get( const KUrl & )
       error( KIO::ERR_INTERNAL, mProtocol );
       return;
   }
-  needSubURLData();
+  needSubUrlData();
 
   filter->init(QIODevice::ReadOnly);
 

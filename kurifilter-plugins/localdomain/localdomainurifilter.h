@@ -37,13 +37,13 @@ class KProcess;
  intranet.domain.org and if yes, it's a network URI.
 */
 
-class LocalDomainURIFilter : public KURIFilterPlugin
+class LocalDomainUriFilter : public KUriFilterPlugin
 {
   Q_OBJECT
 
   public:
-    LocalDomainURIFilter( QObject* parent, const QStringList& args );
-    virtual bool filterURI( KURIFilterData &data ) const;
+    LocalDomainUriFilter( QObject* parent, const QStringList& args );
+    virtual bool filterUri( KUriFilterData &data ) const;
 
   public Q_SLOTS:
     void configure();

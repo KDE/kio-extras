@@ -67,7 +67,7 @@ MediaProtocol::~MediaProtocol()
 {
 }
 
-bool MediaProtocol::rewriteURL(const KUrl &url, KUrl &newUrl)
+bool MediaProtocol::rewriteUrl(const KUrl &url, KUrl &newUrl)
 {
 	QString name, path;
 

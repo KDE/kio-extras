@@ -125,7 +125,7 @@ bool MediaNotifier::autostart( const KFileItem &medium )
 	// From now we're sure the medium is already mounted.
 	// We can use the local path for stating, no need to use KIO here.
 	bool local;
-	QString path = medium.mostLocalURL( local ).path(); // local is always true here...
+	QString path = medium.mostLocalUrl( local ).path(); // local is always true here...
 
 	// When a new medium is mounted the root directory of the medium should
 	// be checked for the following Autostart files in order of precedence:

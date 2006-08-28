@@ -38,7 +38,7 @@ class KInstance;
 * @author Dawit Alemayehu <adawit@kde.org>
 * @author Malte Starostik <starosti@zedat.fu-berlin.de>
 */
-class KShortURIFilter : public KURIFilterPlugin
+class KShortUriFilter : public KUriFilterPlugin
 {
     Q_OBJECT
 public:
@@ -49,12 +49,12 @@ public:
      * @param parent the parent of this class.
      * @param name the internal name for this object.
      */
-    KShortURIFilter( QObject *parent = 0, const QStringList &args = QStringList() );
+    KShortUriFilter( QObject *parent = 0, const QStringList &args = QStringList() );
 
     /**
      * Destructor
      */
-    virtual ~KShortURIFilter() {};
+    virtual ~KShortUriFilter() {};
 
     /**
      * Converts short URIs into fully qualified valid URIs
@@ -67,7 +67,7 @@ public:
      * @param data the data to be filtered
      * @return true if the url has been filtered
      */
-    virtual bool filterURI( KURIFilterData &data ) const;
+    virtual bool filterUri( KUriFilterData &data ) const;
 
     /**
      * Returns the name of the config module for
@@ -93,12 +93,12 @@ private:
     struct URLHint
     {
         URLHint() {}
-        URLHint( QString r, QString p, 
-                 KURIFilterData::URITypes t = KURIFilterData::NET_PROTOCOL )
+        URLHint( QString r, QString p,
+                 KUriFilterData::UriTypes t = KUriFilterData::NET_PROTOCOL )
                : regexp(r), prepend(p), type(t) {}
         QString regexp; // if this matches, then...
         QString prepend; // ...prepend this to the url
-        KURIFilterData::URITypes type;
+        KUriFilterData::UriTypes type;
     };
 
     QList<URLHint> m_urlHints;

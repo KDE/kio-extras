@@ -30,7 +30,7 @@ public:
 	             const QByteArray &app);
 	virtual ~HomeProtocol();
 
-	virtual bool rewriteURL(const KUrl &url, KUrl &newUrl);
+	virtual bool rewriteUrl(const KUrl &url, KUrl &newUrl);
 	
 	virtual void listDir(const KUrl &url);
 	virtual void stat(const KUrl &url);

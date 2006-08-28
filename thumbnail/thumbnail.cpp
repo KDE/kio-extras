@@ -166,7 +166,7 @@ void ThumbnailProtocol::get(const KUrl &url)
             error(KIO::ERR_COULD_NOT_READ,url.path());
             return;
         }
-        m_mimeType = KMimeType::findByURL(url)->name();
+        m_mimeType = KMimeType::findByUrl(url)->name();
         kDebug(7115) << "Guessing MIME Type:" << m_mimeType << endl;
         direct=true; // thumbnail: was probably called from Konqueror
     }

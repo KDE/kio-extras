@@ -41,7 +41,7 @@ typedef KGenericFactory<KAutoWebSearch> KAutoWebSearchFactory;
 K_EXPORT_COMPONENT_FACTORY (libkuriikwsfilter, KAutoWebSearchFactory("kcmkurifilt"))
 
 KAutoWebSearch::KAutoWebSearch(QObject *parent, const QStringList&)
-               :KURIFilterPlugin( "KURIIKWSFilterIface", parent, 1.0)
+               :KUriFilterPlugin( "KURIIKWSFilterIface", parent, 1.0)
 {
   QDBusConnection::sessionBus().connect(QString(), QString(), "org.kde.KUriFilterPlugin",
                               "configure", this, SLOT(configure()));
@@ -59,7 +59,7 @@ void KAutoWebSearch::configure()
   KURISearchFilterEngine::self()->loadConfig();
 }
 
-bool KAutoWebSearch::filterURI( KURIFilterData &data ) const
+bool KAutoWebSearch::filterUri( KUriFilterData &data ) const
 {
   if (KURISearchFilterEngine::self()->verbose())
     kDebug() << "KAutoWebSearch::filterURI: '" <<  data.uri().url() << "'" << endl;
@@ -73,8 +73,8 @@ bool KAutoWebSearch::filterURI( KURIFilterData &data ) const
       if ( KURISearchFilterEngine::self()->verbose() )
         kDebug () << "Filtered URL: " << result << endl;
 
-      setFilteredURI( data, KUrl( result ) );
-      setURIType( data, KURIFilterData::NET_PROTOCOL );
+      setFilteredUri( data, KUrl( result ) );
+      setUriType( data, KUriFilterData::NET_PROTOCOL );
       return true;
     }
   }
