@@ -13,24 +13,3 @@ target_link_libraries(kio_media_mounthelper  ${KDE4_KIO_LIBS} )
 
 install(TARGETS kio_media_mounthelper DESTINATION ${BIN_INSTALL_DIR})
 
-
-########### install files ###############
-
-
-
-
-
-#original Makefile.am contents follow:
-
-#bin_PROGRAMS = kio_media_mounthelper
-#
-#INCLUDES = -I$(srcdir)/../libmediacommon $(all_includes)
-#AM_LDFLAGS = $(all_libraries)
-#
-#kio_media_mounthelper_SOURCES = kio_media_mounthelper.cpp
-#
-#kio_media_mounthelper_LDFLAGS = $(KDE_RPATH) $(all_libraries)
-#kio_media_mounthelper_LDADD = $(LIB_KIO) ../libmediacommon/libmediacommon.la
-#
-#METASOURCES = AUTO
-#
