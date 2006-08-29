@@ -110,8 +110,8 @@ if(OPENEXR_FOUND)
 
    target_link_libraries(exrthumbnail  ${KDE4_KDE3SUPPORT_LIBS} ${OPENEXR_LIBRARIES})
 
-install(TARGETS exrthumbnail  DESTINATION ${PLUGIN_INSTALL_DIR} )
-install( FILES exrthumbnail.desktop  DESTINATION  ${SERVICES_INSTALL_DIR} )
+   install(TARGETS exrthumbnail  DESTINATION ${PLUGIN_INSTALL_DIR} )
+   install( FILES exrthumbnail.desktop  DESTINATION  ${SERVICES_INSTALL_DIR} )
 
 endif(OPENEXR_FOUND)
 
@@ -129,8 +129,8 @@ if(X11_Xcursor_FOUND)
 
    target_link_libraries(cursorthumbnail  ${KDE4_KDE3SUPPORT_LIBS} ${X11_Xcursor_LIB})
 
-install(TARGETS cursorthumbnail  DESTINATION ${PLUGIN_INSTALL_DIR} )
-install( FILES cursorthumbnail.desktop  DESTINATION  ${SERVICES_INSTALL_DIR} )
+   install(TARGETS cursorthumbnail  DESTINATION ${PLUGIN_INSTALL_DIR} )
+   install( FILES cursorthumbnail.desktop  DESTINATION  ${SERVICES_INSTALL_DIR} )
 
 endif(X11_Xcursor_FOUND)
 

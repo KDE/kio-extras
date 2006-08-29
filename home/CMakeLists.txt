@@ -26,12 +26,11 @@ install(TARGETS kio_home  DESTINATION ${PLUGIN_INSTALL_DIR} )
 
 
 ########### next target ###############
-
+if(KDE4_BUILD_TESTS)
 set(testhome_SRCS testhome.cpp )
 
 kde4_automoc(${testhome_SRCS})
 
-if(KDE4_BUILD_TESTS)
 
 kde4_add_executable(testhome ${testhome_SRCS} ${libkiohome_SRCS})
 

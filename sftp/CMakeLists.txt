@@ -4,12 +4,10 @@ project(kioslave-sftp)
 
 
 ########### next target ###############
-
+if(KDE4_BUILD_TESTS)
 set(ksshprocesstest_SRCS ksshprocesstest.cpp ksshprocess.cpp process.cpp atomicio.cpp )
 
 kde4_automoc(${ksshprocesstest_SRCS})
-
-if(KDE4_BUILD_TESTS)
 
 kde4_add_executable(ksshprocesstest ${ksshprocesstest_SRCS})
 

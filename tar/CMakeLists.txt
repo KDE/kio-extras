@@ -23,26 +23,3 @@ install(TARGETS kio_tar  DESTINATION ${PLUGIN_INSTALL_DIR} )
 install( FILES tar.protocol ar.protocol zip.protocol  DESTINATION  ${SERVICES_INSTALL_DIR} )
 
 
-
-
-#original Makefile.am contents follow:
-
-### Makefile.am of kdebase/kioslave/tar
-#
-#INCLUDES = $(all_includes)
-#AM_LDFLAGS = $(all_libraries) $(KDE_RPATH)
-#METASOURCES = AUTO
-#
-#kde_module_LTLIBRARIES = kio_tar.la
-#
-#kio_tar_la_SOURCES = tar.cc
-#kio_tar_la_LIBADD = $(LIB_KSYCOCA)
-#kio_tar_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN)
-#
-#noinst_HEADERS = tar.h
-#
-#kdelnk_DATA = tar.protocol ar.protocol zip.protocol
-#kdelnkdir = $(kde_servicesdir)
-#
-#messages:
-#	$(XGETTEXT) *.cc -o $(podir)/kio_tar.pot
