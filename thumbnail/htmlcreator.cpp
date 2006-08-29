@@ -64,7 +64,7 @@ bool HTMLCreator::create(const QString &path, int width, int height, QImage &img
     }
     KUrl url;
     url.setPath(path);
-    m_html->openURL(url);
+    m_html->openUrl(url);
 
     int t = startTimer(5000);
 
@@ -99,7 +99,7 @@ bool HTMLCreator::create(const QString &path, int width, int height, QImage &img
 
     img = pix.toImage();
 
-    m_html->closeURL();
+    m_html->closeUrl();
 
     return true;
 }

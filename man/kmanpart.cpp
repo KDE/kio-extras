@@ -78,7 +78,7 @@ KManPart::KManPart( QWidget * parent )
    m_extension=new KParts::BrowserExtension(this);
 }
 
-bool KManPart::openURL( const KUrl &url )
+bool KManPart::openUrl( const KUrl &url )
 {
    return KParts::ReadOnlyPart::openUrl(url);
 }
