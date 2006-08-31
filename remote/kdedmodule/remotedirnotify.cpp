@@ -109,7 +109,7 @@ inline void evil_hack(const KUrl::List &list)
 
 		if (!notified.contains(url))
 		{
-			org::kde::KDirNotify::emitFilesAdded(url.toString());
+			org::kde::KDirNotify::emitFilesAdded(url.url());
 			notified.append(url);
 		}
 	}
