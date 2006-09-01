@@ -29,6 +29,7 @@
 #include <kdirnotify.h>
 
 #include "mediamanagersettings.h"
+#include "mediamanageradaptor.h"
 
 #include "fstabbackend.h"
 
@@ -44,6 +45,8 @@
 MediaManager::MediaManager()
     : KDEDModule(), m_dirNotify(m_mediaList)
 {
+	new MediaManagerAdaptor( this );
+	
 	connect( &m_mediaList, SIGNAL(mediumAdded(const QString&, const QString&, bool)),
 	         SLOT(slotMediumAdded(const QString&, const QString&, bool)) );
 	connect( &m_mediaList, SIGNAL(mediumRemoved(const QString&, const QString&, bool)),
