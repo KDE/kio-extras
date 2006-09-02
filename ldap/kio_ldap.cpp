@@ -177,70 +177,7 @@ void LDAPProtocol::controlsFromMetaData( LdapControls &serverctrls,
   }
 
 }
-/*
-int LDAPProtocol::parsePageControl( LDAPMessage *result, QByteArray &cookie )
-{
-  int rc;
-  int err;
-  LDAPControl **ctrl = NULL;
-  LDAPControl *ctrlp = NULL;
-  BerElement *ber;
-  ber_tag_t tag;
 
-  rc = ldap_parse_result( mLDAP, result, &err, NULL, NULL, NULL, &ctrl, 0 );
-
-  if( rc != LDAP_SUCCESS ) {
-    kDebug(7125) << "ldap_parse_result" << endl;
-    return -1;
-  }
-
-  if ( err != LDAP_SUCCESS ) {
-    kDebug(7125) << "parse_page_control error: " << ldap_err2string(err) << " " << err << endl;
-    return -1;
-  }
-
-  if( ctrl ) {
-*/
-    /* Parse the control value
-     * searchResult ::= SEQUENCE {
-     *		size	INTEGER (0..maxInt),
-     *				-- result set size estimate from server - unused
-     *		cookie	OCTET STRING
-     * }
-     */
-/*
-    ctrlp = *ctrl;
-    ber = ber_init( &ctrlp->ldctl_value );
-    if ( ber == 0 ) {
-      kDebug(7125) << "Internal error." << endl;
-      return -1;
-    }
-
-    int entriesLeft;
-    struct berval bv;
-    tag = ber_scanf( ber, "{io}", &entriesLeft, &bv );
-    kDebug(7125) << "entriesleft: " << entriesLeft << " cookie len: " << bv.bv_len << " cookie: " << bv.bv_val << endl;
-    (void) ber_free( ber, 1 );
-    cookie.resize(bv.bv_len);
-    memcpy(cookie.data(),bv.bv_val,bv.bv_len);
-    ber_memfree(bv.bv_val);
-		
-    if( tag == LBER_ERROR ) {
-      kDebug(7125) << "Paged results response control could not be decoded." << endl;
-      return -1;
-    }
-
-    if( entriesLeft < 0 ) {
-      kDebug(7125) << "Invalid entries estimate in paged results response." << endl;
-      return -1;
-    }
-
-    ldap_controls_free( ctrl );
-
-  }
-  return err;
-}
-*/
 void LDAPProtocol::LDAPEntry2UDSEntry( const QString &dn, UDSEntry &entry,
   const LdapUrl &usrc, bool dir )
 {
@@ -435,8 +372,15 @@ void LDAPProtocol::get( const KUrl &_url )
 
   LdapControls serverctrls, clientctrls;
   controlsFromMetaData( serverctrls, clientctrls );
-  mOp.setServerControls( serverctrls );
-  mOp.setClientControls( serverctrls );
+  if ( mServer.pageSize() ) {
+    LdapControls ctrls = serverctrls;
+    ctrls.append( LdapControl::createPageControl( mServer.pageSize() ) );
+    kDebug(7125) << "page size: " << mServer.pageSize() << endl;
+    mOp.setServerControls( ctrls );
+  } else {
+    mOp.setServerControls( serverctrls );
+  }
+  mOp.setClientControls( clientctrls );
 
   if ( (id = mOp.search( usrc.dn(), usrc.scope(), usrc.filter(), usrc.attributes() )) == -1 ) {
     LDAPErr();
@@ -459,23 +403,28 @@ void LDAPProtocol::get( const KUrl &_url )
     if ( ret == LdapOperation::RES_SEARCH_RESULT ) {
 
       if ( mServer.pageSize() ) {
-/*
         QByteArray cookie;
-        if ( parsePageControl( msg, cookie ) != LDAP_SUCCESS ) {
-          LDAPErr();
-          return;
+        int estsize = -1;
+        for ( int i = 0; i < mOp.controls().count(); ++i ) {
+          kDebug(7125) << " control oid: " << mOp.controls()[i].oid() << endl;
+          estsize = mOp.controls()[i].parsePageControl( cookie );
+          if ( estsize != -1 ) break;
         }
-        if ( !cookie.isEmpty() ) {
-          if ( (id = asyncSearch( usrc, cookie )) == -1 ) {
+        kDebug(7125) << " estimated size: " << estsize << endl;
+        if ( estsize != -1 && !cookie.isEmpty() ) {
+          LdapControls ctrls;
+          ctrls = serverctrls;
+          kDebug(7125) << "page size: " << mServer.pageSize() << " estimated size: " << estsize << endl;
+          ctrls.append( LdapControl::createPageControl( mServer.pageSize(), cookie ) );
+          mOp.setServerControls( ctrls );
+          if ( (id = mOp.search( usrc.dn(), usrc.scope(), usrc.filter(), usrc.attributes() )) == -1 ) {
             LDAPErr();
             return;
           }
-	  continue;
+          continue;
         }
-*/
       }
-
-//      break;
+      break;
     }
     if ( ret != LdapOperation::RES_SEARCH_ENTRY ) continue;
 
@@ -565,7 +514,7 @@ void LDAPProtocol::del( const KUrl &_url, bool )
   LdapControls serverctrls, clientctrls;
   controlsFromMetaData( serverctrls, clientctrls );
   mOp.setServerControls( serverctrls );
-  mOp.setClientControls( serverctrls );
+  mOp.setClientControls( clientctrls );
 
   kDebug(7125) << " del: " << usrc.dn().toUtf8() << endl ;
 
@@ -597,7 +546,7 @@ void LDAPProtocol::put( const KUrl &_url, int, bool overwrite, bool )
   LdapControls serverctrls, clientctrls;
   controlsFromMetaData( serverctrls, clientctrls );
   mOp.setServerControls( serverctrls );
-  mOp.setClientControls( serverctrls );
+  mOp.setClientControls( clientctrls );
 
   LdapObject addObject;
   LdapOperation::ModOps modops;
