@@ -124,6 +124,7 @@ static bool inExclusionPattern(const KMountPoint::Ptr& mount, bool networkShares
 	  || mount->mountPoint() == "/dev/swap"
 	  || mount->mountPoint() == "/dev/pts"
 	  || mount->mountPoint().indexOf("/proc") == 0
+	  || mount->mountPoint().indexOf("/sys") == 0
 
 	  // We might want to display only network shares
 	  // since HAL doesn't handle them
