@@ -19,9 +19,9 @@
 
 #include <QImage>
 #include <QPainter>
-#include <QSvgRenderer>
 
 #include <kdemacros.h>
+#include <ksvgrenderer.h>
 
 #include "svgcreator.h"
 
@@ -35,7 +35,7 @@ extern "C"
 
 bool SvgCreator::create(const QString &path, int w, int h, QImage &img)
 {
-    QSvgRenderer r(path);
+    KSvgRenderer r(path);
     if ( !r.isValid() )
         return false;
     QImage i(w, h, QImage::Format_ARGB32_Premultiplied);
