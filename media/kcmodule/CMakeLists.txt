@@ -30,7 +30,7 @@ install(TARGETS kcm_media  DESTINATION ${PLUGIN_INSTALL_DIR} )
 
 ########### install files ###############
 
-install( FILES media.desktop  DESTINATION  ${XDG_APPS_DIR} )
+install( FILES media.desktop  DESTINATION  ${SERVICES_INSTALL_DIR} )
 
 
 

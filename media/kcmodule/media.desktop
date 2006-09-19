@@ -1,9 +1,11 @@
 [Desktop Entry]
 Encoding=UTF-8
-Type=Application
 #DocPath=
 Icon=system
 Exec=kcmshell media
+
+Type=Service
+ServiceTypes=KCModule
 
 
 X-KDE-Library=media

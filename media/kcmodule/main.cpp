@@ -35,7 +35,7 @@
 
 
 typedef KGenericFactory<MediaModule, QWidget> MediaFactory;
-K_EXPORT_COMPONENT_FACTORY( kcm_media, MediaFactory( "kcmmedia" ) )
+K_EXPORT_COMPONENT_FACTORY( media, MediaFactory( "kcmmedia" ) )
 
 
 MediaModule::MediaModule( QWidget *parent, const QStringList& )
