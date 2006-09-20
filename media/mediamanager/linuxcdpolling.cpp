@@ -23,7 +23,6 @@
 
 #include <QThread>
 #include <QMutex>
-#include <QTimer>
 #include <QFile>
 #include <QByteArray>
 
@@ -190,9 +189,7 @@ LinuxCDPolling::LinuxCDPolling(MediaList &list)
 	                                               const QString &, bool, bool)),
 	        this, SLOT(slotMediumStateChanged(const QString &)) );
 
-	QTimer *timer = new QTimer(this);
-	connect(timer, SIGNAL(timeout()), this, SLOT(slotTimeout()));
-	timer->start(500);
+	connect(&m_timer, SIGNAL(timeout()), this, SLOT(slotTimeout()));
 }
 
 LinuxCDPolling::~LinuxCDPolling()
@@ -230,6 +227,7 @@ void LinuxCDPolling::slotMediumAdded(const QString &id)
 		PollingThread *thread = new PollingThread(dev);
 		m_threads[id] = thread;
 		thread->start();
+		m_timer.start(500);
 	}
 }
 
@@ -269,6 +267,7 @@ void LinuxCDPolling::slotMediumStateChanged(const QString &id)
 		PollingThread *thread = new PollingThread(dev);
 		m_threads[id] = thread;
 		thread->start();
+		m_timer.start(500);
 	}
 	else if (m_threads.contains(id) && medium->isMounted())
 	{
@@ -283,6 +282,11 @@ void LinuxCDPolling::slotMediumStateChanged(const QString &id)
 void LinuxCDPolling::slotTimeout()
 {
 	//kDebug(1219) << "LinuxCDPolling::slotTimeout()" << endl;
+	if (m_threads.isEmpty())
+	{
+		m_timer.stop();
+		return;
+	}
 
 	QMap<QString, PollingThread*>::iterator it = m_threads.begin();
 	QMap<QString, PollingThread*>::iterator end = m_threads.end();

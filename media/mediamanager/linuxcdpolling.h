@@ -24,6 +24,7 @@
 #include <QObject>
 #include <QByteArray>
 #include <QMap>
+#include <QTimer>
 
 class DiscType
 {
@@ -79,6 +80,7 @@ private:
 
 	QMap<QString, PollingThread*> m_threads;
 	QStringList m_excludeNotification;
+	QTimer m_timer;
 };
 
 #endif
