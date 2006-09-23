@@ -597,7 +597,7 @@ void LDAPProtocol::put( const KUrl &_url, int, bool overwrite, bool )
                 " newRdn: " <<  ldif.newRdn() <<
                 " newSuperior: " << ldif.newSuperior() <<
                 " deloldrdn: " << ldif.delOldRdn() << endl;
-              ldaperr = mOp.rename( ldif.dn(), ldif.newRdn(), 
+              ldaperr = mOp.rename_s( ldif.dn(), ldif.newRdn(), 
                 ldif.newSuperior(), ldif.delOldRdn() );
               break;
             case Ldif::Entry_Mod:
