@@ -33,30 +33,57 @@
 
 #include <config.h>
 
-#include <q3serversocket.h>
-#include <q3socket.h>
-#include <QTextEdit>
-#include <QTextStream>
-#include <QWidget>
-#include <QApplication>
-#include <qhostaddress.h>
-#include <QTextEdit>
-#include <QLineEdit>
-#include <QLabel>
-#include <QString>
-#include <QLayout>
-#include <QPushButton>
-
-#include <cassert>
+#include <QtCore/QString>
+#include <QtCore/QTextStream>
+#include <QtGui/QApplication>
+#include <QtGui/QLabel>
+#include <QtGui/QLayout>
+#include <QtGui/QLineEdit>
+#include <QtGui/QPushButton>
+#include <QtGui/QTextEdit>
+#include <QtGui/QWidget>
+#include <QtNetwork/QHostAddress>
+#include <QtNetwork/QTcpSocket>
 
 #include "interactivesmtpserver.h"
 
 static const QHostAddress localhost( 0x7f000001 ); // 127.0.0.1
 
-InteractiveSMTPServerWindow::~InteractiveSMTPServerWindow() {
+static QString err2str( QAbstractSocket::SocketError error )
+{
+  switch ( error ) {
+    case QAbstractSocket::ConnectionRefusedError: return "Connection refused";
+    case QAbstractSocket::HostNotFoundError: return "Host not found";
+    default: return "Unknown error";
+  }
+}
+
+
+static QString escape( QString s )
+{
+  return s
+    .replace( '&', "&amp;" )
+    .replace( '>', "&gt;" )
+    .replace( '<', "&lt;" )
+    .replace( '"', "&quot;" )
+    ;
+}
+
+
+static QString trim( const QString & s )
+{
+  if ( s.endsWith( "\r\n" ) )
+    return s.left( s.length() - 2 );
+  if ( s.endsWith( "\r" ) || s.endsWith( "\n" ) )
+    return s.left( s.length() - 1 );
+  return s;
+}
+
+InteractiveSMTPServerWindow::~InteractiveSMTPServerWindow()
+{
     if ( mSocket ) {
         mSocket->close();
-        if ( mSocket->state() == Q3Socket::Closing )
+        if ( mSocket->state() == QAbstractSocket::ClosingState )
             connect( mSocket, SIGNAL(delayedCloseFinished()),
                      mSocket, SLOT(deleteLater()) );
         else
@@ -75,8 +102,18 @@ void InteractiveSMTPServerWindow::slotSendResponse()
 }
 
 InteractiveSMTPServer::InteractiveSMTPServer( QObject* parent )
-    : Q3ServerSocket( localhost, 2525, 1, parent )
+    : QTcpServer( parent )
 {
+  listen( localhost, 2525 );
+  setMaxPendingConnections( 1 );
+
+  connect( this, SIGNAL( newConnection() ), this, SLOT( newConnectionAvailable() ) );
+}
+
+void InteractiveSMTPServer::newConnectionAvailable()
+{
+  InteractiveSMTPServerWindow * w = new InteractiveSMTPServerWindow( nextPendingConnection() );
+  w->show();
 }
 
 int main( int argc, char * argv[] ) {
@@ -86,15 +123,16 @@ int main( int argc, char * argv[] ) {
 
   qDebug( "Server should now listen on localhost:2525" );
   qDebug( "Hit CTRL-C to quit." );
+
   return app.exec();
 }
 
 
-InteractiveSMTPServerWindow::InteractiveSMTPServerWindow( Q3Socket * socket, QWidget * parent )
+InteractiveSMTPServerWindow::InteractiveSMTPServerWindow( QTcpSocket * socket, QWidget * parent )
   : QWidget( parent ), mSocket( socket )
 {
   QPushButton * but;
-  assert( socket );
+  Q_ASSERT( socket );
 
   QVBoxLayout * vlay = new QVBoxLayout( this );
   vlay->setSpacing( 6 );
@@ -120,12 +158,49 @@ InteractiveSMTPServerWindow::InteractiveSMTPServerWindow( Q3Socket * socket, QWi
 
   connect( but, SIGNAL(clicked()), SLOT(slotConnectionClosed()) );
 
-  connect( socket, SIGNAL(connectionClosed()), SLOT(slotConnectionClosed()) );
-  connect( socket, SIGNAL(error(int)), SLOT(slotError(int)) );
+  connect( socket, SIGNAL(disconnected()), SLOT(slotConnectionClosed()) );
+  connect( socket, SIGNAL(error(QAbstractSocket::SocketError)),
+           SLOT(slotError(QAbstractSocket::SocketError)) );
   connect( socket, SIGNAL(readyRead()), SLOT(slotReadyRead()) );
 
   mLineEdit->setText( "220 hi there" );
   mLineEdit->setFocus();
+}
+
+void InteractiveSMTPServerWindow::slotDisplayClient( const QString & s )
+{
+  mTextEdit->append( "C:" + escape(s) );
+}
+
+void InteractiveSMTPServerWindow::slotDisplayServer( const QString & s )
+{
+  mTextEdit->append( "S:" + escape(s) );
+}
+
+void InteractiveSMTPServerWindow::slotDisplayMeta( const QString & s )
+{
+  mTextEdit->append( "<font color=\"red\">" + escape(s) + "</font>" );
+}
+
+void InteractiveSMTPServerWindow::slotReadyRead()
+{
+  while ( mSocket->canReadLine() )
+    slotDisplayClient( trim( mSocket->readLine() ) );
+}
+
+void InteractiveSMTPServerWindow::slotError( QAbstractSocket::SocketError error )
+{
+  slotDisplayMeta( QString( "E: %1" ).arg( err2str( error ) ) );
+}
+
+void InteractiveSMTPServerWindow::slotConnectionClosed()
+{
+  slotDisplayMeta( "Connection closed by peer" );
+}
+
+void InteractiveSMTPServerWindow::slotCloseConnection()
+{
+  mSocket->close();
 }
 
 #include "interactivesmtpserver.moc"

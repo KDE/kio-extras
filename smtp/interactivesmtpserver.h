@@ -34,88 +34,45 @@
     your version.
 */
 
-#include <QWidget>
+#include <QtGui/QWidget>
+#include <QtNetwork/QTcpServer>
 
+class QTcpServer;
 
-static QString err2str( int err ) {
-  switch ( err ) {
-  case Q3Socket::ErrConnectionRefused: return "Connection refused";
-  case Q3Socket::ErrHostNotFound: return "Host not found";
-  case Q3Socket::ErrSocketRead: return "Failed to read from socket";
-  default: return "Unknown error";
-  }
-}
-
-
-static QString escape( QString s ) {
-  return s
-    .replace( '&', "&amp;" )
-    .replace( '>', "&gt;" )
-    .replace( '<', "&lt;" )
-    .replace( '"', "&quot;" )
-    ;
-}
-
-
-static QString trim( const QString & s ) {
-  if ( s.endsWith( "\r\n" ) )
-    return s.left( s.length() - 2 );
-  if ( s.endsWith( "\r" ) || s.endsWith( "\n" ) )
-    return s.left( s.length() - 1 );
-  return s;
-}
-
-
-class InteractiveSMTPServerWindow : public QWidget {
+class InteractiveSMTPServerWindow : public QWidget
+{
   Q_OBJECT
-public:
-  InteractiveSMTPServerWindow( Q3Socket * socket, QWidget * parent=0);
-  ~InteractiveSMTPServerWindow();
+  public:
+    InteractiveSMTPServerWindow( QTcpSocket * socket, QWidget * parent=0);
+    ~InteractiveSMTPServerWindow();
 
-public Q_SLOTS:
-  void slotSendResponse();
-  void slotDisplayClient( const QString & s ) {
-    mTextEdit->append( "C:" + escape(s) );
-  }
-  void slotDisplayServer( const QString & s ) {
-    mTextEdit->append( "S:" + escape(s) );
-  }
-  void slotDisplayMeta( const QString & s ) {
-    mTextEdit->append( "<font color=\"red\">" + escape(s) + "</font>" );
-  }
-  void slotReadyRead() {
-    while ( mSocket->canReadLine() )
-      slotDisplayClient( trim( mSocket->readLine() ) );
-  }
-  void slotError( int err ) {
-    slotDisplayMeta( QString( "E: %1 (%2)" ).arg( err2str( err ) ).arg( err ) );
-  }
-  void slotConnectionClosed() {
-    slotDisplayMeta( "Connection closed by peer" );
-  }
-  void slotCloseConnection() {
-    mSocket->close();
-  }
-private:
-  Q3Socket * mSocket;
-  QTextEdit * mTextEdit;
-  QLineEdit * mLineEdit;
-  QLabel * mLabel;
+  public Q_SLOTS:
+    void slotSendResponse();
+    void slotDisplayClient( const QString & s );
+    void slotDisplayServer( const QString & s );
+    void slotDisplayMeta( const QString & s );
+    void slotReadyRead();
+    void slotError( QAbstractSocket::SocketError error );
+    void slotConnectionClosed();
+    void slotCloseConnection();
+
+  private:
+    QTcpSocket * mSocket;
+    QTextEdit * mTextEdit;
+    QLineEdit * mLineEdit;
+    QLabel * mLabel;
 };
 
-class InteractiveSMTPServer : public Q3ServerSocket {
+class InteractiveSMTPServer : public QTcpServer
+{
   Q_OBJECT
-public:
-  InteractiveSMTPServer( QObject * parent=0 );
-  ~InteractiveSMTPServer() {}
 
-  /*! \reimp */
-  void newConnection( int fd ) {
-    Q3Socket * socket = new Q3Socket();
-    socket->setSocket( fd );
-    InteractiveSMTPServerWindow * w = new InteractiveSMTPServerWindow( socket );
-    w->show();
-  }
+  public:
+    InteractiveSMTPServer( QObject * parent=0 );
+    ~InteractiveSMTPServer() {}
+
+  private Q_SLOTS:
+    void newConnectionAvailable();
 };
 
 
