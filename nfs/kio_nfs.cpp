@@ -757,38 +757,38 @@ void NFSProtocol::completeAbsoluteLinkUDSEntry(UDSEntry& entry, const QByteArray
    entry.insert( KIO::UDS_MODIFICATION_TIME, buff.st_mtime );
 
    uid_t uid = buff.st_uid;
-   QString *temp = m_usercache.find( uid );
+
    QString str;
-   if ( !temp )
-   {
+   if ( !m_usercache.contains( uid ) ) {
       struct passwd *user = getpwuid( uid );
       if ( user )
       {
-         m_usercache.insert( uid, new QString(QString::fromLatin1(user->pw_name)) );
+         m_usercache.insert( uid, QString::fromLatin1(user->pw_name) );
          str = user->pw_name;
       }
       else
          str = "???";
-   }
-   else
-      str = *temp;
+   } else
+      str = m_usercache.value( uid );
+
    entry.insert( UDS_USER, str );
 
    gid_t gid = buff.st_gid;
-   temp = m_groupcache.find( gid );
-   if ( !temp )
+
+   if ( !m_groupcache.contains( gid ) )
    {
       struct group *grp = getgrgid( gid );
       if ( grp )
       {
-         m_groupcache.insert( gid, new QString(QString::fromLatin1(grp->gr_name)) );
+         m_groupcache.insert( gid, QString::fromLatin1(grp->gr_name) );
          str = grp->gr_name;
       }
       else
          str = "???";
    }
    else
-      str = *temp;
+      str = m_groupcache.value( gid );
+
    entry.insert( KIO::UDS_GROUP, str );
 
    entry.insert( KIO::UDS_ACCESS_TIME, buff.st_atime );
@@ -816,37 +816,38 @@ void NFSProtocol::completeUDSEntry(UDSEntry& entry, fattr& attributes)
 
    uid_t uid = attributes.uid;
    QString str;
-   QString *temp = m_usercache.find( uid );
-   if ( !temp )
+   if ( !m_usercache.contains( uid ) )
    {
       struct passwd *user = getpwuid( uid );
       if ( user )
       {
-         m_usercache.insert( uid, new QString(user->pw_name) );
+         m_usercache.insert( uid, QString::fromLatin1(user->pw_name) );
          str = user->pw_name;
       }
       else
          str = "???";
    }
    else
-      str = *temp;
+      str = m_usercache.value( uid );
+
    entry.insert( KIO::UDS_USER, str );
 
    gid_t gid = attributes.gid;
-   temp = m_groupcache.find( gid );
-   if ( !temp )
+
+   if ( !m_groupcache.contains( gid ) )
    {
       struct group *grp = getgrgid( gid );
       if ( grp )
       {
-         m_groupcache.insert( gid, new QString(grp->gr_name) );
+         m_groupcache.insert( gid, QString::fromLatin1(grp->gr_name) );
          str = grp->gr_name;
       }
       else
          str = "???";
    }
    else
-      str = *temp;
+      str = m_groupcache.value( gid );
+
    entry.insert( KIO::UDS_GROUP, str );
 
 /*   KIO::UDSEntry::ConstIterator it = entry.begin();

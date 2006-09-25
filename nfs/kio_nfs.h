@@ -23,11 +23,11 @@
 #include <kio/slavebase.h>
 #include <kio/global.h>
 
-#include <QMap>
-#include <QString>
-#include <QStringList>
-#include <q3intdict.h>
-#include <QTimer>
+#include <QtCore/QHash>
+#include <QtCore/QMap>
+#include <QtCore/QString>
+#include <QtCore/QStringList>
+#include <QtCore/QTimer>
 
 #define PORTMAP  //this seems to be required to compile on Solaris
 #include <rpc/rpc.h>
@@ -92,8 +92,8 @@ class NFSProtocol : public KIO::SlaveBase
       NFSFileHandle getFileHandle(QString path);
 
       NFSFileHandleMap m_handleCache;
-      Q3IntDict<QString> m_usercache;      // maps long ==> QString *
-      Q3IntDict<QString> m_groupcache;
+      QHash<long, QString> m_usercache;      // maps long ==> QString *
+      QHash<long, QString> m_groupcache;
 
       QStringList m_exportedDirs;
       QString m_currentHost;
