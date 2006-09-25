@@ -99,10 +99,10 @@ MyPtyProcess::~MyPtyProcess()
  */
 
 
-Q3CString MyPtyProcess::readLineFrom(int fd, Q3CString& inbuf, bool block)
+QByteArray MyPtyProcess::readLineFrom(int fd, QByteArray& inbuf, bool block)
 {
     int pos;
-    Q3CString ret;
+    QByteArray ret;
 
     if (!inbuf.isEmpty())
     {
@@ -172,7 +172,7 @@ Q3CString MyPtyProcess::readLineFrom(int fd, Q3CString& inbuf, bool block)
     return ret;
 }
 
-void MyPtyProcess::writeLine(Q3CString line, bool addnl)
+void MyPtyProcess::writeLine(QByteArray line, bool addnl)
 {
     if (!line.isEmpty())
 	write(m_Fd, line, line.length());
@@ -180,7 +180,7 @@ void MyPtyProcess::writeLine(Q3CString line, bool addnl)
 	write(m_Fd, "\n", 1);
 }
 
-void MyPtyProcess::unreadLineFrom(Q3CString inbuf, Q3CString line, bool addnl)
+void MyPtyProcess::unreadLineFrom(QByteArray inbuf, QByteArray line, bool addnl)
 {
     if (addnl)
 	line += '\n';
@@ -193,7 +193,7 @@ void MyPtyProcess::unreadLineFrom(Q3CString inbuf, Q3CString line, bool addnl)
  * Fork and execute the command. This returns in the parent.
  */
 
-int MyPtyProcess::exec(Q3CString command, QCStringList args)
+int MyPtyProcess::exec(QByteArray command, QCStringList args)
 {
   kDebug(PTYPROC) << "MyPtyProcess::exec(): " << command << endl;// << ", args = " << args << endl;
 
@@ -259,7 +259,7 @@ int MyPtyProcess::exec(Q3CString command, QCStringList args)
 	    _exit(1);
 
     // From now on, terminal output goes through the tty.
-    Q3CString path;
+    QByteArray path;
     if (command.contains('/'))
 	    path = command;
     else 
@@ -393,7 +393,7 @@ int MyPtyProcess::waitForChild()
 
 	if (ret) 
 	{
-	    Q3CString line = readLine(false);
+	    QByteArray line = readLine(false);
 	    while (!line.isNull()) 
 	    {
 		if (!m_Exit.isEmpty() && !qstrnicmp(line, m_Exit, m_Exit.length()))

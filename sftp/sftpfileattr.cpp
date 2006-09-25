@@ -21,11 +21,6 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 
-#include <QString>
-#include <QDataStream>
-//Added by qt3to4:
-#include <Q3CString>
-
 #include <kio/global.h>
 #include <kremoteencoding.h>
 
@@ -139,7 +134,7 @@ QDataStream& operator>> (QDataStream& s, sftpFileAttr& fa) {
     fa.clear();
 
     if( fa.mDirAttrs ) {
-        Q3CString fn;
+        QByteArray fn;
         s >> fn;
         fn.truncate( fn.size() );
 

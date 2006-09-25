@@ -29,12 +29,11 @@ So we can't connect.
 
 #include <fcntl.h>
 
-#include <q3cstring.h>
-#include <QString>
-#include <QObject>
-#include <q3strlist.h>
-#include <QFile>
-#include <QBuffer>
+#include <QtCore/QBuffer>
+#include <QtCore/QByteArray>
+#include <QtCore/QFile>
+#include <QtCore/QObject>
+#include <QtCore/QString>
 
 #include <stdlib.h>
 #include <unistd.h>
@@ -216,7 +215,7 @@ void sftpProtocol::sftpCopyGet(const KUrl& dest, const KUrl& src, int mode, bool
         return;
 
     KDE_struct_stat buff_orig;
-    Q3CString dest_orig ( QFile::encodeName(dest.path()) );
+    QByteArray dest_orig ( QFile::encodeName(dest.path()) );
     bool origExists = (KDE_lstat( dest_orig.data(), &buff_orig ) != -1);
 
     if (origExists)
@@ -235,7 +234,7 @@ void sftpProtocol::sftpCopyGet(const KUrl& dest, const KUrl& src, int mode, bool
     }
 
     KIO::filesize_t offset = 0;
-    Q3CString dest_part ( dest_orig + ".part" );
+    QByteArray dest_part ( dest_orig + ".part" );
 
     int fd = -1;
     bool partExists = false;
@@ -842,7 +841,7 @@ void sftpProtocol::closeConnection() {
 void sftpProtocol::sftpCopyPut(const KUrl& src, const KUrl& dest, int permissions, bool overwrite) {
 
     KDE_struct_stat buff;
-    Q3CString file (QFile::encodeName(src.path()));
+    QByteArray file (QFile::encodeName(src.path()));
 
     if (KDE_lstat(file.data(), &buff) == -1) {
         error (ERR_DOES_NOT_EXIST, src.prettyUrl());
@@ -1240,7 +1239,7 @@ void sftpProtocol::mkdir(const KUrl&url, int permissions){
     if( !mConnected )
         return;
 
-    Q3CString path = remoteEncoding()->encode(url.path());
+    QByteArray path = remoteEncoding()->encode(url.path());
     uint len = path.length();
 
     sftpFileAttr attr(remoteEncoding());
@@ -1527,7 +1526,7 @@ int sftpProtocol::sftpRealPath(const KUrl& url, KUrl& newUrl){
 
     kDebug(KIO_SFTP_DB) << "sftpRealPath(" << url << ", newUrl)" << endl;
 
-    Q3CString path = remoteEncoding()->encode(url.path());
+    QByteArray path = remoteEncoding()->encode(url.path());
     uint len = path.length();
 
     quint32 id, expectedId;
@@ -1570,7 +1569,7 @@ int sftpProtocol::sftpRealPath(const KUrl& url, KUrl& newUrl){
         return -1;
     }
 
-    Q3CString newPath;
+    QByteArray newPath;
     r >> newPath;
 
     newPath.truncate(newPath.size());
@@ -1631,7 +1630,7 @@ int sftpProtocol::sftpOpenDirectory(const KUrl& url, QByteArray& handle){
 
     kDebug(KIO_SFTP_DB) << "sftpOpenDirectory(" << url << ", handle)" << endl;
 
-    Q3CString path = remoteEncoding()->encode(url.path());
+    QByteArray path = remoteEncoding()->encode(url.path());
     uint len = path.length();
 
     quint32 id, expectedId;
@@ -1724,7 +1723,7 @@ int sftpProtocol::sftpSetStat(const KUrl& url, const sftpFileAttr& attr){
 
     kDebug(KIO_SFTP_DB) << "sftpSetStat(" << url << ", attr)" << endl;
 
-    Q3CString path = remoteEncoding()->encode(url.path());
+    QByteArray path = remoteEncoding()->encode(url.path());
     uint len = path.length();
 
     quint32 id, expectedId;
@@ -1770,7 +1769,7 @@ int sftpProtocol::sftpRemove(const KUrl& url, bool isfile){
 
     kDebug(KIO_SFTP_DB) << "sftpRemove(): " << url << ", isFile ? " << isfile << endl;
 
-    Q3CString path = remoteEncoding()->encode(url.path());
+    QByteArray path = remoteEncoding()->encode(url.path());
     uint len = path.length();
 
     quint32 id, expectedId;
@@ -1814,8 +1813,8 @@ int sftpProtocol::sftpRename(const KUrl& src, const KUrl& dest){
 
     kDebug(KIO_SFTP_DB) << "sftpRename(" << src << " -> " << dest << ")" << endl;
 
-    Q3CString srcPath = remoteEncoding()->encode(src.path());
-    Q3CString destPath = remoteEncoding()->encode(dest.path());
+    QByteArray srcPath = remoteEncoding()->encode(src.path());
+    QByteArray destPath = remoteEncoding()->encode(dest.path());
 
     uint slen = srcPath.length();
     uint dlen = destPath.length();
@@ -1929,7 +1928,7 @@ int sftpProtocol::sftpReadLink(const KUrl& url, QString& target){
 
     kDebug(KIO_SFTP_DB) << "sftpReadLink(): " << url << endl;
 
-    Q3CString path = remoteEncoding()->encode(url.path());
+    QByteArray path = remoteEncoding()->encode(url.path());
     uint len = path.length();
 
     //kDebug(KIO_SFTP_DB) << "sftpReadLink(): Encoded Path: " << path << endl;
@@ -1977,7 +1976,7 @@ int sftpProtocol::sftpReadLink(const KUrl& url, QString& target){
         return -1;
     }
 
-    Q3CString linkAddress;
+    QByteArray linkAddress;
     r >> linkAddress;
 
     linkAddress.truncate(linkAddress.size());
@@ -1990,8 +1989,8 @@ int sftpProtocol::sftpReadLink(const KUrl& url, QString& target){
 
 int sftpProtocol::sftpSymLink(const QString& _target, const KUrl& dest){
 
-    Q3CString destPath = remoteEncoding()->encode(dest.path());
-    Q3CString target = remoteEncoding()->encode(_target);
+    QByteArray destPath = remoteEncoding()->encode(dest.path());
+    QByteArray target = remoteEncoding()->encode(_target);
     uint dlen = destPath.length();
     uint tlen = target.length();
 
@@ -2041,7 +2040,7 @@ int sftpProtocol::sftpStat(const KUrl& url, sftpFileAttr& attr) {
 
     kDebug(KIO_SFTP_DB) << "sftpStat(): " << url << endl;
 
-    Q3CString path = remoteEncoding()->encode(url.path());
+    QByteArray path = remoteEncoding()->encode(url.path());
     uint len = path.length();
 
     quint32 id, expectedId;
@@ -2129,7 +2128,7 @@ int sftpProtocol::sftpOpen(const KUrl& url, const quint32 pflags,
                            const sftpFileAttr& attr, QByteArray& handle) {
     kDebug(KIO_SFTP_DB) << "sftpOpen(" << url << ", handle" << endl;
 
-    Q3CString path = remoteEncoding()->encode(url.path());
+    QByteArray path = remoteEncoding()->encode(url.path());
     uint len = path.length();
 
     quint32 id, expectedId;

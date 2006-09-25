@@ -69,7 +69,7 @@
 #include <klocale.h>
 #include <QRegExp>
 //Added by qt3to4:
-#include <Q3CString>
+#include <QByteArray>
 
 /*
  * The following are tables of string and regexps we match
@@ -304,7 +304,7 @@ bool KSshProcess::setOptions(const SshOptList& opts) {
     SshOptListConstIterator it;
     QString cmd, subsystem;
     mPassword = mUsername = mHost = QString();
-    Q3CString tmp;
+    QByteArray tmp;
     for(it = opts.begin(); it != opts.end(); ++it) {
         //kDebug(KSSHPROC) << "opt.opt = " << (*it).opt << endl;
         //kDebug(KSSHPROC) << "opt.str = " << (*it).str << endl;
@@ -372,7 +372,7 @@ bool KSshProcess::setOptions(const SshOptList& opts) {
             if( (*it).num == -1 )
                 tmp = "none";
             else
-                tmp = (char)((*it).num);
+                tmp = QByteArray( (char)((*it).num) );
             mArgs.append("-e");
             mArgs.append(tmp);
             break;
@@ -447,7 +447,7 @@ bool KSshProcess::setOptions(const SshOptList& opts) {
 }
 
 void KSshProcess::printArgs() {
-    QList<Q3CString>::Iterator it;
+    QList<QByteArray>::Iterator it;
     for( it = mArgs.begin(); it != mArgs.end(); ++it) {
         kDebug(KSSHPROC) << "arg: " << *it << endl;
     }
@@ -549,7 +549,7 @@ void KSshProcess::setPassword(QString password) {
 QString KSshProcess::getLine() {
     static QStringList buffer;
     QString line = QString();
-    Q3CString ptyLine, errLine;
+    QByteArray ptyLine, errLine;
 
     if( buffer.empty() ) {
         // PtyProcess buffers lines.  First check that there

@@ -21,10 +21,9 @@
 #include <sys/types.h>
 
 #include <qglobal.h>
-#include <QString>
-#include <QDataStream>
-//Added by qt3to4:
-#include <Q3CString>
+#include <QtCore/QByteArray>
+#include <QtCore/QDataStream>
+#include <QtCore/QString>
 
 #include <kio/global.h>
 #include <kdebug.h>
@@ -71,7 +70,7 @@ private: // Private attributes
      /** Longname of the file as found in a SSH_FXP_NAME sftp packet.
           These contents are parse to return the file's owner name and
           gr oup name. */
-    Q3CString mLongname;
+    QByteArray mLongname;
 
     QString mUserName;
     QString mGroupName;
