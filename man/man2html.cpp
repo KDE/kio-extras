@@ -128,12 +128,11 @@
 
 #include <stdio.h>
 
-#include <QString>
-#include <q3ptrlist.h>
-#include <QStack>
-#include <QMap>
-#include <QDateTime>
-#include <Q3CString>
+#include <QtCore/QByteArray>
+#include <QtCore/QDateTime>
+#include <QtCore/QMap>
+#include <QtCore/QStack>
+#include <QtCore/QString>
 
 #ifdef SIMPLE_MAN2HTML
 # include <stdlib.h>
@@ -234,7 +233,7 @@ public:
     StringDefinition( int len, const char* cstr ) : m_length( len ), m_output( cstr ) {}
 public:
     int m_length; ///< Length of output text
-    Q3CString m_output; ///< Defined string
+    QByteArray m_output; ///< Defined string
 };
 
 /**
@@ -256,19 +255,19 @@ class NumberDefinition
 /**
  * Map of character definitions
  */
-static QMap<Q3CString,StringDefinition> s_characterDefinitionMap;
+static QMap<QByteArray,StringDefinition> s_characterDefinitionMap;
 
 /**
  * Map of string variable and macro definitions
  * \note String variables and macros are the same thing!
  */
-static QMap<Q3CString,StringDefinition> s_stringDefinitionMap;
+static QMap<QByteArray,StringDefinition> s_stringDefinitionMap;
 
 /**
  * Map of number registers
  * \note Intern number registers (starting with a dot are not handled here)
  */
-static QMap<Q3CString,NumberDefinition> s_numberDefinitionMap;
+static QMap<QByteArray,NumberDefinition> s_numberDefinitionMap;
 
 static void fill_old_character_definitions( void );
 
@@ -320,7 +319,7 @@ static void InitStringDefinitions( void )
     // \*S "Change to default font size"
 #ifndef SIMPLE_MAN2HTML
     // Special KDE KIO man:
-    const Q3CString kdeversion(KDE_VERSION_STRING);
+    const QByteArray kdeversion(KDE_VERSION_STRING);
     s_stringDefinitionMap.insert( ".KDE_VERSION_STRING", StringDefinition( kdeversion.length(), kdeversion ) );
 #endif
 }
@@ -658,7 +657,7 @@ static void fill_old_character_definitions( void )
     {
         const int nr = standardchar[i].nr;
         const char temp[3] = { nr / 256, nr % 256, 0 };
-        Q3CString name( temp );
+        QByteArray name( temp );
         s_characterDefinitionMap.insert( name, StringDefinition( standardchar[i].slen, standardchar[i].st ) );
     }
 }
@@ -720,25 +719,25 @@ static void add_links(char *c)
     idtest[5]=strstr(c+1,".h&gt;");
     for (i=0; i<numtests; ++i) nr += (idtest[i]!=NULL);
     while (nr) {
-	j=-1;
-	for (i=0; i<numtests; i++)
-	    if (idtest[i] && (j<0 || idtest[i]<idtest[j])) j=i;
-	switch (j) {
-	case 5: { /* <name.h> */
-	    f=idtest[5];
-	    h=f+2;
-	    g=f;
-	    while (g>c && g[-1]!=';') g--;
+    j=-1;
+    for (i=0; i<numtests; i++)
+        if (idtest[i] && (j<0 || idtest[i]<idtest[j])) j=i;
+    switch (j) {
+    case 5: { /* <name.h> */
+        f=idtest[5];
+        h=f+2;
+        g=f;
+        while (g>c && g[-1]!=';') g--;
             bool wrote_include = false;
 
             if (g!=c) {
 
-                Q3CString dir;
-                Q3CString file(g, h - g + 1);
+                QByteArray dir;
+                QByteArray file(g, h - g + 1);
                 file = file.trimmed();
                 for (int index = 0; includedirs[index]; index++) {
-                    Q3CString str = Q3CString(includedirs[index]) + '/' + file;
-                    if (!access(str, R_OK)) {
+                    QByteArray str( QByteArray(includedirs[index]) + '/' + file );
+                    if (!access(str.data(), R_OK)) {
                         dir = includedirs[index];
                         break;
                     }
@@ -751,8 +750,15 @@ static void add_links(char *c)
                     output_real(c);
                     *g=t;*h=0;
 
-                    Q3CString str;
-                    str.sprintf("<A HREF=\"file:%s/%s\">%s</A>&gt;", dir.data(), file.data(), file.data());
+                    QByteArray str;
+                    str.append( "<A HREF=\"file:" );
+                    str.append( dir.data() );
+                    str.append( "/" );
+                    str.append( file.data() );
+                    str.append( "\">" );
+                    str.append( file.data() );
+                    str.append( "</A>&gt;" );
+
                     output_real(str.data());
                     c=f+6;
                     wrote_include = true;
@@ -768,25 +774,25 @@ static void add_links(char *c)
             }
         }
         break;
-	case 4: /* manpage */
-	    f=idtest[j];
-	    /* check section */
-	    g=strchr(f,')');
+    case 4: /* manpage */
+        f=idtest[j];
+        /* check section */
+        g=strchr(f,')');
             // The character before f must alphanumeric, the end of a HTML tag or the end of a &nbsp;
             if (g!=NULL && f>c && (g-f)<12 && (isalnum(f[-1]) || f[-1]=='>' || ( f[-1] == ';' ) ) &&
-		isdigit(f[1]) && f[1]!='0' && ((g-f)<=2 || isalpha(f[2])))
-	    {
-		ok = true;
-		h = f+2;
-		while (h<g)
-		{
-		    if (!isalnum(*h++))
-		    {
-			ok = false;
-			break;
-		    }
-		}
-	    }
+        isdigit(f[1]) && f[1]!='0' && ((g-f)<=2 || isalpha(f[2])))
+        {
+        ok = true;
+        h = f+2;
+        while (h<g)
+        {
+            if (!isalnum(*h++))
+            {
+            ok = false;
+            break;
+            }
+        }
+        }
             else
                 ok = false;
 
@@ -806,35 +812,35 @@ static void add_links(char *c)
                     ok = false;
                 }
             }
-            
-	    if (ok)
-	    {
-		/* this might be a link */
-		/* skip html makeup */
-		while (h>c && *h=='>') {
-		    while (h!=c && *h!='<') h--;
-		    if (h!=c) h--;
-		}
-		if (isalnum(*h)) {
-		    char t,sec, *e;
+
+        if (ok)
+        {
+        /* this might be a link */
+        /* skip html makeup */
+        while (h>c && *h=='>') {
+            while (h!=c && *h!='<') h--;
+            if (h!=c) h--;
+        }
+        if (isalnum(*h)) {
+            char t,sec, *e;
                     QByteArray fstr(f);
-		    e=h+1;
-		    sec=f[1];
-		    const int index = fstr.indexOf(')', 2);
+            e=h+1;
+            sec=f[1];
+            const int index = fstr.indexOf(')', 2);
                     QByteArray subsec;
                     if (index != -1)
-		      subsec = fstr.mid(2, index - 2);
-		    else // No closing ')' found, take first character as subsection.
-		      subsec = fstr.mid(2, 1);
-		    while (h>c && (isalnum(h[-1]) || h[-1]=='_'
-				    || h[-1]==':' || h[-1]=='-' || h[-1]=='.'))
-			h--;
-		    t=*h;
-		    *h='\0';
+              subsec = fstr.mid(2, index - 2);
+            else // No closing ')' found, take first character as subsection.
+              subsec = fstr.mid(2, 1);
+            while (h>c && (isalnum(h[-1]) || h[-1]=='_'
+                    || h[-1]==':' || h[-1]=='-' || h[-1]=='.'))
+            h--;
+            t=*h;
+            *h='\0';
                     output_real(c);
-		    *h=t;
-		    t=*e;
-		    *e='\0';
+            *h=t;
+            t=*e;
+            *e='\0';
                     QByteArray str("<a href=\"man:");
                     str += h;
                     str += '(';
@@ -845,112 +851,126 @@ static void add_links(char *c)
                     str += h;
                     str += "</a>";
                     output_real(str.data());
-		    *e=t;
-		    c=e;
-		}
-	    }
-	    *f='\0';
+            *e=t;
+            c=e;
+        }
+        }
+        *f='\0';
             output_real(c);
-	    *f='(';
-	    idtest[4]=f-1;
-	    c=f;
-	    break; /* manpage */
-	case 3: /* ftp */
-	case 2: /* www */
-	    g=f=idtest[j];
-	    while (*g && (isalnum(*g) || *g=='_' || *g=='-' || *g=='+' ||
+        *f='(';
+        idtest[4]=f-1;
+        c=f;
+        break; /* manpage */
+    case 3: /* ftp */
+    case 2: /* www */
+        g=f=idtest[j];
+        while (*g && (isalnum(*g) || *g=='_' || *g=='-' || *g=='+' ||
                 *g=='.' || *g=='/')) g++;
-	    if (g[-1]=='.') g--;
-	    if (g-f>4) {
-		char t;
-		t=*f; *f='\0';
+        if (g[-1]=='.') g--;
+        if (g-f>4) {
+        char t;
+        t=*f; *f='\0';
                 output_real(c);
-		*f=t; t=*g;*g='\0';
-                Q3CString str;
-                str.sprintf("<A HREF=\"%s://%s\">%s</A>", ((j==3)?"ftp":"http"), f, f);
+        *f=t; t=*g;*g='\0';
+                QByteArray str;
+                str.append( "<A HREF=\"" );
+                str.append( j == 3 ? "ftp" : "http" );
+                str.append( "://" );
+                str.append( f );
+                str.append( "\">" );
+                str.append( f );
+                str.append( "</A>" );
                 output_real(str.data());
-		*g=t;
-		c=g;
-	    } else {
-		f[3]='\0';
+        *g=t;
+        c=g;
+        } else {
+        f[3]='\0';
                 output_real(c);
-		c=f+3;
-		f[3]='.';
-	    }
-	    break;
-	case 1: /* mailto */
-	    g=f=idtest[1];
-	    while (g>c && (isalnum(g[-1]) || g[-1]=='_' || g[-1]=='-' ||
-			   g[-1]=='+' || g[-1]=='.' || g[-1]=='%')) g--;
+        c=f+3;
+        f[3]='.';
+        }
+        break;
+    case 1: /* mailto */
+        g=f=idtest[1];
+        while (g>c && (isalnum(g[-1]) || g[-1]=='_' || g[-1]=='-' ||
+               g[-1]=='+' || g[-1]=='.' || g[-1]=='%')) g--;
             if (g-7>=c && g[-1]==':')
             {
                 // We have perhaps an email address starting with mailto:
                 if (!qstrncmp("mailto:",g-7,7))
                     g-=7;
             }
-	    h=f+1;
-	    while (*h && (isalnum(*h) || *h=='_' || *h=='-' || *h=='+' ||
-			  *h=='.')) h++;
-	    if (*h=='.') h--;
-	    if (h-f>4 && f-g>1) {
-		char t;
-		t=*g;
-		*g='\0';
+        h=f+1;
+        while (*h && (isalnum(*h) || *h=='_' || *h=='-' || *h=='+' ||
+              *h=='.')) h++;
+        if (*h=='.') h--;
+        if (h-f>4 && f-g>1) {
+        char t;
+        t=*g;
+        *g='\0';
                 output_real(c);
-		*g=t;t=*h;*h='\0';
-                Q3CString str;
-                str.sprintf("<A HREF=\"mailto:%s\">%s</A>", g, g);
+        *g=t;t=*h;*h='\0';
+                QByteArray str;
+                str.append( "<A HREF=\"mailto:" );
+                str.append( g );
+                str.append( "\">" );
+                str.append( g );
+                str.append( "</A>" );
                 output_real(str.data());
-		*h=t;
+        *h=t;
                 c=h;
-	    } else {
-		*f='\0';
+        } else {
+        *f='\0';
                 output_real(c);
-		*f='@';
-		idtest[1]=c;
-		c=f;
-	    }
-	    break;
-	case 0: /* url */
-	    g=f=idtest[0];
-	    while (g>c && isalpha(g[-1]) && islower(g[-1])) g--;
-	    h=f+3;
-	    while (*h && !isspace(*h) && *h!='<' && *h!='>' && *h!='"' &&
-		   *h!='&') h++;
-	    if (f-g>2 && f-g<7 && h-f>3) {
-		char t;
-		t=*g;
-		*g='\0';
+        *f='@';
+        idtest[1]=c;
+        c=f;
+        }
+        break;
+    case 0: /* url */
+        g=f=idtest[0];
+        while (g>c && isalpha(g[-1]) && islower(g[-1])) g--;
+        h=f+3;
+        while (*h && !isspace(*h) && *h!='<' && *h!='>' && *h!='"' &&
+           *h!='&') h++;
+        if (f-g>2 && f-g<7 && h-f>3) {
+        char t;
+        t=*g;
+        *g='\0';
                 output_real(c);
-		*g=t; t=*h; *h='\0';
-                Q3CString str;
-                str.sprintf("<A HREF=\"%s\">%s</A>", g, g);
+        *g=t; t=*h; *h='\0';
+                QByteArray str;
+                str.append( "<A HREF=\"" );
+                str.append( g );
+                str.append( "\">" );
+                str.append( g );
+                str.append( "</A>" );
                 output_real(str.data());
-		*h=t;
-		c=h;
-	    } else {
-		f[1]='\0';
+        *h=t;
+        c=h;
+        } else {
+        f[1]='\0';
                 output_real(c);
-		f[1]='/';
-		c=f+1;
-	    }
-	    break;
+        f[1]='/';
+        c=f+1;
+        }
+        break;
      default:
-	    break;
-	}
-	nr=0;
-	if (idtest[0] && idtest[0]<=c) idtest[0]=strstr(c+1,"://");
-	if (idtest[1] && idtest[1]<=c) idtest[1]=strchr(c+1,'@');
-	if (idtest[2] && idtest[2]<c) idtest[2]=strstr(c,"www.");
-	if (idtest[3] && idtest[3]<c) idtest[3]=strstr(c,"ftp.");
-	if (idtest[4] && idtest[4]<=c) idtest[4]=strchr(c+1,'(');
-	if (idtest[5] && idtest[5]<=c) idtest[5]=strstr(c+1,".h&gt;");
+        break;
+    }
+    nr=0;
+    if (idtest[0] && idtest[0]<=c) idtest[0]=strstr(c+1,"://");
+    if (idtest[1] && idtest[1]<=c) idtest[1]=strchr(c+1,'@');
+    if (idtest[2] && idtest[2]<c) idtest[2]=strstr(c,"www.");
+    if (idtest[3] && idtest[3]<c) idtest[3]=strstr(c,"ftp.");
+    if (idtest[4] && idtest[4]<=c) idtest[4]=strchr(c+1,'(');
+    if (idtest[5] && idtest[5]<=c) idtest[5]=strstr(c+1,".h&gt;");
         for (i=0; i<numtests; i++) nr += (idtest[i]!=NULL);
     }
     output_real(c);
 }
 
-static Q3CString current_font;
+static QByteArray current_font;
 static int current_size=0;
 static int fillout=1;
 
@@ -968,19 +988,19 @@ static void out_html(const char *c)
       int i=0;
       no_newline_output=1;
       while (c2[i]) {
-	  if (!no_newline_output) c2[i-1]=c2[i];
-	  if (c2[i]=='\n') no_newline_output=0;
-	  i++;
+      if (!no_newline_output) c2[i-1]=c2[i];
+      if (c2[i]=='\n') no_newline_output=0;
+      i++;
       }
       if (!no_newline_output) c2[i-1]=0;
   }
   if (scaninbuff) {
       while (*c2) {
-	  if (buffpos>=buffmax) {
-	      char *h = new char[buffmax*2];
-       
+      if (buffpos>=buffmax) {
+          char *h = new char[buffmax*2];
+
 #ifdef SIMPLE_MAN2HTML
-	      if (!h)
+          if (!h)
               {
                   cerr << "Memory full, cannot output!" << endl;
                   exit(1);
@@ -990,30 +1010,30 @@ static void out_html(const char *c)
 #endif       
               memcpy(h, buffer, buffmax);
               delete [] buffer;
-	      buffer=h;
-	      buffmax=buffmax*2;
-	  }
-	  buffer[buffpos++]=*c2++;
+          buffer=h;
+          buffmax=buffmax*2;
+      }
+      buffer[buffpos++]=*c2++;
       }
   } else
       if (output_possible) {
-	  while (*c2) {
-	      outbuffer[obp++]=*c2;
-	      if (*c=='\n' || obp >= HUGE_STR_MAX) {
-		  outbuffer[obp]='\0';
-		  add_links(outbuffer);
-		  obp=0;
-	      }
-	      c2++;
-	  }
+      while (*c2) {
+          outbuffer[obp++]=*c2;
+          if (*c=='\n' || obp >= HUGE_STR_MAX) {
+          outbuffer[obp]='\0';
+          add_links(outbuffer);
+          obp=0;
+          }
+          c2++;
+      }
       }
   delete [] c3;
 }
 
-static Q3CString set_font( const Q3CString& name )
+static QByteArray set_font( const QByteArray& name )
 {
     // Every font but R (Regular) creates <span> elements
-    Q3CString markup;
+    QByteArray markup;
     if ( current_font != "R" && !current_font.isEmpty() )
         markup += "</span>";
     const uint len = name.length();
@@ -1077,18 +1097,7 @@ static Q3CString set_font( const Q3CString& name )
     return markup;
 }
 
-/// \deprecated
-#ifndef SIMPLE_MAN2HTML
-static KDE_DEPRECATED Q3CString set_font( const char ch )
-#else
-static Q3CString set_font( const char ch )
-#endif
-{
-    const Q3CString name = &ch;
-    return set_font( name );
-}
-
-static Q3CString change_to_size(int nr)
+static QByteArray change_to_size(int nr)
 {
     switch (nr)
     {
@@ -1099,8 +1108,8 @@ static Q3CString change_to_size(int nr)
     }
     if ( nr == current_size )
         return "";
-    const Q3CString font ( current_font );
-    Q3CString markup;
+    const QByteArray font ( current_font );
+    QByteArray markup;
     markup = set_font("R");
     if (current_size)
         markup += "</FONT>";
@@ -1130,21 +1139,21 @@ static int intresult=0;
 static bool skip_escape=false;
 static bool single_escape=false;
 
-static char *scan_escape_direct( char *c, Q3CString& cstr );
+static char *scan_escape_direct( char *c, QByteArray& cstr );
 
 /**
  * scan a named character
  * param c position
  */
-static Q3CString scan_named_character( char*& c )
+static QByteArray scan_named_character( char*& c )
 {
-    Q3CString name;
+    QByteArray name;
     if ( *c == '(' )
     {
         // \*(ab  Name of two characters
         if ( c[1] == escapesym )
         {
-            Q3CString cstr;
+            QByteArray cstr;
             c = scan_escape_direct( c+2, cstr );
             // ### HACK: as we convert characters too early to HTML, we need to support more than 2 characters here and assume that all characters passed by the variable are to be used.
             name = cstr;
@@ -1166,7 +1175,7 @@ static Q3CString scan_named_character( char*& c )
         {
             if ( *c == escapesym )
             {
-                Q3CString cstr;
+                QByteArray cstr;
                 c = scan_escape_direct( c+1, cstr );
                 const int result = cstr.indexOf(']');
                 if ( result == -1 )
@@ -1198,7 +1207,7 @@ static Q3CString scan_named_character( char*& c )
         {
             if ( *c == escapesym )
             {
-                Q3CString cstr;
+                QByteArray cstr;
                 c = scan_escape_direct( c+1, cstr );
                 const int result = cstr.indexOf('\'');
                 if ( result == -1 )
@@ -1223,9 +1232,9 @@ static Q3CString scan_named_character( char*& c )
         c++;
     }
     // Note: characters with a one character length name doe not exist, as they would collide with other escapes
-    
+
     // Now we have the name, let us find it between the string names
-    QMap<Q3CString,StringDefinition>::const_iterator it=s_characterDefinitionMap.find(name);
+    QMap<QByteArray,StringDefinition>::const_iterator it=s_characterDefinitionMap.find(name);
     if (it==s_characterDefinitionMap.end())
     {
         kDebug(7107) << "EXCEPTION: cannot find character with name: " << BYTEARRAY( name ) << endl;
@@ -1239,15 +1248,15 @@ static Q3CString scan_named_character( char*& c )
     }
 }
 
-static Q3CString scan_named_string(char*& c)
+static QByteArray scan_named_string(char*& c)
 {
-    Q3CString name;
+    QByteArray name;
     if ( *c == '(' )
     {
         // \*(ab  Name of two characters
         if ( c[1] == escapesym )
         {
-            Q3CString cstr;
+            QByteArray cstr;
             c = scan_escape_direct( c+2, cstr );
             kDebug(7107) << "\\(" << BYTEARRAY( cstr ) << endl;
             // ### HACK: as we convert characters too early to HTML, we need to support more than 2 characters here and assume that all characters passed by the variable are to be used.
@@ -1270,7 +1279,7 @@ static Q3CString scan_named_string(char*& c)
         {
             if ( *c == escapesym )
             {
-                Q3CString cstr;
+                QByteArray cstr;
                 c = scan_escape_direct( c+1, cstr );
                 const int result = cstr.indexOf(']');
                 if ( result == -1 )
@@ -1301,7 +1310,7 @@ static Q3CString scan_named_string(char*& c)
         c++;
     }
     // Now we have the name, let us find it between the string names
-    QMap<Q3CString,StringDefinition>::const_iterator it=s_stringDefinitionMap.find(name);
+    QMap<QByteArray,StringDefinition>::const_iterator it=s_stringDefinitionMap.find(name);
     if (it==s_stringDefinitionMap.end())
     {
         kDebug(7107) << "EXCEPTION: cannot find string with name: " << BYTEARRAY( name ) << endl;
@@ -1370,7 +1379,7 @@ static QByteArray scan_dollar_parameter(char*& c)
     {
         const bool quote = ( *c == '@' );
         QList<char*>::const_iterator it = s_argumentList.begin();
-        Q3CString param;
+        QByteArray param;
         bool space = false;
         for ( ; it != s_argumentList.end(); ++it )
         {
@@ -1408,7 +1417,7 @@ static QByteArray scan_dollar_parameter(char*& c)
 }
 
 /// return the value of read-only number registers
-static int read_only_number_register( const Q3CString& name )
+static int read_only_number_register( const QByteArray& name )
 {
     // Internal read-only variables
     if ( name == ".$" )
@@ -1444,7 +1453,7 @@ static int read_only_number_register( const Q3CString& name )
 
     // ### TODO: groff defines many more read-only number registers
     kDebug(7107) << "EXCEPTION: unknown read-only number register: " << BYTEARRAY( name ) << endl;
-    
+
     return 0; // Undefined variable
 
 }
@@ -1459,7 +1468,7 @@ static int scan_number_register( char*& c)
         case '-': sign = -1; c++; break;
         default: break;
     }
-    Q3CString name;
+    QByteArray name;
     if ( *c == '[' )
     {
         c++;
@@ -1514,7 +1523,7 @@ static int scan_number_register( char*& c)
     }
     else
     {
-        QMap< Q3CString, NumberDefinition >::iterator it = s_numberDefinitionMap.find( name );
+        QMap< QByteArray, NumberDefinition >::iterator it = s_numberDefinitionMap.find( name );
         if ( it == s_numberDefinitionMap.end() )
         {
             return 0; // Undefined variable
@@ -1528,15 +1537,15 @@ static int scan_number_register( char*& c)
 }
 
 /// get and set font
-static Q3CString scan_named_font( char*& c )
+static QByteArray scan_named_font( char*& c )
 {
-    Q3CString name;
+    QByteArray name;
     if ( *c == '(' )
     {
         // \f(ab  Name of two characters
         if ( c[1] == escapesym )
         {
-            Q3CString cstr;
+            QByteArray cstr;
             c = scan_escape_direct( c+2, cstr );
             kDebug(7107) << "\\(" << BYTEARRAY( cstr ) << endl;
             // ### HACK: as we convert characters too early to HTML, we need to support more than 2 characters here and assume that all characters passed by the variable are to be used.
@@ -1558,7 +1567,7 @@ static Q3CString scan_named_font( char*& c )
         {
             if ( *c == escapesym )
             {
-                Q3CString cstr;
+                QByteArray cstr;
                 c = scan_escape_direct( c+1, cstr );
                 const int result = cstr.indexOf(']');
                 if ( result == -1 )
@@ -1617,9 +1626,9 @@ static Q3CString scan_named_font( char*& c )
         return "";
 }
 
-static Q3CString scan_number_code( char*& c )
+static QByteArray scan_number_code( char*& c )
 {
-    Q3CString number;
+    QByteArray number;
     if ( *c != '\'' )
         return "";
     while ( *c && ( *c != '\n' ) && ( *c != '\'' ) )
@@ -1647,7 +1656,7 @@ static Q3CString scan_number_code( char*& c )
 // ### TODO known missing escapes from groff(7):
 // ### TODO \& \! \) \: \R
 
-static char *scan_escape_direct( char *c, Q3CString& cstr )
+static char *scan_escape_direct( char *c, QByteArray& cstr )
 {
     bool exoutputp;
     bool exskipescape;
@@ -1682,7 +1691,7 @@ static char *scan_escape_direct( char *c, Q3CString& cstr )
             c--;
         }
         else
-            cstr = Q3CString( c, 1 );
+            cstr = QByteArray( c, 1 );
         break;
     }
     case 'k': c++; if (*c=='(') c+=2; // ### FIXME \k[REG] exists too
@@ -1719,19 +1728,19 @@ static char *scan_escape_direct( char *c, Q3CString& cstr )
         break;
     }
     case 's': // ### FIXME: many forms are missing
-	c++;
-	j=0;i=0;
-	if (*c=='-') {j= -1; c++;} else if (*c=='+') {j=1; c++;}
-	if (*c=='0') c++; else if (*c=='\\') {
-	    c++;
-	    c=scan_escape_direct( c, cstr );
-	    i=intresult; if (!j) j=1;
-	} else
-	    while (isdigit(*c) && (!i || (!j && i<4))) i=i*10+(*c++)-'0';
-	if (!j) { j=1; if (i) i=i-10; }
-	if (!skip_escape) cstr=change_to_size(i*j);
-	c--;
-	break;
+    c++;
+    j=0;i=0;
+    if (*c=='-') {j= -1; c++;} else if (*c=='+') {j=1; c++;}
+    if (*c=='0') c++; else if (*c=='\\') {
+        c++;
+        c=scan_escape_direct( c, cstr );
+        i=intresult; if (!j) j=1;
+    } else
+        while (isdigit(*c) && (!i || (!j && i<4))) i=i*10+(*c++)-'0';
+    if (!j) { j=1; if (i) i=i-10; }
+    if (!skip_escape) cstr=change_to_size(i*j);
+    c--;
+    break;
     case 'n':
     {
         c++;
@@ -1740,26 +1749,26 @@ static char *scan_escape_direct( char *c, Q3CString& cstr )
         break;
     }
     case 'w':
-	c++;
-	i=*c;
-	c++;
-	exoutputp=output_possible;
-	exskipescape=skip_escape;
-	output_possible=false;
-	skip_escape=true;
-	j=0;
-	while (*c!=i)
+    c++;
+    i=*c;
+    c++;
+    exoutputp=output_possible;
+    exskipescape=skip_escape;
+    output_possible=false;
+    skip_escape=true;
+    j=0;
+    while (*c!=i)
         {
-	    j++;
+        j++;
             if ( *c == escapesym )
                 c = scan_escape_direct( c+1, cstr);
             else
                 c++;
-	}
-	output_possible=exoutputp;
-	skip_escape=exskipescape;
-	intresult=j;
-	break;
+    }
+    output_possible=exoutputp;
+    skip_escape=exskipescape;
+    intresult=j;
+    break;
     case 'l': cstr = "<HR>"; curpos=0;
     case 'b':
     case 'v':
@@ -1767,19 +1776,19 @@ static char *scan_escape_direct( char *c, Q3CString& cstr )
     case 'o':
     case 'L':
     case 'h':
-	c++;
-	i=*c;
-	c++;
-	exoutputp=output_possible;
-	exskipescape=skip_escape;
-	output_possible=0;
-	skip_escape=true;
-	while (*c != i)
-	    if (*c==escapesym) c=scan_escape_direct( c+1, cstr );
-	    else c++;
-	output_possible=exoutputp;
-	skip_escape=exskipescape;
-	break;
+    c++;
+    i=*c;
+    c++;
+    exoutputp=output_possible;
+    exskipescape=skip_escape;
+    output_possible=0;
+    skip_escape=true;
+    while (*c != i)
+        if (*c==escapesym) c=scan_escape_direct( c+1, cstr );
+        else c++;
+    output_possible=exoutputp;
+    skip_escape=exskipescape;
+    break;
     case 'c': no_newline_output=1; break;
     case '{': newline_for_fun++; break; // Start conditional block
     case '}': if (newline_for_fun) newline_for_fun--; break; // End conditional block
@@ -1806,7 +1815,7 @@ static char *scan_escape_direct( char *c, Q3CString& cstr )
      case '`': cstr = "`";curpos++; break; // groff(7)
      case '-': cstr = "-";curpos++; break; // groff(7)
      case '.': cstr = ".";curpos++; break; // groff(7)
-     default: cstr = *c; curpos++; break;
+     default: cstr = QByteArray( *c ); curpos++; break;
     }
     if (cplusplus)
         c++;
@@ -1815,7 +1824,7 @@ static char *scan_escape_direct( char *c, Q3CString& cstr )
 
 static char *scan_escape(char *c)
 {
-    Q3CString cstr;
+    QByteArray cstr;
     char* result = scan_escape_direct( c, cstr );
     if ( !skip_escape )
         out_html(cstr);
@@ -1880,8 +1889,8 @@ public:
         prev = 0; next = 0;
     }
     ~TABLEROW() {
-		qDeleteAll(items);
-		items.clear();
+        qDeleteAll(items);
+        items.clear();
         delete test;
 
     }
@@ -1913,7 +1922,7 @@ TABLEROW *TABLEROW::copyLayout() const {
     TABLEROW *newrow = new TABLEROW();
 
     QListIterator<TABLEITEM *> it(items);
-	while (it.hasNext()){
+    while (it.hasNext()){
         TABLEITEM *newitem = new TABLEITEM(newrow);
         newitem->copyLayout(it.next());
     }
@@ -1933,9 +1942,9 @@ static void clear_table(TABLEROW *table)
     tr1=table;
     while (tr1->prev) tr1=tr1->prev;
     while (tr1) {
-	tr2=tr1;
-	tr1=tr1->next;
-	delete tr2;
+    tr2=tr1;
+    tr1=tr1->next;
+    delete tr2;
     }
 }
 
@@ -1947,78 +1956,78 @@ static char *scan_format(char *c, TABLEROW **result, int *maxcol)
     TABLEITEM *curfield;
     int i,j;
     if (*result) {
-	clear_table(*result);
+    clear_table(*result);
     }
     layout= currow=new TABLEROW();
     curfield=new TABLEITEM(currow);
     while (*c && *c!='.') {
-	switch (*c) {
-	case 'C': case 'c': case 'N': case 'n':
-	case 'R': case 'r': case 'A': case 'a':
-	case 'L': case 'l': case 'S': case 's':
-	case '^': case '_':
-	    if (curfield->align)
-		curfield=new TABLEITEM(currow);
-	    curfield->align=toupper(*c);
-	    c++;
-	    break;
-	case 'i': case 'I': case 'B': case 'b':
-	    curfield->font = toupper(*c);
-	    c++;
-	    break;
-	case 'f': case 'F':
-	    c++;
-	    curfield->font = toupper(*c);
-	    c++;
-	    if (!isspace(*c) && *c!='.') c++;
-	    break;
-	case 't': case 'T': curfield->valign='t'; c++; break;
-	case 'p': case 'P':
-	    c++;
-	    i=j=0;
-	    if (*c=='+') { j=1; c++; }
-	    if (*c=='-') { j=-1; c++; }
-	    while (isdigit(*c)) i=i*10+(*c++)-'0';
-	    if (j) curfield->size= i*j; else curfield->size=j-10;
-	    break;
-	case 'v': case 'V':
-	case 'w': case 'W':
-	    c=scan_expression(c+2,&curfield->width);
-	    break;
-	case '|':
-	    if (curfield->align) curfield->vleft++;
-	    else curfield->vright++;
-	    c++;
-	    break;
-	case 'e': case 'E':
-	    c++;
-	    break;
-	case '0': case '1': case '2': case '3': case '4':
-	case '5': case '6': case '7': case '8': case '9':
-	    i=0;
-	    while (isdigit(*c)) i=i*10+(*c++)-'0';
-	    curfield->space=i;
-	    break;
-	case ',': case '\n':
-	    currow->next=new TABLEROW();
-	    currow->next->prev=currow;
-	    currow=currow->next;
-	    currow->next=NULL;
-	    curfield=new TABLEITEM(currow);
-	    c++;
-	    break;
-	default:
-	    c++;
-	    break;
-	}
+    switch (*c) {
+    case 'C': case 'c': case 'N': case 'n':
+    case 'R': case 'r': case 'A': case 'a':
+    case 'L': case 'l': case 'S': case 's':
+    case '^': case '_':
+        if (curfield->align)
+        curfield=new TABLEITEM(currow);
+        curfield->align=toupper(*c);
+        c++;
+        break;
+    case 'i': case 'I': case 'B': case 'b':
+        curfield->font = toupper(*c);
+        c++;
+        break;
+    case 'f': case 'F':
+        c++;
+        curfield->font = toupper(*c);
+        c++;
+        if (!isspace(*c) && *c!='.') c++;
+        break;
+    case 't': case 'T': curfield->valign='t'; c++; break;
+    case 'p': case 'P':
+        c++;
+        i=j=0;
+        if (*c=='+') { j=1; c++; }
+        if (*c=='-') { j=-1; c++; }
+        while (isdigit(*c)) i=i*10+(*c++)-'0';
+        if (j) curfield->size= i*j; else curfield->size=j-10;
+        break;
+    case 'v': case 'V':
+    case 'w': case 'W':
+        c=scan_expression(c+2,&curfield->width);
+        break;
+    case '|':
+        if (curfield->align) curfield->vleft++;
+        else curfield->vright++;
+        c++;
+        break;
+    case 'e': case 'E':
+        c++;
+        break;
+    case '0': case '1': case '2': case '3': case '4':
+    case '5': case '6': case '7': case '8': case '9':
+        i=0;
+        while (isdigit(*c)) i=i*10+(*c++)-'0';
+        curfield->space=i;
+        break;
+    case ',': case '\n':
+        currow->next=new TABLEROW();
+        currow->next->prev=currow;
+        currow=currow->next;
+        currow->next=NULL;
+        curfield=new TABLEITEM(currow);
+        c++;
+        break;
+    default:
+        c++;
+        break;
+    }
     }
     if (*c=='.') while (*c++!='\n');
     *maxcol=0;
     currow=layout;
     while (currow) {
-	i=currow->length();
-	if (i>*maxcol) *maxcol=i;
-	currow=currow->next;
+    i=currow->length();
+    if (i>*maxcol) *maxcol=i;
+    currow=currow->next;
     }
     *result=layout;
     return c;
@@ -2027,14 +2036,14 @@ static char *scan_format(char *c, TABLEROW **result, int *maxcol)
 static TABLEROW *next_row(TABLEROW *tr)
 {
     if (tr->next) {
-	tr=tr->next;
-	if (!tr->next)
+    tr=tr->next;
+    if (!tr->next)
             return next_row(tr);
         return tr;
     } else {
-	tr->next = tr->copyLayout();
+    tr->next = tr->copyLayout();
         tr->next->prev = tr;
-	return tr->next;
+    return tr->next;
     }
 }
 
@@ -2048,7 +2057,7 @@ static char *scan_table(char *c)
     char *g;
     int center=0, expand=0, box=0, border=0, linesize=1;
     int i,j,maxcol=0, finished=0;
-    Q3CString oldfont;
+    QByteArray oldfont;
     int oldsize,oldfillout;
     char itemsep='\t';
     TABLEROW *layout=NULL, *currow;
@@ -2062,32 +2071,32 @@ static char *scan_table(char *c)
     out_html(set_font("R"));
     out_html(change_to_size(0));
     if (!fillout) {
-	fillout=1;
-	out_html("</PRE>");
+    fillout=1;
+    out_html("</PRE>");
     }
     while (*h && *h!='\n') h++;
     if (h[-1]==';') {
-	/* scan table options */
-	while (c<h) {
-	    while (isspace(*c)) c++;
-	    for (i=0; tableopt[i] && qstrncmp(tableopt[i],c,tableoptl[i]);i++);
-	    c=c+tableoptl[i];
-	    switch (i) {
-	    case 0: center=1; break;
-	    case 1: expand=1; break;
-	    case 2: box=1; break;
-	    case 3: border=1; break;
-	    case 4: box=2; break;
-	    case 5: while (*c++!='('); itemsep=*c++; break;
-	    case 6: while (*c++!='('); linesize=0;
-		while (isdigit(*c)) linesize=linesize*10+(*c++)-'0';
-		break;
-	    case 7: while (*c!=')') c++;
-	    default: break;
-	    }
-	    c++;
-	}
-	c=h+1;
+    /* scan table options */
+    while (c<h) {
+        while (isspace(*c)) c++;
+        for (i=0; tableopt[i] && qstrncmp(tableopt[i],c,tableoptl[i]);i++);
+        c=c+tableoptl[i];
+        switch (i) {
+        case 0: center=1; break;
+        case 1: expand=1; break;
+        case 2: box=1; break;
+        case 3: border=1; break;
+        case 4: box=2; break;
+        case 5: while (*c++!='('); itemsep=*c++; break;
+        case 6: while (*c++!='('); linesize=0;
+        while (isdigit(*c)) linesize=linesize*10+(*c++)-'0';
+        break;
+        case 7: while (*c!=')') c++;
+        default: break;
+        }
+        c++;
+    }
+    c=h+1;
     }
     /* scan layout */
     c=scan_format(c,&layout, &maxcol);
@@ -2096,109 +2105,109 @@ static char *scan_table(char *c)
     curfield=0;
     i=0;
     while (!finished && *c) {
-	/* search item */
-	h=c;
-	if ((*c=='_' || *c=='=') && (c[1]==itemsep || c[1]=='\n')) {
-	    if (c[-1]=='\n' && c[1]=='\n') {
-		if (currow->prev) {
-		    currow->prev->next=new TABLEROW();
-		    currow->prev->next->next=currow;
-		    currow->prev->next->prev=currow->prev;
-		    currow->prev=currow->prev->next;
-		} else {
-		    currow->prev=layout=new TABLEROW();
-		    currow->prev->prev=NULL;
-		    currow->prev->next=currow;
-		}
-		TABLEITEM *newitem = new TABLEITEM(currow->prev);
-		newitem->align=*c;
-		newitem->colspan=maxcol;
-		curfield=0;
-		c=c+2;
-	    } else {
-		if (currow->has(curfield)) {
-		    currow->at(curfield).align=*c;
+    /* search item */
+    h=c;
+    if ((*c=='_' || *c=='=') && (c[1]==itemsep || c[1]=='\n')) {
+        if (c[-1]=='\n' && c[1]=='\n') {
+        if (currow->prev) {
+            currow->prev->next=new TABLEROW();
+            currow->prev->next->next=currow;
+            currow->prev->next->prev=currow->prev;
+            currow->prev=currow->prev->next;
+        } else {
+            currow->prev=layout=new TABLEROW();
+            currow->prev->prev=NULL;
+            currow->prev->next=currow;
+        }
+        TABLEITEM *newitem = new TABLEITEM(currow->prev);
+        newitem->align=*c;
+        newitem->colspan=maxcol;
+        curfield=0;
+        c=c+2;
+        } else {
+        if (currow->has(curfield)) {
+            currow->at(curfield).align=*c;
                     FORWARDCUR;
-		}
-		if (c[1]=='\n') {
-		    currow=next_row(currow);
-		    curfield=0;
-		}
-		c=c+2;
-	    }
-	} else if (*c=='T' && c[1]=='{') {
-	    h=c+2;
-	    c=strstr(h,"\nT}");
-	    c++;
-	    *c='\0';
-	    g=NULL;
-	    scan_troff(h,0,&g);
-	    scan_troff(itemreset, 0, &g);
-	    *c='T';
-	    c+=3;
-	    if (currow->has(curfield)) {
-		currow->at(curfield).setContents(g);
+        }
+        if (c[1]=='\n') {
+            currow=next_row(currow);
+            curfield=0;
+        }
+        c=c+2;
+        }
+    } else if (*c=='T' && c[1]=='{') {
+        h=c+2;
+        c=strstr(h,"\nT}");
+        c++;
+        *c='\0';
+        g=NULL;
+        scan_troff(h,0,&g);
+        scan_troff(itemreset, 0, &g);
+        *c='T';
+        c+=3;
+        if (currow->has(curfield)) {
+        currow->at(curfield).setContents(g);
                 FORWARDCUR;
-	    }
+        }
             delete [] g;
 
-	    if (c[-1]=='\n') {
-		currow=next_row(currow);
-		curfield=0;
-	    }
-	} else if (*c=='.' && c[1]=='T' && c[2]=='&' && c[-1]=='\n') {
-	    TABLEROW *hr;
-	    while (*c++!='\n');
-	    hr=currow;
-	    currow=currow->prev;
-	    hr->prev=NULL;
-	    c=scan_format(c,&hr, &i);
-	    hr->prev=currow;
-	    currow->next=hr;
-	    currow=hr;
-	    next_row(currow);
-	    curfield=0;
-	} else if (*c=='.' && c[1]=='T' && c[2]=='E' && c[-1]=='\n') {
-	    finished=1;
-	    while (*c++!='\n');
-	    if (currow->prev)
-		currow->prev->next=NULL;
-	    currow->prev=NULL;
+        if (c[-1]=='\n') {
+        currow=next_row(currow);
+        curfield=0;
+        }
+    } else if (*c=='.' && c[1]=='T' && c[2]=='&' && c[-1]=='\n') {
+        TABLEROW *hr;
+        while (*c++!='\n');
+        hr=currow;
+        currow=currow->prev;
+        hr->prev=NULL;
+        c=scan_format(c,&hr, &i);
+        hr->prev=currow;
+        currow->next=hr;
+        currow=hr;
+        next_row(currow);
+        curfield=0;
+    } else if (*c=='.' && c[1]=='T' && c[2]=='E' && c[-1]=='\n') {
+        finished=1;
+        while (*c++!='\n');
+        if (currow->prev)
+        currow->prev->next=NULL;
+        currow->prev=NULL;
             clear_table(currow);
             currow = 0;
         } else if (*c=='.' && c[-1]=='\n' && !isdigit(c[1])) {
-	    /* skip troff request inside table (usually only .sp ) */
-	    while (*c++!='\n');
-	} else {
-	    h=c;
-	    while (*c && (*c!=itemsep || c[-1]=='\\') &&
-		   (*c!='\n' || c[-1]=='\\')) c++;
-	    i=0;
-	    if (*c==itemsep) {i=1; *c='\n'; }
-	    if (h[0]=='\\' && h[2]=='\n' &&
-		(h[1]=='_' || h[1]=='^')) {
-		if (currow->has(curfield)) {
-		    currow->at(curfield).align=h[1];
+        /* skip troff request inside table (usually only .sp ) */
+        while (*c++!='\n');
+    } else {
+        h=c;
+        while (*c && (*c!=itemsep || c[-1]=='\\') &&
+           (*c!='\n' || c[-1]=='\\')) c++;
+        i=0;
+        if (*c==itemsep) {i=1; *c='\n'; }
+        if (h[0]=='\\' && h[2]=='\n' &&
+        (h[1]=='_' || h[1]=='^')) {
+        if (currow->has(curfield)) {
+            currow->at(curfield).align=h[1];
                     FORWARDCUR;
-		}
-		h=h+3;
-	    } else {
-		g=NULL;
-		h=scan_troff(h,1,&g);
-		scan_troff(itemreset,0, &g);
-		if (currow->has(curfield)) {
-		    currow->at(curfield).setContents(g);
+        }
+        h=h+3;
+        } else {
+        g=NULL;
+        h=scan_troff(h,1,&g);
+        scan_troff(itemreset,0, &g);
+        if (currow->has(curfield)) {
+            currow->at(curfield).setContents(g);
                     FORWARDCUR;
-		}
+        }
                 delete [] g;
-	    }
-	    if (i) *c=itemsep;
-	    c=h;
-	    if (c[-1]=='\n') {
-		currow=next_row(currow);
-		curfield=0;
-	    }
-	}
+        }
+        if (i) *c=itemsep;
+        c=h;
+        if (c[-1]=='\n') {
+        currow=next_row(currow);
+        curfield=0;
+        }
+    }
     }
     /* calculate colspan and rowspan */
     currow=layout;
@@ -2209,8 +2218,8 @@ static char *scan_table(char *c)
         if (!prev)
             break;
 
-	while (prev->has(ti1)) {
-	    if (currow->has(ti))
+    while (prev->has(ti1)) {
+        if (currow->has(ti))
                 switch (currow->at(ti).align) {
                     case 'S':
                         if (currow->has(ti2)) {
@@ -2249,11 +2258,11 @@ static char *scan_table(char *c)
     while (currow) {
         j=0;
         out_html("<TR VALIGN=top>");
-	curfield=0;
-	while (currow->has(curfield)) {
-	    if (currow->at(curfield).align!='S' && currow->at(curfield).align!='^') {
-		out_html("<TD");
-		switch (currow->at(curfield).align) {
+    curfield=0;
+    while (currow->has(curfield)) {
+        if (currow->at(curfield).align!='S' && currow->at(curfield).align!='^') {
+        out_html("<TD");
+        switch (currow->at(curfield).align) {
                     case 'N':
                         currow->at(curfield).space+=4;
                     case 'R':
@@ -2263,44 +2272,44 @@ static char *scan_table(char *c)
                         out_html(" ALIGN=center");
                     default:
                         break;
-		}
-		if (!currow->at(curfield).valign && currow->at(curfield).rowspan>1)
-		    out_html(" VALIGN=center");
-		if (currow->at(curfield).colspan>1) {
-		    char buf[5];
-		    out_html(" COLSPAN=");
-		    sprintf(buf, "%i", currow->at(curfield).colspan);
-		    out_html(buf);
-		}
-		if (currow->at(curfield).rowspan>1) {
-		    char buf[5];
-		    out_html(" ROWSPAN=");
-		    sprintf(buf, "%i", currow->at(curfield).rowspan);
-		    out_html(buf);
-		}
-		j=j+currow->at(curfield).colspan;
-		out_html(">");
-		if (currow->at(curfield).size) out_html(change_to_size(currow->at(curfield).size));
-		if (currow->at(curfield).font) out_html(set_font(currow->at(curfield).font));
-		switch (currow->at(curfield).align) {
-		case '=': out_html("<HR><HR>"); break;
-		case '_': out_html("<HR>"); break;
-		default:
-		    out_html(currow->at(curfield).getContents());
-		    break;
-		}
-		if (currow->at(curfield).space)
-		    for (i=0; i<currow->at(curfield).space;i++) out_html("&nbsp;");
-		if (currow->at(curfield).font) out_html(set_font("R"));
-		if (currow->at(curfield).size) out_html(change_to_size(0));
-		if (j>=maxcol && currow->at(curfield).align>'@' && currow->at(curfield).align!='_')
-		    out_html("<BR>");
-		out_html("</TD>");
-	    }
-	    curfield++;
-	}
-	out_html("</TR>\n");
-	currow=currow->next;
+        }
+        if (!currow->at(curfield).valign && currow->at(curfield).rowspan>1)
+            out_html(" VALIGN=center");
+        if (currow->at(curfield).colspan>1) {
+            char buf[5];
+            out_html(" COLSPAN=");
+            sprintf(buf, "%i", currow->at(curfield).colspan);
+            out_html(buf);
+        }
+        if (currow->at(curfield).rowspan>1) {
+            char buf[5];
+            out_html(" ROWSPAN=");
+            sprintf(buf, "%i", currow->at(curfield).rowspan);
+            out_html(buf);
+        }
+        j=j+currow->at(curfield).colspan;
+        out_html(">");
+        if (currow->at(curfield).size) out_html(change_to_size(currow->at(curfield).size));
+        if (currow->at(curfield).font) out_html(set_font(QByteArray( currow->at(curfield).font )));
+        switch (currow->at(curfield).align) {
+        case '=': out_html("<HR><HR>"); break;
+        case '_': out_html("<HR>"); break;
+        default:
+            out_html(currow->at(curfield).getContents());
+            break;
+        }
+        if (currow->at(curfield).space)
+            for (i=0; i<currow->at(curfield).space;i++) out_html("&nbsp;");
+        if (currow->at(curfield).font) out_html(set_font("R"));
+        if (currow->at(curfield).size) out_html(change_to_size(0));
+        if (j>=maxcol && currow->at(curfield).align>'@' && currow->at(curfield).align!='_')
+            out_html("<BR>");
+        out_html("</TD>");
+        }
+        curfield++;
+    }
+    out_html("</TR>\n");
+    currow=currow->next;
     }
 
     clear_table(layout);
@@ -2323,138 +2332,138 @@ static char *scan_expression( char *c, int *result, const unsigned int numLoop )
     char oper='c';
 
     if (*c=='!') {
-	c=scan_expression(c+1, &value);
-	value= (!value);
+    c=scan_expression(c+1, &value);
+    value= (!value);
     } else if (*c=='n') {
-	c++;
-	value=s_nroff;
+    c++;
+    value=s_nroff;
     } else if (*c=='t') {
-	c++;
-	value=1-s_nroff;
+    c++;
+    value=1-s_nroff;
     } else if (*c=='\'' || *c=='"' || *c<' ' || (*c=='\\' && c[1]=='(')) {
-	/* ?string1?string2?
-	** test if string1 equals string2.
-	*/
-	char *st1=NULL, *st2=NULL, *h;
-	char *tcmp=NULL;
-	char sep;
-	sep=*c;
-	if (sep=='\\') {
-	    tcmp=c;
-	    c=c+3;
-	}
-	c++;
-	h=c;
-	while (*c!= sep && (!tcmp || qstrncmp(c,tcmp,4))) c++;
-	*c='\n';
-	scan_troff(h, 1, &st1);
-	*c=sep;
-	if (tcmp) c=c+3;
-	c++;
-	h=c;
-	while (*c!=sep && (!tcmp || qstrncmp(c,tcmp,4))) c++;
-	*c='\n';
-	scan_troff(h,1,&st2);
-	*c=sep;
-	if (!st1 && !st2) value=1;
-	else if (!st1 || !st2) value=0;
-	else value=(!qstrcmp(st1, st2));
-	delete [] st1;
+    /* ?string1?string2?
+    ** test if string1 equals string2.
+    */
+    char *st1=NULL, *st2=NULL, *h;
+    char *tcmp=NULL;
+    char sep;
+    sep=*c;
+    if (sep=='\\') {
+        tcmp=c;
+        c=c+3;
+    }
+    c++;
+    h=c;
+    while (*c!= sep && (!tcmp || qstrncmp(c,tcmp,4))) c++;
+    *c='\n';
+    scan_troff(h, 1, &st1);
+    *c=sep;
+    if (tcmp) c=c+3;
+    c++;
+    h=c;
+    while (*c!=sep && (!tcmp || qstrncmp(c,tcmp,4))) c++;
+    *c='\n';
+    scan_troff(h,1,&st2);
+    *c=sep;
+    if (!st1 && !st2) value=1;
+    else if (!st1 || !st2) value=0;
+    else value=(!qstrcmp(st1, st2));
+    delete [] st1;
         delete [] st2;
-	if (tcmp) c=c+3;
-	c++;
+    if (tcmp) c=c+3;
+    c++;
     } else {
         while (*c && ( !isspace(*c) || ( numLoop > 0 ) ) && *c!=')' && opex >= 0) {
-	    opex=0;
-	    switch (*c) {
-	    case '(':
+        opex=0;
+        switch (*c) {
+        case '(':
                 c = scan_expression( c + 1, &value2, numLoop + 1 );
-		value2=sign*value2;
-		opex=1;
-		break;
-	    case '.':
-	    case '0': case '1':
-	    case '2': case '3':
-	    case '4': case '5':
-	    case '6': case '7':
-	    case '8': case '9': {
-		int num=0,denum=1;
-		value2=0;
-		while (isdigit(*c)) value2=value2*10+((*c++)-'0');
-		if (*c=='.' && isdigit(c[1])) {
-		    c++;
-		    while (isdigit(*c)) {
-			num=num*10+((*c++)-'0');
-			denum=denum*10;
-		    }
-		}
-		if (isalpha(*c)) {
-		    /* scale indicator */
-		    switch (*c) {
-		    case 'i': /* inch -> 10pt */
-			value2=value2*10+(num*10+denum/2)/denum;
-			num=0;
-			break;
-		    default:
-			break;
-		    }
-		    c++;
-		}
-		value2=value2+(num+denum/2)/denum;
-		value2=sign*value2;
-		opex=1;
+        value2=sign*value2;
+        opex=1;
+        break;
+        case '.':
+        case '0': case '1':
+        case '2': case '3':
+        case '4': case '5':
+        case '6': case '7':
+        case '8': case '9': {
+        int num=0,denum=1;
+        value2=0;
+        while (isdigit(*c)) value2=value2*10+((*c++)-'0');
+        if (*c=='.' && isdigit(c[1])) {
+            c++;
+            while (isdigit(*c)) {
+            num=num*10+((*c++)-'0');
+            denum=denum*10;
+            }
+        }
+        if (isalpha(*c)) {
+            /* scale indicator */
+            switch (*c) {
+            case 'i': /* inch -> 10pt */
+            value2=value2*10+(num*10+denum/2)/denum;
+            num=0;
+            break;
+            default:
+            break;
+            }
+            c++;
+        }
+        value2=value2+(num+denum/2)/denum;
+        value2=sign*value2;
+        opex=1;
                 if (*c=='.')
                     opex = -1;
 
-	    }
+        }
             break;
-	    case '\\':
-		c=scan_escape(c+1);
-		value2=intresult*sign;
-		if (isalpha(*c)) c++; /* scale indicator */
-		opex=1;
-		break;
-	    case '-':
-		if (oper) { sign=-1; c++; break; }
-	    case '>':
-	    case '<':
-	    case '+':
-	    case '/':
-	    case '*':
-	    case '%':
-	    case '&':
-	    case '=':
-	    case ':':
-		if (c[1]=='=') oper=(*c++) +16; else oper=*c;
-		c++;
-		break;
-	    default: c++; break;
-	    }
-	    if (opex > 0) {
-		sign=1;
-		switch (oper) {
-		case 'c': value=value2; break;
-		case '-': value=value-value2; break;
-		case '+': value=value+value2; break;
-		case '*': value=value*value2; break;
-		case '/': if (value2) value=value/value2; break;
-		case '%': if (value2) value=value%value2; break;
-		case '<': value=(value<value2); break;
-		case '>': value=(value>value2); break;
-		case '>'+16: value=(value>=value2); break;
-		case '<'+16: value=(value<=value2); break;
-		case '=': case '='+16: value=(value==value2); break;
-		case '&': value = (value && value2); break;
-		case ':': value = (value || value2); break;
-		default:
+        case '\\':
+        c=scan_escape(c+1);
+        value2=intresult*sign;
+        if (isalpha(*c)) c++; /* scale indicator */
+        opex=1;
+        break;
+        case '-':
+        if (oper) { sign=-1; c++; break; }
+        case '>':
+        case '<':
+        case '+':
+        case '/':
+        case '*':
+        case '%':
+        case '&':
+        case '=':
+        case ':':
+        if (c[1]=='=') oper=(*c++) +16; else oper=*c;
+        c++;
+        break;
+        default: c++; break;
+        }
+        if (opex > 0) {
+        sign=1;
+        switch (oper) {
+        case 'c': value=value2; break;
+        case '-': value=value-value2; break;
+        case '+': value=value+value2; break;
+        case '*': value=value*value2; break;
+        case '/': if (value2) value=value/value2; break;
+        case '%': if (value2) value=value%value2; break;
+        case '<': value=(value<value2); break;
+        case '>': value=(value>value2); break;
+        case '>'+16: value=(value>=value2); break;
+        case '<'+16: value=(value<=value2); break;
+        case '=': case '='+16: value=(value==value2); break;
+        case '&': value = (value && value2); break;
+        case ':': value = (value || value2); break;
+        default:
                     {
                         kDebug(7107) << "Unknown operator " << char(oper) << endl;
                     }
-		}
-		oper=0;
-	    }
-	}
-	if (*c==')') c++;
+        }
+        oper=0;
+        }
+    }
+    if (*c==')') c++;
     }
     *result=value;
     return c;
@@ -2470,13 +2479,13 @@ static void trans_char(char *c, char s, char t)
     char *sl=c;
     int slash=0;
     while (*sl!='\n' || slash) {
-	if (!slash) {
-	    if (*sl==escapesym)
-		slash=1;
-	    else if (*sl==s)
-		*sl=t;
-	} else slash=0;
-	sl++;
+    if (!slash) {
+        if (*sl==escapesym)
+        slash=1;
+        else if (*sl==s)
+        *sl=t;
+    } else slash=0;
+    sl++;
     }
 }
 
@@ -2501,41 +2510,41 @@ static char *fill_words(char *c, char *words[], int *n, bool newline, char **nex
     *n=0;
     words[*n]=sl;
     while (*sl && (*sl!='\n' || slash)) {
-	if (!slash) {
-	    if (*sl=='"') {
+    if (!slash) {
+        if (*sl=='"') {
                 if (skipspace && (*(sl+1)=='"'))
                     *sl++ = '\a';
                 else {
-        	    *sl='\a';
-	            skipspace=!skipspace;
+                *sl='\a';
+                skipspace=!skipspace;
                 }
-	    } else if (*sl==escapesym) {
-		slash=1;
+        } else if (*sl==escapesym) {
+        slash=1;
                 if (sl[1]=='\n')
                     *sl='\a';
-	    } else if ((*sl==' ' || *sl=='\t') && !skipspace) {
-		if (newline) *sl='\n';
-		if (words[*n]!=sl) (*n)++;
-		words[*n]=sl+1;
-	    }
-	} else {
-	    if (*sl=='"') {
-		sl--;
-		if (newline) *sl='\n';
-		if (words[*n]!=sl) (*n)++;
-		if (next_line)
-		{
-		    char *eow = sl;
-		    sl++;
-		    while (*sl && *sl !='\n') sl++;
-		    *next_line = sl;
-		    return eow;
-		}
-		return sl;
-	    }
-	    slash=0;
-	}
-	sl++;
+        } else if ((*sl==' ' || *sl=='\t') && !skipspace) {
+        if (newline) *sl='\n';
+        if (words[*n]!=sl) (*n)++;
+        words[*n]=sl+1;
+        }
+    } else {
+        if (*sl=='"') {
+        sl--;
+        if (newline) *sl='\n';
+        if (words[*n]!=sl) (*n)++;
+        if (next_line)
+        {
+            char *eow = sl;
+            sl++;
+            while (*sl && *sl !='\n') sl++;
+            *next_line = sl;
+            return eow;
+        }
+        return sl;
+        }
+        slash=0;
+    }
+    sl++;
     }
     if (sl!=words[*n]) (*n)++;
     if (next_line) *next_line = sl+1;
@@ -2725,16 +2734,16 @@ static char *skip_till_newline(char *c)
     int lvl=0;
 
     while (*c && (*c!='\n' || lvl>0)) {
-	if (*c=='\\') {
-	    c++;
-	    if (*c=='}') lvl--; else if (*c=='{') lvl++;
-	}
-	c++;
+    if (*c=='\\') {
+        c++;
+        if (*c=='}') lvl--; else if (*c=='{') lvl++;
+    }
+    c++;
     }
     if (*c) c++;
     if (lvl<0 && newline_for_fun) {
-	newline_for_fun = newline_for_fun+lvl;
-	if (newline_for_fun<0) newline_for_fun=0;
+    newline_for_fun = newline_for_fun+lvl;
+    if (newline_for_fun<0) newline_for_fun=0;
     }
     return c;
 }
@@ -2751,7 +2760,7 @@ static void request_while( char*& c, int j, bool mdoc )
     const char oldchar = *newline;
     *newline = 0;
     // We store the full .while stuff into a QCString as if it would be a macro
-    const Q3CString macro = c ;
+    const QByteArray macro = c ;
     kDebug(7107) << "'Macro' of .while" << endl << BYTEARRAY( macro ) << endl;
     // Prepare for continuing after .while loop end
     *newline = oldchar;
@@ -3062,7 +3071,7 @@ static bool is_identifier_char( const char c )
     return false;
 }
 
-static Q3CString scan_identifier( char*& c )
+static QByteArray scan_identifier( char*& c )
 {
     char* h = c; // help pointer
     // ### TODO Groff seems to eat nearly everything as identifier name (info:/groff/Identifiers)
@@ -3070,7 +3079,7 @@ static Q3CString scan_identifier( char*& c )
         ++h;
     const char tempchar = *h;
     *h = 0;
-    const Q3CString name = c;
+    const QByteArray name = c;
     *h = tempchar;
     if ( name.isEmpty() )
     {
@@ -3101,20 +3110,20 @@ static char *scan_request(char *c)
     if (c[0]==escapesym)
     {
         /* some pages use .\" .\$1 .\} */
-	/* .\$1 is too difficult/stuppid */
+    /* .\$1 is too difficult/stuppid */
         if (c[1]=='$')
         {
             kDebug(7107) << "Found .\\$" << endl;
             c=skip_till_newline(c); // ### TODO
         }
-	else
+    else
 
-	    c = scan_escape(c+1);
+        c = scan_escape(c+1);
     }
     else
     {
         int nlen = 0;
-        Q3CString macroName;
+        QByteArray macroName;
         while (c[nlen] && (c[nlen] != ' ') && (c[nlen] != '\t') && (c[nlen] != '\n') && (c[nlen] != escapesym))
         {
             macroName+=c[nlen];
@@ -3123,7 +3132,7 @@ static char *scan_request(char *c)
         int j = nlen;
         while (c[j] && c[j]==' ' || c[j]=='\t') j++;
         /* search macro database of self-defined macros */
-        QMap<Q3CString,StringDefinition>::const_iterator it=s_stringDefinitionMap.find(macroName);
+        QMap<QByteArray,StringDefinition>::const_iterator it=s_stringDefinitionMap.find(macroName);
         if (it!=s_stringDefinitionMap.end())
         {
             kDebug(7107) << "CALLING MACRO: " << BYTEARRAY( macroName ) << endl;
@@ -3192,7 +3201,7 @@ static char *scan_request(char *c)
                     return 0;
                     break;
                 }
-        	case REQ_An: // mdoc(7) "Author Name"
+            case REQ_An: // mdoc(7) "Author Name"
                 {
                     c+=j;
                     c=scan_troff_mandoc(c,1,0);
@@ -3207,7 +3216,7 @@ static char *scan_request(char *c)
                         ++c;
                         break;
                     }
-                    const Q3CString name ( scan_identifier( c ) );
+                    const QByteArray name ( scan_identifier( c ) );
                     while (*c && *c!='\n') c++;
                     c++;
                     h=c;
@@ -3215,7 +3224,7 @@ static char *scan_request(char *c)
                     *c='\0';
                     char* result=0;
                     scan_troff(h,0,&result);
-                    QMap<Q3CString,StringDefinition>::iterator it=s_stringDefinitionMap.find(name);
+                    QMap<QByteArray,StringDefinition>::iterator it=s_stringDefinitionMap.find(name);
                     if (it==s_stringDefinitionMap.end())
                     {
                         StringDefinition def;
@@ -3241,7 +3250,7 @@ static char *scan_request(char *c)
                     kDebug(7107) << "start .ds/.as" << endl;
                     int oldcurpos=curpos;
                     c+=j;
-                    const Q3CString name( scan_identifier( c) );
+                    const QByteArray name( scan_identifier( c) );
                     if ( name.isEmpty() )
                         break;
                     while (*c && isspace(*c)) c++;
@@ -3250,7 +3259,7 @@ static char *scan_request(char *c)
                     curpos=0;
                     char* result=0;
                     c=scan_troff(c,1,&result);
-                    QMap<Q3CString,StringDefinition>::iterator it=s_stringDefinitionMap.find(name);
+                    QMap<QByteArray,StringDefinition>::iterator it=s_stringDefinitionMap.find(name);
                     if (it==s_stringDefinitionMap.end())
                     {
                         StringDefinition def;
@@ -3398,7 +3407,7 @@ static char *scan_request(char *c)
                     h = skip_till_newline( c );
                     const char oldChar = *h;
                     *h = 0;
-                    const Q3CString name = c;
+                    const QByteArray name = c;
                     // ### TODO: name might contain a variable
                     if ( name.isEmpty() )
                         out_html( set_font( "P" ) ); // Previous font
@@ -3555,7 +3564,7 @@ static char *scan_request(char *c)
                         scan_troff(buf+1,0,NULL);
                     delete [] buf;
                     delete [] name;
-    
+
                     *c++='\n';
                     break;
                 }
@@ -3686,13 +3695,13 @@ static char *scan_request(char *c)
                 }
                 case REQ_Fo: // mdoc(7) "Function definition Opening"
                 {
-                    char* font[2] = { "B", "R" };
+                    char* font[2] = { (char*)"B", (char*)"R" };
                     c+=j;
                     if (*c=='\n') c++;
                     char *eol=strchr(c,'\n');
                     char *semicolon=strchr(c,';');
                     if ((semicolon!=0) && (semicolon<eol)) *semicolon=' ';
-        
+
                     sl=fill_words(c, wordlist, &words, true, &c);
                     // Normally a .Fo has only one parameter
                     for (i=0; i<words; i++)
@@ -3721,7 +3730,7 @@ static char *scan_request(char *c)
                     // .Fc has no parameter
                     c+=j;
                     c=skip_till_newline(c);
-                    char* font[2] = { "B", "R" };
+                    char* font[2] = { (char*)"B", (char*)"R" };
                     out_html(set_font(font[i&1]));
                     out_html(")");
                     out_html(set_font("R"));
@@ -3737,7 +3746,7 @@ static char *scan_request(char *c)
                 }
                 case REQ_Fa: // mdoc(7) "Function definition argument"
                 {
-                    char* font[2] = { "B", "R" };
+                    char* font[2] = { (char*)"B", (char*)"R" };
                     c+=j;
                     if (*c=='\n') c++;
                     sl=fill_words(c, wordlist, &words, true, &c);
@@ -3766,7 +3775,7 @@ static char *scan_request(char *c)
                         curpos++;
                     break;
                 }
-                
+
                 case REQ_OP:  /* groff manpages use this construction */
                 {
                     /* .OP a b : [ <B>a</B> <I>b</I> ] */
@@ -3996,7 +4005,7 @@ static char *scan_request(char *c)
                     else
                         out_html("</H2>\n");
                     out_html("<div>\n");
-        
+
                     section=1;
                     curpos=0;
                     break;
@@ -4022,7 +4031,7 @@ static char *scan_request(char *c)
                     c=scan_table(c);
                     break;
                 }
-                case REQ_Dt:	/* mdoc(7) */
+                case REQ_Dt:    /* mdoc(7) */
                     mandoc_command = true;
                 case REQ_TH: // man(7) "Title Header"
                 {
@@ -4074,7 +4083,7 @@ static char *scan_request(char *c)
                             out_html(htmlPath);
                             out_html("/top-right-konqueror.png\" style=\"margin: 0pt\" alt=\"Top right\">\n");
                             out_html("</div>\n");
-        
+
                             out_html("<div style=\"position: absolute; left: 0pt;\">\n");
                             out_html("<img src=\"");
                             out_html(htmlPath);
@@ -4137,13 +4146,13 @@ static char *scan_request(char *c)
                 {
                     kDebug(7107) << "start .rm/.rn" << endl;
                     c+=j;
-                    const Q3CString name( scan_identifier( c ) );
+                    const QByteArray name( scan_identifier( c ) );
                     if ( name.isEmpty() )
                     {
                             kDebug(7107) << "EXCEPTION: empty origin string to remove/rename" << endl;
                             break;
                     }
-                    Q3CString name2;
+                    QByteArray name2;
                     if ( !mode )
                     {
                         while (*c && isspace(*c) && *c!='\n') ++c;
@@ -4155,7 +4164,7 @@ static char *scan_request(char *c)
                         }
                     }
                     c=skip_till_newline(c);
-                    QMap<Q3CString,StringDefinition>::iterator it=s_stringDefinitionMap.find(name);
+                    QMap<QByteArray,StringDefinition>::iterator it=s_stringDefinitionMap.find(name);
                     if (it==s_stringDefinitionMap.end())
                     {
                         kDebug(7107) << "EXCEPTION: cannot find string to rename or remove: " << BYTEARRAY( name ) << endl;
@@ -4189,7 +4198,7 @@ static char *scan_request(char *c)
                 {
                     kDebug(7107) << "start .nr" << endl;
                     c += j;
-                    const Q3CString name( scan_identifier( c ) );
+                    const QByteArray name( scan_identifier( c ) );
                     if ( name.isEmpty() )
                     {
                             kDebug(7107) << "EXCEPTION: empty name for register variable" << endl;
@@ -4213,7 +4222,7 @@ static char *scan_request(char *c)
                         c=scan_expression( c, &increment );
                     }
                     c = skip_till_newline( c );
-                    QMap <Q3CString, NumberDefinition>::iterator it = s_numberDefinitionMap.find( name );
+                    QMap <QByteArray, NumberDefinition>::iterator it = s_numberDefinitionMap.find( name );
                     if ( it == s_numberDefinitionMap.end() )
                     {
                         if ( sign < 1 )
@@ -4250,16 +4259,16 @@ static char *scan_request(char *c)
                     c = nameStart;
                     while (*c && (*c != ' ') && (*c != '\n')) c++;
                     *c = '\0';
-                    const Q3CString name(nameStart);
-    
-                    Q3CString endmacro;
+                    const QByteArray name(nameStart);
+
+                    QByteArray endmacro;
                     if (words == 1)
                     {
                         endmacro="..";
                     }
                     else
                     {
-                        endmacro='.';
+                        endmacro=".";
                         c = wordlist[1];
                         while (*c && (*c != ' ') && (*c != '\n'))
                             endmacro+=*c++;
@@ -4270,7 +4279,7 @@ static char *scan_request(char *c)
                     while (*c && qstrncmp(c,endmacro,length))
                         c=skip_till_newline(c);
 
-                    Q3CString macro;
+                    QByteArray macro;
                     while (sl!=c)
                     {
                         if (sl[0]=='\\' && sl[1]=='\\')
@@ -4283,7 +4292,7 @@ static char *scan_request(char *c)
                         sl++;
                     }
 
-                    QMap<Q3CString,StringDefinition>::iterator it=s_stringDefinitionMap.find(name);
+                    QMap<QByteArray,StringDefinition>::iterator it=s_stringDefinitionMap.find(name);
                     if (it==s_stringDefinitionMap.end())
                     {
                         StringDefinition def;
@@ -4407,9 +4416,9 @@ static char *scan_request(char *c)
                         curpos=0;
                     break;
                 }
-                case REQ_Bk:	/* mdoc(7) */
-                case REQ_Ek:	/* mdoc(7) */
-                case REQ_Dd:	/* mdoc(7) */
+                case REQ_Bk:    /* mdoc(7) */
+                case REQ_Ek:    /* mdoc(7) */
+                case REQ_Dd:    /* mdoc(7) */
                 case REQ_Os: // mdoc(7) "Operating System"
                 {
                     trans_char(c,'"','\a');
@@ -4434,12 +4443,12 @@ static char *scan_request(char *c)
                         curpos=0;
                     break;
                 }
-                case REQ_At:	/* mdoc(7) */
-                case REQ_Fx:	/* mdoc(7) */
-                case REQ_Nx:	/* mdoc(7) */
-                case REQ_Ox:	/* mdoc(7) */
-                case REQ_Bx:	/* mdoc(7) */
-                case REQ_Ux:	/* mdoc(7) */
+                case REQ_At:    /* mdoc(7) */
+                case REQ_Fx:    /* mdoc(7) */
+                case REQ_Nx:    /* mdoc(7) */
+                case REQ_Ox:    /* mdoc(7) */
+                case REQ_Bx:    /* mdoc(7) */
+                case REQ_Ux:    /* mdoc(7) */
                 {
                     bool parsable=true;
                     trans_char(c,'"','\a');
@@ -4473,7 +4482,7 @@ static char *scan_request(char *c)
                         curpos=0;
                     break;
                 }
-                case REQ_Dl:	/* mdoc(7) */
+                case REQ_Dl:    /* mdoc(7) */
                 {
                     c=c+j;
                     out_html(NEWLINE);
@@ -4487,8 +4496,8 @@ static char *scan_request(char *c)
                         curpos=0;
                     break;
                 }
-	       case REQ_Bd:	/* mdoc(7) */
-	       {			/* Seems like a kind of example/literal mode */
+           case REQ_Bd:    /* mdoc(7) */
+           {            /* Seems like a kind of example/literal mode */
                     char bd_options[NULL_TERMINATED(MED_STR_MAX)];
                     char *nl = strchr(c,'\n');
                     c=c+j;
@@ -4516,7 +4525,7 @@ static char *scan_request(char *c)
                     c=skip_till_newline(c);
                     break;
                 }
-                case REQ_Ed:	/* mdoc(7) */
+                case REQ_Ed:    /* mdoc(7) */
                 {
                     if (mandoc_bd_options & BD_LITERAL)
                     {
@@ -4534,7 +4543,7 @@ static char *scan_request(char *c)
                     c=skip_till_newline(c);
                     break;
                 }
-                case REQ_Be:	/* mdoc(7) */
+                case REQ_Be:    /* mdoc(7) */
                 {
                     c=c+j;
                     if (fillout)
@@ -4547,7 +4556,7 @@ static char *scan_request(char *c)
                     c=skip_till_newline(c);
                     break;
                 }
-                case REQ_Xr:	/* mdoc(7) */ // ### FIXME: it should issue a <a href="man:somewhere(x)"> directly
+                case REQ_Xr:    /* mdoc(7) */ // ### FIXME: it should issue a <a href="man:somewhere(x)"> directly
                 {
                     /* Translate xyz 1 to xyz(1)
                      * Allow for multiple spaces.  Allow the section to be missing.
@@ -4567,7 +4576,7 @@ static char *scan_request(char *c)
                         if (bufptr >= buff + MED_STR_MAX) break;
                         c++;
                     }
-                    while (isspace(*c) && *c != '\n') c++;	/* Skip spaces */
+                    while (isspace(*c) && *c != '\n') c++;    /* Skip spaces */
                     if (isdigit(*c))
                     {
                         /* Convert the number if there is one */
@@ -4610,7 +4619,7 @@ static char *scan_request(char *c)
                         curpos=0;
                     break;
                 }
-                case REQ_Fl:	// mdoc(7) "FLags"
+                case REQ_Fl:    // mdoc(7) "FLags"
                 {
                     trans_char(c,'"','\a');
                     c+=j;
@@ -4645,8 +4654,8 @@ static char *scan_request(char *c)
                         curpos=0;
                     break;
                 }
-                case REQ_Pa:	/* mdoc(7) */
-                case REQ_Pf:	/* mdoc(7) */
+                case REQ_Pa:    /* mdoc(7) */
+                case REQ_Pf:    /* mdoc(7) */
                 {
                     trans_char(c,'"','\a');
                     c=c+j;
@@ -4659,7 +4668,7 @@ static char *scan_request(char *c)
                         curpos=0;
                     break;
                 }
-                case REQ_Pp:	/* mdoc(7) */
+                case REQ_Pp:    /* mdoc(7) */
                 {
                     if (fillout)
                         out_html("<br><br>\n");
@@ -4677,19 +4686,19 @@ static char *scan_request(char *c)
                 case REQ_Bq: // mdoc(7) "Bracket Quote"
                     c=process_quote(c,j,"[","]");
                     break;
-                case REQ_Dq:	// mdoc(7) "Double Quote"
+                case REQ_Dq:    // mdoc(7) "Double Quote"
                     c=process_quote(c,j,"&ldquo;","&rdquo;");
                     break;
-                case REQ_Pq:	// mdoc(7) "Parenthese Quote"
+                case REQ_Pq:    // mdoc(7) "Parenthese Quote"
                     c=process_quote(c,j,"(",")");
                     break;
-                case REQ_Qq:	// mdoc(7) "straight double Quote"
+                case REQ_Qq:    // mdoc(7) "straight double Quote"
                     c=process_quote(c,j,"&quot;","&quot;");
                     break;
-                case REQ_Sq:	// mdoc(7) "Single Quote"
+                case REQ_Sq:    // mdoc(7) "Single Quote"
                     c=process_quote(c,j,"&lsquo;","&rsquo;");
                     break;
-                case REQ_Op:	/* mdoc(7) */
+                case REQ_Op:    /* mdoc(7) */
                 {
                     trans_char(c,'"','\a');
                     c=c+j;
@@ -4706,7 +4715,7 @@ static char *scan_request(char *c)
                         curpos=0;
                     break;
                 }
-                case REQ_Oo:	/* mdoc(7) */
+                case REQ_Oo:    /* mdoc(7) */
                 {
                     trans_char(c,'"','\a');
                     c=c+j;
@@ -4718,9 +4727,9 @@ static char *scan_request(char *c)
                         curpos++;
                     else
                         curpos=0;
-        	    break;
+                break;
                 }
-                case REQ_Oc:	/* mdoc(7) */
+                case REQ_Oc:    /* mdoc(7) */
                 {
                     trans_char(c,'"','\a');
                     c=c+j;
@@ -4733,7 +4742,7 @@ static char *scan_request(char *c)
                         curpos=0;
                     break;
                 }
-                case REQ_Ql:	/* mdoc(7) */
+                case REQ_Ql:    /* mdoc(7) */
                 {
                     /* Single quote first word in the line */
                     char *sp;
@@ -4754,7 +4763,7 @@ static char *scan_request(char *c)
                      * be quoted
                      */
                     if (*sp) *sp = '\n';
-                    out_html("`");	/* Quote the text */
+                    out_html("`");    /* Quote the text */
                     c=scan_troff_mandoc(c, 1, NULL);
                     out_html("'");
                     out_html(NEWLINE);
@@ -4764,7 +4773,7 @@ static char *scan_request(char *c)
                         curpos=0;
                     break;
                 }
-                case REQ_Ar:	/* mdoc(7) */
+                case REQ_Ar:    /* mdoc(7) */
                 {
                     /* parse one line in italics */
                     out_html(set_font("I"));
@@ -4785,7 +4794,7 @@ static char *scan_request(char *c)
                         curpos=0;
                     break;
                 }
-                case REQ_Em:	/* mdoc(7) */
+                case REQ_Em:    /* mdoc(7) */
                 {
                     out_html("<em>");
                     trans_char(c,'"','\a');
@@ -4800,9 +4809,9 @@ static char *scan_request(char *c)
                         curpos=0;
                     break;
                 }
-                case REQ_Ad:	/* mdoc(7) */
-                case REQ_Va:	/* mdoc(7) */
-                case REQ_Xc:	/* mdoc(7) */
+                case REQ_Ad:    /* mdoc(7) */
+                case REQ_Va:    /* mdoc(7) */
+                case REQ_Xc:    /* mdoc(7) */
                 {
                     /* parse one line in italics */
                     out_html(set_font("I"));
@@ -4818,7 +4827,7 @@ static char *scan_request(char *c)
                         curpos=0;
                     break;
                 }
-                case REQ_Nd:	/* mdoc(7) */
+                case REQ_Nd:    /* mdoc(7) */
                 {
                     trans_char(c,'"','\a');
                     c=c+j;
@@ -4832,7 +4841,7 @@ static char *scan_request(char *c)
                         curpos=0;
                     break;
                 }
-                case REQ_Nm:	// mdoc(7) "Name Macro" ### FIXME
+                case REQ_Nm:    // mdoc(7) "Name Macro" ### FIXME
                 {
                     static char mandoc_name[NULL_TERMINATED(SMALL_STR_MAX)] = ""; // ### TODO Use QByteArray
                     trans_char(c,'"','\a');
@@ -4860,7 +4869,7 @@ static char *scan_request(char *c)
                         }
                     }
                     mandoc_name_count++;
-        
+
                     out_html(set_font("B"));
                     // ### FIXME: fill_words must be used
                     while (*c == ' '|| *c == '\t') c++;
@@ -4887,11 +4896,11 @@ static char *scan_request(char *c)
                         curpos=0;
                     break;
                 }
-                case REQ_Cd:	/* mdoc(7) */
-                case REQ_Cm:	/* mdoc(7) */
-                case REQ_Ic:	/* mdoc(7) */
-                case REQ_Ms:	/* mdoc(7) */
-                case REQ_Or:	/* mdoc(7) */
+                case REQ_Cd:    /* mdoc(7) */
+                case REQ_Cm:    /* mdoc(7) */
+                case REQ_Ic:    /* mdoc(7) */
+                case REQ_Ms:    /* mdoc(7) */
+                case REQ_Or:    /* mdoc(7) */
                 case REQ_Sy:    /* mdoc(7) */
                 {
                     /* parse one line in bold */
@@ -4909,14 +4918,14 @@ static char *scan_request(char *c)
                     break;
                 }
                 // ### FIXME: punctuation is handled badly!
-                case REQ_Dv:	/* mdoc(7) */
-                case REQ_Ev:	/* mdoc(7) */
-                case REQ_Fr:	/* mdoc(7) */
-                case REQ_Li:	/* mdoc(7) */
-                case REQ_No:	/* mdoc(7) */
-                case REQ_Ns:	/* mdoc(7) */
-                case REQ_Tn:	/* mdoc(7) */
-                case REQ_nN:	/* mdoc(7) */
+                case REQ_Dv:    /* mdoc(7) */
+                case REQ_Ev:    /* mdoc(7) */
+                case REQ_Fr:    /* mdoc(7) */
+                case REQ_Li:    /* mdoc(7) */
+                case REQ_No:    /* mdoc(7) */
+                case REQ_Ns:    /* mdoc(7) */
+                case REQ_Tn:    /* mdoc(7) */
+                case REQ_nN:    /* mdoc(7) */
                 {
                     trans_char(c,'"','\a');
                     c=c+j;
@@ -4931,7 +4940,7 @@ static char *scan_request(char *c)
                         curpos=0;
                     break;
                 }
-                case REQ_perc_A:	/* mdoc(7) biblio stuff */
+                case REQ_perc_A:    /* mdoc(7) biblio stuff */
                 case REQ_perc_D:
                 case REQ_perc_N:
                 case REQ_perc_O:
@@ -5039,14 +5048,14 @@ static char *scan_request(char *c)
                     // Be careful: unlike .rn, the destination is first, origin is second
                     kDebug(7107) << "start .als" << endl;
                     c+=j;
-                    const Q3CString name ( scan_identifier( c ) );
+                    const QByteArray name ( scan_identifier( c ) );
                     if ( name.isEmpty() )
                     {
                             kDebug(7107) << "EXCEPTION: empty destination string to alias" << endl;
                             break;
                     }
                     while (*c && isspace(*c) && *c!='\n') ++c;
-                    const Q3CString name2 ( scan_identifier ( c ) );
+                    const QByteArray name2 ( scan_identifier ( c ) );
                     if ( name2.isEmpty() )
                     {
                             kDebug(7107) << "EXCEPTION: empty origin string to alias" << endl;
@@ -5060,7 +5069,7 @@ static char *scan_request(char *c)
                         break;
                     }
                     // Second parameter is origin (unlike in .rn)
-                    QMap<Q3CString,StringDefinition>::iterator it=s_stringDefinitionMap.find(name2);
+                    QMap<QByteArray,StringDefinition>::iterator it=s_stringDefinitionMap.find(name2);
                     if (it==s_stringDefinitionMap.end())
                     {
                         kDebug(7107) << "EXCEPTION: cannot find string to make alias of " << BYTEARRAY( name2 ) << endl;
@@ -5077,14 +5086,14 @@ static char *scan_request(char *c)
                 {
                     kDebug(7107) << "start .rr" << endl;
                     c += j;
-                    const Q3CString name ( scan_identifier( c ) );
+                    const QByteArray name ( scan_identifier( c ) );
                     if ( name.isEmpty() )
                     {
                             kDebug(7107) << "EXCEPTION: empty origin string to remove/rename: " << endl;
                             break;
                     }
                     c = skip_till_newline( c );
-                    QMap <Q3CString, NumberDefinition>::iterator it = s_numberDefinitionMap.find( name );
+                    QMap <QByteArray, NumberDefinition>::iterator it = s_numberDefinitionMap.find( name );
                     if ( it == s_numberDefinitionMap.end() )
                     {
                             kDebug(7107) << "EXCEPTION: trying to remove inexistant number register: " << endl;
@@ -5100,21 +5109,21 @@ static char *scan_request(char *c)
                 {
                     kDebug(7107) << "start .rnn" << endl;
                     c+=j;
-                    const Q3CString name ( scan_identifier ( c ) );
+                    const QByteArray name ( scan_identifier ( c ) );
                     if ( name.isEmpty() )
                     {
                             kDebug(7107) << "EXCEPTION: empty origin to remove/rename number register" << endl;
                             break;
                     }
                     while (*c && isspace(*c) && *c!='\n') ++c;
-                    const Q3CString name2 ( scan_identifier ( c ) );
+                    const QByteArray name2 ( scan_identifier ( c ) );
                     if ( name2.isEmpty() )
                     {
                         kDebug(7107) << "EXCEPTION: empty destination to rename number register" << endl;
                         break;
                     }
                     c = skip_till_newline( c );
-                    QMap<Q3CString,NumberDefinition>::iterator it=s_numberDefinitionMap.find(name);
+                    QMap<QByteArray,NumberDefinition>::iterator it=s_numberDefinitionMap.find(name);
                     if (it==s_numberDefinitionMap.end())
                     {
                         kDebug(7107) << "EXCEPTION: cannot find number register to rename" << BYTEARRAY( name ) << endl;
@@ -5137,14 +5146,14 @@ static char *scan_request(char *c)
                     // Be careful: unlike .rnn, the destination is first, origin is second
                     kDebug(7107) << "start .aln" << endl;
                     c+=j;
-                    const Q3CString name ( scan_identifier( c ) );
+                    const QByteArray name ( scan_identifier( c ) );
                     if ( name.isEmpty() )
                     {
                             kDebug(7107) << "EXCEPTION: empty destination number register to alias" << endl;
                             break;
                     }
                     while (*c && isspace(*c) && *c!='\n') ++c;
-                    const Q3CString name2 ( scan_identifier( c ) );
+                    const QByteArray name2 ( scan_identifier( c ) );
                     if ( name2.isEmpty() )
                     {
                             kDebug(7107) << "EXCEPTION: empty origin number register to alias" << endl;
@@ -5158,7 +5167,7 @@ static char *scan_request(char *c)
                         break;
                     }
                     // Second parameter is origin (unlike in .rnn)
-                    QMap<Q3CString,NumberDefinition>::iterator it=s_numberDefinitionMap.find(name2);
+                    QMap<QByteArray,NumberDefinition>::iterator it=s_numberDefinitionMap.find(name2);
                     if (it==s_numberDefinitionMap.end())
                     {
                         kDebug(7107) << "EXCEPTION: cannot find string to make alias: " << BYTEARRAY( name2 ) << endl;
@@ -5178,7 +5187,7 @@ static char *scan_request(char *c)
                     while (*h && *h!='\n' && isdigit(*h) ) ++h;
                     const char tempchar = *h;
                     *h = 0;
-                    const Q3CString number = c;
+                    const QByteArray number( c );
                     *h = tempchar;
                     c = skip_till_newline( h );
                     unsigned int result = 1; // Numbers of shifts to do
@@ -5221,7 +5230,7 @@ static char *scan_request(char *c)
                          * I don't want to miss anything out of the text.
                          */
                         char buf[4] = { c[0], c[1], ' ', 0 };
-                        out_html(buf);	/* Print the command (it might just be text). */
+                        out_html(buf);    /* Print the command (it might just be text). */
                         c=c+j;
                         trans_char(c,'"','\a');
                         if (*c=='\n') c++;
@@ -5249,9 +5258,9 @@ static char *scan_request(char *c)
 }
 
 static int contained_tab=0;
-static bool mandoc_line=false;	/* Signals whether to look for embedded mandoc
-				 * commands.
-				 */
+static bool mandoc_line=false;    /* Signals whether to look for embedded mandoc
+                 * commands.
+                 */
 
 static char *scan_troff(char *c, bool san, char **result)
 {   /* san : stop at newline */
@@ -5271,16 +5280,16 @@ static char *scan_troff(char *c, bool san, char **result)
     exscaninbuff=scaninbuff;
     newline_for_fun=0;
     if (result) {
-	if (*result) {
-	    buffer=*result;
-	    buffpos=qstrlen(buffer);
-	    buffmax=buffpos;
-	} else {
+    if (*result) {
+        buffer=*result;
+        buffpos=qstrlen(buffer);
+        buffmax=buffpos;
+    } else {
             buffer = stralloc(LARGE_STR_MAX);
             buffpos=0;
             buffmax=LARGE_STR_MAX;
-	}
-	scaninbuff=true;
+    }
+    scaninbuff=true;
     }
     h=c; // ### FIXME below are too many tests that may go before the position of c
     /* start scanning */
@@ -5297,144 +5306,144 @@ static char *scan_troff(char *c, bool san, char **result)
 
     while (h && *h && (!san || newline_for_fun || *h!='\n')) {
 
-	if (*h==escapesym) {
-	    h++;
-	    FLUSHIBP;
-	    h = scan_escape(h);
+    if (*h==escapesym) {
+        h++;
+        FLUSHIBP;
+        h = scan_escape(h);
         } else if (*h==controlsym && h[-1]=='\n') {
-	    h++;
-	    FLUSHIBP;
-	    h = scan_request(h);
-	    if (h && san && h[-1]=='\n') h--;
-	} else if (mandoc_line
+        h++;
+        FLUSHIBP;
+        h = scan_request(h);
+        if (h && san && h[-1]=='\n') h--;
+    } else if (mandoc_line
             && ((*(h-1)) && (isspace(*(h-1)) || (*(h-1))=='\n'))
-		   && *(h) && isupper(*(h))
-		   && *(h+1) && islower(*(h+1))
+           && *(h) && isupper(*(h))
+           && *(h+1) && islower(*(h+1))
                    && *(h+2) && isspace(*(h+2))) {
-	    // mdoc(7) embedded command eg ".It Fl Ar arg1 Fl Ar arg2"
-	    FLUSHIBP;
-	    h = scan_request(h);
-	    if (san && h[-1]=='\n') h--;
+        // mdoc(7) embedded command eg ".It Fl Ar arg1 Fl Ar arg2"
+        FLUSHIBP;
+        h = scan_request(h);
+        if (san && h[-1]=='\n') h--;
         } else if (*h==nobreaksym && h[-1]=='\n') {
-	    h++;
-	    FLUSHIBP;
-	    h = scan_request(h);
-	    if (san && h[-1]=='\n') h--;
-	} else {
-	    /* int mx; */
+        h++;
+        FLUSHIBP;
+        h = scan_request(h);
+        if (san && h[-1]=='\n') h--;
+    } else {
+        /* int mx; */
             if (still_dd && isalnum(*h) && h[-1]=='\n') {
-		/* sometimes a .HP request is not followed by a .br request */
-		FLUSHIBP;
-		out_html("<DD>");
-		curpos=0;
-		still_dd=false;
-	    }
-	    switch (*h) {
-	    case '&':
-		intbuff[ibp++]='&';
-		intbuff[ibp++]='a';
-		intbuff[ibp++]='m';
-		intbuff[ibp++]='p';
-		intbuff[ibp++]=';';
-		curpos++;
-		break;
-	    case '<':
-		intbuff[ibp++]='&';
-		intbuff[ibp++]='l';
-		intbuff[ibp++]='t';
-		intbuff[ibp++]=';';
-		curpos++;
-		break;
-	    case '>':
-		intbuff[ibp++]='&';
-		intbuff[ibp++]='g';
-		intbuff[ibp++]='t';
-		intbuff[ibp++]=';';
-		curpos++;
-		break;
-	    case '"':
-		intbuff[ibp++]='&';
-		intbuff[ibp++]='q';
-		intbuff[ibp++]='u';
-		intbuff[ibp++]='o';
-		intbuff[ibp++]='t';
-		intbuff[ibp++]=';';
-		curpos++;
-		break;
-	    case '\n':
-		if (h != c && h[-1]=='\n' && fillout) {
-		    intbuff[ibp++]='<';
-		    intbuff[ibp++]='P';
-		    intbuff[ibp++]='>';
-		}
-		if (contained_tab && fillout) {
-		    intbuff[ibp++]='<';
-		    intbuff[ibp++]='B';
-		    intbuff[ibp++]='R';
-		    intbuff[ibp++]='>';
-		}
-		contained_tab=0;
-		curpos=0;
-		usenbsp=0;
-		intbuff[ibp++]='\n';
-		break;
-	    case '\t':
-		{
-		    int curtab=0;
-		    contained_tab=1;
-		    FLUSHIBP;
-		    /* like a typewriter, not like TeX */
-		    tabstops[19]=curpos+1;
-		    while (curtab<maxtstop && tabstops[curtab]<=curpos)
-			curtab++;
-		    if (curtab<maxtstop) {
-			if (!fillout) {
-			    while (curpos<tabstops[curtab]) {
-				intbuff[ibp++]=' ';
-				if (ibp>480) { FLUSHIBP; }
-				curpos++;
-			    }
-			} else {
-			    out_html("<TT>");
-			    while (curpos<tabstops[curtab]) {
-				out_html("&nbsp;");
-				curpos++;
-			    }
-			    out_html("</TT>");
-			}
-		    }
-		}
-		break;
-	    default:
-		if (*h==' ' && (h[-1]=='\n' || usenbsp)) {
-		    FLUSHIBP;
-		    if (!usenbsp && fillout) {
-			out_html("<BR>");
-			curpos=0;
-		    }
-		    usenbsp=fillout;
-		    if (usenbsp) out_html("&nbsp;"); else intbuff[ibp++]=' ';
-		} else if (*h>31 && *h<127) intbuff[ibp++]=*h;
-		else if (((unsigned char)(*h))>127) {
+        /* sometimes a .HP request is not followed by a .br request */
+        FLUSHIBP;
+        out_html("<DD>");
+        curpos=0;
+        still_dd=false;
+        }
+        switch (*h) {
+        case '&':
+        intbuff[ibp++]='&';
+        intbuff[ibp++]='a';
+        intbuff[ibp++]='m';
+        intbuff[ibp++]='p';
+        intbuff[ibp++]=';';
+        curpos++;
+        break;
+        case '<':
+        intbuff[ibp++]='&';
+        intbuff[ibp++]='l';
+        intbuff[ibp++]='t';
+        intbuff[ibp++]=';';
+        curpos++;
+        break;
+        case '>':
+        intbuff[ibp++]='&';
+        intbuff[ibp++]='g';
+        intbuff[ibp++]='t';
+        intbuff[ibp++]=';';
+        curpos++;
+        break;
+        case '"':
+        intbuff[ibp++]='&';
+        intbuff[ibp++]='q';
+        intbuff[ibp++]='u';
+        intbuff[ibp++]='o';
+        intbuff[ibp++]='t';
+        intbuff[ibp++]=';';
+        curpos++;
+        break;
+        case '\n':
+        if (h != c && h[-1]=='\n' && fillout) {
+            intbuff[ibp++]='<';
+            intbuff[ibp++]='P';
+            intbuff[ibp++]='>';
+        }
+        if (contained_tab && fillout) {
+            intbuff[ibp++]='<';
+            intbuff[ibp++]='B';
+            intbuff[ibp++]='R';
+            intbuff[ibp++]='>';
+        }
+        contained_tab=0;
+        curpos=0;
+        usenbsp=0;
+        intbuff[ibp++]='\n';
+        break;
+        case '\t':
+        {
+            int curtab=0;
+            contained_tab=1;
+            FLUSHIBP;
+            /* like a typewriter, not like TeX */
+            tabstops[19]=curpos+1;
+            while (curtab<maxtstop && tabstops[curtab]<=curpos)
+            curtab++;
+            if (curtab<maxtstop) {
+            if (!fillout) {
+                while (curpos<tabstops[curtab]) {
+                intbuff[ibp++]=' ';
+                if (ibp>480) { FLUSHIBP; }
+                curpos++;
+                }
+            } else {
+                out_html("<TT>");
+                while (curpos<tabstops[curtab]) {
+                out_html("&nbsp;");
+                curpos++;
+                }
+                out_html("</TT>");
+            }
+            }
+        }
+        break;
+        default:
+        if (*h==' ' && (h[-1]=='\n' || usenbsp)) {
+            FLUSHIBP;
+            if (!usenbsp && fillout) {
+            out_html("<BR>");
+            curpos=0;
+            }
+            usenbsp=fillout;
+            if (usenbsp) out_html("&nbsp;"); else intbuff[ibp++]=' ';
+        } else if (*h>31 && *h<127) intbuff[ibp++]=*h;
+        else if (((unsigned char)(*h))>127) {
                     intbuff[ibp++]=*h;
-		}
-		curpos++;
-		break;
-	    }
-	    if (ibp > (MED_STR_MAX - 20)) FLUSHIBP;
-	    h++;
-	}
+        }
+        curpos++;
+        break;
+        }
+        if (ibp > (MED_STR_MAX - 20)) FLUSHIBP;
+        h++;
+    }
     }
     FLUSHIBP;
     if (buffer) buffer[buffpos]='\0';
     if (san && h && *h) h++;
     newline_for_fun=exnewline_for_fun;
     if (result) {
-	*result = buffer;
-	buffer=exbuffer;
-	buffpos=exbuffpos;
-	buffmax=exbuffmax;
-	scaninbuff=exscaninbuff;
+    *result = buffer;
+    buffer=exbuffer;
+    buffpos=exbuffpos;
+    buffmax=exbuffmax;
+    scaninbuff=exscaninbuff;
     }
 
     return h;
@@ -5453,17 +5462,17 @@ static char *scan_troff_mandoc(char *c, bool san, char **result)
 
     if (end > c + 2
         && ispunct(*(end - 1))
-	&& isspace(*(end - 2)) && *(end - 2) != '\n') {
+    && isspace(*(end - 2)) && *(end - 2) != '\n') {
       /* Don't format lonely punctuation E.g. in "xyz ," format
        * the xyz and then append the comma removing the space.
        */
         *(end - 2) = '\n';
-	ret = scan_troff(c, san, result);
+    ret = scan_troff(c, san, result);
         *(end - 2) = *(end - 1);
         *(end - 1) = ' ';
     }
     else {
-	ret = scan_troff(c, san, result);
+    ret = scan_troff(c, san, result);
     }
     mandoc_line = oldval;
     return ret;
@@ -5481,22 +5490,22 @@ void scan_man_page(const char *man_page)
     // Unlike man2html, we actually call this several times, hence the need to
     // properly cleanup all those static vars
     s_ifelseval.clear();
-    
+
     s_characterDefinitionMap.clear();
     InitCharacterDefinitions();
 
     s_stringDefinitionMap.clear();
     InitStringDefinitions();
-    
+
     s_numberDefinitionMap.clear();
     InitNumberDefinitions();
-    
+
     s_argumentList.clear();
 
     section = 0;
 
     s_dollarZero = ""; // No macro called yet!
-    
+
     output_possible = false;
     int strLength = qstrlen(man_page);
     char *buf = new char[strLength + 2];
@@ -5518,8 +5527,8 @@ void scan_man_page(const char *man_page)
     out_html(set_font("R"));
     out_html(change_to_size(0));
     if (!fillout) {
-	fillout=1;
-	out_html("</PRE>");
+    fillout=1;
+    out_html("</PRE>");
     }
     out_html(NEWLINE);
 

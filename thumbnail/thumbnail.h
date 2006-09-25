@@ -20,7 +20,7 @@
 #ifndef _THUMBNAIL_H_
 #define _THUMBNAIL_H_
 
-#include <q3dict.h>
+#include <QtCore/QHash>
 
 #include <kio/slavebase.h>
 
@@ -36,8 +36,8 @@ public:
     virtual void get(const KUrl &url);
 
 protected:
-    const QImage& getIcon();
-    
+    const QImage getIcon();
+
 private:
     QString m_mimeType;
     int m_width;
@@ -46,9 +46,9 @@ private:
     int m_iconSize;
     int m_iconAlpha;
     // Thumbnail creators
-    Q3Dict<ThumbCreator> m_creators;
+    QHash<QString, ThumbCreator*> m_creators;
     // transparent icon cache
-    Q3Dict<QImage> m_iconDict;
+    QHash<QString, QImage> m_iconDict;
 };
 
 #endif

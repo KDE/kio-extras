@@ -27,12 +27,12 @@
 #include <sys/ipc.h>
 #include <sys/shm.h>
 
-#include <QFile>
-#include <QBitmap>
-#include <QPixmap>
-#include <QPainter>
-#include <QImage>
-#include <QBuffer>
+#include <QtCore/QBuffer>
+#include <QtCore/QFile>
+#include <QtGui/QBitmap>
+#include <QtGui/QImage>
+#include <QtGui/QPainter>
+#include <QtGui/QPixmap>
 
 #include <kurl.h>
 #include <kapplication.h>
@@ -128,13 +128,13 @@ int kdemain(int argc, char **argv)
 ThumbnailProtocol::ThumbnailProtocol(const QByteArray &pool, const QByteArray &app)
     : SlaveBase("thumbnail", pool, app)
 {
-    m_creators.setAutoDelete(true);
-    m_iconDict.setAutoDelete(true);
     m_iconSize = 0;
 }
 
 ThumbnailProtocol::~ThumbnailProtocol()
 {
+  qDeleteAll( m_creators );
+  m_creators.clear();
 }
 
 void ThumbnailProtocol::get(const KUrl &url)
@@ -199,8 +199,9 @@ void ThumbnailProtocol::get(const KUrl &url)
 
     if (!iconSize)
         iconSize = KGlobal::iconLoader()->currentSize(K3Icon::Desktop);
-    if (iconSize != m_iconSize)
+    if (iconSize != m_iconSize) {
         m_iconDict.clear();
+    }
     m_iconSize = iconSize;
 
     m_iconAlpha = metaData("iconAlpha").toInt();
@@ -415,26 +416,26 @@ void ThumbnailProtocol::get(const KUrl &url)
     finished();
 }
 
-const QImage& ThumbnailProtocol::getIcon()
+const QImage ThumbnailProtocol::getIcon()
 {
-    QImage* icon = m_iconDict.find(m_mimeType);
-    if ( !icon ) // generate it!
-    {
-        icon = new QImage( KMimeType::mimeType(m_mimeType)->pixmap( K3Icon::Desktop, m_iconSize ).toImage() );
-        icon->setAlphaBuffer( true );
+    if ( !m_iconDict.contains(m_mimeType) ) { // generate it
+        QImage icon( KMimeType::mimeType(m_mimeType)->pixmap( K3Icon::Desktop, m_iconSize ).toImage() );
+        icon.setAlphaBuffer( true );
 
-        int w = icon->width();
-        int h = icon->height();
+        int w = icon.width();
+        int h = icon.height();
         for ( int y = 0; y < h; y++ )
         {
-            QRgb *line = (QRgb *) icon->scanLine( y );
+            QRgb *line = (QRgb *) icon.scanLine( y );
             for ( int x = 0; x < w; x++ )
                 line[x] &= m_iconAlpha; // transparency
         }
 
         m_iconDict.insert( m_mimeType, icon );
+
+        return icon;
     }
 
-    return *icon;
+    return m_iconDict.value( m_mimeType );
 }
 
