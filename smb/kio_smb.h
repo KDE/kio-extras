@@ -1,6 +1,6 @@
 /////////////////////////////////////////////////////////////////////////////
 //
-// Project:     SMB kioslave for KDE2
+// Project:     SMB kioslave for KDE
 //
 // File:        kio_smb.h
 //
@@ -254,6 +254,7 @@ public:
 
     // Functions overwritten in kio_smb_file.cpp
     virtual void get( const KUrl& kurl );
+    virtual void open( const KUrl& kurl, int access );
     virtual void put( const KUrl& kurl, int permissions, bool overwrite, bool resume );
 
     // Functions not implemented  (yet)

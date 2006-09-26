@@ -33,7 +33,10 @@
 #include "kio_smb.h"
 #include "kio_smb_internal.h"
 
+#include <QVarLengthArray>
+
 #include <kmimetype.h>
+#include <kio/connection.h>
 
 //===========================================================================
 void SMBSlave::get( const KUrl& kurl )
@@ -134,6 +137,147 @@ void SMBSlave::get( const KUrl& kurl )
     finished();
 }
 
+
+//===========================================================================
+void SMBSlave::open( const KUrl& kurl, int access )
+{
+    int         filefd          = 0;
+    ssize_t     bytesread       = 0;
+    // time_t      curtime         = 0;
+    time_t      lasttime        = 0;
+    time_t      starttime       = 0;
+    ssize_t     totalbytesread  = 0;
+    QByteArray  filedata;
+    SMBUrl      url;
+
+    kDebug(KIO_SMB) << "SMBSlave::open on " << kurl << endl;
+
+    // check (correct) URL
+    KUrl kvurl = checkURL(kurl);
+    // if URL is not valid we have to redirect to correct URL
+    if (kvurl != kurl) {
+        redirection(kvurl);
+        finished();
+        return;
+    }
+
+    if(!auth_initialize_smbc())
+        return;
+
+
+    // Stat
+    url = kurl;
+    if(cache_stat(url,&st) == -1 )
+    {
+        if ( errno == EACCES )
+           error( KIO::ERR_ACCESS_DENIED, url.prettyUrl());
+        else
+           error( KIO::ERR_DOES_NOT_EXIST, url.prettyUrl());
+        return;
+    }
+    if ( S_ISDIR( st.st_mode ) ) {
+        error( KIO::ERR_IS_DIRECTORY, url.prettyUrl());
+        return;
+    }
+
+    // Set the total size
+    totalSize( st.st_size );
+
+    // Open and read the file
+    filefd = smbc_open(url.toSmbcUrl(),O_RDONLY,0);
+    if(filefd >= 0)
+    {
+        position( 0 );
+        emit opened();
+
+        bool isFirstPacket = true;
+        int cmd = CMD_NONE;
+        while (true) {
+            QByteArray args;
+            int stat = appconn->read(&cmd, args);
+            if ( stat == -1 )
+            {   // error
+                kDebug( KIO_SMB ) << "open -- connection error" << endl;
+                break;
+            }
+            QDataStream stream( args );
+            switch( cmd ) {
+            case CMD_READ: {
+                kDebug( KIO_SMB ) << "open -- read" << endl;
+                int bytes;
+                stream >> bytes;
+                QVarLengthArray<char> buffer(bytes);
+
+                lasttime = starttime = time(NULL);
+                bytesread = smbc_read(filefd, buffer.data(), bytes);
+                if(bytesread == 0)
+                {
+                    // All done reading
+                    break;
+                }
+                else if(bytesread < 0)
+                {
+                    error( KIO::ERR_COULD_NOT_READ, url.prettyUrl());
+                    return;
+                }
+
+                filedata.setRawData(buffer.data(),bytesread);
+		if (isFirstPacket)
+		{
+		    KMimeType::Ptr p_mimeType = KMimeType::findByContent(filedata);
+		    mimeType(p_mimeType->name());
+		    isFirstPacket = false;
+		}
+                data( filedata );
+                filedata.clear();
+
+                // increment total bytes read
+                totalbytesread += bytesread;
+                continue;
+            }
+            case CMD_WRITE: {
+                kDebug( KIO_SMB ) << "open -- write" << endl;
+                break;
+            }
+            case CMD_SEEK: {
+                kDebug( KIO_SMB ) << "open -- seek" << endl;
+                qulonglong offset;
+                stream >> offset;
+                int res = smbc_lseek(filefd, offset, SEEK_SET);
+                if (res != -1) {
+                    position( offset );
+                } else {
+                    error(KIO::ERR_COULD_NOT_SEEK, url.path());
+                    break;
+                }
+                continue;
+            }
+            case CMD_NONE:
+                kDebug( KIO_SMB ) << "open -- none " << endl;
+                continue;
+            case CMD_CLOSE:
+                kDebug( KIO_SMB ) << "open -- close " << endl;
+                break;
+            default:
+                kDebug( KIO_SMB ) << "open -- invalid command: " << cmd << endl;
+                cmd = CMD_CLOSE;
+                break;
+            }
+            break;
+        }
+
+        smbc_close(filefd);
+        data( QByteArray() );
+
+    }
+    else
+    {
+          error( KIO::ERR_CANNOT_OPEN_FOR_READING, url.prettyUrl());
+	  return;
+    }
+
+    finished();
+}
 
 //===========================================================================
 void SMBSlave::put( const KUrl& kurl,
