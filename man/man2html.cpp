@@ -736,7 +736,9 @@ static void add_links(char *c)
                 QByteArray file(g, h - g + 1);
                 file = file.trimmed();
                 for (int index = 0; includedirs[index]; index++) {
-                    QByteArray str( QByteArray(includedirs[index]) + '/' + file );
+                    QByteArray str( includedirs[index] );
+		    str.append('/');
+		    str.append(file);
                     if (!access(str.data(), R_OK)) {
                         dir = includedirs[index];
                         break;
