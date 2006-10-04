@@ -25,10 +25,19 @@
 
 #include <kcmodule.h>
 #include <kservice.h>
+#include "ui_ikwsopts_ui.h"
 
-class FilterOptionsUI;
 class SearchProvider;
 class SearchProviderItem;
+
+class FilterOptionsUI : public QWidget, public Ui::FilterOptionsUI
+{
+public:
+  FilterOptionsUI( QWidget *parent ) : QWidget( parent ) {
+    setupUi( this );
+  }
+};
+
 
 class FilterOptions : public KCModule
 {

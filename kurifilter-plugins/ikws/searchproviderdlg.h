@@ -21,9 +21,17 @@
 #define __SEARCHPROVIDERDLG_H___
 
 #include <kdialog.h>
-
+#include "ui_searchproviderdlg_ui.h"
 class SearchProvider;
-class SearchProviderDlgUI;
+
+class SearchProviderDlgUI : public QWidget, public Ui::SearchProviderDlgUI
+{
+public:
+  SearchProviderDlgUI( QWidget *parent ) : QWidget( parent ) {
+    setupUi( this );
+  }
+};
+
 
 class SearchProviderDialog : public KDialog
 {

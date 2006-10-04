@@ -28,7 +28,6 @@
 #include <kcombobox.h>
 #include <kmessagebox.h>
 
-#include "searchproviderdlg_ui.h"
 #include "searchproviderdlg.h"
 #include "searchprovider.h"
 

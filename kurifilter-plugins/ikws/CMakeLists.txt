@@ -7,6 +7,8 @@ add_subdirectory( searchproviders )
 
 set(kuriikwsfilter_PART_SRCS kuriikwsfiltereng.cpp kuriikwsfilter.cpp searchprovider.cpp )
 
+kde4_add_ui_files(kuriikwsfilter_PART_SRCS ikwsopts_ui.ui searchproviderdlg_ui.ui)
+
 kde4_automoc(${kuriikwsfilter_PART_SRCS})
 
 kde4_add_plugin(kuriikwsfilter WITH_PREFIX ${kuriikwsfilter_PART_SRCS})
@@ -29,7 +31,8 @@ set(kurisearchfilter_PART_SRCS
 
 kde4_automoc(${kurisearchfilter_PART_SRCS})
 
-kde4_add_ui3_files(kurisearchfilter_PART_SRCS searchproviderdlg_ui.ui ikwsopts_ui.ui )
+
+kde4_add_ui_files(kurisearchfilter_PART_SRCS ikwsopts_ui.ui searchproviderdlg_ui.ui)
 
 kde4_add_plugin(kurisearchfilter WITH_PREFIX ${kurisearchfilter_PART_SRCS})
 

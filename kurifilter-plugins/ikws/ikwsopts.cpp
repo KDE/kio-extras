@@ -43,7 +43,6 @@
 #include <kservicetypetrader.h>
 
 #include "ikwsopts.h"
-#include "ikwsopts_ui.h"
 #include "kuriikwsfiltereng.h"
 #include "searchprovider.h"
 #include "searchproviderdlg.h"
