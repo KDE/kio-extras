@@ -4,7 +4,7 @@ project(kioslave-sftp)
 if(KDE4_BUILD_TESTS)
 set(ksshprocesstest_SRCS ksshprocesstest.cpp ksshprocess.cpp process.cpp atomicio.cpp )
 
-kde4_automoc(${ksshprocesstest_SRCS})
+kde4_automoc(ksshprocesstest ${ksshprocesstest_SRCS})
 
 kde4_add_executable(ksshprocesstest ${ksshprocesstest_SRCS})
 
@@ -21,7 +21,7 @@ set(kio_sftp_PART_SRCS
    sftpfileattr.cpp 
    ksshprocess.cpp )
 
-kde4_automoc(${kio_sftp_PART_SRCS})
+kde4_automoc(kio_sftp ${kio_sftp_PART_SRCS})
 
 kde4_add_plugin(kio_sftp ${kio_sftp_PART_SRCS})
 

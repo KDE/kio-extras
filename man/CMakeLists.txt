@@ -7,7 +7,7 @@ project(kioslave-man)
 
 set(kio_man_test_SRCS kio_man_test.cpp man2html.cpp kio_man.cpp )
 
-kde4_automoc(${kio_man_test_SRCS})
+kde4_automoc(kio_man_test ${kio_man_test_SRCS})
 
 if(KDE4_BUILD_TESTS)
 
@@ -20,7 +20,7 @@ target_link_libraries(kio_man_test  ${KDE4_KIO_LIBS} )
 
 set(man2html_SRCS man2html.cpp )
 
-kde4_automoc(${man2html_SRCS})
+kde4_automoc(man2html ${man2html_SRCS})
 
 
 kde4_add_executable(man2html ${man2html_SRCS})
@@ -33,7 +33,7 @@ endif(KDE4_BUILD_TESTS)
 
 set(kio_man_PART_SRCS man2html.cpp kio_man.cpp )
 
-kde4_automoc(${kio_man_PART_SRCS})
+kde4_automoc(kio_man ${kio_man_PART_SRCS})
 
 kde4_add_plugin(kio_man ${kio_man_PART_SRCS})
 
@@ -48,7 +48,7 @@ install(TARGETS kio_man  DESTINATION ${PLUGIN_INSTALL_DIR} )
 
 set(kmanpart_PART_SRCS kmanpart.cpp )
 
-kde4_automoc(${kmanpart_PART_SRCS})
+kde4_automoc(kmanpart ${kmanpart_PART_SRCS})
 
 kde4_add_plugin(kmanpart WITH_PREFIX ${kmanpart_PART_SRCS})
 

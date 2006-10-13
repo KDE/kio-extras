@@ -5,7 +5,7 @@ include_directories( ${CMAKE_SOURCE_DIR}/runtime/kioslave/media/libmediacommon/ 
 
 set(kio_media_mounthelper_SRCS kio_media_mounthelper.cpp ${libmediacommon_SRCS} )
 
-kde4_automoc(${kio_media_mounthelper_SRCS})
+kde4_automoc(kio_media_mounthelper ${kio_media_mounthelper_SRCS})
 
 kde4_add_executable(kio_media_mounthelper ${kio_media_mounthelper_SRCS})
 

@@ -5,7 +5,7 @@ include_directories( ${CMAKE_SOURCE_DIR}/runtime/kioslave/media/libmediacommon/ 
 
 set(kfile_media_PART_SRCS kfilemediaplugin.cpp ${libmediacommon_SRCS})
 
-kde4_automoc(${kfile_media_PART_SRCS})
+kde4_automoc(kfile_media ${kfile_media_PART_SRCS})
 
 kde4_add_plugin(kfile_media ${kfile_media_PART_SRCS})
 

@@ -5,7 +5,7 @@
 
 set(kded_systemdirnotify_PART_SRCS systemdirnotify.cpp systemdirnotifymodule.cpp )
 
-kde4_automoc(${kded_systemdirnotify_PART_SRCS})
+kde4_automoc(kded_systemdirnotify ${kded_systemdirnotify_PART_SRCS})
 
 kde4_add_plugin(kded_systemdirnotify ${kded_systemdirnotify_PART_SRCS})
 

@@ -5,7 +5,7 @@
 
 set(kded_remotedirnotify_PART_SRCS remotedirnotify.cpp remotedirnotifymodule.cpp )
 
-kde4_automoc(${kded_remotedirnotify_PART_SRCS})
+kde4_automoc(kded_remotedirnotify ${kded_remotedirnotify_PART_SRCS})
 
 kde4_add_plugin(kded_remotedirnotify ${kded_remotedirnotify_PART_SRCS})
 
