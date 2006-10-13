@@ -2,7 +2,7 @@ include_directories( ${CMAKE_SOURCE_DIR}/runtime/kioslave/media/libmediacommon/
     ${CMAKE_BINARY_DIR}/runtime/kioslave/media/  )
 
 ########### next target ###############
-kde4_add_kcfg_files(libmediacommon_SRCS ../libmediacommon/mediamanagersettings.kcfgc )
+kde4_add_kcfg_files(libmediacommon libmediacommon_SRCS ../libmediacommon/mediamanagersettings.kcfgc )
 
 set(kded_mediamanager_PART_SRCS ${libmediacommon_SRCS}
    mediamanager.cpp 

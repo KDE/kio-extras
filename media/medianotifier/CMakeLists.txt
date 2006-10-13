@@ -5,7 +5,7 @@ include_directories( ${CMAKE_SOURCE_DIR}/runtime/kioslave/media/libmediacommon/ 
 
 set(kded_medianotifier_PART_SRCS medianotifier.cpp ../mediamanageriface.cpp notificationdialog.cpp ${libmediacommon_SRCS} )
 
-kde4_add_kcfg_files(kded_medianotifier_PART_SRCS ../libmediacommon/mediamanagersettings.kcfgc )
+kde4_add_kcfg_files(kded_medianotifier kded_medianotifier_PART_SRCS ../libmediacommon/mediamanagersettings.kcfgc )
 
 kde4_automoc(kded_medianotifier ${kded_medianotifier_PART_SRCS})
 

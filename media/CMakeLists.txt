@@ -13,7 +13,7 @@ set(libmediacommon_SRCS
     ${CMAKE_CURRENT_SOURCE_DIR}/libmediacommon/notifiersettings.cpp
     )
     
-#kde4_add_kcfg_files(libmediacommon_SRCS ${CMAKE_CURRENT_SOURCE_DIR}/libmediacommon/mediamanagersettings.kcfgc )
+#kde4_add_kcfg_files(libmediacommon libmediacommon_SRCS ${CMAKE_CURRENT_SOURCE_DIR}/libmediacommon/mediamanagersettings.kcfgc )
 
 add_subdirectory( libmediacommon ) 
 add_subdirectory( mediamanager ) 
