@@ -1,6 +1,6 @@
 
 project(kioslave-fish)
-
+configure_file(config-fish.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-fish.h)
 
 
 ########### next target ###############

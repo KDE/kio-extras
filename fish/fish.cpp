@@ -25,7 +25,7 @@
 */
 
 #include "config.h"
-
+#include "config-fish.h"
 #include <QFile>
 #include <q3socket.h>
 #include <QDateTime>
