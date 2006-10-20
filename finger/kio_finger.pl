@@ -41,6 +41,14 @@ $REFRESHRATE = "$ARGV[2]";  # The intervals in seconds until the page gets updat
 $HOST        = "$ARGV[3]";  # host name
 $USER        = "$ARGV[4]";  # user name
 
+$HOST =~ s/&/&amp;/g;
+$HOST =~ s/</&lt;/g;
+$HOST =~ s/>/&gt;/g;
+
+$USER =~ s/&/&amp;/g;
+$USER =~ s/</&lt;/g;
+$USER =~ s/>/&gt;/g;
+
 # HTML Header
 
 print <<HTMLHeader;
