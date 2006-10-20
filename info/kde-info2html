@@ -48,6 +48,8 @@ use strict;
 push @INC, $1 if $0 =~ m!(.*/)[^/]+$!; # full path of config file is passed in ARGV[1] by caller but let's clean this anyway
 my $IMAGEDIR = "file:$ARGV[1]/"; # TV: broken, broken, not passed
 my $config_file = $ARGV[0];
+delete $ENV{CDPATH};
+delete $ENV{ENV};
 require $config_file;  #-- configuration settings
 
 my $STYLESHEET_KDE = "<link rel=\"stylesheet\" href=\"help:common/kde-default.css\" type=\"text/css\"/>";
@@ -77,6 +79,10 @@ my $FTAG          = '[^\)]+';         #-- pattern for a file name in
 #---------------------------------------------------------
 sub DieFileNotFound {
   my ($FileName) = @_;
+  $FileName =~ s/&/&amp;/g;
+  $FileName =~ s/>/&gt;/g;
+  $FileName =~ s/</&lt;/g;
+
   #-- TEXT : error message if a file could not be opened
   print <<EOF;
 <head>
@@ -132,10 +138,10 @@ sub FileNotFound {
 
 	my $DirFileName = &FindFile('dir');
 	if ($DirFileName =~ m/.info.bz2$/ ) {
-		open DIR, "bzcat $DirFileName|";
+		open DIR, "-|", "bzcat", $DirFileName;
 	}
 	elsif ($DirFileName =~ m/.info.gz$/ ) {
-		open DIR, "gzip -dc $DirFileName|";
+		open DIR, "-|", "gzip", "-dc", $DirFileName;
 	}
 	else {
 		open DIR, $DirFileName;
@@ -241,13 +247,13 @@ sub infocat {
 		my ($infofile,$filedesc);
 		while ($infofile = readdir(DIR)) {
 			if ($infofile =~ m/.info.bz2$/ ) {
-				open INFOFILE, "bzcat $dir/$infofile|";
+				open INFOFILE, "-|", "bzcat", "$dir/$infofile";
 			}
 			elsif ($infofile =~ m/.info.gz$/ ) {
-				open INFOFILE, "gzip -dc $dir/$infofile|";
+				open INFOFILE, "-|", "gzip", "-dc", "$dir/$infofile";
 			}
 			elsif ($infofile =~ m/.info$/) {
-				open INFOFILE, $dir."/".$infofile;
+				open INFOFILE, "-|", "$dir/$infofile";
 			}
 			else {
 				next;
@@ -418,9 +424,9 @@ sub ReadIndirectTable {
 
   local *FH1;
   if ($FileName =~ /\.gz$/) {
-    open(FH1, " gunzip -q -d -c $FileName|") || &DieFileNotFound($FileName);
+    open FH1, "-|", "gunzip", "-q", "-d", "-c", $FileName || &DieFileNotFound($FileName);
   } elsif ($FileName =~ /\.bz2$/) {
-    open(FH1, " bunzip2 -q -d -c $FileName|") || &DieFileNotFound($FileName);
+    open FH1, "-|", "bunzip2", "-q", "-d", "-c", $FileName || &DieFileNotFound($FileName);
   } else {
     open(FH1, $FileName) || &DieFileNotFound($FileName);
   }
@@ -464,11 +470,11 @@ sub ReadTagTable {
 
   local *FH;
   if ($FileName =~ /\.gz$/) {
-    open(FH, " gunzip  -q -d -c $FileName|") || &DieFileNotFound($FileName);
+    open FH, "-|", "gunzip", "-q", "-d", "-c", $FileName || &DieFileNotFound($FileName);
   } elsif ($FileName =~ /\.bz2$/) {
-    open(FH, " bunzip2 -q -d -c $FileName|") || &DieFileNotFound($FileName);
+    open FH, "-|", "bunzip2", "-q", "-d", "-c", $FileName || &DieFileNotFound($FileName);
   } else {
-    open(FH, $FileName) || &DieFileNotFound($FileName);
+    open FH, $FileName || &DieFileNotFound($FileName);
   }
   ($$Exists, $$IsIndirect) = (0, 0);
   #-- scan for start of tag table
@@ -747,11 +753,11 @@ sub InfoNode2HTML {
 
   local *FH2;
   if ($FileName =~ /\.gz$/) {
-    open(FH2, " gunzip -q -d -c $FileName|") || &DieFileNotFound($FileName);
+    open FH2, "-|", "gunzip", "-q", "-d", "-c", $FileName || &DieFileNotFound($FileName);
   } elsif ($FileName =~ /\.bz2$/) {
-    open(FH2, " bunzip2 -q -d -c $FileName|") || &DieFileNotFound($FileName);
+    open FH2, "-|", "bunzip2", "-q", "-d", "-c", $FileName || &DieFileNotFound($FileName);
   } else {
-    open(FH2, $FileName) || &DieFileNotFound($FileName);
+    open FH2, $FileName || &DieFileNotFound($FileName);
   }
   seek(FH2, $Offset, 0);
   $Tag =~ tr/A-Z/a-z/;    # -- to lowercase
@@ -974,6 +980,7 @@ sub GetFileAndOffset {
 # Handle gzipped file too.
 sub FindFile {
     my ($File) = @_;
+    return "" if ($File =~ /\.\./);
     my $Alt = $File =~ /^(.+)\.info$/ ? $1 : $File . '.info';
     foreach my $Name ($File, $Alt) {
         my $gzName  = $Name . '.gz';
