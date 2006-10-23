@@ -15,7 +15,7 @@ set(kio_smb_PART_SRCS
    kio_smb_internal.cpp 
    kio_smb_mount.cpp )
 
-kde4_automoc(kio_smb ${kio_smb_PART_SRCS})
+kde4_automoc(${kio_smb_PART_SRCS})
 
 kde4_add_plugin(kio_smb ${kio_smb_PART_SRCS})
 

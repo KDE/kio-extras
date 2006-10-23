@@ -8,7 +8,7 @@ macro_optional_find_package(BZip2)
 
 set(kio_filter_PART_SRCS filter.cc )
 
-kde4_automoc(kio_filter ${kio_filter_PART_SRCS})
+kde4_automoc(${kio_filter_PART_SRCS})
 
 kde4_add_plugin(kio_filter ${kio_filter_PART_SRCS})
 

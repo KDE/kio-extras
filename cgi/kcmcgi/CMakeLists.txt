@@ -5,7 +5,7 @@
 
 set(kcm_cgi_PART_SRCS kcmcgi.cpp )
 
-kde4_automoc(kcm_cgi ${kcm_cgi_PART_SRCS})
+kde4_automoc(${kcm_cgi_PART_SRCS})
 
 kde4_add_plugin(kcm_cgi ${kcm_cgi_PART_SRCS})
 

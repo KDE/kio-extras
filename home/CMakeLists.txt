@@ -11,7 +11,7 @@ set(libkiohome_SRCS kio_home.cpp homeimpl.cpp)
 
 set(kio_home_PART_SRCS ${libkiohome_SRCS})
 
-kde4_automoc(kio_home ${kio_home_PART_SRCS})
+kde4_automoc(${kio_home_PART_SRCS})
 
 kde4_add_plugin(kio_home ${kio_home_PART_SRCS})
 
@@ -29,7 +29,7 @@ install(TARGETS kio_home  DESTINATION ${PLUGIN_INSTALL_DIR} )
 if(KDE4_BUILD_TESTS)
 set(testhome_SRCS testhome.cpp )
 
-kde4_automoc(testhome ${testhome_SRCS})
+kde4_automoc(${testhome_SRCS})
 
 
 kde4_add_executable(testhome ${testhome_SRCS} ${libkiohome_SRCS})

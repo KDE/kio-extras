@@ -12,10 +12,10 @@ set(kcm_media_PART_SRCS
    main.cpp ${libmediacommon_SRCS})
 
 
-kde4_add_kcfg_files(kcm_media kcm_media_PART_SRCS ../libmediacommon/mediamanagersettings.kcfgc )
+kde4_add_kcfg_files(kcm_media_PART_SRCS ../libmediacommon/mediamanagersettings.kcfgc )
 
 
-kde4_automoc(kcm_media ${kcm_media_PART_SRCS})
+kde4_automoc(${kcm_media_PART_SRCS})
 
 kde4_add_ui3_files(kcm_media_PART_SRCS notifiermoduleview.ui serviceview.ui managermoduleview.ui )
 

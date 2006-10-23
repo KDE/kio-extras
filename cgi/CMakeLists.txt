@@ -9,7 +9,7 @@ add_subdirectory( kcmcgi )
 
 set(kio_cgi_PART_SRCS cgi.cpp )
 
-kde4_automoc(kio_cgi ${kio_cgi_PART_SRCS})
+kde4_automoc(${kio_cgi_PART_SRCS})
 
 kde4_add_plugin(kio_cgi ${kio_cgi_PART_SRCS})
 

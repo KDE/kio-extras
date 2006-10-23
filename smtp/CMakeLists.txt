@@ -30,7 +30,7 @@ set(kio_smtp_PART_SRCS
    command.cc 
    transactionstate.cc )
 
-kde4_automoc(kio_smtp ${kio_smtp_PART_SRCS})
+kde4_automoc(${kio_smtp_PART_SRCS})
 
 kde4_add_plugin(kio_smtp ${kio_smtp_PART_SRCS})
 
@@ -85,7 +85,7 @@ endif(DOES_NOT_COMPILE_KDE4_BUILD_TESTS)
 if(KDE4_BUILD_TESTS)
 set(interactivesmtpserver_SRCS interactivesmtpserver.cc )
 
-kde4_automoc(interactivesmtpserver ${interactivesmtpserver_SRCS})
+kde4_automoc(${interactivesmtpserver_SRCS})
 
 
 kde4_add_executable(interactivesmtpserver ${interactivesmtpserver_SRCS})

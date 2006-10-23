@@ -7,7 +7,7 @@ project(kioslave-nfs)
 
 set(kio_nfs_PART_SRCS kio_nfs.cpp mount_xdr.c nfs_prot_xdr.c )
 
-kde4_automoc(kio_nfs ${kio_nfs_PART_SRCS})
+kde4_automoc(${kio_nfs_PART_SRCS})
 
 kde4_add_plugin(kio_nfs ${kio_nfs_PART_SRCS})
 

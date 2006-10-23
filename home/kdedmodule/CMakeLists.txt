@@ -5,7 +5,7 @@
 
 set(kded_homedirnotify_PART_SRCS homedirnotify.cpp homedirnotifymodule.cpp )
 
-kde4_automoc(kded_homedirnotify ${kded_homedirnotify_PART_SRCS})
+kde4_automoc(${kded_homedirnotify_PART_SRCS})
 
 kde4_add_plugin(kded_homedirnotify ${kded_homedirnotify_PART_SRCS})
 

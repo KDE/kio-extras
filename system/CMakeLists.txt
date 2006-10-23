@@ -11,7 +11,7 @@ add_subdirectory( mimetypes )
 set(libkiosystem_SRCS kio_system.cpp systemimpl.cpp)
 set(kio_system_PART_SRCS ${libkiosystem_SRCS})
 
-kde4_automoc(kio_system ${kio_system_PART_SRCS})
+kde4_automoc(${kio_system_PART_SRCS})
 
 kde4_add_plugin(kio_system ${kio_system_PART_SRCS})
 
@@ -29,7 +29,7 @@ install(TARGETS kio_system  DESTINATION ${PLUGIN_INSTALL_DIR} )
 if(KDE4_BUILD_TESTS)
 set(testsystem_SRCS testsystem.cpp )
 
-kde4_automoc(testsystem ${testsystem_SRCS})
+kde4_automoc(${testsystem_SRCS})
 
 kde4_add_executable(testsystem ${testsystem_SRCS} ${libkiosystem_SRCS})
 

@@ -7,7 +7,7 @@ project(kioslave-ldap)
 
 set(kio_ldap_PART_SRCS kio_ldap.cpp )
 
-kde4_automoc(kio_ldap ${kio_ldap_PART_SRCS})
+kde4_automoc(${kio_ldap_PART_SRCS})
 
 kde4_add_plugin(kio_ldap ${kio_ldap_PART_SRCS})
 
