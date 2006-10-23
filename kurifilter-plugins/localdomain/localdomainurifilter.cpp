@@ -39,7 +39,7 @@
  */
 
 LocalDomainUriFilter::LocalDomainUriFilter( QObject *parent, const QStringList & /*args*/ )
-    : KUriFilterPlugin( "localdomainurifilter", parent, 1.0 ),
+    : KUriFilterPlugin( "localdomainurifilter", parent ),
       last_time( 0 ),
       m_hostPortPattern( QLatin1String(HOSTPORT_PATTERN) )
 {

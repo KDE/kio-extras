@@ -42,7 +42,7 @@ K_EXPORT_COMPONENT_FACTORY(libkurisearchfilter, KUriSearchFilterFactory("kcmkuri
 
 KUriSearchFilter::KUriSearchFilter(QObject *parent,
                                    const QStringList &)
-                 :KUriFilterPlugin( "KUriSearchFilter", parent, 1.0)
+                 :KUriFilterPlugin( "KUriSearchFilter", parent )
 {
   QDBusConnection::sessionBus().connect(QString(), QString(), "org.kde.KUriFilterPlugin",
                               "configure", this, SLOT(configure()));

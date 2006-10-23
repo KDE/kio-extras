@@ -41,7 +41,7 @@ typedef KGenericFactory<KAutoWebSearch> KAutoWebSearchFactory;
 K_EXPORT_COMPONENT_FACTORY (libkuriikwsfilter, KAutoWebSearchFactory("kcmkurifilt"))
 
 KAutoWebSearch::KAutoWebSearch(QObject *parent, const QStringList&)
-               :KUriFilterPlugin( "KURIIKWSFilterIface", parent, 1.0)
+               :KUriFilterPlugin( "KURIIKWSFilterIface", parent )
 {
   QDBusConnection::sessionBus().connect(QString(), QString(), "org.kde.KUriFilterPlugin",
                               "configure", this, SLOT(configure()));

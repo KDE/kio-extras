@@ -59,6 +59,18 @@
 
 typedef QMap<QString,QString> EntryMap;
 
+#if 0
+static QString stringDetails( const QString& str )
+{
+  if ( str.isNull() )
+    return QFL1( "<null>" );
+  else if ( str.isEmpty() )
+    return QFL1( "<empty>" );
+  else
+    return str;
+}
+#endif
+
 static bool isValidShortURL( const QString& cmd, bool verbose = false )
 {
   // Examples of valid short URLs:
@@ -135,7 +147,7 @@ static QString removeArgs( const QString& _cmd )
 }
 
 KShortUriFilter::KShortUriFilter( QObject *parent, const QStringList & /*args*/ )
-                :KUriFilterPlugin( "kshorturifilter", parent, 1.0)
+                :KUriFilterPlugin( "kshorturifilter", parent )
 {
     QDBusConnection::sessionBus().connect(QString(), QString(), "org.kde.KUriFilterPlugin",
                                 "configure", this, SLOT(configure()));
@@ -226,6 +238,7 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
   // Expanding shortcut to HOME URL...
   QString path;
   QString ref;
+  //kDebug() << "initially ref is " << stringDetails( ref ) << endl;
   QString query;
   QString nameFilter;
 
@@ -244,6 +257,7 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
       {
         path = url.path();
         ref = url.ref();
+        //kDebug() << "isLocalFile set ref to " << stringDetails( ref ) << endl;
         query = url.query();
         if (path.isEmpty() && url.hasHost())
           path = '/';
@@ -369,7 +383,7 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
            && stat( QFile::encodeName(testPath).data(), &buff ) == 0 )
         {
           nameFilter = fileName;
-          kDebug() << "Setting nameFilter to " << nameFilter << endl;
+          //kDebug() << "Setting nameFilter to " << nameFilter << endl;
           path = testPath;
           exists = true;
         }
@@ -382,6 +396,7 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
   {
     KUrl u;
     u.setPath(path);
+    //kDebug() << "ref=" << stringDetails(ref) << " query=" << stringDetails(query) << endl;
     u.setRef(ref);
     u.setQuery(query);
 
