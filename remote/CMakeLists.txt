@@ -23,12 +23,10 @@ install(TARGETS kio_remote  DESTINATION ${PLUGIN_INSTALL_DIR} )
 
 
 ########### next target ###############
-
+if(KDE4_BUILD_TESTS)
 set(testremote_SRCS testremote.cpp ${libkioremote_SRCS} )
 
 kde4_automoc(${testremote_SRCS})
-
-if(KDE4_BUILD_TESTS)
 
 kde4_add_executable(testremote ${testremote_SRCS})
 
@@ -43,37 +41,3 @@ install( FILES remote.protocol  DESTINATION  ${SERVICES_INSTALL_DIR} )
 
 
 
-#original Makefile.am contents follow:
-
-#SUBDIRS= . kdedmodule
-## wizard
-#
-#INCLUDES = $(all_includes)
-#METASOURCES = AUTO
-#
-#kde_module_LTLIBRARIES = kio_remote.la
-#
-#kio_remote_la_SOURCES = dummy.cpp
-#kio_remote_la_LIBADD  = libkioremote.la $(LIB_KIO)
-#kio_remote_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) -no-undefined
-#
-#dummy.cpp:
-#	echo > dummy.cpp
-#
-#kde_services_DATA = remote.protocol
-#
-#noinst_LTLIBRARIES = libkioremote.la
-#libkioremote_la_SOURCES = kio_remote.cpp remoteimpl.cpp
-#
-#check_PROGRAMS = testremote
-#testremote_SOURCES = testremote.cpp
-#testremote_LDADD = libkioremote.la $(LIB_KIO)
-#testremote_LDFLAGS = $(all_libraries)
-#
-### TODO in unsermake: TESTS = testremote
-#check: testremote
-#	./testremote
-#
-#messages:
-#	$(XGETTEXT) `find . -name "*.cc" -o -name "*.cpp" -o -name "*.h"` -o $(podir)/kio_remote.pot
-#
