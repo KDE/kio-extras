@@ -466,7 +466,10 @@ bool fishProtocol::connectionStart() {
         FD_SET(childFd,&rfds);
         FD_ZERO(&wfds);
         if (outBufPos >= 0) FD_SET(childFd,&wfds);
-        rc = select(childFd+1, &rfds, &wfds, NULL, NULL);
+        struct timeval timeout;
+        timeout.tv_sec = 0;
+        timeout.tv_usec = 1000;
+        rc = select(childFd+1, &rfds, &wfds, NULL, &timeout);
         if (rc < 0) {
             if (errno == EINTR)
                 continue;
@@ -1328,7 +1331,10 @@ void fishProtocol::run() {
             FD_SET(childFd,&rfds);
             FD_ZERO(&wfds);
             if (outBufPos >= 0) FD_SET(childFd,&wfds);
-            rc = select(childFd+1, &rfds, &wfds, NULL, NULL);
+            struct timeval timeout;
+            timeout.tv_sec = 0;
+            timeout.tv_usec = 1000;
+            rc = select(childFd+1, &rfds, &wfds, NULL, &timeout);
             if (rc < 0) {
                 if (errno == EINTR)
                     continue;
