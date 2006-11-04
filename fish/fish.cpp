@@ -131,6 +131,8 @@ int KDE_EXPORT kdemain( int argc, char **argv )
         exit(-1);
     }
 
+    setenv("TZ", "UTC", true);
+
     struct sigaction act;
     memset(&act,0,sizeof(act));
     act.sa_handler = ripper;
