@@ -88,9 +88,9 @@ private: // Private attributes
   /** buffer for data to be written */
   const char *outBuf;
   /** current write position in buffer */
-  int outBufPos;
+  KIO::fileoffset_t outBufPos;
   /** length of buffer */
-  int outBufLen;
+  KIO::fileoffset_t outBufLen;
   /** use su if true else use ssh */
   bool local;
   /**  // FIXME: just a workaround for konq deficiencies */
@@ -135,13 +135,13 @@ protected: // Protected attributes
   /** queue for commands to be sent */
   QList<int> commandCodes;
   /** bytes still to be read in raw mode */
-  int rawRead;
+  KIO::fileoffset_t rawRead;
   /** bytes still to be written in raw mode */
-  int rawWrite;
+  KIO::fileoffset_t rawWrite;
   /** data bytes to read in next read command */
-  int recvLen;
+  KIO::fileoffset_t recvLen;
   /** data bytes to write in next write command */
-  int sendLen;
+  KIO::fileoffset_t sendLen;
   /** true if the last write operation was finished */
   bool writeReady;
   /** true if a command stack is currently executing */
@@ -155,7 +155,7 @@ protected: // Protected attributes
   /** true if file may be overwritten */
   bool checkOverwrite;
   /** current position of write */
-  int putPos;
+  KIO::fileoffset_t putPos;
   /** true if file already existed */
   bool checkExist;
   /** true if this is the first login attempt (== use cached password) */
@@ -167,7 +167,7 @@ protected: // Protected attributes
   /** whther the mimetype has been sent already */
   bool mimeTypeSent;
   /** number of bytes read so far */
-  int dataRead;
+  KIO::fileoffset_t dataRead;
   /** details about each fishCommand */
   static const struct fish_info {
       const char *command;
@@ -184,9 +184,8 @@ protected: // Protected attributes
   int fishCodeLen;
 protected: // Protected methods
   /** manages initial communication setup including password queries */
-  int establishConnection(char *buffer, int buflen);
-  void debugConnection(char *buffer, int buflen);
-  int received(const char *buffer, int buflen);
+  int establishConnection(char *buffer, KIO::fileoffset_t buflen);
+  int received(const char *buffer, KIO::fileoffset_t buflen);
   void sent();
   /** builds each FISH request and sets the error counter */
   bool sendCommand(fish_command_type cmd, ...);
@@ -199,7 +198,7 @@ protected: // Protected methods
   /** creates the subprocess */
   bool connectionStart();
   /** writes one chunk of data to stdin of child process */
-  void writeChild(const char *buf, int len);
+  void writeChild(const char *buf, KIO::fileoffset_t len);
   /** parses response from server and acts accordingly */
   void manageConnection(const QString &line);
   /** writes to process */

@@ -514,7 +514,7 @@ bool fishProtocol::connectionStart() {
 /**
 writes one chunk of data to stdin of child process
 */
-void fishProtocol::writeChild(const char *buf, int len) {
+void fishProtocol::writeChild(const char *buf, KIO::fileoffset_t len) {
     if (outBufPos >= 0 && outBuf) {
 #if 0
         QString debug;
@@ -531,7 +531,7 @@ void fishProtocol::writeChild(const char *buf, int len) {
 /**
 manages initial communication setup including password queries
 */
-int fishProtocol::establishConnection(char *buffer, int len) {
+int fishProtocol::establishConnection(char *buffer, KIO::fileoffset_t len) {
     QString buf;
     buf.setLatin1(buffer,len);
     int pos=0;
@@ -978,7 +978,7 @@ void fishProtocol::manageConnection(const QString &l) {
                 recvLen = 0;
                 break;
             }
-            recvLen = line.toInt(&isOk);
+            recvLen = line.toLongLong(&isOk);
             if (!isOk) {
                 error(ERR_COULD_NOT_READ,url.prettyUrl());
                 shutdownConnection();
@@ -1149,7 +1149,7 @@ void fishProtocol::sent()
 {
     if (rawWrite > 0) {
         myDebug( << "writing raw: " << rawData.size() << "/" << rawWrite << endl);
-        writeChild(rawData.data(),((int)rawWrite > rawData.size()?rawData.size():rawWrite));
+        writeChild(rawData.data(),(rawWrite > rawData.size()?rawData.size():rawWrite));
         rawWrite -= rawData.size();
         if (rawWrite > 0) {
             dataReq();
@@ -1177,7 +1177,7 @@ void fishProtocol::sent()
     }
 }
 
-int fishProtocol::received(const char *buffer, int buflen)
+int fishProtocol::received(const char *buffer, KIO::fileoffset_t buflen)
 {
     int pos = 0;
     do {
@@ -1188,7 +1188,7 @@ int fishProtocol::received(const char *buffer, int buflen)
             int dataSize = (rawRead > buflen?buflen:rawRead);
             if (!mimeTypeSent)
             {
-                int mimeSize = qMin(dataSize, (int)mimeBuffer.size()-dataRead);
+                int mimeSize = qMin(dataSize, (int)(mimeBuffer.size()-dataRead));
                 memcpy(mimeBuffer.data()+dataRead,buffer,mimeSize);
                 dataRead += mimeSize;
                 rawRead -= mimeSize;
