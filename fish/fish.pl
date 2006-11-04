@@ -42,7 +42,7 @@ MAIN: while (<STDIN>) {
     chomp;
     chomp;
     next if !length($_) || substr($_,0,1) ne '#';
-#    print DEBUG "$_\n";
+#print DEBUG "$_\n";
     s/^#//;
     /^VER / && do {
         # We do not advertise "append" capability anymore, as "write" is
@@ -74,7 +74,7 @@ MAIN: while (<STDIN>) {
             sysopen(OFH,$fn,O_WRONLY|O_CREAT|O_TRUNC) || do { close(FH); print "### 500 $!\n"; next; };
             local $/ = undef;
             my $buffer = '';
-            while ($size > 16384 && ($read = sysread(FH,$buffer,16384)) > 0) {
+            while ($size > 32768 && ($read = sysread(FH,$buffer,32768)) > 0) {
                 $size -= $read;
                 if (syswrite(OFH,$buffer,$read) != $read) {
                     close(FH); close(OFH);
@@ -254,13 +254,13 @@ sub read_loop {
     print "### 100\n";
     my $buffer = '';
     my $read = 1;
-    while ($size > 16384 && ($read = sysread(FH,$buffer,16384)) > 0) {
-#        print DEBUG "$size left, $read read\n";
+    while ($size > 32768 && ($read = sysread(FH,$buffer,32768)) > 0) {
+#print DEBUG "$size left, $read read\n";
         $size -= $read;
         print $buffer;
     }
     while ($size > 0 && ($read = sysread(FH,$buffer,$size)) > 0) {
-#        print DEBUG "$size left, $read read\n";
+#print DEBUG "$size left, $read read\n";
         $size -= $read;
         print $buffer;
     }
@@ -280,6 +280,7 @@ sub read_loop {
 sub write_loop {
     my $size = int($_[0]);
     my $fn = unquote($_[1]);
+#print DEBUG "write_loop called $size size, $fn fn, $_[2]\n";
     my $error = '';
     sysopen(FH,$fn,$_[2]) || do { print "### 400 $!\n"; return; };
     eval { flock(FH,2); };
@@ -290,13 +291,13 @@ sub write_loop {
     print "### 100\n";
     my $buffer = '';
     my $read = 1;
-    while ($size > 16384 && ($read = read(STDIN,$buffer,16384)) > 0) {
-#        print DEBUG "$size left, $read read\n";
+    while ($size > 32768 && ($read = read(STDIN,$buffer,32768)) > 0) {
+#print DEBUG "$size left, $read read\n";
         $size -= $read;
         $error ||= $! if (syswrite(FH,$buffer,$read) != $read);
     }
     while ($size > 0 && ($read = read(STDIN,$buffer,$size)) > 0) {
-#        print DEBUG "$size left, $read read\n";
+#print DEBUG "$size left, $read read\n";
         $size -= $read;
         $error ||= $! if (syswrite(FH,$buffer,$read) != $read);
     }
