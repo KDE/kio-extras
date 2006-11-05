@@ -1,28 +1,19 @@
 
 macro_optional_find_package(Samba)
 
+macro_log_feature(SAMBA_HAVE_SMBC_SET_CONTEXT "Samba" "Sambas libsmbclient is required for the smb-ioslave. A version which already has smbc_set_context() is required" "http://www.samba.org")
+
 add_subdirectory( about ) 
 add_subdirectory( cgi ) 
 add_subdirectory( floppy ) 
 add_subdirectory( filter ) 
 add_subdirectory( info ) 
 add_subdirectory( man ) 
-if(NOT WIN32)
-add_subdirectory( nfs ) 
-endif(NOT WIN32)
 add_subdirectory( nntp ) 
 add_subdirectory( pop3 ) 
 add_subdirectory( smtp ) 
-# need kdesu
-if(UNIX)
-   add_subdirectory( fish ) 
-   add_subdirectory( sftp ) 
-endif(UNIX)
 add_subdirectory( tar ) 
 add_subdirectory( finger ) 
-if(NOT WIN32)
-add_subdirectory( thumbnail )
-endif(NOT WIN32)
 add_subdirectory( settings )
 add_subdirectory( trash ) 
 add_subdirectory( media ) 
@@ -30,9 +21,22 @@ add_subdirectory( remote )
 add_subdirectory( home ) 
 add_subdirectory( system )
 
-# Test better (see configure.in.in)
-if(SAMBA_FOUND)
+# need kdesu
+if(UNIX)
+   add_subdirectory( fish ) 
+   add_subdirectory( sftp ) 
+endif(UNIX)
+
+if(NOT WIN32)
+   add_subdirectory( thumbnail )
+endif(NOT WIN32)
+
+if(NOT WIN32)
+   add_subdirectory( nfs ) 
+endif(NOT WIN32)
+
+if(SAMBA_FOUND AND SAMBA_HAVE_SMBC_SET_CONTEXT)
    add_subdirectory(smb)
-endif(SAMBA_FOUND)
+endif(SAMBA_FOUND AND SAMBA_HAVE_SMBC_SET_CONTEXT)
 
 add_subdirectory(ldap)
