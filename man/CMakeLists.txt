@@ -37,7 +37,6 @@ kde4_automoc(${kio_man_PART_SRCS})
 
 kde4_add_plugin(kio_man ${kio_man_PART_SRCS})
 
-kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kio_man )
 
 target_link_libraries(kio_man  ${KDE4_KDE3SUPPORT_LIBS})
 
@@ -52,7 +51,6 @@ kde4_automoc(${kmanpart_PART_SRCS})
 
 kde4_add_plugin(kmanpart WITH_PREFIX ${kmanpart_PART_SRCS})
 
-kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kmanpart )
 
 target_link_libraries(kmanpart  ${KDE4_KPARTS_LIBS} ${KDE4_KHTML_LIBS} )
 

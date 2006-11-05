@@ -11,7 +11,6 @@ kde4_automoc(${kio_floppy_PART_SRCS})
 
 kde4_add_plugin(kio_floppy ${kio_floppy_PART_SRCS})
 
-kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kio_floppy )
 
 target_link_libraries(kio_floppy  ${KDE4_KIO_LIBS} )
 

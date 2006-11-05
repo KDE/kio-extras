@@ -9,7 +9,6 @@ kde4_automoc(${kcm_cgi_PART_SRCS})
 
 kde4_add_plugin(kcm_cgi ${kcm_cgi_PART_SRCS})
 
-kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kcm_cgi )
 
 target_link_libraries(kcm_cgi  ${KDE4_KIO_LIBS} ${QT_QTGUI_LIBRARY} ${QT_QT3SUPPORT_LIBRARY})
 

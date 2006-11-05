@@ -13,7 +13,6 @@ kde4_add_ui3_files(kded_medianotifier_PART_SRCS notificationdialogview.ui )
 
 kde4_add_plugin(kded_medianotifier ${kded_medianotifier_PART_SRCS})
 
-kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kded_medianotifier )
 
 target_link_libraries(kded_medianotifier  ${KDE4_KIO_LIBS}  )
 

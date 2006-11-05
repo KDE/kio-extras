@@ -15,7 +15,6 @@ kde4_automoc(${kio_remote_PART_SRCS})
 
 kde4_add_plugin(kio_remote ${kio_remote_PART_SRCS})
 
-kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kio_remote )
 
 target_link_libraries(kio_remote  ${KDE4_KIO_LIBS})
 

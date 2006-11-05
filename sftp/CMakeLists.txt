@@ -25,7 +25,6 @@ kde4_automoc(${kio_sftp_PART_SRCS})
 
 kde4_add_plugin(kio_sftp ${kio_sftp_PART_SRCS})
 
-kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kio_sftp )
 
 target_link_libraries(kio_sftp  ${KDE4_KDE3SUPPORT_LIBS} ${KDE4_KDESU_LIBS} )
 

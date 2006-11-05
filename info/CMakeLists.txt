@@ -11,7 +11,6 @@ kde4_automoc(${kio_info_PART_SRCS})
 
 kde4_add_plugin(kio_info ${kio_info_PART_SRCS})
 
-kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kio_info )
 
 target_link_libraries(kio_info  ${KDE4_KIO_LIBS} )
 

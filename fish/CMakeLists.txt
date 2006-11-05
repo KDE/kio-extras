@@ -27,7 +27,6 @@ if (MD5SUM_EXECUTABLE)
    
    kde4_add_plugin(kio_fish ${kio_fish_PART_SRCS})
    
-   kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kio_fish )
    
    target_link_libraries(kio_fish ${KDE4_KIO_LIBS})
    

@@ -9,7 +9,6 @@ kde4_automoc(${kded_systemdirnotify_PART_SRCS})
 
 kde4_add_plugin(kded_systemdirnotify ${kded_systemdirnotify_PART_SRCS})
 
-kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kded_systemdirnotify )
 
 target_link_libraries(kded_systemdirnotify  ${KDE4_KIO_LIBS})
 

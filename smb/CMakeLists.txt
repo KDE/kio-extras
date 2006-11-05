@@ -19,7 +19,6 @@ kde4_automoc(${kio_smb_PART_SRCS})
 
 kde4_add_plugin(kio_smb ${kio_smb_PART_SRCS})
 
-kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kio_smb )
 
 target_link_libraries(kio_smb  ${KDE4_KDE3SUPPORT_LIBS} ${SAMBA_LIBRARIES} )
 

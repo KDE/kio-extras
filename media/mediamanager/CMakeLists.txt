@@ -23,7 +23,6 @@ kde4_automoc(${kded_mediamanager_PART_SRCS})
 
 kde4_add_plugin(kded_mediamanager ${kded_mediamanager_PART_SRCS})
 
-kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kded_mediamanager )
 
 target_link_libraries(kded_mediamanager  ${KDE4_KIO_LIBS} )
 

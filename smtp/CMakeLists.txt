@@ -34,7 +34,6 @@ kde4_automoc(${kio_smtp_PART_SRCS})
 
 kde4_add_plugin(kio_smtp ${kio_smtp_PART_SRCS})
 
-kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kio_smtp )
 
 target_link_libraries(kio_smtp  ${KDE4_KIO_LIBS} ${smtp_optional_libs})
 

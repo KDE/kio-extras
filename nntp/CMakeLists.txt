@@ -11,7 +11,6 @@ kde4_automoc(${kio_nntp_PART_SRCS})
 
 kde4_add_plugin(kio_nntp ${kio_nntp_PART_SRCS})
 
-kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kio_nntp )
 
 target_link_libraries(kio_nntp  ${KDE4_KIO_LIBS}  )
 

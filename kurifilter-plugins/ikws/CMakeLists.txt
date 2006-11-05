@@ -13,7 +13,6 @@ kde4_automoc(${kuriikwsfilter_PART_SRCS})
 
 kde4_add_plugin(kuriikwsfilter WITH_PREFIX ${kuriikwsfilter_PART_SRCS})
 
-kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kuriikwsfilter )
 
 target_link_libraries(kuriikwsfilter  ${KDE4_KDEUI_LIBS} ${KDE4_KIO_LIBS} ${QT_QT3SUPPORT_LIBRARY})
 
@@ -36,7 +35,6 @@ kde4_add_ui_files(kurisearchfilter_PART_SRCS ikwsopts_ui.ui searchproviderdlg_ui
 
 kde4_add_plugin(kurisearchfilter WITH_PREFIX ${kurisearchfilter_PART_SRCS})
 
-kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kurisearchfilter )
 
 target_link_libraries(kurisearchfilter  ${KDE4_KDEUI_LIBS} ${QT_QTGUI_LIBRARY} ${QT_QT3SUPPORT_LIBRARY} ${KDE4_KIO_LIBS})
 

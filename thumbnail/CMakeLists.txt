@@ -12,7 +12,6 @@ kde4_automoc(${kio_thumbnail_PART_SRCS})
 
 kde4_add_plugin(kio_thumbnail ${kio_thumbnail_PART_SRCS})
 
-kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kio_thumbnail )
 
 target_link_libraries(kio_thumbnail  ${KDE4_KDE3SUPPORT_LIBS}  ${KDE4_KDEFX_LIBS})
 
@@ -27,7 +26,6 @@ kde4_automoc(${imagethumbnail_PART_SRCS})
 
 kde4_add_plugin(imagethumbnail ${imagethumbnail_PART_SRCS})
 
-kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} imagethumbnail )
 
 target_link_libraries(imagethumbnail  ${KDE4_KDE3SUPPORT_LIBS})
 
@@ -42,7 +40,6 @@ kde4_automoc(${svgthumbnail_PART_SRCS})
 
 kde4_add_plugin(svgthumbnail ${svgthumbnail_PART_SRCS})
 
-kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} svgthumbnail )
 
 target_link_libraries(svgthumbnail ${KDE4_KDECORE_LIBS})
 
@@ -57,7 +54,6 @@ kde4_automoc(${textthumbnail_PART_SRCS})
 
 kde4_add_plugin(textthumbnail ${textthumbnail_PART_SRCS})
 
-kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} textthumbnail )
 
 target_link_libraries(textthumbnail  ${KDE4_KDECORE_LIBS} ${KDE4_KDEFX_LIBS} ${QT_QTGUI_LIBRARY} )
 
@@ -72,7 +68,6 @@ kde4_automoc(${htmlthumbnail_PART_SRCS})
 
 kde4_add_plugin(htmlthumbnail ${htmlthumbnail_PART_SRCS})
 
-kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} htmlthumbnail )
 
 target_link_libraries(htmlthumbnail  ${KDE4_KDECORE_LIBS} ${KDE4_KHTML_LIBS} ${QT_QTGUI_LIBRARY})
 
@@ -87,7 +82,6 @@ kde4_automoc(${djvuthumbnail_PART_SRCS})
 
 kde4_add_plugin(djvuthumbnail ${djvuthumbnail_PART_SRCS})
 
-kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} djvuthumbnail )
 
 target_link_libraries(djvuthumbnail  ${KDE4_KDE3SUPPORT_LIBS})
 
@@ -106,7 +100,6 @@ if(OPENEXR_FOUND)
 
    kde4_add_plugin(exrthumbnail ${exrthumbnail_PART_SRCS})
 
-   kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} exrthumbnail )
 
    target_link_libraries(exrthumbnail  ${KDE4_KDE3SUPPORT_LIBS} ${OPENEXR_LIBRARIES})
 
@@ -125,7 +118,6 @@ if(X11_Xcursor_FOUND)
 
    kde4_add_plugin(cursorthumbnail ${cursorthumbnail_PART_SRCS})
 
-   kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} cursorthumbnail )
 
    target_link_libraries(cursorthumbnail  ${KDE4_KDE3SUPPORT_LIBS} ${X11_Xcursor_LIB})
 

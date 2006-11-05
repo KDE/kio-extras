@@ -9,7 +9,6 @@ kde4_automoc(${kfile_media_PART_SRCS})
 
 kde4_add_plugin(kfile_media ${kfile_media_PART_SRCS})
 
-kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kfile_media )
 
 target_link_libraries(kfile_media  ${KDE4_KIO_LIBS} )
 

@@ -11,7 +11,6 @@ kde4_automoc(${kio_finger_PART_SRCS})
 
 kde4_add_plugin(kio_finger ${kio_finger_PART_SRCS})
 
-kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kio_finger )
 
 target_link_libraries(kio_finger  ${KDE4_KIO_LIBS} )
 
