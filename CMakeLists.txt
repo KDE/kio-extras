@@ -32,7 +32,7 @@ add_subdirectory( system )
 
 # Test better (see configure.in.in)
 if(SAMBA_FOUND)
-#   add_subdirectory(smb)
+   add_subdirectory(smb)
 endif(SAMBA_FOUND)
 
 add_subdirectory(ldap)
