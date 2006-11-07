@@ -207,6 +207,13 @@ const Medium MediaImpl::findMediumByName(const QString &name, bool &ok)
 
 bool MediaImpl::ensureMediumMounted(Medium &medium)
 {
+	if (medium.id().isEmpty())
+	{
+		m_lastErrorCode = KIO::ERR_COULD_NOT_MOUNT;
+		m_lastErrorMessage = i18n("No such medium.");
+		return false;
+	}
+
 	if ( medium.needMounting() )
 	{
 		m_lastErrorCode = 0;
