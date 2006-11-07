@@ -432,6 +432,19 @@ extern void output_real(const char *insert)
 }
 #endif
 
+static QString text2html(const QString& txt)
+{
+    QString reply = txt;
+
+    reply = reply.replace('&', "&amp;");
+    reply = reply.replace('<', "&lt;");
+    reply = reply.replace('>', "&gt;");
+    reply = reply.replace('"', "&dquot;");
+    reply = reply.replace('\'', "&quot;");
+    return reply;
+}
+
+
 void MANProtocol::get(const KUrl& url )
 {
     kDebug(7107) << "GET " << url.url() << endl;
@@ -466,7 +479,7 @@ void MANProtocol::get(const KUrl& url )
            "Be careful that you must take care about upper case and lower case characters!<br>"
            "If everything looks correct, then perhaps you need to set a better search path "
            "for man pages, be it by the environment variable MANPATH or a matching file "
-           "in the directory /etc .", title));
+           "in the directory /etc .", text2html(title)));
        pageFound=false;
     }
     else if (foundPages.count()>1)
