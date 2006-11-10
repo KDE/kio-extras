@@ -21,7 +21,7 @@ set(klocaldomainurifilterhelper_SRCS klocaldomainurifilterhelper.c )
 
 kde4_automoc(${klocaldomainurifilterhelper_SRCS})
 
-kde4_add_executable(klocaldomainurifilterhelper ${klocaldomainurifilterhelper_SRCS})
+kde4_add_executable(klocaldomainurifilterhelper NOGUI ${klocaldomainurifilterhelper_SRCS})
 
 target_link_libraries(klocaldomainurifilterhelper  ${KDE4_KDECORE_LIBS} )
 
