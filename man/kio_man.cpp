@@ -1085,7 +1085,9 @@ void MANProtocol::checkManPaths()
 //#define _USE_OLD_CODE
 
 #ifdef _USE_OLD_CODE
+#ifdef __GNUC__
 #warning "using old code"
+#endif
 #else
 
 // Define this, if you want to compile with qsort from stdlib.h
@@ -1143,7 +1145,9 @@ int compare_man_index(const void *s1, const void *s2)
 }
 
 #else /* !_USE_QSORT */
+#ifdef __GNUC__
 #warning using heapsort
+#endif
 // Set up my own man page list,
 // with a special compare function to sort itself
 typedef QList<struct man_index_t*> QManIndexListBase;
