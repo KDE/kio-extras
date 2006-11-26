@@ -48,7 +48,7 @@ void SMBSlave::copy( const KUrl& ksrc,
     int             dstflags;
     int             srcfd = -1;
     int             dstfd = -1;
-    int             processed_size = 0;
+    KIO::filesize_t processed_size = 0;
     unsigned char   buf[MAX_XFER_BUF_SIZE];
 
     kDebug(KIO_SMB) << "SMBSlave::copy with src = " << ksrc << "and dest = " << kdst << endl;

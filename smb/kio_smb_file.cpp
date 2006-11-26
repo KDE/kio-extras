@@ -47,7 +47,7 @@ void SMBSlave::get( const KUrl& kurl )
     // time_t      curtime         = 0;
     time_t      lasttime        = 0;
     time_t      starttime       = 0;
-    ssize_t     totalbytesread  = 0;
+    KIO::filesize_t totalbytesread  = 0;
     QByteArray  filedata;
     SMBUrl      url;
 
@@ -125,7 +125,7 @@ void SMBSlave::get( const KUrl& kurl )
 
         smbc_close(filefd);
         data( QByteArray() );
-        processedSize( st.st_size);
+        processedSize(static_cast<KIO::filesize_t>(st.st_size));
 
     }
     else

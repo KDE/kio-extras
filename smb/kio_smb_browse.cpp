@@ -47,7 +47,7 @@ int SMBSlave::cache_stat(const SMBUrl &url, struct stat* st )
 {
     int result = smbc_stat( url.toSmbcUrl(), st);
     kDebug(KIO_SMB) << "smbc_stat " << url << " " << errno << " " << result << endl;
-    kDebug(KIO_SMB) << "size " << (long)st->st_size << endl;
+    kDebug(KIO_SMB) << "size " << (KIO::filesize_t)st->st_size << endl;
     return result;
 }
 
