@@ -809,7 +809,7 @@ void fishProtocol::manageConnection(const QString &l) {
             redirection(url);
             break;
         case FISH_LIST:
-            myDebug( << "listReason: " << listReason << endl);
+            myDebug( << "listReason: " << static_cast<int>(listReason) << endl);
             /* Fall through */
         case FISH_STAT:
             if (line.length() > 0) {
@@ -1061,7 +1061,7 @@ void fishProtocol::manageConnection(const QString &l) {
             error(ERR_CANNOT_ENTER_DIRECTORY,url.prettyUrl());
             break;
         case FISH_LIST:
-            myDebug( << "list error. reason: " << listReason << endl);
+            myDebug( << "list error. reason: " << static_cast<int>(listReason) << endl);
             if (listReason == LIST) error(ERR_CANNOT_ENTER_DIRECTORY,url.prettyUrl());
             else if (listReason == CHECK) {
                 checkExist = false;
