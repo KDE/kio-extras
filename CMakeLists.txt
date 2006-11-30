@@ -29,10 +29,7 @@ endif(UNIX)
 
 if(NOT WIN32)
    add_subdirectory( thumbnail )
-endif(NOT WIN32)
-
-if(NOT WIN32)
-   add_subdirectory( nfs ) 
+   add_subdirectory( nfs )
 endif(NOT WIN32)
 
 if(SAMBA_FOUND AND SAMBA_HAVE_SMBC_SET_CONTEXT)
