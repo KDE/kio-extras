@@ -1,7 +1,9 @@
 
+# we need a version of samba which has already smbc_set_context(), Alex
+set(SAMBA_REQUIRE_SMBC_SET_CONTEXT TRUE)
 macro_optional_find_package(Samba)
 
-macro_log_feature(SAMBA_HAVE_SMBC_SET_CONTEXT "Samba" "Sambas libsmbclient is required for the smb-ioslave. A version which already has smbc_set_context() is required" "http://www.samba.org")
+macro_log_feature(SAMBA_FOUND "Samba" "Sambas libsmbclient is required for the smb-ioslave. A version which already has smbc_set_context() is required" "http://www.samba.org")
 
 add_subdirectory( about ) 
 add_subdirectory( cgi ) 
@@ -32,8 +34,8 @@ if(NOT WIN32)
    add_subdirectory( nfs )
 endif(NOT WIN32)
 
-if(SAMBA_FOUND AND SAMBA_HAVE_SMBC_SET_CONTEXT)
+if(SAMBA_FOUND)
    add_subdirectory(smb)
-endif(SAMBA_FOUND AND SAMBA_HAVE_SMBC_SET_CONTEXT)
+endif(SAMBA_FOUND)
 
 add_subdirectory(ldap)
