@@ -25,7 +25,7 @@
 #include <kicondialog.h>
 #include <QListWidget>
 #include <kservice.h>
-#include <kopenwith.h>
+#include <kopenwithdialog.h>
 #include <kpushbutton.h>
 #include <kiconloader.h>
 #include <QPixmap>
@@ -138,7 +138,7 @@ void ServiceConfigDialog::slotIconChanged()
 
 void ServiceConfigDialog::slotCommand()
 {
-	KOpenWithDlg d(this);
+	KOpenWithDialog d(this);
 	int value = d.exec();
 	if ( value == QDialog::Accepted )
 	{
