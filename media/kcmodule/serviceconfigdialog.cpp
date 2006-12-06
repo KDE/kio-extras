@@ -88,6 +88,7 @@ ServiceConfigDialog::ServiceConfigDialog(NotifierServiceAction *action,
 	         this, SLOT( slotIconChanged() ) );
 	connect( m_view->commandButton, SIGNAL( clicked() ),
 	         this, SLOT( slotCommand() ) );
+	connect( this, SIGNAL(okClicked()),this, SLOT(slotOk()));
 }
 
 bool operator==( KDEDesktopMimeType::Service s1, KDEDesktopMimeType::Service s2 )

@@ -55,7 +55,7 @@ SearchProviderDialog::SearchProviderDialog(SearchProvider *provider,
     QStringList charsets = KGlobal::charsets()->availableEncodingNames();
     charsets.prepend(i18n("Default"));
     m_dlg->cbCharset->addItems(charsets);
-
+    connect(this,SIGNAL(okClicked()), this, SLOT(slotOk()));
     if (m_provider)
     {
         setPlainCaption(i18n("Modify Search Provider"));
