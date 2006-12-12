@@ -202,7 +202,7 @@
                                 <property name="name">
                                     <cstring>unnamed</cstring>
                                 </property>
-                                <widget class="KActiveLabel">
+                                <widget class="K3ActiveLabel">
                                     <property name="name">
                                         <cstring>m_lbCommmand</cstring>
                                     </property>
@@ -248,7 +248,7 @@
     <includehint>kicondialog.h</includehint>
     <includehint>klineedit.h</includehint>
     <includehint>kactionselector.h</includehint>
-    <includehint>kactivelabel.h</includehint>
+    <includehint>k3activelabel.h</includehint>
     <includehint>klineedit.h</includehint>
     <includehint>kpushbutton.h</includehint>
 </includehints>
