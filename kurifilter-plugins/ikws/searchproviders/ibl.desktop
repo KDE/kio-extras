@@ -1,0 +1,7 @@
+[Desktop Entry]
+Charset=iso 8859-15
+Type=Service
+Name=Internet Book List
+ServiceTypes=SearchProvider
+Keys=ibl
+Query=http://www.iblist.com/search/search.php?item=\\{@}&submit=Search
