@@ -24,4 +24,4 @@ Keywords=storage,media,usb,cdrom,device
 Keywords[fr]=stockage,media,medium,usb,cdrom,périphérique
 Keywords[x-test]=xxstorage,media,usb,cdrom,devicexx
 
-Categories=Qt;KDE;X-KDE-settings-peripherals
+Categories=Qt;KDE;X-KDE-settings-peripherals;
