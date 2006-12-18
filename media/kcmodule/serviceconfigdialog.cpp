@@ -52,10 +52,9 @@ ServiceConfigDialog::ServiceConfigDialog(NotifierServiceAction *action,
 	m_view->labelEdit->setText( m_action->label() );
 	m_view->commandEdit->setText( m_action->service().m_strExec );
 
-	QIcon iconSet = SmallIconSet("configure");
-	QPixmap pixMap = iconSet.pixmap( QIcon::Small, QIcon::Normal );
-	m_view->commandButton->setIcon( iconSet );
-	m_view->commandButton->setFixedSize( pixMap.width()+8, pixMap.height()+8 );
+	m_view->commandButton->setIcon( KIcon("configure") );
+	const int pixmapSize = style()->pixelMetric(QStyle::PM_SmallIconSize);
+	m_view->commandButton->setFixedSize( pixmapSize+8, pixmapSize+8 );
 	
 	m_iconChanged = false;
 
