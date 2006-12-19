@@ -84,7 +84,7 @@ FilterOptions::FilterOptions(KInstance *instance, QWidget *parent)
     m_dlg = new FilterOptionsUI (this);
     mainLayout->addWidget(m_dlg);
 
-    m_dlg->lvSearchProviders->header()->setLabel(0, SmallIconSet("bookmark"),i18n("Name"));
+    m_dlg->lvSearchProviders->header()->setLabel(0, KIcon("bookmark"),i18n("Name"));
     m_dlg->lvSearchProviders->setSorting(0);
 
     // Load the options
