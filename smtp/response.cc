@@ -60,7 +60,7 @@ namespace KioSMTP {
     }
 
     bool ok = false;
-    unsigned int code = QByteArray( line, 3+1 ).toUInt( &ok );
+    unsigned int code = QByteArray( line, 3 ).toUInt( &ok );
     if ( !ok || code < 100 || code > 559 ) {
       // not a number or number out of range
       mValid = false;
@@ -86,7 +86,7 @@ namespace KioSMTP {
       return;
     }
 
-    mLines.push_back( len > 4 ? QByteArray( line+4, len-4+1 ).trimmed() : QByteArray() );
+    mLines.push_back( len > 4 ? QByteArray( line+4, len-4 ).trimmed() : QByteArray() );
   }
 
 

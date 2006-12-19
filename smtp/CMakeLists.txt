@@ -22,12 +22,12 @@ include_directories(  ${smtp_optional_includes}  )
 
 ########### next target ###############
 
-set(kio_smtp_PART_SRCS 
-   smtp.cc 
-   request.cc 
-   response.cc 
-   capabilities.cc 
-   command.cc 
+set(kio_smtp_PART_SRCS
+   smtp.cc
+   request.cc
+   response.cc
+   capabilities.cc
+   command.cc
    transactionstate.cc )
 
 kde4_automoc(${kio_smtp_PART_SRCS})
@@ -41,24 +41,25 @@ install(TARGETS kio_smtp  DESTINATION ${PLUGIN_INSTALL_DIR} )
 
 ########### next target ###############
 
-if(DOES_NOT_COMPILE_KDE4_BUILD_TESTS)
+if(KDE4_BUILD_TESTS)
 set(test_responseparser_SRCS test_responseparser.cc )
 
-kde4_automoc(test_responseparser_SRCS})
-
+kde4_automoc(${test_responseparser_SRCS})
 
 kde4_add_executable(test_responseparser ${test_responseparser_SRCS})
 
-target_link_libraries(test_responseparser  ${KDE4_KDECORE_LIBS} )
+target_link_libraries(test_responseparser  ${KDE4_KDECORE_LIBS} ${QT_QTTEST_LIBRARY})
 
-endif(DOES_NOT_COMPILE_KDE4_BUILD_TESTS)
+add_test(smtp-responseparser ${EXECUTABLE_OUTPUT_DIR}/test_responseparser)
+
+endif(KDE4_BUILD_TESTS)
 
 ########### next target ###############
 if(KDE4_BUILD_TESTS)
 
 set(test_headergeneration_SRCS test_headergeneration.cc )
 
-kde4_automoc(test_headergeneration_SRCS})
+kde4_automoc(${test_headergeneration_SRCS})
 
 kde4_add_executable(test_headergeneration ${test_headergeneration_SRCS})
 
@@ -72,7 +73,7 @@ endif(KDE4_BUILD_TESTS)
 if(DOES_NOT_COMPILE_KDE4_BUILD_TESTS)
 set(test_commands_SRCS test_commands.cc )
 
-kde4_automoc(test_commands_SRCS})
+kde4_automoc(${test_commands_SRCS})
 
 kde4_add_executable(test_commands ${test_commands_SRCS})
 

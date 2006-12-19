@@ -112,7 +112,7 @@ static sasl_callback_t callbacks[] = {
 
 extern "C" {
   KDE_EXPORT int kdemain(int argc, char **argv);
-} 
+}
 
 int kdemain(int argc, char **argv)
 {
@@ -140,8 +140,8 @@ int kdemain(int argc, char **argv)
 
 SMTPProtocol::SMTPProtocol(const QByteArray & pool, const QByteArray & app,
                            bool useSSL)
-:  TCPSlaveBase(useSSL ? 465 : 25, 
-                useSSL ? "smtps" : "smtp", 
+:  TCPSlaveBase(useSSL ? 465 : 25,
+                useSSL ? "smtps" : "smtp",
                 pool, app, useSSL),
    m_sOldPort( "0" ),
    m_opened(false)
@@ -201,7 +201,7 @@ void SMTPProtocol::special( const QByteArray & aData ) {
 
 
 // Usage: smtp://smtphost:port/send?to=user@host.com&subject=blah
-// If smtphost is the name of a profile, it'll use the information 
+// If smtphost is the name of a profile, it'll use the information
 // provided by that profile.  If it's not a profile name, it'll use it as
 // nature intended.
 // One can also specify in the query:
@@ -241,7 +241,7 @@ void SMTPProtocol::put(const KUrl & url, int /*permissions */ ,
     else {
       mset.setProfile(mset.defaultProfileName());
     }
-  } 
+  }
   else {
     mset.setProfile( request.profileName() );
   }
@@ -341,7 +341,7 @@ Response SMTPProtocol::getResponse( bool * ok ) {
       return response;
     }
 
-    kDebug(7112) << "S: " << QByteArray( buf, recv_len + 1 ).data();
+    kDebug(7112) << "S: " << QByteArray( buf, recv_len ).trimmed().data() << endl;
     // ...and parse lines...
     response.parseLine( buf, recv_len );
 
@@ -516,11 +516,11 @@ bool SMTPProtocol::execute( Command * cmd, TransactionState * ts ) {
 
 bool SMTPProtocol::smtp_open(const QString& fakeHostname)
 {
-  if (m_opened && 
+  if (m_opened &&
       m_sOldPort == port(m_port) &&
-      m_sOldServer == m_sServer && 
+      m_sOldServer == m_sServer &&
       m_sOldUser == m_sUser &&
-      (fakeHostname.isNull() || m_hostname == fakeHostname)) 
+      (fakeHostname.isNull() || m_hostname == fakeHostname))
     return true;
 
   smtp_close();
@@ -533,7 +533,7 @@ bool SMTPProtocol::smtp_open(const QString& fakeHostname)
   if ( !ok || !greeting.isOk() )
   {
     if ( ok )
-      error( KIO::ERR_COULD_NOT_LOGIN, 
+      error( KIO::ERR_COULD_NOT_LOGIN,
              i18n("The server did not accept the connection.\n"
 		  "%1",  greeting.errorMessage() ) );
     smtp_close();
@@ -545,7 +545,7 @@ bool SMTPProtocol::smtp_open(const QString& fakeHostname)
     m_hostname = fakeHostname;
   }
   else
-  { 
+  {
     QString tmpPort;
 #ifdef __GNUC__
 #warning Port to KNetwork
@@ -605,16 +605,16 @@ bool SMTPProtocol::smtp_open(const QString& fakeHostname)
 
 bool SMTPProtocol::authenticate()
 {
-  // return with success if the server doesn't support SMTP-AUTH or an user 
+  // return with success if the server doesn't support SMTP-AUTH or an user
   // name is not specified and metadata doesn't tell us to force it.
-  if ( (m_sUser.isEmpty() || !haveCapability( "AUTH" )) && 
+  if ( (m_sUser.isEmpty() || !haveCapability( "AUTH" )) &&
     metaData( "sasl" ).isEmpty() ) return true;
 
   KIO::AuthInfo authInfo;
   authInfo.username = m_sUser;
   authInfo.password = m_sPass;
   authInfo.prompt = i18n("Username and password for your SMTP account:");
-  
+
   QStringList strList;
 
   if (!metaData("sasl").isEmpty())
@@ -654,7 +654,7 @@ void SMTPProtocol::smtp_close( bool nice ) {
   m_sOldServer.clear();
   m_sOldUser.clear();
   m_sOldPass.clear();
-  
+
   mCapabilities.clear();
   qDeleteAll( mPendingCommandQueue );
   mPendingCommandQueue.clear();

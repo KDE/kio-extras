@@ -1,10 +1,15 @@
+#include "test_responseparser.h"
 #include "response.h"
+
+#include <qtest_kde.h>
 #include <assert.h>
 
-static const QCString singleLineResponseCRLF = "250 OK\r\n";
-static const QCString singleLineResponse     = "250 OK";
+QTEST_KDEMAIN( ResponseParserTest, NoGUI )
 
-static const QCString multiLineResponse[] = {
+static const QByteArray singleLineResponseCRLF = "250 OK\r\n";
+static const QByteArray singleLineResponse     = "250 OK";
+
+static const QByteArray multiLineResponse[] = {
   "250-ktown.kde.org\r\n",
   "250-STARTTLS\r\n",
   "250-AUTH PLAIN DIGEST-MD5\r\n",
@@ -12,96 +17,90 @@ static const QCString multiLineResponse[] = {
 };
 static const unsigned int numMultiLineLines = sizeof multiLineResponse / sizeof *multiLineResponse ;
 
-int main ( int, char** ) {
-
+void ResponseParserTest::testResponseParser()
+{
   KioSMTP::Response r;
-  assert( r.isValid() );
-  assert( r.lines().empty() );
-  assert( r.isWellFormed() );
-  assert( r.code() == 0 );
-  assert( r.isUnknown() );
-  assert( !r.isComplete() );
-  assert( !r.isOk() );
-  r.parseLine( singleLineResponseCRLF.data(),
-	       singleLineResponseCRLF.length() );
-  assert( r.isWellFormed() );
-  assert( r.isComplete() );
-  assert( r.isValid() );
-  assert( r.isPositive() );
-  assert( r.isOk() );
-  assert( r.code() == 250 );
-  assert( r.errorCode() == 0 );
-  assert( r.first() == 2 );
-  assert( r.second() == 5 );
-  assert( r.third() == 0 );
-  assert( r.lines().count() == 1 );
-  assert( r.lines().front() == "OK" );
-  r.parseLine( singleLineResponse.data(),
-	       singleLineResponse.length() );
-  assert( !r.isValid() );
+  QVERIFY( r.isValid() );
+  QVERIFY( r.lines().empty() );
+  QVERIFY( r.isWellFormed() );
+  QCOMPARE( r.code(), 0u );
+  QVERIFY( r.isUnknown() );
+  QVERIFY( !r.isComplete() );
+  QVERIFY( !r.isOk() );
+  r.parseLine( singleLineResponseCRLF.data(), singleLineResponseCRLF.length() );
+  QVERIFY( r.isWellFormed() );
+  QVERIFY( r.isComplete() );
+  QVERIFY( r.isValid() );
+  QVERIFY( r.isPositive() );
+  QVERIFY( r.isOk() );
+  QCOMPARE( r.code(), 250u );
+  QCOMPARE( r.errorCode(), 0 );
+  QCOMPARE( r.first(), 2u );
+  QCOMPARE( r.second(), 5u );
+  QCOMPARE( r.third(), 0u );
+  QCOMPARE( r.lines().count(), 1 );
+  QCOMPARE( r.lines().front(), QByteArray("OK") );
+  r.parseLine( singleLineResponse.data(), singleLineResponse.length() );
+  QVERIFY( !r.isValid() );
   r.clear();
-  assert( r.isValid() );
-  assert( r.lines().empty() );
+  QVERIFY( r.isValid() );
+  QVERIFY( r.lines().empty() );
 
-  r.parseLine( singleLineResponse.data(),
-	       singleLineResponse.length() );
-  assert( r.isWellFormed() );
-  assert( r.isComplete() );
-  assert( r.isValid() );
-  assert( r.isPositive() );
-  assert( r.isOk() );
-  assert( r.code() == 250 );
-  assert( r.first() == 2 );
-  assert( r.second() == 5 );
-  assert( r.third() == 0 );
-  assert( r.lines().count() == 1 );
-  assert( r.lines().front() == "OK" );
-  r.parseLine( singleLineResponse.data(),
-	       singleLineResponse.length() );
-  assert( !r.isValid() );
+  r.parseLine( singleLineResponse.data(), singleLineResponse.length() );
+  QVERIFY( r.isWellFormed() );
+  QVERIFY( r.isComplete() );
+  QVERIFY( r.isValid() );
+  QVERIFY( r.isPositive() );
+  QVERIFY( r.isOk() );
+  QCOMPARE( r.code(), 250u );
+  QCOMPARE( r.first(), 2u );
+  QCOMPARE( r.second(), 5u );
+  QCOMPARE( r.third(), 0u );
+  QCOMPARE( r.lines().count(), 1 );
+  QCOMPARE( r.lines().front(), QByteArray("OK") );
+  r.parseLine( singleLineResponse.data(), singleLineResponse.length() );
+  QVERIFY( !r.isValid() );
   r.clear();
-  assert( r.isValid() );
+  QVERIFY( r.isValid() );
 
   for ( unsigned int i = 0 ; i < numMultiLineLines ; ++i ) {
-    r.parseLine( multiLineResponse[i].data(),
-		 multiLineResponse[i].length() );
-    assert( r.isWellFormed() );
+    r.parseLine( multiLineResponse[i].data(), multiLineResponse[i].length() );
+    QVERIFY( r.isWellFormed() );
     if ( i < numMultiLineLines-1 )
-      assert( !r.isComplete() );
+      QVERIFY( !r.isComplete() );
     else
-      assert( r.isComplete() );
-    assert( r.isValid() );
-    assert( r.isPositive() );
-    assert( r.code() == 250 );
-    assert( r.first() == 2 );
-    assert( r.second() == 5 );
-    assert( r.third() == 0 );
-    assert( r.lines().count() == i + 1 );
+      QVERIFY( r.isComplete() );
+    QVERIFY( r.isValid() );
+    QVERIFY( r.isPositive() );
+    QCOMPARE( r.code(), 250u );
+    QCOMPARE( r.first(), 2u );
+    QCOMPARE( r.second(), 5u );
+    QCOMPARE( r.third(), 0u );
+    QCOMPARE( r.lines().count(), (int)i + 1 );
   }
-  assert( r.lines().back() == "PIPELINING" );
+  QCOMPARE( r.lines().back(), QByteArray("PIPELINING") );
 
   r.clear();
   r.parseLine( "230", 3 );
-  assert( r.isValid() );
-  assert( r.isWellFormed() ); // even though it isn't ;-)
-  assert( r.code() == 230 );
-  assert( r.lines().count() == 1 );
-  assert( r.lines().front().isNull() );
+  QVERIFY( r.isValid() );
+  QVERIFY( r.isWellFormed() ); // even though it isn't ;-)
+  QCOMPARE( r.code(), 230u );
+  QCOMPARE( r.lines().count(), 1 );
+  QVERIFY( r.lines().front().isNull() );
 
   r.clear();
   r.parseLine( "230\r\n", 5 );
-  assert( r.isValid() );
-  assert( r.isWellFormed() ); // even though it isn't ;-)
-  assert( r.code() == 230 );
-  assert( r.lines().count() == 1 );
-  assert( r.lines().front().isNull() );
+  QVERIFY( r.isValid() );
+  QVERIFY( r.isWellFormed() ); // even though it isn't ;-)
+  QCOMPARE( r.code(), 230u );
+  QCOMPARE( r.lines().count(), 1 );
+  QVERIFY( r.lines().front().isNull() );
 
   r.clear();
   r.parseLine( " 23 ok", 6 );
-  assert( !r.isValid() );
-  assert( !r.isWellFormed() );
-
-  return 0;
+  QVERIFY( !r.isValid() );
+  QVERIFY( !r.isWellFormed() );
 }
 
+#include "test_responseparser.moc"
 #include "response.cc"
