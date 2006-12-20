@@ -5,11 +5,12 @@ project(kioslave-man)
 
 ########### next target ###############
 
+if(KDE4_BUILD_TESTS)
+
 set(kio_man_test_SRCS kio_man_test.cpp man2html.cpp kio_man.cpp )
 
 kde4_automoc(${kio_man_test_SRCS})
 
-if(KDE4_BUILD_TESTS)
 
 kde4_add_executable(kio_man_test ${kio_man_test_SRCS})
 set_target_properties(kio_man_test PROPERTIES COMPILE_FLAGS "-DSIMPLE_MAN2HTML -DKIO_MAN_TEST")
