@@ -59,5 +59,5 @@ endif(KDE4_BUILD_TESTS)
 ########### install files ###############
 
 install( FILES media.protocol  DESTINATION  ${SERVICES_INSTALL_DIR} )
-
+install( FILES org.kde.MediaManager.xml DESTINATION ${DBUS_INTERFACES_DIR} )
 
