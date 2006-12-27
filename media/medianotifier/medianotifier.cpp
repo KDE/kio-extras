@@ -32,7 +32,7 @@
 #include <kprocess.h>
 #include <krun.h>
 #include <kmessagebox.h>
-#include <kstdguiitem.h>
+#include <kstandardguiitem.h>
 #include <kstandarddirs.h>
 
 #include "notificationdialog.h"
@@ -175,8 +175,8 @@ bool MediaNotifier::execAutorun( const KFileItem &medium, const QString &path,
 	                     "Note that executing a file on a medium may compromise"
 	                     " your system's security", mediumType );
 	QString caption = i18n( "Autorun - %1", medium.url().prettyUrl() );
-	KGuiItem yes = KStdGuiItem::yes();
-	KGuiItem no = KStdGuiItem::no();
+	KGuiItem yes = KStandardGuiItem::yes();
+	KGuiItem no = KStandardGuiItem::no();
 
 	int answer = KMessageBox::warningYesNo( 0L, text, caption, yes, no,
 	                                        QString(), KMessageBox::Notify | KMessageBox::Dangerous );
@@ -248,8 +248,8 @@ bool MediaNotifier::execAutoopen( const KFileItem &medium, const QString &path,
 	                     "Note that opening a file on a medium may compromise"
 	                     " your system's security", mediumType, filename );
 	QString caption = i18n( "Autoopen - %1", medium.url().prettyUrl() );
-	KGuiItem yes = KStdGuiItem::yes();
-	KGuiItem no = KStdGuiItem::no();
+	KGuiItem yes = KStandardGuiItem::yes();
+	KGuiItem no = KStandardGuiItem::no();
 
 	int answer = KMessageBox::warningYesNo( 0L, text, caption, yes, no,
 	                                        QString(), KMessageBox::Notify | KMessageBox::Dangerous );

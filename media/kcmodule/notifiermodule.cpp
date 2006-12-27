@@ -28,7 +28,7 @@
 #include <QBoxLayout>
 #include <kcombobox.h>
 #include <kpushbutton.h>
-#include <kstdguiitem.h>
+#include <kstandardguiitem.h>
 
 #include "notifiersettings.h"
 #include "serviceconfigdialog.h"
@@ -45,9 +45,9 @@ NotifierModule::NotifierModule(KInstance *inst, QWidget *parent)
 	m_view = new NotifierModuleView( this );
 	layout->addWidget( m_view );
 
-	m_view->addButton->setGuiItem( KStdGuiItem::add() );
-	m_view->editButton->setGuiItem( KStdGuiItem::properties() );
-	m_view->deleteButton->setGuiItem( KStdGuiItem::del() );
+	m_view->addButton->setGuiItem( KStandardGuiItem::add() );
+	m_view->editButton->setGuiItem( KStandardGuiItem::properties() );
+	m_view->deleteButton->setGuiItem( KStandardGuiItem::del() );
 
 	m_view->mimetypesCombo->addItem( i18n("All Mime Types") );
 
