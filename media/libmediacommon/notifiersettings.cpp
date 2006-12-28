@@ -159,7 +159,8 @@ void NotifierSettings::clearAutoActions()
 		NotifierAction *action = it.value();
 		QString mimetype = it.key();
 
-		action->removeAutoMimetype( mimetype );
+		if ( action )
+			action->removeAutoMimetype( mimetype );
 		m_autoMimetypesMap[mimetype] = 0L;
 	}
 }
