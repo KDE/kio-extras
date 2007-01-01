@@ -99,13 +99,15 @@ namespace KioSMTP {
       result.push_back( "8BITMIME" );
     if ( have( "SIZE" ) ) {
       bool ok = false;
-      unsigned int size = mCapabilities["SIZE"].front().toUInt( &ok );
+      unsigned int size = 0;
+      if ( !mCapabilities["SIZE"].isEmpty() )
+        mCapabilities["SIZE"].front().toUInt( &ok );
       if ( ok && !size )
-	result.push_back( "SIZE=*" ); // any size
+        result.push_back( "SIZE=*" ); // any size
       else if ( ok )
-	result.push_back( "SIZE=" + QString::number( size ) ); // fixed max
+        result.push_back( "SIZE=" + QString::number( size ) ); // fixed max
       else
-	result.push_back( "SIZE" ); // indetermined
+        result.push_back( "SIZE" ); // indetermined
     }
     return result.join( " " );
   }
@@ -114,16 +116,17 @@ namespace KioSMTP {
     QStringList result;
     for ( QMap<QString,QStringList>::const_iterator it = mCapabilities.begin() ; it != mCapabilities.end() ; ++it ) {
       if ( it.key() == "AUTH" )
-	result += it.value();
+        result += it.value();
       else if ( it.key().startsWith( "AUTH=" ) ) {
-	result.push_back( it.key().mid( qstrlen("AUTH=") ) );
-	result += it.value();
+        result.push_back( it.key().mid( qstrlen("AUTH=") ) );
+        result += it.value();
       }
     }
     result.sort();
-    QStringList::iterator it = result.begin();
-    for (QStringList::iterator ot = it++; it != result.end(); ot = it++)
-        if (*ot == *it) result.erase(ot);
+    for (int i = 0, j = 1; j < result.count(); i = j++ ) {
+      if ( result.at(i) == result.at(j) )
+        result.removeAt( j-- );
+    }
     return result;
   }
 
