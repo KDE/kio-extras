@@ -59,7 +59,6 @@ extern "C" {
 
 #include <kio/connection.h>
 #include <kio/slaveinterface.h>
-#include <kio/passdlg.h>
 #include "pop3.h"
 
 #define GREETING_BUF_LEN 1024
@@ -346,7 +345,7 @@ int POP3Protocol::loginAPOP( char *challenge, KIO::AuthInfo &ai )
   QString apop_string = QString::fromLatin1("APOP ");
   if (m_sUser.isEmpty() || m_sPass.isEmpty()) {
     // Prompt for usernames
-    if (!openPassDlg(ai)) {
+    if (!openPasswordDialog(ai)) {
       error(ERR_ABORTED, i18n("No authentication details supplied."));
       closeConnection();
       return -1;
@@ -405,7 +404,7 @@ bool POP3Protocol::saslInteract( void *in, AuthInfo &ai )
          interact->id == SASL_CB_PASS ) {
 
       if (m_sUser.isEmpty() || m_sPass.isEmpty()) {
-        if (!openPassDlg(ai)) {
+        if (!openPasswordDialog(ai)) {
           error(ERR_ABORTED, i18n("No authentication details supplied."));
           return false;
         }
@@ -596,7 +595,7 @@ bool POP3Protocol::loginPASS( KIO::AuthInfo &ai )
 
   if (m_sUser.isEmpty() || m_sPass.isEmpty()) {
     // Prompt for usernames
-    if (!openPassDlg(ai)) {
+    if (!openPasswordDialog(ai)) {
       error(ERR_ABORTED, i18n("No authentication details supplied."));
       closeConnection();
       return false;

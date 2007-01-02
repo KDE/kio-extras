@@ -805,7 +805,7 @@ int NNTPProtocol::sendCommand( const QString &cmd )
       KIO::AuthInfo authInfo;
       authInfo.username = mUser;
       authInfo.password = mPass;
-      if ( openPassDlg( authInfo ) ) {
+      if ( openPasswordDialog( authInfo ) ) {
         mUser = authInfo.username;
         mPass = authInfo.password;
       }

@@ -321,8 +321,8 @@ void LDAPProtocol::openConnection()
         cached = false;
       } else {
         bool ok = firstauth ?
-           openPassDlg( info ) :
-           openPassDlg( info, i18n("Invalid authorization information.") );
+           openPasswordDialog( info ) :
+           openPasswordDialog( info, i18n("Invalid authorization information.") );
         if ( !ok ) {
           error( ERR_USER_CANCELED, i18n("LDAP connection canceled.") );
           closeConnection();

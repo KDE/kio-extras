@@ -636,9 +636,9 @@ void sftpProtocol::openConnection() {
                                  << ", info.url = " << info.url.prettyUrl() << endl;
 
             if( firstTime )
-                dlgResult = openPassDlg(info);
+                dlgResult = openPasswordDialog(info);
             else
-                dlgResult = openPassDlg(info, i18n("Incorrect username or password"));
+                dlgResult = openPasswordDialog(info, i18n("Incorrect username or password"));
 
             if( dlgResult ) {
                if( info.username.isEmpty() || info.password.isEmpty() ) {

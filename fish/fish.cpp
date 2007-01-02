@@ -590,7 +590,7 @@ int fishProtocol::establishConnection(char *buffer, KIO::fileoffset_t len) {
                     connectionAuth.caption = i18n("SSH Authorization");
                 if ((!firstLogin || !checkCachedAuthentication(connectionAuth))) {
                     connectionAuth.password.clear(); // don't prefill
-                    if ( !openPassDlg(connectionAuth)) {
+                    if ( !openPasswordDialog(connectionAuth)) {
                         error(ERR_USER_CANCELED,connectionHost);
                         shutdownConnection();
                         return -1;
