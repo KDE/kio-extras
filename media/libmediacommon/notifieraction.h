@@ -25,6 +25,7 @@
 #include <QPixmap>
 
 class NotifierSettings;
+class KIconLoader;
 
 class NotifierAction
 {
@@ -47,12 +48,14 @@ public:
 	virtual void execute( KFileItem &medium ) = 0;
 
 private:
+	static KIconLoader* iconLoader();
 	void addAutoMimetype( const QString &mimetype );
 	void removeAutoMimetype( const QString &mimetype );
 
 	QString m_label;
 	QString m_iconName;
 	QStringList m_autoMimetypes;
+	static KIconLoader* s_iconLoader;
 
 	friend class NotifierSettings;
 };

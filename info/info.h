@@ -31,6 +31,7 @@ private:
     QString   m_perl;
     QString   m_infoScript;
     QString   m_infoConf;
+    KIconLoader* m_iconLoader;
 };
 
 #endif // __info_h__

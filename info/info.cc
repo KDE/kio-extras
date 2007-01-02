@@ -24,7 +24,7 @@ InfoProtocol::InfoProtocol( const QByteArray &pool, const QByteArray &app )
     , m_node( "" )
 {
     kDebug( 7108 ) << "InfoProtocol::InfoProtocol" << endl;
-
+    m_iconLoader = new KIconLoader(KGlobal::instance()->instanceName(), KGlobal::instance()->dirs());
     m_perl = KGlobal::dirs()->findExe( "perl" );
     m_infoScript = KStandardDirs::locate( "data", "kio_info/kde-info2html" );
     m_infoConf = KStandardDirs::locate("data", "kio_info/kde-info2html.conf");
@@ -49,7 +49,7 @@ InfoProtocol::InfoProtocol( const QByteArray &pool, const QByteArray &app )
 InfoProtocol::~InfoProtocol()
 {
     kDebug( 7108 ) << "InfoProtocol::~InfoProtocol" << endl;
-
+    delete m_iconLoader;
     kDebug( 7108 ) << "InfoProtocol::~InfoProtocol - done" << endl;
 }
 
@@ -92,7 +92,7 @@ void InfoProtocol::get( const KUrl& url )
     // extract the path and node from url
     decodeURL( url );
 
-    QString path = KGlobal::iconLoader()->iconPath("up", K3Icon::Toolbar, true);
+    QString path = m_iconLoader->iconPath("up", K3Icon::Toolbar, true);
     int revindex = path.lastIndexOf('/');
     path = path.left(revindex);
 

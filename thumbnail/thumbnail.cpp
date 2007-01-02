@@ -198,7 +198,7 @@ void ThumbnailProtocol::get(const KUrl &url)
 #endif
 
     if (!iconSize)
-        iconSize = KGlobal::iconLoader()->currentSize(K3Icon::Desktop);
+        iconSize = kapp->iconLoader()->currentSize(K3Icon::Desktop);
     if (iconSize != m_iconSize) {
         m_iconDict.clear();
     }
@@ -344,7 +344,7 @@ void ThumbnailProtocol::get(const KUrl &url)
     }
 #endif
 
-    if ((flags & ThumbCreator::BlendIcon) && KGlobal::iconLoader()->alphaBlending(K3Icon::Desktop))
+    if ((flags & ThumbCreator::BlendIcon) && kapp->iconLoader()->alphaBlending(K3Icon::Desktop))
     {
         // blending the mimetype icon in
         QImage icon = getIcon();

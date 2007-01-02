@@ -23,6 +23,9 @@
 #include <kglobal.h>
 #include <kiconloader.h>
 #include <kicontheme.h>
+#include <kinstance.h>
+
+KIconLoader* NotifierAction::s_iconLoader;
 
 NotifierAction::NotifierAction()
 {
@@ -57,7 +60,7 @@ QPixmap NotifierAction::pixmap() const
 	}
 	else
 	{
-		QString path = KGlobal::iconLoader()->iconPath( m_iconName, -32 );
+		QString path = NotifierAction::iconLoader()->iconPath( m_iconName, -32 );
 		return QPixmap( path );
 	}
 }
@@ -94,4 +97,15 @@ bool NotifierAction::supportsMimetype(const QString &/*mimetype*/) const
 {
 	return true;
 }
+
+KIconLoader* NotifierAction::iconLoader()
+{
+	if (!s_iconLoader)
+	{
+		s_iconLoader = new KIconLoader(KGlobal::instance()->instanceName(), KGlobal::instance()->dirs());
+	}
+
+	return s_iconLoader;
+}
+
 
