@@ -255,7 +255,7 @@ namespace KioSMTP {
            interact->id == SASL_CB_PASS ) {
 
         if ( mAi->username.isEmpty() || mAi->password.isEmpty()) {
-          if (!mSMTP->openPassDlg(*mAi)) {
+          if (!mSMTP->openPasswordDialog(*mAi)) {
             mSMTP->error(KIO::ERR_ABORTED, i18n("No authentication details supplied."));
             return false;
           }
