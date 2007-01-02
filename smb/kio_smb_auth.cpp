@@ -139,14 +139,14 @@ bool SMBSlave::checkPassword(SMBUrl &url)
                         share );
 
     info.username = url.user();
-    kDebug(KIO_SMB) << "call openPassDlg for " << info.url << endl;
+    kDebug(KIO_SMB) << "call openPasswordDialog for " << info.url << endl;
 
-    if ( openPassDlg(info) ) {
-        kDebug(KIO_SMB) << "openPassDlg returned " << info.username << endl;
+    if ( openPasswordDialog(info) ) {
+        kDebug(KIO_SMB) << "openPasswordDialog returned " << info.username << endl;
         url.setUser(info.username);
         return true;
     }
-    kDebug(KIO_SMB) << "no value from openPassDlg\n";
+    kDebug(KIO_SMB) << "no value from openPasswordDialog\n";
     return false;
 }
 
