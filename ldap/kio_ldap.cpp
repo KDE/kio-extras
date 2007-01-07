@@ -727,14 +727,14 @@ void LDAPProtocol::listDir( const KUrl &_url )
     total++;
     uds.clear();
 
-    LDAPEntry2UDSEntry( mOp.object().dn(), uds, usrc );
+    LDAPEntry2UDSEntry( mOp.object().dn().toString(), uds, usrc );
     listEntry( uds, false );
 //      processedSize( total );
     kDebug(7125) << " total: " << total << " " << usrc.prettyUrl() << endl;
 
     // publish the sub-directories (if dirmode==sub)
     if ( isSub ) {
-      QString dn = mOp.object().dn();
+      QString dn = mOp.object().dn().toString();
       usrc2.setDn( dn );
       usrc2.setScope( LdapUrl::One );
       usrc2.setAttributes( saveatt );
