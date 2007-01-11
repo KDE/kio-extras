@@ -144,7 +144,7 @@ void LDAPProtocol::LDAPErr( int err )
 
     default:
       error( ERR_SLAVE_DEFINED,
-        i18n( "LDAP server returned the error: %1 %2\nThe LDAP URL was: %3" ,
+        i18n( "LDAP server returned the error: %1 %2\nThe LDAP URL was: %3" , 
          LdapConnection::errorString(err), extramsg, mServer.url().prettyUrl() ) );
   }
 }
@@ -216,7 +216,7 @@ void LDAPProtocol::changeCheck( LdapUrl &url )
   server.setUrl( url );
 
   if ( mConnected ) {
-    if ( server.host() != mServer.host() ||
+    if ( server.host() != mServer.host() || 
        server.port() != mServer.port() ||
        server.baseDn() != mServer.baseDn() ||
        server.user() != mServer.user() ||
@@ -243,9 +243,9 @@ void LDAPProtocol::changeCheck( LdapUrl &url )
 void LDAPProtocol::setHost( const QString& host, int port,
                             const QString& user, const QString& password )
 {
-  if( mServer.host() != host ||
-      mServer.port() != port ||
-      mServer.user() != user ||
+  if( mServer.host() != host || 
+      mServer.port() != port || 
+      mServer.user() != user || 
       mServer.password() != password )
     closeConnection();
 
@@ -337,7 +337,7 @@ void LDAPProtocol::openConnection()
         firstauth = false;
         mConn.setServer( mServer );
       }
-
+                          
     } else {
       LDAPErr( retval );
       closeConnection();
@@ -463,12 +463,12 @@ void LDAPProtocol::stat( const KUrl &_url )
   // look how many entries match
   saveatt = usrc.attributes();
   att.append( "dn" );
-
+  
   if ( (id = mOp.search( usrc.dn(), usrc.scope(), usrc.filter(), att )) == -1 ) {
     LDAPErr();
     return;
   }
-
+  
   kDebug(7125) << "stat() getting result" << endl;
   do {
     ret = mOp.result( id );
@@ -597,7 +597,7 @@ void LDAPProtocol::put( const KUrl &_url, int, bool overwrite, bool )
                 " newRdn: " <<  ldif.newRdn() <<
                 " newSuperior: " << ldif.newSuperior() <<
                 " deloldrdn: " << ldif.delOldRdn() << endl;
-              ldaperr = mOp.rename_s( ldif.dn(), ldif.newRdn(),
+              ldaperr = mOp.rename_s( ldif.dn(), ldif.newRdn(), 
                 ldif.newSuperior(), ldif.delOldRdn() );
               break;
             case Ldif::Entry_Mod:
@@ -727,14 +727,14 @@ void LDAPProtocol::listDir( const KUrl &_url )
     total++;
     uds.clear();
 
-    LDAPEntry2UDSEntry( mOp.object().dn(), uds, usrc );
+    LDAPEntry2UDSEntry( mOp.object().dn().toString(), uds, usrc );
     listEntry( uds, false );
 //      processedSize( total );
     kDebug(7125) << " total: " << total << " " << usrc.prettyUrl() << endl;
 
     // publish the sub-directories (if dirmode==sub)
     if ( isSub ) {
-      QString dn = mOp.object().dn();
+      QString dn = mOp.object().dn().toString();
       usrc2.setDn( dn );
       usrc2.setScope( LdapUrl::One );
       usrc2.setAttributes( saveatt );
