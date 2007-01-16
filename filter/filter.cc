@@ -27,7 +27,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 #include <kinstance.h>
 #include <kdebug.h>
-#include <kmimemagic.h>
+#include <kmimetype.h>
 #include <kfilterbase.h>
 
 #include "filter.h"
@@ -116,9 +116,9 @@ void FilterProtocol::get( const KUrl & )
         }
         if (bNeedMimetype)
         {
-            KMimeMagicResult * result = KMimeMagic::self()->findBufferFileType( outputBuffer, subURL.fileName() );
-            kDebug(7110) << "Emitting mimetype " << result->mimeType() << endl;
-            mimeType( result->mimeType() );
+            KMimeType::Ptr mime = KMimeType::findByNameAndContent( subURL.fileName(), outputBuffer );
+            kDebug(7110) << "Emitting mimetype " << mime->name() << endl;
+            mimeType( mime->name() );
             bNeedMimetype = false;
         }
         data( outputBuffer ); // Send data

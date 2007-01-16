@@ -72,7 +72,6 @@
 #include <time.h>
 #include <sys/stat.h>
 #include <kmimetype.h>
-#include <kmimemagic.h>
 #include <fcntl.h>
 #include <sys/socket.h>
 #include <errno.h>
@@ -1205,7 +1204,7 @@ int fishProtocol::received(const char *buffer, KIO::fileoffset_t buflen)
                     myDebug( << "wait for more" << endl);
                     break;
                 }
-                sendmimeType(KMimeMagic::self()->findBufferFileType(mimeBuffer,url.path())->mimeType());
+                sendmimeType(KMimeType::findByNameAndContent(url.path(), mimeBuffer)->name());
                 mimeTypeSent = true;
                 if (fishCommand != FISH_READ) {
                     totalSize(dataRead + rawRead);

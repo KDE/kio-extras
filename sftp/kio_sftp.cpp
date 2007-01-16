@@ -62,7 +62,6 @@ So we can't connect.
 #include <kurl.h>
 #include <kio/ioslave_defaults.h>
 #include <kmimetype.h>
-#include <kmimemagic.h>
 #include <kde_file.h>
 #include <kremoteencoding.h>
 
@@ -383,11 +382,10 @@ sftpProtocol::Status sftpProtocol::sftpGet( const KUrl& src, KIO::filesize_t off
 
                 if( mimeBuffer.size() > 1024 ||  offset == fileSize ) {
                     // determine mimetype
-                    KMimeMagicResult* result =
-                        KMimeMagic::self()->findBufferFileType(mimeBuffer, src.fileName());
+                    KMimeType::Ptr mime = KMimeType::findByNameAndContent(src.fileName(), mimeBuffer);
                     kDebug(KIO_SFTP_DB) << "sftpGet(): mimetype is " <<
-                                      result->mimeType() << endl;
-                    mimeType(result->mimeType());
+                                      mime->name() << endl;
+                    mimeType(mime->name());
 
                     // Always send the total size after emitting mime-type...
                     totalSize(fileSize);

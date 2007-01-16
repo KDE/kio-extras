@@ -16,7 +16,7 @@
 #include <ktar.h>
 #include <kzip.h>
 #include <kar.h>
-#include <kmimemagic.h>
+#include <kmimetype.h>
 #include <klocale.h>
 #include <kde_file.h>
 #include <kio/global.h>
@@ -457,9 +457,9 @@ void ArchiveProtocol::get( const KUrl & url )
         {
             // We use the magic one the first data read
             // (As magic detection is about fixed positions, we can be sure that it is enough data.)
-            KMimeMagicResult * result = KMimeMagic::self()->findBufferFileType( buffer, path );
-            kDebug(7109) << "Emitting mimetype " << result->mimeType() << endl;
-            mimeType( result->mimeType() );
+            KMimeType::Ptr mime = KMimeType::findByNameAndContent( path, buffer );
+            kDebug(7109) << "Emitting mimetype " << mime->name() << endl;
+            mimeType( mime->name() );
             firstRead = false;
         }
         data( buffer );

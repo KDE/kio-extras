@@ -109,7 +109,7 @@ void SMBSlave::get( const KUrl& kurl )
                 filedata.setRawData(buf,bytesread);
 		if (isFirstPacket)
 		{
-		    KMimeType::Ptr p_mimeType = KMimeType::findByContent(filedata);
+		    KMimeType::Ptr p_mimeType = KMimeType::findByNameAndContent(url.fileName(), filedata);
 		    mimeType(p_mimeType->name());
 		    isFirstPacket = false;
 		}
@@ -224,7 +224,7 @@ void SMBSlave::open( const KUrl& kurl, int access )
                 filedata.setRawData(buffer.data(),bytesread);
 		if (isFirstPacket)
 		{
-		    KMimeType::Ptr p_mimeType = KMimeType::findByContent(filedata);
+		    KMimeType::Ptr p_mimeType = KMimeType::findByNameAndContent(url.fileName(), filedata);
 		    mimeType(p_mimeType->name());
 		    isFirstPacket = false;
 		}
