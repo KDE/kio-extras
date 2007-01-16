@@ -2,6 +2,7 @@
 Encoding=UTF-8
 Type=Service
 Name=LEO - Translate Between German and French
+Name[el]=LEO - Μετάφραση μεταξύ Γερμανικών και Γαλλικών
 Name[fr]=LEO - Traduction Allemand - Français
 Name[x-test]=xxLEO - Translate Between German and Frenchxx
 ServiceTypes=SearchProvider

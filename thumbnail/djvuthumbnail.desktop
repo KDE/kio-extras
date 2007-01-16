@@ -2,6 +2,7 @@
 Encoding=UTF-8
 Type=Service
 Name=DjVu Files
+Name[el]=Αρχεία DjVu
 Name[fr]=Fichiers DjVu
 Name[x-test]=xxDjVu Filesxx
 ServiceTypes=ThumbCreator

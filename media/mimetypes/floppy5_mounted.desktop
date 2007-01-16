@@ -4,6 +4,7 @@ Icon=5floppy_mount
 Type=MimeType
 MimeType=media/floppy5_mounted
 Comment=Mounted 5¼" Floppy
+Comment[el]=Προσαρτημένη δισκέτα 5¼"
 Comment[fr]=Disquette 5¼" montée
 Comment[x-test]=xxMounted 5¼" Floppyxx
 Patterns=

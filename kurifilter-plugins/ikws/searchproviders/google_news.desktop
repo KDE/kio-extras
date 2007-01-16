@@ -2,6 +2,7 @@
 Encoding=UTF-8
 Type=Service
 Name=Google News
+Name[el]=Google νέα
 Name[fr]=Google Informations
 Name[x-test]=xxGoogle Newsxx
 ServiceTypes=SearchProvider

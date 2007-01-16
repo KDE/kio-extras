@@ -4,6 +4,7 @@ Icon=nfs_mount
 Type=MimeType
 MimeType=media/nfs_mounted
 Comment=Mounted NFS Share
+Comment[el]=Προσαρτημένος πόρος NFS
 Comment[fr]=Ressource NFS montée
 Comment[x-test]=xxMounted NFS Sharexx
 Patterns=

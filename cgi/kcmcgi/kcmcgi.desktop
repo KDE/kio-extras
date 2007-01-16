@@ -8,12 +8,15 @@ Exec=kcmshell kcmcgi
 X-KDE-Library=kcm_cgi
 
 Name=CGI Scripts
+Name[el]=Σενάρια CGI
 Name[fr]=Scripts CGI
 Name[x-test]=xxCGI Scriptsxx
 Comment=Configure the CGI KIO slave
+Comment[el]=Ρυθμίστε το CGI KIO slave
 Comment[fr]=Configuration du CGI KIO slave
 Comment[x-test]=xxConfigure the CGI KIO slavexx
 
 Keywords=CGI,KIO,Slave,Paths
+Keywords[el]=CGI,KIO,Slave,Διαδρομές
 Keywords[fr]=CGI,KIO,Slave,Paths,Chemins
 Keywords[x-test]=xxCGI,KIO,Slave,Pathsxx

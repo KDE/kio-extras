@@ -2,6 +2,7 @@
 Encoding=UTF-8
 Type=Service
 Name=Google (I'm Feeling Lucky)
+Name[el]=Google (Αισθάνομαι τυχερός)
 Name[fr]=Google (J'ai de la chance)
 Name[x-test]=xxGoogle (I'm Feeling Lucky)xx
 ServiceTypes=SearchProvider

@@ -2,6 +2,7 @@
 Encoding=UTF-8
 Type=Service
 Name=Google Movies
+Name[el]=Google ταινίες
 Name[fr]=Google Vidéos
 Name[x-test]=xxGoogle Moviesxx
 ServiceTypes=SearchProvider

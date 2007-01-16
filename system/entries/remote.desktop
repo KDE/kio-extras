@@ -4,5 +4,6 @@ Type=Link
 URL=remote:/
 Icon=network
 Name=Remote Places
+Name[el]=Απομακρυσμένες τοποθεσίες
 Name[fr]=Emplacements distants
 Name[x-test]=xxRemote Placesxx

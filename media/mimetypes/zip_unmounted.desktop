@@ -4,6 +4,7 @@ Icon=zip_unmount
 Type=MimeType
 MimeType=media/zip_unmounted
 Comment=Unmounted Zip Disk
+Comment[el]=Αποπροσαρτημένος δίσκος Zip
 Comment[fr]=Disque Zip non monté
 Comment[x-test]=xxUnmounted Zip Diskxx
 Patterns=

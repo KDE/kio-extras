@@ -4,6 +4,7 @@ Icon=5floppy_unmount
 Type=MimeType
 MimeType=media/floppy5_unmounted
 Comment=Unmounted 5¼" Floppy
+Comment[el]=Αποπροσαρτημένη δισκέτα 5¼"
 Comment[fr]=Disquette 5¼" non montée
 Comment[x-test]=xxUnmounted 5¼" Floppyxx
 Patterns=

@@ -2,6 +2,7 @@
 Encoding=UTF-8
 Type=Service
 Name=Text Files
+Name[el]=Αρχεία κειμένου
 Name[fr]=Fichiers de texte
 Name[x-test]=xxText Filesxx
 ServiceTypes=ThumbCreator

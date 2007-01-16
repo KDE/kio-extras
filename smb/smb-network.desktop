@@ -2,6 +2,7 @@
 Encoding=UTF-8
 Icon=network
 Name=Samba Shares
+Name[el]=Κοινόχρηστοι πόροι Samba
 Name[fr]=Partages Samba
 Name[x-test]=xxSamba Sharesxx
 Open=false

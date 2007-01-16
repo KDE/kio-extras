@@ -2,6 +2,7 @@
 Encoding=UTF-8
 Type=Service
 Name=Microsoft Developer Network Search
+Name[el]=Microsoft - δικτυακή αναζήτηση προγραμματιστή
 Name[x-test]=xxMicrosoft Developer Network Searchxx
 ServiceTypes=SearchProvider
 Keys=msdn

@@ -3,6 +3,7 @@ Encoding=UTF-8
 Type=MimeType
 MimeType=media/dvdvideo
 Comment=DVD Video Disk
+Comment[el]=Δίσκος DVD (βίντεο)
 Comment[fr]=DVD vidéo
 Comment[x-test]=xxDVD Video Diskxx
 Icon=dvd_unmount

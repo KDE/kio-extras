@@ -3,6 +3,7 @@ Charset=
 Hidden=false
 Keys=en2it
 Name=WordReference.com Translation: English to Italian
+Name[el]=WordReference.com Μετάφραση: Αγγλικά σε Ιταλικά
 Name[fr]=Traduction sur WordReference.com : Anglais en Italien
 Name[x-test]=xxWordReference.com Translation: English to Italianxx
 Query=http://www.wordreference.com/it/translation.asp?enit=\\{@}

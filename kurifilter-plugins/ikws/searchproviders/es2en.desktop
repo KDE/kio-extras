@@ -3,6 +3,7 @@ Charset=
 Hidden=false
 Keys=es2en
 Name=WordReference.com Translation: Spanish to English
+Name[el]=WordReference.com Μετάφραση: Ισπανικά σε Αγγλικά
 Name[fr]=Traduction sur WordReference.com : Espagnol en Anglais
 Name[x-test]=xxWordReference.com Translation: Spanish to Englishxx
 Query=http://www.wordreference.com/es/en/translation.asp?spen=\\{@}

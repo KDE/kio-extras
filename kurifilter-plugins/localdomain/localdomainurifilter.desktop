@@ -2,6 +2,7 @@
 Encoding=UTF-8
 Type=Service
 Name=LocalDomainFilter
+Name[el]=Φίλτρο τοπικού τομέα
 Name[fr]=Filtre de domaine local
 Name[x-test]=xxLocalDomainFilterxx
 X-KDE-Library=liblocaldomainurifilter

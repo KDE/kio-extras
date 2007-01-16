@@ -3,6 +3,7 @@ Encoding=UTF-8
 Type=MimeType
 MimeType=media/camera_unmounted
 Comment=Unmounted Camera
+Comment[el]=Μη προσαρτημένη κάμερα
 Comment[fr]=Appareil photo non monté
 Comment[x-test]=xxUnmounted Cameraxx
 Icon=camera_unmount

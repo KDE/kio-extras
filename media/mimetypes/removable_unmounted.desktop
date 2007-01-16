@@ -4,6 +4,7 @@ Icon=usbpendrive_unmount
 Type=MimeType
 MimeType=media/removable_unmounted
 Comment=Unmounted Removable Medium
+Comment[el]=Αποπροσαρτημένο αφαιρούμενο μέσο
 Comment[fr]=Média amovible non monté
 Comment[x-test]=xxUnmounted Removable Mediumxx
 Patterns=

@@ -12,6 +12,7 @@ linking=true
 moving=true
 Icon=remote
 Description=A kioslave for the FISH protocol
+Description[el]=Ένας kioslave για το πρωτόκολλο FISH
 Description[fr]=Un kioslave pour le protocole FISH
 Description[x-test]=xxA kioslave for the FISH protocolxx
 DocPath=kioslave/fish.html

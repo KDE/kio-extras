@@ -3,6 +3,7 @@ Charset=
 Hidden=false
 Keys=en2de
 Name=dict.cc Translation: English to German
+Name[el]=dict.cc Μετάφραση: Αγγλικά σε Γερμανικά
 Name[fr]=Traduction dict.cc : Anglais en Allemand
 Name[x-test]=xxdict.cc Translation: English to Germanxx
 Query=http://www.dict.cc/?s=\\{@}

@@ -3,6 +3,7 @@ Charset=
 Hidden=false
 Keys=doi
 Name=Digital Object Identifier
+Name[el]=Αναγνώριση Ψηφιακών Αντικειμένων
 Name[x-test]=xxDigital Object Identifierxx
 Query=http://dx.doi.org/\\{@}
 Query[x-test]=xxhttp://dx.doi.org/\\{@}xx

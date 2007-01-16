@@ -2,6 +2,7 @@
 Encoding=UTF-8
 Type=Service
 Name=Whatis Query
+Name[el]=Ερώτηση Whatis
 Name[fr]=Requête whatis
 Name[x-test]=xxWhatis Queryxx
 ServiceTypes=SearchProvider

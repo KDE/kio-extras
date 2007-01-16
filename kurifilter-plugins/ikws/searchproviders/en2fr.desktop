@@ -3,6 +3,7 @@ Charset=
 Hidden=false
 Keys=en2fr
 Name=WordReference.com Translation: English to French
+Name[el]=WordReference.com Μετάφραση: Αγγλικά σε Γαλλικά
 Name[fr]=Traduction sur WordReference.com : Anglais en Français
 Name[x-test]=xxWordReference.com Translation: English to Frenchxx
 Query=http://www.wordreference.com/fr/Translation.asp?enfr=\\{@}

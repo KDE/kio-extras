@@ -3,6 +3,7 @@ Encoding=UTF-8
 Type=MimeType
 MimeType=media/audiocd
 Comment=Audio CD
+Comment[el]=CD ήχου
 Comment[fr]=CD audio
 Comment[x-test]=xxAudio CDxx
 Icon=cdaudio_unmount

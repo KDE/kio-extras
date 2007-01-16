@@ -2,6 +2,7 @@
 Encoding=UTF-8
 Keys=bug,bugno,bugnr
 Name=KDE Bug Database Bug Number Search
+Name[el]=Αναζήτηση αριθμού σφάλματος στη βάση δεδομένων σφαλμάτων του KDE
 Name[fr]=Recherche de bogue de KDE par numéro
 Name[x-test]=xxKDE Bug Database Bug Number Searchxx
 Query=http://bugs.kde.org/show_bug.cgi?id=\\{@}

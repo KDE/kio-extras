@@ -2,9 +2,11 @@
 Encoding=UTF-8
 Type=Service
 Name=KDED Media Manager
+Name[el]=Διαχειριστής μέσων KDED
 Name[fr]=Gestionnaire de médias KDED
 Name[x-test]=xxKDED Media Managerxx
 Comment=Keep track of media activities and allow to (un)mount (media:/)
+Comment[el]=Έλεγχος ενεργειών των μέσων και δυνατότητα (από)προσάρτησης (media:/)
 Comment[fr]=Gardez une trace des montages et permettre le (dé)montage (media:/)
 Comment[x-test]=xxKeep track of media activities and allow to (un)mount (media:/)xx
 ServiceTypes=KDEDModule

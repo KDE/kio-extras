@@ -2,6 +2,7 @@
 Encoding=UTF-8
 Type=Service
 Name=KDED Home Base URL Notifier
+Name[el]=KDED ειδοποιητής URL αρχικής βάσης
 Name[fr]=Notification de l'URL de base KDED
 Name[x-test]=xxKDED Home Base URL Notifierxx
 ServiceTypes=KDEDModule

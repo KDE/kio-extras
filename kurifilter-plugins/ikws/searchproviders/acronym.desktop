@@ -2,6 +2,7 @@
 Encoding=UTF-8
 Type=Service
 Name=Acronym Database
+Name[el]=Βάση δεδομένων αρκτικόλεξου
 Name[fr]=Base de données Acronym
 Name[x-test]=xxAcronym Databasexx
 ServiceTypes=SearchProvider

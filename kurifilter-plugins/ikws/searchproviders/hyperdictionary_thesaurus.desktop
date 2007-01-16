@@ -2,6 +2,7 @@
 Encoding=UTF-8
 Type=Service
 Name=HyperDictionary.com Thesaurus
+Name[el]=Θησαυρός λέξεων HyperDictionary.com
 Name[fr]=Thésaurus HyperDictionary.com
 Name[x-test]=xxHyperDictionary.com Thesaurusxx
 ServiceTypes=SearchProvider

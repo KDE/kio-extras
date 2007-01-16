@@ -2,6 +2,7 @@
 Encoding=UTF-8
 Type=Service
 Name=InternetKeywordsFilter
+Name[el]=Φίλτρο λέξεων κλειδιών διαδικτύου
 Name[fr]=Mots-clefs internet
 Name[x-test]=xxInternetKeywordsFilterxx
 X-KDE-Library=libkuriikwsfilter

@@ -3,6 +3,7 @@ Encoding=UTF-8
 Type=MimeType
 MimeType=media/vcd
 Comment=Video CD
+Comment[el]=Βίντεο CD
 Comment[fr]=CD vidéo
 Comment[x-test]=xxVideo CDxx
 Icon=cdrom_unmount

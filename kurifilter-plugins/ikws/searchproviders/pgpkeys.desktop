@@ -1,6 +1,7 @@
 [Desktop Entry]
 Keys=pgp,pgpkeys
 Name=OpenPGP Key Search
+Name[el]=Αναζήτηση κλειδιού OpenPGP
 Name[fr]=Clé de recherche OpenPGP
 Name[x-test]=xxOpenPGP Key Searchxx
 Query=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex

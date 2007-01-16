@@ -2,6 +2,7 @@
 Encoding=UTF-8
 Type=Service
 Name=Mamma - Mother of all Search Engines
+Name[el]=Mamma - Η μητέρα όλων των μηχανών αναζήτησης
 Name[fr]=Mamma - La mère de tous les moteurs de recherche
 Name[x-test]=xxMamma - Mother of all Search Enginesxx
 ServiceTypes=SearchProvider

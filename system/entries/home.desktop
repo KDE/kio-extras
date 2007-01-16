@@ -4,5 +4,6 @@ Type=Link
 Path=$HOME
 Icon=folder_home
 Name=Home Folder
+Name[el]=Προσωπικός φάκελος
 Name[fr]=Dossier personnel
 Name[x-test]=xxHome Folderxx

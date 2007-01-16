@@ -2,6 +2,7 @@
 Encoding=UTF-8
 Type=Service
 Name=Google Groups
+Name[el]=Ομάδες του Google
 Name[fr]=Groupes Google
 Name[x-test]=xxGoogle Groupsxx
 ServiceTypes=SearchProvider

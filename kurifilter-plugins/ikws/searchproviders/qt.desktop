@@ -3,6 +3,7 @@ Charset=
 Hidden=false
 Keys=qt
 Name=Latest Qt Online Documentation
+Name[el]=Τελευταία τεκμηρίωση του Qt στο διαδίκτυο
 Name[fr]=La dernière documentation en ligne de Qt
 Name[x-test]=xxLatest Qt Online Documentationxx
 Query=http://doc.trolltech.com/latest/\\{@}.html

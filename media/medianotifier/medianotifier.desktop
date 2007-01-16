@@ -9,5 +9,6 @@ X-KDE-Kded-load-on-demand=false
 Name=Media Notifier Deamon
 Name[x-test]=xxMedia Notifier Deamonxx
 Comment=A media plugged notifier
+Comment[el]=Ένας ειδοποιητής εισαγωγής μέσου
 Comment[fr]=Notification de connexion de média
 Comment[x-test]=xxA media plugged notifierxx

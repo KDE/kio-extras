@@ -4,6 +4,7 @@ Icon=nfs_unmount
 Type=MimeType
 MimeType=media/nfs_unmounted
 Comment=Unmounted NFS Share
+Comment[el]=Αποπροσαρτημένος πόρος NFS
 Comment[fr]=Ressource NFS non montée
 Comment[x-test]=xxUnmounted NFS Sharexx
 Patterns=

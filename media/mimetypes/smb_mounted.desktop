@@ -4,6 +4,7 @@ Icon=nfs_mount
 Type=MimeType
 MimeType=media/smb_mounted
 Comment=Mounted Samba (Microsoft Network) Share
+Comment[el]=Προσαρτημένος κοινόχρηστος πόρος Samba (Δίκτυο Microsoft)
 Comment[fr]=Partage Samba (réseau Microsoft) monté
 Comment[x-test]=xxMounted Samba (Microsoft Network) Sharexx
 Patterns=

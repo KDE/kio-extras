@@ -2,6 +2,7 @@
 Encoding=UTF-8
 Type=Service
 Name=Medium Information
+Name[el]=Πληροφορίες μέσου
 Name[fr]=Informations sur le média
 Name[x-test]=xxMedium Informationxx
 ServiceTypes=KFilePlugin

@@ -2,6 +2,7 @@
 Encoding=UTF-8
 Type=Service
 Name=KDED Remote Base URL Notifier
+Name[el]=Ειδοποιητής KDED για απομακρυσμένη URL
 Name[fr]=Notificateur d'URL distante KDED
 Name[x-test]=xxKDED Remote Base URL Notifierxx
 ServiceTypes=KDEDModule
