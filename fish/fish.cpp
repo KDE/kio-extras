@@ -1284,12 +1284,20 @@ void fishProtocol::put(const KUrl& u, int permissions, bool overwrite, bool /*re
         sendCommand(FISH_PWD);
     } else {
         putPerm = permissions;
+
         checkOverwrite = overwrite;
         checkExist = false;
         putPos = 0;
         listReason = CHECK;
         sendCommand(FISH_LIST,E(url.path()));
         sendCommand(FISH_STOR,"0",E(url.path()));
+
+        const QString mtimeStr = metaData( "modified" );
+        if ( !mtimeStr.isEmpty() ) {
+            QDateTime dt = QDateTime::fromString( mtimeStr, Qt::ISODate );
+            // TODO set modification time on url.path() somehow
+            // see FileProtocol::put if using utime() to do that.
+        }
     }
     run();
 }
