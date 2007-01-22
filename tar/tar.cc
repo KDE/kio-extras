@@ -403,7 +403,7 @@ void ArchiveProtocol::get( const KUrl & url )
      * - errors are skipped, resulting in an empty file
      */
 
-    QIODevice* io = archiveFileEntry->device();
+    QIODevice* io = archiveFileEntry->createDevice();
 
     if (!io)
     {
@@ -416,6 +416,7 @@ void ArchiveProtocol::get( const KUrl & url )
     if ( !io->open( QIODevice::ReadOnly ) )
     {
         error( KIO::ERR_CANNOT_OPEN_FOR_READING, url.prettyUrl() );
+        delete io;
         return;
     }
 
@@ -430,6 +431,7 @@ void ArchiveProtocol::get( const KUrl & url )
     {
         // Something went wrong
         error( KIO::ERR_OUT_OF_MEMORY, url.prettyUrl() );
+        delete io;
         return;
     }
 
@@ -451,6 +453,7 @@ void ArchiveProtocol::get( const KUrl & url )
         {
             kWarning(7109) << "Read " << read << " bytes but expected " << bufferSize << endl;
             error( KIO::ERR_COULD_NOT_READ, url.prettyUrl() );
+            delete io;
             return;
         }
         if ( firstRead )
