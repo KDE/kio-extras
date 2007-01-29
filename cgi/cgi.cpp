@@ -24,7 +24,7 @@
 #include <kdebug.h>
 #include <kprocess.h>
 #include <kstandarddirs.h>
-#include <kinstance.h>
+#include <kcomponentdata.h>
 #include <klocale.h>
 #include <kconfig.h>
 
@@ -199,7 +199,7 @@ extern "C" { int KDE_EXPORT kdemain( int argc, char **argv ); }
 
 int kdemain( int argc, char **argv )
 {
-  KInstance instance( "kio_cgi" );
+  KComponentData componentData( "kio_cgi" );
 
   kDebug(7124) << "kio_cgi starting " << getpid() << endl;
 

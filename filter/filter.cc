@@ -25,7 +25,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #include <stdio.h>
 #include <stdlib.h>
 
-#include <kinstance.h>
+#include <kcomponentdata.h>
 #include <kdebug.h>
 #include <kmimetype.h>
 #include <kfilterbase.h>
@@ -35,7 +35,7 @@ extern "C" { KDE_EXPORT int kdemain(int argc, char **argv); }
 
 int kdemain( int argc, char ** argv)
 {
-  KInstance instance( "kio_filter" );
+  KComponentData componentData( "kio_filter" );
 
   kDebug(7110) << "Starting " << getpid() << endl;
 

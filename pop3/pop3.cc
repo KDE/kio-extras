@@ -52,7 +52,7 @@ extern "C" {
 #include <QRegExp>
 
 #include <kdebug.h>
-#include <kinstance.h>
+#include <kcomponentdata.h>
 #include <klocale.h>
 #include <kcodecs.h>
 #include <kprotocolmanager.h>
@@ -103,7 +103,7 @@ int kdemain(int argc, char **argv)
   }
 #endif
 
-  KInstance instance("kio_pop3");
+  KComponentData componentData("kio_pop3");
   POP3Protocol *slave;
 
   // Are we looking to use SSL?

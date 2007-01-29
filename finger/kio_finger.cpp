@@ -28,7 +28,7 @@
 #include <QRegExp>
 
 #include <kdebug.h>
-#include <kinstance.h>
+#include <kcomponentdata.h>
 #include <kglobal.h>
 #include <kstandarddirs.h>
 #include <klocale.h>
@@ -45,7 +45,7 @@ extern "C"
 {
   KDE_EXPORT int kdemain( int argc, char **argv )
   {
-    KInstance instance( "kio_finger" );
+    KComponentData componentData( "kio_finger" );
 
     //kDebug() << "*** Starting kio_finger " << getpid() << endl;
 

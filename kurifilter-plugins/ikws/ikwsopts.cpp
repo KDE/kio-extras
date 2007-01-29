@@ -74,8 +74,8 @@ private:
     SearchProvider *m_provider;
 };
 
-FilterOptions::FilterOptions(KInstance *instance, QWidget *parent)
-              :KCModule(instance, parent)
+FilterOptions::FilterOptions(const KComponentData &componentData, QWidget *parent)
+              :KCModule(componentData, parent)
 {
     QVBoxLayout *mainLayout = new QVBoxLayout( this );
     mainLayout->setMargin( KDialog::marginHint() );
@@ -208,7 +208,7 @@ void FilterOptions::save()
   // kDebug () << "Engine: " << m_defaultEngineMap[engine] << endl;
 
   int changedProviderCount = 0;
-  QString path = kapp->dirs()->saveLocation("services", "searchproviders/");
+  QString path = KGlobal::mainComponent().dirs()->saveLocation("services", "searchproviders/");
 
   m_favoriteEngines.clear();
 
@@ -276,7 +276,7 @@ void FilterOptions::save()
   for (QStringList::ConstIterator it = m_deletedProviders.begin();
       it != m_deletedProviders.end(); ++it)
   {
-      QStringList matches = kapp->dirs()->findAllResources("services", "searchproviders/" + *it + ".desktop");
+      QStringList matches = KGlobal::mainComponent().dirs()->findAllResources("services", "searchproviders/" + *it + ".desktop");
 
       // Shouldn't happen
       if (!matches.count())

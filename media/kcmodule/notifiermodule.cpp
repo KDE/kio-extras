@@ -35,8 +35,8 @@
 #include "actionlistboxitem.h"
 #include "mimetypelistboxitem.h"
 
-NotifierModule::NotifierModule(KInstance *inst, QWidget *parent)
-	: KCModule(inst, parent)
+NotifierModule::NotifierModule(const KComponentData &componentData, QWidget *parent)
+	: KCModule(componentData, parent)
 {
 	QBoxLayout *layout = new QVBoxLayout( this );
 	layout->setSpacing( KDialog::spacingHint() );

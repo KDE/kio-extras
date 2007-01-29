@@ -26,7 +26,7 @@ class ManagerModule : public KCModule
 	Q_OBJECT
 
 public:
-	ManagerModule( KInstance *inst, QWidget* parent);
+	ManagerModule(const KComponentData &inst, QWidget* parent);
 
 	void save();
 };

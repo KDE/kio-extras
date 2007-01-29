@@ -55,7 +55,7 @@ So we can't connect.
 #include <kuser.h>
 #include <kdebug.h>
 #include <kmessagebox.h>
-#include <kinstance.h>
+#include <kcomponentdata.h>
 #include <kglobal.h>
 #include <kstandarddirs.h>
 #include <klocale.h>
@@ -77,7 +77,7 @@ extern "C"
 {
   int KDE_EXPORT kdemain( int argc, char **argv )
   {
-    KInstance instance( "kio_sftp" );
+    KComponentData componentData( "kio_sftp" );
 
     kDebug(KIO_SFTP_DB) << "*** Starting kio_sftp " << endl;
 

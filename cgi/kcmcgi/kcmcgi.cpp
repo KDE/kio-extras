@@ -19,7 +19,7 @@
 #include <kconfig.h>
 #include <klocale.h>
 #include <kglobal.h>
-#include <kinstance.h>
+#include <kcomponentdata.h>
 #include <kaboutdata.h>
 #include <kfiledialog.h>
 #include <khbox.h>
@@ -39,7 +39,7 @@ typedef KGenericFactory<KCMCgi> KCMCgiFactory;
 K_EXPORT_COMPONENT_FACTORY(cgi, KCMCgiFactory("kcmcgi"))
 
 KCMCgi::KCMCgi(QWidget *parent, const QStringList &)
-  : KCModule(KCMCgiFactory::instance(), parent)
+  : KCModule(KCMCgiFactory::componentData(), parent)
 {
   setButtons(Default|Apply);
 

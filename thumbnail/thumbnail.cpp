@@ -54,8 +54,9 @@
 #include <config.h> // For HAVE_NICE
 #include "thumbnail.h"
 #include <kio/thumbcreator.h>
+#include <kconfiggroup.h>
 
-// Use correctly KInstance instead of KApplication (but then no QPixmap)
+// Use correctly KComponentData instead of KApplication (but then no QPixmap)
 #undef USE_KINSTANCE
 // Fix thumbnail: protocol
 #define THUMBNAIL_HACK (1)
@@ -97,7 +98,7 @@ int kdemain(int argc, char **argv)
 #endif
 
 #ifdef USE_KINSTANCE
-    KInstance instance("kio_thumbnail");
+    KComponentData componentData("kio_thumbnail");
 #else
     // creating KApplication in a slave in not a very good idea,
     // as dispatchLoop() doesn't allow it to process its messages,

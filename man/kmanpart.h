@@ -30,7 +30,7 @@
 #include <kio/job.h>
 #include <kio/jobclasses.h>
 
-class KInstance;
+class KComponentData;
 class KAboutData;
 
 /**
@@ -48,10 +48,10 @@ class KManPartFactory: public KParts::Factory
                                 QObject* parent, const char * classname,
                                 const QStringList &args);
 
-      static KInstance * instance();
+      static const KComponentData &componentData();
 
    private:
-      static KInstance * s_instance;
+      static KComponentData *s_instance;
       static KAboutData * s_about;
 
 };
@@ -70,7 +70,6 @@ class KManPart : public KHTMLPart
       void jobDone( KJob *);
    protected:
       virtual bool openFile();
-      KInstance *m_instance;
       KParts::BrowserExtension * m_extension;
       KIO::TransferJob *m_job;
 };

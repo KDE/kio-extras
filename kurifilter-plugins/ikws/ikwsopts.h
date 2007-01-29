@@ -44,7 +44,7 @@ class FilterOptions : public KCModule
     Q_OBJECT
 
 public:
-    FilterOptions(KInstance *instance, QWidget *parent = 0);
+    FilterOptions(const KComponentData &componentData, QWidget *parent = 0);
 
     void load();
     void save();

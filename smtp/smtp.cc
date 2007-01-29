@@ -64,7 +64,7 @@ using KioSMTP::TransactionState;
 #endif
 
 #include <kdebug.h>
-#include <kinstance.h>
+#include <kcomponentdata.h>
 #include <kio/connection.h>
 #include <kio/slaveinterface.h>
 #include <klocale.h>
@@ -116,7 +116,7 @@ extern "C" {
 
 int kdemain(int argc, char **argv)
 {
-  KInstance instance("kio_smtp");
+  KComponentData componentData("kio_smtp");
 
   if (argc != 4) {
     fprintf(stderr,

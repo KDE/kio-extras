@@ -27,7 +27,6 @@
 #include <kurifilter.h>
 #include <QRegExp>
 
-class KInstance;
 class KProcess;
 
 /*

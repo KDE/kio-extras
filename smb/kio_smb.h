@@ -51,7 +51,6 @@
 // KDE includes
 //--------------
 #include <kdebug.h>
-#include <kinstance.h>
 #include <kio/global.h>
 #include <kio/slavebase.h>
 #include <kurl.h>

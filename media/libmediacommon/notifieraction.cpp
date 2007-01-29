@@ -23,7 +23,7 @@
 #include <kglobal.h>
 #include <kiconloader.h>
 #include <kicontheme.h>
-#include <kinstance.h>
+#include <kcomponentdata.h>
 
 KIconLoader* NotifierAction::s_iconLoader;
 
@@ -102,7 +102,7 @@ KIconLoader* NotifierAction::iconLoader()
 {
 	if (!s_iconLoader)
 	{
-		s_iconLoader = new KIconLoader(KGlobal::instance()->instanceName(), KGlobal::instance()->dirs());
+		s_iconLoader = new KIconLoader(KGlobal::mainComponent().componentName(), KGlobal::mainComponent().dirs());
 	}
 
 	return s_iconLoader;

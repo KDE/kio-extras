@@ -28,8 +28,6 @@
 //Added by qt3to4:
 #include <QList>
 
-class KInstance;
-
 /**
 * This is short URL filter class.
 *

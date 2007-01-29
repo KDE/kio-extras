@@ -26,8 +26,6 @@
 
 #include <kurifilter.h>
 
-class KInstance;
-
 class KUriSearchFilter : public KUriFilterPlugin
 {
     Q_OBJECT

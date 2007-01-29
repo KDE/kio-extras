@@ -12,7 +12,7 @@
 #include <kglobal.h>
 #include <kurl.h>
 #include <kdebug.h>
-#include <kinstance.h>
+#include <kcomponentdata.h>
 #include <ktar.h>
 #include <kzip.h>
 #include <kar.h>
@@ -31,7 +31,7 @@ extern "C" { int KDE_EXPORT kdemain(int argc, char **argv); }
 
 int kdemain( int argc, char **argv )
 {
-  KInstance instance( "kio_tar" );
+  KComponentData componentData( "kio_tar" );
 
   kDebug(7109) << "Starting " << getpid() << endl;
 

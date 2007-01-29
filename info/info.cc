@@ -11,7 +11,7 @@
 #include <kprocess.h>
 #include <kstandarddirs.h>
 #include <kiconloader.h>
-#include <kinstance.h>
+#include <kcomponentdata.h>
 #include <klocale.h>
 
 #include "info.h"
@@ -24,7 +24,7 @@ InfoProtocol::InfoProtocol( const QByteArray &pool, const QByteArray &app )
     , m_node( "" )
 {
     kDebug( 7108 ) << "InfoProtocol::InfoProtocol" << endl;
-    m_iconLoader = new KIconLoader(KGlobal::instance()->instanceName(), KGlobal::instance()->dirs());
+    m_iconLoader = new KIconLoader(KGlobal::mainComponent().componentName(), KGlobal::mainComponent().dirs());
     m_perl = KGlobal::dirs()->findExe( "perl" );
     m_infoScript = KStandardDirs::locate( "data", "kio_info/kde-info2html" );
     m_infoConf = KStandardDirs::locate("data", "kio_info/kde-info2html.conf");
@@ -240,7 +240,7 @@ extern "C" { int KDE_EXPORT kdemain( int argc, char **argv ); }
 
 int kdemain( int argc, char **argv )
 {
-  KInstance instance( "kio_info" );
+  KComponentData componentData( "kio_info" );
 
   kDebug() << "kio_info starting " << getpid() << endl;
 

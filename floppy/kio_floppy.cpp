@@ -43,7 +43,7 @@
 
 #include "kio_floppy.h"
 
-#include <kinstance.h>
+#include <kcomponentdata.h>
 #include <kdebug.h>
 #include <kio/global.h>
 #include <klocale.h>
@@ -54,7 +54,7 @@ extern "C" { KDE_EXPORT int kdemain(int argc, char **argv); }
 
 int kdemain( int argc, char **argv )
 {
-  KInstance instance( "kio_floppy" );
+  KComponentData componentData( "kio_floppy" );
 
   if (argc != 4)
   {

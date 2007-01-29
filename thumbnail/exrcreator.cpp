@@ -28,6 +28,7 @@
 #include <ImfPreviewImage.h>
 
 #include "exrcreator.h"
+#include <kconfiggroup.h>
 
 extern "C"
 {
@@ -61,7 +62,7 @@ bool EXRCreator::create(const QString &path, int, int, QImage &img)
 	// EXR images just to turn it into an icon, so we go back
 	// to honoring it in here.
 	kDebug() << "EXRcreator - using original image" << endl;
-	KConfig * config = KGlobal::config();
+	KSharedConfig::Ptr config = KGlobal::config();
 	KConfigGroup configGroup( config, "PreviewSettings" );
 	unsigned long long maxSize = configGroup.readEntry( "MaximumSize", 1024*1024 /* 1MB */ );
 	unsigned long long fileSize = QFile( path ).size();

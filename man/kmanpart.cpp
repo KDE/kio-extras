@@ -20,7 +20,7 @@
 #include "kmanpart.h"
 #include <QString>
 
-#include <kinstance.h>
+#include <kcomponentdata.h>
 #include <kglobal.h>
 #include <kdebug.h>
 #include <klocale.h>
@@ -36,7 +36,7 @@ extern "C"
    }
 }
 
-KInstance* KManPartFactory::s_instance = 0L;
+KComponentData *KManPartFactory::s_instance = 0L;
 KAboutData* KManPartFactory::s_about = 0L;
 
 KManPartFactory::KManPartFactory( QObject* parent )
@@ -57,15 +57,15 @@ KParts::Part* KManPartFactory::createPartObject( QWidget * parentWidget, QObject
    return part;
 }
 
-KInstance* KManPartFactory::instance()
+const KComponentData &KManPartFactory::componentData()
 {
    if( !s_instance )
    {
       s_about = new KAboutData( "kmanpart",
                                 I18N_NOOP( "KMan" ), KDE_VERSION_STRING );
-      s_instance = new KInstance( s_about );
+      s_instance = new KComponentData(s_about);
    }
-   return s_instance;
+   return *s_instance;
 }
 
 
@@ -73,8 +73,7 @@ KManPart::KManPart( QWidget * parent )
 : KHTMLPart( parent )
 ,m_job(0)
 {
-   KInstance * instance = new KInstance( "kmanpart" );
-   setInstance( instance );
+   setComponentData(KComponentData("kmanpart"));
    m_extension=new KParts::BrowserExtension(this);
 }
 

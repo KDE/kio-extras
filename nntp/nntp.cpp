@@ -16,7 +16,7 @@
 #include <QHash>
 #include <QRegExp>
 
-#include <kinstance.h>
+#include <kcomponentdata.h>
 #include <kdebug.h>
 #include <kglobal.h>
 #include <klocale.h>
@@ -36,7 +36,7 @@ extern "C" { int KDE_EXPORT kdemain(int argc, char **argv); }
 
 int kdemain(int argc, char **argv) {
 
-  KInstance instance ("kio_nntp");
+  KComponentData componentData("kio_nntp");
   if (argc != 4) {
     fprintf(stderr, "Usage: kio_nntp protocol domain-socket1 domain-socket2\n");
     exit(-1);

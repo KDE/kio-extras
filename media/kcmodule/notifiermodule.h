@@ -30,7 +30,7 @@ class NotifierModule : public KCModule
 	Q_OBJECT
 
 public:
-	NotifierModule( KInstance *inst, QWidget* parent);
+	NotifierModule(const KComponentData &inst, QWidget* parent);
 	~NotifierModule();
 
 	void load();

@@ -23,7 +23,6 @@
 #include <kdebug.h>
 #include <klocale.h>
 #include <kurl.h>
-#include <kinstance.h>
 #include <kglobal.h>
 
 #include "ikwsopts.h"

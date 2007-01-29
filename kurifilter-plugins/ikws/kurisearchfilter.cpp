@@ -23,7 +23,7 @@
 
 #include <kdebug.h>
 #include <klocale.h>
-#include <kinstance.h>
+#include <kcomponentdata.h>
 #include <kglobal.h>
 
 #include "ikwsopts.h"
@@ -82,7 +82,7 @@ bool KUriSearchFilter::filterUri( KUriFilterData &data ) const
 
 KCModule *KUriSearchFilter::configModule(QWidget *parent, const char *) const
 {
-  return new FilterOptions( KUriSearchFilterFactory::instance(), parent);
+  return new FilterOptions( KUriSearchFilterFactory::componentData(), parent);
 }
 
 QString KUriSearchFilter::configName() const

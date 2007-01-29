@@ -51,7 +51,7 @@
 #include <QByteArray>
 
 #include <kdebug.h>
-#include <kinstance.h>
+#include <kcomponentdata.h>
 #include <klocale.h>
 
 #include <kio/global.h>
@@ -115,7 +115,7 @@ extern "C" { int KDE_EXPORT kdemain(int argc, char **argv); }
 
 int kdemain( int argc, char **argv )
 {
-  KInstance instance( "kio_nfs" );
+  KComponentData componentData( "kio_nfs" );
 
   if (argc != 4)
   {

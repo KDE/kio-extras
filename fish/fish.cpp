@@ -62,7 +62,7 @@
 
 #include <kdebug.h>
 #include <kmessagebox.h>
-#include <kinstance.h>
+#include <kcomponentdata.h>
 #include <kglobal.h>
 #include <kstandarddirs.h>
 #include <klocale.h>
@@ -122,7 +122,7 @@ static void ripper(int)
 int KDE_EXPORT kdemain( int argc, char **argv )
 {
     KLocale::setMainCatalog("kio_fish");
-    KInstance instance("fish");
+    KComponentData componentData("fish");
 
     myDebug( << "*** Starting fish " << endl);
     if (argc != 4) {

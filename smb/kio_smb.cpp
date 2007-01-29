@@ -30,6 +30,7 @@
 
 #include "kio_smb.h"
 #include "kio_smb_internal.h"
+#include <kcomponentdata.h>
 
 //===========================================================================
 SMBSlave::SMBSlave(const QByteArray& pool, const QByteArray& app)
@@ -58,8 +59,7 @@ SMBSlave* G_TheSlave;
 //===========================================================================
 int KDE_EXPORT kdemain( int argc, char **argv )
 {
-
-    KInstance instance( "kio_smb" );
+    KComponentData componentData("kio_smb");
     if( argc != 4 )
     {
         kDebug(KIO_SMB) << "Usage: kio_smb protocol domain-socket1 domain-socket2"

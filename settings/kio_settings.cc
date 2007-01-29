@@ -18,7 +18,7 @@
 */
 
 #include <kio/slavebase.h>
-#include <kinstance.h>
+#include <kcomponentdata.h>
 #include <kdebug.h>
 #include <QTextStream>
 #include <klocale.h>
@@ -50,7 +50,7 @@ extern "C" {
 	KDE_EXPORT int kdemain( int, char **argv )
 	{
 	  kDebug() << "kdemain for settings kioslave" << endl;
-	  KInstance instance( "kio_settings" );
+	  KComponentData componentData( "kio_settings" );
 	  SettingsProtocol slave(argv[1], argv[2], argv[3]);
 	  slave.dispatchLoop();
 	  return 0;

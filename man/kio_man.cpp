@@ -32,7 +32,7 @@
 #include <QRegExp>
 
 #include <kdebug.h>
-#include <kinstance.h>
+#include <kcomponentdata.h>
 #include <kglobal.h>
 #include <kstandarddirs.h>
 #include <kprocess.h>
@@ -688,7 +688,7 @@ extern "C"
 
     int KDE_EXPORT kdemain( int argc, char **argv ) {
 
-        KInstance instance("kio_man");
+        KComponentData componentData("kio_man");
 
         kDebug(7107) <<  "STARTING " << getpid() << endl;
 

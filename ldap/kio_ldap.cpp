@@ -9,7 +9,7 @@
 #include <netinet/in.h>
 
 #include <kdebug.h>
-#include <kinstance.h>
+#include <kcomponentdata.h>
 #include <klocale.h>
 
 #include <kldap/ldif.h>
@@ -28,7 +28,7 @@ extern "C" { int KDE_EXPORT kdemain(int argc, char **argv); }
  */
 int kdemain( int argc, char **argv )
 {
-  KInstance instance( "kio_ldap" );
+  KComponentData componentData( "kio_ldap" );
 
   kDebug(7125) << "Starting " << getpid() << endl;
 
