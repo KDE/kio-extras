@@ -61,7 +61,7 @@ extern "C" {
 static void createFileEntry(KIO::UDSEntry& entry, const QString& name, const QString& url, const QString& mime, const QString& iconName, const QString& localPath)
 {
 	entry.clear();
-	entry.insert( KIO::UDS_NAME, name );
+	entry.insert( KIO::UDS_NAME, KIO::encodeFileName(name) );
 	entry.insert( KIO::UDS_FILE_TYPE, S_IFREG);
 	entry.insert( KIO::UDS_URL, url );
 	entry.insert( KIO::UDS_ACCESS, 0500);
