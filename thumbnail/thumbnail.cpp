@@ -420,7 +420,7 @@ void ThumbnailProtocol::get(const KUrl &url)
 const QImage ThumbnailProtocol::getIcon()
 {
     if ( !m_iconDict.contains(m_mimeType) ) { // generate it
-        QImage icon( KMimeType::mimeType(m_mimeType)->pixmap( K3Icon::Desktop, m_iconSize ).toImage() );
+        QImage icon( KIconLoader::global()->loadMimeTypeIcon( KMimeType::mimeType(m_mimeType)->iconName(), K3Icon::Desktop, m_iconSize ).toImage() );
         icon.setAlphaBuffer( true );
 
         int w = icon.width();
