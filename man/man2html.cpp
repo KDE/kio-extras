@@ -2292,7 +2292,8 @@ static char *scan_table(char *c)
         j=j+currow->at(curfield).colspan;
         out_html(">");
         if (currow->at(curfield).size) out_html(change_to_size(currow->at(curfield).size));
-        if (currow->at(curfield).font) out_html(set_font(QByteArray( currow->at(curfield).font )));
+        if (currow->at(curfield).font)
+            out_html(set_font(QByteArray::number(currow->at(curfield).font) ));
         switch (currow->at(curfield).align) {
         case '=': out_html("<HR><HR>"); break;
         case '_': out_html("<HR>"); break;
@@ -3132,7 +3133,7 @@ static char *scan_request(char *c)
             nlen++;
         }
         int j = nlen;
-        while (c[j] && c[j]==' ' || c[j]=='\t') j++;
+        while (c[j]==' ' || c[j]=='\t') j++;
         /* search macro database of self-defined macros */
         QMap<QByteArray,StringDefinition>::const_iterator it=s_stringDefinitionMap.find(macroName);
         if (it!=s_stringDefinitionMap.end())

@@ -118,7 +118,6 @@ void InfoProtocol::get( const KUrl& url )
     }
 
     char buffer[ 4096 ];
-    QByteArray array;
 
     bool empty = true;
     while ( !feof( file ) )
@@ -137,9 +136,7 @@ void InfoProtocol::get( const KUrl& url )
       }
 
       empty = false;
-      array.setRawData( buffer, n );
-      data( array );
-      array.clear();
+      data( QByteArray::fromRawData( buffer, n ) );
     }
 
     pclose( file );

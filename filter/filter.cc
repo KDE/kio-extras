@@ -82,7 +82,8 @@ void FilterProtocol::get( const KUrl & )
   int result;
 
   QByteArray inputBuffer;
-  QByteArray outputBuffer(8*1024); // Start with a modest buffer
+  QByteArray outputBuffer;
+  outputBuffer.resize(8*1024); // Start with a modest buffer
   filter->setOutBuffer( outputBuffer.data(), outputBuffer.size() );
   while(true)
   {

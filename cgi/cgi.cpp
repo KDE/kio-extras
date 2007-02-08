@@ -174,10 +174,7 @@ void CgiProtocol::get( const KUrl& url )
       stripHeader = false;
       data( output );
     } else {
-      QByteArray array;
-      array.setRawData( buffer, n );
-      data( array );
-      array.clear();
+      data( QByteArray::fromRawData( buffer, n ) );
     }
   }
 

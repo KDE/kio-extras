@@ -989,7 +989,6 @@ void FloppyProtocol::get( const KUrl& url )
    clearBuffers();
    int result;
    int bytesRead(0);
-   QByteArray array;
    bool loopFinished(false);
    bool errorOccured(false);
    do
@@ -1006,10 +1005,7 @@ void FloppyProtocol::get( const KUrl& url )
          {
             kDebug(7101)<<"Floppy::get(): m_stdoutSize:"<<m_stdoutSize<<endl;
             bytesRead+=m_stdoutSize;
-            array.setRawData(m_stdoutBuffer, m_stdoutSize);
-            data( array );
-            array.resetRawData(m_stdoutBuffer, m_stdoutSize);
-
+            data( QByteArray::fromRawData(m_stdoutBuffer, m_stdoutSize) );
          }
          else
          {
@@ -1089,7 +1085,6 @@ void FloppyProtocol::put( const KUrl& url, int , bool overwrite, bool )
    clearBuffers();
    int result(0);
    int bytesRead(0);
-   QByteArray array;
 
    //from file.cc
    // Loop until we got 0 (end of data)
