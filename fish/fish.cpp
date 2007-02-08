@@ -478,7 +478,7 @@ bool fishProtocol::connectionStart() {
             return true;
         }
         if (FD_ISSET(childFd,&wfds) && outBufPos >= 0) {
-            if (outBuf > 0) rc = write(childFd,outBuf+outBufPos,outBufLen-outBufPos);
+            if (outBuf) rc = write(childFd,outBuf+outBufPos,outBufLen-outBufPos);
             else rc = 0;
             if (rc >= 0) outBufPos += rc;
             else {
