@@ -216,7 +216,7 @@ void ThumbnailProtocol::get(const KUrl &url)
 
     // ### KFMI
     bool kfmiThumb = false;
-    if (group.readEntry( "UseFileThumbnails", QVariant(true )).toBool()) {
+    if (group.readEntry( "UseFileThumbnails", true)) {
         KService::Ptr service =
             KMimeTypeTrader::self()->preferredService( m_mimeType, "KFilePlugin");
 

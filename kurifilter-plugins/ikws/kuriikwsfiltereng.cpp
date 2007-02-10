@@ -523,9 +523,9 @@ void KURISearchFilterEngine::loadConfig()
   config.setGroup( "General" );
 
   m_cKeywordDelimiter = config.readEntry("KeywordDelimiter", int(':'));
-  m_bWebShortcutsEnabled = config.readEntry("EnableWebShortcuts", QVariant(true)).toBool();
+  m_bWebShortcutsEnabled = config.readEntry("EnableWebShortcuts", true);
   m_defaultSearchEngine = config.readEntry("DefaultSearchEngine");
-  m_bVerbose = config.readEntry("Verbose", QVariant(false)).toBool();
+  m_bVerbose = config.readEntry("Verbose", false);
 
   // Use either a white space or a : as the keyword delimiter...
   if (strchr (" :",m_cKeywordDelimiter) == 0)
