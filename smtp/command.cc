@@ -358,7 +358,7 @@ namespace KioSMTP {
 	      else
 	        mSMTP->error( KIO::ERR_COULD_NOT_LOGIN,
 			      i18n("Your SMTP server does not support authentication.\n"
-			     "  %2",  r.errorMessage() ) );
+			     "  %1",  r.errorMessage() ) );
       else
 	      mSMTP->error( KIO::ERR_COULD_NOT_LOGIN,
 		      i18n("Authentication failed.\n"
