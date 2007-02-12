@@ -43,7 +43,7 @@ private Q_SLOTS:
 	void slotEdit();
 	void slotToggleAuto();
 
-	void slotActionSelected( Q3ListBoxItem * item );
+	void slotActionSelected( QListWidgetItem * item );
 	void slotMimeTypeChanged( int index );
 
 private:

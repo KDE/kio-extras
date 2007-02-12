@@ -145,7 +145,7 @@
                                 </size>
                             </property>
                         </spacer>
-                        <widget class="KListBox" row="0" column="0" rowspan="2" colspan="1">
+                        <widget class="KListWidget" row="0" column="0" rowspan="2" colspan="1">
                             <property name="name">
                                 <cstring>actionsList</cstring>
                             </property>
@@ -166,6 +166,6 @@
     <includehint>kpushbutton.h</includehint>
     <includehint>kpushbutton.h</includehint>
     <includehint>kpushbutton.h</includehint>
-    <includehint>klistbox.h</includehint>
+    <includehint>klistwidget.h</includehint>
 </includehints>
 </UI>

@@ -19,13 +19,12 @@
 
 #include "notifiermodule.h"
 
-#include <klocale.h>
-
 #include <QLayout>
-//Added by qt3to4:
 #include <QVBoxLayout>
 #include <QList>
 #include <QBoxLayout>
+
+#include <klocale.h>
 #include <kcombobox.h>
 #include <kpushbutton.h>
 #include <kstandardguiitem.h>
@@ -69,8 +68,8 @@ NotifierModule::NotifierModule(const KComponentData &componentData, QWidget *par
 
 	connect( m_view->mimetypesCombo, SIGNAL( activated(int) ),
 	         this, SLOT( slotMimeTypeChanged(int) ) );
-	connect( m_view->actionsList, SIGNAL( selectionChanged(Q3ListBoxItem*) ),
-	         this, SLOT( slotActionSelected(Q3ListBoxItem*) ) );
+	connect( m_view->actionsList, SIGNAL( selectionChanged(QListWidgetItem*) ),
+	         this, SLOT( slotActionSelected(QListWidgetItem*) ) );
 	connect( m_view->addButton, SIGNAL( clicked() ),
 	         this, SLOT( slotAdd() ) );
 	connect( m_view->editButton, SIGNAL( clicked() ),
@@ -125,7 +124,7 @@ void NotifierModule::updateListBox()
 	}
 }
 
-void NotifierModule::slotActionSelected(Q3ListBoxItem *item)
+void NotifierModule::slotActionSelected(QListWidgetItem *item)
 {
 	NotifierAction *action = 0L;
 
@@ -155,7 +154,7 @@ void NotifierModule::slotMimeTypeChanged(int index)
 #warning "Needs porting. listBox() is no longer supplied in Qt4 QComboBox."
 #endif
 #if 0
-		Q3ListBoxItem *item = m_view->mimetypesCombo->listBox()->item( index );
+		QListWidgetItem *item = m_view->mimetypesCombo->listBox()->item( index );
 		MimetypeListBoxItem *mime_item
 			= static_cast<MimetypeListBoxItem*>( item );
 		m_mimetype = mime_item->mimetype();
@@ -186,8 +185,13 @@ void NotifierModule::slotAdd()
 
 void NotifierModule::slotEdit()
 {
+    QList<QListWidgetItem*> selection = m_view->actionsList->selectedItems();
+
+    // code below assumes a single selection
+    Q_ASSERT( selection.count() <= 1 );
+
 	ActionListBoxItem *action_item
-		= static_cast<ActionListBoxItem*>(m_view->actionsList->selectedItem());
+		= static_cast<ActionListBoxItem*>(selection.value(0));
 
 	NotifierServiceAction * action;
 	if ( (action = dynamic_cast<NotifierServiceAction*>( action_item->action() )) )
@@ -206,8 +210,13 @@ void NotifierModule::slotEdit()
 
 void NotifierModule::slotDelete()
 {
+    QList<QListWidgetItem*> selection = m_view->actionsList->selectedItems();
+
+    // code below assumes a single selection
+    Q_ASSERT( selection.count() <= 1 );
+
 	ActionListBoxItem *action_item
-		= static_cast<ActionListBoxItem*>(m_view->actionsList->selectedItem());
+		= static_cast<ActionListBoxItem*>( selection.value(0) );
 
 	NotifierServiceAction *action;
 	if ( (action = dynamic_cast<NotifierServiceAction*>( action_item->action() ) ))
@@ -220,11 +229,16 @@ void NotifierModule::slotDelete()
 
 void NotifierModule::slotToggleAuto()
 {
+    QList<QListWidgetItem*> selection = m_view->actionsList->selectedItems();
+
+    // code below assumes a single selection
+    Q_ASSERT( selection.count() <= 1 );
+
 	ActionListBoxItem *action_item
-		= static_cast<ActionListBoxItem*>( m_view->actionsList->selectedItem() );
+		= static_cast<ActionListBoxItem*>( selection.value(0) ); 
 	NotifierAction *action = action_item->action();
 
-	int index = m_view->actionsList->index( action_item );
+	int index = m_view->actionsList->row( action_item );
 
 	if ( action->autoMimetypes().contains( m_mimetype ) )
 	{
@@ -238,7 +252,7 @@ void NotifierModule::slotToggleAuto()
 	updateListBox();
 	emit changed( true );
 
-	m_view->actionsList->setSelected( index, true );
+	m_view->actionsList->item(index)->setSelected( true );
 }
 
 #include "notifiermodule.moc"

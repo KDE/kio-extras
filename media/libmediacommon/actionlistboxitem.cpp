@@ -23,8 +23,8 @@
 
 #include <QPixmap>
 
-ActionListBoxItem::ActionListBoxItem(NotifierAction *action, QString mimetype, Q3ListBox *parent)
-	: Q3ListBoxPixmap(parent, action->pixmap()),
+ActionListBoxItem::ActionListBoxItem(NotifierAction *action, QString mimetype, QListWidget *parent)
+	: QListWidgetItem(parent),
 	  m_action(action)
 {
 	QString text = m_action->label();
@@ -33,7 +33,8 @@ ActionListBoxItem::ActionListBoxItem(NotifierAction *action, QString mimetype, Q
 	{
 		text += " (" + i18n( "Auto Action" ) + ')';
 	}
-	
+
+    setIcon( action->pixmap() );    
 	setText( text );
 }
 

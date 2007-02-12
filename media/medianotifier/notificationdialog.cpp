@@ -23,7 +23,7 @@
 #include <klocale.h>
 #include <kstandarddirs.h>
 #include <kio/global.h>
-#include <klistbox.h>
+#include <klistwidget.h>
 #include <QLabel>
 #include <QCheckBox>
 #include <QLinkedList>
@@ -69,7 +69,7 @@ NotificationDialog::NotificationDialog( KFileItem medium, NotifierSettings *sett
 	         this, SLOT( slotOk() ) );
 	connect( this, SIGNAL( user1Clicked() ),
 	         this, SLOT( slotConfigure() ) );
-	connect( m_view->actionsList, SIGNAL( doubleClicked ( Q3ListBoxItem*, const QPoint & ) ),
+	connect( m_view->actionsList, SIGNAL( doubleClicked ( QListWidgetItem*, const QPoint & ) ),
 	         this, SLOT( slotOk() ) );
 
 	connect( this, SIGNAL( finished() ),
@@ -100,7 +100,7 @@ void NotificationDialog::updateActionsListBox()
 		                       m_view->actionsList );
 	}
 
-	m_view->actionsList->setSelected( 0, true );
+	m_view->actionsList->item(0)->setSelected(true);
 }
 
 
@@ -112,7 +112,7 @@ void NotificationDialog::slotActionsChanged(const QString &/*dir*/)
 
 void NotificationDialog::slotOk()
 {
-	Q3ListBoxItem *item = m_view->actionsList->selectedItem();
+	QListWidgetItem *item = m_view->actionsList->selectedItems().value(0);
 
 	if ( item != 0L )
 	{

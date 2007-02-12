@@ -20,15 +20,16 @@
 #ifndef _ACTIONLISTBOXITEM_H_
 #define _ACTIONLISTBOXITEM_H_
 
-#include <q3listbox.h>
+#include <QListWidget>
+#include <QListWidgetItem>
 #include <QString>
 
 #include "notifieraction.h"
 
-class ActionListBoxItem : public Q3ListBoxPixmap
+class ActionListBoxItem : public QListWidgetItem
 {
 public:
-	ActionListBoxItem(NotifierAction *action, QString mimetype, Q3ListBox *parent);
+	ActionListBoxItem(NotifierAction *action, QString mimetype, QListWidget *parent);
 	~ActionListBoxItem();
 
 	NotifierAction *action() const;

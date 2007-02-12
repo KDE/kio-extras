@@ -21,7 +21,7 @@
 #define _NOTIFICATIONDIALOG_H_
 
 #include <kdialog.h>
-#include <klistbox.h>
+#include <klistwidget.h>
 #include <kdirwatch.h>
 #include <kfileitem.h>
 

@@ -16,23 +16,22 @@
    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
-#include <kconfig.h>
-#include <klocale.h>
-#include <kglobal.h>
-#include <kcomponentdata.h>
-#include <kaboutdata.h>
-#include <kfiledialog.h>
-#include <khbox.h>
+#include <KAboutData>
+#include <KComponentData>
+#include <KConfig>
+#include <KFileDialog>
+#include <KGenericFactory>
+#include <KGlobal>
+#include <KHBox>
+#include <KLocale>
 
+#include <Q3GroupBox>
 #include <QLayout>
-#include <q3listbox.h>
+#include <QListWidget>
 #include <QPushButton>
-#include <q3groupbox.h>
-//Added by qt3to4:
 #include <QVBoxLayout>
 
 #include "kcmcgi.h"
-#include <kgenericfactory.h>
 #include "kcmcgi.moc"
 
 typedef KGenericFactory<KCMCgi> KCMCgiFactory;
@@ -49,7 +48,7 @@ KCMCgi::KCMCgi(QWidget *parent, const QStringList &)
   Q3GroupBox *topBox = new Q3GroupBox( 1, Qt::Horizontal, i18n("Paths to Local CGI Programs"), this );
   topLayout->addWidget( topBox );
 
-  mListBox = new Q3ListBox( topBox );
+  mListBox = new QListWidget( topBox );
 
   KHBox *buttonBox = new KHBox( topBox );
   buttonBox->setSpacing( KDialog::spacingHint() );
@@ -59,7 +58,7 @@ KCMCgi::KCMCgi(QWidget *parent, const QStringList &)
 
   mRemoveButton = new QPushButton( i18n("Remove"), buttonBox );
   connect( mRemoveButton, SIGNAL( clicked() ), SLOT( removePath() ) );
-  connect( mListBox, SIGNAL( clicked ( Q3ListBoxItem * )),this, SLOT( slotItemSelected( Q3ListBoxItem *)));
+  connect( mListBox, SIGNAL( clicked ( QListWidgetItem * )),this, SLOT( slotItemSelected( QListWidgetItem *)));
 
   mConfig = new KConfig("kcmcgirc");
 
@@ -80,14 +79,14 @@ KCMCgi::~KCMCgi()
   delete mConfig;
 }
 
-void KCMCgi::slotItemSelected( Q3ListBoxItem * )
+void KCMCgi::slotItemSelected( QListWidgetItem * )
 {
     updateButton();
 }
 
 void KCMCgi::updateButton()
 {
-    mRemoveButton->setEnabled( mListBox->selectedItem ());
+    mRemoveButton->setEnabled( !mListBox->selectedItems().isEmpty() );
 }
 
 void KCMCgi::defaults()
@@ -100,9 +99,9 @@ void KCMCgi::save()
 {
   QStringList paths;
 
-  uint i;
+  int i;
   for( i = 0; i < mListBox->count(); ++i ) {
-    paths.append( mListBox->text( i ) );
+    paths.append( mListBox->item(i)->text() );
   }
 
   mConfig->setGroup( "General" );
@@ -116,7 +115,7 @@ void KCMCgi::load()
   mConfig->setGroup( "General" );
   QStringList paths = mConfig->readEntry( "Paths" , QStringList() );
 
-  mListBox->insertStringList( paths );
+  mListBox->addItems( paths );
 }
 
 void KCMCgi::addPath()
@@ -124,7 +123,7 @@ void KCMCgi::addPath()
   QString path = KFileDialog::getExistingDirectory( QString(), this );
 
   if ( !path.isEmpty() ) {
-    mListBox->insertItem( path );
+    mListBox->addItem( path );
     emit changed( true );
   }
   updateButton();
@@ -132,9 +131,9 @@ void KCMCgi::addPath()
 
 void KCMCgi::removePath()
 {
-  int index = mListBox->currentItem();
+  int index = mListBox->currentRow();
   if ( index >= 0 ) {
-    mListBox->removeItem( index );
+    delete mListBox->takeItem( index );
     emit changed( true );
   }
   updateButton();

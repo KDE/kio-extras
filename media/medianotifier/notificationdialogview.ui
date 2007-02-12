@@ -90,7 +90,7 @@
                 <string>...</string>
             </property>
         </widget>
-        <widget class="KListBox">
+        <widget class="KListWidget">
             <property name="name">
                 <cstring>actionsList</cstring>
             </property>
@@ -112,6 +112,6 @@
 </images>
 <layoutdefaults spacing="6" margin="11"/>
 <includehints>
-    <includehint>klistbox.h</includehint>
+    <includehint>klistwidget.h</includehint>
 </includehints>
 </UI>
