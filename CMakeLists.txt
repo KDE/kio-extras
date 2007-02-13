@@ -38,4 +38,6 @@ if(SAMBA_FOUND)
    add_subdirectory(smb)
 endif(SAMBA_FOUND)
 
-add_subdirectory(ldap)
+if(SASL2_FOUND)
+   add_subdirectory(ldap)
+endif(SASL2_FOUND)
