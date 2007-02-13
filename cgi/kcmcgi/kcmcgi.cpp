@@ -58,7 +58,7 @@ KCMCgi::KCMCgi(QWidget *parent, const QStringList &)
 
   mRemoveButton = new QPushButton( i18n("Remove"), buttonBox );
   connect( mRemoveButton, SIGNAL( clicked() ), SLOT( removePath() ) );
-  connect( mListBox, SIGNAL( clicked ( QListWidgetItem * )),this, SLOT( slotItemSelected( QListWidgetItem *)));
+  connect( mListBox, SIGNAL(itemClicked(QListWidgetItem*)),this, SLOT(slotItemSelected(QListWidgetItem*)));
 
   mConfig = new KConfig("kcmcgirc");
 
