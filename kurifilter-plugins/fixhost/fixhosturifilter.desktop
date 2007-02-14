@@ -1,0 +1,7 @@
+[Desktop Entry]
+Encoding=UTF-8
+Type=Service
+Name=FixHostFilter
+X-KDE-Library=libfixhosturifilter
+ServiceTypes=KURIFilter/Plugin
+InitialPreference=0
