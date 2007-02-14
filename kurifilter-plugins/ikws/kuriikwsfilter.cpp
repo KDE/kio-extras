@@ -60,6 +60,9 @@ void KAutoWebSearch::configure()
 
 bool KAutoWebSearch::filterUri( KUriFilterData &data ) const
 {
+  if( data.uriType() != KUriFilterData::UNKNOWN )
+      return false;
+
   if (KURISearchFilterEngine::self()->verbose())
     kDebug() << "KAutoWebSearch::filterURI: '" <<  data.uri().url() << "'" << endl;
 
