@@ -37,8 +37,8 @@ CgiProtocol::CgiProtocol( const QByteArray &pool, const QByteArray &app )
 {
   kDebug(7124) << "CgiProtocol::CgiProtocol" << endl;
 
-  KConfig cfg( "kcmcgirc" );
-  cfg.setGroup( "General" );
+  KConfig _cfg( "kcmcgirc" );
+  KConfigGroup cfg(&_cfg, "General" );
   mCgiPaths = cfg.readEntry( "Paths" , QStringList() );
 }
 

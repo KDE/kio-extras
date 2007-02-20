@@ -37,18 +37,18 @@
 //===========================================================================
 void SMBSlave::reparseConfiguration()
 {
-  KConfig *cfg = new KConfig("kioslaverc", true);
-  cfg->setGroup("Browser Settings/SMBro");
-  m_default_user=cfg->readEntry("User");
-//  m_default_workgroup=cfg->readEntry("Workgroup");
-//  m_showHiddenShares=cfg->readEntry("ShowHiddenShares", QVariant(false)).toBool();
+  KConfig cfg("kioslaverc", KConfig::NoGlobals);
+  const KConfigGroup group = cfg.group("Browser Settings/SMBro");
+  m_default_user = group.readEntry("User");
+//  m_default_workgroup=group.readEntry("Workgroup");
+//  m_showHiddenShares=group.readEntry("ShowHiddenShares", QVariant(false)).toBool();
 
   QString m_encoding = QTextCodec::codecForLocale()->name();
-  m_default_encoding = cfg->readEntry( "Encoding", m_encoding.toLower() );
+  m_default_encoding = group.readEntry( "Encoding", m_encoding.toLower() );
 
   // unscramble, taken from Nicola Brodu's smb ioslave
   //not really secure, but better than storing the plain password
-  QString scrambled = cfg->readEntry( "Password" );
+  QString scrambled = group.readEntry( "Password" );
   m_default_password = "";
   for (int i=0; i<scrambled.length()/3; i++)
   {
@@ -61,6 +61,4 @@ void SMBSlave::reparseConfiguration()
      unsigned int num = ((a1 & 0x3F) << 10) | ((a2& 0x1F) << 5) | (a3 & 0x1F);
      m_default_password[i] = QChar((uchar)((num - 17) ^ 173)); // restore
   }
-
-  delete cfg;
 }

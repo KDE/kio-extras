@@ -140,7 +140,7 @@ KUrl RemoteImpl::findBaseURL(const QString &filename) const
 	QString file = findDesktopFile(filename);
 	if (!file.isEmpty())
 	{
-		KDesktopFile desktop(file, true);
+		KDesktopFile desktop( file );
 		return desktop.readUrl();
 	}
 
@@ -209,7 +209,7 @@ void RemoteImpl::createEntry(KIO::UDSEntry &entry,
 {
 	kDebug(1220) << "RemoteImpl::createEntry" << endl;
 
-	KDesktopFile desktop(directory+file, true);
+	KDesktopFile desktop(directory+file);
 
 	kDebug(1220) << "path = " << directory << file << endl;
 
@@ -277,7 +277,7 @@ bool RemoteImpl::renameFolders(const QString &src, const QString &dest,
 		if (res)
 		{
 			KDesktopFile desktop(directory+dest+".desktop");
-			desktop.writeEntry("Name", dest);
+			desktop.desktopGroup().writeEntry("Name", dest);
 		}
 		return res;
 	}

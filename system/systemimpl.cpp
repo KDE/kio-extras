@@ -168,7 +168,7 @@ KUrl SystemImpl::findBaseURL(const QString &filename) const
 		{
 			if (*name==filename+".desktop")
 			{
-				KDesktopFile desktop(*dirpath+filename+".desktop", true);
+				KDesktopFile desktop(*dirpath+filename+".desktop");
 				if ( desktop.readUrl().isEmpty() )
 				{
 					KUrl url;
@@ -203,7 +203,8 @@ void SystemImpl::createEntry(KIO::UDSEntry &entry,
 {
 	kDebug() << "SystemImpl::createEntry" << endl;
 
-	KDesktopFile desktop(directory+file, true);
+	KDesktopFile desktop(directory+file);
+        KConfigGroup group = desktop.desktopGroup();
 
 	kDebug() << "path = " << directory << file << endl;
 
@@ -225,7 +226,7 @@ void SystemImpl::createEntry(KIO::UDSEntry &entry,
 	entry.insert( KIO::UDS_MIME_TYPE, QString::fromLatin1("inode/directory"));
 
 	QString icon = desktop.readIcon();
-	QString empty_icon = desktop.readEntry("EmptyIcon");
+	QString empty_icon = group.readEntry("EmptyIcon");
 
 	if (!empty_icon.isEmpty())
 	{

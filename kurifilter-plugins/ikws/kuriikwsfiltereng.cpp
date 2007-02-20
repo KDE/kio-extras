@@ -34,7 +34,6 @@
 #include <kconfig.h>
 #include <kstandarddirs.h>
 #include <kprotocolinfo.h>
-#include <ksimpleconfig.h>
 #include <kstaticdeleter.h>
 
 #include "kuriikwsfiltereng.h"
@@ -447,7 +446,7 @@ void KURISearchFilterEngine::loadConfig()
   // we can assume "every" user has upgraded to a KDE version that
   // contains the sycoca based search provider configuration (malte).
   {
-    KSimpleConfig oldConfig(KGlobal::dirs()->saveLocation("config") + QString(name()) + "rc");
+    KConfig oldConfig(KGlobal::dirs()->saveLocation("config") + QString(name()) + "rc", KConfig::OnlyLocal);
     oldConfig.setGroup("General");
 
     if (oldConfig.hasKey("SearchEngines"))
@@ -496,7 +495,7 @@ void KURISearchFilterEngine::loadConfig()
           delete provider;
         }
 
-        KSimpleConfig desktop(KGlobal::dirs()->saveLocation("services", "searchproviders/") + name + ".desktop");
+        KConfig desktop(KGlobal::dirs()->saveLocation("services", "searchproviders/") + name + ".desktop");
         desktop.setGroup("Desktop Entry");
         desktop.writeEntry("Type", "Service");
         desktop.writeEntry("ServiceTypes", "SearchProvider");
@@ -519,7 +518,7 @@ void KURISearchFilterEngine::loadConfig()
   PIDDBG << "Keywords Engine: Loading config..." << endl;
 
   // Load the config.
-  KConfig config( name() + "rc", false, false );
+  KConfig config( name() + "rc", KConfig::NoGlobals );
   config.setGroup( "General" );
 
   m_cKeywordDelimiter = config.readEntry("KeywordDelimiter", int(':'));

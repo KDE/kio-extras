@@ -541,7 +541,7 @@ QString KShortUriFilter::configName() const
 
 void KShortUriFilter::configure()
 {
-  KConfig config( name() + QFL1("rc"), false, false );
+  KConfig config( name() + QFL1( "rc"), KConfig::NoGlobals );
   m_bVerbose = config.readEntry( "Verbose", false );
 
   if ( m_bVerbose )

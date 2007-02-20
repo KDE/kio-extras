@@ -151,16 +151,14 @@ void NotifierServiceAction::save() const
 {
 	QFile::remove( m_filePath );
 	KDesktopFile desktopFile(m_filePath);
+	KConfigGroup actionGroup(&desktopFile, QString("Desktop Action ") + m_service.m_strName);
+	actionGroup.writeEntry(QString("Icon"), m_service.m_strIcon);
+	actionGroup.writeEntry(QString("Name"), m_service.m_strName);
+	actionGroup.writeEntry(QString("Exec"), m_service.m_strExec);
 
-	desktopFile.setGroup(QString("Desktop Action ") + m_service.m_strName);
-	desktopFile.writeEntry(QString("Icon"), m_service.m_strIcon);
-	desktopFile.writeEntry(QString("Name"), m_service.m_strName);
-	desktopFile.writeEntry(QString("Exec"), m_service.m_strExec);
-
-	desktopFile.setDesktopGroup();
-
-	desktopFile.writeEntry(QString("ServiceTypes"), m_mimetypes, ',');
-	desktopFile.writeEntry(QString("Actions"),
-	                       QStringList(m_service.m_strName),';');
+	KConfigGroup desktopGroup = desktopFile.desktopGroup();
+	desktopGroup.writeEntry(QString("ServiceTypes"), m_mimetypes, ',');
+	desktopGroup.writeEntry(QString("Actions"),
+	                        QStringList(m_service.m_strName),';');
 }
 

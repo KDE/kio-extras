@@ -38,7 +38,6 @@
 #include <klocale.h>
 #include <kmessagebox.h>
 #include <kservice.h>
-#include <ksimpleconfig.h>
 #include <kstandarddirs.h>
 #include <kservicetypetrader.h>
 
@@ -109,7 +108,7 @@ void FilterOptions::load()
     // Clear state first.
     m_dlg->lvSearchProviders->clear();
 
-    KConfig config( KURISearchFilterEngine::self()->name() + "rc", false, false );
+    KConfig config( KURISearchFilterEngine::self()->name() + "rc", KConfig::NoGlobals );
     config.setGroup("General");
 
     QString defaultSearchEngine = config.readEntry("DefaultSearchEngine");
@@ -192,7 +191,7 @@ void FilterOptions::setDelimiter (char sep)
 
 void FilterOptions::save()
 {
-  KConfig config( KURISearchFilterEngine::self()->name() + "rc", false, false );
+  KConfig config( KURISearchFilterEngine::self()->name() + "rc", KConfig::NoGlobals );
 
   config.setGroup("General");
   config.writeEntry("EnableWebShortcuts", m_dlg->cbEnableShortcuts->isChecked());
@@ -259,8 +258,8 @@ void FilterOptions::save()
         }
       }
 
-      KSimpleConfig service(path + name + ".desktop");
-      service.setGroup("Desktop Entry");
+      KConfig _service( path + name + ".desktop", KConfig::OnlyLocal );
+      KConfigGroup service(&_service, "Desktop Entry");
       service.writeEntry("Type", "Service");
       service.writeEntry("ServiceTypes", "SearchProvider");
       service.writeEntry("Name", provider->name());
@@ -289,8 +288,8 @@ void FilterOptions::save()
           QFile::remove(matches[0]);
           continue;
       }
-      KSimpleConfig service(path + *it + ".desktop");
-      service.setGroup("Desktop Entry");
+      KConfig _service( path + *it + ".desktop", KConfig::OnlyLocal );
+      KConfigGroup service(&_service, "Desktop Entry");
       service.writeEntry("Type", "Service");
       service.writeEntry("ServiceTypes", "SearchProvider");
       service.writeEntry("Hidden", true);

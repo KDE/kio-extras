@@ -64,7 +64,7 @@ void SystemDirNotify::init()
 		{
 			if (!names_found.contains(*name))
 			{
-				KDesktopFile desktop(*dirpath+*name, true);
+				KDesktopFile desktop(*dirpath+*name);
 
 				QString system_name = *name;
 				system_name.truncate(system_name.length()-8);

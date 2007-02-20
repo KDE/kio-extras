@@ -19,6 +19,7 @@
 #include "medium.h"
 
 #include <kconfig.h>
+#include <kconfiggroup.h>
 #include <klocale.h>
 
 const QString Medium::SEPARATOR = "---";
@@ -121,17 +122,17 @@ void Medium::setLabel(const QString &label)
 void Medium::setUserLabel(const QString &label)
 {
 	KConfig cfg("mediamanagerrc");
-	cfg.setGroup("UserLabels");
+	KConfigGroup group(&cfg, "UserLabels");
 
 	QString entry_name = m_properties[ID];
 
 	if ( label.isNull() )
 	{
-		cfg.deleteEntry(entry_name);
+		group.deleteEntry(entry_name);
 	}
 	else
 	{
-		cfg.writeEntry(entry_name, label);
+		group.writeEntry(entry_name, label);
 	}
 
 	m_properties[USER_LABEL] = label;
@@ -140,13 +141,13 @@ void Medium::setUserLabel(const QString &label)
 void Medium::loadUserLabel()
 {
 	KConfig cfg("mediamanagerrc");
-	cfg.setGroup("UserLabels");
+	const KConfigGroup group(&cfg, "UserLabels");
 
 	QString entry_name = m_properties[ID];
 
-	if ( cfg.hasKey(entry_name) )
+	if ( group.hasKey(entry_name) )
 	{
-		m_properties[USER_LABEL] = cfg.readEntry(entry_name, QString());
+		m_properties[USER_LABEL] = group.readEntry(entry_name, QString());
 	}
 	else
 	{
