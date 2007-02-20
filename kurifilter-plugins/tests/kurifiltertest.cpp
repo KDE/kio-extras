@@ -22,7 +22,7 @@
 #include <kaboutdata.h>
 #include <kdebug.h>
 #include <kstandarddirs.h>
-#include <ksimpleconfig.h>
+#include <ksharedconfig.h>
 #include <klocale.h>
 #include <kio/netaccess.h>
 
@@ -163,8 +163,7 @@ void KUriFilterTest::init()
     // There is no default search engine by default (since it was annoying when making typos),
     // so the user has to set it up, which we do here.
     {
-      KSimpleConfig cfg( "kuriikwsfilterrc" );
-      cfg.setGroup( "General" );
+      KConfigGroup cfg( KSharedConfig::openConfig( "kuriikwsfilterrc", KConfig::OnlyLocal ), "General" );
       cfg.writeEntry( "DefaultSearchEngine", "google" );
       cfg.writeEntry( "Verbose", true );
       cfg.writeEntry( "KeywordDelimiter", QString(s_delimiter) );
@@ -173,9 +172,7 @@ void KUriFilterTest::init()
 
     // Enable verbosity for debugging
     {
-      KSimpleConfig cfg( "kshorturifilterrc" );
-      cfg.writeEntry( "Verbose", true );
-      cfg.sync();
+      KSharedConfig::openConfig("kshorturifilterrc", KConfig::OnlyLocal )->group(QString()).writeEntry( "Verbose", true );
     }
 
     KStandardDirs::makeDir( kdehome+"/urifilter" );
