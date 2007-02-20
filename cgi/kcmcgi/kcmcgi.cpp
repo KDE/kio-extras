@@ -60,7 +60,7 @@ KCMCgi::KCMCgi(QWidget *parent, const QStringList &)
   connect( mRemoveButton, SIGNAL( clicked() ), SLOT( removePath() ) );
   connect( mListBox, SIGNAL(itemClicked(QListWidgetItem*)),this, SLOT(slotItemSelected(QListWidgetItem*)));
 
-  mConfig = new KConfig("kcmcgirc");
+  mConfig = new KConfig("kcmcgirc", KConfig::NoGlobals);
 
   load();
   updateButton();
@@ -104,16 +104,14 @@ void KCMCgi::save()
     paths.append( mListBox->item(i)->text() );
   }
 
-  mConfig->setGroup( "General" );
-  mConfig->writeEntry( "Paths", paths );
+  mConfig->group("General").writeEntry( "Paths", paths );
 
   mConfig->sync();
 }
 
 void KCMCgi::load()
 {
-  mConfig->setGroup( "General" );
-  QStringList paths = mConfig->readEntry( "Paths" , QStringList() );
+  QStringList paths = mConfig->group("General").readEntry( "Paths" , QStringList() );
 
   mListBox->addItems( paths );
 }
