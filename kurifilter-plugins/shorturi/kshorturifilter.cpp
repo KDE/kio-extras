@@ -550,14 +550,14 @@ void KShortUriFilter::configure()
   m_strDefaultProtocol = config.readEntry( "DefaultProtocol", QString("http://") );
   EntryMap patterns = config.entryMap( QFL1("Pattern") );
   const EntryMap protocols = config.entryMap( QFL1("Protocol") );
-  config.setGroup("Type");
+  KConfigGroup typeGroup(&config, "Type");
 
   for( EntryMap::Iterator it = patterns.begin(); it != patterns.end(); ++it )
   {
     QString protocol = protocols[it.key()];
     if (!protocol.isEmpty())
     {
-      int type = config.readEntry(it.key(), -1);
+      int type = typeGroup.readEntry(it.key(), -1);
       if (type > -1 && type <= KUriFilterData::UNKNOWN)
         m_urlHints.append( URLHint(it.value(), protocol, static_cast<KUriFilterData::UriTypes>(type) ) );
       else
