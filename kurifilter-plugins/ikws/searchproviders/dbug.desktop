@@ -2,7 +2,7 @@
 Encoding=UTF-8
 Keys=dbug
 Name=Debian BTS Bug Search
-Name[el]=Σύστημα Εντοπισμού Σφαλμάτων του Debian
+Name[el]=Σύστημα εντοπισμού σφαλμάτων του Debian
 Name[fr]=Recherche dans le système de gestion des bogues Debian
 Name[x-test]=xxDebian BTS Bug Searchxx
 Query=http://bugs.debian.org/\\{@}
