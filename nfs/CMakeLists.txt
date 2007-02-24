@@ -12,7 +12,7 @@ kde4_automoc(${kio_nfs_PART_SRCS})
 kde4_add_plugin(kio_nfs ${kio_nfs_PART_SRCS})
 
 
-target_link_libraries(kio_nfs  ${KDE4_KDE3SUPPORT_LIBS})
+target_link_libraries(kio_nfs  ${KDE4_KDECORE_LIBS} ${KDE4_KDE3SUPPORT_LIBS})
 
 install(TARGETS kio_nfs  DESTINATION ${PLUGIN_INSTALL_DIR} )
 
