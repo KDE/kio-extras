@@ -34,7 +34,7 @@ endif(NOT WIN32)
 
 if(SAMBA_FOUND)
    add_subdirectory(smb)
-elseif(SAMBA_FOUND)
+else(SAMBA_FOUND)
 macro_log_feature(SAMBA_FOUND "Samba" "Sambas libsmbclient is required for the smb-ioslave. A version which already has smbc_set_context() is required" "http://www.samba.org")
 endif(SAMBA_FOUND)
 
