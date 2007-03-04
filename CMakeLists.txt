@@ -3,8 +3,6 @@
 set(SAMBA_REQUIRE_SMBC_SET_CONTEXT TRUE)
 macro_optional_find_package(Samba)
 
-macro_log_feature(SAMBA_FOUND "Samba" "Sambas libsmbclient is required for the smb-ioslave. A version which already has smbc_set_context() is required" "http://www.samba.org")
-
 add_subdirectory( about ) 
 add_subdirectory( cgi ) 
 add_subdirectory( floppy ) 
@@ -36,6 +34,8 @@ endif(NOT WIN32)
 
 if(SAMBA_FOUND)
    add_subdirectory(smb)
+elseif(SAMBA_FOUND)
+macro_log_feature(SAMBA_FOUND "Samba" "Sambas libsmbclient is required for the smb-ioslave. A version which already has smbc_set_context() is required" "http://www.samba.org")
 endif(SAMBA_FOUND)
 
 if(SASL2_FOUND)
