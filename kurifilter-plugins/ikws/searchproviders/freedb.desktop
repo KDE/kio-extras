@@ -2,6 +2,10 @@
 Encoding=UTF-8
 Type=Service
 Name=FreeDB
+Name[eo]=Libera Civilizludo
+Name[ne]=नि: शुल्क DB
+Name[ta]=இலவசடிபி
+Name[tg]=ОзодиDB
 Name[x-test]=xxFreeDBxx
 ServiceTypes=SearchProvider
 Keys=fdb,freedb

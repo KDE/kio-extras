@@ -2,12 +2,70 @@
 Encoding=UTF-8
 Type=Service
 Name=Wiktionary - The Free Dictionary
+Name[af]=Wiktionary - Die gratis woordeboek
+Name[ar]=القاموس المجاني Wiktionary
+Name[be]=Wiktionary - Свабодны Слоўнік
+Name[br]=Wiktionary - Ar geriadur frank
+Name[ca]=Viccionari - El diccionari lliure
+Name[cs]=Wiktionary - volně dostupný slovník
+Name[da]=Wiktionary - Den frie ordbog
+Name[de]=Wiktionary - Das freie Wörterbuch
 Name[el]=Wiktionary - Το ελεύθερο λεξικό
+Name[eo]=Vikivortaro - la libera vortaro
+Name[es]=Wikitionary - El diccionario libre
+Name[et]=Wiktionary - Vaba sõnaraamat
+Name[eu]=Wiktionary - Hiztegi librea
+Name[fa]=Wiktionary - واژه‌نامۀ آزاد
+Name[fi]=Wiktionary - Vapaa sanakirja
 Name[fr]=Wiktionary - Le dictionnaire libre
+Name[fy]=Wiktionary - It frije wurdboek
+Name[ga]=Wiktionary - An Foclóir Saor
+Name[gl]=Wiktionary - O dicionario libre
+Name[he]=וויקימילון - המילון החופשי
+Name[hr]=Wiktionary - besplatna enciklopedija
+Name[hu]=Wiktionary
+Name[is]=Wiktionary - Frjálsa orðabókin
+Name[ja]=Wictionary - フリーな辞書
+Name[ka]=Wiktionary - თავისუფალი ლექსიკონი
+Name[kk]=Wiktionary - ашық сөздік
+Name[km]=Wikipedia - វចនានុក្រម​ឥតគិតថ្លៃ
+Name[lt]=Wiktionary - laisvasis žodynas
+Name[mk]=Wiktionary - Слободниот речник
+Name[nb]=Wiktionary - den frie ordboka
+Name[nds]=Wiktionary - dat fre'e Wöörbook (engl.)
+Name[ne]=विक्सनरी - नि: शुल्क शब्दकोश
+Name[nl]=Wiktionary - het vrije woordenboek
+Name[nn]=Wikipedia – det frie oppslagsverket
+Name[pa]=ਵਿੱਕੀਸ਼ਨਰੀ - ਮੁਫਤ ਸ਼ਬਦ-ਕੋਸ਼
+Name[pl]=Wiktionary - Otwarty słownik
+Name[pt]=Wiktionary - O Dicionário Livre
+Name[pt_BR]=Wiktionary - O Dicionário Livre
+Name[ro]=Wiktionary - Dictionarul liber
+Name[ru]=Wiktionary - свободный словарь
+Name[se]=Wiktinary – fridja sátnegirji
+Name[sl]=Wiktionary - Prosti slovar
+Name[sr]=Wiktionary — слободан речник
+Name[sr@Latn]=Wiktionary — slobodan rečnik
+Name[sv]=Wiktionary - den fria ordboken
+Name[tg]=Wiktionary - Энсиклопедияи озод
+Name[tr]=Wiktionary - Ücretsiz Ansiklopedi
+Name[uk]=Wiktionary - вільний словник
+Name[uz]=Wiktionary - Эркин луғат
 Name[x-test]=xxWiktionary - The Free Dictionaryxx
+Name[zh_TW]=Wiktionary - 免費的字典
 ServiceTypes=SearchProvider
 Keys=wt,wikt
 Query=http://en.wiktionary.org/wiki/Special:Search?search=\{@}&go=Go
+Query[eo]=http://eo.wiktionary.org/wiki/Special:Search?search=\{@}&go=Go
 Query[fr]=http://fr.wiktionary.org/wiki/Special:Search?search=\{@}&go=Go
+Query[fy]=http://fy.wiktionary.org/wiki/Special:Search?search=\{@}&go=Go
+Query[he]=http://he.wiktionary.org/wiki/Special:Search?search=\{@}&go=Go
+Query[nb]=http://no.wikipedia.org/wiki/Special:Search?search=\{@}&go=Go
+Query[ne]=http://en.wiktionary.org/wiki/Special:Search?search=\{@}go=Go
+Query[nl]=http://nl.wiktionary.org/wiki/Special:Search?search=\{@}&go=Go
+Query[nn]=http://en.wikipedia.org/wiki/Special:Search?search=\{@}&go=Go
+Query[pa]=http://en.wiktionary.org/wiki/Special:Search?search=\{@}&go=ਜਾਓ
+Query[pl]=http://pl.wiktionary.org/wiki/Special:Search?search=\{@}&go=Go
+Query[tg]=http://en.wikipedia.org/wiki/Special:Search?search=\{@}&go=Go
 Query[x-test]=xxhttp://en.wiktionary.org/wiki/Special:Search?search=\{@}&go=Goxx
 Charset=utf8

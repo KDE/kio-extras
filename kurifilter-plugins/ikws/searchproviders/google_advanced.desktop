@@ -2,11 +2,74 @@
 Encoding=UTF-8
 Keys=ggx
 Name=Google Advanced Search
+Name[af]=Google Gevorderde Soektog
+Name[ar]=بحث Google المتقدم
+Name[be]=Адмысловы пошук Google
+Name[br]=Klask Google barek
+Name[ca]=Recerca avançada de Google
+Name[cs]=Rozšířené hledání (Google)
+Name[cy]=Chwilio Uwch Google
+Name[da]=Google avanceret søgning
+Name[de]=Erweiterte Google-Suche
 Name[el]=Προχωρημένη αναζήτηση του Google
+Name[eo]=Detala serĉo ĉe "Google"
+Name[es]=Búsqueda avanzada de Google
+Name[et]=Google täpsem otsing
+Name[eu]=Googleren bilaketa aurreratua
+Name[fa]=جستجوی پیشرفتۀ گوگل
+Name[fi]=Googlen lisähaku
 Name[fr]=Recherche avancée avec Google
+Name[fy]=Google Avansearre Sykje
+Name[ga]=Cuardach Casta Google
+Name[gl]=Procura Avanzada de Google
+Name[he]=חיפוש מתקדם של גוגל
+Name[hr]=Google napredno pretraživanje
+Name[hu]=Google részletes keresés
+Name[is]=Google - Nánar
+Name[it]=Ricerca avanzate di Google
+Name[ja]=Google 検索オプション
+Name[ka]=Google დეტალური ძიება
+Name[kk]=Google кеңейтілген іздеу
+Name[km]=ស្វែងរក​កម្រិត​ខ្ពស់​តាម​រយៈ Google
+Name[ko]=구글 자세히 찾기
+Name[lt]=Išplėsta Google paieška
+Name[lv]=Google Uzlabotā Meklēšana
+Name[mk]=Google - напредно пребарување
+Name[ms]=Carian Lanjutan Google
+Name[nb]=Google avansert søk
+Name[nds]=Google sien verwiederte Söök
+Name[ne]=गुगल उन्नत खोजी
+Name[nl]=Google geavanceerd zoeken
+Name[nn]=Google avansert søk
+Name[pa]=Google ਤਕਨੀਕੀ ਖੋਜ
+Name[pl]=Google - wyszukiwanie zaawansowane
+Name[pt]=Pesquisa Avançada do Google
+Name[pt_BR]=Procura Avançada do Google
+Name[ro]=Căutare avansată Google
+Name[ru]=Google - продвинутый поиск
+Name[se]=Dárkilis ohcan Google báikkis
+Name[sl]=Napredno iskanje z Google
+Name[sr]=Google-ово напредно претраживање
+Name[sr@Latn]=Google-ovo napredno pretraživanje
+Name[sv]=Google avancerad sökning
+Name[ta]=கூகுல் மேம்படுத்தப்பட்ட தேடுதல்
+Name[tg]=Ҷустуҷӯи пешрафта дар Google
+Name[tr]=Google Gelişmiş Arayıcı
+Name[uk]=Складний пошук на Google
+Name[uz]=Google - Илғор қидириш
 Name[x-test]=xxGoogle Advanced Searchxx
+Name[xh]=Uphendlo Olubhekisa phambili lwe Google
+Name[zh_TW]=Google 進階搜尋
 Query=http://www.google.com/search?as_q=\\{all,@}&num=\\{num,"10"}&btnG=Google+Search&as_epq=\\{exact,""}&as_oq=\\{any,""}&as_eq=\\{without,""}&lr=\\{lang,""}&as_ft=\\{ft,"i"}&as_filetype=\\{filetype,""}&as_qdr=\{date,"all"}&as_occt=\\{occ,"any"}&as_dt=\\{siteop,"i"}&as_sitesearch=\\{site}&safe=\\{safe,"active"}&ie=UTF-8&oe=UTF-8
+Query[en_GB]=http://www.google.co.uk/search?as_q=\\{all,@}&num=\\{num,"10"}&btnG=Google+Search&as_epq=\\{exact,""}&as_oq=\\{any,""}&as_eq=\\{without,""}&lr=\\{lang,""}&as_ft=\\{ft,"i"}&as_filetype=\\{filetype,""}&as_qdr=\{date,"all"}&as_occt=\\{occ,"any"}&as_dt=\\{siteop,"i"}&as_sitesearch=\\{site}&safe=\\{safe,"active"}&ie=UTF-8&oe=UTF-8
+Query[es]=http://www.google.com/search?as_q=\\{all,@}&num=\\{num,"10"}&btnG=Google+Search&as_epq=\\{exact,""}&as_oq=\\{any,""}&as_eq=\\{without,""}&lr=\\{lang,""}&as_ft=\\{ft,"i"}&as_filetype=\\{filetype,""}&as_qdr=\{date,"all"}&as_occt=\\{occ,"any"}&as_dt=\\{siteop,"i" }&as_sitesearch=\\{site}&safe=\\{safe, "active"}&ie=UTF-8&oe=UTF-8
+Query[fi]=http://www.google.fi/search?as_q=\\{all,@}&num=\\{num,"10"}&btnG=Google+Search&as_epq=\\{exact,""}&as_oq=\\{any,""}&as_eq=\\{without,""}&lr=\\{lang,""}&as_ft=\\{ft,"i"}&as_filetype=\\{filetype,""}&as_qdr=\{date,"all"}&as_occt=\\{occ,"any"}&as_dt=\\{siteop,"i"}&as_sitesearch=\\{site}&safe=\\{safe,"active"}&ie=UTF-8&oe=UTF-8
 Query[fr]=http://www.google.fr/search?as_q=\\{all,@}&num=\\{num,"10"}&btnG=Google+Search&as_epq=\\{exact,""}&as_oq=\\{any,""}&as_eq=\\{without,""}&lr=\\{lang,""}&as_ft=\\{ft,"i"}&as_filetype=\\{filetype,""}&as_qdr=\{date,"all"}&as_occt=\\{occ,"any"}&as_dt=\\{siteop,"i"}&as_sitesearch=\\{site}&safe=\\{safe,"active"}&ie=UTF-8&oe=UTF-8
+Query[he]=http://www.google.co.il/search?as_q=\\{all,@}&num=\\{num,"10"}&btnG=Google+Search&as_epq=\\{exact,""}&as_oq=\\{any,""}&as_eq=\\{without,""}&lr=\\{lang,""}&as_ft=\\{ft,"i"}&as_filetype=\\{filetype,""}&as_qdr=\{date,"all"}&as_occt=\\{occ,"any"}&as_dt=\\{siteop,"i"}&as_sitesearch=\\{site}&safe=\\{safe,"active"}&ie=UTF-8&oe=UTF-8
+Query[nb]=http://www.google.no/search?as_q=\\{all,@}&num=\\{num,"10"}&btnG=Google+Search&as_epq=\\{exact,""}&as_oq=\\{any,""}&as_eq=\\{without,""}&lr=\\{lang,""}&as_ft=\\{ft,"i"}&as_filetype=\\{filetype,""}&as_qdr=\{date,"all"}&as_occt=\\{occ,"any"}&as_dt=\\{siteop,"i"}&as_sitesearch=\\{site}&safe=\\{safe,"active"}&ie=UTF-8&oe=UTF-8
+Query[nl]=http://www.google.nl/search?as_q=\\{all,@}&num=\\{num,"10"}&btnG=Google+Search&as_epq=\\{exact,""}&as_oq=\\{any,""}&as_eq=\\{without,""}&lr=\\{lang,""}&as_ft=\\{ft,"i"}&as_filetype=\\{filetype,""}&as_qdr=\{date,"all"}&as_occt=\\{occ,"any"}&as_dt=\\{siteop,"i"}&as_sitesearch=\\{site}&safe=\\{safe,"active"}&ie=UTF-8&oe=UTF-8
+Query[nn]=http://www.google.com/search?hl=nn&as_q=\\{all,@}&num=\\{num,"10"}&btnG=Google+Search&as_epq=\\{exact,""}&as_oq=\\{any,""}&as_eq=\\{without,""}&lr=\\{lang,""}&as_ft=\\{ft,"i"}&as_filetype=\\{filetype,""}&as_qdr=\{date,"all"}&as_occt=\\{occ,"any"}&as_dt=\\{siteop,"i"}&as_sitesearch=\\{site}&safe=\\{safe,"active"}&ie=UTF-8&oe=UTF-8
+Query[pt]=http://www.google.pt/search?as_q=\\{all,@}&num=\\{num,"10"}&btnG=Google+Search&as_epq=\\{exact,""}&as_oq=\\{any,""}&as_eq=\\{without,""}&lr=\\{lang,""}&as_ft=\\{ft,"i"}&as_filetype=\\{filetype,""}&as_qdr=\{date,"all"}&as_occt=\\{occ,"any"}&as_dt=\\{siteop,"i"}&as_sitesearch=\\{site}&safe=\\{safe,"active"}&ie=UTF-8&oe=UTF-8
 Query[x-test]=xxhttp://www.google.com/search?as_q=\\{all,@}&num=\\{num,"10"}&btnG=Google+Search&as_epq=\\{exact,""}&as_oq=\\{any,""}&as_eq=\\{without,""}&lr=\\{lang,""}&as_ft=\\{ft,"i"}&as_filetype=\\{filetype,""}&as_qdr=\{date,"all"}&as_occt=\\{occ,"any"}&as_dt=\\{siteop,"i"}&as_sitesearch=\\{site}&safe=\\{safe,"active"}&ie=UTF-8&oe=UTF-8xx
 Charset=utf8
 ServiceTypes=SearchProvider

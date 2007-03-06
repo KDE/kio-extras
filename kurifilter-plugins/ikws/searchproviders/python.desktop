@@ -4,11 +4,65 @@ Charset=
 Hidden=false
 Keys=py,python
 Name=Python Reference Manual
+Name[af]=Python Verwysing Handleiding
+Name[ar]=كتيب Python المصدري
+Name[be]=Падручнік Python
+Name[ca]=Manual de referència de Python
+Name[cs]=Manuál jazyka Python
+Name[cy]=Llawlyfr Cyfeiriol Python
+Name[da]=Python reference-manual
+Name[de]=Python-Handbuch
 Name[el]=Εγχειρίδιο αναφοράς Python
+Name[eo]=Pitono-manlibro
+Name[es]=Manual de referencia de Python
+Name[eu]=Python-en erreferentzia eskuliburua
+Name[fa]=راهنمای مرجع Python
+Name[fi]=Pythonin referenssimanuaali
 Name[fr]=Manuel de référence de Python
+Name[ga]=Lámhleabhar Python
+Name[gl]=Manual de Referéncia de Python
+Name[he]=תיעוד של פייתון
+Name[hr]=Python referentni priručnik
+Name[hu]=Python referencia-kézikönyv
+Name[is]=Python Handbók
+Name[it]=Manuale di riferimento di Python
+Name[ja]=Python リファレンスマニュアル
+Name[kk]=Python анықтамасы
+Name[km]=សៀវភៅ​យោង Python
+Name[lt]=Python vadovas-žinynas
+Name[lv]=Python Rokasgrāmata
+Name[mk]=Референтен прирачник за Python
+Name[ms]=Manual Rujukan Python
+Name[nb]=Referansehåndbok for Python
+Name[nds]=Python-Referenzhandbook
+Name[ne]=पाइथन सन्दर्भ म्यानुअल
+Name[nn]=Python-referansehandbok
+Name[pa]=Python ਹਵਾਲਾ ਦਸਤਾਵੇਜ਼
+Name[pl]=Python (język programowania)- podręcznik
+Name[pt]=Manual de Referência do Python
+Name[pt_BR]=Manual de Referência do Python
+Name[ro]=Manualul de referinţă Python
+Name[ru]=Справочник по Python
+Name[se]=Python-referánsagiehtagirji
+Name[sl]=Referenčni priročnik za python
+Name[sr]=Референтно упутство за Python
+Name[sr@Latn]=Referentno uputstvo za Python
+Name[sv]=Python referensmanual
+Name[ta]=பைதான் பார்வை கையேடு
+Name[tg]=Маълумотнома аз Python
+Name[tr]=Python Başvuru Elkitabı
+Name[uk]=Довідник по Python
+Name[uz]=Python учун кўлланма
 Name[x-test]=xxPython Reference Manualxx
+Name[xh]=Ubhekiso lwe Python yesandla
+Name[zh_TW]=Python 參考手冊
 Query=http://www.google.com/search?sourceid=python-search&q=\{@}&submit=Search&q=site%3Apython.org
+Query[en_GB]=http://www.google.co.uk/search?sourceid=python-search&q=\{@}&submit=Search&q=site%3Apython.org
 Query[fr]=http://www.google.fr/search?sourceid=python-search&q=\{@}&submit=Search&q=site%3Apython.org
+Query[fy]=http://www.google.nl/search?sourceid=python-search&q=\{@}&submit=Search&q=site%3Apython.org
+Query[nb]=http://www.google.no/search?sourceid=python-search&q=\{@}&submit=Search&q=site%3Apython.org
+Query[nl]=http://www.google.nl/search?sourceid=python-search&q=\{@}&submit=Search&q=site%3Apython.org
+Query[pt]=http://www.google.pt/search?sourceid=python-search&q=\{@}&submit=Search&q=site%3Apython.org
 Query[x-test]=xxhttp://www.google.com/search?sourceid=python-search&q=\{@}&submit=Search&q=site%3Apython.orgxx
 ServiceTypes=SearchProvider
 Type=Service

@@ -2,6 +2,10 @@
 Encoding=UTF-8
 Type=Service
 Name=HyperDictionary.com
+Name[hu]=HyperDirectory.com
+Name[pl]=HyperDictionary.com - słownik
+Name[sv]=Hyperdictionary.com
+Name[ta]=திறந்த அடைவு
 Name[x-test]=xxHyperDictionary.comxx
 ServiceTypes=SearchProvider
 Keys=hd,hyperdict

@@ -2,12 +2,74 @@
 Encoding=UTF-8
 Type=Service
 Name=Wikipedia - The Free Encyclopedia
+Name[af]=Wikipedia - Die gratis ensiklopidie
+Name[ar]=الموسوعة الحرّة Wikipedia
+Name[be]=Wikipedia - Свабодная Энцыклапедыя
+Name[br]=Wikipedia - Ar geriadur ouiziegezh frank
+Name[ca]=Viquipèdia - L'enciclopèdia lliure
+Name[cs]=Wikipedia - volně dostupná encyklopedie
+Name[cy]=Wikipedia - Y Gwyddoniadur Rhydd
+Name[da]=Wikipedia - Det frie leksikon
+Name[de]=Wikipedia - Die freie Enzyklopädie
 Name[el]=Wikipedia - Η ελεύθερη εγκυκλοπαίδεια
+Name[eo]=Vikipedio - la libera enciklopedio
+Name[es]=Wikipedia - La enciclopedia libre
+Name[et]=Wikipedia - Vaba entsüklopeedia
+Name[eu]=Wikipedia - Entziklopedia librea
+Name[fa]=Wikipedia - دایره‌المعارف آزاد
+Name[fi]=Wikipedia - Vapaa tietosanakirja
 Name[fr]=Wikipedia - L'encyclopédie libre
+Name[fy]=Wikipedia - de frije ensyklopedy
+Name[ga]=Wikipedia - An Chiclipéid Shaor
+Name[gl]=Wikipedia - A Enciclopédia Libre
+Name[he]=וויקיפדיה - האנציקלופדיה החופשית
+Name[hr]=Wikipedia - besplatna enciklopedija
+Name[hu]=Wikipedia
+Name[is]=Wikipedia - Frjálst alfræðiorðasafn
+Name[it]=Wikipedia - L'enciclopedia libera
+Name[ja]=Wikipedia - フリーな百科事典
+Name[ka]=ვიკიპედია - ღია ენციკლოპედია
+Name[kk]=Wikipedia - ашық энциклопедия
+Name[km]=Wikipedia - សព្វវចនាធិប្បាយ​ឥត​គិត​ថ្លៃ
+Name[lt]=Wikipedia - laisva enciklopedija
+Name[lv]=Wikipedia - Brīvā enciklopēdija
+Name[mk]=Википедија - Слободната енциклопедија
+Name[ms]=Wikipedia - Ensiklopedia Percuma
+Name[nb]=Wikipedia - det frie leksikonet
+Name[nds]=Wikipedia - dat fre'e Nakieksel
+Name[ne]=विकिपिडिया - नि: शुल्क इन्साइक्लोपिडिया
+Name[nl]=Wikipedia - de vrije encyclopedie
+Name[nn]=Wikipedia – det frie leksikonet
+Name[pa]=ਵਿੱਕੀਪੀਡਿਆ - ਮੁਫਤ ਵਿਸ਼ਵਕੋਸ਼
+Name[pl]=Wikipedia - otwarta encyklopedia
+Name[pt]=Wikipedia - A Enciclopédia Livre
+Name[pt_BR]=Wikipedia - A Enciclopédia Livre
+Name[ro]=Wikipedia - Enciclopedia liberă
+Name[ru]=Wikipedia - свободная энциклопедия
+Name[se]=Wikipedia – fridja leksikona
+Name[sl]=Wikipedia - Prosta enciklopedija
+Name[sr]=Wikipedia — слободна енциклопедија
+Name[sr@Latn]=Wikipedia — slobodna enciklopedija
+Name[sv]=Wikipedia - den fria encyklopedin
+Name[ta]=விகிபிடியா - இலவச கலைக்களஞ்சியம்
+Name[tg]=Wikipedia - Энсиклопедияи озод
+Name[tr]=Wikipedia - Ücretsiz Ansiklopedi
+Name[uk]=Wikipedia - вільна енциклопедія
+Name[uz]=Wikipedia - Эркин энциклопедия
 Name[x-test]=xxWikipedia - The Free Encyclopediaxx
+Name[zh_TW]=Wikipedia - 免費的 Encyclopedia
 ServiceTypes=SearchProvider
 Keys=wp
 Query=http://en.wikipedia.org/wiki/Special:Search?search=\{@}&go=Go
+Query[de]=http://de.wikipedia.org/wiki/Special:Search?search=\{@}&go=Go
+Query[fi]=http://fi.wikipedia.org/wiki/Special:Search?search=\{@}&go=Go
 Query[fr]=http://fr.wikipedia.org/wiki/Special:Search?search=\{@}&go=Go
+Query[fy]=http://fy.wikipedia.org/wiki/Special:Search?search=\{@}&go=Go
+Query[it]=http://it.wikipedia.org/wiki/Special:Search?search=\{@}&go=Go
+Query[nb]=http://no.wikipedia.org/wiki/Special:Search?search=\{@}&go=Go
+Query[ne]=http://en.wikipedia.org/wiki/Special:Search?search=\{@}go=Go
+Query[nl]=http://nl.wikipedia.org/wiki/Special:Search?search=\{@}&go=Go
+Query[pa]=http://en.wikipedia.org/wiki/Special:Search?search=\{@}&go=ਜਾਓ
+Query[pl]=http://pl.wikipedia.org/wiki/Special:Search?search=\{@}&go=Go
 Query[x-test]=xxhttp://en.wikipedia.org/wiki/Special:Search?search=\{@}&go=Goxx
 Charset=utf8

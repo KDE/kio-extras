@@ -2,11 +2,50 @@
 Encoding=UTF-8
 Type=Service
 Name=Technorati Tags
+Name[be]=Тэгі Technorati
+Name[br]=Liketennoù Technorati
+Name[ca]=Etiquetes Technorati
+Name[cs]=Technorati značky
+Name[da]=Technorati mærker
+Name[de]=Technorati Themen
 Name[el]=Ετικέτες Technorati
+Name[eo]=Technorati-aj Etikedoj
+Name[es]=Etiquetas de Technorati
+Name[et]=Technorati sildid
+Name[eu]=Technorati etiketak
+Name[fa]=برچسبهای Technorati
+Name[fi]=Technorati-tunnisteet
 Name[fr]=Balises Technorati
+Name[fy]=Technorati-markearring
+Name[ga]=Clibeanna Technorati
+Name[gl]=Etiquetas Technorati
+Name[hr]=Technorati oznake
+Name[is]=Technorati tög
+Name[it]=Tag di technorati
+Name[ja]=Technorati Tag
+Name[ka]=Technorati-ს ჭდეები
+Name[nb]=Technorati-tagger
+Name[nds]=Technorati-Themas
+Name[ne]=टेक्नोरती ट्याग
+Name[nl]=Technorati-tags
+Name[nn]=Technorati-taggar
+Name[pa]=Technorati ਟੈਗ
+Name[pl]=Znaczniki Technorati
+Name[pt]=Marcas do Technorati
+Name[pt_BR]=Tags do Technorati
+Name[ro]=Etichete Technorati
+Name[ru]=Статьи Technorati
+Name[se]=Technorati gilkorat
+Name[sr]=Technorati ознаке
+Name[sr@Latn]=Technorati oznake
+Name[sv]=Technorati-taggar
+Name[tg]=Тегҳои Technorati
+Name[uk]=Статті Technorati
 Name[x-test]=xxTechnorati Tagsxx
 ServiceTypes=SearchProvider
 Keys=tags,tag,technoratitags
 Query=http://technorati.com/tag/\\{@}?sourceid=kde-search
+Query[ja]=http://technorati.com/tag/\\\\{@}?sourceid=kde-search
+Query[tg]=http://technorati.com/tag/\\{@}?sourceid=kde-ҷустуҷӯ
 Query[x-test]=xxhttp://technorati.com/tag/\\{@}?sourceid=kde-searchxx
 Charset=utf8

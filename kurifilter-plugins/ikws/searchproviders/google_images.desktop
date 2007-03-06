@@ -2,11 +2,74 @@
 Encoding=UTF-8
 Type=Service
 Name=Google Image Search
+Name[af]=Google Beeld Soektog
+Name[ar]=بحث صور Google
+Name[be]=Пошук відарысаў Google
+Name[br]=Klask skeudennoù Google
+Name[ca]=Recerca d'imatges a Google
+Name[cs]=Hledání obrázků (Google)
+Name[cy]=Chwilio Delweddau Google 
+Name[da]=Google billedsøgning
+Name[de]=Google-Bildsuche
 Name[el]=Αναζήτηση εικόνων του Google
+Name[eo]=Bildoserĉo ce "Google"
+Name[es]=Búsqueda de imágenes de Google
+Name[et]=Google piltide otsing
+Name[eu]=Google irudi bilaketa
+Name[fa]=جستجوی تصویر گوگل
+Name[fi]=Googlen kuvahaku
 Name[fr]=Recherche d'images avec Google
+Name[fy]=Google printsjesykjen
+Name[ga]=Cuardach Íomhá Google
+Name[gl]=Procura de Imaxes de Google
+Name[he]=חיפוש תמונות של גוגל
+Name[hr]=Google pretraživanje slika
+Name[hu]=Google képkereső
+Name[is]=Google - Myndaleit
+Name[it]=Ricerca immagini di Google
+Name[ja]=Google 画像検索
+Name[ka]=Google ნახატის ძიება
+Name[kk]=Google кескіндерді табу
+Name[km]=ស្វែងរក​រូបភាព​តាម​រយៈ Google
+Name[ko]=구글 그림 찾기
+Name[lt]=Google paveikslėlių paieška
+Name[lv]=Google Attēlu Meklēšana
+Name[mk]=Google - пребарување на слики
+Name[ms]=Carian Imej Google
+Name[nb]=Bildesøk i Google
+Name[nds]=Google sien Biller-Söök
+Name[ne]=गुगल छवि खोजी
+Name[nl]=Google afbeeldingen zoeken
+Name[nn]=Google biletsøk
+Name[pa]=Google ਚਿੱਤਰ ਖੋਜ
+Name[pl]=Google - wyszukiwanie zdjęć
+Name[pt]=Pesquisa de Imagens do Google
+Name[pt_BR]=Busca de Imagens do Google
+Name[ro]=Căutare de imagini Google
+Name[ru]=Рисунки Google
+Name[se]=Oza govaid Google báikkis
+Name[sl]=Iskanje slik z Google
+Name[sr]=Google-ово претраживање слика
+Name[sr@Latn]=Google-ovo pretraživanje slika
+Name[sv]=Google bildsökning
+Name[ta]=கூகுல் சித்திர தேடு
+Name[tg]=Ҷусуҷӯи тасвири Google
+Name[tr]=Google Resim Arayıcı
+Name[uk]=Пошук зображень на Google
+Name[uz]=Google - Расм қидириш
 Name[x-test]=xxGoogle Image Searchxx
+Name[xh]=Uphendlo Lomfanekiso we Google
+Name[zh_TW]=Google 圖片搜尋
 ServiceTypes=SearchProvider
 Keys=ggi,images
 Query=http://images.google.com/images?q=\\{@}
+Query[en_GB]=http://images.google.co.uk/images?q=\\{@}
 Query[fr]=http://images.google.fr/images?q=\\{@}
+Query[he]=http://images.google.co.il/images?q=\\{@}
+Query[nb]=http://images.google.no/images?hl=nn&q=\\{@}
+Query[nl]=http://images.google.nl/images?q=\\{@}
+Query[nn]=http://images.google.com/images?hl=nn&q=\\{@}
+Query[pt]=http://images.google.pt/images?q=\\{@}
+Query[ru]=http://images.google.com/images?q=\\{@}&hl=ru&ie=UTF-8&oe=UTF-8
 Query[x-test]=xxhttp://images.google.com/images?q=\\{@}xx
+Query[zh_TW]=http://images.google.com.tw/images?q=\\{@}&hl=zh-TW

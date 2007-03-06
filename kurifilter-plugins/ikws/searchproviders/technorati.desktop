@@ -2,9 +2,13 @@
 Encoding=UTF-8
 Type=Service
 Name=Technorati
+Name[lt]=Technorati paieška
+Name[ne]=टेक्नोरती
 Name[x-test]=xxTechnoratixx
 ServiceTypes=SearchProvider
 Keys=tr,technorati
 Query=http://technorati.com/cosmos/search.html?sourceid=kde-search&url=\\{@}
+Query[ja]=http://technorati.com/cosmos/search.html?sourceid=kde-search&url=\\\\{@}
+Query[ne]=http://technorati.com/cosmos/search.html?sourceid=kde-searchurl=\\{@}
 Query[x-test]=xxhttp://technorati.com/cosmos/search.html?sourceid=kde-search&url=\\{@}xx
 Charset=utf8

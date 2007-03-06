@@ -2,6 +2,10 @@
 Encoding=UTF-8
 Type=Service
 Name=Gracenote
+Name[eo]=Ornamaĵo
+Name[ne]=ग्रेसनोट
+Name[pa]=ਗਰੇਸਨੋਟ
+Name[ta]=க்ரேஸ்நோட்
 Name[x-test]=xxGracenotexx
 ServiceTypes=SearchProvider
 Keys=gn,gracenote

@@ -2,9 +2,15 @@
 Encoding=UTF-8
 Type=Service
 Name=Feedster
+Name[ja]=Feedster 検索
+Name[ne]=फेडस्टर
+Name[pa]=ਫੀਡਸਟੀਰ
+Name[ta]=பீட்ஸ்டர்
 Name[x-test]=xxFeedsterxx
 ServiceTypes=SearchProvider
 Keys=blog,rss,feedster
 Query=http://www.feedster.com/search.php?q=\\{@}&ie=UTF-8&oe=UTF-8
+Query[he]=http://www.feedster.com/search.php?q=\\{@}&ie=UTF8&oe=UTF-88
+Query[ne]=http://www.feedster.com/search.php?q=\\{@}ie=UTF-8&oe=UTF-8
 Query[x-test]=xxhttp://www.feedster.com/search.php?q=\\{@}&ie=UTF-8&oe=UTF-8xx
 Charset=utf8

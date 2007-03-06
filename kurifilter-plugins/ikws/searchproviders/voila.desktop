@@ -2,6 +2,10 @@
 Encoding=UTF-8
 Type=Service
 Name=Voila
+Name[ko]=보일라
+Name[ne]=भोइला
+Name[pa]=ਵੋਈਲਾ
+Name[ta]=வாய்லா
 Name[x-test]=xxVoilaxx
 ServiceTypes=SearchProvider
 Keys=voila

@@ -2,8 +2,20 @@
 Charset=utf8
 Keys=tvtome
 Name=TV Tome
+Name[be]=Хатняе ТБ
+Name[da]=TV-Tome
+Name[eu]=TV toma
+Name[nb]=Stor TV
+Name[ne]=टी भी पुस्तक
+Name[nn]=Stor TV
+Name[sv]=TV-tome
+Name[tg]=Томи левизиони Хона
+Name[tr]=TV Kanalları
 Name[x-test]=xxTV Tomexx
 ServiceTypes=SearchProvider
 Query=http://www.tv.com/search.php?type=11&stype=all&qs=\\{@}&x=0&y=0
+Query[ja]=http://www.tv.com/search.php?type=11&stype=all&qs=\\\\{@}&x=0&y=0
+Query[ne]=http://www.tv.com/search.php?type=11stype=all&qs=\\{@}&x=0&y=0
+Query[tg]=http://www.tv.com/search.php?type=11&stype=ҳама&qs=\\{@}&x=0&y=0
 Query[x-test]=xxhttp://www.tv.com/search.php?type=11&stype=all&qs=\\{@}&x=0&y=0xx
 Type=Service

@@ -2,11 +2,65 @@
 Encoding=UTF-8
 Type=Service
 Name=Google Movies
+Name[af]=Google Films
+Name[ar]=أفلام Google
+Name[be]=Фільмы Google
+Name[br]=Filmoù Google
+Name[ca]=Pel·lícules Google
+Name[cs]=Google filmy
+Name[da]=Google film
+Name[de]=Google Filme
 Name[el]=Google ταινίες
+Name[eo]=Google Filmoj
+Name[es]=Películas de Google
+Name[eu]=Google pelikulak
+Name[fa]=فیلمهای Google
+Name[fi]=Googlen elokuvat
 Name[fr]=Google Vidéos
+Name[fy]=Google Films
+Name[ga]=Scannáin Google
+Name[gl]=Películas de Google
+Name[he]=הסרטים של גוגל
+Name[hr]=Google filmovi
+Name[is]=Google kvikmyndir
+Name[it]=Google filmati
+Name[ka]=Google ფილმები
+Name[kk]=Google фильмдер
+Name[km]=កុនតាម​រយៈ Google
+Name[lt]=Google filmai
+Name[mk]=Google - филмови
+Name[ms]=Wayang Google
+Name[nb]=Google, filmer
+Name[nds]=Google Filmen
+Name[ne]=गुगल चलचित्र
+Name[nn]=Google filmar
+Name[pa]=Google ਫਿਲਮਾਂ
+Name[pl]=Google - filmy
+Name[pt]=Filmes do Google
+Name[ro]=Filme Google
+Name[ru]=Видео Google
+Name[se]=Google filmmat
+Name[sr]=Google филмови
+Name[sr@Latn]=Google filmovi
+Name[sv]=Google filmer
+Name[ta]=கூகுல் படங்கள்
+Name[tg]=Филмҳои Google
+Name[tr]=Google Filmleri
+Name[uk]=Фільми на Google
+Name[uz]=Google - Кино
 Name[x-test]=xxGoogle Moviesxx
+Name[zh_TW]=Google 電影
 ServiceTypes=SearchProvider
 Keys=ggmovie
 Query=http://www.google.com/search?q=movie:\{@}&ie=UTF-8&oe=UTF-8
+Query[en_GB]=http://www.google.co.uk/search?q=movie:\{@}&ie=UTF-8&oe=UTF-8
+Query[he]=http://www.google.co.il/search?q=movie:\{@}&ie=UTF-8&oe=UTF-8
+Query[ja]=http://www.google.com/search?q=movie:\\{@}&ie=UTF-8&oe=UTF-8
+Query[nb]=http://www.google.no/search?q=movie:\{@}&ie=UTF-8&oe=UTF-8
+Query[ne]=http://www.google.com/search?q=movie:\{@}ie=UTF-8&oe=UTF-8
+Query[nn]=http://www.google.no/search?q=movie:\{@}&ie=UTF-8&oe=UTF-8
+Query[pl]=http://www.google.pl/search?q=movie:\{@}&ie=UTF-8&oe=UTF-8
+Query[tg]=http://www.google.com/search?q=филми:\\{@}&ie=UTF-8&oe=UTF-8
 Query[x-test]=xxhttp://www.google.com/search?q=movie:\{@}&ie=UTF-8&oe=UTF-8xx
+Query[zh_TW]=http://www.google.com.tw/search?q=movie:\{@}&ie=UTF-8&oe=UTF-8&hl=zh-TW
 Charset=utf8

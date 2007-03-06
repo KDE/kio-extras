@@ -2,6 +2,11 @@
 Encoding=UTF-8
 Type=Service
 Name=Netcraft
+Name[fy]=Netcraft 
+Name[ne]=नेटक्राफ्ट
+Name[pa]=ਨੈੱਟਕਰਾਫਟ
+Name[ta]=நெட்க்ராஃப்ட்
+Name[tg]=Шабакаи craft
 Name[x-test]=xxNetcraftxx
 ServiceTypes=SearchProvider
 Keys=nc,netcraft

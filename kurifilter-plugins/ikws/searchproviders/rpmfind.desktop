@@ -2,9 +2,32 @@
 Encoding=UTF-8
 Type=Service
 Name=RPM-Find
+Name[af]=RPM-Vind
+Name[be]=Пошук RPM
+Name[de]=RPM-Suche
 Name[el]=RPM-Αναζήτηση
+Name[eo]=RPM-trovilo
+Name[fa]=یافتن RPM
+Name[fi]=RPM-haku
+Name[hr]=RPM traženje
+Name[is]=RPM-leit
+Name[ka]=RPM-პოვნა
+Name[kk]=RPM-ды табу
+Name[km]=រក RPM
+Name[ko]=RPM 찾기
+Name[lv]=RPM-Meklēšana
+Name[mk]=RPM-барање
+Name[ne]=RPM-फेला पार्नुहोस्
+Name[pl]=Rpmfind - wyszukiwarka pakietów RPM
+Name[ro]=Căutare pachete RPM
+Name[ru]=Поиск RPM
+Name[ta]=RPM-தேடு
+Name[tg]=Ҷустуҷӯи RPM
+Name[uz]=RPM қидириш
 Name[x-test]=xxRPM-Findxx
+Name[xh]=RPM-Fumana
 ServiceTypes=SearchProvider
 Keys=rf,rpmfind
 Query=http://www.rpmfind.net/linux/rpm2html/search.php?query=\{@}
+Query[en_GB]=http://fr.rpmfind.net/linux/rpm2html/search.php?query=\{@}
 Query[x-test]=xxhttp://www.rpmfind.net/linux/rpm2html/search.php?query=\{@}xx

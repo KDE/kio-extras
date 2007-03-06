@@ -2,6 +2,10 @@
 Encoding=UTF-8
 Type=Service
 Name=Vivisimo
+Name[ka]=ვივისიმო
+Name[ne]=भिभिसिमो
+Name[pa]=ਵੀਵੀਸੀਮੋ
+Name[ta]=விவிசிமோ
 Name[x-test]=xxVivisimoxx
 ServiceTypes=SearchProvider
 Keys=vi

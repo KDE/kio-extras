@@ -2,6 +2,13 @@
 Encoding=UTF-8
 Type=Service
 Name=MetaCrawler
+Name[af]=Metacrawler
+Name[ar]=MetaCrwaler
+Name[ko]=메타 크로울러
+Name[ne]=मेटा क्रलर
+Name[pa]=ਮੈਟਾਕਰਾਵਲੀਰ
+Name[pl]=MetaCrawler - wyszukiwarka stron WWW
+Name[ta]=மெடா க்ராவ்லெர்
 Name[x-test]=xxMetaCrawlerxx
 ServiceTypes=SearchProvider
 Keys=mc,meta,metacrawler

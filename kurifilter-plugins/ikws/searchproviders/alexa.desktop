@@ -2,6 +2,10 @@
 Encoding=UTF-8
 Type=Service
 Name=Alexa
+Name[eo]=Aleksa
+Name[ne]=एलेक्सा
+Name[pa]=ਅਲੀਕਸਾ
+Name[ta]=அலெக்சா
 Name[x-test]=xxAlexaxx
 ServiceTypes=SearchProvider
 Keys=al,alexa
