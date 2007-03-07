@@ -7,6 +7,7 @@ X-KDE-FactoryName=medianotifier
 X-KDE-Kded-autoload=true
 X-KDE-Kded-load-on-demand=false
 Name=Media Notifier Deamon
+Name[el]=Δαίμονας ειδοποίησης μέσων
 Name[x-test]=xxMedia Notifier Deamonxx
 Comment=A media plugged notifier
 Comment[af]='n Inpropbare media inkennissteller

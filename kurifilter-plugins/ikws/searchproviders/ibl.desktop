@@ -2,6 +2,7 @@
 Charset=iso 8859-15
 Type=Service
 Name=Internet Book List
+Name[el]=Λίστα δικτυακών βιβλίων
 Name[x-test]=xxInternet Book Listxx
 ServiceTypes=SearchProvider
 Keys=ibl
