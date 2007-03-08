@@ -24,7 +24,7 @@
 NotifierNothingAction::NotifierNothingAction()
 	: NotifierAction()
 {
-	setIconName("button_cancel");
+	setIconName("dialog-cancel");
 	setLabel(i18n("Do nothing"));
 }
 

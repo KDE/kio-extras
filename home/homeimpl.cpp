@@ -143,7 +143,7 @@ void HomeImpl::createHomeEntry(KIO::UDSEntry &entry,
 
 	if (user.uid()==m_effectiveUid)
 	{
-		icon_name = "folder_home";
+		icon_name = "user-home";
 	}
 
 	entry.insert( KIO::UDS_ICON_NAME, icon_name);

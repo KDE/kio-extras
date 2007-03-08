@@ -29,11 +29,11 @@
 NotifierServiceAction::NotifierServiceAction()
 	: NotifierAction()
 {
-	NotifierAction::setIconName("button_cancel");
+	NotifierAction::setIconName("dialog-cancel");
 	NotifierAction::setLabel(i18n("Unknown"));
 
 	m_service.m_strName = "New Service";
-	m_service.m_strIcon = "button_cancel";
+	m_service.m_strIcon = "dialog-cancel";
 	m_service.m_strExec = "konqueror %u";
 }
 

@@ -24,7 +24,7 @@
 NotifierOpenAction::NotifierOpenAction()
 	: NotifierAction()
 {
-	setIconName("window_new");
+	setIconName("window-new");
 	setLabel(i18n("Open in New Window"));
 }
 
