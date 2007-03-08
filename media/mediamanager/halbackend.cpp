@@ -534,7 +534,7 @@ void HALBackend::setFloppyProperties(Medium* medium)
 			medium->setMimeType("media/zip_unmounted");
 	}
 
-	/** @todo And mimtype for JAZ drives ? */
+	/** @todo And mimetype for JAZ drives ? */
 
 	medium->setIconName(QString());
 
