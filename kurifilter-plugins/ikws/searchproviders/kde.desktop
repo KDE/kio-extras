@@ -59,6 +59,7 @@ Name[uz]=KDE API бўйича қўлланмалар
 Name[x-test]=xxKDE API Documentationxx
 Name[zh_TW]=KDE API 文件
 Query=http://developer.kde.org/documentation/library/classmapper.php?class=\\{@}
+Query[bg]=http://developer.kde.org/documentation/library/classmapper.php?class=\
 Query[x-test]=xxhttp://developer.kde.org/documentation/library/classmapper.php?class=\\{@}xx
 ServiceTypes=SearchProvider
 Type=Service
