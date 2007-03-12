@@ -3,6 +3,7 @@ Hidden=false
 Keys=cia
 Name=CIA World Fact Book
 Name[el]=Παγκόσμιο βιβλίο γεγονότων της CIA
+Name[nds]=CIA-Weltfaktenbook
 Name[x-test]=xxCIA World Fact Bookxx
 Query=http://www.google.com/search?q=allintitle%3A\\{@}+world+fact+book+site%3Awww.cia.gov&ie=UTF-8&btnI=I%27m+Feeling+Lucky
 Query[x-test]=xxhttp://www.google.com/search?q=allintitle%3A\\{@}+world+fact+book+site%3Awww.cia.gov&ie=UTF-8&btnI=I%27m+Feeling+Luckyxx
