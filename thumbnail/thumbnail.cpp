@@ -226,7 +226,7 @@ void ThumbnailProtocol::get(const KUrl &url)
             KFileMetaInfo info(url.path(), m_mimeType, KFileMetaInfo::Thumbnail);
             if (info.isValid())
             {
-                KFileMetaInfoItem item = info.item(KFileMimeTypeInfo::Thumbnail);
+                KFileMetaInfoItem item = info.item("thumbnail");
                 if (item.isValid() && item.value().type() == QVariant::Image)
                 {
                     img = item.value().value<QImage>();
