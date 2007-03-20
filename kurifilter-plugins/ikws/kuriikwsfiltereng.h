@@ -40,7 +40,7 @@ public:
   typedef QMap <QString, QString> SubstMap;
   
   KURISearchFilterEngine();
-  ~KURISearchFilterEngine() {};
+  ~KURISearchFilterEngine() {}
 
   QByteArray name() const;
   

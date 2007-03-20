@@ -117,10 +117,10 @@ public:
     void setErase(bool erase) { m_bErase = erase; }
 
     /** Return the filedescriptor of the process. */
-    int fd() {return m_Fd;};
+    int fd() {return m_Fd;}
 
     /** Return the pid of the process. */
-    int pid() {return m_Pid;};
+    int pid() {return m_Pid;}
 
     int stdioFd() {return m_stdinout;}
 

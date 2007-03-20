@@ -29,7 +29,7 @@
 
 struct StatInfo
 {
-   StatInfo():name(""),time(0),size(0),mode(0),freeSpace(0),isDir(false),isValid(false) {;};
+   StatInfo():name(""),time(0),size(0),mode(0),freeSpace(0),isDir(false),isValid(false) {;}
    QString name;
    time_t time;
    int size;

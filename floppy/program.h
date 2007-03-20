@@ -34,10 +34,10 @@ public:
 	bool start();
 	bool isRunning();
 
-   int stdinFD() {return mStdin[1];};
-   int stdoutFD() {return mStdout[0];};
-   int stderrFD() {return mStderr[0];};
-   int pid()      {return m_pid;};
+   int stdinFD() {return mStdin[1];}
+   int stdoutFD() {return mStdout[0];}
+   int stderrFD() {return mStderr[0];}
+   int pid()      {return m_pid;}
    int kill();
    int select(int secs, int usecs, bool& stdoutReceived, bool& stderrReceived/*, bool& stdinWaiting*/);
 protected:

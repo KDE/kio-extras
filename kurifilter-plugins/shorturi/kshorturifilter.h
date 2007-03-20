@@ -52,7 +52,7 @@ public:
     /**
      * Destructor
      */
-    virtual ~KShortUriFilter() {};
+    virtual ~KShortUriFilter() {}
 
     /**
      * Converts short URIs into fully qualified valid URIs

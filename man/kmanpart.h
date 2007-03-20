@@ -61,7 +61,7 @@ class KManPart : public KHTMLPart
    Q_OBJECT
    public:
       KManPart( QWidget * parent );
-      KParts::BrowserExtension * extension() {return m_extension;};
+      KParts::BrowserExtension * extension() {return m_extension;}
 
    public Q_SLOTS:
       virtual bool openUrl( const KUrl &url );

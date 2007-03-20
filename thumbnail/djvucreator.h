@@ -26,7 +26,7 @@
 class DjVuCreator : public ThumbCreator
 {
 public:
-    DjVuCreator() {};
+    DjVuCreator() {}
     virtual bool create(const QString &path, int, int, QImage &img);
 	virtual Flags flags() const;
 

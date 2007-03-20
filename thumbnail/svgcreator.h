@@ -25,7 +25,7 @@
 class SvgCreator : public ThumbCreator
 {
 public:
-    SvgCreator() {};
+    SvgCreator() {}
     virtual bool create(const QString &path, int w, int h, QImage &img);
     virtual Flags flags() const;
 };

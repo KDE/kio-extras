@@ -111,7 +111,7 @@ public:
     /** The size file attribute will not be included in the UDSEntry
         or when the file attribute is written to the sftp packet. */
     void clearFileSize()
-        { mSize = 0; mFlags &= ~SSH2_FILEXFER_ATTR_SIZE; };
+        { mSize = 0; mFlags &= ~SSH2_FILEXFER_ATTR_SIZE; }
 
     /** Returns the size of the file. */
     quint64 fileSize() const { return mSize; }

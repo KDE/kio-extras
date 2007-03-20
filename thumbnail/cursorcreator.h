@@ -25,7 +25,7 @@
 class CursorCreator : public ThumbCreator
 {
 	public:
-		CursorCreator() {};
+		CursorCreator() {}
 		bool create( const QString &path, int, int, QImage &img );
 };
 

@@ -43,9 +43,9 @@ class NFSFileHandle
       ~NFSFileHandle();
       NFSFileHandle& operator= (const NFSFileHandle& src);
       NFSFileHandle& operator= (const char* src);
-      operator const char* () const {return m_handle;};
+      operator const char* () const {return m_handle;}
       bool isInvalid() const {return m_isInvalid;}
-      void setInvalid() {m_isInvalid=true;};
+      void setInvalid() {m_isInvalid=true;}
 //      time_t age() const;
    protected:
       char m_handle[NFS_FHSIZE+1];

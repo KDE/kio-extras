@@ -25,7 +25,7 @@
 class SearchProvider 
 {
 public:
-    SearchProvider() : m_dirty(false) {};
+    SearchProvider() : m_dirty(false) {}
     SearchProvider(const KService::Ptr service);
 
     const QString &desktopEntryName() const { return m_desktopEntryName; }
