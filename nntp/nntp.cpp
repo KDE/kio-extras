@@ -98,24 +98,25 @@ void NNTPProtocol::get( const KUrl& url )
 {
   DBG << "get " << url.prettyUrl() << endl;
   QString path = QDir::cleanPath(url.path());
-  QRegExp regMsgId = QRegExp("^\\/?[a-z0-9\\.\\-_]+\\/<\\S+>$", Qt::CaseInsensitive);
-  int pos;
+  path = QUrl::fromPercentEncoding( path.toLatin1() );
+
+  // path should be like: /group/<msg_id> or /group/<serial number>
+  if ( path.startsWith( QDir::separator() ) )
+    path.remove( 0, 1 );
+  int pos = path.indexOf( QDir::separator() );
   QString group;
   QString msg_id;
-  int res_code;
+  if ( pos > 0 ) {
+    group = path.left( pos );
+    msg_id = path.mid( pos + 1 );
+  }
 
-  // path should be like: /group/<msg_id>
-  if (regMsgId.indexIn(path) != 0) {
+  if ( group.isEmpty() || msg_id.isEmpty() ) {
     error(ERR_DOES_NOT_EXIST,path);
     return;
   }
 
-  pos = path.indexOf('<');
-  group = path.left(pos);
-  msg_id = QUrl::fromPercentEncoding( path.right(path.length()-pos).toLatin1() );
-  if ( group.startsWith( "/" ) )
-    group.remove( 0, 1 );
-  if ((pos = group.indexOf('/')) > 0) group = group.left(pos);
+  int res_code;
   DBG << "get group: " << group << " msg: " << msg_id << endl;
 
   if ( !nntp_open() )
@@ -507,7 +508,7 @@ bool NNTPProtocol::fetchGroup( QString &group, unsigned long first, unsigned lon
     firstSerNum = re.cap( 2 ).toLong();
     lastSerNum = re.cap( 3 ).toLong();
   } else {
-    error( ERR_INTERNAL, i18n("Could not extract message serial numbers from server response:\n%1", 
+    error( ERR_INTERNAL, i18n("Could not extract message serial numbers from server response:\n%1",
        resp_line ) );
     return false;
   }
@@ -553,7 +554,7 @@ bool NNTPProtocol::fetchGroupRFC977( unsigned long first )
     fillUDSEntry( entry, msg_id, 0, true );
     listEntry( entry, false );
   } else {
-    error(ERR_INTERNAL,i18n("Could not extract first message id from server response:\n%1", 
+    error(ERR_INTERNAL,i18n("Could not extract first message id from server response:\n%1",
       resp_line));
     return false;
   }
@@ -579,7 +580,7 @@ bool NNTPProtocol::fetchGroupRFC977( unsigned long first )
       fillUDSEntry( entry, msg_id, 0, true );
       listEntry( entry, false );
     } else {
-      error(ERR_INTERNAL,i18n("Could not extract message id from server response:\n%1", 
+      error(ERR_INTERNAL,i18n("Could not extract message id from server response:\n%1",
         resp_line));
       return false;
     }
@@ -856,7 +857,7 @@ void NNTPProtocol::unexpected_response( int res_code, const QString &command )
     default: errCode = ERR_INTERNAL;
   }
 
-  error( errCode, i18n("Unexpected server response to %1 command:\n%2", 
+  error( errCode, i18n("Unexpected server response to %1 command:\n%2",
      command, readBuffer ) );
 
   nntp_close();
