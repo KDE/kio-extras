@@ -2,6 +2,7 @@
 Encoding=UTF-8
 Type=Service
 Name=Technorati
+Name[csb]=Technorati - blodżi
 Name[lt]=Technorati paieška
 Name[ne]=टेक्नोरती
 Name[x-test]=xxTechnoratixx

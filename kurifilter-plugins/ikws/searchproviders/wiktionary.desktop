@@ -8,6 +8,7 @@ Name[be]=Wiktionary - Свабодны Слоўнік
 Name[br]=Wiktionary - Ar geriadur frank
 Name[ca]=Viccionari - El diccionari lliure
 Name[cs]=Wiktionary - volně dostupný slovník
+Name[csb]=Wiktionary - wòlny słowôrz
 Name[da]=Wiktionary - Den frie ordbog
 Name[de]=Wiktionary - Das freie Wörterbuch
 Name[el]=Wiktionary - Το ελεύθερο λεξικό
@@ -56,6 +57,7 @@ Name[zh_TW]=Wiktionary - 免費的字典
 ServiceTypes=SearchProvider
 Keys=wt,wikt
 Query=http://en.wiktionary.org/wiki/Special:Search?search=\{@}&go=Go
+Query[csb]=http://pl.wiktionary.org/wiki/Special:Search?search=\{@}&go=Go
 Query[eo]=http://eo.wiktionary.org/wiki/Special:Search?search=\{@}&go=Go
 Query[fr]=http://fr.wiktionary.org/wiki/Special:Search?search=\{@}&go=Go
 Query[fy]=http://fy.wiktionary.org/wiki/Special:Search?search=\{@}&go=Go

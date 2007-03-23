@@ -8,6 +8,7 @@ Name[be]=Фільмы Google
 Name[br]=Filmoù Google
 Name[ca]=Pel·lícules Google
 Name[cs]=Google filmy
+Name[csb]=Google - filmë
 Name[da]=Google film
 Name[de]=Google Filme
 Name[el]=Google ταινίες
@@ -53,6 +54,7 @@ Name[zh_TW]=Google 電影
 ServiceTypes=SearchProvider
 Keys=ggmovie
 Query=http://www.google.com/search?q=movie:\{@}&ie=UTF-8&oe=UTF-8
+Query[csb]=http://www.google.pl/search?q=movie:\{@}&ie=UTF-8&oe=UTF-8
 Query[en_GB]=http://www.google.co.uk/search?q=movie:\{@}&ie=UTF-8&oe=UTF-8
 Query[he]=http://www.google.co.il/search?q=movie:\{@}&ie=UTF-8&oe=UTF-8
 Query[ja]=http://www.google.com/search?q=movie:\\{@}&ie=UTF-8&oe=UTF-8

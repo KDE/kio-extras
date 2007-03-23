@@ -2,6 +2,7 @@
 Encoding=UTF-8
 Type=Service
 Name=Hotbot
+Name[csb]=Hotbot - szëkôrz starnów WWW
 Name[ko]=핫봇
 Name[ne]=हटबट
 Name[pa]=ਹੋਟਬੋਟ

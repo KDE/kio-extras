@@ -2,6 +2,7 @@
 Encoding=UTF-8
 Type=Service
 Name=HyperDictionary.com
+Name[csb]=HyperDictionary.com - słowôrz
 Name[hu]=HyperDirectory.com
 Name[pl]=HyperDictionary.com - słownik
 Name[sv]=Hyperdictionary.com

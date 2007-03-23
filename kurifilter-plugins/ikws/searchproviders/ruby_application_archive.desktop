@@ -8,6 +8,7 @@ Name[be]=Архіў праграмаў Ruby
 Name[br]=Diell arloadoù Ruby
 Name[ca]=Arxiu d'aplicacions Ruby
 Name[cs]=Archív aplikací Ruby
+Name[csb]=Ruby - archiwa programów
 Name[cy]=Archif Cymhwysiadau Ruby
 Name[da]=Ruby programarkiv
 Name[el]=Αρχειοθήκη εφαρμογών Ruby
@@ -56,4 +57,5 @@ Name[zh_TW]=Ruby 應用程式檔案庫
 ServiceTypes=SearchProvider
 Keys=raa
 Query=http://www.ruby-lang.org/en/raa-list.rhtml?name=\\{@}
+Query[csb]=http://raa.ruby-lang.org/search.rhtml?search=\\{@}
 Query[x-test]=xxhttp://www.ruby-lang.org/en/raa-list.rhtml?name=\\{@}xx
