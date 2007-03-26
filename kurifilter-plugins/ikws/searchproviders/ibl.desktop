@@ -2,6 +2,7 @@
 Charset=iso 8859-15
 Type=Service
 Name=Internet Book List
+Name[de]=Internet-Buchliste
 Name[el]=Λίστα δικτυακών βιβλίων
 Name[nds]=Internet-Booklist
 Name[x-test]=xxInternet Book Listxx
