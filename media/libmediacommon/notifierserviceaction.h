@@ -22,7 +22,7 @@
 
 #include <kmimetype.h>
 #include <QString>
-#include <kdedesktopmimetype.h>
+#include <kdesktopfileactions.h>
 
 #include "notifieraction.h"
 
@@ -36,8 +36,8 @@ public:
 	virtual void setIconName( const QString &icon );
 	virtual void setLabel( const QString &label );
 	
-	void setService(KDEDesktopMimeType::Service service);
-	KDEDesktopMimeType::Service service() const;
+	void setService(KDesktopFileActions::Service service);
+	KDesktopFileActions::Service service() const;
 	
 	void setFilePath(const QString &filePath);
 	QString filePath() const;
@@ -53,7 +53,7 @@ public:
 private:
 	void updateFilePath();
 
-	KDEDesktopMimeType::Service m_service;
+	KDesktopFileActions::Service m_service;
 	QString m_filePath;
 	QStringList m_mimetypes;
 };

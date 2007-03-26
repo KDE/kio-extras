@@ -66,10 +66,10 @@ void NotifierServiceAction::setLabel( const QString &label )
 void NotifierServiceAction::execute(KFileItem &medium)
 {
 	KUrl::List urls = KUrl::List( medium.url() );
-	KDEDesktopMimeType::executeService( urls, m_service );
+	KDesktopFileActions::executeService( urls, m_service );
 }
 
-void NotifierServiceAction::setService(KDEDesktopMimeType::Service service)
+void NotifierServiceAction::setService(KDesktopFileActions::Service service)
 {
 	NotifierAction::setIconName( service.m_strIcon );
 	NotifierAction::setLabel( service.m_strName );
@@ -79,7 +79,7 @@ void NotifierServiceAction::setService(KDEDesktopMimeType::Service service)
 	updateFilePath();
 }
 
-KDEDesktopMimeType::Service NotifierServiceAction::service() const
+KDesktopFileActions::Service NotifierServiceAction::service() const
 {
 	return m_service;
 }

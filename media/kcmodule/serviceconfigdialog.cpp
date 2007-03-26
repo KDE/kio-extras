@@ -90,21 +90,21 @@ ServiceConfigDialog::ServiceConfigDialog(NotifierServiceAction *action,
 	connect( this, SIGNAL(okClicked()),this, SLOT(slotOk()));
 }
 
-bool operator==( KDEDesktopMimeType::Service s1, KDEDesktopMimeType::Service s2 )
+bool operator==( KDesktopFileActions::Service s1, KDesktopFileActions::Service s2 )
 {
 	return ( s1.m_strName==s2.m_strName )
 	    && ( s1.m_strIcon==s2.m_strIcon )
 	    && ( s1.m_strExec==s2.m_strExec );
 }
 
-bool operator!=( KDEDesktopMimeType::Service s1, KDEDesktopMimeType::Service s2 )
+bool operator!=( KDesktopFileActions::Service s1, KDesktopFileActions::Service s2 )
 {
 	return !( s1==s2 );
 }
 
 void ServiceConfigDialog::slotOk()
 {
-	KDEDesktopMimeType::Service service;
+	KDesktopFileActions::Service service;
 	service.m_strName = m_view->labelEdit->text();
 	service.m_strIcon = m_view->iconButton->icon();
 	service.m_strExec = m_view->commandEdit->text();
