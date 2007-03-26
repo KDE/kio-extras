@@ -4,12 +4,12 @@
 - After the user cancels with the stop button, we get ERR_CANNOT_LAUNCH_PROCESS
   errors, until we kill the ioslave. Same thing after trying the wrong passwd
   too many times.
-  This is happening because KProcess thinks that the ssh process is still running
+  This is happening because K3Process thinks that the ssh process is still running
   even though it exited.
 - How to handle password and caching?
   - Write our own askpass program using kde
   - set env SSH_ASKPASS_PROGRAM before launching
-    -how to do this? KProcess doesn't give us access to env variables.
+    -how to do this? K3Process doesn't give us access to env variables.
   - Our askpass program can probably talk to the kdesu daemon to implement caching.
 - chmod() succeeds, but konqueror always puts permissions to 0 afterwards. The properties
   dialog is right though.

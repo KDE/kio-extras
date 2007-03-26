@@ -31,7 +31,7 @@
 #include <kio/global.h>
 #include <kio/slavebase.h>
 
-class KProcess;
+class K3Process;
 
 class MANProtocol : public QObject, public KIO::SlaveBase
 {
@@ -61,7 +61,7 @@ public:
     static MANProtocol *self();
 
 private Q_SLOTS:
-  void slotGetStdOutput(KProcess*, char*, int);
+  void slotGetStdOutput(K3Process*, char*, int);
     
 private:
     void checkManPaths();

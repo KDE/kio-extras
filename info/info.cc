@@ -8,7 +8,7 @@
 #include <QRegExp>
 
 #include <kdebug.h>
-#include <kprocess.h>
+#include <k3process.h>
 #include <kstandarddirs.h>
 #include <kiconloader.h>
 #include <kcomponentdata.h>
@@ -96,17 +96,17 @@ void InfoProtocol::get( const KUrl& url )
     int revindex = path.lastIndexOf('/');
     path = path.left(revindex);
 
-    QString cmd = KProcess::quote(m_perl);
+    QString cmd = K3Process::quote(m_perl);
     cmd += ' ';
-    cmd += KProcess::quote(m_infoScript);
+    cmd += K3Process::quote(m_infoScript);
     cmd += ' ';
-    cmd += KProcess::quote(m_infoConf);
+    cmd += K3Process::quote(m_infoConf);
     cmd += ' ';
-    cmd += KProcess::quote(path);
+    cmd += K3Process::quote(path);
     cmd += ' ';
-    cmd += KProcess::quote(m_page);
+    cmd += K3Process::quote(m_page);
     cmd += ' ';
-    cmd += KProcess::quote(m_node);
+    cmd += K3Process::quote(m_node);
 
     kDebug( 7108 ) << "cmd: " << cmd << endl;
 

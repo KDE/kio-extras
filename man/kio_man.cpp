@@ -35,7 +35,7 @@
 #include <kcomponentdata.h>
 #include <kglobal.h>
 #include <kstandarddirs.h>
-#include <kprocess.h>
+#include <k3process.h>
 #include <klocale.h>
 #include <kmimetype.h>
 
@@ -195,12 +195,12 @@ QMap<QString, QString> MANProtocol::buildIndexMap(const QString &section)
 		    break;
 	    }
             if ( it_name == names.end() ) {
-                KProcess proc;
+                K3Process proc;
                 proc << "whatis" << "-M" << (*it_dir) << "-w" << "*";
                 myStdStream.clear();
-                connect( &proc, SIGNAL( receivedStdout(KProcess *, char *, int ) ),
-                         SLOT( slotGetStdOutput( KProcess *, char *, int ) ) );
-                proc.start( KProcess::Block, KProcess::Stdout );
+                connect( &proc, SIGNAL( receivedStdout(K3Process *, char *, int ) ),
+                         SLOT( slotGetStdOutput( K3Process *, char *, int ) ) );
+                proc.start( K3Process::Block, K3Process::Stdout );
                 QTextStream t( &myStdStream, QIODevice::ReadOnly );
                 parseWhatIs( i, t, mark );
             }
@@ -524,7 +524,7 @@ void MANProtocol::get(const KUrl& url )
     finished();
 }
 
-void MANProtocol::slotGetStdOutput(KProcess* /* p */, char *s, int len)
+void MANProtocol::slotGetStdOutput(K3Process* /* p */, char *s, int len)
 {
   myStdStream += QString::fromLocal8Bit(s, len);
 }
@@ -544,15 +544,15 @@ char *MANProtocol::readManPage(const char *_filename)
     if (QString(filename).contains("sman", Qt::CaseInsensitive)) //file_mimetype == "text/html" || )
     {
         myStdStream =QString();
-	KProcess proc;
+	K3Process proc;
 
 	/* Determine path to sgml2roff, if not already done. */
 	getProgramPath();
 	proc << mySgml2RoffPath << filename;
 
-	connect(&proc, SIGNAL(receivedStdout (KProcess *, char *, int)),
-	        this, SLOT(slotGetStdOutput(KProcess *, char *, int)));
-	proc.start(KProcess::Block, KProcess::All);
+	connect(&proc, SIGNAL(receivedStdout (K3Process *, char *, int)),
+	        this, SLOT(slotGetStdOutput(K3Process *, char *, int)));
+	proc.start(K3Process::Block, K3Process::All);
 
         const QByteArray cstr=myStdStream.toLatin1();
         const int len = cstr.size()-1;

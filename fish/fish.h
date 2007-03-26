@@ -21,7 +21,7 @@
 #include <kurl.h>
 #include <kio/global.h>
 #include <kio/slavebase.h>
-#include <kprocess.h>
+#include <k3process.h>
 #include <kio/authinfo.h>
 #include <time.h>
 

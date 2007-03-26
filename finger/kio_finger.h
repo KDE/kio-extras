@@ -23,7 +23,7 @@
 #include <QString>
 
 #include <kurl.h>
-#include <kprocess.h>
+#include <k3process.h>
 #include <kio/global.h>
 #include <kio/slavebase.h>
 
@@ -40,7 +40,7 @@ public:
   virtual void get(const KUrl& url);
 
 private Q_SLOTS:
-  void       slotGetStdOutput(KProcess*, char*, int);
+  void       slotGetStdOutput(K3Process*, char*, int);
 
 private:
   KUrl                  *myURL;
@@ -53,7 +53,7 @@ private:
   QString		*myStdStream;
 
 
-  KProcess	        *myKProcess;
+  K3Process	        *myKProcess;
 
   void       getProgramPath();
   void       parseCommandLine(const KUrl& url);

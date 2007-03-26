@@ -22,7 +22,7 @@
 
 #include "localdomainurifilter.h"
 
-#include <kprocess.h>
+#include <k3process.h>
 #include <kstandarddirs.h>
 #include <kdebug.h>
 
@@ -84,11 +84,11 @@ bool LocalDomainUriFilter::isLocalDomainHost( QString& cmd ) const
 
         m_fullname.clear();
 
-        KProcess proc;
+        K3Process proc;
         proc << helper << host;
-        connect( &proc, SIGNAL(receivedStdout(KProcess *, char *, int)),
-                 SLOT(receiveOutput(KProcess *, char *, int)) );
-        if( !proc.start( KProcess::NotifyOnExit, KProcess::Stdout ))
+        connect( &proc, SIGNAL(receivedStdout(K3Process *, char *, int)),
+                 SLOT(receiveOutput(K3Process *, char *, int)) );
+        if( !proc.start( K3Process::NotifyOnExit, K3Process::Stdout ))
             return last_result = false;
 
         last_host = host;
@@ -103,7 +103,7 @@ bool LocalDomainUriFilter::isLocalDomainHost( QString& cmd ) const
     return last_result;
 }
 
-void LocalDomainUriFilter::receiveOutput( KProcess *, char *buf, int )
+void LocalDomainUriFilter::receiveOutput( K3Process *, char *buf, int )
 {
     m_fullname = QFile::decodeName( buf );
 }

@@ -88,7 +88,7 @@ extern "C"
 #define KIO_SMB                     7106
 
 using namespace KIO;
-class KProcess;
+class K3Process;
 
 //===========================================================================
 
@@ -264,8 +264,8 @@ public:
     virtual void special( const QByteArray & );
 
 private Q_SLOTS:
-    void readOutput(KProcess *proc, char *buffer, int buflen);
-    void readStdErr(KProcess *proc, char *buffer, int buflen);
+    void readOutput(K3Process *proc, char *buffer, int buflen);
+    void readStdErr(K3Process *proc, char *buffer, int buflen);
 
 private:
     QString mybuf, mystderr;

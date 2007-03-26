@@ -27,7 +27,7 @@
 #include <QTimer>
 #include <kdebug.h>
 #include <kglobal.h>
-#include <kprocess.h>
+#include <k3process.h>
 #include <QtDBus/QtDBus>
 
 #include "kio_media_mounthelper.h"
@@ -106,7 +106,7 @@ MountHelper::MountHelper() : KApplication()
 
 void MountHelper::invokeEject(const QString &device, bool quiet)
 {
-	KProcess *proc = new KProcess(this);
+	K3Process *proc = new K3Process(this);
 	*proc << "kdeeject";
 	if (quiet)
 	{
@@ -114,7 +114,7 @@ void MountHelper::invokeEject(const QString &device, bool quiet)
 	}
 	*proc << device;
 	proc->start();
-	connect( proc, SIGNAL(processExited(KProcess *)),
+	connect( proc, SIGNAL(processExited(K3Process *)),
 	         this, SLOT( finished() ) );
 }
 

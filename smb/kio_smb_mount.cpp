@@ -23,14 +23,14 @@
 #include <unistd.h>
 #include <QByteArray>
 #include <QDir>
-#include <kprocess.h>
+#include <k3process.h>
 
-void SMBSlave::readOutput(KProcess *, char *buffer, int buflen)
+void SMBSlave::readOutput(K3Process *, char *buffer, int buflen)
 {
     mybuf += QString::fromLocal8Bit(buffer, buflen);
 }
 
-void SMBSlave::readStdErr(KProcess *, char *buffer, int buflen)
+void SMBSlave::readStdErr(K3Process *, char *buffer, int buflen)
 {
     mystderr += QString::fromLocal8Bit(buffer, buflen);
 }
@@ -85,7 +85,7 @@ void SMBSlave::special( const QByteArray & data)
          // using smbmount instead of "mount -t smbfs", because mount does not allow a non-root
          // user to do a mount, but a suid smbmnt does allow this
 
-         KProcess proc;
+         K3Process proc;
          proc.setUseShell(true);  // to have the path to smbmnt (which is used by smbmount); see man smbmount
          proc << "smbmount";
 
@@ -98,28 +98,28 @@ void SMBSlave::special( const QByteArray & data)
          }
          else
          {
-           options = "-o username=" + KProcess::quote(smburl.user());
+           options = "-o username=" + K3Process::quote(smburl.user());
            user = smburl.user();
 
            if ( ! smburl.pass().isEmpty() )
-             options += ",password=" + KProcess::quote(smburl.pass());
+             options += ",password=" + K3Process::quote(smburl.pass());
          }
 
          // TODO: check why the control center uses encodings with a blank char, e.g. "cp 1250"
          //if ( ! m_default_encoding.isEmpty() )
-           //options += ",codepage=" + KProcess::quote(m_default_encoding);
+           //options += ",codepage=" + K3Process::quote(m_default_encoding);
 
-         proc << KProcess::quote(remotePath.toLocal8Bit());
-         proc << KProcess::quote(mountPoint.toLocal8Bit());
+         proc << K3Process::quote(remotePath.toLocal8Bit());
+         proc << K3Process::quote(mountPoint.toLocal8Bit());
          proc << options;
 
-         connect(&proc, SIGNAL( receivedStdout(KProcess *, char *, int )),
-                 SLOT(readOutput(KProcess *, char *, int)));
+         connect(&proc, SIGNAL( receivedStdout(K3Process *, char *, int )),
+                 SLOT(readOutput(K3Process *, char *, int)));
 
-         connect(&proc, SIGNAL( receivedStderr(KProcess *, char *, int )),
-                 SLOT(readStdErr(KProcess *, char *, int)));
+         connect(&proc, SIGNAL( receivedStderr(K3Process *, char *, int )),
+                 SLOT(readStdErr(K3Process *, char *, int)));
 
-         if (!proc.start( KProcess::Block, KProcess::AllOutput ))
+         if (!proc.start( K3Process::Block, K3Process::AllOutput ))
          {
             error(KIO::ERR_CANNOT_LAUNCH_PROCESS,
                   "smbmount"+i18n("\nMake sure that the samba package is installed properly on your system."));
@@ -146,21 +146,21 @@ void SMBSlave::special( const QByteArray & data)
          QString mountPoint;
          stream >> mountPoint;
 
-         KProcess proc;
+         K3Process proc;
          proc.setUseShell(true);
          proc << "smbumount";
-         proc << KProcess::quote(mountPoint);
+         proc << K3Process::quote(mountPoint);
 
          mybuf.truncate(0);
          mystderr.truncate(0);
 
-         connect(&proc, SIGNAL( receivedStdout(KProcess *, char *, int )),
-                 SLOT(readOutput(KProcess *, char *, int)));
+         connect(&proc, SIGNAL( receivedStdout(K3Process *, char *, int )),
+                 SLOT(readOutput(K3Process *, char *, int)));
 
-         connect(&proc, SIGNAL( receivedStderr(KProcess *, char *, int )),
-                 SLOT(readStdErr(KProcess *, char *, int)));
+         connect(&proc, SIGNAL( receivedStderr(K3Process *, char *, int )),
+                 SLOT(readStdErr(K3Process *, char *, int)));
 
-         if ( !proc.start( KProcess::Block, KProcess::AllOutput ) )
+         if ( !proc.start( K3Process::Block, K3Process::AllOutput ) )
          {
            error(KIO::ERR_CANNOT_LAUNCH_PROCESS,
                  "smbumount"+i18n("\nMake sure that the samba package is installed properly on your system."));
