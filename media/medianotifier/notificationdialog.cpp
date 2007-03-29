@@ -18,6 +18,7 @@
 */
 
 #include "notificationdialog.h"
+#include <qlayout.h>
 
 #include <krun.h>
 #include <klocale.h>
@@ -44,8 +45,13 @@ NotificationDialog::NotificationDialog( KFileItem medium, NotifierSettings *sett
   showButtonSeparator( true );
 	//clearWState(  WState_Polished );
 
-	m_view = new NotificationDialogView( this );
+	QWidget *page = new QWidget( this );
+	setMainWidget(page);
+	QVBoxLayout *topLayout = new QVBoxLayout( page, 0, spacingHint() );
 
+	m_view = new NotificationDialogView( page );
+
+	topLayout->addWidget(m_view);
 	m_view->iconLabel->setPixmap( m_medium.pixmap(64) );
 	m_view->mimetypeLabel->setText( i18n( "<b>Medium Type:</b>" ) + ' '
 	                              + m_medium.mimeTypePtr()->comment() );
@@ -54,7 +60,6 @@ NotificationDialog::NotificationDialog( KFileItem medium, NotifierSettings *sett
 
 	resize( QSize(400,400).expandedTo( minimumSizeHint() ) );
 
-	setMainWidget( m_view );
 
 	m_actionWatcher = new KDirWatch();
 	QString services_dir
