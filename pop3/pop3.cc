@@ -642,7 +642,7 @@ bool POP3Protocol::pop3_open()
 {
   POP3_DEBUG << "pop3_open()" << endl;
   char  *greeting_buf;
-  if ((m_iOldPort == port(QString::number(m_iPort)).toInt()) && (m_sOldServer == m_sServer) &&
+  if ((m_iOldPort == m_iPort) && (m_sOldServer == m_sServer) &&
       (m_sOldUser == m_sUser) && (m_sOldPass == m_sPass)) {
     POP3_DEBUG << "Reusing old connection" << endl;
     return true;
@@ -650,7 +650,7 @@ bool POP3Protocol::pop3_open()
   do {
     closeConnection();
 
-    if (!connectToHost(m_sServer.toLatin1(), QString::number(m_iPort))) {
+    if (!connectToHost(m_sServer.toLatin1(), m_iPort)) {
       // error(ERR_COULD_NOT_CONNECT, m_sServer);
       // ConnectToHost has already send an error message.
       return false;
