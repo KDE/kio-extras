@@ -87,10 +87,9 @@ set(interactivesmtpserver_SRCS interactivesmtpserver.cc )
 
 kde4_automoc(${interactivesmtpserver_SRCS})
 
-
 kde4_add_executable(interactivesmtpserver ${interactivesmtpserver_SRCS})
 
-target_link_libraries(interactivesmtpserver  ${KDE4_KDECORE_LIBS} ${QT_QTNETWORK_LIBRARY} )
+target_link_libraries(interactivesmtpserver  ${KDE4_KDECORE_LIBS} ${QT_QTGUI_LIBRARY} ${QT_QTNETWORK_LIBRARY} )
 
 endif(KDE4_BUILD_TESTS)
 

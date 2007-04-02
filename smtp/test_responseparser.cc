@@ -4,7 +4,7 @@
 #include <qtest_kde.h>
 #include <assert.h>
 
-QTEST_KDEMAIN( ResponseParserTest, NoGUI )
+QTEST_KDEMAIN_CORE( ResponseParserTest )
 
 static const QByteArray singleLineResponseCRLF = "250 OK\r\n";
 static const QByteArray singleLineResponse     = "250 OK";
