@@ -650,7 +650,7 @@ bool POP3Protocol::pop3_open()
   do {
     closeConnection();
 
-    if (!connectToHost(m_sServer.toLatin1(), QString::number( m_iPort))) {
+    if (!connectToHost((m_bIsSSL ? "pop3s" : "pop3"), m_sServer.toLatin1(), m_iPort), true) {
       // error(ERR_COULD_NOT_CONNECT, m_sServer);
       // ConnectToHost has already send an error message.
       return false;
