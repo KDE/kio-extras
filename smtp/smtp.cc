@@ -301,7 +301,7 @@ void SMTPProtocol::setHost(const QString & host, int port,
                            const QString & user, const QString & pass)
 {
   m_sServer = host;
-  m_port = QString::number( port );
+  m_port = port;
   m_sUser = user;
   m_sPass = pass;
 }
@@ -517,7 +517,7 @@ bool SMTPProtocol::execute( Command * cmd, TransactionState * ts ) {
 bool SMTPProtocol::smtp_open(const QString& fakeHostname)
 {
   if (m_opened &&
-      m_sOldPort == port(m_port) &&
+      m_sOldPort == m_port &&
       m_sOldServer == m_sServer &&
       m_sOldUser == m_sUser &&
       (fakeHostname.isNull() || m_hostname == fakeHostname))
