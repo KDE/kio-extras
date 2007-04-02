@@ -24,7 +24,7 @@
 
 #include <kdebug.h>
 #include <kurl.h>
-#include <kresolver.h>
+#include <k3resolver.h>
 
 using namespace KNetwork;
 
