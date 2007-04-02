@@ -143,7 +143,7 @@ SMTPProtocol::SMTPProtocol(const QByteArray & pool, const QByteArray & app,
 :  TCPSlaveBase(useSSL ? 465 : 25,
                 useSSL ? "smtps" : "smtp",
                 pool, app, useSSL),
-   m_sOldPort( "0" ),
+   m_sOldPort( 0 ),
    m_opened(false)
 {
   //kDebug(7112) << "SMTPProtocol::SMTPProtocol" << endl;
@@ -301,7 +301,7 @@ void SMTPProtocol::setHost(const QString & host, int port,
                            const QString & user, const QString & pass)
 {
   m_sServer = host;
-  m_port = port;
+  m_port = QString::number(port);
   m_sUser = user;
   m_sPass = pass;
 }
@@ -517,14 +517,14 @@ bool SMTPProtocol::execute( Command * cmd, TransactionState * ts ) {
 bool SMTPProtocol::smtp_open(const QString& fakeHostname)
 {
   if (m_opened &&
-      m_sOldPort == m_port &&
+      QString::number(m_sOldPort) == m_port &&
       m_sOldServer == m_sServer &&
       m_sOldUser == m_sUser &&
       (fakeHostname.isNull() || m_hostname == fakeHostname))
     return true;
 
   smtp_close();
-  if (!connectToHost(m_sServer, m_port))
+  if (!connectToHost(m_bIsSSL ? "smtps" : "smtp", m_sServer, m_port.toUInt(), true))
     return false;             // connectToHost has already send an error message.
   m_opened = true;
 
@@ -595,7 +595,7 @@ bool SMTPProtocol::smtp_open(const QString& fakeHostname)
     return false;
   }
 
-  m_sOldPort = m_port;
+  m_sOldPort = m_port.toUInt();
   m_sOldServer = m_sServer;
   m_sOldUser = m_sUser;
   m_sOldPass = m_sPass;

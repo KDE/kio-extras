@@ -127,7 +127,7 @@ protected:
   }
   void queueCommand( int type );
 
-  QString m_sOldPort;
+  unsigned short  m_sOldPort;
   bool m_opened;
   QString m_sServer, m_sOldServer;
   QString m_sUser, m_sOldUser;
