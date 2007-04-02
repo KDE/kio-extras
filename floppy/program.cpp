@@ -116,13 +116,9 @@ bool Program::start()
       ::close(notificationPipe[0]);
 
       //child
-      ::close(0); // close the stdios
-      ::close(1);
-      ::close(2);
-
-      dup(mStdin[0]);
-      dup(mStdout[1]);
-      dup(mStderr[1]);
+      dup2(mStdin[0], 0);
+      dup2(mStdout[1], 1);
+      dup2(mStderr[1], 2);
 
       ::close(mStdin[1]);
       ::close(mStdout[0]);
