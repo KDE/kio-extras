@@ -34,7 +34,7 @@
 #include "request.h"
 
 #include <kurl.h>
-#include <kidna.h>
+#include <QtCore/QUrl>
 #include <kcodecs.h>
 #include <kdebug.h>
 
@@ -88,7 +88,7 @@ namespace KioSMTP {
   }
 
   QByteArray Request::heloHostnameCString() const {
-    return KIDNA::toAsciiCString( heloHostname() );
+    return QUrl::toAce( heloHostname() );
   }
 
   static bool isUsAscii( const QString & s ) {

@@ -38,7 +38,7 @@
 #include "response.h"
 #include "transactionstate.h"
 
-#include <kidna.h>
+#include <QtCore/QUrl>
 #include <klocale.h>
 #include <kdebug.h>
 #include <kcodecs.h>
@@ -114,7 +114,7 @@ namespace KioSMTP {
     mNeedResponse = true;
     mComplete = mEHLONotSupported;
     const char * cmd = mEHLONotSupported ? "HELO " : "EHLO " ;
-    return cmd + KIDNA::toAsciiCString( mHostname ) + "\r\n";
+    return cmd + QUrl::toAce( mHostname ) + "\r\n";
   }
 
   bool EHLOCommand::processResponse( const Response & r, TransactionState * ) {
