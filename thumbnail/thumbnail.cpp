@@ -279,7 +279,7 @@ void ThumbnailProtocol::get(const KUrl &url)
             KLibrary *library = KLibLoader::self()->library(QFile::encodeName(plugin));
             if (library)
             {
-                newCreator create = (newCreator)library->symbol("new_creator");
+                newCreator create = (newCreator)library->resolveFunction("new_creator");
                 if (create)
                     creator = create();
             }
