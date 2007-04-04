@@ -3,6 +3,8 @@ project(kioslave-media)
 
 configure_file(config-media.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-media.h)
 
+add_definitions (-DQT3_SUPPORT)
+
 set(libmediacommon_SRCS
     ${CMAKE_CURRENT_SOURCE_DIR}/libmediacommon/medium.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/libmediacommon/actionlistboxitem.cpp

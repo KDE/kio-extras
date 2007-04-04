@@ -2,6 +2,7 @@
 project(kioslave-thumbnail)
 
 
+add_definitions (-DQT3_SUPPORT)
 
 macro_optional_find_package(OpenEXR)
 ########### next target ###############

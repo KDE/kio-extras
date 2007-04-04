@@ -1,5 +1,7 @@
 project(kioslave-sftp)
 
+add_definitions (-DQT3_SUPPORT)
+
 ########### next target ###############
 if(KDE4_BUILD_TESTS)
 set(ksshprocesstest_SRCS ksshprocesstest.cpp ksshprocess.cpp process.cpp atomicio.cpp )

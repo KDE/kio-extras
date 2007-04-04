@@ -2,6 +2,7 @@
 project(kioslave-fish)
 configure_file(config-fish.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-fish.h)
 
+add_definitions (-DQT3_SUPPORT)
 
 ########### next target ###############
 
