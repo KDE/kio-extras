@@ -13,6 +13,7 @@ Name[el]=Δαίμονας ειδοποίησης μέσων
 Name[ja]=メディア通知デーモン
 Name[nds]=Medien-Narichtendämoon
 Name[x-test]=xxMedia Notifier Deamonxx
+Name[zh_TW]=媒體通知伺服程式
 Comment=A media plugged notifier
 Comment[af]='n Inpropbare media inkennissteller
 Comment[ar]=مبلِغ عن إدخال وسائط

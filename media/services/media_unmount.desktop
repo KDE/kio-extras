@@ -64,6 +64,6 @@ Name[uk]=Демонтувати
 Name[uz]=Узиш
 Name[x-test]=xxUnmountxx
 Name[xh]=Sukuyilayisha
-Name[zh_TW]=未掛載
+Name[zh_TW]=卸載
 Exec=kio_media_mounthelper -u %u
 

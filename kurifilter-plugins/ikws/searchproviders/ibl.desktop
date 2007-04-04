@@ -6,6 +6,7 @@ Name[de]=Internet-Buchliste
 Name[el]=Λίστα δικτυακών βιβλίων
 Name[nds]=Internet-Booklist
 Name[x-test]=xxInternet Book Listxx
+Name[zh_TW]=網際網路書目列表
 ServiceTypes=SearchProvider
 Keys=ibl
 Query=http://www.iblist.com/search/search.php?item=\\{@}&submit=Search
