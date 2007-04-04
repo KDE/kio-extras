@@ -1,6 +1,5 @@
 
 
-add_definitions (-DQT3_SUPPORT)
 
 ########### next target ###############
 
@@ -11,7 +10,7 @@ kde4_automoc(${kshorturifilter_PART_SRCS})
 kde4_add_plugin(kshorturifilter WITH_PREFIX ${kshorturifilter_PART_SRCS})
 
 
-target_link_libraries(kshorturifilter  ${KDE4_KIO_LIBS} ${QT_QT3SUPPORT_LIBRARY})
+target_link_libraries(kshorturifilter  ${KDE4_KIO_LIBS})
 
 install(TARGETS kshorturifilter  DESTINATION ${PLUGIN_INSTALL_DIR} )
 
