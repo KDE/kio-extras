@@ -358,7 +358,7 @@ QList<NotifierServiceAction*> NotifierSettings::listServices( const QString &mim
 	{
 		QDir dir( *dir_it );
 
-		QStringList entries = dir.entryList( "*.desktop", QDir::Files );
+		QStringList entries = dir.entryList( QStringList() << QLatin1String( "*.desktop" ), QDir::Files );
 
 		QStringList::ConstIterator entry_it = entries.begin();
 		QStringList::ConstIterator entry_end = entries.end();

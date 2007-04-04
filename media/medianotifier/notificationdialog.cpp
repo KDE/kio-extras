@@ -47,7 +47,9 @@ NotificationDialog::NotificationDialog( KFileItem medium, NotifierSettings *sett
 
 	QWidget *page = new QWidget( this );
 	setMainWidget(page);
-	QVBoxLayout *topLayout = new QVBoxLayout( page, 0, spacingHint() );
+	QVBoxLayout *topLayout = new QVBoxLayout( page );
+	topLayout->setMargin( 0 );
+	topLayout->setSpacing( spacingHint() );
 
 	m_view = new NotificationDialogView( page );
 

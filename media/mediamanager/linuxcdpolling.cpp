@@ -199,7 +199,7 @@ LinuxCDPolling::~LinuxCDPolling()
 
 	for(; it!=end; ++it)
 	{
-		PollingThread *thread = it.data();
+		PollingThread *thread = it.value();
 		thread->stop();
 		thread->wait();
 		delete thread;
@@ -294,7 +294,7 @@ void LinuxCDPolling::slotTimeout()
 	for(; it!=end; ++it)
 	{
 		QString id = it.key();
-		PollingThread *thread = it.data();
+		PollingThread *thread = it.value();
 
 		if (thread->hasChanged())
 		{
