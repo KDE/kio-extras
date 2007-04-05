@@ -6,7 +6,6 @@ MimeType=media/smb_mounted
 Comment=Mounted Samba (Microsoft Network) Share
 Comment[af]=Gekoppelde Samba (Microsoft Netwerk) Hulpbron
 Comment[ar]=مشاركة Samba محمّلة
-Comment[be]=Прымацаваная агульная тэчка Samba (Сетка Microsoft)
 Comment[bg]=Монтиран ресурс Samba (Microsoft Network)
 Comment[br]=Rennad Samba (rouedad Microsoft) marc'het
 Comment[ca]=Recurs de Samba (xarxa Microsoft) muntat
