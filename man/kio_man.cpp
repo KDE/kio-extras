@@ -30,6 +30,7 @@
 #include <q3ptrlist.h>
 #include <QMap>
 #include <QRegExp>
+#include <QTextCodec>
 
 #include <kdebug.h>
 #include <kcomponentdata.h>
@@ -569,7 +570,7 @@ char *MANProtocol::readManPage(const char *_filename)
             if (!KStandardDirs::exists(filename)) { // exists perhaps with suffix
                 lastdir = filename.left(filename.lastIndexOf('/'));
                 QDir mandir(lastdir);
-                mandir.setNameFilter(filename.mid(filename.lastIndexOf('/') + 1) + ".*");
+                mandir.setNameFilters(QStringList() << (filename.mid(filename.lastIndexOf('/') + 1) + ".*"));
                 filename = lastdir + '/' + QFile::encodeName(mandir.entryList().first());
             }
             kDebug(7107) << "resolved to " << filename << endl;
