@@ -2,6 +2,7 @@
 Encoding=UTF-8
 Type=Service
 Name=FixHostFilter
+Name[de]=Rechnernamen-Korrektur-Filter
 Name[nds]=FastReeknerFilter
 Name[x-test]=xxFixHostFilterxx
 Name[zh_TW]=固定主機過濾
