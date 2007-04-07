@@ -22,7 +22,6 @@ add_subdirectory( mounthelper )
 # this plugin is deprecated according to Kévin Ottens
 #add_subdirectory( kfile-plugin ) 
 add_subdirectory( kcmodule ) 
-add_subdirectory( mimetypes ) 
 add_subdirectory( services ) 
 
 include_directories( ${CMAKE_CURRENT_SOURCE_DIR}/libmediacommon )
