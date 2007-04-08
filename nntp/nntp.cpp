@@ -730,7 +730,7 @@ bool NNTPProtocol::nntp_open()
   DBG << "  nntp_open -- creating a new connection to " << mHost << ":" << m_port << endl;
   // create a new connection (connectToHost() includes error handling)
   infoMessage( i18n("Connecting to server...") );
-  if ( connectToHost( mHost.toLatin1(), m_port, true ) )
+  if ( connectToHost( (m_bIsSSL ? "nntps" : "nntp"), mHost.toLatin1(), m_port.toUInt(), true ) )
   {
     DBG << "  nntp_open -- connection is open " << endl;
 
