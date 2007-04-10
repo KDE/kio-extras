@@ -178,12 +178,12 @@ void LDAPProtocol::controlsFromMetaData( LdapControls &serverctrls,
 
 }
 
-void LDAPProtocol::LDAPEntry2UDSEntry( const QString &dn, UDSEntry &entry,
+void LDAPProtocol::LDAPEntry2UDSEntry( const LdapDN &dn, UDSEntry &entry,
   const LdapUrl &usrc, bool dir )
 {
   int pos;
   entry.clear();
-  QString name = dn;
+  QString name = dn.toString();
   if ( (pos = name.indexOf(',')) > 0 )
     name = name.left( pos );
   if ( (pos = name.indexOf('=')) > 0 )
@@ -204,7 +204,7 @@ void LDAPProtocol::LDAPEntry2UDSEntry( const QString &dn, UDSEntry &entry,
 
   // the url
   LdapUrl url=usrc;
-  url.setPath('/'+dn);
+  url.setPath('/'+dn.toString());
   url.setScope( dir ? LdapUrl::One : LdapUrl::Base );
   entry.insert( UDS_URL, url.prettyUrl() );
 }
@@ -394,7 +394,7 @@ void LDAPProtocol::get( const KUrl &_url )
   filesize_t processed_size = 0;
 
   while( true ) {
-    ret = mOp.result( id );
+    ret = mOp.waitForResult( id, -1 );
     if ( ret == -1 || mConn.ldapErrorCode() != KLDAP_SUCCESS ) {
       LDAPErr();
       return;
@@ -471,7 +471,7 @@ void LDAPProtocol::stat( const KUrl &_url )
   
   kDebug(7125) << "stat() getting result" << endl;
   do {
-    ret = mOp.result( id );
+    ret = mOp.waitForResult( id, -1 );
     if ( ret == -1 || mConn.ldapErrorCode() != KLDAP_SUCCESS ) {
       LDAPErr();
       return;
@@ -516,13 +516,13 @@ void LDAPProtocol::del( const KUrl &_url, bool )
   mOp.setServerControls( serverctrls );
   mOp.setClientControls( clientctrls );
 
-  kDebug(7125) << " del: " << usrc.dn().toUtf8() << endl ;
+  kDebug(7125) << " del: " << usrc.dn().toString().toUtf8() << endl ;
 
-  if ( (id = mOp.del( usrc.dn() ) == -1) ) {
+  if ( (id = mOp.del( usrc.dn().toString() ) == -1) ) {
     LDAPErr();
     return;
   }
-  ret = mOp.result( id );
+  ret = mOp.waitForResult( id, -1 );
   if ( ret == -1 || mConn.ldapErrorCode() != KLDAP_SUCCESS ) {
     LDAPErr();
     return;
@@ -715,7 +715,7 @@ void LDAPProtocol::listDir( const KUrl &_url )
   UDSEntry uds;
 
   while( true ) {
-    ret = mOp.result( id );
+    ret = mOp.waitForResult( id, -1 );
     if ( ret == -1 || mConn.ldapErrorCode() != KLDAP_SUCCESS ) {
       LDAPErr();
       return;
@@ -727,23 +727,23 @@ void LDAPProtocol::listDir( const KUrl &_url )
     total++;
     uds.clear();
 
-    LDAPEntry2UDSEntry( mOp.object().dn().toString(), uds, usrc );
+    LDAPEntry2UDSEntry( mOp.object().dn(), uds, usrc );
     listEntry( uds, false );
 //      processedSize( total );
     kDebug(7125) << " total: " << total << " " << usrc.prettyUrl() << endl;
 
     // publish the sub-directories (if dirmode==sub)
     if ( isSub ) {
-      QString dn = mOp.object().dn().toString();
+      LdapDN dn = mOp.object().dn();
       usrc2.setDn( dn );
       usrc2.setScope( LdapUrl::One );
       usrc2.setAttributes( saveatt );
       usrc2.setFilter( usrc.filter() );
-      kDebug(7125) << "search2 " << dn << endl;
+      kDebug(7125) << "search2 " << dn.toString() << endl;
       if ( (id2 = mOp.search( dn, LdapUrl::One, QString(), att )) != -1 ) {
         while ( true ) {
           kDebug(7125) << " next result " << endl;
-          ret2 = mOp.result( id2 );
+          ret2 = mOp.waitForResult( id2, -1 );
           if ( ret2 == -1 || ret2 == LdapOperation::RES_SEARCH_RESULT ) break;
           if ( ret2 == LdapOperation::RES_SEARCH_ENTRY ) {
             LDAPEntry2UDSEntry( dn, uds, usrc2, true );

@@ -10,6 +10,7 @@
 #include <kldap/ldapurl.h>
 #include <kldap/ldapcontrol.h>
 #include <kldap/ldapconnection.h>
+#include <kldap/ldapdn.h>
 #include <kldap/ldapoperation.h>
 
 class LDAPProtocol : public KIO::SlaveBase
@@ -41,7 +42,7 @@ class LDAPProtocol : public KIO::SlaveBase
     
     void controlsFromMetaData( KLDAP::LdapControls &serverctrls,
       KLDAP::LdapControls &clientctrls );
-    void LDAPEntry2UDSEntry( const QString &dn, KIO::UDSEntry &entry, 
+    void LDAPEntry2UDSEntry( const KLDAP::LdapDN &dn, KIO::UDSEntry &entry,
       const KLDAP::LdapUrl &usrc, bool dir=false );
     int asyncSearch( KLDAP::LdapUrl &usrc, const QByteArray &cookie = "" );
     
