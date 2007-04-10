@@ -518,7 +518,7 @@ void LDAPProtocol::del( const KUrl &_url, bool )
 
   kDebug(7125) << " del: " << usrc.dn().toString().toUtf8() << endl ;
 
-  if ( (id = mOp.del( usrc.dn().toString() ) == -1) ) {
+  if ( (id = mOp.del( usrc.dn() ) == -1) ) {
     LDAPErr();
     return;
   }
@@ -593,7 +593,7 @@ void LDAPProtocol::put( const KUrl &_url, int, bool overwrite, bool )
               ldaperr = mOp.del_s( ldif.dn() );
               break;
             case Ldif::Entry_Modrdn:
-              kDebug(7125) << "kio_ldap_modrdn olddn:" << ldif.dn() <<
+              kDebug(7125) << "kio_ldap_modrdn olddn:" << ldif.dn().toString() <<
                 " newRdn: " <<  ldif.newRdn() <<
                 " newSuperior: " << ldif.newSuperior() <<
                 " deloldrdn: " << ldif.delOldRdn() << endl;
@@ -606,11 +606,11 @@ void LDAPProtocol::put( const KUrl &_url, int, bool overwrite, bool )
               modops.clear();
               break;
             case Ldif::Entry_Add:
-              kDebug(7125) << "kio_ldap_add " << ldif.dn() << endl;
+              kDebug(7125) << "kio_ldap_add " << ldif.dn().toString() << endl;
               addObject.setDn( ldif.dn() );
               ldaperr = mOp.add_s(  addObject );
               if ( ldaperr == KLDAP_ALREADY_EXISTS && overwrite ) {
-                kDebug(7125) << ldif.dn() << " already exists, delete first" << endl;
+                kDebug(7125) << ldif.dn().toString() << " already exists, delete first" << endl;
                 ldaperr = mOp.del_s( ldif.dn() );
                 if ( ldaperr == KLDAP_SUCCESS )
                   ldaperr = mOp.add_s( addObject );
