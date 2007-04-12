@@ -27,6 +27,7 @@ Name[ro]=URL Alexa
 Name[sl]=URL Alexe
 Name[sv]=Alexa webbadress
 Name[ta]=அலெக்சா URL
+Name[te]=ఎలెక్సా యూ అర్ ఎల్
 Name[x-test]=xxAlexa URLxx
 ServiceTypes=SearchProvider
 Keys=alu,url

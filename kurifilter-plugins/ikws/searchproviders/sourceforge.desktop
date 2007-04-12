@@ -8,6 +8,7 @@ Name[eo]=Programforĝejo
 Name[ne]=सोर्स फर्ज
 Name[pl]=SourceForge - projekty
 Name[ta]=மூலத்திருட்டு
+Name[te]=సొర్స్ ఫొర్జ్
 Name[x-test]=xxSourceForgexx
 Query=http://sourceforge.net/search/?type_of_search=\\{type,"soft"}&exact=\{exact,"0"}&words=\\{@}
 Query[x-test]=xxhttp://sourceforge.net/search/?type_of_search=\\{type,"soft"}&exact=\{exact,"0"}&words=\\{@}xx

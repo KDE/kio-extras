@@ -10,6 +10,7 @@ Name[ne]=मेटा क्रलर
 Name[pa]=ਮੈਟਾਕਰਾਵਲੀਰ
 Name[pl]=MetaCrawler - wyszukiwarka stron WWW
 Name[ta]=மெடா க்ராவ்லெர்
+Name[te]=మెటా క్రాలర్
 Name[x-test]=xxMetaCrawlerxx
 ServiceTypes=SearchProvider
 Keys=mc,meta,metacrawler

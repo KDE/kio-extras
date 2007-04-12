@@ -8,6 +8,7 @@ Name[ne]=हटबट
 Name[pa]=ਹੋਟਬੋਟ
 Name[pl]=Hotbot - wyszukiwarka stron WWW
 Name[ta]=ஹாட்பாட்
+Name[te]=హాట్ బాట్
 Name[x-test]=xxHotbotxx
 ServiceTypes=SearchProvider
 Keys=hb,hotbot
