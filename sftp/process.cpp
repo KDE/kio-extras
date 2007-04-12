@@ -43,8 +43,8 @@
 #include <sys/select.h>		// Needed on some systems.
 #endif
 
-#include <qglobal.h>
-#include <q3cstring.h>
+#include <QtCore/QBool>
+#include <Qt3Support/Q3CString>
 #include <QFile>
 
 #include <kdebug.h>

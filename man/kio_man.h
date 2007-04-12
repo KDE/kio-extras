@@ -23,7 +23,7 @@
 
 #include <QString>
 #include <QStringList>
-#include <q3dict.h>
+#include <Qt3Support/Q3Dict>
 #include <QBuffer>
 //Added by qt3to4:
 #include <QTextStream>

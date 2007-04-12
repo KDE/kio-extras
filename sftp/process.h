@@ -12,7 +12,7 @@
 #ifndef __Process_h_Included__
 #define __Process_h_Included__
 
-#include <q3cstring.h>
+#include <Qt3Support/Q3CString>
 #include <QString>
 #include <QStringList>
 

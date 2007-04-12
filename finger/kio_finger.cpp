@@ -23,7 +23,7 @@
 
 #include <QByteArray>
 #include <QTextStream>
-#include <q3dict.h>
+#include <Qt3Support/Q3Dict>
 #include <QFile>
 #include <QRegExp>
 

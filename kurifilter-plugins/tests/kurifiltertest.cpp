@@ -26,8 +26,8 @@
 #include <klocale.h>
 #include <kio/netaccess.h>
 
-#include <qdir.h>
-#include <qregexp.h>
+#include <QtCore/QDir>
+#include <QtCore/QRegExp>
 
 #include <config.h>
 #include <iostream>

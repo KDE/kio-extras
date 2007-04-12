@@ -40,10 +40,10 @@
 // QT includes
 //-------------
 #include <QString>
-#include <q3ptrlist.h>
+#include <Qt3Support/Q3PtrList>
 #include <QStringList>
 #include <QTextStream>
-#include <q3strlist.h>
+#include <Qt3Support/Q3StrIList>
 //Added by qt3to4:
 #include <QByteArray>
 

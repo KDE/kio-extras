@@ -18,7 +18,7 @@
 */
 
 #include "notificationdialog.h"
-#include <qlayout.h>
+#include <QtGui/QLayout>
 
 #include <krun.h>
 #include <klocale.h>

@@ -20,7 +20,7 @@
 
 #include <sys/types.h>
 
-#include <qglobal.h>
+#include <QtCore/QBool>
 #include <QtCore/QByteArray>
 #include <QtCore/QDataStream>
 #include <QtCore/QString>

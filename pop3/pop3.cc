@@ -47,7 +47,7 @@ extern "C" {
 }
 #endif
 
-#include <qglobal.h>
+#include <QtCore/QBool>
 #include <QByteArray>
 #include <QRegExp>
 

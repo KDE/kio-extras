@@ -20,7 +20,7 @@
 #define REMOTEDIRNOTIFY_H
 
 #include <kurl.h>
-#include <qobject.h>
+#include <QtCore/QObject>
 
 class RemoteDirNotify : public QObject
 {
