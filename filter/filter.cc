@@ -107,7 +107,7 @@ void FilterProtocol::get( const KUrl & )
         bNeedHeader = false;
      }
      result = filter->uncompress();
-     if ((filter->outBufferAvailable() == 0) || (result == KFilterBase::END))
+     if ((filter->outBufferAvailable() == 0) || (result == KFilterBase::End))
      {
          kDebug(7110) << "avail_out = " << filter->outBufferAvailable() << endl;
         if (filter->outBufferAvailable() != 0)
@@ -124,10 +124,10 @@ void FilterProtocol::get( const KUrl & )
         }
         data( outputBuffer ); // Send data
         filter->setOutBuffer( outputBuffer.data(), outputBuffer.size() );
-        if (result == KFilterBase::END)
+        if (result == KFilterBase::End)
            break; // Finished.
      }
-     if (result != KFilterBase::OK)
+     if (result != KFilterBase::Ok)
      {
         bError = true;
         break; // Error
