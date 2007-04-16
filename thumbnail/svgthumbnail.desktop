@@ -3,6 +3,7 @@ Encoding=UTF-8
 Type=Service
 Name=Svg
 Name[nds]=SVG
+Name[sv]=SVG
 Name[x-test]=xxSvgxx
 ServiceTypes=ThumbCreator
 MimeTypes=image/svg+xml
