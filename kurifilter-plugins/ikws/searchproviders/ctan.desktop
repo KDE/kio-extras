@@ -4,7 +4,6 @@ Keys=ctan
 Name=CTAN - Comprehensive TeX Archive Network
 Name[af]=CTAN - Omvattende Tex Argief Netwerk
 Name[ca]=CTAN - Xarxa extensa d'arxius TeX
-Name[csb]=CTAN - archiwa TeX-a
 Name[cy]=CTAN - Rhwydwaith Archif Cynhwysfawr TeX
 Name[da]=CTAN - omfattende TeX-arkivnetværk
 Name[de]=CTAN - Umfassendes TeX-Archiv
@@ -39,7 +38,6 @@ Name[x-test]=xxCTAN - Comprehensive TeX Archive Networkxx
 Name[xh]=CTAN - Enomxholo TeX Indawo yokugcina Yomsebenzi womnatha
 Name[zh_TW]=CTAN - 全面的 Tex 收集網路
 Query=http://www.ctan.org/tools/filesearch?action=/search/&filename=\\{@}
-Query[csb]=http://www.ctan.org/tools/cataloguesearch?action=/search/&catstring=\\{@}
 Query[x-test]=xxhttp://www.ctan.org/tools/filesearch?action=/search/&filename=\\{@}xx
 ServiceTypes=SearchProvider
 Type=Service
