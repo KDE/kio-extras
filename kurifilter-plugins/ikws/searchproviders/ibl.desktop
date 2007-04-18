@@ -11,4 +11,5 @@ Name[zh_TW]=網際網路書目列表
 ServiceTypes=SearchProvider
 Keys=ibl
 Query=http://www.iblist.com/search/search.php?item=\\{@}&submit=Search
+Query[csb]=http://www.feedster.com/search.php?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[x-test]=xxhttp://www.iblist.com/search/search.php?item=\\{@}&submit=Searchxx

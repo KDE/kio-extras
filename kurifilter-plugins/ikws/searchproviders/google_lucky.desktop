@@ -7,6 +7,7 @@ Name[ar]=Google (ضربة حظ)
 Name[bg]=Google (I"m Feeling Lucky)
 Name[ca]=Google (Avui tinc sort!)
 Name[cs]=Google (Zkusím štěstí)
+Name[csb]=Google - "Szczestlëwé trafienié"
 Name[cy]=Google(Dwi'n Teimlo'n Lwcus)
 Name[da]=Google (Jeg føler mig heldig)
 Name[de]=Google ("Auf gut Glück!")
@@ -59,6 +60,7 @@ Name[zh_TW]=Google (好手氣)
 ServiceTypes=SearchProvider
 Keys=ggl,gglucky
 Query=http://www.google.com/search?q=\\{@}&btnI=I%27m+Feeling+Lucky&ie=UTF-8&oe=UTF-8
+Query[csb]=http://www.google.pl/search?q=\\{@}&btnI=I%27m+Feeling+Lucky&ie=UTF-8&oe=UTF-8
 Query[en_GB]=http://www.google.co.uk/search?q=\\{@}&btnI=I%27m+Feeling+Lucky&ie=UTF-8&oe=UTF-8
 Query[fi]=http://www.google.fi/search?q=\\{@}&btnI=I%27m+Feeling+Lucky&ie=UTF-8&oe=UTF-8
 Query[fr]=http://www.google.fr/search?q=\\{@}&btnI=I%27m+Feeling+Lucky&ie=UTF-8&oe=UTF-8
