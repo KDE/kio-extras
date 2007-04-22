@@ -236,7 +236,7 @@ void SMTPProtocol::put(const KUrl & url, int /*permissions */ ,
       open_url.setUser(m_sUser);
       open_url.setPass(m_sPass);
       m_sServer = open_url.host();
-      m_port = open_url.port();
+      m_port = QString::number( open_url.port() );
     }
     else {
       mset.setProfile(mset.defaultProfileName());
@@ -309,7 +309,10 @@ void SMTPProtocol::setHost(const QString & host, int port,
 bool SMTPProtocol::sendCommandLine( const QByteArray & cmdline ) {
   //kDebug( cmdline.length() < 4096, 7112) << "C: " << cmdline.data();
   //kDebug( cmdline.length() >= 4096, 7112) << "C: <" << cmdline.length() << " bytes>" << endl;
-  kDebug( 7112) << "C: <" << cmdline.length() << " bytes>" << endl;
+  if ( cmdline.length() < 4096 )
+    kDebug(7112) << "C: >>" << cmdline.trimmed().data() << "<<" << endl;
+  else
+    kDebug(7112) << "C: <" << cmdline.length() << " bytes>" << endl;
   ssize_t cmdline_len = cmdline.length();
   if ( write( cmdline.data(), cmdline_len ) != cmdline_len ) {
     error( KIO::ERR_COULD_NOT_WRITE, m_sServer );
@@ -341,7 +344,7 @@ Response SMTPProtocol::getResponse( bool * ok ) {
       return response;
     }
 
-    kDebug(7112) << "S: " << QByteArray( buf, recv_len ).trimmed().data() << endl;
+    kDebug(7112) << "S: >>" << QByteArray( buf, recv_len ).trimmed().data() << "<<" << endl;
     // ...and parse lines...
     response.parseLine( buf, recv_len );
 
@@ -578,6 +581,10 @@ bool SMTPProtocol::smtp_open(const QString& fakeHostname)
        || metaData("tls") == "on" ) {
     // For now we're gonna force it on.
 
+#ifdef __GNUC__
+#warning Enable the following code again when the SSL bug is fixed in kdelibs - ik20070422
+#endif
+#if 0
     if ( execute( Command::STARTTLS ) ) {
 
       // re-issue EHLO to refresh the capability list (could be have
@@ -588,6 +595,7 @@ bool SMTPProtocol::smtp_open(const QString& fakeHostname)
         return false;
       }
     }
+#endif
   }
   // Now we try and login
   if (!authenticate()) {
