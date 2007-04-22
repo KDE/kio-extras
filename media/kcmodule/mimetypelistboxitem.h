@@ -21,7 +21,7 @@
 #define _MIMETYPELISTBOXITEM_H_
 
 #include <QListWidget>
-#include <QString>
+
 
 class MimetypeListBoxItem : public QListWidgetItem
 {

@@ -21,7 +21,7 @@
 #define __kio_man_h__
 
 
-#include <QString>
+
 #include <QStringList>
 #include <Qt3Support/Q3Dict>
 #include <QBuffer>

@@ -13,7 +13,7 @@
 #define __Process_h_Included__
 
 #include <Qt3Support/Q3CString>
-#include <QString>
+
 #include <QStringList>
 
 

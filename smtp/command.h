@@ -33,7 +33,7 @@
 #define __KIOSMTP_COMMAND_H__
 
 
-#include <QString>
+
 #include <smtp-config.h>
 
 #ifdef HAVE_LIBSASL2

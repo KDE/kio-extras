@@ -11,7 +11,7 @@
 #ifndef _NNTP_H
 #define _NNTP_H
 
-#include <QString>
+
 #include <kio/global.h>
 #include <kio/tcpslavebase.h>
 

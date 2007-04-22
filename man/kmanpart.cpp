@@ -18,7 +18,7 @@
 */
 
 #include "kmanpart.h"
-#include <QString>
+
 
 #include <kcomponentdata.h>
 #include <kglobal.h>

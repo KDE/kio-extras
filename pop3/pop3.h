@@ -33,7 +33,7 @@
 
 #include <stdio.h>
 
-#include <QString>
+
 
 #include <kio/tcpslavebase.h>
 

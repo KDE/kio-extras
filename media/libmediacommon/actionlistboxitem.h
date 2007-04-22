@@ -22,7 +22,7 @@
 
 #include <QListWidget>
 #include <QListWidgetItem>
-#include <QString>
+
 
 #include "notifieraction.h"
 

@@ -24,7 +24,7 @@
 #include <kfileitem.h>
 #include <kio/job.h>
 
-#include <QString>
+
 #include <QMap>
 #include <QByteArray>
 

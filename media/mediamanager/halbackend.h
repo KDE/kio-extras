@@ -33,7 +33,7 @@
 
 #include <QObject>
 #include <QStringList>
-#include <QString>
+
 
 #include <config.h>
 

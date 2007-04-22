@@ -20,7 +20,7 @@
 #ifndef __kio_finger_h__
 #define __kio_finger_h__
 
-#include <QString>
+
 
 #include <kurl.h>
 #include <k3process.h>

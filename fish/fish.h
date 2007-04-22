@@ -16,7 +16,7 @@
 #ifndef __fish_h__
 #define __fish_h__
 
-#include <QString>
+
 
 #include <kurl.h>
 #include <kio/global.h>

@@ -69,7 +69,7 @@ using KioSMTP::TransactionState;
 #include <kio/slaveinterface.h>
 #include <klocale.h>
 
-#include <QString>
+
 #include <QStringList>
 
 #include <memory>

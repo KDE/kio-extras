@@ -21,7 +21,7 @@
 #define _NOTIFIERACTION_H_
 
 #include <kfileitem.h>
-#include <QString>
+
 #include <QPixmap>
 
 class NotifierSettings;

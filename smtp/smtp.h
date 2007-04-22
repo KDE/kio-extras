@@ -33,7 +33,7 @@
 
 #include "capabilities.h"
 
-#include <QString>
+
 #include <QQueue>
 #include <QByteArray>
 

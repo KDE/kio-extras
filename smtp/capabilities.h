@@ -33,7 +33,7 @@
 #define __KIOSMTP_CAPABILITIES_H__
 
 #include <QMap>
-#include <QString>
+
 #include <QStringList>
 
 namespace KioSMTP {

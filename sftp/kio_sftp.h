@@ -17,7 +17,7 @@
 #ifndef __kio_sftp_h__
 #define __kio_sftp_h__
 
-#include <QString>
+
 #include <QObject>
 
 #include <kurl.h>

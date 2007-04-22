@@ -39,7 +39,7 @@
 //-------------
 // QT includes
 //-------------
-#include <QString>
+
 #include <Qt3Support/Q3PtrList>
 #include <QStringList>
 #include <QTextStream>

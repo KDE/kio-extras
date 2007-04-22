@@ -23,7 +23,7 @@
 #define _KIO_MEDIA_MOUNTHELPER_H_
 
 #include <kapplication.h>
-#include <QString>
+
 #include <kio/job.h>
 
 #include "medium.h"

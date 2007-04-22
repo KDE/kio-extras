@@ -25,7 +25,7 @@
 #include <kurl.h>
 
 #include <QObject>
-#include <QString>
+
 
 class SystemImpl : public QObject
 {

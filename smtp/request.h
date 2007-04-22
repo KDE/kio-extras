@@ -32,7 +32,7 @@
 #ifndef __KIOSMTP_REQUEST_H__
 #define __KIOSMTP_REQUEST_H__
 
-#include <QString>
+
 #include <QStringList>
 #include <QByteArray>
 
