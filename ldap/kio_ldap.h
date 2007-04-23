@@ -19,7 +19,7 @@ class LDAPProtocol : public KIO::SlaveBase
     LDAPProtocol( const QByteArray &protocol, const QByteArray &pool, const QByteArray &app );
     virtual ~LDAPProtocol();
     
-    virtual void setHost( const QString& host, int port,
+    virtual void setHost( const QString& host, quint16 port,
                           const QString& user, const QString& pass );
 
     virtual void openConnection();

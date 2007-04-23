@@ -240,7 +240,7 @@ void LDAPProtocol::changeCheck( LdapUrl &url )
   }
 }
 
-void LDAPProtocol::setHost( const QString& host, int port,
+void LDAPProtocol::setHost( const QString& host, quint16 port,
                             const QString& user, const QString& password )
 {
   if( mServer.host() != host || 

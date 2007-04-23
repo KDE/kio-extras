@@ -65,10 +65,9 @@ NNTPProtocol::NNTPProtocol ( const QByteArray & pool, const QByteArray & app, bo
 {
   DBG << "=============> NNTPProtocol::NNTPProtocol" << endl;
 
-  m_bIsSSL = isSSL;
   readBufferLen = 0;
-  m_iDefaultPort = m_bIsSSL ? NNTPS_PORT : NNTP_PORT;
-  m_port = QString::number(m_iDefaultPort);
+  setDefaultPort( usingSSL() ? NNTPS_PORT : NNTP_PORT);
+  m_port = defaultPort();
 }
 
 NNTPProtocol::~NNTPProtocol() {
@@ -78,18 +77,18 @@ NNTPProtocol::~NNTPProtocol() {
   nntp_close();
 }
 
-void NNTPProtocol::setHost ( const QString & host, int port, const QString & user,
+void NNTPProtocol::setHost ( const QString & host, quint16 port, const QString & user,
                              const QString & pass )
 {
   DBG << "setHost: " << ( ! user.isEmpty() ? (user+'@') : QString(""))
-      << host << ":" << ( ( port == 0 ) ? m_iDefaultPort : port  ) << endl;
+      << host << ":" << ( ( port == 0 ) ? defaultPort() : port  ) << endl;
 
-  if ( isConnectionValid() && (mHost != host || m_port.toInt() != port ||
+  if ( isConnectionValid() && (mHost != host || m_port != port ||
        mUser != user || mPass != pass) )
     nntp_close();
 
   mHost = host;
-  m_port = ( ( port == 0 ) ? QString::number(m_iDefaultPort) : QString::number(port) );
+  m_port = ( ( port == 0 ) ? defaultPort() : port );
   mUser = user;
   mPass = pass;
 }
@@ -730,7 +729,7 @@ bool NNTPProtocol::nntp_open()
   DBG << "  nntp_open -- creating a new connection to " << mHost << ":" << m_port << endl;
   // create a new connection (connectToHost() includes error handling)
   infoMessage( i18n("Connecting to server...") );
-  if ( connectToHost( (m_bIsSSL ? "nntps" : "nntp"), mHost.toLatin1(), m_port.toUInt(), true ) )
+  if ( connectToHost( (usingSSL() ? "nntps" : "nntp"), mHost.toLatin1(), m_port, true ) )
   {
     DBG << "  nntp_open -- connection is open " << endl;
 

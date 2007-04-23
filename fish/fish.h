@@ -46,7 +46,7 @@ It is set to false if the connection becomes closed.
   */
   void shutdownConnection(bool forced=false);
   /** sets connection information for subsequent commands */
-  void setHost(const QString & host, int port, const QString & user, const QString & pass);
+  void setHost(const QString & host, quint16 port, const QString & user, const QString & pass);
   /** Forced close of the connection */
   void closeConnection();
   /** get a file */

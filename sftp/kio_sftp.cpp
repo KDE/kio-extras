@@ -466,7 +466,7 @@ void sftpProtocol::get(const KUrl& url) {
 }
 
 
-void sftpProtocol::setHost (const QString& h, int port, const QString& user, const QString& pass)
+void sftpProtocol::setHost (const QString& h, quint16 port, const QString& user, const QString& pass)
 {
     kDebug(KIO_SFTP_DB) << "setHost(): " << user << "@" << h << ":" << port << endl;
 

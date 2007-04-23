@@ -129,7 +129,6 @@ POP3Protocol::POP3Protocol(const QByteArray & pool, const QByteArray & app,
              isSSL)
 {
   POP3_DEBUG << "POP3Protocol::POP3Protocol()" << endl;
-  m_bIsSSL = isSSL;
   m_cmd = CMD_NONE;
   m_iOldPort = 0;
   m_tTimeout.tv_sec = 10;
@@ -650,7 +649,7 @@ bool POP3Protocol::pop3_open()
   do {
     closeConnection();
 
-    if (!connectToHost((m_bIsSSL ? "pop3s" : "pop3"), m_sServer.toLatin1(), m_iPort), true) {
+    if (!connectToHost((usingSSL() ? "pop3s" : "pop3"), m_sServer.toLatin1(), m_iPort), true) {
       // error(ERR_COULD_NOT_CONNECT, m_sServer);
       // ConnectToHost has already send an error message.
       return false;
@@ -1130,7 +1129,7 @@ void POP3Protocol::listDir(const KUrl &)
     entry.insert(UDS_MIME_TYPE, QString::fromLatin1("text/plain"));
 
     KUrl uds_url;
-    if (m_bIsSSL) {
+    if (usingSSL()) {
       uds_url.setProtocol("pop3s");
     } else {
       uds_url.setProtocol("pop3");

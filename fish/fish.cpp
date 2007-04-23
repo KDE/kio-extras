@@ -636,7 +636,7 @@ int fishProtocol::establishConnection(char *buffer, KIO::fileoffset_t len) {
 /**
 sets connection information for subsequent commands
 */
-void fishProtocol::setHost(const QString & host, int port, const QString & u, const QString & pass){
+void fishProtocol::setHost(const QString & host, quint16 port, const QString & u, const QString & pass){
     QString user(u);
 
     local = (host == "localhost" && port == 0);

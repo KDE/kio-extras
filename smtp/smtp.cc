@@ -236,7 +236,7 @@ void SMTPProtocol::put(const KUrl & url, int /*permissions */ ,
       open_url.setUser(m_sUser);
       open_url.setPass(m_sPass);
       m_sServer = open_url.host();
-      m_port = QString::number( open_url.port() );
+      m_port = open_url.port();
     }
     else {
       mset.setProfile(mset.defaultProfileName());
@@ -297,11 +297,11 @@ void SMTPProtocol::put(const KUrl & url, int /*permissions */ ,
 }
 
 
-void SMTPProtocol::setHost(const QString & host, int port,
+void SMTPProtocol::setHost(const QString & host, quint16 port,
                            const QString & user, const QString & pass)
 {
   m_sServer = host;
-  m_port = QString::number(port);
+  m_port = port;
   m_sUser = user;
   m_sPass = pass;
 }
@@ -520,14 +520,14 @@ bool SMTPProtocol::execute( Command * cmd, TransactionState * ts ) {
 bool SMTPProtocol::smtp_open(const QString& fakeHostname)
 {
   if (m_opened &&
-      QString::number(m_sOldPort) == m_port &&
+      m_sOldPort == m_port &&
       m_sOldServer == m_sServer &&
       m_sOldUser == m_sUser &&
       (fakeHostname.isNull() || m_hostname == fakeHostname))
     return true;
 
   smtp_close();
-  if (!connectToHost(m_bIsSSL ? "smtps" : "smtp", m_sServer, m_port.toUInt(), true))
+  if (!connectToHost(usingSSL() ? "smtps" : "smtp", m_sServer, m_port, true))
     return false;             // connectToHost has already send an error message.
   m_opened = true;
 
@@ -603,7 +603,7 @@ bool SMTPProtocol::smtp_open(const QString& fakeHostname)
     return false;
   }
 
-  m_sOldPort = m_port.toUInt();
+  m_sOldPort = m_port;
   m_sOldServer = m_sServer;
   m_sOldUser = m_sUser;
   m_sOldPass = m_sPass;

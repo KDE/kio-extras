@@ -37,7 +37,7 @@ class NNTPProtocol:public KIO::TCPSlaveBase
   virtual void put( const KUrl& url, int permissions, bool overwrite, bool resume );
   virtual void stat(const KUrl& url );
   virtual void listDir(const KUrl& url );
-  virtual void setHost(const QString& host, int port,
+  virtual void setHost(const QString& host, quint16 port,
         const QString& user, const QString& pass);
 
   /**
@@ -77,6 +77,7 @@ class NNTPProtocol:public KIO::TCPSlaveBase
 
  private:
    QString mHost, mUser, mPass;
+   quint16 m_port;
    bool postingAllowed, opened;
    char readBuffer[MAX_PACKET_LEN];
    ssize_t readBufferLen;

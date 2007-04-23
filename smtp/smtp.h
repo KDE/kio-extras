@@ -51,7 +51,7 @@ public:
   SMTPProtocol(const QByteArray & pool, const QByteArray & app, bool useSSL);
   virtual ~ SMTPProtocol();
 
-  virtual void setHost(const QString & host, int port,
+  virtual void setHost(const QString & host, quint16 port,
                        const QString & user, const QString & pass);
 
   virtual void special(const QByteArray & aData);
@@ -127,7 +127,8 @@ protected:
   }
   void queueCommand( int type );
 
-  unsigned short  m_sOldPort;
+  quint16  m_sOldPort;
+  quint16 m_port;
   bool m_opened;
   QString m_sServer, m_sOldServer;
   QString m_sUser, m_sOldUser;
