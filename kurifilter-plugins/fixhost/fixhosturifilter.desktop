@@ -8,5 +8,5 @@ Name[sv]=Fast värddatorfilter
 Name[x-test]=xxFixHostFilterxx
 Name[zh_TW]=固定主機過濾
 X-KDE-Library=libfixhosturifilter
-ServiceTypes=KURIFilter/Plugin
+ServiceTypes=KUriFilter/Plugin
 InitialPreference=0
