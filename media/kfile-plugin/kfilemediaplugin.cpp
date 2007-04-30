@@ -20,7 +20,7 @@
 #include "kfilemediaplugin.h"
 
 #include <kgenericfactory.h>
-#include <kdiskfreesp.h>
+#include <kdiskfreespace.h>
 
 #include <QtDBus/QtDBus>
 
@@ -89,7 +89,7 @@ bool KFileMediaPlugin::readInfo(KFileMetaInfo &info, uint /*what*/)
 
 	if (!mount_point.isEmpty() && medium.isMounted())
 	{
-		KDiskFreeSp *df = new KDiskFreeSp();
+		KDiskFreeSpace *df = new KDiskFreeSpace();
 
 		m_total = 0;
 		m_used = 0;
