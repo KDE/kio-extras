@@ -173,7 +173,7 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
   QString cmd = data.typedString();
   const bool isMalformed = !url.isValid();
   const QString protocol = url.protocol();
-  //kDebug() << "url=" << url.url() << " cmd=" << cmd << " isMalformed=" << isMalformed << endl;
+  //kDebug() << "KShortUriFilter: url=" << url.url() << " cmd=" << cmd << " isMalformed=" << isMalformed << endl;
 
   if (!isMalformed &&
       (protocol.length() == 4) &&
@@ -238,25 +238,25 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
   // Expanding shortcut to HOME URL...
   QString path;
   QString ref;
-  //kDebug() << "initially ref is " << stringDetails( ref ) << endl;
   QString query;
   QString nameFilter;
 
   if (KUrl::isRelativeUrl(cmd) && QDir::isRelativePath(cmd)) {
      path = cmd;
-  }
-  else
-  {
+     //kDebug() << k_funcinfo << "path=cmd=" << path << endl;
+  } else {
     if (url.isLocalFile())
     {
+      //kDebug() << k_funcinfo << "hasRef=" << url.hasRef() << endl;
       // Split path from ref/query
       // but not for "/tmp/a#b", if "a#b" is an existing file,
       // or for "/tmp/a?b" (#58990)
-      if ( ( url.hasRef() || !url.query().isEmpty() )
+      if( ( url.hasRef() || !url.query().isEmpty() )
            && !url.path().endsWith(QFL1("/")) ) // /tmp/?foo is a namefilter, not a query
       {
         path = url.path();
         ref = url.ref();
+        //kDebug() << "isLocalFile set path to " << stringDetails( path ) << endl;
         //kDebug() << "isLocalFile set ref to " << stringDetails( ref ) << endl;
         query = url.query();
         if (path.isEmpty() && url.hasHost())
@@ -265,6 +265,7 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
       else
       {
         path = cmd;
+        //kDebug() << k_funcinfo << "(2) path=cmd=" << path << endl;
       }
     }
   }
@@ -345,7 +346,9 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
   //kDebug() << "abs_path=" << abs_path
   //         << " protocol=" << protocol
   //         << " canBeAbsolute=" << canBeAbsolute
-  //         << " canBeLocalAbsolute=" << canBeLocalAbsolute << endl;
+  //         << " canBeLocalAbsolute=" << canBeLocalAbsolute
+  //         << " isLocalFullPath=" << isLocalFullPath
+  //         << endl;
 
   struct stat buff;
   if ( canBeLocalAbsolute )
@@ -542,12 +545,13 @@ QString KShortUriFilter::configName() const
 void KShortUriFilter::configure()
 {
   KConfig config( objectName() + QFL1( "rc"), KConfig::NoGlobals );
-  m_bVerbose = config.readEntry( "Verbose", false );
+  KConfigGroup cg( config.group("") );
+  m_bVerbose = cg.readEntry( "Verbose", false );
 
   if ( m_bVerbose )
     kDebug() << "KShortUriFilter::configure: Config reload request..." << endl;
 
-  m_strDefaultProtocol = config.readEntry( "DefaultProtocol", QString("http://") );
+  m_strDefaultProtocol = cg.readEntry( "DefaultProtocol", QString("http://") );
   EntryMap patterns = config.entryMap( QFL1("Pattern") );
   const EntryMap protocols = config.entryMap( QFL1("Protocol") );
   KConfigGroup typeGroup(&config, "Type");
