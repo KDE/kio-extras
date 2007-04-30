@@ -60,6 +60,7 @@ So we can't connect.
 #include <kstandarddirs.h>
 #include <klocale.h>
 #include <kurl.h>
+#include <kio/connection.h>
 #include <kio/ioslave_defaults.h>
 #include <kmimetype.h>
 #include <kde_file.h>
@@ -829,6 +830,143 @@ void sftpProtocol::openConnection() {
 
     return;
 }
+
+#define _DEBUG kDebug(KIO_SFTP_DB) << k_funcinfo
+
+void sftpProtocol::open(const KUrl &url, QIODevice::OpenMode mode)
+{
+    _DEBUG << url.url() << endl;
+    openConnection();
+    if (!mConnected) {
+        return;
+    }
+
+    int code;
+    sftpFileAttr attr(remoteEncoding());
+
+    if ((code = sftpStat(url, attr)) != SSH2_FX_OK) {
+        _DEBUG << "stat error" << endl;
+        processStatus(code, url.prettyUrl());
+        return;
+    }
+
+    // don't open a directory
+    if (attr.fileType() == S_IFDIR) {
+        _DEBUG << "a directory" << endl;
+        error(KIO::ERR_IS_DIRECTORY, url.prettyUrl());
+        return;
+    }
+    if (attr.fileType() != S_IFREG) {
+        _DEBUG << "not a regular file" << endl;
+        error(KIO::ERR_CANNOT_OPEN_FOR_READING, url.prettyUrl());
+        return;
+    }
+
+    KIO::filesize_t fileSize = attr.fileSize();
+    attr.clear();
+
+    quint32 pflags = 0;
+    if (mode & QIODevice::ReadOnly) {
+        pflags |= SSH2_FXF_READ;
+    }
+    if (mode & QIODevice::WriteOnly) {
+        pflags |= SSH2_FXF_WRITE | SSH2_FXF_CREAT;
+    }
+    if (mode & QIODevice::Append) {
+        pflags |= SSH2_FXF_WRITE | SSH2_FXF_APPEND;
+    } else if (mode & QIODevice::WriteOnly) {
+        if (!(mode & QIODevice::ReadOnly) || mode & QIODevice::Truncate) {
+            pflags |= SSH2_FXF_TRUNC;
+        }
+    }
+    QByteArray handle;
+    if (sftpOpen(url, pflags, attr, handle) != SSH2_FX_OK) {
+        _DEBUG << "sftpOpen error" << endl;
+        error(KIO::ERR_CANNOT_OPEN_FOR_READING, url.prettyUrl());
+        return;
+    }
+
+    // Determine the mimetype of the file to be retrieved, and emit it.
+    // This is mandatory in all slaves (for KRun/BrowserRun to work).
+    QByteArray buffer;
+    if ((code = sftpRead(handle, 0, 1024, buffer)) == SSH2_FX_OK) {
+        KMimeType::Ptr mime = KMimeType::findByNameAndContent(url.fileName(), buffer);
+        mimeType(mime->name());
+        totalSize(fileSize);
+        position(0);
+        opened();
+    } else {
+        _DEBUG << "error on mime type detection" << endl;
+        processStatus(code, url.prettyUrl());
+        return;
+    }
+
+    // Command-loop:
+    int cmd = CMD_NONE;
+    KIO::filesize_t offset = 0;
+    while (true) {
+        QByteArray args;
+        int stat = appconn->read(&cmd, args);
+        if (stat == -1) { // error
+            _DEBUG << "connection error" << endl;
+            break;
+        }
+        QDataStream stream(args);
+        switch (cmd) {
+        case CMD_READ:
+            {
+                int bytes;
+                stream >> bytes;
+                _DEBUG << "read, offset = " << offset << ", bytes = " << bytes << endl;
+                if ((code = sftpRead(handle, offset, bytes, buffer)) == SSH2_FX_OK) {
+                    offset += buffer.size();
+                    data(buffer);
+                    buffer.clear();
+                    continue;
+                } else {
+                    // empty array designates eof
+                    if (code == SSH2_FX_EOF) {
+                        data(QByteArray());
+                        continue;
+                    }
+                    processStatus(code, url.prettyUrl());
+                }
+            }
+            break;
+        case CMD_WRITE:
+            {
+                _DEBUG << "write" << endl;
+                if ((code = sftpWrite(handle, offset, args)) == SSH2_FX_OK) {
+                    written(args.size());
+                    continue;
+                }
+                processStatus(code, url.prettyUrl());
+            }
+            break;
+        case CMD_SEEK:
+            stream >> offset;
+            _DEBUG << "seek, offset = " << offset << endl;
+            position(offset);
+            continue;
+        case CMD_NONE:
+            _DEBUG << "none" << endl;
+            continue;
+        case CMD_CLOSE:
+            _DEBUG << "close" << endl;
+            break;
+        default:
+            _DEBUG << "invalid command: " << cmd << endl;
+            cmd = CMD_CLOSE;
+            break;
+        }
+        break;
+    }
+    _DEBUG << "done" << endl;
+    sftpClose(handle);
+    _DEBUG << "emitting finished" << endl;
+    finished();
+}
+#undef _DEBUG
 
 void sftpProtocol::closeConnection() {
     kDebug(KIO_SFTP_DB) << "closeConnection()" << endl;
@@ -1892,7 +2030,7 @@ int sftpProtocol::sftpReadDir(const QByteArray& handle, const KUrl& url){
     }
 
     if( type != SSH2_FXP_NAME ) {
-        kError(KIO_SFTP_DB) << "kio_sftpProtocl::sftpReadDir(): Unexpected message" << endl;
+        kError(KIO_SFTP_DB) << "kio_sftpProtocol::sftpReadDir(): Unexpected message" << endl;
         return -1;
     }
 

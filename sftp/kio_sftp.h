@@ -54,6 +54,9 @@ public:
   virtual void mkdir(const KUrl&url, int permissions);
   virtual void openConnection();
 
+  // KIO::FileJob interface
+  virtual void open(const KUrl &url, QIODevice::OpenMode mode);
+
 private: // Private variables
   /** True if ioslave is connected to sftp server. */
   bool mConnected;

@@ -11,6 +11,7 @@ writing=true
 makedir=true
 deleting=true
 moving=true
+opening=true
 Icon=ftp
 Description=A kioslave for sftp
 Description[af]='n Kioslave vir sftp
