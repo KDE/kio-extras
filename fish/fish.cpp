@@ -36,9 +36,11 @@
 #ifdef HAVE_PTY_H
 #include <pty.h>
 #endif
+
 #ifdef HAVE_TERMIOS_H
 #include <termios.h>
 #endif
+
 #include <math.h>
 #include <unistd.h>
 #include <signal.h>
@@ -47,15 +49,19 @@
 #include <netinet/in.h>
 #include <netdb.h>
 #include <sys/types.h>
+
 #ifdef HAVE_STROPTS
 #include <stropts.h>
 #endif
+
 #ifdef HAVE_SYS_IOCTL_H
 #include <sys/ioctl.h>
 #endif
+
 #ifdef HAVE_LIBUTIL_H
 #include <libutil.h>
 #endif
+
 #ifdef HAVE_UTIL_H
 #include <util.h>
 #endif
@@ -73,7 +79,6 @@
 #include <sys/stat.h>
 #include <kmimetype.h>
 #include <fcntl.h>
-#include <sys/socket.h>
 #include <errno.h>
 #include <sys/resource.h>
 

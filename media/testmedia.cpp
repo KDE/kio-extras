@@ -17,8 +17,8 @@
    Boston, MA 02110-1301, USA.
 */
 
-#include "kio_media.h"
 #include "testmedia.h"
+#include "kio_media.h"
 
 #include <config.h>
 

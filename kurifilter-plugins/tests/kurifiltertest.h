@@ -20,8 +20,6 @@
 #define KURIFILTERTEST_H
 
 #include <QObject>
-
-#include <QObject>
 #include <QStringList>
 #include <QByteArray>
 

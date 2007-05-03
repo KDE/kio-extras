@@ -16,12 +16,14 @@
    Boston, MA 02110-1301, USA.
 */
 
+#include "managermodule.h"
+
 #include <config.h>
 #include <config-media.h>
-#include "managermodule.h"
+
 #include "managermodule.moc"
 
-#include <klocale.h>
+#include <KLocale>
 #include <QCheckBox>
 #include <QtDBus/QtDBus>
 

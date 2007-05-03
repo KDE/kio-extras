@@ -26,7 +26,6 @@
 #include "program.h"
 
 
-
 struct StatInfo
 {
    StatInfo():name(""),time(0),size(0),mode(0),freeSpace(0),isDir(false),isValid(false) {;}

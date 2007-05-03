@@ -8,6 +8,8 @@
    License version 2 as published by the Free Software Foundation.
 */
 
+#include "nntp.h"
+
 #include <sys/stat.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -20,8 +22,6 @@
 #include <kdebug.h>
 #include <kglobal.h>
 #include <klocale.h>
-
-#include "nntp.h"
 
 #define NNTP_PORT 119
 #define NNTPS_PORT 563

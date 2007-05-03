@@ -6,6 +6,7 @@
 #include <kio/slavebase.h>
 
 class K3Process;
+class KIconLoader;
 
 class InfoProtocol : public KIO::SlaveBase
 {

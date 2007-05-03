@@ -19,6 +19,8 @@
    Boston, MA 02110-1301, USA.
 */
 
+#include "kio_media_mounthelper.h"
+
 #include <kcmdlineargs.h>
 #include <klocale.h>
 #include <kapplication.h>
@@ -29,8 +31,6 @@
 #include <kglobal.h>
 #include <k3process.h>
 #include <QtDBus/QtDBus>
-
-#include "kio_media_mounthelper.h"
 
 const Medium MountHelper::findMedium(const QString &name)
 {

@@ -18,6 +18,8 @@
     Boston, MA 02110-1301, USA.
 */
 
+#include "kio_floppy.h"
+
 #ifdef HAVE_CONFIG_H
 #include <config.h>
 #endif
@@ -40,8 +42,6 @@
 #include <QTextStream>
 #include <QDateTime>
 #include <QFile>
-
-#include "kio_floppy.h"
 
 #include <kcomponentdata.h>
 #include <kdebug.h>

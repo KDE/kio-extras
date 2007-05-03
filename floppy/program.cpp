@@ -17,15 +17,16 @@
     Boston, MA 02110-1301, USA.
 */
 
-#include <config.h>
 #include "program.h"
+
+#include <config.h>
 #include <unistd.h>
 #include <fcntl.h>
 #include <sys/ioctl.h>
-#include <stdlib.h>	
+#include <stdlib.h>
 #include <sys/types.h>
 #include <sys/time.h>
-#include <sys/socket.h> 
+#include <sys/socket.h>
 #include <sys/wait.h>
 #include <signal.h>
 
@@ -151,7 +152,7 @@ bool Program::start()
 
 bool Program::isRunning()
 {
-	return mStarted;
+   return mStarted;
 }
 
 int Program::select(int secs, int usecs, bool& stdoutReceived, bool& stderrReceived/*, bool& stdinWaiting*/)

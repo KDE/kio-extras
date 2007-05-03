@@ -17,6 +17,8 @@
    Boston, MA 02110-1301, USA.
 */
 
+#include "kio_media.h"
+
 #include <stdlib.h>
 
 #include <kdebug.h>
@@ -26,8 +28,6 @@
 
 #include <QEventLoop>
 #include <QByteArray>
-
-#include "kio_media.h"
 
 
 static const KCmdLineOptions options[] =

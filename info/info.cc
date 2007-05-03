@@ -1,3 +1,5 @@
+#include "info.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/stat.h>
@@ -13,8 +15,6 @@
 #include <kiconloader.h>
 #include <kcomponentdata.h>
 #include <klocale.h>
-
-#include "info.h"
 
 using namespace KIO;
 
