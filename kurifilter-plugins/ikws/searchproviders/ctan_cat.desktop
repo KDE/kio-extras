@@ -55,6 +55,7 @@ Name[tg]=Каталоги CTAN
 Name[tr]=CTAN Kataloğu
 Name[uk]=Каталог CTAN
 Name[uz]=CTAN каталоги
+Name[wa]=Catalogue do CTAN
 Name[x-test]=xxCTAN Catalogxx
 Name[zh_TW]=CTAN 目錄
 Query=http://www.ctan.org/tools/cataloguesearch?action=/search/&catstring=\\{@}
