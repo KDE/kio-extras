@@ -1,5 +1,15 @@
-
 project(kioslave-fish)
+
+check_include_files(termios.h HAVE_TERMIOS_H)
+check_include_files(util.h HAVE_UTIL_H)
+check_include_files(sys/ioctl.h HAVE_SYS_IOCTL_H)
+check_include_files(pty.h HAVE_PTY_H)
+check_include_files("sys/types.h;libutil.h" HAVE_LIBUTIL_H)
+check_function_exists(getpt       HAVE_GETPT)
+check_function_exists(grantpt     HAVE_GRANTPT)
+check_library_exists(util  openpty "" HAVE_OPENPTY)
+check_library_exists(util  isastream "" HAVE_ISASTREAM)
+
 configure_file(config-fish.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-fish.h)
 
 add_definitions (-DQT3_SUPPORT)
