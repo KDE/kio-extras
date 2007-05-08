@@ -260,9 +260,9 @@ void KUriFilterTest::tests()
     filter( "kfmclient", "kfmclient", KUriFilterData::EXECUTABLE, minicliFilters );
     filter( "xwininfo", "xwininfo", KUriFilterData::EXECUTABLE, minicliFilters );
     filter( "KDE", "KDE", NO_FILTERING, minicliFilters );
-    filter( "I/dont/exist", "I/dont/exist", NO_FILTERING, minicliFilters );
-    filter( "/I/dont/exist", 0, KUriFilterData::ERROR, minicliFilters );
-    filter( "/I/dont/exist#a", 0, KUriFilterData::ERROR, minicliFilters );
+    filter( "I/dont/exist", "I/dont/exist", NO_FILTERING, minicliFilters );      //krazy:exclude=spelling
+    filter( "/I/dont/exist", 0, KUriFilterData::ERROR, minicliFilters );         //krazy:exclude=spelling
+    filter( "/I/dont/exist#a", 0, KUriFilterData::ERROR, minicliFilters );       //krazy:exclude=spelling
     filter( "kfmclient --help", "kfmclient --help", KUriFilterData::EXECUTABLE, minicliFilters ); // the args are in argsAndOptions()
     filter( "/usr/bin/gs", "/usr/bin/gs", KUriFilterData::EXECUTABLE, minicliFilters );
     filter( "/usr/bin/gs -q -option arg1", "/usr/bin/gs -q -option arg1", KUriFilterData::EXECUTABLE, minicliFilters ); // the args are in argsAndOptions()
