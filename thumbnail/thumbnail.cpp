@@ -276,7 +276,7 @@ void ThumbnailProtocol::get(const KUrl &url)
         {
             // Don't use KLibFactory here, this is not a QObject and
             // neither is ThumbCreator
-            KLibrary *library = KLibLoader::self()->library(QFile::encodeName(plugin));
+            KLibrary *library = KLibLoader::self()->library(plugin);
             if (library)
             {
                 newCreator create = (newCreator)library->resolveFunction("new_creator");
