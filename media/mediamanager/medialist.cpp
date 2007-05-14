@@ -19,17 +19,18 @@
 #include "medialist.h"
 
 #include <kdebug.h>
-//Added by qt3to4:
-#include <Q3PtrList>
 
 MediaList::MediaList()
 {
 	kDebug(1219) << "MediaList::MediaList()" << endl;
-
-	m_media.setAutoDelete(true);
 }
 
-const Q3PtrList<Medium> MediaList::list() const
+MediaList::~MediaList()
+{
+	qDeleteAll( m_media );
+}
+
+QList<Medium *> MediaList::list() const
 {
 	kDebug(1219) << "MediaList::list()" << endl;
 
@@ -106,7 +107,8 @@ bool MediaList::removeMedium(const QString &id, bool allowNotification)
 
 	m_idMap.remove(id);
 	m_nameMap.remove( medium->name() );
-	m_media.remove( medium );
+	m_media.removeAll( medium );
+        delete medium;
 
 	emit mediumRemoved(id, name, allowNotification);
 	return true;

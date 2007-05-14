@@ -23,8 +23,6 @@
 #include <kdirnotify.h>
 
 #include "medium.h"
-//Added by qt3to4:
-#include <Q3PtrList>
 
 MediaDirNotify::MediaDirNotify(const MediaList &list)
 	: m_mediaList(list)
@@ -41,10 +39,10 @@ KUrl::List MediaDirNotify::toMediaURL(const KUrl &url)
 
 	KUrl::List result;
 
-	const Q3PtrList<Medium> list = m_mediaList.list();
+	const QList<Medium *> list = m_mediaList.list();
 
-	Q3PtrList<Medium>::const_iterator it = list.begin();
-	Q3PtrList<Medium>::const_iterator end = list.end();
+	QList<Medium *>::const_iterator it = list.begin();
+	QList<Medium *>::const_iterator end = list.end();
 
 	for (; it!=end; ++it)
 	{

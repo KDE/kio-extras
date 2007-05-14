@@ -21,8 +21,7 @@
 
 #include <QObject>
 #include <QMap>
-//Added by qt3to4:
-#include <Q3PtrList>
+#include <QList>
 
 #include "medium.h"
 
@@ -32,9 +31,10 @@ Q_OBJECT
 
 public:
 	MediaList();
+	~MediaList();
 
-	// FIXME: should be <const Medium> or something similar...
-	const Q3PtrList<Medium> list() const;
+	// FIXME: should be <const Medium*> or something similar...
+	QList<Medium *> list() const;
 	const Medium *findById(const QString &id) const;
 	const Medium *findByName(const QString &name) const;
 
@@ -74,7 +74,7 @@ Q_SIGNALS:
 	                        bool mounted, bool allowNotification);
 
 private:
-	Q3PtrList<Medium> m_media;
+	QList<Medium *> m_media;
 	QMap<QString,Medium*> m_nameMap;
 	QMap<QString,Medium*> m_idMap;
 };

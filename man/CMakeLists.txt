@@ -15,7 +15,7 @@ kde4_automoc(${kio_man_test_SRCS})
 
 kde4_add_executable(kio_man_test ${kio_man_test_SRCS})
 set_target_properties(kio_man_test PROPERTIES COMPILE_FLAGS "-DSIMPLE_MAN2HTML -DKIO_MAN_TEST")
-target_link_libraries(kio_man_test  ${KDE4_KIO_LIBS} )
+target_link_libraries(kio_man_test  ${KDE4_KIO_LIBS} ${QT_QT3SUPPORT_LIBRARY})
 
 
 ########### next target ###############

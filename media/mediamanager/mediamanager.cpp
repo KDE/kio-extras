@@ -20,7 +20,6 @@
 #include <config-media.h>
 #include <config.h>
 #include <QTimer>
-#include <Q3PtrList>
 
 #include <kdebug.h>
 #include <kglobal.h>
@@ -46,7 +45,7 @@ MediaManager::MediaManager()
     : KDEDModule(), m_dirNotify(m_mediaList)
 {
 	new MediaManagerAdaptor( this );
-	
+
 	connect( &m_mediaList, SIGNAL(mediumAdded(const QString&, const QString&, bool)),
 	         SLOT(slotMediumAdded(const QString&, const QString&, bool)) );
 	connect( &m_mediaList, SIGNAL(mediumRemoved(const QString&, const QString&, bool)),
@@ -117,12 +116,12 @@ void MediaManager::loadBackends()
 
 QStringList MediaManager::fullList()
 {
-	Q3PtrList<Medium> list = m_mediaList.list();
+	QList<Medium *> list = m_mediaList.list();
 
 	QStringList result;
 
-	Q3PtrList<Medium>::const_iterator it = list.begin();
-	Q3PtrList<Medium>::const_iterator end = list.end();
+	QList<Medium *>::const_iterator it = list.begin();
+	QList<Medium *>::const_iterator end = list.end();
 	for (; it!=end; ++it)
 	{
 		result+= (*it)->properties();
@@ -148,10 +147,10 @@ QStringList MediaManager::properties(const QString &name)
 
 QString MediaManager::nameForLabel(const QString &label)
 {
-	const Q3PtrList<Medium> media = m_mediaList.list();
+	const QList<Medium *> media = m_mediaList.list();
 
-	Q3PtrList<Medium>::const_iterator it = media.begin();
-	Q3PtrList<Medium>::const_iterator end = media.end();
+	QList<Medium *>::const_iterator it = media.begin();
+	QList<Medium *>::const_iterator end = media.end();
 	for (; it!=end; ++it)
 	{
 		const Medium *m = *it;

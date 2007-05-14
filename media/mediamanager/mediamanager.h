@@ -22,8 +22,6 @@
 #include <kdedmodule.h>
 
 #include <QStringList>
-//Added by qt3to4:
-#include <Q3PtrList>
 
 #include "medialist.h"
 #include "backendbase.h"
@@ -57,7 +55,7 @@ Q_SIGNALS:
 
 private Q_SLOTS:
 	void loadBackends();
-	
+
 	void slotMediumAdded(const QString &id, const QString &name,
 	                     bool allowNotification);
 	void slotMediumRemoved(const QString &id, const QString &name,
