@@ -109,13 +109,13 @@ void FilterOptions::load()
     m_dlg->lvSearchProviders->clear();
 
     KConfig config( KURISearchFilterEngine::self()->name() + "rc", KConfig::NoGlobals );
-    config.setGroup("General");
+    KConfigGroup group = config.group("General");
 
-    QString defaultSearchEngine = config.readEntry("DefaultSearchEngine");
+    QString defaultSearchEngine = group.readEntry("DefaultSearchEngine");
 
     m_favoriteEngines.clear();
     m_favoriteEngines << "google" << "google_groups" << "google_news" << "webster" << "dmoz" << "wikipedia";
-    m_favoriteEngines = config.readEntry("FavoriteSearchEngines", m_favoriteEngines );
+    m_favoriteEngines = group.readEntry("FavoriteSearchEngines", m_favoriteEngines );
 
     const KService::List services = KServiceTypeTrader::self()->query("SearchProvider");
 
@@ -126,10 +126,10 @@ void FilterOptions::load()
                             ((*it)->desktopEntryName() == defaultSearchEngine));
     }
 
-    bool webShortcutsEnabled = config.readEntry("EnableWebShortcuts", true);
+    bool webShortcutsEnabled = group.readEntry("EnableWebShortcuts", true);
     m_dlg->cbEnableShortcuts->setChecked( webShortcutsEnabled );
 
-    setDelimiter (config.readEntry ("KeywordDelimiter", int(':')));
+    setDelimiter (group.readEntry ("KeywordDelimiter", int(':')));
 
     // Update the GUI to reflect the config options read above...
     setWebShortcutState();
@@ -193,16 +193,16 @@ void FilterOptions::save()
 {
   KConfig config( KURISearchFilterEngine::self()->name() + "rc", KConfig::NoGlobals );
 
-  config.setGroup("General");
-  config.writeEntry("EnableWebShortcuts", m_dlg->cbEnableShortcuts->isChecked());
-  config.writeEntry("KeywordDelimiter", QString( delimiter() ) );
+  KConfigGroup group = config.group("General");
+  group.writeEntry("EnableWebShortcuts", m_dlg->cbEnableShortcuts->isChecked());
+  group.writeEntry("KeywordDelimiter", QString( delimiter() ) );
 
   QString engine;
 
   if (m_dlg->cmbDefaultEngine->currentIndex() != 0)
     engine = m_dlg->cmbDefaultEngine->currentText();
 
-  config.writeEntry("DefaultSearchEngine", m_defaultEngineMap[engine]);
+  group.writeEntry("DefaultSearchEngine", m_defaultEngineMap[engine]);
 
   // kDebug () << "Engine: " << m_defaultEngineMap[engine] << endl;
 

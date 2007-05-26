@@ -519,12 +519,12 @@ void KURISearchFilterEngine::loadConfig()
 
   // Load the config.
   KConfig config( name() + "rc", KConfig::NoGlobals );
-  config.setGroup( "General" );
+  KConfigGroup group = config.group( "General" );
 
-  m_cKeywordDelimiter = config.readEntry("KeywordDelimiter", int(':'));
-  m_bWebShortcutsEnabled = config.readEntry("EnableWebShortcuts", true);
-  m_defaultSearchEngine = config.readEntry("DefaultSearchEngine");
-  m_bVerbose = config.readEntry("Verbose", false);
+  m_cKeywordDelimiter = group.readEntry("KeywordDelimiter", int(':'));
+  m_bWebShortcutsEnabled = group.readEntry("EnableWebShortcuts", true);
+  m_defaultSearchEngine = group.readEntry("DefaultSearchEngine");
+  m_bVerbose = group.readEntry("Verbose", false);
 
   // Use either a white space or a : as the keyword delimiter...
   if (strchr (" :",m_cKeywordDelimiter) == 0)

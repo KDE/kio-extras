@@ -35,7 +35,7 @@
             <string>Select the character set that will be used to encode your search query</string>
           </property>
           <property name="wordWrap" >
-            <bool>false</bool>
+            <bool>true</bool>
           </property>
         </widget>
       </item>
@@ -54,7 +54,7 @@ Recommended is \{@}, since it removes all query variables (name=value) from the 
 &lt;/qt></string>
           </property>
           <property name="wordWrap" >
-            <bool>false</bool>
+            <bool>true</bool>
           </property>
         </widget>
       </item>
@@ -70,7 +70,7 @@ Recommended is \{@}, since it removes all query variables (name=value) from the 
             <string>Enter the human readable name of the search provider here.</string>
           </property>
           <property name="wordWrap" >
-            <bool>false</bool>
+            <bool>true</bool>
           </property>
         </widget>
       </item>
@@ -97,7 +97,7 @@ The shortcuts entered here can be used as a pseudo-URI scheme in KDE. For exampl
 &lt;/qt></string>
           </property>
           <property name="wordWrap" >
-            <bool>false</bool>
+            <bool>true</bool>
           </property>
         </widget>
       </item>
