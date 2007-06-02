@@ -581,10 +581,6 @@ bool SMTPProtocol::smtp_open(const QString& fakeHostname)
        || metaData("tls") == "on" ) {
     // For now we're gonna force it on.
 
-#ifdef __GNUC__
-#warning Enable the following code again when the SSL bug is fixed in kdelibs - ik20070422
-#endif
-#if 0
     if ( execute( Command::STARTTLS ) ) {
 
       // re-issue EHLO to refresh the capability list (could be have
@@ -595,7 +591,6 @@ bool SMTPProtocol::smtp_open(const QString& fakeHostname)
         return false;
       }
     }
-#endif
   }
   // Now we try and login
   if (!authenticate()) {
