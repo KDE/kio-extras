@@ -22,7 +22,6 @@
 
 #include <kio/slavebase.h>
 
-class K3Process;
 
 /*!
   This class implements an ioslave for viewing CGI script output without the
