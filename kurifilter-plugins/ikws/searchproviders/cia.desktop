@@ -6,6 +6,7 @@ Name[csb]=Swiatowé wëdarzenia CIA (CIA World Factbook)
 Name[de]=CIA World Factbook
 Name[el]=Παγκόσμιο βιβλίο γεγονότων της CIA
 Name[nds]=CIA-Weltfaktenbook
+Name[nl]=CIA World Factbook
 Name[sv]=CIA-världsfaktabok
 Name[x-test]=xxCIA World Fact Bookxx
 Query=http://www.google.com/search?q=allintitle%3A\\{@}+world+fact+book+site%3Awww.cia.gov&ie=UTF-8&btnI=I%27m+Feeling+Lucky
