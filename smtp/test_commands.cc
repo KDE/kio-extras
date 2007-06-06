@@ -36,7 +36,7 @@ public:
     startTLSReturnCode = 1;
     usesSSL = usesTLS = false;
     lastErrorCode = lastMessageBoxCode = 0;
-    lastErrorMessage = QString::null ;
+    lastErrorMessage.clear();
     lastMessageBoxText.clear();
     nextData.resize( 0 );
     nextDataReturnCode = -1;
@@ -175,7 +175,7 @@ int main( int, char** ) {
   assert( ehlo4.isComplete() );
   assert( !ehlo4.needsResponse() );
   assert( smtp.lastErrorCode == KIO::ERR_INTERNAL_SERVER );
-  
+
   //
   // STARTTLS
   //
@@ -205,7 +205,7 @@ int main( int, char** ) {
   assert( tls.processResponse( r, &ts ) == true );
   assert( !tls.needsResponse() );
   assert( smtp.lastErrorCode == 0 );
-  
+
   // dynamics 2: NAK from server
   smtp.clear();
   StartTLSCommand tls2( &smtp );
@@ -217,7 +217,7 @@ int main( int, char** ) {
   assert( tls2.processResponse( r, &ts ) == false );
   assert( !tls2.needsResponse() );
   assert( smtp.lastErrorCode == KIO::ERR_SERVICE_NOT_AVAILABLE );
-  
+
   // dynamics 3: ok from server, TLS negotiation unsuccessful
   smtp.clear();
   StartTLSCommand tls3( &smtp );
@@ -228,7 +228,7 @@ int main( int, char** ) {
   smtp.startTLSReturnCode = -1;
   assert( tls.processResponse( r, &ts ) == false );
   assert( !tls.needsResponse() );
-  
+
   //
   // AUTH
   //
@@ -275,7 +275,7 @@ int main( int, char** ) {
   assert( auth2.nextCommandLine( &ts ) == "dXNlcgB1c2VyAHBhc3M=\r\n" );
   assert( auth2.isComplete() );
   assert( auth2.needsResponse() );
-  
+
   // dynamics 3: LOGIN
   smtp.clear();
   smtp.metadata["sasl"] = "LOGIN";
@@ -430,7 +430,7 @@ int main( int, char** ) {
   r.clear();
   r.parseLine( "530 5.7.1 Relaying not allowed!" );
   rcpt3.processResponse( r, &ts );
-  
+
   rcpt4.nextCommandLine( &ts );
   r.clear();
   r.parseLine( "250 Ok" );
