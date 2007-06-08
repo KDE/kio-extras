@@ -48,6 +48,7 @@ extern "C" {
 #endif
 
 #include <QtCore/QBool>
+#include <QCoreApplication>
 #include <QByteArray>
 #include <QRegExp>
 
@@ -103,6 +104,7 @@ int kdemain(int argc, char **argv)
   }
 #endif
 
+  QCoreApplication app( argc, argv ); // needed for QSocketNotifier
   KComponentData componentData("kio_pop3");
   POP3Protocol *slave;
 
@@ -649,7 +651,7 @@ bool POP3Protocol::pop3_open()
   do {
     closeConnection();
 
-    if (!connectToHost((usingSSL() ? "pop3s" : "pop3"), m_sServer.toLatin1(), m_iPort), true) {
+    if (!connectToHost((usingSSL() ? "pop3s" : "pop3"), m_sServer.toLatin1(), m_iPort, true)) {
       // error(ERR_COULD_NOT_CONNECT, m_sServer);
       // ConnectToHost has already send an error message.
       return false;
