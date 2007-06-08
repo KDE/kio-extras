@@ -44,7 +44,7 @@ public:
   POP3Protocol(const QByteArray & pool, const QByteArray & app, bool SSL);
   virtual ~ POP3Protocol();
 
-  virtual void setHost(const QString & host, int port,
+  virtual void setHost(const QString & host, quint16 port,
                        const QString & user, const QString & pass);
 
   virtual void special(const QByteArray & aData);

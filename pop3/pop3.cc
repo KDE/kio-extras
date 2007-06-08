@@ -146,7 +146,7 @@ POP3Protocol::~POP3Protocol()
   closeConnection();
 }
 
-void POP3Protocol::setHost(const QString & _host, int _port,
+void POP3Protocol::setHost(const QString & _host, quint16 _port,
                            const QString & _user, const QString & _pass)
 {
   m_sServer = _host;
