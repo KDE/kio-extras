@@ -41,8 +41,7 @@ void SystemDirNotify::init()
 	if( mInited )
 		return;
 	mInited = true;
-	KGlobal::dirs()->addResourceType("system_entries",
-		KStandardDirs::kde_default("data") + "systemview");
+	KGlobal::dirs()->addResourceType("system_entries", "data", "systemview");
 
 	QStringList names_found;
 	QStringList dirList = KGlobal::dirs()->resourceDirs("system_entries");

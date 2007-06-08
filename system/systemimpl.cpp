@@ -32,8 +32,7 @@
 
 SystemImpl::SystemImpl() : QObject()
 {
-	KGlobal::dirs()->addResourceType("system_entries",
-		KStandardDirs::kde_default("data") + "systemview");
+	KGlobal::dirs()->addResourceType("system_entries", "data", "systemview");
 }
 
 bool SystemImpl::listRoot(KIO::UDSEntryList &list)

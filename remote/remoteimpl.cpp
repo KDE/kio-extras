@@ -36,8 +36,7 @@
 
 RemoteImpl::RemoteImpl()
 {
-	KGlobal::dirs()->addResourceType("remote_entries",
-		KStandardDirs::kde_default("data") + "remoteview");
+	KGlobal::dirs()->addResourceType("remote_entries", "data", "remoteview");
 
 	QString path = KGlobal::dirs()->saveLocation("remote_entries");
 
