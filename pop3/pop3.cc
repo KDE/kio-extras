@@ -918,7 +918,7 @@ void POP3Protocol::get(const KUrl & url)
     finished();
     m_cmd = CMD_NONE;
   } else if (cmd == "download" || cmd == "headers") {
-    QStringList waitingCommands = path.split(',');
+    QStringList waitingCommands = path.split(',', QString::SkipEmptyParts);
     bool noProgress = (metaData("progress") == "off"
                        || waitingCommands.count() > 1);
     int p_size = 0;
