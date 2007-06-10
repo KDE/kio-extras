@@ -47,7 +47,7 @@ public:
 private Q_SLOTS:
 	void onMediumChange( const QString &name, bool allowNotification );
 	void slotStatResult( KJob *job );
-	void deviceAddedSlot(const QString &udi);
+	void slotDeviceAdded(const QString &udi);
 	
 private:
 	bool autostart( const KFileItem &medium );

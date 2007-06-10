@@ -55,16 +55,26 @@ MediaNotifier::MediaNotifier() : KDEDModule()
 	//get the solid notifier
 	notifier = Solid::DeviceNotifier::instance();
     
-	connect( notifier, SIGNAL(deviceAdded(const QString &udi)),
-		 SLOT(deviceAddedSlot(const QString &udi)));
+	connect(Solid::DeviceNotifier::instance(), SIGNAL(deviceAdded(const QString &)),
+            this, SLOT(slotDeviceAdded(const QString &)));
 }
 
 MediaNotifier::~MediaNotifier()
 {
 }
-void MediaNotifier::deviceAddedSlot(const QString &udi)
+void MediaNotifier::slotDeviceAdded(const QString &udi)
 {
 	kDebug() << "new hardware solid" << udi<<endl;
+	kapp->updateUserTimestamp();
+
+	
+	QString text = i18n( "Pop up test");
+	QString caption = i18n( "Autoopen - %1");
+	KGuiItem yes = KStandardGuiItem::yes();
+	KGuiItem no = KStandardGuiItem::no();
+
+	int answer = KMessageBox::warningYesNo( 0L, text, caption, yes, no,
+	                                        QString(), KMessageBox::Notify | KMessageBox::Dangerous );
 }
 
 
