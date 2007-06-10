@@ -41,6 +41,7 @@
 #include "mediamanagersettings.h"
 #include "../mediamanageriface.h"
 
+
 MediaNotifier::MediaNotifier() : KDEDModule()
 {
 	m_mediamanager = new OrgKdeMediaManagerInterface( "org.kde.kded", "/modules/mediamanager", QDBusConnection::sessionBus() );
@@ -50,11 +51,22 @@ MediaNotifier::MediaNotifier() : KDEDModule()
 		 SLOT(onMediumChange(QString,bool)));
 	connect( m_mediamanager, SIGNAL(mediumChanged(QString,bool)),
 		 SLOT(onMediumChange(QString,bool)));
+
+	//get the solid notifier
+	notifier = Solid::DeviceNotifier::instance();
+    
+	connect( notifier, SIGNAL(deviceAdded(const QString &udi)),
+		 SLOT(deviceAddedSlot(const QString &udi)));
 }
 
 MediaNotifier::~MediaNotifier()
 {
 }
+void MediaNotifier::deviceAddedSlot(const QString &udi)
+{
+	kDebug() << "new hardware solid" << udi<<endl;
+}
+
 
 void MediaNotifier::onMediumChange( const QString &name, bool allowNotification )
 {
