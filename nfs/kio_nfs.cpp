@@ -882,7 +882,7 @@ void NFSProtocol::completeUDSEntry(UDSEntry& entry, fattr& attributes)
    }*/
 }
 
-void NFSProtocol::setHost(const QString& host, int /*port*/, const QString& /*user*/, const QString& /*pass*/)
+void NFSProtocol::setHost(const QString& host, quint16 /*port*/, const QString& /*user*/, const QString& /*pass*/)
 {
    kDebug(7121)<<"setHost: -"<<host<<"-"<<endl;
    if (host.isEmpty())

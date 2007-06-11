@@ -67,7 +67,7 @@ class NFSProtocol : public KIO::SlaveBase
       virtual void openConnection();
       virtual void closeConnection();
 
-      virtual void setHost( const QString& host, int port, const QString& user, const QString& pass );
+      virtual void setHost( const QString& host, quint16 port, const QString& user, const QString& pass );
 
       virtual void put( const KUrl& url, int _mode,bool _overwrite, bool _resume );
       virtual void get( const KUrl& url );
