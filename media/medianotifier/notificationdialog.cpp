@@ -146,7 +146,7 @@ void NotificationDialog::launchAction( NotifierAction *action )
 
 void NotificationDialog::slotConfigure()
 {
-	KRun::runCommand("kcmshell media");
+	KRun::runCommand("kcmshell media",topLevelWidget());
 }
 
 #include "notificationdialog.moc"
