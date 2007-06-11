@@ -1,6 +1,7 @@
 /* This file is part of the KDE Project
    Copyright (c) 2005 Jean-Remy Falleri <jr.falleri@laposte.net>
    Copyright (c) 2005 Kévin Ottens <ervin ipsquad net>
+   Copyright (c) 2007 Alexis Ménard <darktears31@gmail.com>
 
    This library is free software; you can redistribute it and/or
    modify it under the terms of the GNU Library General Public
@@ -51,18 +52,14 @@ MediaNotifier::MediaNotifier() : KDEDModule()
 		 SLOT(onMediumChange(QString,bool)));
 	connect( m_mediamanager, SIGNAL(mediumChanged(QString,bool)),
 		 SLOT(onMediumChange(QString,bool)));
-
-	//get the solid notifier
-	notifier = Solid::DeviceNotifier::instance();
-    
 	connect(Solid::DeviceNotifier::instance(), SIGNAL(deviceAdded(const QString &)),
-            this, SLOT(slotDeviceAdded(const QString &)));
+            this, SLOT(onDeviceAdded(const QString &)));
 }
 
 MediaNotifier::~MediaNotifier()
 {
 }
-void MediaNotifier::slotDeviceAdded(const QString &udi)
+void MediaNotifier::onDeviceAdded(const QString &udi)
 {
 	kDebug() << "new hardware solid" << udi<<endl;
 	kapp->updateUserTimestamp();

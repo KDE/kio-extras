@@ -30,9 +30,6 @@
 
 //solid specific includes
 #include <solid/devicenotifier.h>
-#include <solid/device.h>
-#include <solid/deviceinterface.h>
-#include <solid/processor.h>
 
 class OrgKdeMediaManagerInterface;
 
@@ -47,7 +44,7 @@ public:
 private Q_SLOTS:
 	void onMediumChange( const QString &name, bool allowNotification );
 	void slotStatResult( KJob *job );
-	void slotDeviceAdded(const QString &udi);
+	void onDeviceAdded(const QString &udi);
 	
 private:
 	bool autostart( const KFileItem &medium );
@@ -60,7 +57,6 @@ private:
 
 	QMap<KJob*,bool> m_allowNotificationMap;
         OrgKdeMediaManagerInterface *m_mediamanager;
-	Solid::DeviceNotifier *notifier;
 };
 #endif
 
