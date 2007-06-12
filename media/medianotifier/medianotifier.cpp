@@ -48,12 +48,14 @@ MediaNotifier::MediaNotifier() : KDEDModule()
 	m_mediamanager = new OrgKdeMediaManagerInterface( "org.kde.kded", "/modules/mediamanager", QDBusConnection::sessionBus() );
 	m_mediamanager->setParent( this );
 
-	connect( m_mediamanager, SIGNAL(mediumAdded(QString,bool)),
+	/*connect( m_mediamanager, SIGNAL(mediumAdded(QString,bool)),
 		 SLOT(onMediumChange(QString,bool)));
 	connect( m_mediamanager, SIGNAL(mediumChanged(QString,bool)),
-		 SLOT(onMediumChange(QString,bool)));
+		 SLOT(onMediumChange(QString,bool)));*/
 	connect(Solid::DeviceNotifier::instance(), SIGNAL(deviceAdded(const QString &)),
             this, SLOT(onDeviceAdded(const QString &)));
+	connect(Solid::DeviceNotifier::instance(), SIGNAL(deviceRemoved(const QString &)),
+            this, SLOT(onDeviceRemoved(const QString &)));
 }
 
 MediaNotifier::~MediaNotifier()
@@ -74,6 +76,10 @@ void MediaNotifier::onDeviceAdded(const QString &udi)
 	                                        QString(), KMessageBox::Notify | KMessageBox::Dangerous );
 }
 
+void MediaNotifier::onDeviceRemoved(const QString &udi)
+{
+	kDebug() << "remove hardware solid" << udi<<endl;
+}
 
 void MediaNotifier::onMediumChange( const QString &name, bool allowNotification )
 {
