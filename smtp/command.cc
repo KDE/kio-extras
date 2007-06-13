@@ -48,6 +48,19 @@
 
 namespace KioSMTP {
 
+#ifdef HAVE_LIBSASL2
+static sasl_callback_t client_callbacks[] = {
+    { SASL_CB_ECHOPROMPT, NULL, NULL },
+    { SASL_CB_NOECHOPROMPT, NULL, NULL },
+    { SASL_CB_GETREALM, NULL, NULL },
+    { SASL_CB_USER, NULL, NULL },
+    { SASL_CB_AUTHNAME, NULL, NULL },
+    { SASL_CB_PASS, NULL, NULL },
+    { SASL_CB_CANON_USER, NULL, NULL },
+    { SASL_CB_LIST_END, NULL, NULL }
+};
+#endif
+
   //
   // Command (base class)
   //
@@ -145,7 +158,7 @@ namespace KioSMTP {
 
   //
   // STARTTLS - rfc 3207
-  //      
+  //
 
   QByteArray StartTLSCommand::nextCommandLine( TransactionState * ) {
     mComplete = true;
@@ -196,16 +209,16 @@ namespace KioSMTP {
       mAi( &ai ),
       mFirstTime( true )
   {
-#ifdef HAVE_LIBSASL2  
+#ifdef HAVE_LIBSASL2
     int result;
     mMechusing = 0;
     conn = 0;
     client_interact = 0;
     mOut = 0; mOutlen = 0;
     mOneStep = false;
-    
+
     result = sasl_client_new( "smtp", aFQDN.toLatin1(),
-      0, 0, NULL, 0, &conn );
+      0, 0, client_callbacks, 0, &conn );
     if ( result != SASL_OK ) {
       SASLERROR
       return;
@@ -233,13 +246,13 @@ namespace KioSMTP {
 
   AuthCommand::~AuthCommand()
   {
-#ifdef HAVE_LIBSASL2  
+#ifdef HAVE_LIBSASL2
     if ( conn ) {
       kDebug(7112) << "dispose sasl connection" << endl;
       sasl_dispose( &conn );
       conn = 0;
     }
-#endif    
+#endif
   }
 
   bool AuthCommand::saslInteract( void *in )
@@ -310,14 +323,14 @@ namespace KioSMTP {
       mUngetSASLResponse = 0;
     } else if ( mFirstTime ) {
       QString firstCommand = "AUTH " + QString::fromLatin1( mMechusing );
-      
+
       challenge = QByteArray::fromRawData( mOut, mOutlen ).toBase64();
       if ( !challenge.isEmpty() ) {
         firstCommand += ' ';
         firstCommand += QString::fromLatin1( challenge.data(), challenge.size() );
       }
       cmd = firstCommand.toLatin1();
-      
+
       if ( mOneStep ) mComplete = true;
     } else {
 //      kDebug(7112) << "SS: '" << mLastChallenge << "'" << endl;
@@ -339,7 +352,7 @@ namespace KioSMTP {
         return "";
       }
       cmd = QByteArray::fromRawData( mOut, mOutlen ).toBase64();
-      
+
 //      kDebug(7112) << "CC: '" << cmd << "'" << endl;
       mComplete = ( result == SASL_OK );
     }
@@ -419,7 +432,7 @@ namespace KioSMTP {
 
     ts->addRejectedRecipient( mAddr, r.errorMessage() );
     return false;
-  }		  
+  }
 
   //
   // DATA (only initial processing!)

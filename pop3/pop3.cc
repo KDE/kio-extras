@@ -86,6 +86,18 @@ static sasl_callback_t callbacks[] = {
     { SASL_CB_CANON_USER, NULL, NULL },
     { SASL_CB_LIST_END, NULL, NULL }
 };
+
+static sasl_callback_t client_callbacks[] = {
+    { SASL_CB_ECHOPROMPT, NULL, NULL },
+    { SASL_CB_NOECHOPROMPT, NULL, NULL },
+    { SASL_CB_GETREALM, NULL, NULL },
+    { SASL_CB_USER, NULL, NULL },
+    { SASL_CB_AUTHNAME, NULL, NULL },
+    { SASL_CB_PASS, NULL, NULL },
+    { SASL_CB_GETOPT, NULL, NULL },
+    { SASL_CB_CANON_USER, NULL, NULL },
+    { SASL_CB_LIST_END, NULL, NULL }
+};
 #endif
 
 int kdemain(int argc, char **argv)
@@ -384,8 +396,8 @@ int POP3Protocol::loginAPOP( char *challenge, KIO::AuthInfo &ai )
   if (metaData("auth") == "APOP") {
     error(ERR_COULD_NOT_LOGIN,
           i18n
-          ("Login via APOP failed. The server %1 may not support APOP, although it claims to support it, or the password may be wrong.\n\n%2", 
-          m_sServer, 
+          ("Login via APOP failed. The server %1 may not support APOP, although it claims to support it, or the password may be wrong.\n\n%2",
+          m_sServer,
           m_sError));
     return -1;
   }
@@ -463,7 +475,7 @@ int POP3Protocol::loginSASL( KIO::AuthInfo &ai )
 
   result = sasl_client_new( "pop",
                        m_sServer.toLatin1(),
-                       0, 0, NULL, 0, &conn );
+                       0, 0, client_callbacks, 0, &conn );
 
   if ( result != SASL_OK ) {
     POP3_DEBUG << "sasl_client_new failed with: " << result << endl;
@@ -566,7 +578,7 @@ int POP3Protocol::loginSASL( KIO::AuthInfo &ai )
       closeConnection();
       error(ERR_COULD_NOT_LOGIN,
             i18n
-            ("Login via SASL (%1) failed. The server may not support %2, or the password may be wrong.\n\n%3", 
+            ("Login via SASL (%1) failed. The server may not support %2, or the password may be wrong.\n\n%3",
             mechusing, mechusing, m_sError));
       return -1;
     }
@@ -629,7 +641,7 @@ bool POP3Protocol::loginPASS( KIO::AuthInfo &ai )
     POP3_DEBUG << "Couldn't login. Bad password Sorry." << endl;
     m_sError =
         i18n
-        ("Could not login to %1. The password may be wrong.\n\n%2", 
+        ("Could not login to %1. The password may be wrong.\n\n%2",
         m_sServer, m_sError);
     error(ERR_COULD_NOT_LOGIN, m_sError);
     closeConnection();
@@ -668,7 +680,7 @@ bool POP3Protocol::pop3_open()
           ((!greeting_buf
             || !*greeting_buf) ?
            i18n("The server terminated the connection immediately.") :
-           i18n("Server does not respond properly:\n%1\n", 
+           i18n("Server does not respond properly:\n%1\n",
            greeting_buf));
       error(ERR_COULD_NOT_LOGIN, m_sError);
       delete[]greeting_buf;
@@ -1028,7 +1040,7 @@ void POP3Protocol::get(const KUrl & url)
           }
 
           if (buf2 > destbuf) {
-            data(QByteArray::fromRawData(destbuf, buf2-destbuf));            
+            data(QByteArray::fromRawData(destbuf, buf2-destbuf));
           }
 
           if (endOfMail)
