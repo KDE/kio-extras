@@ -22,7 +22,6 @@
 #include "backendbase.h"
 
 #include <QObject>
-#include <QStringList>
 
 class RemovableBackend : public QObject, public BackendBase
 {

@@ -21,7 +21,6 @@
 
 #include <kdedmodule.h>
 
-#include <QStringList>
 
 #include "medialist.h"
 #include "backendbase.h"

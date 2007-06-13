@@ -70,7 +70,6 @@ using KioSMTP::TransactionState;
 #include <klocale.h>
 
 
-#include <QStringList>
 
 #include <memory>
 using std::auto_ptr;

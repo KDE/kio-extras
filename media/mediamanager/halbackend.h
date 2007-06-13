@@ -32,7 +32,6 @@
 #include "backendbase.h"
 
 #include <QObject>
-#include <QStringList>
 
 
 #include <config.h>

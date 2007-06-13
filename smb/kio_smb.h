@@ -41,7 +41,6 @@
 //-------------
 
 #include <Qt3Support/Q3PtrList>
-#include <QStringList>
 #include <QTextStream>
 #include <Qt3Support/Q3StrIList>
 //Added by qt3to4:

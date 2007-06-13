@@ -2,7 +2,6 @@
 #include <kdebug.h>
 
 
-#include <QStringList>
 
 //#include <iostream>
 //using std::cout;

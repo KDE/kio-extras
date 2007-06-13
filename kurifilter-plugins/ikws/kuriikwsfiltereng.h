@@ -26,7 +26,6 @@
 #define __KURISearchFILTERENGINE_H__
 
 
-#include <QStringList>
 //Added by qt3to4:
 
 #include <kservice.h>

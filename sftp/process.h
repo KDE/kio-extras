@@ -14,7 +14,6 @@
 
 #include <Qt3Support/Q3CString>
 
-#include <QStringList>
 
 
 #define PTYPROC 7120

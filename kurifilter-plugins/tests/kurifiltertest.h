@@ -20,7 +20,6 @@
 #define KURIFILTERTEST_H
 
 #include <QObject>
-#include <QStringList>
 #include <QByteArray>
 
 class KUriFilterTest : public QObject
