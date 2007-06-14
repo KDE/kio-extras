@@ -3,6 +3,7 @@ Encoding=UTF-8
 Type=Service
 Name=KDED System Base URL Notifier
 Name[af]=KDED Stelse URL inkennissteller
+Name[be]=Праверка змены сістэмных файлаў KDED
 Name[ca]=Notificador d'URL de base al sistema KDED
 Name[cs]=Démon upozorňování na systémová URL
 Name[csb]=Dôwanié wiédzë ù systemòwëch URL-ach dlô KDED

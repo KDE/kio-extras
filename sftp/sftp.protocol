@@ -15,6 +15,7 @@ opening=true
 Icon=ftp
 Description=A kioslave for sftp
 Description[af]='n Kioslave vir sftp
+Description[be]=Kioslave для sftp
 Description[br]=Ur kioslave evit sftp
 Description[ca]=Un kioslave per a sftp
 Description[cs]=Protokol KDE pro sftp

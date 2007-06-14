@@ -3,6 +3,7 @@ Encoding=UTF-8
 Type=Service
 Name=RPM-Find
 Name[af]=RPM-Vind
+Name[be]=Пошук RPM
 Name[csb]=Rpmfind - szëkôrz paczétów RPM
 Name[de]=RPM-Suche
 Name[el]=RPM-Αναζήτηση

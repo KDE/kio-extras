@@ -13,6 +13,7 @@ moving=true
 Icon=remote
 Description=A kioslave for the FISH protocol
 Description[af]='n Kioslave vir die FISH protokol
+Description[be]=Kioslave для пратакола FISH
 Description[br]=Ur c'hioslave evit ar c'homenad FISH
 Description[ca]=Un kioslave pel protocol FISH
 Description[cs]=Pomocný protokol pro FISH

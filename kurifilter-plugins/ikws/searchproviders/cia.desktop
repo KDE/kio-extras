@@ -2,6 +2,7 @@
 Hidden=false
 Keys=cia
 Name=CIA World Fact Book
+Name[be]=CIA World Factbook
 Name[csb]=Swiatowé wëdarzenia CIA (CIA World Factbook)
 Name[de]=CIA World Factbook
 Name[el]=Παγκόσμιο βιβλίο γεγονότων της CIA
@@ -10,6 +11,7 @@ Name[nl]=CIA World Factbook
 Name[sv]=CIA-världsfaktabok
 Name[x-test]=xxCIA World Fact Bookxx
 Query=http://www.google.com/search?q=allintitle%3A\\{@}+world+fact+book+site%3Awww.cia.gov&ie=UTF-8&btnI=I%27m+Feeling+Lucky
+Query[be]=http://www.google.com/search?q=allintitle%3A\\{@}+world+factbook+site%3Awww.cia.gov&ie=UTF-8&btnI=I%27m+Feeling+Lucky
 Query[csb]=http://www.google.com/search?q=allintitle%3A\\{@}+world+factbook+site%3Awww.cia.gov&ie=UTF-8&btnI=I%27m+Feeling+Lucky
 Query[x-test]=xxhttp://www.google.com/search?q=allintitle%3A\\{@}+world+fact+book+site%3Awww.cia.gov&ie=UTF-8&btnI=I%27m+Feeling+Luckyxx
 ServiceTypes=SearchProvider

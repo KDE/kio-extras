@@ -4,6 +4,7 @@ Type=Service
 Name=Ruby Application Archive
 Name[af]=Ruby Aansoek Argief
 Name[ar]=أرشيف تطبيقات Ruby
+Name[be]=Архіў праграмаў Ruby
 Name[br]=Diell arloadoù Ruby
 Name[ca]=Arxiu d'aplicacions Ruby
 Name[cs]=Archív aplikací Ruby
@@ -56,5 +57,6 @@ Name[zh_TW]=Ruby 應用程式檔案庫
 ServiceTypes=SearchProvider
 Keys=raa
 Query=http://www.ruby-lang.org/en/raa-list.rhtml?name=\\{@}
+Query[be]=http://raa.ruby-lang.org/search.rhtml?search=\\{@}
 Query[csb]=http://raa.ruby-lang.org/search.rhtml?search=\\{@}
 Query[x-test]=xxhttp://www.ruby-lang.org/en/raa-list.rhtml?name=\\{@}xx
