@@ -34,8 +34,7 @@ class NotificationDialog : public KDialog
 	Q_OBJECT
 
 public:
-	NotificationDialog( KFileItem medium, NotifierSettings *settings,
-	                    QWidget* parent = 0, const char* name = 0 );
+	NotificationDialog(QWidget* parent = 0, const char* name = 0 );
 	~NotificationDialog();
 
 private Q_SLOTS:

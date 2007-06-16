@@ -32,12 +32,10 @@
 #include "actionlistboxitem.h"
 #include "notificationdialogview.h"
 
-NotificationDialog::NotificationDialog( KFileItem medium, NotifierSettings *settings,
-                                        QWidget* parent, const char* name )
-	: KDialog( parent ),
-	  m_medium(medium), m_settings( settings )
+NotificationDialog::NotificationDialog(QWidget* parent, const char* name )
+	: KDialog( parent )
 {
-	setCaption( KIO::decodeFileName(m_medium.name()) );
+  setCaption( KIO::decodeFileName(m_medium.name()) );
   setObjectName( name );
   setModal( false );
   setButtons( Ok|Cancel|User1 );

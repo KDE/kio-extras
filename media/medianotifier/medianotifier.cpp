@@ -48,10 +48,6 @@ MediaNotifier::MediaNotifier() : KDEDModule()
 	m_mediamanager = new OrgKdeMediaManagerInterface( "org.kde.kded", "/modules/mediamanager", QDBusConnection::sessionBus() );
 	m_mediamanager->setParent( this );
 
-	/*connect( m_mediamanager, SIGNAL(mediumAdded(QString,bool)),
-		 SLOT(onMediumChange(QString,bool)));
-	connect( m_mediamanager, SIGNAL(mediumChanged(QString,bool)),
-		 SLOT(onMediumChange(QString,bool)));*/
 	connect(Solid::DeviceNotifier::instance(), SIGNAL(deviceAdded(const QString &)),
             this, SLOT(onDeviceAdded(const QString &)));
 	connect(Solid::DeviceNotifier::instance(), SIGNAL(deviceRemoved(const QString &)),
@@ -65,14 +61,8 @@ void MediaNotifier::onDeviceAdded(const QString &udi)
 {
 	kDebug() << "new hardware solid" << udi<<endl;
 	kapp->updateUserTimestamp();
-
-	
-	QString text = i18n( "Pop up test");
-	QString caption = i18n( "Autoopen - %1");
-	KGuiItem yes = KStandardGuiItem::yes();
-	KGuiItem no = KStandardGuiItem::no();
-
-	int answer = KMessageBox::warningYesNo( 0L, text, caption, yes, no,
+	//
+	KMessageBox::information(0L, "New hardware detected with solid \n name is : \n"+udi, "DEBUG",
 	                                        QString(), KMessageBox::Notify | KMessageBox::Dangerous );
 }
 
@@ -295,7 +285,7 @@ bool MediaNotifier::execAutoopen( const KFileItem &medium, const QString &path,
 
 void MediaNotifier::notify( KFileItem &medium )
 {
-	kDebug() << "Notification triggered." << endl;
+	/*kDebug() << "Notification triggered." << endl;
 
 	NotifierSettings *settings = new NotifierSettings();
 
@@ -318,7 +308,7 @@ void MediaNotifier::notify( KFileItem &medium )
 		NotifierAction *action = settings->autoActionForMimetype( medium.mimetype() );
 		action->execute( medium );
 		delete settings;
-	}
+	}*/
 }
 
 extern "C"

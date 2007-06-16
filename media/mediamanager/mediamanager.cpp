@@ -46,13 +46,13 @@ MediaManager::MediaManager()
 {
 	new MediaManagerAdaptor( this );
 
-	connect( &m_mediaList, SIGNAL(mediumAdded(const QString&, const QString&, bool)),
+	/*connect( &m_mediaList, SIGNAL(mediumAdded(const QString&, const QString&, bool)),
 	         SLOT(slotMediumAdded(const QString&, const QString&, bool)) );
 	connect( &m_mediaList, SIGNAL(mediumRemoved(const QString&, const QString&, bool)),
 	         SLOT(slotMediumRemoved(const QString&, const QString&, bool)) );
 	connect( &m_mediaList,
 	         SIGNAL(mediumStateChanged(const QString&, const QString&, bool, bool)),
-	         SLOT(slotMediumChanged(const QString&, const QString&, bool, bool)) );
+	         SLOT(slotMediumChanged(const QString&, const QString&, bool, bool)) );*/
 
 	QTimer::singleShot( 10, this, SLOT( loadBackends() ) );
 }
