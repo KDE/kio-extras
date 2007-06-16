@@ -44,7 +44,6 @@ Name[nl]=Google afbeeldingen zoeken
 Name[nn]=Google biletsøk
 Name[pa]=Google ਚਿੱਤਰ ਖੋਜ
 Name[pl]=Google - wyszukiwanie zdjęć
-Name[pt]=Pesquisa de Imagens do Google
 Name[pt_BR]=Busca de Imagens do Google
 Name[ro]=Căutare de imagini Google
 Name[ru]=Рисунки Google
@@ -72,7 +71,6 @@ Query[he]=http://images.google.co.il/images?q=\\{@}
 Query[nb]=http://images.google.no/images?hl=nn&q=\\{@}
 Query[nl]=http://images.google.nl/images?q=\\{@}
 Query[nn]=http://images.google.com/images?hl=nn&q=\\{@}
-Query[pt]=http://images.google.pt/images?q=\\{@}
 Query[ru]=http://images.google.com/images?q=\\{@}&hl=ru&ie=UTF-8&oe=UTF-8
 Query[x-test]=xxhttp://images.google.com/images?q=\\{@}xx
 Query[zh_TW]=http://images.google.com.tw/images?q=\\{@}&hl=zh-TW

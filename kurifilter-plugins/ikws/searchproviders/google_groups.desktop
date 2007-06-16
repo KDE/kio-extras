@@ -41,7 +41,6 @@ Name[ne]=गुगल समूह
 Name[nl]=Google Groepen
 Name[pa]=Google ਗਰੁੱਪ
 Name[pl]=Google - archiwum grup dyskusyjnych
-Name[pt]=Grupos do Google
 Name[pt_BR]=Grupos do Google
 Name[ro]=Grupuri Google
 Name[ru]=Группы Google
@@ -68,6 +67,5 @@ Query[nb]=http://groups.google.no/groups?hl=nn&oi=djq&as_q=\\{@}
 Query[ne]=http://groups.google.com/groups?oi=djqas_q=\\{@}
 Query[nl]=http://groups.google.nl/groups?oi=djq&as_q=\\{@}
 Query[nn]=http://groups.google.com/groups?hl=nn&oi=djq&as_q=\\{@}
-Query[pt]=http://groups.google.pt/groups?oi=djq&as_q=\\{@}
 Query[x-test]=xxhttp://groups.google.com/groups?oi=djq&as_q=\\{@}xx
 Query[zh_TW]=http://groups.google.com.tw/groups?oi=djq&as_q=\\{@}
