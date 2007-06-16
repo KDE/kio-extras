@@ -24,7 +24,7 @@
 #include <QByteArray>
 #include <QDir>
 #include <k3process.h>
-
+#include <kshell.h>
 void SMBSlave::readOutput(K3Process *, char *buffer, int buflen)
 {
     mybuf += QString::fromLocal8Bit(buffer, buflen);
@@ -98,19 +98,19 @@ void SMBSlave::special( const QByteArray & data)
          }
          else
          {
-           options = "-o username=" + K3Process::quote(smburl.user());
+           options = "-o username=" + KShell::quoteArg(smburl.user());
            user = smburl.user();
 
            if ( ! smburl.pass().isEmpty() )
-             options += ",password=" + K3Process::quote(smburl.pass());
+             options += ",password=" + KShell::quoteArg(smburl.pass());
          }
 
          // TODO: check why the control center uses encodings with a blank char, e.g. "cp 1250"
          //if ( ! m_default_encoding.isEmpty() )
-           //options += ",codepage=" + K3Process::quote(m_default_encoding);
+           //options += ",codepage=" + KShell::quoteArg(m_default_encoding);
 
-         proc << K3Process::quote(remotePath.toLocal8Bit());
-         proc << K3Process::quote(mountPoint.toLocal8Bit());
+         proc << KShell::quoteArg(remotePath.toLocal8Bit());
+         proc << KShell::quoteArg(mountPoint.toLocal8Bit());
          proc << options;
 
          connect(&proc, SIGNAL( receivedStdout(K3Process *, char *, int )),
@@ -149,7 +149,7 @@ void SMBSlave::special( const QByteArray & data)
          K3Process proc;
          proc.setUseShell(true);
          proc << "smbumount";
-         proc << K3Process::quote(mountPoint);
+         proc << KShell::quoteArg(mountPoint);
 
          mybuf.truncate(0);
          mystderr.truncate(0);
