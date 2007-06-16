@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/stat.h>
+#include <unistd.h> // getpid()
 
 #include <QDir>
 #include <QFile>
@@ -10,7 +11,7 @@
 #include <QRegExp>
 
 #include <kdebug.h>
-#include <k3process.h>
+#include <kshell.h>
 #include <kstandarddirs.h>
 #include <kiconloader.h>
 #include <kcomponentdata.h>
@@ -96,17 +97,17 @@ void InfoProtocol::get( const KUrl& url )
     int revindex = path.lastIndexOf('/');
     path = path.left(revindex);
 
-    QString cmd = K3Process::quote(m_perl);
+    QString cmd = KShell::quoteArg(m_perl);
     cmd += ' ';
-    cmd += K3Process::quote(m_infoScript);
+    cmd += KShell::quoteArg(m_infoScript);
     cmd += ' ';
-    cmd += K3Process::quote(m_infoConf);
+    cmd += KShell::quoteArg(m_infoConf);
     cmd += ' ';
-    cmd += K3Process::quote(path);
+    cmd += KShell::quoteArg(path);
     cmd += ' ';
-    cmd += K3Process::quote(m_page);
+    cmd += KShell::quoteArg(m_page);
     cmd += ' ';
-    cmd += K3Process::quote(m_node);
+    cmd += KShell::quoteArg(m_node);
 
     kDebug( 7108 ) << "cmd: " << cmd << endl;
 

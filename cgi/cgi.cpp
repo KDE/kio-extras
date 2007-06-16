@@ -17,12 +17,13 @@
 */
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h> // getpid()
 
 #include <QDir>
 #include <QRegExp>
 
 #include <kdebug.h>
-#include <k3process.h>
+#include <kshell.h>
 #include <kstandarddirs.h>
 #include <kcomponentdata.h>
 #include <klocale.h>
@@ -110,7 +111,7 @@ void CgiProtocol::get( const KUrl& url )
   } else {
     kDebug(7124) << "Cmd: " << cmd << endl;
 
-    fd = popen( QFile::encodeName(K3Process::quote( cmd )).data(), "r" );
+    fd = popen( QFile::encodeName(KShell::quoteArg( cmd )).data(), "r" );
 
     if ( !fd ) {
       kDebug(7124) << "Error running '" << cmd << "'" << endl;
