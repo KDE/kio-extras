@@ -29,7 +29,7 @@
 #include <QTimer>
 #include <kdebug.h>
 #include <kglobal.h>
-#include <k3process.h>
+#include <kprocess.h>
 #include <QtDBus/QtDBus>
 
 const Medium MountHelper::findMedium(const QString &name)
@@ -106,7 +106,7 @@ MountHelper::MountHelper() : KApplication()
 
 void MountHelper::invokeEject(const QString &device, bool quiet)
 {
-	K3Process *proc = new K3Process(this);
+	KProcess *proc = new KProcess(this);
 	*proc << "kdeeject";
 	if (quiet)
 	{
@@ -114,7 +114,7 @@ void MountHelper::invokeEject(const QString &device, bool quiet)
 	}
 	*proc << device;
 	proc->start();
-	connect( proc, SIGNAL(processExited(K3Process *)),
+	connect( proc, SIGNAL(finished (int, QProcess::ExitStatus)),
 	         this, SLOT( finished() ) );
 }
 

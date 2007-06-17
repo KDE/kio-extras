@@ -30,7 +30,7 @@
 #include <kapplication.h>
 #include <kdebug.h>
 #include <klocale.h>
-#include <k3process.h>
+#include <kprocess.h>
 #include <krun.h>
 #include <kmessagebox.h>
 #include <kstandardguiitem.h>
@@ -202,11 +202,7 @@ bool MediaNotifier::execAutorun( const KFileItem &medium, const QString &path,
 		// confirmed its execution the autostart file MUST be executed
 		// with the current working directory ( CWD ) set to the root
 		// directory of the medium.
-		K3Process proc;
-		proc << "sh" << autorunFile;
-		proc.setWorkingDirectory( path );
-		proc.start();
-		proc.detach();
+		KProcess::startDetached(QLatin1String("sh"), QStringList(autorunFile), path, 0);
 	}
 
 	return true;
