@@ -30,6 +30,10 @@
 
 //solid specific includes
 #include <solid/devicenotifier.h>
+#include <solid/device.h>
+#include <solid/deviceinterface.h>
+#include <solid/predicate.h>
+
 
 class OrgKdeMediaManagerInterface;
 

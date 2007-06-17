@@ -52,6 +52,7 @@ MediaNotifier::MediaNotifier() : KDEDModule()
             this, SLOT(onDeviceAdded(const QString &)));
 	connect(Solid::DeviceNotifier::instance(), SIGNAL(deviceRemoved(const QString &)),
             this, SLOT(onDeviceRemoved(const QString &)));
+	
 }
 
 MediaNotifier::~MediaNotifier()
@@ -60,10 +61,28 @@ MediaNotifier::~MediaNotifier()
 void MediaNotifier::onDeviceAdded(const QString &udi)
 {
 	kDebug() << "new hardware solid" << udi<<endl;
-	kapp->updateUserTimestamp();
-	//
-	KMessageBox::information(0L, "New hardware detected with solid \n name is : \n"+udi, "DEBUG",
-	                                        QString(), KMessageBox::Notify | KMessageBox::Dangerous );
+	Solid::Device device(udi);
+	Solid::Predicate predicate=Solid::Predicate::fromString("[[ StorageVolume.ignored == false AND StorageVolume.usage == 'FileSystem' ] OR [ IS StorageAccess AND StorageDrive.driveType == 'Floppy' ]]");
+
+	//just for help
+	/*Unknown = 0, GenericInterface = 1, Processor = 2,
+                    Block = 3, StorageAccess = 4, StorageDrive = 5,
+                    OpticalDrive = 6, StorageVolume = 7, OpticalDisc = 8,
+                    Camera = 9, PortableMediaPlayer = 10,
+                    NetworkInterface = 11, AcAdapter = 12, Battery = 13,
+                    Button = 14, AudioInterface = 15, DvbInterface = 16*/
+
+
+	// Don't recognize invalid device
+    	if (!device.isValid()) return;
+	
+	//test if predicate is valid and verify if the device match with the predicate
+	if (predicate.isValid() && !predicate.matches(device)) {
+        return;
+        }
+	//kDebug() << predicate.isValid()<<endl;
+	KMessageBox::information(0L, "New hardware detected with solid \n vendor is : \n"+device.vendor(), "DEBUG",QString(), KMessageBox::Notify | KMessageBox::Dangerous );
+
 }
 
 void MediaNotifier::onDeviceRemoved(const QString &udi)
