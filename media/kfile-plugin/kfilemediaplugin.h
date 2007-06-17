@@ -37,17 +37,17 @@ private:
 	void addMimeType(const char *mimeType);
 	const Medium askMedium(KFileMetaInfo &info);
 
-	unsigned long m_total;
-	unsigned long m_used;
-	unsigned long m_free;
+	quint64 m_total;
+	quint64 m_used;
+	quint64 m_free;
 
 Q_SIGNALS:
     void leaveModality();
 
 private Q_SLOTS:
 	void slotFoundMountPoint(const QString &mountPoint,
-	                         unsigned long total, unsigned long used,
-	                         unsigned long available);
+	                         quint64 total, quint64 used,
+	                         quint64 available);
 	void slotDfDone();
 	void enterLoop();
 };

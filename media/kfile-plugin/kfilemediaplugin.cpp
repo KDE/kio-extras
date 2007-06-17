@@ -96,13 +96,13 @@ bool KFileMediaPlugin::readInfo(KFileMetaInfo &info, uint /*what*/)
 		m_free = 0;
 		connect(df, SIGNAL( done() ), this, SLOT( slotDfDone() ));
 		connect(df, SIGNAL( foundMountPoint(const QString &,
-		                                    unsigned long,
-		                                    unsigned long,
-		                                    unsigned long) ),
+		                                    quint64,
+		                                    quint64,
+		                                    quint64) ),
 		        this, SLOT( slotFoundMountPoint(const QString &,
-		                                        unsigned long,
-		                                        unsigned long,
-		                                        unsigned long)) );
+		                                        quint64,
+		                                        quint64,
+		                                        quint64)) );
 
 		df->readDF(mount_point);
 
@@ -117,9 +117,9 @@ bool KFileMediaPlugin::readInfo(KFileMetaInfo &info, uint /*what*/)
 			length = 150 * m_used / m_total;
 		}
 
-		appendItem(group, "free", (long long unsigned)m_free);
-		appendItem(group, "used", (long long unsigned)m_used);
-		appendItem(group, "total", (long long unsigned)m_total);
+		appendItem(group, "free", m_free);
+		appendItem(group, "used", m_used);
+		appendItem(group, "total", m_total);
 
 		group = appendGroup(info, "mediumSummary");
 
@@ -147,8 +147,8 @@ bool KFileMediaPlugin::readInfo(KFileMetaInfo &info, uint /*what*/)
 }
 
 void KFileMediaPlugin::slotFoundMountPoint(const QString &/*mountPoint*/,
-                                            unsigned long total, unsigned long used,
-                                            unsigned long free)
+                                            quint64 total, quint64 used,
+                                            quint64 free)
 {
 	m_free = free;
 	m_used = used;
