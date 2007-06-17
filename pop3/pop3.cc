@@ -537,8 +537,7 @@ int POP3Protocol::loginSASL( KIO::AuthInfo &ai )
     tmp.resize( 2049 );
     resp = command( firstCommand.toLatin1(), tmp.data(), 2049 );
     while( resp == Cont ) {
-      tmp.resize(msg.indexOf((char)0));
-//      POP3_DEBUG << "S: " << QCString(challenge.data(),challenge.size()+1) << endl;
+      tmp.resize(tmp.indexOf((char)0));
       msg = QByteArray::fromBase64( tmp );
       do {
         result = sasl_client_step(conn, msg.isEmpty() ? 0 : msg.data(),
@@ -561,7 +560,6 @@ int POP3Protocol::loginSASL( KIO::AuthInfo &ai )
       }
 
       msg = QByteArray::fromRawData( out, outlen ).toBase64();
-//        POP3_DEBUG << "C: " << QCString(tmp.data(),tmp.size()+1) << endl;
       tmp.resize(2049);
       resp = command( msg, tmp.data(), 2049 );
     }
