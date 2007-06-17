@@ -22,16 +22,13 @@ install(TARGETS kio_system  DESTINATION ${PLUGIN_INSTALL_DIR} )
 
 
 ########### next target ###############
-if(KDE4_BUILD_TESTS)
 set(testsystem_SRCS testsystem.cpp )
 
 kde4_automoc(${testsystem_SRCS})
 
-kde4_add_executable(testsystem ${testsystem_SRCS} ${libkiosystem_SRCS})
+kde4_add_test_executable(testsystem ${testsystem_SRCS} ${libkiosystem_SRCS})
 
 target_link_libraries(testsystem  ${KDE4_KIO_LIBS} )
-
-endif(KDE4_BUILD_TESTS)
 
 ########### install files ###############
 

@@ -46,17 +46,14 @@ install(TARGETS kio_media  DESTINATION ${PLUGIN_INSTALL_DIR} )
 
 
 ########### next target ###############
-if(KDE4_BUILD_TESTS)
 set(testmedia_SRCS testmedia.cpp )
 
 kde4_automoc(${testmedia_SRCS})
 
 
-kde4_add_executable(testmedia ${testmedia_SRCS} ${libmediacommon_SRCS} )
+kde4_add_test_executable(testmedia ${testmedia_SRCS} ${libmediacommon_SRCS} )
 
 target_link_libraries(testmedia  ${KDE4_KIO_LIBS} )
-
-endif(KDE4_BUILD_TESTS)
 
 ########### install files ###############
 
