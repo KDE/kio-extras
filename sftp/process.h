@@ -14,11 +14,11 @@
 
 #include <Qt3Support/Q3CString>
 
+#include <kpty.h>
 
 
 #define PTYPROC 7120
 
-class PTY;
 typedef QList<QByteArray> QCStringList;
 
 /**
@@ -51,10 +51,10 @@ public:
      * @return The output string.
      */
     QByteArray readLine(bool block = true)
-        { return readLineFrom(m_Fd, m_ptyBuf, block); }
+        { return readLineFrom(fd(), m_ptyBuf, block); }
 
     QByteArray readLineFromPty(bool block = true)
-        { return readLineFrom(m_Fd, m_ptyBuf, block); }
+        { return readLineFrom(fd(), m_ptyBuf, block); }
 
     QByteArray readLineFromStdout(bool block = true)
         { return readLineFrom(m_stdinout, m_stdoutBuf, block); }
@@ -116,7 +116,7 @@ public:
     void setErase(bool erase) { m_bErase = erase; }
 
     /** Return the filedescriptor of the process. */
-    int fd() {return m_Fd;}
+    int fd() {return m_pPTY ? m_pPTY->masterFd() : -1;}
 
     /** Return the pid of the process. */
     int pid() {return m_Pid;}
@@ -127,15 +127,14 @@ public:
 
 protected:
     bool m_bErase, m_bTerminal;
-    int m_Pid, m_Fd, m_stdinout, m_err;
+    int m_Pid, m_stdinout, m_err;
     QByteArray m_Command, m_Exit;
 
 private:
     int init();
-    int SetupTTY(int fd);
+    int setupTTY();
 
-    PTY *m_pPTY;
-    QByteArray m_TTY;
+    KPty *m_pPTY;
     QByteArray m_ptyBuf, m_stderrBuf, m_stdoutBuf;
 
     QByteArray readLineFrom(int fd, QByteArray& inbuf, bool block);

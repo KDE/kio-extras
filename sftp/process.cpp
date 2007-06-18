@@ -50,7 +50,6 @@
 #include <kstandarddirs.h>
 
 #include "process.h"
-#include <kdesu/kdesu_pty.h>
 #include <kdesu/kcookie.h>
 
 
@@ -60,24 +59,18 @@ MyPtyProcess::MyPtyProcess()
     m_bErase = false;
     m_pPTY = 0L;
     m_Pid = -1;
-    m_Fd = -1;
 }
 
 
 int MyPtyProcess::init()
 {
     delete m_pPTY;
-    m_pPTY = new PTY();
-    m_Fd = m_pPTY->getpt();
-    if (m_Fd < 0)
-	return -1;
-    if ((m_pPTY->grantpt() < 0) || (m_pPTY->unlockpt() < 0)) 
+    m_pPTY = new KPty();
+    if (!m_pPTY->open())
     {
-	kError(PTYPROC) << k_lineinfo << "Master setup failed.\n" << endl;
-	m_Fd = -1;
-	return -1;
+        kError(PTYPROC) << k_lineinfo << "Master setup failed.\n" << endl;
+        return -1;
     }
-    m_TTY = m_pPTY->ptsname();
     m_stdoutBuf.resize(0);
     m_stderrBuf.resize(0);
     m_ptyBuf.resize(0);
@@ -105,66 +98,64 @@ QByteArray MyPtyProcess::readLineFrom(int fd, QByteArray& inbuf, bool block)
 
     if (!inbuf.isEmpty())
     {
-
         pos = inbuf.indexOf('\n');
-        
-        if (pos == -1) 
-	{
-	    ret = inbuf;
-	    inbuf.resize(0);
-	} else
-	{
-	    ret = inbuf.left(pos);
-	    inbuf = inbuf.mid(pos+1);
-	}
-	return ret;
+        if (pos == -1)
+        {
+            ret = inbuf;
+            inbuf.resize(0);
+        } else
+        {
+            ret = inbuf.left(pos);
+            inbuf = inbuf.mid(pos+1);
+        }
+        return ret;
 
     }
 
     int flags = fcntl(fd, F_GETFL);
     if (flags < 0) 
     {
-	kError(PTYPROC) << k_lineinfo << "fcntl(F_GETFL): " << perror << "\n";
-	return ret;
+        kError(PTYPROC) << k_lineinfo << "fcntl(F_GETFL): " << perror << "\n";
+        return ret;
     }
     if (block)
-	flags &= ~O_NONBLOCK;
+        flags &= ~O_NONBLOCK;
     else
-	flags |= O_NONBLOCK;
+        flags |= O_NONBLOCK;
     if (fcntl(fd, F_SETFL, flags) < 0)
     {
-	kError(PTYPROC) << k_lineinfo << "fcntl(F_SETFL): " << perror << "\n";
-	return ret;
+        kError(PTYPROC) << k_lineinfo << "fcntl(F_SETFL): " << perror << "\n";
+        return ret;
     }
 
     int nbytes;
     char buf[256];
     while (1) 
     {
-	nbytes = read(fd, buf, 255);
-	if (nbytes == -1) 
-	{
-	    if (errno == EINTR)
-		continue;
-	    else break;
-	}
-	if (nbytes == 0)
-	    break;	// eof
+        nbytes = read(fd, buf, 255);
+        if (nbytes == -1)
+        {
+            if (errno == EINTR)
+                continue;
+            else break;
+        }
+        if (nbytes == 0)
+            break;	// eof
 
-	buf[nbytes] = '\000';
-	inbuf += buf;
+        buf[nbytes] = '\000';
+        inbuf += buf;
 
-	pos = inbuf.indexOf('\n');
-        if (pos == -1) 
-	{
-	    ret = inbuf;
-	    inbuf.resize(0);
-	} else 
-	{
-	    ret = inbuf.left(pos);
-	    inbuf = inbuf.mid(pos+1);
-	}
-	break;
+        pos = inbuf.indexOf('\n');
+        if (pos == -1)
+        {
+            ret = inbuf;
+            inbuf.resize(0);
+        } else
+        {
+            ret = inbuf.left(pos);
+            inbuf = inbuf.mid(pos+1);
+        }
+        break;
 
     }
 
@@ -174,17 +165,17 @@ QByteArray MyPtyProcess::readLineFrom(int fd, QByteArray& inbuf, bool block)
 void MyPtyProcess::writeLine(QByteArray line, bool addnl)
 {
     if (!line.isEmpty())
-	write(m_Fd, line, line.length());
+        write(fd(), line, line.length());
     if (addnl)
-	write(m_Fd, "\n", 1);
+        write(fd(), "\n", 1);
 }
 
 void MyPtyProcess::unreadLineFrom(QByteArray inbuf, QByteArray line, bool addnl)
 {
     if (addnl)
-	line += '\n';
+        line += '\n';
     if (!line.isEmpty())
-	inbuf.prepend(line);
+        inbuf.prepend(line);
 }
 
 
@@ -200,7 +191,7 @@ int MyPtyProcess::exec(QByteArray command, QCStringList args)
         return -1;
 
     // Open the pty slave before forking. See SetupTTY()
-    int slave = open(m_TTY, O_RDWR);
+    int slave = open(m_pPTY->ttyName(), O_RDWR);
     if (slave < 0) 
     {
         kError(PTYPROC) << k_lineinfo << "Could not open slave pty.\n";
@@ -254,7 +245,7 @@ int MyPtyProcess::exec(QByteArray command, QCStringList args)
     close(err[1]);
     close(err[0]);
 
-    if (SetupTTY(slave) < 0)
+    if (setupTTY() < 0)
 	    _exit(1);
 
     // From now on, terminal output goes through the tty.
@@ -299,7 +290,7 @@ int MyPtyProcess::exec(QByteArray command, QCStringList args)
 
 int MyPtyProcess::WaitSlave()
 {
-    int slave = open(m_TTY, O_RDWR);
+    int slave = open(m_pPTY->ttyName(), O_RDWR);
     if (slave < 0) 
     {
 	kError(PTYPROC) << k_lineinfo << "Could not open slave tty.\n";
@@ -333,29 +324,7 @@ int MyPtyProcess::WaitSlave()
 
 int MyPtyProcess::enableLocalEcho(bool enable)
 {
-    int slave = open(m_TTY, O_RDWR);
-    if (slave < 0) 
-    {
-	kError(PTYPROC) << k_lineinfo << "Could not open slave tty.\n";
-	return -1;
-    }
-    struct termios tio;
-    if (tcgetattr(slave, &tio) < 0) 
-    {
-	kError(PTYPROC) << k_lineinfo << "tcgetattr(): " << perror << "\n";
-	close(slave); return -1;
-    }
-    if (enable)
-	tio.c_lflag |= ECHO;
-    else
-	tio.c_lflag &= ~ECHO;
-    if (tcsetattr(slave, TCSANOW, &tio) < 0) 
-    {
-	kError(PTYPROC) << k_lineinfo << "tcsetattr(): " << perror << "\n";
-	close(slave); return -1;
-    }
-    close(slave);
-    return 0;
+    return m_pPTY->setEcho(enable) ? 0 : -1;
 }
 
 
@@ -378,8 +347,8 @@ int MyPtyProcess::waitForChild()
     while (1) 
     {
 	tv.tv_sec = 1; tv.tv_usec = 0;
-	FD_SET(m_Fd, &fds);
-	ret = select(m_Fd+1, &fds, 0L, 0L, &tv);
+	FD_SET(fd(), &fds);
+	ret = select(fd()+1, &fds, 0L, 0L, &tv);
 	if (ret == -1) 
 	{
 	    if (errno == EINTR) continue;
@@ -434,11 +403,11 @@ int MyPtyProcess::waitForChild()
  * so we'll never get EIO when reading from it.
  */
 
-int MyPtyProcess::SetupTTY(int fd)
+int MyPtyProcess::setupTTY()
 {    
     // Reset signal handlers
     for (int sig = 1; sig < NSIG; sig++)
-	signal(sig, SIG_DFL);
+       signal(sig, SIG_DFL);
     signal(SIGHUP, SIG_IGN);
 
     // Close all file handles
@@ -447,45 +416,21 @@ int MyPtyProcess::SetupTTY(int fd)
 //    for (int i = 0; i < (int)rlp.rlim_cur; i++)
 //    if (i != fd) close(i);
 
-    // Create a new session.
-    setsid();
-
-    // Open slave. This will make it our controlling terminal
-    int slave = open(m_TTY, O_RDWR);
-    if (slave < 0) 
-    {
-	kError(PTYPROC) << k_lineinfo << "Could not open slave side: " << perror << "\n";
-	return -1;
-    }
-    close(fd);
-
-#if defined(__SVR4) && defined(sun)
-
-    // Solaris STREAMS environment.
-    // Push these modules to make the stream look like a terminal.
-    ioctl(slave, I_PUSH, "ptem");
-    ioctl(slave, I_PUSH, "ldterm");
-
-#endif
-
-    // Connect stdin, stdout and stderr
-//    dup2(slave, 0); dup2(slave, 1); dup2(slave, 2);
-//    if (slave > 2)
-//	close(slave);
+    m_pPTY->setCTty();
 
     // Disable OPOST processing. Otherwise, '\n' are (on Linux at least)
     // translated to '\r\n'.
-    struct termios tio;
-    if (tcgetattr(slave, &tio) < 0)
+    struct ::termios tio;
+    if (!m_pPTY->tcGetAttr(&tio) < 0)
     {
-	kError(PTYPROC) << k_lineinfo << "tcgetattr(): " << perror << "\n";
-	return -1;
+        kError(PTYPROC) << k_lineinfo << "tcgetattr(): " << perror << "\n";
+        return -1;
     }
     tio.c_oflag &= ~OPOST;
-    if (tcsetattr(slave, TCSANOW, &tio) < 0)
+    if (!m_pPTY->tcSetAttr(&tio) < 0)
     {
-	kError(PTYPROC) << k_lineinfo << "tcsetattr(): " << perror << "\n";
-	return -1;
+        kError(PTYPROC) << k_lineinfo << "tcsetattr(): " << perror << "\n";
+        return -1;
     }
 
     return 0;
