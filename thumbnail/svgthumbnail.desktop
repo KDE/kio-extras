@@ -2,6 +2,7 @@
 Encoding=UTF-8
 Type=Service
 Name=Svg
+Name[es]=SVG
 Name[nds]=SVG
 Name[sv]=SVG
 Name[x-test]=xxSvgxx
