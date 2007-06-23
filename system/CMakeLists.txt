@@ -3,6 +3,7 @@ project(kioslave-system)
 
 add_subdirectory( kdedmodule ) 
 add_subdirectory( entries ) 
+add_subdirectory( tests ) 
 
 
 
@@ -20,15 +21,6 @@ target_link_libraries(kio_system  ${KDE4_KIO_LIBS})
 install(TARGETS kio_system  DESTINATION ${PLUGIN_INSTALL_DIR} )
 
 
-
-########### next target ###############
-set(testsystem_SRCS testsystem.cpp )
-
-kde4_automoc(${testsystem_SRCS})
-
-kde4_add_test_executable(testsystem ${testsystem_SRCS} ${libkiosystem_SRCS})
-
-target_link_libraries(testsystem  ${KDE4_KIO_LIBS} )
 
 ########### install files ###############
 

@@ -2,14 +2,7 @@ project(kioslave-sftp)
 
 add_definitions (-DQT3_SUPPORT)
 
-########### next target ###############
-set(ksshprocesstest_SRCS ksshprocesstest.cpp ksshprocess.cpp process.cpp atomicio.cpp )
-
-kde4_automoc(${ksshprocesstest_SRCS})
-
-kde4_add_test_executable(ksshprocesstest ${ksshprocesstest_SRCS})
-
-target_link_libraries(ksshprocesstest  ${KDE4_KDECORE_LIBS} ${KDE4_KDESU_LIBS} )
+add_subdirectory(tests)
 
 ########### next target ###############
 

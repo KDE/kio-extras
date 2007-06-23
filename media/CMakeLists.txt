@@ -23,6 +23,7 @@ add_subdirectory( mounthelper )
 #add_subdirectory( kfile-plugin ) 
 add_subdirectory( kcmodule ) 
 add_subdirectory( services ) 
+add_subdirectory( tests ) 
 
 include_directories( ${CMAKE_CURRENT_SOURCE_DIR}/libmediacommon )
 
@@ -42,18 +43,6 @@ kde4_add_plugin(kio_media ${kio_media_PART_SRCS})
 target_link_libraries(kio_media ${KDE4_KIO_LIBS} )
 
 install(TARGETS kio_media  DESTINATION ${PLUGIN_INSTALL_DIR} )
-
-
-
-########### next target ###############
-set(testmedia_SRCS testmedia.cpp )
-
-kde4_automoc(${testmedia_SRCS})
-
-
-kde4_add_test_executable(testmedia ${testmedia_SRCS} ${libmediacommon_SRCS} )
-
-target_link_libraries(testmedia  ${KDE4_KIO_LIBS} )
 
 ########### install files ###############
 

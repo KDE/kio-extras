@@ -2,6 +2,7 @@
 project(kioslave-remote)
 
 add_subdirectory( kdedmodule ) 
+add_subdirectory( tests ) 
 
 
 
@@ -20,15 +21,6 @@ target_link_libraries(kio_remote  ${KDE4_KIO_LIBS})
 
 install(TARGETS kio_remote  DESTINATION ${PLUGIN_INSTALL_DIR} )
 
-
-########### next target ###############
-set(testremote_SRCS testremote.cpp ${libkioremote_SRCS} )
-
-kde4_automoc(${testremote_SRCS})
-
-kde4_add_test_executable(testremote ${testremote_SRCS})
-
-target_link_libraries(testremote  ${KDE4_KIO_LIBS} )
 
 ########### install files ###############
 
