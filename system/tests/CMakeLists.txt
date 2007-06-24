@@ -7,6 +7,7 @@ set(libkiosystem_SRCS ${CMAKE_CURRENT_SOURCE_DIR}/../kio_system.cpp ${CMAKE_CURR
 set(testsystem_SRCS testsystem.cpp )
 
 kde4_automoc(${testsystem_SRCS})
+kde4_automoc(${libkiosystem_SRCS})
 
 kde4_add_test_executable(testsystem ${testsystem_SRCS} ${libkiosystem_SRCS})
 
