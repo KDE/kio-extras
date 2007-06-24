@@ -1,4 +1,4 @@
-#include "request.h"
+#include "../request.h"
 
 //#include <iostream>
 
@@ -82,5 +82,5 @@ int main( int , char ** ) {
   return result == expected ? 0 : 1 ;
 }
 
-#include "request.cc"
+#include "../request.cc"
 

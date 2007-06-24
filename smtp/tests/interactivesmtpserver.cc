@@ -139,9 +139,11 @@ InteractiveSMTPServerWindow::InteractiveSMTPServerWindow( QTcpSocket * socket, Q
 
   mTextEdit = new QTextEdit( this );
   vlay->addWidget( mTextEdit, 1 );
+  QWidget *mLayoutWidget = new QWidget;
+  vlay->addWidget( mLayoutWidget );
 
-  QHBoxLayout * hlay = new QHBoxLayout( vlay );
-
+  QHBoxLayout * hlay = new QHBoxLayout( mLayoutWidget );
+    
   mLineEdit = new QLineEdit( this );
   mLabel = new QLabel( "&Response:", this );
   mLabel->setBuddy( mLineEdit );

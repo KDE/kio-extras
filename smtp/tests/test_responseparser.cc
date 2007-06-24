@@ -1,5 +1,5 @@
 #include "test_responseparser.h"
-#include "response.h"
+#include "../response.h"
 
 #include <qtest_kde.h>
 #include <assert.h>
@@ -103,4 +103,4 @@ void ResponseParserTest::testResponseParser()
 }
 
 #include "test_responseparser.moc"
-#include "response.cc"
+#include "../response.cc"
