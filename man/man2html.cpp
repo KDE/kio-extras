@@ -108,23 +108,12 @@
 **    time to look through all the available manpages.)
 */
 
-#ifdef SIMPLE_MAN2HTML
-  // We suppose that we run on a standard Linux
-# define HAVE_STRING_H 1
-# define HAVE_UNISTD_H 1
-#else
 # include <config.h>
-#endif
 
 #include <ctype.h>
 
-#ifdef HAVE_UNISTD_H
-# include <unistd.h>
-#endif
-
-#ifdef HAVE_STRING_H
-# include <string.h>
-#endif
+#include <unistd.h>
+#include <string.h>
 
 #include <stdio.h>
 
