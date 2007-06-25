@@ -15,7 +15,7 @@
  *  terminal programs.
  */
 
-#include <config.h>
+#include <config-runtime.h>
 
 #include <stdio.h>
 #include <stdlib.h>

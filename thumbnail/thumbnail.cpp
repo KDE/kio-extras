@@ -51,7 +51,7 @@
 #include <kfilemetainfo.h>
 #include <klocale.h>
 
-#include <config.h> // For HAVE_NICE
+#include <config-runtime.h> // For HAVE_NICE
 #include "thumbnail.h"
 #include <kio/thumbcreator.h>
 #include <kconfiggroup.h>

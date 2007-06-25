@@ -25,10 +25,8 @@
  * SUCH DAMAGE.
  *
  */
-#ifdef HAVE_CONFIG_H
-#include <config.h>
+#include <config-runtime.h>
 #include <pop3-config.h>
-#endif
 
 #include <sys/types.h>
 #include <sys/socket.h>

@@ -18,7 +18,7 @@
 
 #include "managermodule.h"
 
-#include <config.h>
+#include <config-runtime.h>
 #include <config-media.h>
 
 #include "managermodule.moc"

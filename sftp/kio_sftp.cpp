@@ -23,9 +23,7 @@ Ssh will detect this terminal and ask for a password there, but will just get ga
 So we can't connect.
 */
 
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
+#include <config-runtime.h>
 
 #include <fcntl.h>
 

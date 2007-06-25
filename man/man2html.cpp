@@ -108,7 +108,7 @@
 **    time to look through all the available manpages.)
 */
 
-# include <config.h>
+# include <config-runtime.h>
 
 #include <ctype.h>
 

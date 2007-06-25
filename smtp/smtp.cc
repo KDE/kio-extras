@@ -28,7 +28,7 @@
  *
  */
 
-#include <config.h>
+#include <config-runtime.h>
 #include <smtp-config.h>
 
 #ifdef HAVE_LIBSASL2

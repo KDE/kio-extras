@@ -24,7 +24,7 @@
   back to K3Process should be easy.
 */
 
-#include "config.h"
+#include <config-runtime.h>
 #include "config-fish.h"
 #include <QFile>
 #include <Qt3Support/Q3Socket>

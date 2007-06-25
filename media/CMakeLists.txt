@@ -1,5 +1,4 @@
-include_directories( ${CMAKE_CURRENT_SOURCE_DIR}/libmediacommon )
-project(kioslave-media)
+include_directories( ${CMAKE_CURRENT_SOURCE_DIR}/libmediacommon ${CMAKE_CURRENT_BINARY_DIR} )
 
 configure_file(config-media.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-media.h)
 
@@ -24,8 +23,6 @@ add_subdirectory( mounthelper )
 add_subdirectory( kcmodule ) 
 add_subdirectory( services ) 
 add_subdirectory( tests ) 
-
-include_directories( ${CMAKE_CURRENT_SOURCE_DIR}/libmediacommon )
 
 
 ########### next target ###############

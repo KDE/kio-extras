@@ -19,7 +19,7 @@
 
 #include "program.h"
 
-#include <config.h>
+#include <config-runtime.h>
 #include <unistd.h>
 #include <fcntl.h>
 #include <sys/ioctl.h>

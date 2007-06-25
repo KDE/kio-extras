@@ -18,7 +18,7 @@
 
 #include "mediamanager.h"
 #include <config-media.h>
-#include <config.h>
+#include <config-runtime.h>
 #include <QTimer>
 
 #include <kdebug.h>

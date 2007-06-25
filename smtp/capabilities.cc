@@ -29,7 +29,7 @@
     your version.
 */
 
-#include <config.h>
+#include <config-runtime.h>
 
 #include "capabilities.h"
 
