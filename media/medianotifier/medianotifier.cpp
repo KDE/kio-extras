@@ -221,7 +221,7 @@ bool MediaNotifier::execAutorun( const KFileItem &medium, const QString &path,
 		// confirmed its execution the autostart file MUST be executed
 		// with the current working directory ( CWD ) set to the root
 		// directory of the medium.
-		KProcess::startDetached(QLatin1String("sh"), QStringList(autorunFile), path, 0);
+		QProcess::startDetached(QLatin1String("sh"), QStringList(autorunFile), path, 0);
 	}
 
 	return true;
