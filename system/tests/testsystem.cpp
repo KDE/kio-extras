@@ -20,8 +20,6 @@
 #include "kio_system.h"
 #include "testsystem.h"
 
-#include <config.h>
-
 #include <kapplication.h>
 #include <kdebug.h>
 #include <kcmdlineargs.h>
