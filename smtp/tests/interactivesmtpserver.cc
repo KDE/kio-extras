@@ -31,8 +31,6 @@
     your version.
 */
 
-#include <config-runtime.h>
-
 #include <QtCore/QString>
 #include <QtCore/QTextStream>
 #include <QtGui/QApplication>

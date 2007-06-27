@@ -20,8 +20,6 @@
 #include "testmedia.h"
 #include "kio_media.h"
 
-#include <config-runtime.h>
-
 #include <kapplication.h>
 #include <kdebug.h>
 #include <kcmdlineargs.h>

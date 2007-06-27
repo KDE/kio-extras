@@ -20,8 +20,6 @@
 #include "kio_remote.h"
 #include "testremote.h"
 
-#include <config-runtime.h>
-
 #include <kapplication.h>
 #include <kdebug.h>
 #include <kcmdlineargs.h>

@@ -33,9 +33,6 @@
 
 #include <QObject>
 
-
-#include <config.h>
-
 /* We acknowledge the the dbus API is unstable */
 #define DBUS_API_SUBJECT_TO_CHANGE
 /* DBus-Qt bindings */
