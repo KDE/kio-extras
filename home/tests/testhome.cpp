@@ -20,8 +20,6 @@
 #include "kio_home.h"
 #include "testhome.h"
 
-#include <config.h>
-
 #include <kapplication.h>
 #include <kdebug.h>
 #include <kcmdlineargs.h>
