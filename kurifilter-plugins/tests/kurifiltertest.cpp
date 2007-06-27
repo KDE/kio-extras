@@ -29,7 +29,6 @@
 #include <QtCore/QDir>
 #include <QtCore/QRegExp>
 
-#include <config.h>
 #include <iostream>
 #include "kurifiltertest.h"
 
