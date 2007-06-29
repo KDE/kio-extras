@@ -39,6 +39,7 @@ Name[nl]=Google-nieuws
 Name[nn]=Google nyhende
 Name[pa]=Google ਖ਼ਬਰਾਂ
 Name[pl]=Google - wiadomości
+Name[pt]=Notícias Google
 Name[pt_BR]=Notícias do Google
 Name[ro]=Ştiri Google
 Name[ru]=Новости Google
@@ -65,6 +66,7 @@ Query[it]=http://news.google.it/news?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[nb]=http://news.google.no/news?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[ne]=http://news.google.com/news?q=\\{@}ie=UTF-8&oe=UTF-8
 Query[nl]=http://news.google.nl/news?q=\\{@}&ie=UTF-8&oe=UTF-8
+Query[pt]=http://news.google.pt/news?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[x-test]=xxhttp://news.google.com/news?q=\\{@}&ie=UTF-8&oe=UTF-8xx
 Query[zh_TW]=http://news.google.com.tw/news?q=\\{@}&ie=UTF-8&oe=UTF-8&hl=zh-TW
 Charset=utf8

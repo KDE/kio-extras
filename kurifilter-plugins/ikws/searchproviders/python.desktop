@@ -40,6 +40,7 @@ Name[ne]=पाइथन सन्दर्भ म्यानुअल
 Name[nn]=Python-referansehandbok
 Name[pa]=Python ਹਵਾਲਾ ਦਸਤਾਵੇਜ਼
 Name[pl]=Python (język programowania)- podręcznik
+Name[pt]=Manual de Referência do Python
 Name[pt_BR]=Manual de Referência do Python
 Name[ro]=Manualul de referinţă Python
 Name[ru]=Справочник по Python
@@ -63,6 +64,7 @@ Query[fr]=http://www.google.fr/search?sourceid=python-search&q=\{@}&submit=Searc
 Query[fy]=http://www.google.nl/search?sourceid=python-search&q=\{@}&submit=Search&q=site%3Apython.org
 Query[nb]=http://www.google.no/search?sourceid=python-search&q=\{@}&submit=Search&q=site%3Apython.org
 Query[nl]=http://www.google.nl/search?sourceid=python-search&q=\{@}&submit=Search&q=site%3Apython.org
+Query[pt]=http://www.google.pt/search?sourceid=python-search&q=\{@}&submit=Search&q=site%3Apython.org
 Query[x-test]=xxhttp://www.google.com/search?sourceid=python-search&q=\{@}&submit=Search&q=site%3Apython.orgxx
 ServiceTypes=SearchProvider
 Type=Service
