@@ -9,7 +9,6 @@ X-KDE-Library=kcm_cgi
 
 Name=CGI Scripts
 Name[af]=CGI Skripte
-Name[ar]=نصوص CGI البرمجية
 Name[be]=Сцэнары CGI
 Name[bg]=Name=CGI скриптове
 Name[br]=Urzhiaouegoù CGI
@@ -70,7 +69,6 @@ Name[xh]=Amagama ashicilelwe phantsi CGI
 Name[zh_TW]=CGI 命令稿
 Comment=Configure the CGI KIO slave
 Comment[af]=Stel die CGI KIO slaaf op
-Comment[ar]=تهيئة CGI KIO slave
 Comment[be]=Настаўленні CGI KIO slave
 Comment[ca]=Configura l'esclau KIO CGI
 Comment[cs]=Nastavení CGI pro KDE
@@ -128,7 +126,6 @@ Comment[xh]=Qwlalsela i CGI KIO slave
 Comment[zh_TW]=設定 CGI KIO slave
 
 Keywords=CGI,KIO,Slave,Paths
-Keywords[ar]=CGI,KIO,Slave,Paths,مسارات
 Keywords[be]=Шляхі,CGI,KIO,Slave,Paths
 Keywords[br]=CGI,KIO,sklav,hentoù
 Keywords[ca]=CGI,KIO,Esclau,Rutes

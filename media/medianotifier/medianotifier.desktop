@@ -22,7 +22,6 @@ Name[x-test]=xxMedia Notifier Deamonxx
 Name[zh_TW]=媒體通知伺服程式
 Comment=A media plugged notifier
 Comment[af]='n Inpropbare media inkennissteller
-Comment[ar]=مبلِغ عن إدخال وسائط
 Comment[be]=Дэман абвяшчэнняў аб зменах стану носьбітаў
 Comment[ca]=Un notificador de què s'ha introduït un suport
 Comment[cs]=Upozorňování na připojená média

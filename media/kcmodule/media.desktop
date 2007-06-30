@@ -14,7 +14,6 @@ X-KDE-ParentApp=kcontrol
 
 Name=Storage Media
 Name[af]=Stoor Media
-Name[ar]=وسائط التخزين
 Name[be]=Носьбіт
 Name[ca]=Suports d'emmagatzematge
 Name[cs]=Úložná zařízení
@@ -70,7 +69,6 @@ Name[zh_TW]=儲存媒體
 
 Comment=Configure Storage Media
 Comment[af]=Stel Stoor Media op
-Comment[ar]=إعداد وسائط التخزين
 Comment[be]=Настаўленні носьбітаў
 Comment[ca]=Configura els suports d'emmagatzematge
 Comment[cs]=Nastavení úložných médií
@@ -122,7 +120,6 @@ Comment[x-test]=xxConfigure Storage Mediaxx
 Comment[zh_TW]=設定儲存媒體
 
 Keywords=storage,media,usb,cdrom,device
-Keywords[ar]=تخزين,وسائط,usb,قرص مدمج cdrom,جهاز
 Keywords[be]=Носьбіт,Прылада,storage,media,usb,cdrom,device
 Keywords[ca]=emmagatzematge,suport,usb,cdrom,dispositiu
 Keywords[cs]=úložiště,média,USB,CDROM,zařízení
