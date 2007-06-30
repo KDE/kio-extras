@@ -312,9 +312,11 @@ bool SMTPProtocol::sendCommandLine( const QByteArray & cmdline ) {
     kDebug(7112) << "C: >>" << cmdline.trimmed().data() << "<<" << endl;
   else
     kDebug(7112) << "C: <" << cmdline.length() << " bytes>" << endl;
-  ssize_t cmdline_len = cmdline.length();
-  if ( write( cmdline.data(), cmdline_len ) != cmdline_len ) {
-    error( KIO::ERR_COULD_NOT_WRITE, m_sServer );
+  ssize_t numWritten, cmdline_len = cmdline.length();
+  if ( (numWritten = write( cmdline.data(), cmdline_len ) )!= cmdline_len ) {
+    kDebug(7112) << "Tried to write " << cmdline_len << " bytes, but only " 
+                 << numWritten << " were written!" << endl;
+    error( KIO::ERR_COULD_NOT_WRITE, i18n ("Writing to socket failed.") );
     return false;
   }
   return true;
