@@ -13,6 +13,6 @@ kde4_automoc(${ksshprocesstest_SRCS})
 
 kde4_add_test_executable(ksshprocesstest ${ksshprocesstest_SRCS})
 
-target_link_libraries(ksshprocesstest  ${KDE4_KDECORE_LIBS} ${KDE4_KDESU_LIBS} )
+target_link_libraries(ksshprocesstest ${KDE4_KDESU_LIBS} )
 
 
