@@ -108,7 +108,7 @@ int kdemain(int argc, char **argv)
     // and HTML previews need even KApplication :(
     putenv(strdup("SESSION_MANAGER="));
     //KApplication::disableAutoDcopRegistration();
-    KAboutData about("kio_thumbnail", "kio_thumbmail", "KDE 4.x.x");
+    KAboutData about("kio_thumbnail", 0, ki18n("kio_thumbmail"), "KDE 4.x.x");
     KCmdLineArgs::init(&about);
 
     KApplication app( true);

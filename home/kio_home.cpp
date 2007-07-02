@@ -25,28 +25,28 @@
 #include <kcmdlineargs.h>
 #include <kglobal.h>
 
+#include <QFile>
 
 #include "kio_home.h"
-
-static const KCmdLineOptions options[] =
-{
-	{ "+protocol", I18N_NOOP( "Protocol name" ), 0 },
-	{ "+pool", I18N_NOOP( "Socket name" ), 0 },
-	{ "+app", I18N_NOOP( "Socket name" ), 0 },
-	KCmdLineLastOption
-};
 
 extern "C" {
 	int KDE_EXPORT kdemain( int argc, char **argv )
 	{
 		// KApplication is necessary to use other ioslaves
 		putenv(strdup("SESSION_MANAGER="));
-		KCmdLineArgs::init(argc, argv, "kio_home", 0, 0, 0);
+		KCmdLineArgs::init(argc, argv, "kio_home", 0, KLocalizedString(), 0);
+
+		KCmdLineOptions options;
+		options.add("+protocol", ki18n( "Protocol name" ));
+		options.add("+pool", ki18n( "Socket name" ));
+		options.add("+app", ki18n( "Socket name" ));
 		KCmdLineArgs::addCmdLineOptions( options );
 		KApplication app(  false );
 
 		KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
-		HomeProtocol slave( args->arg(0), args->arg(1), args->arg(2) );
+		HomeProtocol slave( QFile::encodeName( args->arg(0) ),
+		                    QFile::encodeName( args->arg(1) ),
+		                    QFile::encodeName( args->arg(2) ) );
 		slave.dispatchLoop();
 		return 0;
 	}

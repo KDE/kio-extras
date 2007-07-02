@@ -179,25 +179,27 @@ void MountHelper::finished()
 	kapp->quit();
 }
 
-static KCmdLineOptions options[] =
-{
-	{ "u", I18N_NOOP("Unmount given URL"), 0 },
-	{ "m", I18N_NOOP("Mount given URL (default)"), 0 },
-	{ "e", I18N_NOOP("Eject given URL via kdeeject"), 0},
-	{ "s", I18N_NOOP("Unmount and Eject given URL (necessary for some USB devices)"), 0},
-	{"!+URL",  I18N_NOOP("media:/ URL to mount/unmount/eject/remove"), 0 },
-	KCmdLineLastOption
-};
-
 
 int main(int argc, char **argv)
 {
-	KCmdLineArgs::init(argc, argv, "kio_media_mounthelper",
-	                   "kio_media_mounthelper", "kio_media_mounthelper",
-	                   "0.1");
+	KCmdLineArgs::init(argc, argv, "kio_media_mounthelper", "kio_media",
+	                   ki18n("kio_media_mounthelper"),
+	                   "0.1", ki18n("kio_media_mounthelper"));
+
+
+	KCmdLineOptions options;
+
+	options.add("u", ki18n("Unmount given URL"));
+
+	options.add("m", ki18n("Mount given URL (default)"));
+
+	options.add("e", ki18n("Eject given URL via kdeeject"));
+
+	options.add("s", ki18n("Unmount and Eject given URL (necessary for some USB devices)"));
+
+	options.add("!+URL", ki18n("media:/ URL to mount/unmount/eject/remove"));
 
 	KCmdLineArgs::addCmdLineOptions( options );
-	KGlobal::locale()->setMainCatalog("kio_media");
 
 	if (KCmdLineArgs::parsedArgs()->count()==0) KCmdLineArgs::usage();
 	KApplication *app = new  MountHelper();

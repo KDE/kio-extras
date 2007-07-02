@@ -65,12 +65,12 @@ KCMCgi::KCMCgi(QWidget *parent, const QStringList &)
   load();
   updateButton();
   KAboutData *about =
-    new KAboutData( I18N_NOOP("kcmcgi"),
-                    I18N_NOOP("CGI KIO Slave Control Module"),
-                    0, 0, KAboutData::License_GPL,
-                    I18N_NOOP("(c) 2002 Cornelius Schumacher") );
+    new KAboutData( I18N_NOOP("kcmcgi"), 0,
+                    ki18n("CGI KIO Slave Control Module"),
+                    0, KLocalizedString(), KAboutData::License_GPL,
+                    ki18n("(c) 2002 Cornelius Schumacher") );
 
-  about->addAuthor( "Cornelius Schumacher", 0, "schumacher@kde.org" );
+  about->addAuthor( ki18n("Cornelius Schumacher"), KLocalizedString(), "schumacher@kde.org" );
   setAboutData(about);
 }
 

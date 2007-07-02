@@ -126,8 +126,7 @@ static void ripper(int)
 
 int KDE_EXPORT kdemain( int argc, char **argv )
 {
-    KLocale::setMainCatalog("kio_fish");
-    KComponentData componentData("fish");
+    KComponentData componentData("fish", "kio_fish");
 
     myDebug( << "*** Starting fish " << endl);
     if (argc != 4) {

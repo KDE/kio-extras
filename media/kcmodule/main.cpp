@@ -63,15 +63,15 @@ MediaModule::MediaModule( QWidget *parent, const QStringList& )
 
 
 
-	KAboutData * about = new KAboutData("kcmmedia",
-	                                    I18N_NOOP("Storage Media"),
+	KAboutData * about = new KAboutData("kcmmedia", 0,
+	                                    ki18n("Storage Media"),
 	                                    "0.6",
-	                                    I18N_NOOP("Storage Media Control Panel Module"),
+	                                    ki18n("Storage Media Control Panel Module"),
 	                                    KAboutData::License_GPL_V2,
-	                                    I18N_NOOP("(c) 2005 Jean-Remy Falleri"));
-	about->addAuthor("Jean-Remy Falleri", I18N_NOOP("Maintainer"), "jr.falleri@laposte.net");
-	about->addAuthor("Kevin Ottens", 0, "ervin ipsquad net");
-	about->addCredit("Achim Bohnet", I18N_NOOP("Help for the application design"));
+	                                    ki18n("(c) 2005 Jean-Remy Falleri"));
+	about->addAuthor(ki18n("Jean-Remy Falleri"), ki18n("Maintainer"), "jr.falleri@laposte.net");
+	about->addAuthor(ki18n("Kevin Ottens"), KLocalizedString(), "ervin ipsquad net");
+	about->addCredit(ki18n("Achim Bohnet"), ki18n("Help for the application design"));
 
 	setAboutData( about );
 }

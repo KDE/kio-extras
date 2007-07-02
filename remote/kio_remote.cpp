@@ -25,28 +25,28 @@
 #include <kcmdlineargs.h>
 #include <kglobal.h>
 
+#include <QFile>
 
 #include "kio_remote.h"
-
-static const KCmdLineOptions options[] =
-{
-	{ "+protocol", I18N_NOOP( "Protocol name" ), 0 },
-	{ "+pool", I18N_NOOP( "Socket name" ), 0 },
-	{ "+app", I18N_NOOP( "Socket name" ), 0 },
-	KCmdLineLastOption
-};
 
 extern "C" {
 	int KDE_EXPORT kdemain( int argc, char **argv )
 	{
 		// KApplication is necessary to use other ioslaves
 		putenv(strdup("SESSION_MANAGER="));
-		KCmdLineArgs::init(argc, argv, "kio_remote", 0L, 0L, false);
+		KCmdLineArgs::init(argc, argv, "kio_remote", 0, ki18n(0L), false, ki18n(0L));
+
+		KCmdLineOptions options;
+		options.add("+protocol", ki18n( "Protocol name" ));
+		options.add("+pool", ki18n( "Socket name" ));
+		options.add("+app", ki18n( "Socket name" ));
 		KCmdLineArgs::addCmdLineOptions( options );
 		KApplication app(  false );
 
 		KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
-		RemoteProtocol slave( args->arg(0), args->arg(1), args->arg(2) );
+		RemoteProtocol slave( QFile::encodeName( args->arg(0) ), 
+		                      QFile::encodeName( args->arg(1) ),
+		                      QFile::encodeName( args->arg(2) ) );
 		slave.dispatchLoop();
 		return 0;
 	}

@@ -61,8 +61,8 @@ const KComponentData &KManPartFactory::componentData()
 {
    if( !s_instance )
    {
-      s_about = new KAboutData( "kmanpart",
-                                I18N_NOOP( "KMan" ), KDE_VERSION_STRING );
+      s_about = new KAboutData( "kmanpart", 0,
+                                ki18n( "KMan" ), KDE_VERSION_STRING );
       s_instance = new KComponentData(s_about);
    }
    return *s_instance;
