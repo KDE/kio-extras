@@ -1,5 +1,4 @@
 
-project(kioslave-man)
 
 add_definitions (-DQT3_SUPPORT)
 add_subdirectory( tests )

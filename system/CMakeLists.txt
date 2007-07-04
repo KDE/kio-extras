@@ -1,5 +1,4 @@
 
-project(kioslave-system)
 
 add_subdirectory( kdedmodule ) 
 add_subdirectory( entries ) 

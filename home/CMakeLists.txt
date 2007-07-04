@@ -1,5 +1,4 @@
 
-project(kioslave-home)
 
 add_subdirectory( kdedmodule ) 
 add_subdirectory( tests )

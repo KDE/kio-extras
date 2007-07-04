@@ -1,5 +1,4 @@
 
-project(kioslave-pop3)
 
 set(pop3_optional_includes)
 set(pop3_optional_libs)

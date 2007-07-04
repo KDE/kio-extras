@@ -1,4 +1,3 @@
-project(kioslave-sftp)
 
 add_definitions (-DQT3_SUPPORT)
 

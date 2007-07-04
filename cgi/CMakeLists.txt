@@ -1,5 +1,4 @@
 
-project(kioslave-cgi)
 
 add_subdirectory( kcmcgi ) 
 

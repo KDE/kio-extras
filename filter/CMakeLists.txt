@@ -1,5 +1,4 @@
 
-project(kioslave-filter)
 
 
 macro_optional_find_package(BZip2)

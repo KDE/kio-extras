@@ -1,5 +1,4 @@
 
-project(kioslave-remote)
 
 add_subdirectory( kdedmodule ) 
 add_subdirectory( tests ) 

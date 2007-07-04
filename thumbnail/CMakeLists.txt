@@ -1,5 +1,4 @@
 
-project(kioslave-thumbnail)
 
 
 add_definitions (-DQT3_SUPPORT)

@@ -1,4 +1,3 @@
-project(kioslave-fish)
 
 check_include_files(termios.h HAVE_TERMIOS_H)
 check_include_files(util.h HAVE_UTIL_H)

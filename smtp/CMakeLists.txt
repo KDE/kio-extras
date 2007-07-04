@@ -1,5 +1,4 @@
 
-project(kioslave-smtp)
 
 add_subdirectory(tests)
 
