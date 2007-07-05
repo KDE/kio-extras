@@ -101,7 +101,7 @@ if(OPENEXR_FOUND)
    kde4_add_plugin(exrthumbnail ${exrthumbnail_PART_SRCS})
 
 
-   target_link_libraries(exrthumbnail  ${KDE4_KDECORE_LIBS} ${KDE4_KDE3SUPPORT_LIBS} ${OPENEXR_LIBRARIES})
+   target_link_libraries(exrthumbnail   ${KDE4_KDE3SUPPORT_LIBS} ${OPENEXR_LIBRARIES})
 
    install(TARGETS exrthumbnail  DESTINATION ${PLUGIN_INSTALL_DIR} )
    install( FILES exrthumbnail.desktop  DESTINATION  ${SERVICES_INSTALL_DIR} )

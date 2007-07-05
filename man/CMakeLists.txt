@@ -12,7 +12,7 @@ kde4_automoc(${kio_man_PART_SRCS})
 kde4_add_plugin(kio_man ${kio_man_PART_SRCS})
 
 
-target_link_libraries(kio_man  ${KDE4_KDE3SUPPORT_LIBS} ${KDE4_KDECORE_LIBS} )
+target_link_libraries(kio_man  ${KDE4_KDE3SUPPORT_LIBS}  )
 
 install(TARGETS kio_man  DESTINATION ${PLUGIN_INSTALL_DIR} )
 

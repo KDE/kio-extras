@@ -22,7 +22,7 @@ kde4_add_ui3_files(kcm_media_PART_SRCS notifiermoduleview.ui serviceview.ui mana
 kde4_add_plugin(kcm_media ${kcm_media_PART_SRCS})
 
 
-target_link_libraries(kcm_media  ${KDE4_KIO_LIBS}  ${KDE4_KDE3SUPPORT_LIBS})
+target_link_libraries(kcm_media    ${KDE4_KDE3SUPPORT_LIBS})
 
 install(TARGETS kcm_media  DESTINATION ${PLUGIN_INSTALL_DIR} )
 
