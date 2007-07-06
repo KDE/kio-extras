@@ -71,7 +71,7 @@ void getDriveAndPath(const QString& path, QString& drive, QString& rest)
    drive=QString();
    rest=QString();
    QStringList list=path.split("/");
-   for (QStringList::Iterator it=list.begin(); it!=list.end(); it++)
+   for (QStringList::Iterator it=list.begin(); it!=list.end(); ++it)
    {
       if (it==list.begin())
          drive=(*it)+':';
