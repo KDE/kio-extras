@@ -68,7 +68,7 @@ NotifierModule::NotifierModule(const KComponentData &componentData, QWidget *par
 
 	connect( m_view->mimetypesCombo, SIGNAL( activated(int) ),
 	         this, SLOT( slotMimeTypeChanged(int) ) );
-	connect( m_view->actionsList, SIGNAL( selectionChanged(QListWidgetItem*) ),
+	connect( m_view->actionsList, SIGNAL(itemChanged(QListWidgetItem*) ),
 	         this, SLOT( slotActionSelected(QListWidgetItem*) ) );
 	connect( m_view->addButton, SIGNAL( clicked() ),
 	         this, SLOT( slotAdd() ) );
