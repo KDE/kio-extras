@@ -16,8 +16,6 @@ add_subdirectory( settings )
 add_subdirectory( trash )
 add_subdirectory( media ) 
 add_subdirectory( remote ) 
-add_subdirectory( home ) 
-add_subdirectory( system )
 add_subdirectory( ldap )
 
 # need kdesu
