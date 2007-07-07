@@ -642,7 +642,8 @@ void LDAPProtocol::put( const KUrl &_url, int, bool overwrite, bool )
                   break;
               }
               op.attr = ldif.attr();
-              op.values.append( ldif.value() );
+              if ( !ldif.value().isNull() ) 
+                op.values.append( ldif.value() );
               modops.append( op );
               break;
             }
