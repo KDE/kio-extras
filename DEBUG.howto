@@ -18,9 +18,9 @@ that slaves for a certain protocol are started in debug mode.
 
 E.g. to start all 'http' slaves in debug mode, you type:
 
-	KDE_SLAVE_DEBUG_WAIT=http kdeinit
+	KDE_SLAVE_DEBUG_WAIT=http kdeinit4
 
-This will restart 'kdeinit' and 'klauncher'.
+This will restart 'kdeinit4' and 'klauncher'.
 
 When your application now requests a http slave, the slave will be started
 by kdeinit, but before it calls kdemain() (cq. main()) it will suspend the
@@ -30,7 +30,7 @@ In the terminal from which you started kdeinit you will get the following
 message:
 
 kdeinit: Suspending process
-kdeinit: 'gdb kdeinit 16779' to debug
+kdeinit: 'gdb kdeinit4 16779' to debug
 kdeinit: 'kill -SIGCONT 16779' to continue
 
 You can now debug your slave by typing (or pasting) 'gdb kdeinit 16779' in
