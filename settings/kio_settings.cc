@@ -25,7 +25,6 @@
 #include <sys/stat.h>
 #include <QDataStream>
 #include <time.h>
-#include <k3process.h>
 #include <kservice.h>
 #include <kservicegroup.h>
 #include <kstandarddirs.h>
