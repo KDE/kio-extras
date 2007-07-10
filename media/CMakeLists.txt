@@ -32,7 +32,6 @@ set(kio_media_PART_SRCS ${libmediacommon_SRCS}
     mediamanageriface.cpp)
 
 
-kde4_automoc(${kio_media_PART_SRCS})
 
 kde4_add_plugin(kio_media ${kio_media_PART_SRCS})
 

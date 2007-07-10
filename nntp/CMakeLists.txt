@@ -6,7 +6,6 @@
 
 set(kio_nntp_PART_SRCS nntp.cpp )
 
-kde4_automoc(${kio_nntp_PART_SRCS})
 
 kde4_add_plugin(kio_nntp ${kio_nntp_PART_SRCS})
 

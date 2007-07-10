@@ -16,7 +16,6 @@ if(COMPILE_LINUXCDPOLLING)
       linuxcdpolling.cpp)
 endif(COMPILE_LINUXCDPOLLING)
 
-kde4_automoc(${kded_mediamanager_PART_SRCS})
 
 kde4_add_plugin(kded_mediamanager ${kded_mediamanager_PART_SRCS})
 

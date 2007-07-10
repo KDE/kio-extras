@@ -7,7 +7,6 @@ add_subdirectory( tests )
 
 set(kio_man_PART_SRCS man2html.cpp kio_man.cpp )
 
-kde4_automoc(${kio_man_PART_SRCS})
 
 kde4_add_plugin(kio_man ${kio_man_PART_SRCS})
 
@@ -21,7 +20,6 @@ install(TARGETS kio_man  DESTINATION ${PLUGIN_INSTALL_DIR} )
 
 set(kmanpart_PART_SRCS kmanpart.cpp )
 
-kde4_automoc(${kmanpart_PART_SRCS})
 
 kde4_add_plugin(kmanpart WITH_PREFIX ${kmanpart_PART_SRCS})
 

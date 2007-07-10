@@ -7,7 +7,6 @@ set(kded_medianotifier_PART_SRCS medianotifier.cpp ../mediamanageriface.cpp noti
 
 kde4_add_kcfg_files(kded_medianotifier_PART_SRCS ../libmediacommon/mediamanagersettings.kcfgc )
 
-kde4_automoc(${kded_medianotifier_PART_SRCS})
 
 kde4_add_ui3_files(kded_medianotifier_PART_SRCS notificationdialogview.ui )
 

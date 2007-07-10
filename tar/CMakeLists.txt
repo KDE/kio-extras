@@ -7,7 +7,6 @@ add_definitions (-DQT3_SUPPORT)
 
 set(kio_tar_PART_SRCS tar.cc )
 
-kde4_automoc(${kio_tar_PART_SRCS})
 
 kde4_add_plugin(kio_tar ${kio_tar_PART_SRCS})
 

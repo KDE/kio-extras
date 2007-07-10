@@ -11,7 +11,6 @@ set(libkioremote_SRCS kio_remote.cpp remoteimpl.cpp )
 
 set(kio_remote_PART_SRCS ${libkioremote_SRCS})
 
-kde4_automoc(${kio_remote_PART_SRCS})
 
 kde4_add_plugin(kio_remote ${kio_remote_PART_SRCS})
 

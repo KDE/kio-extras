@@ -12,7 +12,6 @@ set(kio_sftp_PART_SRCS
    sftpfileattr.cpp 
    ksshprocess.cpp )
 
-kde4_automoc(${kio_sftp_PART_SRCS})
 
 kde4_add_plugin(kio_sftp ${kio_sftp_PART_SRCS})
 

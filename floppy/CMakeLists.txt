@@ -6,7 +6,6 @@
 
 set(kio_floppy_PART_SRCS kio_floppy.cpp program.cpp )
 
-kde4_automoc(${kio_floppy_PART_SRCS})
 
 kde4_add_plugin(kio_floppy ${kio_floppy_PART_SRCS})
 

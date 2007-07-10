@@ -8,7 +8,6 @@ macro_optional_find_package(OpenEXR)
 
 set(kio_thumbnail_PART_SRCS thumbnail.cpp )
 
-kde4_automoc(${kio_thumbnail_PART_SRCS})
 
 kde4_add_plugin(kio_thumbnail ${kio_thumbnail_PART_SRCS})
 
@@ -22,7 +21,6 @@ install(TARGETS kio_thumbnail  DESTINATION ${PLUGIN_INSTALL_DIR} )
 
 set(imagethumbnail_PART_SRCS imagecreator.cpp )
 
-kde4_automoc(${imagethumbnail_PART_SRCS})
 
 kde4_add_plugin(imagethumbnail ${imagethumbnail_PART_SRCS})
 
@@ -36,7 +34,6 @@ install(TARGETS imagethumbnail  DESTINATION ${PLUGIN_INSTALL_DIR} )
 
 set(svgthumbnail_PART_SRCS svgcreator.cpp )
 
-kde4_automoc(${svgthumbnail_PART_SRCS})
 
 kde4_add_plugin(svgthumbnail ${svgthumbnail_PART_SRCS})
 
@@ -50,7 +47,6 @@ install(TARGETS svgthumbnail  DESTINATION ${PLUGIN_INSTALL_DIR} )
 
 set(textthumbnail_PART_SRCS textcreator.cpp )
 
-kde4_automoc(${textthumbnail_PART_SRCS})
 
 kde4_add_plugin(textthumbnail ${textthumbnail_PART_SRCS})
 
@@ -64,7 +60,6 @@ install(TARGETS textthumbnail  DESTINATION ${PLUGIN_INSTALL_DIR} )
 
 set(htmlthumbnail_PART_SRCS htmlcreator.cpp )
 
-kde4_automoc(${htmlthumbnail_PART_SRCS})
 
 kde4_add_plugin(htmlthumbnail ${htmlthumbnail_PART_SRCS})
 
@@ -78,7 +73,6 @@ install(TARGETS htmlthumbnail  DESTINATION ${PLUGIN_INSTALL_DIR} )
 
 set(djvuthumbnail_PART_SRCS djvucreator.cpp )
 
-kde4_automoc(${djvuthumbnail_PART_SRCS})
 
 kde4_add_plugin(djvuthumbnail ${djvuthumbnail_PART_SRCS})
 
@@ -96,7 +90,6 @@ if(OPENEXR_FOUND)
 
    set(exrthumbnail_PART_SRCS exrcreator.cpp)
 
-   kde4_automoc(${exrthumbnail_PART_SRCS})
 
    kde4_add_plugin(exrthumbnail ${exrthumbnail_PART_SRCS})
 
@@ -114,7 +107,6 @@ if(X11_Xcursor_FOUND)
 
    set(cursorthumbnail_PART_SRCS cursorcreator.cpp)
 
-   kde4_automoc(${cursorthumbnail_PART_SRCS})
 
    kde4_add_plugin(cursorthumbnail ${cursorthumbnail_PART_SRCS})
 

@@ -6,7 +6,6 @@
 
 set(kio_finger_PART_SRCS kio_finger.cpp )
 
-kde4_automoc(${kio_finger_PART_SRCS})
 
 kde4_add_plugin(kio_finger ${kio_finger_PART_SRCS})
 

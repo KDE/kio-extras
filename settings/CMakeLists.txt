@@ -6,7 +6,6 @@
 
 set(kio_settings_PART_SRCS kio_settings.cc )
 
-kde4_automoc(${kio_settings_PART_SRCS})
 
 kde4_add_plugin(kio_settings ${kio_settings_PART_SRCS})
 

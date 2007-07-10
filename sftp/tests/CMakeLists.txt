@@ -9,7 +9,6 @@ set(ksshprocesstest_SRCS
     ${CMAKE_CURRENT_SOURCE_DIR}/../process.cpp 
     ${CMAKE_CURRENT_SOURCE_DIR}/../atomicio.cpp )
 
-kde4_automoc(${ksshprocesstest_SRCS})
 
 kde4_add_test_executable(ksshprocesstest ${ksshprocesstest_SRCS})
 

@@ -10,7 +10,6 @@ set(kio_man_test_SRCS
     ${CMAKE_CURRENT_SOURCE_DIR}/../man2html.cpp 
     ${CMAKE_CURRENT_SOURCE_DIR}/../kio_man.cpp )
 
-kde4_automoc(${kio_man_test_SRCS})
 
 
 kde4_add_test_executable(kio_man_test ${kio_man_test_SRCS})
@@ -22,7 +21,6 @@ target_link_libraries(kio_man_test  ${KDE4_KIO_LIBS} ${QT_QT3SUPPORT_LIBRARY})
 
 set(man2html_SRCS ${CMAKE_CURRENT_SOURCE_DIR}/../man2html.cpp )
 
-kde4_automoc(${man2html_SRCS})
 
 
 kde4_add_test_executable(man2html ${man2html_SRCS})

@@ -33,7 +33,6 @@ if (MD5SUM_EXECUTABLE)
    
    set(kio_fish_PART_SRCS fish.cpp ${CMAKE_CURRENT_BINARY_DIR}/fishcode.h)
    
-   kde4_automoc(kio_fish ${kio_fish_PART_SRCS})
    
    kde4_add_plugin(kio_fish ${kio_fish_PART_SRCS})
    

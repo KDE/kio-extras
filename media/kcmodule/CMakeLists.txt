@@ -15,7 +15,6 @@ set(kcm_media_PART_SRCS
 kde4_add_kcfg_files(kcm_media_PART_SRCS ../libmediacommon/mediamanagersettings.kcfgc )
 
 
-kde4_automoc(${kcm_media_PART_SRCS})
 
 kde4_add_ui3_files(kcm_media_PART_SRCS notifiermoduleview.ui serviceview.ui managermoduleview.ui )
 

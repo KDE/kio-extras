@@ -3,7 +3,6 @@
 
 set(fixhosturifilter_PART_SRCS fixhosturifilter.cpp )
 
-kde4_automoc(${fixhosturifilter_PART_SRCS})
 
 kde4_add_plugin(fixhosturifilter WITH_PREFIX ${fixhosturifilter_PART_SRCS})
 

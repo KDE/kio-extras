@@ -16,7 +16,6 @@ include_directories( ${CMAKE_CURRENT_SOURCE_DIR}/libmediacommon )
 ########### next target ###############
 set(testmedia_SRCS testmedia.cpp )
 
-kde4_automoc(${testmedia_SRCS})
 
 
 kde4_add_test_executable(testmedia ${testmedia_SRCS} ${libmediacommon_SRCS} )

@@ -21,7 +21,6 @@ include_directories(  ${pop3_optional_includes}  )
 
 set(kio_pop3_PART_SRCS pop3.cc )
 
-kde4_automoc(${kio_pop3_PART_SRCS})
 
 kde4_add_plugin(kio_pop3 ${kio_pop3_PART_SRCS})
 

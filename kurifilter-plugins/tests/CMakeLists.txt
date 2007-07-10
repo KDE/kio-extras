@@ -1,6 +1,5 @@
 set(kurifiltertest_SRCS kurifiltertest.cpp)
 
-kde4_automoc(${kurifiltertest_SRCS})
 
 kde4_add_unit_test(kurifiltertest ${kurifiltertest_SRCS})
 
