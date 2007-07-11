@@ -24,7 +24,7 @@ set(kmanpart_PART_SRCS kmanpart.cpp )
 kde4_add_plugin(kmanpart WITH_PREFIX ${kmanpart_PART_SRCS})
 
 
-target_link_libraries(kmanpart  ${KDE4_KPARTS_LIBS} ${KDE4_KHTML_LIBS} )
+target_link_libraries(kmanpart  ${KDE4_KHTML_LIBS} )
 
 install(TARGETS kmanpart  DESTINATION ${PLUGIN_INSTALL_DIR} )
 

@@ -64,7 +64,7 @@ set(htmlthumbnail_PART_SRCS htmlcreator.cpp )
 kde4_add_plugin(htmlthumbnail ${htmlthumbnail_PART_SRCS})
 
 
-target_link_libraries(htmlthumbnail  ${KDE4_KDECORE_LIBS} ${KDE4_KHTML_LIBS} ${QT_QTGUI_LIBRARY})
+target_link_libraries(htmlthumbnail  ${KDE4_KHTML_LIBS} ${QT_QTGUI_LIBRARY})
 
 install(TARGETS htmlthumbnail  DESTINATION ${PLUGIN_INSTALL_DIR} )
 
