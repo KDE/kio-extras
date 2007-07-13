@@ -342,13 +342,15 @@ int MyPtyProcess::waitForChild()
     struct timeval tv;
 
     fd_set fds;
-    FD_ZERO(&fds);
 
     while (1) 
     {
+        int _fd = fd();
 	tv.tv_sec = 1; tv.tv_usec = 0;
-	FD_SET(fd(), &fds);
-	ret = select(fd()+1, &fds, 0L, 0L, &tv);
+	FD_ZERO(&fds);
+        if (_fd >= 0)
+            FD_SET(_fd, &fds);
+	ret = select(_fd+1, &fds, 0L, 0L, &tv);
 	if (ret == -1) 
 	{
 	    if (errno == EINTR) continue;
