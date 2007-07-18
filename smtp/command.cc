@@ -49,7 +49,7 @@
 namespace KioSMTP {
 
 #ifdef HAVE_LIBSASL2
-static sasl_callback_t client_callbacks[] = {
+static sasl_callback_t callbacks[] = {
     { SASL_CB_ECHOPROMPT, NULL, NULL },
     { SASL_CB_NOECHOPROMPT, NULL, NULL },
     { SASL_CB_GETREALM, NULL, NULL },
@@ -218,7 +218,7 @@ static sasl_callback_t client_callbacks[] = {
     mOneStep = false;
 
     result = sasl_client_new( "smtp", aFQDN.toLatin1(),
-      0, 0, client_callbacks, 0, &conn );
+      0, 0, callbacks, 0, &conn );
     if ( result != SASL_OK ) {
       SASLERROR
       return;

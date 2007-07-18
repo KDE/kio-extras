@@ -95,20 +95,6 @@ using std::auto_ptr;
 #endif
 
 
-#ifdef HAVE_LIBSASL2
-static sasl_callback_t callbacks[] = {
-    { SASL_CB_ECHOPROMPT, NULL, NULL },
-    { SASL_CB_NOECHOPROMPT, NULL, NULL },
-    { SASL_CB_GETREALM, NULL, NULL },
-    { SASL_CB_USER, NULL, NULL },
-    { SASL_CB_AUTHNAME, NULL, NULL },
-    { SASL_CB_PASS, NULL, NULL },
-    { SASL_CB_GETOPT, NULL, NULL },
-    { SASL_CB_CANON_USER, NULL, NULL },
-    { SASL_CB_LIST_END, NULL, NULL }
-};
-#endif
-
 extern "C" {
   KDE_EXPORT int kdemain(int argc, char **argv);
 }
@@ -124,7 +110,7 @@ int kdemain(int argc, char **argv)
   }
 
 #ifdef HAVE_LIBSASL2
-  if ( sasl_client_init( callbacks ) != SASL_OK ) {
+  if ( sasl_client_init( NULL ) != SASL_OK ) {
     fprintf(stderr, "SASL library initialization failed!\n");
     exit(-1);
   }
