@@ -65,7 +65,6 @@ using KioSMTP::TransactionState;
 
 #include <kdebug.h>
 #include <kcomponentdata.h>
-#include <kio/connection.h>
 #include <kio/slaveinterface.h>
 #include <klocale.h>
 
