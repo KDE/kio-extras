@@ -58,7 +58,6 @@ So we can't connect.
 #include <kstandarddirs.h>
 #include <klocale.h>
 #include <kurl.h>
-#include <kio/connection.h>
 #include <kio/ioslave_defaults.h>
 #include <kmimetype.h>
 #include <kde_file.h>

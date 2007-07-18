@@ -21,7 +21,7 @@ add_subdirectory( ldap )
 # need kdesu
 if(UNIX)
    add_subdirectory( fish ) 
-   add_subdirectory( sftp ) 
+   #   add_subdirectory( sftp ) 
 endif(UNIX)
 
 if(NOT WIN32)
