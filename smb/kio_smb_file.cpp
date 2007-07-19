@@ -36,6 +36,7 @@
 #include <QVarLengthArray>
 
 #include <kmimetype.h>
+#include <kio/connection.h>
 
 //===========================================================================
 void SMBSlave::get( const KUrl& kurl )
