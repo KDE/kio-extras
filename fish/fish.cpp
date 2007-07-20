@@ -398,8 +398,8 @@ bool fishProtocol::connectionStart() {
     childPid = fork();
     if (childPid == -1) {
         myDebug( << "fork failed, error: " << strerror(errno) << endl);
-        close(fd[0]);
-        close(fd[1]);
+        ::close(fd[0]);
+        ::close(fd[1]);
         childPid = 0;
         dropNetwork();
         return true;
@@ -414,12 +414,12 @@ bool fishProtocol::connectionStart() {
         struct rlimit rlp;
         getrlimit(RLIMIT_NOFILE, &rlp);
         for (int i = 0; i < (int)rlp.rlim_cur; i++)
-            if (i != fd[1]) close(i);
+            if (i != fd[1]) ::close(i);
 
         dup2(fd[1],0);
         dup2(fd[1],1);
         dup2(fd[1],2);
-        if (fd[1] > 2) close(fd[1]);
+        if (fd[1] > 2) ::close(fd[1]);
 
         setsid();
 
@@ -436,7 +436,7 @@ bool fishProtocol::connectionStart() {
 
         const char *dev = ttyname(0);
         setpgid(0,0);
-        if (dev) close(::open(dev, O_WRONLY, 0));
+        if (dev) ::close(::open(dev, O_WRONLY, 0));
         setpgid(0,0);
 
         if (local) {
@@ -457,7 +457,7 @@ bool fishProtocol::connectionStart() {
         myDebug( << "could not exec! " << strerror(errno) << endl);
         ::exit(-1);
     }
-    close(fd[1]);
+    ::close(fd[1]);
     rc = fcntl(fd[0],F_GETFL,&flags);
     rc = fcntl(fd[0],F_SETFL,flags|O_NONBLOCK);
     childFd = fd[0];
@@ -482,7 +482,7 @@ bool fishProtocol::connectionStart() {
             return true;
         }
         if (FD_ISSET(childFd,&wfds) && outBufPos >= 0) {
-            if (outBuf) rc = write(childFd,outBuf+outBufPos,outBufLen-outBufPos);
+            if (outBuf) rc = ::write(childFd,outBuf+outBufPos,outBufLen-outBufPos);
             else rc = 0;
             if (rc >= 0) outBufPos += rc;
             else {
@@ -499,7 +499,7 @@ bool fishProtocol::connectionStart() {
             }
         }
         if (FD_ISSET(childFd,&rfds)) {
-            rc = read(childFd,buf+offset,32768-offset);
+            rc = ::read(childFd,buf+offset,32768-offset);
             if (rc > 0) {
                 int noff = establishConnection(buf,rc+offset);
                 if (noff < 0) return false;
@@ -683,7 +683,7 @@ void fishProtocol::shutdownConnection(bool forced){
     if (childPid) {
         kill(childPid,SIGTERM); // We may not have permission...
         childPid = 0;
-        close(childFd); // ...in which case this should do the trick
+        ::close(childFd); // ...in which case this should do the trick
         childFd = -1;
         if (!forced)
         {
@@ -1364,7 +1364,7 @@ void fishProtocol::run() {
                 debug.setLatin1(outBuf+outBufPos,outBufLen-outBufPos);
                 myDebug( << "now writing " << (outBufLen-outBufPos) << " " << debug.left(40) << "..." << endl);
 #endif
-                if (outBufLen-outBufPos > 0) rc = write(childFd,outBuf+outBufPos,outBufLen-outBufPos);
+                if (outBufLen-outBufPos > 0) rc = ::write(childFd,outBuf+outBufPos,outBufLen-outBufPos);
                 else rc = 0;
                 if (rc >= 0) outBufPos += rc;
                 else {
@@ -1382,7 +1382,7 @@ void fishProtocol::run() {
                 }
             }
             if (FD_ISSET(childFd,&rfds)) {
-                rc = read(childFd,buf+offset,32768-offset);
+                rc = ::read(childFd,buf+offset,32768-offset);
                 //myDebug( << "read " << rc << " bytes" << endl);
                 if (rc > 0) {
                     int noff = received(buf,rc+offset);

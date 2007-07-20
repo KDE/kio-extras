@@ -268,7 +268,7 @@ NFSProtocol::~NFSProtocol()
 
 void NFSProtocol::closeConnection()
 {
-   close(m_sock);
+    ::close(m_sock);
    m_sock=-1;
    if (m_client==0) return;
    CLNT_DESTROY(m_client);
