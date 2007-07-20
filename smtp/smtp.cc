@@ -57,7 +57,7 @@ using KioSMTP::TransactionState;
 #include <kemailsettings.h>
 
 #ifdef __GNUC__
-#warning Port to KNetwork
+#warning Port to QTcpSocket
 #endif
 #if 0
 #include <ksock.h>
@@ -136,7 +136,7 @@ SMTPProtocol::SMTPProtocol(const QByteArray & pool, const QByteArray & app,
 unsigned int SMTPProtocol::sendBufferSize() const {
   // ### how much is eaten by SSL/TLS overhead?
 #ifdef __GNUC__
-#warning Port to KNetwork
+#warning Port to QTcpSocket
 #endif
   const int fd = 0L; //fileno( fp );
   int value = -1;
@@ -537,7 +537,7 @@ bool SMTPProtocol::smtp_open(const QString& fakeHostname)
   {
     QString tmpPort;
 #ifdef __GNUC__
-#warning Port to KNetwork
+#warning Port to QTcpSocket
 #endif
 #if 0
     KSocketAddress* addr = KExtendedSocket::localAddress(m_iSock);
