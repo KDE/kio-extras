@@ -36,7 +36,6 @@
 #include <QVarLengthArray>
 
 #include <kmimetype.h>
-#include <kio/connection.h>
 
 //===========================================================================
 void SMBSlave::get( const KUrl& kurl )
@@ -64,7 +63,6 @@ void SMBSlave::get( const KUrl& kurl )
 
     if(!auth_initialize_smbc())
         return;
-
 
     // Stat
     url = kurl;
@@ -139,15 +137,8 @@ void SMBSlave::get( const KUrl& kurl )
 
 
 //===========================================================================
-void SMBSlave::open( const KUrl& kurl, int access )
+void SMBSlave::open( const KUrl& kurl, int /*access*/)
 {
-    int         filefd          = 0;
-    ssize_t     bytesread       = 0;
-    // time_t      curtime         = 0;
-    time_t      lasttime        = 0;
-    time_t      starttime       = 0;
-    ssize_t     totalbytesread  = 0;
-    QByteArray  filedata;
     SMBUrl      url;
 
     kDebug(KIO_SMB) << "SMBSlave::open on " << kurl << endl;
@@ -163,7 +154,6 @@ void SMBSlave::open( const KUrl& kurl, int access )
 
     if(!auth_initialize_smbc())
         return;
-
 
     // Stat
     url = kurl;
@@ -184,98 +174,81 @@ void SMBSlave::open( const KUrl& kurl, int access )
     totalSize( st.st_size );
 
     // Open and read the file
-    filefd = smbc_open(url.toSmbcUrl(),O_RDONLY,0);
-    if(filefd >= 0)
+    openFd = smbc_open(url.toSmbcUrl(),O_RDONLY,0);
+    if(openFd < 0)
     {
-        position( 0 );
-        emit opened();
+        error( KIO::ERR_CANNOT_OPEN_FOR_READING, url.prettyUrl());
+        return;
+    }
 
-        bool isFirstPacket = true;
-        int cmd = CMD_NONE;
-        while (true) {
-            QByteArray args;
-            int stat = appconn->read(&cmd, args);
-            if ( stat == -1 )
-            {   // error
-                kDebug( KIO_SMB ) << "open -- connection error" << endl;
-                break;
-            }
-            QDataStream stream( args );
-            switch( cmd ) {
-            case CMD_READ: {
-                kDebug( KIO_SMB ) << "open -- read" << endl;
-                int bytes;
-                stream >> bytes;
-                QVarLengthArray<char> buffer(bytes);
+    position( 0 );
+    emit opened();
+    openUrl = url;
+    justOpened = true;
+}
 
-                lasttime = starttime = time(NULL);
-                bytesread = smbc_read(filefd, buffer.data(), bytes);
-                if(bytesread == 0)
-                {
-                    // All done reading
-                    break;
-                }
-                else if(bytesread < 0)
-                {
-                    error( KIO::ERR_COULD_NOT_READ, url.prettyUrl());
-                    return;
-                }
+void SMBSlave::read(KIO::filesize_t bytes)
+{
+    kDebug( KIO_SMB ) << "open -- read" << endl;
+    Q_ASSERT(openFd != -1);
 
-                filedata.setRawData(buffer.data(),bytesread);
-		if (isFirstPacket)
-		{
-		    KMimeType::Ptr p_mimeType = KMimeType::findByNameAndContent(url.fileName(), filedata);
-		    mimeType(p_mimeType->name());
-		    isFirstPacket = false;
-		}
-                data( filedata );
-                filedata.clear();
+    QVarLengthArray<char> buffer(bytes);
+    ssize_t     bytesread       = 0;
+    // time_t      curtime         = 0;
+    time_t      lasttime        = 0;
+    time_t      starttime       = 0;
 
-                // increment total bytes read
-                totalbytesread += bytesread;
-                continue;
-            }
-            case CMD_WRITE: {
-                kDebug( KIO_SMB ) << "open -- write" << endl;
-                break;
-            }
-            case CMD_SEEK: {
-                kDebug( KIO_SMB ) << "open -- seek" << endl;
-                qulonglong offset;
-                stream >> offset;
-                int res = smbc_lseek(filefd, offset, SEEK_SET);
-                if (res != -1) {
-                    position( offset );
-                } else {
-                    error(KIO::ERR_COULD_NOT_SEEK, url.path());
-                    break;
-                }
-                continue;
-            }
-            case CMD_NONE:
-                kDebug( KIO_SMB ) << "open -- none " << endl;
-                continue;
-            case CMD_CLOSE:
-                kDebug( KIO_SMB ) << "open -- close " << endl;
-                break;
-            default:
-                kDebug( KIO_SMB ) << "open -- invalid command: " << cmd << endl;
-                cmd = CMD_CLOSE;
-                break;
-            }
-            break;
-        }
-
-        smbc_close(filefd);
-        data( QByteArray() );
-
+    lasttime = starttime = time(NULL);
+    bytesread = smbc_read(openFd, buffer.data(), bytes);
+    if(bytesread == 0)
+    {
+        // All done reading
+        data(QByteArray());
+    }
+    else if(bytesread < 0)
+    {
+        error( KIO::ERR_COULD_NOT_READ, openUrl.prettyUrl());
+        close();
+        return;
     }
     else
     {
-          error( KIO::ERR_CANNOT_OPEN_FOR_READING, url.prettyUrl());
-	  return;
+        QByteArray  filedata;
+        filedata.setRawData(buffer.data(),bytesread);
+        if (justOpened)
+        {
+            KMimeType::Ptr p_mimeType = KMimeType::findByNameAndContent(openUrl.fileName(), filedata);
+            mimeType(p_mimeType->name());
+            justOpened = false;
+        }
+        data( filedata );
+        filedata.clear();
     }
+}
 
+void SMBSlave::write(const QByteArray &data)
+{
+    kDebug( KIO_SMB ) << "open -- write" << endl;
+
+    // not implemented
+    KIO::SlaveBase::write(data);
+}
+
+void SMBSlave::seek(KIO::filesize_t offset)
+{
+    kDebug( KIO_SMB ) << "open -- seek" << endl;
+    int res = smbc_lseek(openFd, offset, SEEK_SET);
+    if (res != -1) {
+        position( offset );
+    } else {
+        error(KIO::ERR_COULD_NOT_SEEK, openUrl.path());
+        close();
+    }
+}
+
+void SMBSlave::close()
+{
+    smbc_close(openFd);
     finished();
 }
 

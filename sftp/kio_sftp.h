@@ -56,6 +56,10 @@ public:
 
   // KIO::FileJob interface
   virtual void open(const KUrl &url, QIODevice::OpenMode mode);
+  virtual void read(KIO::filesize_t size);
+  virtual void write(const QByteArray &data);
+  virtual void seek(KIO::filesize_t offset);
+  virtual void close();
 
 private: // Private variables
   /** True if ioslave is connected to sftp server. */
@@ -91,6 +95,12 @@ private: // Private variables
     KIO::filesize_t size;
     QString text;
   };
+
+  // KIO::FileJob interface
+  /** The opened handle */
+  QByteArray openHandle;
+  KUrl openUrl;
+  KIO::filesize_t openOffset;
 
 private: // private methods
   bool getPacket(QByteArray& msg);

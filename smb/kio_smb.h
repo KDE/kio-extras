@@ -252,8 +252,12 @@ public:
 
     // Functions overwritten in kio_smb_file.cpp
     virtual void get( const KUrl& kurl );
-    virtual void open( const KUrl& kurl, int access );
     virtual void put( const KUrl& kurl, int permissions, bool overwrite, bool resume );
+    virtual void open( const KUrl& kurl, int access );
+    virtual void read( KIO::filesize_t size );
+    virtual void write( const QByteArray &data );
+    virtual void seek( KIO::filesize_t offset );
+    virtual void close();
 
     // Functions not implemented  (yet)
     //virtual void setHost(const QString& host, int port, const QString& user, const QString& pass);
@@ -269,6 +273,9 @@ private Q_SLOTS:
 private:
     QString mybuf, mystderr;
 
+    int openFd;
+    bool justOpened;
+    SMBUrl openUrl;
 };
 
 //===========================================================================

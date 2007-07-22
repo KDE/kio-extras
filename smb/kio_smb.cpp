@@ -34,7 +34,7 @@
 
 //===========================================================================
 SMBSlave::SMBSlave(const QByteArray& pool, const QByteArray& app)
-    : SlaveBase( "smb", pool, app )
+    : SlaveBase( "smb", pool, app ), openFd(-1)
 {
     m_initialized_smbc = false;
 

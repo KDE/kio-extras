@@ -876,8 +876,8 @@ void sftpProtocol::open(const KUrl &url, QIODevice::OpenMode mode)
             pflags |= SSH2_FXF_TRUNC;
         }
     }
-    QByteArray handle;
-    if (sftpOpen(url, pflags, attr, handle) != SSH2_FX_OK) {
+
+    if (sftpOpen(url, pflags, attr, openHandle) != SSH2_FX_OK) {
         _DEBUG << "sftpOpen error" << endl;
         error(KIO::ERR_CANNOT_OPEN_FOR_READING, url.prettyUrl());
         return;
@@ -886,7 +886,7 @@ void sftpProtocol::open(const KUrl &url, QIODevice::OpenMode mode)
     // Determine the mimetype of the file to be retrieved, and emit it.
     // This is mandatory in all slaves (for KRun/BrowserRun to work).
     QByteArray buffer;
-    if ((code = sftpRead(handle, 0, 1024, buffer)) == SSH2_FX_OK) {
+    if ((code = sftpRead(openHandle, 0, 1024, buffer)) == SSH2_FX_OK) {
         KMimeType::Ptr mime = KMimeType::findByNameAndContent(url.fileName(), buffer);
         mimeType(mime->name());
         totalSize(fileSize);
@@ -898,68 +898,53 @@ void sftpProtocol::open(const KUrl &url, QIODevice::OpenMode mode)
         return;
     }
 
-    // Command-loop:
-    int cmd = CMD_NONE;
-    KIO::filesize_t offset = 0;
-    while (true) {
-        QByteArray args;
-        int stat = appconn->read(&cmd, args);
-        if (stat == -1) { // error
-            _DEBUG << "connection error" << endl;
-            break;
+    openUrl = url;
+    openOffset = 0;
+}
+
+void sftpProtocol::read(KIO::filesize_t bytes)
+{
+    _DEBUG << "read, offset = " << openOffset << ", bytes = " << bytes << endl;
+    QByteArray buffer;
+    int code;
+
+    if ((code = sftpRead(openHandle, openOffset, bytes, buffer)) == SSH2_FX_OK) {
+        openOffset += buffer.size();
+        data(buffer);
+        buffer.clear();
+    } else {
+        // empty array designates eof
+        if (code == SSH2_FX_EOF) {
+            data(QByteArray());
         }
-        QDataStream stream(args);
-        switch (cmd) {
-        case CMD_READ:
-            {
-                int bytes;
-                stream >> bytes;
-                _DEBUG << "read, offset = " << offset << ", bytes = " << bytes << endl;
-                if ((code = sftpRead(handle, offset, bytes, buffer)) == SSH2_FX_OK) {
-                    offset += buffer.size();
-                    data(buffer);
-                    buffer.clear();
-                    continue;
-                } else {
-                    // empty array designates eof
-                    if (code == SSH2_FX_EOF) {
-                        data(QByteArray());
-                        continue;
-                    }
-                    processStatus(code, url.prettyUrl());
-                }
-            }
-            break;
-        case CMD_WRITE:
-            {
-                _DEBUG << "write" << endl;
-                if ((code = sftpWrite(handle, offset, args)) == SSH2_FX_OK) {
-                    written(args.size());
-                    continue;
-                }
-                processStatus(code, url.prettyUrl());
-            }
-            break;
-        case CMD_SEEK:
-            stream >> offset;
-            _DEBUG << "seek, offset = " << offset << endl;
-            position(offset);
-            continue;
-        case CMD_NONE:
-            _DEBUG << "none" << endl;
-            continue;
-        case CMD_CLOSE:
-            _DEBUG << "close" << endl;
-            break;
-        default:
-            _DEBUG << "invalid command: " << cmd << endl;
-            cmd = CMD_CLOSE;
-            break;
-        }
-        break;
+        processStatus(code, openUrl.prettyUrl());
+        close();
     }
-    _DEBUG << "done" << endl;
-    sftpClose(handle);
+}
+
+void sftpProtocol::write(const QByteArray &data)
+{
+    _DEBUG << "write" << endl;
+    int code;
+    if ((code = sftpWrite(openHandle, openOffset, data)) == SSH2_FX_OK) {
+        written(data.size());
+        openOffset += data.size();
+    } else {
+        processStatus(code, openUrl.prettyUrl());
+        close();
+    }
+}
+
+void sftpProtocol::seek(KIO::filesize_t offset)
+{
+    _DEBUG << "seek, offset = " << offset << endl;
+    position(offset);
+    openOffset = offset;
+}
+
+void sftpProtocol::close()
+{
+    sftpClose(openHandle);
     _DEBUG << "emitting finished" << endl;
     finished();
 }
