@@ -8,6 +8,7 @@ X-KDE-Kded-autoload=false
 X-KDE-Kded-load-on-demand=false
 Name=Media Notifier Deamon
 Name[be]=Дэман абвяшчэнняў аб носьбітах
+Name[ca]=Dimoni notificador de suports
 Name[csb]=Ùsłëżnota pòwiadomieniô ò zôpisownëch mediach
 Name[de]=Geräteüberwachung
 Name[el]=Δαίμονας ειδοποίησης μέσων
