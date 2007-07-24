@@ -464,7 +464,7 @@ void NNTPProtocol::fetchGroups( const QString &since, bool desc )
 
       if ( entryMap.contains( group ) ) {
         entry = entryMap.take( group );
-        entry.insert( UDS_EXTRA, groupDesc );
+        entry.insert( KIO::UDSEntry::UDS_EXTRA, groupDesc );
         listEntry( entry, false );
       }
     }
@@ -647,7 +647,7 @@ bool NNTPProtocol::fetchGroupXOVER( unsigned long first, bool &notSupported )
     fields = line.split( "\t", QString::KeepEmptyParts);
     msgSize = 0;
     entry.clear();
-    udsType = UDS_EXTRA;
+    udsType = KIO::UDSEntry::UDS_EXTRA;
     QStringList::ConstIterator it = headers.constBegin();
     QStringList::ConstIterator it2 = fields.constBegin();
     // first entry is the serial number
@@ -667,7 +667,7 @@ bool NNTPProtocol::fetchGroupXOVER( unsigned long first, bool &notSupported )
       else
         atomStr = (*it) + ' ' + (*it2).trimmed();
       entry.insert( udsType++, atomStr );
-      if ( udsType >= UDS_EXTRA_END )
+      if ( udsType >= KIO::UDSEntry::UDS_EXTRA_END )
         break;
     }
     fillUDSEntry( entry, name, msgSize, true );
@@ -683,21 +683,21 @@ void NNTPProtocol::fillUDSEntry( UDSEntry& entry, const QString& name, long size
   long posting=0;
 
   // entry name
-  entry.insert(UDS_NAME, name);
+  entry.insert(KIO::UDSEntry::UDS_NAME, name);
 
   // entry size
-  entry.insert(UDS_SIZE, size);
+  entry.insert(KIO::UDSEntry::UDS_SIZE, size);
 
   // file type
-  entry.insert(UDS_FILE_TYPE, is_article? S_IFREG : S_IFDIR);
+  entry.insert(KIO::UDSEntry::UDS_FILE_TYPE, is_article? S_IFREG : S_IFDIR);
 
   // access permissions
   posting = postingAllowed? access : 0;
   long long accessVal = (is_article)? (S_IRUSR | S_IRGRP | S_IROTH) :
     (S_IRUSR | S_IXUSR | S_IRGRP | S_IXGRP | S_IROTH | S_IXOTH | posting);
-  entry.insert(UDS_ACCESS, accessVal);
+  entry.insert(KIO::UDSEntry::UDS_ACCESS, accessVal);
 
-  entry.insert(UDS_USER, mUser.isEmpty() ? QString::fromLatin1("root") : mUser);
+  entry.insert(KIO::UDSEntry::UDS_USER, mUser.isEmpty() ? QString::fromLatin1("root") : mUser);
 
   /*
   entry->insert(UDS_GROUP, QString::fromLatin1("root"));
@@ -705,7 +705,7 @@ void NNTPProtocol::fillUDSEntry( UDSEntry& entry, const QString& name, long size
 
   // MIME type
   if (is_article) {
-    entry.insert( UDS_MIME_TYPE, QString::fromLatin1("message/news") );
+    entry.insert( KIO::UDSEntry::UDS_MIME_TYPE, QString::fromLatin1("message/news") );
   }
 }
 

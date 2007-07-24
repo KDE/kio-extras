@@ -1121,8 +1121,8 @@ void POP3Protocol::listDir(const KUrl &)
   for (int i = 0; i < num_messages; i++) {
     fname = "Message %1";
 
-    entry.insert(UDS_NAME, fname.arg(i + 1));
-    entry.insert(UDS_MIME_TYPE, QString::fromLatin1("text/plain"));
+    entry.insert(KIO::UDSEntry::UDS_NAME, fname.arg(i + 1));
+    entry.insert(KIO::UDSEntry::UDS_MIME_TYPE, QString::fromLatin1("text/plain"));
 
     KUrl uds_url;
     if (usingSSL()) {
@@ -1135,11 +1135,11 @@ void POP3Protocol::listDir(const KUrl &)
     uds_url.setPass(m_sPass);
     uds_url.setHost(m_sServer);
     uds_url.setPath(QString::fromLatin1("/download/%1").arg(i + 1));
-    entry.insert(UDS_URL, uds_url.url());
+    entry.insert(KIO::UDSEntry::UDS_URL, uds_url.url());
 
-    entry.insert(UDS_FILE_TYPE, S_IFREG);
-    entry.insert(UDS_SIZE, realGetSize(i + 1));
-    entry.insert(UDS_ACCESS, S_IRUSR | S_IXUSR | S_IWUSR);
+    entry.insert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFREG);
+    entry.insert(KIO::UDSEntry::UDS_SIZE, realGetSize(i + 1));
+    entry.insert(KIO::UDSEntry::UDS_ACCESS, S_IRUSR | S_IXUSR | S_IWUSR);
 
     listEntry(entry, false);
     entry.clear();
@@ -1157,9 +1157,9 @@ void POP3Protocol::stat(const KUrl & url)
     _path.remove(0, 1);
 
   UDSEntry entry;
-  entry.insert(UDS_NAME, _path);
-  entry.insert(UDS_FILE_TYPE, S_IFREG);
-  entry.insert(UDS_MIME_TYPE, QString::fromLatin1("message/rfc822"));
+  entry.insert(KIO::UDSEntry::UDS_NAME, _path);
+  entry.insert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFREG);
+  entry.insert(KIO::UDSEntry::UDS_MIME_TYPE, QString::fromLatin1("message/rfc822"));
 
   // TODO: maybe get the size of the message?
   statEntry(entry);

@@ -227,7 +227,7 @@ void InfoProtocol::stat( const KUrl & )
 	UDSEntry uds_entry;
 
 	// Regular file with rwx permission for all
-	uds_entry.insert( KIO::UDS_FILE_TYPE, S_IFREG | S_IRWXU | S_IRWXG | S_IRWXO );
+	uds_entry.insert( KIO::UDSEntry::UDS_FILE_TYPE, S_IFREG | S_IRWXU | S_IRWXG | S_IRWXO );
 
 	statEntry( uds_entry );
 
