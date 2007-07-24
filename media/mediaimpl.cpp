@@ -276,15 +276,15 @@ void MediaImpl::slotMediumChanged(const QString &name)
 
 void MediaImpl::createTopLevelEntry(KIO::UDSEntry& entry) const
 {
-	entry.clear();
-	entry.insert(KIO::UDS_URL, QString::fromLatin1("media:/"));
-	entry.insert(KIO::UDS_NAME, QString::fromLatin1("."));
-	entry.insert(KIO::UDS_FILE_TYPE, S_IFDIR);
-	entry.insert(KIO::UDS_ACCESS, 0555);
-	entry.insert(KIO::UDS_MIME_TYPE, QString::fromLatin1("inode/directory"));
-	entry.insert(KIO::UDS_ICON_NAME, QString::fromLatin1("blockdevice"));
-	entry.insert(KIO::UDS_USER, QString::fromLatin1("root"));
-	entry.insert(KIO::UDS_GROUP, QString::fromLatin1("root"));
+    entry.clear();
+    entry.insert(KIO::UDSEntry::UDS_URL, QString::fromLatin1("media:/"));
+    entry.insert(KIO::UDSEntry::UDS_NAME, QString::fromLatin1("."));
+    entry.insert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
+    entry.insert(KIO::UDSEntry::UDS_ACCESS, 0555);
+    entry.insert(KIO::UDSEntry::UDS_MIME_TYPE, QString::fromLatin1("inode/directory"));
+    entry.insert(KIO::UDSEntry::UDS_ICON_NAME, QString::fromLatin1("blockdevice"));
+    entry.insert(KIO::UDSEntry::UDS_USER, QString::fromLatin1("root"));
+    entry.insert(KIO::UDSEntry::UDS_GROUP, QString::fromLatin1("root"));
 }
 
 void MediaImpl::slotStatResult(KJob *job)
@@ -310,16 +310,16 @@ void MediaImpl::extractUrlInfos(const KUrl &url, KIO::UDSEntry& infos)
 	         this, SLOT( slotWarning(KJob*,const QString&) ) );
 	enterLoop();
 
-        infos.insert( KIO::UDS_ACCESS, m_entryBuffer.value( KIO::UDS_ACCESS ) );
-        infos.insert( KIO::UDS_USER, m_entryBuffer.value( KIO::UDS_USER ) );
-        infos.insert( KIO::UDS_GROUP, m_entryBuffer.value( KIO::UDS_GROUP ) );
-        infos.insert( KIO::UDS_CREATION_TIME, m_entryBuffer.value( KIO::UDS_CREATION_TIME ) );
-        infos.insert( KIO::UDS_MODIFICATION_TIME, m_entryBuffer.value( KIO::UDS_MODIFICATION_TIME ) );
-        infos.insert( KIO::UDS_ACCESS_TIME, m_entryBuffer.value( KIO::UDS_ACCESS_TIME ) );
+        infos.insert( KIO::UDSEntry::UDS_ACCESS, m_entryBuffer.stringValue( KIO::UDSEntry::UDS_ACCESS ) );
+        infos.insert( KIO::UDSEntry::UDS_USER, m_entryBuffer.stringValue( KIO::UDSEntry::UDS_USER ) );
+        infos.insert( KIO::UDSEntry::UDS_GROUP, m_entryBuffer.stringValue( KIO::UDSEntry::UDS_GROUP ) );
+        infos.insert( KIO::UDSEntry::UDS_CREATION_TIME, m_entryBuffer.stringValue( KIO::UDSEntry::UDS_CREATION_TIME ) );
+        infos.insert( KIO::UDSEntry::UDS_MODIFICATION_TIME, m_entryBuffer.stringValue( KIO::UDSEntry::UDS_MODIFICATION_TIME ) );
+        infos.insert( KIO::UDSEntry::UDS_ACCESS_TIME, m_entryBuffer.stringValue( KIO::UDSEntry::UDS_ACCESS_TIME ) );
 
         if (url.isLocalFile())
 	{
-		infos.insert( KIO::UDS_LOCAL_PATH, url.path() );
+		infos.insert( KIO::UDSEntry::UDS_LOCAL_PATH, url.path() );
 	}
 }
 
@@ -335,30 +335,30 @@ void MediaImpl::createMediumEntry(KIO::UDSEntry& entry,
 
 	entry.clear();
 
-	entry.insert( KIO::UDS_URL, url );
+    entry.insert( KIO::UDSEntry::UDS_URL, url );
 
 	QString label = KIO::encodeFileName( medium.prettyLabel() );
-	entry.insert( KIO::UDS_NAME, label );
+    entry.insert( KIO::UDSEntry::UDS_NAME, label );
 
-	entry.insert( KIO::UDS_FILE_TYPE, S_IFDIR);
+    entry.insert( KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
 
-	entry.insert( KIO::UDS_MIME_TYPE, medium.mimeType()  );
-	entry.insert( KIO::UDS_GUESSED_MIME_TYPE, QString::fromLatin1("inode/directory") );
+    entry.insert( KIO::UDSEntry::UDS_MIME_TYPE, medium.mimeType()  );
+    entry.insert( KIO::UDSEntry::UDS_GUESSED_MIME_TYPE, QString::fromLatin1("inode/directory") );
 
 	if (!medium.iconName().isEmpty())
 	{
-		entry.insert( KIO::UDS_ICON_NAME, medium.iconName() );
+        entry.insert( KIO::UDSEntry::UDS_ICON_NAME, medium.iconName() );
 	}
 	else
 	{
 		QString mime = medium.mimeType();
 		QString icon = KMimeType::mimeType(mime)->iconName(mime);
-		entry.insert( KIO::UDS_ICON_NAME, icon );
+        entry.insert( KIO::UDSEntry::UDS_ICON_NAME, icon );
 	}
 
 	if (medium.needMounting())
 	{
-		entry.insert( KIO::UDS_ACCESS, 0400 );
+        entry.insert( KIO::UDSEntry::UDS_ACCESS, 0400 );
 	}
 	else
 	{

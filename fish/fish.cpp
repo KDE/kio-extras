@@ -875,15 +875,15 @@ void fishProtocol::manageConnection(const QString &l) {
                     if (line[9] == 'w') accessVal |= S_IWOTH;
                     if (line[10] == 'x' || line[10] == 't') accessVal |= S_IXOTH;
                     if (line[10] == 'T' || line[10] == 't') accessVal |= S_ISVTX;
-                    udsEntry.insert(UDS_ACCESS, accessVal);
+                    udsEntry.insert(KIO::UDSEntry::UDS_ACCESS, accessVal);
 
                     pos = line.indexOf('.',12);
                     if (pos < 0) {
                         errorCount++;
                         break;
                     }
-                    udsEntry.insert(UDS_USER, line.mid(12,pos-12));
-                    udsEntry.insert(UDS_GROUP, line.mid(pos+1));
+                    udsEntry.insert(KIO::UDSEntry::UDS_USER, line.mid(12,pos-12));
+                    udsEntry.insert(KIO::UDSEntry::UDS_GROUP, line.mid(pos+1));
                 }
                 break;
 
@@ -892,7 +892,7 @@ void fishProtocol::manageConnection(const QString &l) {
                     pos2 = line.indexOf(' ',pos+1);
                     if (pos < 0 || pos2 < 0) break;
                     errorCount--;
-                    udsEntry.insert(UDS_MODIFICATION_TIME,
+                    udsEntry.insert(KIO::UDSEntry::UDS_MODIFICATION_TIME,
                                     makeTimeFromLs(line.mid(1,pos-1), line.mid(pos+1,pos2-pos), line.mid(pos2+1)));
                     break;
 
@@ -908,7 +908,7 @@ void fishProtocol::manageConnection(const QString &l) {
                     if (pos < 0 || pos2 < 0 || pos3 < 0) break;
                     dt.setTime(QTime(line.mid(pos+1,pos2-pos-1).toInt(),line.mid(pos2+1,pos3-pos2-1).toInt(),line.mid(pos3+1).toInt()));
                     errorCount--;
-                    udsEntry.insert(UDS_MODIFICATION_TIME, dt.toTime_t());
+                    udsEntry.insert(KIO::UDSEntry::UDS_MODIFICATION_TIME, dt.toTime_t());
                     break;
 
                 case 'S':
@@ -916,7 +916,7 @@ void fishProtocol::manageConnection(const QString &l) {
                     long long sizeVal = line.mid(1).toLongLong(&isOk);
                     if (!isOk) break;
                     errorCount--;
-                    udsEntry.insert(UDS_SIZE, sizeVal);
+                    udsEntry.insert(KIO::UDSEntry::UDS_SIZE, sizeVal);
                 }
                 break;
 
@@ -928,7 +928,7 @@ void fishProtocol::manageConnection(const QString &l) {
                     pos = line.lastIndexOf('/');
                     thisFn = line.mid(pos < 0?1:pos+1);
                     if (fishCommand == FISH_LIST) {
-                        udsEntry.insert(UDS_NAME, thisFn);
+                        udsEntry.insert(KIO::UDSEntry::UDS_NAME, thisFn);
                     }
                     // By default, the mimetype comes from the extension
                     // We'll use the file(1) result only as fallback [like the rest of KDE does]
@@ -956,17 +956,17 @@ void fishProtocol::manageConnection(const QString &l) {
                     break;
 
                 case 'L':
-                    udsEntry.insert(UDS_LINK_DEST, line.mid(1));
+                    udsEntry.insert(KIO::UDSEntry::UDS_LINK_DEST, line.mid(1));
                     if (!udsType) udsType = S_IFLNK;
                     errorCount--;
                     break;
                 }
             } else {
                 if (!udsMime.isNull())
-                    udsEntry.insert(UDS_MIME_TYPE, udsMime);
+                    udsEntry.insert(KIO::UDSEntry::UDS_MIME_TYPE, udsMime);
                 udsMime.clear();
 
-                udsEntry.insert( UDS_FILE_TYPE, udsType );
+                udsEntry.insert( KIO::UDSEntry::UDS_FILE_TYPE, udsType );
                 udsType = 0;
 
                 if (fishCommand == FISH_STAT)
@@ -1119,7 +1119,7 @@ void fishProtocol::manageConnection(const QString &l) {
                 }
             }
         } else if (fishCommand == FISH_STAT) {
-            udsStatEntry.insert( KIO::UDS_NAME, url.fileName() );
+            udsStatEntry.insert( KIO::UDSEntry::UDS_NAME, url.fileName() );
             statEntry(udsStatEntry);
         } else if (fishCommand == FISH_APPEND) {
             dataReq();

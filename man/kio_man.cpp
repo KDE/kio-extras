@@ -668,15 +668,15 @@ void MANProtocol::stat( const KUrl& url)
     kDebug(7107) << "URL " << url.url() << " parsed to title='" << title << "' section=" << section << endl;
 
     UDSEntry entry;
-    entry.insert(UDS_NAME, title);
-    entry.insert(UDS_FILE_TYPE, S_IFREG);
+    entry.insert(KIO::UDSEntry::UDS_NAME, title);
+    entry.insert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFREG);
 
     QString newUrl = "man:"+title;
     if (!section.isEmpty())
         newUrl += QString("(%1)").arg(section);
-    entry.insert(UDS_URL, newUrl);
+    entry.insert(KIO::UDSEntry::UDS_URL, newUrl);
 
-    entry.insert(UDS_MIME_TYPE, QString::fromLatin1("text/html"));
+    entry.insert(KIO::UDSEntry::UDS_MIME_TYPE, QString::fromLatin1("text/html"));
 
     statEntry(entry);
 
@@ -1500,7 +1500,7 @@ void MANProtocol::listDir(const KUrl &url)
         stripExtension( &(*it) );
 
         UDSEntry     uds_entry;
-        uds_entry.insert( KIO::UDS_NAME, *it );
+        uds_entry.insert( KIO::UDSEntry::UDS_NAME, *it );
         uds_entry_list.append( uds_entry );
     }
 

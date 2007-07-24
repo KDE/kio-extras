@@ -142,12 +142,12 @@ static bool isAbsoluteLink(const QString& path)
 
 static void createVirtualDirEntry(UDSEntry & entry)
 {
-   entry.insert( KIO::UDS_FILE_TYPE, S_IFDIR );
-   entry.insert( KIO::UDS_ACCESS, S_IRUSR | S_IXUSR | S_IRGRP | S_IXGRP | S_IROTH | S_IXOTH );
-   entry.insert( KIO::UDS_USER, QString::fromLatin1("root") );
-   entry.insert( KIO::UDS_GROUP, QString::fromLatin1("root") );
+   entry.insert( KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR );
+   entry.insert( KIO::UDSEntry::UDS_ACCESS, S_IRUSR | S_IXUSR | S_IRGRP | S_IXGRP | S_IROTH | S_IXOTH );
+   entry.insert( KIO::UDSEntry::UDS_USER, QString::fromLatin1("root") );
+   entry.insert( KIO::UDSEntry::UDS_GROUP, QString::fromLatin1("root") );
    //a dummy size
-   entry.insert( KIO::UDS_SIZE, 1024 );
+   entry.insert( KIO::UDSEntry::UDS_SIZE, 1024 );
 }
 
 
@@ -518,7 +518,7 @@ void NFSProtocol::listDir( const KUrl& _url)
       for (QStringList::Iterator it=m_exportedDirs.begin(); it!=m_exportedDirs.end(); ++it)
       {
          entry.clear();
-         entry.insert( KIO::UDS_NAME, (*it) );
+         entry.insert( KIO::UDSEntry::UDS_NAME, (*it) );
          kDebug(7121)<<"listing "<<(*it)<<endl;
          createVirtualDirEntry(entry);
          listEntry( entry, false);
@@ -580,7 +580,7 @@ void NFSProtocol::listDir( const KUrl& _url)
 
       entry.clear();
 
-      entry.insert( KIO::UDS_NAME, (*it) );
+      entry.insert( KIO::UDSEntry::UDS_NAME, (*it) );
 
       //is it a symlink ?
       if (S_ISLNK(dirres.diropres_u.diropres.attributes.mode))
@@ -599,7 +599,7 @@ void NFSProtocol::listDir( const KUrl& _url)
          if (!checkForError(clnt_stat,readLinkRes.status,(*it))) return;
          kDebug(7121)<<"link dest is -"<<readLinkRes.readlinkres_u.data<<"-"<<endl;
          QByteArray linkDest(readLinkRes.readlinkres_u.data);
-         entry.insert( KIO::UDS_LINK_DEST, QString::fromLocal8Bit( linkDest ) );
+         entry.insert( KIO::UDSEntry::UDS_LINK_DEST, QString::fromLocal8Bit( linkDest ) );
 
          bool isValid=isValidLink(path,linkDest);
          if (!isValid)
@@ -651,7 +651,7 @@ void NFSProtocol::stat( const KUrl & url)
    {
       UDSEntry entry;
 
-      entry.insert( KIO::UDS_NAME, path );
+      entry.insert( KIO::UDSEntry::UDS_NAME, path );
       createVirtualDirEntry(entry);
       // no size
       statEntry( entry );
@@ -686,7 +686,7 @@ void NFSProtocol::stat( const KUrl & url)
    getLastPart(path, fileName, parentDir);
    stripTrailingSlash(parentDir);
 
-   entry.insert( KIO::UDS_NAME, fileName );
+   entry.insert( KIO::UDSEntry::UDS_NAME, fileName );
 
    //is it a symlink ?
    if (S_ISLNK(attrAndStat.attrstat_u.attributes.mode))
@@ -705,7 +705,7 @@ void NFSProtocol::stat( const KUrl & url)
       if (!checkForError(clnt_stat,readLinkRes.status,path)) return;
       kDebug(7121)<<"link dest is -"<<readLinkRes.readlinkres_u.data<<"-"<<endl;
       QByteArray linkDest(readLinkRes.readlinkres_u.data);
-      entry.insert( KIO::UDS_LINK_DEST, QString::fromLocal8Bit( linkDest ) );
+      entry.insert( KIO::UDSEntry::UDS_LINK_DEST, QString::fromLocal8Bit( linkDest ) );
 
       bool isValid=isValidLink(parentDir,linkDest);
       if (!isValid)
@@ -749,10 +749,10 @@ void NFSProtocol::completeAbsoluteLinkUDSEntry(UDSEntry& entry, const QByteArray
    struct stat buff;
    if ( ::stat( path.data(), &buff ) == -1 ) return;
 
-   entry.insert( KIO::UDS_FILE_TYPE, buff.st_mode & S_IFMT ); // extract file type
-   entry.insert( KIO::UDS_ACCESS, buff.st_mode & 07777 ); // extract permissions
-   entry.insert( KIO::UDS_SIZE, buff.st_size );
-   entry.insert( KIO::UDS_MODIFICATION_TIME, buff.st_mtime );
+   entry.insert( KIO::UDSEntry::UDS_FILE_TYPE, buff.st_mode & S_IFMT ); // extract file type
+   entry.insert( KIO::UDSEntry::UDS_ACCESS, buff.st_mode & 07777 ); // extract permissions
+   entry.insert( KIO::UDSEntry::UDS_SIZE, buff.st_size );
+   entry.insert( KIO::UDSEntry::UDS_MODIFICATION_TIME, buff.st_mtime );
 
    uid_t uid = buff.st_uid;
 
@@ -769,7 +769,7 @@ void NFSProtocol::completeAbsoluteLinkUDSEntry(UDSEntry& entry, const QByteArray
    } else
       str = m_usercache.value( uid );
 
-   entry.insert( UDS_USER, str );
+   entry.insert( KIO::UDSEntry::UDS_USER, str );
 
    gid_t gid = buff.st_gid;
 
@@ -787,10 +787,10 @@ void NFSProtocol::completeAbsoluteLinkUDSEntry(UDSEntry& entry, const QByteArray
    else
       str = m_groupcache.value( gid );
 
-   entry.insert( KIO::UDS_GROUP, str );
+   entry.insert( KIO::UDSEntry::UDS_GROUP, str );
 
-   entry.insert( KIO::UDS_ACCESS_TIME, buff.st_atime );
-   entry.insert( KIO::UDS_CREATION_TIME, buff.st_ctime );
+   entry.insert( KIO::UDSEntry::UDS_ACCESS_TIME, buff.st_atime );
+   entry.insert( KIO::UDSEntry::UDS_CREATION_TIME, buff.st_ctime );
 }
 
 void NFSProtocol::completeBadLinkUDSEntry(UDSEntry& entry, fattr& attributes)
@@ -798,19 +798,19 @@ void NFSProtocol::completeBadLinkUDSEntry(UDSEntry& entry, fattr& attributes)
    // It is a link pointing to nowhere
    completeUDSEntry(entry,attributes);
 
-   entry.insert( KIO::UDS_FILE_TYPE, S_IFMT - 1 );
-   entry.insert( KIO::UDS_ACCESS, S_IRWXU | S_IRWXG | S_IRWXO );
-   entry.insert( KIO::UDS_SIZE, 0L );
+   entry.insert( KIO::UDSEntry::UDS_FILE_TYPE, S_IFMT - 1 );
+   entry.insert( KIO::UDSEntry::UDS_ACCESS, S_IRWXU | S_IRWXG | S_IRWXO );
+   entry.insert( KIO::UDSEntry::UDS_SIZE, 0L );
 }
 
 void NFSProtocol::completeUDSEntry(UDSEntry& entry, fattr& attributes)
 {
-   entry.insert( KIO::UDS_SIZE, attributes.size );
-   entry.insert( KIO::UDS_MODIFICATION_TIME, attributes.mtime.seconds );
-   entry.insert( KIO::UDS_ACCESS_TIME, attributes.atime.seconds );
-   entry.insert( KIO::UDS_CREATION_TIME, attributes.ctime.seconds );
-   entry.insert( KIO::UDS_ACCESS, (attributes.mode & 07777) );
-   entry.insert( KIO::UDS_FILE_TYPE, attributes.mode & S_IFMT ); // extract file type
+   entry.insert( KIO::UDSEntry::UDS_SIZE, attributes.size );
+   entry.insert( KIO::UDSEntry::UDS_MODIFICATION_TIME, attributes.mtime.seconds );
+   entry.insert( KIO::UDSEntry::UDS_ACCESS_TIME, attributes.atime.seconds );
+   entry.insert( KIO::UDSEntry::UDS_CREATION_TIME, attributes.ctime.seconds );
+   entry.insert( KIO::UDSEntry::UDS_ACCESS, (attributes.mode & 07777) );
+   entry.insert( KIO::UDSEntry::UDS_FILE_TYPE, attributes.mode & S_IFMT ); // extract file type
 
    uid_t uid = attributes.uid;
    QString str;
@@ -828,7 +828,7 @@ void NFSProtocol::completeUDSEntry(UDSEntry& entry, fattr& attributes)
    else
       str = m_usercache.value( uid );
 
-   entry.insert( KIO::UDS_USER, str );
+   entry.insert( KIO::UDSEntry::UDS_USER, str );
 
    gid_t gid = attributes.gid;
 
@@ -846,34 +846,34 @@ void NFSProtocol::completeUDSEntry(UDSEntry& entry, fattr& attributes)
    else
       str = m_groupcache.value( gid );
 
-   entry.insert( KIO::UDS_GROUP, str );
+   entry.insert( KIO::UDSEntry::UDS_GROUP, str );
 
 /*   KIO::UDSEntry::ConstIterator it = entry.begin();
    for( ; it != entry.end(); it++ ) {
       switch (it.key()) {
-      case KIO::UDS_FILE_TYPE:
+      case KIO::UDSEntry::UDS_FILE_TYPE:
          kDebug(7121) << "File Type : " << (mode_t)((*it).m_long) << endl;
          break;
-      case KIO::UDS_ACCESS:
+      case KIO::UDSEntry::UDS_ACCESS:
          kDebug(7121) << "Access permissions : " << (mode_t)((*it).m_long) << endl;
          break;
-      case KIO::UDS_USER:
+      case KIO::UDSEntry::UDS_USER:
          kDebug(7121) << "User : " << ((*it).m_str.toAscii() ) << endl;
          break;
-      case KIO::UDS_GROUP:
+      case KIO::UDSEntry::UDS_GROUP:
          kDebug(7121) << "Group : " << ((*it).m_str.toAscii() ) << endl;
          break;
-      case KIO::UDS_NAME:
+      case KIO::UDSEntry::UDS_NAME:
          kDebug(7121) << "Name : " << ((*it).m_str.toAscii() ) << endl;
          //m_strText = decodeFileName( (*it).m_str );
          break;
-      case KIO::UDS_URL:
+      case KIO::UDSEntry::UDS_URL:
          kDebug(7121) << "URL : " << ((*it).m_str.toAscii() ) << endl;
          break;
-      case KIO::UDS_MIME_TYPE:
+      case KIO::UDSEntry::UDS_MIME_TYPE:
          kDebug(7121) << "MimeType : " << ((*it).m_str.toAscii() ) << endl;
          break;
-      case KIO::UDS_LINK_DEST:
+      case KIO::UDSEntry::UDS_LINK_DEST:
          kDebug(7121) << "LinkDest : " << ((*it).m_str.toAscii() ) << endl;
          break;
       }

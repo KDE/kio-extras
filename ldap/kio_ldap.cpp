@@ -188,23 +188,23 @@ void LDAPProtocol::LDAPEntry2UDSEntry( const LdapDN &dn, UDSEntry &entry,
     name.remove( 0, pos+1 );
   name.replace(' ', "_");
   if ( !dir ) name += ".ldif";
-  entry.insert( UDS_NAME, name );
+    entry.insert( KIO::UDSEntry::UDS_NAME, name );
 
   // the file type
-  entry.insert( UDS_FILE_TYPE, dir ? S_IFDIR : S_IFREG );
+    entry.insert( KIO::UDSEntry::UDS_FILE_TYPE, dir ? S_IFDIR : S_IFREG );
 
   // the mimetype
   if (!dir) {
-    entry.insert( UDS_MIME_TYPE, QString::fromLatin1("text/plain") );
+    entry.insert( KIO::UDSEntry::UDS_MIME_TYPE, QString::fromLatin1("text/plain") );
   }
 
-  entry.insert( UDS_ACCESS, dir ? 0500 : 0400 );
+    entry.insert( KIO::UDSEntry::UDS_ACCESS, dir ? 0500 : 0400 );
 
   // the url
   LdapUrl url=usrc;
   url.setPath('/'+dn.toString());
   url.setScope( dir ? LdapUrl::One : LdapUrl::Base );
-  entry.insert( UDS_URL, url.prettyUrl() );
+    entry.insert( KIO::UDSEntry::UDS_URL, url.prettyUrl() );
 }
 
 
