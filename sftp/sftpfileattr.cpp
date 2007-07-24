@@ -61,39 +61,39 @@ The UDSEntry is generated from the sftp file attributes. */
 UDSEntry sftpFileAttr::entry() {
     UDSEntry entry;
 
-    entry.insert(KIO::UDS_NAME, mFilename );
+    entry.insert(KIO::UDSEntry::UDS_NAME, mFilename );
 
     if( mFlags & SSH2_FILEXFER_ATTR_SIZE ) {
-        entry.insert(KIO::UDS_SIZE, mSize );
+        entry.insert(KIO::UDSEntry::UDS_SIZE, mSize );
     }
 
     if( mFlags & SSH2_FILEXFER_ATTR_ACMODTIME ) {
-        entry.insert(KIO::UDS_ACCESS_TIME, mAtime );
+        entry.insert(KIO::UDSEntry::UDS_ACCESS_TIME, mAtime );
 
-        entry.insert(KIO::UDS_MODIFICATION_TIME, mMtime );
+        entry.insert(KIO::UDSEntry::UDS_MODIFICATION_TIME, mMtime );
     }
 
     if( mFlags & SSH2_FILEXFER_ATTR_UIDGID ) {
         if( mUserName.isEmpty() || mGroupName.isEmpty() )
             getUserGroupNames();
 
-        entry.insert(UDS_USER, mUserName );
+        entry.insert(UDSEntry::UDS_USER, mUserName );
 
-        entry.insert(UDS_GROUP, mGroupName );
+        entry.insert(UDSEntry::UDS_GROUP, mGroupName );
     }
 
     if( mFlags & SSH2_FILEXFER_ATTR_PERMISSIONS ) {
-        entry.insert(UDS_ACCESS, mPermissions );
+        entry.insert(UDSEntry::UDS_ACCESS, mPermissions );
 
         mode_t type = fileType();
 
         // Set the type if we know what it is
         if( type != 0 ) {
-            entry.insert(UDS_FILE_TYPE, (mLinkType ? mLinkType:type) );
+            entry.insert(UDSEntry::UDS_FILE_TYPE, (mLinkType ? mLinkType:type) );
         }
 
         if( S_ISLNK(type) ) {
-            entry.insert(UDS_LINK_DEST, mLinkDestination );
+            entry.insert(UDSEntry::UDS_LINK_DEST, mLinkDestination );
         }
     }
 

@@ -1228,11 +1228,11 @@ void sftpProtocol::stat ( const KUrl& url ){
     if( !url.hasPath() ) {
         UDSEntry entry;
 
-        entry.insert( KIO::UDS_NAME, QString::fromLatin1(".") );
-        entry.insert( KIO::UDS_FILE_TYPE, S_IFDIR );
-        entry.insert( KIO::UDS_ACCESS, S_IRUSR | S_IXUSR | S_IRGRP | S_IXGRP | S_IROTH | S_IXOTH );
-        entry.insert( KIO::UDS_USER, mUsername );
-        entry.insert( KIO::UDS_GROUP, mUsername );
+        entry.insert( KIO::UDSEntry::UDS_NAME, QString::fromLatin1(".") );
+        entry.insert( KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR );
+        entry.insert( KIO::UDSEntry::UDS_ACCESS, S_IRUSR | S_IXUSR | S_IRGRP | S_IXGRP | S_IROTH | S_IXOTH );
+        entry.insert( KIO::UDSEntry::UDS_USER, mUsername );
+        entry.insert( KIO::UDSEntry::UDS_GROUP, mUsername );
 
         // no size
         statEntry( entry );
