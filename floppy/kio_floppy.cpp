@@ -369,11 +369,11 @@ void FloppyProtocol::errorMissingMToolsProgram(const QString& name)
 
 void FloppyProtocol::createUDSEntry(const StatInfo& info, UDSEntry& entry)
 {
-   entry.insert( KIO::UDS_NAME, info.name );
-   entry.insert( KIO::UDS_SIZE, info.size );
-   entry.insert( KIO::UDS_MODIFICATION_TIME, info.time );
-   entry.insert( KIO::UDS_ACCESS, info.mode );
-   entry.insert( KIO::UDS_FILE_TYPE, info.isDir?S_IFDIR:S_IFREG );
+   entry.insert( KIO::UDSEntry::UDS_NAME, info.name );
+   entry.insert( KIO::UDSEntry::UDS_SIZE, info.size );
+   entry.insert( KIO::UDSEntry::UDS_MODIFICATION_TIME, info.time );
+   entry.insert( KIO::UDSEntry::UDS_ACCESS, info.mode );
+   entry.insert( KIO::UDSEntry::UDS_FILE_TYPE, info.isDir?S_IFDIR:S_IFREG );
 }
 
 StatInfo FloppyProtocol::createStatInfo(const QString line, bool makeStat, const QString& dirName)
