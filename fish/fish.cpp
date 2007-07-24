@@ -91,7 +91,7 @@
 #define dataReq() do{myDebug( << "_______ emitting dataReq()" << endl); dataReq();}while(0)
 #define needSubURLData() do{myDebug( << "_______ emitting needSubURLData()" << endl); needSubURLData();}while(0)
 #define slaveStatus(x,y) do{myDebug( << "_______ emitting slaveStatus(" << x << ", " << y << ")" << endl); slaveStatus(x,y);}while(0)
-#define statEntry(x) do{myDebug( << "_______ emitting statEntry("<<x.size()<<")" << endl); statEntry(x);}while(0)
+#define statEntry(x) do{myDebug( << "_______ emitting statEntry("<<x.count()<<")" << endl); statEntry(x);}while(0)
 #define listEntries(x) do{myDebug( << "_______ emitting listEntries(...)" << endl); listEntries(x);}while(0)
 #define canResume(x) do{myDebug( << "_______ emitting canResume("<<(int)x<<")" << endl); canResume(x);}while(0)
 #define totalSize(x) do{myDebug( << "_______ emitting totalSize("<<(int)x<<")" << endl); totalSize(x);}while(0)
