@@ -60,28 +60,28 @@ extern "C" {
 static void createFileEntry(KIO::UDSEntry& entry, const QString& name, const QString& url, const QString& mime, const QString& iconName, const QString& localPath)
 {
 	entry.clear();
-	entry.insert( KIO::UDS_NAME, KIO::encodeFileName(name) );
-	entry.insert( KIO::UDS_FILE_TYPE, S_IFREG);
-	entry.insert( KIO::UDS_URL, url );
-	entry.insert( KIO::UDS_ACCESS, 0500);
-	entry.insert( KIO::UDS_MIME_TYPE, mime );
-	entry.insert( KIO::UDS_SIZE, 0);
-	entry.insert( KIO::UDS_LOCAL_PATH, localPath );
-	entry.insert( KIO::UDS_CREATION_TIME, 1);
-	entry.insert( KIO::UDS_MODIFICATION_TIME, time(0) );
-	entry.insert( KIO::UDS_ICON_NAME, iconName  );
+	entry.insert( KIO::UDSEntry::UDS_NAME, KIO::encodeFileName(name) );
+	entry.insert( KIO::UDSEntry::UDS_FILE_TYPE, S_IFREG);
+	entry.insert( KIO::UDSEntry::UDS_URL, url );
+	entry.insert( KIO::UDSEntry::UDS_ACCESS, 0500);
+	entry.insert( KIO::UDSEntry::UDS_MIME_TYPE, mime );
+	entry.insert( KIO::UDSEntry::UDS_SIZE, 0);
+	entry.insert( KIO::UDSEntry::UDS_LOCAL_PATH, localPath );
+	entry.insert( KIO::UDSEntry::UDS_CREATION_TIME, 1);
+	entry.insert( KIO::UDSEntry::UDS_MODIFICATION_TIME, time(0) );
+	entry.insert( KIO::UDSEntry::UDS_ICON_NAME, iconName  );
 }
 
 static void createDirEntry(KIO::UDSEntry& entry, const QString& name, const QString& url, const QString& mime,const QString& iconName)
 {
 	entry.clear();
-	entry.insert( KIO::UDS_NAME, name );
-	entry.insert( KIO::UDS_FILE_TYPE, S_IFDIR );
-	entry.insert( KIO::UDS_ACCESS, 0500 );
-	entry.insert( KIO::UDS_MIME_TYPE, mime );
-	entry.insert( KIO::UDS_URL, url );
+	entry.insert( KIO::UDSEntry::UDS_NAME, name );
+	entry.insert( KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR );
+	entry.insert( KIO::UDSEntry::UDS_ACCESS, 0500 );
+	entry.insert( KIO::UDSEntry::UDS_MIME_TYPE, mime );
+	entry.insert( KIO::UDSEntry::UDS_URL, url );
 	//entry.insert( KIO::UDS_SIZE, 0 );
-	entry.insert( KIO::UDS_ICON_NAME, iconName );
+	entry.insert( KIO::UDSEntry::UDS_ICON_NAME, iconName );
 }
 
 SettingsProtocol::SettingsProtocol( const QByteArray &protocol, const QByteArray &pool, const QByteArray &app): SlaveBase( protocol, pool, app )

@@ -191,14 +191,14 @@ bool ArchiveProtocol::checkNewFile( const KUrl & url, QString & path, KIO::Error
 void ArchiveProtocol::createUDSEntry( const KArchiveEntry * archiveEntry, UDSEntry & entry )
 {
     entry.clear();
-    entry.insert( UDS_NAME, archiveEntry->name() );
-    entry.insert( UDS_FILE_TYPE, archiveEntry->permissions() & S_IFMT ); // keep file type only
-    entry.insert( UDS_SIZE, archiveEntry->isFile() ? ((KArchiveFile *)archiveEntry)->size() : 0L );
-    entry.insert( UDS_MODIFICATION_TIME, archiveEntry->date());
-    entry.insert( UDS_ACCESS, archiveEntry->permissions() & 07777 ); // keep permissions only
-    entry.insert( UDS_USER, archiveEntry->user());
-    entry.insert( UDS_GROUP, archiveEntry->group());
-    entry.insert( UDS_LINK_DEST, archiveEntry->symlink());
+    entry.insert( KIO::UDSEntry::UDS_NAME, archiveEntry->name() );
+    entry.insert( KIO::UDSEntry::UDS_FILE_TYPE, archiveEntry->permissions() & S_IFMT ); // keep file type only
+    entry.insert( KIO::UDSEntry::UDS_SIZE, archiveEntry->isFile() ? ((KArchiveFile *)archiveEntry)->size() : 0L );
+    entry.insert( KIO::UDSEntry::UDS_MODIFICATION_TIME, archiveEntry->date());
+    entry.insert( KIO::UDSEntry::UDS_ACCESS, archiveEntry->permissions() & 07777 ); // keep permissions only
+    entry.insert( KIO::UDSEntry::UDS_USER, archiveEntry->user());
+    entry.insert( KIO::UDSEntry::UDS_GROUP, archiveEntry->group());
+    entry.insert( KIO::UDSEntry::UDS_LINK_DEST, archiveEntry->symlink());
 }
 
 void ArchiveProtocol::listDir( const KUrl & url )
@@ -316,7 +316,7 @@ void ArchiveProtocol::stat( const KUrl & url )
             return;
         }
         // Real directory. Return just enough information for KRun to work
-        entry.insert( KIO::UDS_NAME, url.fileName());
+        entry.insert( KIO::UDSEntry::UDS_NAME, url.fileName());
         kDebug( 7109 ) << "ArchiveProtocol::stat returning name=" << url.fileName() << endl;
 
         KDE_struct_stat buff;
@@ -327,7 +327,7 @@ void ArchiveProtocol::stat( const KUrl & url )
             return;
         }
 
-        entry.insert( KIO::UDS_FILE_TYPE, buff.st_mode & S_IFMT);
+        entry.insert( KIO::UDSEntry::UDS_FILE_TYPE, buff.st_mode & S_IFMT);
 
         statEntry( entry );
 
