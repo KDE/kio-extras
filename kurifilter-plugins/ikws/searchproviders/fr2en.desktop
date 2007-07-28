@@ -57,6 +57,7 @@ Name[uz]=WordReference.com таржима: Французчадан Инглиз
 Name[x-test]=xxWordReference.com Translation: French to Englishxx
 Name[zh_TW]=WordReference.com 翻譯: 法文至英文
 Query=http://www.wordreference.com/fr/en/translation.asp?fren=\\{@}
+Query[bg]=Query=http://www.wordreference.com/fr/en/translation.asp?fren=\\{@}
 Query[x-test]=xxhttp://www.wordreference.com/fr/en/translation.asp?fren=\\{@}xx
 ServiceTypes=SearchProvider
 Type=Service

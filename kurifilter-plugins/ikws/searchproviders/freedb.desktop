@@ -11,5 +11,6 @@ Name[x-test]=xxFreeDBxx
 ServiceTypes=SearchProvider
 Keys=fdb,freedb
 Query=http://www.freedb.org/freedb_search.php?words=\\{@}
+Query[bg]=Query=http://www.freedb.org/freedb_search.php?words=\\{@}
 Query[x-test]=xxhttp://www.freedb.org/freedb_search.php?words=\\{@}xx
 Charset=utf8

@@ -57,4 +57,5 @@ Name[zh_TW]=免費的線上電腦辭典
 ServiceTypes=SearchProvider
 Keys=fd,foldoc
 Query=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
+Query[bg]=Query=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
 Query[x-test]=xxhttp://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}xx

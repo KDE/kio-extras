@@ -59,5 +59,6 @@ Name[zh_TW]=Mamma - 搜尋引擎之母
 ServiceTypes=SearchProvider
 Keys=mm,mamma
 Query=http://www.mamma.com/Mamma?lang=1&timeout=4&qtype=0&query=\\{@}
+Query[bg]=Query=http://www.mamma.com/Mamma?lang=1&timeout=4&qtype=0&query=\\{@}
 Query[ne]=http://www.mamma.com/Mamma?lang=1timeout=4&qtype=0&query=\\{@}
 Query[x-test]=xxhttp://www.mamma.com/Mamma?lang=1&timeout=4&qtype=0&query=\\{@}xx

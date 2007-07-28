@@ -57,6 +57,7 @@ Name[zh_TW]=Google 新聞
 ServiceTypes=SearchProvider
 Keys=ggn,googlenews
 Query=http://news.google.com/news?q=\\{@}&ie=UTF-8&oe=UTF-8
+Query[bg]=Query=http://news.google.com/news?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[en_GB]=http://news.google.co.uk/news?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[fi]=http://news.google.fi/news?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[fr]=http://news.google.fr/news?q=\\{@}&ie=UTF-8&oe=UTF-8

@@ -57,6 +57,7 @@ Name[uz]=WordReference.com таржима: Инглизчадан Испанча
 Name[x-test]=xxWordReference.com Translation: English to Spanishxx
 Name[zh_TW]=WordReference.com 翻譯: 英文至西班牙文
 Query=http://www.wordreference.com/es/translation.asp?tranword=\\{@}
+Query[bg]=Query=http://www.wordreference.com/es/translation.asp?tranword=\\{@}
 Query[x-test]=xxhttp://www.wordreference.com/es/translation.asp?tranword=\\{@}xx
 ServiceTypes=SearchProvider
 Type=Service

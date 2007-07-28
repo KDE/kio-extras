@@ -47,6 +47,7 @@ Name[uk]=Цифровий ідентифікатор об'єкта
 Name[x-test]=xxDigital Object Identifierxx
 Name[zh_TW]=數位物件識別
 Query=http://dx.doi.org/\\{@}
+Query[bg]=Query=http://dx.doi.org/\\{@}
 Query[x-test]=xxhttp://dx.doi.org/\\{@}xx
 ServiceTypes=SearchProvider
 Type=Service

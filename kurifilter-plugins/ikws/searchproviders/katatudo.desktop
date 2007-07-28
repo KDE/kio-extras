@@ -10,6 +10,7 @@ Name[x-test]=xxKataTudoxx
 ServiceTypes=SearchProvider
 Keys=kt,katatudo
 Query=http://www.katatudo.com.br/busca/resultado.php?q=\\{@}&onde=&b=Buscar
+Query[bg]=Query=http://www.katatudo.com.br/busca/resultado.php?q=\\{@}&onde=&b=Buscar
 Query[ne]=http://www.katatudo.com.br/busca/resultado.php?q=\\{@}onde=&b=Buscar
 Query[x-test]=xxhttp://www.katatudo.com.br/busca/resultado.php?q=\\{@}&onde=&b=Buscarxx
 Charset=utf8

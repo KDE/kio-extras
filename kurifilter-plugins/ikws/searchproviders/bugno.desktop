@@ -59,6 +59,7 @@ Name[x-test]=xxKDE Bug Database Bug Number Searchxx
 Name[xh]=KDE Uphendlo Lwenani Legciwane Isiseko se data Segciwane
 Name[zh_TW]=KDE 臭蟲資料庫按錯誤編號搜索
 Query=http://bugs.kde.org/show_bug.cgi?id=\\{@}
+Query[bg]=Query=http://bugs.kde.org/show_bug.cgi?id=\\{@}
 Query[x-test]=xxhttp://bugs.kde.org/show_bug.cgi?id=\\{@}xx
 ServiceTypes=SearchProvider
 Type=Service

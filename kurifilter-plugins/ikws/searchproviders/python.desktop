@@ -58,6 +58,7 @@ Name[x-test]=xxPython Reference Manualxx
 Name[xh]=Ubhekiso lwe Python yesandla
 Name[zh_TW]=Python 參考手冊
 Query=http://www.google.com/search?sourceid=python-search&q=\{@}&submit=Search&q=site%3Apython.org
+Query[bg]=Query=http://www.google.com/search?sourceid=python-search&q=\{@}&submit=Search&q=site%3Apython.org
 Query[en_GB]=http://www.google.co.uk/search?sourceid=python-search&q=\{@}&submit=Search&q=site%3Apython.org
 Query[fr]=http://www.google.fr/search?sourceid=python-search&q=\{@}&submit=Search&q=site%3Apython.org
 Query[fy]=http://www.google.nl/search?sourceid=python-search&q=\{@}&submit=Search&q=site%3Apython.org

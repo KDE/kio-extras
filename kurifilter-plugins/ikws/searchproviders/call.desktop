@@ -55,6 +55,7 @@ Name[uk]=База даних callsign QRZ.com
 Name[x-test]=xxQRZ.com Callsign Databasexx
 Name[zh_TW]=QRZ.com Callsign 資料庫
 Query=http://www.qrz.com/database?callsign=\\{@}
+Query[bg]=Query=http://www.qrz.com/database?callsign=\\{@}
 Query[x-test]=xxhttp://www.qrz.com/database?callsign=\\{@}xx
 ServiceTypes=SearchProvider
 Type=Service

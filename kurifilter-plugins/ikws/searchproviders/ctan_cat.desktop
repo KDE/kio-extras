@@ -60,6 +60,7 @@ Name[wa]=Catalogue do CTAN
 Name[x-test]=xxCTAN Catalogxx
 Name[zh_TW]=CTAN 目錄
 Query=http://www.ctan.org/tools/cataloguesearch?action=/search/&catstring=\\{@}
+Query[bg]=Query=http://www.ctan.org/tools/cataloguesearch?action=/search/&catstring=\\{@}
 Query[x-test]=xxhttp://www.ctan.org/tools/cataloguesearch?action=/search/&catstring=\\{@}xx
 ServiceTypes=SearchProvider
 Type=Service

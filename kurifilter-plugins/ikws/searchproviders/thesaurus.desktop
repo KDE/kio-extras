@@ -49,5 +49,6 @@ Name[zh_TW]=韋氏辭典
 ServiceTypes=SearchProvider
 Keys=ths,thesaurus
 Query=http://www.m-w.com/cgi-bin/thesaurus?book=Thesaurus&va=\\{@}
+Query[bg]=Query=http://www.m-w.com/cgi-bin/thesaurus?book=Thesaurus&va=\\{@}
 Query[ne]=http://www.m-w.com/cgi-bin/thesaurus?book=Thesaurusva=\\{@}
 Query[x-test]=xxhttp://www.m-w.com/cgi-bin/thesaurus?book=Thesaurus&va=\\{@}xx

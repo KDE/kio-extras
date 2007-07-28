@@ -60,5 +60,6 @@ Name[zh_TW]=Acronym 資料庫
 ServiceTypes=SearchProvider
 Keys=ad,acro,acronym
 Query=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query[bg]=Query=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
 Query[ne]=http://www.chemie.de/tools/acronym.php3?language=eacronym=\\{@}
 Query[x-test]=xxhttp://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}xx

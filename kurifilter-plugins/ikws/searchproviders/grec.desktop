@@ -55,6 +55,7 @@ Name[uk]=Великий словник каталонської мови (GRan E
 Name[x-test]=xxGreat Dictionary of the Catalan Language (GRan Enciclopèdia  Catalana)xx
 Name[zh_TW]=很棒的加泰隆尼亞語文字典 (GRan Enciclopèdia  Catalana)
 Query=http://www.grec.net/cgibin/lexicx.pgm?GECART=\\{@}
+Query[bg]=Query=http://www.grec.net/cgibin/lexicx.pgm?GECART=\\{@}
 Query[x-test]=xxhttp://www.grec.net/cgibin/lexicx.pgm?GECART=\\{@}xx
 ServiceTypes=SearchProvider
 Type=Service

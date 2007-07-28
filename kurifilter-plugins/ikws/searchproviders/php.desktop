@@ -59,6 +59,7 @@ Name[x-test]=xxPHP Searchxx
 Name[xh]=Uphendlo lwe PHP
 Name[zh_TW]=PHP 搜尋
 Query=http://www.php.net/search.php?show=\\{mode,"manual"}&pattern=\\{@}
+Query[bg]=Query=http://www.php.net/search.php?show=\\{mode,"manual"}&pattern=\\{@}
 Query[ne]=http://www.php.net/search.php?show=\\{mode,"manual"}pattern=\\{@}
 Query[x-test]=xxhttp://www.php.net/search.php?show=\\{mode,"manual"}&pattern=\\{@}xx
 ServiceTypes=SearchProvider

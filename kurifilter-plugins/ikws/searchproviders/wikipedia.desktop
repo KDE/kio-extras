@@ -63,6 +63,7 @@ Name[zh_TW]=Wikipedia - 免費的 Encyclopedia
 ServiceTypes=SearchProvider
 Keys=wp
 Query=http://en.wikipedia.org/wiki/Special:Search?search=\{@}&go=Go
+Query[bg]=Query=http://en.wikipedia.org/wiki/Special:Search?search=\{@}&go=Go
 Query[de]=http://de.wikipedia.org/wiki/Special:Search?search=\{@}&go=Go
 Query[fi]=http://fi.wikipedia.org/wiki/Special:Search?search=\{@}&go=Go
 Query[fr]=http://fr.wikipedia.org/wiki/Special:Search?search=\{@}&go=Go

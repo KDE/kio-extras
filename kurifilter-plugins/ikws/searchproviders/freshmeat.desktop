@@ -13,4 +13,5 @@ Name[x-test]=xxFreshmeatxx
 ServiceTypes=SearchProvider
 Keys=fm,freshmeat
 Query=http://freshmeat.net/search/?q=\\{@}
+Query[bg]=Query=http://freshmeat.net/search/?q=\\{@}
 Query[x-test]=xxhttp://freshmeat.net/search/?q=\\{@}xx

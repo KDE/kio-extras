@@ -51,6 +51,7 @@ Name[uk]=Пошук серед додаткових пакетів Debian
 Name[x-test]=xxDebian Backports Searchxx
 Name[zh_TW]=Debian Backports 搜尋
 Query=http://www.backports.org/package.php?search=\\{@}
+Query[bg]=Query=http://www.backports.org/package.php?search=\\{@}
 Query[x-test]=xxhttp://www.backports.org/package.php?search=\\{@}xx
 ServiceTypes=SearchProvider
 Type=Service

@@ -70,6 +70,7 @@ Name[zh_TW]=CGI 命令稿
 Comment=Configure the CGI KIO slave
 Comment[af]=Stel die CGI KIO slaaf op
 Comment[be]=Настаўленні CGI KIO slave
+Comment[bg]=Настройване на модула за изпълнение на скриптове без уеб сървър - CGI KIO
 Comment[ca]=Configura l'esclau KIO CGI
 Comment[cs]=Nastavení CGI pro KDE
 Comment[csb]=Kònfigùracëjô procedurë òbsłużënkù CGI
@@ -127,6 +128,7 @@ Comment[zh_TW]=設定 CGI KIO slave
 
 Keywords=CGI,KIO,Slave,Paths
 Keywords[be]=Шляхі,CGI,KIO,Slave,Paths
+Keywords[bg]=Keywords=скриптове, уеб, динамичен, скрипт, Интернет, път, пътища, CGI, KIO, Slave, Paths
 Keywords[br]=CGI,KIO,sklav,hentoù
 Keywords[ca]=CGI,KIO,Esclau,Rutes
 Keywords[cs]=CGI,KIO,slave,cesty

@@ -34,4 +34,5 @@ Name[xh]=LEO-Guqulela
 ServiceTypes=SearchProvider
 Keys=leo
 Query=http://dict.leo.org/?search=\\{@}
+Query[bg]=Query=http://dict.leo.org/?search=\\{@}
 Query[x-test]=xxhttp://dict.leo.org/?search=\\{@}xx

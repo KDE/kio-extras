@@ -59,4 +59,5 @@ Type=Service
 ServiceTypes=SearchProvider
 Keys=tt,teletekst
 Query=http://teletekst.nos.nl/gif/\\{@}-01.html
+Query[bg]=Query=http://teletekst.nos.nl/gif/\\{@}-01.html
 Query[x-test]=xxhttp://teletekst.nos.nl/gif/\\{@}-01.htmlxx

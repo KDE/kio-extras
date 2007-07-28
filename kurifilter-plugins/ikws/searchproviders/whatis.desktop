@@ -59,6 +59,7 @@ ServiceTypes=SearchProvider
 Keys=wi,whatis
 Query= http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
 Query[be]=http://whatis.techtarget.com/wsearchResults/1,290214,,00.html?query=\\{@}
+Query[bg]=Query=http://whatis.techtarget.com/wsearchResults/1,290214,,00.html?query=\\{@}
 Query[csb]=http://whatis.techtarget.com/wsearchResults/1,290214,,00.html?query=\\{@}
 Query[de]=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
 Query[x-test]=xx http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}xx

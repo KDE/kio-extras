@@ -57,6 +57,7 @@ Name[uz]=WordReference.com таржима: Италянчадан Инглизч
 Name[x-test]=xxWordReference.com Translation: Italian to Englishxx
 Name[zh_TW]=WordReference.com 翻譯: 義大利文至英文
 Query=http://www.wordreference.com/it/en/translation.asp?iten=\\{@}
+Query[bg]=Query=http://www.wordreference.com/it/en/translation.asp?iten=\\{@}
 Query[x-test]=xxhttp://www.wordreference.com/it/en/translation.asp?iten=\\{@}xx
 ServiceTypes=SearchProvider
 Type=Service

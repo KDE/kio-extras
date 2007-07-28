@@ -65,6 +65,7 @@ Name[zh_TW]=Google 圖片搜尋
 ServiceTypes=SearchProvider
 Keys=ggi,images
 Query=http://images.google.com/images?q=\\{@}
+Query[bg]=Query=http://images.google.com/images?q=\\{@}
 Query[en_GB]=http://images.google.co.uk/images?q=\\{@}
 Query[fr]=http://images.google.fr/images?q=\\{@}
 Query[he]=http://images.google.co.il/images?q=\\{@}

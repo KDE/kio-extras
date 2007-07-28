@@ -59,6 +59,7 @@ Name[wa]=Documintåcion di Qt so les fyis
 Name[x-test]=xxLatest Qt Online Documentationxx
 Name[zh_TW]=最新的 Qt 線上文件
 Query=http://doc.trolltech.com/latest/\\{@}.html
+Query[bg]=Query=http://doc.trolltech.com/latest/\\{@}.html
 Query[x-test]=xxhttp://doc.trolltech.com/latest/\\{@}.htmlxx
 ServiceTypes=SearchProvider
 Type=Service

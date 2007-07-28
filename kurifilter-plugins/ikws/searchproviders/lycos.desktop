@@ -13,5 +13,6 @@ Name[x-test]=xxLycosxx
 ServiceTypes=SearchProvider
 Keys=lycos,ly
 Query=http://www.lycos.com/cgi-bin/pursuit?cat=dir&query=\\{@}
+Query[bg]=Query=http://www.lycos.com/cgi-bin/pursuit?cat=dir&query=\\{@}
 Query[ne]=http://www.lycos.com/cgi-bin/pursuit?cat=dirquery=\\{@}
 Query[x-test]=xxhttp://www.lycos.com/cgi-bin/pursuit?cat=dir&query=\\{@}xx

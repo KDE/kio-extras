@@ -58,5 +58,6 @@ Name[zh_TW]=LEO - 翻譯德語和法語
 ServiceTypes=SearchProvider
 Keys=de2fr
 Query=http://dict.leo.org/?lp=frde&search=\\{@}
+Query[bg]=Query=http://dict.leo.org/?lp=frde&search=\\{@}
 Query[ne]=http://dict.leo.org/?lp=frdesearch=\\{@}
 Query[x-test]=xxhttp://dict.leo.org/?lp=frde&search=\\{@}xx

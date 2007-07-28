@@ -55,6 +55,7 @@ Name[uz]=CiteSeer: Аниқ фанлар учун электрон кутубх�
 Name[x-test]=xxCiteSeer: Scientific Literature Digital Libraryxx
 Name[zh_TW]=CiteSeer: 科學文獻數位圖書館
 Query=http://citeseer.ist.psu.edu/cs?q=\\{@}&submit=Search+Documents&cs=1
+Query[bg]=Query=http://citeseer.ist.psu.edu/cs?q=\\{@}&submit=Search+Documents&cs=1
 Query[ne]=http://citeseer.ist.psu.edu/cs?q=\\{@}submit=Search+Documents&cs=1
 Query[x-test]=xxhttp://citeseer.ist.psu.edu/cs?q=\\{@}&submit=Search+Documents&cs=1xx
 ServiceTypes=SearchProvider
