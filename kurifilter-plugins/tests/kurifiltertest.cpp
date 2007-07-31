@@ -25,6 +25,7 @@
 #include <ksharedconfig.h>
 #include <klocale.h>
 #include <kio/netaccess.h>
+#include <kdefakes.h>
 
 #include <QtCore/QDir>
 #include <QtCore/QRegExp>

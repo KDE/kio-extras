@@ -81,6 +81,7 @@
 #include <fcntl.h>
 #include <errno.h>
 #include <sys/resource.h>
+#include <kdefakes.h>
 
 #include "fish.h"
 #include "fishcode.h"
