@@ -28,7 +28,7 @@ int kdemain( int argc, char **argv )
 {
   KComponentData componentData( "kio_ldap" );
 
-  kDebug(7125) << "Starting " << getpid() << endl;
+  kDebug(7125) << "Starting " << getpid();
 
   if ( argc != 4 ) {
     kError() << "Usage kio_ldap protocol pool app" << endl;
@@ -39,7 +39,7 @@ int kdemain( int argc, char **argv )
   LDAPProtocol slave( argv[1], argv[ 2 ], argv[ 3 ] );
   slave.dispatchLoop();
 
-  kDebug( 7125 ) << "Done" << endl;
+  kDebug( 7125 ) << "Done";
   return 0;
 }
 
@@ -51,7 +51,7 @@ LDAPProtocol::LDAPProtocol( const QByteArray &protocol, const QByteArray &pool,
 {
   mConnected = false;
   mOp.setConnection( mConn );
-  kDebug(7125) << "LDAPProtocol::LDAPProtocol (" << protocol << ")" << endl;
+  kDebug(7125) << "LDAPProtocol::LDAPProtocol (" << protocol << ")";
 }
 
 LDAPProtocol::~LDAPProtocol()
@@ -299,7 +299,7 @@ void LDAPProtocol::openConnection()
   while ( true ) {
     retval = mConn.bind();
     if ( retval == 0 ) {
-      kDebug(7125) << "connected!" << endl;
+      kDebug(7125) << "connected!";
       connected();
       return;
     }
@@ -349,7 +349,7 @@ void LDAPProtocol::closeConnection()
   if ( mConnected ) mConn.close();
   mConnected = false;
 
-  kDebug(7125) << "connection closed!" << endl;
+  kDebug(7125) << "connection closed!";
 }
 
 /**
@@ -357,7 +357,7 @@ void LDAPProtocol::closeConnection()
  */
 void LDAPProtocol::get( const KUrl &_url )
 {
-  kDebug(7125) << "get(" << _url << ")" << endl;
+  kDebug(7125) << "get(" << _url << ")";
 
   LdapUrl usrc(_url);
   int ret, id;
@@ -373,7 +373,7 @@ void LDAPProtocol::get( const KUrl &_url )
   if ( mServer.pageSize() ) {
     LdapControls ctrls = serverctrls;
     ctrls.append( LdapControl::createPageControl( mServer.pageSize() ) );
-    kDebug(7125) << "page size: " << mServer.pageSize() << endl;
+    kDebug(7125) << "page size: " << mServer.pageSize();
     mOp.setServerControls( ctrls );
   } else {
     mOp.setServerControls( serverctrls );
@@ -397,22 +397,22 @@ void LDAPProtocol::get( const KUrl &_url )
       LDAPErr();
       return;
     }
-    kDebug(7125) << " ldap_result: " << ret << endl;
+    kDebug(7125) << " ldap_result: " << ret;
     if ( ret == LdapOperation::RES_SEARCH_RESULT ) {
 
       if ( mServer.pageSize() ) {
         QByteArray cookie;
         int estsize = -1;
         for ( int i = 0; i < mOp.controls().count(); ++i ) {
-          kDebug(7125) << " control oid: " << mOp.controls()[i].oid() << endl;
+          kDebug(7125) << " control oid: " << mOp.controls()[i].oid();
           estsize = mOp.controls()[i].parsePageControl( cookie );
           if ( estsize != -1 ) break;
         }
-        kDebug(7125) << " estimated size: " << estsize << endl;
+        kDebug(7125) << " estimated size: " << estsize;
         if ( estsize != -1 && !cookie.isEmpty() ) {
           LdapControls ctrls;
           ctrls = serverctrls;
-          kDebug(7125) << "page size: " << mServer.pageSize() << " estimated size: " << estsize << endl;
+          kDebug(7125) << "page size: " << mServer.pageSize() << " estimated size: " << estsize;
           ctrls.append( LdapControl::createPageControl( mServer.pageSize(), cookie ) );
           mOp.setServerControls( ctrls );
           if ( (id = mOp.search( usrc.dn(), usrc.scope(), usrc.filter(), usrc.attributes() )) == -1 ) {
@@ -446,7 +446,7 @@ void LDAPProtocol::get( const KUrl &_url )
  */
 void LDAPProtocol::stat( const KUrl &_url )
 {
-  kDebug(7125) << "stat(" << _url << ")" << endl;
+  kDebug(7125) << "stat(" << _url << ")";
 
   QStringList att,saveatt;
   LdapUrl usrc(_url);
@@ -467,7 +467,7 @@ void LDAPProtocol::stat( const KUrl &_url )
     return;
   }
   
-  kDebug(7125) << "stat() getting result" << endl;
+  kDebug(7125) << "stat() getting result";
   do {
     ret = mOp.waitForResult( id, -1 );
     if ( ret == -1 || mConn.ldapErrorCode() != KLDAP_SUCCESS ) {
@@ -498,7 +498,7 @@ void LDAPProtocol::stat( const KUrl &_url )
  */
 void LDAPProtocol::del( const KUrl &_url, bool )
 {
-  kDebug(7125) << "del(" << _url << ")" << endl;
+  kDebug(7125) << "del(" << _url << ")";
 
   LdapUrl usrc(_url);
   int id, ret;
@@ -514,7 +514,7 @@ void LDAPProtocol::del( const KUrl &_url, bool )
   mOp.setServerControls( serverctrls );
   mOp.setClientControls( clientctrls );
 
-  kDebug(7125) << " del: " << usrc.dn().toString().toUtf8() << endl ;
+  kDebug(7125) << " del: " << usrc.dn().toString().toUtf8();
 
   if ( (id = mOp.del( usrc.dn() ) == -1) ) {
     LDAPErr();
@@ -531,7 +531,7 @@ void LDAPProtocol::del( const KUrl &_url, bool )
 
 void LDAPProtocol::put( const KUrl &_url, int, bool overwrite, bool )
 {
-  kDebug(7125) << "put(" << _url << ")" << endl;
+  kDebug(7125) << "put(" << _url << ")";
 
   LdapUrl usrc(_url);
 
@@ -567,13 +567,13 @@ void LDAPProtocol::put( const KUrl &_url, int, bool overwrite, bool )
       return;
     }
     if ( result == 0 ) {
-      kDebug(7125) << "EOF!" << endl;
+      kDebug(7125) << "EOF!";
       ldif.endLdif();
     }
     do {
 
       ret = ldif.nextItem();
-      kDebug(7125) << "nextitem: " << ret << endl;
+      kDebug(7125) << "nextitem: " << ret;
 
       switch ( ret ) {
         case Ldif::None:
@@ -587,7 +587,7 @@ void LDAPProtocol::put( const KUrl &_url, int, bool overwrite, bool )
               error( ERR_INTERNAL, i18n("The Ldif parser failed.") );
               return;
             case Ldif::Entry_Del:
-              kDebug(7125) << "kio_ldap_del" << endl;
+              kDebug(7125) << "kio_ldap_del";
               ldaperr = mOp.del_s( ldif.dn() );
               break;
             case Ldif::Entry_Modrdn:
@@ -599,16 +599,16 @@ void LDAPProtocol::put( const KUrl &_url, int, bool overwrite, bool )
                 ldif.newSuperior(), ldif.delOldRdn() );
               break;
             case Ldif::Entry_Mod:
-              kDebug(7125) << "kio_ldap_mod"  << endl;
+              kDebug(7125) << "kio_ldap_mod" ;
               ldaperr = mOp.modify_s( ldif.dn(), modops );
               modops.clear();
               break;
             case Ldif::Entry_Add:
-              kDebug(7125) << "kio_ldap_add " << ldif.dn().toString() << endl;
+              kDebug(7125) << "kio_ldap_add " << ldif.dn().toString();
               addObject.setDn( ldif.dn() );
               ldaperr = mOp.add_s(  addObject );
               if ( ldaperr == KLDAP_ALREADY_EXISTS && overwrite ) {
-                kDebug(7125) << ldif.dn().toString() << " already exists, delete first" << endl;
+                kDebug(7125) << ldif.dn().toString() << " already exists, delete first";
                 ldaperr = mOp.del_s( ldif.dn() );
                 if ( ldaperr == KLDAP_SUCCESS )
                   ldaperr = mOp.add_s( addObject );
@@ -617,7 +617,7 @@ void LDAPProtocol::put( const KUrl &_url, int, bool overwrite, bool )
               break;
           }
           if ( ldaperr != KLDAP_SUCCESS ) {
-            kDebug(7125) << "put ldap error: " << ldaperr << endl;
+            kDebug(7125) << "put ldap error: " << ldaperr;
             LDAPErr( ldaperr );
             return;
           }
@@ -686,7 +686,7 @@ void LDAPProtocol::listDir( const KUrl &_url )
   bool critical;
   bool isSub = ( usrc.extension( "x-dir", critical ) == "sub" );
 
-  kDebug(7125) << "listDir(" << _url << ")" << endl;
+  kDebug(7125) << "listDir(" << _url << ")";
 
   changeCheck( usrc );
   if ( !mConnected ) {
@@ -721,7 +721,7 @@ void LDAPProtocol::listDir( const KUrl &_url )
     }
     if ( ret == LdapOperation::RES_SEARCH_RESULT ) break;
     if ( ret != LdapOperation::RES_SEARCH_ENTRY ) continue;
-    kDebug(7125) << " ldap_result: " << ret << endl;
+    kDebug(7125) << " ldap_result: " << ret;
 
     total++;
     uds.clear();
@@ -729,7 +729,7 @@ void LDAPProtocol::listDir( const KUrl &_url )
     LDAPEntry2UDSEntry( mOp.object().dn(), uds, usrc );
     listEntry( uds, false );
 //      processedSize( total );
-    kDebug(7125) << " total: " << total << " " << usrc.prettyUrl() << endl;
+    kDebug(7125) << " total: " << total << " " << usrc.prettyUrl();
 
     // publish the sub-directories (if dirmode==sub)
     if ( isSub ) {
@@ -738,10 +738,10 @@ void LDAPProtocol::listDir( const KUrl &_url )
       usrc2.setScope( LdapUrl::One );
       usrc2.setAttributes( saveatt );
       usrc2.setFilter( usrc.filter() );
-      kDebug(7125) << "search2 " << dn.toString() << endl;
+      kDebug(7125) << "search2 " << dn.toString();
       if ( (id2 = mOp.search( dn, LdapUrl::One, QString(), att )) != -1 ) {
         while ( true ) {
-          kDebug(7125) << " next result " << endl;
+          kDebug(7125) << " next result ";
           ret2 = mOp.waitForResult( id2, -1 );
           if ( ret2 == -1 || ret2 == LdapOperation::RES_SEARCH_RESULT ) break;
           if ( ret2 == LdapOperation::RES_SEARCH_ENTRY ) {

@@ -185,7 +185,7 @@ void MyPtyProcess::unreadLineFrom(QByteArray inbuf, QByteArray line, bool addnl)
 
 int MyPtyProcess::exec(QByteArray command, QCStringList args)
 {
-  kDebug(PTYPROC) << "MyPtyProcess::exec(): " << command << endl;// << ", args = " << args << endl;
+  kDebug(PTYPROC) << "MyPtyProcess::exec(): " << command;// << ", args = " << args ;
 
     if (init() < 0)
         return -1;
@@ -206,7 +206,7 @@ int MyPtyProcess::exec(QByteArray command, QCStringList args)
     ok &= socketpair(AF_UNIX, SOCK_STREAM, 0, inout) >= 0;
     ok &= socketpair(AF_UNIX, SOCK_STREAM, 0, err  ) >= 0;
     if( !ok ) {
-        kDebug(PTYPROC) << "Could not create socket" << endl;
+        kDebug(PTYPROC) << "Could not create socket";
         return -1;
     }
     m_stdinout = inout[0];
@@ -269,7 +269,7 @@ int MyPtyProcess::exec(QByteArray command, QCStringList args)
     QCStringList::Iterator it;
     for (i=1, it=args.begin(); it!=args.end() && i<31; it++) {
     	argp[i++] = *it;
-    	kDebug(PTYPROC) << *it << endl;
+    	kDebug(PTYPROC) << *it;
     }
     argp[i] = 0L;
     execv(path, (char * const *)argp);
@@ -309,7 +309,7 @@ int MyPtyProcess::WaitSlave()
 	}
 	if (tio.c_lflag & ECHO) 
 	{
-	    kDebug(PTYPROC) << k_lineinfo << "Echo mode still on." << endl;
+	    kDebug(PTYPROC) << k_lineinfo << "Echo mode still on.";
 	    // sleep 1/10 sec
 	    tv.tv_sec = 0; tv.tv_usec = 100000;
 	    select(slave, 0L, 0L, 0L, &tv);

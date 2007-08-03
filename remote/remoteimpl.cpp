@@ -50,7 +50,7 @@ RemoteImpl::RemoteImpl()
 
 void RemoteImpl::listRoot(KIO::UDSEntryList &list) const
 {
-	kDebug(1220) << "RemoteImpl::listRoot" << endl;
+	kDebug(1220) << "RemoteImpl::listRoot";
 
 	QStringList names_found;
 	QStringList dirList = KGlobal::dirs()->resourceDirs("remote_entries");
@@ -86,7 +86,7 @@ void RemoteImpl::listRoot(KIO::UDSEntryList &list) const
 
 bool RemoteImpl::findDirectory(const QString &filename, QString &directory) const
 {
-	kDebug(1220) << "RemoteImpl::findDirectory" << endl;
+	kDebug(1220) << "RemoteImpl::findDirectory";
 
 	QStringList dirList = KGlobal::dirs()->resourceDirs("remote_entries");
 
@@ -121,7 +121,7 @@ bool RemoteImpl::findDirectory(const QString &filename, QString &directory) cons
 
 QString RemoteImpl::findDesktopFile(const QString &filename) const
 {
-	kDebug(1220) << "RemoteImpl::findDesktopFile" << endl;
+	kDebug(1220) << "RemoteImpl::findDesktopFile";
 
 	QString directory;
 	if (findDirectory(filename+".desktop", directory))
@@ -134,7 +134,7 @@ QString RemoteImpl::findDesktopFile(const QString &filename) const
 
 KUrl RemoteImpl::findBaseURL(const QString &filename) const
 {
-	kDebug(1220) << "RemoteImpl::findBaseURL" << endl;
+	kDebug(1220) << "RemoteImpl::findBaseURL";
 
 	QString file = findDesktopFile(filename);
 	if (!file.isEmpty())
@@ -206,11 +206,11 @@ void RemoteImpl::createEntry(KIO::UDSEntry &entry,
                              const QString &directory,
                              const QString &file) const
 {
-	kDebug(1220) << "RemoteImpl::createEntry" << endl;
+	kDebug(1220) << "RemoteImpl::createEntry";
 
 	KDesktopFile desktop(directory+file);
 
-	kDebug(1220) << "path = " << directory << file << endl;
+	kDebug(1220) << "path = " << directory << file;
 
 	entry.clear();
 
@@ -230,7 +230,7 @@ void RemoteImpl::createEntry(KIO::UDSEntry &entry,
 
 bool RemoteImpl::statNetworkFolder(KIO::UDSEntry &entry, const QString &filename) const
 {
-	kDebug(1220) << "RemoteImpl::statNetworkFolder: " << filename << endl;
+	kDebug(1220) << "RemoteImpl::statNetworkFolder: " << filename;
 
 	QString directory;
 	if (findDirectory(filename+".desktop", directory))
@@ -244,12 +244,12 @@ bool RemoteImpl::statNetworkFolder(KIO::UDSEntry &entry, const QString &filename
 
 bool RemoteImpl::deleteNetworkFolder(const QString &filename) const
 {
-	kDebug(1220) << "RemoteImpl::deleteNetworkFolder: " << filename << endl;
+	kDebug(1220) << "RemoteImpl::deleteNetworkFolder: " << filename;
 
 	QString directory;
 	if (findDirectory(filename+".desktop", directory))
 	{
-		kDebug(1220) << "Removing " << directory << filename << ".desktop" << endl;
+		kDebug(1220) << "Removing " << directory << filename << ".desktop";
 		return QFile::remove(directory+filename+".desktop");
 	}
 
@@ -270,7 +270,7 @@ bool RemoteImpl::renameFolders(const QString &src, const QString &dest,
 			return false;
 		}
 
-		kDebug(1220) << "Renaming " << directory << src << ".desktop"<< endl;
+		kDebug(1220) << "Renaming " << directory << src << ".desktop";
 		QDir dir(directory);
 		bool res = dir.rename(src+".desktop", dest+".desktop");
 		if (res)

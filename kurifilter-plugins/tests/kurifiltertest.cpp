@@ -48,10 +48,10 @@ static void filter( const char* u, const char * expectedResult = 0, int expected
     if( abs_path )
     {
         filterData->setAbsolutePath( QLatin1String( abs_path ) );
-        kDebug() << "Filtering: " << a << " with abs_path=" << abs_path << endl;
+        kDebug() << "Filtering: " << a << " with abs_path=" << abs_path;
     }
     else
-        kDebug() << "Filtering: " << a << endl;
+        kDebug() << "Filtering: " << a;
 
     if (KUriFilter::self()->filterUri(*filterData, list))
     {
@@ -80,13 +80,13 @@ static void filter( const char* u, const char * expectedResult = 0, int expected
             case KUriFilterData::EXECUTABLE:
                 if( filterData->hasArgsAndOptions() )
                     cmd += filterData->argsAndOptions();
-                kDebug() << "*** Result: Executable/Shell => '" << cmd << "'"<< endl;
+                kDebug() << "*** Result: Executable/Shell => '" << cmd << "'";
                 break;
             case KUriFilterData::ERROR:
-                kDebug() << "*** Result: Encountered error. See reason below." << endl;
+                kDebug() << "*** Result: Encountered error. See reason below.";
                 break;
             default:
-                kDebug() << "*** Result: Unknown or invalid resource." << endl;
+                kDebug() << "*** Result: Unknown or invalid resource.";
         }
 
         if ( expectedUriType != -1 && expectedUriType != filterData->uriType() )
@@ -108,10 +108,10 @@ static void filter( const char* u, const char * expectedResult = 0, int expected
     else
     {
         if ( expectedUriType == NO_FILTERING )
-            kDebug() << "*** No filtering required." << endl;
+            kDebug() << "*** No filtering required.";
         else
         {
-            kDebug() << "*** Could not be filtered." << endl;
+            kDebug() << "*** Could not be filtered.";
             if( expectedUriType != filterData->uriType() )
             {
                 QCOMPARE( s_uritypes[filterData->uriType()],
@@ -121,7 +121,7 @@ static void filter( const char* u, const char * expectedResult = 0, int expected
     }
 
     delete filterData;
-    kDebug() << "-----" << endl;
+    kDebug() << "-----";
 }
 
 static void testLocalFile( const QString& filename )
@@ -136,7 +136,7 @@ static void testLocalFile( const QString& filename )
         tmpFile.remove();
     }
     else
-        kDebug() << "Couldn't create " << tmpFile.fileName() << ", skipping test" << endl;
+        kDebug() << "Couldn't create " << tmpFile.fileName() << ", skipping test";
 }
 
 static char s_delimiter = ':'; // the alternative is ' '
@@ -151,7 +151,7 @@ KUriFilterTest::KUriFilterTest()
 
 void KUriFilterTest::init()
 {
-    kDebug() << k_funcinfo << endl;
+    kDebug() << k_funcinfo;
     setenv( "KDE_FORK_SLAVES", "yes", true ); // simpler, for the final cleanup
 
     // Allow testing of the search engine using both delimiters...

@@ -33,10 +33,10 @@ static bool check(const QString& txt, QString a, QString b)
     if (b.isEmpty())
         b.clear();
     if (a == b) {
-        kDebug() << txt << " : checking '" << a << "' against expected value '" << b << "'... " << "ok" << endl;
+        kDebug() << txt << " : checking '" << a << "' against expected value '" << b << "'... " << "ok";
     }
     else {
-        kDebug() << txt << " : checking '" << a << "' against expected value '" << b << "'... " << "KO !" << endl;
+        kDebug() << txt << " : checking '" << a << "' against expected value '" << b << "'... " << "KO !";
         exit(1);
     }
     return true;
@@ -51,7 +51,7 @@ int main(int argc, char *argv[])
     TestRemote test;
     test.setup();
     test.runAll();
-    kDebug() << "All tests OK." << endl;
+    kDebug() << "All tests OK.";
     return 0; // success. The exit(1) in check() is what happens in case of failure.
 }
 

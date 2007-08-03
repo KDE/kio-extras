@@ -85,14 +85,14 @@ bool Program::start()
       struct timeval tv;
       //wait up to five seconds
 
-      kDebug(7101)<<"**** waiting for notification"<<endl;
+      kDebug(7101)<<"**** waiting for notification";
       //0.2 sec
       tv.tv_sec=0;
       tv.tv_usec=1000*200;
       int result=::select(notificationPipe[0]+1,&notifSet,0,0,&tv);
 /*      if (result<1)
       {
-         kDebug(7101)<<"**** waiting for notification: failed "<<result<<endl;
+         kDebug(7101)<<"**** waiting for notification: failed "<<result;
          return false;
       }
       else*/
@@ -104,7 +104,7 @@ bool Program::start()
          if (result>0)
             return false;
       };
-      kDebug(7101)<<"**** waiting for notification: succeeded"<<result<<endl;
+      kDebug(7101)<<"**** waiting for notification: succeeded"<<result;
       return true;
    }
    else if (m_pid==-1)

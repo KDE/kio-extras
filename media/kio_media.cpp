@@ -90,7 +90,7 @@ bool MediaProtocol::rewriteUrl(const KUrl &url, KUrl &newUrl)
 void MediaProtocol::put(const KUrl &url, int permissions,
                         bool overwrite, bool resume)
 {
-	kDebug(1219) << "MediaProtocol::put: " << url << endl;
+	kDebug(1219) << "MediaProtocol::put: " << url;
 
 	QString name, path;
 	bool ok = m_impl.parseURL(url, name, path);
@@ -135,7 +135,7 @@ void MediaProtocol::rename(const KUrl &src, const KUrl &dest, bool overwrite)
 
 void MediaProtocol::mkdir(const KUrl &url, int permissions)
 {
-	kDebug(1219) << "MediaProtocol::mkdir: " << url << endl;
+	kDebug(1219) << "MediaProtocol::mkdir: " << url;
 
 	QString name, path;
 	bool ok = m_impl.parseURL(url, name, path);
@@ -152,7 +152,7 @@ void MediaProtocol::mkdir(const KUrl &url, int permissions)
 
 void MediaProtocol::del(const KUrl &url, bool isFile)
 {
-	kDebug(1219) << "MediaProtocol::del: " << url << endl;
+	kDebug(1219) << "MediaProtocol::del: " << url;
 
 	QString name, path;
 	bool ok = m_impl.parseURL(url, name, path);
@@ -169,7 +169,7 @@ void MediaProtocol::del(const KUrl &url, bool isFile)
 
 void MediaProtocol::stat(const KUrl &url)
 {
-	kDebug(1219) << "MediaProtocol::stat: " << url << endl;
+	kDebug(1219) << "MediaProtocol::stat: " << url;
 	QString path = url.path();
 	if( path.isEmpty() || path == "/" )
 	{
@@ -213,7 +213,7 @@ void MediaProtocol::stat(const KUrl &url)
 
 void MediaProtocol::listDir(const KUrl &url)
 {
-	kDebug(1219) << "MediaProtocol::listDir: " << url << endl;
+	kDebug(1219) << "MediaProtocol::listDir: " << url;
 
 	if ( url.path().length() <= 1 )
 	{

@@ -60,7 +60,7 @@ MediaNotifier::~MediaNotifier()
 }
 void MediaNotifier::onDeviceAdded(const QString &udi)
 {
-	kDebug() << "new hardware solid" << udi<<endl;
+	kDebug() << "new hardware solid" << udi;
 	Solid::Device device(udi);
 	Solid::Predicate predicate=Solid::Predicate::fromString("[[ StorageVolume.ignored == false AND StorageVolume.usage == 'FileSystem' ] OR [ IS StorageAccess AND StorageDrive.driveType == 'Floppy' ]]");
 
@@ -80,14 +80,14 @@ void MediaNotifier::onDeviceAdded(const QString &udi)
 	if (predicate.isValid() && !predicate.matches(device)) {
         return;
         }
-	//kDebug() << predicate.isValid()<<endl;
+	//kDebug() << predicate.isValid();
 	KMessageBox::information(0L, "New hardware detected with solid \n vendor is : \n"+device.vendor(), "DEBUG",QString(), KMessageBox::Notify | KMessageBox::Dangerous );
 
 }
 
 void MediaNotifier::onDeviceRemoved(const QString &udi)
 {
-	kDebug() << "remove hardware solid" << udi<<endl;
+	kDebug() << "remove hardware solid" << udi;
 }
 
 void MediaNotifier::onMediumChange( const QString &name, bool allowNotification )
@@ -300,7 +300,7 @@ bool MediaNotifier::execAutoopen( const KFileItem &medium, const QString &path,
 
 void MediaNotifier::notify( KFileItem &medium )
 {
-	/*kDebug() << "Notification triggered." << endl;
+	/*kDebug() << "Notification triggered.";
 
 	NotifierSettings *settings = new NotifierSettings();
 

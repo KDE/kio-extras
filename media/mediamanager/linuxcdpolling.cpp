@@ -147,7 +147,7 @@ public:
 protected:
 	virtual void run()
 	{
-		kDebug(1219) << "PollingThread(" << m_dev << ") start" << endl;
+		kDebug(1219) << "PollingThread(" << m_dev << ") start";
 		while (!m_stop && m_lastPollType!=DiscType::Broken)
 		{
 			m_mutex.lock();
@@ -162,7 +162,7 @@ protected:
 
 			msleep(500);
 		}
-		kDebug(1219) << "PollingThread(" << m_dev << ") stop" << endl;
+		kDebug(1219) << "PollingThread(" << m_dev << ") stop";
 	}
 
 private:
@@ -208,14 +208,14 @@ LinuxCDPolling::~LinuxCDPolling()
 
 void LinuxCDPolling::slotMediumAdded(const QString &id)
 {
-	kDebug(1219) << "LinuxCDPolling::slotMediumAdded(" << id << ")" << endl;
+	kDebug(1219) << "LinuxCDPolling::slotMediumAdded(" << id << ")";
 
 	if (m_threads.contains(id)) return;
 
 	const Medium *medium = m_mediaList.findById(id);
 
 	QString mime = medium->mimeType();
-	kDebug(1219) << "mime == " << mime << endl;
+	kDebug(1219) << "mime == " << mime;
 
 	if (mime.indexOf("dvd")==-1 && mime.indexOf("cd")==-1) return;
 
@@ -233,7 +233,7 @@ void LinuxCDPolling::slotMediumAdded(const QString &id)
 
 void LinuxCDPolling::slotMediumRemoved(const QString &id)
 {
-	kDebug(1219) << "LinuxCDPolling::slotMediumRemoved(" << id << ")" << endl;
+	kDebug(1219) << "LinuxCDPolling::slotMediumRemoved(" << id << ")";
 
 	if (!m_threads.contains(id)) return;
 
@@ -254,7 +254,7 @@ void LinuxCDPolling::slotMediumStateChanged(const QString &id)
 	const Medium *medium = m_mediaList.findById(id);
 
 	QString mime = medium->mimeType();
-	kDebug(1219) << "mime == " << mime << endl;
+	kDebug(1219) << "mime == " << mime;
 
 	if (mime.indexOf("dvd")==-1 && mime.indexOf("cd")==-1) return;
 
@@ -281,7 +281,7 @@ void LinuxCDPolling::slotMediumStateChanged(const QString &id)
 
 void LinuxCDPolling::slotTimeout()
 {
-	//kDebug(1219) << "LinuxCDPolling::slotTimeout()" << endl;
+	//kDebug(1219) << "LinuxCDPolling::slotTimeout()";
 	if (m_threads.isEmpty())
 	{
 		m_timer.stop();
@@ -307,7 +307,7 @@ void LinuxCDPolling::slotTimeout()
 
 static QString baseType(const Medium *medium)
 {
-	kDebug(1219) << "baseType(" << medium->id() << ")" << endl;
+	kDebug(1219) << "baseType(" << medium->id() << ")";
 
 	QString devNode = medium->deviceNode();
 	QString mountPoint = medium->mountPoint();
@@ -321,12 +321,12 @@ static QString baseType(const Medium *medium)
 
 	if (devNode.indexOf("dvd")!=-1)
 	{
-		kDebug(1219) << "=> dvd" << endl;
+		kDebug(1219) << "=> dvd";
 		return "dvd";
 	}
 	else
 	{
-		kDebug(1219) << "=> cd" << endl;
+		kDebug(1219) << "=> cd";
 		return "cd";
 	}
 }
@@ -334,7 +334,7 @@ static QString baseType(const Medium *medium)
 static void restoreEmptyState(MediaList &list, const Medium *medium,
                               bool allowNotification)
 {
-	kDebug(1219) << "restoreEmptyState(" << medium->id() << ")" << endl;
+	kDebug(1219) << "restoreEmptyState(" << medium->id() << ")";
 
 	QString id = medium->id();
 	QString devNode = medium->deviceNode();

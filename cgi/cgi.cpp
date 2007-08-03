@@ -36,7 +36,7 @@ using namespace KIO;
 CgiProtocol::CgiProtocol( const QByteArray &pool, const QByteArray &app )
     : SlaveBase( "cgi", pool, app )
 {
-  kDebug(7124) << "CgiProtocol::CgiProtocol" << endl;
+  kDebug(7124) << "CgiProtocol::CgiProtocol";
 
   KConfig _cfg( "kcmcgirc" );
   KConfigGroup cfg(&_cfg, "General" );
@@ -45,18 +45,18 @@ CgiProtocol::CgiProtocol( const QByteArray &pool, const QByteArray &app )
 
 CgiProtocol::~CgiProtocol()
 {
-  kDebug(7124) << "CgiProtocol::~CgiProtocol" << endl;
+  kDebug(7124) << "CgiProtocol::~CgiProtocol";
 }
 
 void CgiProtocol::get( const KUrl& url )
 {
-  kDebug(7124) << "CgiProtocol::get()" << endl;
-  kDebug(7124) << " URL: " << url.url() << endl;
+  kDebug(7124) << "CgiProtocol::get()";
+  kDebug(7124) << " URL: " << url.url();
 #if 0
-  kDebug(7124) << " Path: " << url.path() << endl;
-  kDebug(7124) << " Query: " << url.query() << endl;
-  kDebug(7124) << " Protocol: " << url.protocol() << endl;
-  kDebug(7124) << " Filename: " << url.filename() << endl;
+  kDebug(7124) << " Path: " << url.path();
+  kDebug(7124) << " Query: " << url.query();
+  kDebug(7124) << " Protocol: " << url.protocol();
+  kDebug(7124) << " Filename: " << url.filename();
 #endif
   QByteArray protocol = "SERVER_PROTOCOL=HTTP";
   putenv( protocol.data() );
@@ -97,24 +97,24 @@ void CgiProtocol::get( const KUrl& url )
   FILE *fd;
 
   if ( forwardFile ) {
-    kDebug(7124) << "Forwarding to '" << path << "'" << endl;
+    kDebug(7124) << "Forwarding to '" << path << "'";
 
     QByteArray filepath = QFile::encodeName( path );
 
     fd = fopen( filepath.data(), "r" );
 
     if ( !fd ) {
-      kDebug(7124) << "Error opening '" << filepath << "'" << endl;
+      kDebug(7124) << "Error opening '" << filepath << "'";
       error( KIO::ERR_CANNOT_OPEN_FOR_READING, filepath );
       return;
     }
   } else {
-    kDebug(7124) << "Cmd: " << cmd << endl;
+    kDebug(7124) << "Cmd: " << cmd;
 
     fd = popen( QFile::encodeName(KShell::quoteArg( cmd )).data(), "r" );
 
     if ( !fd ) {
-      kDebug(7124) << "Error running '" << cmd << "'" << endl;
+      kDebug(7124) << "Error running '" << cmd << "'";
       error( KIO::ERR_CANNOT_OPEN_FOR_READING, cmd );
       return;
     }
@@ -149,17 +149,17 @@ void CgiProtocol::get( const KUrl& url )
       else end = semicolon;
 
 #if 0
-      kDebug(7124) << "  colon: " << colon << endl;
-      kDebug(7124) << "  newline: " << newline << endl;
-      kDebug(7124) << "  semicolon: " << semicolon << endl;
-      kDebug(7124) << "  end: " << end << endl;
+      kDebug(7124) << "  colon: " << colon;
+      kDebug(7124) << "  newline: " << newline;
+      kDebug(7124) << "  semicolon: " << semicolon;
+      kDebug(7124) << "  end: " << end;
 #endif
 
       QByteArray contentType = output.mid( colon + 1, end - colon - 1 );
 
       contentType = contentType.trimmed();
 
-      kDebug(7124) << "ContentType: '" << contentType << "'" << endl;
+      kDebug(7124) << "ContentType: '" << contentType << "'";
 
       mimeType( contentType );
 
@@ -187,7 +187,7 @@ void CgiProtocol::get( const KUrl& url )
 
   finished();
 
-  kDebug(7124) << "CgiProtocol::get - done" << endl;
+  kDebug(7124) << "CgiProtocol::get - done";
 }
 
 extern "C" { int KDE_EXPORT kdemain( int argc, char **argv ); }
@@ -199,7 +199,7 @@ int kdemain( int argc, char **argv )
 {
   KComponentData componentData( "kio_cgi" );
 
-  kDebug(7124) << "kio_cgi starting " << getpid() << endl;
+  kDebug(7124) << "kio_cgi starting " << getpid();
 
   if (argc != 4)
   {

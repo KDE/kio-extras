@@ -48,7 +48,7 @@ private:
 extern "C" {
 	KDE_EXPORT int kdemain( int, char **argv )
 	{
-	  kDebug() << "kdemain for settings kioslave" << endl;
+	  kDebug() << "kdemain for settings kioslave";
 	  KComponentData componentData( "kio_settings" );
 	  SettingsProtocol slave(argv[1], argv[2], argv[3]);
 	  slave.dispatchLoop();
@@ -106,9 +106,9 @@ KServiceGroup::Ptr SettingsProtocol::findGroup(const QString &relPath)
 	QString alreadyFound("Settings/");
 	QStringList rest = relPath.split( '/');
 
-	kDebug() << "Trying harder to find group " << relPath << endl;
+	kDebug() << "Trying harder to find group " << relPath;
 	for ( int i=0; i<rest.count(); i++)
-		kDebug() << "Item (" << rest.at(i) << ")" << endl;
+		kDebug() << "Item (" << rest.at(i) << ")";
 
 	while (!rest.isEmpty()) {
 		KServiceGroup::Ptr tmp = KServiceGroup::group(alreadyFound);
@@ -125,7 +125,7 @@ KServiceGroup::Ptr SettingsProtocol::findGroup(const QString &relPath)
 				found = true;
 				rest.erase(rest.begin());
 				alreadyFound = g->name();
-				kDebug() << "ALREADY FOUND: " << alreadyFound << endl;
+				kDebug() << "ALREADY FOUND: " << alreadyFound;
 				break;
 			    }
 			}
@@ -231,7 +231,7 @@ void SettingsProtocol::listDir(const KUrl& url)
 			// Do not display the "Settings" menu group in Programs Mode.
 			if( (m_runMode == ProgramsMode) && relPath.startsWith( "Settings" ) )
 			{
-				kDebug() << "SettingsProtocol: SKIPPING entry programs:/" << relPath << endl;
+				kDebug() << "SettingsProtocol: SKIPPING entry programs:/" << relPath;
 				continue;
 			}
 
@@ -239,22 +239,22 @@ void SettingsProtocol::listDir(const KUrl& url)
 			{
 			  case( SettingsMode ):
 				relPath.remove(0, 9); // length("Settings/") ==9
-				kDebug() << "SettingsProtocol: adding entry settings:/" << relPath << endl;
+				kDebug() << "SettingsProtocol: adding entry settings:/" << relPath;
 				createDirEntry(entry, groupCaption, "settings:/"+relPath, "inode/directory",g->icon());
 				break;
 			  case( ProgramsMode ):
-				kDebug() << "SettingsProtocol: adding entry programs:/" << relPath << endl;
+				kDebug() << "SettingsProtocol: adding entry programs:/" << relPath;
 				createDirEntry(entry, groupCaption, "programs:/"+relPath, "inode/directory",g->icon());
 				break;
 			  case( ApplicationsMode ):
-				kDebug() << "SettingsProtocol: adding entry applications:/" << relPath << endl;
+				kDebug() << "SettingsProtocol: adding entry applications:/" << relPath;
 				createDirEntry(entry, groupCaption, "applications:/"+relPath, "inode/directory",g->icon());
 				break;
 		    }
 
 		} else {
 			KService::Ptr s(KService::Ptr::staticCast(e));
-			kDebug() << "SettingsProtocol: adding file entry " << url.url( KUrl::AddTrailingSlash )+s->name() << endl;
+			kDebug() << "SettingsProtocol: adding file entry " << url.url( KUrl::AddTrailingSlash )+s->name();
 			createFileEntry(entry,s->name(),url.url( KUrl::AddTrailingSlash )+s->desktopEntryName(), "application/x-desktop",s->icon(),KStandardDirs::locate("apps", s->desktopEntryPath()));
 		}
 

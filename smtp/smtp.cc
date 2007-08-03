@@ -130,7 +130,7 @@ SMTPProtocol::SMTPProtocol(const QByteArray & pool, const QByteArray & app,
    m_sOldPort( 0 ),
    m_opened(false)
 {
-  //kDebug(7112) << "SMTPProtocol::SMTPProtocol" << endl;
+  //kDebug(7112) << "SMTPProtocol::SMTPProtocol";
 }
 
 unsigned int SMTPProtocol::sendBufferSize() const {
@@ -143,12 +143,12 @@ unsigned int SMTPProtocol::sendBufferSize() const {
   kde_socklen_t len = sizeof(value);
   if ( fd < 0 || ::getsockopt( fd, SOL_SOCKET, SO_SNDBUF, (char*)&value, &len ) )
     value = 1024; // let's be conservative
-  kDebug(7112) << "send buffer size seems to be " << value << " octets." << endl;
+  kDebug(7112) << "send buffer size seems to be " << value << " octets.";
   return value > 0 ? value : 1024 ;
 }
 
 SMTPProtocol::~SMTPProtocol() {
-  //kDebug(7112) << "SMTPProtocol::~SMTPProtocol" << endl;
+  //kDebug(7112) << "SMTPProtocol::~SMTPProtocol";
   smtp_close();
 }
 
@@ -170,7 +170,7 @@ void SMTPProtocol::special( const QByteArray & aData ) {
   if ( what == 'c' ) {
     infoMessage( createSpecialResponse() );
 #ifndef NDEBUG
-    kDebug(7112) << "special('c') returns \"" << createSpecialResponse() << "\"" << endl;
+    kDebug(7112) << "special('c') returns \"" << createSpecialResponse() << "\"";
 #endif
   } else if ( what == 'N' ) {
     if ( !execute( Command::NOOP ) )
@@ -205,7 +205,7 @@ void SMTPProtocol::put(const KUrl & url, int /*permissions */ ,
   KEMailSettings mset;
   KUrl open_url = url;
   if ( !request.hasProfile() ) {
-    //kDebug(7112) << "kio_smtp: Profile is null" << endl;
+    //kDebug(7112) << "kio_smtp: Profile is null";
     bool hasProfile = mset.profiles().contains( open_url.host() );
     if ( hasProfile ) {
       mset.setProfile(open_url.host());
@@ -292,11 +292,11 @@ void SMTPProtocol::setHost(const QString & host, quint16 port,
 
 bool SMTPProtocol::sendCommandLine( const QByteArray & cmdline ) {
   //kDebug( cmdline.length() < 4096, 7112) << "C: " << cmdline.data();
-  //kDebug( cmdline.length() >= 4096, 7112) << "C: <" << cmdline.length() << " bytes>" << endl;
+  //kDebug( cmdline.length() >= 4096, 7112) << "C: <" << cmdline.length() << " bytes>";
   if ( cmdline.length() < 4096 )
-    kDebug(7112) << "C: >>" << cmdline.trimmed().data() << "<<" << endl;
+    kDebug(7112) << "C: >>" << cmdline.trimmed().data() << "<<";
   else
-    kDebug(7112) << "C: <" << cmdline.length() << " bytes>" << endl;
+    kDebug(7112) << "C: <" << cmdline.length() << " bytes>";
   ssize_t numWritten, cmdline_len = cmdline.length();
   if ( (numWritten = write( cmdline.data(), cmdline_len ) )!= cmdline_len ) {
     kDebug(7112) << "Tried to write " << cmdline_len << " bytes, but only " 
@@ -330,7 +330,7 @@ Response SMTPProtocol::getResponse( bool * ok ) {
       return response;
     }
 
-    kDebug(7112) << "S: >>" << QByteArray( buf, recv_len ).trimmed().data() << "<<" << endl;
+    kDebug(7112) << "S: >>" << QByteArray( buf, recv_len ).trimmed().data() << "<<";
     // ...and parse lines...
     response.parseLine( buf, recv_len );
 
@@ -352,7 +352,7 @@ Response SMTPProtocol::getResponse( bool * ok ) {
 bool SMTPProtocol::executeQueuedCommands( TransactionState * ts ) {
   assert( ts );
 
-  kDebug( canPipelineCommands(), 7112 ) << "using pipelining" << endl;
+  kDebug( canPipelineCommands(), 7112 ) << "using pipelining";
 
   while( !mPendingCommandQueue.isEmpty() ) {
     QByteArray cmdline = collectPipelineCommands( ts );
@@ -457,7 +457,7 @@ void SMTPProtocol::queueCommand( int type ) {
 
 bool SMTPProtocol::execute( int type, TransactionState * ts ) {
   auto_ptr<Command> cmd( Command::createSimpleCommand( type, this ) );
-  kFatal( !cmd.get(), 7112 ) << "Command::createSimpleCommand( " << type << " ) returned null!" << endl;
+  kFatal( !cmd.get(), 7112 ) << "Command::createSimpleCommand( " << type << " ) returned null!" ;
   return execute( cmd.get(), ts );
 }
 
@@ -465,7 +465,7 @@ bool SMTPProtocol::execute( int type, TransactionState * ts ) {
 // ### when command queues are _not_ empty!)
 bool SMTPProtocol::execute( Command * cmd, TransactionState * ts ) {
 
-  kFatal( !cmd, 7112 ) << "SMTPProtocol::execute() called with no command to run!" << endl;
+  kFatal( !cmd, 7112 ) << "SMTPProtocol::execute() called with no command to run!" ;
 
   if ( cmd->doNotExecute( ts ) )
     return true;
@@ -638,7 +638,7 @@ void SMTPProtocol::smtp_close( bool nice ) {
 
   if ( nice )
     execute( Command::QUIT );
-  kDebug( 7112 ) << "closing connection" << endl;
+  kDebug( 7112 ) << "closing connection";
   closeDescriptor();
   m_sOldServer.clear();
   m_sOldUser.clear();

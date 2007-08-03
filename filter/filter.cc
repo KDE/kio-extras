@@ -37,7 +37,7 @@ int kdemain( int argc, char ** argv)
 {
   KComponentData componentData( "kio_filter" );
 
-  kDebug(7110) << "Starting " << getpid() << endl;
+  kDebug(7110) << "Starting " << getpid();
 
   if (argc != 4)
   {
@@ -48,7 +48,7 @@ int kdemain( int argc, char ** argv)
   FilterProtocol slave(argv[1], argv[2], argv[3]);
   slave.dispatchLoop();
 
-  kDebug(7110) << "Done" << endl;
+  kDebug(7110) << "Done";
   return 0;
 }
 
@@ -91,7 +91,7 @@ void FilterProtocol::get( const KUrl & )
      {
         dataReq(); // Request data
         result = readData( inputBuffer);
-  kDebug(7110) << "requestData: got " << result << endl;
+  kDebug(7110) << "requestData: got " << result;
         if (result <= 0)
         {
           bError = true;
@@ -109,7 +109,7 @@ void FilterProtocol::get( const KUrl & )
      result = filter->uncompress();
      if ((filter->outBufferAvailable() == 0) || (result == KFilterBase::End))
      {
-         kDebug(7110) << "avail_out = " << filter->outBufferAvailable() << endl;
+         kDebug(7110) << "avail_out = " << filter->outBufferAvailable();
         if (filter->outBufferAvailable() != 0)
         {
             // Discard unused space :-)
@@ -118,7 +118,7 @@ void FilterProtocol::get( const KUrl & )
         if (bNeedMimetype)
         {
             KMimeType::Ptr mime = KMimeType::findByNameAndContent( subURL.fileName(), outputBuffer );
-            kDebug(7110) << "Emitting mimetype " << mime->name() << endl;
+            kDebug(7110) << "Emitting mimetype " << mime->name();
             mimeType( mime->name() );
             bNeedMimetype = false;
         }
@@ -138,7 +138,7 @@ void FilterProtocol::get( const KUrl & )
   {
      dataReq(); // Request data
      result = readData( inputBuffer);
-  kDebug(7110) << "requestData: got " << result << "(expecting 0)" << endl;
+  kDebug(7110) << "requestData: got " << result << "(expecting 0)";
      data( QByteArray() ); // Send EOF
   }
 

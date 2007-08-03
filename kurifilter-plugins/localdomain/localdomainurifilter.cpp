@@ -51,7 +51,7 @@ bool LocalDomainUriFilter::filterUri( KUriFilterData& data ) const
     KUrl url = data.uri();
     QString cmd = url.url();
 
-    kDebug() << "LocalDomainUriFilter::filterUri: " << url << endl;
+    kDebug() << "LocalDomainUriFilter::filterUri: " << url;
 
     if( m_hostPortPattern.exactMatch( cmd ) &&
         isLocalDomainHost( cmd ) )
@@ -60,7 +60,7 @@ bool LocalDomainUriFilter::filterUri( KUriFilterData& data ) const
         setFilteredUri( data, KUrl( cmd ) );
         setUriType( data, KUriFilterData::NET_PROTOCOL );
 
-        kDebug() << "FilteredUri: " << data.uri() << endl;
+        kDebug() << "FilteredUri: " << data.uri();
         return true;
     }
 

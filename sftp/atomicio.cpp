@@ -50,7 +50,7 @@ ssize_t	atomicio(int fd, char *_s, size_t n, bool read)
 
 		switch (res) {
 		case -1:
-		    kDebug() << "atomicio(): errno=" << errno << endl;
+		    kDebug() << "atomicio(): errno=" << errno;
 #ifdef EWOULDBLOCK
 			if (errno == EINTR || errno == EAGAIN || errno == EWOULDBLOCK)
 #else

@@ -65,7 +65,7 @@ RemoteProtocol::~RemoteProtocol()
 
 void RemoteProtocol::listDir(const KUrl &url)
 {
-	kDebug(1220) << "RemoteProtocol::listDir: " << url << endl;
+	kDebug(1220) << "RemoteProtocol::listDir: " << url;
 
 	if ( url.path().length() <= 1 )
 	{
@@ -77,7 +77,7 @@ void RemoteProtocol::listDir(const KUrl &url)
 	QString root_dirname = url.path().mid( 1, second_slash_idx-1 );
 	
 	KUrl target = m_impl.findBaseURL( root_dirname );
-	kDebug(1220) << "possible redirection target : " << target << endl;
+	kDebug(1220) << "possible redirection target : " << target;
 	if( target.isValid() )
 	{
 		target.addPath( url.path().remove(0, second_slash_idx) );
@@ -119,7 +119,7 @@ void RemoteProtocol::listRoot()
 
 void RemoteProtocol::stat(const KUrl &url)
 {
-	kDebug(1220) << "RemoteProtocol::stat: " << url << endl;
+	kDebug(1220) << "RemoteProtocol::stat: " << url;
 
 	QString path = url.path();
 	if ( path.isEmpty() || path == "/" )
@@ -163,7 +163,7 @@ void RemoteProtocol::stat(const KUrl &url)
 	else
 	{
 		KUrl target = m_impl.findBaseURL(  root_dirname );
-		kDebug( 1220 ) << "possible redirection target : " << target << endl;
+		kDebug( 1220 ) << "possible redirection target : " << target;
 		if (  target.isValid() )
 		{
 			target.addPath( url.path().remove( 0, second_slash_idx ) );
@@ -178,7 +178,7 @@ void RemoteProtocol::stat(const KUrl &url)
 
 void RemoteProtocol::del(const KUrl &url, bool /*isFile*/)
 {
-	kDebug(1220) << "RemoteProtocol::del: " << url << endl;
+	kDebug(1220) << "RemoteProtocol::del: " << url;
 
 	if (!m_impl.isWizardURL(url)
 	 && m_impl.deleteNetworkFolder(url.fileName()))
@@ -192,10 +192,10 @@ void RemoteProtocol::del(const KUrl &url, bool /*isFile*/)
 
 void RemoteProtocol::get(const KUrl &url)
 {
-	kDebug(1220) << "RemoteProtocol::get: " << url << endl;
+	kDebug(1220) << "RemoteProtocol::get: " << url;
 
 	QString file = m_impl.findDesktopFile( url.fileName() );
-	kDebug(1220) << "desktop file : " << file << endl;
+	kDebug(1220) << "desktop file : " << file;
 
 	if (!file.isEmpty())
 	{

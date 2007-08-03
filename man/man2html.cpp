@@ -791,11 +791,11 @@ static void add_links(char *c)
             if ( ok )
             {
                 // Skip &nbsp;
-                kDebug(7107) << "BEFORE SECTION:" <<  *h << endl;
+                kDebug(7107) << "BEFORE SECTION:" <<  *h;
                 if ( ( h > c + 5 ) && ( ! memcmp( h-5, "&nbsp;", 6 ) ) )
                 {
                     h -= 6;
-                    kDebug(7107) << "Skip &nbsp;" << endl;
+                    kDebug(7107) << "Skip &nbsp;";
                 }
                 else if ( *h == ';' )
                 {
@@ -1185,7 +1185,7 @@ static QByteArray scan_named_character( char*& c )
         }
         if ( !*c || *c == '\n' )
         {
-            kDebug(7107) << "Found linefeed! Could not parse character name: " << BYTEARRAY( name ) << endl;
+            kDebug(7107) << "Found linefeed! Could not parse character name: " << BYTEARRAY( name );
             return "";
         }
         c++;
@@ -1217,7 +1217,7 @@ static QByteArray scan_named_character( char*& c )
         }
         if ( !*c || *c == '\n' )
         {
-            kDebug(7107) << "Found linefeed! Could not parse (\\C mode) character name: " << BYTEARRAY( name ) << endl;
+            kDebug(7107) << "Found linefeed! Could not parse (\\C mode) character name: " << BYTEARRAY( name );
             return "";
         }
         c++;
@@ -1228,13 +1228,13 @@ static QByteArray scan_named_character( char*& c )
     QMap<QByteArray,StringDefinition>::const_iterator it=s_characterDefinitionMap.find(name);
     if (it==s_characterDefinitionMap.end())
     {
-        kDebug(7107) << "EXCEPTION: cannot find character with name: " << BYTEARRAY( name ) << endl;
+        kDebug(7107) << "EXCEPTION: cannot find character with name: " << BYTEARRAY( name );
         // No output, as an undefined string is empty by default
         return "";
     }
     else
     {
-        kDebug(7107) << "Character with name: \"" << BYTEARRAY( name ) << "\" => " << BYTEARRAY(  (*it).m_output ) << endl;
+        kDebug(7107) << "Character with name: \"" << BYTEARRAY( name ) << "\" => " << BYTEARRAY(  (*it).m_output );
         return (*it).m_output;
     }
 }
@@ -1249,7 +1249,7 @@ static QByteArray scan_named_string(char*& c)
         {
             QByteArray cstr;
             c = scan_escape_direct( c+2, cstr );
-            kDebug(7107) << "\\(" << BYTEARRAY( cstr ) << endl;
+            kDebug(7107) << "\\(" << BYTEARRAY( cstr );
             // ### HACK: as we convert characters too early to HTML, we need to support more than 2 characters here and assume that all characters passed by the variable are to be used.
             name = cstr;
         }
@@ -1289,7 +1289,7 @@ static QByteArray scan_named_string(char*& c)
         }
         if ( !*c || *c == '\n' )
         {
-            kDebug(7107) << "Found linefeed! Could not parse string name: " << BYTEARRAY( name ) << endl;
+            kDebug(7107) << "Found linefeed! Could not parse string name: " << BYTEARRAY( name );
             return "";
         }
         c++;
@@ -1304,13 +1304,13 @@ static QByteArray scan_named_string(char*& c)
     QMap<QByteArray,StringDefinition>::const_iterator it=s_stringDefinitionMap.find(name);
     if (it==s_stringDefinitionMap.end())
     {
-        kDebug(7107) << "EXCEPTION: cannot find string with name: " << BYTEARRAY( name ) << endl;
+        kDebug(7107) << "EXCEPTION: cannot find string with name: " << BYTEARRAY( name );
         // No output, as an undefined string is empty by default
         return "";
     }
     else
     {
-        kDebug(7107) << "String with name: \"" << BYTEARRAY( name ) << "\" => " << BYTEARRAY( (*it).m_output ) << endl;
+        kDebug(7107) << "String with name: \"" << BYTEARRAY( name ) << "\" => " << BYTEARRAY( (*it).m_output );
         return (*it).m_output;
     }
 }
@@ -1320,19 +1320,19 @@ static QByteArray scan_dollar_parameter(char*& c)
     int argno = 0; // No dollar argument number yet!
     if ( *c == '0' )
     {
-        //kDebug(7107) << "$0" << endl;
+        //kDebug(7107) << "$0";
         c++;
         return s_dollarZero;
     }
     else if ( *c >= '1' && *c <= '9' )
     {
-        //kDebug(7107) << "$ direct" << endl;
+        //kDebug(7107) << "$ direct";
         argno = ( *c - '0' );
         c++;
     }
     else if ( *c == '(' )
     {
-        //kDebug(7107) << "$(" << endl;
+        //kDebug(7107) << "$(";
         if ( c[1] && c[2] && c[1] >= '0' && c[1] <= '9' && c[2] >= '0' && c[2] <= '9' )
         {
             argno = ( c[1] - '0' ) * 10 + ( c[2] - '0' );
@@ -1351,7 +1351,7 @@ static QByteArray scan_dollar_parameter(char*& c)
     }
     else if ( *c == '[' )
     {
-        //kDebug(7107) << "$[" << endl;
+        //kDebug(7107) << "$[";
         argno = 0;
         c++;
         while ( *c && *c>='0' && *c<='9' && *c!=']' )
@@ -1388,17 +1388,17 @@ static QByteArray scan_dollar_parameter(char*& c)
     }
     else
     {
-            kDebug(7107) << "EXCEPTION: unknown parameter $" << *c << endl;
+            kDebug(7107) << "EXCEPTION: unknown parameter $" << *c;
         return "";
     }
-    //kDebug(7107) << "ARG $" << argno << endl;
+    //kDebug(7107) << "ARG $" << argno;
     if ( !s_argumentList.isEmpty() && argno > 0 )
     {
-        //kDebug(7107) << "ARG $" << argno << " OK!" << endl;
+        //kDebug(7107) << "ARG $" << argno << " OK!";
         argno--;
         if ( argno >= s_argumentList.size() )
         {
-            kDebug(7107) << "EXCEPTION: cannot find parameter $" << (argno+1) << endl;
+            kDebug(7107) << "EXCEPTION: cannot find parameter $" << (argno+1);
             return "";
         }
 
@@ -1413,7 +1413,7 @@ static int read_only_number_register( const QByteArray& name )
     // Internal read-only variables
     if ( name == ".$" )
     {
-        kDebug(7107) << "\\n[.$] == " << s_argumentList.size() << endl;
+        kDebug(7107) << "\\n[.$] == " << s_argumentList.size();
         return s_argumentList.size();
     }
     else if ( name == ".g" )
@@ -1443,7 +1443,7 @@ static int read_only_number_register( const QByteArray& name )
     // ### TODO: should .T be set to "html"? But we are not the HTML post-processor. :-(
 
     // ### TODO: groff defines many more read-only number registers
-    kDebug(7107) << "EXCEPTION: unknown read-only number register: " << BYTEARRAY( name ) << endl;
+    kDebug(7107) << "EXCEPTION: unknown read-only number register: " << BYTEARRAY( name );
 
     return 0; // Undefined variable
 
@@ -1481,7 +1481,7 @@ static int scan_number_register( char*& c)
         }
         if ( !*c || *c == '\n' )
         {
-            kDebug(7107) << "Found linefeed! Could not parse number register name: " << BYTEARRAY( name ) << endl;
+            kDebug(7107) << "Found linefeed! Could not parse number register name: " << BYTEARRAY( name );
             return 0;
         }
         c++;
@@ -1538,7 +1538,7 @@ static QByteArray scan_named_font( char*& c )
         {
             QByteArray cstr;
             c = scan_escape_direct( c+2, cstr );
-            kDebug(7107) << "\\(" << BYTEARRAY( cstr ) << endl;
+            kDebug(7107) << "\\(" << BYTEARRAY( cstr );
             // ### HACK: as we convert characters too early to HTML, we need to support more than 2 characters here and assume that all characters passed by the variable are to be used.
             name = cstr;
         }
@@ -1577,7 +1577,7 @@ static QByteArray scan_named_font( char*& c )
         }
         if ( !*c || *c == '\n' )
         {
-            kDebug(7107) << "Found linefeed! Could not parse font name: " << BYTEARRAY( name ) << endl;
+            kDebug(7107) << "Found linefeed! Could not parse font name: " << BYTEARRAY( name );
             return "";
         }
         c++;
@@ -1589,7 +1589,7 @@ static QByteArray scan_named_font( char*& c )
         name += *c;
         c++;
     }
-    //kDebug(7107) << "FONT NAME: " << BYTEARRAY( name ) << endl;
+    //kDebug(7107) << "FONT NAME: " << BYTEARRAY( name );
     // Now we have the name, let us find the font
     bool ok = false;
     const unsigned int number = name.toUInt( &ok );
@@ -1602,13 +1602,13 @@ static QByteArray scan_named_font( char*& c )
         }
         else
         {
-            kDebug(7107) << "EXCEPTION: font has too big number: " << BYTEARRAY( name ) << " => " << number << endl;
+            kDebug(7107) << "EXCEPTION: font has too big number: " << BYTEARRAY( name ) << " => " << number;
             name = "R"; // Let assume Regular
         }
     }
     else if ( name.isEmpty() )
     {
-        kDebug(7107) << "EXCEPTION: font has no name: " << BYTEARRAY( name ) << endl;
+        kDebug(7107) << "EXCEPTION: font has no name: " << BYTEARRAY( name );
         name = "R"; // Let assume Regular
     }
     if ( !skip_escape )
@@ -2449,7 +2449,7 @@ static char *scan_expression( char *c, int *result, const unsigned int numLoop )
         case ':': value = (value || value2); break;
         default:
                     {
-                        kDebug(7107) << "Unknown operator " << char(oper) << endl;
+                        kDebug(7107) << "Unknown operator " << char(oper);
                     }
         }
         oper=0;
@@ -2746,14 +2746,14 @@ static bool s_whileloop = false;
 static void request_while( char*& c, int j, bool mdoc )
 {
     // ### TODO: .break and .continue
-    kDebug(7107) << "Entering .while" << endl;
+    kDebug(7107) << "Entering .while";
     c += j;
     char* newline = skip_till_newline( c );
     const char oldchar = *newline;
     *newline = 0;
     // We store the full .while stuff into a QCString as if it would be a macro
     const QByteArray macro = c ;
-    kDebug(7107) << "'Macro' of .while" << endl << BYTEARRAY( macro ) << endl;
+    kDebug(7107) << "'Macro' of .while"<< BYTEARRAY( macro );
     // Prepare for continuing after .while loop end
     *newline = oldchar;
     c = newline;
@@ -2765,13 +2765,13 @@ static void request_while( char*& c, int j, bool mdoc )
     {
         // Unlike for a normal macro, we have the condition at start, so we do not need to prepend extra bytes
         char* liveloop = qstrdup( macro.data() );
-        kDebug(7107) << "Scanning .while condition" << endl;
-        kDebug(7101) << "Loop macro " << liveloop << endl;
+        kDebug(7107) << "Scanning .while condition";
+        kDebug(7101) << "Loop macro " << liveloop;
         char* end_expression = scan_expression( liveloop, &result );
-        kDebug(7101) << "After " << end_expression << endl;
+        kDebug(7101) << "After " << end_expression;
         if ( result )
         {
-            kDebug(7107) << "New .while iteration" << endl;
+            kDebug(7107) << "New .while iteration";
             // The condition is true, so call the .while's content
             char* help = end_expression + 1;
             while ( *help && ( *help == ' '  || *help == '\t' ) )
@@ -2792,7 +2792,7 @@ static void request_while( char*& c, int j, bool mdoc )
 
     //
     s_whileloop = oldwhileloop;
-    kDebug(7107) << "Ending .while" << endl;
+    kDebug(7107) << "Ending .while";
 }
 
 const int max_wordlist = 100;
@@ -3075,7 +3075,7 @@ static QByteArray scan_identifier( char*& c )
     *h = tempchar;
     if ( name.isEmpty() )
     {
-        kDebug(7107) << "EXCEPTION: identifier empty!" << endl;
+        kDebug(7107) << "EXCEPTION: identifier empty!";
     }
     c = h;
     return name;
@@ -3105,7 +3105,7 @@ static char *scan_request(char *c)
     /* .\$1 is too difficult/stuppid */
         if (c[1]=='$')
         {
-            kDebug(7107) << "Found .\\$" << endl;
+            kDebug(7107) << "Found .\\$";
             c=skip_till_newline(c); // ### TODO
         }
     else
@@ -3127,7 +3127,7 @@ static char *scan_request(char *c)
         QMap<QByteArray,StringDefinition>::const_iterator it=s_stringDefinitionMap.find(macroName);
         if (it!=s_stringDefinitionMap.end())
         {
-            kDebug(7107) << "CALLING MACRO: " << BYTEARRAY( macroName ) << endl;
+            kDebug(7107) << "CALLING MACRO: " << BYTEARRAY( macroName );
             const QByteArray oldDollarZero = s_dollarZero; // Previous value of $0
             s_dollarZero = macroName;
             sl=fill_words(c+j, wordlist, &words, true, &c);
@@ -3146,7 +3146,7 @@ static char *scan_request(char *c)
             for ( i=words; i<max_wordlist; i++ ) wordlist[i]=NULL;
             if ( !(*it).m_output.isEmpty() )
             {
-                //kDebug(7107) << "Macro content is: " << endl << BYTEARRAY( (*it).m_output ) << endl;
+                //kDebug(7107) << "Macro content is: "<< BYTEARRAY( (*it).m_output );
                 const unsigned int length = (*it).m_output.length();
                 char* work = new char [length+2];
                 work[0] = '\n'; // The macro must start after an end of line to allow a request on first line
@@ -3171,11 +3171,11 @@ static char *scan_request(char *c)
             for (i=0; i<words; i++) delete [] wordlist[i];
             *sl='\n';
             s_dollarZero = oldDollarZero;
-            kDebug(7107) << "ENDING MACRO: " << BYTEARRAY( macroName ) << endl;
+            kDebug(7107) << "ENDING MACRO: " << BYTEARRAY( macroName );
         }
         else
         {
-            kDebug(7107) << "REQUEST: " << BYTEARRAY( macroName ) << endl;
+            kDebug(7107) << "REQUEST: " << BYTEARRAY( macroName );
             switch (int request = get_request(c, nlen))
             {
                 case REQ_ab: // groff(7) "ABort"
@@ -3186,10 +3186,10 @@ static char *scan_request(char *c)
                     if (scaninbuff && buffpos)
                     {
                         buffer[buffpos]='\0';
-                        kDebug(7107) << "ABORT: " << buffer << endl;
+                        kDebug(7107) << "ABORT: " << buffer;
                     }
                     // ### TODO find a way to display it to the user
-                    kDebug(7107) << "Aborting: .ab " << (c+j) << endl;
+                    kDebug(7107) << "Aborting: .ab " << (c+j);
                     return 0;
                     break;
                 }
@@ -3201,7 +3201,7 @@ static char *scan_request(char *c)
                 }
                 case REQ_di: // groff(7) "end current DIversion"
                 {
-                    kDebug(7107) << "Start .di" << endl;
+                    kDebug(7107) << "Start .di";
                     c+=j;
                     if (*c=='\n')
                     {
@@ -3232,14 +3232,14 @@ static char *scan_request(char *c)
                     delete[] result;
                     if (*c) *c='.';
                     c=skip_till_newline(c);
-                    kDebug(7107) << "end .di" << endl;
+                    kDebug(7107) << "end .di";
                     break;
                 }
                 case REQ_ds: // groff(7) "Define String variable"
                     mode=true;
                 case REQ_as: // groff (7) "Append String variable"
                 {
-                    kDebug(7107) << "start .ds/.as" << endl;
+                    kDebug(7107) << "start .ds/.as";
                     int oldcurpos=curpos;
                     c+=j;
                     const QByteArray name( scan_identifier( c) );
@@ -3275,7 +3275,7 @@ static char *scan_request(char *c)
                     delete[] result;
                     single_escape=false;
                     curpos=oldcurpos;
-                    kDebug(7107) << "end .ds/.as" << endl;
+                    kDebug(7107) << "end .ds/.as";
                     break;
                 }
                 case REQ_br: // groff(7) "line BReak"
@@ -3546,7 +3546,7 @@ static char *scan_request(char *c)
                     buf=read_man_page(h);
                     if (!buf)
                     {
-                        kDebug(7107) << "Unable to open or read file: .so " << (h) << endl;
+                        kDebug(7107) << "Unable to open or read file: .so " << (h);
                         out_html("<BLOCKQUOTE>"
                                 "man2html: unable to open or read file.\n");
                         out_html(h);
@@ -3597,7 +3597,7 @@ static char *scan_request(char *c)
                     h=c;
                     while (*c!='\n') c++;
                     *c='\0';
-                    kDebug(7107) << ".tm " << (h) << endl;
+                    kDebug(7107) << ".tm " << (h);
                     *c='\n';
                     break;
                 }
@@ -4111,7 +4111,7 @@ static char *scan_request(char *c)
                     }
                     else
                     {
-                        kWarning(7107) << ".TH found but output not possible" << endl;
+                        kWarning(7107) << ".TH found but output not possible" ;
                         c=skip_till_newline(c);
                     }
                     curpos=0;
@@ -4138,12 +4138,12 @@ static char *scan_request(char *c)
                 case REQ_rn: // groff(7) "ReName"
                 /* .rn xx yy : Rename request, macro or string xx to yy */
                 {
-                    kDebug(7107) << "start .rm/.rn" << endl;
+                    kDebug(7107) << "start .rm/.rn";
                     c+=j;
                     const QByteArray name( scan_identifier( c ) );
                     if ( name.isEmpty() )
                     {
-                            kDebug(7107) << "EXCEPTION: empty origin string to remove/rename" << endl;
+                            kDebug(7107) << "EXCEPTION: empty origin string to remove/rename";
                             break;
                     }
                     QByteArray name2;
@@ -4153,7 +4153,7 @@ static char *scan_request(char *c)
                         name2 = scan_identifier( c );
                         if ( name2.isEmpty() )
                         {
-                            kDebug(7107) << "EXCEPTION: empty destination string to rename" << endl;
+                            kDebug(7107) << "EXCEPTION: empty destination string to rename";
                             break;
                         }
                     }
@@ -4161,7 +4161,7 @@ static char *scan_request(char *c)
                     QMap<QByteArray,StringDefinition>::iterator it=s_stringDefinitionMap.find(name);
                     if (it==s_stringDefinitionMap.end())
                     {
-                        kDebug(7107) << "EXCEPTION: cannot find string to rename or remove: " << BYTEARRAY( name ) << endl;
+                        kDebug(7107) << "EXCEPTION: cannot find string to rename or remove: " << BYTEARRAY( name );
                     }
                     else
                     {
@@ -4178,7 +4178,7 @@ static char *scan_request(char *c)
                             s_stringDefinitionMap.insert(name2,def);
                         }
                     }
-                    kDebug(7107) << "end .rm/.rn" << endl;
+                    kDebug(7107) << "end .rm/.rn";
                     break;
                 }
                 case REQ_nx:
@@ -4190,12 +4190,12 @@ static char *scan_request(char *c)
                 }
                 case REQ_nr: // groff(7) "Number Register"
                 {
-                    kDebug(7107) << "start .nr" << endl;
+                    kDebug(7107) << "start .nr";
                     c += j;
                     const QByteArray name( scan_identifier( c ) );
                     if ( name.isEmpty() )
                     {
-                            kDebug(7107) << "EXCEPTION: empty name for register variable" << endl;
+                            kDebug(7107) << "EXCEPTION: empty name for register variable";
                             break;
                     }
                     while ( *c && ( *c==' ' || *c=='\t' ) ) c++;
@@ -4234,7 +4234,7 @@ static char *scan_request(char *c)
                             (*it).m_value = value;
                         (*it).m_increment = increment;
                     }
-                    kDebug(7107) << "end .nr" << endl;
+                    kDebug(7107) << "end .nr";
                     break;
                 }
                 case REQ_am: // groff(7) "Append Macro"
@@ -4245,7 +4245,7 @@ static char *scan_request(char *c)
                 /* .de xx yy : define or redefine macro xx; end at .yy (..) */
                 /* define or handle as .ig yy */
                 {
-                    kDebug(7107) << "Start .am/.de" << endl;
+                    kDebug(7107) << "Start .am/.de";
                     c+=j;
                     char *next_line;
                     sl = fill_words(c, wordlist, &words, true, &next_line);
@@ -4309,7 +4309,7 @@ static char *scan_request(char *c)
                         (*it).m_output=macro;
                     }
                     c=skip_till_newline(c);
-                    kDebug(7107) << "End .am/.de" << endl;
+                    kDebug(7107) << "End .am/.de";
                     break;
                 }
                 case REQ_Bl: // mdoc(7) "Begin List"
@@ -5040,87 +5040,87 @@ static char *scan_request(char *c)
                      * However to make it simplier, we only copy the string.
                      */
                     // Be careful: unlike .rn, the destination is first, origin is second
-                    kDebug(7107) << "start .als" << endl;
+                    kDebug(7107) << "start .als";
                     c+=j;
                     const QByteArray name ( scan_identifier( c ) );
                     if ( name.isEmpty() )
                     {
-                            kDebug(7107) << "EXCEPTION: empty destination string to alias" << endl;
+                            kDebug(7107) << "EXCEPTION: empty destination string to alias";
                             break;
                     }
                     while (*c && isspace(*c) && *c!='\n') ++c;
                     const QByteArray name2 ( scan_identifier ( c ) );
                     if ( name2.isEmpty() )
                     {
-                            kDebug(7107) << "EXCEPTION: empty origin string to alias" << endl;
+                            kDebug(7107) << "EXCEPTION: empty origin string to alias";
                             break;
                     }
-                    kDebug(7107) << "Alias " << BYTEARRAY( name2 ) << " to " << BYTEARRAY( name ) << endl;
+                    kDebug(7107) << "Alias " << BYTEARRAY( name2 ) << " to " << BYTEARRAY( name );
                     c=skip_till_newline(c);
                     if ( name == name2 )
                     {
-                        kDebug(7107) << "EXCEPTION: same origin and destination string to alias: " << BYTEARRAY( name ) << endl;
+                        kDebug(7107) << "EXCEPTION: same origin and destination string to alias: " << BYTEARRAY( name );
                         break;
                     }
                     // Second parameter is origin (unlike in .rn)
                     QMap<QByteArray,StringDefinition>::iterator it=s_stringDefinitionMap.find(name2);
                     if (it==s_stringDefinitionMap.end())
                     {
-                        kDebug(7107) << "EXCEPTION: cannot find string to make alias of " << BYTEARRAY( name2 ) << endl;
+                        kDebug(7107) << "EXCEPTION: cannot find string to make alias of " << BYTEARRAY( name2 );
                     }
                     else
                     {
                         StringDefinition def=(*it);
                         s_stringDefinitionMap.insert(name,def);
                     }
-                    kDebug(7107) << "end .als" << endl;
+                    kDebug(7107) << "end .als";
                     break;
                 }
                 case REQ_rr: // groff(7) "Remove number Register"
                 {
-                    kDebug(7107) << "start .rr" << endl;
+                    kDebug(7107) << "start .rr";
                     c += j;
                     const QByteArray name ( scan_identifier( c ) );
                     if ( name.isEmpty() )
                     {
-                            kDebug(7107) << "EXCEPTION: empty origin string to remove/rename: " << endl;
+                            kDebug(7107) << "EXCEPTION: empty origin string to remove/rename: ";
                             break;
                     }
                     c = skip_till_newline( c );
                     QMap <QByteArray, NumberDefinition>::iterator it = s_numberDefinitionMap.find( name );
                     if ( it == s_numberDefinitionMap.end() )
                     {
-                            kDebug(7107) << "EXCEPTION: trying to remove inexistant number register: " << endl;
+                            kDebug(7107) << "EXCEPTION: trying to remove inexistant number register: ";
                     }
                     else
                     {
                         s_numberDefinitionMap.remove( name );
                     }
-                    kDebug(7107) << "end .rr" << endl;
+                    kDebug(7107) << "end .rr";
                     break;
                 }
                 case REQ_rnn: // groff(7) "ReName Number register"
                 {
-                    kDebug(7107) << "start .rnn" << endl;
+                    kDebug(7107) << "start .rnn";
                     c+=j;
                     const QByteArray name ( scan_identifier ( c ) );
                     if ( name.isEmpty() )
                     {
-                            kDebug(7107) << "EXCEPTION: empty origin to remove/rename number register" << endl;
+                            kDebug(7107) << "EXCEPTION: empty origin to remove/rename number register";
                             break;
                     }
                     while (*c && isspace(*c) && *c!='\n') ++c;
                     const QByteArray name2 ( scan_identifier ( c ) );
                     if ( name2.isEmpty() )
                     {
-                        kDebug(7107) << "EXCEPTION: empty destination to rename number register" << endl;
+                        kDebug(7107) << "EXCEPTION: empty destination to rename number register";
                         break;
                     }
                     c = skip_till_newline( c );
                     QMap<QByteArray,NumberDefinition>::iterator it=s_numberDefinitionMap.find(name);
                     if (it==s_numberDefinitionMap.end())
                     {
-                        kDebug(7107) << "EXCEPTION: cannot find number register to rename" << BYTEARRAY( name ) << endl;
+                        kDebug(7107) << "EXCEPTION: cannot find number register to rename" << BYTEARRAY( name );
                     }
                     else
                     {
@@ -5128,7 +5128,7 @@ static char *scan_request(char *c)
                         s_numberDefinitionMap.remove(name); // ### QT4: removeAll
                         s_numberDefinitionMap.insert(name2,def);
                     }
-                    kDebug(7107) << "end .rnn" << endl;
+                    kDebug(7107) << "end .rnn";
                     break;
                 }
                 case REQ_aln: // groff(7) "ALias Number Register"
@@ -5138,40 +5138,40 @@ static char *scan_request(char *c)
                     * However to make it simplier, we only copy the string.
                     */
                     // Be careful: unlike .rnn, the destination is first, origin is second
-                    kDebug(7107) << "start .aln" << endl;
+                    kDebug(7107) << "start .aln";
                     c+=j;
                     const QByteArray name ( scan_identifier( c ) );
                     if ( name.isEmpty() )
                     {
-                            kDebug(7107) << "EXCEPTION: empty destination number register to alias" << endl;
+                            kDebug(7107) << "EXCEPTION: empty destination number register to alias";
                             break;
                     }
                     while (*c && isspace(*c) && *c!='\n') ++c;
                     const QByteArray name2 ( scan_identifier( c ) );
                     if ( name2.isEmpty() )
                     {
-                            kDebug(7107) << "EXCEPTION: empty origin number register to alias" << endl;
+                            kDebug(7107) << "EXCEPTION: empty origin number register to alias";
                             break;
                     }
-                    kDebug(7107) << "Alias " << BYTEARRAY( name2 ) << " to " << BYTEARRAY( name ) << endl;
+                    kDebug(7107) << "Alias " << BYTEARRAY( name2 ) << " to " << BYTEARRAY( name );
                     c = skip_till_newline( c );
                     if ( name == name2 )
                     {
-                        kDebug(7107) << "EXCEPTION: same origin and destination number register to alias: " << BYTEARRAY( name ) << endl;
+                        kDebug(7107) << "EXCEPTION: same origin and destination number register to alias: " << BYTEARRAY( name );
                         break;
                     }
                     // Second parameter is origin (unlike in .rnn)
                     QMap<QByteArray,NumberDefinition>::iterator it=s_numberDefinitionMap.find(name2);
                     if (it==s_numberDefinitionMap.end())
                     {
-                        kDebug(7107) << "EXCEPTION: cannot find string to make alias: " << BYTEARRAY( name2 ) << endl;
+                        kDebug(7107) << "EXCEPTION: cannot find string to make alias: " << BYTEARRAY( name2 );
                     }
                     else
                     {
                         NumberDefinition def=(*it);
                         s_numberDefinitionMap.insert(name,def);
                     }
-                    kDebug(7107) << "end .aln" << endl;
+                    kDebug(7107) << "end .aln";
                     break;
                 }
                 case REQ_shift: // groff(7) "SHIFT parameter"
@@ -5478,7 +5478,7 @@ void scan_man_page(const char *man_page)
     if (!man_page)
         return;
 
-    kDebug(7107) << "Start scanning man page" << endl;
+    kDebug(7107) << "Start scanning man page";
 
     // ### Do more init
     // Unlike man2html, we actually call this several times, hence the need to
@@ -5506,11 +5506,11 @@ void scan_man_page(const char *man_page)
     qstrcpy(buf+1, man_page);
     buf[0] = '\n';
 
-    kDebug(7107) << "Parse man page" << endl;
+    kDebug(7107) << "Parse man page";
 
     scan_troff(buf+1,0,NULL);
 
-    kDebug(7107) << "Man page parsed!" << endl;
+    kDebug(7107) << "Man page parsed!";
 
     while (itemdepth || dl_set[itemdepth]) {
         out_html("</DL>\n");

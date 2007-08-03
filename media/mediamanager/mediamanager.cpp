@@ -206,7 +206,7 @@ bool MediaManager::removableCamera(const QString &devNode)
 void MediaManager::slotMediumAdded(const QString &/*id*/, const QString &name,
                                    bool allowNotification)
 {
-	kDebug(1219) << "MediaManager::slotMediumAdded: " << name << endl;
+	kDebug(1219) << "MediaManager::slotMediumAdded: " << name;
 
         org::kde::KDirNotify::emitFilesAdded( "media:/" );
 
@@ -216,7 +216,7 @@ void MediaManager::slotMediumAdded(const QString &/*id*/, const QString &name,
 void MediaManager::slotMediumRemoved(const QString &/*id*/, const QString &name,
                                      bool allowNotification)
 {
-	kDebug(1219) << "MediaManager::slotMediumRemoved: " << name << endl;
+	kDebug(1219) << "MediaManager::slotMediumRemoved: " << name;
 
         org::kde::KDirNotify::emitFilesRemoved( QStringList() << "media:/"+name );
 
@@ -226,7 +226,7 @@ void MediaManager::slotMediumRemoved(const QString &/*id*/, const QString &name,
 void MediaManager::slotMediumChanged(const QString &/*id*/, const QString &name,
                                      bool mounted, bool allowNotification)
 {
-	kDebug(1219) << "MediaManager::slotMediumChanged: " << name << endl;
+	kDebug(1219) << "MediaManager::slotMediumChanged: " << name;
 
 	if (!mounted)
 	{

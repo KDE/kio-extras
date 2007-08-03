@@ -141,13 +141,13 @@ ThumbnailProtocol::~ThumbnailProtocol()
 void ThumbnailProtocol::get(const KUrl &url)
 {
     m_mimeType = metaData("mimeType");
-    kDebug(7115) << "Wanting MIME Type:" << m_mimeType << endl;
+    kDebug(7115) << "Wanting MIME Type:" << m_mimeType;
 #ifdef THUMBNAIL_HACK
     // ### HACK
     bool direct=false;
     if (m_mimeType.isEmpty())
     {
-        kDebug(7115) << "PATH: " << url.path() << endl;
+        kDebug(7115) << "PATH: " << url.path();
         QFileInfo info(url.path());
         if (info.isDir())
         {
@@ -168,7 +168,7 @@ void ThumbnailProtocol::get(const KUrl &url)
             return;
         }
         m_mimeType = KMimeType::findByUrl(url)->name();
-        kDebug(7115) << "Guessing MIME Type:" << m_mimeType << endl;
+        kDebug(7115) << "Guessing MIME Type:" << m_mimeType;
         direct=true; // thumbnail: was probably called from Konqueror
     }
 #endif
@@ -191,7 +191,7 @@ void ThumbnailProtocol::get(const KUrl &url)
 #ifdef THUMBNAIL_HACK
     else if (!m_width || !m_height)
     {
-        kDebug(7115) << "Guessing height, width, icon sizre!" << endl;
+        kDebug(7115) << "Guessing height, width, icon sizre!";
         m_width=128;
         m_height=128;
         iconSize=128;
@@ -263,7 +263,7 @@ void ThumbnailProtocol::get(const KUrl &url)
                     break;
             }
         }
-        kDebug(7115) << "Guess plugin: " << plugin << endl;
+        kDebug(7115) << "Guess plugin: " << plugin;
 #endif
         if (plugin.isEmpty())
         {
@@ -370,7 +370,7 @@ void ThumbnailProtocol::get(const KUrl &url)
         if (direct)
         {
             // If thumbnail was called directly from Konqueror, then the image needs to be raw
-            //kDebug(7115) << "RAW IMAGE TO STREAM" << endl;
+            //kDebug(7115) << "RAW IMAGE TO STREAM";
             QBuffer buf;
             if (!buf.open(QIODevice::WriteOnly))
             {
@@ -386,7 +386,7 @@ void ThumbnailProtocol::get(const KUrl &url)
         {
             QByteArray imgData;
             QDataStream stream( &imgData, QIODevice::WriteOnly );
-            //kDebug(7115) << "IMAGE TO STREAM" << endl;
+            //kDebug(7115) << "IMAGE TO STREAM";
             stream << img;
             data(imgData);
         }
@@ -395,7 +395,7 @@ void ThumbnailProtocol::get(const KUrl &url)
     {
         QByteArray imgData;
         QDataStream stream( &imgData, QIODevice::WriteOnly );
-        //kDebug(7115) << "IMAGE TO SHMID" << endl;
+        //kDebug(7115) << "IMAGE TO SHMID";
         void *shmaddr = shmat(shmid.toInt(), 0, 0);
         if (shmaddr == (void *)-1)
         {

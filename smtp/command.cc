@@ -182,7 +182,7 @@ static sasl_callback_t callbacks[] = {
       return true;
 
     if ( tlsrc != -3 )
-      //kDebug(7112) << "TLS negotiation failed!" << endl;
+      //kDebug(7112) << "TLS negotiation failed!";
       mSMTP->messageBox(KIO::SlaveBase::Information,
 			i18n("Your SMTP server claims to "
 			     "support TLS, but negotiation "
@@ -237,7 +237,7 @@ static sasl_callback_t callbacks[] = {
       return;
     }
     if ( result == SASL_OK ) mOneStep = true;
-    kDebug(7112) << "Mechanism: " << mMechusing << " one step: " << mOneStep << endl;
+    kDebug(7112) << "Mechanism: " << mMechusing << " one step: " << mOneStep;
 #else
   mSMTP->error(KIO::ERR_COULD_NOT_AUTHENTICATE,
       i18n("Authentication support is not compiled into kio_smtp."));
@@ -248,7 +248,7 @@ static sasl_callback_t callbacks[] = {
   {
 #ifdef HAVE_LIBSASL2
     if ( conn ) {
-      kDebug(7112) << "dispose sasl connection" << endl;
+      kDebug(7112) << "dispose sasl connection";
       sasl_dispose( &conn );
       conn = 0;
     }
@@ -258,7 +258,7 @@ static sasl_callback_t callbacks[] = {
   bool AuthCommand::saslInteract( void *in )
   {
 #ifdef HAVE_LIBSASL2
-    kDebug(7112) << "saslInteract: " << endl;
+    kDebug(7112) << "saslInteract: ";
     sasl_interact_t *interact = ( sasl_interact_t * ) in;
 
     //some mechanisms do not require username && pass, so don't need a popup
@@ -282,12 +282,12 @@ static sasl_callback_t callbacks[] = {
       switch( interact->id ) {
         case SASL_CB_USER:
         case SASL_CB_AUTHNAME:
-          kDebug(7112) << "SASL_CB_[USER|AUTHNAME]: " << mAi->username << endl;
+          kDebug(7112) << "SASL_CB_[USER|AUTHNAME]: " << mAi->username;
           interact->result = strdup( mAi->username.toUtf8() );
           interact->len = strlen( (const char *) interact->result );
           break;
         case SASL_CB_PASS:
-          kDebug(7112) << "SASL_CB_PASS: [HIDDEN]" << endl;
+          kDebug(7112) << "SASL_CB_PASS: [HIDDEN]";
           interact->result = strdup( mAi->password.toUtf8() );
           interact->len = strlen( (const char *) interact->result );
           break;
@@ -333,7 +333,7 @@ static sasl_callback_t callbacks[] = {
 
       if ( mOneStep ) mComplete = true;
     } else {
-//      kDebug(7112) << "SS: '" << mLastChallenge << "'" << endl;
+//      kDebug(7112) << "SS: '" << mLastChallenge << "'";
       challenge = QByteArray::fromBase64( mLastChallenge );
       int result;
       do {
@@ -347,13 +347,13 @@ static sasl_callback_t callbacks[] = {
           };
       } while ( result == SASL_INTERACT );
       if ( result != SASL_CONTINUE && result != SASL_OK ) {
-        kDebug(7112) << "sasl_client_step failed with: " << result << endl;
+        kDebug(7112) << "sasl_client_step failed with: " << result;
         SASLERROR
         return "";
       }
       cmd = QByteArray::fromRawData( mOut, mOutlen ).toBase64();
 
-//      kDebug(7112) << "CC: '" << cmd << "'" << endl;
+//      kDebug(7112) << "CC: '" << cmd << "'";
       mComplete = ( result == SASL_OK );
     }
 #endif //HAVE_LIBSASL2
@@ -503,11 +503,11 @@ static sasl_callback_t callbacks[] = {
 
     // normal processing:
 
-    kDebug(7112) << "requesting data" << endl;
+    kDebug(7112) << "requesting data";
     mSMTP->dataReq();
     QByteArray ba;
     int result = mSMTP->readData( ba );
-    kDebug(7112) << "got " << result << " bytes" << endl;
+    kDebug(7112) << "got " << result << " bytes";
     if ( result > 0 )
       return prepare( ba );
     else if ( result < 0 ) {
@@ -559,7 +559,7 @@ static sasl_callback_t callbacks[] = {
     if ( ba.isEmpty() )
       return 0;
     if ( mSMTP->metaData("lf2crlf+dotstuff") == "slave" ) {
-      kDebug(7112) << "performing dotstuffing and LF->CRLF transformation" << endl;
+      kDebug(7112) << "performing dotstuffing and LF->CRLF transformation";
       return dotstuff_lf2crlf( ba, mLastChar );
     } else {
       mLastChar = ba[ ba.size() - 1 ];

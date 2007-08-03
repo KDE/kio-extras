@@ -61,7 +61,7 @@ void SMBSlave::auth_smbc_get_data(const char *server,const char *share,
     SMBUrlType t = m_current_url.getType();
     if( t == SMBURLTYPE_ENTIRE_NETWORK )
     {
-        kDebug(KIO_SMB) << "we don't really need to authenticate for this top level url, returning" << endl;
+        kDebug(KIO_SMB) << "we don't really need to authenticate for this top level url, returning";
         return;
     }
     kDebug(KIO_SMB) << "AAAAAAAAAAAAAA auth_smbc_get_dat: set user=" << username << ", workgroup=" << workgroup
@@ -85,7 +85,7 @@ void SMBSlave::auth_smbc_get_data(const char *server,const char *share,
     info.password = s_password;
     info.verifyPath = true;
 
-    kDebug(KIO_SMB) << "libsmb-auth-callback URL:" << info.url << endl;
+    kDebug(KIO_SMB) << "libsmb-auth-callback URL:" << info.url;
 
     if ( !checkCachedAuthentication( info ) )
     {
@@ -103,7 +103,7 @@ void SMBSlave::auth_smbc_get_data(const char *server,const char *share,
         }
 
     } else
-        kDebug(KIO_SMB) << "got password through cache" << endl;
+        kDebug(KIO_SMB) << "got password through cache";
 
     strncpy(username, info.username.toUtf8(), unmaxlen - 1);
     strncpy(password, info.password.toUtf8(), pwmaxlen - 1);
@@ -111,7 +111,7 @@ void SMBSlave::auth_smbc_get_data(const char *server,const char *share,
 
 bool SMBSlave::checkPassword(SMBUrl &url)
 {
-    kDebug(KIO_SMB) << "checkPassword for " << url << endl;
+    kDebug(KIO_SMB) << "checkPassword for " << url;
 
     KIO::AuthInfo info;
     info.url = KUrl("smb:///");
@@ -139,10 +139,10 @@ bool SMBSlave::checkPassword(SMBUrl &url)
                         share );
 
     info.username = url.user();
-    kDebug(KIO_SMB) << "call openPasswordDialog for " << info.url << endl;
+    kDebug(KIO_SMB) << "call openPasswordDialog for " << info.url;
 
     if ( openPasswordDialog(info) ) {
-        kDebug(KIO_SMB) << "openPasswordDialog returned " << info.username << endl;
+        kDebug(KIO_SMB) << "openPasswordDialog returned " << info.username;
         url.setUser(info.username);
         return true;
     }
@@ -158,10 +158,10 @@ bool SMBSlave::auth_initialize_smbc()
 {
     SMBCCTX *smb_context = NULL;
 
-    kDebug(KIO_SMB) << "auth_initialize_smbc " << endl;
+    kDebug(KIO_SMB) << "auth_initialize_smbc ";
     if(m_initialized_smbc == false)
     {
-        kDebug(KIO_SMB) << "smbc_init call" << endl;
+        kDebug(KIO_SMB) << "smbc_init call";
         KConfig cfg( "kioslaverc", KConfig::OnlyLocal);
         int debug_level = cfg.group( "SMB" ).readEntry( "DebugLevel", 0 );
 

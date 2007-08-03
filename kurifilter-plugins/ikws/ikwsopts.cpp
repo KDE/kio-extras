@@ -204,7 +204,7 @@ void FilterOptions::save()
 
   group.writeEntry("DefaultSearchEngine", m_defaultEngineMap[engine]);
 
-  // kDebug () << "Engine: " << m_defaultEngineMap[engine] << endl;
+  // kDebug () << "Engine: " << m_defaultEngineMap[engine];
 
   int changedProviderCount = 0;
   QString path = KGlobal::mainComponent().dirs()->saveLocation("services", "searchproviders/");
@@ -319,7 +319,7 @@ void FilterOptions::defaults()
 
 void FilterOptions::configChanged()
 {
-  // kDebug () << "FilterOptions::configChanged: TRUE" << endl;
+  // kDebug () << "FilterOptions::configChanged: TRUE";
   emit changed(true);
 }
 

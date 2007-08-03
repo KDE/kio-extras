@@ -43,18 +43,18 @@ RemoteDirNotify::RemoteDirNotify()
 
 KUrl RemoteDirNotify::toRemoteURL(const KUrl &url)
 {
-	kDebug(1220) << "RemoteDirNotify::toRemoteURL(" << url << ")" << endl;
+	kDebug(1220) << "RemoteDirNotify::toRemoteURL(" << url << ")";
 	if ( m_baseURL.isParentOf(url) )
 	{
 		QString path = KUrl::relativePath(m_baseURL.path(),
 						  url.path());
 		KUrl result("remote:/"+path);
 		result.cleanPath();
-		kDebug(1220) << "result => " << result << endl;
+		kDebug(1220) << "result => " << result;
 		return result;
 	}
 
-	kDebug(1220) << "result => KUrl()" << endl;
+	kDebug(1220) << "result => KUrl()";
 	return KUrl();
 }
 
@@ -80,7 +80,7 @@ KUrl::List RemoteDirNotify::toRemoteURLList(const KUrl::List &list)
 
 void RemoteDirNotify::FilesAdded(const QString &directory)
 {
-	kDebug(1220) << "RemoteDirNotify::FilesAdded" << endl;
+	kDebug(1220) << "RemoteDirNotify::FilesAdded";
 
 	KUrl new_dir = toRemoteURL(directory);
 
@@ -117,7 +117,7 @@ inline void evil_hack(const KUrl::List &list)
 
 void RemoteDirNotify::FilesRemoved(const QStringList &fileList)
 {
-	kDebug(1220) << "RemoteDirNotify::FilesRemoved" << endl;
+	kDebug(1220) << "RemoteDirNotify::FilesRemoved";
 
 	KUrl::List new_list = toRemoteURLList(fileList);
 
@@ -131,7 +131,7 @@ void RemoteDirNotify::FilesRemoved(const QStringList &fileList)
 
 void RemoteDirNotify::FilesChanged(const QStringList &fileList)
 {
-	kDebug(1220) << "RemoteDirNotify::FilesChanged" << endl;
+	kDebug(1220) << "RemoteDirNotify::FilesChanged";
 
 	KUrl::List new_list = toRemoteURLList(fileList);
 

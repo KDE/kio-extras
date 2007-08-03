@@ -194,7 +194,7 @@ void sftpFileAttr::getUserGroupNames(){
 
         QString longName = mEncoding->decode( mLongname );
 
-        kDebug(7120) << "Decoded:  " << longName << endl;
+        kDebug(7120) << "Decoded:  " << longName;
 
         // Find the beginning of the third field which contains the user name.
         while( field != 2 ) {

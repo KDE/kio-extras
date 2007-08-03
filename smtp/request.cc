@@ -47,7 +47,7 @@ namespace KioSMTP {
 
     const QStringList query = url.query().mid(1).split( '&');
 #ifndef NDEBUG
-    kDebug(7112) << "Parsing request from query:\n" + query.join("\n" ) << endl;
+    kDebug(7112) << "Parsing request from query:\n" + query.join("\n" );
 #endif
     for ( QStringList::const_iterator it = query.begin() ; it != query.end() ; ++it ) {
       int equalsPos = (*it).indexOf( '=' );

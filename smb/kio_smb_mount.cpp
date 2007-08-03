@@ -37,7 +37,7 @@ void SMBSlave::readStdErr(K3Process *, char *buffer, int buflen)
 
 void SMBSlave::special( const QByteArray & data)
 {
-   kDebug(KIO_SMB)<<"Smb::special()"<<endl;
+   kDebug(KIO_SMB)<<"Smb::special()";
    int tmp;
    QDataStream stream(data);
    stream >> tmp;
@@ -56,12 +56,12 @@ void SMBSlave::special( const QByteArray & data)
          {
             host=sl.at(0).mid(2);
             share=sl.at(1);
-            kDebug(KIO_SMB)<<"special() host -"<< host <<"- share -" << share <<"-"<<endl;
+            kDebug(KIO_SMB)<<"special() host -"<< host <<"- share -" << share <<"-";
          }
 
          remotePath.replace('\\', '/');  // smbmounterplugin sends \\host/share
 
-         kDebug(KIO_SMB) << "mounting: " << remotePath.toLocal8Bit() << " to " << mountPoint.toLocal8Bit() << endl;
+         kDebug(KIO_SMB) << "mounting: " << remotePath.toLocal8Bit() << " to " << mountPoint.toLocal8Bit();
 
          if (tmp==3) {
              if (!KStandardDirs::makeDir(mountPoint)) {
@@ -126,7 +126,7 @@ void SMBSlave::special( const QByteArray & data)
             return;
          }
 
-         kDebug(KIO_SMB) << "mount exit " << proc.exitStatus() << endl
+         kDebug(KIO_SMB) << "mount exit " << proc.exitStatus()
                           << "stdout:" << mybuf << endl << "stderr:" << mystderr << endl;
 
          if (proc.exitStatus() != 0)
@@ -167,7 +167,7 @@ void SMBSlave::special( const QByteArray & data)
            return;
          }
 
-         kDebug(KIO_SMB) << "smbumount exit " << proc.exitStatus() << endl
+         kDebug(KIO_SMB) << "smbumount exit " << proc.exitStatus()
                           << "stdout:" << mybuf << endl << "stderr:" << mystderr << endl;
 
          if (proc.exitStatus() != 0)

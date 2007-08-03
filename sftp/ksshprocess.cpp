@@ -299,16 +299,16 @@ QString KSshProcess::versionStr() {
 */
 
 bool KSshProcess::setOptions(const SshOptList& opts) {
-    kDebug(KSSHPROC) << "KSshProcess::setOptions()" << endl;
+    kDebug(KSSHPROC) << "KSshProcess::setOptions()";
     mArgs.clear();
     SshOptListConstIterator it;
     QString cmd, subsystem;
     mPassword = mUsername = mHost = QString();
     QByteArray tmp;
     for(it = opts.begin(); it != opts.end(); ++it) {
-        //kDebug(KSSHPROC) << "opt.opt = " << (*it).opt << endl;
-        //kDebug(KSSHPROC) << "opt.str = " << (*it).str << endl;
-        //kDebug(KSSHPROC) << "opt.num = " << (*it).num << endl;
+        //kDebug(KSSHPROC) << "opt.opt = " << (*it).opt;
+        //kDebug(KSSHPROC) << "opt.str = " << (*it).str;
+        //kDebug(KSSHPROC) << "opt.num = " << (*it).num;
         switch( (*it).opt ) {
         case SSH_VERBOSE:
             mArgs.append("-v");
@@ -449,14 +449,14 @@ bool KSshProcess::setOptions(const SshOptList& opts) {
 void KSshProcess::printArgs() {
     QList<QByteArray>::Iterator it;
     for( it = mArgs.begin(); it != mArgs.end(); ++it) {
-        kDebug(KSSHPROC) << "arg: " << *it << endl;
+        kDebug(KSSHPROC) << "arg: " << *it;
     }
 }
 
 
 int KSshProcess::error(QString& msg) {
-    kDebug(KSSHPROC) << "KSshProcess::error()" << endl;
-    kDebug() << mErrorMsg << endl;
+    kDebug(KSSHPROC) << "KSshProcess::error()";
+    kDebug() << mErrorMsg;
     msg = mErrorMsg;
     return mError;
 }
@@ -482,7 +482,7 @@ void KSshProcess::kill(int signal) {
                 }
             }
             else
-                kDebug(KSSHPROC) << "KSshProcess::kill(): kill failed" << endl;
+                kDebug(KSSHPROC) << "KSshProcess::kill(): kill failed";
     }
     else
         kDebug(KSSHPROC) << "KSshProcess::kill(): "
@@ -542,7 +542,7 @@ void KSshProcess::acceptHostKey(bool accept) {
 }
 
 void KSshProcess::setPassword(QString password) {
-    kDebug(KSSHPROC) << "KSshProcess::setPassword(password:xxxxxxxx)" << endl;
+    kDebug(KSSHPROC) << "KSshProcess::setPassword(password:xxxxxxxx)";
     mPassword = password;
 }
 
@@ -754,7 +754,7 @@ bool KSshProcess::connect() {
                 return false;
             }
            
-            kDebug(KSSHPROC) << "KSshPRocess::connect(): ssh pid = " << ssh.pid() << endl;
+            kDebug(KSSHPROC) << "KSshPRocess::connect(): ssh pid = " << ssh.pid();
 	    
             // set flag to indicate what have started a ssh process
             mRunning = true;
@@ -960,7 +960,7 @@ bool KSshProcess::connect() {
             }
             else if( line.indexOf(keyFingerprintMsg[mVersion]) != -1 ) {
                 mKeyFingerprint = keyFingerprintMsg[mVersion].cap();
-                kDebug(KSSHPROC) << "Found key fingerprint: " << mKeyFingerprint << endl;
+                kDebug(KSSHPROC) << "Found key fingerprint: " << mKeyFingerprint;
                 mConnectState = STATE_NEW_KEY_WAIT_CONTINUE;
             }
             else {
@@ -1018,12 +1018,12 @@ bool KSshProcess::connect() {
             }
             else if( line.indexOf(keyFingerprintMsg[mVersion]) != -1 ) {
                 mKeyFingerprint = keyFingerprintMsg[mVersion].cap();
-                kDebug(KSSHPROC) << "Found key fingerprint: " << mKeyFingerprint << endl;
+                kDebug(KSSHPROC) << "Found key fingerprint: " << mKeyFingerprint;
                 mConnectState = STATE_DIFF_KEY_WAIT_CONTINUE;
             }
             else if( line.indexOf(knownHostsFileMsg[mVersion]) != -1 ) {
                 mKnownHostsFile = (knownHostsFileMsg[mVersion]).cap(1);
-                kDebug(KSSHPROC) << "Found known hosts file name: " << mKnownHostsFile << endl;
+                kDebug(KSSHPROC) << "Found known hosts file name: " << mKnownHostsFile;
                 mConnectState = STATE_DIFF_KEY_WAIT_CONTINUE;
             }
             else {

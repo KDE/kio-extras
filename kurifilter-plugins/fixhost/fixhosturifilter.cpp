@@ -43,7 +43,7 @@ bool FixHostUriFilter::filterUri( KUriFilterData& data ) const
     KUrl url = data.uri();
     QString cmd = url.url();
     
-    kDebug() << "FixHostUriFilter::filterUri: " << url << endl;
+    kDebug() << "FixHostUriFilter::filterUri: " << url;
 
     KUrl url2 = url;
     url2.setHost( "www." + url.host());
@@ -54,7 +54,7 @@ bool FixHostUriFilter::filterUri( KUriFilterData& data ) const
         setFilteredUri( data, url2 );
         setUriType( data, KUriFilterData::NET_PROTOCOL );
         
-        kDebug() << "FilteredUri: " << data.uri() << endl;
+        kDebug() << "FilteredUri: " << data.uri();
         return true;
     }
 
