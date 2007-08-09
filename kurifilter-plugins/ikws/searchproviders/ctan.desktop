@@ -41,6 +41,7 @@ Query=http://www.ctan.org/tools/filesearch?action=/search/&filename=\\{@}
 Query[be]=http://www.ctan.org/tools/cataloguesearch?action=/search/&catstring=\\{@}
 Query[bg]=Query=http://www.ctan.org/tools/cataloguesearch?action=/search/&catstring=\\{@}
 Query[csb]=http://www.ctan.org/tools/cataloguesearch?action=/search/&catstring=\\{@}
+Query[km]=http://www.ctan.org/tools/cataloguesearch?action=/search/&catstring=\\{@}
 Query[x-test]=xxhttp://www.ctan.org/tools/filesearch?action=/search/&filename=\\{@}xx
 ServiceTypes=SearchProvider
 Type=Service
