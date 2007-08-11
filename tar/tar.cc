@@ -48,7 +48,7 @@ int kdemain( int argc, char **argv )
 {
   KComponentData componentData( "kio_tar" );
 
-  kDebug(7109) << "Starting " << getpid();
+  kDebug(7109) << "Starting" << getpid();
 
   if (argc != 4)
   {
@@ -77,7 +77,7 @@ ArchiveProtocol::~ArchiveProtocol()
 bool ArchiveProtocol::checkNewFile( const KUrl & url, QString & path, KIO::Error& errorNum )
 {
     QString fullPath = url.path();
-    kDebug(7109) << "ArchiveProtocol::checkNewFile " << fullPath;
+    kDebug(7109) << "ArchiveProtocol::checkNewFile" << fullPath;
 
 
     // Are we already looking at that file ?
@@ -90,7 +90,7 @@ bool ArchiveProtocol::checkNewFile( const KUrl & url, QString & path, KIO::Error
             if ( m_mtime == statbuf.st_mtime )
             {
                 path = fullPath.mid( m_archiveName.length() );
-                kDebug(7109) << "ArchiveProtocol::checkNewFile returning " << path;
+                kDebug(7109) << "ArchiveProtocol::checkNewFile returning" << path;
                 return true;
             }
         }
@@ -114,13 +114,13 @@ bool ArchiveProtocol::checkNewFile( const KUrl & url, QString & path, KIO::Error
     if ( len != 0 && fullPath[ len - 1 ] != '/' )
         fullPath += '/';
 
-    kDebug(7109) << "the full path is " << fullPath;
+    kDebug(7109) << "the full path is" << fullPath;
     KDE_struct_stat statbuf;
     statbuf.st_mode = 0; // be sure to clear the directory bit
     while ( (pos=fullPath.indexOf( '/', pos+1 )) != -1 )
     {
         QString tryPath = fullPath.left( pos );
-        kDebug(7109) << fullPath << "  trying " << tryPath;
+        kDebug(7109) << fullPath << "trying" << tryPath;
         if ( KDE_stat( QFile::encodeName(tryPath), &statbuf ) == -1 )
         {
             // We are not in the file system anymore, either we have already enough data or we will never get any useful data anymore
@@ -131,7 +131,7 @@ bool ArchiveProtocol::checkNewFile( const KUrl & url, QString & path, KIO::Error
             archiveFile = tryPath;
             m_mtime = statbuf.st_mtime;
             path = fullPath.mid( pos + 1 );
-            kDebug(7109) << "fullPath=" << fullPath << " path=" << path;
+            kDebug(7109).nospace() << "fullPath=" << fullPath << " path=" << path;
             len = path.length();
             if ( len > 1 )
             {
@@ -140,7 +140,7 @@ bool ArchiveProtocol::checkNewFile( const KUrl & url, QString & path, KIO::Error
             }
             else
                 path = QString::fromLatin1("/");
-            kDebug(7109) << "Found. archiveFile=" << archiveFile << " path=" << path;
+            kDebug(7109).nospace() << "Found. archiveFile=" << archiveFile << " path=" << path;
             break;
         }
     }
@@ -160,7 +160,7 @@ bool ArchiveProtocol::checkNewFile( const KUrl & url, QString & path, KIO::Error
 
     // Open new file
     if ( url.protocol() == "tar" ) {
-        kDebug(7109) << "Opening KTar on " << archiveFile;
+        kDebug(7109) << "Opening KTar on" << archiveFile;
         m_archiveFile = new KTar( archiveFile );
     } else if ( url.protocol() == "ar" ) {
         kDebug(7109) << "Opening KAr on " << archiveFile;
@@ -169,14 +169,14 @@ bool ArchiveProtocol::checkNewFile( const KUrl & url, QString & path, KIO::Error
         kDebug(7109) << "Opening KZip on " << archiveFile;
         m_archiveFile = new KZip( archiveFile );
     } else {
-        kWarning(7109) << "Protocol " << url.protocol() << " not supported by this IOSlave" ;
+        kWarning(7109) << "Protocol" << url.protocol() << "not supported by this IOSlave" ;
         errorNum = KIO::ERR_UNSUPPORTED_PROTOCOL;
         return false;
     }
 
     if ( !m_archiveFile->open( QIODevice::ReadOnly ) )
     {
-        kDebug(7109) << "Opening " << archiveFile << "failed.";
+        kDebug(7109) << "Opening" << archiveFile << "failed.";
         delete m_archiveFile;
         m_archiveFile = 0L;
         errorNum = KIO::ERR_CANNOT_OPEN_FOR_READING;
@@ -203,7 +203,7 @@ void ArchiveProtocol::createUDSEntry( const KArchiveEntry * archiveEntry, UDSEnt
 
 void ArchiveProtocol::listDir( const KUrl & url )
 {
-    kDebug( 7109 ) << "ArchiveProtocol::listDir " << url.url();
+    kDebug( 7109 ) << "ArchiveProtocol::listDir" << url.url();
 
     QString path;
     KIO::Error errorNum;
@@ -227,7 +227,7 @@ void ArchiveProtocol::listDir( const KUrl & url )
         // It's a real dir -> redirect
         KUrl redir;
         redir.setPath( url.path() );
-        kDebug( 7109 ) << "Ok, redirection to " << redir.url();
+        kDebug( 7109 ) << "Ok, redirection to" << redir.url();
         redirection( redir );
         finished();
         // And let go of the tar file - for people who want to unmount a cdrom after that
@@ -239,9 +239,9 @@ void ArchiveProtocol::listDir( const KUrl & url )
     if ( path.isEmpty() )
     {
         KUrl redir( url.protocol() + QString::fromLatin1( ":/") );
-        kDebug( 7109 ) << "url.path()==" << url.path();
+        kDebug( 7109 ) << "url.path()=" << url.path();
         redir.setPath( url.path() + QString::fromLatin1("/") );
-        kDebug( 7109 ) << "ArchiveProtocol::listDir: redirection " << redir.url();
+        kDebug( 7109 ) << "ArchiveProtocol::listDir: redirection" << redir.url();
         redirection( redir );
         finished();
         return;
@@ -252,7 +252,7 @@ void ArchiveProtocol::listDir( const KUrl & url )
     const KArchiveDirectory* dir;
     if (!path.isEmpty() && path != "/")
     {
-        kDebug(7109) << QString("Looking for entry %1").arg(path);
+        kDebug(7109) << "Looking for entry" << path;
         const KArchiveEntry* e = root->entry( path );
         if ( !e )
         {
@@ -317,7 +317,7 @@ void ArchiveProtocol::stat( const KUrl & url )
         }
         // Real directory. Return just enough information for KRun to work
         entry.insert( KIO::UDSEntry::UDS_NAME, url.fileName());
-        kDebug( 7109 ) << "ArchiveProtocol::stat returning name=" << url.fileName();
+        kDebug( 7109 ).nospace() << "ArchiveProtocol::stat returning name=" << url.fileName();
 
         KDE_struct_stat buff;
         if ( KDE_stat( QFile::encodeName( url.path() ), &buff ) == -1 )
@@ -401,9 +401,9 @@ void ArchiveProtocol::get( const KUrl & url )
     const KArchiveFile* archiveFileEntry = static_cast<const KArchiveFile *>(archiveEntry);
     if ( !archiveEntry->symlink().isEmpty() )
     {
-      kDebug(7109) << "Redirection to " << archiveEntry->symlink();
+      kDebug(7109) << "Redirection to" << archiveEntry->symlink();
       KUrl realURL( url, archiveEntry->symlink() );
-      kDebug(7109) << "realURL= " << realURL.url();
+      kDebug(7109).nospace() << "realURL=" << realURL.url();
       redirection( realURL );
       finished();
       return;
@@ -466,7 +466,7 @@ void ArchiveProtocol::get( const KUrl & url )
         const qint64 read = io->read( buffer.data(), buffer.size() ); // Avoid to use bufferSize here, in case something went wrong.
         if ( read != bufferSize )
         {
-            kWarning(7109) << "Read " << read << " bytes but expected " << bufferSize ;
+            kWarning(7109) << "Read" << read << "bytes but expected" << bufferSize ;
             error( KIO::ERR_COULD_NOT_READ, url.prettyUrl() );
             delete io;
             return;
@@ -476,7 +476,7 @@ void ArchiveProtocol::get( const KUrl & url )
             // We use the magic one the first data read
             // (As magic detection is about fixed positions, we can be sure that it is enough data.)
             KMimeType::Ptr mime = KMimeType::findByNameAndContent( path, buffer );
-            kDebug(7109) << "Emitting mimetype " << mime->name();
+            kDebug(7109) << "Emitting mimetype" << mime->name();
             mimeType( mime->name() );
             firstRead = false;
         }
