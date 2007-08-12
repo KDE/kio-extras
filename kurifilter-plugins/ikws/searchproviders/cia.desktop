@@ -12,7 +12,7 @@ Name[nds]=CIA-Weltfaktenbook
 Name[nl]=CIA World Factbook
 Name[pa]=CIA ਵਰਲਡ ਫੈਕਟ ਕਿਤਾਬ
 Name[pt]=Livro de Factos Mundiais da CIA
-Name[pt_BR]=Livro de Factos Mundiais da CIA
+Name[pt_BR]=Livro dos Fatos Mundiais da CIA
 Name[sv]=CIA-världsfaktabok
 Name[x-test]=xxCIA World Fact Bookxx
 Query=http://www.google.com/search?q=allintitle%3A\\{@}+world+fact+book+site%3Awww.cia.gov&ie=UTF-8&btnI=I%27m+Feeling+Lucky
