@@ -8,7 +8,7 @@ Type=Service
 ServiceTypes=KCModule
 
 
-X-KDE-Library=media
+X-KDE-Library=kcm_media
 X-KDE-FactoryName=media
 X-KDE-ParentApp=kcontrol
 
