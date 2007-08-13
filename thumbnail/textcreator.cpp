@@ -27,6 +27,35 @@
 
 #include "textcreator.h"
 
+class FontSplitter {
+public:
+    FontSplitter() {}
+    virtual ~FontSplitter() {}
+
+protected:
+    int m_width;
+    QSize m_itemSize;
+    QPixmap m_pixmap;
+
+public:
+    void setPixmap(const QPixmap &pixmap) { m_pixmap = pixmap; }
+    const QPixmap& pixmap() const { return m_pixmap; }
+
+    void setItemSize(const QSize &size) { m_itemSize = size; }
+    const QSize& itemSize() const { return m_itemSize; }
+
+    QRect coordinates(const QChar& ch) const {
+        int pos = (unsigned char)ch.toLatin1();
+        int numCols = m_pixmap.width() / m_itemSize.width();
+        if ( numCols == 0 )
+            return QRect();
+        int row = pos / numCols;
+        int col = pos % numCols;
+        return QRect( QPoint( col * m_itemSize.width(), row * m_itemSize.height() ),
+                      m_itemSize );
+    }
+};
+
 extern "C"
 {
     KDE_EXPORT ThumbCreator *new_creator()
@@ -52,7 +81,7 @@ bool TextCreator::create(const QString &path, int width, int height, QImage &img
 {
     if ( !m_splitter )
     {
-        m_splitter = new KPixmapSplitter;
+        m_splitter = new FontSplitter;
         QString pixmap = KStandardDirs::locate( "data", "konqueror/pics/thumbnailfont_7x4.png" );
         if ( !pixmap.isEmpty() )
         {
