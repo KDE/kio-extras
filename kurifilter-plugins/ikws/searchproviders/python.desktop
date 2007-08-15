@@ -21,7 +21,7 @@ Name[fi]=Pythonin referenssimanuaali
 Name[fr]=Manuel de référence de Python
 Name[ga]=Lámhleabhar Python
 Name[gl]=Manual de Referéncia de Python
-Name[he]=תיעוד של פייתון
+Name[he]=המדריך ל־Python
 Name[hr]=Python referentni priručnik
 Name[hu]=Python referencia-kézikönyv
 Name[is]=Python Handbók
@@ -62,6 +62,7 @@ Query[bg]=Query=http://www.google.com/search?sourceid=python-search&q=\{@}&submi
 Query[en_GB]=http://www.google.co.uk/search?sourceid=python-search&q=\{@}&submit=Search&q=site%3Apython.org
 Query[fr]=http://www.google.fr/search?sourceid=python-search&q=\{@}&submit=Search&q=site%3Apython.org
 Query[fy]=http://www.google.nl/search?sourceid=python-search&q=\{@}&submit=Search&q=site%3Apython.org
+Query[he]=http://www.google.co.il/search?sourceid=python-search&q=\{@}&submit=Search&q=site%3Apython.org
 Query[nb]=http://www.google.no/search?sourceid=python-search&q=\{@}&submit=Search&q=site%3Apython.org
 Query[nl]=http://www.google.nl/search?sourceid=python-search&q=\{@}&submit=Search&q=site%3Apython.org
 Query[pt]=http://www.google.pt/search?sourceid=python-search&q=\{@}&submit=Search&q=site%3Apython.org
