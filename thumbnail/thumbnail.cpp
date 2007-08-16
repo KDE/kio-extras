@@ -40,7 +40,6 @@
 #include <kaboutdata.h>
 #include <kglobal.h>
 #include <kiconloader.h>
-#include <kimageeffect.h>
 #include <kmimetype.h>
 #include <klibloader.h>
 #include <kdebug.h>
@@ -354,7 +353,7 @@ void ThumbnailProtocol::get(const KUrl &url)
         x = qMax( x, 0 );
         int y = img.height() - icon.height() - 6;
         y = qMax( y, 0 );
-        KImageEffect::blendOnLower( x, y, icon, img );
+        QPainter(&img).drawImage(x, y, icon);
     }
 
     if (img.isNull())
