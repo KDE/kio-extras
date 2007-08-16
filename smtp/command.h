@@ -91,7 +91,7 @@ namespace KioSMTP {
       CloseConnectionOnError = 4
     };
 
-    Command( SMTPProtocol * smtp, int flags=0 );
+    explicit Command( SMTPProtocol * smtp, int flags=0 );
     virtual ~Command();
 
     enum Type {

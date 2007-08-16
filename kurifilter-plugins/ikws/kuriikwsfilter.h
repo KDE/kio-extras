@@ -30,7 +30,7 @@ class KAutoWebSearch : public KUriFilterPlugin
 {
     Q_OBJECT
 public:
-    KAutoWebSearch(QObject *parent = 0, const QStringList &args = QStringList() );
+    explicit KAutoWebSearch(QObject *parent = 0, const QStringList &args = QStringList() );
     ~KAutoWebSearch();
 
     virtual bool filterUri( KUriFilterData& ) const;
@@ -40,4 +40,3 @@ public Q_SLOTS:
 };
 
 #endif
-

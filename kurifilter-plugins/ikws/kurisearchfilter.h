@@ -30,7 +30,7 @@ class KUriSearchFilter : public KUriFilterPlugin
 {
     Q_OBJECT
 public:
-    KUriSearchFilter(QObject *parent = 0, const QStringList &args = QStringList() );
+    explicit KUriSearchFilter(QObject *parent = 0, const QStringList &args = QStringList() );
     ~KUriSearchFilter();
 
     virtual bool filterUri( KUriFilterData& ) const;
@@ -42,4 +42,3 @@ public Q_SLOTS:
 };
 
 #endif
-

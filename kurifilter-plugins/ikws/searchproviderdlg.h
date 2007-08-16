@@ -38,7 +38,7 @@ class SearchProviderDialog : public KDialog
     Q_OBJECT
 
 public:
-    SearchProviderDialog(SearchProvider *provider, QWidget *parent = 0, const char *name = 0);
+    explicit SearchProviderDialog(SearchProvider *provider, QWidget *parent = 0, const char *name = 0);
 
     SearchProvider *provider() { return m_provider; }
 

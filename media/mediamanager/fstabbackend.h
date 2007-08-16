@@ -32,7 +32,7 @@ class FstabBackend : public QObject, public BackendBase
 Q_OBJECT
 
 public:
-	FstabBackend(MediaList &list, bool networkSharesOnly = false);
+	explicit FstabBackend(MediaList &list, bool networkSharesOnly = false);
 	virtual ~FstabBackend();
 
 	static void guess(const QString &devNode, const QString &mountPoint,
