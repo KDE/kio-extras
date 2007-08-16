@@ -25,24 +25,26 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #define __filter_h__
 
 #include <QObject>
-#include <kio/global.h>
 #include <kio/slavebase.h>
+
+class KUrl;
 class KFilterBase;
+
 class FilterProtocol : public QObject, public KIO::SlaveBase
 {
-  Q_OBJECT
+    Q_OBJECT
 
 public:
-  FilterProtocol( const QByteArray & protocol, const QByteArray &pool, const QByteArray &app );
+    FilterProtocol( const QByteArray & protocol, const QByteArray &pool, const QByteArray &app );
 
-  virtual void get( const KUrl &url );
-  virtual void put( const KUrl &url, int _mode, bool _overwrite,
+    virtual void get( const KUrl &url );
+    virtual void put( const KUrl &url, int _mode, bool _overwrite,
                     bool _resume );
-  virtual void setSubURL(const KUrl &url);
+    virtual void setSubURL(const KUrl &url);
 
 private:
-  KUrl subURL;
-  KFilterBase * filter;
+    KUrl subURL;
+    KFilterBase * filter;
 };
 
 #endif
