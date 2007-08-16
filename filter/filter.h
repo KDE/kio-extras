@@ -30,6 +30,8 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 class FilterProtocol : public QObject, public KIO::SlaveBase
 {
+  Q_OBJECT
+
 public:
   FilterProtocol( const QByteArray & protocol, const QByteArray &pool, const QByteArray &app );
 
