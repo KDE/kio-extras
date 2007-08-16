@@ -283,7 +283,7 @@ void NNTPProtocol::stat( const KUrl& url ) {
 
   // /group = message list
   } else if (regGroup.indexIn(path) == 0) {
-    if ( path.startsWith( "/" ) ) path.remove(0,1);
+    if ( path.startsWith( '/' ) ) path.remove(0,1);
     if ((pos = path.indexOf('/')) > 0) group = path.left(pos);
     else group = path;
     DBG << "stat group: " << group << endl;
@@ -296,7 +296,7 @@ void NNTPProtocol::stat( const KUrl& url ) {
     pos = path.indexOf('<');
     group = path.left(pos);
     msg_id = QUrl::fromPercentEncoding( path.right(path.length()-pos).toLatin1() );
-    if ( group.startsWith( "/" ) )
+    if ( group.startsWith( '/' ) )
       group.remove( 0, 1 );
     if ((pos = group.indexOf('/')) > 0) group = group.left(pos);
     DBG << "stat group: " << group << " msg: " << msg_id << endl;
@@ -335,7 +335,7 @@ void NNTPProtocol::listDir( const KUrl& url ) {
     // if path = /group
     int pos;
     QString group;
-    if ( path.startsWith( "/" ) )
+    if ( path.startsWith( '/' ) )
       path.remove( 0, 1 );
     if ((pos = path.indexOf('/')) > 0)
       group = path.left(pos);

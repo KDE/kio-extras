@@ -84,7 +84,7 @@ void CgiProtocol::get( const KUrl& url )
   QStringList::ConstIterator it;
   for( it = mCgiPaths.begin(); it != mCgiPaths.end(); ++it ) {
     cmd = *it;
-    if ( !(*it).endsWith("/") )
+    if ( !(*it).endsWith('/') )
         cmd += '/';
     cmd += file;
     if ( KStandardDirs::exists( cmd ) ) {

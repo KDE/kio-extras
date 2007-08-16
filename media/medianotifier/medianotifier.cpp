@@ -240,7 +240,7 @@ bool MediaNotifier::execAutoopen( const KFileItem &medium, const QString &path,
 
 	// The relative path MUST NOT contain path components that
 	// refer to a parent directory ( ../ )
-	if ( relative_path.startsWith( "/" ) || relative_path.contains( "../" ) )
+	if ( relative_path.startsWith( '/' ) || relative_path.contains( "../" ) )
 	{
 		return false;
 	}

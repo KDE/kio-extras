@@ -547,7 +547,7 @@ int fishProtocol::establishConnection(char *buffer, KIO::fileoffset_t len) {
 
     myDebug( << "establishing: got " << buf << endl);
     while (childPid && ((pos = buf.indexOf('\n')) >= 0 ||
-            buf.endsWith(":") || buf.endsWith("?"))) {
+            buf.endsWith(':') || buf.endsWith('?'))) {
         pos++;
         QString str = buf.left(pos);
         buf = buf.mid(pos);
@@ -564,7 +564,7 @@ int fishProtocol::establishConnection(char *buffer, KIO::fileoffset_t len) {
             return 0;
         } else if (!str.isEmpty()) {
             thisFn += str;
-        } else if (buf.endsWith(":")) {
+        } else if (buf.endsWith(':')) {
             if (!redirectUser.isEmpty() && connectionUser != redirectUser) {
                 KUrl dest = url;
                 dest.setUser(redirectUser);
@@ -623,7 +623,7 @@ int fishProtocol::establishConnection(char *buffer, KIO::fileoffset_t len) {
             }
             thisFn.clear();
             return 0;
-        } else if (buf.endsWith("?")) {
+        } else if (buf.endsWith('?')) {
             int rc = messageBox(QuestionYesNo,thisFn+buf);
             if (rc == KMessageBox::Yes) {
                 writeChild("yes\n",4);
