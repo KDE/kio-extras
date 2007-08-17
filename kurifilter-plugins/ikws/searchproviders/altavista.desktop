@@ -13,6 +13,7 @@ Name[pl]=AltaVista - wyszukiwarka stron WWW
 Name[sv]=Altavista
 Name[ta]=அல்டாவிஸ்டா
 Name[te]=ఆల్టావిస్టా
+Name[th]=อัลต้าวิสต้า
 Name[x-test]=xxAltaVistaxx
 ServiceTypes=SearchProvider
 Keys=av,altavista
