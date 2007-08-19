@@ -438,10 +438,14 @@ void NNTPProtocol::fetchGroups( const QString &since, bool desc )
         break;
       res = sendCommand( "LIST NEWSGROUPS " + it.key() );
       ++it;
+      if( res == 503 ) {
+        // Information not available (RFC 2980 §2.1.6), try next group
+        continue;
+      }
     }
     if ( res != 215 ) {
-      unexpected_response( res, "LIST NEWSGROUPS" );
-      return;
+      // No group description available or not implemented
+      break;
     }
 
     // download group descriptions
