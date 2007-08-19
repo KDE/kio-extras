@@ -5,6 +5,7 @@ Name=Technorati
 Name[csb]=Technorati - blodżi
 Name[lt]=Technorati paieška
 Name[ne]=टेक्नोरती
+Name[vi]=Tra từ Kĩ thuật bằng Technorati
 Name[x-test]=xxTechnoratixx
 ServiceTypes=SearchProvider
 Keys=tr,technorati

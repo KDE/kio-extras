@@ -20,6 +20,7 @@ Name[sr]=KDE-ов WebSVN
 Name[sr@latin]=KDE-ov WebSVN
 Name[sv]=KDE-webbsvn
 Name[tg]=KDE ВэбSVN
+Name[vi]=Tra KDE WebSVN
 Name[x-test]=xxKDE WebSVNxx
 ServiceTypes=SearchProvider
 Keys=websvn,kdesvn,ksvn,kvs

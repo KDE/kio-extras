@@ -54,6 +54,7 @@ Name[th]=LEO - แปลภาษาเยอรมัน <->ฝรั่งเ�
 Name[tr]=LEO - Almancadan Fransızcaya Çeviri
 Name[uk]=LEO - переклад між німецькою та французькою
 Name[uz]=LEO - Олмончадан Французчага таржима
+Name[vi]=LEO - Dịch tiếng Đức sang tiếng Pháp
 Name[x-test]=xxLEO - Translate Between German and Frenchxx
 Name[zh_TW]=LEO - 翻譯德語和法語
 ServiceTypes=SearchProvider

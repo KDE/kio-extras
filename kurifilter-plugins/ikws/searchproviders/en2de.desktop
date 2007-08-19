@@ -55,6 +55,7 @@ Name[th]=การแปล dict.cc: ภาษาอังกฤษเป็น�
 Name[tr]=dict.cc Çevirisi: İngilizceden Almancaya
 Name[uk]=dict.cc: переклад з англійської на німецьку
 Name[uz]=dict.cc таржима: Инглизчадан Олмончага
+Name[vi]=dict.cc Dịch: Tiếng Anh sang tiếng Đức
 Name[x-test]=xxdict.cc Translation: English to Germanxx
 Name[zh_TW]=dict.cc 翻譯: 英文至德文
 Query=http://www.dict.cc/?s=\\{@}

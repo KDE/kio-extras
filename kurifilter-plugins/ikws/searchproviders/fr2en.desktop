@@ -51,9 +51,11 @@ Name[sr@latin]=Prevod na WordReference.com: sa francuskog na engleski
 Name[sv]=Wordreference.com översättning: franska till engelska
 Name[ta]=WordReference.com மொழிபெயர்ப்பு: பிரென்சு மொழியில் இருந்து ஆங்கிலத்துக்கு
 Name[tg]=WordReference.com Тарҷума: аз Франсавӣ ба Англисӣ
+Name[th]=การแปลจาก WordReference.com: แปลภาษาฝรั่งเศสเป็นอังกฤษ
 Name[tr]=WordReference.com Çevirisi: Fransızcadan İngilizceye
 Name[uk]=WordReference.com: переклад з французької на англійську
 Name[uz]=WordReference.com таржима: Французчадан Инглизчага
+Name[vi]=WordReference.com Dịch: tiếng Pháp sang tiếng Anh
 Name[x-test]=xxWordReference.com Translation: French to Englishxx
 Name[zh_TW]=WordReference.com 翻譯: 法文至英文
 Query=http://www.wordreference.com/fr/en/translation.asp?fren=\\{@}

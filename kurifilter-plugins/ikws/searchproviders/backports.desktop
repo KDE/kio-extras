@@ -49,6 +49,7 @@ Name[tg]=Ҷустуҷӯи Debian Backports
 Name[th]=ค้นหา Debian Backports
 Name[tr]=Debian Arkakapı Arama
 Name[uk]=Пошук серед додаткових пакетів Debian
+Name[vi]=Tìm kiếm Cổng sau Debian
 Name[x-test]=xxDebian Backports Searchxx
 Name[zh_TW]=Debian Backports 搜尋
 Query=http://www.backports.org/package.php?search=\\{@}

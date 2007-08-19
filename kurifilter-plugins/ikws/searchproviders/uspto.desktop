@@ -53,6 +53,7 @@ Name[tg]=Патенти базаи маълумотҳои Иолоти Мутт�
 Name[tr]=U.S. Patent Veritabanı
 Name[uk]=База даних патентів в США
 Name[uz]=АҚШ патент маълумот базаси
+Name[vi]=Cơ sở dữ liệu Bằng sáng chế Hoa Kỳ
 Name[x-test]=xxU.S. Patent Databasexx
 Name[zh_TW]=U.S. 專利權資料庫
 Query=http://patft.uspto.gov/netacgi/nph-Parser?TERM1=\\{@}&Sect1=PTO1&Sect2=HITOFF&d=PALL&p=1&u=/netahtml/srchnum.htm&r=0&f=S&l=50

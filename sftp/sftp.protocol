@@ -68,6 +68,7 @@ Description[th]=ตัวนำข้อมูลเข้า-ออกสำห
 Description[tr]=Sftp için kioslave
 Description[uk]=Підлеглий В/В для sftp
 Description[uz]=SFTP учун КЧ-слейв
+Description[vi]=A kioslave (đày tớ vào ra KDE) cho SFTP
 Description[x-test]=xxA kioslave for sftpxx
 Description[zh_TW]=sftp 的 kioslave
 DocPath=kioslave/sftp.html

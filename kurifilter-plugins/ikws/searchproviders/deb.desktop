@@ -53,6 +53,7 @@ Name[th]=ค้นหาแพคเกจของ Debian
 Name[tr]=Debian Paket Arama
 Name[uk]=Пошук пакунків для Debian
 Name[uz]=Debian пакетларини қидириш
+Name[vi]=Tìm kiếm gói Debian
 Name[x-test]=xxDebian Package Searchxx
 Name[zh_TW]=Debian 套件搜尋
 Query=http://packages.debian.org/cgi-bin/search_packages.pl?keywords=\\{@}&searchon=names&subword=1&version=all&release=all

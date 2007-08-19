@@ -29,6 +29,7 @@ Name[sv]=Filter för lokal domän
 Name[ta]=உள்பகுதிவடிகட்டி
 Name[th]=ตัวกรองโดเมนท้องถื่น
 Name[uk]=Фільтр локальних доменів
+Name[vi]=Lọc Tên miền Địa phương
 Name[x-test]=xxLocalDomainFilterxx
 Name[zh_TW]=區域網域過濾器
 X-KDE-Library=liblocaldomainurifilter

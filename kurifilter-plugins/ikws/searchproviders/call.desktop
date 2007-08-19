@@ -54,6 +54,7 @@ Name[tg]=Базаи иттилооти QRZ.com callsign
 Name[th]=ฐานข้อมูล QRZ.com Callsign
 Name[tr]=QRZ.com Aramaişaret Veritabanı
 Name[uk]=База даних callsign QRZ.com
+Name[vi]=Cơ sở dữ liệu tín hiệu QRZ.com
 Name[x-test]=xxQRZ.com Callsign Databasexx
 Name[zh_TW]=QRZ.com Callsign 資料庫
 Query=http://www.qrz.com/database?callsign=\\{@}

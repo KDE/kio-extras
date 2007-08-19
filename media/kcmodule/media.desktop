@@ -66,6 +66,7 @@ Name[th]=สื่อเก็บข้อมูล
 Name[tr]=Depolama Ortamı
 Name[uk]=Пристрої зберігання інформації
 Name[uz]=Сақлаш ускуналари
+Name[vi]=Vật chứa
 Name[x-test]=xxStorage Mediaxx
 Name[zh_TW]=儲存媒體
 
@@ -120,6 +121,7 @@ Comment[th]=ตั้งค่าสื่อบันทึก
 Comment[tr]=Depolama Aygıtlarını Yapılandır
 Comment[uk]=Налаштування пристроїв зберігання інформації
 Comment[uz]=Сақлаш ускуналарни мослаш
+Comment[vi]=Cấu hình vật chứa
 Comment[x-test]=xxConfigure Storage Mediaxx
 Comment[zh_TW]=設定儲存媒體
 
@@ -170,6 +172,7 @@ Keywords[th]=ที่เก็บข้อมูล,สื่อ,usb,ซีด�
 Keywords[tr]=depolama,ortam,usb,cdrom,device
 Keywords[uk]=зберігання,носій,медіа,usb,cdrom,пристрій
 Keywords[uz]=сақлаш ускунаси,usb,cdrom,компакт-диск
+Keywords[vi]=lưu trữ,vật chứa,ổ,usb,cdrom,thiết bị
 Keywords[x-test]=xxstorage,media,usb,cdrom,devicexx
 Keywords[zh_TW]=storage,media,usb,cdrom,device,儲存,媒體,光碟機,裝置
 

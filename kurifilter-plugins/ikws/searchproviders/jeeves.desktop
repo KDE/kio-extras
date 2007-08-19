@@ -16,6 +16,7 @@ Name[nds]=Fraag Jeeves
 Name[ne]=आस्क जीभेज
 Name[pl]=Ask Jeeves - zapytaj o coś
 Name[ta]=ஜீவசை கேள்
+Name[vi]=Hỏi Jeeves
 Name[x-test]=xxAsk Jeevesxx
 ServiceTypes=SearchProvider
 Keys=ask,jeeves

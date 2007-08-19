@@ -51,9 +51,11 @@ Name[sr@latin]=Prevod na WordReference.com: sa engleskog na italijanski
 Name[sv]=Wordreference.com översättning: engelska till italienska
 Name[ta]=WordReference.com மொழிபெயர்ப்பு: ஆங்கிலத்தில் இருந்து இத்தாலிய மொழிக்கு
 Name[tg]=WordReference.com Тарҷума: Аз Англисӣ ба Итолиёгӣ
+Name[th]=การแปลจาก WordReference.com: แปลภาษาอังกฤษเป็นอิตาเลี่ยน
 Name[tr]=WordReference.com Çevirisi: İngilizceden İtalyancaya
 Name[uk]=WordReference.com: переклад з англійської на італійську
 Name[uz]=WordReference.com таржима: Инглизчадан Италянчага
+Name[vi]=WordReference.com Dịch: Tiếng Anh sang tiếng Ý
 Name[x-test]=xxWordReference.com Translation: English to Italianxx
 Name[zh_TW]=WordReference.com 翻譯: 英文至義大利文
 Query=http://www.wordreference.com/it/translation.asp?enit=\\{@}

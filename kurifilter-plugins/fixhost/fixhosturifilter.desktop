@@ -6,6 +6,7 @@ Name[de]=Rechnernamen-Korrektur-Filter
 Name[nds]=FastReeknerFilter
 Name[pt]=Filtro de Correcção da Máquina
 Name[sv]=Fast värddatorfilter
+Name[vi]=Bộ lọc sửa máy
 Name[x-test]=xxFixHostFilterxx
 Name[zh_TW]=固定主機過濾
 X-KDE-Library=libfixhosturifilter
