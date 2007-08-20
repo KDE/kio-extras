@@ -14,6 +14,7 @@ X-KDE-ParentApp=kcontrol
 
 Name=Storage Media
 Name[af]=Stoor Media
+Name[ar]=وسائط التخزين
 Name[be]=Носьбіт
 Name[bg]=Съхраняващи устройства
 Name[ca]=Suports d'emmagatzematge
@@ -72,6 +73,7 @@ Name[zh_TW]=儲存媒體
 
 Comment=Configure Storage Media
 Comment[af]=Stel Stoor Media op
+Comment[ar]=إعداد وسائط التخزين
 Comment[be]=Настаўленні носьбітаў
 Comment[bg]=Настройване на устройствата за съхранение на информация
 Comment[ca]=Configura els suports d'emmagatzematge

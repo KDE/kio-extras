@@ -4,6 +4,7 @@ Type=Service
 Name=FixHostFilter
 Name[de]=Rechnernamen-Korrektur-Filter
 Name[nds]=FastReeknerFilter
+Name[ne]=होस्ट फिल्टर निश्चित गर्नुहोस्
 Name[pt]=Filtro de Correcção da Máquina
 Name[sv]=Fast värddatorfilter
 Name[vi]=Bộ lọc sửa máy
