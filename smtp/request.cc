@@ -113,7 +113,7 @@ namespace KioSMTP {
 
 
   static inline QByteArray rfc2047Encode( const QString & s ) {
-    QByteArray r = KCodecs::base64Encode( s.trimmed().toUtf8(), false );
+    QByteArray r = s.trimmed().toUtf8().toBase64();
     return "=?utf-8?b?" + r + "?=" ; // use base64 since that always gives a valid encoded-word
   }
 
