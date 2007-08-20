@@ -139,7 +139,7 @@ static QString removeArgs( const QString& _cmd )
     if( spacePos > 0 )
     {
       cmd = cmd.left( spacePos );
-      //kDebug() << k_funcinfo << "spacePos=" << spacePos << " returning " << cmd;
+      //kDebug() << "spacePos=" << spacePos << " returning " << cmd;
     }
   }
 
@@ -243,11 +243,11 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
 
   if (KUrl::isRelativeUrl(cmd) && QDir::isRelativePath(cmd)) {
      path = cmd;
-     //kDebug() << k_funcinfo << "path=cmd=" << path;
+     //kDebug() << "path=cmd=" << path;
   } else {
     if (url.isLocalFile())
     {
-      //kDebug() << k_funcinfo << "hasRef=" << url.hasRef();
+      //kDebug() << "hasRef=" << url.hasRef();
       // Split path from ref/query
       // but not for "/tmp/a#b", if "a#b" is an existing file,
       // or for "/tmp/a?b" (#58990)
@@ -265,7 +265,7 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
       else
       {
         path = cmd;
-        //kDebug() << k_funcinfo << "(2) path=cmd=" << path;
+        //kDebug() << "(2) path=cmd=" << path;
       }
     }
   }
@@ -442,7 +442,7 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
   // We try hard to avoid parsing any possible command
   // line arguments or options that might have been supplied.
   QString exe = removeArgs( cmd );
-  //kDebug() << k_funcinfo << "findExe with " << exe;
+  //kDebug() << "findExe with " << exe;
   if( data.checkForExecutables() && !KStandardDirs::findExe( exe ).isNull() )
   {
     //kDebug() << "EXECUTABLE  exe=" << exe;

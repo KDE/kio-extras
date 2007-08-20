@@ -828,7 +828,7 @@ void sftpProtocol::openConnection() {
     return;
 }
 
-#define _DEBUG kDebug(KIO_SFTP_DB) << k_funcinfo
+#define _DEBUG kDebug(KIO_SFTP_DB) 
 
 void sftpProtocol::open(const KUrl &url, QIODevice::OpenMode mode)
 {
