@@ -9,6 +9,7 @@ Name[ne]=गुगल
 Name[pl]=Google - wyszukiwarka stron WWW
 Name[ta]=கூகுல்
 Name[te]=గూగుల్
+Name[th]=กูเกิ้ล
 Name[x-test]=xxGooglexx
 ServiceTypes=SearchProvider
 Keys=gg,google
