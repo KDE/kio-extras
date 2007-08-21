@@ -522,7 +522,7 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
       return true;
     }
     //kDebug() << "fileNotFound -> ERROR";
-    setErrorMsg( data, i18n( "<qt>The file or folder <b>%1</b> does not exist.", data.uri().prettyUrl() ) );
+    setErrorMsg( data, i18n( "<qt>The file or folder <b>%1</b> does not exist.</qt>", data.uri().prettyUrl() ) );
     setUriType( data, KUriFilterData::ERROR );
     return true;
   }

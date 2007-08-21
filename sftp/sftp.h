@@ -28,6 +28,9 @@
  * draft-ietf-secsh-filexfer-01.txt
  */
 
+#ifndef SFTP_H
+#define SFTP_H
+
 /* version */
 #define    SSH2_FILEXFER_VERSION        3
 
@@ -89,3 +92,5 @@
 #define SSH2_FX_CONNECTION_LOST    7
 #define SSH2_FX_OP_UNSUPPORTED     8
 #define SSH2_FX_MAX                8
+
+#endif // SFTP_H

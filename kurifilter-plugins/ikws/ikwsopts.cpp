@@ -92,15 +92,15 @@ FilterOptions::FilterOptions(const KComponentData &componentData, QWidget *paren
 
 QString FilterOptions::quickHelp() const
 {
-    return i18n("In this module you can configure the web shortcuts feature. "
+    return i18n("<p>In this module you can configure the web shortcuts feature. "
                 "Web shortcuts allow you to quickly search or lookup words on "
                 "the Internet. For example, to search for information about the "
                 "KDE project using the Google engine, you simply type <b>gg:KDE</b> "
-                "or <b>google:KDE</b>."
+                "or <b>google:KDE</b>.</p>"
                 "<p>If you select a default search engine, normal words or phrases "
                 "will be looked up at the specified search engine by simply typing "
                 "them into applications, such as Konqueror, that have built-in support "
-                "for such a feature.");
+                "for such a feature.</p>");
 }
 
 void FilterOptions::load()

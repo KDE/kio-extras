@@ -22,15 +22,12 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
-#ifndef __KURISearchFILTERENGINE_H__
-#define __KURISearchFILTERENGINE_H__
-
+#ifndef KURIIKWSFILTERENG_H
+#define KURIIKWSFILTERENG_H
 
 //Added by qt3to4:
 
 #include <kservice.h>
-
-
 
 class KURISearchFilterEngine
 {
@@ -73,4 +70,4 @@ private:
   static KURISearchFilterEngine *s_pSelf;
 };
 
-#endif
+#endif // KURIIKWSFILTERENG_H

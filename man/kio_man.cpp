@@ -475,9 +475,9 @@ void MANProtocol::get(const KUrl& url )
     bool pageFound=true;
     if (foundPages.isEmpty())
     {
-       outputError(i18n("No man page matching to %1 found.<br><br>"
-           "Check that you have not mistyped the name of the page that you want.\n"
-           "Be careful that you must take care about upper case and lower case characters!<br>"
+       outputError(i18n("No man page matching to %1 found.<br /><br />"
+           "Check that you have not mistyped the name of the page that you want.<br />"
+           "Be careful that you must take care about upper case and lower case characters!<br />"
            "If everything looks correct, then perhaps you need to set a better search path "
            "for man pages, be it by the environment variable MANPATH or a matching file "
            "in the directory /etc .", text2html(title)));

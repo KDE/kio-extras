@@ -6,6 +6,8 @@
  *
  */
 
+#ifndef MAN2HTML_H
+#define MAN2HTML_H
 
 /** call this with the buffer you have */
 void scan_man_page(const char *man_page);
@@ -31,3 +33,5 @@ extern void output_real(const char *insert);
  * char array is freed by man2html
  */
 extern char *read_man_page(const char *filename);
+
+#endif // MAN2HTML_H
