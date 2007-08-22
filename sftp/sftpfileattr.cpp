@@ -23,6 +23,7 @@
 
 #include <kio/global.h>
 #include <kremoteencoding.h>
+#include <kio/udsentry.h>
 
 using namespace KIO;
 

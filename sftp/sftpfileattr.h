@@ -35,6 +35,10 @@
   */
 
 class KRemoteEncoding;
+namespace KIO
+{
+    class UDSEntry;
+} // namespace KIO
 
 class sftpFileAttr {
 
