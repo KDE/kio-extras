@@ -295,7 +295,7 @@ void FilterOptions::save()
       service.writeEntry("Hidden", true);
   }
 
-  config.writeEntry("FavoriteSearchEngines", m_favoriteEngines);
+  group.writeEntry("FavoriteSearchEngines", m_favoriteEngines);
   config.sync();
 
   emit changed(false);

@@ -447,24 +447,24 @@ void KURISearchFilterEngine::loadConfig()
   // contains the sycoca based search provider configuration (malte).
   {
     KConfig oldConfig(KGlobal::dirs()->saveLocation("config") + QString(name()) + "rc", KConfig::OnlyLocal);
-    oldConfig.setGroup("General");
+	KConfigGroup cg(&oldConfig, "General");
 
-    if (oldConfig.hasKey("SearchEngines"))
+    if (cg.hasKey("SearchEngines"))
     {
       // User has an old config file in his local config dir
       PIDDBG << "Migrating config file to .desktop files..." << endl;
-      QString fallback = oldConfig.readEntry("InternetKeywordsSearchFallback");
-      QStringList engines = oldConfig.readEntry("SearchEngines", QStringList() );
+      QString fallback = cg.readEntry("InternetKeywordsSearchFallback");
+      QStringList engines = cg.readEntry("SearchEngines", QStringList() );
       for (QStringList::ConstIterator it = engines.begin(); it != engines.end(); ++it)
       {
         if (!oldConfig.hasGroup(*it + " Search"))
             continue;
 
-        oldConfig.setGroup(*it + " Search");
-        QString query = oldConfig.readEntry("Query");
-        QStringList keys = oldConfig.readEntry("Keys", QStringList() );
-        QString charset = oldConfig.readEntry("Charset");
-        oldConfig.deleteGroup(*it + " Search");
+		KConfigGroup cg2 (&oldConfig, *it+"Search");
+        QString query = cg2.readEntry("Query");
+        QStringList keys = cg2.readEntry("Keys", QStringList() );
+        QString charset = cg2.readEntry("Charset");
+		cg2.deleteGroup();
 
         QString name;
         for (QStringList::ConstIterator key = keys.begin(); key != keys.end(); ++key)
@@ -495,21 +495,22 @@ void KURISearchFilterEngine::loadConfig()
           delete provider;
         }
 
+		//TODO port to KDesktopFile ?
         KConfig desktop(KGlobal::dirs()->saveLocation("services", "searchproviders/") + name + ".desktop");
-        desktop.setGroup("Desktop Entry");
-        desktop.writeEntry("Type", "Service");
-        desktop.writeEntry("ServiceTypes", "SearchProvider");
-        desktop.writeEntry("Name", *it);
-        desktop.writeEntry("Query", query);
-        desktop.writeEntry("Keys", keys);
-        desktop.writeEntry("Charset", charset);
+		KConfigGroup dg (&desktop, "Desktop Entry");
+        dg.writeEntry("Type", "Service");
+        dg.writeEntry("ServiceTypes", "SearchProvider");
+        dg.writeEntry("Name", *it);
+        dg.writeEntry("Query", query);
+        dg.writeEntry("Keys", keys);
+        dg.writeEntry("Charset", charset);
 
         PIDDBG << "Created searchproviders/" << name << ".desktop for " << *it << endl;
       }
 
-      oldConfig.deleteEntry("SearchEngines", false);
-      oldConfig.setGroup("General");
-      oldConfig.writeEntry("InternetKeywordsSearchFallback", fallback);
+      cg.deleteEntry("SearchEngines", false);
+	  KConfigGroup cg3(&oldConfig, "General");
+      cg3.writeEntry("InternetKeywordsSearchFallback", fallback);
 
       PIDDBG << "...completed" << endl;
     }
