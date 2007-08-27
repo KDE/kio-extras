@@ -511,7 +511,7 @@ static CSTRDEF standardchar[] = {
     { V('a','~'), 1, "&tilde;" },
     { V('h','o'), 1, "&#x02DB;" }, // ogonek
     { V('.','i'), 1, "&#x0131;" }, // dot less i
-    { V('C','s'), 1, "&curren;" }, //krazy:exclude-spelling
+    { V('C','s'), 1, "&curren;" }, //krazy:exclude=spelling
     { V('D','o'), 1, "$" },
     { V('P','o'), 1, "&pound;" },
     { V('Y','e'), 1, "&yen;" },
