@@ -34,7 +34,7 @@
 #include <kconfig.h>
 #include <kstandarddirs.h>
 #include <kprotocolinfo.h>
-#include <kstaticdeleter.h>
+#include <k3staticdeleter.h>
 
 #include "kuriikwsfiltereng.h"
 #include "searchprovider.h"
@@ -49,7 +49,7 @@
  */
 
 KURISearchFilterEngine *KURISearchFilterEngine::s_pSelf = 0;
-static KStaticDeleter<KURISearchFilterEngine> kurisearchfilterengsd;
+static K3StaticDeleter<KURISearchFilterEngine> kurisearchfilterengsd;
 
 KURISearchFilterEngine::KURISearchFilterEngine()
 {
