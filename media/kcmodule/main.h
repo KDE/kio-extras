@@ -20,16 +20,14 @@
 #ifndef _MAIN_H_
 #define _MAIN_H_
 
-#define KDE3_SUPPORT
 #include <kcmodule.h>
-#undef KDE3_SUPPORT
 
 class MediaModule : public KCModule
 {
 	Q_OBJECT
 
 public:
-	MediaModule( QWidget *parent, const QStringList& );
+	MediaModule( QWidget *parent, const QVariantList& );
 
 	virtual void load();
 	virtual void save();

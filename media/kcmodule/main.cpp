@@ -27,18 +27,21 @@
 #include <klocale.h>
 #include <kaboutdata.h>
 #include <kdialog.h>
+#include <KPluginFactory>
+#include <KPluginLoader>
 
-#include <kgenericfactory.h>
 
 #include "notifiermodule.h"
 #include "managermodule.h"
 
 
-typedef KGenericFactory<MediaModule, QWidget> MediaFactory;
-K_EXPORT_COMPONENT_FACTORY( media, MediaFactory( "kcmmedia" ) )
+K_PLUGIN_FACTORY(MediaFactory,
+        registerPlugin<MediaModule>();
+        )
+K_EXPORT_PLUGIN(MediaFactory("kcmmedia"))
 
 
-MediaModule::MediaModule( QWidget *parent, const QStringList& )
+MediaModule::MediaModule( QWidget *parent, const QVariantList& )
 	: KCModule(MediaFactory::componentData(), parent )
 {
 	QVBoxLayout *layout = new QVBoxLayout( this );
