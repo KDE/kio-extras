@@ -1125,7 +1125,7 @@ static QByteArray change_to_size(int nr)
 /* static int asint=0; */
 static int intresult=0;
 
-#define SKIPEOL while (*c && *c++!='\n')
+#define SKIPEOL while (*c && *c++!='\n') {}
 
 static bool skip_escape=false;
 static bool single_escape=false;
