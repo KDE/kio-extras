@@ -36,7 +36,7 @@ class FixHostUriFilter : public KUriFilterPlugin
     Q_OBJECT
 
     public:
-        FixHostUriFilter( QObject* parent, const QStringList& args );
+        FixHostUriFilter( QObject* parent, const QVariantList& args );
         virtual bool filterUri( KUriFilterData &data ) const;
     private:
         static bool exists( const KUrl& url );

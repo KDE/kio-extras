@@ -37,11 +37,11 @@
  * kdelibs/kio/tests/kurifiltertest
  */
 
-typedef KGenericFactory<KUriSearchFilter> KUriSearchFilterFactory;
-K_EXPORT_COMPONENT_FACTORY(libkurisearchfilter, KUriSearchFilterFactory("kcmkurifilt"))
+K_PLUGIN_FACTORY(KUriSearchFilterFactory, registerPlugin<KUriSearchFilter>();)
+K_EXPORT_PLUGIN(KUriSearchFilterFactory("kcmkurifilt"))
 
 KUriSearchFilter::KUriSearchFilter(QObject *parent,
-                                   const QStringList &)
+                                   const QVariantList &)
                  :KUriFilterPlugin( "KUriSearchFilter", parent )
 {
   KGlobal::locale()->insertCatalog("kurifilter");

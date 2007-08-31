@@ -36,10 +36,10 @@
  * kdelibs/kio/tests/kurifiltertest
  */
 
-typedef KGenericFactory<KAutoWebSearch> KAutoWebSearchFactory;
-K_EXPORT_COMPONENT_FACTORY (libkuriikwsfilter, KAutoWebSearchFactory("kcmkurifilt"))
+K_PLUGIN_FACTORY(KAutoWebSearchFactory, registerPlugin<KAutoWebSearch>();)
+K_EXPORT_PLUGIN(KAutoWebSearchFactory("kcmkurifilt"))
 
-KAutoWebSearch::KAutoWebSearch(QObject *parent, const QStringList&)
+KAutoWebSearch::KAutoWebSearch(QObject *parent, const QVariantList&)
                :KUriFilterPlugin( "KURIIKWSFilterIface", parent )
 {
   KGlobal::locale()->insertCatalog("kurifilter");

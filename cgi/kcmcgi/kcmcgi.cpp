@@ -20,7 +20,8 @@
 #include <KComponentData>
 #include <KConfig>
 #include <KFileDialog>
-#include <KGenericFactory>
+#include <KPluginFactory>
+#include <KPluginLoader>
 #include <KGlobal>
 #include <KHBox>
 #include <KLocale>
@@ -34,10 +35,10 @@
 #include "kcmcgi.h"
 #include "kcmcgi.moc"
 
-typedef KGenericFactory<KCMCgi> KCMCgiFactory;
-K_EXPORT_COMPONENT_FACTORY(cgi, KCMCgiFactory("kcmcgi"))
+K_PLUGIN_FACTORY(KCMCgiFactory, registerPlugin<KCMCgi>();)
+K_EXPORT_PLUGIN(KCMCgiFactory("kcmcgi"))
 
-KCMCgi::KCMCgi(QWidget *parent, const QStringList &)
+KCMCgi::KCMCgi(QWidget *parent, const QVariantList &)
   : KCModule(KCMCgiFactory::componentData(), parent)
 {
   setButtons(Default|Apply);

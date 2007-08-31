@@ -30,7 +30,7 @@ class KUriSearchFilter : public KUriFilterPlugin
 {
     Q_OBJECT
 public:
-    explicit KUriSearchFilter(QObject *parent = 0, const QStringList &args = QStringList() );
+    explicit KUriSearchFilter(QObject *parent = 0, const QVariantList &args = QVariantList() );
     ~KUriSearchFilter();
 
     virtual bool filterUri( KUriFilterData& ) const;

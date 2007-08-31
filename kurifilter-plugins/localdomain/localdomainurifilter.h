@@ -41,7 +41,7 @@ class LocalDomainUriFilter : public KUriFilterPlugin
   Q_OBJECT
 
   public:
-    LocalDomainUriFilter( QObject* parent, const QStringList& args );
+    LocalDomainUriFilter( QObject* parent, const QVariantList& args );
     virtual bool filterUri( KUriFilterData &data ) const;
 
   public Q_SLOTS:

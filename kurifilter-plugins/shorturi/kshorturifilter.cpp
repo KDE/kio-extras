@@ -146,7 +146,7 @@ static QString removeArgs( const QString& _cmd )
   return cmd;
 }
 
-KShortUriFilter::KShortUriFilter( QObject *parent, const QStringList & /*args*/ )
+KShortUriFilter::KShortUriFilter( QObject *parent, const QVariantList & /*args*/ )
                 :KUriFilterPlugin( "kshorturifilter", parent )
 {
     QDBusConnection::sessionBus().connect(QString(), QString(), "org.kde.KUriFilterPlugin",
@@ -570,7 +570,7 @@ void KShortUriFilter::configure()
   }
 }
 
-K_EXPORT_COMPONENT_FACTORY( libkshorturifilter,
-                            KGenericFactory<KShortUriFilter>( "kcmkurifilt" ) )
+K_PLUGIN_FACTORY(KShortUriFilterFactory, registerPlugin<KShortUriFilter>();)
+K_EXPORT_PLUGIN(KShortUriFilterFactory("kcmkurifilt"))
 
 #include "kshorturifilter.moc"

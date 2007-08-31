@@ -33,7 +33,7 @@ using namespace KNetwork;
  * kdelibs/kio/tests/kurifiltertest
  */
  
-FixHostUriFilter::FixHostUriFilter( QObject *parent, const QStringList & /*args*/ )
+FixHostUriFilter::FixHostUriFilter( QObject *parent, const QVariantList & /*args*/ )
     : KUriFilterPlugin( "fixhosturifilter", parent )
 {
 }
@@ -68,7 +68,7 @@ bool FixHostUriFilter::exists( const KUrl& url )
     return( resolver.start() && resolver.wait( 5000 ) && resolver.error() == KResolver::NoError );
 }
 
-K_EXPORT_COMPONENT_FACTORY( libfixhosturifilter,
-                            KGenericFactory<FixHostUriFilter>( "kcmkurifilt" ) )
+K_PLUGIN_FACTORY(FixHostUriFilterFactory, registerPlugin<FixHostUriFilter>();)
+K_EXPORT_PLUGIN(FixHostUriFilterFactory("kcmkurifilt"))
 
 #include "fixhosturifilter.moc"
