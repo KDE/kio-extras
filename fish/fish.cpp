@@ -633,7 +633,7 @@ int fishProtocol::establishConnection(char *buffer, KIO::fileoffset_t len) {
             thisFn.clear();
             return 0;
         } else {
-            myDebug( << "unmatched case in initial handling! shouldn't happen!" << endl);
+            myDebug( << "unmatched case in initial handling! should not happen!" << endl);
           }
     }
     return buf.length();

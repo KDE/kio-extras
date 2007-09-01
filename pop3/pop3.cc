@@ -374,7 +374,7 @@ int POP3Protocol::loginAPOP( char *challenge, KIO::AuthInfo &ai )
     return 0;
   }
 
-  POP3_DEBUG << "Couldn't login via APOP. Falling back to USER/PASS" <<
+  POP3_DEBUG << "Could not login via APOP. Falling back to USER/PASS" <<
       endl;
   closeConnection();
   if (metaData("auth") == "APOP") {
@@ -606,7 +606,7 @@ bool POP3Protocol::loginPASS( KIO::AuthInfo &ai )
   one_string.append( m_sUser );
 
   if ( command(one_string.toLocal8Bit(), buf, sizeof(buf)) != Ok ) {
-    POP3_DEBUG << "Couldn't login. Bad username Sorry" << endl;
+    POP3_DEBUG << "Could not login. Bad username Sorry" << endl;
 
     m_sError =
         i18n("Could not login to %1.\n\n", m_sServer) + m_sError;
@@ -620,7 +620,7 @@ bool POP3Protocol::loginPASS( KIO::AuthInfo &ai )
   one_string.append(m_sPass);
 
   if ( command(one_string.toLocal8Bit(), buf, sizeof(buf)) != Ok ) {
-    POP3_DEBUG << "Couldn't login. Bad password Sorry." << endl;
+    POP3_DEBUG << "Could not login. Bad password Sorry." << endl;
     m_sError =
         i18n
         ("Could not login to %1. The password may be wrong.\n\n%2",
@@ -1035,7 +1035,7 @@ void POP3Protocol::get(const KUrl & url)
         }
         infoMessage("message complete");
       } else {
-        POP3_DEBUG << "Couldn't login. Bad RETR Sorry" << endl;
+        POP3_DEBUG << "Could not login. Bad RETR Sorry" << endl;
         closeConnection();
         error(ERR_COULD_NOT_READ, m_sError);
         return;

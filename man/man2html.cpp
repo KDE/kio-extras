@@ -5598,7 +5598,7 @@ char *read_man_page(const char *filename)
     struct stat stbuf;
     size_t buf_size;
     if (stat(filename, &stbuf) == -1) {
-        std::cerr << "read_man_page: can't find " << filename << endl;
+        std::cerr << "read_man_page: can not find " << filename << endl;
         return NULL;
     }
     if (!S_ISREG(stbuf.st_mode)) {

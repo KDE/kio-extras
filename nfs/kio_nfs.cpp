@@ -382,7 +382,7 @@ void NFSProtocol::openConnection()
       memcpy(&server_addr.sin_addr, hp->h_addr, hp->h_length);
    }
 
-   // create mount deamon client
+   // create mount daemon client
    closeConnection();
    server_addr.sin_port = 0;
    m_sock = RPC_ANYSOCK;

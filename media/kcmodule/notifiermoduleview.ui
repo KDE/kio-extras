@@ -123,7 +123,7 @@
                                         <string>&amp;Toggle as Auto Action</string>
                                     </property>
                                     <property name="whatsThis" stdset="0">
-                                        <string>Click here to perform automaticly this action on detection of the selected medium type (this option is disabled when "All Mime Types" is selected).</string>
+                                        <string>Click here to perform automatically this action on detection of the selected medium type (this option is disabled when "All Mime Types" is selected).</string>
                                     </property>
                                 </widget>
                             </vbox>
