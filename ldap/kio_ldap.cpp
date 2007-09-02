@@ -297,7 +297,7 @@ void LDAPProtocol::openConnection()
   int retval;
 
   while ( true ) {
-    retval = mConn.bind();
+    retval = mOp.bind_s();
     if ( retval == 0 ) {
       kDebug(7125) << "connected!";
       connected();
