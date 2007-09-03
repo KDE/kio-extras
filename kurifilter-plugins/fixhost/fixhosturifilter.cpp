@@ -52,7 +52,7 @@ bool FixHostUriFilter::filterUri( KUriFilterData& data ) const
         && !url.host().startsWith( "www." ) && !exists( url ) && exists( url2 ))
     {
         setFilteredUri( data, url2 );
-        setUriType( data, KUriFilterData::NET_PROTOCOL );
+        setUriType( data, KUriFilterData::NetProtocol );
         
         kDebug() << "FilteredUri: " << data.uri();
         return true;

@@ -92,7 +92,7 @@ private:
     {
         URLHint() {}
         URLHint( QString r, QString p,
-                 KUriFilterData::UriTypes t = KUriFilterData::NET_PROTOCOL )
+                 KUriFilterData::UriTypes t = KUriFilterData::NetProtocol )
                : regexp(r), prepend(p), type(t) {}
         QString regexp; // if this matches, then...
         QString prepend; // ...prepend this to the url

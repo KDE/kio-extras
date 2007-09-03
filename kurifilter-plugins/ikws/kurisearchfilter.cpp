@@ -74,7 +74,7 @@ bool KUriSearchFilter::filterUri( KUriFilterData &data ) const
       kDebug() << "Filtered URL: " << result;
 
     setFilteredUri( data, KUrl( result ) );
-    setUriType( data, KUriFilterData::NET_PROTOCOL );
+    setUriType( data, KUriFilterData::NetProtocol );
     return true;
   }
 

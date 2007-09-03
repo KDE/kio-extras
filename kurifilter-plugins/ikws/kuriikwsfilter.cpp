@@ -61,7 +61,7 @@ void KAutoWebSearch::configure()
 
 bool KAutoWebSearch::filterUri( KUriFilterData &data ) const
 {
-  if( data.uriType() != KUriFilterData::UNKNOWN )
+  if( data.uriType() != KUriFilterData::Unknown )
       return false;
 
   if (KURISearchFilterEngine::self()->verbose())
@@ -77,7 +77,7 @@ bool KAutoWebSearch::filterUri( KUriFilterData &data ) const
         kDebug () << "Filtered URL: " << result;
 
       setFilteredUri( data, KUrl( result ) );
-      setUriType( data, KUriFilterData::NET_PROTOCOL );
+      setUriType( data, KUriFilterData::NetProtocol );
       return true;
     }
   }

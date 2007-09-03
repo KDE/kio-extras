@@ -185,7 +185,7 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
      // Handle "encrypted" URLs like: h++p://www.kde.org
      url.setProtocol( QLatin1String("http"));
      setFilteredUri( data, url);
-     setUriType( data, KUriFilterData::NET_PROTOCOL );
+     setUriType( data, KUriFilterData::NetProtocol );
      return true;
   }
 
@@ -198,7 +198,7 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
   if (cmd.indexOf(starthere_proto) == 0 )
   {
     setFilteredUri( data, KUrl("system:/") );
-    setUriType( data, KUriFilterData::LOCAL_DIR );
+    setUriType( data, KUriFilterData::LocalDir );
     return true;
   }
 
@@ -218,7 +218,7 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
       cmd+='/';
 
     setFilteredUri( data, KUrl( cmd ));
-    setUriType( data, KUriFilterData::HELP );
+    setUriType( data, KUriFilterData::Help );
     return true;
   }
 
@@ -229,7 +229,7 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
     cmd.replace('\\', '/');
     cmd.prepend( QLatin1String( "smb:" ) );
     setFilteredUri( data, KUrl( cmd ));
-    setUriType( data, KUriFilterData::NET_PROTOCOL );
+    setUriType( data, KUriFilterData::NetProtocol );
     return true;
   }
 
@@ -292,7 +292,7 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
         QString msg = dir ? i18n("<qt><b>%1</b> does not have a home folder.</qt>", user) :
                             i18n("<qt>There is no user called <b>%1</b>.</qt>", user);
         setErrorMsg( data, msg );
-        setUriType( data, KUriFilterData::ERROR );
+        setUriType( data, KUriFilterData::Error );
         // Always return true for error conditions so
         // that other filters will not be invoked !!
         return true;
@@ -408,7 +408,7 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
       // No authorisation, we pretend it's a file will get
       // an access denied error later on.
       setFilteredUri( data, u );
-      setUriType( data, KUriFilterData::LOCAL_FILE );
+      setUriType( data, KUriFilterData::LocalFile );
       return true;
     }
 
@@ -418,7 +418,7 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
     {
       //kDebug() << "Abs path to EXECUTABLE";
       setFilteredUri( data, u );
-      setUriType( data, KUriFilterData::EXECUTABLE );
+      setUriType( data, KUriFilterData::Executable );
       return true;
     }
 
@@ -429,7 +429,7 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
       if ( !nameFilter.isEmpty() )
         u.setFileName( nameFilter );
       setFilteredUri( data, u );
-      setUriType( data, ( isDir ) ? KUriFilterData::LOCAL_DIR : KUriFilterData::LOCAL_FILE );
+      setUriType( data, ( isDir ) ? KUriFilterData::LocalDir : KUriFilterData::LocalFile );
       return true;
     }
 
@@ -450,7 +450,7 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
     // check if we have command line arguments
     if( exe != cmd )
         setArguments(data, cmd.right(cmd.length() - exe.length()));
-    setUriType( data, KUriFilterData::EXECUTABLE );
+    setUriType( data, KUriFilterData::Executable );
     return true;
   }
 
@@ -464,9 +464,9 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
     {
       setFilteredUri( data, url );
       if ( protocol == QFL1("man") || protocol == QFL1("help") )
-        setUriType( data, KUriFilterData::HELP );
+        setUriType( data, KUriFilterData::Help );
       else
-        setUriType( data, KUriFilterData::NET_PROTOCOL );
+        setUriType( data, KUriFilterData::NetProtocol );
       return true;
     }
   }
@@ -500,7 +500,7 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
 
       cmd.insert( 0, m_strDefaultProtocol );
       setFilteredUri( data, KUrl( cmd ));
-      setUriType( data, KUriFilterData::NET_PROTOCOL );
+      setUriType( data, KUriFilterData::NetProtocol );
       return true;
     }
   }
@@ -518,12 +518,12 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
       // No authorisation, we pretend it exists and will get
       // an access denied error later on.
       setFilteredUri( data, u );
-      setUriType( data, KUriFilterData::LOCAL_FILE );
+      setUriType( data, KUriFilterData::LocalFile );
       return true;
     }
     //kDebug() << "fileNotFound -> ERROR";
     setErrorMsg( data, i18n( "<qt>The file or folder <b>%1</b> does not exist.</qt>", data.uri().prettyUrl() ) );
-    setUriType( data, KUriFilterData::ERROR );
+    setUriType( data, KUriFilterData::Error );
     return true;
   }
 
@@ -562,7 +562,7 @@ void KShortUriFilter::configure()
     if (!protocol.isEmpty())
     {
       int type = typeGroup.readEntry(it.key(), -1);
-      if (type > -1 && type <= KUriFilterData::UNKNOWN)
+      if (type > -1 && type <= KUriFilterData::Unknown)
         m_urlHints.append( URLHint(it.value(), protocol, static_cast<KUriFilterData::UriTypes>(type) ) );
       else
         m_urlHints.append( URLHint(it.value(), protocol) );
