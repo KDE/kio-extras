@@ -7,6 +7,7 @@ X-KDE-FactoryName=medianotifier
 X-KDE-Kded-autoload=false
 X-KDE-Kded-load-on-demand=false
 Name=Media Notifier Daemon
+Name[ga]=Deamhan Fógartha Meán
 Name[nds]=Medien-Beschedendämoon
 Name[pt]=Servidor de Notificação de Dispositivos
 Name[pt_BR]=Servidor de Notificação de Mídia
