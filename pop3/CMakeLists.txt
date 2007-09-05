@@ -5,13 +5,13 @@ set(pop3_optional_libs)
 
 macro_optional_find_package(Sasl2)
 
-if(Sasl2_FOUND)
+if(SASL2_FOUND)
    set(pop3_optional_includes ${pop3_optional_includes} ${SASL2_INCLUDE_DIR})
    set(pop3_optional_libs     ${pop3_optional_libs}     ${SASL2_LIBRARIES})
    set(HAVE_LIBSASL2 1)
-else(Sasl2_FOUND)
+else(SASL2_FOUND)
    set(HAVE_LIBSASL2 0)
-endif(Sasl2_FOUND)
+endif(SASL2_FOUND)
 
 configure_file(pop3-config.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/pop3-config.h )
 

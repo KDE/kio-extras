@@ -9,13 +9,13 @@ set(smtp_optional_libs)
 
 macro_optional_find_package(Sasl2)
 
-if (Sasl2_FOUND)
+if (SASL2_FOUND)
    set(smtp_optional_includes ${smtp_optional_includes} ${SASL2_INCLUDE_DIR})
    set(smtp_optional_libs     ${smtp_optional_libs}     ${SASL2_LIBRARIES})
    set(HAVE_LIBSASL2 1)
-else (Sasl2_FOUND)
+else (SASL2_FOUND)
    set(HAVE_LIBSASL2 0)
-endif (Sasl2_FOUND)
+endif (SASL2_FOUND)
 
 configure_file(smtp-config.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/smtp-config.h )
 
