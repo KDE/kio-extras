@@ -23,7 +23,6 @@
 #include <QImage>
 
 #include <kstandarddirs.h>
-#include <kpixmapsplitter.h>
 
 #include "textcreator.h"
 
