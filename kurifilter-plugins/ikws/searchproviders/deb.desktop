@@ -57,8 +57,8 @@ Name[uz]=Debian пакетларини қидириш
 Name[vi]=Tìm kiếm gói Debian
 Name[x-test]=xxDebian Package Searchxx
 Name[zh_TW]=Debian 套件搜尋
-Query=http://packages.debian.org/cgi-bin/search_packages.pl?keywords=\\{@}&searchon=names&subword=1&version=all&release=all
-Query[bg]=Query=http://packages.debian.org/cgi-bin/search_packages.pl?keywords=\\{@}&searchon=names&subword=1&version=all&release=all
-Query[x-test]=xxhttp://packages.debian.org/cgi-bin/search_packages.pl?keywords=\\{@}&searchon=names&subword=1&version=all&release=allxx
+Query=http://packages.debian.org/\\{@}
+Query[bg]=Query=http://packages.debian.org/\\{@}
+Query[x-test]=xxhttp://packages.debian.org/\\{@}xx
 ServiceTypes=SearchProvider
 Type=Service
