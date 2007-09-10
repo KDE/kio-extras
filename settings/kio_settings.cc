@@ -146,7 +146,7 @@ void SettingsProtocol::get( const KUrl & url )
 	KService::Ptr service = KService::serviceByDesktopName(url.fileName());
 	if (service && service->isValid()) {
 		KUrl redirUrl;
-		redirUrl.setPath(KStandardDirs::locate("apps", service->desktopEntryPath()));
+		redirUrl.setPath(KStandardDirs::locate("apps", service->entryPath()));
 		redirection(redirUrl);
 		finished();
 	} else {
@@ -174,11 +174,11 @@ void SettingsProtocol::stat(const KUrl& url)
 		KService::Ptr service = KService::serviceByDesktopName( url.fileName() );
 		if (service && service->isValid()) {
 //			KUrl newUrl;
-//			newUrl.setPath(KStandardDirs::locate("apps", service->desktopEntryPath()));
+//			newUrl.setPath(KStandardDirs::locate("apps", service->entryPath()));
 //			createFileEntry(entry, service->name(), newUrl, "application/x-desktop", service->icon());
 
 			createFileEntry(entry, service->name(), url.url( KUrl::AddTrailingSlash )+service->desktopEntryName(),
-                            "application/x-desktop", service->icon(), KStandardDirs::locate("apps", service->desktopEntryPath()) );
+                            "application/x-desktop", service->icon(), KStandardDirs::locate("apps", service->entryPath()) );
 		} else {
 			error(KIO::ERR_SLAVE_DEFINED,i18n("Unknown settings folder"));
 			return;
@@ -255,7 +255,7 @@ void SettingsProtocol::listDir(const KUrl& url)
 		} else {
 			KService::Ptr s(KService::Ptr::staticCast(e));
 			kDebug() << "SettingsProtocol: adding file entry " << url.url( KUrl::AddTrailingSlash )+s->name();
-			createFileEntry(entry,s->name(),url.url( KUrl::AddTrailingSlash )+s->desktopEntryName(), "application/x-desktop",s->icon(),KStandardDirs::locate("apps", s->desktopEntryPath()));
+			createFileEntry(entry,s->name(),url.url( KUrl::AddTrailingSlash )+s->desktopEntryName(), "application/x-desktop",s->icon(),KStandardDirs::locate("apps", s->entryPath()));
 		}
 
 		listEntry(entry, false);
