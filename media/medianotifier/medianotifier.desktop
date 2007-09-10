@@ -8,6 +8,7 @@ X-KDE-Kded-autoload=false
 X-KDE-Kded-load-on-demand=false
 Name=Media Notifier Daemon
 Name[bg]=Мултимедиен демон за уведомяване
+Name[de]=Geräteüberwachung
 Name[el]=Δαίμονας ειδοποίησης μέσων
 Name[fa]=شبح اخطاردهندۀ رسانه
 Name[ga]=Deamhan Fógartha Meán
