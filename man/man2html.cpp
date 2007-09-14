@@ -2989,6 +2989,7 @@ static void request_mixed_fonts( char*& c, int j, const char* font1, const char*
 #define REQ_shift    146 // groff(7) "SHIFT parameter"
 #define REQ_while    147 // groff(7) "WHILE loop"
 #define REQ_do       148 // groff(7) "DO command"
+#define REQ_Dx       149 // mdoc(7) "DragonFly" macro
 
 static int get_request(char *req, int len)
 {
@@ -3005,7 +3006,7 @@ static int get_request(char *req, int len)
         "Cd", "Cm", "Ic", "Ms", "Or", "Sy", "Dv", "Ev", "Fr", "Li", "No", "Ns",
         "Tn", "nN", "%A", "%D", "%N", "%O", "%P", "%Q", "%V", "%B", "%J", "%R",
         "%T", "An", "Aq", "Bq", "Qq", "UR", "UE", "UN", "troff", "nroff", "als",
-        "rr", "rnn", "aln", "shift", "while", "do", 0 };
+        "rr", "rnn", "aln", "shift", "while", "do", "Dx", 0 };
     int r = 0;
     while (requests[r] && qstrncmp(req, requests[r], len)) r++;
     return requests[r] ? r : REQ_UNKNOWN;
@@ -4443,6 +4444,7 @@ static char *scan_request(char *c)
                 case REQ_Ox:    /* mdoc(7) */
                 case REQ_Bx:    /* mdoc(7) */
                 case REQ_Ux:    /* mdoc(7) */
+                case REQ_Dx:    /* mdoc(7) */
                 {
                     bool parsable=true;
                     trans_char(c,'"','\a');
@@ -4466,6 +4468,8 @@ static char *scan_request(char *c)
                         out_html("BSD ");
                     else if (request==REQ_Ux)
                         out_html("UNIX ");
+                    else if (request==REQ_Dx)
+                        out_html("DragonFly ");
                     if (parsable)
                         c=scan_troff_mandoc(c,1,0);
                     else
