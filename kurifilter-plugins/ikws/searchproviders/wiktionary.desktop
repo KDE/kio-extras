@@ -55,6 +55,7 @@ Name[tr]=Wiktionary - Ücretsiz Ansiklopedi
 Name[uk]=Wiktionary - вільний словник
 Name[uz]=Wiktionary - Эркин луғат
 Name[vi]=Wiktionary - Từ điển Tự do
+Name[wa]=L' esplicant motî do walon so Wikipedia
 Name[x-test]=xxWiktionary - The Free Dictionaryxx
 Name[zh_TW]=Wiktionary - 免費的字典
 ServiceTypes=SearchProvider
@@ -74,5 +75,6 @@ Query[pa]=http://en.wiktionary.org/wiki/Special:Search?search=\{@}&go=ਜਾਓ
 Query[pl]=http://pl.wiktionary.org/wiki/Special:Search?search=\{@}&go=Go
 Query[tg]=http://en.wikipedia.org/wiki/Special:Search?search=\{@}&go=Go
 Query[vi]=http://vi.wiktionary.org/wiki/Special:Search?search=\{@}&go=Go
+Query[wa]=http://wa.wikipedia.org/wiki/Motî:\{@}
 Query[x-test]=xxhttp://en.wiktionary.org/wiki/Special:Search?search=\{@}&go=Goxx
 Charset=utf8

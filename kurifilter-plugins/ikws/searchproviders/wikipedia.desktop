@@ -79,5 +79,6 @@ Query[nl]=http://nl.wikipedia.org/wiki/Special:Search?search=\{@}&go=Go
 Query[pa]=http://en.wikipedia.org/wiki/Special:Search?search=\{@}&go=ਜਾਓ
 Query[pl]=http://pl.wikipedia.org/wiki/Special:Search?search=\{@}&go=Go
 Query[vi]=http://vi.wikipedia.org/wiki/Special:Search?search=\{@}&go=Go
+Query[wa]=http://wa.wikipedia.org/wiki/Special:Search?search=\{@}&go=Potch%C3%AE
 Query[x-test]=xxhttp://en.wikipedia.org/wiki/Special:Search?search=\{@}&go=Goxx
 Charset=utf8
