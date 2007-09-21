@@ -36,9 +36,7 @@
 #include <kde_file.h>
 #include <kio/global.h>
 
-#include <errno.h> // to be removed
-
-#include "tar.h"
+#include "kio_archive.h"
 #include <kuser.h>
 
 using namespace KIO;
@@ -47,13 +45,13 @@ extern "C" { int KDE_EXPORT kdemain(int argc, char **argv); }
 
 int kdemain( int argc, char **argv )
 {
-  KComponentData componentData( "kio_tar" );
+  KComponentData componentData( "kio_archive" );
 
   kDebug(7109) << "Starting" << getpid();
 
   if (argc != 4)
   {
-     fprintf(stderr, "Usage: kio_tar protocol domain-socket1 domain-socket2\n");
+     fprintf(stderr, "Usage: kio_archive protocol domain-socket1 domain-socket2\n");
      exit(-1);
   }
 

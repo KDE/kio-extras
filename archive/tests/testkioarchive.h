@@ -25,7 +25,7 @@
 #include <QObject>
 
 /**
- * This is a unit test for kio_tar
+ * This is a unit test for kio_archive
  * See also kdelibs/kio/tests/karchivetest for lower-level KTar and KZip tests.
  */
 class TestKioArchive : public QObject

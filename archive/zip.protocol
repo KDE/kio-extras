@@ -1,5 +1,5 @@
 [Protocol]
-exec=kio_tar
+exec=kio_archive
 protocol=zip
 mimetype=application/x-zip
 input=filesystem
