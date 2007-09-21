@@ -39,6 +39,7 @@
 #include <errno.h> // to be removed
 
 #include "tar.h"
+#include <kuser.h>
 
 using namespace KIO;
 
@@ -130,6 +131,10 @@ bool ArchiveProtocol::checkNewFile( const KUrl & url, QString & path, KIO::Error
         {
             archiveFile = tryPath;
             m_mtime = statbuf.st_mtime;
+            KUser user(statbuf.st_uid);
+            m_user = user.loginName();
+            KUserGroup group(statbuf.st_gid);
+            m_group = group.name();
             path = fullPath.mid( pos + 1 );
             kDebug(7109).nospace() << "fullPath=" << fullPath << " path=" << path;
             len = path.length();
@@ -187,6 +192,17 @@ bool ArchiveProtocol::checkNewFile( const KUrl & url, QString & path, KIO::Error
     return true;
 }
 
+
+void ArchiveProtocol::createRootUDSEntry( KIO::UDSEntry & entry )
+{
+    entry.clear();
+    entry.insert( KIO::UDSEntry::UDS_NAME, "." );
+    entry.insert( KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR );
+    entry.insert( KIO::UDSEntry::UDS_MODIFICATION_TIME, m_mtime );
+    //entry.insert( KIO::UDSEntry::UDS_ACCESS, 07777 ); // fake 'x' permissions, this is a pseudo-directory
+    entry.insert( KIO::UDSEntry::UDS_USER, m_user);
+    entry.insert( KIO::UDSEntry::UDS_GROUP, m_group);
+}
 
 void ArchiveProtocol::createUDSEntry( const KArchiveEntry * archiveEntry, UDSEntry & entry )
 {
@@ -273,6 +289,9 @@ void ArchiveProtocol::listDir( const KUrl & url )
     totalSize( l.count() );
 
     UDSEntry entry;
+    createRootUDSEntry(entry);
+    listEntry(entry, false);
+
     QStringList::Iterator it = l.begin();
     for( ; it != l.end(); ++it )
     {
@@ -441,7 +460,8 @@ void ArchiveProtocol::get( const KUrl & url )
     const qint64 maxSize = 0x100000; // 1MB
 
     qint64 bufferSize = qMin( maxSize, archiveFileEntry->size() );
-    QByteArray buffer( bufferSize );
+    QByteArray buffer;
+    buffer.resize( bufferSize );
     if ( buffer.isEmpty() && bufferSize > 0 )
     {
         // Something went wrong

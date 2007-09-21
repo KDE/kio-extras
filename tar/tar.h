@@ -35,7 +35,8 @@ public:
     virtual void stat( const KUrl & url );
     virtual void get( const KUrl & url );
 
-protected:
+private:
+    void createRootUDSEntry( KIO::UDSEntry & entry );
     void createUDSEntry( const KArchiveEntry * tarEntry, KIO::UDSEntry & entry );
 
     /**
@@ -49,6 +50,7 @@ protected:
 
     KArchive * m_archiveFile;
     QString m_archiveName;
+    QString m_user, m_group;
     time_t m_mtime;
 };
 
