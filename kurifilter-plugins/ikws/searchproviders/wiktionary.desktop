@@ -30,6 +30,7 @@ Name[ja]=Wictionary - フリーな辞書
 Name[ka]=Wiktionary - თავისუფალი ლექსიკონი
 Name[kk]=Wiktionary - ашық сөздік
 Name[km]=Wikipedia - វចនានុក្រម​ឥតគិតថ្លៃ
+Name[ko]=위키낱말사전
 Name[lt]=Wiktionary - laisvasis žodynas
 Name[mk]=Wiktionary - Слободниот речник
 Name[nb]=Wiktionary - den frie ordboka
@@ -67,6 +68,7 @@ Query[eo]=http://eo.wiktionary.org/wiki/Special:Search?search=\{@}&go=Go
 Query[fr]=http://fr.wiktionary.org/wiki/Special:Search?search=\{@}&go=Go
 Query[fy]=http://fy.wiktionary.org/wiki/Special:Search?search=\{@}&go=Go
 Query[he]=http://he.wiktionary.org/wiki/Special:Search?search=\{@}&go=Go
+Query[ko]=http://ko.wiktionary.org/wiki/Special:Search?search=\{@}&go=Go
 Query[nb]=http://no.wiktionary.org/wiki/Special:Search?search=\{@}&go=Go
 Query[ne]=http://en.wiktionary.org/wiki/Special:Search?search=\{@}go=Go
 Query[nl]=http://nl.wiktionary.org/wiki/Special:Search?search=\{@}&go=Go

@@ -73,7 +73,7 @@ Name[zh_TW]=儲存媒體
 
 Comment=Configure Storage Media
 Comment[af]=Stel Stoor Media op
-Comment[ar]=إعداد وسائط التخزين
+Comment[ar]=اضبط وسائط التخزين
 Comment[be]=Настаўленні носьбітаў
 Comment[bg]=Настройване на устройствата за съхранение на информация
 Comment[ca]=Configura els suports d'emmagatzematge
@@ -155,6 +155,7 @@ Keywords[is]=geymsla,miðill,usb,cdrom,tæki
 Keywords[it]=storage,media,usb,cdrom,dispositivi,dvd,penna usb,memory stick,stick
 Keywords[ja]=記憶,ストレージ,保存,メディア,usb,cdrom,デバイス
 Keywords[km]=ផ្ទុក,មេឌៀ,យូអេសប៊ី,ស៊ីឌីរ៉ូម,ឧបករណ៍
+Keywords[ko]=저장소,미디어,usb,cdrom,장치
 Keywords[lt]=storage,media,usb,cdrom,device,saugojimas,media,įrenginiai,usb
 Keywords[mk]=storage,media,usb,cdrom,device,медиуми,усб,цдром,уред
 Keywords[nb]=lagring,media,usb,CD-spiller,CD-ROM,enheter,minnepinner,harddisker,HD,eksterne harddisker,zip-disker

@@ -3,6 +3,7 @@ Encoding=UTF-8
 Type=Service
 Name=LocalDomainFilter
 Name[af]=Plaaslike domein filter
+Name[ar]=مرشح المجال المحلي
 Name[ca]=Filtre de dominis locals
 Name[cs]=Filtr pro lokální doménu
 Name[csb]=Filter môlowi domenë

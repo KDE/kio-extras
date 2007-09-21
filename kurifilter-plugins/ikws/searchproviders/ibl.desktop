@@ -2,6 +2,7 @@
 Charset=iso 8859-15
 Type=Service
 Name=Internet Book List
+Name[ar]=لائحة عناوين الإنترنت
 Name[be]=Спіс інтэрнет-кніг
 Name[csb]=Lësta internetowich ksążków
 Name[de]=Internet-Buchliste
@@ -11,6 +12,7 @@ Name[fa]=فهرست کتاب اینترنت
 Name[he]=רשימת הספרים האינטרנטית
 Name[kk]=Интернет кітап тізімі
 Name[km]=បញ្ជី​សៀវភៅ​អ៊ីនធឺណិត​
+Name[ko]=인터넷 책 목록
 Name[nb]=Internetts bokliste
 Name[nds]=Internet-Booklist
 Name[ne]=इन्टरनेट पुस्तक सूची

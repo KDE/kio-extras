@@ -42,6 +42,7 @@ Description[it]=Un kioslave per sftp
 Description[ja]=sftp のための kioslave
 Description[kk]=sftp-ке арналған енгізу-шығару модулі
 Description[km]=kioslave សម្រាប់ sftp
+Description[ko]=SFTP KIO 슬레이브
 Description[lt]=Kiovergas sftp protokolui
 Description[lv]=KIO vergs priekš sftp
 Description[mk]=kio-служител за sftp
