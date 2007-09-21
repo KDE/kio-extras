@@ -154,5 +154,11 @@ void TestKioArchive::testExtractSymlinkFromTar()
     copyFromTar(u, destPath);
     QVERIFY(QFileInfo(destPath).isFile());
     QEXPECT_FAIL("", "See #5601 -- on FTP we want to download the real file, not the symlink...", Continue);
+    // See comment in 149903
+    // Maybe this is something we can do depending on Class=:local and Class=:internet
+    // (we already know if a protocol is local or remote).
+    // So local->local should copy symlinks, while internet->local and internet->internet should
+    // copy the actual file, I guess?
+    // -> ### TODO
     QVERIFY(QFileInfo(destPath).isSymLink());
 }
