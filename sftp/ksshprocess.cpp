@@ -179,8 +179,11 @@ const char * const KSshProcess::connectionClosedMsg[] = {
 };
 
 
-void KSshProcess::SIGCHLD_handler(int) {
-	while(waitpid(-1, NULL, WNOHANG) > 0);
+void KSshProcess::SIGCHLD_handler(int) 
+{
+    while(waitpid(-1, NULL, WNOHANG) > 0) {
+        ;
+    }
 }
 
 void KSshProcess::installSignalHandlers() {
@@ -224,7 +227,9 @@ KSshProcess::KSshProcess(QString pathToSsh)
 KSshProcess::~KSshProcess(){
     disconnect();
     removeSignalHandlers();
-    while(waitpid(-1, NULL, WNOHANG) > 0);
+    while(waitpid(-1, NULL, WNOHANG) > 0) {
+        ;
+    }
 }
 
 bool KSshProcess::setSshPath(QString pathToSsh) {
