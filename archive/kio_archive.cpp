@@ -129,10 +129,15 @@ bool ArchiveProtocol::checkNewFile( const KUrl & url, QString & path, KIO::Error
         {
             archiveFile = tryPath;
             m_mtime = statbuf.st_mtime;
+#ifdef Q_WS_WIN // st_uid and st_gid provides no information
+            m_user.clear();
+            m_group.clear();
+#else
             KUser user(statbuf.st_uid);
             m_user = user.loginName();
             KUserGroup group(statbuf.st_gid);
             m_group = group.name();
+#endif
             path = fullPath.mid( pos + 1 );
             kDebug(7109).nospace() << "fullPath=" << fullPath << " path=" << path;
             len = path.length();
