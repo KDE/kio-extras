@@ -205,8 +205,6 @@ void ThumbnailProtocol::get(const KUrl &url)
     m_iconSize = iconSize;
 
     m_iconAlpha = metaData("iconAlpha").toInt();
-    if (m_iconAlpha)
-        m_iconAlpha = (m_iconAlpha << 24) | 0xffffff;
 
     QImage img;
 
@@ -353,7 +351,9 @@ void ThumbnailProtocol::get(const KUrl &url)
         x = qMax( x, 0 );
         int y = img.height() - icon.height() - 6;
         y = qMax( y, 0 );
-        QPainter(&img).drawImage(x, y, icon);
+        QPainter p(&img);
+        p.setOpacity(m_iconAlpha/255.0);
+        p.drawImage(x, y, icon);
     }
 
     if (img.isNull())
@@ -421,16 +421,6 @@ const QImage ThumbnailProtocol::getIcon()
     if ( !m_iconDict.contains(m_mimeType) ) { // generate it
         QImage icon( KIconLoader::global()->loadMimeTypeIcon( KMimeType::mimeType(m_mimeType)->iconName(), K3Icon::Desktop, m_iconSize ).toImage() );
         icon.setAlphaBuffer( true );
-
-        int w = icon.width();
-        int h = icon.height();
-        for ( int y = 0; y < h; y++ )
-        {
-            QRgb *line = (QRgb *) icon.scanLine( y );
-            for ( int x = 0; x < w; x++ )
-                line[x] &= m_iconAlpha; // transparency
-        }
-
         m_iconDict.insert( m_mimeType, icon );
 
         return icon;
