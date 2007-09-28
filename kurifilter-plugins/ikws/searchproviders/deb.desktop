@@ -59,5 +59,6 @@ Name[vi]=Tìm kiếm gói Debian
 Name[x-test]=xxDebian Package Searchxx
 Name[zh_TW]=Debian 套件搜尋
 Query=http://packages.debian.org/\\{@}
+Query[x-test]=xxhttp://packages.debian.org/\\{@}xx
 ServiceTypes=SearchProvider
 Type=Service
