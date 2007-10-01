@@ -54,6 +54,7 @@ Name[uk]=База даних кінофільмів в Інтернет
 Name[uz]=Интернетдаги кино маълумот базаси
 Name[vi]=Cơ sở dữ liệu Phim ảnh trên Mạng
 Name[x-test]=xxInternet Movie Databasexx
+Name[zh_CN]=互联网电影数据库
 Name[zh_TW]=Internet 電影資料庫
 ServiceTypes=SearchProvider
 Keys=imdb
@@ -61,5 +62,6 @@ Query=http://imdb.com/Find?\\{@}
 Query[bg]=Query=http://imdb.com/Find?\\{@}
 Query[en_GB]=http://imdb.co.uk/Find?\\{@}
 Query[it]=http://italian.imdb.com/Find?\\{@}
+Query[nn]=http://akas.imdb.com/Find?\\{@}
 Query[x-test]=xxhttp://imdb.com/Find?\\{@}xx
 

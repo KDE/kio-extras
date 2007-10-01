@@ -57,6 +57,7 @@ Name[uk]=Провайдер пошуку Teletekst
 Name[uz]=Телетекстда қидириш
 Name[vi]=Nhà cung cấp dịch vụ Tìm kiếm Teletekst
 Name[x-test]=xxTeletekst Search Providerxx
+Name[zh_CN]=Teletekst 搜索提供者
 Name[zh_TW]=Teletekst 搜尋提供者
 Type=Service
 ServiceTypes=SearchProvider

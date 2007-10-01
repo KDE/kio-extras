@@ -60,6 +60,7 @@ Name[uz]=Qt учун кўлланма
 Name[vi]=Tài liệu Trực tuyến Mới nhất của Qt
 Name[wa]=Documintåcion di Qt so les fyis
 Name[x-test]=xxLatest Qt Online Documentationxx
+Name[zh_CN]=最新的 Qt 在线文档
 Name[zh_TW]=最新的 Qt 線上文件
 Query=http://doc.trolltech.com/latest/\\{@}.html
 Query[bg]=Query=http://doc.trolltech.com/latest/\\{@}.html

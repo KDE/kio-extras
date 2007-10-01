@@ -61,6 +61,7 @@ Name[vi]=Tìm Ứng dụng KDE
 Name[wa]=Programe di cweraedje di KDE
 Name[x-test]=xxKDE App Searchxx
 Name[xh]=Uphendlo lwe KDE App
+Name[zh_CN]=KDE 应用程序搜索
 Name[zh_TW]=KDE 程式搜尋
 ServiceTypes=SearchProvider
 Keys=apps,appsy

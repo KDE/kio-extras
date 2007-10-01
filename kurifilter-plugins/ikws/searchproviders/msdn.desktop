@@ -55,6 +55,7 @@ Name[uz]=Microsoft Developer Network'да қидириш
 Name[vi]=Tìm kiếm qua Mạng Nhà phát triển Microsoft
 Name[x-test]=xxMicrosoft Developer Network Searchxx
 Name[xh]=Uphendlo Womsebenzi womnatha Wombhekisi phambili we Microsoft
+Name[zh_CN]=MSDN 微软开发者网络搜索
 Name[zh_TW]=微軟開發者網路搜尋
 ServiceTypes=SearchProvider
 Keys=msdn

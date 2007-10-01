@@ -61,6 +61,7 @@ Name[uz]=CTAN каталоги
 Name[vi]=Phân loại CTAN
 Name[wa]=Catalogue do CTAN
 Name[x-test]=xxCTAN Catalogxx
+Name[zh_CN]=CTAN 目录
 Name[zh_TW]=CTAN 目錄
 Query=http://www.ctan.org/tools/cataloguesearch?action=/search/&catstring=\\{@}
 Query[bg]=Query=http://www.ctan.org/tools/cataloguesearch?action=/search/&catstring=\\{@}

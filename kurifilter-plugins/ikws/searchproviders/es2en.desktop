@@ -34,7 +34,7 @@ Name[ko]=WordReference.com 번역: 스페인어에서 영어로
 Name[lt]=WordReference.com vertimas: iš ispanų į anglų
 Name[lv]=WordReference.com Tulkošana: no Spāņu uz Angļu
 Name[mk]=WordReference.com превод: од шпански на англиски
-Name[nb]=WordReference.com - oversettelse fra spansk til engelsk
+Name[nb]=WordReference.com – oversettelse fra spansk til engelsk
 Name[nds]=WordReference.com Översetten: Spaansch na Engelsch
 Name[ne]=WordReference.com Translation: स्पेनिसलाई अङ्ग्रेजीमा
 Name[nl]=WordReference.com-vertaling: Spaans naar Engels
@@ -59,6 +59,7 @@ Name[uz]=WordReference.com таржима: Испанчадан Инглизча
 Name[vi]=WordReference.com Dịch: Tiếng Tây Ban Nha sang tiếng Anh
 Name[wa]=WordReference.com ratournaedje do castiyan viè l' inglès
 Name[x-test]=xxWordReference.com Translation: Spanish to Englishxx
+Name[zh_CN]=WordReference.com 翻译：西班牙语译英语
 Name[zh_TW]=WordReference.com 翻譯: 西班牙文至英文
 Query=http://www.wordreference.com/es/en/translation.asp?spen=\\{@}
 Query[bg]=Query=http://www.wordreference.com/es/en/translation.asp?spen=\\{@}

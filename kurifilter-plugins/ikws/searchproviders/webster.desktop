@@ -55,6 +55,7 @@ Name[vi]=Từ điển Merriam-Webster
 Name[wa]=Diccionaire inglès Merriam-Webster
 Name[x-test]=xxMerriam-Webster Dictionaryxx
 Name[xh]= Dikshinari ye Merriam-Webster
+Name[zh_CN]=韦氏词典
 Name[zh_TW]=韋氏詞典
 ServiceTypes=SearchProvider
 Keys=dict,webster

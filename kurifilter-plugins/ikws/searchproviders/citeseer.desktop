@@ -56,6 +56,7 @@ Name[uk]=CiteSeer: цифрова бібліотека наукової літе
 Name[uz]=CiteSeer: Аниқ фанлар учун электрон кутубхона
 Name[vi]=CiteSeer:Thư viện khoa học và văn học số hoá
 Name[x-test]=xxCiteSeer: Scientific Literature Digital Libraryxx
+Name[zh_CN]=CiteSeer：科学文献数字图书馆
 Name[zh_TW]=CiteSeer: 科學文獻數位圖書館
 Query=http://citeseer.ist.psu.edu/cs?q=\\{@}&submit=Search+Documents&cs=1
 Query[bg]=Query=http://citeseer.ist.psu.edu/cs?q=\\{@}&submit=Search+Documents&cs=1

@@ -129,6 +129,7 @@ Comment[uz]=Сақлаш ускуналарни мослаш
 Comment[vi]=Cấu hình vật chứa
 Comment[wa]=Apontyî les sopoirts di wårdaedje
 Comment[x-test]=xxConfigure Storage Mediaxx
+Comment[zh_CN]=配置存储介质
 Comment[zh_TW]=設定儲存媒體
 
 Keywords=storage,media,usb,cdrom,device
@@ -182,6 +183,7 @@ Keywords[uz]=сақлаш ускунаси,usb,cdrom,компакт-диск
 Keywords[vi]=lưu trữ,vật chứa,ổ,usb,cdrom,thiết bị
 Keywords[wa]=wårdaedje,sopoirt,usb,plake lazer,plake,cdrom,éndjin
 Keywords[x-test]=xxstorage,media,usb,cdrom,devicexx
+Keywords[zh_CN]=storage,media,usb,cdrom,device,存储,介质,设备
 Keywords[zh_TW]=storage,media,usb,cdrom,device,儲存,媒體,光碟機,裝置
 
 Categories=Qt;KDE;X-KDE-settings-peripherals;

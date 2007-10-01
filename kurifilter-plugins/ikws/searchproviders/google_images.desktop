@@ -64,6 +64,7 @@ Name[vi]=Tìm kiếm Hình ảnh Google
 Name[wa]=Cweraedje d' imådjes avou Google
 Name[x-test]=xxGoogle Image Searchxx
 Name[xh]=Uphendlo Lomfanekiso we Google
+Name[zh_CN]=Google 图像搜索
 Name[zh_TW]=Google 圖片搜尋
 ServiceTypes=SearchProvider
 Keys=ggi,images

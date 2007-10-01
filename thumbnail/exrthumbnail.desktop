@@ -62,6 +62,7 @@ Name[uz]=EXR-расмлар
 Name[vi]=Ảnh EXR
 Name[wa]=Imådjes EXR
 Name[x-test]=xxEXR Imagesxx
+Name[zh_CN]=EXR 图像
 Name[zh_TW]=EXR 影像
 ServiceTypes=ThumbCreator
 MimeTypes=image/x-exr

@@ -39,6 +39,7 @@ Name[uz]=CPAN - Perl бўйича мукаммал архив тармоғи
 Name[vi]=CPAN - Mạng kho lưu Perl đầy đủ
 Name[x-test]=xxCPAN - Comprehensive Perl Archive Networkxx
 Name[xh]=CPAN - Enomxholo Perl Indawo yokugcina Yomsebenzi womnatha
+Name[zh_CN]=CPAN - 全面的 Perl 归档网络
 Name[zh_TW]=CPAN - 全面的 Perl 收集網路
 Query=http://search.cpan.org/search?mode=\\{mode,2,"dist"}&query=\\{query,q,1}
 Query[bg]=Query=http://search.cpan.org/search?mode=\\{mode,2,"dist"}&query=\\{query,q,1}

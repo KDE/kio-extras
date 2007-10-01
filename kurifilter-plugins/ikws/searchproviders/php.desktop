@@ -61,6 +61,7 @@ Name[vi]=Tìm kiếm PHP
 Name[wa]=Cweraedje PHP
 Name[x-test]=xxPHP Searchxx
 Name[xh]=Uphendlo lwe PHP
+Name[zh_CN]=PHP 搜索
 Name[zh_TW]=PHP 搜尋
 Query=http://www.php.net/search.php?show=\\{mode,"manual"}&pattern=\\{@}
 Query[bg]=Query=http://www.php.net/search.php?show=\\{mode,"manual"}&pattern=\\{@}

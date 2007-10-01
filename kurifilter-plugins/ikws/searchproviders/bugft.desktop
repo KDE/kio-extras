@@ -58,6 +58,7 @@ Name[uz]=KDE хато маълумот базаси (бутун матнни қ�
 Name[vi]=Tìm kiếm cơ sở dữ liệu lỗi của KDE, dùng toàn bộ dòng từ khoá đã nhập
 Name[x-test]=xxKDE Bug Database Fulltext Searchxx
 Name[xh]=Uphendlo lwesiseko sedata ye KDE Bug Olubhaliweyo ngokupheleleyo
+Name[zh_CN]=KDE Bug 数据库全文检索
 Name[zh_TW]=KDE 臭蟲資料庫全文檢索
 Query=http://bugs.kde.org/simple_search.cgi?id=\\{1}+\\{2}+\\{3}+\\{4}+\\{5}+\\{6}+\\{7}+\\{8}+\\{9}
 Query[bg]=Query=http://bugs.kde.org/simple_search.cgi?id=\\{1}+\\{2}+\\{3}+\\{4}+\\{5}+\\{6}+\\{7}+\\{8}+\\{9}

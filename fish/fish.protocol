@@ -70,5 +70,6 @@ Description[uz]=FISH протоколи учун КЧ-слейв
 Description[vi]=A kioslave (đày tớ vào ra KDE) cho giao thức FISH
 Description[wa]=On vårlet d' I/R pol protocole FISH
 Description[x-test]=xxA kioslave for the FISH protocolxx
+Description[zh_CN]=FISH 协议的 KIO slave
 Description[zh_TW]=用於 FISH 通訊協定的 kioslave
 DocPath=kioslave/fish.html

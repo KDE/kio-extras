@@ -35,6 +35,7 @@ Name[th]=ไกด์ดนตรี
 Name[tr]=Müzik Kılavuzu
 Name[vi]=Hướng dẫn Âm nhạc
 Name[x-test]=xxAll Music Guidexx
+Name[zh_CN]=所有音乐指南
 Name[zh_TW]=所有音樂指南
 Query=http://www.allmusic.com/cg/amg.dll?p=amg&opt1=1&sql=\\{@}
 Query[bg]=Query=http://www.allmusic.com/cg/amg.dll?p=amg&opt1=1&sql=\\{@}

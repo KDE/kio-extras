@@ -34,6 +34,7 @@ Name[tr]=KısaURISüzgeci
 Name[uk]=Фільтр коротких URI
 Name[vi]=Lọc Địa chỉ URI Ngắn
 Name[x-test]=xxShortURIFilterxx
+Name[zh_CN]=短 URI 过滤
 Name[zh_TW]=短 URI 過濾器
 X-KDE-Library=libkshorturifilter
 ServiceTypes=KUriFilter/Plugin

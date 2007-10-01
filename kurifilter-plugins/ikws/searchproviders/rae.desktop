@@ -62,6 +62,7 @@ Name[uz]=Испан академиясининг (RAE) луғати
 Name[vi]=Từ điển của Viện hàn lâm Tây Ban Nha (RAE)
 Name[wa]=Diccionaire del Royåle Academeye Espagnole (RAE)
 Name[x-test]=xxDictionary of the Spanish Academy (RAE)xx
+Name[zh_CN]=西班牙学院的字典(RAE)
 Name[zh_TW]=西班牙金像獎字典 (RAE)
 Query=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
 Query[bg]=Query=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado

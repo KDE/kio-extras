@@ -37,7 +37,7 @@ Name[lt]=Wikipedia - laisva enciklopedija
 Name[lv]=Wikipedia - Brīvā enciklopēdija
 Name[mk]=Википедија - Слободната енциклопедија
 Name[ms]=Wikipedia - Ensiklopedia Percuma
-Name[nb]=Wikipedia - det frie leksikonet
+Name[nb]=Wikipedia – det frie leksikonet
 Name[nds]=Wikipedia - dat fre'e Nakieksel
 Name[ne]=विकिपिडिया - नि:शुल्क इन्साइक्लोपेडिया
 Name[nl]=Wikipedia - de vrije encyclopedie
@@ -63,6 +63,7 @@ Name[uz]=Wikipedia - Эркин энциклопедия
 Name[vi]=Wikipedia - Bách khoa Tự do
 Name[wa]=Wikipedia - Li libe eciclopedeye
 Name[x-test]=xxWikipedia - The Free Encyclopediaxx
+Name[zh_CN]=维基百科 - 免费的百科全书
 Name[zh_TW]=Wikipedia - 免費的 Encyclopedia
 ServiceTypes=SearchProvider
 Keys=wp
@@ -83,4 +84,5 @@ Query[pl]=http://pl.wikipedia.org/wiki/Special:Search?search=\{@}&go=Go
 Query[vi]=http://vi.wikipedia.org/wiki/Special:Search?search=\{@}&go=Go
 Query[wa]=http://wa.wikipedia.org/wiki/Special:Search?search=\{@}&go=Potch%C3%AE
 Query[x-test]=xxhttp://en.wikipedia.org/wiki/Special:Search?search=\{@}&go=Goxx
+Query[zh_CN]=http://zh.wikipedia.org/wiki/Special:Search?search=\{@}&go=Go
 Charset=utf8

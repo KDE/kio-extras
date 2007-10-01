@@ -42,6 +42,7 @@ Name[uk]=Запит коментарів (RFC) IETF
 Name[vi]=Yêu cầu Bình luận IETF
 Name[x-test]=xxIETF Requests for Commentsxx
 Name[xh]=Izicelo Zogqabazo ze IETF
+Name[zh_CN]=IETF 评论请求
 Name[zh_TW]=IETF RFC 文件
 Query=http://www.ietf.org/rfc/rfc\\{@}.txt
 Query[bg]=Query=http://www.ietf.org/rfc/rfc\\{@}.txt

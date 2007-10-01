@@ -34,7 +34,7 @@ Name[ko]=WordReference.com 번역: 영어에서 이탈리아어로
 Name[lt]=WordReference.com vertimas: iš anglų į italų
 Name[lv]=WordReference.com Tulkošana: no Angļu uz Itāļu
 Name[mk]=WordReference.com превод: од англиски на италијански
-Name[nb]=WordReference.com - oversettelse fra engelsk til italiensk
+Name[nb]=WordReference.com – oversettelse fra engelsk til italiensk
 Name[nds]=WordReference.com Översetten: Engelsch na Italieensch
 Name[ne]=WordReference.com Translation: अङ्ग्रेजीलाई इटलीमा
 Name[nl]=WordReference.com-vertaling: Engels naar Italiaans
@@ -59,6 +59,7 @@ Name[uz]=WordReference.com таржима: Инглизчадан Италянч
 Name[vi]=WordReference.com Dịch: Tiếng Anh sang tiếng Ý
 Name[wa]=WordReference.com ratournaedje di l' inglès viè l' itålyin
 Name[x-test]=xxWordReference.com Translation: English to Italianxx
+Name[zh_CN]=WordReference.com 翻译：英语译意大利语
 Name[zh_TW]=WordReference.com 翻譯: 英文至義大利文
 Query=http://www.wordreference.com/it/translation.asp?enit=\\{@}
 Query[bg]=Query=http://www.wordreference.com/it/translation.asp?enit=\\{@}

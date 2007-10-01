@@ -24,6 +24,7 @@ Name[th]=SVN บนเว็บของ KDE
 Name[vi]=Tra KDE WebSVN
 Name[wa]=WebSVN di KDE
 Name[x-test]=xxKDE WebSVNxx
+Name[zh_CN]=KDE WebCVS
 ServiceTypes=SearchProvider
 Keys=websvn,kdesvn,ksvn,kvs
 Query=http://websvn.kde.org/\\{@}

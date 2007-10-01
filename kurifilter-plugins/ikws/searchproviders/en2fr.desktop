@@ -34,7 +34,7 @@ Name[ko]=WordReference.com 번역: 영어에서 프랑스어로
 Name[lt]=WordReference.com vertimas: iš anglų į prancūzų
 Name[lv]=WordReference.com Tulkošana: no Angļu uz Franču
 Name[mk]=WordReference.com превод: од англиски на француски
-Name[nb]=WordReference.com - oversettelse fra engelsk til fransk
+Name[nb]=WordReference.com – oversettelse fra engelsk til fransk
 Name[nds]=WordReference.com Översetten: Engelsch na Franzöösch
 Name[ne]=WordReference.com Translation: अङ्ग्रेजीलाई फ्रेन्चमा
 Name[nl]=WordReference.com-vertaling: Engels naar Frans
@@ -59,6 +59,7 @@ Name[uz]=WordReference.com таржима: Инглизчадан Француз
 Name[vi]=WordReference.com Dịch: Tiếng Anh sang tiếng Pháp
 Name[wa]=WordReference.com ratournaedje di l' inglès viè l' francès
 Name[x-test]=xxWordReference.com Translation: English to Frenchxx
+Name[zh_CN]=WordReference.com 翻译：英语译法语
 Name[zh_TW]=WordReference.com 翻譯: 英文至法文
 Query=http://www.wordreference.com/fr/Translation.asp?enfr=\\{@}
 Query[bg]=Query=http://www.wordreference.com/fr/Translation.asp?enfr=\\{@}

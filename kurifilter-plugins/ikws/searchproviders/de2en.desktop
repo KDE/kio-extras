@@ -55,6 +55,7 @@ Name[uk]=dict.cc: переклад з німецької на англійськ
 Name[uz]=dict.cc таржима: Олмончадан Инглизчага
 Name[vi]=dict.cc Dịch: Tiếng Đức sang tiếng Anh
 Name[x-test]=xxdict.cc Translation: German to Englishxx
+Name[zh_CN]=dict.cc 翻译：德语译英语
 Name[zh_TW]=dict.cc 翻譯: 德文至英文
 Query=http://www.dict.cc/?s=\\{@}
 Query[bg]=Query=http://www.dict.cc/?s=\\{@}

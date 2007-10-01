@@ -61,6 +61,7 @@ Name[uz]=Сақлаш ускуна ҳақида маълумот
 Name[vi]=Thông tin về vật chứa
 Name[wa]=Infôrmåcion sol sopoirt
 Name[x-test]=xxMedium Informationxx
+Name[zh_CN]=介质信息
 Name[zh_TW]=媒體資訊
 ServiceTypes=KFilePlugin
 X-KDE-Library=kfile_media

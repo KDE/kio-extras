@@ -54,6 +54,7 @@ Name[uk]=Фільми на Google
 Name[uz]=Google - Кино
 Name[vi]=Tìm phim ảnh qua Google
 Name[x-test]=xxGoogle Moviesxx
+Name[zh_CN]=Google 电影
 Name[zh_TW]=Google 電影
 ServiceTypes=SearchProvider
 Keys=ggmovie
