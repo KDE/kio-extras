@@ -12,7 +12,7 @@ set(kio_thumbnail_PART_SRCS thumbnail.cpp )
 kde4_add_plugin(kio_thumbnail ${kio_thumbnail_PART_SRCS})
 
 
-target_link_libraries(kio_thumbnail  ${KDE4_KDE3SUPPORT_LIBS}  ${KDE4_KDEFX_LIBS})
+target_link_libraries(kio_thumbnail  ${KDE4_KDE3SUPPORT_LIBS} )
 
 install(TARGETS kio_thumbnail  DESTINATION ${PLUGIN_INSTALL_DIR} )
 
@@ -51,7 +51,7 @@ set(textthumbnail_PART_SRCS textcreator.cpp )
 kde4_add_plugin(textthumbnail ${textthumbnail_PART_SRCS})
 
 
-target_link_libraries(textthumbnail  ${KDE4_KDECORE_LIBS} ${KDE4_KDEFX_LIBS} ${QT_QTGUI_LIBRARY} )
+target_link_libraries(textthumbnail  ${KDE4_KDECORE_LIBS} ${QT_QTGUI_LIBRARY} )
 
 install(TARGETS textthumbnail  DESTINATION ${PLUGIN_INSTALL_DIR} )
 
