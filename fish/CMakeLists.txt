@@ -9,6 +9,9 @@ check_function_exists(grantpt     HAVE_GRANTPT)
 check_library_exists(util  openpty "" HAVE_OPENPTY)
 check_library_exists(util  isastream "" HAVE_ISASTREAM)
 
+find_library(UTIL_LIBRARIES util)
+mark_as_advanced(UTIL_LIBRARIES)
+
 configure_file(config-fish.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-fish.h)
 
 add_definitions (-DQT3_SUPPORT)
@@ -36,8 +39,11 @@ if (MD5SUM_EXECUTABLE)
    
    kde4_add_plugin(kio_fish ${kio_fish_PART_SRCS})
    
-   
    target_link_libraries(kio_fish ${KDE4_KIO_LIBS})
+   
+   if (UTIL_LIBRARIES)
+      target_link_libraries(kio_fish ${UTIL_LIBRARIES})
+   endif (UTIL_LIBRARIES)
    
 install(TARGETS kio_fish  DESTINATION ${PLUGIN_INSTALL_DIR} )
    

@@ -315,6 +315,7 @@ void fishProtocol::openConnection() {
     myDebug( << "subprocess is running" << endl);
 }
 
+// XXX Use KPty! XXX
 static int open_pty_pair(int fd[2])
 {
 #if defined(HAVE_TERMIOS_H) && defined(HAVE_GRANTPT) && !defined(HAVE_OPENPTY)
