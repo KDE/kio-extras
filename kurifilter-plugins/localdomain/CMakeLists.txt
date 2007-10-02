@@ -9,7 +9,7 @@ set(localdomainurifilter_PART_SRCS localdomainurifilter.cpp )
 kde4_add_plugin(localdomainurifilter WITH_PREFIX ${localdomainurifilter_PART_SRCS})
 
 
-target_link_libraries(localdomainurifilter  ${KDE4_KIO_LIBS} ${QT_QT3SUPPORT_LIBRARY})
+target_link_libraries(localdomainurifilter  ${KDE4_KDE3SUPPORT_LIBS} ${KDE4_KIO_LIBS} ${QT_QT3SUPPORT_LIBRARY})
 
 install(TARGETS localdomainurifilter  DESTINATION ${PLUGIN_INSTALL_DIR} )
 

@@ -10,7 +10,7 @@ set(kio_finger_PART_SRCS kio_finger.cpp )
 kde4_add_plugin(kio_finger ${kio_finger_PART_SRCS})
 
 
-target_link_libraries(kio_finger  ${KDE4_KIO_LIBS} )
+target_link_libraries(kio_finger  ${KDE4_KDE3SUPPORT_LIBS} ${KDE4_KIO_LIBS} )
 
 install(TARGETS kio_finger  DESTINATION ${PLUGIN_INSTALL_DIR} )
 
