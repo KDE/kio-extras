@@ -16,7 +16,7 @@ set(kio_sftp_PART_SRCS
 kde4_add_plugin(kio_sftp ${kio_sftp_PART_SRCS})
 
 
-target_link_libraries(kio_sftp  ${KDE4_KDE3SUPPORT_LIBS} ${KDE4_KDESU_LIBS} )
+target_link_libraries(kio_sftp  ${KDE4_KDE3SUPPORT_LIBS}  )
 
 install(TARGETS kio_sftp  DESTINATION ${PLUGIN_INSTALL_DIR} )
 

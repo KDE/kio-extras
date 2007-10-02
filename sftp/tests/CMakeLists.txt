@@ -13,6 +13,6 @@ set(ksshprocesstest_SRCS
 
 kde4_add_executable(ksshprocesstest TEST ${ksshprocesstest_SRCS})
 
-target_link_libraries(ksshprocesstest ${KDE4_KDESU_LIBS} )
+target_link_libraries(ksshprocesstest)
 
 

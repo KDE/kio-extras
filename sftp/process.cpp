@@ -50,8 +50,6 @@
 #include <kstandarddirs.h>
 
 #include "process.h"
-#include <kdesu/kcookie.h>
-
 
 MyPtyProcess::MyPtyProcess()
 {
