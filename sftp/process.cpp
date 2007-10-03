@@ -43,7 +43,6 @@
 #endif
 
 #include <QtCore/QBool>
-#include <Qt3Support/Q3CString>
 #include <QFile>
 
 #include <kdebug.h>
