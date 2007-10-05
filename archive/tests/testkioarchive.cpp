@@ -23,6 +23,7 @@
 #include <kio/netaccess.h>
 #include <ktar.h>
 #include <kstandarddirs.h>
+#include <kdebug.h>
 
 QTEST_KDEMAIN(TestKioArchive, NoGUI)
 static const char* s_tarFileName = "karchivetest.tar";

@@ -25,6 +25,7 @@
 #include <kdesktopfile.h>
 #include <kservice.h>
 #include <klocale.h>
+#include <kconfiggroup.h>
 
 #include <QDir>
 #include <QFile>

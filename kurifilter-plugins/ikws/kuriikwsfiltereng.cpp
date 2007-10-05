@@ -32,6 +32,7 @@
 #include <kurl.h>
 #include <kdebug.h>
 #include <kconfig.h>
+#include <kconfiggroup.h>
 #include <kstandarddirs.h>
 #include <kprotocolinfo.h>
 #include <k3staticdeleter.h>
@@ -446,7 +447,7 @@ void KURISearchFilterEngine::loadConfig()
   // we can assume "every" user has upgraded to a KDE version that
   // contains the sycoca based search provider configuration (malte).
   {
-    KConfig oldConfig(KGlobal::dirs()->saveLocation("config") + QString(name()) + "rc", KConfig::OnlyLocal);
+    KConfig oldConfig(KGlobal::dirs()->saveLocation("config") + QString(name()) + "rc", KConfig::SimpleConfig);
 	KConfigGroup cg(&oldConfig, "General");
 
     if (cg.hasKey("SearchEngines"))
@@ -519,7 +520,7 @@ void KURISearchFilterEngine::loadConfig()
   PIDDBG << "Keywords Engine: Loading config..." << endl;
 
   // Load the config.
-  KConfig config( name() + "rc", KConfig::NoGlobals );
+  KConfig config( name() + "rc", KConfig::CascadeConfig );
   KConfigGroup group = config.group( "General" );
 
   m_cKeywordDelimiter = group.readEntry("KeywordDelimiter", int(':'));

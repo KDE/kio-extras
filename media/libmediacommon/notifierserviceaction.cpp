@@ -25,6 +25,7 @@
 #include <kstandarddirs.h>
 #include <kdesktopfile.h>
 #include <klocale.h>
+#include <kconfiggroup.h>
 
 NotifierServiceAction::NotifierServiceAction()
 	: NotifierAction()

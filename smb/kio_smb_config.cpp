@@ -32,12 +32,13 @@
 #include "kio_smb.h"
 #include "kio_smb_internal.h"
 #include <kconfig.h>
+#include <kconfiggroup.h>
 
 #include <QTextCodec>
 //===========================================================================
 void SMBSlave::reparseConfiguration()
 {
-  KConfig cfg("kioslaverc", KConfig::NoGlobals);
+  KConfig cfg("kioslaverc", KConfig::CascadeConfig);
   const KConfigGroup group = cfg.group("Browser Settings/SMBro");
   m_default_user = group.readEntry("User");
 //  m_default_workgroup=group.readEntry("Workgroup");

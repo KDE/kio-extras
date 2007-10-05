@@ -61,7 +61,7 @@ KCMCgi::KCMCgi(QWidget *parent, const QVariantList &)
   connect( mRemoveButton, SIGNAL( clicked() ), SLOT( removePath() ) );
   connect( mListBox, SIGNAL(itemClicked(QListWidgetItem*)),this, SLOT(slotItemSelected(QListWidgetItem*)));
 
-  mConfig = new KConfig("kcmcgirc", KConfig::NoGlobals);
+  mConfig = new KConfig("kcmcgirc", KConfig::CascadeConfig);
 
   load();
   updateButton();

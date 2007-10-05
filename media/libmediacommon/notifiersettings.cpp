@@ -22,6 +22,7 @@
 #include <kglobal.h>
 #include <kdesktopfile.h>
 #include <kstandarddirs.h>
+#include <kconfiggroup.h>
 #include <QDir>
 #include <QFile>
 
@@ -260,7 +261,7 @@ void NotifierSettings::save()
 		delete a;
 	}
 
-	KConfig config( "medianotifierrc", KConfig::OnlyLocal);
+	KConfig config( "medianotifierrc", KConfig::SimpleConfig);
 	KConfigGroup cg(&config, "Auto Actions" );
 
 	QMap<QString,NotifierAction*>::iterator auto_it = m_autoMimetypesMap.begin();

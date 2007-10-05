@@ -62,6 +62,7 @@ So we can't connect.
 #include <kmimetype.h>
 #include <kde_file.h>
 #include <kremoteencoding.h>
+#include <kconfiggroup.h>
 
 #include "sftp.h"
 #include "kio_sftp.h"

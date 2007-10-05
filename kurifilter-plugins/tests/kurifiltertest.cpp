@@ -26,6 +26,7 @@
 #include <klocale.h>
 #include <kio/netaccess.h>
 #include <kdefakes.h>
+#include <kconfiggroup.h>
 
 #include <QtCore/QDir>
 #include <QtCore/QRegExp>
@@ -163,7 +164,7 @@ void KUriFilterTest::init()
     // There is no default search engine by default (since it was annoying when making typos),
     // so the user has to set it up, which we do here.
     {
-      KConfigGroup cfg( KSharedConfig::openConfig( "kuriikwsfilterrc", KConfig::OnlyLocal ), "General" );
+      KConfigGroup cfg( KSharedConfig::openConfig( "kuriikwsfilterrc", KConfig::SimpleConfig ), "General" );
       cfg.writeEntry( "DefaultSearchEngine", "google" );
       cfg.writeEntry( "Verbose", true );
       cfg.writeEntry( "KeywordDelimiter", QString(s_delimiter) );
@@ -172,7 +173,7 @@ void KUriFilterTest::init()
 
     // Enable verbosity for debugging
     {
-      KSharedConfig::openConfig("kshorturifilterrc", KConfig::OnlyLocal )->group(QString()).writeEntry( "Verbose", true );
+      KSharedConfig::openConfig("kshorturifilterrc", KConfig::SimpleConfig )->group(QString()).writeEntry( "Verbose", true );
     }
 
     KStandardDirs::makeDir( kdehome+"/urifilter" );

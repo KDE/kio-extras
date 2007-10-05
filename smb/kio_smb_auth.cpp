@@ -33,6 +33,7 @@
 #include "kio_smb_internal.h"
 
 #include <kconfig.h>
+#include <kconfiggroup.h>
 #include <QDir>
 #include <stdlib.h>
 
@@ -162,7 +163,7 @@ bool SMBSlave::auth_initialize_smbc()
     if(m_initialized_smbc == false)
     {
         kDebug(KIO_SMB) << "smbc_init call";
-        KConfig cfg( "kioslaverc", KConfig::OnlyLocal);
+        KConfig cfg( "kioslaverc", KConfig::SimpleConfig);
         int debug_level = cfg.group( "SMB" ).readEntry( "DebugLevel", 0 );
 
 #if 0

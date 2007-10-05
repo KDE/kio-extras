@@ -108,7 +108,7 @@ void FilterOptions::load()
     // Clear state first.
     m_dlg->lvSearchProviders->clear();
 
-    KConfig config( KURISearchFilterEngine::self()->name() + "rc", KConfig::NoGlobals );
+    KConfig config( KURISearchFilterEngine::self()->name() + "rc", KConfig::CascadeConfig );
     KConfigGroup group = config.group("General");
 
     QString defaultSearchEngine = group.readEntry("DefaultSearchEngine");
@@ -191,7 +191,7 @@ void FilterOptions::setDelimiter (char sep)
 
 void FilterOptions::save()
 {
-  KConfig config( KURISearchFilterEngine::self()->name() + "rc", KConfig::NoGlobals );
+  KConfig config( KURISearchFilterEngine::self()->name() + "rc", KConfig::CascadeConfig );
 
   KConfigGroup group = config.group("General");
   group.writeEntry("EnableWebShortcuts", m_dlg->cbEnableShortcuts->isChecked());
@@ -258,7 +258,7 @@ void FilterOptions::save()
         }
       }
 
-      KConfig _service( path + name + ".desktop", KConfig::OnlyLocal );
+      KConfig _service( path + name + ".desktop", KConfig::SimpleConfig );
       KConfigGroup service(&_service, "Desktop Entry");
       service.writeEntry("Type", "Service");
       service.writeEntry("ServiceTypes", "SearchProvider");
@@ -288,7 +288,7 @@ void FilterOptions::save()
           QFile::remove(matches[0]);
           continue;
       }
-      KConfig _service( path + *it + ".desktop", KConfig::OnlyLocal );
+      KConfig _service( path + *it + ".desktop", KConfig::SimpleConfig );
       KConfigGroup service(&_service, "Desktop Entry");
       service.writeEntry("Type", "Service");
       service.writeEntry("ServiceTypes", "SearchProvider");

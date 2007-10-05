@@ -28,6 +28,7 @@
 #include <kcomponentdata.h>
 #include <klocale.h>
 #include <kconfig.h>
+#include <kconfiggroup.h>
 
 #include "cgi.h"
 

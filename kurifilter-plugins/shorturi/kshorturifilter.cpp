@@ -36,6 +36,7 @@
 #include <kprotocolinfo.h>
 #include <kstandarddirs.h>
 #include <kconfig.h>
+#include <kconfiggroup.h>
 #include <kauthorized.h>
 #include <kmimetype.h>
 
@@ -545,7 +546,7 @@ QString KShortUriFilter::configName() const
 
 void KShortUriFilter::configure()
 {
-  KConfig config( objectName() + QFL1( "rc"), KConfig::NoGlobals );
+  KConfig config( objectName() + QFL1( "rc"), KConfig::CascadeConfig );
   KConfigGroup cg( config.group("") );
   m_bVerbose = cg.readEntry( "Verbose", false );
 
