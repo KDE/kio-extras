@@ -38,7 +38,7 @@
 void SMBSlave::copy( const KUrl& ksrc,
                      const KUrl& kdst,
                      int permissions,
-                     bool overwrite)
+                     KIO::JobFlags flags )
 {
 
     SMBUrl          src;
@@ -85,7 +85,7 @@ void SMBSlave::copy( const KUrl& ksrc,
             error( KIO::ERR_DIR_ALREADY_EXIST, dst.prettyUrl());
 	    return;
         }
-        if(!overwrite)
+        if(!(flags & KIO::Overwrite))
         {
             error( KIO::ERR_FILE_ALREADY_EXIST, dst.prettyUrl());
 	    return;
@@ -120,7 +120,7 @@ void SMBSlave::copy( const KUrl& ksrc,
 
     // Open the destination file
     dstflags = O_CREAT | O_TRUNC | O_WRONLY;
-    if(!overwrite)
+    if(!(flags & KIO::Overwrite))
     {
         dstflags |= O_EXCL;
     }
@@ -269,7 +269,7 @@ void SMBSlave::mkdir( const KUrl &kurl, int permissions )
 
 
 //===========================================================================
-void SMBSlave::rename( const KUrl& ksrc, const KUrl& kdest, bool overwrite )
+void SMBSlave::rename( const KUrl& ksrc, const KUrl& kdest, KIO::JobFlags flags )
 {
 
     SMBUrl      src;
@@ -292,7 +292,7 @@ void SMBSlave::rename( const KUrl& ksrc, const KUrl& kdest, bool overwrite )
 	    finished();
 	    return;
         }
-        if(!overwrite)
+        if(!(flags & KIO::Overwrite))
         {
 	    kDebug(KIO_SMB) << "SMBSlave::rename KIO::ERR_FILE_ALREADY_EXIST";
             error( KIO::ERR_FILE_ALREADY_EXIST, dst.prettyUrl());

@@ -35,8 +35,8 @@ public:
 	virtual bool rewriteUrl(const KUrl &url, KUrl &newUrl);
 
 	virtual void put(const KUrl &url, int permissions,
-	                 bool overwrite, bool resume);
-	virtual void rename(const KUrl &src, const KUrl &dest, bool overwrite);
+	                 KIO::JobFlags flags);
+	virtual void rename(const KUrl &src, const KUrl &dest, KIO::JobFlags flags);
 	virtual void mkdir(const KUrl &url, int permissions);
 	virtual void del(const KUrl &url, bool isFile);
 	virtual void stat(const KUrl &url);

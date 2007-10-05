@@ -245,14 +245,14 @@ public:
     virtual void reparseConfiguration();
 
     // Functions overwritten in kio_smb_dir.cpp
-    virtual void copy( const KUrl& src, const KUrl &dest, int permissions, bool overwrite );
+    virtual void copy( const KUrl& src, const KUrl &dest, int permissions, KIO::JobFlags flags );
     virtual void del( const KUrl& kurl, bool isfile);
     virtual void mkdir( const KUrl& kurl, int permissions );
-    virtual void rename( const KUrl& src, const KUrl& dest, bool overwrite );
+    virtual void rename( const KUrl& src, const KUrl& dest, KIO::JobFlags flags );
 
     // Functions overwritten in kio_smb_file.cpp
     virtual void get( const KUrl& kurl );
-    virtual void put( const KUrl& kurl, int permissions, bool overwrite, bool resume );
+    virtual void put( const KUrl& kurl, int permissions, KIO::JobFlags flags );
     virtual void open( const KUrl& kurl, int access );
     virtual void read( KIO::filesize_t size );
     virtual void write( const QByteArray &data );

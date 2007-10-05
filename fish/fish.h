@@ -52,7 +52,7 @@ It is set to false if the connection becomes closed.
   /** get a file */
   void get(const KUrl& url);
   /** put a file */
-  void put(const KUrl& url, int permissions, bool overwrite, bool resume);
+  void put(const KUrl& url, int permissions, KIO::JobFlags flags );
   /** aborts command sequence and calls error() */
   void error(int type, const QString &detail);
   /** executes next command in sequence or calls finished() if all is done */
@@ -66,13 +66,13 @@ It is set to false if the connection becomes closed.
   /** create a directory */
   void mkdir(const KUrl&url, int permissions);
   /** rename a file */
-  void rename(const KUrl& src, const KUrl& dest, bool overwrite);
+  void rename(const KUrl& src, const KUrl& dest, KIO::JobFlags flags);
   /** create a symlink */
-  void symlink(const QString& target, const KUrl& dest, bool overwrite);
+  void symlink(const QString& target, const KUrl& dest, KIO::JobFlags flags);
   /** change file permissions */
   void chmod(const KUrl& url, int permissions);
   /** copies a file */
-  void copy(const KUrl &src, const KUrl &dest, int permissions, bool overwrite);
+  void copy(const KUrl &src, const KUrl &dest, int permissions, KIO::JobFlags flags);
   /** report status */
   void slave_status();
   /** removes a file or directory */

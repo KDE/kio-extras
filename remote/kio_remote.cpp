@@ -211,7 +211,7 @@ void RemoteProtocol::get(const KUrl &url)
 }
 
 void RemoteProtocol::rename(const KUrl &src, const KUrl &dest,
-                            bool overwrite)
+                            KIO::JobFlags flags)
 {
 	if (src.protocol()!="remote" || dest.protocol()!="remote"
          || m_impl.isWizardURL(src) || m_impl.isWizardURL(dest))
@@ -220,7 +220,7 @@ void RemoteProtocol::rename(const KUrl &src, const KUrl &dest,
 		return;
 	}
 
-	if (m_impl.renameFolders(src.fileName(), dest.fileName(), overwrite))
+	if (m_impl.renameFolders(src.fileName(), dest.fileName(), flags & KIO::Overwrite))
 	{
 		finished();
 		return;

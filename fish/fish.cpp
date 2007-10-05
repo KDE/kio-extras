@@ -1279,8 +1279,8 @@ void fishProtocol::get(const KUrl& u){
 }
 
 /** put a file */
-void fishProtocol::put(const KUrl& u, int permissions, bool overwrite, bool /*resume*/){
-    myDebug( << "@@@@@@@@@ put " << u << " " << permissions << " " << overwrite << " " /* << resume */ << endl);
+void fishProtocol::put(const KUrl& u, int permissions, KIO::JobFlags flags) {
+    myDebug( << "@@@@@@@@@ put " << u << " " << permissions << " " << (flags & KIO::Overwrite) << " " /* << resume */ << endl);
     setHost(u.host(),u.port(),u.user(),u.pass());
     url = u;
     openConnection();
@@ -1291,7 +1291,7 @@ void fishProtocol::put(const KUrl& u, int permissions, bool overwrite, bool /*re
     } else {
         putPerm = permissions;
 
-        checkOverwrite = overwrite;
+        checkOverwrite = flags & KIO::Overwrite;
         checkExist = false;
         putPos = 0;
         listReason = CHECK;
@@ -1471,8 +1471,8 @@ void fishProtocol::mkdir(const KUrl& u, int permissions) {
     run();
 }
 /** rename a file */
-void fishProtocol::rename(const KUrl& s, const KUrl& d, bool overwrite) {
-    myDebug( << "@@@@@@@@@ rename " << s << " " << d << " " << overwrite << endl);
+void fishProtocol::rename(const KUrl& s, const KUrl& d, KIO::JobFlags flags) {
+    myDebug( << "@@@@@@@@@ rename " << s << " " << d << " " << (flags & KIO::Overwrite) << endl);
     if (s.host() != d.host() || s.port() != d.port() || s.user() != d.user()) {
         error(ERR_UNSUPPORTED_ACTION,s.prettyUrl());
         return;
@@ -1487,7 +1487,7 @@ void fishProtocol::rename(const KUrl& s, const KUrl& d, bool overwrite) {
     if (!url.hasPath()) {
         sendCommand(FISH_PWD);
     } else {
-        if (!overwrite) {
+        if (!(flags & KIO::Overwrite)) {
             listReason = CHECK;
             checkOverwrite = false;
             sendCommand(FISH_LIST,E(url.path()));
@@ -1497,8 +1497,8 @@ void fishProtocol::rename(const KUrl& s, const KUrl& d, bool overwrite) {
     run();
 }
 /** create a symlink */
-void fishProtocol::symlink(const QString& target, const KUrl& u, bool overwrite) {
-    myDebug( << "@@@@@@@@@ symlink " << target << " " << u << " " << overwrite << endl);
+void fishProtocol::symlink(const QString& target, const KUrl& u, KIO::JobFlags flags) {
+    myDebug( << "@@@@@@@@@ symlink " << target << " " << u << " " << (flags & KIO::Overwrite) << endl);
     setHost(u.host(),u.port(),u.user(),u.pass());
     url = u;
     openConnection();
@@ -1507,7 +1507,7 @@ void fishProtocol::symlink(const QString& target, const KUrl& u, bool overwrite)
     if (!url.hasPath()) {
         sendCommand(FISH_PWD);
     } else {
-        if (!overwrite) {
+        if (!(flags & KIO::Overwrite)) {
             listReason = CHECK;
             checkOverwrite = false;
             sendCommand(FISH_LIST,E(url.path()));
@@ -1532,8 +1532,8 @@ void fishProtocol::chmod(const KUrl& u, int permissions){
     run();
 }
 /** copies a file */
-void fishProtocol::copy(const KUrl &s, const KUrl &d, int permissions, bool overwrite) {
-    myDebug( << "@@@@@@@@@ copy " << s << " " << d << " " << permissions << " " << overwrite << endl);
+void fishProtocol::copy(const KUrl &s, const KUrl &d, int permissions, KIO::JobFlags flags) {
+    myDebug( << "@@@@@@@@@ copy " << s << " " << d << " " << permissions << " " << (flags & KIO::Overwrite) << endl);
     if (s.host() != d.host() || s.port() != d.port() || s.user() != d.user()) {
         error(ERR_UNSUPPORTED_ACTION,s.prettyUrl());
         return;
@@ -1549,7 +1549,7 @@ void fishProtocol::copy(const KUrl &s, const KUrl &d, int permissions, bool over
     if (!src.hasPath()) {
         sendCommand(FISH_PWD);
     } else {
-        if (!overwrite) {
+        if (!(flags & KIO::Overwrite)) {
             listReason = CHECK;
             checkOverwrite = false;
             sendCommand(FISH_LIST,E(url.path()));

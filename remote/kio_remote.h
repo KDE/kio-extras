@@ -34,7 +34,7 @@ public:
 	virtual void stat(const KUrl &url);
 	virtual void del(const KUrl &url, bool isFile);
 	virtual void get(const KUrl &url);
-	virtual void rename(const KUrl &src, const KUrl &dest, bool overwrite);
+	virtual void rename(const KUrl &src, const KUrl &dest, KIO::JobFlags flags);
 
 private:
 	void listRoot();

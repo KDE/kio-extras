@@ -157,7 +157,7 @@ void FilterProtocol::get( const KUrl & )
   finished();
 }
 
-void FilterProtocol::put( const KUrl &/*url*/, int, bool /*_overwrite*/, bool /*_resume*/ )
+void FilterProtocol::put( const KUrl &/*url*/, int, KIO::JobFlags /* _flags */ )
 {
   error( KIO::ERR_UNSUPPORTED_ACTION, QString::fromLatin1("put"));
 }

@@ -852,7 +852,7 @@ void FloppyProtocol::del( const KUrl& url, bool isfile)
    finished();
 }
 
-void FloppyProtocol::rename( const KUrl &src, const KUrl &dest, bool _overwrite )
+void FloppyProtocol::rename( const KUrl &src, const KUrl &dest, KIO::JobFlags flags )
 {
    QString srcPath(src.path());
    QString destPath(dest.path());
@@ -888,7 +888,7 @@ void FloppyProtocol::rename( const KUrl &src, const KUrl &dest, bool _overwrite 
    //kDebug(7101)<<"Floppy::stat(): create args";
    QStringList args;
 
-   if (_overwrite)
+   if (flags & KIO::Overwrite)
       args<<"mren"<<"-o"<<(srcDrive+srcFloppyPath)<<(destDrive+destFloppyPath);
    else
       args<<"mren"<<"-D"<<"s"<<(srcDrive+srcFloppyPath)<<(destDrive+destFloppyPath);
@@ -1034,7 +1034,7 @@ void FloppyProtocol::get( const KUrl& url )
    finished();
 }
 
-void FloppyProtocol::put( const KUrl& url, int , bool overwrite, bool )
+void FloppyProtocol::put( const KUrl& url, int , JobFlags flags )
 {
    QString path(url.path());
    kDebug(7101)<<"Floppy::put() -"<<path<<"-";
@@ -1063,7 +1063,7 @@ void FloppyProtocol::put( const KUrl& url, int , bool overwrite, bool )
       delete m_mtool;
    //kDebug(7101)<<"Floppy::stat(): create args";
    QStringList args;
-   if (overwrite)
+   if (flags & KIO::Overwrite)
       args<<"mcopy"<<"-o"<<"-"<<(drive+floppyPath);
    else
       args<<"mcopy"<<"-s"<<"-"<<(drive+floppyPath);

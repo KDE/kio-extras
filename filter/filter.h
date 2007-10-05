@@ -38,8 +38,7 @@ public:
     FilterProtocol( const QByteArray & protocol, const QByteArray &pool, const QByteArray &app );
 
     virtual void get( const KUrl &url );
-    virtual void put( const KUrl &url, int _mode, bool _overwrite,
-                    bool _resume );
+    virtual void put( const KUrl &url, int _mode, KIO::JobFlags _flags );
     virtual void setSubURL(const KUrl &url);
 
 private:

@@ -1157,7 +1157,7 @@ void NFSProtocol::get( const KUrl& url )
 }
 
 //TODO the partial putting thing is not yet implemented
-void NFSProtocol::put( const KUrl& url, int _mode, bool _overwrite, bool /*_resume*/ )
+void NFSProtocol::put( const KUrl& url, int _mode, KIO::JobFlags flags )
 {
     QString destPath( QFile::encodeName(url.path()));
     kDebug( 7121 ) << "Put -" << destPath <<"-";
@@ -1178,7 +1178,7 @@ void NFSProtocol::put( const KUrl& url, int _mode, bool _overwrite, bool /*_resu
     kDebug(7121)<<"file handle for -"<<destPath<<"- is "<<destFH;
 
     //the file exists and we don't want to overwrite
-    if ((!_overwrite) && (!destFH.isInvalid()))
+    if ((!(flags & KIO::Overwrite)) && (!destFH.isInvalid()))
     {
        error(ERR_FILE_ALREADY_EXIST,destPath);
        return;
@@ -1283,7 +1283,7 @@ void NFSProtocol::put( const KUrl& url, int _mode, bool _overwrite, bool /*_resu
     finished();
 }
 
-void NFSProtocol::rename( const KUrl &src, const KUrl &dest, bool _overwrite )
+void NFSProtocol::rename( const KUrl &src, const KUrl &dest, KIO::JobFlags _flags )
 {
    QString srcPath( QFile::encodeName(src.path()));
    QString destPath( QFile::encodeName(dest.path()));
@@ -1297,7 +1297,7 @@ void NFSProtocol::rename( const KUrl &src, const KUrl &dest, bool _overwrite )
       return;
    }
 
-   if (!_overwrite)
+   if (!(_flags & KIO::Overwrite))
    {
       NFSFileHandle testFH;
       testFH=getFileHandle(destPath);
@@ -1341,7 +1341,7 @@ void NFSProtocol::rename( const KUrl &src, const KUrl &dest, bool _overwrite )
    finished();
 }
 
-void NFSProtocol::copy( const KUrl &src, const KUrl &dest, int _mode, bool _overwrite )
+void NFSProtocol::copy( const KUrl &src, const KUrl &dest, int _mode, KIO::JobFlags _flags )
 {
    //prepare the source
    QString thePath( QFile::encodeName(src.path()));
@@ -1369,7 +1369,7 @@ void NFSProtocol::copy( const KUrl &src, const KUrl &dest, int _mode, bool _over
    kDebug(7121)<<"file handle for -"<<destPath<<"- is "<<destFH;
 
    //the file exists and we don't want to overwrite
-   if ((!_overwrite) && (!destFH.isInvalid()))
+   if ((!(_flags & KIO::Overwrite)) && (!destFH.isInvalid()))
    {
       error(ERR_FILE_ALREADY_EXIST,destPath);
       return;
@@ -1464,7 +1464,7 @@ void NFSProtocol::copy( const KUrl &src, const KUrl &dest, int _mode, bool _over
 }
 
 //TODO why isn't this even called ?
-void NFSProtocol::symlink( const QString &target, const KUrl &dest, bool )
+void NFSProtocol::symlink( const QString &target, const KUrl &dest, KIO::JobFlags )
 {
    kDebug(7121)<<"symlinking ";
    QString destPath=dest.path();

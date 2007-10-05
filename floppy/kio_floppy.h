@@ -49,9 +49,9 @@ class FloppyProtocol : public KIO::SlaveBase
       virtual void stat( const KUrl & url);
       virtual void mkdir( const KUrl& url, int);
       virtual void del( const KUrl& url, bool isfile);
-      virtual void rename(const KUrl &src, const KUrl &dest, bool overwrite);
+      virtual void rename(const KUrl &src, const KUrl &dest, KIO::JobFlags _flags);
       virtual void get( const KUrl& url );
-      virtual void put( const KUrl& url, int _mode,bool overwrite, bool _resume );
+      virtual void put( const KUrl& url, int _mode, KIO::JobFlags _flags );
       //virtual void copy( const KUrl& src, const KUrl &dest, int, bool overwrite );
    protected:
       Program *m_mtool;

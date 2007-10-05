@@ -302,7 +302,7 @@ void MediaImpl::extractUrlInfos(const KUrl &url, KIO::UDSEntry& infos)
 {
 	m_entryBuffer.clear();
 
-	KIO::StatJob *job = KIO::stat(url, false);
+	KIO::StatJob *job = KIO::stat(url, KIO::HideProgressInfo);
 	job->uiDelegate()->setAutoWarningHandlingEnabled( false );
 	connect( job, SIGNAL( result(KJob*) ),
 	         this, SLOT( slotStatResult(KJob*) ) );

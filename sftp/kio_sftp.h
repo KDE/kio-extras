@@ -43,14 +43,14 @@ public:
   virtual void listDir(const KUrl& url) ;
   virtual void mimetype(const KUrl& url);
   virtual void stat(const KUrl& url);
-  virtual void copy(const KUrl &src, const KUrl &dest, int permissions, bool overwrite);
-  virtual void put(const KUrl& url, int permissions, bool overwrite, bool resume);
+  virtual void copy(const KUrl &src, const KUrl &dest, int permissions, KIO::JobFlags flags);
+  virtual void put(const KUrl& url, int permissions, KIO::JobFlags flags);
   virtual void closeConnection();
   virtual void slave_status();
   virtual void del(const KUrl &url, bool isfile);
   virtual void chmod(const KUrl& url, int permissions);
-  virtual void symlink(const QString& target, const KUrl& dest, bool overwrite);
-  virtual void rename(const KUrl& src, const KUrl& dest, bool overwrite);
+  virtual void symlink(const QString& target, const KUrl& dest, KIO::JobFlags flags);
+  virtual void rename(const KUrl& src, const KUrl& dest, KIO::JobFlags flags);
   virtual void mkdir(const KUrl&url, int permissions);
   virtual void openConnection();
 
@@ -150,12 +150,12 @@ private: // private methods
   int sftpWrite(const QByteArray& handle, KIO::filesize_t offset, const QByteArray& data);
   
   /** Performs faster upload when the source is a local file... */
-  void sftpCopyPut(const KUrl& src, const KUrl& dest, int mode, bool overwrite);
+  void sftpCopyPut(const KUrl& src, const KUrl& dest, int mode, KIO::JobFlags flags);
   /** Performs faster download when the destination is a local file... */
-  void sftpCopyGet(const KUrl& dest, const KUrl& src, int mode, bool overwrite);
+  void sftpCopyGet(const KUrl& dest, const KUrl& src, int mode, KIO::JobFlags flags);
   
   /** */
   Status sftpGet( const KUrl& src, KIO::filesize_t offset = 0, int fd = -1);
-  void sftpPut( const KUrl& dest, int permissions, bool resume, bool overwrite, int fd = -1);
+  void sftpPut( const KUrl& dest, int permissions, KIO::JobFlags flags, int fd = -1);
 };
 #endif

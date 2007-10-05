@@ -69,16 +69,16 @@ class NFSProtocol : public KIO::SlaveBase
 
       virtual void setHost( const QString& host, quint16 port, const QString& user, const QString& pass );
 
-      virtual void put( const KUrl& url, int _mode,bool _overwrite, bool _resume );
+      virtual void put( const KUrl& url, int _mode, KIO::JobFlags _flags );
       virtual void get( const KUrl& url );
       virtual void listDir( const KUrl& url);
-      virtual void symlink( const QString &target, const KUrl &dest, bool );
+      virtual void symlink( const QString &target, const KUrl &dest, KIO::JobFlags );
       virtual void stat( const KUrl & url);
       virtual void mkdir( const KUrl& url, int permissions );
       virtual void del( const KUrl& url, bool isfile);
       virtual void chmod(const KUrl& url, int permissions );
-      virtual void rename(const KUrl &src, const KUrl &dest, bool overwrite);
-      virtual void copy( const KUrl& src, const KUrl &dest, int mode, bool overwrite );
+      virtual void rename(const KUrl &src, const KUrl &dest, KIO::JobFlags flags);
+      virtual void copy( const KUrl& src, const KUrl &dest, int mode, KIO::JobFlags flags );
    protected:
 //      void createVirtualDirEntry(KIO::UDSEntry & entry);
       bool checkForError(int clientStat, int nfsStat, const QString& text);

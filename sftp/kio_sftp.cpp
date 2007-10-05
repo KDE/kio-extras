@@ -187,7 +187,7 @@ bool sftpProtocol::isSupportedOperation(int type) {
   return false;
 }
 
-void sftpProtocol::copy(const KUrl &src, const KUrl &dest, int permissions, bool overwrite)
+void sftpProtocol::copy(const KUrl &src, const KUrl &dest, int permissions, KIO::JobFlags flags)
 {
     kDebug(KIO_SFTP_DB) << "copy(): " << src << " -> " << dest;
 
@@ -195,14 +195,14 @@ void sftpProtocol::copy(const KUrl &src, const KUrl &dest, int permissions, bool
     bool destLocal = dest.isLocalFile();
 
     if ( srcLocal && !destLocal ) // Copy file -> sftp
-      sftpCopyPut(src, dest, permissions, overwrite);
+      sftpCopyPut(src, dest, permissions, flags);
     else if ( destLocal && !srcLocal ) // Copy sftp -> file
-      sftpCopyGet(dest, src, permissions, overwrite);
+      sftpCopyGet(dest, src, permissions, flags);
     else
       error(ERR_UNSUPPORTED_ACTION, QString());
 }
 
-void sftpProtocol::sftpCopyGet(const KUrl& dest, const KUrl& src, int mode, bool overwrite)
+void sftpProtocol::sftpCopyGet(const KUrl& dest, const KUrl& src, int mode, KIO::JobFlags flags)
 {
     kDebug(KIO_SFTP_DB) << "sftpCopyGet(): " << src << " -> " << dest;
 
@@ -223,7 +223,7 @@ void sftpProtocol::sftpCopyGet(const KUrl& dest, const KUrl& src, int mode, bool
           return;
         }
 
-        if (!overwrite)
+        if (!(flags & KIO::Overwrite))
         {
           error(ERR_FILE_ALREADY_EXIST, dest.prettyUrl());
           return;
@@ -956,8 +956,7 @@ void sftpProtocol::closeConnection() {
     mConnected = false;
 }
 
-void sftpProtocol::sftpCopyPut(const KUrl& src, const KUrl& dest, int permissions, bool overwrite) {
-
+void sftpProtocol::sftpCopyPut(const KUrl& src, const KUrl& dest, int permissions, KIO::JobFlags flags) {
     KDE_struct_stat buff;
     QByteArray file (QFile::encodeName(src.path()));
 
@@ -979,21 +978,21 @@ void sftpProtocol::sftpCopyPut(const KUrl& src, const KUrl& dest, int permission
 
     totalSize (buff.st_size);
 
-    sftpPut (dest, permissions, false, overwrite, fd);
+    sftpPut (dest, permissions, (flags & ~KIO::Resume), fd);
 
     // Close the file descriptor...
     ::close( fd );
 }
 
-void sftpProtocol::sftpPut( const KUrl& dest, int permissions, bool resume, bool overwrite, int fd ) {
+void sftpProtocol::sftpPut( const KUrl& dest, int permissions, KIO::JobFlags flags, int fd ) {
 
     openConnection();
     if( !mConnected )
         return;
 
     kDebug(KIO_SFTP_DB) << "sftpPut(): " << dest
-                         << ", resume=" << resume
-                         << ", overwrite=" << overwrite << endl;
+                         << ", resume=" << (flags & KIO::Resume)
+                         << ", overwrite=" << (flags & KIO::Overwrite) << endl;
 
     KUrl origUrl( dest );
     sftpFileAttr origAttr(remoteEncoding());
@@ -1023,7 +1022,7 @@ void sftpProtocol::sftpPut( const KUrl& dest, int permissions, bool resume, bool
 
     // Do not waste time/resources with more remote stat calls if the file exists
     // and we weren't instructed to overwrite it...
-    if( origExists && !overwrite ) {
+    if( origExists && !(flags & KIO::Overwrite) ) {
         error(ERR_FILE_ALREADY_EXIST, origUrl.prettyUrl());
         return;
     }
@@ -1063,16 +1062,16 @@ void sftpProtocol::sftpPut( const KUrl& dest, int permissions, bool resume, bool
 
                 offset = 0;
             }
-            else if( !overwrite && !resume ) {
+            else if( !(flags & KIO::Overwrite) && !(flags & KIO::Resume) ) {
                     if (fd != -1)
-                        resume = (KDE_lseek(fd, offset, SEEK_SET) != -1);
+                        flags |= (KDE_lseek(fd, offset, SEEK_SET) != -1) ? KIO::Resume : KIO::DefaultFlags;
                     else
-                        resume = canResume( offset );
+                        flags |= canResume( offset ) ? KIO::Resume : KIO::DefaultFlags;
 
-                    kDebug(KIO_SFTP_DB) << "sftpPut(): can resume = " << resume
+                    kDebug(KIO_SFTP_DB) << "sftpPut(): can resume = " << (flags & KIO::Resume)
                                          << ", offset = " << offset;
 
-                    if( !resume ) {
+                    if( !(flags & KIO::Resume) ) {
                       error(ERR_FILE_ALREADY_EXIST, partUrl.prettyUrl());
                       return;
                     }
@@ -1097,13 +1096,13 @@ void sftpProtocol::sftpPut( const KUrl& dest, int permissions, bool resume, bool
     KUrl writeUrl (markPartial ? partUrl:origUrl);
 
     quint32 pflags = 0;
-    if( overwrite && !resume )
+    if( (flags & KIO::Overwrite) && !(flags & KIO::Resume) )
         pflags = SSH2_FXF_WRITE | SSH2_FXF_CREAT | SSH2_FXF_TRUNC;
-    else if( !overwrite && !resume )
+    else if( !(flags & KIO::Overwrite) && !(flags & KIO::Resume) )
         pflags = SSH2_FXF_WRITE | SSH2_FXF_CREAT | SSH2_FXF_EXCL;
-    else if( overwrite && resume )
+    else if( (flags & KIO::Overwrite) && (flags & KIO::Resume) )
         pflags = SSH2_FXF_WRITE | SSH2_FXF_CREAT;
-    else if( !overwrite && resume )
+    else if( !(flags & KIO::Overwrite) && (flags & KIO::Resume) )
         pflags = SSH2_FXF_WRITE | SSH2_FXF_CREAT | SSH2_FXF_APPEND;
 
     sftpFileAttr attr(remoteEncoding());
@@ -1119,7 +1118,7 @@ void sftpProtocol::sftpPut( const KUrl& dest, int permissions, bool resume, bool
 
         // Rename the file back to its original name if a
         // put fails due to permissions problems...
-        if( markPartial && overwrite ) {
+        if( markPartial && (flags & KIO::Overwrite) ) {
             (void) sftpRename(partUrl, origUrl);
             writeUrl = origUrl;
         }
@@ -1208,11 +1207,11 @@ void sftpProtocol::sftpPut( const KUrl& dest, int permissions, bool resume, bool
     finished();
 }
 
-void sftpProtocol::put ( const KUrl& url, int permissions, bool overwrite, bool resume ){
-    kDebug(KIO_SFTP_DB) << "put(): " << url << ", overwrite = " << overwrite
-                         << ", resume = " << resume << endl;
+void sftpProtocol::put ( const KUrl& url, int permissions, KIO::JobFlags flags ) {
+    kDebug(KIO_SFTP_DB) << "put(): " << url << ", overwrite = " << (flags & KIO::Overwrite)
+                         << ", resume = " << (flags & KIO::Resume) << endl;
 
-    sftpPut( url, permissions, resume, overwrite );
+    sftpPut( url, permissions, flags );
 }
 
 void sftpProtocol::stat ( const KUrl& url ){
@@ -1419,7 +1418,7 @@ void sftpProtocol::mkdir(const KUrl&url, int permissions){
     finished();
 }
 
-void sftpProtocol::rename(const KUrl& src, const KUrl& dest, bool overwrite){
+void sftpProtocol::rename(const KUrl& src, const KUrl& dest, KIO::JobFlags flags) {
     kDebug(KIO_SFTP_DB) << "rename(" << src << " -> " << dest << ")";
 
     if (!isSupportedOperation(SSH2_FXP_RENAME)) {
@@ -1441,7 +1440,7 @@ void sftpProtocol::rename(const KUrl& src, const KUrl& dest, bool overwrite){
     // so it the proper action can be presented to the user...
     if( code == SSH2_FX_OK )
     {
-      if (!overwrite)
+      if (!(flags & KIO::Overwrite))
       {
         if ( S_ISDIR(attr.permissions()) )
           error( KIO::ERR_DIR_ALREADY_EXIST, dest.url() );
@@ -1468,7 +1467,7 @@ void sftpProtocol::rename(const KUrl& src, const KUrl& dest, bool overwrite){
     kDebug(KIO_SFTP_DB) << "rename(): END";
 }
 
-void sftpProtocol::symlink(const QString& target, const KUrl& dest, bool overwrite){
+void sftpProtocol::symlink(const QString& target, const KUrl& dest, KIO::JobFlags flags) {
     kDebug(KIO_SFTP_DB) << "symlink()";
 
     if (!isSupportedOperation(SSH2_FXP_SYMLINK)) {
@@ -1484,7 +1483,7 @@ void sftpProtocol::symlink(const QString& target, const KUrl& dest, bool overwri
     int code;
     bool failed = false;
     if( (code = sftpSymLink(target, dest)) != SSH2_FX_OK ) {
-        if( overwrite ) { // try to delete the destination
+        if( flags & KIO::Overwrite ) { // try to delete the destination
             sftpFileAttr attr(remoteEncoding());
             if( (code = sftpStat(dest, attr)) != SSH2_FX_OK ) {
                 failed = true;

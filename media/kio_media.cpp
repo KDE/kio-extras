@@ -88,7 +88,7 @@ bool MediaProtocol::rewriteUrl(const KUrl &url, KUrl &newUrl)
 }
 
 void MediaProtocol::put(const KUrl &url, int permissions,
-                        bool overwrite, bool resume)
+                        KIO::JobFlags flags)
 {
 	kDebug(1219) << "MediaProtocol::put: " << url;
 
@@ -101,14 +101,14 @@ void MediaProtocol::put(const KUrl &url, int permissions,
 	}
 	else
 	{
-		ForwardingSlaveBase::put(url, permissions, overwrite, resume);
+		ForwardingSlaveBase::put(url, permissions, flags);
 	}
 }
 
-void MediaProtocol::rename(const KUrl &src, const KUrl &dest, bool overwrite)
+void MediaProtocol::rename(const KUrl &src, const KUrl &dest, KIO::JobFlags flags)
 {
 	kDebug(1219) << "MediaProtocol::rename: " << src << ", " << dest << ", "
-	          << overwrite << endl;
+	          << (flags & KIO::Overwrite) << endl;
 
 	QString src_name, src_path;
 	bool ok = m_impl.parseURL(src, src_name, src_path);
@@ -129,7 +129,7 @@ void MediaProtocol::rename(const KUrl &src, const KUrl &dest, bool overwrite)
 	}
 	else
 	{
-		ForwardingSlaveBase::rename(src, dest, overwrite);
+		ForwardingSlaveBase::rename(src, dest, flags);
 	}
 }
 

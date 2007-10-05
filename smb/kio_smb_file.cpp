@@ -255,8 +255,7 @@ void SMBSlave::close()
 //===========================================================================
 void SMBSlave::put( const KUrl& kurl,
                     int permissions,
-                    bool overwrite,
-                    bool resume )
+                    KIO::JobFlags flags )
 {
 
     void *buf;
@@ -273,7 +272,7 @@ void SMBSlave::put( const KUrl& kurl,
 
 
     exists = (cache_stat(m_current_url, &st) != -1 );
-    if ( exists &&  !overwrite && !resume)
+    if ( exists &&  !(flags & KIO::Overwrite) && !(flags & KIO::Resume))
     {
         if (S_ISDIR(st.st_mode))
         {
@@ -288,14 +287,14 @@ void SMBSlave::put( const KUrl& kurl,
         return;
     }
 
-    if (exists && !resume && overwrite)
+    if (exists && !(flags & KIO::Resume) && (flags & KIO::Overwrite))
     {
         kDebug(KIO_SMB) << "SMBSlave::put exists try to remove " << m_current_url.toSmbcUrl();
         //   remove(m_current_url.url().toLocal8Bit());
     }
 
 
-    if (resume)
+    if (flags & KIO::Resume)
     {
         // append if resuming
         kDebug(KIO_SMB) << "SMBSlave::put resume " << m_current_url.toSmbcUrl();
