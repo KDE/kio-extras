@@ -60,5 +60,5 @@ Name[zh_TW]=電話號碼簿搜尋提供者
 Type=Service
 ServiceTypes=SearchProvider
 Keys=telnl,telefoon
-Query=http://www.detelefoongids.nl/tginl.dll?action=white&type=search&name=\{1}&city=\{2}
-Query[x-test]=xxhttp://www.detelefoongids.nl/tginl.dll?action=white&type=search&name=\{1}&city=\{2}xx
+Query=http://www.detelefoongids.nl/tginl.dll?action=white&type=search&name=\\{1}&city=\\{2}
+Query[x-test]=xxhttp://www.detelefoongids.nl/tginl.dll?action=white&type=search&name=\\{1}&city=\\{2}xx
