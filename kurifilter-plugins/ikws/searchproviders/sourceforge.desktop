@@ -11,8 +11,8 @@ Name[ta]=மூலத்திருட்டு
 Name[te]=సొర్స్ ఫొర్జ్
 Name[vi]=Tra SourceForge
 Name[x-test]=xxSourceForgexx
-Query=http://sourceforge.net/search/?type_of_search=\\{type,"soft"}&exact=\{exact,"0"}&words=\\{@}
-Query[bg]=Query=http://sourceforge.net/search/?type_of_search=\\{type,"soft"}&exact=\{exact,"0"}&words=\\{@}
-Query[x-test]=xxhttp://sourceforge.net/search/?type_of_search=\\{type,"soft"}&exact=\{exact,"0"}&words=\\{@}xx
+Query=http://sourceforge.net/search/?type_of_search=\\{type,"soft"}&exact=\\{exact,"0"}&words=\\{@}
+Query[bg]=Query=http://sourceforge.net/search/?type_of_search=\\{type,"soft"}&exact=\\{exact,"0"}&words=\\{@}
+Query[x-test]=xxhttp://sourceforge.net/search/?type_of_search=\\{type,"soft"}&exact=\\{exact,"0"}&words=\\{@}xx
 ServiceTypes=SearchProvider
 Type=Service

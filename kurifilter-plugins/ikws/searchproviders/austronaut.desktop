@@ -12,7 +12,7 @@ Name[te]=ఆస్ట్రొనాట్
 Name[x-test]=xxAustroNautxx
 ServiceTypes=SearchProvider
 Keys=austro,austronaut
-Query=http://austronaut.at/page.php?begriff=\{@}&wo=at
-Query[bg]=Query=http://austronaut.at/page.php?begriff=\{@}&wo=at
-Query[ne]=http://austronaut.at/page.php?begriff=\{@}wo=at
-Query[x-test]=xxhttp://austronaut.at/page.php?begriff=\{@}&wo=atxx
+Query=http://austronaut.at/page.php?begriff=\\{@}&wo=at
+Query[bg]=Query=http://austronaut.at/page.php?begriff=\\{@}&wo=at
+Query[ne]=http://austronaut.at/page.php?begriff=\\{@}wo=at
+Query[x-test]=xxhttp://austronaut.at/page.php?begriff=\\{@}&wo=atxx
