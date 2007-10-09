@@ -12,7 +12,7 @@ set(kio_thumbnail_PART_SRCS thumbnail.cpp )
 kde4_add_plugin(kio_thumbnail ${kio_thumbnail_PART_SRCS})
 
 
-target_link_libraries(kio_thumbnail  ${KDE4_KDE3SUPPORT_LIBS} )
+target_link_libraries(kio_thumbnail ${KDE4_KIO_LIBS} ${QT_QT3SUPPORT_LIBRARY} )
 
 install(TARGETS kio_thumbnail  DESTINATION ${PLUGIN_INSTALL_DIR} )
 
@@ -25,7 +25,7 @@ set(imagethumbnail_PART_SRCS imagecreator.cpp )
 kde4_add_plugin(imagethumbnail ${imagethumbnail_PART_SRCS})
 
 
-target_link_libraries(imagethumbnail  ${KDE4_KDE3SUPPORT_LIBS})
+target_link_libraries(imagethumbnail ${QT_QTCORE_LIBRARY} ${QT_QTGUI_LIBRARY} ${QT_QT3SUPPORT_LIBRARY})
 
 install(TARGETS imagethumbnail  DESTINATION ${PLUGIN_INSTALL_DIR} )
 
@@ -77,7 +77,8 @@ set(djvuthumbnail_PART_SRCS djvucreator.cpp )
 kde4_add_plugin(djvuthumbnail ${djvuthumbnail_PART_SRCS})
 
 
-target_link_libraries(djvuthumbnail  ${KDE4_KDE3SUPPORT_LIBS})
+target_link_libraries(djvuthumbnail  ${QT_QT3SUPPORT_LIBRARY}
+${QT_QTCORE_LIBRARY} ${QT_QTGUI_LIBRARY})
 
 install(TARGETS djvuthumbnail  DESTINATION ${PLUGIN_INSTALL_DIR} )
 
@@ -94,7 +95,7 @@ if(OPENEXR_FOUND)
    kde4_add_plugin(exrthumbnail ${exrthumbnail_PART_SRCS})
 
 
-   target_link_libraries(exrthumbnail   ${KDE4_KDE3SUPPORT_LIBS} ${OPENEXR_LIBRARIES})
+   target_link_libraries(exrthumbnail   ${KDE4_KIO_LIBS} ${OPENEXR_LIBRARIES})
 
    install(TARGETS exrthumbnail  DESTINATION ${PLUGIN_INSTALL_DIR} )
    install( FILES exrthumbnail.desktop  DESTINATION  ${SERVICES_INSTALL_DIR} )
@@ -111,7 +112,8 @@ if(X11_Xcursor_FOUND)
    kde4_add_plugin(cursorthumbnail ${cursorthumbnail_PART_SRCS})
 
 
-   target_link_libraries(cursorthumbnail  ${KDE4_KDE3SUPPORT_LIBS} ${X11_Xcursor_LIB})
+   target_link_libraries(cursorthumbnail  ${QT_QTCORE_LIBRARY}
+${QT_QTGUI_LIBRARY} ${QT_QT3SUPPORT_LIBRARY} ${X11_Xcursor_LIB})
 
    install(TARGETS cursorthumbnail  DESTINATION ${PLUGIN_INSTALL_DIR} )
    install( FILES cursorthumbnail.desktop  DESTINATION  ${SERVICES_INSTALL_DIR} )
