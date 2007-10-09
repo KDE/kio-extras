@@ -31,7 +31,7 @@ Name[it]=Wikipedia - L'enciclopedia libera
 Name[ja]=Wikipedia - フリーな百科事典
 Name[ka]=ვიკიპედია - ღია ენციკლოპედია
 Name[kk]=Wikipedia - ашық энциклопедия
-Name[km]=Wikipedia - សព្វ​វចនាធិប្បាយ​ឥត​គិត​ថ្លៃ
+Name[km]=Wikipedia - Encyclopedia ​ឥត​គិត​ថ្លៃ
 Name[ko]=위키백과 - 우리 모두의 백과사전
 Name[lt]=Wikipedia - laisva enciklopedija
 Name[lv]=Wikipedia - Brīvā enciklopēdija
@@ -68,4 +68,5 @@ Name[zh_TW]=Wikipedia - 免費的 Encyclopedia
 ServiceTypes=SearchProvider
 Keys=wp
 Query=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[sv]=http://sv.wikipedia.org/wiki/Special:Search?search=\{@}&go=Go
 Charset=utf8

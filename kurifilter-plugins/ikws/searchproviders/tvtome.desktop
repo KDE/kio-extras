@@ -17,7 +17,6 @@ Name[x-test]=xxTV Tomexx
 ServiceTypes=SearchProvider
 Query=http://www.tv.com/search.php?type=11&stype=all&qs=\\{@}&x=0&y=0
 Query[bg]=Query=http://www.tv.com/search.php?type=11&stype=all&qs=\\{@}&x=0&y=0
-Query[ja]=http://www.tv.com/search.php?type=11&stype=all&qs=\\\\{@}&x=0&y=0
 Query[ne]=http://www.tv.com/search.php?type=11stype=all&qs=\\{@}&x=0&y=0
 Query[tg]=http://www.tv.com/search.php?type=11&stype=ҳама&qs=\\{@}&x=0&y=0
 Query[x-test]=xxhttp://www.tv.com/search.php?type=11&stype=all&qs=\\{@}&x=0&y=0xx
