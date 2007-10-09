@@ -1,4 +1,4 @@
-include_directories( ${CMAKE_SOURCE_DIR}/runtime/kioslave/media/libmediacommon/ )
+include_directories( ../libmediacommon/ )
 
 
 ########### next target ###############
