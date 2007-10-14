@@ -27,8 +27,6 @@
 #include <kurifilter.h>
 #include <QRegExp>
 
-class K3Process;
-
 /*
  This filter takes care of hostnames in the local search domain.
  If you're in domain domain.org which has a host intranet.domain.org
@@ -52,11 +50,7 @@ class LocalDomainUriFilter : public KUriFilterPlugin
     mutable QString last_host;
     mutable bool last_result;
     mutable time_t last_time;
-    mutable QString m_fullname;
     QRegExp m_hostPortPattern;
-
-  private Q_SLOTS:
-    void receiveOutput( K3Process *, char *, int );
 };
 
 #endif
