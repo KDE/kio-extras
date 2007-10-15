@@ -481,7 +481,9 @@ void KSshProcess::kill(int signal) {
             if ( ::kill(pid, signal) == 0 ) {
                 // clean up if we tried to kill the process
                 if( signal == SIGTERM || signal == SIGKILL ) {
-                    while(waitpid(-1, NULL, WNOHANG) > 0);
+                    while(waitpid(-1, NULL, WNOHANG) > 0) {
+                        ;
+                    }
                     mConnected = false;
                     mRunning = false;
                 }
