@@ -11,7 +11,6 @@ add_subdirectory( info )
 add_subdirectory( archive )
 add_subdirectory( settings )
 add_subdirectory( trash )
-add_subdirectory( media )
 add_subdirectory( remote )
 
 # need kdesu
