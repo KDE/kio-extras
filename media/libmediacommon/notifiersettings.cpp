@@ -289,17 +289,16 @@ QList<NotifierServiceAction*> NotifierSettings::loadActions( KDesktopFile &deskt
 	const QString filename = desktop.fileName();
 	const QStringList mimetypes = group.readEntry( "ServiceTypes" , QStringList() );
 
-	QList<KDesktopFileActions::Service> type_services
+	const QList<KServiceAction> type_services
 		= KDesktopFileActions::userDefinedServices(filename, true);
 
-	QList<KDesktopFileActions::Service>::iterator service_it = type_services.begin();
-	QList<KDesktopFileActions::Service>::iterator service_end = type_services.end();
+	QList<KServiceAction>::const_iterator service_it = type_services.begin();
+	const QList<KServiceAction>::const_iterator service_end = type_services.end();
 	for (; service_it!=service_end; ++service_it)
 	{
 		NotifierServiceAction *service_action
-			= new NotifierServiceAction();
+			= new NotifierServiceAction(*service_it);
 
-		service_action->setService( *service_it );
 		service_action->setFilePath( filename );
 		service_action->setMimetypes( mimetypes );
 

@@ -30,21 +30,22 @@ class NotifierServiceAction : public NotifierAction
 {
 public:
 	NotifierServiceAction();
+	NotifierServiceAction(const KServiceAction& service);
 	virtual QString id() const;
-	virtual void execute(KFileItem &item);
+	virtual void execute(const KFileItem &item);
 
-	virtual void setIconName( const QString &icon );
-	virtual void setLabel( const QString &label );
-	
-	void setService(KDesktopFileActions::Service service);
-	KDesktopFileActions::Service service() const;
-	
+    //virtual void setIconName( const QString &icon );
+    //virtual void setLabel( const QString &label );
+
+	void setService(const KServiceAction& service);
+	KServiceAction service() const;
+
 	void setFilePath(const QString &filePath);
 	QString filePath() const;
-	
+
 	void setMimetypes(const QStringList &mimetypes);
 	QStringList mimetypes();
-	
+
 	virtual bool isWritable() const;
 	virtual bool supportsMimetype(const QString &mimetype) const;
 
@@ -53,7 +54,7 @@ public:
 private:
 	void updateFilePath();
 
-	KDesktopFileActions::Service m_service;
+	KServiceAction m_service;
 	QString m_filePath;
 	QStringList m_mimetypes;
 };

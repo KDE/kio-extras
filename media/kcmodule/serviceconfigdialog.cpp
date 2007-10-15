@@ -18,6 +18,7 @@
 */
 
 #include "serviceconfigdialog.h"
+#include "mimetypelistboxitem.h"
 
 #include <klocale.h>
 #include <klineedit.h>
@@ -30,9 +31,6 @@
 #include <kiconloader.h>
 #include <QPixmap>
 #include <QIcon>
-
-
-#include "mimetypelistboxitem.h"
 
 ServiceConfigDialog::ServiceConfigDialog(NotifierServiceAction *action,
                                          const QStringList &mimetypesList,
@@ -47,15 +45,15 @@ ServiceConfigDialog::ServiceConfigDialog(NotifierServiceAction *action,
   showButtonSeparator( true );
 
 	m_view = new ServiceView(this);
-	
+
 	m_view->iconButton->setIcon( m_action->iconName() );
 	m_view->labelEdit->setText( m_action->label() );
-	m_view->commandEdit->setText( m_action->service().m_strExec );
+	m_view->commandEdit->setText( m_action->service().exec() );
 
 	m_view->commandButton->setIcon( KIcon("configure") );
 	const int pixmapSize = style()->pixelMetric(QStyle::PM_SmallIconSize);
 	m_view->commandButton->setFixedSize( pixmapSize+8, pixmapSize+8 );
-	
+
 	m_iconChanged = false;
 
 	QStringList all_mimetypes = mimetypesList;
@@ -67,7 +65,7 @@ ServiceConfigDialog::ServiceConfigDialog(NotifierServiceAction *action,
 	for (  ; it!=end; ++it )
 	{
 		QListWidget *list;
-		
+
 		if ( action_mimetypes.contains( *it ) )
 		{
 			list = m_view->mimetypesSelector->selectedListWidget();
@@ -76,10 +74,10 @@ ServiceConfigDialog::ServiceConfigDialog(NotifierServiceAction *action,
 		{
 			list = m_view->mimetypesSelector->availableListWidget();
 		}
-		
+
 		new MimetypeListBoxItem(  *it, list );
 	}
-	
+
 	setMainWidget(m_view);
 	setCaption( m_action->label() );
 
@@ -90,27 +88,28 @@ ServiceConfigDialog::ServiceConfigDialog(NotifierServiceAction *action,
 	connect( this, SIGNAL(okClicked()),this, SLOT(slotOk()));
 }
 
-bool operator==( KDesktopFileActions::Service s1, KDesktopFileActions::Service s2 )
+bool operator==( const KServiceAction& s1, const KServiceAction& s2 )
 {
-	return ( s1.m_strName==s2.m_strName )
-	    && ( s1.m_strIcon==s2.m_strIcon )
-	    && ( s1.m_strExec==s2.m_strExec );
+	return ( s1.text()==s2.text() )
+	    && ( s1.icon()==s2.icon() )
+	    && ( s1.exec()==s2.exec() );
 }
 
-bool operator!=( KDesktopFileActions::Service s1, KDesktopFileActions::Service s2 )
+bool operator!=( const KServiceAction& s1, const KServiceAction& s2 )
 {
 	return !( s1==s2 );
 }
 
 void ServiceConfigDialog::slotOk()
 {
-	KDesktopFileActions::Service service;
-	service.m_strName = m_view->labelEdit->text();
-	service.m_strIcon = m_view->iconButton->icon();
-	service.m_strExec = m_view->commandEdit->text();
+    static int serviceId = 0;
+    KServiceAction service(QString::number(++serviceId),
+                           m_view->labelEdit->text(),
+                           m_view->iconButton->icon(),
+                           m_view->commandEdit->text()); // exec
 
 	QStringList mimetypes;
-	
+
 	uint list_count = m_view->mimetypesSelector->selectedListWidget()->count();
 	for( uint i=0; i < list_count; ++i )
 	{
@@ -144,7 +143,7 @@ void ServiceConfigDialog::slotCommand()
 	{
 		KService::Ptr service = d.service();
 		if ( service )
-		{			
+		{
 			m_view->commandEdit->setText( service->exec() );
 			if ( m_iconChanged == false )
 			{

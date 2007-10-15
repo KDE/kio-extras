@@ -28,19 +28,21 @@
 #include <kconfiggroup.h>
 
 NotifierServiceAction::NotifierServiceAction()
-	: NotifierAction()
+    : NotifierAction(),
+      m_service("newservice", i18n("New Service"), "dialog-cancel", "konqueror %u")
 {
-	NotifierAction::setIconName("dialog-cancel");
-	NotifierAction::setLabel(i18n("Unknown"));
+    setService(m_service);
+}
 
-	m_service.m_strName = "New Service";
-	m_service.m_strIcon = "dialog-cancel";
-	m_service.m_strExec = "konqueror %u";
+NotifierServiceAction::NotifierServiceAction(const KServiceAction& service)
+    : NotifierAction(), m_service(service)
+{
+    setService(service);
 }
 
 QString NotifierServiceAction::id() const
 {
-	if (m_filePath.isEmpty() || m_service.m_strName.isEmpty())
+	if (m_filePath.isEmpty() || m_service.isSeparator())
 	{
 		return QString();
 	}
@@ -50,37 +52,37 @@ QString NotifierServiceAction::id() const
 	}
 }
 
-void NotifierServiceAction::setIconName( const QString &icon )
-{
-	m_service.m_strIcon = icon;
-	NotifierAction::setIconName( icon );
-}
+// void NotifierServiceAction::setIconName( const QString &icon )
+// {
+//     //m_service.m_strIcon = icon;
+// 	NotifierAction::setIconName( icon );
+// }
 
-void NotifierServiceAction::setLabel( const QString &label )
-{
-	m_service.m_strName = label;
-	NotifierAction::setLabel( label );
+// void NotifierServiceAction::setLabel( const QString &label )
+// {
+//     //m_service.m_strName = label;
+// 	NotifierAction::setLabel( label );
 
-	updateFilePath();
-}
+// 	updateFilePath();
+// }
 
-void NotifierServiceAction::execute(KFileItem &medium)
+void NotifierServiceAction::execute(const KFileItem &medium)
 {
 	KUrl::List urls = KUrl::List( medium.url() );
 	KDesktopFileActions::executeService( urls, m_service );
 }
 
-void NotifierServiceAction::setService(KDesktopFileActions::Service service)
+void NotifierServiceAction::setService(const KServiceAction& service)
 {
-	NotifierAction::setIconName( service.m_strIcon );
-	NotifierAction::setLabel( service.m_strName );
+	NotifierAction::setIconName( service.icon() );
+	NotifierAction::setLabel( service.text() );
 
 	m_service = service;
 
 	updateFilePath();
 }
 
-KDesktopFileActions::Service NotifierServiceAction::service() const
+KServiceAction NotifierServiceAction::service() const
 {
 	return m_service;
 }
@@ -99,7 +101,7 @@ void NotifierServiceAction::updateFilePath()
 {
 	if ( !m_filePath.isEmpty() ) return;
 
-	QString action_name = m_service.m_strName;
+	QString action_name = m_service.text();
 	action_name.replace(   " ", "_" );
 
 	QDir actions_dir( KStandardDirs::locateLocal( "data", "konqueror/servicemenus/", true ) );
@@ -152,14 +154,14 @@ void NotifierServiceAction::save() const
 {
 	QFile::remove( m_filePath );
 	KDesktopFile desktopFile(m_filePath);
-	KConfigGroup actionGroup(&desktopFile, QString("Desktop Action ") + m_service.m_strName);
-	actionGroup.writeEntry(QString("Icon"), m_service.m_strIcon);
-	actionGroup.writeEntry(QString("Name"), m_service.m_strName);
-	actionGroup.writeEntry(QString("Exec"), m_service.m_strExec);
+	KConfigGroup actionGroup(&desktopFile, QString("Desktop Action ") + m_service.name());
+	actionGroup.writeEntry(QString("Icon"), m_service.icon());
+	actionGroup.writeEntry(QString("Name"), m_service.text());
+	actionGroup.writeEntry(QString("Exec"), m_service.exec());
 
 	KConfigGroup desktopGroup = desktopFile.desktopGroup();
 	desktopGroup.writeEntry(QString("ServiceTypes"), m_mimetypes, ',');
 	desktopGroup.writeEntry(QString("Actions"),
-	                        QStringList(m_service.m_strName),';');
+	                        QStringList(m_service.name()),';');
 }
 

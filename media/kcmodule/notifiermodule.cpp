@@ -32,7 +32,6 @@
 #include "notifiersettings.h"
 #include "serviceconfigdialog.h"
 #include "actionlistboxitem.h"
-#include "mimetypelistboxitem.h"
 
 NotifierModule::NotifierModule(const KComponentData &componentData, QWidget *parent)
 	: KCModule(componentData, parent)
@@ -50,20 +49,16 @@ NotifierModule::NotifierModule(const KComponentData &componentData, QWidget *par
 
 	m_view->mimetypesCombo->addItem( i18n("All Mime Types") );
 
-	QStringList mimetypes = m_settings.supportedMimetypes();
+	const QStringList mimetypes = m_settings.supportedMimetypes();
 
-	QStringList::iterator it = mimetypes.begin();
-	QStringList::iterator end = mimetypes.end();
+	QStringList::const_iterator it = mimetypes.begin();
+	const QStringList::const_iterator end = mimetypes.end();
 
-#ifdef __GNUC__
-#warning "Needs porting. listBox() is no longer supplied in Qt4 QComboBox."
-#endif
-#if 0
 	for ( ; it!=end; ++it )
 	{
-		new MimetypeListBoxItem( *it, m_view->mimetypesCombo->listBox() );
+            KMimeType::Ptr mime = KMimeType::mimeType(*it);
+            m_view->mimetypesCombo->addItem( mime->comment(), QVariant(*it) );
 	}
-#endif
 	updateListBox();
 
 	connect( m_view->mimetypesCombo, SIGNAL( activated(int) ),
@@ -150,15 +145,7 @@ void NotifierModule::slotMimeTypeChanged(int index)
 	}
 	else
 	{
-#ifdef __GNUC__
-#warning "Needs porting. listBox() is no longer supplied in Qt4 QComboBox."
-#endif
-#if 0
-		QListWidgetItem *item = m_view->mimetypesCombo->listBox()->item( index );
-		MimetypeListBoxItem *mime_item
-			= static_cast<MimetypeListBoxItem*>( item );
-		m_mimetype = mime_item->mimetype();
-#endif
+		m_mimetype = m_view->mimetypesCombo->itemData(index).toString();
 	}
 
 	updateListBox();
@@ -235,7 +222,7 @@ void NotifierModule::slotToggleAuto()
     Q_ASSERT( selection.count() <= 1 );
 
 	ActionListBoxItem *action_item
-		= static_cast<ActionListBoxItem*>( selection.value(0) ); 
+		= static_cast<ActionListBoxItem*>( selection.value(0) );
 	NotifierAction *action = action_item->action();
 
 	int index = m_view->actionsList->row( action_item );

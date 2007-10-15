@@ -33,7 +33,7 @@ QString NotifierNothingAction::id() const
 	return "#NothinAction";
 }
 
-void NotifierNothingAction::execute(KFileItem &/*medium*/)
+void NotifierNothingAction::execute(const KFileItem &/*medium*/)
 {
 }
 

@@ -53,7 +53,7 @@ QString NotifierAction::iconName() const
 QPixmap NotifierAction::pixmap() const
 {
 	QFile f( m_iconName );
-	
+
 	if ( f.exists() )
 	{
 		return QPixmap( m_iconName );
@@ -100,6 +100,7 @@ bool NotifierAction::supportsMimetype(const QString &/*mimetype*/) const
 
 KIconLoader* NotifierAction::iconLoader()
 {
+    /// ###### Why not use KIconLoader::global() ?
 	if (!s_iconLoader)
 	{
 		s_iconLoader = new KIconLoader(KGlobal::mainComponent().componentName(), KGlobal::mainComponent().dirs());

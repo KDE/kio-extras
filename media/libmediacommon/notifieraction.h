@@ -33,20 +33,21 @@ public:
 	NotifierAction();
 	virtual ~NotifierAction();
 
-	virtual QString label() const;
-	virtual QString iconName() const;
-	virtual void setLabel( const QString &label );
-	virtual void setIconName( const QString &icon );
+	QString label() const;
+	QString iconName() const;
 
 	QPixmap pixmap() const;
-	
+
 	QStringList autoMimetypes();
 
 	virtual QString id() const = 0;
 	virtual bool isWritable() const;
 	virtual bool supportsMimetype( const QString &mimetype ) const;
-	virtual void execute( KFileItem &medium ) = 0;
+	virtual void execute( const KFileItem &medium ) = 0;
 
+protected:
+	void setIconName( const QString &icon );
+	void setLabel( const QString &label );
 private:
 	static KIconLoader* iconLoader();
 	void addAutoMimetype( const QString &mimetype );

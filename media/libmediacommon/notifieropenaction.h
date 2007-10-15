@@ -27,7 +27,7 @@ class NotifierOpenAction : public NotifierAction
 public:
 	NotifierOpenAction();
 	virtual QString id() const;
-	virtual void execute(KFileItem &medium);
+	virtual void execute(const KFileItem &medium);
 	bool supportsMimetype( const QString &mimetype ) const;
 };
 

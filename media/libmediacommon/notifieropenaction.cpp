@@ -33,7 +33,7 @@ QString NotifierOpenAction::id() const
 	return "#OpenAction";
 }
 
-void NotifierOpenAction::execute(KFileItem &medium)
+void NotifierOpenAction::execute(const KFileItem &medium)
 {
 	medium.run();
 }

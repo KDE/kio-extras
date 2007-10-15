@@ -27,7 +27,7 @@ class NotifierNothingAction : public NotifierAction
 public:
 	NotifierNothingAction();
 	virtual QString id() const;
-	virtual void execute(KFileItem &medium);
+	virtual void execute(const KFileItem &medium);
 };
 
 #endif
