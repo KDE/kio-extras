@@ -3,7 +3,7 @@ Encoding=UTF-8
 Icon=run
 Type=Service
 SericeTypes=KCModule
-Exec=kcmshell kcmcgi
+Exec=kcmshell4 kcmcgi
 
 X-KDE-Library=kcm_cgi
 
