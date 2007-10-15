@@ -63,5 +63,6 @@ Name[zh_TW]=Wiktionary - 免費的字典
 ServiceTypes=SearchProvider
 Keys=wt,wikt
 Query=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[nb]=http://no.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[sv]=http://sv.wiktionary.org/wiki/Special:Search?search=\{@}&go=Go
 Charset=utf8
