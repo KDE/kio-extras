@@ -639,6 +639,14 @@ int fishProtocol::establishConnection(char *buffer, KIO::fileoffset_t len) {
     }
     return buf.length();
 }
+
+void fishProtocol::setHostInternal(const KUrl & u){
+  int port = u.port();
+  if(port <= 0 ) // no port is -1 in QUrl, but in kde3 we used 0 and the kioslaves assume that.
+     port = 0;
+  setHost(u.host(),port,u.user(),u.pass());
+}
+
 /**
 sets connection information for subsequent commands
 */
@@ -1263,10 +1271,7 @@ int fishProtocol::received(const char *buffer, KIO::fileoffset_t buflen)
 /** get a file */
 void fishProtocol::get(const KUrl& u){
     myDebug( << "@@@@@@@@@ get " << u << endl);
-    int port = u.port();
-    if(port == -1) // no port is -1 in QUrl, but in kde3 we used 0 and the kioslaves assume that.
-       port = 0;
-    setHost(u.host(),port,u.user(),u.pass());
+    setHostInternal(u);
     url = u;
     openConnection();
     if (!isLoggedIn) return;
@@ -1283,10 +1288,7 @@ void fishProtocol::get(const KUrl& u){
 /** put a file */
 void fishProtocol::put(const KUrl& u, int permissions, KIO::JobFlags flags) {
     myDebug( << "@@@@@@@@@ put " << u << " " << permissions << " " << (flags & KIO::Overwrite) << " " /* << resume */ << endl);
-    int port = u.port();
-    if(port == -1) // no port is -1 in QUrl, but in kde3 we used 0 and the kioslaves assume that.
-       port = 0;
-    setHost(u.host(),port,u.user(),u.pass());
+    setHostInternal(u);
 
     url = u;
     openConnection();
@@ -1414,10 +1416,7 @@ void fishProtocol::run() {
 /** stat a file */
 void fishProtocol::stat(const KUrl& u){
     myDebug( << "@@@@@@@@@ stat " << u << endl);
-    int port = u.port();
-    if(port == -1) // no port is -1 in QUrl, but in kde3 we used 0 and the kioslaves assume that.
-       port = 0;
-    setHost(u.host(),port,u.user(),u.pass());
+    setHostInternal(u);
     url = u;
     isStat = true; // FIXME: just a workaround for konq deficiencies
     openConnection();
@@ -1434,10 +1433,7 @@ void fishProtocol::stat(const KUrl& u){
 /** find mimetype for a file */
 void fishProtocol::mimetype(const KUrl& u){
     myDebug( << "@@@@@@@@@ mimetype " << u << endl);
-    int port = u.port();
-    if(port == -1) // no port is -1 in QUrl, but in kde3 we used 0 and the kioslaves assume that.
-       port = 0;
-    setHost(u.host(),port,u.user(),u.pass());
+    setHostInternal(u);
     url = u;
     openConnection();
     if (!isLoggedIn) return;
@@ -1453,10 +1449,7 @@ void fishProtocol::mimetype(const KUrl& u){
 /** list a directory */
 void fishProtocol::listDir(const KUrl& u){
     myDebug( << "@@@@@@@@@ listDir " << u << endl);
-    int port = u.port();
-    if(port == -1) // no port is -1 in QUrl, but in kde3 we used 0 and the kioslaves assume that.
-       port = 0;
-    setHost(u.host(),port,u.user(),u.pass());
+    setHostInternal(u);
     url = u;
     openConnection();
     if (!isLoggedIn) return;
@@ -1472,10 +1465,7 @@ void fishProtocol::listDir(const KUrl& u){
 /** create a directory */
 void fishProtocol::mkdir(const KUrl& u, int permissions) {
     myDebug( << "@@@@@@@@@ mkdir " << u << " " << permissions << endl);
-    int port = u.port();
-    if(port == -1) // no port is -1 in QUrl, but in kde3 we used 0 and the kioslaves assume that.
-       port = 0;
-    setHost(u.host(),port,u.user(),u.pass());
+    setHostInternal(u);
     url = u;
     openConnection();
     if (!isLoggedIn) return;
@@ -1495,10 +1485,7 @@ void fishProtocol::rename(const KUrl& s, const KUrl& d, KIO::JobFlags flags) {
         error(ERR_UNSUPPORTED_ACTION,s.prettyUrl());
         return;
     }
-    int port = s.port();
-    if(port == -1) // no port is -1 in QUrl, but in kde3 we used 0 and the kioslaves assume that.
-       port = 0;
-    setHost(s.host(),port,s.user(),s.pass());
+    setHostInternal(s);
     url = d;
     openConnection();
     if (!isLoggedIn) return;
@@ -1520,10 +1507,7 @@ void fishProtocol::rename(const KUrl& s, const KUrl& d, KIO::JobFlags flags) {
 /** create a symlink */
 void fishProtocol::symlink(const QString& target, const KUrl& u, KIO::JobFlags flags) {
     myDebug( << "@@@@@@@@@ symlink " << target << " " << u << " " << (flags & KIO::Overwrite) << endl);
-    int port = u.port();
-    if(port == -1) // no port is -1 in QUrl, but in kde3 we used 0 and the kioslaves assume that.
-       port = 0;
-    setHost(u.host(),port,u.user(),u.pass());
+    setHostInternal(u);
     url = u;
     openConnection();
     if (!isLoggedIn) return;
@@ -1543,10 +1527,7 @@ void fishProtocol::symlink(const QString& target, const KUrl& u, KIO::JobFlags f
 /** change file permissions */
 void fishProtocol::chmod(const KUrl& u, int permissions){
     myDebug( << "@@@@@@@@@ chmod " << u << " " << permissions << endl);
-    int port = u.port();
-    if(port == -1) // no port is -1 in QUrl, but in kde3 we used 0 and the kioslaves assume that.
-       port = 0;
-    setHost(u.host(),port,u.user(),u.pass());
+    setHostInternal(u);
     url = u;
     openConnection();
     if (!isLoggedIn) return;
@@ -1566,10 +1547,7 @@ void fishProtocol::copy(const KUrl &s, const KUrl &d, int permissions, KIO::JobF
         return;
     }
     //myDebug( << s << endl << d << endl);
-    int port = s.port();
-    if(port == -1) // no port is -1 in QUrl, but in kde3 we used 0 and the kioslaves assume that.
-       port = 0;
-    setHost(s.host(),port,s.user(),s.pass());
+    setHostInternal(s);
     url = d;
     openConnection();
     if (!isLoggedIn) return;
@@ -1592,10 +1570,7 @@ void fishProtocol::copy(const KUrl &s, const KUrl &d, int permissions, KIO::JobF
 /** removes a file or directory */
 void fishProtocol::del(const KUrl &u, bool isFile){
     myDebug( << "@@@@@@@@@ del " << u << " " << isFile << endl);
-    int port = u.port();
-    if(port == -1) // no port is -1 in QUrl, but in kde3 we used 0 and the kioslaves assume that.
-       port = 0;
-    setHost(u.host(),port,u.user(),u.pass());
+    setHostInternal(u);
     url = u;
     openConnection();
     if (!isLoggedIn) return;
@@ -1623,11 +1598,7 @@ void fishProtocol::special( const QByteArray &data ){
             stream >> u;
             stream >> command;
             myDebug( << "@@@@@@@@@ exec " << u << " " << command << endl);
-            int port = u.port();
-            if(port == -1) // no port is -1 in QUrl, but in kde3 we used 0 and the kioslaves assume that.
-               port = 0;
-            setHost(u.host(),port,u.user(),u.pass());
-
+            setHostInternal(u);
             url = u;
             openConnection();
             if (!isLoggedIn) return;

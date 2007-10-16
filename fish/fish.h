@@ -203,6 +203,9 @@ protected: // Protected methods
   void manageConnection(const QString &line);
   /** writes to process */
   void writeStdin(const QString &line);
+  /** Verify port **/
+  void setHostInternal(const KUrl & u);
+
 };
 
 
