@@ -407,6 +407,8 @@ void ThumbnailProtocol::get(const KUrl &url)
             shmdt((char*)shmaddr);
             return;
         }
+        if( img.depth() != 32 ) // KIO::PreviewJob and this code below completely ignores colortable :-/,
+            img = img.convertToFormat(QImage::Format_ARGB32); //  so make sure there is none
         // Keep in sync with kdelibs/kio/kio/previewjob.cpp
         stream << img.width() << img.height() << quint8(img.format());
         memcpy(shmaddr, img.bits(), img.numBytes());
