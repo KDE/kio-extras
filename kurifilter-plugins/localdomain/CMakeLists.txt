@@ -15,7 +15,7 @@ kde4_add_executable(klocaldomainurifilterhelper NOGUI ${klocaldomainurifilterhel
 
 target_link_libraries(klocaldomainurifilterhelper ${KDE4_KDECORE_LIBS})
 
-install(TARGETS klocaldomainurifilterhelper DESTINATION ${BIN_INSTALL_DIR})
+install(TARGETS klocaldomainurifilterhelper DESTINATION ${LIBEXEC_INSTALL_DIR})
 
 ########### install files ###############
 
