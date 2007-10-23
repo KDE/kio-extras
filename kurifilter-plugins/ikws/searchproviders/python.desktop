@@ -64,5 +64,6 @@ Name[zh_TW]=Python 參考手冊
 Query=http://www.google.com/search?sourceid=python-search&q=\\{@}&submit=Search&q=site%3Apython.org
 Query[nb]=http://www.google.no/search?sourceid=python-search&q=\\{@}&submit=Search&q=site%3Apython.org
 Query[nl]=http://www.google.nl/search?sourceid=python-search&q=\\{@}&submit=Search&q=site%3Apython.org
+Query[x-test]=xxhttp://www.google.com/search?sourceid=python-search&q=\\{@}&submit=Search&q=site%3Apython.orgxx
 ServiceTypes=SearchProvider
 Type=Service

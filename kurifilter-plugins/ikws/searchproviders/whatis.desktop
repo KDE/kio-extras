@@ -61,3 +61,4 @@ Name[zh_TW]=Whatis 查詢
 ServiceTypes=SearchProvider
 Keys=wi,whatis
 Query=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
+Query[x-test]=xxhttp://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}xx

@@ -13,3 +13,4 @@ Name[x-test]=xxAustroNautxx
 ServiceTypes=SearchProvider
 Keys=austro,austronaut
 Query=http://austronaut.at/page.php?begriff=\\{@}&wo=at
+Query[x-test]=xxhttp://austronaut.at/page.php?begriff=\\{@}&wo=atxx
