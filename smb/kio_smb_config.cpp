@@ -38,7 +38,7 @@
 //===========================================================================
 void SMBSlave::reparseConfiguration()
 {
-  KConfig cfg("kioslaverc", KConfig::CascadeConfig);
+  KConfig cfg("kioslaverc", KConfig::NoGlobals);
   const KConfigGroup group = cfg.group("Browser Settings/SMBro");
   m_default_user = group.readEntry("User");
 //  m_default_workgroup=group.readEntry("Workgroup");

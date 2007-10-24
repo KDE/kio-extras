@@ -108,7 +108,7 @@ void FilterOptions::load()
     // Clear state first.
     m_dlg->lvSearchProviders->clear();
 
-    KConfig config( KURISearchFilterEngine::self()->name() + "rc", KConfig::CascadeConfig );
+    KConfig config( KURISearchFilterEngine::self()->name() + "rc", KConfig::NoGlobals );
     KConfigGroup group = config.group("General");
 
     QString defaultSearchEngine = group.readEntry("DefaultSearchEngine");
@@ -191,7 +191,7 @@ void FilterOptions::setDelimiter (char sep)
 
 void FilterOptions::save()
 {
-  KConfig config( KURISearchFilterEngine::self()->name() + "rc", KConfig::CascadeConfig );
+  KConfig config( KURISearchFilterEngine::self()->name() + "rc", KConfig::NoGlobals );
 
   KConfigGroup group = config.group("General");
   group.writeEntry("EnableWebShortcuts", m_dlg->cbEnableShortcuts->isChecked());
