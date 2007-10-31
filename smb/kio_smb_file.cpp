@@ -86,39 +86,36 @@ void SMBSlave::get( const KUrl& kurl )
     filefd = smbc_open(url.toSmbcUrl(),O_RDONLY,0);
     if(filefd >= 0)
     {
-        if(buf)
+        bool isFirstPacket = true;
+        lasttime = starttime = time(NULL);
+        while(1)
         {
-	    bool isFirstPacket = true;
-            lasttime = starttime = time(NULL);
-            while(1)
+            bytesread = smbc_read(filefd, buf, MAX_XFER_BUF_SIZE);
+            if(bytesread == 0)
             {
-                bytesread = smbc_read(filefd, buf, MAX_XFER_BUF_SIZE);
-                if(bytesread == 0)
-                {
-                    // All done reading
-                    break;
-                }
-                else if(bytesread < 0)
-                {
-                    error( KIO::ERR_COULD_NOT_READ, url.prettyUrl());
-                    return;
-                }
-
-                filedata.setRawData(buf,bytesread);
-		if (isFirstPacket)
-		{
-		    KMimeType::Ptr p_mimeType = KMimeType::findByNameAndContent(url.fileName(), filedata);
-		    mimeType(p_mimeType->name());
-		    isFirstPacket = false;
-		}
-                data( filedata );
-                filedata.clear();
-
-                // increment total bytes read
-                totalbytesread += bytesread;
-
-		processedSize(totalbytesread);
+                // All done reading
+                break;
             }
+            else if(bytesread < 0)
+            {
+                error( KIO::ERR_COULD_NOT_READ, url.prettyUrl());
+                return;
+            }
+
+            filedata.setRawData(buf,bytesread);
+            if (isFirstPacket)
+            {
+                KMimeType::Ptr p_mimeType = KMimeType::findByNameAndContent(url.fileName(), filedata);
+                mimeType(p_mimeType->name());
+                isFirstPacket = false;
+            }
+            data( filedata );
+            filedata.clear();
+
+            // increment total bytes read
+            totalbytesread += bytesread;
+
+            processedSize(totalbytesread);
         }
 
         smbc_close(filefd);
