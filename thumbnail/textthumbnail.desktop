@@ -68,6 +68,6 @@ Name[xh]=Iifayile Zombhalo
 Name[zh_CN]=文本文件
 Name[zh_TW]=文字檔案
 ServiceTypes=ThumbCreator
-MimeTypes=text/plain
+MimeTypes=text/plain;
 X-KDE-Library=textthumbnail
 CacheThumbnail=false

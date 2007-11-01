@@ -10,6 +10,6 @@ Name[sv]=SVG
 Name[x-test]=xxSvgxx
 Name[zh_CN]=SVG
 ServiceTypes=ThumbCreator
-MimeTypes=image/svg+xml
+MimeTypes=image/svg+xml;
 X-KDE-Library=svgthumbnail
 CacheThumbnail=true

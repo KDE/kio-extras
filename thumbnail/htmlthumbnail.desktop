@@ -68,6 +68,6 @@ Name[xh]=Iifayile ze HTML
 Name[zh_CN]=HTML 文件
 Name[zh_TW]=HTML 檔案
 ServiceTypes=ThumbCreator
-MimeTypes=text/html
+MimeTypes=text/html;
 X-KDE-Library=htmlthumbnail
 CacheThumbnail=true
