@@ -22,17 +22,17 @@
 #include <klocale.h>
 #include <kglobal.h>
 
-RemoteDirNotifyModule::RemoteDirNotifyModule()
-	: KDEDModule()
-{
-}
+#include <kpluginfactory.h>
+#include <kpluginloader.h>
 
-extern "C" {
-	KDE_EXPORT KDEDModule *create_remotedirnotify()
-	{
-		KGlobal::locale()->insertCatalog("kio_remote");
-		return new RemoteDirNotifyModule();
-	}
+K_PLUGIN_FACTORY(RemoteDirNotifyFactory,
+                 registerPlugin<RemoteDirNotifyModule>();
+    )
+K_EXPORT_PLUGIN(RemoteDirNotifyFactory("kio_remote"))
+
+RemoteDirNotifyModule::RemoteDirNotifyModule(QObject* parent, const QList<QVariant>&)
+	: KDEDModule(parent)
+{
 }
 
 #include "remotedirnotifymodule.moc"
