@@ -242,22 +242,13 @@ void ThumbnailProtocol::get(const KUrl &url)
 #ifdef THUMBNAIL_HACK
         if (plugin.isEmpty())
         {
-            KService::List plugins = KServiceTypeTrader::self()->query("ThumbCreator");
-            QMap<QString, KService::Ptr> mimeMap;
+            KService::List offers = KMimeTypeTrader::self()->query( m_mimeType, QLatin1String( "ThumbCreator" ) );
 
-            for (KService::List::ConstIterator it = plugins.begin(); it != plugins.end(); ++it)
+            if(!offers.isEmpty())
             {
-                QStringList mimeTypes = (*it)->property("MimeTypes").toStringList();
-                for (QStringList::ConstIterator mt = mimeTypes.begin(); mt != mimeTypes.end(); ++mt)
-                {
-                    if  ((*mt)==m_mimeType)
-                    {
-                        plugin=(*it)->library();
-                        break;
-                    }
-                }
-                if (!plugin.isEmpty())
-                    break;
+                KService::Ptr serv;
+                serv = offers.first();
+                plugin = serv->library();
             }
         }
         kDebug(7115) << "Guess plugin: " << plugin;

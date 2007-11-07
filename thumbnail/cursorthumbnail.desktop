@@ -67,6 +67,6 @@ Name[x-test]=xxCursor Filesxx
 Name[zh_CN]=光标文件
 Name[zh_TW]=游標檔案
 ServiceTypes=ThumbCreator
-MimeTypes=image/x-xcursor;
+MimeType=image/x-xcursor;
 X-KDE-Library=cursorthumbnail
 CacheThumbnail=false

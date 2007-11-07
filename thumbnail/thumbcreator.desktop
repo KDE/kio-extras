@@ -65,9 +65,6 @@ Comment[xh]=Umqheba Wozipho lobhontsi
 Comment[zh_CN]=缩略图处理程序
 Comment[zh_TW]=縮圖處理器
 
-[PropertyDef::MimeTypes]
-Type=QStringList
-
 [PropertyDef::CacheThumbnail]
 Type=bool
 
