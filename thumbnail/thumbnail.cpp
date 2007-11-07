@@ -190,7 +190,7 @@ void ThumbnailProtocol::get(const KUrl &url)
 #ifdef THUMBNAIL_HACK
     else if (!m_width || !m_height)
     {
-        kDebug(7115) << "Guessing height, width, icon sizre!";
+        kDebug(7115) << "Guessing height, width, icon size!";
         m_width=128;
         m_height=128;
         iconSize=128;
