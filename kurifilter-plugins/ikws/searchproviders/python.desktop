@@ -46,8 +46,8 @@ Name[ro]=Manualul de referinţă Python
 Name[ru]=Справочник по Python
 Name[se]=Python-referánsagiehtagirji
 Name[sl]=Referenčni priročnik za python
-Name[sr]=Референтно упутство за Python
-Name[sr@latin]=Referentno uputstvo za Python
+Name[sr]=Референтни приручник питона
+Name[sr@latin]=Referentni priručnik Pythona
 Name[sv]=Python referensmanual
 Name[ta]=பைதான் பார்வை கையேடு
 Name[tg]=Маълумотнома аз Python
@@ -64,6 +64,7 @@ Name[zh_TW]=Python 參考手冊
 Query=http://www.google.com/search?sourceid=python-search&q=\\{@}&submit=Search&q=site%3Apython.org
 Query[nb]=http://www.google.no/search?sourceid=python-search&q=\\{@}&submit=Search&q=site%3Apython.org
 Query[nl]=http://www.google.nl/search?sourceid=python-search&q=\\{@}&submit=Search&q=site%3Apython.org
+Query[nn]=http://www.google.no/search?hl=nn&sourceid=python-search&q=\\{@}&submit=Search&q=site%3Apython.org
 Query[x-test]=xxhttp://www.google.com/search?sourceid=python-search&q=\\{@}&submit=Search&q=site%3Apython.orgxx
 ServiceTypes=SearchProvider
 Type=Service

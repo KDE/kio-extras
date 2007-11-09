@@ -47,8 +47,8 @@ Name[ro]=Google (Mă simt norocos)
 Name[ru]=Google (Мне повезёт!)
 Name[se]=Google (Geahččalan lihkku)
 Name[sl]=Google (Počutim se srečnega)
-Name[sr]=Google (Добијам из прве)
-Name[sr@latin]=Google (Dobijam iz prve)
+Name[sr]=Гугл (из прве руке)
+Name[sr@latin]=Google (iz prve ruke)
 Name[sv]=Google (Jag har tur)
 Name[ta]=கூகுல் (நான் அதிர்ஷ்டசாலியாக உணர்கிறேன்)
 Name[te]=Google (నెరుగా వెబ్ లొ ప్రవేశించు)
@@ -73,6 +73,7 @@ Query[he]=http://www.google.co.il/search?q=\\{@}&btnI=I%27m+Feeling+Lucky&ie=UTF
 Query[it]=http://www.google.it/search?q=\\{@}&btnI=I%27m+Feeling+Lucky&ie=UTF-8&oe=UTF-8
 Query[nb]=http://www.google.no/search?q=\\{@}&btnI=I%27m+Feeling+Lucky&ie=UTF-8&oe=UTF-8
 Query[nl]=http://www.google.nl/search?q=\\{@}&btnI=I%27m+Feeling+Lucky&ie=UTF-8&oe=UTF-8
+Query[nn]=http://www.google.no/search?hl=nn&q=\\{@}&btnI=I%27m+Feeling+Lucky&ie=UTF-8&oe=UTF-8
 Query[pl]=http://www.google.pl/search?q=\\{@}&btnI=I%27m+Feeling+Lucky&ie=UTF-8&oe=UTF-8
 Query[pt]=http://www.google.pt/search?q=\\{@}&btnI=I%27m+Feeling+Lucky&ie=UTF-8&oe=UTF-8
 Query[x-test]=xxhttp://www.google.com/search?q=\\{@}&btnI=I%27m+Feeling+Lucky&ie=UTF-8&oe=UTF-8xx

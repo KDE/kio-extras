@@ -50,8 +50,8 @@ Name[ro]=Căutare avansată Google
 Name[ru]=Google - продвинутый поиск
 Name[se]=Dárkilis ohcan Google báikkis
 Name[sl]=Napredno iskanje z Google
-Name[sr]=Google-ово напредно претраживање
-Name[sr@latin]=Google-ovo napredno pretraživanje
+Name[sr]=Гугл (детаљно)
+Name[sr@latin]=Google (detaljno)
 Name[sv]=Google avancerad sökning
 Name[ta]=கூகுல் மேம்படுத்தப்பட்ட தேடுதல்
 Name[te]=గూగుల్ మరింత నిసిస్టమైన అన్వెషణ
@@ -69,6 +69,7 @@ Name[zh_TW]=Google 進階搜尋
 Query=http://www.google.com/search?as_q=\\{all,@}&num=\\{num,"10"}&btnG=Google+Search&as_epq=\\{exact,""}&as_oq=\\{any,""}&as_eq=\\{without,""}&lr=\\{lang,""}&as_ft=\\{ft,"i"}&as_filetype=\\{filetype,""}&as_qdr=\\{date,"all"}&as_occt=\\{occ,"any"}&as_dt=\\{siteop,"i"}&as_sitesearch=\\{site}&safe=\\{safe,"active"}&ie=UTF-8&oe=UTF-8
 Query[nb]=http://www.google.no/search?as_q=\\{all,@}&num=\\{num,"10"}&btnG=Google+Search&as_epq=\\{exact,""}&as_oq=\\{any,""}&as_eq=\\{without,""}&lr=\\{lang,""}&as_ft=\\{ft,"i"}&as_filetype=\\{filetype,""}&as_qdr=\{date,"all"}&as_occt=\\{occ,"any"}&as_dt=\\{siteop,"i"}&as_sitesearch=\\{site}&safe=\\{safe,"active"}&ie=UTF-8&oe=UTF-8
 Query[nl]=http://www.google.nl/search?as_q=\\{all,@}&num=\\{num,"10"}&btnG=Google+Search&as_epq=\\{exact,""}&as_oq=\\{any,""}&as_eq=\\{without,""}&lr=\\{lang,""}&as_ft=\\{ft,"i"}&as_filetype=\\{filetype,""}&as_qdr=\\{date,"all"}&as_occt=\\{occ,"any"}&as_dt=\\{siteop,"i"}&as_sitesearch=\\{site}&safe=\\{safe,"active"}&ie=UTF-8&oe=UTF-8
+Query[nn]=http://www.google.no/search?hl=nn&as_q=\\{all,@}&num=\\{num,"10"}&btnG=Google+Search&as_epq=\\{exact,""}&as_oq=\\{any,""}&as_eq=\\{without,""}&lr=\\{lang,""}&as_ft=\\{ft,"i"}&as_filetype=\\{filetype,""}&as_qdr=\\{date,"all"}&as_occt=\\{occ,"any"}&as_dt=\\{siteop,"i"}&as_sitesearch=\\{site}&safe=\\{safe,"active"}&ie=UTF-8&oe=UTF-8
 Query[x-test]=xxhttp://www.google.com/search?as_q=\\{all,@}&num=\\{num,"10"}&btnG=Google+Search&as_epq=\\{exact,""}&as_oq=\\{any,""}&as_eq=\\{without,""}&lr=\\{lang,""}&as_ft=\\{ft,"i"}&as_filetype=\\{filetype,""}&as_qdr=\\{date,"all"}&as_occt=\\{occ,"any"}&as_dt=\\{siteop,"i"}&as_sitesearch=\\{site}&safe=\\{safe,"active"}&ie=UTF-8&oe=UTF-8xx
 Charset=utf8
 ServiceTypes=SearchProvider

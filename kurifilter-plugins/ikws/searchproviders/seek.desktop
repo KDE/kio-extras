@@ -4,6 +4,7 @@ Type=Service
 Name=GO.com
 Name[de]=go.com
 Name[eo]=Go.com
+Name[sr]=Го.ком
 Name[x-test]=xxGO.comxx
 ServiceTypes=SearchProvider
 Keys=seek
