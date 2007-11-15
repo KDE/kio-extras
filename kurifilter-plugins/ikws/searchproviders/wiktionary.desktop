@@ -1,5 +1,4 @@
 [Desktop Entry]
-Encoding=UTF-8
 Type=Service
 Name=Wiktionary - The Free Dictionary
 Name[af]=Wiktionary - Die gratis woordeboek
@@ -60,7 +59,7 @@ Name[wa]=L' esplicant motî do walon so Wikipedia
 Name[x-test]=xxWiktionary - The Free Dictionaryxx
 Name[zh_CN]=维基字典 - 免费的字典
 Name[zh_TW]=Wiktionary - 免費的字典
-ServiceTypes=SearchProvider
+X-KDE-ServiceTypes=SearchProvider
 Keys=wt,wikt
 Query=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[be]=http://en.wiktionary.org/wiki/Special:Search?search=\{@}&go=Go

@@ -1,12 +1,11 @@
 [Desktop Entry]
-Encoding=UTF-8
 Type=Service
 Name=GO.com
 Name[de]=go.com
 Name[eo]=Go.com
 Name[sr]=Го.ком
 Name[x-test]=xxGO.comxx
-ServiceTypes=SearchProvider
+X-KDE-ServiceTypes=SearchProvider
 Keys=seek
 Query=http://www.go.com/Titles?col=WW&qt=\\{@}&svx=home_searchbox&sv=IS&lk=noframeso
 Query[bg]=Query=http://www.go.com/Titles?col=WW&qt=\\{@}&svx=home_searchbox&sv=IS&lk=noframeso

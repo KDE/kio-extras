@@ -1,5 +1,4 @@
 [Desktop Entry]
-Encoding=UTF-8
 Type=Service
 Name=Voila
 Name[ne]=भोइला
@@ -10,7 +9,7 @@ Name[te]=వొయిలా
 Name[vi]=Tra Voilà
 Name[wa]=Voilà
 Name[x-test]=xxVoilaxx
-ServiceTypes=SearchProvider
+X-KDE-ServiceTypes=SearchProvider
 Keys=voila
 Query=http://www.voila.com/S/geek?an=1&kw=\\{@}&dt=*
 Query[x-test]=xxhttp://www.voila.com/S/geek?an=1&kw=\\{@}&dt=*xx

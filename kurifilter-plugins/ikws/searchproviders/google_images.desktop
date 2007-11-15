@@ -1,5 +1,4 @@
 [Desktop Entry]
-Encoding=UTF-8
 Type=Service
 Name=Google Image Search
 Name[af]=Google Beeld Soektog
@@ -66,7 +65,7 @@ Name[x-test]=xxGoogle Image Searchxx
 Name[xh]=Uphendlo Lomfanekiso we Google
 Name[zh_CN]=Google 图像搜索
 Name[zh_TW]=Google 圖片搜尋
-ServiceTypes=SearchProvider
+X-KDE-ServiceTypes=SearchProvider
 Keys=ggi,images
 Query=http://images.google.com/images?q=\\{@}
 Query[bg]=Query=http://images.google.com/images?q=\\{@}

@@ -1,5 +1,4 @@
 [Desktop Entry]
-Encoding=UTF-8
 Charset=
 Hidden=false
 Keys=db,docbook
@@ -58,5 +57,5 @@ Name[zh_TW]=DocBook - 終極指南
 Query=http://www.docbook.org/tdg/en/html/\\{1}.html
 Query[bg]=Query=http://www.docbook.org/tdg/en/html/\\{1}.html
 Query[x-test]=xxhttp://www.docbook.org/tdg/en/html/\\{1}.htmlxx
-ServiceTypes=SearchProvider
+X-KDE-ServiceTypes=SearchProvider
 Type=Service

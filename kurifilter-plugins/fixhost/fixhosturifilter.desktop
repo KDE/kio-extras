@@ -1,5 +1,4 @@
 [Desktop Entry]
-Encoding=UTF-8
 Type=Service
 Name=FixHostFilter
 Name[de]=Rechnernamen-Korrektur-Filter
@@ -15,5 +14,5 @@ Name[x-test]=xxFixHostFilterxx
 Name[zh_CN]=固定主机过滤器
 Name[zh_TW]=固定主機過濾
 X-KDE-Library=libfixhosturifilter
-ServiceTypes=KUriFilter/Plugin
+X-KDE-ServiceTypes=KUriFilter/Plugin
 InitialPreference=0

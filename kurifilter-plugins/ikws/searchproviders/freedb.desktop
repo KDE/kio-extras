@@ -1,5 +1,4 @@
 [Desktop Entry]
-Encoding=UTF-8
 Type=Service
 Name=FreeDB
 Name[eo]=Libera Civilizludo
@@ -10,7 +9,7 @@ Name[te]=ఫ్రీడిబి
 Name[tg]=ОзодиDB
 Name[vi]=Tra FreeDB
 Name[x-test]=xxFreeDBxx
-ServiceTypes=SearchProvider
+X-KDE-ServiceTypes=SearchProvider
 Keys=fdb,freedb
 Query=http://www.freedb.org/freedb_search.php?words=\\{@}
 Query[bg]=Query=http://www.freedb.org/freedb_search.php?words=\\{@}

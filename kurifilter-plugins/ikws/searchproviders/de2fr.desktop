@@ -1,5 +1,4 @@
 [Desktop Entry]
-Encoding=UTF-8
 Type=Service
 Name=LEO - Translate Between German and French
 Name[af]=LEO - Vertaal tussn Duits en Fraans
@@ -59,7 +58,7 @@ Name[vi]=LEO - Dịch tiếng Đức sang tiếng Pháp
 Name[x-test]=xxLEO - Translate Between German and Frenchxx
 Name[zh_CN]=LEO - 在德语和法语之间互译
 Name[zh_TW]=LEO - 翻譯德語和法語
-ServiceTypes=SearchProvider
+X-KDE-ServiceTypes=SearchProvider
 Keys=de2fr
 Query=http://dict.leo.org/?lp=frde&search=\\{@}
 Query[bg]=Query=http://dict.leo.org/?lp=frde&search=\\{@}

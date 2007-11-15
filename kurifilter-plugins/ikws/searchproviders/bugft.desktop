@@ -1,5 +1,4 @@
 [Desktop Entry]
-Encoding=UTF-8
 Keys=bugft
 Name=KDE Bug Database Fulltext Search
 Name[af]=KDE Fout Databasis voltext Soektog
@@ -63,5 +62,5 @@ Name[zh_TW]=KDE 臭蟲資料庫全文檢索
 Query=http://bugs.kde.org/simple_search.cgi?id=\\{1}+\\{2}+\\{3}+\\{4}+\\{5}+\\{6}+\\{7}+\\{8}+\\{9}
 Query[bg]=Query=http://bugs.kde.org/simple_search.cgi?id=\\{1}+\\{2}+\\{3}+\\{4}+\\{5}+\\{6}+\\{7}+\\{8}+\\{9}
 Query[x-test]=xxhttp://bugs.kde.org/simple_search.cgi?id=\\{1}+\\{2}+\\{3}+\\{4}+\\{5}+\\{6}+\\{7}+\\{8}+\\{9}xx
-ServiceTypes=SearchProvider
+X-KDE-ServiceTypes=SearchProvider
 Type=Service

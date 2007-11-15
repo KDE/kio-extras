@@ -1,5 +1,4 @@
 [Desktop Entry]
-Encoding=UTF-8
 Type=Service
 Name=Whatis Query
 Name[af]=Whatis navraag
@@ -58,7 +57,7 @@ Name[vi]=Hỏi Whatis
 Name[x-test]=xxWhatis Queryxx
 Name[zh_CN]=Whatis 查询
 Name[zh_TW]=Whatis 查詢
-ServiceTypes=SearchProvider
+X-KDE-ServiceTypes=SearchProvider
 Keys=wi,whatis
 Query=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
 Query[x-test]=xxhttp://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}xx

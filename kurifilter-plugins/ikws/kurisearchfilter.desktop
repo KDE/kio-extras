@@ -1,5 +1,4 @@
 [Desktop Entry]
-Encoding=UTF-8
 Type=Service
 Name=SearchKeywordsFilter
 Name[af]=Soektogsleutelwoordfilter
@@ -51,5 +50,5 @@ Name[xh]=Phendla Amagama Angundoqo Ecebo Lokucoca Ulwelo
 Name[zh_CN]=搜索关键字过滤
 Name[zh_TW]=搜索關鍵字過濾
 X-KDE-Library=libkurisearchfilter
-ServiceTypes=KUriFilter/Plugin
+X-KDE-ServiceTypes=KUriFilter/Plugin
 InitialPreference=4

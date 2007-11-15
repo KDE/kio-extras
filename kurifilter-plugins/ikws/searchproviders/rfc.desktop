@@ -1,5 +1,4 @@
 [Desktop Entry]
-Encoding=UTF-8
 Keys=rfc,rfcs
 Name=IETF Requests for Comments
 Name[af]=IETF Versoeke vir Kommentaar
@@ -47,5 +46,5 @@ Name[zh_TW]=IETF RFC 文件
 Query=http://www.ietf.org/rfc/rfc\\{@}.txt
 Query[bg]=Query=http://www.ietf.org/rfc/rfc\\{@}.txt
 Query[x-test]=xxhttp://www.ietf.org/rfc/rfc\\{@}.txtxx
-ServiceTypes=SearchProvider
+X-KDE-ServiceTypes=SearchProvider
 Type=Service

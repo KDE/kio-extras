@@ -1,5 +1,4 @@
 [Desktop Entry]
-Encoding=UTF-8
 Keys=deb
 Name=Debian Package Search
 Name[af]=Debian Paket Soektog
@@ -61,5 +60,5 @@ Name[zh_CN]=Debian 软件包搜索
 Name[zh_TW]=Debian 套件搜尋
 Query=http://packages.debian.org/\\{@}
 Query[x-test]=xxhttp://packages.debian.org/\\{@}xx
-ServiceTypes=SearchProvider
+X-KDE-ServiceTypes=SearchProvider
 Type=Service

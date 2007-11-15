@@ -1,5 +1,4 @@
 [Desktop Entry]
-Encoding=UTF-8
 Keys=dbug
 Name=Debian BTS Bug Search
 Name[af]=Debian BTS Fout Soektog
@@ -58,5 +57,5 @@ Name[zh_TW]=Debian BTS 臭蟲搜尋
 Query=http://bugs.debian.org/\\{@}
 Query[bg]=Query=http://bugs.debian.org/\\{@}
 Query[x-test]=xxhttp://bugs.debian.org/\\{@}xx
-ServiceTypes=SearchProvider
+X-KDE-ServiceTypes=SearchProvider
 Type=Service

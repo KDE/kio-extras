@@ -1,5 +1,4 @@
 [Desktop Entry]
-Encoding=UTF-8
 Type=Service
 Name=LEO-Translate
 Name[af]=LEO-Vertaal
@@ -36,7 +35,7 @@ Name[uz]=LEO таржима
 Name[vi]=Dịch bằng LEO
 Name[x-test]=xxLEO-Translatexx
 Name[xh]=LEO-Guqulela
-ServiceTypes=SearchProvider
+X-KDE-ServiceTypes=SearchProvider
 Keys=leo
 Query=http://dict.leo.org/?search=\\{@}
 Query[bg]=Query=http://dict.leo.org/?search=\\{@}

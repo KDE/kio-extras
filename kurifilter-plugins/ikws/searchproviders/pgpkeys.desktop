@@ -65,5 +65,5 @@ Query=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
 Query[bg]=Query=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
 Query[ne]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}op=vindex
 Query[x-test]=xxhttp://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindexxx
-ServiceTypes=SearchProvider
+X-KDE-ServiceTypes=SearchProvider
 Type=Service

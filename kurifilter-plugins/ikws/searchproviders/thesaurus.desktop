@@ -1,5 +1,4 @@
 [Desktop Entry]
-Encoding=UTF-8
 Type=Service
 Name=Merriam-Webster Thesaurus
 Name[be]=Тэзаўрус Merriam-Webster
@@ -49,7 +48,7 @@ Name[vi]=Từ điển đồng nghĩa Merriam-Webster
 Name[x-test]=xxMerriam-Webster Thesaurusxx
 Name[zh_CN]=韦氏辞典
 Name[zh_TW]=韋氏辭典
-ServiceTypes=SearchProvider
+X-KDE-ServiceTypes=SearchProvider
 Keys=ths,thesaurus
 Query=http://www.m-w.com/cgi-bin/thesaurus?book=Thesaurus&va=\\{@}
 Query[bg]=Query=http://www.m-w.com/cgi-bin/thesaurus?book=Thesaurus&va=\\{@}

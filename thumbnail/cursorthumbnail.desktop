@@ -1,5 +1,4 @@
 [Desktop Entry]
-Encoding=UTF-8
 Type=Service
 Name=Cursor Files
 Name[af]=Muis wyser Lêers
@@ -66,7 +65,7 @@ Name[wa]=Fitchîs cursoe
 Name[x-test]=xxCursor Filesxx
 Name[zh_CN]=光标文件
 Name[zh_TW]=游標檔案
-ServiceTypes=ThumbCreator
+X-KDE-ServiceTypes=ThumbCreator
 MimeType=image/x-xcursor;
 X-KDE-Library=cursorthumbnail
 CacheThumbnail=false

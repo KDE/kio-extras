@@ -1,5 +1,4 @@
 [Desktop Entry]
-Encoding=UTF-8
 Type=Service
 Name=Google News
 Name[af]=Google Nuus
@@ -57,7 +56,7 @@ Name[vi]=Tin tức Google
 Name[x-test]=xxGoogle Newsxx
 Name[zh_CN]=Google 新闻
 Name[zh_TW]=Google 新聞
-ServiceTypes=SearchProvider
+X-KDE-ServiceTypes=SearchProvider
 Keys=ggn,googlenews
 Query=http://news.google.com/news?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[bg]=Query=http://news.google.com/news?q=\\{@}&ie=UTF-8&oe=UTF-8

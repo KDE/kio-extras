@@ -29,7 +29,7 @@ Name[vi]=Danh sách cuốn sách Mạng
 Name[x-test]=xxInternet Book Listxx
 Name[zh_CN]=互联网图书列表
 Name[zh_TW]=網際網路書目列表
-ServiceTypes=SearchProvider
+X-KDE-ServiceTypes=SearchProvider
 Keys=ibl
 Query=http://www.iblist.com/search/search.php?item=\\{@}&submit=Search
 Query[be]=http://www.feedster.com/search.php?q=\\{@}&ie=UTF-8&oe=UTF-8

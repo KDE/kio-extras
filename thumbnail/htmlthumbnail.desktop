@@ -1,5 +1,4 @@
 [Desktop Entry]
-Encoding=UTF-8
 Type=Service
 Name=HTML Files
 Name[af]=HTML Lêers
@@ -67,7 +66,7 @@ Name[x-test]=xxHTML Filesxx
 Name[xh]=Iifayile ze HTML
 Name[zh_CN]=HTML 文件
 Name[zh_TW]=HTML 檔案
-ServiceTypes=ThumbCreator
+X-KDE-ServiceTypes=ThumbCreator
 MimeType=text/html;
 X-KDE-Library=htmlthumbnail
 CacheThumbnail=true

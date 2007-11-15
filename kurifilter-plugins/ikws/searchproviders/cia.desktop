@@ -31,5 +31,5 @@ Query[nb]=http://www.google.com/search?q=allintitle%3A\\{@}+world+factbook+site%
 Query[nn]=http://www.google.com/search?q=allintitle%3A\\{@}+world+fact+book+site%3Awww.cia.gov&ie=UTF-8&btnI=I%27m+Feeling+Lucky&hl=nn
 Query[vi]=http://www.google.com/search?q=allintitle%3A\\{@}+world+factbook+site%3Awww.cia.gov&ie=UTF-8&btnI=I%27m+Feeling+Lucky
 Query[x-test]=xxhttp://www.google.com/search?q=allintitle%3A\\{@}+world+fact+book+site%3Awww.cia.gov&ie=UTF-8&btnI=I%27m+Feeling+Luckyxx
-ServiceTypes=SearchProvider
+X-KDE-ServiceTypes=SearchProvider
 Type=Service

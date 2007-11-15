@@ -1,5 +1,4 @@
 [Desktop Entry]
-Encoding=UTF-8
 Type=Service
 Name=Acronym Database
 Name[af]=Akroniem Databasis
@@ -60,7 +59,7 @@ Name[x-test]=xxAcronym Databasexx
 Name[xh]=Isiseko sedata Segama elenziwe ngonoobumba bamanye amagama
 Name[zh_CN]=首字母缩写数据库
 Name[zh_TW]=Acronym 資料庫
-ServiceTypes=SearchProvider
+X-KDE-ServiceTypes=SearchProvider
 Keys=ad,acro,acronym
 Query=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
 Query[bg]=Query=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}

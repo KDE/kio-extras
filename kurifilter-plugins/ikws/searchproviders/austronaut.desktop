@@ -1,5 +1,4 @@
 [Desktop Entry]
-Encoding=UTF-8
 Type=Service
 Name=AustroNaut
 Name[af]=Ruimtevaarder
@@ -11,7 +10,7 @@ Name[sv]=Astronaut
 Name[ta]=ஆஸ்ட்ரோநட்
 Name[te]=ఆస్ట్రొనాట్
 Name[x-test]=xxAustroNautxx
-ServiceTypes=SearchProvider
+X-KDE-ServiceTypes=SearchProvider
 Keys=austro,austronaut
 Query=http://austronaut.at/page.php?begriff=\\{@}&wo=at
 Query[x-test]=xxhttp://austronaut.at/page.php?begriff=\\{@}&wo=atxx

@@ -1,5 +1,4 @@
 [Desktop Entry]
-Encoding=UTF-8
 Keys=ctan
 Name=CTAN - Comprehensive TeX Archive Network
 Name[af]=CTAN - Omvattende Tex Argief Netwerk
@@ -47,5 +46,5 @@ Query[be]=http://www.ctan.org/tools/cataloguesearch?action=/search/&catstring=\\
 Query[bg]=Query=http://www.ctan.org/tools/cataloguesearch?action=/search/&catstring=\\{@}
 Query[csb]=http://www.ctan.org/tools/cataloguesearch?action=/search/&catstring=\\{@}
 Query[x-test]=xxhttp://www.ctan.org/tools/filesearch?action=/search/&filename=\\{@}xx
-ServiceTypes=SearchProvider
+X-KDE-ServiceTypes=SearchProvider
 Type=Service

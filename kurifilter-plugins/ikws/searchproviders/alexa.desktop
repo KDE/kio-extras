@@ -1,5 +1,4 @@
 [Desktop Entry]
-Encoding=UTF-8
 Type=Service
 Name=Alexa
 Name[eo]=Aleksa
@@ -9,7 +8,7 @@ Name[sr]=Алекса
 Name[ta]=அலெக்சா
 Name[te]=ఎలెక్సా
 Name[x-test]=xxAlexaxx
-ServiceTypes=SearchProvider
+X-KDE-ServiceTypes=SearchProvider
 Keys=al,alexa
 Query=http://info.alexa.com/search?q=\\{@}
 Query[bg]=Query=http://info.alexa.com/search?q=\\{@}

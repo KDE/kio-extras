@@ -1,5 +1,4 @@
 [Desktop Entry]
-Encoding=UTF-8
 Type=Service
 Name=Google Movies
 Name[af]=Google Films
@@ -56,7 +55,7 @@ Name[vi]=Tìm phim ảnh qua Google
 Name[x-test]=xxGoogle Moviesxx
 Name[zh_CN]=Google 电影
 Name[zh_TW]=Google 電影
-ServiceTypes=SearchProvider
+X-KDE-ServiceTypes=SearchProvider
 Keys=ggmovie
 Query=http://www.google.com/search?q=movie:\\{@}&ie=UTF-8&oe=UTF-8
 Query[nb]=http://www.google.no/search?q=movie:\\{@}&ie=UTF-8&oe=UTF-8

@@ -1,5 +1,4 @@
 [Desktop Entry]
-Encoding=UTF-8
 Charset=
 Hidden=false
 Keys=py,python
@@ -66,5 +65,5 @@ Query[nb]=http://www.google.no/search?sourceid=python-search&q=\\{@}&submit=Sear
 Query[nl]=http://www.google.nl/search?sourceid=python-search&q=\\{@}&submit=Search&q=site%3Apython.org
 Query[nn]=http://www.google.no/search?hl=nn&sourceid=python-search&q=\\{@}&submit=Search&q=site%3Apython.org
 Query[x-test]=xxhttp://www.google.com/search?sourceid=python-search&q=\\{@}&submit=Search&q=site%3Apython.orgxx
-ServiceTypes=SearchProvider
+X-KDE-ServiceTypes=SearchProvider
 Type=Service

@@ -1,5 +1,4 @@
 [Desktop Entry]
-Encoding=UTF-8
 Type=Service
 Name=AltaVista
 Name[af]=Altavista
@@ -15,7 +14,7 @@ Name[ta]=அல்டாவிஸ்டா
 Name[te]=ఆల్టావిస్టా
 Name[th]=อัลต้าวิสต้า
 Name[x-test]=xxAltaVistaxx
-ServiceTypes=SearchProvider
+X-KDE-ServiceTypes=SearchProvider
 Keys=av,altavista
 Query=http://www.altavista.com/cgi-bin/query?pg=q&kl=XX&stype=stext&q=\\{@}
 Query[bg]=Query=http://www.altavista.com/cgi-bin/query?pg=q&kl=XX&stype=stext&q=\\{@}

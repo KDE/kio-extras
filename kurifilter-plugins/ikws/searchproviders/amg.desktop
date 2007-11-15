@@ -41,5 +41,5 @@ Query=http://www.allmusic.com/cg/amg.dll?p=amg&opt1=1&sql=\\{@}
 Query[bg]=Query=http://www.allmusic.com/cg/amg.dll?p=amg&opt1=1&sql=\\{@}
 Query[ne]=http://www.allmusic.com/cg/amg.dll?p=amgopt1=1&sql=\\{@}
 Query[x-test]=xxhttp://www.allmusic.com/cg/amg.dll?p=amg&opt1=1&sql=\\{@}xx
-ServiceTypes=SearchProvider
+X-KDE-ServiceTypes=SearchProvider
 Type=Service

@@ -1,5 +1,4 @@
 [Desktop Entry]
-Encoding=UTF-8
 Type=Service
 Name=HyperDictionary.com
 Name[csb]=HyperDictionary.com - słowôrz
@@ -10,7 +9,7 @@ Name[sr@latin]=HyperDictionary
 Name[sv]=Hyperdictionary.com
 Name[ta]=திறந்த அடைவு
 Name[x-test]=xxHyperDictionary.comxx
-ServiceTypes=SearchProvider
+X-KDE-ServiceTypes=SearchProvider
 Keys=hd,hyperdict
 Query=http://www.hyperdictionary.com/search.aspx?define=\\{@}
 Query[bg]=Query=http://www.hyperdictionary.com/search.aspx?define=\\{@}

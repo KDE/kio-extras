@@ -1,5 +1,4 @@
 [Desktop Entry]
-Encoding=UTF-8
 Keys=cpan
 Name=CPAN - Comprehensive Perl Archive Network
 Name[af]=CPAN - Omvattende Perl Argief Netwerk
@@ -45,5 +44,5 @@ Name[zh_TW]=CPAN - 全面的 Perl 收集網路
 Query=http://search.cpan.org/search?mode=\\{mode,2,"dist"}&query=\\{query,q,1}
 Query[bg]=Query=http://search.cpan.org/search?mode=\\{mode,2,"dist"}&query=\\{query,q,1}
 Query[x-test]=xxhttp://search.cpan.org/search?mode=\\{mode,2,"dist"}&query=\\{query,q,1}xx
-ServiceTypes=SearchProvider
+X-KDE-ServiceTypes=SearchProvider
 Type=Service

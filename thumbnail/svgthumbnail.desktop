@@ -1,5 +1,4 @@
 [Desktop Entry]
-Encoding=UTF-8
 Type=Service
 Name=Svg
 Name[es]=SVG
@@ -11,7 +10,7 @@ Name[sr@latin]=SVG
 Name[sv]=SVG
 Name[x-test]=xxSvgxx
 Name[zh_CN]=SVG
-ServiceTypes=ThumbCreator
+X-KDE-ServiceTypes=ThumbCreator
 MimeType=image/svg+xml;
 X-KDE-Library=svgthumbnail
 CacheThumbnail=true

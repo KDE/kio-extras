@@ -1,5 +1,4 @@
 [Desktop Entry]
-Encoding=UTF-8
 Type=Service
 Name=Freshmeat
 Name[csb]=Freshmeat - szëkôrz programów
@@ -11,7 +10,7 @@ Name[ta]=புது இறைச்சி
 Name[te]=ఫ్రెష్ మీట్
 Name[vi]=Tra Freshmeat
 Name[x-test]=xxFreshmeatxx
-ServiceTypes=SearchProvider
+X-KDE-ServiceTypes=SearchProvider
 Keys=fm,freshmeat
 Query=http://freshmeat.net/search/?q=\\{@}
 Query[bg]=Query=http://freshmeat.net/search/?q=\\{@}

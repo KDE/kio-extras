@@ -1,5 +1,4 @@
 [Desktop Entry]
-Encoding=UTF-8
 Type=Service
 Name=Technorati
 Name[csb]=Technorati - blodżi
@@ -8,7 +7,7 @@ Name[ne]=टेक्नोरती
 Name[sr]=Технорати
 Name[vi]=Tra từ Kĩ thuật bằng Technorati
 Name[x-test]=xxTechnoratixx
-ServiceTypes=SearchProvider
+X-KDE-ServiceTypes=SearchProvider
 Keys=tr,technorati
 Query=http://technorati.com/cosmos/search.html?sourceid=kde-search&url=\\{@}
 Query[bg]=Query=http://technorati.com/cosmos/search.html?sourceid=kde-search&url=\\{@}

@@ -1,5 +1,4 @@
 [Desktop Entry]
-Encoding=UTF-8
 Type=Service
 Name=KataTudo
 Name[eo]=Katatudo
@@ -8,7 +7,7 @@ Name[ne]=काता टुडो
 Name[sr]=Кататудо
 Name[ta]=காட்டா ட்யூடோ
 Name[x-test]=xxKataTudoxx
-ServiceTypes=SearchProvider
+X-KDE-ServiceTypes=SearchProvider
 Keys=kt,katatudo
 Query=http://www.katatudo.com.br/busca/resultado.php?q=\\{@}&onde=&b=Buscar
 Query[bg]=Query=http://www.katatudo.com.br/busca/resultado.php?q=\\{@}&onde=&b=Buscar

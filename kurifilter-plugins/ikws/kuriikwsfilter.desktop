@@ -1,5 +1,4 @@
 [Desktop Entry]
-Encoding=UTF-8
 Type=Service
 Name=InternetKeywordsFilter
 Name[af]=Internetsleutelwoordefilter
@@ -54,5 +53,5 @@ Name[xh]=Amagama Angundoqo ecebo lokucoca ulwelo e Internet
 Name[zh_CN]=互联网关键字过滤
 Name[zh_TW]=網際網路關鍵字過濾
 X-KDE-Library=libkuriikwsfilter
-ServiceTypes=KUriFilter/Plugin
+X-KDE-ServiceTypes=KUriFilter/Plugin
 InitialPreference=1

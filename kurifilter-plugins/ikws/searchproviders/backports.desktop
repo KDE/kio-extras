@@ -1,5 +1,4 @@
 [Desktop Entry]
-Encoding=UTF-8
 Keys=backports
 Name=Debian Backports Search
 Name[af]=Debian Backports Soektog
@@ -57,5 +56,5 @@ Name[zh_TW]=Debian Backports 搜尋
 Query=http://www.backports.org/package.php?search=\\{@}
 Query[bg]=Query=http://www.backports.org/package.php?search=\\{@}
 Query[x-test]=xxhttp://www.backports.org/package.php?search=\\{@}xx
-ServiceTypes=SearchProvider
+X-KDE-ServiceTypes=SearchProvider
 Type=Service

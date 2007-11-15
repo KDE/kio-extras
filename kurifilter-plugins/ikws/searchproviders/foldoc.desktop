@@ -1,5 +1,4 @@
 [Desktop Entry]
-Encoding=UTF-8
 Type=Service
 Name=Free On-Line Dictionary of Computing
 Name[af]=Gratis Aanlyn Woordeboek van Rekenaars
@@ -59,7 +58,7 @@ Name[wa]=Diccionaire infôrmatike libe so les fyis
 Name[x-test]=xxFree On-Line Dictionary of Computingxx
 Name[zh_CN]=Free On-Line Dictionary Of Computing
 Name[zh_TW]=免費的線上電腦辭典
-ServiceTypes=SearchProvider
+X-KDE-ServiceTypes=SearchProvider
 Keys=fd,foldoc
 Query=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
 Query[bg]=Query=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}

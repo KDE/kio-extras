@@ -1,5 +1,4 @@
 [Desktop Entry]
-Encoding=UTF-8
 Type=Service
 Name=KDE App Search
 Name[af]=KDE App Soektog
@@ -63,7 +62,7 @@ Name[x-test]=xxKDE App Searchxx
 Name[xh]=Uphendlo lwe KDE App
 Name[zh_CN]=KDE 应用程序搜索
 Name[zh_TW]=KDE 程式搜尋
-ServiceTypes=SearchProvider
+X-KDE-ServiceTypes=SearchProvider
 Keys=apps,appsy
 Query=http://www.kde-apps.org/content/search.php?search=Search&name=\\{@}
 Query[bg]=Query=http://www.kde-apps.org/content/search.php?search=Search&\\{@}

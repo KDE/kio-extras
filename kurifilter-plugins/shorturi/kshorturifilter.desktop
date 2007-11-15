@@ -1,5 +1,4 @@
 [Desktop Entry]
-Encoding=UTF-8
 Type=Service
 Name=ShortURIFilter
 Name[af]=KortURIfilter
@@ -39,5 +38,5 @@ Name[x-test]=xxShortURIFilterxx
 Name[zh_CN]=短 URI 过滤
 Name[zh_TW]=短 URI 過濾器
 X-KDE-Library=libkshorturifilter
-ServiceTypes=KUriFilter/Plugin
+X-KDE-ServiceTypes=KUriFilter/Plugin
 InitialPreference=5

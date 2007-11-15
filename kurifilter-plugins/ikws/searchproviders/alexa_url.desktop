@@ -1,5 +1,4 @@
 [Desktop Entry]
-Encoding=UTF-8
 Type=Service
 Name=Alexa URL
 Name[br]=URL Alexa
@@ -33,7 +32,7 @@ Name[te]=ఎలెక్సా యూ అర్ ఎల్
 Name[vi]=URL Alexa
 Name[wa]=Hårdêye Alexa
 Name[x-test]=xxAlexa URLxx
-ServiceTypes=SearchProvider
+X-KDE-ServiceTypes=SearchProvider
 Keys=alu,url
 Query=http://info.alexa.com/data/details?url=\\{@}
 Query[bg]=Query=http://info.alexa.com/data/details?url=\\{@}

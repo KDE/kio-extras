@@ -1,5 +1,4 @@
 [Desktop Entry]
-Encoding=UTF-8
 Keys=sf,sourceforge
 Name=SourceForge
 Name[af]=Sourceforge
@@ -14,5 +13,5 @@ Name[vi]=Tra SourceForge
 Name[x-test]=xxSourceForgexx
 Query=http://sourceforge.net/search/?type_of_search=\\{type,"soft"}&exact=\\{exact,"0"}&words=\\{@}
 Query[x-test]=xxhttp://sourceforge.net/search/?type_of_search=\\{type,"soft"}&exact=\\{exact,"0"}&words=\\{@}xx
-ServiceTypes=SearchProvider
+X-KDE-ServiceTypes=SearchProvider
 Type=Service

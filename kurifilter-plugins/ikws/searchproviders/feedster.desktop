@@ -1,5 +1,4 @@
 [Desktop Entry]
-Encoding=UTF-8
 Type=Service
 Name=Feedster
 Name[ja]=Feedster 検索
@@ -10,7 +9,7 @@ Name[ta]=பீட்ஸ்டர்
 Name[th]=Feedster หาบล็อก
 Name[vi]=Tra Feedster
 Name[x-test]=xxFeedsterxx
-ServiceTypes=SearchProvider
+X-KDE-ServiceTypes=SearchProvider
 Keys=blog,rss,feedster
 Query=http://www.feedster.com/search.php?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[bg]=Query=http://www.feedster.com/search.php?q=\\{@}&ie=UTF-8&oe=UTF-8

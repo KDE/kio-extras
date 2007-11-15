@@ -62,5 +62,5 @@ Query=http://citeseer.ist.psu.edu/cs?q=\\{@}&submit=Search+Documents&cs=1
 Query[bg]=Query=http://citeseer.ist.psu.edu/cs?q=\\{@}&submit=Search+Documents&cs=1
 Query[ne]=http://citeseer.ist.psu.edu/cs?q=\\{@}submit=Search+Documents&cs=1
 Query[x-test]=xxhttp://citeseer.ist.psu.edu/cs?q=\\{@}&submit=Search+Documents&cs=1xx
-ServiceTypes=SearchProvider
+X-KDE-ServiceTypes=SearchProvider
 Type=Service

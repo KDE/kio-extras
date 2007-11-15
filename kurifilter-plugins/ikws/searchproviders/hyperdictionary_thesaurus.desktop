@@ -1,5 +1,4 @@
 [Desktop Entry]
-Encoding=UTF-8
 Type=Service
 Name=HyperDictionary.com Thesaurus
 Name[be]=Тэзаўрус HyperDictionary.com
@@ -50,7 +49,7 @@ Name[vi]=Từ điển đồng nghĩa HyperDictionary.com
 Name[x-test]=xxHyperDictionary.com Thesaurusxx
 Name[zh_CN]=HyperDictionary.com 宝藏
 Name[zh_TW]=HyperDictionary.com 辭典
-ServiceTypes=SearchProvider
+X-KDE-ServiceTypes=SearchProvider
 Keys=hdt,hd-ths,hd-thesaurus
 Query=http://www.hyperdictionary.com/search.aspx?Dict=T&define=\\{@}
 Query[bg]=Query=http://www.hyperdictionary.com/search.aspx?Dict=T&define=\\{@}

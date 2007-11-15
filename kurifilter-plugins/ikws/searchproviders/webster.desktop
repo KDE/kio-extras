@@ -1,5 +1,4 @@
 [Desktop Entry]
-Encoding=UTF-8
 Type=Service
 Name=Merriam-Webster Dictionary
 Name[af]=Merriam-Webster Woordeboek
@@ -57,7 +56,7 @@ Name[x-test]=xxMerriam-Webster Dictionaryxx
 Name[xh]= Dikshinari ye Merriam-Webster
 Name[zh_CN]=韦氏词典
 Name[zh_TW]=韋氏詞典
-ServiceTypes=SearchProvider
+X-KDE-ServiceTypes=SearchProvider
 Keys=dict,webster
 Query=http://www.m-w.com/cgi-bin/dictionary?book=Dictionary&va=\\{@}
 Query[bg]=Query=http://www.m-w.com/cgi-bin/dictionary?book=Dictionary&va=\\{@}

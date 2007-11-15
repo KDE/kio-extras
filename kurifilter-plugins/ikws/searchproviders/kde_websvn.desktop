@@ -1,5 +1,4 @@
 [Desktop Entry]
-Encoding=UTF-8
 Type=Service
 Name=KDE WebSVN
 Name[br]=WebSVN KDE
@@ -25,7 +24,7 @@ Name[vi]=Tra KDE WebSVN
 Name[wa]=WebSVN di KDE
 Name[x-test]=xxKDE WebSVNxx
 Name[zh_CN]=KDE WebCVS
-ServiceTypes=SearchProvider
+X-KDE-ServiceTypes=SearchProvider
 Keys=websvn,kdesvn,ksvn,kvs
 Query=http://websvn.kde.org/\\{@}
 Query[bg]=Query=http://websvn.kde.org/\\{@}

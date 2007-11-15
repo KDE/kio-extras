@@ -60,5 +60,5 @@ Name[zh_TW]=dict.cc 翻譯: 德文至英文
 Query=http://www.dict.cc/?s=\\{@}
 Query[bg]=Query=http://www.dict.cc/?s=\\{@}
 Query[x-test]=xxhttp://www.dict.cc/?s=\\{@}xx
-ServiceTypes=SearchProvider
+X-KDE-ServiceTypes=SearchProvider
 Type=Service

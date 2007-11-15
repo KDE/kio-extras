@@ -64,5 +64,5 @@ Name[zh_TW]=WordReference.com 翻譯: 英文至西班牙文
 Query=http://www.wordreference.com/es/translation.asp?tranword=\\{@}
 Query[bg]=Query=http://www.wordreference.com/es/translation.asp?tranword=\\{@}
 Query[x-test]=xxhttp://www.wordreference.com/es/translation.asp?tranword=\\{@}xx
-ServiceTypes=SearchProvider
+X-KDE-ServiceTypes=SearchProvider
 Type=Service

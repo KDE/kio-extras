@@ -1,5 +1,4 @@
 [Desktop Entry]
-Encoding=UTF-8
 Keys=php
 Name=PHP Search
 Name[af]=PHP Soektog
@@ -67,5 +66,5 @@ Query=http://www.php.net/search.php?show=\\{mode,"manual"}&pattern=\\{@}
 Query[bg]=Query=http://www.php.net/search.php?show=\\{mode,"manual"}&pattern=\\{@}
 Query[ne]=http://www.php.net/search.php?show=\\{mode,"manual"}pattern=\\{@}
 Query[x-test]=xxhttp://www.php.net/search.php?show=\\{mode,"manual"}&pattern=\\{@}xx
-ServiceTypes=SearchProvider
+X-KDE-ServiceTypes=SearchProvider
 Type=Service

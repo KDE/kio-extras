@@ -1,5 +1,4 @@
 [Desktop Entry]
-Encoding=UTF-8
 Type=Service
 Name=Microsoft Developer Network Search
 Name[af]=Microsoft Developer Network Soektog
@@ -57,7 +56,7 @@ Name[x-test]=xxMicrosoft Developer Network Searchxx
 Name[xh]=Uphendlo Womsebenzi womnatha Wombhekisi phambili we Microsoft
 Name[zh_CN]=MSDN 微软开发者网络搜索
 Name[zh_TW]=微軟開發者網路搜尋
-ServiceTypes=SearchProvider
+X-KDE-ServiceTypes=SearchProvider
 Keys=msdn
 Query=http://msdn.microsoft.com/library/shared/searchtab/searchHandoff.asp?handoffurl=%2Fisapi%2Fgosearch.asp%3FTARGET%3D%2Fus%2Fdev%2Fdefault.asp&stcfg=d%3A%2Fhttp%2Fcnfg.xml&qu=\\{@}&btnSearch=GO
 Query[bg]=Query=http://msdn.microsoft.com/library/shared/searchtab/searchHandoff.asp?handoffurl=%2Fisapi%2Fgosearch.asp%3FTARGET%3D%2Fus%2Fdev%2Fdefault.asp&stcfg=d%3A%2Fhttp%2Fcnfg.xml&qu=\\{@}&btnSearch=GO

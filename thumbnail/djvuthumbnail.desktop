@@ -1,5 +1,4 @@
 [Desktop Entry]
-Encoding=UTF-8
 Type=Service
 Name=DjVu Files
 Name[af]=DjVu Lêers
@@ -66,7 +65,7 @@ Name[wa]=Fitchîs DjVu
 Name[x-test]=xxDjVu Filesxx
 Name[zh_CN]=DjVu 文件
 Name[zh_TW]=DjVu 檔案
-ServiceTypes=ThumbCreator
+X-KDE-ServiceTypes=ThumbCreator
 MimeType=image/vnd.djvu;image/x.djvu;image/vnd.djvu;
 X-KDE-Library=djvuthumbnail
 CacheThumbnail=true

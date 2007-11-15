@@ -1,5 +1,4 @@
 [Desktop Entry]
-Encoding=UTF-8
 Type=Service
 Comment=Embeddable Troff Viewer
 Comment[af]=Inlegbare Troff Kyker
@@ -76,5 +75,5 @@ Name[sr@latin]=K-uput-deo
 Name[sv]=Kman-del
 Name[te]=కెమేన్ భాగం
 Name[x-test]=xxKManPartxx
-ServiceTypes=KParts/ReadOnlyPart,Browser/View
+X-KDE-ServiceTypes=KParts/ReadOnlyPart,Browser/View
 X-KDE-Library=libkmanpart

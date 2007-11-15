@@ -1,5 +1,4 @@
 [Desktop Entry]
-Encoding=UTF-8
 Type=Service
 Name=Ask Jeeves
 Name[af]=Vra Jeeves
@@ -20,7 +19,7 @@ Name[sr@latin]=Pitaj Jeevesа
 Name[ta]=ஜீவசை கேள்
 Name[vi]=Hỏi Jeeves
 Name[x-test]=xxAsk Jeevesxx
-ServiceTypes=SearchProvider
+X-KDE-ServiceTypes=SearchProvider
 Keys=ask,jeeves
 Query=http://www.ask.com/main/askJeeves.asp?origin=0&qSource=4&site_name=Jeeves&metasearch=yes&ask=\\{@}
 Query[bg]=Query=http://www.ask.com/main/askJeeves.asp?origin=0&qSource=4&site_Jeeves&metasearch=yes&ask=\\{@}

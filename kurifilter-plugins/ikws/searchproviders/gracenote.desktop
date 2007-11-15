@@ -1,5 +1,4 @@
 [Desktop Entry]
-Encoding=UTF-8
 Type=Service
 Name=Gracenote
 Name[eo]=Ornamaĵo
@@ -11,7 +10,7 @@ Name[te]=గ్రెస్ నోట్
 Name[th]=Gracenote ค้นหาดนตรี, วิดิโอ
 Name[vi]=Tra Gracenote
 Name[x-test]=xxGracenotexx
-ServiceTypes=SearchProvider
+X-KDE-ServiceTypes=SearchProvider
 Keys=gn,gracenote
 Query=http://www.gracenote.com/music/search-adv.html?q=\\{@}
 Query[bg]=Query=http://www.gracenote.com/music/search-adv.html?q=\\{@}

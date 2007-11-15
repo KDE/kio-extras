@@ -1,5 +1,4 @@
 [Desktop Entry]
-Encoding=UTF-8
 Type=Service
 Name=Froogle
 Name[ja]=Froogle 商品検索
@@ -11,7 +10,7 @@ Name[te]=ఫ్రూగుల్
 Name[th]=Froogle หาสินค้าผ่าน google
 Name[vi]=Tra Froogle
 Name[x-test]=xxFrooglexx
-ServiceTypes=SearchProvider
+X-KDE-ServiceTypes=SearchProvider
 Keys=froogle
 Query=http://froogle.google.com/froogle?q=\\{@}
 Query[bg]=Query=http://froogle.google.com/froogle?q=\\{@}

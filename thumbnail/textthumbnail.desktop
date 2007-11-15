@@ -1,5 +1,4 @@
 [Desktop Entry]
-Encoding=UTF-8
 Type=Service
 Name=Text Files
 Name[af]=Teks Lêers
@@ -67,7 +66,7 @@ Name[x-test]=xxText Filesxx
 Name[xh]=Iifayile Zombhalo
 Name[zh_CN]=文本文件
 Name[zh_TW]=文字檔案
-ServiceTypes=ThumbCreator
+X-KDE-ServiceTypes=ThumbCreator
 MimeType=text/plain;
 X-KDE-Library=textthumbnail
 CacheThumbnail=false

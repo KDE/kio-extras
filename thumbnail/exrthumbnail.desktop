@@ -1,5 +1,4 @@
 [Desktop Entry]
-Encoding=UTF-8
 Type=Service
 Name=EXR Images
 Name[af]=EXR Beelde
@@ -64,7 +63,7 @@ Name[wa]=Imådjes EXR
 Name[x-test]=xxEXR Imagesxx
 Name[zh_CN]=EXR 图像
 Name[zh_TW]=EXR 影像
-ServiceTypes=ThumbCreator
+X-KDE-ServiceTypes=ThumbCreator
 MimeType=image/x-exr;
 X-KDE-Library=exrthumbnail
 CacheThumbnail=true

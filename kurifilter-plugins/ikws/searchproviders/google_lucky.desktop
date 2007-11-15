@@ -1,5 +1,4 @@
 [Desktop Entry]
-Encoding=UTF-8
 Type=Service
 Name=Google (I'm Feeling Lucky)
 Name[af]=Google (Vat 'n kaans)
@@ -61,7 +60,7 @@ Name[vi]=Google (Xem một trang)
 Name[x-test]=xxGoogle (I'm Feeling Lucky)xx
 Name[zh_CN]=Google (手气不错)
 Name[zh_TW]=Google (好手氣)
-ServiceTypes=SearchProvider
+X-KDE-ServiceTypes=SearchProvider
 Keys=ggl,gglucky
 Query=http://www.google.com/search?q=\\{@}&btnI=I%27m+Feeling+Lucky&ie=UTF-8&oe=UTF-8
 Query[bg]=Query=http://www.google.com/search?q=\\{@}&btnI=I%27m+Feeling+Lucky&ie=UTF-8&oe=UTF-8

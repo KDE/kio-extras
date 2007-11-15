@@ -1,5 +1,4 @@
 [Desktop Entry]
-Encoding=UTF-8
 Type=Service
 Name=RPM-Find
 Name[af]=RPM-Vind
@@ -31,7 +30,7 @@ Name[uz]=RPM қидириш
 Name[vi]=Tìm RPM
 Name[x-test]=xxRPM-Findxx
 Name[xh]=RPM-Fumana
-ServiceTypes=SearchProvider
+X-KDE-ServiceTypes=SearchProvider
 Keys=rf,rpmfind
 Query=http://www.rpmfind.net/linux/rpm2html/search.php?query=\\{@}
 Query[x-test]=xxhttp://www.rpmfind.net/linux/rpm2html/search.php?query=\\{@}xx

@@ -1,5 +1,4 @@
 [Desktop Entry]
-Encoding=UTF-8
 Type=Service
 Name=Internet Movie Database
 Name[af]=Internet Film Databasis
@@ -56,7 +55,7 @@ Name[vi]=Cơ sở dữ liệu Phim ảnh trên Mạng
 Name[x-test]=xxInternet Movie Databasexx
 Name[zh_CN]=互联网电影数据库
 Name[zh_TW]=Internet 電影資料庫
-ServiceTypes=SearchProvider
+X-KDE-ServiceTypes=SearchProvider
 Keys=imdb
 Query=http://imdb.com/Find?\\{@}
 Query[bg]=Query=http://imdb.com/Find?\\{@}
