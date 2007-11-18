@@ -1253,7 +1253,7 @@ int fishProtocol::received(const char *buffer, KIO::fileoffset_t buflen)
 
         if (pos < buflen)
         {
-           QString s = remoteEncoding()->decode(QByteArray(buffer,pos+1));
+           QString s = remoteEncoding()->decode(QByteArray(buffer,pos));
 
            buffer += pos+1;
            buflen -= pos+1;
