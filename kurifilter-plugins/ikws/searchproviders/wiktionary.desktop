@@ -64,6 +64,7 @@ Keys=wt,wikt
 Query=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[be]=http://en.wiktionary.org/wiki/Special:Search?search=\{@}&go=Go
 Query[de]=http://de.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[eo]=http://eo.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[ko]=http://ko.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[nb]=http://no.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[nl]=http://nl.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go

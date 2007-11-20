@@ -45,6 +45,7 @@ Query=http://www.ctan.org/tools/filesearch?action=/search/&filename=\\{@}
 Query[be]=http://www.ctan.org/tools/cataloguesearch?action=/search/&catstring=\\{@}
 Query[bg]=Query=http://www.ctan.org/tools/cataloguesearch?action=/search/&catstring=\\{@}
 Query[csb]=http://www.ctan.org/tools/cataloguesearch?action=/search/&catstring=\\{@}
+Query[eo]=http://www.ctan.org/tools/filesearch?action=/search/&=filename\\{@}
 Query[x-test]=xxhttp://www.ctan.org/tools/filesearch?action=/search/&filename=\\{@}xx
 X-KDE-ServiceTypes=SearchProvider
 Type=Service
