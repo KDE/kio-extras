@@ -66,7 +66,6 @@ Comment[zh_CN]=嵌入的 Troff 查看器
 Comment[zh_TW]=可嵌入的 Troff 檢視元件
 MimeType=text/troff;application/x-troff-man;
 Name=KManPart
-Name[eo]=KMan-parto
 Name[ne]=केडीई म्यान भाग
 Name[pt_BR]=Componente KMan
 Name[ro]=Componentă  KMan
