@@ -125,4 +125,5 @@ endif(X11_Xcursor_FOUND)
 
 install( FILES thumbcreator.desktop  DESTINATION  ${SERVICETYPES_INSTALL_DIR} )
 install( FILES thumbnail.protocol svgthumbnail.desktop imagethumbnail.desktop textthumbnail.desktop                  htmlthumbnail.desktop                  djvuthumbnail.desktop DESTINATION  ${SERVICES_INSTALL_DIR} )
+install( FILES thumbnailfont_7x4.png DESTINATION ${DATA_INSTALL_DIR}/kio_thumbnail/pics )
 
