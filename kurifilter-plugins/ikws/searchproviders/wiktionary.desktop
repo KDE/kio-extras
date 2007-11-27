@@ -69,6 +69,7 @@ Query[eo]=http://eo.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[ko]=http://ko.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[nb]=http://no.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[nl]=http://nl.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[pl]=http://pl.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[sv]=http://sv.wiktionary.org/wiki/Special:Search?search=\{@}&go=Go
 Query[x-test]=xxhttp://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Goxx
 Charset=utf8
