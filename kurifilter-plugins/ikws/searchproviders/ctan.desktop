@@ -39,7 +39,7 @@ Name[uz]=CTAN - TeX бўйича мукаммал архив тармоғи
 Name[vi]=CTAN - Mạng kho lưu TeX đầy đủ
 Name[x-test]=xxCTAN - Comprehensive TeX Archive Networkxx
 Name[xh]=CTAN - Enomxholo TeX Indawo yokugcina Yomsebenzi womnatha
-Name[zh_CN]=CTAN - 全面的 TeX 归档网络
+Name[zh_CN]=CTAN - 综合性 TeX 档案网络
 Name[zh_TW]=CTAN - 全面的 Tex 收集網路
 Query=http://www.ctan.org/tools/filesearch?action=/search/&filename=\\{@}
 Query[be]=http://www.ctan.org/tools/cataloguesearch?action=/search/&catstring=\\{@}
