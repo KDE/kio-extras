@@ -1,6 +1,7 @@
 [Desktop Entry]
 Type=Service
 Name=FixHostFilter
+Name[csb]=Filter FixHost
 Name[de]=Rechnernamen-Korrektur-Filter
 Name[nds]=FastReeknerFilter
 Name[ne]=होस्ट फिल्टर निश्चित गर्नुहोस्
