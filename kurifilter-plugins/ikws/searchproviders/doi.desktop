@@ -49,6 +49,7 @@ Name[th]=ตัวระบุวัตถุดิจิตอล
 Name[tr]=Sayısal Nesne Kimlikleyici
 Name[uk]=Цифровий ідентифікатор об'єкта
 Name[vi]=Bộ chứng minh đối tượng số
+Name[wa]=Idintifieu d' objets limerikes
 Name[x-test]=xxDigital Object Identifierxx
 Name[zh_TW]=數位物件識別
 Query=http://dx.doi.org/\\{@}

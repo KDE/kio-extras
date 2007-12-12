@@ -28,6 +28,7 @@ Name[sr]=Цијина Књига светских података
 Name[sr@latin]=Cijina Knjiga svetskih podataka
 Name[sv]=CIA-världsfaktabok
 Name[vi]=Sách sự thật Thế giới CIA
+Name[wa]=World Fact Book del CIA
 Name[x-test]=xxCIA World Fact Bookxx
 Query=http://www.google.com/search?q=allintitle%3A\\{@}+world+fact+book+site%3Awww.cia.gov&ie=UTF-8&btnI=I%27m+Feeling+Lucky
 Query[be]=http://www.google.com/search?q=allintitle%3A\\{@}+world+factbook+site%3Awww.cia.gov&ie=UTF-8&btnI=I%27m+Feeling+Lucky
