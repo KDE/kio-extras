@@ -26,11 +26,11 @@
 #include <KHBox>
 #include <KLocale>
 
-#include <Q3GroupBox>
+#include <QGroupBox>
 #include <QLayout>
 #include <QListWidget>
 #include <QPushButton>
-#include <QVBoxLayout>
+#include <QHBoxLayout>
 
 #include "kcmcgi.h"
 #include "kcmcgi.moc"
@@ -46,11 +46,15 @@ KCMCgi::KCMCgi(QWidget *parent, const QVariantList &)
   QVBoxLayout *topLayout = new QVBoxLayout(this);
   topLayout->setSpacing(KDialog::spacingHint());
 
-  Q3GroupBox *topBox = new Q3GroupBox( 1, Qt::Horizontal, i18n("Paths to Local CGI Programs"), this );
-  topLayout->addWidget( topBox );
+  QGroupBox *topBox = new QGroupBox(i18n("Paths to Local CGI Programs"), this);
+  QVBoxLayout *vbox = new QVBoxLayout;
+  vbox->addStretch(1);
+  topBox->setLayout(vbox);
+  topLayout->addWidget(topBox);
 
   mListBox = new QListWidget( topBox );
 
+  vbox->addWidget(mListBox);
   KHBox *buttonBox = new KHBox( topBox );
   buttonBox->setSpacing( KDialog::spacingHint() );
 
@@ -61,6 +65,7 @@ KCMCgi::KCMCgi(QWidget *parent, const QVariantList &)
   connect( mRemoveButton, SIGNAL( clicked() ), SLOT( removePath() ) );
   connect( mListBox, SIGNAL(itemClicked(QListWidgetItem*)),this, SLOT(slotItemSelected(QListWidgetItem*)));
 
+  vbox->addWidget(buttonBox);
   mConfig = new KConfig("kcmcgirc", KConfig::NoGlobals);
 
   load();
