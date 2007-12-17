@@ -288,14 +288,16 @@ void ArchiveProtocol::listDir( const KUrl & url )
         dir = root;
     }
 
-    QStringList l = dir->entries();
+    const QStringList l = dir->entries();
     totalSize( l.count() );
 
     UDSEntry entry;
-    createRootUDSEntry(entry);
-    listEntry(entry, false);
+    if (!l.contains(".")) {
+        createRootUDSEntry(entry);
+        listEntry(entry, false);
+    }
 
-    QStringList::Iterator it = l.begin();
+    QStringList::const_iterator it = l.begin();
     for( ; it != l.end(); ++it )
     {
         kDebug(7109) << (*it);
