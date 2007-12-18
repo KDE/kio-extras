@@ -134,7 +134,7 @@ void SMBSlave::get( const KUrl& kurl )
 
 
 //===========================================================================
-void SMBSlave::open( const KUrl& kurl, int /*access*/)
+void SMBSlave::open( const KUrl& kurl, QIODevice::OpenMode /*mode*/)
 {
     SMBUrl      url;
 

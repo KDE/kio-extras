@@ -253,7 +253,7 @@ public:
     // Functions overwritten in kio_smb_file.cpp
     virtual void get( const KUrl& kurl );
     virtual void put( const KUrl& kurl, int permissions, KIO::JobFlags flags );
-    virtual void open( const KUrl& kurl, int access );
+    virtual void open( const KUrl& kurl, QIODevice::OpenMode mode );
     virtual void read( KIO::filesize_t size );
     virtual void write( const QByteArray &data );
     virtual void seek( KIO::filesize_t offset );
