@@ -1,6 +1,7 @@
 [Desktop Entry]
 Type=Service
 Name=KDE WebSVN
+Name[bn]=কে.ডি.ই. ওয়েব-এস.ভি.এন
 Name[br]=WebSVN KDE
 Name[ca]=WebSVN de KDE
 Name[csb]=WebSVN dlô KDE
@@ -9,6 +10,7 @@ Name[fi]=KDE:n WebSVN
 Name[fr]=WebSVN de KDE
 Name[ga]=WebSVN KDE
 Name[gl]=WebCVS de KDE
+Name[hi]=केडीई वेब-एसवीएन
 Name[it]=SVN web di KDE
 Name[nds]=KDE-WebSVN
 Name[ne]=केडीई वेब एसभीएन
@@ -27,6 +29,7 @@ X-KDE-ServiceTypes=SearchProvider
 Keys=websvn,kdesvn,ksvn,kvs
 Query=http://websvn.kde.org/\\{@}
 Query[bg]=Query=http://websvn.kde.org/\\{@}
+Query[hi]=http://webcvs.kde.org/\\{@}
 Query[se]=http://webcvs.kde.org/\\{@}
 Query[x-test]=xxhttp://websvn.kde.org/\\{@}xx
 

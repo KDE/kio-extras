@@ -3,6 +3,7 @@ Type=Service
 Name=Acronym Database
 Name[af]=Akroniem Databasis
 Name[be]=Скарачэнні
+Name[bn]=অ্যাক্রোনিম ডেটাবেস
 Name[ca]=Base de dades d'acrònims
 Name[cs]=Databáze akronymů
 Name[csb]=Baza akronimów
@@ -21,6 +22,7 @@ Name[fy]=Acroniemen databank
 Name[ga]=Bunachar Sonraí Acrainmeacha
 Name[gl]=Base de Datos de Acrónimos
 Name[he]=מאגר ראשי התיבות
+Name[hi]=एक्रोनिम डाटाबेस
 Name[hr]=Baza podataka kratica
 Name[hu]=Mozaikszó-adatbázis
 Name[is]=Samheitagrunnur
@@ -45,6 +47,7 @@ Name[pt_BR]=Banco de Acrônimos
 Name[ro]=Bază de date de acronime
 Name[ru]=База данных акронимов
 Name[se]=Oanádusdiehtovuođđu
+Name[sk]=Databáza skratiek
 Name[sl]=Zbirka okrajšav
 Name[sr]=База скраћеница
 Name[sr@latin]=Baza skraćenica
@@ -65,4 +68,5 @@ Keys=ad,acro,acronym
 Query=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
 Query[bg]=Query=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
 Query[ne]=http://www.chemie.de/tools/acronym.php3?language=eacronym=\\{@}
+Query[sk]=http://www.chemie.de/tools/acronym.php3?language=sk&acronym=\\{@}
 Query[x-test]=xxhttp://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}xx
