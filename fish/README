@@ -1,12 +1,6 @@
 Overview of kio_fish
 ====================
 
-  ------------------------------------------------------------------------
-  NOTE FOR KDE2 USERS: This is the last release supporting KDE2. However,
-  you might need to modify Makefiles to get things installed into the
-  right directories.
-  ------------------------------------------------------------------------
-
   FISH is a protocol to get filesystem access without special server
   software, only using a remote shell. (Hence the name: FIles transferred
   over SHell protocol).
