@@ -1227,7 +1227,7 @@ int fishProtocol::received(const char *buffer, KIO::fileoffset_t buflen)
                 continue; // Process rest of buffer/buflen
             }
 
-            QByteArray bdata = buffer;
+            QByteArray bdata(buffer,dataSize);
             data(bdata);
 
             dataRead += dataSize;
