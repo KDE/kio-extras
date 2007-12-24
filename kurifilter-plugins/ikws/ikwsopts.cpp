@@ -138,9 +138,9 @@ void FilterOptions::load()
       m_dlg->lvSearchProviders->setSelected(m_dlg->lvSearchProviders->firstChild(), true);
 
     // Connect all the signals/slots...
-    connect(m_dlg->cbEnableShortcuts, SIGNAL(clicked()), this,
+    connect(m_dlg->cbEnableShortcuts, SIGNAL(toggled(bool)), this,
             SLOT(setWebShortcutState()));
-    connect(m_dlg->cbEnableShortcuts, SIGNAL(clicked()), this,
+    connect(m_dlg->cbEnableShortcuts, SIGNAL(toggled(bool)), this,
             SLOT(configChanged()));
 
     connect(m_dlg->lvSearchProviders, SIGNAL(selectionChanged(Q3ListViewItem *)),
@@ -154,9 +154,9 @@ void FilterOptions::load()
     connect(m_dlg->lvSearchProviders, SIGNAL(pressed(Q3ListViewItem *)),
            this, SLOT(checkFavoritesChanged()));
 
-    connect(m_dlg->cmbDefaultEngine, SIGNAL(activated(const QString &)), this,
+    connect(m_dlg->cmbDefaultEngine, SIGNAL(currentIndexChanged(int)), this,
             SLOT(configChanged()));
-    connect(m_dlg->cmbDelimiter, SIGNAL(activated(const QString &)), this,
+    connect(m_dlg->cmbDelimiter, SIGNAL(currentIndexChanged(int)), this,
             SLOT(configChanged()));
 
     connect(m_dlg->pbNew, SIGNAL(clicked()), this, SLOT(addSearchProvider()));
@@ -314,7 +314,6 @@ void FilterOptions::defaults()
   setDelimiter (':');
   m_dlg->cmbDefaultEngine->setCurrentIndex (0);
   m_dlg->cbEnableShortcuts->setChecked( true );
-  setWebShortcutState();
 }
 
 void FilterOptions::configChanged()
