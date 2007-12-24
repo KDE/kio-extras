@@ -48,10 +48,10 @@ LocalDomainUriFilter::LocalDomainUriFilter( QObject *parent, const QVariantList 
 
 bool LocalDomainUriFilter::filterUri( KUriFilterData& data ) const
 {
-    KUrl url = data.uri();
+    const KUrl url = data.uri();
     QString cmd = url.url();
 
-    kDebug() << "LocalDomainUriFilter::filterUri: " << url;
+    kDebug() << url;
 
     if( m_hostPortPattern.exactMatch( cmd ) &&
         isLocalDomainHost( cmd ) )
@@ -89,9 +89,9 @@ bool LocalDomainUriFilter::isLocalDomainHost( QString& cmd ) const
         last_host = host;
         last_time = time( (time_t *)0 );
 
-        last_result = proc.waitForFinished( 1000 );
+        last_result = proc.waitForFinished( 1000 ) && proc.exitCode() == QProcess::NormalExit;
 
-        QString fullname = QFile::decodeName( proc.readAllStandardOutput() );
+        const QString fullname = QFile::decodeName( proc.readAllStandardOutput() );
 
         if( !fullname.isEmpty() )
             cmd.replace( 0, host.length(), fullname );
