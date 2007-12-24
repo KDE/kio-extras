@@ -19,15 +19,14 @@
   done by David Faure <faure@kde.org>.
 
   Structure is a bit complicated, since I made the mistake to use
-  K3Process... now there is a lightweight homebrew async IO system
+  KProcess... now there is a lightweight homebrew async IO system
   inside, but if signals/slots become available for ioslaves, switching
-  back to K3Process should be easy.
+  back to KProcess should be easy.
 */
 
 #include <config-runtime.h>
 #include "config-fish.h"
 #include <QFile>
-#include <Qt3Support/Q3Socket>
 #include <QDateTime>
 #include <QBitArray>
 #include <QRegExp>
@@ -241,7 +240,7 @@ const struct fishProtocol::fish_info fishProtocol::fishInfo[] = {
 };
 
 fishProtocol::fishProtocol(const QByteArray &pool_socket, const QByteArray &app_socket)
-  : SlaveBase("fish", pool_socket, app_socket), mimeBuffer(1024),
+  : SlaveBase("fish", pool_socket, app_socket), mimeBuffer(1024, '\0'),
     mimeTypeSent(false)
 {
     myDebug( << "fishProtocol::fishProtocol()" << endl);
@@ -539,8 +538,7 @@ void fishProtocol::writeChild(const char *buf, KIO::fileoffset_t len) {
 manages initial communication setup including password queries
 */
 int fishProtocol::establishConnection(char *buffer, KIO::fileoffset_t len) {
-    QString buf;
-    buf.setLatin1(buffer,len);
+    QString buf = QString::fromLatin1(buffer,len);
     int pos=0;
     // Strip trailing whitespace
     while (buf.length() && (buf[buf.length()-1] == ' '))
@@ -1229,8 +1227,7 @@ int fishProtocol::received(const char *buffer, KIO::fileoffset_t buflen)
                 continue; // Process rest of buffer/buflen
             }
 
-            QByteArray bdata;
-            bdata.duplicate(buffer,dataSize);
+            QByteArray bdata = buffer;
             data(bdata);
 
             dataRead += dataSize;
