@@ -6,4 +6,4 @@ output=stream
 reading=true
 defaultMimetype=text/html
 DocPath=kioslave/finger.html
-Icon=kdmconfig
+Icon=user-identity

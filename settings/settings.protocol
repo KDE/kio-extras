@@ -10,6 +10,6 @@ makedir=false
 deleting=false
 linking=false
 moving=false
-Icon=kcontrol
+Icon=preferences-system
 maxInstances=2
 Class=:local

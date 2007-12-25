@@ -11,4 +11,4 @@ deleting=true
 linking=true
 moving=true
 DocPath=kioslave/nfs.html
-Icon=nfs_mount
+Icon=folder-remote

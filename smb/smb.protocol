@@ -10,4 +10,4 @@ makedir=true
 deleting=true
 opening=true
 DocPath=kioslave/smb.html
-Icon=samba
+Icon=network-workgroup

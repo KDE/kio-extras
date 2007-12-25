@@ -8,5 +8,5 @@ listing=Name
 defaultMimetype=text/html
 determineMimetypeFromExtension=false
 DocPath=kioslave/man.html
-Icon=man
+Icon=help-contents
 Class=:local

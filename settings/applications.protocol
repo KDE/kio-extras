@@ -10,6 +10,6 @@ makedir=false
 deleting=false
 linking=false
 moving=false
-Icon=kmenu
+Icon=start-here-kde
 maxInstances=2
 Class=:local
