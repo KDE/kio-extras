@@ -155,7 +155,7 @@ void RemoteImpl::createTopLevelEntry(KIO::UDSEntry &entry) const
     entry.insert( KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
     entry.insert( KIO::UDSEntry::UDS_ACCESS, 0777);
     entry.insert( KIO::UDSEntry::UDS_MIME_TYPE, QString::fromLatin1("inode/directory"));
-    entry.insert( KIO::UDSEntry::UDS_ICON_NAME, QString::fromLatin1("network"));
+    entry.insert( KIO::UDSEntry::UDS_ICON_NAME, QString::fromLatin1("folder-remote"));
     entry.insert( KIO::UDSEntry::UDS_USER, QString::fromLatin1("root"));
     entry.insert( KIO::UDSEntry::UDS_GROUP, QString::fromLatin1("root"));
 }
@@ -192,7 +192,7 @@ bool RemoteImpl::createWizardEntry(KIO::UDSEntry &entry) const
     entry.insert( KIO::UDSEntry::UDS_LOCAL_PATH, url.path());
     entry.insert( KIO::UDSEntry::UDS_ACCESS, 0500);
     entry.insert( KIO::UDSEntry::UDS_MIME_TYPE, QString::fromLatin1("application/x-desktop"));
-    entry.insert( KIO::UDSEntry::UDS_ICON_NAME, QString::fromLatin1("wizard"));
+    entry.insert( KIO::UDSEntry::UDS_ICON_NAME, QString::fromLatin1("folder-new"));
 
 	return true;
 }
