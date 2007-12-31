@@ -13,5 +13,4 @@ Name[x-test]=xxHyperDictionary.comxx
 X-KDE-ServiceTypes=SearchProvider
 Keys=hd,hyperdict
 Query=http://www.hyperdictionary.com/search.aspx?define=\\{@}
-Query[bg]=Query=http://www.hyperdictionary.com/search.aspx?define=\\{@}
 Query[x-test]=xxhttp://www.hyperdictionary.com/search.aspx?define=\\{@}xx

@@ -62,6 +62,7 @@ Name[xh]=Ubhekiso lwe Python yesandla
 Name[zh_CN]=Python 参考手册
 Name[zh_TW]=Python 參考手冊
 Query=http://www.google.com/search?sourceid=python-search&q=\\{@}&submit=Search&q=site%3Apython.org
+Query[bg]=http://www.google.com/search?sourceid=python-search&q=\{@}&submit=Search&q=site%3Apython.org
 Query[nb]=http://www.google.no/search?sourceid=python-search&q=\\{@}&submit=Search&q=site%3Apython.org
 Query[nl]=http://www.google.nl/search?sourceid=python-search&q=\\{@}&submit=Search&q=site%3Apython.org
 Query[nn]=http://www.google.no/search?hl=nn&sourceid=python-search&q=\\{@}&submit=Search&q=site%3Apython.org

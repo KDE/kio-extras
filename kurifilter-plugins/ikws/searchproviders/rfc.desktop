@@ -47,7 +47,6 @@ Name[xh]=Izicelo Zogqabazo ze IETF
 Name[zh_CN]=IETF 评论请求
 Name[zh_TW]=IETF RFC 文件
 Query=http://www.ietf.org/rfc/rfc\\{@}.txt
-Query[bg]=Query=http://www.ietf.org/rfc/rfc\\{@}.txt
 Query[x-test]=xxhttp://www.ietf.org/rfc/rfc\\{@}.txtxx
 X-KDE-ServiceTypes=SearchProvider
 Type=Service

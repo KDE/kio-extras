@@ -63,7 +63,7 @@ X-KDE-ServiceTypes=SearchProvider
 Keys=raa
 Query=http://www.ruby-lang.org/en/raa-list.rhtml?name=\\{@}
 Query[be]=http://raa.ruby-lang.org/search.rhtml?search=\\{@}
-Query[bg]=Query=http://raa.ruby-lang.org/search.rhtml?search=\\{@}
+Query[bg]=http://raa.ruby-lang.org/search.rhtml?search=\\{@}
 Query[csb]=http://raa.ruby-lang.org/search.rhtml?search=\\{@}
 Query[eo]=http://raa.ruby-lang.org/en/raa-list.rhtml?name=\\{@}
 Query[x-test]=xxhttp://www.ruby-lang.org/en/raa-list.rhtml?name=\\{@}xx

@@ -66,7 +66,6 @@ Name[xh]=Uphendlo Lwesitshixo se OpenPGP
 Name[zh_CN]=OpenPGP 关键字搜索
 Name[zh_TW]=OpenPGP 金鑰搜尋
 Query=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
-Query[bg]=Query=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
 Query[ne]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}op=vindex
 Query[x-test]=xxhttp://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindexxx
 X-KDE-ServiceTypes=SearchProvider

@@ -65,7 +65,6 @@ Name[zh_TW]=Google 群組
 X-KDE-ServiceTypes=SearchProvider
 Keys=ggg,groups,dj,deja
 Query=http://groups.google.com/groups?oi=djq&as_q=\\{@}
-Query[bg]=Query=http://groups.google.com/groups?oi=djq&as_q=\\{@}
 Query[en_GB]=http://groups.google.co.uk/groups?oi=djq&as_q=\\{@}
 Query[fr]=http://groups.google.fr/groups?oi=djq&as_q=\\{@}
 Query[he]=http://groups.google.co.il/groups?oi=djq&as_q=\\{@}

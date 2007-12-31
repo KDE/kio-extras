@@ -62,6 +62,7 @@ Name[zh_TW]=Google 電影
 X-KDE-ServiceTypes=SearchProvider
 Keys=ggmovie
 Query=http://www.google.com/search?q=movie:\\{@}&ie=UTF-8&oe=UTF-8
+Query[bg]=http://www.google.com/search?q=movie:\{@}&ie=UTF-8&oe=UTF-8
 Query[nb]=http://www.google.no/search?q=movie:\\{@}&ie=UTF-8&oe=UTF-8
 Query[nl]=http://www.google.nl/search?q=movie:\\{@}&ie=UTF-8&oe=UTF-8
 Query[nn]=http://www.google.no/search?hl=nn&q=movie:\\{@}&ie=UTF-8&oe=UTF-8

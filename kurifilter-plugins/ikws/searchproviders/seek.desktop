@@ -9,5 +9,4 @@ Name[x-test]=xxGO.comxx
 X-KDE-ServiceTypes=SearchProvider
 Keys=seek
 Query=http://www.go.com/Titles?col=WW&qt=\\{@}&svx=home_searchbox&sv=IS&lk=noframeso
-Query[bg]=Query=http://www.go.com/Titles?col=WW&qt=\\{@}&svx=home_searchbox&sv=IS&lk=noframeso
 Query[x-test]=xxhttp://www.go.com/Titles?col=WW&qt=\\{@}&svx=home_searchbox&sv=IS&lk=noframesoxx

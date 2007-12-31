@@ -57,6 +57,5 @@ Name[zh_TW]=HyperDictionary.com 辭典
 X-KDE-ServiceTypes=SearchProvider
 Keys=hdt,hd-ths,hd-thesaurus
 Query=http://www.hyperdictionary.com/search.aspx?Dict=T&define=\\{@}
-Query[bg]=Query=http://www.hyperdictionary.com/search.aspx?Dict=T&define=\\{@}
 Query[ne]=http://www.hyperdictionary.com/search.aspx?Dict=Tdefine=\\{@}
 Query[x-test]=xxhttp://www.hyperdictionary.com/search.aspx?Dict=T&define=\\{@}xx

@@ -66,7 +66,6 @@ Name[xh]=Uphendlo lwe PHP
 Name[zh_CN]=PHP 搜索
 Name[zh_TW]=PHP 搜尋
 Query=http://www.php.net/search.php?show=\\{mode,"manual"}&pattern=\\{@}
-Query[bg]=Query=http://www.php.net/search.php?show=\\{mode,"manual"}&pattern=\\{@}
 Query[ne]=http://www.php.net/search.php?show=\\{mode,"manual"}pattern=\\{@}
 Query[x-test]=xxhttp://www.php.net/search.php?show=\\{mode,"manual"}&pattern=\\{@}xx
 X-KDE-ServiceTypes=SearchProvider

@@ -67,7 +67,6 @@ Name[x-test]=xxWordReference.com English Dictionaryxx
 Name[zh_CN]=WordReference.com 英语字典
 Name[zh_TW]=WordReference.com 英文字典
 Query=http://www.wordreference.com/english/definition.asp?en=\\{@}
-Query[bg]=Query=http://www.wordreference.com/english/definition.asp?en=\\{@}
 Query[x-test]=xxhttp://www.wordreference.com/english/definition.asp?en=\\{@}xx
 X-KDE-ServiceTypes=SearchProvider
 Type=Service
