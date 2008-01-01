@@ -79,6 +79,7 @@ Query[fy]=http://fy.wikipedia.org/wiki/Special:Search?search=\{@}&go=Go
 Query[ko]=http://ko.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[nb]=http://no.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[nl]=http://nl.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[oc]=http://oc.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[pl]=http://pl.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[sv]=http://sv.wikipedia.org/wiki/Special:Search?search=\{@}&go=Go
 Query[tg]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Рав

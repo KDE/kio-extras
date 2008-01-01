@@ -74,8 +74,10 @@ Query[de]=http://de.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[eo]=http://eo.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[fy]=http://fy.wiktionary.org/wiki/Special:Search?search=\{@}&go=Go
 Query[ko]=http://ko.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[ku]=http://ku.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[nb]=http://no.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[nl]=http://nl.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[oc]=http://oc.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[pl]=http://pl.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[sv]=http://sv.wiktionary.org/wiki/Special:Search?search=\{@}&go=Go
 Query[tg]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Рав
