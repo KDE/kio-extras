@@ -29,6 +29,8 @@ Query[ne]=http://www.google.com/search?q=\\{@}ie=UTF-8&oe=UTF-8
 Query[nl]=http://www.google.nl/search?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[nn]=http://www.google.no/search?hl=nn&q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[pt]=http://www.google.pt/search?q=\\{@}&ie=UTF-8&oe=UTF-8
+Query[sr]=http://www.google.com/search?q=\\{@}&ie=UTF‑8&oe=UTF‑8
+Query[sr@latin]=http://www.google.com/search?q=\\{@}&ie=UTF‑8&oe=UTF‑8
 Query[x-test]=xxhttp://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8xx
 Query[zh_TW]=http://www.google.com.tw/search?q=\\{@}&ie=UTF-8&oe=UTF-8&hl=zh-TW
 Charset=utf8

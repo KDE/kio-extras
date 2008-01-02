@@ -66,4 +66,6 @@ Query[be]=http://raa.ruby-lang.org/search.rhtml?search=\\{@}
 Query[bg]=http://raa.ruby-lang.org/search.rhtml?search=\\{@}
 Query[csb]=http://raa.ruby-lang.org/search.rhtml?search=\\{@}
 Query[eo]=http://raa.ruby-lang.org/en/raa-list.rhtml?name=\\{@}
+Query[sr]=http://www.ruby‑lang.org/en/raa‑list.rhtml?name=\\{@}
+Query[sr@latin]=http://www.ruby‑lang.org/en/raa‑list.rhtml?name=\\{@}
 Query[x-test]=xxhttp://www.ruby-lang.org/en/raa-list.rhtml?name=\\{@}xx

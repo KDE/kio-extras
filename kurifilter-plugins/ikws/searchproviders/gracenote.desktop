@@ -14,5 +14,7 @@ Name[x-test]=xxGracenotexx
 X-KDE-ServiceTypes=SearchProvider
 Keys=gn,gracenote
 Query=http://www.gracenote.com/music/search-adv.html?q=\\{@}
+Query[sr]=http://www.gracenote.com/music/search‑adv.html?q=\\{@}
+Query[sr@latin]=http://www.gracenote.com/music/search‑adv.html?q=\\{@}
 Query[x-test]=xxhttp://www.gracenote.com/music/search-adv.html?q=\\{@}xx
 Charset=utf8

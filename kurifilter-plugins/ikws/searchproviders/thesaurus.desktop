@@ -58,4 +58,6 @@ Keys=ths,thesaurus
 Query=http://www.m-w.com/cgi-bin/thesaurus?book=Thesaurus&va=\\{@}
 Query[bg]=Query=http://www.m-w.com/cgi-bin/thesaurus?book=Thesaurus&va=\\{@}
 Query[ne]=http://www.m-w.com/cgi-bin/thesaurus?book=Thesaurusva=\\{@}
+Query[sr]=http://www.m‑w.com/cgi‑bin/thesaurus?book=Thesaurus&va=\\{@}
+Query[sr@latin]=http://www.m‑w.com/cgi‑bin/thesaurus?book=Thesaurus&va=\\{@}
 Query[x-test]=xxhttp://www.m-w.com/cgi-bin/thesaurus?book=Thesaurus&va=\\{@}xx

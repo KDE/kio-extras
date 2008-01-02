@@ -40,4 +40,6 @@ Keys=dmoz,odp
 Query=http://search.dmoz.org/cgi-bin/search?search=\\{@}
 Query[bg]=Query=http://search.dmoz.org/cgi-bin/search?search=\\{@}
 Query[ne]=http://search.dmoz.org/cgi-bin/search?खोज्नुहोस्=\\{@}
+Query[sr]=http://search.dmoz.org/cgi‑bin/search?search=\\{@}
+Query[sr@latin]=http://search.dmoz.org/cgi‑bin/search?search=\\{@}
 Query[x-test]=xxhttp://search.dmoz.org/cgi-bin/search?search=\\{@}xx

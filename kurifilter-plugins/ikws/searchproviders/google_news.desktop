@@ -29,6 +29,7 @@ Name[ka]=Google სიახლეები
 Name[kk]=Google жаңалықтар
 Name[km]=ព័ត៌មាន​តាម​ហ្គូហ្គល
 Name[ko]=Google 뉴스
+Name[ku]=Nûçeyên Google
 Name[lt]=Google naujienos
 Name[lv]=Google ziņas
 Name[mk]=Google Вести
@@ -46,7 +47,7 @@ Name[ro]=Ştiri Google
 Name[ru]=Новости Google
 Name[se]=Google ođđasat
 Name[sk]=Google správy
-Name[sr]=Гугл-вести
+Name[sr]=Гугл‑вести
 Name[sr@latin]=Google-vesti
 Name[sv]=Google diskussionsgrupper
 Name[ta]=கூகுல் செய்திகள்
@@ -72,6 +73,8 @@ Query[nb]=http://news.google.no/news?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[ne]=http://news.google.com/news?q=\\{@}ie=UTF-8&oe=UTF-8
 Query[nl]=http://news.google.nl/news?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[pt]=http://news.google.pt/news?q=\\{@}&ie=UTF-8&oe=UTF-8
+Query[sr]=http://news.google.com/news?q=\\{@}&ie=UTF‑8&oe=UTF‑8
+Query[sr@latin]=http://news.google.com/news?q=\\{@}&ie=UTF‑8&oe=UTF‑8
 Query[x-test]=xxhttp://news.google.com/news?q=\\{@}&ie=UTF-8&oe=UTF-8xx
 Query[zh_TW]=http://news.google.com.tw/news?q=\\{@}&ie=UTF-8&oe=UTF-8&hl=zh-TW
 Charset=utf8

@@ -30,6 +30,7 @@ Name[ka]=Google ფილმები
 Name[kk]=Google фильмдер
 Name[km]=ភាព​យន្ត​តាម​​ហ្គូហ្គល
 Name[ko]=Google 영화
+Name[ku]=Fîlmên Google
 Name[lt]=Google filmai
 Name[lv]=Google filmas
 Name[mk]=Google - филмови
@@ -46,7 +47,7 @@ Name[ro]=Filme Google
 Name[ru]=Видео Google
 Name[se]=Google filmmat
 Name[sk]=Google filmy
-Name[sr]=Гугл-филмови
+Name[sr]=Гугл‑филмови
 Name[sr@latin]=Google-filmovi
 Name[sv]=Google filmer
 Name[ta]=கூகுல் படங்கள்
@@ -67,5 +68,7 @@ Query[bg]=http://www.google.com/search?q=movie:\{@}&ie=UTF-8&oe=UTF-8
 Query[nb]=http://www.google.no/search?q=movie:\\{@}&ie=UTF-8&oe=UTF-8
 Query[nl]=http://www.google.nl/search?q=movie:\\{@}&ie=UTF-8&oe=UTF-8
 Query[nn]=http://www.google.no/search?hl=nn&q=movie:\\{@}&ie=UTF-8&oe=UTF-8
+Query[sr]=http://www.google.com/search?q=movie:\\{@}&ie=UTF‑8&oe=UTF‑8
+Query[sr@latin]=http://www.google.com/search?q=movie:\\{@}&ie=UTF‑8&oe=UTF‑8
 Query[x-test]=xxhttp://www.google.com/search?q=movie:\\{@}&ie=UTF-8&oe=UTF-8xx
 Charset=utf8

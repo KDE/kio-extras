@@ -66,4 +66,6 @@ Keys=dict,webster
 Query=http://www.m-w.com/cgi-bin/dictionary?book=Dictionary&va=\\{@}
 Query[bg]=Query=http://www.m-w.com/cgi-bin/dictionary?book=Dictionary&va=\\{@}
 Query[ne]=http://www.m-w.com/cgi-bin/dictionary?book=Dictionaryva=\\{@}
+Query[sr]=http://www.m‑w.com/cgi‑bin/dictionary?book=Dictionary&va=\\{@}
+Query[sr@latin]=http://www.m‑w.com/cgi‑bin/dictionary?book=Dictionary&va=\\{@}
 Query[x-test]=xxhttp://www.m-w.com/cgi-bin/dictionary?book=Dictionary&va=\\{@}xx

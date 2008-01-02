@@ -54,6 +54,8 @@ X-KDE-ServiceTypes=SearchProvider
 Keys=tags,tag,technoratitags
 Query=http://technorati.com/tag/\\{@}?sourceid=kde-search
 Query[bg]=Query=http://technorati.com/tag/\\{@}?sourceid=kde-search
+Query[sr]=http://technorati.com/tag/\\{@}?sourceid=kde‑search
+Query[sr@latin]=http://technorati.com/tag/\\{@}?sourceid=kde‑search
 Query[tg]=http://technorati.com/tag/\\{@}?sourceid=kde-ҷустуҷӯ
 Query[x-test]=xxhttp://technorati.com/tag/\\{@}?sourceid=kde-searchxx
 Charset=utf8

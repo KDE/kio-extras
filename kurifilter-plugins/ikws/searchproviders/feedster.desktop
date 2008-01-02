@@ -17,5 +17,7 @@ Query=http://www.feedster.com/search.php?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[bg]=Query=http://www.feedster.com/search.php?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[he]=http://www.feedster.com/search.php?q=\\{@}&ie=UTF8&oe=UTF-88
 Query[ne]=http://www.feedster.com/search.php?q=\\{@}ie=UTF-8&oe=UTF-8
+Query[sr]=http://www.feedster.com/search.php?q=\\{@}&ie=UTF‑8&oe=UTF‑8
+Query[sr@latin]=http://www.feedster.com/search.php?q=\\{@}&ie=UTF‑8&oe=UTF‑8
 Query[x-test]=xxhttp://www.feedster.com/search.php?q=\\{@}&ie=UTF-8&oe=UTF-8xx
 Charset=utf8
