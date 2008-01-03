@@ -70,6 +70,4 @@ Keys=apps,appsy
 Query=http://www.kde-apps.org/content/search.php?search=Search&name=\\{@}
 Query[bg]=Query=http://www.kde-apps.org/content/search.php?search=Search&\\{@}
 Query[ne]=http://www.kde-apps.org/content/search.php?search=Searchname=\\{@}
-Query[sr]=http://www.kde‑apps.org/content/search.php?search=Search&name=\\{@}
-Query[sr@latin]=http://www.kde‑apps.org/content/search.php?search=Search&name=\\{@}
 Query[x-test]=xxhttp://www.kde-apps.org/content/search.php?search=Search&name=\\{@}xx

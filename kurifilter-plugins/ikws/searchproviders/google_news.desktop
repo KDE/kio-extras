@@ -73,8 +73,6 @@ Query[nb]=http://news.google.no/news?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[ne]=http://news.google.com/news?q=\\{@}ie=UTF-8&oe=UTF-8
 Query[nl]=http://news.google.nl/news?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[pt]=http://news.google.pt/news?q=\\{@}&ie=UTF-8&oe=UTF-8
-Query[sr]=http://news.google.com/news?q=\\{@}&ie=UTF‑8&oe=UTF‑8
-Query[sr@latin]=http://news.google.com/news?q=\\{@}&ie=UTF‑8&oe=UTF‑8
 Query[x-test]=xxhttp://news.google.com/news?q=\\{@}&ie=UTF-8&oe=UTF-8xx
 Query[zh_TW]=http://news.google.com.tw/news?q=\\{@}&ie=UTF-8&oe=UTF-8&hl=zh-TW
 Charset=utf8

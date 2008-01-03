@@ -68,7 +68,5 @@ Query[bg]=http://www.google.com/search?q=movie:\{@}&ie=UTF-8&oe=UTF-8
 Query[nb]=http://www.google.no/search?q=movie:\\{@}&ie=UTF-8&oe=UTF-8
 Query[nl]=http://www.google.nl/search?q=movie:\\{@}&ie=UTF-8&oe=UTF-8
 Query[nn]=http://www.google.no/search?hl=nn&q=movie:\\{@}&ie=UTF-8&oe=UTF-8
-Query[sr]=http://www.google.com/search?q=movie:\\{@}&ie=UTF‑8&oe=UTF‑8
-Query[sr@latin]=http://www.google.com/search?q=movie:\\{@}&ie=UTF‑8&oe=UTF‑8
 Query[x-test]=xxhttp://www.google.com/search?q=movie:\\{@}&ie=UTF-8&oe=UTF-8xx
 Charset=utf8

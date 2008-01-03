@@ -13,7 +13,5 @@ X-KDE-ServiceTypes=SearchProvider
 Keys=tr,technorati
 Query=http://technorati.com/cosmos/search.html?sourceid=kde-search&url=\\{@}
 Query[ne]=http://technorati.com/cosmos/search.html?sourceid=kde-searchurl=\\{@}
-Query[sr]=http://technorati.com/cosmos/search.html?sourceid=kde‑search&url=\\{@}
-Query[sr@latin]=http://technorati.com/cosmos/search.html?sourceid=kde‑search&url=\\{@}
 Query[x-test]=xxhttp://technorati.com/cosmos/search.html?sourceid=kde-search&url=\\{@}xx
 Charset=utf8

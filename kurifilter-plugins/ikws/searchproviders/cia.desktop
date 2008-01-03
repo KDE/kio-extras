@@ -10,6 +10,7 @@ Name[el]=Παγκόσμιο βιβλίο γεγονότων της CIA
 Name[eo]=CIA Monda faktlibro
 Name[es]=Libro del estado del mundo de la CIA
 Name[fi]=CIA World Factbook
+Name[fr]=Banque de données mondiales de la CIA
 Name[fy]=CIA Wrâld Feitboek
 Name[he]=ספר העובדות העולמי של ה־CIA
 Name[hi]=सीआईए वर्ल्ड फैक्ट बुक
@@ -41,8 +42,6 @@ Query[csb]=http://www.google.com/search?q=allintitle%3A\\{@}+world+factbook+site
 Query[he]=http://www.google.co.il/search?q=allintitle%3A\\{@}+world+fact+book+site%3Awww.cia.gov&ie=UTF-8&btnI=I%27m+Feeling+Lucky
 Query[nb]=http://www.google.com/search?q=allintitle%3A\\{@}+world+factbook+site%3Awww.cia.gov&ie=UTF-8&btnI=I%27m+Feeling+Lucky
 Query[nn]=http://www.google.com/search?q=allintitle%3A\\{@}+world+fact+book+site%3Awww.cia.gov&ie=UTF-8&btnI=I%27m+Feeling+Lucky&hl=nn
-Query[sr]=http://www.google.com/search?q=allintitle%3A\\{@}+world+fact+book+site%3Awww.cia.gov&ie=UTF‑8&btnI=I%27m+Feeling+Lucky
-Query[sr@latin]=http://www.google.com/search?q=allintitle%3A\\{@}+world+fact+book+site%3Awww.cia.gov&ie=UTF‑8&btnI=I%27m+Feeling+Lucky
 Query[vi]=http://www.google.com/search?q=allintitle%3A\\{@}+world+factbook+site%3Awww.cia.gov&ie=UTF-8&btnI=I%27m+Feeling+Lucky
 Query[x-test]=xxhttp://www.google.com/search?q=allintitle%3A\\{@}+world+fact+book+site%3Awww.cia.gov&ie=UTF-8&btnI=I%27m+Feeling+Luckyxx
 X-KDE-ServiceTypes=SearchProvider

@@ -23,6 +23,4 @@ Query[nb]=http://no.altavista.com/cgi-bin/query?pg=q&kl=XX&stype=stext&q=\\{@}
 Query[ne]=http://www.altavista.com/cgi-bin/query?pg=qkl=XX&stype=stext&q=\\{@}
 Query[nn]=http://no.altavista.com/cgi-bin/query?pg=q&kl=XX&stype=stext&q=\\{@}
 Query[ro]=http://www.altavista.com/cgi-bin/query?pg=q&kl=ro&stype=stext&q=\\{@}
-Query[sr]=http://www.altavista.com/cgi‑bin/query?pg=q&kl=XX&stype=stext&q=\\{@}
-Query[sr@latin]=http://www.altavista.com/cgi‑bin/query?pg=q&kl=XX&stype=stext&q=\\{@}
 Query[x-test]=xxhttp://www.altavista.com/cgi-bin/query?pg=q&kl=XX&stype=stext&q=\\{@}xx
