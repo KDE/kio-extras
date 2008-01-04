@@ -186,7 +186,7 @@ bool RemoteImpl::createWizardEntry(KIO::UDSEntry &entry) const
 		return false;
 	}
 
-    entry.insert( KIO::UDSEntry::UDS_NAME, i18n("Add a Network Folder"));
+    entry.insert( KIO::UDSEntry::UDS_NAME, i18n("Add Network Folder"));
     entry.insert( KIO::UDSEntry::UDS_FILE_TYPE, S_IFREG);
     entry.insert( KIO::UDSEntry::UDS_URL, QString::fromLatin1(WIZARD_URL) );
     entry.insert( KIO::UDSEntry::UDS_LOCAL_PATH, url.path());
