@@ -74,6 +74,7 @@ Query[de]=http://de.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[eo]=http://eo.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[fr]=http://fr.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[fy]=http://fy.wiktionary.org/wiki/Special:Search?search=\{@}&go=Go
+Query[it]=http://it.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[ko]=http://ko.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[ku]=http://ku.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[nb]=http://no.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
