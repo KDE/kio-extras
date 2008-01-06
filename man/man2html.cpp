@@ -1806,7 +1806,7 @@ static char *scan_escape_direct( char *c, QByteArray& cstr )
      case '`': cstr = "`";curpos++; break; // groff(7)
      case '-': cstr = "-";curpos++; break; // groff(7)
      case '.': cstr = ".";curpos++; break; // groff(7)
-     default: cstr = QByteArray( *c ); curpos++; break;
+     default: cstr = QByteArray( c, 1 ); curpos++; break;
     }
     if (cplusplus)
         c++;

@@ -458,6 +458,9 @@ void MANProtocol::get(const KUrl& url )
         return;
     }
 
+    // tell the mimetype
+    mimeType("text/html");
+
     // see if an index was requested
     if (url.query().isEmpty() && (title.isEmpty() || title == "/" || title == "."))
     {
@@ -468,11 +471,9 @@ void MANProtocol::get(const KUrl& url )
         return;
     }
 
-    // tell the mimetype
-    mimeType("text/html");
-
     const QStringList foundPages=findPages(section, title);
     bool pageFound=true;
+
     if (foundPages.isEmpty())
     {
        outputError(i18n("No man page matching to %1 found.<br /><br />"
@@ -605,7 +606,7 @@ char *MANProtocol::readManPage(const char *_filename)
 void MANProtocol::outputError(const QString& errmsg)
 {
     QByteArray array;
-    QTextStream os(array, QIODevice::WriteOnly);
+    QTextStream os(&array, QIODevice::WriteOnly);
     os.setCodec( "UTF-8" );
 
     os << "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Strict//EN\">" << endl;
@@ -623,7 +624,7 @@ void MANProtocol::outputError(const QString& errmsg)
 void MANProtocol::outputMatchingPages(const QStringList &matchingPages)
 {
     QByteArray array;
-    QTextStream os(array, QIODevice::WriteOnly);
+    QTextStream os(&array, QIODevice::WriteOnly);
     os.setCodec( "UTF-8" );
 
     os << "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Strict//EN\">" << endl;
@@ -771,7 +772,7 @@ QStringList MANProtocol::buildSectionList(const QStringList& dirs) const
 void MANProtocol::showMainIndex()
 {
     QByteArray array;
-    QTextStream os(array, QIODevice::WriteOnly);
+    QTextStream os(&array, QIODevice::WriteOnly);
     os.setCodec( "UTF-8" );
 
     // print header
@@ -1201,7 +1202,7 @@ private:
 void MANProtocol::showIndex(const QString& section)
 {
     QByteArray array;
-    QTextStream os(array, QIODevice::WriteOnly);
+    QTextStream os(&array, QIODevice::WriteOnly);
     os.setCodec( "UTF-8" );
 
     // print header
