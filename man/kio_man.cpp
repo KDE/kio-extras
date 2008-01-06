@@ -117,7 +117,7 @@ MANProtocol::MANProtocol(const QByteArray &pool_socket, const QByteArray &app_so
 {
     assert(!_self);
     _self = this;
-    const QString common_dir = KGlobal::dirs()->findResourceDir( "html", "en/common/kde-common.css" );
+    const QString common_dir = KGlobal::dirs()->findResourceDir( "html", "en/common/kde-default.css" );
     const QString strPath=QString( "file:%1/en/common" ).arg( common_dir );
     m_htmlPath=strPath.toLocal8Bit(); // ### TODO encode for HTML
     m_cssPath=strPath.toLocal8Bit(); // ### TODO encode for CSS
