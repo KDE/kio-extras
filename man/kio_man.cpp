@@ -615,7 +615,7 @@ void MANProtocol::outputError(const QString& errmsg)
     if ( !m_manCSSFile.isEmpty() )
         os << "<link href=\"file:///" << m_manCSSFile << "\" type=\"text/css\" rel=\"stylesheet\">" << endl;
     os << "</head>" << endl;
-    os << i18n("<body><h1>KDE Man Viewer Error</h1>") << errmsg << "</body>" << endl;
+    os << "<body>" << i18n("<h1>KDE Man Viewer Error</h1>") << errmsg << "</body>" << endl;
     os << "</html>" << endl;
 
     data(array);
