@@ -1567,7 +1567,7 @@ void sftpProtocol::slave_status() {
 }
 
 bool sftpProtocol::getPacket(QByteArray& msg) {
-    QByteArray buf(4096);
+    QByteArray buf(4096, '\0');
 
     // Get the message length...
     ssize_t len = atomicio(ssh.stdioFd(), buf.data(), 4, true /*read*/);

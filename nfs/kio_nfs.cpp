@@ -1144,7 +1144,7 @@ void NFSProtocol::get( const KUrl& url )
       readArgs.offset+=offset;
       if (offset>0)
       {
-         array.setRawData(readRes.readres_u.reply.data.data_val, offset);
+         array = QByteArray::fromRawData(readRes.readres_u.reply.data.data_val, offset);
          data( array );
          array.clear();
 

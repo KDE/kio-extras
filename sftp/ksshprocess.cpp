@@ -377,7 +377,7 @@ bool KSshProcess::setOptions(const SshOptList& opts) {
             if( (*it).num == -1 )
                 tmp = "none";
             else
-                tmp = QByteArray( (char)((*it).num) );
+                tmp = QByteArray( (char)((*it).num), '\0' );
             mArgs.append("-e");
             mArgs.append(tmp);
             break;

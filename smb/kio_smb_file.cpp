@@ -102,7 +102,7 @@ void SMBSlave::get( const KUrl& kurl )
                 return;
             }
 
-            filedata.setRawData(buf,bytesread);
+            filedata = QByteArray::fromRawData(buf,bytesread);
             if (isFirstPacket)
             {
                 KMimeType::Ptr p_mimeType = KMimeType::findByNameAndContent(url.fileName(), filedata);
@@ -210,8 +210,7 @@ void SMBSlave::read(KIO::filesize_t bytes)
     }
     else
     {
-        QByteArray  filedata;
-        filedata.setRawData(buffer.data(),bytesread);
+        QByteArray filedata = QByteArray::fromRawData(buffer.data(),bytesread);
         if (justOpened)
         {
             KMimeType::Ptr p_mimeType = KMimeType::findByNameAndContent(openUrl.fileName(), filedata);

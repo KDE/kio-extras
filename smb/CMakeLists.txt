@@ -1,10 +1,3 @@
-
-
-
-add_definitions (-DQT3_SUPPORT)
-
-########### next target ###############
-
 set(kio_smb_PART_SRCS 
    kio_smb.cpp 
    kio_smb_auth.cpp 

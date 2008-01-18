@@ -1,10 +1,3 @@
-
-
-
-add_definitions (-DQT3_SUPPORT)
-
-########### next target ###############
-
 set(kio_nfs_PART_SRCS kio_nfs.cpp mount_xdr.c nfs_prot_xdr.c )
 
 
@@ -19,5 +12,3 @@ install(TARGETS kio_nfs  DESTINATION ${PLUGIN_INSTALL_DIR} )
 ########### install files ###############
 
 install( FILES nfs.protocol  DESTINATION  ${SERVICES_INSTALL_DIR} )
-
-

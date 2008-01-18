@@ -1,6 +1,3 @@
-
-add_definitions (-DQT3_SUPPORT)
-
 add_subdirectory(tests)
 
 ########### next target ###############
