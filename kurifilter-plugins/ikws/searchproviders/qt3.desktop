@@ -24,6 +24,7 @@ Name[sk]=Qt3 online dokumentácia
 Name[sr]=Документација КуТ‑а 3 на вези
 Name[sr@latin]=Dokumentacija Qt‑a 3 na vezi
 Name[uz]=Qt3 учун кўлланма
+Name[zh_CN]=Qt3 在线文档
 Name[zh_TW]=Qt3 線上文件
 Query=http://doc.trolltech.com/3.3/\\{@}.html
 ServiceTypes=SearchProvider
