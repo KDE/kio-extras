@@ -204,6 +204,7 @@ int MyPtyProcess::exec(QByteArray command, QCStringList args)
     ok &= socketpair(AF_UNIX, SOCK_STREAM, 0, err  ) >= 0;
     if( !ok ) {
         kDebug(PTYPROC) << "Could not create socket";
+        close(slave);
         return -1;
     }
     m_stdinout = inout[0];
