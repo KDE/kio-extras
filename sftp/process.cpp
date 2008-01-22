@@ -421,13 +421,13 @@ int MyPtyProcess::setupTTY()
     // Disable OPOST processing. Otherwise, '\n' are (on Linux at least)
     // translated to '\r\n'.
     struct ::termios tio;
-    if (!m_pPTY->tcGetAttr(&tio))
+    if (m_pPTY->tcGetAttr(&tio) < 0)
     {
         kError(PTYPROC) << k_lineinfo << "tcgetattr(): " << perror << "\n";
         return -1;
     }
     tio.c_oflag &= ~OPOST;
-    if (!m_pPTY->tcSetAttr(&tio))
+    if (m_pPTY->tcSetAttr(&tio) < 0)
     {
         kError(PTYPROC) << k_lineinfo << "tcsetattr(): " << perror << "\n";
         return -1;
