@@ -345,9 +345,10 @@ void FilterOptions::setWebShortcutState()
 {
   bool use_keywords = m_dlg->cbEnableShortcuts->isChecked();
   m_dlg->lvSearchProviders->setEnabled(use_keywords);
+  bool itemActive = m_dlg->lvSearchProviders->currentItem() != 0;
   m_dlg->pbNew->setEnabled(use_keywords);
-  m_dlg->pbChange->setEnabled(use_keywords);
-  m_dlg->pbDelete->setEnabled(use_keywords);
+  m_dlg->pbChange->setEnabled(use_keywords && itemActive);
+  m_dlg->pbDelete->setEnabled(use_keywords && itemActive);
   m_dlg->lbDelimiter->setEnabled (use_keywords);
   m_dlg->cmbDelimiter->setEnabled (use_keywords);
   m_dlg->lbDefaultEngine->setEnabled (use_keywords);
