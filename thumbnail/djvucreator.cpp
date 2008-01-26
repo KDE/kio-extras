@@ -53,7 +53,7 @@ extern "C"
 bool DjVuCreator::create(const QString &path, int width, int height, QImage &img)
 {
   int output[2];
-  QByteArray data(1024);
+  QByteArray data(1024, 'k');
   bool ok = false;
 
   if (pipe(output) == -1)
