@@ -40,7 +40,7 @@ ssize_t	atomicio(int fd, char *_s, size_t n, bool read)
 {
 	char *s = _s;
 	ssize_t res;
-	ssize_t pos = 0;
+	size_t pos = 0;
 
 	while (n > pos) {
 		if( read)
