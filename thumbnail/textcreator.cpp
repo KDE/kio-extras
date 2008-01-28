@@ -197,8 +197,7 @@ bool TextCreator::create(const QString &path, int width, int height, QImage &img
                 rect = m_splitter->coordinates( ch );
                 if ( !rect.isEmpty() )
                 {
-                    //bitBlt( &m_pixmap, QPoint(x,y), fontPixmap, rect );
-                    m_pixmap = fontPixmap->copy();
+                    bitBlt( &m_pixmap, QPoint(x,y), fontPixmap, rect );
                 }
 
                 x += xOffset; // next character

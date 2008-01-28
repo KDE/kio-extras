@@ -413,8 +413,7 @@ const QImage ThumbnailProtocol::getIcon()
 {
     if ( !m_iconDict.contains(m_mimeType) ) { // generate it
         QImage icon( KIconLoader::global()->loadMimeTypeIcon( KMimeType::mimeType(m_mimeType)->iconName(), KIconLoader::Desktop, m_iconSize ).toImage() );
-        //icon.setAlphaBuffer( true );
-        icon = icon.convertToFormat( QImage::Format_ARGB32 );
+        icon.setAlphaBuffer( true );
         m_iconDict.insert( m_mimeType, icon );
 
         return icon;

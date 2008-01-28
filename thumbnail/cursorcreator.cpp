@@ -42,13 +42,10 @@ bool CursorCreator::create( const QString &path, int width, int height, QImage &
 		    width > height ? height : width );
 
     if ( cursor ) {
-    	//img = QImage( reinterpret_cast<uchar *>( cursor->pixels ),
-		//	cursor->width, cursor->height, 32,
-		//	NULL, 0, QImage::BigEndian );
-	    //img.setAlphaBuffer( true );
-    
-        img = QImage( reinterpret_cast<uchar *>( cursor->pixels ),
-                cursor->width, cursor->height, QImage::Format_ARGB32);
+    	img = QImage( reinterpret_cast<uchar *>( cursor->pixels ),
+			cursor->width, cursor->height, 32,
+			NULL, 0, QImage::BigEndian );
+	    img.setAlphaBuffer( true );
     
 	    // Convert the image to non-premultiplied alpha
 	    quint32 *pixels = reinterpret_cast<quint32 *>( img.bits() );
