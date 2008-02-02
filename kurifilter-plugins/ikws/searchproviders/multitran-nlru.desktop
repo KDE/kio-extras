@@ -1,0 +1,7 @@
+[Desktop Entry]
+Charset=cp 1251
+Type=Service
+Name=Multitran - Translate Between Dutch and Russian
+X-KDE-ServiceTypes=SearchProvider
+Keys=mt,mtde
+Query=http://multitran.ru/c/m.exe?l1=24&s=\\{@}
