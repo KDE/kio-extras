@@ -40,7 +40,7 @@ K_PLUGIN_FACTORY(KAutoWebSearchFactory, registerPlugin<KAutoWebSearch>();)
 K_EXPORT_PLUGIN(KAutoWebSearchFactory("kcmkurifilt"))
 
 KAutoWebSearch::KAutoWebSearch(QObject *parent, const QVariantList&)
-               :KUriFilterPlugin( "KURIIKWSFilterIface", parent )
+               :KUriFilterPlugin( "kuriikwsfilter", parent )
 {
   KGlobal::locale()->insertCatalog("kurifilter");
   QDBusConnection::sessionBus().connect(QString(), QString(), "org.kde.KUriFilterPlugin",

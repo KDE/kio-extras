@@ -42,7 +42,7 @@ K_EXPORT_PLUGIN(KUriSearchFilterFactory("kcmkurifilt"))
 
 KUriSearchFilter::KUriSearchFilter(QObject *parent,
                                    const QVariantList &)
-                 :KUriFilterPlugin( "KUriSearchFilter", parent )
+                 :KUriFilterPlugin( "kurisearchfilter", parent )
 {
   KGlobal::locale()->insertCatalog("kurifilter");
   QDBusConnection::sessionBus().connect(QString(), QString(), "org.kde.KUriFilterPlugin",
