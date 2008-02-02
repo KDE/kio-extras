@@ -132,7 +132,7 @@
 # define kWarning(x) cerr << "WARNING "
 # define BYTEARRAY(x) x.constData()
 #else
-# include <qtextcodec.h>
+# include <QTextCodec>
 # include <kdebug.h>
 # include <kdeversion.h>
 # define BYTEARRAY(x) x

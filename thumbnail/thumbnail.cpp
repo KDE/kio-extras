@@ -61,7 +61,7 @@
 #define THUMBNAIL_HACK (1)
 
 #ifdef THUMBNAIL_HACK
-# include <qfileinfo.h>
+# include <QFileInfo>
 #endif
 
 // Recognized metadata entries:
