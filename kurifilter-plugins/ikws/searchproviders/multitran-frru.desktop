@@ -2,6 +2,9 @@
 Charset=cp 1251
 Type=Service
 Name=Multitran - Translate Between French and Russian
+Name[ga]=Multitran - Aistriúchán idir Fraincis agus Rúisis
+Name[km]=Multitran - បកប្រែ​រវាង​ភាសា​បារាំង និង​រុស្ស៊ី
+Name[zh_TW]=Multitran - 翻譯法語和俄語
 X-KDE-ServiceTypes=SearchProvider
 Keys=mt,mtde
 Query=http://multitran.ru/c/m.exe?l1=4&s=\\{@}

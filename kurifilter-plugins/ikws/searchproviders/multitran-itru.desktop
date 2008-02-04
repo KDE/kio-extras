@@ -2,6 +2,9 @@
 Charset=cp 1251
 Type=Service
 Name=Multitran - Translate Between Italian and Russian
+Name[ga]=Multitran - Aistriúchán idir Iodáilis agus Rúisis
+Name[km]=Multitran - បកប្រែ​រវាង​ភាសា​អ៊ីតាលី និង​រុស្ស៊ី
+Name[zh_TW]=Multitran - 翻譯義大利語和俄語
 X-KDE-ServiceTypes=SearchProvider
 Keys=mt,mtde
 Query=http://multitran.ru/c/m.exe?l1=23&s=\\{@}

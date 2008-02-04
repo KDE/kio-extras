@@ -2,6 +2,9 @@
 Charset=cp 1251
 Type=Service
 Name=Multitran - Translate Between German and Russian
+Name[ga]=Multitran - Aistriúchán idir Gearmáinis agus Rúisis
+Name[km]=Multitran - បកប្រែ​​រវាង​​ភាសា​អាល្លឺម៉ង់​ និង​រុស្ស៊ី
+Name[zh_TW]=Multitran - 翻譯德語和俄語
 X-KDE-ServiceTypes=SearchProvider
 Keys=mt,mtde
 Query=http://multitran.ru/c/m.exe?l1=3&s=\\{@}
