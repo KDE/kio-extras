@@ -46,7 +46,7 @@
 
 /**
  * IMPORTANT: If you change anything here, please run the regression test
- * kdelibs/kio/tests/kurifiltertest
+ * ../tests/kurifiltertest
  */
 
 KURISearchFilterEngine *KURISearchFilterEngine::s_pSelf = 0;

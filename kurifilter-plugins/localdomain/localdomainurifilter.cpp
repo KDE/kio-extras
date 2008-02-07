@@ -33,7 +33,7 @@
 
 /**
  * IMPORTANT: If you change anything here, please run the regression test
- * kdelibs/kio/tests/kurifiltertest
+ * ../tests/kurifiltertest
  */
 
 LocalDomainUriFilter::LocalDomainUriFilter( QObject *parent, const QVariantList & /*args*/ )

@@ -30,7 +30,7 @@ using namespace KNetwork;
 
 /**
  * IMPORTANT: If you change anything here, please run the regression test
- * kdelibs/kio/tests/kurifiltertest
+ * ../tests/kurifiltertest
  */
  
 FixHostUriFilter::FixHostUriFilter( QObject *parent, const QVariantList & /*args*/ )

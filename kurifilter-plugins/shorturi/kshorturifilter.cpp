@@ -52,10 +52,10 @@
  /**
   * IMPORTANT:
   *  If you change anything here, please run the regression test
-  *  kdelibs/kio/tests/kurifiltertest.
+  *  ../tests/kurifiltertest.
   *
   *  If you add anything here, make sure to add a corresponding
-  *  test code to kdelibs/kio/tests/kurifiltertest.
+  *  test code to ../tests/kurifiltertest.
   */
 
 typedef QMap<QString,QString> EntryMap;
