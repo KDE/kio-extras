@@ -129,7 +129,8 @@ void FilterOptions::load()
     bool webShortcutsEnabled = group.readEntry("EnableWebShortcuts", true);
     m_dlg->cbEnableShortcuts->setChecked( webShortcutsEnabled );
 
-    setDelimiter (group.readEntry ("KeywordDelimiter", int(':')));
+    QString delimiter = group.readEntry ("KeywordDelimiter", ":");
+    setDelimiter( delimiter[0].toLatin1() );
 
     // Update the GUI to reflect the config options read above...
     setWebShortcutState();
