@@ -318,8 +318,8 @@ void KUriFilterTest::tests()
     filter( sc.sprintf("ya%cfoo bar was here", s_delimiter).toUtf8(), 0, -1 ); // this triggers default search, i.e. google
     filter( sc.sprintf("gg%cwww.kde.org", s_delimiter).toUtf8(), "http://www.google.com/search?q=www.kde.org&ie=UTF-8&oe=UTF-8", KUriFilterData::NetProtocol );
     filter( sc.sprintf("av%c+rock +sample", s_delimiter).toUtf8(), "http://www.altavista.com/cgi-bin/query?pg=q&kl=XX&stype=stext&q=%2Brock+%2Bsample", KUriFilterData::NetProtocol );
-    filter( sc.sprintf("gg%cé", s_delimiter).toUtf8() /*eaccent in utf8*/, "http://www.google.com/search?q=%C3%A9&ie=UTF-8&oe=UTF-8", KUriFilterData::NetProtocol );
-    filter( sc.sprintf("gg%cпрйвет", s_delimiter).toUtf8() /* greetings in russian utf-8*/, "http://www.google.com/search?q=%D0%BF%D1%80%D0%B9%D0%B2%D0%B5%D1%82&ie=UTF-8&oe=UTF-8", KUriFilterData::NetProtocol );
+    filter( QString::fromUtf8("gg%1é").arg(s_delimiter).toUtf8() /*eaccent in utf8*/, "http://www.google.com/search?q=%C3%A9&ie=UTF-8&oe=UTF-8", KUriFilterData::NetProtocol );
+    filter( QString::fromUtf8("gg%1прйвет").arg(s_delimiter).toUtf8() /* greetings in russian utf-8*/, "http://www.google.com/search?q=%D0%BF%D1%80%D0%B9%D0%B2%D0%B5%D1%82&ie=UTF-8&oe=UTF-8", KUriFilterData::NetProtocol );
 
     // Absolute Path tests for kshorturifilter
     filter( "./", kdehome+"/share", KUriFilterData::LocalDir, QStringList( "kshorturifilter" ), kdehome+"/share/" ); // cleanPath removes the trailing slash
