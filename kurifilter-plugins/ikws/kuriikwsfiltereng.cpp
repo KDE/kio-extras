@@ -420,7 +420,7 @@ QString KURISearchFilterEngine::formatResult( const QString& url,
   }
 
   // Decode user query:
-  QString userquery = QUrl::fromPercentEncoding( query.toLatin1() );
+  QString userquery = QUrl::fromPercentEncoding( query.toUtf8() );
 
   PDVAR ("user query", userquery);
   PDVAR ("query definition", url);
