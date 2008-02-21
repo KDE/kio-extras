@@ -278,17 +278,13 @@ private:
     SMBUrl openUrl;
 };
 
-//===========================================================================
-// pointer to the slave created in kdemain
-extern SMBSlave* G_TheSlave;
-
-
 //==========================================================================
 // the global libsmbclient authentication callback function
 extern "C"
 {
 
-void auth_smbc_get_data(const char *server,const char *share,
+void auth_smbc_get_data(SMBCCTX * context,
+                        const char *server,const char *share,
                         char *workgroup, int wgmaxlen,
                         char *username, int unmaxlen,
                         char *password, int pwmaxlen);

@@ -39,16 +39,21 @@
 
 // call for libsmbclient
 //==========================================================================
-void auth_smbc_get_data(const char *server,const char *share,
+void auth_smbc_get_data(SMBCCTX * context,
+                        const char *server,const char *share,
                         char *workgroup, int wgmaxlen,
                         char *username, int unmaxlen,
                         char *password, int pwmaxlen)
 //==========================================================================
 {
-    G_TheSlave->auth_smbc_get_data(server, share,
-                                   workgroup,wgmaxlen,
-                                   username, unmaxlen,
-                                   password, pwmaxlen);
+    if (context != NULL) {
+        SMBSlave *theSlave = (SMBSlave*)smbc_option_get(context, "user_data");
+        theSlave->auth_smbc_get_data(server, share,
+                                     workgroup,wgmaxlen,
+                                     username, unmaxlen,
+                                     password, pwmaxlen);
+    }
+
 }
 
 //--------------------------------------------------------------------------
@@ -182,7 +187,9 @@ bool SMBSlave::auth_initialize_smbc()
 	}
 
 	smb_context->debug = debug_level;
-	smb_context->callbacks.auth_fn = ::auth_smbc_get_data;
+	smb_context->callbacks.auth_fn = NULL;
+	smbc_option_set(smb_context, "auth_function", ::auth_smbc_get_data);
+	smbc_option_set(smb_context, "user_data", this);
 
 	if (!smbc_init_context(smb_context)) {
 		smbc_free_context(smb_context, false);
