@@ -188,7 +188,7 @@ bool SMBSlave::auth_initialize_smbc()
 
 	smb_context->debug = debug_level;
 	smb_context->callbacks.auth_fn = NULL;
-	smbc_option_set(smb_context, "auth_function", ::auth_smbc_get_data);
+	smbc_option_set(smb_context, "auth_function", (void*)::auth_smbc_get_data);
 	smbc_option_set(smb_context, "user_data", this);
 
 	if (!smbc_init_context(smb_context)) {
