@@ -8,6 +8,7 @@ set(kio_smb_PART_SRCS
    kio_smb_internal.cpp 
    kio_smb_mount.cpp )
 
+include_directories(${SAMBA_INCLUDE_DIR})
 
 kde4_add_plugin(kio_smb ${kio_smb_PART_SRCS})
 
