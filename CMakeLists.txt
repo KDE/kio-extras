@@ -1,6 +1,7 @@
 
 # we need a version of samba which has already smbc_set_context(), Alex
 set(SAMBA_REQUIRE_SMBC_SET_CONTEXT TRUE)
+set(SAMBA_REQUIRE_SMBC_OPTION_SET TRUE)
 macro_optional_find_package(Samba)
 
 add_subdirectory( about )
@@ -28,6 +29,6 @@ if(NOT WIN32)
    if(SAMBA_FOUND)
       add_subdirectory(smb)
    else(SAMBA_FOUND)
-      macro_log_feature(SAMBA_FOUND "Samba" "Sambas libsmbclient is required for the smb-ioslave. A version which already has smbc_set_context() is required" "http://www.samba.org")
+      macro_log_feature(SAMBA_FOUND "Samba" "Sambas libsmbclient is required for the smb-ioslave. A version which already has smbc_set_context() and smbc_option_set() is required" "http://www.samba.org")
    endif(SAMBA_FOUND)
 endif(NOT WIN32)
