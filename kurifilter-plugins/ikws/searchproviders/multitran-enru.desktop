@@ -2,6 +2,7 @@
 Charset=cp 1251
 Type=Service
 Name=Multitran - Translate Between English and Russian
+Name[ca]=Multitran - Tradueix entre anglès i rus
 Name[el]=Multitran - Μετάφραση μεταξύ Γαλλικών και Ρωσσικών
 Name[es]=Multitran - Traducción entre inglés y ruso
 Name[ga]=Multitran - Aistriúchán idir Béarla agus Rúisis

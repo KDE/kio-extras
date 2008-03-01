@@ -2,6 +2,7 @@
 Charset=cp 1251
 Type=Service
 Name=Multitran - Translate Between Italian and Russian
+Name[ca]=Multitran - Tradueix entre italià i rus
 Name[el]=Multitran - Μετάφραση μεταξύ Ιταλικών και Ρωσσικών
 Name[es]=Multitran - Traducción entre italiano y ruso
 Name[ga]=Multitran - Aistriúchán idir Iodáilis agus Rúisis

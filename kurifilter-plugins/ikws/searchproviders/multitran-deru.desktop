@@ -2,6 +2,7 @@
 Charset=cp 1251
 Type=Service
 Name=Multitran - Translate Between German and Russian
+Name[ca]=Multitran - Tradueix entre alemany i rus
 Name[el]=Multitran - Μετάφραση μεταξύ Γερμανικών και Ρωσσικών
 Name[es]=Multitran - Traducción entre alemán y ruso
 Name[ga]=Multitran - Aistriúchán idir Gearmáinis agus Rúisis
