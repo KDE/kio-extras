@@ -60,5 +60,6 @@ Name[zh_CN]=KDED 远程基本 URL 通知器
 Name[zh_TW]=KDED 遠端基礎 URL 通知程式
 X-KDE-ServiceTypes=KDEDModule
 X-KDE-Library=remotedirnotify
+X-KDE-DBus-ModuleName=remotedirnotify
 X-KDE-Kded-load-on-demand=true
 X-KDE-Kded-autoload=true
