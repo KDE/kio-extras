@@ -374,7 +374,7 @@ void SMBSlave::listDir( const KUrl& kurl )
                    // when libsmbclient knows
                    // u = QString("smb://%1?WORKGROUP=%2").arg(dirpName).arg(workgroup.toUpper());
                    kDebug(KIO_SMB) << "list item " << u;
-                   udsentry.insert( KIO::UDSEntry::UDS_URL, u.url());
+                   udsentry.insert(KIO::UDSEntry::UDS_TARGET_URL, u.url());
 
                    udsentry.insert(KIO::UDSEntry::UDS_MIME_TYPE, QString::fromLatin1("application/x-smb-server"));
                }
@@ -395,7 +395,7 @@ void SMBSlave::listDir( const KUrl& kurl )
                // QString workgroup = m_current_url.host().toUpper();
                KUrl u("smb:/");
                u.setHost(dirpName);
-               udsentry.insert(KIO::UDSEntry::UDS_URL, u.url());
+               udsentry.insert(KIO::UDSEntry::UDS_TARGET_URL, u.url());
 
                // Call base class to list entry
                listEntry(udsentry, false);
