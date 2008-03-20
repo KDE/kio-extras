@@ -227,6 +227,7 @@ void RemoteImpl::createEntry(KIO::UDSEntry &entry,
     const QString icon = desktop.readIcon();
     entry.insert( KIO::UDSEntry::UDS_ICON_NAME, icon);
     entry.insert( KIO::UDSEntry::UDS_LINK_DEST, desktop.readUrl());
+    entry.insert( KIO::UDSEntry::UDS_TARGET_URL, desktop.readUrl());
 }
 
 bool RemoteImpl::statNetworkFolder(KIO::UDSEntry &entry, const QString &filename) const
