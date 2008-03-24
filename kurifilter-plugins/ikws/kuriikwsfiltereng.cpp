@@ -182,7 +182,7 @@ QStringList KURISearchFilterEngine::modifySubstitutionMap(SubstMap& map,
       v = userquery;
     // Add partial user query items to substitution map:
     else
-      v = l[i-1];
+      v = l.value(i-1);
 
     // Back-substitute quoted strings (%20 -> " "):
     while ((j = v.indexOf("%20")) != -1)
