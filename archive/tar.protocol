@@ -1,7 +1,7 @@
 [Protocol]
 exec=kio_archive
 protocol=tar
-mimetype=application/x-tar
+archiveMimetype=application/x-tar,application/x-compressed-tar,application/x-bzip-compressed-tar
 input=filesystem
 output=filesystem
 listing=Name,Type,Size,Date,Access,Owner,Group,Link

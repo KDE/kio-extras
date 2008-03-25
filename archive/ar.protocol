@@ -1,7 +1,7 @@
 [Protocol]
 exec=kio_archive
 protocol=ar
-mimetype=application/x-archive
+archiveMimetype=application/x-archive
 input=filesystem
 output=filesystem
 listing=Name,Type,Size,Date,Access,Owner,Group,Link

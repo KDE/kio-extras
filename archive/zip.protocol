@@ -1,7 +1,7 @@
 [Protocol]
 exec=kio_archive
 protocol=zip
-mimetype=application/x-zip
+archiveMimetype=application/zip
 input=filesystem
 output=filesystem
 listing=Name,Type,Size,Date,Access,Owner,Group,Link
