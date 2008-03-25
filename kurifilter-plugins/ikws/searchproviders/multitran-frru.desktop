@@ -19,8 +19,10 @@ Name[sr]=Мултитран: са француског на руски
 Name[sr@latin]=Multitran: sa francuskog na ruski
 Name[tr]=Multitran - Fransızcadan Rusçaya Çeviri
 Name[uk]=Multitran - переклад між французькою та німецькою
+Name[x-test]=xxMultitran - Translate Between French and Russianxx
 Name[zh_CN]=Multitran - 在法语和俄语之间互译
 Name[zh_TW]=Multitran - 翻譯法語和俄語
 X-KDE-ServiceTypes=SearchProvider
 Keys=mt,mtde
 Query=http://multitran.ru/c/m.exe?l1=4&s=\\{@}
+Query[x-test]=xxhttp://multitran.ru/c/m.exe?l1=4&s=\\{@}xx

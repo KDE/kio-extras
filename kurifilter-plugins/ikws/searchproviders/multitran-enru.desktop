@@ -18,8 +18,10 @@ Name[sl]=Multitran - Prevod med angleščino in ruščino
 Name[sr]=Мултитран: са енглеског на руски
 Name[sr@latin]=Multitran: sa engleskog na ruski
 Name[uk]=Multitran - переклад між англійською та російською
+Name[x-test]=xxMultitran - Translate Between English and Russianxx
 Name[zh_CN]=Multitran - 在英语和俄语之间互译
 Name[zh_TW]=Multitran - 翻譯英語和俄語
 X-KDE-ServiceTypes=SearchProvider
 Keys=mt,mten
 Query=http://multitran.ru/c/m.exe?l1=1&l2=2&s=\\{@}
+Query[x-test]=xxhttp://multitran.ru/c/m.exe?l1=1&l2=2&s=\\{@}xx

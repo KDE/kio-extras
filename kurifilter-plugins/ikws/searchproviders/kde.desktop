@@ -69,5 +69,6 @@ Name[zh_CN]=KDE API 文档
 Name[zh_TW]=KDE API 文件
 Query=http://api.kde.org/classmapper.php?class=\\{@}
 Query[el]=http://developer.kde.org/documentation/library/classmapper.php?class=\\{@}
+Query[x-test]=xxhttp://api.kde.org/classmapper.php?class=\\{@}xx
 X-KDE-ServiceTypes=SearchProvider
 Type=Service

@@ -19,8 +19,10 @@ Name[sr]=Мултитран: са италијанског на руски
 Name[sr@latin]=Multitran: sa italijanskog na ruski
 Name[tr]=Multitran - İtalyancadan Rusçaya Çeviri
 Name[uk]=Multitran - переклад між італійською та російською
+Name[x-test]=xxMultitran - Translate Between Italian and Russianxx
 Name[zh_CN]=Multitran - 在意大利语和俄语之间互译
 Name[zh_TW]=Multitran - 翻譯義大利語和俄語
 X-KDE-ServiceTypes=SearchProvider
 Keys=mt,mtde
 Query=http://multitran.ru/c/m.exe?l1=23&s=\\{@}
+Query[x-test]=xxhttp://multitran.ru/c/m.exe?l1=23&s=\\{@}xx

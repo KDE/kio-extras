@@ -61,5 +61,6 @@ X-KDE-ServiceTypes=SearchProvider
 Keys=fsd
 Query=http://directory.fsf.org/search/?query=\\{@}
 Query[el]=http://directory.fsf.org/search/fsd-search.py?q=\\{@}
+Query[x-test]=xxhttp://directory.fsf.org/search/?query=\\{@}xx
 
 
