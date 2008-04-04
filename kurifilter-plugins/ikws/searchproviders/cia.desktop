@@ -41,6 +41,7 @@ Query=http://www.google.com/search?q=allintitle%3A\\{@}+world+fact+book+site%3Aw
 Query[be]=http://www.google.com/search?q=allintitle%3A\\{@}+world+factbook+site%3Awww.cia.gov&ie=UTF-8&btnI=I%27m+Feeling+Lucky
 Query[bg]=Query=http://www.google.com/search?q=allintitle%3A\\{@}+world+factbook+site%3Awww.cia.gov&ie=UTF-8&btnI=I%27m+Feeling+Lucky
 Query[csb]=http://www.google.com/search?q=allintitle%3A\\{@}+world+factbook+site%3Awww.cia.gov&ie=UTF-8&btnI=I%27m+Feeling+Lucky
+Query[en_GB]=http://www.google.co.uk/search?q=allintitle%3A\\{@}+world+fact+book+site%3Awww.cia.gov&ie=UTF-8&btnI=I%27m+Feeling+Lucky
 Query[he]=http://www.google.co.il/search?q=allintitle%3A\\{@}+world+fact+book+site%3Awww.cia.gov&ie=UTF-8&btnI=I%27m+Feeling+Lucky
 Query[nb]=http://www.google.com/search?q=allintitle%3A\\{@}+world+factbook+site%3Awww.cia.gov&ie=UTF-8&btnI=I%27m+Feeling+Lucky
 Query[nn]=http://www.google.com/search?q=allintitle%3A\\{@}+world+fact+book+site%3Awww.cia.gov&ie=UTF-8&btnI=I%27m+Feeling+Lucky&hl=nn
