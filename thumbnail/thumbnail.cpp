@@ -217,10 +217,13 @@ void ThumbnailProtocol::get(const KUrl &url)
         KService::Ptr service =
             KMimeTypeTrader::self()->preferredService( m_mimeType, "KFilePlugin");
 
-        if ( service && service->isValid() && /*url.isLocalFile() && */
+        if (service && service->isValid() &&
             service->property("SupportsThumbnail").toBool())
         {
-            KFileMetaInfo info(url.path(), m_mimeType, KFileMetaInfo::Thumbnail);
+            // was:  KFileMetaInfo info(url.path(), m_mimeType, KFileMetaInfo::Thumbnail);
+            // but m_mimeType and WhatFlags are now unused in KFileMetaInfo, and not present in the
+            // call that takes a KUrl
+            KFileMetaInfo info(url);
             if (info.isValid())
             {
                 KFileMetaInfoItem item = info.item("thumbnail");
