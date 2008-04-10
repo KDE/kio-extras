@@ -25,6 +25,7 @@ if(NOT WIN32)
    add_subdirectory( man )
    add_subdirectory( nfs )
    add_subdirectory( thumbnail )
+   add_subdirectory( desktop )
 
    if(SAMBA_FOUND)
       add_subdirectory(smb)

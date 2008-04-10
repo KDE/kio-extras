@@ -1,0 +1,12 @@
+[Desktop Entry]
+Encoding=UTF-8
+Type=Service
+Name=KDED Desktop Folder Notifier
+ServiceTypes=KDEDModule
+X-KDE-ServiceTypes=KDEDModule
+X-KDE-Library=desktopnotifier
+X-KDE-FactoryName=desktopnotifier
+X-KDE-DBus-ModuleName=desktopnotifier
+X-KDE-Kded-load-on-demand=true
+X-KDE-Kded-autoload=false
+
