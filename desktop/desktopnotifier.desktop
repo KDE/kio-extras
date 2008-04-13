@@ -2,6 +2,8 @@
 Encoding=UTF-8
 Type=Service
 Name=KDED Desktop Folder Notifier
+Name[ca]=Notificador de carpeta d'escriptori del KDED
+Name[ga]=Fógróir Fillteáin Deisce KDED
 ServiceTypes=KDEDModule
 X-KDE-ServiceTypes=KDEDModule
 X-KDE-Library=desktopnotifier
