@@ -504,7 +504,7 @@ void sftpProtocol::openConnection() {
     kDebug(KIO_SFTP_DB) << "openConnection(): " << mUsername << "@"
                          << mHost << ":" << mPort << endl;
 
-    infoMessage( i18n("Opening SFTP connection to host <b>%1:%2</b>", mHost, mPort));
+    infoMessage( i18n("Opening SFTP connection to host %1:%2", mHost, mPort));
 
     if( mHost.isEmpty() ) {
         kDebug(KIO_SFTP_DB) << "openConnection(): Need hostname...";
