@@ -304,7 +304,7 @@ NFSFileHandle NFSProtocol::getFileHandle(QString path)
       parentFH.setInvalid();
       return parentFH;
    }
-   //check wether we have this filehandle cached
+   //check whether we have this filehandle cached
    //the filehandles of the exported root dirs are always in the cache
    if (m_handleCache.find(path)!=m_handleCache.end())
    {

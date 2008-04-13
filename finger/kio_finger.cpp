@@ -170,7 +170,7 @@ void FingerProtocol::mimetype(const KUrl & /*url*/)
 void FingerProtocol::getProgramPath()
 {
   //kDebug() << "kfingerMainWindow::getProgramPath()";
-  // Not to sure wether I'm using the right error number here. - schlpbch -
+  // Not to sure whether I'm using the right error number here. - schlpbch -
 
   myPerlPath = new QString(KGlobal::dirs()->findExe("perl"));
   if (myPerlPath->isEmpty())
