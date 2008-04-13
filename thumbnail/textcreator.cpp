@@ -18,13 +18,13 @@
     Boston, MA 02110-1301, USA.
 */
 
+#include "textcreator.h"
+
 #include <QFile>
 #include <QPixmap>
 #include <QImage>
 
 #include <kstandarddirs.h>
-
-#include "textcreator.h"
 
 class FontSplitter {
 public:

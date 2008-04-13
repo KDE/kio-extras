@@ -18,13 +18,13 @@
     Boston, MA 02110-1301, USA.
 */
 
+#include "imagecreator.h"
+
 #include <assert.h>
 
 #include <QImage>
 
 #include <kdemacros.h>
-
-#include "imagecreator.h"
 
 extern "C"
 {

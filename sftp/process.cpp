@@ -15,6 +15,8 @@
  *  terminal programs.
  */
 
+#include "process.h"
+
 #include <config-runtime.h>
 
 #include <stdio.h>
@@ -47,8 +49,6 @@
 
 #include <kdebug.h>
 #include <kstandarddirs.h>
-
-#include "process.h"
 
 MyPtyProcess::MyPtyProcess()
 {

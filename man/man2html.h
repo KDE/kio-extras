@@ -9,6 +9,8 @@
 #ifndef MAN2HTML_H
 #define MAN2HTML_H
 
+class QByteArray;
+
 /** call this with the buffer you have */
 void scan_man_page(const char *man_page);
 

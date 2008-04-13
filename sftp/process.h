@@ -14,6 +14,8 @@
 
 #include <kpty.h>
 
+#include <QtCore/QByteArray>
+#include <QtCore/QList>
 
 #define PTYPROC 7120
 

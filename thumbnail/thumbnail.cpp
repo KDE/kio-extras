@@ -18,6 +18,8 @@
     Boston, MA 02110-1301, USA.
 */
 
+#include "thumbnail.h"
+
 #include <stdlib.h>
 #include <unistd.h>
 #ifdef __FreeBSD__
@@ -51,7 +53,6 @@
 #include <klocale.h>
 
 #include <config-runtime.h> // For HAVE_NICE
-#include "thumbnail.h"
 #include <kio/thumbcreator.h>
 #include <kconfiggroup.h>
 

@@ -16,6 +16,8 @@
  *                                                                         *
  ***************************************************************************/
 
+#include "kio_finger.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/stat.h>
@@ -33,8 +35,6 @@
 #include <kstandarddirs.h>
 #include <klocale.h>
 #include <kurl.h>
-
-#include "kio_finger.h"
 
 
 using namespace KIO;

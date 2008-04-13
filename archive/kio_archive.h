@@ -17,13 +17,16 @@
     Boston, MA 02110-1301, USA.
 */
 
-#ifndef _TAR_H
-#define _TAR_H
+#ifndef ARCHIVEPROTOCOL_H
+#define ARCHIVEPROTOCOL_H
 
 #include <sys/types.h>
 
 #include <kio/global.h>
 #include <kio/slavebase.h>
+
+class KArchive;
+class KArchiveEntry;
 
 class ArchiveProtocol : public KIO::SlaveBase
 {

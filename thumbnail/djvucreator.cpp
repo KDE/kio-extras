@@ -19,6 +19,8 @@
 */
 
 
+#include "djvucreator.h"
+
 #include <config-runtime.h>
 
 #include <assert.h>
@@ -37,8 +39,6 @@
 #include <QImage>
 
 #include <kdemacros.h>
-
-#include "djvucreator.h"
 
 
 

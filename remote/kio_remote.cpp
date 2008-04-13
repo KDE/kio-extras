@@ -17,6 +17,8 @@
    Boston, MA 02110-1301, USA.
 */
 
+#include "kio_remote.h"
+
 #include <stdlib.h>
 
 #include <kdebug.h>
@@ -26,8 +28,6 @@
 #include <kglobal.h>
 
 #include <QFile>
-
-#include "kio_remote.h"
 
 extern "C" {
 	int KDE_EXPORT kdemain( int argc, char **argv )

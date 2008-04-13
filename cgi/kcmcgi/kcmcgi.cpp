@@ -16,6 +16,8 @@
    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
+#include "kcmcgi.h"
+
 #include <KAboutData>
 #include <KComponentData>
 #include <KConfig>
@@ -32,7 +34,6 @@
 #include <QPushButton>
 #include <QHBoxLayout>
 
-#include "kcmcgi.h"
 #include "kcmcgi.moc"
 
 K_PLUGIN_FACTORY(KCMCgiFactory, registerPlugin<KCMCgi>();)

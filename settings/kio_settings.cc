@@ -146,7 +146,10 @@ void SettingsProtocol::get( const KUrl & url )
 	KService::Ptr service = KService::serviceByDesktopName(url.fileName());
 	if (service && service->isValid()) {
 		KUrl redirUrl;
-		redirUrl.setPath(KStandardDirs::locate("apps", service->entryPath()));
+        if ( m_runMode == SettingsMode )
+            redirUrl.setPath(KStandardDirs::locate("services", service->entryPath()));
+        else
+		    redirUrl.setPath(KStandardDirs::locate("apps", service->entryPath()));
 		redirection(redirUrl);
 		finished();
 	} else {
@@ -176,9 +179,10 @@ void SettingsProtocol::stat(const KUrl& url)
 //			KUrl newUrl;
 //			newUrl.setPath(KStandardDirs::locate("apps", service->entryPath()));
 //			createFileEntry(entry, service->name(), newUrl, "application/x-desktop", service->icon());
-
-			createFileEntry(entry, service->name(), url.url( KUrl::AddTrailingSlash )+service->desktopEntryName(),
-                            "application/x-desktop", service->icon(), KStandardDirs::locate("apps", service->entryPath()) );
+            if ( m_runMode == SettingsMode )
+                createFileEntry(entry, service->name(), url.url( KUrl::AddTrailingSlash )+service->desktopEntryName(), "application/x-desktop", service->icon(), KStandardDirs::locate("services", service->entryPath()) );
+            else
+			    createFileEntry(entry, service->name(), url.url( KUrl::AddTrailingSlash )+service->desktopEntryName(), "application/x-desktop", service->icon(), KStandardDirs::locate("apps", service->entryPath()) );
 		} else {
 			error(KIO::ERR_SLAVE_DEFINED,i18n("Unknown settings folder"));
 			return;
@@ -198,7 +202,6 @@ void SettingsProtocol::listDir(const KUrl& url)
 
 	if ( m_runMode == SettingsMode)
 		groupPath.prepend("Settings/");
-
 	KServiceGroup::Ptr grp = KServiceGroup::group(groupPath);
 
 	if (!grp || !grp->isValid()) {
@@ -216,6 +219,8 @@ void SettingsProtocol::listDir(const KUrl& url)
 		if (e->isType(KST_KServiceGroup)) {
 			KServiceGroup::Ptr g(KServiceGroup::Ptr::staticCast(e));
 			QString groupCaption = g->caption();
+
+            kDebug() << "ADDING SERVICE GROUP WITH PATH " << g->relPath();
 
 			// Avoid adding empty groups.
 			KServiceGroup::Ptr subMenuRoot = KServiceGroup::group(g->relPath());
@@ -239,7 +244,7 @@ void SettingsProtocol::listDir(const KUrl& url)
 			{
 			  case( SettingsMode ):
 				relPath.remove(0, 9); // length("Settings/") ==9
-				kDebug() << "SettingsProtocol: adding entry settings:/" << relPath;
+				kDebug() << "SettingsProtocol: adding entry settings:/" << relPath << " with icon " << g->icon();
 				createDirEntry(entry, groupCaption, "settings:/"+relPath, "inode/directory",g->icon());
 				break;
 			  case( ProgramsMode ):
@@ -247,15 +252,26 @@ void SettingsProtocol::listDir(const KUrl& url)
 				createDirEntry(entry, groupCaption, "programs:/"+relPath, "inode/directory",g->icon());
 				break;
 			  case( ApplicationsMode ):
-				kDebug() << "SettingsProtocol: adding entry applications:/" << relPath;
+                kDebug() << "SettingsProtocol: adding entry applications:/" << relPath << " with icon " << g->icon();
 				createDirEntry(entry, groupCaption, "applications:/"+relPath, "inode/directory",g->icon());
 				break;
 		    }
 
 		} else {
 			KService::Ptr s(KService::Ptr::staticCast(e));
-			kDebug() << "SettingsProtocol: adding file entry " << url.url( KUrl::AddTrailingSlash )+s->name();
-			createFileEntry(entry,s->name(),url.url( KUrl::AddTrailingSlash )+s->desktopEntryName(), "application/x-desktop",s->icon(),KStandardDirs::locate("apps", s->entryPath()));
+
+            kDebug() << "the entry name is " << s->desktopEntryName()
+                     << "with path " << s->entryPath();
+
+            if (s->isApplication())
+                continue;
+
+			kDebug() << "SettingsProtocol: adding file entry " << url.url( KUrl::AddTrailingSlash )+s->name() << " with icon " << s->icon();
+
+            if ( m_runMode == SettingsMode )
+                createFileEntry(entry,s->name(),url.url( KUrl::AddTrailingSlash )+s->desktopEntryName(), "application/x-desktop",s->icon(),KStandardDirs::locate("services", s->entryPath()));
+            else
+			    createFileEntry(entry,s->name(),url.url( KUrl::AddTrailingSlash )+s->desktopEntryName(), "application/x-desktop",s->icon(),KStandardDirs::locate("apps", s->entryPath()));
 		}
 
 		listEntry(entry, false);

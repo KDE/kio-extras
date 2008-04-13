@@ -108,6 +108,8 @@
 **    time to look through all the available manpages.)
 */
 
+#include "man2html.h"
+
 # include <config-runtime.h>
 
 #include <ctype.h>
@@ -139,8 +141,6 @@
 #endif
 
 
-
-#include "man2html.h"
 
 using namespace std;
 

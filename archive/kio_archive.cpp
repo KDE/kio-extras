@@ -17,6 +17,8 @@
     Boston, MA 02110-1301, USA.
 */
 
+#include "kio_archive.h"
+
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <stdlib.h>
@@ -36,7 +38,6 @@
 #include <kde_file.h>
 #include <kio/global.h>
 
-#include "kio_archive.h"
 #include <kuser.h>
 
 using namespace KIO;

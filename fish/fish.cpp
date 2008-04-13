@@ -24,6 +24,8 @@
   back to KProcess should be easy.
 */
 
+#include "fish.h"
+
 #include <config-runtime.h>
 #include "config-fish.h"
 #include <QFile>
@@ -82,7 +84,6 @@
 #include <sys/resource.h>
 #include <kdefakes.h>
 
-#include "fish.h"
 #include "fishcode.h"
 
 #ifndef NDEBUG

@@ -54,9 +54,9 @@
  * Thus, we could become incompatible with new OpenSSH releases.
  */
 
-#include <config-runtime.h>
-
 #include "ksshprocess.h"
+
+#include <config-runtime.h>
 
 #include <stdio.h>
 #include <errno.h>

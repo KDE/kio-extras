@@ -17,6 +17,8 @@
     Boston, MA 02110-1301, USA.
 */
 
+#include "exrcreator.h"
+
 #include <QImage>
 
 #include <kdebug.h>
@@ -27,7 +29,6 @@
 #include <ImfInputFile.h>
 #include <ImfPreviewImage.h>
 
-#include "exrcreator.h"
 #include <kconfiggroup.h>
 
 extern "C"

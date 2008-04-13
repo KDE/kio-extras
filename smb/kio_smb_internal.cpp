@@ -28,8 +28,8 @@
 //
 /////////////////////////////////////////////////////////////////////////////
 
-#include "kio_smb.h"
 #include "kio_smb_internal.h"
+#include "kio_smb.h"
 
 #include <QTextCodec>
 

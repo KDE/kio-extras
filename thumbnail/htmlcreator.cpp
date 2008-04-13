@@ -18,6 +18,8 @@
     Boston, MA 02110-1301, USA.
 */
 
+#include "htmlcreator.h"
+
 #include <time.h>
 
 #include <QPixmap>
@@ -29,8 +31,6 @@
 
 #include <kapplication.h>
 #include <khtml_part.h>
-
-#include "htmlcreator.h"
 
 extern "C"
 {

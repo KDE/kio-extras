@@ -17,13 +17,13 @@
     Boston, MA 02110-1301, USA.
 */
 
+#include "svgcreator.h"
+
 #include <QImage>
 #include <QPainter>
 
 #include <kdemacros.h>
 #include <ksvgrenderer.h>
-
-#include "svgcreator.h"
 
 extern "C"
 {

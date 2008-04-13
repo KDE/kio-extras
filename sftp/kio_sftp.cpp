@@ -23,6 +23,8 @@ Ssh will detect this terminal and ask for a password there, but will just get ga
 So we can't connect.
 */
 
+#include "kio_sftp.h"
+
 #include <config-runtime.h>
 
 #include <fcntl.h>
@@ -65,7 +67,6 @@ So we can't connect.
 #include <kconfiggroup.h>
 
 #include "sftp.h"
-#include "kio_sftp.h"
 #include "atomicio.h"
 #include "sftpfileattr.h"
 #include "ksshprocess.h"

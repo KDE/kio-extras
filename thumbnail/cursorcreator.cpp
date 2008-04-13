@@ -17,12 +17,12 @@
     Boston, MA 02110-1301, USA.
 */
 
+#include "cursorcreator.h"
+
 #include <QImage>
 #include <QFile>
 
 #include <kdemacros.h>
-
-#include "cursorcreator.h"
 
 #include <X11/Xlib.h>
 #include <X11/Xcursor/Xcursor.h>
