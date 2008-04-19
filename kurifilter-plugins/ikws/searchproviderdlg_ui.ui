@@ -19,7 +19,7 @@
       <item row="1" column="0" >
         <widget class="KLineEdit" name="leName" >
           <property name="whatsThis" stdset="0" >
-            <string>Enter the human readable name of the search provider here.</string>
+            <string>Enter the human-readable name of the search provider here.</string>
           </property>
         </widget>
       </item>
@@ -49,8 +49,8 @@
           </property>
           <property name="whatsThis" stdset="0" >
             <string>&lt;qt>
-Enter the URI that is used to do a search on the search engine here.&lt;br/>The whole text to be searched for can be specified as \{@} or \{0}.&lt;br/>
-Recommended is \{@}, since it removes all query variables (name=value) from the resulting string whereas \{0} will be substituted with the unmodified query string.&lt;br/>You can use \{1} ... \{n} to specify certain words from the query and \{name} to specify a value given by 'name=value' in the user query.&lt;br/>In addition it is possible to specify multiple references (names, numbers and strings) at once (\{name1,name2,...,"string"}).&lt;br/>The first matching value (from the left) will be used as substitution value for the resulting URI.&lt;br/>A quoted string can be used as default value if nothing matches from the left of the reference list.
+Enter the URI that is used to perform a search on the search engine here.&lt;br/>The whole text to be searched for can be specified as \{@} or \{0}.&lt;br/>
+Recommended is \{@}, since it removes all query variables (name=value) from the resulting string, whereas \{0} will be substituted with the unmodified query string.&lt;br/>You can use \{1} ... \{n} to specify certain words from the query and \{name} to specify a value given by 'name=value' in the user query.&lt;br/>In addition it is possible to specify multiple references (names, numbers and strings) at once (\{name1,name2,...,"string"}).&lt;br/>The first matching value (from the left) will be used as the substitution value for the resulting URI.&lt;br/>A quoted string can be used as the default value if nothing matches from the left of the reference list.
 &lt;/qt></string>
           </property>
           <property name="wordWrap" >
@@ -67,7 +67,7 @@ Recommended is \{@}, since it removes all query variables (name=value) from the 
             <cstring>leName</cstring>
           </property>
           <property name="whatsThis" stdset="0" >
-            <string>Enter the human readable name of the search provider here.</string>
+            <string>Enter the human-readable name of the search provider here.</string>
           </property>
           <property name="wordWrap" >
             <bool>true</bool>
@@ -105,8 +105,8 @@ The shortcuts entered here can be used as a pseudo-URI scheme in KDE. For exampl
         <widget class="KLineEdit" name="leQuery" >
           <property name="whatsThis" stdset="0" >
             <string>&lt;qt>
-Enter the URI that is used to do a search on the search engine here.&lt;br/>The whole text to be searched for can be specified as \{@} or \{0}.&lt;br/>
-Recommended is \{@}, since it removes all query variables (name=value) from the resulting string whereas \{0} will be substituted with the unmodified query string.&lt;br/>You can use \{1} ... \{n} to specify certain words from the query and \{name} to specify a value given by 'name=value' in the user query.&lt;br/>In addition it is possible to specify multiple references (names, numbers and strings) at once (\{name1,name2,...,"string"}).&lt;br/>The first matching value (from the left) will be used as substitution value for the resulting URI.&lt;br/>A quoted string can be used as default value if nothing matches from the left of the reference list.
+Enter the URI that is used to perform a search on the search engine here.&lt;br/>The whole text to be searched for can be specified as \{@} or \{0}.&lt;br/>
+Recommended is \{@}, since it removes all query variables (name=value) from the resulting string, whereas \{0} will be substituted with the unmodified query string.&lt;br/>You can use \{1} ... \{n} to specify certain words from the query and \{name} to specify a value given by 'name=value' in the user query.&lt;br/>In addition it is possible to specify multiple references (names, numbers and strings) at once (\{name1,name2,...,"string"}).&lt;br/>The first matching value (from the left) will be used as the substitution value for the resulting URI.&lt;br/>A quoted string can be used as the default value if nothing matches from the left of the reference list.
 &lt;/qt></string>
           </property>
         </widget>

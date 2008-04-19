@@ -26,7 +26,7 @@
     <widget class="QCheckBox" name="cbEnableShortcuts" >
      <property name="whatsThis" >
       <string>&lt;qt>
-Enable shortcuts that allow you to quickly search for information on the web. For example, entering the shortcut &lt;b>gg:KDE&lt;/b> will result in a search of the word &lt;b>KDE&lt;/b> on the Google(TM) search engine.
+Enable shortcuts that allow you to quickly search for information on the web. For example, entering the shortcut &lt;b>gg:KDE&lt;/b> will result in a search for the word &lt;b>KDE&lt;/b> on the Google(TM) search engine.
 &lt;/qt></string>
      </property>
      <property name="text" >
@@ -181,7 +181,7 @@ Select the search engine to use for input boxes that provide automatic lookup se
         </sizepolicy>
        </property>
        <property name="whatsThis" >
-        <string>List of search providers, their associated shortcuts and whether they shall be listed in menus.</string>
+        <string>List of search providers, their associated shortcuts and whether they should be listed in menus.</string>
        </property>
        <property name="showSortIndicator" >
         <bool>true</bool>
