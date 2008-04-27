@@ -39,7 +39,7 @@ QTEST_KDEMAIN( KUriFilterTest, NoGUI )
 static const char * const s_uritypes[] = { "NetProtocol", "LOCAL_FILE", "LOCAL_DIR", "EXECUTABLE", "HELP", "SHELL", "BLOCKED", "ERROR", "UNKNOWN" };
 #define NO_FILTERING -2
 
-static void filter( const char* u, const char * expectedResult = 0, int expectedUriType = -1, QStringList list = QStringList(), const char * abs_path = 0, bool checkForExecutables = true )
+static void filter( const char* u, const char * expectedResult = 0, int expectedUriType = -1, const QStringList& list = QStringList(), const char * abs_path = 0, bool checkForExecutables = true )
 {
     QString a = QString::fromUtf8( u );
     KUriFilterData * filterData = new KUriFilterData;
@@ -274,7 +274,11 @@ void KUriFilterTest::tests()
 
     filter( "$SOMEVAR/kdelibs/kio", 0, KUriFilterData::Error ); // note: this dir doesn't exist...
     filter( "$ETC/passwd", "/etc/passwd", KUriFilterData::LocalFile );
-    filter( "$QTDIR/doc/html/functions.html#s", QByteArray("file://")+qtdir+"/doc/html/functions.html#s", KUriFilterData::LocalFile );
+    QString qtdocPath = qtdir+"/doc/html/functions.html";
+    if (QFile::exists(qtdocPath)) {
+        QString expectedUrl = KUrl(qtdocPath).url()+"#s";
+        filter( "$QTDIR/doc/html/functions.html#s", expectedUrl.toUtf8(), KUriFilterData::LocalFile );
+    }
     filter( "http://www.kde.org/$USER", "http://www.kde.org/$USER", KUriFilterData::NetProtocol ); // no expansion
 
     filter( "$KDEHOME/share", kdehome+"/share", KUriFilterData::LocalDir );
