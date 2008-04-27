@@ -20,6 +20,7 @@
 #include "testkioarchive.h"
 #include <qtest_kde.h>
 #include <kio/copyjob.h>
+#include <kio/deletejob.h>
 #include <kio/netaccess.h>
 #include <ktar.h>
 #include <kstandarddirs.h>
@@ -60,7 +61,7 @@ void TestKioArchive::initTestCase()
 void TestKioArchive::testListTar()
 {
     m_listResult.clear();
-    KIO::ListJob* job = KIO::listDir(tarUrl());
+    KIO::ListJob* job = KIO::listDir(tarUrl(), KIO::HideProgressInfo);
     connect( job, SIGNAL( entries( KIO::Job*, const KIO::UDSEntryList& ) ),
              SLOT( slotEntries( KIO::Job*, const KIO::UDSEntryList& ) ) );
     bool ok = KIO::NetAccess::synchronousRun( job, 0 );
@@ -80,7 +81,7 @@ void TestKioArchive::testListTar()
 void TestKioArchive::testListRecursive()
 {
     m_listResult.clear();
-    KIO::ListJob* job = KIO::listRecursive(tarUrl());
+    KIO::ListJob* job = KIO::listRecursive(tarUrl(), KIO::HideProgressInfo);
     connect( job, SIGNAL( entries( KIO::Job*, const KIO::UDSEntryList& ) ),
              SLOT( slotEntries( KIO::Job*, const KIO::UDSEntryList& ) ) );
     bool ok = KIO::NetAccess::synchronousRun( job, 0 );
@@ -124,14 +125,17 @@ QString TestKioArchive::tmpDir() const
 
 void TestKioArchive::cleanupTestCase()
 {
-    KIO::NetAccess::del(tmpDir(), 0);
+    KIO::NetAccess::synchronousRun(KIO::del(tmpDir(), KIO::HideProgressInfo), 0);
 }
 
 void TestKioArchive::copyFromTar(const KUrl& src, const QString& destPath)
 {
     KUrl dest(destPath);
-    QVERIFY( KIO::NetAccess::exists( src, KIO::NetAccess::SourceSide, (QWidget*)0 ) );
-    KIO::Job* job = KIO::copyAs( src, dest );
+    // Check that src exists
+    KIO::StatJob* statJob = KIO::stat(src, KIO::StatJob::SourceSide, 0, KIO::HideProgressInfo);
+    QVERIFY(KIO::NetAccess::synchronousRun(statJob, 0));
+
+    KIO::Job* job = KIO::copyAs( src, dest, KIO::HideProgressInfo );
     bool ok = KIO::NetAccess::synchronousRun( job, 0 );
     QVERIFY( ok );
     QVERIFY( QFile::exists( destPath ) );
