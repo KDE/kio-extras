@@ -67,4 +67,5 @@ Query[be]=http://raa.ruby-lang.org/search.rhtml?search=\\{@}
 Query[bg]=http://raa.ruby-lang.org/search.rhtml?search=\\{@}
 Query[csb]=http://raa.ruby-lang.org/search.rhtml?search=\\{@}
 Query[eo]=http://raa.ruby-lang.org/en/raa-list.rhtml?name=\\{@}
+Query[ml]=http://www.go.com/Titles?col=WW&qt=\\{@}&svx=home_searchbox&sv=IS&lk=noframeso
 Query[x-test]=xxhttp://www.ruby-lang.org/en/raa-list.rhtml?name=\\{@}xx

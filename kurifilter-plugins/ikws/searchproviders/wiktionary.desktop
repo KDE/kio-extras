@@ -37,6 +37,7 @@ Name[ku]=Wîkîferheng - Ferhenga Azad
 Name[lt]=Wiktionary - laisvasis žodynas
 Name[lv]=Wiktionary - brīvā vārdnīca
 Name[mk]=Wiktionary - Слободниот речник
+Name[ml]=വിക്ഷ്ണറി - സ്വതന്ത്ര നിഘണ്ടു
 Name[nb]=Wiktionary – den frie ordboka
 Name[nds]=Wiktionary - dat fre'e Wöörbook (engl.)
 Name[ne]=विक्सनरी - नि:शुल्क शब्दकोश
@@ -78,6 +79,7 @@ Query[fy]=http://fy.wiktionary.org/wiki/Special:Search?search=\{@}&go=Go
 Query[it]=http://it.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[ko]=http://ko.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[ku]=http://ku.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[ml]=http://ml.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[nb]=http://no.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[nl]=http://nl.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[oc]=http://oc.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go

@@ -39,6 +39,7 @@ Name[ku]=Wîkîpediya - Ensîklopediya Azad
 Name[lt]=Wikipedia - laisva enciklopedija
 Name[lv]=Wikipedia - brīvā enciklopēdija
 Name[mk]=Википедија - Слободната енциклопедија
+Name[ml]=വിക്കിപീഡിയ - സ്വതന്ത്ര സര്‍വ്വവിജ്ഞാനകോശം
 Name[ms]=Wikipedia - Ensiklopedia Percuma
 Name[nb]=Wikipedia – det frie leksikonet
 Name[nds]=Wikipedia - dat fre'e Nakieksel
@@ -80,6 +81,7 @@ Query[fr]=http://fr.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[fy]=http://fy.wikipedia.org/wiki/Special:Search?search=\{@}&go=Go
 Query[it]=http://it.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[ko]=http://ko.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[ml]=http://ml.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[nb]=http://no.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[nl]=http://nl.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[oc]=http://oc.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
