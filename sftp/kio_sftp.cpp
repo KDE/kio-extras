@@ -837,6 +837,7 @@ void sftpProtocol::open(const KUrl &url, QIODevice::OpenMode mode)
     _DEBUG << url.url() << endl;
     openConnection();
     if (!mConnected) {
+        error(KIO::ERR_CONNECTION_BROKEN, url.prettyUrl());
         return;
     }
 
@@ -865,60 +866,63 @@ void sftpProtocol::open(const KUrl &url, QIODevice::OpenMode mode)
     attr.clear();
 
     quint32 pflags = 0;
+
     if (mode & QIODevice::ReadOnly) {
-        pflags |= SSH2_FXF_READ;
-    }
-    if (mode & QIODevice::WriteOnly) {
-        pflags |= SSH2_FXF_WRITE | SSH2_FXF_CREAT;
-    }
-    if (mode & QIODevice::Append) {
-        pflags |= SSH2_FXF_WRITE | SSH2_FXF_APPEND;
-    } else if (mode & QIODevice::WriteOnly) {
-        if (!(mode & QIODevice::ReadOnly) || mode & QIODevice::Truncate) {
-            pflags |= SSH2_FXF_TRUNC;
+        if (mode & QIODevice::WriteOnly) {
+            pflags = SSH2_FXF_READ | SSH2_FXF_WRITE | SSH2_FXF_CREAT;
+        } else {
+            pflags = SSH2_FXF_READ;
         }
+    } else if (mode & QIODevice::WriteOnly) {
+        pflags = SSH2_FXF_WRITE | SSH2_FXF_CREAT;
     }
 
-    if (sftpOpen(url, pflags, attr, openHandle) != SSH2_FX_OK) {
+    if (mode & QIODevice::Append) {
+        pflags |= SSH2_FXF_APPEND;
+    } else if (mode & QIODevice::Truncate) {
+        pflags |= SSH2_FXF_TRUNC;
+    }
+
+    code = sftpOpen(url, pflags, attr, openHandle);
+    if (code != SSH2_FX_OK) {
         _DEBUG << "sftpOpen error" << endl;
-        error(KIO::ERR_CANNOT_OPEN_FOR_READING, url.prettyUrl());
+        processStatus(code, url.prettyUrl());
         return;
     }
 
     // Determine the mimetype of the file to be retrieved, and emit it.
     // This is mandatory in all slaves (for KRun/BrowserRun to work).
-    QByteArray buffer;
-    if ((code = sftpRead(openHandle, 0, 1024, buffer)) == SSH2_FX_OK) {
+    // If we're not opening the file ReadOnly or ReadWrite, don't attempt to
+    // read the file and send the mimetype.
+    if (mode & QIODevice::ReadOnly){
+        QByteArray buffer;
+        code = sftpRead(openHandle, 0, 1024, buffer);
+        if ((code != SSH2_FX_OK) && (code != SSH2_FX_EOF)){
+            _DEBUG << "error on mime type detection" << endl;
+            processStatus(code, url.prettyUrl());
+            close();
+            return;
+        }
         KMimeType::Ptr mime = KMimeType::findByNameAndContent(url.fileName(), buffer);
         mimeType(mime->name());
-        totalSize(fileSize);
-        position(0);
-        opened();
-    } else {
-        _DEBUG << "error on mime type detection" << endl;
-        processStatus(code, url.prettyUrl());
-        return;
     }
 
     openUrl = url;
     openOffset = 0;
+    totalSize(fileSize);
+    position(0);
+    opened();
 }
 
 void sftpProtocol::read(KIO::filesize_t bytes)
 {
     _DEBUG << "read, offset = " << openOffset << ", bytes = " << bytes << endl;
     QByteArray buffer;
-    int code;
-
-    if ((code = sftpRead(openHandle, openOffset, bytes, buffer)) == SSH2_FX_OK) {
+    int code = sftpRead(openHandle, openOffset, bytes, buffer);
+    if ((code == SSH2_FX_OK) || (code == SSH2_FX_EOF)) {
         openOffset += buffer.size();
         data(buffer);
-        buffer.clear();
     } else {
-        // empty array designates eof
-        if (code == SSH2_FX_EOF) {
-            data(QByteArray());
-        }
         processStatus(code, openUrl.prettyUrl());
         close();
     }
@@ -927,10 +931,10 @@ void sftpProtocol::read(KIO::filesize_t bytes)
 void sftpProtocol::write(const QByteArray &data)
 {
     _DEBUG << "write" << endl;
-    int code;
-    if ((code = sftpWrite(openHandle, openOffset, data)) == SSH2_FX_OK) {
-        written(data.size());
+    int code = sftpWrite(openHandle, openOffset, data);
+    if (code == SSH2_FX_OK) {
         openOffset += data.size();
+        written(data.size());
     } else {
         processStatus(code, openUrl.prettyUrl());
         close();
@@ -940,8 +944,8 @@ void sftpProtocol::write(const QByteArray &data)
 void sftpProtocol::seek(KIO::filesize_t offset)
 {
     _DEBUG << "seek, offset = " << offset << endl;
-    position(offset);
     openOffset = offset;
+    position(offset);
 }
 
 void sftpProtocol::close()
@@ -1710,11 +1714,14 @@ sftpProtocol::Status sftpProtocol::doProcessStatus(quint8 code, const QString& m
     {
       case SSH2_FX_OK:
       case SSH2_FX_EOF:
+          res.text = i18n("End of file.");
           break;
       case SSH2_FX_NO_SUCH_FILE:
+          res.text = i18n("File does not exist.");
           res.code = ERR_DOES_NOT_EXIST;
           break;
       case SSH2_FX_PERMISSION_DENIED:
+          res.text = i18n("Access is denied.");
           res.code = ERR_ACCESS_DENIED;
           break;
       case SSH2_FX_FAILURE:
@@ -1740,8 +1747,9 @@ sftpProtocol::Status sftpProtocol::doProcessStatus(quint8 code, const QString& m
 /** Process SSH_FXP_STATUS packets. */
 void sftpProtocol::processStatus(quint8 code, const QString& message){
     Status st = doProcessStatus( code, message );
-    if( st.code != 0 )
+    if( st.code != 0 ){
         error( st.code, st.text );
+    }
 }
 
 /** Opens a directory handle for url.path. Returns true if succeeds. */
