@@ -47,6 +47,7 @@ void auth_smbc_get_data(SMBCCTX * context,
 //==========================================================================
 {
     if (context != NULL) {
+        // FIXME deprecated use smbc_getOption*() functions instead
         SMBSlave *theSlave = (SMBSlave*)smbc_option_get(context, "user_data");
         theSlave->auth_smbc_get_data(server, share,
                                      workgroup,wgmaxlen,
@@ -188,11 +189,12 @@ bool SMBSlave::auth_initialize_smbc()
 
 	smb_context->debug = debug_level;
 	smb_context->callbacks.auth_fn = NULL;
+    // FIXME deprecated use smbc_setOption*() functions instead.
 	smbc_option_set(smb_context, "auth_function", (void*)::auth_smbc_get_data);
 	smbc_option_set(smb_context, "user_data", this);
 
 	if (!smbc_init_context(smb_context)) {
-		smbc_free_context(smb_context, false);
+		smbc_free_context(smb_context, 0);
 		smb_context = NULL;
             	SlaveBase::error(ERR_INTERNAL, i18n("libsmbclient failed to initialize context"));
 	    	return false;

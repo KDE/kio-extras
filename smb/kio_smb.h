@@ -127,6 +127,7 @@ private:
      * looks like gcc (C/C++) failure
      */
     struct stat st;
+
 protected:
     //---------------------------------------------
     // Authentication functions (kio_smb_auth.cpp)
@@ -214,7 +215,7 @@ protected:
      */
     KUrl checkURL(const KUrl& kurl) const;
 
-    void reportError(const SMBUrl &kurl);
+    void reportError(const SMBUrl &kurl, const int &errNum);
 
 public:
 
@@ -254,8 +255,8 @@ public:
     virtual void get( const KUrl& kurl );
     virtual void put( const KUrl& kurl, int permissions, KIO::JobFlags flags );
     virtual void open( const KUrl& kurl, QIODevice::OpenMode mode );
-    virtual void read( KIO::filesize_t size );
-    virtual void write( const QByteArray &data );
+    virtual void read( KIO::filesize_t bytesRequested );
+    virtual void write( const QByteArray &fileData );
     virtual void seek( KIO::filesize_t offset );
     virtual void close();
 
@@ -272,10 +273,13 @@ private Q_SLOTS:
 
 private:
     QString mybuf, mystderr;
-
-    int openFd;
-    bool justOpened;
-    SMBUrl openUrl;
+     /**
+     * Used in open(), read(), write(), and close()
+     * FIXME Placing these in the private section above causes m_openUrl = kurl
+     * to fail in SMBSlave::open. Need to find out why this is.
+     */
+    int m_openFd;
+    SMBUrl m_openUrl;
 };
 
 //==========================================================================

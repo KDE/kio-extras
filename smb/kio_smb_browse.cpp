@@ -44,19 +44,25 @@ using namespace KIO;
 
 int SMBSlave::cache_stat(const SMBUrl &url, struct stat* st )
 {
+    int cacheStatErr;
     int result = smbc_stat( url.toSmbcUrl(), st);
-    kDebug(KIO_SMB) << "smbc_stat " << url << " " << errno << " " << result;
+    if (result == 0){
+        cacheStatErr = 0;
+    } else {
+        cacheStatErr = errno;
+    }
     kDebug(KIO_SMB) << "size " << (KIO::filesize_t)st->st_size;
-    return result;
+    return cacheStatErr;
 }
 
 //---------------------------------------------------------------------------
 bool SMBSlave::browse_stat_path(const SMBUrl& _url, UDSEntry& udsentry, bool ignore_errors)
   // Returns: true on success, false on failure
 {
-    SMBUrl url = _url;
+   SMBUrl url = _url;
 
-   if(cache_stat(url, &st) == 0)
+   int cacheStatErr = cache_stat(url, &st);
+   if(cacheStatErr == 0)
    {
       if(!S_ISDIR(st.st_mode) && !S_ISREG(st.st_mode))
       {
@@ -94,14 +100,14 @@ bool SMBSlave::browse_stat_path(const SMBUrl& _url, UDSEntry& udsentry, bool ign
    else
    {
        if (!ignore_errors) {
-           if (errno == EPERM || errno == EACCES)
+           if (cacheStatErr == EPERM || cacheStatErr == EACCES)
                if (checkPassword(url)) {
                    redirection( url );
                    return false;
                }
 
-           reportError(url);
-       } else if (errno == ENOENT || errno == ENOTDIR) {
+           reportError(url, cacheStatErr);
+       } else if (cacheStatErr == ENOENT || cacheStatErr == ENOTDIR) {
            warning(i18n("File does not exist: %1", url.url()));
        }
        kDebug(KIO_SMB) << "SMBSlave::browse_stat_path ERROR!!";
@@ -206,10 +212,11 @@ KUrl SMBSlave::checkURL(const KUrl& kurl) const
     return url;
 }
 
-void SMBSlave::reportError(const SMBUrl &url)
+void SMBSlave::reportError(const SMBUrl &url, const int &errNum)
 {
-    kDebug(KIO_SMB) << "reportError " << url << " " << perror;
-    switch(errno)
+    kDebug(KIO_SMB) << "errNum" << errNum;
+
+    switch(errNum)
     {
     case ENOENT:
         if (url.getType() == SMBURLTYPE_ENTIRE_NETWORK)
@@ -279,7 +286,7 @@ void SMBSlave::reportError(const SMBUrl &url)
 								"if they ask for it)") );
 	  break;
     default:
-        error( ERR_INTERNAL, i18n("Unknown error condition in stat: %1", QString::fromLocal8Bit( strerror(errno))) );
+        error( ERR_INTERNAL, i18n("Unknown error condition in stat: %1", QString::fromLocal8Bit( strerror(errNum))) );
     }
 }
 
@@ -287,6 +294,7 @@ void SMBSlave::reportError(const SMBUrl &url)
 void SMBSlave::listDir( const KUrl& kurl )
 {
    kDebug(KIO_SMB) << "SMBSlave::listDir on " << kurl;
+   int errNum = 0;
 
    // check (correct) URL
    KUrl url = checkURL(kurl);
@@ -305,6 +313,12 @@ void SMBSlave::listDir( const KUrl& kurl )
    UDSEntry    udsentry;
 
    dirfd = smbc_opendir( m_current_url.toSmbcUrl() );
+   if (dirfd > 0){
+      errNum = 0;
+   } else {
+      errNum = errno;
+   }
+
    kDebug(KIO_SMB) << "SMBSlave::listDir open " << m_current_url.toSmbcUrl() << " " << m_current_url.getType() << " " << dirfd;
    if(dirfd >= 0)
    {
@@ -416,14 +430,15 @@ void SMBSlave::listDir( const KUrl& kurl )
    }
    else
    {
-       if (errno == EPERM || errno == EACCES)
+       if (errNum == EPERM || errNum == EACCES) {
            if (checkPassword(m_current_url)) {
                redirection( m_current_url );
                finished();
                return;
            }
+       }
 
-       reportError(m_current_url);
+       reportError(m_current_url, errNum);
        finished();
        return;
    }

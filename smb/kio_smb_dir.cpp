@@ -44,10 +44,11 @@ void SMBSlave::copy( const KUrl& ksrc,
     SMBUrl          src;
     SMBUrl          dst;
     mode_t          initialmode;
-    int             n;
+    ssize_t         n;
     int             dstflags;
     int             srcfd = -1;
     int             dstfd = -1;
+    int             errNum = 0;
     KIO::filesize_t processed_size = 0;
     unsigned char   buf[MAX_XFER_BUF_SIZE];
 
@@ -58,9 +59,10 @@ void SMBSlave::copy( const KUrl& ksrc,
     dst = kdst;
 
     // Obtain information about source
-    if(cache_stat(src, &st ) == -1)
+    errNum = cache_stat(src, &st );
+    if( errNum != 0 )
     {
-        if ( errno == EACCES )
+        if ( errNum == EACCES )
         {
             error( KIO::ERR_ACCESS_DENIED, src.prettyUrl());
         }
@@ -78,7 +80,8 @@ void SMBSlave::copy( const KUrl& ksrc,
     totalSize(st.st_size);
 
     // Check to se if the destination exists
-    if(cache_stat(dst, &st) != -1)
+    errNum = cache_stat(dst, &st);
+    if( errNum == 0 )
     {
         if(S_ISDIR(st.st_mode))
         {
@@ -94,9 +97,15 @@ void SMBSlave::copy( const KUrl& ksrc,
 
     // Open the source file
     srcfd = smbc_open(src.toSmbcUrl(), O_RDONLY, 0);
+    if (srcfd < 0){
+        errNum = errno;
+    } else {
+        errNum = 0;
+    }
+
     if(srcfd < 0)
     {
-        if(errno == EACCES)
+        if(errNum == EACCES)
         {
             error( KIO::ERR_ACCESS_DENIED, src.prettyUrl() );
         }
@@ -125,9 +134,15 @@ void SMBSlave::copy( const KUrl& ksrc,
         dstflags |= O_EXCL;
     }
     dstfd = smbc_open(dst.toSmbcUrl(), dstflags, initialmode);
+    if (dstfd < 0){
+        errNum = errno;
+    } else {
+        errNum = 0;
+    }
+
     if(dstfd < 0)
     {
-        if(errno == EACCES)
+        if(errNum == EACCES)
         {
             error(KIO::ERR_WRITE_ACCESS_DENIED, dst.prettyUrl());
         }
@@ -135,10 +150,11 @@ void SMBSlave::copy( const KUrl& ksrc,
         {
             error(KIO::ERR_CANNOT_OPEN_FOR_READING, dst.prettyUrl());
         }
-	if(srcfd >= 0 )
-	{
-	  smbc_close(srcfd);
-	}
+
+        if(srcfd >= 0 )
+        {
+            smbc_close(srcfd);
+        }
         return;
     }
 
@@ -201,30 +217,39 @@ void SMBSlave::del( const KUrl &kurl, bool isfile)
 {
     kDebug(KIO_SMB) << "SMBSlave::del on " << kurl;
     m_current_url = kurl;
+    int errNum = 0;
+    int retVal = 0;
 
     if(isfile)
     {
         // Delete file
         kDebug(KIO_SMB) << "SMBSlave:: unlink " << kurl;
-        if(smbc_unlink(m_current_url.toSmbcUrl()) == -1)
+        retVal = smbc_unlink(m_current_url.toSmbcUrl());
+        if ( retVal < 0 ){
+            errNum = errno;
+        } else {
+            errNum = 0;
+        }
+
+        if( retVal < 0 )
         {
-            switch(errno)
-            {
-            case EISDIR:
-                error( KIO::ERR_IS_DIRECTORY, m_current_url.prettyUrl());
-                break;
-            default:
-                reportError(kurl);
-            }
+            reportError(kurl, errNum);
         }
     }
     else
     {
         kDebug(KIO_SMB) << "SMBSlave:: rmdir " << kurl;
         // Delete directory
-        if(smbc_rmdir(m_current_url.toSmbcUrl()) == -1)
+        retVal = smbc_rmdir(m_current_url.toSmbcUrl());
+        if( retVal < 0 ) {
+            errNum = errno;
+        } else {
+            errNum = 0;
+        }
+
+        if( retVal < 0 )
         {
-            reportError(kurl);
+            reportError(kurl, errNum);
         }
     }
 
@@ -235,12 +260,22 @@ void SMBSlave::del( const KUrl &kurl, bool isfile)
 void SMBSlave::mkdir( const KUrl &kurl, int permissions )
 {
     kDebug(KIO_SMB) << "SMBSlave::mkdir on " << kurl;
+    int errNum = 0;
+    int retVal = 0;
     m_current_url = kurl;
 
-    if(smbc_mkdir(m_current_url.toSmbcUrl(), 0777) != 0)
+    retVal = smbc_mkdir(m_current_url.toSmbcUrl(), 0777);
+    if( retVal < 0 ){
+        errNum = errno;
+    } else {
+        errNum = 0;
+    }
+
+    if( retVal < 0 )
     {
-        if (errno == EEXIST) {
-            if(cache_stat(m_current_url, &st ) == 0)
+        if (errNum == EEXIST) {
+            errNum = cache_stat(m_current_url, &st );
+            if( errNum == 0 )
             {
                 if(S_ISDIR(st.st_mode ))
                 {
@@ -252,7 +287,7 @@ void SMBSlave::mkdir( const KUrl &kurl, int permissions )
                 error( KIO::ERR_FILE_ALREADY_EXIST, m_current_url.prettyUrl());
             }
         } else
-            reportError(kurl);
+            reportError(kurl, errNum);
 	kDebug(KIO_SMB) << "SMBSlave::mkdir exit with error " << kurl;
     }
     else
@@ -274,6 +309,8 @@ void SMBSlave::rename( const KUrl& ksrc, const KUrl& kdest, KIO::JobFlags flags 
 
     SMBUrl      src;
     SMBUrl      dst;
+    int         errNum = 0;
+    int         retVal = 0;
 
     kDebug(KIO_SMB) << "SMBSlave::rename, old name = " << ksrc << ", new name = " << kdest;
 
@@ -283,7 +320,8 @@ void SMBSlave::rename( const KUrl& ksrc, const KUrl& kdest, KIO::JobFlags flags 
     // Check to se if the destination exists
 
     kDebug(KIO_SMB) << "SMBSlave::rename stat dst";
-    if(cache_stat(dst, &st) != -1)
+    errNum = cache_stat(dst, &st);
+    if( errNum == 0 )
     {
         if(S_ISDIR(st.st_mode))
         {
@@ -301,15 +339,23 @@ void SMBSlave::rename( const KUrl& ksrc, const KUrl& kdest, KIO::JobFlags flags 
 	}
     }
     kDebug(KIO_SMB ) << "smbc_rename " << src.toSmbcUrl() << " " << dst.toSmbcUrl();
-    if(smbc_rename(src.toSmbcUrl(), dst.toSmbcUrl())!=0)
+    retVal = smbc_rename(src.toSmbcUrl(), dst.toSmbcUrl());
+    if( retVal < 0 ){
+        errNum = errno;
+    } else {
+        errNum = 0;
+    }
+
+    if( retVal < 0 )
     {
-        kDebug(KIO_SMB ) << "failed " << perror;
-      switch(errno)
+      kDebug(KIO_SMB ) << "failed ";
+      switch(errNum)
       {
         case ENOENT:
-          if(cache_stat(src, &st) == -1)
+          errNum = cache_stat(src, &st);
+          if( errNum != 0 )
           {
-              if(errno == EACCES)
+              if(errNum == EACCES)
 	      {
 	        kDebug(KIO_SMB) << "SMBSlave::rename KIO::ERR_ACCESS_DENIED";
                 error(KIO::ERR_ACCESS_DENIED, src.prettyUrl());
