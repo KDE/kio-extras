@@ -81,8 +81,6 @@ It is set to false if the connection becomes closed.
   void special( const QByteArray &data );
 
 private: // Private attributes
-  /** the SSH process used to communicate with the remote end */
-  pid_t childPid;
   /** fd for reading and writing to the process */
   int childFd;
   /** buffer for data to be written */
@@ -129,7 +127,7 @@ protected: // Protected attributes
   /** number of lines received, == 0 -> everything went ok */
   int errorCount;
   /** queue for lines to be sent */
-  QStringList qlist;
+  QList<QByteArray> qlist;
   /** queue for commands to be sent */
   QStringList commandList;
   /** queue for commands to be sent */

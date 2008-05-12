@@ -113,6 +113,9 @@ static char *suPath = NULL;
 // disabled: currently not needed. Didn't work reliably.
 // static int isOpenSSH = 0;
 
+/** the SSH process used to communicate with the remote end */
+static pid_t childPid;
+
 #define E(x) ((const char*)remoteEncoding()->encode(x).data())
 
 using namespace KIO;
@@ -120,7 +123,7 @@ extern "C" {
 
 static void ripper(int)
 {
-    while (waitpid(-1,0,WNOHANG) > 0) {
+    while (waitpid(childPid,0,WNOHANG) > 0) {
       // do nothing, go on
     }
 }
@@ -1149,14 +1152,14 @@ void fishProtocol::manageConnection(const QString &l) {
 
 void fishProtocol::writeStdin(const QString &line)
 {
-    qlist.append(line);
+    qlist.append(line.toLatin1());
 
     if (writeReady) {
         writeReady = false;
         //myDebug( << "Writing: " << qlist.first().mid(0,qlist.first().indexOf('\n')) << endl);
         myDebug( << "Writing: " << qlist.first() << endl);
         myDebug( << "---------" << endl);
-        writeChild((const char *)qlist.first().toLatin1(), qlist.first().length());
+        writeChild((const char *)qlist.first(), qlist.first().length());
     }
 }
 
@@ -1188,7 +1191,7 @@ void fishProtocol::sent()
         //myDebug( << "Writing: " << qlist.first().mid(0,qlist.first().indexOf('\n')) << endl);
         myDebug( << "Writing: " << qlist.first() << endl);
         myDebug( << "---------" << endl);
-        writeChild((const char *)qlist.first().toLatin1(),qlist.first().length());
+        writeChild((const char *)qlist.first(),qlist.first().length());
     }
 }
 
