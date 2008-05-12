@@ -40,4 +40,5 @@ X-KDE-ServiceTypes=SearchProvider
 Keys=atw,alltheweb
 Query=http://www.alltheweb.com/search?exec=FAST+Search&type=all&query=\\{@}&cat=web
 Query[bg]=Query=http://www.alltheweb.com/search?exec=FAST+Search&type=all&query=\\{@}&cat=web
+Query[fr]=http://www.alltheWeb.com/search?exec=FAST+Search&type=all&query=\\{@}&cat=web
 Query[x-test]=xxhttp://www.alltheweb.com/search?exec=FAST+Search&type=all&query=\\{@}&cat=webxx
