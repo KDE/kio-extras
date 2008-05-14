@@ -67,8 +67,8 @@ Name[wa]=Catalogue do CTAN
 Name[x-test]=xxCTAN Catalogxx
 Name[zh_CN]=CTAN 目录
 Name[zh_TW]=CTAN 目錄
-Query=http://www.ctan.org/tools/cataloguesearch?action=/search/&catstring=\\{@}
-Query[bg]=Query=http://www.ctan.org/tools/cataloguesearch?action=/search/&catstring=\\{@}
-Query[x-test]=xxhttp://www.ctan.org/tools/cataloguesearch?action=/search/&catstring=\\{@}xx
+Query=http://tug.ctan.org/cgi-bin/search.py?metadataSearch=\\{@}&metadataSearchSubmit=Search
+Query[bg]=http://tug.ctan.org/cgi-bin/search.py?metadataSearch=\\{@}&metadataSearchSubmit=Search
+Query[x-test]=xxhttp://tug.ctan.org/cgi-bin/search.py?metadataSearch=\\{@}&metadataSearchSubmit=Search
 X-KDE-ServiceTypes=SearchProvider
 Type=Service

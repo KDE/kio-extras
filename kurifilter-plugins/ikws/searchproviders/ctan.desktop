@@ -46,11 +46,11 @@ Name[x-test]=xxCTAN - Comprehensive TeX Archive Networkxx
 Name[xh]=CTAN - Enomxholo TeX Indawo yokugcina Yomsebenzi womnatha
 Name[zh_CN]=CTAN - 综合性 TeX 档案网络
 Name[zh_TW]=CTAN - 全面的 Tex 收集網路
-Query=http://www.ctan.org/tools/filesearch?action=/search/&filename=\\{@}
-Query[be]=http://www.ctan.org/tools/cataloguesearch?action=/search/&catstring=\\{@}
-Query[bg]=Query=http://www.ctan.org/tools/cataloguesearch?action=/search/&catstring=\\{@}
-Query[csb]=http://www.ctan.org/tools/cataloguesearch?action=/search/&catstring=\\{@}
-Query[eo]=http://www.ctan.org/tools/filesearch?action=/search/&=filename\\{@}
-Query[x-test]=xxhttp://www.ctan.org/tools/filesearch?action=/search/&filename=\\{@}xx
+Query=http://ctan.org/cgi-bin/filenameSearch.py?filename=\\{@}&Search=Search
+Query[be]=http://ctan.org/cgi-bin/filenameSearch.py?filename=\\{@}&Search=Search
+Query[bg]=http://ctan.org/cgi-bin/filenameSearch.py?filename=\\{@}&Search=Search
+Query[csb]=http://ctan.org/cgi-bin/filenameSearch.py?filename=\\{@}&Search=Search
+Query[eo]=http://ctan.org/cgi-bin/filenameSearch.py?filename=\\{@}&Search=Search
+Query[x-test]=xxhttp://ctan.org/cgi-bin/filenameSearch.py?filename=\\{@}&Search=Search
 X-KDE-ServiceTypes=SearchProvider
 Type=Service
