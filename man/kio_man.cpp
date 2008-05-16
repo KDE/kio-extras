@@ -85,8 +85,8 @@ bool parseUrl(const QString& _url, QString &title, QString &section)
     section.clear();
 
     QString url = _url;
-    if (url.at(0) == '/') {
-        if (KStandardDirs::exists(url)) {
+    if (url.isEmpty() || url.at(0) == '/') {
+        if (url.isEmpty() || KStandardDirs::exists(url)) {
             title = url;
             return true;
         } else
@@ -1482,7 +1482,7 @@ void MANProtocol::showIndex(const QString& section)
 
 void MANProtocol::listDir(const KUrl &url)
 {
-    kDebug( 7107 ) << "ENTER listDir: " << url.prettyUrl();
+    kDebug( 7107 ) << url;
 
     QString title;
     QString section;
