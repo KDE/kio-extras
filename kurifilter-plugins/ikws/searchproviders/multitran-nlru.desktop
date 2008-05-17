@@ -2,6 +2,7 @@
 Charset=cp 1251
 Type=Service
 Name=Multitran - Translate Between Dutch and Russian
+Name[af]=Multitran - Vertaal tussen Nederlands en Russies
 Name[ca]=Multitran - Tradueix entre holandès i rus
 Name[de]=Multitran - Übersetzung Niederländisch/Russisch
 Name[el]=Multitran - Μετάφραση μεταξύ Ολλανδικών και Ρωσικών
@@ -9,6 +10,7 @@ Name[eo]=Multitran - Traduko inter la nederlanda kaj la rusa
 Name[es]=Multitran - Traducción entre danés y ruso
 Name[et]=Multitran - tõlkimine: hollandi-vene
 Name[fi]=Multitran - Käännä tekstiä hollannin ja venäjän välillä
+Name[fr]=Multitran - Traduction Néerlandais - Russe
 Name[ga]=Multitran - Aistriúchán idir Ollainnis agus Rúisis
 Name[gu]=મલ્ટિટ્રાન - ડચ અને રશિયન વચ્ચેનું ભાષાંતર
 Name[ja]=Multitran - オランダ語-ロシア語間の翻訳

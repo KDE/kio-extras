@@ -1,7 +1,7 @@
 [Desktop Entry]
 Type=Service
 Name=LEO - Translate Between French and German
-Name[af]=LEO - Vertaal tussen Fraans en Duits
+Name[af]=LEO - Vertaal tussen Frans en Duits
 Name[be]=LEO - Пераклад з французскай на нямецкую і наадварот
 Name[bn]=লিও - জার্মান থেকে ফরাসী বা ফরাসী থেকে জার্মান-এ অনুবাদ করুন
 Name[ca]=LEO - Tradueix entre francès i alemany
@@ -58,7 +58,8 @@ Name[tg]=LEO - Тарҷума дар байни Фрасавию Олмонӣ
 Name[th]=LEO - แปลภาษา ฝรั่งเศส <-> เยอรมัน
 Name[tr]=LEO - Fransızcadan Almancaya Çeviri
 Name[uk]=LEO - переклад між французькою та німецькою
-Name[uz]=LEO - Французчадан Олмончага таржима
+Name[uz]=LEO - Fransuzchadan Olmonchaga tarjima
+Name[uz@cyrillic]=LEO - Французчадан Олмончага таржима
 Name[vi]=LEO - Dịch tiếng Pháp sang tiếng Đức
 Name[wa]=LEO - Ratoûne inte li francès eyet l' almand
 Name[x-test]=xxLEO - Translate Between French and Germanxx

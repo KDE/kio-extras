@@ -1,7 +1,7 @@
 [Desktop Entry]
 Type=Service
 Name=Text Files
-Name[af]=Teks Lêers
+Name[af]=Tekslêers
 Name[ar]=ملفات نصية
 Name[be]=Тэкставыя файлы
 Name[bg]=Текстови файлове
@@ -65,7 +65,8 @@ Name[tg]=Файлҳои матн
 Name[th]=แฟ้มข้อความ
 Name[tr]=Metin Dosyaları
 Name[uk]=Текстові файли
-Name[uz]=Матн файллари
+Name[uz]=Matn fayllari
+Name[uz@cyrillic]=Матн файллари
 Name[vi]=Tập tin Văn bản
 Name[wa]=Fitchîs tecse
 Name[x-test]=xxText Filesxx

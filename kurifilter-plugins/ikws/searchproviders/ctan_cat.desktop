@@ -61,14 +61,13 @@ Name[tg]=Каталоги CTAN
 Name[th]=แคตตาล็อก CTAN
 Name[tr]=CTAN Kataloğu
 Name[uk]=Каталог CTAN
-Name[uz]=CTAN каталоги
+Name[uz]=CTAN katalogi
+Name[uz@cyrillic]=CTAN каталоги
 Name[vi]=Phân loại CTAN
 Name[wa]=Catalogue do CTAN
 Name[x-test]=xxCTAN Catalogxx
 Name[zh_CN]=CTAN 目录
 Name[zh_TW]=CTAN 目錄
 Query=http://tug.ctan.org/cgi-bin/search.py?metadataSearch=\\{@}&metadataSearchSubmit=Search
-Query[bg]=http://tug.ctan.org/cgi-bin/search.py?metadataSearch=\\{@}&metadataSearchSubmit=Search
-Query[x-test]=xxhttp://tug.ctan.org/cgi-bin/search.py?metadataSearch=\\{@}&metadataSearchSubmit=Search
 X-KDE-ServiceTypes=SearchProvider
 Type=Service
