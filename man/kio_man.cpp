@@ -1501,7 +1501,7 @@ void MANProtocol::listDir(const KUrl &url)
     // However we can list man: and man:(1) as a directory (e.g. in dolphin).
     // But we cannot list man:ls as a directory, this makes no sense (#154173)
 
-    if (!title.isEmpty()) {
+    if (!title.isEmpty() && title != "/") {
 	error(KIO::ERR_IS_FILE, url.url());
         return;
     }
