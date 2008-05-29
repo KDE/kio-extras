@@ -87,6 +87,7 @@ bool parseUrl(const QString& _url, QString &title, QString &section)
     QString url = _url;
     if (url.isEmpty() || url.at(0) == '/') {
         if (url.isEmpty() || KStandardDirs::exists(url)) {
+            // man:/usr/share/man/man1/ls.1.gz is a valid file
             title = url;
             return true;
         } else
@@ -96,19 +97,21 @@ bool parseUrl(const QString& _url, QString &title, QString &section)
         }
     }
 
-    while (url.at(0) == '/')
+    while (!url.isEmpty() && url.at(0) == '/')
         url.remove(0,1);
 
     title = url;
 
     int pos = url.indexOf('(');
     if (pos < 0)
-        return true;
+        return true; // man:ls -> title=ls
 
     title = title.left(pos);
 
     section = url.mid(pos+1);
     section = section.left(section.length()-1);
+
+    // man:ls(2) -> title="ls", section="2"
 
     return true;
 }
@@ -674,10 +677,12 @@ void MANProtocol::stat( const KUrl& url)
     entry.insert(KIO::UDSEntry::UDS_NAME, title);
     entry.insert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFREG);
 
+#if 0 // not useful, is it?
     QString newUrl = "man:"+title;
     if (!section.isEmpty())
         newUrl += QString("(%1)").arg(section);
     entry.insert(KIO::UDSEntry::UDS_URL, newUrl);
+#endif
 
     entry.insert(KIO::UDSEntry::UDS_MIME_TYPE, QString::fromLatin1("text/html"));
 
@@ -1492,6 +1497,15 @@ void MANProtocol::listDir(const KUrl &url)
         return;
     }
 
+    // stat() and listDir() declared that everything is an html file.
+    // However we can list man: and man:(1) as a directory (e.g. in dolphin).
+    // But we cannot list man:ls as a directory, this makes no sense (#154173)
+
+    if (!title.isEmpty()) {
+	error(KIO::ERR_IS_FILE, url.url());
+        return;
+    }
+
     QStringList list = findPages( section, QString(), false );
 
     UDSEntryList uds_entry_list;
@@ -1504,6 +1518,8 @@ void MANProtocol::listDir(const KUrl &url)
 
         UDSEntry     uds_entry;
         uds_entry.insert( KIO::UDSEntry::UDS_NAME, *it );
+        uds_entry.insert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFREG);
+        uds_entry.insert(KIO::UDSEntry::UDS_MIME_TYPE, QString::fromLatin1("text/html"));
         uds_entry_list.append( uds_entry );
     }
 
