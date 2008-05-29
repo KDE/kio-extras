@@ -51,7 +51,7 @@ bool LocalDomainUriFilter::filterUri( KUriFilterData& data ) const
     const KUrl url = data.uri();
     QString cmd = url.url();
 
-    kDebug() << url;
+    //kDebug() << url;
 
     if( m_hostPortPattern.exactMatch( cmd ) &&
         isLocalDomainHost( cmd ) )
@@ -72,7 +72,10 @@ bool LocalDomainUriFilter::isLocalDomainHost( QString& cmd ) const
 {
     // find() returns -1 when no match -> left()/truncate() are noops then
     QString host( cmd.left( cmd.indexOf( '/' ) ) );
-    host.truncate( host.indexOf( ':' ) ); // Remove port number
+    const int pos = host.indexOf(':');
+    if (pos > -1) {
+        host.truncate(pos); // Remove port number
+    }
 
     if( !(host == last_host && last_time > time( NULL ) - 5 ) ) {
 
@@ -81,6 +84,7 @@ bool LocalDomainUriFilter::isLocalDomainHost( QString& cmd ) const
             return last_result = false;
 
         KProcess proc;
+        proc.setOutputChannelMode(KProcess::SeparateChannels);
         proc << helper << host;
         proc.start();
         if( !proc.waitForStarted( 1000 ) )
@@ -93,8 +97,10 @@ bool LocalDomainUriFilter::isLocalDomainHost( QString& cmd ) const
 
         const QString fullname = QFile::decodeName( proc.readAllStandardOutput() );
 
-        if( !fullname.isEmpty() )
+        if( !fullname.isEmpty() ) {
+            //kDebug() << "success, replacing" << host << "with" << fullname;
             cmd.replace( 0, host.length(), fullname );
+        }
     }
 
     return last_result;
