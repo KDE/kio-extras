@@ -2,7 +2,7 @@ check_library_exists(nsl gethostbyname "" HAVE_NSL_LIBRARY)
 
 set(localdomainurifilter_PART_SRCS localdomainurifilter.cpp )
 
-kde4_add_plugin(localdomainurifilter WITH_PREFIX ${localdomainurifilter_PART_SRCS})
+kde4_add_plugin(localdomainurifilter ${localdomainurifilter_PART_SRCS})
 
 target_link_libraries(localdomainurifilter ${KDE4_KDECORE_LIBS} ${KDE4_KIO_LIBS})
 if (HAVE_NSL_LIBRARY)

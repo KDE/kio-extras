@@ -55,6 +55,6 @@ Name[x-test]=xxInternetKeywordsFilterxx
 Name[xh]=Amagama Angundoqo ecebo lokucoca ulwelo e Internet
 Name[zh_CN]=互联网关键字过滤
 Name[zh_TW]=網際網路關鍵字過濾
-X-KDE-Library=libkuriikwsfilter
+X-KDE-Library=kuriikwsfilter
 X-KDE-ServiceTypes=KUriFilter/Plugin
 InitialPreference=1

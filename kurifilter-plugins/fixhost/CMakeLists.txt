@@ -1,6 +1,6 @@
 set(fixhosturifilter_PART_SRCS fixhosturifilter.cpp )
 
-kde4_add_plugin(fixhosturifilter WITH_PREFIX ${fixhosturifilter_PART_SRCS})
+kde4_add_plugin(fixhosturifilter ${fixhosturifilter_PART_SRCS})
 
 target_link_libraries(fixhosturifilter ${KDE4_KIO_LIBS})
 

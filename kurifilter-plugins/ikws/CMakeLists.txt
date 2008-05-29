@@ -10,7 +10,7 @@ set(kuriikwsfilter_PART_SRCS kuriikwsfiltereng.cpp kuriikwsfilter.cpp searchprov
 kde4_add_ui_files(kuriikwsfilter_PART_SRCS ikwsopts_ui.ui searchproviderdlg_ui.ui)
 
 
-kde4_add_plugin(kuriikwsfilter WITH_PREFIX ${kuriikwsfilter_PART_SRCS})
+kde4_add_plugin(kuriikwsfilter ${kuriikwsfilter_PART_SRCS})
 
 
 target_link_libraries(kuriikwsfilter    ${QT_QT3SUPPORT_LIBRARY} ${KDE4_KDE3SUPPORT_LIBS} )
@@ -31,7 +31,7 @@ set(kurisearchfilter_PART_SRCS
 
 kde4_add_ui_files(kurisearchfilter_PART_SRCS ikwsopts_ui.ui searchproviderdlg_ui.ui)
 
-kde4_add_plugin(kurisearchfilter WITH_PREFIX ${kurisearchfilter_PART_SRCS})
+kde4_add_plugin(kurisearchfilter ${kurisearchfilter_PART_SRCS})
 
 
 target_link_libraries(kurisearchfilter   ${QT_QTGUI_LIBRARY} ${QT_QT3SUPPORT_LIBRARY}  ${KDE4_KDE3SUPPORT_LIBS})

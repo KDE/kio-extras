@@ -6,7 +6,7 @@
 set(kshorturifilter_PART_SRCS kshorturifilter.cpp )
 
 
-kde4_add_plugin(kshorturifilter WITH_PREFIX ${kshorturifilter_PART_SRCS})
+kde4_add_plugin(kshorturifilter ${kshorturifilter_PART_SRCS})
 
 
 target_link_libraries(kshorturifilter  ${KDE4_KIO_LIBS})

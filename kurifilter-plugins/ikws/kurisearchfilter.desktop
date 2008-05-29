@@ -52,6 +52,6 @@ Name[x-test]=xxSearchKeywordsFilterxx
 Name[xh]=Phendla Amagama Angundoqo Ecebo Lokucoca Ulwelo
 Name[zh_CN]=搜索关键字过滤
 Name[zh_TW]=搜索關鍵字過濾
-X-KDE-Library=libkurisearchfilter
+X-KDE-Library=kurisearchfilter
 X-KDE-ServiceTypes=KUriFilter/Plugin
 InitialPreference=4
