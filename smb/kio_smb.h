@@ -36,6 +36,8 @@
 #ifndef KIO_SMB_H_INCLUDED
 #define KIO_SMB_H_INCLUDED
 
+#include "config-smb.h"
+
 //-------------
 // QT includes
 //-------------

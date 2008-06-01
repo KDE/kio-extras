@@ -34,6 +34,7 @@
 #include "kio_smb_internal.h"
 
 #include <QVarLengthArray>
+#include <QDateTime>
 
 #include <kmimetype.h>
 
@@ -440,6 +441,21 @@ void SMBSlave::put( const KUrl& kurl,
         // TODO: put in call to chmod when it is working!
         // smbc_chmod(url.toSmbcUrl(),permissions);
     }
+#ifdef HAVE_UTIME_H
+    // set modification time
+    const QString mtimeStr = metaData( "modified" );
+    if ( !mtimeStr.isEmpty() ) {
+        QDateTime dt = QDateTime::fromString( mtimeStr, Qt::ISODate );
+        if ( dt.isValid() ) {
+            if (cache_stat( m_current_url, &st ) == 0) {
+                struct utimbuf utbuf;
+                utbuf.actime = st.st_atime; // access time, unchanged
+                utbuf.modtime = dt.toTime_t(); // modification time
+                smbc_utime( m_current_url.toSmbcUrl(), &utbuf );
+            }
+        }
+    }
+#endif
 
     // We have done our job => finish
     finished();

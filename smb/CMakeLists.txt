@@ -1,3 +1,7 @@
+check_include_files(utime.h HAVE_UTIME_H)
+
+configure_file(config-smb.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-smb.h)
+
 set(kio_smb_PART_SRCS 
    kio_smb.cpp 
    kio_smb_auth.cpp 
