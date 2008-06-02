@@ -2,6 +2,7 @@
 This file is part of KDE
 
  Copyright (C) 1999-2000 Waldo Bastian (bastian@kde.org)
+ Copyright 2008 David Faure <faure@kde.org>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -22,10 +23,8 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
 #include "filter.h"
-
-#include <unistd.h>
-#include <stdio.h>
-#include <stdlib.h>
+#include <QFileInfo>
+#include <QFile>
 
 #include <kcomponentdata.h>
 #include <kdebug.h>
@@ -39,7 +38,7 @@ int kdemain( int argc, char ** argv)
 {
   KComponentData componentData( "kio_filter" );
 
-  kDebug(7110) << "Starting " << getpid();
+  kDebug(7110) << "Starting";
 
   if (argc != 4)
   {
@@ -62,19 +61,33 @@ FilterProtocol::FilterProtocol( const QByteArray & protocol, const QByteArray &p
     Q_ASSERT(filter);
 }
 
-void FilterProtocol::get( const KUrl & )
+void FilterProtocol::get(const KUrl& url)
 {
-  if (subURL.isEmpty())
-  {
-     error( KIO::ERR_NO_SOURCE_PROTOCOL, mProtocol );
-     return;
-  }
-  if (!filter)
-  {
-      error( KIO::ERR_INTERNAL, mProtocol );
-      return;
-  }
+    // In the old solution, subURL would be set by setSubURL.
+    // KDE4: now I simply assume bzip2:/localpath/file.bz2 and set subURL to the local path.
+    subURL = url;
+    subURL.setProtocol("file");
+
+    if (subURL.isEmpty()) {
+        error( KIO::ERR_NO_SOURCE_PROTOCOL, mProtocol );
+        return;
+    }
+
+    QFile localFile(url.path());
+    if (!localFile.open(QIODevice::ReadOnly)) {
+        error( KIO::ERR_COULD_NOT_READ, mProtocol );
+        return;
+    }
+
+    if (!filter) {
+        // TODO better error message
+        error( KIO::ERR_INTERNAL, mProtocol );
+        return;
+    }
+
+#if 0
   needSubUrlData();
+#endif
 
   filter->init(QIODevice::ReadOnly);
 
@@ -84,6 +97,7 @@ void FilterProtocol::get( const KUrl & )
   int result;
 
   QByteArray inputBuffer;
+  inputBuffer.resize(8*1024);
   QByteArray outputBuffer;
   outputBuffer.resize(8*1024); // Start with a modest buffer
   filter->setOutBuffer( outputBuffer.data(), outputBuffer.size() );
@@ -91,9 +105,13 @@ void FilterProtocol::get( const KUrl & )
   {
      if (filter->inBufferEmpty())
      {
+#if 0
         dataReq(); // Request data
         result = readData( inputBuffer);
-  kDebug(7110) << "requestData: got " << result;
+#else
+        result = localFile.read(inputBuffer.data(), inputBuffer.size());
+#endif
+        kDebug(7110) << "requestData: got " << result;
         if (result <= 0)
         {
           bError = true;
@@ -117,9 +135,18 @@ void FilterProtocol::get( const KUrl & )
             // Discard unused space :-)
             outputBuffer.resize(outputBuffer.size() - filter->outBufferAvailable());
         }
-        if (bNeedMimetype)
-        {
-            KMimeType::Ptr mime = KMimeType::findByNameAndContent( subURL.fileName(), outputBuffer );
+        if (bNeedMimetype) {
+            // Can we use the "base" filename? E.g. foo.txt.bz2
+            const QString extension = QFileInfo(subURL.path()).suffix();
+            KMimeType::Ptr mime;
+            if (extension == "gz" || extension == "bz" || extension == "bz2") {
+                QString baseName = subURL.path();
+                baseName.truncate(baseName.length() - extension.length() - 1 /*the dot*/);
+                kDebug(7110) << "baseName=" << baseName;
+                mime = KMimeType::findByNameAndContent(baseName, outputBuffer);
+            } else {
+                mime = KMimeType::findByContent(outputBuffer);
+            }
             kDebug(7110) << "Emitting mimetype " << mime->name();
             mimeType( mime->name() );
             bNeedMimetype = false;
@@ -136,27 +163,28 @@ void FilterProtocol::get( const KUrl & )
      }
   }
 
-  if (!bError)
-  {
-     dataReq(); // Request data
-     result = readData( inputBuffer);
-  kDebug(7110) << "requestData: got " << result << "(expecting 0)";
-     data( QByteArray() ); // Send EOF
-  }
+    if (!bError) {
+#if 0
+        dataReq(); // Request data
+        result = readData( inputBuffer);
+#else
+        result = localFile.read(inputBuffer.data(), inputBuffer.size());
+#endif
+        kDebug(7110) << "requestData: got" << result << "(expecting 0)";
+        data(QByteArray()); // Send EOF
+    }
 
-  filter->terminate();
+    filter->terminate();
 
-  if (bError)
-  {
-     error(KIO::ERR_COULD_NOT_READ, subURL.url());
-     subURL = KUrl(); // Clear subURL
-     return;
-  }
-
-  subURL = KUrl(); // Clear subURL
-  finished();
+    if (bError) {
+        error(KIO::ERR_COULD_NOT_READ, subURL.url());
+    } else {
+        finished();
+    }
+    subURL = KUrl(); // Clear subURL
 }
 
+#if 0
 void FilterProtocol::put( const KUrl &/*url*/, int, KIO::JobFlags /* _flags */ )
 {
   error( KIO::ERR_UNSUPPORTED_ACTION, QString::fromLatin1("put"));
@@ -166,4 +194,4 @@ void FilterProtocol::setSubURL(const KUrl &url)
 {
    subURL = url;
 }
-
+#endif

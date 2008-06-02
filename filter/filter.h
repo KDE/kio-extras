@@ -2,6 +2,7 @@
 This file is part of KDE
 
  Copyright (C) 2000 Waldo Bastian (bastian@kde.org)
+ Copyright 2008 David Faure <faure@kde.org>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -30,16 +31,18 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 class KUrl;
 class KFilterBase;
 
-class FilterProtocol : public QObject, public KIO::SlaveBase
+class FilterProtocol : /*public QObject, */ public KIO::SlaveBase
 {
-    Q_OBJECT
+//    Q_OBJECT
 
 public:
     FilterProtocol( const QByteArray & protocol, const QByteArray &pool, const QByteArray &app );
 
     virtual void get( const KUrl &url );
+#if 0
     virtual void put( const KUrl &url, int _mode, KIO::JobFlags _flags );
     virtual void setSubURL(const KUrl &url);
+#endif
 
 private:
     KUrl subURL;

@@ -1,7 +1,8 @@
 [Protocol]
 exec=kio_filter
 protocol=gzip
-mimetype=application/gzip
+archiveMimetype=application/gzip
+determineMimetypeFromExtension=false
 input=stream
 output=stream
 reading=true

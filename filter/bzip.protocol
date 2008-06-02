@@ -1,7 +1,8 @@
 [Protocol]
 exec=kio_filter
 protocol=bzip
-mimetype=application/x-bzip
+archiveMimetype=application/x-bzip
+determineMimetypeFromExtension=false
 input=stream
 output=stream
 reading=true
