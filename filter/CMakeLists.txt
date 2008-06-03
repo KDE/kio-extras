@@ -1,7 +1,6 @@
 
-
-
 macro_optional_find_package(BZip2)
+macro_log_feature(BZIP2_FOUND "BZip2" "A high-quality data compressor" "http://www.bzip.org" FALSE "" "Provides the ability to read and write bzip2 compressed data files in the filter kioslave.")
 
 ########### next target ###############
 
