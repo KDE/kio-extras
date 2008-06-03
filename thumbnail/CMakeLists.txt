@@ -1,4 +1,5 @@
 macro_optional_find_package(OpenEXR)
+macro_log_feature(OPENEXR_FOUND "OpenEXR" "API for accessing OpenEXR formatted images" "http://www.openexr.com" FALSE "" "Provides support for OpenEXR formatted images in the thumbnail kioslave")
 
 add_definitions (-DQT3_SUPPORT -DQT3_SUPPORT_WARNINGS)
 
