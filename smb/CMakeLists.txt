@@ -1,5 +1,7 @@
 check_include_files(utime.h HAVE_UTIME_H)
 
+add_definitions(-D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE) # for off_t
+
 configure_file(config-smb.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-smb.h)
 
 set(kio_smb_PART_SRCS 
