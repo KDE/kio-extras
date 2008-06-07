@@ -16,9 +16,9 @@
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include <kservicetypetrader.h>
-
 #include "searchprovider.h"
+
+#include <kservicetypetrader.h>
 
 SearchProvider::SearchProvider(const KService::Ptr service)
                : m_dirty(false)

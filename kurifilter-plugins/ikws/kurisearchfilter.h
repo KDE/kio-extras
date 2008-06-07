@@ -19,8 +19,8 @@
 
 */
 
-#ifndef __KURISEARCHFILTER_H__
-#define __KURISEARCHFILTER_H__
+#ifndef KURISEARCHFILTER_H
+#define KURISEARCHFILTER_H
 
 #include <kgenericfactory.h>
 

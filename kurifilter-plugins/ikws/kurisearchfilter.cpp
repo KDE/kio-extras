@@ -19,18 +19,12 @@
 
 */
 
-#include <unistd.h>
-
-#include <kdebug.h>
-#include <klocale.h>
-#include <kcomponentdata.h>
-#include <kglobal.h>
-
-#include "ikwsopts.h"
-#include "kuriikwsfiltereng.h"
 #include "kurisearchfilter.h"
 
 #include <QtDBus/QtDBus>
+
+#include "kuriikwsfiltereng.h"
+#include "ikwsopts.h"
 
 /**
  * IMPORTANT: If you change anything here, please run the regression test

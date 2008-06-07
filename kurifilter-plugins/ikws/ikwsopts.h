@@ -17,8 +17,8 @@
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef __IKWSOPTS_H___
-#define __IKWSOPTS_H___
+#ifndef IKWSOPTS_H
+#define IKWSOPTS_H
 
 #include <QLayout>
 #include <QTabWidget>

@@ -17,8 +17,8 @@
  */
 
 
-#ifndef __SEARCHPROVIDER_H___
-#define __SEARCHPROVIDER_H___
+#ifndef SEARCHPROVIDER_H
+#define SEARCHPROVIDER_H
 
 #include <kservice.h>
 

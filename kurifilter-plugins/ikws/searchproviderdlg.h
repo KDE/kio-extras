@@ -17,11 +17,12 @@
  */
 
 
-#ifndef __SEARCHPROVIDERDLG_H___
-#define __SEARCHPROVIDERDLG_H___
+#ifndef SEARCHPROVIDERDLG_H
+#define SEARCHPROVIDERDLG_H
 
 #include <kdialog.h>
 #include "ui_searchproviderdlg_ui.h"
+
 class SearchProvider;
 
 class SearchProviderDlgUI : public QWidget, public Ui::SearchProviderDlgUI
@@ -38,7 +39,7 @@ class SearchProviderDialog : public KDialog
     Q_OBJECT
 
 public:
-    explicit SearchProviderDialog(SearchProvider *provider, QWidget *parent = 0, const char *name = 0);
+    explicit SearchProviderDialog(SearchProvider *provider, QWidget *parent = 0);
 
     SearchProvider *provider() { return m_provider; }
 

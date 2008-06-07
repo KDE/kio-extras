@@ -25,8 +25,6 @@
 #ifndef KURIIKWSFILTERENG_H
 #define KURIIKWSFILTERENG_H
 
-//Added by qt3to4:
-
 #include <kservice.h>
 
 class KURISearchFilterEngine

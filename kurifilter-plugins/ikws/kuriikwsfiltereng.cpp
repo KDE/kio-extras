@@ -24,22 +24,17 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
+#include "kuriikwsfiltereng.h"
+
 #include <unistd.h>
 
-#include <QRegExp>
 #include <QTextCodec>
 
-#include <kurl.h>
 #include <kdebug.h>
-#include <kconfig.h>
 #include <kconfiggroup.h>
-#include <kstandarddirs.h>
 #include <kprotocolinfo.h>
-#include <k3staticdeleter.h>
 
-#include "kuriikwsfiltereng.h"
 #include "searchprovider.h"
-#include <kglobal.h>
 
 #define PIDDBG kDebug(7023) << "(" << getpid() << ") "
 #define PDVAR(n,v) PIDDBG << n << " = '" << v << "'\n"
@@ -49,8 +44,13 @@
  * ../tests/kurifiltertest
  */
 
-KURISearchFilterEngine *KURISearchFilterEngine::s_pSelf = 0;
-static K3StaticDeleter<KURISearchFilterEngine> kurisearchfilterengsd;
+class KURISearchFilterEnginePrivate
+{
+public:
+  KURISearchFilterEngine instance;
+};
+
+K_GLOBAL_STATIC(KURISearchFilterEnginePrivate, kURISearchFilterEngine)
 
 KURISearchFilterEngine::KURISearchFilterEngine()
 {
@@ -121,9 +121,7 @@ QByteArray KURISearchFilterEngine::name() const
 
 KURISearchFilterEngine* KURISearchFilterEngine::self()
 {
-  if (!s_pSelf)
-    kurisearchfilterengsd.setObject( s_pSelf, new KURISearchFilterEngine );
-  return s_pSelf;
+  return &kURISearchFilterEngine->instance;
 }
 
 QStringList KURISearchFilterEngine::modifySubstitutionMap(SubstMap& map,
@@ -298,7 +296,7 @@ QString KURISearchFilterEngine::substituteQuery(const QString& url, SubstMap &ma
           PDVAR ("    range", QString::number(first) + '-' + QString::number(last) + " => '" + v + '\'');
           v = encodeString(v, encodingMib);
         }
-        else if ( rlitem.startsWith("\"") && rlitem.endsWith("\"") )
+        else if ( rlitem.startsWith('\"') && rlitem.endsWith('\"') )
         {
           // Use default string from query definition:
           found = true;

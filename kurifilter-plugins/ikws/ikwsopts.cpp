@@ -17,42 +17,27 @@
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include <QCheckBox>
+#include "ikwsopts.h"
+
 #include <QFile>
-#include <QLabel>
-#include <QLayout>
-#include <QPushButton>
-//Added by qt3to4:
-#include <QVBoxLayout>
 
 #include <QtDBus/QtDBus>
 
-#include <kdebug.h>
-
-#include <kapplication.h>
 #include <kbuildsycocaprogressdialog.h>
-#include <kcombobox.h>
-#include <kconfig.h>
-#include <kiconloader.h>
-#include <k3listview.h>
-#include <klocale.h>
-#include <kmessagebox.h>
-#include <kservice.h>
 #include <kstandarddirs.h>
 #include <kservicetypetrader.h>
 
-#include "ikwsopts.h"
 #include "kuriikwsfiltereng.h"
 #include "searchprovider.h"
 #include "searchproviderdlg.h"
 
-
-class SearchProviderItem : public Q3CheckListItem
+class SearchProviderItem : public QTreeWidgetItem
 {
 public:
-    SearchProviderItem(Q3ListView *parent, SearchProvider *provider)
-    :Q3CheckListItem(parent, provider->name(), CheckBox), m_provider(provider)
+    SearchProviderItem(QTreeWidget *parent, SearchProvider *provider)
+    :QTreeWidgetItem(parent, QStringList() << provider->name()), m_provider(provider)
     {
+      setFlags(Qt::ItemIsSelectable | Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);
       update();
     }
 
@@ -77,17 +62,33 @@ FilterOptions::FilterOptions(const KComponentData &componentData, QWidget *paren
               :KCModule(componentData, parent)
 {
     QVBoxLayout *mainLayout = new QVBoxLayout( this );
-    mainLayout->setMargin( KDialog::marginHint() );
-    mainLayout->setSpacing( KDialog::spacingHint() );
 
     m_dlg = new FilterOptionsUI (this);
     mainLayout->addWidget(m_dlg);
 
-    m_dlg->lvSearchProviders->header()->setLabel(0, KIcon("bookmarks"),i18n("Name"));
-    m_dlg->lvSearchProviders->setSorting(0);
+    m_dlg->lvSearchProviders->setColumnWidth(0, 200);
 
-    // Load the options
-    load();
+    // Connect all the signals/slots...
+    connect(m_dlg->cbEnableShortcuts, SIGNAL(toggled(bool)), this,
+            SLOT(setWebShortcutState()));
+    connect(m_dlg->cbEnableShortcuts, SIGNAL(toggled(bool)), this,
+            SLOT(configChanged()));
+
+    connect(m_dlg->lvSearchProviders, SIGNAL(currentItemChanged(QTreeWidgetItem *, QTreeWidgetItem *)),
+           this, SLOT(updateSearchProvider()));
+    connect(m_dlg->lvSearchProviders, SIGNAL(itemDoubleClicked(QTreeWidgetItem *, int)),
+           this, SLOT(changeSearchProvider()));
+    connect(m_dlg->lvSearchProviders, SIGNAL(itemChanged(QTreeWidgetItem *, int)),
+           this, SLOT(checkFavoritesChanged()));
+
+    connect(m_dlg->cmbDefaultEngine, SIGNAL(currentIndexChanged(int)), this,
+            SLOT(configChanged()));
+    connect(m_dlg->cmbDelimiter, SIGNAL(currentIndexChanged(int)), this,
+            SLOT(configChanged()));
+
+    connect(m_dlg->pbNew, SIGNAL(clicked()), this, SLOT(addSearchProvider()));
+    connect(m_dlg->pbChange, SIGNAL(clicked()), this, SLOT(changeSearchProvider()));
+    connect(m_dlg->pbDelete, SIGNAL(clicked()), this, SLOT(deleteSearchProvider()));
 }
 
 QString FilterOptions::quickHelp() const
@@ -119,12 +120,14 @@ void FilterOptions::load()
 
     const KService::List services = KServiceTypeTrader::self()->query("SearchProvider");
 
+    m_dlg->lvSearchProviders->blockSignals(true); // do not emit itemChanged signals
     for (KService::List::ConstIterator it = services.begin();
          it != services.end(); ++it)
     {
       displaySearchProvider(new SearchProvider(*it),
                             ((*it)->desktopEntryName() == defaultSearchEngine));
     }
+    m_dlg->lvSearchProviders->blockSignals(false);
 
     bool webShortcutsEnabled = group.readEntry("EnableWebShortcuts", true);
     m_dlg->cbEnableShortcuts->setChecked( webShortcutsEnabled );
@@ -135,34 +138,8 @@ void FilterOptions::load()
     // Update the GUI to reflect the config options read above...
     setWebShortcutState();
 
-    if (m_dlg->lvSearchProviders->childCount())
-      m_dlg->lvSearchProviders->setSelected(m_dlg->lvSearchProviders->firstChild(), true);
-
-    // Connect all the signals/slots...
-    connect(m_dlg->cbEnableShortcuts, SIGNAL(toggled(bool)), this,
-            SLOT(setWebShortcutState()));
-    connect(m_dlg->cbEnableShortcuts, SIGNAL(toggled(bool)), this,
-            SLOT(configChanged()));
-
-    connect(m_dlg->lvSearchProviders, SIGNAL(selectionChanged(Q3ListViewItem *)),
-           this, SLOT(updateSearchProvider()));
-    connect(m_dlg->lvSearchProviders, SIGNAL(doubleClicked(Q3ListViewItem *)),
-           this, SLOT(changeSearchProvider()));
-    connect(m_dlg->lvSearchProviders, SIGNAL(returnPressed(Q3ListViewItem *)),
-           this, SLOT(changeSearchProvider()));
-    connect(m_dlg->lvSearchProviders, SIGNAL(executed(Q3ListViewItem *)),
-           this, SLOT(checkFavoritesChanged()));
-    connect(m_dlg->lvSearchProviders, SIGNAL(pressed(Q3ListViewItem *)),
-           this, SLOT(checkFavoritesChanged()));
-
-    connect(m_dlg->cmbDefaultEngine, SIGNAL(currentIndexChanged(int)), this,
-            SLOT(configChanged()));
-    connect(m_dlg->cmbDelimiter, SIGNAL(currentIndexChanged(int)), this,
-            SLOT(configChanged()));
-
-    connect(m_dlg->pbNew, SIGNAL(clicked()), this, SLOT(addSearchProvider()));
-    connect(m_dlg->pbChange, SIGNAL(clicked()), this, SLOT(changeSearchProvider()));
-    connect(m_dlg->pbDelete, SIGNAL(clicked()), this, SLOT(deleteSearchProvider()));
+    if (m_dlg->lvSearchProviders->topLevelItemCount() > 0)
+      m_dlg->lvSearchProviders->setCurrentItem(m_dlg->lvSearchProviders->topLevelItem(0));
 }
 
 char FilterOptions::delimiter ()
@@ -212,9 +189,9 @@ void FilterOptions::save()
 
   m_favoriteEngines.clear();
 
-  for (Q3ListViewItemIterator it(m_dlg->lvSearchProviders); it.current(); ++it)
-  {
-    SearchProviderItem *item = dynamic_cast<SearchProviderItem *>(it.current());
+  QTreeWidgetItemIterator it(m_dlg->lvSearchProviders);
+  while (*it) {
+    SearchProviderItem *item = dynamic_cast<SearchProviderItem *>(*it);
 
     Q_ASSERT(item);
 
@@ -222,7 +199,7 @@ void FilterOptions::save()
 
     QString name = provider->desktopEntryName();
 
-    if (item->isOn())
+    if (item->checkState(0) == Qt::Checked)
       m_favoriteEngines << name;
 
     if (provider->isDirty())
@@ -271,6 +248,7 @@ void FilterOptions::save()
       // we might be overwriting a hidden entry
       service.writeEntry("Hidden", false);
     }
+    ++it;
   }
 
   for (QStringList::ConstIterator it = m_deletedProviders.begin();
@@ -326,15 +304,20 @@ void FilterOptions::configChanged()
 void FilterOptions::checkFavoritesChanged()
 {
   QStringList currentFavoriteEngines;
-  for (Q3ListViewItemIterator it(m_dlg->lvSearchProviders); it.current(); ++it)
-  {
-    SearchProviderItem *item = dynamic_cast<SearchProviderItem *>(it.current());
+  QTreeWidgetItemIterator it(m_dlg->lvSearchProviders);
+  while (*it) {
+    SearchProviderItem *item = dynamic_cast<SearchProviderItem *>(*it);
 
     Q_ASSERT(item);
 
-    if (item->isOn())
+    if (item->checkState(0) == Qt::Checked)
       currentFavoriteEngines << item->provider()->desktopEntryName();
+
+    ++it;
   }
+
+  currentFavoriteEngines.sort(); // make sure that both lists do have the same sorting
+  m_favoriteEngines.sort();
 
   if (!(currentFavoriteEngines==m_favoriteEngines)) {
     m_favoriteEngines=currentFavoriteEngines;
@@ -361,7 +344,7 @@ void FilterOptions::addSearchProvider()
   SearchProviderDialog dlg(0, this);
   if (dlg.exec())
   {
-      m_dlg->lvSearchProviders->setSelected(displaySearchProvider(dlg.provider()), true);
+      m_dlg->lvSearchProviders->setCurrentItem(displaySearchProvider(dlg.provider()));
       configChanged();
   }
 }
@@ -375,7 +358,7 @@ void FilterOptions::changeSearchProvider()
 
   if (dlg.exec())
   {
-    m_dlg->lvSearchProviders->setSelected(displaySearchProvider(dlg.provider()), true);
+    m_dlg->lvSearchProviders->setCurrentItem(displaySearchProvider(dlg.provider()));
     configChanged();
   }
 }
@@ -401,10 +384,10 @@ void FilterOptions::deleteSearchProvider()
     }
   }
 
-  if (item->nextSibling())
-      m_dlg->lvSearchProviders->setSelected(item->nextSibling(), true);
-  else if (item->itemAbove())
-      m_dlg->lvSearchProviders->setSelected(item->itemAbove(), true);
+  if (m_dlg->lvSearchProviders->topLevelItem(current + 1))
+      m_dlg->lvSearchProviders->setCurrentItem(m_dlg->lvSearchProviders->topLevelItem(current + 1));
+  else if (m_dlg->lvSearchProviders->topLevelItem(current - 1))
+      m_dlg->lvSearchProviders->setCurrentItem(m_dlg->lvSearchProviders->topLevelItem(current - 1));
 
   if (!item->provider()->desktopEntryName().isEmpty())
       m_deletedProviders.append(item->provider()->desktopEntryName());
@@ -425,16 +408,16 @@ SearchProviderItem *FilterOptions::displaySearchProvider(SearchProvider *p, bool
   // Show the provider in the list.
   SearchProviderItem *item = 0L;
 
-  Q3ListViewItemIterator it(m_dlg->lvSearchProviders);
-
-  for (; it.current(); ++it)
+  QTreeWidgetItemIterator it(m_dlg->lvSearchProviders);
+  while (*it)
   {
-    if (it.current()->text(0) == p->name())
+    if ((*it)->text(0) == p->name())
     {
-      item = dynamic_cast<SearchProviderItem *>(it.current());
+      item = dynamic_cast<SearchProviderItem *>(*it);
       Q_ASSERT(item);
       break;
     }
+    ++it;
   }
 
   if (item)
@@ -448,7 +431,9 @@ SearchProviderItem *FilterOptions::displaySearchProvider(SearchProvider *p, bool
     item = new SearchProviderItem(m_dlg->lvSearchProviders, p);
 
     if (m_favoriteEngines.contains(p->desktopEntryName()))
-       item->setOn(true);
+       item->setCheckState(0, Qt::Checked);
+    else
+       item->setCheckState(0, Qt::Unchecked);
 
     for (itemCount = 1; itemCount < totalCount; itemCount++)
     {
@@ -472,10 +457,10 @@ SearchProviderItem *FilterOptions::displaySearchProvider(SearchProvider *p, bool
 
     if (fallback)
       m_dlg->cmbDefaultEngine->setCurrentIndex(itemCount);
-  }
 
-  if (!it.current())
-    m_dlg->lvSearchProviders->sort();
+  if (!(*it))
+    m_dlg->lvSearchProviders->sortItems(0, Qt::AscendingOrder);
+  }
 
   return item;
 }

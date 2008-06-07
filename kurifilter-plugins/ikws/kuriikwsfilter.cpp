@@ -18,7 +18,11 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
+#include "kuriikwsfilter.h"
+
 #include <unistd.h>
+
+#include <QtDBus/QtDBus>
 
 #include <kdebug.h>
 #include <klocale.h>
@@ -27,9 +31,6 @@
 
 #include "ikwsopts.h"
 #include "kuriikwsfiltereng.h"
-#include "kuriikwsfilter.h"
-
-#include <QtDBus/QtDBus>
 
 /**
  * IMPORTANT: If you change anything here, please run the regression test

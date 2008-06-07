@@ -19,8 +19,8 @@
 
 */
 
-#ifndef __KURIIKWSFILTER_H__
-#define __KURIIKWSFILTER_H__
+#ifndef KURIIKWSFILTER_H
+#define KURIIKWSFILTER_H
 
 #include <kgenericfactory.h>
 

@@ -16,27 +16,19 @@
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include <QLabel>
-#include <QLayout>
-#include <QPushButton>
+#include "searchproviderdlg.h"
 
 #include <kapplication.h>
-#include <klocale.h>
-#include <kglobal.h>
 #include <kcharsets.h>
-#include <klineedit.h>
-#include <kcombobox.h>
 #include <kmessagebox.h>
 
-#include "searchproviderdlg.h"
 #include "searchprovider.h"
 
 SearchProviderDialog::SearchProviderDialog(SearchProvider *provider,
-                                           QWidget *parent, const char *name)
+                                           QWidget *parent)
                      :KDialog( parent ),
                       m_provider(provider)
 {
-    setObjectName(name);
     setModal(true);
     setButtons( Ok | Cancel );
 
