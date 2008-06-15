@@ -69,5 +69,6 @@ Name[x-test]=xxCTAN Catalogxx
 Name[zh_CN]=CTAN 目录
 Name[zh_TW]=CTAN 目錄
 Query=http://tug.ctan.org/cgi-bin/search.py?metadataSearch=\\{@}&metadataSearchSubmit=Search
+Query[x-test]=xxhttp://tug.ctan.org/cgi-bin/search.py?metadataSearch=\\{@}&metadataSearchSubmit=Searchxx
 X-KDE-ServiceTypes=SearchProvider
 Type=Service

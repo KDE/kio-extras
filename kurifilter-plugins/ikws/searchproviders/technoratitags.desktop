@@ -46,7 +46,7 @@ Name[se]=Technorati gilkorat
 Name[sr]=Техноратијеве ознаке
 Name[sr@latin]=Technoratijeve oznake
 Name[sv]=Technorati-taggar
-Name[tg]=Тегҳои Technorati
+Name[tg]=Иттилооти Technorati
 Name[tr]=Technorati Etiketleri
 Name[uk]=Статті Technorati
 Name[vi]=Thẻ Technorati
@@ -56,6 +56,5 @@ X-KDE-ServiceTypes=SearchProvider
 Keys=tags,tag,technoratitags
 Query=http://technorati.com/tag/\\{@}?sourceid=kde-search
 Query[bg]=Query=http://technorati.com/tag/\\{@}?sourceid=kde-search
-Query[tg]=http://technorati.com/tag/\\{@}?sourceid=kde-ҷустуҷӯ
 Query[x-test]=xxhttp://technorati.com/tag/\\{@}?sourceid=kde-searchxx
 Charset=utf8

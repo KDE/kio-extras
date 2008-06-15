@@ -56,7 +56,6 @@ Name[sr]=Викиречник — слободни речник
 Name[sr@latin]=Wikirečnik — slobodni rečnik
 Name[sv]=Wiktionary - den fria ordboken
 Name[te]=విక్షనరి - స్వేఛ్ఛా పదకోశము
-Name[tg]=Wiktionary - Энсиклопедияи озод
 Name[th]=วิกิชันนารี - พจนานุุกรมเสรี
 Name[tr]=Wiktionary - Ücretsiz Ansiklopedi
 Name[uk]=Wiktionary - вільний словник
@@ -72,6 +71,7 @@ Keys=wt,wikt
 Query=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[be]=http://en.wiktionary.org/wiki/Special:Search?search=\{@}&go=Go
 Query[bg]=http://en.wiktionary.org/wiki/Special:Search?search=\{@}&go=Go
+Query[cs]=http://cs.wiktionary.org/wiki/Special:Search?search=\{@}&go=Go
 Query[csb]=http://csb.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[de]=http://de.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[eo]=http://eo.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
@@ -87,7 +87,6 @@ Query[oc]=http://oc.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[pl]=http://pl.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[ro]=http://ro.wiktionary.org/wiki/Special:Search?search=\{@}&go=Go
 Query[sv]=http://sv.wiktionary.org/wiki/Special:Search?search=\{@}&go=Go
-Query[tg]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Рав
 Query[wa]=http://wa.wikipedia.org/wiki/Motî:\{@}
 Query[x-test]=xxhttp://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Goxx
 Charset=utf8

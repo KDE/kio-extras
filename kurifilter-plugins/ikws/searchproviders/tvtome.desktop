@@ -14,7 +14,7 @@ Name[nn]=Stor TV
 Name[sr]=ТВ‑том
 Name[sv]=TV-tome
 Name[te]=టివి టొమ్
-Name[tg]=Томи левизиони Хона
+Name[tg]=Барномаҳои телевизионӣ
 Name[tr]=TV Kanalları
 Name[vi]=Tra Quyển TV
 Name[x-test]=xxTV Tomexx
@@ -22,6 +22,5 @@ X-KDE-ServiceTypes=SearchProvider
 Query=http://www.tv.com/search.php?type=11&stype=all&qs=\\{@}&x=0&y=0
 Query[bg]=Query=http://www.tv.com/search.php?type=11&stype=all&qs=\\{@}&x=0&y=0
 Query[ne]=http://www.tv.com/search.php?type=11stype=all&qs=\\{@}&x=0&y=0
-Query[tg]=http://www.tv.com/search.php?type=11&stype=ҳама&qs=\\{@}&x=0&y=0
 Query[x-test]=xxhttp://www.tv.com/search.php?type=11&stype=all&qs=\\{@}&x=0&y=0xx
 Type=Service

@@ -53,7 +53,6 @@ Name[sr@latin]=Google-filmovi
 Name[sv]=Google filmer
 Name[ta]=கூகுல் படங்கள்
 Name[te]=గూగుల్ చలనచిత్రాలు
-Name[tg]=Филмҳои Google
 Name[th]=ค้นหาภาพยนตร์ด้วยกูเกิ้ล
 Name[tr]=Google Filmleri
 Name[uk]=Фільми на Google
@@ -67,6 +66,7 @@ X-KDE-ServiceTypes=SearchProvider
 Keys=ggmovie
 Query=http://www.google.com/search?q=movie:\\{@}&ie=UTF-8&oe=UTF-8
 Query[bg]=http://www.google.com/search?q=movie:\{@}&ie=UTF-8&oe=UTF-8
+Query[cs]=http://www.google.com/search?q=movie:\{@}&ie=UTF-8&oe=UTF-8
 Query[en_GB]=http://www.google.co.uk/search?q=movie:\\{@}&ie=UTF-8&oe=UTF-8
 Query[nb]=http://www.google.no/search?q=movie:\\{@}&ie=UTF-8&oe=UTF-8
 Query[nl]=http://www.google.nl/search?q=movie:\\{@}&ie=UTF-8&oe=UTF-8

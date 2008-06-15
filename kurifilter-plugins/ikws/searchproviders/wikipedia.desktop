@@ -60,7 +60,6 @@ Name[sr@latin]=Wikipedia — slobodna enciklopedija
 Name[sv]=Wikipedia - den fria encyklopedin
 Name[ta]=விகிபிடியா - இலவச கலைக்களஞ்சியம்
 Name[te]=వికీపీడియా - స్వేఛ్ఛా విజ్ఞాన సర్వస్వము
-Name[tg]=Wikipedia - Энсиклопедияи озод
 Name[th]=วิกิพีเดีย - สารานุกรมเสรี
 Name[tr]=Wikipedia - Ücretsiz Ansiklopedi
 Name[uk]=Wikipedia - вільна енциклопедія
@@ -76,6 +75,7 @@ Keys=wp
 Query=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[be]=http://be.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[bg]=http://en.wikipedia.org/wiki/Special:Search?search=\{@}&go=Go
+Query[cs]=http://cs.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[csb]=http://csb.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[de]=http://de.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[fr]=http://fr.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
@@ -89,7 +89,6 @@ Query[oc]=http://oc.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[pl]=http://pl.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[ro]=http://ro.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[sv]=http://sv.wikipedia.org/wiki/Special:Search?search=\{@}&go=Go
-Query[tg]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Рав
 Query[wa]=http://wa.wikipedia.org/wiki/Special:Search?search=\{@}&go=Potch%C3%AE
 Query[x-test]=xxhttp://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Goxx
 Query[zh_CN]=http://zh.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
