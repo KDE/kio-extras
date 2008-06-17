@@ -109,7 +109,14 @@ bool parseUrl(const QString& _url, QString &title, QString &section)
     title = title.left(pos);
 
     section = url.mid(pos+1);
-    section = section.left(section.length()-1);
+
+    pos = section.indexOf(')');
+    if (pos >= 0) {
+	if (pos < section.length() - 2 && title.isEmpty()) {
+		title = section.mid(pos + 2);
+	}
+        section = section.left(pos);
+    }
 
     // man:ls(2) -> title="ls", section="2"
 
@@ -1506,9 +1513,22 @@ void MANProtocol::listDir(const KUrl &url)
         return;
     }
 
-    QStringList list = findPages( section, QString(), false );
-
     UDSEntryList uds_entry_list;
+
+    if (section.isEmpty()) {
+        for (QStringList::ConstIterator it = section_names.begin(); it != section_names.end(); ++it) {
+            UDSEntry     uds_entry;
+
+            QString name = "man:/(" + *it + ")";
+            uds_entry.insert( KIO::UDSEntry::UDS_NAME, sectionName( *it ) );
+            uds_entry.insert( KIO::UDSEntry::UDS_URL, name );
+            uds_entry.insert( KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR );
+
+            uds_entry_list.append( uds_entry );
+        }
+    }
+
+    QStringList list = findPages( section, QString(), false );
 
     QStringList::Iterator it = list.begin();
     const QStringList::Iterator end = list.end();
