@@ -1,4 +1,4 @@
-body {background-color:#fffff}
+body {background-color:#ffffff;}
 
 /*for the list of one manpage section*/
 .secidxshort {
@@ -17,5 +17,5 @@ body {background-color:#fffff}
 .secidxnextletter {
   font-size:larger;
 	border-bottom:1px solid black;
-	text-align:center
+	text-align:center;
 }
