@@ -1,9 +1,9 @@
 /**
  * \file man2html.h
  *
- * \note Despite that this file is installed publically, it should not be included
- * \todo ### KDE4: make this file private
- *
+ * Converts man pages to HTML.  This kioslave is not part of kdelibs and is
+ * not public API.
+ * \internal
  */
 
 #ifndef MAN2HTML_H
@@ -23,6 +23,15 @@ void scan_man_page(const char *man_page);
  *
  */
 extern void setResourcePath(const QByteArray& _htmlPath, const QByteArray& _cssPath);
+
+/*
+ * Sets the path to a CSS file that should be included with the generated
+ * HTML output.
+ *
+ * \param HTML-encoded path to the file to reference for stylesheets.
+ * \since 4.1
+ */
+extern void setCssFile(const QByteArray& _cssFile);
 
 /** implement this somewhere. It will be called
    with HTML contents

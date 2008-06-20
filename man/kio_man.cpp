@@ -135,7 +135,10 @@ MANProtocol::MANProtocol(const QByteArray &pool_socket, const QByteArray &app_so
     m_cssPath=strPath.toLocal8Bit(); // ### TODO encode for CSS
     section_names << "1" << "2" << "3" << "3n" << "3p" << "4" << "5" << "6" << "7"
                   << "8" << "9" << "l" << "n";
-    m_manCSSFile = KStandardDirs::locate( "data", "kio_man/kio_man.css" );
+
+    QString cssPath(KStandardDirs::locate( "data", "kio_man/kio_man.css" ));
+    KUrl cssUrl(KUrl::fromPath(cssPath));
+    m_manCSSFile = cssUrl.url().toUtf8();
 }
 
 MANProtocol *MANProtocol::self() { return _self; }
@@ -513,6 +516,7 @@ void MANProtocol::get(const KUrl& url )
     if (pageFound)
     {
        setResourcePath(m_htmlPath,m_cssPath);
+       setCssFile(m_manCSSFile);
        m_outputBuffer.open(QIODevice::WriteOnly);
        const QByteArray filename=QFile::encodeName(foundPages[0]);
        char *buf = readManPage(filename);
@@ -625,7 +629,7 @@ void MANProtocol::outputError(const QString& errmsg)
     os << "<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">" << endl;
     os << "<title>" << i18n("Man output") << "</title>\n" << endl;
     if ( !m_manCSSFile.isEmpty() )
-        os << "<link href=\"file:///" << m_manCSSFile << "\" type=\"text/css\" rel=\"stylesheet\">" << endl;
+        os << "<link href=\"" << m_manCSSFile << "\" type=\"text/css\" rel=\"stylesheet\">" << endl;
     os << "</head>" << endl;
     os << "<body>" << i18n("<h1>KDE Man Viewer Error</h1>") << errmsg << "</body>" << endl;
     os << "</html>" << endl;
@@ -643,7 +647,7 @@ void MANProtocol::outputMatchingPages(const QStringList &matchingPages)
     os << "<html>\n<head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">"<<endl;
     os << "<title>" << i18n("Man output") <<"</title>" << endl;
     if ( !m_manCSSFile.isEmpty() )
-        os << "<link href=\"file:///" << m_manCSSFile << "\" type=\"text/css\" rel=\"stylesheet\">" << endl;
+        os << "<link href=\"" << m_manCSSFile << "\" type=\"text/css\" rel=\"stylesheet\">" << endl;
     os << "</head>" <<endl;
     os << "<body><h1>" << i18n("There is more than one matching man page.");
     os << "</h1>\n<ul>\n";
@@ -794,7 +798,7 @@ void MANProtocol::showMainIndex()
     os << "<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">" << endl;
     os << "<title>" << i18n("UNIX Manual Index") << "</title>" << endl;
     if (!m_manCSSFile.isEmpty())
-        os << "<link href=\"file:///" << m_manCSSFile << "\" type=\"text/css\" rel=\"stylesheet\">" << endl;
+        os << "<link href=\"" << m_manCSSFile << "\" type=\"text/css\" rel=\"stylesheet\">" << endl;
     os << "</head>" << endl;
     os << "<body><h1>" << i18n("UNIX Manual Index") << "</h1>" << endl;
 
@@ -1224,7 +1228,7 @@ void MANProtocol::showIndex(const QString& section)
     os << "<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">" << endl;
     os << "<title>" << i18n("UNIX Manual Index") << "</title>" << endl;
     if ( !m_manCSSFile.isEmpty() )
-        os << "<link href=\"file:///" << m_manCSSFile << "\" type=\"text/css\" rel=\"stylesheet\">" << endl;
+        os << "<link href=\"" << m_manCSSFile << "\" type=\"text/css\" rel=\"stylesheet\">" << endl;
     os << "</head>" << endl;
     os << "<body><div class=\"secidxmain\">" << endl;
     os << "<h1>" << i18n( "Index for Section %1: %2", section, sectionName(section)) << "</h1>" << endl;

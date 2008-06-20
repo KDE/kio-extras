@@ -154,8 +154,9 @@ using namespace std;
 
 
 #if 1
-// The output is current too horrible to be called HTML 4.01
-#define DOCTYPE "<!DOCTYPE HTML>"
+// The output is current too horrible to be called HTML 4.01, so give no
+// DOCTYPE at all.
+#define DOCTYPE ""
 #else
 #define DOCTYPE "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">\n"
 #endif
@@ -630,7 +631,7 @@ static char *scan_troff_mandoc(char *c, bool san, char **result);
 
 static QList<char*> s_argumentList;
 
-static QByteArray htmlPath, cssPath;
+static QByteArray htmlPath, cssPath, cssFile;
 
 static QByteArray s_dollarZero; // Value of $0
 
@@ -638,6 +639,11 @@ void setResourcePath(const QByteArray& _htmlPath, const QByteArray& _cssPath)
 {
     htmlPath=_htmlPath;
     cssPath=_cssPath;
+}
+
+void setCssFile(const QByteArray& _cssFile)
+{
+    cssFile = _cssFile;
 }
 
 static void fill_old_character_definitions( void )
@@ -919,12 +925,18 @@ static void add_links(char *c)
         }
         break;
     case 0: /* url */
-        g=f=idtest[0];
+        g=f=idtest[0]; // ://foo...
+
+        // backup before :// to get protocol
         while (g>c && isalpha(g[-1]) && islower(g[-1])) g--;
-        h=f+3;
+        h=f+3; // start past ://
+        // determine length of path and part of query it looks like...
         while (*h && !isspace(*h) && *h!='<' && *h!='>' && *h!='"' &&
            *h!='&') h++;
-        if (f-g>2 && f-g<7 && h-f>3) {
+        // if protocol length 3-6 characters and path has any length at all...
+        // more tests added because this code breaks stylesheet links that use
+        // the correct file:/// stuff.
+        if (f-g>2 && f-g<7 && h-f>3 && (strstr(c,"http://") != NULL || strstr(c,"ftp://") != NULL) ) {
         char t;
         t=*g;
         *g='\0';
@@ -4069,35 +4081,49 @@ static char *scan_request(char *c)
                             out_html("<TITLE>");
                                 out_html(scan_troff(wordlist[0], 0, NULL));
                             out_html( " Manpage</TITLE>\n");
+
+                            // KDE defaults.
                             out_html( "<link rel=\"stylesheet\" href=\"");
                             out_html(htmlPath);
                             out_html("/kde-default.css\" type=\"text/css\">\n" );
+
+                            // Output our custom stylesheet.
+                            out_html( "<link rel=\"stylesheet\" href=\"");
+                            out_html(cssFile);
+                            out_html("\" type=\"text/css\">\n" );
+
+                            // Some elements need background images, but this
+                            // could not be included in the stylesheet,
+                            // include it now.
+                            out_html("<style> #header_top { background-image: url(\"");
+                            out_html(htmlPath);
+                            out_html("/top.jpg\"); } #header_top div"
+                                     " { background-image: url(\"");
+                            out_html(htmlPath);
+                            out_html("/top-left.jpg\"); } #header_top div div "
+                                     "{ background-image: url(\"");
+                            out_html(htmlPath);
+                            out_html("/top-right.jpg\"); }</style>\n\n");
+
                             out_html( "<meta name=\"ROFF Type\" content=\"");
                             if (mandoc_command)
                                 out_html("mdoc");
                             else
                                 out_html("man");
                             out_html("\">\n");
-                            out_html( "</HEAD>\n\n" );
-                            out_html("<BODY BGCOLOR=\"#FFFFFF\">\n\n" );
-                            out_html("<div style=\"background-image: url(");
-                            out_html(cssPath);
-                            out_html("/top-middle.png); width: 100%; height: 131pt;\">\n" );
-                            out_html("<div style=\"position: absolute; right: 0pt;\">\n");
-                            out_html("<img src=\"");
-                            out_html(htmlPath);
-                            out_html("/top-right-konqueror.png\" style=\"margin: 0pt\" alt=\"Top right\">\n");
-                            out_html("</div>\n");
 
-                            out_html("<div style=\"position: absolute; left: 0pt;\">\n");
+                            out_html( "</HEAD>\n\n" );
+                            out_html("<BODY>\n\n" );
+
+                            out_html("<div id=\"header\"><div id=\"header_top\"\n");
+                            out_html("<div><div>\n");
                             out_html("<img src=\"");
                             out_html(htmlPath);
-                            out_html("/top-left.png\" style=\"margin: 0pt\" alt=\"Top left\">\n");
-                            out_html("</div>\n");
-                            out_html("<div style=\"position: absolute; top: 25pt; right: 100pt; text-align: right; font-size: xx-large; font-weight: bold; text-shadow: #fff 0pt 0pt 5pt; color: #444\">\n");
+                            out_html("/top-kde.jpg\"> ");
                             out_html( scan_troff(wordlist[0], 0, NULL ) );
-                            out_html("</div>\n");
-                            out_html("</div>\n");
+                            out_html(" - KDE Man Page Viewer");
+                            out_html("</div></div></div></div>\n");
+
                             out_html("<div style=\"margin-left: 5em; margin-right: 5em;\">\n");
                             out_html("<h1>" );
                                 out_html( scan_troff(wordlist[0], 0, NULL ) );
@@ -5541,26 +5567,19 @@ void scan_man_page(const char *man_page)
     out_html(NEWLINE);
 
     if (section) {
-        output_real("<div style=\"margin-left: 2cm\">\n");
+        output_real("</div><div style=\"margin-left: 2cm\">\n");
         section = 0;
     }
 
     if (output_possible) {
-      output_real("</div>\n");
-      output_real("<div class=\"bannerBottom\" style=\"background-image: url(");
-      output_real(cssPath);
-      output_real("/bottom-middle.png); background-repeat: x-repeat; width: 100%; height: 100px; bottom:0pt;\">\n");
-      output_real("<div class=\"bannerBottomLeft\">\n");
-      output_real("<img src=\"");
-      output_real(cssPath);
-      output_real("/bottom-left.png\" style=\"margin: 0pt;\" alt=\"Bottom left of the banner\">\n");
-      output_real("</div>\n");
-      output_real("<div class=\"bannerBottomRight\">\n");
-      output_real("<img src=\"");
-      output_real(cssPath);
-      output_real("/bottom-right.png\" style=\"margin: 0pt\" alt=\"Bottom right of the banner\">\n");
-      output_real("</div>\n");
-      output_real("</div>\n");
+      // The output is buggy wrt to how divs are handled.  Fixing it would
+      // require closing divs before other block-level elements are output,
+      // and I do not feel like going to find them all.
+      output_real("</div></div></div></div>\n");
+
+      output_real("<div id=\"footer\"><div id=\"footer_text\">\n");
+      output_real("Generated by kio_man, KDE version " KDE_VERSION_STRING);
+      output_real("</div></div>\n\n");
 
       output_real("</BODY>\n</HTML>\n");
     }
