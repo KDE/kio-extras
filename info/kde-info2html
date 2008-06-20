@@ -633,7 +633,7 @@ sub PrintHeader {
 <!--header start-->
 <div style="background-image: url(help:/common/top-middle.png); width: 100%; height: 131px;">
 <div style="position: absolute; right: 0px;">
-<img src="help:/common/top-right-konqueror.png" style="margin: 0px" alt="" />
+<img src="help:/common/top-right.png" style="margin: 0px" alt="" />
 </div>
 <div style="position: absolute; left: 0px;">
 <img src="help:/common/top-left.png" style="margin: 0px" alt="" />
