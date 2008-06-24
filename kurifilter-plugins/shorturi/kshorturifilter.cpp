@@ -554,11 +554,11 @@ void KShortUriFilter::configure()
     kDebug() << "KShortUriFilter::configure: Config reload request...";
 
   m_strDefaultProtocol = cg.readEntry( "DefaultProtocol", QString("http://") );
-  EntryMap patterns = config.entryMap( QFL1("Pattern") );
+  const EntryMap patterns = config.entryMap( QFL1("Pattern") );
   const EntryMap protocols = config.entryMap( QFL1("Protocol") );
   KConfigGroup typeGroup(&config, "Type");
 
-  for( EntryMap::Iterator it = patterns.begin(); it != patterns.end(); ++it )
+  for( EntryMap::ConstIterator it = patterns.begin(); it != patterns.end(); ++it )
   {
     QString protocol = protocols[it.key()];
     if (!protocol.isEmpty())
