@@ -20,6 +20,5 @@ X-KDE-ServiceTypes=SearchProvider
 Keys=lycos,ly
 Query=http://www.lycos.com/cgi-bin/pursuit?cat=dir&query=\\{@}
 Query[ar]=Query=http://www.m-w.com/cgi-bin/dictionary?book=Dictionary&va=\\{@}
-Query[bg]=Query=http://www.lycos.com/cgi-bin/pursuit?cat=dir&query=\\{@}
 Query[ne]=http://www.lycos.com/cgi-bin/pursuit?cat=dirquery=\\{@}
 Query[x-test]=xxhttp://www.lycos.com/cgi-bin/pursuit?cat=dir&query=\\{@}xx

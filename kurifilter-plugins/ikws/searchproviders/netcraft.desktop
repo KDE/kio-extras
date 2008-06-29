@@ -17,5 +17,4 @@ Name[x-test]=xxNetcraftxx
 X-KDE-ServiceTypes=SearchProvider
 Keys=nc,netcraft
 Query=http://uptime.netcraft.com/up/graph?site=\\{@}
-Query[bg]=Query=http://uptime.netcraft.com/up/graph?site=\\{@}
 Query[x-test]=xxhttp://uptime.netcraft.com/up/graph?site=\\{@}xx

@@ -19,7 +19,6 @@ Name[x-test]=xxGooglexx
 X-KDE-ServiceTypes=SearchProvider
 Keys=gg,google
 Query=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
-Query[bg]=Query=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[de]=http://www.google.de/search?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[en_GB]=http://www.google.co.uk/search?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[fi]=http://www.google.fi/search?q=\\{@}&ie=UTF-8&oe=UTF-8

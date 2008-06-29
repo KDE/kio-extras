@@ -3,6 +3,7 @@ Type=Service
 Name=Mamma - Mother of all Search Engines
 Name[af]=Mamma - Moeder van alle Soektog Enjins
 Name[be]=Mamma - Маці ўсіх рухавікоў пошуку
+Name[bg]=Mamma - майка на търсачките
 Name[br]=Mamma - Mamm pep keflusker klask
 Name[ca]=Mamma - La mare de tots els motors de cerca
 Name[cs]=Mamma
@@ -65,6 +66,5 @@ Name[zh_TW]=Mamma - 搜尋引擎之母
 X-KDE-ServiceTypes=SearchProvider
 Keys=mm,mamma
 Query=http://www.mamma.com/Mamma?lang=1&timeout=4&qtype=0&query=\\{@}
-Query[bg]=Query=http://www.mamma.com/Mamma?lang=1&timeout=4&qtype=0&query=\\{@}
 Query[ne]=http://www.mamma.com/Mamma?lang=1timeout=4&qtype=0&query=\\{@}
 Query[x-test]=xxhttp://www.mamma.com/Mamma?lang=1&timeout=4&qtype=0&query=\\{@}xx

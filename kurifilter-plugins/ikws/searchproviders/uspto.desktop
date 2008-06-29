@@ -5,6 +5,7 @@ Keys=uspto
 Name=U.S. Patent Database
 Name[af]=Amerikaanse Patente Databasis
 Name[be]=База звестак пра патэнты ЗША
+Name[bg]=U.S. патенти
 Name[bn]=মার্কিন পেটেন্ট ডেটাবেস
 Name[ca]=Base de dades de patents U.S.
 Name[cs]=Patentová databáze USA
@@ -66,7 +67,6 @@ Name[x-test]=xxU.S. Patent Databasexx
 Name[zh_CN]=美国专利数据库
 Name[zh_TW]=U.S. 專利權資料庫
 Query=http://patft.uspto.gov/netacgi/nph-Parser?TERM1=\\{@}&Sect1=PTO1&Sect2=HITOFF&d=PALL&p=1&u=/netahtml/srchnum.htm&r=0&f=S&l=50
-Query[bg]=Query=http://patft.uspto.gov/netacgi/nph-Parser?TERM1=\\{@}&Sect1=PTO1&Sect2=HITOFF&d=PALL&p=1&u=/netahtml/srchnum.htm&r=0&f=S&l=50
 Query[x-test]=xxhttp://patft.uspto.gov/netacgi/nph-Parser?TERM1=\\{@}&Sect1=PTO1&Sect2=HITOFF&d=PALL&p=1&u=/netahtml/srchnum.htm&r=0&f=S&l=50xx
 X-KDE-ServiceTypes=SearchProvider
 Type=Service

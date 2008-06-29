@@ -30,7 +30,6 @@ Name[x-test]=xxKDE WebSVNxx
 X-KDE-ServiceTypes=SearchProvider
 Keys=websvn,kdesvn,ksvn,kvs
 Query=http://websvn.kde.org/\\{@}
-Query[bg]=Query=http://websvn.kde.org/\\{@}
 Query[hi]=http://webcvs.kde.org/\\{@}
 Query[se]=http://webcvs.kde.org/\\{@}
 Query[x-test]=xxhttp://websvn.kde.org/\\{@}xx

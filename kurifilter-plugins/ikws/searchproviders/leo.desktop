@@ -3,6 +3,7 @@ Type=Service
 Name=LEO-Translate
 Name[af]=LEO-Vertaal
 Name[ar]=LEO-ترجم
+Name[bg]=LEO-превод
 Name[csb]=LEO - dwastarnowi anielskò-miemiecczi
 Name[cy]=LEO-Cyfieithu
 Name[de]=LEO-Übersetzung
@@ -44,5 +45,4 @@ Name[xh]=LEO-Guqulela
 X-KDE-ServiceTypes=SearchProvider
 Keys=leo
 Query=http://dict.leo.org/?search=\\{@}
-Query[bg]=Query=http://dict.leo.org/?search=\\{@}
 Query[x-test]=xxhttp://dict.leo.org/?search=\\{@}xx
