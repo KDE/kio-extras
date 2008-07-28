@@ -13,6 +13,7 @@ add_subdirectory( archive )
 add_subdirectory( settings )
 add_subdirectory( trash )
 add_subdirectory( remote )
+add_subdirectory( desktop )
 
 # need kdesu
 if(UNIX)
@@ -26,7 +27,6 @@ if(NOT WIN32)
    add_subdirectory( man )
    add_subdirectory( nfs )
    add_subdirectory( thumbnail )
-   add_subdirectory( desktop )
 
    if(SAMBA_FOUND)
       add_subdirectory(smb)
