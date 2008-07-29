@@ -22,6 +22,7 @@ Name[lt]=CTAN – Visapusiško TeX Archyvo Tinklas
 Name[lv]=CTAN - visaptverošs TeX arhīvu rīkls
 Name[mk]=CTAN - Обемна мрежа со TeX архиви
 Name[ml]=സിടാന്‍ - അനേകം വിഷയങ്ങളടങ്ങിയിട്ടുള്ള ടെക് ശേഖരങ്ങളുടെ ശൃംഖല
+Name[mr]=CTAN - कॉम्प्रेहेंसिव टेक्स आर्काइव संजाळ
 Name[ms]=CTAN - Rangkaian Arkib TeX Komprehensif
 Name[nb]=CTAN -– TeX-arkiv: «Comprehensive TeX Archive Network»
 Name[ne]=CTAN - व्यापक TeX सङ्ग्रह सञ्जाल
@@ -48,6 +49,8 @@ Name[xh]=CTAN - Enomxholo TeX Indawo yokugcina Yomsebenzi womnatha
 Name[zh_CN]=CTAN - 综合性 TeX 档案网络
 Name[zh_TW]=CTAN - 全面的 Tex 收集網路
 Query=http://ctan.org/cgi-bin/filenameSearch.py?filename=\\{@}&Search=Search
+Query[lt]=http://tug.ctan.org/cgi-bin/filenameSearch.py?action=/search/&filename=\\{ at }
+Query[ml]=http://ctan.org/cgi-bin/filenameSearch.py?filename=\\{@}&തെരയുക=Search
 Query[x-test]=xxhttp://ctan.org/cgi-bin/filenameSearch.py?filename=\\{@}&Search=Searchxx
 X-KDE-ServiceTypes=SearchProvider
 Type=Service
