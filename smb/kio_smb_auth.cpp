@@ -47,8 +47,11 @@ void auth_smbc_get_data(SMBCCTX * context,
 //==========================================================================
 {
     if (context != NULL) {
-        // FIXME deprecated use smbc_getOption*() functions instead
+#ifdef DEPRECATED_SMBC_INTERFACE
+        SMBSlave *theSlave = (SMBSlave*) smbc_getOptionUserData(context);
+#else
         SMBSlave *theSlave = (SMBSlave*)smbc_option_get(context, "user_data");
+#endif
         theSlave->auth_smbc_get_data(server, share,
                                      workgroup,wgmaxlen,
                                      username, unmaxlen,
@@ -172,26 +175,32 @@ bool SMBSlave::auth_initialize_smbc()
         KConfig cfg( "kioslaverc", KConfig::SimpleConfig);
         int debug_level = cfg.group( "SMB" ).readEntry( "DebugLevel", 0 );
 
-#if 0
-	/* old API initialisation routine does not allow to set flags */
-
-        if(smbc_init(::auth_smbc_get_data,debug_level) == -1)
-        {
-            SlaveBase::error(ERR_INTERNAL, i18n("libsmbclient failed to initialize"));
-            return false;
-        }
-#endif
 	smb_context = smbc_new_context();
 	if (smb_context == NULL) {
             SlaveBase::error(ERR_INTERNAL, i18n("libsmbclient failed to create context"));
 	    return false;
 	}
 
+#ifdef DEPRECATED_SMBC_INTERFACE // defined by libsmbclient.h of Samba 3.2
+
+	/* New libsmbclient interface of Samba 3.2 */
+	smbc_setDebug(smb_context, debug_level);
+	smbc_setFunctionAuthDataWithContext(smb_context, ::auth_smbc_get_data);
+	smbc_setOptionUserData(smb_context, this);
+
+	/* Enable Kerberos support */
+	smbc_setOptionUseKerberos(smb_context, 1);
+	smbc_setOptionFallbackAfterKerberos(smb_context, 1);
+#else
 	smb_context->debug = debug_level;
 	smb_context->callbacks.auth_fn = NULL;
-    // FIXME deprecated use smbc_setOption*() functions instead.
 	smbc_option_set(smb_context, "auth_function", (void*)::auth_smbc_get_data);
 	smbc_option_set(smb_context, "user_data", this);
+
+ #if defined(SMB_CTX_FLAG_USE_KERBEROS) && defined(SMB_CTX_FLAG_FALLBACK_AFTER_KERBEROS)
+	smb_context->flags |= SMB_CTX_FLAG_USE_KERBEROS | SMB_CTX_FLAG_FALLBACK_AFTER_KERBEROS;
+ #endif
+#endif /* DEPRECATED_SMBC_INTERFACE */
 
 	if (!smbc_init_context(smb_context)) {
 		smbc_free_context(smb_context, 0);
@@ -199,10 +208,6 @@ bool SMBSlave::auth_initialize_smbc()
             	SlaveBase::error(ERR_INTERNAL, i18n("libsmbclient failed to initialize context"));
 	    	return false;
 	}
-
-#if defined(SMB_CTX_FLAG_USE_KERBEROS) && defined(SMB_CTX_FLAG_FALLBACK_AFTER_KERBEROS)
-	smb_context->flags |= SMB_CTX_FLAG_USE_KERBEROS | SMB_CTX_FLAG_FALLBACK_AFTER_KERBEROS;
-#endif
 
 	smbc_set_context(smb_context);
 
