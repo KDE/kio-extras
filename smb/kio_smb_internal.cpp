@@ -92,7 +92,7 @@ void SMBUrl::updateCache()
             surl += '@';
         }
         surl += QUrl::fromPercentEncoding(KUrl::host().toUpper().toLatin1());
-        surl += QUrl::fromPercentEncoding(KUrl::path().toLatin1());
+        surl += KUrl::path().toLatin1();
         m_surl = surl.toUtf8();
     }
     m_type = SMBURLTYPE_UNKNOWN;
