@@ -80,21 +80,12 @@ void SMBUrl::updateCache()
 
     // SMB URLs are UTF-8 encoded
     kDebug(KIO_SMB) << "updateCache " << KUrl::path();
-    if (KUrl::url() == "smb:/")
-        m_surl = "smb://";
-    else {
-        QString surl = "smb://";
-        if (KUrl::hasUser()) {
-            surl += KUrl::user();
-            if (KUrl::hasPass()) {
-                surl += ':' + KUrl::pass();
-            }
-            surl += '@';
-        }
-        surl += KUrl::host().toUpper();
-        surl += KUrl::path();
-        m_surl = surl.toUtf8();
-    }
+
+    if ( KUrl::url() == "smb:/" )
+      m_surl = "smb://";
+    else
+      m_surl = KUrl::url( RemoveTrailingSlash ).toUtf8();
+    
     m_type = SMBURLTYPE_UNKNOWN;
     // update m_type
     (void)getType();
