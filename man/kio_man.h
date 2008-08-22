@@ -87,7 +87,6 @@ private:
     QString mySgml2RoffPath;
     void getProgramPath();
 
-    QByteArray m_htmlPath; ///< Path to KDE resources, encoded for HTML
     QByteArray m_cssPath; ///< Path to KDE resources, encoded for CSS
     QBuffer m_outputBuffer; ///< Buffer for the output
     QByteArray m_manCSSFile; ///< Path to kio_man.css

@@ -631,13 +631,12 @@ static char *scan_troff_mandoc(char *c, bool san, char **result);
 
 static QList<char*> s_argumentList;
 
-static QByteArray htmlPath, cssPath, cssFile;
+static QByteArray cssPath, cssFile;
 
 static QByteArray s_dollarZero; // Value of $0
 
-void setResourcePath(const QByteArray& _htmlPath, const QByteArray& _cssPath)
+void setResourcePath(const QByteArray& _cssPath)
 {
-    htmlPath=_htmlPath;
     cssPath=_cssPath;
 }
 
@@ -4083,9 +4082,8 @@ static char *scan_request(char *c)
                             out_html( " Manpage</TITLE>\n");
 
                             // KDE defaults.
-                            out_html( "<link rel=\"stylesheet\" href=\"");
-                            out_html(htmlPath);
-                            out_html("/kde-default.css\" type=\"text/css\">\n" );
+                            out_html( "<link rel=\"stylesheet\" href=\"help:/common/kde-default.css\"");
+                            out_html( " type=\"text/css\">\n" );
 
                             // Output our custom stylesheet.
                             out_html( "<link rel=\"stylesheet\" href=\"");
@@ -4095,15 +4093,14 @@ static char *scan_request(char *c)
                             // Some elements need background images, but this
                             // could not be included in the stylesheet,
                             // include it now.
-                            out_html("<style> #header_top { background-image: url(\"");
-                            out_html(htmlPath);
-                            out_html("/top.jpg\"); } #header_top div"
-                                     " { background-image: url(\"");
-                            out_html(htmlPath);
-                            out_html("/top-left.jpg\"); } #header_top div div "
-                                     "{ background-image: url(\"");
-                            out_html(htmlPath);
-                            out_html("/top-right.jpg\"); }</style>\n\n");
+                            out_html("<style>\n#header_top { "
+                                     "background-image: url(\"help:/common/top.jpg\"); }\n\n"
+                                     "#header_top div { "
+                                     "background-image: url(\"help:/common/top-left.jpg\"); }\n\n"
+                                     "#header_top div div { "
+                                     "background-image: url(\"help:/common/top-right.jpg\"); }\n\n"
+                                     "</style>\n\n"
+                                    );
 
                             out_html( "<meta name=\"ROFF Type\" content=\"");
                             if (mandoc_command)
@@ -4115,11 +4112,9 @@ static char *scan_request(char *c)
                             out_html( "</HEAD>\n\n" );
                             out_html("<BODY>\n\n" );
 
-                            out_html("<div id=\"header\"><div id=\"header_top\"\n");
+                            out_html("<div id=\"header\"><div id=\"header_top\">\n");
                             out_html("<div><div>\n");
-                            out_html("<img src=\"");
-                            out_html(htmlPath);
-                            out_html("/top-kde.jpg\"> ");
+                            out_html("<img src=\"help:/common/top-kde.jpg\"> ");
                             out_html( scan_troff(wordlist[0], 0, NULL ) );
                             out_html(" - KDE Man Page Viewer");
                             out_html("</div></div></div></div>\n");
@@ -5663,7 +5658,6 @@ char *read_man_page(const char *filename)
 #ifndef KIO_MAN_TEST
 int main(int argc, char **argv)
 {
-    htmlPath = ".";
     cssPath = ".";
     if (argc < 2) {
         std::cerr << "call: " << argv[0] << " <filename>\n";
