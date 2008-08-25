@@ -77,13 +77,12 @@ X-KDE-ServiceTypes=SearchProvider
 Keys=wp
 Query=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[be]=http://be.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
-Query[bg]=http://en.wikipedia.org/wiki/Special:Search?search=\{@}&go=Go
 Query[cs]=http://cs.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[csb]=http://csb.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[de]=http://de.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[fr]=http://fr.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
-Query[fy]=http://fy.wikipedia.org/wiki/Special:Search?search=\{@}&go=Go
-Query[he]=http://he.wikipedia.org/wiki/Special:Search?search=\{@}&go=Go
+Query[fy]=http://fy.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[he]=http://he.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[it]=http://it.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[ko]=http://ko.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[ml]=http://ml.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
@@ -92,8 +91,8 @@ Query[nl]=http://nl.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[oc]=http://oc.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[pl]=http://pl.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[ro]=http://ro.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
-Query[sv]=http://sv.wikipedia.org/wiki/Special:Search?search=\{@}&go=Go
-Query[wa]=http://wa.wikipedia.org/wiki/Special:Search?search=\{@}&go=Potch%C3%AE
+Query[sv]=http://sv.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[wa]=http://wa.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Potch%C3%AE
 Query[x-test]=xxhttp://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Goxx
 Query[zh_CN]=http://zh.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Charset=utf8
