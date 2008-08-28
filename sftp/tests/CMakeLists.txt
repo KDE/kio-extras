@@ -11,4 +11,4 @@ set(ksshprocesstest_SRCS
 
 kde4_add_executable(ksshprocesstest TEST ${ksshprocesstest_SRCS})
 
-target_link_libraries(ksshprocesstest ${KDE4_KPTY_LIBS})
+target_link_libraries(ksshprocesstest ${KDE4_KPTY_LIBS} ${QT_QTCORE_LIBRARY} ${KDE4_KDECORE_LIBS})
