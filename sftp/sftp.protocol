@@ -16,6 +16,7 @@ Icon=folder-remote
 Description=A kioslave for sftp
 Description[af]='n Kioslave vir sftp
 Description[be]=Kioslave для sftp
+Description[be@latin]=Słužba „kioslave” dla SFTP
 Description[bg]=kioslave за sftp
 Description[bn]=এস.এফ.টি.পি-র জন্য একটি kioslave
 Description[bn_IN]=sftp-র জন্য kioslave

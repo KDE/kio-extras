@@ -5,6 +5,7 @@ Name=Internet Book List
 Name[af]=Internet boeklys
 Name[ar]=لائحة عناوين الإنترنت
 Name[be]=Спіс інтэрнет-кніг
+Name[be@latin]=Спіс інтэрнет-кніг
 Name[bn_IN]=ইন্টারনেট বইয়ের তালিকা
 Name[cs]=Internetový seznam knih
 Name[csb]=Lësta internetowich ksążków
@@ -61,5 +62,6 @@ X-KDE-ServiceTypes=SearchProvider
 Keys=ibl
 Query=http://www.iblist.com/search/search.php?item=\\{@}&submit=Search
 Query[be]=http://www.feedster.com/search.php?q=\\{@}&ie=UTF-8&oe=UTF-8
+Query[be@latin]=http://www.feedster.com/search.php?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[csb]=http://www.feedster.com/search.php?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[x-test]=xxhttp://www.iblist.com/search/search.php?item=\\{@}&submit=Searchxx
