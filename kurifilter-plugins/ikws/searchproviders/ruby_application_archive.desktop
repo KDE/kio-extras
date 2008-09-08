@@ -3,7 +3,7 @@ Type=Service
 Name=Ruby Application Archive
 Name[af]=Ruby Toepassing Argief
 Name[be]=Архіў праграмаў Ruby
-Name[be@latin]=Архіў праграмаў Ruby
+Name[be@latin]=Aplikacyi „Ruby”
 Name[bg]=Архив на Ruby
 Name[bn]=রুবি  অ্যাপলিকেশন আর্কাইভ
 Name[bn_IN]=Ruby অ্যাপ্লিকেশন আর্কাইভ
@@ -71,7 +71,6 @@ X-KDE-ServiceTypes=SearchProvider
 Keys=raa
 Query=http://www.ruby-lang.org/en/raa-list.rhtml?name=\\{@}
 Query[be]=http://raa.ruby-lang.org/search.rhtml?search=\\{@}
-Query[be@latin]=http://raa.ruby-lang.org/search.rhtml?search=\\{@}
 Query[bg]=http://raa.ruby-lang.org/search.rhtml?search=\\{@}
 Query[csb]=http://raa.ruby-lang.org/search.rhtml?search=\\{@}
 Query[eo]=http://raa.ruby-lang.org/en/raa-list.rhtml?name=\\{@}
