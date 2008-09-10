@@ -2749,7 +2749,12 @@ static char *skip_till_newline(char *c)
     while (*c && (*c!='\n' || lvl>0)) {
     if (*c=='\\') {
         c++;
-        if (*c=='}') lvl--; else if (*c=='{') lvl++;
+        if (*c=='}')
+            lvl--;
+        else if (*c=='{')
+            lvl++;
+        else if (*c=='\0')
+            break;
     }
     c++;
     }
