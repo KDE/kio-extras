@@ -132,7 +132,7 @@ bool Program::start()
       char **arglist=(char**)malloc((mArgs.count()+1)*sizeof(char*));
       int c=0;
 
-      for (QStringList::Iterator it=mArgs.begin(); it!=mArgs.end(); ++it)
+      for (QStringList::const_iterator it=mArgs.begin(); it!=mArgs.end(); ++it)
       {
          arglist[c]=(char*)malloc((*it).length()+1);
          strcpy(arglist[c], (*it).toLatin1());

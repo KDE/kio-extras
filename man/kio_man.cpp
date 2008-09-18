@@ -1067,7 +1067,7 @@ void MANProtocol::checkManPaths()
             // Insert constructed path ($MANPATH was empty, or
             // there was a ":" at an end or "::")
 
-            for ( QStringList::Iterator it2 = constr_path.begin();
+            for ( QStringList::const_iterator it2 = constr_path.begin();
                   it2 != constr_path.end();
                   it2++ )
             {
@@ -1534,7 +1534,7 @@ void MANProtocol::listDir(const KUrl &url)
     QStringList list = findPages( section, QString(), false );
 
     QStringList::Iterator it = list.begin();
-    const QStringList::Iterator end = list.end();
+    QStringList::const_iterator end = list.end();
 
     for ( ; it != end; ++it ) {
         stripExtension( &(*it) );

@@ -515,7 +515,7 @@ void NFSProtocol::listDir( const KUrl& _url)
       totalSize( m_exportedDirs.count());
       //in this case we don't need to do a real listdir
       UDSEntry entry;
-      for (QStringList::Iterator it=m_exportedDirs.begin(); it!=m_exportedDirs.end(); ++it)
+      for (QStringList::const_iterator it=m_exportedDirs.begin(); it!=m_exportedDirs.end(); ++it)
       {
          entry.clear();
          entry.insert( KIO::UDSEntry::UDS_NAME, (*it) );
@@ -559,7 +559,7 @@ void NFSProtocol::listDir( const KUrl& _url)
 
    UDSEntry entry;
    //stat all files in filesToList
-   for (QStringList::Iterator it=filesToList.begin(); it!=filesToList.end(); ++it)
+   for (QStringList::const_iterator it=filesToList.begin(); it!=filesToList.end(); ++it)
    {
       diropargs dirargs;
       diropres dirres;
