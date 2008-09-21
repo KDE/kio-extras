@@ -9,5 +9,6 @@ writing=true
 makedir=true
 deleting=true
 opening=true
+moving=true
 DocPath=kioslave/smb.html
 Icon=network-workgroup
