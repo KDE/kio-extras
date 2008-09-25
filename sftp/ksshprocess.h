@@ -506,7 +506,7 @@ public:
     int pty() { return ssh.fd(); }
 private:
     /**
-     * Path the the ssh binary.
+     * Path to the ssh binary.
      */
     QString mSshPath;
     

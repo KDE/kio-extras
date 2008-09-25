@@ -74,7 +74,7 @@
 /*
  * The following are tables of string and regexps we match
  * against the output of ssh.  An entry in each array 
- * corresponds the the version of ssh found in versionStrs[].
+ * corresponds to the version of ssh found in versionStrs[].
  * 
  * The version strings must be ordered in the array from most
  * specific to least specific in cases where the beginning
