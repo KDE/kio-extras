@@ -6,6 +6,7 @@ macro_optional_find_package(Samba)
 macro_log_feature(SAMBA_FOUND "Samba" "the SMB client library, a version with smbc_set_context() and smbc_option_set()" "http://www.samba.org" FALSE "" "Needed to build the SMB kioslave")
 
 add_subdirectory( about )
+add_subdirectory( bookmarks )
 add_subdirectory( cgi )
 add_subdirectory( filter )
 add_subdirectory( info )
