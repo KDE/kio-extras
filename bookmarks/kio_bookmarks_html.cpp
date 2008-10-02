@@ -98,7 +98,7 @@ void BookmarksProtocol::echoIndex()
       echo("<div class=\"column\">");
       indent++;
 
-      while(!bm.isNull() and (size + sizeOfGroup(bm.toGroup())*2/3 < (totalsize / columns) or size == 0))
+      while(!bm.isNull() && (size + sizeOfGroup(bm.toGroup())*2/3 < (totalsize / columns) || size == 0))
       {
         echoFolder(bm.toGroup());
         size += sizeOfGroup(bm.toGroup());

@@ -149,7 +149,7 @@ void BookmarksProtocol::flattenTree( const KBookmarkGroup &folder )
 
     next = tree.next(bm);
 
-    if (bm.isGroup() and bm.parentGroup().hasParent()) {
+    if (bm.isGroup() && bm.parentGroup().hasParent()) {
       kDebug() << "moving " << bm.text() << " from " << bm.parentGroup().fullText() << " to " << prev.parentGroup().text() << endl;
 
       bm.setFullText("| " + bm.parentGroup().fullText() + " > " + bm.fullText());
@@ -173,7 +173,7 @@ int BookmarksProtocol::sizeOfGroup( const KBookmarkGroup &folder, bool real )
   }
 
   // CSS sets a min-height for toplevel folders
-  if (folder.parentGroup() == tree and size < 8 and real == false)
+  if (folder.parentGroup() == tree && size < 8 && real == false)
     size = 8;
 
   return size;
@@ -184,7 +184,7 @@ void BookmarksProtocol::get( const KUrl& url )
   QString path = url.path();
   QRegExp regexp("^/(background|icon)/([\\S]+)");
 
-  if (path.isEmpty() or path == "/") {
+  if (path.isEmpty() || path == "/") {
     echoIndex();
   } else if (path == "/config") {
     KToolInvocation::startServiceByDesktopName("bookmarks", "");
