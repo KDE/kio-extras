@@ -306,11 +306,9 @@ void KUriFilterTest::tests()
     filter( "$1/$2/$3", "http://www.google.com/search?q=%241%2F%242%2F%243&ie=UTF-8&oe=UTF-8", KUriFilterData::NetProtocol );  // can be used as bogus or valid test. Currently triggers default search, i.e. google
     filter( "$$$$", "http://www.google.com/search?q=%24%24%24%24&ie=UTF-8&oe=UTF-8", KUriFilterData::NetProtocol ); // worst case scenarios.
 
-    // Replaced the match testing with a 0 since
-    // the shortURI filter will return the string
-    // itself if the requested environment variable
-    // is not already set.
-    filter( "$QTDIR", 0, KUriFilterData::LocalDir, QStringList( "kshorturifilter" ) ); //use specific filter.
+    if (!qtdir.isEmpty()) {
+        filter( "$QTDIR", qtdir, KUriFilterData::LocalDir, QStringList( "kshorturifilter" ) ); //use specific filter.
+    }
     filter( "$HOME", home, KUriFilterData::LocalDir, QStringList( "kshorturifilter" ) ); //use specific filter.
 
 
