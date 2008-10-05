@@ -814,8 +814,8 @@ void MANProtocol::showMainIndex()
     QStringList::ConstIterator it;
     for (it = sections.begin(); it != sections.end(); ++it)
         os << "<tr><td><a href=\"man:(" << *it << ")\" accesskey=\"" <<
-	(((*it).length()==1)?(*it):(*it).right(1))<<"\">" << i18n("Section ")
-	<< *it << "</a></td><td>&nbsp;</td><td> " << sectionName(*it) << "</td></tr>" << endl;
+	(((*it).length()==1)?(*it):(*it).right(1))<<"\">" << i18n("Section %1", *it)
+	<< "</a></td><td>&nbsp;</td><td> " << sectionName(*it) << "</td></tr>" << endl;
 
     os << "</table>" << endl;
 
