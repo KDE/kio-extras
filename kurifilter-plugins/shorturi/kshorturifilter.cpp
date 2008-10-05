@@ -541,7 +541,8 @@ KCModule* KShortUriFilter::configModule( QWidget*, const char* ) const
 
 QString KShortUriFilter::configName() const
 {
-    return i18n("&ShortURLs");
+//    return i18n("&ShortURLs"); we don't have a configModule so no need for a configName that confuses translators
+    return KUriFilterPlugin::configName();
 }
 
 void KShortUriFilter::configure()
