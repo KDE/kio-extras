@@ -88,8 +88,7 @@ void BookmarksProtocol::echoIndex()
   KBookmark bm = tree.first();
 
   if(bm.isNull()) {
-    // TODO
-    echo("<p class=\"message\">Insert here a nice message to tell it's empty</p>");
+    echo("<p class=\"message\">" + i18n("There are no bookmarks to display yet.") + "</p>");
   }
   else {
     for (int i = 1; i <= columns; i++)
@@ -174,9 +173,9 @@ void BookmarksProtocol::echoStyle()
   indent++;
   echo("li.link:hover, div.toolbar img:hover { background: " +
        htmlColor(KColorUtils::tint(view.background().color(), view.decoration(KColorScheme::HoverColor).color(), 0.4)) + "; }");
-  echo("div.column > ul, div.toolbar { background-color: " + htmlColor(view.background()) + "; " +
+  echo("div.column > ul, div.toolbar, p.message { background-color: " + htmlColor(view.background()) + "; " +
                   "border: 1px solid " + htmlColor(view.shade(KColorScheme::LightShade)) + "; }");
-  echo("div.column > ul:hover { border: 1px solid " + htmlColor(view.decoration(KColorScheme::HoverColor)) + "; }");
+  echo("div.column > ul:hover, p.message:hover { border: 1px solid " + htmlColor(view.decoration(KColorScheme::HoverColor)) + "; }");
   echo("div.toolbar {border-top: none; border-right: none;}");
   echo("div.column { width : " + QString::number(100/columns) + "%; }");
   echo("body { font-size: " + QString::number(font.pointSize()) + "pt; " +
