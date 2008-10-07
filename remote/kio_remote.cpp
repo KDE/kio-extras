@@ -32,23 +32,14 @@
 extern "C" {
 	int KDE_EXPORT kdemain( int argc, char **argv )
 	{
-		// KApplication is necessary to use other ioslaves
-		putenv(strdup("SESSION_MANAGER="));
-		KCmdLineArgs::init(argc, argv, "kio_remote", 0, ki18n(0L), false, ki18n(0L));
+        // necessary to use other kio slaves
+        KComponentData componentData("kio_remote" );
+        QCoreApplication app(argc, argv);
 
-		KCmdLineOptions options;
-		options.add("+protocol", ki18n( "Protocol name" ));
-		options.add("+pool", ki18n( "Socket name" ));
-		options.add("+app", ki18n( "Socket name" ));
-		KCmdLineArgs::addCmdLineOptions( options );
-		KApplication app(  false );
-
-		KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
-		RemoteProtocol slave( QFile::encodeName( args->arg(0) ), 
-		                      QFile::encodeName( args->arg(1) ),
-		                      QFile::encodeName( args->arg(2) ) );
-		slave.dispatchLoop();
-		return 0;
+        // start the slave
+        RemoteProtocol slave( argv[1], argv[2], argv[3] );
+        slave.dispatchLoop();
+        return 0;
 	}
 }
 
@@ -75,7 +66,7 @@ void RemoteProtocol::listDir(const KUrl &url)
 
 	int second_slash_idx = url.path().indexOf( '/', 1 );
 	QString root_dirname = url.path().mid( 1, second_slash_idx-1 );
-	
+
 	KUrl target = m_impl.findBaseURL( root_dirname );
 	kDebug(1220) << "possible redirection target : " << target;
 	if( target.isValid() )
@@ -149,7 +140,7 @@ void RemoteProtocol::stat(const KUrl &url)
 
 	int second_slash_idx = url.path().indexOf( '/', 1 );
 	QString root_dirname = url.path().mid( 1, second_slash_idx-1 );
-	
+
 	if ( second_slash_idx==-1 || ( (int)url.path().length() )==second_slash_idx+1 )
 	{
 		KIO::UDSEntry entry;
@@ -172,7 +163,7 @@ void RemoteProtocol::stat(const KUrl &url)
 			return;
 		}
 	}
-	
+
 	error(KIO::ERR_MALFORMED_URL, url.prettyUrl());
 }
 

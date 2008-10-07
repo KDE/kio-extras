@@ -35,21 +35,12 @@ extern "C"
 {
     int KDE_EXPORT kdemain(int argc, char **argv)
     {
-        // KApplication is necessary to use kio_file
-        putenv(strdup("SESSION_MANAGER="));
-        KCmdLineArgs::init(argc, argv, "kio_desktop", 0, KLocalizedString(), 0);
+        // necessary to use other kio slaves
+        KComponentData( "kio_desktop" );
+        QCoreApplication app( argc, argv );
 
-        KCmdLineOptions options;
-        options.add("+protocol", ki18n("Protocol name"));
-        options.add("+pool", ki18n("Socket name"));
-        options.add("+app", ki18n("Socket name"));
-        KCmdLineArgs::addCmdLineOptions(options);
-        KApplication app(false);
-
-        KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
-        DesktopProtocol slave(QFile::encodeName(args->arg(0)),
-                              QFile::encodeName(args->arg(1)),
-                              QFile::encodeName(args->arg(2)));
+        // start the slave
+        DesktopProtocol slave(argv[1], argv[2], argv[3]);
         slave.dispatchLoop();
         return 0;
     }
