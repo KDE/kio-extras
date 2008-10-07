@@ -946,7 +946,7 @@ void fishProtocol::manageConnection(const QString &l) {
                     {
                       KUrl kurl("fish://host/");
                       kurl.setFileName(thisFn);  // properly encode special chars
-                      KMimeType::Ptr mime = KMimeType::findByUrl(kurl);
+                      KMimeType::Ptr mime = KMimeType::findByUrl(kurl, udsType);
                       if ( mime->name() != KMimeType::defaultMimeType() )
                           udsMime = mime->name();
                     }
