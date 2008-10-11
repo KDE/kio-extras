@@ -13,15 +13,12 @@
  *   the Free Software Foundation, version 2 of the License                *
  *                                                                         *
  ***************************************************************************/
-#ifndef __fish_h__
-#define __fish_h__
-
-
+#ifndef FISH_H
+#define FISH_H
 
 #include <kurl.h>
 #include <kio/global.h>
 #include <kio/slavebase.h>
-#include <k3process.h>
 #include <kio/authinfo.h>
 #include <time.h>
 
