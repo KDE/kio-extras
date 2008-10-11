@@ -18,11 +18,10 @@
     Boston, MA 02110-1301, USA.
 */
 
-#ifndef _HTMLCREATOR_H_
-#define _HTMLCREATOR_H_
+#ifndef HTMLCREATOR_H
+#define HTMLCREATOR_H
 
 #include <kio/thumbcreator.h>
-//Added by qt3to4:
 #include <QTimerEvent>
 #include <QEventLoop>
 

@@ -18,9 +18,7 @@
 #ifndef KCMCGI_H
 #define KCMCGI_H
 
-#define KDE3_SUPPORT
 #include <kcmodule.h>
-#undef KDE3_SUPPORT
 
 class QListWidget;
 class QListWidgetItem;

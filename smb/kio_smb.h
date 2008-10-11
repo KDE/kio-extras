@@ -38,16 +38,6 @@
 
 #include "config-smb.h"
 
-//-------------
-// QT includes
-//-------------
-
-#include <Qt3Support/Q3PtrList>
-#include <QTextStream>
-#include <Qt3Support/Q3StrIList>
-//Added by qt3to4:
-#include <QByteArray>
-
 //--------------
 // KDE includes
 //--------------

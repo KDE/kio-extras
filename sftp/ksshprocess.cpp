@@ -68,8 +68,6 @@
 #include <kstandarddirs.h>
 #include <klocale.h>
 #include <QRegExp>
-//Added by qt3to4:
-#include <QByteArray>
 
 /*
  * The following are tables of string and regexps we match

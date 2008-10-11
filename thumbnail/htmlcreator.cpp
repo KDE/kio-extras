@@ -25,9 +25,6 @@
 #include <QPixmap>
 #include <QImage>
 #include <QPainter>
-//Added by qt3to4:
-#include <QTimerEvent>
-#include <QEventLoop>
 
 #include <kapplication.h>
 #include <khtml_part.h>
