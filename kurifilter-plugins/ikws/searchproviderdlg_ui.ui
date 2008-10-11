@@ -1,142 +1,166 @@
-<ui version="4.0" stdsetdef="1" >
-  <author></author>
-  <comment></comment>
-  <exportmacro></exportmacro>
-  <class>SearchProviderDlgUI</class>
-  <widget class="QWidget" name="SearchProviderDlgUI" >
-    <property name="geometry" >
-      <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>399</width>
-        <height>206</height>
-      </rect>
-    </property>
-    <layout class="QGridLayout" >
-      <property name="margin" >
-        <number>0</number>
-      </property>
-      <item row="1" column="0" >
-        <widget class="KLineEdit" name="leName" >
-          <property name="whatsThis" stdset="0" >
-            <string>Enter the human-readable name of the search provider here.</string>
-          </property>
-        </widget>
-      </item>
-      <item row="6" column="0" >
-        <widget class="QLabel" name="lbCharset" >
-          <property name="text" >
-            <string>&amp;Charset:</string>
-          </property>
-          <property name="buddy" stdset="0" >
-            <cstring>cbCharset</cstring>
-          </property>
-          <property name="whatsThis" stdset="0" >
-            <string>Select the character set that will be used to encode your search query</string>
-          </property>
-          <property name="wordWrap" >
-            <bool>true</bool>
-          </property>
-        </widget>
-      </item>
-      <item row="2" column="0" >
-        <widget class="QLabel" name="lbQuery" >
-          <property name="text" >
-            <string>Search &amp;URI:</string>
-          </property>
-          <property name="buddy" stdset="0" >
-            <cstring>leQuery</cstring>
-          </property>
-          <property name="whatsThis" stdset="0" >
-            <string>&lt;qt>
+<ui version="4.0" >
+ <class>SearchProviderDlgUI</class>
+ <widget class="QWidget" name="SearchProviderDlgUI" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>399</width>
+    <height>211</height>
+   </rect>
+  </property>
+  <layout class="QGridLayout" >
+   <property name="margin" >
+    <number>0</number>
+   </property>
+   <item row="1" column="0" >
+    <widget class="KLineEdit" name="leName" >
+     <property name="toolTip" >
+      <string>Enter the human-readable name of the search provider here.</string>
+     </property>
+     <property name="whatsThis" >
+      <string>Enter the human-readable name of the search provider here.</string>
+     </property>
+    </widget>
+   </item>
+   <item row="6" column="0" >
+    <widget class="QLabel" name="lbCharset" >
+     <property name="whatsThis" >
+      <string>Select the character set that will be used to encode your search query</string>
+     </property>
+     <property name="text" >
+      <string>&amp;Charset:</string>
+     </property>
+     <property name="wordWrap" >
+      <bool>true</bool>
+     </property>
+     <property name="buddy" >
+      <cstring>cbCharset</cstring>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0" >
+    <widget class="QLabel" name="lbQuery" >
+     <property name="whatsThis" >
+      <string>&lt;qt>
 Enter the URI that is used to perform a search on the search engine here.&lt;br/>The whole text to be searched for can be specified as \{@} or \{0}.&lt;br/>
 Recommended is \{@}, since it removes all query variables (name=value) from the resulting string, whereas \{0} will be substituted with the unmodified query string.&lt;br/>You can use \{1} ... \{n} to specify certain words from the query and \{name} to specify a value given by 'name=value' in the user query.&lt;br/>In addition it is possible to specify multiple references (names, numbers and strings) at once (\{name1,name2,...,"string"}).&lt;br/>The first matching value (from the left) will be used as the substitution value for the resulting URI.&lt;br/>A quoted string can be used as the default value if nothing matches from the left of the reference list.
 &lt;/qt></string>
-          </property>
-          <property name="wordWrap" >
-            <bool>true</bool>
-          </property>
-        </widget>
-      </item>
-      <item row="0" column="0" >
-        <widget class="QLabel" name="lbName" >
-          <property name="text" >
-            <string>Search &amp;provider name:</string>
-          </property>
-          <property name="buddy" stdset="0" >
-            <cstring>leName</cstring>
-          </property>
-          <property name="whatsThis" stdset="0" >
-            <string>Enter the human-readable name of the search provider here.</string>
-          </property>
-          <property name="wordWrap" >
-            <bool>true</bool>
-          </property>
-        </widget>
-      </item>
-      <item row="5" column="0" >
-        <widget class="KLineEdit" name="leShortcut" >
-          <property name="whatsThis" stdset="0" >
-            <string>&lt;qt>
+     </property>
+     <property name="text" >
+      <string>Search &amp;URI:</string>
+     </property>
+     <property name="wordWrap" >
+      <bool>true</bool>
+     </property>
+     <property name="buddy" >
+      <cstring>leQuery</cstring>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0" >
+    <widget class="QLabel" name="lbName" >
+     <property name="whatsThis" >
+      <string>Enter the human-readable name of the search provider here.</string>
+     </property>
+     <property name="text" >
+      <string>Search &amp;provider name:</string>
+     </property>
+     <property name="wordWrap" >
+      <bool>true</bool>
+     </property>
+     <property name="buddy" >
+      <cstring>leName</cstring>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="0" >
+    <widget class="KLineEdit" name="leShortcut" >
+     <property name="toolTip" >
+      <string>&lt;qt>
 The shortcuts entered here can be used as a pseudo-URI scheme in KDE. For example, the shortcut &lt;b>av&lt;/b> can be used as in &lt;b>av&lt;/b>:&lt;b>my search&lt;/b>
 &lt;/qt></string>
-          </property>
-        </widget>
-      </item>
-      <item row="4" column="0" >
-        <widget class="QLabel" name="lbShortcut" >
-          <property name="text" >
-            <string>UR&amp;I shortcuts:</string>
-          </property>
-          <property name="buddy" stdset="0" >
-            <cstring>leShortcut</cstring>
-          </property>
-          <property name="whatsThis" stdset="0" >
-            <string>&lt;qt>
+     </property>
+     <property name="whatsThis" >
+      <string>&lt;qt>
 The shortcuts entered here can be used as a pseudo-URI scheme in KDE. For example, the shortcut &lt;b>av&lt;/b> can be used as in &lt;b>av&lt;/b>:&lt;b>my search&lt;/b>
 &lt;/qt></string>
-          </property>
-          <property name="wordWrap" >
-            <bool>true</bool>
-          </property>
-        </widget>
-      </item>
-      <item row="3" column="0" >
-        <widget class="KLineEdit" name="leQuery" >
-          <property name="whatsThis" stdset="0" >
-            <string>&lt;qt>
+     </property>
+     <property name="clickMessage" >
+      <string/>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="0" >
+    <widget class="QLabel" name="lbShortcut" >
+     <property name="whatsThis" >
+      <string>&lt;qt>
+The shortcuts entered here can be used as a pseudo-URI scheme in KDE. For example, the shortcut &lt;b>av&lt;/b> can be used as in &lt;b>av&lt;/b>:&lt;b>my search&lt;/b>
+&lt;/qt></string>
+     </property>
+     <property name="text" >
+      <string>UR&amp;I shortcuts:</string>
+     </property>
+     <property name="wordWrap" >
+      <bool>true</bool>
+     </property>
+     <property name="buddy" >
+      <cstring>leShortcut</cstring>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="0" >
+    <widget class="KLineEdit" name="leQuery" >
+     <property name="toolTip" >
+      <string>&lt;qt>
 Enter the URI that is used to perform a search on the search engine here.&lt;br/>The whole text to be searched for can be specified as \{@} or \{0}.&lt;br/>
 Recommended is \{@}, since it removes all query variables (name=value) from the resulting string, whereas \{0} will be substituted with the unmodified query string.&lt;br/>You can use \{1} ... \{n} to specify certain words from the query and \{name} to specify a value given by 'name=value' in the user query.&lt;br/>In addition it is possible to specify multiple references (names, numbers and strings) at once (\{name1,name2,...,"string"}).&lt;br/>The first matching value (from the left) will be used as the substitution value for the resulting URI.&lt;br/>A quoted string can be used as the default value if nothing matches from the left of the reference list.
 &lt;/qt></string>
-          </property>
-        </widget>
-      </item>
-      <item row="7" column="0" >
-        <widget class="KComboBox" name="cbCharset" >
-          <property name="whatsThis" stdset="0" >
-            <string>Select the character set that will be used to encode your search query.</string>
-          </property>
-        </widget>
-      </item>
-    </layout>
-  </widget>
-  <layoutdefault spacing="6" margin="11" />
-  <pixmapfunction>qPixmapFromMimeSource</pixmapfunction>
-  <customwidgets>
-    <customwidget>
-      <class>KComboBox</class>
-      <extends>QComboBox</extends>
-      <header>kcombobox.h</header>
-    </customwidget>
-  </customwidgets>
-  <tabstops>
-    <tabstop>leName</tabstop>
-    <tabstop>leQuery</tabstop>
-    <tabstop>leShortcut</tabstop>
-    <tabstop>cbCharset</tabstop>
-  </tabstops>
-  <includes>
-    <include location="local" >klineedit.h</include>
-    <include location="local" >kcombobox.h</include>
-  </includes>
+     </property>
+     <property name="whatsThis" >
+      <string>&lt;qt>
+Enter the URI that is used to perform a search on the search engine here.&lt;br/>The whole text to be searched for can be specified as \{@} or \{0}.&lt;br/>
+Recommended is \{@}, since it removes all query variables (name=value) from the resulting string, whereas \{0} will be substituted with the unmodified query string.&lt;br/>You can use \{1} ... \{n} to specify certain words from the query and \{name} to specify a value given by 'name=value' in the user query.&lt;br/>In addition it is possible to specify multiple references (names, numbers and strings) at once (\{name1,name2,...,"string"}).&lt;br/>The first matching value (from the left) will be used as the substitution value for the resulting URI.&lt;br/>A quoted string can be used as the default value if nothing matches from the left of the reference list.
+&lt;/qt></string>
+     </property>
+     <property name="clickMessage" >
+      <string/>
+     </property>
+    </widget>
+   </item>
+   <item row="7" column="0" >
+    <widget class="KComboBox" name="cbCharset" >
+     <property name="whatsThis" >
+      <string>Select the character set that will be used to encode your search query.</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <layoutdefault spacing="6" margin="11" />
+ <pixmapfunction>qPixmapFromMimeSource</pixmapfunction>
+ <customwidgets>
+  <customwidget>
+   <class>KComboBox</class>
+   <extends>QComboBox</extends>
+   <header>kcombobox.h</header>
+  </customwidget>
+  <customwidget>
+   <class>KLineEdit</class>
+   <extends>QLineEdit</extends>
+   <header>klineedit.h</header>
+  </customwidget>
+ </customwidgets>
+ <tabstops>
+  <tabstop>leName</tabstop>
+  <tabstop>leQuery</tabstop>
+  <tabstop>leShortcut</tabstop>
+  <tabstop>cbCharset</tabstop>
+ </tabstops>
+ <includes>
+  <include location="local" >klineedit.h</include>
+  <include location="local" >kcombobox.h</include>
+ </includes>
+ <resources/>
+ <connections/>
 </ui>
