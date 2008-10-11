@@ -342,7 +342,9 @@ void FilterOptions::setWebShortcutState()
 void FilterOptions::addSearchProvider()
 {
   SearchProviderDialog dlg(0, this);
-  if (dlg.exec())
+
+  // Provider can be 0 if the user chooses accept but has not entered \{...} in the query and chooses cancel then.
+  if (dlg.exec() && dlg.provider())
   {
       m_dlg->lvSearchProviders->setCurrentItem(displaySearchProvider(dlg.provider()));
       configChanged();
