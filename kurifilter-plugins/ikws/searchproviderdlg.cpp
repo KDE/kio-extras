@@ -73,23 +73,28 @@ void SearchProviderDialog::slotChanged()
                        || m_dlg->leQuery->text().isEmpty()));
 }
 
-void SearchProviderDialog::slotOk()
-{
-    if ((m_dlg->leQuery->text().indexOf("\\{") == -1)
-        && KMessageBox::warningContinueCancel(0,
-            i18n("The URI does not contain a \\{...} placeholder for the user query.\n"
-                 "This means that the same page is always going to be visited, "
-                 "regardless of what the user types."),
-            QString(), KGuiItem(i18n("Keep It"))) == KMessageBox::Cancel)
-        return;
 
-    if (!m_provider)
-        m_provider = new SearchProvider;
-    m_provider->setName(m_dlg->leName->text().trimmed());
-    m_provider->setQuery(m_dlg->leQuery->text().trimmed());
-    m_provider->setKeys(m_dlg->leShortcut->text().trimmed().split(",", QString::SkipEmptyParts));
-    m_provider->setCharset(m_dlg->cbCharset->currentIndex() ? m_dlg->cbCharset->currentText() : QString());
-    KDialog::accept();
+void SearchProviderDialog::slotButtonClicked(int button) {
+    if (button == KDialog::Ok) {
+        if ((m_dlg->leQuery->text().indexOf("\\{") == -1)
+            && KMessageBox::warningContinueCancel(0,
+                i18n("The URI does not contain a \\{...} placeholder for the user query.\n"
+                    "This means that the same page is always going to be visited, "
+                    "regardless of what the user types."),
+                QString(), KGuiItem(i18n("Keep It"))) == KMessageBox::Cancel) {
+            return;
+        }
+        
+        if (!m_provider)
+            m_provider = new SearchProvider;
+        m_provider->setName(m_dlg->leName->text().trimmed());
+        m_provider->setQuery(m_dlg->leQuery->text().trimmed());
+        m_provider->setKeys(m_dlg->leShortcut->text().trimmed().split(",", QString::SkipEmptyParts));
+        m_provider->setCharset(m_dlg->cbCharset->currentIndex() ? m_dlg->cbCharset->currentText() : QString());
+        KDialog::accept();
+    } else {
+        KDialog::slotButtonClicked(button);
+    }
 }
 
 #include "searchproviderdlg.moc"

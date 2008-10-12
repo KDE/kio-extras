@@ -45,7 +45,7 @@ public:
 
 protected Q_SLOTS:
     void slotChanged();
-    void slotOk();
+    virtual void slotButtonClicked(int button);
 
 private:
     SearchProvider *m_provider;
