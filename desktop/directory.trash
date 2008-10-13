@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Trash
+Comment=Contains removed files
+Icon=user-trash-full
+EmptyIcon=user-trash
+Type=Link
+URL=trash:/
+OnlyShowIn=KDE;
+

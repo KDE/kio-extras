@@ -30,6 +30,7 @@ public:
     virtual ~DesktopProtocol();
 
 protected:
+    void checkLocalInstall();
     QString desktopFile(KIO::UDSEntry&) const;
     virtual bool rewriteUrl(const KUrl &url, KUrl &newUrl);
     virtual void prepareUDSEntry(KIO::UDSEntry &entry, bool listing=false) const;

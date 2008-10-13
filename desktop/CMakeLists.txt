@@ -23,3 +23,6 @@ install(TARGETS kded_desktopnotifier  DESTINATION ${PLUGIN_INSTALL_DIR} )
 install( FILES desktopnotifier.desktop  DESTINATION  ${SERVICES_INSTALL_DIR}/kded )
 install( FILES desktop.protocol  DESTINATION  ${SERVICES_INSTALL_DIR} )
 
+install(FILES directory.desktop directory.trash DESTINATION ${DATA_INSTALL_DIR}/kio_desktop)
+install(FILES Home.desktop DESTINATION ${DATA_INSTALL_DIR}/kio_desktop/DesktopLinks)
+
