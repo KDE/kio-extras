@@ -47,10 +47,11 @@ using namespace KIO;
 BookmarksProtocol::BookmarksProtocol( const QByteArray &pool, const QByteArray &app )
   : SlaveBase( "bookmarks", pool, app )
 {
-  cache = new KPixmapCache("kio_bookmarks");
   manager = KBookmarkManager::userBookmarksManager();
   cfg = new KConfig( "kiobookmarksrc" );
   config = cfg->group("General");
+  cache = new KPixmapCache("kio_bookmarks");
+  cache->setCacheLimit(config.readEntry("CacheSize", 5*1024));
 
   indent = 0;
   totalsize = 0;
