@@ -4075,7 +4075,7 @@ static char *scan_request(char *c)
                             // Most English man pages are in ISO-8859-1
                             out_html("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=ISO-8859-1\">\n");
 #else
-//let KEncodingDetector decide. (it should be better then charset="System")
+//let KEncodingDetector decide. (it should be better than charset="System")
 //TODO can we check if the charset could be determined from path? like share/man/ru.UTF8
                             // kio_man transforms from local to UTF-8
 //                             out_html("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=");
