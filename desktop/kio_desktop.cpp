@@ -30,6 +30,7 @@
 
 #include <QFile>
 #include <QDBusInterface>
+#include <QDesktopServices>
 #include <QDir>
 
 extern "C"
@@ -62,7 +63,12 @@ DesktopProtocol::~DesktopProtocol()
 
 void DesktopProtocol::checkLocalInstall()
 {
-    const QString desktopPath = KGlobalSettings::desktopPath();
+    // We can't use KGlobalSettings::desktopPath() here, since it returns the home dir
+    // if the desktop folder doesn't exist.
+    QString desktopPath = QDesktopServices::storageLocation(QDesktopServices::DesktopLocation);
+    if (desktopPath.isEmpty())
+        desktopPath = QDir::homePath() + "/Desktop";
+
     const QDir desktopDir(desktopPath);
     bool desktopIsEmpty;
     bool newRelease;
