@@ -121,13 +121,6 @@ static pid_t childPid;
 using namespace KIO;
 extern "C" {
 
-static void ripper(int)
-{
-    while (waitpid(childPid,0,WNOHANG) > 0) {
-      // do nothing, go on
-    }
-}
-
 int KDE_EXPORT kdemain( int argc, char **argv )
 {
     KComponentData componentData("fish", "kio_fish");
@@ -139,19 +132,6 @@ int KDE_EXPORT kdemain( int argc, char **argv )
     }
 
     setenv("TZ", "UTC", true);
-
-    struct sigaction act;
-    memset(&act,0,sizeof(act));
-    act.sa_handler = ripper;
-    act.sa_flags = 0
-#ifdef SA_NOCLDSTOP
-    | SA_NOCLDSTOP
-#endif
-#ifdef SA_RESTART
-    | SA_RESTART
-#endif
-    ;
-    sigaction(SIGCHLD,&act,NULL);
 
     fishProtocol slave(argv[2], argv[3]);
     slave.dispatchLoop();
@@ -692,7 +672,8 @@ Closes the connection
  */
 void fishProtocol::shutdownConnection(bool forced){
     if (childPid) {
-        kill(childPid,SIGTERM); // We may not have permission...
+        int killStatus = kill(childPid,SIGTERM); // We may not have permission...
+        if (killStatus == 0) waitpid(childPid, 0, 0);
         childPid = 0;
         ::close(childFd); // ...in which case this should do the trick
         childFd = -1;
