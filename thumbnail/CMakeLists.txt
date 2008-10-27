@@ -25,6 +25,16 @@ install(TARGETS imagethumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
 
 ########### next target ###############
 
+set(jpegthumbnail_PART_SRCS jpegcreator.cpp)
+
+kde4_add_plugin(jpegthumbnail ${jpegthumbnail_PART_SRCS})
+
+target_link_libraries(jpegthumbnail ${QT_QTCORE_LIBRARY} ${QT_QTGUI_LIBRARY} jpeg)
+
+install(TARGETS jpegthumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
+
+########### next target ###############
+
 set(svgthumbnail_PART_SRCS svgcreator.cpp)
 
 kde4_add_plugin(svgthumbnail ${svgthumbnail_PART_SRCS})
@@ -103,6 +113,7 @@ install(FILES
     thumbnail.protocol
     svgthumbnail.desktop
     imagethumbnail.desktop
+    jpegthumbnail.desktop
     textthumbnail.desktop
     htmlthumbnail.desktop
     djvuthumbnail.desktop

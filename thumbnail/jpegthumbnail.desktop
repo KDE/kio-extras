@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Service
+Name=Jpeg
+X-KDE-ServiceTypes=ThumbCreator
+MimeType=image/jpeg;
+X-KDE-Library=jpegthumbnail
+CacheThumbnail=true
