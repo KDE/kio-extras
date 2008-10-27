@@ -263,15 +263,18 @@ void SettingsProtocol::listDir(const KUrl& url)
             kDebug() << "the entry name is " << s->desktopEntryName()
                      << "with path " << s->entryPath();
 
-            if (s->isApplication())
-                continue;
 
 			kDebug() << "SettingsProtocol: adding file entry " << url.url( KUrl::AddTrailingSlash )+s->name() << " with icon " << s->icon();
 
-            if ( m_runMode == SettingsMode )
+            if ( m_runMode == SettingsMode ) {
+                if (s->isApplication())
+                    continue;
                 createFileEntry(entry,s->name(),url.url( KUrl::AddTrailingSlash )+s->desktopEntryName(), "application/x-desktop",s->icon(),KStandardDirs::locate("services", s->entryPath()));
-            else
-			    createFileEntry(entry,s->name(),url.url( KUrl::AddTrailingSlash )+s->desktopEntryName(), "application/x-desktop",s->icon(),KStandardDirs::locate("apps", s->entryPath()));
+            } else {
+                if (!s->isApplication())
+                    continue;
+                createFileEntry(entry,s->name(),url.url( KUrl::AddTrailingSlash )+s->desktopEntryName(), "application/x-desktop",s->icon(),KStandardDirs::locate("apps", s->entryPath()));
+            }
 		}
 
 		listEntry(entry, false);
