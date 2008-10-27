@@ -1,6 +1,6 @@
 [Protocol]
-exec=kio_settings
-protocol=programs
+exec=kio_applications
+protocol=applications
 input=none
 output=filesystem
 listing=Name,Type,Size,Date,Access,Owner,Group,Link,
