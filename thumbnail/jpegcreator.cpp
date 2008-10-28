@@ -21,13 +21,14 @@
 
 #include <cstdio>
 #include <csetjmp>
-#include <jpeglib.h>
 #include <QFile>
 #include <QImage>
 #include <kdemacros.h>
 
 extern "C"
 {
+    #include <jpeglib.h>
+
     KDE_EXPORT ThumbCreator *new_creator()
     {
         return new JpegCreator;
