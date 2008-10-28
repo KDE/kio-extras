@@ -128,10 +128,10 @@ bool JpegCreator::create(const QString &path, int width, int height, QImage &img
 
     // align correctly for QImage
     // code copied from Gwenview and digiKam
-    for (uint i = 0; i < jpegDecompress.output_height; ++i) {
+    for (int i = 0; i < jpegDecompress.output_height; ++i) {
         uchar *in = img.scanLine(i) + jpegDecompress.output_width * 3;
         QRgb *out = (QRgb*)img.scanLine(i);
-        for (uint j = jpegDecompress.output_width; j > 0; --j) {
+        for (int j = jpegDecompress.output_width - 1; j >= 0; --j) {
             in -= 3;
             out[j] = qRgb(in[0], in[1], in[2]);
         }
