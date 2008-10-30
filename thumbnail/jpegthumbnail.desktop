@@ -1,6 +1,8 @@
 [Desktop Entry]
 Type=Service
 Name=Jpeg
+Name[nds]=JPEG
+Name[zh_TW]=JPEG
 X-KDE-ServiceTypes=ThumbCreator
 MimeType=image/jpeg;
 X-KDE-Library=jpegthumbnail
