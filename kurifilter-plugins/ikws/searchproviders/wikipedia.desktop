@@ -30,6 +30,7 @@ Name[gu]=વિકિપીડિઆ - મુક્ત એન્સાયક્�
 Name[he]=ויקיפדיה - האנציקלופדיה החופשית
 Name[hi]=विकिपेडिया- मुफ्त विश्वकोश
 Name[hr]=Wikipedia - besplatna enciklopedija
+Name[hsb]=Wikipedia - Swobodna encyklopedija
 Name[hu]=Wikipedia
 Name[is]=Wikipedia - Frjálst alfræðiorðasafn
 Name[it]=Wikipedia - L'enciclopedia libera
@@ -86,6 +87,7 @@ Query[de]=http://de.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[fr]=http://fr.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[fy]=http://fy.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[he]=http://he.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[hsb]=http://hsb.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[it]=http://it.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[ko]=http://ko.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[ml]=http://ml.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
