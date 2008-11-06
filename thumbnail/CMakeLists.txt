@@ -1,7 +1,8 @@
 macro_optional_find_package(OpenEXR)
 macro_log_feature(OPENEXR_FOUND "OpenEXR" "API for accessing OpenEXR formatted images" "http://www.openexr.com" FALSE "" "Provides support for OpenEXR formatted images in the thumbnail kioslave")
 
-add_definitions (-DQT3_SUPPORT -DQT3_SUPPORT_WARNINGS)
+find_package(JPEG REQUIRED)
+include_directories(${JPEG_INCLUDE_DIR})
 
 ########### next target ###############
 
@@ -29,7 +30,7 @@ set(jpegthumbnail_PART_SRCS jpegcreator.cpp)
 
 kde4_add_plugin(jpegthumbnail ${jpegthumbnail_PART_SRCS})
 
-target_link_libraries(jpegthumbnail ${QT_QTCORE_LIBRARY} ${QT_QTGUI_LIBRARY} jpeg)
+target_link_libraries(jpegthumbnail ${QT_QTCORE_LIBRARY} ${QT_QTGUI_LIBRARY} ${JPEG_LIBRARIES})
 
 install(TARGETS jpegthumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
 

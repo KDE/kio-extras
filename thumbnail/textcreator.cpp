@@ -23,6 +23,7 @@
 #include <QFile>
 #include <QPixmap>
 #include <QImage>
+#include <QPainter>
 
 #include <kstandarddirs.h>
 
@@ -155,6 +156,7 @@ bool TextCreator::create(const QString &path, int width, int height, QImage &img
             bool newLine = false;
             Q_ASSERT( posNewLine > 0 );
             const QPixmap *fontPixmap = &(m_splitter->pixmap());
+            QPainter painter( &m_pixmap );
 
             for ( int i = 0; i < text.length(); i++ )
             {
@@ -197,7 +199,7 @@ bool TextCreator::create(const QString &path, int width, int height, QImage &img
                 rect = m_splitter->coordinates( ch );
                 if ( !rect.isEmpty() )
                 {
-                    bitBlt( &m_pixmap, QPoint(x,y), fontPixmap, rect );
+                    painter.drawPixmap( QPoint(x,y), *fontPixmap, rect );
                 }
 
                 x += xOffset; // next character
