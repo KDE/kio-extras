@@ -47,7 +47,7 @@ bool EXRCreator::create(const QString &path, int, int, QImage &img)
     if ( h.hasPreviewImage() ) {
 	kDebug() << "EXRcreator - using preview";
 	const Imf::PreviewImage &preview = in.header().previewImage();
-	QImage qpreview(preview.width(), preview.height(), 32, 0, QImage::BigEndian);
+	QImage qpreview(preview.width(), preview.height(), QImage::Format_RGB32);
 	for ( unsigned int y=0; y < preview.height(); y++ ) {
 	    for ( unsigned int x=0; x < preview.width(); x++ ) {
 		const Imf::PreviewRgba &q = preview.pixels()[x+(y*preview.width())];
@@ -72,7 +72,7 @@ bool EXRCreator::create(const QString &path, int, int, QImage &img)
 		return false;
 	    }
 	    if (img.depth() != 32)
-		img = img.convertDepth( 32 );
+		img = img.convertToFormat( QImage::Format_RGB32 );
 	    return true;
 	} else {
 	    return false;
