@@ -1,6 +1,7 @@
 [Desktop Entry]
 Type=Service
 Name=Jpeg
+Name[ca]=JPEG
 Name[nds]=JPEG
 Name[zh_TW]=JPEG
 X-KDE-ServiceTypes=ThumbCreator

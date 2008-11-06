@@ -2,6 +2,7 @@
 Encoding=UTF-8
 Name=Trash
 Name[be@latin]=Śmietnica
+Name[ca]=Paperera
 Name[el]=Κάδος απορριμάτων
 Name[et]=Prügikast
 Name[fa]=زباله
@@ -32,6 +33,7 @@ Comment[be]=Утрымлівае выдаленыя файлы
 Comment[be@latin]=Утрымлівае выдаленыя файлы
 Comment[bn]=মুছে ফেলা ফাইল থাকে
 Comment[bn_IN]=মুছে ফেলা ফাইল থাকে
+Comment[ca]=Conté els fitxers suprimits
 Comment[cy]=Yn cynnwys ffeiliau sydd wedi eu gwaredu
 Comment[el]=Περιέχει τα αφαιρεμένα αρχεία
 Comment[et]=Sisaldab eemaldatud faile
