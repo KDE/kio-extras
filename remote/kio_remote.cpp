@@ -95,8 +95,8 @@ void RemoteProtocol::listRoot()
 	m_impl.createWizardEntry(entry);
 	listEntry(entry, false);
 
-	KIO::UDSEntryList::ConstIterator it = remote_entries.begin();
-	const KIO::UDSEntryList::ConstIterator end = remote_entries.end();
+	KIO::UDSEntryList::ConstIterator it = remote_entries.constBegin();
+	const KIO::UDSEntryList::ConstIterator end = remote_entries.constEnd();
 	for(; it!=end; ++it)
 	{
 		listEntry(*it, false);

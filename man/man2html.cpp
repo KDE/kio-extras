@@ -1236,8 +1236,8 @@ static QByteArray scan_named_character( char*& c )
     // Note: characters with a one character length name doe not exist, as they would collide with other escapes
 
     // Now we have the name, let us find it between the string names
-    QMap<QByteArray,StringDefinition>::const_iterator it=s_characterDefinitionMap.find(name);
-    if (it==s_characterDefinitionMap.end())
+    QMap<QByteArray,StringDefinition>::const_iterator it=s_characterDefinitionMap.constFind(name);
+    if (it==s_characterDefinitionMap.constEnd())
     {
         kDebug(7107) << "EXCEPTION: cannot find character with name: " << BYTEARRAY( name );
         // No output, as an undefined string is empty by default
@@ -1312,8 +1312,8 @@ static QByteArray scan_named_string(char*& c)
         c++;
     }
     // Now we have the name, let us find it between the string names
-    QMap<QByteArray,StringDefinition>::const_iterator it=s_stringDefinitionMap.find(name);
-    if (it==s_stringDefinitionMap.end())
+    QMap<QByteArray,StringDefinition>::const_iterator it=s_stringDefinitionMap.constFind(name);
+    if (it==s_stringDefinitionMap.constEnd())
     {
         kDebug(7107) << "EXCEPTION: cannot find string with name: " << BYTEARRAY( name );
         // No output, as an undefined string is empty by default
@@ -1380,10 +1380,10 @@ static QByteArray scan_dollar_parameter(char*& c)
     else if ( ( *c == '*' ) || ( *c == '@' ) )
     {
         const bool quote = ( *c == '@' );
-        QList<char*>::const_iterator it = s_argumentList.begin();
+        QList<char*>::const_iterator it = s_argumentList.constBegin();
         QByteArray param;
         bool space = false;
-        for ( ; it != s_argumentList.end(); ++it )
+        for ( ; it != s_argumentList.constEnd(); ++it )
         {
             if (space)
                 param += ' ';
@@ -3151,8 +3151,8 @@ static char *scan_request(char *c)
         int j = nlen;
         while (c[j]==' ' || c[j]=='\t') j++;
         /* search macro database of self-defined macros */
-        QMap<QByteArray,StringDefinition>::const_iterator it=s_stringDefinitionMap.find(macroName);
-        if (it!=s_stringDefinitionMap.end())
+        QMap<QByteArray,StringDefinition>::const_iterator it=s_stringDefinitionMap.constFind(macroName);
+        if (it!=s_stringDefinitionMap.constEnd())
         {
             kDebug(7107) << "CALLING MACRO: " << BYTEARRAY( macroName );
             const QByteArray oldDollarZero = s_dollarZero; // Previous value of $0

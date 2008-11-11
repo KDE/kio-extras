@@ -70,8 +70,8 @@ void getDriveAndPath(const QString& path, QString& drive, QString& rest)
 {
    drive=QString();
    rest=QString();
-   QStringList list=path.split("/");
-   for (QStringList::const_iterator it=list.begin(); it!=list.end(); ++it)
+   const QStringList list=path.split("/");
+   for (QStringList::const_iterator it=list.constBegin(); it!=list.constEnd(); ++it)
    {
       if (it==list.begin())
          drive=(*it)+':';

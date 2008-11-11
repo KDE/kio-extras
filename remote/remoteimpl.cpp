@@ -54,10 +54,10 @@ void RemoteImpl::listRoot(KIO::UDSEntryList &list) const
 	kDebug(1220) << "RemoteImpl::listRoot";
 
 	QStringList names_found;
-	QStringList dirList = KGlobal::dirs()->resourceDirs("remote_entries");
+	const QStringList dirList = KGlobal::dirs()->resourceDirs("remote_entries");
 
-	QStringList::ConstIterator dirpath = dirList.begin();
-	const QStringList::ConstIterator end = dirList.end();
+	QStringList::ConstIterator dirpath = dirList.constBegin();
+	const QStringList::ConstIterator end = dirList.constEnd();
 	for(; dirpath!=end; ++dirpath)
 	{
 		QDir dir = *dirpath;
@@ -69,8 +69,8 @@ void RemoteImpl::listRoot(KIO::UDSEntryList &list) const
 
 		KIO::UDSEntry entry;
 
-		QStringList::ConstIterator name = filenames.begin();
-		QStringList::ConstIterator endf = filenames.end();
+		QStringList::ConstIterator name = filenames.constBegin();
+		QStringList::ConstIterator endf = filenames.constEnd();
 
 		for(; name!=endf; ++name)
 		{
@@ -89,10 +89,10 @@ bool RemoteImpl::findDirectory(const QString &filename, QString &directory) cons
 {
 	kDebug(1220) << "RemoteImpl::findDirectory";
 
-	QStringList dirList = KGlobal::dirs()->resourceDirs("remote_entries");
+	const QStringList dirList = KGlobal::dirs()->resourceDirs("remote_entries");
 
-	QStringList::ConstIterator dirpath = dirList.begin();
-	QStringList::ConstIterator end = dirList.end();
+	QStringList::ConstIterator dirpath = dirList.constBegin();
+	QStringList::ConstIterator end = dirList.constEnd();
 	for(; dirpath!=end; ++dirpath)
 	{
 		QDir dir = *dirpath;
@@ -104,8 +104,8 @@ bool RemoteImpl::findDirectory(const QString &filename, QString &directory) cons
 
 		KIO::UDSEntry entry;
 
-		QStringList::ConstIterator name = filenames.begin();
-		QStringList::ConstIterator endf = filenames.end();
+		QStringList::ConstIterator name = filenames.constBegin();
+		QStringList::ConstIterator endf = filenames.constEnd();
 
 		for(; name!=endf; ++name)
 		{

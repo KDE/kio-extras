@@ -85,7 +85,7 @@ void CgiProtocol::get( const KUrl& url )
   bool forwardFile = true;
 
   QStringList::ConstIterator it;
-  for( it = mCgiPaths.begin(); it != mCgiPaths.end(); ++it ) {
+  for( it = mCgiPaths.constBegin(); it != mCgiPaths.constEnd(); ++it ) {
     cmd = *it;
     if ( !(*it).endsWith('/') )
         cmd += '/';

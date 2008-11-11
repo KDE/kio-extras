@@ -196,20 +196,20 @@ QMap<QString, QString> MANProtocol::buildIndexMap(const QString &section)
     names << "whatis.db" << "whatis";
     QString mark = "\\s+\\(" + section + "[a-z]*\\)\\s+-\\s+";
 
-    for ( QStringList::ConstIterator it_dir = man_dirs.begin();
-          it_dir != man_dirs.end();
+    for ( QStringList::ConstIterator it_dir = man_dirs.constBegin();
+          it_dir != man_dirs.constEnd();
           ++it_dir )
     {
         if ( QFile::exists( *it_dir ) ) {
     	    QStringList::ConstIterator it_name;
-            for ( it_name = names.begin();
-	          it_name != names.end();
+            for ( it_name = names.constBegin();
+	          it_name != names.constEnd();
 	          it_name++ )
             {
 	        if (addWhatIs(i, (*it_dir) + '/' + (*it_name), mark))
 		    break;
 	    }
-            if ( it_name == names.end() ) {
+            if ( it_name == names.constEnd() ) {
                 K3Process proc;
                 proc << "whatis" << "-M" << (*it_dir) << "-w" << "*";
                 myStdStream.clear();
@@ -232,16 +232,16 @@ QStringList MANProtocol::manDirectories()
     //
     QStringList man_dirs;
 
-    for ( QStringList::ConstIterator it_dir = m_manpath.begin();
-          it_dir != m_manpath.end();
+    for ( QStringList::ConstIterator it_dir = m_manpath.constBegin();
+          it_dir != m_manpath.constEnd();
           it_dir++ )
     {
         // Translated pages in "<mandir>/<lang>" if the directory
         // exists
         QStringList languages = KGlobal::locale()->languageList();
 
-        for (QStringList::ConstIterator it_lang = languages.begin();
-             it_lang != languages.end();
+        for (QStringList::ConstIterator it_lang = languages.constBegin();
+             it_lang != languages.constEnd();
              it_lang++ )
         {
             if ( !(*it_lang).isEmpty() && (*it_lang) != QString("C") ) {
@@ -315,8 +315,8 @@ QStringList MANProtocol::findPages(const QString &_section,
         // Find pages
         //
         //kDebug(7107)<<"Before inner loop";
-        for ( QStringList::const_iterator it_dir = man_dirs.begin();
-              it_dir != man_dirs.end();
+        for ( QStringList::const_iterator it_dir = man_dirs.constBegin();
+              it_dir != man_dirs.constEnd();
               it_dir++ )
         {
             QString man_dir = (*it_dir);
@@ -812,7 +812,7 @@ void MANProtocol::showMainIndex()
     os << "<table>" << endl;
 
     QStringList::ConstIterator it;
-    for (it = sections.begin(); it != sections.end(); ++it)
+    for (it = sections.constBegin(); it != sections.constEnd(); ++it)
         os << "<tr><td><a href=\"man:(" << *it << ")\" accesskey=\"" <<
 	(((*it).length()==1)?(*it):(*it).right(1))<<"\">" << i18n("Section %1", *it)
 	<< "</a></td><td>&nbsp;</td><td> " << sectionName(*it) << "</td></tr>" << endl;
@@ -949,8 +949,8 @@ void MANProtocol::constructPath(QStringList& constr_path, QStringList constr_cat
         const QStringList path =
               QString::fromLocal8Bit( ::getenv("PATH") ).split( ":", QString::SkipEmptyParts );
 
-        for ( QStringList::const_iterator it = path.begin();
-              it != path.end();
+        for ( QStringList::const_iterator it = path.constBegin();
+              it != path.constEnd();
               ++it )
         {
             const QString dir = QDir::cleanPath( *it );
@@ -1045,8 +1045,8 @@ void MANProtocol::checkManPaths()
 
     const QStringList path_list_env = manpath_env.split( ':', QString::KeepEmptyParts);
 
-    for ( QStringList::const_iterator it = path_list_env.begin();
-          it != path_list_env.end();
+    for ( QStringList::const_iterator it = path_list_env.constBegin();
+          it != path_list_env.constEnd();
           ++it )
     {
         struct stat sbuf;
@@ -1067,8 +1067,8 @@ void MANProtocol::checkManPaths()
             // Insert constructed path ($MANPATH was empty, or
             // there was a ":" at an end or "::")
 
-            for ( QStringList::const_iterator it2 = constr_path.begin();
-                  it2 != constr_path.end();
+            for ( QStringList::const_iterator it2 = constr_path.constBegin();
+                  it2 != constr_path.constEnd();
                   it2++ )
             {
                 dir = (*it2);
@@ -1251,7 +1251,7 @@ void MANProtocol::showIndex(const QString& section)
     QMap<QString, QString> pagemap;
 
     QStringList::ConstIterator page;
-    for (page = pages.begin(); page != pages.end(); ++page)
+    for (page = pages.constBegin(); page != pages.constEnd(); ++page)
     {
         QString fileName = *page;
 
@@ -1266,8 +1266,8 @@ void MANProtocol::showIndex(const QString& section)
 
     }
 
-    for (QMap<QString,QString>::ConstIterator it = pagemap.begin();
-	 it != pagemap.end(); ++it)
+    for (QMap<QString,QString>::ConstIterator it = pagemap.constBegin();
+	 it != pagemap.constEnd(); ++it)
     {
 	os << "<tr><td><a href=\"man:" << it.data() << "\">\n"
 	   << it.key() << "</a></td><td>&nbsp;</td><td> "
@@ -1291,7 +1291,7 @@ void MANProtocol::showIndex(const QString& section)
 #endif /* _USE_QSORT */
 
     QStringList::const_iterator page;
-    for (page = pages.begin(); page != pages.end(); ++page)
+    for (page = pages.constBegin(); page != pages.constEnd(); ++page)
     {
 	// I look for the beginning of the man page name
 	// i.e. "bla/pagename.3.gz" by looking for the last "/"
@@ -1519,7 +1519,7 @@ void MANProtocol::listDir(const KUrl &url)
     UDSEntryList uds_entry_list;
 
     if (section.isEmpty()) {
-        for (QStringList::ConstIterator it = section_names.begin(); it != section_names.end(); ++it) {
+        for (QStringList::ConstIterator it = section_names.constBegin(); it != section_names.constEnd(); ++it) {
             UDSEntry     uds_entry;
 
             QString name = "man:/(" + *it + ")";
@@ -1534,7 +1534,7 @@ void MANProtocol::listDir(const KUrl &url)
     QStringList list = findPages( section, QString(), false );
 
     QStringList::Iterator it = list.begin();
-    QStringList::const_iterator end = list.end();
+    QStringList::Iterator end = list.end();
 
     for ( ; it != end; ++it ) {
         stripExtension( &(*it) );
