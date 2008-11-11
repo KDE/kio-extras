@@ -251,8 +251,8 @@ void FilterOptions::save()
     ++it;
   }
 
-  for (QStringList::ConstIterator it = m_deletedProviders.begin();
-      it != m_deletedProviders.end(); ++it)
+  for (QStringList::ConstIterator it = m_deletedProviders.constBegin();
+      it != m_deletedProviders.constEnd(); ++it)
   {
       QStringList matches = KGlobal::mainComponent().dirs()->findAllResources("services", "searchproviders/" + *it + ".desktop");
 
