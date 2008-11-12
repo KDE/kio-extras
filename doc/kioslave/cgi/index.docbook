@@ -1,0 +1,31 @@
+<?xml version="1.0" ?>
+<!DOCTYPE article PUBLIC "-//KDE//DTD DocBook XML V4.2-Based Variant V1.1//EN"
+"dtd/kdex.dtd" [
+<!ENTITY % addindex "IGNORE">
+<!ENTITY % English "INCLUDE" > <!-- change language only here -->
+]>
+	
+<article lang="&language;" id="cgi">
+<title>cgi</title>
+<articleinfo>
+<authorgroup>
+<author>&Lauri.Watts;&Lauri.Watts.mail;</author>
+<!-- TRANS:ROLES_OF_TRANSLATORS -->
+</authorgroup>
+</articleinfo>
+
+<para>The <acronym>CGI</acronym> slave provides a way to execute
+<acronym>CGI</acronym> programs without the need to have a running web
+server. This can for example be used for local testing of
+<acronym>CGI</acronym> programs or for using search engines that only
+provide a <acronym>CGI</acronym> frontend like the one from
+<application>Doxygen</application>.</para>
+
+<para>The slave implements the <command>cgi:</command> protocol. It
+uses the filename from the given &URL; and searches a configurable
+list of folders. If it finds an executable with the given name it
+executes it, passes the arguments of the &URL; and sets the
+environment variables needed by <acronym>CGI</acronym>
+programs.</para>
+
+</article>
