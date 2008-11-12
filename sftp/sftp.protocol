@@ -86,6 +86,6 @@ Description[wa]=On vårlet d' I/R pol protocole sftp
 Description[x-test]=xxA kioslave for sftpxx
 Description[zh_CN]=sftp 的 KIO slave
 Description[zh_TW]=sftp 的 kioslave
-DocPath=kioslave/sftp.html
+X-DocPath=kioslave/sftp/index.html
 Icon=ftp
 Class=:internet

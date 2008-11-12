@@ -7,5 +7,5 @@ input=stream
 output=stream
 reading=true
 source=false
-DocPath=kioslave/gzip.html
+X-DocPath=kioslave/gzip/index.html
 Icon=package-x-generic

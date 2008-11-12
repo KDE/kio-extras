@@ -10,5 +10,5 @@ makedir=true
 deleting=true
 linking=true
 moving=true
-DocPath=kioslave/nfs.html
+X-DocPath=kioslave/nfs/index.html
 Icon=folder-remote

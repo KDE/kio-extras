@@ -7,6 +7,6 @@ reading=true
 listing=Name
 defaultMimetype=text/html
 determineMimetypeFromExtension=false
-DocPath=kioslave/man.html
+X-DocPath=kioslave/man/index.html
 Icon=help-contents
 Class=:local

@@ -5,5 +5,5 @@ input=none
 output=stream
 reading=true
 defaultMimetype=text/html
-DocPath=kioslave/finger.html
+X-DocPath=kioslave/finger/index.html
 Icon=user-identity
