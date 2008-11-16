@@ -12,10 +12,14 @@
 #ifndef __Process_h_Included__
 #define __Process_h_Included__
 
-#include <kpty.h>
-
 #include <QtCore/QByteArray>
 #include <QtCore/QList>
+
+#ifndef Q_WS_WIN
+#include <kpty.h>
+#else
+#include <kprocess.h>
+#endif
 
 #define PTYPROC 7120
 
@@ -51,10 +55,18 @@ public:
      * @return The output string.
      */
     QByteArray readLine(bool block = true)
+#ifndef Q_WS_WIN
         { return readLineFrom(fd(), m_ptyBuf, block); }
+#else
+        { return readLineFrom(0, m_ptyBuf, block); }
+#endif
 
     QByteArray readLineFromPty(bool block = true)
+#ifndef Q_WS_WIN
         { return readLineFrom(fd(), m_ptyBuf, block); }
+#else
+        { return readLineFrom(0, m_ptyBuf, block); }
+#endif
 
     QByteArray readLineFromStdout(bool block = true)
         { return readLineFrom(m_stdinout, m_stdoutBuf, block); }
@@ -116,8 +128,11 @@ public:
     void setErase(bool erase) { m_bErase = erase; }
 
     /** Return the filedescriptor of the process. */
+#ifndef Q_WS_WIN
     int fd() {return m_pPTY ? m_pPTY->masterFd() : -1;}
-
+#else
+    KProcess *fd() {return m_pPTY;}
+#endif
     /** Return the pid of the process. */
     int pid() {return m_Pid;}
 
@@ -134,7 +149,11 @@ private:
     int init();
     int setupTTY();
 
+#ifndef Q_WS_WIN
     KPty *m_pPTY;
+#else
+    KProcess *m_pPTY;
+#endif
     QByteArray m_ptyBuf, m_stderrBuf, m_stdoutBuf;
 
     QByteArray readLineFrom(int fd, QByteArray& inbuf, bool block);

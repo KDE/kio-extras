@@ -132,12 +132,16 @@ static int writeToFile (int fd, const char *buf, size_t len)
 sftpProtocol::sftpProtocol(const QByteArray &pool_socket, const QByteArray &app_socket)
              : SlaveBase("kio_sftp", pool_socket, app_socket),
                   mConnected(false), mPort(-1), mMsgId(0) {
+#ifndef Q_WS_WIN
   kDebug(KIO_SFTP_DB) << "sftpProtocol(): pid = " << getpid();
+#endif
 }
 
 
 sftpProtocol::~sftpProtocol() {
+#ifndef Q_WS_WIN
     kDebug(KIO_SFTP_DB) << "~sftpProtocol(): pid = " << getpid();
+#endif
     closeConnection();
 }
 
@@ -1574,9 +1578,15 @@ void sftpProtocol::slave_status() {
 bool sftpProtocol::getPacket(QByteArray& msg) {
     QByteArray buf(4096, '\0');
 
+#ifdef Q_WS_WIN
+    ssize_t len;
+    if(ssh.pty()->waitForReadyRead(2000)) {
+        len = ssh.pty()->read(buf.data(), 4);
+    }
+#else
     // Get the message length...
     ssize_t len = atomicio(ssh.stdioFd(), buf.data(), 4, true /*read*/);
-
+#endif
     if( len == 0 || len == -1 ) {
         kDebug(KIO_SFTP_DB) << "getPacket(): read of packet length failed, ret = "
                              << len << ", error =" << strerror(errno) << endl;
@@ -1598,7 +1608,11 @@ bool sftpProtocol::getPacket(QByteArray& msg) {
     b.open( QIODevice::WriteOnly );
 
     while( msgLen ) {
+#ifdef Q_WS_WIN
+        len = ssh.pty()->read(buf.data(), qMin(buf.size(), msgLen));
+#else
         len = atomicio(ssh.stdioFd(), buf.data(), qMin(buf.size(), msgLen), true /*read*/);
+#endif
 
         if( len == 0 || len == -1) {
             QString errmsg;
@@ -1631,7 +1645,11 @@ bool sftpProtocol::getPacket(QByteArray& msg) {
 bool sftpProtocol::putPacket(QByteArray& p){
 //    kDebug(KIO_SFTP_DB) << "putPacket(): size == " << p.size();
     int ret;
+#ifdef Q_WS_WIN
+    ret = ssh.pty()->write(p.data(), p.size());
+#else
     ret = atomicio(ssh.stdioFd(), p.data(), p.size(), false /*write*/);
+#endif
     if( ret <= 0 ) {
         kDebug(KIO_SFTP_DB) << "putPacket(): write failed, ret =" << ret <<
             ", error = " << strerror(errno) << endl;

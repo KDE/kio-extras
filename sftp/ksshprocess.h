@@ -137,6 +137,7 @@ public:
 	OPENSSH_3_6,
         OPENSSH,
         SSH,
+        PLINK,
         SSH_VER_MAX,
         UNKNOWN_VER
     };	
@@ -503,7 +504,11 @@ public:
      *
      * @return The file descriptor of pty to which ssh is attached.
      */
+#ifndef Q_WS_WIN
     int pty() { return ssh.fd(); }
+#else
+    KProcess *pty() { return ssh.fd(); }
+#endif
 private:
     /**
      * Path to the ssh binary.

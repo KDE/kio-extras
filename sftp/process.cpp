@@ -26,7 +26,10 @@
 #include <signal.h>
 #include <errno.h>
 #include <string.h>
+
+#ifndef Q_WS_WIN
 #include <termios.h>
+#endif
 
 #include <sys/types.h>
 #include <sys/wait.h>
@@ -62,12 +65,18 @@ MyPtyProcess::MyPtyProcess()
 int MyPtyProcess::init()
 {
     delete m_pPTY;
+#ifndef Q_WS_WIN
     m_pPTY = new KPty();
     if (!m_pPTY->open())
     {
         kError(PTYPROC) << k_lineinfo << "Master setup failed.\n" << endl;
         return -1;
     }
+#else
+    m_pPTY = new KProcess();
+    m_pPTY->setOutputChannelMode(KProcess::MergedChannels);
+#endif
+
     m_stdoutBuf.resize(0);
     m_stderrBuf.resize(0);
     m_ptyBuf.resize(0);
@@ -103,12 +112,39 @@ QByteArray MyPtyProcess::readLineFrom(int fd, QByteArray& inbuf, bool block)
         } else
         {
             ret = inbuf.left(pos);
+#ifdef Q_WS_WIN
+            if( ret.endsWith('\r') )
+            {
+                ret.chop(1);
+            }
+#endif
             inbuf = inbuf.mid(pos+1);
         }
         return ret;
 
     }
 
+#ifdef Q_WS_WIN
+    if( m_pPTY->waitForReadyRead(60000) )
+    {
+        inbuf = m_pPTY->readAll();
+        pos = inbuf.indexOf('\n');
+        if (pos == -1)
+        {
+            ret = inbuf;
+            inbuf.resize(0);
+        } else
+        {
+            ret = inbuf.left(pos);
+            if( ret.endsWith('\r') )
+            {
+                ret.chop(1);
+            }
+            inbuf = inbuf.mid(pos+1);
+        } 
+    }
+    return ret;
+#else
     int flags = fcntl(fd, F_GETFL);
     if (flags < 0) 
     {
@@ -157,14 +193,23 @@ QByteArray MyPtyProcess::readLineFrom(int fd, QByteArray& inbuf, bool block)
     }
 
     return ret;
+#endif
 }
 
 void MyPtyProcess::writeLine(QByteArray line, bool addnl)
 {
     if (!line.isEmpty())
+#ifndef Q_WS_WIN    
         write(fd(), line, line.length());
+#else
+        m_pPTY->write(line);
+#endif        
     if (addnl)
+#ifndef Q_WS_WIN
         write(fd(), "\n", 1);
+#else
+        m_pPTY->write("\r\n");
+#endif
 }
 
 void MyPtyProcess::unreadLineFrom(QByteArray inbuf, QByteArray line, bool addnl)
@@ -183,10 +228,18 @@ void MyPtyProcess::unreadLineFrom(QByteArray inbuf, QByteArray line, bool addnl)
 int MyPtyProcess::exec(QByteArray command, QCStringList args)
 {
   kDebug(PTYPROC) << "MyPtyProcess::exec(): " << command;// << ", args = " << args ;
-
     if (init() < 0)
         return -1;
-
+#ifdef Q_WS_WIN
+    QStringList ar;
+    for(int i = 0; i < args.size(); ++i)
+    {
+        ar << args[i];
+    }
+    m_pPTY->setProgram(command, ar);
+    m_pPTY->start();
+    return 0;
+#else
     // Open the pty slave before forking. See SetupTTY()
     int slave = open(m_pPTY->ttyName(), O_RDWR);
     if (slave < 0) 
@@ -274,6 +327,7 @@ int MyPtyProcess::exec(QByteArray command, QCStringList args)
     kError(PTYPROC) << k_lineinfo << "execv(\"" << path << "\"): " << perror << "\n";
     _exit(1);
     return -1; // Shut up compiler. Never reached.
+#endif
 }
 
 /*
@@ -288,6 +342,7 @@ int MyPtyProcess::exec(QByteArray command, QCStringList args)
 
 int MyPtyProcess::WaitSlave()
 {
+#ifndef Q_WS_WIN
     int slave = open(m_pPTY->ttyName(), O_RDWR);
     if (slave < 0) 
     {
@@ -316,13 +371,16 @@ int MyPtyProcess::WaitSlave()
 	break;
     }
     close(slave);
+#endif
     return 0;
 }
 
 
 int MyPtyProcess::enableLocalEcho(bool enable)
 {
+#ifndef Q_WS_WIN
     return m_pPTY->setEcho(enable) ? 0 : -1;
+#endif
 }
 
 
@@ -336,6 +394,7 @@ int MyPtyProcess::enableLocalEcho(bool enable)
 
 int MyPtyProcess::waitForChild()
 {
+#ifndef Q_WS_WIN
     int ret, state, retval = 1;
     struct timeval tv;
 
@@ -394,6 +453,7 @@ int MyPtyProcess::waitForChild()
     }
 
     return -retval;
+#endif
 }
    
 /*
@@ -404,7 +464,8 @@ int MyPtyProcess::waitForChild()
  */
 
 int MyPtyProcess::setupTTY()
-{    
+{
+#ifndef Q_WS_WIN
     // Reset signal handlers
     for (int sig = 1; sig < NSIG; sig++)
        signal(sig, SIG_DFL);
@@ -432,6 +493,6 @@ int MyPtyProcess::setupTTY()
         kError(PTYPROC) << k_lineinfo << "tcsetattr(): " << perror << "\n";
         return -1;
     }
-
+#endif
     return 0;
 }

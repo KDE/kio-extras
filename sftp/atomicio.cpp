@@ -22,7 +22,7 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
  * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-
+#ifndef Q_WS_WIN
 //#include "includes.h"
 //RCSID("$OpenBSD: atomicio.c,v 1.9 2001/03/02 18:54:30 deraadt Exp $");
 
@@ -65,3 +65,4 @@ ssize_t	atomicio(int fd, char *_s, size_t n, bool read)
 	}
 	return (pos);
 }
+#endif //Q_WS_WIN

@@ -16,11 +16,11 @@ add_subdirectory( applications )
 add_subdirectory( trash )
 add_subdirectory( remote )
 add_subdirectory( desktop )
+add_subdirectory( sftp )
 
 # need kdesu
 if(UNIX)
    add_subdirectory( fish )
-   add_subdirectory( sftp )
 endif(UNIX)
 
 if(NOT WIN32)

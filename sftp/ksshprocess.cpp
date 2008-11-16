@@ -85,67 +85,78 @@
 QRegExp KSshProcess::versionStrs[] = {
     QRegExp("OpenSSH_3\\.[6-9]|OpenSSH_[1-9]*[4-9]\\.[0-9]"),
     QRegExp("OpenSSH"),
-    QRegExp("SSH Secure Shell")
+    QRegExp("SSH Secure Shell"),
+    QRegExp("plink: Release")
 };
 
 const char * const KSshProcess::passwordPrompt[] = {
     "password:", // OpenSSH
     "password:", // OpenSSH
-    "password:"  // SSH
+    "password:",  // SSH
+    "password:",  // putty
 };
 
 const char * const KSshProcess::passphrasePrompt[] = {
     "Enter passphrase for key",
     "Enter passphrase for key",
-    "Passphrase for key"
+    "Passphrase for key",
+    "???"
 };
 
 const char * const KSshProcess::authSuccessMsg[] = {
     "Authentication succeeded",
     "ssh-userauth2 successful",
-    "Received SSH_CROSS_AUTHENTICATED packet"
+    "Received SSH_CROSS_AUTHENTICATED packet",
+    "Started a shell/command"
 };
 
 const char* const KSshProcess::authFailedMsg[] = {
     "Permission denied (",
     "Permission denied (",
-    "Authentication failed."
+    "Authentication failed.",
+    "Access denied"
 };
 
 const char* const KSshProcess::tryAgainMsg[] = {
     "please try again",
     "please try again",
-    "adjfhjsdhfdsjfsjdfhuefeufeuefe"
+    "adjfhjsdhfdsjfsjdfhuefeufeuefe",
+    "???"
 };
 
 QRegExp KSshProcess::hostKeyMissingMsg[] = {
     QRegExp("The authenticity of host|No (DSA|RSA) host key is known for"),
     QRegExp("The authenticity of host|No (DSA|RSA) host key is known for"),
-    QRegExp("Host key not found from database")
+    QRegExp("Host key not found from database"),
+    QRegExp("???")
 };
 
 const char* const KSshProcess::continuePrompt[] = {
     "Are you sure you want to continue connecting (yes/no)?",
     "Are you sure you want to continue connecting (yes/no)?",
-    "Are you sure you want to continue connecting (yes/no)?"
+    "Are you sure you want to continue connecting (yes/no)?",
+    "???"
 };
 
 const char* const KSshProcess::hostKeyChangedMsg[] = {
     "WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!",
     "WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!",
-    "WARNING: HOST IDENTIFICATION HAS CHANGED!"
+    "WARNING: HOST IDENTIFICATION HAS CHANGED!",
+    "???"
 };
 
 QRegExp KSshProcess::keyFingerprintMsg[] = {
     QRegExp("..(:..){15}"),
     QRegExp("..(:..){15}"),
-    QRegExp(".....(-.....){10}")
+    QRegExp(".....(-.....){10}"),
+    QRegExp("???")
 };
 
 QRegExp KSshProcess::knownHostsFileMsg[] = {
     QRegExp("Add correct host key in (.*) to get rid of this message."),
     QRegExp("Add correct host key in (.*) to get rid of this message."),
-    QRegExp("Add correct host key to \"(.*)\"")
+    QRegExp("Add correct host key to \"(.*)\""),
+    QRegExp("???")
 };
 
 
@@ -153,7 +164,8 @@ QRegExp KSshProcess::knownHostsFileMsg[] = {
 const char* const KSshProcess::changeHostKeyOnDiskPrompt[] = {
     "as;jf;sajkfdslkfjas;dfjdsa;fj;dsajfdsajf",
     "as;jf;sajkfdslkfjas;dfjdsa;fj;dsajfdsajf",
-    "Do you want to change the host key on disk (yes/no)?"
+    "Do you want to change the host key on disk (yes/no)?",
+    "???"
 };
 
 // We need this in addition the authFailedMsg because when
@@ -167,13 +179,15 @@ const char* const KSshProcess::changeHostKeyOnDiskPrompt[] = {
 QRegExp KSshProcess::hostKeyVerifyFailedMsg[] = {
     QRegExp("Host key verification failed\\."),
     QRegExp("Host key verification failed\\."),
-    QRegExp("Disconnected; key exchange or algorithm? negotiation failed \\(Key exchange failed\\.\\)\\.")
+    QRegExp("Disconnected; key exchange or algorithm? negotiation failed \\(Key exchange failed\\.\\)\\."),
+    QRegExp("???")
 };
 
 const char * const KSshProcess::connectionClosedMsg[] = {
     "Connection closed by remote host",
     "Connection closed by remote host",
-    "Connection closed by remote host"
+    "Connection closed by remote host",
+    "???"
 };
 
 
@@ -185,6 +199,7 @@ void KSshProcess::SIGCHLD_handler(int)
 }
 
 void KSshProcess::installSignalHandlers() {
+#ifndef Q_WS_WIN
     struct sigaction act;
     memset(&act,0,sizeof(act));
     act.sa_handler = SIGCHLD_handler;
@@ -197,19 +212,26 @@ void KSshProcess::installSignalHandlers() {
 #endif
 	    ;
     sigaction(SIGCHLD,&act,NULL);
+#endif
 }
 					
 void KSshProcess::removeSignalHandlers() {
+#ifndef Q_WS_WIN
 	struct sigaction act;
 	memset(&act,0,sizeof(act));
 	act.sa_handler = SIG_DFL;
 	sigaction(SIGCHLD,&act,NULL);
+#endif
 }
 
 KSshProcess::KSshProcess() 
             : mVersion(UNKNOWN_VER), mConnected(false), 
         mRunning(false), mConnectState(0) {
+#ifndef Q_WS_WIN
     mSshPath = KStandardDirs::findExe(QString::fromLatin1("ssh"));
+#else
+    mSshPath = KStandardDirs::findExe(QString::fromLatin1("plink"));
+#endif
     kDebug(KSSHPROC) << "KSshProcess::KSshProcess(): ssh path [" << 
 		mSshPath << "]" << endl;
         
@@ -303,6 +325,15 @@ QString KSshProcess::versionStr() {
 
 bool KSshProcess::setOptions(const SshOptList& opts) {
     kDebug(KSSHPROC) << "KSshProcess::setOptions()";
+
+	if( mVersion == UNKNOWN_VER ) {
+        // we don't know the ssh version yet, so find out
+        version();
+        if( mVersion == UNKNOWN_VER ) {
+            return false;
+        }
+    }
+
     mArgs.clear();
     SshOptListConstIterator it;
     QString cmd, subsystem;
@@ -322,7 +353,11 @@ bool KSshProcess::setOptions(const SshOptList& opts) {
             break;
 
         case SSH_PORT:
-            mArgs.append("-p");
+            if( mVersion == PLINK ) {
+                mArgs.append("-P");
+            } else {
+                mArgs.append("-p");
+            }
             tmp.setNum((*it).num);
             mArgs.append(tmp);
             mPort = (*it).num;
@@ -349,7 +384,7 @@ bool KSshProcess::setOptions(const SshOptList& opts) {
                 mArgs.append("-o");
                 mArgs.append(tmp);
             }
-            else if( mVersion <= SSH ) {
+            else if( mVersion <= SSH || mVersion == PLINK ) {
                 if( (*it).num == 1 ) {
                     mArgs.append("-1");
                 }
@@ -358,41 +393,53 @@ bool KSshProcess::setOptions(const SshOptList& opts) {
             break;
 
         case SSH_FORWARDX11:
-            tmp = "ForwardX11=";
-            tmp += (*it).boolean ? "yes" : "no";
-            mArgs.append("-o");
-            mArgs.append(tmp);
+            if( mVersion == PLINK) {
+                mArgs.append((*it).boolean ? "-X" : "-x");
+            } else {
+                tmp = "ForwardX11=";
+                tmp += (*it).boolean ? "yes" : "no";
+                mArgs.append("-o");
+                mArgs.append(tmp);
+            }
             break;
 
         case SSH_FORWARDAGENT:
-            tmp = "ForwardAgent=";
-            tmp += (*it).boolean ? "yes" : "no";
-            mArgs.append("-o");
-            mArgs.append(tmp);
+            if( mVersion == PLINK) {
+                mArgs.append((*it).boolean ? "-A" : "-a");
+            } else {
+                tmp = "ForwardAgent=";
+                tmp += (*it).boolean ? "yes" : "no";
+                mArgs.append("-o");
+                mArgs.append(tmp);
+            }
             break;
 
         case SSH_ESCAPE_CHAR:
-            if( (*it).num == -1 )
-                tmp = "none";
-            else
-                tmp = QByteArray( (char)((*it).num), '\0' );
-            mArgs.append("-e");
-            mArgs.append(tmp);
+            if( mVersion != PLINK ) {
+                if( (*it).num == -1 )
+                    tmp = "none";
+                else
+                    tmp = QByteArray( (char)((*it).num), '\0' );
+                mArgs.append("-e");
+                mArgs.append(tmp);
+            }
             break;
 
         case SSH_OPTION:
             // don't allow NumberOfPasswordPrompts or StrictHostKeyChecking
             // since KSshProcess depends on specific setting of these for 
             // preforming authentication correctly.
-            tmp = (*it).str.toLatin1();
-            if( tmp.contains("NumberOfPasswordPrompts") ||
-                tmp.contains("StrictHostKeyChecking") ) {
-                mError = ERR_INVALID_OPT;
-                return false;
-            }
-            else {
-                mArgs.append("-o");
-                mArgs.append(tmp);
+            if( mVersion != PLINK ) {
+                tmp = (*it).str.toLatin1();
+                if( tmp.contains("NumberOfPasswordPrompts") ||
+                    tmp.contains("StrictHostKeyChecking") ) {
+                    mError = ERR_INVALID_OPT;
+                    return false;
+                }
+                else {
+                    mArgs.append("-o");
+                    mArgs.append(tmp);
+                }
             }
             break;
             
@@ -552,6 +599,9 @@ void KSshProcess::setPassword(QString password) {
 }
 
 QString KSshProcess::getLine() {
+#ifdef Q_WS_WIN
+    return ssh.readLineFromPty(false);
+#else
     static QStringList buffer;
     QString line = QString();
     QByteArray ptyLine, errLine;
@@ -669,6 +719,7 @@ QString KSshProcess::getLine() {
     
 
     return line;
+#endif
 }
 
 // All the different states we could go through while trying to connect.

@@ -1,6 +1,8 @@
 #ifndef atomicio_h
 #define atomicio_h
 
+#ifndef Q_WS_WIN
+
 /*	$OpenBSD: atomicio.h,v 1.3 2001/03/02 18:54:30 deraadt Exp $	*/
 
 /*
@@ -35,5 +37,7 @@
  * Ensure all of data on socket comes through. f==read || f==write
  */
 ssize_t	atomicio(int fd, char *_s, size_t n, bool read = true);
+
+#endif //Q_WS_WIN
 
 #endif
