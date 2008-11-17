@@ -65,6 +65,7 @@ Comment[uk]=Містить вилучені файли
 Comment[uz]=Olib tashlangan fayllardan iborat
 Comment[uz@cyrillic]=Олиб ташланган файллардан иборат
 Comment[vi]=Chứa tập tin bị gỡ bỏ
+Comment[x-test]=xxContains removed filesxx
 Comment[xh]=Iqulathe iifayile ezisusiweyo
 Comment[zh_TW]=包含已移除的檔案
 Icon=user-trash-full
