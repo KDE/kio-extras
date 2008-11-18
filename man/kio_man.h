@@ -28,8 +28,6 @@
 #include <kio/global.h>
 #include <kio/slavebase.h>
 
-class K3Process;
-
 class MANProtocol : public QObject, public KIO::SlaveBase
 {
     Q_OBJECT
@@ -56,10 +54,7 @@ public:
     char *readManPage(const char *filename);
 
     static MANProtocol *self();
-
-private Q_SLOTS:
-  void slotGetStdOutput(K3Process*, char*, int);
-    
+   
 private:
     void checkManPaths();
     QStringList manDirectories();
@@ -83,7 +78,6 @@ private:
     QStringList m_mandbpath; ///< Path of catman directories
     QStringList section_names;
 
-    QString myStdStream;  
     QString mySgml2RoffPath;
     void getProgramPath();
 

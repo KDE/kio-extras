@@ -25,7 +25,6 @@
 
 #include <QByteArray>
 #include <QTextStream>
-#include <Qt3Support/Q3Dict>
 #include <QFile>
 #include <QRegExp>
 
@@ -35,6 +34,7 @@
 #include <kstandarddirs.h>
 #include <klocale.h>
 #include <kurl.h>
+#include <KProcess>
 
 
 using namespace KIO;
@@ -70,7 +70,6 @@ extern "C"
 FingerProtocol::FingerProtocol(const QByteArray &pool_socket, const QByteArray &app_socket)
   : QObject(), SlaveBase("finger", pool_socket, app_socket)
 {
-  myStdStream = new QString();
   getProgramPath();
 }
 
@@ -86,7 +85,6 @@ FingerProtocol::~FingerProtocol()
   delete myFingerPath;
   delete myFingerPerlScript;
   delete myFingerCSSFile;
-  delete myStdStream;
 }
 
 
@@ -100,9 +98,6 @@ void FingerProtocol::get(const KUrl& url )
   this->parseCommandLine(url);
 
   //kDebug() << "myURL: " << myURL->prettyUrl();
-
-  // Reset the stream
-  *myStdStream="";
 
   QString query = myURL->query();
   QString refreshRate = defaultRefreshRate;
@@ -121,36 +116,16 @@ void FingerProtocol::get(const KUrl& url )
 
   //kDebug() << "Refresh rate: " << refreshRate;
 
-  myKProcess = new K3Process();
-  *myKProcess << *myPerlPath << *myFingerPerlScript
-	      << *myFingerPath << *myFingerCSSFile
-	      << refreshRate << myURL->host() << myURL->user() ;
+  KProcess proc;
+  proc << *myPerlPath << *myFingerPerlScript
+       << *myFingerPath << *myFingerCSSFile
+       << refreshRate << myURL->host() << myURL->user();
 
-  connect(myKProcess, SIGNAL(receivedStdout(K3Process *, char *, int)),
-	  this, SLOT(slotGetStdOutput(K3Process *, char *, int)));
-  //connect(myKProcess, SIGNAL(receivedStderr(K3Process *, char *, int)),
-  //	  this, SLOT(slotGetStdOutput(K3Process *, char *, int)));
-
-  myKProcess->start(K3Process::Block, K3Process::All);
-
-  data(QByteArray(myStdStream->toLocal8Bit()));
-
+  proc.setOutputChannelMode(KProcess::MergedChannels);
+  proc.execute();
+  data(proc.readAllStandardOutput());
   data(QByteArray());
   finished();
-
-  //clean up
-
-  delete myKProcess;
-}
-
-
-/* ---------------------------------------------------------------------------------- */
-
-
-void FingerProtocol::slotGetStdOutput(K3Process* /* p */, char *s, int len)
-{
-  //kDebug() <<  "void FingerProtocol::slotGetStdoutOutput()";
-  *myStdStream += QString::fromLocal8Bit(s, len);
 }
 
 

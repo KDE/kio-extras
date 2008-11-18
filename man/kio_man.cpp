@@ -30,7 +30,6 @@
 #include <QFile>
 #include <QTextStream>
 #include <QDataStream>
-#include <Qt3Support/Q3PtrList>
 #include <QMap>
 #include <QRegExp>
 #include <QTextCodec>
@@ -39,7 +38,7 @@
 #include <kcomponentdata.h>
 #include <kglobal.h>
 #include <kstandarddirs.h>
-#include <k3process.h>
+#include <KProcess>
 #include <klocale.h>
 #include <kmimetype.h>
 
@@ -210,13 +209,11 @@ QMap<QString, QString> MANProtocol::buildIndexMap(const QString &section)
 		    break;
 	    }
             if ( it_name == names.constEnd() ) {
-                K3Process proc;
+                KProcess proc;
                 proc << "whatis" << "-M" << (*it_dir) << "-w" << "*";
-                myStdStream.clear();
-                connect( &proc, SIGNAL( receivedStdout(K3Process *, char *, int ) ),
-                         SLOT( slotGetStdOutput( K3Process *, char *, int ) ) );
-                proc.start( K3Process::Block, K3Process::Stdout );
-                QTextStream t( &myStdStream, QIODevice::ReadOnly );
+                proc.setOutputChannelMode( KProcess::OnlyStdoutChannel );
+                proc.execute();
+                QTextStream t( proc.readAllStandardOutput(), QIODevice::ReadOnly );
                 parseWhatIs( i, t, mark );
             }
         }
@@ -541,11 +538,6 @@ void MANProtocol::get(const KUrl& url )
     finished();
 }
 
-void MANProtocol::slotGetStdOutput(K3Process* /* p */, char *s, int len)
-{
-  myStdStream += QString::fromLocal8Bit(s, len);
-}
-
 char *MANProtocol::readManPage(const char *_filename)
 {
     QByteArray filename = _filename;
@@ -560,18 +552,13 @@ char *MANProtocol::readManPage(const char *_filename)
     //QString file_mimetype = KMimeType::findByPath(QString(filename), 0, false)->name();
     if (QString(filename).contains("sman", Qt::CaseInsensitive)) //file_mimetype == "text/html" || )
     {
-        myStdStream =QString();
-	K3Process proc;
-
-	/* Determine path to sgml2roff, if not already done. */
-	getProgramPath();
-	proc << mySgml2RoffPath << filename;
-
-	connect(&proc, SIGNAL(receivedStdout (K3Process *, char *, int)),
-	        this, SLOT(slotGetStdOutput(K3Process *, char *, int)));
-	proc.start(K3Process::Block, K3Process::All);
-
-        const QByteArray cstr=myStdStream.toLatin1();
+        KProcess proc;
+        // Determine path to sgml2roff, if not already done.
+        getProgramPath();
+        proc << mySgml2RoffPath << filename;
+        proc.setOutputChannelMode( KProcess::OnlyStdoutChannel );
+        proc.execute();
+        const QByteArray cstr = proc.readAllStandardOutput();
         const int len = cstr.size()-1;
         buf = new char[len + 4];
         memmove(buf + 1, cstr.data(), len);
@@ -709,7 +696,7 @@ extern "C"
 
         KComponentData componentData("kio_man");
 
-        kDebug(7107) <<  "STARTING " << getpid();
+        kDebug(7107) <<  "STARTING";
 
         if (argc != 4)
         {

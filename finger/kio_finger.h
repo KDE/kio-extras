@@ -23,7 +23,6 @@
 
 
 #include <kurl.h>
-#include <k3process.h>
 #include <kio/global.h>
 #include <kio/slavebase.h>
 
@@ -39,9 +38,6 @@ public:
   virtual void mimetype(const KUrl& url);
   virtual void get(const KUrl& url);
 
-private Q_SLOTS:
-  void       slotGetStdOutput(K3Process*, char*, int);
-
 private:
   KUrl                  *myURL;
 
@@ -50,10 +46,6 @@ private:
   QString               *myFingerPerlScript;
   QString               *myFingerCSSFile;
 
-  QString		*myStdStream;
-
-
-  K3Process	        *myKProcess;
 
   void       getProgramPath();
   void       parseCommandLine(const KUrl& url);
