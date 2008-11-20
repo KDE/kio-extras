@@ -11,9 +11,10 @@ set(kio_sftp_PART_SRCS
 
 
 kde4_add_plugin(kio_sftp ${kio_sftp_PART_SRCS})
-
-
-target_link_libraries(kio_sftp ${KDE4_KIO_LIBS} ${KDE4_KPTY_LIBS})
+target_link_libraries(kio_sftp ${KDE4_KIO_LIBS} )
+if(NOT WIN32)
+    target_link_libraries(kio_sftp ${KDE4_KPTY_LIBS})
+endif(NOT WIN32)
 
 install(TARGETS kio_sftp  DESTINATION ${PLUGIN_INSTALL_DIR} )
 
