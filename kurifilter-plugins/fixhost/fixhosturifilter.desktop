@@ -1,6 +1,7 @@
 [Desktop Entry]
 Type=Service
 Name=FixHostFilter
+Name[ar]=اصلاح مرشح المضيف
 Name[csb]=Filter FixHost
 Name[de]=Rechnernamen-Korrektur-Filter
 Name[hi]=फ़िक्स-होस्ट-फ़िल्टर

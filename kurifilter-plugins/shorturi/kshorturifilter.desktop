@@ -2,6 +2,7 @@
 Type=Service
 Name=ShortURIFilter
 Name[af]=KortURIfilter
+Name[ar]=مرشح الرابط القصير
 Name[br]=SilURLBerr
 Name[ca]=Filtre d'URI curta
 Name[csb]=Filter krótczich URI
