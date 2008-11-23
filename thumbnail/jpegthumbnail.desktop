@@ -7,6 +7,7 @@ Name[de]=JPEG
 Name[ja]=JPEG
 Name[nds]=JPEG
 Name[x-test]=xxJpegxx
+Name[zh_CN]=JPEG
 Name[zh_TW]=JPEG
 X-KDE-ServiceTypes=ThumbCreator
 MimeType=image/jpeg;
