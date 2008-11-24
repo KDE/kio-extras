@@ -87,7 +87,7 @@ void BookmarksProtocol::parseTree()
   if(config.readEntry("ShowRoot", true))
   {
     root = tree.createNewFolder(i18n("Root"));
-    tree.moveBookmark(root, KBookmark::KBookmark());
+    tree.moveBookmark(root, KBookmark());
     root.setIcon("konqueror");
   }
 
