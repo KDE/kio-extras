@@ -378,7 +378,9 @@ int MyPtyProcess::WaitSlave()
 
 int MyPtyProcess::enableLocalEcho(bool enable)
 {
-#ifndef Q_WS_WIN
+#ifdef Q_WS_WIN
+    return -1;
+#else
     return m_pPTY->setEcho(enable) ? 0 : -1;
 #endif
 }
@@ -394,7 +396,9 @@ int MyPtyProcess::enableLocalEcho(bool enable)
 
 int MyPtyProcess::waitForChild()
 {
-#ifndef Q_WS_WIN
+#ifdef Q_WS_WIN
+    return -1;
+#else
     int ret, state, retval = 1;
     struct timeval tv;
 
