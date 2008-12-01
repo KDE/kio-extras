@@ -55,6 +55,7 @@ Name[zh_TW]=CTAN - 全面的 Tex 收集網路
 Query=http://ctan.org/cgi-bin/filenameSearch.py?filename=\\{@}&Search=Search
 Query[lt]=http://tug.ctan.org/cgi-bin/filenameSearch.py?action=/search/&filename=\\{ at }
 Query[ml]=http://ctan.org/cgi-bin/filenameSearch.py?filename=\\{@}&തെരയുക=Search
+Query[tg]=http://ctan.org/cgi-bin/filenameSearch.py?filename=\\{@}&Search=Ҷустуҷӯ
 Query[x-test]=xxhttp://ctan.org/cgi-bin/filenameSearch.py?filename=\\{@}&Search=Searchxx
 X-KDE-ServiceTypes=SearchProvider
 Type=Service

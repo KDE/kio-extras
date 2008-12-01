@@ -77,6 +77,7 @@ Query[fr]=http://www.google.fr/search?sourceid=python-search&q=\\{@}&submit=Sear
 Query[nb]=http://www.google.no/search?sourceid=python-search&q=\\{@}&submit=Search&q=site%3Apython.org
 Query[nl]=http://www.google.nl/search?sourceid=python-search&q=\\{@}&submit=Search&q=site%3Apython.org
 Query[nn]=http://www.google.no/search?hl=nn&sourceid=python-search&q=\\{@}&submit=Search&q=site%3Apython.org
+Query[tg]=http://www.google.com/search?sourceid=python-search&q=\\{@}&submit=Ҷустучӯ&q=site%3Apython.org
 Query[x-test]=xxhttp://www.google.com/search?sourceid=python-search&q=\\{@}&submit=Search&q=site%3Apython.orgxx
 X-KDE-ServiceTypes=SearchProvider
 Type=Service
