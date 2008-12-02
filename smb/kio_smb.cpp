@@ -1,6 +1,6 @@
 /////////////////////////////////////////////////////////////////////////////
 //
-// Project:     SMB kioslave for KDE2
+// Project:     SMB kioslave for KDE
 //
 // File:        Top level implementation file for kio_smb.cpp
 //
@@ -53,10 +53,6 @@ SMBSlave::~SMBSlave()
 
 
 //===========================================================================
-// pointer to the slave created in kdemain
-SMBSlave* G_TheSlave;
-
-//===========================================================================
 int KDE_EXPORT kdemain( int argc, char **argv )
 {
     KComponentData componentData("kio_smb");
@@ -69,7 +65,6 @@ int KDE_EXPORT kdemain( int argc, char **argv )
 
     SMBSlave slave( argv[2], argv[3] );
 
-    G_TheSlave = &slave;
     slave.dispatchLoop();
 
     return 0;
