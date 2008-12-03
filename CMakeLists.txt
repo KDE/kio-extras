@@ -17,11 +17,7 @@ add_subdirectory( trash )
 add_subdirectory( remote )
 add_subdirectory( desktop )
 add_subdirectory( sftp )
-
-# need kdesu
-if(UNIX)
-   add_subdirectory( fish )
-endif(UNIX)
+add_subdirectory( fish )
 
 if(NOT WIN32)
    add_subdirectory( floppy )

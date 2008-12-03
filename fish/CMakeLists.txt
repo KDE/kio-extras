@@ -14,11 +14,12 @@ mark_as_advanced(UTIL_LIBRARIES)
 configure_file(config-fish.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-fish.h)
 
 ########### next target ###############
-
+if(NOT WIN32)
 # on Linux there is md5sum, on FreeBSD there is md5
 find_program(MD5SUM_EXECUTABLE NAMES md5sum md5 )
-
-if (MD5SUM_EXECUTABLE)
+endif(NOT WIN32)
+    
+if (MD5SUM_EXECUTABLE OR WIN32)
 
    if ("${MD5SUM_EXECUTABLE}" MATCHES "md5sum")
       set(CUT_ARG "-f 1")                            # for md5sum the sum is in the 1st column
@@ -26,8 +27,13 @@ if (MD5SUM_EXECUTABLE)
       set(CUT_ARG "-f 4")                            # for md5 the sum is in the 4th column
    endif ("${MD5SUM_EXECUTABLE}" MATCHES "md5sum")
 
+   if (WIN32)
+      set(FISH_GENERATOR "generate_fishcode.py")
+   else (WIN32)
+      set(FISH_GENERATOR "generate_fishcode.sh")
+   endif (WIN32)
    add_custom_command(OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/fishcode.h 
-      COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/generate_fishcode.sh ARGS ${CMAKE_CURRENT_SOURCE_DIR}/fish.pl ${MD5SUM_EXECUTABLE} ${CMAKE_CURRENT_BINARY_DIR}/fishcode.h "${CUT_ARG}"
+      COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/${FISH_GENERATOR} ARGS ${CMAKE_CURRENT_SOURCE_DIR}/fish.pl ${MD5SUM_EXECUTABLE} ${CMAKE_CURRENT_BINARY_DIR}/fishcode.h "${CUT_ARG}"
       DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/fish.pl )
 
    set(kio_fish_PART_SRCS fish.cpp ${CMAKE_CURRENT_BINARY_DIR}/fishcode.h)
@@ -47,4 +53,4 @@ if (MD5SUM_EXECUTABLE)
 
    install( FILES fish.protocol  DESTINATION  ${SERVICES_INSTALL_DIR} )
 
-endif (MD5SUM_EXECUTABLE)
+endif (MD5SUM_EXECUTABLE OR WIN32)

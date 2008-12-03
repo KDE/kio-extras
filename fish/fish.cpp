@@ -108,13 +108,23 @@
 #define sendmimeType(x) mimeType(x)
 #endif
 
+#ifdef Q_WS_WIN
+#define ENDLINE "\r\n"
+#else
+#define ENDLINE '\n'
+#endif
+
 static char *sshPath = NULL;
 static char *suPath = NULL;
 // disabled: currently not needed. Didn't work reliably.
 // static int isOpenSSH = 0;
 
 /** the SSH process used to communicate with the remote end */
+#ifndef Q_WS_WIN
 static pid_t childPid;
+#else
+static KProcess *childPid = 0;
+#endif
 
 #define E(x) ((const char*)remoteEncoding()->encode(x).data())
 
@@ -231,7 +241,11 @@ fishProtocol::fishProtocol(const QByteArray &pool_socket, const QByteArray &app_
     if (sshPath == NULL) {
         // disabled: currently not needed. Didn't work reliably.
         // isOpenSSH = !system("ssh -V 2>&1 | grep OpenSSH > /dev/null");
+#ifdef Q_WS_WIN
+        sshPath = strdup(QFile::encodeName(KStandardDirs::findExe("plink")));
+#else
         sshPath = strdup(QFile::encodeName(KStandardDirs::findExe("ssh")));
+#endif
     }
     if (suPath == NULL) {
         suPath = strdup(QFile::encodeName(KStandardDirs::findExe("su")));
@@ -299,6 +313,7 @@ void fishProtocol::openConnection() {
 }
 
 // XXX Use KPty! XXX
+#ifndef Q_WS_WIN
 static int open_pty_pair(int fd[2])
 {
 #if defined(HAVE_TERMIOS_H) && defined(HAVE_GRANTPT) && !defined(HAVE_OPENPTY)
@@ -364,6 +379,7 @@ close_master:
 #endif
 #endif
 }
+#endif
 /**
 creates the subprocess
 */
@@ -372,14 +388,52 @@ bool fishProtocol::connectionStart() {
     int rc, flags;
     thisFn.clear();
 
+#ifndef Q_WS_WIN
     rc = open_pty_pair(fd);
     if (rc == -1) {
         myDebug( << "socketpair failed, error: " << strerror(errno) << endl);
         return true;
     }
+#endif
 
     if (!requestNetwork()) return true;
     myDebug( << "Exec: " << (local ? suPath : sshPath) << " Port: " << connectionPort << " User: " << connectionUser << endl);
+#ifdef Q_WS_WIN
+    childPid = new KProcess();
+    childPid->setOutputChannelMode(KProcess::MergedChannels);
+    QStringList common_args;
+    common_args << "-l" << connectionUser.toLatin1().constData() << "-x" << connectionHost.toLatin1().constData();
+    common_args << "echo;echo FISH:;exec /bin/sh -c \"if env true 2>/dev/null; then env PS1= PS2= TZ=UTC LANG=C LC_ALL=C LOCALE=C /bin/sh; else PS1= PS2= TZ=UTC LANG=C LC_ALL=C LOCALE=C /bin/sh; fi\"";
+
+    childPid->setProgram(sshPath, common_args);
+    childPid->start();
+    
+    QByteArray buf;
+    int offset = 0;
+    while (!isLoggedIn) {
+        if (outBuf.size()) {
+            rc = childPid->write(outBuf);
+            outBuf.clear();
+        }
+        else rc = 0;
+
+        if(rc < 0) {
+            myDebug( << "write failed, rc: " << rc);
+            outBufPos = -1;
+            //return true;
+        }
+
+        if (childPid->waitForReadyRead(1000)) {
+            QByteArray buf2 = childPid->readAll();
+            buf += buf2;
+
+            int noff = establishConnection(buf);
+            if (noff < 0) return false;
+            if (noff > 0) buf = buf.mid(/*offset+*/noff);
+//             offset = noff;
+        }
+    }
+#else
     childPid = fork();
     if (childPid == -1) {
         myDebug( << "fork failed, error: " << strerror(errno) << endl);
@@ -498,14 +552,20 @@ bool fishProtocol::connectionStart() {
             }
         }
     }
+#endif
     return false;
 }
 
 /**
 writes one chunk of data to stdin of child process
 */
+#ifndef Q_WS_WIN
 void fishProtocol::writeChild(const char *buf, KIO::fileoffset_t len) {
     if (outBufPos >= 0 && outBuf) {
+#else
+void fishProtocol::writeChild(const QByteArray &buf, KIO::fileoffset_t len) {
+    if (outBufPos >= 0 && outBuf.size()) {
+#endif
 #if 0
         QString debug;
         debug.setLatin1(outBuf,outBufLen);
@@ -521,8 +581,13 @@ void fishProtocol::writeChild(const char *buf, KIO::fileoffset_t len) {
 /**
 manages initial communication setup including password queries
 */
+#ifndef Q_WS_WIN
 int fishProtocol::establishConnection(char *buffer, KIO::fileoffset_t len) {
     QString buf = QString::fromLatin1(buffer,len);
+#else
+int fishProtocol::establishConnection(const QByteArray &buffer) {
+    QString buf = buffer;
+#endif
     int pos=0;
     // Strip trailing whitespace
     while (buf.length() && (buf[buf.length()-1] == ' '))
@@ -561,7 +626,7 @@ int fishProtocol::establishConnection(char *buffer, KIO::fileoffset_t len) {
                 return -1;
             } else if (!connectionPassword.isEmpty()) {
                 myDebug( << "sending cpass" << endl);
-                connectionAuth.password = connectionPassword+'\n';
+                connectionAuth.password = connectionPassword+ENDLINE;
                 connectionPassword.clear();
                 // su does not like receiving a password directly after sending
                 // the password prompt so we wait a while.
@@ -584,7 +649,7 @@ int fishProtocol::establishConnection(char *buffer, KIO::fileoffset_t len) {
                     }
                 }
                 firstLogin = false;
-                connectionAuth.password += '\n';
+                connectionAuth.password += ENDLINE;
                 if (connectionAuth.username != connectionUser) {
                     KUrl dest = url;
                     dest.setUser(connectionAuth.username);
@@ -605,6 +670,10 @@ int fishProtocol::establishConnection(char *buffer, KIO::fileoffset_t len) {
                 writeChild(connectionAuth.password.toLatin1(),connectionAuth.password.length());
             }
             thisFn.clear();
+#ifdef Q_WS_WIN
+            return buf.length();
+        }
+#else
             return 0;
         } else if (buf.endsWith('?')) {
             int rc = messageBox(QuestionYesNo,thisFn+buf);
@@ -615,9 +684,23 @@ int fishProtocol::establishConnection(char *buffer, KIO::fileoffset_t len) {
             }
             thisFn.clear();
             return 0;
-        } else {
+        }
+#endif
+        else {
             myDebug( << "unmatched case in initial handling! should not happen!" << endl);
-          }
+        }
+#ifdef Q_WS_WIN
+        if (buf.endsWith("(y/n)")) {
+            int rc = messageBox(QuestionYesNo,thisFn+buf);
+            if (rc == KMessageBox::Yes) {
+                writeChild("y\n",2);
+            } else {
+                writeChild("n\n",2);
+            }
+            thisFn.clear();
+            return 0;
+        }
+#endif
     }
     return buf.length();
 }
@@ -672,11 +755,17 @@ Closes the connection
  */
 void fishProtocol::shutdownConnection(bool forced){
     if (childPid) {
+#ifdef Q_WS_WIN
+        childPid->terminate();
+#else
         int killStatus = kill(childPid,SIGTERM); // We may not have permission...
         if (killStatus == 0) waitpid(childPid, 0, 0);
+#endif
         childPid = 0;
+#ifndef Q_WS_WIN
         ::close(childFd); // ...in which case this should do the trick
         childFd = -1;
+#endif
         if (!forced)
         {
            dropNetwork();
@@ -1330,11 +1419,14 @@ void fishProtocol::run() {
         int rc;
         isRunning = true;
         finished();
+#ifndef Q_WS_WIN
         fd_set rfds, wfds;
         FD_ZERO(&rfds);
+#endif
         char buf[32768];
         int offset = 0;
         while (isRunning) {
+#ifndef Q_WS_WIN
             FD_SET(childFd,&rfds);
             FD_ZERO(&wfds);
             if (outBufPos >= 0) FD_SET(childFd,&wfds);
@@ -1351,18 +1443,31 @@ void fishProtocol::run() {
                 return;
             }
             if (FD_ISSET(childFd,&wfds) && outBufPos >= 0) {
+#else
+            if (outBufPos >= 0) {
+#endif
 #if 0
                 QString debug;
                 debug.setLatin1(outBuf+outBufPos,outBufLen-outBufPos);
                 myDebug( << "now writing " << (outBufLen-outBufPos) << " " << debug.left(40) << "..." << endl);
 #endif
+#ifndef Q_WS_WIN
                 if (outBufLen-outBufPos > 0) rc = ::write(childFd,outBuf+outBufPos,outBufLen-outBufPos);
+#else
+                if (outBufLen-outBufPos > 0) {
+                    rc = childPid->write(outBuf);
+                }
+#endif
                 else rc = 0;
                 if (rc >= 0) outBufPos += rc;
                 else {
+#ifndef Q_WS_WIN
                     if (errno == EINTR)
                         continue;
                     myDebug( << "write failed, rc: " << rc << ", error: " << strerror(errno) << endl);
+#else
+                    myDebug( << "write failed, rc: " << rc);
+#endif
                     error(ERR_CONNECTION_BROKEN,connectionHost);
                     shutdownConnection();
                     return;
@@ -1373,8 +1478,13 @@ void fishProtocol::run() {
                     sent();
                 }
             }
+#ifndef Q_WS_WIN
             if (FD_ISSET(childFd,&rfds)) {
                 rc = ::read(childFd,buf+offset,32768-offset);
+#else
+            if (childPid->waitForReadyRead(1000)) {
+                rc = childPid->read(buf+offset,32768-offset);
+#endif
                 //myDebug( << "read " << rc << " bytes" << endl);
                 if (rc > 0) {
                     int noff = received(buf,rc+offset);
@@ -1382,9 +1492,13 @@ void fishProtocol::run() {
                     //myDebug( << "left " << noff << " bytes: " << QString::fromLatin1(buf,offset) << endl);
                     offset = noff;
                 } else {
+#ifndef Q_WS_WIN
                     if (errno == EINTR)
                         continue;
                     myDebug( << "read failed, rc: " << rc << ", error: " << strerror(errno) << endl);
+#else
+                    myDebug( << "read failed, rc: " << rc );
+#endif
                     error(ERR_CONNECTION_BROKEN,connectionHost);
                     shutdownConnection();
                     return;
