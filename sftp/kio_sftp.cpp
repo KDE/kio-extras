@@ -1735,11 +1735,9 @@ sftpProtocol::Status sftpProtocol::doProcessStatus(quint8 code, const QString& m
           res.text = i18n("End of file.");
           break;
       case SSH2_FX_NO_SUCH_FILE:
-          res.text = i18n("File does not exist.");
           res.code = ERR_DOES_NOT_EXIST;
           break;
       case SSH2_FX_PERMISSION_DENIED:
-          res.text = i18n("Access is denied.");
           res.code = ERR_ACCESS_DENIED;
           break;
       case SSH2_FX_FAILURE:
