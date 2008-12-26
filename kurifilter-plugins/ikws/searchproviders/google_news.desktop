@@ -17,7 +17,6 @@ Name[el]=Google νέα
 Name[eo]=Google novaĵoj
 Name[es]=Noticias de Google
 Name[fa]=اخبار گوگل
-Name[fi]=Googlen uutiset
 Name[fr]=Google actualités
 Name[fy]=Google-nijs
 Name[ga]=Nuacht Google
@@ -74,7 +73,6 @@ X-KDE-ServiceTypes=SearchProvider
 Keys=ggn,googlenews
 Query=http://news.google.com/news?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[en_GB]=http://news.google.co.uk/news?q=\\{@}&ie=UTF-8&oe=UTF-8
-Query[fi]=http://news.google.fi/news?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[fr]=http://news.google.fr/news?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[he]=http://news.google.co.il/news?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[it]=http://news.google.it/news?q=\\{@}&ie=UTF-8&oe=UTF-8
