@@ -1355,6 +1355,7 @@ void MANProtocol::showIndex(const QString& section)
 #endif /* _USE_QSORT */
 
 	}
+	else delete manindex;
     }
 
     //
