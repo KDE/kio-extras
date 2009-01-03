@@ -26,8 +26,10 @@
     #include <machine/param.h>
 #endif
 #include <sys/types.h>
+#ifndef Q_WS_WIN
 #include <sys/ipc.h>
 #include <sys/shm.h>
+#endif
 
 #include <QtCore/QBuffer>
 #include <QtCore/QFile>
@@ -387,6 +389,7 @@ void ThumbnailProtocol::get(const KUrl &url)
     }
     else
     {
+#ifndef Q_WS_WIN
         QByteArray imgData;
         QDataStream stream( &imgData, QIODevice::WriteOnly );
         //kDebug(7115) << "IMAGE TO SHMID";
@@ -409,6 +412,7 @@ void ThumbnailProtocol::get(const KUrl &url)
         memcpy(shmaddr, img.bits(), img.numBytes());
         shmdt((char*)shmaddr);
         data(imgData);
+#endif
     }
     finished();
 }
