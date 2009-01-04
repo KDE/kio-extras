@@ -20,4 +20,5 @@ Keys=austro,austronaut
 Query=http://austronaut.at/page.php?begriff=\\{@}&wo=at
 Query[cs]=http://austronaut.at/page.php?begriff=\{@}&wo=at
 Query[lt]=http://austronaut.at/page.php?begriff=\{@}&wo=at
+Query[sk]=http://austronaut.at/page.php?begriff=\{@}&wo=at
 Query[x-test]=xxhttp://austronaut.at/page.php?begriff=\\{@}&wo=atxx
