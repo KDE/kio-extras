@@ -38,16 +38,9 @@ extern "C"
     int KDE_EXPORT kdemain(int argc, char **argv)
     {
         // necessary to use other kio slaves
-        KComponentData( "kio_desktop" );
-        {
-            // we have to set the language ourselves because we have no translations, so the
-            // locale will be ignored. this is a rather unfortunate hack, one that might be better
-            // solved in kdelibs/localization/klocale.cpp?
-            KConfigGroup localeCg(KGlobal::config(), "Locale");
-            KGlobal::locale()->setLanguage(localeCg.readEntry("Language"), KGlobal::config().data());
-        }
-        KGlobal::config()->setLocale(KGlobal::locale()->country());
         QCoreApplication app(argc, argv);
+        KComponentData("kio_desktop", "kdelibs4");
+        KGlobal::locale();
 
         // start the slave
         DesktopProtocol slave(argv[1], argv[2], argv[3]);
