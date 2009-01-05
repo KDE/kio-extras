@@ -28,13 +28,14 @@ if (MD5SUM_EXECUTABLE OR WIN32)
    endif ("${MD5SUM_EXECUTABLE}" MATCHES "md5sum")
 
    if (WIN32)
-      set(FISH_GENERATOR "generate_fishcode.py")
+      set(FISH_GENERATOR "generate_fishcode.bat")
    else (WIN32)
       set(FISH_GENERATOR "generate_fishcode.sh")
    endif (WIN32)
    add_custom_command(OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/fishcode.h 
       COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/${FISH_GENERATOR} ARGS ${CMAKE_CURRENT_SOURCE_DIR}/fish.pl ${MD5SUM_EXECUTABLE} ${CMAKE_CURRENT_BINARY_DIR}/fishcode.h "${CUT_ARG}"
-      DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/fish.pl )
+      DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/fish.pl
+      WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} )
 
    set(kio_fish_PART_SRCS fish.cpp ${CMAKE_CURRENT_BINARY_DIR}/fishcode.h)
 

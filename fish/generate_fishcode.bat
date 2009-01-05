@@ -1,0 +1,1 @@
+python %CD%\generate_fishcode.py %*
