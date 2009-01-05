@@ -1158,7 +1158,7 @@ void sftpProtocol::sftpPut( const KUrl& dest, int permissions, KIO::JobFlags fla
             nbytes = readData( buff );
         }
 
-        if( nbytes >= 0 ) {
+        if( nbytes > 0 ) {
             if( (code = sftpWrite(handle, offset, buff)) != SSH2_FX_OK ) {
                 error(ERR_COULD_NOT_WRITE, dest.prettyUrl());
                 return;
