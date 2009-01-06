@@ -4,4 +4,4 @@ It was written to verify KDE bug 147948: https://bugs.kde.org/show_bug.cgi?id=14
 To run it, do the following:
 mkdir /tmp/test
 for i in $(seq 1 1 100); do touch /tmp/fishtest${i}.txt; done
-cmake . && make -j4 && rm /tmp/test/*; ./copytest
+cmake . && make -j4 && rm /tmp/test/*; ./copytester
