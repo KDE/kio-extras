@@ -1479,10 +1479,10 @@ void fishProtocol::run() {
                 }
             }
 #ifndef Q_WS_WIN
-            if (FD_ISSET(childFd,&rfds)) {
+            else if (FD_ISSET(childFd,&rfds)) {
                 rc = ::read(childFd,buf+offset,32768-offset);
 #else
-            if (childPid->waitForReadyRead(1000)) {
+            else if (childPid->waitForReadyRead(1000)) {
                 rc = childPid->read(buf+offset,32768-offset);
 #endif
                 //myDebug( << "read " << rc << " bytes" << endl);
