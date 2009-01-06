@@ -1,0 +1,7 @@
+copytester is a test case for the fish kioslave. It copies 100 files from /tmp to /tmp/test using fish's functions.
+It was written to verify KDE bug 147948: https://bugs.kde.org/show_bug.cgi?id=147948
+
+To run it, do the following:
+mkdir /tmp/test
+for i in $(seq 1 1 100); do touch /tmp/fishtest${i}.txt; done
+cmake . && make -j4 && rm /tmp/test/*; ./copytest
