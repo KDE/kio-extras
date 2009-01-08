@@ -71,7 +71,7 @@ set(djvuthumbnail_PART_SRCS djvucreator.cpp)
 
 kde4_add_plugin(djvuthumbnail ${djvuthumbnail_PART_SRCS})
 
-target_link_libraries(djvuthumbnail ${QT_QTCORE_LIBRARY} ${QT_QTGUI_LIBRARY} ${KDE4_KIO_LIBS}})
+target_link_libraries(djvuthumbnail ${QT_QTCORE_LIBRARY} ${QT_QTGUI_LIBRARY} ${KDE4_KIO_LIBS})
 
 install(TARGETS djvuthumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
 endif(NOT WIN32)
