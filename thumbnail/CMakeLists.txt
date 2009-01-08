@@ -20,7 +20,7 @@ set(imagethumbnail_PART_SRCS imagecreator.cpp)
 
 kde4_add_plugin(imagethumbnail ${imagethumbnail_PART_SRCS})
 
-target_link_libraries(imagethumbnail ${QT_QTCORE_LIBRARY} ${QT_QTGUI_LIBRARY})
+target_link_libraries(imagethumbnail ${QT_QTCORE_LIBRARY} ${QT_QTGUI_LIBRARY} ${KDE4_KIO_LIBS})
 
 install(TARGETS imagethumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
 
@@ -30,7 +30,7 @@ set(jpegthumbnail_PART_SRCS jpegcreator.cpp)
 
 kde4_add_plugin(jpegthumbnail ${jpegthumbnail_PART_SRCS})
 
-target_link_libraries(jpegthumbnail ${QT_QTCORE_LIBRARY} ${QT_QTGUI_LIBRARY} ${JPEG_LIBRARIES})
+target_link_libraries(jpegthumbnail ${QT_QTCORE_LIBRARY} ${QT_QTGUI_LIBRARY} ${JPEG_LIBRARIES} ${KDE4_KIO_LIBS})
 
 install(TARGETS jpegthumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
 
@@ -40,7 +40,7 @@ set(svgthumbnail_PART_SRCS svgcreator.cpp)
 
 kde4_add_plugin(svgthumbnail ${svgthumbnail_PART_SRCS})
 
-target_link_libraries(svgthumbnail ${KDE4_KDEUI_LIBS}) # needs kdeui for ksvgrenderer
+target_link_libraries(svgthumbnail ${KDE4_KDEUI_LIBS} ${KDE4_KIO_LIBS}) # needs kdeui for ksvgrenderer
 
 install(TARGETS svgthumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
 
@@ -50,7 +50,7 @@ set(textthumbnail_PART_SRCS textcreator.cpp)
 
 kde4_add_plugin(textthumbnail ${textthumbnail_PART_SRCS})
 
-target_link_libraries(textthumbnail ${KDE4_KDECORE_LIBS} ${QT_QTGUI_LIBRARY})
+target_link_libraries(textthumbnail ${KDE4_KDECORE_LIBS} ${QT_QTGUI_LIBRARY} ${KDE4_KIO_LIBS})
 
 install(TARGETS textthumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
 
@@ -60,7 +60,7 @@ set(htmlthumbnail_PART_SRCS htmlcreator.cpp)
 
 kde4_add_plugin(htmlthumbnail ${htmlthumbnail_PART_SRCS})
 
-target_link_libraries(htmlthumbnail ${KDE4_KHTML_LIBS} ${QT_QTGUI_LIBRARY})
+target_link_libraries(htmlthumbnail ${KDE4_KHTML_LIBS} ${QT_QTGUI_LIBRARY} ${KDE4_KIO_LIBS})
 
 install(TARGETS htmlthumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
 
@@ -71,7 +71,7 @@ set(djvuthumbnail_PART_SRCS djvucreator.cpp)
 
 kde4_add_plugin(djvuthumbnail ${djvuthumbnail_PART_SRCS})
 
-target_link_libraries(djvuthumbnail ${QT_QTCORE_LIBRARY} ${QT_QTGUI_LIBRARY})
+target_link_libraries(djvuthumbnail ${QT_QTCORE_LIBRARY} ${QT_QTGUI_LIBRARY ${KDE4_KIO_LIBS}})
 
 install(TARGETS djvuthumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
 endif(NOT WIN32)
@@ -101,7 +101,7 @@ if(X11_Xcursor_FOUND)
 
    kde4_add_plugin(cursorthumbnail ${cursorthumbnail_PART_SRCS})
 
-   target_link_libraries(cursorthumbnail ${QT_QTCORE_LIBRARY} ${QT_QTGUI_LIBRARY} ${X11_Xcursor_LIB})
+   target_link_libraries(cursorthumbnail ${QT_QTCORE_LIBRARY} ${QT_QTGUI_LIBRARY} ${X11_Xcursor_LIB} ${KDE4_KIO_LIBS})
 
    install(TARGETS cursorthumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
    install( FILES cursorthumbnail.desktop DESTINATION ${SERVICES_INSTALL_DIR})
