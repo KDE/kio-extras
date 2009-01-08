@@ -326,7 +326,7 @@ void sftpProtocol::sftpCopyGet(const KUrl& dest, const KUrl& src, int mode, KIO:
     finished();
 }
 
-sftpProtocol::Status sftpProtocol::sftpGet( const KUrl& src, KIO::filesize_t offset, int fd )
+sftpProtocol::Status sftpProtocol::sftpGet( const KUrl& src, KIO::filesize_t offset, int fd, bool abortAfterMimeType )
 {
     int code;
     sftpFileAttr attr(remoteEncoding());
@@ -391,6 +391,9 @@ sftpProtocol::Status sftpProtocol::sftpGet( const KUrl& src, KIO::filesize_t off
                                       mime->name() << endl;
                     mimeType(mime->name());
 
+                    if (abortAfterMimeType)
+                        break;
+
                     // Always send the total size after emitting mime-type...
                     totalSize(fileSize);
 
@@ -431,7 +434,7 @@ sftpProtocol::Status sftpProtocol::sftpGet( const KUrl& src, KIO::filesize_t off
         }
     }
 
-    if( code != SSH2_FX_EOF ) {
+    if( code != SSH2_FX_EOF && !abortAfterMimeType ) {
         res.text = src.prettyUrl();
         res.code = ERR_COULD_NOT_READ; // return here or still send empty array to indicate end of read?
     }
@@ -834,7 +837,7 @@ void sftpProtocol::openConnection() {
     return;
 }
 
-#define _DEBUG kDebug(KIO_SFTP_DB) 
+#define _DEBUG kDebug(KIO_SFTP_DB)
 
 void sftpProtocol::open(const KUrl &url, QIODevice::OpenMode mode)
 {
@@ -1275,34 +1278,15 @@ void sftpProtocol::mimetype ( const KUrl& url ){
     if( !mConnected )
         return;
 
-    quint32 pflags = SSH2_FXF_READ;
-    QByteArray handle, mydata;
-    sftpFileAttr attr(remoteEncoding());
-    int code;
-    if( (code = sftpOpen(url, pflags, attr, handle)) != SSH2_FX_OK ) {
-        error(ERR_CANNOT_OPEN_FOR_READING, url.prettyUrl());
-        return;
+    Status info = sftpGet(url, 0 /*offset*/, -1, true /*only emit mimetype*/);
+
+    if (info.code != 0)
+    {
+      error(info.code, info.text);
+      return;
     }
 
-    quint32 len = 1024; // Get first 1k for determining mimetype
-    quint64 offset = 0;
-    code = SSH2_FX_OK;
-    while( offset < len && code == SSH2_FX_OK ) {
-        if( (code = sftpRead(handle, offset, len, mydata)) == SSH2_FX_OK ) {
-            data(mydata);
-            offset += mydata.size();
-            processedSize(offset);
-
-            kDebug(KIO_SFTP_DB) << "mimetype(): offset = " << offset;
-        }
-    }
-
-
-    data(QByteArray());
-    processedSize(offset);
-    sftpClose(handle);
     finished();
-    kDebug(KIO_SFTP_DB) << "mimetype(): END";
 }
 
 

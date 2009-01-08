@@ -88,8 +88,8 @@ private: // Private variables
 
   /** Version of the sftp protocol we are using. */
   int sftpVersion;
-  
-  struct Status 
+
+  struct Status
   {
     int code;
     KIO::filesize_t size;
@@ -148,14 +148,15 @@ private: // private methods
   int sftpRead(const QByteArray& handle, KIO::filesize_t offset, quint32 len, QByteArray& data);
   /** No descriptions */
   int sftpWrite(const QByteArray& handle, KIO::filesize_t offset, const QByteArray& data);
-  
+
   /** Performs faster upload when the source is a local file... */
   void sftpCopyPut(const KUrl& src, const KUrl& dest, int mode, KIO::JobFlags flags);
   /** Performs faster download when the destination is a local file... */
   void sftpCopyGet(const KUrl& dest, const KUrl& src, int mode, KIO::JobFlags flags);
-  
-  /** */
-  Status sftpGet( const KUrl& src, KIO::filesize_t offset = 0, int fd = -1);
+
+  /** Read a file. This is used by get(), copy(), and mimetype(). */
+  Status sftpGet( const KUrl& src, KIO::filesize_t offset = 0, int fd = -1, bool abortAfterMimeType = false);
+  /** Write a file */
   void sftpPut( const KUrl& dest, int permissions, KIO::JobFlags flags, int fd = -1);
 };
 #endif
