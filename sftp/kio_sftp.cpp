@@ -749,9 +749,12 @@ void sftpProtocol::openConnection() {
             infoMessage(i18n("Connection failed."));
             caption = i18n("Connection closed by remote host.");
             msg = ssh.errorMsg();
-            messageBox(Information, msg, caption);
+            if (!msg.isEmpty()) {
+                caption += '\n';
+                caption += msg;
+            }
             closeConnection();
-            error(ERR_COULD_NOT_LOGIN, msg);
+            error(ERR_COULD_NOT_LOGIN, caption);
             return;
 
         case KSshProcess::ERR_INTERACT:
@@ -762,11 +765,15 @@ void sftpProtocol::openConnection() {
         case KSshProcess::ERR_HOST_KEY_REJECTED:
         default:
             infoMessage(i18n("Connection failed."));
+            // Don't call messageBox! Leave GUI handling to the apps (#108812)
             caption = i18n("Unexpected SFTP error: %1", err);
             msg = ssh.errorMsg();
-            messageBox(Information, msg, caption);
+            if (!msg.isEmpty()) {
+                caption += '\n';
+                caption += msg;
+            }
             closeConnection();
-            error(ERR_UNKNOWN, msg);
+            error(ERR_UNKNOWN, caption);
             return;
         }
     }
