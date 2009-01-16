@@ -1633,6 +1633,7 @@ static QByteArray scan_number_code( char*& c )
     QByteArray number;
     if ( *c != '\'' )
         return "";
+    c++; // Go past the opening single quote
     while ( *c && ( *c != '\n' ) && ( *c != '\'' ) )
     {
         number += *c;
@@ -1652,6 +1653,7 @@ static QByteArray scan_number_code( char*& c )
     number.prepend( "&#" );
     number.append( ";" );
     curpos ++;
+    c++; // Go past the closing single quote
     return number;
 }
 
