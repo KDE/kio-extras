@@ -6,6 +6,7 @@ Name[fy]=Netcraft
 Name[gu]=નેટક્રાફ્ટ
 Name[hi]=नेटक्राफ्ट
 Name[kn]=ನೆಟ್ ಕ್ರಾಫ್ಟ್
+Name[mai]=नेटक्राफ्ट
 Name[ml]=നെറ്റ്ക്രാഫ്റ്റ്
 Name[mr]=नेटक्राफ्ट
 Name[ne]=नेटक्राफ्ट
@@ -19,4 +20,5 @@ Name[x-test]=xxNetcraftxx
 X-KDE-ServiceTypes=SearchProvider
 Keys=nc,netcraft
 Query=http://uptime.netcraft.com/up/graph?site=\\{@}
+Query[mai]=http://uptime.netcraft.com/up/graph?site=\\{
 Query[x-test]=xxhttp://uptime.netcraft.com/up/graph?site=\\{@}xx
