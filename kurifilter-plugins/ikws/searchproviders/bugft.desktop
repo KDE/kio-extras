@@ -75,8 +75,6 @@ Name[x-test]=xxKDE Bug Database Fulltext Searchxx
 Name[xh]=Uphendlo lwesiseko sedata ye KDE Bug Olubhaliweyo ngokupheleleyo
 Name[zh_CN]=KDE Bug 数据库全文检索
 Name[zh_TW]=KDE 臭蟲資料庫全文檢索
-Query=http://bugs.kde.org/simple_search.cgi?id=\\{1}+\\{2}+\\{3}+\\{4}+\\{5}+\\{6}+\\{7}+\\{8}+\\{9}
-Query[bg]=Query=http://bugs.kde.org/simple_search.cgi?id=\\{1}+\\{2}+\\{3}+\\{4}+\\{5}+\\{6}+\\{7}+\\{8}+\\{9}
-Query[x-test]=xxhttp://bugs.kde.org/simple_search.cgi?id=\\{1}+\\{2}+\\{3}+\\{4}+\\{5}+\\{6}+\\{7}+\\{8}+\\{9}xx
+Query=http://bugs.kde.org/buglist.cgi?quicksearch=\\{1}+\\{2}+\\{3}+\\{4}+\\{5}+\\{6}+\\{7}+\\{8}+\\{9}
 X-KDE-ServiceTypes=SearchProvider
 Type=Service
