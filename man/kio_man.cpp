@@ -897,7 +897,7 @@ void MANProtocol::constructPath(QStringList& constr_path, QStringList constr_cat
     }
 
     // Default paths
-    static const char *manpaths[] = {
+    static const char * const manpaths[] = {
         "/usr/X11/man",
         "/usr/X11R6/man",
         "/usr/man",
@@ -1077,7 +1077,7 @@ void MANProtocol::checkManPaths()
     // Sections
     QStringList m_mansect = mansect_env.split( ':', QString::KeepEmptyParts);
 
-    const char* default_sect[] =
+    const char* const default_sect[] =
         { "1", "2", "3", "4", "5", "6", "7", "8", "9", "n", 0L };
 
     for ( int i = 0; default_sect[i] != 0L; i++ )

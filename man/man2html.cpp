@@ -335,7 +335,7 @@ static void InitNumberDefinitions( void )
 
 //used in expand_char, e.g. for "\(bu"
 // see groff_char(7) for list
-static CSTRDEF standardchar[] = {
+static const CSTRDEF standardchar[] = {
     { V('*','*'), 1, "*" },
     { V('*','A'), 1, "&Alpha;" },
     { V('*','B'), 1, "&Beta;" },
@@ -661,7 +661,7 @@ static int no_newline_output=0;
 static int newline_for_fun=0;
 static bool output_possible=false;
 
-static const char *includedirs[] = {
+static const char * const includedirs[] = {
     "/usr/include",
     "/usr/include/sys",
     "/usr/local/include",
@@ -1608,7 +1608,7 @@ static QByteArray scan_named_font( char*& c )
     {
         if ( number < 5 )
         {
-            const char* fonts[] = { "R", "I", "B", "BI", "CR" }; // Regular, Italic, Bold, Bold Italic, Courier regular
+            const char* const fonts[] = { "R", "I", "B", "BI", "CR" }; // Regular, Italic, Bold, Bold Italic, Courier regular
             name = fonts[ number ];
         }
         else
@@ -1933,9 +1933,9 @@ TABLEROW *TABLEROW::copyLayout() const {
     return newrow;
 }
 
-static const char *tableopt[]= { "center", "expand", "box", "allbox",
-                                 "doublebox", "tab", "linesize",
-                                 "delim", NULL };
+static const char * const tableopt[]= { "center", "expand", "box", "allbox",
+                                        "doublebox", "tab", "linesize",
+                                        "delim", NULL };
 static int tableoptl[] = { 6,6,3,6,9,3,8,5,0};
 
 
@@ -2556,7 +2556,7 @@ static char *fill_words(char *c, char *words[], int *n, bool newline, char **nex
     return sl;
 }
 
-static const char *abbrev_list[] = {
+static const char * const abbrev_list[] = {
     "GSBG", "Getting Started ",
     "SUBG", "Customizing SunOS",
     "SHBG", "Basic Troubleshooting",
@@ -2611,7 +2611,7 @@ static const char *lookup_abbrev(char *c)
     else return c;
 }
 
-static const char *section_list[] = {
+static const char * const section_list[] = {
 #ifdef Q_OS_SOLARIS
     // for Solaris
     "1", "User Commands",
@@ -3021,7 +3021,7 @@ static void request_mixed_fonts( char*& c, int j, const char* font1, const char*
 
 static int get_request(char *req, int len)
 {
-    static const char *requests[] = {
+    static const char * const requests[] = {
         "ab", "di", "ds", "as", "br", "c2", "cc", "ce", "ec", "eo", "ex", "fc",
         "fi", "ft", "el", "ie", "if", "ig", "nf", "ps", "sp", "so", "ta", "ti",
         "tm", "B", "I", "Fd", "Fn", "Fo", "Fc", "OP", "Ft", "Fa", "BR", "BI",
