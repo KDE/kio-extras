@@ -8,6 +8,7 @@ Name[be@latin]=Paŭnatekstavy pošuk u bazie viadomych chibaŭ KDE
 Name[bn]=কে.ডি.ই. বাগ ডেটাবেস-এ পূর্ণ টেক্সট অনুসন্ধান
 Name[bn_IN]=KDE বাগ ডাটাবেসে অনুসন্ধান - সম্পূর্ণ টেক্সট সহযোগে
 Name[ca]=Cercador de text per la base de dades d'errors de KDE
+Name[ca@valencia]=Cercador de text per la base de dades d'errors de KDE
 Name[cs]=Plnotextové vyhledávání v databázi chyb KDE
 Name[csb]=Baza felów KDE - szëkba w òpisach felów
 Name[cy]=Chwilio Llawn-destun y Gronfa Gwallau KDE
@@ -76,5 +77,6 @@ Name[xh]=Uphendlo lwesiseko sedata ye KDE Bug Olubhaliweyo ngokupheleleyo
 Name[zh_CN]=KDE Bug 数据库全文检索
 Name[zh_TW]=KDE 臭蟲資料庫全文檢索
 Query=http://bugs.kde.org/buglist.cgi?quicksearch=\\{1}+\\{2}+\\{3}+\\{4}+\\{5}+\\{6}+\\{7}+\\{8}+\\{9}
+Query[x-test]=xxhttp://bugs.kde.org/buglist.cgi?quicksearch=\\{1}+\\{2}+\\{3}+\\{4}+\\{5}+\\{6}+\\{7}+\\{8}+\\{9}xx
 X-KDE-ServiceTypes=SearchProvider
 Type=Service
