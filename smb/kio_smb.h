@@ -203,7 +203,7 @@ protected:
      *                share    = a share of the server (host)
      *                path     = a path of the share
      * Parameter :    KUrl the url to check
-     * Return :       new KUrl if its corrected. else the same KUrl
+     * Return :       new KUrl if it is corrected. else the same KUrl
      */
     KUrl checkURL(const KUrl& kurl) const;
 
