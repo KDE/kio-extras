@@ -57,7 +57,7 @@ Name[pl]=Wiktionary - Otwarty słownik
 Name[pt]=Wiktionary - O Dicionário Livre
 Name[pt_BR]=Wikcionário - o dicionário livre
 Name[ro]=Wiktionary - Dictionarul liber
-Name[ru]=Wiktionary - свободный словарь
+Name[ru]=Свободный словарь Wiktionary
 Name[se]=Wiktinary – fridja sátnegirji
 Name[sk]=Wiktionary - voľne dostupný slovník
 Name[sl]=Wiktionary - Prosti slovar
@@ -97,6 +97,7 @@ Query[nl]=http://nl.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[oc]=http://oc.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[pl]=http://pl.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[ro]=http://ro.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[ru]=http://ru.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[sv]=http://sv.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[wa]=http://wa.wikipedia.org/wiki/Motî:\{@}
 Query[x-test]=xxhttp://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Goxx

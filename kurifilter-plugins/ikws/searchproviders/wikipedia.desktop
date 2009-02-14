@@ -60,7 +60,7 @@ Name[pl]=Wikipedia - otwarta encyklopedia
 Name[pt]=Wikipedia - A Enciclopédia Livre
 Name[pt_BR]=Wikipédia - a enciclopédia livre
 Name[ro]=Wikipedia - Enciclopedia liberă
-Name[ru]=Wikipedia - свободная энциклопедия
+Name[ru]=Свободная энциклопедия Wikipedia (на русском)
 Name[se]=Wikipedia – fridja leksikona
 Name[sk]=Wikipédia - voľne dostupná encyklopédia
 Name[sl]=Wikipedia - Prosta enciklopedija
@@ -100,6 +100,7 @@ Query[nl]=http://nl.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[oc]=http://oc.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[pl]=http://pl.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[ro]=http://ro.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[ru]=http://ru.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[sv]=http://sv.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[wa]=http://wa.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Potch%C3%AE
 Query[x-test]=xxhttp://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Goxx
