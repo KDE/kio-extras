@@ -18,6 +18,5 @@ int main (int argc, char *argv[])
   KApplication copytester;
 
   Browser *mw = new Browser();
-  mw->show();
   copytester.exec();
 }
