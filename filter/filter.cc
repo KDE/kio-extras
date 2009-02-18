@@ -69,19 +69,19 @@ void FilterProtocol::get(const KUrl& url)
     subURL.setProtocol("file");
 
     if (subURL.isEmpty()) {
-        error( KIO::ERR_NO_SOURCE_PROTOCOL, mProtocol );
+        error(KIO::ERR_NO_SOURCE_PROTOCOL, QString::fromLatin1(mProtocol));
         return;
     }
 
     QFile localFile(url.path());
     if (!localFile.open(QIODevice::ReadOnly)) {
-        error( KIO::ERR_COULD_NOT_READ, mProtocol );
+        error(KIO::ERR_COULD_NOT_READ, QString::fromLatin1(mProtocol));
         return;
     }
 
     if (!filter) {
         // TODO better error message
-        error( KIO::ERR_INTERNAL, mProtocol );
+        error(KIO::ERR_INTERNAL, QString::fromLatin1(mProtocol));
         return;
     }
 

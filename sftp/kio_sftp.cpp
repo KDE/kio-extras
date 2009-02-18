@@ -218,8 +218,8 @@ void sftpProtocol::sftpCopyGet(const KUrl& dest, const KUrl& src, int mode, KIO:
         return;
 
     KDE_struct_stat buff_orig;
-    QByteArray dest_orig ( QFile::encodeName(dest.path()) );
-    bool origExists = (KDE_lstat( dest_orig.data(), &buff_orig ) != -1);
+    const QString dest_orig = dest.path();
+    bool origExists = (KDE::lstat( dest_orig, &buff_orig ) != -1);
 
     if (origExists)
     {
@@ -237,7 +237,7 @@ void sftpProtocol::sftpCopyGet(const KUrl& dest, const KUrl& src, int mode, KIO:
     }
 
     KIO::filesize_t offset = 0;
-    QByteArray dest_part ( dest_orig + ".part" );
+    QString dest_part(dest_orig + ".part");
 
     int fd = -1;
     bool partExists = false;
@@ -246,7 +246,7 @@ void sftpProtocol::sftpCopyGet(const KUrl& dest, const KUrl& src, int mode, KIO:
     if (markPartial)
     {
         KDE_struct_stat buff_part;
-        partExists = (KDE_stat( dest_part.data(), &buff_part ) != -1);
+        partExists = (KDE::stat(dest_part, &buff_part ) != -1);
 
         if (partExists && buff_part.st_size > 0 && S_ISREG(buff_part.st_mode))
         {
@@ -259,7 +259,7 @@ void sftpProtocol::sftpCopyGet(const KUrl& dest, const KUrl& src, int mode, KIO:
 
         if (offset > 0)
         {
-            fd = KDE_open(dest_part.data(), O_RDWR);
+            fd = KDE::open(dest_part, O_RDWR);
             offset = KDE_lseek(fd, 0, SEEK_END);
             if (offset == 0)
             {
@@ -272,7 +272,7 @@ void sftpProtocol::sftpCopyGet(const KUrl& dest, const KUrl& src, int mode, KIO:
             // Set up permissions properly, based on what is done in file io-slave
             int openFlags = (O_CREAT | O_TRUNC | O_WRONLY);
             int initialMode = (mode == -1) ? 0666 : (mode | S_IWUSR);
-            fd = KDE_open(dest_part.data(), openFlags, initialMode);
+            fd = KDE::open(dest_part, openFlags, initialMode);
         }
     }
     else
@@ -280,7 +280,7 @@ void sftpProtocol::sftpCopyGet(const KUrl& dest, const KUrl& src, int mode, KIO:
         // Set up permissions properly, based on what is done in file io-slave
         int openFlags = (O_CREAT | O_TRUNC | O_WRONLY);
         int initialMode = (mode == -1) ? 0666 : (mode | S_IWUSR);
-        fd = KDE_open(dest_orig.data(), openFlags, initialMode);
+        fd = KDE::open(dest_orig, openFlags, initialMode);
     }
 
     if(fd == -1)
@@ -299,7 +299,7 @@ void sftpProtocol::sftpCopyGet(const KUrl& dest, const KUrl& src, int mode, KIO:
       // Should we keep the partially downloaded file ??
       KIO::filesize_t size = config()->readEntry("MinimumKeepSize", DEFAULT_MINIMUM_KEEP_SIZE);
       if (info.size < size)
-        ::remove(dest_part.data());
+        QFile::remove(dest_part);
 
       error(info.code, info.text);
       return;
@@ -314,7 +314,7 @@ void sftpProtocol::sftpCopyGet(const KUrl& dest, const KUrl& src, int mode, KIO:
     //
     if (markPartial)
     {
-      if (::rename(dest_part.data(), dest_orig.data()) != 0)
+      if (KDE::rename(dest_part, dest_orig) != 0)
       {
         error (ERR_CANNOT_RENAME_PARTIAL, dest_part);
         return;
@@ -1386,15 +1386,15 @@ void sftpProtocol::mkdir(const KUrl&url, int permissions){
 
     r >> type >> id;
     if( id != expectedId ) {
-        kError(KIO_SFTP_DB) << "mkdir: sftp packet id mismatch" << endl;
-        error(ERR_COULD_NOT_MKDIR, path);
+        kError(KIO_SFTP_DB) << "mkdir: sftp packet id mismatch";
+        error(ERR_COULD_NOT_MKDIR, url.path());
         finished();
         return;
     }
 
     if( type != SSH2_FXP_STATUS ) {
-        kError(KIO_SFTP_DB) << "mkdir(): unexpected packet type of " << type << endl;
-        error(ERR_COULD_NOT_MKDIR, path);
+        kError(KIO_SFTP_DB) << "mkdir(): unexpected packet type of" << type;
+        error(ERR_COULD_NOT_MKDIR, url.path());
         finished();
         return;
     }
@@ -1402,7 +1402,7 @@ void sftpProtocol::mkdir(const KUrl&url, int permissions){
     int code;
     r >> code;
     if( code != SSH2_FX_OK ) {
-        kError(KIO_SFTP_DB) << "mkdir(): failed with code " << code << endl;
+        kError(KIO_SFTP_DB) << "mkdir(): failed with code " << code;
 
         // Check if mkdir failed because the directory already exists so that
         // we can return the appropriate message...
@@ -1413,7 +1413,7 @@ void sftpProtocol::mkdir(const KUrl&url, int permissions){
           return;
         }
 
-        error(ERR_COULD_NOT_MKDIR, path);
+        error(ERR_COULD_NOT_MKDIR, url.path());
     }
 
     finished();

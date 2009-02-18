@@ -108,7 +108,7 @@ void CgiProtocol::get( const KUrl& url )
 
     if ( !fd ) {
       kDebug(7124) << "Error opening '" << filepath << "'";
-      error( KIO::ERR_CANNOT_OPEN_FOR_READING, filepath );
+      error(KIO::ERR_CANNOT_OPEN_FOR_READING, path);
       return;
     }
   } else {

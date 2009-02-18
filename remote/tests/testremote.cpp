@@ -26,22 +26,6 @@
 
 #include <stdlib.h>
 
-static bool check(const QString& txt, QString a, QString b)
-{
-    if (a.isEmpty())
-        a.clear();
-    if (b.isEmpty())
-        b.clear();
-    if (a == b) {
-        kDebug() << txt << " : checking '" << a << "' against expected value '" << b << "'... " << "ok";
-    }
-    else {
-        kDebug() << txt << " : checking '" << a << "' against expected value '" << b << "'... " << "KO !";
-        exit(1);
-    }
-    return true;
-}
-
 int main(int argc, char *argv[])
 {
     //KApplication::disableAutoDcopRegistration();
