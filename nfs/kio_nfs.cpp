@@ -358,10 +358,10 @@ NFSFileHandle NFSProtocol::getFileHandle(QString path)
  */
 void NFSProtocol::openConnection()
 {
-   kDebug(7121)<<"NFS::openConnection for -" << m_currentHost.toLatin1() << "-";
+   kDebug(7121)<<"NFS::openConnection for" << m_currentHost;
    if (m_currentHost.isEmpty())
    {
-      error(ERR_UNKNOWN_HOST,"");
+      error(ERR_UNKNOWN_HOST, QString());
       return;
    }
    struct sockaddr_in server_addr;
@@ -375,7 +375,7 @@ void NFSProtocol::openConnection()
       struct hostent *hp=gethostbyname(m_currentHost.toLatin1());
       if (hp==0)
       {
-         error( ERR_UNKNOWN_HOST, m_currentHost.toLatin1() );
+         error(ERR_UNKNOWN_HOST, m_currentHost);
          return;
       }
       server_addr.sin_family = AF_INET;
@@ -397,7 +397,7 @@ void NFSProtocol::openConnection()
       if (m_client==0)
       {
          clnt_pcreateerror(const_cast<char *>("mount clntudp_create"));
-         error(ERR_COULD_NOT_CONNECT, m_currentHost.toLatin1());
+         error(ERR_COULD_NOT_CONNECT, m_currentHost);
          return;
       }
    }
@@ -464,7 +464,7 @@ void NFSProtocol::openConnection()
    if (!atLeastOnceSucceeded)
    {
       closeConnection();
-      error( ERR_COULD_NOT_AUTHENTICATE, m_currentHost.toLatin1());
+      error(ERR_COULD_NOT_AUTHENTICATE, m_currentHost);
       return;
    }
    server_addr.sin_port = 0;
@@ -484,7 +484,7 @@ void NFSProtocol::openConnection()
       if (m_client==0)
       {
          clnt_pcreateerror(const_cast<char *>("NFS clntudp_create"));
-         error(ERR_COULD_NOT_CONNECT, m_currentHost.toLatin1());
+         error(ERR_COULD_NOT_CONNECT, m_currentHost);
          return;
       }
    }
@@ -882,10 +882,10 @@ void NFSProtocol::completeUDSEntry(UDSEntry& entry, fattr& attributes)
 
 void NFSProtocol::setHost(const QString& host, quint16 /*port*/, const QString& /*user*/, const QString& /*pass*/)
 {
-   kDebug(7121)<<"setHost: -"<<host<<"-";
+   kDebug(7121) << host;
    if (host.isEmpty())
    {
-      error(ERR_UNKNOWN_HOST,"");
+      error(ERR_UNKNOWN_HOST, QString());
       return;
    }
    if (host==m_currentHost) return;
