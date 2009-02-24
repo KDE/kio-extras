@@ -17,37 +17,36 @@
  */
 
 #include "searchproviderdlg.h"
+#include "searchprovider.h"
+#include "ui_searchproviderdlg_ui.h"
 
 #include <kapplication.h>
 #include <kcharsets.h>
 #include <kmessagebox.h>
 
-#include "searchprovider.h"
 
-SearchProviderDialog::SearchProviderDialog(SearchProvider *provider,
-                                           QWidget *parent)
-                     :KDialog( parent ),
-                      m_provider(provider)
+SearchProviderDialog::SearchProviderDialog(SearchProvider *provider, QWidget *parent)
+    : KDialog( parent )
+    , m_provider(provider)
+    , m_dlg(new Ui::SearchProviderDlgUI)
 {
     setModal(true);
     setButtons( Ok | Cancel );
 
-    m_dlg = new SearchProviderDlgUI (this);
-    setMainWidget(m_dlg);
+    m_dlg->setupUi(mainWidget());
 
     showButtonSeparator(true);
 
-    m_dlg->leQuery->setMinimumWidth(kapp->fontMetrics().maxWidth() * 40);
+    m_dlg->leQuery->setMinimumWidth(kapp->fontMetrics().averageCharWidth() * 50);
 
-    connect(m_dlg->leName, SIGNAL(textChanged(const QString &)), SLOT(slotChanged()));
-    connect(m_dlg->leQuery, SIGNAL(textChanged(const QString &)), SLOT(slotChanged()));
-    connect(m_dlg->leShortcut, SIGNAL(textChanged(const QString &)), SLOT(slotChanged()));
+    connect(m_dlg->leName,      SIGNAL(textChanged(QString)), SLOT(slotChanged()));
+    connect(m_dlg->leQuery,     SIGNAL(textChanged(QString)), SLOT(slotChanged()));
+    connect(m_dlg->leShortcut,  SIGNAL(textChanged(QString)), SLOT(slotChanged()));
 
     // Data init
     QStringList charsets = KGlobal::charsets()->availableEncodingNames();
     charsets.prepend(i18n("Default"));
     m_dlg->cbCharset->addItems(charsets);
-    connect(this,SIGNAL(okClicked()), this, SLOT(slotOk()));
     if (m_provider)
     {
         setPlainCaption(i18n("Modify Search Provider"));

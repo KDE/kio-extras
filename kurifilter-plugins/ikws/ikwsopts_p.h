@@ -71,6 +71,7 @@ public:
     QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const;
     int rowCount(const QModelIndex& parent = QModelIndex()) const;
 public slots:
+    void emitDataChanged(const QModelIndex& start, const QModelIndex& end){emit dataChanged(index(start.row(),0),index(end.row(),0));}
     void emitRowsAboutToBeInserted(const QModelIndex& parent, int start, int end){beginInsertRows(QModelIndex(),start,end);}
     void emitRowsAboutToBeRemoved(const QModelIndex& parent, int start, int end){beginRemoveRows(QModelIndex(),start,end);}
     void emitRowsInserted(const QModelIndex& parent, int start, int end){endInsertRows();}

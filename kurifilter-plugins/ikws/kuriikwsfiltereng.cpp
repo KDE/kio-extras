@@ -140,39 +140,26 @@ QStringList KURISearchFilterEngine::modifySubstitutionMap(SubstMap& map,
     // Needed to split user query into StringList correctly.
     while ((pos = qsexpr.indexIn(userquery, start)) >= 0)
     {
-      int i = 0;
-      int n = 0;
       QString s = userquery.mid (pos, qsexpr.matchedLength());
-      while ((i = s.indexOf(" ")) != -1)
-      {
-        s = s.replace (i, 1, "%20");
-        n++;
-      }
-      start = pos + qsexpr.matchedLength() + 2*n; // Move after last quote
+      s.replace (' ', "%20");
+      start = pos + s.length(); // Move after last quote
       userquery = userquery.replace (pos, qsexpr.matchedLength(), s);
     }
   }
 
   // Split user query between spaces:
-  QStringList l = userquery.simplified().split(" ", QString::SkipEmptyParts);
+  QStringList l = userquery.simplified().split(' ', QString::SkipEmptyParts);
 
   // Back-substitute quoted strings (%20 -> " "):
-  {
-    int i = 0;
-    while ((i = userquery.indexOf("%20")) != -1)
-      userquery = userquery.replace(i, 3, " ");
-
-    for ( QStringList::Iterator it = l.begin(); it != l.end(); ++it )
-      *it = (*it).replace("%20", " ");
-  }
+  userquery.replace (QLatin1String("%20"), QLatin1String(" "));
+  l.replaceInStrings(QLatin1String("%20"), QLatin1String(" "));
 
   PIDDBG << "Generating substitution map:\n";
   // Generate substitution map from user query:
   for (int i=0; i<=l.count(); i++)
   {
-    int j = 0;
     int pos = 0;
-    QString v = "";
+    QString v;
     QString nr = QString::number(i);
 
     // Add whole user query (\{0}) to substitution map:
@@ -182,23 +169,18 @@ QStringList KURISearchFilterEngine::modifySubstitutionMap(SubstMap& map,
     else
       v = l[i-1];
 
-    // Back-substitute quoted strings (%20 -> " "):
-    while ((j = v.indexOf("%20")) != -1)
-      v = v.replace(j, 3, " ");
-
     // Insert partial queries (referenced by \1 ... \n) to map:
     map.insert(QString::number(i), v);
     PDVAR ("  map['" + nr + "']", map[nr]);
 
     // Insert named references (referenced by \name) to map:
-    j = 0;
     if ((i>0) && (pos = v.indexOf("=")) > 0)
     {
       QString s = v.mid(pos + 1);
       QString k = v.left(pos);
 
       // Back-substitute references contained in references (e.g. '\refname' substitutes to 'thisquery=\0')
-      while ((j = s.indexOf("%5C")) != -1) s = s.replace(j, 3, "\\");
+      s.replace(QLatin1String("%5C"), QLatin1String("\\"));
       map.insert(k, s);
       PDVAR ("  map['" + k + "']", map[k]);
     }
@@ -210,7 +192,7 @@ QStringList KURISearchFilterEngine::modifySubstitutionMap(SubstMap& map,
 static QString encodeString(const QString &s, int mib)
 {
   Q_UNUSED( mib ); // removed in KDE4/Qt4.
-  QStringList l = s.split(" ");
+  QStringList l = s.split(' ');
   for(QStringList::Iterator it = l.begin();
       it != l.end(); ++it)
   {
@@ -329,17 +311,14 @@ QString KURISearchFilterEngine::substituteQuery(const QString& url, SubstMap &ma
           {
             // It's a alphanumeric reference
             QStringList::Iterator it = ql.begin();
-            while ((it != ql.end()) && ((rlitem + '=') != (*it).left(rlitem.length()+1)))
+            while ((it != ql.end()) && !it->startsWith(rlitem + '='))
               ++it;
-            if ((rlitem + '=') == (*it).left(rlitem.length()+1))
-              (*it) = "";
+            if (it != ql.end())
+              it->clear();
           }
 
           // Encode '+', otherwise it would be interpreted as space in the resulting url:
-          int vpos = 0;
-          while ((vpos = v.indexOf('+')) != -1)
-            v = v.replace (vpos, 1, "%2B");
-
+          v.replace('+', "%2B");
         }
         else if (rlitem == "@")
         {
@@ -350,25 +329,20 @@ QString KURISearchFilterEngine::substituteQuery(const QString& url, SubstMap &ma
         i++;
       }
 
-      newurl = newurl.replace(pos, reflist.matchedLength(), v);
+      newurl.replace(pos, reflist.matchedLength(), v);
     }
 
     // Special handling for \{@};
     {
       PDVAR ("  newurl", newurl);
       // Generate list of unmatched strings:
-      QString v = "";
-      for (int i=0; i<ql.count(); i++) {
-        v += ' ' + ql[i];
-      }
-      v = v.simplified();
+      QString v = ql.join(" ").simplified();
+
       PDVAR ("    rest", v);
       v = encodeString(v, encodingMib);
 
       // Substitute \{@} with list of unmatched query strings
-      int vpos = 0;
-      while ((vpos = newurl.indexOf("\\@")) != -1)
-        newurl = newurl.replace (vpos, 2, v);
+      newurl.replace("\\@", v);
     }
   }
 
@@ -394,7 +368,7 @@ QString KURISearchFilterEngine::formatResult( const QString& url,
 {
   // Return nothing if userquery is empty and it contains
   // substitution strings...
-  if (query.isEmpty() && url.indexOf(QRegExp(QRegExp::escape("\\{"))) > 0)
+  if (query.isEmpty() && url.indexOf("\\{") > 0)
     return QString();
 
   // Debug info of map:

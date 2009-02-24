@@ -21,18 +21,9 @@
 #define SEARCHPROVIDERDLG_H
 
 #include <kdialog.h>
-#include "ui_searchproviderdlg_ui.h"
 
 class SearchProvider;
-
-class SearchProviderDlgUI : public QWidget, public Ui::SearchProviderDlgUI
-{
-public:
-  SearchProviderDlgUI( QWidget *parent ) : QWidget( parent ) {
-    setupUi( this );
-  }
-};
-
+namespace Ui{class SearchProviderDlgUI;}
 
 class SearchProviderDialog : public KDialog
 {
@@ -49,7 +40,7 @@ protected Q_SLOTS:
 
 private:
     SearchProvider *m_provider;
-    SearchProviderDlgUI *m_dlg;
+    Ui::SearchProviderDlgUI *m_dlg;
 };
 
 #endif

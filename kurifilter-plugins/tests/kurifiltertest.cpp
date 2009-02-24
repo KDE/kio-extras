@@ -246,6 +246,7 @@ void KUriFilterTest::tests()
     filter( "http:" , "http:", KUriFilterData::NetProtocol );
 
     // The default search engine is set to 'Google'
+    //this may fail if your DNS knows domains KDE or FTP
     filter( "gg:", "http://www.google.com/search?q=gg%3A&ie=UTF-8&oe=UTF-8", KUriFilterData::NetProtocol );
     filter( "KDE", "http://www.google.com/search?q=KDE&ie=UTF-8&oe=UTF-8", KUriFilterData::NetProtocol );
     filter( "FTP", "http://www.google.com/search?q=FTP&ie=UTF-8&oe=UTF-8", KUriFilterData::NetProtocol );

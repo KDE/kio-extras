@@ -113,7 +113,7 @@ QAbstractListModel* ProvidersModel::createListModel()
   connect(this, SIGNAL(modelReset()),                 pListModel, SIGNAL(modelReset())); 
   connect(this, SIGNAL(layoutAboutToBeChanged()),     pListModel, SIGNAL(modelReset()));
   connect(this, SIGNAL(layoutChanged()),              pListModel, SIGNAL(modelReset()));
-  connect(this, SIGNAL(dataChanged(QModelIndex, QModelIndex)),        pListModel, SIGNAL(modelReset()));
+  connect(this, SIGNAL(dataChanged(QModelIndex, QModelIndex)),        pListModel, SLOT(emitDataChanged(QModelIndex, QModelIndex)));
   connect(this, SIGNAL(rowsAboutToBeInserted(QModelIndex, int, int)), pListModel, SLOT(emitRowsAboutToBeInserted(QModelIndex, int, int ))); 
   connect(this, SIGNAL(rowsAboutToBeRemoved(QModelIndex, int, int)),  pListModel, SLOT(emitRowsAboutToBeRemoved(QModelIndex, int, int ))); 
   connect(this, SIGNAL(rowsInserted(QModelIndex, int, int )),         pListModel, SLOT(emitRowsInserted(QModelIndex, int, int )));
