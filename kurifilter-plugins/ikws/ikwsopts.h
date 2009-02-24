@@ -1,6 +1,7 @@
 /*
  * Copyright (c) 2000 Yves Arrouye <yves@realnames.com>
  * Copyright (c) 2002, 2003 Dawit Alemayehu <adawit@kde.org>
+ * Copyright (c) 2009 Nick Shaforostoff <shaforostoff@kde.ru>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -25,18 +26,10 @@
 
 #include <kcmodule.h>
 #include <kservice.h>
-#include "ui_ikwsopts_ui.h"
 
 class SearchProvider;
-class SearchProviderItem;
-
-class FilterOptionsUI : public QWidget, public Ui::FilterOptionsUI
-{
-public:
-  FilterOptionsUI( QWidget *parent ) : QWidget( parent ) {
-    setupUi( this );
-  }
-};
+class ProvidersModel;
+namespace Ui{class FilterOptionsUI;}
 
 
 class FilterOptions : public KCModule
@@ -51,31 +44,25 @@ public:
     void defaults();
     QString quickHelp() const;
 
-protected Q_SLOTS:
-    void configChanged();
-    void checkFavoritesChanged();
 
-    void setWebShortcutState();
-
+private Q_SLOTS:
+    void updateSearchProviderEditingButons();
     void addSearchProvider();
     void changeSearchProvider();
     void deleteSearchProvider();
-    void updateSearchProvider();
-
+    
 private:
-    SearchProviderItem *displaySearchProvider(SearchProvider *p, bool fallback = false);
-
-    void setDelimiter (char);
-    char delimiter ();
+    void setDelimiter(char);
+    char delimiter();
+    void setDefaultEngine(int);
 
     // The names of the providers that the user deleted,
     // these are marked as deleted in the user's homedirectory
     // on save if a global service file exists for it.
     QStringList m_deletedProviders;
-    QMap <QString, QString> m_defaultEngineMap;
-    QStringList m_favoriteEngines;
+    ProvidersModel* m_providersModel;
 
-    FilterOptionsUI* m_dlg;
+    Ui::FilterOptionsUI* m_dlg;
 };
 
 #endif
