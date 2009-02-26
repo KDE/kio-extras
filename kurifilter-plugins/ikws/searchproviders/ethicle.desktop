@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Service
+Name=Ethicle
+X-KDE-ServiceTypes=SearchProvider
+Keys=et,ethicle
+Query=http://www.ethicle.com/search.php?q=\\{@}
+Query[fr]=http://www.ethicle.com/fr/search.php?q=\\{@}
