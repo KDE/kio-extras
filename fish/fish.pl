@@ -5,7 +5,7 @@
 =pod
 This file was transferred by kio_fish, a network client part of the
 KDE project. You may safely delete it, it will be transferred again
-when needed. It's only purpose is to make kio_fish access faster and
+when needed. Its only purpose is to make kio_fish access faster and
 more reliable.
 =cut
 
