@@ -537,7 +537,7 @@ bool fishProtocol::connectionStart() {
                 outBufLen = 0;
             }
         }
-        if (FD_ISSET(childFd,&rfds)) {
+        else if (FD_ISSET(childFd,&rfds)) {
             rc = ::read(childFd,buf+offset,32768-offset);
             if (rc > 0) {
                 int noff = establishConnection(buf,rc+offset);
