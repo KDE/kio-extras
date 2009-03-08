@@ -530,10 +530,8 @@ void sftpProtocol::openConnection() {
     info.username = mUsername;
     info.keepPassword = true;
 
-    ///////////////////////////////////////////////////////////////////////////
-    // Check for cached authentication info if a username AND password were
-    // not specified in setHost().
-    if( mUsername.isEmpty() && mPassword.isEmpty() ) {
+    // Check for cached authentication info if no password is specified...
+    if( mPassword.isEmpty() ) {
         kDebug(KIO_SFTP_DB) << "checking cache: info.username = " << info.username
                             << ", info.url = " << info.url.prettyUrl();
 
