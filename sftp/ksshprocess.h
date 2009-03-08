@@ -321,7 +321,7 @@ public:
      * @param pathToSsh The fully qualified path name of the ssh binary
      *                  KSshProcess should use to setup a SSH connection.
      */
-    KSshProcess(QString pathToSsh);
+    KSshProcess(const QString& pathToSsh);
     ~KSshProcess();
 
     /**
@@ -334,7 +334,7 @@ public:
      *         recognizes the version.
      *
      */
-     bool setSshPath(QString pathToSsh);
+     bool setSshPath(const QString& pathToSsh);
 
     /**
      * Get the ssh version.
@@ -483,7 +483,7 @@ public:
      *
      * @param password The user password to give ssh.
      */
-    void setPassword(QString password);
+    void setPassword(const QString& password);
      
     /**
      * Access to standard in and out of the ssh process.

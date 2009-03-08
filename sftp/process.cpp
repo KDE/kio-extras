@@ -69,7 +69,7 @@ int MyPtyProcess::init()
     m_pPTY = new KPty();
     if (!m_pPTY->open())
     {
-        kError(PTYPROC) << k_lineinfo << "Master setup failed.\n" << endl;
+        kError(PTYPROC) << k_lineinfo << "Master setup failed.";
         return -1;
     }
 #else
@@ -148,7 +148,7 @@ QByteArray MyPtyProcess::readLineFrom(int fd, QByteArray& inbuf, bool block)
     int flags = fcntl(fd, F_GETFL);
     if (flags < 0) 
     {
-        kError(PTYPROC) << k_lineinfo << "fcntl(F_GETFL): " << perror << "\n";
+        kError(PTYPROC) << k_lineinfo << "fcntl(F_GETFL): " << perror;
         return ret;
     }
     if (block)
@@ -157,7 +157,7 @@ QByteArray MyPtyProcess::readLineFrom(int fd, QByteArray& inbuf, bool block)
         flags |= O_NONBLOCK;
     if (fcntl(fd, F_SETFL, flags) < 0)
     {
-        kError(PTYPROC) << k_lineinfo << "fcntl(F_SETFL): " << perror << "\n";
+        kError(PTYPROC) << k_lineinfo << "fcntl(F_SETFL): " << perror;
         return ret;
     }
 
@@ -244,7 +244,7 @@ int MyPtyProcess::exec(QByteArray command, QCStringList args)
     int slave = open(m_pPTY->ttyName(), O_RDWR);
     if (slave < 0) 
     {
-        kError(PTYPROC) << k_lineinfo << "Could not open slave pty.\n";
+        kError(PTYPROC) << k_lineinfo << "Could not open slave pty.";
         return -1;
     } 
 
@@ -265,7 +265,7 @@ int MyPtyProcess::exec(QByteArray command, QCStringList args)
 
     if ((m_Pid = fork()) == -1) 
     {
-        kError(PTYPROC) << k_lineinfo << "fork(): " << perror << "\n";
+        kError(PTYPROC) << k_lineinfo << "fork(): " << perror;
         return -1;
     } 
 
@@ -287,7 +287,7 @@ int MyPtyProcess::exec(QByteArray command, QCStringList args)
 
     if( !ok )
     {
-        kError(PTYPROC) << "dup of socket descriptor failed" << endl;
+        kError(PTYPROC) << "dup of socket descriptor failed";
         _exit(1);
     }
 
@@ -308,7 +308,7 @@ int MyPtyProcess::exec(QByteArray command, QCStringList args)
 	    QString file = KStandardDirs::findExe(command);
     	if (file.isEmpty())
 	    {
-	        kError(PTYPROC) << k_lineinfo << command << " not found\n";
+	        kError(PTYPROC) << k_lineinfo << command << " not found";
     	    _exit(1);
 	    }
     	path = QFile::encodeName(file);
@@ -324,7 +324,7 @@ int MyPtyProcess::exec(QByteArray command, QCStringList args)
     }
     argp[i] = 0L;
     execv(path, (char * const *)argp);
-    kError(PTYPROC) << k_lineinfo << "execv(\"" << path << "\"): " << perror << "\n";
+    kError(PTYPROC) << k_lineinfo << "execv(\"" << path << "\"): " << perror;
     _exit(1);
     return -1; // Shut up compiler. Never reached.
 #endif
@@ -346,7 +346,7 @@ int MyPtyProcess::WaitSlave()
     int slave = open(m_pPTY->ttyName(), O_RDWR);
     if (slave < 0) 
     {
-	kError(PTYPROC) << k_lineinfo << "Could not open slave tty.\n";
+	kError(PTYPROC) << k_lineinfo << "Could not open slave tty.";
 	return -1;
     }
 
@@ -356,7 +356,7 @@ int MyPtyProcess::WaitSlave()
     {
 	if (tcgetattr(slave, &tio) < 0) 
 	{
-	    kError(PTYPROC) << k_lineinfo << "tcgetattr(): " << perror << "\n";
+	    kError(PTYPROC) << k_lineinfo << "tcgetattr(): " << perror;
 	    close(slave);
 	    return -1;
 	}
@@ -417,7 +417,7 @@ int MyPtyProcess::waitForChild()
 	    if (errno == EINTR) continue;
 	    else 
 	    {
-		kError(PTYPROC) << k_lineinfo << "select(): " << perror << "\n";
+		kError(PTYPROC) << k_lineinfo << "select(): " << perror;
 		return -1;
 	    }
 	}
@@ -445,7 +445,7 @@ int MyPtyProcess::waitForChild()
 	    if (errno == ECHILD)
 		retval = 0;
 	    else
-		kError(PTYPROC) << k_lineinfo << "waitpid(): " << perror << "\n";
+		kError(PTYPROC) << k_lineinfo << "waitpid(): " << perror;
 	    break;
 	}
 	if (ret == m_Pid) 
@@ -488,13 +488,13 @@ int MyPtyProcess::setupTTY()
     struct ::termios tio;
     if (m_pPTY->tcGetAttr(&tio) < 0)
     {
-        kError(PTYPROC) << k_lineinfo << "tcgetattr(): " << perror << "\n";
+        kError(PTYPROC) << k_lineinfo << "tcgetattr(): " << perror;
         return -1;
     }
     tio.c_oflag &= ~OPOST;
     if (m_pPTY->tcSetAttr(&tio) < 0)
     {
-        kError(PTYPROC) << k_lineinfo << "tcsetattr(): " << perror << "\n";
+        kError(PTYPROC) << k_lineinfo << "tcsetattr(): " << perror;
         return -1;
     }
 #endif

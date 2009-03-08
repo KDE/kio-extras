@@ -251,16 +251,15 @@ public:
     void setDirAttrsFlag(bool flag){ mDirAttrs = flag; }
 
     /** Gets the DirAttrs flag. */
-    bool getDirAttrsFlag() const { return mDirAttrs; }
-
-    friend kdbgstream& operator<< (kdbgstream& s, sftpFileAttr& a);
-    friend kndbgstream& operator<< (kndbgstream& s, sftpFileAttr& a);
-
+    bool getDirAttrsFlag() const { return mDirAttrs; }    
+    
     /** Returns the file type as determined from the file permissions */
     mode_t fileType() const;
 
     /** Set the encoding of the remote file system */
     void setEncoding( KRemoteEncoding* encoding );
+
+    friend QDebug operator<<(QDebug s, sftpFileAttr& a);
 };
 
 #endif

@@ -143,7 +143,7 @@ QDataStream& operator>> (QDataStream& s, sftpFileAttr& fa) {
 
         s >> fa.mLongname;
         fa.mLongname.truncate( fa.mLongname.size() );
-        //kDebug() << ">>: ftpfileattr long filename (" << fa.mLongname.size() << ")= " << fa.mLongname <<  endl;
+        //kDebug() << ">>: ftpfileattr long filename (" << fa.mLongname.size() << ")= " << fa.mLongname;
     }
 
     s >> fa.mFlags;  // get flags
@@ -230,7 +230,7 @@ void sftpFileAttr::getUserGroupNames(){
 }
 
 /** No descriptions */
-kdbgstream& operator<< (kdbgstream& s, sftpFileAttr& a) {
+QDebug operator<<(QDebug s, sftpFileAttr& a) {
     s << "Filename: " << a.mFilename
       << ", Uid: " << a.mUid
       << ", Gid: " << a.mGid
@@ -247,11 +247,6 @@ kdbgstream& operator<< (kdbgstream& s, sftpFileAttr& a) {
       s << ", Link Destination: " << a.mLinkDestination;
     }
 
-    return s;
-}
-
-/** Make sure it builds with NDEBUG */
-kndbgstream& operator<< (kndbgstream& s, sftpFileAttr& ) {
     return s;
 }
 
