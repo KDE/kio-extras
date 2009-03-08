@@ -2234,8 +2234,7 @@ int sftpProtocol::sftpStat(const KUrl& url, sftpFileAttr& attr) {
                 attr.setLinkType(attr2.linkType());
 
             attr.setLinkDestination(target);
-
-            kDebug(KIO_SFTP_DB) << "sftpStat(): File type: " << attr.fileType();
+            attr.setPermissions(attr2.permissions());
         }
     }
 
