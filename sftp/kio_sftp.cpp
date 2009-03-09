@@ -1686,7 +1686,7 @@ int sftpProtocol::sftpRealPath(const KUrl& url, KUrl& newUrl){
     newPath.truncate(newPath.size());
     if (newPath.isEmpty())
       newPath = "/";
-    newUrl.setPath(newPath);
+    newUrl.setPath(remoteEncoding()->decode(newPath));
 
     kDebug(KIO_SFTP_DB) << "real path is " << newUrl;
     return SSH2_FX_OK;
