@@ -638,15 +638,8 @@ void sftpProtocol::openConnection() {
             else
                 dlgResult = openPasswordDialog(info, i18n("Incorrect username or password"));
 
-            if( dlgResult ) {
-               if( info.username.isEmpty() || info.password.isEmpty() ) {
-                    error(ERR_COULD_NOT_AUTHENTICATE,
-                      i18n("Please enter a username and password"));
-                    continue;
-                }
-            }
-            else {
-                // user canceled or dialog failed to open
+            // handle user canceled or dialog failed to open...
+            if( !dlgResult ) {
                 error(ERR_USER_CANCELED, QString());
                 kDebug(KIO_SFTP_DB) << "openConnection(): user canceled, dlgResult = " << dlgResult;
                 closeConnection();
