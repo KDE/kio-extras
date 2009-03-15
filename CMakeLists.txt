@@ -21,6 +21,7 @@ add_subdirectory( desktop )
 add_subdirectory( sftp )
 add_subdirectory( fish )
 add_subdirectory( thumbnail )
+add_subdirectory( docfilter )
 
 if(NOT WIN32)
    add_subdirectory( floppy )

@@ -1,27 +1,14 @@
-/*for the list of one manpage section*/
-.secidxshort {
-  display:block;
-  position:absolute;overflow:auto;
-  top:0px;bottom:95%;left:0;right:0;
-}
-.secidxmain {
-/*misfortunately accessing anchors in a scrollview
-  doesn't seem to work yet with konqi, so:*/
 /*
-  position:absolute;overflow:auto;
-  top:5%;bottom:0;left:0;right:0;
-*/
-}
-.secidxnextletter {
-  font-size:larger;
-	border-bottom:1px solid black;
-	text-align:center;
-}
-
-/* Stylesheet to use for generated HTML output if we're actually displaying
- * a man page.
- * CSS adapted from that used on www.kde.org for similar appearance.
+ * This is the common CSS styling for the various documentation filter
+ * KIO Slaves (incl. kio_man, kio_info, kio_perldoc, etc.)
+ *
+ * It is designed to mimic the look of the kde.org website (although the css
+ * for the website has since drifted itself...)
+ *
+ * Unfortunately at this point to get the proper effect you cannot use XHTML
+ * STRICT (as was used in kio_info).
  */
+
 body {
     /* If you specify a background color you should also specify a regular color */
     background-color: white;

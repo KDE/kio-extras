@@ -28,6 +28,5 @@ install(TARGETS kmanpart  DESTINATION ${PLUGIN_INSTALL_DIR} )
 
 ########### install files ###############
 
-install( FILES kio_man.css  DESTINATION  ${DATA_INSTALL_DIR}/kio_man )
 install( FILES man.protocol kmanpart.desktop  DESTINATION  ${SERVICES_INSTALL_DIR} )
 

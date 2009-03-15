@@ -134,7 +134,7 @@ MANProtocol::MANProtocol(const QByteArray &pool_socket, const QByteArray &app_so
     section_names << "1" << "2" << "3" << "3n" << "3p" << "4" << "5" << "6" << "7"
                   << "8" << "9" << "l" << "n";
 
-    QString cssPath(KStandardDirs::locate( "data", "kio_man/kio_man.css" ));
+    QString cssPath(KStandardDirs::locate( "data", "kio_docfilter/kio_docfilter.css" ));
     KUrl cssUrl(KUrl::fromPath(cssPath));
     m_manCSSFile = cssUrl.url().toUtf8();
 }
