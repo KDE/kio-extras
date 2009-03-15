@@ -50,7 +50,6 @@ Name[mk]=Википедија - Слободната енциклопедија
 Name[ml]=വിക്കിപീഡിയ - സ്വതന്ത്ര സര്‍വ്വവിജ്ഞാനകോശം
 Name[mr]=विकिपेडिया- मोफत विश्वकोश
 Name[ms]=Wikipedia - Ensiklopedia Percuma
-Name[nb]=Wikipedia – det frie leksikonet
 Name[nds]=Wikipedia - dat fre'e Nakieksel
 Name[ne]=विकिपिडिया - नि:शुल्क इन्साइक्लोपेडिया
 Name[nl]=Wikipedia - de vrije encyclopedie
@@ -96,7 +95,6 @@ Query[hsb]=http://hsb.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[it]=http://it.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[ko]=http://ko.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[ml]=http://ml.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
-Query[nb]=http://no.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[nl]=http://nl.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[oc]=http://oc.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[pl]=http://pl.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go

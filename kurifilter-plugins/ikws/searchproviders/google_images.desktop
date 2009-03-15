@@ -50,7 +50,6 @@ Name[mk]=Google - пребарување на слики
 Name[ml]=ഗൂഗിളില്‍ ചിത്രങ്ങള്‍ക്കുള്ള തെരച്ചില്‍
 Name[mr]=Google प्रतिमा शोध
 Name[ms]=Carian Imej Google
-Name[nb]=Bildesøk i Google
 Name[nds]=Google sien Biller-Söök
 Name[ne]=गुगल छवि खोजी
 Name[nl]=Google afbeeldingen zoeken
@@ -89,7 +88,6 @@ Query=http://images.google.com/images?q=\\{@}
 Query[en_GB]=http://images.google.co.uk/images?q=\\{@}
 Query[fr]=http://images.google.fr/images?q=\\{@}
 Query[he]=http://images.google.co.il/images?q=\\{@}
-Query[nb]=http://images.google.no/images?hl=nn&q=\\{@}
 Query[nl]=http://images.google.nl/images?q=\\{@}
 Query[nn]=http://images.google.com/images?hl=nn&q=\\{@}
 Query[pt]=http://images.google.pt/images?q=\\{@}
