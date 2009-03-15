@@ -58,6 +58,9 @@
 #include <kio/thumbcreator.h>
 #include <kconfiggroup.h>
 
+#include <iostream>
+#include <QtCore/QDirIterator>
+
 // Use correctly KComponentData instead of KApplication (but then no QPixmap)
 #undef USE_KINSTANCE
 // Fix thumbnail: protocol
@@ -116,6 +119,7 @@ int kdemain(int argc, char **argv)
     KApplication app( true);
 #endif
 
+
     if (argc != 4)
     {
         kError(7115) << "Usage: kio_thumbnail protocol domain-socket1 domain-socket2" << endl;
@@ -149,15 +153,9 @@ void ThumbnailProtocol::get(const KUrl &url)
     bool direct=false;
     if (m_mimeType.isEmpty())
     {
-        kDebug(7115) << "PATH: " << url.path();
         QFileInfo info(url.path());
-        if (info.isDir())
-        {
-            // We cannot process a directory
-            error(KIO::ERR_IS_DIRECTORY,url.path());
-            return;
-        }
-        else if (!info.exists())
+        kDebug(7115) << "PATH: " << url.path() << "isDir:" << info.isDir();
+        if (!info.exists())
         {
             // The file does not exist
             error(KIO::ERR_DOES_NOT_EXIST,url.path());
@@ -169,7 +167,12 @@ void ThumbnailProtocol::get(const KUrl &url)
             error(KIO::ERR_COULD_NOT_READ,url.path());
             return;
         }
-        m_mimeType = KMimeType::findByUrl(url)->name();
+        
+        if (info.isDir())
+            m_mimeType = "inode/directory";
+        else
+          KMimeType::findByUrl(KUrl(info.filePath()))->name();
+        
         kDebug(7115) << "Guessing MIME Type:" << m_mimeType;
         direct=true; // thumbnail: was probably called from Konqueror
     }
@@ -213,7 +216,6 @@ void ThumbnailProtocol::get(const KUrl &url)
 
     KConfigGroup group( KGlobal::config(), "PreviewSettings" );
 
-
     // ### KFMI
     bool kfmiThumb = false;
     if (group.readEntry( "UseFileThumbnails", true)) {
@@ -243,54 +245,41 @@ void ThumbnailProtocol::get(const KUrl &url)
 
     if (!kfmiThumb)
     {
-        kDebug(7115) << "using thumb creator for the thumbnail\n";
         QString plugin = metaData("plugin");
+        if((plugin.isEmpty() || plugin == "directorythumbnail") && m_mimeType == "inode/directory") {
+          img = thumbForDirectory(url);
+          flags = ThumbCreator::BlendIcon;
+          m_iconAlpha = 180;
+          if(img.isNull()) {
+            error(KIO::ERR_INTERNAL, i18n("Cannot create thumbnail for directory"));
+            return;
+          }
+        }else{
 #ifdef THUMBNAIL_HACK
-        if (plugin.isEmpty())
-        {
-            KService::List offers = KMimeTypeTrader::self()->query( m_mimeType, QLatin1String( "ThumbCreator" ) );
-
-            if(!offers.isEmpty())
-            {
-                KService::Ptr serv;
-                serv = offers.first();
-                plugin = serv->library();
-            }
-        }
-        kDebug(7115) << "Guess plugin: " << plugin;
+          if (plugin.isEmpty())
+              plugin = pluginForMimeType(m_mimeType);
+          
+          kDebug(7115) << "Guess plugin: " << plugin;
 #endif
-        if (plugin.isEmpty())
-        {
-            error(KIO::ERR_INTERNAL, i18n("No plugin specified."));
-            return;
+          if (plugin.isEmpty())
+          {
+              error(KIO::ERR_INTERNAL, i18n("No plugin specified."));
+              return;
+          }
+        
+          ThumbCreator* creator = getThumbCreator(plugin);
+          if(!creator) {
+              error(KIO::ERR_INTERNAL, i18n("Cannot load ThumbCreator %1", plugin));
+              return;
+          }
+          
+          if (!creator->create(url.path(), m_width, m_height, img))
+          {
+              error(KIO::ERR_INTERNAL, i18n("Cannot create thumbnail for %1", url.path()));
+              return;
+          }
+          flags = creator->flags();
         }
-
-        ThumbCreator *creator = m_creators[plugin];
-        if (!creator)
-        {
-            // Don't use KLibFactory here, this is not a QObject and
-            // neither is ThumbCreator
-            KLibrary *library = KLibLoader::self()->library(plugin);
-            if (library)
-            {
-                newCreator create = (newCreator)library->resolveFunction("new_creator");
-                if (create)
-                    creator = create();
-            }
-            if (!creator)
-            {
-                error(KIO::ERR_INTERNAL, i18n("Cannot load ThumbCreator %1", plugin));
-                return;
-            }
-            m_creators.insert(plugin, creator);
-        }
-
-        if (!creator->create(url.path(), m_width, m_height, img))
-        {
-            error(KIO::ERR_INTERNAL, i18n("Cannot create thumbnail for %1", url.path()));
-            return;
-        }
-        flags = creator->flags();
     }
 
     if (img.width() > m_width || img.height() > m_height)
@@ -416,6 +405,134 @@ void ThumbnailProtocol::get(const KUrl &url)
     }
     finished();
 }
+
+QString ThumbnailProtocol::pluginForMimeType(const QString& mimeType) {
+    KService::List offers = KMimeTypeTrader::self()->query( mimeType, QLatin1String( "ThumbCreator" ) );
+
+    if(!offers.isEmpty())
+    {
+        KService::Ptr serv;
+        serv = offers.first();
+        return serv->library();
+    }
+    
+    return QString();
+}
+
+QImage ThumbnailProtocol::thumbForDirectory(const KUrl& directory) {
+  QImage img;
+  ///@todo Make this work with remote urls
+  QDirIterator dir(directory.path(), QDir::Files | QDir::Readable);
+  
+  int tiles = 2;
+  int borderWidth = 2;
+  
+  //Leave some borders at the sides
+  int segmentWidth = (m_width- (tiles+2) * borderWidth) /  tiles;
+  int segmentHeight = (m_width-(tiles+2) * borderWidth) /  tiles;
+  
+  if(!dir.hasNext() || segmentWidth < 5 || segmentHeight <  5) {
+    //Too small, or no content
+//     kDebug(7115) <<  "cannot do" << directory.prettyUrl() << dir.hasNext() << segmentHeight << segmentWidth;
+    return img;
+  }
+  
+  //Make the image transparent
+  img = QImage( QSize(m_width, m_height), QImage::Format_ARGB32 );
+  img.fill(QColor(128, 128, 128, 0).rgb());
+
+  QPainter p(&img);
+  
+  int xPos = borderWidth;
+  int yPos = borderWidth;
+
+  int iterations = 0;
+  bool hadThumbnail = false;
+  
+  while(dir.hasNext() && xPos < (m_width-borderWidth)  && yPos  < (m_height-borderWidth)) {
+      ++iterations;
+      if(iterations > 50) {
+//         kDebug(7115) << "maximum iteration reached";
+        return QImage();
+      }
+    
+      dir.next();
+
+      QString subPlugin = pluginForMimeType(KMimeType::findByUrl(KUrl(dir.filePath()))->name());
+      if(subPlugin.isEmpty()) {
+//         kDebug(7115) << "found no sub-plugin for" << dir.filePath();
+        continue;
+      }
+      ThumbCreator* subCreator = getThumbCreator(subPlugin);
+      if(!subCreator) {
+//         kDebug(7115) << "found no creator for" << dir.filePath();
+        continue;
+      }
+      
+      QImage subImg;
+      
+      if(!subCreator->create(dir.filePath(), segmentWidth, segmentHeight, subImg)) {
+//         kDebug(7115) <<  "failed to create thumbnail for" << dir.filePath();
+        continue;
+      }
+      
+      hadThumbnail = true;
+      
+      if(subImg.width() > segmentWidth || subImg.height() > segmentHeight)
+        subImg = subImg.scaled(segmentWidth, segmentHeight, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+      
+      QRect target(xPos, yPos, segmentWidth, segmentHeight);
+      
+      if(target.width() > subImg.width()) {
+        int dif = target.width() - subImg.width();
+        target.setWidth(subImg.width());
+        target.moveLeft(target.left() + (dif/2));
+      }
+      
+      if(target.height() > subImg.height()) {
+        int dif = target.height() - subImg.height();
+        target.setHeight(subImg.height());
+        target.moveTop(target.top() + (dif/2));
+      }
+      
+      p.drawImage(target, subImg);
+      
+      xPos += segmentWidth + borderWidth;
+      if(xPos >= (m_width-borderWidth) ) {
+        xPos = borderWidth;
+        yPos += segmentHeight + borderWidth;
+      }
+  }
+  
+  if(!hadThumbnail)
+    return QImage(); 
+    
+  return img;
+}
+
+ThumbCreator* ThumbnailProtocol::getThumbCreator(const QString& plugin)
+{
+    ThumbCreator *creator = m_creators[plugin];
+    if (!creator)
+    {
+        // Don't use KLibFactory here, this is not a QObject and
+        // neither is ThumbCreator
+        KLibrary *library = KLibLoader::self()->library(plugin);
+        if (library)
+        {
+            newCreator create = (newCreator)library->resolveFunction("new_creator");
+            if (create)
+                creator = create();
+        }
+        if (!creator)
+          return 0;
+        
+        m_creators.insert(plugin, creator);
+    }
+
+    return creator;
+}
+
 
 const QImage ThumbnailProtocol::getIcon()
 {

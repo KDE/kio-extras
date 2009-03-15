@@ -36,7 +36,10 @@ public:
     virtual void get(const KUrl &url);
 
 protected:
+    ThumbCreator* getThumbCreator(const QString& plugin);
     const QImage getIcon();
+    QImage thumbForDirectory(const KUrl& directory);
+    QString pluginForMimeType(const QString& mimeType);
 
 private:
     QString m_mimeType;

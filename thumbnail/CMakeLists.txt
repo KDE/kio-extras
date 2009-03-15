@@ -26,6 +26,10 @@ install(TARGETS imagethumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
 
 ########### next target ###############
 
+install( FILES directorythumbnail.desktop DESTINATION ${SERVICES_INSTALL_DIR})
+
+########### next target ###############
+
 set(jpegthumbnail_PART_SRCS jpegcreator.cpp)
 
 kde4_add_plugin(jpegthumbnail ${jpegthumbnail_PART_SRCS})

@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Service
+Name=Directories
+X-KDE-ServiceTypes=ThumbCreator
+MimeType=inode/directory;
+CacheThumbnail=false
