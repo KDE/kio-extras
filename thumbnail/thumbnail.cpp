@@ -167,12 +167,12 @@ void ThumbnailProtocol::get(const KUrl &url)
             error(KIO::ERR_COULD_NOT_READ,url.path());
             return;
         }
-        
+
         if (info.isDir())
             m_mimeType = "inode/directory";
         else
           KMimeType::findByUrl(KUrl(info.filePath()))->name();
-        
+
         kDebug(7115) << "Guessing MIME Type:" << m_mimeType;
         direct=true; // thumbnail: was probably called from Konqueror
     }
@@ -258,7 +258,7 @@ void ThumbnailProtocol::get(const KUrl &url)
 #ifdef THUMBNAIL_HACK
           if (plugin.isEmpty())
               plugin = pluginForMimeType(m_mimeType);
-          
+
           kDebug(7115) << "Guess plugin: " << plugin;
 #endif
           if (plugin.isEmpty())
@@ -266,13 +266,13 @@ void ThumbnailProtocol::get(const KUrl &url)
               error(KIO::ERR_INTERNAL, i18n("No plugin specified."));
               return;
           }
-        
+
           ThumbCreator* creator = getThumbCreator(plugin);
           if(!creator) {
               error(KIO::ERR_INTERNAL, i18n("Cannot load ThumbCreator %1", plugin));
               return;
           }
-          
+
           if (!creator->create(url.path(), m_width, m_height, img))
           {
               error(KIO::ERR_INTERNAL, i18n("Cannot create thumbnail for %1", url.path()));
@@ -415,7 +415,7 @@ QString ThumbnailProtocol::pluginForMimeType(const QString& mimeType) {
         serv = offers.first();
         return serv->library();
     }
-    
+
     return QString();
 }
 
@@ -423,39 +423,39 @@ QImage ThumbnailProtocol::thumbForDirectory(const KUrl& directory) {
   QImage img;
   ///@todo Make this work with remote urls
   QDirIterator dir(directory.path(), QDir::Files | QDir::Readable);
-  
+
   int tiles = 2;
   int borderWidth = 2;
-  
+
   //Leave some borders at the sides
   int segmentWidth = (m_width- (tiles+2) * borderWidth) /  tiles;
   int segmentHeight = (m_width-(tiles+2) * borderWidth) /  tiles;
-  
+
   if(!dir.hasNext() || segmentWidth < 5 || segmentHeight <  5) {
     //Too small, or no content
 //     kDebug(7115) <<  "cannot do" << directory.prettyUrl() << dir.hasNext() << segmentHeight << segmentWidth;
     return img;
   }
-  
+
   //Make the image transparent
   img = QImage( QSize(m_width, m_height), QImage::Format_ARGB32 );
   img.fill(QColor(128, 128, 128, 0).rgb());
 
   QPainter p(&img);
-  
+
   int xPos = borderWidth;
   int yPos = borderWidth;
 
   int iterations = 0;
   bool hadThumbnail = false;
-  
+
   while(dir.hasNext() && xPos < (m_width-borderWidth)  && yPos  < (m_height-borderWidth)) {
       ++iterations;
       if(iterations > 50) {
 //         kDebug(7115) << "maximum iteration reached";
         return QImage();
       }
-    
+
       dir.next();
 
       QString subPlugin = pluginForMimeType(KMimeType::findByUrl(KUrl(dir.filePath()))->name());
@@ -468,45 +468,45 @@ QImage ThumbnailProtocol::thumbForDirectory(const KUrl& directory) {
 //         kDebug(7115) << "found no creator for" << dir.filePath();
         continue;
       }
-      
+
       QImage subImg;
-      
+
       if(!subCreator->create(dir.filePath(), segmentWidth, segmentHeight, subImg)) {
 //         kDebug(7115) <<  "failed to create thumbnail for" << dir.filePath();
         continue;
       }
-      
+
       hadThumbnail = true;
-      
+
       if(subImg.width() > segmentWidth || subImg.height() > segmentHeight)
         subImg = subImg.scaled(segmentWidth, segmentHeight, Qt::KeepAspectRatio, Qt::SmoothTransformation);
-      
+
       QRect target(xPos, yPos, segmentWidth, segmentHeight);
-      
+
       if(target.width() > subImg.width()) {
         int dif = target.width() - subImg.width();
         target.setWidth(subImg.width());
         target.moveLeft(target.left() + (dif/2));
       }
-      
+
       if(target.height() > subImg.height()) {
         int dif = target.height() - subImg.height();
         target.setHeight(subImg.height());
         target.moveTop(target.top() + (dif/2));
       }
-      
+
       p.drawImage(target, subImg);
-      
+
       xPos += segmentWidth + borderWidth;
       if(xPos >= (m_width-borderWidth) ) {
         xPos = borderWidth;
         yPos += segmentHeight + borderWidth;
       }
   }
-  
+
   if(!hadThumbnail)
-    return QImage(); 
-    
+    return QImage();
+
   return img;
 }
 
@@ -526,7 +526,7 @@ ThumbCreator* ThumbnailProtocol::getThumbCreator(const QString& plugin)
         }
         if (!creator)
           return 0;
-        
+
         m_creators.insert(plugin, creator);
     }
 
