@@ -439,7 +439,11 @@ QImage ThumbnailProtocol::thumbForDirectory(const KUrl& directory) {
 
   //Make the image transparent
   img = QImage( QSize(m_width, m_height), QImage::Format_ARGB32 );
-  img.fill(QColor(128, 128, 128, 0).rgb());
+
+  // TODO: don't use the obsolete (and slow) method QImage::setAlphaChannel()
+  QImage alphaChannel( QSize(m_width, m_height), QImage::Format_RGB32 );
+  alphaChannel.fill(QColor(0, 0, 0).rgb());
+  img.setAlphaChannel(alphaChannel);
 
   QPainter p(&img);
 
