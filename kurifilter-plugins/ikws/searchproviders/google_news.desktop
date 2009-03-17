@@ -45,6 +45,7 @@ Name[mk]=Google Вести
 Name[ml]=ഗൂഗിള്‍ വാര്‍ത്തകള്‍
 Name[mr]=Google समाचार
 Name[ms]=Berita Google
+Name[nb]=Google nyheter
 Name[nds]=Google Narichten
 Name[ne]=गुगल समाचार
 Name[nl]=Google-nieuws
@@ -81,6 +82,7 @@ Query[fi]=http://news.google.fi/news?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[fr]=http://news.google.fr/news?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[he]=http://news.google.co.il/news?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[it]=http://news.google.it/news?q=\\{@}&ie=UTF-8&oe=UTF-8
+Query[nb]=http://news.google.no/news?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[ne]=http://news.google.com/news?q=\\{@}ie=UTF-8&oe=UTF-8
 Query[nl]=http://news.google.nl/news?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[pt]=http://news.google.pt/news?q=\\{@}&ie=UTF-8&oe=UTF-8

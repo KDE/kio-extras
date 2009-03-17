@@ -47,6 +47,7 @@ Name[mk]=Google-групи
 Name[ml]=ഗൂഗിള്‍ കൂട്ടങ്ങള്‍
 Name[mr]=Google समूह
 Name[ms]=Kumpulan Google
+Name[nb]=Google-grupper
 Name[ne]=गुगल समूह
 Name[nl]=Google Groepen
 Name[oc]=Grops Google
@@ -80,6 +81,7 @@ Query=http://groups.google.com/groups?oi=djq&as_q=\\{@}
 Query[en_GB]=http://groups.google.co.uk/groups?oi=djq&as_q=\\{@}
 Query[fr]=http://groups.google.fr/groups?oi=djq&as_q=\\{@}
 Query[he]=http://groups.google.co.il/groups?oi=djq&as_q=\\{@}
+Query[nb]=http://groups.google.no/groups?hl=nn&oi=djq&as_q=\\{@}
 Query[ne]=http://groups.google.com/groups?oi=djqas_q=\\{@}
 Query[nl]=http://groups.google.nl/groups?oi=djq&as_q=\\{@}
 Query[nn]=http://groups.google.com/groups?hl=nn&oi=djq&as_q=\\{@}

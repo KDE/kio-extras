@@ -47,6 +47,7 @@ Name[mk]=Референтен прирачник за Python
 Name[ml]=പൈത്തണ്‍ സഹായക ഗ്രന്ഥം 
 Name[mr]=पायथन रेफरेंस पुस्तिका
 Name[ms]=Manual Rujukan Python
+Name[nb]=Referansehåndbok for Python
 Name[nds]=Python-Referenzhandbook
 Name[ne]=पाइथन सन्दर्भ म्यानुअल
 Name[nn]=Python-referansehandbok
@@ -79,6 +80,7 @@ Query=http://www.google.com/search?sourceid=python-search&q=\\{@}&submit=Search&
 Query[bg]=http://www.google.com/search?sourceid=python-search&q=\{@}&submit=Search&q=site%3Apython.org
 Query[en_GB]=http://www.google.co.uk/search?sourceid=python-search&q=\\{@}&submit=Search&q=site%3Apython.org
 Query[fr]=http://www.google.fr/search?sourceid=python-search&q=\\{@}&submit=Search&q=site%3Apython.org
+Query[nb]=http://www.google.no/search?sourceid=python-search&q=\\{@}&submit=Search&q=site%3Apython.org
 Query[nl]=http://www.google.nl/search?sourceid=python-search&q=\\{@}&submit=Search&q=site%3Apython.org
 Query[nn]=http://www.google.no/search?hl=nn&sourceid=python-search&q=\\{@}&submit=Search&q=site%3Apython.org
 Query[tg]=http://www.google.com/search?sourceid=python-search&q=\\{@}&submit=Ҷустучӯ&q=site%3Apython.org
