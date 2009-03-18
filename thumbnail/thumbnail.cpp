@@ -248,8 +248,6 @@ void ThumbnailProtocol::get(const KUrl &url)
         QString plugin = metaData("plugin");
         if((plugin.isEmpty() || plugin == "directorythumbnail") && m_mimeType == "inode/directory") {
           img = thumbForDirectory(url);
-          flags = ThumbCreator::BlendIcon;
-          m_iconAlpha = 180;
           if(img.isNull()) {
             error(KIO::ERR_INTERNAL, i18n("Cannot create thumbnail for directory"));
             return;
@@ -419,99 +417,113 @@ QString ThumbnailProtocol::pluginForMimeType(const QString& mimeType) {
     return QString();
 }
 
-QImage ThumbnailProtocol::thumbForDirectory(const KUrl& directory) {
-  QImage img;
-  ///@todo Make this work with remote urls
-  QDirIterator dir(directory.path(), QDir::Files | QDir::Readable);
+QImage ThumbnailProtocol::thumbForDirectory(const KUrl& directory)
+{
+    QImage img;
 
-  int tiles = 2;
-  int borderWidth = 2;
+    const int tiles = 2;
+    const int spacing = 2;
 
-  //Leave some borders at the sides
-  int segmentWidth = (m_width- (tiles+2) * borderWidth) /  tiles;
-  int segmentHeight = (m_width-(tiles+2) * borderWidth) /  tiles;
+    // TODO: the margins are optimized for the Oxygen iconset
+    // Provide a fallback solution for other iconsets (e. g. draw folder
+    // only as small overlay, use no margins)
+    const int topMargin = m_height * 30 / 100;
+    const int bottomMargin = m_height / 6;
+    const int leftMargin = m_width / 13;
+    const int rightMargin = leftMargin;
 
-  if(!dir.hasNext() || segmentWidth < 5 || segmentHeight <  5) {
-    //Too small, or no content
-//     kDebug(7115) <<  "cannot do" << directory.prettyUrl() << dir.hasNext() << segmentHeight << segmentWidth;
-    return img;
-  }
+    const int segmentWidth  = (m_width  - leftMargin - rightMargin  - (tiles - 1) * spacing) / tiles;
+    const int segmentHeight = (m_height - topMargin  - bottomMargin - (tiles - 1) * spacing) / tiles;
+    if ((segmentWidth < 5) || (segmentHeight <  5)) {
+        // the segment size is too small for a useful preview
+        return img;
+    }
 
-  //Make the image transparent
-  img = QImage( QSize(m_width, m_height), QImage::Format_ARGB32 );
+    QDirIterator dir(directory.path(), QDir::Files | QDir::Readable);
+    if (!dir.hasNext()) {
+        return img;
+    }
 
-  // TODO: don't use the obsolete (and slow) method QImage::setAlphaChannel()
-  QImage alphaChannel( QSize(m_width, m_height), QImage::Format_RGB32 );
-  alphaChannel.fill(QColor(0, 0, 0).rgb());
-  img.setAlphaChannel(alphaChannel);
+    img = QImage(QSize(m_width, m_height), QImage::Format_ARGB32 );
 
-  QPainter p(&img);
+    // TODO: don't use the obsolete (and slow) method QImage::setAlphaChannel()
+    QImage alphaChannel(QSize(m_width, m_height), QImage::Format_RGB32 );
+    alphaChannel.fill(QColor(0, 0, 0).rgb());
+    img.setAlphaChannel(alphaChannel);
 
-  int xPos = borderWidth;
-  int yPos = borderWidth;
+    const QPixmap folder = KIconLoader::global()->loadIcon("folder", KIconLoader::NoGroup, m_width);
 
-  int iterations = 0;
-  bool hadThumbnail = false;
+    QPainter p(&img);
+    p.drawPixmap(QPoint(0, 0), folder);
 
-  while(dir.hasNext() && xPos < (m_width-borderWidth)  && yPos  < (m_height-borderWidth)) {
-      ++iterations;
-      if(iterations > 50) {
-//         kDebug(7115) << "maximum iteration reached";
+    int xPos = leftMargin;
+    int yPos = topMargin;
+
+    int iterations = 0;
+    bool hadThumbnail = false;
+
+    const int maxYPos = m_height - bottomMargin - segmentHeight;
+    while (dir.hasNext() && (yPos <= maxYPos)) {
+        ++iterations;
+        if (iterations > 50) {
+            // kDebug(7115) << "maximum iteration reached";
+            return QImage();
+        }
+
+        dir.next();
+
+        const QString subPlugin = pluginForMimeType(KMimeType::findByUrl(KUrl(dir.filePath()))->name());
+        if (subPlugin.isEmpty()) {
+            // kDebug(7115) << "found no sub-plugin for" << dir.filePath();
+            continue;
+        }
+
+        ThumbCreator* subCreator = getThumbCreator(subPlugin);
+        if (!subCreator) {
+            // kDebug(7115) << "found no creator for" << dir.filePath();
+            continue;
+        }
+
+        QImage subImg;
+        if (!subCreator->create(dir.filePath(), segmentWidth, segmentHeight, subImg)) {
+            // kDebug(7115) <<  "failed to create thumbnail for" << dir.filePath();
+            continue;
+        }
+
+        hadThumbnail = true;
+
+        if (subImg.width() > segmentWidth || subImg.height() > segmentHeight) {
+            subImg = subImg.scaled(segmentWidth, segmentHeight, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+        }
+
+        // center the image inside the segment boundaries
+        QRect target(xPos, yPos, segmentWidth, segmentHeight);
+        if (target.width() > subImg.width()) {
+            const int diff = target.width() - subImg.width();
+            target.setWidth(subImg.width());
+            target.moveLeft(target.left() + (diff / 2));
+        }
+
+        if (target.height() > subImg.height()) {
+            const int diff = target.height() - subImg.height();
+            target.setHeight(subImg.height());
+            target.moveTop(target.top() + (diff / 2));
+        }
+
+        p.drawImage(target, subImg);
+
+        xPos += segmentWidth + spacing;
+        if (xPos > (m_width - rightMargin - segmentWidth)) {
+            xPos = leftMargin;
+            yPos += segmentHeight + spacing;
+        }
+    }
+
+    if (!hadThumbnail) {
         return QImage();
-      }
+    }
 
-      dir.next();
-
-      QString subPlugin = pluginForMimeType(KMimeType::findByUrl(KUrl(dir.filePath()))->name());
-      if(subPlugin.isEmpty()) {
-//         kDebug(7115) << "found no sub-plugin for" << dir.filePath();
-        continue;
-      }
-      ThumbCreator* subCreator = getThumbCreator(subPlugin);
-      if(!subCreator) {
-//         kDebug(7115) << "found no creator for" << dir.filePath();
-        continue;
-      }
-
-      QImage subImg;
-
-      if(!subCreator->create(dir.filePath(), segmentWidth, segmentHeight, subImg)) {
-//         kDebug(7115) <<  "failed to create thumbnail for" << dir.filePath();
-        continue;
-      }
-
-      hadThumbnail = true;
-
-      if(subImg.width() > segmentWidth || subImg.height() > segmentHeight)
-        subImg = subImg.scaled(segmentWidth, segmentHeight, Qt::KeepAspectRatio, Qt::SmoothTransformation);
-
-      QRect target(xPos, yPos, segmentWidth, segmentHeight);
-
-      if(target.width() > subImg.width()) {
-        int dif = target.width() - subImg.width();
-        target.setWidth(subImg.width());
-        target.moveLeft(target.left() + (dif/2));
-      }
-
-      if(target.height() > subImg.height()) {
-        int dif = target.height() - subImg.height();
-        target.setHeight(subImg.height());
-        target.moveTop(target.top() + (dif/2));
-      }
-
-      p.drawImage(target, subImg);
-
-      xPos += segmentWidth + borderWidth;
-      if(xPos >= (m_width-borderWidth) ) {
-        xPos = borderWidth;
-        yPos += segmentHeight + borderWidth;
-      }
-  }
-
-  if(!hadThumbnail)
-    return QImage();
-
-  return img;
+    return img;
 }
 
 ThumbCreator* ThumbnailProtocol::getThumbCreator(const QString& plugin)
