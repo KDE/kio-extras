@@ -120,8 +120,7 @@ int kdemain(int argc, char **argv)
 #endif
 
 
-    if (argc != 4)
-    {
+    if (argc != 4) {
         kError(7115) << "Usage: kio_thumbnail protocol domain-socket1 domain-socket2" << endl;
         exit(-1);
     }
@@ -140,8 +139,8 @@ ThumbnailProtocol::ThumbnailProtocol(const QByteArray &pool, const QByteArray &a
 
 ThumbnailProtocol::~ThumbnailProtocol()
 {
-  qDeleteAll( m_creators );
-  m_creators.clear();
+    qDeleteAll( m_creators );
+    m_creators.clear();
 }
 
 void ThumbnailProtocol::get(const KUrl &url)
@@ -151,35 +150,31 @@ void ThumbnailProtocol::get(const KUrl &url)
 #ifdef THUMBNAIL_HACK
     // ### HACK
     bool direct=false;
-    if (m_mimeType.isEmpty())
-    {
+    if (m_mimeType.isEmpty()) {
         QFileInfo info(url.path());
         kDebug(7115) << "PATH: " << url.path() << "isDir:" << info.isDir();
-        if (!info.exists())
-        {
+        if (!info.exists()) {
             // The file does not exist
             error(KIO::ERR_DOES_NOT_EXIST,url.path());
             return;
-        }
-        else if (!info.isReadable())
-        {
+        } else if (!info.isReadable()) {
             // The file is not readable!
             error(KIO::ERR_COULD_NOT_READ,url.path());
             return;
         }
 
-        if (info.isDir())
+        if (info.isDir()) {
             m_mimeType = "inode/directory";
-        else
-          KMimeType::findByUrl(KUrl(info.filePath()))->name();
+        } else {
+            KMimeType::findByUrl(KUrl(info.filePath()))->name();
+        }
 
         kDebug(7115) << "Guessing MIME Type:" << m_mimeType;
         direct=true; // thumbnail: was probably called from Konqueror
     }
 #endif
 
-    if (m_mimeType.isEmpty())
-    {
+    if (m_mimeType.isEmpty()) {
         error(KIO::ERR_INTERNAL, i18n("No MIME Type specified."));
         return;
     }
@@ -188,23 +183,22 @@ void ThumbnailProtocol::get(const KUrl &url)
     m_height = metaData("height").toInt();
     int iconSize = metaData("iconSize").toInt();
 
-    if (m_width < 0 || m_height < 0)
-    {
+    if (m_width < 0 || m_height < 0) {
         error(KIO::ERR_INTERNAL, i18n("No or invalid size specified."));
         return;
     }
 #ifdef THUMBNAIL_HACK
-    else if (!m_width || !m_height)
-    {
+    else if (!m_width || !m_height) {
         kDebug(7115) << "Guessing height, width, icon size!";
-        m_width=128;
-        m_height=128;
-        iconSize=128;
+        m_width = 128;
+        m_height = 128;
+        iconSize = 128;
     }
 #endif
 
-    if (!iconSize)
+    if (!iconSize) {
         iconSize = KIconLoader::global()->currentSize(KIconLoader::Desktop);
+    }
     if (iconSize != m_iconSize) {
         m_iconDict.clear();
     }
@@ -223,17 +217,14 @@ void ThumbnailProtocol::get(const KUrl &url)
             KMimeTypeTrader::self()->preferredService( m_mimeType, "KFilePlugin");
 
         if (service && service->isValid() &&
-            service->property("SupportsThumbnail").toBool())
-        {
+            service->property("SupportsThumbnail").toBool()) {
             // was:  KFileMetaInfo info(url.path(), m_mimeType, KFileMetaInfo::Thumbnail);
             // but m_mimeType and WhatFlags are now unused in KFileMetaInfo, and not present in the
             // call that takes a KUrl
             KFileMetaInfo info(url);
-            if (info.isValid())
-            {
+            if (info.isValid()) {
                 KFileMetaInfoItem item = info.item("thumbnail");
-                if (item.isValid() && item.value().type() == QVariant::Image)
-                {
+                if (item.isValid() && item.value().type() == QVariant::Image) {
                     img = item.value().value<QImage>();
                     kDebug(7115) << "using KFMI for the thumbnail\n";
                     kfmiThumb = true;
@@ -243,56 +234,53 @@ void ThumbnailProtocol::get(const KUrl &url)
     }
     ThumbCreator::Flags flags = ThumbCreator::None;
 
-    if (!kfmiThumb)
-    {
+    if (!kfmiThumb) {
         QString plugin = metaData("plugin");
-        if((plugin.isEmpty() || plugin == "directorythumbnail") && m_mimeType == "inode/directory") {
-          img = thumbForDirectory(url);
-          if(img.isNull()) {
-            error(KIO::ERR_INTERNAL, i18n("Cannot create thumbnail for directory"));
-            return;
-          }
-        }else{
+        if ((plugin.isEmpty() || plugin == "directorythumbnail") && m_mimeType == "inode/directory") {
+            img = thumbForDirectory(url);
+            if(img.isNull()) {
+              error(KIO::ERR_INTERNAL, i18n("Cannot create thumbnail for directory"));
+              return;
+            }
+        } else {
 #ifdef THUMBNAIL_HACK
-          if (plugin.isEmpty())
-              plugin = pluginForMimeType(m_mimeType);
+            if (plugin.isEmpty()) {
+                plugin = pluginForMimeType(m_mimeType);
+            }
 
-          kDebug(7115) << "Guess plugin: " << plugin;
+            kDebug(7115) << "Guess plugin: " << plugin;
 #endif
-          if (plugin.isEmpty())
-          {
-              error(KIO::ERR_INTERNAL, i18n("No plugin specified."));
-              return;
-          }
+            if (plugin.isEmpty()) {
+                error(KIO::ERR_INTERNAL, i18n("No plugin specified."));
+                return;
+            }
 
-          ThumbCreator* creator = getThumbCreator(plugin);
-          if(!creator) {
-              error(KIO::ERR_INTERNAL, i18n("Cannot load ThumbCreator %1", plugin));
-              return;
-          }
+            ThumbCreator* creator = getThumbCreator(plugin);
+            if(!creator) {
+                error(KIO::ERR_INTERNAL, i18n("Cannot load ThumbCreator %1", plugin));
+                return;
+            }
 
-          if (!creator->create(url.path(), m_width, m_height, img))
-          {
-              error(KIO::ERR_INTERNAL, i18n("Cannot create thumbnail for %1", url.path()));
-              return;
-          }
-          flags = creator->flags();
+            if (!creator->create(url.path(), m_width, m_height, img)) {
+                error(KIO::ERR_INTERNAL, i18n("Cannot create thumbnail for %1", url.path()));
+                return;
+            }
+            flags = creator->flags();
         }
     }
 
-    if (img.width() > m_width || img.height() > m_height)
-    {
+    if (img.width() > m_width || img.height() > m_height) {
         double imgRatio = (double)img.height() / (double)img.width();
-        if (imgRatio > (double)m_height / (double)m_width)
+        if (imgRatio > (double)m_height / (double)m_width) {
             img = img.scaled( int(qMax((double)m_height / imgRatio, 1.0)), m_height, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
-        else
+        } else {
             img = img.scaled(m_width, int(qMax((double)m_width * imgRatio, 1.0)), Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
+        }
     }
 
 // ### FIXME
 #ifndef USE_KINSTANCE
-    if (flags & ThumbCreator::DrawFrame)
-    {
+    if (flags & ThumbCreator::DrawFrame) {
         QPixmap pix = QPixmap::fromImage( img );
         int x2 = pix.width() - 1;
         int y2 = pix.height() - 1;
@@ -308,8 +296,7 @@ void ThumbnailProtocol::get(const KUrl &url)
         p.end();
 
         const QBitmap& mask = pix.mask();
-        if ( !mask.isNull() ) // need to update it so we can see the frame
-        {
+        if (!mask.isNull()) { // need to update it so we can see the frame
             QBitmap bitmap( mask );
             QPainter painter;
             painter.begin( &bitmap );
@@ -326,8 +313,7 @@ void ThumbnailProtocol::get(const KUrl &url)
     }
 #endif
 
-    if ((flags & ThumbCreator::BlendIcon) && KIconLoader::global()->alphaBlending(KIconLoader::Desktop))
-    {
+    if ((flags & ThumbCreator::BlendIcon) && KIconLoader::global()->alphaBlending(KIconLoader::Desktop)) {
         // blending the mimetype icon in
         QImage icon = getIcon();
 
@@ -340,23 +326,19 @@ void ThumbnailProtocol::get(const KUrl &url)
         p.drawImage(x, y, icon);
     }
 
-    if (img.isNull())
-    {
+    if (img.isNull()) {
         error(KIO::ERR_INTERNAL, i18n("Failed to create a thumbnail."));
         return;
     }
 
     const QString shmid = metaData("shmid");
-    if (shmid.isEmpty())
-    {
+    if (shmid.isEmpty()) {
 #ifdef THUMBNAIL_HACK
-        if (direct)
-        {
+        if (direct) {
             // If thumbnail was called directly from Konqueror, then the image needs to be raw
             //kDebug(7115) << "RAW IMAGE TO STREAM";
             QBuffer buf;
-            if (!buf.open(QIODevice::WriteOnly))
-            {
+            if (!buf.open(QIODevice::WriteOnly)) {
                 error(KIO::ERR_INTERNAL, i18n("Could not write image."));
                 return;
             }
@@ -373,27 +355,24 @@ void ThumbnailProtocol::get(const KUrl &url)
             stream << img;
             data(imgData);
         }
-    }
-    else
-    {
+    } else {
 #ifndef Q_WS_WIN
         QByteArray imgData;
         QDataStream stream( &imgData, QIODevice::WriteOnly );
         //kDebug(7115) << "IMAGE TO SHMID";
         void *shmaddr = shmat(shmid.toInt(), 0, 0);
-        if (shmaddr == (void *)-1)
-        {
+        if (shmaddr == (void *)-1) {
             error(KIO::ERR_INTERNAL, i18n("Failed to attach to shared memory segment %1", shmid));
             return;
         }
-        if (img.width() * img.height() > m_width * m_height)
-        {
+        if (img.width() * img.height() > m_width * m_height) {
             error(KIO::ERR_INTERNAL, i18n("Image is too big for the shared memory segment"));
             shmdt((char*)shmaddr);
             return;
         }
-        if( img.depth() != 32 ) // KIO::PreviewJob and this code below completely ignores colortable :-/,
+        if( img.depth() != 32 ) { // KIO::PreviewJob and this code below completely ignores colortable :-/,
             img = img.convertToFormat(QImage::Format_ARGB32); //  so make sure there is none
+        }
         // Keep in sync with kdelibs/kio/kio/previewjob.cpp
         stream << img.width() << img.height() << quint8(img.format());
         memcpy(shmaddr, img.bits(), img.numBytes());
@@ -405,10 +384,8 @@ void ThumbnailProtocol::get(const KUrl &url)
 }
 
 QString ThumbnailProtocol::pluginForMimeType(const QString& mimeType) {
-    KService::List offers = KMimeTypeTrader::self()->query( mimeType, QLatin1String( "ThumbCreator" ) );
-
-    if(!offers.isEmpty())
-    {
+    KService::List offers = KMimeTypeTrader::self()->query( mimeType, QLatin1String("ThumbCreator"));
+    if (!offers.isEmpty()) {
         KService::Ptr serv;
         serv = offers.first();
         return serv->library();
@@ -529,19 +506,19 @@ QImage ThumbnailProtocol::thumbForDirectory(const KUrl& directory)
 ThumbCreator* ThumbnailProtocol::getThumbCreator(const QString& plugin)
 {
     ThumbCreator *creator = m_creators[plugin];
-    if (!creator)
-    {
+    if (!creator) {
         // Don't use KLibFactory here, this is not a QObject and
         // neither is ThumbCreator
         KLibrary *library = KLibLoader::self()->library(plugin);
-        if (library)
-        {
+        if (library) {
             newCreator create = (newCreator)library->resolveFunction("new_creator");
-            if (create)
+            if (create) {
                 creator = create();
+            }
         }
-        if (!creator)
+        if (!creator) {
           return 0;
+        }
 
         m_creators.insert(plugin, creator);
     }
@@ -552,14 +529,14 @@ ThumbCreator* ThumbnailProtocol::getThumbCreator(const QString& plugin)
 
 const QImage ThumbnailProtocol::getIcon()
 {
-    if ( !m_iconDict.contains(m_mimeType) ) { // generate it
+    if (!m_iconDict.contains(m_mimeType)) { // generate it
         QImage icon( KIconLoader::global()->loadMimeTypeIcon( KMimeType::mimeType(m_mimeType)->iconName(), KIconLoader::Desktop, m_iconSize ).toImage() );
-	icon = icon.convertToFormat( QImage::Format_ARGB32 );
-        m_iconDict.insert( m_mimeType, icon );
+        icon = icon.convertToFormat(QImage::Format_ARGB32);
+        m_iconDict.insert(m_mimeType, icon);
 
         return icon;
     }
 
-    return m_iconDict.value( m_mimeType );
+    return m_iconDict.value(m_mimeType);
 }
 
