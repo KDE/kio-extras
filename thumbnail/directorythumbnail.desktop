@@ -5,6 +5,7 @@ Name[pt]=Pastas
 Name[pt_BR]=Pastas
 Name[sv]=Kataloger
 Name[uk]=Каталоги
+Name[x-test]=xxDirectoriesxx
 Name[zh_TW]=目錄
 X-KDE-ServiceTypes=ThumbCreator
 MimeType=inode/directory;
