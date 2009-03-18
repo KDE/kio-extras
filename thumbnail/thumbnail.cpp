@@ -422,11 +422,7 @@ QImage ThumbnailProtocol::thumbForDirectory(const KUrl& directory)
     }
 
     img = QImage(QSize(m_width, m_height), QImage::Format_ARGB32 );
-
-    // TODO: don't use the obsolete (and slow) method QImage::setAlphaChannel()
-    QImage alphaChannel(QSize(m_width, m_height), QImage::Format_RGB32 );
-    alphaChannel.fill(QColor(0, 0, 0).rgb());
-    img.setAlphaChannel(alphaChannel);
+    img.fill(QColor(0, 0, 0, 0).rgba());
 
     const QPixmap folder = KIconLoader::global()->loadIcon("folder", KIconLoader::NoGroup, m_width);
 
