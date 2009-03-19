@@ -61,7 +61,7 @@ static void filter( const char* u, const char * expectedResult = 0, int expected
         KUrl uri = filterData->uri();
 
         if ( uri.isLocalFile() && !uri.hasRef() && uri.query().isEmpty() )
-            cmd = uri.path();
+            cmd = uri.toLocalFile();
         else
             cmd = uri.url();
 
