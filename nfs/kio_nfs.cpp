@@ -160,7 +160,7 @@ static void stripTrailingSlash(QString& path)
 
 static void getLastPart(const QString& path, QString& lastPart, QString& rest)
 {
-   int slashPos=path.lastIndexOf("/");
+   int slashPos=path.lastIndexOf('/');
    lastPart=path.mid(slashPos+1);
    rest=path.left(slashPos+1);
 }
@@ -170,7 +170,7 @@ static QString removeFirstPart(const QString& path)
    QString result("");
    if (path.isEmpty()) return result;
    result=path.mid(1);
-   int slashPos=result.indexOf("/");
+   int slashPos=result.indexOf('/');
    return result.mid(slashPos+1);
 }
 
