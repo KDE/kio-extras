@@ -18,7 +18,7 @@ fp = open(sys.argv[1], "r")
 r = fp.read()
 fp.close()
 
-fp = open(sys.argv[2], "wb")
+fp = open(sys.argv[3], "wb")
 fp.write('#define CHECKSUM "%s"\n' % sm)
 fp.write('static const char *fishCode(\n')
 

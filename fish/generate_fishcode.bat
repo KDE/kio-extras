@@ -1,1 +1,1 @@
-python %CD%\generate_fishcode.py %*
+python %~dp0generate_fishcode.py %*
