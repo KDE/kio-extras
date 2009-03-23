@@ -51,10 +51,6 @@
 #include <netdb.h>
 #include <sys/types.h>
 
-#ifdef HAVE_STROPTS
-#include <stropts.h>
-#endif
-
 #ifdef HAVE_SYS_IOCTL_H
 #include <sys/ioctl.h>
 #endif
