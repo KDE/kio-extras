@@ -1,7 +1,9 @@
 [Desktop Entry]
 Type=Service
 Name=Directories
+Name[et]=Kataloogid
 Name[ga]=Comhadlanna
+Name[ko]=디렉터리
 Name[nds]=Ornern
 Name[pt]=Pastas
 Name[pt_BR]=Pastas
