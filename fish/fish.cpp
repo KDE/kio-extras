@@ -1411,7 +1411,11 @@ void fishProtocol::error(int type, const QString &detail) {
     isRunning = false;
 }
 /** executes a chain of commands */
-void fishProtocol::run() {
+void fishProtocol::run() 
+/* This function writes to childFd fish commands (like #STOR 0 /tmp/test ...) that are stored in outBuf
+and reads from childFd the remote host's response. ChildFd is the fd to a process that communicates
+with .fishsrv.pl typically running on another computer. */
+{
     if (!isRunning) {
         int rc;
         isRunning = true;
