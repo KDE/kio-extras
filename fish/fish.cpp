@@ -516,7 +516,8 @@ bool fishProtocol::connectionStart() {
             myDebug( << "select failed, rc: " << rc << ", error: " << strerror(errno) << endl);
             return true;
         }
-        if (FD_ISSET(childFd,&wfds) && outBufPos >= 0) {
+        while (FD_ISSET(childFd,&wfds) && outBufPos >= 0) 
+	{
             if (outBuf) rc = ::write(childFd,outBuf+outBufPos,outBufLen-outBufPos);
             else rc = 0;
             if (rc >= 0) outBufPos += rc;
@@ -533,7 +534,8 @@ bool fishProtocol::connectionStart() {
                 outBufLen = 0;
             }
         }
-        else if (FD_ISSET(childFd,&rfds)) {
+        if (FD_ISSET(childFd,&rfds)) 
+	{
             rc = ::read(childFd,buf+offset,32768-offset);
             if (rc > 0) {
                 int noff = establishConnection(buf,rc+offset);
@@ -1437,13 +1439,19 @@ void fishProtocol::run() {
                 shutdownConnection();
                 return;
             }
-            if (FD_ISSET(childFd,&wfds) && outBufPos >= 0) {
+	    // We first write the complete buffer, including all newlines.
+	    // Do: send command and newlines, expect response then
+	    // Do not: send commands, expect response, send newlines, expect response on newlines
+	    // Newlines do not trigger a response.
+            while (FD_ISSET(childFd,&wfds) && outBufPos >= 0) 
+	    {
 #else
-            if (outBufPos >= 0) {
+            while (outBufPos >= 0) 
+	    {
 #endif
 #if 0
                 QString debug = QString::fromLatin1(outBuf+outBufPos,outBufLen-outBufPos);
-                myDebug( << "now writing " << (outBufLen-outBufPos) << " " << debug.left(40) << "..." << endl);
+                myDebug( << "now writing " << (outBufLen-outBufPos) << " " << debug << endl);
 #endif
 #ifndef Q_WS_WIN
                 if (outBufLen-outBufPos > 0) rc = ::write(childFd,outBuf+outBufPos,outBufLen-outBufPos);
@@ -1473,10 +1481,10 @@ void fishProtocol::run() {
                 }
             }
 #ifndef Q_WS_WIN
-            else if (FD_ISSET(childFd,&rfds)) {
+            if (FD_ISSET(childFd,&rfds)) {
                 rc = ::read(childFd,buf+offset,32768-offset);
 #else
-            else if (childPid->waitForReadyRead(1000)) {
+            if (childPid->waitForReadyRead(1000)) {
                 rc = childPid->read(buf+offset,32768-offset);
 #endif
                 //myDebug( << "read " << rc << " bytes" << endl);
