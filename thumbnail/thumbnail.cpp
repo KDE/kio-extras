@@ -399,18 +399,23 @@ QImage ThumbnailProtocol::thumbForDirectory(const KUrl& directory)
     QImage img;
 
     const int tiles = 2;
-    const int spacing = 2;
+    const int spacing = 1;
 
     // TODO: the margins are optimized for the Oxygen iconset
     // Provide a fallback solution for other iconsets (e. g. draw folder
     // only as small overlay, use no margins)
-    const int topMargin = m_height * 30 / 100;
-    const int bottomMargin = m_height / 6;
-    const int leftMargin = m_width / 13;
+    const QPixmap folder = KIconLoader::global()->loadIcon("folder", KIconLoader::NoGroup, qMin(m_width, m_height));
+
+    const int folderWidth  = folder.width();
+    const int folderHeight = folder.height();
+
+    const int topMargin = folderHeight * 30 / 100;
+    const int bottomMargin = folderHeight / 6;
+    const int leftMargin = folderWidth / 13;
     const int rightMargin = leftMargin;
 
-    const int segmentWidth  = (m_width  - leftMargin - rightMargin  - (tiles - 1) * spacing) / tiles;
-    const int segmentHeight = (m_height - topMargin  - bottomMargin - (tiles - 1) * spacing) / tiles;
+    const int segmentWidth  = (folderWidth  - leftMargin - rightMargin  + spacing) / tiles - spacing;
+    const int segmentHeight = (folderHeight - topMargin  - bottomMargin + spacing) / tiles - spacing;
     if ((segmentWidth < 5) || (segmentHeight <  5)) {
         // the segment size is too small for a useful preview
         return img;
@@ -421,13 +426,11 @@ QImage ThumbnailProtocol::thumbForDirectory(const KUrl& directory)
         return img;
     }
 
-    img = QImage(QSize(m_width, m_height), QImage::Format_ARGB32 );
+    img = QImage(QSize(folderWidth, folderHeight), QImage::Format_ARGB32);
     img.fill(QColor(0, 0, 0, 0).rgba());
 
-    const QPixmap folder = KIconLoader::global()->loadIcon("folder", KIconLoader::NoGroup, m_width);
-
     QPainter p(&img);
-    p.drawPixmap(QPoint(0, 0), folder);
+    p.drawPixmap(0, 0, folder);
 
     int xPos = leftMargin;
     int yPos = topMargin;
@@ -435,7 +438,7 @@ QImage ThumbnailProtocol::thumbForDirectory(const KUrl& directory)
     int iterations = 0;
     bool hadThumbnail = false;
 
-    const int maxYPos = m_height - bottomMargin - segmentHeight;
+    const int maxYPos = folderHeight - bottomMargin - segmentHeight;
     while (dir.hasNext() && (yPos <= maxYPos)) {
         ++iterations;
         if (iterations > 50) {
@@ -458,35 +461,24 @@ QImage ThumbnailProtocol::thumbForDirectory(const KUrl& directory)
         }
 
         QImage subImg;
-        if (!subCreator->create(dir.filePath(), segmentWidth, segmentHeight, subImg)) {
+        if (!subCreator->create(dir.filePath(), 128, 128, subImg)) {
             // kDebug(7115) <<  "failed to create thumbnail for" << dir.filePath();
             continue;
         }
 
         hadThumbnail = true;
 
-        if (subImg.width() > segmentWidth || subImg.height() > segmentHeight) {
-            subImg = subImg.scaled(segmentWidth, segmentHeight, Qt::KeepAspectRatio, Qt::SmoothTransformation);
-        }
+        subImg = subImg.scaled(segmentWidth, segmentHeight,
+                               Qt::KeepAspectRatioByExpanding, Qt::SmoothTransformation);
 
         // center the image inside the segment boundaries
-        QRect target(xPos, yPos, segmentWidth, segmentHeight);
-        if (target.width() > subImg.width()) {
-            const int diff = target.width() - subImg.width();
-            target.setWidth(subImg.width());
-            target.moveLeft(target.left() + (diff / 2));
-        }
-
-        if (target.height() > subImg.height()) {
-            const int diff = target.height() - subImg.height();
-            target.setHeight(subImg.height());
-            target.moveTop(target.top() + (diff / 2));
-        }
-
-        p.drawImage(target, subImg);
+        p.setClipRect(xPos, yPos, segmentWidth, segmentHeight);
+        const int imgX = xPos + (segmentWidth  - subImg.width())  / 2;
+        const int imgY = yPos + (segmentHeight - subImg.height()) / 2;
+        p.drawImage(imgX, imgY, subImg);
 
         xPos += segmentWidth + spacing;
-        if (xPos > (m_width - rightMargin - segmentWidth)) {
+        if (xPos > folderWidth - rightMargin - segmentWidth) {
             xPos = leftMargin;
             yPos += segmentHeight + spacing;
         }
