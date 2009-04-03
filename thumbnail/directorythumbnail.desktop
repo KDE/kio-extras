@@ -1,10 +1,12 @@
 [Desktop Entry]
 Type=Service
 Name=Directories
+Name[el]=Κατάλογοι
 Name[et]=Kataloogid
 Name[ga]=Comhadlanna
 Name[gu]=ડિરેક્ટરીઓ
 Name[ko]=디렉터리
+Name[nb]=Mapper
 Name[nds]=Ornern
 Name[pt]=Pastas
 Name[pt_BR]=Pastas
