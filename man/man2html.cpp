@@ -135,6 +135,8 @@
 # define BYTEARRAY(x) x.constData()
 #else
 # include <QTextCodec>
+# include <kglobal.h>
+# include <klocale.h>
 # include <kdebug.h>
 # include <kdeversion.h>
 # define BYTEARRAY(x) x
@@ -1009,7 +1011,7 @@ static void out_html(const char *c)
               }
 #else
 // modern compiler do not return a NULL for a new
-#endif       
+#endif
               memcpy(h, buffer, buffmax);
               delete [] buffer;
           buffer=h;
@@ -2498,12 +2500,12 @@ static void trans_char(char *c, char s, char t)
 // Fix handling of lines like:
 // .TH FIND 1L \" -*- nroff -*-
 // Where \" indicates the start of comment.
-// 
+//
 // The problem is the \" handling in fill_words(), the return value
 // indicates the end of the word as well as the end of the line, which makes it
 // basically impossible to express that the end of the last word is not the end of
 // the line.
-// 
+//
 // I have corrected that by adding an extra parameter 'next_line' that returns a
 // pointer to the next line, while the function itself returns a pointer to the end
 // of the last word.
@@ -3309,7 +3311,7 @@ static char *scan_request(char *c)
                 }
                 case REQ_br: // groff(7) "line BReak"
                 {
-                    if (still_dd) 
+                    if (still_dd)
                         out_html("<DD>"); // ### VERIFY (does not look like generating good HTML)
                     else
                         out_html("<BR>\n");
@@ -3877,7 +3879,7 @@ static char *scan_request(char *c)
                     /* somewhere a definition ends with '.TP' */
                     if (!*c)
                         still_dd=true;
-                    else 
+                    else
                     {
                         // HACK for proc(5)
                         while (c[0]=='.' && c[1]=='\\' && c[2]=='\"')
@@ -4077,12 +4079,9 @@ static char *scan_request(char *c)
                             // Most English man pages are in ISO-8859-1
                             out_html("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=ISO-8859-1\">\n");
 #else
-//let KEncodingDetector decide. (it should be better than charset="System")
-//TODO can we check if the charset could be determined from path? like share/man/ru.UTF8
-                            // kio_man transforms from local to UTF-8
-//                             out_html("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=");
-//                             out_html(QTextCodec::codecForLocale()->name());
-//                             out_html("\">\n");
+                             out_html("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=");
+                             out_html(KGlobal::locale()->encoding());
+                             out_html("\">\n");
 #endif
                             out_html("<TITLE>");
                                 out_html(scan_troff(wordlist[0], 0, NULL));
