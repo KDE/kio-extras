@@ -6,7 +6,7 @@ include_directories(${JPEG_INCLUDE_DIR})
 
 ########### next target ###############
 
-set(kio_thumbnail_PART_SRCS thumbnail.cpp)
+set(kio_thumbnail_PART_SRCS thumbnail.cpp imagefilter.cpp)
 
 kde4_add_plugin(kio_thumbnail ${kio_thumbnail_PART_SRCS})
 

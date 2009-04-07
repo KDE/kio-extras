@@ -70,6 +70,8 @@
 # include <QFileInfo>
 #endif
 
+#include "imagefilter.h"
+
 // Recognized metadata entries:
 // mimeType     - the mime type of the file, used for the overlay icon if any
 // width        - maximum width for the thumbnail
@@ -370,8 +372,8 @@ void ThumbnailProtocol::get(const KUrl &url)
             shmdt((char*)shmaddr);
             return;
         }
-        if( img.depth() != 32 ) { // KIO::PreviewJob and this code below completely ignores colortable :-/,
-            img = img.convertToFormat(QImage::Format_ARGB32); //  so make sure there is none
+        if( img.format() != QImage::Format_ARGB32_Premultiplied ) { // KIO::PreviewJob and this code below completely ignores colortable :-/,
+            img = img.convertToFormat(QImage::Format_ARGB32_Premultiplied); //  so make sure there is none
         }
         // Keep in sync with kdelibs/kio/kio/previewjob.cpp
         stream << img.width() << img.height() << quint8(img.format());
@@ -392,6 +394,56 @@ QString ThumbnailProtocol::pluginForMimeType(const QString& mimeType) {
     }
 
     return QString();
+}
+
+void ThumbnailProtocol::drawPictureFrame(QPainter *painter, const QPoint &centerPos,
+                                         const QImage &image, int frameWidth) const
+{
+    QImage frame(image.size() + QSize(frameWidth * 2, frameWidth * 2),
+                 QImage::Format_ARGB32_Premultiplied);
+    frame.fill(0);
+
+    QPainter p(&frame);
+    p.setCompositionMode(QPainter::CompositionMode_Source);
+    p.setRenderHint(QPainter::Antialiasing);
+    p.setPen(Qt::NoPen);
+    p.setBrush(Qt::white);
+    p.drawRoundedRect(frame.rect(), frameWidth / 2., frameWidth / 2.);
+    p.setCompositionMode(QPainter::CompositionMode_SourceOver);
+    p.drawImage(frameWidth, frameWidth, image);
+    p.end();
+
+    QTransform m;
+    m.rotate(qrand() % 16 - 8); // Random rotation ±8°
+
+    QRect r = m.mapRect(QRectF(frame.rect())).toAlignedRect();
+
+    QImage transformed(r.size(), frame.format());
+    transformed.fill(0);
+    p.begin(&transformed);
+    p.setRenderHint(QPainter::SmoothPixmapTransform); 
+    p.setCompositionMode(QPainter::CompositionMode_Source);
+    p.translate(-r.topLeft());
+    p.setWorldTransform(m, true);
+    p.drawImage(0, 0, frame);
+    p.end();
+
+    int radius = qMax(frameWidth, 1);
+
+    QImage shadow(r.size() + QSize(radius * 2, radius * 2), QImage::Format_ARGB32_Premultiplied);
+    shadow.fill(0);
+
+    p.begin(&shadow);
+    p.setCompositionMode(QPainter::CompositionMode_Source);
+    p.drawImage(radius, radius, transformed);
+    p.end();
+
+    ImageFilter::shadowBlur(shadow, radius, QColor(0, 0, 0, 128));    
+
+    r.moveCenter(centerPos);
+
+    painter->drawImage(r.topLeft() - QPoint(radius / 2, radius / 2), shadow);
+    painter->drawImage(r.topLeft(), transformed);
 }
 
 QImage ThumbnailProtocol::thumbForDirectory(const KUrl& directory)
@@ -421,19 +473,25 @@ QImage ThumbnailProtocol::thumbForDirectory(const KUrl& directory)
         return img;
     }
 
+    qsrand(QTime::currentTime().msec()); // Seed the random number generator
+
     QDirIterator dir(directory.path(), QDir::Files | QDir::Readable);
     if (!dir.hasNext()) {
         return img;
     }
 
-    img = QImage(QSize(folderWidth, folderHeight), QImage::Format_ARGB32);
-    img.fill(QColor(0, 0, 0, 0).rgba());
+    img = QImage(QSize(folderWidth, folderHeight), QImage::Format_ARGB32_Premultiplied);
+    img.fill(0);
 
     QPainter p(&img);
+    p.setCompositionMode(QPainter::CompositionMode_Source);
     p.drawPixmap(0, 0, folder);
+    p.setCompositionMode(QPainter::CompositionMode_SourceOver);
 
     int xPos = leftMargin;
     int yPos = topMargin;
+
+    int frameWidth = qRound(folderWidth / 85.);
 
     int iterations = 0;
     bool hadThumbnail = false;
@@ -468,14 +526,14 @@ QImage ThumbnailProtocol::thumbForDirectory(const KUrl& directory)
 
         hadThumbnail = true;
 
-        subImg = subImg.scaled(segmentWidth, segmentHeight,
-                               Qt::KeepAspectRatioByExpanding, Qt::SmoothTransformation);
+        if (subImg.width() > segmentWidth || subImg.height() > segmentHeight) {
+            subImg = subImg.scaled(segmentWidth, segmentHeight,
+                                   Qt::KeepAspectRatio, Qt::SmoothTransformation);
+        }
 
         // center the image inside the segment boundaries
-        p.setClipRect(xPos, yPos, segmentWidth, segmentHeight);
-        const int imgX = xPos + (segmentWidth  - subImg.width())  / 2;
-        const int imgY = yPos + (segmentHeight - subImg.height()) / 2;
-        p.drawImage(imgX, imgY, subImg);
+        const QPoint centerPos(xPos + (segmentWidth / 2), yPos + (segmentHeight / 2));
+        drawPictureFrame(&p, centerPos, subImg, frameWidth);      
 
         xPos += segmentWidth + spacing;
         if (xPos > folderWidth - rightMargin - segmentWidth) {
@@ -519,7 +577,7 @@ const QImage ThumbnailProtocol::getIcon()
 {
     if (!m_iconDict.contains(m_mimeType)) { // generate it
         QImage icon( KIconLoader::global()->loadMimeTypeIcon( KMimeType::mimeType(m_mimeType)->iconName(), KIconLoader::Desktop, m_iconSize ).toImage() );
-        icon = icon.convertToFormat(QImage::Format_ARGB32);
+        icon = icon.convertToFormat(QImage::Format_ARGB32_Premultiplied);
         m_iconDict.insert(m_mimeType, icon);
 
         return icon;
