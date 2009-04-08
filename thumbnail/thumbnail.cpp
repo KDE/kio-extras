@@ -575,6 +575,7 @@ ThumbCreator* ThumbnailProtocol::getThumbCreator(const QString& plugin)
 
 const QImage ThumbnailProtocol::getIcon()
 {
+    ///@todo Can we really do this? It doesn't seem to respect the size
     if (!m_iconDict.contains(m_mimeType)) { // generate it
         QImage icon( KIconLoader::global()->loadMimeTypeIcon( KMimeType::mimeType(m_mimeType)->iconName(), KIconLoader::Desktop, m_iconSize ).toImage() );
         icon = icon.convertToFormat(QImage::Format_ARGB32);
