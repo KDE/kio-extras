@@ -372,8 +372,8 @@ void ThumbnailProtocol::get(const KUrl &url)
             shmdt((char*)shmaddr);
             return;
         }
-        if( img.format() != QImage::Format_ARGB32_Premultiplied ) { // KIO::PreviewJob and this code below completely ignores colortable :-/,
-            img = img.convertToFormat(QImage::Format_ARGB32_Premultiplied); //  so make sure there is none
+        if( img.format() != QImage::Format_ARGB32 ) { // KIO::PreviewJob and this code below completely ignores colortable :-/,
+            img = img.convertToFormat(QImage::Format_ARGB32); //  so make sure there is none
         }
         // Keep in sync with kdelibs/kio/kio/previewjob.cpp
         stream << img.width() << img.height() << quint8(img.format());
@@ -400,7 +400,7 @@ void ThumbnailProtocol::drawPictureFrame(QPainter *painter, const QPoint &center
                                          const QImage &image, int frameWidth) const
 {
     QImage frame(image.size() + QSize(frameWidth * 2, frameWidth * 2),
-                 QImage::Format_ARGB32_Premultiplied);
+                 QImage::Format_ARGB32);
     frame.fill(0);
 
     QPainter p(&frame);
@@ -430,7 +430,7 @@ void ThumbnailProtocol::drawPictureFrame(QPainter *painter, const QPoint &center
 
     int radius = qMax(frameWidth, 1);
 
-    QImage shadow(r.size() + QSize(radius * 2, radius * 2), QImage::Format_ARGB32_Premultiplied);
+    QImage shadow(r.size() + QSize(radius * 2, radius * 2), QImage::Format_ARGB32);
     shadow.fill(0);
 
     p.begin(&shadow);
@@ -480,7 +480,7 @@ QImage ThumbnailProtocol::thumbForDirectory(const KUrl& directory)
         return img;
     }
 
-    img = QImage(QSize(folderWidth, folderHeight), QImage::Format_ARGB32_Premultiplied);
+    img = QImage(QSize(folderWidth, folderHeight), QImage::Format_ARGB32);
     img.fill(0);
 
     QPainter p(&img);
@@ -577,7 +577,7 @@ const QImage ThumbnailProtocol::getIcon()
 {
     if (!m_iconDict.contains(m_mimeType)) { // generate it
         QImage icon( KIconLoader::global()->loadMimeTypeIcon( KMimeType::mimeType(m_mimeType)->iconName(), KIconLoader::Desktop, m_iconSize ).toImage() );
-        icon = icon.convertToFormat(QImage::Format_ARGB32_Premultiplied);
+        icon = icon.convertToFormat(QImage::Format_ARGB32);
         m_iconDict.insert(m_mimeType, icon);
 
         return icon;
