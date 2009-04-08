@@ -1,6 +1,7 @@
 [Desktop Entry]
 Type=Service
 Name=Ethicle
+Name[gu]=ઇથિકલ
 Name[x-test]=xxEthiclexx
 X-KDE-ServiceTypes=SearchProvider
 Keys=et,ethicle
