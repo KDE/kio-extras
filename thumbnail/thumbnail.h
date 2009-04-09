@@ -43,6 +43,8 @@ protected:
     QImage thumbForDirectory(const KUrl& directory);
     QString pluginForMimeType(const QString& mimeType);
 
+    float sequenceIndex() const;
+    
 private:
     QString m_mimeType;
     int m_width;

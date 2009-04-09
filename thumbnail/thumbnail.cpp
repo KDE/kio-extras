@@ -56,6 +56,7 @@
 
 #include <config-runtime.h> // For HAVE_NICE
 #include <kio/thumbcreator.h>
+#include <kio/thumbsequencecreator.h>
 #include <kconfiggroup.h>
 
 #include <iostream>
@@ -263,6 +264,10 @@ void ThumbnailProtocol::get(const KUrl &url)
                 return;
             }
 
+            ThumbSequenceCreator* sequenceCreator = dynamic_cast<ThumbSequenceCreator*>(creator);
+            if(sequenceCreator)
+                sequenceCreator->setSequenceIndex(sequenceIndex());
+
             if (!creator->create(url.path(), m_width, m_height, img)) {
                 error(KIO::ERR_INTERNAL, i18n("Cannot create thumbnail for %1", url.path()));
                 return;
@@ -396,6 +401,10 @@ QString ThumbnailProtocol::pluginForMimeType(const QString& mimeType) {
     return QString();
 }
 
+float ThumbnailProtocol::sequenceIndex() const {
+    return metaData("sequence-index").toFloat();
+}
+
 void ThumbnailProtocol::drawPictureFrame(QPainter *painter, const QPoint &centerPos,
                                          const QImage &image, int frameWidth) const
 {
@@ -450,7 +459,7 @@ QImage ThumbnailProtocol::thumbForDirectory(const KUrl& directory)
 {
     QImage img;
 
-    const int tiles = 2;
+    const int tiles = 2; //Count of items shown on each dimension
     const int spacing = 1;
 
     // TODO: the margins are optimized for the Oxygen iconset
@@ -472,13 +481,18 @@ QImage ThumbnailProtocol::thumbForDirectory(const KUrl& directory)
         // the segment size is too small for a useful preview
         return img;
     }
+    
+    QString localFile = directory.path();
 
-    qsrand(QTime::currentTime().msec()); // Seed the random number generator
+    //Multiply with a high number, so we get some semi-random sequence
+    int skipValidItems = ((int)sequenceIndex()) * tiles * tiles;
 
-    QDirIterator dir(directory.path(), QDir::Files | QDir::Readable);
-    if (!dir.hasNext()) {
-        return img;
-    }
+    if(skipValidItems)
+        skipValidItems = skipValidItems % QDir(localFile).count();
+
+    // Seed the random number generator so that it always returns the same result
+    // for the same directory and sequence-item
+    qsrand(qHash(localFile) + skipValidItems);
 
     img = QImage(QSize(folderWidth, folderHeight), QImage::Format_ARGB32);
     img.fill(0);
@@ -491,15 +505,22 @@ QImage ThumbnailProtocol::thumbForDirectory(const KUrl& directory)
     int xPos = leftMargin;
     int yPos = topMargin;
 
+    QDirIterator dir(localFile, QDir::Files | QDir::Readable);
+    if (!dir.hasNext()) {
+        return img;
+    }
+
     int frameWidth = qRound(folderWidth / 85.);
 
     int iterations = 0;
     bool hadThumbnail = false;
-
+    int skipped = 0;
+    
     const int maxYPos = folderHeight - bottomMargin - segmentHeight;
+    
     while (dir.hasNext() && (yPos <= maxYPos)) {
         ++iterations;
-        if (iterations > 50) {
+        if (iterations > 50 + 10*skipValidItems) {
             // kDebug(7115) << "maximum iteration reached";
             return QImage();
         }
@@ -516,6 +537,11 @@ QImage ThumbnailProtocol::thumbForDirectory(const KUrl& directory)
         if (!subCreator) {
             // kDebug(7115) << "found no creator for" << dir.filePath();
             continue;
+        }
+
+        if(skipped < skipValidItems) {
+          ++skipped;;
+          continue;
         }
 
         QImage subImg;
