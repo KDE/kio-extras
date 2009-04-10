@@ -430,7 +430,7 @@ void ThumbnailProtocol::drawPictureFrame(QPainter *painter, const QPoint &center
     QImage transformed(r.size(), frame.format());
     transformed.fill(0);
     p.begin(&transformed);
-    p.setRenderHint(QPainter::SmoothPixmapTransform); 
+    p.setRenderHint(QPainter::SmoothPixmapTransform);
     p.setCompositionMode(QPainter::CompositionMode_Source);
     p.translate(-r.topLeft());
     p.setWorldTransform(m, true);
@@ -447,7 +447,7 @@ void ThumbnailProtocol::drawPictureFrame(QPainter *painter, const QPoint &center
     p.drawImage(radius, radius, transformed);
     p.end();
 
-    ImageFilter::shadowBlur(shadow, radius, QColor(0, 0, 0, 128));    
+    ImageFilter::shadowBlur(shadow, radius, QColor(0, 0, 0, 128));
 
     r.moveCenter(centerPos);
 
@@ -481,14 +481,15 @@ QImage ThumbnailProtocol::thumbForDirectory(const KUrl& directory)
         // the segment size is too small for a useful preview
         return img;
     }
-    
+
     QString localFile = directory.path();
 
-    //Multiply with a high number, so we get some semi-random sequence
+    // Multiply with a high number, so we get some semi-random sequence
     int skipValidItems = ((int)sequenceIndex()) * tiles * tiles;
 
-    if(skipValidItems)
+    if (skipValidItems) {
         skipValidItems = skipValidItems % QDir(localFile).count();
+    }
 
     // Seed the random number generator so that it always returns the same result
     // for the same directory and sequence-item
@@ -515,12 +516,12 @@ QImage ThumbnailProtocol::thumbForDirectory(const KUrl& directory)
     int iterations = 0;
     bool hadThumbnail = false;
     int skipped = 0;
-    
+
     const int maxYPos = folderHeight - bottomMargin - segmentHeight;
-    
+
     while (dir.hasNext() && (yPos <= maxYPos)) {
         ++iterations;
-        if (iterations > 50 + 10*skipValidItems) {
+        if (iterations > 50 + 10 * skipValidItems) {
             // kDebug(7115) << "maximum iteration reached";
             return QImage();
         }
@@ -539,7 +540,7 @@ QImage ThumbnailProtocol::thumbForDirectory(const KUrl& directory)
             continue;
         }
 
-        if(skipped < skipValidItems) {
+        if (skipped < skipValidItems) {
           ++skipped;;
           continue;
         }
@@ -559,7 +560,7 @@ QImage ThumbnailProtocol::thumbForDirectory(const KUrl& directory)
 
         // center the image inside the segment boundaries
         const QPoint centerPos(xPos + (segmentWidth / 2), yPos + (segmentHeight / 2));
-        drawPictureFrame(&p, centerPos, subImg, frameWidth);      
+        drawPictureFrame(&p, centerPos, subImg, frameWidth);
 
         xPos += segmentWidth + spacing;
         if (xPos > folderWidth - rightMargin - segmentWidth) {
