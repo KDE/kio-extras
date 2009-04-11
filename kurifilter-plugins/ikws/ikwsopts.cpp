@@ -268,7 +268,7 @@ void FilterOptions::load()
 
   QList<SearchProvider*> providers;
   int defaultProviderIndex = services.size(); //default is "None", it is last in the list
-  foreach(KService::Ptr service, services)
+  foreach(const KService::Ptr &service, services)
   {
     SearchProvider* provider=new SearchProvider(service);
     if (defaultSearchEngine == provider->desktopEntryName())
