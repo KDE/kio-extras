@@ -567,28 +567,32 @@ QImage ThumbnailProtocol::thumbForDirectory(const KUrl& directory)
 
         QImage subImg;
 
-        // check whether a cached version of the file is available for 128 x 128 pixels
-        KMD5 md5(QFile::encodeName(fileName.url()));
-        const QString thumbName = QFile::encodeName(md5.hexDigest()) + ".png";
-        const QString thumbPath = QDir::homePath() + "/.thumbnails/normal/";
-        if (!subImg.load(thumbPath + thumbName)) {
-            // no cached version is available, a new thumbnail must be created
-            if (subCreator->create(dir.filePath(), 128, 128, subImg)) {
-                // The thumbnail has been created successfully. Store the thumbnail
-                // to the cache for future access.
-                KTemporaryFile temp;
-                temp.setPrefix(thumbPath + "kde-tmp-");
-                temp.setSuffix(".png");
-                temp.setAutoRemove(false);
-                if (temp.open()) {
-                    subImg.save(temp.fileName(), "PNG");
-                    KDE::rename(temp.fileName(), thumbPath + thumbName);
-                }
-            } else {
-                // kDebug(7115) <<  "failed to create thumbnail for" << dir.filePath();
-                continue;
-            }
-
+        if(segmentWidth <= 128 && segmentHeight <= 128) {
+          // check whether a cached version of the file is available for 128 x 128 pixels
+          KMD5 md5(QFile::encodeName(fileName.url()));
+          const QString thumbName = QFile::encodeName(md5.hexDigest()) + ".png";
+          const QString thumbPath = QDir::homePath() + "/.thumbnails/normal/";
+          if (!subImg.load(thumbPath + thumbName)) {
+              // no cached version is available, a new thumbnail must be created
+              if (subCreator->create(dir.filePath(), 128, 128, subImg)) {
+                  // The thumbnail has been created successfully. Store the thumbnail
+                  // to the cache for future access.
+                  KTemporaryFile temp;
+                  temp.setPrefix(thumbPath + "kde-tmp-");
+                  temp.setSuffix(".png");
+                  temp.setAutoRemove(false);
+                  if (temp.open()) {
+                      subImg.save(temp.fileName(), "PNG");
+                      KDE::rename(temp.fileName(), thumbPath + thumbName);
+                  }
+              } else {
+                  // kDebug(7115) <<  "failed to create thumbnail for" << dir.filePath();
+                  continue;
+              }
+          }
+        }else{
+          //Cannot use the 128x128 versions
+          subCreator->create(dir.filePath(), segmentWidth, segmentHeight, subImg);
         }
 
         hadThumbnail = true;
