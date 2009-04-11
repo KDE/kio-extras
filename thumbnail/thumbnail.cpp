@@ -411,24 +411,25 @@ float ThumbnailProtocol::sequenceIndex() const {
 void ThumbnailProtocol::drawPictureFrame(QPainter *painter, const QPoint &centerPos,
                                          const QImage &image, int frameWidth, QSize imageTargetSize) const
 {
-    //Scale the image down so it matches the aspect ratio
+    // Scale the image down so it matches the aspect ratio
     float scaling = 1.0;
-    
-    if (image.size().width() > imageTargetSize.width() && imageTargetSize.width())
+
+    if ((image.size().width() > imageTargetSize.width()) && (imageTargetSize.width() != 0)) {
         scaling = float(imageTargetSize.width()) / float(image.size().width());
-    
+    }
+
     QImage frame(imageTargetSize + QSize(frameWidth * 2, frameWidth * 2),
                  QImage::Format_ARGB32);
     frame.fill(0);
 
     float scaledFrameWidth = frameWidth / scaling;
-    
+
     QTransform m;
     m.rotate(qrand() % 16 - 8); // Random rotation ±8°
     m.scale(scaling, scaling);
 
     QRectF frameRect(QPointF(0, 0), QPointF(image.width() + scaledFrameWidth*2, image.height() + scaledFrameWidth*2));
-    
+
     QRect r = m.mapRect(QRectF(frameRect)).toAlignedRect();
 
     QImage transformed(r.size(), QImage::Format_ARGB32);
@@ -436,10 +437,10 @@ void ThumbnailProtocol::drawPictureFrame(QPainter *painter, const QPoint &center
     QPainter p(&transformed);
     p.setRenderHint(QPainter::SmoothPixmapTransform);
     p.setCompositionMode(QPainter::CompositionMode_Source);
-    
+
     p.translate(-r.topLeft());
     p.setWorldTransform(m, true);
-    
+
     p.setRenderHint(QPainter::Antialiasing);
     p.setPen(Qt::NoPen);
     p.setBrush(Qt::white);
@@ -567,39 +568,48 @@ QImage ThumbnailProtocol::thumbForDirectory(const KUrl& directory)
 
         QImage subImg;
 
-        if(segmentWidth <= 128 && segmentHeight <= 128) {
-          // check whether a cached version of the file is available for 128 x 128 pixels
-          KMD5 md5(QFile::encodeName(fileName.url()));
-          const QString thumbName = QFile::encodeName(md5.hexDigest()) + ".png";
-          const QString thumbPath = QDir::homePath() + "/.thumbnails/normal/";
-          if (!subImg.load(thumbPath + thumbName)) {
-              // no cached version is available, a new thumbnail must be created
-              if (subCreator->create(dir.filePath(), 128, 128, subImg)) {
-                  // The thumbnail has been created successfully. Store the thumbnail
-                  // to the cache for future access.
-                  KTemporaryFile temp;
-                  temp.setPrefix(thumbPath + "kde-tmp-");
-                  temp.setSuffix(".png");
-                  temp.setAutoRemove(false);
-                  if (temp.open()) {
-                      subImg.save(temp.fileName(), "PNG");
-                      KDE::rename(temp.fileName(), thumbPath + thumbName);
-                  }
-              } else {
-                  // kDebug(7115) <<  "failed to create thumbnail for" << dir.filePath();
-                  continue;
-              }
-          }
-        }else{
-          //Cannot use the 128x128 versions
-          subCreator->create(dir.filePath(), segmentWidth, segmentHeight, subImg);
+        if ((segmentWidth <= 256) && (segmentHeight <= 256)) {
+            // check whether a cached version of the file is available for
+            // 128 x 128 or 256 x 256 pixels
+            int cacheSize = 0;
+            KMD5 md5(QFile::encodeName(fileName.url()));
+            const QString thumbName = QFile::encodeName(md5.hexDigest()) + ".png";
+            QString thumbPath = QDir::homePath() + "/.thumbnails/";
+            if ((segmentWidth <= 128) && (segmentHeight <= 128)) {
+                cacheSize = 128;
+                thumbPath += "normal/";
+            } else {
+                cacheSize = 256;
+                thumbPath += "large/";
+            }
+
+            if (!subImg.load(thumbPath + thumbName)) {
+                // no cached version is available, a new thumbnail must be created
+                if (subCreator->create(dir.filePath(), cacheSize, cacheSize, subImg)) {
+                    // The thumbnail has been created successfully. Store the thumbnail
+                    // to the cache for future access.
+                    KTemporaryFile temp;
+                    temp.setPrefix(thumbPath + "kde-tmp-");
+                    temp.setSuffix(".png");
+                    temp.setAutoRemove(false);
+                    if (temp.open()) {
+                        subImg.save(temp.fileName(), "PNG");
+                        KDE::rename(temp.fileName(), thumbPath + thumbName);
+                    }
+                } else {
+                    // kDebug(7115) <<  "failed to create thumbnail for" << dir.filePath();
+                    continue;
+                }
+            }
+        } else if (!subCreator->create(dir.filePath(), segmentWidth, segmentHeight, subImg)) {
+            continue;
         }
 
         hadThumbnail = true;
 
         QSize targetSize(subImg.size());
         targetSize.scale(segmentWidth, segmentHeight, Qt::KeepAspectRatio);
-        
+
         // center the image inside the segment boundaries
         const QPoint centerPos(xPos + (segmentWidth / 2), yPos + (segmentHeight / 2));
         drawPictureFrame(&p, centerPos, subImg, frameWidth, targetSize);
