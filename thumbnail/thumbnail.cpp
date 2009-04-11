@@ -409,35 +409,42 @@ float ThumbnailProtocol::sequenceIndex() const {
 }
 
 void ThumbnailProtocol::drawPictureFrame(QPainter *painter, const QPoint &centerPos,
-                                         const QImage &image, int frameWidth) const
+                                         const QImage &image, int frameWidth, QSize imageTargetSize) const
 {
-    QImage frame(image.size() + QSize(frameWidth * 2, frameWidth * 2),
+    //Scale the image down so it matches the aspect ratio
+    float scaling = 1.0;
+    
+    if (image.size().width() > imageTargetSize.width() && imageTargetSize.width())
+        scaling = float(imageTargetSize.width()) / float(image.size().width());
+    
+    QImage frame(imageTargetSize + QSize(frameWidth * 2, frameWidth * 2),
                  QImage::Format_ARGB32);
     frame.fill(0);
 
-    QPainter p(&frame);
+    float scaledFrameWidth = frameWidth / scaling;
+    
+    QTransform m;
+    m.rotate(qrand() % 16 - 8); // Random rotation ±8°
+    m.scale(scaling, scaling);
+
+    QRectF frameRect(QPointF(0, 0), QPointF(image.width() + scaledFrameWidth*2, image.height() + scaledFrameWidth*2));
+    
+    QRect r = m.mapRect(QRectF(frameRect)).toAlignedRect();
+
+    QImage transformed(r.size(), QImage::Format_ARGB32);
+    transformed.fill(0);
+    QPainter p(&transformed);
+    p.setRenderHint(QPainter::SmoothPixmapTransform);
     p.setCompositionMode(QPainter::CompositionMode_Source);
+    
+    p.translate(-r.topLeft());
+    p.setWorldTransform(m, true);
+    
     p.setRenderHint(QPainter::Antialiasing);
     p.setPen(Qt::NoPen);
     p.setBrush(Qt::white);
-    p.drawRoundedRect(frame.rect(), frameWidth / 2., frameWidth / 2.);
-    p.setCompositionMode(QPainter::CompositionMode_SourceOver);
-    p.drawImage(frameWidth, frameWidth, image);
-    p.end();
-
-    QTransform m;
-    m.rotate(qrand() % 16 - 8); // Random rotation ±8°
-
-    QRect r = m.mapRect(QRectF(frame.rect())).toAlignedRect();
-
-    QImage transformed(r.size(), frame.format());
-    transformed.fill(0);
-    p.begin(&transformed);
-    p.setRenderHint(QPainter::SmoothPixmapTransform);
-    p.setCompositionMode(QPainter::CompositionMode_Source);
-    p.translate(-r.topLeft());
-    p.setWorldTransform(m, true);
-    p.drawImage(0, 0, frame);
+    p.drawRoundedRect(frameRect, scaledFrameWidth / 2, scaledFrameWidth / 2);
+    p.drawImage(scaledFrameWidth, scaledFrameWidth, image);
     p.end();
 
     int radius = qMax(frameWidth, 1);
@@ -586,14 +593,12 @@ QImage ThumbnailProtocol::thumbForDirectory(const KUrl& directory)
 
         hadThumbnail = true;
 
-        if (subImg.width() > segmentWidth || subImg.height() > segmentHeight) {
-            subImg = subImg.scaled(segmentWidth, segmentHeight,
-                                   Qt::KeepAspectRatio, Qt::SmoothTransformation);
-        }
-
+        QSize targetSize(subImg.size());
+        targetSize.scale(segmentWidth, segmentHeight, Qt::KeepAspectRatio);
+        
         // center the image inside the segment boundaries
         const QPoint centerPos(xPos + (segmentWidth / 2), yPos + (segmentHeight / 2));
-        drawPictureFrame(&p, centerPos, subImg, frameWidth);
+        drawPictureFrame(&p, centerPos, subImg, frameWidth, targetSize);
 
         xPos += segmentWidth + spacing;
         if (xPos > folderWidth - rightMargin - segmentWidth) {

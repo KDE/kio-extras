@@ -39,7 +39,7 @@ protected:
     ThumbCreator* getThumbCreator(const QString& plugin);
     const QImage getIcon();
     void drawPictureFrame(QPainter *painter, const QPoint &pos, const QImage &image,
-                          int frameWidth) const;
+                          int frameWidth, QSize imageTargetSize) const;
     QImage thumbForDirectory(const KUrl& directory);
     QString pluginForMimeType(const QString& mimeType);
 
