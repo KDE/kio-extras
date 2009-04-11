@@ -46,6 +46,16 @@ protected:
     float sequenceIndex() const;
 
 private:
+    /**
+     * Creates a sub thumbnail for the directory thumbnail. If a cached
+     * version of the sub thumbnail is available, the cached version will be used.
+     * If no cached version is available, the created sub thumbnail will be
+     * added to the cache for later use.
+     */
+    bool createSubThumbnail(QImage& thumbnail, const QString& filePath,
+                            int segmentWidth, int segmentHeight);
+
+private:
     QString m_mimeType;
     int m_width;
     int m_height;

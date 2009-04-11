@@ -499,7 +499,6 @@ QImage ThumbnailProtocol::thumbForDirectory(const KUrl& directory)
 
     // Multiply with a high number, so we get some semi-random sequence
     int skipValidItems = ((int)sequenceIndex()) * tiles * tiles;
-
     if (skipValidItems) {
         skipValidItems = skipValidItems % QDir(localFile).count();
     }
@@ -541,85 +540,24 @@ QImage ThumbnailProtocol::thumbForDirectory(const KUrl& directory)
 
         dir.next();
 
-        if (m_enabledPlugins.isEmpty()) {
-            const KConfigGroup globalConfig(KGlobal::config(), "PreviewSettings");
-            m_enabledPlugins = globalConfig.readEntry("Plugins", QStringList()
-                                                                 << "imagethumbnail"
-                                                                 << "jpegthumbnail");
-        }
-
-        const KUrl fileName = dir.filePath();
-        const QString subPlugin = pluginForMimeType(KMimeType::findByUrl(fileName)->name());
-        if (subPlugin.isEmpty() || !m_enabledPlugins.contains(subPlugin)) {
-            // kDebug(7115) << "found no sub-plugin for" << dir.filePath();
-            continue;
-        }
-
-        ThumbCreator* subCreator = getThumbCreator(subPlugin);
-        if (!subCreator) {
-            // kDebug(7115) << "found no creator for" << dir.filePath();
-            continue;
-        }
-
         if (skipped < skipValidItems) {
           ++skipped;;
           continue;
         }
 
-
-        QImage subImg;
-
-        if ((segmentWidth <= 256) && (segmentHeight <= 256)) {
-            // check whether a cached version of the file is available for
-            // 128 x 128 or 256 x 256 pixels
-            int cacheSize = 0;
-            KMD5 md5(QFile::encodeName(fileName.url()));
-            const QString thumbName = QFile::encodeName(md5.hexDigest()) + ".png";
-            if (m_thumbBasePath.isEmpty()) {
-                m_thumbBasePath = QDir::homePath() + "/.thumbnails/";
-                KStandardDirs::makeDir(m_thumbBasePath + "normal/", 0700);
-                KStandardDirs::makeDir(m_thumbBasePath + "large/", 0700);
-            }
-
-            QString thumbPath = m_thumbBasePath;
-            if ((segmentWidth <= 128) && (segmentHeight <= 128)) {
-                cacheSize = 128;
-                thumbPath += "normal/";
-            } else {
-                cacheSize = 256;
-                thumbPath += "large/";
-            }
-
-            if (!subImg.load(thumbPath + thumbName)) {
-                // no cached version is available, a new thumbnail must be created
-                if (subCreator->create(dir.filePath(), cacheSize, cacheSize, subImg)) {
-                    // The thumbnail has been created successfully. Store the thumbnail
-                    // to the cache for future access.
-                    KTemporaryFile temp;
-                    temp.setPrefix(thumbPath + "kde-tmp-");
-                    temp.setSuffix(".png");
-                    temp.setAutoRemove(false);
-                    if (temp.open()) {
-                        subImg.save(temp.fileName(), "PNG");
-                        KDE::rename(temp.fileName(), thumbPath + thumbName);
-                    }
-                } else {
-                    // kDebug(7115) <<  "failed to create thumbnail for" << dir.filePath();
-                    continue;
-                }
-            }
-        } else if (!subCreator->create(dir.filePath(), segmentWidth, segmentHeight, subImg)) {
+        QImage subThumbnail;
+        if (!createSubThumbnail(subThumbnail, dir.filePath(), segmentWidth, segmentHeight)) {
             continue;
         }
 
         hadThumbnail = true;
 
-        QSize targetSize(subImg.size());
+        QSize targetSize(subThumbnail.size());
         targetSize.scale(segmentWidth, segmentHeight, Qt::KeepAspectRatio);
 
         // center the image inside the segment boundaries
         const QPoint centerPos(xPos + (segmentWidth / 2), yPos + (segmentHeight / 2));
-        drawPictureFrame(&p, centerPos, subImg, frameWidth, targetSize);
+        drawPictureFrame(&p, centerPos, subThumbnail, frameWidth, targetSize);
 
         xPos += segmentWidth + spacing;
         if (xPos > folderWidth - rightMargin - segmentWidth) {
@@ -649,7 +587,7 @@ ThumbCreator* ThumbnailProtocol::getThumbCreator(const QString& plugin)
             }
         }
         if (!creator) {
-          return 0;
+            return 0;
         }
 
         m_creators.insert(plugin, creator);
@@ -672,4 +610,74 @@ const QImage ThumbnailProtocol::getIcon()
 
     return m_iconDict.value(m_mimeType);
 }
+
+bool ThumbnailProtocol::createSubThumbnail(QImage& thumbnail, const QString& filePath,
+                                           int segmentWidth, int segmentHeight)
+{
+    if (m_enabledPlugins.isEmpty()) {
+        const KConfigGroup globalConfig(KGlobal::config(), "PreviewSettings");
+        m_enabledPlugins = globalConfig.readEntry("Plugins", QStringList()
+                                                             << "imagethumbnail"
+                                                             << "jpegthumbnail");
+    }
+
+    const KUrl fileName = filePath;
+    const QString subPlugin = pluginForMimeType(KMimeType::findByUrl(fileName)->name());
+    if (subPlugin.isEmpty() || !m_enabledPlugins.contains(subPlugin)) {
+        // kDebug(7115) << "found no sub-plugin for" << dir.filePath();
+        return false;
+    }
+
+    ThumbCreator* subCreator = getThumbCreator(subPlugin);
+    if (!subCreator) {
+        // kDebug(7115) << "found no creator for" << dir.filePath();
+        return false;
+    }
+
+    if ((segmentWidth <= 256) && (segmentHeight <= 256)) {
+        // check whether a cached version of the file is available for
+        // 128 x 128 or 256 x 256 pixels
+        int cacheSize = 0;
+        KMD5 md5(QFile::encodeName(fileName.url()));
+        const QString thumbName = QFile::encodeName(md5.hexDigest()) + ".png";
+        if (m_thumbBasePath.isEmpty()) {
+            m_thumbBasePath = QDir::homePath() + "/.thumbnails/";
+            KStandardDirs::makeDir(m_thumbBasePath + "normal/", 0700);
+            KStandardDirs::makeDir(m_thumbBasePath + "large/", 0700);
+        }
+
+        QString thumbPath = m_thumbBasePath;
+        if ((segmentWidth <= 128) && (segmentHeight <= 128)) {
+            cacheSize = 128;
+            thumbPath += "normal/";
+        } else {
+            cacheSize = 256;
+            thumbPath += "large/";
+        }
+
+        if (!thumbnail.load(thumbPath + thumbName)) {
+            // no cached version is available, a new thumbnail must be created
+            if (subCreator->create(filePath, cacheSize, cacheSize, thumbnail)) {
+                // The thumbnail has been created successfully. Store the thumbnail
+                // to the cache for future access.
+                KTemporaryFile temp;
+                temp.setPrefix(thumbPath + "kde-tmp-");
+                temp.setSuffix(".png");
+                temp.setAutoRemove(false);
+                if (temp.open()) {
+                    thumbnail.save(temp.fileName(), "PNG");
+                    KDE::rename(temp.fileName(), thumbPath + thumbName);
+                }
+            } else {
+                // kDebug(7115) <<  "failed to create thumbnail for" << dir.filePath();
+                return false;
+            }
+        }
+    } else if (!subCreator->create(filePath, segmentWidth, segmentHeight, thumbnail)) {
+        return false;
+    }
+
+    return true;
+}
+
 
