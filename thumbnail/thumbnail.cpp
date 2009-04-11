@@ -52,6 +52,7 @@
 #include <kservicetype.h>
 #include <kservicetypetrader.h>
 #include <kmimetypetrader.h>
+#include <kstandarddirs.h>
 #include <ktemporaryfile.h>
 #include <kfilemetainfo.h>
 #include <klocale.h>
@@ -574,7 +575,13 @@ QImage ThumbnailProtocol::thumbForDirectory(const KUrl& directory)
             int cacheSize = 0;
             KMD5 md5(QFile::encodeName(fileName.url()));
             const QString thumbName = QFile::encodeName(md5.hexDigest()) + ".png";
-            QString thumbPath = QDir::homePath() + "/.thumbnails/";
+            if (m_thumbBasePath.isEmpty()) {
+                m_thumbBasePath = QDir::homePath() + "/.thumbnails/";
+                KStandardDirs::makeDir(m_thumbBasePath + "normal/", 0700);
+                KStandardDirs::makeDir(m_thumbBasePath + "large/", 0700);
+            }
+
+            QString thumbPath = m_thumbBasePath;
             if ((segmentWidth <= 128) && (segmentHeight <= 128)) {
                 cacheSize = 128;
                 thumbPath += "normal/";
