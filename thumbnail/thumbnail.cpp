@@ -529,8 +529,15 @@ QImage ThumbnailProtocol::thumbForDirectory(const KUrl& directory)
 
         dir.next();
 
+        if (m_enabledPlugins.isEmpty()) {
+            const KConfigGroup globalConfig(KGlobal::config(), "PreviewSettings");
+            m_enabledPlugins = globalConfig.readEntry("Plugins", QStringList()
+                                                                 << "imagethumbnail"
+                                                                 << "jpegthumbnail");
+        }
+
         const QString subPlugin = pluginForMimeType(KMimeType::findByUrl(KUrl(dir.filePath()))->name());
-        if (subPlugin.isEmpty()) {
+        if (subPlugin.isEmpty() || !m_enabledPlugins.contains(subPlugin)) {
             // kDebug(7115) << "found no sub-plugin for" << dir.filePath();
             continue;
         }

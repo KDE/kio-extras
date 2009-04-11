@@ -44,7 +44,7 @@ protected:
     QString pluginForMimeType(const QString& mimeType);
 
     float sequenceIndex() const;
-    
+
 private:
     QString m_mimeType;
     int m_width;
@@ -56,6 +56,7 @@ private:
     QHash<QString, ThumbCreator*> m_creators;
     // transparent icon cache
     QHash<QString, QImage> m_iconDict;
+    QStringList m_enabledPlugins;
 };
 
 #endif
