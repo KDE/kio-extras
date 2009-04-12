@@ -552,7 +552,12 @@ QImage ThumbnailProtocol::thumbForDirectory(const KUrl& directory)
 
         hadThumbnail = true;
 
+        // Apply fake smooth scaling, as seen on several blogs
+        if(subThumbnail.width() > segmentWidth * 3 || subThumbnail.height() > segmentHeight * 3)
+            subThumbnail = subThumbnail.scaled(segmentWidth*3, segmentHeight*3, Qt::KeepAspectRatio, Qt::FastTransformation);
+
         QSize targetSize(subThumbnail.size());
+
         targetSize.scale(segmentWidth, segmentHeight, Qt::KeepAspectRatio);
 
         // center the image inside the segment boundaries
