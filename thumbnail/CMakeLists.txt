@@ -112,7 +112,6 @@ if(X11_Xcursor_FOUND)
 
 endif(X11_Xcursor_FOUND)
 
-
 ########### install files ###############
 
 install(FILES thumbcreator.desktop DESTINATION ${SERVICETYPES_INSTALL_DIR})
@@ -124,5 +123,6 @@ install(FILES
     textthumbnail.desktop
     htmlthumbnail.desktop
     djvuthumbnail.desktop
+    desktopthumbnail.desktop
     DESTINATION ${SERVICES_INSTALL_DIR})
 install(FILES thumbnailfont_7x4.png DESTINATION ${DATA_INSTALL_DIR}/kio_thumbnail/pics)

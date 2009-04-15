@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Service
+Name=Desktop Files
+X-KDE-ServiceTypes=ThumbCreator
+MimeType=application/x-desktop;
+X-KDE-Library=textthumbnail
+CacheThumbnail=false
