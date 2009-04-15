@@ -497,6 +497,11 @@ QImage ThumbnailProtocol::thumbForDirectory(const KUrl& directory)
 
     QString localFile = directory.path();
 
+    QDirIterator dir(localFile, QDir::Files | QDir::Readable);
+    if (!dir.hasNext()) {
+        return img;
+    }
+
     // Multiply with a high number, so we get some semi-random sequence
     int skipValidItems = ((int)sequenceIndex()) * tiles * tiles;
     if (skipValidItems) {
@@ -517,11 +522,6 @@ QImage ThumbnailProtocol::thumbForDirectory(const KUrl& directory)
 
     int xPos = leftMargin;
     int yPos = topMargin;
-
-    QDirIterator dir(localFile, QDir::Files | QDir::Readable);
-    if (!dir.hasNext()) {
-        return img;
-    }
 
     int frameWidth = qRound(folderWidth / 85.);
 
