@@ -174,14 +174,16 @@ bool TextCreator::create(const QString &path, int width, int height, QImage &img
                     {
                         int pos = text.indexOf( '\n', i );
                         if ( pos == -1 )
-			    break;
+                            break;
                         i = pos + 1;
                     }
 
                     newLine = false;
                 }
 
-		if (i>=text.length()) continue;
+                if ( i >= text.length() )
+                    continue;
+
                 // check for newlines in the text (unix,dos)
                 QChar ch = text.at( i );
                 if ( ch == '\n' )
