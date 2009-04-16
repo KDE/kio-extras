@@ -78,5 +78,6 @@ Name[xh]=Uphendlo lwesiseko sedata ye KDE Bug Olubhaliweyo ngokupheleleyo
 Name[zh_CN]=KDE Bug 数据库全文检索
 Name[zh_TW]=KDE 臭蟲資料庫全文檢索
 Query=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
+Query[x-test]=xxhttp://bugs.kde.org/buglist.cgi?quicksearch=\\{@}xx
 X-KDE-ServiceTypes=SearchProvider
 Type=Service
