@@ -1,6 +1,10 @@
 [Desktop Entry]
 Type=Service
 Name=Desktop Files
+Name[pt]=Ficheiros 'Desktop'
+Name[pt_BR]=Ficheiros 'Desktop'
+Name[sv]=Skrivbordsfiler
+Name[uk]=Стільничні файли
 X-KDE-ServiceTypes=ThumbCreator
 MimeType=application/x-desktop;
 X-KDE-Library=textthumbnail
