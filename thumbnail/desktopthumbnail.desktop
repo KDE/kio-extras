@@ -4,6 +4,7 @@ Name=Desktop Files
 Name[pt]=Ficheiros 'Desktop'
 Name[pt_BR]=Ficheiros 'Desktop'
 Name[sv]=Skrivbordsfiler
+Name[tr]=Masaüstü Dosyaları
 Name[uk]=Стільничні файли
 X-KDE-ServiceTypes=ThumbCreator
 MimeType=application/x-desktop;
