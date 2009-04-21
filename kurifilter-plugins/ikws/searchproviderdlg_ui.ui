@@ -144,7 +144,6 @@ The shortcuts entered here can be used as a pseudo-URI scheme in KDE. For exampl
    </item>
   </layout>
  </widget>
- <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
   <customwidget>
    <class>KComboBox</class>

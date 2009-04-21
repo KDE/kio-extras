@@ -220,7 +220,6 @@ Select the search engine to use for input boxes that provide automatic lookup se
    </item>
   </layout>
  </widget>
- <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
   <customwidget>
    <class>KComboBox</class>
