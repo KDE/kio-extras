@@ -29,6 +29,7 @@ So we can't connect.
 
 #include <fcntl.h>
 
+#include <QtCore/QCoreApplication>
 #include <QtCore/QBuffer>
 #include <QtCore/QByteArray>
 #include <QtCore/QFile>
@@ -77,6 +78,7 @@ extern "C"
 {
   int KDE_EXPORT kdemain( int argc, char **argv )
   {
+    QCoreApplication app(argc, argv);
     KComponentData componentData( "kio_sftp" );
 
     kDebug(KIO_SFTP_DB) << "*** Starting kio_sftp ";

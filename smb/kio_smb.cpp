@@ -31,6 +31,7 @@
 #include "kio_smb.h"
 #include "kio_smb_internal.h"
 #include <kcomponentdata.h>
+#include <QCoreApplication>
 
 //===========================================================================
 SMBSlave::SMBSlave(const QByteArray& pool, const QByteArray& app)
@@ -55,6 +56,7 @@ SMBSlave::~SMBSlave()
 //===========================================================================
 int KDE_EXPORT kdemain( int argc, char **argv )
 {
+    QCoreApplication app(argc, argv);
     KComponentData componentData("kio_smb");
     if( argc != 4 )
     {

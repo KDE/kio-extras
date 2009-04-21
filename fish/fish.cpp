@@ -32,6 +32,7 @@
 #include <QDateTime>
 #include <QBitArray>
 #include <QRegExp>
+#include <QCoreApplication>
 
 #include <stdlib.h>
 #ifdef HAVE_PTY_H
@@ -129,6 +130,7 @@ extern "C" {
 
 int KDE_EXPORT kdemain( int argc, char **argv )
 {
+    QCoreApplication app(argc, argv);
     KComponentData componentData("fish", "kio_fish");
 
     myDebug( << "*** Starting fish " << endl);
