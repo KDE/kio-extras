@@ -249,7 +249,7 @@ void KUriFilterTest::tests()
     //this may fail if your DNS knows domains KDE or FTP
     filter( "gg:", "http://www.google.com/search?q=gg%3A&ie=UTF-8&oe=UTF-8", KUriFilterData::NetProtocol );
     filter( "KDE", "http://www.google.com/search?q=KDE&ie=UTF-8&oe=UTF-8", KUriFilterData::NetProtocol );
-    filter( "FTP", "http://www.google.com/search?q=FTP&ie=UTF-8&oe=UTF-8", KUriFilterData::NetProtocol );
+    filter( "HTTP", "http://www.google.com/search?q=HTTP&ie=UTF-8&oe=UTF-8", KUriFilterData::NetProtocol );
 
     // Typing 'cp' or any other valid unix command in konq's location bar should result in
     // a search using the default search engine
@@ -315,7 +315,7 @@ void KUriFilterTest::tests()
 
     QString sc;
     filter( sc.sprintf("gg%cfoo bar",s_delimiter).toUtf8(), "http://www.google.com/search?q=foo+bar&ie=UTF-8&oe=UTF-8", KUriFilterData::NetProtocol );
-    filter( sc.sprintf("bug%c55798", s_delimiter).toUtf8(), "http://bugs.kde.org/show_bug.cgi?id=55798", KUriFilterData::NetProtocol );
+    filter( sc.sprintf("bug%c55798", s_delimiter).toUtf8(), "https://bugs.kde.org/show_bug.cgi?id=55798", KUriFilterData::NetProtocol );
 
     filter( sc.sprintf("gg%cC++", s_delimiter).toUtf8(), "http://www.google.com/search?q=C%2B%2B&ie=UTF-8&oe=UTF-8", KUriFilterData::NetProtocol );
     filter( sc.sprintf("ya%cfoo bar was here", s_delimiter).toUtf8(), 0, -1 ); // this triggers default search, i.e. google
