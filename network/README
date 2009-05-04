@@ -1,0 +1,37 @@
+networkkio
+==========
+
+This is an experimental kioslave which presents the network.
+It also includes a library which models the network, the devices, and services,
+and could be reused by other code.
+
+Please contact the author Friedrich W. H. Kossebau <kossebau@kde.org> for any further questions.
+Cooperation in this area is welcome :)
+
+
+ioslave
+-------
+The ioslave lists the local network as represented by the
+The protocol name is "network", so enter "network:/" to see your local network.
+Currently, due to synchronisation problems, the network data is fetched from the
+kded network module via D-Bus, instead of using the network library directly.
+
+
+kded
+----
+A kded module to emit KDirNotify signals as needed if the network structure changes.
+
+That way all users of the network kioslave and listening to KDirNotify can update the view,
+e.g. Dolphin, Konqueror and the KDElibs file dialogs.
+It also offers the data of the network structure over D-Bus, as currently used by the ioslave.
+
+
+network
+-------
+A library which models the network with all its devices and the services offered by them.
+
+Currently it uses KDNSSD, the KDElibs interface to the zeroconf service discovery system,
+as the engine to find about the content of network structure. Later on this library should
+support different backends concurrently (also SLP, UPnP, Windows related stuff like smb,
+including undiscoverable/hidden but user/admin entered ones).
+If this works out this library might end in KDElibs solid module.

@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+It comes with ABSOLUTELY NO WARRANTY, to the extent permitted by law. You may
+redistribute copies of update-mime-database under the terms of the GNU General
+Public License. For more information about these matters, see the file named
+COPYING.
+-->
+<!--
+Notes:
+- the mime types in this file are valid with the version 0.23 of the
+  shared-mime-info package.
+- the "fdo #xxxxx" are the wish in the freedesktop.org bug database to include
+  the mime type there.
+-->
+<mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
+  <mime-type type="inode/vnd.kde.network">
+    <sub-class-of type="inode/directory"/>
+    <generic-icon name="network-workgroup"/>
+    <comment>Network</comment>
+  </mime-type>
+
+  <!-- Devices -->
+  <mime-type type="inode/vnd.kde.device.workstation">
+    <sub-class-of type="inode/directory"/>
+    <comment>Workstation</comment>
+    <generic-icon name="computer"/>
+  </mime-type>
+  <mime-type type="inode/vnd.kde.device.router">
+    <sub-class-of type="inode/directory"/>
+    <generic-icon name="network-server"/>
+    <comment>Router</comment>
+  </mime-type>
+  <mime-type type="inode/vnd.kde.device.server">
+    <sub-class-of type="inode/directory"/>
+    <generic-icon name="network-server"/>
+    <comment>Server</comment>
+  </mime-type>
+  <mime-type type="inode/vnd.kde.device.printer">
+    <sub-class-of type="inode/directory"/>
+    <generic-icon name="printer"/>
+    <comment>Printer</comment>
+  </mime-type>
+  <mime-type type="inode/vnd.kde.device.unknown">
+    <sub-class-of type="inode/directory"/>
+    <generic-icon name="network-server"/>
+    <comment>Unknown device</comment>
+  </mime-type>
+
+
+
+  <!-- Services -->
+  <mime-type type="inode/vnd.kde.service.unknown">
+    <generic-icon name="document"/>
+    <comment>Unknown service</comment>
+  </mime-type>
+
+  <!-- File services -->
+  <!-- TODO: find why a generic service.filesystem does not forward its generic-icon -->
+  <mime-type type="inode/vnd.kde.service.nfs">
+    <sub-class-of type="inode/directory"/>
+    <generic-icon name="folder-remote"/>
+    <comment>NFS server</comment>
+    <acronym>NFS</acronym>
+    <expanded-acronym>Network filesystem</expanded-acronym>
+  </mime-type>
+  <mime-type type="inode/vnd.kde.service.ftp">
+    <sub-class-of type="inode/directory"/>
+    <generic-icon name="folder-remote"/>
+    <comment>FTP server</comment>
+    <acronym>FTP</acronym>
+    <expanded-acronym>File transfer protocol</expanded-acronym>
+  </mime-type>
+  <mime-type type="inode/vnd.kde.service.sftp">
+    <sub-class-of type="inode/directory"/>
+    <generic-icon name="folder-remote"/>
+    <comment>FTPS server</comment>
+    <acronym>FTPS</acronym>
+    <expanded-acronym>FTP over SSL</expanded-acronym>
+  </mime-type>
+  <mime-type type="inode/vnd.kde.service.sftp-ssh">
+    <sub-class-of type="inode/directory"/>
+    <generic-icon name="folder-remote"/>
+    <comment>SFTP (ssh) server</comment>
+  </mime-type>
+  <mime-type type="inode/vnd.kde.service.webdav">
+    <sub-class-of type="inode/directory"/>
+    <generic-icon name="folder-remote"/>
+    <comment>WebDav server</comment>
+  </mime-type>
+  <mime-type type="inode/vnd.kde.service.webdavs">
+    <sub-class-of type="inode/directory"/>
+    <generic-icon name="folder-remote"/>
+    <comment>WebDav secure server</comment>
+  </mime-type>
+  <mime-type type="inode/vnd.kde.service.smb">
+    <sub-class-of type="inode/directory"/>
+    <generic-icon name="folder-remote"/>
+    <comment>SMB server</comment>
+  </mime-type>
+  <mime-type type="inode/vnd.kde.service.afpovertcp">
+    <sub-class-of type="inode/directory"/>
+    <generic-icon name="folder-remote"/>
+    <comment>AFP server</comment>
+  </mime-type>
+
+  <mime-type type="inode/vnd.kde.service.svn">
+    <sub-class-of type="inode/directory"/>
+    <generic-icon name="folder-sync"/>
+    <comment>Subversion server</comment>
+  </mime-type>
+  <mime-type type="inode/vnd.kde.service.rsync">
+    <generic-icon name="folder-sync"/>
+    <comment>RSync server</comment>
+  </mime-type>
+
+  <mime-type type="inode/vnd.kde.service.pop3">
+    <generic-icon name="email"/>
+    <comment>POP3 server</comment>
+  </mime-type>
+  <mime-type type="inode/vnd.kde.service.imap">
+    <generic-icon name="email"/>
+    <comment>IMAP server</comment>
+  </mime-type>
+
+  <mime-type type="inode/vnd.kde.service.ssh">
+    <sub-class-of type="inode/symlink"/>
+    <generic-icon name="terminal"/>
+    <comment>SSH server</comment>
+    <acronym>SSH</acronym>
+    <expanded-acronym>Secure shell</expanded-acronym>
+  </mime-type>
+  <mime-type type="inode/vnd.kde.service.telnet">
+    <sub-class-of type="inode/symlink"/>
+    <generic-icon name="terminal"/>
+    <comment>Telnet server</comment>
+  </mime-type>
+  <mime-type type="inode/vnd.kde.service.rfb">
+    <sub-class-of type="inode/symlink"/>
+    <generic-icon name="krfb"/>
+    <comment>Display server</comment>
+  </mime-type>
+  <mime-type type="inode/vnd.kde.service.rdp">
+    <generic-icon name="krfb"/>
+    <comment>RDP server</comment>
+  </mime-type>
+
+  <mime-type type="inode/vnd.kde.service.http">
+    <sub-class-of type="inode/symlink"/>
+    <generic-icon name="folder-html"/>
+    <comment>Web server</comment>
+  </mime-type>
+  <mime-type type="inode/vnd.kde.service.ntp">
+    <generic-icon name="xclock"/>
+    <comment>Time server</comment>
+  </mime-type>
+  <mime-type type="inode/vnd.kde.service.ldap">
+    <generic-icon name="user-group-properties"/>
+    <comment>LDAP server</comment>
+  </mime-type>
+  <mime-type type="inode/vnd.kde.service.ipp">
+    <generic-icon name="printer"/>
+    <comment>Printing</comment>
+  </mime-type>
+  <mime-type type="inode/vnd.kde.service.presence">
+    <generic-icon name="im-user"/>
+    <comment>Chat</comment>
+  </mime-type>
+
+  <!-- Apple -->
+  <mime-type type="inode/vnd.kde.service.airport">
+    <generic-icon name="network-wireless"/>
+    <comment>AirPort Base Station</comment>
+  </mime-type>
+  <mime-type type="inode/vnd.kde.service.daap">
+    <generic-icon name="folder-sound"/>
+    <comment>Digital Audio Access</comment>
+  </mime-type>
+  <mime-type type="inode/vnd.kde.service.eppc">
+    <generic-icon name="network-connect"/>
+    <comment>Remote AppleEvents</comment>
+  </mime-type>
+  <mime-type type="inode/vnd.kde.service.net-assistant">
+    <generic-icon name="services"/>
+    <comment>Apple Remote Desktop</comment>
+  </mime-type>
+  <mime-type type="inode/vnd.kde.service.odisk">
+    <generic-icon name="media-optical"/>
+    <comment>Optical Disk Sharing</comment>
+  </mime-type>
+  <mime-type type="inode/vnd.kde.service.raop">
+    <generic-icon name="speaker"/>
+    <comment>Remote Audio Output</comment>
+  </mime-type>
+  <mime-type type="inode/vnd.kde.service.touch-able">
+    <generic-icon name="input-tablet"/>
+    <comment>iPhone and iPod touch Remote Controllable</comment>
+  </mime-type>
+  <mime-type type="inode/vnd.kde.service.workstation">
+    <generic-icon name="network-workgroup"/>
+    <comment>Workgroup Manager</comment>
+  </mime-type>
+
+  <!-- KDE Games -->
+  <mime-type type="inode/vnd.kde.service.kbattleship">
+    <generic-icon name="kbattleship"/>
+    <comment>KBattleship game table</comment>
+  </mime-type>
+  <mime-type type="inode/vnd.kde.service.lskat">
+    <generic-icon name="lskat"/>
+    <comment>Lieutenant skat game server</comment>
+  </mime-type>
+  <mime-type type="inode/vnd.kde.service.kfourinline">
+    <generic-icon name="kfourinline"/>
+    <comment>Four-in-line game table</comment>
+  </mime-type>
+  <mime-type type="inode/vnd.kde.service.ksirk">
+    <generic-icon name="ksirk"/>
+    <comment>KSirk game table</comment>
+  </mime-type>
+
+  <!-- Other -->
+  <mime-type type="inode/vnd.kde.service.xmpp-server">
+    <generic-icon name="xchat"/>
+    <comment>XMPP/Jabber server</comment>
+  </mime-type>
+  <mime-type type="inode/vnd.kde.service.lobby">
+    <generic-icon name="document-edit"/>
+    <comment>Gobby server</comment>
+  </mime-type>
+  <mime-type type="inode/vnd.kde.service.kakao">
+    <generic-icon name="folder-development"/>
+    <comment>Kakao server</comment>
+  </mime-type>
+  <mime-type type="inode/vnd.kde.service.ggz">
+    <generic-icon name="applications-games"/>
+    <comment>GGZ Server</comment>
+    <acronym>GGZ</acronym>
+    <expanded-acronym>GGZ Gaming Zone</expanded-acronym>
+  </mime-type>
+
+
+  <!-- uri/ fake mime types -->
+<!--  <mime-type type="uri/mms">
+    <comment>mms: URIs</comment>
+  </mime-type>-->
+
+  <!-- fonts/ fake mime types -->
+<!--  <mime-type type="application/x-smb-server">
+    <sub-class-of type="inode/directory"/>
+    <comment>Windows server</comment>
+  </mime-type>-->
+
+</mime-info>

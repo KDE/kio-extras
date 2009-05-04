@@ -1,0 +1,101 @@
+Add backends for
+* SLP
+* Jini
+* UPnP
+* SMB
+* manually added devices/services
+  -> means also support for state not-present
+* scanning?
+
+list of dns-ds service types: http://www.dns-sd.org/ServiceTypes.html
+
+See if there could be a xdg database of products with device ontology/categories.
+
+Add a device guesser which tries to estimate the type of device by the services
+(or even with a dedicated protocol if there is one?)
+
+Devices:
+* Fileserver/-storage
+* Webserver
+* Desktop-like Computer (human-interface general purpose)
+  * wearable
+  * MID
+  * Handheld
+  * E-Book reader (is media renderer?)
+  * Laptop
+* Game server
+* Server
+* Router
+* Internet Gateway Device (IGD)
+* Mediaserver
+* Mediarenderer
+* HVAC
+* Scanner
+* WLAN Access point
+* Digital Security camera
+* Wearable
+* Augmented-reality device (headmounted)
+
+
+Questions:
+What is a (virtual) device, what is a service?
+Aren't all servives virtual devices?
+So present as device or service?
+
+Some devices use services as interface utility (e.g. a http server for SOAP).
+Separate human/computer-usable services?
+Firstlevel service and secondlevel service?
+
+Physical objects should be represented as physical objects. Perhaps mark with flag.
+Which of the virtual machines in a server is the physical one if the vm host doesn't show up?
+
+How to handle unknown devices?
+Who might want to see them? Developers?
+Or users, to see it's there but not supported (=without a driver)?
+There could be a user editable whitelist/blacklist.
+
+Support should be plugin-based, so 3-party developers can easily try to develop their own drivers.
+
+
+There need to be servicetype-specific handlers which can create the service proxy object.
+Should be able to register to different discovery backends (collision handling by priority perhaps).
+For now simple listing with non-funct system items will do.
+
+
+    { "_presence._tcp",     "presence",     "inode/vnd.kde.service.presence",     "im-user", false, 0, 0, 0, 0 },
+// presence http://www.xmpp.org/registrar/linklocal.html
+//     "1st",  firstName, "email", emailAddress, "last", lastName, "status", "avail");
+// TODO: make this first non-simple item, showing addressbook entry
+
+    // KDE
+    { "_knotes._tcp",        "knotes",     "inode/vnd.kde.service.knotes",      "knotes",       false, "http", 0, 0, 0 },
+// TODO: make this second non-simple item, listing notes or enable the drop of ones (forwarding to some knotes: protocol?
+// Nepomuk Social Query Service
+    { "_nepomuk._tcp",       "nepomuk",    "inode/vnd.kde.service.nepomuk",     "nepomuk",      false, 0, 0, 0, 0 },
+
+
+
+
+    QList<NetDevice>& deviceList = mNetworkPrivate->deviceList();
+    static const char* DeviceNamen[] =
+    {
+        "Datensafe.local",
+        "Schleuder.local",
+        "Phlox.local",
+        "buntekuh.local"
+    };
+    for( int i=0; i<4; ++i )
+    {
+        const QString hostName( DeviceNamen[i] );
+        const QString deviceName = hostName.left( hostName.indexOf('.') );
+        NetDevicePrivate* d = new NetDevicePrivate( deviceName, hostName );
+        d->setType( NetDevice::Workstation );
+
+        NetDevice device( d );
+        deviceList.append( device );
+
+        QList<NetDevice> newDevices;
+        newDevices.append( device );
+        mNetworkPrivate->emitDevicesAdded( newDevices );
+    }
+

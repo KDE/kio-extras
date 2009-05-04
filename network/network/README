@@ -1,0 +1,44 @@
+How does the network get constructed?
+=============================================
+
+There are two kind of objects:
+a) adapters to the service discovery systems
+b) factories to build network items
+
+Then there are adapter-specific interface for the factories, so a adapter can
+handover its system-specific data to the factory.
+
+The factories understand the data structure the adapters hand over (given they
+implement its interface) and construct the matching network items, e.g. a
+NetDevice or a NetService of a certain type.
+The adapters listen to the discovery systems and on a new item reported by the
+system ask those factories which implemented their interface if they could
+turn that into an object in terms of the network library and then tell them
+to do so if they can.
+
+Examples:
+interface: DNSSDNetSystemAble
+adapter: DNSSDNetworkBuilder
+factory: SimpleItemFactory (only one so far, anyway)
+
+Reasoning for this approach:
+With a plugin system yet to come, one could install a new factory for a
+service type "coffee/tea filling level", which could understand data from two
+or three adapters, so you do not need an extra factory for each adapter, but
+have a central point of competence.
+
+So now for a new backend you would need to do add these things:
+a) NEWNetSystemAble
+b) NEWNetworkBuilder
+c) have SimpleItemFactory implement NEWNetSystemAble
+
+SimpleItemFactory is just, as the name should hint, a simple factory, which
+turns a service description into a plain NetService item, without any
+additional logic or behaviour. Later on it is planned to have factories which can
+create complete proxy objects to services on the network. But that needs some
+more thoughts. Stuff for KDE 4.4, including considering a Solid integration
+
+The device type detection (heuristics based) is currently pretty bogus and
+just works for a certain private network, so do not wonder about that part of
+the code :) It should be really turned of before the 4.3 release and for the time
+given just have one type of device: a device.
