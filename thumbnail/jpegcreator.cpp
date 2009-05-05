@@ -49,6 +49,72 @@ void jpeg_custom_error_callback(j_common_ptr jpegDecompress)
    longjmp(custom_err->setjmp_buffer, 1);
 }
 
+#ifdef Q_CC_MSVC
+typedef struct
+{
+    struct jpeg_source_mgr pub;
+    JOCTET eoi[2];
+} jpeg_custom_source_mgr;
+
+void init_source (j_decompress_ptr cinfo)
+{
+}
+
+boolean fill_input_buffer (j_decompress_ptr cinfo)
+{
+    jpeg_custom_source_mgr* src = (jpeg_custom_source_mgr*) cinfo->src;
+
+    /* Create a fake EOI marker */
+    src->eoi[0] = (JOCTET) 0xFF;
+    src->eoi[1] = (JOCTET) JPEG_EOI;
+    src->pub.next_input_byte = src->eoi;
+    src->pub.bytes_in_buffer = 2;
+
+    return true;
+}
+
+void skip_input_data (j_decompress_ptr cinfo, long nbytes)
+{
+    jpeg_custom_source_mgr* src = (jpeg_custom_source_mgr*) cinfo->src;
+
+    if (nbytes > 0) 
+    {
+        while (nbytes > (long) src->pub.bytes_in_buffer) 
+        {
+            nbytes -= (long) src->pub.bytes_in_buffer;
+            (void) fill_input_buffer(cinfo);
+        }
+        src->pub.next_input_byte += (size_t) nbytes;
+        src->pub.bytes_in_buffer -= (size_t) nbytes;
+    }
+}
+
+void term_source (j_decompress_ptr cinfo)
+{
+}
+
+void jpeg_memory_src (j_decompress_ptr cinfo, const JOCTET * buffer, size_t bufsize)
+{
+    jpeg_custom_source_mgr* src;
+
+    if (cinfo->src == NULL) 
+    {
+        cinfo->src = (struct jpeg_source_mgr *) (*cinfo->mem->alloc_small) ((j_common_ptr) cinfo, JPOOL_PERMANENT,
+        sizeof(jpeg_custom_source_mgr));
+    }
+
+    src = (jpeg_custom_source_mgr*) cinfo->src;
+    src->pub.init_source = init_source;
+    src->pub.fill_input_buffer = fill_input_buffer;
+    src->pub.skip_input_data = skip_input_data;
+    src->pub.resync_to_restart = jpeg_resync_to_restart;    // default
+    src->pub.term_source = term_source;
+
+    src->pub.next_input_byte = buffer;
+    src->pub.bytes_in_buffer = bufsize;
+}
+#endif
+
 JpegCreator::JpegCreator()
 {
 }
@@ -78,7 +144,20 @@ bool JpegCreator::create(const QString &path, int width, int height, QImage &img
     struct jpeg_custom_error_mgr jpegError;
     jpegDecompress.err = jpeg_std_error(&jpegError.builtin);
     jpeg_create_decompress(&jpegDecompress);
+#ifdef Q_CC_MSVC
+    QFile inFile(path);
+    QByteArray buf;
+    if(inFile.open(QIODevice::ReadOnly)) {
+        while(!inFile.atEnd()) {
+            buf += inFile.readLine();
+        }
+        inFile.close();
+    }
+
+    jpeg_memory_src(&jpegDecompress, (JOCTET*)buf.data(), buf.size());
+#else
     jpeg_stdio_src(&jpegDecompress, jpegFile);
+#endif
     jpeg_read_header(&jpegDecompress, TRUE);
 
     const double ratioWidth = jpegDecompress.image_width / (double)width;
