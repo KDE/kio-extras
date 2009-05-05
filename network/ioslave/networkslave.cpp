@@ -75,7 +75,7 @@ kDebug()<<reply.isValid();
     }
 
     if( ! successfulGetting )
-        error( KIO::ERR_MALFORMED_URL, url.prettyUrl() );
+        error( KIO::ERR_DOES_NOT_EXIST, url.prettyUrl() );
 }
 
 void NetworkSlave::mimetype( const KUrl& url )
@@ -132,7 +132,7 @@ kDebug()<<reply.isValid();
     }
 
     if( !successfulMimetyping )
-        error( KIO::ERR_MALFORMED_URL, url.prettyUrl() );
+        error( KIO::ERR_DOES_NOT_EXIST, url.prettyUrl() );
 }
 
 
@@ -196,7 +196,7 @@ kDebug()<<reply.isValid();
     }
 
     if( !successfulStating )
-        error( KIO::ERR_MALFORMED_URL, url.prettyUrl() );
+        error( KIO::ERR_DOES_NOT_EXIST, url.prettyUrl() );
 }
 
 void NetworkSlave::listDir( const KUrl& url )
@@ -277,7 +277,7 @@ kDebug()<<reply.isValid();
     }
 
     if( ! successfulListing )
-        error( KIO::ERR_MALFORMED_URL, url.prettyUrl() );
+        error( KIO::ERR_DOES_NOT_EXIST, url.prettyUrl() );
 }
 
 
@@ -308,6 +308,12 @@ void NetworkSlave::feedEntryAsService( KIO::UDSEntry* entry, const Mollet::NetSe
     entry->insert( KIO::UDSEntry::UDS_MIME_TYPE,    Mimetypes::mimetypeForServiceType(serviceData.type()) );
     if( !serviceData.url().isEmpty() )
         entry->insert( KIO::UDSEntry::UDS_TARGET_URL, serviceData.url() );
+}
+
+void NetworkSlave::reportError( const NetworkUri& networkUri, int errorId )
+{
+Q_UNUSED( networkUri )
+Q_UNUSED( errorId )
 }
 
 NetworkSlave::~NetworkSlave()
