@@ -76,7 +76,7 @@ kDebug()<<serviceType<<mServiceBrowserTable.contains(serviceType);
     if( mServiceBrowserTable.contains(serviceType))
         return;
 
-kDebug()<<serviceType;
+// kDebug()<<serviceType;
     DNSSD::ServiceBrowser* serviceBrowser = new DNSSD::ServiceBrowser( serviceType, true );
     connect( serviceBrowser, SIGNAL(serviceAdded(DNSSD::RemoteService::Ptr)),
             SLOT(addService(DNSSD::RemoteService::Ptr)) );
@@ -223,7 +223,7 @@ void DNSSDNetworkBuilder::removeService( DNSSD::RemoteService::Ptr service )
         const NetDevice& device = it.next();
         if( device.hostName() == hostName )
         {
-kDebug()<<hostName;
+// kDebug()<<hostName;
             NetDevicePrivate* d = device.dPtr();
             NetService netService = d->removeService( service->serviceName() );
             if( !netService.isValid() )
@@ -250,7 +250,7 @@ kDebug()<<hostName;
 
 void DNSSDNetworkBuilder::onServiceTypeBrowserFinished()
 {
-kDebug();
+// kDebug();
     if( mIsInit )
     {
         mIsInit = false;
@@ -262,7 +262,7 @@ kDebug();
 void DNSSDNetworkBuilder::onServiceBrowserFinished()
 {
     --mNoOfInitServiceTypes;
-kDebug()<<"mIsInit="<<mIsInit<<"mNoOfInitServiceTypes="<<mNoOfInitServiceTypes;
+// kDebug()<<"mIsInit="<<mIsInit<<"mNoOfInitServiceTypes="<<mNoOfInitServiceTypes;
     // only check for countdown after end of new service types
     if( !mIsInit && mNoOfInitServiceTypes == 0 )
         emit initDone();
