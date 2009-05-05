@@ -89,7 +89,6 @@ static const char* const SimpleServiceMimetype[] =
 
     "xmpp-server",
     "lobby",
-    "kakao",
     "ggz"
 };
 static const int SimpleServiceMimetypeCount = sizeof(SimpleServiceMimetype) / sizeof(SimpleServiceMimetype[0]);

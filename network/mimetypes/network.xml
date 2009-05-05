@@ -227,10 +227,6 @@ Notes:
     <generic-icon name="document-edit"/>
     <comment>Gobby server</comment>
   </mime-type>
-  <mime-type type="inode/vnd.kde.service.kakao">
-    <generic-icon name="folder-development"/>
-    <comment>Kakao server</comment>
-  </mime-type>
   <mime-type type="inode/vnd.kde.service.ggz">
     <generic-icon name="applications-games"/>
     <comment>GGZ Server</comment>
