@@ -662,6 +662,9 @@ bool ThumbnailProtocol::createSubThumbnail(QImage& thumbnail, const QString& fil
 
         if (!thumbnail.load(thumbPath + thumbName)) {
             // no cached version is available, a new thumbnail must be created
+
+            QString tempFileName;
+            bool savedCorrectly = false;
             if (subCreator->create(filePath, cacheSize, cacheSize, thumbnail)) {
                 // The thumbnail has been created successfully. Store the thumbnail
                 // to the cache for future access.
@@ -670,12 +673,17 @@ bool ThumbnailProtocol::createSubThumbnail(QImage& thumbnail, const QString& fil
                 temp.setSuffix(".png");
                 temp.setAutoRemove(false);
                 if (temp.open()) {
-                    thumbnail.save(temp.fileName(), "PNG");
-                    KDE::rename(temp.fileName(), thumbPath + thumbName);
+                    tempFileName = temp.fileName();
+                    savedCorrectly = thumbnail.save(tempFileName, "PNG");
                 }
             } else {
                 // kDebug(7115) <<  "failed to create thumbnail for" << dir.filePath();
                 return false;
+            }
+            if(savedCorrectly)
+            {
+                Q_ASSERT(!tempFileName.isEmpty());
+                KDE::rename(tempFileName, thumbPath + thumbName);
             }
         }
     } else if (!subCreator->create(filePath, segmentWidth, segmentHeight, thumbnail)) {
