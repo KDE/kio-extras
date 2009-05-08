@@ -6,6 +6,7 @@ output=filesystem
 
 Icon=network-workgroup
 Description=A kioslave to browse the network
+Description[fi]=Yhteyskäytäntö verkkopalveluiden selaamiseen
 Description[km]=kioslave ត្រូវ​រក​មើល​បណ្ដាញ
 Description[pt]=Um 'kioslave' para navegar na rede
 Description[pt_BR]=Um kioslave para navegar a rede
