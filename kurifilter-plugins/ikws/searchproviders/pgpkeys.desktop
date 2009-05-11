@@ -78,8 +78,8 @@ Name[uz]=OpenPGP kalitlarni qidirish
 Name[uz@cyrillic]=OpenPGP калитларни қидириш
 Name[vi]=Tìm kiếm khoá OpenPGP
 Name[wa]=Cweraedje d' ene clé OpenPGP
-Name[x-test]=xxOpenPGP Key Searchxx
 Name[xh]=Uphendlo Lwesitshixo se OpenPGP
+Name[x-test]=xxOpenPGP Key Searchxx
 Name[zh_CN]=OpenPGP 关键字搜索
 Name[zh_TW]=OpenPGP 金鑰搜尋
 Query=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex

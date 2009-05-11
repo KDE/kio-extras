@@ -52,8 +52,8 @@ Name[uz]=CPAN - Perl boʻyicha mukammal arxiv tarmogʻi
 Name[uz@cyrillic]=CPAN - Perl бўйича мукаммал архив тармоғи
 Name[vi]=CPAN - Mạng kho lưu Perl đầy đủ
 Name[wa]=CPAN - Rantoele d' Årtchives Perl avou ttafwait
-Name[x-test]=xxCPAN - Comprehensive Perl Archive Networkxx
 Name[xh]=CPAN - Enomxholo Perl Indawo yokugcina Yomsebenzi womnatha
+Name[x-test]=xxCPAN - Comprehensive Perl Archive Networkxx
 Name[zh_CN]=CPAN - 综合性 Perl 档案网络
 Name[zh_TW]=CPAN - 全面的 Perl 收集網路
 Query=http://search.cpan.org/search?mode=\\{mode,2,"dist"}&query=\\{query,q,1}

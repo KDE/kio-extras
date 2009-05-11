@@ -45,8 +45,8 @@ Name[uz]=Butun vebni (tez)
 Name[uz@cyrillic]=Бутун вебни (тез)
 Name[vi]=Tìm mọi trang mạng nhanh
 Name[wa]=AllTheWeb roed
-Name[x-test]=xxAllTheWeb fastxx
 Name[xh]=Yonke i Web ngokukhawuleza
+Name[x-test]=xxAllTheWeb fastxx
 X-KDE-ServiceTypes=SearchProvider
 Keys=atw,alltheweb
 Query=http://www.alltheweb.com/search?exec=FAST+Search&type=all&query=\\{@}&cat=web

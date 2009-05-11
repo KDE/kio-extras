@@ -49,8 +49,8 @@ Name[th]=บริการแปลภาษาของ LEO
 Name[uz]=LEO tarjima
 Name[uz@cyrillic]=LEO таржима
 Name[vi]=Dịch bằng LEO
-Name[x-test]=xxLEO-Translatexx
 Name[xh]=LEO-Guqulela
+Name[x-test]=xxLEO-Translatexx
 X-KDE-ServiceTypes=SearchProvider
 Keys=leo
 Query=http://dict.leo.org/?search=\\{@}

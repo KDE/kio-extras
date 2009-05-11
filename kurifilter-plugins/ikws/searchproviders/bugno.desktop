@@ -75,8 +75,8 @@ Name[uz]=KDE xato maʼlumot bazasi (xatoning raqamini qidirish)
 Name[uz@cyrillic]=KDE хато маълумот базаси (хатонинг рақамини қидириш)
 Name[vi]=Tìm kiếm số hiệu lỗi trong cơ sở dữ liệu lỗi của KDE
 Name[wa]=Båze di dnêyes pol cweraedje di bugs di KDE pa les limeros
-Name[x-test]=xxKDE Bug Database Bug Number Searchxx
 Name[xh]=KDE Uphendlo Lwenani Legciwane Isiseko se data Segciwane
+Name[x-test]=xxKDE Bug Database Bug Number Searchxx
 Name[zh_CN]=KDE Bug 数据库按 Bug 编号搜索
 Name[zh_TW]=KDE 臭蟲資料庫按錯誤編號搜索
 Query=https://bugs.kde.org/show_bug.cgi?id=\\{@}
