@@ -7,6 +7,7 @@ output=filesystem
 Icon=network-workgroup
 Description=A kioslave to browse the network
 Description[csb]=Wtëkôcz przezéraniô sécë
+Description[da]=En kioslave til at gennemse netværket
 Description[et]=KIO moodul võrgu sirvimiseks
 Description[fi]=Yhteyskäytäntö verkkopalveluiden selaamiseen
 Description[km]=kioslave ត្រូវ​រក​មើល​បណ្ដាញ

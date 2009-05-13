@@ -2,6 +2,7 @@
 Type=Service
 Name=Directories
 Name[csb]=Katalodżi
+Name[da]=Mapper
 Name[de]=Ordner
 Name[el]=Κατάλογοι
 Name[et]=Kataloogid
