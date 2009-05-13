@@ -484,9 +484,15 @@ void ThumbnailProtocol::drawPictureFrame(QPainter *painter, const QPoint &center
 QImage ThumbnailProtocol::thumbForDirectory(const KUrl& directory)
 {
     QImage img;
-
+    if(m_propagationDirectories.isEmpty()) {
+        //Directories that the directory preview will be propagated into if there is no direct sub-directories
+        const KConfigGroup globalConfig(KGlobal::config(), "PreviewSettings");
+        m_propagationDirectories = globalConfig.readEntry("PropagationDirectories", QStringList() << "VIDEO_TS").toSet();
+    }
+    
     const int tiles = 2; //Count of items shown on each dimension
     const int spacing = 1;
+    const int visibleCount = tiles * tiles;
 
     // TODO: the margins are optimized for the Oxygen iconset
     // Provide a fallback solution for other iconsets (e. g. draw folder
@@ -511,20 +517,8 @@ QImage ThumbnailProtocol::thumbForDirectory(const KUrl& directory)
 
     QString localFile = directory.path();
 
-    QDirIterator dir(localFile, QDir::Files | QDir::Readable);
-    if (!dir.hasNext()) {
-        return img;
-    }
-
     // Multiply with a high number, so we get some semi-random sequence
     int skipValidItems = ((int)sequenceIndex()) * tiles * tiles;
-    if (skipValidItems) {
-        skipValidItems = skipValidItems % QDir(localFile).count();
-    }
-
-    // Seed the random number generator so that it always returns the same result
-    // for the same directory and sequence-item
-    qsrand(qHash(localFile) + skipValidItems);
 
     img = QImage(QSize(folderWidth, folderHeight), QImage::Format_ARGB32);
     img.fill(0);
@@ -541,52 +535,94 @@ QImage ThumbnailProtocol::thumbForDirectory(const KUrl& directory)
 
     int iterations = 0;
     bool hadThumbnail = false;
+    QString hadFirstThumbnail;
     int skipped = 0;
 
     const int maxYPos = folderHeight - bottomMargin - segmentHeight;
+    
+    while((skipped <= skipValidItems) && (yPos <= maxYPos) && !hadThumbnail)
+    {
+        QDirIterator dir(localFile, QDir::Files | QDir::Readable);
+        if(!dir.hasNext())
+            break;
+        
+        while (dir.hasNext() && (yPos <= maxYPos)) {
+            ++iterations;
+            if (iterations > 500) {
+                skipValidItems = skipped = 0;
+                break;
+            }
 
-    while (dir.hasNext() && (yPos <= maxYPos)) {
-        ++iterations;
-        if (iterations > 50 + 10 * skipValidItems) {
-            // kDebug(7115) << "maximum iteration reached";
-            return QImage();
+            dir.next();
+
+            if(hadThumbnail && hadFirstThumbnail == dir.filePath()) {
+                break; //Never show the same thumbnail twice
+            }
+
+            QImage subThumbnail;
+            if (!createSubThumbnail(subThumbnail, dir.filePath(), segmentWidth, segmentHeight)) {
+                continue;
+            }
+            
+            if (skipped < skipValidItems) {
+                ++skipped;
+                continue;
+            }
+            
+            // Seed the random number generator so that it always returns the same result
+            // for the same directory and sequence-item
+            qsrand(qHash(dir.filePath()));
+            
+            if(hadFirstThumbnail.isEmpty())
+                hadFirstThumbnail = dir.filePath();
+
+            hadThumbnail = true;
+
+            // Apply fake smooth scaling, as seen on several blogs
+            if(subThumbnail.width() > segmentWidth * 4 || subThumbnail.height() > segmentHeight * 4)
+                subThumbnail = subThumbnail.scaled(segmentWidth*4, segmentHeight*4, Qt::KeepAspectRatio, Qt::FastTransformation);
+
+            QSize targetSize(subThumbnail.size());
+
+            targetSize.scale(segmentWidth, segmentHeight, Qt::KeepAspectRatio);
+
+            // center the image inside the segment boundaries
+            const QPoint centerPos(xPos + (segmentWidth / 2), yPos + (segmentHeight / 2));
+            drawPictureFrame(&p, centerPos, subThumbnail, frameWidth, targetSize);
+
+            xPos += segmentWidth + spacing;
+            if (xPos > folderWidth - rightMargin - segmentWidth) {
+                xPos = leftMargin;
+                yPos += segmentHeight + spacing;
+            }
         }
-
-        dir.next();
-
-        if (skipped < skipValidItems) {
-          ++skipped;;
-          continue;
+        
+        if(skipped) { //Round up to full pages
+            int roundedDown = (skipped / visibleCount) * visibleCount;
+            if(roundedDown < skipped)
+                skipped = roundedDown + visibleCount;
+            else
+                skipped = roundedDown;
         }
-
-        QImage subThumbnail;
-        if (!createSubThumbnail(subThumbnail, dir.filePath(), segmentWidth, segmentHeight)) {
-            continue;
-        }
-
-        hadThumbnail = true;
-
-        // Apply fake smooth scaling, as seen on several blogs
-        if(subThumbnail.width() > segmentWidth * 4 || subThumbnail.height() > segmentHeight * 4)
-            subThumbnail = subThumbnail.scaled(segmentWidth*4, segmentHeight*4, Qt::KeepAspectRatio, Qt::FastTransformation);
-
-        QSize targetSize(subThumbnail.size());
-
-        targetSize.scale(segmentWidth, segmentHeight, Qt::KeepAspectRatio);
-
-        // center the image inside the segment boundaries
-        const QPoint centerPos(xPos + (segmentWidth / 2), yPos + (segmentHeight / 2));
-        drawPictureFrame(&p, centerPos, subThumbnail, frameWidth, targetSize);
-
-        xPos += segmentWidth + spacing;
-        if (xPos > folderWidth - rightMargin - segmentWidth) {
-            xPos = leftMargin;
-            yPos += segmentHeight + spacing;
-        }
+        
+        if(skipped == 0)
+            break; //No valid items were found
+            
+        //We don't need to iterate again and again: Subtract any multiple of "skipped" from the count we still need to skip
+        skipValidItems -= (skipValidItems / skipped) * skipped;
+        skipped = 0;
     }
-
+    
     if (!hadThumbnail) {
-        return QImage();
+        //Eventually propagate the contained items from a sub-directory
+        QDirIterator dir(localFile, QDir::Dirs);
+        int max = 50;
+        while(dir.hasNext() && max > 0) {
+            --max;
+            dir.next();
+            if(m_propagationDirectories.contains(dir.fileName()))
+                return thumbForDirectory(KUrl(dir.filePath()));
+        }
     }
 
     return img;
@@ -644,7 +680,6 @@ bool ThumbnailProtocol::createSubThumbnail(QImage& thumbnail, const QString& fil
     const KUrl fileName = filePath;
     const QString subPlugin = pluginForMimeType(KMimeType::findByUrl(fileName)->name());
     if (subPlugin.isEmpty() || !m_enabledPlugins.contains(subPlugin)) {
-        // kDebug(7115) << "found no sub-plugin for" << dir.filePath();
         return false;
     }
 
@@ -674,7 +709,6 @@ bool ThumbnailProtocol::createSubThumbnail(QImage& thumbnail, const QString& fil
             cacheSize = 256;
             thumbPath += "large/";
         }
-
         if (!thumbnail.load(thumbPath + thumbName)) {
             // no cached version is available, a new thumbnail must be created
 
@@ -692,7 +726,6 @@ bool ThumbnailProtocol::createSubThumbnail(QImage& thumbnail, const QString& fil
                     savedCorrectly = thumbnail.save(tempFileName, "PNG");
                 }
             } else {
-                // kDebug(7115) <<  "failed to create thumbnail for" << dir.filePath();
                 return false;
             }
             if(savedCorrectly)
@@ -704,7 +737,6 @@ bool ThumbnailProtocol::createSubThumbnail(QImage& thumbnail, const QString& fil
     } else if (!subCreator->create(filePath, segmentWidth, segmentHeight, thumbnail)) {
         return false;
     }
-
     return true;
 }
 

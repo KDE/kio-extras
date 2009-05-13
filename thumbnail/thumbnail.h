@@ -67,6 +67,7 @@ private:
     // transparent icon cache
     QHash<QString, QImage> m_iconDict;
     QStringList m_enabledPlugins;
+    QSet<QString> m_propagationDirectories;
     QString m_thumbBasePath;
 };
 
