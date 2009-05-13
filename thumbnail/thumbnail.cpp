@@ -406,14 +406,14 @@ QString ThumbnailProtocol::pluginForMimeType(const QString& mimeType) {
     ///@todo Move this into some central location together with the related matching code in previewjob.cpp. This doesn't handle inheritance and such
     const KService::List plugins = KServiceTypeTrader::self()->query("ThumbCreator");
     foreach(KService::Ptr plugin, plugins) {
-      const QStringList mimeTypes = plugin->serviceTypes();
-      foreach(QString mime, mimeTypes) {
-        if(mime.endsWith('*')) {
-          mime = mime.left(mime.length()-1);
-          if(mimeType.startsWith(mime))
-            return plugin->library();
+        const QStringList mimeTypes = plugin->serviceTypes();
+        foreach(QString mime, mimeTypes) {
+            if(mime.endsWith('*')) {
+                mime = mime.left(mime.length()-1);
+                if(mimeType.startsWith(mime))
+                    return plugin->library();
+            }
         }
-      }
     }
 
     return QString();
