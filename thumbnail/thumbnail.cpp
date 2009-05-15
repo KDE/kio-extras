@@ -484,8 +484,8 @@ void ThumbnailProtocol::drawPictureFrame(QPainter *painter, const QPoint &center
 QImage ThumbnailProtocol::thumbForDirectory(const KUrl& directory)
 {
     QImage img;
-    if(m_propagationDirectories.isEmpty()) {
-        //Directories that the directory preview will be propagated into if there is no direct sub-directories
+    if (m_propagationDirectories.isEmpty()) {
+        // Directories that the directory preview will be propagated into if there is no direct sub-directories
         const KConfigGroup globalConfig(KGlobal::config(), "PreviewSettings");
         m_propagationDirectories = globalConfig.readEntry("PropagationDirectories", QStringList() << "VIDEO_TS").toSet();
     }
@@ -540,11 +540,11 @@ QImage ThumbnailProtocol::thumbForDirectory(const KUrl& directory)
 
     const int maxYPos = folderHeight - bottomMargin - segmentHeight;
     
-    while((skipped <= skipValidItems) && (yPos <= maxYPos) && !hadThumbnail)
-    {
+    while ((skipped <= skipValidItems) && (yPos <= maxYPos) && !hadThumbnail) {
         QDirIterator dir(localFile, QDir::Files | QDir::Readable);
-        if(!dir.hasNext())
+        if (!dir.hasNext()) {
             break;
+        }
         
         while (dir.hasNext() && (yPos <= maxYPos)) {
             ++iterations;
@@ -555,8 +555,8 @@ QImage ThumbnailProtocol::thumbForDirectory(const KUrl& directory)
 
             dir.next();
 
-            if(hadThumbnail && hadFirstThumbnail == dir.filePath()) {
-                break; //Never show the same thumbnail twice
+            if (hadThumbnail && hadFirstThumbnail == dir.filePath()) {
+                break; // Never show the same thumbnail twice
             }
 
             QImage subThumbnail;
@@ -573,14 +573,16 @@ QImage ThumbnailProtocol::thumbForDirectory(const KUrl& directory)
             // for the same directory and sequence-item
             qsrand(qHash(dir.filePath()));
             
-            if(hadFirstThumbnail.isEmpty())
+            if (hadFirstThumbnail.isEmpty()) {
                 hadFirstThumbnail = dir.filePath();
+            }
 
             hadThumbnail = true;
 
             // Apply fake smooth scaling, as seen on several blogs
-            if(subThumbnail.width() > segmentWidth * 4 || subThumbnail.height() > segmentHeight * 4)
+            if (subThumbnail.width() > segmentWidth * 4 || subThumbnail.height() > segmentHeight * 4) {
                 subThumbnail = subThumbnail.scaled(segmentWidth*4, segmentHeight*4, Qt::KeepAspectRatio, Qt::FastTransformation);
+            }
 
             QSize targetSize(subThumbnail.size());
 
@@ -597,31 +599,34 @@ QImage ThumbnailProtocol::thumbForDirectory(const KUrl& directory)
             }
         }
         
-        if(skipped) { //Round up to full pages
-            int roundedDown = (skipped / visibleCount) * visibleCount;
-            if(roundedDown < skipped)
+        if (skipped != 0) { // Round up to full pages
+            const int roundedDown = (skipped / visibleCount) * visibleCount;
+            if (roundedDown < skipped) {
                 skipped = roundedDown + visibleCount;
-            else
+            } else {
                 skipped = roundedDown;
+            }
         }
         
-        if(skipped == 0)
-            break; //No valid items were found
+        if (skipped == 0) {
+            break; // No valid items were found
+        }
             
-        //We don't need to iterate again and again: Subtract any multiple of "skipped" from the count we still need to skip
+        // We don't need to iterate again and again: Subtract any multiple of "skipped" from the count we still need to skip
         skipValidItems -= (skipValidItems / skipped) * skipped;
         skipped = 0;
     }
     
     if (!hadThumbnail) {
-        //Eventually propagate the contained items from a sub-directory
+        // Eventually propagate the contained items from a sub-directory
         QDirIterator dir(localFile, QDir::Dirs);
         int max = 50;
-        while(dir.hasNext() && max > 0) {
+        while (dir.hasNext() && max > 0) {
             --max;
             dir.next();
-            if(m_propagationDirectories.contains(dir.fileName()))
+            if (m_propagationDirectories.contains(dir.fileName())) {
                 return thumbForDirectory(KUrl(dir.filePath()));
+            }
         }
     }
 
