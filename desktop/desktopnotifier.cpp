@@ -24,6 +24,7 @@
 #include <KPluginFactory>
 #include <KPluginLoader>
 #include <KStandardDirs>
+#include <KUrl>
 
 #include <kdirnotify.h>
 
@@ -36,7 +37,7 @@ DesktopNotifier::DesktopNotifier(QObject *parent, const QList<QVariant> &)
     : KDEDModule(parent)
 {
     KDirWatch *dirWatch = new KDirWatch(this);
-    dirWatch->addDir(KGlobalSettings::desktopPath());
+    dirWatch->addDir(KGlobalSettings::desktopPath(), KDirWatch::WatchSubDirs);
     dirWatch->addDir(KGlobal::dirs()->localxdgdatadir() + "Trash/files");
 
     connect(dirWatch, SIGNAL(dirty(QString)), SLOT(dirty(QString)));
@@ -52,7 +53,10 @@ void DesktopNotifier::dirty(const QString &path)
             org::kde::KDirNotify::emitFilesChanged(QStringList() << "desktop:/trash.desktop");
     } else {
         // Emitting FilesAdded forces a re-read of the dir
-        org::kde::KDirNotify::emitFilesAdded("desktop:/");
+        KUrl url("desktop:/");
+        url.addPath(KUrl::relativePath(KGlobalSettings::desktopPath(), path));
+        url.cleanPath();
+        org::kde::KDirNotify::emitFilesAdded(url.url());
     }
 }
 
