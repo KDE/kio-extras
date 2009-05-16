@@ -17,6 +17,7 @@ Description[pt_BR]=Um kioslave para navegar a rede
 Description[sv]=En I/O-slav för att bläddra på nätverket
 Description[tr]=Ağa gözatmak için bir kioslave
 Description[uk]=kioslave для перегляду мережі
+Description[zh_CN]=浏览网络的 KIO slave
 Description[zh_TW]=瀏覽網路的 kioslave
 exec=kio_network
 

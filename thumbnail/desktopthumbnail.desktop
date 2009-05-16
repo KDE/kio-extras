@@ -15,6 +15,7 @@ Name[ro]=Fișiere de birou
 Name[sv]=Skrivbordsfiler
 Name[tr]=Masaüstü Dosyaları
 Name[uk]=Стільничні файли
+Name[zh_CN]=桌面文件
 Name[zh_TW]=桌面檔
 X-KDE-ServiceTypes=ThumbCreator
 MimeType=application/x-desktop;
