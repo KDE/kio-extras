@@ -1,6 +1,8 @@
 [Desktop Entry]
 Type=Service
 Name=Directories
+Name[ca]=Directoris
+Name[ca@valencia]=Directoris
 Name[csb]=Katalodżi
 Name[da]=Mapper
 Name[de]=Ordner
