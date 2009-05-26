@@ -2,6 +2,7 @@
 Type=Service
 Name=Ethicle
 Name[gu]=ઇથિકલ
+Name[ml]=ഇത്തിക്കിള്‍
 Name[x-test]=xxEthiclexx
 X-KDE-ServiceTypes=SearchProvider
 Keys=et,ethicle
