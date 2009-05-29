@@ -39,6 +39,10 @@
 #   March 9 2003      Add support for browsing by file. by Luis Pedro Coelho
 #   June  11 2003     Update the layout of the sides to the new infopageslayout.
 #                     by Sven Leiber <s.leiber@web.de>
+#   July  22 2008     Add support for lzma.
+#                     by Per Øyvind Karlsen <peroyvind@mandriva.org>
+#   January 8 2009    Update lzma support for new xz tool and format.
+#                     by Per Øyvind Karlsen <peroyvind@mandriva.org>
 #
 #-------------------------------------------------------
 
@@ -147,6 +151,10 @@ sub FileNotFound {
 	if ($DirFileName =~ m/.info.bz2$/ ) {
 		open DIR, "-|", "bzcat", $DirFileName;
 	}
+	elsif ($DirFileName =~ m/.info.(lzma|xz)$/ ) {
+		open DIR, "-|", "xzcat", $DirFileName;
+	}
+
 	elsif ($DirFileName =~ m/.info.gz$/ ) {
 		open DIR, "-|", "gzip", "-dc", $DirFileName;
 	}
@@ -255,6 +263,9 @@ sub infocat {
 		while ($infofile = readdir(DIR)) {
 			if ($infofile =~ m/.info.bz2$/ ) {
 				open INFOFILE, "-|", "bzcat", "$dir/$infofile";
+			}
+			elsif ($infofile =~ m/.info.(lzma|xz)$/ ) {
+				open INFOFILE, "-|", "xzcat", "$dir/$infofile";
 			}
 			elsif ($infofile =~ m/.info.gz$/ ) {
 				open INFOFILE, "-|", "gzip", "-dc", "$dir/$infofile";
@@ -434,6 +445,8 @@ sub ReadIndirectTable {
     open FH1, "-|", "gunzip", "-q", "-d", "-c", $FileName || &DieFileNotFound($FileName);
   } elsif ($FileName =~ /\.bz2$/) {
     open FH1, "-|", "bunzip2", "-q", "-d", "-c", $FileName || &DieFileNotFound($FileName);
+  } elsif ($FileName =~ /\.(lzma|xz)$/) {
+    open FH1, "-|", "unxz", "-q", "-d", "-c", $FileName || &DieFileNotFound($FileName);
   } else {
     open(FH1, $FileName) || &DieFileNotFound($FileName);
   }
@@ -480,6 +493,8 @@ sub ReadTagTable {
     open FH, "-|", "gunzip", "-q", "-d", "-c", $FileName || &DieFileNotFound($FileName);
   } elsif ($FileName =~ /\.bz2$/) {
     open FH, "-|", "bunzip2", "-q", "-d", "-c", $FileName || &DieFileNotFound($FileName);
+  } elsif ($FileName =~ /\.(lzma|xz)$/) {
+    open FH, "-|", "unxz", "-q", "-d", "-c", $FileName || &DieFileNotFound($FileName);
   } else {
     open FH, $FileName || &DieFileNotFound($FileName);
   }
@@ -776,6 +791,8 @@ sub InfoNode2HTML {
     open FH2, "-|", "gunzip", "-q", "-d", "-c", $FileName || &DieFileNotFound($FileName);
   } elsif ($FileName =~ /\.bz2$/) {
     open FH2, "-|", "bunzip2", "-q", "-d", "-c", $FileName || &DieFileNotFound($FileName);
+  } elsif ($FileName =~ /\.(lzma|xz)$/) {
+    open FH2, "-|", "unxz", "-q", "-d", "-c", $FileName || &DieFileNotFound($FileName);
   } else {
     open FH2, $FileName || &DieFileNotFound($FileName);
   }
@@ -1005,17 +1022,23 @@ sub FindFile {
     foreach my $Name ($File, $Alt) {
         my $gzName  = $Name . '.gz';
         my $bz2Name = $Name . '.bz2';
+        my $lzmaName = $Name . '.lzma';
+        my $xzName = $Name . '.xz';
 
         foreach (@info2html::config::INFODIR) {
             return "$_/$Name"    if -e "$_/$Name";
             return "$_/$gzName"  if -e "$_/$gzName";
             return "$_/$bz2Name" if -e "$_/$bz2Name";
+            return "$_/$lzmaName" if -e "$_/$lzmaName";
+            return "$_/$xzName" if -e "$_/$xzName";
         }
         next unless $ENV{INFOPATH};
         foreach my $i (split(/:/, $ENV{INFOPATH})) {
             return "$i/$Name"    if -e "$i/$Name";
             return "$i/$gzName"  if -e "$i/$gzName";
             return "$i/$bz2Name" if -e "$i/$bz2Name";
+            return "$i/$lzmaName" if -e "$i/$lzmaName";
+            return "$i/$xzName" if -e "$i/$xzName";
         }
     }
     return "";

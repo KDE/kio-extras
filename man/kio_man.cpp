@@ -70,6 +70,10 @@ void stripExtension( QString *name )
         pos -= 4;
     else if ( name->indexOf(".bz", -3) != -1 )
         pos -= 3;
+    else if ( name->indexOf(".lzma", -5) != -1 )
+        pos -= 5;
+    else if ( name->indexOf(".xz", -3) != -1 )
+        pos -= 3;
 
     if ( pos > 0 )
         pos = name->lastIndexOf('.', pos-1);
@@ -1317,6 +1321,10 @@ void MANProtocol::showIndex(const QString& section)
 	    end -= 2;
 	else if ( len >= 4 && strcmp( end-3, ".bz2" ) == 0 )
 	    end -= 4;
+	else if ( len >= 5 && strcmp( end-4, ".lzma" ) == 0 )
+	    end -= 5;
+	else if ( len >= 3 && strcmp( end-2, ".xz" ) == 0 )
+	    end -= 3;
 
 	while ( end >= begin && *end != '.' )
 	    end--;
