@@ -423,6 +423,15 @@ float ThumbnailProtocol::sequenceIndex() const {
     return metaData("sequence-index").toFloat();
 }
 
+bool ThumbnailProtocol::isOpaque(const QImage &image) const
+{
+    // Test the corner pixels
+    return qAlpha(image.pixel(QPoint(0, 0))) == 255 &&
+           qAlpha(image.pixel(QPoint(image.width()-1, 0))) == 255 &&
+           qAlpha(image.pixel(QPoint(0, image.height()-1))) == 255 &&
+           qAlpha(image.pixel(QPoint(image.width()-1, image.height()-1))) == 255;
+}
+
 void ThumbnailProtocol::drawPictureFrame(QPainter *painter, const QPoint &centerPos,
                                          const QImage &image, int frameWidth, QSize imageTargetSize) const
 {
@@ -456,10 +465,12 @@ void ThumbnailProtocol::drawPictureFrame(QPainter *painter, const QPoint &center
     p.translate(-r.topLeft());
     p.setWorldTransform(m, true);
 
-    p.setRenderHint(QPainter::Antialiasing);
-    p.setPen(Qt::NoPen);
-    p.setBrush(Qt::white);
-    p.drawRoundedRect(frameRect, scaledFrameWidth / 2, scaledFrameWidth / 2);
+    if (isOpaque(image)) {
+        p.setRenderHint(QPainter::Antialiasing);
+        p.setPen(Qt::NoPen);
+        p.setBrush(Qt::white);
+        p.drawRoundedRect(frameRect, scaledFrameWidth / 2, scaledFrameWidth / 2);
+    }
     p.drawImage(scaledFrameWidth, scaledFrameWidth, image);
     p.end();
 

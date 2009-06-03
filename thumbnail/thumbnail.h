@@ -38,6 +38,7 @@ public:
 protected:
     ThumbCreator* getThumbCreator(const QString& plugin);
     const QImage getIcon();
+    bool isOpaque(const QImage &image) const;
     void drawPictureFrame(QPainter *painter, const QPoint &pos, const QImage &image,
                           int frameWidth, QSize imageTargetSize) const;
     QImage thumbForDirectory(const KUrl& directory);
