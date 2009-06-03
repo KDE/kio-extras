@@ -36,8 +36,8 @@ template < class T > class QList;
 class QString;
 class QDBusArgument;
 
-extern QDBusArgument& operator<<( QDBusArgument& argument, const Mollet::NetService& service );
-extern const QDBusArgument& operator>>( const QDBusArgument& argument, Mollet::NetService& service );
+extern MOLLETNETWORK_EXPORT QDBusArgument& operator<<( QDBusArgument& argument, const Mollet::NetService& service );
+extern MOLLETNETWORK_EXPORT const QDBusArgument& operator>>( const QDBusArgument& argument, Mollet::NetService& service );
 
 
 namespace Mollet
