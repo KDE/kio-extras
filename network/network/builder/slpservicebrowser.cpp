@@ -27,11 +27,13 @@
 
 #include <KDebug>
 
+#ifndef Q_OS_WIN
 extern "C"
 {
     /* let it still work, even someone installed a non-SuSE openslp */
     SLPEXP const char* SLPAPI SLPGetMDNSName( SLPHandle hSLP, const char* pcURL ) __attribute__ ((weak));
 }
+#endif
 
 namespace Mollet
 {
@@ -173,7 +175,9 @@ Q_UNUSED( lifetime )
 
 //     if( success )
     {
-        const QString mdnsName = ( SLPGetMDNSName ) ? QString::fromUtf8(SLPGetMDNSName(hslp, serviceUrl)) : QString();
+// #ifndef Q_OS_WIN
+//         const QString mdnsName = ( SLPGetMDNSName ) ? QString::fromUtf8(SLPGetMDNSName(hslp, serviceUrl)) : QString();
+// #endif
 
         QString attributeList;
         SLPFindAttrs( hslp, serviceUrl, DefaultScope, AllAttributesFilter, onAttributesFound, &attributeList );
