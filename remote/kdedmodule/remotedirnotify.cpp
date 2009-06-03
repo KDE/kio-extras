@@ -32,7 +32,7 @@ RemoteDirNotify::RemoteDirNotify()
 {
 	KGlobal::dirs()->addResourceType("remote_entries", "data", "remoteview");
 
-	QString path = KGlobal::dirs()->saveLocation("remote_entries");
+	const QString path = KGlobal::dirs()->saveLocation("remote_entries");
 	m_baseURL.setPath(path);
 
 	QDBusConnection::sessionBus().connect(QString(), QString(), "org.kde.KDirNotify",

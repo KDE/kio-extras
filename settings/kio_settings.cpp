@@ -137,8 +137,8 @@ void SettingsProtocol::stat(const KUrl& url)
     QHash<QString, KService::Ptr>::const_iterator it = m_categoryLookup.constFind(fileName);
     if (it != m_categoryLookup.constEnd()) {
         const KService::Ptr service = it.value();
-        QString parentCategory = service->property("X-KDE-System-Settings-Parent-Category").toString();
-        QString category = service->property("X-KDE-System-Settings-Category").toString();
+        const QString parentCategory = service->property("X-KDE-System-Settings-Parent-Category").toString();
+        const QString category = service->property("X-KDE-System-Settings-Category").toString();
         //kDebug() << "category" << service->desktopEntryName() << service->name() << "category=" << category << "parentCategory=" << parentCategory;
         createDirEntry(entry, category, service->icon());
         entry.insert(KIO::UDSEntry::UDS_DISPLAY_NAME, service->name());
@@ -163,7 +163,7 @@ void SettingsProtocol::stat(const KUrl& url)
 void SettingsProtocol::listDir(const KUrl& url)
 {
     initSettingsData();
-    QString fileName = url.fileName();
+    const QString fileName = url.fileName();
     if (!fileName.isEmpty() && !m_categoryLookup.contains(fileName)) {
         error(KIO::ERR_DOES_NOT_EXIST, fileName);
         return;

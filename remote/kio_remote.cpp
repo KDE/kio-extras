@@ -65,7 +65,7 @@ void RemoteProtocol::listDir(const KUrl &url)
 	}
 
 	int second_slash_idx = url.path().indexOf( '/', 1 );
-	QString root_dirname = url.path().mid( 1, second_slash_idx-1 );
+	const QString root_dirname = url.path().mid( 1, second_slash_idx-1 );
 
 	KUrl target = m_impl.findBaseURL( root_dirname );
 	kDebug(1220) << "possible redirection target : " << target;
@@ -139,7 +139,7 @@ void RemoteProtocol::stat(const KUrl &url)
 	}
 
 	int second_slash_idx = url.path().indexOf( '/', 1 );
-	QString root_dirname = url.path().mid( 1, second_slash_idx-1 );
+	const QString root_dirname = url.path().mid( 1, second_slash_idx-1 );
 
 	if ( second_slash_idx==-1 || ( (int)url.path().length() )==second_slash_idx+1 )
 	{
@@ -185,7 +185,7 @@ void RemoteProtocol::get(const KUrl &url)
 {
 	kDebug(1220) << "RemoteProtocol::get: " << url;
 
-	QString file = m_impl.findDesktopFile( url.fileName() );
+	const QString file = m_impl.findDesktopFile( url.fileName() );
 	kDebug(1220) << "desktop file : " << file;
 
 	if (!file.isEmpty())

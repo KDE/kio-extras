@@ -270,8 +270,7 @@ void FloppyProtocol::listDir( const KUrl& _url)
    QStringList args;
 
    args<<"mdir"<<"-a"<<(drive+floppyPath);
-   if (m_mtool!=0)
-      delete m_mtool;
+   delete m_mtool;
    m_mtool=new Program(args);
 
    clearBuffers();
@@ -473,7 +472,7 @@ StatInfo FloppyProtocol::_stat(const KUrl& url)
 {
    StatInfo info;
 
-   QString path(url.path());
+   const QString path(url.path());
    QString drive;
    QString floppyPath;
    getDriveAndPath(path,drive,floppyPath);
@@ -492,8 +491,7 @@ StatInfo FloppyProtocol::_stat(const KUrl& url)
    }
 
    //kDebug(7101)<<"Floppy::_stat(): delete m_mtool";
-   if (m_mtool!=0)
-      delete m_mtool;
+   delete m_mtool;
 
    QStringList args;
    args<<"mdir"<<"-a"<<(drive+floppyPath);
@@ -583,8 +581,7 @@ int FloppyProtocol::freeSpace(const KUrl& url)
    getDriveAndPath(path,drive,floppyPath);
 
    //kDebug(7101)<<"Floppy::freeSpace(): delete m_mtool";
-   if (m_mtool!=0)
-      delete m_mtool;
+   delete m_mtool;
 
    QStringList args;
    args<<"mdir"<<"-a"<<drive;
@@ -716,8 +713,7 @@ void FloppyProtocol::mkdir( const KUrl& url, int)
       finished();
       return;
    }
-   if (m_mtool!=0)
-      delete m_mtool;
+   delete m_mtool;
    //kDebug(7101)<<"Floppy::stat(): create args";
    QStringList args;
 
@@ -770,7 +766,7 @@ void FloppyProtocol::mkdir( const KUrl& url, int)
 void FloppyProtocol::del( const KUrl& url, bool isfile)
 {
    kDebug(7101)<<"FloppyProtocol::del()";
-   QString path(url.path());
+   const QString path(url.path());
 
    if ((path.isEmpty()) || (path=="/"))
    {
@@ -789,8 +785,7 @@ void FloppyProtocol::del( const KUrl& url, bool isfile)
       return;
    }
 
-   if (m_mtool!=0)
-      delete m_mtool;
+   delete m_mtool;
    //kDebug(7101)<<"Floppy::stat(): create args";
    QStringList args;
 
@@ -883,8 +878,7 @@ void FloppyProtocol::rename( const KUrl &src, const KUrl &dest, KIO::JobFlags fl
       return;
    }
 
-   if (m_mtool!=0)
-      delete m_mtool;
+   delete m_mtool;
    //kDebug(7101)<<"Floppy::stat(): create args";
    QStringList args;
 
@@ -967,8 +961,7 @@ void FloppyProtocol::get( const KUrl& url )
       return;
    }
 
-   if (m_mtool!=0)
-      delete m_mtool;
+   delete m_mtool;
    //kDebug(7101)<<"Floppy::stat(): create args";
    QStringList args;
    args<<"mcopy"<<(drive+floppyPath)<<"-";
@@ -1059,8 +1052,7 @@ void FloppyProtocol::put( const KUrl& url, int , JobFlags flags )
    if (freeSpaceLeft==-1)
       return;
 
-   if (m_mtool!=0)
-      delete m_mtool;
+   delete m_mtool;
    //kDebug(7101)<<"Floppy::stat(): create args";
    QStringList args;
    if (flags & KIO::Overwrite)

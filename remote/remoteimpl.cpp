@@ -39,7 +39,7 @@ RemoteImpl::RemoteImpl()
 {
 	KGlobal::dirs()->addResourceType("remote_entries", "data", "remoteview");
 
-	QString path = KGlobal::dirs()->saveLocation("remote_entries");
+	const QString path = KGlobal::dirs()->saveLocation("remote_entries");
 
 	QDir dir = path;
 	if (!dir.exists())
@@ -63,7 +63,7 @@ void RemoteImpl::listRoot(KIO::UDSEntryList &list) const
 		QDir dir = *dirpath;
 		if (!dir.exists()) continue;
 
-		QStringList filenames
+		const QStringList filenames
 			= dir.entryList( QDir::Files | QDir::Readable );
 
 
@@ -92,7 +92,7 @@ bool RemoteImpl::findDirectory(const QString &filename, QString &directory) cons
 	const QStringList dirList = KGlobal::dirs()->resourceDirs("remote_entries");
 
 	QStringList::ConstIterator dirpath = dirList.constBegin();
-	QStringList::ConstIterator end = dirList.constEnd();
+	const QStringList::ConstIterator end = dirList.constEnd();
 	for(; dirpath!=end; ++dirpath)
 	{
 		QDir dir = *dirpath;
@@ -137,7 +137,7 @@ KUrl RemoteImpl::findBaseURL(const QString &filename) const
 {
 	kDebug(1220) << "RemoteImpl::findBaseURL";
 
-	QString file = findDesktopFile(filename);
+	const QString file = findDesktopFile(filename);
 	if (!file.isEmpty())
 	{
 		KDesktopFile desktop( file );
