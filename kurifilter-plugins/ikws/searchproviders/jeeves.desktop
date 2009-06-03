@@ -32,6 +32,5 @@ Name[x-test]=xxAsk Jeevesxx
 X-KDE-ServiceTypes=SearchProvider
 Keys=ask,jeeves
 Query=http://www.ask.com/main/askJeeves.asp?origin=0&qSource=4&site_name=Jeeves&metasearch=yes&ask=\\{@}
-Query[bg]=http://www.ask.com/main/askJeeves.asp?origin=0&qSource=4&site_Jeeves&metasearch=yes&ask=\\{@}
 Query[en_GB]=http://www.ask.co.uk/main/askJeeves.asp?origin=0&qSource=4&site_name=Jeeves&metasearch=yes&ask=\\{@}
 Query[x-test]=xxhttp://www.ask.com/main/askJeeves.asp?origin=0&qSource=4&site_name=Jeeves&metasearch=yes&ask=\\{@}xx

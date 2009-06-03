@@ -7,6 +7,7 @@ Name[af]=WordReference.com Vertaling: Frans na Engels
 Name[ar]=ترجمة WordReference.com: فرنسي إلى إنجليزي
 Name[be]=Пераклад WordReference.com: з французскай на англійскую
 Name[be@latin]=Pierakład „WordReference.com”: francuskaja ➙ anhielskaja
+Name[bg]=Превод с WordReference.com — от френски към английски
 Name[bn]=WordReference.com অনুবাদ: ফরাসী থেকে ইংরাজি 
 Name[bn_IN]=WordReference.com অনুবাদ: ফ্রেঞ্চ থেকে ইংরাজি
 Name[ca]=Traducció WordReference.com: Francès - Anglès
@@ -80,7 +81,6 @@ Name[x-test]=xxWordReference.com Translation: French to Englishxx
 Name[zh_CN]=WordReference.com 翻译：法语译英语
 Name[zh_TW]=WordReference.com 翻譯: 法文至英文
 Query=http://www.wordreference.com/fr/en/translation.asp?fren=\\{@}
-Query[bg]=Query=http://www.wordreference.com/fr/en/translation.asp?fren=\\{@}
 Query[x-test]=xxhttp://www.wordreference.com/fr/en/translation.asp?fren=\\{@}xx
 X-KDE-ServiceTypes=SearchProvider
 Type=Service

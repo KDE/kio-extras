@@ -46,5 +46,4 @@ Name[x-test]=xxAlexa URLxx
 X-KDE-ServiceTypes=SearchProvider
 Keys=alu,url
 Query=http://info.alexa.com/data/details?url=\\{@}
-Query[bg]=Query=http://info.alexa.com/data/details?url=\\{@}
 Query[x-test]=xxhttp://info.alexa.com/data/details?url=\\{@}xx

@@ -5,6 +5,7 @@ Name[af]=Debian Backports Soektog
 Name[ar]=ابحث في مخازن ديبيان
 Name[be]=Пошук Debian Backports
 Name[be@latin]=Pošuk „Backports” dla systemy „Debian”
+Name[bg]=Търсене в Debian Backports
 Name[bn]=ডেবিয়ান ব্যাকপোর্ট অনুসন্ধান
 Name[bn_IN]=Debian ব্যাক-পোর্ট অনুসন্ধান
 Name[ca]=Cerca de reratransports Debian
@@ -74,7 +75,6 @@ Name[x-test]=xxDebian Backports Searchxx
 Name[zh_CN]=Debian 后端搜索
 Name[zh_TW]=Debian Backports 搜尋
 Query=http://www.backports.org/package.php?search=\\{@}
-Query[bg]=Query=http://www.backports.org/package.php?search=\\{@}
 Query[x-test]=xxhttp://www.backports.org/package.php?search=\\{@}xx
 X-KDE-ServiceTypes=SearchProvider
 Type=Service

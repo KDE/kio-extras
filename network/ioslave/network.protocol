@@ -6,6 +6,7 @@ output=filesystem
 
 Icon=network-workgroup
 Description=A kioslave to browse the network
+Description[bg]=Kioslave за разглеждане на мрежата
 Description[ca]=Un esclau-kio per a explorar la xarxa
 Description[ca@valencia]=Un esclau-kio per a explorar la xarxa
 Description[csb]=Wtëkôcz przezéraniô sécë

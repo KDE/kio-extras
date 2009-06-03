@@ -22,6 +22,5 @@ Name[x-test]=xxExcitexx
 X-KDE-ServiceTypes=SearchProvider
 Keys=ex,excite
 Query=http://search.excite.com/search.gw?search=\\{@}
-Query[bg]=Query=http://search.excite.com/search.gw?search=\\{@}
 Query[en_GB]=http://www.excite.co.uk/search/web/results?q=\\{@}&c=web
 Query[x-test]=xxhttp://search.excite.com/search.gw?search=\\{@}xx

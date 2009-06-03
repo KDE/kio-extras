@@ -7,6 +7,7 @@ Name[af]=WordReference.com Vertaling: Engels na Italiaans
 Name[ar]=ترجمة WordReference: إنجليزي إلى إيطالي
 Name[be]=WordReference.com Пераклад: з англійскай на італьянскую
 Name[be@latin]=Pierakład „WordReference.com”: anhielskaja ➙ italjanskaja
+Name[bg]=Превод с WordReference.com — от английски към италиански
 Name[bn]=WordReference.com অনুবাদ: ইংরাজি থেকে ইতালীয়
 Name[bn_IN]=WordReference.com অনুবাদ: ইংরাজি থেকে ইটালিয়ান
 Name[ca]=Traducció WordReference.com: Anglès - Italià
@@ -80,7 +81,6 @@ Name[x-test]=xxWordReference.com Translation: English to Italianxx
 Name[zh_CN]=WordReference.com 翻译：英语译意大利语
 Name[zh_TW]=WordReference.com 翻譯: 英文至義大利文
 Query=http://www.wordreference.com/it/translation.asp?enit=\\{@}
-Query[bg]=Query=http://www.wordreference.com/it/translation.asp?enit=\\{@}
 Query[x-test]=xxhttp://www.wordreference.com/it/translation.asp?enit=\\{@}xx
 X-KDE-ServiceTypes=SearchProvider
 Type=Service

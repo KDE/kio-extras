@@ -6,6 +6,7 @@ Name=dict.cc Translation: German to English
 Name[ar]=ترجمة dict.cc: ألماني إلى إنجليزي
 Name[be]=dict.cc Пераклад: з нямецкай на англійскую
 Name[be@latin]=Pierakład „dict.cc”: niamieckaja ➙ anhielskaja
+Name[bg]=Превод с dict.cc— от немски към английски
 Name[bn_IN]=dict.cc অনুবাদ: জার্মান থেকে ইংরাজি
 Name[ca]=Traducció dict.cc: Alemany - Anglès
 Name[ca@valencia]=Traducció dict.cc: Alemany - Anglès
@@ -77,7 +78,6 @@ Name[x-test]=xxdict.cc Translation: German to Englishxx
 Name[zh_CN]=dict.cc 翻译：德语译英语
 Name[zh_TW]=dict.cc 翻譯: 德文至英文
 Query=http://www.dict.cc/?s=\\{@}
-Query[bg]=Query=http://www.dict.cc/?s=\\{@}
 Query[x-test]=xxhttp://www.dict.cc/?s=\\{@}xx
 X-KDE-ServiceTypes=SearchProvider
 Type=Service

@@ -7,6 +7,7 @@ Name[af]=WordReference.com Vertaling: Spaans na Engels
 Name[ar]=ترجمة WordReference.com: إسباني إلى إنجليزي
 Name[be]=WordReference.com Пераклад: з іспанскай на англійскую
 Name[be@latin]=Pierakład „WordReference.com”: hišpanskaja ➙ anhielskaja
+Name[bg]=Превод с WordReference.com — от испански към английски
 Name[bn]=WordReference.com অনুবাদ: স্প্যানিশ থেকে ইংরাজি 
 Name[bn_IN]=WordReference.com অনুবাদ: স্প্যানিশ থেকে ইংরাজি
 Name[ca]=Traducció WordReference.com: Espanyol - Anglès
@@ -80,7 +81,6 @@ Name[x-test]=xxWordReference.com Translation: Spanish to Englishxx
 Name[zh_CN]=WordReference.com 翻译：西班牙语译英语
 Name[zh_TW]=WordReference.com 翻譯: 西班牙文至英文
 Query=http://www.wordreference.com/es/en/translation.asp?spen=\\{@}
-Query[bg]=Query=http://www.wordreference.com/es/en/translation.asp?spen=\\{@}
 Query[x-test]=xxhttp://www.wordreference.com/es/en/translation.asp?spen=\\{@}xx
 X-KDE-ServiceTypes=SearchProvider
 Type=Service
