@@ -38,7 +38,7 @@ set( networkdbus_LIB_SRCS
 
 set( molletnetwork_LIB_SRCS
   ${netsystemdriver_SRCS}
-  ${slpnetworkbuilder_SRCS}
+#   ${slpnetworkbuilder_SRCS}
   ${dnssdnetworkbuilder_SRCS}
   ${networkbuilder_SRCS}
   ${networkdbus_LIB_SRCS}
