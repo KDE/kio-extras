@@ -3,6 +3,7 @@ Type=Service
 Name=HyperDictionary.com
 Name[ar]=القاموس الكبير
 Name[csb]=HyperDictionary.com - słowôrz
+Name[gl]=Dicionario Digalego da lingua galega
 Name[gu]=હાયપરડિક્શનરી.કોમ
 Name[hi]=हायपर-डिक्शनरी.कॉम
 Name[hne]=हायपर-डिक्सनरी.काम
@@ -17,4 +18,5 @@ Name[x-test]=xxHyperDictionary.comxx
 X-KDE-ServiceTypes=SearchProvider
 Keys=hd,hyperdict
 Query=http://www.hyperdictionary.com/search.aspx?define=\\{@}
+Query[gl]=http://digalego.com/diccionario/html/index.php?op=procesa&buscado=\{@}&opcion=entrada
 Query[x-test]=xxhttp://www.hyperdictionary.com/search.aspx?define=\\{@}xx
