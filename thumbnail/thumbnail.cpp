@@ -639,6 +639,10 @@ QImage ThumbnailProtocol::thumbForDirectory(const KUrl& directory)
                 return thumbForDirectory(KUrl(dir.filePath()));
             }
         }
+
+        // If no thumbnail could be found, return an empty image which indicates
+        // that no preview for the directory is available.
+        img = QImage();
     }
 
     return img;
