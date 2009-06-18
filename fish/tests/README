@@ -5,3 +5,10 @@ To run it, do the following:
 mkdir /tmp/test
 for i in $(seq 1 1 100); do touch /tmp/fishtest${i}.txt; done
 cmake . && make -j4 && rm /tmp/test/*; ./copytester
+
+Then, to run it again and again, do:
+rm /tmp/test/*; ./copytester
+
+If the program is successful (i.e. the bug does not exist) it will terminate, otherwise, run infinitely.
+
+More info: http://techbase.kde.org/Development/Tutorials/Debugging/Debugging_IOSlaves/Debugging_kio_fish
