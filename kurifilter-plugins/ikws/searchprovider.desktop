@@ -91,5 +91,8 @@ Type=QStringList
 [PropertyDef::Query]
 Type=QString
 
+[PropertyDef::Suggest]
+Type=QString
+
 [PropertyDef::Charset]
 Type=QString
