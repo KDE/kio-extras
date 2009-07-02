@@ -125,4 +125,3 @@ install(FILES
     djvuthumbnail.desktop
     desktopthumbnail.desktop
     DESTINATION ${SERVICES_INSTALL_DIR})
-install(FILES thumbnailfont_7x4.png DESTINATION ${DATA_INSTALL_DIR}/kio_thumbnail/pics)

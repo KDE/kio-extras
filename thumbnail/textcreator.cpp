@@ -24,37 +24,12 @@
 #include <QPixmap>
 #include <QImage>
 #include <QPainter>
+#include <QPalette>
+#include <QTextCodec>
 
 #include <kstandarddirs.h>
-
-class FontSplitter {
-public:
-    FontSplitter() {}
-    virtual ~FontSplitter() {}
-
-protected:
-    int m_width;
-    QSize m_itemSize;
-    QPixmap m_pixmap;
-
-public:
-    void setPixmap(const QPixmap &pixmap) { m_pixmap = pixmap; }
-    const QPixmap& pixmap() const { return m_pixmap; }
-
-    void setItemSize(const QSize &size) { m_itemSize = size; }
-    const QSize& itemSize() const { return m_itemSize; }
-
-    QRect coordinates(const QChar& ch) const {
-        int pos = (unsigned char)ch.toLatin1();
-        int numCols = m_pixmap.width() / m_itemSize.width();
-        if ( numCols == 0 )
-            return QRect();
-        int row = pos / numCols;
-        int col = pos % numCols;
-        return QRect( QPoint( col * m_itemSize.width(), row * m_itemSize.height() ),
-                      m_itemSize );
-    }
-};
+#include <kglobalsettings.h>
+#include <kencodingprober.h>
 
 extern "C"
 {
@@ -65,32 +40,18 @@ extern "C"
 }
 
 TextCreator::TextCreator()
-    : m_splitter(0),
-      m_data(0),
+    : m_data(0),
       m_dataSize(0)
 {
 }
 
 TextCreator::~TextCreator()
 {
-    delete m_splitter;
     delete [] m_data;
 }
 
 bool TextCreator::create(const QString &path, int width, int height, QImage &img)
 {
-    if ( !m_splitter )
-    {
-        m_splitter = new FontSplitter;
-        QString pixmap = KStandardDirs::locate( "data", "kio_thumbnail/pics/thumbnailfont_7x4.png" );
-        if ( !pixmap.isEmpty() )
-        {
-            // FIXME: make font/glyphsize configurable...
-            m_splitter->setPixmap( QPixmap( pixmap ));
-            m_splitter->setItemSize( QSize( 4, 7 ));
-        }
-    }
-
     bool ok = false;
 
     // determine some sizes...
@@ -108,15 +69,15 @@ bool TextCreator::create(const QString &path, int width, int height, QImage &img
     int xborder = 1 + pixmapSize.width()/16;  // minimum x-border
     int yborder = 1 + pixmapSize.height()/16; // minimum y-border
 
-    QSize chSize = m_splitter->itemSize(); // the size of one char
-    int xOffset = chSize.width();
-    int yOffset = chSize.height();
+    // this font is supposed to look good at small sizes
+    QFont font = KGlobalSettings::smallestReadableFont();
+    font.setPixelSize( qMax(7, qMin( 10, ( pixmapSize.height() - 2 * yborder ) / 16 ) ) );
+    QFontMetrics fm( font );
 
     // calculate a better border so that the text is centered
     int canvasWidth  = pixmapSize.width()  - 2*xborder;
     int canvasHeight = pixmapSize.height() -  2*yborder;
-    int numCharsPerLine = (int) (canvasWidth / chSize.width());
-    int numLines = (int) (canvasHeight / chSize.height());
+    int numLines = (int) ( canvasHeight / fm.height() );
 
     // assumes an average line length of <= 120 chars
     const int bytesToRead = 120 * numLines;
@@ -137,77 +98,43 @@ bool TextCreator::create(const QString &path, int width, int height, QImage &img
         {
             ok = true;
             m_data[read] = '\0';
-            QString text = QString::fromLocal8Bit( m_data );
+            KEncodingProber prober;
+            prober.feed(m_data, read);
+            QString text = QTextCodec::codecForName(prober.encoding())->toUnicode( m_data, read ).trimmed();
             // FIXME: maybe strip whitespace and read more?
 
-            m_pixmap.fill( QColor( 245, 245, 245 ) ); // light-grey background
+            // If the text contains tabs or consecutive spaces, it is probably
+            // formatted using white space. Use a fixed pitch font in this case.
+            if ( text.contains( '\t' ) || text.contains( "  " ) )
+            {
+                font.setFamily( KGlobalSettings::fixedFont().family() );
+            }
+#if 0
+            QPalette palette;
+            QColor bgColor = palette.color( QPalette::Base );
+            QColor fgColor = palette.color( QPalette::Text );
+            if ( qGray( bgColor.rgb() ) > qGray( fgColor.rgb() ) ) {
+                bgColor = bgColor.darker( 103 );
+            } else {
+                bgColor = bgColor.lighter( 103 );
+            }
+#else
+            QColor bgColor = QColor ( 245, 245, 245 ); // light-grey background
+            QColor fgColor = Qt::black;
+#endif
+            m_pixmap.fill( bgColor );
 
             QRect rect;
 
-            int rest = m_pixmap.width() - (numCharsPerLine * chSize.width());
-            xborder = qMax( xborder, rest/2); // center horizontally
-            rest = m_pixmap.height() - (numLines * chSize.height());
-            yborder = qMax( yborder, rest/2); // center vertically
-            // end centering
-
-            int x = xborder, y = yborder; // where to paint the characters
-            int posNewLine  = m_pixmap.width() - (chSize.width() + xborder);
-            int posLastLine = m_pixmap.height() - (chSize.height() + yborder);
-            bool newLine = false;
-            Q_ASSERT( posNewLine > 0 );
-            const QPixmap *fontPixmap = &(m_splitter->pixmap());
             QPainter painter( &m_pixmap );
+            painter.setFont( font );
+            painter.setPen( fgColor );
 
-            for ( int i = 0; i < text.length(); i++ )
-            {
-                if ( x > posNewLine || newLine ) // start a new line?
-                {
-                    x = xborder;
-                    y += yOffset;
+            int flags = Qt::AlignTop | Qt::AlignLeft | Qt::TextWrapAnywhere | Qt::TextExpandTabs;
+            painter.drawText( QRect( xborder, yborder, canvasWidth, canvasHeight ), flags, text );
+            painter.end();
 
-                    if ( y > posLastLine ) // more text than space
-                        break;
-
-                    // after starting a new line, we also jump to the next
-                    // physical newline in the file if we don't come from one
-                    if ( !newLine )
-                    {
-                        int pos = text.indexOf( '\n', i );
-                        if ( pos == -1 )
-                            break;
-                        i = pos + 1;
-                    }
-
-                    newLine = false;
-                }
-
-                if ( i >= text.length() )
-                    continue;
-
-                // check for newlines in the text (unix,dos)
-                QChar ch = text.at( i );
-                if ( ch == '\n' )
-                {
-                    newLine = true;
-                    continue;
-                }
-                else if ( ch == '\r' && text.at(i+1) == '\n' )
-                {
-                    newLine = true;
-                    i++; // skip the next character (\n) as well
-                    continue;
-                }
-
-                rect = m_splitter->coordinates( ch );
-                if ( !rect.isEmpty() )
-                {
-                    painter.drawPixmap( QPoint(x,y), *fontPixmap, rect );
-                }
-
-                x += xOffset; // next character
-            }
-            if (ok)
-                img = m_pixmap.toImage();
+            img = m_pixmap.toImage();
         }
 
         file.close();

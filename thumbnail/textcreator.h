@@ -23,8 +23,6 @@
 #include <QPixmap>
 #include <kio/thumbcreator.h>
 
-class FontSplitter;
-
 class TextCreator : public ThumbCreator
 {
 public:
@@ -34,7 +32,6 @@ public:
     virtual Flags flags() const;
 
 private:
-    FontSplitter *m_splitter;
     char *m_data;
     int m_dataSize;
     QPixmap m_pixmap;
