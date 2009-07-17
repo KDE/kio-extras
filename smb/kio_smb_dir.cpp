@@ -230,11 +230,6 @@ void SMBSlave::del( const KUrl &kurl, bool isfile)
         } else {
             errNum = 0;
         }
-
-        if( retVal < 0 )
-        {
-            reportError(kurl, errNum);
-        }
     }
     else
     {
@@ -246,14 +241,16 @@ void SMBSlave::del( const KUrl &kurl, bool isfile)
         } else {
             errNum = 0;
         }
-
-        if( retVal < 0 )
-        {
-            reportError(kurl, errNum);
-        }
     }
 
-    finished();
+    if( errNum != 0 )
+    {
+        reportError(kurl, errNum);
+    }
+    else
+    {
+        finished();
+    }
 }
 
 //===========================================================================
@@ -275,31 +272,30 @@ void SMBSlave::mkdir( const KUrl &kurl, int permissions )
     {
         if (errNum == EEXIST) {
             errNum = cache_stat(m_current_url, &st );
-            if( errNum == 0 )
+            if (errNum == 0 && S_ISDIR(st.st_mode))
             {
-                if(S_ISDIR(st.st_mode ))
-                {
-                    error( KIO::ERR_DIR_ALREADY_EXIST, m_current_url.prettyUrl());
-                }
+                error( KIO::ERR_DIR_ALREADY_EXIST, m_current_url.prettyUrl());
             }
             else
             {
                 error( KIO::ERR_FILE_ALREADY_EXIST, m_current_url.prettyUrl());
             }
-        } else
+        }
+        else
+        {
             reportError(kurl, errNum);
-	kDebug(KIO_SMB) << "SMBSlave::mkdir exit with error " << kurl;
+        }
+        kDebug(KIO_SMB) << "SMBSlave::mkdir exit with error " << kurl;
     }
-    else
+    else // success
     {
         if(permissions != -1)
         {
             // TODO enable the following when complete
             //smbc_chmod( url.toSmbcUrl(), permissions );
         }
+        finished();
     }
-
-    finished();
 }
 
 

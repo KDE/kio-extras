@@ -439,7 +439,6 @@ void SMBSlave::listDir( const KUrl& kurl )
        }
 
        reportError(m_current_url, errNum);
-       finished();
        return;
    }
 
