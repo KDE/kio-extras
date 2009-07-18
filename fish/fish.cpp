@@ -518,11 +518,14 @@ bool fishProtocol::connectionStart() {
             myDebug( << "select failed, rc: " << rc << ", error: " << strerror(errno) << endl);
             return true;
         }
-        while (FD_ISSET(childFd,&wfds) && outBufPos >= 0) 
-	{
-            if (outBuf) rc = ::write(childFd,outBuf+outBufPos,outBufLen-outBufPos);
-            else rc = 0;
-            if (rc >= 0) outBufPos += rc;
+        while (FD_ISSET(childFd, &wfds) && outBufPos >= 0) {
+            if (outBuf)
+                rc = ::write(childFd, outBuf + outBufPos, outBufLen - outBufPos);
+            else
+                rc = 0;
+
+            if (rc >= 0)
+                outBufPos += rc;
             else {
                 if (errno == EINTR)
                     continue;
@@ -536,13 +539,14 @@ bool fishProtocol::connectionStart() {
                 outBufLen = 0;
             }
         }
-        if (FD_ISSET(childFd,&rfds)) 
-	{
-            rc = ::read(childFd,buf+offset,32768-offset);
+        if (FD_ISSET(childFd,&rfds)) {
+            rc = ::read(childFd, buf + offset, sizeof(buf) - offset);
             if (rc > 0) {
-                int noff = establishConnection(buf,rc+offset);
-                if (noff < 0) return false;
-                if (noff > 0) memmove(buf,buf+offset+rc-noff,noff);
+                int noff = establishConnection(buf, rc + offset);
+                if (noff < 0)
+                    return false;
+                if (noff > 0)
+                    memmove(buf, buf + offset + rc - noff, noff);
                 offset = noff;
             } else {
                 if (errno == EINTR)
@@ -1404,6 +1408,7 @@ void fishProtocol::finished() {
         isRunning = false;
     }
 }
+
 /** aborts command sequence and calls error() */
 void fishProtocol::error(int type, const QString &detail) {
     commandList.clear();
@@ -1412,8 +1417,9 @@ void fishProtocol::error(int type, const QString &detail) {
     SlaveBase::error(type,detail);
     isRunning = false;
 }
+
 /** executes a chain of commands */
-void fishProtocol::run() 
+void fishProtocol::run()
 /* This function writes to childFd fish commands (like #STOR 0 /tmp/test ...) that are stored in outBuf
 and reads from childFd the remote host's response. ChildFd is the fd to a process that communicates
 with .fishsrv.pl typically running on another computer. */
@@ -1449,25 +1455,20 @@ with .fishsrv.pl typically running on another computer. */
 	    // Do: send command and newlines, expect response then
 	    // Do not: send commands, expect response, send newlines, expect response on newlines
 	    // Newlines do not trigger a response.
-            while (FD_ISSET(childFd,&wfds) && outBufPos >= 0) 
-	    {
+            while (FD_ISSET(childFd,&wfds) && outBufPos >= 0) {
+                if (outBufLen-outBufPos > 0)
+                    rc = ::write(childFd, outBuf + outBufPos, outBufLen - outBufPos);
 #else
-            while (outBufPos >= 0) 
-	    {
-#endif
-#if 0
-                QString debug = QString::fromLatin1(outBuf+outBufPos,outBufLen-outBufPos);
-                myDebug( << "now writing " << (outBufLen-outBufPos) << " " << debug << endl);
-#endif
-#ifndef Q_WS_WIN
-                if (outBufLen-outBufPos > 0) rc = ::write(childFd,outBuf+outBufPos,outBufLen-outBufPos);
-#else
+            while (outBufPos >= 0) {
                 if (outBufLen-outBufPos > 0) {
                     rc = childPid->write(outBuf);
                 }
 #endif
-                else rc = 0;
-                if (rc >= 0) outBufPos += rc;
+                else
+                    rc = 0;
+
+                if (rc >= 0)
+                    outBufPos += rc;
                 else {
 #ifndef Q_WS_WIN
                     if (errno == EINTR)
@@ -1488,15 +1489,15 @@ with .fishsrv.pl typically running on another computer. */
             }
 #ifndef Q_WS_WIN
             if (FD_ISSET(childFd,&rfds)) {
-                rc = ::read(childFd,buf+offset,32768-offset);
+                rc = ::read(childFd, buf + offset, sizeof(buf) - offset);
 #else
             if (childPid->waitForReadyRead(1000)) {
-                rc = childPid->read(buf+offset,32768-offset);
+                rc = childPid->read(buf + offset, sizeof(buf) - offset);
 #endif
                 //myDebug( << "read " << rc << " bytes" << endl);
                 if (rc > 0) {
-                    int noff = received(buf,rc+offset);
-                    if (noff > 0) memmove(buf,buf+offset+rc-noff,noff);
+                    int noff = received(buf, rc + offset);
+                    if (noff > 0) memmove(buf, buf + offset + rc - noff, noff);
                     //myDebug( << "left " << noff << " bytes: " << QString::fromLatin1(buf,offset) << endl);
                     offset = noff;
                 } else {
@@ -1517,6 +1518,7 @@ with .fishsrv.pl typically running on another computer. */
         }
     }
 }
+
 /** stat a file */
 void fishProtocol::stat(const KUrl& u){
     myDebug( << "@@@@@@@@@ stat " << u << endl);
