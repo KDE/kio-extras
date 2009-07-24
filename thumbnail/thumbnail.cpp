@@ -534,7 +534,9 @@ QImage ThumbnailProtocol::thumbForDirectory(const KUrl& directory)
     img = QImage(QSize(folderWidth, folderHeight), QImage::Format_ARGB32);
     img.fill(0);
 
-    QPainter p(&img);
+    QPainter p;
+    p.begin(&img);
+
     p.setCompositionMode(QPainter::CompositionMode_Source);
     p.drawPixmap(0, 0, folder);
     p.setCompositionMode(QPainter::CompositionMode_SourceOver);
@@ -644,6 +646,8 @@ QImage ThumbnailProtocol::thumbForDirectory(const KUrl& directory)
         // that no preview for the directory is available.
         img = QImage();
     }
+
+    p.end();
 
     return img;
 }
