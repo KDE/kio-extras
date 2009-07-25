@@ -630,6 +630,8 @@ QImage ThumbnailProtocol::thumbForDirectory(const KUrl& directory)
         skipped = 0;
     }
     
+    p.end();
+    
     if (!hadThumbnail) {
         // Eventually propagate the contained items from a sub-directory
         QDirIterator dir(localFile, QDir::Dirs);
@@ -646,8 +648,6 @@ QImage ThumbnailProtocol::thumbForDirectory(const KUrl& directory)
         // that no preview for the directory is available.
         img = QImage();
     }
-
-    p.end();
 
     return img;
 }
