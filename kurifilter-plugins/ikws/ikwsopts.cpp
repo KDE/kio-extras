@@ -126,7 +126,8 @@ void ProvidersModel::deleteProvider(SearchProvider* p)
 {
   int row=m_providers.indexOf(p);
   beginRemoveRows(QModelIndex(), row, row);
-  m_providers.removeAt(row); 
+  const QString &removed = m_providers.takeAt(row)->desktopEntryName();
+  m_favouriteEngines.remove(removed);
   endRemoveRows();
   emit dataModified();
 }
