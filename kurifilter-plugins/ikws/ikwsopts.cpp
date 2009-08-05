@@ -126,14 +126,14 @@ void ProvidersModel::deleteProvider(SearchProvider* p)
 {
   int row=m_providers.indexOf(p);
   beginRemoveRows(QModelIndex(), row, row);
-  const QString &removed = m_providers.takeAt(row)->desktopEntryName();
+  const QString removed = m_providers.takeAt(row)->desktopEntryName();
   m_favouriteEngines.remove(removed);
   endRemoveRows();
   emit dataModified();
 }
 
 void ProvidersModel::addProvider(SearchProvider* p)
-{   
+{
   beginInsertRows(QModelIndex(), m_providers.size(), m_providers.size());
   m_providers.append(p); 
   endInsertRows();
