@@ -22,8 +22,6 @@
 #include <stdlib.h>
 #include <unistd.h> // getpid()
 
-#include <QDir>
-#include <QRegExp>
 
 #include <kdebug.h>
 #include <kshell.h>
@@ -33,6 +31,7 @@
 #include <kconfig.h>
 #include <kconfiggroup.h>
 
+#include <QFile>
 
 using namespace KIO;
 

@@ -27,7 +27,6 @@
 #include <kcmdlineargs.h>
 #include <kglobal.h>
 
-#include <QFile>
 
 extern "C" {
 	int KDE_EXPORT kdemain( int argc, char **argv )

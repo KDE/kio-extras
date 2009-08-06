@@ -24,8 +24,6 @@
 #include <string.h>
 
 #include <QByteArray>
-#include <QTextStream>
-#include <QFile>
 #include <QRegExp>
 
 #include <kdebug.h>

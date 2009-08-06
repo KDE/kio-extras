@@ -18,7 +18,6 @@
 #define __kio_sftp_h__
 
 
-#include <QObject>
 
 #include <kurl.h>
 #include <kio/global.h>

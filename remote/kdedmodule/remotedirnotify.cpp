@@ -26,7 +26,6 @@
 #include <kdirnotify.h>
 
 #include <QtDBus/QtDBus>
-#include <QDir>
 
 RemoteDirNotify::RemoteDirNotify()
 {

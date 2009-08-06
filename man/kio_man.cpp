@@ -29,7 +29,6 @@
 #include <QDir>
 #include <QFile>
 #include <QTextStream>
-#include <QDataStream>
 #include <QMap>
 #include <QRegExp>
 #include <QTextCodec>

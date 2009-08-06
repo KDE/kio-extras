@@ -39,7 +39,6 @@
 #include <QByteArray>
 #include <QTextStream>
 #include <QDateTime>
-#include <QFile>
 
 #include <kcomponentdata.h>
 #include <kdebug.h>

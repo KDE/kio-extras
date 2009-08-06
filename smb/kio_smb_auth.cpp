@@ -34,7 +34,6 @@
 
 #include <kconfig.h>
 #include <kconfiggroup.h>
-#include <QDir>
 #include <stdlib.h>
 
 // call for libsmbclient

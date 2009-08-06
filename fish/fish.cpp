@@ -30,7 +30,6 @@
 #include "config-fish.h"
 #include <QFile>
 #include <QDateTime>
-#include <QBitArray>
 #include <QRegExp>
 #include <QCoreApplication>
 

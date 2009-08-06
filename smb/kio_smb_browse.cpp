@@ -33,7 +33,6 @@
 #include <pwd.h>
 #include <grp.h>
 
-#include <QTextCodec>
 
 #include <kglobal.h>
 

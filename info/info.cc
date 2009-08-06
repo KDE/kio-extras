@@ -5,10 +5,7 @@
 #include <sys/stat.h>
 #include <unistd.h> // getpid()
 
-#include <QDir>
 #include <QFile>
-#include <QTextStream>
-#include <QRegExp>
 
 #include <kdebug.h>
 #include <kshell.h>

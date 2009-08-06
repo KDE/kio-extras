@@ -19,20 +19,17 @@
 #include "kcmcgi.h"
 
 #include <KAboutData>
-#include <KComponentData>
 #include <KConfig>
 #include <KFileDialog>
 #include <KPluginFactory>
 #include <KPluginLoader>
-#include <KGlobal>
 #include <KHBox>
 #include <KLocale>
 
 #include <QGroupBox>
-#include <QLayout>
 #include <QListWidget>
 #include <QPushButton>
-#include <QHBoxLayout>
+#include <QVBoxLayout>
 
 #include "kcmcgi.moc"
 

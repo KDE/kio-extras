@@ -6,7 +6,6 @@ It was written to verify KDE bug 147948: https://bugs.kde.org/show_bug.cgi?id=14
 #include <klocalizedstring.h>
 #include <kmessagebox.h>
 #include <kcmdlineargs.h>
-#include <KMainWindow>
 #include <copytester.h>
 
 int main (int argc, char *argv[])
