@@ -31,8 +31,9 @@ if(NOT WIN32)
    add_subdirectory( finger )
    add_subdirectory( man )
    add_subdirectory( nfs )  
-
-   if(SAMBA_FOUND)
-      add_subdirectory(smb)
-   endif(SAMBA_FOUND)
 endif(NOT WIN32)
+
+if(SAMBA_FOUND OR WIN32)
+    add_subdirectory(smb)
+endif(SAMBA_FOUND OR WIN32)
+
