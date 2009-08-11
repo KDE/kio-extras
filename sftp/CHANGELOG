@@ -1,3 +1,8 @@
+2009-08-01 - Rewrite with libssh.
+             * Resume support
+             * Support for different details
+             * Mimetype support
+
 - add dialog to ask for username
 - rename() causes SSH to die
 - How to handle overwrite?
