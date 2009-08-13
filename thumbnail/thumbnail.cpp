@@ -139,9 +139,11 @@ int kdemain(int argc, char **argv)
 }
 
 ThumbnailProtocol::ThumbnailProtocol(const QByteArray &pool, const QByteArray &app)
-    : SlaveBase("thumbnail", pool, app)
+    : SlaveBase("thumbnail", pool, app),
+      m_iconSize(0),
+      m_maxFileSize(0)
 {
-    m_iconSize = 0;
+
 }
 
 ThumbnailProtocol::~ThumbnailProtocol()
@@ -499,6 +501,7 @@ QImage ThumbnailProtocol::thumbForDirectory(const KUrl& directory)
         // Directories that the directory preview will be propagated into if there is no direct sub-directories
         const KConfigGroup globalConfig(KGlobal::config(), "PreviewSettings");
         m_propagationDirectories = globalConfig.readEntry("PropagationDirectories", QStringList() << "VIDEO_TS").toSet();
+        m_maxFileSize = globalConfig.readEntry("MaximumSize", 5 * 1024 * 1024); // 5 MByte default
     }
     
     const int tiles = 2; //Count of items shown on each dimension
@@ -570,6 +573,12 @@ QImage ThumbnailProtocol::thumbForDirectory(const KUrl& directory)
 
             if (hadThumbnail && hadFirstThumbnail == dir.filePath()) {
                 break; // Never show the same thumbnail twice
+            }
+
+            if (dir.fileInfo().size() > m_maxFileSize) {
+                // don't create thumbnails for files that exceed
+                // the maximum set file size
+                continue;
             }
 
             QImage subThumbnail;

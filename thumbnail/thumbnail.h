@@ -70,6 +70,7 @@ private:
     QStringList m_enabledPlugins;
     QSet<QString> m_propagationDirectories;
     QString m_thumbBasePath;
+    qint64 m_maxFileSize;
 };
 
 #endif
