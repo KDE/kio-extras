@@ -326,7 +326,7 @@ notype:
     if (sb->group) {
       entry.insert(KIO::UDSEntry::UDS_GROUP, sb->group);
     } else {
-      entry.insert(KIO::UDSEntry::UDS_USER, "users");
+      entry.insert(KIO::UDSEntry::UDS_GROUP, "users");
     }
 
 
