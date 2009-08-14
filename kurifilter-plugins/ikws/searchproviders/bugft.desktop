@@ -80,6 +80,7 @@ Name[x-test]=xxKDE Bug Database Fulltext Searchxx
 Name[zh_CN]=KDE Bug 数据库全文检索
 Name[zh_TW]=KDE 臭蟲資料庫全文檢索
 Query=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
+Query[hr]=http://bugs.kde.org/show_bug.cgi?id=\\{@}
 Query[x-test]=xxhttp://bugs.kde.org/buglist.cgi?quicksearch=\\{@}xx
 X-KDE-ServiceTypes=SearchProvider
 Type=Service

@@ -82,6 +82,7 @@ Name[x-test]=xxKDE Bug Database Bug Number Searchxx
 Name[zh_CN]=KDE Bug 数据库按 Bug 编号搜索
 Name[zh_TW]=KDE 臭蟲資料庫按錯誤編號搜索
 Query=https://bugs.kde.org/show_bug.cgi?id=\\{@}
+Query[hr]=http://bugs.kde.org/show_bug.cgi?id=\\{@}
 Query[tg]=http://bugs.kde.org/show_bug.cgi?id=\\{@}
 Query[x-test]=xxhttps://bugs.kde.org/show_bug.cgi?id=\\{@}xx
 X-KDE-ServiceTypes=SearchProvider
