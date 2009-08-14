@@ -796,7 +796,7 @@ void sftpProtocol::open(const KUrl &url, QIODevice::OpenMode mode) {
     } else {
       QByteArray fileData = QByteArray::fromRawData(buffer.data(), bytesRead);
       KMimeType::Ptr p_mimeType = KMimeType::findByNameAndContent(mOpenUrl.fileName(), fileData);
-      mimeType(p_mimeType->name());
+      emit mimeType(p_mimeType->name());
 
       // Go back to the beginning of the file.
       sftp_rewind(mOpenFile);
