@@ -282,14 +282,7 @@ void ThumbnailProtocol::get(const KUrl &url)
         }
     }
 
-    if (img.width() > m_width || img.height() > m_height) {
-        double imgRatio = (double)img.height() / (double)img.width();
-        if (imgRatio > (double)m_height / (double)m_width) {
-            img = img.scaled( int(qMax((double)m_height / imgRatio, 1.0)), m_height, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
-        } else {
-            img = img.scaled(m_width, int(qMax((double)m_width * imgRatio, 1.0)), Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
-        }
-    }
+    scaleDownImage(img, m_width, m_height);
 
 // ### FIXME
 #ifndef USE_KINSTANCE
@@ -748,6 +741,8 @@ bool ThumbnailProtocol::createSubThumbnail(QImage& thumbnail, const QString& fil
             QString tempFileName;
             bool savedCorrectly = false;
             if (subCreator->create(filePath, cacheSize, cacheSize, thumbnail)) {
+                scaleDownImage(thumbnail, cacheSize, cacheSize);
+
                 // The thumbnail has been created successfully. Store the thumbnail
                 // to the cache for future access.
                 KTemporaryFile temp;
@@ -771,6 +766,18 @@ bool ThumbnailProtocol::createSubThumbnail(QImage& thumbnail, const QString& fil
         return false;
     }
     return true;
+}
+
+void ThumbnailProtocol::scaleDownImage(QImage& img, int maxWidth, int maxHeight)
+{
+    if (img.width() > maxWidth || img.height() > maxHeight) {
+        const double imgRatio = (double)img.height() / (double)img.width();
+        if (imgRatio > (double)maxHeight / (double)maxWidth) {
+            img = img.scaled( int(qMax((double)maxHeight / imgRatio, 1.0)), maxHeight, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
+        } else {
+            img = img.scaled(maxWidth, int(qMax((double)maxWidth * imgRatio, 1.0)), Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
+        }
+    }
 }
 
 

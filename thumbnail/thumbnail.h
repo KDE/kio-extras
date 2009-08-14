@@ -56,6 +56,12 @@ private:
     bool createSubThumbnail(QImage& thumbnail, const QString& filePath,
                             int segmentWidth, int segmentHeight);
 
+    /**
+     * Scales down the image \p img in a way that it fits into the
+     * given maximum width and height.
+     */
+    void scaleDownImage(QImage& img, int maxWidth, int maxHeight);
+
 private:
     QString m_mimeType;
     int m_width;
