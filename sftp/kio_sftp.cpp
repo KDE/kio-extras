@@ -506,8 +506,8 @@ void sftpProtocol::openConnection() {
   /* try to connect */
   rc = ssh_connect(ssh_session);
   if (rc < 0) {
-    closeConnection();
     error(ERR_COULD_NOT_CONNECT, QString(ssh_get_error(ssh_session)));
+    closeConnection();
     return;
   }
 
@@ -516,8 +516,8 @@ void sftpProtocol::openConnection() {
   /* get the hash */
   hlen = ssh_get_pubkey_hash(ssh_session, &hash);
   if (hlen < 0) {
-    closeConnection();
     error(ERR_COULD_NOT_CONNECT, QString(ssh_get_error(ssh_session)));
+    closeConnection();
     return;
   }
 
@@ -530,17 +530,16 @@ void sftpProtocol::openConnection() {
       break;
     case SSH_SERVER_FOUND_OTHER:
       delete hash;
-      closeConnection();
       error(ERR_CONNECTION_BROKEN, i18n("The host key for this server was "
             "not found but an other type of key exists.\n"
             "An attacker might change the default server key to confuse your "
             "client into thinking the key does not exist\n"
             "Please contact your system administrator.\n%1", ssh_get_error(ssh_session)));
+      closeConnection();
       return;
     case SSH_SERVER_KNOWN_CHANGED:
       hexa = ssh_get_hexa(hash, hlen);
       delete hash;
-      closeConnection();
       /* TODO print known_hosts file, port? */
       error(ERR_CONNECTION_BROKEN, i18n("The host key for the server %1 has changed.\n"
           "This could either mean that DNS SPOOFING is happening or the IP "
@@ -548,6 +547,7 @@ void sftpProtocol::openConnection() {
           "The fingerprint for the key sent by the remote host is:\n %2\n"
           "Please contact your system administrator.\n%3", mHost, hexa, ssh_get_error(ssh_session)));
       delete hexa;
+      closeConnection();
       return;
     case SSH_SERVER_FILE_NOT_FOUND:
     case SSH_SERVER_NOT_KNOWN:
@@ -568,8 +568,8 @@ void sftpProtocol::openConnection() {
       /* write the known_hosts file */
       kDebug(KIO_SFTP_DB) << "Adding server to known_hosts file.";
       if (ssh_write_knownhost(ssh_session) < 0) {
-        closeConnection();
         error(ERR_USER_CANCELED, QString(ssh_get_error(ssh_session)));
+        closeConnection();
         return;
       }
       break;
