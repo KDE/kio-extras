@@ -36,7 +36,7 @@
 #define KIO_SFTP_DB 7120
 
 namespace KIO {
-  struct AuthInfo;
+  class AuthInfo;
 }
 
 class sftpProtocol : public KIO::SlaveBase
