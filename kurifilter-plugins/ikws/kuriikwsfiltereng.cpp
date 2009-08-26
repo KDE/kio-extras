@@ -189,19 +189,18 @@ QStringList KURISearchFilterEngine::modifySubstitutionMap(SubstMap& map,
   return l;
 }
 
-static QString encodeString(const QString &s, int mib)
+static QString encodeString(const QString &s, QTextCodec *codec)
 {
-  Q_UNUSED( mib ); // removed in KDE4/Qt4.
   QStringList l = s.split(' ');
   for(QStringList::Iterator it = l.begin();
       it != l.end(); ++it)
   {
-     *it =  QLatin1String( QUrl::toPercentEncoding( *it ) ); //KUrl::encode_string(*it);
+     *it = codec->fromUnicode( *it ).toPercentEncoding();
   }
   return l.join("+");
 }
 
-QString KURISearchFilterEngine::substituteQuery(const QString& url, SubstMap &map, const QString& userquery, const int encodingMib) const
+QString KURISearchFilterEngine::substituteQuery(const QString& url, SubstMap &map, const QString& userquery, QTextCodec *codec) const
 {
   QString newurl = url;
   QStringList ql = modifySubstitutionMap (map, userquery);
@@ -276,14 +275,14 @@ QString KURISearchFilterEngine::substituteQuery(const QString& url, SubstMap &ma
             found = true;
 
           PDVAR ("    range", QString::number(first) + '-' + QString::number(last) + " => '" + v + '\'');
-          v = encodeString(v, encodingMib);
+          v = encodeString(v, codec);
         }
         else if ( rlitem.startsWith('\"') && rlitem.endsWith('\"') )
         {
           // Use default string from query definition:
           found = true;
           QString s = rlitem.mid(1, rlitem.length() - 2);
-          v = encodeString(s, encodingMib);
+          v = encodeString(s, codec);
           PDVAR ("    default", s);
         }
         else if (map.contains(rlitem))
@@ -291,7 +290,7 @@ QString KURISearchFilterEngine::substituteQuery(const QString& url, SubstMap &ma
           // Use value from substitution map:
           found = true;
           PDVAR ("    map['" + rlitem + "']", map[rlitem]);
-          v = encodeString(map[rlitem], encodingMib);
+          v = encodeString(map[rlitem], codec);
 
           // Remove used value from ql (needed for \{@}):
           QString c = rlitem.left(1);
@@ -339,7 +338,7 @@ QString KURISearchFilterEngine::substituteQuery(const QString& url, SubstMap &ma
       QString v = ql.join(" ").simplified();
 
       PDVAR ("    rest", v);
-      v = encodeString(v, encodingMib);
+      v = encodeString(v, codec);
 
       // Substitute \{@} with list of unmatched query strings
       newurl.replace("\\@", v);
@@ -382,12 +381,12 @@ QString KURISearchFilterEngine::formatResult( const QString& url,
   // Create a codec for the desired encoding so that we can transcode the user's "url".
   QString cseta = cset1;
   if (cseta.isEmpty())
-    cseta = "iso-8859-1";
+    cseta = "UTF-8";
 
   QTextCodec *csetacodec = QTextCodec::codecForName(cseta.toLatin1());
   if (!csetacodec)
   {
-    cseta = "iso-8859-1";
+    cseta = "UTF-8";
     csetacodec = QTextCodec::codecForName(cseta.toLatin1());
   }
 
@@ -403,10 +402,10 @@ QString KURISearchFilterEngine::formatResult( const QString& url,
   // Add charset indicator for the fallback query to substitution map:
   QString csetb = cset2;
   if (csetb.isEmpty())
-    csetb = "iso-8859-1";
+    csetb = "UTF-8";
   map.insert("wsc_charset", csetb);
 
-  QString newurl = substituteQuery (url, map, userquery, csetacodec->mibEnum());
+  QString newurl = substituteQuery (url, map, userquery, csetacodec);
 
   PDVAR ("substituted query", newurl);
 

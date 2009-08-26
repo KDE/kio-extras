@@ -58,7 +58,7 @@ private:
   QStringList modifySubstitutionMap (SubstMap& map, const QString& query) const;  
   
   QString substituteQuery (const QString& url, SubstMap &map, 
-                           const QString& userquery, const int encodingMib) const;
+                           const QString& userquery, QTextCodec *codec) const;
   
   bool m_bVerbose;  
   bool m_bWebShortcutsEnabled;
