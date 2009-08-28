@@ -70,7 +70,11 @@ void RemoteProtocol::listDir(const KUrl &url)
 	kDebug(1220) << "possible redirection target : " << target;
 	if( target.isValid() )
 	{
+		if ( second_slash_idx < 0 ) {
+			second_slash_idx = url.path().size();
+		}
 		target.addPath( url.path().remove(0, second_slash_idx) );
+		kDebug(1220) << "complete redirection target : " << target;
 		redirection(target);
 		finished();
 		return;
@@ -156,6 +160,10 @@ void RemoteProtocol::stat(const KUrl &url)
 		kDebug( 1220 ) << "possible redirection target : " << target;
 		if (  target.isValid() )
 		{
+			if ( second_slash_idx < 0 ) {
+				second_slash_idx = url.path().size();
+			}
+			kDebug(1220) << "complete redirection target : " << target;
 			target.addPath( url.path().remove( 0, second_slash_idx ) );
 			redirection( target );
 			finished();
