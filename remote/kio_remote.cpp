@@ -218,3 +218,14 @@ void RemoteProtocol::rename(const KUrl &src, const KUrl &dest,
 
 	error(KIO::ERR_CANNOT_RENAME, src.prettyUrl());
 }
+
+void RemoteProtocol::symlink(const QString &target, const KUrl &dest, KIO::JobFlags flags)
+{
+	if (m_impl.changeFolderTarget(dest.fileName(), target, flags & KIO::Overwrite))
+	{
+		finished();
+		return;
+	}
+
+	error(KIO::ERR_CANNOT_SYMLINK, dest.prettyUrl());
+}

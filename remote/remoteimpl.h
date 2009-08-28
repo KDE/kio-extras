@@ -44,6 +44,8 @@ public:
 	bool deleteNetworkFolder(const QString &filename) const;
 	bool renameFolders(const QString &src, const QString &dest,
 	                   bool overwrite) const;
+	bool changeFolderTarget(const QString &src, const QString &target,
+	                        bool overwrite) const;
 
 private:
 	bool findDirectory(const QString &filename, QString &directory) const;

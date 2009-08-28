@@ -286,4 +286,26 @@ bool RemoteImpl::renameFolders(const QString &src, const QString &dest,
 	return false;
 }
 
+bool RemoteImpl::changeFolderTarget(const QString &src, const QString &target,
+                                    bool overwrite) const
+{
+	kDebug(1220) << "RemoteImpl::changeFolderTarget: "
+	          << src << ", " << target << endl;
+
+	QString directory;
+	if (findDirectory(src+".desktop", directory))
+	{
+		if (!overwrite || !QFile::exists(directory+src+".desktop"))
+		{
+			return false;
+		}
+
+		kDebug(1220) << "Changing target " << directory << src << ".desktop";
+		KDesktopFile desktop(directory+src+".desktop");
+		desktop.desktopGroup().writeEntry("URL", target);
+		return true;
+	}
+
+	return false;
+}
 
