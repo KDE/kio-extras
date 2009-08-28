@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Service
+Name=CNRTL/TILF french dictionary
+X-KDE-ServiceTypes=SearchProvider
+Keys=dictfr
+Query=http://www.cnrtl.fr/definition/\\{@}
