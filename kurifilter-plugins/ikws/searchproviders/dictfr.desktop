@@ -2,6 +2,8 @@
 Type=Service
 Name=CNRTL/TILF french dictionary
 Name[id]=Kamus bahasa Perancis CNRTL/TILF
+Name[nds]=Franzöösch Wöörbook CNRTL/TILF
+Name[sv]=CNRTL/TILF fransk ordlista
 Name[uk]=Французький словник CNRTL/TILF
 Name[x-test]=xxCNRTL/TILF french dictionaryxx
 Name[zh_TW]=CNRTL/TILF 法語字典
