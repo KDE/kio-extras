@@ -200,6 +200,12 @@ Notes:
     <comment>Workgroup Manager</comment>
   </mime-type>
 
+  <!-- KDE Workspace -->
+  <mime-type type="inode/vnd.kde.service.plasma">
+    <generic-icon name="plasma"/>
+    <comment>Plasma service</comment>
+  </mime-type>
+  
   <!-- KDE Games -->
   <mime-type type="inode/vnd.kde.service.kbattleship">
     <generic-icon name="kbattleship"/>

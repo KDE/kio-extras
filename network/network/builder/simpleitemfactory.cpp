@@ -90,6 +90,9 @@ static const DNSSDServiceDatum DNSSDServiceData[] =
     { "_touch-able._tcp",    "touch-able",    "input-tablet",      false, 0, 0, 0, 0 },
     { "_workstation._tcp",   "workstation",   "network-workgroup", false, 0, 0, 0, 0 },
 
+    // KDE workspace
+    { "_plasma._tcp",       "plasma",      "plasma",       false, "plasma", 0, 0, 0 },
+
     // KDE games
     // TODO: http as protocol is a fake, but the KIO system currently only supports known protocols, so we pretend it is http
     { "_kbattleship._tcp",  "kbattleship", "kbattleship",  false, "kbattleship", 0, 0, 0 },
