@@ -100,8 +100,7 @@ static const DNSSDServiceDatum DNSSDServiceData[] =
     // else
     { "_xmpp-server._tcp", "xmpp-server", "xchat",               false, "jabber", 0, 0, 0 },
     { "_lobby._tcp",       "lobby",       "document-edit",       false, 0, 0, 0, 0 },
-    { "_ggz._tcp",         "ggz",         "applications-games",  false, "ggz", 0, 0, 0 },
-    { "_kakaosync._tcp",   "kakao",       "folder-development",  false, 0, 0, 0, 0 }
+    { "_ggz._tcp",         "ggz",         "applications-games",  false, "ggz", 0, 0, 0 }
 };
 //     result["_ssh._tcp"]=      DNSSDNetServiceBuilder(i18n("Remote disk (fish)"),     "fish",   "service/ftp", QString(), "u", "p");
 // network-server-database icon
