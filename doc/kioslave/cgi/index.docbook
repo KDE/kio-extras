@@ -28,4 +28,11 @@ executes it, passes the arguments of the &URL; and sets the
 environment variables needed by <acronym>CGI</acronym>
 programs.</para>
 
+<para>The systemsettings module kcmcgi is used to configure the search paths for CGI
+programs.</para>
+
 </article>
+<!-- 
+[kde-doc-english] Documentation/Example for CGI kioslave
+Juergen Pfennig <info@j-pfennig.de>
+http://lists.kde.org/?l=kde-doc-english&m=115118709706164&w=2 -->
