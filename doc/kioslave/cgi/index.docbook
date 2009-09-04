@@ -14,6 +14,9 @@
 </authorgroup>
 </articleinfo>
 
+<para>The &systemsettings; module kcmcgi is used to configure the search paths for CGI
+programs.</para>
+
 <para>The <acronym>CGI</acronym> slave provides a way to execute
 <acronym>CGI</acronym> programs without the need to have a running web
 server. This can for example be used for local testing of
@@ -26,9 +29,6 @@ uses the filename from the given &URL; and searches a configurable
 list of folders. If it finds an executable with the given name it
 executes it, passes the arguments of the &URL; and sets the
 environment variables needed by <acronym>CGI</acronym>
-programs.</para>
-
-<para>The systemsettings module kcmcgi is used to configure the search paths for CGI
 programs.</para>
 
 </article>
