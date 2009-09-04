@@ -175,11 +175,11 @@ void ThumbnailProtocol::get(const KUrl &url)
         if (info.isDir()) {
             m_mimeType = "inode/directory";
         } else {
-            KMimeType::findByUrl(KUrl(info.filePath()))->name();
+            m_mimeType = KMimeType::findByUrl(KUrl(info.filePath()))->name();
         }
 
         kDebug(7115) << "Guessing MIME Type:" << m_mimeType;
-        direct=true; // thumbnail: was probably called from Konqueror
+        direct=true; // thumbnail: URL was probably typed in Konqueror
     }
 #endif
 
@@ -350,6 +350,7 @@ void ThumbnailProtocol::get(const KUrl &url)
             }
             img.save(&buf,"PNG");
             buf.close();
+            mimeType("image/png");
             data(buf.buffer());
         }
         else
@@ -359,6 +360,7 @@ void ThumbnailProtocol::get(const KUrl &url)
             QDataStream stream( &imgData, QIODevice::WriteOnly );
             //kDebug(7115) << "IMAGE TO STREAM";
             stream << img;
+            mimeType("application/octet-stream");
             data(imgData);
         }
     } else {
@@ -383,6 +385,7 @@ void ThumbnailProtocol::get(const KUrl &url)
         stream << img.width() << img.height() << quint8(img.format());
         memcpy(shmaddr, img.bits(), img.numBytes());
         shmdt((char*)shmaddr);
+        mimeType("application/octet-stream");
         data(imgData);
 #endif
     }
