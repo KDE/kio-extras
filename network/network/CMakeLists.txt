@@ -15,16 +15,13 @@ set( netsystemdriver_SRCS
 # TODO: find best-practice to do such dependant inclusion of files to compile, this is unreadable
 if(SLP_FOUND)
 set( slpnetworkbuilder_SRCS
-  builder/slpservicebrowser.cpp
-  builder/slpnetworkbuilder.cpp
-)
-elseif(SLP_FOUND)
-set( slpnetworkbuilder_SRCS
+  builder/slp/slpservicebrowser.cpp
+  builder/slp/slpnetworkbuilder.cpp
 )
 endif(SLP_FOUND)
 
 set( dnssdnetworkbuilder_SRCS
-  builder/dnssdnetworkbuilder.cpp
+  builder/dnssd/dnssdnetworkbuilder.cpp
 )
 
 set( networkbuilder_SRCS

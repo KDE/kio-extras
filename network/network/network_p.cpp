@@ -25,10 +25,10 @@
 //
 #include <config-slp.h>
 // lib
-#include "builder/dnssdnetworkbuilder.h"
+#include "builder/dnssd/dnssdnetworkbuilder.h"
 #include "builder/simpleitemfactory.h"
 #ifdef HAVE_SLP
-#include "builder/slpnetworkbuilder.h"
+#include "builder/slp/slpnetworkbuilder.h"
 #endif
 
 #include <KDebug>

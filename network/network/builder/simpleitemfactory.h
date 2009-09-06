@@ -24,7 +24,7 @@
 #define SIMPLEITEMFACTORY_H
 
 // lib
-#include <dnssdnetsystemable.h>
+#include <dnssd/dnssdnetsystemable.h>
 #include <abstractnetsystemfactory.h>
 
 
