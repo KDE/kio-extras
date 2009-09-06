@@ -1,5 +1,5 @@
 /*
-    This file is part of the network kioslave, part of the KDE project.
+    This file is part of the Mollet network library, part of the KDE project.
 
     Copyright 2009 Friedrich W. H. Kossebau <kossebau@kde.org>
 
