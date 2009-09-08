@@ -272,7 +272,7 @@ bool sftpProtocol::createUDSEntry(const QString &filename, const QByteArray &pat
       sftp_attributes_free(sb);
       return false;
     }
-    entry.insert(KIO::UDSEntry::UDS_LINK_DEST, QString::fromUtf8(link));
+    entry.insert(KIO::UDSEntry::UDS_LINK_DEST, QFile::decodeName(link));
     delete link;
     // A symlink -> follow it only if details > 1
     if (details > 1) {
