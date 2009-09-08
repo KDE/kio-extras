@@ -28,6 +28,7 @@
 #include <QtCore/QCoreApplication>
 #include <QtCore/QBuffer>
 #include <QtCore/QByteArray>
+#include <QtCore/QDir>
 #include <QtCore/QFile>
 #include <QtCore/QObject>
 #include <QtCore/QString>
@@ -1195,8 +1196,15 @@ void sftpProtocol::stat(const KUrl& url) {
     return;
   }
 
-  if (url.path().isEmpty() || url.path().contains("..")) {
-    QString cPath = canonicalizePath(QString("."));
+  if (! url.hasPath() || QDir::isRelativePath(url.path()) || url.path().contains("./")) {
+    QString cPath;
+
+    if (url.hasPath()) {
+      cPath = canonicalizePath(url.path());
+    } else {
+      cPath = canonicalizePath(QString("."));
+    }
+
     if (cPath.isEmpty()) {
       error(ERR_MALFORMED_URL, url.prettyUrl());
       return;
@@ -1251,8 +1259,15 @@ void sftpProtocol::listDir(const KUrl& url) {
     return;
   }
 
-  if (url.path().isEmpty() || url.path().contains("..")) {
-    QString cPath = canonicalizePath(QString("."));
+  if (! url.hasPath() || QDir::isRelativePath(url.path()) || url.path().contains("./")) {
+    QString cPath;
+
+    if (url.hasPath()) {
+      cPath = canonicalizePath(url.path());
+    } else {
+      cPath = canonicalizePath(QString("."));
+    }
+
     if (cPath.isEmpty()) {
       error(ERR_MALFORMED_URL, url.prettyUrl());
       return;
