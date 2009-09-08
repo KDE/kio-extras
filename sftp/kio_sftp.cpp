@@ -352,7 +352,7 @@ QString sftpProtocol::canonicalizePath(const QString &path) {
     return cPath;
   }
 
-  cPath = QString::fromUtf8(sPath);
+  cPath = QFile::decodeName(sPath);
   delete sPath;
 
   kDebug(KIO_SFTP_DB) << "Canonicalized path: " << cPath;
