@@ -1196,7 +1196,8 @@ void sftpProtocol::stat(const KUrl& url) {
     return;
   }
 
-  if (! url.hasPath() || QDir::isRelativePath(url.path()) || url.path().contains("./")) {
+  if (! url.hasPath() || QDir::isRelativePath(url.path()) ||
+      url.path().contains("/./") || url.path().contains("/../")) {
     QString cPath;
 
     if (url.hasPath()) {
@@ -1259,7 +1260,8 @@ void sftpProtocol::listDir(const KUrl& url) {
     return;
   }
 
-  if (! url.hasPath() || QDir::isRelativePath(url.path()) || url.path().contains("./")) {
+  if (! url.hasPath() || QDir::isRelativePath(url.path()) ||
+      url.path().contains("/./") || url.path().contains("/../")) {
     QString cPath;
 
     if (url.hasPath()) {
