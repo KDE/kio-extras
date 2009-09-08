@@ -252,6 +252,8 @@ void sftpProtocol::reportError(const KUrl &url, const int err) {
 
 bool sftpProtocol::createUDSEntry(const QString &filename, const QByteArray &path,
       UDSEntry &entry, short int details) {
+  mode_t type;
+  mode_t access;
   char *link;
 
   Q_ASSERT(entry.count() == 0);
@@ -263,6 +265,33 @@ bool sftpProtocol::createUDSEntry(const QString &filename, const QByteArray &pat
 
   entry.insert(KIO::UDSEntry::UDS_NAME, filename);
 
+  if (sb->type == SSH_FILEXFER_TYPE_SYMLINK) {
+    entry.insert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFREG);
+    link = sftp_readlink(sftp_session, path.constData());
+    if (link == NULL) {
+      sftp_attributes_free(sb);
+      return false;
+    }
+    entry.insert(KIO::UDSEntry::UDS_LINK_DEST, QString::fromUtf8(link));
+    delete link;
+    // A symlink -> follow it only if details > 1
+    if (details > 1) {
+      SFTP_ATTRIBUTES *sb2 = sftp_stat(sftp_session, path.constData());
+      if (sb2 == NULL) {
+        // It is a link pointing to nowhere
+        type = S_IFMT - 1;
+        access = S_IRWXU | S_IRWXG | S_IRWXO;
+        entry.insert( KIO::UDSEntry::UDS_FILE_TYPE, type);
+        entry.insert( KIO::UDSEntry::UDS_ACCESS, access);
+        entry.insert( KIO::UDSEntry::UDS_SIZE, 0LL );
+
+        goto notype;
+      }
+      sftp_attributes_free(sb);
+      sb = sb2;
+    }
+  }
+
   switch (sb->type) {
     case SSH_FILEXFER_TYPE_REGULAR:
       entry.insert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFREG);
@@ -271,47 +300,16 @@ bool sftpProtocol::createUDSEntry(const QString &filename, const QByteArray &pat
       entry.insert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
       break;
     case SSH_FILEXFER_TYPE_SYMLINK:
-      entry.insert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFREG);
-      link = sftp_readlink(sftp_session, path.constData());
-      if (link == NULL) {
-        sftp_attributes_free(sb);
-        return false;
-      }
-      entry.insert(KIO::UDSEntry::UDS_LINK_DEST, QString::fromUtf8(link));
-
-      if (details > 1) {
-        SFTP_ATTRIBUTES *sb2 = sftp_lstat(sftp_session, link);
-        if (sb2 != NULL) {
-          switch (sb->type) {
-            case SSH_FILEXFER_TYPE_REGULAR:
-              entry.insert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFREG);
-              break;
-            case SSH_FILEXFER_TYPE_DIRECTORY:
-              entry.insert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
-              break;
-            case SSH_FILEXFER_TYPE_SYMLINK:
-              entry.insert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFLNK);
-            case SSH_FILEXFER_TYPE_SPECIAL:
-            case SSH_FILEXFER_TYPE_UNKNOWN:
-              break;
-          }
-          entry.insert(KIO::UDSEntry::UDS_ACCESS, sb->permissions & 07777);
-          entry.insert(KIO::UDSEntry::UDS_SIZE, 0LL);
-          delete link;
-          sftp_attributes_free(sb2);
-          goto notype;
-        }
-        sftp_attributes_free(sb2);
-      }
-      delete link;
-      goto notype;
+      entry.insert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFLNK);
       break;
     case SSH_FILEXFER_TYPE_SPECIAL:
     case SSH_FILEXFER_TYPE_UNKNOWN:
+      entry.insert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFMT - 1);
       break;
   }
 
-  entry.insert(KIO::UDSEntry::UDS_ACCESS, sb->permissions & 07777);
+  access = sb->permissions & 07777;
+  entry.insert(KIO::UDSEntry::UDS_ACCESS, access);
 
   entry.insert(KIO::UDSEntry::UDS_SIZE, sb->size);
 
@@ -329,11 +327,12 @@ notype:
       entry.insert(KIO::UDSEntry::UDS_GROUP, "users");
     }
 
-
     entry.insert(KIO::UDSEntry::UDS_ACCESS_TIME, sb->atime);
     entry.insert(KIO::UDSEntry::UDS_MODIFICATION_TIME, sb->mtime);
     entry.insert(KIO::UDSEntry::UDS_CREATION_TIME, sb->createtime);
   }
+
+  sftp_attributes_free(sb);
 
   return true;
 }
