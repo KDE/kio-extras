@@ -22,8 +22,8 @@
 
 #include <kdialog.h>
 
+#include "ui_searchproviderdlg_ui.h"
 class SearchProvider;
-namespace Ui{class SearchProviderDlgUI;}
 
 class SearchProviderDialog : public KDialog
 {
@@ -40,7 +40,7 @@ protected Q_SLOTS:
 
 private:
     SearchProvider *m_provider;
-    Ui::SearchProviderDlgUI *m_dlg;
+    Ui::SearchProviderDlgUI m_dlg;
 };
 
 #endif

@@ -27,10 +27,10 @@
 #include <kcmodule.h>
 #include <kservice.h>
 
+#include "ui_ikwsopts_ui.h"
+
 class SearchProvider;
 class ProvidersModel;
-namespace Ui{class FilterOptionsUI;}
-
 
 class FilterOptions : public KCModule
 {
@@ -62,7 +62,7 @@ private:
     QStringList m_deletedProviders;
     ProvidersModel* m_providersModel;
 
-    Ui::FilterOptionsUI* m_dlg;
+    Ui::FilterOptionsUI m_dlg;
 };
 
 #endif
