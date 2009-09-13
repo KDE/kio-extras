@@ -56,7 +56,8 @@ static DWORD checkAuth(const KUrl &url)
     memset((void*)&nr, '\0', sizeof(NETRESOURCE));
     nr.dwType=RESOURCETYPE_DISK;
     nr.lpLocalName=NULL;
-    nr.lpRemoteName = (LPWSTR)QString("\\\\").append(url.host()).append(url.path().replace("/", "\\")).utf16();
+    QString str = "\\\\" + url.host()+url.path().replace("/", "\\");
+    nr.lpRemoteName = (LPWSTR)str.utf16();
     nr.lpProvider=NULL;
 
     dwResult = WNetAddConnection2(&nr, NULL, NULL, CONNECT_INTERACTIVE);
@@ -164,7 +165,8 @@ void SMBSlave::listDir(const KUrl &url)
     nr.dwType = RESOURCETYPE_DISK;
     nr.dwDisplayType = RESOURCEDISPLAYTYPE_GENERIC;
     nr.dwUsage = RESOURCEUSAGE_CONTAINER;
-    nr.lpRemoteName = !url.host().isEmpty() ? (LPWSTR)QString("\\\\").append(url.host()).utf16() : NULL;
+    QString str = "\\\\" + url.host();
+    nr.lpRemoteName = !url.host().isEmpty() ? (LPWSTR)str.utf16() : NULL;
     nr.lpLocalName = NULL;
     nr.lpProvider = NULL;
     
