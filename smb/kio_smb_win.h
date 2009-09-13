@@ -29,6 +29,9 @@ THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <kio/slavebase.h>
 #include <kio/forwardingslavebase.h>
 
+#include <windows.h>
+#include <winnetwk.h>
+
 #define KIO_SMB                     7106
 
 class SMBSlave : public KIO::ForwardingSlaveBase
@@ -39,6 +42,8 @@ class SMBSlave : public KIO::ForwardingSlaveBase
         bool rewriteUrl(const KUrl &url, KUrl &newUrl);
         void listDir(const KUrl &url);
         void stat(const KUrl &url);
+    private:
+        void enumerateResources(LPNETRESOURCE lpnr, bool show_servers = false);
 
 };
 
