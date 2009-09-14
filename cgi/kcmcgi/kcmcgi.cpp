@@ -39,7 +39,7 @@ K_EXPORT_PLUGIN(KCMCgiFactory("kcmcgi"))
 KCMCgi::KCMCgi(QWidget *parent, const QVariantList &)
   : KCModule(KCMCgiFactory::componentData(), parent)
 {
-  setButtons(Default|Apply);
+  setButtons(Default|Apply|Help);
 
   QVBoxLayout *topLayout = new QVBoxLayout(this);
   topLayout->setSpacing(KDialog::spacingHint());

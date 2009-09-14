@@ -1,10 +1,12 @@
 [Desktop Entry]
 Icon=run
 Type=Service
-SericeTypes=KCModule
+X-KDE-ServiceTypes=KCModule
 Exec=kcmshell4 kcmcgi
-
+X-Doc-Path=kioslave/cgi/index.html
 X-KDE-Library=kcm_cgi
+X-KDE-ParentApp=kcontrol
+X-KDE-PluginKeyword=cgi
 
 Name=CGI Scripts
 Name[af]=CGI-skripte
