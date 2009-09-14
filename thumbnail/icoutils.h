@@ -23,7 +23,7 @@ namespace IcoUtils {
 	bool convertExeToIco(const QString &inputPath, const QString &outputPath);
 	bool convertIcoToPng(const QString &inputPath, const QString &outputPath);
 
-};
+}
 
 #endif //ICO_UTILS_H
 
