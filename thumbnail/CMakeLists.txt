@@ -114,24 +114,17 @@ endif(X11_Xcursor_FOUND)
 
 ########### next target ###############
 
-add_definitions ( -fPIC )
-
-set ( icoutils_SRCS icoutils.cpp )
-add_library ( icoutils STATIC ${icoutils_SRCS} )
-
-set ( windowsexethumbnail_SRCS windowsexecreator.cpp )
+set ( windowsexethumbnail_SRCS windowsexecreator.cpp icoutils.cpp)
 kde4_add_plugin ( windowsexethumbnail ${windowsexethumbnail_SRCS} )
-target_link_libraries ( windowsexethumbnail icoutils ${KDE4_KIO_LIBS} )
+target_link_libraries ( windowsexethumbnail ${KDE4_KIO_LIBS} )
 install ( TARGETS windowsexethumbnail DESTINATION ${PLUGIN_INSTALL_DIR} )
 install ( FILES windowsexethumbnail.desktop DESTINATION ${SERVICES_INSTALL_DIR} )
 
-set ( windowsimagethumbnail_SRCS windowsimagecreator.cpp )
+set ( windowsimagethumbnail_SRCS windowsimagecreator.cpp icoutils.cpp)
 kde4_add_plugin ( windowsimagethumbnail ${windowsimagethumbnail_SRCS} )
-target_link_libraries ( windowsimagethumbnail icoutils ${KDE4_KIO_LIBS} )
+target_link_libraries ( windowsimagethumbnail ${KDE4_KIO_LIBS} )
 install ( TARGETS windowsimagethumbnail DESTINATION ${PLUGIN_INSTALL_DIR} )
 install ( FILES windowsimagethumbnail.desktop DESTINATION ${SERVICES_INSTALL_DIR} )
-
-remove_definitions ( -fPIC )
 
 ########### install files ###############
 
