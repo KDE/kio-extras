@@ -1,0 +1,8 @@
+[Desktop Entry]
+Encoding=UTF-8
+Type=Service
+Name=Microsoft Windows Images
+ServiceTypes=ThumbCreator
+MimeType=image/vnd.microsoft.icon;image/x-win-bitmap;application/x-navi-animation;
+CacheThumbnail=false
+X-KDE-Library=windowsimagethumbnail

@@ -1,0 +1,8 @@
+[Desktop Entry]
+Encoding=UTF-8
+Type=Service
+Name=Microsoft Windows Executables
+ServiceTypes=ThumbCreator
+MimeType=application/x-ms-dos-executable;application/x-msdownload;application/x-win-lnk;
+CacheThumbnail=false
+X-KDE-Library=windowsexethumbnail
