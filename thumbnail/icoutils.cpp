@@ -30,14 +30,14 @@ bool IcoUtils::convertExeToIco(const QString &inputPath, const QString &outputPa
 	if ( wrestool.exitCode() != 0 )
 		return false;
 
-	QStringList output = QString(wrestool.readAll()).split('\n');
+	const QStringList output = QString(wrestool.readAll()).split('\n');
 
 	QRegExp regExp("--type=(.*) --name=(.*) --language=(.*) \\[(.*)\\]");
 
 	QStringList icons;
 	QStringList groupIcons;
 
-	foreach ( QString line, output ) {
+	foreach ( const QString& line, output ) {
 		if ( regExp.indexIn(line) != -1 ) {
 			if ( regExp.cap(1).toInt() == 14 )
 				groupIcons << regExp.cap(2);
@@ -85,7 +85,7 @@ bool IcoUtils::convertIcoToPng(const QString &inputPath, const QString &outputPa
 	if ( icotool.exitCode() != 0 )
 		return false;
 
-	QStringList output = QString(icotool.readAll()).split('\n');
+	const QStringList output = QString(icotool.readAll()).split('\n');
 
 	QRegExp regExp("--(.*) --index=(.*) --width=(.*) --height=(.*) --bit-depth=(.*) --palette-size=(.*)");
 
@@ -93,7 +93,7 @@ bool IcoUtils::convertIcoToPng(const QString &inputPath, const QString &outputPa
 	int width = 0;
 	int depth = 0;
 
-	foreach ( QString line, output ) {
+	foreach ( const QString& line, output ) {
 		if ( regExp.indexIn(line) != -1 ) {
 			if ( regExp.cap(3).toInt() > width || ( regExp.cap(3).toInt() == width && regExp.cap(5).toInt() > depth ) ) {
 				index = regExp.cap(2).toInt();
