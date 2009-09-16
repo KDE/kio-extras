@@ -76,7 +76,11 @@ ArchiveProtocol::~ArchiveProtocol()
 
 bool ArchiveProtocol::checkNewFile( const KUrl & url, QString & path, KIO::Error& errorNum )
 {
+#ifndef Q_WS_WIN
     QString fullPath = url.path();
+#else
+    QString fullPath = url.path().remove(0, 1);
+#endif
     kDebug(7109) << "ArchiveProtocol::checkNewFile" << fullPath;
 
 
@@ -345,7 +349,13 @@ void ArchiveProtocol::stat( const KUrl & url )
         kDebug( 7109 ).nospace() << "ArchiveProtocol::stat returning name=" << url.fileName();
 
         KDE_struct_stat buff;
-        if ( KDE_stat( QFile::encodeName( url.path() ), &buff ) == -1 )
+#ifdef Q_WS_WIN
+        QString fullPath = url.path().remove(0, 1);
+#else
+        QString fullPath = url.path();
+#endif
+
+        if ( KDE_stat( QFile::encodeName( fullPath ), &buff ) == -1 )
         {
             // Should not happen, as the file was already stated by checkNewFile
             error( KIO::ERR_COULD_NOT_STAT, url.prettyUrl() );
