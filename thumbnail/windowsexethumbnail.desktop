@@ -2,6 +2,13 @@
 Encoding=UTF-8
 Type=Service
 Name=Microsoft Windows Executables
+Name[nds]=Microsoft-Windows-Programmen
+Name[pt]=Executáveis do Microsoft Windows
+Name[pt_BR]=Executáveis do Microsoft Windows
+Name[sv]=Körbara Microsoft Windows program
+Name[tr]=Microsoft Windows Çalıştırılabilir Dosyaları
+Name[uk]=Виконувані файли Microsoft Windows
+Name[x-test]=xxMicrosoft Windows Executablesxx
 ServiceTypes=ThumbCreator
 MimeType=application/x-ms-dos-executable;application/x-msdownload;application/x-win-lnk;
 CacheThumbnail=false

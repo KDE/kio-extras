@@ -2,6 +2,13 @@
 Encoding=UTF-8
 Type=Service
 Name=Microsoft Windows Images
+Name[nds]=Microsoft-Windows-Biller
+Name[pt]=Imagens do Microsoft Windows
+Name[pt_BR]=Imagens do Microsoft Windows
+Name[sv]=Microsoft Windows avbilder
+Name[tr]=Microsoft Windows Resimleri
+Name[uk]=Зображення Microsoft Windows
+Name[x-test]=xxMicrosoft Windows Imagesxx
 ServiceTypes=ThumbCreator
 MimeType=image/vnd.microsoft.icon;image/x-win-bitmap;application/x-navi-animation;
 CacheThumbnail=false
