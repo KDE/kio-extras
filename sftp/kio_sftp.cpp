@@ -853,12 +853,12 @@ void sftpProtocol::seek(KIO::filesize_t offset) {
 
   Q_ASSERT(mOpenFile != NULL);
 
-  if (sftp_seek(mOpenFile, static_cast<uint32_t>(offset)) < 0) {
+  if (sftp_seek64(mOpenFile, static_cast<uint64_t>(offset)) < 0) {
     error(KIO::ERR_COULD_NOT_SEEK, mOpenUrl.path());
     close();
   }
 
-  position(sftp_tell(mOpenFile));
+  position(sftp_tell64(mOpenFile));
 }
 
 void sftpProtocol::close() {
@@ -929,7 +929,7 @@ void sftpProtocol::get(const KUrl& url) {
     KIO::fileoffset_t offset = resumeOffset.toLongLong(&ok);
     if (ok && (offset > 0) && ((unsigned long long) offset < sb->size))
     {
-      if (sftp_seek(file, offset) == 0) {
+      if (sftp_seek64(file, offset) == 0) {
         canResume();
         totalbytesread = offset;
         kDebug(KIO_SFTP_DB) << "Resume offset: " << QString::number(offset);
@@ -1063,8 +1063,8 @@ void sftpProtocol::put(const KUrl& url, int permissions, KIO::JobFlags flags) {
             sftp_attributes_free(sb);
             return;
           }
-          sftp_seek(file, fstat->size); // Seek to end TODO
-          delete fstat;
+          sftp_seek64(file, fstat->size); // Seek to end TODO
+          sftp_attributes_free(fstat);
         } else {
           mode_t initialMode;
           if (permissions != -1) {
