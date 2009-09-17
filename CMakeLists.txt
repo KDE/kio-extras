@@ -7,7 +7,7 @@ macro_optional_find_package(Samba)
 macro_log_feature(SAMBA_FOUND "Samba" "the SMB client library, a version with smbc_set_context() and smbc_option_set()" "http://www.samba.org" FALSE "" "Needed to build the SMB kioslave")
 endif(NOT WIN32)
 
-macro_optional_find_package(LibSSH 0.3.2)
+macro_optional_find_package(LibSSH 0.3.4)
 macro_log_feature(LIBSSH_FOUND "libssh" "the SSH library with SFTP support" "http://www.libssh.org/" FALSE "" "Needed to build the SFTP kioslave")
 
 add_subdirectory( about )
