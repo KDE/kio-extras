@@ -3,6 +3,7 @@ Keys=backports
 Name=Debian Backports Search
 Name[af]=Debian Backports Soektog
 Name[ar]=ابحث في مخازن ديبيان
+Name[as]=Debian Backports Search
 Name[be]=Пошук Debian Backports
 Name[be@latin]=Pošuk „Backports” dla systemy „Debian”
 Name[bg]=Търсене в Debian Backports
@@ -15,6 +16,7 @@ Name[csb]=Szëkba starszëch paczétów Debiana
 Name[da]=Debian Backports søgning
 Name[de]=Suche für Debian-Backports
 Name[el]=Αναζήτηση νέων Πακέτων Debian για σταθερή έκδοση
+Name[en_GB]=Debian Backports Search
 Name[eo]=Serĉo por Debianaj retroflikaĵoj
 Name[es]=Búsqueda de backports de Debian
 Name[et]=Debiani backport'ide otsing
@@ -22,6 +24,7 @@ Name[eu]=Debian Backports bilaketa
 Name[fa]=جستجوی پس‌درگاههای دبیان
 Name[fi]=Debianin Backports-tietokanta
 Name[fr]=Recherche dans le système de rétro-portage de Debian
+Name[fy]=Debian Backports Search
 Name[ga]=Cuardach Pacáistí Cobhsaithe Debian
 Name[gl]=Backports de Debian
 Name[gu]=ડેબિયન બેકપોર્ટ શોધ
@@ -35,6 +38,7 @@ Name[id]=Pencarian Debian Backports
 Name[is]=Debian Backports leit
 Name[it]=Ricerca Debian backports
 Name[ja]=Debian バックポート検索
+Name[ka]=Debian Backports Search
 Name[kk]=Debian порттарын табу
 Name[km]=ការ​ស្វែងរក Debian Backports
 Name[kn]=ಡೇಬಿಯನ್ ಬ್ಯಾಕ್ಪೋರ್ಟ್ ಶೋಧ
@@ -50,6 +54,7 @@ Name[ms]=Carian Port Belakang Debian
 Name[nb]=Søk etter tilbakeportede Debian-pakker
 Name[nds]=Söök na Debian-Backports
 Name[ne]=डेबियन ब्याकस्पोर्टस खोजी
+Name[nl]=Debian Backports Search
 Name[nn]=Søk etter tilbakeporta Debian-pakkar
 Name[or]=Debian Backports ସନ୍ଧାନ
 Name[pa]=ਡੇਬੀਅਨ ਬੈਕਪੋਰਟ ਖੋਜ
@@ -59,6 +64,7 @@ Name[pt_BR]=Busca de backports Debian
 Name[ro]=Căutare Debian Backports
 Name[ru]=Поиск портов Debian
 Name[se]=Oza maŋosportejuvvon Debian-páhkaid
+Name[si]=Debian Backports Search
 Name[sk]=Hľadanie v Debian Backports
 Name[sl]=Iskanje po prenosih v Debian
 Name[sr]=Дебијанови бекпортови
@@ -76,6 +82,87 @@ Name[x-test]=xxDebian Backports Searchxx
 Name[zh_CN]=Debian 后端搜索
 Name[zh_TW]=Debian Backports 搜尋
 Query=http://www.backports.org/package.php?search=\\{@}
+Query[af]=http://www.backports.org/package.php?search=\\{@}
+Query[ar]=http://www.backports.org/package.php?search=\\{@}
+Query[as]=http://www.backports.org/package.php?search=\\{@}
+Query[be]=http://www.backports.org/package.php?search=\\{@}
+Query[be@latin]=http://www.backports.org/package.php?search=\\{@}
+Query[bg]=http://www.backports.org/package.php?search=\\{@}
+Query[bn]=http://www.backports.org/package.php?search=\\{@}
+Query[bn_IN]=http://www.backports.org/package.php?search=\\{@}
+Query[br]=http://www.backports.org/package.php?search=\\{@}
+Query[ca]=http://www.backports.org/package.php?search=\\{@}
+Query[ca@valencia]=http://www.backports.org/package.php?search=\\{@}
+Query[cs]=http://www.backports.org/package.php?search=\\{@}
+Query[csb]=http://www.backports.org/package.php?search=\\{@}
+Query[da]=http://www.backports.org/package.php?search=\\{@}
+Query[de]=http://www.backports.org/package.php?search=\\{@}
+Query[el]=http://www.backports.org/package.php?search=\\{@}
+Query[en_GB]=http://www.backports.org/package.php?search=\\{@}
+Query[eo]=http://www.backports.org/package.php?search=\\{@}
+Query[es]=http://www.backports.org/package.php?search=\\{@}
+Query[et]=http://www.backports.org/package.php?search=\\{@}
+Query[eu]=http://www.backports.org/package.php?search=\\{@}
+Query[fi]=http://www.backports.org/package.php?search=\\{@}
+Query[fr]=http://www.backports.org/package.php?search=\\{@}
+Query[fy]=http://www.backports.org/package.php?search=\\{@}
+Query[ga]=http://www.backports.org/package.php?search=\\{@}
+Query[gl]=http://www.backports.org/package.php?search=\\{@}
+Query[gu]=http://www.backports.org/package.php?search=\\{@}
+Query[he]=http://www.backports.org/package.php?search=\\{@}
+Query[hi]=http://www.backports.org/package.php?search=\\{@}
+Query[hne]=http://www.backports.org/package.php?search=\\{@}
+Query[hr]=http://www.backports.org/package.php?search=\\{@}
+Query[hsb]=http://www.backports.org/package.php?search=\\{@}
+Query[hu]=http://www.backports.org/package.php?search=\\{@}
+Query[id]=http://www.backports.org/package.php?search=\\{@}
+Query[is]=http://www.backports.org/package.php?search=\\{@}
+Query[it]=http://www.backports.org/package.php?search=\\{@}
+Query[ja]=http://www.backports.org/package.php?search=\\{@}
+Query[ka]=http://www.backports.org/package.php?search=\\{@}
+Query[kk]=http://www.backports.org/package.php?search=\\{@}
+Query[km]=http://www.backports.org/package.php?search=\\{@}
+Query[kn]=http://www.backports.org/package.php?search=\\{@}
+Query[ko]=http://www.backports.org/package.php?search=\\{@}
+Query[ku]=http://www.backports.org/package.php?search=\\{@}
+Query[lt]=http://www.backports.org/package.php?search=\\{@}
+Query[lv]=http://www.backports.org/package.php?search=\\{@}
+Query[mai]=http://www.backports.org/package.php?search=\\{@}
+Query[ml]=http://www.backports.org/package.php?search=\\{@}
+Query[mr]=http://www.backports.org/package.php?search=\\{@}
+Query[ms]=http://www.backports.org/package.php?search=\\{@}
+Query[nb]=http://www.backports.org/package.php?search=\\{@}
+Query[nds]=http://www.backports.org/package.php?search=\\{@}
+Query[ne]=http://www.backports.org/package.php?search=\\{@}
+Query[nl]=http://www.backports.org/package.php?search=\\{@}
+Query[nn]=http://www.backports.org/package.php?search=\\{@}
+Query[oc]=http://www.backports.org/package.php?search=\\{@}
+Query[or]=http://www.backports.org/package.php?search=\\{@}
+Query[pa]=http://www.backports.org/package.php?search=\\{@}
+Query[pl]=http://www.backports.org/package.php?search=\\{@}
+Query[pt]=http://www.backports.org/package.php?search=\\{@}
+Query[pt_BR]=http://www.backports.org/package.php?search=\\{@}
+Query[ro]=http://www.backports.org/package.php?search=\\{@}
+Query[ru]=http://www.backports.org/package.php?search=\\{@}
+Query[se]=http://www.backports.org/package.php?search=\\{@}
+Query[si]=http://www.backports.org/package.php?search=\\{@}
+Query[sk]=http://www.backports.org/package.php?search=\\{@}
+Query[sl]=http://www.backports.org/package.php?search=\\{@}
+Query[sr]=http://www.backports.org/package.php?search=\\{@}
+Query[sr@latin]=http://www.backports.org/package.php?search=\\{@}
+Query[sv]=http://www.backports.org/package.php?search=\\{@}
+Query[ta]=http://www.backports.org/package.php?search=\\{@}
+Query[te]=http://www.backports.org/package.php?search=\\{@}
+Query[tg]=http://www.backports.org/package.php?search=\\{@}
+Query[th]=http://www.backports.org/package.php?search=\\{@}
+Query[tr]=http://www.backports.org/package.php?search=\\{@}
+Query[uk]=http://www.backports.org/package.php?search=\\{@}
+Query[uz]=http://www.backports.org/package.php?search=\\{@}
+Query[uz@cyrillic]=http://www.backports.org/package.php?search=\\{@}
+Query[vi]=http://www.backports.org/package.php?search=\\{@}
+Query[wa]=http://www.backports.org/package.php?search=\\{@}
 Query[x-test]=xxhttp://www.backports.org/package.php?search=\\{@}xx
+Query[zh_CN]=http://www.backports.org/package.php?search=\\{@}
+Query[zh_TW]=http://www.backports.org/package.php?search=\\{@}
 X-KDE-ServiceTypes=SearchProvider
 Type=Service

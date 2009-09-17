@@ -16,6 +16,7 @@ Name[csb]=Multitran - dolmaczenié: miemiecczi ë rusczi
 Name[da]=Multitran - oversæt mellem tysk og russisk
 Name[de]=Multitran - Übersetzung: Deutsch/Russisch
 Name[el]=Multitran - Μετάφραση μεταξύ Γερμανικών και Ρωσικών
+Name[en_GB]=Multitran - Translate Between German and Russian
 Name[eo]=Multitran - Traduko inter la germana kaj la rusa
 Name[es]=Multitran - Traducción entre alemán y ruso
 Name[et]=Multitran - tõlkimine: saksa-vene
@@ -43,6 +44,7 @@ Name[ko]=Multitran - 독일어와 러시아어 사이 번역
 Name[ku]=Multîtran - Wergerandina Di Navbera Almanî û Rûsî de
 Name[lt]=Multitran – versti iš vokiečių į rusų ir atvirkščiai
 Name[lv]=Multitran - tulkot no Vācu uz Krievu
+Name[mai]=Multitran - Translate Between German and Russian
 Name[mk]=Multitran - превод меѓу германски и руски
 Name[ml]=മള്‍ട്ടിട്രാന്‍ - ജര്‍മനും റഷ്യനും തമ്മില്‍ പരിഭാഷപ്പെടുത്തുക
 Name[nb]=Multitran – Oversett mellom tysk og russisk
@@ -56,6 +58,7 @@ Name[pt]=Multitran - Traduzir Entre Alemão e Russo
 Name[pt_BR]=Multitran - Traduzir entre alemão e russo
 Name[ro]=Multitran - Traduce între germană și rusă
 Name[ru]=Multitran: немецко-русский перевод
+Name[si]=Multitran - Translate Between German and Russian
 Name[sk]=Multitran - Preklad medzi nemčinou a ruštinou
 Name[sl]=Multitran - Prevod med nemščino in ruščino
 Name[sr]=Мултитран: са немачког на руски
@@ -76,4 +79,76 @@ Name[zh_TW]=Multitran - 翻譯德語和俄語
 X-KDE-ServiceTypes=SearchProvider
 Keys=mt,mtde
 Query=http://multitran.ru/c/m.exe?l1=3&s=\\{@}
+Query[ar]=http://multitran.ru/c/m.exe?l1=3&s=\\{@}
+Query[as]=http://multitran.ru/c/m.exe?l1=3&s=\\{@}
+Query[be@latin]=http://multitran.ru/c/m.exe?l1=3&s=\\{@}
+Query[bg]=http://multitran.ru/c/m.exe?l1=3&s=\\{@}
+Query[bn]=http://multitran.ru/c/m.exe?l1=3&s=\\{@}
+Query[bn_IN]=http://multitran.ru/c/m.exe?l1=3&s=\\{@}
+Query[ca]=http://multitran.ru/c/m.exe?l1=3&s=\\{@}
+Query[ca@valencia]=http://multitran.ru/c/m.exe?l1=3&s=\\{@}
+Query[cs]=http://multitran.ru/c/m.exe?l1=3&s=\\{@}
+Query[csb]=http://multitran.ru/c/m.exe?l1=3&s=\\{@}
+Query[da]=http://multitran.ru/c/m.exe?l1=3&s=\\{@}
+Query[de]=http://multitran.ru/c/m.exe?l1=3&s=\\{@}
+Query[el]=http://multitran.ru/c/m.exe?l1=3&s=\\{@}
+Query[en_GB]=http://multitran.ru/c/m.exe?l1=3&s=\\{@}
+Query[eo]=http://multitran.ru/c/m.exe?l1=3&s=\\{@}
+Query[es]=http://multitran.ru/c/m.exe?l1=3&s=\\{@}
+Query[et]=http://multitran.ru/c/m.exe?l1=3&s=\\{@}
+Query[eu]=http://multitran.ru/c/m.exe?l1=3&s=\\{@}
+Query[fi]=http://multitran.ru/c/m.exe?l1=3&s=\\{@}
+Query[fr]=http://multitran.ru/c/m.exe?l1=3&s=\\{@}
+Query[fy]=http://multitran.ru/c/m.exe?l1=3&s=\\{@}
+Query[ga]=http://multitran.ru/c/m.exe?l1=3&s=\\{@}
+Query[gl]=http://multitran.ru/c/m.exe?l1=3&s=\\{@}
+Query[gu]=http://multitran.ru/c/m.exe?l1=3&s=\\{@}
+Query[he]=http://multitran.ru/c/m.exe?l1=3&s=\\{@}
+Query[hi]=http://multitran.ru/c/m.exe?l1=3&s=\\{@}
+Query[hne]=http://multitran.ru/c/m.exe?l1=3&s=\\{@}
+Query[hr]=http://multitran.ru/c/m.exe?l1=3&s=\\{@}
+Query[hsb]=http://multitran.ru/c/m.exe?l1=3&s=\\{@}
+Query[hu]=http://multitran.ru/c/m.exe?l1=3&s=\\{@}
+Query[id]=http://multitran.ru/c/m.exe?l1=3&s=\\{@}
+Query[is]=http://multitran.ru/c/m.exe?l1=3&s=\\{@}
+Query[it]=http://multitran.ru/c/m.exe?l1=3&s=\\{@}
+Query[ja]=http://multitran.ru/c/m.exe?l1=3&s=\\{@}
+Query[kk]=http://multitran.ru/c/m.exe?l1=3&s=\\{@}
+Query[km]=http://multitran.ru/c/m.exe?l1=3&s=\\{@}
+Query[kn]=http://multitran.ru/c/m.exe?l1=3&s=\\{@}
+Query[ko]=http://multitran.ru/c/m.exe?l1=3&s=\\{@}
+Query[ku]=http://multitran.ru/c/m.exe?l1=3&s=\\{@}
+Query[lt]=http://multitran.ru/c/m.exe?l1=3&s=\\{@}
+Query[lv]=http://multitran.ru/c/m.exe?l1=3&s=\\{@}
+Query[mai]=http://multitran.ru/c/m.exe?l1=3&s=\\{@}
+Query[ml]=http://multitran.ru/c/m.exe?l1=3&s=\\{@}
+Query[mr]=http://multitran.ru/c/m.exe?l1=3&s=\\{@}
+Query[nb]=http://multitran.ru/c/m.exe?l1=3&s=\\{@}
+Query[nds]=http://multitran.ru/c/m.exe?l1=3&s=\\{@}
+Query[nl]=http://multitran.ru/c/m.exe?l1=3&s=\\{@}
+Query[nn]=http://multitran.ru/c/m.exe?l1=3&s=\\{@}
+Query[or]=http://multitran.ru/c/m.exe?l1=3&s=\\{@}
+Query[pa]=http://multitran.ru/c/m.exe?l1=3&s=\\{@}
+Query[pl]=http://multitran.ru/c/m.exe?l1=3&s=\\{@}
+Query[pt]=http://multitran.ru/c/m.exe?l1=3&s=\\{@}
+Query[pt_BR]=http://multitran.ru/c/m.exe?l1=3&s=\\{@}
+Query[ro]=http://multitran.ru/c/m.exe?l1=3&s=\\{@}
+Query[ru]=http://multitran.ru/c/m.exe?l1=3&s=\\{@}
+Query[si]=http://multitran.ru/c/m.exe?l1=3&s=\\{@}
+Query[sk]=http://multitran.ru/c/m.exe?l1=3&s=\\{@}
+Query[sl]=http://multitran.ru/c/m.exe?l1=3&s=\\{@}
+Query[sr]=http://multitran.ru/c/m.exe?l1=3&s=\\{@}
+Query[sr@latin]=http://multitran.ru/c/m.exe?l1=3&s=\\{@}
+Query[sv]=http://multitran.ru/c/m.exe?l1=3&s=\\{@}
+Query[ta]=http://multitran.ru/c/m.exe?l1=3&s=\\{@}
+Query[te]=http://multitran.ru/c/m.exe?l1=3&s=\\{@}
+Query[tg]=http://multitran.ru/c/m.exe?l1=3&s=\\{@}
+Query[th]=http://multitran.ru/c/m.exe?l1=3&s=\\{@}
+Query[tr]=http://multitran.ru/c/m.exe?l1=3&s=\\{@}
+Query[uk]=http://multitran.ru/c/m.exe?l1=3&s=\\{@}
+Query[uz]=http://multitran.ru/c/m.exe?l1=3&s=\\{@}
+Query[uz@cyrillic]=http://multitran.ru/c/m.exe?l1=3&s=\\{@}
+Query[wa]=http://multitran.ru/c/m.exe?l1=3&s=\\{@}
 Query[x-test]=xxhttp://multitran.ru/c/m.exe?l1=3&s=\\{@}xx
+Query[zh_CN]=http://multitran.ru/c/m.exe?l1=3&s=\\{@}
+Query[zh_TW]=http://multitran.ru/c/m.exe?l1=3&s=\\{@}

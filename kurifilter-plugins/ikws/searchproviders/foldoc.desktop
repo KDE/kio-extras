@@ -3,8 +3,10 @@ Type=Service
 Name=Free On-Line Dictionary of Computing
 Name[af]=Gratis Aanlyn Woordeboek van Rekenaars
 Name[ar]=قاموس مجاني للحوسبة على الخط 
+Name[as]=Free On-Line Dictionary of Computing
 Name[be]=Свабодны камп'ютэрны слоўнік
 Name[be@latin]=Svabodny sieciŭny kamputarny słoŭnik
+Name[bg]=Free On-Line Dictionary of Computing
 Name[bn]=কমপিউটিং-এর ফ্রী অন-লাইন অভিধান
 Name[bn_IN]=কম্পিউটার সংক্রান্ত অন-লাইন মুক্ত অভিধান
 Name[ca]=Diccionari lliure d'informàtica en línia
@@ -13,7 +15,9 @@ Name[cs]=Online slovník výp. techniky
 Name[csb]=Wòlnoprzëstãpny kòmpùtrowi słowôrz
 Name[cy]=Geiriadur Rhydd Ar-lein o Gyfrifiaduro
 Name[da]=Gratis online-computerordbog
+Name[de]=Free On-Line Dictionary of Computing
 Name[el]=Ελεύθερο διαδικτυακό λεξικό υπολογιστών
+Name[en_GB]=Free On-Line Dictionary of Computing
 Name[eo]=Libera reta vortaro de komputado
 Name[es]=Free On-Line Dictionary Of Computing
 Name[et]=Vaba arvutialane võrgusõnastik
@@ -22,6 +26,7 @@ Name[fa]=واژه‌نامۀ برخط رایگان محاسبات
 Name[fi]=Vapaa tietokonealan sanasto
 Name[fr]=Dictionnaire de l'informatique gratuit en ligne
 Name[fy]=Free On-Line Dictionary Of Computing (IT-wurdboek)
+Name[ga]=Free On-Line Dictionary of Computing
 Name[gl]=Dicionario libre en liña da computación
 Name[gu]=મુક્ત ઓનલાઇન કોમ્પ્યુટરનો શબ્દકોશ
 Name[he]=מילון המחשוב החופשי המקוון
@@ -59,6 +64,8 @@ Name[pt]=Dicionário Livre de Computação On-Line
 Name[pt_BR]=Dicionário de computação on-line gratuito
 Name[ro]=Dicționar on-line gratuit despre calculatoare
 Name[ru]=Свободный онлайн-словарь по информатике
+Name[se]=Free On-Line Dictionary of Computing
+Name[si]=Free On-Line Dictionary of Computing
 Name[sk]=Free On-Line Dictionary Of Computing
 Name[sl]=Free On-Line Dictionary Of Computing
 Name[sr]=Слободни речник рачунарства на вези
@@ -80,4 +87,85 @@ Name[zh_TW]=免費的線上電腦辭典
 X-KDE-ServiceTypes=SearchProvider
 Keys=fd,foldoc
 Query=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
+Query[af]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
+Query[ar]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
+Query[as]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
+Query[be]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
+Query[be@latin]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
+Query[bg]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
+Query[bn]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
+Query[bn_IN]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
+Query[br]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
+Query[ca]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
+Query[ca@valencia]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
+Query[cs]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
+Query[csb]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
+Query[da]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
+Query[de]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
+Query[el]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
+Query[en_GB]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
+Query[eo]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
+Query[es]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
+Query[et]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
+Query[eu]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
+Query[fi]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
+Query[fr]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
+Query[fy]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
+Query[ga]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
+Query[gl]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
+Query[gu]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
+Query[he]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
+Query[hi]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
+Query[hne]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
+Query[hr]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
+Query[hsb]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
+Query[hu]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
+Query[id]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
+Query[is]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
+Query[it]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
+Query[ja]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
+Query[ka]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
+Query[kk]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
+Query[km]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
+Query[kn]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
+Query[ko]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
+Query[ku]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
+Query[lt]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
+Query[lv]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
+Query[mai]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
+Query[ml]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
+Query[mr]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
+Query[ms]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
+Query[nb]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
+Query[nds]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
+Query[ne]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
+Query[nl]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
+Query[nn]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
+Query[oc]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
+Query[or]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
+Query[pa]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
+Query[pl]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
+Query[pt]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
+Query[pt_BR]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
+Query[ro]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
+Query[ru]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
+Query[se]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
+Query[si]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
+Query[sk]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
+Query[sl]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
+Query[sr]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
+Query[sr@latin]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
+Query[sv]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
+Query[ta]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
+Query[te]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
+Query[tg]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
+Query[th]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
+Query[tr]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
+Query[uk]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
+Query[uz]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
+Query[uz@cyrillic]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
+Query[vi]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
+Query[wa]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
 Query[x-test]=xxhttp://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}xx
+Query[zh_CN]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
+Query[zh_TW]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}

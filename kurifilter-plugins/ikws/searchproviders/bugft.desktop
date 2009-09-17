@@ -3,6 +3,7 @@ Keys=bugft
 Name=KDE Bug Database Fulltext Search
 Name[af]=KDE Fout Databasis voltext Soektog
 Name[ar]=البحث النصي في قاعدة بيانات علل الكيدي
+Name[as]=KDE Bug Database Fulltext Search
 Name[be]=Паўнатэкставы пошук па базе памылак KDE
 Name[be@latin]=Paŭnatekstavy pošuk u bazie viadomych chibaŭ KDE
 Name[bg]=Пълнотекстово търсене в базата от данни с бъгове в KDE
@@ -16,6 +17,7 @@ Name[cy]=Chwilio Llawn-destun y Gronfa Gwallau KDE
 Name[da]=Fuldtekst-søgning i KDE's fejldatabase
 Name[de]=KDE-Problemdatenbank: Volltextsuche
 Name[el]=Αναζήτηση πλήρους κειμένου στη βάση δεδομένων σφαλμάτων του KDE
+Name[en_GB]=KDE Bug Database Fulltext Search
 Name[eo]=Plenteksta serĉo en la KDEa Erarodatumbazo
 Name[es]=Búsqueda textual en la base de datos de fallos de KDE
 Name[et]=Täisteksti otsing KDE vigade andmebaasist
@@ -31,6 +33,7 @@ Name[he]=חיפוש טקסט מלא במאגר הבאגים של KDE
 Name[hi]=केडीई बग डाटाबेस संपूर्ण-पाठ खोज
 Name[hne]=केडीई बग डाटाबेस पूरा-पाठ खोज
 Name[hr]=Pretraga KDE baze podataka o nedostacima pomoću potpunog teksta
+Name[hsb]=KDE Bug Database Fulltext Search
 Name[hu]=A KDE hibaadatbázis teljes szöveges keresési eszköze
 Name[id]=Pencarian Teks Lengkap Basis Data Kutu KDE
 Name[is]=Leit eftir orðum í KDE villugagnagrunni
@@ -42,6 +45,7 @@ Name[km]=ការ​ស្វែងរក​អត្ថបទ​ពេញល�
 Name[kn]=ಕೆಡಿಇ ದೋಷ ದತ್ತಸಂಚಯ ಪೂರ್ಣಪಠ್ಯ ಹುಡುಕಾಟ
 Name[ko]=KDE 버그 데이터베이스 전체 텍스트 검색
 Name[ku]=Lêgerîna Nivîsara Bingeha Dane ya Çewtiyên KDE
+Name[lt]=KDE Bug Database Fulltext Search
 Name[lv]=KDE kļūdu datubāzes pilnteksta meklēšana
 Name[mai]=केडीई बग डाटाबेस संपूर्ण-पाठ खोज
 Name[mk]=База на податоци со бубачки од KDE, пребарување по цел текст
@@ -61,6 +65,7 @@ Name[pt_BR]=Procura por texto no banco de dados de erros do KDE
 Name[ro]=Baza de date de erori KDE - căutare integrală de text
 Name[ru]=Полнотекстовый поиск ошибок в базе KDE
 Name[se]=KDE dihkkediehtovuođu ollesteakstaohcan
+Name[si]=KDE Bug Database Fulltext Search
 Name[sk]=Hľadanie fulltext v KDE databáze chýb
 Name[sl]=Iskanje besedila po zbirki hroščev v KDE
 Name[sr]=КДЕ‑ова база грешака (текстуално)
@@ -81,7 +86,50 @@ Name[x-test]=xxKDE Bug Database Fulltext Searchxx
 Name[zh_CN]=KDE Bug 数据库全文检索
 Name[zh_TW]=KDE 臭蟲資料庫全文檢索
 Query=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
+Query[bg]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
+Query[ca]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
+Query[csb]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
+Query[da]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
+Query[de]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
+Query[el]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
+Query[en_GB]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
+Query[es]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
+Query[et]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
+Query[fi]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
+Query[fr]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
+Query[fy]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
+Query[gl]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
+Query[gu]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[hr]=http://bugs.kde.org/show_bug.cgi?id=\\{@}
+Query[hu]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
+Query[id]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
+Query[is]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
+Query[ja]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
+Query[km]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
+Query[ko]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
+Query[lt]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
+Query[lv]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
+Query[mai]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
+Query[ml]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
+Query[nb]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
+Query[nds]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
+Query[nl]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
+Query[nn]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
+Query[pl]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
+Query[pt]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
+Query[pt_BR]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
+Query[ro]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
+Query[ru]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
+Query[sl]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
+Query[sr]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
+Query[sr@latin]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
+Query[sv]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
+Query[tg]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
+Query[tr]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
+Query[uk]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
+Query[wa]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[x-test]=xxhttp://bugs.kde.org/buglist.cgi?quicksearch=\\{@}xx
+Query[zh_CN]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
+Query[zh_TW]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 X-KDE-ServiceTypes=SearchProvider
 Type=Service

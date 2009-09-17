@@ -20,6 +20,7 @@ Name[cy]=Geiriadur yr Academi Sbaeneg (RAE)
 Name[da]=Ordbog fra det spanske akademi (RAE)
 Name[de]=Lexikon der spanischen Akademie (RAE)
 Name[el]=Λεξικό της ισπανικής ακαδημίας (RAE)
+Name[en_GB]=Dictionary of the Spanish Academy (RAE)
 Name[eo]=Vortaro de la Reĝa Akademio Hispana
 Name[es]=Diccionario de la Real Academia de la Lengua Española (RAE)
 Name[et]=Hispaania akadeemia (RAE) sõnaraamat
@@ -66,6 +67,7 @@ Name[pt_BR]=Dicionário da Academia Espanhola (RAE)
 Name[ro]=Dicționarul Academiei Spaniole (RAE)
 Name[ru]=Словарь Испанской Академии (RAE)
 Name[se]=Spanialaš akademiija sátnegirji (RAE)
+Name[si]=Dictionary of the Spanish Academy (RAE)
 Name[sk]=Slovník Španielskej akadémie (RAE)
 Name[sl]=Slovar Španske akademije (RAE)
 Name[sr]=Речник Шпанске академије (РАЕ)
@@ -85,6 +87,87 @@ Name[x-test]=xxDictionary of the Spanish Academy (RAE)xx
 Name[zh_CN]=西班牙学院的字典(RAE)
 Name[zh_TW]=西班牙金像獎字典 (RAE)
 Query=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
+Query[af]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
+Query[ar]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
+Query[as]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
+Query[be]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
+Query[be@latin]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
+Query[bg]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
+Query[bn]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
+Query[bn_IN]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
+Query[br]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
+Query[ca]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
+Query[ca@valencia]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
+Query[cs]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
+Query[csb]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
+Query[da]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
+Query[de]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
+Query[el]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
+Query[en_GB]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
+Query[eo]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
+Query[es]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
+Query[et]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
+Query[eu]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
+Query[fi]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
+Query[fr]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
+Query[fy]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
+Query[ga]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
+Query[gl]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
+Query[gu]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
+Query[he]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
+Query[hi]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
+Query[hne]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
+Query[hr]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
+Query[hsb]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
+Query[hu]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
+Query[id]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
+Query[is]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
+Query[it]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
+Query[ja]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
+Query[ka]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
+Query[kk]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
+Query[km]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
+Query[kn]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
+Query[ko]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
+Query[ku]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
+Query[lt]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
+Query[lv]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
+Query[mai]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
+Query[ml]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
+Query[mr]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
+Query[ms]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
+Query[nb]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
+Query[nds]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
+Query[ne]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
+Query[nl]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
+Query[nn]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
+Query[oc]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
+Query[or]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
+Query[pa]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
+Query[pl]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
+Query[pt]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
+Query[pt_BR]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
+Query[ro]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
+Query[ru]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
+Query[se]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
+Query[si]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
+Query[sk]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
+Query[sl]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
+Query[sr]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
+Query[sr@latin]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
+Query[sv]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
+Query[ta]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
+Query[te]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
+Query[tg]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
+Query[th]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
+Query[tr]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
+Query[uk]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
+Query[uz]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
+Query[uz@cyrillic]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
+Query[vi]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
+Query[wa]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
 Query[x-test]=xxhttp://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliadoxx
+Query[zh_CN]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
+Query[zh_TW]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
 X-KDE-ServiceTypes=SearchProvider
 Type=Service

@@ -16,6 +16,7 @@ Name[cy]=Chwilio Rhif Gwall y Gronfa Gwallau KDE
 Name[da]=Nummersøgning i KDE's fejldatabase
 Name[de]=KDE-Problemdatenbank: Suche nach Nummer
 Name[el]=Αναζήτηση αριθμού σφάλματος στη βάση δεδομένων σφαλμάτων του KDE
+Name[en_GB]=KDE Bug Database Bug Number Search
 Name[eo]=Serĉo laŭ numero en la KDEa Erarodatumbazo
 Name[es]=Búsqueda de número de fallo en la base de datos de fallos de KDE
 Name[et]=Veanumbri otsing KDE vigade andmebaasist
@@ -63,6 +64,7 @@ Name[pt_BR]=Procura por número no banco de dados de erros do KDE
 Name[ro]=Baza de date de erori KDE- căutare după număr
 Name[ru]=Поиск по номеру в базе ошибок KDE
 Name[se]=KDE dihkkediehtovuođu dihkkenummir ohcan
+Name[si]=KDE Bug Database Bug Number Search
 Name[sk]=Hľadanie podľa čísla chyby v KDE databáze chýb
 Name[sl]=Iskanje v zbirki hroščev KDE po številki hrošča
 Name[sr]=КДЕ‑ова база грешака (по броју)
@@ -83,8 +85,51 @@ Name[x-test]=xxKDE Bug Database Bug Number Searchxx
 Name[zh_CN]=KDE Bug 数据库按 Bug 编号搜索
 Name[zh_TW]=KDE 臭蟲資料庫按錯誤編號搜索
 Query=https://bugs.kde.org/show_bug.cgi?id=\\{@}
+Query[bg]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
+Query[ca]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
+Query[csb]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
+Query[da]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
+Query[de]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
+Query[el]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
+Query[en_GB]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
+Query[es]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
+Query[et]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
+Query[fi]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
+Query[fr]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
+Query[fy]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
+Query[ga]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
+Query[gl]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
+Query[gu]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
 Query[hr]=http://bugs.kde.org/show_bug.cgi?id=\\{@}
+Query[hu]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
+Query[id]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
+Query[is]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
+Query[ja]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
+Query[km]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
+Query[ko]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
+Query[lt]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
+Query[lv]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
+Query[mai]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
+Query[ml]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
+Query[nb]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
+Query[nds]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
+Query[nl]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
+Query[nn]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
+Query[pl]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
+Query[pt]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
+Query[pt_BR]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
+Query[ro]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
+Query[ru]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
+Query[sl]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
+Query[sr]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
+Query[sr@latin]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
+Query[sv]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
 Query[tg]=http://bugs.kde.org/show_bug.cgi?id=\\{@}
+Query[tr]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
+Query[uk]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
+Query[wa]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
 Query[x-test]=xxhttps://bugs.kde.org/show_bug.cgi?id=\\{@}xx
+Query[zh_CN]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
+Query[zh_TW]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
 X-KDE-ServiceTypes=SearchProvider
 Type=Service

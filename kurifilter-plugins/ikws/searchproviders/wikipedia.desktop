@@ -3,6 +3,7 @@ Type=Service
 Name=Wikipedia - The Free Encyclopedia
 Name[af]=Wikipedia - Die gratis ensiklopidie
 Name[ar]=ويكيبيديا الموسوعة الحرّة
+Name[as]=Wikipedia - The Free Encyclopedia
 Name[be]=Wikipedia - Свабодная Энцыклапедыя
 Name[be@latin]=Wikipedia: svabodnaja encyklapedyja
 Name[bg]=Уикипедия - свободната енциклопедия
@@ -17,6 +18,7 @@ Name[cy]=Wikipedia - Y Gwyddoniadur Rhydd
 Name[da]=Wikipedia - Det frie leksikon
 Name[de]=Wikipedia - Die freie Enzyklopädie
 Name[el]=Wikipedia - Η ελεύθερη εγκυκλοπαίδεια
+Name[en_GB]=Wikipedia - The Free Encyclopedia
 Name[eo]=Vikipedio - la libera enciklopedio
 Name[es]=Wikipedia - La enciclopedia libre
 Name[et]=Wikipedia - Vaba entsüklopeedia
@@ -64,6 +66,7 @@ Name[pt_BR]=Wikipédia - a enciclopédia livre
 Name[ro]=Wikipedia - Enciclopedia liberă
 Name[ru]=Свободная энциклопедия Wikipedia (на русском)
 Name[se]=Wikipedia – fridja leksikona
+Name[si]=Wikipedia - The Free Encyclopedia
 Name[sk]=Wikipédia - voľne dostupná encyklopédia
 Name[sl]=Wikipedia - Prosta enciklopedija
 Name[sr]=Википедија — слободна енциклопедија
@@ -85,26 +88,82 @@ Name[zh_TW]=Wikipedia - 免費的 Encyclopedia
 X-KDE-ServiceTypes=SearchProvider
 Keys=wp
 Query=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[af]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[ar]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[as]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[be]=http://be.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[be@latin]=http://be.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[bg]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[bn]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[bn_IN]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[ca]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[ca@valencia]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[cs]=http://cs.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[csb]=http://csb.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[da]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[de]=http://de.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[el]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[en_GB]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[eo]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[es]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[et]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[eu]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[fi]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[fr]=http://fr.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[fy]=http://fy.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[ga]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[gl]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[gu]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[he]=http://he.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[hi]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[hne]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[hr]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[hsb]=http://hsb.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[hu]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[id]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[is]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[it]=http://it.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[ja]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[kk]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[km]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[kn]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[ko]=http://ko.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[ku]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[lt]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[lv]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[mai]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[ml]=http://ml.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[mr]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[nb]=http://no.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[nds]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[ne]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[nl]=http://nl.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[nn]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[oc]=http://oc.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[or]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[pa]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[pl]=http://pl.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[pt]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[pt_BR]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[ro]=http://ro.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[ru]=http://ru.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[se]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[si]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[sk]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[sl]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[sr]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[sr@latin]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[sv]=http://sv.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[ta]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[te]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[tg]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[th]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[tr]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[uk]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[uz]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[uz@cyrillic]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[wa]=http://wa.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Potch%C3%AE
 Query[x-test]=xxhttp://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Goxx
 Query[zh_CN]=http://zh.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[zh_TW]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Charset=utf8

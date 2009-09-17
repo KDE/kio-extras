@@ -3,6 +3,7 @@ Type=Service
 Name=Google Groups
 Name[af]=Google Groepe
 Name[ar]=مجموعات جوجل
+Name[as]=Google Groups
 Name[be]=Групы Google
 Name[be@latin]=Hrupy „Google”
 Name[bg]=Групи в Google
@@ -17,6 +18,7 @@ Name[cy]=Grwpiau Google
 Name[da]=Google-grupper
 Name[de]=Google-Newsgruppen
 Name[el]=Ομάδες του Google
+Name[en_GB]=Google Groups
 Name[eo]=Forumserĉo ĉe "Google"
 Name[es]=Grupos de Google
 Name[et]=Google uudisegrupid
@@ -32,6 +34,8 @@ Name[he]=קבוצות דיון ב־Google
 Name[hi]=गूगल समूह
 Name[hne]=गूगल समूह
 Name[hr]=Google Grupe
+Name[hsb]=Google Groups
+Name[hu]=Google Groups
 Name[id]=Google Grup
 Name[is]=Google - Ráðstefnur
 Name[it]=Google gruppi
@@ -50,15 +54,19 @@ Name[ml]=ഗൂഗിള്‍ കൂട്ടങ്ങള്‍
 Name[mr]=Google समूह
 Name[ms]=Kumpulan Google
 Name[nb]=Google-grupper
+Name[nds]=Google Groups
 Name[ne]=गुगल समूह
 Name[nl]=Google Groepen
+Name[nn]=Google Groups
 Name[oc]=Grops Google
+Name[or]=Google Groups
 Name[pa]=Google ਗਰੁੱਪ
 Name[pl]=Google - archiwum grup dyskusyjnych
 Name[pt]=Grupos do Google
 Name[pt_BR]=Grupos do Google
 Name[ro]=Grupuri Google
 Name[ru]=Группы Google
+Name[se]=Google Groups
 Name[sk]=Diskusné skupiny Google
 Name[sl]=Skupine Google
 Name[sr]=Гугл‑групе
@@ -73,6 +81,7 @@ Name[uk]=Групи Google
 Name[uz]=Google - Guruhlar
 Name[uz@cyrillic]=Google - Гуруҳлар
 Name[vi]=Nhóm Google
+Name[wa]=Google Groups
 Name[xh]=Amaqela e Google
 Name[x-test]=xxGoogle Groupsxx
 Name[zh_CN]=Google 兴趣小组
@@ -80,13 +89,85 @@ Name[zh_TW]=Google 群組
 X-KDE-ServiceTypes=SearchProvider
 Keys=ggg,groups,dj,deja
 Query=http://groups.google.com/groups?oi=djq&as_q=\\{@}
+Query[af]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
+Query[ar]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
+Query[as]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
+Query[be]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
+Query[be@latin]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
+Query[bg]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
+Query[bn]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
+Query[bn_IN]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
+Query[br]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
+Query[ca]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
+Query[ca@valencia]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
+Query[cs]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
+Query[csb]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
+Query[da]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
+Query[de]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
+Query[el]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
 Query[en_GB]=http://groups.google.co.uk/groups?oi=djq&as_q=\\{@}
+Query[eo]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
+Query[es]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
+Query[et]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
+Query[eu]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
+Query[fi]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
 Query[fr]=http://groups.google.fr/groups?oi=djq&as_q=\\{@}
+Query[fy]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
+Query[ga]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
+Query[gl]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
+Query[gu]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
 Query[he]=http://groups.google.co.il/groups?oi=djq&as_q=\\{@}
+Query[hi]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
+Query[hne]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
+Query[hr]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
+Query[hsb]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
+Query[hu]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
+Query[id]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
+Query[is]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
+Query[it]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
+Query[ja]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
+Query[ka]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
+Query[kk]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
+Query[km]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
+Query[kn]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
+Query[ko]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
+Query[ku]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
+Query[lt]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
+Query[lv]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
+Query[mai]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
+Query[ml]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
+Query[mr]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
+Query[ms]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
 Query[nb]=http://groups.google.no/groups?hl=nn&oi=djq&as_q=\\{@}
+Query[nds]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
 Query[ne]=http://groups.google.com/groups?oi=djqas_q=\\{@}
 Query[nl]=http://groups.google.nl/groups?oi=djq&as_q=\\{@}
 Query[nn]=http://groups.google.com/groups?hl=nn&oi=djq&as_q=\\{@}
+Query[oc]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
+Query[or]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
+Query[pa]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
+Query[pl]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
 Query[pt]=http://groups.google.pt/groups?oi=djq&as_q=\\{@}
+Query[pt_BR]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
+Query[ro]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
+Query[ru]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
+Query[se]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
+Query[si]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
+Query[sk]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
+Query[sl]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
+Query[sr]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
+Query[sr@latin]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
+Query[sv]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
+Query[ta]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
+Query[te]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
+Query[tg]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
+Query[th]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
+Query[tr]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
+Query[uk]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
+Query[uz]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
+Query[uz@cyrillic]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
+Query[vi]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
+Query[wa]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
 Query[x-test]=xxhttp://groups.google.com/groups?oi=djq&as_q=\\{@}xx
+Query[zh_CN]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
 Query[zh_TW]=http://groups.google.com.tw/groups?oi=djq&as_q=\\{@}

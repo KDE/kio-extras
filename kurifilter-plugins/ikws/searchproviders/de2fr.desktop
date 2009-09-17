@@ -3,6 +3,7 @@ Type=Service
 Name=LEO - Translate Between German and French
 Name[af]=LEO - Vertaal tussn Duits en Frans
 Name[ar]=LEO - ترجم بين الفرنسية والألمانية
+Name[as]=LEO - Translate Between German and French
 Name[be]=LEO - Пераклад з нямецкай на французскую і наадварот
 Name[be@latin]=Pierakład „LEO”: niamieckaja ➙ francuskaja
 Name[bg]=LEO - превод между немски и френски
@@ -15,6 +16,7 @@ Name[csb]=LEO - dolmaczenié miemiecczi -> francësczi
 Name[da]=LEO - Oversæt mellem tysk og fransk
 Name[de]=LEO - Übersetzung: Deutsch/Französisch
 Name[el]=LEO - Μετάφραση μεταξύ Γερμανικών και Γαλλικών
+Name[en_GB]=LEO - Translate Between German and French
 Name[eo]=LEO - Traduko inter la germana kaj la franca
 Name[es]=LEO - Traducción entre alemán y francés
 Name[et]=LEO - tõlkimine: saksa-prantsuse
@@ -61,6 +63,7 @@ Name[pt_BR]=LEO - Tradução entre alemão e francês
 Name[ro]=LEO - Traduce între germană și franceză
 Name[ru]=LEO: немецко-французский перевод
 Name[se]=LEO – Jorgal duiskka- ja fránskkagiela gaskkas
+Name[si]=LEO - Translate Between German and French
 Name[sk]=LEO - Preklad medzi nemčinou a francúzštinou
 Name[sl]=LEO - Prevod med nemščino in francoščino
 Name[sr]=Лео: са немачког на француски
@@ -82,5 +85,85 @@ Name[zh_TW]=LEO - 翻譯德語和法語
 X-KDE-ServiceTypes=SearchProvider
 Keys=de2fr
 Query=http://dict.leo.org/?lp=frde&search=\\{@}
+Query[af]=http://dict.leo.org/?lp=frde&search=\\{@}
+Query[ar]=http://dict.leo.org/?lp=frde&search=\\{@}
+Query[as]=http://dict.leo.org/?lp=frde&search=\\{@}
+Query[be]=http://dict.leo.org/?lp=frde&search=\\{@}
+Query[be@latin]=http://dict.leo.org/?lp=frde&search=\\{@}
+Query[bg]=http://dict.leo.org/?lp=frde&search=\\{@}
+Query[bn]=http://dict.leo.org/?lp=frde&search=\\{@}
+Query[bn_IN]=http://dict.leo.org/?lp=frde&search=\\{@}
+Query[br]=http://dict.leo.org/?lp=frde&search=\\{@}
+Query[ca]=http://dict.leo.org/?lp=frde&search=\\{@}
+Query[ca@valencia]=http://dict.leo.org/?lp=frde&search=\\{@}
+Query[cs]=http://dict.leo.org/?lp=frde&search=\\{@}
+Query[csb]=http://dict.leo.org/?lp=frde&search=\\{@}
+Query[da]=http://dict.leo.org/?lp=frde&search=\\{@}
+Query[de]=http://dict.leo.org/?lp=frde&search=\\{@}
+Query[el]=http://dict.leo.org/?lp=frde&search=\\{@}
+Query[en_GB]=http://dict.leo.org/?lp=frde&search=\\{@}
+Query[eo]=http://dict.leo.org/?lp=frde&search=\\{@}
+Query[es]=http://dict.leo.org/?lp=frde&search=\\{@}
+Query[et]=http://dict.leo.org/?lp=frde&search=\\{@}
+Query[eu]=http://dict.leo.org/?lp=frde&search=\\{@}
+Query[fi]=http://dict.leo.org/?lp=frde&search=\\{@}
+Query[fr]=http://dict.leo.org/?lp=frde&search=\\{@}
+Query[fy]=http://dict.leo.org/?lp=frde&search=\\{@}
+Query[ga]=http://dict.leo.org/?lp=frde&search=\\{@}
+Query[gl]=http://dict.leo.org/?lp=frde&search=\\{@}
+Query[gu]=http://dict.leo.org/?lp=frde&search=\\{@}
+Query[he]=http://dict.leo.org/?lp=frde&search=\\{@}
+Query[hi]=http://dict.leo.org/?lp=frde&search=\\{@}
+Query[hne]=http://dict.leo.org/?lp=frde&search=\\{@}
+Query[hr]=http://dict.leo.org/?lp=frde&search=\\{@}
+Query[hsb]=http://dict.leo.org/?lp=frde&search=\\{@}
+Query[hu]=http://dict.leo.org/?lp=frde&search=\\{@}
+Query[id]=http://dict.leo.org/?lp=frde&search=\\{@}
+Query[is]=http://dict.leo.org/?lp=frde&search=\\{@}
+Query[it]=http://dict.leo.org/?lp=frde&search=\\{@}
+Query[ja]=http://dict.leo.org/?lp=frde&search=\\{@}
+Query[ka]=http://dict.leo.org/?lp=frde&search=\\{@}
+Query[kk]=http://dict.leo.org/?lp=frde&search=\\{@}
+Query[km]=http://dict.leo.org/?lp=frde&search=\\{@}
+Query[kn]=http://dict.leo.org/?lp=frde&search=\\{@}
+Query[ko]=http://dict.leo.org/?lp=frde&search=\\{@}
+Query[ku]=http://dict.leo.org/?lp=frde&search=\\{@}
+Query[lt]=http://dict.leo.org/?lp=frde&search=\\{@}
+Query[lv]=http://dict.leo.org/?lp=frde&search=\\{@}
+Query[mai]=http://dict.leo.org/?lp=frde&search=\\{@}
+Query[ml]=http://dict.leo.org/?lp=frde&search=\\{@}
+Query[mr]=http://dict.leo.org/?lp=frde&search=\\{@}
+Query[ms]=http://dict.leo.org/?lp=frde&search=\\{@}
+Query[nb]=http://dict.leo.org/?lp=frde&search=\\{@}
+Query[nds]=http://dict.leo.org/?lp=frde&search=\\{@}
 Query[ne]=http://dict.leo.org/?lp=frdesearch=\\{@}
+Query[nl]=http://dict.leo.org/?lp=frde&search=\\{@}
+Query[nn]=http://dict.leo.org/?lp=frde&search=\\{@}
+Query[oc]=http://dict.leo.org/?lp=frde&search=\\{@}
+Query[or]=http://dict.leo.org/?lp=frde&search=\\{@}
+Query[pa]=http://dict.leo.org/?lp=frde&search=\\{@}
+Query[pl]=http://dict.leo.org/?lp=frde&search=\\{@}
+Query[pt]=http://dict.leo.org/?lp=frde&search=\\{@}
+Query[pt_BR]=http://dict.leo.org/?lp=frde&search=\\{@}
+Query[ro]=http://dict.leo.org/?lp=frde&search=\\{@}
+Query[ru]=http://dict.leo.org/?lp=frde&search=\\{@}
+Query[se]=http://dict.leo.org/?lp=frde&search=\\{@}
+Query[si]=http://dict.leo.org/?lp=frde&search=\\{@}
+Query[sk]=http://dict.leo.org/?lp=frde&search=\\{@}
+Query[sl]=http://dict.leo.org/?lp=frde&search=\\{@}
+Query[sr]=http://dict.leo.org/?lp=frde&search=\\{@}
+Query[sr@latin]=http://dict.leo.org/?lp=frde&search=\\{@}
+Query[sv]=http://dict.leo.org/?lp=frde&search=\\{@}
+Query[ta]=http://dict.leo.org/?lp=frde&search=\\{@}
+Query[te]=http://dict.leo.org/?lp=frde&search=\\{@}
+Query[tg]=http://dict.leo.org/?lp=frde&search=\\{@}
+Query[th]=http://dict.leo.org/?lp=frde&search=\\{@}
+Query[tr]=http://dict.leo.org/?lp=frde&search=\\{@}
+Query[uk]=http://dict.leo.org/?lp=frde&search=\\{@}
+Query[uz]=http://dict.leo.org/?lp=frde&search=\\{@}
+Query[uz@cyrillic]=http://dict.leo.org/?lp=frde&search=\\{@}
+Query[vi]=http://dict.leo.org/?lp=frde&search=\\{@}
+Query[wa]=http://dict.leo.org/?lp=frde&search=\\{@}
 Query[x-test]=xxhttp://dict.leo.org/?lp=frde&search=\\{@}xx
+Query[zh_CN]=http://dict.leo.org/?lp=frde&search=\\{@}
+Query[zh_TW]=http://dict.leo.org/?lp=frde&search=\\{@}

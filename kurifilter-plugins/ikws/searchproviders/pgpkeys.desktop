@@ -17,6 +17,7 @@ Name[cy]=Chwilio Allwedd PGPAgored
 Name[da]=OpenPGP-nøglesøgning
 Name[de]=Suche nach OpenPGP-Schlüssel
 Name[el]=Αναζήτηση κλειδιού OpenPGP
+Name[en_GB]=OpenPGP Key Search
 Name[eo]=OpenPGP-serĉo
 Name[es]=Búsqueda de clave OpenPGP
 Name[et]=OpenPGP võtme otsing
@@ -64,6 +65,7 @@ Name[pt_BR]=Busca de chaves OpenPGP
 Name[ro]=Căutare chei OpenPGP
 Name[ru]=Поиск ключей OpenPGP
 Name[se]=Oza OpenPGP-čoavdagiid
+Name[si]=OpenPGP Key Search
 Name[sk]=Hľadanie kľúčov OpenPGP
 Name[sl]=Iskanje ključa OpenPGP
 Name[sr]=ОпенПГП кључеви
@@ -84,7 +86,87 @@ Name[x-test]=xxOpenPGP Key Searchxx
 Name[zh_CN]=OpenPGP 关键字搜索
 Name[zh_TW]=OpenPGP 金鑰搜尋
 Query=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
+Query[af]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
+Query[ar]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
+Query[as]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
+Query[be]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
+Query[be@latin]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
+Query[bg]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
+Query[bn]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
+Query[bn_IN]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
+Query[br]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
+Query[ca]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
+Query[ca@valencia]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
+Query[cs]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
+Query[csb]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
+Query[da]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
+Query[de]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
+Query[el]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
+Query[en_GB]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
+Query[eo]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
+Query[es]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
+Query[et]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
+Query[eu]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
+Query[fi]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
+Query[fr]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
+Query[fy]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
+Query[ga]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
+Query[gl]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
+Query[gu]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
+Query[he]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
+Query[hi]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
+Query[hne]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
+Query[hr]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
+Query[hsb]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
+Query[hu]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
+Query[id]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
+Query[is]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
+Query[it]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
+Query[ja]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
+Query[ka]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
+Query[kk]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
+Query[km]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
+Query[kn]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
+Query[ko]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
+Query[ku]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
+Query[lt]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
+Query[lv]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
+Query[mai]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
+Query[ml]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
+Query[mr]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
+Query[ms]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
+Query[nb]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
+Query[nds]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
 Query[ne]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}op=vindex
+Query[nl]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
+Query[nn]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
+Query[oc]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
+Query[or]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
+Query[pa]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
+Query[pl]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
+Query[pt]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
+Query[pt_BR]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
+Query[ro]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
+Query[ru]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
+Query[se]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
+Query[si]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
+Query[sk]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
+Query[sl]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
+Query[sr]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
+Query[sr@latin]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
+Query[sv]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
+Query[ta]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
+Query[te]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
+Query[tg]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
+Query[th]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
+Query[tr]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
+Query[uk]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
+Query[uz]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
+Query[uz@cyrillic]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
+Query[vi]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
+Query[wa]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
 Query[x-test]=xxhttp://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindexxx
+Query[zh_CN]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
+Query[zh_TW]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
 X-KDE-ServiceTypes=SearchProvider
 Type=Service

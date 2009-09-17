@@ -2,8 +2,11 @@
 Type=Service
 Name=Whatis Query
 Name[af]=Whatis navraag
+Name[ar]=Whatis Query
+Name[as]=Whatis Query
 Name[be]=Запыт Whatis
 Name[be@latin]=Zapyt „Whatis”
+Name[bg]=Whatis Query
 Name[bn]=Whatis জিজ্ঞাসা
 Name[bn_IN]=Whatis অনুসন্ধান
 Name[br]=Klask Whatis
@@ -15,6 +18,7 @@ Name[cy]=Ymholiad Beth-yw-Hwn
 Name[da]=Whatis-forespørgsel
 Name[de]=Whatis-Abfrage
 Name[el]=Ερώτηση Whatis
+Name[en_GB]=Whatis Query
 Name[eo]=Kio-estas-informpeto
 Name[es]=Consulta Whatis
 Name[et]=Whatis päring
@@ -22,6 +26,7 @@ Name[eu]=Whatis bilaketa
 Name[fa]=پرس‌وجوی Whatis
 Name[fi]=Whatis-haku
 Name[fr]=Requête whatis
+Name[fy]=Whatis Query
 Name[ga]=Iarratas Whatis
 Name[gl]=Pregunta a Whatis
 Name[gu]=વોટઇઝ પ્રશ્ર્ને
@@ -29,6 +34,7 @@ Name[he]=שאילתת Whatis
 Name[hi]=व्हाट-इज़ क्वेरी
 Name[hne]=व्हाट-इज क्वेरी
 Name[hr]=Whatis propitivanje
+Name[hsb]=Whatis Query
 Name[hu]=Whatis-lekérdezés
 Name[id]=Tanya Whatis
 Name[is]=Whatis fyrirspurn
@@ -38,6 +44,7 @@ Name[ka]=მოთხოვნა - რა არის
 Name[kk]=Whatis сұранысы
 Name[km]=សំណួរ Whatis
 Name[kn]=ವಾಟಿ ಇಸ್ ವಿಚಾರಣೆ
+Name[ko]=Whatis Query
 Name[ku]=Pirs Çi ye?
 Name[lt]=Whatis užklausa
 Name[lv]=Whatis pieprasījums
@@ -49,6 +56,7 @@ Name[ms]=WPertanyaan Apa itu
 Name[nb]=Whatis-forespørsel
 Name[nds]=Whatis-Anfraag
 Name[ne]=क्वेरी के हो
+Name[nl]=Whatis Query
 Name[nn]=Whatis-oppslag
 Name[or]=Whatis ଅନୁସନ୍ଧାନ
 Name[pa]=ਇਹ ਕੀ ਸਵਾਲ
@@ -58,6 +66,7 @@ Name[pt_BR]=Busca Whatis
 Name[ro]=Interogare "Ce înseamnă asta"
 Name[ru]=Запрос whatis
 Name[se]=Whatis-jearaldat
+Name[si]=Whatis Query
 Name[sk]=Otázka "Čo to je?"
 Name[sl]=Poizvedba Whatis
 Name[sr]=Шта‑је упит
@@ -77,4 +86,81 @@ Name[zh_TW]=Whatis 查詢
 X-KDE-ServiceTypes=SearchProvider
 Keys=wi,whatis
 Query=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
+Query[af]=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
+Query[ar]=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
+Query[as]=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
+Query[be]=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
+Query[be@latin]=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
+Query[bg]=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
+Query[bn]=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
+Query[bn_IN]=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
+Query[ca]=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
+Query[ca@valencia]=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
+Query[cs]=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
+Query[csb]=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
+Query[da]=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
+Query[de]=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
+Query[el]=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
+Query[en_GB]=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
+Query[eo]=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
+Query[es]=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
+Query[et]=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
+Query[eu]=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
+Query[fi]=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
+Query[fr]=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
+Query[fy]=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
+Query[ga]=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
+Query[gl]=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
+Query[gu]=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
+Query[he]=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
+Query[hi]=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
+Query[hne]=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
+Query[hr]=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
+Query[hsb]=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
+Query[hu]=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
+Query[id]=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
+Query[is]=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
+Query[it]=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
+Query[ja]=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
+Query[kk]=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
+Query[km]=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
+Query[kn]=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
+Query[ko]=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
+Query[ku]=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
+Query[lt]=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
+Query[lv]=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
+Query[mai]=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
+Query[ml]=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
+Query[mr]=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
+Query[nb]=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
+Query[nds]=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
+Query[ne]=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
+Query[nl]=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
+Query[nn]=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
+Query[oc]=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
+Query[or]=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
+Query[pa]=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
+Query[pl]=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
+Query[pt]=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
+Query[pt_BR]=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
+Query[ro]=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
+Query[ru]=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
+Query[se]=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
+Query[si]=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
+Query[sk]=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
+Query[sl]=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
+Query[sr]=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
+Query[sr@latin]=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
+Query[sv]=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
+Query[ta]=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
+Query[te]=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
+Query[tg]=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
+Query[th]=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
+Query[tr]=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
+Query[uk]=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
+Query[uz]=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
+Query[uz@cyrillic]=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
+Query[wa]=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
 Query[x-test]=xxhttp://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}xx
+Query[zh_CN]=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
+Query[zh_TW]=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
