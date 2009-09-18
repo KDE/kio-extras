@@ -627,7 +627,7 @@ void sftpProtocol::openConnection() {
     firstTime = false;
 
     if (mUsername != info.username) {
-      kDebug(KIO_SFTP_DB) << "Username changed from " << mUsername 
+      kDebug(KIO_SFTP_DB) << "Username changed from " << mUsername
                                     << " to " << info.username;
     }
     mUsername = info.username;
@@ -724,9 +724,10 @@ void sftpProtocol::open(const KUrl &url, QIODevice::OpenMode mode) {
     return;
   }
 
-  QByteArray path = url.path().toUtf8();
+  const QString path = url.path();
+  const QByteArray path_c = path.toUtf8();
 
-  SFTP_ATTRIBUTES *sb = sftp_lstat(sftp_session, path.constData());
+  SFTP_ATTRIBUTES *sb = sftp_lstat(sftp_session, path_c.constData());
   if (sb == NULL) {
     reportError(url, sftp_get_error(sftp_session));
     return;
@@ -769,9 +770,9 @@ void sftpProtocol::open(const KUrl &url, QIODevice::OpenMode mode) {
   }
 
   if (flags & O_CREAT) {
-    mOpenFile = sftp_open(sftp_session, path.constData(), flags, 0666);
+    mOpenFile = sftp_open(sftp_session, path_c.constData(), flags, 0666);
   } else {
-    mOpenFile = sftp_open(sftp_session, path.constData(), flags, 0);
+    mOpenFile = sftp_open(sftp_session, path_c.constData(), flags, 0);
   }
 
   if (mOpenFile == NULL) {
@@ -988,16 +989,18 @@ void sftpProtocol::put(const KUrl& url, int permissions, KIO::JobFlags flags) {
     return;
   }
 
-  QByteArray dest_orig = url.path().toUtf8();
-  QByteArray dest_part = dest_orig + ".part";
+  const QString dest_orig = url.path();
+  const QByteArray dest_orig_c = dest_orig.toUtf8();
+  const QString dest_part = dest_orig + ".part";
+  const QByteArray dest_part_c = dest_part.toUtf8();
 
-  SFTP_ATTRIBUTES *sb = sftp_lstat(sftp_session, dest_orig.constData());
+  SFTP_ATTRIBUTES *sb = sftp_lstat(sftp_session, dest_orig_c.constData());
   const bool bOrigExists = (sb != NULL);
   bool bPartExists = false;
   const bool bMarkPartial = config()->readEntry("MarkPartial", true);
 
   if (bMarkPartial) {
-    SFTP_ATTRIBUTES *sbPart = sftp_lstat(sftp_session, dest_part.constData());
+    SFTP_ATTRIBUTES *sbPart = sftp_lstat(sftp_session, dest_part_c.constData());
     bPartExists = (sbPart != NULL);
 
     if (bPartExists && !(flags & KIO::Resume) && !(flags & KIO::Overwrite) &&
@@ -1040,17 +1043,17 @@ void sftpProtocol::put(const KUrl& url, int permissions, KIO::JobFlags flags) {
       if (dest.isEmpty()) {
         if (bMarkPartial) {
           kDebug(KIO_SFTP_DB) << "Appending .part extension to " << dest_orig;
-          dest = dest_part;
+          dest = dest_part_c;
           if (bPartExists && !(flags & KIO::Resume)) {
             kDebug(KIO_SFTP_DB) << "Deleting partial file " << dest_part;
-            sftp_unlink(sftp_session, dest_part.constData());
+            sftp_unlink(sftp_session, dest_part_c.constData());
             // Catch errors when we try to open the file.
           }
         } else {
-          dest = dest_orig;
+          dest = dest_orig_c;
           if (bOrigExists && !(flags & KIO::Resume)) {
             kDebug(KIO_SFTP_DB) << "Deleting destination file " << dest_orig;
-            sftp_unlink(sftp_session, dest_orig.constData());
+            sftp_unlink(sftp_session, dest_orig_c.constData());
             // Catch errors when we try to open the file.
           }
         }
@@ -1080,9 +1083,9 @@ void sftpProtocol::put(const KUrl& url, int permissions, KIO::JobFlags flags) {
         if (file == NULL) {
           kDebug(KIO_SFTP_DB) << "####################### COULD NOT WRITE " << dest << " permissions=" << permissions;
           if (sftp_get_error(sftp_session) == SSH_FX_PERMISSION_DENIED) {
-            error(KIO::ERR_WRITE_ACCESS_DENIED, dest);
+              error(KIO::ERR_WRITE_ACCESS_DENIED, QString::fromUtf8(dest));
           } else {
-            error(KIO::ERR_CANNOT_OPEN_FOR_WRITING, dest);
+            error(KIO::ERR_CANNOT_OPEN_FOR_WRITING, QString::fromUtf8(dest));
           }
           sftp_attributes_free(sb);
           return;
@@ -1138,10 +1141,10 @@ void sftpProtocol::put(const KUrl& url, int permissions, KIO::JobFlags flags) {
     // remove the symlink first. This ensures that we do not overwrite the
     // current source if the symlink points to it.
     if ((flags & KIO::Overwrite)) {
-      sftp_unlink(sftp_session, dest_orig.constData());
+      sftp_unlink(sftp_session, dest_orig_c.constData());
     }
 
-    if (sftp_rename(sftp_session, dest.constData(), dest_orig.constData()) < 0) {
+    if (sftp_rename(sftp_session, dest.constData(), dest_orig_c.constData()) < 0) {
       kWarning(KIO_SFTP_DB) << " Couldn't rename " << dest << " to " << dest_orig;
       error(KIO::ERR_CANNOT_RENAME_PARTIAL, dest_orig);
       return;
@@ -1150,7 +1153,7 @@ void sftpProtocol::put(const KUrl& url, int permissions, KIO::JobFlags flags) {
 
   // set final permissions
   if (permissions != -1 && !(flags & KIO::Resume)) {
-    if (sftp_chmod(sftp_session, dest_orig.constData(), permissions) < 0) {
+    if (sftp_chmod(sftp_session, dest_orig_c.constData(), permissions) < 0) {
       kDebug(KIO_SFTP_DB) << "Could not change permissions for " << dest_orig;
       //warning(i18n( "Could not change permissions for\n%1", dest_orig));
     }
@@ -1163,13 +1166,13 @@ void sftpProtocol::put(const KUrl& url, int permissions, KIO::JobFlags flags) {
     if (dt.isValid()) {
       struct timeval times[2];
 
-      SFTP_ATTRIBUTES *attr = sftp_lstat(sftp_session, dest_orig.constData());
+      SFTP_ATTRIBUTES *attr = sftp_lstat(sftp_session, dest_orig_c.constData());
       if (attr != NULL) {
         times[0].tv_sec = attr->atime; //// access time, unchanged
         times[1].tv_sec =  dt.toTime_t(); // modification time
         times[0].tv_usec = times[1].tv_usec = 0;
 
-        sftp_utimes(sftp_session, dest_orig.constData(), times);
+        sftp_utimes(sftp_session, dest_orig_c.constData(), times);
         sftp_attributes_free(attr);
       }
     }
@@ -1371,18 +1374,19 @@ void sftpProtocol::mkdir(const KUrl &url, int permissions) {
     error(ERR_MALFORMED_URL, url.prettyUrl());
     return;
   }
-  QByteArray path = url.path().toUtf8();
+  const QString path = url.path();
+  const QByteArray path_c = path.toUtf8();
 
   // Remove existing file or symlink, if requested.
   if (metaData(QLatin1String("overwrite")) == QLatin1String("true")) {
     kDebug(KIO_SFTP_DB) << "overwrite set, remove existing file or symlink: " << url;
-    sftp_unlink(sftp_session, path);
+    sftp_unlink(sftp_session, path_c.constData());
   }
 
   kDebug(KIO_SFTP_DB) << "Trying to create directory: " << path;
-  SFTP_ATTRIBUTES *sb = sftp_lstat(sftp_session, path.constData());
+  SFTP_ATTRIBUTES *sb = sftp_lstat(sftp_session, path_c.constData());
   if (sb == NULL) {
-    if (sftp_mkdir(sftp_session, path.constData(), 0777) < 0) {
+    if (sftp_mkdir(sftp_session, path_c.constData(), 0777) < 0) {
       reportError(url, sftp_get_error(sftp_session));
       sftp_attributes_free(sb);
       return;
