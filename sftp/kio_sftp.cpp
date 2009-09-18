@@ -556,7 +556,7 @@ void sftpProtocol::openConnection() {
       caption = i18n("Warning: Cannot verify host's identity.");
       msg = i18n("The authenticity of host %1 can't be established.\n"
         "The key fingerprint is: %2\n"
-        "Are you sure you want to continue connecting?").arg(mHost).arg(hexa);
+        "Are you sure you want to continue connecting?", mHost, hexa);
       delete hexa;
 
       if (KMessageBox::Yes != messageBox(WarningYesNo, msg, caption)) {
