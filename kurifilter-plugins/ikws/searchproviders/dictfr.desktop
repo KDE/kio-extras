@@ -1,6 +1,7 @@
 [Desktop Entry]
 Type=Service
 Name=CNRTL/TILF french dictionary
+Name[bg]=Френски речник CNRTL/TILF
 Name[et]=CNRTL/TILF prantsuse keele sõnaraamat
 Name[id]=Kamus bahasa Perancis CNRTL/TILF
 Name[nb]=CNRTL/TILF fransk ordbok
@@ -15,6 +16,7 @@ Name[zh_TW]=CNRTL/TILF 法語字典
 X-KDE-ServiceTypes=SearchProvider
 Keys=dictfr
 Query=http://www.cnrtl.fr/definition/\\{@}
+Query[bg]=http://www.cnrtl.fr/definition/\\{@}
 Query[et]=http://www.cnrtl.fr/definition/\\{@}
 Query[id]=http://www.cnrtl.fr/definition/\\{@}
 Query[nb]=http://www.cnrtl.fr/definition/\\{@}
