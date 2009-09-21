@@ -118,7 +118,7 @@ private: // Private variables
 
 private: // private methods
 
-  int authticateKeyboardInteractive(KIO::AuthInfo &info);
+  int authenticateKeyboardInteractive(KIO::AuthInfo &info);
 
   void reportError(const KUrl &url, const int err);
 

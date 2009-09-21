@@ -136,9 +136,11 @@ int sftpProtocol::auth_callback(const char *prompt, char *buf, size_t len,
   return 0;
 }
 
-int sftpProtocol::authticateKeyboardInteractive(AuthInfo &info) {
+int sftpProtocol::authenticateKeyboardInteractive(AuthInfo &info) {
   QString name, instruction, prompt;
   int err = SSH_AUTH_ERROR;
+
+  kDebug(KIO_SFTP_DB) << "Entering keyboard interactive function";
 
   err = ssh_userauth_kbdint(ssh_session, mUsername.toUtf8().constData(), NULL);
   while (err == SSH_AUTH_INFO) {
@@ -636,7 +638,7 @@ void sftpProtocol::openConnection() {
     // Try to authenticate with keyboard interactive
     kDebug(KIO_SFTP_DB) << "Trying to authenticate with keyboard interactive";
     if (method & SSH_AUTH_METHOD_INTERACTIVE) {
-      rc = authticateKeyboardInteractive(info);
+      rc = authenticateKeyboardInteractive(info);
       if (rc == SSH_AUTH_ERROR) {
         closeConnection();
         error(ERR_COULD_NOT_LOGIN, i18n("Authentication failed."));
