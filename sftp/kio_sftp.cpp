@@ -599,7 +599,7 @@ void sftpProtocol::openConnection() {
     // Try to authenticate with public key first
     kDebug(KIO_SFTP_DB) << "Trying to authenticate public key";
     if (method & SSH_AUTH_METHOD_PUBLICKEY) {
-      rc = ssh_userauth_autopubkey(ssh_session, mUsername.toUtf8().constData());
+      rc = ssh_userauth_autopubkey(ssh_session, NULL);
       if (rc == SSH_AUTH_ERROR) {
         closeConnection();
         error(ERR_COULD_NOT_LOGIN, i18n("Authentication failed."));
