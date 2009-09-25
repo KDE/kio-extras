@@ -61,6 +61,10 @@
 #include <libssh/libssh.h>
 #include <libssh/sftp.h>
 
+#if LIBSSH_VERSION_INT >= SSH_VERSION_INT(0, 4, 0)
+#include <libssh/callback.h>
+#endif
+
 using namespace KIO;
 extern "C"
 {
