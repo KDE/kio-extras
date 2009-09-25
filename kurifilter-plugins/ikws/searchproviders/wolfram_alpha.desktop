@@ -1,0 +1,6 @@
+[Desktop Entry]
+Keys=wa,wolfram
+Name=Wolfram Alpha
+Query=http://www.wolframalpha.com/input/?i=\\{@}
+X-KDE-ServiceTypes=SearchProvider
+Type=Service
