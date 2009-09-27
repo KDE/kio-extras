@@ -2,6 +2,7 @@
 Encoding=UTF-8
 Type=Service
 Name=Microsoft Windows Images
+Name[id]=Gambar Microsoft Windows
 Name[nb]=Microsoft Windows-bilder
 Name[nds]=Microsoft-Windows-Biller
 Name[pt]=Imagens do Microsoft Windows
