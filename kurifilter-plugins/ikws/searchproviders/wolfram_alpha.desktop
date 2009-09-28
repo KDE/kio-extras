@@ -6,7 +6,9 @@ Name[nds]=Wolfram Alpha
 Name[pt]=Wolfram Alpha
 Name[pt_BR]=Wolfram Alpha
 Name[sv]=Wolfram Alpha
+Name[tr]=Tungsten Işığı
 Name[uk]=Wolfram Alpha
+Name[x-test]=xxWolfram Alphaxx
 Query=http://www.wolframalpha.com/input/?i=\\{@}
 Query[id]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[nds]=http://www.wolframalpha.com/input/?i=\\{@}
@@ -15,5 +17,6 @@ Query[pt_BR]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[sv]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[tr]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[uk]=http://www.wolframalpha.com/input/?i=\\{@}
+Query[x-test]=xxhttp://www.wolframalpha.com/input/?i=\\{@}xx
 X-KDE-ServiceTypes=SearchProvider
 Type=Service
