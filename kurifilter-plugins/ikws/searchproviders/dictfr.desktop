@@ -17,6 +17,7 @@ X-KDE-ServiceTypes=SearchProvider
 Keys=dictfr
 Query=http://www.cnrtl.fr/definition/\\{@}
 Query[bg]=http://www.cnrtl.fr/definition/\\{@}
+Query[de]=http://www.cnrtl.fr/definition/\\{@}
 Query[et]=http://www.cnrtl.fr/definition/\\{@}
 Query[id]=http://www.cnrtl.fr/definition/\\{@}
 Query[nb]=http://www.cnrtl.fr/definition/\\{@}
