@@ -86,6 +86,13 @@ void InfoProtocol::get( const KUrl& url )
         return;
     }
 
+    // '<' in the path looks suspicious, someone is trying info:/dir/<script>alert('xss')</script>
+    if (url.path().contains('<'))
+    {
+        error(KIO::ERR_DOES_NOT_EXIST, url.url());
+        return;
+    }
+
     mimeType("text/html");
     // extract the path and node from url
     decodeURL( url );
