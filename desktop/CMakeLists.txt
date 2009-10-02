@@ -1,3 +1,6 @@
+
+add_subdirectory(tests)
+
 ########### next target ###############
 
 set(kio_desktop_PART_SRCS kio_desktop.cpp)
