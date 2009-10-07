@@ -15,10 +15,17 @@
 
 #include "icoutils.h"
 
+#include <cstdlib> //for abs()
+
 #include <QString>
 #include <QStringList>
 #include <QRegExp>
 #include <QProcess>
+#include <QPair>
+#include <QSet>
+
+#define Icon QPair < int, QPair < int, QPair < int, int > > >
+#define makeIcon(width, height, depth, index) qMakePair(width, qMakePair(height, qMakePair(depth, index)))
 
 bool IcoUtils::convertExeToIco(const QString &inputPath, const QString &outputPath) {
 
@@ -37,7 +44,7 @@ bool IcoUtils::convertExeToIco(const QString &inputPath, const QString &outputPa
 	QStringList icons;
 	QStringList groupIcons;
 
-	foreach ( const QString& line, output ) {
+	foreach ( const QString &line, output ) {
 		if ( regExp.indexIn(line) != -1 ) {
 			if ( regExp.cap(1).toInt() == 14 )
 				groupIcons << regExp.cap(2);
@@ -75,7 +82,7 @@ bool IcoUtils::convertExeToIco(const QString &inputPath, const QString &outputPa
 
 }
 
-bool IcoUtils::convertIcoToPng(const QString &inputPath, const QString &outputPath) {
+bool IcoUtils::convertIcoToPng(const QString &inputPath, const QString &outputPath, int needWidth, int needHeight) {
 
 	QProcess icotool;
 
@@ -85,25 +92,36 @@ bool IcoUtils::convertIcoToPng(const QString &inputPath, const QString &outputPa
 	if ( icotool.exitCode() != 0 )
 		return false;
 
+	QSet <Icon> icons;
 	const QStringList output = QString(icotool.readAll()).split('\n');
-
 	QRegExp regExp("--(.*) --index=(.*) --width=(.*) --height=(.*) --bit-depth=(.*) --palette-size=(.*)");
 
-	int index = 0;
-	int width = 0;
-	int depth = 0;
+	foreach ( const QString &line, output ) {
+		if ( regExp.indexIn(line) != -1 )
+			icons << makeIcon(regExp.cap(3).toInt(), regExp.cap(4).toInt(), regExp.cap(5).toInt(), regExp.cap(2).toInt());
+	}
 
-	foreach ( const QString& line, output ) {
-		if ( regExp.indexIn(line) != -1 ) {
-			if ( regExp.cap(3).toInt() > width || ( regExp.cap(3).toInt() == width && regExp.cap(5).toInt() > depth ) ) {
-				index = regExp.cap(2).toInt();
-				width = regExp.cap(3).toInt();
-				depth = regExp.cap(5).toInt();
-			}
+	int min_w = 1024;
+	int min_h = 1024;
+	int max_d = 0;
+	int index = -1;
+
+	foreach ( Icon icon, icons ) {
+		int i_width = icon.first;
+		int i_height = icon.second.first;
+		int i_depth = icon.second.second.first;
+		int i_index = icon.second.second.second;
+		int i_w = abs(i_width - needWidth);
+		int i_h = abs(i_height - needHeight);
+		if ( i_w < min_w || ( i_w == min_w && i_h < min_h ) || ( i_w == min_w && i_h == min_h && i_depth > max_d ) ) {
+			min_w = i_w;
+			min_h = i_h;
+			max_d = i_depth;
+			index = i_index;
 		}
 	}
 
-	if ( index == 0 )
+	if ( index == -1 )
 		return false;
 
 	icotool.start("icotool", QStringList() << "-x" << "-i" << QString::number(index) << inputPath << "-o" << outputPath);

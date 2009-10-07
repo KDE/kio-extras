@@ -42,7 +42,7 @@ bool WindowsExeCreator::create(const QString &path, int width, int height, QImag
 	if ( ! IcoUtils::convertExeToIco(path, icoTempFile.fileName()) )
 		return false;
 
-	if ( ! IcoUtils::convertIcoToPng(icoTempFile.fileName(), pngTempFile.fileName()) )
+	if ( ! IcoUtils::convertIcoToPng(icoTempFile.fileName(), pngTempFile.fileName(), width, height) )
 		return false;
 
 	if ( ! img.load(pngTempFile.fileName()) )

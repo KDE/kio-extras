@@ -39,7 +39,7 @@ bool WindowsImageCreator::create(const QString &path, int width, int height, QIm
 	if ( ! pngTempFile.open() )
 		return false;
 
-	if ( ! IcoUtils::convertIcoToPng(path, pngTempFile.fileName()) )
+	if ( ! IcoUtils::convertIcoToPng(path, pngTempFile.fileName(), width, height) )
 		return false;
 
 	if ( ! img.load(pngTempFile.fileName()) )

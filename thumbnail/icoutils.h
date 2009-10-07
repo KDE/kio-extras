@@ -21,7 +21,7 @@ class QString;
 namespace IcoUtils {
 
 	bool convertExeToIco(const QString &inputPath, const QString &outputPath);
-	bool convertIcoToPng(const QString &inputPath, const QString &outputPath);
+	bool convertIcoToPng(const QString &inputPath, const QString &outputPath, int needWidth=512, int needHeight=512);
 
 }
 
