@@ -2,6 +2,7 @@
 Encoding=UTF-8
 Type=Service
 Name=Microsoft Windows Executables
+Name[en_GB]=Microsoft Windows Executables
 Name[et]=Microsoft Windowsi täitmisfailid
 Name[gl]=Executábeis de Microsoft Windows
 Name[id]=Berkas Dapat Dieksekusi Microsoft Windows
@@ -13,6 +14,7 @@ Name[sv]=Körbara Microsoft Windows program
 Name[tr]=Microsoft Windows Çalıştırılabilir Dosyaları
 Name[uk]=Виконувані файли Microsoft Windows
 Name[x-test]=xxMicrosoft Windows Executablesxx
+Name[zh_TW]=Microsoft Windows 執行檔
 ServiceTypes=ThumbCreator
 MimeType=application/x-ms-dos-executable;application/x-msdownload;application/x-win-lnk;
 CacheThumbnail=false

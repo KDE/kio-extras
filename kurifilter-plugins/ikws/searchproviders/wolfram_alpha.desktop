@@ -1,6 +1,7 @@
 [Desktop Entry]
 Keys=wa,wolfram
 Name=Wolfram Alpha
+Name[en_GB]=Wolfram Alpha
 Name[et]=Wolfram Alpha
 Name[gl]=Wolfram Alpha
 Name[id]=Wolfram Alpha
@@ -12,8 +13,10 @@ Name[sv]=Wolfram Alpha
 Name[tr]=Tungsten Işığı
 Name[uk]=Wolfram Alpha
 Name[x-test]=xxWolfram Alphaxx
+Name[zh_TW]=Wolfram Alpha
 Query=http://www.wolframalpha.com/input/?i=\\{@}
 Query[de]=http://www.wolframalpha.com/input/?i=\\{@}
+Query[en_GB]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[et]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[gl]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[id]=http://www.wolframalpha.com/input/?i=\\{@}
@@ -25,5 +28,6 @@ Query[sv]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[tr]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[uk]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[x-test]=xxhttp://www.wolframalpha.com/input/?i=\\{@}xx
+Query[zh_TW]=http://www.wolframalpha.com/input/?i=\\{@}
 X-KDE-ServiceTypes=SearchProvider
 Type=Service

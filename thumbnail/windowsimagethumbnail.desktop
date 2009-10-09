@@ -2,6 +2,7 @@
 Encoding=UTF-8
 Type=Service
 Name=Microsoft Windows Images
+Name[en_GB]=Microsoft Windows Images
 Name[et]=Microsoft Windowsi pildid
 Name[gl]=Imaxes de Microsoft Windows
 Name[id]=Gambar Microsoft Windows
@@ -13,6 +14,7 @@ Name[sv]=Microsoft Windows avbilder
 Name[tr]=Microsoft Windows Resimleri
 Name[uk]=Зображення Microsoft Windows
 Name[x-test]=xxMicrosoft Windows Imagesxx
+Name[zh_TW]=Microsoft Windows 影像
 ServiceTypes=ThumbCreator
 MimeType=image/vnd.microsoft.icon;image/x-win-bitmap;application/x-navi-animation;
 CacheThumbnail=false

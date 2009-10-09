@@ -19,6 +19,7 @@ Keys=dictfr
 Query=http://www.cnrtl.fr/definition/\\{@}
 Query[bg]=http://www.cnrtl.fr/definition/\\{@}
 Query[de]=http://www.cnrtl.fr/definition/\\{@}
+Query[en_GB]=http://www.cnrtl.fr/definition/\\{@}
 Query[et]=http://www.cnrtl.fr/definition/\\{@}
 Query[gl]=http://www.cnrtl.fr/definition/\\{@}
 Query[id]=http://www.cnrtl.fr/definition/\\{@}
