@@ -191,7 +191,7 @@ int sftpProtocol::authenticateKeyboardInteractive(AuthInfo &info) {
         infoKbdInt.readOnly = false;
         infoKbdInt.keepPassword = false;
 
-        if (openPasswordDialog(infoKbdInt, i18n("Use the username input field to answer this question!"))) {
+        if (openPasswordDialog(infoKbdInt, i18n("Use the username input field to answer this question."))) {
           kDebug(KIO_SFTP_DB) << "Got the answer from the password dialog";
           answer = info.username.toUtf8().constData();
         }
@@ -540,9 +540,9 @@ void sftpProtocol::openConnection() {
     case SSH_SERVER_FOUND_OTHER:
       delete hash;
       error(ERR_CONNECTION_BROKEN, i18n("The host key for this server was "
-            "not found but an other type of key exists.\n"
+            "not found, but another type of key exists.\n"
             "An attacker might change the default server key to confuse your "
-            "client into thinking the key does not exist\n"
+            "client into thinking the key does not exist.\n"
             "Please contact your system administrator.\n%1", ssh_get_error(ssh_session)));
       closeConnection();
       return;
@@ -563,7 +563,7 @@ void sftpProtocol::openConnection() {
       hexa = ssh_get_hexa(hash, hlen);
       delete hash;
       caption = i18n("Warning: Cannot verify host's identity.");
-      msg = i18n("The authenticity of host %1 can't be established.\n"
+      msg = i18n("The authenticity of host %1 cannot be established.\n"
         "The key fingerprint is: %2\n"
         "Are you sure you want to continue connecting?", mHost, hexa);
       delete hexa;
@@ -676,7 +676,7 @@ void sftpProtocol::openConnection() {
   if (sftp_session == NULL) {
     closeConnection();
     error(ERR_COULD_NOT_LOGIN, i18n("Unable to request the SFTP subsystem. "
-          "Make sure SFTP is enabled on the server"));
+          "Make sure SFTP is enabled on the server."));
     return;
   }
 
