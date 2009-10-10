@@ -243,6 +243,10 @@ Notes:
     <acronym>GGZ</acronym>
     <expanded-acronym>GGZ Gaming Zone</expanded-acronym>
   </mime-type>
+  <mime-type type="inode/vnd.kde.service.realplayfavs">
+    <generic-icon name="favorites"/>
+    <comment>RealPlayer Shared Favorites</comment>
+  </mime-type>
 
 
   <!-- uri/ fake mime types -->
