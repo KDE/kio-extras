@@ -89,6 +89,7 @@ static const DNSSDServiceDatum DNSSDServiceData[] =
     { "_raop._tcp",          "raop",          "speaker",           false, 0, 0, 0, 0 },
     { "_touch-able._tcp",    "touch-able",    "input-tablet",      false, 0, 0, 0, 0 },
     { "_workstation._tcp",   "workstation",   "network-workgroup", false, 0, 0, 0, 0 },
+    { "_sleep-proxy._udp",   "sleep-proxy",   "services",          false, 0, 0, 0, 0 },
 
     // KDE workspace
     { "_plasma._tcp",       "plasma",      "plasma",       false, "plasma", 0, 0, 0 },

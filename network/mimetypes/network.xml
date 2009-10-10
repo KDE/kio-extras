@@ -199,6 +199,10 @@ Notes:
     <generic-icon name="network-workgroup"/>
     <comment>Workgroup Manager</comment>
   </mime-type>
+  <mime-type type="inode/vnd.kde.service.sleep-proxy">
+    <generic-icon name="services"/>
+    <comment>Sleep Proxy</comment>
+  </mime-type>
 
   <!-- KDE Workspace -->
   <mime-type type="inode/vnd.kde.service.plasma">
