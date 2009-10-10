@@ -61,7 +61,7 @@ inline NetworkUri::NetworkUri( const KUrl& url )
     if( slashIndex != -1 )
     {
         // servicetype is currently appended as .type to the name
-        const int serviceTypeIndex = mHostName.lastIndexOf( '.' );
+        const int serviceTypeIndex = mHostName.lastIndexOf( '.' ) + 1;
         mServiceType = mHostName.mid( serviceTypeIndex );
 
         const int serviceNameLength = (serviceTypeIndex-1) - (slashIndex+1);
