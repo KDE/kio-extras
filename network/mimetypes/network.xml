@@ -228,6 +228,28 @@ Notes:
     <comment>KSirk game table</comment>
   </mime-type>
 
+  <!-- Hardware -->
+  <mime-type type="inode/vnd.kde.service.pulse-server">
+    <generic-icon name="audio-card"/>
+    <comment>Pulse Server</comment>
+  </mime-type>
+  <mime-type type="inode/vnd.kde.service.pulse-source">
+    <generic-icon name="audio-input-line"/>
+    <comment>Pulse Source</comment>
+  </mime-type>
+  <mime-type type="inode/vnd.kde.service.pulse-sink">
+    <generic-icon name="speaker"/>
+    <comment>Pulse Sink</comment>
+  </mime-type>
+  <mime-type type="inode/vnd.kde.service.libvirt">
+    <generic-icon name="computer"/>
+    <comment>libvirt Server</comment>
+  </mime-type>
+  <mime-type type="inode/vnd.kde.service.airmouse">
+    <generic-icon name="input-mouse"/>
+    <comment>Air Mouse Server</comment>
+  </mime-type>
+
   <!-- Other -->
   <mime-type type="inode/vnd.kde.service.xmpp-server">
     <generic-icon name="xchat"/>
@@ -247,17 +269,9 @@ Notes:
     <acronym>GGZ</acronym>
     <expanded-acronym>GGZ Gaming Zone</expanded-acronym>
   </mime-type>
-  <mime-type type="inode/vnd.kde.service.libvirt">
-    <generic-icon name="computer"/>
-    <comment>libvirt Server</comment>
-  </mime-type>
   <mime-type type="inode/vnd.kde.service.realplayfavs">
     <generic-icon name="favorites"/>
     <comment>RealPlayer Shared Favorites</comment>
-  </mime-type>
-  <mime-type type="inode/vnd.kde.service.airmouse">
-    <generic-icon name="input-mouse"/>
-    <comment>Air Mouse Server</comment>
   </mime-type>
 
 

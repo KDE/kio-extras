@@ -101,13 +101,18 @@ static const DNSSDServiceDatum DNSSDServiceData[] =
     { "_kfourinline._tcp",  "kfourinline", "kfourinline",  false, "http", 0, 0, 0 },
     { "_ksirk._tcp",        "ksirk",       "ksirk",        false, "http", 0, 0, 0 },
 
+    // hardware
+    { "_pulse-server._tcp","pulse-server","audio-card",          false, 0, 0, 0, 0 },
+    { "_pulse-source._tcp","pulse-source","audio-input-line",    false, 0, 0, 0, 0 },
+    { "_pulse-sink._tcp",  "pulse-sink",  "speaker",             false, 0, 0, 0, 0 },
+    { "_libvirt._tcp",     "libvirt",     "computer",            false, 0, 0, 0, 0 },
+    { "_airmouse._tcp",    "airmouse",    "input-mouse",         false, 0, 0, 0, 0 },
+
     // else
     { "_xmpp-server._tcp", "xmpp-server", "xchat",               false, "jabber", 0, 0, 0 },
     { "_lobby._tcp",       "lobby",       "document-edit",       false, 0, 0, 0, 0 },
     { "_giver._tcp",       "giver",       "folder-remote",       false, 0, 0, 0, 0 },
-    { "_libvirt._tcp",     "libvirt",     "computer",            false, 0, 0, 0, 0 },
     { "_realplayfavs._tcp","realplayfavs","favorites",           false, 0, 0, 0, 0 },
-    { "_airmouse._tcp",    "airmouse",    "input-mouse",         false, 0, 0, 0, 0 },
     { "_ggz._tcp",         "ggz",         "applications-games",  false, "ggz", 0, 0, 0 }
 };
 //     result["_ssh._tcp"]=      DNSSDNetServiceBuilder(i18n("Remote disk (fish)"),     "fish",   "service/ftp", QString(), "u", "p");
