@@ -237,6 +237,10 @@ Notes:
     <generic-icon name="document-edit"/>
     <comment>Gobby server</comment>
   </mime-type>
+  <mime-type type="inode/vnd.kde.service.giver">
+    <generic-icon name="folder-remote"/>
+    <comment>Giver Peer</comment>
+  </mime-type>
   <mime-type type="inode/vnd.kde.service.ggz">
     <generic-icon name="applications-games"/>
     <comment>GGZ Server</comment>
