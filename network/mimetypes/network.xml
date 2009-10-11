@@ -247,6 +247,10 @@ Notes:
     <generic-icon name="favorites"/>
     <comment>RealPlayer Shared Favorites</comment>
   </mime-type>
+  <mime-type type="inode/vnd.kde.service.airmouse">
+    <generic-icon name="input-mouse"/>
+    <comment>Air Mouse Server</comment>
+  </mime-type>
 
 
   <!-- uri/ fake mime types -->
