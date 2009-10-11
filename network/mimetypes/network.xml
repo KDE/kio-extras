@@ -243,6 +243,10 @@ Notes:
     <acronym>GGZ</acronym>
     <expanded-acronym>GGZ Gaming Zone</expanded-acronym>
   </mime-type>
+  <mime-type type="inode/vnd.kde.service.libvirt">
+    <generic-icon name="computer"/>
+    <comment>libvirt Server</comment>
+  </mime-type>
   <mime-type type="inode/vnd.kde.service.realplayfavs">
     <generic-icon name="favorites"/>
     <comment>RealPlayer Shared Favorites</comment>
