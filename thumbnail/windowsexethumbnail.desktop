@@ -2,6 +2,7 @@
 Encoding=UTF-8
 Type=Service
 Name=Microsoft Windows Executables
+Name[csb]=Rozszérzenia Microsoft Windows
 Name[en_GB]=Microsoft Windows Executables
 Name[et]=Microsoft Windowsi täitmisfailid
 Name[gl]=Executábeis de Microsoft Windows

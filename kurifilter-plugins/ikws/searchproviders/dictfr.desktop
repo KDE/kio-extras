@@ -1,6 +1,7 @@
 [Desktop Entry]
 Type=Service
 Name=CNRTL/TILF French dictionary
+Name[csb]=CNRTL/TILF francësczi słowôrz
 Name[en_GB]=CNRTL/TILF French dictionary
 Name[et]=CNRTL/TILF prantsuse keele sõnaraamat
 Name[nl]=CNRTL/TILF Frans woordenboek
@@ -15,10 +16,12 @@ X-KDE-ServiceTypes=SearchProvider
 Keys=dictfr
 Query=http://www.cnrtl.fr/definition/\\{@}
 Query[bg]=http://www.cnrtl.fr/definition/\\{@}
+Query[csb]=http://www.cnrtl.fr/definition/\\{@}
 Query[de]=http://www.cnrtl.fr/definition/\\{@}
 Query[en_GB]=http://www.cnrtl.fr/definition/\\{@}
 Query[et]=http://www.cnrtl.fr/definition/\\{@}
 Query[gl]=http://www.cnrtl.fr/definition/\\{@}
+Query[gu]=http://www.cnrtl.fr/definition/\\{@}
 Query[id]=http://www.cnrtl.fr/definition/\\{@}
 Query[nb]=http://www.cnrtl.fr/definition/\\{@}
 Query[nds]=http://www.cnrtl.fr/definition/\\{@}

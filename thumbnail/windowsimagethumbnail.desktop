@@ -2,6 +2,7 @@
 Encoding=UTF-8
 Type=Service
 Name=Microsoft Windows Images
+Name[csb]=Òbrôzczi Microsoft Windows
 Name[en_GB]=Microsoft Windows Images
 Name[et]=Microsoft Windowsi pildid
 Name[gl]=Imaxes de Microsoft Windows

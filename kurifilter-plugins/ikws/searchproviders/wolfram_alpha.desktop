@@ -1,6 +1,7 @@
 [Desktop Entry]
 Keys=wa,wolfram
 Name=Wolfram Alpha
+Name[csb]=Wolfram Alpha
 Name[en_GB]=Wolfram Alpha
 Name[et]=Wolfram Alpha
 Name[gl]=Wolfram Alpha
@@ -16,10 +17,12 @@ Name[uk]=Wolfram Alpha
 Name[x-test]=xxWolfram Alphaxx
 Name[zh_TW]=Wolfram Alpha
 Query=http://www.wolframalpha.com/input/?i=\\{@}
+Query[csb]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[de]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[en_GB]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[et]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[gl]=http://www.wolframalpha.com/input/?i=\\{@}
+Query[gu]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[id]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[nb]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[nds]=http://www.wolframalpha.com/input/?i=\\{@}
