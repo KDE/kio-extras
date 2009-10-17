@@ -93,6 +93,7 @@ Query[da]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[de]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[el]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[en_GB]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
+Query[eo]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[es]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[et]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[fi]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
