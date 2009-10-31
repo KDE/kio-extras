@@ -38,6 +38,7 @@ Name[pt_BR]=Ethicle
 Name[ro]=Ethicle
 Name[ru]=Ethicle
 Name[si]=Ethicle
+Name[sk]=Ethicle
 Name[sl]=Ethicle
 Name[sr]=Етикл
 Name[sr@latin]=Ethicle
@@ -90,6 +91,7 @@ Query[pt_BR]=http://www.ethicle.com/search.php?q=\\{@}
 Query[ro]=http://www.ethicle.com/search.php?q=\\{@}
 Query[ru]=http://www.ethicle.com/search.php?q=\\{@}
 Query[si]=http://www.ethicle.com/search.php?q=\\{@}
+Query[sk]=http://www.ethicle.com/search.php?q=\\{@}
 Query[sl]=http://www.ethicle.com/search.php?q=\\{@}
 Query[sr]=http://www.ethicle.com/search.php?q=\\{@}
 Query[sr@latin]=http://www.ethicle.com/search.php?q=\\{@}
