@@ -83,10 +83,10 @@ private: // Private variables
   int mPort;
 
   /** The ssh session for the connection */
-  SSH_SESSION *ssh_session;
+  ssh_session mSession;
 
   /** The sftp session for the connection */
-  SFTP_SESSION *sftp_session;
+  sftp_session mSftp;
 
   /** Username to use when connecting */
   QString mUsername;
@@ -95,7 +95,7 @@ private: // Private variables
   QString mPassword;
 
   /** The open file */
-  SFTP_FILE *mOpenFile;
+  sftp_file mOpenFile;
 
   /** The open URL */
   KUrl mOpenUrl;
