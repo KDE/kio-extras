@@ -492,6 +492,9 @@ void sftpProtocol::openConnection() {
     ssh_options_set(mSession, SSH_OPTIONS_USER, mUsername.toUtf8().constData());
   }
 
+  // Read ~/.ssh/config
+  ssh_options_parse_config(mSession, NULL);
+
   ssh_callbacks cb;
 
   cb = (ssh_callbacks) malloc(sizeof(struct ssh_callbacks_struct));
