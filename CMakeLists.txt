@@ -27,10 +27,9 @@ add_subdirectory( desktop )
 add_subdirectory( fish )
 add_subdirectory( thumbnail )
 add_subdirectory( docfilter )
-# msvc doesn't compile
-if (LIBSSH_FOUND AND NOT MSVC)
+if (LIBSSH_FOUND)
   add_subdirectory(sftp)
-endif (LIBSSH_FOUND AND NOT MSVC)
+endif (LIBSSH_FOUND)
 
 if(NOT WIN32)
    add_subdirectory( floppy )
