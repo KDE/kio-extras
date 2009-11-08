@@ -126,6 +126,16 @@ target_link_libraries ( windowsimagethumbnail ${KDE4_KIO_LIBS} )
 install ( TARGETS windowsimagethumbnail DESTINATION ${PLUGIN_INSTALL_DIR} )
 install ( FILES windowsimagethumbnail.desktop DESTINATION ${SERVICES_INSTALL_DIR} )
 
+########### next target ###############
+
+set(comicbookthumbnail_SRCS comiccreator.cpp)
+kde4_add_plugin(comicbookthumbnail ${comicbookthumbnail_SRCS})
+target_link_libraries(comicbookthumbnail ${QT_QTCORE_LIBRARY} ${QT_QTGUI_LIBRARY} ${KDE4_KIO_LIBS})
+if (UNIX)
+   target_link_libraries(comicbookthumbnail ${KDE4_KPTY_LIBRARY})
+endif (UNIX)
+install(TARGETS comicbookthumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
+
 ########### install files ###############
 
 install(FILES thumbcreator.desktop DESTINATION ${SERVICETYPES_INSTALL_DIR})
@@ -138,4 +148,5 @@ install(FILES
     htmlthumbnail.desktop
     djvuthumbnail.desktop
     desktopthumbnail.desktop
+    comicbookthumbnail.desktop
     DESTINATION ${SERVICES_INSTALL_DIR})
