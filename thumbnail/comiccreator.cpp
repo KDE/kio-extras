@@ -53,7 +53,7 @@ extern "C"
     {
         return new ComicCreator;
     }
-};
+}
 
 ComicCreator::ComicCreator() : m_loop(0) {}
 
