@@ -1,12 +1,10 @@
 DEBUGGING
 
 The best way to debug this slave is to send debug info to a
-file using 'kdebugDialog --fullmode'. Then you can 'tail -f' the file to 
+file using 'kdebugDialog --fullmode'. Then you can 'tail -f' the file to
 see debug messages in real-time.
 
-I also suggest getting the openssh source and recompiling sftp-server to 
-send messages to the auth log.  This can be done in sftp-server.c be defining
-DEBUG_SFTP_SERVER.
+To enable libssh debug messages in addition you have to set an environment
+variable before calling kdeinit.
 
-You can do the same with the ssh client by finding the two calls to log_init() 
-in ssh.c and changing the last argument from 1 to 0 and recompiling.
+KIO_SFTP_LOG_VERBOSITY=1 kdeinit4

@@ -106,6 +106,17 @@ int auth_callback(const char *prompt, char *buf, size_t len,
   return 0;
 }
 
+void log_callback(ssh_session session, int priority, const char *message,
+    void *userdata) {
+  if (userdata == NULL) {
+    return;
+  }
+
+  sftpProtocol *slave = (sftpProtocol *) userdata;
+
+  slave->log_callback(session, priority, message, userdata);
+}
+
 int sftpProtocol::auth_callback(const char *prompt, char *buf, size_t len,
     int echo, int verify, void *userdata) {
   QString i_prompt = QString::fromUtf8(prompt);
@@ -140,6 +151,14 @@ int sftpProtocol::auth_callback(const char *prompt, char *buf, size_t len,
   info.password.fill('x');
 
   return 0;
+}
+
+void sftpProtocol::log_callback(ssh_session session, int priority,
+    const char *message, void *userdata) {
+  (void) session;
+  (void) userdata;
+
+  kDebug(KIO_SFTP_DB) << "[" << priority << "] " << message;
 }
 
 int sftpProtocol::authenticateKeyboardInteractive(AuthInfo &info) {
@@ -374,6 +393,8 @@ sftpProtocol::sftpProtocol(const QByteArray &pool_socket, const QByteArray &app_
                   mConnected(false), mPort(-1), mSession(NULL), mSftp(NULL) {
 #ifndef Q_WS_WIN
   kDebug(KIO_SFTP_DB) << "pid = " << getpid();
+
+  kDebug(KIO_SFTP_DB) << "debug = " << getenv("KIO_SFTP_LOG_VERBOSITY");
 #endif
 
   mCallbacks = (ssh_callbacks) malloc(sizeof(struct ssh_callbacks_struct));
@@ -385,6 +406,9 @@ sftpProtocol::sftpProtocol(const QByteArray &pool_socket, const QByteArray &app_
 
   mCallbacks->userdata = this;
   mCallbacks->auth_function = ::auth_callback;
+  if (getenv("KIO_SFTP_LOG_VERBOSITY")) {
+    mCallbacks->log_function = ::log_callback;
+  }
 
   ssh_callbacks_init(mCallbacks);
 }
@@ -478,6 +502,7 @@ void sftpProtocol::openConnection() {
   // Start the ssh connection.
   unsigned char *hash = NULL; // the server hash
   char *hexa;
+  int verbosity;
   QString msg;     // msg for dialog box
   QString caption; // dialog box caption
   int rc, state, hlen, timeout_sec = 30;
@@ -506,6 +531,11 @@ void sftpProtocol::openConnection() {
   // Set the username
   if (!mUsername.isEmpty()) {
     ssh_options_set(mSession, SSH_OPTIONS_USER, mUsername.toUtf8().constData());
+  }
+
+  verbosity = atoi(getenv("KIO_SFTP_LOG_VERBOSITY"));
+  if (verbosity) {
+    ssh_options_set(mSession, SSH_OPTIONS_LOG_VERBOSITY, &verbosity);
   }
 
   // Read ~/.ssh/config

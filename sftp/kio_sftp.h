@@ -73,6 +73,12 @@ public:
   // global ::auth_callback() call.
   int auth_callback(const char *prompt, char *buf, size_t len,
     int echo, int verify, void *userdata);
+
+  // libssh logging callback (note that this is called by the
+  // global ::log_callback() call.
+  void log_callback(ssh_session session, int priority, const char *message,
+    void *userdata);
+
 private: // Private variables
   /** True if ioslave is connected to sftp server. */
   bool mConnected;
