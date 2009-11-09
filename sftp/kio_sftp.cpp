@@ -375,6 +375,18 @@ sftpProtocol::sftpProtocol(const QByteArray &pool_socket, const QByteArray &app_
 #ifndef Q_WS_WIN
   kDebug(KIO_SFTP_DB) << "pid = " << getpid();
 #endif
+
+  mCallbacks = (ssh_callbacks) malloc(sizeof(struct ssh_callbacks_struct));
+  if (mCallbacks == NULL) {
+    error(ERR_OUT_OF_MEMORY, QString());
+    return;
+  }
+  ZERO_STRUCTP(mCallbacks);
+
+  mCallbacks->userdata = this;
+  mCallbacks->auth_function = ::auth_callback;
+
+  ssh_callbacks_init(mCallbacks);
 }
 
 sftpProtocol::~sftpProtocol() {
@@ -382,6 +394,10 @@ sftpProtocol::~sftpProtocol() {
   kDebug(KIO_SFTP_DB) << "pid = " << getpid();
 #endif
   closeConnection();
+
+  if (mCallbacks != NULL) {
+    delete mCallbacks;
+  }
 
   /* cleanup and shut down cryto stuff */
   ssh_finalize();
@@ -464,7 +480,7 @@ void sftpProtocol::openConnection() {
   char *hexa;
   QString msg;     // msg for dialog box
   QString caption; // dialog box caption
-  int rc, state, hlen, timeout = 30;
+  int rc, state, hlen, timeout_sec = 30;
 
   mSession = ssh_new();
   if (mSession == NULL) {
@@ -475,7 +491,7 @@ void sftpProtocol::openConnection() {
   kDebug(KIO_SFTP_DB) << "Creating the SSH session and setting options";
 
   // Set timeout
-  ssh_options_set(mSession, SSH_OPTIONS_TIMEOUT, &timeout);
+  ssh_options_set(mSession, SSH_OPTIONS_TIMEOUT, &timeout_sec);
 
   // Don't use any compression
   ssh_options_set(mSession, SSH_OPTIONS_COMPRESSION_C_S, "none");
@@ -495,21 +511,7 @@ void sftpProtocol::openConnection() {
   // Read ~/.ssh/config
   ssh_options_parse_config(mSession, NULL);
 
-  ssh_callbacks cb;
-
-  cb = (ssh_callbacks) malloc(sizeof(struct ssh_callbacks_struct));
-  if (cb == NULL) {
-    error(ERR_OUT_OF_MEMORY, QString());
-    return;
-  }
-  ZERO_STRUCTP(cb);
-
-  cb->userdata = this;
-  cb->auth_function = ::auth_callback;
-
-  ssh_callbacks_init(cb);
-
-  ssh_set_callbacks(mSession, cb);
+  ssh_set_callbacks(mSession, mCallbacks);
 
   kDebug(KIO_SFTP_DB) << "Trying to connect to the SSH server";
 

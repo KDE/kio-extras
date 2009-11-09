@@ -29,6 +29,7 @@
 
 #include <libssh/libssh.h>
 #include <libssh/sftp.h>
+#include <libssh/callbacks.h>
 
 // How big should each data packet be? Definitely not bigger than 64kb or
 // you will overflow the 2 byte size variable in a sftp packet.
@@ -99,6 +100,8 @@ private: // Private variables
 
   /** The open URL */
   KUrl mOpenUrl;
+
+  ssh_callbacks mCallbacks;
 
   /** Version of the sftp protocol we are using. */
   int sftpVersion;
