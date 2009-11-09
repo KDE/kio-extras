@@ -278,7 +278,7 @@ int ComicCreator::startProcess(const QString& processPath, const QStringList& ar
     int ret = 0;
 
 #if defined(Q_OS_WIN)
-    m_process.reset(QProcess(this));
+    m_process.reset(new QProcess(this));
 #else
     m_process.reset(new KPtyProcess(this));
     m_process->setOutputChannelMode(KProcess::SeparateChannels);
