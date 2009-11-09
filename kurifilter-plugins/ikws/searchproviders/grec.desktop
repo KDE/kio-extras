@@ -102,6 +102,7 @@ Query[nb]=http://ec.grec.net/cgi-bin/AppDLC3.exe?APP=CERCADLC&GECART=\\{@}
 Query[nds]=http://ec.grec.net/cgi-bin/AppDLC3.exe?APP=CERCADLC&GECART=\\{@}
 Query[nl]=http://ec.grec.net/cgi-bin/AppDLC3.exe?APP=CERCADLC&GECART=\\{@}
 Query[nn]=http://ec.grec.net/cgi-bin/AppDLC3.exe?APP=CERCADLC&GECART=\\{@}
+Query[pl]=http://ec.grec.net/cgi-bin/AppDLC3.exe?APP=CERCADLC&GECART=\\{@}
 Query[pt]=http://ec.grec.net/cgi-bin/AppDLC3.exe?APP=CERCADLC&GECART=\\{@}
 Query[pt_BR]=http://ec.grec.net/cgi-bin/AppDLC3.exe?APP=CERCADLC&GECART=\\{@}
 Query[sk]=http://ec.grec.net/cgi-bin/AppDLC3.exe?APP=CERCADLC&GECART=\\{@}
