@@ -500,7 +500,7 @@ void sftpProtocol::openConnection() {
   // Start the ssh connection.
   unsigned char *hash = NULL; // the server hash
   char *hexa;
-  int verbosity;
+  char *verbosity;
   QString msg;     // msg for dialog box
   QString caption; // dialog box caption
   int rc, state, hlen, timeout_sec = 30;
@@ -531,9 +531,9 @@ void sftpProtocol::openConnection() {
     ssh_options_set(mSession, SSH_OPTIONS_USER, mUsername.toUtf8().constData());
   }
 
-  verbosity = atoi(getenv("KIO_SFTP_LOG_VERBOSITY"));
+  verbosity = getenv("KIO_SFTP_LOG_VERBOSITY");
   if (verbosity) {
-    ssh_options_set(mSession, SSH_OPTIONS_LOG_VERBOSITY, &verbosity);
+    ssh_options_set(mSession, SSH_OPTIONS_LOG_VERBOSITY_STR, verbosity);
   }
 
   // Read ~/.ssh/config
