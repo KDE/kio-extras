@@ -2,6 +2,10 @@
 Encoding=UTF-8
 Type=Service
 Name=Comic Books
+Name[en_GB]=Comic Books
+Name[pt]=Livros de Banda Desenhada
+Name[uk]=Комікси
+Name[x-test]=xxComic Booksxx
 ServiceTypes=ThumbCreator
 MimeType=application/x-cbz;application/x-cbr;application/x-cbt;
 X-KDE-Library=comicbookthumbnail
