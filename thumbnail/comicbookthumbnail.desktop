@@ -10,6 +10,7 @@ Name[pt]=Livros de Banda Desenhada
 Name[tr]=Çizgi Romanlar
 Name[uk]=Комікси
 Name[x-test]=xxComic Booksxx
+Name[zh_TW]=漫畫書
 ServiceTypes=ThumbCreator
 MimeType=application/x-cbz;application/x-cbr;application/x-cbt;
 X-KDE-Library=comicbookthumbnail
