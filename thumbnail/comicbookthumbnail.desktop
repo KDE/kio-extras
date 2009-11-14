@@ -2,7 +2,9 @@
 Encoding=UTF-8
 Type=Service
 Name=Comic Books
+Name[de]=Comic-Buch
 Name[en_GB]=Comic Books
+Name[eo]=Komikso
 Name[et]=Koomiksid
 Name[hr]=Stripovi
 Name[nl]=Stripboeken
