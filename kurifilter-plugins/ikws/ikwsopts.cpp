@@ -44,6 +44,7 @@ ProvidersModel::~ProvidersModel()
 
 QVariant ProvidersModel::headerData(int section, Qt::Orientation orientation, int role ) const
 {
+  Q_UNUSED(orientation);
   if (role == Qt::DisplayRole)
   {
     if (section==Name)
