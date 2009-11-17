@@ -102,6 +102,7 @@ Query[fr]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[fy]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[gl]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[gu]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
+Query[he]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[hr]=http://bugs.kde.org/show_bug.cgi?id=\\{@}
 Query[hu]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[id]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}

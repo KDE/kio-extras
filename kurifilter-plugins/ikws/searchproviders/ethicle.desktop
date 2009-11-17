@@ -18,6 +18,7 @@ Name[fy]=Ethicle
 Name[ga]=Ethicle
 Name[gl]=Ethicle
 Name[gu]=ઇથિકલ
+Name[he]=Ethicle
 Name[hr]=Ethicle
 Name[hu]=Ethicle
 Name[id]=Ethicle
@@ -71,6 +72,7 @@ Query[fy]=http://www.ethicle.com/search.php?q=\\{@}
 Query[ga]=http://www.ethicle.com/search.php?q=\\{@}
 Query[gl]=http://www.ethicle.com/search.php?q=\\{@}
 Query[gu]=http://www.ethicle.com/search.php?q=\\{@}
+Query[he]=http://www.ethicle.com/search.php?q=\\{@}
 Query[hr]=http://info.alexa.com/search?q=\\{@}
 Query[hu]=http://www.ethicle.com/search.php?q=\\{@}
 Query[id]=http://www.ethicle.com/search.php?q=\\{@}
