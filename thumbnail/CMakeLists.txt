@@ -2,6 +2,11 @@ macro_optional_find_package(OpenEXR)
 macro_log_feature(OPENEXR_FOUND "OpenEXR" "API for accessing OpenEXR formatted images" "http://www.openexr.com" FALSE "" "Provides support for OpenEXR formatted images in the thumbnail kioslave")
 
 find_package(JPEG REQUIRED)
+macro_optional_find_package(Exiv2)
+macro_log_feature(EXIV2_FOUND "Exiv2" "A library to access image metadata" "http://www.exiv2.org" FALSE "" "Provides support for automatic rotation of JPEGs in the thumbnail kioslave" )
+
+macro_bool_to_01(EXIV2_FOUND HAVE_EXIV2)
+
 include_directories(${JPEG_INCLUDE_DIR})
 
 ########### next target ###############
@@ -35,6 +40,13 @@ set(jpegthumbnail_PART_SRCS jpegcreator.cpp)
 kde4_add_plugin(jpegthumbnail ${jpegthumbnail_PART_SRCS})
 
 target_link_libraries(jpegthumbnail ${QT_QTCORE_LIBRARY} ${QT_QTGUI_LIBRARY} ${JPEG_LIBRARIES} ${KDE4_KIO_LIBS})
+
+if (HAVE_EXIV2)
+    set_source_files_properties(jpegcreator.cpp PROPERTIES
+                                   COMPILE_FLAGS -DHAVE_EXIV2)
+    include_directories(${EXIV1_INCLUDE_DIR})
+    target_link_libraries(jpegthumbnail ${EXIV2_LIBRARIES})
+endif (HAVE_EXIV2)
 
 install(TARGETS jpegthumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
 

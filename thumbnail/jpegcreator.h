@@ -22,12 +22,16 @@
 
 #include <kio/thumbcreator.h>
 
+class QTransform;
+
 class JpegCreator : public ThumbCreator
 {
 public:
     JpegCreator();
     virtual bool create(const QString &path, int, int, QImage &img);
-	virtual Flags flags() const;
+    virtual Flags flags() const;
+private:
+    QTransform orientationMatrix(int exivOrientation) const;
 };
 
 #endif

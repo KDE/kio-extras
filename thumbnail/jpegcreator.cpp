@@ -25,6 +25,11 @@
 #include <QImage>
 #include <kdemacros.h>
 
+#ifdef HAVE_EXIV2
+#include <exiv2/image.hpp>
+#include <exiv2/exif.hpp>
+#endif
+
 extern "C"
 {
     #include <jpeglib.h>
@@ -77,9 +82,9 @@ void skip_input_data (j_decompress_ptr cinfo, long nbytes)
 {
     jpeg_custom_source_mgr* src = (jpeg_custom_source_mgr*) cinfo->src;
 
-    if (nbytes > 0) 
+    if (nbytes > 0)
     {
-        while (nbytes > (long) src->pub.bytes_in_buffer) 
+        while (nbytes > (long) src->pub.bytes_in_buffer)
         {
             nbytes -= (long) src->pub.bytes_in_buffer;
             (void) fill_input_buffer(cinfo);
@@ -97,7 +102,7 @@ void jpeg_memory_src (j_decompress_ptr cinfo, const JOCTET * buffer, size_t bufs
 {
     jpeg_custom_source_mgr* src;
 
-    if (cinfo->src == NULL) 
+    if (cinfo->src == NULL)
     {
         cinfo->src = (struct jpeg_source_mgr *) (*cinfo->mem->alloc_small) ((j_common_ptr) cinfo, JPOOL_PERMANENT,
         sizeof(jpeg_custom_source_mgr));
@@ -119,8 +124,32 @@ JpegCreator::JpegCreator()
 {
 }
 
+QTransform JpegCreator::orientationMatrix(int exivOrientation) const
+{
+    //Check (e.g.) man jpegexiforient for an explanation
+    switch (exivOrientation) {
+    case 2:
+        return QTransform(-1, 0, 0, 1, 0, 0);
+    case 3:
+        return QTransform(-1, 0, 0, -1, 0, 0);
+    case 4:
+        return QTransform(1, 0, 0, -1, 0, 0);
+    case 5:
+        return QTransform(0, 1, 1, 0, 0, 0);
+    case 6:
+        return QTransform(0, 1, -1, 0, 0, 0);
+    case 7:
+        return QTransform(0, -1, -1, 0, 0, 0);
+    case 8:
+        return QTransform(0, -1, 1, 0, 0, 0);
+    case 1:
+    default:
+        return QTransform(1, 0, 0, 1, 0, 0);
+    }
+}
+
 /**
- * This is a faster thumbnail creation specifically for JPEG images, as it uses the libjpeg feature of 
+ * This is a faster thumbnail creation specifically for JPEG images, as it uses the libjpeg feature of
  * calculating the inverse dct for a part of coefficients for lower resolutions.
  * Interesting parameters are the quality settings of libjpeg
  *         jpegDecompress.do_fancy_upsampling (TRUE, FALSE)
@@ -128,11 +157,12 @@ JpegCreator::JpegCreator()
  *         jpegDecompress.dct_method (JDCT_IFAST, JDCT_ISLOW, JDCT_IFLOAT)
  * and the resampling parameter of QImage.
  *
- * Important: We do not need to scaled to exact dimesions, as thumbnail.cpp will check dimensions and 
+ * Important: We do not need to scaled to exact dimesions, as thumbnail.cpp will check dimensions and
  * rescale anyway.
  */
-bool JpegCreator::create(const QString &path, int width, int height, QImage &img)
+bool JpegCreator::create(const QString &path, int width, int height, QImage &image)
 {
+    QImage img;
     const QByteArray name = QFile::encodeName(path);
     FILE *jpegFile = fopen(name.constData(), "rb");
     if (jpegFile  == 0) {
@@ -173,7 +203,7 @@ bool JpegCreator::create(const QString &path, int width, int height, QImage &img
 
     // set jpeglib decompression parameters
     jpegDecompress.scale_num           = 1;
-    jpegDecompress.scale_denom         = scale;	
+    jpegDecompress.scale_denom         = scale;
     jpegDecompress.do_fancy_upsampling = FALSE;
     jpegDecompress.do_block_smoothing  = FALSE;
     jpegDecompress.dct_method          = JDCT_IFAST;
@@ -192,33 +222,57 @@ bool JpegCreator::create(const QString &path, int width, int height, QImage &img
         if (img.depth() != 32) {
             img = img.convertToFormat(QImage::Format_RGB32);
         }
-        return true;
-    }
-
-    jpeg_start_decompress(&jpegDecompress);
-    img = QImage(jpegDecompress.output_width, jpegDecompress.output_height, QImage::Format_RGB32);
-    uchar *buffer = img.bits();
-    const int bpl = img.bytesPerLine();
-    while (jpegDecompress.output_scanline < jpegDecompress.output_height) {
-        // advance line-pointer to next line
-        uchar *line = buffer + jpegDecompress.output_scanline * bpl;
-        jpeg_read_scanlines(&jpegDecompress, &line, 1);
-    }
-    jpeg_finish_decompress(&jpegDecompress);
-
-    // align correctly for QImage
-    // code copied from Gwenview and digiKam
-    for (int i = 0; i < jpegDecompress.output_height; ++i) {
-        uchar *in = img.scanLine(i) + jpegDecompress.output_width * 3;
-        QRgb *out = (QRgb*)img.scanLine(i);
-        for (int j = jpegDecompress.output_width - 1; j >= 0; --j) {
-            in -= 3;
-            out[j] = qRgb(in[0], in[1], in[2]);
+    } else {
+        jpeg_start_decompress(&jpegDecompress);
+        img = QImage(jpegDecompress.output_width, jpegDecompress.output_height, QImage::Format_RGB32);
+        uchar *buffer = img.bits();
+        const int bpl = img.bytesPerLine();
+        while (jpegDecompress.output_scanline < jpegDecompress.output_height) {
+            // advance line-pointer to next line
+            uchar *line = buffer + jpegDecompress.output_scanline * bpl;
+            jpeg_read_scanlines(&jpegDecompress, &line, 1);
         }
+        jpeg_finish_decompress(&jpegDecompress);
+
+        // align correctly for QImage
+        // code copied from Gwenview and digiKam
+        for (int i = 0; i < jpegDecompress.output_height; ++i) {
+            uchar *in = img.scanLine(i) + jpegDecompress.output_width * 3;
+            QRgb *out = (QRgb*)img.scanLine(i);
+            for (int j = jpegDecompress.output_width - 1; j >= 0; --j) {
+                in -= 3;
+                out[j] = qRgb(in[0], in[1], in[2]);
+            }
+        }
+        fclose(jpegFile);
+        jpeg_destroy_decompress(&jpegDecompress);
     }
-    
-    fclose(jpegFile);
-    jpeg_destroy_decompress(&jpegDecompress);
+
+#ifdef HAVE_EXIV2
+    //Handle exif rotation
+    try {
+        Exiv2::Image::AutoPtr exivImg = Exiv2::ImageFactory::open(name.constData());
+        if (exivImg.get()) {
+            exivImg->readMetadata();
+            Exiv2::ExifData exifData = exivImg->exifData();
+            if (!exifData.empty()) {
+                Exiv2::ExifKey key("Exif.Image.Orientation");
+                Exiv2::ExifData::iterator it = exifData.findKey(key);
+                if (it != exifData.end()) {
+                    int orient = it->toLong();
+                    image = img.transformed(orientationMatrix(orient));
+                    return true;
+                }
+            }
+        }
+    } catch (...) {
+        // Apparently libexiv changed its API at some point, a different exception is thrown
+        // depending on the version. an ifdef could make it work, but since we just ignore the exception
+        // there is no point in doing that
+    }
+#endif
+
+    image = img;
     return true;
 }
 
