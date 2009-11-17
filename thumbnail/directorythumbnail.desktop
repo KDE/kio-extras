@@ -56,3 +56,4 @@ Name[zh_TW]=目錄
 X-KDE-ServiceTypes=ThumbCreator
 MimeType=inode/directory;
 CacheThumbnail=false
+HandleSequences=true
