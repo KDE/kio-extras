@@ -250,7 +250,7 @@ bool JpegCreator::create(const QString &path, int width, int height, QImage &ima
 
 #ifdef HAVE_EXIV2
     //Handle exif rotation
-    try {
+//    try {
         Exiv2::Image::AutoPtr exivImg = Exiv2::ImageFactory::open(name.constData());
         if (exivImg.get()) {
             exivImg->readMetadata();
@@ -265,11 +265,11 @@ bool JpegCreator::create(const QString &path, int width, int height, QImage &ima
                 }
             }
         }
-    } catch (...) {
+//    } catch (...) {
         // Apparently libexiv changed its API at some point, a different exception is thrown
         // depending on the version. an ifdef could make it work, but since we just ignore the exception
         // there is no point in doing that
-    }
+//    }
 #endif
 
     image = img;
