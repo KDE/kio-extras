@@ -2,6 +2,7 @@
 Encoding=UTF-8
 Type=Service
 Name=Microsoft Windows Executables
+Name[cs]=Spustitelné soubory MS Windows
 Name[csb]=Rozszérzenia Microsoft Windows
 Name[en_GB]=Microsoft Windows Executables
 Name[eo]=MS-Vindozo plenumeblaj dosieroj
