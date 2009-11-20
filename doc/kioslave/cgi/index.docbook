@@ -14,9 +14,6 @@
 </authorgroup>
 </articleinfo>
 
-<para>The &systemsettings; module kcmcgi is used to configure the search paths for CGI
-programs.</para>
-
 <para>The <acronym>CGI</acronym> slave provides a way to execute
 <acronym>CGI</acronym> programs without the need to have a running web
 server. This can for example be used for local testing of
