@@ -44,9 +44,9 @@ The smb ioslave requires that you have libsmbclient to use this ioslave.
 </para>
 
 <para>
-You can set your default user name and password in the &kcontrol; in
-<menuchoice><guisubmenu>Network</guisubmenu><guimenuitem>Windows
-Shares</guimenuitem></menuchoice>.  This is especially useful if you are a
+You can set your default user name and password in the &systemsettings; in
+<menuchoice><guisubmenu>Network &amp; Connectivity</guisubmenu><guimenuitem>
+Sharing</guimenuitem></menuchoice>.  This is especially useful if you are a
 member of a &Windows; <acronym>NT</acronym> domain. There you can also set your
 workgroup name, but in most cases this is not required.  The kioslave will ask for your username and password if a default is not set.
 </para>
