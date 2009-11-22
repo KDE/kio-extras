@@ -134,6 +134,7 @@ bool SMBSlave::checkPassword(SMBUrl &url)
         share = share.mid(1);
     info.url.setPath('/' + share);
     info.verifyPath = true;
+    info.keepPassword = true;
 
     if ( share.isEmpty() )
         info.prompt = i18n(
