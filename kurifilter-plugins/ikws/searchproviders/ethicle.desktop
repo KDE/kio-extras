@@ -25,6 +25,7 @@ Name[id]=Ethicle
 Name[is]=Ethicle
 Name[it]=Ethicle
 Name[ja]=Ethicle
+Name[kk]=Ethicle
 Name[km]=Ethicle
 Name[ko]=Ethicle
 Name[lv]=Ethicle
@@ -79,6 +80,7 @@ Query[id]=http://www.ethicle.com/search.php?q=\\{@}
 Query[is]=http://www.ethicle.com/search.php?q=\\{@}
 Query[it]=http://www.ethicle.com/search.php?q=\\{@}
 Query[ja]=http://www.ethicle.com/search.php?q=\\{@}
+Query[kk]=http://www.ethicle.com/search.php?q=\\{@}
 Query[km]=http://www.ethicle.com/search.php?q=\\{@}
 Query[ko]=http://www.ethicle.com/search.php?q=\\{@}
 Query[lt]=http://www.ethicle.com/search.php?q=\\{@}
