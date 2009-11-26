@@ -1,6 +1,12 @@
 [Desktop Entry]
 Type=Service
 Name=JPEG Images
+Name[en_GB]=JPEG Images
+Name[pt]=Imagens JPEG
+Name[sv]=JPEG-bilder
+Name[uk]=Зображення JPEG
+Name[x-test]=xxJPEG Imagesxx
+Name[zh_TW]=JPEG 影像
 X-KDE-ServiceTypes=ThumbCreator
 MimeType=image/jpeg;
 X-KDE-Library=jpegthumbnail
