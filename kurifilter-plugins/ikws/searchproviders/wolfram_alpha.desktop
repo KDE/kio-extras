@@ -3,6 +3,7 @@ Keys=wa,wolfram
 Name=Wolfram Alpha
 Name[csb]=Wolfram Alpha
 Name[de]=Wolfram Alpha
+Name[el]=Wolfram Άλφα
 Name[en_GB]=Wolfram Alpha
 Name[eo]=Wolfram Alpha
 Name[et]=Wolfram Alpha
@@ -26,6 +27,7 @@ Name[zh_TW]=Wolfram Alpha
 Query=http://www.wolframalpha.com/input/?i=\\{@}
 Query[csb]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[de]=http://www.wolframalpha.com/input/?i=\\{@}
+Query[el]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[en_GB]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[eo]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[et]=http://www.wolframalpha.com/input/?i=\\{@}
