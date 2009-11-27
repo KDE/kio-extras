@@ -8,7 +8,7 @@ macro_log_feature(SAMBA_FOUND "Samba" "the SMB client library, a version with sm
 endif(NOT WIN32)
 
 macro_optional_find_package(LibSSH 0.4.0)
-macro_log_feature(LIBSSH_FOUND "libssh" "the SSH library with SFTP support" "http://www.libssh.org/" FALSE "" "Needed to build the SFTP kioslave")
+macro_log_feature(LIBSSH_FOUND "libssh" "the SSH library with SFTP support" "http://www.libssh.org/" FALSE "0.4.0" "Needed to build the SFTP kioslave")
 
 add_subdirectory( about )
 add_subdirectory( bookmarks )
