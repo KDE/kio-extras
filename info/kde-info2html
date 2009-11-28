@@ -894,7 +894,7 @@ sub InfoNode2HTML {
           $prev = $Line;
         } else {
 	  $prev = $Line;
-          $Line =~ s#- (Variable|Function|Macro|Command|Special Form|User Option|Data Type):.*$#<em><strong>$&</strong></em>#;
+          $Line =~ s{- (Variable|Function|Macro|Command|Special Form|User Option|Data Type):.*$}{<em><strong>$&</strong></em>};
           $Line =~ s/^[ \t]*//;
           print $Line;
         }
@@ -936,7 +936,7 @@ sub InfoNode2HTML {
            $prev = $Line;
          } else {
            $prev = $Line;
-	   $Line =~ s#- (Variable|Function|Macro|Command|Special Form|User Option):.*$#<strong>$&</strong>#;
+	   $Line =~ s{- (Variable|Function|Macro|Command|Special Form|User Option):.*$}{<strong>$&</strong>};
            $Line =~ s/`([^']*)'/`<span class="option">$1<\/span>'/g;  #'
            $Line =~ s/((news|ftp|http):\/\/[A-Za-z0-9\.\/\#\-_\~]*)/<a href="$1">$1<\/a>/g;
            $Line =~ s/([A-Za-z0-9\.\/\#\-_\~]*\@[A-Za-z0-9\.\/\#\-_\~]*\.[A-Za-z]{2,3})/<a href="mailto:$1">$1<\/a>/g;
