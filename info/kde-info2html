@@ -655,7 +655,7 @@ sub PrintHeader {
       #header_top div { background-image: url("help:/common/top-left.jpg"); }
       #header_top div div { background-image: url("help:/common/top-right.jpg"); }
 
-      <!-- Newer updates to kde.org, looks good -->
+      /* Newer updates to kde.org, looks good */
       #header_bottom {
           margin: 0 auto;
           padding: 0.1em 0em 0.3em 0;
