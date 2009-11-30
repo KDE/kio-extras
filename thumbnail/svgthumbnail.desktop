@@ -1,9 +1,13 @@
 [Desktop Entry]
 Type=Service
 Name=SVG Images
+Name[da]=SVG-billeder
+Name[de]=SVG-Bilder
 Name[el]=Εικόνες SVG
 Name[en_GB]=SVG Images
+Name[eu]=SVG irudiak
 Name[ja]=SVG 画像
+Name[nds]=SVG-Biller
 Name[pt]=Imagens SVG
 Name[sv]=SVG-bilder
 Name[uk]=Зображення SVG

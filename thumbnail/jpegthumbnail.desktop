@@ -1,9 +1,13 @@
 [Desktop Entry]
 Type=Service
 Name=JPEG Images
+Name[da]=JPEG-billeder
+Name[de]=JPEG-Bilder
 Name[el]=Εικόνες JPEG
 Name[en_GB]=JPEG Images
+Name[eu]=JPEG irudiak
 Name[ja]=JPEG 画像
+Name[nds]=JPEG-Biller
 Name[pt]=Imagens JPEG
 Name[sv]=JPEG-bilder
 Name[uk]=Зображення JPEG
