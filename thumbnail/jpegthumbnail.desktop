@@ -1,6 +1,7 @@
 [Desktop Entry]
 Type=Service
 Name=JPEG Images
+Name[csb]=Òbrôzczi JPEG
 Name[da]=JPEG-billeder
 Name[de]=JPEG-Bilder
 Name[el]=Εικόνες JPEG
@@ -13,6 +14,7 @@ Name[lv]=JPEG attēli
 Name[nb]=JPEG-bilder
 Name[nds]=JPEG-Biller
 Name[pt]=Imagens JPEG
+Name[pt_BR]=Imagens JPEG
 Name[sv]=JPEG-bilder
 Name[uk]=Зображення JPEG
 Name[x-test]=xxJPEG Imagesxx

@@ -1,6 +1,7 @@
 [Desktop Entry]
 Type=Service
 Name=SVG Images
+Name[csb]=Òbrôzczi SVG
 Name[da]=SVG-billeder
 Name[de]=SVG-Bilder
 Name[el]=Εικόνες SVG
@@ -13,6 +14,7 @@ Name[lv]=SVG attēli
 Name[nb]=SVG-bilder
 Name[nds]=SVG-Biller
 Name[pt]=Imagens SVG
+Name[pt_BR]=Imagens SVG
 Name[sv]=SVG-bilder
 Name[uk]=Зображення SVG
 Name[x-test]=xxSVG Imagesxx

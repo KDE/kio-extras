@@ -2,6 +2,7 @@
 Encoding=UTF-8
 Type=Service
 Name=Comic Books
+Name[csb]=Kòmiksë
 Name[da]=Tegneserier
 Name[de]=Comic-Buch
 Name[el]=Βιβλία κόμικ
