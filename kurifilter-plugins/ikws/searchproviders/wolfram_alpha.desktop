@@ -8,6 +8,7 @@ Name[de]=Wolfram Alpha
 Name[el]=Wolfram Άλφα
 Name[en_GB]=Wolfram Alpha
 Name[eo]=Wolfram Alpha
+Name[es]=Wolfram Alpha
 Name[et]=Wolfram Alpha
 Name[gl]=Wolfram Alpha
 Name[gu]=વુલ્ફ્રામ આલ્ફા
@@ -23,6 +24,7 @@ Name[nl]=Wolfram Alpha
 Name[pt]=Wolfram Alpha
 Name[pt_BR]=Wolfram Alpha
 Name[ro]=Wolfram Alpha
+Name[sl]=Wolfram Alpha
 Name[sv]=Wolfram Alpha
 Name[tr]=Tungsten Işığı
 Name[uk]=Wolfram Alpha
@@ -55,6 +57,7 @@ Query[nl]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[pt]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[pt_BR]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[ro]=http://www.wolframalpha.com/input/?i=\\{@}
+Query[sl]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[sv]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[tr]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[uk]=http://www.wolframalpha.com/input/?i=\\{@}
