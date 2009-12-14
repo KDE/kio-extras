@@ -1,5 +1,5 @@
 /* This file is part of the KDE Project
-   Copyright (C) 2008 Fredrik Höglund <fredrik@kde.org>
+   Copyright (C) 2008, 2009 Fredrik Höglund <fredrik@kde.org>
 
    This library is free software; you can redistribute it and/or
    modify it under the terms of the GNU Library General Public
@@ -20,15 +20,26 @@
 #define DESKTOPNOTIFIER_H
 
 #include <kdedmodule.h>
+#include <QtDBus/QtDBus>
+
+class KDirWatch;
 
 class DesktopNotifier : public KDEDModule
 {
     Q_OBJECT
+    Q_CLASSINFO("D-Bus Interface", "org.kde.DesktopNotifier")
+
 public:
     DesktopNotifier(QObject* parent, const QList<QVariant>&);
 
+public slots:
+    Q_SCRIPTABLE Q_NOREPLY void watchDir(const QString &path);
+
 private slots:
     void dirty(const QString &path);
+
+private:
+    KDirWatch *dirWatch;
 };
 
 #endif

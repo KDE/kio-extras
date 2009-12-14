@@ -1,5 +1,5 @@
 /* This file is part of the KDE Project
-   Copyright (C) 2008 Fredrik Höglund <fredrik@kde.org>
+   Copyright (C) 2008, 2009 Fredrik Höglund <fredrik@kde.org>
 
    This library is free software; you can redistribute it and/or
    modify it under the terms of the GNU Library General Public
@@ -36,11 +36,16 @@ K_EXPORT_PLUGIN(DesktopNotifierFactory("kio_desktop"))
 DesktopNotifier::DesktopNotifier(QObject *parent, const QList<QVariant> &)
     : KDEDModule(parent)
 {
-    KDirWatch *dirWatch = new KDirWatch(this);
-    dirWatch->addDir(KGlobalSettings::desktopPath(), KDirWatch::WatchSubDirs);
+    dirWatch = new KDirWatch(this);
+    dirWatch->addDir(KGlobalSettings::desktopPath());
     dirWatch->addDir(KGlobal::dirs()->localxdgdatadir() + "Trash/files");
 
     connect(dirWatch, SIGNAL(dirty(QString)), SLOT(dirty(QString)));
+}
+
+void DesktopNotifier::watchDir(const QString &path)
+{
+    dirWatch->addDir(path);
 }
 
 void DesktopNotifier::dirty(const QString &path)

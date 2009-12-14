@@ -1,5 +1,5 @@
 /* This file is part of the KDE project
-   Copyright (C) 2008 Fredrik Höglund <fredrik@kde.org>
+   Copyright (C) 2008, 2009 Fredrik Höglund <fredrik@kde.org>
 
    This library is free software; you can redistribute it and/or
    modify it under the terms of the GNU Library General Public
@@ -155,6 +155,17 @@ bool DesktopProtocol::rewriteUrl(const KUrl &url, KUrl &newUrl)
     newUrl.addPath(url.path());
 
     return true;
+}
+
+void DesktopProtocol::listDir(const KUrl &url)
+{
+    KIO::ForwardingSlaveBase::listDir(url);
+
+    KUrl actual;
+    rewriteUrl(url, actual);
+
+    QDBusInterface kded("org.kde.kded", "/modules/desktopnotifier", "org.kde.DesktopNotifier");
+    kded.call("watchDir", actual.path());
 }
 
 QString DesktopProtocol::desktopFile(KIO::UDSEntry &entry) const

@@ -1,5 +1,5 @@
 /* This file is part of the KDE project
-   Copyright (C) 2008 Fredrik Höglund <fredrik@kde.org>
+   Copyright (C) 2008, 2009 Fredrik Höglund <fredrik@kde.org>
 
    This library is free software; you can redistribute it and/or
    modify it under the terms of the GNU Library General Public
@@ -33,6 +33,7 @@ protected:
     void checkLocalInstall();
     QString desktopFile(KIO::UDSEntry&) const;
     virtual bool rewriteUrl(const KUrl &url, KUrl &newUrl);
+    virtual void listDir(const KUrl &url);
     virtual void prepareUDSEntry(KIO::UDSEntry &entry, bool listing=false) const;
     virtual void rename(const KUrl &, const KUrl &, KIO::JobFlags flags);
 };
