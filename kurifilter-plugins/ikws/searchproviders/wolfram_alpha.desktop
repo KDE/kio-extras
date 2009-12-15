@@ -21,6 +21,7 @@ Name[lv]=Wolfram Alpha
 Name[nb]=Wolfram Alpha
 Name[nds]=Wolfram Alpha
 Name[nl]=Wolfram Alpha
+Name[pl]=Wolfram Alpha
 Name[pt]=Wolfram Alpha
 Name[pt_BR]=Wolfram Alpha
 Name[ro]=Wolfram Alpha
@@ -54,6 +55,7 @@ Query[lv]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[nb]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[nds]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[nl]=http://www.wolframalpha.com/input/?i=\\{@}
+Query[pl]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[pt]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[pt_BR]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[ro]=http://www.wolframalpha.com/input/?i=\\{@}
