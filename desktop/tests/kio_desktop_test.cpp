@@ -17,12 +17,14 @@
    Boston, MA 02110-1301, USA.
 */
 
+#include <kdirlister.h>
 #include <ktemporaryfile.h>
 #include <kdebug.h>
 #include <QDesktopServices>
 #include <QObject>
 #include <qtest_kde.h>
 #include <kio/job.h>
+#include <kio/copyjob.h>
 
 class TestDesktop : public QObject
 {
@@ -34,6 +36,8 @@ public:
 private Q_SLOTS:
     void initTestCase()
     {
+        setenv( "KDE_FORK_SLAVES", "yes", true );
+
         // copied from kio_desktop.cpp:
         m_desktopPath = QDesktopServices::storageLocation(QDesktopServices::DesktopLocation);
         if (m_desktopPath.isEmpty())
@@ -44,6 +48,7 @@ private Q_SLOTS:
     void cleanupTestCase()
     {
         QFile::remove(m_desktopPath + '/' + m_testFileName);
+        QFile::remove(m_desktopPath + '/' + m_testFileName + ".part");
     }
 
     void testCopyToDesktop()
@@ -68,6 +73,53 @@ private Q_SLOTS:
         QVERIFY(ok);
         QCOMPARE(job->mostLocalUrl().toLocalFile(), filePath);
     }
+
+    void testRename_data()
+    {
+        QTest::addColumn<bool>("withDirListerCache");
+        QTest::addColumn<QString>("srcFile");
+        QTest::addColumn<QString>("destFile");
+
+        const QString orig = "desktop:/" + m_testFileName;
+        QTest::newRow("from orig to .part") << false << orig << orig + ".part";
+        QTest::newRow("from .part to orig") << false << orig + ".part" << orig;
+        // Warnings: all tests without dirlister cache should above this line
+        // and all tests with it should be below - the cache stays forever once it exists.
+        QTest::newRow("from orig to .part, with cache") << true << orig << orig + ".part";
+        QTest::newRow("from .part to orig, with cache (#218719)") << true << orig + ".part" << orig;
+    }
+
+    void testRename() // relies on testCopyToDesktop being run before
+    {
+        QFETCH(bool, withDirListerCache);
+        QFETCH(QString, srcFile);
+        QFETCH(QString, destFile);
+
+        if (withDirListerCache) {
+            KDirLister lister;
+            lister.openUrl(KUrl("desktop:/"));
+            QEventLoop eventLoop;
+            connect(&lister, SIGNAL(completed()), &eventLoop, SLOT(quit()));
+            eventLoop.exec(QEventLoop::ExcludeUserInputEvents);
+        }
+
+        const KUrl srcUrl(srcFile);
+        const KUrl destUrl(destFile);
+
+        const QString srcFilePath(m_desktopPath + srcUrl.path());
+        QVERIFY(QFile::exists(srcFilePath));
+        const QString destFilePath(m_desktopPath + destUrl.path());
+        QVERIFY(!QFile::exists(destFilePath));
+
+        KIO::CopyJob* job = KIO::move(srcUrl, destUrl, KIO::HideProgressInfo);
+        job->setUiDelegate(0);
+        QVERIFY(job);
+        bool ok = job->exec();
+        QVERIFY(ok);
+        QVERIFY(!QFile::exists(srcFilePath));
+        QVERIFY(QFile::exists(destFilePath));
+    }
+
 private:
     QString m_desktopPath;
     QString m_testFileName;
