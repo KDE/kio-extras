@@ -10,10 +10,12 @@ Name[en_GB]=Wolfram Alpha
 Name[eo]=Wolfram Alpha
 Name[es]=Wolfram Alpha
 Name[et]=Wolfram Alpha
+Name[fy]=Wolfram Alpha
 Name[gl]=Wolfram Alpha
 Name[gu]=વુલ્ફ્રામ આલ્ફા
 Name[he]=Wolfram Alpha
 Name[hr]=Wolfram Alpha
+Name[hu]=Wolfram Alpha
 Name[id]=Wolfram Alpha
 Name[is]=Wolfram Alpha
 Name[kk]=Wolfram Alpha
@@ -29,6 +31,7 @@ Name[sl]=Wolfram Alpha
 Name[sv]=Wolfram Alpha
 Name[tr]=Tungsten Işığı
 Name[uk]=Wolfram Alpha
+Name[wa]=Wolfram Alpha
 Name[x-test]=xxWolfram Alphaxx
 Name[zh_TW]=Wolfram Alpha
 Query=http://www.wolframalpha.com/input/?i=\\{@}
@@ -42,10 +45,12 @@ Query[eo]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[es]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[et]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[eu]=http://www.wolframalpha.com/input/?i=\\{@}
+Query[fy]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[gl]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[gu]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[he]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[hr]=http://www.wolframalpha.com/input/?i=\\{@}
+Query[hu]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[id]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[is]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[ja]=http://www.wolframalpha.com/input/?i=\\{@}
