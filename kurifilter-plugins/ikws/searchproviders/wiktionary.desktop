@@ -75,7 +75,7 @@ Name[te]=విక్షనరి - స్వేఛ్ఛా పదకోశమ�
 Name[tg]=Wiktionary - луғати озод
 Name[th]=วิกิชันนารี - พจนานุุกรมเสรี
 Name[tr]=Wiktionary - Ücretsiz Ansiklopedi
-Name[uk]=Wiktionary - вільний словник
+Name[uk]=Вікісловник — вільний словник
 Name[uz]=Wiktionary - Erkin lugʻat
 Name[uz@cyrillic]=Wiktionary - Эркин луғат
 Name[vi]=Wiktionary - Từ điển Tự do
@@ -157,7 +157,7 @@ Query[te]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[tg]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[th]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[tr]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
-Query[uk]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[uk]=http://uk.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[uz]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[uz@cyrillic]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[wa]=http://wa.wikipedia.org/wiki/Motî:\{@}
