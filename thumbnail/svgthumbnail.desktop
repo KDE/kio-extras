@@ -30,6 +30,7 @@ Name[sl]=Slike SVG
 Name[sv]=SVG-bilder
 Name[uk]=Зображення SVG
 Name[x-test]=xxSVG Imagesxx
+Name[zh_CN]=SVG 图像
 Name[zh_TW]=SVG 影像
 X-KDE-ServiceTypes=ThumbCreator
 MimeType=image/svg+xml;image/svg+xml-compressed;

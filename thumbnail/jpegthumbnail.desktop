@@ -30,6 +30,7 @@ Name[sl]=Slike JPEG
 Name[sv]=JPEG-bilder
 Name[uk]=Зображення JPEG
 Name[x-test]=xxJPEG Imagesxx
+Name[zh_CN]=JPEG 图像
 Name[zh_TW]=JPEG 影像
 X-KDE-ServiceTypes=ThumbCreator
 MimeType=image/jpeg;

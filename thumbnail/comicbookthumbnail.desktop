@@ -30,6 +30,7 @@ Name[sv]=Serietidningar
 Name[tr]=Çizgi Romanlar
 Name[uk]=Комікси
 Name[x-test]=xxComic Booksxx
+Name[zh_CN]=漫画书
 Name[zh_TW]=漫畫書
 ServiceTypes=ThumbCreator
 MimeType=application/x-cbz;application/x-cbr;application/x-cbt;
