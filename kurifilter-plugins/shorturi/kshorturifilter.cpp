@@ -21,6 +21,8 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
+#include "kshorturifilter.h"
+
 #include <stdlib.h>
 #include <unistd.h>
 #include <pwd.h>
@@ -39,8 +41,6 @@
 #include <kconfiggroup.h>
 #include <kauthorized.h>
 #include <kmimetype.h>
-
-#include "kshorturifilter.h"
 
 #define FQDN_PATTERN    "(?:[a-zA-Z0-9][a-zA-Z0-9+-]*\\.[a-zA-Z]+)"
 #define IPv4_PATTERN    "[0-9]{1,3}\\.[0-9]{1,3}(?:\\.[0-9]{0,3})?(?:\\.[0-9]{0,3})?"
@@ -407,7 +407,7 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
 
     if (!KAuthorized::authorizeUrlAction( QLatin1String("open"), KUrl(), u))
     {
-      // No authorisation, we pretend it's a file will get
+      // No authorization, we pretend it's a file will get
       // an access denied error later on.
       setFilteredUri( data, u );
       setUriType( data, KUriFilterData::LocalFile );
@@ -517,7 +517,7 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
 
     if (!KAuthorized::authorizeUrlAction( QLatin1String("open"), KUrl(), u))
     {
-      // No authorisation, we pretend it exists and will get
+      // No authorization, we pretend it exists and will get
       // an access denied error later on.
       setFilteredUri( data, u );
       setUriType( data, KUriFilterData::LocalFile );

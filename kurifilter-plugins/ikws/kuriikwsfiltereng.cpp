@@ -242,7 +242,7 @@ QString KURISearchFilterEngine::substituteQuery(const QString& url, SubstMap &ma
       }
 
       // TODO: strip whitespaces around commas
-      QStringList rl = rlstring.split(",", QString::SkipEmptyParts);
+      QStringList rl = rlstring.split(',', QString::SkipEmptyParts);
       int i = 0;
 
       while ((i<rl.count()) && !found)
@@ -300,7 +300,7 @@ QString KURISearchFilterEngine::substituteQuery(const QString& url, SubstMap &ma
             for (QStringList::Iterator it = ql.begin(); it!=ql.end(); ++it)
               (*it) = "";
           }
-          else if ((c>="0") && (c<="9"))
+          else if ((c>="0") && (c<="9")) // krazy:excludeall=doublequote_chars
           {
             // It's a numeric reference > '0'
             int n = rlitem.toInt();

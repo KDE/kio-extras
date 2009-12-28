@@ -49,7 +49,7 @@ bool FixHostUriFilter::filterUri( KUriFilterData& data ) const
     url2.setHost( "www." + url.host());
 
     if(( url.protocol() == "http" || url.protocol() == "https" )    
-        && !url.host().startsWith( "www." ) && !exists( url ) && exists( url2 ))
+        && !url.host().startsWith( QLatin1String("www.") ) && !exists( url ) && exists( url2 ))
     {
         setFilteredUri( data, url2 );
         setUriType( data, KUriFilterData::NetProtocol );
