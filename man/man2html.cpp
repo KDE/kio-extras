@@ -1097,7 +1097,7 @@ static QByteArray set_font( const QByteArray& name )
     if (fontok)
         current_font = name;
     else
-        current_font = "R"; // Still nothing, then it is 'R' (Regular)
+        current_font = "R"; // Still nothing, then it is 'R' (Regular) // krazy:exclude=doublequote_chars
     return markup;
 }
 
@@ -1616,13 +1616,13 @@ static QByteArray scan_named_font( char*& c )
         else
         {
             kDebug(7107) << "EXCEPTION: font has too big number: " << BYTEARRAY( name ) << " => " << number;
-            name = "R"; // Let assume Regular
+            name = "R"; // Let assume Regular // krazy:exclude=doublequote_chars
         }
     }
     else if ( name.isEmpty() )
     {
         kDebug(7107) << "EXCEPTION: font has no name: " << BYTEARRAY( name );
-        name = "R"; // Let assume Regular
+        name = "R"; // Let assume Regular // krazy:exclude=doublequote_chars
     }
     if ( !skip_escape )
         return set_font( name );
@@ -1818,9 +1818,9 @@ static char *scan_escape_direct( char *c, QByteArray& cstr )
         break;
     }
      case '\'': cstr = "&acute;";curpos++; break; // groff(7) ### TODO verify
-     case '`': cstr = "`";curpos++; break; // groff(7)
-     case '-': cstr = "-";curpos++; break; // groff(7)
-     case '.': cstr = ".";curpos++; break; // groff(7)
+     case '`': cstr = "`";curpos++; break; // groff(7) // krazy:exclude=doublequote_chars
+     case '-': cstr = "-";curpos++; break; // groff(7) // krazy:exclude=doublequote_chars
+     case '.': cstr = ".";curpos++; break; // groff(7) // krazy:exclude=doublequote_chars
      default: cstr = QByteArray( c, 1 ); curpos++; break;
     }
     if (cplusplus)
@@ -4300,7 +4300,7 @@ static char *scan_request(char *c)
                     }
                     else
                     {
-                        endmacro=".";
+                        endmacro="."; // krazy:exclude=doublequote_chars
                         c = wordlist[1];
                         while (*c && (*c != ' ') && (*c != '\n'))
                             endmacro+=*c++;
@@ -5664,7 +5664,7 @@ char *read_man_page(const char *filename)
 #ifndef KIO_MAN_TEST
 int main(int argc, char **argv)
 {
-    cssPath = ".";
+    cssPath = "."; // krazy:exclude=doublequote_chars
     if (argc < 2) {
         std::cerr << "call: " << argv[0] << " <filename>\n";
         return 1;

@@ -18,6 +18,8 @@
     Boston, MA 02110-1301, USA.
 */
 
+#include "kio_nfs.h"
+
 #include <config-runtime.h>
 
 #include <sys/types.h>
@@ -55,10 +57,8 @@
 #include <kio/global.h>
 #include <iostream>
 
-#include "nfs_prot.h"
 #define fhandle _fhandle
 #include "mount.h"
-#include "kio_nfs.h"
 
 #define MAXHOSTLEN 256
 

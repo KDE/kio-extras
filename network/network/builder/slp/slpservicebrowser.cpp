@@ -39,7 +39,7 @@ namespace Mollet
 {
 
 static const char DefaultScope[] =         "";
-static const char AllNamingAuthorities[] = "*";
+static const char AllNamingAuthorities[] = '*';
 static const char AllServiceFilter[] =     "";
 static const char AllAttributesFilter[] =  "";
 static const int updateIntervalMSecs = 7000;

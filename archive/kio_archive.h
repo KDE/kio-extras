@@ -17,8 +17,8 @@
     Boston, MA 02110-1301, USA.
 */
 
-#ifndef ARCHIVEPROTOCOL_H
-#define ARCHIVEPROTOCOL_H
+#ifndef KIO_ARCHIVE_H
+#define KIO_ARCHIVE_H
 
 #include <sys/types.h>
 
@@ -57,4 +57,4 @@ private:
     time_t m_mtime;
 };
 
-#endif
+#endif // KIO_ARCHIVE_H

@@ -215,7 +215,7 @@ int sftpProtocol::authenticateKeyboardInteractive(AuthInfo &info) {
         }
 
         if (ssh_userauth_kbdint_setanswer(mSession, i, answer) < 0) {
-          kDebug(KIO_SFTP_DB) << "An error occured setting the answer: "
+          kDebug(KIO_SFTP_DB) << "An error occurred setting the answer: "
             << ssh_get_error(mSession);
           return SSH_AUTH_ERROR;
         }
@@ -235,7 +235,7 @@ int sftpProtocol::authenticateKeyboardInteractive(AuthInfo &info) {
         }
 
         if (ssh_userauth_kbdint_setanswer(mSession, i, answer) < 0) {
-          kDebug(KIO_SFTP_DB) << "An error occured setting the answer: "
+          kDebug(KIO_SFTP_DB) << "An error occurred setting the answer: "
             << ssh_get_error(mSession);
           return SSH_AUTH_ERROR;
         }
@@ -1392,7 +1392,7 @@ void sftpProtocol::listDir(const KUrl& url) {
 
     for (; it != end; ++it) {
       entry.clear();
-      if (createUDSEntry(QFile::decodeName(*it), QByteArray(path + "/" + *it).constData(), entry, details)) {
+      if (createUDSEntry(QFile::decodeName(*it), QByteArray(path + '/' + *it).constData(), entry, details)) {
         listEntry(entry, false);
       }
     }

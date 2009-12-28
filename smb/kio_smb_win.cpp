@@ -56,7 +56,7 @@ static DWORD checkAuth(const KUrl &url)
     memset((void*)&nr, '\0', sizeof(NETRESOURCE));
     nr.dwType=RESOURCETYPE_DISK;
     nr.lpLocalName=NULL;
-    QString str = "\\\\" + url.host()+url.path().replace("/", "\\");
+    QString str = "\\\\" + url.host()+url.path().replace('/', "\\");
     nr.lpRemoteName = (LPWSTR)str.utf16();
     nr.lpProvider=NULL;
 

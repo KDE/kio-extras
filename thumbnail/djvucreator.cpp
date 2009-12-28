@@ -65,7 +65,7 @@ bool DjVuCreator::create(const QString &path, int width, int height, QImage &img
   fnamearg = QFile::encodeName( path );
   argv[0] = "ddjvu";
   argv[1] = "-page";
-  argv[2] = "1";
+  argv[2] = "1"; // krazy:exclude=doublequote_chars
   argv[3] = "-size";
   argv[4] = sizearg.data(); 
   argv[5] = fnamearg.data(); 

@@ -174,7 +174,7 @@ KUrl SMBSlave::checkURL(const KUrl& kurl) const
 {
     kDebug(KIO_SMB) << "checkURL " << kurl;
     QString surl = kurl.url();
-    if (surl.startsWith("smb:/")) {
+    if (surl.startsWith(QLatin1String("smb:/"))) {
         if (surl.length() == 5) // just the above
             return kurl; // unchanged
 

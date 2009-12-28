@@ -35,6 +35,8 @@
 #include <netinet/in.h>
 #include <sys/time.h>
 
+#include "nfs_prot.h"
+
 class NFSFileHandle
 {
    public:

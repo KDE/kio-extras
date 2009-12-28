@@ -104,7 +104,7 @@ private:
 
     /**
      * we store the current url, it's needed for
-     * callback authorisation method
+     * callback authorization method
      */
     SMBUrl   m_current_url;
 
@@ -128,7 +128,7 @@ protected:
 
 
     /**
-     * Description :   Initilizes the libsmbclient
+     * Description :   Initializes the libsmbclient
      * Return :        true on success false with errno set on error
      */
     bool auth_initialize_smbc();

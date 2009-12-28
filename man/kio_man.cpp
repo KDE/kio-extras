@@ -336,7 +336,7 @@ QStringList MANProtocol::findPages(const QString &_section,
             while ( (ep = ::readdir( dp )) != 0L ) {
 
                 const QString file = QFile::decodeName( ep->d_name );
-                QString sect = QString();
+                QString sect;
 
                 if ( file.startsWith( man ) )
                     sect = file.mid(3);
@@ -937,7 +937,7 @@ void MANProtocol::constructPath(QStringList& constr_path, QStringList constr_cat
 
     if ( ::getenv("PATH") ) {
         const QStringList path =
-              QString::fromLocal8Bit( ::getenv("PATH") ).split( ":", QString::SkipEmptyParts );
+              QString::fromLocal8Bit( ::getenv("PATH") ).split( ':', QString::SkipEmptyParts );
 
         for ( QStringList::const_iterator it = path.constBegin();
               it != path.constEnd();
@@ -1517,7 +1517,7 @@ void MANProtocol::listDir(const KUrl &url)
         for (QStringList::ConstIterator it = section_names.constBegin(); it != section_names.constEnd(); ++it) {
             UDSEntry     uds_entry;
 
-            QString name = "man:/(" + *it + ")";
+            QString name = "man:/(" + *it + ')';
             uds_entry.insert( KIO::UDSEntry::UDS_NAME, sectionName( *it ) );
             uds_entry.insert( KIO::UDSEntry::UDS_URL, name );
             uds_entry.insert( KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR );

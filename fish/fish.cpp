@@ -691,7 +691,7 @@ int fishProtocol::establishConnection(const QByteArray &buffer) {
             myDebug( << "unmatched case in initial handling! should not happen!" << endl);
         }
 #ifdef Q_WS_WIN
-        if (buf.endsWith("(y/n)")) {
+        if (buf.endsWith(QLatin1String("(y/n)"))) {
             int rc = messageBox(QuestionYesNo,thisFn+buf);
             if (rc == KMessageBox::Yes) {
                 writeChild("y\n",2);
@@ -823,7 +823,7 @@ checks response string for result code, converting 000 and 001 appropriately
 */
 int fishProtocol::handleResponse(const QString &str){
     myDebug( << "handling: " << str << endl);
-    if (str.startsWith("### ")) {
+    if (str.startsWith(QLatin1String("### "))) {
         bool isOk = false;
         int result = str.mid(4,3).toInt(&isOk);
         if (!isOk) result = 500;
@@ -881,7 +881,7 @@ void fishProtocol::manageConnection(const QString &l) {
     if (!rc) {
         switch (fishCommand) {
         case FISH_VER:
-            if (line.startsWith("VER 0.0.3")) {
+            if (line.startsWith(QLatin1String("VER 0.0.3"))) {
                 line.append(" ");
                 hasAppend = line.contains(" append ");
             } else {

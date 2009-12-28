@@ -106,7 +106,7 @@ bool IcoUtils::convertIcoToPng(const QString &inputPath, const QString &outputPa
 	int max_d = 0;
 	int index = -1;
 
-	foreach ( Icon icon, icons ) {
+	foreach ( const Icon &icon, icons ) {
 		int i_width = icon.first;
 		int i_height = icon.second.first;
 		int i_depth = icon.second.second.first;

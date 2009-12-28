@@ -161,7 +161,7 @@ bool SMBSlave::checkPassword(SMBUrl &url)
 }
 
 //--------------------------------------------------------------------------
-// Initalizes the smbclient library
+// Initializes the smbclient library
 //
 // Returns: 0 on success -1 with errno set on error
 bool SMBSlave::auth_initialize_smbc()
