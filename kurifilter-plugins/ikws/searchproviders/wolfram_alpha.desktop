@@ -19,7 +19,9 @@ Name[hu]=Wolfram Alpha
 Name[id]=Wolfram Alpha
 Name[is]=Wolfram Alpha
 Name[kk]=Wolfram Alpha
+Name[kn]=ವೂಲ್ಫ್ರಾಮ್ ಆಲ್ಫಾ
 Name[lv]=Wolfram Alpha
+Name[ml]=വുള്‍ഫ്രാം ആല്‍ഫ
 Name[nb]=Wolfram Alpha
 Name[nds]=Wolfram Alpha
 Name[nl]=Wolfram Alpha
@@ -56,8 +58,10 @@ Query[id]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[is]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[ja]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[kk]=http://www.wolframalpha.com/input/?i=\\{@}
+Query[kn]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[lt]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[lv]=http://www.wolframalpha.com/input/?i=\\{@}
+Query[ml]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[nb]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[nds]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[nl]=http://www.wolframalpha.com/input/?i=\\{@}

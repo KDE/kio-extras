@@ -48,7 +48,7 @@ Name[lt]=Puikus katalonų kalbos žodynas (GRan Enciclopèdia  Catalana)
 Name[lv]=Lielā Katalāņu valodas vārdnīca (GRan Enciclopèdia  Catalana)
 Name[mai]=कैटालन भाषा क' लेल बढिया शब्दकोश (जी-रॅन एनसाइक्लोपीडिया कैटलाना)
 Name[mk]=Голем речник на каталонскиот јазик (GRan Enciclopèdia Catalana)
-Name[ml]=കറ്റാലന്‍ ഭാഷയുടെ മഹത്തായ നിഘണ്ടു് (ഗ്രാന്‍ എന്‍സൈക്ലോപീഡിയ കറ്റാലാന)
+Name[ml]=കറ്റാലന്‍ ഭാഷയുടെ മഹത്തായ നിഘണ്ടു (ഗ്രാന്‍ എന്‍സൈക്ലോപീഡിയ കറ്റാലാന)
 Name[mr]=कैटालन भाषा करीता उत्तम शब्दकोश (जीरॅन एनसाइक्लोपीडिया कैटलाना)
 Name[ms]=Kamus Besar Bahasa Catalan (GRan Enciclopèdia  Catalana)
 Name[nb]=Den store, katalanske ordboka (GRan Enciclopèdia Catalana)
@@ -106,8 +106,10 @@ Query[is]=http://ec.grec.net/cgi-bin/AppDLC3.exe?APP=CERCADLC&GECART=\\{@}
 Query[it]=http://ec.grec.net/cgi-bin/AppDLC3.exe?APP=CERCADLC&GECART=\\{@}
 Query[ja]=http://ec.grec.net/cgi-bin/AppDLC3.exe?APP=CERCADLC&GECART=\\{@}
 Query[kk]=http://ec.grec.net/cgi-bin/AppDLC3.exe?APP=CERCADLC&GECART=\\{@}
+Query[kn]=http://ec.grec.net/cgi-bin/AppDLC3.exe?APP=CERCADLC&GECART=\\{@}
 Query[lt]=http://ec.grec.net/cgi-bin/AppDLC3.exe?APP=CERCADLC&GECART=\\{@}
 Query[lv]=http://ec.grec.net/cgi-bin/AppDLC3.exe?APP=CERCADLC&GECART=\\{@}
+Query[ml]=http://ec.grec.net/cgi-bin/AppDLC3.exe?APP=CERCADLC&GECART=\\{@}
 Query[nb]=http://ec.grec.net/cgi-bin/AppDLC3.exe?APP=CERCADLC&GECART=\\{@}
 Query[nds]=http://ec.grec.net/cgi-bin/AppDLC3.exe?APP=CERCADLC&GECART=\\{@}
 Query[nl]=http://ec.grec.net/cgi-bin/AppDLC3.exe?APP=CERCADLC&GECART=\\{@}

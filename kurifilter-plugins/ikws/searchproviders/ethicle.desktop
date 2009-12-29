@@ -29,6 +29,7 @@ Name[it]=Ethicle
 Name[ja]=Ethicle
 Name[kk]=Ethicle
 Name[km]=Ethicle
+Name[kn]=ಎತಿಕಲ್
 Name[ko]=Ethicle
 Name[lv]=Ethicle
 Name[mai]=एथिकल
@@ -86,6 +87,7 @@ Query[it]=http://www.ethicle.com/search.php?q=\\{@}
 Query[ja]=http://www.ethicle.com/search.php?q=\\{@}
 Query[kk]=http://www.ethicle.com/search.php?q=\\{@}
 Query[km]=http://www.ethicle.com/search.php?q=\\{@}
+Query[kn]=http://www.ethicle.com/search.php?q=\\{@}
 Query[ko]=http://www.ethicle.com/search.php?q=\\{@}
 Query[lt]=http://www.ethicle.com/search.php?q=\\{@}
 Query[lv]=http://www.ethicle.com/search.php?q=\\{@}
