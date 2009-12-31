@@ -70,6 +70,8 @@ Name[si]=Alexa URL
 Name[sk]=Alexa URL
 Name[sl]=URL Alexe
 Name[sr]=Алекса‑УРЛ
+Name[sr@ijekavian]=Алекса‑УРЛ
+Name[sr@ijekavianlatin]=Alexa URL
 Name[sr@latin]=Alexa URL
 Name[sv]=Alexa webbadress
 Name[ta]=அலெக்சா URL
@@ -156,6 +158,8 @@ Query[si]=http://info.alexa.com/data/details?url=\\{@}
 Query[sk]=http://info.alexa.com/data/details?url=\\{@}
 Query[sl]=http://info.alexa.com/data/details?url=\\{@}
 Query[sr]=http://info.alexa.com/data/details?url=\\{@}
+Query[sr@ijekavian]=http://info.alexa.com/data/details?url=\\{@}
+Query[sr@ijekavianlatin]=http://info.alexa.com/data/details?url=\\{@}
 Query[sr@latin]=http://info.alexa.com/data/details?url=\\{@}
 Query[sv]=http://info.alexa.com/data/details?url=\\{@}
 Query[ta]=http://info.alexa.com/data/details?url=\\{@}

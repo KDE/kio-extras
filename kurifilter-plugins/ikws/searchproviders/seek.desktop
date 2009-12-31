@@ -69,6 +69,8 @@ Name[si]=GO.com
 Name[sk]=GO.com
 Name[sl]=GO.com
 Name[sr]=Го.ком
+Name[sr@ijekavian]=Го.ком
+Name[sr@ijekavianlatin]=GO.com
 Name[sr@latin]=GO.com
 Name[sv]=GO.com
 Name[ta]=GO.com
@@ -155,6 +157,8 @@ Query[si]=http://www.go.com/Titles?col=WW&qt=\\{@}&svx=home_searchbox&sv=IS&lk=n
 Query[sk]=http://www.go.com/Titles?col=WW&qt=\\{@}&svx=home_searchbox&sv=IS&lk=noframeso
 Query[sl]=http://www.go.com/Titles?col=WW&qt=\\{@}&svx=home_searchbox&sv=IS&lk=noframeso
 Query[sr]=http://www.go.com/Titles?col=WW&qt=\\{@}&svx=home_searchbox&sv=IS&lk=noframeso
+Query[sr@ijekavian]=http://www.go.com/Titles?col=WW&qt=\\{@}&svx=home_searchbox&sv=IS&lk=noframeso
+Query[sr@ijekavianlatin]=http://www.go.com/Titles?col=WW&qt=\\{@}&svx=home_searchbox&sv=IS&lk=noframeso
 Query[sr@latin]=http://www.go.com/Titles?col=WW&qt=\\{@}&svx=home_searchbox&sv=IS&lk=noframeso
 Query[sv]=http://www.go.com/Titles?col=WW&qt=\\{@}&svx=home_searchbox&sv=IS&lk=noframeso
 Query[ta]=http://www.go.com/Titles?col=WW&qt=\\{@}&svx=home_searchbox&sv=IS&lk=noframeso

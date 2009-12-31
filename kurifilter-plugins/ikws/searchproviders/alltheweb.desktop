@@ -68,6 +68,8 @@ Name[si]=AllTheWeb fast
 Name[sk]=AllTheWeb fast
 Name[sl]=AllTheWeb hitro
 Name[sr]=Ол'д'веб брзи
+Name[sr@ijekavian]=Ол'д'веб брзи
+Name[sr@ijekavianlatin]=AllTheWeb brzi
 Name[sr@latin]=AllTheWeb brzi
 Name[sv]=AllTheWeb snabb
 Name[ta]=எல்லா வலைப்பின்னலும் விரைவாக உள்ளது
@@ -154,6 +156,8 @@ Query[si]=http://www.alltheweb.com/search?exec=FAST+Search&type=all&query=\\{@}&
 Query[sk]=http://www.alltheweb.com/search?exec=FAST+Search&type=all&query=\\{@}&cat=web
 Query[sl]=http://www.alltheweb.com/search?exec=FAST+Search&type=all&query=\\{@}&cat=web
 Query[sr]=http://www.alltheweb.com/search?exec=FAST+Search&type=all&query=\\{@}&cat=web
+Query[sr@ijekavian]=http://www.alltheweb.com/search?exec=FAST+Search&type=all&query=\\{@}&cat=web
+Query[sr@ijekavianlatin]=http://www.alltheweb.com/search?exec=FAST+Search&type=all&query=\\{@}&cat=web
 Query[sr@latin]=http://www.alltheweb.com/search?exec=FAST+Search&type=all&query=\\{@}&cat=web
 Query[sv]=http://www.alltheweb.com/search?exec=FAST+Search&type=all&query=\\{@}&cat=web
 Query[ta]=http://www.alltheweb.com/search?exec=FAST+Search&type=all&query=\\{@}&cat=web

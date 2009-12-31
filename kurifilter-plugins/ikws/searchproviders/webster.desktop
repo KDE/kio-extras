@@ -70,6 +70,8 @@ Name[si]=Merriam-Webster Dictionary
 Name[sk]=Slovník Merriam-Webster
 Name[sl]=Slovar Merriam-Webster
 Name[sr]=Меријам-Вебстер (речник)
+Name[sr@ijekavian]=Меријам-Вебстер (рјечник)
+Name[sr@ijekavianlatin]=Merijam-Vebster (rječnik)
 Name[sr@latin]=Merijam-Vebster (rečnik)
 Name[sv]=Merriam-Websters ordlexikon
 Name[ta]=மெர்ரியம்-வெப்ஸ்டர் அகராதி
@@ -156,6 +158,8 @@ Query[si]=http://www.m-w.com/cgi-bin/dictionary?book=Dictionary&va=\\{@}
 Query[sk]=http://www.m-w.com/cgi-bin/dictionary?book=Dictionary&va=\\{@}
 Query[sl]=http://www.m-w.com/cgi-bin/dictionary?book=Dictionary&va=\\{@}
 Query[sr]=http://www.m-w.com/cgi-bin/dictionary?book=Dictionary&va=\\{@}
+Query[sr@ijekavian]=http://www.m-w.com/cgi-bin/dictionary?book=Dictionary&va=\\{@}
+Query[sr@ijekavianlatin]=http://www.m-w.com/cgi-bin/dictionary?book=Dictionary&va=\\{@}
 Query[sr@latin]=http://www.m-w.com/cgi-bin/dictionary?book=Dictionary&va=\\{@}
 Query[sv]=http://www.m-w.com/cgi-bin/dictionary?book=Dictionary&va=\\{@}
 Query[ta]=http://www.m-w.com/cgi-bin/dictionary?book=Dictionary&va=\\{@}

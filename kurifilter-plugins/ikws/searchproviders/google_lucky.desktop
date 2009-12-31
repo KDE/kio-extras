@@ -68,6 +68,8 @@ Name[se]=Google (Geahččalan lihkku)
 Name[sk]=Google (Skúsim šťastie)
 Name[sl]=Google (Počutim se srečnega)
 Name[sr]=Гугл (из прве руке)
+Name[sr@ijekavian]=Гугл (из прве руке)
+Name[sr@ijekavianlatin]=Google (iz prve ruke)
 Name[sr@latin]=Google (iz prve ruke)
 Name[sv]=Google (Jag har tur)
 Name[ta]=கூகுல் (நான் அதிர்ஷ்டசாலியாக உணர்கிறேன்)
@@ -154,6 +156,8 @@ Query[si]=http://www.google.com/search?q=\\{@}&btnI=I%27m+Feeling+Lucky&ie=UTF-8
 Query[sk]=http://www.google.com/search?q=\\{@}&btnI=I%27m+Feeling+Lucky&ie=UTF-8&oe=UTF-8
 Query[sl]=http://www.google.com/search?q=\\{@}&btnI=I%27m+Feeling+Lucky&ie=UTF-8&oe=UTF-8
 Query[sr]=http://www.google.com/search?q=\\{@}&btnI=I%27m+Feeling+Lucky&ie=UTF-8&oe=UTF-8
+Query[sr@ijekavian]=http://www.google.com/search?q=\\{@}&btnI=I%27m+Feeling+Lucky&ie=UTF-8&oe=UTF-8
+Query[sr@ijekavianlatin]=http://www.google.com/search?q=\\{@}&btnI=I%27m+Feeling+Lucky&ie=UTF-8&oe=UTF-8
 Query[sr@latin]=http://www.google.com/search?q=\\{@}&btnI=I%27m+Feeling+Lucky&ie=UTF-8&oe=UTF-8
 Query[sv]=http://www.google.com/search?q=\\{@}&btnI=I%27m+Feeling+Lucky&ie=UTF-8&oe=UTF-8
 Query[ta]=http://www.google.com/search?q=\\{@}&btnI=I%27m+Feeling+Lucky&ie=UTF-8&oe=UTF-8

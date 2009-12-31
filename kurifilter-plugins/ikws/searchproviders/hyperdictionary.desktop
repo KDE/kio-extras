@@ -70,7 +70,9 @@ Name[si]=HyperDictionary.com
 Name[sk]=HyperDictionary.com
 Name[sl]=HyperDictionary.com
 Name[sr]=Хиперречник
-Name[sr@latin]=HyperDictionary
+Name[sr@ijekavian]=Хиперрјечник
+Name[sr@ijekavianlatin]=Hiperrječnik
+Name[sr@latin]=Hiperrečnik
 Name[sv]=Hyperdictionary.com
 Name[ta]=திறந்த அடைவு
 Name[te]=HyperDictionary.com
@@ -155,6 +157,8 @@ Query[si]=http://www.hyperdictionary.com/search.aspx?define=\\{@}
 Query[sk]=http://www.hyperdictionary.com/search.aspx?define=\\{@}
 Query[sl]=http://www.hyperdictionary.com/search.aspx?define=\\{@}
 Query[sr]=http://www.hyperdictionary.com/search.aspx?define=\\{@}
+Query[sr@ijekavian]=http://www.hyperdictionary.com/search.aspx?define=\\{@}
+Query[sr@ijekavianlatin]=http://www.hyperdictionary.com/search.aspx?define=\\{@}
 Query[sr@latin]=http://www.hyperdictionary.com/search.aspx?define=\\{@}
 Query[sv]=http://www.hyperdictionary.com/search.aspx?define=\\{@}
 Query[ta]=http://www.hyperdictionary.com/search.aspx?define=\\{@}

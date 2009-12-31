@@ -68,6 +68,8 @@ Name[si]=Debian Backports Search
 Name[sk]=Hľadanie v Debian Backports
 Name[sl]=Iskanje po prenosih v Debian
 Name[sr]=Дебијанови бекпортови
+Name[sr@ijekavian]=Дебијанови бекпортови
+Name[sr@ijekavianlatin]=Debianovi bekportovi
 Name[sr@latin]=Debianovi bekportovi
 Name[sv]=Sökning i Debians uppdateringar
 Name[ta]=டெபியன் பின்முனையங்கள் தேடல்
@@ -149,6 +151,8 @@ Query[si]=http://www.backports.org/package.php?search=\\{@}
 Query[sk]=http://www.backports.org/package.php?search=\\{@}
 Query[sl]=http://www.backports.org/package.php?search=\\{@}
 Query[sr]=http://www.backports.org/package.php?search=\\{@}
+Query[sr@ijekavian]=http://www.backports.org/package.php?search=\\{@}
+Query[sr@ijekavianlatin]=http://www.backports.org/package.php?search=\\{@}
 Query[sr@latin]=http://www.backports.org/package.php?search=\\{@}
 Query[sv]=http://www.backports.org/package.php?search=\\{@}
 Query[ta]=http://www.backports.org/package.php?search=\\{@}

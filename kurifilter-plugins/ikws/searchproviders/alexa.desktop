@@ -69,6 +69,8 @@ Name[si]=Alexa
 Name[sk]=Alexa
 Name[sl]=Alexa
 Name[sr]=Алекса
+Name[sr@ijekavian]=Алекса
+Name[sr@ijekavianlatin]=Alexa
 Name[sr@latin]=Alexa
 Name[sv]=Alexa
 Name[ta]=அலெக்சா
@@ -155,6 +157,8 @@ Query[si]=http://info.alexa.com/search?q=\\{@}
 Query[sk]=http://info.alexa.com/search?q=\\{@}
 Query[sl]=http://info.alexa.com/search?q=\\{@}
 Query[sr]=http://info.alexa.com/search?q=\\{@}
+Query[sr@ijekavian]=http://info.alexa.com/search?q=\\{@}
+Query[sr@ijekavianlatin]=http://info.alexa.com/search?q=\\{@}
 Query[sr@latin]=http://info.alexa.com/search?q=\\{@}
 Query[sv]=http://info.alexa.com/search?q=\\{@}
 Query[ta]=http://info.alexa.com/search?q=\\{@}

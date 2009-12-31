@@ -69,6 +69,8 @@ Name[si]=CPAN - Comprehensive Perl Archive Network
 Name[sk]=CPAN - Comprehensive Perl Archive Network
 Name[sl]=CPAN - Omrežje obsežnega arhiva za Perl
 Name[sr]=ЦПАН — свеобухватна архива перла
+Name[sr@ijekavian]=ЦПАН — свеобухватна архива перла
+Name[sr@ijekavianlatin]=CPAN — sveobuhvatna arhiva Perla
 Name[sr@latin]=CPAN — sveobuhvatna arhiva Perla
 Name[sv]=CPAN - Comprehensive Perl Archive Network
 Name[ta]=CPAN -பரந்த பர்ல் ஆவண வலைப்பின்னல்
@@ -153,6 +155,8 @@ Query[si]=http://search.cpan.org/search?mode=\\{mode,2,"dist"}&query=\\{query,q,
 Query[sk]=http://search.cpan.org/search?mode=\\{mode,2,"dist"}&query=\\{query,q,1}
 Query[sl]=http://search.cpan.org/search?mode=\\{mode,2,"dist"}&query=\\{query,q,1}
 Query[sr]=http://search.cpan.org/search?mode=\\{mode,2,"dist"}&query=\\{query,q,1}
+Query[sr@ijekavian]=http://search.cpan.org/search?mode=\\{mode,2,"dist"}&query=\\{query,q,1}
+Query[sr@ijekavianlatin]=http://search.cpan.org/search?mode=\\{mode,2,"dist"}&query=\\{query,q,1}
 Query[sr@latin]=http://search.cpan.org/search?mode=\\{mode,2,"dist"}&query=\\{query,q,1}
 Query[sv]=http://search.cpan.org/search?mode=\\{mode,2,"dist"}&query=\\{query,q,1}
 Query[ta]=http://search.cpan.org/search?mode=\\{mode,2,"dist"}&query=\\{query,q,1}

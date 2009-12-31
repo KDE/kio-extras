@@ -70,6 +70,8 @@ Name[si]=විවෘත නාමාවලිය
 Name[sk]=Open Directory
 Name[sl]=Odprt imenik
 Name[sr]=Отворени именик
+Name[sr@ijekavian]=Отворени именик
+Name[sr@ijekavianlatin]=Otvoreni imenik
 Name[sr@latin]=Otvoreni imenik
 Name[sv]=Öppen katalog
 Name[ta]=அடைவை திற
@@ -156,6 +158,8 @@ Query[si]=http://search.dmoz.org/cgi-bin/search?search=\\{@}
 Query[sk]=http://search.dmoz.org/cgi-bin/search?search=\\{@}
 Query[sl]=http://search.dmoz.org/cgi-bin/search?search=\\{@}
 Query[sr]=http://search.dmoz.org/cgi-bin/search?search=\\{@}
+Query[sr@ijekavian]=http://search.dmoz.org/cgi-bin/search?search=\\{@}
+Query[sr@ijekavianlatin]=http://search.dmoz.org/cgi-bin/search?search=\\{@}
 Query[sr@latin]=http://search.dmoz.org/cgi-bin/search?search=\\{@}
 Query[sv]=http://search.dmoz.org/cgi-bin/search?search=\\{@}
 Query[ta]=http://search.dmoz.org/cgi-bin/search?search=\\{@}

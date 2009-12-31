@@ -68,6 +68,8 @@ Name[si]=KDE Bug Database Bug Number Search
 Name[sk]=Hľadanie podľa čísla chyby v KDE databáze chýb
 Name[sl]=Iskanje v zbirki hroščev KDE po številki hrošča
 Name[sr]=КДЕ‑ова база грешака (по броју)
+Name[sr@ijekavian]=КДЕ‑ова база грешака (по броју)
+Name[sr@ijekavianlatin]=KDE‑ova baza grešaka (po broju)
 Name[sr@latin]=KDE‑ova baza grešaka (po broju)
 Name[sv]=Felnummersökning i KDE:s feldatabas
 Name[ta]=கேடிஇ பிழையான தகவல்தள பிழையான எண் தேடுதல்
@@ -131,6 +133,8 @@ Query[ru]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
 Query[sk]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
 Query[sl]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
 Query[sr]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
+Query[sr@ijekavian]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
+Query[sr@ijekavianlatin]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
 Query[sr@latin]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
 Query[sv]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
 Query[tg]=http://bugs.kde.org/show_bug.cgi?id=\\{@}

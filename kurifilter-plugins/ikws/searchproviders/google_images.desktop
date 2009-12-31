@@ -71,6 +71,8 @@ Name[si]=Google පිංතූර සෙවුම
 Name[sk]=Hľadanie obrázkov Google
 Name[sl]=Iskanje slik z Google
 Name[sr]=Гугл‑слике
+Name[sr@ijekavian]=Гугл‑слике
+Name[sr@ijekavianlatin]=Google-slike
 Name[sr@latin]=Google-slike
 Name[sv]=Google bildsökning
 Name[ta]=கூகுல் சித்திர தேடு
@@ -157,6 +159,8 @@ Query[si]=http://images.google.com/images?q=\\{@}
 Query[sk]=http://images.google.com/images?q=\\{@}
 Query[sl]=http://images.google.com/images?q=\\{@}
 Query[sr]=http://images.google.com/images?q=\\{@}
+Query[sr@ijekavian]=http://images.google.com/images?q=\\{@}
+Query[sr@ijekavianlatin]=http://images.google.com/images?q=\\{@}
 Query[sr@latin]=http://images.google.com/images?q=\\{@}
 Query[sv]=http://images.google.com/images?q=\\{@}
 Query[ta]=http://images.google.com/images?q=\\{@}

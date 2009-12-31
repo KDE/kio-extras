@@ -69,6 +69,8 @@ Name[si]=SourceForge
 Name[sk]=SourceForge
 Name[sl]=SourceForge
 Name[sr]=Сорсфорџ
+Name[sr@ijekavian]=Сорсфорџ
+Name[sr@ijekavianlatin]=SourceForge
 Name[sr@latin]=SourceForge
 Name[sv]=SourceForge
 Name[ta]=மூலத்திருட்டு
@@ -150,6 +152,8 @@ Query[si]=http://sourceforge.net/search/?type_of_search=\\{type,"soft"}&exact=\\
 Query[sk]=http://sourceforge.net/search/?type_of_search=\\{type,"soft"}&exact=\\{exact,"0"}&words=\\{@}
 Query[sl]=http://sourceforge.net/search/?type_of_search=\\{type,"soft"}&exact=\\{exact,"0"}&words=\\{@}
 Query[sr]=http://sourceforge.net/search/?type_of_search=\\{type,"soft"}&exact=\\{exact,"0"}&words=\\{@}
+Query[sr@ijekavian]=http://sourceforge.net/search/?type_of_search=\\{type,"soft"}&exact=\\{exact,"0"}&words=\\{@}
+Query[sr@ijekavianlatin]=http://sourceforge.net/search/?type_of_search=\\{type,"soft"}&exact=\\{exact,"0"}&words=\\{@}
 Query[sr@latin]=http://sourceforge.net/search/?type_of_search=\\{type,"soft"}&exact=\\{exact,"0"}&words=\\{@}
 Query[sv]=http://sourceforge.net/search/?type_of_search=\\{type,"soft"}&exact=\\{exact,"0"}&words=\\{@}
 Query[ta]=http://sourceforge.net/search/?type_of_search=\\{type,"soft"}&exact=\\{exact,"0"}&words=\\{@}

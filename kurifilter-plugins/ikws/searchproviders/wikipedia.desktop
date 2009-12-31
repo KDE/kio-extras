@@ -70,6 +70,8 @@ Name[si]=Wikipedia - The Free Encyclopedia
 Name[sk]=Wikipédia - voľne dostupná encyklopédia
 Name[sl]=Wikipedia - Prosta enciklopedija
 Name[sr]=Википедија — слободна енциклопедија
+Name[sr@ijekavian]=Википедија — слободна енциклопедија
+Name[sr@ijekavianlatin]=Wikipedia — slobodna enciklopedija
 Name[sr@latin]=Wikipedia — slobodna enciklopedija
 Name[sv]=Wikipedia - den fria encyklopedin
 Name[ta]=விகிபிடியா - இலவச கலைக்களஞ்சியம்
@@ -152,6 +154,8 @@ Query[si]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[sk]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[sl]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[sr]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[sr@ijekavian]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[sr@ijekavianlatin]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[sr@latin]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[sv]=http://sv.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[ta]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go

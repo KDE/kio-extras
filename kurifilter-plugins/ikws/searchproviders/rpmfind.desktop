@@ -70,6 +70,8 @@ Name[si]=RPM-Find
 Name[sk]=RPM-Find
 Name[sl]=RPM-Find
 Name[sr]=РПМ‑тражење
+Name[sr@ijekavian]=РПМ‑тражење
+Name[sr@ijekavianlatin]=RPM‑traženje
 Name[sr@latin]=RPM‑traženje
 Name[sv]=RPM-Find
 Name[ta]=RPM-தேடு
@@ -153,6 +155,8 @@ Query[si]=http://www.rpmfind.net/linux/rpm2html/search.php?query=\\{@}
 Query[sk]=http://www.rpmfind.net/linux/rpm2html/search.php?query=\\{@}
 Query[sl]=http://www.rpmfind.net/linux/rpm2html/search.php?query=\\{@}
 Query[sr]=http://www.rpmfind.net/linux/rpm2html/search.php?query=\\{@}
+Query[sr@ijekavian]=http://www.rpmfind.net/linux/rpm2html/search.php?query=\\{@}
+Query[sr@ijekavianlatin]=http://www.rpmfind.net/linux/rpm2html/search.php?query=\\{@}
 Query[sr@latin]=http://www.rpmfind.net/linux/rpm2html/search.php?query=\\{@}
 Query[sv]=http://www.rpmfind.net/linux/rpm2html/search.php?query=\\{@}
 Query[ta]=http://www.rpmfind.net/linux/rpm2html/search.php?query=\\{@}

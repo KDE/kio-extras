@@ -66,6 +66,8 @@ Name[si]=CIA World Fact Book
 Name[sk]=CIA svetová kniha faktov
 Name[sl]=CIA World Factbook
 Name[sr]=Цијина Књига светских података
+Name[sr@ijekavian]=Цијина Књига свјетских података
+Name[sr@ijekavianlatin]=Cijina Knjiga svjetskih podataka
 Name[sr@latin]=Cijina Knjiga svetskih podataka
 Name[sv]=CIA-världsfaktabok
 Name[ta]=CIA உலக தகவல் புத்தகம்
@@ -144,6 +146,8 @@ Query[si]=http://www.google.com/search?q=allintitle%3A\\{@}+world+fact+book+site
 Query[sk]=http://www.google.com/search?q=allintitle%3A\\{@}+world+fact+book+site%3Awww.cia.gov&ie=UTF-8&btnI=I%27m+Feeling+Lucky
 Query[sl]=http://www.google.com/search?q=allintitle%3A\\{@}+world+fact+book+site%3Awww.cia.gov&ie=UTF-8&btnI=I%27m+Feeling+Lucky
 Query[sr]=http://www.google.com/search?q=allintitle%3A\\{@}+world+fact+book+site%3Awww.cia.gov&ie=UTF-8&btnI=I%27m+Feeling+Lucky
+Query[sr@ijekavian]=http://www.google.com/search?q=allintitle%3A\\{@}+world+fact+book+site%3Awww.cia.gov&ie=UTF-8&btnI=I%27m+Feeling+Lucky
+Query[sr@ijekavianlatin]=http://www.google.com/search?q=allintitle%3A\\{@}+world+fact+book+site%3Awww.cia.gov&ie=UTF-8&btnI=I%27m+Feeling+Lucky
 Query[sr@latin]=http://www.google.com/search?q=allintitle%3A\\{@}+world+fact+book+site%3Awww.cia.gov&ie=UTF-8&btnI=I%27m+Feeling+Lucky
 Query[sv]=http://www.google.com/search?q=allintitle%3A\\{@}+world+fact+book+site%3Awww.cia.gov&ie=UTF-8&btnI=I%27m+Feeling+Lucky
 Query[ta]=http://www.google.com/search?q=allintitle%3A\\{@}+world+fact+book+site%3Awww.cia.gov&ie=UTF-8&btnI=I%27m+Feeling+Lucky

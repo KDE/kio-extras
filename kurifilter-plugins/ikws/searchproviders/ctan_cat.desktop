@@ -70,6 +70,8 @@ Name[si]=CTAN Catalog
 Name[sk]=Katalóg CTAN
 Name[sl]=Katalog CTAN
 Name[sr]=ЦТАН‑ов каталог
+Name[sr@ijekavian]=ЦТАН‑ов каталог
+Name[sr@ijekavianlatin]=CTAN‑ov katalog
 Name[sr@latin]=CTAN‑ov katalog
 Name[sv]=CTAN-katalog
 Name[ta]=CTAN வகை
@@ -145,6 +147,8 @@ Query[si]=http://tug.ctan.org/cgi-bin/search.py?metadataSearch=\\{@}&metadataSea
 Query[sk]=http://tug.ctan.org/cgi-bin/search.py?metadataSearch=\\{@}&metadataSearchSubmit=Search
 Query[sl]=http://tug.ctan.org/cgi-bin/search.py?metadataSearch=\\{@}&metadataSearchSubmit=Search
 Query[sr]=http://tug.ctan.org/cgi-bin/search.py?metadataSearch=\\{@}&metadataSearchSubmit=Search
+Query[sr@ijekavian]=http://tug.ctan.org/cgi-bin/search.py?metadataSearch=\\{@}&metadataSearchSubmit=Search
+Query[sr@ijekavianlatin]=http://tug.ctan.org/cgi-bin/search.py?metadataSearch=\\{@}&metadataSearchSubmit=Search
 Query[sr@latin]=http://tug.ctan.org/cgi-bin/search.py?metadataSearch=\\{@}&metadataSearchSubmit=Search
 Query[sv]=http://tug.ctan.org/cgi-bin/search.py?metadataSearch=\\{@}&metadataSearchSubmit=Search
 Query[ta]= 

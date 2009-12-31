@@ -69,6 +69,8 @@ Name[si]=FreeDB
 Name[sk]=FreeDB
 Name[sl]=FreeDB
 Name[sr]=ФриДБ
+Name[sr@ijekavian]=ФриДБ
+Name[sr@ijekavianlatin]=FreeDB
 Name[sr@latin]=FreeDB
 Name[sv]=FreeDB
 Name[ta]=இலவசடிபி
@@ -154,6 +156,8 @@ Query[si]=http://www.freedb.org/freedb_search.php?words=\\{@}
 Query[sk]=http://www.freedb.org/freedb_search.php?words=\\{@}
 Query[sl]=http://www.freedb.org/freedb_search.php?words=\\{@}
 Query[sr]=http://www.freedb.org/freedb_search.php?words=\\{@}
+Query[sr@ijekavian]=http://www.freedb.org/freedb_search.php?words=\\{@}
+Query[sr@ijekavianlatin]=http://www.freedb.org/freedb_search.php?words=\\{@}
 Query[sr@latin]=http://www.freedb.org/freedb_search.php?words=\\{@}
 Query[sv]=http://www.freedb.org/freedb_search.php?words=\\{@}
 Query[ta]=http://www.freedb.org/freedb_search.php?words=\\{@}

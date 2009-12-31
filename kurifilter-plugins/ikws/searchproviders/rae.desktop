@@ -71,6 +71,8 @@ Name[si]=Dictionary of the Spanish Academy (RAE)
 Name[sk]=Slovník Španielskej akadémie (RAE)
 Name[sl]=Slovar Španske akademije (RAE)
 Name[sr]=Речник Шпанске академије (РАЕ)
+Name[sr@ijekavian]=Рјечник Шпанске академије (РАЕ)
+Name[sr@ijekavianlatin]=Rječnik Španske akademije (RAE)
 Name[sr@latin]=Rečnik Španske akademije (RAE)
 Name[sv]=Spanska akademins ordbok (RAE)
 Name[ta]= ஸ்பெனிஷ் அகேடமியின் அகராதி(RAE)
@@ -154,6 +156,8 @@ Query[si]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FOR
 Query[sk]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
 Query[sl]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
 Query[sr]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
+Query[sr@ijekavian]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
+Query[sr@ijekavianlatin]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
 Query[sr@latin]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
 Query[sv]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
 Query[ta]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado

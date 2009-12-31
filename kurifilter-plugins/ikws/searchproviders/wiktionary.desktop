@@ -68,6 +68,8 @@ Name[si]=Wiktionary - The Free Dictionary
 Name[sk]=Wiktionary - voľne dostupný slovník
 Name[sl]=Wiktionary - Prosti slovar
 Name[sr]=Викиречник — слободни речник
+Name[sr@ijekavian]=Викирјечник — слободни рјечник
+Name[sr@ijekavianlatin]=Wikirečnik — slobodni rječnik
 Name[sr@latin]=Wikirečnik — slobodni rečnik
 Name[sv]=Wiktionary - den fria ordboken
 Name[ta]=விக்சனரி - கட்டற்ற அகராதி
@@ -150,6 +152,8 @@ Query[si]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[sk]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[sl]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[sr]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[sr@ijekavian]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[sr@ijekavianlatin]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[sr@latin]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[sv]=http://sv.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[ta]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go

@@ -68,6 +68,8 @@ Name[si]=Technorati
 Name[sk]=Technorati
 Name[sl]=Technorati
 Name[sr]=Технорати
+Name[sr@ijekavian]=Технорати
+Name[sr@ijekavianlatin]=Technorati
 Name[sr@latin]=Technorati
 Name[sv]=Technorati
 Name[ta]=Technorati
@@ -153,6 +155,8 @@ Query[si]=http://technorati.com/cosmos/search.html?sourceid=kde-search&url=\\{@}
 Query[sk]=http://technorati.com/cosmos/search.html?sourceid=kde-search&url=\\{@}
 Query[sl]=http://technorati.com/cosmos/search.html?sourceid=kde-search&url=\\{@}
 Query[sr]=http://technorati.com/cosmos/search.html?sourceid=kde-search&url=\\{@}
+Query[sr@ijekavian]=http://technorati.com/cosmos/search.html?sourceid=kde-search&url=\\{@}
+Query[sr@ijekavianlatin]=http://technorati.com/cosmos/search.html?sourceid=kde-search&url=\\{@}
 Query[sr@latin]=http://technorati.com/cosmos/search.html?sourceid=kde-search&url=\\{@}
 Query[sv]=http://technorati.com/cosmos/search.html?sourceid=kde-search&url=\\{@}
 Query[ta]=http://technorati.com/cosmos/search.html?sourceid=kde-search&url=\\{@}

@@ -69,6 +69,8 @@ Name[si]=OpenPGP Key Search
 Name[sk]=Hľadanie kľúčov OpenPGP
 Name[sl]=Iskanje ključa OpenPGP
 Name[sr]=ОпенПГП кључеви
+Name[sr@ijekavian]=ОпенПГП кључеви
+Name[sr@ijekavianlatin]=OpenPGP ključevi
 Name[sr@latin]=OpenPGP ključevi
 Name[sv]=OpenPGP-nyckelsökning
 Name[ta]=OpenPGP வார்த்தை தேடுதல்
@@ -153,6 +155,8 @@ Query[si]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
 Query[sk]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
 Query[sl]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
 Query[sr]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
+Query[sr@ijekavian]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
+Query[sr@ijekavianlatin]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
 Query[sr@latin]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
 Query[sv]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
 Query[ta]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex

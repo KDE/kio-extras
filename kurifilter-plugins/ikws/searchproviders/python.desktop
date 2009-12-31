@@ -70,6 +70,8 @@ Name[si]=Python Reference Manual
 Name[sk]=Python Reference Manual
 Name[sl]=Referenčni priročnik za python
 Name[sr]=Референтни приручник питона
+Name[sr@ijekavian]=Референтни приручник питона
+Name[sr@ijekavianlatin]=Referentni priručnik Pythona
 Name[sr@latin]=Referentni priručnik Pythona
 Name[sv]=Python referensmanual
 Name[ta]=பைதான் பார்வை கையேடு
@@ -151,6 +153,8 @@ Query[si]=http://www.google.com/search?sourceid=python-search&q=\\{@}&submit=Sea
 Query[sk]=http://www.google.com/search?sourceid=python-search&q=\\{@}&submit=Search&q=site%3Apython.org
 Query[sl]=http://www.google.com/search?sourceid=python-search&q=\\{@}&submit=Search&q=site%3Apython.org
 Query[sr]=http://www.google.com/search?sourceid=python-search&q=\\{@}&submit=Search&q=site%3Apython.org
+Query[sr@ijekavian]=http://www.google.com/search?sourceid=python-search&q=\\{@}&submit=Search&q=site%3Apython.org
+Query[sr@ijekavianlatin]=http://www.google.com/search?sourceid=python-search&q=\\{@}&submit=Search&q=site%3Apython.org
 Query[sr@latin]=http://www.google.com/search?sourceid=python-search&q=\\{@}&submit=Search&q=site%3Apython.org
 Query[sv]=http://www.google.com/search?sourceid=python-search&q=\\{@}&submit=Search&q=site%3Apython.org
 Query[ta]=http://www.google.com/search?sourceid=python-search&q=\\{@}&submit=Search&q=site%3Apython.org

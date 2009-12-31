@@ -68,6 +68,8 @@ Name[si]=Technorati Tags
 Name[sk]=Technorati Tags
 Name[sl]=Technorati Tags
 Name[sr]=Техноратијеве ознаке
+Name[sr@ijekavian]=Техноратијеве ознаке
+Name[sr@ijekavianlatin]=Technoratijeve oznake
 Name[sr@latin]=Technoratijeve oznake
 Name[sv]=Technorati-taggar
 Name[ta]=Technorati Tags
@@ -149,6 +151,8 @@ Query[si]=http://technorati.com/tag/\\{@}?sourceid=kde-search
 Query[sk]=http://technorati.com/tag/\\{@}?sourceid=kde-search
 Query[sl]=http://technorati.com/tag/\\{@}?sourceid=kde-search
 Query[sr]=http://technorati.com/tag/\\{@}?sourceid=kde-search
+Query[sr@ijekavian]=http://technorati.com/tag/\\{@}?sourceid=kde-search
+Query[sr@ijekavianlatin]=http://technorati.com/tag/\\{@}?sourceid=kde-search
 Query[sr@latin]=http://technorati.com/tag/\\{@}?sourceid=kde-search
 Query[sv]=http://technorati.com/tag/\\{@}?sourceid=kde-search
 Query[ta]=http://technorati.com/tag/\\{@}?sourceid=kde-search

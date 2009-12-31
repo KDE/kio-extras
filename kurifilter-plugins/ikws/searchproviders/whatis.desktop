@@ -70,6 +70,8 @@ Name[si]=Whatis Query
 Name[sk]=Otázka "Čo to je?"
 Name[sl]=Poizvedba Whatis
 Name[sr]=Шта‑је упит
+Name[sr@ijekavian]=Шта‑је упит
+Name[sr@ijekavianlatin]=Šta‑je upit
 Name[sr@latin]=Šta‑je upit
 Name[sv]=Vad är det här-fråga
 Name[ta]=கேள்வி என்றால் என்ன
@@ -150,6 +152,8 @@ Query[si]=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00
 Query[sk]=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
 Query[sl]=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
 Query[sr]=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
+Query[sr@ijekavian]=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
+Query[sr@ijekavianlatin]=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
 Query[sr@latin]=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
 Query[sv]=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}
 Query[ta]=http://whatis.techtarget.com/definitionsSearchResults/1,289878,sid9,00.html?query=\\{@}

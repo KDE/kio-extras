@@ -70,6 +70,8 @@ Name[si]=Voila
 Name[sk]=Voila
 Name[sl]=Voila
 Name[sr]=Воила
+Name[sr@ijekavian]=Воила
+Name[sr@ijekavianlatin]=Voila
 Name[sr@latin]=Voila
 Name[sv]=Voila
 Name[ta]=வாய்லா
@@ -153,6 +155,8 @@ Query[si]=http://www.voila.com/S/geek?an=1&kw=\\{@}&dt=*
 Query[sk]=http://www.voila.com/S/geek?an=1&kw=\\{@}&dt=*
 Query[sl]=http://www.voila.com/S/geek?an=1&kw=\\{@}&dt=*
 Query[sr]=http://www.voila.com/S/geek?an=1&kw=\\{@}&dt=*
+Query[sr@ijekavian]=http://www.voila.com/S/geek?an=1&kw=\\{@}&dt=*
+Query[sr@ijekavianlatin]=http://www.voila.com/S/geek?an=1&kw=\\{@}&dt=*
 Query[sr@latin]=http://www.voila.com/S/geek?an=1&kw=\\{@}&dt=*
 Query[sv]=http://www.voila.com/S/geek?an=1&kw=\\{@}&dt=*
 Query[ta]=http://www.voila.com/S/geek?an=1&kw=\\{@}&dt=*

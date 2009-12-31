@@ -70,6 +70,8 @@ Name[si]=WordReference.com English Dictionary
 Name[sk]=Anglický slovník WordReference.com
 Name[sl]=Angleški slovar WordReference.com
 Name[sr]=Вордреференс: енглески речник
+Name[sr@ijekavian]=Вордреференс: енглески рјечник
+Name[sr@ijekavianlatin]=WordReference: engleski rječnik
 Name[sr@latin]=WordReference: engleski rečnik
 Name[sv]=Wordreference.com engelsk ordbok
 Name[ta]=WordReference.com ஆங்கில அகராதி
@@ -153,6 +155,8 @@ Query[si]=http://www.wordreference.com/english/definition.asp?en=\\{@}
 Query[sk]=http://www.wordreference.com/english/definition.asp?en=\\{@}
 Query[sl]=http://www.wordreference.com/english/definition.asp?en=\\{@}
 Query[sr]=http://www.wordreference.com/english/definition.asp?en=\\{@}
+Query[sr@ijekavian]=http://www.wordreference.com/english/definition.asp?en=\\{@}
+Query[sr@ijekavianlatin]=http://www.wordreference.com/english/definition.asp?en=\\{@}
 Query[sr@latin]=http://www.wordreference.com/english/definition.asp?en=\\{@}
 Query[sv]=http://www.wordreference.com/english/definition.asp?en=\\{@}
 Query[ta]=http://www.wordreference.com/english/definition.asp?en=\\{@}

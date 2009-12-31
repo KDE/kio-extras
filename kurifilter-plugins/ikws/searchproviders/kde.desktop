@@ -72,6 +72,8 @@ Name[si]=KDE API ප්‍රලේඛනය
 Name[sk]=KDE dokumentácia API
 Name[sl]=Dokumentacija KDE API
 Name[sr]=КДЕ АПИ документација
+Name[sr@ijekavian]=КДЕ АПИ документација
+Name[sr@ijekavianlatin]=KDE API dokumentacija
 Name[sr@latin]=KDE API dokumentacija
 Name[sv]=Dokumentation av KDE:s programmeringsgränssnitt
 Name[ta]=KDE  API ஆவணமாக்கல்
@@ -148,6 +150,8 @@ Query[si]=http://api.kde.org/classmapper.php?class=\\{@}
 Query[sk]=http://api.kde.org/classmapper.php?class=\\{@}
 Query[sl]=http://api.kde.org/classmapper.php?class=\\{@}
 Query[sr]=http://api.kde.org/classmapper.php?class=\\{@}
+Query[sr@ijekavian]=http://api.kde.org/classmapper.php?class=\\{@}
+Query[sr@ijekavianlatin]=http://api.kde.org/classmapper.php?class=\\{@}
 Query[sr@latin]=http://api.kde.org/classmapper.php?class=\\{@}
 Query[sv]=http://api.kde.org/classmapper.php?class=\\{@}
 Query[ta]=http://api.kde.org/classmapper.php?class=\\{@}

@@ -70,6 +70,8 @@ Name[si]=CiteSeer: Scientific Literature Digital Library
 Name[sk]=CiteSeer: Digitálna knižnica vedeckej literatúry
 Name[sl]=CiteSeer: Digitalna knjižnica znanstvene literature
 Name[sr]=Сајтсир: дигитална библиотека научне литературе
+Name[sr@ijekavian]=Сајтсир: дигитална библиотека научне литературе
+Name[sr@ijekavianlatin]=CiteSeer: digitalna biblioteka naučne literature
 Name[sr@latin]=CiteSeer: digitalna biblioteka naučne literature
 Name[sv]=CiteSeer: Digitalt bibliotek med vetenskaplig litteratur
 Name[ta]=சைட்சீர்: அறிவியல் சம்மந்தமான கல்வி டிஜிட்டல் நூலகம்
@@ -153,6 +155,8 @@ Query[si]=http://citeseer.ist.psu.edu/cs?q=\\{@}&submit=Search+Documents&cs=1
 Query[sk]=http://citeseer.ist.psu.edu/cs?q=\\{@}&submit=Search+Documents&cs=1
 Query[sl]=http://citeseer.ist.psu.edu/cs?q=\\{@}&submit=Search+Documents&cs=1
 Query[sr]=http://citeseer.ist.psu.edu/cs?q=\\{@}&submit=Search+Documents&cs=1
+Query[sr@ijekavian]=http://citeseer.ist.psu.edu/cs?q=\\{@}&submit=Search+Documents&cs=1
+Query[sr@ijekavianlatin]=http://citeseer.ist.psu.edu/cs?q=\\{@}&submit=Search+Documents&cs=1
 Query[sr@latin]=http://citeseer.ist.psu.edu/cs?q=\\{@}&submit=Search+Documents&cs=1
 Query[sv]=http://citeseer.ist.psu.edu/cs?q=\\{@}&submit=Search+Documents&cs=1
 Query[ta]=http://citeseer.ist.psu.edu/cs?q=\\{@}&submit=Search+Documents&cs=1

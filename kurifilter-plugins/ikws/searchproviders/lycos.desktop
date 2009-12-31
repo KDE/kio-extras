@@ -69,6 +69,8 @@ Name[si]=Lycos
 Name[sk]=Lycos
 Name[sl]=Lycos
 Name[sr]=Ликос
+Name[sr@ijekavian]=Ликос
+Name[sr@ijekavianlatin]=Likos
 Name[sr@latin]=Likos
 Name[sv]=Lycos
 Name[ta]=லைகோஸ்
@@ -155,6 +157,8 @@ Query[si]=http://www.lycos.com/cgi-bin/pursuit?cat=dir&query=\\{@}
 Query[sk]=http://www.lycos.com/cgi-bin/pursuit?cat=dir&query=\\{@}
 Query[sl]=http://www.lycos.com/cgi-bin/pursuit?cat=dir&query=\\{@}
 Query[sr]=http://www.lycos.com/cgi-bin/pursuit?cat=dir&query=\\{@}
+Query[sr@ijekavian]=http://www.lycos.com/cgi-bin/pursuit?cat=dir&query=\\{@}
+Query[sr@ijekavianlatin]=http://www.lycos.com/cgi-bin/pursuit?cat=dir&query=\\{@}
 Query[sr@latin]=http://www.lycos.com/cgi-bin/pursuit?cat=dir&query=\\{@}
 Query[sv]=http://www.lycos.com/cgi-bin/pursuit?cat=dir&query=\\{@}
 Query[ta]=http://www.lycos.com/cgi-bin/pursuit?cat=dir&query=\\{@}

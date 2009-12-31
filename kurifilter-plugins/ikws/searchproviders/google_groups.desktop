@@ -70,6 +70,8 @@ Name[se]=Google Groups
 Name[sk]=Diskusné skupiny Google
 Name[sl]=Skupine Google
 Name[sr]=Гугл‑групе
+Name[sr@ijekavian]=Гугл‑групе
+Name[sr@ijekavianlatin]=Google-grupe
 Name[sr@latin]=Google-grupe
 Name[sv]=Google-grupper
 Name[ta]=கூகுல் குழுக்கள்
@@ -156,6 +158,8 @@ Query[si]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
 Query[sk]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
 Query[sl]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
 Query[sr]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
+Query[sr@ijekavian]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
+Query[sr@ijekavianlatin]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
 Query[sr@latin]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
 Query[sv]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
 Query[ta]=http://groups.google.com/groups?oi=djq&as_q=\\{@}

@@ -68,6 +68,8 @@ Name[si]=Merriam-Webster Thesaurus
 Name[sk]=Merriam-Webster Synonymá
 Name[sl]=Merriam-Websterjev tezaver
 Name[sr]=Меријам-Вебстер (синонимар)
+Name[sr@ijekavian]=Меријам-Вебстер (синонимар)
+Name[sr@ijekavianlatin]=Merijam-Vebster (sinonimar)
 Name[sr@latin]=Merijam-Vebster (sinonimar)
 Name[sv]=Merriam-Websters synonymlexikon
 Name[ta]=மெர்ரியம்-வெப்ஸ்டர் சொற்களஞ்சியம்
@@ -154,6 +156,8 @@ Query[si]=http://www.m-w.com/cgi-bin/thesaurus?book=Thesaurus&va=\\{@}
 Query[sk]=http://www.m-w.com/cgi-bin/thesaurus?book=Thesaurus&va=\\{@}
 Query[sl]=http://www.m-w.com/cgi-bin/thesaurus?book=Thesaurus&va=\\{@}
 Query[sr]=http://www.m-w.com/cgi-bin/thesaurus?book=Thesaurus&va=\\{@}
+Query[sr@ijekavian]=http://www.m-w.com/cgi-bin/thesaurus?book=Thesaurus&va=\\{@}
+Query[sr@ijekavianlatin]=http://www.m-w.com/cgi-bin/thesaurus?book=Thesaurus&va=\\{@}
 Query[sr@latin]=http://www.m-w.com/cgi-bin/thesaurus?book=Thesaurus&va=\\{@}
 Query[sv]=http://www.m-w.com/cgi-bin/thesaurus?book=Thesaurus&va=\\{@}
 Query[ta]=http://www.m-w.com/cgi-bin/thesaurus?book=Thesaurus&va=\\{@}

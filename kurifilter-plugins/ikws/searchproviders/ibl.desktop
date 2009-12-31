@@ -67,6 +67,8 @@ Name[si]=අන්තර්ජාල පොත් ලැයිස්තුව
 Name[sk]=Internetový zoznam kníh
 Name[sl]=Spletni seznam knjig
 Name[sr]=Интернет списак књига
+Name[sr@ijekavian]=Интернет списак књига
+Name[sr@ijekavianlatin]=Internet spisak knjiga
 Name[sr@latin]=Internet spisak knjiga
 Name[sv]=Internet boklista
 Name[ta]=இணைய புத்தகப் பட்டியல்
@@ -147,6 +149,8 @@ Query[si]=http://www.iblist.com/search/search.php?item=\\{@}&submit=Search
 Query[sk]=http://www.iblist.com/search/search.php?item=\\{@}&submit=Search
 Query[sl]=http://www.iblist.com/search/search.php?item=\\{@}&submit=Search
 Query[sr]=http://www.iblist.com/search/search.php?item=\\{@}&submit=Search
+Query[sr@ijekavian]=http://www.iblist.com/search/search.php?item=\\{@}&submit=Search
+Query[sr@ijekavianlatin]=http://www.iblist.com/search/search.php?item=\\{@}&submit=Search
 Query[sr@latin]=http://www.iblist.com/search/search.php?item=\\{@}&submit=Search
 Query[sv]=http://www.iblist.com/search/search.php?item=\\{@}&submit=Search
 Query[ta]=http://www.iblist.com/search/search.php?item=\\{@}&submit=Search

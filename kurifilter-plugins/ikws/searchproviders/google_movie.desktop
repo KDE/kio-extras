@@ -70,6 +70,8 @@ Name[si]=Google සිනමා
 Name[sk]=Google filmy
 Name[sl]=Google Movies
 Name[sr]=Гугл‑филмови
+Name[sr@ijekavian]=Гугл‑филмови
+Name[sr@ijekavianlatin]=Google-filmovi
 Name[sr@latin]=Google-filmovi
 Name[sv]=Google filmer
 Name[ta]=கூகுல் படங்கள்
@@ -152,6 +154,8 @@ Query[si]=http://www.google.com/search?q=movie:\\{@}&ie=UTF-8&oe=UTF-8
 Query[sk]=http://www.google.com/search?q=movie:\\{@}&ie=UTF-8&oe=UTF-8
 Query[sl]=http://www.google.com/search?q=movie:\\{@}&ie=UTF-8&oe=UTF-8
 Query[sr]=http://www.google.com/search?q=movie:\\{@}&ie=UTF-8&oe=UTF-8
+Query[sr@ijekavian]=http://www.google.com/search?q=movie:\\{@}&ie=UTF-8&oe=UTF-8
+Query[sr@ijekavianlatin]=http://www.google.com/search?q=movie:\\{@}&ie=UTF-8&oe=UTF-8
 Query[sr@latin]=http://www.google.com/search?q=movie:\\{@}&ie=UTF-8&oe=UTF-8
 Query[sv]=http://www.google.com/search?q=movie:\\{@}&ie=UTF-8&oe=UTF-8
 Query[ta]=http://www.google.com/search?q=movie:\\{@}&ie=UTF-8&oe=UTF-8

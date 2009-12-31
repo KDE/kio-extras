@@ -47,6 +47,8 @@ Name[si]=Ethicle
 Name[sk]=Ethicle
 Name[sl]=Ethicle
 Name[sr]=Етикл
+Name[sr@ijekavian]=Етикл
+Name[sr@ijekavianlatin]=Ethicle
 Name[sr@latin]=Ethicle
 Name[sv]=Ethicle
 Name[tg]=ickle
@@ -106,6 +108,8 @@ Query[si]=http://www.ethicle.com/search.php?q=\\{@}
 Query[sk]=http://www.ethicle.com/search.php?q=\\{@}
 Query[sl]=http://www.ethicle.com/search.php?q=\\{@}
 Query[sr]=http://www.ethicle.com/search.php?q=\\{@}
+Query[sr@ijekavian]=http://www.ethicle.com/search.php?q=\\{@}
+Query[sr@ijekavianlatin]=http://www.ethicle.com/search.php?q=\\{@}
 Query[sr@latin]=http://www.ethicle.com/search.php?q=\\{@}
 Query[sv]=http://www.ethicle.com/search.php?q=\\{@}
 Query[tg]=http://www.ethicle.com/search.php?q=\\{@}

@@ -67,6 +67,8 @@ Name[si]=LEO - Translate Between German and French
 Name[sk]=LEO - Preklad medzi nemčinou a francúzštinou
 Name[sl]=LEO - Prevod med nemščino in francoščino
 Name[sr]=Лео: са немачког на француски
+Name[sr@ijekavian]=Лео: са њемачког на француски
+Name[sr@ijekavianlatin]=Leo: sa njemačkog na francuski
 Name[sr@latin]=Leo: sa nemačkog na francuski
 Name[sv]=LEO - översätt från tyska till franska
 Name[ta]=LEO - ஜெர்மன் மற்றும் ப்ரென்ச் இடையே மொழிப்பெயர்க்கவும்
@@ -152,6 +154,8 @@ Query[si]=http://dict.leo.org/?lp=frde&search=\\{@}
 Query[sk]=http://dict.leo.org/?lp=frde&search=\\{@}
 Query[sl]=http://dict.leo.org/?lp=frde&search=\\{@}
 Query[sr]=http://dict.leo.org/?lp=frde&search=\\{@}
+Query[sr@ijekavian]=http://dict.leo.org/?lp=frde&search=\\{@}
+Query[sr@ijekavianlatin]=http://dict.leo.org/?lp=frde&search=\\{@}
 Query[sr@latin]=http://dict.leo.org/?lp=frde&search=\\{@}
 Query[sv]=http://dict.leo.org/?lp=frde&search=\\{@}
 Query[ta]=http://dict.leo.org/?lp=frde&search=\\{@}

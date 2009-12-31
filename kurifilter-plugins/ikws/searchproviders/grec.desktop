@@ -68,6 +68,8 @@ Name[si]=Great Dictionary of the Catalan Language (GRan Enciclopèdia  Catalana)
 Name[sk]=Veľký slovník katalánskeho jazyka (GRan Enciclopèdia  Catalana)
 Name[sl]=Veliki slovar katalonščine (GRan Enciclopèdia  Catalana)
 Name[sr]=Велики речник каталонског језика (GRan Enciclopèdia Catalana)
+Name[sr@ijekavian]=Велики рјечник каталонског језика (GRan Enciclopèdia Catalana)
+Name[sr@ijekavianlatin]=Veliki rječnik katalonskog jezika (GRan Enciclopèdia Catalana)
 Name[sr@latin]=Veliki rečnik katalonskog jezika (GRan Enciclopèdia Catalana)
 Name[sv]=Stor ordbok för katalanska språket (Gran Enciclopèdia Catalana)
 Name[ta]=கேடலன் மொழியின் அகராதி (GRan Enciclopèdia  Catalana)
@@ -107,6 +109,7 @@ Query[it]=http://ec.grec.net/cgi-bin/AppDLC3.exe?APP=CERCADLC&GECART=\\{@}
 Query[ja]=http://ec.grec.net/cgi-bin/AppDLC3.exe?APP=CERCADLC&GECART=\\{@}
 Query[kk]=http://ec.grec.net/cgi-bin/AppDLC3.exe?APP=CERCADLC&GECART=\\{@}
 Query[kn]=http://ec.grec.net/cgi-bin/AppDLC3.exe?APP=CERCADLC&GECART=\\{@}
+Query[ko]=http://ec.grec.net/cgi-bin/AppDLC3.exe?APP=CERCADLC&GECART=\\{@}
 Query[lt]=http://ec.grec.net/cgi-bin/AppDLC3.exe?APP=CERCADLC&GECART=\\{@}
 Query[lv]=http://ec.grec.net/cgi-bin/AppDLC3.exe?APP=CERCADLC&GECART=\\{@}
 Query[ml]=http://ec.grec.net/cgi-bin/AppDLC3.exe?APP=CERCADLC&GECART=\\{@}
@@ -121,6 +124,8 @@ Query[ro]=http://ec.grec.net/cgi-bin/AppDLC3.exe?APP=CERCADLC&GECART=\\{@}
 Query[sk]=http://ec.grec.net/cgi-bin/AppDLC3.exe?APP=CERCADLC&GECART=\\{@}
 Query[sl]=http://ec.grec.net/cgi-bin/AppDLC3.exe?APP=CERCADLC&GECART=\\{@}
 Query[sr]=http://ec.grec.net/cgi-bin/AppDLC3.exe?APP=CERCADLC&GECART=\\{@}
+Query[sr@ijekavian]=http://ec.grec.net/cgi-bin/AppDLC3.exe?APP=CERCADLC&GECART=\\{@}
+Query[sr@ijekavianlatin]=http://ec.grec.net/cgi-bin/AppDLC3.exe?APP=CERCADLC&GECART=\\{@}
 Query[sr@latin]=http://ec.grec.net/cgi-bin/AppDLC3.exe?APP=CERCADLC&GECART=\\{@}
 Query[sv]=http://ec.grec.net/cgi-bin/AppDLC3.exe?APP=CERCADLC&GECART=\\{@}
 Query[tg]=http://ec.grec.net/cgi-bin/AppDLC3.exe?APP=CERCADLC&GECART=\\{@}

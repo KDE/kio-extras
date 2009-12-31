@@ -70,6 +70,8 @@ Name[si]=Hotbot
 Name[sk]=Hotbot
 Name[sl]=Hotbot
 Name[sr]=Хотбот
+Name[sr@ijekavian]=Хотбот
+Name[sr@ijekavianlatin]=Hotbot
 Name[sr@latin]=Hotbot
 Name[sv]=Hotbot
 Name[ta]=ஹாட்பாட்
@@ -156,6 +158,8 @@ Query[si]=http://hotbot.lycos.com/?MT=\\{@}&SM=MC&DV=0&LG=any&DC=10&DE=2
 Query[sk]=http://hotbot.lycos.com/?MT=\\{@}&SM=MC&DV=0&LG=any&DC=10&DE=2
 Query[sl]=http://hotbot.lycos.com/?MT=\\{@}&SM=MC&DV=0&LG=any&DC=10&DE=2
 Query[sr]=http://hotbot.lycos.com/?MT=\\{@}&SM=MC&DV=0&LG=any&DC=10&DE=2
+Query[sr@ijekavian]=http://hotbot.lycos.com/?MT=\\{@}&SM=MC&DV=0&LG=any&DC=10&DE=2
+Query[sr@ijekavianlatin]=http://hotbot.lycos.com/?MT=\\{@}&SM=MC&DV=0&LG=any&DC=10&DE=2
 Query[sr@latin]=http://hotbot.lycos.com/?MT=\\{@}&SM=MC&DV=0&LG=any&DC=10&DE=2
 Query[sv]=http://hotbot.lycos.com/?MT=\\{@}&SM=MC&DV=0&LG=any&DC=10&DE=2
 Query[ta]=http://hotbot.lycos.com/?MT=\\{@}&SM=MC&DV=0&LG=any&DC=10&DE=2

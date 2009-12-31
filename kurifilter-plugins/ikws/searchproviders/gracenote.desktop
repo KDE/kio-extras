@@ -69,6 +69,8 @@ Name[si]=Gracenote
 Name[sk]=Gracenote
 Name[sl]=Gracenote
 Name[sr]=Грејсноут
+Name[sr@ijekavian]=Грејсноут
+Name[sr@ijekavianlatin]=Gracenote
 Name[sr@latin]=Gracenote
 Name[sv]=Gracenote
 Name[ta]=க்ரேஸ்நோட்
@@ -154,6 +156,8 @@ Query[si]=http://www.gracenote.com/music/search-adv.html?q=\\{@}
 Query[sk]=http://www.gracenote.com/music/search-adv.html?q=\\{@}
 Query[sl]=http://www.gracenote.com/music/search-adv.html?q=\\{@}
 Query[sr]=http://www.gracenote.com/music/search-adv.html?q=\\{@}
+Query[sr@ijekavian]=http://www.gracenote.com/music/search-adv.html?q=\\{@}
+Query[sr@ijekavianlatin]=http://www.gracenote.com/music/search-adv.html?q=\\{@}
 Query[sr@latin]=http://www.gracenote.com/music/search-adv.html?q=\\{@}
 Query[sv]=http://www.gracenote.com/music/search-adv.html?q=\\{@}
 Query[ta]=http://www.gracenote.com/music/search-adv.html?q=\\{@}

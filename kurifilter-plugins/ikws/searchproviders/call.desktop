@@ -71,6 +71,8 @@ Name[si]=QRZ.com Callsign Database
 Name[sk]=Databáza skratiek QRZ.com
 Name[sl]=Zbirka okrajšav QRZ.com
 Name[sr]=КуРЗ.ком база позивника
+Name[sr@ijekavian]=КуРЗ.ком база позивника
+Name[sr@ijekavianlatin]=QRZ.com baza pozivnika
 Name[sr@latin]=QRZ.com baza pozivnika
 Name[sv]=Databas för QRZ.com-anropssignaler
 Name[ta]=QRZ.com அழைப்புநுழை தகவல்தளம்
@@ -152,6 +154,8 @@ Query[si]=http://www.qrz.com/database?callsign=\\{@}
 Query[sk]=http://www.qrz.com/database?callsign=\\{@}
 Query[sl]=http://www.qrz.com/database?callsign=\\{@}
 Query[sr]=http://www.qrz.com/database?callsign=\\{@}
+Query[sr@ijekavian]=http://www.qrz.com/database?callsign=\\{@}
+Query[sr@ijekavianlatin]=http://www.qrz.com/database?callsign=\\{@}
 Query[sr@latin]=http://www.qrz.com/database?callsign=\\{@}
 Query[sv]=http://www.qrz.com/database?callsign=\\{@}
 Query[ta]=http://www.qrz.com/database?callsign=\\{@}

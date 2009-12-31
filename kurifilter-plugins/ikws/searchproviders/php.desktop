@@ -70,6 +70,8 @@ Name[si]=PHP සෙවුම
 Name[sk]=Hľadanie PHP
 Name[sl]=Iskanje po PHP
 Name[sr]=Приручник за ПХП
+Name[sr@ijekavian]=Приручник за ПХП
+Name[sr@ijekavianlatin]=Priručnik za PHP
 Name[sr@latin]=Priručnik za PHP
 Name[sv]=PHP search
 Name[ta]=PHP தேடு
@@ -154,6 +156,8 @@ Query[si]=http://www.php.net/search.php?show=\\{mode,"manual"}&pattern=\\{@}
 Query[sk]=http://www.php.net/search.php?show=\\{mode,"manual"}&pattern=\\{@}
 Query[sl]=http://www.php.net/search.php?show=\\{mode,"manual"}&pattern=\\{@}
 Query[sr]=http://www.php.net/search.php?show=\\{mode,"manual"}&pattern=\\{@}
+Query[sr@ijekavian]=http://www.php.net/search.php?show=\\{mode,"manual"}&pattern=\\{@}
+Query[sr@ijekavianlatin]=http://www.php.net/search.php?show=\\{mode,"manual"}&pattern=\\{@}
 Query[sr@latin]=http://www.php.net/search.php?show=\\{mode,"manual"}&pattern=\\{@}
 Query[sv]=http://www.php.net/search.php?show=\\{mode,"manual"}&pattern=\\{@}
 Query[ta]=http://www.php.net/search.php?show=\\{mode,"manual"}&pattern=\\{@}

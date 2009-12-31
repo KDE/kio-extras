@@ -69,6 +69,8 @@ Name[si]=WordReference.com Translation: Italian to English
 Name[sk]=WordReference.com preklad z taliančiny do angličtiny
 Name[sl]=Prevod WordReference.com: italijanščina v angleščino
 Name[sr]=Вордреференс: са италијанског на енглески
+Name[sr@ijekavian]=Вордреференс: са италијанског на енглески
+Name[sr@ijekavianlatin]=WordReference: sa italijanskog na engleski
 Name[sr@latin]=WordReference: sa italijanskog na engleski
 Name[sv]=Wordreference.com översättning: italienska till engelska
 Name[ta]=WordReference.com மொழிபெயர்ப்பு: இத்தாலிய மொழியில் இருந்து ஆங்கிலத்துக்கு
@@ -152,6 +154,8 @@ Query[si]=http://www.wordreference.com/it/en/translation.asp?iten=\\{@}
 Query[sk]=http://www.wordreference.com/it/en/translation.asp?iten=\\{@}
 Query[sl]=http://www.wordreference.com/it/en/translation.asp?iten=\\{@}
 Query[sr]=http://www.wordreference.com/it/en/translation.asp?iten=\\{@}
+Query[sr@ijekavian]=http://www.wordreference.com/it/en/translation.asp?iten=\\{@}
+Query[sr@ijekavianlatin]=http://www.wordreference.com/it/en/translation.asp?iten=\\{@}
 Query[sr@latin]=http://www.wordreference.com/it/en/translation.asp?iten=\\{@}
 Query[sv]=http://www.wordreference.com/it/en/translation.asp?iten=\\{@}
 Query[ta]=http://www.wordreference.com/it/en/translation.asp?iten=\\{@}

@@ -66,6 +66,8 @@ Name[si]=Telephonebook Search Provider
 Name[sk]=Hľadanie v telefónnom zozname
 Name[sl]=Ponudnik iskanja po telefonskem imeniku
 Name[sr]=Телефонски именик (Холандија)
+Name[sr@ijekavian]=Телефонски именик (Холандија)
+Name[sr@ijekavianlatin]=Telefonski imenik (Holandija)
 Name[sr@latin]=Telefonski imenik (Holandija)
 Name[sv]=Söktjänst för telefonkatalog
 Name[ta]=தொலைபேசிபுத்தக தேடுதலை அளிப்பான்
@@ -148,6 +150,8 @@ Query[si]=http://www.detelefoongids.nl/tginl.dll?action=white&type=search&name=\
 Query[sk]=http://www.detelefoongids.nl/tginl.dll?action=white&type=search&name=\\{1}&city=\\{2}
 Query[sl]=http://www.detelefoongids.nl/tginl.dll?action=white&type=search&name=\\{1}&city=\\{2}
 Query[sr]=http://www.detelefoongids.nl/tginl.dll?action=white&type=search&name=\\{1}&city=\\{2}
+Query[sr@ijekavian]=http://www.detelefoongids.nl/tginl.dll?action=white&type=search&name=\\{1}&city=\\{2}
+Query[sr@ijekavianlatin]=http://www.detelefoongids.nl/tginl.dll?action=white&type=search&name=\\{1}&city=\\{2}
 Query[sr@latin]=http://www.detelefoongids.nl/tginl.dll?action=white&type=search&name=\\{1}&city=\\{2}
 Query[sv]=http://www.detelefoongids.nl/tginl.dll?action=white&type=search&name=\\{1}&city=\\{2}
 Query[ta]=http://www.detelefoongids.nl/tginl.dll?action=white&type=search&name=\\{1}&city=\\{2}

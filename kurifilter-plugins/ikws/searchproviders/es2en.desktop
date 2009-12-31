@@ -69,6 +69,8 @@ Name[si]=WordReference.com Translation: Spanish to English
 Name[sk]=WordReference.com preklad zo španielčiny do angličtiny
 Name[sl]=Prevod WordReference.com: španščina v angleščino
 Name[sr]=Вордреференс: са шпанског на енглески
+Name[sr@ijekavian]=Вордреференс: са шпанског на енглески
+Name[sr@ijekavianlatin]=WordReference: sa španskog na engleski
 Name[sr@latin]=WordReference: sa španskog na engleski
 Name[sv]=Wordreference.com översättning: spanska till engelska
 Name[ta]=WordReference.com மொழிபெயர்ப்பு: ஸ்பானிஷ் மொழியில் இருந்து ஆங்கிலத்துக்கு
@@ -152,6 +154,8 @@ Query[si]=http://www.wordreference.com/es/en/translation.asp?spen=\\{@}
 Query[sk]=http://www.wordreference.com/es/en/translation.asp?spen=\\{@}
 Query[sl]=http://www.wordreference.com/es/en/translation.asp?spen=\\{@}
 Query[sr]=http://www.wordreference.com/es/en/translation.asp?spen=\\{@}
+Query[sr@ijekavian]=http://www.wordreference.com/es/en/translation.asp?spen=\\{@}
+Query[sr@ijekavianlatin]=http://www.wordreference.com/es/en/translation.asp?spen=\\{@}
 Query[sr@latin]=http://www.wordreference.com/es/en/translation.asp?spen=\\{@}
 Query[sv]=http://www.wordreference.com/es/en/translation.asp?spen=\\{@}
 Query[ta]=http://www.wordreference.com/es/en/translation.asp?spen=\\{@}

@@ -70,6 +70,8 @@ Name[si]=සියලු සංගීත සහාය
 Name[sk]=All Music Guide
 Name[sl]=Vodnik All Music
 Name[sr]=Свемузички водич
+Name[sr@ijekavian]=Свемузички водич
+Name[sr@ijekavianlatin]=Svemuzički vodič
 Name[sr@latin]=Svemuzički vodič
 Name[sv]=Guiden All Musik
 Name[ta]=அனைத்து இசை துணை
@@ -151,6 +153,8 @@ Query[si]=http://www.allmusic.com/cg/amg.dll?p=amg&opt1=1&sql=\\{@}
 Query[sk]=http://www.allmusic.com/cg/amg.dll?p=amg&opt1=1&sql=\\{@}
 Query[sl]=http://www.allmusic.com/cg/amg.dll?p=amg&opt1=1&sql=\\{@}
 Query[sr]=http://www.allmusic.com/cg/amg.dll?p=amg&opt1=1&sql=\\{@}
+Query[sr@ijekavian]=http://www.allmusic.com/cg/amg.dll?p=amg&opt1=1&sql=\\{@}
+Query[sr@ijekavianlatin]=http://www.allmusic.com/cg/amg.dll?p=amg&opt1=1&sql=\\{@}
 Query[sr@latin]=http://www.allmusic.com/cg/amg.dll?p=amg&opt1=1&sql=\\{@}
 Query[sv]=http://www.allmusic.com/cg/amg.dll?p=amg&opt1=1&sql=\\{@}
 Query[ta]=http://www.allmusic.com/cg/amg.dll?p=amg&opt1=1&sql=\\{@}

@@ -65,6 +65,8 @@ Name[se]=Oanádusdiehtovuođđu
 Name[sk]=Databáza skratiek
 Name[sl]=Zbirka okrajšav
 Name[sr]=База скраћеница
+Name[sr@ijekavian]=База скраћеница
+Name[sr@ijekavianlatin]=Baza skraćenica
 Name[sr@latin]=Baza skraćenica
 Name[sv]=Acronym Database
 Name[ta]=குறுஞ்சொற் தரவுத்தளம்
@@ -151,6 +153,8 @@ Query[si]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
 Query[sk]=http://www.chemie.de/tools/acronym.php3?language=sk&acronym=\\{@}
 Query[sl]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
 Query[sr]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query[sr@ijekavian]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query[sr@ijekavianlatin]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
 Query[sr@latin]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
 Query[sv]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
 Query[ta]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}

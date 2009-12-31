@@ -69,6 +69,8 @@ Name[si]=dict.cc Translation: German to English
 Name[sk]=dict.cc Preklad z nemčiny do angličtiny
 Name[sl]=Prevod dict.cc: nemščina v angleščino
 Name[sr]=дикт.цц: са немачког на енглески
+Name[sr@ijekavian]=German to English: дикт.цц: са њемачког на енглески
+Name[sr@ijekavianlatin]=dict.cc: sa nemačkog na engleski
 Name[sr@latin]=dict.cc: sa nemačkog na engleski
 Name[sv]=dict.cc översättning: tyska till engelska
 Name[ta]=dict.cc Translation மொழிப்பெயர்ப்பு: ஜெர்மன் மொழியில் இருந்து ஆங்கிலத்துக்கு
@@ -152,6 +154,8 @@ Query[si]=http://www.dict.cc/?s=\\{@}
 Query[sk]=http://www.dict.cc/?s=\\{@}
 Query[sl]=http://www.dict.cc/?s=\\{@}
 Query[sr]=http://www.dict.cc/?s=\\{@}
+Query[sr@ijekavian]=http://www.dict.cc/?s=\\{@}
+Query[sr@ijekavianlatin]=http://www.dict.cc/?s=\\{@}
 Query[sr@latin]=http://www.dict.cc/?s=\\{@}
 Query[sv]=http://www.dict.cc/?s=\\{@}
 Query[ta]=http://www.dict.cc/?s=\\{@}

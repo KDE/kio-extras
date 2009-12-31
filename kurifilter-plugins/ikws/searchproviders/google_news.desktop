@@ -71,6 +71,8 @@ Name[si]=Google ප්‍රවෘත්ති
 Name[sk]=Google správy
 Name[sl]=Google News
 Name[sr]=Гугл‑вести
+Name[sr@ijekavian]=Гугл‑вести
+Name[sr@ijekavianlatin]=Google-vesti
 Name[sr@latin]=Google-vesti
 Name[sv]=Google diskussionsgrupper
 Name[ta]=கூகுல் செய்திகள்
@@ -156,6 +158,8 @@ Query[si]=http://news.google.com/news?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[sk]=http://news.google.com/news?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[sl]=http://news.google.com/news?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[sr]=http://news.google.com/news?q=\\{@}&ie=UTF-8&oe=UTF-8
+Query[sr@ijekavian]=http://news.google.com/news?q=\\{@}&ie=UTF-8&oe=UTF-8
+Query[sr@ijekavianlatin]=http://news.google.com/news?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[sr@latin]=http://news.google.com/news?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[sv]=http://news.google.com/news?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[ta]=http://news.google.com/news?q=\\{@}&ie=UTF-8&oe=UTF-8

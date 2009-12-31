@@ -69,6 +69,8 @@ Name[si]=AltaVista
 Name[sk]=AltaVista
 Name[sl]=AltaVista
 Name[sr]=Алтависта
+Name[sr@ijekavian]=Алтависта
+Name[sr@ijekavianlatin]=AltaVista
 Name[sr@latin]=AltaVista
 Name[sv]=Altavista
 Name[ta]=அல்டாவிஸ்டா
@@ -155,6 +157,8 @@ Query[si]=http://www.altavista.com/cgi-bin/query?pg=q&kl=XX&stype=stext&q=\\{@}
 Query[sk]=http://www.altavista.com/cgi-bin/query?pg=q&kl=XX&stype=stext&q=\\{@}
 Query[sl]=http://www.altavista.com/cgi-bin/query?pg=q&kl=XX&stype=stext&q=\\{@}
 Query[sr]=http://www.altavista.com/cgi-bin/query?pg=q&kl=XX&stype=stext&q=\\{@}
+Query[sr@ijekavian]=http://www.altavista.com/cgi-bin/query?pg=q&kl=XX&stype=stext&q=\\{@}
+Query[sr@ijekavianlatin]=http://www.altavista.com/cgi-bin/query?pg=q&kl=XX&stype=stext&q=\\{@}
 Query[sr@latin]=http://www.altavista.com/cgi-bin/query?pg=q&kl=XX&stype=stext&q=\\{@}
 Query[sv]=http://www.altavista.com/cgi-bin/query?pg=q&kl=XX&stype=stext&q=\\{@}
 Query[ta]=http://www.altavista.com/cgi-bin/query?pg=q&kl=XX&stype=stext&q=\\{@}
