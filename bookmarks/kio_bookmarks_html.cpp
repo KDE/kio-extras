@@ -36,10 +36,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 void BookmarksProtocol::echoBookmark( const KBookmark &bm)
 {
-  QString descriptionAsTitel = bm.description();
-  if (!descriptionAsTitel.isEmpty())
-      descriptionAsTitel.prepend(QLatin1String("\" title=\""));
-  echo ("<li class=\"link\"><a href=\"" + bm.url().prettyUrl() + descriptionAsTitel + "\"><img src=\"/icon/" + bm.icon() + "\"/>" + bm.text() + "</a></li>");
+  QString descriptionAsTitle = bm.description();
+  if (!descriptionAsTitle.isEmpty())
+      descriptionAsTitle.prepend(QLatin1String("\" title=\""));
+  echo ("<li class=\"link\"><a href=\"" + bm.url().prettyUrl() + descriptionAsTitle + "\"><img src=\"/icon/" + bm.icon() + "\"/>" + bm.text() + "</a></li>");
 }
 
 void BookmarksProtocol::echoSeparator()
@@ -51,9 +51,9 @@ void BookmarksProtocol::echoFolder( const KBookmarkGroup &folder )
 {
   if (sizeOfGroup(folder.toGroup(), true) > 1)
   {
-    QString descriptionAsTitel = folder.description();
-    if (!descriptionAsTitel.isEmpty())
-      descriptionAsTitel.prepend(QLatin1String("\" title=\""));
+    QString descriptionAsTitle = folder.description();
+    if (!descriptionAsTitle.isEmpty())
+      descriptionAsTitle.prepend(QLatin1String("\" title=\""));
 
     if (folder.parentGroup() == tree)
     {
@@ -62,12 +62,12 @@ void BookmarksProtocol::echoFolder( const KBookmarkGroup &folder )
       else
         echo("<ul>");
 
-      echo ("<li class=\"title" + descriptionAsTitel + "\">" + folder.fullText() + "</li>");
+      echo ("<li class=\"title" + descriptionAsTitle + "\">" + folder.fullText() + "</li>");
     }
     else
     {
       echo("<ul>");
-      echo ("<li class=\"title" + descriptionAsTitel + "\"><img src=\"/icon/" + folder.icon() + "\"/>" + folder.text() + "</li>");
+      echo ("<li class=\"title" + descriptionAsTitle + "\"><img src=\"/icon/" + folder.icon() + "\"/>" + folder.text() + "</li>");
     }
     indent++;
 
