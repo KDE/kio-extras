@@ -65,7 +65,7 @@ Name[pt_BR]=Procura por texto no banco de dados de erros do KDE
 Name[ro]=Baza de date de erori KDE - căutare integrală de text
 Name[ru]=Полнотекстовый поиск ошибок в базе KDE
 Name[se]=KDE dihkkediehtovuođu ollesteakstaohcan
-Name[si]=KDE Bug Database Fulltext Search
+Name[si]=KDE වැරදි දත්තමූල පූර්ණ පෙළ සෙවුම
 Name[sk]=Fulltextové hľadanie v databáze chýb KDE
 Name[sl]=Iskanje besedila po zbirki hroščev v KDE
 Name[sr]=КДЕ‑ова база грешака (текстуално)
@@ -130,6 +130,7 @@ Query[pt]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[pt_BR]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[ro]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[ru]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
+Query[si]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[sk]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[sl]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[sr]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}

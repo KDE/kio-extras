@@ -64,7 +64,7 @@ Name[pt_BR]=Procura por número no banco de dados de erros do KDE
 Name[ro]=Baza de date de erori KDE- căutare după număr
 Name[ru]=Поиск по номеру в базе ошибок KDE
 Name[se]=KDE dihkkediehtovuođu dihkkenummir ohcan
-Name[si]=KDE Bug Database Bug Number Search
+Name[si]=KDE වැරදි දත්තමූල වැරදි සංඛ්‍යා සෙවුම
 Name[sk]=Hľadanie podľa čísla chyby v KDE databáze chýb
 Name[sl]=Iskanje v zbirki hroščev KDE po številki hrošča
 Name[sr]=КДЕ‑ова база грешака (по броју)
@@ -130,6 +130,7 @@ Query[pt]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
 Query[pt_BR]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
 Query[ro]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
 Query[ru]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
+Query[si]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
 Query[sk]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
 Query[sl]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
 Query[sr]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
