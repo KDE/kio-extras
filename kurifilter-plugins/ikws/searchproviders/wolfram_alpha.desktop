@@ -30,6 +30,7 @@ Name[pl]=Wolfram Alpha
 Name[pt]=Wolfram Alpha
 Name[pt_BR]=Wolfram Alpha
 Name[ro]=Wolfram Alpha
+Name[ru]=Wolfram Alpha
 Name[si]=Wolfram Alpha
 Name[sl]=Wolfram Alpha
 Name[sr]=Волфрамова алфа
@@ -72,6 +73,7 @@ Query[ml]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[nb]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[nds]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[nl]=http://www.wolframalpha.com/input/?i=\\{@}
+Query[pa]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[pl]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[pt]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[pt_BR]=http://www.wolframalpha.com/input/?i=\\{@}

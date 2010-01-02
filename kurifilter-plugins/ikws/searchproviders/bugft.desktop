@@ -125,6 +125,7 @@ Query[nb]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[nds]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[nl]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[nn]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
+Query[pa]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[pl]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[pt]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[pt_BR]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
