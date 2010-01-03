@@ -1099,15 +1099,15 @@ void sftpProtocol::put(const KUrl& url, int permissions, KIO::JobFlags flags) {
         }
 
         if ((flags & KIO::Resume)) {
+          sftp_attributes fstat;
           file = sftp_open(mSftp, dest.constData(), O_RDWR, 0);  // append if resuming
-          sftp_attributes fstat = sftp_fstat(file);
-          if (fstat == NULL) {
-            reportError(url, sftp_get_error(mSftp));
-            sftp_attributes_free(sb);
-            return;
+          if (file) {
+             fstat = sftp_fstat(file);
+             if (fstat) {
+                sftp_seek64(file, fstat->size); // Seek to end TODO
+                sftp_attributes_free(fstat);
+             }
           }
-          sftp_seek64(file, fstat->size); // Seek to end TODO
-          sftp_attributes_free(fstat);
         } else {
           mode_t initialMode;
           if (permissions != -1) {
