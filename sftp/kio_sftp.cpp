@@ -498,12 +498,13 @@ void sftpProtocol::openConnection() {
   }
 
   // Start the ssh connection.
+  QString msg;     // msg for dialog box
+  QString caption; // dialog box caption
   unsigned char *hash = NULL; // the server hash
   char *hexa;
   char *verbosity;
-  QString msg;     // msg for dialog box
-  QString caption; // dialog box caption
-  int rc, state, hlen, timeout_sec = 30;
+  int rc, state, hlen;
+  int timeout_sec = 30, timeout_usec = 0;
 
   mSession = ssh_new();
   if (mSession == NULL) {
@@ -514,30 +515,69 @@ void sftpProtocol::openConnection() {
   kDebug(KIO_SFTP_DB) << "Creating the SSH session and setting options";
 
   // Set timeout
-  ssh_options_set(mSession, SSH_OPTIONS_TIMEOUT, &timeout_sec);
+  rc = ssh_options_set(mSession, SSH_OPTIONS_TIMEOUT, &timeout_sec);
+  if (rc < 0) {
+    error(ERR_OUT_OF_MEMORY, QString());
+    return;
+  }
+  rc = ssh_options_set(mSession, SSH_OPTIONS_TIMEOUT_USEC, &timeout_usec);
+  if (rc < 0) {
+    error(ERR_OUT_OF_MEMORY, QString());
+    return;
+  }
 
   // Don't use any compression
-  ssh_options_set(mSession, SSH_OPTIONS_COMPRESSION_C_S, "none");
-  ssh_options_set(mSession, SSH_OPTIONS_COMPRESSION_S_C, "none");
+  rc = ssh_options_set(mSession, SSH_OPTIONS_COMPRESSION_C_S, "none");
+  if (rc < 0) {
+    error(ERR_OUT_OF_MEMORY, QString());
+    return;
+  }
+
+  rc = ssh_options_set(mSession, SSH_OPTIONS_COMPRESSION_S_C, "none");
+  if (rc < 0) {
+    error(ERR_OUT_OF_MEMORY, QString());
+    return;
+  }
 
   // Set host and port
-  ssh_options_set(mSession, SSH_OPTIONS_HOST, mHost.toUtf8().constData());
+  rc = ssh_options_set(mSession, SSH_OPTIONS_HOST, mHost.toUtf8().constData());
+  if (rc < 0) {
+    error(ERR_OUT_OF_MEMORY, QString());
+    return;
+  }
+
   if (mPort > 0) {
-    ssh_options_set(mSession, SSH_OPTIONS_PORT, &mPort);
+    rc = ssh_options_set(mSession, SSH_OPTIONS_PORT, &mPort);
+    if (rc < 0) {
+      error(ERR_OUT_OF_MEMORY, QString());
+      return;
+    }
   }
 
   // Set the username
   if (!mUsername.isEmpty()) {
-    ssh_options_set(mSession, SSH_OPTIONS_USER, mUsername.toUtf8().constData());
+    rc = ssh_options_set(mSession, SSH_OPTIONS_USER, mUsername.toUtf8().constData());
+    if (rc < 0) {
+      error(ERR_OUT_OF_MEMORY, QString());
+      return;
+    }
   }
 
   verbosity = getenv("KIO_SFTP_LOG_VERBOSITY");
   if (verbosity) {
-    ssh_options_set(mSession, SSH_OPTIONS_LOG_VERBOSITY_STR, verbosity);
+    rc = ssh_options_set(mSession, SSH_OPTIONS_LOG_VERBOSITY_STR, verbosity);
+    if (rc < 0) {
+      error(ERR_OUT_OF_MEMORY, QString());
+      return;
+    }
   }
 
   // Read ~/.ssh/config
-  ssh_options_parse_config(mSession, NULL);
+  rc = ssh_options_parse_config(mSession, NULL);
+  if (rc < 0) {
+    error(ERR_OUT_OF_MEMORY, QString());
+    return;
+  }
 
   ssh_set_callbacks(mSession, mCallbacks);
 
