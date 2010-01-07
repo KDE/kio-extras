@@ -8,5 +8,6 @@ listing=Name
 defaultMimetype=text/html
 determineMimetypeFromExtension=false
 X-DocPath=kioslave/man/index.html
+maxInstances=10
 Icon=help-contents
 Class=:local
