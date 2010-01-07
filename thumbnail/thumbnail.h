@@ -66,7 +66,6 @@ private:
     QString m_mimeType;
     int m_width;
     int m_height;
-    bool m_keepAspectRatio;
     int m_iconSize;
     int m_iconAlpha;
     // Thumbnail creators

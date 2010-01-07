@@ -427,7 +427,7 @@ void ThumbnailProtocol::drawPictureFrame(QPainter *painter, const QPoint &center
     float scaledFrameWidth = frameWidth / scaling;
 
     QTransform m;
-    m.rotate(qrand() % 16 - 8); // Random rotation ±8°
+    m.rotate(qrand() % 17 - 8); // Random rotation ±8°
     m.scale(scaling, scaling);
 
     QRectF frameRect(QPointF(0, 0), QPointF(image.width() + scaledFrameWidth*2, image.height() + scaledFrameWidth*2));
@@ -754,12 +754,7 @@ bool ThumbnailProtocol::createSubThumbnail(QImage& thumbnail, const QString& fil
 void ThumbnailProtocol::scaleDownImage(QImage& img, int maxWidth, int maxHeight)
 {
     if (img.width() > maxWidth || img.height() > maxHeight) {
-        const double imgRatio = (double)img.height() / (double)img.width();
-        if (imgRatio > (double)maxHeight / (double)maxWidth) {
-            img = img.scaled( int(qMax((double)maxHeight / imgRatio, 1.0)), maxHeight, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
-        } else {
-            img = img.scaled(maxWidth, int(qMax((double)maxWidth * imgRatio, 1.0)), Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
-        }
+        img = img.scaled(maxWidth, maxHeight, Qt::KeepAspectRatio, Qt::SmoothTransformation);
     }
 }
 
