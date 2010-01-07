@@ -839,7 +839,7 @@ static void add_links(char *c)
             *h=t;
             t=*e;
             *e='\0';
-                    QByteArray str("<a href=\"man:");
+                    QByteArray str("<a href=\"man:/");
                     str += h;
                     str += '(';
                     str += char( sec );
