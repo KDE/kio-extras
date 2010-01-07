@@ -284,15 +284,12 @@ void ThumbnailProtocol::get(const KUrl &url)
 
     scaleDownImage(img, m_width, m_height);
 
-// ### FIXME
-#ifndef USE_KINSTANCE
     if (flags & ThumbCreator::DrawFrame) {
-        QPixmap pix = QPixmap::fromImage( img );
-        int x2 = pix.width() - 1;
-        int y2 = pix.height() - 1;
+        int x2 = img.width() - 1;
+        int y2 = img.height() - 1;
         // paint a black rectangle around the "page"
         QPainter p;
-        p.begin( &pix );
+        p.begin( &img );
         p.setPen( QColor( 48, 48, 48 ));
         p.drawLine( x2, 0, x2, y2 );
         p.drawLine( 0, y2, x2, y2 );
@@ -300,24 +297,7 @@ void ThumbnailProtocol::get(const KUrl &url)
         p.drawLine( 0, 0, x2, 0 );
         p.drawLine( 0, 0, 0, y2 );
         p.end();
-
-        const QBitmap& mask = pix.mask();
-        if (!mask.isNull()) { // need to update it so we can see the frame
-            QBitmap bitmap( mask );
-            QPainter painter;
-            painter.begin( &bitmap );
-            painter.drawLine( x2, 0, x2, y2 );
-            painter.drawLine( 0, y2, x2, y2 );
-            painter.drawLine( 0, 0, x2, 0 );
-            painter.drawLine( 0, 0, 0, y2 );
-            painter.end();
-
-            pix.setMask( bitmap );
-        }
-
-        img = pix.toImage();
     }
-#endif
 
     if ((flags & ThumbCreator::BlendIcon) && KIconLoader::global()->alphaBlending(KIconLoader::Desktop)) {
         // blending the mimetype icon in
