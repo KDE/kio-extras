@@ -90,6 +90,7 @@ Query=https://bugs.kde.org/show_bug.cgi?id=\\{@}
 Query[ar]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
 Query[bg]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
 Query[ca]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
+Query[ca@valencia]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
 Query[cs]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
 Query[csb]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
 Query[da]=https://bugs.kde.org/show_bug.cgi?id=\\{@}

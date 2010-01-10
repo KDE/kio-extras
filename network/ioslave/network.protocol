@@ -9,6 +9,7 @@ Description=A kioslave to browse the network
 Description[ar]=خادم دخل وخرج كدي لتصفح الشبكة
 Description[bg]=Kioslave за разглеждане на мрежата
 Description[ca]=Un esclau-kio per a explorar la xarxa
+Description[ca@valencia]=Un esclau-kio per a explorar la xarxa
 Description[cs]=Pomocný protokol pro procházení sítě
 Description[csb]=Wtëkôcz przezéraniô sécë
 Description[da]=En kioslave til at gennemse netværket

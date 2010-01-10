@@ -2,6 +2,7 @@
 Type=Service
 Name=CNRTL/TILF French dictionary
 Name[ca]=Diccionari francès CNRTL/TILF
+Name[ca@valencia]=Diccionari francés CNRTL/TILF
 Name[cs]=Francouzský slovník CNRTL/TILF
 Name[csb]=CNRTL/TILF francësczi słowôrz
 Name[da]=CNRTL/TILF fransk ordbog
@@ -52,6 +53,7 @@ Keys=dictfr
 Query=http://www.cnrtl.fr/definition/\\{@}
 Query[bg]=http://www.cnrtl.fr/definition/\\{@}
 Query[ca]=http://www.cnrtl.fr/definition/\\{@}
+Query[ca@valencia]=http://www.cnrtl.fr/definition/\\{@}
 Query[csb]=http://www.cnrtl.fr/definition/\\{@}
 Query[da]=http://www.cnrtl.fr/definition/\\{@}
 Query[de]=http://www.cnrtl.fr/definition/\\{@}
