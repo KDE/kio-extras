@@ -223,11 +223,27 @@ void DesktopProtocol::rename(const KUrl &src, const KUrl &dest, KIO::JobFlags fl
         return;
     }
 
-    // Instead of renaming the .desktop file, we'll change the value of the
-    // Name key in the file.
+    QString friendlyName;
+    KUrl destUrl = dest;  
+
+    if (dest.url().endsWith(".desktop")) {
+        const QString fileName = dest.fileName(); 
+        friendlyName = KIO::decodeFileName(fileName.left(fileName.length() - 8));
+    } else {
+        friendlyName = KIO::decodeFileName(dest.fileName());
+        destUrl.setFileName(destUrl.fileName() + ".desktop");
+    }
+
+    // Update the value of the Name field in the file.
     KDesktopFile file(url.path());
-    file.desktopGroup().writeEntry("Name", dest.fileName());
-    file.sync();
-    finished();
+    KConfigGroup cg(file.desktopGroup());
+    cg.writeEntry("Name", friendlyName);
+    cg.writeEntry("Name", friendlyName, KConfigGroup::Persistent | KConfigGroup::Localized);
+    cg.sync();
+
+    if (src.url() != destUrl.url())
+        ForwardingSlaveBase::rename(src, destUrl, flags);
+    else
+        finished();
 }
 
