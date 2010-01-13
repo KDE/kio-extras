@@ -1079,6 +1079,11 @@ void sftpProtocol::put(const KUrl& url, int permissions, KIO::JobFlags flags) {
   bool bPartExists = false;
   const bool bMarkPartial = config()->readEntry("MarkPartial", true);
 
+  // Don't change permissions of the original file
+  if (bOrigExists) {
+      permissions = sb->permissions;
+  }
+
   if (bMarkPartial) {
     sftp_attributes sbPart = sftp_lstat(mSftp, dest_part_c.constData());
     bPartExists = (sbPart != NULL);
