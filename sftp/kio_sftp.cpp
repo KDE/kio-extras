@@ -850,7 +850,7 @@ void sftpProtocol::open(const KUrl &url, QIODevice::OpenMode mode) {
   }
 
   if (flags & O_CREAT) {
-    mOpenFile = sftp_open(mSftp, path_c.constData(), flags, 0666);
+    mOpenFile = sftp_open(mSftp, path_c.constData(), flags, 0600);
   } else {
     mOpenFile = sftp_open(mSftp, path_c.constData(), flags, 0);
   }
@@ -1156,7 +1156,7 @@ void sftpProtocol::put(const KUrl& url, int permissions, KIO::JobFlags flags) {
           if (permissions != -1) {
             initialMode = permissions | S_IWUSR | S_IRUSR;
           } else {
-            initialMode = 600;
+            initialMode = 0600;
           }
 
           kDebug(KIO_SFTP_DB) << "Trying to open: " << dest << ", mode=" << QString::number(initialMode);
@@ -1236,9 +1236,9 @@ void sftpProtocol::put(const KUrl& url, int permissions, KIO::JobFlags flags) {
 
   // set final permissions
   if (permissions != -1 && !(flags & KIO::Resume)) {
+    kDebug(KIO_SFTP_DB) << "Trying to set final permissions of " << dest_orig << " to " << QString::number(permissions);
     if (sftp_chmod(mSftp, dest_orig_c.constData(), permissions) < 0) {
-      kDebug(KIO_SFTP_DB) << "Could not change permissions for " << dest_orig;
-      //warning(i18n( "Could not change permissions for\n%1", dest_orig));
+      warning(i18n( "Could not change permissions for\n%1", dest_orig));
     }
   }
 
