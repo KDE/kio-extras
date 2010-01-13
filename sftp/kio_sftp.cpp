@@ -1136,10 +1136,12 @@ void sftpProtocol::put(const KUrl& url, int permissions, KIO::JobFlags flags) {
             sftp_unlink(mSftp, dest_orig_c.constData());
             // Catch errors when we try to open the file.
           }
-        }
+        } // bMarkPartial
 
         if ((flags & KIO::Resume)) {
           sftp_attributes fstat;
+
+          kDebug(KIO_SFTP_DB) << "Trying to append: " << dest;
           file = sftp_open(mSftp, dest.constData(), O_RDWR, 0);  // append if resuming
           if (file) {
              fstat = sftp_fstat(file);
@@ -1150,15 +1152,16 @@ void sftpProtocol::put(const KUrl& url, int permissions, KIO::JobFlags flags) {
           }
         } else {
           mode_t initialMode;
+
           if (permissions != -1) {
             initialMode = permissions | S_IWUSR | S_IRUSR;
           } else {
-            initialMode = 0666;
+            initialMode = 600;
           }
 
           kDebug(KIO_SFTP_DB) << "Trying to open: " << dest << ", mode=" << QString::number(initialMode);
           file = sftp_open(mSftp, dest.constData(), O_CREAT | O_TRUNC | O_WRONLY, initialMode);
-        }
+        } // flags & KIO::Resume
 
         if (file == NULL) {
           kDebug(KIO_SFTP_DB) << "####################### COULD NOT WRITE " << dest << " permissions=" << permissions;
@@ -1169,15 +1172,15 @@ void sftpProtocol::put(const KUrl& url, int permissions, KIO::JobFlags flags) {
           }
           sftp_attributes_free(sb);
           return;
-        }
-      }
+        } // file
+      } // dest.isEmpty
 
       ssize_t bytesWritten = sftp_write(file, buffer.data(), buffer.size());
       if (bytesWritten < 0) {
         error(KIO::ERR_COULD_NOT_WRITE, dest_orig);
         result = -1;
       }
-    }
+    } // result
   } while (result > 0);
   sftp_attributes_free(sb);
 
