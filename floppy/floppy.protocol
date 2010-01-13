@@ -10,5 +10,5 @@ makedir=true
 deleting=true
 moving=true
 Icon=media-floppy
-x-DocPath=kioslave/floppy/index.html
+X-DocPath=kioslave/floppy/index.html
 Class=:local
