@@ -20,6 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <QTextDocument>
 
 #include <kdebug.h>
 #include <kshell.h>
@@ -36,10 +37,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 void BookmarksProtocol::echoBookmark( const KBookmark &bm)
 {
-  QString descriptionAsTitle = bm.description();
+  QString descriptionAsTitle = Qt::escape(bm.description());
   if (!descriptionAsTitle.isEmpty())
       descriptionAsTitle.prepend(QLatin1String("\" title=\""));
-  echo ("<li class=\"link\"><a href=\"" + bm.url().prettyUrl() + descriptionAsTitle + "\"><img src=\"/icon/" + bm.icon() + "\"/>" + bm.text() + "</a></li>");
+  echo ("<li class=\"link\"><a href=\"" + bm.url().url() + descriptionAsTitle + "\"><img src=\"/icon/" + bm.icon() + "\"/>" + Qt::escape(bm.text()) + "</a></li>");
 }
 
 void BookmarksProtocol::echoSeparator()
