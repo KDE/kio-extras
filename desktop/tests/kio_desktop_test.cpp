@@ -58,7 +58,8 @@ private Q_SLOTS:
         tempFile.write( "Hello world\n", 12 );
         QString fileName = tempFile.fileName();
         tempFile.close();
-        KIO::Job* job = KIO::file_copy(fileName, KUrl("desktop:/" + m_testFileName), KIO::HideProgressInfo);
+        KIO::Job* job = KIO::file_copy(fileName, KUrl("desktop:/" + m_testFileName), -1, KIO::HideProgressInfo);
+        job->setUiDelegate(0);
         QVERIFY(job->exec());
         QVERIFY(QFile::exists(m_desktopPath + '/' + m_testFileName));
     }
