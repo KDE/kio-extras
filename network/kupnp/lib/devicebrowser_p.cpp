@@ -1,7 +1,7 @@
 /*
     This file is part of the KUPnP library, part of the KDE project.
 
-    Copyright 2009 Friedrich W. H. Kossebau <kossebau@kde.org>
+    Copyright 2009-2010 Friedrich W. H. Kossebau <kossebau@kde.org>
     Copyright 2009 Adriaan de Groot <groot@kde.org>
 
     This library is free software; you can redistribute it and/or
@@ -29,7 +29,7 @@
 // Qt
 #include <QtDBus/QDBusArgument>
 
-#include <QtCore/QDebug>
+#include <KDebug>
 
 namespace UPnP
 {
@@ -52,12 +52,12 @@ static bool checkVersion( const QString& coherenceVersionString )
 
         if( requiredCoherenceVersion[i] > versionPart )
         {
-qDebug() << "Coherence version" << coherenceVersionString << "is not ok,"
+kDebug() << "Coherence version" << coherenceVersionString << "is not ok,"
          << requiredCoherenceVersionString << "required.";
             return false;
         }
     }
-qDebug() << "Coherence version" << coherenceVersionString << "is ok.";
+kDebug() << "Coherence version" << coherenceVersionString << "is ok.";
 
     return true;
 }
@@ -136,11 +136,11 @@ Device DeviceBrowserPrivate::addDevice( const QDBusArgument& dBusArgument )
             if( variant.canConvert<QString>())
             {
                 const QString value = variant.value<QString>();
-qDebug() << "  " << key << value;
+kDebug() << "  " << key << value;
             }
             else
             {
-qDebug() << "  " << key << "-not argument string-";
+kDebug() << "  " << key << "-not argument string-";
             }
         }
         dBusArgument.endMapEntry();
@@ -150,22 +150,22 @@ qDebug() << "  " << key << "-not argument string-";
     const QString& udn = devicePrivate->udn();
     if( udn.isEmpty() )
     {
-qDebug()<<"No udn found!";
+kDebug()<<"No udn found!";
         devicePrivate->setInvalid();
     }
     else if( mDevices.contains(udn) )
     {
-qDebug()<<"Already inserted:"<<udn<<"!";
+kDebug()<<"Already inserted:"<<udn<<"!";
         devicePrivate->setInvalid();
     }
     else if( ! mBrowsedDeviceTypes.isEmpty() && ! mBrowsedDeviceTypes.contains(devicePrivate->type()) )
     {
-qDebug()<<"Not interested in:"<<devicePrivate->type();
+kDebug()<<"Not interested in:"<<devicePrivate->type();
         devicePrivate->setInvalid();
     }
     else
     {
-qDebug()<<"Adding: "<<device.displayName()<<udn;
+kDebug()<<"Adding: "<<device.displayName()<<udn;
         mDevices[udn] = device;
 
         if( ! parentUdn.isEmpty() )
@@ -187,7 +187,7 @@ qDebug()<<"Adding: "<<device.displayName()<<udn;
 
 void DeviceBrowserPrivate::init()
 {
-qDebug() << "Connecting to Coherence...";
+kDebug() << "Connecting to Coherence...";
 
     // TODO: or use system bus?
     mCoherence = new org::Coherence( "org.Coherence", "/org/Coherence", QDBusConnection::sessionBus()/*systemBus*/, q );
@@ -196,7 +196,7 @@ qDebug() << "Connecting to Coherence...";
     versionReply.waitForFinished();
     if( versionReply.isError() )
     {
-qDebug()<< versionReply.error();
+kDebug()<< versionReply.error();
         return;
     }
 
@@ -216,11 +216,11 @@ qDebug()<< versionReply.error();
     devicesReply.waitForFinished();
     if( devicesReply.isError() )
     {
-qDebug()<< devicesReply.error();
+kDebug()<< devicesReply.error();
         return;
     }
 
-qDebug()<< "Current devices...";
+kDebug()<< "Current devices...";
     QVariantList devicesReplyValue = devicesReply.value();
     foreach( const QVariant& devicesReplyValueItem, devicesReplyValue )
     {
@@ -228,7 +228,7 @@ qDebug()<< "Current devices...";
         const QDBusArgument dBusArgument = variant.value<QDBusArgument>();
         addDevice( dBusArgument );
     }
-qDebug()<<"That's all.";
+kDebug()<<"That's all.";
 }
 
 QList<Device> DeviceBrowserPrivate::devices() const
@@ -267,11 +267,11 @@ void DeviceBrowserPrivate::onDeviceRemoved( const QString& _udn )
     {
         Device device = it.value();
         mDevices.erase( it );
-qDebug() << "Removing"<<device.displayName();
+kDebug() << "Removing"<<device.displayName();
         emit q->deviceRemoved( device );
     }
     else
-qDebug() << "Not found in device list:"<<udn;
+kDebug() << "Not found in device list:"<<udn;
 }
 
 
