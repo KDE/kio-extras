@@ -23,9 +23,6 @@
 #ifndef UPNP_EXPORT_H
 #define UPNP_EXPORT_H
 
-// disable while just a private static lib
-#define KUPNP_EXPORT
-#if 0
 // KDE
 #include <kdemacros.h>
 
@@ -45,4 +42,3 @@
 # endif
 #endif
 
-#endif

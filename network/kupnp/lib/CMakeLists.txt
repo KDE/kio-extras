@@ -20,18 +20,18 @@ set( kupnp_LIB_HDRS
 qt4_add_dbus_interface( kupnp_LIB_SRCS  org.Coherence.xml coherence_interface )
 
 
-kde4_add_library( kupnp  STATIC ${kupnp_LIB_SRCS} )
+kde4_add_library( kupnp  SHARED ${kupnp_LIB_SRCS} )
 
 # If making the lib SHARED again, uncomment again:
-# target_link_libraries( kupnp
-#   ${QT_QTDBUS_LIBRARY}
-#   ${QT_QTCORE_LIBRARY}
-# )
-# set_target_properties( kupnp  PROPERTIES
-#   VERSION ${GENERIC_LIB_VERSION}
-#   SOVERSION ${GENERIC_LIB_SOVERSION}
-# )
+target_link_libraries( kupnp
+  ${QT_QTDBUS_LIBRARY}
+  ${QT_QTCORE_LIBRARY}
+  ${KDE4_KDECORE_LIBS})
+set_target_properties( kupnp  PROPERTIES
+  VERSION ${GENERIC_LIB_VERSION}
+  SOVERSION ${GENERIC_LIB_SOVERSION}
+)
 
-# install( TARGETS kupnp  ${INSTALL_TARGETS_DEFAULT_ARGS} )
+install( TARGETS kupnp  ${INSTALL_TARGETS_DEFAULT_ARGS} )
 
-# install( FILES ${kupnp_LIB_HDRS}  DESTINATION ${INCLUDE_INSTALL_DIR}/upnp  COMPONENT Devel )
+install( FILES ${kupnp_LIB_HDRS}  DESTINATION ${INCLUDE_INSTALL_DIR}/upnp  COMPONENT Devel )
