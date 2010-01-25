@@ -23,6 +23,9 @@
 #ifndef UPNP_EXPORT_H
 #define UPNP_EXPORT_H
 
+// disable while just a private static lib
+#define KUPNP_EXPORT
+#if 0
 // KDE
 #include <kdemacros.h>
 
@@ -40,5 +43,6 @@
 # ifndef KUPNP_EXPORT_DEPRECATED
 #  define KUPNP_EXPORT_DEPRECATED KDE_DEPRECATED KUPNP_EXPORT
 # endif
+#endif
 
 #endif
