@@ -29,8 +29,8 @@
 #include "netdevice_p.h"
 #include "netservice_p.h"
 // KUPnP
-#include <upnp/devicebrowser.h>
-#include <upnp/device.h>
+#include <devicebrowser.h>
+#include <device.h>
 // Qt
 #include <QtCore/QStringList>
 

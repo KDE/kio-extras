@@ -24,8 +24,8 @@
 
 // lib
 #include "netservice_p.h"
-#include "upnp/service.h"
-#include "upnp/device.h"
+#include "service.h"
+#include "device.h"
 // KDE
 #include <KUrl>
 
