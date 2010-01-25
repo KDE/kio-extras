@@ -274,6 +274,108 @@ Notes:
     <comment>RealPlayer Shared Favorites</comment>
   </mime-type>
 
+  <!-- UPnP -->
+  <mime-type type="inode/vnd.kde.service.upnp.BasicDevice1">
+    <generic-icon name="network-server"/>
+    <comment>UPnP Basic Device</comment>
+    <expanded-acronym>UPnP Universal Plug and Play</expanded-acronym>
+  </mime-type>
+  <mime-type type="inode/vnd.kde.service.upnp.WLANAccessPointDevice1">
+    <generic-icon name="network-wireless"/>
+    <comment>UPnP WLAN Access Point Device</comment>
+    <expanded-acronym>UPnP Universal Plug and Play</expanded-acronym>
+  </mime-type>
+  <mime-type type="inode/vnd.kde.service.upnp.InternetGatewayDevice1">
+    <generic-icon name="network-server"/>
+    <comment>UPnP Internet Gateway Device</comment>
+    <expanded-acronym>UPnP Universal Plug and Play</expanded-acronym>
+  </mime-type>
+  <mime-type type="inode/vnd.kde.service.upnp.PrinterBasic1">
+    <generic-icon name="printer"/>
+    <comment>UPnP Printer (Basic)</comment>
+    <expanded-acronym>UPnP Universal Plug and Play</expanded-acronym>
+  </mime-type>
+  <mime-type type="inode/vnd.kde.service.upnp.PrinterEnhanced1">
+    <generic-icon name="printer"/>
+    <comment>UPnP Printer (Enhanced)</comment>
+    <expanded-acronym>UPnP Universal Plug and Play</expanded-acronym>
+  </mime-type>
+  <mime-type type="inode/vnd.kde.service.upnp.Scanner1">
+    <generic-icon name="scanner"/>
+    <comment>UPnP Scanner</comment>
+    <expanded-acronym>UPnP Universal Plug and Play</expanded-acronym>
+  </mime-type>
+  <mime-type type="inode/vnd.kde.service.upnp.MediaServer1">
+    <generic-icon name="folder-remote"/>
+    <comment>UPnP Media Server</comment>
+    <expanded-acronym>UPnP Universal Plug and Play</expanded-acronym>
+  </mime-type>
+  <mime-type type="inode/vnd.kde.service.upnp.MediaRenderer1">
+    <generic-icon name="terminal"/>
+    <comment>UPnP Media Renderer</comment>
+    <expanded-acronym>UPnP Universal Plug and Play</expanded-acronym>
+  </mime-type>
+  <mime-type type="inode/vnd.kde.service.upnp.MediaServer2">
+    <generic-icon name="folder-remote"/>
+    <comment>UPnP Media Server</comment>
+    <expanded-acronym>UPnP Universal Plug and Play</expanded-acronym>
+  </mime-type>
+  <mime-type type="inode/vnd.kde.service.upnp.MediaRenderer2">
+    <generic-icon name="terminal"/>
+    <comment>UPnP Media Renderer</comment>
+    <expanded-acronym>UPnP Universal Plug and Play</expanded-acronym>
+  </mime-type>
+  <mime-type type="inode/vnd.kde.service.upnp.MediaServer3">
+    <generic-icon name="folder-remote"/>
+    <comment>UPnP Media Server</comment>
+    <expanded-acronym>UPnP Universal Plug and Play</expanded-acronym>
+  </mime-type>
+  <mime-type type="inode/vnd.kde.service.upnp.SolarProtectionBlind1">
+    <generic-icon name="device"/>
+    <comment>UPnP Solar Protection Blind</comment>
+    <expanded-acronym>UPnP Universal Plug and Play</expanded-acronym>
+  </mime-type>
+  <mime-type type="inode/vnd.kde.service.upnp.DigitalSecurityCamera1">
+    <generic-icon name="camera"/>
+    <comment>UPnP Digital Security Camera</comment>
+    <expanded-acronym>UPnP Universal Plug and Play</expanded-acronym>
+  </mime-type>
+  <mime-type type="inode/vnd.kde.service.upnp.HVAC1">
+    <generic-icon name="device"/>
+    <comment>UPnP HVAC</comment>
+    <expanded-acronym>UPnP Universal Plug and Play</expanded-acronym>
+  </mime-type>
+  <mime-type type="inode/vnd.kde.service.upnp.LightingControls1">
+    <generic-icon name="light"/>
+    <comment>UPnP Lighting Controls</comment>
+    <expanded-acronym>UPnP Universal Plug and Play</expanded-acronym>
+  </mime-type>
+  <mime-type type="inode/vnd.kde.service.upnp.RemoteUIClient1">
+    <generic-icon name="printer"/>
+    <comment>UPnP Remote UI Client</comment>
+    <expanded-acronym>UPnP Universal Plug and Play</expanded-acronym>
+  </mime-type>
+  <mime-type type="inode/vnd.kde.service.upnp.RemoteUIServer1">
+    <generic-icon name="printer"/>
+    <comment>UPnP Remote UI Server</comment>
+    <expanded-acronym>UPnP Universal Plug and Play</expanded-acronym>
+  </mime-type>
+  <mime-type type="inode/vnd.kde.service.upnp.Unknown">
+    <generic-icon name="device"/>
+    <comment>Unknown UPnP Device</comment>
+    <expanded-acronym>UPnP Universal Plug and Play</expanded-acronym>
+  </mime-type>
+
+  <mime-type type="inode/vnd.kde.service.upnp.WANDevice1">
+    <generic-icon name="network-wireless"/>
+    <comment>UPnP WAN Device</comment>
+    <expanded-acronym>UPnP Universal Plug and Play</expanded-acronym>
+  </mime-type>
+  <mime-type type="inode/vnd.kde.service.upnp.WANConnectionDevice1">
+    <generic-icon name="network-wireless"/>
+    <comment>UPnP WAN Connection Device</comment>
+    <expanded-acronym>UPnP Universal Plug and Play</expanded-acronym>
+  </mime-type>
 
   <!-- uri/ fake mime types -->
 <!--  <mime-type type="uri/mms">

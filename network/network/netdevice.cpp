@@ -29,7 +29,7 @@
 namespace Mollet
 {
 
-K_GLOBAL_STATIC_WITH_ARGS(KSharedPtr< NetDevicePrivate >, dummyNetDevicePrivate, ( new NetDevicePrivate(QString(),QString()) ))
+K_GLOBAL_STATIC_WITH_ARGS(KSharedPtr< NetDevicePrivate >, dummyNetDevicePrivate, ( new NetDevicePrivate(QString()) ))
 
 
 QString NetDevice::iconName( Type type )
@@ -59,6 +59,8 @@ NetDevice::NetDevice( const NetDevice& other )
 
 QString NetDevice::name() const     { return d->name(); }
 QString NetDevice::hostName() const { return d->hostName(); }
+QString NetDevice::ipAddress() const { return d->ipAddress(); }
+QString NetDevice::hostAddress() const { return d->hostAddress(); }
 NetDevice::Type NetDevice::type() const  { return d->type(); }
 QList<NetService> NetDevice::serviceList() const { return d->serviceList(); }
 

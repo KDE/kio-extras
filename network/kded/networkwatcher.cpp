@@ -46,14 +46,14 @@ Q_UNUSED( parameters )
 }
 
 // TODO: instead use networkuri and return QVariant for all these
-NetDevice NetworkWatcher::deviceData( const QString& hostName )
+NetDevice NetworkWatcher::deviceData( const QString& hostAddress )
 {
     NetDevice result;
 
     const QList<NetDevice> deviceList = mNetwork->deviceList();
     foreach( const NetDevice& device, deviceList )
     {
-        if( device.hostName() == hostName )
+        if( device.hostAddress() == hostAddress )
         {
             result = device;
             break;
@@ -63,14 +63,14 @@ NetDevice NetworkWatcher::deviceData( const QString& hostName )
     return result;
 }
 
-NetService NetworkWatcher::serviceData( const QString& hostName, const QString& serviceName, const QString& serviceType )
+NetService NetworkWatcher::serviceData( const QString& hostAddress, const QString& serviceName, const QString& serviceType )
 {
     NetService result;
 
     const QList<NetDevice> deviceList = mNetwork->deviceList();
     foreach( const NetDevice& device, deviceList )
     {
-        if( device.hostName() == hostName )
+        if( device.hostAddress() == hostAddress )
         {
             const QList<NetService> serviceList = device.serviceList();
 
@@ -94,14 +94,14 @@ NetDeviceList NetworkWatcher::deviceDataList()
     return mNetwork->deviceList();
 }
 
-NetServiceList NetworkWatcher::serviceDataList( const QString& hostName )
+NetServiceList NetworkWatcher::serviceDataList( const QString& hostAddress )
 {
     NetServiceList result;
 
     const QList<NetDevice> deviceList = mNetwork->deviceList();
     foreach( const NetDevice& device, deviceList )
     {
-        if( device.hostName() == hostName )
+        if( device.hostAddress() == hostAddress )
         {
             result = device.serviceList();
             break;

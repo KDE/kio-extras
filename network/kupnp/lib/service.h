@@ -1,5 +1,5 @@
 /*
-    This file is part of the network kioslave, part of the KDE project.
+    This file is part of the KUPnP library, part of the KDE project.
 
     Copyright 2009 Friedrich W. H. Kossebau <kossebau@kde.org>
 
@@ -20,39 +20,54 @@
     License along with this library. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef NETWORKWATCHER_H
-#define NETWORKWATCHER_H
+#ifndef UPNP_SERVICE_H
+#define UPNP_SERVICE_H
 
-// KDE
-#include <KDEDModule>
+// lib
+#include "upnp_export.h"
+// #include "device.h"
+// Qt
+#include <QtCore/QExplicitlySharedDataPointer>
 
-namespace Mollet
+
+namespace UPnP
 {
-class Network;
-class NetDevice;
-class NetService;
-typedef QList<NetDevice> NetDeviceList;
-typedef QList<NetService> NetServiceList;
+class ServicePrivate;
+class Device;
 
 
-class NetworkWatcher : public KDEDModule
+class KUPNP_EXPORT Service
 {
-    Q_OBJECT
-    Q_CLASSINFO( "D-Bus Interface", "org.kde.network" )
+  friend class ServicePrivate;
+  friend class DeviceBrowserPrivate;
+
+  protected:
+    explicit Service( ServicePrivate* d );
 
   public:
-    NetworkWatcher( QObject* parent, const QList<QVariant>& parameters );
-    virtual ~NetworkWatcher();
+    Service();
+    Service( const Service& other );
+
+    virtual ~Service();
 
   public:
-    Mollet::NetDevice deviceData( const QString& hostAddress );
-    Mollet::NetService serviceData( const QString& hostAddress, const QString& serviceName, const QString& serviceType );
-    Mollet::NetDeviceList deviceDataList();
-    Mollet::NetServiceList serviceDataList( const QString& hostAddress );
+//     QString udn() const;
+    QString displayName() const;
+    QString type() const;
+    Device device() const;
+
+  public:
+    Service& operator =( const Service& other );
 
   private:
-    Network* mNetwork;
+    ServicePrivate* dPtr() const;
+
+  protected:
+    QExplicitlySharedDataPointer<ServicePrivate> d;
 };
+
+
+inline  ServicePrivate* Service::dPtr() const { return const_cast<ServicePrivate*>( d.data() ); }
 
 }
 

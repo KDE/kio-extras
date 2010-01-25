@@ -49,6 +49,7 @@ class NetServicePrivate;
 class MOLLETNETWORK_EXPORT NetService
 {
     friend class DNSSDNetworkBuilder;
+    friend class UpnpNetworkBuilder;
     friend QDBusArgument& ::operator<<( QDBusArgument& argument, const NetService& service );
     friend const QDBusArgument& ::operator>>( const QDBusArgument& argument, NetService& service );
 

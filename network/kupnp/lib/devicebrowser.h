@@ -1,5 +1,5 @@
 /*
-    This file is part of the network kioslave, part of the KDE project.
+    This file is part of the KUPnP library, part of the KDE project.
 
     Copyright 2009 Friedrich W. H. Kossebau <kossebau@kde.org>
 
@@ -20,38 +20,47 @@
     License along with this library. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef NETWORKWATCHER_H
-#define NETWORKWATCHER_H
+#ifndef UPNP_DEVICEBROWSER_H
+#define UPNP_DEVICEBROWSER_H
 
-// KDE
-#include <KDEDModule>
+// lib
+#include "upnp_export.h"
+// Qt
+#include <QtCore/QStringList>
+#include <QtCore/QObject>
 
-namespace Mollet
+template<class T> class QList;
+
+
+namespace UPnP
 {
-class Network;
-class NetDevice;
-class NetService;
-typedef QList<NetDevice> NetDeviceList;
-typedef QList<NetService> NetServiceList;
+class DeviceBrowserPrivate;
+class Device;
 
 
-class NetworkWatcher : public KDEDModule
+class KUPNP_EXPORT DeviceBrowser : public QObject
 {
-    Q_OBJECT
-    Q_CLASSINFO( "D-Bus Interface", "org.kde.network" )
+  Q_OBJECT
+
+  friend class DeviceBrowserPrivate;
 
   public:
-    NetworkWatcher( QObject* parent, const QList<QVariant>& parameters );
-    virtual ~NetworkWatcher();
+    explicit DeviceBrowser( const QStringList& deviceTypes = QStringList() );
+    explicit DeviceBrowser( const QString& deviceType );
+
+    virtual ~DeviceBrowser();
 
   public:
-    Mollet::NetDevice deviceData( const QString& hostAddress );
-    Mollet::NetService serviceData( const QString& hostAddress, const QString& serviceName, const QString& serviceType );
-    Mollet::NetDeviceList deviceDataList();
-    Mollet::NetServiceList serviceDataList( const QString& hostAddress );
+    QList<Device> devices() const;
 
-  private:
-    Network* mNetwork;
+    QStringList browsedDeviceTypes() const;
+
+  Q_SIGNALS:
+    void deviceAdded( const UPnP::Device& device );
+    void deviceRemoved( const UPnP::Device& device );
+
+  protected:
+    DeviceBrowserPrivate* const d;
 };
 
 }

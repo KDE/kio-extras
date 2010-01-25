@@ -43,9 +43,9 @@ namespace Mollet
 
 static inline QString idFrom( const NetworkUri& networkUri )
 {
-    return networkUri.hostName().isEmpty() ?    QString() :
-           networkUri.serviceName().isEmpty() ? networkUri.hostName() :
-           /*else*/                             networkUri.hostName()+'/'+networkUri.serviceName();
+    return networkUri.hostAddress().isEmpty() ?    QString() :
+           networkUri.serviceName().isEmpty() ? networkUri.hostAddress() :
+           /*else*/                             networkUri.hostAddress()+'/'+networkUri.serviceName();
 }
 
 static inline QString dirIdFor( const NetDevice& device )
@@ -55,17 +55,17 @@ Q_UNUSED( device )
 }
 static inline QString pathFor( const NetDevice& device )
 {
-    return device.hostName();
+    return device.hostAddress();
 }
 
 static inline QString dirIdFor( const NetService& service )
 {
-    return service.device().hostName();
+    return service.device().hostAddress();
 }
 
 static inline QString pathFor( const NetService& service )
 {
-    return service.device().hostName() + '/' + service.name()+'.'+service.type();
+    return service.device().hostAddress() + '/' + service.name()+'.'+service.type();
 }
 
 

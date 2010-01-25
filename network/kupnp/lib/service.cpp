@@ -1,5 +1,5 @@
 /*
-    This file is part of the network kioslave, part of the KDE project.
+    This file is part of the KUPnP library, part of the KDE project.
 
     Copyright 2009 Friedrich W. H. Kossebau <kossebau@kde.org>
 
@@ -20,40 +20,42 @@
     License along with this library. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef NETWORKWATCHER_H
-#define NETWORKWATCHER_H
+#include "service.h"
+#include "service_p.h"
 
-// KDE
-#include <KDEDModule>
 
-namespace Mollet
+namespace UPnP
 {
-class Network;
-class NetDevice;
-class NetService;
-typedef QList<NetDevice> NetDeviceList;
-typedef QList<NetService> NetServiceList;
 
+Service::Service()
+  : d( new ServicePrivate() ) // TODO: would a static default null object increase performance?
+{}
 
-class NetworkWatcher : public KDEDModule
+Service::Service( ServicePrivate* _d )
+  : d( _d )
 {
-    Q_OBJECT
-    Q_CLASSINFO( "D-Bus Interface", "org.kde.network" )
-
-  public:
-    NetworkWatcher( QObject* parent, const QList<QVariant>& parameters );
-    virtual ~NetworkWatcher();
-
-  public:
-    Mollet::NetDevice deviceData( const QString& hostAddress );
-    Mollet::NetService serviceData( const QString& hostAddress, const QString& serviceName, const QString& serviceType );
-    Mollet::NetDeviceList deviceDataList();
-    Mollet::NetServiceList serviceDataList( const QString& hostAddress );
-
-  private:
-    Network* mNetwork;
-};
-
 }
 
-#endif
+Service::Service( const Service& other )
+  : d( other.d )
+{
+}
+
+// QString Service::udn() const { return d->udn(); }
+Device Service::device() const { return d->device(); }
+
+QString Service::displayName() const { return d->displayName(); }
+QString Service::type() const  { return d->type(); }
+
+
+Service& Service::operator =( const Service& other )
+{
+    d = other.d;
+    return *this;
+}
+
+Service::~Service()
+{
+}
+
+}

@@ -20,41 +20,52 @@
     License along with this library. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef SIMPLEITEMFACTORY_H
-#define SIMPLEITEMFACTORY_H
+#ifndef UPNPNETWORKBUILDER_H
+#define UPNPNETWORKBUILDER_H
 
 // lib
-#include <dnssd/dnssdnetsystemable.h>
-#include <upnp/upnpnetsystemable.h>
-#include <abstractnetsystemfactory.h>
+#include <abstractnetworkbuilder.h>
+#include <network.h>
+#include <netdevice.h>
+
+namespace UPnP {
+class DeviceBrowser;
+class Device;
+}
 
 
 namespace Mollet
 {
+class UpnpNetSystemAble;
 
-class SimpleItemFactory : public AbstractNetSystemFactory,
-                          public DNSSDNetSystemAble,
-                          public UpnpNetSystemAble
+
+class UpnpNetworkBuilder : public AbstractNetworkBuilder
 {
-  Q_OBJECT
-  Q_INTERFACES(
-    Mollet::DNSSDNetSystemAble
-    Mollet::UpnpNetSystemAble
-  )
+    Q_OBJECT
 
   public:
-    SimpleItemFactory();
-    virtual ~SimpleItemFactory();
+    explicit UpnpNetworkBuilder( NetworkPrivate* networkPrivate );
+    virtual ~UpnpNetworkBuilder();
 
-  public: // DNSSDNetSystemAble API
-    virtual bool canCreateNetSystemFromDNSSD( const QString& serviceType ) const;
-    virtual NetServicePrivate* createNetService( const DNSSD::RemoteService::Ptr& service, const NetDevice& device ) const;
+  public: // AbstractNetworkBuilder API
+    virtual void registerNetSystemFactory( AbstractNetSystemFactory* netSystemFactory );
+    virtual void start();
+    //TODO: void stop(); ? why needed, what to do?
 
-  public: // UpnpNetSystemAble API
-    virtual bool canCreateNetSystemFromUpnp( const UPnP::Device& upnpDevice ) const;
-    virtual NetServicePrivate* createNetService( const UPnP::Device& upnpDevice, const NetDevice& device ) const;
+  protected:
+    void addUPnPDevices( const QList<UPnP::Device>& devices );
+    void removeUPnPDevices( const QList<UPnP::Device>& devices );
 
-  private:
+  private Q_SLOTS:
+    void onUPnPDeviceAdded( const UPnP::Device& device );
+    void onUPnPDeviceRemoved( const UPnP::Device& device );
+
+  private: // data
+    NetworkPrivate* mNetworkPrivate;
+
+    QList<UpnpNetSystemAble*> mNetSystemFactoryList;
+
+    UPnP::DeviceBrowser* mDeviceBrowser;
 };
 
 }

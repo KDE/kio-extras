@@ -1,5 +1,5 @@
 /*
-    This file is part of the network kioslave, part of the KDE project.
+    This file is part of the KUPnP library, part of the KDE project.
 
     Copyright 2009 Friedrich W. H. Kossebau <kossebau@kde.org>
 
@@ -20,40 +20,37 @@
     License along with this library. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef NETWORKWATCHER_H
-#define NETWORKWATCHER_H
+#include "devicebrowser.h"
+#include "devicebrowser_p.h"
 
-// KDE
-#include <KDEDModule>
 
-namespace Mollet
+namespace UPnP
 {
-class Network;
-class NetDevice;
-class NetService;
-typedef QList<NetDevice> NetDeviceList;
-typedef QList<NetService> NetServiceList;
 
-
-class NetworkWatcher : public KDEDModule
+DeviceBrowser::DeviceBrowser( const QStringList& deviceTypes )
+  : d( new DeviceBrowserPrivate(this,deviceTypes) )
 {
-    Q_OBJECT
-    Q_CLASSINFO( "D-Bus Interface", "org.kde.network" )
-
-  public:
-    NetworkWatcher( QObject* parent, const QList<QVariant>& parameters );
-    virtual ~NetworkWatcher();
-
-  public:
-    Mollet::NetDevice deviceData( const QString& hostAddress );
-    Mollet::NetService serviceData( const QString& hostAddress, const QString& serviceName, const QString& serviceType );
-    Mollet::NetDeviceList deviceDataList();
-    Mollet::NetServiceList serviceDataList( const QString& hostAddress );
-
-  private:
-    Network* mNetwork;
-};
-
+    d->init();
+}
+DeviceBrowser::DeviceBrowser( const QString& deviceType )
+  : d( new DeviceBrowserPrivate(this,deviceType) )
+{
+    d->init();
 }
 
-#endif
+QList<Device> DeviceBrowser::devices() const
+{
+    return d->devices();
+}
+
+QStringList DeviceBrowser::browsedDeviceTypes() const
+{
+    return d->browsedDeviceTypes();
+}
+
+DeviceBrowser::~DeviceBrowser()
+{
+    delete d;
+}
+
+}

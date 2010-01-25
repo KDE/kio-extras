@@ -40,7 +40,7 @@ class NetworkUri
     explicit NetworkUri( const KUrl& url );
 
   public:
-    const QString& hostName() const;
+    const QString& hostAddress() const;
     const QString& serviceName() const;
     const QString& serviceType() const;
     NetworkUri::Type type() const;
@@ -48,7 +48,7 @@ class NetworkUri
   private:
 
   private: // data
-    QString mHostName;
+    QString mHostAddress;
     QString mServiceName;
     QString mServiceType;
 };
@@ -56,28 +56,28 @@ class NetworkUri
 
 inline NetworkUri::NetworkUri( const KUrl& url )
 {
-    mHostName = url.path().mid( 1 );
-    const int slashIndex = mHostName.indexOf( '/' );
+    mHostAddress = url.path().mid( 1 );
+    const int slashIndex = mHostAddress.indexOf( '/' );
     if( slashIndex != -1 )
     {
         // servicetype is currently appended as .type to the name
-        const int serviceTypeIndex = mHostName.lastIndexOf( '.' ) + 1;
-        mServiceType = mHostName.mid( serviceTypeIndex );
+        const int serviceTypeIndex = mHostAddress.lastIndexOf( '.' ) + 1;
+        mServiceType = mHostAddress.mid( serviceTypeIndex );
 
         const int serviceNameLength = (serviceTypeIndex-1) - (slashIndex+1);
-        mServiceName = mHostName.mid( slashIndex + 1, serviceNameLength );
-        mHostName.resize( slashIndex );
+        mServiceName = mHostAddress.mid( slashIndex + 1, serviceNameLength );
+        mHostAddress.resize( slashIndex );
     }
 }
 
-inline const QString& NetworkUri::hostName()    const { return mHostName; }
+inline const QString& NetworkUri::hostAddress()    const { return mHostAddress; }
 inline const QString& NetworkUri::serviceName() const { return mServiceName; }
 inline const QString& NetworkUri::serviceType() const { return mServiceType; }
 
 inline NetworkUri::Type NetworkUri::type() const
 {
     Type result =
-        mHostName.isEmpty() ?    Domain :
+        mHostAddress.isEmpty() ?    Domain :
         mServiceName.isEmpty() ? Device :
         /*else*/                 Service;
 
@@ -87,7 +87,7 @@ inline NetworkUri::Type NetworkUri::type() const
 /*
 inline QDataStream& operator<<( QDataStream& stream, const NetworkUri& networkUri )
 {
-    stream << "NetworkUri(host:"<<networkUri.mHostName
+    stream << "NetworkUri(host:"<<networkUri.mHostAddress
            << ",service:"<<networkUri.mServiceName
            << ",type:"<<static_cast<int>(networkUri.type())<<")";
     return stream;

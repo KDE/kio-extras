@@ -38,17 +38,21 @@ namespace Mollet
 class NetDevicePrivate : public QSharedData
 {
   public:
-    explicit NetDevicePrivate( const QString& name, const QString& hostName );
+    explicit NetDevicePrivate( const QString& name );
     virtual ~NetDevicePrivate();
 
   public:
     const QString& name() const;
     const QString& hostName() const;
+    const QString& ipAddress() const;
+    const QString& hostAddress() const;
     NetDevice::Type type() const;
     const QList<NetService>& serviceList() const;
 
   public:
     void setName( const QString& name );
+    void setHostName( const QString& hostName );
+    void setIpAddress( const QString& ipAddress );
     void setType( NetDevice::Type type );
     void addService( const NetService& service );
     NetService removeService( const QString& serviceName );
@@ -56,17 +60,22 @@ class NetDevicePrivate : public QSharedData
   private:
     QString mName;
     QString mHostName;
+    QString mIpAddress;
     NetDevice::Type mType;
     QList<NetService> mServiceList;
 };
 
 
-inline const QString& NetDevicePrivate::name()     const { return mName; }
-inline const QString& NetDevicePrivate::hostName() const { return mHostName; }
-inline NetDevice::Type NetDevicePrivate::type()    const { return mType; }
+inline const QString& NetDevicePrivate::name()      const { return mName; }
+inline const QString& NetDevicePrivate::hostName()  const { return mHostName; }
+inline const QString& NetDevicePrivate::ipAddress() const { return mIpAddress; }
+inline NetDevice::Type NetDevicePrivate::type()     const { return mType; }
 inline const QList<NetService>& NetDevicePrivate::serviceList() const { return mServiceList; }
+inline const QString& NetDevicePrivate::hostAddress() const { return mHostName.isEmpty() ? mIpAddress : mHostName; }
 
 inline void NetDevicePrivate::setName( const QString& name ) { mName = name; }
+inline void NetDevicePrivate::setHostName( const QString& hostName ) { mHostName = hostName; }
+inline void NetDevicePrivate::setIpAddress( const QString& ipAddress ) { mIpAddress = ipAddress; }
 inline void NetDevicePrivate::setType( NetDevice::Type type ) { mType = type; }
 inline void NetDevicePrivate::addService( const NetService& service ) { mServiceList.append( service ); }
 

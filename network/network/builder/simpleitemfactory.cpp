@@ -24,6 +24,8 @@
 
 // lib
 #include "netservice_p.h"
+#include "upnp/service.h"
+#include "upnp/device.h"
 // KDE
 #include <KUrl>
 
@@ -187,6 +189,28 @@ NetServicePrivate* SimpleItemFactory::createNetService( const DNSSD::RemoteServi
         QString::fromLatin1( serviceDatum->typeName );
     result = new NetServicePrivate( dnssdService->serviceName(), QString::fromLatin1(serviceDatum->iconName),
         typeName, device, url.url() );
+
+    return result;
+}
+
+bool SimpleItemFactory::canCreateNetSystemFromUpnp( const UPnP::Device& upnpDevice ) const
+{
+Q_UNUSED( upnpDevice )
+    return true;
+}
+// TODO: add KIcon with specialiced KIconLoader (fetches Icons via D-Bus)
+NetServicePrivate* SimpleItemFactory::createNetService( const UPnP::Device& upnpDevice, const NetDevice& device ) const
+{
+    NetServicePrivate* result;
+
+    QString url = upnpDevice.presentationUrl();
+    if( url.isEmpty() )
+    {
+        url = QString::fromLatin1( "upnp://" );
+        url.append( upnpDevice.udn() );
+    }
+    result = new NetServicePrivate( upnpDevice.displayName(), QString::fromLatin1("unknown"),
+        "upnp."+upnpDevice.type(), device, url );
 
     return result;
 }

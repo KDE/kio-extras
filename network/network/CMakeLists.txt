@@ -1,11 +1,13 @@
 project( molletnetwork )
 
+set( LIBKUPNP_REL_DIR ../kupnp/lib )
 
 macro_bool_to_01( SLP_FOUND  HAVE_SLP )
 configure_file( config-slp.h.cmake  ${CMAKE_CURRENT_BINARY_DIR}/config-slp.h )
 
 include_directories(
   builder
+  ${LIBKUPNP_REL_DIR}
 )
 
 set( netsystemdriver_SRCS
@@ -24,6 +26,10 @@ set( dnssdnetworkbuilder_SRCS
   builder/dnssd/dnssdnetworkbuilder.cpp
 )
 
+set( upnpnetworkbuilder_SRCS
+  builder/upnp/upnpnetworkbuilder.cpp
+)
+
 set( networkbuilder_SRCS
   builder/abstractnetworkbuilder.cpp
   builder/abstractnetsystemfactory.cpp
@@ -36,6 +42,7 @@ set( networkdbus_LIB_SRCS
 set( molletnetwork_LIB_SRCS
   ${netsystemdriver_SRCS}
 #   ${slpnetworkbuilder_SRCS}
+  ${upnpnetworkbuilder_SRCS}
   ${dnssdnetworkbuilder_SRCS}
   ${networkbuilder_SRCS}
   ${networkdbus_LIB_SRCS}
@@ -48,7 +55,7 @@ set( molletnetwork_LIB_SRCS
 )
 
 
-set( molletnetwork_LINK_LIBS  ${KDE4_KDECORE_LIBS}  ${KDE4_KDNSSD_LIBS} )
+set( molletnetwork_LINK_LIBS  kupnp ${KDE4_KDECORE_LIBS}  ${KDE4_KDNSSD_LIBS} ${QT_QTNETWORK_LIBRARY} )
 
 if(SLP_FOUND)
 set( molletnetwork_LINK_LIBS  ${molletnetwork_LINK_LIBS} ${SLP_LIBRARIES} )

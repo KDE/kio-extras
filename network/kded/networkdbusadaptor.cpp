@@ -43,21 +43,21 @@ NetworkDBusAdaptor::NetworkDBusAdaptor( NetworkWatcher* parent )
     qDBusRegisterMetaType<Mollet::NetServiceList>();
 }
 
-NetDevice NetworkDBusAdaptor::deviceData( const QString& hostName )
+NetDevice NetworkDBusAdaptor::deviceData( const QString& hostAddress )
 {
-    return parent()->deviceData( hostName );
+    return parent()->deviceData( hostAddress );
 }
-NetService NetworkDBusAdaptor::serviceData( const QString& hostName, const QString& serviceName, const QString& serviceType )
+NetService NetworkDBusAdaptor::serviceData( const QString& hostAddress, const QString& serviceName, const QString& serviceType )
 {
-    return parent()->serviceData( hostName, serviceName, serviceType );
+    return parent()->serviceData( hostAddress, serviceName, serviceType );
 }
 NetDeviceList NetworkDBusAdaptor::deviceDataList()
 {
     return parent()->deviceDataList();
 }
-NetServiceList NetworkDBusAdaptor::serviceDataList( const QString& hostName )
+NetServiceList NetworkDBusAdaptor::serviceDataList( const QString& hostAddress )
 {
-    return parent()->serviceDataList( hostName );
+    return parent()->serviceDataList( hostAddress );
 }
 
 NetworkDBusAdaptor::~NetworkDBusAdaptor()

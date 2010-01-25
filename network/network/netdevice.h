@@ -49,6 +49,7 @@ class NetDevicePrivate;
 class MOLLETNETWORK_EXPORT NetDevice
 {
     friend class DNSSDNetworkBuilder;
+    friend class UpnpNetworkBuilder;
     friend QDBusArgument& ::operator<<( QDBusArgument& argument, const NetDevice& device );
     friend const QDBusArgument& ::operator>>( const QDBusArgument& argument, NetDevice& device );
 
@@ -65,6 +66,10 @@ class MOLLETNETWORK_EXPORT NetDevice
   public:
     QString name() const;
     QString hostName() const;
+    /// if hostName is not set, use ipAddress to identify device
+    QString ipAddress() const;
+    /// returns hostName if set, otherwise ipAddress TODO: find better name
+    QString hostAddress() const;
     Type type() const;
     QList<NetService> serviceList() const;
 

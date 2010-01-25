@@ -38,6 +38,7 @@ QDBusArgument& operator<<( QDBusArgument& argument, const Mollet::NetDevice& dev
     argument.beginStructure();
     argument << devicePrivate->name();
     argument << devicePrivate->hostName();
+    argument << devicePrivate->ipAddress();
     argument << (int) devicePrivate->type();
     argument.endStructure();
 
@@ -47,15 +48,19 @@ const QDBusArgument& operator>>( const QDBusArgument& argument, Mollet::NetDevic
 {
     QString name;
     QString hostName;
+    QString ipAddress;
     int type;
 
     argument.beginStructure();
     argument >> name;
     argument >> hostName;
+    argument >> ipAddress;
     argument >> type;
     argument.endStructure();
 
-    Mollet::NetDevicePrivate* d = new Mollet::NetDevicePrivate( name, hostName );
+    Mollet::NetDevicePrivate* d = new Mollet::NetDevicePrivate( name );
+    d->setHostName( hostName );
+    d->setIpAddress( ipAddress );
     d->setType( (Mollet::NetDevice::Type)type );
 
     device.setDPtr( d );

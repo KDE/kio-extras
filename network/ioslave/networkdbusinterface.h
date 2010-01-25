@@ -41,33 +41,33 @@ class NetworkDBusInterface: public QDBusAbstractInterface
     virtual ~NetworkDBusInterface();
 
   public Q_SLOTS:
-    QDBusReply<Mollet::NetDevice> deviceData( const QString& hostName );
-    QDBusReply<Mollet::NetService> serviceData( const QString& hostName, const QString& serviceName, const QString& serviceType );
+    QDBusReply<Mollet::NetDevice> deviceData( const QString& hostAddress );
+    QDBusReply<Mollet::NetService> serviceData( const QString& hostAddress, const QString& serviceName, const QString& serviceType );
     QDBusReply<Mollet::NetDeviceList> deviceDataList();
-    QDBusReply<Mollet::NetServiceList> serviceDataList( const QString& hostName );
+    QDBusReply<Mollet::NetServiceList> serviceDataList( const QString& hostAddress );
 };
 
 // TODO: is QDBus::Block the right solution here?
-inline QDBusReply<Mollet::NetDevice> NetworkDBusInterface::deviceData( const QString& hostName )
+inline QDBusReply<Mollet::NetDevice> NetworkDBusInterface::deviceData( const QString& hostAddress )
 {
     QList<QVariant> argumentList;
-    argumentList << qVariantFromValue(hostName);
+    argumentList << qVariantFromValue(hostAddress);
     return callWithArgumentList( QDBus::Block, QString::fromLatin1("deviceData"), argumentList );
 }
-inline QDBusReply<Mollet::NetService> NetworkDBusInterface::serviceData( const QString& hostName, const QString& serviceName, const QString& serviceType )
+inline QDBusReply<Mollet::NetService> NetworkDBusInterface::serviceData( const QString& hostAddress, const QString& serviceName, const QString& serviceType )
 {
     QList<QVariant> argumentList;
-    argumentList << qVariantFromValue(hostName) << qVariantFromValue(serviceName) << qVariantFromValue(serviceType);
+    argumentList << qVariantFromValue(hostAddress) << qVariantFromValue(serviceName) << qVariantFromValue(serviceType);
     return callWithArgumentList( QDBus::Block, QString::fromLatin1("serviceData"), argumentList );
 }
 inline QDBusReply<Mollet::NetDeviceList> NetworkDBusInterface::deviceDataList()
 {
     return call( QString::fromLatin1("deviceDataList") );
 }
-inline QDBusReply<Mollet::NetServiceList> NetworkDBusInterface::serviceDataList( const QString& hostName )
+inline QDBusReply<Mollet::NetServiceList> NetworkDBusInterface::serviceDataList( const QString& hostAddress )
 {
     QList<QVariant> argumentList;
-    argumentList << qVariantFromValue(hostName);
+    argumentList << qVariantFromValue(hostAddress);
     return callWithArgumentList( QDBus::Block, QString::fromLatin1("serviceDataList"), argumentList );
 }
 

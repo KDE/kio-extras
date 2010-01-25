@@ -49,10 +49,10 @@ class NetworkDBusAdaptor: public QDBusAbstractAdaptor
     NetworkWatcher* parent() const;
 
   public Q_SLOTS:
-    Mollet::NetDevice deviceData( const QString& hostName );
-    Mollet::NetService serviceData( const QString& hostName, const QString& serviceName, const QString& serviceType );
+    Mollet::NetDevice deviceData( const QString& hostAddress );
+    Mollet::NetService serviceData( const QString& hostAddress, const QString& serviceName, const QString& serviceType );
     Mollet::NetDeviceList deviceDataList();
-    Mollet::NetServiceList serviceDataList( const QString& hostName );
+    Mollet::NetServiceList serviceDataList( const QString& hostAddress );
 };
 
 

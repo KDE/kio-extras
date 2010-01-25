@@ -28,9 +28,10 @@
 #include "network_p.h"
 #include "netdevice_p.h"
 // KDE
-#include <dnssd/servicetypebrowser.h>
+#include <DNSSD/ServiceTypeBrowser>
 #include <DNSSD/ServiceBrowser>
 // Qt
+#include <QtNetwork/QHostAddress>
 #include <QtCore/QMutableListIterator>
 
 #include <KDebug>
@@ -117,14 +118,27 @@ void DNSSDNetworkBuilder::addService( DNSSD::RemoteService::Ptr service )
 {
     QList<NetDevice>& deviceList = mNetworkPrivate->deviceList();
 
-    const QString hostName = service->hostName();
+    QString hostName = service->hostName();
+    // TODO: this blocks. and the ip address should be delivered from DNS-SD with resolve
+    const QHostAddress hostAddress = DNSSD::ServiceBrowser::resolveHostName( hostName );
+    const QString ipAddress = hostAddress.toString();
+    // forget domain name if just ip address
+    if( hostName == ipAddress )
+        hostName = QString();
 
     // device TODO: only search for if we can create the service?
     NetDevicePrivate* d = 0;
     const NetDevice* deviceOfService;
     foreach( const NetDevice& device, deviceList )
     {
-        if( device.hostName() == hostName )
+        const QString deviceHostName = device.hostName();
+        const bool useIpAddress = ( deviceHostName.isEmpty() || hostName.isEmpty() );
+        const bool isSameAddress = useIpAddress ?
+            ( device.ipAddress() == ipAddress ) :
+            ( deviceHostName == hostName );
+kDebug()<<"existing device:"<<deviceHostName<<"at"<<device.ipAddress()<<"vs."<<hostName<<"at"<<ipAddress<<":"<<isSameAddress;
+
+        if( isSameAddress )
         {
             d = device.dPtr();
             deviceOfService = &device;
@@ -134,7 +148,9 @@ void DNSSDNetworkBuilder::addService( DNSSD::RemoteService::Ptr service )
     if( !d )
     {
         const QString deviceName = hostName.left( hostName.indexOf('.') );
-        d = new NetDevicePrivate( deviceName, hostName );
+        d = new NetDevicePrivate( deviceName );
+        d->setHostName( hostName );
+        d->setIpAddress( ipAddress );
         NetDevice device( d );
         deviceList.append( device );
         deviceOfService = &deviceList.last();
@@ -145,6 +161,11 @@ void DNSSDNetworkBuilder::addService( DNSSD::RemoteService::Ptr service )
         // what to do about that? which order? okay? for now just do not attach services before. find usecases.
         mNetworkPrivate->emitDevicesAdded( newDevices );
 kDebug()<<"new device:"<<deviceName<<"at"<<hostName<<"by"<<service->type();
+    }
+    else
+    {
+        if( d->hostName().isEmpty() && ! hostName.isEmpty() )
+            d->setHostName( hostName );
     }
 
 

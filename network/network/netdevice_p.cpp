@@ -29,9 +29,8 @@
 namespace Mollet
 {
 
-NetDevicePrivate::NetDevicePrivate( const QString& name, const QString& hostName )
+NetDevicePrivate::NetDevicePrivate( const QString& name )
   : mName( name )
-  , mHostName( hostName )
   , mType( NetDevice::Unknown )
 {
 }
