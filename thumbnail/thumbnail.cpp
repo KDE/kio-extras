@@ -487,7 +487,13 @@ QImage ThumbnailProtocol::thumbForDirectory(const KUrl& directory)
     // TODO: the margins are optimized for the Oxygen iconset
     // Provide a fallback solution for other iconsets (e. g. draw folder
     // only as small overlay, use no margins)
-    const QPixmap folder = KIconLoader::global()->loadMimeTypeIcon("inode-directory",
+
+    //Use the current (custom) folder icon
+    KUrl tempDirectory = directory;
+    tempDirectory.setScheme("file"); //iconNameForUrl will not work with the "thumbnail:/" scheme
+    QString iconName = KMimeType::iconNameForUrl(tempDirectory, S_IFDIR);
+
+    const QPixmap folder = KIconLoader::global()->loadMimeTypeIcon(iconName,
                                                                    KIconLoader::Desktop,
                                                                    qMin(m_width, m_height));
     const int folderWidth  = folder.width();
