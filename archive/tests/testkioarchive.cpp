@@ -27,7 +27,7 @@
 #include <kdebug.h>
 
 QTEST_KDEMAIN(TestKioArchive, NoGUI)
-static const char* s_tarFileName = "karchivetest.tar";
+static const char s_tarFileName[] = "karchivetest.tar";
 
 static void writeTestFilesToArchive( KArchive* archive )
 {
