@@ -38,7 +38,7 @@ Name[hsb]=Google pytanje za wobrazami
 Name[hu]=Google képkereső
 Name[id]=Penelusuran Gambar Google
 Name[is]=Google - Myndaleit
-Name[it]=Ricerca immagini di Google
+Name[it]=Ricerca di immagini di Google
 Name[ja]=Google イメージ検索
 Name[ka]=Google ნახატის ძიება
 Name[kk]=Google кескіндерді табу
@@ -127,7 +127,7 @@ Query[hsb]=http://images.google.com/images?q=\\{@}
 Query[hu]=http://images.google.com/images?q=\\{@}
 Query[id]=http://images.google.com/images?q=\\{@}
 Query[is]=http://images.google.com/images?q=\\{@}
-Query[it]=http://images.google.com/images?q=\\{@}
+Query[it]=http://images.google.it/images?q=\\{@}
 Query[ja]=http://images.google.com/images?q=\\{@}
 Query[ka]=http://images.google.com/images?q=\\{@}
 Query[kk]=http://images.google.com/images?q=\\{@}
