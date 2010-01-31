@@ -33,28 +33,28 @@ on your system. It is easy to use:
 </listitem>
 </varlistentry>
 <varlistentry>
-<term><userinput><command>man:</command><replaceable>fopen</replaceable></userinput></term>
+<term><userinput><command>man:/</command><replaceable>fopen</replaceable></userinput></term>
 <listitem>
 <para>See the man page of <command>fopen</command>.
 </para>
 </listitem>
 </varlistentry>
 <varlistentry>
-<term><userinput><command>man:</command><replaceable>fopen(3)</replaceable></userinput></term>
+<term><userinput><command>man:/</command><replaceable>fopen(3)</replaceable></userinput></term>
 <listitem>
 <para>See the man page of <command>fopen</command> in section 3.
 </para>
 </listitem>
 </varlistentry>
 <varlistentry>
-<term><userinput><command>man:</command><replaceable>(3)</replaceable></userinput></term>
+<term><userinput><command>man:/</command><replaceable>(3)</replaceable></userinput></term>
 <listitem>
 <para>See the index of section 3.
 </para>
 </listitem>
 </varlistentry>
 <varlistentry>
-<term><userinput><command>man:</command>intro<replaceable>(3)</replaceable></userinput></term>
+<term><userinput><command>man:/</command>intro<replaceable>(3)</replaceable></userinput></term>
 <listitem>
 <para>See the introduction of section 3.
 </para>
@@ -81,7 +81,7 @@ or adjust the environment variables
 
 <para>
 As with any other &kde; ioslave, it is possible to enter a &URL;, like
-<userinput><command>man:socket</command></userinput> in <emphasis>any</emphasis>
+<userinput><command>man:/socket</command></userinput> in <emphasis>any</emphasis>
 &kde; application.  Try it in &kwrite; and you will see the man page in
 &HTML; format.
 </para>
