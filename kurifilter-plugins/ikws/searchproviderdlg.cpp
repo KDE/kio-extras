@@ -86,7 +86,7 @@ void SearchProviderDialog::slotButtonClicked(int button) {
             m_provider = new SearchProvider;
         m_provider->setName(m_dlg.leName->text().trimmed());
         m_provider->setQuery(m_dlg.leQuery->text().trimmed());
-        m_provider->setKeys(m_dlg.leShortcut->text().trimmed().split(',', QString::SkipEmptyParts));
+        m_provider->setKeys(m_dlg.leShortcut->text().trimmed().toLower().split(',', QString::SkipEmptyParts));
         m_provider->setCharset(m_dlg.cbCharset->currentIndex() ? m_dlg.cbCharset->currentText() : QString());
         KDialog::accept();
     } else {
