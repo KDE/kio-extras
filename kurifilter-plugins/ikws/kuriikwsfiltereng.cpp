@@ -68,7 +68,7 @@ QString KURISearchFilterEngine::webShortcutQuery( const QString& typedString ) c
 
     QString key;
     if ( pos > -1 )
-      key = search.left(pos).toLower();
+      key = search.left(pos).toLower(); // #169801
     else if ( m_cKeywordDelimiter == ' ' && !search.isEmpty() )
       key = search;
 
