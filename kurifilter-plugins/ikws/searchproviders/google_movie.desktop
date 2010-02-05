@@ -37,7 +37,7 @@ Name[hsb]=Google filmy
 Name[hu]=Google Movies
 Name[id]=Google Movies
 Name[is]=Google kvikmyndir
-Name[it]=Google filmati
+Name[it]=Film di Google
 Name[ja]=Google Movies
 Name[ka]=Google ფილმები
 Name[kk]=Google фильмдер
@@ -110,7 +110,7 @@ Query[eo]=http://www.google.com/search?q=movie:\\{@}&ie=UTF-8&oe=UTF-8
 Query[es]=http://www.google.com/search?q=movie:\\{@}&ie=UTF-8&oe=UTF-8
 Query[et]=http://www.google.com/search?q=movie:\\{@}&ie=UTF-8&oe=UTF-8
 Query[eu]=http://www.google.com/search?q=movie:\\{@}&ie=UTF-8&oe=UTF-8
-Query[fi]=http://www.google.com/search?q=movie:\\{@}&ie=UTF-8&oe=UTF-8
+Query[fi]=http://www.google.fi/search?q=movie:\\{@}&ie=UTF-8&oe=UTF-8
 Query[fr]=http://www.google.com/search?q=movie:\\{@}&ie=UTF-8&oe=UTF-8
 Query[fy]=http://www.google.com/search?q=movie:\\{@}&ie=UTF-8&oe=UTF-8
 Query[ga]=http://www.google.com/search?q=movie:\\{@}&ie=UTF-8&oe=UTF-8
@@ -124,7 +124,7 @@ Query[hsb]=http://www.google.com/search?q=movie:\\{@}&ie=UTF-8&oe=UTF-8
 Query[hu]=http://www.google.com/search?q=movie:\\{@}&ie=UTF-8&oe=UTF-8
 Query[id]=http://www.google.com/search?q=movie:\\{@}&ie=UTF-8&oe=UTF-8
 Query[is]=http://www.google.com/search?q=movie:\\{@}&ie=UTF-8&oe=UTF-8
-Query[it]=http://www.google.com/search?q=movie:\\{@}&ie=UTF-8&oe=UTF-8
+Query[it]=http://www.google.it/search?q=movie:\\{@}&ie=UTF-8&oe=UTF-8
 Query[ja]=http://www.google.com/search?q=movie:\\{@}&ie=UTF-8&oe=UTF-8
 Query[kk]=http://www.google.com/search?q=movie:\\{@}&ie=UTF-8&oe=UTF-8
 Query[km]=http://www.google.com/search?q=movie:\\{@}&ie=UTF-8&oe=UTF-8

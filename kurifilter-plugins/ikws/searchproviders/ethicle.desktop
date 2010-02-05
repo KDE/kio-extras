@@ -4,6 +4,7 @@ Name=Ethicle
 Name[ar]=Ethicle
 Name[bg]=Ethicle
 Name[ca]=Ethicle
+Name[ca@valencia]=Ethicle
 Name[cs]=Ethicle
 Name[csb]=Ethicle
 Name[da]=Ethicle
@@ -64,6 +65,7 @@ Query=http://www.ethicle.com/search.php?q=\\{@}
 Query[ar]=http://www.ethicle.com/search.php?q=\\{@}
 Query[bg]=http://www.ethicle.com/search.php?q=\\{@}
 Query[ca]=http://www.ethicle.com/search.php?q=\\{@}
+Query[ca@valencia]=http://www.ethicle.com/search.php?q=\\{@}
 Query[cs]=http://www.ethicle.com/search.php?q=\\{@}
 Query[csb]=http://www.ethicle.com/search.php?q=\\{@}
 Query[da]=http://www.ethicle.com/search.php?q=\\{@}
@@ -81,6 +83,7 @@ Query[ga]=http://www.ethicle.com/search.php?q=\\{@}
 Query[gl]=http://www.ethicle.com/search.php?q=\\{@}
 Query[gu]=http://www.ethicle.com/search.php?q=\\{@}
 Query[he]=http://www.ethicle.com/search.php?q=\\{@}
+Query[hi]=http://www.ethicle.com/search.php?q=\\{@}
 Query[hr]=http://info.alexa.com/search?q=\\{@}
 Query[hu]=http://www.ethicle.com/search.php?q=\\{@}
 Query[id]=http://www.ethicle.com/search.php?q=\\{@}

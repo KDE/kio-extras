@@ -36,7 +36,7 @@ Name[hsb]=KDE Bug Database pytanje za čisłom zmylka
 Name[hu]=A KDE hibaadatbázis hibaszám-keresési eszköze
 Name[id]=Pencarian Nomor Kutu Basis Data Kutu KDE
 Name[is]=Leit eftir númerum í KDE villugagnagrunni
-Name[it]=Ricerca per numero nel Database dei bug di KDE
+Name[it]=Ricerca per numero nella banca dati degli errori di KDE
 Name[ja]=KDE バグデータベース バグ番号検索
 Name[ka]=KDE–ს შეცდომების ძებნა ნომრების მიხედვით
 Name[kk]=KDE қателер дерек қорында қате нөмірі бойынша іздеу
@@ -65,7 +65,7 @@ Name[ro]=Baza de date de erori KDE- căutare după număr
 Name[ru]=Поиск по номеру в базе ошибок KDE
 Name[se]=KDE dihkkediehtovuođu dihkkenummir ohcan
 Name[si]=KDE වැරදි දත්තමූල වැරදි සංඛ්‍යා සෙවුම
-Name[sk]=Hľadanie podľa čísla chyby v KDE databáze chýb
+Name[sk]=Hľadanie podľa čísla chyby v databáze chýb KDE
 Name[sl]=Iskanje v zbirki hroščev KDE po številki hrošča
 Name[sr]=КДЕ‑ова база грешака (по броју)
 Name[sr@ijekavian]=КДЕ‑ова база грешака (по броју)
@@ -90,6 +90,7 @@ Query=https://bugs.kde.org/show_bug.cgi?id=\\{@}
 Query[ar]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
 Query[bg]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
 Query[ca]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
+Query[ca@valencia]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
 Query[cs]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
 Query[csb]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
 Query[da]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
@@ -107,6 +108,7 @@ Query[ga]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
 Query[gl]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
 Query[gu]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
 Query[he]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
+Query[hi]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
 Query[hr]=http://bugs.kde.org/show_bug.cgi?id=\\{@}
 Query[hu]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
 Query[id]=https://bugs.kde.org/show_bug.cgi?id=\\{@}

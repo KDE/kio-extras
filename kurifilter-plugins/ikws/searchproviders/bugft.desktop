@@ -37,7 +37,7 @@ Name[hsb]=KDE Bug Database Fulltext Search
 Name[hu]=A KDE hibaadatbázis teljes szöveges keresési eszköze
 Name[id]=Pencarian Teks Lengkap Basis Data Kutu KDE
 Name[is]=Leit eftir orðum í KDE villugagnagrunni
-Name[it]=Ricerca testo completo nel Database dei bug di KDE
+Name[it]=Ricerca del testo completo nella banca dati degli errori di KDE
 Name[ja]=KDE バグデータベース全文検索
 Name[ka]=KDE–ს შეცდომების ძებნა სრული ტექსტით
 Name[kk]=KDE қателер дерек қорында толық мәтінді іздеу
@@ -91,6 +91,7 @@ Query=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[ar]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[bg]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[ca]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
+Query[ca@valencia]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[cs]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[csb]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[da]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
@@ -107,6 +108,7 @@ Query[fy]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[gl]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[gu]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[he]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
+Query[hi]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[hr]=http://bugs.kde.org/show_bug.cgi?id=\\{@}
 Query[hu]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[id]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}

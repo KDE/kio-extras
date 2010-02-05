@@ -2,6 +2,7 @@
 Keys=wa,wolfram
 Name=Wolfram Alpha
 Name[ca]=Wolfram Alpha
+Name[ca@valencia]=Wolfram Alpha
 Name[csb]=Wolfram Alpha
 Name[da]=Wolfram Alpha
 Name[de]=Wolfram Alpha
@@ -10,6 +11,9 @@ Name[en_GB]=Wolfram Alpha
 Name[eo]=Wolfram Alpha
 Name[es]=Wolfram Alpha
 Name[et]=Wolfram Alpha
+Name[eu]=Wolfram Alpha
+Name[fi]=Wolfram Alpha
+Name[fr]=Wolfram Alpha
 Name[fy]=Wolfram Alpha
 Name[gl]=Wolfram Alpha
 Name[gu]=વુલ્ફ્રામ આલ્ફા
@@ -18,10 +22,14 @@ Name[hr]=Wolfram Alpha
 Name[hu]=Wolfram Alpha
 Name[id]=Wolfram Alpha
 Name[is]=Wolfram Alpha
+Name[it]=Wolfram Alpha
 Name[kk]=Wolfram Alpha
+Name[km]=Wolfram Alpha
 Name[kn]=ವೂಲ್ಫ್ರಾಮ್ ಆಲ್ಫಾ
 Name[ko]=울프람 알파
 Name[lv]=Wolfram Alpha
+Name[mai]=वोल्फॉर्म अल्फा
+Name[mk]=Волфрам Алфа
 Name[ml]=വുള്‍ഫ്രാം ആല്‍ഫ
 Name[nb]=Wolfram Alpha
 Name[nds]=Wolfram Alpha
@@ -33,6 +41,7 @@ Name[pt_BR]=Wolfram Alpha
 Name[ro]=Wolfram Alpha
 Name[ru]=Wolfram Alpha
 Name[si]=Wolfram Alpha
+Name[sk]=Wolfram Alpha
 Name[sl]=Wolfram Alpha
 Name[sr]=Волфрамова алфа
 Name[sr@ijekavian]=Волфрамова алфа
@@ -47,6 +56,7 @@ Name[zh_CN]=Wolfram Alpha
 Name[zh_TW]=Wolfram Alpha
 Query=http://www.wolframalpha.com/input/?i=\\{@}
 Query[ca]=http://www.wolframalpha.com/input/?i=\\{@}
+Query[ca@valencia]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[csb]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[da]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[de]=http://www.wolframalpha.com/input/?i=\\{@}
@@ -56,20 +66,26 @@ Query[eo]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[es]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[et]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[eu]=http://www.wolframalpha.com/input/?i=\\{@}
+Query[fi]=http://www.wolframalpha.com/input/?i=\\{@}
+Query[fr]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[fy]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[gl]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[gu]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[he]=http://www.wolframalpha.com/input/?i=\\{@}
+Query[hi]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[hr]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[hu]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[id]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[is]=http://www.wolframalpha.com/input/?i=\\{@}
+Query[it]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[ja]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[kk]=http://www.wolframalpha.com/input/?i=\\{@}
+Query[km]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[kn]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[ko]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[lt]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[lv]=http://www.wolframalpha.com/input/?i=\\{@}
+Query[mai]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[ml]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[nb]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[nds]=http://www.wolframalpha.com/input/?i=\\{@}
@@ -80,12 +96,14 @@ Query[pl]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[pt]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[pt_BR]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[ro]=http://www.wolframalpha.com/input/?i=\\{@}
+Query[sk]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[sl]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[sr]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[sr@ijekavian]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[sr@ijekavianlatin]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[sr@latin]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[sv]=http://www.wolframalpha.com/input/?i=\\{@}
+Query[tg]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[tr]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[uk]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[x-test]=xxhttp://www.wolframalpha.com/input/?i=\\{@}xx
