@@ -31,10 +31,7 @@ extern "C"
 
 bool WindowsImageCreator::create(const QString &path, int width, int height, QImage &img) {
 
-	QTemporaryFile icoTempFile, pngTempFile;
-
-	if ( ! icoTempFile.open() )
-		return false;
+	QTemporaryFile pngTempFile;
 
 	if ( ! pngTempFile.open() )
 		return false;
