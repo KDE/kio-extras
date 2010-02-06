@@ -19,6 +19,7 @@
 
 #include <QString>
 #include <QStringList>
+#include <QFile>
 #include <QRegExp>
 #include <QProcess>
 #include <QPair>
@@ -124,10 +125,13 @@ bool IcoUtils::convertIcoToPng(const QString &inputPath, const QString &outputPa
 	if ( index == -1 )
 		return false;
 
+	QFile(outputPath).resize(0);
+
 	icotool.start("icotool", QStringList() << "-x" << "-i" << QString::number(index) << inputPath << "-o" << outputPath);
 	icotool.waitForFinished();
 
-	if ( icotool.exitCode() != 0 )
+	//For some windows icon files icotool return 1 and show warning message "compressed image data not supported", but it extract correct icon - so check if output file is not null
+	if ( icotool.exitCode() != 0 && QFile(outputPath).size() == 0 )
 		return false;
 
 	return true;
