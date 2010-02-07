@@ -303,7 +303,8 @@ void NetworkSlave::feedEntryAsService( KIO::UDSEntry* entry, const Mollet::NetSe
 {
     entry->insert( KIO::UDSEntry::UDS_NAME,         serviceData.name()+'.'+serviceData.type() );
     entry->insert( KIO::UDSEntry::UDS_DISPLAY_NAME, serviceData.name() );
-    entry->insert( KIO::UDSEntry::UDS_FILE_TYPE,    S_IFDIR );
+    entry->insert( KIO::UDSEntry::UDS_FILE_TYPE,    S_IFLNK );
+    entry->insert( KIO::UDSEntry::UDS_ACCESS,       S_IRWXU|S_IRWXG|S_IRWXO );
 //     entry->insert( KIO::UDSEntry::UDS_ICON_NAME,    serviceData.iconName() );
     entry->insert( KIO::UDSEntry::UDS_MIME_TYPE,    Mimetypes::mimetypeForServiceType(serviceData.type()) );
     if( !serviceData.url().isEmpty() )
