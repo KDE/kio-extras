@@ -65,7 +65,7 @@ bool FixHostUriFilter::exists( const KUrl& url )
 {
     KResolver resolver( url.host());
     resolver.setFamily( KResolver::InetFamily );
-    return( resolver.start() && resolver.wait( 5000 ) && resolver.error() == KResolver::NoError );
+    return( resolver.start() && resolver.wait( 1000 ) && resolver.error() == KResolver::NoError );
 }
 
 K_PLUGIN_FACTORY(FixHostUriFilterFactory, registerPlugin<FixHostUriFilter>();)
