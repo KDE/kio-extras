@@ -212,8 +212,6 @@ void DNSSDNetworkBuilder::removeService( DNSSD::RemoteService::Ptr service )
 {
     QList<NetDevice>& deviceList = mNetworkPrivate->deviceList();
 
-    service->resolve();
-
     const QString hostName = service->hostName();
 
     // device
