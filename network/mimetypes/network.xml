@@ -211,6 +211,14 @@ Notes:
     <generic-icon name="services"/>
     <comment>Sleep Proxy</comment>
   </mime-type>
+  <mime-type type="inode/vnd.kde.service.home-sharing">
+    <generic-icon name="services"/>
+    <comment>iTunes Home Sharing</comment>
+  </mime-type>
+  <mime-type type="inode/vnd.kde.service.nssocketport">
+    <generic-icon name="services"/>
+    <comment>NSSocketPort</comment>
+  </mime-type>
 
   <!-- KDE Workspace -->
   <mime-type type="inode/vnd.kde.service.plasma">
