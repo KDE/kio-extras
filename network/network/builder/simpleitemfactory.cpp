@@ -115,6 +115,7 @@ static const DNSSDServiceDatum DNSSDServiceData[] =
     { "_airmouse._tcp",    "airmouse",    "input-mouse",         false, 0, 0, 0, 0 },
 
     // else
+    { "_postgresql._tcp",  "postgresql",  "server-database",     false, 0, 0, 0, 0 },
     { "_xmpp-server._tcp", "xmpp-server", "xchat",               false, "jabber", 0, 0, 0 },
     { "_lobby._tcp",       "lobby",       "document-edit",       false, 0, 0, 0, 0 },
     { "_giver._tcp",       "giver",       "folder-remote",       false, 0, 0, 0, 0 },

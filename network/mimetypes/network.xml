@@ -267,6 +267,10 @@ Notes:
   </mime-type>
 
   <!-- Other -->
+  <mime-type type="inode/vnd.kde.service.postgresql">
+    <generic-icon name="server-database"/>
+    <comment>PostgreSQL Server</comment>
+  </mime-type>
   <mime-type type="inode/vnd.kde.service.xmpp-server">
     <generic-icon name="xchat"/>
     <comment>XMPP/Jabber server</comment>
