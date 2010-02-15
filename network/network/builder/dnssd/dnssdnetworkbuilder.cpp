@@ -206,7 +206,9 @@ kDebug()<<"new device:"<<deviceName<<"at"<<hostName<<"by"<<service->type();
     }
     else if( serviceType == "_airport._tcp" )
         deviceTypeByService = NetDevice::Router;
-    else if( serviceType == "_ipp._tcp" )
+    else if( serviceType == "_ipp._tcp"
+             || serviceType == "_printer._tcp"
+             || serviceType == "_pdl-datastream._tcp" )
     {
         deviceTypeByService = NetDevice::Printer;
         deviceName = service->serviceName();
