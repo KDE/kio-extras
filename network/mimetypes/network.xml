@@ -159,11 +159,19 @@ Notes:
   </mime-type>
   <mime-type type="inode/vnd.kde.service.ipp">
     <generic-icon name="printer"/>
-    <comment>Printing</comment>
+    <comment>Internet Printing</comment>
   </mime-type>
   <mime-type type="inode/vnd.kde.service.presence">
     <generic-icon name="im-user"/>
     <comment>Chat</comment>
+  </mime-type>
+  <mime-type type="inode/vnd.kde.service.printer">
+    <generic-icon name="printer"/>
+    <comment>Unix Printing</comment>
+  </mime-type>
+  <mime-type type="inode/vnd.kde.service.pdl-datastream">
+    <generic-icon name="printer"/>
+    <comment>PDL Printing</comment>
   </mime-type>
 
   <!-- Apple -->

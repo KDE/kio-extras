@@ -1,7 +1,7 @@
 /*
     This file is part of the Mollet network library, part of the KDE project.
 
-    Copyright 2009 Friedrich W. H. Kossebau <kossebau@kde.org>
+    Copyright 2009-2010 Friedrich W. H. Kossebau <kossebau@kde.org>
 
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
@@ -81,6 +81,8 @@ static const DNSSDServiceDatum DNSSDServiceData[] =
     { "_pgpkey-hkp._tcp",   "pgpkey-hkp",   "application-pgp-keys",  false, 0, 0, 0, 0 },
     { "_pgpkey-https._tcp", "pgpkey-https", "application-pgp-keys",  true, "https", "path", 0, 0 },
     { "_presence._tcp",     "presence",     "im-user",               false, "presence", 0, 0, 0 },
+    { "_printer._tcp",        "printer",        "printer", false, 0, 0, 0, 0 },
+    { "_pdl-datastream._tcp", "pdl-datastream", "printer", false, 0, 0, 0, 0 },
 
     // Apple
     { "_airport._tcp",       "airport",       "network-wireless",  false, 0, 0, 0, 0 },
