@@ -247,29 +247,29 @@ Notes:
   <!-- Hardware -->
   <mime-type type="inode/vnd.kde.service.pulse-server">
     <generic-icon name="audio-card"/>
-    <comment>Pulse Server</comment>
+    <comment>Pulse server</comment>
   </mime-type>
   <mime-type type="inode/vnd.kde.service.pulse-source">
     <generic-icon name="audio-input-line"/>
-    <comment>Pulse Source</comment>
+    <comment>Pulse source</comment>
   </mime-type>
   <mime-type type="inode/vnd.kde.service.pulse-sink">
     <generic-icon name="speaker"/>
-    <comment>Pulse Sink</comment>
+    <comment>Pulse sink</comment>
   </mime-type>
   <mime-type type="inode/vnd.kde.service.libvirt">
     <generic-icon name="computer"/>
-    <comment>libvirt Server</comment>
+    <comment>libvirt server</comment>
   </mime-type>
   <mime-type type="inode/vnd.kde.service.airmouse">
     <generic-icon name="input-mouse"/>
-    <comment>Air Mouse Server</comment>
+    <comment>Air Mouse server</comment>
   </mime-type>
 
   <!-- Other -->
   <mime-type type="inode/vnd.kde.service.postgresql">
     <generic-icon name="server-database"/>
-    <comment>PostgreSQL Server</comment>
+    <comment>PostgreSQL server</comment>
   </mime-type>
   <mime-type type="inode/vnd.kde.service.xmpp-server">
     <generic-icon name="xchat"/>
