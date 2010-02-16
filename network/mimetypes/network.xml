@@ -293,6 +293,14 @@ Notes:
     <generic-icon name="favorites"/>
     <comment>RealPlayer Shared Favorites</comment>
   </mime-type>
+  <mime-type type="inode/vnd.kde.service.acrobat-server">
+    <generic-icon name="application-pdf"/>
+    <comment>Adobe Acrobat server</comment>
+  </mime-type>
+  <mime-type type="inode/vnd.kde.service.adobe-vc">
+    <generic-icon name="services"/>
+    <comment>Adobe Version Cue</comment>
+  </mime-type>
 
   <!-- UPnP -->
   <mime-type type="inode/vnd.kde.service.upnp.BasicDevice1">

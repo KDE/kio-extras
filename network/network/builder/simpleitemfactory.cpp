@@ -120,6 +120,8 @@ static const DNSSDServiceDatum DNSSDServiceData[] =
     { "_lobby._tcp",       "lobby",       "document-edit",       false, 0, 0, 0, 0 },
     { "_giver._tcp",       "giver",       "folder-remote",       false, 0, 0, 0, 0 },
     { "_realplayfavs._tcp","realplayfavs","favorites",           false, 0, 0, 0, 0 },
+    { "_acrobatSRV._tcp",  "acrobat-server","application-pdf",   false, 0, 0, 0, 0 },
+    { "_adobe-vc._tcp",    "adobe-vc",    "services",   false, 0, 0, 0, 0 },
     { "_ggz._tcp",         "ggz",         "applications-games",  false, "ggz", 0, 0, 0 }
 };
 //     result["_ssh._tcp"]=      DNSSDNetServiceBuilder(i18n("Remote disk (fish)"),     "fish",   "service/ftp", QString(), "u", "p");
