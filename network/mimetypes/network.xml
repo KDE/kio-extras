@@ -183,6 +183,10 @@ Notes:
     <generic-icon name="folder-sound"/>
     <comment>Digital Audio Access</comment>
   </mime-type>
+  <mime-type type="inode/vnd.kde.service.dacp">
+    <generic-icon name="services"/>
+    <comment>iTunes Remote Control</comment>
+  </mime-type>
   <mime-type type="inode/vnd.kde.service.eppc">
     <generic-icon name="network-connect"/>
     <comment>Remote AppleEvents</comment>
@@ -214,6 +218,14 @@ Notes:
   <mime-type type="inode/vnd.kde.service.home-sharing">
     <generic-icon name="services"/>
     <comment>iTunes Home Sharing</comment>
+  </mime-type>
+  <mime-type type="inode/vnd.kde.service.appletv-itunes">
+    <generic-icon name="services"/>
+    <comment>Apple TV iTunes discovery</comment>
+  </mime-type>
+  <mime-type type="inode/vnd.kde.service.appletv-pair">
+    <generic-icon name="services"/>
+    <comment>Apple TV Pairing</comment>
   </mime-type>
   <mime-type type="inode/vnd.kde.service.nssocketport">
     <generic-icon name="services"/>

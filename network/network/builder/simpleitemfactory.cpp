@@ -87,6 +87,7 @@ static const DNSSDServiceDatum DNSSDServiceData[] =
     // Apple
     { "_airport._tcp",       "airport",       "network-wireless",  false, 0, 0, 0, 0 },
     { "_daap._tcp",          "daap",          "folder-sound",      false, 0, 0, 0, 0 },
+    { "_dacp._tcp",          "dacp",          "folder-sound",      false, 0, 0, 0, 0 },
     { "_eppc._tcp",          "eppc",          "network-connect",   false, 0, 0, 0, 0 },
     { "_net-assistant._udp", "net-assistant", "services",          false, 0, 0, 0, 0 },
     { "_odisk._tcp",         "odisk",         "media-optical",     false, 0, 0, 0, 0 },
@@ -96,8 +97,10 @@ static const DNSSDServiceDatum DNSSDServiceData[] =
     { "_sleep-proxy._udp",   "sleep-proxy",   "services",          false, 0, 0, 0, 0 },
     { "_nssocketport._tcp",  "nssocketport",  "services",          false, 0, 0, 0, 0 },
     { "_home-sharing._tcp",  "home-sharing",  "services",          false, 0, 0, 0, 0 },
+    { "_appletv-itunes._tcp","appletv-itunes","services",          false, 0, 0, 0, 0 },
+    { "_appletv-pair._tcp",  "appletv-pair",  "services",          false, 0, 0, 0, 0 },
 
-    // KDE workspace
+// KDE workspace
     { "_plasma._tcp",       "plasma",      "plasma",       false, "plasma", 0, 0, 0 },
 
     // KDE games
