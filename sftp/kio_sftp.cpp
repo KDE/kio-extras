@@ -136,7 +136,7 @@ int sftpProtocol::auth_callback(const char *prompt, char *buf, size_t len,
   info.url.setUser(mUsername);
 
   info.comment = "sftp://" + mUsername + "@"  + mHost;
-  info.username = QString("UNUSED");
+  info.username = i_prompt;
   info.readOnly = true;
   info.prompt = i_prompt;
   info.keepPassword = false;
