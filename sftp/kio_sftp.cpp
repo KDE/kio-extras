@@ -850,7 +850,7 @@ void sftpProtocol::open(const KUrl &url, QIODevice::OpenMode mode) {
   }
 
   if (flags & O_CREAT) {
-    mOpenFile = sftp_open(mSftp, path_c.constData(), flags, 0600);
+    mOpenFile = sftp_open(mSftp, path_c.constData(), flags, 0644);
   } else {
     mOpenFile = sftp_open(mSftp, path_c.constData(), flags, 0);
   }
