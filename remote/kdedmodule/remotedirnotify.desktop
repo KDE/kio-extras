@@ -1,6 +1,6 @@
 [Desktop Entry]
 Type=Service
-Name=KDED Remote Base URL Notifier
+Name=Remote URL Change Notifier
 Name[af]=KDED afgeleë URL inkennissteller
 Name[ar]=منبه قاعدة URL البعيدة
 Name[be]=Праверка зменаў аддаленых файлаў KDED
@@ -77,6 +77,7 @@ Name[wa]=Notifiaedje des URL di båze då lon KDED
 Name[x-test]=xxKDED Remote Base URL Notifierxx
 Name[zh_CN]=KDED 远程基本 URL 通知器
 Name[zh_TW]=KDED 遠端基礎 URL 通知程式
+Comment=Provides change notification to the remote:/ ioslave
 X-KDE-ServiceTypes=KDEDModule
 X-KDE-Library=remotedirnotify
 X-KDE-DBus-ModuleName=remotedirnotify
