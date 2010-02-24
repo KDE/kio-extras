@@ -344,15 +344,15 @@ bool sftpProtocol::createUDSEntry(const QString &filename, const QByteArray &pat
 notype:
   if (details > 0) {
     if (sb->owner) {
-      entry.insert(KIO::UDSEntry::UDS_USER, sb->owner);
+      entry.insert(KIO::UDSEntry::UDS_USER, QString::fromUtf8(sb->owner));
     } else {
-      entry.insert(KIO::UDSEntry::UDS_USER, mUsername);
+      entry.insert(KIO::UDSEntry::UDS_USER, QString::number(sb->uid));
     }
 
     if (sb->group) {
-      entry.insert(KIO::UDSEntry::UDS_GROUP, sb->group);
+      entry.insert(KIO::UDSEntry::UDS_GROUP, QString::fromUtf8(sb->group));
     } else {
-      entry.insert(KIO::UDSEntry::UDS_GROUP, "users");
+      entry.insert(KIO::UDSEntry::UDS_GROUP, QString::number(sb->gid));
     }
 
     entry.insert(KIO::UDSEntry::UDS_ACCESS_TIME, sb->atime);
@@ -1390,62 +1390,96 @@ void sftpProtocol::listDir(const KUrl& url) {
   UDSEntry entry;
 
   kDebug(KIO_SFTP_DB) << "readdir: " << path << ", details: " << QString::number(details);
-  if (details == 0) {
-    for (;;) {
-      dirent = sftp_readdir(mSftp, dp);
-      if (dirent == NULL) {
+
+  for (;;) {
+    mode_t access;
+    mode_t type;
+    char *link;
+
+    dirent = sftp_readdir(mSftp, dp);
+    if (dirent == NULL) {
+      break;
+    }
+
+    entry.clear();
+    entry.insert(KIO::UDSEntry::UDS_NAME, QFile::decodeName(dirent->name));
+
+    if (dirent->type == SSH_FILEXFER_TYPE_SYMLINK) {
+      QByteArray file = QByteArray(path + '/' + QFile::decodeName(dirent->name).toUtf8()).constData();
+
+      entry.insert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFREG);
+
+      link = sftp_readlink(mSftp, file.constData());
+      if (link == NULL) {
+        sftp_attributes_free(dirent);
+        error(ERR_OUT_OF_MEMORY, file);
+        return;
+      }
+      entry.insert(KIO::UDSEntry::UDS_LINK_DEST, QFile::decodeName(link));
+      delete link;
+      // A symlink -> follow it only if details > 1
+      if (details > 1) {
+        sftp_attributes sb = sftp_stat(mSftp, file.constData());
+        if (sb == NULL) {
+          // It is a link pointing to nowhere
+          type = S_IFMT - 1;
+          access = S_IRWXU | S_IRWXG | S_IRWXO;
+          entry.insert( KIO::UDSEntry::UDS_FILE_TYPE, type);
+          entry.insert( KIO::UDSEntry::UDS_ACCESS, access);
+          entry.insert( KIO::UDSEntry::UDS_SIZE, 0LL );
+
+          goto notype;
+        }
+        sftp_attributes_free(dirent);
+        dirent = sb;
+      }
+    }
+
+    switch (dirent->type) {
+      case SSH_FILEXFER_TYPE_REGULAR:
+        entry.insert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFREG);
         break;
-      }
-
-      entry.clear();
-      entry.insert(KIO::UDSEntry::UDS_NAME, QFile::decodeName(dirent->name));
-
-      switch (dirent->type) {
-        case SSH_FILEXFER_TYPE_REGULAR:
-          entry.insert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFREG);
-          break;
-        case SSH_FILEXFER_TYPE_DIRECTORY:
-          entry.insert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
-          break;
-        case SSH_FILEXFER_TYPE_SYMLINK:
-          entry.insert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFREG);
-          entry.insert(KIO::UDSEntry::UDS_LINK_DEST, QLatin1String("Dummy Link Target"));
-          break;
-        case SSH_FILEXFER_TYPE_SPECIAL:
-        case SSH_FILEXFER_TYPE_UNKNOWN:
-          break;
-      }
-
-      sftp_attributes_free(dirent);
-      listEntry(entry, false);
-    }
-    sftp_closedir(dp);
-    listEntry(entry, true); // ready
-  } else {
-    for (;;) {
-      dirent = sftp_readdir(mSftp, dp);
-      if (dirent == NULL) {
+      case SSH_FILEXFER_TYPE_DIRECTORY:
+        entry.insert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
         break;
-      }
-
-      entryNames.append(dirent->name);
-      sftp_attributes_free(dirent);
+      case SSH_FILEXFER_TYPE_SYMLINK:
+        entry.insert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFREG);
+        entry.insert(KIO::UDSEntry::UDS_LINK_DEST, QLatin1String("Dummy Link Target"));
+        break;
+      case SSH_FILEXFER_TYPE_SPECIAL:
+      case SSH_FILEXFER_TYPE_UNKNOWN:
+        break;
     }
 
-    sftp_closedir(dp);
-    totalSize(entryNames.count());
+    access = dirent->permissions & 07777;
+    entry.insert(KIO::UDSEntry::UDS_ACCESS, access);
 
-    QList<QByteArray>::ConstIterator it = entryNames.constBegin();
-    QList<QByteArray>::ConstIterator end = entryNames.constEnd();
+    entry.insert(KIO::UDSEntry::UDS_SIZE, dirent->size);
 
-    for (; it != end; ++it) {
-      entry.clear();
-      if (createUDSEntry(QFile::decodeName(*it), QByteArray(path + '/' + *it).constData(), entry, details)) {
-        listEntry(entry, false);
+notype:
+    if (details > 0) {
+      if (dirent->owner) {
+          entry.insert(KIO::UDSEntry::UDS_USER, QString::fromUtf8(dirent->owner));
+      } else {
+          entry.insert(KIO::UDSEntry::UDS_USER, QString::number(dirent->uid));
       }
+
+      if (dirent->group) {
+          entry.insert(KIO::UDSEntry::UDS_GROUP, QString::fromUtf8(dirent->group));
+      } else {
+          entry.insert(KIO::UDSEntry::UDS_GROUP, QString::number(dirent->gid));
+      }
+
+      entry.insert(KIO::UDSEntry::UDS_ACCESS_TIME, dirent->atime);
+      entry.insert(KIO::UDSEntry::UDS_MODIFICATION_TIME, dirent->mtime);
+      entry.insert(KIO::UDSEntry::UDS_CREATION_TIME, dirent->createtime);
     }
-    listEntry(entry, true); // ready
-  }
+
+    sftp_attributes_free(dirent);
+    listEntry(entry, false);
+  } // for ever
+  sftp_closedir(dp);
+  listEntry(entry, true); // ready
 
   finished();
 }
