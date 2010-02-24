@@ -1,7 +1,7 @@
 [Desktop Entry]
 Type=Service
 Name=Remote URL Change Notifier
-Comment=Provides change notification to the remote:/ ioslave
+Comment=Provides change notification for network folders
 X-KDE-ServiceTypes=KDEDModule
 X-KDE-Library=remotedirnotify
 X-KDE-DBus-ModuleName=remotedirnotify
