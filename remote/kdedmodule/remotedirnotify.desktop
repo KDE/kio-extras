@@ -1,6 +1,12 @@
 [Desktop Entry]
 Type=Service
 Name=Remote URL Change Notifier
+Name[el]=Ειδοποιητής αλλαγών για απομακρυσμένη URL
+Name[pt]=Notificador da Alteração de URLs Remotos
+Name[pt_BR]=Notificador da alteração de URLs remotos
+Name[sv]=Underrättelse om ändring av fjärrwebbadresser
+Name[uk]=Сповіщення про зміну віддаленої адреси (URL)
+Name[x-test]=xxRemote URL Change Notifierxx
 Comment=Provides change notification for network folders
 X-KDE-ServiceTypes=KDEDModule
 X-KDE-Library=remotedirnotify
