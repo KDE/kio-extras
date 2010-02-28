@@ -449,11 +449,6 @@ void sftpProtocol::setHost(const QString& h, quint16 port, const QString& user, 
 
   mUsername = user;
   mPassword = pass;
-
-  if (user.isEmpty()) {
-    KUser u;
-    mUsername = u.loginName();
-  }
 }
 
 void sftpProtocol::openConnection() {
