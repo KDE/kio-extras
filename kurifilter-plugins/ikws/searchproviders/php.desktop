@@ -89,5 +89,13 @@ Name[x-test]=xxPHP Searchxx
 Name[zh_CN]=PHP 搜索
 Name[zh_TW]=PHP 搜尋
 Query=http://www.php.net/manual-lookup.php?pattern=\\{@}
+Query[ca]=http://www.php.net/manual-lookup.php?pattern=\\{@}
+Query[it]=http://www.php.net/manual-lookup.php?pattern=\\{@}
+Query[lt]=http://www.php.net/manual-lookup.php?pattern=\\{@}
+Query[nds]=http://www.php.net/manual-lookup.php?pattern=\\{@}
+Query[nl]=http://www.php.net/manual-lookup.php?pattern=\\{@}
+Query[pt]=http://www.php.net/manual-lookup.php?pattern=\\{@}
+Query[pt_BR]=http://www.php.net/manual-lookup.php?pattern=\\{@}
+Query[uk]=http://www.php.net/manual-lookup.php?pattern=\\{@}
 X-KDE-ServiceTypes=SearchProvider
 Type=Service

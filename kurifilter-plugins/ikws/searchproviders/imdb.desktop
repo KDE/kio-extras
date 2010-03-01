@@ -89,3 +89,11 @@ Name[zh_TW]=Internet 電影資料庫
 X-KDE-ServiceTypes=SearchProvider
 Keys=imdb
 Query=http://imdb.com/find?s=all&q=\\{@}
+Query[ca]=http://imdb.com/find?s=all&q=\\{@}
+Query[it]=http://italian.imdb.com/find?s=all&q=\\{@}
+Query[lt]=http://imdb.com/find?s=all&q=\\{@}
+Query[nds]=http://imdb.com/find?s=all&q=\\{@}
+Query[nl]=http://imdb.com/find?s=all&q=\\{@}
+Query[pt]=http://imdb.com/find?s=all&q=\\{@}
+Query[pt_BR]=http://imdb.com/find?s=all&q=\\{@}
+Query[uk]=http://imdb.com/find?s=all&q=\\{@}
