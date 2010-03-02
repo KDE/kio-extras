@@ -2,12 +2,15 @@
 Type=Service
 Name=Remote URL Change Notifier
 Name[el]=Ειδοποιητής αλλαγών για απομακρυσμένη URL
+Name[es]=Notificador de cambios en URL remoto
 Name[pt]=Notificador da Alteração de URLs Remotos
 Name[pt_BR]=Notificador da alteração de URLs remotos
 Name[sv]=Underrättelse om ändring av fjärrwebbadresser
 Name[uk]=Сповіщення про зміну віддаленої адреси (URL)
 Name[x-test]=xxRemote URL Change Notifierxx
 Comment=Provides change notification for network folders
+Comment[el]=Παρέχει ειδοποιήσεις για αλλαγές στους φακέλους δικτύου
+Comment[es]=Proporciona notificaciones visuales para carpetas de red
 Comment[pt]=Fornece notificações de alterações para as pastas de rede
 Comment[pt_BR]=Fornece notificações de alterações para pastas de rede
 Comment[uk]=Сповіщення про зміну стану мережевих тек
