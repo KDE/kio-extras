@@ -351,7 +351,7 @@ Notes:
     <expanded-acronym>UPnP Universal Plug and Play</expanded-acronym>
   </mime-type>
   <mime-type type="inode/vnd.kde.service.upnp.MediaRenderer1">
-    <generic-icon name="terminal"/>
+    <generic-icon name="video-television"/>
     <comment>UPnP Media Renderer</comment>
     <expanded-acronym>UPnP Universal Plug and Play</expanded-acronym>
   </mime-type>
@@ -361,7 +361,7 @@ Notes:
     <expanded-acronym>UPnP Universal Plug and Play</expanded-acronym>
   </mime-type>
   <mime-type type="inode/vnd.kde.service.upnp.MediaRenderer2">
-    <generic-icon name="terminal"/>
+    <generic-icon name="video-television"/>
     <comment>UPnP Media Renderer</comment>
     <expanded-acronym>UPnP Universal Plug and Play</expanded-acronym>
   </mime-type>
