@@ -406,6 +406,11 @@ Notes:
     <expanded-acronym>UPnP Universal Plug and Play</expanded-acronym>
   </mime-type>
 
+  <mime-type type="inode/vnd.kde.service.upnp.LANDevice1">
+    <generic-icon name="network-wired"/>
+    <comment>UPnP LAN Device</comment>
+    <expanded-acronym>UPnP Universal Plug and Play</expanded-acronym>
+  </mime-type>
   <mime-type type="inode/vnd.kde.service.upnp.WANDevice1">
     <generic-icon name="network-wireless"/>
     <comment>UPnP WAN Device</comment>
