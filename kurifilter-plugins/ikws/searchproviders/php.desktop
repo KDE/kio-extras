@@ -90,6 +90,7 @@ Name[zh_CN]=PHP 搜索
 Name[zh_TW]=PHP 搜尋
 Query=http://www.php.net/manual-lookup.php?pattern=\\{@}
 Query[ca]=http://www.php.net/manual-lookup.php?pattern=\\{@}
+Query[ca@valencia]=http://www.php.net/manual-lookup.php?pattern=\\{@}
 Query[es]=http://www.php.net/manual-lookup.php?pattern=\\{@}
 Query[et]=http://www.php.net/manual-lookup.php?pattern=\\{@}
 Query[hr]=http://www.php.net/manual-lookup.php?pattern=\\{@}
