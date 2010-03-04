@@ -92,9 +92,11 @@ Query=http://www.php.net/manual-lookup.php?pattern=\\{@}
 Query[el]=http://www.php.net/manual-lookup.php?pattern=\\{@}
 Query[es]=http://www.php.net/manual-lookup.php?pattern=\\{@}
 Query[et]=http://www.php.net/manual-lookup.php?pattern=\\{@}
+Query[hr]=http://www.php.net/manual-lookup.php?pattern=\\{@}
 Query[nds]=http://www.php.net/manual-lookup.php?pattern=\\{@}
 Query[pt]=http://www.php.net/manual-lookup.php?pattern=\\{@}
 Query[pt_BR]=http://www.php.net/manual-lookup.php?pattern=\\{@}
+Query[uk]=http://www.php.net/manual-lookup.php?pattern=\\{@}
 Query[x-test]=xxhttp://www.php.net/manual-lookup.php?pattern=\\{@}xx
 X-KDE-ServiceTypes=SearchProvider
 Type=Service

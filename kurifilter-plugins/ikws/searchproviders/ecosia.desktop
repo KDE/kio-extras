@@ -1,6 +1,8 @@
 [Desktop Entry]
 Type=Service
 Name=Ecosia search engine
+Name[uk]=Рушій пошуку Ecosia
 X-KDE-ServiceTypes=SearchProvider
 Keys=ec
 Query=http://ecosia.org/search.php?q=\\{@}&meta=normal
+Query[uk]=http://ecosia.org/search.php?q=\\{@}&meta=normal

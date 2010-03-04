@@ -92,7 +92,9 @@ Query=http://imdb.com/find?s=all&q=\\{@}
 Query[el]=http://imdb.com/find?s=all&q=\\{@}
 Query[es]=http://imdb.com/find?s=all&q=\\{@}
 Query[et]=http://imdb.com/find?s=all&q=\\{@}
+Query[hr]=http://imdb.com/find?s=all&q=\\{@}
 Query[nds]=http://imdb.com/find?s=all&q=\\{@}
 Query[pt]=http://imdb.com/find?s=all&q=\\{@}
 Query[pt_BR]=http://imdb.com/find?s=all&q=\\{@}
+Query[uk]=http://imdb.com/find?s=all&q=\\{@}
 Query[x-test]=xxhttp://imdb.com/find?s=all&q=\\{@}xx
