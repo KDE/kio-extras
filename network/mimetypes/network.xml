@@ -390,16 +390,32 @@ Notes:
     <comment>UPnP Lighting Controls</comment>
     <expanded-acronym>UPnP Universal Plug and Play</expanded-acronym>
   </mime-type>
-  <mime-type type="inode/vnd.kde.service.upnp.RemoteUIClient1">
-    <generic-icon name="printer"/>
+  <mime-type type="inode/vnd.kde.service.upnp.RemoteUIClientDevice1">
+    <generic-icon name="device"/>
     <comment>UPnP Remote UI Client</comment>
     <expanded-acronym>UPnP Universal Plug and Play</expanded-acronym>
   </mime-type>
-  <mime-type type="inode/vnd.kde.service.upnp.RemoteUIServer1">
-    <generic-icon name="printer"/>
+  <mime-type type="inode/vnd.kde.service.upnp.RemoteUIServerDevice1">
+    <generic-icon name="device"/>
     <comment>UPnP Remote UI Server</comment>
     <expanded-acronym>UPnP Universal Plug and Play</expanded-acronym>
   </mime-type>
+  <mime-type type="inode/vnd.kde.service.upnp.RAClient1">
+    <generic-icon name="device"/>
+    <comment>UPnP Remote Access Client</comment>
+    <expanded-acronym>UPnP Universal Plug and Play</expanded-acronym>
+  </mime-type>
+  <mime-type type="inode/vnd.kde.service.upnp.RAServer1">
+    <generic-icon name="device"/>
+    <comment>UPnP Remote Access Server</comment>
+    <expanded-acronym>UPnP Universal Plug and Play</expanded-acronym>
+  </mime-type>
+  <mime-type type="inode/vnd.kde.service.upnp.RADiscoveryAgent1">
+    <generic-icon name="device"/>
+    <comment>UPnP Remote Access Discovery Agent</comment>
+    <expanded-acronym>UPnP Universal Plug and Play</expanded-acronym>
+  </mime-type>
+
   <mime-type type="inode/vnd.kde.service.upnp.Unknown">
     <generic-icon name="device"/>
     <comment>Unknown UPnP Device</comment>
