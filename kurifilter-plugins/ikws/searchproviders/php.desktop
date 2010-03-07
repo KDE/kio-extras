@@ -99,6 +99,7 @@ Query[nds]=http://www.php.net/manual-lookup.php?pattern=\\{@}
 Query[nl]=http://www.php.net/manual-lookup.php?pattern=\\{@}
 Query[pt]=http://www.php.net/manual-lookup.php?pattern=\\{@}
 Query[pt_BR]=http://www.php.net/manual-lookup.php?pattern=\\{@}
+Query[sv]=http://www.php.net/manual-lookup.php?pattern=\\{@}
 Query[uk]=http://www.php.net/manual-lookup.php?pattern=\\{@}
 Query[x-test]=xxhttp://www.php.net/manual-lookup.php?pattern=\\{@}xx
 X-KDE-ServiceTypes=SearchProvider

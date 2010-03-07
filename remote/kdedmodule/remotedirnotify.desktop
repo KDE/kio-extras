@@ -15,6 +15,7 @@ Comment[es]=Proporciona notificaciones visuales para carpetas de red
 Comment[nb]=Gir endringsvarslinger for nettverksmapper
 Comment[pt]=Fornece notificações de alterações para as pastas de rede
 Comment[pt_BR]=Fornece notificações de alterações para pastas de rede
+Comment[sv]=Tillhandahåller ändringsunderrättelser för nätverkskataloger
 Comment[uk]=Сповіщення про зміну стану мережевих тек
 Comment[x-test]=xxProvides change notification for network foldersxx
 X-KDE-ServiceTypes=KDEDModule
