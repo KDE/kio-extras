@@ -1,0 +1,7 @@
+[Desktop Entry]
+Keys=yu,yt,youtube
+Name=YouTube
+Query=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
+ServiceTypes=SearchProvider
+Type=Service
+Charset=utf8
