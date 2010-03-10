@@ -1,7 +1,21 @@
 [Desktop Entry]
 Keys=yu,yt,youtube
 Name=YouTube
+Name[de]=YouTube
+Name[en_GB]=YouTube
+Name[pt]=YouTube
+Name[pt_BR]=YouTube
+Name[sv]=YouTube
+Name[uk]=YouTube
+Name[x-test]=xxYouTubexx
 Query=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
+Query[de]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
+Query[en_GB]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
+Query[pt]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
+Query[pt_BR]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
+Query[sv]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
+Query[uk]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
+Query[x-test]=xxhttp://www.youtube.com/results?search_query=\\{@}&search_type=&aq=fxx
 ServiceTypes=SearchProvider
 Type=Service
 Charset=utf8

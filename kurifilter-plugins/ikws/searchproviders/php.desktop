@@ -91,6 +91,7 @@ Name[zh_TW]=PHP 搜尋
 Query=http://www.php.net/manual-lookup.php?pattern=\\{@}
 Query[de]=http://www.php.net/manual-lookup.php?pattern=\\{@}
 Query[el]=http://www.php.net/manual-lookup.php?pattern=\\{@}
+Query[en_GB]=http://www.php.net/manual-lookup.php?pattern=\\{@}
 Query[es]=http://www.php.net/manual-lookup.php?pattern=\\{@}
 Query[et]=http://www.php.net/manual-lookup.php?pattern=\\{@}
 Query[hr]=http://www.php.net/manual-lookup.php?pattern=\\{@}
