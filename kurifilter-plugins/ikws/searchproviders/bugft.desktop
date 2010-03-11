@@ -76,7 +76,7 @@ Name[sv]=Textsökning i KDE:s feldatabas
 Name[ta]=KDE பிழை தகவல்தள முழு உரை தேடுதல்
 Name[te]=KDE బగ్ డాటాబేస్ పూర్తిపాఠ్యము శోధన
 Name[tg]=Полнотекстовый поиск ошибок в базе KDE
-Name[th]=ค้นหาฐานข้อมูลบัก KDE แบบเต็ม
+Name[th]=ค้นหาข้อความจากฐานข้อมูลบั๊กของ KDE
 Name[tr]=KDE Hata Veritabanı Tam Sözcük Arama
 Name[uk]=Повнотекстовий пошук у базі даних KDE
 Name[uz]=KDE xato maʼlumot bazasi (butun matnni qidirish)
@@ -142,6 +142,7 @@ Query[sr@ijekavianlatin]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[sr@latin]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[sv]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[tg]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
+Query[th]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[tr]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[uk]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[wa]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}

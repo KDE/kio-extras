@@ -54,6 +54,7 @@ Name[sr@ijekavianlatin]=Ethicle
 Name[sr@latin]=Ethicle
 Name[sv]=Ethicle
 Name[tg]=ickle
+Name[th]=บริการค้นหา Ethicle
 Name[tr]=Ethicle
 Name[uk]=Ethicle
 Name[wa]=Ethicle
@@ -118,6 +119,7 @@ Query[sr@ijekavianlatin]=http://www.ethicle.com/search.php?q=\\{@}
 Query[sr@latin]=http://www.ethicle.com/search.php?q=\\{@}
 Query[sv]=http://www.ethicle.com/search.php?q=\\{@}
 Query[tg]=http://www.ethicle.com/search.php?q=\\{@}
+Query[th]=http://www.ethicle.com/search.php?q=\\{@}
 Query[tr]=http://www.ethicle.com/search.php?q=\\{@}
 Query[uk]=http://www.ethicle.com/search.php?q=\\{@}
 Query[wa]=http://www.ethicle.com/search.php?q=\\{@}

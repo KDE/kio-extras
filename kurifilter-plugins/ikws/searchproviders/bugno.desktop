@@ -75,7 +75,7 @@ Name[sv]=Felnummersökning i KDE:s feldatabas
 Name[ta]=கேடிஇ பிழையான தகவல்தள பிழையான எண் தேடுதல்
 Name[te]=KDE బగ్ డాటాబేస్ బగ్ సంఖ్యా శోధన
 Name[tg]=Поиск по номеру в базе ошибок KDE
-Name[th]=ค้นหาฐานข้อมูลบั๊ก KDE แบบหมายเลข
+Name[th]=ค้นหาหมายเลขบั๊กจากฐานข้อมูลบั๊ก KDE
 Name[tr]=KDE Hata Veritabanı Hata Numarasıyla Arama
 Name[uk]=Пошук у базі даних помилок KDE за номером
 Name[uz]=KDE xato maʼlumot bazasi (xatoning raqamini qidirish)
@@ -142,6 +142,7 @@ Query[sr@ijekavianlatin]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
 Query[sr@latin]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
 Query[sv]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
 Query[tg]=http://bugs.kde.org/show_bug.cgi?id=\\{@}
+Query[th]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
 Query[tr]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
 Query[uk]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
 Query[wa]=https://bugs.kde.org/show_bug.cgi?id=\\{@}

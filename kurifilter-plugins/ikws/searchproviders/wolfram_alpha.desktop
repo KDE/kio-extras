@@ -49,6 +49,7 @@ Name[sr@ijekavian]=Волфрамова алфа
 Name[sr@ijekavianlatin]=Volframova alfa
 Name[sr@latin]=Volframova alfa
 Name[sv]=Wolfram Alpha
+Name[th]=Wolfram Alpha
 Name[tr]=Tungsten Işığı
 Name[uk]=Wolfram Alpha
 Name[wa]=Wolfram Alpha
@@ -105,6 +106,7 @@ Query[sr@ijekavianlatin]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[sr@latin]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[sv]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[tg]=http://www.wolframalpha.com/input/?i=\\{@}
+Query[th]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[tr]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[uk]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[x-test]=xxhttp://www.wolframalpha.com/input/?i=\\{@}xx
