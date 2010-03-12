@@ -90,3 +90,6 @@ Name[zh_TW]=Alexa
 X-KDE-ServiceTypes=SearchProvider
 Keys=al,alexa
 Query=http://www.alexa.com/search?q=\\{@}
+Query[pt]=http://www.alexa.com/search?q=\\{@}
+Query[sv]=http://www.alexa.com/search?q=\\{@}
+Query[uk]=http://www.alexa.com/search?q=\\{@}
