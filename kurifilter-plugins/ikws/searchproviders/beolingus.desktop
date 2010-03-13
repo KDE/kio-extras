@@ -4,6 +4,7 @@ Name=Beolingus Online Dictionary
 Name[de]=Beolingus-Internet-Wörterbuch
 Name[en_GB]=Beolingus Online Dictionary
 Name[hr]=Beolingus Online Rječnik
+Name[km]=វចនានុក្រម​លើ​បណ្ដាញ Beolingus
 Name[nb]=Beolingus nettverksordbok
 Name[nds]=Beolingus- Internetwöörbook
 Name[pt]=Dicionário 'Online' Beolingus
@@ -18,6 +19,7 @@ Query=http://dict.tu-chemnitz.de/dings.cgi?lang=de&service=deen&opterrors=0&optp
 Query[de]=http://dict.tu-chemnitz.de/dings.cgi?lang=de&service=deen&opterrors=0&optpro=0&query=\\{@}&iservice=&comment=&email
 Query[en_GB]=http://dict.tu-chemnitz.de/dings.cgi?lang=de&service=deen&opterrors=0&optpro=0&query=\\{@}&iservice=&comment=&email
 Query[hr]=http://dict.tu-chemnitz.de/dings.cgi?lang=de&service=deen&opterrors=0&optpro=0&query=\\{@}&iservice=&comment=&email
+Query[km]=http://dict.tu-chemnitz.de/dings.cgi?lang=de&service=deen&opterrors=0&optpro=0&query=\\{@}&iservice=&comment=&email
 Query[nb]=http://dict.tu-chemnitz.de/dings.cgi?lang=de&service=deen&opterrors=0&optpro=0&query=\\{@}&iservice=&comment=&email
 Query[nds]=http://dict.tu-chemnitz.de/dings.cgi?lang=de&service=deen&opterrors=0&optpro=0&query=\\{@}&iservice=&comment=&email
 Query[pt]=http://dict.tu-chemnitz.de/dings.cgi?lang=de&service=deen&opterrors=0&optpro=0&query=\\{@}&iservice=&comment=&email

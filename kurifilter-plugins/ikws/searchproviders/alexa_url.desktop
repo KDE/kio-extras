@@ -91,6 +91,8 @@ Name[zh_TW]=Alexa URL
 X-KDE-ServiceTypes=SearchProvider
 Keys=alu,url
 Query=http://www.alexa.com/data/details?url=\\{@}
+Query[km]=http://www.alexa.com/data/details?url=\\{@}
 Query[pt]=http://www.alexa.com/data/details?url=\\{@}
 Query[sv]=http://www.alexa.com/data/details?url=\\{@}
 Query[uk]=http://www.alexa.com/data/details?url=\\{@}
+Query[x-test]=xxhttp://www.alexa.com/data/details?url=\\{@}xx
