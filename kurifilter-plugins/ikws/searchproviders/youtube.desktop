@@ -3,6 +3,7 @@ Keys=yu,yt,youtube
 Name=YouTube
 Name[de]=YouTube
 Name[en_GB]=YouTube
+Name[es]=YouTube
 Name[hr]=YouTube
 Name[km]=YouTube
 Name[pt]=YouTube
@@ -14,6 +15,7 @@ Name[x-test]=xxYouTubexx
 Query=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[de]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[en_GB]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
+Query[es]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[hr]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[km]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[pt]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f

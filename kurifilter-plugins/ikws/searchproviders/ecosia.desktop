@@ -3,6 +3,7 @@ Type=Service
 Name=Ecosia search engine
 Name[de]=Ecosia-Suchmaschine
 Name[en_GB]=Ecosia search engine
+Name[es]=Motor de búsqueda Ecosia
 Name[km]=ម៉ាស៊ីន​ស្វែងរក Ecosia
 Name[nb]=Exosia søkemotor
 Name[nds]=Ecosia-Söökmaschien
@@ -17,6 +18,7 @@ Keys=ec
 Query=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[de]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[en_GB]=http://ecosia.org/search.php?q=\\{@}&meta=normal
+Query[es]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[hr]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[km]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[nb]=http://ecosia.org/search.php?q=\\{@}&meta=normal
