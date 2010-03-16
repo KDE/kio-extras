@@ -30,6 +30,7 @@
 #include <kstandarddirs.h>
 #include <kglobalsettings.h>
 #include <kencodingprober.h>
+#include <klocale.h>
 
 extern "C"
 {
@@ -48,6 +49,19 @@ TextCreator::TextCreator()
 TextCreator::~TextCreator()
 {
     delete [] m_data;
+}
+
+static QTextCodec *codecFromContent(const char *data, int dataSize)
+{
+#if 0 // ### Use this when KEncodingProber does not return junk encoding for UTF-8 data)
+    KEncodingProber prober;
+    prober.feed(data, dataSize);
+    return QTextCodec::codecForName(prober.encoding());
+#else
+    QByteArray ba = QByteArray::fromRawData(data, dataSize);
+    // try to detect UTF text, fall back to locale default (which is usually UTF-8)
+    return QTextCodec::codecForUtfText(ba, KGlobal::locale()->codecForEncoding());
+#endif
 }
 
 bool TextCreator::create(const QString &path, int width, int height, QImage &img)
@@ -98,9 +112,7 @@ bool TextCreator::create(const QString &path, int width, int height, QImage &img
         {
             ok = true;
             m_data[read] = '\0';
-            KEncodingProber prober;
-            prober.feed(m_data, read);
-            QString text = QTextCodec::codecForName(prober.encoding())->toUnicode( m_data, read ).trimmed();
+            QString text = codecFromContent( m_data, read )->toUnicode( m_data, read ).trimmed();
             // FIXME: maybe strip whitespace and read more?
 
             // If the text contains tabs or consecutive spaces, it is probably
