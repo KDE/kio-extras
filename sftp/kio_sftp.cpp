@@ -1164,13 +1164,16 @@ void sftpProtocol::put(const KUrl& url, int permissions, KIO::JobFlags flags) {
         } // flags & KIO::Resume
 
         if (file == NULL) {
-          kDebug(KIO_SFTP_DB) << "####################### COULD NOT WRITE " << dest << " permissions=" << permissions;
+          kDebug(KIO_SFTP_DB) << "COULD NOT WRITE " << dest
+                              << " permissions=" << permissions
+                              << " error=" << ssh_get_error(session);
           if (sftp_get_error(mSftp) == SSH_FX_PERMISSION_DENIED) {
-              error(KIO::ERR_WRITE_ACCESS_DENIED, QString::fromUtf8(dest));
+            error(KIO::ERR_WRITE_ACCESS_DENIED, QString::fromUtf8(dest));
           } else {
             error(KIO::ERR_CANNOT_OPEN_FOR_WRITING, QString::fromUtf8(dest));
           }
           sftp_attributes_free(sb);
+          finished();
           return;
         } // file
       } // dest.isEmpty
