@@ -1166,7 +1166,7 @@ void sftpProtocol::put(const KUrl& url, int permissions, KIO::JobFlags flags) {
         if (file == NULL) {
           kDebug(KIO_SFTP_DB) << "COULD NOT WRITE " << dest
                               << " permissions=" << permissions
-                              << " error=" << ssh_get_error(session);
+                              << " error=" << ssh_get_error(mSession);
           if (sftp_get_error(mSftp) == SSH_FX_PERMISSION_DENIED) {
             error(KIO::ERR_WRITE_ACCESS_DENIED, QString::fromUtf8(dest));
           } else {
