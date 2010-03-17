@@ -1438,8 +1438,7 @@ void sftpProtocol::listDir(const KUrl& url) {
         entry.insert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
         break;
       case SSH_FILEXFER_TYPE_SYMLINK:
-        entry.insert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFREG);
-        entry.insert(KIO::UDSEntry::UDS_LINK_DEST, QLatin1String("Dummy Link Target"));
+        entry.insert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFLNK);
         break;
       case SSH_FILEXFER_TYPE_SPECIAL:
       case SSH_FILEXFER_TYPE_UNKNOWN:
