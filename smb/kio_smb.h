@@ -79,7 +79,6 @@ extern "C"
 #define KIO_SMB                     7106
 
 using namespace KIO;
-class K3Process;
 
 //===========================================================================
 
@@ -259,12 +258,7 @@ public:
     //virtual void slave_status();
     virtual void special( const QByteArray & );
 
-private Q_SLOTS:
-    void readOutput(K3Process *proc, char *buffer, int buflen);
-    void readStdErr(K3Process *proc, char *buffer, int buflen);
-
 private:
-    QString mybuf, mystderr;
      /**
      * Used in open(), read(), write(), and close()
      * FIXME Placing these in the private section above causes m_openUrl = kurl

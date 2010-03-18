@@ -23,17 +23,8 @@
 #include <unistd.h>
 #include <QByteArray>
 #include <QDir>
-#include <k3process.h>
+#include <KProcess>
 #include <kshell.h>
-void SMBSlave::readOutput(K3Process *, char *buffer, int buflen)
-{
-    mybuf += QString::fromLocal8Bit(buffer, buflen);
-}
-
-void SMBSlave::readStdErr(K3Process *, char *buffer, int buflen)
-{
-    mystderr += QString::fromLocal8Bit(buffer, buflen);
-}
 
 void SMBSlave::special( const QByteArray & data)
 {
@@ -69,8 +60,6 @@ void SMBSlave::special( const QByteArray & data)
                  return;
              }
          }
-         mybuf.truncate(0);
-         mystderr.truncate(0);
 
          SMBUrl smburl(KUrl("smb:///"));
          smburl.setHost(host);
@@ -85,7 +74,8 @@ void SMBSlave::special( const QByteArray & data)
          // using smbmount instead of "mount -t smbfs", because mount does not allow a non-root
          // user to do a mount, but a suid smbmnt does allow this
 
-         K3Process proc;
+         KProcess proc;
+         proc.setOutputChannelMode(KProcess::SeparateChannels);
          proc << "smbmount";
 
          QString options;
@@ -112,23 +102,21 @@ void SMBSlave::special( const QByteArray & data)
          proc << mountPoint;
          proc << "-o" << options;
 
-         connect(&proc, SIGNAL( receivedStdout(K3Process *, char *, int )),
-                 SLOT(readOutput(K3Process *, char *, int)));
-
-         connect(&proc, SIGNAL( receivedStderr(K3Process *, char *, int )),
-                 SLOT(readStdErr(K3Process *, char *, int)));
-
-         if (!proc.start( K3Process::Block, K3Process::AllOutput ))
+         proc.start();
+         if (!proc.waitForFinished())
          {
             error(KIO::ERR_CANNOT_LAUNCH_PROCESS,
                   "smbmount"+i18n("\nMake sure that the samba package is installed properly on your system."));
             return;
          }
 
-         kDebug(KIO_SMB) << "mount exit " << proc.exitStatus()
+         QString mybuf = QString::fromLocal8Bit(proc.readAllStandardOutput());
+         QString mystderr = QString::fromLocal8Bit(proc.readAllStandardError());
+
+         kDebug(KIO_SMB) << "mount exit " << proc.exitCode()
                           << "stdout:" << mybuf << endl << "stderr:" << mystderr << endl;
 
-         if (proc.exitStatus() != 0)
+         if (proc.exitCode() != 0)
          {
            error( KIO::ERR_COULD_NOT_MOUNT,
                i18n("Mounting of share \"%1\" from host \"%2\" by user \"%3\" failed.\n%4",
@@ -145,30 +133,26 @@ void SMBSlave::special( const QByteArray & data)
          QString mountPoint;
          stream >> mountPoint;
 
-         K3Process proc;
+         KProcess proc;
+         proc.setOutputChannelMode(KProcess::SeparateChannels);
          proc << "smbumount";
          proc << mountPoint;
 
-         mybuf.truncate(0);
-         mystderr.truncate(0);
-
-         connect(&proc, SIGNAL( receivedStdout(K3Process *, char *, int )),
-                 SLOT(readOutput(K3Process *, char *, int)));
-
-         connect(&proc, SIGNAL( receivedStderr(K3Process *, char *, int )),
-                 SLOT(readStdErr(K3Process *, char *, int)));
-
-         if ( !proc.start( K3Process::Block, K3Process::AllOutput ) )
+         proc.start();
+         if ( !proc.waitForFinished() )
          {
            error(KIO::ERR_CANNOT_LAUNCH_PROCESS,
                  "smbumount"+i18n("\nMake sure that the samba package is installed properly on your system."));
            return;
          }
 
-         kDebug(KIO_SMB) << "smbumount exit " << proc.exitStatus()
+         QString mybuf = QString::fromLocal8Bit(proc.readAllStandardOutput());
+         QString mystderr = QString::fromLocal8Bit(proc.readAllStandardError());
+
+         kDebug(KIO_SMB) << "smbumount exit " << proc.exitCode()
                           << "stdout:" << mybuf << endl << "stderr:" << mystderr << endl;
 
-         if (proc.exitStatus() != 0)
+         if (proc.exitCode() != 0)
          {
            error(KIO::ERR_COULD_NOT_UNMOUNT,
                i18n("Unmounting of mountpoint \"%1\" failed.\n%2",
