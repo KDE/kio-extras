@@ -86,7 +86,6 @@ void SMBSlave::special( const QByteArray & data)
          // user to do a mount, but a suid smbmnt does allow this
 
          K3Process proc;
-         proc.setUseShell(true);  // to have the path to smbmnt (which is used by smbmount); see man smbmount
          proc << "smbmount";
 
          QString options;
@@ -94,24 +93,24 @@ void SMBSlave::special( const QByteArray & data)
          if ( smburl.user().isEmpty() )
          {
            user = "guest";
-           options = "-o guest";
+           options = "guest";
          }
          else
          {
-           options = "-o username=" + KShell::quoteArg(smburl.user());
+           options = "username=" + smburl.user();
            user = smburl.user();
 
            if ( ! smburl.pass().isEmpty() )
-             options += ",password=" + KShell::quoteArg(smburl.pass());
+             options += ",password=" + smburl.pass();
          }
 
          // TODO: check why the control center uses encodings with a blank char, e.g. "cp 1250"
          //if ( ! m_default_encoding.isEmpty() )
            //options += ",codepage=" + KShell::quoteArg(m_default_encoding);
 
-         proc << KShell::quoteArg(remotePath.toLocal8Bit());
-         proc << KShell::quoteArg(mountPoint.toLocal8Bit());
-         proc << options;
+         proc << remotePath;
+         proc << mountPoint;
+         proc << "-o" << options;
 
          connect(&proc, SIGNAL( receivedStdout(K3Process *, char *, int )),
                  SLOT(readOutput(K3Process *, char *, int)));
@@ -147,9 +146,8 @@ void SMBSlave::special( const QByteArray & data)
          stream >> mountPoint;
 
          K3Process proc;
-         proc.setUseShell(true);
          proc << "smbumount";
-         proc << KShell::quoteArg(mountPoint);
+         proc << mountPoint;
 
          mybuf.truncate(0);
          mystderr.truncate(0);
