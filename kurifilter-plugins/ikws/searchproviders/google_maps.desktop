@@ -1,6 +1,7 @@
 [Desktop Entry]
 Type=Service
 Name=Google Maps
+Name[cs]=Google mapy
 Name[de]=Google-Maps
 Name[en_GB]=Google Maps
 Name[es]=Google Maps
@@ -15,6 +16,7 @@ Name[x-test]=xxGoogle Mapsxx
 X-KDE-ServiceTypes=SearchProvider
 Keys=googlemaps,ggmaps,ggm
 Query=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
+Query[cs]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[de]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[en_GB]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[es]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr

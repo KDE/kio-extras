@@ -1,6 +1,7 @@
 [Desktop Entry]
 Type=Service
 Name=Remote URL Change Notifier
+Name[cs]=Démon upozorňování na vzdálená URL
 Name[el]=Ειδοποιητής αλλαγών για απομακρυσμένη URL
 Name[en_GB]=Remote URL Change Notifier
 Name[es]=Notificador de cambios en URL remoto
@@ -13,6 +14,7 @@ Name[th]=ตัวแจ้งการเปลี่ยนแปลงบน�
 Name[uk]=Сповіщення про зміну віддаленої адреси (URL)
 Name[x-test]=xxRemote URL Change Notifierxx
 Comment=Provides change notification for network folders
+Comment[cs]=Poskytuje oznamování o změnách síťových složek
 Comment[el]=Παρέχει ειδοποιήσεις για αλλαγές στους φακέλους δικτύου
 Comment[en_GB]=Provides change notification for network folders
 Comment[es]=Proporciona notificaciones visuales para carpetas de red

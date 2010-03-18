@@ -1,6 +1,7 @@
 [Desktop Entry]
 Type=Service
 Name=Beolingus Online Dictionary
+Name[cs]=Beolingus online slovník
 Name[de]=Beolingus-Internet-Wörterbuch
 Name[en_GB]=Beolingus Online Dictionary
 Name[hr]=Beolingus Online Rječnik
@@ -16,6 +17,7 @@ Name[x-test]=xxBeolingus Online Dictionaryxx
 X-KDE-ServiceTypes=SearchProvider
 Keys=beo,beolingus
 Query=http://dict.tu-chemnitz.de/dings.cgi?lang=de&service=deen&opterrors=0&optpro=0&query=\\{@}&iservice=&comment=&email
+Query[cs]=http://dict.tu-chemnitz.de/dings.cgi?lang=de&service=deen&opterrors=0&optpro=0&query=\\{@}&iservice=&comment=&email
 Query[de]=http://dict.tu-chemnitz.de/dings.cgi?lang=de&service=deen&opterrors=0&optpro=0&query=\\{@}&iservice=&comment=&email
 Query[en_GB]=http://dict.tu-chemnitz.de/dings.cgi?lang=de&service=deen&opterrors=0&optpro=0&query=\\{@}&iservice=&comment=&email
 Query[es]=http://dict.tu-chemnitz.de/dings.cgi?lang=de&service=deen&opterrors=0&optpro=0&query=\\{@}&iservice=&comment=&email
