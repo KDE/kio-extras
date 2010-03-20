@@ -90,6 +90,7 @@ Keys=wi,whatis
 Query=http://whatis.techtarget.com/wsearchResultsB/0,,sid9,00.html?query=\\{@}
 Query[cs]=http://whatis.techtarget.com/wsearchResultsB/0,,sid9,00.html?query=\\{@}
 Query[es]=http://whatis.techtarget.com/wsearchResultsB/0,,sid9,00.html?query=\\{@}
+Query[hr]=http://whatis.techtarget.com/wsearchResultsB/0,,sid9,00.html?query=\\{@}
 Query[km]=http://whatis.techtarget.com/wsearchResultsB/0,,sid9,00.html?query=\\{@}
 Query[pt]=http://whatis.techtarget.com/wsearchResultsB/0,,sid9,00.html?query=\\{@}
 Query[pt_BR]=http://whatis.techtarget.com/wsearchResultsB/0,,sid9,00.html?query=\\{@}

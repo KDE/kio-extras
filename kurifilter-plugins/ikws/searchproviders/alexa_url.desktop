@@ -93,6 +93,7 @@ Keys=alu,url
 Query=http://www.alexa.com/data/details?url=\\{@}
 Query[cs]=http://www.alexa.com/data/details?url=\\{@}
 Query[es]=http://www.alexa.com/data/details?url=\\{@}
+Query[hr]=http://www.alexa.com/data/details?url=\\{@}
 Query[km]=http://www.alexa.com/data/details?url=\\{@}
 Query[pt]=http://www.alexa.com/data/details?url=\\{@}
 Query[pt_BR]=http://www.alexa.com/data/details?url=\\{@}

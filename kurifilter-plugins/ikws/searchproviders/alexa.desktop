@@ -92,6 +92,7 @@ Keys=al,alexa
 Query=http://www.alexa.com/search?q=\\{@}
 Query[cs]=http://www.alexa.com/search?q=\\{@}
 Query[es]=http://www.alexa.com/search?q=\\{@}
+Query[hr]=http://www.alexa.com/search?q=\\{@}
 Query[km]=http://www.alexa.com/search?q=\\{@}
 Query[pt]=http://www.alexa.com/search?q=\\{@}
 Query[pt_BR]=http://www.alexa.com/search?q=\\{@}
