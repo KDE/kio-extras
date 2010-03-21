@@ -103,6 +103,10 @@ Query[nds]=http://www.php.net/manual-lookup.php?pattern=\\{@}
 Query[nl]=http://www.php.net/manual-lookup.php?pattern=\\{@}
 Query[pt]=http://www.php.net/manual-lookup.php?pattern=\\{@}
 Query[pt_BR]=http://www.php.net/manual-lookup.php?pattern=\\{@}
+Query[sr]=http://www.php.net/manual-lookup.php?pattern=\\{@}
+Query[sr@ijekavian]=http://www.php.net/manual-lookup.php?pattern=\\{@}
+Query[sr@ijekavianlatin]=http://www.php.net/manual-lookup.php?pattern=\\{@}
+Query[sr@latin]=http://www.php.net/manual-lookup.php?pattern=\\{@}
 Query[sv]=http://www.php.net/manual-lookup.php?pattern=\\{@}
 Query[th]=http://www.php.net/manual-lookup.php?pattern=\\{@}
 Query[uk]=http://www.php.net/manual-lookup.php?pattern=\\{@}
