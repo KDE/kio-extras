@@ -104,5 +104,5 @@ QString Mimetypes::mimetypeForServiceType( const QString& serviceTypeName )
             break;
         }
     }
-    return "inode/vnd.kde.service." + serviceTypeName;
+    return "inode/vnd.kde.service." + subType;
 }
