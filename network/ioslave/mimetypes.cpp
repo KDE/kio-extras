@@ -98,7 +98,7 @@ QString Mimetypes::mimetypeForServiceType( const QString& serviceTypeName )
     QString subType = "unknown";
     for( int i=0; i<SimpleServiceMimetypeCount; ++i )
     {
-        if( serviceTypeName == SimpleServiceMimetype[i] )
+        if( serviceTypeName == QLatin1String(SimpleServiceMimetype[i]) )
         {
             subType = serviceTypeName;
             break;
