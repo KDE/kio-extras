@@ -138,6 +138,11 @@ kDebug()<<"new service:"<<netService.name()<<netService.url();
         QString deviceName;
         if( serviceType == QLatin1String("InternetGatewayDevice1") )
             deviceTypeByService = NetDevice::Router;
+        else if( serviceType == QLatin1String("PrinterBasic1")
+             || serviceType == QLatin1String("PrinterEnhanced1") )
+            deviceTypeByService = NetDevice::Printer;
+        else if( serviceType == QLatin1String("Scanner1") )
+            deviceTypeByService = NetDevice::Scanner;
 
         if( deviceTypeByService != NetDevice::Unknown )
         {
