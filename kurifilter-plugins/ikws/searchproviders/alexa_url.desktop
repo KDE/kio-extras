@@ -94,6 +94,7 @@ Query=http://www.alexa.com/data/details?url=\\{@}
 Query[cs]=http://www.alexa.com/data/details?url=\\{@}
 Query[en_GB]=http://www.alexa.com/data/details?url=\\{@}
 Query[es]=http://www.alexa.com/data/details?url=\\{@}
+Query[et]=http://www.alexa.com/data/details?url=\\{@}
 Query[hr]=http://www.alexa.com/data/details?url=\\{@}
 Query[km]=http://www.alexa.com/data/details?url=\\{@}
 Query[nds]=http://www.alexa.com/data/details?url=\\{@}

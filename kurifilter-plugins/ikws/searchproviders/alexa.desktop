@@ -93,6 +93,7 @@ Query=http://www.alexa.com/search?q=\\{@}
 Query[cs]=http://www.alexa.com/search?q=\\{@}
 Query[en_GB]=http://www.alexa.com/search?q=\\{@}
 Query[es]=http://www.alexa.com/search?q=\\{@}
+Query[et]=http://www.alexa.com/search?q=\\{@}
 Query[hr]=http://www.alexa.com/search?q=\\{@}
 Query[km]=http://www.alexa.com/search?q=\\{@}
 Query[nds]=http://www.alexa.com/search?q=\\{@}
