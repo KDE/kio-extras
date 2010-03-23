@@ -40,6 +40,11 @@ Notes:
     <generic-icon name="printer"/>
     <comment>Printer</comment>
   </mime-type>
+  <mime-type type="inode/vnd.kde.device.scanner">
+    <sub-class-of type="inode/directory"/>
+    <generic-icon name="scanner"/>
+    <comment>Scanner</comment>
+  </mime-type>
   <mime-type type="inode/vnd.kde.device.unknown">
     <sub-class-of type="inode/directory"/>
     <generic-icon name="network-server"/>

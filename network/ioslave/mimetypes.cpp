@@ -28,9 +28,11 @@
 
 const char Mimetypes::NetworkMimetype[] = "inode/vnd.kde.network";
 
+// keep in sync with Mollet::NetDevice::Type
 const char* const Mimetypes::DeviceMimetype[] =
 {
     "inode/vnd.kde.device.unknown",
+    "inode/vnd.kde.device.scanner",
     "inode/vnd.kde.device.printer",
     "inode/vnd.kde.device.server",
     "inode/vnd.kde.device.router",

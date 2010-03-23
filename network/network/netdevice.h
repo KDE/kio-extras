@@ -55,7 +55,7 @@ class MOLLETNETWORK_EXPORT NetDevice
 
   public:
     // later has priority
-    enum Type { Unknown, Printer, FileServer, Router, Workstation };
+    enum Type { Unknown = 0, Scanner, Printer, FileServer, Router, Workstation };
     static QString iconName( Type type );
 
   public:

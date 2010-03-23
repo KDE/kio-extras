@@ -36,7 +36,7 @@ QString NetDevice::iconName( Type type )
 {
     static const char* const IconName[] =
     {
-    /*"unknown"*/"network-server", "printer", "network-server-database", "network-server", "computer"
+    /*"unknown"*/"network-server", "scanner", "printer", "network-server-database", "network-server", "computer"
     };
 
     return IconName[type];
