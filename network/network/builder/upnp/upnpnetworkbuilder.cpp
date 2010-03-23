@@ -1,7 +1,7 @@
 /*
     This file is part of the Mollet network library, part of the KDE project.
 
-    Copyright 2009 Friedrich W. H. Kossebau <kossebau@kde.org>
+    Copyright 2009-2010 Friedrich W. H. Kossebau <kossebau@kde.org>
 
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
@@ -136,7 +136,7 @@ kDebug()<<"new service:"<<netService.name()<<netService.url();
         const QString serviceType = upnpDevice.type();
         NetDevice::Type deviceTypeByService = NetDevice::Unknown;
         QString deviceName;
-        if( serviceType == "InternetGatewayDevice1" )
+        if( serviceType == QLatin1String("InternetGatewayDevice1") )
             deviceTypeByService = NetDevice::Router;
 
         if( deviceTypeByService != NetDevice::Unknown )

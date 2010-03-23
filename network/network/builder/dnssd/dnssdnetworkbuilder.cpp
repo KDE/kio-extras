@@ -1,7 +1,7 @@
 /*
     This file is part of the Mollet network library, part of the KDE project.
 
-    Copyright 2009 Friedrich W. H. Kossebau <kossebau@kde.org>
+    Copyright 2009-2010 Friedrich W. H. Kossebau <kossebau@kde.org>
 
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
@@ -194,21 +194,21 @@ kDebug()<<"new device:"<<deviceName<<"at"<<hostName<<"by"<<service->type();
     // TODO: move into  devicefactory
     NetDevice::Type deviceTypeByService = NetDevice::Unknown;
     QString deviceName;
-    if( serviceType == "_workstation._tcp" )
+    if( serviceType == QLatin1String("_workstation._tcp") )
     {
         deviceTypeByService = NetDevice::Workstation;
         deviceName = service->serviceName().left( service->serviceName().lastIndexOf('[') ).trimmed();
     }
-    else if( serviceType == "_net-assistant._udp" )
+    else if( serviceType == QLatin1String("_net-assistant._udp") )
     {
         deviceTypeByService = NetDevice::Workstation;
         deviceName = service->serviceName();
     }
-    else if( serviceType == "_airport._tcp" )
+    else if( serviceType == QLatin1String("_airport._tcp") )
         deviceTypeByService = NetDevice::Router;
-    else if( serviceType == "_ipp._tcp"
-             || serviceType == "_printer._tcp"
-             || serviceType == "_pdl-datastream._tcp" )
+    else if( serviceType == QLatin1String("_ipp._tcp")
+             || serviceType == QLatin1String("_printer._tcp")
+             || serviceType == QLatin1String("_pdl-datastream._tcp") )
     {
         deviceTypeByService = NetDevice::Printer;
         deviceName = service->serviceName();
