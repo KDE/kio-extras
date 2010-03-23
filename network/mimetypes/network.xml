@@ -70,7 +70,7 @@ Notes:
     <acronym>FTP</acronym>
     <expanded-acronym>File transfer protocol</expanded-acronym>
   </mime-type>
-  <mime-type type="inode/vnd.kde.service.sftp">
+  <mime-type type="inode/vnd.kde.service.ftps">
     <sub-class-of type="inode/directory"/>
     <generic-icon name="folder-remote"/>
     <comment>FTPS server</comment>
