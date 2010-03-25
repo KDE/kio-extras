@@ -224,6 +224,9 @@ QString ComicCreator::unrarPath() const
     if (unrar.isEmpty()) {
         unrar = KStandardDirs::findExe("unrar-nonfree");
     }
+    if (unrar.isEmpty()) {
+        unrar = KStandardDirs::findExe("rar");
+    }
     if (!unrar.isEmpty()) {
         QProcess proc;
         proc.start(unrar, QStringList() << "--version");
@@ -231,7 +234,7 @@ QString ComicCreator::unrarPath() const
         const QStringList lines = QString::fromLocal8Bit(proc.readAllStandardOutput()).split
             ('\n', QString::SkipEmptyParts);
         if (!lines.isEmpty()) {
-            if (lines.first().contains("freeware")) {
+            if (lines.first().startsWith("RAR ") || lines.first().startsWith("UNRAR ")) {
                 return unrar;
             }
         }
