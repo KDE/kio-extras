@@ -10,6 +10,7 @@ Name[hr]=Google Maps
 Name[kk]=Google карталаы
 Name[km]=ផែនទី​​ហ្គូហ្គល
 Name[nds]=Google-Koorten
+Name[nl]=Google Maps
 Name[pt]=Google Maps
 Name[pt_BR]=Google Maps
 Name[sv]=Google kartor
@@ -28,6 +29,7 @@ Query[hr]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[kk]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[km]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[nds]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
+Query[nl]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[pt]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[pt_BR]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[sv]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr

@@ -99,6 +99,7 @@ Query[hr]=http://www.alexa.com/data/details?url=\\{@}
 Query[kk]=http://www.alexa.com/data/details?url=\\{@}
 Query[km]=http://www.alexa.com/data/details?url=\\{@}
 Query[nds]=http://www.alexa.com/data/details?url=\\{@}
+Query[nl]=http://www.alexa.com/data/details?url=\\{@}
 Query[pt]=http://www.alexa.com/data/details?url=\\{@}
 Query[pt_BR]=http://www.alexa.com/data/details?url=\\{@}
 Query[sv]=http://www.alexa.com/data/details?url=\\{@}
