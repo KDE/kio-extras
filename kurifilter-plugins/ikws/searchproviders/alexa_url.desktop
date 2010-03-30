@@ -106,3 +106,4 @@ Query[sv]=http://www.alexa.com/data/details?url=\\{@}
 Query[th]=http://www.alexa.com/data/details?url=\\{@}
 Query[uk]=http://www.alexa.com/data/details?url=\\{@}
 Query[x-test]=xxhttp://www.alexa.com/data/details?url=\\{@}xx
+Query[zh_TW]=http://www.alexa.com/data/details?url=\\{@}

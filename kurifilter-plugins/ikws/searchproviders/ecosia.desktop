@@ -18,6 +18,7 @@ Name[sv]=Ecosia söktjänst
 Name[th]=บริการค้นหา Ecosia
 Name[uk]=Рушій пошуку Ecosia
 Name[x-test]=xxEcosia search enginexx
+Name[zh_TW]=Ecosia 搜索引擎
 X-KDE-ServiceTypes=SearchProvider
 Keys=ec
 Query=http://ecosia.org/search.php?q=\\{@}&meta=normal
@@ -38,3 +39,4 @@ Query[sv]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[th]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[uk]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[x-test]=xxhttp://ecosia.org/search.php?q=\\{@}&meta=normalxx
+Query[zh_TW]=http://ecosia.org/search.php?q=\\{@}&meta=normal

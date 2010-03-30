@@ -20,6 +20,7 @@ Name[sv]=Katalogövervakare
 Name[th]=เครื่องมือสอดส่องไดเรกทอรี
 Name[uk]=Нагляд за каталогами
 Name[x-test]=xxDirectory Watcherxx
+Name[zh_TW]=目錄監控器
 ServiceTypes=KDEDModule
 X-KDE-ServiceTypes=KDEDModule
 X-KDE-Library=desktopnotifier
@@ -47,4 +48,5 @@ Comment[sv]=Övervakar katalogändringar
 Comment[th]=คอยตรวจสอบการเปลี่ยนแปลงของไดเรกทอรีต่าง ๆ
 Comment[uk]=Спостереження за змінами у каталогах
 Comment[x-test]=xxMonitors directories for changesxx
+Comment[zh_TW]=監控目錄的改變
 

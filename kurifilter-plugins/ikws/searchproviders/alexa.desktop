@@ -105,3 +105,4 @@ Query[sv]=http://www.alexa.com/search?q=\\{@}
 Query[th]=http://www.alexa.com/search?q=\\{@}
 Query[uk]=http://www.alexa.com/search?q=\\{@}
 Query[x-test]=xxhttp://www.alexa.com/search?q=\\{@}xx
+Query[zh_TW]=http://www.alexa.com/search?q=\\{@}

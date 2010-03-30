@@ -106,5 +106,6 @@ Query[sv]=http://doc.qt.nokia.com/latest/\\{@}.html
 Query[th]=http://doc.qt.nokia.com/latest/\\{@}.html
 Query[uk]=http://doc.qt.nokia.com/latest/\\{@}.html
 Query[x-test]=xxhttp://doc.qt.nokia.com/latest/\\{@}.htmlxx
+Query[zh_TW]=http://doc.qt.nokia.com/latest/\\{@}.htmll
 X-KDE-ServiceTypes=SearchProvider
 Type=Service
