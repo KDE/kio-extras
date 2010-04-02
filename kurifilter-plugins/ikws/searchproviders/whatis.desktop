@@ -89,6 +89,7 @@ X-KDE-ServiceTypes=SearchProvider
 Keys=wi,whatis
 Query=http://whatis.techtarget.com/wsearchResultsB/0,,sid9,00.html?query=\\{@}
 Query[cs]=http://whatis.techtarget.com/wsearchResultsB/0,,sid9,00.html?query=\\{@}
+Query[de]=http://whatis.techtarget.com/wsearchResultsB/0,,sid9,00.html?query=\\{@}
 Query[en_GB]=http://whatis.techtarget.com/wsearchResultsB/0,,sid9,00.html?query=\\{@}
 Query[es]=http://whatis.techtarget.com/wsearchResultsB/0,,sid9,00.html?query=\\{@}
 Query[et]=http://whatis.techtarget.com/wsearchResultsB/0,,sid9,00.html?query=\\{@}
