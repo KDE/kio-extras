@@ -105,6 +105,7 @@ Query[nl]=http://www.alexa.com/data/details?url=\\{@}
 Query[pt]=http://www.alexa.com/data/details?url=\\{@}
 Query[pt_BR]=http://www.alexa.com/data/details?url=\\{@}
 Query[sv]=http://www.alexa.com/data/details?url=\\{@}
+Query[tg]=http://www.alexa.com/data/details?url=\\{@}
 Query[th]=http://www.alexa.com/data/details?url=\\{@}
 Query[uk]=http://www.alexa.com/data/details?url=\\{@}
 Query[x-test]=xxhttp://www.alexa.com/data/details?url=\\{@}xx

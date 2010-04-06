@@ -15,6 +15,7 @@ Name[nl]=Google Maps
 Name[pt]=Google Maps
 Name[pt_BR]=Google Maps
 Name[sv]=Google kartor
+Name[tg]=Харитаҳои Google
 Name[th]=ดูแผนที่ต่าง ๆ ด้วยกูเกิล
 Name[uk]=Карти Google
 Name[x-test]=xxGoogle Mapsxx
@@ -36,6 +37,7 @@ Query[nl]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[pt]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[pt_BR]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[sv]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
+Query[tg]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[th]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[uk]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[x-test]=xxhttp://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addrxx
