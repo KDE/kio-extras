@@ -38,7 +38,6 @@ typedef QList<NetService> NetServiceList;
 class NetworkWatcher : public KDEDModule
 {
     Q_OBJECT
-    Q_CLASSINFO( "D-Bus Interface", "org.kde.network" )
 
   public:
     NetworkWatcher( QObject* parent, const QList<QVariant>& parameters );
