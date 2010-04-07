@@ -34,8 +34,6 @@ namespace Mollet
 NetworkDBusAdaptor::NetworkDBusAdaptor( NetworkWatcher* parent )
   : QDBusAbstractAdaptor( parent )
 {
-    setAutoRelaySignals( true );
-
     // TODO: best place to do this?
     qDBusRegisterMetaType<Mollet::NetDevice>();
     qDBusRegisterMetaType<Mollet::NetService>();
