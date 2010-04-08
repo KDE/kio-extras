@@ -1,6 +1,8 @@
 [Desktop Entry]
 Type=Service
 Name=Images (GIF, PNG, BMP, ...)
+Name[kk]=Кескіндер (GIF, PNG, BMP, ...)
+Name[nb]=Bilder (GIF, PNG, BMP, …)
 Name[nl]=Afbeeldingen (GIF, PNG, BMP, ...)
 Name[pt]=Imagens (GIF, PNG, BMP, ...)
 Name[sv]=Bilder (GIF, PNG, BMP, ...)
