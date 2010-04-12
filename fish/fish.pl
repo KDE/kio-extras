@@ -335,7 +335,7 @@ sub filetype {
 
     $result .= ' ';
     $result .= (getpwuid($uid)||$uid);
-    $result .= '.';
+    $result .= ':';
     $result .= (getgrgid($gid)||$gid);
     $result .= "\n";
     return $result;

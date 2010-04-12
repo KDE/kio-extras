@@ -959,7 +959,7 @@ void fishProtocol::manageConnection(const QString &l) {
                     if (line[10] == 'T' || line[10] == 't') accessVal |= S_ISVTX;
                     udsEntry.insert(KIO::UDSEntry::UDS_ACCESS, accessVal);
 
-                    pos = line.indexOf('.',12);
+                    pos = line.indexOf(':',12);
                     if (pos < 0) {
                         errorCount++;
                         break;
