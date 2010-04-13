@@ -1,6 +1,7 @@
 [Desktop Entry]
 Type=Service
 Name=Images (GIF, PNG, BMP, ...)
+Name[es]=Imágenes (GIF, PNG, BMP...)
 Name[kk]=Кескіндер (GIF, PNG, BMP, ...)
 Name[lt]=Vaizdai (GIF, PNG, BMP, ...)
 Name[nb]=Bilder (GIF, PNG, BMP, …)
@@ -11,6 +12,7 @@ Name[sv]=Bilder (GIF, PNG, BMP, ...)
 Name[tg]=Тасвирҳо (GIF, PNG, BMP, ...)
 Name[uk]=Зображення (GIF, PNG, BMP…)
 Name[x-test]=xxImages (GIF, PNG, BMP, ...)xx
+Name[zh_TW]=影像（GIF、PNG、BMP...）
 X-KDE-ServiceTypes=ThumbCreator
 MimeType=image/cgm;image/fax-g3;image/gif;image/jp2;image/png;image/tiff;image/bmp;image/x-dds;image/x-ico;image/x-jng;image/x-pcx;image/x-photo-cd;image/x-portable-bitmap;image/x-portable-graymap;image/x-portable-pixmap;image/x-rgb;image/x-tga;image/x-wmf;image/x-xbitmap;image/x-xcf;image/x-xfig;image/x-xpixmap;
 X-KDE-Library=imagethumbnail
