@@ -35,6 +35,7 @@ Name[hne]=गूगल (आज मोर किसमत चमकत हे)
 Name[hr]=Google (osjećam se sretnim)
 Name[hsb]=Google (I'm Feeling Lucky)
 Name[hu]=Google (Jó napom van)
+Name[ia]=Google (Io sente me fortunate)
 Name[id]=Google (Saya Lagi Beruntung)
 Name[is]=Google (Ég er heppin(n) í dag)
 Name[it]=Google (mi sento fortunato)
@@ -123,6 +124,7 @@ Query[hne]=http://www.google.com/search?q=\\{@}&btnI=I%27m+Feeling+Lucky&ie=UTF-
 Query[hr]=http://www.google.com/search?q=\\{@}&btnI=I%27m+Feeling+Lucky&ie=UTF-8&oe=UTF-8
 Query[hsb]=http://www.google.com/search?q=\\{@}&btnI=I%27m+Feeling+Lucky&ie=UTF-8&oe=UTF-8
 Query[hu]=http://www.google.com/search?q=\\{@}&btnI=I%27m+Feeling+Lucky&ie=UTF-8&oe=UTF-8
+Query[ia]=http://www.google.com/search?q=\\{@}&btnI=I%27m+Feeling+Lucky&ie=UTF-8&oe=UTF-8
 Query[id]=http://www.google.com/search?q=\\{@}&btnI=I%27m+Feeling+Lucky&ie=UTF-8&oe=UTF-8
 Query[is]=http://www.google.com/search?q=\\{@}&btnI=I%27m+Feeling+Lucky&ie=UTF-8&oe=UTF-8
 Query[it]=http://www.google.it/search?q=\\{@}&btnI=I%27m+Feeling+Lucky&ie=UTF-8&oe=UTF-8

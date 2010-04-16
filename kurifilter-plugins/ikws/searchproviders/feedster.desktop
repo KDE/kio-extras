@@ -35,6 +35,7 @@ Name[hne]=फीडस्टर
 Name[hr]=Feedster
 Name[hsb]=Feedster
 Name[hu]=Feedster
+Name[ia]=Feedster
 Name[id]=Feedster
 Name[is]=Feedster
 Name[it]=Feedster
@@ -122,6 +123,7 @@ Query[hne]=http://www.feedster.com/search.php?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[hr]=http://www.feedster.com/search.php?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[hsb]=http://www.feedster.com/search.php?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[hu]=http://www.feedster.com/search.php?q=\\{@}&ie=UTF-8&oe=UTF-8
+Query[ia]=http://www.feedster.com/search.php?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[id]=http://www.feedster.com/search.php?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[is]=http://www.feedster.com/search.php?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[it]=http://www.feedster.com/search.php?q=\\{@}&ie=UTF-8&oe=UTF-8

@@ -36,6 +36,7 @@ Name[hne]=हायपर-डिक्सनरी.काम समांतर 
 Name[hr]=HyperDictionary.com rječnik sinonima
 Name[hsb]=HyperDictionary.com tesawrus
 Name[hu]=HyperDictionary.com szinonimaszótár
+Name[ia]=HyperDictionary.com Thesauro
 Name[id]=Tesaurus HyperDictionary.com
 Name[is]=HyperDictionary.com samheitaorðabók
 Name[it]=Dizionario dei sinonimi e contrari HyperDictionary.com
@@ -123,6 +124,7 @@ Query[hne]=http://www.hyperdictionary.com/search.aspx?Dict=T&define=\\{@}
 Query[hr]=http://www.hyperdictionary.com/search.aspx?Dict=T&define=\\{@}
 Query[hsb]=http://www.hyperdictionary.com/search.aspx?Dict=T&define=\\{@}
 Query[hu]=http://www.hyperdictionary.com/search.aspx?Dict=T&define=\\{@}
+Query[ia]=http://www.hyperdictionary.com/search.aspx?Dict=T&define=\\{@}
 Query[id]=http://www.hyperdictionary.com/search.aspx?Dict=T&define=\\{@}
 Query[is]=http://www.hyperdictionary.com/search.aspx?Dict=T&define=\\{@}
 Query[it]=http://www.hyperdictionary.com/search.aspx?Dict=T&define=\\{@}

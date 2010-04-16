@@ -36,6 +36,7 @@ Name[hne]=रूबी अनुपरयोग आर्काइव
 Name[hr]=Arhiva Ruby aplikacija
 Name[hsb]=Ruby-archiw programow
 Name[hu]=Ruby alkalmazásarchívum
+Name[ia]=Archivo de Application de Ruby
 Name[id]=Arsip Aplikasi Ruby
 Name[is]=Ruby Application Archive
 Name[it]=Archivio di applicazioni Ruby
@@ -122,6 +123,7 @@ Query[hne]=http://www.ruby-lang.org/en/raa-list.rhtml?name=\\{@}
 Query[hr]=http://www.ruby-lang.org/en/raa-list.rhtml?name=\\{@}
 Query[hsb]=http://www.ruby-lang.org/en/raa-list.rhtml?name=\\{@}
 Query[hu]=http://www.ruby-lang.org/en/raa-list.rhtml?name=\\{@}
+Query[ia]=http://www.ruby-lang.org/en/raa-list.rhtml?name=\\{@}
 Query[id]=http://www.ruby-lang.org/en/raa-list.rhtml?name=\\{@}
 Query[is]=http://www.ruby-lang.org/en/raa-list.rhtml?name=\\{@}
 Query[it]=http://www.ruby-lang.org/en/raa-list.rhtml?name=\\{@}

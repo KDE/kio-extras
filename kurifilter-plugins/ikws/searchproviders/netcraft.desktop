@@ -35,6 +35,7 @@ Name[hne]=नेटक्राफ्ट
 Name[hr]=Netcraft
 Name[hsb]=Netcraft
 Name[hu]=Netcraft
+Name[ia]=Netcraft
 Name[id]=Netcraft
 Name[is]=Netcraft
 Name[it]=Netcraft
@@ -122,6 +123,7 @@ Query[hne]=http://uptime.netcraft.com/up/graph?site=\\{@}
 Query[hr]=http://uptime.netcraft.com/up/graph?site=\\{@}
 Query[hsb]=http://uptime.netcraft.com/up/graph?site=\\{@}
 Query[hu]=http://uptime.netcraft.com/up/graph?site=\\{@}
+Query[ia]=http://uptime.netcraft.com/up/graph?site=\\{@}
 Query[id]=http://uptime.netcraft.com/up/graph?site=\\{@}
 Query[is]=http://uptime.netcraft.com/up/graph?site=\\{@}
 Query[it]=http://uptime.netcraft.com/up/graph?site=\\{@}

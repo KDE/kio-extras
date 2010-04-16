@@ -33,6 +33,7 @@ Name[hne]=मल्टीट्रान - फ्रांसीसी अउ �
 Name[hr]=Multitran – Prevođenje između francuskog i ruskog
 Name[hsb]=Multitran - přełožowanje z francošćiny a rušćiny
 Name[hu]=Multitran - Fordítás franciáról oroszra (mindkét irányban)
+Name[ia]=Multitran - Traduce inter Francese e Russo
 Name[id]=Multitran - Penerjemahan Antara Bahasa Perancis dan Rusia
 Name[is]=Multitran - Þýða á milli frönsku og rússnesku
 Name[it]=Multitran - Traduzioni tra francese e russo
@@ -111,6 +112,7 @@ Query[hne]=http://multitran.ru/c/m.exe?l1=4&s=\\{@}
 Query[hr]=http://multitran.ru/c/m.exe?l1=4&s=\\{@}
 Query[hsb]=http://multitran.ru/c/m.exe?l1=4&s=\\{@}
 Query[hu]=http://multitran.ru/c/m.exe?l1=4&s=\\{@}
+Query[ia]=http://multitran.ru/c/m.exe?l1=4&s=\\{@}
 Query[id]=http://multitran.ru/c/m.exe?l1=4&s=\\{@}
 Query[is]=http://multitran.ru/c/m.exe?l1=4&s=\\{@}
 Query[it]=http://multitran.ru/c/m.exe?l1=4&s=\\{@}

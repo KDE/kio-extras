@@ -34,6 +34,7 @@ Name[hne]=लिओ - फ्रांसीसी अउ जर्मनी क�
 Name[hr]=LEO – Prevođenje između francuskog i njemačkog
 Name[hsb]=LEO -  přełožowanje z francošćiny a němčiny
 Name[hu]=LEO - Fordítás franciáról németre (mindkét irányban)
+Name[ia]=LEO - Traduce inter Francese e Germano
 Name[id]=LEO - Penerjemahan Antara Bahasa Perancis dan Jerman
 Name[is]=LEO - Þýða á milli frönsku og þýsku
 Name[it]=LEO - Traduzione dal francese al tedesco
@@ -120,6 +121,7 @@ Query[hne]=http://dict.leo.org/?lp=frde&search=\\{@}
 Query[hr]=http://dict.leo.org/?lp=frde&search=\\{@}
 Query[hsb]=http://dict.leo.org/?lp=frde&search=\\{@}
 Query[hu]=http://dict.leo.org/?lp=frde&search=\\{@}
+Query[ia]=http://dict.leo.org/?lp=frde&search=\\{@}
 Query[id]=http://dict.leo.org/?lp=frde&search=\\{@}
 Query[is]=http://dict.leo.org/?lp=frde&search=\\{@}
 Query[it]=http://dict.leo.org/?lp=frde&search=\\{@}

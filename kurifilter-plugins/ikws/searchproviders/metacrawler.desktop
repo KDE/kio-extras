@@ -35,6 +35,7 @@ Name[hne]=मेटा-क्राउलर
 Name[hr]=MetaCrawler
 Name[hsb]=MetaCrawler
 Name[hu]=MetaCrawler
+Name[ia]=MetaCrawler
 Name[id]=MetaCrawler
 Name[is]=MetaCrawler
 Name[it]=MetaCrawler
@@ -123,6 +124,7 @@ Query[hne]=http://search.metacrawler.com/crawler?general=\\{@}&method=0&cat=Web&
 Query[hr]=http://search.metacrawler.com/crawler?general=\\{@}&method=0&cat=Web&target=metaworld&redirect=web&rpp=20&hpe=10&region=0&timeout=0&sort=0&format=beta99&theme=classic&refer=mc-search&refer=mc-search
 Query[hsb]=http://search.metacrawler.com/crawler?general=\\{@}&method=0&cat=Web&target=metaworld&redirect=web&rpp=20&hpe=10&region=0&timeout=0&sort=0&format=beta99&theme=classic&refer=mc-search&refer=mc-search
 Query[hu]=http://search.metacrawler.com/crawler?general=\\{@}&method=0&cat=Web&target=metaworld&redirect=web&rpp=20&hpe=10&region=0&timeout=0&sort=0&format=beta99&theme=classic&refer=mc-search&refer=mc-search
+Query[ia]=http://search.metacrawler.com/crawler?general=\\{@}&method=0&cat=Web&target=metaworld&redirect=web&rpp=20&hpe=10&region=0&timeout=0&sort=0&format=beta99&theme=classic&refer=mc-search&refer=mc-search
 Query[id]=http://search.metacrawler.com/crawler?general=\\{@}&method=0&cat=Web&target=metaworld&redirect=web&rpp=20&hpe=10&region=0&timeout=0&sort=0&format=beta99&theme=classic&refer=mc-search&refer=mc-search
 Query[is]=http://search.metacrawler.com/crawler?general=\\{@}&method=0&cat=Web&target=metaworld&redirect=web&rpp=20&hpe=10&region=0&timeout=0&sort=0&format=beta99&theme=classic&refer=mc-search&refer=mc-search
 Query[it]=http://search.metacrawler.com/crawler?general=\\{@}&method=0&cat=Web&target=metaworld&redirect=web&rpp=20&hpe=10&region=0&timeout=0&sort=0&format=beta99&theme=classic&refer=mc-search&refer=mc-search

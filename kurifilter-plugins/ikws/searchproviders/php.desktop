@@ -36,6 +36,7 @@ Name[hne]=पीएचपी खोज
 Name[hr]=PHP pretraživanje
 Name[hsb]=PHP pytanje
 Name[hu]=PHP Search
+Name[ia]=cerca PHP
 Name[id]=Pencarian PHP
 Name[is]=PHP leit
 Name[it]=Ricerca PHP
@@ -97,6 +98,7 @@ Query[en_GB]=http://www.php.net/manual-lookup.php?pattern=\\{@}
 Query[es]=http://www.php.net/manual-lookup.php?pattern=\\{@}
 Query[et]=http://www.php.net/manual-lookup.php?pattern=\\{@}
 Query[hr]=http://www.php.net/manual-lookup.php?pattern=\\{@}
+Query[ia]=http://www.php.net/manual-lookup.php?pattern=\\{@}
 Query[kk]=http://www.php.net/manual-lookup.php?pattern=\\{@}
 Query[km]=http://www.php.net/manual-lookup.php?pattern=\\{@}
 Query[lt]=http://www.php.net/manual-lookup.php?pattern=\\{@}
@@ -112,6 +114,7 @@ Query[sr@latin]=http://www.php.net/manual-lookup.php?pattern=\\{@}
 Query[sv]=http://www.php.net/manual-lookup.php?pattern=\\{@}
 Query[tg]=http://www.php.net/manual-lookup.php?pattern=\\{@}
 Query[th]=http://www.php.net/manual-lookup.php?pattern=\\{@}
+Query[tr]=http://www.php.net/manual-lookup.php?pattern=\\{@}
 Query[uk]=http://www.php.net/manual-lookup.php?pattern=\\{@}
 Query[x-test]=xxhttp://www.php.net/manual-lookup.php?pattern=\\{@}xx
 Query[zh_TW]=http://www.php.net/manual-lookup.php?pattern=\\{@}"}&pattern=\\{@}

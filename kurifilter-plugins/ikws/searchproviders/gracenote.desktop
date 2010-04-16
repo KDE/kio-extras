@@ -35,6 +35,7 @@ Name[hne]=ग्रेसनोट
 Name[hr]=Gracenote
 Name[hsb]=Gracenote
 Name[hu]=Gracenote
+Name[ia]=Gracenote
 Name[id]=Gracenote
 Name[is]=Gracenote
 Name[it]=Gracenote
@@ -122,6 +123,7 @@ Query[hne]=http://www.gracenote.com/music/search-adv.html?q=\\{@}
 Query[hr]=http://www.gracenote.com/music/search-adv.html?q=\\{@}
 Query[hsb]=http://www.gracenote.com/music/search-adv.html?q=\\{@}
 Query[hu]=http://www.gracenote.com/music/search-adv.html?q=\\{@}
+Query[ia]=http://www.gracenote.com/music/search-adv.html?q=\\{@}
 Query[id]=http://www.gracenote.com/music/search-adv.html?q=\\{@}
 Query[is]=http://www.gracenote.com/music/search-adv.html?q=\\{@}
 Query[it]=http://www.gracenote.com/music/search-adv.html?q=\\{@}

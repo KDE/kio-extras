@@ -35,6 +35,7 @@ Name[hne]=केडीई बग डाटाबेस पूरा-पाठ �
 Name[hr]=Pretraga KDE baze podataka o nedostacima pomoću potpunog teksta
 Name[hsb]=KDE Bug Database Fulltext Search
 Name[hu]=A KDE hibaadatbázis teljes szöveges keresési eszköze
+Name[ia]=cerca de KDE Bug Database Fulltext
 Name[id]=Pencarian Teks Lengkap Basis Data Kutu KDE
 Name[is]=Leit eftir orðum í KDE villugagnagrunni
 Name[it]=Ricerca del testo completo nella banca dati degli errori di KDE
@@ -111,6 +112,7 @@ Query[he]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[hi]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[hr]=http://bugs.kde.org/show_bug.cgi?id=\\{@}
 Query[hu]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
+Query[ia]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[id]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[is]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[it]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}

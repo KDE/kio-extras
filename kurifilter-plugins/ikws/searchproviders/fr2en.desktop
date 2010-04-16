@@ -37,6 +37,7 @@ Name[hne]=वर्डरेफरेंस.काम अनुवादः फ�
 Name[hr]=WordReference.com Prijevod: francuski na engleski
 Name[hsb]=WordReference.com přełožowanje: francosce -> jendźelsce
 Name[hu]=WordReference.com fordítás: franciáról angolra
+Name[ia]=WordReference.com Traduction: Francese a Anglese
 Name[id]=Terjemahan WordReference.com: Bahasa Perancis ke Inggris
 Name[is]=WordReference.com þýðing: Frönsk/ensk
 Name[it]=Traduzione WordReference.com: dal francese all'inglese
@@ -120,6 +121,7 @@ Query[hne]=http://www.wordreference.com/fr/en/translation.asp?fren=\\{@}
 Query[hr]=http://www.wordreference.com/fr/en/translation.asp?fren=\\{@}
 Query[hsb]=http://www.wordreference.com/fr/en/translation.asp?fren=\\{@}
 Query[hu]=http://www.wordreference.com/fr/en/translation.asp?fren=\\{@}
+Query[ia]=http://www.wordreference.com/fr/en/translation.asp?fren=\\{@}
 Query[id]=http://www.wordreference.com/fr/en/translation.asp?fren=\\{@}
 Query[is]=http://www.wordreference.com/fr/en/translation.asp?fren=\\{@}
 Query[it]=http://www.wordreference.com/fr/en/translation.asp?fren=\\{@}

@@ -39,6 +39,7 @@ Name[hne]=केडीई एपीआई कागद
 Name[hr]=KDE API dokumentacija
 Name[hsb]=KDE API-dokumentacija
 Name[hu]=A KDE API dokumentációja
+Name[ia]=Documentation de KDE API 
 Name[id]=Dokumentasi API KDE
 Name[is]=KDE forritunarviðmótsleiðbeiningar
 Name[it]=Documentazione dell'API di KDE
@@ -121,6 +122,7 @@ Query[hne]=http://api.kde.org/classmapper.php?class=\\{@}
 Query[hr]=http://api.kde.org/classmapper.php?class=\\{@}
 Query[hsb]=http://api.kde.org/classmapper.php?class=\\{@}
 Query[hu]=http://api.kde.org/classmapper.php?class=\\{@}
+Query[ia]=http://api.kde.org/classmapper.php?class=\\{@}
 Query[id]=http://api.kde.org/classmapper.php?class=\\{@}
 Query[is]=http://api.kde.org/classmapper.php?class=\\{@}
 Query[it]=http://api.kde.org/classmapper.php?class=\\{@}

@@ -35,6 +35,7 @@ Name[hne]=टेक्नोराती टैग्स
 Name[hr]=Technorati oznake
 Name[hsb]=Technorati Tags
 Name[hu]=Technorati Tags
+Name[ia]=Technorati Tags
 Name[id]=Tag Technorati
 Name[is]=Technorati tög
 Name[it]=Etichette di technorati
@@ -119,6 +120,7 @@ Query[hne]=http://technorati.com/tag/\\{@}?sourceid=kde-search
 Query[hr]=http://technorati.com/tag/\\{@}?sourceid=kde-search
 Query[hsb]=http://technorati.com/tag/\\{@}?sourceid=kde-search
 Query[hu]=http://technorati.com/tag/\\{@}?sourceid=kde-search
+Query[ia]=http://technorati.com/tag/\\{@}?sourceid=kde-search
 Query[id]=http://technorati.com/tag/\\{@}?sourceid=kde-search
 Query[is]=http://technorati.com/tag/\\{@}?sourceid=kde-search
 Query[it]=http://technorati.com/tag/\\{@}?sourceid=kde-search

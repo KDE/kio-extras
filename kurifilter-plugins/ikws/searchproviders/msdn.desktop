@@ -35,6 +35,7 @@ Name[hne]=माइक्रोसाफ्ट डेवलपर नेटव�
 Name[hr]=Microsoft Developer Network pretraga
 Name[hsb]=Microsoft Developer Network Search
 Name[hu]=Microsoft Developer Network Search
+Name[ia]=Microsoft Developer Network Search
 Name[id]=Pencarian Jaringan Pengembang Microsoft
 Name[is]=Microsoft Developer Network leit
 Name[it]=Ricerca su Microsoft Developer Network
@@ -122,6 +123,7 @@ Query[hne]=http://msdn.microsoft.com/library/shared/searchtab/searchHandoff.asp?
 Query[hr]=http://msdn.microsoft.com/library/shared/searchtab/searchHandoff.asp?handoffurl=%2Fisapi%2Fgosearch.asp%3FTARGET%3D%2Fus%2Fdev%2Fdefault.asp&stcfg=d%3A%2Fhttp%2Fcnfg.xml&qu=\\{@}&btnSearch=GO
 Query[hsb]=http://msdn.microsoft.com/library/shared/searchtab/searchHandoff.asp?handoffurl=%2Fisapi%2Fgosearch.asp%3FTARGET%3D%2Fus%2Fdev%2Fdefault.asp&stcfg=d%3A%2Fhttp%2Fcnfg.xml&qu=\\{@}&btnSearch=GO
 Query[hu]=http://msdn.microsoft.com/library/shared/searchtab/searchHandoff.asp?handoffurl=%2Fisapi%2Fgosearch.asp%3FTARGET%3D%2Fus%2Fdev%2Fdefault.asp&stcfg=d%3A%2Fhttp%2Fcnfg.xml&qu=\\{@}&btnSearch=GO
+Query[ia]=http://msdn.microsoft.com/library/shared/searchtab/searchHandoff.asp?handoffurl=%2Fisapi%2Fgosearch.asp%3FTARGET%3D%2Fus%2Fdev%2Fdefault.asp&stcfg=d%3A%2Fhttp%2Fcnfg.xml&qu=\\{@}&btnSearch=GO
 Query[id]=http://msdn.microsoft.com/library/shared/searchtab/searchHandoff.asp?handoffurl=%2Fisapi%2Fgosearch.asp%3FTARGET%3D%2Fus%2Fdev%2Fdefault.asp&stcfg=d%3A%2Fhttp%2Fcnfg.xml&qu=\\{@}&btnSearch=GO
 Query[is]=http://msdn.microsoft.com/library/shared/searchtab/searchHandoff.asp?handoffurl=%2Fisapi%2Fgosearch.asp%3FTARGET%3D%2Fus%2Fdev%2Fdefault.asp&stcfg=d%3A%2Fhttp%2Fcnfg.xml&qu=\\{@}&btnSearch=GO
 Query[it]=http://msdn.microsoft.com/library/shared/searchtab/searchHandoff.asp?handoffurl=%2Fisapi%2Fgosearch.asp%3FTARGET%3D%2Fus%2Fdev%2Fdefault.asp&stcfg=d%3A%2Fhttp%2Fcnfg.xml&qu=\\{@}&btnSearch=GO

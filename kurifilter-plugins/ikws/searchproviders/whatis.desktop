@@ -36,6 +36,7 @@ Name[hne]=व्हाट-इज क्वेरी
 Name[hr]=Whatis propitivanje
 Name[hsb]=Whatis Query
 Name[hu]=Whatis-lekérdezés
+Name[ia]=Whatis Query : Whatis Demanda
 Name[id]=Tanya Whatis
 Name[is]=Whatis fyrirspurn
 Name[it]=Richiesta Whatis
@@ -94,6 +95,7 @@ Query[en_GB]=http://whatis.techtarget.com/wsearchResultsB/0,,sid9,00.html?query=
 Query[es]=http://whatis.techtarget.com/wsearchResultsB/0,,sid9,00.html?query=\\{@}
 Query[et]=http://whatis.techtarget.com/wsearchResultsB/0,,sid9,00.html?query=\\{@}
 Query[hr]=http://whatis.techtarget.com/wsearchResultsB/0,,sid9,00.html?query=\\{@}
+Query[ia]=http://whatis.techtarget.com/wsearchResultsB/0,,sid9,00.html?query=\\{@}
 Query[kk]=http://whatis.techtarget.com/wsearchResultsB/0,,sid9,00.html?query=\\{@}
 Query[km]=http://whatis.techtarget.com/wsearchResultsB/0,,sid9,00.html?query=\\{@}
 Query[lt]=http://whatis.techtarget.com/wsearchResultsB/0,,sid9,00.html?query=\\{@}
@@ -105,6 +107,7 @@ Query[pt_BR]=http://whatis.techtarget.com/wsearchResultsB/0,,sid9,00.html?query=
 Query[sv]=http://whatis.techtarget.com/wsearchResultsB/0,,sid9,00.html?query=\\{@}
 Query[tg]=http://whatis.techtarget.com/wsearchResultsB/0,,sid9,00.html?query=\\{@}
 Query[th]=http://whatis.techtarget.com/wsearchResultsB/0,,sid9,00.html?query=\\{@}
+Query[tr]=http://whatis.techtarget.com/wsearchResultsB/0,,sid9,00.html?query=\\{@}
 Query[uk]=http://whatis.techtarget.com/wsearchResultsB/0,,sid9,00.html?query=\\{@}
 Query[x-test]=xxhttp://whatis.techtarget.com/wsearchResultsB/0,,sid9,00.html?query=\\{@}xx
 Query[zh_TW]=http://whatis.techtarget.com/wsearchResultsB/0,,sid9,00.html?query=\\{@}

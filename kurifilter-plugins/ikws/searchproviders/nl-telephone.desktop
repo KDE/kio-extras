@@ -33,6 +33,7 @@ Name[hne]=टेलिफोनबुक खोज देवइया
 Name[hr]=Davatelj usluge pretraživanja imenika
 Name[hsb]=Prowider za pytanje w telefonskich knihach
 Name[hu]=Telefonkönyv (NL)
+Name[ia]=Fornitor de cerca Telephonebook
 Name[id]=Penyedia Pencarian Buku Telepon
 Name[is]=Leitarvél fyrir símaskrár
 Name[it]=Motore di ricerca dell'elenco telefonico
@@ -118,6 +119,7 @@ Query[hne]=http://www.detelefoongids.nl/tginl.dll?action=white&type=search&name=
 Query[hr]=http://www.detelefoongids.nl/tginl.dll?action=white&type=search&name=\\{1}&city=\\{2}
 Query[hsb]=http://www.detelefoongids.nl/tginl.dll?action=white&type=search&name=\\{1}&city=\\{2}
 Query[hu]=http://www.detelefoongids.nl/tginl.dll?action=white&type=search&name=\\{1}&city=\\{2}
+Query[ia]=http://www.detelefoongids.nl/tginl.dll?action=white&type=search&name=\\{1}&city=\\{2}
 Query[id]=http://www.detelefoongids.nl/tginl.dll?action=white&type=search&name=\\{1}&city=\\{2}
 Query[is]=http://www.detelefoongids.nl/tginl.dll?action=white&type=search&name=\\{1}&city=\\{2}
 Query[it]=http://www.detelefoongids.nl/tginl.dll?action=white&type=search&name=\\{1}&city=\\{2}

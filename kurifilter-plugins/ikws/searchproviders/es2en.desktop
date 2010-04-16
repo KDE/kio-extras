@@ -37,6 +37,7 @@ Name[hne]=वर्डरेफरेंस.काम अनुवादः स�
 Name[hr]=WordReference.com Prijevod: španjolski na engleski
 Name[hsb]=WordReference.com přełožowanje: španisce -> jendźelsce
 Name[hu]=WordReference.com fordítás: spanyolról angolra
+Name[ia]=WordReference.com Traduction: Espaniol a Anglese
 Name[id]=Terjemahan WordReference.com: Bahasa Spanyol ke Inggris
 Name[is]=WordReference.com þýðing: Spönsk/ensk
 Name[it]=Traduzione WordReference.com: dallo spagnolo all'inglese
@@ -120,6 +121,7 @@ Query[hne]=http://www.wordreference.com/es/en/translation.asp?spen=\\{@}
 Query[hr]=http://www.wordreference.com/es/en/translation.asp?spen=\\{@}
 Query[hsb]=http://www.wordreference.com/es/en/translation.asp?spen=\\{@}
 Query[hu]=http://www.wordreference.com/es/en/translation.asp?spen=\\{@}
+Query[ia]=http://www.wordreference.com/es/en/translation.asp?spen=\\{@}
 Query[id]=http://www.wordreference.com/es/en/translation.asp?spen=\\{@}
 Query[is]=http://www.wordreference.com/es/en/translation.asp?spen=\\{@}
 Query[it]=http://www.wordreference.com/es/en/translation.asp?spen=\\{@}

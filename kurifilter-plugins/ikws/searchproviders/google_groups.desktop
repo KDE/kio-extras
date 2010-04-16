@@ -36,6 +36,7 @@ Name[hne]=गूगल समूह
 Name[hr]=Google Grupe
 Name[hsb]=Google Groups
 Name[hu]=Google Groups
+Name[ia]=Google Groups : Gruppos de Google
 Name[id]=Google Grup
 Name[is]=Google - Ráðstefnur
 Name[it]=Google gruppi
@@ -125,6 +126,7 @@ Query[hne]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
 Query[hr]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
 Query[hsb]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
 Query[hu]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
+Query[ia]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
 Query[id]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
 Query[is]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
 Query[it]=http://groups.google.it/groups?oi=djq&as_q=\\{@}

@@ -36,6 +36,7 @@ Name[hne]=dict.cc अनुवादः अंगरेजी से जर्�
 Name[hr]=dict.cc Prijevod: engleski na njemački
 Name[hsb]=dict.cc přełožowanje: jendźelsce -> němsce
 Name[hu]=Dict.cc - Fordítás angolról németre
+Name[ia]=dict.cc Traduction: Anglese a Germano
 Name[id]=Terjemahan dict.cc: Bahasa Inggris ke Jerman
 Name[is]=dict.cc Þýðing: Enska í þýsku
 Name[it]=Traduzione dict.cc: dall'inglese al tedesco
@@ -120,6 +121,7 @@ Query[hne]=http://www.dict.cc/?s=\\{@}
 Query[hr]=http://www.dict.cc/?s=\\{@}
 Query[hsb]=http://www.dict.cc/?s=\\{@}
 Query[hu]=http://www.dict.cc/?s=\\{@}
+Query[ia]=http://www.dict.cc/?s=\\{@}
 Query[id]=http://www.dict.cc/?s=\\{@}
 Query[is]=http://www.dict.cc/?s=\\{@}
 Query[it]=http://www.dict.cc/?s=\\{@}

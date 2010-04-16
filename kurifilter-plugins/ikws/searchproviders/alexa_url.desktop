@@ -98,6 +98,7 @@ Query[en_GB]=http://www.alexa.com/data/details?url=\\{@}
 Query[es]=http://www.alexa.com/data/details?url=\\{@}
 Query[et]=http://www.alexa.com/data/details?url=\\{@}
 Query[hr]=http://www.alexa.com/data/details?url=\\{@}
+Query[ia]=http://www.alexa.com/data/details?url=\\{@}
 Query[kk]=http://www.alexa.com/data/details?url=\\{@}
 Query[km]=http://www.alexa.com/data/details?url=\\{@}
 Query[lt]=http://www.alexa.com/data/details?url=\\{@}
@@ -109,6 +110,7 @@ Query[pt_BR]=http://www.alexa.com/data/details?url=\\{@}
 Query[sv]=http://www.alexa.com/data/details?url=\\{@}
 Query[tg]=http://www.alexa.com/data/details?url=\\{@}
 Query[th]=http://www.alexa.com/data/details?url=\\{@}
+Query[tr]=http://www.alexa.com/data/details?url=\\{@}
 Query[uk]=http://www.alexa.com/data/details?url=\\{@}
 Query[x-test]=xxhttp://www.alexa.com/data/details?url=\\{@}xx
 Query[zh_TW]=http://www.alexa.com/data/details?url=\\{@}

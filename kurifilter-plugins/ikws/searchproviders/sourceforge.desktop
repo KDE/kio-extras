@@ -35,6 +35,7 @@ Name[hne]=सोर्स-फोर्ज
 Name[hr]=SourceForge
 Name[hsb]=SourceForge
 Name[hu]=SourceForge
+Name[ia]=SourceForge
 Name[id]=SourceForge
 Name[is]=SourceForge
 Name[it]=SourceForge
@@ -120,6 +121,7 @@ Query[hne]=http://sourceforge.net/search/?type_of_search=\\{type,"soft"}&exact=\
 Query[hr]=http://sourceforge.net/search/?type_of_search=\\{type,"soft"}&exact=\\{exact,"0"}&words=\\{@}
 Query[hsb]=http://sourceforge.net/search/?type_of_search=\\{type,"soft"}&exact=\\{exact,"0"}&words=\\{@}
 Query[hu]=http://sourceforge.net/search/?type_of_search=\\{type,"soft"}&exact=\\{exact,"0"}&words=\\{@}
+Query[ia]=http://sourceforge.net/search/?type_of_search=\\{type,"soft"}&exact=\\{exact,"0"}&words=\\{@}
 Query[id]=http://sourceforge.net/search/?type_of_search=\\{type,"soft"}&exact=\\{exact,"0"}&words=\\{@}
 Query[is]=http://sourceforge.net/search/?type_of_search=\\{type,"soft"}&exact=\\{exact,"0"}&words=\\{@}
 Query[it]=http://sourceforge.net/search/?type_of_search=\\{type,"soft"}&exact=\\{exact,"0"}&words=\\{@}

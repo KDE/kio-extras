@@ -35,6 +35,7 @@ Name[hne]=फ्रेसमीट
 Name[hr]=Freshmeat
 Name[hsb]=Freshmeat
 Name[hu]=Freshmeat
+Name[ia]=Freshmeat
 Name[id]=Freshmeat
 Name[is]=Freshmeat
 Name[it]=Freshmeat
@@ -123,6 +124,7 @@ Query[hne]=http://freshmeat.net/search/?q=\\{@}
 Query[hr]=http://freshmeat.net/search/?q=\\{@}
 Query[hsb]=http://freshmeat.net/search/?q=\\{@}
 Query[hu]=http://freshmeat.net/search/?q=\\{@}
+Query[ia]=http://freshmeat.net/search/?q=\\{@}
 Query[id]=http://freshmeat.net/search/?q=\\{@}
 Query[is]=http://freshmeat.net/search/?q=\\{@}
 Query[it]=http://freshmeat.net/search/?q=\\{@}

@@ -7,6 +7,7 @@ Name[en_GB]=YouTube
 Name[es]=YouTube
 Name[et]=YouTube
 Name[hr]=YouTube
+Name[ia]=YouTube
 Name[kk]=YouTube
 Name[km]=YouTube
 Name[lt]=YouTube
@@ -18,6 +19,7 @@ Name[pt_BR]=YouTube
 Name[sv]=YouTube
 Name[tg]=YouTube
 Name[th]=บริการวีดิโอผ่าน YouTube
+Name[tr]=YouTube
 Name[uk]=YouTube
 Name[x-test]=xxYouTubexx
 Name[zh_TW]=YouTube
@@ -28,6 +30,7 @@ Query[en_GB]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[es]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[et]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[hr]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
+Query[ia]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[kk]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[km]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[lt]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f

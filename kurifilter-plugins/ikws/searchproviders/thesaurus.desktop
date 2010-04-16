@@ -36,6 +36,7 @@ Name[hne]=मरियम-वेबस्टर समांतर सब्द�
 Name[hr]=Merriam-Webster rječnik sinonima
 Name[hsb]=Merriam-Webster Thesaurus
 Name[hu]=Merriam-Webster szinonimaszótár
+Name[ia]=Merriam-Webster Thesauro
 Name[id]=Tesaurus Merriam-Webster
 Name[is]=Merriam-Webster samheitaorðabók
 Name[it]=Dizionario dei sinonimi e contrari Merriam-Webster
@@ -122,6 +123,7 @@ Query[hne]=http://www.m-w.com/cgi-bin/thesaurus?book=Thesaurus&va=\\{@}
 Query[hr]=http://www.m-w.com/cgi-bin/thesaurus?book=Thesaurus&va=\\{@}
 Query[hsb]=http://www.m-w.com/cgi-bin/thesaurus?book=Thesaurus&va=\\{@}
 Query[hu]=http://www.m-w.com/cgi-bin/thesaurus?book=Thesaurus&va=\\{@}
+Query[ia]=http://www.m-w.com/cgi-bin/thesaurus?book=Thesaurus&va=\\{@}
 Query[id]=http://www.m-w.com/cgi-bin/thesaurus?book=Thesaurus&va=\\{@}
 Query[is]=http://www.m-w.com/cgi-bin/thesaurus?book=Thesaurus&va=\\{@}
 Query[it]=http://www.m-w.com/cgi-bin/thesaurus?book=Thesaurus&va=\\{@}

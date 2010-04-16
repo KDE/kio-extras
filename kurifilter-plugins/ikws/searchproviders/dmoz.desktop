@@ -36,6 +36,7 @@ Name[hne]=ओपन डिरेक्टरी
 Name[hr]=Open Directory
 Name[hsb]=Zapisk wočinić
 Name[hu]=Open Directory
+Name[ia]=Aperi Directorio
 Name[id]=Buka Direktori
 Name[is]=Open Directory
 Name[it]=Open Directory
@@ -124,6 +125,7 @@ Query[hne]=http://search.dmoz.org/cgi-bin/search?search=\\{@}
 Query[hr]=http://search.dmoz.org/cgi-bin/search?search=\\{@}
 Query[hsb]=http://search.dmoz.org/cgi-bin/search?search=\\{@}
 Query[hu]=http://search.dmoz.org/cgi-bin/search?search=\\{@}
+Query[ia]=http://search.dmoz.org/cgi-bin/search?search=\\{@}
 Query[id]=http://search.dmoz.org/cgi-bin/search?search=\\{@}
 Query[is]=http://search.dmoz.org/cgi-bin/search?search=\\{@}
 Query[it]=http://search.dmoz.org/cgi-bin/search?search=\\{@}

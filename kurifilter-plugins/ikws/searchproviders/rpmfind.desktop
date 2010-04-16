@@ -36,6 +36,7 @@ Name[hne]=आरपीएम-फाइंड
 Name[hr]=RPM traženje
 Name[hsb]=RPM-Find
 Name[hu]=RPM-Find
+Name[ia]=RPM-Find
 Name[id]=RPM-Find
 Name[is]=RPM-leit
 Name[it]=Trova RPM
@@ -123,6 +124,7 @@ Query[hne]=http://www.rpmfind.net/linux/rpm2html/search.php?query=\\{@}
 Query[hr]=http://www.rpmfind.net/linux/rpm2html/search.php?query=\\{@}
 Query[hsb]=http://www.rpmfind.net/linux/rpm2html/search.php?query=\\{@}
 Query[hu]=http://www.rpmfind.net/linux/rpm2html/search.php?query=\\{@}
+Query[ia]=http://www.rpmfind.net/linux/rpm2html/search.php?query=\\{@}
 Query[id]=http://www.rpmfind.net/linux/rpm2html/search.php?query=\\{@}
 Query[is]=http://www.rpmfind.net/linux/rpm2html/search.php?query=\\{@}
 Query[it]=http://www.rpmfind.net/linux/rpm2html/search.php?query=\\{@}

@@ -35,6 +35,7 @@ Name[hne]=लिओ-अनुवाद
 Name[hr]=LEO-Prevođenje
 Name[hsb]=LEO-přełožowanje
 Name[hu]=LEO-Translate
+Name[ia]=LEO-Traduce
 Name[id]=LEO-Translate
 Name[is]=LEO-þýðandi
 Name[it]=Traduzioni LEO
@@ -123,6 +124,7 @@ Query[hne]=http://dict.leo.org/?search=\\{@}
 Query[hr]=http://dict.leo.org/?search=\\{@}
 Query[hsb]=http://dict.leo.org/?search=\\{@}
 Query[hu]=http://dict.leo.org/?search=\\{@}
+Query[ia]=http://dict.leo.org/?search=\\{@}
 Query[id]=http://dict.leo.org/?search=\\{@}
 Query[is]=http://dict.leo.org/?search=\\{@}
 Query[it]=http://dict.leo.org/?search=\\{@}

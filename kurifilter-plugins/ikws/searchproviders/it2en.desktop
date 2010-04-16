@@ -37,6 +37,7 @@ Name[hne]=वर्डरेफरेंस.काम अनुवादः इ�
 Name[hr]=WordReference.com Prijevod: talijanski na engleski
 Name[hsb]=WordReference.com přełožowanje: italsce -> jendźelsce
 Name[hu]=WordReference.com fordítás: olaszról angolra
+Name[ia]=WordReference.com Traduction: Italiano a Anglese
 Name[id]=Terjemahan WordReference.com: Bahasa Italia ke Inggris
 Name[is]=WordReference.com þýðing: Ítölsk/ensk
 Name[it]=Traduzione WordReference.com: dall'italiano all'inglese
@@ -120,6 +121,7 @@ Query[hne]=http://www.wordreference.com/it/en/translation.asp?iten=\\{@}
 Query[hr]=http://www.wordreference.com/it/en/translation.asp?iten=\\{@}
 Query[hsb]=http://www.wordreference.com/it/en/translation.asp?iten=\\{@}
 Query[hu]=http://www.wordreference.com/it/en/translation.asp?iten=\\{@}
+Query[ia]=http://www.wordreference.com/it/en/translation.asp?iten=\\{@}
 Query[id]=http://www.wordreference.com/it/en/translation.asp?iten=\\{@}
 Query[is]=http://www.wordreference.com/it/en/translation.asp?iten=\\{@}
 Query[it]=http://www.wordreference.com/it/en/translation.asp?iten=\\{@}

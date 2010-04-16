@@ -33,6 +33,7 @@ Name[hne]=मल्टीट्रान - इतालवी अउ रूस�
 Name[hr]=Multitran – Prevođenje između talijanskog i ruskog
 Name[hsb]=Multitran - přełožowanje z italšćiny a rušćiny
 Name[hu]=Multitran - Fordítás olaszról oroszra (mindkét irányban)
+Name[ia]=Multitran - Traduce inter Italiano e Russo
 Name[id]=Multitran - Penerjemahan Antara Bahasa Italia dan Rusia
 Name[is]=Multitran - Þýða á milli ítölsku og rússnesku
 Name[it]=Multitran - Traduzioni tra italiano e russo
@@ -111,6 +112,7 @@ Query[hne]=http://multitran.ru/c/m.exe?l1=23&s=\\{@}
 Query[hr]=http://multitran.ru/c/m.exe?l1=23&s=\\{@}
 Query[hsb]=http://multitran.ru/c/m.exe?l1=23&s=\\{@}
 Query[hu]=http://multitran.ru/c/m.exe?l1=23&s=\\{@}
+Query[ia]=http://multitran.ru/c/m.exe?l1=23&s=\\{@}
 Query[id]=http://multitran.ru/c/m.exe?l1=23&s=\\{@}
 Query[is]=http://multitran.ru/c/m.exe?l1=23&s=\\{@}
 Query[it]=http://multitran.ru/c/m.exe?l1=23&s=\\{@}

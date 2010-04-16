@@ -36,6 +36,7 @@ Name[hne]=गूगल फोटू खोज
 Name[hr]=Google pretraživanje slika
 Name[hsb]=Google pytanje za wobrazami
 Name[hu]=Google képkereső
+Name[ia]=Google Image Search : cerca de Image de Google
 Name[id]=Penelusuran Gambar Google
 Name[is]=Google - Myndaleit
 Name[it]=Ricerca di immagini di Google
@@ -125,6 +126,7 @@ Query[hne]=http://images.google.com/images?q=\\{@}
 Query[hr]=http://images.google.com/images?q=\\{@}
 Query[hsb]=http://images.google.com/images?q=\\{@}
 Query[hu]=http://images.google.com/images?q=\\{@}
+Query[ia]=http://images.google.com/images?q=\\{@}
 Query[id]=http://images.google.com/images?q=\\{@}
 Query[is]=http://images.google.com/images?q=\\{@}
 Query[it]=http://images.google.it/images?q=\\{@}

@@ -36,6 +36,7 @@ Name[hne]=गूगल समाचार
 Name[hr]=Google novosti
 Name[hsb]=Google nowiny
 Name[hu]=Google News
+Name[ia]=Google News - Novas de Google
 Name[id]=Google News
 Name[is]=Google fréttir
 Name[it]=Notizie di Google
@@ -124,6 +125,7 @@ Query[hne]=http://news.google.com/news?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[hr]=http://news.google.com/news?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[hsb]=http://news.google.com/news?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[hu]=http://news.google.com/news?q=\\{@}&ie=UTF-8&oe=UTF-8
+Query[ia]=http://news.google.com/news?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[id]=http://news.google.com/news?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[is]=http://news.google.com/news?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[it]=http://news.google.it/news?q=\\{@}&ie=UTF-8&oe=UTF-8

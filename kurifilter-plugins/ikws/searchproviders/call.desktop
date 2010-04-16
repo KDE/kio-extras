@@ -37,6 +37,7 @@ Name[hne]=QRZ.com काल-साइन डाटाबेस
 Name[hr]=QRZ.com baza podataka pozivnih znakova
 Name[hsb]=QRZ.com Callsign Database
 Name[hu]=QRZ.com hívójel-adatbázis
+Name[ia]=QRZ.com Callsign Database
 Name[id]=Basis Data Tanda Panggilan QRZ.com
 Name[is]=QRZ.com kallmerkjagrunnur
 Name[it]=Banca dati dei segnali di chiamata QRZ.com
@@ -120,6 +121,7 @@ Query[hne]=http://www.qrz.com/database?callsign=\\{@}
 Query[hr]=http://www.qrz.com/database?callsign=\\{@}
 Query[hsb]=http://www.qrz.com/database?callsign=\\{@}
 Query[hu]=http://www.qrz.com/database?callsign=\\{@}
+Query[ia]=http://www.qrz.com/database?callsign=\\{@}
 Query[id]=http://www.qrz.com/database?callsign=\\{@}
 Query[is]=http://www.qrz.com/database?callsign=\\{@}
 Query[it]=http://www.qrz.com/database?callsign=\\{@}

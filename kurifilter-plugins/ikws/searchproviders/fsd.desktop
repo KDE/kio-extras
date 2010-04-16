@@ -35,6 +35,7 @@ Name[hne]=एफएसएफ/यूनेस्को फ्री साफ्�
 Name[hr]=FSF/UNESCO mapa slobodnog softvera
 Name[hsb]=FSF/UNESCO Free Software Directory
 Name[hu]=FSF/UNESCO szabadszoftver-gyűjtemény
+Name[ia]=FSF/UNESCO Free Software Directory
 Name[id]=Direktori Peranti Lunak Gratis FSF/UNESCO
 Name[is]=FSF/UNESCO Free Software Directory
 Name[it]=Elenco di software libero di FSF e UNESCO
@@ -118,6 +119,7 @@ Query[hne]=http://directory.fsf.org/search/?query=\\{@}
 Query[hr]=http://directory.fsf.org/search/?query=\\{@}
 Query[hsb]=http://directory.fsf.org/search/?query=\\{@}
 Query[hu]=http://directory.fsf.org/search/?query=\\{@}
+Query[ia]=http://directory.fsf.org/search/?query=\\{@}
 Query[id]=http://directory.fsf.org/search/?query=\\{@}
 Query[is]=http://directory.fsf.org/search/?query=\\{@}
 Query[it]=http://directory.fsf.org/search/?query=\\{@}

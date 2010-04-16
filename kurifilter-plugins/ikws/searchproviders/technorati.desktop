@@ -34,6 +34,7 @@ Name[hne]=टेक्नोराती
 Name[hr]=Technorati
 Name[hsb]=Technorati
 Name[hu]=Technorati
+Name[ia]=Technorati
 Name[id]=Technorati
 Name[is]=Technorati
 Name[it]=Technorati
@@ -121,6 +122,7 @@ Query[hne]=http://technorati.com/cosmos/search.html?sourceid=kde-search&url=\\{@
 Query[hr]=http://technorati.com/cosmos/search.html?sourceid=kde-search&url=\\{@}
 Query[hsb]=http://technorati.com/cosmos/search.html?sourceid=kde-search&url=\\{@}
 Query[hu]=http://technorati.com/cosmos/search.html?sourceid=kde-search&url=\\{@}
+Query[ia]=http://technorati.com/cosmos/search.html?sourceid=kde-search&url=\\{@}
 Query[id]=http://technorati.com/cosmos/search.html?sourceid=kde-search&url=\\{@}
 Query[is]=http://technorati.com/cosmos/search.html?sourceid=kde-search&url=\\{@}
 Query[it]=http://technorati.com/cosmos/search.html?sourceid=kde-search&url=\\{@}

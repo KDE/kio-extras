@@ -35,6 +35,7 @@ Name[hne]=विकिपेडिया- फोकट विस्वकोस
 Name[hr]=Wiktionary – besplatna enciklopedija
 Name[hsb]=Wikisłownik - Swobodny słownik
 Name[hu]=Wiktionary
+Name[ia]=Wiktionary - Le Dictionario Libere e Gratuite
 Name[id]=Wiktionary - Kamus Gratis
 Name[is]=Wiktionary - Frjálsa orðabókin
 Name[it]=Wiktionary - Il dizionario libero
@@ -120,6 +121,7 @@ Query[hne]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[hr]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[hsb]=http://hsb.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[hu]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[ia]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[id]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[is]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[it]=http://it.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go

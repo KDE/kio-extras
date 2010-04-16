@@ -35,6 +35,7 @@ Name[hne]=कैटालन भाखा बर बढ़िया सब्द
 Name[hr]=Veliki rječnik katalonskog jezika (GRan Enciclopèdia Catalana)
 Name[hsb]=Wulki słownik katalanšćiny (GRan Enciclopèdia  Catalana)
 Name[hu]=Katalán nagyszótár (GRan Enciclopèdia  Catalana)
+Name[ia]=Grande Dictionario de le Linguage Catalan (GRan Enciclopèdia  Catalana)
 Name[id]=Kamus Besar Bahasa Catalan (GRan Enciclopèdia  Catalana)
 Name[is]=Stóra orðabók katalónska tungumálsins (GRan Enciclopèdia  Catalana)
 Name[it]=Grande dizionario della lingua catalana (GRan Enciclopèdia Catalana)
@@ -106,6 +107,7 @@ Query[he]=http://ec.grec.net/cgi-bin/AppDLC3.exe?APP=CERCADLC&GECART=\\{@}
 Query[hi]=http://ec.grec.net/cgi-bin/AppDLC3.exe?APP=CERCADLC&GECART=\\{@}
 Query[hr]=http://ec.grec.net/cgi-bin/AppDLC3.exe?APP=CERCADLC&GECART=\\{@}
 Query[hu]=http://ec.grec.net/cgi-bin/AppDLC3.exe?APP=CERCADLC&GECART=\\{@}
+Query[ia]=http://ec.grec.net/cgi-bin/AppDLC3.exe?APP=CERCADLC&GECART=\\{@}
 Query[id]=http://ec.grec.net/cgi-bin/AppDLC3.exe?APP=CERCADLC&GECART=\\{@}
 Query[is]=http://ec.grec.net/cgi-bin/AppDLC3.exe?APP=CERCADLC&GECART=\\{@}
 Query[it]=http://ec.grec.net/cgi-bin/AppDLC3.exe?APP=CERCADLC&GECART=\\{@}

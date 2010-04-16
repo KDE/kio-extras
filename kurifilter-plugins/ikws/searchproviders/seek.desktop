@@ -35,6 +35,7 @@ Name[hne]=गो.काम
 Name[hr]=GO.com
 Name[hsb]=GO.com
 Name[hu]=GO.com
+Name[ia]=GO.com
 Name[id]=GO.com
 Name[is]=GO.com
 Name[it]=GO.com
@@ -123,6 +124,7 @@ Query[hne]=http://www.go.com/Titles?col=WW&qt=\\{@}&svx=home_searchbox&sv=IS&lk=
 Query[hr]=http://www.go.com/Titles?col=WW&qt=\\{@}&svx=home_searchbox&sv=IS&lk=noframeso
 Query[hsb]=http://www.go.com/Titles?col=WW&qt=\\{@}&svx=home_searchbox&sv=IS&lk=noframeso
 Query[hu]=http://www.go.com/Titles?col=WW&qt=\\{@}&svx=home_searchbox&sv=IS&lk=noframeso
+Query[ia]=http://www.go.com/Titles?col=WW&qt=\\{@}&svx=home_searchbox&sv=IS&lk=noframeso
 Query[id]=http://www.go.com/Titles?col=WW&qt=\\{@}&svx=home_searchbox&sv=IS&lk=noframeso
 Query[is]=http://www.go.com/Titles?col=WW&qt=\\{@}&svx=home_searchbox&sv=IS&lk=noframeso
 Query[it]=http://www.go.com/Titles?col=WW&qt=\\{@}&svx=home_searchbox&sv=IS&lk=noframeso

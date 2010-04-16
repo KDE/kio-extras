@@ -24,6 +24,7 @@ Name[gu]=ઇથિકલ
 Name[he]=Ethicle
 Name[hr]=Ethicle
 Name[hu]=Ethicle
+Name[ia]=Ethicle
 Name[id]=Ethicle
 Name[is]=Ethicle
 Name[it]=Ethicle
@@ -88,6 +89,7 @@ Query[he]=http://www.ethicle.com/search.php?q=\\{@}
 Query[hi]=http://www.ethicle.com/search.php?q=\\{@}
 Query[hr]=http://info.alexa.com/search?q=\\{@}
 Query[hu]=http://www.ethicle.com/search.php?q=\\{@}
+Query[ia]=http://www.ethicle.com/search.php?q=\\{@}
 Query[id]=http://www.ethicle.com/search.php?q=\\{@}
 Query[is]=http://www.ethicle.com/search.php?q=\\{@}
 Query[it]=http://www.ethicle.com/search.php?q=\\{@}

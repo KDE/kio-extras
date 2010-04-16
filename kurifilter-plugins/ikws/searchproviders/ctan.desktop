@@ -35,6 +35,7 @@ Name[hne]=सीटीएएन - काम्प्रेहेंसिव ट
 Name[hr]=CTAN – TeX mreža sveobuhvatne arhive
 Name[hsb]=CTAN - Comprehensive TeX Archive Network
 Name[hu]=CTAN - Comprehensive TeX Archive Network
+Name[ia]=CTAN - Comprehensive TeX Archive Network
 Name[id]=CTAN - Jaringan Arsip TeX Komprehensif
 Name[is]=CTAN - Comprehensive TeX Archive Network
 Name[it]=CTAN - Rete globale degli archivi TeX
@@ -118,6 +119,7 @@ Query[hne]=http://ctan.org/cgi-bin/filenameSearch.py?filename=\\{@}&Search=Searc
 Query[hr]=http://ctan.org/cgi-bin/filenameSearch.py?filename=\\{@}&Search=Search
 Query[hsb]=http://ctan.org/cgi-bin/filenameSearch.py?filename=\\{@}&Search=Search
 Query[hu]=http://ctan.org/cgi-bin/filenameSearch.py?filename=\\{@}&Search=Search
+Query[ia]=http://ctan.org/cgi-bin/filenameSearch.py?filename=\\{@}&Search=Search
 Query[id]=http://ctan.org/cgi-bin/filenameSearch.py?filename=\\{@}&Search=Search
 Query[is]=http://ctan.org/cgi-bin/filenameSearch.py?filename=\\{@}&Search=Search
 Query[it]=http://ctan.org/cgi-bin/filenameSearch.py?filename=\\{@}&Search=Search

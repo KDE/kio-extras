@@ -35,6 +35,7 @@ Name[hne]=फ्रूगल
 Name[hr]=Froogle
 Name[hsb]=Froogle
 Name[hu]=Froogle
+Name[ia]=Froogle
 Name[id]=Froogle
 Name[is]=Froogle
 Name[it]=Froogle
@@ -122,6 +123,7 @@ Query[hne]=http://froogle.google.com/froogle?q=\\{@}
 Query[hr]=http://froogle.google.com/froogle?q=\\{@}
 Query[hsb]=http://froogle.google.com/froogle?q=\\{@}
 Query[hu]=http://froogle.google.com/froogle?q=\\{@}
+Query[ia]=http://froogle.google.com/froogle?q=\\{@}
 Query[id]=http://froogle.google.com/froogle?q=\\{@}
 Query[is]=http://froogle.google.com/froogle?q=\\{@}
 Query[it]=http://froogle.google.com/froogle?q=\\{@}

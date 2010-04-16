@@ -35,6 +35,7 @@ Name[hne]=एक्साइट
 Name[hr]=Excite
 Name[hsb]=Excite
 Name[hu]=Excite
+Name[ia]=Excite
 Name[id]=Excite
 Name[is]=Excite
 Name[it]=Excite
@@ -123,6 +124,7 @@ Query[hne]=http://search.excite.com/search.gw?search=\\{@}
 Query[hr]=http://search.excite.com/search.gw?search=\\{@}
 Query[hsb]=http://search.excite.com/search.gw?search=\\{@}
 Query[hu]=http://search.excite.com/search.gw?search=\\{@}
+Query[ia]=http://search.excite.com/search.gw?search=\\{@}
 Query[id]=http://search.excite.com/search.gw?search=\\{@}
 Query[is]=http://search.excite.com/search.gw?search=\\{@}
 Query[it]=http://search.excite.com/search.gw?search=\\{@}

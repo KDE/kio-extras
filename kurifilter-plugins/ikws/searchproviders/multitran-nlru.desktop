@@ -33,6 +33,7 @@ Name[hne]=मल्टीट्रान - डच अउ रूसी के ब
 Name[hr]=Multitran – Prevođenje između nizozemskog i ruskog
 Name[hsb]=Multitran - přełožowanje z nižozemčiny a rušćiny
 Name[hu]=Multitran - Fordítás hollandról oroszra (mindkét irányban)
+Name[ia]=Multitran - Traduce inter Nederlandese e Russo
 Name[id]=Multitran - Penerjemahan Antara Bahasa Belanda dan Rusia
 Name[is]=Multitran - Þýða á milli hollensku og rússnesku
 Name[it]=Multitran - Traduzioni tra olandese e russo
@@ -111,6 +112,7 @@ Query[hne]=http://multitran.ru/c/m.exe?l1=24&s=\\{@}
 Query[hr]=http://multitran.ru/c/m.exe?l1=24&s=\\{@}
 Query[hsb]=http://multitran.ru/c/m.exe?l1=24&s=\\{@}
 Query[hu]=http://multitran.ru/c/m.exe?l1=24&s=\\{@}
+Query[ia]=http://multitran.ru/c/m.exe?l1=24&s=\\{@}
 Query[id]=http://multitran.ru/c/m.exe?l1=24&s=\\{@}
 Query[is]=http://multitran.ru/c/m.exe?l1=24&s=\\{@}
 Query[it]=http://multitran.ru/c/m.exe?l1=24&s=\\{@}

@@ -36,6 +36,7 @@ Name[hne]=विकिपीडिया- फोकट विस्वकोस
 Name[hr]=Wikipedia – besplatna enciklopedija
 Name[hsb]=Wikipedia - Swobodna encyklopedija
 Name[hu]=Wikipedia
+Name[ia]=Wikipedia - Le Encyclopedia Libere e Gratuite
 Name[id]=Wikipedia - Ensiklopedia Gratis
 Name[is]=Wikipedia - Frjálst alfræðiorðasafn
 Name[it]=Wikipedia - L'enciclopedia libera
@@ -122,6 +123,7 @@ Query[hne]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[hr]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[hsb]=http://hsb.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[hu]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[ia]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[id]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[is]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[it]=http://it.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go

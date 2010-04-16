@@ -34,6 +34,7 @@ Name[hne]=सीआईए वर्ल्ड फैक्ट बुक
 Name[hr]=CIA World Fact Book
 Name[hsb]=CIA World Fact Book
 Name[hu]=CIA World Fact Book
+Name[ia]=CIA World Fact Book
 Name[id]=Buku Fakta Dunia CIA
 Name[is]=CIA World Fact Book
 Name[it]=World Fact Book della CIA
@@ -114,6 +115,7 @@ Query[hne]=http://www.google.com/search?q=allintitle%3A\\{@}+world+fact+book+sit
 Query[hr]=http://www.google.com/search?q=allintitle%3A\\{@}+world+fact+book+site%3Awww.cia.gov&ie=UTF-8&btnI=I%27m+Feeling+Lucky
 Query[hsb]=http://www.google.com/search?q=allintitle%3A\\{@}+world+fact+book+site%3Awww.cia.gov&ie=UTF-8&btnI=I%27m+Feeling+Lucky
 Query[hu]=http://www.google.com/search?q=allintitle%3A\\{@}+world+fact+book+site%3Awww.cia.gov&ie=UTF-8&btnI=I%27m+Feeling+Lucky
+Query[ia]=http://www.google.com/search?q=allintitle%3A\\{@}+world+fact+book+site%3Awww.cia.gov&ie=UTF-8&btnI=I%27m+Feeling+Lucky
 Query[id]=http://www.google.com/search?q=allintitle%3A\\{@}+world+fact+book+site%3Awww.cia.gov&ie=UTF-8&btnI=I%27m+Feeling+Lucky
 Query[is]=http://www.google.com/search?q=allintitle%3A\\{@}+world+fact+book+site%3Awww.cia.gov&ie=UTF-8&btnI=I%27m+Feeling+Lucky
 Query[it]=http://www.google.com/search?q=allintitle%3A\\{@}+world+fact+book+site%3Awww.cia.gov&ie=UTF-8&btnI=I%27m+Feeling+Lucky
