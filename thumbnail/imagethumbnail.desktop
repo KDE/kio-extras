@@ -2,6 +2,7 @@
 Type=Service
 Name=Images (GIF, PNG, BMP, ...)
 Name[es]=Imágenes (GIF, PNG, BMP...)
+Name[ia]=Imagines (GIF, PNG, BMP, ...)
 Name[kk]=Кескіндер (GIF, PNG, BMP, ...)
 Name[lt]=Vaizdai (GIF, PNG, BMP, ...)
 Name[nb]=Bilder (GIF, PNG, BMP, …)
