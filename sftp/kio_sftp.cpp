@@ -399,7 +399,7 @@ sftpProtocol::sftpProtocol(const QByteArray &pool_socket, const QByteArray &app_
 
   mCallbacks = (ssh_callbacks) malloc(sizeof(struct ssh_callbacks_struct));
   if (mCallbacks == NULL) {
-    error(KIO::ERR_OUT_OF_MEMORY, i18n("Couldn't allocate callbacks"));
+    error(KIO::ERR_OUT_OF_MEMORY, i18n("Could not allocate callbacks"));
     return;
   }
   ZERO_STRUCTP(mCallbacks);
@@ -503,7 +503,7 @@ void sftpProtocol::openConnection() {
 
   mSession = ssh_new();
   if (mSession == NULL) {
-    error(KIO::ERR_INTERNAL, i18n("Couldn't create a new SSH session."));
+    error(KIO::ERR_INTERNAL, i18n("Could not create a new SSH session."));
     return;
   }
 
@@ -512,39 +512,39 @@ void sftpProtocol::openConnection() {
   // Set timeout
   rc = ssh_options_set(mSession, SSH_OPTIONS_TIMEOUT, &timeout_sec);
   if (rc < 0) {
-    error(KIO::ERR_OUT_OF_MEMORY, i18n("Couldn't set a timeout."));
+    error(KIO::ERR_OUT_OF_MEMORY, i18n("Could not set a timeout."));
     return;
   }
   rc = ssh_options_set(mSession, SSH_OPTIONS_TIMEOUT_USEC, &timeout_usec);
   if (rc < 0) {
-    error(KIO::ERR_OUT_OF_MEMORY, i18n("Couldn't set a timeout."));
+    error(KIO::ERR_OUT_OF_MEMORY, i18n("Could not set a timeout."));
     return;
   }
 
   // Don't use any compression
   rc = ssh_options_set(mSession, SSH_OPTIONS_COMPRESSION_C_S, "none");
   if (rc < 0) {
-    error(KIO::ERR_OUT_OF_MEMORY, i18n("Couldn't set compression."));
+    error(KIO::ERR_OUT_OF_MEMORY, i18n("Could not set compression."));
     return;
   }
 
   rc = ssh_options_set(mSession, SSH_OPTIONS_COMPRESSION_S_C, "none");
   if (rc < 0) {
-    error(KIO::ERR_OUT_OF_MEMORY, i18n("Couldn't set compression."));
+    error(KIO::ERR_OUT_OF_MEMORY, i18n("Could not set compression."));
     return;
   }
 
   // Set host and port
   rc = ssh_options_set(mSession, SSH_OPTIONS_HOST, mHost.toUtf8().constData());
   if (rc < 0) {
-    error(KIO::ERR_OUT_OF_MEMORY, i18n("Couldn't set host."));
+    error(KIO::ERR_OUT_OF_MEMORY, i18n("Could not set host."));
     return;
   }
 
   if (mPort > 0) {
     rc = ssh_options_set(mSession, SSH_OPTIONS_PORT, &mPort);
     if (rc < 0) {
-        error(KIO::ERR_OUT_OF_MEMORY, i18n("Couldn't set port."));
+        error(KIO::ERR_OUT_OF_MEMORY, i18n("Could not set port."));
       return;
     }
   }
@@ -553,7 +553,7 @@ void sftpProtocol::openConnection() {
   if (!mUsername.isEmpty()) {
     rc = ssh_options_set(mSession, SSH_OPTIONS_USER, mUsername.toUtf8().constData());
     if (rc < 0) {
-      error(KIO::ERR_OUT_OF_MEMORY, i18n("Couldn't set username."));
+      error(KIO::ERR_OUT_OF_MEMORY, i18n("Could not set username."));
       return;
     }
   }
@@ -562,7 +562,7 @@ void sftpProtocol::openConnection() {
   if (verbosity) {
     rc = ssh_options_set(mSession, SSH_OPTIONS_LOG_VERBOSITY_STR, verbosity);
     if (rc < 0) {
-      error(KIO::ERR_OUT_OF_MEMORY, i18n("Couldn't set log verbosity."));
+      error(KIO::ERR_OUT_OF_MEMORY, i18n("Could not set log verbosity."));
       return;
     }
   }
@@ -570,7 +570,7 @@ void sftpProtocol::openConnection() {
   // Read ~/.ssh/config
   rc = ssh_options_parse_config(mSession, NULL);
   if (rc < 0) {
-    error(KIO::ERR_INTERNAL, i18n("Couldn't parse the config file."));
+    error(KIO::ERR_INTERNAL, i18n("Could not parse the config file."));
     return;
   }
 
@@ -1411,7 +1411,7 @@ void sftpProtocol::listDir(const KUrl& url) {
       link = sftp_readlink(mSftp, file.constData());
       if (link == NULL) {
         sftp_attributes_free(dirent);
-        error(KIO::ERR_INTERNAL, i18n("Couldn't read link: %1", QString::fromUtf8(file)));
+        error(KIO::ERR_INTERNAL, i18n("Could not read link: %1", QString::fromUtf8(file)));
         return;
       }
       entry.insert(KIO::UDSEntry::UDS_LINK_DEST, QFile::decodeName(link));
