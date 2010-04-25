@@ -107,6 +107,7 @@ Query[nds]=http://imdb.com/find?s=all&q=\\{@}
 Query[nl]=http://imdb.com/find?s=all&q=\\{@}
 Query[pt]=http://imdb.com/find?s=all&q=\\{@}
 Query[pt_BR]=http://imdb.com/find?s=all&q=\\{@}
+Query[sl]=http://imdb.com/find?s=all&q=\\{@}
 Query[sr]=http://imdb.com/find?s=all&q=\\{@}
 Query[sr@ijekavian]=http://imdb.com/find?s=all&q=\\{@}
 Query[sr@ijekavianlatin]=http://imdb.com/find?s=all&q=\\{@}
