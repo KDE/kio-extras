@@ -106,6 +106,7 @@ Query[nds]=http://www.alexa.com/search?q=\\{@}
 Query[nl]=http://www.alexa.com/search?q=\\{@}
 Query[pt]=http://www.alexa.com/search?q=\\{@}
 Query[pt_BR]=http://www.alexa.com/search?q=\\{@}
+Query[sk]=http://www.alexa.com/search?q=\\{@}
 Query[sv]=http://www.alexa.com/search?q=\\{@}
 Query[tg]=http://www.alexa.com/search?q=\\{@}
 Query[th]=http://www.alexa.com/search?q=\\{@}
