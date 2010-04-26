@@ -139,7 +139,8 @@ int sftpProtocol::auth_callback(const char *prompt, char *buf, size_t len,
   info.username = i_prompt;
   info.readOnly = true;
   info.prompt = i_prompt;
-  info.keepPassword = false;
+  info.keepPassword = false; // don't save passwords for public key,
+                             // that's the task of ssh-agent.
 
   if (!openPasswordDialog(info)) {
     kDebug(KIO_SFTP_DB) << "Password dialog failed";
@@ -226,7 +227,6 @@ int sftpProtocol::authenticateKeyboardInteractive(AuthInfo &info) {
         } else {
           info.readOnly = true; // set username readonly
           info.prompt = prompt;
-          info.keepPassword = false;
 
           if (openPasswordDialog(info)) {
             kDebug(KIO_SFTP_DB) << "Got the answer from the password dialog";
@@ -479,7 +479,7 @@ void sftpProtocol::openConnection() {
   info.comment = "sftp://" + mHost + ':' + QString::number(mPort);
   info.commentLabel = i18n("site:");
   info.username = mUsername;
-  info.keepPassword = true;
+  info.keepPassword = true; // make the "keep Password" check box visible to the user.
 
   // Check for cached authentication info if no password is specified...
   if (mPassword.isEmpty()) {
