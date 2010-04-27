@@ -1,0 +1,8 @@
+[Desktop Entry]
+Charset=
+Hidden=false
+Keys=7digital,7dg,7d
+Name=7Digital
+Query=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
+ServiceTypes=SearchProvider
+Type=Service

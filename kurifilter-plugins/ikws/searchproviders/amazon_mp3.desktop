@@ -1,0 +1,8 @@
+[Desktop Entry]
+Charset=
+Hidden=false
+Keys=amazonmp3,az3,amz3,amzmp3
+Name=Amazon MP3
+Query=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=digital-music&field-keywords=\\{@}&x=0&y=0
+ServiceTypes=SearchProvider
+Type=Service

@@ -1,0 +1,8 @@
+[Desktop Entry]
+Charset=
+Hidden=false
+Keys=identicagroups,identig,identicag,idg
+Name=Identi.ca Groups
+Query=http://identi.ca/search/group?q=\\{@}
+ServiceTypes=SearchProvider
+Type=Service

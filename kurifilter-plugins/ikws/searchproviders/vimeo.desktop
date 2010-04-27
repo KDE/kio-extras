@@ -1,0 +1,8 @@
+[Desktop Entry]
+Charset=
+Hidden=false
+Keys=vimeo,vm
+Name=Vimeo
+Query=http://vimeo.com/videos/search:\\{@}
+ServiceTypes=SearchProvider
+Type=Service

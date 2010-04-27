@@ -1,0 +1,8 @@
+[Desktop Entry]
+Charset=
+Hidden=false
+Keys=gitorious,gt
+Name=Gitorious
+Query=http://gitorious.org/search?q=\\{@}&commit=Search
+ServiceTypes=SearchProvider
+Type=Service

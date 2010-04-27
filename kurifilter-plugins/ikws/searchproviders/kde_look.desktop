@@ -1,0 +1,8 @@
+[Desktop Entry]
+Charset=
+Hidden=false
+Keys=kdelook,klook,kdel
+Name=KDE Look
+Query=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
+ServiceTypes=SearchProvider
+Type=Service

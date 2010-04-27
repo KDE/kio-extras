@@ -1,0 +1,8 @@
+[Desktop Entry]
+Charset=
+Hidden=false
+Keys=duckduckgoinfo,ddi
+Name=Duck Duck Go Info
+Query=http://duckduckgo.com/?q=\\{@}&v=r
+ServiceTypes=SearchProvider
+Type=Service

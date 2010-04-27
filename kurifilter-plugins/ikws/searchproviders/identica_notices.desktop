@@ -1,0 +1,8 @@
+[Desktop Entry]
+Charset=
+Hidden=false
+Keys=identicanotices,identin,idn
+Name=Identi.ca Notices
+Query=http://identi.ca/search/notice?q=\\{@}
+ServiceTypes=SearchProvider
+Type=Service

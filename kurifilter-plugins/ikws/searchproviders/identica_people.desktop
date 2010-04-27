@@ -1,0 +1,8 @@
+[Desktop Entry]
+Charset=
+Hidden=false
+Keys=identicapeople,identip,idp
+Name=Identi.ca People
+Query=http://identi.ca/search/people?q=\\{@}&search=Search
+ServiceTypes=SearchProvider
+Type=Service

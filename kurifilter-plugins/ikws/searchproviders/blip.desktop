@@ -1,0 +1,8 @@
+[Desktop Entry]
+Charset=
+Hidden=false
+Keys=blip,bl
+Name=Blip.tv
+Query=http://blip.tv/search?q=\\{@}
+ServiceTypes=SearchProvider
+Type=Service

@@ -1,0 +1,8 @@
+[Desktop Entry]
+Charset=
+Hidden=false
+Keys=facebook,face,fb
+Name=Facebook
+Query=http://www.facebook.com/search/?q=\\{@}&init=quick
+ServiceTypes=SearchProvider
+Type=Service

@@ -1,0 +1,8 @@
+[Desktop Entry]
+Charset=
+Hidden=false
+Keys=magnatune,mt
+Name=Magnatune
+Query=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
+ServiceTypes=SearchProvider
+Type=Service

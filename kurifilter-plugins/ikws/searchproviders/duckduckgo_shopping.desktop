@@ -1,0 +1,8 @@
+[Desktop Entry]
+Charset=
+Hidden=false
+Keys=duckduckgoshopping,dds,dukgoshop
+Name=Duck Duck Go Shopping
+Query=http://duckduckgo.com/?q=\\{@}&v=s
+ServiceTypes=SearchProvider
+Type=Service

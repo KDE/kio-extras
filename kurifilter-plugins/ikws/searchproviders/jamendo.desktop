@@ -1,0 +1,8 @@
+[Desktop Entry]
+Charset=
+Hidden=false
+Keys=jamendo,jmd
+Name=Jamendo
+Query=http://www.jamendo.com/en/search/all/\\{@}
+ServiceTypes=SearchProvider
+Type=Service

@@ -1,0 +1,8 @@
+[Desktop Entry]
+Charset=
+Hidden=false
+Keys=urbandictionary,ud
+Name=Urban Dictionary
+Query=http://www.urbandictionary.com/define.php?term=\\{@}
+ServiceTypes=SearchProvider
+Type=Service

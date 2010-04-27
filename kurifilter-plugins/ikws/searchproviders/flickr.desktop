@@ -1,0 +1,8 @@
+[Desktop Entry]
+Charset=
+Hidden=false
+Keys=flickr,flkr
+Name=Flickr
+Query=http://www.flickr.com/search/?q=\\{@}
+ServiceTypes=SearchProvider
+Type=Service

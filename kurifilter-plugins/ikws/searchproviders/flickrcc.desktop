@@ -1,0 +1,8 @@
+[Desktop Entry]
+Charset=
+Hidden=false
+Keys=flickrcc,flkrcc,flkcc
+Name=Flickr Creative Commons
+Query=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
+ServiceTypes=SearchProvider
+Type=Service

@@ -1,0 +1,8 @@
+[Desktop Entry]
+Charset=
+Hidden=false
+Keys=ggc,googlecode,ggcode
+Name=Google Code
+Query=http://code.google.com/query/#q=\\{%2520}
+ServiceTypes=SearchProvider
+Type=Service

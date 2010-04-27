@@ -1,0 +1,8 @@
+[Desktop Entry]
+Charset=
+Hidden=false
+Keys=kdeuserbase,userbase,ub
+Name=KDE UserBase
+Query=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
+ServiceTypes=SearchProvider
+Type=Service
