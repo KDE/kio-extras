@@ -3,6 +3,8 @@ Charset=
 Hidden=false
 Keys=flickr,flkr
 Name=Flickr
+Name[x-test]=xxFlickrxx
 Query=http://www.flickr.com/search/?q=\\{@}
+Query[x-test]=xxhttp://www.flickr.com/search/?q=\\{@}xx
 ServiceTypes=SearchProvider
 Type=Service

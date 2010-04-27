@@ -3,6 +3,8 @@ Charset=
 Hidden=false
 Keys=identicagroups,identig,identicag,idg
 Name=Identi.ca Groups
+Name[x-test]=xxIdenti.ca Groupsxx
 Query=http://identi.ca/search/group?q=\\{@}
+Query[x-test]=xxhttp://identi.ca/search/group?q=\\{@}xx
 ServiceTypes=SearchProvider
 Type=Service

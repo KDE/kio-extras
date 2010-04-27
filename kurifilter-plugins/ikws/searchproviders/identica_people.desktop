@@ -3,6 +3,8 @@ Charset=
 Hidden=false
 Keys=identicapeople,identip,idp
 Name=Identi.ca People
+Name[x-test]=xxIdenti.ca Peoplexx
 Query=http://identi.ca/search/people?q=\\{@}&search=Search
+Query[x-test]=xxhttp://identi.ca/search/people?q=\\{@}&search=Searchxx
 ServiceTypes=SearchProvider
 Type=Service

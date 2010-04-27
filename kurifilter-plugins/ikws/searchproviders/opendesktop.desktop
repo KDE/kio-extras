@@ -3,6 +3,8 @@ Charset=
 Hidden=false
 Keys=opendesktop,odesk,od
 Name=Open
+Name[x-test]=xxOpenxx
 Query=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
+Query[x-test]=xxhttp://www.opendesktop.org/content/search.php?search=Search&name=\\{@}xx
 ServiceTypes=SearchProvider
 Type=Service

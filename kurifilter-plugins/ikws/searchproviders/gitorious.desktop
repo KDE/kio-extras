@@ -3,6 +3,8 @@ Charset=
 Hidden=false
 Keys=gitorious,gt
 Name=Gitorious
+Name[x-test]=xxGitoriousxx
 Query=http://gitorious.org/search?q=\\{@}&commit=Search
+Query[x-test]=xxhttp://gitorious.org/search?q=\\{@}&commit=Searchxx
 ServiceTypes=SearchProvider
 Type=Service

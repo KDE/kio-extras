@@ -3,6 +3,8 @@ Charset=
 Hidden=false
 Keys=identicanotices,identin,idn
 Name=Identi.ca Notices
+Name[x-test]=xxIdenti.ca Noticesxx
 Query=http://identi.ca/search/notice?q=\\{@}
+Query[x-test]=xxhttp://identi.ca/search/notice?q=\\{@}xx
 ServiceTypes=SearchProvider
 Type=Service

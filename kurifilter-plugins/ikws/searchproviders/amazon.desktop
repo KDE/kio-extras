@@ -3,6 +3,8 @@ Charset=
 Hidden=false
 Keys=amazon,amz
 Name=Amazon
+Name[x-test]=xxAmazonxx
 Query=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=aps&field-keywords=\\{@}&x=0&y=0
+Query[x-test]=xxhttp://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=aps&field-keywords=\\{@}&x=0&y=0xx
 ServiceTypes=SearchProvider
 Type=Service

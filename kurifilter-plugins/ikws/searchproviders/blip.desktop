@@ -3,6 +3,8 @@ Charset=
 Hidden=false
 Keys=blip,bl
 Name=Blip.tv
+Name[x-test]=xxBlip.tvxx
 Query=http://blip.tv/search?q=\\{@}
+Query[x-test]=xxhttp://blip.tv/search?q=\\{@}xx
 ServiceTypes=SearchProvider
 Type=Service

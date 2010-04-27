@@ -3,6 +3,8 @@ Charset=
 Hidden=false
 Keys=wikia,wka
 Name=Wikia
+Name[x-test]=xxWikiaxx
 Query=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Search
+Query[x-test]=xxhttp://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Searchxx
 ServiceTypes=SearchProvider
 Type=Service

@@ -3,6 +3,8 @@ Charset=
 Hidden=false
 Keys=7digital,7dg,7d
 Name=7Digital
+Name[x-test]=xx7Digitalxx
 Query=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
+Query[x-test]=xxhttp://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Searchxx
 ServiceTypes=SearchProvider
 Type=Service

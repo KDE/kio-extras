@@ -3,6 +3,8 @@ Charset=
 Hidden=false
 Keys=duckduckgoshopping,dds,dukgoshop
 Name=Duck Duck Go Shopping
+Name[x-test]=xxDuck Duck Go Shoppingxx
 Query=http://duckduckgo.com/?q=\\{@}&v=s
+Query[x-test]=xxhttp://duckduckgo.com/?q=\\{@}&v=sxx
 ServiceTypes=SearchProvider
 Type=Service

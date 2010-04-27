@@ -3,6 +3,8 @@ Charset=
 Hidden=false
 Keys=ggc,googlecode,ggcode
 Name=Google Code
+Name[x-test]=xxGoogle Codexx
 Query=http://code.google.com/query/#q=\\{%2520}
+Query[x-test]=xxhttp://code.google.com/query/#q=\\{%2520}xx
 ServiceTypes=SearchProvider
 Type=Service

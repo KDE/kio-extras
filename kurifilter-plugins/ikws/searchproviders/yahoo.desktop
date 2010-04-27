@@ -3,6 +3,8 @@ Charset=
 Hidden=false
 Keys=yahoo,yh
 Name=Yahoo
+Name[x-test]=xxYahooxx
 Query=http://search.yahoo.com/search?toggle=1&cop=mss&ei=UTF-8&fr=yfp-t-701&p=\\{@}&x=0&y=0&=Web+Search
+Query[x-test]=xxhttp://search.yahoo.com/search?toggle=1&cop=mss&ei=UTF-8&fr=yfp-t-701&p=\\{@}&x=0&y=0&=Web+Searchxx
 ServiceTypes=SearchProvider
 Type=Service
