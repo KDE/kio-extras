@@ -30,16 +30,18 @@ class SearchProviderDialog : public KDialog
     Q_OBJECT
 
 public:
-    explicit SearchProviderDialog(SearchProvider *provider, QWidget *parent = 0);
+    explicit SearchProviderDialog(SearchProvider *provider, QList<SearchProvider*> &providers, QWidget *parent = 0);
 
     SearchProvider *provider() { return m_provider; }
 
 protected Q_SLOTS:
     void slotChanged();
+    void shortcutsChanged(const QString& newShorthands);
     virtual void slotButtonClicked(int button);
 
 private:
     SearchProvider *m_provider;
+    QList<SearchProvider*> m_providers; // The list of all search providers, used for checking for already assigned shortcuts.
     Ui::SearchProviderDlgUI m_dlg;
 };
 

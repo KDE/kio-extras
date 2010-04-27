@@ -416,7 +416,8 @@ void FilterOptions::defaults()
 
 void FilterOptions::addSearchProvider()
 {
-  SearchProviderDialog dlg(0, this);
+  QList<SearchProvider*> providers = m_providersModel->providers();
+  SearchProviderDialog dlg(0, providers, this);
 
   if (dlg.exec())
     m_providersModel->addProvider(dlg.provider());
@@ -426,8 +427,9 @@ void FilterOptions::addSearchProvider()
 
 void FilterOptions::changeSearchProvider()
 {
-  SearchProvider* provider=m_providersModel->providers().at(m_dlg.lvSearchProviders->currentIndex().data(Qt::UserRole).toInt());
-  SearchProviderDialog dlg(provider, this);
+  QList<SearchProvider*> providers = m_providersModel->providers();
+  SearchProvider* provider = providers.at(m_dlg.lvSearchProviders->currentIndex().data(Qt::UserRole).toInt());
+  SearchProviderDialog dlg(provider, providers, this);
 
   if (dlg.exec())
     m_providersModel->changeProvider(dlg.provider());
@@ -435,7 +437,7 @@ void FilterOptions::changeSearchProvider()
 
 void FilterOptions::deleteSearchProvider()
 {
-  SearchProvider* provider=m_providersModel->providers().at(m_dlg.lvSearchProviders->currentIndex().data(Qt::UserRole).toInt());
+  SearchProvider* provider = m_providersModel->providers().at(m_dlg.lvSearchProviders->currentIndex().data(Qt::UserRole).toInt());
   m_deletedProviders.append(provider->desktopEntryName());
   m_providersModel->deleteProvider(provider);
 }

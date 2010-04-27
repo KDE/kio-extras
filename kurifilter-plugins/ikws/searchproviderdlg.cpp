@@ -23,8 +23,9 @@
 #include <kcharsets.h>
 #include <kmessagebox.h>
 
+#include <kdebug.h>
 
-SearchProviderDialog::SearchProviderDialog(SearchProvider *provider, QWidget *parent)
+SearchProviderDialog::SearchProviderDialog(SearchProvider *provider, QList<SearchProvider*> &providers, QWidget *parent)
     : KDialog( parent )
     , m_provider(provider)
 {
@@ -40,8 +41,10 @@ SearchProviderDialog::SearchProviderDialog(SearchProvider *provider, QWidget *pa
     connect(m_dlg.leName,      SIGNAL(textChanged(QString)), SLOT(slotChanged()));
     connect(m_dlg.leQuery,     SIGNAL(textChanged(QString)), SLOT(slotChanged()));
     connect(m_dlg.leShortcut,  SIGNAL(textChanged(QString)), SLOT(slotChanged()));
+    connect(m_dlg.leShortcut,  SIGNAL(textChanged(QString)), SLOT(shortcutsChanged(const QString&)));
 
     // Data init
+    m_providers = providers;
     QStringList charsets = KGlobal::charsets()->availableEncodingNames();
     charsets.prepend(i18n("Default"));
     m_dlg.cbCharset->addItems(charsets);
@@ -70,6 +73,54 @@ void SearchProviderDialog::slotChanged()
                        || m_dlg.leQuery->text().isEmpty()));
 }
 
+// Check if the user wants to assign shorthands that are already assigned to
+// another search provider. Invoked on every change to the shortcuts field.
+void SearchProviderDialog::shortcutsChanged(const QString& newShorthands) {
+    // Convert all spaces to commas. A shorthand should be a single word.
+    // Assume that the user wanted to enter an alternative shorthand and hit
+    // space instead of the comma key. Save cursor position beforehand because
+    // setText() will reset it to the end, which is not what we want when
+    // backspacing something in the middle.
+    int savedCursorPosition = m_dlg.leShortcut->cursorPosition();
+    QString normalizedShorthands = QString(newShorthands).replace(" ", ",");
+    m_dlg.leShortcut->setText(normalizedShorthands);
+    m_dlg.leShortcut->setCursorPosition(savedCursorPosition);
+
+    QHash<QString, const SearchProvider*> contenders;
+    QSet<QString> shorthands = normalizedShorthands.split(",").toSet();
+
+    // Look at each shorthand the user entered and wade through the search
+    // provider list in search of a conflicting shorthand. Do not continue
+    // search after finding one, because shorthands should be assigned only
+    // once. Act like data inconsistencies regarding this don't exist (should
+    // probably be handled on load).
+    Q_FOREACH (const QString &shorthand, shorthands) {
+        Q_FOREACH (const SearchProvider* provider, m_providers) {
+            if (provider != m_provider && provider->keys().contains(shorthand)) {
+                contenders.insert(shorthand, provider);
+                break;
+            }
+        }
+    }
+
+    if (!contenders.isEmpty()) {
+        if (contenders.size() == 1) {
+            m_dlg.noteLabel->setText(i18n("The shortcut \"%1\" is already assigned to \"%2\". Please choose a different one.", contenders.keys().at(0), contenders.values().at(0)->name()));
+        } else {
+            QStringList contenderList;
+            QHash<QString, const SearchProvider*>::const_iterator i = contenders.constBegin();
+            while (i != contenders.constEnd()) {
+                contenderList.append(i18nc("- web short cut (e.g. gg): what it refers to (e.g. Google)", "- %1: \"%2\"", i.key(), i.value()->name()));
+                ++i;
+            }
+
+            m_dlg.noteLabel->setText(i18n("The following shortcuts are already assigned. Please choose different ones.\n%1", contenderList.join("\n")));
+        }
+        enableButton(Ok, false);
+    } else {
+        m_dlg.noteLabel->clear();
+    }
+}
 
 void SearchProviderDialog::slotButtonClicked(int button) {
     if (button == KDialog::Ok) {
@@ -81,12 +132,12 @@ void SearchProviderDialog::slotButtonClicked(int button) {
                 QString(), KGuiItem(i18n("Keep It"))) == KMessageBox::Cancel) {
             return;
         }
-        
+
         if (!m_provider)
             m_provider = new SearchProvider;
         m_provider->setName(m_dlg.leName->text().trimmed());
         m_provider->setQuery(m_dlg.leQuery->text().trimmed());
-        m_provider->setKeys(m_dlg.leShortcut->text().trimmed().toLower().split(',', QString::SkipEmptyParts)); // #169801
+        m_provider->setKeys(m_dlg.leShortcut->text().trimmed().toLower().split(',', QString::SkipEmptyParts).toSet().toList()); // #169801. Converting to Set and List again to silently remove duplicates.
         m_provider->setCharset(m_dlg.cbCharset->currentIndex() ? m_dlg.cbCharset->currentText() : QString());
         KDialog::accept();
     } else {
