@@ -3,8 +3,20 @@ Charset=
 Hidden=false
 Keys=opendesktop,odesk,od
 Name=Open
+Name[ia]=Aperir
+Name[is]=Opið
+Name[pt]=Open
+Name[sv]=Öppet skrivbord
+Name[uk]=Open
 Name[x-test]=xxOpenxx
+Name[zh_TW]=Open
 Query=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
+Query[ia]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
+Query[is]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
+Query[pt]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
+Query[sv]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
+Query[uk]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[x-test]=xxhttp://www.opendesktop.org/content/search.php?search=Search&name=\\{@}xx
+Query[zh_TW]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 ServiceTypes=SearchProvider
 Type=Service

@@ -3,8 +3,19 @@ Charset=
 Hidden=false
 Keys=duckduckgoshopping,dds,dukgoshop
 Name=Duck Duck Go Shopping
+Name[is]=Duck Duck Go verslun
+Name[pt]=Loja do Duck Duck Go
+Name[sv]=Duck Duck Go shopping
+Name[uk]=Duck Duck Go Shopping
 Name[x-test]=xxDuck Duck Go Shoppingxx
+Name[zh_TW]=Duck Duck Go Shopping
 Query=http://duckduckgo.com/?q=\\{@}&v=s
+Query[ia]=http://duckduckgo.com/?q=\\{@}&v=s
+Query[is]=http://duckduckgo.com/?q=\\{@}&v=s
+Query[pt]=http://duckduckgo.com/?q=\\{@}&v=s
+Query[sv]=http://duckduckgo.com/?q=\\{@}&v=s
+Query[uk]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[x-test]=xxhttp://duckduckgo.com/?q=\\{@}&v=sxx
+Query[zh_TW]=http://duckduckgo.com/?q=\\{@}&v=s
 ServiceTypes=SearchProvider
 Type=Service

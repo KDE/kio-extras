@@ -3,8 +3,20 @@ Charset=
 Hidden=false
 Keys=ggc,googlecode,ggcode
 Name=Google Code
+Name[ia]=Google Movies
+Name[is]=Google kóði
+Name[pt]=Código do Google
+Name[sv]=Google kod
+Name[uk]=Google Code
 Name[x-test]=xxGoogle Codexx
+Name[zh_TW]=Google Code
 Query=http://code.google.com/query/#q=\\{%2520}
+Query[ia]=http://code.google.com/query#q=\\{%2520}
+Query[is]=http://code.google.com/query/#q=\\{%2520}
+Query[pt]=http://code.google.com/query/#q=\\{%2520}
+Query[sv]=http://code.google.com/query/#q=\\{%2520}
+Query[uk]=http://code.google.com/query/#q=\\{%2520}
 Query[x-test]=xxhttp://code.google.com/query/#q=\\{%2520}xx
+Query[zh_TW]=http://code.google.com/query/#q=\\{%2520}
 ServiceTypes=SearchProvider
 Type=Service

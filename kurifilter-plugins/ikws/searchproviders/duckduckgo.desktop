@@ -3,8 +3,19 @@ Charset=
 Hidden=false
 Keys=duckduckgo,dd,dukgo
 Name=Duck Duck Go
+Name[is]=Duck Duck Go
+Name[pt]=Duck Duck Go
+Name[sv]=Duck Duck Go
+Name[uk]=Duck Duck Go
 Name[x-test]=xxDuck Duck Goxx
+Name[zh_TW]=Duck Duck Go
 Query=http://duckduckgo.com/?q=\\{@}&v=
+Query[ia]=http://duckduckgo.com/?q=\\{@}&v=
+Query[is]=http://duckduckgo.com/?q=\\{@}&v=
+Query[pt]=http://duckduckgo.com/?q=\\{@}&v=
+Query[sv]=http://duckduckgo.com/?q=\\{@}&v=
+Query[uk]=http://duckduckgo.com/?q=\\{@}&v=
 Query[x-test]=xxhttp://duckduckgo.com/?q=\\{@}&v=xx
+Query[zh_TW]=http://duckduckgo.com/?q=\\{@}&v=
 ServiceTypes=SearchProvider
 Type=Service

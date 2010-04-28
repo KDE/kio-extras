@@ -3,8 +3,20 @@ Charset=
 Hidden=false
 Keys=kdetechbase,techbase,tb
 Name=KDE TechBase
+Name[ia]=KDE TechBase (Base Technic)
+Name[is]=KDE Tæknigrunnur
+Name[pt]=KDE TechBase
+Name[sv]=KDE teknikbas
+Name[uk]=TechBase KDE
 Name[x-test]=xxKDE TechBasexx
+Name[zh_TW]=KDE TechBase
 Query=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
+Query[ia]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
+Query[is]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
+Query[pt]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
+Query[sv]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
+Query[uk]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[x-test]=xxhttp://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Searchxx
+Query[zh_TW]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 ServiceTypes=SearchProvider
 Type=Service

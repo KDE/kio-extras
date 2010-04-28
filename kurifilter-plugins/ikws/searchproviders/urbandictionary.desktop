@@ -3,8 +3,20 @@ Charset=
 Hidden=false
 Keys=urbandictionary,ud
 Name=Urban Dictionary
+Name[ia]=Dictionario Urban
+Name[is]=Urban orðabókin
+Name[pt]=Urban Dictionary
+Name[sv]=Slangordlista
+Name[uk]=Urban Dictionary
 Name[x-test]=xxUrban Dictionaryxx
+Name[zh_TW]=Urban Dictionary
 Query=http://www.urbandictionary.com/define.php?term=\\{@}
+Query[ia]=http://www.urbandictionary.com/define.php?term=\\{@}
+Query[is]=http://www.urbandictionary.com/define.php?term=\\{@}
+Query[pt]=http://www.urbandictionary.com/define.php?term=\\{@}
+Query[sv]=http://www.urbandictionary.com/define.php?term=\\{@}
+Query[uk]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[x-test]=xxhttp://www.urbandictionary.com/define.php?term=\\{@}xx
+Query[zh_TW]=http://www.urbandictionary.com/define.php?term=\\{@}
 ServiceTypes=SearchProvider
 Type=Service
