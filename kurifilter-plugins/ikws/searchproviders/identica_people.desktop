@@ -3,7 +3,9 @@ Charset=
 Hidden=false
 Keys=identicapeople,identip,idp
 Name=Identi.ca People
+Name[ia]=Gente de Identi.ca
 Name[is]=Identi.ca fólk
+Name[km]=មនុស្ស Identi.ca
 Name[pt]=Pessoas do Identi.ca
 Name[sv]=Identi.ca personer
 Name[uk]=Постаті Identi.ca
@@ -12,6 +14,8 @@ Name[zh_TW]=Identi.ca People
 Query=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[ia]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[is]=http://identi.ca/search/people?q=\\{@}&search=Search
+Query[km]=http://identi.ca/search/people?q=\\{@}&search=Search
+Query[nds]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[pt]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[sv]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[uk]=http://identi.ca/search/people?q=\\{@}&search=Search

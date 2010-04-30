@@ -3,7 +3,9 @@ Charset=
 Hidden=false
 Keys=identicanotices,identin,idn
 Name=Identi.ca Notices
+Name[ia]=Novas de Identi.ca
 Name[is]=Identi.ca tilkynningar
+Name[km]=ចំណាំ​របស់ Identi.ca
 Name[pt]=Avisos do Identi.ca
 Name[sv]=Identi.ca anslag
 Name[uk]=Нотатки Identi.ca
@@ -12,6 +14,8 @@ Name[zh_TW]=Identi.ca Notices
 Query=http://identi.ca/search/notice?q=\\{@}
 Query[ia]=http://identi.ca/search/notice?q=\\{@}
 Query[is]=http://identi.ca/search/notice?q=\\{@}
+Query[km]=http://identi.ca/search/notice?q=\\{@}
+Query[nds]=http://identi.ca/search/notice?q=\\{@}
 Query[pt]=http://identi.ca/search/notice?q=\\{@}
 Query[sv]=http://identi.ca/search/notice?q=\\{@}
 Query[uk]=http://identi.ca/search/notice?q=\\{@}

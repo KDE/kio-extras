@@ -5,6 +5,7 @@ Keys=flickr,flkr
 Name=Flickr
 Name[ia]=Flickr
 Name[is]=Flickr
+Name[km]=Flickr
 Name[pt]=Flickr
 Name[sv]=Flickr
 Name[uk]=Flickr
@@ -13,6 +14,8 @@ Name[zh_TW]=Flickr
 Query=http://www.flickr.com/search/?q=\\{@}
 Query[ia]=http://www.flickr.com/search?q=\\{@}
 Query[is]=http://www.flickr.com/search/?q=\\{@}
+Query[km]=http://www.flickr.com/search/?q=\\{@}
+Query[nds]=http://www.flickr.com/search/?q=\\{@}
 Query[pt]=http://www.flickr.com/search/?q=\\{@}
 Query[sv]=http://www.flickr.com/search/?q=\\{@}
 Query[uk]=http://www.flickr.com/search/?q=\\{@}

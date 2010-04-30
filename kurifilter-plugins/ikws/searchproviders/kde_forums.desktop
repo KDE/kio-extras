@@ -5,13 +5,17 @@ Keys=kdeforums,kforum,kfrm
 Name=KDE Forums
 Name[ia]=Foros de KDE
 Name[is]=KDE spjallsvæði
+Name[km]=វេទិកា​របស់ KDE
 Name[pt]=Fóruns do KDE
 Name[sv]=KDE:s forum
 Name[uk]=Форуми KDE
 Name[x-test]=xxKDE Forumsxx
 Name[zh_TW]=KDE Forums
 Query=http://forum.kde.org/search.php?keywords=\\{@}&terms=all&author=&tags=&sv=0&sc=1&sf=all&sr=posts&sk=t&sd=d&st=0&ch=300&feed_type=NONE&feed_style=HTML&countlimit=100&t=0&sid=77c16bc0abb91ff1347597c69835d5bd&submit=Search
+Query[ia]=http://forum.kde.org/search.php?keywords=\\{@}&terms=all&author=&tags=&sv=0&sc=1&sf=all&sr=posts&sk=t&sd=d&st=0&ch=300&feed_type=NONE&feed_style=HTML&countlimit=100&t=0&sid=77c16bc0abb91ff1347597c69835d5bd&submit=Search
 Query[is]=http://forum.kde.org/search.php?keywords=\\{@}&terms=all&author=&tags=&sv=0&sc=1&sf=all&sr=posts&sk=t&sd=d&st=0&ch=300&feed_type=NONE&feed_style=HTML&countlimit=100&t=0&sid=77c16bc0abb91ff1347597c69835d5bd&submit=Search
+Query[km]=http://forum.kde.org/search.php?keywords=\\{@}&terms=all&author=&tags=&sv=0&sc=1&sf=all&sr=posts&sk=t&sd=d&st=0&ch=300&feed_type=NONE&feed_style=HTML&countlimit=100&t=0&sid=77c16bc0abb91ff1347597c69835d5bd&submit=Search
+Query[nds]=http://forum.kde.org/search.php?keywords=\\{@}&terms=all&author=&tags=&sv=0&sc=1&sf=all&sr=posts&sk=t&sd=d&st=0&ch=300&feed_type=NONE&feed_style=HTML&countlimit=100&t=0&sid=77c16bc0abb91ff1347597c69835d5bd&submit=Search
 Query[pt]=http://forum.kde.org/search.php?keywords=\\{@}&terms=all&author=&tags=&sv=0&sc=1&sf=all&sr=posts&sk=t&sd=d&st=0&ch=300&feed_type=NONE&feed_style=HTML&countlimit=100&t=0&sid=77c16bc0abb91ff1347597c69835d5bd&submit=Search
 Query[sv]=http://forum.kde.org/search.php?keywords=\\{@}&terms=all&author=&tags=&sv=0&sc=1&sf=all&sr=posts&sk=t&sd=d&st=0&ch=300&feed_type=NONE&feed_style=HTML&countlimit=100&t=0&sid=77c16bc0abb91ff1347597c69835d5bd&submit=Search
 Query[uk]=http://forum.kde.org/search.php?keywords=\\{@}&terms=all&author=&tags=&sv=0&sc=1&sf=all&sr=posts&sk=t&sd=d&st=0&ch=300&feed_type=NONE&feed_style=HTML&countlimit=100&t=0&sid=77c16bc0abb91ff1347597c69835d5bd&submit=Search

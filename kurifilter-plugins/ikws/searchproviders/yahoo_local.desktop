@@ -5,13 +5,17 @@ Keys=yahoolocal,yhl
 Name=Yahoo Local
 Name[ia]=Yahoo Local
 Name[is]=Yahoo Local
+Name[km]=មូលដ្ឋាន​របស់​យ៉ាហ៊ូ
 Name[pt]=Yahoo Local
 Name[sv]=Yahoo Local
 Name[uk]=Yahoo Local
 Name[x-test]=xxYahoo Localxx
 Name[zh_TW]=Yahoo Local
 Query=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img
+Query[ia]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img
 Query[is]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img
+Query[km]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img
+Query[nds]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img
 Query[pt]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img
 Query[sv]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img
 Query[uk]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img

@@ -5,6 +5,7 @@ Keys=gitorious,gt
 Name=Gitorious
 Name[ia]=Gitorious
 Name[is]=Gitorious
+Name[km]=Gitorious
 Name[pt]=Gitorious
 Name[sv]=Gitorious
 Name[uk]=Gitorious
@@ -13,6 +14,8 @@ Name[zh_TW]=Gitorious
 Query=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[ia]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[is]=http://gitorious.org/search?q=\\{@}&commit=Search
+Query[km]=http://gitorious.org/search?q=\\{@}&commit=Search
+Query[nds]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[pt]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[sv]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[uk]=http://gitorious.org/search?q=\\{@}&commit=Search

@@ -5,6 +5,7 @@ Keys=facebook,face,fb
 Name=Facebook
 Name[ia]=Facebook
 Name[is]=Facebook
+Name[km]=Facebook
 Name[pt]=Facebook
 Name[sv]=Facebook
 Name[uk]=Facebook
@@ -13,6 +14,8 @@ Name[zh_TW]=Facebook
 Query=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[ia]=http://www.facebook.com/search?q=\\{@}&init=quick
 Query[is]=http://www.facebook.com/search/?q=\\{@}&init=quick
+Query[km]=http://www.facebook.com/search/?q=\\{@}&init=quick
+Query[nds]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[pt]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[sv]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[uk]=http://www.facebook.com/search/?q=\\{@}&init=quick

@@ -5,13 +5,17 @@ Keys=yahooimage,yhi
 Name=Yahoo Images
 Name[ia]=Yahoo Images
 Name[is]=Yahoo myndir
+Name[km]=រូបភាព​របស់​យ៉ាហ៊ូ
 Name[pt]=Imagens do Yahoo
 Name[sv]=Yahoo bilder
 Name[uk]=Зображення Yahoo
 Name[x-test]=xxYahoo Imagesxx
 Name[zh_TW]=Yahoo Images
 Query=http://images.search.yahoo.com/search/images;_ylt=A0geuy0K6JZLsVkB4m1XNyoA?ei=UTF-8&p=\\{@}&y=0&fr2=tab-web&fr=yfp-t-701
+Query[ia]=http://images.search.yahoo.com/search/images;_ylt=A0geuy0K6JZLsVkB4m1XNyoA?ei=UTF-8&p=\\{@}&y=0&fr2=tab-web&fr=yfp-t-701
 Query[is]=http://images.search.yahoo.com/search/images;_ylt=A0geuy0K6JZLsVkB4m1XNyoA?ei=UTF-8&p=\\{@}&y=0&fr2=tab-web&fr=yfp-t-701
+Query[km]=http://images.search.yahoo.com/search/images;_ylt=A0geuy0K6JZLsVkB4m1XNyoA?ei=UTF-8&p=\\{@}&y=0&fr2=tab-web&fr=yfp-t-701
+Query[nds]=http://images.search.yahoo.com/search/images;_ylt=A0geuy0K6JZLsVkB4m1XNyoA?ei=UTF-8&p=\\{@}&y=0&fr2=tab-web&fr=yfp-t-701
 Query[pt]=http://images.search.yahoo.com/search/images;_ylt=A0geuy0K6JZLsVkB4m1XNyoA?ei=UTF-8&p=\\{@}&y=0&fr2=tab-web&fr=yfp-t-701
 Query[sv]=http://images.search.yahoo.com/search/images;_ylt=A0geuy0K6JZLsVkB4m1XNyoA?ei=UTF-8&p=\\{@}&y=0&fr2=tab-web&fr=yfp-t-701
 Query[uk]=http://images.search.yahoo.com/search/images;_ylt=A0geuy0K6JZLsVkB4m1XNyoA?ei=UTF-8&p=\\{@}&y=0&fr2=tab-web&fr=yfp-t-701
