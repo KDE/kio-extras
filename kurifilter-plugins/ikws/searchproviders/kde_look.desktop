@@ -5,8 +5,10 @@ Keys=kdelook,klook,kdel
 Name=KDE Look
 Name[ia]=Semblante KDE
 Name[is]=KDE útlit
+Name[ja]=KDE Look
 Name[km]=រូបរាង​របស់ KDE
 Name[pt]=KDE Look
+Name[pt_BR]=KDE Look
 Name[sv]=KDE Look
 Name[uk]=KDE Look
 Name[x-test]=xxKDE Lookxx
@@ -14,9 +16,11 @@ Name[zh_TW]=KDE Look
 Query=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[ia]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[is]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
+Query[ja]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[km]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[nds]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[pt]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
+Query[pt_BR]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[sv]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[uk]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[x-test]=xxhttp://www.kde-look.org/content/search.php?search=Search&name=\\{@}xx

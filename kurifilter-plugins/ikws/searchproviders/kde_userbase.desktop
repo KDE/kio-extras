@@ -5,8 +5,10 @@ Keys=kdeuserbase,userbase,ub
 Name=KDE UserBase
 Name[ia]=KDE UserBase (Base de Usator)
 Name[is]=KDE Notandagrunnur
+Name[ja]=KDE UserBase
 Name[km]=KDE UserBase
 Name[pt]=KDE UserBase
+Name[pt_BR]=KDE UserBase
 Name[sv]=KDE:s användarbas
 Name[uk]=UserBase KDE
 Name[x-test]=xxKDE UserBasexx
@@ -14,9 +16,11 @@ Name[zh_TW]=KDE UserBase
 Query=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[ia]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[is]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
+Query[ja]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[km]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[nds]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[pt]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
+Query[pt_BR]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[sv]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[uk]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[x-test]=xxhttp://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Searchxx

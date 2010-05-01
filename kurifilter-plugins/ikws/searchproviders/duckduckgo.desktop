@@ -5,8 +5,11 @@ Keys=duckduckgo,dd,dukgo
 Name=Duck Duck Go
 Name[ia]=Duck Duck Go
 Name[is]=Duck Duck Go
+Name[ja]=Duck Duck Go
 Name[km]=Duck Duck Go
+Name[nds]=Duck Duck Go
 Name[pt]=Duck Duck Go
+Name[pt_BR]=Duck Duck Go
 Name[sv]=Duck Duck Go
 Name[uk]=Duck Duck Go
 Name[x-test]=xxDuck Duck Goxx
@@ -14,9 +17,11 @@ Name[zh_TW]=Duck Duck Go
 Query=http://duckduckgo.com/?q=\\{@}&v=
 Query[ia]=http://duckduckgo.com/?q=\\{@}&v=
 Query[is]=http://duckduckgo.com/?q=\\{@}&v=
+Query[ja]=http://duckduckgo.com/?q=\\{@}&v=
 Query[km]=http://duckduckgo.com/?q=\\{@}&v=
 Query[nds]=http://duckduckgo.com/?q=\\{@}&v=
 Query[pt]=http://duckduckgo.com/?q=\\{@}&v=
+Query[pt_BR]=http://duckduckgo.com/?q=\\{@}&v=
 Query[sv]=http://duckduckgo.com/?q=\\{@}&v=
 Query[uk]=http://duckduckgo.com/?q=\\{@}&v=
 Query[x-test]=xxhttp://duckduckgo.com/?q=\\{@}&v=xx

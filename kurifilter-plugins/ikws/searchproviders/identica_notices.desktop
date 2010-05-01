@@ -5,8 +5,11 @@ Keys=identicanotices,identin,idn
 Name=Identi.ca Notices
 Name[ia]=Novas de Identi.ca
 Name[is]=Identi.ca tilkynningar
+Name[ja]=Identi.ca Notices
 Name[km]=ចំណាំ​របស់ Identi.ca
+Name[nds]=Identi.ca - Henwiesen
 Name[pt]=Avisos do Identi.ca
+Name[pt_BR]=Notícias do Identi.ca
 Name[sv]=Identi.ca anslag
 Name[uk]=Нотатки Identi.ca
 Name[x-test]=xxIdenti.ca Noticesxx
@@ -14,9 +17,11 @@ Name[zh_TW]=Identi.ca Notices
 Query=http://identi.ca/search/notice?q=\\{@}
 Query[ia]=http://identi.ca/search/notice?q=\\{@}
 Query[is]=http://identi.ca/search/notice?q=\\{@}
+Query[ja]=http://identi.ca/search/notice?q=\\{@}
 Query[km]=http://identi.ca/search/notice?q=\\{@}
 Query[nds]=http://identi.ca/search/notice?q=\\{@}
 Query[pt]=http://identi.ca/search/notice?q=\\{@}
+Query[pt_BR]=http://identi.ca/search/notice?q=\\{@}
 Query[sv]=http://identi.ca/search/notice?q=\\{@}
 Query[uk]=http://identi.ca/search/notice?q=\\{@}
 Query[x-test]=xxhttp://identi.ca/search/notice?q=\\{@}xx

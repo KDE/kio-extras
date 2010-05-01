@@ -5,8 +5,11 @@ Keys=urbandictionary,ud
 Name=Urban Dictionary
 Name[ia]=Dictionario Urban
 Name[is]=Urban orðabókin
+Name[ja]=Urban Dictionary
 Name[km]=វចនុក្រម Urban
+Name[nds]=Urban-Wöörbook
 Name[pt]=Urban Dictionary
+Name[pt_BR]=Urban Dictionary
 Name[sv]=Slangordlista
 Name[uk]=Urban Dictionary
 Name[x-test]=xxUrban Dictionaryxx
@@ -14,9 +17,11 @@ Name[zh_TW]=Urban Dictionary
 Query=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[ia]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[is]=http://www.urbandictionary.com/define.php?term=\\{@}
+Query[ja]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[km]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[nds]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[pt]=http://www.urbandictionary.com/define.php?term=\\{@}
+Query[pt_BR]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[sv]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[uk]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[x-test]=xxhttp://www.urbandictionary.com/define.php?term=\\{@}xx

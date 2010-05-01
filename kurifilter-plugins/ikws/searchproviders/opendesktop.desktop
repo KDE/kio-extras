@@ -5,8 +5,10 @@ Keys=opendesktop,odesk,od
 Name=Open
 Name[ia]=Aperir
 Name[is]=Opið
+Name[ja]=Open
 Name[km]=បើក
 Name[pt]=Open
+Name[pt_BR]=Open
 Name[sv]=Öppet skrivbord
 Name[uk]=Open
 Name[x-test]=xxOpenxx
@@ -14,9 +16,11 @@ Name[zh_TW]=Open
 Query=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[ia]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[is]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
+Query[ja]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[km]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[nds]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[pt]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
+Query[pt_BR]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[sv]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[uk]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[x-test]=xxhttp://www.opendesktop.org/content/search.php?search=Search&name=\\{@}xx

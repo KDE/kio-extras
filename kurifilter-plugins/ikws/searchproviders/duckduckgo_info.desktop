@@ -5,8 +5,11 @@ Keys=duckduckgoinfo,ddi
 Name=Duck Duck Go Info
 Name[ia]=Duck Duck Go Info
 Name[is]=Duck Duck Go upplýsingar
+Name[ja]=Duck Duck Go Info
 Name[km]=ព័ត៌មាន​របស់ Duck Duck Go
+Name[nds]=Duck Duck Go - Informatschonen
 Name[pt]=Informação do Duck Duck Go
+Name[pt_BR]=Informações do Duck Duck Go
 Name[sv]=Duck Duck Go information
 Name[uk]=Duck Duck Go Info
 Name[x-test]=xxDuck Duck Go Infoxx
@@ -14,9 +17,11 @@ Name[zh_TW]=Duck Duck Go Info
 Query=http://duckduckgo.com/?q=\\{@}&v=r
 Query[ia]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[is]=http://duckduckgo.com/?q=\\{@}&v=r
+Query[ja]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[km]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[nds]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[pt]=http://duckduckgo.com/?q=\\{@}&v=r
+Query[pt_BR]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[sv]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[uk]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[x-test]=xxhttp://duckduckgo.com/?q=\\{@}&v=rxx

@@ -5,8 +5,11 @@ Keys=wikia,wka
 Name=Wikia
 Name[ia]=Wikia
 Name[is]=Wikia
+Name[ja]=Wikia
 Name[km]=Wikia
+Name[nds]=Wikia
 Name[pt]=Wikia
+Name[pt_BR]=Wikia
 Name[sv]=Wikia
 Name[uk]=Wikia
 Name[x-test]=xxWikiaxx
@@ -14,9 +17,11 @@ Name[zh_TW]=Wikia
 Query=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Search
 Query[ia]=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Search
 Query[is]=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Search
+Query[ja]=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Search
 Query[km]=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Search
 Query[nds]=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Search
 Query[pt]=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Search
+Query[pt_BR]=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Search
 Query[sv]=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Search
 Query[uk]=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Search
 Query[x-test]=xxhttp://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Searchxx
