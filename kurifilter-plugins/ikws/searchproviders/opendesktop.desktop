@@ -10,6 +10,7 @@ Name[km]=បើក
 Name[pt]=Open
 Name[pt_BR]=Open
 Name[sv]=Öppet skrivbord
+Name[th]=Open
 Name[uk]=Open
 Name[x-test]=xxOpenxx
 Name[zh_TW]=Open
@@ -22,6 +23,7 @@ Query[nds]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@
 Query[pt]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[pt_BR]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[sv]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
+Query[th]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[uk]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[x-test]=xxhttp://www.opendesktop.org/content/search.php?search=Search&name=\\{@}xx
 Query[zh_TW]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}

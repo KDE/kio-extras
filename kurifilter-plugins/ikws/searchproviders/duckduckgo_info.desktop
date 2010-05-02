@@ -11,6 +11,7 @@ Name[nds]=Duck Duck Go - Informatschonen
 Name[pt]=Informação do Duck Duck Go
 Name[pt_BR]=Informações do Duck Duck Go
 Name[sv]=Duck Duck Go information
+Name[th]=ข้อมูลของ Duck Duck Go
 Name[uk]=Duck Duck Go Info
 Name[x-test]=xxDuck Duck Go Infoxx
 Name[zh_TW]=Duck Duck Go Info
@@ -23,6 +24,7 @@ Query[nds]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[pt]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[pt_BR]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[sv]=http://duckduckgo.com/?q=\\{@}&v=r
+Query[th]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[uk]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[x-test]=xxhttp://duckduckgo.com/?q=\\{@}&v=rxx
 Query[zh_TW]=http://duckduckgo.com/?q=\\{@}&v=r

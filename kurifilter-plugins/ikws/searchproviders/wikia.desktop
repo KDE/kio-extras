@@ -11,6 +11,7 @@ Name[nds]=Wikia
 Name[pt]=Wikia
 Name[pt_BR]=Wikia
 Name[sv]=Wikia
+Name[th]=Wikia
 Name[uk]=Wikia
 Name[x-test]=xxWikiaxx
 Name[zh_TW]=Wikia
@@ -23,6 +24,7 @@ Query[nds]=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=
 Query[pt]=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Search
 Query[pt_BR]=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Search
 Query[sv]=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Search
+Query[th]=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Search
 Query[uk]=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Search
 Query[x-test]=xxhttp://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Searchxx
 Query[zh_TW]=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Search

@@ -23,6 +23,7 @@ Query[nds]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[pt]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[pt_BR]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[sv]=http://identi.ca/search/people?q=\\{@}&search=Search
+Query[th]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[uk]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[x-test]=xxhttp://identi.ca/search/people?q=\\{@}&search=Searchxx
 Query[zh_TW]=http://identi.ca/search/people?q=\\{@}&search=Search

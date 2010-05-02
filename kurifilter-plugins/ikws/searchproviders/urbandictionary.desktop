@@ -11,6 +11,7 @@ Name[nds]=Urban-Wöörbook
 Name[pt]=Urban Dictionary
 Name[pt_BR]=Urban Dictionary
 Name[sv]=Slangordlista
+Name[th]=พจนานุกรม Urban
 Name[uk]=Urban Dictionary
 Name[x-test]=xxUrban Dictionaryxx
 Name[zh_TW]=Urban Dictionary
@@ -23,6 +24,7 @@ Query[nds]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[pt]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[pt_BR]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[sv]=http://www.urbandictionary.com/define.php?term=\\{@}
+Query[th]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[uk]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[x-test]=xxhttp://www.urbandictionary.com/define.php?term=\\{@}xx
 Query[zh_TW]=http://www.urbandictionary.com/define.php?term=\\{@}

@@ -23,6 +23,7 @@ Query[nds]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
 Query[pt]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
 Query[pt_BR]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
 Query[sv]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
+Query[th]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
 Query[uk]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
 Query[x-test]=xxhttp://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1xx
 Query[zh_TW]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1

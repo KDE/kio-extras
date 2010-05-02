@@ -10,6 +10,7 @@ Name[km]=រូបរាង​របស់ KDE
 Name[pt]=KDE Look
 Name[pt_BR]=KDE Look
 Name[sv]=KDE Look
+Name[th]=KDE Look
 Name[uk]=KDE Look
 Name[x-test]=xxKDE Lookxx
 Name[zh_TW]=KDE Look
@@ -22,6 +23,7 @@ Query[nds]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[pt]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[pt_BR]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[sv]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
+Query[th]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[uk]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[x-test]=xxhttp://www.kde-look.org/content/search.php?search=Search&name=\\{@}xx
 Query[zh_TW]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}

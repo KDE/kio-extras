@@ -11,6 +11,7 @@ Name[nds]=Magnatune
 Name[pt]=Magnatune
 Name[pt_BR]=Magnatune
 Name[sv]=Magnatune
+Name[th]=Magnatune
 Name[uk]=Magnatune
 Name[x-test]=xxMagnatunexx
 Name[zh_TW]=Magnatune
@@ -23,6 +24,7 @@ Query[nds]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
 Query[pt]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
 Query[pt_BR]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
 Query[sv]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
+Query[th]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
 Query[uk]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
 Query[x-test]=xxhttp://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0xx
 Query[zh_TW]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0

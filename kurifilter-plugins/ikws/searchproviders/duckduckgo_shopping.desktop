@@ -11,6 +11,7 @@ Name[nds]=Duck Duck Go - Inköpen
 Name[pt]=Loja do Duck Duck Go
 Name[pt_BR]=Loja do Duck Duck Go
 Name[sv]=Duck Duck Go shopping
+Name[th]=ช้อปปิ้งของ Duck Duck Go
 Name[uk]=Duck Duck Go Shopping
 Name[x-test]=xxDuck Duck Go Shoppingxx
 Name[zh_TW]=Duck Duck Go Shopping
@@ -23,6 +24,7 @@ Query[nds]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[pt]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[pt_BR]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[sv]=http://duckduckgo.com/?q=\\{@}&v=s
+Query[th]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[uk]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[x-test]=xxhttp://duckduckgo.com/?q=\\{@}&v=sxx
 Query[zh_TW]=http://duckduckgo.com/?q=\\{@}&v=s

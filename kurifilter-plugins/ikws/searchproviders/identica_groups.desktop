@@ -11,6 +11,7 @@ Name[nds]=Identi.ca - Koppeln
 Name[pt]=Grupos do Identi.ca
 Name[pt_BR]=Grupos do Identi.ca
 Name[sv]=Identi.ca grupper
+Name[th]=กลุ่มต่าง ๆ ของ Identi.ca
 Name[uk]=Групи Identi.ca
 Name[x-test]=xxIdenti.ca Groupsxx
 Name[zh_TW]=Identi.ca Groups
@@ -23,6 +24,7 @@ Query[nds]=http://identi.ca/search/group?q=\\{@}
 Query[pt]=http://identi.ca/search/group?q=\\{@}
 Query[pt_BR]=http://identi.ca/search/group?q=\\{@}
 Query[sv]=http://identi.ca/search/group?q=\\{@}
+Query[th]=http://identi.ca/search/group?q=\\{@}
 Query[uk]=http://identi.ca/search/group?q=\\{@}
 Query[x-test]=xxhttp://identi.ca/search/group?q=\\{@}xx
 Query[zh_TW]=http://identi.ca/search/group?q=\\{@}

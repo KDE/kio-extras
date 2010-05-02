@@ -23,6 +23,7 @@ Query[nds]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=S
 Query[pt]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[pt_BR]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[sv]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
+Query[th]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[uk]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[x-test]=xxhttp://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Searchxx
 Query[zh_TW]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
