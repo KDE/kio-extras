@@ -3,11 +3,13 @@ Charset=
 Hidden=false
 Keys=yahoolocal,yhl
 Name=Yahoo Local
+Name[en_GB]=Yahoo Local
 Name[ia]=Yahoo Local
 Name[is]=Yahoo Local
 Name[ja]=Yahoo Local
 Name[km]=មូលដ្ឋាន​របស់​យ៉ាហ៊ូ
 Name[nds]=Yahoo - Lokaal
+Name[nl]=Yahoo lokaal
 Name[pt]=Yahoo Local
 Name[pt_BR]=Yahoo Local
 Name[sv]=Yahoo Local
@@ -15,11 +17,13 @@ Name[uk]=Yahoo Local
 Name[x-test]=xxYahoo Localxx
 Name[zh_TW]=Yahoo Local
 Query=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img
+Query[en_GB]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img
 Query[ia]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img
 Query[is]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img
 Query[ja]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img
 Query[km]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img
 Query[nds]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img
+Query[nl]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img
 Query[pt]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img
 Query[pt_BR]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img
 Query[sv]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img

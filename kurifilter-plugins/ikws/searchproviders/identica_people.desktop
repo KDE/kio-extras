@@ -3,11 +3,13 @@ Charset=
 Hidden=false
 Keys=identicapeople,identip,idp
 Name=Identi.ca People
+Name[en_GB]=Identi.ca People
 Name[ia]=Gente de Identi.ca
 Name[is]=Identi.ca fólk
 Name[ja]=Identi.ca People
 Name[km]=មនុស្ស Identi.ca
 Name[nds]=Identi.ca - Lüüd
+Name[nl]=Identi.ca Mensen
 Name[pt]=Pessoas do Identi.ca
 Name[pt_BR]=Pessoas do Identi.ca
 Name[sv]=Identi.ca personer
@@ -15,11 +17,13 @@ Name[uk]=Постаті Identi.ca
 Name[x-test]=xxIdenti.ca Peoplexx
 Name[zh_TW]=Identi.ca People
 Query=http://identi.ca/search/people?q=\\{@}&search=Search
+Query[en_GB]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[ia]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[is]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[ja]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[km]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[nds]=http://identi.ca/search/people?q=\\{@}&search=Search
+Query[nl]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[pt]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[pt_BR]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[sv]=http://identi.ca/search/people?q=\\{@}&search=Search

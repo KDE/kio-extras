@@ -3,10 +3,12 @@ Charset=
 Hidden=false
 Keys=kdetechbase,techbase,tb
 Name=KDE TechBase
+Name[en_GB]=KDE TechBase
 Name[ia]=KDE TechBase (Base Technic)
 Name[is]=KDE Tæknigrunnur
 Name[ja]=KDE TechBase
 Name[km]=KDE TechBase
+Name[nl]=KDE TechBase
 Name[pt]=KDE TechBase
 Name[pt_BR]=KDE TechBase
 Name[sv]=KDE teknikbas
@@ -15,11 +17,13 @@ Name[uk]=TechBase KDE
 Name[x-test]=xxKDE TechBasexx
 Name[zh_TW]=KDE TechBase
 Query=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
+Query[en_GB]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[ia]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[is]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[ja]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[km]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[nds]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
+Query[nl]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[pt]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[pt_BR]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[sv]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search

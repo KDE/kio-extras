@@ -3,10 +3,12 @@ Charset=
 Hidden=false
 Keys=opendesktop,odesk,od
 Name=Open
+Name[en_GB]=Open
 Name[ia]=Aperir
 Name[is]=Opið
 Name[ja]=Open
 Name[km]=បើក
+Name[nl]=Openen
 Name[pt]=Open
 Name[pt_BR]=Open
 Name[sv]=Öppet skrivbord
@@ -15,11 +17,13 @@ Name[uk]=Open
 Name[x-test]=xxOpenxx
 Name[zh_TW]=Open
 Query=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
+Query[en_GB]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[ia]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[is]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[ja]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[km]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[nds]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
+Query[nl]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[pt]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[pt_BR]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[sv]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}

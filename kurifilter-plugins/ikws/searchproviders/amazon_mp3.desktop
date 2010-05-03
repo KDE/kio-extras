@@ -3,11 +3,13 @@ Charset=
 Hidden=false
 Keys=amazonmp3,az3,amz3,amzmp3
 Name=Amazon MP3
+Name[en_GB]=Amazon MP3
 Name[ia]=Amazon MP3
 Name[is]=Amazon MP3
 Name[ja]=Amazon MP3
 Name[km]=Amazon MP3
 Name[nds]=Amazon - MP3
+Name[nl]=Amazon MP3
 Name[pt]=MP3 da Amazon
 Name[pt_BR]=MP3 da Amazon
 Name[sv]=Amazon MP3
@@ -16,11 +18,13 @@ Name[uk]=Amazon MP3
 Name[x-test]=xxAmazon MP3xx
 Name[zh_TW]=Amazon MP3
 Query=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=digital-music&field-keywords=\\{@}&x=0&y=0
+Query[en_GB]=http://www.amazon.co.uk/s/ref=nb_sb_noss?url=search-alias=digital-music&field-keywords=\\{@}&x=0&y=0
 Query[ia]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=digital-music&field-keywords=\\{@}&x=0&y=0
 Query[is]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=digital-music&field-keywords=\\{@}&x=0&y=0
 Query[ja]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=digital-music&field-keywords=\\{@}&x=0&y=0
 Query[km]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=digital-music&field-keywords=\\{@}&x=0&y=0
 Query[nds]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=digital-music&field-keywords=\\{@}&x=0&y=0
+Query[nl]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=digital-music&field-keywords=\\{@}&x=0&y=0
 Query[pt]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=digital-music&field-keywords=\\{@}&x=0&y=0
 Query[pt_BR]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=digital-music&field-keywords=\\{@}&x=0&y=0
 Query[sv]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=digital-music&field-keywords=\\{@}&x=0&y=0

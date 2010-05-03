@@ -3,11 +3,13 @@ Charset=
 Hidden=false
 Keys=flickr,flkr
 Name=Flickr
+Name[en_GB]=Flickr
 Name[ia]=Flickr
 Name[is]=Flickr
 Name[ja]=Flickr
 Name[km]=Flickr
 Name[nds]=Flickr
+Name[nl]=Flickr
 Name[pt]=Flickr
 Name[pt_BR]=Flickr
 Name[sv]=Flickr
@@ -16,11 +18,13 @@ Name[uk]=Flickr
 Name[x-test]=xxFlickrxx
 Name[zh_TW]=Flickr
 Query=http://www.flickr.com/search/?q=\\{@}
+Query[en_GB]=http://www.flickr.com/search/?q=\\{@}
 Query[ia]=http://www.flickr.com/search?q=\\{@}
 Query[is]=http://www.flickr.com/search/?q=\\{@}
 Query[ja]=http://www.flickr.com/search/?q=\\{@}
 Query[km]=http://www.flickr.com/search/?q=\\{@}
 Query[nds]=http://www.flickr.com/search/?q=\\{@}
+Query[nl]=http://www.flickr.com/search/?q=\\{@}
 Query[pt]=http://www.flickr.com/search/?q=\\{@}
 Query[pt_BR]=http://www.flickr.com/search/?q=\\{@}
 Query[sv]=http://www.flickr.com/search/?q=\\{@}

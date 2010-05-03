@@ -3,11 +3,13 @@ Charset=
 Hidden=false
 Keys=magnatune,mt
 Name=Magnatune
+Name[en_GB]=Magnatune
 Name[ia]=Magnatune
 Name[is]=Magnatune
 Name[ja]=Magnatune
 Name[km]=Magnatune
 Name[nds]=Magnatune
+Name[nl]=Magnatune
 Name[pt]=Magnatune
 Name[pt_BR]=Magnatune
 Name[sv]=Magnatune
@@ -16,11 +18,13 @@ Name[uk]=Magnatune
 Name[x-test]=xxMagnatunexx
 Name[zh_TW]=Magnatune
 Query=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
+Query[en_GB]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
 Query[ia]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
 Query[is]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
 Query[ja]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
 Query[km]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
 Query[nds]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
+Query[nl]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
 Query[pt]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
 Query[pt_BR]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
 Query[sv]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
