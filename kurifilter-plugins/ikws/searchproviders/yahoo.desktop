@@ -4,9 +4,11 @@ Hidden=false
 Keys=yahoo,yh
 Name=Yahoo
 Name[en_GB]=Yahoo
+Name[es]=Yahoo
 Name[ia]=Yahoo
 Name[is]=Yahoo
 Name[ja]=Yahoo
+Name[kk]=Yahoo
 Name[km]=យ៉ាហ៊ូ
 Name[nds]=Yahoo
 Name[nl]=Yahoo
@@ -18,9 +20,11 @@ Name[x-test]=xxYahooxx
 Name[zh_TW]=Yahoo
 Query=http://search.yahoo.com/search?toggle=1&cop=mss&ei=UTF-8&fr=yfp-t-701&p=\\{@}&x=0&y=0&=Web+Search
 Query[en_GB]=http://search.yahoo.com/search?toggle=1&cop=mss&ei=UTF-8&fr=yfp-t-701&p=\\{@}&x=0&y=0&=Web+Search
+Query[es]=http://search.yahoo.com/search?toggle=1&cop=mss&ei=UTF-8&fr=yfp-t-701&p=\\{@}&x=0&y=0&=Web+Search
 Query[ia]=http://search.yahoo.com/search?toggle=1&cop=mss&ei=UTF-8&fr=yfp-t-701&p=\\{@}&x=0&y=0&=Web+Search
 Query[is]=http://search.yahoo.com/search?toggle=1&cop=mss&ei=UTF-8&fr=yfp-t-701&p=\\{@}&x=0&y=0&=Web+Search
 Query[ja]=http://search.yahoo.com/search?toggle=1&cop=mss&ei=UTF-8&fr=yfp-t-701&p=\\{@}&x=0&y=0&=Web+Search
+Query[kk]=http://search.yahoo.com/search?toggle=1&cop=mss&ei=UTF-8&fr=yfp-t-701&p=\\{@}&x=0&y=0&=Web+Search
 Query[km]=http://search.yahoo.com/search?toggle=1&cop=mss&ei=UTF-8&fr=yfp-t-701&p=\\{@}&x=0&y=0&=Web+Search
 Query[nds]=http://search.yahoo.com/search?toggle=1&cop=mss&ei=UTF-8&fr=yfp-t-701&p=\\{@}&x=0&y=0&=Web+Search
 Query[nl]=http://search.yahoo.com/search?toggle=1&cop=mss&ei=UTF-8&fr=yfp-t-701&p=\\{@}&x=0&y=0&=Web+Search

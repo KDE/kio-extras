@@ -7,6 +7,7 @@ Name[en_GB]=Yahoo Shopping
 Name[ia]=Yahoo Shopping
 Name[is]=Yahoo verslun
 Name[ja]=Yahoo Shopping
+Name[kk]=Yahoo Shopping
 Name[km]=កា​រទិញ​ឥវ៉ាន់​របស់​យ៉ាហ៊ូ
 Name[nds]=Yahoo - Inköpen
 Name[nl]=Yahoo Shopping
@@ -18,9 +19,11 @@ Name[x-test]=xxYahoo Shoppingxx
 Name[zh_TW]=Yahoo Shopping
 Query=http://shopping.yahoo.com/search;_ylt=A0SO8ZgG65ZLyX8AsLX7w8QF;_ylu=X3oDMTBpcjIxMDllBHNlYwN0YWJzBHZ0aWQDVjEwOQ--?cop=mss&ei=UTF-8&p=\\{@}&fr2=tab-video&fr=yfp-t-701
 Query[en_GB]=http://shopping.yahoo.com/search;_ylt=A0SO8ZgG65ZLyX8AsLX7w8QF;_ylu=X3oDMTBpcjIxMDllBHNlYwN0YWJzBHZ0aWQDVjEwOQ--?cop=mss&ei=UTF-8&p=\\{@}&fr2=tab-video&fr=yfp-t-701
+Query[es]=http://shopping.yahoo.com/search;_ylt=A0SO8ZgG65ZLyX8AsLX7w8QF;_ylu=X3oDMTBpcjIxMDllBHNlYwN0YWJzBHZ0aWQDVjEwOQ--?cop=mss&ei=UTF-8&p=\\{@}&fr2=tab-video&fr=yfp-t-701
 Query[ia]=http://shopping.yahoo.com/search;_ylt=A0SO8ZgG65ZLyX8AsLX7w8QF;_ylu=X3oDMTBpcjIxMDllBHNlYwN0YWJzBHZ0aWQDVjEwOQ--?cop=mss&ei=UTF-8&p=\\{@}&fr2=tab-video&fr=yfp-t-701
 Query[is]=http://shopping.yahoo.com/search;_ylt=A0SO8ZgG65ZLyX8AsLX7w8QF;_ylu=X3oDMTBpcjIxMDllBHNlYwN0YWJzBHZ0aWQDVjEwOQ--?cop=mss&ei=UTF-8&p=\\{@}&fr2=tab-video&fr=yfp-t-701
 Query[ja]=http://shopping.yahoo.com/search;_ylt=A0SO8ZgG65ZLyX8AsLX7w8QF;_ylu=X3oDMTBpcjIxMDllBHNlYwN0YWJzBHZ0aWQDVjEwOQ--?cop=mss&ei=UTF-8&p=\\{@}&fr2=tab-video&fr=yfp-t-701
+Query[kk]=http://shopping.yahoo.com/search;_ylt=A0SO8ZgG65ZLyX8AsLX7w8QF;_ylu=X3oDMTBpcjIxMDllBHNlYwN0YWJzBHZ0aWQDVjEwOQ--?cop=mss&ei=UTF-8&p=\\{@}&fr2=tab-video&fr=yfp-t-701
 Query[km]=http://shopping.yahoo.com/search;_ylt=A0SO8ZgG65ZLyX8AsLX7w8QF;_ylu=X3oDMTBpcjIxMDllBHNlYwN0YWJzBHZ0aWQDVjEwOQ--?cop=mss&ei=UTF-8&p=\\{@}&fr2=tab-video&fr=yfp-t-701
 Query[nds]=http://shopping.yahoo.com/search;_ylt=A0SO8ZgG65ZLyX8AsLX7w8QF;_ylu=X3oDMTBpcjIxMDllBHNlYwN0YWJzBHZ0aWQDVjEwOQ--?cop=mss&ei=UTF-8&p=\\{@}&fr2=tab-video&fr=yfp-t-701
 Query[nl]=http://shopping.yahoo.com/search;_ylt=A0SO8ZgG65ZLyX8AsLX7w8QF;_ylu=X3oDMTBpcjIxMDllBHNlYwN0YWJzBHZ0aWQDVjEwOQ--?cop=mss&ei=UTF-8&p=\\{@}&fr2=tab-video&fr=yfp-t-701

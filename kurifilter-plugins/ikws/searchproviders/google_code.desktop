@@ -4,9 +4,11 @@ Hidden=false
 Keys=ggc,googlecode,ggcode
 Name=Google Code
 Name[en_GB]=Google Code
+Name[es]=Google Code
 Name[ia]=Google Movies
 Name[is]=Google kóði
 Name[ja]=Google Code
+Name[kk]=Google Code
 Name[km]=កូដ​​​ហ្គូហ្គល
 Name[nds]=Google-Kode
 Name[nl]=Google Code
@@ -18,9 +20,11 @@ Name[x-test]=xxGoogle Codexx
 Name[zh_TW]=Google Code
 Query=http://code.google.com/query/#q=\\{%2520}
 Query[en_GB]=http://code.google.com/query/#q=\\{%2520}
+Query[es]=http://code.google.com/query/#q=\\{%2520}
 Query[ia]=http://code.google.com/query#q=\\{%2520}
 Query[is]=http://code.google.com/query/#q=\\{%2520}
 Query[ja]=http://code.google.com/query/#q=\\{%2520}
+Query[kk]=http://code.google.com/query/#q=\\{%2520}
 Query[km]=http://code.google.com/query/#q=\\{%2520}
 Query[nds]=http://code.google.com/query/#q=\\{%2520}
 Query[nl]=http://code.google.com/query/#q=\\{%2520}

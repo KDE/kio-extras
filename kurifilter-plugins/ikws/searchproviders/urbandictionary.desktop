@@ -4,9 +4,11 @@ Hidden=false
 Keys=urbandictionary,ud
 Name=Urban Dictionary
 Name[en_GB]=Urban Dictionary
+Name[es]=Urban Dictionary
 Name[ia]=Dictionario Urban
 Name[is]=Urban orðabókin
 Name[ja]=Urban Dictionary
+Name[kk]=Urban Dictionary
 Name[km]=វចនុក្រម Urban
 Name[nds]=Urban-Wöörbook
 Name[nl]=Urban woordenboek
@@ -19,9 +21,11 @@ Name[x-test]=xxUrban Dictionaryxx
 Name[zh_TW]=Urban Dictionary
 Query=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[en_GB]=http://www.urbandictionary.com/define.php?term=\\{@}
+Query[es]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[ia]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[is]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[ja]=http://www.urbandictionary.com/define.php?term=\\{@}
+Query[kk]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[km]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[nds]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[nl]=http://www.urbandictionary.com/define.php?term=\\{@}

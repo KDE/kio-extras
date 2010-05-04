@@ -4,9 +4,11 @@ Hidden=false
 Keys=flickr,flkr
 Name=Flickr
 Name[en_GB]=Flickr
+Name[es]=Flickr
 Name[ia]=Flickr
 Name[is]=Flickr
 Name[ja]=Flickr
+Name[kk]=Flickr
 Name[km]=Flickr
 Name[nds]=Flickr
 Name[nl]=Flickr
@@ -19,9 +21,11 @@ Name[x-test]=xxFlickrxx
 Name[zh_TW]=Flickr
 Query=http://www.flickr.com/search/?q=\\{@}
 Query[en_GB]=http://www.flickr.com/search/?q=\\{@}
+Query[es]=http://www.flickr.com/search/?q=\\{@}
 Query[ia]=http://www.flickr.com/search?q=\\{@}
 Query[is]=http://www.flickr.com/search/?q=\\{@}
 Query[ja]=http://www.flickr.com/search/?q=\\{@}
+Query[kk]=http://www.flickr.com/search/?q=\\{@}
 Query[km]=http://www.flickr.com/search/?q=\\{@}
 Query[nds]=http://www.flickr.com/search/?q=\\{@}
 Query[nl]=http://www.flickr.com/search/?q=\\{@}

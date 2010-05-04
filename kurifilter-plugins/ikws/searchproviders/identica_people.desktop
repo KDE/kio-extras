@@ -4,9 +4,11 @@ Hidden=false
 Keys=identicapeople,identip,idp
 Name=Identi.ca People
 Name[en_GB]=Identi.ca People
+Name[es]=Gente Identi.ca
 Name[ia]=Gente de Identi.ca
 Name[is]=Identi.ca fólk
 Name[ja]=Identi.ca People
+Name[kk]=Identi.ca халықы
 Name[km]=មនុស្ស Identi.ca
 Name[nds]=Identi.ca - Lüüd
 Name[nl]=Identi.ca Mensen
@@ -18,9 +20,11 @@ Name[x-test]=xxIdenti.ca Peoplexx
 Name[zh_TW]=Identi.ca People
 Query=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[en_GB]=http://identi.ca/search/people?q=\\{@}&search=Search
+Query[es]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[ia]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[is]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[ja]=http://identi.ca/search/people?q=\\{@}&search=Search
+Query[kk]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[km]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[nds]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[nl]=http://identi.ca/search/people?q=\\{@}&search=Search

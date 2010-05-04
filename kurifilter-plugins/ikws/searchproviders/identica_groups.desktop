@@ -4,9 +4,11 @@ Hidden=false
 Keys=identicagroups,identig,identicag,idg
 Name=Identi.ca Groups
 Name[en_GB]=Identi.ca Groups
+Name[es]=Grupos Identi.ca
 Name[ia]=Gruppos de Identi.ca
 Name[is]=Identi.ca hópar
 Name[ja]=Identi.ca Groups
+Name[kk]=Identi.ca тобтар
 Name[km]=ក្រុម​របស់ Identi.ca
 Name[nds]=Identi.ca - Koppeln
 Name[nl]=Identi.ca Groepen
@@ -19,9 +21,11 @@ Name[x-test]=xxIdenti.ca Groupsxx
 Name[zh_TW]=Identi.ca Groups
 Query=http://identi.ca/search/group?q=\\{@}
 Query[en_GB]=http://identi.ca/search/group?q=\\{@}
+Query[es]=http://identi.ca/search/group?q=\\{@}
 Query[ia]=http://identi.ca/search/group?q=\\{@}
 Query[is]=http://identi.ca/search/group?q=\\{@}
 Query[ja]=http://identi.ca/search/group?q=\\{@}
+Query[kk]=http://identi.ca/search/group?q=\\{@}
 Query[km]=http://identi.ca/search/group?q=\\{@}
 Query[nds]=http://identi.ca/search/group?q=\\{@}
 Query[nl]=http://identi.ca/search/group?q=\\{@}
