@@ -19,6 +19,7 @@ Name[uk]=7Digital
 Name[x-test]=xx7Digitalxx
 Name[zh_TW]=7Digital
 Query=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
+Query[cs]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[en_GB]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[es]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[ia]=http://us.7digital.com/search/search.php?item=\\{@}&searchtype=global&submit=Search

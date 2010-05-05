@@ -20,6 +20,7 @@ Name[uk]=Urban Dictionary
 Name[x-test]=xxUrban Dictionaryxx
 Name[zh_TW]=Urban Dictionary
 Query=http://www.urbandictionary.com/define.php?term=\\{@}
+Query[cs]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[en_GB]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[es]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[ia]=http://www.urbandictionary.com/define.php?term=\\{@}

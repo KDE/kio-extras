@@ -20,6 +20,7 @@ Name[uk]=Wikia
 Name[x-test]=xxWikiaxx
 Name[zh_TW]=Wikia
 Query=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Search
+Query[cs]=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Search
 Query[en_GB]=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Search
 Query[es]=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Search
 Query[ia]=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Search

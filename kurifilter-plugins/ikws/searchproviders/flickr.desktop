@@ -20,6 +20,7 @@ Name[uk]=Flickr
 Name[x-test]=xxFlickrxx
 Name[zh_TW]=Flickr
 Query=http://www.flickr.com/search/?q=\\{@}
+Query[cs]=http://www.flickr.com/search/?q=\\{@}
 Query[en_GB]=http://www.flickr.com/search/?q=\\{@}
 Query[es]=http://www.flickr.com/search/?q=\\{@}
 Query[ia]=http://www.flickr.com/search?q=\\{@}

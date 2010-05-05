@@ -3,6 +3,7 @@ Charset=
 Hidden=false
 Keys=opendesktop,odesk,od
 Name=Open
+Name[cs]=Otevřít
 Name[en_GB]=Open
 Name[ia]=Aperir
 Name[is]=Opið
@@ -18,6 +19,7 @@ Name[uk]=Open
 Name[x-test]=xxOpenxx
 Name[zh_TW]=Open
 Query=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
+Query[cs]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[en_GB]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[es]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[ia]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}

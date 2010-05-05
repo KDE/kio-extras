@@ -20,6 +20,7 @@ Name[uk]=Facebook
 Name[x-test]=xxFacebookxx
 Name[zh_TW]=Facebook
 Query=http://www.facebook.com/search/?q=\\{@}&init=quick
+Query[cs]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[en_GB]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[es]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[ia]=http://www.facebook.com/search?q=\\{@}&init=quick

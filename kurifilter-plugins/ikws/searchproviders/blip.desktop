@@ -20,6 +20,7 @@ Name[uk]=Blip.tv
 Name[x-test]=xxBlip.tvxx
 Name[zh_TW]=Blip.tv
 Query=http://blip.tv/search?q=\\{@}
+Query[cs]=http://blip.tv/search?q=\\{@}
 Query[en_GB]=http://blip.tv/search?q=\\{@}
 Query[es]=http://blip.tv/search?q=\\{@}
 Query[ia]=http://blip.tv/search?q=\\{@}
