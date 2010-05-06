@@ -24,6 +24,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include <kstandarddirs.h>
 #include <kcomponentdata.h>
 #include <klocale.h>
+#include <kimagecache.h>
 #include <kconfig.h>
 #include <kconfiggroup.h>
 
@@ -44,32 +45,41 @@ void BookmarksProtocol::echoImage( const QString &type, const QString &string, c
       size = 128;
   }
 
-  QPixmap pix;
-  if (!cache->find(type + string + QString::number(size), pix)) {
+  // Although KImageCache supports caching pixmaps, we need to send the data to the
+  // destination process anyways so don't bother, just hold onto the image data.
+  QImage image = cache->findImage(type + string + QString::number(size));
+  if (image.isNull()) {
     KIcon icon = KIcon(string);
+    QPixmap pix; // KIcon can't give us a QImage anyways.
+
     if (type == "icon") {
       pix = icon.pixmap(size, size);
     } else {
       pix = QPixmap(size, size);
       pix.fill(Qt::transparent);
+
+      QPixmap overlay = icon.pixmap(size, size);
+
+      // Make overlay semi-transparent (faster than setOpacity)
+      QPainter overlayPainter;
+      overlayPainter.begin(&overlay);
+      overlayPainter.setCompositionMode(QPainter::CompositionMode_DestinationIn);
+      overlayPainter.fillRect(overlay.rect(), QColor(0, 0, 0, 0.3));
+      overlayPainter.end();
+
       QPainter painter(&pix);
-      painter.setOpacity(0.3);
-
       QRectF rect(0, 0, size, size);
-      painter.drawPixmap(rect, icon.pixmap(size, size), rect);
+      painter.drawPixmap(pix.rect(), overlay, overlay.rect());
     }
-    cache->insert(type + string + QString::number(size), pix);
+
+    image = pix.toImage();
+    cache->insertImage(type + string + QString::number(size), image);
   }
-  echoPixmap(pix);
-}
 
-void BookmarksProtocol::echoPixmap(const QPixmap &pixmap)
-{
-  SlaveBase::mimeType("image/png");
-
-  QByteArray bytes;
-  QBuffer buffer(&bytes);
+  QBuffer buffer;
   buffer.open(QIODevice::WriteOnly);
-  pixmap.save(&buffer, "PNG");
-  data(bytes);
+  image.save(&buffer, "PNG");
+
+  SlaveBase::mimeType("image/png");
+  data(buffer.buffer());
 }

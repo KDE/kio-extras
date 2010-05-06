@@ -20,9 +20,11 @@
 
 #include <kio/slavebase.h>
 #include <kbookmarkmanager.h>
-#include <kpixmapcache.h>
 #include <kconfig.h>
 #include <KConfigGroup>
+
+class KImageCache;
+
 class BookmarksProtocol : public KIO::SlaveBase
 {
   public:
@@ -35,7 +37,7 @@ class BookmarksProtocol : public KIO::SlaveBase
     int columns;
     int indent;
     int totalsize;
-    KPixmapCache* cache;
+    KImageCache* cache;
     KBookmarkManager* manager;
     KConfig* cfg;
     KConfigGroup config;
@@ -57,7 +59,6 @@ class BookmarksProtocol : public KIO::SlaveBase
     void echoFolder( const KBookmarkGroup &folder );
 
     // Defined in kde_bookmarks_pixmap.cpp
-    void echoPixmap( const QPixmap &pixmap );
     void echoImage( const QString &type, const QString &string, const QString &sizestring = QString());
 };
 

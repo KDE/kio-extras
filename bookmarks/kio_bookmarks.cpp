@@ -35,7 +35,7 @@
 #include <kconfiggroup.h>
 #include <kbookmark.h>
 #include <kbookmarkmanager.h>
-#include <kpixmapcache.h>
+#include <kimagecache.h>
 #include <kdebug.h>
 #include <kfileplacesmodel.h>
 #include <solid/device.h>
@@ -50,8 +50,8 @@ BookmarksProtocol::BookmarksProtocol( const QByteArray &pool, const QByteArray &
   manager = KBookmarkManager::userBookmarksManager();
   cfg = new KConfig( "kiobookmarksrc" );
   config = cfg->group("General");
-  cache = new KPixmapCache("kio_bookmarks");
-  cache->setCacheLimit(config.readEntry("CacheSize", 5*1024));
+  cache = new KImageCache("kio_bookmarks", config.readEntry("CacheSize", 5 * 1024) * 1024);
+  cache->setPixmapCaching(false);
 
   indent = 0;
   totalsize = 0;
