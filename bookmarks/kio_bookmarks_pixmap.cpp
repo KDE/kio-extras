@@ -47,8 +47,9 @@ void BookmarksProtocol::echoImage( const QString &type, const QString &string, c
 
   // Although KImageCache supports caching pixmaps, we need to send the data to the
   // destination process anyways so don't bother, just hold onto the image data.
-  QImage image = cache->findImage(type + string + QString::number(size));
-  if (image.isNull()) {
+  QImage image;
+  bool ok = cache->findImage(type + string + QString::number(size), &image);
+  if (!ok || image.isNull()) {
     KIcon icon = KIcon(string);
     QPixmap pix; // KIcon can't give us a QImage anyways.
 
