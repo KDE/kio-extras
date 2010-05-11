@@ -28,10 +28,13 @@
 #include "network_p.h"
 #include "netdevice_p.h"
 #include "netservice_p.h"
-// KUPnP
-#include <devicebrowser.h>
-#include <device.h>
+#include "cagibidevice.h"
+#include "cagibidbuscodec.h"
 // Qt
+#include <QtDBus/QDBusMetaType>
+#include <QtDBus/QDBusReply>
+#include <QtDBus/QDBusConnection>
+#include <QtDBus/QDBusInterface>
 #include <QtCore/QStringList>
 
 #include <KDebug>
@@ -42,7 +45,7 @@ namespace Mollet
 UpnpNetworkBuilder::UpnpNetworkBuilder( NetworkPrivate* networkPrivate )
   : AbstractNetworkBuilder()
   , mNetworkPrivate( networkPrivate )
-  , mDeviceBrowser( 0 )
+  , mDBusCagibiProxy( 0 )
 {
 kDebug();
 }
@@ -57,26 +60,49 @@ void UpnpNetworkBuilder::registerNetSystemFactory( AbstractNetSystemFactory* net
 
 void UpnpNetworkBuilder::start()
 {
-    mDeviceBrowser = new UPnP::DeviceBrowser();
+    qDBusRegisterMetaType<DeviceTypeMap>();
+    qDBusRegisterMetaType<Cagibi::Device>();
 
-    connect( mDeviceBrowser, SIGNAL(deviceAdded( const UPnP::Device& )), SLOT(onUPnPDeviceAdded( const UPnP::Device& )) );
-    connect( mDeviceBrowser, SIGNAL(deviceRemoved( const UPnP::Device& )), SLOT(onUPnPDeviceRemoved( const UPnP::Device& )) );
+    QDBusConnection dbusConnection = QDBusConnection::sessionBus();
 
-    const QList<UPnP::Device> devices = mDeviceBrowser->devices();
+    mDBusCagibiProxy =
+        new QDBusInterface("org.kde.Cagibi",
+                           "/",
+                           "org.kde.Cagibi",
+                           dbusConnection, this);
+    dbusConnection.connect("org.kde.Cagibi",
+                           "/",
+                           "org.kde.Cagibi",
+                           "devicesAdded",
+                           this, SLOT(onDevicesAdded( const DeviceTypeMap& )) );
+    dbusConnection.connect("org.kde.Cagibi",
+                           "/",
+                           "org.kde.Cagibi",
+                           "devicesRemoved",
+                           this, SLOT(onDevicesRemoved( const DeviceTypeMap& )) );
 
-    addUPnPDevices( devices );
+    QDBusReply<DeviceTypeMap> reply =
+        mDBusCagibiProxy->asyncCall( "allDevices" );
+
+    if( reply.isValid() )
+    {
+        const DeviceTypeMap deviceTypeMap = reply;
+        onDevicesAdded( deviceTypeMap );
+    }
+    else
+        kWarning() << "Error: " << reply.error().name();
 
     // TODO: works already here, but is this a good design?
     emit initDone();
 }
 
-void UpnpNetworkBuilder::addUPnPDevices( const QList<UPnP::Device>& upnpDevices )
+void UpnpNetworkBuilder::addUPnPDevices( const QList<Cagibi::Device>& upnpDevices )
 {
     QList<NetDevice> addedDevices;
     QList<NetService> addedServices;
 
     QList<NetDevice>& deviceList = mNetworkPrivate->deviceList();
-    foreach( const UPnP::Device& upnpDevice, upnpDevices )
+    foreach( const Cagibi::Device& upnpDevice, upnpDevices )
     {
         if( upnpDevice.hasParentDevice() )
             continue;
@@ -99,7 +125,7 @@ kDebug()<<"existing device:"<<device.hostName()<<"at"<<device.ipAddress()<<"vs."
         }
         if( ! d )
         {
-            const QString displayName = upnpDevice.displayName();
+            const QString displayName = upnpDevice.friendlyName();
 
             const QString deviceName = displayName;
             d = new NetDevicePrivate( deviceName );
@@ -162,13 +188,13 @@ kDebug()<<"new service:"<<netService.name()<<netService.url();
 }
 
 
-void UpnpNetworkBuilder::removeUPnPDevices( const QList<UPnP::Device>& upnpDevices )
+void UpnpNetworkBuilder::removeUPnPDevices( const QList<Cagibi::Device>& upnpDevices )
 {
     QList<NetDevice> removedDevices;
     QList<NetService> removedServices;
 
     QList<NetDevice>& deviceList = mNetworkPrivate->deviceList();
-    foreach( const UPnP::Device& upnpDevice, upnpDevices )
+    foreach( const Cagibi::Device& upnpDevice, upnpDevices )
     {
         const QString ipAddress = upnpDevice.ipAddress();
 
@@ -179,7 +205,7 @@ void UpnpNetworkBuilder::removeUPnPDevices( const QList<UPnP::Device>& upnpDevic
             if( device.ipAddress() == ipAddress )
             {
                 NetDevicePrivate* d = device.dPtr();
-                NetService netService = d->removeService( upnpDevice.displayName() );
+                NetService netService = d->removeService( upnpDevice.friendlyName() );
                 if( ! netService.isValid() )
                     break;
 
@@ -204,19 +230,54 @@ void UpnpNetworkBuilder::removeUPnPDevices( const QList<UPnP::Device>& upnpDevic
 }
 
 
-void UpnpNetworkBuilder::onUPnPDeviceAdded( const UPnP::Device& device )
+void UpnpNetworkBuilder::onDevicesAdded( const DeviceTypeMap& deviceTypeMap )
 {
-    QList<UPnP::Device> devices;
+    DeviceTypeMap::ConstIterator it = deviceTypeMap.constBegin();
+    DeviceTypeMap::ConstIterator end = deviceTypeMap.constEnd();
+    for( ; it != end; ++it )
+    {
+        const QString udn = it.key();
+        QList<QVariant> args;
+        args << udn;
+        mDBusCagibiProxy->callWithCallback(
+            "deviceDetails", args,
+            this, SLOT(onAddedDeviceDetails(const Cagibi::Device&)), 0 );
+    }
+}
+
+void UpnpNetworkBuilder::onDevicesRemoved( const DeviceTypeMap& deviceTypeMap )
+{
+    QList<Cagibi::Device> upnpDevices;
+
+    DeviceTypeMap::ConstIterator it = deviceTypeMap.constBegin();
+    DeviceTypeMap::ConstIterator end = deviceTypeMap.constEnd();
+    for( ; it != end; ++it )
+    {
+        QHash<QString,Cagibi::Device>::Iterator adIt =
+            mActiveDevices.find( it.key() );
+        if( adIt != mActiveDevices.end() )
+        {
+            upnpDevices.append( adIt.value() );
+            mActiveDevices.erase( adIt );
+        }
+    }
+
+    removeUPnPDevices( upnpDevices );
+}
+
+void UpnpNetworkBuilder::onAddedDeviceDetails( const Cagibi::Device& device )
+{
+    // currently only root devices are shown
+    if( device.hasParentDevice() )
+        return;
+
+    mActiveDevices.insert( device.udn(), device );
+
+    QList<Cagibi::Device> devices;
     devices.append( device );
     addUPnPDevices( devices );
 }
 
-void UpnpNetworkBuilder::onUPnPDeviceRemoved( const UPnP::Device& device )
-{
-    QList<UPnP::Device> devices;
-    devices.append( device );
-    removeUPnPDevices( devices );
-}
 
 UpnpNetworkBuilder::~UpnpNetworkBuilder()
 {

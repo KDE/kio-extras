@@ -402,6 +402,7 @@ Notes:
     <generic-icon name="device"/>
     <comment>UPnP HVAC</comment>
     <expanded-acronym>UPnP Universal Plug and Play</expanded-acronym>
+    <expanded-acronym>Heating, Ventilating, and Air Conditioning</expanded-acronym>
   </mime-type>
   <mime-type type="inode/vnd.kde.service.upnp.LightingControls1">
     <generic-icon name="light"/>

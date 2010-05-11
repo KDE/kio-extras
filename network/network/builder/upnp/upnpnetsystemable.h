@@ -26,7 +26,7 @@
 // Qt
 #include <QtCore/QtPlugin>
 
-namespace UPnP {
+namespace Cagibi {
 class Device;
 }
 class QString;
@@ -44,8 +44,8 @@ class UpnpNetSystemAble
     virtual ~UpnpNetSystemAble();
 
   public: // API to be implemented
-    virtual bool canCreateNetSystemFromUpnp( const UPnP::Device& upnpDevice ) const = 0;
-    virtual NetServicePrivate* createNetService( const UPnP::Device& upnpDevice, const NetDevice& device ) const = 0;
+    virtual bool canCreateNetSystemFromUpnp( const Cagibi::Device& upnpDevice ) const = 0;
+    virtual NetServicePrivate* createNetService( const Cagibi::Device& upnpDevice, const NetDevice& device ) const = 0;
 };
 
 

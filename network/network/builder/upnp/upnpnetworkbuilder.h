@@ -27,11 +27,16 @@
 #include <abstractnetworkbuilder.h>
 #include <network.h>
 #include <netdevice.h>
+// Qt
+#include <QtCore/QMetaType>
+#include <QtCore/QHash>
 
-namespace UPnP {
-class DeviceBrowser;
-class Device;
-}
+namespace Cagibi { class Device; }
+
+class QDBusInterface;
+
+typedef QHash<QString,QString> DeviceTypeMap;
+Q_DECLARE_METATYPE( DeviceTypeMap )
 
 
 namespace Mollet
@@ -53,19 +58,22 @@ class UpnpNetworkBuilder : public AbstractNetworkBuilder
     //TODO: void stop(); ? why needed, what to do?
 
   protected:
-    void addUPnPDevices( const QList<UPnP::Device>& devices );
-    void removeUPnPDevices( const QList<UPnP::Device>& devices );
+    void addUPnPDevices( const QList<Cagibi::Device>& devices );
+    void removeUPnPDevices( const QList<Cagibi::Device>& devices );
 
   private Q_SLOTS:
-    void onUPnPDeviceAdded( const UPnP::Device& device );
-    void onUPnPDeviceRemoved( const UPnP::Device& device );
+    void onDevicesAdded( const DeviceTypeMap& deviceTypeMap );
+    void onDevicesRemoved( const DeviceTypeMap& deviceTypeMap );
+    void onAddedDeviceDetails( const Cagibi::Device& device );
 
   private: // data
     NetworkPrivate* mNetworkPrivate;
 
     QList<UpnpNetSystemAble*> mNetSystemFactoryList;
 
-    UPnP::DeviceBrowser* mDeviceBrowser;
+    QHash<QString,Cagibi::Device> mActiveDevices;
+
+    QDBusInterface* mDBusCagibiProxy;
 };
 
 }

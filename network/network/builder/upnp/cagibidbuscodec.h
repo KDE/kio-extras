@@ -1,7 +1,7 @@
 /*
     This file is part of the KUPnP library, part of the KDE project.
 
-    Copyright 2009 Friedrich W. H. Kossebau <kossebau@kde.org>
+    Copyright 2010 Friedrich W. H. Kossebau <kossebau@kde.org>
 
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
@@ -20,55 +20,21 @@
     License along with this library. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef UPNP_SERVICE_H
-#define UPNP_SERVICE_H
+#ifndef CAGIBIDBUSCODEC_H
+#define CAGIBIDBUSCODEC_H
 
 // lib
-#include "upnp_export.h"
-// #include "device.h"
+#include "cagibidevice.h"
 // Qt
-#include <QtCore/QExplicitlySharedDataPointer>
+#include <QtCore/QMetaType>
+#include <QtCore/QVector>
 
+class QDBusArgument;
+QDBusArgument& operator<<( QDBusArgument& argument,
+                           const Cagibi::Device& device );
+const QDBusArgument& operator>>( const QDBusArgument& argument,
+                                 Cagibi::Device& device );
 
-namespace UPnP
-{
-class ServicePrivate;
-class Device;
-
-
-class KUPNP_EXPORT Service
-{
-  friend class ServicePrivate;
-  friend class DeviceBrowserPrivate;
-
-  protected:
-    explicit Service( ServicePrivate* d );
-
-  public:
-    Service();
-    Service( const Service& other );
-
-    virtual ~Service();
-
-  public:
-//     QString udn() const;
-    QString displayName() const;
-    QString type() const;
-    Device device() const;
-
-  public:
-    Service& operator =( const Service& other );
-
-  private:
-    ServicePrivate* dPtr() const;
-
-  protected:
-    QExplicitlySharedDataPointer<ServicePrivate> d;
-};
-
-
-inline  ServicePrivate* Service::dPtr() const { return const_cast<ServicePrivate*>( d.data() ); }
-
-}
+Q_DECLARE_METATYPE( Cagibi::Device )
 
 #endif

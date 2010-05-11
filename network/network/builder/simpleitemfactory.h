@@ -51,8 +51,8 @@ class SimpleItemFactory : public AbstractNetSystemFactory,
     virtual NetServicePrivate* createNetService( const DNSSD::RemoteService::Ptr& service, const NetDevice& device ) const;
 
   public: // UpnpNetSystemAble API
-    virtual bool canCreateNetSystemFromUpnp( const UPnP::Device& upnpDevice ) const;
-    virtual NetServicePrivate* createNetService( const UPnP::Device& upnpDevice, const NetDevice& device ) const;
+    virtual bool canCreateNetSystemFromUpnp( const Cagibi::Device& upnpDevice ) const;
+    virtual NetServicePrivate* createNetService( const Cagibi::Device& upnpDevice, const NetDevice& device ) const;
 
   private:
 };
