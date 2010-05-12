@@ -10,6 +10,7 @@ Name[is]=Flickr
 Name[ja]=Flickr
 Name[kk]=Flickr
 Name[km]=Flickr
+Name[lt]=Flickr
 Name[nds]=Flickr
 Name[nl]=Flickr
 Name[pt]=Flickr
@@ -28,6 +29,7 @@ Query[is]=http://www.flickr.com/search/?q=\\{@}
 Query[ja]=http://www.flickr.com/search/?q=\\{@}
 Query[kk]=http://www.flickr.com/search/?q=\\{@}
 Query[km]=http://www.flickr.com/search/?q=\\{@}
+Query[lt]=http://www.flickr.com/search/?q=\\{@}
 Query[nds]=http://www.flickr.com/search/?q=\\{@}
 Query[nl]=http://www.flickr.com/search/?q=\\{@}
 Query[pt]=http://www.flickr.com/search/?q=\\{@}

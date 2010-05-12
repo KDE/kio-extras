@@ -11,6 +11,7 @@ Name[is]=Magnatune
 Name[ja]=Magnatune
 Name[kk]=Magnatune
 Name[km]=Magnatune
+Name[lt]=Magnatune
 Name[nds]=Magnatune
 Name[nl]=Magnatune
 Name[pt]=Magnatune
@@ -29,6 +30,7 @@ Query[is]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
 Query[ja]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
 Query[kk]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
 Query[km]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
+Query[lt]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
 Query[nds]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
 Query[nl]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
 Query[pt]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0

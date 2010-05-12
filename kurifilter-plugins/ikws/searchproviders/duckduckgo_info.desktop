@@ -9,6 +9,7 @@ Name[is]=Duck Duck Go upplýsingar
 Name[ja]=Duck Duck Go Info
 Name[kk]=Duck Duck Go Info
 Name[km]=ព័ត៌មាន​របស់ Duck Duck Go
+Name[lt]=Duck Duck Go Info
 Name[nds]=Duck Duck Go - Informatschonen
 Name[nl]=Duck Duck Go Info
 Name[pt]=Informação do Duck Duck Go
@@ -27,6 +28,7 @@ Query[is]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[ja]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[kk]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[km]=http://duckduckgo.com/?q=\\{@}&v=r
+Query[lt]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[nds]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[nl]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[pt]=http://duckduckgo.com/?q=\\{@}&v=r

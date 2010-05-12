@@ -10,6 +10,7 @@ Name[is]=Wikia
 Name[ja]=Wikia
 Name[kk]=Wikia
 Name[km]=Wikia
+Name[lt]=Wikia
 Name[nds]=Wikia
 Name[nl]=Wikia
 Name[pt]=Wikia
@@ -28,6 +29,7 @@ Query[is]=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=S
 Query[ja]=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Search
 Query[kk]=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Search
 Query[km]=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Search
+Query[lt]=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Search
 Query[nds]=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Search
 Query[nl]=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Search
 Query[pt]=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Search

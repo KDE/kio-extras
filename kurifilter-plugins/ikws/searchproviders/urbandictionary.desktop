@@ -10,6 +10,7 @@ Name[is]=Urban orðabókin
 Name[ja]=Urban Dictionary
 Name[kk]=Urban Dictionary
 Name[km]=វចនុក្រម Urban
+Name[lt]=Urban Dictionary
 Name[nds]=Urban-Wöörbook
 Name[nl]=Urban woordenboek
 Name[pt]=Urban Dictionary
@@ -28,6 +29,7 @@ Query[is]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[ja]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[kk]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[km]=http://www.urbandictionary.com/define.php?term=\\{@}
+Query[lt]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[nds]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[nl]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[pt]=http://www.urbandictionary.com/define.php?term=\\{@}

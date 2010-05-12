@@ -10,6 +10,7 @@ Name[is]=Opið
 Name[ja]=Open
 Name[kk]=Open
 Name[km]=បើក
+Name[lt]=Open
 Name[nl]=Openen
 Name[pt]=Open
 Name[pt_BR]=Open
@@ -27,6 +28,7 @@ Query[is]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[ja]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[kk]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[km]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
+Query[lt]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[nds]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[nl]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[pt]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}

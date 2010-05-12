@@ -10,6 +10,7 @@ Name[is]=Duck Duck Go
 Name[ja]=Duck Duck Go
 Name[kk]=Duck Duck Go
 Name[km]=Duck Duck Go
+Name[lt]=Duck Duck Go
 Name[nds]=Duck Duck Go
 Name[nl]=Duck Duck Go
 Name[pt]=Duck Duck Go
@@ -28,6 +29,7 @@ Query[is]=http://duckduckgo.com/?q=\\{@}&v=
 Query[ja]=http://duckduckgo.com/?q=\\{@}&v=
 Query[kk]=http://duckduckgo.com/?q=\\{@}&v=
 Query[km]=http://duckduckgo.com/?q=\\{@}&v=
+Query[lt]=http://duckduckgo.com/?q=\\{@}&v=
 Query[nds]=http://duckduckgo.com/?q=\\{@}&v=
 Query[nl]=http://duckduckgo.com/?q=\\{@}&v=
 Query[pt]=http://duckduckgo.com/?q=\\{@}&v=
