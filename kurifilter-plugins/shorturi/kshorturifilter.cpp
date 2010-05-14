@@ -84,7 +84,7 @@ static bool isValidShortURL( const QString& cmd )
   exp.setPattern( QL1S(FQDN_PATTERN) );
   if ( cmd.contains( exp ) )
   {
-    kDebug() << cmd << " matches FQDN_PATTERN" << endl;
+    kDebug(7023) << cmd << " matches FQDN_PATTERN" << endl;
 #if 0
     // something like wallpaper.png also matches a the FQDN pattern
     // but is very unlikely to be meant as such
@@ -99,7 +99,7 @@ static bool isValidShortURL( const QString& cmd )
   exp.setPattern( QL1S(IPv4_PATTERN) );
   if ( cmd.contains( exp ) )
   {
-    kDebug() << cmd << " matches IPv4_PATTERN" << endl;
+    kDebug(7023) << cmd << " matches IPv4_PATTERN" << endl;
     return true;
   }
 
@@ -107,11 +107,11 @@ static bool isValidShortURL( const QString& cmd )
   exp.setPattern( QL1S(IPv6_PATTERN) );
   if ( cmd.contains( exp ) )
   {
-    kDebug() << cmd << " matches IPv6_PATTERN" << endl;
+    kDebug(7023) << cmd << " matches IPv6_PATTERN" << endl;
     return true;
   }
 
-  kDebug() << cmd << "' is not a short URL." << endl;
+  kDebug(7023) << cmd << "' is not a short URL." << endl;
   return false;
 }
 
@@ -132,7 +132,7 @@ static QString removeArgs( const QString& _cmd )
     if( spacePos > 0 )
     {
       cmd = cmd.left( spacePos );
-      //kDebug() << "spacePos=" << spacePos << " returning " << cmd;
+      //kDebug(7023) << "spacePos=" << spacePos << " returning " << cmd;
     }
   }
 
@@ -166,7 +166,7 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
   QString cmd = data.typedString();
   const bool isMalformed = !url.isValid();
   const QString protocol = url.protocol();
-  //kDebug() << "url=" << url << " cmd=" << cmd << " isMalformed=" << isMalformed;
+  //kDebug(7023) << "url=" << url << " cmd=" << cmd << " isMalformed=" << isMalformed;
 
   if (!isMalformed &&
       (protocol.length() == 4) &&
@@ -236,11 +236,11 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
 
   if (KUrl::isRelativeUrl(cmd) && QDir::isRelativePath(cmd)) {
      path = cmd;
-     //kDebug() << "path=cmd=" << path;
+     //kDebug(7023) << "path=cmd=" << path;
   } else {
     if (url.isLocalFile())
     {
-      //kDebug() << "hasRef=" << url.hasRef();
+      //kDebug(7023) << "hasRef=" << url.hasRef();
       // Split path from ref/query
       // but not for "/tmp/a#b", if "a#b" is an existing file,
       // or for "/tmp/a?b" (#58990)
@@ -249,8 +249,8 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
       {
         path = url.path();
         ref = url.ref();
-        //kDebug() << "isLocalFile set path to " << stringDetails( path );
-        //kDebug() << "isLocalFile set ref to " << stringDetails( ref );
+        //kDebug(7023) << "isLocalFile set path to " << stringDetails( path );
+        //kDebug(7023) << "isLocalFile set ref to " << stringDetails( ref );
         query = url.query();
         if (path.isEmpty() && url.hasHost())
           path = '/';
@@ -258,7 +258,7 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
       else
       {
         path = cmd;
-        //kDebug() << "(2) path=cmd=" << path;
+        //kDebug(7023) << "(2) path=cmd=" << path;
       }
     }
   }
@@ -319,7 +319,7 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
       {
         ref = path.mid( pos + 1 );
         path = newPath;
-        //kDebug() << "Extracted ref: path=" << path << " ref=" << ref;
+        //kDebug(7023) << "Extracted ref: path=" << path << " ref=" << ref;
       }
     }
   }
@@ -336,7 +336,7 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
   const bool canBeLocalAbsolute = (canBeAbsolute && abs_path[0] =='/');
   bool exists = false;
 
-  //kDebug() << "abs_path=" << abs_path
+  //kDebug(7023) << "abs_path=" << abs_path
   //         << " protocol=" << protocol
   //         << " canBeAbsolute=" << canBeAbsolute
   //         << " canBeLocalAbsolute=" << canBeLocalAbsolute
@@ -351,9 +351,9 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
     int len = path.length();
     if( (len==1 && path[0]=='.') || (len==2 && path[0]=='.' && path[1]=='.') )
         path += '/';
-    //kDebug() << "adding " << abs << " and " << path;
+    //kDebug(7023) << "adding " << abs << " and " << path;
     abs = QDir::cleanPath(abs + '/' + path);
-    //kDebug() << "checking whether " << abs << " exists.";
+    //kDebug(7023) << "checking whether " << abs << " exists.";
     // Check if it exists
     if( stat( QFile::encodeName(abs).data(), &buff ) == 0 )
     {
@@ -379,7 +379,7 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
            && stat( QFile::encodeName(testPath).data(), &buff ) == 0 )
         {
           nameFilter = fileName;
-          //kDebug() << "Setting nameFilter to " << nameFilter;
+          //kDebug(7023) << "Setting nameFilter to " << nameFilter;
           path = testPath;
           exists = true;
         }
@@ -387,12 +387,12 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
     }
   }
 
-  //kDebug() << "path =" << path << " isLocalFullPath=" << isLocalFullPath << " exists=" << exists;
+  //kDebug(7023) << "path =" << path << " isLocalFullPath=" << isLocalFullPath << " exists=" << exists;
   if( exists )
   {
     KUrl u;
     u.setPath(path);
-    //kDebug() << "ref=" << stringDetails(ref) << " query=" << stringDetails(query);
+    //kDebug(7023) << "ref=" << stringDetails(ref) << " query=" << stringDetails(query);
     u.setRef(ref);
     u.setQuery(query);
 
@@ -409,7 +409,7 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
     bool isDir = S_ISDIR( buff.st_mode );
     if( !isDir && access ( QFile::encodeName(path).data(), X_OK) == 0 )
     {
-      //kDebug() << "Abs path to EXECUTABLE";
+      //kDebug(7023) << "Abs path to EXECUTABLE";
       setFilteredUri( data, u );
       setUriType( data, KUriFilterData::Executable );
       return true;
@@ -418,7 +418,7 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
     // Open "uri" as file:/xxx if it is a non-executable local resource.
     if( isDir || S_ISREG( buff.st_mode ) )
     {
-      //kDebug() << "Abs path as local file or directory";
+      //kDebug(7023) << "Abs path as local file or directory";
       if ( !nameFilter.isEmpty() )
         u.setFileName( nameFilter );
       setFilteredUri( data, u );
@@ -427,7 +427,7 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
     }
 
     // Should we return LOCAL_FILE for non-regular files too?
-    kDebug() << "File found, but not a regular file nor dir... socket?";
+    kDebug(7023) << "File found, but not a regular file nor dir... socket?";
   }
 
   // Let us deal with possible relative URLs to see
@@ -435,10 +435,10 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
   // We try hard to avoid parsing any possible command
   // line arguments or options that might have been supplied.
   QString exe = removeArgs( cmd );
-  //kDebug() << "findExe with " << exe;
+  //kDebug(7023) << "findExe with " << exe;
   if( data.checkForExecutables() && !KStandardDirs::findExe( exe ).isNull() )
   {
-    //kDebug() << "EXECUTABLE  exe=" << exe;
+    //kDebug(7023) << "EXECUTABLE  exe=" << exe;
     setFilteredUri( data, KUrl::fromPath( exe ));
     // check if we have command line arguments
     if( exe != cmd )
@@ -452,7 +452,7 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
   // slow things down...
   if ( !isMalformed && !isLocalFullPath && !protocol.isEmpty() )
   {
-    //kDebug() << "looking for protocol " << protocol;
+    //kDebug(7023) << "looking for protocol " << protocol;
     if ( KProtocolInfo::protocols().contains( protocol ) )
     {
       setFilteredUri( data, url );
@@ -475,7 +475,7 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
       QRegExp match( (*it).regexp );
       if ( match.indexIn( cmd ) == 0 )
       {
-        //kDebug() << "match - prepending " << (*it).prepend;
+        //kDebug(7023) << "match - prepending " << (*it).prepend;
         cmd.prepend( (*it).prepend );
         setFilteredUri( data, KUrl( cmd ) );
         setUriType( data, (*it).type );
@@ -487,7 +487,7 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
     // candidate and append the default protocol the user supplied. (DA)
     if ( protocol.isEmpty() && isValidShortURL(cmd) )
     {
-      kDebug() << "Valid short url, from malformed url -> using default proto="
+      kDebug(7023) << "Valid short url, from malformed url -> using default proto="
                << m_strDefaultProtocol << endl;
 
       cmd.insert( 0, m_strDefaultProtocol );
@@ -513,7 +513,7 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
       setUriType( data, KUriFilterData::LocalFile );
       return true;
     }
-    //kDebug() << "fileNotFound -> ERROR";
+    //kDebug(7023) << "fileNotFound -> ERROR";
     setErrorMsg( data, i18n( "<qt>The file or folder <b>%1</b> does not exist.</qt>", data.uri().prettyUrl() ) );
     setUriType( data, KUriFilterData::Error );
     return true;
