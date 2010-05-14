@@ -47,7 +47,7 @@
 #define IPv6_PATTERN    "^\\[.*\\]"
 #define ENV_VAR_PATTERN "\\$[a-zA-Z_][a-zA-Z0-9_]*"
 
-#define QFL1(x) QLatin1String(x)
+#define QL1S(x) QLatin1String(x)
 
  /**
   * IMPORTANT:
@@ -64,15 +64,15 @@ typedef QMap<QString,QString> EntryMap;
 static QString stringDetails( const QString& str )
 {
   if ( str.isNull() )
-    return QFL1( "<null>" );
+    return QL1S( "<null>" );
   else if ( str.isEmpty() )
-    return QFL1( "<empty>" );
+    return QL1S( "<empty>" );
   else
     return str;
 }
 #endif
 
-static bool isValidShortURL( const QString& cmd, bool verbose = false )
+static bool isValidShortURL( const QString& cmd )
 {
   // Examples of valid short URLs:
   // "kde.org", "foo.bar:8080", "user@foo.bar:3128"
@@ -81,12 +81,10 @@ static bool isValidShortURL( const QString& cmd, bool verbose = false )
   QRegExp exp;
 
   // Match FQDN_PATTERN
-  exp.setPattern( QFL1(FQDN_PATTERN) );
+  exp.setPattern( QL1S(FQDN_PATTERN) );
   if ( cmd.contains( exp ) )
   {
-    if (verbose)
-      kDebug() << "KShortURIFilter::isValidShortURL: " << cmd
-                << " matches FQDN_PATTERN" << endl;
+    kDebug() << cmd << " matches FQDN_PATTERN" << endl;
 #if 0
     // something like wallpaper.png also matches a the FQDN pattern
     // but is very unlikely to be meant as such
@@ -98,29 +96,22 @@ static bool isValidShortURL( const QString& cmd, bool verbose = false )
   }
 
   // Match IPv4 addresses
-  exp.setPattern( QFL1(IPv4_PATTERN) );
+  exp.setPattern( QL1S(IPv4_PATTERN) );
   if ( cmd.contains( exp ) )
   {
-    if (verbose)
-      kDebug() << "KShortURIFilter::isValidShortURL: " << cmd
-                << " matches IPv4_PATTERN" << endl;
+    kDebug() << cmd << " matches IPv4_PATTERN" << endl;
     return true;
   }
 
   // Match IPv6 addresses
-  exp.setPattern( QFL1(IPv6_PATTERN) );
+  exp.setPattern( QL1S(IPv6_PATTERN) );
   if ( cmd.contains( exp ) )
   {
-    if (verbose)
-      kDebug() << "KShortURIFilter::isValidShortURL: " << cmd
-                << " matches IPv6_PATTERN" << endl;
+    kDebug() << cmd << " matches IPv6_PATTERN" << endl;
     return true;
   }
 
-  if (verbose)
-    kDebug() << "KShortURIFilter::isValidShortURL: '" << cmd
-              << "' is not a short URL." << endl;
-
+  kDebug() << cmd << "' is not a short URL." << endl;
   return false;
 }
 
@@ -175,7 +166,7 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
   QString cmd = data.typedString();
   const bool isMalformed = !url.isValid();
   const QString protocol = url.protocol();
-  //kDebug() << "KShortUriFilter: url=" << url.url() << " cmd=" << cmd << " isMalformed=" << isMalformed;
+  //kDebug() << "url=" << url << " cmd=" << cmd << " isMalformed=" << isMalformed;
 
   if (!isMalformed &&
       (protocol.length() == 4) &&
@@ -196,7 +187,7 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
   // executable and only the argument part, if any, changed! (Dawit)
   // You mean caching the last filtering, to try and reuse it, to save stat()s? (David)
 
-  const QString starthere_proto = QFL1("start-here:");
+  const QString starthere_proto = QL1S("start-here:");
   if (cmd.indexOf(starthere_proto) == 0 )
   {
     setFilteredUri( data, KUrl("system:/") );
@@ -205,16 +196,16 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
   }
 
   // Handle MAN & INFO pages shortcuts...
-  const QString man_proto = QFL1("man:");
-  const QString info_proto = QFL1("info:");
+  const QString man_proto = QL1S("man:");
+  const QString info_proto = QL1S("info:");
   if( cmd[0] == '#' ||
       cmd.indexOf( man_proto ) == 0 ||
       cmd.indexOf( info_proto ) == 0 )
   {
-    if( cmd.left(2) == QFL1("##") )
-      cmd = QFL1("info:/") + cmd.mid(2);
+    if( cmd.left(2) == QL1S("##") )
+      cmd = QL1S("info:/") + cmd.mid(2);
     else if ( cmd[0] == '#' )
-      cmd = QFL1("man:/") + cmd.mid(1);
+      cmd = QL1S("man:/") + cmd.mid(1);
 
     else if ((cmd==info_proto) || (cmd==man_proto))
       cmd+='/';
@@ -254,7 +245,7 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
       // but not for "/tmp/a#b", if "a#b" is an existing file,
       // or for "/tmp/a?b" (#58990)
       if( ( url.hasRef() || !url.query().isEmpty() )
-           && !url.path().endsWith(QFL1("/")) ) // /tmp/?foo is a namefilter, not a query
+           && !url.path().endsWith(QL1S("/")) ) // /tmp/?foo is a namefilter, not a query
       {
         path = url.path();
         ref = url.ref();
@@ -304,7 +295,7 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
   }
   else if ( path[0] == '$' ) {
     // Environment variable expansion.
-    QRegExp r (QFL1(ENV_VAR_PATTERN));
+    QRegExp r (QL1S(ENV_VAR_PATTERN));
     if ( r.indexIn( path ) == 0 )
     {
       const char* exp = getenv( path.mid( 1, r.matchedLength() - 1 ).toLocal8Bit().data() );
@@ -465,7 +456,7 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
     if ( KProtocolInfo::protocols().contains( protocol ) )
     {
       setFilteredUri( data, url );
-      if ( protocol == QFL1("man") || protocol == QFL1("help") )
+      if ( protocol == QL1S("man") || protocol == QL1S("help") )
         setUriType( data, KUriFilterData::Help );
       else
         setUriType( data, KUriFilterData::NetProtocol );
@@ -494,11 +485,10 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
 
     // If cmd is NOT a local resource, check if it is a valid "shortURL"
     // candidate and append the default protocol the user supplied. (DA)
-    if ( protocol.isEmpty() && isValidShortURL(cmd, m_bVerbose) )
+    if ( protocol.isEmpty() && isValidShortURL(cmd) )
     {
-      if (m_bVerbose)
-        kDebug() << "Valid short url, from malformed url -> using default proto="
-                  << m_strDefaultProtocol << endl;
+      kDebug() << "Valid short url, from malformed url -> using default proto="
+               << m_strDefaultProtocol << endl;
 
       cmd.insert( 0, m_strDefaultProtocol );
       setFilteredUri( data, KUrl( cmd ));
@@ -547,16 +537,12 @@ QString KShortUriFilter::configName() const
 
 void KShortUriFilter::configure()
 {
-  KConfig config( objectName() + QFL1( "rc"), KConfig::NoGlobals );
+  KConfig config( objectName() + QL1S( "rc"), KConfig::NoGlobals );
   KConfigGroup cg( config.group("") );
-  m_bVerbose = cg.readEntry( "Verbose", false );
-
-  if ( m_bVerbose )
-    kDebug() << "KShortUriFilter::configure: Config reload request...";
 
   m_strDefaultProtocol = cg.readEntry( "DefaultProtocol", QString("http://") );
-  const EntryMap patterns = config.entryMap( QFL1("Pattern") );
-  const EntryMap protocols = config.entryMap( QFL1("Protocol") );
+  const EntryMap patterns = config.entryMap( QL1S("Pattern") );
+  const EntryMap protocols = config.entryMap( QL1S("Protocol") );
   KConfigGroup typeGroup(&config, "Type");
 
   for( EntryMap::ConstIterator it = patterns.begin(); it != patterns.end(); ++it )

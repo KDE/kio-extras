@@ -20,8 +20,8 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
-#ifndef _KSHORTURIFILTER_H_
-#define _KSHORTURIFILTER_H_
+#ifndef KSHORTURIFILTER_H
+#define KSHORTURIFILTER_H
 
 #include <kgenericfactory.h>
 #include <kurifilter.h>
@@ -101,7 +101,6 @@ private:
 
     QList<URLHint> m_urlHints;
     QString m_strDefaultProtocol;
-    bool m_bVerbose;
 };
 
 #endif
