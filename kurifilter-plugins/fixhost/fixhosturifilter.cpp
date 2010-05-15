@@ -22,11 +22,10 @@
 
 #include "fixhosturifilter.h"
 
+#include <QtNetwork/QHostInfo>
+
 #include <kdebug.h>
 #include <kurl.h>
-#include <k3resolver.h>
-
-using namespace KNetwork;
 
 /**
  * IMPORTANT: If you change anything here, please run the regression test
@@ -63,9 +62,7 @@ bool FixHostUriFilter::filterUri( KUriFilterData& data ) const
 
 bool FixHostUriFilter::exists( const KUrl& url )
 {
-    KResolver resolver( url.host());
-    resolver.setFamily( KResolver::InetFamily );
-    return( resolver.start() && resolver.wait( 1000 ) && resolver.error() == KResolver::NoError );
+    return QHostInfo::fromName( url.host() ).error() == QHostInfo::NoError;
 }
 
 K_PLUGIN_FACTORY(FixHostUriFilterFactory, registerPlugin<FixHostUriFilter>();)
