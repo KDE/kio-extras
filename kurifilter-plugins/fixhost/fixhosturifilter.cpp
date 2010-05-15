@@ -22,7 +22,7 @@
 
 #include "fixhosturifilter.h"
 
-#include <QtNetwork/QHostInfo>
+#include <QtCore/QTimer>
 
 #include <kdebug.h>
 #include <kurl.h>
@@ -33,7 +33,7 @@
  */
  
 FixHostUriFilter::FixHostUriFilter( QObject *parent, const QVariantList & /*args*/ )
-    : KUriFilterPlugin( "fixhosturifilter", parent )
+    : KUriFilterPlugin( "fixhosturifilter", parent ), m_hostExists( false )
 {
 }
 
@@ -41,7 +41,7 @@ bool FixHostUriFilter::filterUri( KUriFilterData& data ) const
 {
     KUrl url = data.uri();
     QString cmd = url.url();
-    
+
     kDebug() << "FixHostUriFilter::filterUri: " << url;
 
     KUrl url2 = url;
@@ -52,7 +52,7 @@ bool FixHostUriFilter::filterUri( KUriFilterData& data ) const
     {
         setFilteredUri( data, url2 );
         setUriType( data, KUriFilterData::NetProtocol );
-        
+
         kDebug() << "FilteredUri: " << data.uri();
         return true;
     }
@@ -60,9 +60,29 @@ bool FixHostUriFilter::filterUri( KUriFilterData& data ) const
     return false;
 }
 
-bool FixHostUriFilter::exists( const KUrl& url )
+void FixHostUriFilter::lookedUp( const QHostInfo &hostInfo )
 {
-    return QHostInfo::fromName( url.host() ).error() == QHostInfo::NoError;
+    m_hostExists = ( hostInfo.error() == QHostInfo::NoError );
+    m_eventLoop.exit();
+}
+
+bool FixHostUriFilter::exists( const KUrl& url ) const
+{
+    FixHostUriFilter *self = const_cast<FixHostUriFilter*>( this );
+    int lookupId = QHostInfo::lookupHost( url.host(), self, SLOT(lookedUp(QHostInfo)) );
+
+    QTimer t;
+    connect( &t, SIGNAL(timeout()), &m_eventLoop, SLOT(exit()) );
+    t.start(1000);
+
+    m_hostExists = false;
+    m_eventLoop.exec();
+
+    t.stop();
+
+    QHostInfo::abortHostLookup( lookupId );
+
+    return m_hostExists;
 }
 
 K_PLUGIN_FACTORY(FixHostUriFilterFactory, registerPlugin<FixHostUriFilter>();)

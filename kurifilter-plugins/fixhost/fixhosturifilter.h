@@ -26,6 +26,9 @@
 #include <kgenericfactory.h>
 #include <kurifilter.h>
 
+#include<QtCore/QEventLoop>
+#include<QtNetwork/QHostInfo>
+
 /*
  This filter tries to automatically prepend www. to http URLs that
  need it.
@@ -38,8 +41,13 @@ class FixHostUriFilter : public KUriFilterPlugin
     public:
         FixHostUriFilter( QObject* parent, const QVariantList& args );
         virtual bool filterUri( KUriFilterData &data ) const;
+    private slots:
+        void lookedUp( const QHostInfo &hostInfo );
     private:
-        static bool exists( const KUrl& url );
+        bool exists( const KUrl& url ) const;
+
+        mutable QEventLoop m_eventLoop;
+        mutable bool m_hostExists;
 };
 
 #endif
