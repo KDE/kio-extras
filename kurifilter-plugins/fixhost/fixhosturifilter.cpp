@@ -72,7 +72,7 @@ bool FixHostUriFilter::exists( const KUrl& url ) const
     int lookupId = QHostInfo::lookupHost( url.host(), self, SLOT(lookedUp(QHostInfo)) );
 
     QTimer t;
-    connect( &t, SIGNAL(timeout()), &m_eventLoop, SLOT(exit()) );
+    connect( &t, SIGNAL(timeout()), &m_eventLoop, SLOT(quit()) );
     t.start(1000);
 
     m_hostExists = false;
