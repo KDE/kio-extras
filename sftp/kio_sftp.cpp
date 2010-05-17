@@ -1069,6 +1069,8 @@ void sftpProtocol::put(const KUrl& url, int permissions, KIO::JobFlags flags) {
   const QByteArray dest_orig_c = dest_orig.toUtf8();
   const QString dest_part = dest_orig + ".part";
   const QByteArray dest_part_c = dest_part.toUtf8();
+  uid_t owner = 0;
+  gid_t group = 0;
 
   sftp_attributes sb = sftp_lstat(mSftp, dest_orig_c.constData());
   const bool bOrigExists = (sb != NULL);
@@ -1078,6 +1080,8 @@ void sftpProtocol::put(const KUrl& url, int permissions, KIO::JobFlags flags) {
   // Don't change permissions of the original file
   if (bOrigExists) {
       permissions = sb->permissions;
+      owner = sb->uid;
+      group = sb->gid;
   }
 
   if (bMarkPartial) {
@@ -1244,6 +1248,14 @@ void sftpProtocol::put(const KUrl& url, int permissions, KIO::JobFlags flags) {
     if (sftp_chmod(mSftp, dest_orig_c.constData(), permissions) < 0) {
       warning(i18n( "Could not change permissions for\n%1", dest_orig));
     }
+  }
+
+  // set original owner and group
+  if (bOrigExists) {
+      kDebug(KIO_SFTP_DB) << "Trying to restore original owner and group of " << dest_orig;
+      if (sftp_chown(mSftp, dest_orig_c.constData(), owner, group) < 0) {
+          // warning(i18n( "Could not change owner and group for\n%1", dest_orig));
+      }
   }
 
   // set modification time
