@@ -35,7 +35,7 @@ public:
     bool setData (const QModelIndex& index, const QVariant& value, int role = Qt::EditRole);
     QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const;
     int rowCount(const QModelIndex& parent = QModelIndex()) const;
-    int columnCount(const QModelIndex& parent = QModelIndex()) const{return ColumnCount;}
+    int columnCount(const QModelIndex& parent = QModelIndex()) const{Q_UNUSED(parent); return ColumnCount;}
     
     void setProviders(const QList<SearchProvider*>& p, const QStringList& f);
     void addProvider(SearchProvider* p);
@@ -74,10 +74,10 @@ public:
     int rowCount(const QModelIndex& parent = QModelIndex()) const;
 public slots:
     void emitDataChanged(const QModelIndex& start, const QModelIndex& end){emit dataChanged(index(start.row(),0),index(end.row(),0));}
-    void emitRowsAboutToBeInserted(const QModelIndex& parent, int start, int end){beginInsertRows(QModelIndex(),start,end);}
-    void emitRowsAboutToBeRemoved(const QModelIndex& parent, int start, int end){beginRemoveRows(QModelIndex(),start,end);}
-    void emitRowsInserted(const QModelIndex& parent, int start, int end){endInsertRows();}
-    void emitRowsRemoved(const QModelIndex& parent, int start, int end){endRemoveRows();}
+    void emitRowsAboutToBeInserted(const QModelIndex&, int start, int end){beginInsertRows(QModelIndex(),start,end);}
+    void emitRowsAboutToBeRemoved(const QModelIndex&, int start, int end){beginRemoveRows(QModelIndex(),start,end);}
+    void emitRowsInserted(const QModelIndex&, int , int){endInsertRows();}
+    void emitRowsRemoved(const QModelIndex& , int , int){endRemoveRows();}
 
 private:
     QList<SearchProvider*>& m_providers;
