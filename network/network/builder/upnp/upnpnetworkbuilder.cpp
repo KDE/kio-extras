@@ -67,16 +67,16 @@ void UpnpNetworkBuilder::start()
 
     mDBusCagibiProxy =
         new QDBusInterface("org.kde.Cagibi",
-                           "/",
+                           "/org/kde/Cagibi",
                            "org.kde.Cagibi",
                            dbusConnection, this);
     dbusConnection.connect("org.kde.Cagibi",
-                           "/",
+                           "/org/kde/Cagibi",
                            "org.kde.Cagibi",
                            "devicesAdded",
                            this, SLOT(onDevicesAdded( const DeviceTypeMap& )) );
     dbusConnection.connect("org.kde.Cagibi",
-                           "/",
+                           "/org/kde/Cagibi",
                            "org.kde.Cagibi",
                            "devicesRemoved",
                            this, SLOT(onDevicesRemoved( const DeviceTypeMap& )) );
