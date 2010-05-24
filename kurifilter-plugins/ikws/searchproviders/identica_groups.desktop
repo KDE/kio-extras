@@ -3,6 +3,7 @@ Charset=
 Hidden=false
 Keys=identicagroups,identig,identicag,idg
 Name=Identi.ca Groups
+Name[de]=Identi.ca Groups
 Name[en_GB]=Identi.ca Groups
 Name[es]=Grupos Identi.ca
 Name[ia]=Gruppos de Identi.ca
@@ -22,6 +23,7 @@ Name[x-test]=xxIdenti.ca Groupsxx
 Name[zh_TW]=Identi.ca Groups
 Query=http://identi.ca/search/group?q=\\{@}
 Query[cs]=http://identi.ca/search/group?q=\\{@}
+Query[de]=http://identi.ca/search/group?q=\\{@}
 Query[en_GB]=http://identi.ca/search/group?q=\\{@}
 Query[es]=http://identi.ca/search/group?q=\\{@}
 Query[ia]=http://identi.ca/search/group?q=\\{@}

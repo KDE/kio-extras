@@ -4,6 +4,7 @@ Hidden=false
 Keys=kdelook,klook,kdel
 Name=KDE Look
 Name[cs]=KDE Look
+Name[de]=KDE Look
 Name[en_GB]=KDE Look
 Name[es]=KDE Look
 Name[ia]=Semblante KDE
@@ -23,6 +24,7 @@ Name[x-test]=xxKDE Lookxx
 Name[zh_TW]=KDE Look
 Query=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[cs]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
+Query[de]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[en_GB]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[es]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[ia]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}

@@ -3,6 +3,7 @@ Charset=
 Hidden=false
 Keys=duckduckgoinfo,ddi
 Name=Duck Duck Go Info
+Name[de]=Duck Duck Go Info
 Name[en_GB]=Duck Duck Go Info
 Name[es]=Duck Duck Go Info
 Name[ia]=Duck Duck Go Info
@@ -22,6 +23,7 @@ Name[x-test]=xxDuck Duck Go Infoxx
 Name[zh_TW]=Duck Duck Go Info
 Query=http://duckduckgo.com/?q=\\{@}&v=r
 Query[cs]=http://duckduckgo.com/?q=\\{@}&v=r
+Query[de]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[en_GB]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[es]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[ia]=http://duckduckgo.com/?q=\\{@}&v=r

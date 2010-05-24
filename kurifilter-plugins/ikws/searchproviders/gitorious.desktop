@@ -4,6 +4,7 @@ Hidden=false
 Keys=gitorious,gt
 Name=Gitorious
 Name[cs]=Gitorious
+Name[de]=Gitorious
 Name[en_GB]=Gitorious
 Name[es]=Gitorious
 Name[ia]=Gitorious
@@ -23,6 +24,7 @@ Name[x-test]=xxGitoriousxx
 Name[zh_TW]=Gitorious
 Query=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[cs]=http://gitorious.org/search?q=\\{@}&commit=Search
+Query[de]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[en_GB]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[es]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[ia]=http://gitorious.org/search?q=\\{@}&commit=Search

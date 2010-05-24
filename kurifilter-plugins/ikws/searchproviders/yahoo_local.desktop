@@ -3,6 +3,7 @@ Charset=
 Hidden=false
 Keys=yahoolocal,yhl
 Name=Yahoo Local
+Name[de]=Yahoo Local
 Name[en_GB]=Yahoo Local
 Name[ia]=Yahoo Local
 Name[is]=Yahoo Local
@@ -20,6 +21,7 @@ Name[x-test]=xxYahoo Localxx
 Name[zh_TW]=Yahoo Local
 Query=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img
 Query[cs]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img
+Query[de]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img
 Query[en_GB]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img
 Query[es]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img
 Query[ia]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img

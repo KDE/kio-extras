@@ -4,6 +4,7 @@ Hidden=false
 Keys=ggc,googlecode,ggcode
 Name=Google Code
 Name[cs]=Google Code
+Name[de]=Google Code
 Name[en_GB]=Google Code
 Name[es]=Google Code
 Name[ia]=Google Movies
@@ -22,6 +23,7 @@ Name[x-test]=xxGoogle Codexx
 Name[zh_TW]=Google Code
 Query=http://code.google.com/query/#q=\\{%2520}
 Query[cs]=http://code.google.com/query/#q=\\{%2520}
+Query[de]=http://code.google.com/query/#q=\\{%2520}
 Query[en_GB]=http://code.google.com/query/#q=\\{%2520}
 Query[es]=http://code.google.com/query/#q=\\{%2520}
 Query[ia]=http://code.google.com/query#q=\\{%2520}

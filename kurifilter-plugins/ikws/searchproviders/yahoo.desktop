@@ -4,6 +4,7 @@ Hidden=false
 Keys=yahoo,yh
 Name=Yahoo
 Name[cs]=Yahoo
+Name[de]=Yahoo
 Name[en_GB]=Yahoo
 Name[es]=Yahoo
 Name[ia]=Yahoo
@@ -16,12 +17,14 @@ Name[nds]=Yahoo
 Name[nl]=Yahoo
 Name[pt]=Yahoo
 Name[pt_BR]=Yahoo
+Name[ru]=Yahoo
 Name[sv]=Yahoo
 Name[uk]=Yahoo
 Name[x-test]=xxYahooxx
 Name[zh_TW]=Yahoo
 Query=http://search.yahoo.com/search?toggle=1&cop=mss&ei=UTF-8&fr=yfp-t-701&p=\\{@}&x=0&y=0&=Web+Search
 Query[cs]=http://search.yahoo.com/search?toggle=1&cop=mss&ei=UTF-8&fr=yfp-t-701&p=\\{@}&x=0&y=0&=Web+Search
+Query[de]=http://search.yahoo.com/search?toggle=1&cop=mss&ei=UTF-8&fr=yfp-t-701&p=\\{@}&x=0&y=0&=Web+Search
 Query[en_GB]=http://search.yahoo.com/search?toggle=1&cop=mss&ei=UTF-8&fr=yfp-t-701&p=\\{@}&x=0&y=0&=Web+Search
 Query[es]=http://search.yahoo.com/search?toggle=1&cop=mss&ei=UTF-8&fr=yfp-t-701&p=\\{@}&x=0&y=0&=Web+Search
 Query[ia]=http://search.yahoo.com/search?toggle=1&cop=mss&ei=UTF-8&fr=yfp-t-701&p=\\{@}&x=0&y=0&=Web+Search

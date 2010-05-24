@@ -4,6 +4,7 @@ Hidden=false
 Keys=magnatune,mt
 Name=Magnatune
 Name[cs]=Magnatune
+Name[de]=Magnatune
 Name[en_GB]=Magnatune
 Name[es]=Magnatune
 Name[ia]=Magnatune
@@ -23,6 +24,7 @@ Name[x-test]=xxMagnatunexx
 Name[zh_TW]=Magnatune
 Query=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
 Query[cs]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
+Query[de]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
 Query[en_GB]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
 Query[es]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
 Query[ia]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0

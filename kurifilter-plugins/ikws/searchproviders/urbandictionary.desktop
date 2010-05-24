@@ -3,6 +3,7 @@ Charset=
 Hidden=false
 Keys=urbandictionary,ud
 Name=Urban Dictionary
+Name[de]=Urban Dictionary
 Name[en_GB]=Urban Dictionary
 Name[es]=Urban Dictionary
 Name[ia]=Dictionario Urban
@@ -22,6 +23,7 @@ Name[x-test]=xxUrban Dictionaryxx
 Name[zh_TW]=Urban Dictionary
 Query=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[cs]=http://www.urbandictionary.com/define.php?term=\\{@}
+Query[de]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[en_GB]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[es]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[ia]=http://www.urbandictionary.com/define.php?term=\\{@}
