@@ -97,6 +97,7 @@ Query[el]=http://imdb.com/find?s=all&q=\\{@}
 Query[en_GB]=http://imdb.com/find?s=all&q=\\{@}
 Query[es]=http://imdb.com/find?s=all&q=\\{@}
 Query[et]=http://imdb.com/find?s=all&q=\\{@}
+Query[fr]=http://imdb.com/find?s=all&q=\\{@}
 Query[he]=http://imdb.com/find?s=all&q=\\{@}
 Query[hr]=http://imdb.com/find?s=all&q=\\{@}
 Query[ia]=http://imdb.com/find?s=all&q=\\{@}
