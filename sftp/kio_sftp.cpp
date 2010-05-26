@@ -65,6 +65,7 @@
 #include <libssh/sftp.h>
 #include <libssh/callbacks.h>
 
+#define KIO_SFTP_SPECIAL_TIMEOUT 30
 #define ZERO_STRUCTP(x) do { if ((x) != NULL) memset((char *)(x), 0, sizeof(*(x))); } while(0)
 
 using namespace KIO;
@@ -768,6 +769,8 @@ void sftpProtocol::openConnection() {
 
   cacheAuthentication(info);
 
+  setTimeoutSpecialCommand(KIO_SFTP_SPECIAL_TIMEOUT);
+
   mConnected = true;
   connected();
 
@@ -789,6 +792,35 @@ void sftpProtocol::closeConnection() {
   mSession = NULL;
 
   mConnected = false;
+}
+
+void sftpProtocol::special(const QByteArray &data) {
+    int rc;
+    kDebug(KIO_SFTP_DB) << "special(): polling";
+
+    /*
+     * channel_poll() returns the number of bytes that may be read on the
+     * channel. It does so by checking the input buffer and eventually the
+     * network socket for data to read. If the input buffer is not empty, it
+     * will not probe the network (and such not read packets nor reply to
+     * keepalives).
+     *
+     * As channel_poll can act on two specific buffers (a channel has two
+     * different stream: stdio and stderr), polling for data on the stderr
+     * stream has more chance of not being in the problematic case (data left
+     * in the buffer). Checking the return value (for >0) would be a good idea
+     * to debug the problem.
+     */
+    rc = channel_poll(mSftp->channel, 0);
+    if (rc > 0) {
+        rc = channel_poll(mSftp->channel, 1);
+    }
+
+    if (rc < 0) {
+        kDebug(KIO_SFTP_DB) << "channel_poll failed: " << ssh_get_error(mSession);
+    }
+
+    setTimeoutSpecialCommand(KIO_SFTP_SPECIAL_TIMEOUT);
 }
 
 void sftpProtocol::open(const KUrl &url, QIODevice::OpenMode mode) {

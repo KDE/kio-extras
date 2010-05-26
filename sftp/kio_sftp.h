@@ -68,6 +68,7 @@ public:
   virtual void write(const QByteArray &data);
   virtual void seek(KIO::filesize_t offset);
   virtual void close();
+  virtual void special(const QByteArray &data);
 
   // libssh authentication callback (note that this is called by the
   // global ::auth_callback() call.
