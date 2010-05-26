@@ -34,8 +34,6 @@ SearchProviderDialog::SearchProviderDialog(SearchProvider *provider, QList<Searc
 
     m_dlg.setupUi(mainWidget());
 
-    showButtonSeparator(true);
-
     m_dlg.leQuery->setMinimumWidth(kapp->fontMetrics().averageCharWidth() * 50);
 
     connect(m_dlg.leName,      SIGNAL(textChanged(QString)), SLOT(slotChanged()));
