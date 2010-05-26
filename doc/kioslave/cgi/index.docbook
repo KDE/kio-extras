@@ -23,7 +23,18 @@ provide a <acronym>CGI</acronym> frontend like the one from
 
 <para>The slave implements the <command>cgi:</command> protocol. It
 uses the filename from the given &URL; and searches a configurable
-list of folders. If it finds an executable with the given name it
+list of folders.</para>
+<para>The list of folders can be retrieved using the command 
+<userinput><command>kde4-config</command> <option>--path cgi</option>
+</userinput>. The value defaults to <filename class="directory">$<envar>
+HOME</envar>/.kde4/cgi-bin/</filename>.</para>
+
+<para>Use the &systemsettings; modul <guilabel>CGI Script</guilabel> 
+(launched with <userinput><command>kcmshell4</command> <option>kcmcgi</option>
+</userinput>) to add or remove additional user defined paths that are searched for 
+<acronym>CGI</acronym> scripts.</para>
+
+<para>If this kioslave finds an executable with the given name it
 executes it, passes the arguments of the &URL; and sets the
 environment variables needed by <acronym>CGI</acronym>
 programs.</para>
