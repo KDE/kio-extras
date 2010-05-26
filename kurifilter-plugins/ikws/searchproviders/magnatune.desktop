@@ -8,6 +8,7 @@ Name[de]=Magnatune
 Name[en_GB]=Magnatune
 Name[es]=Magnatune
 Name[ia]=Magnatune
+Name[id]=Magnatune
 Name[is]=Magnatune
 Name[ja]=Magnatune
 Name[kk]=Magnatune
@@ -28,6 +29,7 @@ Query[de]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
 Query[en_GB]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
 Query[es]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
 Query[ia]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
+Query[id]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
 Query[is]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
 Query[ja]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
 Query[kk]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0

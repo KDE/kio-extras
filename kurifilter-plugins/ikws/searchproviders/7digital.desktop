@@ -8,6 +8,7 @@ Name[de]=7Digital
 Name[en_GB]=7Digital
 Name[es]=7Digital
 Name[ia]=7Digital
+Name[id]=7Digital
 Name[is]=7Digital
 Name[ja]=7Digital
 Name[kk]=7Digital
@@ -27,6 +28,7 @@ Query[de]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Se
 Query[en_GB]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[es]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[ia]=http://us.7digital.com/search/search.php?item=\\{@}&searchtype=global&submit=Search
+Query[id]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[is]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[ja]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[kk]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search

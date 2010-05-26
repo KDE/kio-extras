@@ -7,6 +7,7 @@ Name[de]=Duck Duck Go Info
 Name[en_GB]=Duck Duck Go Info
 Name[es]=Duck Duck Go Info
 Name[ia]=Duck Duck Go Info
+Name[id]=Info Duck Duck Go
 Name[is]=Duck Duck Go upplýsingar
 Name[ja]=Duck Duck Go Info
 Name[kk]=Duck Duck Go Info
@@ -27,6 +28,7 @@ Query[de]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[en_GB]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[es]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[ia]=http://duckduckgo.com/?q=\\{@}&v=r
+Query[id]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[is]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[ja]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[kk]=http://duckduckgo.com/?q=\\{@}&v=r

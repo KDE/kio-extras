@@ -9,6 +9,7 @@ Name[et]=Ecosia otsingumootor
 Name[he]=מנוע חיפוש Ecosia
 Name[hr]=Tražilica Ecosia
 Name[ia]=motore de cerca Ecosia
+Name[id]=Mesin pencari Ecosia
 Name[is]=Ecosia leitarvélin
 Name[ja]=Ecosia 検索エンジン
 Name[kk]=Ecosia іздеу құралы
@@ -37,6 +38,7 @@ Query[et]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[he]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[hr]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[ia]=http://ecosia.org/search.php?q=\\{@}&meta=normal
+Query[id]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[is]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[ja]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[kk]=http://ecosia.org/search.php?q=\\{@}&meta=normal

@@ -7,6 +7,7 @@ Name[de]=Identi.ca Notices
 Name[en_GB]=Identi.ca Notices
 Name[es]=Avisos Identi.ca
 Name[ia]=Novas de Identi.ca
+Name[id]=Identi.ca Notices
 Name[is]=Identi.ca tilkynningar
 Name[ja]=Identi.ca Notices
 Name[kk]=Identi.ca жазбалары
@@ -26,6 +27,7 @@ Query[de]=http://identi.ca/search/notice?q=\\{@}
 Query[en_GB]=http://identi.ca/search/notice?q=\\{@}
 Query[es]=http://identi.ca/search/notice?q=\\{@}
 Query[ia]=http://identi.ca/search/notice?q=\\{@}
+Query[id]=http://identi.ca/search/notice?q=\\{@}
 Query[is]=http://identi.ca/search/notice?q=\\{@}
 Query[ja]=http://identi.ca/search/notice?q=\\{@}
 Query[kk]=http://identi.ca/search/notice?q=\\{@}

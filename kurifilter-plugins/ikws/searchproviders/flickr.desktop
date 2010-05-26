@@ -8,6 +8,7 @@ Name[de]=Flickr
 Name[en_GB]=Flickr
 Name[es]=Flickr
 Name[ia]=Flickr
+Name[id]=Flickr
 Name[is]=Flickr
 Name[ja]=Flickr
 Name[kk]=Flickr
@@ -29,6 +30,7 @@ Query[de]=http://www.flickr.com/search/?q=\\{@}
 Query[en_GB]=http://www.flickr.com/search/?q=\\{@}
 Query[es]=http://www.flickr.com/search/?q=\\{@}
 Query[ia]=http://www.flickr.com/search?q=\\{@}
+Query[id]=http://www.flickr.com/search/?q=\\{@}
 Query[is]=http://www.flickr.com/search/?q=\\{@}
 Query[ja]=http://www.flickr.com/search/?q=\\{@}
 Query[kk]=http://www.flickr.com/search/?q=\\{@}

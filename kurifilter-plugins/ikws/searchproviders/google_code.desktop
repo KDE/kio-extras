@@ -8,6 +8,7 @@ Name[de]=Google Code
 Name[en_GB]=Google Code
 Name[es]=Google Code
 Name[ia]=Google Movies
+Name[id]=Google Code
 Name[is]=Google kóði
 Name[ja]=Google Code
 Name[kk]=Google Code
@@ -27,6 +28,7 @@ Query[de]=http://code.google.com/query/#q=\\{%2520}
 Query[en_GB]=http://code.google.com/query/#q=\\{%2520}
 Query[es]=http://code.google.com/query/#q=\\{%2520}
 Query[ia]=http://code.google.com/query#q=\\{%2520}
+Query[id]=http://code.google.com/query/#q=\\{%2520}
 Query[is]=http://code.google.com/query/#q=\\{%2520}
 Query[ja]=http://code.google.com/query/#q=\\{%2520}
 Query[kk]=http://code.google.com/query/#q=\\{%2520}

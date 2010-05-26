@@ -8,6 +8,7 @@ Name[es]=YouTube
 Name[et]=YouTube
 Name[hr]=YouTube
 Name[ia]=YouTube
+Name[id]=YouTube
 Name[is]=YouTube
 Name[ja]=YouTube
 Name[kk]=YouTube
@@ -34,6 +35,7 @@ Query[es]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[et]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[hr]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[ia]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
+Query[id]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[is]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[ja]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[kk]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
