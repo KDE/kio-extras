@@ -29,7 +29,7 @@ list of folders.</para>
 </userinput>. The value defaults to <filename class="directory">$<envar>
 HOME</envar>/.kde4/cgi-bin/</filename>.</para>
 
-<para>Use the &systemsettings; modul <guilabel>CGI Script</guilabel> 
+<para>Use the &systemsettings; module <guilabel>CGI Script</guilabel> 
 (launched with <userinput><command>kcmshell4</command> <option>kcmcgi</option>
 </userinput>) to add or remove additional user defined paths that are searched for 
 <acronym>CGI</acronym> scripts.</para>
