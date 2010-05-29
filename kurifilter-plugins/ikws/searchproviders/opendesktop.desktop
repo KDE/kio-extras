@@ -13,7 +13,9 @@ Name[ja]=Open
 Name[kk]=Open
 Name[km]=បើក
 Name[lt]=Open
+Name[nb]=Open
 Name[nl]=Openen
+Name[pa]=ਖੋਲ੍ਹੋ
 Name[pt]=Open
 Name[pt_BR]=Open
 Name[sv]=Öppet skrivbord
@@ -33,8 +35,10 @@ Query[ja]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[kk]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[km]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[lt]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
+Query[nb]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[nds]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[nl]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
+Query[pa]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[pt]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[pt_BR]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[sv]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}

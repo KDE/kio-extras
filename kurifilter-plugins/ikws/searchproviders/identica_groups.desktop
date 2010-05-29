@@ -13,8 +13,10 @@ Name[ja]=Identi.ca Groups
 Name[kk]=Identi.ca тобтар
 Name[km]=ក្រុម​របស់ Identi.ca
 Name[lt]=Identi.ca grupės
+Name[nb]=Identi.ca-grupper
 Name[nds]=Identi.ca - Koppeln
 Name[nl]=Identi.ca Groepen
+Name[pa]=Identi.ca ਗਰੁੱਪ
 Name[pt]=Grupos do Identi.ca
 Name[pt_BR]=Grupos do Identi.ca
 Name[sv]=Identi.ca grupper
@@ -34,6 +36,7 @@ Query[ja]=http://identi.ca/search/group?q=\\{@}
 Query[kk]=http://identi.ca/search/group?q=\\{@}
 Query[km]=http://identi.ca/search/group?q=\\{@}
 Query[lt]=http://identi.ca/search/group?q=\\{@}
+Query[nb]=http://identi.ca/search/group?q=\\{@}
 Query[nds]=http://identi.ca/search/group?q=\\{@}
 Query[nl]=http://identi.ca/search/group?q=\\{@}
 Query[pt]=http://identi.ca/search/group?q=\\{@}

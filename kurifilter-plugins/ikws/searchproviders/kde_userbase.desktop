@@ -12,6 +12,7 @@ Name[ja]=KDE UserBase
 Name[kk]=KDE UserBase
 Name[km]=KDE UserBase
 Name[lt]=KDE UserBase
+Name[nb]=Brukerbase for KDE
 Name[nds]=KDE-UserBase
 Name[nl]=KDE UserBase
 Name[pt]=KDE UserBase
@@ -33,6 +34,7 @@ Query[ja]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[kk]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[km]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[lt]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
+Query[nb]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[nds]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[nl]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[pt]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search

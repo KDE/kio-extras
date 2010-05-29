@@ -13,6 +13,7 @@ Name[ja]=Duck Duck Go Shopping
 Name[kk]=Duck Duck Go Shopping
 Name[km]=ការ​ទិញ​ឥវ៉ាន់របស់ Duck Duck Go
 Name[lt]=Duck Duck Go Shopping
+Name[nb]=Duck Duck Go Shopping
 Name[nds]=Duck Duck Go - Inköpen
 Name[nl]=Duck Duck Go Shopping
 Name[pt]=Loja do Duck Duck Go
@@ -34,6 +35,7 @@ Query[ja]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[kk]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[km]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[lt]=http://duckduckgo.com/?q=\\{@}&v=s
+Query[nb]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[nds]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[nl]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[pt]=http://duckduckgo.com/?q=\\{@}&v=s

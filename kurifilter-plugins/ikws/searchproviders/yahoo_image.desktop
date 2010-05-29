@@ -13,6 +13,7 @@ Name[ja]=Yahoo Images
 Name[kk]=Yahoo кескіндер
 Name[km]=រូបភាព​របស់​យ៉ាហ៊ូ
 Name[lt]=Yahoo nuotraukos
+Name[nb]=Yahoo bilder
 Name[nds]=Yahoo - Biller
 Name[nl]=Yahoo afbeeldingen
 Name[pt]=Imagens do Yahoo
@@ -33,8 +34,10 @@ Query[ja]=http://images.search.yahoo.com/search/images;_ylt=A0geuy0K6JZLsVkB4m1X
 Query[kk]=http://images.search.yahoo.com/search/images;_ylt=A0geuy0K6JZLsVkB4m1XNyoA?ei=UTF-8&p=\\{@}&y=0&fr2=tab-web&fr=yfp-t-701
 Query[km]=http://images.search.yahoo.com/search/images;_ylt=A0geuy0K6JZLsVkB4m1XNyoA?ei=UTF-8&p=\\{@}&y=0&fr2=tab-web&fr=yfp-t-701
 Query[lt]=http://images.search.yahoo.com/search/images;_ylt=A0geuy0K6JZLsVkB4m1XNyoA?ei=UTF-8&p=\\{@}&y=0&fr2=tab-web&fr=yfp-t-701
+Query[nb]=http://images.search.yahoo.com/search/images;_ylt=A0geuy0K6JZLsVkB4m1XNyoA?ei=UTF-8&p=\\{@}&y=0&fr2=tab-web&fr=yfp-t-701
 Query[nds]=http://images.search.yahoo.com/search/images;_ylt=A0geuy0K6JZLsVkB4m1XNyoA?ei=UTF-8&p=\\{@}&y=0&fr2=tab-web&fr=yfp-t-701
 Query[nl]=http://images.search.yahoo.com/search/images;_ylt=A0geuy0K6JZLsVkB4m1XNyoA?ei=UTF-8&p=\\{@}&y=0&fr2=tab-web&fr=yfp-t-701
+Query[pa]=http://images.search.yahoo.com/search/images;_ylt=A0geuy0K6JZLsVkB4m1XNyoA?ei=UTF-8&p=\\{@}&y=0&fr2=tab-web&fr=yfp-t-701
 Query[pt]=http://images.search.yahoo.com/search/images;_ylt=A0geuy0K6JZLsVkB4m1XNyoA?ei=UTF-8&p=\\{@}&y=0&fr2=tab-web&fr=yfp-t-701
 Query[pt_BR]=http://images.search.yahoo.com/search/images;_ylt=A0geuy0K6JZLsVkB4m1XNyoA?ei=UTF-8&p=\\{@}&y=0&fr2=tab-web&fr=yfp-t-701
 Query[sv]=http://images.search.yahoo.com/search/images;_ylt=A0geuy0K6JZLsVkB4m1XNyoA?ei=UTF-8&p=\\{@}&y=0&fr2=tab-web&fr=yfp-t-701

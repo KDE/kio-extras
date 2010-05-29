@@ -14,6 +14,7 @@ Name[ja]=Facebook
 Name[kk]=Facebook
 Name[km]=Facebook
 Name[lt]=Facebook
+Name[nb]=Facebook
 Name[nds]=Facebook
 Name[nl]=Facebook
 Name[pt]=Facebook
@@ -35,6 +36,7 @@ Query[ja]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[kk]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[km]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[lt]=http://www.facebook.com/search/?q=\\{@}&init=quick
+Query[nb]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[nds]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[nl]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[pt]=http://www.facebook.com/search/?q=\\{@}&init=quick

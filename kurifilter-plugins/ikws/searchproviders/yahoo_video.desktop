@@ -13,6 +13,7 @@ Name[ja]=Yahoo Video
 Name[kk]=Yahoo видео
 Name[km]=វីដេអូ​របស់យ៉ាហ៊ូ
 Name[lt]=Yahoo Video
+Name[nb]=Yahoo Video
 Name[nds]=Yahoo - Video
 Name[nl]=Yahoo Video
 Name[pt]=Vídeos do Yahoo
@@ -32,8 +33,10 @@ Query[ja]=http://video.search.yahoo.com/search/video;_ylt=A0WTb_3a6JZLSHwAK7.Jzb
 Query[kk]=http://video.search.yahoo.com/search/video;_ylt=A0WTb_3a6JZLSHwAK7.JzbkF?ei=UTF-8&p=\\{@}&y=0&fr2=tab-img&fr=yfp-t-701
 Query[km]=http://video.search.yahoo.com/search/video;_ylt=A0WTb_3a6JZLSHwAK7.JzbkF?ei=UTF-8&p=\\{@}&y=0&fr2=tab-img&fr=yfp-t-701
 Query[lt]=http://video.search.yahoo.com/search/video;_ylt=A0WTb_3a6JZLSHwAK7.JzbkF?ei=UTF-8&p=\\{@}&y=0&fr2=tab-img&fr=yfp-t-701
+Query[nb]=http://video.search.yahoo.com/search/video;_ylt=A0WTb_3a6JZLSHwAK7.JzbkF?ei=UTF-8&p=\\{@}&y=0&fr2=tab-img&fr=yfp-t-701
 Query[nds]=http://video.search.yahoo.com/search/video;_ylt=A0WTb_3a6JZLSHwAK7.JzbkF?ei=UTF-8&p=\\{@}&y=0&fr2=tab-img&fr=yfp-t-701
 Query[nl]=http://video.search.yahoo.com/search/video;_ylt=A0WTb_3a6JZLSHwAK7.JzbkF?ei=UTF-8&p=\\{@}&y=0&fr2=tab-img&fr=yfp-t-701
+Query[pa]=http://video.search.yahoo.com/search/video;_ylt=A0WTb_3a6JZLSHwAK7.JzbkF?ei=UTF-8&p=\\{@}&y=0&fr2=tab-img&fr=yfp-t-701
 Query[pt]=http://video.search.yahoo.com/search/video;_ylt=A0WTb_3a6JZLSHwAK7.JzbkF?ei=UTF-8&p=\\{@}&y=0&fr2=tab-img&fr=yfp-t-701
 Query[pt_BR]=http://video.search.yahoo.com/search/video;_ylt=A0WTb_3a6JZLSHwAK7.JzbkF?ei=UTF-8&p=\\{@}&y=0&fr2=tab-img&fr=yfp-t-701
 Query[sv]=http://video.search.yahoo.com/search/video;_ylt=A0WTb_3a6JZLSHwAK7.JzbkF?ei=UTF-8&p=\\{@}&y=0&fr2=tab-img&fr=yfp-t-701

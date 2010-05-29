@@ -7,6 +7,7 @@ Name[cs]=Yahoo
 Name[de]=Yahoo
 Name[en_GB]=Yahoo
 Name[es]=Yahoo
+Name[ga]=Yahoo
 Name[ia]=Yahoo
 Name[id]=Yahoo
 Name[is]=Yahoo
@@ -14,8 +15,10 @@ Name[ja]=Yahoo
 Name[kk]=Yahoo
 Name[km]=យ៉ាហ៊ូ
 Name[lt]=Yahoo
+Name[nb]=Yahoo
 Name[nds]=Yahoo
 Name[nl]=Yahoo
+Name[pa]=ਯਾਹੂ
 Name[pt]=Yahoo
 Name[pt_BR]=Yahoo
 Name[ru]=Yahoo
@@ -35,8 +38,10 @@ Query[ja]=http://search.yahoo.com/search?toggle=1&cop=mss&ei=UTF-8&fr=yfp-t-701&
 Query[kk]=http://search.yahoo.com/search?toggle=1&cop=mss&ei=UTF-8&fr=yfp-t-701&p=\\{@}&x=0&y=0&=Web+Search
 Query[km]=http://search.yahoo.com/search?toggle=1&cop=mss&ei=UTF-8&fr=yfp-t-701&p=\\{@}&x=0&y=0&=Web+Search
 Query[lt]=http://search.yahoo.com/search?toggle=1&cop=mss&ei=UTF-8&fr=yfp-t-701&p=\\{@}&x=0&y=0&=Web+Search
+Query[nb]=http://search.yahoo.com/search?toggle=1&cop=mss&ei=UTF-8&fr=yfp-t-701&p=\\{@}&x=0&y=0&=Web+Search
 Query[nds]=http://search.yahoo.com/search?toggle=1&cop=mss&ei=UTF-8&fr=yfp-t-701&p=\\{@}&x=0&y=0&=Web+Search
 Query[nl]=http://search.yahoo.com/search?toggle=1&cop=mss&ei=UTF-8&fr=yfp-t-701&p=\\{@}&x=0&y=0&=Web+Search
+Query[pa]=http://search.yahoo.com/search?toggle=1&cop=mss&ei=UTF-8&fr=yfp-t-701&p=\\{@}&x=0&y=0&=Web+Search
 Query[pt]=http://search.yahoo.com/search?toggle=1&cop=mss&ei=UTF-8&fr=yfp-t-701&p=\\{@}&x=0&y=0&=Web+Search
 Query[pt_BR]=http://search.yahoo.com/search?toggle=1&cop=mss&ei=UTF-8&fr=yfp-t-701&p=\\{@}&x=0&y=0&=Web+Search
 Query[sv]=http://search.yahoo.com/search?toggle=1&cop=mss&ei=UTF-8&fr=yfp-t-701&p=\\{@}&x=0&y=0&=Web+Search

@@ -98,6 +98,7 @@ Query[en_GB]=http://www.php.net/manual-lookup.php?pattern=\\{@}
 Query[es]=http://www.php.net/manual-lookup.php?pattern=\\{@}
 Query[et]=http://www.php.net/manual-lookup.php?pattern=\\{@}
 Query[fr]=http://www.php.net/manual-lookup.php?pattern=\\{@}
+Query[ga]=http://www.php.net/manual-lookup.php?pattern=\\{@}
 Query[he]=http://www.php.net/manual-lookup.php?pattern=\\{@}
 Query[hr]=http://www.php.net/manual-lookup.php?pattern=\\{@}
 Query[ia]=http://www.php.net/manual-lookup.php?pattern=\\{@}
@@ -110,6 +111,7 @@ Query[lt]=http://www.php.net/manual-lookup.php?pattern=\\{@}
 Query[nb]=http://www.php.net/manual-lookup.php?pattern=\\{@}
 Query[nds]=http://www.php.net/manual-lookup.php?pattern=\\{@}
 Query[nl]=http://www.php.net/manual-lookup.php?pattern=\\{@}
+Query[pa]=http://www.php.net/manual-lookup.php?pattern=\\{@}
 Query[pt]=http://www.php.net/manual-lookup.php?pattern=\\{@}
 Query[pt_BR]=http://www.php.net/manual-lookup.php?pattern=\\{@}
 Query[sk]=http://www.php.net/manual-lookup.php?pattern=\\{@}
