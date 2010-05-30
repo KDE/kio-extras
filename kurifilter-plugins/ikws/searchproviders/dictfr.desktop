@@ -1,6 +1,7 @@
 [Desktop Entry]
 Type=Service
 Name=CNRTL/TILF French dictionary
+Name[bn]=CNRTL/TILF ফরাসী ডিকশনারী
 Name[ca]=Diccionari francès CNRTL/TILF
 Name[ca@valencia]=Diccionari francés CNRTL/TILF
 Name[cs]=Francouzský slovník CNRTL/TILF
@@ -64,6 +65,7 @@ X-KDE-ServiceTypes=SearchProvider
 Keys=dictfr
 Query=http://www.cnrtl.fr/definition/\\{@}
 Query[bg]=http://www.cnrtl.fr/definition/\\{@}
+Query[bn]=http://www.cnrtl.fr/definition/\\{@}
 Query[ca]=http://www.cnrtl.fr/definition/\\{@}
 Query[ca@valencia]=http://www.cnrtl.fr/definition/\\{@}
 Query[cs]=http://www.cnrtl.fr/definition/\\{@}

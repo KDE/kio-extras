@@ -25,6 +25,7 @@ Name[uk]=Vimeo
 Name[x-test]=xxVimeoxx
 Name[zh_TW]=Vimeo
 Query=http://vimeo.com/videos/search:\\{@}
+Query[bn]=http://vimeo.com/videos/search:\\{@}
 Query[cs]=http://vimeo.com/videos/search:\\{@}
 Query[de]=http://vimeo.com/videos/search:\\{@}
 Query[en_GB]=http://vimeo.com/videos/search:\\{@}

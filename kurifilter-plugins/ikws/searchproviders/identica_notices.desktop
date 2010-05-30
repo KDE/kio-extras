@@ -24,6 +24,7 @@ Name[uk]=Нотатки Identi.ca
 Name[x-test]=xxIdenti.ca Noticesxx
 Name[zh_TW]=Identi.ca Notices
 Query=http://identi.ca/search/notice?q=\\{@}
+Query[bn]=http://identi.ca/search/notice?q=\\{@}
 Query[cs]=http://identi.ca/search/notice?q=\\{@}
 Query[de]=http://identi.ca/search/notice?q=\\{@}
 Query[en_GB]=http://identi.ca/search/notice?q=\\{@}

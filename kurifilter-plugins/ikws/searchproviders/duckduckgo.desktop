@@ -24,6 +24,7 @@ Name[uk]=Duck Duck Go
 Name[x-test]=xxDuck Duck Goxx
 Name[zh_TW]=Duck Duck Go
 Query=http://duckduckgo.com/?q=\\{@}&v=
+Query[bn]=http://duckduckgo.com/?q=\\{@}&v=
 Query[cs]=http://duckduckgo.com/?q=\\{@}&v=
 Query[de]=http://duckduckgo.com/?q=\\{@}&v=
 Query[en_GB]=http://duckduckgo.com/?q=\\{@}&v=

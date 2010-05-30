@@ -30,6 +30,7 @@ Name[zh_TW]=Ecosia 搜索引擎
 X-KDE-ServiceTypes=SearchProvider
 Keys=ec
 Query=http://ecosia.org/search.php?q=\\{@}&meta=normal
+Query[bn]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[cs]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[de]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[en_GB]=http://ecosia.org/search.php?q=\\{@}&meta=normal

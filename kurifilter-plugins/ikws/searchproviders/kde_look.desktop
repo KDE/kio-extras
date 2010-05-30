@@ -3,6 +3,7 @@ Charset=
 Hidden=false
 Keys=kdelook,klook,kdel
 Name=KDE Look
+Name[bn]=কে.ডি.ই. লুক
 Name[cs]=KDE Look
 Name[de]=KDE Look
 Name[en_GB]=KDE Look
@@ -25,6 +26,7 @@ Name[uk]=KDE Look
 Name[x-test]=xxKDE Lookxx
 Name[zh_TW]=KDE Look
 Query=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
+Query[bn]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[cs]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[de]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[en_GB]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}

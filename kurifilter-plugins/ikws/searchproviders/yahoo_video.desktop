@@ -3,6 +3,7 @@ Charset=
 Hidden=false
 Keys=yahoovideo,yhv
 Name=Yahoo Video
+Name[bn]=ইয়াহু ভিডিও
 Name[cs]=Video Yahoo
 Name[de]=Yahoo Video
 Name[en_GB]=Yahoo Video
@@ -23,6 +24,7 @@ Name[uk]=Відео Yahoo
 Name[x-test]=xxYahoo Videoxx
 Name[zh_TW]=Yahoo Video
 Query=http://video.search.yahoo.com/search/video;_ylt=A0WTb_3a6JZLSHwAK7.JzbkF?ei=UTF-8&p=\\{@}&y=0&fr2=tab-img&fr=yfp-t-701
+Query[bn]=http://video.search.yahoo.com/search/video;_ylt=A0WTb_3a6JZLSHwAK7.JzbkF?ei=UTF-8&p=\\{@}&y=0&fr2=tab-img&fr=yfp-t-701
 Query[de]=http://video.search.yahoo.com/search/video;_ylt=A0WTb_3a6JZLSHwAK7.JzbkF?ei=UTF-8&p=\\{@}&y=0&fr2=tab-img&fr=yfp-t-701
 Query[en_GB]=http://video.search.yahoo.com/search/video;_ylt=A0WTb_3a6JZLSHwAK7.JzbkF?ei=UTF-8&p=\\{@}&y=0&fr2=tab-img&fr=yfp-t-701
 Query[es]=http://video.search.yahoo.com/search/video;_ylt=A0WTb_3a6JZLSHwAK7.JzbkF?ei=UTF-8&p=\\{@}&y=0&fr2=tab-img&fr=yfp-t-701

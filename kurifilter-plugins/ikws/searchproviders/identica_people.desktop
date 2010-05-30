@@ -24,6 +24,7 @@ Name[uk]=Постаті Identi.ca
 Name[x-test]=xxIdenti.ca Peoplexx
 Name[zh_TW]=Identi.ca People
 Query=http://identi.ca/search/people?q=\\{@}&search=Search
+Query[bn]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[cs]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[de]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[en_GB]=http://identi.ca/search/people?q=\\{@}&search=Search

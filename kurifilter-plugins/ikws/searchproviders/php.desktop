@@ -90,6 +90,7 @@ Name[x-test]=xxPHP Searchxx
 Name[zh_CN]=PHP 搜索
 Name[zh_TW]=PHP 搜尋
 Query=http://www.php.net/manual-lookup.php?pattern=\\{@}
+Query[bn]=http://www.php.net/manual-lookup.php?pattern=\\{@}
 Query[cs]=http://www.php.net/manual-lookup.php?pattern=\\{@}
 Query[da]=http://www.php.net/manual-lookup.php?pattern=\\{@}
 Query[de]=http://www.php.net/manual-lookup.php?pattern=\\{@}
@@ -104,6 +105,7 @@ Query[hr]=http://www.php.net/manual-lookup.php?pattern=\\{@}
 Query[ia]=http://www.php.net/manual-lookup.php?pattern=\\{@}
 Query[id]=http://www.php.net/manual-lookup.php?pattern=\\{@}
 Query[is]=http://www.php.net/manual-lookup.php?pattern=\\{@}
+Query[it]=http://www.php.net/manual-lookup.php?pattern=\\{@}
 Query[ja]=http://www.php.net/manual-lookup.php?pattern=\\{@}
 Query[kk]=http://www.php.net/manual-lookup.php?pattern=\\{@}
 Query[km]=http://www.php.net/manual-lookup.php?pattern=\\{@}

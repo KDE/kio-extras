@@ -91,6 +91,7 @@ Name[zh_TW]=KDE 臭蟲資料庫全文檢索
 Query=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[ar]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[bg]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
+Query[bn]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[ca]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[ca@valencia]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[cs]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}

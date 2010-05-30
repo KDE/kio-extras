@@ -3,6 +3,7 @@ Charset=
 Hidden=false
 Keys=yahoo,yh
 Name=Yahoo
+Name[bn]=ইয়াহু
 Name[cs]=Yahoo
 Name[de]=Yahoo
 Name[en_GB]=Yahoo
@@ -27,6 +28,7 @@ Name[uk]=Yahoo
 Name[x-test]=xxYahooxx
 Name[zh_TW]=Yahoo
 Query=http://search.yahoo.com/search?toggle=1&cop=mss&ei=UTF-8&fr=yfp-t-701&p=\\{@}&x=0&y=0&=Web+Search
+Query[bn]=http://search.yahoo.com/search?toggle=1&cop=mss&ei=UTF-8&fr=yfp-t-701&p=\\{@}&x=0&y=0&=Web+Search
 Query[cs]=http://search.yahoo.com/search?toggle=1&cop=mss&ei=UTF-8&fr=yfp-t-701&p=\\{@}&x=0&y=0&=Web+Search
 Query[de]=http://search.yahoo.com/search?toggle=1&cop=mss&ei=UTF-8&fr=yfp-t-701&p=\\{@}&x=0&y=0&=Web+Search
 Query[en_GB]=http://search.yahoo.com/search?toggle=1&cop=mss&ei=UTF-8&fr=yfp-t-701&p=\\{@}&x=0&y=0&=Web+Search

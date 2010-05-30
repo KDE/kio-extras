@@ -3,6 +3,7 @@ Charset=
 Hidden=false
 Keys=7digital,7dg,7d
 Name=7Digital
+Name[bn]=7Digital
 Name[cs]=7Digital
 Name[de]=7Digital
 Name[en_GB]=7Digital
@@ -24,6 +25,7 @@ Name[uk]=7Digital
 Name[x-test]=xx7Digitalxx
 Name[zh_TW]=7Digital
 Query=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
+Query[bn]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[cs]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[de]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[en_GB]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search

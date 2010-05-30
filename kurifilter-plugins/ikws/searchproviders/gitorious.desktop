@@ -3,6 +3,7 @@ Charset=
 Hidden=false
 Keys=gitorious,gt
 Name=Gitorious
+Name[bn]=গিটেরিয়াস
 Name[cs]=Gitorious
 Name[de]=Gitorious
 Name[en_GB]=Gitorious
@@ -25,6 +26,7 @@ Name[uk]=Gitorious
 Name[x-test]=xxGitoriousxx
 Name[zh_TW]=Gitorious
 Query=http://gitorious.org/search?q=\\{@}&commit=Search
+Query[bn]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[cs]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[de]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[en_GB]=http://gitorious.org/search?q=\\{@}&commit=Search

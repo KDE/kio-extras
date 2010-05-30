@@ -2,6 +2,7 @@
 Encoding=UTF-8
 Type=Service
 Name=Comic Books
+Name[bn]=কমিক্‌স বই
 Name[ca]=Llibres de còmics
 Name[ca@valencia]=Llibres de còmics
 Name[cs]=Komiksy
