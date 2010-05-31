@@ -51,6 +51,7 @@ Query[nds]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[nl]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[pt]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[pt_BR]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
+Query[ru]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[sk]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[sv]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[tg]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr

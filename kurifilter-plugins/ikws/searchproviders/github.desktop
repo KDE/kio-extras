@@ -8,6 +8,7 @@ Name[cs]=GitHub
 Name[de]=GitHub
 Name[en_GB]=GitHub
 Name[es]=GitHub
+Name[hr]=GitHub
 Name[ia]=GitHub
 Name[id]=GitHub
 Name[is]=GitHub
@@ -33,6 +34,7 @@ Query[cs]=http://github.com/search?q=\\{@}&x=0&y=0
 Query[de]=http://github.com/search?q=\\{@}&x=0&y=0
 Query[en_GB]=http://github.com/search?q=\\{@}&x=0&y=0
 Query[es]=http://github.com/search?q=\\{@}&x=0&y=0
+Query[hr]=http://github.com/search?q=\\{@}&x=0&y=0
 Query[ia]=http://github.com/search?q=\\{@}&x=0&y=0
 Query[id]=http://github.com/search?q=\\{@}&x=0&y=0
 Query[is]=http://github.com/search?q=\\{@}&x=0&y=0

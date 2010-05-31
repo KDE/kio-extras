@@ -20,6 +20,7 @@ Name[nds]=Google-Kode
 Name[nl]=Google Code
 Name[pt]=Código do Google
 Name[pt_BR]=Google Code
+Name[ru]=Google Code
 Name[sv]=Google kod
 Name[uk]=Google Code
 Name[x-test]=xxGoogle Codexx
@@ -30,6 +31,7 @@ Query[cs]=http://code.google.com/query/#q=\\{%2520}
 Query[de]=http://code.google.com/query/#q=\\{%2520}
 Query[en_GB]=http://code.google.com/query/#q=\\{%2520}
 Query[es]=http://code.google.com/query/#q=\\{%2520}
+Query[hr]=http://code.google.com/query/#q=\\{%2520}
 Query[ia]=http://code.google.com/query#q=\\{%2520}
 Query[id]=http://code.google.com/query/#q=\\{%2520}
 Query[is]=http://code.google.com/query/#q=\\{%2520}
@@ -42,6 +44,7 @@ Query[nds]=http://code.google.com/query/#q=\\{%2520}
 Query[nl]=http://code.google.com/query/#q=\\{%2520}
 Query[pt]=http://code.google.com/query/#q=\\{%2520}
 Query[pt_BR]=http://code.google.com/query/#q=\\{%2520}
+Query[ru]=http://code.google.com/query/#q=\\{%2520}
 Query[sv]=http://code.google.com/query/#q=\\{%2520}
 Query[th]=http://code.google.com/query/#q=\\{%2520}
 Query[uk]=http://code.google.com/query/#q=\\{%2520}

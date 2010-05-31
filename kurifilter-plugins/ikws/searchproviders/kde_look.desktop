@@ -31,6 +31,7 @@ Query[cs]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[de]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[en_GB]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[es]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
+Query[hr]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[ia]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[id]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[is]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
@@ -43,6 +44,7 @@ Query[nds]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[nl]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[pt]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[pt_BR]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
+Query[ru]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[sv]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[th]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[uk]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}

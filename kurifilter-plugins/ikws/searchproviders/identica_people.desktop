@@ -29,6 +29,7 @@ Query[cs]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[de]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[en_GB]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[es]=http://identi.ca/search/people?q=\\{@}&search=Search
+Query[hr]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[ia]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[id]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[is]=http://identi.ca/search/people?q=\\{@}&search=Search
@@ -41,6 +42,7 @@ Query[nds]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[nl]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[pt]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[pt_BR]=http://identi.ca/search/people?q=\\{@}&search=Search
+Query[ru]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[sv]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[th]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[uk]=http://identi.ca/search/people?q=\\{@}&search=Search

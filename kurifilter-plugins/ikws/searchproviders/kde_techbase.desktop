@@ -6,6 +6,7 @@ Name=KDE TechBase
 Name[bn]=KDE টেক-বেস
 Name[de]=KDE TechBase
 Name[en_GB]=KDE TechBase
+Name[hr]=KDE TechBase
 Name[ia]=KDE TechBase (Base Technic)
 Name[id]=KDE TechBase
 Name[is]=KDE Tæknigrunnur
@@ -29,6 +30,7 @@ Query[cs]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[de]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[en_GB]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[es]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
+Query[hr]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[ia]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[id]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[is]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
@@ -41,6 +43,7 @@ Query[nds]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[nl]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[pt]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[pt_BR]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
+Query[ru]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[sv]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[th]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[uk]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search

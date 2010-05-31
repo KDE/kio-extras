@@ -50,6 +50,7 @@ Query[nl]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[pa]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[pt]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[pt_BR]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
+Query[ru]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[sk]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[sv]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[tg]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f

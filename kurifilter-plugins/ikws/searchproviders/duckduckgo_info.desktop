@@ -29,6 +29,7 @@ Query[cs]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[de]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[en_GB]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[es]=http://duckduckgo.com/?q=\\{@}&v=r
+Query[hr]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[ia]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[id]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[is]=http://duckduckgo.com/?q=\\{@}&v=r
@@ -41,6 +42,7 @@ Query[nds]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[nl]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[pt]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[pt_BR]=http://duckduckgo.com/?q=\\{@}&v=r
+Query[ru]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[sv]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[th]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[uk]=http://duckduckgo.com/?q=\\{@}&v=r

@@ -34,6 +34,7 @@ Query[cs]=http://www.flickr.com/search/?q=\\{@}
 Query[de]=http://www.flickr.com/search/?q=\\{@}
 Query[en_GB]=http://www.flickr.com/search/?q=\\{@}
 Query[es]=http://www.flickr.com/search/?q=\\{@}
+Query[hr]=http://www.flickr.com/search/?q=\\{@}
 Query[ia]=http://www.flickr.com/search?q=\\{@}
 Query[id]=http://www.flickr.com/search/?q=\\{@}
 Query[is]=http://www.flickr.com/search/?q=\\{@}
@@ -46,6 +47,7 @@ Query[nds]=http://www.flickr.com/search/?q=\\{@}
 Query[nl]=http://www.flickr.com/search/?q=\\{@}
 Query[pt]=http://www.flickr.com/search/?q=\\{@}
 Query[pt_BR]=http://www.flickr.com/search/?q=\\{@}
+Query[ru]=http://www.flickr.com/search/?q=\\{@}
 Query[sv]=http://www.flickr.com/search/?q=\\{@}
 Query[th]=http://www.flickr.com/search/?q=\\{@}
 Query[uk]=http://www.flickr.com/search/?q=\\{@}

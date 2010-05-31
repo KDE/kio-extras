@@ -6,6 +6,7 @@ Name=Duck Duck Go Shopping
 Name[de]=Duck Duck Go Shopping
 Name[en_GB]=Duck Duck Go Shopping
 Name[es]=Duck Duck Go Compras
+Name[hr]=Duck Duck Go Shopping
 Name[ia]=Duck Duck Go Shopping
 Name[id]=Belanja Duck Duck Go
 Name[is]=Duck Duck Go verslun
@@ -29,6 +30,7 @@ Query[cs]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[de]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[en_GB]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[es]=http://duckduckgo.com/?q=\\{@}&v=s
+Query[hr]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[ia]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[id]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[is]=http://duckduckgo.com/?q=\\{@}&v=s
@@ -41,6 +43,7 @@ Query[nds]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[nl]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[pt]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[pt_BR]=http://duckduckgo.com/?q=\\{@}&v=s
+Query[ru]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[sv]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[th]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[uk]=http://duckduckgo.com/?q=\\{@}&v=s

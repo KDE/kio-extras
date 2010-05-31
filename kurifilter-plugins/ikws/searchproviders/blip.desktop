@@ -8,6 +8,7 @@ Name[cs]=Blip.tv
 Name[de]=Blip.tv
 Name[en_GB]=Blip.tv
 Name[es]=Blip.tv
+Name[hr]=Blip.tv
 Name[ia]=Blip.tv
 Name[id]=Blip.tv
 Name[is]=Blip.tv
@@ -32,6 +33,7 @@ Query[cs]=http://blip.tv/search?q=\\{@}
 Query[de]=http://blip.tv/search?q=\\{@}
 Query[en_GB]=http://blip.tv/search?q=\\{@}
 Query[es]=http://blip.tv/search?q=\\{@}
+Query[hr]=http://blip.tv/search?q=\\{@}
 Query[ia]=http://blip.tv/search?q=\\{@}
 Query[id]=http://blip.tv/search?q=\\{@}
 Query[is]=http://blip.tv/search?q=\\{@}
