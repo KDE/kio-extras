@@ -3,9 +3,11 @@ Charset=
 Hidden=false
 Keys=duckduckgoshopping,dds,dukgoshop
 Name=Duck Duck Go Shopping
+Name[da]=Duck Duck Go shopping
 Name[de]=Duck Duck Go Shopping
 Name[en_GB]=Duck Duck Go Shopping
 Name[es]=Duck Duck Go Compras
+Name[et]=Duck Duck Go Shopping
 Name[hr]=Duck Duck Go Shopping
 Name[ia]=Duck Duck Go Shopping
 Name[id]=Belanja Duck Duck Go
@@ -27,9 +29,11 @@ Name[zh_TW]=Duck Duck Go Shopping
 Query=http://duckduckgo.com/?q=\\{@}&v=s
 Query[bn]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[cs]=http://duckduckgo.com/?q=\\{@}&v=s
+Query[da]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[de]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[en_GB]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[es]=http://duckduckgo.com/?q=\\{@}&v=s
+Query[et]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[hr]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[ia]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[id]=http://duckduckgo.com/?q=\\{@}&v=s

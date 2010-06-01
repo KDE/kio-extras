@@ -5,9 +5,11 @@ Keys=magnatune,mt
 Name=Magnatune
 Name[bn]=ম্যাগনা-টিউন
 Name[cs]=Magnatune
+Name[da]=Magnatune
 Name[de]=Magnatune
 Name[en_GB]=Magnatune
 Name[es]=Magnatune
+Name[et]=Magnatune
 Name[ia]=Magnatune
 Name[id]=Magnatune
 Name[is]=Magnatune
@@ -28,9 +30,11 @@ Name[zh_TW]=Magnatune
 Query=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
 Query[bn]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
 Query[cs]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
+Query[da]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
 Query[de]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
 Query[en_GB]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
 Query[es]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
+Query[et]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
 Query[hr]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
 Query[ia]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
 Query[id]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0

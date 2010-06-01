@@ -5,9 +5,11 @@ Keys=facebook,face,fb
 Name=Facebook
 Name[bn]=ফেসবুক
 Name[cs]=Facebook
+Name[da]=Facebook
 Name[de]=Facebook
 Name[en_GB]=Facebook
 Name[es]=Facebook
+Name[et]=Facebook
 Name[ia]=Facebook
 Name[id]=Facebook
 Name[is]=Facebook
@@ -28,9 +30,11 @@ Name[zh_TW]=Facebook
 Query=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[bn]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[cs]=http://www.facebook.com/search/?q=\\{@}&init=quick
+Query[da]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[de]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[en_GB]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[es]=http://www.facebook.com/search/?q=\\{@}&init=quick
+Query[et]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[hr]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[ia]=http://www.facebook.com/search?q=\\{@}&init=quick
 Query[id]=http://www.facebook.com/search/?q=\\{@}&init=quick

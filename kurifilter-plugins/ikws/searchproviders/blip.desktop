@@ -5,9 +5,11 @@ Keys=blip,bl
 Name=Blip.tv
 Name[bn]=Blip.tv
 Name[cs]=Blip.tv
+Name[da]=Blip.tv
 Name[de]=Blip.tv
 Name[en_GB]=Blip.tv
 Name[es]=Blip.tv
+Name[et]=Blip.tv
 Name[hr]=Blip.tv
 Name[ia]=Blip.tv
 Name[id]=Blip.tv
@@ -30,9 +32,11 @@ Name[zh_TW]=Blip.tv
 Query=http://blip.tv/search?q=\\{@}
 Query[bn]=http://blip.tv/search?q=\\{@}
 Query[cs]=http://blip.tv/search?q=\\{@}
+Query[da]=http://blip.tv/search?q=\\{@}
 Query[de]=http://blip.tv/search?q=\\{@}
 Query[en_GB]=http://blip.tv/search?q=\\{@}
 Query[es]=http://blip.tv/search?q=\\{@}
+Query[et]=http://blip.tv/search?q=\\{@}
 Query[hr]=http://blip.tv/search?q=\\{@}
 Query[ia]=http://blip.tv/search?q=\\{@}
 Query[id]=http://blip.tv/search?q=\\{@}

@@ -4,8 +4,10 @@ Hidden=false
 Keys=kdetechbase,techbase,tb
 Name=KDE TechBase
 Name[bn]=KDE টেক-বেস
+Name[da]=KDE TechBase
 Name[de]=KDE TechBase
 Name[en_GB]=KDE TechBase
+Name[et]=KDE TechBase
 Name[hr]=KDE TechBase
 Name[ia]=KDE TechBase (Base Technic)
 Name[id]=KDE TechBase
@@ -27,9 +29,11 @@ Name[zh_TW]=KDE TechBase
 Query=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[bn]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[cs]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
+Query[da]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[de]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[en_GB]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[es]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
+Query[et]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[hr]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[ia]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[id]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search

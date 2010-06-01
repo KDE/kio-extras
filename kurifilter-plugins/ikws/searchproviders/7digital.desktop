@@ -5,9 +5,11 @@ Keys=7digital,7dg,7d
 Name=7Digital
 Name[bn]=7Digital
 Name[cs]=7Digital
+Name[da]=7Digital
 Name[de]=7Digital
 Name[en_GB]=7Digital
 Name[es]=7Digital
+Name[et]=7Digital
 Name[ia]=7Digital
 Name[id]=7Digital
 Name[is]=7Digital
@@ -27,9 +29,11 @@ Name[zh_TW]=7Digital
 Query=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[bn]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[cs]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
+Query[da]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[de]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[en_GB]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[es]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
+Query[et]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[hr]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[ia]=http://us.7digital.com/search/search.php?item=\\{@}&searchtype=global&submit=Search
 Query[id]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search

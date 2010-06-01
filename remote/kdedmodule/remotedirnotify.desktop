@@ -2,6 +2,7 @@
 Type=Service
 Name=Remote URL Change Notifier
 Name[cs]=Démon upozorňování na vzdálená URL
+Name[da]=Bekendtgørelse af ændring på eksterne URL'er
 Name[el]=Ειδοποιητής αλλαγών για απομακρυσμένη URL
 Name[en_GB]=Remote URL Change Notifier
 Name[es]=Notificador de cambios en URL remoto
@@ -29,6 +30,7 @@ Name[zh_CN]=远程 URL 更改通知器
 Name[zh_TW]=遠端網址變更通知程式
 Comment=Provides change notification for network folders
 Comment[cs]=Poskytuje oznamování o změnách síťových složek
+Comment[da]=Giver bekendtgørelse af ændringer af netværksmapper
 Comment[el]=Παρέχει ειδοποιήσεις για αλλαγές στους φακέλους δικτύου
 Comment[en_GB]=Provides change notification for network folders
 Comment[es]=Proporciona notificaciones visuales para carpetas de red
