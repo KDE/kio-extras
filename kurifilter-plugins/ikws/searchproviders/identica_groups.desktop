@@ -6,6 +6,7 @@ Name=Identi.ca Groups
 Name[bn]=Identi.ca গোষ্ঠীসমূহ
 Name[da]=Identi.ca-grupper
 Name[de]=Identi.ca Groups
+Name[el]=Identi.ca Groups
 Name[en_GB]=Identi.ca Groups
 Name[es]=Grupos Identi.ca
 Name[et]=Identi.ca grupid
@@ -26,12 +27,14 @@ Name[sv]=Identi.ca grupper
 Name[th]=กลุ่มต่าง ๆ ของ Identi.ca
 Name[uk]=Групи Identi.ca
 Name[x-test]=xxIdenti.ca Groupsxx
+Name[zh_CN]=Identi.ca 群组
 Name[zh_TW]=Identi.ca Groups
 Query=http://identi.ca/search/group?q=\\{@}
 Query[bn]=http://identi.ca/search/group?q=\\{@}
 Query[cs]=http://identi.ca/search/group?q=\\{@}
 Query[da]=http://identi.ca/search/group?q=\\{@}
 Query[de]=http://identi.ca/search/group?q=\\{@}
+Query[el]=http://identi.ca/search/group?q=\\{@}
 Query[en_GB]=http://identi.ca/search/group?q=\\{@}
 Query[es]=http://identi.ca/search/group?q=\\{@}
 Query[et]=http://identi.ca/search/group?q=\\{@}
@@ -53,6 +56,7 @@ Query[sv]=http://identi.ca/search/group?q=\\{@}
 Query[th]=http://identi.ca/search/group?q=\\{@}
 Query[uk]=http://identi.ca/search/group?q=\\{@}
 Query[x-test]=xxhttp://identi.ca/search/group?q=\\{@}xx
+Query[zh_CN]=http://identi.ca/search/group?q=\\{@}
 Query[zh_TW]=http://identi.ca/search/group?q=\\{@}
 ServiceTypes=SearchProvider
 Type=Service

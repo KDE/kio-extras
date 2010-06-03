@@ -7,6 +7,7 @@ Name[bn]=ফেসবুক
 Name[cs]=Facebook
 Name[da]=Facebook
 Name[de]=Facebook
+Name[el]=Facebook
 Name[en_GB]=Facebook
 Name[es]=Facebook
 Name[et]=Facebook
@@ -26,12 +27,14 @@ Name[sv]=Facebook
 Name[th]=เฟซบุ้ค
 Name[uk]=Facebook
 Name[x-test]=xxFacebookxx
+Name[zh_CN]=Facebook
 Name[zh_TW]=Facebook
 Query=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[bn]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[cs]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[da]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[de]=http://www.facebook.com/search/?q=\\{@}&init=quick
+Query[el]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[en_GB]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[es]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[et]=http://www.facebook.com/search/?q=\\{@}&init=quick
@@ -53,6 +56,7 @@ Query[sv]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[th]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[uk]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[x-test]=xxhttp://www.facebook.com/search/?q=\\{@}&init=quickxx
+Query[zh_CN]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[zh_TW]=http://www.facebook.com/search/?q=\\{@}&init=quick
 ServiceTypes=SearchProvider
 Type=Service

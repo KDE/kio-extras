@@ -7,6 +7,7 @@ Name[bn]=গুগল কোড
 Name[cs]=Google Code
 Name[da]=Google Code
 Name[de]=Google Code
+Name[el]=Google Code
 Name[en_GB]=Google Code
 Name[es]=Google Code
 Name[et]=Google Code
@@ -26,12 +27,14 @@ Name[ru]=Google Code
 Name[sv]=Google kod
 Name[uk]=Google Code
 Name[x-test]=xxGoogle Codexx
+Name[zh_CN]=Google Code
 Name[zh_TW]=Google Code
 Query=http://code.google.com/query/#q=\\{%2520}
 Query[bn]=http://code.google.com/query/#q=\\{%2520}
 Query[cs]=http://code.google.com/query/#q=\\{%2520}
 Query[da]=http://code.google.com/query/#q=\\{%2520}
 Query[de]=http://code.google.com/query/#q=\\{%2520}
+Query[el]=http://code.google.com/query/#q=\\{%2520}
 Query[en_GB]=http://code.google.com/query/#q=\\{%2520}
 Query[es]=http://code.google.com/query/#q=\\{%2520}
 Query[et]=http://code.google.com/query/#q=\\{%2520}
@@ -53,6 +56,7 @@ Query[sv]=http://code.google.com/query/#q=\\{%2520}
 Query[th]=http://code.google.com/query/#q=\\{%2520}
 Query[uk]=http://code.google.com/query/#q=\\{%2520}
 Query[x-test]=xxhttp://code.google.com/query/#q=\\{%2520}xx
+Query[zh_CN]=http://code.google.com/query/#q=\\{%2520}
 Query[zh_TW]=http://code.google.com/query/#q=\\{%2520}
 ServiceTypes=SearchProvider
 Type=Service

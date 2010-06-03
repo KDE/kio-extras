@@ -4,6 +4,7 @@ Name=Ecosia search engine
 Name[cs]=Vyhledávací stroj Ecosia
 Name[da]=Ecosia søgemaskine
 Name[de]=Ecosia-Suchmaschine
+Name[el]=Ecosia Μηχανή αναζήτησης
 Name[en_GB]=Ecosia search engine
 Name[es]=Motor de búsqueda Ecosia
 Name[et]=Ecosia otsingumootor
@@ -27,6 +28,7 @@ Name[th]=บริการค้นหา Ecosia
 Name[tr]=Ecosia arama motoru
 Name[uk]=Рушій пошуку Ecosia
 Name[x-test]=xxEcosia search enginexx
+Name[zh_CN]=Ecosia 搜索引擎
 Name[zh_TW]=Ecosia 搜索引擎
 X-KDE-ServiceTypes=SearchProvider
 Keys=ec
@@ -35,6 +37,7 @@ Query[bn]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[cs]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[da]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[de]=http://ecosia.org/search.php?q=\\{@}&meta=normal
+Query[el]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[en_GB]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[es]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[et]=http://ecosia.org/search.php?q=\\{@}&meta=normal
@@ -59,4 +62,5 @@ Query[th]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[tr]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[uk]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[x-test]=xxhttp://ecosia.org/search.php?q=\\{@}&meta=normalxx
+Query[zh_CN]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[zh_TW]=http://ecosia.org/search.php?q=\\{@}&meta=normal

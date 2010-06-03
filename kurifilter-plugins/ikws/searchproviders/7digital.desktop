@@ -7,6 +7,7 @@ Name[bn]=7Digital
 Name[cs]=7Digital
 Name[da]=7Digital
 Name[de]=7Digital
+Name[el]=7Digital
 Name[en_GB]=7Digital
 Name[es]=7Digital
 Name[et]=7Digital
@@ -25,12 +26,14 @@ Name[pt_BR]=7Digital
 Name[sv]=7Digital
 Name[uk]=7Digital
 Name[x-test]=xx7Digitalxx
+Name[zh_CN]=7Digital
 Name[zh_TW]=7Digital
 Query=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[bn]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[cs]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[da]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[de]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
+Query[el]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[en_GB]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[es]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[et]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
@@ -51,6 +54,7 @@ Query[sv]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Se
 Query[th]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[uk]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[x-test]=xxhttp://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Searchxx
+Query[zh_CN]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[zh_TW]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 ServiceTypes=SearchProvider
 Type=Service

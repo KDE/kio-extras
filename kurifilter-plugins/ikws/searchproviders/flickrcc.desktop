@@ -5,6 +5,7 @@ Keys=flickrcc,flkrcc,flkcc
 Name=Flickr Creative Commons
 Name[da]=Flickr Creative Commons
 Name[de]=Flickr Creative Commons
+Name[el]=Flickr Creative Commons
 Name[en_GB]=Flickr Creative Commons
 Name[es]=Flickr Creative Commons
 Name[et]=Flickr Creative Commons
@@ -23,12 +24,14 @@ Name[pt_BR]=Flickr Creative Commons
 Name[sv]=Flickr Creative Commons
 Name[uk]=Flickr Creative Commons
 Name[x-test]=xxFlickr Creative Commonsxx
+Name[zh_CN]=Flickr 公用创作物
 Name[zh_TW]=Flickr Creative Commons
 Query=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
 Query[bn]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
 Query[cs]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
 Query[da]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
 Query[de]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
+Query[el]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
 Query[en_GB]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
 Query[es]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
 Query[et]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
@@ -50,6 +53,7 @@ Query[sv]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
 Query[th]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
 Query[uk]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
 Query[x-test]=xxhttp://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1xx
+Query[zh_CN]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
 Query[zh_TW]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
 ServiceTypes=SearchProvider
 Type=Service

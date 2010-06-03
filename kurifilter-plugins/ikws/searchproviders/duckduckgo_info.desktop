@@ -5,6 +5,7 @@ Keys=duckduckgoinfo,ddi
 Name=Duck Duck Go Info
 Name[da]=Duck Duck Go info
 Name[de]=Duck Duck Go Info
+Name[el]=Duck Duck Go Info
 Name[en_GB]=Duck Duck Go Info
 Name[es]=Duck Duck Go Info
 Name[et]=Duck Duck Go Info
@@ -24,12 +25,14 @@ Name[sv]=Duck Duck Go information
 Name[th]=ข้อมูลของ Duck Duck Go
 Name[uk]=Duck Duck Go Info
 Name[x-test]=xxDuck Duck Go Infoxx
+Name[zh_CN]=Duck Duck Go 信息
 Name[zh_TW]=Duck Duck Go Info
 Query=http://duckduckgo.com/?q=\\{@}&v=r
 Query[bn]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[cs]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[da]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[de]=http://duckduckgo.com/?q=\\{@}&v=r
+Query[el]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[en_GB]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[es]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[et]=http://duckduckgo.com/?q=\\{@}&v=r
@@ -51,6 +54,7 @@ Query[sv]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[th]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[uk]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[x-test]=xxhttp://duckduckgo.com/?q=\\{@}&v=rxx
+Query[zh_CN]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[zh_TW]=http://duckduckgo.com/?q=\\{@}&v=r
 ServiceTypes=SearchProvider
 Type=Service

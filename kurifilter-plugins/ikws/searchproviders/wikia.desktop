@@ -28,6 +28,7 @@ Name[sv]=Wikia
 Name[th]=Wikia
 Name[uk]=Wikia
 Name[x-test]=xxWikiaxx
+Name[zh_CN]=Wikia
 Name[zh_TW]=Wikia
 Query=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Search
 Query[bn]=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Search
@@ -55,6 +56,7 @@ Query[sv]=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=S
 Query[th]=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Search
 Query[uk]=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Search
 Query[x-test]=xxhttp://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Searchxx
+Query[zh_CN]=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Search
 Query[zh_TW]=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Search
 ServiceTypes=SearchProvider
 Type=Service

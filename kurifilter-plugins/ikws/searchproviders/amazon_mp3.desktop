@@ -7,6 +7,7 @@ Name[bn]=অ্যামাজন MP3
 Name[cs]=Amazon MP3
 Name[da]=Amazon MP3
 Name[de]=Amazon MP3
+Name[el]=Amazon MP3
 Name[en_GB]=Amazon MP3
 Name[es]=Amazon MP3
 Name[et]=Amazon MP3
@@ -26,12 +27,14 @@ Name[sv]=Amazon MP3
 Name[th]=อเมซอน MP3
 Name[uk]=Amazon MP3
 Name[x-test]=xxAmazon MP3xx
+Name[zh_CN]=Amazon MP3
 Name[zh_TW]=Amazon MP3
 Query=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=digital-music&field-keywords=\\{@}&x=0&y=0
 Query[bn]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=digital-music&field-keywords=\\{@}&x=0&y=0
 Query[cs]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=digital-music&field-keywords=\\{@}&x=0&y=0
 Query[da]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=digital-music&field-keywords=\\{@}&x=0&y=0
 Query[de]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=digital-music&field-keywords=\\{@}&x=0&y=0
+Query[el]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=digital-music&field-keywords=\\{@}&x=0&y=0
 Query[en_GB]=http://www.amazon.co.uk/s/ref=nb_sb_noss?url=search-alias=digital-music&field-keywords=\\{@}&x=0&y=0
 Query[es]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=digital-music&field-keywords=\\{@}&x=0&y=0
 Query[et]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=digital-music&field-keywords=\\{@}&x=0&y=0
@@ -53,6 +56,7 @@ Query[sv]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=digital-music&
 Query[th]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=digital-music&field-keywords=\\{@}&x=0&y=0
 Query[uk]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=digital-music&field-keywords=\\{@}&x=0&y=0
 Query[x-test]=xxhttp://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=digital-music&field-keywords=\\{@}&x=0&y=0xx
+Query[zh_CN]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=digital-music&field-keywords=\\{@}&x=0&y=0
 Query[zh_TW]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=digital-music&field-keywords=\\{@}&x=0&y=0
 ServiceTypes=SearchProvider
 Type=Service

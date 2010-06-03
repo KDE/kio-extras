@@ -26,6 +26,7 @@ Name[sv]=Öppet skrivbord
 Name[th]=Open
 Name[uk]=Open
 Name[x-test]=xxOpenxx
+Name[zh_CN]=开放桌面
 Name[zh_TW]=Open
 Query=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[bn]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
@@ -53,6 +54,7 @@ Query[sv]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[th]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[uk]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[x-test]=xxhttp://www.opendesktop.org/content/search.php?search=Search&name=\\{@}xx
+Query[zh_CN]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[zh_TW]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 ServiceTypes=SearchProvider
 Type=Service

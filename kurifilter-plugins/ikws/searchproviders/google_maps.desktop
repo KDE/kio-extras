@@ -5,6 +5,7 @@ Name[bn]=গুগল ম্যাপ
 Name[cs]=Google mapy
 Name[da]=Google Maps
 Name[de]=Google-Maps
+Name[el]=Google Maps
 Name[en_GB]=Google Maps
 Name[es]=Google Maps
 Name[et]=Google Maps
@@ -28,6 +29,7 @@ Name[th]=ดูแผนที่ต่าง ๆ ด้วยกูเกิล
 Name[tr]=Google Haritaları
 Name[uk]=Карти Google
 Name[x-test]=xxGoogle Mapsxx
+Name[zh_CN]=Google 地图
 Name[zh_TW]=Google 地圖
 X-KDE-ServiceTypes=SearchProvider
 Keys=googlemaps,ggmaps,ggm
@@ -36,6 +38,7 @@ Query[bn]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[cs]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[da]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[de]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
+Query[el]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[en_GB]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[es]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[et]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
@@ -61,4 +64,5 @@ Query[th]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[tr]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[uk]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[x-test]=xxhttp://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addrxx
+Query[zh_CN]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[zh_TW]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr

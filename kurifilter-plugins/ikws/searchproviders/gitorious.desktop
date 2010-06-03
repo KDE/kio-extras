@@ -7,6 +7,7 @@ Name[bn]=গিটেরিয়াস
 Name[cs]=Gitorious
 Name[da]=Gitorious
 Name[de]=Gitorious
+Name[el]=Gitorious
 Name[en_GB]=Gitorious
 Name[es]=Gitorious
 Name[et]=Gitorious
@@ -27,12 +28,14 @@ Name[sv]=Gitorious
 Name[th]=Gitorious
 Name[uk]=Gitorious
 Name[x-test]=xxGitoriousxx
+Name[zh_CN]=Gitorious
 Name[zh_TW]=Gitorious
 Query=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[bn]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[cs]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[da]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[de]=http://gitorious.org/search?q=\\{@}&commit=Search
+Query[el]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[en_GB]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[es]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[et]=http://gitorious.org/search?q=\\{@}&commit=Search
@@ -53,6 +56,7 @@ Query[sv]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[th]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[uk]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[x-test]=xxhttp://gitorious.org/search?q=\\{@}&commit=Searchxx
+Query[zh_CN]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[zh_TW]=http://gitorious.org/search?q=\\{@}&commit=Search
 ServiceTypes=SearchProvider
 Type=Service

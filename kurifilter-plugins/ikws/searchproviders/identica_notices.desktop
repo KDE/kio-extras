@@ -5,6 +5,7 @@ Keys=identicanotices,identin,idn
 Name=Identi.ca Notices
 Name[da]=Identi.ca-notitser
 Name[de]=Identi.ca Notices
+Name[el]=Identi.ca Notices
 Name[en_GB]=Identi.ca Notices
 Name[es]=Avisos Identi.ca
 Name[et]=Identi.ca teadaanded
@@ -24,12 +25,14 @@ Name[pt_BR]=Notícias do Identi.ca
 Name[sv]=Identi.ca anslag
 Name[uk]=Нотатки Identi.ca
 Name[x-test]=xxIdenti.ca Noticesxx
+Name[zh_CN]=Identi.ca 通知
 Name[zh_TW]=Identi.ca Notices
 Query=http://identi.ca/search/notice?q=\\{@}
 Query[bn]=http://identi.ca/search/notice?q=\\{@}
 Query[cs]=http://identi.ca/search/notice?q=\\{@}
 Query[da]=http://identi.ca/search/notice?q=\\{@}
 Query[de]=http://identi.ca/search/notice?q=\\{@}
+Query[el]=http://identi.ca/search/notice?q=\\{@}
 Query[en_GB]=http://identi.ca/search/notice?q=\\{@}
 Query[es]=http://identi.ca/search/notice?q=\\{@}
 Query[et]=http://identi.ca/search/notice?q=\\{@}
@@ -51,6 +54,7 @@ Query[sv]=http://identi.ca/search/notice?q=\\{@}
 Query[th]=http://identi.ca/search/notice?q=\\{@}
 Query[uk]=http://identi.ca/search/notice?q=\\{@}
 Query[x-test]=xxhttp://identi.ca/search/notice?q=\\{@}xx
+Query[zh_CN]=http://identi.ca/search/notice?q=\\{@}
 Query[zh_TW]=http://identi.ca/search/notice?q=\\{@}
 ServiceTypes=SearchProvider
 Type=Service

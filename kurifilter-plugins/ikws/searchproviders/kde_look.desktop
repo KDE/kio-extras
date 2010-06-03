@@ -7,6 +7,7 @@ Name[bn]=কে.ডি.ই. লুক
 Name[cs]=KDE Look
 Name[da]=KDE Look
 Name[de]=KDE Look
+Name[el]=KDE Look
 Name[en_GB]=KDE Look
 Name[es]=KDE Look
 Name[et]=KDE Look
@@ -26,12 +27,14 @@ Name[sv]=KDE Look
 Name[th]=KDE Look
 Name[uk]=KDE Look
 Name[x-test]=xxKDE Lookxx
+Name[zh_CN]=KDE 美化资源站
 Name[zh_TW]=KDE Look
 Query=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[bn]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[cs]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[da]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[de]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
+Query[el]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[en_GB]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[es]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[et]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
@@ -53,6 +56,7 @@ Query[sv]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[th]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[uk]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[x-test]=xxhttp://www.kde-look.org/content/search.php?search=Search&name=\\{@}xx
+Query[zh_CN]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[zh_TW]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 ServiceTypes=SearchProvider
 Type=Service

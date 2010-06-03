@@ -26,6 +26,7 @@ Name[sv]=Slangordlista
 Name[th]=พจนานุกรม Urban
 Name[uk]=Urban Dictionary
 Name[x-test]=xxUrban Dictionaryxx
+Name[zh_CN]=都市词典
 Name[zh_TW]=Urban Dictionary
 Query=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[bn]=http://www.urbandictionary.com/define.php?term=\\{@}
@@ -53,6 +54,7 @@ Query[sv]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[th]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[uk]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[x-test]=xxhttp://www.urbandictionary.com/define.php?term=\\{@}xx
+Query[zh_CN]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[zh_TW]=http://www.urbandictionary.com/define.php?term=\\{@}
 ServiceTypes=SearchProvider
 Type=Service

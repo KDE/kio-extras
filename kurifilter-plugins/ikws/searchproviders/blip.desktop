@@ -7,6 +7,7 @@ Name[bn]=Blip.tv
 Name[cs]=Blip.tv
 Name[da]=Blip.tv
 Name[de]=Blip.tv
+Name[el]=Blip.tv
 Name[en_GB]=Blip.tv
 Name[es]=Blip.tv
 Name[et]=Blip.tv
@@ -28,12 +29,14 @@ Name[sv]=Blip.tv
 Name[th]=Blip.tv
 Name[uk]=Blip.tv
 Name[x-test]=xxBlip.tvxx
+Name[zh_CN]=Blip.tv
 Name[zh_TW]=Blip.tv
 Query=http://blip.tv/search?q=\\{@}
 Query[bn]=http://blip.tv/search?q=\\{@}
 Query[cs]=http://blip.tv/search?q=\\{@}
 Query[da]=http://blip.tv/search?q=\\{@}
 Query[de]=http://blip.tv/search?q=\\{@}
+Query[el]=http://blip.tv/search?q=\\{@}
 Query[en_GB]=http://blip.tv/search?q=\\{@}
 Query[es]=http://blip.tv/search?q=\\{@}
 Query[et]=http://blip.tv/search?q=\\{@}
@@ -53,6 +56,7 @@ Query[pt_BR]=http://blip.tv/search?q=\\{@}
 Query[sv]=http://blip.tv/search?q=\\{@}
 Query[uk]=http://blip.tv/search?q=\\{@}
 Query[x-test]=xxhttp://blip.tv/search?q=\\{@}xx
+Query[zh_CN]=http://blip.tv/search?q=\\{@}
 Query[zh_TW]=http://blip.tv/search?q=\\{@}
 ServiceTypes=SearchProvider
 Type=Service

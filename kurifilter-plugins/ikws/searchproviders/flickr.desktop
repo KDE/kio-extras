@@ -7,6 +7,7 @@ Name[bn]=ফ্লিকর
 Name[cs]=Flickr
 Name[da]=Flickr
 Name[de]=Flickr
+Name[el]=Flickr
 Name[en_GB]=Flickr
 Name[es]=Flickr
 Name[et]=Flickr
@@ -29,12 +30,14 @@ Name[sv]=Flickr
 Name[th]=Flickr
 Name[uk]=Flickr
 Name[x-test]=xxFlickrxx
+Name[zh_CN]=Flickr
 Name[zh_TW]=Flickr
 Query=http://www.flickr.com/search/?q=\\{@}
 Query[bn]=http://www.flickr.com/search/?q=\\{@}
 Query[cs]=http://www.flickr.com/search/?q=\\{@}
 Query[da]=http://www.flickr.com/search/?q=\\{@}
 Query[de]=http://www.flickr.com/search/?q=\\{@}
+Query[el]=http://www.flickr.com/search/?q=\\{@}
 Query[en_GB]=http://www.flickr.com/search/?q=\\{@}
 Query[es]=http://www.flickr.com/search/?q=\\{@}
 Query[et]=http://www.flickr.com/search/?q=\\{@}
@@ -56,6 +59,7 @@ Query[sv]=http://www.flickr.com/search/?q=\\{@}
 Query[th]=http://www.flickr.com/search/?q=\\{@}
 Query[uk]=http://www.flickr.com/search/?q=\\{@}
 Query[x-test]=xxhttp://www.flickr.com/search/?q=\\{@}xx
+Query[zh_CN]=http://www.flickr.com/search/?q=\\{@}
 Query[zh_TW]=http://www.flickr.com/search/?q=\\{@}
 ServiceTypes=SearchProvider
 Type=Service

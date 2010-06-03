@@ -7,6 +7,7 @@ Name[bn]=গিট-হাব
 Name[cs]=GitHub
 Name[da]=GitHub
 Name[de]=GitHub
+Name[el]=GitHub
 Name[en_GB]=GitHub
 Name[es]=GitHub
 Name[et]=GitHub
@@ -29,12 +30,14 @@ Name[sv]=GitHub
 Name[th]=GitHub
 Name[uk]=GitHub
 Name[x-test]=xxGitHubxx
+Name[zh_CN]=GitHub
 Name[zh_TW]=GitHub
 Query=http://github.com/search?q=\\{@}&x=0&y=0
 Query[bn]=http://github.com/search?q=\\{@}&x=0&y=0
 Query[cs]=http://github.com/search?q=\\{@}&x=0&y=0
 Query[da]=http://github.com/search?q=\\{@}&x=0&y=0
 Query[de]=http://github.com/search?q=\\{@}&x=0&y=0
+Query[el]=http://github.com/search?q=\\{@}&x=0&y=0
 Query[en_GB]=http://github.com/search?q=\\{@}&x=0&y=0
 Query[es]=http://github.com/search?q=\\{@}&x=0&y=0
 Query[et]=http://github.com/search?q=\\{@}&x=0&y=0
@@ -55,6 +58,7 @@ Query[sv]=http://github.com/search?q=\\{@}&x=0&y=0
 Query[th]=http://github.com/search?q=\\{@}&x=0&y=0
 Query[uk]=http://github.com/search?q=\\{@}&x=0&y=0
 Query[x-test]=xxhttp://github.com/search?q=\\{@}&x=0&y=0xx
+Query[zh_CN]=http://github.com/search?q=\\{@}&x=0&y=0
 Query[zh_TW]=http://github.com/search?q=\\{@}&x=0&y=0
 ServiceTypes=SearchProvider
 Type=Service

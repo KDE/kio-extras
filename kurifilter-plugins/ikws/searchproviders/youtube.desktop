@@ -29,6 +29,7 @@ Name[th]=บริการวีดิโอผ่าน YouTube
 Name[tr]=YouTube
 Name[uk]=YouTube
 Name[x-test]=xxYouTubexx
+Name[zh_CN]=YouTube
 Name[zh_TW]=YouTube
 Query=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[bn]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
@@ -59,6 +60,7 @@ Query[tg]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[th]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[uk]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[x-test]=xxhttp://www.youtube.com/results?search_query=\\{@}&search_type=&aq=fxx
+Query[zh_CN]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[zh_TW]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 ServiceTypes=SearchProvider
 Type=Service

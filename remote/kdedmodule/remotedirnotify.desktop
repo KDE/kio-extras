@@ -54,6 +54,7 @@ Comment[th]=ทำการแจ้งให้ทราบถึงควา�
 Comment[tr]=Ağ dizinleri için değişiklik bildirimleri sunar
 Comment[uk]=Сповіщення про зміну стану мережевих тек
 Comment[x-test]=xxProvides change notification for network foldersxx
+Comment[zh_CN]=为网络文件夹提供更改通知
 Comment[zh_TW]=提供網路資料夾的變更通知
 X-KDE-ServiceTypes=KDEDModule
 X-KDE-Library=remotedirnotify
