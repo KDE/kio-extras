@@ -14,6 +14,7 @@ Name[hr]=Google Maps
 Name[ia]=Google Maps : Mappas de Google
 Name[id]=Google Maps
 Name[is]=Google Kort
+Name[it]=Mappe di Google
 Name[ja]=Google Maps
 Name[kk]=Google карталаы
 Name[km]=ផែនទី​​ហ្គូហ្គល
@@ -23,6 +24,7 @@ Name[nds]=Google-Koorten
 Name[nl]=Google Maps
 Name[pt]=Google Maps
 Name[pt_BR]=Google Maps
+Name[ru]=Карты Google
 Name[sv]=Google kartor
 Name[tg]=Харитаҳои Google
 Name[th]=ดูแผนที่ต่าง ๆ ด้วยกูเกิล
@@ -47,6 +49,7 @@ Query[hr]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[ia]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[id]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[is]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
+Query[it]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[ja]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[kk]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[km]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr

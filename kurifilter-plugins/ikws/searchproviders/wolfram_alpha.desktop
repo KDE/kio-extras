@@ -107,6 +107,7 @@ Query[pl]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[pt]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[pt_BR]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[ro]=http://www.wolframalpha.com/input/?i=\\{@}
+Query[ru]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[sk]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[sl]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[sr]=http://www.wolframalpha.com/input/?i=\\{@}

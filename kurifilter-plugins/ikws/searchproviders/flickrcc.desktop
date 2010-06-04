@@ -12,6 +12,7 @@ Name[et]=Flickr Creative Commons
 Name[ia]=Flickr Creative Commons
 Name[id]=Flickr Creative Commons
 Name[is]=Flickr Creative Commons
+Name[it]=Creative Commons su Flickr
 Name[ja]=Flickr Creative Commons
 Name[kk]=Flickr Creative Commons
 Name[km]=Flickr Creative Commons
@@ -39,6 +40,7 @@ Query[hr]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
 Query[ia]=http://www.flickr.com/search?q=\\{@}&|=cc&ct=0&mt=all&adv=1
 Query[id]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
 Query[is]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
+Query[it]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
 Query[ja]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
 Query[kk]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
 Query[km]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1

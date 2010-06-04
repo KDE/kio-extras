@@ -15,6 +15,7 @@ Name[hr]=Gitorious
 Name[ia]=Gitorious
 Name[id]=Gitorious
 Name[is]=Gitorious
+Name[it]=Gitorious
 Name[ja]=Gitorious
 Name[kk]=Gitorious
 Name[km]=Gitorious
@@ -24,6 +25,7 @@ Name[nds]=Gitorious
 Name[nl]=Gitorious
 Name[pt]=Gitorious
 Name[pt_BR]=Gitorious
+Name[ru]=Gitorious
 Name[sv]=Gitorious
 Name[th]=Gitorious
 Name[uk]=Gitorious
@@ -43,6 +45,7 @@ Query[hr]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[ia]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[id]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[is]=http://gitorious.org/search?q=\\{@}&commit=Search
+Query[it]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[ja]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[kk]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[km]=http://gitorious.org/search?q=\\{@}&commit=Search
@@ -52,6 +55,7 @@ Query[nds]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[nl]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[pt]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[pt_BR]=http://gitorious.org/search?q=\\{@}&commit=Search
+Query[ru]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[sv]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[th]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[uk]=http://gitorious.org/search?q=\\{@}&commit=Search

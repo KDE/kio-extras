@@ -7,11 +7,13 @@ Name[bn]=ইয়াহু স্থানীয়
 Name[da]=Yahoo Local
 Name[de]=Yahoo Local
 Name[en_GB]=Yahoo Local
+Name[es]=Yahoo Local
 Name[et]=Yahoo Local
 Name[hr]=Yahoo Local
 Name[ia]=Yahoo Local
 Name[id]=Yahoo Lokal
 Name[is]=Yahoo Local
+Name[it]=Yahoo locale
 Name[ja]=Yahoo Local
 Name[kk]=Yahoo Local
 Name[km]=មូលដ្ឋាន​របស់​យ៉ាហ៊ូ
@@ -40,6 +42,7 @@ Query[hr]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab
 Query[ia]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img
 Query[id]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img
 Query[is]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img
+Query[it]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img
 Query[ja]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img
 Query[kk]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img
 Query[km]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img

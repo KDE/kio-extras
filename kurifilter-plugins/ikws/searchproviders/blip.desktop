@@ -15,6 +15,7 @@ Name[hr]=Blip.tv
 Name[ia]=Blip.tv
 Name[id]=Blip.tv
 Name[is]=Blip.tv
+Name[it]=Blip.tv
 Name[ja]=Blip.tv
 Name[kk]=Blip.tv
 Name[km]=Blip.tv
@@ -25,6 +26,7 @@ Name[nl]=Blip.tv
 Name[pa]=Blip.tv
 Name[pt]=Blip.tv
 Name[pt_BR]=Blip.tv
+Name[ru]=Blip.tv
 Name[sv]=Blip.tv
 Name[th]=Blip.tv
 Name[uk]=Blip.tv
@@ -44,6 +46,7 @@ Query[hr]=http://blip.tv/search?q=\\{@}
 Query[ia]=http://blip.tv/search?q=\\{@}
 Query[id]=http://blip.tv/search?q=\\{@}
 Query[is]=http://blip.tv/search?q=\\{@}
+Query[it]=http://blip.tv/search?q=\\{@}
 Query[ja]=http://blip.tv/search?q=\\{@}
 Query[kk]=http://blip.tv/search?q=\\{@}
 Query[km]=http://blip.tv/search?q=\\{@}
@@ -53,6 +56,7 @@ Query[nds]=http://blip.tv/search?q=\\{@}
 Query[nl]=http://blip.tv/search?q=\\{@}
 Query[pt]=http://blip.tv/search?q=\\{@}
 Query[pt_BR]=http://blip.tv/search?q=\\{@}
+Query[ru]=http://blip.tv/search?q=\\{@}
 Query[sv]=http://blip.tv/search?q=\\{@}
 Query[uk]=http://blip.tv/search?q=\\{@}
 Query[x-test]=xxhttp://blip.tv/search?q=\\{@}xx

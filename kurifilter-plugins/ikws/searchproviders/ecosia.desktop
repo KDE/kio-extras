@@ -13,6 +13,7 @@ Name[hr]=Tražilica Ecosia
 Name[ia]=motore de cerca Ecosia
 Name[id]=Mesin pencari Ecosia
 Name[is]=Ecosia leitarvélin
+Name[it]=Motore di ricerca Ecosia
 Name[ja]=Ecosia 検索エンジン
 Name[kk]=Ecosia іздеу құралы
 Name[km]=ម៉ាស៊ីន​ស្វែងរក Ecosia
@@ -46,6 +47,7 @@ Query[hr]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[ia]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[id]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[is]=http://ecosia.org/search.php?q=\\{@}&meta=normal
+Query[it]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[ja]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[kk]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[km]=http://ecosia.org/search.php?q=\\{@}&meta=normal
@@ -55,6 +57,7 @@ Query[nds]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[nl]=http://www.ethicle.com/search.php?q=\\{@}
 Query[pt]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[pt_BR]=http://ecosia.org/search.php?q=\\{@}&meta=normal
+Query[ru]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[sk]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[sv]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[tg]=http://ecosia.org/search.php?q=\\{@}&meta=normal
