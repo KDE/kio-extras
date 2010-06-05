@@ -4,6 +4,7 @@ Hidden=false
 Keys=yahoolocal,yhl
 Name=Yahoo Local
 Name[bn]=ইয়াহু স্থানীয়
+Name[ca]=Yahoo Local
 Name[da]=Yahoo Local
 Name[de]=Yahoo Local
 Name[en_GB]=Yahoo Local
@@ -32,6 +33,7 @@ Name[zh_CN]=Yahoo 本地信息
 Name[zh_TW]=Yahoo Local
 Query=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img
 Query[bn]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img
+Query[ca]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img
 Query[cs]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img
 Query[da]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img
 Query[de]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img

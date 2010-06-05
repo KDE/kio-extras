@@ -2,6 +2,7 @@
 Type=Service
 Name=Images (GIF, PNG, BMP, ...)
 Name[bn]=ছবি (GIF, PNG, BMP, ...)
+Name[ca]=Imatges (GIF, PNG, BMP, ...)
 Name[cs]=Obrázky (GIF, PNG, BMP, ...)
 Name[da]=Billeder (GIF, PNG, BMP, ...)
 Name[de]=Bilder (GIF, PNG, BMP ...)

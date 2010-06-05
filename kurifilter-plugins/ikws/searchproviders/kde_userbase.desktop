@@ -4,6 +4,7 @@ Hidden=false
 Keys=kdeuserbase,userbase,ub
 Name=KDE UserBase
 Name[bn]=কে.ডি.ই. ইউসার-বেস
+Name[ca]=KDE UserBase
 Name[da]=KDE UserBase
 Name[de]=KDE UserBase
 Name[el]=Βάση χρηστών KDE
@@ -31,6 +32,7 @@ Name[zh_CN]=KDE 用户信息库
 Name[zh_TW]=KDE UserBase
 Query=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[bn]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
+Query[ca]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[cs]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[da]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[de]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search

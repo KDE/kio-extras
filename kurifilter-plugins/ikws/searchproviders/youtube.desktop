@@ -2,6 +2,7 @@
 Keys=yt,youtube
 Name=YouTube
 Name[bn]=ইউ-টিউভ
+Name[ca]=YouTube
 Name[cs]=YouTube
 Name[da]=YouTube
 Name[de]=YouTube
@@ -34,6 +35,7 @@ Name[zh_CN]=YouTube
 Name[zh_TW]=YouTube
 Query=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[bn]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
+Query[ca]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[cs]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[da]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[de]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f

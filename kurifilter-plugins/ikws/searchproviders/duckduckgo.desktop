@@ -3,6 +3,7 @@ Charset=
 Hidden=false
 Keys=duckduckgo,dd,dukgo
 Name=Duck Duck Go
+Name[ca]=Duck Duck Go
 Name[da]=Duck Duck Go
 Name[de]=Duck Duck Go
 Name[el]=Duck Duck Go
@@ -31,6 +32,7 @@ Name[zh_CN]=Duck Duck Go
 Name[zh_TW]=Duck Duck Go
 Query=http://duckduckgo.com/?q=\\{@}&v=
 Query[bn]=http://duckduckgo.com/?q=\\{@}&v=
+Query[ca]=http://duckduckgo.com/?q=\\{@}&v=
 Query[cs]=http://duckduckgo.com/?q=\\{@}&v=
 Query[da]=http://duckduckgo.com/?q=\\{@}&v=
 Query[de]=http://duckduckgo.com/?q=\\{@}&v=

@@ -4,6 +4,7 @@ Hidden=false
 Keys=flickr,flkr
 Name=Flickr
 Name[bn]=ফ্লিকর
+Name[ca]=Flickr
 Name[cs]=Flickr
 Name[da]=Flickr
 Name[de]=Flickr
@@ -35,6 +36,7 @@ Name[zh_CN]=Flickr
 Name[zh_TW]=Flickr
 Query=http://www.flickr.com/search/?q=\\{@}
 Query[bn]=http://www.flickr.com/search/?q=\\{@}
+Query[ca]=http://www.flickr.com/search/?q=\\{@}
 Query[cs]=http://www.flickr.com/search/?q=\\{@}
 Query[da]=http://www.flickr.com/search/?q=\\{@}
 Query[de]=http://www.flickr.com/search/?q=\\{@}

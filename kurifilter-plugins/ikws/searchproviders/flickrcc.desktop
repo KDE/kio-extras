@@ -3,6 +3,8 @@ Charset=
 Hidden=false
 Keys=flickrcc,flkrcc,flkcc
 Name=Flickr Creative Commons
+Name[ca]=Flickr Creative Commons
+Name[cs]=Flickr Creative Commons
 Name[da]=Flickr Creative Commons
 Name[de]=Flickr Creative Commons
 Name[el]=Flickr Creative Commons
@@ -29,6 +31,7 @@ Name[zh_CN]=Flickr 公用创作物
 Name[zh_TW]=Flickr Creative Commons
 Query=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
 Query[bn]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
+Query[ca]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
 Query[cs]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
 Query[da]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
 Query[de]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1

@@ -2,6 +2,7 @@
 Type=Service
 Name=Beolingus Online Dictionary
 Name[bn]=Beolingus Online Dictionary
+Name[ca]=Diccionari en línia Beolingus
 Name[cs]=Beolingus online slovník
 Name[da]=Beolingus online ordbog
 Name[de]=Beolingus-Internet-Wörterbuch
@@ -35,6 +36,7 @@ X-KDE-ServiceTypes=SearchProvider
 Keys=beo,beolingus
 Query=http://dict.tu-chemnitz.de/dings.cgi?lang=de&service=deen&opterrors=0&optpro=0&query=\\{@}&iservice=&comment=&email
 Query[bn]=http://dict.tu-chemnitz.de/dings.cgi?lang=de&service=deen&opterrors=0&optpro=0&query=\\{@}&iservice=&comment=&email
+Query[ca]=http://dict.tu-chemnitz.de/dings.cgi?lang=de&service=deen&opterrors=0&optpro=0&query=\\{@}&iservice=&comment=&email
 Query[cs]=http://dict.tu-chemnitz.de/dings.cgi?lang=de&service=deen&opterrors=0&optpro=0&query=\\{@}&iservice=&comment=&email
 Query[da]=http://dict.tu-chemnitz.de/dings.cgi?lang=de&service=deen&opterrors=0&optpro=0&query=\\{@}&iservice=&comment=&email
 Query[de]=http://dict.tu-chemnitz.de/dings.cgi?lang=de&service=deen&opterrors=0&optpro=0&query=\\{@}&iservice=&comment=&email

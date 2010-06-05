@@ -3,6 +3,7 @@ Charset=
 Hidden=false
 Keys=duckduckgoshopping,dds,dukgoshop
 Name=Duck Duck Go Shopping
+Name[ca]=Duck Duck Go Shopping
 Name[da]=Duck Duck Go shopping
 Name[de]=Duck Duck Go Shopping
 Name[el]=Duck Duck Go Shopping
@@ -31,6 +32,7 @@ Name[zh_CN]=Duck Duck Go 购物
 Name[zh_TW]=Duck Duck Go Shopping
 Query=http://duckduckgo.com/?q=\\{@}&v=s
 Query[bn]=http://duckduckgo.com/?q=\\{@}&v=s
+Query[ca]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[cs]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[da]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[de]=http://duckduckgo.com/?q=\\{@}&v=s
