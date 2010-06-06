@@ -232,7 +232,9 @@ FilterOptions::FilterOptions(const KComponentData &componentData, QWidget *paren
   connect(m_dlg.pbNew,    SIGNAL(clicked()), SLOT(addSearchProvider()));
   connect(m_dlg.pbDelete, SIGNAL(clicked()), SLOT(deleteSearchProvider()));
   connect(m_dlg.pbChange, SIGNAL(clicked()), SLOT(changeSearchProvider()));
-  connect(m_dlg.lvSearchProviders, SIGNAL(activated(QModelIndex)),    SLOT(updateSearchProviderEditingButons()));
+  connect(m_dlg.lvSearchProviders->selectionModel(),
+           SIGNAL(currentChanged(QModelIndex,QModelIndex)),
+           SLOT(updateSearchProviderEditingButons()));
   connect(m_dlg.lvSearchProviders, SIGNAL(doubleClicked(QModelIndex)),SLOT(changeSearchProvider()));
 }
 
