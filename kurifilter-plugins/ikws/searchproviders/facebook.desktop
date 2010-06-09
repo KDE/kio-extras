@@ -5,6 +5,7 @@ Keys=facebook,face,fb
 Name=Facebook
 Name[bn]=ফেসবুক
 Name[ca]=Facebook
+Name[ca@valencia]=Facebook
 Name[cs]=Facebook
 Name[da]=Facebook
 Name[de]=Facebook
@@ -35,6 +36,7 @@ Name[zh_TW]=Facebook
 Query=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[bn]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[ca]=http://www.facebook.com/search/?q=\\{@}&init=quick
+Query[ca@valencia]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[cs]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[da]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[de]=http://www.facebook.com/search/?q=\\{@}&init=quick

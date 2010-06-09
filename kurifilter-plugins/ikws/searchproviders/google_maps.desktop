@@ -3,6 +3,7 @@ Type=Service
 Name=Google Maps
 Name[bn]=গুগল ম্যাপ
 Name[ca]=Google Maps
+Name[ca@valencia]=Google Maps
 Name[cs]=Google mapy
 Name[da]=Google Maps
 Name[de]=Google-Maps
@@ -39,6 +40,7 @@ Keys=googlemaps,ggmaps,ggm
 Query=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[bn]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[ca]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
+Query[ca@valencia]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[cs]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[da]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[de]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr

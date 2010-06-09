@@ -5,6 +5,7 @@ Keys=amazonmp3,az3,amz3,amzmp3
 Name=Amazon MP3
 Name[bn]=অ্যামাজন MP3
 Name[ca]=Amazon MP3
+Name[ca@valencia]=Amazon MP3
 Name[cs]=Amazon MP3
 Name[da]=Amazon MP3
 Name[de]=Amazon MP3
@@ -34,6 +35,7 @@ Name[zh_TW]=Amazon MP3
 Query=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=digital-music&field-keywords=\\{@}&x=0&y=0
 Query[bn]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=digital-music&field-keywords=\\{@}&x=0&y=0
 Query[ca]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=digital-music&field-keywords=\\{@}&x=0&y=0
+Query[ca@valencia]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=digital-music&field-keywords=\\{@}&x=0&y=0
 Query[cs]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=digital-music&field-keywords=\\{@}&x=0&y=0
 Query[da]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=digital-music&field-keywords=\\{@}&x=0&y=0
 Query[de]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=digital-music&field-keywords=\\{@}&x=0&y=0

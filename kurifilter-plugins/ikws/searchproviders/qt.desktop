@@ -91,6 +91,7 @@ Name[zh_TW]=最新的 Qt 線上文件
 Query=http://doc.qt.nokia.com/latest/\\{@}.html
 Query[bn]=http://doc.qt.nokia.com/latest/\\{@}.html
 Query[ca]=http://doc.qt.nokia.com/latest/\\{@}.html
+Query[ca@valencia]=http://doc.qt.nokia.com/latest/\\{@}.html
 Query[cs]=http://doc.qt.nokia.com/latest/\\{@}.html
 Query[da]=http://doc.qt.nokia.com/latest/\\{@}.html
 Query[de]=http://doc.qt.nokia.com/latest/\\{@}.html

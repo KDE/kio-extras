@@ -5,6 +5,7 @@ Keys=urbandictionary,ud
 Name=Urban Dictionary
 Name[bn]=Urban Dictionary
 Name[ca]=Urban Dictionary
+Name[ca@valencia]=Urban Dictionary
 Name[da]=Urban Dictionary
 Name[de]=Urban Dictionary
 Name[en_GB]=Urban Dictionary
@@ -34,6 +35,7 @@ Name[zh_TW]=Urban Dictionary
 Query=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[bn]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[ca]=http://www.urbandictionary.com/define.php?term=\\{@}
+Query[ca@valencia]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[cs]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[da]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[de]=http://www.urbandictionary.com/define.php?term=\\{@}

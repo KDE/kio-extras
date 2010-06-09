@@ -5,6 +5,7 @@ Keys=kdetechbase,techbase,tb
 Name=KDE TechBase
 Name[bn]=KDE টেক-বেস
 Name[ca]=KDE TechBase
+Name[ca@valencia]=KDE TechBase
 Name[da]=KDE TechBase
 Name[de]=KDE TechBase
 Name[el]=Τεχνική βάση KDE
@@ -34,6 +35,7 @@ Name[zh_TW]=KDE TechBase
 Query=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[bn]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[ca]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
+Query[ca@valencia]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[cs]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[da]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[de]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search

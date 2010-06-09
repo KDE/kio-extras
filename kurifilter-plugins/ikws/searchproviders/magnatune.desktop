@@ -5,6 +5,7 @@ Keys=magnatune,mt
 Name=Magnatune
 Name[bn]=ম্যাগনা-টিউন
 Name[ca]=Magnatune
+Name[ca@valencia]=Magnatune
 Name[cs]=Magnatune
 Name[da]=Magnatune
 Name[de]=Magnatune
@@ -35,6 +36,7 @@ Name[zh_TW]=Magnatune
 Query=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
 Query[bn]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
 Query[ca]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
+Query[ca@valencia]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
 Query[cs]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
 Query[da]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
 Query[de]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0

@@ -5,6 +5,7 @@ Keys=github,gh
 Name=GitHub
 Name[bn]=গিট-হাব
 Name[ca]=GitHub
+Name[ca@valencia]=GitHub
 Name[cs]=GitHub
 Name[da]=GitHub
 Name[de]=GitHub
@@ -37,6 +38,7 @@ Name[zh_TW]=GitHub
 Query=http://github.com/search?q=\\{@}&x=0&y=0
 Query[bn]=http://github.com/search?q=\\{@}&x=0&y=0
 Query[ca]=http://github.com/search?q=\\{@}&x=0&y=0
+Query[ca@valencia]=http://github.com/search?q=\\{@}&x=0&y=0
 Query[cs]=http://github.com/search?q=\\{@}&x=0&y=0
 Query[da]=http://github.com/search?q=\\{@}&x=0&y=0
 Query[de]=http://github.com/search?q=\\{@}&x=0&y=0

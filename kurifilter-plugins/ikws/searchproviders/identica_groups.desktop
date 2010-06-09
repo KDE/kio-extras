@@ -5,6 +5,7 @@ Keys=identicagroups,identig,identicag,idg
 Name=Identi.ca Groups
 Name[bn]=Identi.ca গোষ্ঠীসমূহ
 Name[ca]=Grups a Identi.ca
+Name[ca@valencia]=Grups a Identi.ca
 Name[cs]=Skupiny Identi.ca
 Name[da]=Identi.ca-grupper
 Name[de]=Identi.ca Groups
@@ -35,6 +36,7 @@ Name[zh_TW]=Identi.ca Groups
 Query=http://identi.ca/search/group?q=\\{@}
 Query[bn]=http://identi.ca/search/group?q=\\{@}
 Query[ca]=http://identi.ca/search/group?q=\\{@}
+Query[ca@valencia]=http://identi.ca/search/group?q=\\{@}
 Query[cs]=http://identi.ca/search/group?q=\\{@}
 Query[da]=http://identi.ca/search/group?q=\\{@}
 Query[de]=http://identi.ca/search/group?q=\\{@}

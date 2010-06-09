@@ -2,6 +2,7 @@
 Type=Service
 Name=Ecosia search engine
 Name[ca]=Motor de cerca Ecosia
+Name[ca@valencia]=Motor de cerca Ecosia
 Name[cs]=Vyhledávací stroj Ecosia
 Name[da]=Ecosia søgemaskine
 Name[de]=Ecosia-Suchmaschine
@@ -37,6 +38,7 @@ Keys=ec
 Query=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[bn]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[ca]=http://ecosia.org/search.php?q=\\{@}&meta=normal
+Query[ca@valencia]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[cs]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[da]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[de]=http://ecosia.org/search.php?q=\\{@}&meta=normal
