@@ -8,6 +8,7 @@ Name[ca]=Urban Dictionary
 Name[ca@valencia]=Urban Dictionary
 Name[da]=Urban Dictionary
 Name[de]=Urban Dictionary
+Name[el]=Urban Dictionary(Λεξικό)
 Name[en_GB]=Urban Dictionary
 Name[es]=Urban Dictionary
 Name[et]=Urban Dictionary
@@ -39,6 +40,7 @@ Query[ca@valencia]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[cs]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[da]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[de]=http://www.urbandictionary.com/define.php?term=\\{@}
+Query[el]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[en_GB]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[es]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[et]=http://www.urbandictionary.com/define.php?term=\\{@}

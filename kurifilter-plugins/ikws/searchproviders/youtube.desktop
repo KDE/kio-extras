@@ -7,6 +7,7 @@ Name[ca@valencia]=YouTube
 Name[cs]=YouTube
 Name[da]=YouTube
 Name[de]=YouTube
+Name[el]=YouTube
 Name[en_GB]=YouTube
 Name[es]=YouTube
 Name[et]=YouTube
@@ -41,6 +42,7 @@ Query[ca@valencia]=http://www.youtube.com/results?search_query=\\{@}&search_type
 Query[cs]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[da]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[de]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
+Query[el]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[en_GB]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[es]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[et]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f

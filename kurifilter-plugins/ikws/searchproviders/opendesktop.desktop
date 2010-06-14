@@ -9,6 +9,7 @@ Name[ca@valencia]=Open
 Name[cs]=Otevřít
 Name[da]=Open
 Name[de]=Open
+Name[el]=Άνοιγμα
 Name[en_GB]=Open
 Name[es]=Abrir
 Name[et]=OpenDesktop
@@ -39,6 +40,7 @@ Query[ca@valencia]=http://www.opendesktop.org/content/search.php?search=Search&n
 Query[cs]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[da]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[de]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
+Query[el]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[en_GB]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[es]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[et]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
