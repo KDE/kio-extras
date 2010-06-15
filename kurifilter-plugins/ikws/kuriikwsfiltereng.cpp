@@ -25,19 +25,17 @@
 */
 
 #include "kuriikwsfiltereng.h"
+#include "searchprovider.h"
 
-#include <unistd.h>
-
-#include <QTextCodec>
+//#include <unistd.h>
 
 #include <kdebug.h>
 #include <kconfiggroup.h>
 #include <kprotocolinfo.h>
 
-#include "searchprovider.h"
+#include <QtCore/QTextCodec>
 
-#define PIDDBG kDebug(7023) << "(" << getpid() << ") "
-#define PDVAR(n,v) PIDDBG << n << " = '" << v << "'\n"
+#define PDVAR(n,v) kDebug(7023) << n << " = '" << v << "'\n"
 
 /**
  * IMPORTANT: If you change anything here, please run the regression test
@@ -57,66 +55,66 @@ KURISearchFilterEngine::KURISearchFilterEngine()
   loadConfig();
 }
 
-QString KURISearchFilterEngine::webShortcutQuery( const QString& typedString ) const
+KURISearchFilterEngine::~KURISearchFilterEngine()
 {
-  QString result;
+}
+
+SearchProvider* KURISearchFilterEngine::webShortcutQuery( const QString& typedString, QString &searchTerm ) const
+{
+  SearchProvider *provider = 0;
 
   if (m_bWebShortcutsEnabled)
   {
-    QString search = typedString;
-    int pos = search.indexOf(m_cKeywordDelimiter);
+    const int pos = typedString.indexOf(m_cKeywordDelimiter);
 
     QString key;
     if ( pos > -1 )
-      key = search.left(pos).toLower(); // #169801
-    else if ( m_cKeywordDelimiter == ' ' && !search.isEmpty() )
-      key = search;
+      key = typedString.left(pos).toLower(); // #169801
+    else if ( !typedString.isEmpty()  && m_cKeywordDelimiter == ' ')
+      key = typedString;
 
     if (!key.isEmpty() && !KProtocolInfo::isKnownProtocol( key ))
     {
-      SearchProvider *provider = SearchProvider::findByKey(key);
-
+      provider = SearchProvider::findByKey(key);
       if (provider)
-      {
-        result = formatResult(provider->query(), provider->charset(),
-                              QString(), search.mid(pos+1), true);
-        delete provider;
-      }
+        searchTerm = typedString.mid(pos+1);
     }
   }
 
-  return result;
+  return provider;
 }
 
 
-QString KURISearchFilterEngine::autoWebSearchQuery( const QString& typedString ) const
+SearchProvider* KURISearchFilterEngine::autoWebSearchQuery( const QString& typedString, const QString &defaultEngine ) const
 {
-  QString result;
+  SearchProvider *provider = 0;
+  const QString defaultSearchProvider = (m_defaultSearchEngine.isEmpty() ? defaultEngine : m_defaultSearchEngine);
 
-  if (m_bWebShortcutsEnabled && !m_defaultSearchEngine.isEmpty())
+  if (m_bWebShortcutsEnabled && !defaultSearchProvider.isEmpty())
   {
     // Make sure we ignore supported protocols, e.g. "smb:", "http:"
-    int pos = typedString.indexOf(':');
+    const int pos = typedString.indexOf(':');
 
     if (pos == -1 || !KProtocolInfo::isKnownProtocol(typedString.left(pos)))
-    {
-      SearchProvider *provider = SearchProvider::findByDesktopName(m_defaultSearchEngine);
-
-      if (provider)
-      {
-        result = formatResult (provider->query(), provider->charset(),
-                               QString(), typedString, true);
-        delete provider;
-      }
-    }
+      provider = SearchProvider::findByDesktopName(defaultSearchProvider);
   }
 
-  return result;
+  return provider;
 }
 
 QByteArray KURISearchFilterEngine::name() const
 {
   return "kuriikwsfilter";
+}
+
+char KURISearchFilterEngine::keywordDelimiter() const
+{
+  return m_cKeywordDelimiter;
+}
+
+QStringList KURISearchFilterEngine::favoriteEngineList() const
+{
+  return m_favoriteEngines;
 }
 
 KURISearchFilterEngine* KURISearchFilterEngine::self()
@@ -154,7 +152,7 @@ QStringList KURISearchFilterEngine::modifySubstitutionMap(SubstMap& map,
   userquery.replace (QLatin1String("%20"), QLatin1String(" "));
   l.replaceInStrings(QLatin1String("%20"), QLatin1String(" "));
 
-  PIDDBG << "Generating substitution map:\n";
+  kDebug(7023) << "Generating substitution map:\n";
   // Generate substitution map from user query:
   for (int i=0; i<=l.count(); i++)
   {
@@ -211,14 +209,14 @@ QString KURISearchFilterEngine::substituteQuery(const QString& url, SubstMap &ma
     int pos = -1;
     if ((pos = newurl.indexOf("\\1")) >= 0)
     {
-      PIDDBG << "WARNING: Using compatibility mode for newurl='" << newurl
-             << "'. Please replace old style '\\1' with new style '\\{0}' "
-                "in the query definition.\n";
+      kDebug(7023) << "WARNING: Using compatibility mode for newurl='" << newurl
+                   << "'. Please replace old style '\\1' with new style '\\{0}' "
+                      "in the query definition.\n";
       newurl = newurl.replace(pos, 2, "\\{@}");
     }
   }
 
-  PIDDBG << "Substitute references:\n";
+  kDebug(7023) << "Substitute references:\n";
   // Substitute references (\{ref1,ref2,...}) with values from user query:
   {
     int pos = 0;
@@ -373,7 +371,7 @@ QString KURISearchFilterEngine::formatResult( const QString& url,
   // Debug info of map:
   if (!map.isEmpty())
   {
-    PIDDBG << "Got non-empty substitution map:\n";
+    kDebug(7023) << "Got non-empty substitution map:\n";
     for(SubstMap::Iterator it = map.begin(); it != map.end(); ++it)
       PDVAR ("    map['" + it.key() + "']", it.value());
   }
@@ -414,7 +412,7 @@ QString KURISearchFilterEngine::formatResult( const QString& url,
 
 void KURISearchFilterEngine::loadConfig()
 {
-  PIDDBG << "Keywords Engine: Loading config..." << endl;
+  kDebug(7023) << "Keywords Engine: Loading config..." << endl;
 
   // Load the config.
   KConfig config( name() + "rc", KConfig::NoGlobals );
@@ -423,14 +421,13 @@ void KURISearchFilterEngine::loadConfig()
   m_cKeywordDelimiter = QString(group.readEntry("KeywordDelimiter", ":")).at(0).toLatin1();
   m_bWebShortcutsEnabled = group.readEntry("EnableWebShortcuts", true);
   m_defaultSearchEngine = group.readEntry("DefaultSearchEngine");
-  m_bVerbose = group.readEntry("Verbose", false);
+  m_favoriteEngines = group.readEntry("FavoriteSearchEngines", QStringList());
 
   // Use either a white space or a : as the keyword delimiter...
-  if (strchr (" :",m_cKeywordDelimiter) == 0)
+  if (strchr (" :", m_cKeywordDelimiter) == 0)
     m_cKeywordDelimiter = ':';
 
-  PIDDBG << "Keyword Delimiter: " << m_cKeywordDelimiter << endl;
-  PIDDBG << "Default Search Engine: " << m_defaultSearchEngine << endl;
-  PIDDBG << "Web Shortcuts Enabled: " << m_bWebShortcutsEnabled << endl;
-  PIDDBG << "Verbose: " << m_bVerbose << endl;
+  kDebug(7023) << "Keyword Delimiter: " << m_cKeywordDelimiter << endl;
+  kDebug(7023) << "Default Search Engine: " << m_defaultSearchEngine << endl;
+  kDebug(7023) << "Web Shortcuts Enabled: " << m_bWebShortcutsEnabled << endl;
 }

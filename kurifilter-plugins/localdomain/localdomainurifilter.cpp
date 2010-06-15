@@ -37,9 +37,9 @@
  */
 
 LocalDomainUriFilter::LocalDomainUriFilter( QObject *parent, const QVariantList & /*args*/ )
-    : KUriFilterPlugin( "localdomainurifilter", parent ),
-      last_time( 0 ),
-      m_hostPortPattern( QLatin1String(HOSTPORT_PATTERN) )
+                     :KUriFilterPlugin( "localdomainurifilter", parent ),
+                      last_time( 0 ),
+                      m_hostPortPattern( QLatin1String(HOSTPORT_PATTERN) )
 {
     QDBusConnection::sessionBus().connect(QString(), QString(), "org.kde.KUriFilterPlugin",
                                 "configure", this, SLOT(configure()));
@@ -51,7 +51,7 @@ bool LocalDomainUriFilter::filterUri( KUriFilterData& data ) const
     const KUrl url = data.uri();
     QString cmd = url.url();
 
-    //kDebug() << url;
+    kDebug() << url;
 
     if( m_hostPortPattern.exactMatch( cmd ) &&
         isLocalDomainHost( cmd ) )
@@ -60,7 +60,7 @@ bool LocalDomainUriFilter::filterUri( KUriFilterData& data ) const
         setFilteredUri( data, KUrl( cmd ) );
         setUriType( data, KUriFilterData::NetProtocol );
 
-        kDebug() << "FilteredUri: " << data.uri();
+        kDebug() << "filtered to" << data.uri();
         return true;
     }
 
@@ -93,8 +93,7 @@ bool LocalDomainUriFilter::isLocalDomainHost( QString& cmd ) const
         last_host = host;
         last_time = time( (time_t *)0 );
 
-        last_result = proc.waitForFinished( 1000 ) && proc.exitCode() == QProcess::NormalExit;
-
+        last_result = (proc.waitForFinished( 1000 ) && proc.exitCode() == QProcess::NormalExit);
         const QString fullname = QFile::decodeName( proc.readAllStandardOutput() );
 
         if( !fullname.isEmpty() ) {

@@ -25,32 +25,31 @@
 #ifndef KURIIKWSFILTERENG_H
 #define KURIIKWSFILTERENG_H
 
-#include <kservice.h>
+#include <QtCore/QMap>
+#include <QtCore/QStringList>
+
+class SearchProvider;
 
 class KURISearchFilterEngine
 {
 public:
   typedef QMap <QString, QString> SubstMap;
-  
+
   KURISearchFilterEngine();
-  ~KURISearchFilterEngine() {}
-
+  ~KURISearchFilterEngine();
+  
   QByteArray name() const;
-  
-  QString webShortcutQuery (const QString&) const;
-  
-  QString autoWebSearchQuery (const QString&) const;
-  
-  bool verbose() const { return m_bVerbose; }
-
-  void loadConfig();
-  
-  static KURISearchFilterEngine *self();
-
-protected:
+  char keywordDelimiter() const;
+  QStringList favoriteEngineList() const;
+  SearchProvider* webShortcutQuery (const QString& typedString, QString& searchTerm) const;
+  SearchProvider* autoWebSearchQuery (const QString& typedString, const QString& defaultEngine = QString()) const;
   QString formatResult (const QString& url, const QString& cset1, const QString& cset2,
                         const QString& query, bool isMalformed) const;
-  
+
+  static KURISearchFilterEngine *self();
+  void loadConfig();
+
+protected:
   QString formatResult (const QString& url, const QString& cset1, const QString& cset2,
                         const QString& query, bool isMalformed, SubstMap& map) const;
 
@@ -60,11 +59,10 @@ private:
   QString substituteQuery (const QString& url, SubstMap &map, 
                            const QString& userquery, QTextCodec *codec) const;
   
-  bool m_bVerbose;  
+  QString m_defaultSearchEngine;
+  QStringList m_favoriteEngines;
   bool m_bWebShortcutsEnabled;
   char m_cKeywordDelimiter;
-
-  QString m_defaultSearchEngine;
   static KURISearchFilterEngine *s_pSelf;
 };
 

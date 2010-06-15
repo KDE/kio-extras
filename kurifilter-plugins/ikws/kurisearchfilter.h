@@ -22,9 +22,8 @@
 #ifndef KURISEARCHFILTER_H
 #define KURISEARCHFILTER_H
 
-#include <kgenericfactory.h>
-
 #include <kurifilter.h>
+#include <kgenericfactory.h>
 
 class KUriSearchFilter : public KUriFilterPlugin
 {

@@ -20,11 +20,11 @@
 */
 
 #include "kurisearchfilter.h"
+#include "kuriikwsfiltereng.h"
+#include "searchprovider.h"
+#include "ikwsopts.h"
 
 #include <QtDBus/QtDBus>
-
-#include "kuriikwsfiltereng.h"
-#include "ikwsopts.h"
 
 /**
  * IMPORTANT: If you change anything here, please run the regression test
@@ -34,13 +34,12 @@
 K_PLUGIN_FACTORY(KUriSearchFilterFactory, registerPlugin<KUriSearchFilter>();)
 K_EXPORT_PLUGIN(KUriSearchFilterFactory("kcmkurifilt"))
 
-KUriSearchFilter::KUriSearchFilter(QObject *parent,
-                                   const QVariantList &)
+KUriSearchFilter::KUriSearchFilter(QObject *parent, const QVariantList &)
                  :KUriFilterPlugin( "kurisearchfilter", parent )
 {
   KGlobal::locale()->insertCatalog("kurifilter");
   QDBusConnection::sessionBus().connect(QString(), QString(), "org.kde.KUriFilterPlugin",
-                              "configure", this, SLOT(configure()));
+                                        "configure", this, SLOT(configure()));
 }
 
 KUriSearchFilter::~KUriSearchFilter()
@@ -49,29 +48,32 @@ KUriSearchFilter::~KUriSearchFilter()
 
 void KUriSearchFilter::configure()
 {
-  if ( KURISearchFilterEngine::self()->verbose() )
-    kDebug() << "KUriSearchFilter::configure: Config reload request...";
-
+  kDebug(7023) << "Config reload requested...";
   KURISearchFilterEngine::self()->loadConfig();
 }
 
 bool KUriSearchFilter::filterUri( KUriFilterData &data ) const
 {
-  if ( KURISearchFilterEngine::self()->verbose() )
-    kDebug() << "KUriSearchFilter::filterUri: '" << data.typedString() << "'";
+  kDebug(7023) << data.typedString();
 
-  QString result = KURISearchFilterEngine::self()->webShortcutQuery( data.typedString() );
-
-  if ( !result.isEmpty() )
+  if (data.uriType() == KUriFilterData::Unknown)
   {
-    if ( KURISearchFilterEngine::self()->verbose() )
-      kDebug() << "Filtered URL: " << result;
+    QString searchTerm;
+    KURISearchFilterEngine *filter = KURISearchFilterEngine::self();
+    SearchProvider *provider = filter->webShortcutQuery( data.typedString(), searchTerm );
 
-    setFilteredUri( data, KUrl( result ) );
-    setUriType( data, KUriFilterData::NetProtocol );
-    return true;
+    if (provider)
+    {
+      const QString result = filter->formatResult( provider->query(), provider->charset(),
+                                                   QString(), searchTerm, true );
+      kDebug(7023) << "filtered to" << result;
+      setFilteredUri( data, KUrl(result) );
+      setUriType( data, KUriFilterData::NetProtocol );
+      setSearchProvider( data, provider->name(), searchTerm,  QLatin1Char(filter->keywordDelimiter()));
+      delete provider;
+      return true;
+    }
   }
-
   return false;
 }
 

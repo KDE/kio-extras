@@ -19,18 +19,16 @@
 */
 
 #include "kuriikwsfilter.h"
-
-#include <unistd.h>
-
-#include <QtDBus/QtDBus>
+#include "kuriikwsfiltereng.h"
+#include "searchprovider.h"
+#include "ikwsopts.h"
 
 #include <kdebug.h>
 #include <klocale.h>
 #include <kurl.h>
 #include <kglobal.h>
 
-#include "ikwsopts.h"
-#include "kuriikwsfiltereng.h"
+#include <QtDBus/QtDBus>
 
 /**
  * IMPORTANT: If you change anything here, please run the regression test
@@ -45,7 +43,7 @@ KAutoWebSearch::KAutoWebSearch(QObject *parent, const QVariantList&)
 {
   KGlobal::locale()->insertCatalog("kurifilter");
   QDBusConnection::sessionBus().connect(QString(), QString(), "org.kde.KUriFilterPlugin",
-                              "configure", this, SLOT(configure()));
+                                        "configure", this, SLOT(configure()));
 }
 
 KAutoWebSearch::~KAutoWebSearch()
@@ -54,31 +52,45 @@ KAutoWebSearch::~KAutoWebSearch()
 
 void KAutoWebSearch::configure()
 {
-  if ( KURISearchFilterEngine::self()->verbose() )
-    kDebug() << "KAutoWebSearch::configure: Config reload requested...";
-
+  kDebug(7023) << "Config reload requested...";
   KURISearchFilterEngine::self()->loadConfig();
 }
 
 bool KAutoWebSearch::filterUri( KUriFilterData &data ) const
 {
-  if( data.uriType() != KUriFilterData::Unknown )
-      return false;
+  kDebug(7023) << data.typedString();
 
-  if (KURISearchFilterEngine::self()->verbose())
-    kDebug() << "KAutoWebSearch::filterURI: '" <<  data.uri().url() << "'";
-
-  KUrl u = data.uri();
-  if ( u.pass().isEmpty() )
+  if ( data.uriType() == KUriFilterData::Unknown && data.uri().pass().isEmpty() )
   {
-    QString result = KURISearchFilterEngine::self()->autoWebSearchQuery( data.typedString() );
-    if( !result.isEmpty() )
-    {
-      if ( KURISearchFilterEngine::self()->verbose() )
-        kDebug () << "Filtered URL: " << result;
+    KURISearchFilterEngine *filter = KURISearchFilterEngine::self();
+    QStringList favEngines = filter->favoriteEngineList();
+    if (favEngines.isEmpty())
+      favEngines = data.alternateSearchProviders();
 
+    SearchProvider *provider = filter->autoWebSearchQuery( data.typedString(), data.alternateDefaultSearchProvider() );
+
+    if( provider )
+    {
+      const QString result = filter->formatResult(provider->query(), provider->charset(),
+                                                  QString(), data.typedString(), true);
+      kDebug(7203) << "filtered to" << result;
       setFilteredUri( data, KUrl( result ) );
       setUriType( data, KUriFilterData::NetProtocol );
+      setSearchProvider(data, provider->name(), data.typedString(), QLatin1Char(filter->keywordDelimiter()));
+
+      KUriFilterPlugin::ProviderInfoList providerInfo;
+      Q_FOREACH(const QString &engine, favEngines)
+      {
+        SearchProvider *favProvider = SearchProvider::findByDesktopName(engine);
+        if (favProvider)
+        {
+          const QString query = favProvider->keys().at(0) + filter->keywordDelimiter() + data.typedString();
+          providerInfo.insert(favProvider->name(), qMakePair(query, iconNameFor(favProvider->query(), KUriFilterData::NetProtocol)));
+          delete favProvider;
+        }
+      }
+      setPreferredSearchProviders( data, providerInfo);
+      delete provider;
       return true;
     }
   }
