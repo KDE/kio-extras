@@ -13,6 +13,7 @@ Name[el]=Amazon
 Name[en_GB]=Amazon
 Name[es]=Amazon
 Name[et]=Amazon
+Name[fr]=Amazon
 Name[ia]=Amazon
 Name[id]=Amazon
 Name[is]=Amazon
@@ -44,6 +45,7 @@ Query[el]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=aps&field-keyw
 Query[en_GB]=http://www.amazon.co.uk/s/ref=nb_sb_noss?url=search-alias=aps&field-keywords=\\{@}&x=0&y=0
 Query[es]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=aps&field-keywords=\\{@}&x=0&y=0
 Query[et]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=aps&field-keywords=\\{@}&x=0&y=0
+Query[fr]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=aps&field-keywords=\\{@}&x=0&y=0
 Query[hr]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=aps&field-keywords=\\{@}&x=0&y=0
 Query[ia]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=aps&field-keywords=\\{@}&x=0&y=0
 Query[id]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=aps&field-keywords=\\{@}&x=0&y=0

@@ -13,6 +13,7 @@ Name[el]=Google Code
 Name[en_GB]=Google Code
 Name[es]=Google Code
 Name[et]=Google Code
+Name[fr]=Google Code
 Name[ia]=Google Movies
 Name[id]=Google Code
 Name[is]=Google kóði
@@ -43,6 +44,7 @@ Query[el]=http://code.google.com/query/#q=\\{%2520}
 Query[en_GB]=http://code.google.com/query/#q=\\{%2520}
 Query[es]=http://code.google.com/query/#q=\\{%2520}
 Query[et]=http://code.google.com/query/#q=\\{%2520}
+Query[fr]=http://code.google.com/query/#q=\\{%2520}
 Query[hr]=http://code.google.com/query/#q=\\{%2520}
 Query[ia]=http://code.google.com/query#q=\\{%2520}
 Query[id]=http://code.google.com/query/#q=\\{%2520}
