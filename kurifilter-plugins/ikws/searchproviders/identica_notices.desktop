@@ -20,6 +20,7 @@ Name[it]=Notifiche di Identi.ca
 Name[ja]=Identi.ca Notices
 Name[kk]=Identi.ca жазбалары
 Name[km]=ចំណាំ​របស់ Identi.ca
+Name[kn]=identi.ca ಸೂಚನೆ
 Name[lt]=Identi.ca pranešimai
 Name[nb]=Identi.ca notiser
 Name[nds]=Identi.ca - Henwiesen
@@ -52,6 +53,7 @@ Query[it]=http://identi.ca/search/notice?q=\\{@}
 Query[ja]=http://identi.ca/search/notice?q=\\{@}
 Query[kk]=http://identi.ca/search/notice?q=\\{@}
 Query[km]=http://identi.ca/search/notice?q=\\{@}
+Query[kn]=http://identi.ca/search/notice?q=\\{@}
 Query[lt]=http://identi.ca/search/notice?q=\\{@}
 Query[nb]=http://identi.ca/search/notice?q=\\{@}
 Query[nds]=http://identi.ca/search/notice?q=\\{@}

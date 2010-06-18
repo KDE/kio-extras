@@ -20,6 +20,7 @@ Name[it]=Persone di Identi.ca
 Name[ja]=Identi.ca People
 Name[kk]=Identi.ca халықы
 Name[km]=មនុស្ស Identi.ca
+Name[kn]=identi.ca ಜನರು
 Name[lt]=Identi.ca žmonės
 Name[nb]=Identi.ca folk
 Name[nds]=Identi.ca - Lüüd
@@ -52,6 +53,7 @@ Query[it]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[ja]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[kk]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[km]=http://identi.ca/search/people?q=\\{@}&search=Search
+Query[kn]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[lt]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[nb]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[nds]=http://identi.ca/search/people?q=\\{@}&search=Search

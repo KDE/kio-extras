@@ -21,6 +21,7 @@ Name[it]=Mappe di Google
 Name[ja]=Google Maps
 Name[kk]=Google карталаы
 Name[km]=ផែនទី​​ហ្គូហ្គល
+Name[kn]=ಗೂಗಲ್ ನಕ್ಷೆಗಳು
 Name[lt]=Google žemėlapiai
 Name[nb]=Google Maps
 Name[nds]=Google-Koorten
@@ -59,6 +60,7 @@ Query[it]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[ja]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[kk]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[km]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
+Query[kn]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[lt]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[nb]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[nds]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr

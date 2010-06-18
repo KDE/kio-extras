@@ -21,6 +21,7 @@ Name[it]=OpenDesktop
 Name[ja]=Open
 Name[kk]=Open
 Name[km]=បើក
+Name[kn]=ತೆರೆ
 Name[lt]=Open
 Name[nb]=Open
 Name[nds]=OpenDesktop
@@ -54,6 +55,7 @@ Query[it]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[ja]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[kk]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[km]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
+Query[kn]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[lt]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[nb]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[nds]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}

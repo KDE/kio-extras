@@ -20,6 +20,7 @@ Name[it]=Dizionario in rete Beolingus
 Name[ja]=Beolingus オンライン辞書
 Name[kk]=Beolingus онлайн сөздігі
 Name[km]=វចនានុក្រម​លើ​បណ្ដាញ Beolingus
+Name[kn]=ಬಿಯೋಲಿಂಗಸ್ ಒನ್ಲೈನ್ ಶಬ್ದಕೋಶ
 Name[lt]=Beolingus internetinis žodynas
 Name[nb]=Beolingus nettverksordbok
 Name[nds]=Beolingus- Internetwöörbook
@@ -56,6 +57,7 @@ Query[it]=http://dict.tu-chemnitz.de/dings.cgi?lang=de&service=deen&opterrors=0&
 Query[ja]=http://dict.tu-chemnitz.de/dings.cgi?lang=de&service=deen&opterrors=0&optpro=0&query=\\{@}&iservice=&comment=&email
 Query[kk]=http://dict.tu-chemnitz.de/dings.cgi?lang=de&service=deen&opterrors=0&optpro=0&query=\\{@}&iservice=&comment=&email
 Query[km]=http://dict.tu-chemnitz.de/dings.cgi?lang=de&service=deen&opterrors=0&optpro=0&query=\\{@}&iservice=&comment=&email
+Query[kn]=http://dict.tu-chemnitz.de/dings.cgi?lang=de&service=deen&opterrors=0&optpro=0&query=\\{@}&iservice=&comment=&email
 Query[lt]=http://dict.tu-chemnitz.de/dings.cgi?lang=de&service=deen&opterrors=0&optpro=0&query=\\{@}&iservice=&comment=&email
 Query[nb]=http://dict.tu-chemnitz.de/dings.cgi?lang=de&service=deen&opterrors=0&optpro=0&query=\\{@}&iservice=&comment=&email
 Query[nds]=http://dict.tu-chemnitz.de/dings.cgi?lang=de&service=deen&opterrors=0&optpro=0&query=\\{@}&iservice=&comment=&email

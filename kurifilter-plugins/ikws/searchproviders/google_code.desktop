@@ -21,6 +21,7 @@ Name[it]=Codice di Google
 Name[ja]=Google Code
 Name[kk]=Google Code
 Name[km]=កូដ​​​ហ្គូហ្គល
+Name[kn]=ಗೂಗಲ್ ಕೋಡ್
 Name[lt]=Google Kodas
 Name[nb]=Google Code
 Name[nds]=Google-Kode
@@ -53,6 +54,7 @@ Query[it]=http://code.google.com/query/#q=\\{%2520}
 Query[ja]=http://code.google.com/query/#q=\\{%2520}
 Query[kk]=http://code.google.com/query/#q=\\{%2520}
 Query[km]=http://code.google.com/query/#q=\\{%2520}
+Query[kn]=http://code.google.com/query/#q=\\{%2520}
 Query[lt]=http://code.google.com/query/#q=\\{%2520}
 Query[nb]=http://code.google.com/query/#q=\\{%2520}
 Query[nds]=http://code.google.com/query/#q=\\{%2520}

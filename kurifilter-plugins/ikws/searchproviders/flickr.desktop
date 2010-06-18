@@ -22,6 +22,7 @@ Name[it]=Flickr
 Name[ja]=Flickr
 Name[kk]=Flickr
 Name[km]=Flickr
+Name[kn]=ಫ್ಲಿಕ್ಕರ್ 
 Name[lt]=Flickr
 Name[nb]=Flickr
 Name[nds]=Flickr
@@ -56,6 +57,7 @@ Query[it]=http://www.flickr.com/search/?q=\\{@}
 Query[ja]=http://www.flickr.com/search/?q=\\{@}
 Query[kk]=http://www.flickr.com/search/?q=\\{@}
 Query[km]=http://www.flickr.com/search/?q=\\{@}
+Query[kn]=http://www.flickr.com/search/?q=\\{@}
 Query[lt]=http://www.flickr.com/search/?q=\\{@}
 Query[nb]=http://www.flickr.com/search/?q=\\{@}
 Query[nds]=http://www.flickr.com/search/?q=\\{@}

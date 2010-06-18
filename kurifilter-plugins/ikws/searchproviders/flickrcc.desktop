@@ -20,6 +20,7 @@ Name[it]=Creative Commons su Flickr
 Name[ja]=Flickr Creative Commons
 Name[kk]=Flickr Creative Commons
 Name[km]=Flickr Creative Commons
+Name[kn]=ಫ್ಲಿಕ್ಕರ್ ಕ್ರಿಯೇಟಿವ್ ಕಾಮನ್ಸ್
 Name[lt]=Flickr Creative Commons
 Name[nb]=Flickr Creative Commons
 Name[nds]=Flickr Creative Commons
@@ -51,6 +52,7 @@ Query[it]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
 Query[ja]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
 Query[kk]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
 Query[km]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
+Query[kn]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
 Query[lt]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
 Query[nb]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
 Query[nds]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1

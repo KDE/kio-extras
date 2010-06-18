@@ -21,6 +21,7 @@ Name[it]=Gruppi di Identi.ca
 Name[ja]=Identi.ca Groups
 Name[kk]=Identi.ca тобтар
 Name[km]=ក្រុម​របស់ Identi.ca
+Name[kn]=identi.ca ಗುಂಪುಗಳು
 Name[lt]=Identi.ca grupės
 Name[nb]=Identi.ca-grupper
 Name[nds]=Identi.ca - Koppeln
@@ -54,6 +55,7 @@ Query[it]=http://identi.ca/search/group?q=\\{@}
 Query[ja]=http://identi.ca/search/group?q=\\{@}
 Query[kk]=http://identi.ca/search/group?q=\\{@}
 Query[km]=http://identi.ca/search/group?q=\\{@}
+Query[kn]=http://identi.ca/search/group?q=\\{@}
 Query[lt]=http://identi.ca/search/group?q=\\{@}
 Query[nb]=http://identi.ca/search/group?q=\\{@}
 Query[nds]=http://identi.ca/search/group?q=\\{@}

@@ -20,6 +20,7 @@ Name[it]=YouTube
 Name[ja]=YouTube
 Name[kk]=YouTube
 Name[km]=YouTube
+Name[kn]=ಯೂಟ್ಯೂಬ್
 Name[lt]=YouTube
 Name[nb]=YouTube
 Name[nds]=YouTube
@@ -56,6 +57,7 @@ Query[it]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[ja]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[kk]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[km]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
+Query[kn]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[lt]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[nb]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[nds]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
