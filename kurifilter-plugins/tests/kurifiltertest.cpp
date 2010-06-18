@@ -212,6 +212,8 @@ void KUriFilterTest::tests()
     filter( "ftp.kde.org", "ftp://ftp.kde.org", KUriFilterData::NetProtocol );
     filter( "ftp.kde.org:21", "ftp://ftp.kde.org:21", KUriFilterData::NetProtocol );
     filter( "cr.yp.to", "http://cr.yp.to", KUriFilterData::NetProtocol );
+    filter( "www.kde.org:21", "http://www.kde.org:21", KUriFilterData::NetProtocol );
+    filter( "foobar.local:8000", "http://foobar.local:8000", KUriFilterData::NetProtocol );
     filter( "user@192.168.1.0:3128", "http://user@192.168.1.0:3128", KUriFilterData::NetProtocol );
     filter( "127.0.0.1", "http://127.0.0.1", KUriFilterData::NetProtocol );
     filter( "127.0.0.1:3128", "http://127.0.0.1:3128", KUriFilterData::NetProtocol );

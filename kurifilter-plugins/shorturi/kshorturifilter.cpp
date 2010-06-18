@@ -165,8 +165,14 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
   KUrl url = data.uri();
   QString cmd = data.typedString();
   const bool isMalformed = !url.isValid();
-  const QString protocol = url.protocol();
-  //kDebug(7023) << "url=" << url << " cmd=" << cmd << " isMalformed=" << isMalformed;
+  QString protocol = url.protocol();
+
+  // Fix misparsing of "foo:80", QUrl thinks "foo" is the protocol and "80" is the path
+  if (!protocol.isEmpty() && url.host().isEmpty() && !url.path().isEmpty() && cmd.contains(':')) {
+    protocol.clear();
+  }
+
+  //kDebug(7023) << "url=" << url << "cmd=" << cmd << "isMalformed=" << isMalformed;
 
   if (!isMalformed &&
       (protocol.length() == 4) &&
@@ -336,12 +342,11 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
   const bool canBeLocalAbsolute = (canBeAbsolute && abs_path[0] =='/');
   bool exists = false;
 
-  //kDebug(7023) << "abs_path=" << abs_path
-  //         << " protocol=" << protocol
-  //         << " canBeAbsolute=" << canBeAbsolute
-  //         << " canBeLocalAbsolute=" << canBeLocalAbsolute
-  //         << " isLocalFullPath=" << isLocalFullPath
-  //         << endl;
+  /*kDebug(7023) << "abs_path=" << abs_path
+               << "protocol=" << protocol
+               << "canBeAbsolute=" << canBeAbsolute
+               << "canBeLocalAbsolute=" << canBeLocalAbsolute
+               << "isLocalFullPath=" << isLocalFullPath;*/
 
   struct stat buff;
   if ( canBeLocalAbsolute )
@@ -435,7 +440,7 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
   // We try hard to avoid parsing any possible command
   // line arguments or options that might have been supplied.
   QString exe = removeArgs( cmd );
-  //kDebug(7023) << "findExe with " << exe;
+  //kDebug(7023) << "findExe with" << exe;
   if( data.checkForExecutables() && !KStandardDirs::findExe( exe ).isNull() )
   {
     //kDebug(7023) << "EXECUTABLE  exe=" << exe;
@@ -475,7 +480,7 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
       QRegExp match( (*it).regexp );
       if ( match.indexIn( cmd ) == 0 )
       {
-        //kDebug(7023) << "match - prepending " << (*it).prepend;
+        //kDebug(7023) << "match - prepending" << (*it).prepend;
         cmd.prepend( (*it).prepend );
         setFilteredUri( data, KUrl( cmd ) );
         setUriType( data, (*it).type );
