@@ -3,6 +3,7 @@ Charset=
 Hidden=false
 Keys=wikia,wka
 Name=Wikia
+Name[bg]=Wikia
 Name[bn]=উইকিয়া
 Name[ca]=Wikia
 Name[ca@valencia]=Wikia
@@ -38,6 +39,7 @@ Name[x-test]=xxWikiaxx
 Name[zh_CN]=Wikia
 Name[zh_TW]=Wikia
 Query=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Search
+Query[bg]=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Search
 Query[bn]=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Search
 Query[ca]=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Search
 Query[ca@valencia]=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Search

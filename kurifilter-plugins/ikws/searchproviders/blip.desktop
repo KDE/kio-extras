@@ -3,6 +3,7 @@ Charset=
 Hidden=false
 Keys=blip,bl
 Name=Blip.tv
+Name[bg]=Blip.tv
 Name[bn]=Blip.tv
 Name[ca]=Blip.tv
 Name[ca@valencia]=Blip.tv
@@ -38,6 +39,7 @@ Name[x-test]=xxBlip.tvxx
 Name[zh_CN]=Blip.tv
 Name[zh_TW]=Blip.tv
 Query=http://blip.tv/search?q=\\{@}
+Query[bg]=http://blip.tv/search?q=\\{@}
 Query[bn]=http://blip.tv/search?q=\\{@}
 Query[ca]=http://blip.tv/search?q=\\{@}
 Query[ca@valencia]=http://blip.tv/search?q=\\{@}

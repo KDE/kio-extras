@@ -3,6 +3,7 @@ Charset=
 Hidden=false
 Keys=flickr,flkr
 Name=Flickr
+Name[bg]=Flickr
 Name[bn]=ফ্লিকর
 Name[ca]=Flickr
 Name[ca@valencia]=Flickr
@@ -38,6 +39,7 @@ Name[x-test]=xxFlickrxx
 Name[zh_CN]=Flickr
 Name[zh_TW]=Flickr
 Query=http://www.flickr.com/search/?q=\\{@}
+Query[bg]=http://www.flickr.com/search/?q=\\{@}
 Query[bn]=http://www.flickr.com/search/?q=\\{@}
 Query[ca]=http://www.flickr.com/search/?q=\\{@}
 Query[ca@valencia]=http://www.flickr.com/search/?q=\\{@}

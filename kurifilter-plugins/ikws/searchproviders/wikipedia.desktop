@@ -96,7 +96,7 @@ Query[ar]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[as]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[be]=http://be.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[be@latin]=http://be.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
-Query[bg]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[bg]=http://bg.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[bn]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[bn_IN]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[ca]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go

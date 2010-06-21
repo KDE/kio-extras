@@ -1,6 +1,7 @@
 [Desktop Entry]
 Type=Service
 Name=Ecosia search engine
+Name[bg]=Търсачка Ecosia
 Name[ca]=Motor de cerca Ecosia
 Name[ca@valencia]=Motor de cerca Ecosia
 Name[cs]=Vyhledávací stroj Ecosia
@@ -38,6 +39,7 @@ Name[zh_TW]=Ecosia 搜索引擎
 X-KDE-ServiceTypes=SearchProvider
 Keys=ec
 Query=http://ecosia.org/search.php?q=\\{@}&meta=normal
+Query[bg]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[bn]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[ca]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[ca@valencia]=http://ecosia.org/search.php?q=\\{@}&meta=normal

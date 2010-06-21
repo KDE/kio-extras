@@ -3,6 +3,7 @@ Charset=
 Hidden=false
 Keys=identicapeople,identip,idp
 Name=Identi.ca People
+Name[bg]=Хора в Identi.ca
 Name[ca]=Gent a Identi.ca
 Name[ca@valencia]=Gent a Identi.ca
 Name[cs]=Lidé Identi.ca
@@ -34,6 +35,7 @@ Name[x-test]=xxIdenti.ca Peoplexx
 Name[zh_CN]=Identi.ca 人物
 Name[zh_TW]=Identi.ca People
 Query=http://identi.ca/search/people?q=\\{@}&search=Search
+Query[bg]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[bn]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[ca]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[ca@valencia]=http://identi.ca/search/people?q=\\{@}&search=Search
