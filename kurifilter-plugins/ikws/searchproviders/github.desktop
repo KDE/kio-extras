@@ -31,6 +31,7 @@ Name[nl]=GitHub
 Name[pa]=GitHub
 Name[pt]=GitHub
 Name[pt_BR]=GitHub
+Name[ro]=GitHub
 Name[ru]=GitHub
 Name[sv]=GitHub
 Name[th]=GitHub
@@ -66,6 +67,7 @@ Query[nds]=http://github.com/search?q=\\{@}&x=0&y=0
 Query[nl]=http://github.com/search?q=\\{@}&x=0&y=0
 Query[pt]=http://github.com/search?q=\\{@}&x=0&y=0
 Query[pt_BR]=http://github.com/search?q=\\{@}&x=0&y=0
+Query[ro]=http://github.com/search?q=\\{@}&x=0&y=0
 Query[ru]=http://github.com/search?q=\\{@}&x=0&y=0
 Query[sv]=http://github.com/search?q=\\{@}&x=0&y=0
 Query[th]=http://github.com/search?q=\\{@}&x=0&y=0

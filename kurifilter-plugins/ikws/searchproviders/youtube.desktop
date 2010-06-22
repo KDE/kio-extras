@@ -29,6 +29,7 @@ Name[nl]=YouTube
 Name[pa]=ਯੂਟਿਊਬ
 Name[pt]=YouTube
 Name[pt_BR]=YouTube
+Name[ro]=YouTube
 Name[ru]=YouTube
 Name[sv]=YouTube
 Name[tg]=YouTube
@@ -67,6 +68,7 @@ Query[nl]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[pa]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[pt]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[pt_BR]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
+Query[ro]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[ru]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[sk]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[sv]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f

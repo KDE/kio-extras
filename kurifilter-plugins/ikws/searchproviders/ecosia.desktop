@@ -28,6 +28,7 @@ Name[nds]=Ecosia-Söökmaschien
 Name[nl]=Ecosia zoekmachine
 Name[pt]=Motor de busca Ecosia
 Name[pt_BR]=Mecanismo de busca Ecosia
+Name[ro]=Motor de căutare Ecosia
 Name[sv]=Ecosia söktjänst
 Name[tg]=Барномаи ҷустуҷӯии Ecosia
 Name[th]=บริการค้นหา Ecosia
@@ -67,6 +68,7 @@ Query[nds]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[nl]=http://www.ethicle.com/search.php?q=\\{@}
 Query[pt]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[pt_BR]=http://ecosia.org/search.php?q=\\{@}&meta=normal
+Query[ro]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[ru]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[sk]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[sv]=http://ecosia.org/search.php?q=\\{@}&meta=normal

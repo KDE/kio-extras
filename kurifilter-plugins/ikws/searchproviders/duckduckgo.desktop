@@ -27,6 +27,7 @@ Name[nds]=Duck Duck Go
 Name[nl]=Duck Duck Go
 Name[pt]=Duck Duck Go
 Name[pt_BR]=Duck Duck Go
+Name[ro]=Duck Duck Go
 Name[sv]=Duck Duck Go
 Name[th]=Duck Duck Go
 Name[uk]=Duck Duck Go
@@ -61,6 +62,7 @@ Query[nds]=http://duckduckgo.com/?q=\\{@}&v=
 Query[nl]=http://duckduckgo.com/?q=\\{@}&v=
 Query[pt]=http://duckduckgo.com/?q=\\{@}&v=
 Query[pt_BR]=http://duckduckgo.com/?q=\\{@}&v=
+Query[ro]=http://duckduckgo.com/?q=\\{@}&v=
 Query[ru]=http://duckduckgo.com/?q=\\{@}&v=
 Query[sv]=http://duckduckgo.com/?q=\\{@}&v=
 Query[th]=http://duckduckgo.com/?q=\\{@}&v=

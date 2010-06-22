@@ -31,6 +31,7 @@ Name[nl]=Wikia
 Name[pa]=ਵਿਕਿਆ
 Name[pt]=Wikia
 Name[pt_BR]=Wikia
+Name[ro]=Wikia
 Name[ru]=Wikia
 Name[sv]=Wikia
 Name[th]=Wikia
@@ -67,6 +68,7 @@ Query[nl]=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=S
 Query[pa]=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Search
 Query[pt]=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Search
 Query[pt_BR]=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Search
+Query[ro]=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Search
 Query[ru]=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Search
 Query[sv]=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Search
 Query[th]=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Search

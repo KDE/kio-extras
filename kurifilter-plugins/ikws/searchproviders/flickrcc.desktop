@@ -28,6 +28,7 @@ Name[nds]=Flickr Creative Commons
 Name[nl]=Flickr Creative Commons
 Name[pt]=Flickr Creative Commons
 Name[pt_BR]=Flickr Creative Commons
+Name[ro]=Flickr Creative Commons
 Name[sv]=Flickr Creative Commons
 Name[uk]=Flickr Creative Commons
 Name[x-test]=xxFlickr Creative Commonsxx
@@ -61,6 +62,7 @@ Query[nds]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
 Query[nl]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
 Query[pt]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
 Query[pt_BR]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
+Query[ro]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
 Query[ru]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
 Query[sv]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
 Query[th]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1

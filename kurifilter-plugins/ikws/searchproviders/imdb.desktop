@@ -120,6 +120,7 @@ Query[nds]=http://imdb.com/find?s=all&q=\\{@}
 Query[nl]=http://imdb.com/find?s=all&q=\\{@}
 Query[pt]=http://imdb.com/find?s=all&q=\\{@}
 Query[pt_BR]=http://imdb.com/find?s=all&q=\\{@}
+Query[ro]=http://imdb.com/find?s=all&q=\\{@}
 Query[ru]=http://imdb.com/find?s=all&q=\\{@}
 Query[sk]=http://imdb.com/find?s=all&q=\\{@}
 Query[sl]=http://imdb.com/find?s=all&q=\\{@}

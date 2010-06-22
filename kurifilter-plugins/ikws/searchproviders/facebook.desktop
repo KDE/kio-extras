@@ -29,6 +29,7 @@ Name[nds]=Facebook
 Name[nl]=Facebook
 Name[pt]=Facebook
 Name[pt_BR]=Facebook
+Name[ro]=Facebook
 Name[ru]=Facebook
 Name[sv]=Facebook
 Name[th]=เฟซบุ้ค
@@ -64,6 +65,7 @@ Query[nds]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[nl]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[pt]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[pt_BR]=http://www.facebook.com/search/?q=\\{@}&init=quick
+Query[ro]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[ru]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[sv]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[th]=http://www.facebook.com/search/?q=\\{@}&init=quick

@@ -25,6 +25,7 @@ Name[nds]=Duck Duck Go - Informatschonen
 Name[nl]=Duck Duck Go Info
 Name[pt]=Informação do Duck Duck Go
 Name[pt_BR]=Informações do Duck Duck Go
+Name[ro]=Informații Duck Duck Go
 Name[sv]=Duck Duck Go information
 Name[th]=ข้อมูลของ Duck Duck Go
 Name[uk]=Duck Duck Go Info
@@ -59,6 +60,7 @@ Query[nds]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[nl]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[pt]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[pt_BR]=http://duckduckgo.com/?q=\\{@}&v=r
+Query[ro]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[ru]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[sv]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[th]=http://duckduckgo.com/?q=\\{@}&v=r

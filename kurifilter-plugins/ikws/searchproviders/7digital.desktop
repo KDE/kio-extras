@@ -29,6 +29,7 @@ Name[nds]=7Digital
 Name[nl]=7Digital
 Name[pt]=7Digital
 Name[pt_BR]=7Digital
+Name[ro]=7Digital
 Name[ru]=7Digital
 Name[sv]=7Digital
 Name[uk]=7Digital
@@ -63,6 +64,7 @@ Query[nds]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=S
 Query[nl]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[pt]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[pt_BR]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
+Query[ro]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[ru]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[sv]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[th]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search

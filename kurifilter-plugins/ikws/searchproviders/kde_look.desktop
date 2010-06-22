@@ -28,6 +28,7 @@ Name[nds]=KDE-Look
 Name[nl]=KDE Look
 Name[pt]=KDE Look
 Name[pt_BR]=KDE Look
+Name[ro]=KDE Look
 Name[sv]=KDE Look
 Name[th]=KDE Look
 Name[uk]=KDE Look
@@ -62,6 +63,7 @@ Query[nds]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[nl]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[pt]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[pt_BR]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
+Query[ro]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[ru]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[sv]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[th]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}

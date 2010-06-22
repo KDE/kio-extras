@@ -29,6 +29,7 @@ Name[nl]=Openen
 Name[pa]=ਖੋਲ੍ਹੋ
 Name[pt]=Open
 Name[pt_BR]=Open
+Name[ro]=Open
 Name[sv]=Öppet skrivbord
 Name[th]=Open
 Name[uk]=Open
@@ -64,6 +65,7 @@ Query[nl]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[pa]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[pt]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[pt_BR]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
+Query[ro]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[ru]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[sv]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[th]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}

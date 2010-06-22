@@ -29,6 +29,7 @@ Name[nds]=Urban-Wöörbook
 Name[nl]=Urban woordenboek
 Name[pt]=Urban Dictionary
 Name[pt_BR]=Urban Dictionary
+Name[ro]=Dicționar urban
 Name[ru]=Urban Dictionary
 Name[sv]=Slangordlista
 Name[th]=พจนานุกรม Urban
@@ -65,6 +66,7 @@ Query[nl]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[pa]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[pt]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[pt_BR]=http://www.urbandictionary.com/define.php?term=\\{@}
+Query[ro]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[ru]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[sv]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[th]=http://www.urbandictionary.com/define.php?term=\\{@}

@@ -30,6 +30,7 @@ Name[nds]=Gitorious
 Name[nl]=Gitorious
 Name[pt]=Gitorious
 Name[pt_BR]=Gitorious
+Name[ro]=Gitorious
 Name[ru]=Gitorious
 Name[sv]=Gitorious
 Name[th]=Gitorious
@@ -65,6 +66,7 @@ Query[nds]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[nl]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[pt]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[pt_BR]=http://gitorious.org/search?q=\\{@}&commit=Search
+Query[ro]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[ru]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[sv]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[th]=http://gitorious.org/search?q=\\{@}&commit=Search
