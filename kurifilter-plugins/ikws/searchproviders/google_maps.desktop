@@ -13,6 +13,7 @@ Name[en_GB]=Google Maps
 Name[es]=Google Maps
 Name[et]=Google Maps
 Name[fr]=Google Maps
+Name[gu]=Google નક્ષાઓ
 Name[he]=גוגל מפות
 Name[hr]=Google Maps
 Name[ia]=Google Maps : Mappas de Google
@@ -54,6 +55,7 @@ Query[en_GB]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[es]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[et]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[fr]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
+Query[gu]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[he]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[hr]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[ia]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr

@@ -52,6 +52,7 @@ Query[en_GB]=http://www.flickr.com/search/?q=\\{@}
 Query[es]=http://www.flickr.com/search/?q=\\{@}
 Query[et]=http://www.flickr.com/search/?q=\\{@}
 Query[fr]=http://www.flickr.com/search/?q=\\{@}
+Query[gu]=http://www.flickr.com/search/?q=\\{@}
 Query[hr]=http://www.flickr.com/search/?q=\\{@}
 Query[ia]=http://www.flickr.com/search?q=\\{@}
 Query[id]=http://www.flickr.com/search/?q=\\{@}
