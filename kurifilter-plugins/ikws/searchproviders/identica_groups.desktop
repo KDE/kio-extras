@@ -64,6 +64,7 @@ Query[lt]=http://identi.ca/search/group?q=\\{@}
 Query[nb]=http://identi.ca/search/group?q=\\{@}
 Query[nds]=http://identi.ca/search/group?q=\\{@}
 Query[nl]=http://identi.ca/search/group?q=\\{@}
+Query[pa]=http://identi.ca/search/group?q=\\{@}
 Query[pt]=http://identi.ca/search/group?q=\\{@}
 Query[pt_BR]=http://identi.ca/search/group?q=\\{@}
 Query[ro]=http://identi.ca/search/group?q=\\{@}

@@ -61,6 +61,7 @@ Query[lt]=http://identi.ca/search/notice?q=\\{@}
 Query[nb]=http://identi.ca/search/notice?q=\\{@}
 Query[nds]=http://identi.ca/search/notice?q=\\{@}
 Query[nl]=http://identi.ca/search/notice?q=\\{@}
+Query[pa]=http://identi.ca/search/notice?q=\\{@}
 Query[pt]=http://identi.ca/search/notice?q=\\{@}
 Query[pt_BR]=http://identi.ca/search/notice?q=\\{@}
 Query[ro]=http://identi.ca/search/notice?q=\\{@}

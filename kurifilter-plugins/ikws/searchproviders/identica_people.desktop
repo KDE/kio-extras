@@ -62,6 +62,7 @@ Query[lt]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[nb]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[nds]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[nl]=http://identi.ca/search/people?q=\\{@}&search=Search
+Query[pa]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[pt]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[pt_BR]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[ro]=http://identi.ca/search/people?q=\\{@}&search=Search

@@ -66,6 +66,7 @@ Query[lt]=http://www.flickr.com/search/?q=\\{@}
 Query[nb]=http://www.flickr.com/search/?q=\\{@}
 Query[nds]=http://www.flickr.com/search/?q=\\{@}
 Query[nl]=http://www.flickr.com/search/?q=\\{@}
+Query[pa]=http://www.flickr.com/search/?q=\\{@}
 Query[pt]=http://www.flickr.com/search/?q=\\{@}
 Query[pt_BR]=http://www.flickr.com/search/?q=\\{@}
 Query[ro]=http://www.flickr.com/search/?q=\\{@}

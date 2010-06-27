@@ -60,6 +60,7 @@ Query[lt]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[nb]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[nds]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[nl]=http://duckduckgo.com/?q=\\{@}&v=s
+Query[pa]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[pt]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[pt_BR]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[ro]=http://duckduckgo.com/?q=\\{@}&v=s
