@@ -25,6 +25,7 @@ Name[kk]=Facebook
 Name[km]=Facebook
 Name[kn]=ಫೇಸ್ ಬುಕ್
 Name[lt]=Facebook
+Name[ml]=ഫേസ്ബുക്ക്
 Name[nb]=Facebook
 Name[nds]=Facebook
 Name[nl]=Facebook
@@ -63,6 +64,7 @@ Query[kk]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[km]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[kn]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
 Query[lt]=http://www.facebook.com/search/?q=\\{@}&init=quick
+Query[ml]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[nb]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[nds]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[nl]=http://www.facebook.com/search/?q=\\{@}&init=quick
