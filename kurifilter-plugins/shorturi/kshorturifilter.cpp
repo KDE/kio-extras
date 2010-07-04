@@ -167,8 +167,10 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
   const bool isMalformed = !url.isValid();
   QString protocol = url.protocol();
 
-  // Fix misparsing of "foo:80", QUrl thinks "foo" is the protocol and "80" is the path
-  if (!protocol.isEmpty() && url.host().isEmpty() && !url.path().isEmpty() && cmd.contains(':')) {
+  // Fix misparsing of "foo:80", QUrl thinks "foo" is the protocol and "80" is the path.
+  // However, be careful not to do that for valid hostless URLs, e.g. file:///foo!
+  if (!protocol.isEmpty() && url.host().isEmpty() && !url.path().isEmpty()
+      && cmd.contains(':') && !KProtocolInfo::protocols().contains(protocol)) {
     protocol.clear();
   }
 
