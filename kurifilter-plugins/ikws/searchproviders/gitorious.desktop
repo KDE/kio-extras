@@ -34,6 +34,11 @@ Name[pt]=Gitorious
 Name[pt_BR]=Gitorious
 Name[ro]=Gitorious
 Name[ru]=Gitorious
+Name[si]=Gitorious
+Name[sr]=Гиторијус
+Name[sr@ijekavian]=Гиторијус
+Name[sr@ijekavianlatin]=Gitorious
+Name[sr@latin]=Gitorious
 Name[sv]=Gitorious
 Name[th]=Gitorious
 Name[uk]=Gitorious
@@ -72,6 +77,10 @@ Query[pt]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[pt_BR]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[ro]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[ru]=http://gitorious.org/search?q=\\{@}&commit=Search
+Query[sr]=http://gitorious.org/search?q=\\{@}&commit=Search
+Query[sr@ijekavian]=http://gitorious.org/search?q=\\{@}&commit=Search
+Query[sr@ijekavianlatin]=http://gitorious.org/search?q=\\{@}&commit=Search
+Query[sr@latin]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[sv]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[th]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[uk]=http://gitorious.org/search?q=\\{@}&commit=Search

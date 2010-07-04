@@ -31,6 +31,11 @@ Name[pa]=KDE ਟੈਕਬੇਸ
 Name[pt]=KDE TechBase
 Name[pt_BR]=KDE TechBase
 Name[ro]=KDE TechBase
+Name[si]=KDE තාක්ෂණික පාදම
+Name[sr]=Техбаза КДЕ‑а
+Name[sr@ijekavian]=Техбаза КДЕ‑а
+Name[sr@ijekavianlatin]=Techbase KDE‑a
+Name[sr@latin]=Techbase KDE‑a
 Name[sv]=KDE teknikbas
 Name[th]=KDE TechBase
 Name[uk]=TechBase KDE
@@ -70,6 +75,10 @@ Query[pt]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[pt_BR]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[ro]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[ru]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
+Query[sr]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
+Query[sr@ijekavian]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
+Query[sr@ijekavianlatin]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
+Query[sr@latin]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[sv]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[th]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[uk]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search

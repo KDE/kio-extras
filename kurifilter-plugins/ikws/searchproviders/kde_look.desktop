@@ -31,6 +31,11 @@ Name[pa]=KDE ਦਿੱਖ
 Name[pt]=KDE Look
 Name[pt_BR]=KDE Look
 Name[ro]=KDE Look
+Name[si]=KDE පෙනුම
+Name[sr]=КДЕ‑изглед
+Name[sr@ijekavian]=КДЕ‑изглед
+Name[sr@ijekavianlatin]=KDE‑izgled
+Name[sr@latin]=KDE‑izgled
 Name[sv]=KDE Look
 Name[th]=KDE Look
 Name[uk]=KDE Look
@@ -70,6 +75,10 @@ Query[pt]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[pt_BR]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[ro]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[ru]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
+Query[sr]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
+Query[sr@ijekavian]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
+Query[sr@ijekavianlatin]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
+Query[sr@latin]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[sv]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[th]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[uk]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}

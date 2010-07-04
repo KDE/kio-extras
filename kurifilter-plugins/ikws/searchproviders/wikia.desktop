@@ -34,6 +34,11 @@ Name[pt]=Wikia
 Name[pt_BR]=Wikia
 Name[ro]=Wikia
 Name[ru]=Wikia
+Name[si]=Wikia
+Name[sr]=Викија
+Name[sr@ijekavian]=Викија
+Name[sr@ijekavianlatin]=Wikia
+Name[sr@latin]=Wikia
 Name[sv]=Wikia
 Name[tg]=Wikia
 Name[th]=Wikia
@@ -74,6 +79,11 @@ Query[pt]=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=S
 Query[pt_BR]=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Search
 Query[ro]=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Search
 Query[ru]=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Search
+Query[si]=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Search
+Query[sr]=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Search
+Query[sr@ijekavian]=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Search
+Query[sr@ijekavianlatin]=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Search
+Query[sr@latin]=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Search
 Query[sv]=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Search
 Query[th]=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Search
 Query[uk]=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Search

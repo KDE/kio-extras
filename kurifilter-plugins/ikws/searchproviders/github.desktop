@@ -34,6 +34,11 @@ Name[pt]=GitHub
 Name[pt_BR]=GitHub
 Name[ro]=GitHub
 Name[ru]=GitHub
+Name[si]=GitHub
+Name[sr]=Гитхаб
+Name[sr@ijekavian]=Гитхаб
+Name[sr@ijekavianlatin]=GitHub
+Name[sr@latin]=GitHub
 Name[sv]=GitHub
 Name[tg]=GitHub
 Name[th]=GitHub
@@ -74,6 +79,10 @@ Query[pt]=http://github.com/search?q=\\{@}&x=0&y=0
 Query[pt_BR]=http://github.com/search?q=\\{@}&x=0&y=0
 Query[ro]=http://github.com/search?q=\\{@}&x=0&y=0
 Query[ru]=http://github.com/search?q=\\{@}&x=0&y=0
+Query[sr]=http://github.com/search?q=\\{@}&x=0&y=0
+Query[sr@ijekavian]=http://github.com/search?q=\\{@}&x=0&y=0
+Query[sr@ijekavianlatin]=http://github.com/search?q=\\{@}&x=0&y=0
+Query[sr@latin]=http://github.com/search?q=\\{@}&x=0&y=0
 Query[sv]=http://github.com/search?q=\\{@}&x=0&y=0
 Query[th]=http://github.com/search?q=\\{@}&x=0&y=0
 Query[uk]=http://github.com/search?q=\\{@}&x=0&y=0

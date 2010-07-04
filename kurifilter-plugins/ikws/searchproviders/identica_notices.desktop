@@ -30,6 +30,11 @@ Name[nl]=Identi.ca Notities
 Name[pa]=Identi.ca ਨੋਟਿਸ
 Name[pt]=Avisos do Identi.ca
 Name[pt_BR]=Notícias do Identi.ca
+Name[si]=Identi.ca දැනුම්දීම්
+Name[sr]=Идентика-обавештења
+Name[sr@ijekavian]=Идентика-обавештења
+Name[sr@ijekavianlatin]=identi.ca‑obaveštenja
+Name[sr@latin]=identi.ca‑obaveštenja
 Name[sv]=Identi.ca anslag
 Name[uk]=Нотатки Identi.ca
 Name[x-test]=xxIdenti.ca Noticesxx
@@ -68,6 +73,10 @@ Query[pt]=http://identi.ca/search/notice?q=\\{@}
 Query[pt_BR]=http://identi.ca/search/notice?q=\\{@}
 Query[ro]=http://identi.ca/search/notice?q=\\{@}
 Query[ru]=http://identi.ca/search/notice?q=\\{@}
+Query[sr]=http://identi.ca/search/notice?q=\\{@}
+Query[sr@ijekavian]=http://identi.ca/search/notice?q=\\{@}
+Query[sr@ijekavianlatin]=http://identi.ca/search/notice?q=\\{@}
+Query[sr@latin]=http://identi.ca/search/notice?q=\\{@}
 Query[sv]=http://identi.ca/search/notice?q=\\{@}
 Query[th]=http://identi.ca/search/notice?q=\\{@}
 Query[uk]=http://identi.ca/search/notice?q=\\{@}

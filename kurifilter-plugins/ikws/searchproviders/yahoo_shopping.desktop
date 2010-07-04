@@ -34,6 +34,11 @@ Name[pt]=Compras do Yahoo
 Name[pt_BR]=Compras do Yahoo
 Name[ro]=Yahoo Cumpărături
 Name[ru]=Yahoo: Покупки
+Name[si]=Yahoo සාප්පු සවාරි
+Name[sr]=Јаху‑шопинг
+Name[sr@ijekavian]=Јаху‑шопинг
+Name[sr@ijekavianlatin]=Yahoo Shopping
+Name[sr@latin]=Yahoo Shopping
 Name[sv]=Yahoo shopping
 Name[uk]=Yahoo Shopping
 Name[x-test]=xxYahoo Shoppingxx
@@ -71,6 +76,11 @@ Query[pt]=http://shopping.yahoo.com/search;_ylt=A0SO8ZgG65ZLyX8AsLX7w8QF;_ylu=X3
 Query[pt_BR]=http://shopping.yahoo.com/search;_ylt=A0SO8ZgG65ZLyX8AsLX7w8QF;_ylu=X3oDMTBpcjIxMDllBHNlYwN0YWJzBHZ0aWQDVjEwOQ--?cop=mss&ei=UTF-8&p=\\{@}&fr2=tab-video&fr=yfp-t-701
 Query[ro]=http://shopping.yahoo.com/search;_ylt=A0SO8ZgG65ZLyX8AsLX7w8QF;_ylu=X3oDMTBpcjIxMDllBHNlYwN0YWJzBHZ0aWQDVjEwOQ--?cop=mss&ei=UTF-8&p=\\{@}&fr2=tab-video&fr=yfp-t-701
 Query[ru]=http://shopping.yahoo.com/search;_ylt=A0SO8ZgG65ZLyX8AsLX7w8QF;_ylu=X3oDMTBpcjIxMDllBHNlYwN0YWJzBHZ0aWQDVjEwOQ--?cop=mss&ei=UTF-8&p=\\{@}&fr2=tab-video&fr=yfp-t-701
+Query[si]=http://shopping.yahoo.com/search;_ylt=A0SO8ZgG65ZLyX8AsLX7w8QF;_ylu=X3oDMTBpcjIxMDllBHNlYwN0YWJzBHZ0aWQDVjEwOQ--?cop=mss&ei=UTF-8&p=\\{@}&fr2=tab-video&fr=yfp-t-701
+Query[sr]=http://shopping.yahoo.com/search;_ylt=A0SO8ZgG65ZLyX8AsLX7w8QF;_ylu=X3oDMTBpcjIxMDllBHNlYwN0YWJzBHZ0aWQDVjEwOQ--?cop=mss&ei=UTF-8&p=\\{@}&fr2=tab-video&fr=yfp-t-701
+Query[sr@ijekavian]=http://shopping.yahoo.com/search;_ylt=A0SO8ZgG65ZLyX8AsLX7w8QF;_ylu=X3oDMTBpcjIxMDllBHNlYwN0YWJzBHZ0aWQDVjEwOQ--?cop=mss&ei=UTF-8&p=\\{@}&fr2=tab-video&fr=yfp-t-701
+Query[sr@ijekavianlatin]=http://shopping.yahoo.com/search;_ylt=A0SO8ZgG65ZLyX8AsLX7w8QF;_ylu=X3oDMTBpcjIxMDllBHNlYwN0YWJzBHZ0aWQDVjEwOQ--?cop=mss&ei=UTF-8&p=\\{@}&fr2=tab-video&fr=yfp-t-701
+Query[sr@latin]=http://shopping.yahoo.com/search;_ylt=A0SO8ZgG65ZLyX8AsLX7w8QF;_ylu=X3oDMTBpcjIxMDllBHNlYwN0YWJzBHZ0aWQDVjEwOQ--?cop=mss&ei=UTF-8&p=\\{@}&fr2=tab-video&fr=yfp-t-701
 Query[sv]=http://shopping.yahoo.com/search;_ylt=A0SO8ZgG65ZLyX8AsLX7w8QF;_ylu=X3oDMTBpcjIxMDllBHNlYwN0YWJzBHZ0aWQDVjEwOQ--?cop=mss&ei=UTF-8&p=\\{@}&fr2=tab-video&fr=yfp-t-701
 Query[tg]=http://shopping.yahoo.com/search;_ylt=A0SO8ZgG65ZLyX8AsLX7w8QF;_ylu=X3oDMTBpcjIxMDllBHNlYwN0YWJzBHZ0aWQDVjEwOQ--?cop=mss&ei=UTF-8&p=\\{@}&fr2=tab-video&fr=yfp-t-701
 Query[th]=http://shopping.yahoo.com/search;_ylt=A0SO8ZgG65ZLyX8AsLX7w8QF;_ylu=X3oDMTBpcjIxMDllBHNlYwN0YWJzBHZ0aWQDVjEwOQ--?cop=mss&ei=UTF-8&p=\\{@}&fr2=tab-video&fr=yfp-t-701

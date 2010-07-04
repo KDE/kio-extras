@@ -31,6 +31,11 @@ Name[pa]=ਇਕੋਸੀਆ ਖੋਜ ਇੰਜਣ
 Name[pt]=Motor de busca Ecosia
 Name[pt_BR]=Mecanismo de busca Ecosia
 Name[ro]=Motor de căutare Ecosia
+Name[si]=Ecosia සෙවුම් එන්ජිම
+Name[sr]=Екозија
+Name[sr@ijekavian]=Екозија
+Name[sr@ijekavianlatin]=Ecosia
+Name[sr@latin]=Ecosia
 Name[sv]=Ecosia söktjänst
 Name[tg]=Барномаи ҷустуҷӯии Ecosia
 Name[th]=บริการค้นหา Ecosia
@@ -75,6 +80,10 @@ Query[pt_BR]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[ro]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[ru]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[sk]=http://ecosia.org/search.php?q=\\{@}&meta=normal
+Query[sr]=http://ecosia.org/search.php?q=\\{@}&meta=normal
+Query[sr@ijekavian]=http://ecosia.org/search.php?q=\\{@}&meta=normal
+Query[sr@ijekavianlatin]=http://ecosia.org/search.php?q=\\{@}&meta=normal
+Query[sr@latin]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[sv]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[tg]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[th]=http://ecosia.org/search.php?q=\\{@}&meta=normal

@@ -30,6 +30,11 @@ Name[pa]=KDE ਯੂਜ਼ਰਬੇਸ
 Name[pt]=KDE UserBase
 Name[pt_BR]=KDE UserBase
 Name[ro]=KDE UserBase
+Name[si]=KDE පරිශීලක පාදම
+Name[sr]=Корисничка база КДЕ‑а
+Name[sr@ijekavian]=Корисничка база КДЕ‑а
+Name[sr@ijekavianlatin]=Korisnička baza KDE‑a
+Name[sr@latin]=Korisnička baza KDE‑a
 Name[sv]=KDE:s användarbas
 Name[th]=KDE UserBase
 Name[uk]=UserBase KDE
@@ -69,6 +74,10 @@ Query[pt]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[pt_BR]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[ro]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[ru]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
+Query[sr]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
+Query[sr@ijekavian]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
+Query[sr@ijekavianlatin]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
+Query[sr@latin]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[sv]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[th]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[uk]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search

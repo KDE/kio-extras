@@ -32,6 +32,11 @@ Name[pt]=Yahoo Local
 Name[pt_BR]=Yahoo Local
 Name[ro]=Yahoo Local
 Name[ru]=Yahoo: Адреса
+Name[si]=පෙදෙසි Yahoo
+Name[sr]=Јаху‑локал
+Name[sr@ijekavian]=Јаху‑локал
+Name[sr@ijekavianlatin]=Yahoo Local
+Name[sr@latin]=Yahoo Local
 Name[sv]=Yahoo Local
 Name[uk]=Yahoo Local
 Name[x-test]=xxYahoo Localxx
@@ -69,6 +74,11 @@ Query[pt]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab
 Query[pt_BR]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img
 Query[ro]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img
 Query[ru]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img
+Query[si]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img
+Query[sr]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img
+Query[sr@ijekavian]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img
+Query[sr@ijekavianlatin]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img
+Query[sr@latin]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img
 Query[sv]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img
 Query[tg]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img
 Query[th]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img

@@ -35,6 +35,11 @@ Name[pt]=Yahoo
 Name[pt_BR]=Yahoo
 Name[ro]=Yahoo
 Name[ru]=Yahoo
+Name[si]=Yahoo
+Name[sr]=Јаху
+Name[sr@ijekavian]=Јаху
+Name[sr@ijekavianlatin]=Yahoo
+Name[sr@latin]=Yahoo
 Name[sv]=Yahoo
 Name[tg]=Yahoo
 Name[uk]=Yahoo
@@ -72,6 +77,11 @@ Query[pt]=http://search.yahoo.com/search?toggle=1&cop=mss&ei=UTF-8&fr=yfp-t-701&
 Query[pt_BR]=http://search.yahoo.com/search?toggle=1&cop=mss&ei=UTF-8&fr=yfp-t-701&p=\\{@}&x=0&y=0&=Web+Search
 Query[ro]=http://search.yahoo.com/search?toggle=1&cop=mss&ei=UTF-8&fr=yfp-t-701&p=\\{@}&x=0&y=0&=Web+Search
 Query[ru]=http://search.yahoo.com/search?toggle=1&cop=mss&ei=UTF-8&fr=yfp-t-701&p=\\{@}&x=0&y=0&=Web+Search
+Query[si]=http://search.yahoo.com/search?toggle=1&cop=mss&ei=UTF-8&fr=yfp-t-701&p=\\{@}&x=0&y=0&=Web+Search
+Query[sr]=http://search.yahoo.com/search?toggle=1&cop=mss&ei=UTF-8&fr=yfp-t-701&p=\\{@}&x=0&y=0&=Web+Search
+Query[sr@ijekavian]=http://search.yahoo.com/search?toggle=1&cop=mss&ei=UTF-8&fr=yfp-t-701&p=\\{@}&x=0&y=0&=Web+Search
+Query[sr@ijekavianlatin]=http://search.yahoo.com/search?toggle=1&cop=mss&ei=UTF-8&fr=yfp-t-701&p=\\{@}&x=0&y=0&=Web+Search
+Query[sr@latin]=http://search.yahoo.com/search?toggle=1&cop=mss&ei=UTF-8&fr=yfp-t-701&p=\\{@}&x=0&y=0&=Web+Search
 Query[sv]=http://search.yahoo.com/search?toggle=1&cop=mss&ei=UTF-8&fr=yfp-t-701&p=\\{@}&x=0&y=0&=Web+Search
 Query[th]=http://search.yahoo.com/search?toggle=1&cop=mss&ei=UTF-8&fr=yfp-t-701&p=\\{@}&x=0&y=0&=Web+Search
 Query[uk]=http://search.yahoo.com/search?toggle=1&cop=mss&ei=UTF-8&fr=yfp-t-701&p=\\{@}&x=0&y=0&=Web+Search

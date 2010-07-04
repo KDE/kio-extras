@@ -33,6 +33,11 @@ Name[pt]=Google Maps
 Name[pt_BR]=Google Maps
 Name[ro]=Google Hărți
 Name[ru]=Карты Google
+Name[si]=ගූගල් සිතියම්
+Name[sr]=Гугл‑карте
+Name[sr@ijekavian]=Гугл‑карте
+Name[sr@ijekavianlatin]=Google-karte
+Name[sr@latin]=Google-karte
 Name[sv]=Google kartor
 Name[tg]=Харитаҳои Google
 Name[th]=ดูแผนที่ต่าง ๆ ด้วยกูเกิล
@@ -75,7 +80,12 @@ Query[pt]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[pt_BR]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[ro]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[ru]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
+Query[si]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[sk]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
+Query[sr]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
+Query[sr@ijekavian]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
+Query[sr@ijekavianlatin]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
+Query[sr@latin]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[sv]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[tg]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[th]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr

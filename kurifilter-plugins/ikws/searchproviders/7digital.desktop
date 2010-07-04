@@ -33,6 +33,11 @@ Name[pt]=7Digital
 Name[pt_BR]=7Digital
 Name[ro]=7Digital
 Name[ru]=7Digital
+Name[si]=අංකිත7
+Name[sr]=7‑диџитал
+Name[sr@ijekavian]=7‑диџитал
+Name[sr@ijekavianlatin]=7Digitalo
+Name[sr@latin]=7Digitalo
 Name[sv]=7Digital
 Name[tg]=7Digital
 Name[uk]=7Digital
@@ -71,6 +76,10 @@ Query[pt]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Se
 Query[pt_BR]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[ro]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[ru]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
+Query[sr]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
+Query[sr@ijekavian]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
+Query[sr@ijekavianlatin]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
+Query[sr@latin]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[sv]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[th]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[uk]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search

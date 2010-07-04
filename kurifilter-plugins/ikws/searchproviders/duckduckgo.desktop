@@ -29,6 +29,11 @@ Name[nl]=Duck Duck Go
 Name[pt]=Duck Duck Go
 Name[pt_BR]=Duck Duck Go
 Name[ro]=Duck Duck Go
+Name[si]=Duck Duck Go
+Name[sr]=Дак дак го
+Name[sr@ijekavian]=Дак дак го
+Name[sr@ijekavianlatin]=Duck Duck Go
+Name[sr@latin]=Duck Duck Go
 Name[sv]=Duck Duck Go
 Name[th]=Duck Duck Go
 Name[uk]=Duck Duck Go
@@ -68,6 +73,10 @@ Query[pt]=http://duckduckgo.com/?q=\\{@}&v=
 Query[pt_BR]=http://duckduckgo.com/?q=\\{@}&v=
 Query[ro]=http://duckduckgo.com/?q=\\{@}&v=
 Query[ru]=http://duckduckgo.com/?q=\\{@}&v=
+Query[sr]=http://duckduckgo.com/?q=\\{@}&v=
+Query[sr@ijekavian]=http://duckduckgo.com/?q=\\{@}&v=
+Query[sr@ijekavianlatin]=http://duckduckgo.com/?q=\\{@}&v=
+Query[sr@latin]=http://duckduckgo.com/?q=\\{@}&v=
 Query[sv]=http://duckduckgo.com/?q=\\{@}&v=
 Query[th]=http://duckduckgo.com/?q=\\{@}&v=
 Query[uk]=http://duckduckgo.com/?q=\\{@}&v=

@@ -32,6 +32,11 @@ Name[pt]=YouTube
 Name[pt_BR]=YouTube
 Name[ro]=YouTube
 Name[ru]=YouTube
+Name[si]=YouTube
+Name[sr]=Јутјуб
+Name[sr@ijekavian]=Јутјуб
+Name[sr@ijekavianlatin]=YouTube
+Name[sr@latin]=YouTube
 Name[sv]=YouTube
 Name[tg]=YouTube
 Name[th]=บริการวีดิโอผ่าน YouTube
@@ -72,7 +77,12 @@ Query[pt]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[pt_BR]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[ro]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[ru]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
+Query[si]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[sk]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
+Query[sr]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
+Query[sr@ijekavian]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
+Query[sr@ijekavianlatin]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
+Query[sr@latin]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[sv]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[tg]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[th]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f

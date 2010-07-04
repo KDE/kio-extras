@@ -28,6 +28,11 @@ Name[nl]=Duck Duck Go Shopping
 Name[pt]=Loja do Duck Duck Go
 Name[pt_BR]=Loja do Duck Duck Go
 Name[ro]=Cumpărături Duck Duck Go
+Name[si]=Duck Duck Go සාප්පු සවාරි
+Name[sr]=Дак дак го (куповина)
+Name[sr@ijekavian]=Дак дак го (куповина)
+Name[sr@ijekavianlatin]=Duck Duck Go (kupovina)
+Name[sr@latin]=Duck Duck Go (kupovina)
 Name[sv]=Duck Duck Go shopping
 Name[th]=ช้อปปิ้งของ Duck Duck Go
 Name[uk]=Duck Duck Go Shopping
@@ -67,6 +72,10 @@ Query[pt]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[pt_BR]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[ro]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[ru]=http://duckduckgo.com/?q=\\{@}&v=s
+Query[sr]=http://duckduckgo.com/?q=\\{@}&v=s
+Query[sr@ijekavian]=http://duckduckgo.com/?q=\\{@}&v=s
+Query[sr@ijekavianlatin]=http://duckduckgo.com/?q=\\{@}&v=s
+Query[sr@latin]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[sv]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[th]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[uk]=http://duckduckgo.com/?q=\\{@}&v=s

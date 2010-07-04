@@ -34,6 +34,11 @@ Name[pt]=Facebook
 Name[pt_BR]=Facebook
 Name[ro]=Facebook
 Name[ru]=Facebook
+Name[si]=Facebook
+Name[sr]=Фејсбук
+Name[sr@ijekavian]=Фејсбук
+Name[sr@ijekavianlatin]=Facebook
+Name[sr@latin]=Facebook
 Name[sv]=Facebook
 Name[th]=เฟซบุ้ค
 Name[uk]=Facebook
@@ -73,6 +78,10 @@ Query[pt]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[pt_BR]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[ro]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[ru]=http://www.facebook.com/search/?q=\\{@}&init=quick
+Query[sr]=http://www.facebook.com/search/?q=\\{@}&init=quick
+Query[sr@ijekavian]=http://www.facebook.com/search/?q=\\{@}&init=quick
+Query[sr@ijekavianlatin]=http://www.facebook.com/search/?q=\\{@}&init=quick
+Query[sr@latin]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[sv]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[th]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[uk]=http://www.facebook.com/search/?q=\\{@}&init=quick

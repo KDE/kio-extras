@@ -33,6 +33,11 @@ Name[pt]=MP3 da Amazon
 Name[pt_BR]=MP3 da Amazon
 Name[ro]=Amazon MP3
 Name[ru]=Amazon MP3
+Name[si]=Amazon MP3
+Name[sr]=Амазон МП3
+Name[sr@ijekavian]=Амазон МП3
+Name[sr@ijekavianlatin]=Amazon MP3
+Name[sr@latin]=Amazon MP3
 Name[sv]=Amazon MP3
 Name[tg]=Amazon MP3
 Name[th]=อเมซอน MP3
@@ -72,6 +77,11 @@ Query[pt]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=digital-music&
 Query[pt_BR]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=digital-music&field-keywords=\\{@}&x=0&y=0
 Query[ro]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=digital-music&field-keywords=\\{@}&x=0&y=0
 Query[ru]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=digital-music&field-keywords=\\{@}&x=0&y=0
+Query[si]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=digital-music&field-keywords=\\{@}&x=0&y=0
+Query[sr]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=digital-music&field-keywords=\\{@}&x=0&y=0
+Query[sr@ijekavian]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=digital-music&field-keywords=\\{@}&x=0&y=0
+Query[sr@ijekavianlatin]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=digital-music&field-keywords=\\{@}&x=0&y=0
+Query[sr@latin]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=digital-music&field-keywords=\\{@}&x=0&y=0
 Query[sv]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=digital-music&field-keywords=\\{@}&x=0&y=0
 Query[th]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=digital-music&field-keywords=\\{@}&x=0&y=0
 Query[uk]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=digital-music&field-keywords=\\{@}&x=0&y=0

@@ -30,6 +30,11 @@ Name[nl]=Flickr Creative Commons
 Name[pt]=Flickr Creative Commons
 Name[pt_BR]=Flickr Creative Commons
 Name[ro]=Flickr Creative Commons
+Name[si]=Flickr Creative Commons
+Name[sr]=Фликр (Криејтив комонс)
+Name[sr@ijekavian]=Фликр (Криејтив комонс)
+Name[sr@ijekavianlatin]=Flickr (Creative Commons)
+Name[sr@latin]=Flickr (Creative Commons)
 Name[sv]=Flickr Creative Commons
 Name[uk]=Flickr Creative Commons
 Name[x-test]=xxFlickr Creative Commonsxx
@@ -68,6 +73,10 @@ Query[pt]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
 Query[pt_BR]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
 Query[ro]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
 Query[ru]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
+Query[sr]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
+Query[sr@ijekavian]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
+Query[sr@ijekavianlatin]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
+Query[sr@latin]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
 Query[sv]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
 Query[th]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
 Query[uk]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1

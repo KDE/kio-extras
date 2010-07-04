@@ -33,6 +33,11 @@ Name[pt]=Urban Dictionary
 Name[pt_BR]=Urban Dictionary
 Name[ro]=Dicționar urban
 Name[ru]=Urban Dictionary
+Name[si]=නාගරික ශබ්දකෝෂය
+Name[sr]=Урбани речник
+Name[sr@ijekavian]=Урбани речник
+Name[sr@ijekavianlatin]=Urbani rečnik
+Name[sr@latin]=Urbani rečnik
 Name[sv]=Slangordlista
 Name[th]=พจนานุกรม Urban
 Name[uk]=Urban Dictionary
@@ -72,6 +77,10 @@ Query[pt]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[pt_BR]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[ro]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[ru]=http://www.urbandictionary.com/define.php?term=\\{@}
+Query[sr]=http://www.urbandictionary.com/define.php?term=\\{@}
+Query[sr@ijekavian]=http://www.urbandictionary.com/define.php?term=\\{@}
+Query[sr@ijekavianlatin]=http://www.urbandictionary.com/define.php?term=\\{@}
+Query[sr@latin]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[sv]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[th]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[uk]=http://www.urbandictionary.com/define.php?term=\\{@}

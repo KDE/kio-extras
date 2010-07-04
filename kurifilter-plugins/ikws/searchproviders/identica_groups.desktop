@@ -32,6 +32,11 @@ Name[pa]=Identi.ca ਗਰੁੱਪ
 Name[pt]=Grupos do Identi.ca
 Name[pt_BR]=Grupos do Identi.ca
 Name[ro]=Identi.ca Grupuri
+Name[si]=Identi.ca සමූහ
+Name[sr]=Идентика-групе
+Name[sr@ijekavian]=Идентика-групе
+Name[sr@ijekavianlatin]=identi.ca‑grupe
+Name[sr@latin]=identi.ca‑grupe
 Name[sv]=Identi.ca grupper
 Name[th]=กลุ่มต่าง ๆ ของ Identi.ca
 Name[uk]=Групи Identi.ca
@@ -71,6 +76,10 @@ Query[pt]=http://identi.ca/search/group?q=\\{@}
 Query[pt_BR]=http://identi.ca/search/group?q=\\{@}
 Query[ro]=http://identi.ca/search/group?q=\\{@}
 Query[ru]=http://identi.ca/search/group?q=\\{@}
+Query[sr]=http://identi.ca/search/group?q=\\{@}
+Query[sr@ijekavian]=http://identi.ca/search/group?q=\\{@}
+Query[sr@ijekavianlatin]=http://identi.ca/search/group?q=\\{@}
+Query[sr@latin]=http://identi.ca/search/group?q=\\{@}
 Query[sv]=http://identi.ca/search/group?q=\\{@}
 Query[th]=http://identi.ca/search/group?q=\\{@}
 Query[uk]=http://identi.ca/search/group?q=\\{@}

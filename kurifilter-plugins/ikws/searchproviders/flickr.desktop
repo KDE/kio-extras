@@ -34,6 +34,11 @@ Name[pt]=Flickr
 Name[pt_BR]=Flickr
 Name[ro]=Flickr
 Name[ru]=Flickr
+Name[si]=Flickr
+Name[sr]=Фликр
+Name[sr@ijekavian]=Фликр
+Name[sr@ijekavianlatin]=Flickr
+Name[sr@latin]=Flickr
 Name[sv]=Flickr
 Name[th]=Flickr
 Name[uk]=Flickr
@@ -73,6 +78,10 @@ Query[pt]=http://www.flickr.com/search/?q=\\{@}
 Query[pt_BR]=http://www.flickr.com/search/?q=\\{@}
 Query[ro]=http://www.flickr.com/search/?q=\\{@}
 Query[ru]=http://www.flickr.com/search/?q=\\{@}
+Query[sr]=http://www.flickr.com/search/?q=\\{@}
+Query[sr@ijekavian]=http://www.flickr.com/search/?q=\\{@}
+Query[sr@ijekavianlatin]=http://www.flickr.com/search/?q=\\{@}
+Query[sr@latin]=http://www.flickr.com/search/?q=\\{@}
 Query[sv]=http://www.flickr.com/search/?q=\\{@}
 Query[th]=http://www.flickr.com/search/?q=\\{@}
 Query[uk]=http://www.flickr.com/search/?q=\\{@}
