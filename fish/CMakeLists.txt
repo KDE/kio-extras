@@ -5,6 +5,7 @@ check_include_files(pty.h HAVE_PTY_H)
 check_include_files("sys/types.h;libutil.h" HAVE_LIBUTIL_H)
 check_function_exists(getpt       HAVE_GETPT)
 check_function_exists(grantpt     HAVE_GRANTPT)
+include(CheckLibraryExists)
 check_library_exists(util  openpty "" HAVE_OPENPTY)
 check_library_exists(util  isastream "" HAVE_ISASTREAM)
 
