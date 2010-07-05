@@ -30,7 +30,13 @@ public:
 
 private slots:
     void init();
-    void tests();
+    void noFiltering();
+    void localFiles();
+    void shortUris();
+    void refOrQuery();
+    void executables();
+    void environmentVariables();
+    void internetKeywords();
 
 private:
     QStringList minicliFilters;

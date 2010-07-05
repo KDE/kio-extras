@@ -60,7 +60,8 @@ static void filter( const char* u, const char * expectedResult = 0, int expected
         QString cmd;
         KUrl uri = filterData->uri();
 
-        if ( uri.isLocalFile() && !uri.hasRef() && uri.query().isEmpty() )
+        if ( uri.isLocalFile() && !uri.hasRef() && uri.query().isEmpty() &&
+             (filterData->uriType() != KUriFilterData::NetProtocol))
             cmd = uri.toLocalFile();
         else
             cmd = uri.url();
@@ -69,6 +70,9 @@ static void filter( const char* u, const char * expectedResult = 0, int expected
         {
             case KUriFilterData::LocalFile:
             case KUriFilterData::LocalDir:
+                kDebug() << "*** Result: Local Resource =>  '"
+                          << filterData->uri().toLocalFile() << "'" << endl;
+                break;
             case KUriFilterData::Help:
                 kDebug() << "*** Result: Local Resource =>  '"
                           << filterData->uri().url() << "'" << endl;
@@ -179,11 +183,32 @@ void KUriFilterTest::init()
     KStandardDirs::makeDir( kdehome+"/urifilter" );
 }
 
-void KUriFilterTest::tests()
+void KUriFilterTest::noFiltering()
 {
     // URI that should require no filtering
     filter( "http://www.kde.org", "http://www.kde.org", KUriFilterData::NetProtocol );
     filter( "http://www.kde.org/developer//index.html", "http://www.kde.org/developer//index.html", KUriFilterData::NetProtocol );
+    filter( "file:///", "file:///", KUriFilterData::NetProtocol );
+    filter( "file:///etc", "file:///etc", KUriFilterData::NetProtocol );
+    filter( "file:///etc/passwd", "file:///etc/passwd", KUriFilterData::NetProtocol );
+}
+
+void KUriFilterTest::localFiles()
+{
+    filter( "/", "/", KUriFilterData::LocalDir );
+    filter( "/", "/", KUriFilterData::LocalDir, QStringList( "kshorturifilter" ) );
+    filter( "~/.bashrc", QDir::homePath().toLocal8Bit()+"/.bashrc", KUriFilterData::LocalFile, QStringList( "kshorturifilter" ) );
+    filter( "~", QDir::homePath().toLocal8Bit(), KUriFilterData::LocalDir, QStringList( "kshorturifilter" ), "/tmp" );
+    filter( "~foobar", 0, KUriFilterData::Error, QStringList( "kshorturifilter" ) );
+
+    // Absolute Path tests for kshorturifilter
+    filter( "./", kdehome+"/share", KUriFilterData::LocalDir, QStringList( "kshorturifilter" ), kdehome+"/share/" ); // cleanPath removes the trailing slash
+    filter( "../", kdehome, KUriFilterData::LocalDir, QStringList( "kshorturifilter" ), kdehome+"/share" );
+    filter( "config", kdehome+"/share/config", KUriFilterData::LocalDir, QStringList( "kshorturifilter" ), kdehome+"/share" );
+}
+
+void KUriFilterTest::refOrQuery()
+{
     // URL with reference
     filter( "http://www.kde.org/index.html#q8", "http://www.kde.org/index.html#q8", KUriFilterData::NetProtocol );
     // local file with reference
@@ -196,7 +221,10 @@ void KUriFilterTest::tests()
     testLocalFile( "/tmp/kurlfiltertest#foo" ); // local file with '#' in the name
     testLocalFile( "/tmp/kurlfiltertest#foo?bar" ); // local file with both
     testLocalFile( "/tmp/kurlfiltertest?foo#bar" ); // local file with both, the other way round
+}
 
+void KUriFilterTest::shortUris()
+{
     // hostnames are lowercased by KUrl
     filter( "http://www.myDomain.commyPort/ViewObjectRes//Default:name=hello",
             "http://www.mydomain.commyport/ViewObjectRes//Default:name=hello", KUriFilterData::NetProtocol);
@@ -232,11 +260,6 @@ void KUriFilterTest::tests()
     // filter( "localhost", "http://localhost.localdomain", KUriFilterData::NetProtocol );
     // filter( "localhost/~blah", "http://localhost.localdomain/~blah", KUriFilterData::NetProtocol );
 
-    filter( "/", "/", KUriFilterData::LocalDir );
-    filter( "/", "/", KUriFilterData::LocalDir, QStringList( "kshorturifilter" ) );
-    filter( "~/.bashrc", QDir::homePath().toLocal8Bit()+"/.bashrc", KUriFilterData::LocalFile, QStringList( "kshorturifilter" ) );
-    filter( "~", QDir::homePath().toLocal8Bit(), KUriFilterData::LocalDir, QStringList( "kshorturifilter" ), "/tmp" );
-    filter( "~foobar", 0, KUriFilterData::Error, QStringList( "kshorturifilter" ) );
     filter( "user@host.domain", "mailto:user@host.domain", KUriFilterData::NetProtocol ); // new in KDE-3.2
 
     // Windows style SMB (UNC) URL. Should be converted into the valid smb format...
@@ -252,13 +275,10 @@ void KUriFilterTest::tests()
     filter( "gg:", "http://www.google.com/search?q=gg%3A&ie=UTF-8&oe=UTF-8", KUriFilterData::NetProtocol );
     filter( "KDE", "http://www.google.com/search?q=KDE&ie=UTF-8&oe=UTF-8", KUriFilterData::NetProtocol );
     filter( "HTTP", "http://www.google.com/search?q=HTTP&ie=UTF-8&oe=UTF-8", KUriFilterData::NetProtocol );
+}
 
-    // Typing 'cp' or any other valid unix command in konq's location bar should result in
-    // a search using the default search engine
-    // 'ls' is a bit of a special case though, due to the toplevel domain called 'ls'
-    filter( "cp", "http://www.google.com/search?q=cp&ie=UTF-8&oe=UTF-8", KUriFilterData::NetProtocol,
-            QStringList(), 0, false /* don't check for executables, see konq_misc.cc */ );
-
+void KUriFilterTest::executables()
+{
     // Executable tests - No IKWS in minicli
     filter( "cp", "cp", KUriFilterData::Executable, minicliFilters );
     filter( "kfmclient", "kfmclient", KUriFilterData::Executable, minicliFilters );
@@ -271,6 +291,15 @@ void KUriFilterTest::tests()
     filter( "/usr/bin/gs", "/usr/bin/gs", KUriFilterData::Executable, minicliFilters );
     filter( "/usr/bin/gs -q -option arg1", "/usr/bin/gs -q -option arg1", KUriFilterData::Executable, minicliFilters ); // the args are in argsAndOptions()
 
+    // Typing 'cp' or any other valid unix command in konq's location bar should result in
+    // a search using the default search engine
+    // 'ls' is a bit of a special case though, due to the toplevel domain called 'ls'
+    filter( "cp", "http://www.google.com/search?q=cp&ie=UTF-8&oe=UTF-8", KUriFilterData::NetProtocol,
+            QStringList(), 0, false /* don't check for executables, see konq_misc.cc */ );
+}
+
+void KUriFilterTest::environmentVariables()
+{
     // ENVIRONMENT variable
     setenv( "SOMEVAR", "/somevar", 0 );
     setenv( "ETC", "/etc", 0 );
@@ -313,8 +342,10 @@ void KUriFilterTest::tests()
         filter( "$QTDIR", qtdir, KUriFilterData::LocalDir, QStringList( "kshorturifilter" ) ); //use specific filter.
     }
     filter( "$HOME", home, KUriFilterData::LocalDir, QStringList( "kshorturifilter" ) ); //use specific filter.
+}
 
-
+void KUriFilterTest::internetKeywords()
+{
     QString sc;
     filter( sc.sprintf("gg%cfoo bar",s_delimiter).toUtf8(), "http://www.google.com/search?q=foo+bar&ie=UTF-8&oe=UTF-8", KUriFilterData::NetProtocol );
     filter( sc.sprintf("bug%c55798", s_delimiter).toUtf8(), "https://bugs.kde.org/show_bug.cgi?id=55798", KUriFilterData::NetProtocol );
@@ -325,11 +356,6 @@ void KUriFilterTest::tests()
     filter( sc.sprintf("av%c+rock +sample", s_delimiter).toUtf8(), "http://www.altavista.com/cgi-bin/query?pg=q&kl=XX&stype=stext&q=%2Brock+%2Bsample", KUriFilterData::NetProtocol );
     filter( QString::fromUtf8("gg%1é").arg(s_delimiter).toUtf8() /*eaccent in utf8*/, "http://www.google.com/search?q=%C3%A9&ie=UTF-8&oe=UTF-8", KUriFilterData::NetProtocol );
     filter( QString::fromUtf8("gg%1прйвет").arg(s_delimiter).toUtf8() /* greetings in russian utf-8*/, "http://www.google.com/search?q=%D0%BF%D1%80%D0%B9%D0%B2%D0%B5%D1%82&ie=UTF-8&oe=UTF-8", KUriFilterData::NetProtocol );
-
-    // Absolute Path tests for kshorturifilter
-    filter( "./", kdehome+"/share", KUriFilterData::LocalDir, QStringList( "kshorturifilter" ), kdehome+"/share/" ); // cleanPath removes the trailing slash
-    filter( "../", kdehome, KUriFilterData::LocalDir, QStringList( "kshorturifilter" ), kdehome+"/share" );
-    filter( "config", kdehome+"/share/config", KUriFilterData::LocalDir, QStringList( "kshorturifilter" ), kdehome+"/share" );
 }
 
 #include "kurifiltertest.moc"
