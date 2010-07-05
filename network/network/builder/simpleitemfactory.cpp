@@ -81,6 +81,8 @@ static const DNSSDServiceDatum DNSSDServiceData[] =
     { "_presence._tcp",    "presence",    "im-user",       false, "presence", 0, 0, 0 },
     { "_lobby._tcp",       "lobby",       "document-edit", false, 0, 0, 0, 0 },
     { "_giver._tcp",       "giver",       "folder-remote", false, 0, 0, 0, 0 },
+    { "_sip._udp",         "sip",         "phone",         false, 0, 0, 0, 0 },
+    { "_h323._tcp",        "h323",        "phone",         false, 0, 0, 0, 0 },
 
     // printing
     { "_ipp._tcp",            "ipp",            "printer", false, "ipp",  "path", "u", "p" },
@@ -100,11 +102,15 @@ static const DNSSDServiceDatum DNSSDServiceData[] =
     { "_pulse-server._tcp","pulse-server","audio-card",          false, 0, 0, 0, 0 },
     { "_pulse-source._tcp","pulse-source","audio-input-line",    false, 0, 0, 0, 0 },
     { "_pulse-sink._tcp",  "pulse-sink",  "speaker",             false, 0, 0, 0, 0 },
+    { "_udisks-ssh._tcp",  "udisks-ssh",  "drive-harddisk",      false, 0, 0, 0, 0 },
     { "_libvirt._tcp",     "libvirt",     "computer",            false, 0, 0, 0, 0 },
     { "_airmouse._tcp",    "airmouse",    "input-mouse",         false, 0, 0, 0, 0 },
 
+    // database
+    { "_postgresql._tcp",       "postgresql",       "server-database",  false, 0, 0, 0, 0 },
+    { "_couchdb_location._tcp", "couchdb_location", "server-database",  false, 0, 0, 0, 0 },
+
     // else
-    { "_postgresql._tcp",  "postgresql",  "server-database",     false, 0, 0, 0, 0 },
     { "_realplayfavs._tcp","realplayfavs","favorites",           false, 0, 0, 0, 0 },
     { "_acrobatSRV._tcp",  "acrobat-server","application-pdf",   false, 0, 0, 0, 0 },
     { "_adobe-vc._tcp",    "adobe-vc",    "services",   false, 0, 0, 0, 0 },

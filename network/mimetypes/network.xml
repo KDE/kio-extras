@@ -183,6 +183,14 @@ Notes:
     <generic-icon name="folder-remote"/>
     <comment>Giver Peer</comment>
   </mime-type>
+  <mime-type type="inode/vnd.kde.service.sip">
+    <generic-icon name="phone"/>
+    <comment>SIP Telephony</comment>
+  </mime-type>
+  <mime-type type="inode/vnd.kde.service.h323">
+    <generic-icon name="phone"/>
+    <comment>H323 Telephony</comment>
+  </mime-type>
 
   <!-- printing -->
   <mime-type type="inode/vnd.kde.service.ipp">
@@ -235,6 +243,10 @@ Notes:
     <generic-icon name="speaker"/>
     <comment>Pulse sink</comment>
   </mime-type>
+  <mime-type type="inode/vnd.kde.service.udisks-ssh">
+    <generic-icon name="drive-harddisk"/>
+    <comment>Udisks server</comment>
+  </mime-type>
   <mime-type type="inode/vnd.kde.service.libvirt">
     <generic-icon name="computer"/>
     <comment>libvirt server</comment>
@@ -244,11 +256,17 @@ Notes:
     <comment>Air Mouse server</comment>
   </mime-type>
 
-  <!-- Other -->
+  <!-- Database -->
   <mime-type type="inode/vnd.kde.service.postgresql">
     <generic-icon name="server-database"/>
     <comment>PostgreSQL server</comment>
   </mime-type>
+  <mime-type type="inode/vnd.kde.service.couchdb_location">
+    <generic-icon name="server-database"/>
+    <comment>CouchDB server</comment>
+  </mime-type>
+
+  <!-- Other -->
   <mime-type type="inode/vnd.kde.service.realplayfavs">
     <generic-icon name="favorites"/>
     <comment>RealPlayer Shared Favorites</comment>
