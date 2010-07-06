@@ -15,6 +15,7 @@ Name[es]=Abrir
 Name[et]=OpenDesktop
 Name[fr]=Ouvert
 Name[gu]=ખોલો
+Name[hr]=Open
 Name[ia]=Aperir
 Name[id]=Buka
 Name[is]=Opið
@@ -23,6 +24,7 @@ Name[ja]=Open
 Name[kk]=Open
 Name[km]=បើក
 Name[kn]=ತೆರೆ
+Name[ko]=OpenDesktop
 Name[lt]=Open
 Name[ml]=ഓപ്പണ്‍
 Name[nb]=Open
@@ -38,6 +40,7 @@ Name[sr@ijekavian]=Отворена површ
 Name[sr@ijekavianlatin]=Otvorena površ
 Name[sr@latin]=Otvorena površ
 Name[sv]=Öppet skrivbord
+Name[tg]=Кушодан
 Name[th]=Open
 Name[uk]=Open
 Name[x-test]=xxOpenxx
@@ -66,6 +69,7 @@ Query[ja]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[kk]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[km]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[kn]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
+Query[ko]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[lt]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[nb]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[nds]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
@@ -80,6 +84,7 @@ Query[sr@ijekavian]=http://www.opendesktop.org/content/search.php?search=Search&
 Query[sr@ijekavianlatin]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[sr@latin]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[sv]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
+Query[tg]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[th]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[uk]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[x-test]=xxhttp://www.opendesktop.org/content/search.php?search=Search&name=\\{@}xx

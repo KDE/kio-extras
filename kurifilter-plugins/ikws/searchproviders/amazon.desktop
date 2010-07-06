@@ -15,6 +15,7 @@ Name[en_GB]=Amazon
 Name[es]=Amazon
 Name[et]=Amazon
 Name[fr]=Amazon
+Name[hr]=Amazon
 Name[ia]=Amazon
 Name[id]=Amazon
 Name[is]=Amazon
@@ -23,6 +24,7 @@ Name[ja]=Amazon
 Name[kk]=Amazon
 Name[km]=Amazon
 Name[kn]=ಅಮೆಜೋನ್
+Name[ko]=아마존
 Name[lt]=Amazon
 Name[nb]=Amazon
 Name[nds]=Amazon
@@ -66,6 +68,7 @@ Query[ja]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=aps&field-keyw
 Query[kk]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=aps&field-keywords=\\{@}&x=0&y=0
 Query[km]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=aps&field-keywords=\\{@}&x=0&y=0
 Query[kn]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=aps&field-keywords=\\{@}&x=0&y=0
+Query[ko]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=aps&field-keywords=\\{@}&x=0&y=0
 Query[lt]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=aps&field-keywords=\\{@}&x=0&y=0
 Query[nb]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=aps&field-keywords=\\{@}&x=0&y=0
 Query[nds]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=aps&field-keywords=\\{@}&x=0&y=0

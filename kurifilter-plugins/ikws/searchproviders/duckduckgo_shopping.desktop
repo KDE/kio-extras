@@ -20,6 +20,7 @@ Name[it]=Acquisti di Duck Duck Go
 Name[ja]=Duck Duck Go Shopping
 Name[kk]=Duck Duck Go Shopping
 Name[km]=ការ​ទិញ​ឥវ៉ាន់របស់ Duck Duck Go
+Name[ko]=Duck Duck Go 쇼핑
 Name[lt]=Duck Duck Go Shopping
 Name[ml]=ഡക്ക് ഡക്ക് ഗോ ഷോപ്പിങ്ങ്
 Name[nb]=Duck Duck Go Shopping
@@ -62,6 +63,7 @@ Query[ja]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[kk]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[km]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[kn]=http://duckduckgo.com/?q=\\{@}&v=s
+Query[ko]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[lt]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[ml]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[nb]=http://duckduckgo.com/?q=\\{@}&v=s

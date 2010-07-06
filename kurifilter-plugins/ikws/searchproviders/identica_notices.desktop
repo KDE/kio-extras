@@ -14,6 +14,7 @@ Name[en_GB]=Identi.ca Notices
 Name[es]=Avisos Identi.ca
 Name[et]=Identi.ca teadaanded
 Name[fr]=Notices Identi.ca
+Name[hr]=Identi.ca Zapažanja
 Name[ia]=Novas de Identi.ca
 Name[id]=Identi.ca Notices
 Name[is]=Identi.ca tilkynningar
@@ -22,6 +23,7 @@ Name[ja]=Identi.ca Notices
 Name[kk]=Identi.ca жазбалары
 Name[km]=ចំណាំ​របស់ Identi.ca
 Name[kn]=identi.ca ಸೂಚನೆ
+Name[ko]=Identi.ca 공지
 Name[lt]=Identi.ca pranešimai
 Name[ml]=ഐഡന്റിക്ക നോട്ടീസുകള്‍
 Name[nb]=Identi.ca notiser
@@ -63,6 +65,7 @@ Query[ja]=http://identi.ca/search/notice?q=\\{@}
 Query[kk]=http://identi.ca/search/notice?q=\\{@}
 Query[km]=http://identi.ca/search/notice?q=\\{@}
 Query[kn]=http://identi.ca/search/notice?q=\\{@}
+Query[ko]=http://identi.ca/search/notice?q=\\{@}
 Query[lt]=http://identi.ca/search/notice?q=\\{@}
 Query[ml]=http://identi.ca/search/notice?q=\\{@}
 Query[nb]=http://identi.ca/search/notice?q=\\{@}

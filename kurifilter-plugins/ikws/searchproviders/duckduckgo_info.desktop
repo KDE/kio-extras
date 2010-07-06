@@ -12,6 +12,7 @@ Name[en_GB]=Duck Duck Go Info
 Name[es]=Duck Duck Go Info
 Name[et]=Duck Duck Go Info
 Name[fr]=Duck Duck Go Info
+Name[hr]=Duck Duck Go Info
 Name[ia]=Duck Duck Go Info
 Name[id]=Info Duck Duck Go
 Name[is]=Duck Duck Go upplýsingar
@@ -19,6 +20,7 @@ Name[it]=Informazioni di Duck Duck Go
 Name[ja]=Duck Duck Go Info
 Name[kk]=Duck Duck Go Info
 Name[km]=ព័ត៌មាន​របស់ Duck Duck Go
+Name[ko]=Duck Duck Go 정보
 Name[lt]=Duck Duck Go Info
 Name[ml]=ഡക്ക് ഡക്ക് ഗോ വിവരം
 Name[nb]=Duck Duck Go Info
@@ -61,6 +63,7 @@ Query[ja]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[kk]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[km]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[kn]=http://duckduckgo.com/?q=\\{@}&v=r
+Query[ko]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[lt]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[ml]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[nb]=http://duckduckgo.com/?q=\\{@}&v=r

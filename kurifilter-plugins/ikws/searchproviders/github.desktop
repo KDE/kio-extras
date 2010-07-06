@@ -24,6 +24,7 @@ Name[ja]=GitHub
 Name[kk]=GitHub
 Name[km]=GitHub
 Name[kn]=ಗಿಟ್ ಹಬ್
+Name[ko]=GitHub
 Name[lt]=GitHub
 Name[ml]=ഗിറ്റ്ഹബ്
 Name[nb]=GitHub
@@ -69,6 +70,7 @@ Query[ja]=http://github.com/search?q=\\{@}&x=0&y=0
 Query[kk]=http://github.com/search?q=\\{@}&x=0&y=0
 Query[km]=http://github.com/search?q=\\{@}&x=0&y=0
 Query[kn]=http://github.com/search?q=\\{@}&x=0&y=0
+Query[ko]=http://github.com/search?q=\\{@}&x=0&y=0
 Query[lt]=http://github.com/search?q=\\{@}&x=0&y=0
 Query[ml]=http://github.com/search?q=\\{@}&x=0&y=0
 Query[nb]=http://github.com/search?q=\\{@}&x=0&y=0

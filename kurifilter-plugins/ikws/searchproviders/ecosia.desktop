@@ -22,6 +22,7 @@ Name[ja]=Ecosia 検索エンジン
 Name[kk]=Ecosia іздеу құралы
 Name[km]=ម៉ាស៊ីន​ស្វែងរក Ecosia
 Name[kn]=ಎಕೊಸಿಯಾ(Ecosia) ಶೋಧನಾ ಯಂತ್ರ
+Name[ko]=Ecosia 검색 엔진
 Name[lt]=Ecosia paieškos tarnyba
 Name[ml]=എക്കോഷ്യ തെരച്ചില്‍ എഞ്ചിന്‍
 Name[nb]=Exosia søkemotor
@@ -69,6 +70,7 @@ Query[ja]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[kk]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[km]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[kn]=http://ecosia.org/search.php?q=\\{@}&meta=normal
+Query[ko]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[lt]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[ml]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[nb]=http://ecosia.org/search.php?q=\\{@}&meta=normal

@@ -13,6 +13,7 @@ Name[en_GB]=KDE UserBase
 Name[es]=KDE UserBase
 Name[et]=KDE UserBase
 Name[fr]=Centre utilisateur de KDE
+Name[hr]=KDE UserBase
 Name[ia]=KDE UserBase (Base de Usator)
 Name[id]=KDE UserBase
 Name[is]=KDE Notandagrunnur
@@ -21,6 +22,7 @@ Name[ja]=KDE UserBase
 Name[kk]=KDE UserBase
 Name[km]=KDE UserBase
 Name[kn]=ಕೆಡಿಇ ಯುಸರ್ ಬೇಸ್
+Name[ko]=KDE UserBase
 Name[lt]=KDE UserBase
 Name[ml]=കെഡിഇ യൂസര്‍ബേസ്
 Name[nb]=Brukerbase for KDE
@@ -64,6 +66,7 @@ Query[ja]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[kk]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[km]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[kn]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
+Query[ko]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[lt]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[ml]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[nb]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search

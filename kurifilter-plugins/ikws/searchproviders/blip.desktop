@@ -24,6 +24,7 @@ Name[ja]=Blip.tv
 Name[kk]=Blip.tv
 Name[km]=Blip.tv
 Name[kn]=ಬ್ಲಿಪ್.ಟಿವಿ
+Name[ko]=Blip.tv
 Name[lt]=Blip.tv
 Name[ml]=ബ്ലിപ്.ടിവി
 Name[nb]=Blip.tv
@@ -69,6 +70,7 @@ Query[ja]=http://blip.tv/search?q=\\{@}
 Query[kk]=http://blip.tv/search?q=\\{@}
 Query[km]=http://blip.tv/search?q=\\{@}
 Query[kn]=http://blip.tv/search?q=\\{@}
+Query[ko]=http://blip.tv/search?q=\\{@}
 Query[lt]=http://blip.tv/search?q=\\{@}
 Query[ml]=http://blip.tv/search?q=\\{@}
 Query[nb]=http://blip.tv/search?q=\\{@}

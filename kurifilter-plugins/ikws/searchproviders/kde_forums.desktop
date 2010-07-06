@@ -15,6 +15,7 @@ Name[en_GB]=KDE Forums
 Name[es]=Foros de KDE
 Name[et]=KDE foorumid
 Name[fr]=Forums de KDE
+Name[hr]=KDE Forumi
 Name[ia]=Foros de KDE
 Name[id]=KDE Forums
 Name[is]=KDE spjallsvæði
@@ -23,6 +24,7 @@ Name[ja]=KDE フォーラム
 Name[kk]=KDE форумдары
 Name[km]=វេទិកា​របស់ KDE
 Name[kn]=ಕೆಡಿಇ ಚರ್ಚಾವೇದಿಕೆ 
+Name[ko]=KDE 포럼
 Name[lt]=KDE Forumai
 Name[ml]=കെഡിഇ ഫോറങ്ങള്‍
 Name[nb]=KDE-forumer
@@ -65,6 +67,7 @@ Query[ja]=http://forum.kde.org/search.php?keywords=\\{@}&terms=all&author=&tags=
 Query[kk]=http://forum.kde.org/search.php?keywords=\\{@}&terms=all&author=&tags=&sv=0&sc=1&sf=all&sr=posts&sk=t&sd=d&st=0&ch=300&feed_type=NONE&feed_style=HTML&countlimit=100&t=0&sid=77c16bc0abb91ff1347597c69835d5bd&submit=Search
 Query[km]=http://forum.kde.org/search.php?keywords=\\{@}&terms=all&author=&tags=&sv=0&sc=1&sf=all&sr=posts&sk=t&sd=d&st=0&ch=300&feed_type=NONE&feed_style=HTML&countlimit=100&t=0&sid=77c16bc0abb91ff1347597c69835d5bd&submit=Search
 Query[kn]=http://forum.kde.org/search.php?keywords=\\{@}&terms=all&author=&tags=&sv=0&sc=1&sf=all&sr=posts&sk=t&sd=d&st=0&ch=300&feed_type=NONE&feed_style=HTML&countlimit=100&t=0&sid=77c16bc0abb91ff1347597c69835d5bd&submit=Search
+Query[ko]=http://forum.kde.org/search.php?keywords=\\{@}&terms=all&author=&tags=&sv=0&sc=1&sf=all&sr=posts&sk=t&sd=d&st=0&ch=300&feed_type=NONE&feed_style=HTML&countlimit=100&t=0&sid=77c16bc0abb91ff1347597c69835d5bd&submit=Search
 Query[lt]=http://forum.kde.org/search.php?keywords=\\{@}&terms=all&author=&tags=&sv=0&sc=1&sf=all&sr=posts&sk=t&sd=d&st=0&ch=300&feed_type=NONE&feed_style=HTML&countlimit=100&t=0&sid=77c16bc0abb91ff1347597c69835d5bd&submit=Search
 Query[ml]=http://forum.kde.org/search.php?keywords=\\{@}&terms=all&author=&tags=&sv=0&sc=1&sf=all&sr=posts&sk=t&sd=d&st=0&ch=300&feed_type=NONE&feed_style=HTML&countlimit=100&t=0&sid=77c16bc0abb91ff1347597c69835d5bd&submit=Search
 Query[nb]=http://forum.kde.org/search.php?keywords=\\{@}&terms=all&author=&tags=&sv=0&sc=1&sf=all&sr=posts&sk=t&sd=d&st=0&ch=300&feed_type=NONE&feed_style=HTML&countlimit=100&t=0&sid=77c16bc0abb91ff1347597c69835d5bd&submit=Search
@@ -81,6 +84,7 @@ Query[sr@ijekavian]=http://forum.kde.org/search.php?keywords=\\{@}&terms=all&aut
 Query[sr@ijekavianlatin]=http://forum.kde.org/search.php?keywords=\\{@}&terms=all&author=&tags=&sv=0&sc=1&sf=all&sr=posts&sk=t&sd=d&st=0&ch=300&feed_type=NONE&feed_style=HTML&countlimit=100&t=0&sid=77c16bc0abb91ff1347597c69835d5bd&submit=Search
 Query[sr@latin]=http://forum.kde.org/search.php?keywords=\\{@}&terms=all&author=&tags=&sv=0&sc=1&sf=all&sr=posts&sk=t&sd=d&st=0&ch=300&feed_type=NONE&feed_style=HTML&countlimit=100&t=0&sid=77c16bc0abb91ff1347597c69835d5bd&submit=Search
 Query[sv]=http://forum.kde.org/search.php?keywords=\\{@}&terms=all&author=&tags=&sv=0&sc=1&sf=all&sr=posts&sk=t&sd=d&st=0&ch=300&feed_type=NONE&feed_style=HTML&countlimit=100&t=0&sid=77c16bc0abb91ff1347597c69835d5bd&submit=Search
+Query[tg]=http://forum.kde.org/search.php?keywords=\\{@}&terms=all&author=&tags=&sv=0&sc=1&sf=all&sr=posts&sk=t&sd=d&st=0&ch=300&feed_type=NONE&feed_style=HTML&countlimit=100&t=0&sid=77c16bc0abb91ff1347597c69835d5bd&submit=Search
 Query[th]=http://forum.kde.org/search.php?keywords=\\{@}&terms=all&author=&tags=&sv=0&sc=1&sf=all&sr=posts&sk=t&sd=d&st=0&ch=300&feed_type=NONE&feed_style=HTML&countlimit=100&t=0&sid=77c16bc0abb91ff1347597c69835d5bd&submit=Search
 Query[uk]=http://forum.kde.org/search.php?keywords=\\{@}&terms=all&author=&tags=&sv=0&sc=1&sf=all&sr=posts&sk=t&sd=d&st=0&ch=300&feed_type=NONE&feed_style=HTML&countlimit=100&t=0&sid=77c16bc0abb91ff1347597c69835d5bd&submit=Search
 Query[x-test]=xxhttp://forum.kde.org/search.php?keywords=\\{@}&terms=all&author=&tags=&sv=0&sc=1&sf=all&sr=posts&sk=t&sd=d&st=0&ch=300&feed_type=NONE&feed_style=HTML&countlimit=100&t=0&sid=77c16bc0abb91ff1347597c69835d5bd&submit=Searchxx

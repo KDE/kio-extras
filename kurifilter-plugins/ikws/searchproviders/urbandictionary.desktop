@@ -23,6 +23,7 @@ Name[ja]=Urban Dictionary
 Name[kk]=Urban Dictionary
 Name[km]=វចនុក្រម Urban
 Name[kn]=ಅರ್ಬಾನ್(Urban) ಶಬ್ದಕೋಶ 
+Name[ko]=Urban Dictionary
 Name[lt]=Miesto žodynas
 Name[ml]=അര്‍ബന്‍ നിഘണ്ടു
 Name[nb]=Urban ordbok
@@ -67,6 +68,7 @@ Query[ja]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[kk]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[km]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[kn]=http://www.urbandictionary.com/define.php?term=\\{@}
+Query[ko]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[lt]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[ml]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[nb]=http://www.urbandictionary.com/define.php?term=\\{@}

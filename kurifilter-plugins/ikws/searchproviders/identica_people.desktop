@@ -14,6 +14,7 @@ Name[en_GB]=Identi.ca People
 Name[es]=Gente Identi.ca
 Name[et]=Identi.ca inimesed
 Name[fr]=Personne Identi.ca
+Name[hr]=Identi.ca Ljudi
 Name[ia]=Gente de Identi.ca
 Name[id]=Identi.ca People
 Name[is]=Identi.ca fólk
@@ -22,6 +23,7 @@ Name[ja]=Identi.ca People
 Name[kk]=Identi.ca халықы
 Name[km]=មនុស្ស Identi.ca
 Name[kn]=identi.ca ಜನರು
+Name[ko]=Identi.ca 사람
 Name[lt]=Identi.ca žmonės
 Name[ml]=ഐഡന്റിക്കയിലെ ആളുകള്‍
 Name[nb]=Identi.ca folk
@@ -64,6 +66,7 @@ Query[ja]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[kk]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[km]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[kn]=http://identi.ca/search/people?q=\\{@}&search=Search
+Query[ko]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[lt]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[ml]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[nb]=http://identi.ca/search/people?q=\\{@}&search=Search
