@@ -35,6 +35,7 @@
 #include <QtDBus/QDBusReply>
 #include <QtDBus/QDBusConnection>
 #include <QtDBus/QDBusInterface>
+#include <QtDBus/QDBusPendingCallWatcher>
 #include <QtCore/QStringList>
 
 #include <KDebug>
@@ -47,7 +48,6 @@ UpnpNetworkBuilder::UpnpNetworkBuilder( NetworkPrivate* networkPrivate )
   , mNetworkPrivate( networkPrivate )
   , mDBusCagibiProxy( 0 )
 {
-kDebug();
 }
 
 void UpnpNetworkBuilder::registerNetSystemFactory( AbstractNetSystemFactory* netSystemFactory )
@@ -70,29 +70,51 @@ void UpnpNetworkBuilder::start()
                            "/org/kde/Cagibi",
                            "org.kde.Cagibi",
                            dbusConnection, this);
-    dbusConnection.connect("org.kde.Cagibi",
-                           "/org/kde/Cagibi",
-                           "org.kde.Cagibi",
-                           "devicesAdded",
-                           this, SLOT(onDevicesAdded( const DeviceTypeMap& )) );
-    dbusConnection.connect("org.kde.Cagibi",
-                           "/org/kde/Cagibi",
-                           "org.kde.Cagibi",
-                           "devicesRemoved",
-                           this, SLOT(onDevicesRemoved( const DeviceTypeMap& )) );
 
-    QDBusReply<DeviceTypeMap> reply =
-        mDBusCagibiProxy->asyncCall( "allDevices" );
+    if( mDBusCagibiProxy->isValid() )
+    {
+        dbusConnection.connect("org.kde.Cagibi",
+                            "/org/kde/Cagibi",
+                            "org.kde.Cagibi",
+                            "devicesAdded",
+                            this, SLOT(onDevicesAdded( const DeviceTypeMap& )) );
+        dbusConnection.connect("org.kde.Cagibi",
+                            "/org/kde/Cagibi",
+                            "org.kde.Cagibi",
+                            "devicesRemoved",
+                            this, SLOT(onDevicesRemoved( const DeviceTypeMap& )) );
+
+        QDBusPendingCall allDevicesCall = mDBusCagibiProxy->asyncCall( QString::fromLatin1("allDevices") );
+
+        QDBusPendingCallWatcher* allDevicesCallWatcher = new QDBusPendingCallWatcher( allDevicesCall, this );
+
+        connect( allDevicesCallWatcher, SIGNAL(finished( QDBusPendingCallWatcher* )),
+                 SLOT(onAllDevicesCallFinished( QDBusPendingCallWatcher* )) );
+    }
+    else
+    {
+kDebug() << "Could not connect to Cagibi, no listing of UPnP devices/services.";
+        // TODO: works already here, but is this a good design?
+        emit initDone();
+    }
+}
+
+
+void UpnpNetworkBuilder::onAllDevicesCallFinished( QDBusPendingCallWatcher* allDevicesCallWatcher )
+{
+    QDBusReply<DeviceTypeMap> reply = *allDevicesCallWatcher;
 
     if( reply.isValid() )
     {
+kDebug() << "Connected to Cagibi, listing of UPnP devices/services started.";
         const DeviceTypeMap deviceTypeMap = reply;
         onDevicesAdded( deviceTypeMap );
     }
     else
         kWarning() << "Error: " << reply.error().name();
 
-    // TODO: works already here, but is this a good design?
+    delete allDevicesCallWatcher;
+
     emit initDone();
 }
 

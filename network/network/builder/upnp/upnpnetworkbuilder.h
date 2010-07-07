@@ -34,6 +34,7 @@
 namespace Cagibi { class Device; }
 
 class QDBusInterface;
+class QDBusPendingCallWatcher;
 
 typedef QHash<QString,QString> DeviceTypeMap;
 Q_DECLARE_METATYPE( DeviceTypeMap )
@@ -65,6 +66,8 @@ class UpnpNetworkBuilder : public AbstractNetworkBuilder
     void onDevicesAdded( const DeviceTypeMap& deviceTypeMap );
     void onDevicesRemoved( const DeviceTypeMap& deviceTypeMap );
     void onAddedDeviceDetails( const Cagibi::Device& device );
+
+    void onAllDevicesCallFinished( QDBusPendingCallWatcher* allDevicesCallWatcher );
 
   private: // data
     NetworkPrivate* mNetworkPrivate;
