@@ -46,7 +46,7 @@ class FixHostUriFilter : public KUriFilterPlugin
     private:
         bool exists( const KUrl& url ) const;
 
-        mutable QEventLoop m_eventLoop;
+        mutable QEventLoop *m_eventLoop;
         mutable bool m_hostExists;
 };
 

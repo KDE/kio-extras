@@ -63,20 +63,24 @@ bool FixHostUriFilter::filterUri( KUriFilterData& data ) const
 void FixHostUriFilter::lookedUp( const QHostInfo &hostInfo )
 {
     m_hostExists = ( hostInfo.error() == QHostInfo::NoError );
-    m_eventLoop.exit();
+    m_eventLoop->exit();
 }
 
 bool FixHostUriFilter::exists( const KUrl& url ) const
 {
+    QEventLoop eventLoop;
+
+    m_hostExists = false;
+    m_eventLoop = &eventLoop;
+
     FixHostUriFilter *self = const_cast<FixHostUriFilter*>( this );
     int lookupId = QHostInfo::lookupHost( url.host(), self, SLOT(lookedUp(QHostInfo)) );
 
     QTimer t;
-    connect( &t, SIGNAL(timeout()), &m_eventLoop, SLOT(quit()) );
+    connect( &t, SIGNAL(timeout()), &eventLoop, SLOT(quit()) );
     t.start(1000);
 
-    m_hostExists = false;
-    m_eventLoop.exec();
+    eventLoop.exec();
 
     t.stop();
 
