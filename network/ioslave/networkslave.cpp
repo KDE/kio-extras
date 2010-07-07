@@ -42,7 +42,7 @@ NetworkSlave::NetworkSlave( const QByteArray& name, const QByteArray& poolSocket
   : SlaveBase( name, poolSocket, programSocket )
 {
 kDebug();
-    mNetworkDBusProxy = new NetworkDBusInterface( "org.kde.network", "/", QDBusConnection::sessionBus() );
+    mNetworkDBusProxy = new NetworkDBusInterface( "org.kde.kded", "/modules/networkwatcher", QDBusConnection::sessionBus() );
 }
 
 void NetworkSlave::get( const KUrl& url )

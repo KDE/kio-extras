@@ -41,8 +41,8 @@ Q_UNUSED( parameters )
     new KioSlaveNotifier( mNetwork );
 
     new NetworkDBusAdaptor( this );
-    QDBusConnection::sessionBus().registerService( QString::fromLatin1("org.kde.network") );
-    QDBusConnection::sessionBus().registerObject( QString::fromLatin1("/"), this );
+    QDBusConnection::sessionBus().registerService( QString::fromLatin1("org.kde.kded") );
+    QDBusConnection::sessionBus().registerObject( QString::fromLatin1("/modules/networkwatcher"), this );
 }
 
 // TODO: instead use networkuri and return QVariant for all these
