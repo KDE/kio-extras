@@ -191,6 +191,10 @@ Notes:
     <generic-icon name="phone"/>
     <comment>H323 Telephony</comment>
   </mime-type>
+  <mime-type type="inode/vnd.kde.service.skype">
+    <generic-icon name="phone"/>
+    <comment>Skype Telephony</comment>
+  </mime-type>
 
   <!-- printing -->
   <mime-type type="inode/vnd.kde.service.ipp">

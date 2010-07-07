@@ -79,6 +79,7 @@ static const char* const SimpleServiceMimetype[] =
     "giver",
     "sip",
     "h323",
+    "skype",
 
     "ipp",
     "printer",

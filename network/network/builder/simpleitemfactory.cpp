@@ -29,6 +29,7 @@
 // KDE
 #include <KUrl>
 
+#include <KDebug>
 
 namespace Mollet
 {
@@ -83,6 +84,7 @@ static const DNSSDServiceDatum DNSSDServiceData[] =
     { "_giver._tcp",       "giver",       "folder-remote", false, 0, 0, 0, 0 },
     { "_sip._udp",         "sip",         "phone",         false, 0, 0, 0, 0 },
     { "_h323._tcp",        "h323",        "phone",         false, 0, 0, 0, 0 },
+    { "_skype._tcp",       "skype",       "phone",         false, 0, 0, 0, 0 },
 
     // printing
     { "_ipp._tcp",            "ipp",            "printer", false, "ipp",  "path", "u", "p" },
