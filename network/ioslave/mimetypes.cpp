@@ -77,6 +77,8 @@ static const char* const SimpleServiceMimetype[] =
     "presence",
     "lobby",
     "giver",
+    "sip",
+    "h323",
 
     "ipp",
     "printer",
@@ -92,10 +94,13 @@ static const char* const SimpleServiceMimetype[] =
     "pulse-server",
     "pulse-source",
     "pulse-sink",
+    "udisks-ssh",
     "libvirt",
     "airmouse",
 
     "postgresql",
+    "couchdb_location",
+
     "realplayfavs",
     "acrobat-server",
     "adobe-vc",
