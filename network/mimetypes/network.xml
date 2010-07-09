@@ -290,6 +290,12 @@ Notes:
     <expanded-acronym>GGZ Gaming Zone</expanded-acronym>
   </mime-type>
 
+  <!-- Maemo -->
+  <mime-type type="inode/vnd.kde.service.maemo-inf">
+    <generic-icon name="pda"/>
+    <comment>Maemo Info</comment>
+  </mime-type>
+
   <!-- Apple -->
   <mime-type type="inode/vnd.kde.service.airport">
     <generic-icon name="network-wireless"/>

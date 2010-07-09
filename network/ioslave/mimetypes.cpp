@@ -111,6 +111,8 @@ static const char* const SimpleServiceMimetype[] =
     "pgpkey-hkp",
     "pgpkey-https",
 
+    "maemo-inf",
+
     "airport",
     "daap",
     "dacp",

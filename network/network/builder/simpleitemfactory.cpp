@@ -121,6 +121,10 @@ static const DNSSDServiceDatum DNSSDServiceData[] =
     { "_pgpkey-ldap._tcp",  "pgpkey-ldap",  "application-pgp-keys",  false, 0, 0, 0, 0 },
     { "_pgpkey-hkp._tcp",   "pgpkey-hkp",   "application-pgp-keys",  false, 0, 0, 0, 0 },
     { "_pgpkey-https._tcp", "pgpkey-https", "application-pgp-keys",  true, "https", "path", 0, 0 },
+    
+    // Maemo
+    { "_maemo-inf._tcp",    "maemo-inf",    "pda",  false, 0, 0, 0, 0 },
+    // TODO: _maemo-inf._tcp seems to be not a service, just some about info, use to identify device and hide
 
     // Apple
     { "_airport._tcp",       "airport",       "network-wireless",  false, 0, 0, 0, 0 },
