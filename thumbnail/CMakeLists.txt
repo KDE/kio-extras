@@ -7,7 +7,9 @@ macro_log_feature(EXIV2_FOUND "Exiv2" "A library to access image metadata" "http
 
 macro_bool_to_01(EXIV2_FOUND HAVE_EXIV2)
 
-include_directories(${JPEG_INCLUDE_DIR} ${EXIV2_INCLUDE_DIR})
+if(EXIV2_FOUND)
+    include_directories(${JPEG_INCLUDE_DIR} ${EXIV2_INCLUDE_DIR})
+endif(EXIV2_FOUND)
 
 ########### next target ###############
 
@@ -16,6 +18,9 @@ set(kio_thumbnail_PART_SRCS thumbnail.cpp imagefilter.cpp)
 kde4_add_plugin(kio_thumbnail ${kio_thumbnail_PART_SRCS})
 
 target_link_libraries(kio_thumbnail ${KDE4_KIO_LIBS})
+if(WINCE)
+target_link_libraries(kio_thumbnail ${WCECOMPAT_LIBRARIES})
+endif(WINCE)
 
 install(TARGETS kio_thumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
 
@@ -71,6 +76,7 @@ install(TARGETS textthumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
 
 ########### next target ###############
 
+if(NOT WINCE)
 set(htmlthumbnail_PART_SRCS htmlcreator.cpp)
 
 kde4_add_plugin(htmlthumbnail ${htmlthumbnail_PART_SRCS})
@@ -78,6 +84,7 @@ kde4_add_plugin(htmlthumbnail ${htmlthumbnail_PART_SRCS})
 target_link_libraries(htmlthumbnail ${KDE4_KHTML_LIBS})
 
 install(TARGETS htmlthumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
+endif(NOT WINCE)
 
 ########### next target ###############
 
