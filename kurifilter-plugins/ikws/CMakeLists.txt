@@ -7,9 +7,6 @@ kde4_add_ui_files(kuriikwsfilter_PART_SRCS ikwsopts_ui.ui searchproviderdlg_ui.u
 kde4_add_plugin(kuriikwsfilter ${kuriikwsfilter_PART_SRCS})
 
 target_link_libraries(kuriikwsfilter ${KDE4_KDEUI_LIBS} ${KDE4_KIO_LIBS})
-if(WINCE)
-target_link_libraries(kuriikwsfilter ${WCECOMPAT_LIBRARIES})
-endif(WINCE)
 
 install(TARGETS kuriikwsfilter DESTINATION ${PLUGIN_INSTALL_DIR})
 
@@ -25,9 +22,6 @@ kde4_add_ui_files(kurisearchfilter_PART_SRCS ikwsopts_ui.ui searchproviderdlg_ui
 kde4_add_plugin(kurisearchfilter ${kurisearchfilter_PART_SRCS})
 
 target_link_libraries(kurisearchfilter ${KDE4_KDEUI_LIBS} ${KDE4_KIO_LIBS})
-if(WINCE)
-target_link_libraries(kurisearchfilter ${WCECOMPAT_LIBRARIES})
-endif(WINCE)
 
 install(TARGETS kurisearchfilter DESTINATION ${PLUGIN_INSTALL_DIR})
 

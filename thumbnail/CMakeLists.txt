@@ -18,9 +18,6 @@ set(kio_thumbnail_PART_SRCS thumbnail.cpp imagefilter.cpp)
 kde4_add_plugin(kio_thumbnail ${kio_thumbnail_PART_SRCS})
 
 target_link_libraries(kio_thumbnail ${KDE4_KIO_LIBS})
-if(WINCE)
-target_link_libraries(kio_thumbnail ${WCECOMPAT_LIBRARIES})
-endif(WINCE)
 
 install(TARGETS kio_thumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
 
