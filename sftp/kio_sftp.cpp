@@ -1193,7 +1193,7 @@ void sftpProtocol::put(const KUrl& url, int permissions, KIO::JobFlags flags) {
           if (permissions != -1) {
             initialMode = permissions | S_IWUSR | S_IRUSR;
           } else {
-            initialMode = 0600;
+            initialMode = 0644;
           }
 
           kDebug(KIO_SFTP_DB) << "Trying to open: " << dest << ", mode=" << QString::number(initialMode);
