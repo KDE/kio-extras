@@ -62,8 +62,12 @@ bool FixHostUriFilter::filterUri( KUriFilterData& data ) const
 
 void FixHostUriFilter::lookedUp( const QHostInfo &hostInfo )
 {
-    m_hostExists = ( hostInfo.error() == QHostInfo::NoError );
-    m_eventLoop->exit();
+    if (hostInfo.lookupId() == m_lookupId) {
+        m_hostExists = ( hostInfo.error() == QHostInfo::NoError );
+        if (m_eventLoop) {
+            m_eventLoop->exit();
+        }
+    }
 }
 
 bool FixHostUriFilter::exists( const KUrl& url ) const
@@ -74,17 +78,18 @@ bool FixHostUriFilter::exists( const KUrl& url ) const
     m_eventLoop = &eventLoop;
 
     FixHostUriFilter *self = const_cast<FixHostUriFilter*>( this );
-    int lookupId = QHostInfo::lookupHost( url.host(), self, SLOT(lookedUp(QHostInfo)) );
+    m_lookupId = QHostInfo::lookupHost( url.host(), self, SLOT(lookedUp(QHostInfo)) );
 
     QTimer t;
     connect( &t, SIGNAL(timeout()), &eventLoop, SLOT(quit()) );
     t.start(1000);
 
     eventLoop.exec();
+    m_eventLoop = 0;
 
     t.stop();
 
-    QHostInfo::abortHostLookup( lookupId );
+    QHostInfo::abortHostLookup( m_lookupId );
 
     return m_hostExists;
 }
