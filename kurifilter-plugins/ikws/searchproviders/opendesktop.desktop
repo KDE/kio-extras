@@ -3,6 +3,11 @@ Charset=
 Hidden=false
 Keys=opendesktop,odesk,od
 Name=openDesktop.org
+Name[ca]=openDesktop.org
+Name[da]=openDesktop.org
+Name[pt]=openDesktop.org
+Name[sv]=openDesktop.org
+Name[uk]=openDesktop.org
 Name[x-test]=xxopenDesktop.orgxx
 Query=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[bg]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
