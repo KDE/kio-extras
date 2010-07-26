@@ -13,6 +13,7 @@ Name[el]=Urban Dictionary(Λεξικό)
 Name[en_GB]=Urban Dictionary
 Name[es]=Urban Dictionary
 Name[et]=Urban Dictionary
+Name[fi]=Urban Dictionary
 Name[fr]=Dictionnaire Urban
 Name[hr]=Urbani rječnik
 Name[ia]=Dictionario Urban
@@ -57,6 +58,7 @@ Query[el]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[en_GB]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[es]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[et]=http://www.urbandictionary.com/define.php?term=\\{@}
+Query[fi]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[fr]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[gu]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[hr]=http://www.urbandictionary.com/define.php?term=\\{@}

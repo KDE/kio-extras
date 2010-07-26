@@ -14,6 +14,7 @@ Name[el]=7Digital
 Name[en_GB]=7Digital
 Name[es]=7Digital
 Name[et]=7Digital
+Name[fi]=7Digital
 Name[fr]=7 numérique
 Name[hr]=7Digital
 Name[ia]=7Digital
@@ -58,6 +59,7 @@ Query[el]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Se
 Query[en_GB]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[es]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[et]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
+Query[fi]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[fr]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[gu]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[hr]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search

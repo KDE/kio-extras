@@ -14,6 +14,7 @@ Name[el]=Wikia
 Name[en_GB]=Wikia
 Name[es]=Wikia
 Name[et]=Wikia
+Name[fi]=Wikia
 Name[fr]=Wikia
 Name[hr]=Wikia
 Name[ia]=Wikia
@@ -59,6 +60,7 @@ Query[el]=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=S
 Query[en_GB]=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Search
 Query[es]=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Search
 Query[et]=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Search
+Query[fi]=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Search
 Query[fr]=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Search
 Query[gu]=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Search
 Query[hr]=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Search

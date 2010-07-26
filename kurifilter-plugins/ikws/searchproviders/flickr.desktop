@@ -14,6 +14,7 @@ Name[el]=Flickr
 Name[en_GB]=Flickr
 Name[es]=Flickr
 Name[et]=Flickr
+Name[fi]=Flickr
 Name[fr]=Flickr
 Name[ga]=Flickr
 Name[hr]=Flickr
@@ -59,6 +60,7 @@ Query[el]=http://www.flickr.com/search/?q=\\{@}
 Query[en_GB]=http://www.flickr.com/search/?q=\\{@}
 Query[es]=http://www.flickr.com/search/?q=\\{@}
 Query[et]=http://www.flickr.com/search/?q=\\{@}
+Query[fi]=http://www.flickr.com/search/?q=\\{@}
 Query[fr]=http://www.flickr.com/search/?q=\\{@}
 Query[gu]=http://www.flickr.com/search/?q=\\{@}
 Query[hr]=http://www.flickr.com/search/?q=\\{@}
