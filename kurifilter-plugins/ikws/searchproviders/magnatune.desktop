@@ -37,6 +37,7 @@ Name[pt_BR]=Magnatune
 Name[ro]=Magnatune
 Name[ru]=Magnatune
 Name[si]=Magnatune
+Name[sk]=Magnatune
 Name[sr]=Магнатјун
 Name[sr@ijekavian]=Магнатјун
 Name[sr@ijekavianlatin]=Magnatune
@@ -82,6 +83,7 @@ Query[pt]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
 Query[pt_BR]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
 Query[ro]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
 Query[ru]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
+Query[sk]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
 Query[sr]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
 Query[sr@ijekavian]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
 Query[sr@ijekavianlatin]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0

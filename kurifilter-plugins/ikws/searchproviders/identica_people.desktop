@@ -35,6 +35,7 @@ Name[pt_BR]=Pessoas do Identi.ca
 Name[ro]=Identi.ca Oameni
 Name[ru]=Identi.ca: люди
 Name[si]=Identi.ca පුද්ගලයින්
+Name[sk]=Identi.ca ľudia
 Name[sr]=Идентика‑људи
 Name[sr@ijekavian]=Идентика‑људи
 Name[sr@ijekavianlatin]=identi.ca‑ljudi
@@ -79,6 +80,7 @@ Query[pt]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[pt_BR]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[ro]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[ru]=http://identi.ca/search/people?q=\\{@}&search=Search
+Query[sk]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[sr]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[sr@ijekavian]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[sr@ijekavianlatin]=http://identi.ca/search/people?q=\\{@}&search=Search

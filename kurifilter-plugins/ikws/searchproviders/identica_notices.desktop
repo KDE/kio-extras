@@ -34,6 +34,7 @@ Name[pt]=Avisos do Identi.ca
 Name[pt_BR]=Notícias do Identi.ca
 Name[ru]=Identi.ca: записи
 Name[si]=Identi.ca දැනුම්දීම්
+Name[sk]=Identi.ca poznámky
 Name[sr]=Идентика-обавештења
 Name[sr@ijekavian]=Идентика-обавештења
 Name[sr@ijekavianlatin]=identi.ca‑obaveštenja
@@ -78,6 +79,7 @@ Query[pt]=http://identi.ca/search/notice?q=\\{@}
 Query[pt_BR]=http://identi.ca/search/notice?q=\\{@}
 Query[ro]=http://identi.ca/search/notice?q=\\{@}
 Query[ru]=http://identi.ca/search/notice?q=\\{@}
+Query[sk]=http://identi.ca/search/notice?q=\\{@}
 Query[sr]=http://identi.ca/search/notice?q=\\{@}
 Query[sr@ijekavian]=http://identi.ca/search/notice?q=\\{@}
 Query[sr@ijekavianlatin]=http://identi.ca/search/notice?q=\\{@}

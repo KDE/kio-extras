@@ -35,6 +35,7 @@ Name[pt_BR]=KDE UserBase
 Name[ro]=KDE UserBase
 Name[ru]=KDE UserBase
 Name[si]=KDE පරිශීලක පාදම
+Name[sk]=KDE UserBase
 Name[sr]=Корисничка база КДЕ‑а
 Name[sr@ijekavian]=Корисничка база КДЕ‑а
 Name[sr@ijekavianlatin]=Korisnička baza KDE‑a
@@ -80,6 +81,7 @@ Query[pt]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[pt_BR]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[ro]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[ru]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
+Query[sk]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[sr]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[sr@ijekavian]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[sr@ijekavianlatin]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
