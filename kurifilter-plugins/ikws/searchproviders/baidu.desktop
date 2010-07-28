@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Service
+Name=Baidu
+Name[zh_CN]=百度
+X-KDE-ServiceTypes=SearchProvider
+Keys=baidu
+Query=http://www.baidu.com/s?wd=\\{@}
