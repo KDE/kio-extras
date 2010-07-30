@@ -155,7 +155,7 @@ Query[sr@latin]=http://ctan.org/cgi-bin/filenameSearch.py?filename=\\{@}&Search=
 Query[sv]=http://ctan.org/cgi-bin/filenameSearch.py?filename=\\{@}&Search=Search
 Query[ta]=http://ctan.org/cgi-bin/filenameSearch.py?filename=\\{@}&Search=Search
 Query[te]=http://ctan.org/cgi-bin/filenameSearch.py?filename=\\{@}&Search=Search
-Query[tg]=http://ctan.org/cgi-bin/filenameSearch.py?filename=\\{@}&Search=Ҷустуҷӯ
+Query[tg]=http://ctan.org/cgi-bin/filenameSearch.py?filename=\\{@}&Search=Search
 Query[th]=http://ctan.org/cgi-bin/filenameSearch.py?filename=\\{@}&Search=Search
 Query[tr]=http://ctan.org/cgi-bin/filenameSearch.py?filename=\\{@}&Search=Search
 Query[uk]=http://ctan.org/cgi-bin/filenameSearch.py?filename=\\{@}&Search=Search

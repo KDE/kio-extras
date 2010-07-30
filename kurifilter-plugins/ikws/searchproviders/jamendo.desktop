@@ -88,6 +88,7 @@ Query[sr@ijekavian]=http://www.jamendo.com/en/search/all/\\{@}
 Query[sr@ijekavianlatin]=http://www.jamendo.com/en/search/all/\\{@}
 Query[sr@latin]=http://www.jamendo.com/en/search/all/\\{@}
 Query[sv]=http://www.jamendo.com/en/search/all/\\{@}
+Query[tg]=http://www.jamendo.com/en/search/all/\\{@}
 Query[th]=http://www.jamendo.com/en/search/all/\\{@}
 Query[uk]=http://www.jamendo.com/en/search/all/\\{@}
 Query[x-test]=xxhttp://www.jamendo.com/en/search/all/\\{@}xx

@@ -88,6 +88,7 @@ Query[sr@ijekavian]=http://www.kde-look.org/content/search.php?search=Search&nam
 Query[sr@ijekavianlatin]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[sr@latin]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[sv]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
+Query[tg]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[th]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[uk]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[x-test]=xxhttp://www.kde-look.org/content/search.php?search=Search&name=\\{@}xx

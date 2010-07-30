@@ -44,6 +44,7 @@ Name[sr@ijekavian]=Фејсбук
 Name[sr@ijekavianlatin]=Facebook
 Name[sr@latin]=Facebook
 Name[sv]=Facebook
+Name[tg]=Facebook
 Name[th]=เฟซบุ้ค
 Name[uk]=Facebook
 Name[x-test]=xxFacebookxx
@@ -90,6 +91,7 @@ Query[sr@ijekavian]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[sr@ijekavianlatin]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[sr@latin]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[sv]=http://www.facebook.com/search/?q=\\{@}&init=quick
+Query[tg]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[th]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[uk]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[x-test]=xxhttp://www.facebook.com/search/?q=\\{@}&init=quickxx

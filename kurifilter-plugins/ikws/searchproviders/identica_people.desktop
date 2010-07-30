@@ -86,6 +86,7 @@ Query[sr@ijekavian]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[sr@ijekavianlatin]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[sr@latin]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[sv]=http://identi.ca/search/people?q=\\{@}&search=Search
+Query[tg]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[th]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[uk]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[x-test]=xxhttp://identi.ca/search/people?q=\\{@}&search=Searchxx

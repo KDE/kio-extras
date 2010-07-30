@@ -90,6 +90,7 @@ Query[sr@ijekavian]=http://blip.tv/search?q=\\{@}
 Query[sr@ijekavianlatin]=http://blip.tv/search?q=\\{@}
 Query[sr@latin]=http://blip.tv/search?q=\\{@}
 Query[sv]=http://blip.tv/search?q=\\{@}
+Query[tg]=http://blip.tv/search?q=\\{@}
 Query[uk]=http://blip.tv/search?q=\\{@}
 Query[x-test]=xxhttp://blip.tv/search?q=\\{@}xx
 Query[zh_CN]=http://blip.tv/search?q=\\{@}

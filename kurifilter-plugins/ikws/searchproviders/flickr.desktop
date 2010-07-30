@@ -44,6 +44,7 @@ Name[sr@ijekavian]=Фликр
 Name[sr@ijekavianlatin]=Flickr
 Name[sr@latin]=Flickr
 Name[sv]=Flickr
+Name[tg]=Flickr
 Name[th]=Flickr
 Name[uk]=Flickr
 Name[x-test]=xxFlickrxx
@@ -90,6 +91,7 @@ Query[sr@ijekavian]=http://www.flickr.com/search/?q=\\{@}
 Query[sr@ijekavianlatin]=http://www.flickr.com/search/?q=\\{@}
 Query[sr@latin]=http://www.flickr.com/search/?q=\\{@}
 Query[sv]=http://www.flickr.com/search/?q=\\{@}
+Query[tg]=http://www.flickr.com/search/?q=\\{@}
 Query[th]=http://www.flickr.com/search/?q=\\{@}
 Query[uk]=http://www.flickr.com/search/?q=\\{@}
 Query[x-test]=xxhttp://www.flickr.com/search/?q=\\{@}xx

@@ -91,6 +91,7 @@ Query[sr@ijekavian]=http://www.wikia.com/Special:Search?search=\\{@}&wikia_searc
 Query[sr@ijekavianlatin]=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Search
 Query[sr@latin]=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Search
 Query[sv]=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Search
+Query[tg]=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Search
 Query[th]=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Search
 Query[uk]=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Search
 Query[x-test]=xxhttp://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Searchxx

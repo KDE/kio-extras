@@ -1,8 +1,16 @@
 [Desktop Entry]
 Type=Service
 Name=Baidu
+Name[pt]=Baidu
+Name[sv]=Baidu
+Name[tg]=Baidu
+Name[uk]=Baidu
 Name[x-test]=xxBaiduxx
 X-KDE-ServiceTypes=SearchProvider
 Keys=baidu
 Query=http://www.baidu.com/s?wd=\\{@}
+Query[pt]=http://www.baidu.com/s?wd=\\{@}
+Query[sv]=http://www.baidu.com/s?wd=\\{@}
+Query[tg]=http://www.baidu.com/s?wd=\\{@}
+Query[uk]=http://www.baidu.com/s?wd=\\{@}
 Query[x-test]=xxhttp://www.baidu.com/s?wd=\\{@}xx

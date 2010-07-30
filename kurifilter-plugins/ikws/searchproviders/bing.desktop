@@ -1,8 +1,15 @@
 [Desktop Entry]
 Type=Service
 Name=Bing
+Name[pt]=Bing
+Name[sv]=Bing
+Name[uk]=Bing
 Name[x-test]=xxBingxx
 X-KDE-ServiceTypes=SearchProvider
 Keys=bing
 Query=http://www.bing.com/search?q=\\{@}
+Query[pt]=http://www.bing.com/search?q=\\{@}
+Query[sv]=http://www.bing.com/search?q=\\{@}
+Query[tg]=http://www.bing.com/search?q=\\{@}
+Query[uk]=http://www.bing.com/search?q=\\{@}
 Query[x-test]=xxhttp://www.bing.com/search?q=\\{@}xx

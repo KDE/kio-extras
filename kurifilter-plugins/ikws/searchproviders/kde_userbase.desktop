@@ -87,6 +87,7 @@ Query[sr@ijekavian]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext
 Query[sr@ijekavianlatin]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[sr@latin]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[sv]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
+Query[tg]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[th]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[uk]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[x-test]=xxhttp://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Searchxx
