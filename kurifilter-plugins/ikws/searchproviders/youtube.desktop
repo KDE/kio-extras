@@ -1,6 +1,7 @@
 [Desktop Entry]
 Keys=yt,youtube
 Name=YouTube
+Name[ar]=يوتيوب
 Name[bg]=YouTube
 Name[bn]=ইউ-টিউভ
 Name[ca]=YouTube
@@ -49,6 +50,7 @@ Name[x-test]=xxYouTubexx
 Name[zh_CN]=YouTube
 Name[zh_TW]=YouTube
 Query=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
+Query[ar]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[bg]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[bn]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[ca]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f

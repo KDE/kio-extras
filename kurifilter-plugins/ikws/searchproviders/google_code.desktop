@@ -3,6 +3,7 @@ Charset=
 Hidden=false
 Keys=ggc,googlecode,ggcode
 Name=Google Code
+Name[ar]=شفرة جوجل
 Name[bg]=Код в Google
 Name[bn]=গুগল কোড
 Name[ca]=Google Code
@@ -48,6 +49,7 @@ Name[x-test]=xxGoogle Codexx
 Name[zh_CN]=Google Code
 Name[zh_TW]=Google Code
 Query=http://code.google.com/query/#q=\\{%2520}
+Query[ar]=http://code.google.com/query/#q=\\{%2520}
 Query[bg]=http://code.google.com/query/#q=\\{%2520}
 Query[bn]=http://code.google.com/query/#q=\\{%2520}
 Query[ca]=http://code.google.com/query/#q=\\{%2520}

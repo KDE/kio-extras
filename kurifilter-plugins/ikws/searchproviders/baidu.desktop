@@ -2,6 +2,7 @@
 Type=Service
 Name=Baidu
 Name[en_GB]=Baidu
+Name[ia]=Baidu
 Name[nds]=Baidu
 Name[pt]=Baidu
 Name[pt_BR]=Baidu
@@ -13,6 +14,7 @@ X-KDE-ServiceTypes=SearchProvider
 Keys=baidu
 Query=http://www.baidu.com/s?wd=\\{@}
 Query[en_GB]=http://www.baidu.com/s?wd=\\{@}
+Query[ia]=http://www.baidu.com/s?wd=\\{@}
 Query[nds]=http://www.baidu.com/s?wd=\\{@}
 Query[pt]=http://www.baidu.com/s?wd=\\{@}
 Query[pt_BR]=http://www.baidu.com/s?wd=\\{@}

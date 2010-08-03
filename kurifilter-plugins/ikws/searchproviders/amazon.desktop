@@ -3,6 +3,7 @@ Charset=
 Hidden=false
 Keys=amazon,amz
 Name=Amazon
+Name[ar]=Amazon
 Name[bg]=Amazon
 Name[bn]=অ্যামাজন
 Name[ca]=Amazon
@@ -49,6 +50,7 @@ Name[x-test]=xxAmazonxx
 Name[zh_CN]=Amazon
 Name[zh_TW]=Amazon
 Query=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=aps&field-keywords=\\{@}&x=0&y=0
+Query[ar]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=aps&field-keywords=\\{@}&x=0&y=0
 Query[bg]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=aps&field-keywords=\\{@}&x=0&y=0
 Query[bn]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=aps&field-keywords=\\{@}&x=0&y=0
 Query[ca]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=aps&field-keywords=\\{@}&x=0&y=0
