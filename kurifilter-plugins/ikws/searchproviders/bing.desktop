@@ -3,6 +3,7 @@ Type=Service
 Name=Bing
 Name[en_GB]=Bing
 Name[ia]=Bing
+Name[lt]=Bing
 Name[nds]=Bing
 Name[pt]=Bing
 Name[pt_BR]=Bing
@@ -14,6 +15,7 @@ Keys=bing
 Query=http://www.bing.com/search?q=\\{@}
 Query[en_GB]=http://www.bing.com/search?q=\\{@}
 Query[ia]=http://www.bing.com/search?q=\\{@}
+Query[lt]=http://www.bing.com/search?q=\\{@}
 Query[nds]=http://www.bing.com/search?q=\\{@}
 Query[pt]=http://www.bing.com/search?q=\\{@}
 Query[pt_BR]=http://www.bing.com/search?q=\\{@}
