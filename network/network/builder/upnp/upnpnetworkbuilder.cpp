@@ -71,32 +71,24 @@ void UpnpNetworkBuilder::start()
                            "org.kde.Cagibi",
                            dbusConnection, this);
 
-    if( mDBusCagibiProxy->isValid() )
-    {
-        dbusConnection.connect("org.kde.Cagibi",
-                            "/org/kde/Cagibi",
-                            "org.kde.Cagibi",
-                            "devicesAdded",
-                            this, SLOT(onDevicesAdded( const DeviceTypeMap& )) );
-        dbusConnection.connect("org.kde.Cagibi",
-                            "/org/kde/Cagibi",
-                            "org.kde.Cagibi",
-                            "devicesRemoved",
-                            this, SLOT(onDevicesRemoved( const DeviceTypeMap& )) );
+    dbusConnection.connect("org.kde.Cagibi",
+                           "/org/kde/Cagibi",
+                           "org.kde.Cagibi",
+                           "devicesAdded",
+                           this, SLOT(onDevicesAdded( const DeviceTypeMap& )) );
+    dbusConnection.connect("org.kde.Cagibi",
+                           "/org/kde/Cagibi",
+                           "org.kde.Cagibi",
+                           "devicesRemoved",
+                           this, SLOT(onDevicesRemoved( const DeviceTypeMap& )) );
 
-        QDBusPendingCall allDevicesCall = mDBusCagibiProxy->asyncCall( QString::fromLatin1("allDevices") );
+    QDBusPendingCall allDevicesCall = mDBusCagibiProxy->asyncCall( QString::fromLatin1("allDevices") );
 
-        QDBusPendingCallWatcher* allDevicesCallWatcher = new QDBusPendingCallWatcher( allDevicesCall, this );
+    QDBusPendingCallWatcher* allDevicesCallWatcher =
+        new QDBusPendingCallWatcher( allDevicesCall, this );
 
-        connect( allDevicesCallWatcher, SIGNAL(finished( QDBusPendingCallWatcher* )),
-                 SLOT(onAllDevicesCallFinished( QDBusPendingCallWatcher* )) );
-    }
-    else
-    {
-kDebug() << "Could not connect to Cagibi, no listing of UPnP devices/services.";
-        // TODO: works already here, but is this a good design?
-        emit initDone();
-    }
+    connect( allDevicesCallWatcher, SIGNAL(finished( QDBusPendingCallWatcher* )),
+             SLOT(onAllDevicesCallFinished( QDBusPendingCallWatcher* )) );
 }
 
 
@@ -111,7 +103,22 @@ kDebug() << "Connected to Cagibi, listing of UPnP devices/services started.";
         onDevicesAdded( deviceTypeMap );
     }
     else
-        kWarning() << "Error: " << reply.error().name();
+    {
+        QDBusConnection dbusConnection = QDBusConnection::sessionBus();
+        dbusConnection.disconnect("org.kde.Cagibi",
+                            "/org/kde/Cagibi",
+                            "org.kde.Cagibi",
+                            "devicesAdded",
+                            this, SLOT(onDevicesAdded( const DeviceTypeMap& )) );
+        dbusConnection.disconnect("org.kde.Cagibi",
+                            "/org/kde/Cagibi",
+                            "org.kde.Cagibi",
+                            "devicesRemoved",
+                            this, SLOT(onDevicesRemoved( const DeviceTypeMap& )) );
+
+        kDebug() << "Could not connect to Cagibi, no listing of UPnP devices/services.";
+        kDebug() << "Error: " << reply.error().name();
+    }
 
     delete allDevicesCallWatcher;
 
