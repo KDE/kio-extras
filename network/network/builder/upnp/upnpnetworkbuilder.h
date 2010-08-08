@@ -63,6 +63,8 @@ class UpnpNetworkBuilder : public AbstractNetworkBuilder
     void removeUPnPDevices( const QList<Cagibi::Device>& devices );
 
   private Q_SLOTS:
+    void startBrowse();
+
     void onDevicesAdded( const DeviceTypeMap& deviceTypeMap );
     void onDevicesRemoved( const DeviceTypeMap& deviceTypeMap );
     void onAddedDeviceDetails( const Cagibi::Device& device );

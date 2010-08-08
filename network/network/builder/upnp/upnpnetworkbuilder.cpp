@@ -36,6 +36,7 @@
 #include <QtDBus/QDBusConnection>
 #include <QtDBus/QDBusInterface>
 #include <QtDBus/QDBusPendingCallWatcher>
+#include <QtCore/QTimer>
 #include <QtCore/QStringList>
 
 #include <KDebug>
@@ -59,6 +60,11 @@ void UpnpNetworkBuilder::registerNetSystemFactory( AbstractNetSystemFactory* net
 }
 
 void UpnpNetworkBuilder::start()
+{
+    QTimer::singleShot(0, this, SLOT(startBrowse()));
+}
+
+void UpnpNetworkBuilder::startBrowse()
 {
     qDBusRegisterMetaType<DeviceTypeMap>();
     qDBusRegisterMetaType<Cagibi::Device>();
