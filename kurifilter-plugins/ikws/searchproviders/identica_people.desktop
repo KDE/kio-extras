@@ -14,6 +14,7 @@ Name[el]=Identi.ca People
 Name[en_GB]=Identi.ca People
 Name[es]=Gente Identi.ca
 Name[et]=Identi.ca inimesed
+Name[eu]=Identi.ca Jendea
 Name[fr]=Personne Identi.ca
 Name[hr]=Ljudi na Identi.ci
 Name[ia]=Gente de Identi.ca
@@ -59,6 +60,7 @@ Query[el]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[en_GB]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[es]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[et]=http://identi.ca/search/people?q=\\{@}&search=Search
+Query[eu]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[fi]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[fr]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[gu]=http://identi.ca/search/people?q=\\{@}&search=Search

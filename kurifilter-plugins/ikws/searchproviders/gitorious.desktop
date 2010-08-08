@@ -15,6 +15,7 @@ Name[el]=Gitorious
 Name[en_GB]=Gitorious
 Name[es]=Gitorious
 Name[et]=Gitorious
+Name[eu]=Gitorious
 Name[fi]=Gitorious
 Name[fr]=Gitorious
 Name[hr]=Gitorious
@@ -62,6 +63,7 @@ Query[el]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[en_GB]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[es]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[et]=http://gitorious.org/search?q=\\{@}&commit=Search
+Query[eu]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[fi]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[fr]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[gu]=http://gitorious.org/search?q=\\{@}&commit=Search

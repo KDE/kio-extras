@@ -12,6 +12,7 @@ Name[el]=Duck Duck Go Info
 Name[en_GB]=Duck Duck Go Info
 Name[es]=Duck Duck Go Info
 Name[et]=Duck Duck Go Info
+Name[eu]=Duck Duck Go Info
 Name[fr]=Duck Duck Go Info
 Name[hr]=Duck Duck Go Info
 Name[ia]=Duck Duck Go Info
@@ -56,6 +57,7 @@ Query[el]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[en_GB]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[es]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[et]=http://duckduckgo.com/?q=\\{@}&v=r
+Query[eu]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[fi]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[fr]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[gu]=http://duckduckgo.com/?q=\\{@}&v=r
