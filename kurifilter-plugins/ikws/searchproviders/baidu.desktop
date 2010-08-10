@@ -3,6 +3,7 @@ Type=Service
 Name=Baidu
 Name[en_GB]=Baidu
 Name[eu]=Baidu
+Name[hr]=Baidu
 Name[ia]=Baidu
 Name[lt]=Baidu
 Name[nds]=Baidu
@@ -17,6 +18,7 @@ Keys=baidu
 Query=http://www.baidu.com/s?wd=\\{@}
 Query[en_GB]=http://www.baidu.com/s?wd=\\{@}
 Query[eu]=http://www.baidu.com/s?wd=\\{@}
+Query[hr]=http://www.baidu.com/s?wd=\\{@}
 Query[ia]=http://www.baidu.com/s?wd=\\{@}
 Query[lt]=http://www.baidu.com/s?wd=\\{@}
 Query[nds]=http://www.baidu.com/s?wd=\\{@}
