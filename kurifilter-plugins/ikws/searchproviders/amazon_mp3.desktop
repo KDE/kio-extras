@@ -34,6 +34,7 @@ Name[ml]=ആമസോണ്‍ എംപി3
 Name[nb]=Amazon MP3
 Name[nds]=Amazon - MP3
 Name[nl]=Amazon MP3
+Name[nn]=Amazon MP3
 Name[pa]=Amazon MP3
 Name[pt]=MP3 da Amazon
 Name[pt_BR]=MP3 da Amazon
@@ -83,6 +84,7 @@ Query[ml]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=digital-music&
 Query[nb]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=digital-music&field-keywords=\\{@}&x=0&y=0
 Query[nds]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=digital-music&field-keywords=\\{@}&x=0&y=0
 Query[nl]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=digital-music&field-keywords=\\{@}&x=0&y=0
+Query[nn]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=digital-music&field-keywords=\\{@}&x=0&y=0
 Query[pa]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=digital-music&field-keywords=\\{@}&x=0&y=0
 Query[pt]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=digital-music&field-keywords=\\{@}&x=0&y=0
 Query[pt_BR]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=digital-music&field-keywords=\\{@}&x=0&y=0

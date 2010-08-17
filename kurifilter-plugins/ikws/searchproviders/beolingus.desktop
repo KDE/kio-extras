@@ -31,6 +31,7 @@ Name[ml]=ബിയോലിങ്കസ് ഓണ്‍ലൈന്‍ നിഘ
 Name[nb]=Beolingus nettverksordbok
 Name[nds]=Beolingus- Internetwöörbook
 Name[nl]=Beolingus on-line woordenboek (de-en, de-es, de-pt) 
+Name[nn]=Beolingus – nettordbok
 Name[pt]=Dicionário 'Online' Beolingus
 Name[pt_BR]=Dicionário online Beolingus
 Name[ro]=Dicționar online Beolingus
@@ -82,6 +83,7 @@ Query[ml]=http://dict.tu-chemnitz.de/dings.cgi?lang=de&service=deen&opterrors=0&
 Query[nb]=http://dict.tu-chemnitz.de/dings.cgi?lang=de&service=deen&opterrors=0&optpro=0&query=\\{@}&iservice=&comment=&email
 Query[nds]=http://dict.tu-chemnitz.de/dings.cgi?lang=de&service=deen&opterrors=0&optpro=0&query=\\{@}&iservice=&comment=&email
 Query[nl]=http://dict.tu-chemnitz.de/dings.cgi?lang=de&service=deen&opterrors=0&optpro=0&query=\\{@}&iservice=&comment=&email
+Query[nn]=http://dict.tu-chemnitz.de/dings.cgi?lang=de&service=deen&opterrors=0&optpro=0&query=\\{@}&iservice=&comment=&email
 Query[pa]=http://dict.tu-chemnitz.de/dings.cgi?lang=de&service=deen&opterrors=0&optpro=0&query=\\{@}&iservice=&comment=&email
 Query[pt]=http://dict.tu-chemnitz.de/dings.cgi?lang=de&service=deen&opterrors=0&optpro=0&query=\\{@}&iservice=&comment=&email
 Query[pt_BR]=http://dict.tu-chemnitz.de/dings.cgi?lang=de&service=deen&opterrors=0&optpro=0&query=\\{@}&iservice=&comment=&email

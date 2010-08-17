@@ -31,6 +31,7 @@ Name[ml]=ഐഡന്റിക്കയിലെ ആളുകള്‍
 Name[nb]=Identi.ca folk
 Name[nds]=Identi.ca - Lüüd
 Name[nl]=Identi.ca Mensen
+Name[nn]=Identi.ca-folk
 Name[pa]=Identi.ca ਲੋਕ
 Name[pt]=Pessoas do Identi.ca
 Name[pt_BR]=Pessoas do Identi.ca
@@ -79,6 +80,7 @@ Query[ml]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[nb]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[nds]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[nl]=http://identi.ca/search/people?q=\\{@}&search=Search
+Query[nn]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[pa]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[pt]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[pt_BR]=http://identi.ca/search/people?q=\\{@}&search=Search

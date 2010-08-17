@@ -33,6 +33,7 @@ Name[ml]=7ഡിജിറ്റല്‍
 Name[nb]=7Digital
 Name[nds]=7Digital
 Name[nl]=7Digital
+Name[nn]=7Digital
 Name[pa]=੭ਡਿਜ਼ਿਟਲ
 Name[pt]=7Digital
 Name[pt_BR]=7Digital
@@ -81,6 +82,7 @@ Query[lt]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Se
 Query[nb]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[nds]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[nl]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
+Query[nn]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[pa]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[pt]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[pt_BR]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search

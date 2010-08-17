@@ -31,6 +31,7 @@ Name[ml]=എക്കോഷ്യ തെരച്ചില്‍ എഞ്ചി
 Name[nb]=Exosia søkemotor
 Name[nds]=Ecosia-Söökmaschien
 Name[nl]=Ecosia zoekmachine
+Name[nn]=Ecosia – søkjemotor
 Name[pa]=ਇਕੋਸੀਆ ਖੋਜ ਇੰਜਣ
 Name[pt]=Motor de busca Ecosia
 Name[pt_BR]=Mecanismo de busca Ecosia
@@ -84,6 +85,7 @@ Query[ml]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[nb]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[nds]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[nl]=http://www.ethicle.com/search.php?q=\\{@}
+Query[nn]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[pa]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[pt]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[pt_BR]=http://ecosia.org/search.php?q=\\{@}&meta=normal

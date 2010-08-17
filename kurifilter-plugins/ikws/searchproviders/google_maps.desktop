@@ -32,6 +32,7 @@ Name[lt]=Google žemėlapiai
 Name[nb]=Google Maps
 Name[nds]=Google-Koorten
 Name[nl]=Google Maps
+Name[nn]=Google Maps
 Name[pa]=Google ਨਕਸ਼ੇ
 Name[pt]=Google Maps
 Name[pt_BR]=Google Maps
@@ -84,6 +85,7 @@ Query[lt]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[nb]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[nds]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[nl]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
+Query[nn]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[pa]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[pt]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[pt_BR]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr

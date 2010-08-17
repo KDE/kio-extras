@@ -35,6 +35,7 @@ Name[ml]=ഫ്ലിക്കര്‍
 Name[nb]=Flickr
 Name[nds]=Flickr
 Name[nl]=Flickr
+Name[nn]=Flickr
 Name[pa]=ਫਲਿੱਕਰ
 Name[pt]=Flickr
 Name[pt_BR]=Flickr
@@ -85,6 +86,7 @@ Query[ml]=http://www.flickr.com/search/?q=\\{@}
 Query[nb]=http://www.flickr.com/search/?q=\\{@}
 Query[nds]=http://www.flickr.com/search/?q=\\{@}
 Query[nl]=http://www.flickr.com/search/?q=\\{@}
+Query[nn]=http://www.flickr.com/search/?q=\\{@}
 Query[pa]=http://www.flickr.com/search/?q=\\{@}
 Query[pt]=http://www.flickr.com/search/?q=\\{@}
 Query[pt_BR]=http://www.flickr.com/search/?q=\\{@}

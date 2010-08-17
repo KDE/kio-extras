@@ -30,6 +30,7 @@ Name[ml]=ഡക്ക് ഡക്ക് ഗോ
 Name[nb]=Duck Duck Go
 Name[nds]=Duck Duck Go
 Name[nl]=Duck Duck Go
+Name[nn]=Duck Duck Go
 Name[pt]=Duck Duck Go
 Name[pt_BR]=Duck Duck Go
 Name[ro]=Duck Duck Go
@@ -78,6 +79,7 @@ Query[ml]=http://duckduckgo.com/?q=\\{@}&v=
 Query[nb]=http://duckduckgo.com/?q=\\{@}&v=
 Query[nds]=http://duckduckgo.com/?q=\\{@}&v=
 Query[nl]=http://duckduckgo.com/?q=\\{@}&v=
+Query[nn]=http://duckduckgo.com/?q=\\{@}&v=
 Query[pa]=http://duckduckgo.com/?q=\\{@}&v=
 Query[pt]=http://duckduckgo.com/?q=\\{@}&v=
 Query[pt_BR]=http://duckduckgo.com/?q=\\{@}&v=

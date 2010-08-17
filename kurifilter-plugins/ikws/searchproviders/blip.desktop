@@ -33,6 +33,7 @@ Name[ml]=ബ്ലിപ്.ടിവി
 Name[nb]=Blip.tv
 Name[nds]=Blip.tv
 Name[nl]=Blip.tv
+Name[nn]=Blip.tv
 Name[pa]=Blip.tv
 Name[pt]=Blip.tv
 Name[pt_BR]=Blip.tv
@@ -83,6 +84,7 @@ Query[ml]=http://blip.tv/search?q=\\{@}
 Query[nb]=http://blip.tv/search?q=\\{@}
 Query[nds]=http://blip.tv/search?q=\\{@}
 Query[nl]=http://blip.tv/search?q=\\{@}
+Query[nn]=http://blip.tv/search?q=\\{@}
 Query[pa]=http://blip.tv/search?q=\\{@}
 Query[pt]=http://blip.tv/search?q=\\{@}
 Query[pt_BR]=http://blip.tv/search?q=\\{@}

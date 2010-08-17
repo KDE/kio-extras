@@ -124,6 +124,7 @@ Query[lv]=http://imdb.com/find?s=all&q=\\{@}
 Query[nb]=http://imdb.com/find?s=all&q=\\{@}
 Query[nds]=http://imdb.com/find?s=all&q=\\{@}
 Query[nl]=http://imdb.com/find?s=all&q=\\{@}
+Query[nn]=http://imdb.com/find?s=all&q=\\{@}
 Query[pa]=http://imdb.com/find?s=all&q=\\{@}
 Query[pt]=http://imdb.com/find?s=all&q=\\{@}
 Query[pt_BR]=http://imdb.com/find?s=all&q=\\{@}

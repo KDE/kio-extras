@@ -32,6 +32,7 @@ Name[ml]=ഫ്ലിക്കര്‍ ക്രിയേറ്റീവ് ക
 Name[nb]=Flickr Creative Commons
 Name[nds]=Flickr Creative Commons
 Name[nl]=Flickr Creative Commons
+Name[nn]=Flickr Creative Commons
 Name[pt]=Flickr Creative Commons
 Name[pt_BR]=Flickr Creative Commons
 Name[ro]=Flickr Creative Commons
@@ -79,6 +80,7 @@ Query[ml]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
 Query[nb]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
 Query[nds]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
 Query[nl]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
+Query[nn]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
 Query[pa]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
 Query[pt]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
 Query[pt_BR]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1

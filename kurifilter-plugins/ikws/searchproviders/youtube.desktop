@@ -31,6 +31,7 @@ Name[ml]=യുട്യൂബ്
 Name[nb]=YouTube
 Name[nds]=YouTube
 Name[nl]=YouTube
+Name[nn]=YouTube
 Name[pa]=ਯੂਟਿਊਬ
 Name[pt]=YouTube
 Name[pt_BR]=YouTube
@@ -81,6 +82,7 @@ Query[ml]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[nb]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[nds]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[nl]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
+Query[nn]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[pa]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[pt]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[pt_BR]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f

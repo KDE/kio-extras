@@ -33,6 +33,7 @@ Name[ml]=ഐഡന്റിക്ക ഗ്രൂപ്പുകള്‍
 Name[nb]=Identi.ca-grupper
 Name[nds]=Identi.ca - Koppeln
 Name[nl]=Identi.ca Groepen
+Name[nn]=Identi.ca-grupper
 Name[pa]=Identi.ca ਗਰੁੱਪ
 Name[pt]=Grupos do Identi.ca
 Name[pt_BR]=Grupos do Identi.ca
@@ -83,6 +84,7 @@ Query[ml]=http://identi.ca/search/group?q=\\{@}
 Query[nb]=http://identi.ca/search/group?q=\\{@}
 Query[nds]=http://identi.ca/search/group?q=\\{@}
 Query[nl]=http://identi.ca/search/group?q=\\{@}
+Query[nn]=http://identi.ca/search/group?q=\\{@}
 Query[pa]=http://identi.ca/search/group?q=\\{@}
 Query[pt]=http://identi.ca/search/group?q=\\{@}
 Query[pt_BR]=http://identi.ca/search/group?q=\\{@}
