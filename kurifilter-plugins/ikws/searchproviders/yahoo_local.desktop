@@ -39,6 +39,7 @@ Name[ro]=Yahoo Local
 Name[ru]=Yahoo: Адреса
 Name[si]=පෙදෙසි Yahoo
 Name[sk]=Yahoo Local
+Name[sl]=Yahoo - krajevno
 Name[sr]=Јаху‑локал
 Name[sr@ijekavian]=Јаху‑локал
 Name[sr@ijekavianlatin]=Yahoo Local
@@ -88,6 +89,7 @@ Query[ro]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab
 Query[ru]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img
 Query[si]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img
 Query[sk]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img
+Query[sl]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img
 Query[sr]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img
 Query[sr@ijekavian]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img
 Query[sr@ijekavianlatin]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img

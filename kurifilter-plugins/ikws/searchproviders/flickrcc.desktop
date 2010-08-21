@@ -39,6 +39,7 @@ Name[ro]=Flickr Creative Commons
 Name[ru]=Flickr: лицензия Creative Commons
 Name[si]=Flickr Creative Commons
 Name[sk]=Flickr Creative Commons
+Name[sl]=Flickr Creative Commons
 Name[sr]=Фликр (Криејтив комонс)
 Name[sr@ijekavian]=Фликр (Криејтив комонс)
 Name[sr@ijekavianlatin]=Flickr (Creative Commons)
@@ -87,6 +88,7 @@ Query[pt_BR]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
 Query[ro]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
 Query[ru]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
 Query[sk]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
+Query[sl]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
 Query[sr]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
 Query[sr@ijekavian]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
 Query[sr@ijekavianlatin]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1

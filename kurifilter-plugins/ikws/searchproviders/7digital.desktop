@@ -41,6 +41,7 @@ Name[ro]=7Digital
 Name[ru]=7Digital
 Name[si]=අංකිත7
 Name[sk]=7Digital
+Name[sl]=7Digital
 Name[sr]=7‑диџитал
 Name[sr@ijekavian]=7‑диџитал
 Name[sr@ijekavianlatin]=7Digitalo
@@ -89,6 +90,7 @@ Query[pt_BR]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit
 Query[ro]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[ru]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[sk]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
+Query[sl]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[sr]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[sr@ijekavian]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[sr@ijekavianlatin]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search

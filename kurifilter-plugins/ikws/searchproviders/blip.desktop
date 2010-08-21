@@ -41,6 +41,7 @@ Name[ro]=Blip.tv
 Name[ru]=Blip.tv
 Name[si]=Blip.tv
 Name[sk]=Blip.tv
+Name[sl]=Blip.tv
 Name[sr]=Блип.тв
 Name[sr@ijekavian]=Блип.тв
 Name[sr@ijekavianlatin]=Blip.tv
@@ -91,6 +92,7 @@ Query[pt_BR]=http://blip.tv/search?q=\\{@}
 Query[ro]=http://blip.tv/search?q=\\{@}
 Query[ru]=http://blip.tv/search?q=\\{@}
 Query[sk]=http://blip.tv/search?q=\\{@}
+Query[sl]=http://blip.tv/search?q=\\{@}
 Query[sr]=http://blip.tv/search?q=\\{@}
 Query[sr@ijekavian]=http://blip.tv/search?q=\\{@}
 Query[sr@ijekavianlatin]=http://blip.tv/search?q=\\{@}

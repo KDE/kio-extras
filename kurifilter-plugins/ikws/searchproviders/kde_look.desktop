@@ -40,6 +40,7 @@ Name[ro]=KDE Look
 Name[ru]=KDE-Look
 Name[si]=KDE පෙනුම
 Name[sk]=KDE Look
+Name[sl]=KDE Look
 Name[sr]=КДЕ‑изглед
 Name[sr@ijekavian]=КДЕ‑изглед
 Name[sr@ijekavianlatin]=KDE‑izgled
@@ -89,6 +90,7 @@ Query[pt_BR]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[ro]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[ru]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[sk]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
+Query[sl]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[sr]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[sr@ijekavian]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[sr@ijekavianlatin]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}

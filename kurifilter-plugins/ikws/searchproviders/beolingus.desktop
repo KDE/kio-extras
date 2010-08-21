@@ -38,6 +38,7 @@ Name[ro]=Dicționar online Beolingus
 Name[ru]=Словарь Beolingus
 Name[si]=Beolingus සබැඳි ශබ්දකෝෂය 
 Name[sk]=Beolingus online slovník
+Name[sl]=Spletni slovar Beolingus
 Name[sr]=Беолингус, речник на вези
 Name[sr@ijekavian]=Беолингус, речник на вези
 Name[sr@ijekavianlatin]=Beolingus, rečnik na vezi
@@ -91,6 +92,7 @@ Query[ro]=http://dict.tu-chemnitz.de/dings.cgi?lang=de&service=deen&opterrors=0&
 Query[ru]=http://dict.tu-chemnitz.de/dings.cgi?lang=de&service=deen&opterrors=0&optpro=0&query=\\{@}&iservice=&comment=&email
 Query[si]=http://dict.tu-chemnitz.de/dings.cgi?lang=de&service=deen&opterrors=0&optpro=0&query=\\{@}&iservice=&comment=&email
 Query[sk]=http://dict.tu-chemnitz.de/dings.cgi?lang=de&service=deen&opterrors=0&optpro=0&query=\\{@}&iservice=&comment=&email
+Query[sl]=http://dict.tu-chemnitz.de/dings.cgi?lang=de&service=deen&opterrors=0&optpro=0&query=\\{@}&iservice=&comment=&email
 Query[sr]=http://dict.tu-chemnitz.de/dings.cgi?lang=de&service=deen&opterrors=0&optpro=0&query=\\{@}&iservice=&comment=&email
 Query[sr@ijekavian]=http://dict.tu-chemnitz.de/dings.cgi?lang=de&service=deen&opterrors=0&optpro=0&query=\\{@}&iservice=&comment=&email
 Query[sr@ijekavianlatin]=http://dict.tu-chemnitz.de/dings.cgi?lang=de&service=deen&opterrors=0&optpro=0&query=\\{@}&iservice=&comment=&email

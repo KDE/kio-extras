@@ -37,6 +37,7 @@ Name[ro]=Duck Duck Go
 Name[ru]=Поиск Duck Duck Go
 Name[si]=Duck Duck Go
 Name[sk]=Duck Duck Go
+Name[sl]=Duck Duck Go
 Name[sr]=Дак дак го
 Name[sr@ijekavian]=Дак дак го
 Name[sr@ijekavianlatin]=Duck Duck Go
@@ -86,6 +87,7 @@ Query[pt_BR]=http://duckduckgo.com/?q=\\{@}&v=
 Query[ro]=http://duckduckgo.com/?q=\\{@}&v=
 Query[ru]=http://duckduckgo.com/?q=\\{@}&v=
 Query[sk]=http://duckduckgo.com/?q=\\{@}&v=
+Query[sl]=http://duckduckgo.com/?q=\\{@}&v=
 Query[sr]=http://duckduckgo.com/?q=\\{@}&v=
 Query[sr@ijekavian]=http://duckduckgo.com/?q=\\{@}&v=
 Query[sr@ijekavianlatin]=http://duckduckgo.com/?q=\\{@}&v=

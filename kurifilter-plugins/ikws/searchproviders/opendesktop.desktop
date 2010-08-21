@@ -19,6 +19,7 @@ Name[nn]=openDesktop.org
 Name[pt]=openDesktop.org
 Name[pt_BR]=openDesktop.org
 Name[ru]=openDesktop.org
+Name[sl]=openDesktop.org
 Name[sr]=Отворена површ
 Name[sr@ijekavian]=Отворена површ
 Name[sr@ijekavianlatin]=Otvorena površ
@@ -66,6 +67,7 @@ Query[pt_BR]=http://www.opendesktop.org/content/search.php?search=Search&name=\\
 Query[ro]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[ru]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[sk]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
+Query[sl]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[sr]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[sr@ijekavian]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[sr@ijekavianlatin]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}

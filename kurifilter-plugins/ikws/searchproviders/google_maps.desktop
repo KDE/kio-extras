@@ -40,6 +40,7 @@ Name[ro]=Google Hărți
 Name[ru]=Карты Google
 Name[si]=ගූගල් සිතියම්
 Name[sk]=Google mapy
+Name[sl]=Google Maps
 Name[sr]=Гугл‑карте
 Name[sr@ijekavian]=Гугл‑карте
 Name[sr@ijekavianlatin]=Google-karte
@@ -93,6 +94,7 @@ Query[ro]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[ru]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[si]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[sk]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
+Query[sl]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[sr]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[sr@ijekavian]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[sr@ijekavianlatin]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr

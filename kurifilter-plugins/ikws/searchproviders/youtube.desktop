@@ -39,6 +39,7 @@ Name[ro]=YouTube
 Name[ru]=YouTube
 Name[si]=YouTube
 Name[sk]=YouTube
+Name[sl]=YouTube
 Name[sr]=Јутјуб
 Name[sr@ijekavian]=Јутјуб
 Name[sr@ijekavianlatin]=YouTube
@@ -90,6 +91,7 @@ Query[ro]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[ru]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[si]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[sk]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
+Query[sl]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[sr]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[sr@ijekavian]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[sr@ijekavianlatin]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
