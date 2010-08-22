@@ -1,4 +1,3 @@
-include_directories(${CMAKE_SOURCE_DIR}/network/kupnp/lib/)
 add_subdirectory( network )
 add_subdirectory( ioslave )
 add_subdirectory( kded )
