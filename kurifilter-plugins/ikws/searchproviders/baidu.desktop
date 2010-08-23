@@ -7,6 +7,7 @@ Name[eu]=Baidu
 Name[hr]=Baidu
 Name[ia]=Baidu
 Name[lt]=Baidu
+Name[nb]=Baidu
 Name[nds]=Baidu
 Name[nn]=Baidu
 Name[pt]=Baidu
@@ -15,6 +16,7 @@ Name[sv]=Baidu
 Name[tg]=Baidu
 Name[uk]=Baidu
 Name[x-test]=xxBaiduxx
+Name[zh_TW]=百度
 X-KDE-ServiceTypes=SearchProvider
 Keys=baidu
 Query=http://www.baidu.com/s?wd=\\{@}
@@ -24,6 +26,7 @@ Query[eu]=http://www.baidu.com/s?wd=\\{@}
 Query[hr]=http://www.baidu.com/s?wd=\\{@}
 Query[ia]=http://www.baidu.com/s?wd=\\{@}
 Query[lt]=http://www.baidu.com/s?wd=\\{@}
+Query[nb]=http://www.baidu.com/s?wd=\\{@}
 Query[nds]=http://www.baidu.com/s?wd=\\{@}
 Query[nn]=http://www.baidu.com/s?wd=\\{@}
 Query[pt]=http://www.baidu.com/s?wd=\\{@}
@@ -32,3 +35,4 @@ Query[sv]=http://www.baidu.com/s?wd=\\{@}
 Query[tg]=http://www.baidu.com/s?wd=\\{@}
 Query[uk]=http://www.baidu.com/s?wd=\\{@}
 Query[x-test]=xxhttp://www.baidu.com/s?wd=\\{@}xx
+Query[zh_TW]=http://www.baidu.com/s?wd=\\{@}
