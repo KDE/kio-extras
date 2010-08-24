@@ -341,7 +341,7 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
   const QString abs_path = data.absolutePath();
 
   const bool canBeAbsolute = (protocol.isEmpty() && !abs_path.isEmpty());
-  const bool canBeLocalAbsolute = (canBeAbsolute && abs_path[0] =='/');
+  const bool canBeLocalAbsolute = (canBeAbsolute && abs_path[0] =='/' && !isMalformed);
   bool exists = false;
 
   /*kDebug(7023) << "abs_path=" << abs_path
@@ -370,8 +370,7 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
     }
   }
 
-  if( isLocalFullPath && !exists )
-  {
+  if (isLocalFullPath && !exists && !isMalformed) {
     exists = ( stat( QFile::encodeName(path).data() , &buff ) == 0 );
 
     if ( !exists ) {

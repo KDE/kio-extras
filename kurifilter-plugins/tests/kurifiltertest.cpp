@@ -202,9 +202,12 @@ void KUriFilterTest::localFiles()
     filter( "~foobar", 0, KUriFilterData::Error, QStringList( "kshorturifilter" ) );
 
     // Absolute Path tests for kshorturifilter
-    filter( "./", kdehome+"/share", KUriFilterData::LocalDir, QStringList( "kshorturifilter" ), kdehome+"/share/" ); // cleanPath removes the trailing slash
-    filter( "../", kdehome, KUriFilterData::LocalDir, QStringList( "kshorturifilter" ), kdehome+"/share" );
-    filter( "config", kdehome+"/share/config", KUriFilterData::LocalDir, QStringList( "kshorturifilter" ), kdehome+"/share" );
+    const QStringList kshorturifilter( QString("kshorturifilter") );
+    filter( "./", kdehome+"/share", KUriFilterData::LocalDir, kshorturifilter, kdehome+"/share/" ); // cleanPath removes the trailing slash
+    filter( "../", kdehome, KUriFilterData::LocalDir, kshorturifilter, kdehome+"/share" );
+    filter( "config", kdehome+"/share/config", KUriFilterData::LocalDir, kshorturifilter, kdehome+"/share" );
+    // Invalid URLs
+    filter( "http://a[b]", "http://a[b]", KUriFilterData::Unknown, kshorturifilter, "/" );
 }
 
 void KUriFilterTest::refOrQuery()
@@ -272,7 +275,7 @@ void KUriFilterTest::shortUris()
 
     // The default search engine is set to 'Google'
     //this may fail if your DNS knows domains KDE or FTP
-    filter( "gg:", "http://www.google.com/search?q=gg%3A&ie=UTF-8&oe=UTF-8", KUriFilterData::NetProtocol );
+    filter( "gg:", "", KUriFilterData::NetProtocol ); // see bug 56218
     filter( "KDE", "http://www.google.com/search?q=KDE&ie=UTF-8&oe=UTF-8", KUriFilterData::NetProtocol );
     filter( "HTTP", "http://www.google.com/search?q=HTTP&ie=UTF-8&oe=UTF-8", KUriFilterData::NetProtocol );
 }
