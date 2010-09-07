@@ -30,6 +30,9 @@
 
 #include <QtDBus/QtDBus>
 
+#define QL1S(x)  QLatin1String(x)
+#define QL1C(x)  QLatin1Char(x)
+
 /**
  * IMPORTANT: If you change anything here, please run the regression test
  * ../tests/kurifiltertest
@@ -56,19 +59,91 @@ void KAutoWebSearch::configure()
   KURISearchFilterEngine::self()->loadConfig();
 }
 
-bool KAutoWebSearch::filterUri( KUriFilterData &data ) const
+void KAutoWebSearch::populateProvidersList(const KUriFilterData& data, KUriFilterPlugin::ProviderInfoList& providerInfo, bool allproviders) const
 {
-  kDebug(7023) << data.typedString();
+  QVector<SearchProvider*> providers;
+  KURISearchFilterEngine *filter = KURISearchFilterEngine::self();
+  const QString searchTerm = filter->keywordDelimiter() + data.typedString();
 
-  if ( data.uriType() == KUriFilterData::Unknown && data.uri().pass().isEmpty() )
+  if (allproviders)
+    SearchProvider::findAll(providers);
+  else
   {
-    KURISearchFilterEngine *filter = KURISearchFilterEngine::self();
     QStringList favEngines = filter->favoriteEngineList();
     if (favEngines.isEmpty())
       favEngines = data.alternateSearchProviders();
 
-    SearchProvider *provider = filter->autoWebSearchQuery( data.typedString(), data.alternateDefaultSearchProvider() );
+    QStringListIterator it (favEngines);
+    while (it.hasNext())
+    {
+      SearchProvider *favProvider = SearchProvider::findByDesktopName(it.next());
+      if (favProvider)
+          providers << favProvider;
+    }
+  }
 
+  for (int i= 0; i < providers.count(); ++i)
+  {
+    QString query;
+    QStringListIterator it (providers[i]->keys());
+    while (it.hasNext())
+    {
+      if (query.count())
+        query += QL1S(",");
+      query += it.next();
+      query += searchTerm;
+    }
+    providerInfo.insert(providers[i]->name(), qMakePair(query, iconNameFor(providers[i]->query(), KUriFilterData::NetProtocol)));
+  }
+}
+
+bool KAutoWebSearch::filterUri( KUriFilterData &data ) const
+{
+  kDebug(7023) << data.typedString();
+
+  KURISearchFilterEngine *filter = KURISearchFilterEngine::self();
+  KUriFilterData::SearchFilterOptions option = data.searchFilteringOptions();
+
+  // Handle the flag to retrieve only preferred providers, no filtering...
+  if (option & KUriFilterData::RetrievePreferredSearchProvidersOnly)
+  {
+      KUriFilterPlugin::ProviderInfoList providerInfo;
+      populateProvidersList(data, providerInfo);
+      if (providerInfo.isEmpty()) {
+        if (!(option & KUriFilterData::RetrieveSearchProvidersOnly))
+        {
+          setUriType(data, KUriFilterData::Error);
+          setErrorMsg(data, i18n("No preferred search providers were found."));
+          return false;
+        }
+      }
+      else
+      {
+        setSearchProvider(data, QString(), data.typedString(), QL1C(filter->keywordDelimiter()));
+        setPreferredSearchProviders(data, providerInfo);
+        return true;
+      }
+
+  }
+
+  if (option & KUriFilterData::RetrieveSearchProvidersOnly)
+  {
+      KUriFilterPlugin::ProviderInfoList providerInfo;
+      populateProvidersList(data, providerInfo, true);
+      if (providerInfo.isEmpty()) {
+        setUriType(data, KUriFilterData::Error);
+        setErrorMsg(data, i18n("No search providers were found."));
+        return false;
+      }
+
+      setSearchProvider(data, QString(), data.typedString(), QL1C(filter->keywordDelimiter()));
+      setPreferredSearchProviders(data, providerInfo);
+      return true;
+  }
+
+  if ( data.uriType() == KUriFilterData::Unknown && data.uri().pass().isEmpty() )
+  {
+    SearchProvider *provider = filter->autoWebSearchQuery( data.typedString(), data.alternateDefaultSearchProvider() );
     if( provider )
     {
       const QString result = filter->formatResult(provider->query(), provider->charset(),
@@ -76,19 +151,10 @@ bool KAutoWebSearch::filterUri( KUriFilterData &data ) const
       kDebug(7203) << "filtered to" << result;
       setFilteredUri( data, KUrl( result ) );
       setUriType( data, KUriFilterData::NetProtocol );
-      setSearchProvider(data, provider->name(), data.typedString(), QLatin1Char(filter->keywordDelimiter()));
+      setSearchProvider(data, provider->name(), data.typedString(), QL1C(filter->keywordDelimiter()));
 
       KUriFilterPlugin::ProviderInfoList providerInfo;
-      Q_FOREACH(const QString &engine, favEngines)
-      {
-        SearchProvider *favProvider = SearchProvider::findByDesktopName(engine);
-        if (favProvider)
-        {
-          const QString query = favProvider->keys().at(0) + filter->keywordDelimiter() + data.typedString();
-          providerInfo.insert(favProvider->name(), qMakePair(query, iconNameFor(favProvider->query(), KUriFilterData::NetProtocol)));
-          delete favProvider;
-        }
-      }
+      populateProvidersList(data, providerInfo);
       setPreferredSearchProviders( data, providerInfo);
       delete provider;
       return true;

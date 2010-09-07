@@ -100,7 +100,7 @@ private:
     };
 
     QList<URLHint> m_urlHints;
-    QString m_strDefaultProtocol;
+    QString m_strDefaultUrlScheme;
 };
 
 #endif

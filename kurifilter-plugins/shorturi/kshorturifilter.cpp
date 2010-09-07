@@ -48,6 +48,7 @@
 #define ENV_VAR_PATTERN "\\$[a-zA-Z_][a-zA-Z0-9_]*"
 
 #define QL1S(x) QLatin1String(x)
+#define QL1C(x) QLatin1Char(x)
 
  /**
   * IMPORTANT:
@@ -475,17 +476,23 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
   // TODO: Make configurable at some point...
   if ( !cmd.contains( ' ' ) )
   {
-    QList<URLHint>::ConstIterator it;
-    for( it = m_urlHints.begin(); it != m_urlHints.end(); ++it )
+    QList<URLHint>::ConstIterator it = m_urlHints.begin();
+    QList<URLHint>::ConstIterator itEnd = m_urlHints.end();
+    for( ; it != itEnd; ++it )
     {
       QRegExp match( (*it).regexp );
       if ( match.indexIn( cmd ) == 0 )
       {
         //kDebug(7023) << "match - prepending" << (*it).prepend;
-        cmd.prepend( (*it).prepend );
-        setFilteredUri( data, KUrl( cmd ) );
-        setUriType( data, (*it).type );
-        return true;
+        QString cmdStr = (*it).prepend;
+        cmdStr += cmd;
+        KUrl url ( cmdStr );
+        if (KProtocolInfo::isKnownProtocol(url))
+        {
+          setFilteredUri( data, url );
+          setUriType( data, (*it).type );
+          return true;
+        }
       }
     }
 
@@ -493,13 +500,23 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
     // candidate and append the default protocol the user supplied. (DA)
     if ( protocol.isEmpty() && isValidShortURL(cmd) )
     {
-      kDebug(7023) << "Valid short url, from malformed url -> using default proto="
-               << m_strDefaultProtocol << endl;
+      QString urlStr = data.defaultUrlScheme();
+      if (urlStr.isEmpty())
+          urlStr = m_strDefaultUrlScheme;
 
-      cmd.insert( 0, m_strDefaultProtocol );
-      setFilteredUri( data, KUrl( cmd ));
-      setUriType( data, KUriFilterData::NetProtocol );
-      return true;
+      const int index = urlStr.indexOf(QL1C(':'));
+      if (index == -1)
+        urlStr += QL1S("://");
+
+      urlStr += cmd;
+
+      KUrl url (urlStr);
+      if (KProtocolInfo::isKnownProtocol(url))
+      {
+        setFilteredUri(data, url);
+        setUriType(data, KUriFilterData::NetProtocol);
+        return true;
+      }
     }
   }
 
@@ -511,7 +528,7 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
     u.setPath(path);
     u.setRef(ref);
 
-    if (!KAuthorized::authorizeUrlAction( QLatin1String("open"), KUrl(), u))
+    if (!KAuthorized::authorizeUrlAction( QL1S("open"), KUrl(), u))
     {
       // No authorization, we pretend it exists and will get
       // an access denied error later on.
@@ -546,7 +563,7 @@ void KShortUriFilter::configure()
   KConfig config( objectName() + QL1S( "rc"), KConfig::NoGlobals );
   KConfigGroup cg( config.group("") );
 
-  m_strDefaultProtocol = cg.readEntry( "DefaultProtocol", QString("http://") );
+  m_strDefaultUrlScheme = cg.readEntry( "DefaultProtocol", QString("http://") );
   const EntryMap patterns = config.entryMap( QL1S("Pattern") );
   const EntryMap protocols = config.entryMap( QL1S("Protocol") );
   KConfigGroup typeGroup(&config, "Type");
