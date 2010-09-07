@@ -42,6 +42,7 @@ public:
 
     static SearchProvider *findByDesktopName(const QString &);
     static SearchProvider *findByKey(const QString &);
+    static QList<SearchProvider *> findAll();
 private:
     QString m_desktopEntryName;
     QString m_name;

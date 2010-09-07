@@ -61,12 +61,12 @@ void KAutoWebSearch::configure()
 
 void KAutoWebSearch::populateProvidersList(const KUriFilterData& data, KUriFilterPlugin::ProviderInfoList& providerInfo, bool allproviders) const
 {
-  QVector<SearchProvider*> providers;
+  QList<SearchProvider*> providers;
   KURISearchFilterEngine *filter = KURISearchFilterEngine::self();
   const QString searchTerm = filter->keywordDelimiter() + data.typedString();
 
   if (allproviders)
-    SearchProvider::findAll(providers);
+    providers = SearchProvider::findAll();
   else
   {
     QStringList favEngines = filter->favoriteEngineList();

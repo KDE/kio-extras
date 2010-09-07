@@ -76,3 +76,11 @@ SearchProvider *SearchProvider::findByKey(const QString &key)
     return providers.count() ? new SearchProvider(providers[0]) : 0;
 }
 
+QList<SearchProvider *> SearchProvider::findAll()
+{
+    QList<SearchProvider *> ret;
+    foreach (const KService::Ptr &provider, KServiceTypeTrader::self()->query("SearchProvider")) {
+        ret.append(new SearchProvider(provider));
+    }
+    return ret;
+}
