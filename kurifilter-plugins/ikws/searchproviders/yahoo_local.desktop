@@ -46,6 +46,7 @@ Name[sr@ijekavianlatin]=Yahoo Local
 Name[sr@latin]=Yahoo Local
 Name[sv]=Yahoo Local
 Name[tg]=Минтақаи Yahoo
+Name[tr]=Yahoo Yerel
 Name[uk]=Yahoo Local
 Name[x-test]=xxYahoo Localxx
 Name[zh_CN]=Yahoo 本地信息
@@ -97,6 +98,7 @@ Query[sr@latin]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&f
 Query[sv]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img
 Query[tg]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img
 Query[th]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img
+Query[tr]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img
 Query[uk]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img
 Query[x-test]=xxhttp://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-imgxx
 Query[zh_CN]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img

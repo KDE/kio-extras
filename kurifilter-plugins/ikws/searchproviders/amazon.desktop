@@ -48,6 +48,7 @@ Name[sr@latin]=Amazon
 Name[sv]=Amazon
 Name[tg]=Amazon
 Name[th]=อเมซอน
+Name[tr]=Amazon
 Name[uk]=Amazon
 Name[x-test]=xxAmazonxx
 Name[zh_CN]=Amazon
@@ -99,6 +100,7 @@ Query[sr@latin]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=aps&fiel
 Query[sv]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=aps&field-keywords=\\{@}&x=0&y=0
 Query[tg]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=aps&field-keywords=\\{@}&x=0&y=0
 Query[th]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=aps&field-keywords=\\{@}&x=0&y=0
+Query[tr]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=aps&field-keywords=\\{@}&x=0&y=0
 Query[uk]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=aps&field-keywords=\\{@}&x=0&y=0
 Query[x-test]=xxhttp://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=aps&field-keywords=\\{@}&x=0&y=0xx
 Query[zh_CN]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=aps&field-keywords=\\{@}&x=0&y=0

@@ -96,6 +96,7 @@ Query[sr@latin]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
 Query[sv]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
 Query[tg]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
 Query[th]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
+Query[tr]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
 Query[uk]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
 Query[x-test]=xxhttp://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1xx
 Query[zh_CN]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1

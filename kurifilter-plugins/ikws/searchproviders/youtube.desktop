@@ -99,6 +99,7 @@ Query[sr@latin]=http://www.youtube.com/results?search_query=\\{@}&search_type=&a
 Query[sv]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[tg]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[th]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
+Query[tr]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[uk]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[x-test]=xxhttp://www.youtube.com/results?search_query=\\{@}&search_type=&aq=fxx
 Query[zh_CN]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f

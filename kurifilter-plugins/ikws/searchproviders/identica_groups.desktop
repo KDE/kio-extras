@@ -100,6 +100,7 @@ Query[sr@latin]=http://identi.ca/search/group?q=\\{@}
 Query[sv]=http://identi.ca/search/group?q=\\{@}
 Query[tg]=http://identi.ca/search/group?q=\\{@}
 Query[th]=http://identi.ca/search/group?q=\\{@}
+Query[tr]=http://identi.ca/search/group?q=\\{@}
 Query[uk]=http://identi.ca/search/group?q=\\{@}
 Query[x-test]=xxhttp://identi.ca/search/group?q=\\{@}xx
 Query[zh_CN]=http://identi.ca/search/group?q=\\{@}

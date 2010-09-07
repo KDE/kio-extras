@@ -50,6 +50,7 @@ Name[sr@latin]=Facebook
 Name[sv]=Facebook
 Name[tg]=Facebook
 Name[th]=เฟซบุ้ค
+Name[tr]=Facebook
 Name[uk]=Facebook
 Name[x-test]=xxFacebookxx
 Name[zh_CN]=Facebook
@@ -101,6 +102,7 @@ Query[sr@latin]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[sv]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[tg]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[th]=http://www.facebook.com/search/?q=\\{@}&init=quick
+Query[tr]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[uk]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[x-test]=xxhttp://www.facebook.com/search/?q=\\{@}&init=quickxx
 Query[zh_CN]=http://www.facebook.com/search/?q=\\{@}&init=quick

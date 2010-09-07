@@ -51,6 +51,7 @@ Name[sr@ijekavianlatin]=Yahoo
 Name[sr@latin]=Yahoo
 Name[sv]=Yahoo
 Name[tg]=Yahoo
+Name[tr]=Yahoo
 Name[uk]=Yahoo
 Name[x-test]=xxYahooxx
 Name[zh_CN]=Yahoo
@@ -101,6 +102,7 @@ Query[sr@latin]=http://search.yahoo.com/search?toggle=1&cop=mss&ei=UTF-8&fr=yfp-
 Query[sv]=http://search.yahoo.com/search?toggle=1&cop=mss&ei=UTF-8&fr=yfp-t-701&p=\\{@}&x=0&y=0&=Web+Search
 Query[tg]=http://search.yahoo.com/search?toggle=1&cop=mss&ei=UTF-8&fr=yfp-t-701&p=\\{@}&x=0&y=0&=Web+Search
 Query[th]=http://search.yahoo.com/search?toggle=1&cop=mss&ei=UTF-8&fr=yfp-t-701&p=\\{@}&x=0&y=0&=Web+Search
+Query[tr]=http://search.yahoo.com/search?toggle=1&cop=mss&ei=UTF-8&fr=yfp-t-701&p=\\{@}&x=0&y=0&=Web+Search
 Query[uk]=http://search.yahoo.com/search?toggle=1&cop=mss&ei=UTF-8&fr=yfp-t-701&p=\\{@}&x=0&y=0&=Web+Search
 Query[x-test]=xxhttp://search.yahoo.com/search?toggle=1&cop=mss&ei=UTF-8&fr=yfp-t-701&p=\\{@}&x=0&y=0&=Web+Searchxx
 Query[zh_CN]=http://search.yahoo.com/search?toggle=1&cop=mss&ei=UTF-8&fr=yfp-t-701&p=\\{@}&x=0&y=0&=Web+Search

@@ -48,6 +48,7 @@ Name[sr@ijekavianlatin]=7Digitalo
 Name[sr@latin]=7Digitalo
 Name[sv]=7Digital
 Name[tg]=7Digital
+Name[tr]=7Digital
 Name[uk]=7Digital
 Name[x-test]=xx7Digitalxx
 Name[zh_CN]=7Digital
@@ -98,6 +99,7 @@ Query[sr@latin]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&sub
 Query[sv]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[tg]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[th]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
+Query[tr]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[uk]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[x-test]=xxhttp://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Searchxx
 Query[zh_CN]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search

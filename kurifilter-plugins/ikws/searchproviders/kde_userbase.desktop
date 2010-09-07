@@ -47,6 +47,7 @@ Name[sr@latin]=Korisnička baza KDE‑a
 Name[sv]=KDE:s användarbas
 Name[tg]=KDE UserBase
 Name[th]=KDE UserBase
+Name[tr]=KDE UserBase
 Name[uk]=UserBase KDE
 Name[x-test]=xxKDE UserBasexx
 Name[zh_CN]=KDE 用户信息库
@@ -98,6 +99,7 @@ Query[sr@latin]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Sea
 Query[sv]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[tg]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[th]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
+Query[tr]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[uk]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[x-test]=xxhttp://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Searchxx
 Query[zh_CN]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search

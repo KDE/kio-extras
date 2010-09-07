@@ -49,6 +49,7 @@ Name[sr@latin]=Gitorious
 Name[sv]=Gitorious
 Name[tg]=Gitorious
 Name[th]=Gitorious
+Name[tr]=Gitorious
 Name[uk]=Gitorious
 Name[x-test]=xxGitoriousxx
 Name[zh_CN]=Gitorious
@@ -99,6 +100,7 @@ Query[sr@latin]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[sv]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[tg]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[th]=http://gitorious.org/search?q=\\{@}&commit=Search
+Query[tr]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[uk]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[x-test]=xxhttp://gitorious.org/search?q=\\{@}&commit=Searchxx
 Query[zh_CN]=http://gitorious.org/search?q=\\{@}&commit=Search

@@ -47,6 +47,7 @@ Name[sr@latin]=Techbase KDE‑a
 Name[sv]=KDE teknikbas
 Name[tg]=KDE TechBase
 Name[th]=KDE TechBase
+Name[tr]=KDE TechBase
 Name[uk]=TechBase KDE
 Name[x-test]=xxKDE TechBasexx
 Name[zh_CN]=KDE 技术信息库
@@ -98,6 +99,7 @@ Query[sr@latin]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Sea
 Query[sv]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[tg]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[th]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
+Query[tr]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[uk]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[x-test]=xxhttp://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Searchxx
 Query[zh_CN]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search

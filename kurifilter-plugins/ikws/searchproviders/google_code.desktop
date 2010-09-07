@@ -48,6 +48,7 @@ Name[sr@ijekavianlatin]=Google‑kod
 Name[sr@latin]=Google‑kod
 Name[sv]=Google kod
 Name[tg]=Рамзи Google
+Name[tr]=Google Code
 Name[uk]=Google Code
 Name[x-test]=xxGoogle Codexx
 Name[zh_CN]=Google Code
@@ -99,6 +100,7 @@ Query[sr@latin]=http://code.google.com/query/#q=\\{%2520}
 Query[sv]=http://code.google.com/query/#q=\\{%2520}
 Query[tg]=http://code.google.com/query/#q=\\{%2520}
 Query[th]=http://code.google.com/query/#q=\\{%2520}
+Query[tr]=http://code.google.com/query/#q=\\{%2520}
 Query[uk]=http://code.google.com/query/#q=\\{%2520}
 Query[x-test]=xxhttp://code.google.com/query/#q=\\{%2520}xx
 Query[zh_CN]=http://code.google.com/query/#q=\\{%2520}

@@ -102,6 +102,7 @@ Query[sr@latin]=http://www.flickr.com/search/?q=\\{@}
 Query[sv]=http://www.flickr.com/search/?q=\\{@}
 Query[tg]=http://www.flickr.com/search/?q=\\{@}
 Query[th]=http://www.flickr.com/search/?q=\\{@}
+Query[tr]=http://www.flickr.com/search/?q=\\{@}
 Query[uk]=http://www.flickr.com/search/?q=\\{@}
 Query[x-test]=xxhttp://www.flickr.com/search/?q=\\{@}xx
 Query[zh_CN]=http://www.flickr.com/search/?q=\\{@}

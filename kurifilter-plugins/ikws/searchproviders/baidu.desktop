@@ -15,6 +15,7 @@ Name[pt_BR]=Baidu
 Name[ru]=Baidu
 Name[sv]=Baidu
 Name[tg]=Baidu
+Name[tr]=Baidu
 Name[uk]=Baidu
 Name[x-test]=xxBaiduxx
 Name[zh_TW]=百度
@@ -36,6 +37,7 @@ Query[pt_BR]=http://www.baidu.com/s?wd=\\{@}
 Query[ru]=http://www.baidu.com/s?wd=\\{@}
 Query[sv]=http://www.baidu.com/s?wd=\\{@}
 Query[tg]=http://www.baidu.com/s?wd=\\{@}
+Query[tr]=http://www.baidu.com/s?wd=\\{@}
 Query[uk]=http://www.baidu.com/s?wd=\\{@}
 Query[x-test]=xxhttp://www.baidu.com/s?wd=\\{@}xx
 Query[zh_TW]=http://www.baidu.com/s?wd=\\{@}

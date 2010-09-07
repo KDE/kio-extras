@@ -47,6 +47,7 @@ Name[sr@ijekavianlatin]=Urbani rečnik
 Name[sr@latin]=Urbani rečnik
 Name[sv]=Slangordlista
 Name[th]=พจนานุกรม Urban
+Name[tr]=Urban Dictionary
 Name[uk]=Urban Dictionary
 Name[x-test]=xxUrban Dictionaryxx
 Name[zh_CN]=都市词典
@@ -98,6 +99,7 @@ Query[sr@latin]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[sv]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[tg]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[th]=http://www.urbandictionary.com/define.php?term=\\{@}
+Query[tr]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[uk]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[x-test]=xxhttp://www.urbandictionary.com/define.php?term=\\{@}xx
 Query[zh_CN]=http://www.urbandictionary.com/define.php?term=\\{@}
