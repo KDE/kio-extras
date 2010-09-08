@@ -95,6 +95,8 @@ void KAutoWebSearch::populateProvidersList(const KUriFilterData& data, KUriFilte
     }
     providerInfo.insert(providers[i]->name(), qMakePair(query, iconNameFor(providers[i]->query(), KUriFilterData::NetProtocol)));
   }
+
+  qDeleteAll(providers);
 }
 
 bool KAutoWebSearch::filterUri( KUriFilterData &data ) const
