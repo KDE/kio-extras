@@ -37,7 +37,7 @@ public:
 
   KURISearchFilterEngine();
   ~KURISearchFilterEngine();
-  
+
   QByteArray name() const;
   char keywordDelimiter() const;
   QStringList favoriteEngineList() const;
@@ -54,11 +54,11 @@ protected:
                         const QString& query, bool isMalformed, SubstMap& map) const;
 
 private:
-  QStringList modifySubstitutionMap (SubstMap& map, const QString& query) const;  
-  
-  QString substituteQuery (const QString& url, SubstMap &map, 
+  QStringList modifySubstitutionMap (SubstMap& map, const QString& query) const;
+
+  QString substituteQuery (const QString& url, SubstMap &map,
                            const QString& userquery, QTextCodec *codec) const;
-  
+
   QString m_defaultSearchEngine;
   QStringList m_favoriteEngines;
   bool m_bWebShortcutsEnabled;
