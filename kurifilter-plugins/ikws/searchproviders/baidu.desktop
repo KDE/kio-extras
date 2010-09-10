@@ -9,6 +9,7 @@ Name[ia]=Baidu
 Name[lt]=Baidu
 Name[nb]=Baidu
 Name[nds]=Baidu
+Name[nl]=Baidu
 Name[nn]=Baidu
 Name[pt]=Baidu
 Name[pt_BR]=Baidu
@@ -31,6 +32,7 @@ Query[ia]=http://www.baidu.com/s?wd=\\{@}
 Query[lt]=http://www.baidu.com/s?wd=\\{@}
 Query[nb]=http://www.baidu.com/s?wd=\\{@}
 Query[nds]=http://www.baidu.com/s?wd=\\{@}
+Query[nl]=http://www.baidu.com/s?wd=\\{@}
 Query[nn]=http://www.baidu.com/s?wd=\\{@}
 Query[pt]=http://www.baidu.com/s?wd=\\{@}
 Query[pt_BR]=http://www.baidu.com/s?wd=\\{@}
