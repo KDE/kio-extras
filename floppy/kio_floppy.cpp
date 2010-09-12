@@ -383,8 +383,22 @@ StatInfo FloppyProtocol::createStatInfo(const QString line, bool makeStat, const
    QString day,month, year;
    QString hour, minute;
    StatInfo info;
+   int p=22; // position of space before the date field
 
-   if (line.length()==41)
+   if (line.mid(13,5)=="<DIR>")
+   {
+      //kDebug(7101)<<"Floppy::createUDSEntry() isDir";
+      size="1024";
+      isDir=true;
+   }
+   else
+   {
+       p = line.indexOf(' ',p-1);
+      size=line.mid(13,p-13);
+      //kDebug(7101)<<"Floppy::createUDSEntry() size: -"<<size<<"-";
+   }
+
+   if (line.length()==p+19)
    {
       int nameLength=line.indexOf(' ');
       kDebug(7101)<<"Floppy::createStatInfo: line find: "<<nameLength <<"= -"<<line<<"-";
@@ -398,9 +412,9 @@ StatInfo FloppyProtocol::createStatInfo(const QString line, bool makeStat, const
       }
       kDebug(7101)<<"Floppy::createStatInfo() name 8.3= -"<<name<<"-";
    }
-   else if (line.length()>41)
+   else if (line.length()>p+19)
    {
-      name=line.mid(42);
+      name=line.mid(p+20);
       kDebug(7101)<<"Floppy::createStatInfo() name vfat: -"<<name<<"-";
    }
    if ((name==".") || (name==".."))
@@ -414,33 +428,21 @@ StatInfo FloppyProtocol::createStatInfo(const QString line, bool makeStat, const
       }
    }
 
-   if (line.mid(13,5)=="<DIR>")
-   {
-      //kDebug(7101)<<"Floppy::createUDSEntry() isDir";
-      size="1024";
-      isDir=true;
-   }
-   else
-   {
-      size=line.mid(13,9);
-      //kDebug(7101)<<"Floppy::createUDSEntry() size: -"<<size<<"-";
-   }
-
         //TEEKANNE JPG     70796 01-02-2003  17:47  Teekanne.jpg
-   if (line[25]=='-')
+   if (line[p+3]=='-')
    {
-      month=line.mid(23,2);
-      day=line.mid(26,2);
-      year=line.mid(29,4);
+      month=line.mid(p+1,2);
+      day=line.mid(p+4,2);
+      year=line.mid(p+7,4);
    }
    else //SETUP    PKG      1019 1997-09-25  10:31  setup.pkg
    {
-      year=line.mid(23,4);
-      month=line.mid(28,2);
-      day=line.mid(31,2);
+      year=line.mid(p+1,4);
+      month=line.mid(p+6,2);
+      day=line.mid(p+9,2);
    }
-   hour=line.mid(35,2);
-   minute=line.mid(38,2);
+   hour=line.mid(p+13,2);
+   minute=line.mid(p+16,2);
    //kDebug(7101)<<"Floppy::createUDSEntry() day: -"<<day<<"-"<<month<<"-"<<year<<"- -"<<hour<<"-"<<minute<<"-";
 
    if (name.isEmpty())
