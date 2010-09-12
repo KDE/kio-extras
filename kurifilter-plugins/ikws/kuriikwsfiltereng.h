@@ -28,6 +28,9 @@
 #include <QtCore/QMap>
 #include <QtCore/QStringList>
 
+#define DEFAULT_PREFERRED_SEARCH_PROVIDERS \
+QStringList() << "google" << "youtube" << "yahoo" << "wikipedia" << "wikit"
+
 class SearchProvider;
 
 class KURISearchFilterEngine
@@ -40,6 +43,7 @@ public:
 
   QByteArray name() const;
   char keywordDelimiter() const;
+  QString defaultSearchEngine() const;
   QStringList favoriteEngineList() const;
   SearchProvider* webShortcutQuery (const QString& typedString, QString& searchTerm) const;
   SearchProvider* autoWebSearchQuery (const QString& typedString, const QString& defaultEngine = QString()) const;

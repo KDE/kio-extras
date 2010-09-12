@@ -59,7 +59,7 @@ void KAutoWebSearch::configure()
   KURISearchFilterEngine::self()->loadConfig();
 }
 
-void KAutoWebSearch::populateProvidersList(const KUriFilterData& data, KUriFilterPlugin::ProviderInfoList& providerInfo, bool allproviders) const
+void KAutoWebSearch::populateProvidersList(KUriFilterPlugin::ProviderInfoList& providerInfo, const KUriFilterData& data, bool allproviders) const
 {
   QList<SearchProvider*> providers;
   KURISearchFilterEngine *filter = KURISearchFilterEngine::self();
@@ -69,9 +69,20 @@ void KAutoWebSearch::populateProvidersList(const KUriFilterData& data, KUriFilte
     providers = SearchProvider::findAll();
   else
   {
+    // Start with the search engines marked as preferred...
     QStringList favEngines = filter->favoriteEngineList();
     if (favEngines.isEmpty())
       favEngines = data.alternateSearchProviders();
+
+    // Add the search engine set as the default provider...
+    const QString defaultEngine = filter->defaultSearchEngine();
+    if (!defaultEngine.isEmpty()) {
+        favEngines.removeAll(defaultEngine);
+        favEngines.prepend(defaultEngine);
+    }
+
+    // Get rid of duplicates...
+    favEngines.removeDuplicates();
 
     QStringListIterator it (favEngines);
     while (it.hasNext())
@@ -110,7 +121,7 @@ bool KAutoWebSearch::filterUri( KUriFilterData &data ) const
   if (option & KUriFilterData::RetrievePreferredSearchProvidersOnly)
   {
       KUriFilterPlugin::ProviderInfoList providerInfo;
-      populateProvidersList(data, providerInfo);
+      populateProvidersList(providerInfo, data);
       if (providerInfo.isEmpty()) {
         if (!(option & KUriFilterData::RetrieveSearchProvidersOnly))
         {
@@ -131,7 +142,7 @@ bool KAutoWebSearch::filterUri( KUriFilterData &data ) const
   if (option & KUriFilterData::RetrieveSearchProvidersOnly)
   {
       KUriFilterPlugin::ProviderInfoList providerInfo;
-      populateProvidersList(data, providerInfo, true);
+      populateProvidersList(providerInfo, data, true);
       if (providerInfo.isEmpty()) {
         setUriType(data, KUriFilterData::Error);
         setErrorMsg(data, i18n("No search providers were found."));
@@ -156,7 +167,7 @@ bool KAutoWebSearch::filterUri( KUriFilterData &data ) const
       setSearchProvider(data, provider->name(), data.typedString(), QL1C(filter->keywordDelimiter()));
 
       KUriFilterPlugin::ProviderInfoList providerInfo;
-      populateProvidersList(data, providerInfo);
+      populateProvidersList(providerInfo, data);
       setPreferredSearchProviders( data, providerInfo);
       delete provider;
       return true;

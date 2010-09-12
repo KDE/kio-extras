@@ -39,8 +39,7 @@ public Q_SLOTS:
     void configure();
 
 private:
-    void populateProvidersList(const KUriFilterData& data, KUriFilterPlugin::ProviderInfoList& providerInfo,
-                               bool allproviders = false) const;
+    void populateProvidersList(KUriFilterPlugin::ProviderInfoList&, const KUriFilterData&, bool allproviders = false) const;
 };
 
 #endif

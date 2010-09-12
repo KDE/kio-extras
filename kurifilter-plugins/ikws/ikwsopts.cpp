@@ -267,17 +267,14 @@ void FilterOptions::load()
   KConfig config(KURISearchFilterEngine::self()->name() + "rc", KConfig::NoGlobals );
   KConfigGroup group = config.group("General");
 
-  QString defaultSearchEngine = group.readEntry("DefaultSearchEngine");
-
-  QStringList favouriteEngines;
-  favouriteEngines << "google" << "google_groups" << "google_news" << "webster" << "dmoz" << "wikipedia";
-  favouriteEngines = group.readEntry("FavoriteSearchEngines", favouriteEngines );
-
-  const KService::List services = KServiceTypeTrader::self()->query("SearchProvider");
+  const QString defaultSearchEngine = group.readEntry("DefaultSearchEngine");
+  const QStringList favouriteEngines = group.readEntry("FavoriteSearchEngines", DEFAULT_PREFERRED_SEARCH_PROVIDERS);
 
   QList<SearchProvider*> providers;
+  const KService::List services = KServiceTypeTrader::self()->query("SearchProvider");
   int defaultProviderIndex = services.size(); //default is "None", it is last in the list
-  foreach(const KService::Ptr &service, services)
+
+  Q_FOREACH(const KService::Ptr &service, services)
   {
     SearchProvider* provider=new SearchProvider(service);
     if (defaultSearchEngine == provider->desktopEntryName())

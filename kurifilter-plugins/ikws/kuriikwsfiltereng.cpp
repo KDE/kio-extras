@@ -27,8 +27,6 @@
 #include "kuriikwsfiltereng.h"
 #include "searchprovider.h"
 
-//#include <unistd.h>
-
 #include <kdebug.h>
 #include <kconfiggroup.h>
 #include <kprotocolinfo.h>
@@ -110,6 +108,11 @@ QByteArray KURISearchFilterEngine::name() const
 char KURISearchFilterEngine::keywordDelimiter() const
 {
   return m_cKeywordDelimiter;
+}
+
+QString KURISearchFilterEngine::defaultSearchEngine() const
+{
+  return m_defaultSearchEngine;
 }
 
 QStringList KURISearchFilterEngine::favoriteEngineList() const
@@ -421,7 +424,7 @@ void KURISearchFilterEngine::loadConfig()
   m_cKeywordDelimiter = QString(group.readEntry("KeywordDelimiter", ":")).at(0).toLatin1();
   m_bWebShortcutsEnabled = group.readEntry("EnableWebShortcuts", true);
   m_defaultSearchEngine = group.readEntry("DefaultSearchEngine");
-  m_favoriteEngines = group.readEntry("FavoriteSearchEngines", QStringList());
+  m_favoriteEngines = group.readEntry("FavoriteSearchEngines", DEFAULT_PREFERRED_SEARCH_PROVIDERS);
 
   // Use either a white space or a : as the keyword delimiter...
   if (strchr (" :", m_cKeywordDelimiter) == 0)
