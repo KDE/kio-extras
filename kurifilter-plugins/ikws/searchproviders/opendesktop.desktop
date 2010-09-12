@@ -65,6 +65,7 @@ Query[nds]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@
 Query[nl]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[nn]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[pa]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
+Query[pl]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[pt]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[pt_BR]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[ro]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}

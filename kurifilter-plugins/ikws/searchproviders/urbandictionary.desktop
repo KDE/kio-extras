@@ -34,6 +34,7 @@ Name[nds]=Urban-Wöörbook
 Name[nl]=Urban woordenboek
 Name[nn]=Urban Dictionary
 Name[pa]=ਅਰਬਨ ਡਿਕਸ਼ਨਰੀ
+Name[pl]=Słownik miejski (Urban Dictionary)
 Name[pt]=Dicionário Urbano
 Name[pt_BR]=Urban Dictionary
 Name[ro]=Dicționar urban
@@ -86,6 +87,7 @@ Query[nds]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[nl]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[nn]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[pa]=http://www.urbandictionary.com/define.php?term=\\{@}
+Query[pl]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[pt]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[pt_BR]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[ro]=http://www.urbandictionary.com/define.php?term=\\{@}

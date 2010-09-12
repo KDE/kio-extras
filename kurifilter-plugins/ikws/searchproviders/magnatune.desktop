@@ -35,6 +35,7 @@ Name[nds]=Magnatune
 Name[nl]=Magnatune
 Name[nn]=Magnatune
 Name[pa]=ਮੰਗਨਟੋਨ
+Name[pl]=Magnatune
 Name[pt]=Magnatune
 Name[pt_BR]=Magnatune
 Name[ro]=Magnatune
@@ -88,6 +89,7 @@ Query[nds]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
 Query[nl]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
 Query[nn]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
 Query[pa]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
+Query[pl]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
 Query[pt]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
 Query[pt_BR]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
 Query[ro]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0

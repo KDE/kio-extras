@@ -35,6 +35,7 @@ Name[nds]=Google-Kode
 Name[nl]=Google Code
 Name[nn]=Google Code
 Name[pa]=Google ਕੋਡ
+Name[pl]=Google - kod źródłowy
 Name[pt]=Código do Google
 Name[pt_BR]=Google Code
 Name[ro]=Cod Google
@@ -86,6 +87,7 @@ Query[nds]=http://code.google.com/query/#q=\\{%2520}
 Query[nl]=http://code.google.com/query/#q=\\{%2520}
 Query[nn]=http://code.google.com/query/#q=\\{%2520}
 Query[pa]=http://code.google.com/query/#q=\\{%2520}
+Query[pl]=http://code.google.com/query/#q=\\{%2520}
 Query[pt]=http://code.google.com/query/#q=\\{%2520}
 Query[pt_BR]=http://code.google.com/query/#q=\\{%2520}
 Query[ro]=http://code.google.com/query/#q=\\{%2520}

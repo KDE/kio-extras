@@ -34,6 +34,7 @@ Name[nds]=Amazon
 Name[nl]=Amazon
 Name[nn]=Amazon
 Name[pa]=ਐਮਾਜ਼ੋਨ
+Name[pl]=Amazon
 Name[pt]=Amazon
 Name[pt_BR]=Amazon
 Name[ro]=Amazon
@@ -86,6 +87,7 @@ Query[nds]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=aps&field-key
 Query[nl]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=aps&field-keywords=\\{@}&x=0&y=0
 Query[nn]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=aps&field-keywords=\\{@}&x=0&y=0
 Query[pa]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=aps&field-keywords=\\{@}&x=0&y=0
+Query[pl]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=aps&field-keywords=\\{@}&x=0&y=0
 Query[pt]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=aps&field-keywords=\\{@}&x=0&y=0
 Query[pt_BR]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=aps&field-keywords=\\{@}&x=0&y=0
 Query[ro]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=aps&field-keywords=\\{@}&x=0&y=0

@@ -29,6 +29,7 @@ Name[nb]=Duck Duck Go Shopping
 Name[nds]=Duck Duck Go - Inköpen
 Name[nl]=Duck Duck Go Shopping
 Name[nn]=Duck Duck Go-handel
+Name[pl]=Duck Duck Go Shopping
 Name[pt]=Loja do Duck Duck Go
 Name[pt_BR]=Loja do Duck Duck Go
 Name[ro]=Cumpărături Duck Duck Go
@@ -80,6 +81,7 @@ Query[nds]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[nl]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[nn]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[pa]=http://duckduckgo.com/?q=\\{@}&v=s
+Query[pl]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[pt]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[pt_BR]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[ro]=http://duckduckgo.com/?q=\\{@}&v=s

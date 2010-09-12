@@ -34,6 +34,7 @@ Name[nds]=Google-Koorten
 Name[nl]=Google Maps
 Name[nn]=Google Maps
 Name[pa]=Google ਨਕਸ਼ੇ
+Name[pl]=Google - mapy
 Name[pt]=Google Maps
 Name[pt_BR]=Google Maps
 Name[ro]=Google Hărți
@@ -89,6 +90,7 @@ Query[nds]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[nl]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[nn]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[pa]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
+Query[pl]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[pt]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[pt_BR]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[ro]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
