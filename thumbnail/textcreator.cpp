@@ -117,10 +117,15 @@ bool TextCreator::create(const QString &path, int width, int height, QImage &img
 
             // If the text contains tabs or consecutive spaces, it is probably
             // formatted using white space. Use a fixed pitch font in this case.
-            if ( text.contains( '\t' ) || text.contains( "  " ) )
-            {
-                font.setFamily( KGlobalSettings::fixedFont().family() );
+            QStringList textLines = text.split( '\n' );
+            foreach ( const QString &line, textLines ) {
+                QString trimmedLine = line.trimmed();
+                if ( trimmedLine.contains( '\t' ) || trimmedLine.contains( "  " ) ) {
+                    font.setFamily( KGlobalSettings::fixedFont().family() );
+                    break;
+                }
             }
+
 #if 0
             QPalette palette;
             QColor bgColor = palette.color( QPalette::Base );
@@ -142,8 +147,10 @@ bool TextCreator::create(const QString &path, int width, int height, QImage &img
             painter.setFont( font );
             painter.setPen( fgColor );
 
-            int flags = Qt::AlignTop | Qt::AlignLeft | Qt::TextWrapAnywhere | Qt::TextExpandTabs;
-            painter.drawText( QRect( xborder, yborder, canvasWidth, canvasHeight ), flags, text );
+            QTextOption textOption( Qt::AlignTop | Qt::AlignLeft );
+            textOption.setTabStop( 8 * painter.fontMetrics().width( ' ' ) );
+            textOption.setWrapMode( QTextOption::WrapAtWordBoundaryOrAnywhere );
+            painter.drawText( QRect( xborder, yborder, canvasWidth, canvasHeight ), text, textOption );
             painter.end();
 
             img = m_pixmap.toImage();
