@@ -74,15 +74,15 @@ void KAutoWebSearch::populateProvidersList(KUriFilterPlugin::ProviderInfoList& p
     if (favEngines.isEmpty())
       favEngines = data.alternateSearchProviders();
 
+    // Get rid of duplicates...
+    favEngines.removeDuplicates();
+
     // Add the search engine set as the default provider...
     const QString defaultEngine = filter->defaultSearchEngine();
     if (!defaultEngine.isEmpty()) {
         favEngines.removeAll(defaultEngine);
-        favEngines.prepend(defaultEngine);
+        favEngines.insert(0, defaultEngine);
     }
-
-    // Get rid of duplicates...
-    favEngines.removeDuplicates();
 
     QStringListIterator it (favEngines);
     while (it.hasNext())

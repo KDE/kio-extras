@@ -423,8 +423,11 @@ void KURISearchFilterEngine::loadConfig()
 
   m_cKeywordDelimiter = QString(group.readEntry("KeywordDelimiter", ":")).at(0).toLatin1();
   m_bWebShortcutsEnabled = group.readEntry("EnableWebShortcuts", true);
-  m_defaultSearchEngine = group.readEntry("DefaultSearchEngine");
-  m_favoriteEngines = group.readEntry("FavoriteSearchEngines", DEFAULT_PREFERRED_SEARCH_PROVIDERS);
+  m_defaultSearchEngine = group.readEntry("DefaultSearchEngine");  
+  QStringList defaultFavoriteSearchEngines;
+  if (!group.hasKey("FavoriteSearchEngines"))
+      defaultFavoriteSearchEngines = DEFAULT_PREFERRED_SEARCH_PROVIDERS;  
+  m_favoriteEngines = group.readEntry("FavoriteSearchEngines", defaultFavoriteSearchEngines);
 
   // Use either a white space or a : as the keyword delimiter...
   if (strchr (" :", m_cKeywordDelimiter) == 0)
