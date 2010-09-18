@@ -32,14 +32,13 @@ class KAutoWebSearch : public KUriFilterPlugin
 public:
     explicit KAutoWebSearch(QObject *parent = 0, const QVariantList &args = QVariantList() );
     ~KAutoWebSearch();
-
     virtual bool filterUri( KUriFilterData& ) const;
 
 public Q_SLOTS:
     void configure();
 
 private:
-    void populateProvidersList(KUriFilterPlugin::ProviderInfoList&, const KUriFilterData&, bool allproviders = false) const;
+    void populateProvidersList(QList<KUriFilterSearchProvider*>& searchProviders, const KUriFilterData&, bool allproviders = false) const;
 };
 
 #endif

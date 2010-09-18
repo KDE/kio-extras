@@ -23,18 +23,20 @@
 SearchProvider::SearchProvider(const KService::Ptr service)
                : m_dirty(false)
 {
-    m_desktopEntryName = service->desktopEntryName();
-    m_name = service->name();
+    setDesktopEntryName(service->desktopEntryName());
+    setName(service->name());
+    setKeys(service->property("Keys").toStringList());
+
     m_query = service->property("Query").toString();
-    m_keys = service->property("Keys").toStringList();
     m_charset = service->property("Charset").toString();
 }
 
 void SearchProvider::setName(const QString &name)
 {
-    if (m_name == name)
+    if (KUriFilterSearchProvider::name() == name)
         return;
-    m_name = name;
+
+    KUriFilterSearchProvider::setName(name);
     m_dirty = true;
 }
 
@@ -42,15 +44,17 @@ void SearchProvider::setQuery(const QString &query)
 {
     if (m_query == query)
         return;
+
     m_query = query;
     m_dirty = true;
 }
 
 void SearchProvider::setKeys(const QStringList &keys)
 {
-    if (m_keys == keys)
+  if (KUriFilterSearchProvider::keys() == keys)
         return;
-    m_keys = keys;
+
+    KUriFilterSearchProvider::setKeys(keys);
     m_dirty = true;
 }
 
@@ -58,7 +62,17 @@ void SearchProvider::setCharset(const QString &charset)
 {
     if (m_charset == charset)
         return;
+
     m_charset = charset;
+    m_dirty = true;
+}
+
+void SearchProvider::setIconName(const QString& iconName)
+{
+    if (KUriFilterSearchProvider::iconName() == iconName)
+        return;
+
+    KUriFilterSearchProvider::setIconName(iconName);
     m_dirty = true;
 }
 
@@ -79,7 +93,7 @@ SearchProvider *SearchProvider::findByKey(const QString &key)
 QList<SearchProvider *> SearchProvider::findAll()
 {
     QList<SearchProvider *> ret;
-    foreach (const KService::Ptr &provider, KServiceTypeTrader::self()->query("SearchProvider")) {
+    Q_FOREACH (const KService::Ptr &provider, KServiceTypeTrader::self()->query("SearchProvider")) {
         ret.append(new SearchProvider(provider));
     }
     return ret;

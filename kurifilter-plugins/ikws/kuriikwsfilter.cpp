@@ -59,7 +59,8 @@ void KAutoWebSearch::configure()
   KURISearchFilterEngine::self()->loadConfig();
 }
 
-void KAutoWebSearch::populateProvidersList(KUriFilterPlugin::ProviderInfoList& providerInfo, const KUriFilterData& data, bool allproviders) const
+void KAutoWebSearch::populateProvidersList(QList<KUriFilterSearchProvider*>& searchProviders,
+                                           const KUriFilterData& data, bool allproviders) const
 {
   QList<SearchProvider*> providers;
   KURISearchFilterEngine *filter = KURISearchFilterEngine::self();
@@ -93,21 +94,12 @@ void KAutoWebSearch::populateProvidersList(KUriFilterPlugin::ProviderInfoList& p
     }
   }
 
-  for (int i= 0; i < providers.count(); ++i)
+  for (int i = 0; i < providers.count(); ++i)
   {
-    QString query;
-    QStringListIterator it (providers[i]->keys());
-    while (it.hasNext())
-    {
-      if (query.count())
-        query += QL1S(",");
-      query += it.next();
-      query += searchTerm;
-    }
-    providerInfo.insert(providers[i]->name(), qMakePair(query, iconNameFor(providers[i]->query(), KUriFilterData::NetProtocol)));
+      SearchProvider* provider = providers[i];
+      provider->setIconName(iconNameFor(provider->query(), KUriFilterData::NetProtocol));
+      searchProviders << provider;
   }
-
-  qDeleteAll(providers);
 }
 
 bool KAutoWebSearch::filterUri( KUriFilterData &data ) const
@@ -120,38 +112,39 @@ bool KAutoWebSearch::filterUri( KUriFilterData &data ) const
   // Handle the flag to retrieve only preferred providers, no filtering...
   if (option & KUriFilterData::RetrievePreferredSearchProvidersOnly)
   {
-      KUriFilterPlugin::ProviderInfoList providerInfo;
-      populateProvidersList(providerInfo, data);
-      if (providerInfo.isEmpty()) {
-        if (!(option & KUriFilterData::RetrieveSearchProvidersOnly))
-        {
-          setUriType(data, KUriFilterData::Error);
-          setErrorMsg(data, i18n("No preferred search providers were found."));
-          return false;
-        }
-      }
-      else
+    QList<KUriFilterSearchProvider*> searchProviders;
+    populateProvidersList(searchProviders, data);
+    if (searchProviders.isEmpty())
+    {
+      if (!(option & KUriFilterData::RetrieveSearchProvidersOnly))
       {
-        setSearchProvider(data, QString(), data.typedString(), QL1C(filter->keywordDelimiter()));
-        setPreferredSearchProviders(data, providerInfo);
-        return true;
+        setUriType(data, KUriFilterData::Error);
+        setErrorMsg(data, i18n("No preferred search providers were found."));
+        return false;
       }
-
+    }
+    else
+    {
+      setSearchProvider(data, QString(), data.typedString(), QL1C(filter->keywordDelimiter()));
+      setSearchProviders(data, searchProviders);
+      return true;
+    }
   }
 
   if (option & KUriFilterData::RetrieveSearchProvidersOnly)
   {
-      KUriFilterPlugin::ProviderInfoList providerInfo;
-      populateProvidersList(providerInfo, data, true);
-      if (providerInfo.isEmpty()) {
-        setUriType(data, KUriFilterData::Error);
-        setErrorMsg(data, i18n("No search providers were found."));
-        return false;
-      }
+    QList<KUriFilterSearchProvider*> searchProviders;
+    populateProvidersList(searchProviders, data, true);
+    if (searchProviders.isEmpty())
+    {
+      setUriType(data, KUriFilterData::Error);
+      setErrorMsg(data, i18n("No search providers were found."));
+      return false;
+    }
 
-      setSearchProvider(data, QString(), data.typedString(), QL1C(filter->keywordDelimiter()));
-      setPreferredSearchProviders(data, providerInfo);
-      return true;
+    setSearchProvider(data, QString(), data.typedString(), QL1C(filter->keywordDelimiter()));
+    setSearchProviders(data, searchProviders);
+    return true;
   }
 
   if ( data.uriType() == KUriFilterData::Unknown && data.uri().pass().isEmpty() )
@@ -161,14 +154,13 @@ bool KAutoWebSearch::filterUri( KUriFilterData &data ) const
     {
       const QString result = filter->formatResult(provider->query(), provider->charset(),
                                                   QString(), data.typedString(), true);
-      kDebug(7203) << "filtered to" << result;
       setFilteredUri( data, KUrl( result ) );
       setUriType( data, KUriFilterData::NetProtocol );
       setSearchProvider(data, provider->name(), data.typedString(), QL1C(filter->keywordDelimiter()));
 
-      KUriFilterPlugin::ProviderInfoList providerInfo;
-      populateProvidersList(providerInfo, data);
-      setPreferredSearchProviders( data, providerInfo);
+      QList<KUriFilterSearchProvider*> searchProviders;
+      populateProvidersList(searchProviders, data);
+      setSearchProviders(data, searchProviders);
       delete provider;
       return true;
     }

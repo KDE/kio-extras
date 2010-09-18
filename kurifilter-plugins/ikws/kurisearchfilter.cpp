@@ -66,7 +66,6 @@ bool KUriSearchFilter::filterUri( KUriFilterData &data ) const
     {
       const QString result = filter->formatResult( provider->query(), provider->charset(),
                                                    QString(), searchTerm, true );
-      kDebug(7023) << "filtered to" << result;
       setFilteredUri( data, KUrl(result) );
       setUriType( data, KUriFilterData::NetProtocol );
       setSearchProvider( data, provider->name(), searchTerm,  QLatin1Char(filter->keywordDelimiter()));

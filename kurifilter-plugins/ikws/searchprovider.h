@@ -21,35 +21,30 @@
 #define SEARCHPROVIDER_H
 
 #include <kservice.h>
+#include <KDE/KUriFilter>
 
-class SearchProvider 
+class SearchProvider : public KUriFilterSearchProvider
 {
 public:
     SearchProvider() : m_dirty(false) {}
     SearchProvider(const KService::Ptr service);
 
-    const QString &desktopEntryName() const { return m_desktopEntryName; }
-    const QString &name() const { return m_name; }
-    const QString &query() const { return m_query; }
-    const QStringList &keys() const { return m_keys; }
-    const QString &charset() const { return m_charset; }
+    const QString& charset() const { return m_charset; }
+    const QString& query() const { return m_query; }
     bool isDirty() const { return m_dirty; }
 
-    void setName(const QString &);
-    void setQuery(const QString &);
-    void setKeys(const QStringList &);
-    void setCharset(const QString &);
+    void setName(const QString&);
+    void setQuery(const QString&);
+    void setKeys(const QStringList&);
+    void setCharset(const QString&);
+    void setIconName(const QString&);
 
     static SearchProvider *findByDesktopName(const QString &);
     static SearchProvider *findByKey(const QString &);
     static QList<SearchProvider *> findAll();
 private:
-    QString m_desktopEntryName;
-    QString m_name;
     QString m_query;
-    QStringList m_keys;
     QString m_charset;
-
     bool m_dirty;
 };
 
