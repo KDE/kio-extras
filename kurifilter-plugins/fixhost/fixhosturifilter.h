@@ -21,34 +21,32 @@
 #ifndef _FIXHOSTURIFILTER_H_
 #define _FIXHOSTURIFILTER_H_
 
-#include <time.h>
+#include <KDE/KGenericFactory>
+#include <KDE/KUriFilter>
 
-#include <kgenericfactory.h>
-#include <kurifilter.h>
-
-#include<QtCore/QEventLoop>
-#include<QtNetwork/QHostInfo>
+class QHostInfo;
+class QEventLoop;
 
 /*
- This filter tries to automatically prepend www. to http URLs that
- need it.
+ This filter tries to automatically prepend www. to http URLs that need it.
 */
-
 class FixHostUriFilter : public KUriFilterPlugin
 {
-    Q_OBJECT
+Q_OBJECT
 
-    public:
-        FixHostUriFilter( QObject* parent, const QVariantList& args );
-        virtual bool filterUri( KUriFilterData &data ) const;
-    private slots:
-        void lookedUp( const QHostInfo &hostInfo );
-    private:
-        bool exists( const KUrl& url ) const;
+public:
+    FixHostUriFilter(QObject* parent, const QVariantList& args);
+    virtual bool filterUri(KUriFilterData &data) const;
 
-        mutable QEventLoop *m_eventLoop;
-        mutable int m_lookupId;
-        mutable bool m_hostExists;
+private Q_SLOTS:
+    void lookedUp(const QHostInfo &hostInfo);
+
+private:
+    bool exists(const KUrl& url) const;
+
+    mutable QEventLoop *m_eventLoop;
+    mutable int m_lookupId;
+    mutable bool m_hostExists;
 };
 
 #endif

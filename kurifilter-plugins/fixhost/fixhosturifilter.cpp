@@ -3,6 +3,7 @@
 
     This file is part of the KDE project
     Copyright (C) 2007 Lubos Lunak <llunak@suse.cz>
+    Copyright (C) 2010 Dawit Alemayehu <adawit@kde.org>
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -18,59 +19,66 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <config-runtime.h>
-
 #include "fixhosturifilter.h"
 
 #include <QtCore/QTimer>
+#include <QtCore/QStringBuilder>
+#include <QtCore/QEventLoop>
+#include <QtNetwork/QHostInfo>
 
-#include <kdebug.h>
-#include <kurl.h>
+#include <KDE/KUrl>
+#include <KDE/KDebug>
+
+#define QL1S(x)   QLatin1String(x)
+#define QL1L(x)   QLatin1Literal(x)
 
 /**
  * IMPORTANT: If you change anything here, please run the regression test
  * ../tests/kurifiltertest
  */
  
-FixHostUriFilter::FixHostUriFilter( QObject *parent, const QVariantList & /*args*/ )
-    : KUriFilterPlugin( "fixhosturifilter", parent ), m_hostExists( false )
+FixHostUriFilter::FixHostUriFilter(QObject *parent, const QVariantList & /*args*/)
+                 :KUriFilterPlugin("fixhosturifilter", parent),
+                  m_hostExists(false)
 {
 }
 
 bool FixHostUriFilter::filterUri( KUriFilterData& data ) const
 {
+    kDebug(7023) << data.typedString();
+
     KUrl url = data.uri();
-    QString cmd = url.url();
+    const QString protocol = url.protocol();
 
-    kDebug(7023) <<  url;
-
-    KUrl url2 = url;
-    url2.setHost( "www." + url.host());
-
-    if(( url.protocol() == "http" || url.protocol() == "https" )    
-        && !url.host().startsWith( QLatin1String("www.") ) && !exists( url ) && exists( url2 ))
+    if (protocol == QL1S("http") || protocol == QL1S("https"))
     {
-        setFilteredUri( data, url2 );
-        setUriType( data, KUriFilterData::NetProtocol );
-
-        kDebug() << "filtered to" << data.uri();
-        return true;
+        const QString host = url.host();
+        if (!host.isEmpty() && !host.startsWith(QL1S("www.")) && !exists(url))
+        {            
+            url.setHost((QL1L("www.") % host));
+            if (exists(url))
+            {
+                setFilteredUri(data, url);
+                setUriType(data, KUriFilterData::NetProtocol);
+                return true;
+            }
+            url.setHost(host);
+        }
     }
 
     return false;
 }
 
-void FixHostUriFilter::lookedUp( const QHostInfo &hostInfo )
+void FixHostUriFilter::lookedUp(const QHostInfo &hostInfo)
 {
     if (hostInfo.lookupId() == m_lookupId) {
-        m_hostExists = ( hostInfo.error() == QHostInfo::NoError );
-        if (m_eventLoop) {
+        m_hostExists = (hostInfo.error() == QHostInfo::NoError);
+        if (m_eventLoop)
             m_eventLoop->exit();
-        }
     }
 }
 
-bool FixHostUriFilter::exists( const KUrl& url ) const
+bool FixHostUriFilter::exists(const KUrl& url) const
 {
     QEventLoop eventLoop;
 
