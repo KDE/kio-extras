@@ -3,6 +3,7 @@
 
     This file is part of the KDE project
     Copyright (C) 2002 Lubos Lunak <llunak@suse.cz>
+    Copyright (C) 2010 Dawit Alemayehu <adawit@kde.org>
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -20,14 +21,16 @@
 
 #include "localdomainurifilter.h"
 
-#include <KProcess>
-#include <kstandarddirs.h>
-#include <kdebug.h>
+#include <KDE/KProtocolInfo>
+#include <KDE/KDebug>
 
-#include <QtDBus/QtDBus>
+#include <QtCore/QStringBuilder>
+#include <QtCore/QEventLoop>
+#include <QtCore/QTimer>
+#include <QtNetwork/QHostInfo>
 
-#include <QRegExp>
-#include <QFile>
+#define QL1C(x)   QLatin1Char(x)
+#define QL1S(x)   QLatin1String(x)
 
 #define HOSTPORT_PATTERN "[a-zA-Z0-9][a-zA-Z0-9+-]*(?:\\:[0-9]{1,5})?(?:/[\\w:@&=+$,-.!~*'()]*)*"
 
@@ -35,80 +38,76 @@
  * IMPORTANT: If you change anything here, please run the regression test
  * ../tests/kurifiltertest
  */
-
 LocalDomainUriFilter::LocalDomainUriFilter( QObject *parent, const QVariantList & /*args*/ )
                      :KUriFilterPlugin( "localdomainurifilter", parent ),
-                      last_time( 0 ),
-                      m_hostPortPattern( QLatin1String(HOSTPORT_PATTERN) )
+                      m_hostPortPattern(QL1S(HOSTPORT_PATTERN))
 {
-    QDBusConnection::sessionBus().connect(QString(), QString(), "org.kde.KUriFilterPlugin",
-                                "configure", this, SLOT(configure()));
-    configure();
 }
 
-bool LocalDomainUriFilter::filterUri( KUriFilterData& data ) const
+bool LocalDomainUriFilter::filterUri(KUriFilterData& data) const
 {
+    kDebug(7023) << data.typedString();
+
     const KUrl url = data.uri();
-    QString cmd = url.url();
+    const QString protocol = url.scheme();
 
-    kDebug() << url;
+    // When checking for local domain just validate it is indeed a local domain,
+    // but do not modify the hostname! See bug#
+    if ((protocol.isEmpty() || !KProtocolInfo::isKnownProtocol(protocol))  &&
+        m_hostPortPattern.exactMatch(data.typedString())) {
 
-    if( m_hostPortPattern.exactMatch( cmd ) &&
-        isLocalDomainHost( cmd ) )
-    {
-        cmd.prepend( QLatin1String("http://") );
-        setFilteredUri( data, KUrl( cmd ) );
-        setUriType( data, KUriFilterData::NetProtocol );
+        QString host (data.typedString().left(data.typedString().indexOf(QL1C('/'))));
+        const int pos = host.indexOf(QL1C(':'));
+        if (pos > -1)
+            host.truncate(pos); // Remove port number
 
-        kDebug() << "filtered to" << data.uri();
-        return true;
+        kDebug(7023) << "Checking local domain for" <<  host;
+        if (exists(host)) {
+            QString scheme (data.defaultUrlScheme());
+            if (scheme.isEmpty())
+                scheme = QL1S("http://");
+            setFilteredUri(data, KUrl(scheme % data.typedString()));
+            setUriType(data, KUriFilterData::NetProtocol);
+            return true;
+        }
     }
 
     return false;
 }
 
-// if it's e.g. just 'www', try if it's a hostname in the local search domain
-bool LocalDomainUriFilter::isLocalDomainHost( QString& cmd ) const
+void LocalDomainUriFilter::lookedUp(const QHostInfo &hostInfo)
 {
-    // find() returns -1 when no match -> left()/truncate() are noops then
-    QString host( cmd.left( cmd.indexOf( '/' ) ) );
-    const int pos = host.indexOf(':');
-    if (pos > -1) {
-        host.truncate(pos); // Remove port number
+    if (hostInfo.lookupId() == m_lookupId) {
+        m_hostExists = (hostInfo.error() == QHostInfo::NoError);
+        if (m_eventLoop)
+            m_eventLoop->exit();
     }
-
-    if( !(host == last_host && last_time > time( NULL ) - 5 ) ) {
-
-        QString helper = KStandardDirs::findExe(QLatin1String( "klocaldomainurifilterhelper" ));
-        if( helper.isEmpty())
-            return last_result = false;
-
-        KProcess proc;
-        proc.setOutputChannelMode(KProcess::SeparateChannels);
-        proc << helper << host;
-        proc.start();
-        if( !proc.waitForStarted( 1000 ) )
-            return last_result = false;
-
-        last_host = host;
-        last_time = time( (time_t *)0 );
-
-        last_result = (proc.waitForFinished( 1000 ) && proc.exitCode() == QProcess::NormalExit);
-        const QString fullname = QFile::decodeName( proc.readAllStandardOutput() );
-
-        if( !fullname.isEmpty() ) {
-            //kDebug() << "success, replacing" << host << "with" << fullname;
-            cmd.replace( 0, host.length(), fullname );
-        }
-    }
-
-    return last_result;
 }
 
-void LocalDomainUriFilter::configure()
+bool LocalDomainUriFilter::exists(const QString& host) const
 {
-    // nothing
+    QEventLoop eventLoop;
+
+    m_hostExists = false;
+    m_eventLoop = &eventLoop;
+
+    LocalDomainUriFilter *self = const_cast<LocalDomainUriFilter*>( this );
+    m_lookupId = QHostInfo::lookupHost( host, self, SLOT(lookedUp(QHostInfo)) );
+
+    QTimer t;
+    connect( &t, SIGNAL(timeout()), &eventLoop, SLOT(quit()) );
+    t.start(1000);
+
+    eventLoop.exec();
+    m_eventLoop = 0;
+
+    t.stop();
+
+    QHostInfo::abortHostLookup( m_lookupId );
+
+    return m_hostExists;
 }
+
 
 K_PLUGIN_FACTORY(LocalDomainUriFilterFactory, registerPlugin<LocalDomainUriFilter>();)
 K_EXPORT_PLUGIN(LocalDomainUriFilterFactory("kcmkurifilt"))

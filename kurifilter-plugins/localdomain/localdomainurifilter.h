@@ -21,11 +21,13 @@
 #ifndef _LOCALDOMAINURIFILTER_H_
 #define _LOCALDOMAINURIFILTER_H_
 
-#include <time.h>
+#include <KDE/KGenericFactory>
+#include <KDE/KUriFilter>
 
-#include <kgenericfactory.h>
-#include <kurifilter.h>
-#include <QRegExp>
+#include <QtCore/QRegExp>
+
+class QHostInfo;
+class QEventLoop;
 
 /*
  This filter takes care of hostnames in the local search domain.
@@ -33,7 +35,6 @@
  and the typed URI is just intranet, check if there's a host
  intranet.domain.org and if yes, it's a network URI.
 */
-
 class LocalDomainUriFilter : public KUriFilterPlugin
 {
   Q_OBJECT
@@ -43,14 +44,15 @@ class LocalDomainUriFilter : public KUriFilterPlugin
     virtual bool filterUri( KUriFilterData &data ) const;
 
   public Q_SLOTS:
-    void configure();
+    void lookedUp(const QHostInfo&);
 
   private:
-    bool isLocalDomainHost( QString& cmd ) const;
-    mutable QString last_host;
-    mutable bool last_result;
-    mutable time_t last_time;
+    bool exists(const QString&) const;
+
     QRegExp m_hostPortPattern;
+    mutable QEventLoop *m_eventLoop;
+    mutable int m_lookupId;
+    mutable bool m_hostExists;
 };
 
 #endif
