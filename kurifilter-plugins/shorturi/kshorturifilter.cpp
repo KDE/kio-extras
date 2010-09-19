@@ -85,7 +85,7 @@ static bool isValidShortURL( const QString& cmd )
   exp.setPattern( QL1S(FQDN_PATTERN) );
   if ( cmd.contains( exp ) )
   {
-    kDebug(7023) << cmd << " matches FQDN_PATTERN" << endl;
+    //kDebug(7023) << cmd << " matches FQDN_PATTERN" << endl;
 #if 0
     // something like wallpaper.png also matches a the FQDN pattern
     // but is very unlikely to be meant as such
@@ -100,7 +100,7 @@ static bool isValidShortURL( const QString& cmd )
   exp.setPattern( QL1S(IPv4_PATTERN) );
   if ( cmd.contains( exp ) )
   {
-    kDebug(7023) << cmd << " matches IPv4_PATTERN" << endl;
+    //kDebug(7023) << cmd << " matches IPv4_PATTERN" << endl;
     return true;
   }
 
@@ -108,11 +108,11 @@ static bool isValidShortURL( const QString& cmd )
   exp.setPattern( QL1S(IPv6_PATTERN) );
   if ( cmd.contains( exp ) )
   {
-    kDebug(7023) << cmd << " matches IPv6_PATTERN" << endl;
+    //kDebug(7023) << cmd << " matches IPv6_PATTERN" << endl;
     return true;
   }
 
-  kDebug(7023) << cmd << "' is not a short URL." << endl;
+  //kDebug(7023) << cmd << "' is not a short URL." << endl;
   return false;
 }
 
@@ -167,6 +167,8 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
   QString cmd = data.typedString();
   const bool isMalformed = !url.isValid();
   QString protocol = url.protocol();
+
+  kDebug(7023) << cmd;
 
   // Fix misparsing of "foo:80", QUrl thinks "foo" is the protocol and "80" is the path.
   // However, be careful not to do that for valid hostless URLs, e.g. file:///foo!
