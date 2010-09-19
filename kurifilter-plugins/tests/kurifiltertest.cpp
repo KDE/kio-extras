@@ -30,6 +30,7 @@
 
 #include <QtCore/QDir>
 #include <QtCore/QRegExp>
+#include <QtNetwork/QHostInfo>
 
 #include <iostream>
 #include "kurifiltertest.h"
@@ -359,6 +360,15 @@ void KUriFilterTest::internetKeywords()
     filter( sc.sprintf("av%c+rock +sample", s_delimiter).toUtf8(), "http://www.altavista.com/cgi-bin/query?pg=q&kl=XX&stype=stext&q=%2Brock+%2Bsample", KUriFilterData::NetProtocol );
     filter( QString::fromUtf8("gg%1é").arg(s_delimiter).toUtf8() /*eaccent in utf8*/, "http://www.google.com/search?q=%C3%A9&ie=UTF-8&oe=UTF-8", KUriFilterData::NetProtocol );
     filter( QString::fromUtf8("gg%1прйвет").arg(s_delimiter).toUtf8() /* greetings in russian utf-8*/, "http://www.google.com/search?q=%D0%BF%D1%80%D0%B9%D0%B2%D0%B5%D1%82&ie=UTF-8&oe=UTF-8", KUriFilterData::NetProtocol );
+}
+
+void KUriFilterTest::localdomain()
+{
+    const QString host = QHostInfo::localHostName();
+    if (host.isEmpty()) {
+        const QString expected = QLatin1String("http://") + host;
+        filter(host.toUtf8(), expected.toUtf8(), KUriFilterData::NetProtocol, QStringList() << "localdomainurifilter", 0, false);
+    }
 }
 
 #include "kurifiltertest.moc"

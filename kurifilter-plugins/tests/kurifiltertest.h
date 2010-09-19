@@ -37,6 +37,7 @@ private slots:
     void executables();
     void environmentVariables();
     void internetKeywords();
+    void localdomain();
 
 private:
     QStringList minicliFilters;
