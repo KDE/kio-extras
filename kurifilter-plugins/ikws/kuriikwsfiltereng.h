@@ -66,6 +66,7 @@ private:
   QString m_defaultSearchEngine;
   QStringList m_favoriteEngines;
   bool m_bWebShortcutsEnabled;
+  bool m_bUseOnlySelectedShortcuts;
   char m_cKeywordDelimiter;
   static KURISearchFilterEngine *s_pSelf;
 };

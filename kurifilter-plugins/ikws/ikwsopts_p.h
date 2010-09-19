@@ -19,9 +19,10 @@
 #ifndef IKWSOPTS_P_H
 #define IKWSOPTS_P_H
 
+#include <QAbstractTableModel>
+
 class SearchProvider;
 
-#include <QAbstractTableModel>
 class ProvidersModel: public QAbstractTableModel
 {
     Q_OBJECT
@@ -37,21 +38,22 @@ public:
     int rowCount(const QModelIndex& parent = QModelIndex()) const;
     int columnCount(const QModelIndex& parent = QModelIndex()) const{Q_UNUSED(parent); return ColumnCount;}
     
-    void setProviders(const QList<SearchProvider*>& p, const QStringList& f);
+    void setProviders(const QList<SearchProvider*>&, const QStringList&);
+    void setFavoriteProviders(const QStringList&);
     void addProvider(SearchProvider* p);
     void deleteProvider(SearchProvider* p);
     void changeProvider(SearchProvider* p);
-    QStringList favouriteEngines() const;
-    QList<SearchProvider*> providers() const{return m_providers;}
+    QStringList favoriteEngines() const;
+    QList<SearchProvider*> providers() const{ return m_providers;}
     
     ///Creates new ProvidersListModel which directly uses data of this model.
     QAbstractListModel* createListModel();
 
-signals:
+Q_SIGNALS:
     void dataModified();   
 
 private:
-    QMap<QString,bool> m_favouriteEngines;
+    QSet<QString> m_favoriteEngines;
     QList<SearchProvider*> m_providers;
 };
 
@@ -72,7 +74,8 @@ private:
 public:
     QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const;
     int rowCount(const QModelIndex& parent = QModelIndex()) const;
-public slots:
+
+public Q_SLOTS:
     void emitDataChanged(const QModelIndex& start, const QModelIndex& end){emit dataChanged(index(start.row(),0),index(end.row(),0));}
     void emitRowsAboutToBeInserted(const QModelIndex&, int start, int end){beginInsertRows(QModelIndex(),start,end);}
     void emitRowsAboutToBeRemoved(const QModelIndex&, int start, int end){beginRemoveRows(QModelIndex(),start,end);}

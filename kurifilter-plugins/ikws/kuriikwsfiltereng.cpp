@@ -71,7 +71,8 @@ SearchProvider* KURISearchFilterEngine::webShortcutQuery( const QString& typedSt
     else if ( !typedString.isEmpty()  && m_cKeywordDelimiter == ' ')
       key = typedString;
 
-    if (!key.isEmpty() && !KProtocolInfo::isKnownProtocol( key ))
+    if (!key.isEmpty() && !KProtocolInfo::isKnownProtocol( key ) &&
+        (!m_bUseOnlySelectedShortcuts || m_favoriteEngines.contains(key)))
     {
       provider = SearchProvider::findByKey(key);
       if (provider)
@@ -423,7 +424,9 @@ void KURISearchFilterEngine::loadConfig()
 
   m_cKeywordDelimiter = QString(group.readEntry("KeywordDelimiter", ":")).at(0).toLatin1();
   m_bWebShortcutsEnabled = group.readEntry("EnableWebShortcuts", true);
-  m_defaultSearchEngine = group.readEntry("DefaultSearchEngine");  
+  m_defaultSearchEngine = group.readEntry("DefaultSearchEngine");
+  m_bUseOnlySelectedShortcuts = group.readEntry("UseSelectedProvidersOnly", false);
+
   QStringList defaultFavoriteSearchEngines;
   if (!group.hasKey("FavoriteSearchEngines"))
       defaultFavoriteSearchEngines = DEFAULT_PREFERRED_SEARCH_PROVIDERS;  
