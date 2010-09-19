@@ -71,12 +71,19 @@ SearchProvider* KURISearchFilterEngine::webShortcutQuery( const QString& typedSt
     else if ( !typedString.isEmpty()  && m_cKeywordDelimiter == ' ')
       key = typedString;
 
-    if (!key.isEmpty() && !KProtocolInfo::isKnownProtocol( key ) &&
-        (!m_bUseOnlySelectedShortcuts || m_favoriteEngines.contains(key)))
+    if (!key.isEmpty() && !KProtocolInfo::isKnownProtocol(key))
     {
       provider = SearchProvider::findByKey(key);
       if (provider)
-        searchTerm = typedString.mid(pos+1);
+      {
+        if (!m_bUseOnlySelectedShortcuts || m_favoriteEngines.contains(provider->desktopEntryName()))
+            searchTerm = typedString.mid(pos+1);
+        else
+        {
+          delete provider;
+          provider = 0;
+        }
+      }
     }
   }
 
