@@ -3,7 +3,7 @@ Charset=
 Hidden=false
 Keys=kdeforums,kforum,kfrm
 Name=KDE Forums
-Name[ar]=KDE Forums
+Name[ar]=منتديات كدي
 Name[bg]=Форуми на KDE
 Name[bn]=কে.ডি.ই. ফোরামসমূহ
 Name[ca]=Forums del KDE
@@ -56,6 +56,7 @@ Name[x-test]=xxKDE Forumsxx
 Name[zh_CN]=KDE 社区论坛
 Name[zh_TW]=KDE 論壇
 Query=http://forum.kde.org/search.php?keywords=\\{@}&terms=all&author=&tags=&sv=0&sc=1&sf=all&sr=posts&sk=t&sd=d&st=0&ch=300&countlimit=100&t=0&submit=Search
+Query[cs]=http://forum.kde.org/search.php?keywords=\\{@}&terms=all&author=&tags=&sv=0&sc=1&sf=all&sr=posts&sk=t&sd=d&st=0&ch=300&countlimit=100&t=0&submit=Search
 Query[de]=http://forum.kde.org/search.php?keywords=\\{@}&terms=all&author=&tags=&sv=0&sc=1&sf=all&sr=posts&sk=t&sd=d&st=0&ch=300&countlimit=100&t=0&submit=Search
 Query[en_GB]=http://forum.kde.org/search.php?keywords=\\{@}&terms=all&author=&tags=&sv=0&sc=1&sf=all&sr=posts&sk=t&sd=d&st=0&ch=300&countlimit=100&t=0&submit=Search
 Query[es]=http://forum.kde.org/search.php?keywords=\\{@}&terms=all&author=&tags=&sv=0&sc=1&sf=all&sr=posts&sk=t&sd=d&st=0&ch=300&countlimit=100&t=0&submit=Search

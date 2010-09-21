@@ -56,7 +56,7 @@ Name[x-test]=xxJamendoxx
 Name[zh_CN]=Jamendo
 Name[zh_TW]=Jamendo
 Query=http://www.jamendo.com/en/search/all/\\{@}
-Query[ar]=http://www.jamendo.com/en/search/all/\\{@}
+Query[ar]=http://www.gracenote.com/music/search-adv.html?q=\\{@}
 Query[bg]=http://www.jamendo.com/en/search/all/\\{@}
 Query[bn]=http://www.jamendo.com/en/search/all/\\{@}
 Query[ca]=http://www.jamendo.com/en/search/all/\\{@}

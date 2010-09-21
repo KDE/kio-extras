@@ -3,11 +3,12 @@ Charset=
 Hidden=false
 Keys=urbandictionary,ud
 Name=Urban Dictionary
-Name[ar]=Urban Dictionary
+Name[ar]=القاموس المتمدّن
 Name[bg]=Urban Dictionary
 Name[bn]=Urban Dictionary
 Name[ca]=Urban Dictionary
 Name[ca@valencia]=Urban Dictionary
+Name[cs]=Urban Dictionary
 Name[da]=Urban Dictionary
 Name[de]=Urban Dictionary
 Name[el]=Urban Dictionary(Λεξικό)
@@ -54,7 +55,7 @@ Name[x-test]=xxUrban Dictionaryxx
 Name[zh_CN]=都市词典
 Name[zh_TW]=Urban Dictionary
 Query=http://www.urbandictionary.com/define.php?term=\\{@}
-Query[ar]=http://www.urbandictionary.com/define.php?term=\\{@}
+Query[ar]=http://www.hyperdictionary.com/search.aspx?define=\\{@}
 Query[bg]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[bn]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[ca]=http://www.urbandictionary.com/define.php?term=\\{@}

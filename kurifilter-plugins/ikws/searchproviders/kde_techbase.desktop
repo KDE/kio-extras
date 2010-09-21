@@ -3,10 +3,11 @@ Charset=
 Hidden=false
 Keys=kdetechbase,techbase,tb
 Name=KDE TechBase
-Name[ar]=KDE TechBase
+Name[ar]=أخبار كدي
 Name[bn]=KDE টেক-বেস
 Name[ca]=KDE TechBase
 Name[ca@valencia]=KDE TechBase
+Name[cs]=KDE TechBase
 Name[da]=KDE TechBase
 Name[de]=KDE TechBase
 Name[el]=Τεχνική βάση KDE
@@ -54,7 +55,7 @@ Name[x-test]=xxKDE TechBasexx
 Name[zh_CN]=KDE 技术信息库
 Name[zh_TW]=KDE TechBase
 Query=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
-Query[ar]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
+Query[ar]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[bg]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[bn]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[ca]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search

@@ -1,7 +1,7 @@
 [Desktop Entry]
 Type=Service
 Name=Directory Watcher
-Name[ar]=مراقب الدليل
+Name[ar]=مراقب المجلدات
 Name[bg]=Наблюдение на директории
 Name[ca]=Vigilant de directori
 Name[ca@valencia]=Vigilant de directori
@@ -61,7 +61,7 @@ X-KDE-DBus-ModuleName=desktopnotifier
 X-KDE-Kded-load-on-demand=true
 X-KDE-Kded-autoload=false
 Comment=Monitors directories for changes
-Comment[ar]=يراقب تغير الأدلة 
+Comment[ar]=يراقب التغيرات في المجلّدات
 Comment[bg]=Наблюдение на директории за промени
 Comment[ca]=Controla els canvis en els directoris
 Comment[ca@valencia]=Controla els canvis en els directoris

@@ -56,7 +56,7 @@ Name[x-test]=xxGitoriousxx
 Name[zh_CN]=Gitorious
 Name[zh_TW]=Gitorious
 Query=http://gitorious.org/search?q=\\{@}&commit=Search
-Query[ar]=http://gitorious.org/search?q=\\{@}&commit=Search
+Query[ar]=http://www.iblist.com/search/search.php?item=\\{@}&submit=Search
 Query[bg]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[bn]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[ca]=http://gitorious.org/search?q=\\{@}&commit=Search

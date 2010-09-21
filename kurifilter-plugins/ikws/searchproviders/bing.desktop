@@ -25,6 +25,7 @@ Name[zh_TW]=Bing
 X-KDE-ServiceTypes=SearchProvider
 Keys=bing
 Query=http://www.bing.com/search?q=\\{@}
+Query[cs]=http://www.bing.com/search?q=\\{@}
 Query[en_GB]=http://www.bing.com/search?q=\\{@}
 Query[es]=http://www.bing.com/search?q=\\{@}
 Query[eu]=http://www.bing.com/search?q=\\{@}

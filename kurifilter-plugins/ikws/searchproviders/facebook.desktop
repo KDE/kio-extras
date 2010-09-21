@@ -57,7 +57,7 @@ Name[x-test]=xxFacebookxx
 Name[zh_CN]=Facebook
 Name[zh_TW]=Facebook
 Query=http://www.facebook.com/search/?q=\\{@}&init=quick
-Query[ar]=http://www.facebook.com/search/?q=\\{@}&init=quick
+Query[ar]=http://www.ethicle.com/search.php?q=\\{@}
 Query[bg]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[bn]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[ca]=http://www.facebook.com/search/?q=\\{@}&init=quick

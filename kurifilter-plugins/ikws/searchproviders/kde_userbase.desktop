@@ -3,10 +3,11 @@ Charset=
 Hidden=false
 Keys=kdeuserbase,userbase,ub
 Name=KDE UserBase
-Name[ar]=KDE UserBase
+Name[ar]=كتيّب كدي للمستخدمين
 Name[bn]=কে.ডি.ই. ইউসার-বেস
 Name[ca]=KDE UserBase
 Name[ca@valencia]=KDE UserBase
+Name[cs]=KDE UserBase
 Name[da]=KDE UserBase
 Name[de]=KDE UserBase
 Name[el]=Βάση χρηστών KDE
@@ -54,7 +55,7 @@ Name[x-test]=xxKDE UserBasexx
 Name[zh_CN]=KDE 用户信息库
 Name[zh_TW]=KDE UserBase
 Query=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
-Query[ar]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
+Query[ar]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[bg]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[bn]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[ca]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search

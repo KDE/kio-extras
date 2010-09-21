@@ -10,7 +10,6 @@ X-KDE-PluginKeyword=cgi
 
 Name=CGI Scripts
 Name[af]=CGI-skripte
-Name[ar]=CGI سكريبت 
 Name[be]=Сцэнары CGI
 Name[be@latin]=Skrypty CGI
 Name[bg]=CGI скриптове
@@ -99,7 +98,7 @@ Name[zh_CN]=CGI 脚本
 Name[zh_TW]=CGI 命令稿
 Comment=Configure the CGI KIO slave
 Comment[af]=Stel die CGI KIO-slaaf op
-Comment[ar]=اضبط CGI خادم دخل وخرج كدي
+Comment[ar]=اضبط خادم دخل وخرج كدي لـCGI
 Comment[be]=Настаўленні CGI KIO slave
 Comment[be@latin]=Naładź słužby „kioslave” CGI
 Comment[bg]=Настройване на модула за изпълнение на скриптове без уеб сървър - CGI KIO

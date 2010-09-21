@@ -90,7 +90,7 @@ Name[x-test]=xxPHP Searchxx
 Name[zh_CN]=PHP 搜索
 Name[zh_TW]=PHP 搜尋
 Query=http://www.php.net/manual-lookup.php?pattern=\\{@}
-Query[ar]=http://www.php.net/manual-lookup.php?pattern=\\{@}
+Query[ar]=http://www.php.net/search.php?show=\\{mode,"manual"}&pattern=\\{@}
 Query[bg]=http://www.php.net/manual-lookup.php?pattern=\\{@}
 Query[bn]=http://www.php.net/manual-lookup.php?pattern=\\{@}
 Query[ca]=http://www.php.net/manual-lookup.php?pattern=\\{@}

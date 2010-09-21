@@ -56,7 +56,7 @@ Name[x-test]=xxMagnatunexx
 Name[zh_CN]=Magnatune
 Name[zh_TW]=Magnatune
 Query=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
-Query[ar]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
+Query[ar]=http://info.alexa.com/search?q=\\{@}
 Query[bg]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
 Query[bn]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
 Query[ca]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
