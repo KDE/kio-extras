@@ -9,6 +9,7 @@ Name[eu]=Baidu
 Name[hr]=Baidu
 Name[ia]=Baidu
 Name[is]=Baidu
+Name[ko]=Baidu
 Name[lt]=Baidu
 Name[nb]=Baidu
 Name[nds]=Baidu
@@ -33,6 +34,7 @@ Query[eu]=http://www.baidu.com/s?wd=\\{@}
 Query[hr]=http://www.baidu.com/s?wd=\\{@}
 Query[ia]=http://www.baidu.com/s?wd=\\{@}
 Query[is]=http://www.baidu.com/s?wd=\\{@}
+Query[ko]=http://www.baidu.com/s?wd=\\{@}
 Query[lt]=http://www.baidu.com/s?wd=\\{@}
 Query[nb]=http://www.baidu.com/s?wd=\\{@}
 Query[nds]=http://www.baidu.com/s?wd=\\{@}
