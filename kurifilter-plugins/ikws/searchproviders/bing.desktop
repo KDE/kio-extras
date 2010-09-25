@@ -10,6 +10,7 @@ Name[ia]=Bing
 Name[is]=Bing
 Name[ko]=Bing
 Name[lt]=Bing
+Name[mai]=बिंग
 Name[nb]=Bing
 Name[nds]=Bing
 Name[nl]=Bing
@@ -35,6 +36,7 @@ Query[ia]=http://www.bing.com/search?q=\\{@}
 Query[is]=http://www.bing.com/search?q=\\{@}
 Query[ko]=http://www.bing.com/search?q=\\{@}
 Query[lt]=http://www.bing.com/search?q=\\{@}
+Query[mai]=http://www.bing.com/search?q=\\{@}
 Query[nb]=http://www.bing.com/search?q=\\{@}
 Query[nds]=http://www.bing.com/search?q=\\{@}
 Query[nl]=http://www.bing.com/search?q=\\{@}

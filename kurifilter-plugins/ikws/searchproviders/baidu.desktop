@@ -11,6 +11,7 @@ Name[ia]=Baidu
 Name[is]=Baidu
 Name[ko]=Baidu
 Name[lt]=Baidu
+Name[mai]=बैडू
 Name[nb]=Baidu
 Name[nds]=Baidu
 Name[nl]=Baidu
@@ -36,6 +37,7 @@ Query[ia]=http://www.baidu.com/s?wd=\\{@}
 Query[is]=http://www.baidu.com/s?wd=\\{@}
 Query[ko]=http://www.baidu.com/s?wd=\\{@}
 Query[lt]=http://www.baidu.com/s?wd=\\{@}
+Query[mai]=http://www.baidu.com/s?wd=\\{@}
 Query[nb]=http://www.baidu.com/s?wd=\\{@}
 Query[nds]=http://www.baidu.com/s?wd=\\{@}
 Query[nl]=http://www.baidu.com/s?wd=\\{@}

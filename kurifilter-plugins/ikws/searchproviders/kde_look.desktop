@@ -28,6 +28,7 @@ Name[km]=រូបរាង​របស់ KDE
 Name[kn]=ಕೆಡಿಇ ನೋಟ
 Name[ko]=KDE Look
 Name[lt]=KDE Išvaizda
+Name[mai]=KDE लुक
 Name[ml]=കെഡിഇ ലുക്ക്
 Name[nb]=KDE utseende
 Name[nds]=KDE-Look
@@ -82,6 +83,7 @@ Query[km]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[kn]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[ko]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[lt]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
+Query[mai]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[ml]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[nb]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[nds]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
