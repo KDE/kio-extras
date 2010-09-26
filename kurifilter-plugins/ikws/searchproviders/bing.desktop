@@ -8,6 +8,7 @@ Name[eu]=Bing
 Name[hr]=Bing
 Name[ia]=Bing
 Name[is]=Bing
+Name[ja]=Bing
 Name[ko]=Bing
 Name[lt]=Bing
 Name[mai]=बिंग
@@ -34,6 +35,7 @@ Query[eu]=http://www.bing.com/search?q=\\{@}
 Query[hr]=http://www.bing.com/search?q=\\{@}
 Query[ia]=http://www.bing.com/search?q=\\{@}
 Query[is]=http://www.bing.com/search?q=\\{@}
+Query[ja]=http://www.bing.com/search?q=\\{@}
 Query[ko]=http://www.bing.com/search?q=\\{@}
 Query[lt]=http://www.bing.com/search?q=\\{@}
 Query[mai]=http://www.bing.com/search?q=\\{@}
