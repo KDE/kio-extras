@@ -1002,15 +1002,19 @@ void sftpProtocol::get(const KUrl& url) {
     return;
   }
 
-  if (sb->type == SSH_FILEXFER_TYPE_DIRECTORY) {
-    error(KIO::ERR_IS_DIRECTORY, url.prettyUrl());
-    sftp_attributes_free(sb);
-    return;
-  }
-  if (sb->type != SSH_FILEXFER_TYPE_REGULAR) {
+  switch (sb->type) {
+    case SSH_FILEXFER_TYPE_DIRECTORY:
+      error(KIO::ERR_IS_DIRECTORY, url.prettyUrl());
+      sftp_attributes_free(sb);
+      return;
+    case SSH_FILEXFER_TYPE_SPECIAL:
+    case SSH_FILEXFER_TYPE_UNKNOWN:
     error(KIO::ERR_CANNOT_OPEN_FOR_READING, url.prettyUrl());
-    sftp_attributes_free(sb);
-    return;
+      sftp_attributes_free(sb);
+      return;
+    case SSH_FILEXFER_TYPE_SYMLINK:
+    case SSH_FILEXFER_TYPE_REGULAR:
+      break;
   }
 
   // Open file
