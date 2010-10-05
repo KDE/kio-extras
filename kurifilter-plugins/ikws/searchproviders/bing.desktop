@@ -4,6 +4,7 @@ Name=Bing
 Name[cs]=Bing
 Name[en_GB]=Bing
 Name[es]=Bing
+Name[et]=Bing
 Name[eu]=Bing
 Name[hr]=Bing
 Name[ia]=Bing
@@ -32,6 +33,7 @@ Query=http://www.bing.com/search?q=\\{@}
 Query[cs]=http://www.bing.com/search?q=\\{@}
 Query[en_GB]=http://www.bing.com/search?q=\\{@}
 Query[es]=http://www.bing.com/search?q=\\{@}
+Query[et]=http://www.bing.com/search?q=\\{@}
 Query[eu]=http://www.bing.com/search?q=\\{@}
 Query[hr]=http://www.bing.com/search?q=\\{@}
 Query[ia]=http://www.bing.com/search?q=\\{@}
