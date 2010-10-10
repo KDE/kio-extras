@@ -2,6 +2,7 @@
 Type=Service
 Name=Bing
 Name[cs]=Bing
+Name[de]=Bing
 Name[en_GB]=Bing
 Name[es]=Bing
 Name[et]=Bing
@@ -31,6 +32,7 @@ X-KDE-ServiceTypes=SearchProvider
 Keys=bing
 Query=http://www.bing.com/search?q=\\{@}
 Query[cs]=http://www.bing.com/search?q=\\{@}
+Query[de]=http://www.bing.de/search/?q=\\{@}
 Query[en_GB]=http://www.bing.com/search?q=\\{@}
 Query[es]=http://www.bing.com/search?q=\\{@}
 Query[et]=http://www.bing.com/search?q=\\{@}
