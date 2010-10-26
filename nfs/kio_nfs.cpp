@@ -154,8 +154,10 @@ static void createVirtualDirEntry(UDSEntry & entry)
 static void stripTrailingSlash(QString& path)
 {
    //if (path=="/") return;
-   if (path=="/") path="";
-   else if (path[path.length()-1]=='/') path.truncate(path.length()-1);
+   if (path == QLatin1String("/"))
+       path = "";
+   else if (path.endsWith(QLatin1Char('/')))
+       path.truncate(path.length()-1);
 }
 
 static void getLastPart(const QString& path, QString& lastPart, QString& rest)
