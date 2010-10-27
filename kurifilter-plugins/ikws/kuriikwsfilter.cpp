@@ -27,6 +27,7 @@
 #include <klocale.h>
 #include <kurl.h>
 #include <kglobal.h>
+#include <KDE/KPluginFactory>
 
 #include <QtDBus/QtDBus>
 

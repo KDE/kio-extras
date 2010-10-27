@@ -23,6 +23,7 @@
 #include "kuriikwsfiltereng.h"
 #include "searchprovider.h"
 #include "ikwsopts.h"
+#include <kdebug.h>
 
 #include <QtDBus/QtDBus>
 

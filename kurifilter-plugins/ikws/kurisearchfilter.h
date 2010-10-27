@@ -23,7 +23,6 @@
 #define KURISEARCHFILTER_H
 
 #include <kurifilter.h>
-#include <kgenericfactory.h>
 
 class KUriSearchFilter : public KUriFilterPlugin
 {

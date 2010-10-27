@@ -21,7 +21,6 @@
 #ifndef _FIXHOSTURIFILTER_H_
 #define _FIXHOSTURIFILTER_H_
 
-#include <KDE/KGenericFactory>
 #include <KDE/KUriFilter>
 
 class QHostInfo;

@@ -21,7 +21,6 @@
 #ifndef _LOCALDOMAINURIFILTER_H_
 #define _LOCALDOMAINURIFILTER_H_
 
-#include <KDE/KGenericFactory>
 #include <KDE/KUriFilter>
 
 #include <QtCore/QRegExp>

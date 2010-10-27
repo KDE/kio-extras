@@ -23,6 +23,7 @@
 
 #include <KDE/KProtocolInfo>
 #include <KDE/KDebug>
+#include <KDE/KPluginFactory>
 
 #include <QtCore/QStringBuilder>
 #include <QtCore/QEventLoop>

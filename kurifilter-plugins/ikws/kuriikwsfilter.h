@@ -22,8 +22,6 @@
 #ifndef KURIIKWSFILTER_H
 #define KURIIKWSFILTER_H
 
-#include <kgenericfactory.h>
-
 #include <kurifilter.h>
 
 class KAutoWebSearch : public KUriFilterPlugin

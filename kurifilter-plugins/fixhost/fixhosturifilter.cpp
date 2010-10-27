@@ -28,6 +28,7 @@
 
 #include <KDE/KUrl>
 #include <KDE/KDebug>
+#include <KDE/KPluginFactory>
 
 #define QL1S(x)   QLatin1String(x)
 #define QL1L(x)   QLatin1Literal(x)
@@ -36,7 +37,7 @@
  * IMPORTANT: If you change anything here, please run the regression test
  * ../tests/kurifiltertest
  */
- 
+
 FixHostUriFilter::FixHostUriFilter(QObject *parent, const QVariantList & /*args*/)
                  :KUriFilterPlugin("fixhosturifilter", parent),
                   m_hostExists(false)
@@ -54,7 +55,7 @@ bool FixHostUriFilter::filterUri( KUriFilterData& data ) const
     {
         const QString host = url.host();
         if (!host.isEmpty() && !host.startsWith(QL1S("www.")) && !exists(url))
-        {            
+        {
             url.setHost((QL1L("www.") % host));
             if (exists(url))
             {

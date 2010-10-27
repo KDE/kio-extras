@@ -23,9 +23,7 @@
 #ifndef KSHORTURIFILTER_H
 #define KSHORTURIFILTER_H
 
-#include <kgenericfactory.h>
 #include <kurifilter.h>
-//Added by qt3to4:
 #include <QList>
 
 /**
