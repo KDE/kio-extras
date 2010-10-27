@@ -479,7 +479,7 @@ QImage ThumbnailProtocol::thumbForDirectory(const KUrl& directory)
         m_propagationDirectories = globalConfig.readEntry("PropagationDirectories", QStringList() << "VIDEO_TS").toSet();
         m_maxFileSize = globalConfig.readEntry("MaximumSize", 5 * 1024 * 1024); // 5 MByte default
     }
-    
+
     const int tiles = 2; //Count of items shown on each dimension
     const int spacing = 1;
     const int visibleCount = tiles * tiles;
@@ -537,13 +537,13 @@ QImage ThumbnailProtocol::thumbForDirectory(const KUrl& directory)
     int skipped = 0;
 
     const int maxYPos = folderHeight - bottomMargin - segmentHeight;
-    
+
     while ((skipped <= skipValidItems) && (yPos <= maxYPos) && !hadThumbnail) {
         QDirIterator dir(localFile, QDir::Files | QDir::Readable);
         if (!dir.hasNext()) {
             break;
         }
-        
+
         while (dir.hasNext() && (yPos <= maxYPos)) {
             ++iterations;
             if (iterations > 500) {
@@ -567,16 +567,16 @@ QImage ThumbnailProtocol::thumbForDirectory(const KUrl& directory)
             if (!createSubThumbnail(subThumbnail, dir.filePath(), segmentWidth, segmentHeight)) {
                 continue;
             }
-            
+
             if (skipped < skipValidItems) {
                 ++skipped;
                 continue;
             }
-            
+
             // Seed the random number generator so that it always returns the same result
             // for the same directory and sequence-item
             qsrand(qHash(dir.filePath()));
-            
+
             if (hadFirstThumbnail.isEmpty()) {
                 hadFirstThumbnail = dir.filePath();
             }
@@ -602,7 +602,7 @@ QImage ThumbnailProtocol::thumbForDirectory(const KUrl& directory)
                 yPos += segmentHeight + spacing;
             }
         }
-        
+
         if (skipped != 0) { // Round up to full pages
             const int roundedDown = (skipped / visibleCount) * visibleCount;
             if (roundedDown < skipped) {
@@ -611,18 +611,18 @@ QImage ThumbnailProtocol::thumbForDirectory(const KUrl& directory)
                 skipped = roundedDown;
             }
         }
-        
+
         if (skipped == 0) {
             break; // No valid items were found
         }
-            
+
         // We don't need to iterate again and again: Subtract any multiple of "skipped" from the count we still need to skip
         skipValidItems -= (skipValidItems / skipped) * skipped;
         skipped = 0;
     }
-    
+
     p.end();
-    
+
     if (!hadThumbnail) {
         // Eventually propagate the contained items from a sub-directory
         QDirIterator dir(localFile, QDir::Dirs);
@@ -647,11 +647,11 @@ ThumbCreator* ThumbnailProtocol::getThumbCreator(const QString& plugin)
 {
     ThumbCreator *creator = m_creators[plugin];
     if (!creator) {
-        // Don't use KLibFactory here, this is not a QObject and
+        // Don't use KPluginFactory here, this is not a QObject and
         // neither is ThumbCreator
-        KLibrary *library = KLibLoader::self()->library(plugin);
-        if (library) {
-            newCreator create = (newCreator)library->resolveFunction("new_creator");
+        KLibrary library(plugin);
+        if (library.load()) {
+            newCreator create = (newCreator)library.resolveFunction("new_creator");
             if (create) {
                 creator = create();
             }
