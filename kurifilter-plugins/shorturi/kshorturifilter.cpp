@@ -35,6 +35,8 @@
 #include <QtDBus/QtDBus>
 
 #include <kdebug.h>
+#include <klocalizedstring.h>
+#include <kpluginfactory.h>
 #include <kprotocolinfo.h>
 #include <kstandarddirs.h>
 #include <kconfig.h>
