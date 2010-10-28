@@ -15,11 +15,11 @@
 </authorgroup>
 
 <date>2010-10-27</date>
-<releaseinfo>1.2.3</releaseinfo>
+<releaseinfo>&kde; 4.5</releaseinfo>
 
 </articleinfo>
 
-<para>Allows you to access another computer's files using the SEcure Shell (<acronym>SSH</acronym>) protocol.  The remote computer needs to be running the <acronym>SSH</acronym> daemon, but the remainder of the protocol uses standard commandline tools as discussed below.</para>
+<para>Allows you to access another computer's files using the <emphasis>S</emphasis>ecure <emphasis>SH</emphasis>ell (<acronym>SSH</acronym>) protocol.  The remote computer needs to be running the <acronym>SSH</acronym> daemon, but the remainder of the protocol uses standard commandline tools as discussed below.</para>
 
 <para>You can use the fish kioslave like this:
 <userinput>fish://<replaceable>hostname</replaceable></userinput> or <userinput>fish://<replaceable>username</replaceable>@<replaceable>hostname</replaceable></userinput>.</para>
